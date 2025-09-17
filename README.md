@@ -1,5 +1,7 @@
 # KP Code — Portfolio
 
+![KP Code Logo](assets/LOGO-1200x630.png)
+
 Monorepo with website templates for **10 industries × 5 projects** (50 sites total).  
 Each project is self-contained: **industry → tech stack → project**.
 
