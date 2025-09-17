@@ -1,0 +1,897 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <!-- ===================================================================
+       META PODSTAWOWE
+  ==================================================================== -->
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Restauracja Aurelia</title>
+  <meta name="description" content="Elegancka restauracja z autorskim menu degustacyjnym. Zarezerwuj stolik online i poznaj nasze sezonowe dania." />
+  <meta name="author" content="KPCode" />
+  <meta name="color-scheme" content="light dark" />
+  <link rel="canonical" href="https://twojadomena.pl/" />
+
+  <!-- Kolory motywu (PWA / przeglądarka) -->
+  <meta name="theme-color" content="#fab204" media="(prefers-color-scheme: light)" />
+  <meta name="theme-color" content="#0b0b0f" media="(prefers-color-scheme: dark)" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+  <!-- ===================================================================
+     SOCIAL PREVIEW: Open Graph + Twitter
+  ==================================================================== -->
+  <!-- Open Graph -->
+  <meta property="og:locale" content="pl_PL" />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="Restauracja Aurelia" />
+  <meta property="og:title" content="Restauracja Aurelia — Fine Dining" />
+  <meta property="og:description" content="Elegancka restauracja z autorskim menu degustacyjnym. Zarezerwuj stolik online." />
+  <meta property="og:url" content="https://twojadomena.pl/" />
+  <meta property="og:image" content="https://twojadomena.pl/assets/img/og-1200x630.jpg" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:image:alt" content="Restauracja Aurelia – elegancka kuchnia w Warszawie" />
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Restauracja Aurelia — Fine Dining" />
+  <meta name="twitter:description" content="Elegancka restauracja z autorskim menu degustacyjnym. Zarezerwuj stolik online." />
+  <meta name="twitter:image" content="https://twojadomena.pl/assets/img/og-1200x630.jpg" />
+  <meta name="twitter:image:alt" content="Restauracja Aurelia – elegancka kuchnia w Warszawie" />
+
+  <!-- ===================================================================
+     IKONY / MANIFEST / FAVICONS
+  ==================================================================== -->
+<!-- IKONY / FAVICONS (bez manifestu na czas dev) -->
+<link rel="icon" href="assets/icons/favicon-32x32.png" sizes="32x32" type="image/png" />
+<link rel="icon" href="assets/icons/favicon-16x16.png" sizes="16x16" type="image/png" />
+<link rel="apple-touch-icon" href="assets/icons/apple-touch-icon.png" sizes="180x180" />
+<link rel="shortcut icon" href="assets/icons/favicon.ico" type="image/x-icon" />
+<!-- tymczasowo pomijamy SVG i manifest (wycisza błędy 404 w konsoli dev) -->
+<!-- <link rel="icon" href="assets/icons/favicon-02.svg" type="image/svg+xml" /> -->
+<!-- <link rel="manifest" href="assets/icons/site-02.webmanifest" /> -->
+
+
+  <!-- ===================================================================
+       FONTY + CSS
+  ==================================================================== -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Playfair+Display:wght@600;700&display=swap&subset=latin-ext" rel="stylesheet" />
+  <link rel="preload" href="css/style.min.css" as="style" />
+  <link rel="stylesheet" href="css/style.min.css" />
+
+  <!-- preload hero image (poprawiona nazwa pliku) -->
+  <link rel="preload" as="image"
+    imagesrcset="assets/img/hero/hero-01-2560x1440.avif 2560w, assets/img/hero/hero-01-1600x900.avif 1600w"
+    imagesizes="100vw"
+    href="assets/img/hero/hero-01-1600x900.avif"
+    fetchpriority="high" />
+
+  <!-- ===================================================================
+       SEO: DANE STRUKTURALNE (Restaurant + AggregateRating)
+  ==================================================================== -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Restaurant",
+    "@id": "https://twojadomena.pl/#org",
+    "name": "Restauracja Aurelia",
+    "url": "https://twojadomena.pl/",
+    "image": "https://twojadomena.pl/assets/img/dish-01-600.jpg",
+    "telephone": "+48 600 000 000",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "ul. Przykładowa 1",
+      "postalCode": "00-000",
+      "addressLocality": "Warszawa",
+      "addressCountry": "PL"
+    },
+    "servesCuisine": ["Fine Dining","Polska","Europejska"],
+    "priceRange": "$$",
+    "openingHoursSpecification": [
+      {
+        "@type": "OpeningHoursSpecification",
+        "dayOfWeek": ["Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"],
+        "opens": "17:00",
+        "closes": "23:00"
+      }
+    ],
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": "4.8",
+      "ratingCount": "327",
+      "bestRating": "5",
+      "worstRating": "1"
+    },
+    "sameAs": [
+      "https://www.facebook.com/twojprofil",
+      "https://www.instagram.com/twojprofil",
+      "https://maps.google.com/?cid=12345678901234567890",
+      "https://www.tripadvisor.com/Restaurant_Review-g274856-d12345678-Reviews-Restauracja_Aurelia-Warsaw_Mazovia_Province.html"
+    ]
+  }
+  </script>
+</head>
+
+
+<body class="no-js">
+  <!-- ===================================================================
+       0) SKIP LINK (a11y)
+  ==================================================================== -->
+  <a class="skip-link" href="#main">Przejdź do treści</a>
+
+  <!-- ===================================================================
+       SPRITE IKON (inline SVG: 1x w dokumencie)
+  ==================================================================== -->
+  <svg class="vh" aria-hidden="true">
+    <symbol id="i-phone" viewBox="0 0 24 24">
+      <path d="M6.6 3.5c.5-.5 1.3-.5 1.8 0l2.4 2.4c.5.5.5 1.3 0 1.8l-1 1c-.4.4-.5 1-.3 1.5a12.6 12.6 0 0 0 5.7 5.7c.5.2 1.1.1 1.5-.3l1-1c.5-.5 1.3-.5 1.8 0l2.4 2.4c.5.5.5 1.3 0 1.8l-1.2 1.2c-.9.9-2.2 1.3-3.5.9a20.5 20.5 0 0 1-9.4-5.4A20.5 20.5 0 0 1 4.5 4.7c-.4-1.3 0-2.6.9-3.5L6.6 3.5Z" fill="currentColor"/>
+    </symbol>
+    <symbol id="i-clock" viewBox="0 0 24 24">
+      <circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="2"/>
+      <path d="M12 7v5l3 2" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+    </symbol>
+    <symbol id="i-menu" viewBox="0 0 24 24">
+      <path d="M3 6h18M3 12h18M3 18h18" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round"/>
+    </symbol>
+    <symbol id="i-close" viewBox="0 0 24 24">
+      <path d="M6 6l12 12M18 6L6 18" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round"/>
+    </symbol>
+    <symbol id="i-chevron" viewBox="0 0 24 24">
+      <path d="M8 10l4 4 4-4" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round"/>
+    </symbol>
+    
+    <!-- Social -->
+    <symbol id="i-fb" viewBox="0 0 24 24">
+      <path fill="currentColor" d="M9.101 23.691v-7.98H6.627v-3.667h2.474v-1.58c0-4.085 1.848-5.978 5.858-5.978.401 0 .955.042 1.468.103a8.68 8.68 0 0 1 1.141.195v3.325a8.623 8.623 0 0 0-.653-.036 26.805 26.805 0 0 0-.733-.009c-.707 0-1.259.096-1.675.309a1.686 1.686 0 0 0-.679.622c-.258.42-.374.995-.374 1.752v1.297h3.919l-.386 2.103-.287 1.564h-3.246v8.245C19.396 23.238 24 18.179 24 12.044c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.628 3.874 10.35 9.101 11.647Z"/>
+    </symbol>
+    <symbol id="i-ig" viewBox="0 0 24 24">
+      <path fill="currentColor" d="M7.0301.084c-1.2768.0602-2.1487.264-2.911.5634-.7888.3075-1.4575.72-2.1228 1.3877-.6652.6677-1.075 1.3368-1.3802 2.127-.2954.7638-.4956 1.6365-.552 2.914-.0564 1.2775-.0689 1.6882-.0626 4.947.0062 3.2586.0206 3.6671.0825 4.9473.061 1.2765.264 2.1482.5635 2.9107.308.7889.72 1.4573 1.388 2.1228.6679.6655 1.3365 1.0743 2.1285 1.38.7632.295 1.6361.4961 2.9134.552 1.2773.056 1.6884.069 4.9462.0627 3.2578-.0062 3.668-.0207 4.9478-.0814 1.28-.0607 2.147-.2652 2.9098-.5633.7889-.3086 1.4578-.72 2.1228-1.3881.665-.6682 1.0745-1.3378 1.3795-2.1284.2957-.7632.4966-1.636.552-2.9124.056-1.2809.0692-1.6898.063-4.948-.0063-3.2583-.021-3.6668-.0817-4.9465-.0607-1.2797-.264-2.1487-.5633-2.9117-.3084-.7889-.72-1.4568-1.3876-2.1228C21.2982 1.33 20.628.9208 19.8378.6165 19.074.321 18.2017.1197 16.9244.0645 15.6471.0093 15.236-.005 11.977.0014 8.718.0076 8.31.0215 7.0301.0839m.1402 21.6932c-1.17-.0509-1.8053-.2453-2.2287-.408-.5606-.216-.96-.4771-1.3819-.895-.422-.4178-.6811-.8186-.9-1.378-.1644-.4234-.3624-1.058-.4171-2.228-.0595-1.2645-.072-1.6442-.079-4.848-.007-3.2037.0053-3.583.0607-4.848.05-1.169.2456-1.805.408-2.2282.216-.5613.4762-.96.895-1.3816.4188-.4217.8184-.6814 1.3783-.9003.423-.1651 1.0575-.3614 2.227-.4171 1.2655-.06 1.6447-.072 4.848-.079 3.2033-.007 3.5835.005 4.8495.0608 1.169.0508 1.8053.2445 2.228.408.5608.216.96.4754 1.3816.895.4217.4194.6816.8176.9005 1.3787.1653.4217.3617 1.056.4169 2.2263.0602 1.2655.0739 1.645.0796 4.848.0058 3.203-.0055 3.5834-.061 4.848-.051 1.17-.245 1.8055-.408 2.2294-.216.5604-.4763.96-.8954 1.3814-.419.4215-.8181.6811-1.3783.9-.4224.1649-1.0577.3617-2.2262.4174-1.2656.0595-1.6448.072-4.8493.079-3.2045.007-3.5825-.006-4.848-.0608M16.953 5.5864A1.44 1.44 0 1 0 18.39 4.144a1.44 1.44 0 0 0-1.437 1.4424M5.8385 12.012c.0067 3.4032 2.7706 6.1557 6.173 6.1493 3.4026-.0065 6.157-2.7701 6.1506-6.1733-.0065-3.4032-2.771-6.1565-6.174-6.1498-3.403.0067-6.156 2.771-6.1496 6.1738M8 12.0077a4 4 0 1 1 4.008 3.9921A3.9996 3.9996 0 0 1 8 12.0077"/>
+    </symbol>
+    <symbol id="i-x" viewBox="0 0 24 24">
+      <path fill="currentColor" d="M18.901 1.153h3.68l-8.04 9.19L24 22.846h-7.406l-5.8-7.584-6.638 7.584H.474l8.6-9.83L0 1.154h7.594l5.243 6.932ZM17.61 20.644h2.039L6.486 3.24H4.298Z"/>
+    </symbol>
+    <symbol id="i-yt" viewBox="0 0 24 24">
+      <path fill="currentColor" d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
+    </symbol>
+  </svg>
+
+  <!-- ===================================================================
+       1) HEADER (sticky) + NAWIGACJA
+  ==================================================================== -->
+  <header id="top" class="site-header" data-sticky>
+    <div class="container header-row">
+      <!-- Brand -->
+      <a class="brand" href="#top" aria-label="Strona główna">
+        <img class="logo logo-light"
+            src="assets/icons/logo-light-180px.svg"
+            alt="Restauracja Aurelia – logo"
+            width="140" height="140" decoding="async" />
+        <img class="logo logo-dark"
+            src="assets/icons/logo-dark-180px.svg"
+            alt=""
+            aria-hidden="true"
+            width="140" height="140"
+            decoding="async" />
+      </a>
+
+
+      <!-- Główna nawigacja (desktop) -->
+      <nav id="site-nav" class="site-nav" data-testid="site-nav" aria-label="Główna nawigacja">
+        <ul>
+          <li><a href="#onas">O nas</a></li>
+          <li><a href="#menu">Menu</a></li>
+          <li><a href="#galeria">Galeria</a></li>
+          <li><a href="#opinie">Opinie</a></li>
+          <li><a href="#rezerwacja">Rezerwacja</a></li>
+          <li><a href="#faq">FAQ</a></li>
+        </ul>
+      </nav>
+
+      <!-- Akcje po prawej -->
+      <div class="header-actions">
+        <a class="btn btn-ghost hide-on-mobile" href="tel:+48600000000" aria-label="Zadzwoń do restauracji">
+          <svg class="i" aria-hidden="true" focusable="false"><use href="#i-phone"/></svg>
+          +48 600 000 000
+        </a>
+
+        <!-- Przełącznik motywu -->
+        <button class="theme-toggle" data-testid="theme-toggle" type="button" aria-label="Przełącz motyw" aria-pressed="false" title="Motyw">
+          <span class="theme-icon" aria-hidden="true">☾</span>
+        </button>
+
+        <!-- Przycisk: przewiń NA DÓŁ -->
+        <button class="scroll-btn scroll-down" data-testid="scroll-down" type="button" aria-label="Przewiń na dół" title="Na dół">
+          <svg class="i" aria-hidden="true" focusable="false"><use href="#i-chevron"/></svg>
+        </button>
+
+        <!-- Hamburger (mobile) -->
+        <button class="nav-toggle" data-testid="nav-toggle" type="button" aria-controls="site-nav" aria-expanded="false" aria-label="Menu">
+          <svg class="icon" aria-hidden="true" focusable="false"><use href="#i-menu"/></svg>
+          <span class="vh">Menu</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- ===================================================================
+       2) HERO
+  ==================================================================== -->
+  <section class="hero" aria-label="Witamy w Restauracji Aurelia" data-img="light">
+
+    <picture class="hero-media" aria-hidden="true">
+      <!-- AVIF -->
+      <source
+        type="image/avif"
+        srcset="
+          assets/img/hero/hero-01-2560x1440.avif 2560w,
+          assets/img/hero/hero-01-1600x900.avif   1600w"
+        sizes="100vw" />
+      <!-- WebP -->
+      <source
+        type="image/webp"
+        srcset="
+          assets/img/hero/hero-01-2560x1440.webp 2560w,
+          assets/img/hero/hero-01-1600x900.webp   1600w"
+        sizes="100vw" />
+      <!-- Fallback JPG -->
+      <img
+        src="assets/img/hero/hero-01-1600x900.jpg"
+        srcset="
+          assets/img/hero/hero-01-2560x1440.jpg 2560w,
+          assets/img/hero/hero-01-1600x900.jpg   1600w"
+        sizes="100vw"
+        alt="" decoding="async" fetchpriority="high" width="1600" height="900" />
+    </picture>
+
+    <div class="container hero-inner">
+      <p class="eyebrow">Fine Dining</p>
+      <h1>Sezonowe menu degustacyjne</h1>
+      <p class="lead">Autorskie dania, selekcja win i kameralna atmosfera w centrum miasta.</p>
+      <div class="hero-cta">
+        <a class="btn btn-primary btn-cta" href="#rezerwacja">Zarezerwuj stolik</a>
+        <a class="btn btn-ghost" href="#menu">Zobacz menu</a>
+      </div>
+    </div>
+
+  </section>
+
+  <!-- ===================================================================
+       MAIN
+  ==================================================================== -->
+  <main id="main">
+    <!-- ================================================================
+         3) O NAS
+    ================================================================ -->
+    <section id="onas" class="block about">
+      <div class="container grid-2">
+        <div>
+          <h2>O nas</h2>
+          <p class="lead">Łączymy lokalne składniki z finezyjnymi technikami. Krótkie, sezonowe karty pozwalają wybrzmieć każdemu produktowi.</p>
+          <ul class="bullets">
+            <li><svg class="i" aria-hidden="true" focusable="false"><use href="#i-clock"/></svg> Godziny: wt–nd 17:00–23:00</li>
+            <li><svg class="i" aria-hidden="true" focusable="false"><use href="#i-phone"/></svg> Rezerwacje: <a href="tel:+48600000000">+48 600 000 000</a></li>
+          </ul>
+        </div>
+        <figure class="about-photo">
+
+          <picture class="about-photo">
+            <!-- AVIF -->
+            <source
+              type="image/avif"
+              srcset="
+                assets/img/about/chef-01-1600x1200.avif 1600w,
+                assets/img/about/chef-01-800x600.avif    800w"
+              sizes="(min-width: 768px) 50vw, 100vw" />
+
+            <!-- WebP -->
+            <source
+              type="image/webp"
+              srcset="
+                assets/img/about/chef-01-1600x1200.webp 1600w,
+                assets/img/about/chef-01-800x600.webp    800w"
+              sizes="(min-width: 768px) 50vw, 100vw" />
+
+            <!-- Fallback JPG -->
+            <img
+              src="assets/img/about/chef-01-800x600.jpg"
+              srcset="
+                assets/img/about/chef-01-1600x1200.jpg 1600w,
+                assets/img/about/chef-01-800x600.jpg    800w"
+              sizes="(min-width: 768px) 50vw, 100vw"
+              alt="Szef kuchni przygotowujący danie"
+              width="800" height="600"
+              decoding="async" loading="lazy" />
+          </picture>
+ 
+        </figure>
+      </div>
+    </section>
+
+    <!-- ================================================================
+         4) MENU (kategorie + karty dań)
+    ================================================================ -->
+    <section id="menu" class="block menu">
+  <div class="container">
+    <div class="section-head">
+      <h2>Menu</h2>
+      <p class="muted">Wybierz kategorię, aby przefiltrować dania.</p>
+    </div>
+
+    <!-- Filtry / kategorie -->
+    <div class="tabs" role="tablist" data-testid="menu-tabs" aria-label="Kategorie menu">
+      <button class="tab is-active" data-testid="tab-all"          role="tab" aria-selected="true"  data-filter="all">Wszystko</button>
+      <button class="tab"           data-testid="tab-przystawki"   role="tab" aria-selected="false" data-filter="przystawki">Przystawki</button>
+      <button class="tab"           data-testid="tab-dania-glowne" role="tab" aria-selected="false" data-filter="dania-glowne">Dania główne</button>
+      <button class="tab"           data-testid="tab-desery"       role="tab" aria-selected="false" data-filter="desery">Desery</button>
+    </div>
+
+    <!-- Siatka kart dań -->
+    <div class="menu-grid" role="region" aria-live="polite">
+
+     <!-- Danie 1 -->
+      <article class="dish has-thumb" data-cat="przystawki">
+        <header class="dish-head">
+          <h3>Ostrygi z granitą</h3>
+          <span class="price">58 zł</span>
+
+          <button class="dish-thumb" type="button"
+                  aria-haspopup="dialog" aria-controls="lb"
+                  data-full="assets/img/dishes/ostrygi-z-granita-1200"
+                  aria-label="Powiększ zdjęcie: Ostrygi z granitą">
+            <picture>
+              <source type="image/avif"
+                      srcset="assets/img/dishes/ostrygi-z-granita-600.avif 2x,
+                              assets/img/dishes/ostrygi-z-granita-200.avif 1x">
+              <source type="image/webp"
+                      srcset="assets/img/dishes/ostrygi-z-granita-600.webp 2x,
+                              assets/img/dishes/ostrygi-z-granita-200.webp 1x">
+              <img
+                src="assets/img/dishes/ostrygi-z-granita-200.jpg"
+                srcset="assets/img/dishes/ostrygi-z-granita-600.jpg 2x,
+                        assets/img/dishes/ostrygi-z-granita-200.jpg 1x"
+                alt="Ostrygi z granitą"
+                width="64" height="64"
+                decoding="async" loading="lazy">
+            </picture>
+          </button>
+        </header>
+        <p class="desc">Świeże ostrygi, granita z ogórka i yuzu, mikro zioła.</p>
+      </article>
+
+      <!-- Danie 2 -->
+        <article class="dish has-thumb" data-cat="dania-glowne">
+          <header class="dish-head">
+            <h3>Polik wołowy</h3>
+            <span class="price">92 zł</span>
+
+            <button class="dish-thumb" type="button"
+                    aria-haspopup="dialog" aria-controls="lb"
+                    data-full="assets/img/dishes/polik-wolowy-1200"
+                    aria-label="Powiększ zdjęcie: Polik wołowy / seler / porto">
+              <picture>
+                <source type="image/avif"
+                        srcset="assets/img/dishes/polik-wolowy-600.avif 2x,
+                                assets/img/dishes/polik-wolowy-200.avif 1x">
+                <source type="image/webp"
+                        srcset="assets/img/dishes/polik-wolowy-600.webp 2x,
+                                assets/img/dishes/polik-wolowy-200.webp 1x">
+                <img
+                  src="assets/img/dishes/polik-wolowy-200.jpg"
+                  srcset="assets/img/dishes/polik-wolowy-600.jpg 2x,
+                          assets/img/dishes/polik-wolowy-200.jpg 1x"
+                  alt="Polik wołowy"
+                  width="64" height="64"
+                  decoding="async" loading="lazy">
+              </picture>
+            </button>
+          </header>
+          <p class="desc">Długo duszony polik, krem z selera, sos na porto.</p>
+        </article>
+
+      <!-- Danie 3 -->
+        <article class="dish has-thumb" data-cat="desery">
+          <header class="dish-head">
+            <h3>Crème brûlée z tonką</h3>
+            <span class="price">36 zł</span>
+
+            <button class="dish-thumb" type="button"
+                    aria-haspopup="dialog" aria-controls="lb"
+                    data-full="assets/img/dishes/creme-z-brulee-z-tonka-1200"
+                    aria-label="Powiększ zdjęcie: Crème brûlée z tonką">
+              <picture>
+                <source type="image/avif"
+                        srcset="assets/img/dishes/creme-z-brulee-z-tonka-600.avif 2x,
+                                assets/img/dishes/creme-z-brulee-z-tonka-200.avif 1x">
+                <source type="image/webp"
+                        srcset="assets/img/dishes/creme-z-brulee-z-tonka-600.webp 2x,
+                                assets/img/dishes/creme-z-brulee-z-tonka-200.webp 1x">
+                <img
+                  src="assets/img/dishes/creme-z-brulee-z-tonka-200.jpg"
+                  srcset="assets/img/dishes/creme-z-brulee-z-tonka-600.jpg 2x,
+                          assets/img/dishes/creme-z-brulee-z-tonka-200.jpg 1x"
+                  alt="Crème brûlée z tonką"
+                  width="64" height="64"
+                  decoding="async" loading="lazy">
+              </picture>
+            </button>
+          </header>
+          <p class="desc">Wanilia, fasola tonka, karmelizowany cukier.</p>
+        </article>
+
+      <!-- Danie 4 -->
+        <article class="dish has-thumb" data-cat="dania-glowne">
+          <header class="dish-head">
+            <h3>Sandacz</h3>
+            <span class="price">88 zł</span>
+
+            <button class="dish-thumb" type="button"
+                    aria-haspopup="dialog" aria-controls="lb"
+                    data-full="assets/img/dishes/sandacz-1200"
+                    aria-label="Powiększ zdjęcie: Sandacz / szafran / fenkuł">
+              <picture>
+                <source type="image/avif"
+                        srcset="assets/img/dishes/sandacz-600.avif 2x,
+                                assets/img/dishes/sandacz-200.avif 1x">
+                <source type="image/webp"
+                        srcset="assets/img/dishes/sandacz-600.webp 2x,
+                                assets/img/dishes/sandacz-200.webp 1x">
+                <img
+                  src="assets/img/dishes/sandacz-200.jpg"
+                  srcset="assets/img/dishes/sandacz-600.jpg 2x,
+                          assets/img/dishes/sandacz-200.jpg 1x"
+                  alt="Sandacz z szafranem"
+                  width="64" height="64"
+                  decoding="async" loading="lazy">
+              </picture>
+            </button>
+          </header>
+          <p class="desc">Sandacz sauté, risotto szafranowe, fenkuł glazurowany.</p>
+        </article>
+
+    </div>
+  </div>
+
+<!-- pod sekcją MENU -->
+<div class="section-cta">
+  <a class="btn" href="menu.html">Zobacz pełne menu</a>
+</div>
+
+</section>
+
+<!-- ================================================================
+     5) GALERIA
+================================================================ -->
+<section id="galeria" class="block gallery">
+  <div class="container">
+    <div class="section-head">
+      <h2>Galeria</h2>
+      <p class="muted">Wybrane kompozycje i produkty premium.</p>
+    </div>
+
+    <!-- JEDEN grid (bez zagnieżdżania) -->
+    <div class="gallery-grid">
+      <a class="g-item" href="assets/img/gallery/dish-01-1600.jpg"
+         data-full="assets/img/gallery/dish-01-1600" aria-haspopup="dialog" aria-controls="lb">
+        <picture>
+          <source type="image/avif" srcset="assets/img/gallery/dish-01-1200.avif 2x, assets/img/gallery/dish-01-600.avif 1x">
+          <source type="image/webp" srcset="assets/img/gallery/dish-01-1200.webp 2x, assets/img/gallery/dish-01-600.webp 1x">
+          <img src="assets/img/gallery/dish-01-600.jpg"
+               srcset="assets/img/gallery/dish-01-1200.jpg 2x, assets/img/gallery/dish-01-600.jpg 1x"
+               alt="Talerz degustacyjny" loading="lazy" decoding="async" width="600" height="600">
+        </picture>
+      </a>
+
+      <a class="g-item" href="assets/img/gallery/wine-01-1600.jpg"
+         data-full="assets/img/gallery/wine-01-1600" aria-haspopup="dialog" aria-controls="lb">
+        <picture>
+          <source type="image/avif" srcset="assets/img/gallery/wine-01-1200.avif 2x, assets/img/gallery/wine-01-600.avif 1x">
+          <source type="image/webp" srcset="assets/img/gallery/wine-01-1200.webp 2x, assets/img/gallery/wine-01-600.webp 1x">
+          <img src="assets/img/gallery/wine-01-600.jpg"
+               srcset="assets/img/gallery/wine-01-1200.jpg 2x, assets/img/gallery/wine-01-600.jpg 1x"
+               alt="Kieliszek czerwonego wina" loading="lazy" decoding="async" width="600" height="600">
+        </picture>
+      </a>
+
+      <a class="g-item" href="assets/img/gallery/dessert-01-1600.jpg"
+         data-full="assets/img/gallery/dessert-01-1600" aria-haspopup="dialog" aria-controls="lb">
+        <picture>
+          <source type="image/avif" srcset="assets/img/gallery/dessert-01-1200.avif 2x, assets/img/gallery/dessert-01-600.avif 1x">
+          <source type="image/webp" srcset="assets/img/gallery/dessert-01-1200.webp 2x, assets/img/gallery/dessert-01-600.webp 1x">
+          <img src="assets/img/gallery/dessert-01-600.jpg"
+               srcset="assets/img/gallery/dessert-01-1200.jpg 2x, assets/img/gallery/dessert-01-600.jpg 1x"
+               alt="Deser z owocami" loading="lazy" decoding="async" width="600" height="600">
+        </picture>
+      </a>
+
+      <a class="g-item" href="assets/img/gallery/interior-01-1600.jpg"
+         data-full="assets/img/gallery/interior-01-1600" aria-haspopup="dialog" aria-controls="lb">
+        <picture>
+          <source type="image/avif" srcset="assets/img/gallery/interior-01-1200.avif 2x, assets/img/gallery/interior-01-600.avif 1x">
+          <source type="image/webp" srcset="assets/img/gallery/interior-01-1200.webp 2x, assets/img/gallery/interior-01-600.webp 1x">
+          <img src="assets/img/gallery/interior-01-600.jpg"
+               srcset="assets/img/gallery/interior-01-1200.jpg 2x, assets/img/gallery/interior-01-600.jpg 1x"
+               alt="Wnętrze sali" loading="lazy" decoding="async" width="600" height="600">
+        </picture>
+      </a>
+    </div>
+  </div>
+
+<!-- pod sekcją GALERIA -->
+<div class="section-cta">
+  <a class="btn" href="galeria.html">Pełna galeria</a>
+</div>
+
+</section>
+
+  
+
+    <!-- ================================================================
+         5.1) OPINIE (mini-badge + 3 karty)
+    ================================================================ -->
+    <section id="opinie" class="block testimonials" data-testid="opinie">
+      <div class="container">
+        <div class="section-head">
+          <h2>Opinie</h2>
+          <p class="muted">Co mówią nasi goście</p>
+
+          <!-- Mini-badge z oceną Google -->
+          <div class="rating-badge big" role="group" aria-label="Średnia ocena Google 4.8 na podstawie 327 opinii">
+            <img src="assets/icons/google.svg" alt="" aria-hidden="true" width="28" height="28" loading="lazy" decoding="async" />
+            <div class="rating-text">
+              <strong aria-label="Ocena 4.8">4.8</strong>
+              <span class="stars" aria-hidden="true">★★★★★</span>
+              <small aria-hidden="true">na podstawie 327 opinii Google</small>
+            </div>
+          </div>
+        </div>
+
+        <!-- Siatka 3 opinii -->
+        <div class="testimonials-grid">
+          <figure class="testimonial">
+            <picture class="avatar">
+              <source type="image/avif"
+                      srcset="assets/img/avatars/customer-01-128.avif 2x,
+                              assets/img/avatars/customer-01-64.avif  1x">
+              <source type="image/webp"
+                      srcset="assets/img/avatars/customer-01-128.webp 2x,
+                              assets/img/avatars/customer-01-64.webp  1x">
+              <img src="assets/img/avatars/customer-01-64.jpg"
+                  srcset="assets/img/avatars/customer-01-128.jpg 2x,
+                          assets/img/avatars/customer-01-64.jpg  1x"
+                  width="56" height="56" loading="lazy" decoding="async" alt="Anna K.">
+            </picture>
+            <blockquote><p>„Najlepsze fine dining w Warszawie. Obsługa na najwyższym poziomie, a menu degustacyjne to poezja.”</p></blockquote>
+            <figcaption>— Anna K., recenzja z Google</figcaption>
+          </figure>
+
+          <figure class="testimonial">
+            <picture class="avatar">
+              <source type="image/avif"
+                      srcset="assets/img/avatars/customer-02-128.avif 2x,
+                              assets/img/avatars/customer-02-64.avif  1x">
+              <source type="image/webp"
+                      srcset="assets/img/avatars/customer-02-128.webp 2x,
+                              assets/img/avatars/customer-02-64.webp  1x">
+              <img src="assets/img/avatars/customer-02-64.jpg"
+                  srcset="assets/img/avatars/customer-02-128.jpg 2x,
+                          assets/img/avatars/customer-02-64.jpg  1x"
+                  width="56" height="56" loading="lazy" decoding="async" alt="Marek S.">
+            </picture>
+            <blockquote><p>„Rewelacyjne wina i perfekcyjna obsługa. Idealne miejsce na ważny wieczór.”</p></blockquote>
+            <figcaption>— Marek S., recenzja z Google</figcaption>
+          </figure>
+
+          <figure class="testimonial">
+            <picture class="avatar">
+              <source type="image/avif"
+                      srcset="assets/img/avatars/customer-03-128.avif 2x,
+                              assets/img/avatars/customer-03-64.avif  1x">
+              <source type="image/webp"
+                      srcset="assets/img/avatars/customer-03-128.webp 2x,
+                              assets/img/avatars/customer-03-64.webp  1x">
+              <img src="assets/img/avatars/customer-03-64.jpg"
+                  srcset="assets/img/avatars/customer-03-128.jpg 2x,
+                          assets/img/avatars/customer-03-64.jpg  1x"
+                  width="56" height="56" loading="lazy" decoding="async" alt="Julia P.">
+            </picture>
+            <blockquote><p>„Piękne wnętrze i świetne kompozycje smaków. Na pewno wrócimy!”</p></blockquote>
+            <figcaption>— Julia P., recenzja z Google</figcaption>
+          </figure>
+
+        </div>
+
+        <!-- Linki do wszystkich opinii -->
+        <div class="reviews-cta">
+          <a class="btn-link"
+             href="https://maps.google.com/?q=Restauracja+Aurelia"
+             target="_blank" rel="noopener nofollow external"
+             aria-label="Zobacz wszystkie opinie w Google">
+            <img src="assets/icons/google.svg" alt="" aria-hidden="true" width="18" height="18" />
+            Zobacz wszystkie opinie w Google <span class="count">(327)</span>
+          </a>
+
+          <a class="btn-link"
+             href="https://www.tripadvisor.com/"
+             target="_blank" rel="noopener nofollow external"
+             aria-label="Zobacz opinie w Tripadvisor">
+            <span class="ti" aria-hidden="true">🟢</span>
+            Opinie w Tripadvisor
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================================================================
+         6) REZERWACJA (formularz)
+    ================================================================ -->
+    <section id="rezerwacja" class="block booking">
+      <div class="container grid-2">
+        <div>
+          <h2>Rezerwacja</h2>
+          <p class="muted">Wypełnij formularz. Oddzwonimy z potwierdzeniem.</p>
+
+          <form id="booking-form" class="form" data-testid="booking-form" novalidate>
+            <!-- Honeypot (anty-spam) -->
+            <input type="text" name="company" class="hp" aria-hidden="true" tabindex="-1" autocomplete="off" />
+
+            <div class="f-row">
+              <label for="name">Imię i nazwisko</label>
+              <input id="name" name="name" type="text" required autocomplete="name" placeholder="Jan Kowalski" aria-describedby="form-msg"/>
+            </div>
+
+            <div class="f-row">
+              <label for="phone">Telefon</label>
+              <input id="phone" name="phone" type="tel" required inputmode="tel" placeholder="+48 600 000 000" aria-describedby="form-msg" />
+            </div>
+
+            <div class="f-row">
+              <label for="date">Data</label>
+              <input id="date" name="date" type="date" required aria-describedby="form-msg"/>
+            </div>
+
+            <div class="f-row">
+              <label for="time">Godzina</label>
+              <input id="time" name="time" type="time" required aria-describedby="form-msg"/>
+            </div>
+
+            <div class="f-row">
+              <label for="guests">Liczba gości</label>
+              <select id="guests" name="guests" required>
+                <option value="" disabled selected>Wybierz…</option>
+                <option>1</option><option>2</option><option>3</option>
+                <option>4</option><option>5</option><option>6+</option>
+              </select>
+            </div>
+
+            <div class="f-row">
+              <label for="notes">Uwagi (opcjonalnie)</label>
+              <textarea id="notes" name="notes" rows="3" placeholder="Preferencje stolika, alergie…"></textarea>
+            </div>
+
+            <div class="f-actions">
+              <button class="btn btn-primary btn-form" type="submit">Wyślij rezerwację</button>
+              <p id="form-msg" class="form-msg" role="status" aria-live="polite"></p>
+            </div>
+          </form>
+        </div>
+
+        <aside class="booking-aside">
+          <h3>Informacje</h3>
+          <ul class="bullets">
+            <li>Rezerwacje telefoniczne: wt–nd 14:00–22:00</li>
+            <li>Dress code: smart casual</li>
+            <li>Menu degustacyjne: 7 dań (opcje vege)</li>
+          </ul>
+        </aside>
+      </div>
+    </section>
+
+    <!-- ================================================================
+         7) CTA / KONTAKT
+    ================================================================ -->
+    <section id="kontakt" class="cta block">
+      <div class="container cta-box">
+        <h2>Zarezerwuj wyjątkowy wieczór</h2>
+        <p class="lead">Zadzwoń pod <a href="tel:+48600000000">+48 600 000 000</a> lub skorzystaj z formularza.</p>
+      </div>
+    </section>
+
+    <!-- ================================================================
+     8) FAQ (accordion)
+    ================================================================ -->
+    <section id="faq" class="block">
+      <div class="container">
+        <div class="section-head">
+          <h2>FAQ</h2>
+          <p class="muted">Najczęstsze pytania o rezerwacje i menu.</p>
+        </div>
+
+        <div class="grid-2">
+          <details>
+            <summary>Jak anulować lub zmienić rezerwację?</summary>
+            <div class="content">
+              Prosimy o kontakt telefoniczny pod <a href="tel:+48600000000">+48&nbsp;600&nbsp;000&nbsp;000</a> co najmniej 3 godziny przed wizytą.
+            </div>
+          </details>
+
+          <details>
+            <summary>Czy oferujecie opcje wegetariańskie/wegańskie?</summary>
+            <div class="content">
+              Tak, w menu degustacyjnym mamy warianty vege. W uwagach do rezerwacji podaj preferencje i alergie.
+            </div>
+          </details>
+
+          <details>
+            <summary>Czy dzieci są mile widziane?</summary>
+            <div class="content">
+              Oczywiście. Prosimy o informację o liczbie dzieci i potrzebnym krzesełku w uwagach do rezerwacji.
+            </div>
+          </details>
+
+          <details>
+            <summary>Czy akceptujecie vouchery podarunkowe?</summary>
+            <div class="content">
+              Tak, vouchery realizujemy od wtorku do czwartku. Zabierz ze sobą kod vouchera.
+            </div>
+          </details>
+        </div>
+      </div>
+    </section>
+
+
+  <!-- ===================================================================
+       9) FOOTER
+  ==================================================================== -->
+  <footer id="footer" class="site-footer" role="contentinfo">
+    <div class="container ft-grid">
+      <!-- Kolumna 1: brand + adres + mapa + przycisk trasy -->
+      <div class="ft-col">
+        <a href="#top" class="brand-footer" aria-label="Strona główna">
+          <img class="logo logo-light"
+              src="assets/icons/logo-light-180px.svg"
+              alt="Restauracja Aurelia – logo w stopce"
+              width="140" height="140"
+              decoding="async" />
+          <img class="logo logo-dark"
+              src="assets/icons/logo-dark-180px.svg"
+              alt=""
+              aria-hidden="true"
+              width="140" height="140"
+              decoding="async" />
+        </a>
+
+        <p class="muted">ul. Przykładowa 1, 00-000 Warszawa</p>
+        <p class="muted">NIP 000-000-00-00</p>
+
+      <!-- Mapa (mini) — bez przycinania paska My Maps -->
+      <div class="map-wrap">
+        <iframe
+          id="map-embed"
+          title="Mapa: Restauracja Aurelia"
+          src="https://www.google.com/maps/d/u/0/embed?mid=1nGfiA7YFDMa3CxB90gjygeveqQ_3UkE&ehbc=2E312F&noprof=1"
+          loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade"
+          sandbox="allow-scripts allow-same-origin allow-popups allow-popups-to-escape-sandbox"
+          allow="fullscreen"
+          allowfullscreen
+          width="640" height="360"><!-- atrybuty jako fallback przeciw CLS -->
+        </iframe>
+      </div>
+
+        <!-- Wyznacz trasę (pill) -->
+        <a class="ft-badge ft-badge--route" data-testid="badge-route"
+           href="https://www.google.com/maps/d/embed?mid=1nGfiA7YFDMa3CxB90gjygeveqQ_3UkE&ehbc=2E312F&z=15"
+           target="_blank" rel="noopener external"
+           aria-label="Wyznacz trasę do Restauracja Aurelia">
+          <svg class="ft-icon" width="18" height="18" viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M12 22s7-6.1 7-12a7 7 0 1 0-14 0c0 5.9 7 12 7 12z" fill="none" stroke="currentColor" stroke-width="2"/>
+            <circle cx="12" cy="10" r="2.8" fill="currentColor"/>
+          </svg>
+          <span class="ft-badge-text">Wyznacz trasę</span>
+        </a>
+      </div>
+
+      <!-- Kolumna 2: nawigacja w stopce -->
+      <nav class="ft-col" aria-label="Nawigacja w stopce">
+        <h3 class="ft-title">Nawigacja</h3>
+        <ul class="ft-nav">
+          <li><a href="#onas">O nas</a></li>
+          <li><a href="#menu">Menu</a></li>
+          <li><a href="#galeria">Galeria</a></li>
+          <li><a href="#opinie">Opinie</a></li>
+          <li><a href="#rezerwacja">Rezerwacja</a></li>
+          <li><a href="#faq">FAQ</a></li>
+        </ul>
+      </nav>
+
+      <!-- Kolumna 3: kontakt -->
+      <div class="ft-col" aria-labelledby="ft-kontakt">
+        <h3 id="ft-kontakt" class="ft-title">Kontakt</h3>
+        <ul class="ft-contact">
+          <li><svg class="i" aria-hidden="true" focusable="false"><use href="#i-phone"/></svg> <a href="tel:+48600000000">+48 600 000 000</a></li>
+          <li><svg class="i" aria-hidden="true" focusable="false"><use href="#i-clock"/></svg> wt–nd 17:00–23:00</li>
+          <li><a href="mailto:twoja-firma@rezerwacja.pl">twoja-firma@rezerwacja.pl</a></li>
+        </ul>
+      </div>
+
+      <!-- Kolumna 4: social + mini-badges opinii -->
+      <div class="ft-col" aria-labelledby="ft-social">
+        <h3 id="ft-social" class="ft-title">Social media</h3>
+        <ul class="ft-social ft-social--bare">
+          <li><a class="social-btn" href="https://facebook.com" aria-label="Facebook" target="_blank" rel="noopener noreferrer"><svg class="i"><use href="#i-fb"/></svg></a></li>
+          <li><a class="social-btn" href="https://instagram.com" aria-label="Instagram" target="_blank" rel="noopener noreferrer"><svg class="i"><use href="#i-ig"/></svg></a></li>
+          <li><a class="social-btn" href="https://twitter.com" aria-label="X / Twitter" target="_blank" rel="noopener noreferrer"><svg class="i"><use href="#i-x"/></svg></a></li>
+          <li><a class="social-btn" href="https://youtube.com" aria-label="YouTube" target="_blank" rel="noopener noreferrer"><svg class="i"><use href="#i-yt"/></svg></a></li>
+        </ul>
+
+        <!-- Mini-badges: Google + Tripadvisor -->
+        <div class="ft-badges">
+          <!-- Google -->
+          <a class="ft-badge" data-testid="badge-google"
+             href="https://maps.google.com/?cid=12345678901234567890"
+             target="_blank" rel="noopener nofollow external"
+             aria-label="Zobacz opinie w Google: ocena 4.8 na podstawie 327 opinii">
+            <img src="assets/icons/google.svg" alt="" aria-hidden="true" width="18" height="18" decoding="async"/>
+            <span class="ft-badge-text">
+              <strong>4.8</strong>
+              <span class="ft-stars" aria-hidden="true">★★★★★</span>
+              <span class="ft-count">(327)</span>
+            </span>
+          </a>
+
+          <!-- Tripadvisor -->
+          <a class="ft-badge" data-testid="badge-tripadvisor"
+             href="https://www.tripadvisor.com/Restaurant_Review-g274856-d12345678-Reviews-Restauracja_Aurelia-Warsaw_Mazovia_Province.html"
+             target="_blank" rel="noopener nofollow external"
+             aria-label="Zobacz opinie w Tripadvisor">
+            <svg class="ft-icon" width="18" height="18" viewBox="0 0 24 24" aria-hidden="true" decoding="async">
+              <path d="M2 8h20l-2.5 3a7 7 0 0 1-9.5 5.8A7 7 0 0 1 4.5 11L2 8Z" fill="currentColor" opacity=".18"/>
+              <path d="M12 9l-2-2h4l-2 2Z" fill="currentColor"/>
+              <circle cx="8.5" cy="13.5" r="3.5" fill="none" stroke="currentColor" stroke-width="2"/>
+              <circle cx="15.5" cy="13.5" r="3.5" fill="none" stroke="currentColor" stroke-width="2"/>
+              <circle cx="8.5" cy="13.5" r="1.4" fill="currentColor"/>
+              <circle cx="15.5" cy="13.5" r="1.4" fill="currentColor"/>
+            </svg>
+            <span class="ft-badge-text">Opinie w Tripadvisor</span>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Pasek dolny stopki -->
+    <div class="container ft-bottom">
+      <p class="copy">© <span id="year"></span> KP_Code. Wszelkie prawa zastrzeżone.</p>
+      <ul class="ft-legal">
+        <li><a href="polityka-prywatnosci.html" rel="nofollow">Polityka prywatności</a></li>
+        <li><a href="cookies.html" rel="nofollow">Cookies</a></li>
+      </ul>
+    </div>
+  </footer>
+
+  <!-- ===================================================================
+       10) MODAL (LIGHTBOX do zdjęć z menu/galerii)
+  ==================================================================== -->
+  <dialog id="lb" role="dialog" aria-modal="true" aria-label="Podgląd dania">
+  <button class="lb-close" aria-label="Zamknij">×</button>
+  <picture class="lb-media">
+    <source type="image/avif" id="lb-avif">
+    <source type="image/webp" id="lb-webp">
+    <img id="lb-img" alt="" width="1200" height="1200" decoding="async">
+  </picture>
+</dialog>
+
+  <!-- ===================================================================
+       FLOATING ACTIONS: Scroll to TOP
+  ==================================================================== -->
+  <button class="scroll-btn scroll-up is-visible" data-testid="scroll-up" type="button" aria-label="Przewiń na górę" title="Na górę">
+    <svg class="i" aria-hidden="true" focusable="false"><use href="#i-chevron"/></svg>
+  </button>
+
+  <!-- ===================================================================
+       JS
+  ==================================================================== -->
+  <script src="js/script.js" defer></script>
+</body>
+</html>
