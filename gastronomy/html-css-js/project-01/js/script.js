@@ -136,6 +136,26 @@ else{window.addEventListener("DOMContentLoaded",()=>document.body&&document.body
   const btnX = lb.querySelector(".lb-close") || lb.querySelector("[data-close]");
   const overlayEl = lb.querySelector(".lb-overlay");
 
+  // --- Counter: element + aktualizacja ---
+  let counter = lb.querySelector('.lb-counter');
+  if (!counter) {
+    counter = document.createElement('output');
+    counter.className = 'lb-counter';
+    counter.setAttribute('aria-live','polite');
+    counter.setAttribute('aria-atomic','true');
+    lb.appendChild(counter);
+  }
+  function updateCounter(){
+    const total = currentCollection.length;
+    if (!counter || total <= 1 || currentIndex < 0) {
+      counter.hidden = true; counter.textContent = ''; return;
+    }
+    counter.hidden = false;
+    const txt = `${currentIndex + 1} / ${total}`;
+    counter.value = txt;            // dla <output>
+    counter.textContent = txt;      // dla screenreadera i fallbacku
+  }
+
   if (!isDialog) { lb.setAttribute("hidden",""); lb.setAttribute("aria-hidden","true"); }
 
   // resolve relative -> absolute URL
@@ -193,13 +213,16 @@ else{window.addEventListener("DOMContentLoaded",()=>document.body&&document.body
   const openLB = (base, alt, index = -1, collection = []) => {
     if (!base) return;
     lastFocused = document.activeElement;
+
     // ustaw kolekcję (jeśli pusta, fallback do wszystkie widoczne .g-item)
     currentCollection = Array.isArray(collection) && collection.length ? collection : (visibleGridItems(document.querySelector('.gallery-grid')) || []);
     // jeśli nadal pusta — fallback do dish-thumb
     if (!currentCollection.length) currentCollection = visibleThumbItems();
+
     // znormalizuj base na absolutny URL
     const absBase = resolveUrl(base);
     setSources(absBase, alt);
+
     // ustal index na podstawie znormalizowanej ścieżki
     if (typeof index === 'number' && index >= 0) {
       currentIndex = index;
@@ -211,6 +234,7 @@ else{window.addEventListener("DOMContentLoaded",()=>document.body&&document.body
       });
     }
     if (currentIndex === -1 && currentCollection.length) currentIndex = 0; // fallback
+
     if (isDialog) {
       try { if (!lb.open) lb.showModal(); } catch (e) { console.error(e); }
     } else {
@@ -220,6 +244,8 @@ else{window.addEventListener("DOMContentLoaded",()=>document.body&&document.body
       document.body.classList.add("no-scroll");
     }
     if (btnX && typeof btnX.focus === 'function') btnX.focus();
+
+    updateCounter();
     preloadNeighbor(1); preloadNeighbor(-1);
   };
 
@@ -239,6 +265,7 @@ else{window.addEventListener("DOMContentLoaded",()=>document.body&&document.body
     if (lastFocused && typeof lastFocused.focus === 'function') lastFocused.focus();
     currentIndex = -1;
     currentCollection = [];
+    if (counter) { counter.hidden = true; counter.textContent = ''; }
   };
 
   const showAtIndex = (idx) => {
@@ -246,8 +273,9 @@ else{window.addEventListener("DOMContentLoaded",()=>document.body&&document.body
     currentIndex = (idx + currentCollection.length) % currentCollection.length;
     const el = currentCollection[currentIndex];
     const base = getBaseFromElement(el) || "";
-    const alt = el?.querySelector('img')?.alt || el?.getAttribute('aria-label') || '';
+    const alt  = el?.querySelector('img')?.alt || el?.getAttribute('aria-label') || '';
     setSources(base, alt);
+    updateCounter();
   };
 
   // preload helper
@@ -267,7 +295,7 @@ else{window.addEventListener("DOMContentLoaded",()=>document.body&&document.body
   // keyboard navigation and Esc
   const onKey = (e) => {
     if (e.key === 'Escape') { if (isDialog ? lb.open : lb.classList.contains('open')) closeLB(); return; }
-    if (e.key === 'ArrowLeft') { e.preventDefault(); if (currentCollection.length) showAtIndex((currentIndex === -1 ? 0 : currentIndex - 1)); return; }
+    if (e.key === 'ArrowLeft')  { e.preventDefault(); if (currentCollection.length) showAtIndex((currentIndex === -1 ? 0 : currentIndex - 1)); return; }
     if (e.key === 'ArrowRight') { e.preventDefault(); if (currentCollection.length) showAtIndex((currentIndex === -1 ? 0 : currentIndex + 1)); return; }
   };
 
@@ -304,13 +332,102 @@ else{window.addEventListener("DOMContentLoaded",()=>document.body&&document.body
 
   document.addEventListener("keydown", onKey);
 
+  // === Swipe (telefony) — poziomy gest do zmiany zdjęcia ===
+  (() => {
+    if (!img) return;
+
+    // Jeśli przeglądarka wspiera Pointer Events, użyj ich; inaczej fallback na touch*
+    const SUPPORTS_POINTER = 'PointerEvent' in window;
+
+    let startX = 0, startY = 0, dx = 0, dy = 0;
+    let tracking = false, lockedHorizontal = false;
+
+    // próg uznania „swipe”
+    const THRESHOLD_PX = 60;
+    const LOCK_ANGLE = 0.577; // ~30deg => |dy/dx| < 0.577 traktujemy jako gest poziomy
+
+    const setTransform = (x) => {
+      img.style.transition = 'none';
+      img.style.transform = `translate3d(${x}px,0,0)`;
+      img.style.willChange = 'transform';
+    };
+    const resetTransform = () => {
+      img.style.transition = 'transform .18s ease';
+      img.style.transform = 'translate3d(0,0,0)';
+      img.addEventListener('transitionend', () => { img.style.willChange = ''; }, { once: true });
+    };
+
+    const onDown = (x, y) => {
+      startX = x; startY = y; dx = 0; dy = 0;
+      tracking = true; lockedHorizontal = false;
+    };
+    const onMove = (x, y, e) => {
+      if (!tracking) return;
+      dx = x - startX; dy = y - startY;
+
+      // zablokuj kierunek po niewielkim ruchu, aby nie „walczyć” ze scrollowaniem
+      if (!lockedHorizontal) {
+        if (Math.abs(dx) > 8) {
+          const ratio = Math.abs(dy / (dx || 1));
+          lockedHorizontal = ratio < LOCK_ANGLE;
+        }
+      }
+      if (lockedHorizontal) {
+        // ważne: zablokuj przewijanie strony kiedy faktycznie przesuwamy w bok
+        e?.preventDefault?.();
+        setTransform(dx);
+      }
+    };
+    const onUp = () => {
+      if (!tracking) return;
+      tracking = false;
+
+      if (lockedHorizontal && Math.abs(dx) > THRESHOLD_PX && currentCollection.length) {
+        const dir = dx < 0 ? +1 : -1;
+        // szybki „slide-out” dla feelu
+        img.style.transition = 'transform .12s ease';
+        img.style.transform = `translate3d(${Math.sign(dx) * window.innerWidth * 0.25}px,0,0)`;
+        // po krótkim czasie zmień slajd i zresetuj transform
+        setTimeout(() => {
+          showAtIndex((currentIndex === -1 ? 0 : currentIndex + dir)); // ←/→ jak strzałki
+          // króciutkie wejście z przeciwnej strony
+          img.style.transition = 'none';
+          img.style.transform = `translate3d(${Math.sign(-dx) * 28}px,0,0)`;
+          requestAnimationFrame(() => resetTransform());
+          preloadNeighbor(1); preloadNeighbor(-1);
+        }, 90);
+      } else {
+        resetTransform();
+      }
+    };
+
+    if (SUPPORTS_POINTER) {
+      // Pointer Events (Android/nowoczesne przeglądarki)
+      img.addEventListener('pointerdown', (e) => { if (e.pointerType !== 'mouse') onDown(e.clientX, e.clientY); }, { passive: true });
+      img.addEventListener('pointermove', (e) => { if (e.pointerType !== 'mouse') onMove(e.clientX, e.clientY, e); }, { passive: false });
+      img.addEventListener('pointerup', onUp, { passive: true });
+      img.addEventListener('pointercancel', onUp, { passive: true });
+    } else {
+      // Fallback touch* (Safari iOS starsze)
+      img.addEventListener('touchstart', (e) => {
+        const t = e.touches[0]; if (!t) return;
+        onDown(t.clientX, t.clientY);
+      }, { passive: true });
+      img.addEventListener('touchmove', (e) => {
+        const t = e.touches[0]; if (!t) return;
+        onMove(t.clientX, t.clientY, e);
+      }, { passive: false }); // musimy móc wywołać preventDefault()
+      img.addEventListener('touchend', onUp, { passive: true });
+      img.addEventListener('touchcancel', onUp, { passive: true });
+    }
+  })();
+
   // expose for debug/inline usage
-  window.openLB = (base, alt, idx) => openLB(base, alt, idx);
+  window.openLB  = (base, alt, idx) => openLB(base, alt, idx);
   window.closeLB = closeLB;
 
   console.log("lightbox ready →", isDialog ? "<dialog>" : "<div>");
 })();
-
 
 
 /* ======================================================================
