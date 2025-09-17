@@ -9,7 +9,6 @@ Each project is self-contained: **industry → tech stack → project**.
 
 ## 🚀 Live Demos
 
-## 🚀 Live Demos
 
 ### Netlify
 - [🍽 Gastronomy — Project 01](https://gastronomy-project-01.netlify.app)
