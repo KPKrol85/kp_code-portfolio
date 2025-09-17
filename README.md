@@ -9,16 +9,14 @@ Structure: **industry → tech stack → project**. Each project is self-contain
 
 ## Live Demos
 
-- [Construction — Project 01 🏗️](https://kpkrol85.github.io/kp_code-portfolio/construction/html-css-js/project-01/index.html)
-- [Gastronomy — Project 01 🍽️](https://kpkrol85.github.io/kp_code-portfolio/gastronomy/html-css-js/project-01/index.html)
+- [Construction (html-css-js) — Project 01 🏗️](https://kpkrol85.github.io/kp_code-portfolio/construction/html-css-js/project-01/index.html)
+- [Gastronomy (html-css-js) — Project 01 🍽️](https://kpkrol85.github.io/kp_code-portfolio/gastronomy/html-css-js/project-01/index.html)
 
 
 ### 🍽 Gastronomy - [Gastronomy — Project 01 🍽️](https://kpkrol85.github.io/kp_code-portfolio/gastronomy/html-css-js/project-01/index.html)
-- [Gastronomy — Project 01 🍽️](https://kpkrol85.github.io/kp_code-portfolio/gastronomy/html-css-js/project-01/index.html)
 - `gastronomy/html-css-js/project-01` — Restaurant site (HTML, CSS, JS)
 
 ### 🏗 Construction - [Construction — Project 01 🏗️](https://kpkrol85.github.io/kp_code-portfolio/construction/html-css-js/project-01/index.html)
-- [Construction — Project 01 🏗️](https://kpkrol85.github.io/kp_code-portfolio/construction/html-css-js/project-01/index.html)
 - `construction/html-css-js/project-01` — Renovation/Construction site (HTML, CSS, JS)
 
 ---
