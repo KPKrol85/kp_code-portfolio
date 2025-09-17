@@ -9,11 +9,13 @@ Each project is self-contained: **industry → tech stack → project**.
 
 ## 🚀 Live Demos
 
-- [🏗 Construction — Project 01](https://kpkrol85.github.io/kp_code-portfolio/construction/html-css-js/project-01/index.html)  
-  Renovation/Construction site (HTML, CSS, JS)
+### Netlify
+- [🍽️ Gastronomy — Project 01](https://gastronomy-project-01.netlify.app)  
+- [🏗️ Construction — Project 01](https://construction-project-01.netlify.app)  
 
-- [🍽 Gastronomy — Project 01](https://kpkrol85.github.io/kp_code-portfolio/gastronomy/html-css-js/project-01/index.html)  
-  Restaurant site (HTML, CSS, JS)
+### GitHub Pages
+- [🍽️ Gastronomy — Project 01](https://kpkrol85.github.io/kp_code-portfolio/gastronomy/html-css-js/project-01/index.html)  
+- [🏗️ Construction — Project 01](https://kpkrol85.github.io/kp_code-portfolio/construction/html-css-js/project-01/index.html)  
 
 ---
 
