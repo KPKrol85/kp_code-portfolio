@@ -17,6 +17,7 @@ Structure: **industry → tech stack → project**. Each project is self-contain
 - `gastronomy/html-css-js/project-01` — Restaurant site (HTML, CSS, JS)
 
 ### 🏗 Construction
+[Construction — Project 01 🏗️](https://kpkrol85.github.io/kp_code-portfolio/construction/html-css-js/project-01/index.html)
 - `construction/html-css-js/project-01` — Renovation/Construction site (HTML, CSS, JS)
 
 ---
