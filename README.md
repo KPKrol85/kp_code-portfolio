@@ -7,6 +7,12 @@ Structure: **industry → tech stack → project**. Each project is self-contain
 
 ## Current projects
 
+## Live Demos
+
+- [Construction — Project 01 🏗️](https://kpkrol85.github.io/kp_code-portfolio/construction/html-css-js/project-01/index.html)
+- [Gastronomy — Project 01 🍽️](https://kpkrol85.github.io/kp_code-portfolio/gastronomy/html-css-js/project-01/index.html)
+
+
 ### 🍽 Gastronomy
 - `gastronomy/html-css-js/project-01` — Restaurant site (HTML, CSS, JS)
 
