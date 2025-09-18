@@ -26,8 +26,8 @@
   <meta property="og:title" content="Nazwa Twojej Firmy — Ekipa Remontowa">
   <meta property="og:description" content="Kompleksowe remonty i wykończenia — łazienki, kuchnie, malowanie, podłogi. Umów bezpłatną wycenę.">
   <meta property="og:url" content="https://construction-project-01.netlify.app/">
-  <meta property="og:image" content="https://construction-project-01.netlify.app/assets/img/og/og-image.jpg">
-  <meta property="og:image:secure_url" content="https://construction-project-01.netlify.app/assets/img/og/og-image.jpg">
+  <meta property="og:image" content="https://construction-project-01.netlify.app/assets/img/og/og-image-1200x630.jpg">
+  <meta property="og:image:secure_url" content="https://construction-project-01.netlify.app/assets/img/og/og-image-1200x630.jpg">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
   <meta property="og:image:alt" content="Ekipa remontowa przy pracy — logo firmy w rogu">
@@ -37,7 +37,7 @@
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="Nazwa Twojej Firmy — Ekipa Remontowa">
   <meta name="twitter:description" content="Kompleksowe remonty i wykończenia — łazienki, kuchnie, malowanie, podłogi. Umów bezpłatną wycenę.">
-  <meta name="twitter:image" content="https://construction-project-01.netlify.app/assets/img/og/og-image.jpg">
+  <meta name="twitter:image" content="https://construction-project-01.netlify.app/assets/img/og/og-image-1200x630.jpg">
   <meta name="twitter:url" content="https://construction-project-01.netlify.app/">
 
   <!-- JSON-LD (Schema.org) — LocalBusiness + Services -->
@@ -50,7 +50,7 @@
         "name": "Nazwa Twojej Firmy",
         "url": "https://construction-project-01.netlify.app/",
         "logo": "https://construction-project-01.netlify.app/assets/img/main-logo.png",
-        "image": "https://construction-project-01.netlify.app/assets/img/og/og-image.jpg",
+        "image": "https://construction-project-01.netlify.app/assets/img/og/og-image-1200x630.jpg",
         "priceRange": "$$",
         "telephone": "+48 600 700 800",
         "email": "kontakt@twoja-firma.pl",
@@ -152,15 +152,19 @@
   <link rel="stylesheet" href="css/style.css">
 
   <!-- Favikony i manifest -->
-  <link rel="icon" type="image/svg+xml" href="assets/img/icons/favicon-02.svg">
-  <link rel="icon" type="image/png" sizes="32x32" href="assets/img/icons/favicon-02.png">
-  <link rel="icon" type="image/png" sizes="96x96" href="assets/img/icons/favicon-96x96-02.png">
-  <link rel="icon" href="assets/img/icons/favicon-02.ico">
-  <link rel="apple-touch-icon" sizes="180x180" href="assets/img/icons/apple-touch-icon-02.png">
-  <link rel="manifest" href="assets/img/icons/site-02.webmanifest">
-  <!-- (opcjonalnie) Safari pinned tab:
-  <link rel="mask-icon" href="assets/img/icons/safari-pinned-tab.svg" color="#0ea5e9">
-  -->
+  <link rel="icon" type="image/x-icon" href="assets/img/favicon/favicon.ico">
+  <link rel="icon" type="image/svg+xml" href="assets/img/favicon/favicon.svg">
+  <link rel="icon" type="image/png" sizes="96x96" href="assets/img/favicon/favicon-96x96.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="assets/img/favicon/apple-touch-icon.png">
+
+  <!-- Android / PWA -->
+  <link rel="icon" type="image/png" sizes="192x192" href="assets/img/favicon/web-app-manifest-192x192.png">
+  <link rel="icon" type="image/png" sizes="512x512" href="assets/img/favicon/web-app-manifest-512x512.png">
+  <link rel="manifest" href="assets/img/favicon/site.webmanifest">
+
+  <!-- (opcjonalnie) Safari pinned tab -->
+  <!-- <link rel="mask-icon" href="assets/img/favicon/safari-pinned-tab.svg" color="#0ea5e9"> -->
+
 </head>
 
 
@@ -169,89 +173,67 @@
   <a class="skip" href="#main">Pomiń do treści</a>
   <div id="top" aria-hidden="true" style="position:relative;inset:0;height:0"></div>
 
-  <!-- =========================================================
+<!-- =========================================================
        HEADER
        ========================================================= -->
-  <header class="site-header" role="banner">
-    <div class="container header-bar">
-      <!-- Brand -->
-      <a class="brand" href="#top" aria-label="Strona główna — Ekipa Remontowa">
-        <span class="brand-badge pulse" aria-hidden="true">
-          <picture>
-            <source srcset="assets/img/main-logo.svg" type="image/svg+xml">
-            <img
-              src="assets/img/main-logo.png"
-              alt="Nazwa firmy"
-              class="ft-logo"
-              width="128"
-              height="32"
-              loading="eager"
-              fetchpriority="high"
-              decoding="async"
-            >
-          </picture>
-        </span>
-        <span class="brand-name">Nazwa Twojej firmy</span>
-      </a>
+<header class="site-header" role="banner">
+  <div class="container header-bar">
 
-      <!-- Główna nawigacja -->
-      <nav class="nav" role="navigation" aria-label="Główna nawigacja">
-        <button
-          class="nav-toggle"
-          type="button"
-          aria-expanded="false"
-          aria-controls="navMenu"
-          aria-label="Otwórz menu"
-        >
-          <span class="nav-line"></span><span class="nav-line"></span><span class="nav-line"></span>
-        </button>
+    <!-- Brand -->
+    <a class="brand" href="#top" aria-label="Strona główna — Ekipa Remontowa">
+      <picture class="brand-logo">
+        <img src="assets/img/main-logo/main-logo-light-512.svg" alt="Nazwa firmy" class="ft-logo logo--light" loading="eager" fetchpriority="high" decoding="async">
+        <img src="assets/img/main-logo/main-logo-dark-512.svg" alt="" class="ft-logo logo--dark" loading="eager" fetchpriority="high" decoding="async">
+      </picture>
+      <span class="brand-name">LOGO FIRMY</span>
+    </a>
 
-        <ul id="navMenu" class="nav-menu">
-          <li><a href="#top" class="scroll-top" aria-current="page">Strona główna</a></li>
+    <!-- Główna nawigacja -->
+    <nav class="nav" role="navigation" aria-label="Główna nawigacja">
+      <ul id="navMenu" class="nav-menu">
+        <li><a href="#top" class="scroll-top" aria-current="page">Strona główna</a></li>
 
-          <!-- Oferta (link + dropdown) -->
-          <li class="nav-item has-dropdown">
-            <a
-              href="#oferta"
-              class="nav-link dropdown-trigger"
-              aria-expanded="false"
-              aria-haspopup="menu"
-              aria-controls="dd-oferta"
-            >
-              Oferta <span class="caret" aria-hidden="true">▾</span>
-            </a>
-            <ul id="dd-oferta" class="dropdown" role="menu" aria-label="Podmenu: Oferta">
-              <li role="none"><a role="menuitem" href="#oferta">Przegląd oferty</a></li>
-              <li role="none"><a role="menuitem" href="#oferta-lazienki">Łazienki</a></li>
-              <li role="none"><a role="menuitem" href="#oferta-malowanie">Malowanie &amp; gładzie</a></li>
-              <li role="none"><a role="menuitem" href="#oferta-kafelkowanie">Kafelkowanie</a></li>
-              <li role="none"><a role="menuitem" href="#oferta-elektryka">Elektryka &amp; hydraulika</a></li>
-            </ul>
-          </li>
+        <!-- Oferta (link + dropdown) -->
+        <li class="nav-item has-dropdown">
+          <a href="#oferta" class="nav-link dropdown-trigger" aria-expanded="false" aria-haspopup="menu" aria-controls="dd-oferta">
+            Oferta <span class="caret" aria-hidden="true">▾</span>
+          </a>
+          <ul id="dd-oferta" class="dropdown" role="menu" aria-label="Podmenu: Oferta">
+            <li role="none"><a role="menuitem" href="#oferta">Przegląd oferty</a></li>
+            <li role="none"><a role="menuitem" href="#oferta-lazienki">Łazienki</a></li>
+            <li role="none"><a role="menuitem" href="#oferta-malowanie">Malowanie &amp; gładzie</a></li>
+            <li role="none"><a role="menuitem" href="#oferta-kafelkowanie">Kafelkowanie</a></li>
+            <li role="none"><a role="menuitem" href="#oferta-elektryka">Elektryka &amp; hydraulika</a></li>
+          </ul>
+        </li>
 
-          <li><a href="#realizacje">Realizacje</a></li>
-          <li><a href="#opinie">Opinie</a></li>
-          <li><a href="#faq">FAQ</a></li>
-          <li><a href="#kontakt">Kontakt</a></li>
-          <li><a class="btn btn--sm" href="#kontakt">Wycena</a></li>
-          <li>
-            <button
-              class="theme-toggle"
-              type="button"
-              aria-pressed="false"
-              aria-label="Przełącz tryb"
-              title="Przełącz tryb"
-            ></button>
-          </li>
-        </ul>
-      </nav>
+        <li><a href="#realizacje">Realizacje</a></li>
+        <li><a href="#opinie">Opinie</a></li>
+        <li><a href="#faq">FAQ</a></li>
+        <li><a href="#kontakt">Kontakt</a></li>
+        <li><a class="btn btn--sm" href="#kontakt">Wycena</a></li>
+      </ul>
+    </nav>
+
+    <!-- Akcje w pasku (po prawej): przełącznik motywu + hamburger -->
+    <div class="header-actions">
+      <button class="theme-toggle" type="button" aria-pressed="false" aria-label="Przełącz tryb" title="Przełącz tryb"></button>
+      <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="navMenu" aria-label="Otwórz menu">
+        <span class="nav-line"></span><span class="nav-line"></span><span class="nav-line"></span>
+      </button>
     </div>
-  </header>
-  <!-- /HEADER -->
+
+  </div>
+</header>
+<!-- /HEADER -->
+
 
 <!-- =========================================================
      HERO 
      ========================================================= -->
+<button class="scroll-btn scroll-down" type="button" aria-label="Przewiń do następnej sekcji" title="W dół"></button>
+
+
 <section id="strona-glowna" class="hero" role="region" aria-labelledby="hero-heading">
   <div class="hero__media" aria-hidden="true">
     <div class="hero__bg-blur" aria-hidden="true"></div>
@@ -416,7 +398,7 @@
           <a href="https://www.alfasolutions.pl/" target="_blank" rel="noopener noreferrer"
             aria-label="Otwórz stronę Alfa Sp. z o.o. w nowej karcie">
             <img class="logo-img"
-                src="assets/img/logos/alfa.svg"
+                src="assets/img/partners-logos/alfa.svg"
                 alt="Alfa Sp. z o.o."
                 loading="lazy" decoding="async">
           </a>
@@ -426,7 +408,7 @@
           <a href="https://www.betasolutions.pl/" target="_blank" rel="noopener noreferrer"
             aria-label="Otwórz stronę Beta S.A. w nowej karcie">
             <img class="logo-img"
-                src="assets/img/logos/beta.svg"
+                src="assets/img/partners-logos/beta.svg"
                 alt="Beta S.A."
                 loading="lazy" decoding="async">
           </a>
@@ -436,7 +418,7 @@
           <a href="https://www.gammagroup.pl/" target="_blank" rel="noopener noreferrer"
             aria-label="Otwórz stronę Gamma Group w nowej karcie">
             <img class="logo-img"
-                src="assets/img/logos/gamma.svg"
+                src="assets/img/partners-logos/gamma.svg"
                 alt="Gamma Group"
                 loading="lazy" decoding="async">
           </a>
@@ -446,7 +428,7 @@
           <a href="https://www.deltagroup.pl/" target="_blank" rel="noopener noreferrer"
             aria-label="Otwórz stronę Delta Sp. k. w nowej karcie">
             <img class="logo-img"
-                src="assets/img/logos/delta.svg"
+                src="assets/img/partners-logos/delta.svg"
                 alt="Delta Sp. k."
                 loading="lazy" decoding="async">
           </a>
@@ -455,8 +437,8 @@
         <div class="logo" role="listitem">
           <a href="https://www.epsilonsolutions.pl/" target="_blank" rel="noopener noreferrer"
             aria-label="Otwórz stronę Epsilon Solutions w nowej karcie">
-            <img class="logo-img logo--light"
-                src="assets/img/logos/epsilon.svg"
+            <img class="logo-img logo-light"
+                src="assets/img/partners-logos/epsilon.svg"
                 alt="Epsilon Solutions"
                 loading="lazy" decoding="async">
           </a>
@@ -466,7 +448,7 @@
           <a href="https://www.zeta.pl/" target="_blank" rel="noopener noreferrer"
             aria-label="Otwórz stronę Zeta Technologies w nowej karcie">
             <img class="logo-img"
-                src="assets/img/logos/zeta.svg"
+                src="assets/img/partners-logos/zeta.svg"
                 alt="Zeta Technologies"
                 loading="lazy" decoding="async">
           </a>
@@ -687,27 +669,26 @@
   <!-- =========================================================
         FOOTER
         ========================================================= -->
-  <!-- FOOTER -->
+          <!-- FOOTER -->
   <footer id="footer" class="site-footer" role="contentinfo" aria-labelledby="footer-heading">
-    <div class="container">
-      <h2 class="vh" id="footer-heading">Stopka serwisu</h2>
+      <div class="container">
+              <h2 class="vh" id="footer-heading">Stopka serwisu</h2>
+            <div class="ft-grid">
 
-      <div class="ft-grid">
-        <!-- COL 1: BRAND + OPIS + KONTAKT -->
-        <div class="ft-col">
-          <a href="#top" class="brand-footer" aria-label="Strona główna">
-            <picture>
-              <source srcset="assets/img/main-logo.svg" type="image/svg+xml">
-              <img
-                src="assets/img/main-logo.png"
-                alt="Nazwa firmy"
-                class="ft-logo"
-                width="128"
-                height="32"
-                loading="lazy"
-                decoding="async">
-            </picture>
-          </a>
+              <!-- COL 1: BRAND + OPIS + KONTAKT -->
+            <div class="ft-col">
+              <a href="#top" class="brand-footer" aria-label="Strona główna">
+                <picture>
+                  <source srcset="assets/img/main-logo/main-logo-footer-512.png" type="image/svg+xml">
+                  <img
+                    src="assets/img/main-logo/main-logo-footer-512.png"
+                    alt="Nazwa firmy"
+                    class="ft-logo"
+                    loading="lazy"
+                    decoding="async">
+                </picture>
+
+              </a>
 
           <p class="ft-lead">Solidne realizacje budowlane — oferta, wyceny i kontakt w 24&nbsp;h.</p>
 
@@ -847,8 +828,7 @@
   </svg>
 
   <!-- Pływające przyciski przewijania -->
-  <button class="scroll-bottom-float" type="button" aria-label="Przewiń na dół strony" title="Na dół">↓</button>
-  <button class="scroll-top-float" type="button" aria-label="Przewiń na górę strony" title="Do góry">↑</button>
+    <button class="scroll-btn scroll-top-float is-hidden" type="button" aria-label="Przewiń na górę strony" title="Do góry"></button>
 
   <!-- Mały helper: rok w stopce (bezpieczny, bez błędów jeśli #year nie istnieje) -->
   <script>

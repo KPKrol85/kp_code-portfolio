@@ -346,69 +346,77 @@ function initSmoothTop() {
 
 
 /* ============================================================
- 5) FLOATING SCROLL BUTTONS — mijanka w połowie widoku
-     - ↓ widoczny w górnej połowie strony, ↑ w dolnej
-     - chowa ↓ tuż przy dole i ↑ tuż przy górze
-     - respektuje prefers-reduced-motion
-     - wstrzymuje ↓ gdy menu mobilne jest otwarte
+ 5) FLOATING SCROLL BUTTONS — hero(↓) = na sam dół, top(↑)
+     - ↓ widoczny tylko gdy hero w kadrze i menu nie jest otwarte
+     - ↓ przewija NA SAM DÓŁ strony
+     - ↑ pokazuje się po 200 px
+     - prefers-reduced-motion respektowane
 ============================================================ */
-function initScrollButtons() {
-  const btnTop    = document.querySelector('.scroll-top-float');       // ↑
-  const btnBottom = document.querySelector('.scroll-bottom-float');    // ↓
-  const navMenu   = document.getElementById('navMenu');
-  if (!btnTop && !btnBottom) return;
+function initScrollButtons(){
+  const btnTop  = document.querySelector('.scroll-top-float');  // ↑
+  const btnDown = document.querySelector('.scroll-down');       // ↓ (w #strona-glowna)
+  const hero    = document.querySelector('#strona-glowna');
+  const navMenu = document.getElementById('navMenu');
+  if(!btnTop && !btnDown) return;
 
   const prefersNoAnim = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   const behavior = prefersNoAnim ? 'auto' : 'smooth';
   const scrollEl = document.scrollingElement || document.documentElement;
 
   // Kliknięcia
-  btnTop?.addEventListener('click', () => {
-    window.scrollTo({ top: 0, behavior });
-  });
-  btnBottom?.addEventListener('click', () => {
-    const total = Math.max(scrollEl.scrollHeight, document.body.scrollHeight);
-    window.scrollTo({ top: total, behavior });
+  btnTop?.addEventListener('click', () => window.scrollTo({ top: 0, behavior }));
+  btnDown?.addEventListener('click', () => {
+    // >>> NA SAM DÓŁ <<<
+    const docH = Math.max(
+      scrollEl.scrollHeight,
+      document.body.scrollHeight,
+      document.documentElement.scrollHeight,
+      document.body.offsetHeight,
+      document.documentElement.offsetHeight
+    );
+    window.scrollTo({ top: docH, behavior });
   });
 
-  // Pokazywanie/ukrywanie z rAF-throttle
-  let ticking = false;
+  // Widoczność (↓ tylko gdy hero w kadrze, brak menu, nie przy samym dole)
+  let ticking = false, heroInView = true;
   const update = () => {
     ticking = false;
+    const vh   = window.innerHeight || 0;
+    const docH = Math.max(scrollEl.scrollHeight, document.body.scrollHeight);
+    const y    = Math.min(scrollEl.scrollTop || window.scrollY || 0, Math.max(0, docH - vh));
+    const nearTop = y < 200;
+    const nearBottom = y + vh > docH - 40;
+    const menuOpen = !!(navMenu && navMenu.classList.contains('open'));
 
-    const viewport  = window.innerHeight || 0;
-    const totalDoc  = Math.max(scrollEl.scrollHeight, document.body.scrollHeight);
-    const maxScroll = Math.max(0, totalDoc - viewport);
-    const y         = Math.min(scrollEl.scrollTop || window.scrollY || 0, maxScroll);
-
-    const mid        = maxScroll / 2;
-    const nearTop    = y < 40;
-    const nearBottom = y > (maxScroll - 40);
-    const menuOpen   = !!(navMenu && navMenu.classList.contains('open'));
-
-    btnTop?.classList.toggle('is-hidden',   (y <= mid) || nearTop);
-    btnBottom?.classList.toggle('is-hidden',(y >  mid) || nearBottom || menuOpen);
-
-    // a11y (opcjonalnie)
-    btnTop?.setAttribute('aria-hidden',   btnTop?.classList.contains('is-hidden') ? 'true' : 'false');
-    btnBottom?.setAttribute('aria-hidden',btnBottom?.classList.contains('is-hidden') ? 'true' : 'false');
+    if(btnTop)  btnTop.classList.toggle('is-hidden', nearTop);
+    if(btnDown) btnDown.classList.toggle('is-hidden', !heroInView || menuOpen || nearBottom);
   };
+  const onScrollOrResize = () => { if(!ticking){ ticking = true; requestAnimationFrame(update); } };
 
-  const onScrollOrResize = () => {
-    if (!ticking) { ticking = true; requestAnimationFrame(update); }
-  };
-
-  update();
-  window.addEventListener('scroll', onScrollOrResize, { passive: true });
-  window.addEventListener('resize', onScrollOrResize, { passive: true });
-
-  // Reaguj też na zmianę klasy menu (otwarcie/zamknięcie)
-  if (navMenu) {
-    const mo = new MutationObserver(update);
-    mo.observe(navMenu, { attributes: true, attributeFilter: ['class'] });
-    window.addEventListener('pagehide', () => mo.disconnect(), { once: true });
+  // Obserwacja hero (czy w kadrze)
+  let io;
+  if(hero){
+    io = new IntersectionObserver((entries) => {
+      heroInView = !!entries[0]?.isIntersecting;
+      update();
+    }, { root:null, threshold:0.12 });
+    io.observe(hero);
   }
+
+  // Obserwacja otwierania/zamykania menu
+  let mo;
+  if(navMenu){
+    mo = new MutationObserver(update);
+    mo.observe(navMenu, { attributes:true, attributeFilter:['class'] });
+  }
+
+  // Init + nasłuchy
+  update();
+  window.addEventListener('scroll', onScrollOrResize, { passive:true });
+  window.addEventListener('resize', onScrollOrResize, { passive:true });
+  window.addEventListener('pagehide', () => { io?.disconnect(); mo?.disconnect(); }, { once:true });
 }
+initScrollButtons();
 
 
 /* ============================================================
