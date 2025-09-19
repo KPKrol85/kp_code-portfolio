@@ -1,0 +1,27 @@
+# dependencies (nie commitujemy)
+node_modules/
+
+# build output
+dist/
+build/
+.cache/
+.tmp/
+
+# logi
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# env
+.env
+.env.*.local
+
+# IDE / OS
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+
+# Netlify/inne
+.netlify/
