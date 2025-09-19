@@ -21,9 +21,14 @@
      - jeśli brak zapisu, używa prefers-color-scheme
      - aktualizuje: [data-theme] na <html>, aria-pressed, aria-label, title  
   9) RIPPLE — „Wycena” (prefers-reduced-motion respected)
-  10) HERO — ultra-wide: blur sync z <picture>
+ 10) HERO — ultra-wide: blur sync z <picture>
       - Ustawia tło .hero__bg-blur na faktycznie użyty wariant z <img srcset>
       - Reaguje na: load obrazka, resize, visibilitychange, zmiany atrybutów (src/srcset/sizes)
+ 11) LIGHTBOX dla miniaturek w #oferta .card
+      - klik w obrazek otwiera podgląd
+      - Esc zamyka, ←/→ nawigują, klik tła zamyka
+      - obsługa swipe (mobile)
+      - wybiera największy wariant z srcset, fallback: currentSrc/src
 ====================================================================== */
 
 /* =========================================================
@@ -1057,6 +1062,144 @@ function initHeroBlurSync() {
     { once: true },
   );
 }
+
+/* ============================================================
+ 11) LIGHTBOX dla miniaturek w #oferta .card
+      - klik w obrazek otwiera podgląd
+      - Esc zamyka, ←/→ nawigują, klik tła zamyka
+      - obsługa swipe (mobile)
+      - wybiera największy wariant z srcset, fallback: currentSrc/src
+============================================================ */
+function initOfertaLightbox(){
+  const imgs = Array.from(document.querySelectorAll('#oferta .card picture img'));
+  if(!imgs.length) return;
+
+  // Zbuduj DOM lightboxa raz
+  const $ = (h) => document.createElement(h);
+  const backdrop = $('div'); backdrop.className = 'lb-backdrop';
+  const wrap = $('div'); wrap.className = 'lb-wrap';
+  const viewport = $('div'); viewport.className = 'lb-viewport';
+  const img = new Image(); img.alt = ''; img.decoding = 'async';
+  viewport.appendChild(img); wrap.appendChild(viewport);
+
+  const mkBtn = (cls, svg) => {
+    const b = $('button');
+    b.className = `lb-btn ${cls}`;
+    b.type = 'button';
+    b.innerHTML = svg;
+    b.setAttribute('aria-label',
+      cls==='lb-close' ? 'Zamknij podgląd' :
+      cls==='lb-prev'  ? 'Poprzednie zdjęcie' :
+                         'Następne zdjęcie'
+    );
+    return b;
+  };
+  const svgX = '<svg viewBox="0 0 24 24"><path d="M18.3 5.7a1 1 0 0 0-1.4 0L12 10.6 7.1 5.7A1 1 0 0 0 5.7 7.1L10.6 12l-4.9 4.9a1 1 0 1 0 1.4 1.4L12 13.4l4.9 4.9a1 1 0 0 0 1.4-1.4L13.4 12l4.9-4.9a1 1 0 0 0 0-1.4z"/></svg>';
+  const svgL = '<svg viewBox="0 0 24 24"><path d="M15.7 5.3a1 1 0 0 1 0 1.4L11.4 11l4.3 4.3a1 1 0 1 1-1.4 1.4l-5-5a1 1 0 0 1 0-1.4l5-5a1 1 0 0 1 1.4 0z"/></svg>';
+  const svgR = '<svg viewBox="0 0 24 24"><path d="M8.3 5.3a1 1 0 0 0 0 1.4L12.6 11l-4.3 4.3a1 1 0 1 0 1.4 1.4l5-5a1 1 0 0 0 0-1.4l-5-5a1 1 0 0 0-1.4 0z"/></svg>';
+  const btnClose = mkBtn('lb-close', svgX);
+  const btnPrev  = mkBtn('lb-prev',  svgL);
+  const btnNext  = mkBtn('lb-next',  svgR);
+
+  document.body.append(backdrop, wrap, btnClose, btnPrev, btnNext);
+
+  let idx = 0, open = false, trap = null;
+
+  const parseSrcset = (ss) => {
+    if(!ss) return [];
+    return ss.split(',').map(s=>s.trim()).map(s=>{
+      const m = s.match(/(.+)\s+(\d+)w$/);
+      return m ? {url:m[1], w:parseInt(m[2],10)} : {url:s.split(' ')[0], w:0};
+    }).sort((a,b)=>b.w-a.w);
+  };
+
+  const bestUrlFor = (el) => {
+    // Najpierw spróbuj z <img srcset>
+    let best = parseSrcset(el.getAttribute('srcset'))[0]?.url;
+    if(!best){
+      // Potem z <picture><source>
+      const pic = el.closest('picture');
+      if(pic){
+        const sources = Array.from(pic.querySelectorAll('source'));
+        let candidates = [];
+        sources.forEach(s => { candidates = candidates.concat(parseSrcset(s.getAttribute('srcset'))); });
+        candidates.sort((a,b)=>b.w-a.w);
+        best = candidates[0]?.url || null;
+      }
+    }
+    return best || el.currentSrc || el.src;
+  };
+
+  const applyImage = () => {
+    const el = imgs[idx];
+    const url = bestUrlFor(el);
+    img.src = url;
+    img.alt = el.getAttribute('alt') || '';
+  };
+
+  const setOpen = (want) => {
+    open = want;
+    backdrop.classList.toggle('is-open', open);
+    wrap.style.pointerEvents = open ? 'auto' : 'none';
+    document.documentElement.classList.toggle('lb-no-scroll', open); // steruje też widocznością przycisków w CSS
+    if(open){
+      applyImage();
+      // focus na zamykanie dla a11y
+      btnClose.focus({preventScroll:true});
+      // prosty focus trap (między trzema przyciskami)
+      trap = (e) => {
+        if(e.key!=='Tab') return;
+        const focusables = [btnClose, btnPrev, btnNext];
+        const first = focusables[0], last = focusables[focusables.length-1];
+        if(e.shiftKey && document.activeElement===first){e.preventDefault();last.focus();}
+        else if(!e.shiftKey && document.activeElement===last){e.preventDefault();first.focus();}
+      };
+      document.addEventListener('keydown', trap);
+    } else {
+      document.removeEventListener('keydown', trap||(()=>{}));
+      img.src = '';   // wyczyść podgląd (żeby nie „zostawał”)
+      img.alt = '';
+    }
+  };
+
+  const prev = ()=>{ idx = (idx-1+imgs.length)%imgs.length; applyImage(); };
+  const next = ()=>{ idx = (idx+1)%imgs.length; applyImage(); };
+
+  // Klik na miniaturę
+  imgs.forEach((el,i)=>{
+    el.addEventListener('click',(e)=>{ e.preventDefault(); idx = i; setOpen(true); });
+    el.addEventListener('keydown',(e)=>{ if((e.key==='Enter'||e.key===' ')&&!open){ e.preventDefault(); idx=i; setOpen(true);} });
+    el.setAttribute('tabindex','0');
+    el.setAttribute('role','button');
+    el.setAttribute('aria-label','Powiększ zdjęcie');
+  });
+
+  // Sterowanie
+  btnClose.addEventListener('click', ()=>setOpen(false));
+  btnPrev.addEventListener('click', prev);
+  btnNext.addEventListener('click', next);
+  backdrop.addEventListener('click', ()=>setOpen(false));
+  document.addEventListener('keydown',(e)=>{
+    if(!open) return;
+    if(e.key==='Escape'){ setOpen(false); }
+    else if(e.key==='ArrowLeft'){ prev(); }
+    else if(e.key==='ArrowRight'){ next(); }
+  });
+
+  // Swipe (mobile)
+  let startX=0, startY=0, moved=false;
+  viewport.addEventListener('touchstart', (e)=>{ const t=e.changedTouches[0]; startX=t.clientX; startY=t.clientY; moved=false; }, {passive:true});
+  viewport.addEventListener('touchmove', ()=>{ moved=true; }, {passive:true});
+  viewport.addEventListener('touchend', (e)=>{
+    if(!moved) return;
+    const t=e.changedTouches[0]; const dx=t.clientX-startX; const dy=t.clientY-startY;
+    if(Math.abs(dx)>50 && Math.abs(dx)>Math.abs(dy)){ dx<0 ? next() : prev(); }
+  }, {passive:true});
+}
+// odpal po DOMContentLoaded (na końcu inicjalizacji)
+document.addEventListener('DOMContentLoaded', initOfertaLightbox);
+
+
 
 /* =========================================================
    INIT — odpal wszystko po załadowaniu DOM (kolejność ma sens)

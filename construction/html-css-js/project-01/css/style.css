@@ -1227,6 +1227,19 @@ h2 + .lead {
 }
 
 /* ============================== 05) LOGOTYPY ============================== */
+.logos {
+  --logo-slot-h: clamp(70px, 8vw, 96px);
+  --logo-img-h: clamp(24px, 6vw, 48px);
+  --logo-pad: clamp(10px, 2vw, 18px);
+  --logo-radius: 14px;
+  padding: 32px 0;
+  border-top: 1px solid var(--line);
+}
+.logos h2 {
+  text-align: center;
+  margin-bottom: 12px;
+}
+
 .logos-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
@@ -1235,62 +1248,29 @@ h2 + .lead {
   justify-items: stretch;
   max-width: 1100px;
   margin: 0 auto;
+  overflow: visible; /* nie ucinaj cieni */
 }
-.logos {
-  --logo-slot-h: clamp(70px, 8vw, 96px);
-  --logo-img-h: clamp(24px, 6vw, 48px);
-  --logo-pad: clamp(10px, 2vw, 18px);
-  --logo-radius: 14px;
-  --logo-dim-gray: 1;
-  --logo-dim-opacity: 0.8;
-  --logo-surface: var(--card);
-  --logo-line: var(--line);
-  padding: 32px 0;
-  border-top: 1px solid var(--line);
-}
-.logos h2 {
-  text-align: center;
-  margin-bottom: 12px;
-}
-.logos-grid .logo a {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  min-height: 64px;
-  padding: 8px 12px;
-  text-decoration: none;
-}
-.logos-grid .logo-img {
-  display: block;
-  height: 44px;
-  width: auto;
-}
-@media (max-width: 640px) {
-  .logos-grid .logo a {
-    min-height: 56px;
-  }
-  .logos-grid .logo-img {
-    height: 40px;
-  }
-}
+
 .logos .logo,
 .logos .logo-ph {
   height: var(--logo-slot-h);
   padding: var(--logo-pad);
   display: grid;
   place-items: center;
-  background: var(--logo-surface);
+  background: var(--card);
+  border: 1px solid var(--line);
   border-radius: var(--logo-radius);
-  box-shadow: 0 0 0 1px var(--logo-line) inset;
+  background-clip: padding-box;
+  /* efekt bazowy jak w Opinie/FAQ */
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.06);
   transition:
     box-shadow 0.2s ease,
-    transform 0.2s ease;
-  background-clip: padding-box;
+    transform 0.2s ease,
+    border-color 0.2s ease;
+  cursor: pointer;
   text-align: center;
   letter-spacing: 0.04em;
   font-weight: 500;
-  color: rgba(0, 0, 0, 0.45);
-  cursor: pointer;
 }
 .logos .logo a {
   display: grid;
@@ -1301,31 +1281,62 @@ h2 + .lead {
 }
 .logos .logo:hover,
 .logos .logo:focus-within {
-  box-shadow:
-    0 0 0 1px var(--brand) inset,
-    0 8px 24px rgba(0, 0, 0, 0.06);
   transform: translateY(-1px);
+  border-color: var(--line-strong);
+  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.1); /* jak Opinie/FAQ */
 }
-.logos .logo:hover .logo-img,
-.logos .logo:focus-within .logo-img {
-  filter: none;
-  opacity: 1;
+
+.logos-grid .logo a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 64px;
+  padding: 8px 12px;
+  text-decoration: none;
 }
+.logos-grid .logo-img {
+  display: block;
+  height: var(--logo-img-h);
+  width: auto;
+}
+
 .logos .logo a:focus-visible {
   outline: 3px solid var(--ring);
   outline-offset: 2px;
 }
-.logos .center {
-  margin-top: clamp(12px, 2.5vw, 24px);
-  display: flex;
-  justify-content: center;
+
+@media (max-width: 640px) {
+  .logos-grid .logo a {
+    min-height: 56px;
+  }
 }
+
+:root[data-theme="dark"] .logos .logo,
+:root[data-theme="dark"] .logos .logo-ph {
+  box-shadow:
+    0 2px 10px rgba(0, 0, 0, 0.45),
+    0 0 0 1px rgba(255, 255, 255, 0.05) inset;
+}
+:root[data-theme="dark"] .logos .logo:hover,
+:root[data-theme="dark"] .logos .logo:focus-within {
+  box-shadow:
+    0 10px 24px rgba(0, 0, 0, 0.5),
+    0 0 0 1px rgba(255, 255, 255, 0.08) inset;
+  border-color: rgba(255, 255, 255, 0.12);
+}
+
 @media (prefers-reduced-motion: reduce) {
-  .logos .logo,
-  .logos .logo-img {
+  .logos .logo {
     transition: none;
     transform: none;
   }
+}
+
+/* Oddech nad przyciskiem pod logotypami */
+.logos .center {
+  margin-top: clamp(16px, 2.6vw, 28px);
+  display: flex;
+  justify-content: center;
 }
 
 /* ============================== 06) OPINIE ============================== */
@@ -1374,25 +1385,26 @@ h2 + .lead {
   box-shadow: 0 12px 28px rgba(0, 0, 0, 0.12);
 }
 .testimonial blockquote {
-  margin: 0 0 8px;
+  margin: 0 0 12px;
   font-size: clamp(1rem, 0.95rem + 0.2vw, 1.1rem);
   line-height: 1.6;
   hyphens: auto;
   overflow-wrap: anywhere;
   position: relative;
-  padding-left: 64px;
+  padding-left: 44px;
 }
 .testimonial blockquote::before {
   content: "“";
   position: absolute;
-  left: 0;
-  top: -2px;
+  left: 12px;
+  top: 6px;
   font-size: 2rem;
   line-height: 1;
   color: var(--brand);
-  opacity: 0.35;
+  opacity: 0.28;
 }
 .testimonial figcaption {
+  margin-top: auto;
   color: var(--muted);
   font-weight: 700;
 }
@@ -1405,86 +1417,63 @@ h2 + .lead {
     transform: none;
   }
 }
-/* OPINIE — wskaźnik nastroju (emotka obok cudzysłowu) */
-.testimonial[data-sentiment="pos"] blockquote::after {
-  content: "😊";
-  position: absolute;
-  left: 32px;
-  top: -2px;
-  font-size: 1.4rem;
-  line-height: 1;
+/* Dark mode: subtelny cień i lekka poświata kart opinii */
+:root[data-theme="dark"] .testimonial {
+  box-shadow:
+    0 12px 28px rgba(0, 0, 0, 0.55),
+    0 0 0 1px rgba(255, 255, 255, 0.05) inset;
 }
-.testimonial[data-sentiment="neu"] blockquote::after {
-  content: "😐";
-  position: absolute;
-  left: 32px;
-  top: -2px;
-  font-size: 1.4rem;
-  line-height: 1;
-}
-.testimonial[data-sentiment="neg"] blockquote::after {
-  content: "🙁";
-  position: absolute;
-  left: 32px;
-  top: -2px;
-  font-size: 1.4rem;
-  line-height: 1;
-}
-:root[data-theme="dark"] .testimonial[data-sentiment="pos"] blockquote::after {
-  content: "😊";
-}
-:root[data-theme="dark"] .testimonial[data-sentiment="neu"] blockquote::after {
-  content: "😐";
-}
-:root[data-theme="dark"] .testimonial[data-sentiment="neg"] blockquote::after {
-  content: "🙁";
-}
-/* MOBILE FIX — więcej miejsca dla emotki, mniejsza ikona i większy padding-left */
-@media (max-width: 420px) {
-  .testimonial {
-    padding: 14px;
-  }
-  .testimonial blockquote {
-    padding-left: 56px;
-  }
-  .testimonial[data-sentiment="pos"] blockquote::after,
-  .testimonial[data-sentiment="neu"] blockquote::after,
-  .testimonial[data-sentiment="neg"] blockquote::after {
-    left: 28px;
-    top: 0;
-    font-size: 1.3rem;
-  }
+:root[data-theme="dark"] .testimonial:hover,
+:root[data-theme="dark"] .testimonial:focus-within {
+  box-shadow:
+    0 18px 44px rgba(0, 0, 0, 0.6),
+    0 0 0 1px rgba(255, 255, 255, 0.08) inset;
+  border-color: rgba(255, 255, 255, 0.12);
 }
 
 /* ============================== 07) FAQ ============================== */
 #faq {
   scroll-margin-top: calc(var(--header-h) + 8px);
+  --faq-gutter: clamp(12px, 2vw, 18px);
+  --faq-radius: 12px;
 }
-.faq-list {
+#faq .container {
+  overflow: visible;
+}
+#faq .faq-list {
+  max-width: 1040px;
+  margin-inline: auto;
   display: grid;
-  gap: 10px;
-  margin: 0;
-  padding: 0;
+  gap: 12px;
   list-style: none;
+  padding: calc(var(--faq-gutter) * 0.75) var(--faq-gutter);
+  padding-block: clamp(14px, 2.2vw, 24px);
 }
-.faq {
+#faq .faq-list::after {
+  content: "";
+  display: block;
+  height: 16px;
+}
+
+#faq .faq-list details {
   border: 1px solid var(--line);
-  border-radius: var(--radius, 12px);
-  background: var(--bg);
-  box-shadow: var(--shadow);
-  overflow: hidden;
-  background-clip: padding-box;
+  border-radius: var(--faq-radius);
+  background: var(--card);
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.06);
   transition:
-    border-color 0.2s ease,
-    box-shadow 0.2s ease;
+    box-shadow 0.2s ease,
+    transform 0.2s ease,
+    border-color 0.2s ease;
+  overflow: visible;
 }
-.faq:hover,
-.faq[open] {
+#faq .faq-list details:hover,
+#faq .faq-list details[open] {
+  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.1);
+  transform: translateY(-1px);
   border-color: var(--line-strong);
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.06);
 }
-.faq > summary {
-  list-style: none;
+
+#faq .faq-list summary {
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -1494,18 +1483,14 @@ h2 + .lead {
   line-height: 1.3;
   padding: 14px 16px;
   font-weight: 600;
-  position: relative;
-  background: inherit;
   border-radius: inherit;
+  list-style: none;
   outline: none;
 }
-.faq > summary::-webkit-details-marker {
+#faq .faq-list summary::-webkit-details-marker {
   display: none;
 }
-.faq > summary::marker {
-  content: "";
-}
-.faq > summary::after {
+#faq .faq-list summary::after {
   content: "";
   width: 12px;
   height: 12px;
@@ -1517,39 +1502,50 @@ h2 + .lead {
   transition:
     transform 0.25s ease,
     opacity 0.2s;
-  color: currentColor;
   opacity: 0.9;
   flex: 0 0 12px;
 }
-.faq[open] > summary {
+#faq .faq-list details[open] > summary {
   font-weight: 700;
 }
-.faq[open] > summary::after {
+#faq .faq-list details[open] > summary::after {
   transform: rotate(225deg);
 }
-.faq > summary:focus-visible {
+#faq .faq-list summary:focus-visible {
   outline: 3px solid var(--ring);
   outline-offset: 4px;
 }
-.faq > div {
-  padding: 0 16px 14px;
+
+#faq .faq-list .answer {
+  padding: 0 16px 16px;
   color: var(--muted);
   line-height: 1.6;
 }
-.faq > div p {
+#faq .faq-list .answer p {
   margin: 0.4em 0;
 }
-:root[data-theme="dark"] .faq {
-  border-color: color-mix(in srgb, #fff 16%, var(--line));
+
+:root[data-theme="dark"] #faq .faq-list details {
+  box-shadow:
+    0 2px 10px rgba(0, 0, 0, 0.45),
+    0 0 0 1px rgba(255, 255, 255, 0.05) inset;
 }
-:root[data-theme="dark"] .faq:hover,
-:root[data-theme="dark"] .faq[open] {
-  border-color: color-mix(in srgb, #fff 28%, var(--line));
+:root[data-theme="dark"] #faq .faq-list details:hover,
+:root[data-theme="dark"] #faq .faq-list details[open] {
+  box-shadow:
+    0 10px 24px rgba(0, 0, 0, 0.5),
+    0 0 0 1px rgba(255, 255, 255, 0.08) inset;
+  border-color: rgba(255, 255, 255, 0.12);
 }
+
 @media (prefers-reduced-motion: reduce) {
-  .faq,
-  .faq > summary::after {
+  #faq .faq-list details,
+  #faq .faq-list summary::after {
     transition: none;
+  }
+  #faq .faq-list details:hover,
+  #faq .faq-list details[open] {
+    transform: none;
   }
 }
 
@@ -1558,6 +1554,7 @@ h2 + .lead {
   background: var(--brand-grad);
   color: #fff;
 }
+
 .cta-wrap {
   display: grid;
   gap: 20px;
@@ -1569,9 +1566,11 @@ h2 + .lead {
     align-items: center;
   }
 }
+
 .cta h2 {
   margin: 0.2em 0;
 }
+
 .contact-list {
   list-style: none;
   padding: 0;
@@ -1589,6 +1588,7 @@ h2 + .lead {
 .cta .icon {
   color: #fff;
 }
+
 .contact-item {
   display: inline-flex;
   align-items: center;
@@ -1601,14 +1601,6 @@ h2 + .lead {
   transition:
     background 0.2s ease,
     box-shadow 0.2s ease;
-}
-/* Linki tel/mail – komfortowy tap target (≥44px) */
-.ft-contact a {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  min-height: 44px;
-  padding: 6px 0;
 }
 .cta .contact-item:hover {
   background: rgba(255, 255, 255, 0.14);
@@ -1650,6 +1642,7 @@ h2 + .lead {
     opacity: 1;
   }
 }
+
 /* Formularz (glass card) */
 .form {
   display: grid;
@@ -1665,11 +1658,27 @@ h2 + .lead {
   display: grid;
   gap: 6px;
 }
-.form label {
-  display: grid;
-  gap: 6px;
-  font-weight: 600;
+
+/* STAŁE kolory tekstów w formularzu – niezależne od motywu */
+.cta .form label {
+  color: #0f172a;
+  font-weight: 700;
 }
+.cta .form .checkbox span {
+  color: #0f172a;
+  font-weight: 600;
+  line-height: 1.45;
+}
+.cta .form .muted {
+  color: #0f172a;
+  opacity: 0.9;
+}
+.cta .form .muted a {
+  color: #0f172a;
+  text-underline-offset: 2px;
+}
+
+/* Pola */
 .form
   :is(input[type="text"], input[type="tel"], input[type="email"], textarea) {
   width: 100%;
@@ -1690,10 +1699,13 @@ h2 + .lead {
   max-height: 40vh;
   overflow: auto;
 }
-/* Placeholders (light/dark) */
+
+/* Placeholdery */
 .form :is(input, textarea)::placeholder {
   color: rgba(0, 0, 0, 0.52);
 }
+
+/* DARK MODE: zmienia się tylko środek pól (tło/tekst/obramowanie) */
 :root[data-theme="dark"] .cta .form :is(input, textarea) {
   background: rgba(15, 23, 42, 0.92);
   color: #e5e7eb;
@@ -1703,6 +1715,8 @@ h2 + .lead {
 :root[data-theme="dark"] .cta .form :is(input, textarea)::placeholder {
   color: rgba(255, 255, 255, 0.55);
 }
+/* brak zmian kolorów etykiet/zgody/notek w dark mode */
+
 /* Focus/invalid */
 .form
   :is(
@@ -1720,6 +1734,8 @@ h2 + .lead {
   border-color: #ef4444;
   box-shadow: inset 0 0 0 1px rgba(239, 68, 68, 0.6);
 }
+
+/* Visually hidden */
 .form .visually-hidden {
   position: absolute;
   width: 1px;
@@ -1730,6 +1746,7 @@ h2 + .lead {
   clip: rect(0, 0, 0, 0);
   overflow: hidden;
 }
+
 /* Checkbox wiersz */
 .checkbox {
   display: flex;
@@ -1745,21 +1762,18 @@ h2 + .lead {
   accent-color: var(--brand);
   border-radius: 4px;
 }
-.checkbox span {
-  line-height: 1.45;
-}
 .checkbox input:focus-visible {
   box-shadow: 0 0 0 3px var(--ring);
   border-radius: 4px;
   outline: none;
 }
-/* Checkbox invalid (czytelny stan błędu) */
 .checkbox input[aria-invalid="true"] {
   outline: 3px solid var(--ring);
   outline-offset: 2px;
   box-shadow: 0 0 0 1px rgba(239, 68, 68, 0.6);
 }
-/* Komunikaty globalne (powiązane z JS .is-ok/.is-err) */
+
+/* Komunikaty globalne */
 section#kontakt .form-note {
   min-height: 1.6em;
 }
@@ -1773,37 +1787,36 @@ section#kontakt .form-note {
 .form-note.is-err {
   color: #ef4444;
 }
-/* Przyciski w CTA (kontrast na gradiencie) */
-.cta .btn {
-  background: #fff;
-  color: var(--fg);
-  border: 1px solid rgba(255, 255, 255, 0.6);
-  box-shadow: 0 10px 24px rgba(2, 8, 23, 0.12);
-}
-.cta .btn:hover {
-  transform: translateY(-1px);
-  background: #fff;
-  color: var(--fg);
-}
-.cta .btn:active {
-  transform: translateY(0);
-}
+
+/* Przyciski w formularzu – 60% i centrowanie */
 .cta .form .btn {
-  width: 100%;
-  padding: 12px 16px;
-  border-radius: 999px;
-  font-weight: 700;
+  width: 60%;
+  min-height: 48px;
+  display: block;
+  margin-inline: auto;
+  align-self: center;
+  justify-self: center;
+  max-width: 420px;
+  box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.14) inset;
 }
-:root[data-theme="dark"] .cta .form .btn {
-  background: #fff;
-  color: #0f172a; /* ciemny tekst, czytelny na białym tle */
+@media (max-width: 640px) {
+  .cta .form .btn {
+    width: 100%;
+    max-width: none;
+  }
 }
+
+/* Redukcja animacji */
 @media (prefers-reduced-motion: reduce) {
   .form,
-  .contact-item,
-  .cta .btn {
+  .contact-item {
     transition: none;
   }
+}
+
+/* Mniejszy tekst TYLKO przy zgodzie */
+.cta .form label.checkbox > input#f-consent + span {
+  font-size: 0.85rem; /* ~15px przy bazie 16px */
 }
 
 /* ============================== 09) FOOTER (UKŁAD + BAZA) ============================== */
@@ -2839,4 +2852,142 @@ h3 {
       contain-intrinsic-size: 600px;
     }
   }
+}
+
+/* ============================== 14) LIGHTBOX (galeria kart) ============================== */
+.lb-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 2000;
+  background: rgba(0, 0, 0, 0.7);
+  backdrop-filter: saturate(140%) blur(2px);
+  display: none;
+  opacity: 0;
+  transition: opacity 0.18s ease;
+}
+.lb-backdrop.is-open {
+  display: block;
+  opacity: 1;
+}
+
+.lb-wrap {
+  position: fixed;
+  inset: 0;
+  z-index: 2001;
+  display: grid;
+  place-items: center;
+  pointer-events: none;
+}
+.lb-viewport {
+  max-width: 92vw;
+  max-height: 86vh;
+  box-shadow:
+    0 20px 60px rgba(0, 0, 0, 0.45),
+    0 0 0 1px rgba(255, 255, 255, 0.12) inset;
+  border-radius: 14px;
+  overflow: hidden;
+  background: #000;
+  pointer-events: auto;
+}
+.lb-viewport img {
+  display: block;
+  max-width: 100%;
+  max-height: 86vh;
+  object-fit: contain;
+  user-select: none;
+  -webkit-user-drag: none;
+}
+
+.lb-btn {
+  position: fixed;
+  z-index: 2002;
+  display: none;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  border: 0;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.08);
+  color: #fff;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.3);
+  cursor: pointer;
+  transition:
+    transform 0.15s ease,
+    background 0.15s ease,
+    opacity 0.15s ease;
+  will-change: transform;
+}
+html.lb-no-scroll .lb-btn {
+  display: grid;
+} /* pokaż przyciski tylko gdy lightbox otwarty */
+
+.lb-close {
+  top: 16px;
+  right: 16px;
+}
+.lb-prev,
+.lb-next {
+  top: 50%;
+  transform: translateY(-50%);
+}
+.lb-prev {
+  left: 16px;
+}
+.lb-next {
+  right: 16px;
+}
+
+.lb-btn:hover {
+  background: rgba(255, 255, 255, 0.14);
+} /* bez nadpisywania translateY(-50%) */
+.lb-prev:hover {
+  transform: translateY(-50%) translateX(-2px);
+}
+.lb-next:hover {
+  transform: translateY(-50%) translateX(2px);
+}
+.lb-prev:active {
+  transform: translateY(-50%) translateX(-1px);
+}
+.lb-next:active {
+  transform: translateY(-50%) translateX(1px);
+}
+
+.lb-btn svg {
+  width: 20px;
+  height: 20px;
+  fill: #fff;
+  opacity: 0.95;
+}
+html.lb-no-scroll {
+  overflow: hidden;
+}
+
+@media (max-width: 640px) {
+  .lb-prev,
+  .lb-next {
+    width: 40px;
+    height: 40px;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .lb-backdrop {
+    transition: none;
+  }
+  .lb-btn {
+    transition: none;
+  }
+}
+
+/* Interakcja na miniaturkach */
+#oferta .card picture img {
+  cursor: pointer;
+  transition: transform 0.12s ease;
+}
+#oferta .card picture img:hover {
+  transform: translateY(-1px);
+}
+#oferta .card picture img:focus-visible {
+  outline: 2px solid var(--accent, #ffd54d);
+  outline-offset: 3px;
 }
