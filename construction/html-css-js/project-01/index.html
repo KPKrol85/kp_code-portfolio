@@ -1,845 +1,1519 @@
 <!doctype html>
 <html lang="pl" data-accent="bhp">
-<head>
-  <!-- Podstawy -->
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <head>
+    <!-- Podstawy -->
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
 
-  <title>Nazwa Twojej Firmy — Ekipa Remontowa</title>
-  <meta name="description" content="Kompleksowe remonty i wykończenia: łazienki, kuchnie, malowanie, podłogi. Sprawdź naszą ofertę i umów bezpłatną wycenę.">
-  <meta name="author" content="Twoje Imię / Firma">
-  <meta name="keywords" content="remonty, wykończenia, łazienki, malowanie, kafelkowanie, elektryka, hydraulika, Tarnów, Małopolska">
+    <title>Nazwa Twojej Firmy — Ekipa Remontowa</title>
+    <meta
+      name="description"
+      content="Kompleksowe remonty i wykończenia: łazienki, kuchnie, malowanie, podłogi. Sprawdź naszą ofertę i umów bezpłatną wycenę."
+    />
+    <meta name="author" content="Kamil Król / KP_Code" />
 
-  <!-- SEO / Indexing -->
-  <meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1">
-  <link rel="canonical" href="https://construction-project-01.netlify.app/">
+    <!-- SEO / Indexing -->
+    <meta
+      name="robots"
+      content="index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1"
+    />
+    <link rel="canonical" href="https://construction-project-01.netlify.app/" />
 
-  <!-- Kolor paska i schematy -->
-  <meta name="theme-color" content="#0ea5e9" media="(prefers-color-scheme: light)">
-  <meta name="theme-color" content="#0b1220" media="(prefers-color-scheme: dark)">
-  <meta name="color-scheme" content="light dark">
+    <!-- Kolor paska i schematy -->
+    <meta
+      name="theme-color"
+      content="#0ea5e9"
+      media="(prefers-color-scheme: light)"
+    />
+    <meta
+      name="theme-color"
+      content="#0b1220"
+      media="(prefers-color-scheme: dark)"
+    />
+    <meta name="color-scheme" content="light dark" />
 
-  <!-- Open Graph -->
-  <meta property="og:type" content="website">
-  <meta property="og:site_name" content="Nazwa Twojej Firmy">
-  <meta property="og:locale" content="pl_PL">
-  <meta property="og:title" content="Nazwa Twojej Firmy — Ekipa Remontowa">
-  <meta property="og:description" content="Kompleksowe remonty i wykończenia — łazienki, kuchnie, malowanie, podłogi. Umów bezpłatną wycenę.">
-  <meta property="og:url" content="https://construction-project-01.netlify.app/">
-  <meta property="og:image" content="https://construction-project-01.netlify.app/assets/img/og/og-image-1200x630.jpg">
-  <meta property="og:image:secure_url" content="https://construction-project-01.netlify.app/assets/img/og/og-image-1200x630.jpg">
-  <meta property="og:image:width" content="1200">
-  <meta property="og:image:height" content="630">
-  <meta property="og:image:alt" content="Ekipa remontowa przy pracy — logo firmy w rogu">
-  <meta property="og:updated_time" content="2025-09-18T12:00:00+02:00">
+    <!-- Open Graph -->
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Nazwa Twojej Firmy" />
+    <meta property="og:locale" content="pl_PL" />
+    <meta property="og:title" content="Nazwa Twojej Firmy — Ekipa Remontowa" />
+    <meta
+      property="og:description"
+      content="Kompleksowe remonty i wykończenia — łazienki, kuchnie, malowanie, podłogi. Umów bezpłatną wycenę."
+    />
+    <meta
+      property="og:url"
+      content="https://construction-project-01.netlify.app/"
+    />
+    <meta
+      property="og:image"
+      content="https://construction-project-01.netlify.app/assets/img/og/og-image-1200x630.jpg"
+    />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta
+      property="og:image:alt"
+      content="Ekipa remontowa przy pracy — logo firmy w rogu"
+    />
+    <meta property="og:updated_time" content="2025-09-19T12:00:00+02:00" />
 
-  <!-- Twitter (X) -->
-  <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Nazwa Twojej Firmy — Ekipa Remontowa">
-  <meta name="twitter:description" content="Kompleksowe remonty i wykończenia — łazienki, kuchnie, malowanie, podłogi. Umów bezpłatną wycenę.">
-  <meta name="twitter:image" content="https://construction-project-01.netlify.app/assets/img/og/og-image-1200x630.jpg">
-  <meta name="twitter:url" content="https://construction-project-01.netlify.app/">
+    <!-- Twitter (X) -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Nazwa Twojej Firmy — Ekipa Remontowa" />
+    <meta
+      name="twitter:description"
+      content="Kompleksowe remonty i wykończenia — łazienki, kuchnie, malowanie, podłogi. Umów bezpłatną wycenę."
+    />
+    <meta
+      name="twitter:image"
+      content="https://construction-project-01.netlify.app/assets/img/og/og-image-1200x630.jpg"
+    />
+    <meta
+      name="twitter:url"
+      content="https://construction-project-01.netlify.app/"
+    />
+    <meta
+      name="twitter:image:alt"
+      content="Ekipa remontowa przy pracy — logo firmy w rogu"
+    />
 
-  <!-- JSON-LD (Schema.org) — LocalBusiness + Services -->
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@graph": [
+    <!-- JSON-LD (Schema.org) — LocalBusiness + Services -->
+    <script type="application/ld+json">
       {
-        "@type": ["LocalBusiness","HomeAndConstructionBusiness","ConstructionCompany"],
-        "name": "Nazwa Twojej Firmy",
-        "url": "https://construction-project-01.netlify.app/",
-        "logo": "https://construction-project-01.netlify.app/assets/img/main-logo.png",
-        "image": "https://construction-project-01.netlify.app/assets/img/og/og-image-1200x630.jpg",
-        "priceRange": "$$",
-        "telephone": "+48 600 700 800",
-        "email": "kontakt@twoja-firma.pl",
-        "address": {
-          "@type": "PostalAddress",
-          "streetAddress": "ul. Przykładowa 10",
-          "postalCode": "33-100",
-          "addressLocality": "Tarnów",
-          "addressCountry": "PL"
-        },
-        "contactPoint": [
+        "@context": "https://schema.org",
+        "@graph": [
           {
-            "@type": "ContactPoint",
-            "telephone": "+48-600-700-800",
-            "contactType": "sales",
-            "areaServed": "PL",
-            "availableLanguage": ["pl"]
+            "@type": [
+              "LocalBusiness",
+              "HomeAndConstructionBusiness",
+              "ConstructionCompany"
+            ],
+            "@id": "https://construction-project-01.netlify.app/#org",
+            "name": "Nazwa Twojej Firmy",
+            "url": "https://construction-project-01.netlify.app/",
+            "logo": {
+              "@type": "ImageObject",
+              "url": "https://construction-project-01.netlify.app/assets/img/main-logo/main-logo-footer-512.png",
+              "width": 512,
+              "height": 512
+            },
+            "image": "https://construction-project-01.netlify.app/assets/img/og/og-image-1200x630.jpg",
+            "priceRange": "$$",
+            "telephone": "+48 600 700 800",
+            "email": "kontakt@twoja-firma.pl",
+            "address": {
+              "@type": "PostalAddress",
+              "streetAddress": "ul. Przykładowa 10",
+              "postalCode": "33-100",
+              "addressLocality": "Tarnów",
+              "addressRegion": "Małopolskie",
+              "addressCountry": "PL"
+            },
+            "openingHoursSpecification": [
+              {
+                "@type": "OpeningHoursSpecification",
+                "dayOfWeek": [
+                  "Monday",
+                  "Tuesday",
+                  "Wednesday",
+                  "Thursday",
+                  "Friday"
+                ],
+                "opens": "08:00",
+                "closes": "18:00"
+              },
+              {
+                "@type": "OpeningHoursSpecification",
+                "dayOfWeek": "Saturday",
+                "opens": "09:00",
+                "closes": "14:00"
+              }
+            ],
+            "contactPoint": [
+              {
+                "@type": "ContactPoint",
+                "telephone": "+48-600-700-800",
+                "contactType": "sales",
+                "areaServed": "PL",
+                "availableLanguage": ["pl"]
+              },
+              {
+                "@type": "ContactPoint",
+                "telephone": "+48-123-456-789",
+                "contactType": "customer support",
+                "areaServed": "PL",
+                "availableLanguage": ["pl"]
+              }
+            ],
+            "knowsAbout": [
+              "Remonty mieszkań",
+              "Wykończenia wnętrz",
+              "Łazienki",
+              "Malowanie i gładzie",
+              "Kafelkowanie",
+              "Elektryka i hydraulika"
+            ],
+            "areaServed": "PL"
           },
           {
-            "@type": "ContactPoint",
-            "telephone": "+48-123-456-789",
-            "contactType": "customer support",
+            "@type": "Service",
+            "name": "Remonty łazienek",
+            "serviceType": "Bathroom Renovation",
+            "provider": {
+              "@id": "https://construction-project-01.netlify.app/#org"
+            },
             "areaServed": "PL",
-            "availableLanguage": ["pl"]
+            "url": "https://construction-project-01.netlify.app/#oferta-lazienki"
+          },
+          {
+            "@type": "Service",
+            "name": "Malowanie i gładzie",
+            "serviceType": "Painting and Plastering",
+            "provider": {
+              "@id": "https://construction-project-01.netlify.app/#org"
+            },
+            "areaServed": "PL",
+            "url": "https://construction-project-01.netlify.app/#oferta-malowanie"
+          },
+          {
+            "@type": "Service",
+            "name": "Kafelkowanie",
+            "serviceType": "Tiling",
+            "provider": {
+              "@id": "https://construction-project-01.netlify.app/#org"
+            },
+            "areaServed": "PL",
+            "url": "https://construction-project-01.netlify.app/#oferta-kafelkowanie"
+          },
+          {
+            "@type": "Service",
+            "name": "Elektryka i hydraulika",
+            "serviceType": "Electrical and Plumbing",
+            "provider": {
+              "@id": "https://construction-project-01.netlify.app/#org"
+            },
+            "areaServed": "PL",
+            "url": "https://construction-project-01.netlify.app/#oferta-elektryka"
           }
-        ],
-        "knowsAbout": [
-          "Remonty mieszkań",
-          "Wykończenia wnętrz",
-          "Łazienki",
-          "Malowanie i gładzie",
-          "Kafelkowanie",
-          "Elektryka i hydraulika"
-        ],
-        "areaServed": "PL"
-      },
-      {
-        "@type": "Service",
-        "name": "Remonty łazienek",
-        "serviceType": "Bathroom Renovation",
-        "provider": { "@type": "LocalBusiness", "name": "Nazwa Twojej Firmy" },
-        "areaServed": "PL",
-        "url": "https://construction-project-01.netlify.app/#oferta-lazienki"
-      },
-      {
-        "@type": "Service",
-        "name": "Malowanie i gładzie",
-        "serviceType": "Painting and Plastering",
-        "provider": { "@type": "LocalBusiness", "name": "Nazwa Twojej Firmy" },
-        "areaServed": "PL",
-        "url": "https://construction-project-01.netlify.app/#oferta-malowanie"
-      },
-      {
-        "@type": "Service",
-        "name": "Kafelkowanie",
-        "serviceType": "Tiling",
-        "provider": { "@type": "LocalBusiness", "name": "Nazwa Twojej Firmy" },
-        "areaServed": "PL",
-        "url": "https://construction-project-01.netlify.app/#oferta-kafelkowanie"
-      },
-      {
-        "@type": "Service",
-        "name": "Elektryka i hydraulika",
-        "serviceType": "Electrical and Plumbing",
-        "provider": { "@type": "LocalBusiness", "name": "Nazwa Twojej Firmy" },
-        "areaServed": "PL",
-        "url": "https://construction-project-01.netlify.app/#oferta-elektryka"
+        ]
       }
-    ]
-  }
-  </script>
+    </script>
 
-  <!-- Anty-FOUC motywu: ustaw data-theme zanim pojawi się pierwszy piksel -->
-  <script>
-    try {
-      var d = document.documentElement;
-      var t = localStorage.getItem('theme');
-      if (!t) { t = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light'; }
-      d.setAttribute('data-theme', t);
-    } catch (e) {}
-  </script>
-  <!-- Gaś przejścia do pierwszego malowania (brak „migania” kolorów) -->
-  <style>
-    html.preload-theme *, html.preload-theme *::before, html.preload-theme *::after { transition: none !important; }
-  </style>
-  <script>
-    document.documentElement.classList.add('preload-theme');
-    window.addEventListener('DOMContentLoaded', function () {
-      setTimeout(function () { document.documentElement.classList.remove('preload-theme'); }, 0);
-    });
-  </script>
+    <!-- JSON-LD (Schema.org) — FAQPage -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "Ile trwa przygotowanie wyceny?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Standardowo do 24 godzin od przesłania szczegółów zlecenia lub zdjęć."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Czy dojeżdżacie do klienta i wykonujecie oględziny?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Tak. Dojazd w obrębie miasta i okolic jest możliwy po ustaleniu terminu."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Czy wystawiacie fakturę i udzielacie gwarancji?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Tak, wystawiamy faktury oraz udzielamy gwarancji na wykonywane prace."
+            }
+          }
+        ]
+      }
+    </script>
 
-  <!-- Łącza do fontów i CSS -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700&family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    <!-- Anty-FOUC motywu: ustaw data-theme zanim pojawi się pierwszy piksel -->
+    <script>
+      try {
+        var d = document.documentElement;
+        var t = localStorage.getItem("theme");
+        if (!t) {
+          t = window.matchMedia("(prefers-color-scheme: dark)").matches
+            ? "dark"
+            : "light";
+        }
+        d.setAttribute("data-theme", t);
+      } catch (e) {}
+    </script>
+    <!-- Gaś przejścia do pierwszego malowania (brak „migania” kolorów) -->
+    <style>
+      html.preload-theme *,
+      html.preload-theme *::before,
+      html.preload-theme *::after {
+        transition: none !important;
+      }
+    </style>
+    <script>
+      document.documentElement.classList.add("preload-theme");
+      window.addEventListener("DOMContentLoaded", function () {
+        setTimeout(function () {
+          document.documentElement.classList.remove("preload-theme");
+        }, 0);
+      });
+    </script>
 
-  <!-- Główny arkusz stylów -->
-  <link rel="stylesheet" href="css/style.css">
+    <!-- Google Fonts (preconnect + preload stylesheet + font-display: swap) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="preload"
+      as="style"
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700&family=Poppins:wght@400;600;700&display=swap"
+      onload="this.onload=null;this.rel='stylesheet'"
+    />
+    <noscript
+      ><link
+        rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700&family=Poppins:wght@400;600;700&display=swap"
+    /></noscript>
 
-  <!-- Favikony i manifest -->
-  <link rel="icon" type="image/x-icon" href="assets/img/favicon/favicon.ico">
-  <link rel="icon" type="image/svg+xml" href="assets/img/favicon/favicon.svg">
-  <link rel="icon" type="image/png" sizes="96x96" href="assets/img/favicon/favicon-96x96.png">
-  <link rel="apple-touch-icon" sizes="180x180" href="assets/img/favicon/apple-touch-icon.png">
+    <!-- Główny arkusz stylów -->
+    <link rel="stylesheet" href="css/style.css" />
 
-  <!-- Android / PWA -->
-  <link rel="icon" type="image/png" sizes="192x192" href="assets/img/favicon/web-app-manifest-192x192.png">
-  <link rel="icon" type="image/png" sizes="512x512" href="assets/img/favicon/web-app-manifest-512x512.png">
-  <link rel="manifest" href="assets/img/favicon/site.webmanifest">
+    <!-- Favikony i manifest -->
+    <link
+      rel="icon"
+      type="image/x-icon"
+      href="assets/img/favicon/favicon.ico"
+    />
+    <link
+      rel="icon"
+      type="image/svg+xml"
+      href="assets/img/favicon/favicon.svg"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="96x96"
+      href="assets/img/favicon/favicon-96x96.png"
+    />
+    <link
+      rel="apple-touch-icon"
+      sizes="180x180"
+      href="assets/img/favicon/apple-touch-icon.png"
+    />
 
-  <!-- (opcjonalnie) Safari pinned tab -->
-  <!-- <link rel="mask-icon" href="assets/img/favicon/safari-pinned-tab.svg" color="#0ea5e9"> -->
+    <!-- Android / PWA -->
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="192x192"
+      href="assets/img/favicon/web-app-manifest-192x192.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="512x512"
+      href="assets/img/favicon/web-app-manifest-512x512.png"
+    />
+    <link rel="manifest" href="assets/img/favicon/site.webmanifest" />
 
-</head>
+    <!-- (opcjonalnie) Safari pinned tab -->
+    <!-- <link rel="mask-icon" href="assets/img/favicon/safari-pinned-tab.svg" color="#0ea5e9"> -->
+  </head>
 
+  <body>
+    <!-- A11Y: Skip link + kotwica #top -->
+    <a class="skip" href="#main">Pomiń do treści</a>
+    <div
+      id="top"
+      aria-hidden="true"
+      style="position: relative; inset: 0; height: 0"
+    ></div>
 
-<body>
-  <!-- A11Y: Skip link + kotwica #top -->
-  <a class="skip" href="#main">Pomiń do treści</a>
-  <div id="top" aria-hidden="true" style="position:relative;inset:0;height:0"></div>
-
-<!-- =========================================================
+    <!-- =========================================================
        HEADER
        ========================================================= -->
-<header class="site-header" role="banner">
-  <div class="container header-bar">
+    <header class="site-header" role="banner">
+      <div class="container header-bar">
+        <!-- Brand -->
+        <a
+          class="brand"
+          href="#top"
+          aria-label="Strona główna — Ekipa Remontowa"
+        >
+          <picture class="brand-logo">
+            <img
+              src="assets/img/main-logo/main-logo-light-512.svg"
+              alt="Nazwa firmy"
+              class="ft-logo logo--light"
+              loading="eager"
+              fetchpriority="high"
+              decoding="async"
+            />
+            <img
+              src="assets/img/main-logo/main-logo-dark-512.svg"
+              alt="Nazwa firmy"
+              class="ft-logo logo--dark"
+              loading="eager"
+              fetchpriority="high"
+              decoding="async"
+            />
+          </picture>
+          <span class="brand-name">LOGO FIRMY</span>
+        </a>
 
-    <!-- Brand -->
-    <a class="brand" href="#top" aria-label="Strona główna — Ekipa Remontowa">
-      <picture class="brand-logo">
-        <img src="assets/img/main-logo/main-logo-light-512.svg" alt="Nazwa firmy" class="ft-logo logo--light" loading="eager" fetchpriority="high" decoding="async">
-        <img src="assets/img/main-logo/main-logo-dark-512.svg" alt="" class="ft-logo logo--dark" loading="eager" fetchpriority="high" decoding="async">
-      </picture>
-      <span class="brand-name">LOGO FIRMY</span>
-    </a>
+        <!-- Główna nawigacja -->
+        <nav class="nav" role="navigation" aria-label="Główna nawigacja">
+          <ul id="navMenu" class="nav-menu">
+            <li>
+              <a href="#top" class="scroll-top" aria-current="page"
+                >Strona główna</a
+              >
+            </li>
 
-    <!-- Główna nawigacja -->
-    <nav class="nav" role="navigation" aria-label="Główna nawigacja">
-      <ul id="navMenu" class="nav-menu">
-        <li><a href="#top" class="scroll-top" aria-current="page">Strona główna</a></li>
+            <!-- Oferta (link + dropdown) -->
+            <li class="nav-item has-dropdown">
+              <a
+                href="#oferta"
+                class="nav-link dropdown-trigger"
+                aria-expanded="false"
+                aria-haspopup="menu"
+                aria-controls="dd-oferta"
+              >
+                Oferta <span class="caret" aria-hidden="true">▾</span>
+              </a>
+              <ul
+                id="dd-oferta"
+                class="dropdown"
+                role="menu"
+                aria-label="Podmenu: Oferta"
+              >
+                <li role="none">
+                  <a role="menuitem" href="#oferta">Przegląd oferty</a>
+                </li>
+                <li role="none">
+                  <a role="menuitem" href="#oferta-lazienki">Łazienki</a>
+                </li>
+                <li role="none">
+                  <a role="menuitem" href="#oferta-malowanie"
+                    >Malowanie &amp; gładzie</a
+                  >
+                </li>
+                <li role="none">
+                  <a role="menuitem" href="#oferta-kafelkowanie"
+                    >Kafelkowanie</a
+                  >
+                </li>
+                <li role="none">
+                  <a role="menuitem" href="#oferta-elektryka"
+                    >Elektryka &amp; hydraulika</a
+                  >
+                </li>
+              </ul>
+            </li>
 
-        <!-- Oferta (link + dropdown) -->
-        <li class="nav-item has-dropdown">
-          <a href="#oferta" class="nav-link dropdown-trigger" aria-expanded="false" aria-haspopup="menu" aria-controls="dd-oferta">
-            Oferta <span class="caret" aria-hidden="true">▾</span>
-          </a>
-          <ul id="dd-oferta" class="dropdown" role="menu" aria-label="Podmenu: Oferta">
-            <li role="none"><a role="menuitem" href="#oferta">Przegląd oferty</a></li>
-            <li role="none"><a role="menuitem" href="#oferta-lazienki">Łazienki</a></li>
-            <li role="none"><a role="menuitem" href="#oferta-malowanie">Malowanie &amp; gładzie</a></li>
-            <li role="none"><a role="menuitem" href="#oferta-kafelkowanie">Kafelkowanie</a></li>
-            <li role="none"><a role="menuitem" href="#oferta-elektryka">Elektryka &amp; hydraulika</a></li>
+            <li><a href="#realizacje">Realizacje</a></li>
+            <li><a href="#opinie">Opinie</a></li>
+            <li><a href="#faq">FAQ</a></li>
+            <li><a href="#kontakt">Kontakt</a></li>
+            <li><a class="btn btn--sm" href="#kontakt">Wycena</a></li>
           </ul>
-        </li>
+        </nav>
 
-        <li><a href="#realizacje">Realizacje</a></li>
-        <li><a href="#opinie">Opinie</a></li>
-        <li><a href="#faq">FAQ</a></li>
-        <li><a href="#kontakt">Kontakt</a></li>
-        <li><a class="btn btn--sm" href="#kontakt">Wycena</a></li>
-      </ul>
-    </nav>
+        <!-- Akcje w pasku (po prawej): przełącznik motywu + hamburger -->
+        <div class="header-actions">
+          <button
+            class="theme-toggle"
+            type="button"
+            aria-pressed="false"
+            aria-label="Przełącz tryb"
+            title="Przełącz tryb"
+          ></button>
+          <button
+            class="nav-toggle"
+            type="button"
+            aria-expanded="false"
+            aria-controls="navMenu"
+            aria-label="Otwórz menu"
+          >
+            <span class="nav-line"></span><span class="nav-line"></span
+            ><span class="nav-line"></span>
+          </button>
+        </div>
+      </div>
+    </header>
+    <!-- /HEADER -->
 
-    <!-- Akcje w pasku (po prawej): przełącznik motywu + hamburger -->
-    <div class="header-actions">
-      <button class="theme-toggle" type="button" aria-pressed="false" aria-label="Przełącz tryb" title="Przełącz tryb"></button>
-      <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="navMenu" aria-label="Otwórz menu">
-        <span class="nav-line"></span><span class="nav-line"></span><span class="nav-line"></span>
-      </button>
-    </div>
-
-  </div>
-</header>
-<!-- /HEADER -->
-
-
-<!-- =========================================================
+    <!-- =========================================================
      HERO 
      ========================================================= -->
-<button class="scroll-btn scroll-down" type="button" aria-label="Przewiń do następnej sekcji" title="W dół"></button>
+    <button
+      class="scroll-btn scroll-down"
+      type="button"
+      aria-label="Przewiń do następnej sekcji"
+      title="W dół"
+    ></button>
 
+    <section
+      id="strona-glowna"
+      class="hero"
+      role="region"
+      aria-labelledby="hero-heading"
+    >
+      <div class="hero__media" aria-hidden="true">
+        <div class="hero__bg-blur" aria-hidden="true"></div>
 
-<section id="strona-glowna" class="hero" role="region" aria-labelledby="hero-heading">
-  <div class="hero__media" aria-hidden="true">
-    <div class="hero__bg-blur" aria-hidden="true"></div>
+        <picture class="hero-bg">
+          <source
+            type="image/avif"
+            srcset="
+              assets/img/hero/hero-800-450.avif    800w,
+              assets/img/hero/hero-1200-675.avif  1200w,
+              assets/img/hero/hero-1600-900.avif  1600w,
+              assets/img/hero/hero-2400-1350.avif 2400w,
+              assets/img/hero/hero-3200-1800.avif 3200w
+            "
+            sizes="100vw"
+          />
+          <source
+            type="image/webp"
+            srcset="
+              assets/img/hero/hero-800-450.webp    800w,
+              assets/img/hero/hero-1200-675.webp  1200w,
+              assets/img/hero/hero-1600-900.webp  1600w,
+              assets/img/hero/hero-2400-1350.webp 2400w,
+              assets/img/hero/hero-3200-1800.webp 3200w
+            "
+            sizes="100vw"
+          />
+          <img
+            src="assets/img/hero/hero-1600-900.jpg"
+            srcset="
+              assets/img/hero/hero-800-450.jpg    800w,
+              assets/img/hero/hero-1200-675.jpg  1200w,
+              assets/img/hero/hero-1600-900.jpg  1600w,
+              assets/img/hero/hero-2400-1350.jpg 2400w,
+              assets/img/hero/hero-3200-1800.jpg 3200w
+            "
+            sizes="100vw"
+            alt="Firma remontowo-budowlana — ekipa przy pracy"
+            width="1600"
+            height="900"
+            loading="eager"
+            fetchpriority="high"
+            decoding="async"
+            draggable="false"
+          />
+        </picture>
+      </div>
 
-    <picture class="hero-bg">
-      <source type="image/webp" srcset="
-        assets/img/hero/hero-800-450.webp     800w,
-        assets/img/hero/hero-1200-675.webp   1200w,
-        assets/img/hero/hero-1600-900.webp   1600w,
-        assets/img/hero/hero-2400-1350.webp  2400w,
-        assets/img/hero/hero-3200-1800.webp  3200w">
-      <img
-        src="assets/img/hero/hero-1600-900.jpg"
-        srcset="
-          assets/img/hero/hero-800-450.jpg     800w,
-          assets/img/hero/hero-1200-675.jpg   1200w,
-          assets/img/hero/hero-1600-900.jpg   1600w,
-          assets/img/hero/hero-2400-1350.jpg  2400w,
-          assets/img/hero/hero-3200-1800.jpg  3200w"
-        sizes="100vw"
-        alt=""
-        width="1600" height="900"
-        fetchpriority="high"
-        loading="eager"
-        decoding="async"
-        draggable="false"
-      />
-    </picture>
-  </div>
+      <div class="container">
+        <h1 id="hero-heading">
+          Generalne wykonawstwo<br /><span class="accent"
+            >i wykończenia pod klucz</span
+          >
+        </h1>
+        <p class="lead">
+          Profesjonalne remonty mieszkań, budowy, przebudowy i pełne wykończenia
+          „pod klucz”. Darmowa wycena w 24–48 h.
+        </p>
+        <div class="hero-cta">
+          <a class="btn" href="#oferta">Sprawdź ofertę</a>
+          <a class="btn btn--ghost" href="tel:+48600700800">Wyceń inwestycję</a>
+        </div>
+      </div>
+    </section>
+    <!-- /HERO -->
 
-  <div class="container">
-    <h1 id="hero-heading">Generalne wykonawstwo<br><span class="accent">i wykończenia pod klucz</span></h1>
-    <p class="lead">Profesjonalne remonty mieszkań, budowy, przebudowy i pełne wykończenia „pod klucz”. Darmowa wycena w 24–48 h.</p>
-    <div class="hero-cta">
-      <a class="btn" href="#oferta">Sprawdź ofertę</a>
-      <a class="btn btn--ghost" href="tel:+48600700800">Wyceń inwestycję</a>
-    </div>
-  </div>
-</section>
-<!-- /HERO -->
-
-<!-- =========================================================
+    <!-- =========================================================
      MAIN - OFERTA
      ========================================================= -->
-<main id="main" role="main">
-  <!-- OFERTA -->
-  <section id="oferta" class="block" role="region" aria-labelledby="oferta-heading">
-    <div class="container">
-      <header class="block-head">
-        <h2 id="oferta-heading">REMONTY I WYKOŃCZENIA</h2>
-        <p>Kompleksowe prace w mieszkaniach i domach — czysto, terminowo, z gwarancją.</p>
-      </header>
+    <main id="main" role="main">
+      <!-- OFERTA -->
+      <section
+        id="oferta"
+        class="block"
+        role="region"
+        aria-labelledby="oferta-heading"
+      >
+        <div class="container">
+          <header class="block-head">
+            <h2 id="oferta-heading">REMONTY I WYKOŃCZENIA</h2>
+            <p>
+              Kompleksowe prace w mieszkaniach i domach — czysto, terminowo, z
+              gwarancją.
+            </p>
+          </header>
 
-      <div class="cards" role="list">
-        <!-- Łazienki -->
-        <article id="oferta-lazienki" class="card hover-card" role="listitem" aria-labelledby="h-lazienki" aria-describedby="d-lazienki">
-          <a href="#kontakt" aria-label="Zamów wycenę — Łazienki">
-            <picture>
-              <source type="image/webp"
-                      srcset="assets/img/oferta/bathroom-400.webp 400w,
-                              assets/img/oferta/bathroom-800.webp 800w,
-                              assets/img/oferta/bathroom-1200.webp 1200w,
-                              assets/img/oferta/bathroom-1600.webp 1600w">
-              <source type="image/jpeg"
-                      srcset="assets/img/oferta/bathroom-400.jpg 400w,
-                              assets/img/oferta/bathroom-800.jpg 800w,
-                              assets/img/oferta/bathroom-1200.jpg 1200w,
-                              assets/img/oferta/bathroom-1600.jpg 1600w">
-              <img src="assets/img/oferta/bathroom-800.jpg" alt="Nowoczesna łazienka po remoncie" width="400" height="300" loading="lazy" decoding="async"
-                   sizes="(min-width: 992px) 25vw, (min-width: 640px) 50vw, 100vw">
-            </picture>
-          </a>
-          <h3 id="h-lazienki"><a href="oferta/lazienki.html">Łazienki</a></h3>
-          <p id="d-lazienki">Płytki wielkoformatowe, armatura, hydroizolacje, zabudowy i oświetlenie.</p>
-          <a class="card-link" href="#kontakt">Zamów wycenę</a>
-        </article>
+          <div class="cards" role="group">
+            <!-- Łazienki -->
+            <article
+              id="oferta-lazienki"
+              class="card hover-card"
+              aria-labelledby="h-lazienki"
+              aria-describedby="d-lazienki"
+            >
+              <a href="#kontakt" aria-label="Zamów wycenę — Łazienki">
+                <picture>
+                  <source
+                    type="image/avif"
+                    srcset="
+                      assets/img/oferta/bathroom-400.avif   400w,
+                      assets/img/oferta/bathroom-800.avif   800w,
+                      assets/img/oferta/bathroom-1200.avif 1200w,
+                      assets/img/oferta/bathroom-1600.avif 1600w
+                    "
+                    sizes="(min-width: 992px) 25vw, (min-width: 640px) 50vw, 100vw"
+                  />
+                  <source
+                    type="image/webp"
+                    srcset="
+                      assets/img/oferta/bathroom-400.webp   400w,
+                      assets/img/oferta/bathroom-800.webp   800w,
+                      assets/img/oferta/bathroom-1200.webp 1200w,
+                      assets/img/oferta/bathroom-1600.webp 1600w
+                    "
+                    sizes="(min-width: 992px) 25vw, (min-width: 640px) 50vw, 100vw"
+                  />
+                  <img
+                    src="assets/img/oferta/bathroom-800.jpg"
+                    srcset="
+                      assets/img/oferta/bathroom-400.jpg   400w,
+                      assets/img/oferta/bathroom-800.jpg   800w,
+                      assets/img/oferta/bathroom-1200.jpg 1200w,
+                      assets/img/oferta/bathroom-1600.jpg 1600w
+                    "
+                    sizes="(min-width: 992px) 25vw, (min-width: 640px) 50vw, 100vw"
+                    alt="Nowoczesna łazienka po remoncie"
+                    width="400"
+                    height="300"
+                    loading="lazy"
+                    decoding="async"
+                  />
+                </picture>
+              </a>
+              <h3 id="h-lazienki">
+                <a href="oferta/lazienki.html">Łazienki</a>
+              </h3>
+              <p id="d-lazienki">
+                Płytki wielkoformatowe, armatura, hydroizolacje, zabudowy i
+                oświetlenie.
+              </p>
+              <a class="card-link" href="#kontakt">Zamów wycenę</a>
+            </article>
 
-        <!-- Malowanie & gładzie -->
-        <article id="oferta-malowanie" class="card hover-card" role="listitem" aria-labelledby="h-malowanie" aria-describedby="d-malowanie">
-          <a href="#kontakt" aria-label="Zamów wycenę — Malowanie i gładzie">
-            <picture>
-              <source type="image/webp"
-                      srcset="assets/img/oferta/painting-400.webp 400w,
-                              assets/img/oferta/painting-800.webp 800w,
-                              assets/img/oferta/painting-1200.webp 1200w,
-                              assets/img/oferta/painting-1600.webp 1600w">
-              <source type="image/jpeg"
-                      srcset="assets/img/oferta/painting-400.jpg 400w,
-                              assets/img/oferta/painting-800.jpg 800w,
-                              assets/img/oferta/painting-1200.jpg 1200w,
-                              assets/img/oferta/painting-1600.jpg 1600w">
-              <img src="assets/img/oferta/painting-800.jpg" alt="Malowanie ścian farbami premium" width="400" height="300" loading="lazy" decoding="async"
-                   sizes="(min-width: 992px) 25vw, (min-width: 640px) 50vw, 100vw">
-            </picture>
-          </a>
-          <h3 id="h-malowanie"><a href="oferta/malowanie.html">Malowanie &amp; gładzie</a></h3>
-          <p id="d-malowanie">Gładkie ściany, farby premium, precyzyjne odcięcia i szybkie terminy.</p>
-          <a class="card-link" href="#kontakt">Zamów wycenę</a>
-        </article>
+            <!-- Malowanie & gładzie -->
+            <article
+              id="oferta-malowanie"
+              class="card hover-card"
+              aria-labelledby="h-malowanie"
+              aria-describedby="d-malowanie"
+            >
+              <a
+                href="#kontakt"
+                aria-label="Zamów wycenę — Malowanie i gładzie"
+              >
+                <picture>
+                  <source
+                    type="image/avif"
+                    srcset="
+                      assets/img/oferta/painting-400.avif   400w,
+                      assets/img/oferta/painting-800.avif   800w,
+                      assets/img/oferta/painting-1200.avif 1200w,
+                      assets/img/oferta/painting-1600.avif 1600w
+                    "
+                    sizes="(min-width: 992px) 25vw, (min-width: 640px) 50vw, 100vw"
+                  />
+                  <source
+                    type="image/webp"
+                    srcset="
+                      assets/img/oferta/painting-400.webp   400w,
+                      assets/img/oferta/painting-800.webp   800w,
+                      assets/img/oferta/painting-1200.webp 1200w,
+                      assets/img/oferta/painting-1600.webp 1600w
+                    "
+                    sizes="(min-width: 992px) 25vw, (min-width: 640px) 50vw, 100vw"
+                  />
+                  <img
+                    src="assets/img/oferta/painting-800.jpg"
+                    srcset="
+                      assets/img/oferta/painting-400.jpg   400w,
+                      assets/img/oferta/painting-800.jpg   800w,
+                      assets/img/oferta/painting-1200.jpg 1200w,
+                      assets/img/oferta/painting-1600.jpg 1600w
+                    "
+                    sizes="(min-width: 992px) 25vw, (min-width: 640px) 50vw, 100vw"
+                    alt="Malowanie ścian farbami premium"
+                    width="400"
+                    height="300"
+                    loading="lazy"
+                    decoding="async"
+                  />
+                </picture>
+              </a>
+              <h3 id="h-malowanie">
+                <a href="oferta/malowanie.html">Malowanie &amp; gładzie</a>
+              </h3>
+              <p id="d-malowanie">
+                Gładkie ściany, farby premium, precyzyjne odcięcia i szybkie
+                terminy.
+              </p>
+              <a class="card-link" href="#kontakt">Zamów wycenę</a>
+            </article>
 
-        <!-- Kafelkowanie -->
-        <article id="oferta-kafelkowanie" class="card hover-card" role="listitem" aria-labelledby="h-kafelkowanie" aria-describedby="d-kafelkowanie">
-          <a href="#kontakt" aria-label="Zamów wycenę — Kafelkowanie">
-            <picture>
-              <source type="image/webp"
-                      srcset="assets/img/oferta/kafelki-400.webp 400w,
-                              assets/img/oferta/kafelki-800.webp 800w,
-                              assets/img/oferta/kafelki-1200.webp 1200w,
-                              assets/img/oferta/kafelki-1600.webp 1600w">
-              <source type="image/jpeg"
-                      srcset="assets/img/oferta/kafelki-400.jpg 400w,
-                              assets/img/oferta/kafelki-800.jpg 800w,
-                              assets/img/oferta/kafelki-1200.jpg 1200w,
-                              assets/img/oferta/kafelki-1600.jpg 1600w">
-              <img src="assets/img/oferta/kafelki-800.jpg" alt="Kafelkowanie tarasu i kuchni" width="400" height="300" loading="lazy" decoding="async"
-                   sizes="(min-width: 992px) 25vw, (min-width: 640px) 50vw, 100vw">
-            </picture>
-          </a>
-          <h3 id="h-kafelkowanie"><a href="oferta/kafelkowanie.html">Kafelkowanie</a></h3>
-          <p id="d-kafelkowanie">Tarasy, kuchnie, łazienki — równe fugi, poziomice laserowe i detale.</p>
-          <a class="card-link" href="#kontakt">Zamów wycenę</a>
-        </article>
+            <!-- Kafelkowanie -->
+            <article
+              id="oferta-kafelkowanie"
+              class="card hover-card"
+              aria-labelledby="h-kafelkowanie"
+              aria-describedby="d-kafelkowanie"
+            >
+              <a href="#kontakt" aria-label="Zamów wycenę — Kafelkowanie">
+                <picture>
+                  <source
+                    type="image/avif"
+                    srcset="
+                      assets/img/oferta/kafelki-400.avif   400w,
+                      assets/img/oferta/kafelki-800.avif   800w,
+                      assets/img/oferta/kafelki-1200.avif 1200w,
+                      assets/img/oferta/kafelki-1600.avif 1600w
+                    "
+                    sizes="(min-width: 992px) 25vw, (min-width: 640px) 50vw, 100vw"
+                  />
+                  <source
+                    type="image/webp"
+                    srcset="
+                      assets/img/oferta/kafelki-400.webp   400w,
+                      assets/img/oferta/kafelki-800.webp   800w,
+                      assets/img/oferta/kafelki-1200.webp 1200w,
+                      assets/img/oferta/kafelki-1600.webp 1600w
+                    "
+                    sizes="(min-width: 992px) 25vw, (min-width: 640px) 50vw, 100vw"
+                  />
+                  <source
+                    type="image/jpeg"
+                    srcset="
+                      assets/img/oferta/kafelki-400.jpg   400w,
+                      assets/img/oferta/kafelki-800.jpg   800w,
+                      assets/img/oferta/kafelki-1200.jpg 1200w,
+                      assets/img/oferta/kafelki-1600.jpg 1600w
+                    "
+                    sizes="(min-width: 992px) 25vw, (min-width: 640px) 50vw, 100vw"
+                  />
+                  <img
+                    src="assets/img/oferta/kafelki-800.jpg"
+                    srcset="
+                      assets/img/oferta/kafelki-400.jpg   400w,
+                      assets/img/oferta/kafelki-800.jpg   800w,
+                      assets/img/oferta/kafelki-1200.jpg 1200w,
+                      assets/img/oferta/kafelki-1600.jpg 1600w
+                    "
+                    sizes="(min-width: 992px) 25vw, (min-width: 640px) 50vw, 100vw"
+                    alt="Kafelkowanie tarasu i kuchni"
+                    width="400"
+                    height="300"
+                    loading="lazy"
+                    decoding="async"
+                  />
+                </picture>
+              </a>
+              <h3 id="h-kafelkowanie">
+                <a href="oferta/kafelkowanie.html">Kafelkowanie</a>
+              </h3>
+              <p id="d-kafelkowanie">
+                Tarasy, kuchnie, łazienki — równe fugi, poziomice laserowe i
+                detale.
+              </p>
+              <a class="card-link" href="#kontakt">Zamów wycenę</a>
+            </article>
 
-        <!-- Elektryka & hydraulika -->
-        <article id="oferta-elektryka" class="card hover-card" role="listitem" aria-labelledby="h-elektryka" aria-describedby="d-elektryka">
-          <a href="#kontakt" aria-label="Zamów wycenę — Elektryka i hydraulika">
-            <picture>
-              <source type="image/webp"
-                      srcset="assets/img/oferta/electrition-400.webp 400w,
-                              assets/img/oferta/electrition-800.webp 800w,
-                              assets/img/oferta/electrition-1200.webp 1200w,
-                              assets/img/oferta/electrition-1600.webp 1600w">
-              <source type="image/jpeg"
-                      srcset="assets/img/oferta/electrition-400.jpg 400w,
-                              assets/img/oferta/electrition-800.jpg 800w,
-                              assets/img/oferta/electrition-1200.jpg 1200w,
-                              assets/img/oferta/electrition-1600.jpg 1600w">
-              <img src="assets/img/oferta/electrition-800.jpg" alt="Elektryk i hydraulik przy pracy" width="400" height="300" loading="lazy" decoding="async"
-                   sizes="(min-width: 992px) 25vw, (min-width: 640px) 50vw, 100vw">
-            </picture>
-          </a>
-          <h3 id="h-elektryka"><a href="oferta/elektryka.html">Elektryka &amp; hydraulika</a></h3>
-          <p id="d-elektryka">Przeróbki instalacji, białe montaże i próby szczelności.</p>
-          <a class="card-link" href="#kontakt">Zamów wycenę</a>
-        </article>
-      </div>
+            <!-- Elektryka & hydraulika -->
+            <article
+              id="oferta-elektryka"
+              class="card hover-card"
+              aria-labelledby="h-elektryka"
+              aria-describedby="d-elektryka"
+            >
+              <a
+                href="#kontakt"
+                aria-label="Zamów wycenę — Elektryka i hydraulika"
+              >
+                <picture>
+                  <source
+                    type="image/avif"
+                    srcset="
+                      assets/img/oferta/electrition-400.avif   400w,
+                      assets/img/oferta/electrition-800.avif   800w,
+                      assets/img/oferta/electrition-1200.avif 1200w,
+                      assets/img/oferta/electrition-1600.avif 1600w
+                    "
+                    sizes="(min-width: 992px) 25vw, (min-width: 640px) 50vw, 100vw"
+                  />
+                  <source
+                    type="image/webp"
+                    srcset="
+                      assets/img/oferta/electrition-400.webp   400w,
+                      assets/img/oferta/electrition-800.webp   800w,
+                      assets/img/oferta/electrition-1200.webp 1200w,
+                      assets/img/oferta/electrition-1600.webp 1600w
+                    "
+                    sizes="(min-width: 992px) 25vw, (min-width: 640px) 50vw, 100vw"
+                  />
+                  <source
+                    type="image/jpeg"
+                    srcset="
+                      assets/img/oferta/electrition-400.jpg   400w,
+                      assets/img/oferta/electrition-800.jpg   800w,
+                      assets/img/oferta/electrition-1200.jpg 1200w,
+                      assets/img/oferta/electrition-1600.jpg 1600w
+                    "
+                    sizes="(min-width: 992px) 25vw, (min-width: 640px) 50vw, 100vw"
+                  />
+                  <img
+                    src="assets/img/oferta/electrition-800.jpg"
+                    srcset="
+                      assets/img/oferta/electrition-400.jpg   400w,
+                      assets/img/oferta/electrition-800.jpg   800w,
+                      assets/img/oferta/electrition-1200.jpg 1200w,
+                      assets/img/oferta/electrition-1600.jpg 1600w
+                    "
+                    sizes="(min-width: 992px) 25vw, (min-width: 640px) 50vw, 100vw"
+                    alt="Elektryk i hydraulik przy pracy"
+                    width="400"
+                    height="300"
+                    loading="lazy"
+                    decoding="async"
+                  />
+                </picture>
+              </a>
+              <h3 id="h-elektryka">
+                <a href="oferta/elektryka.html">Elektryka &amp; hydraulika</a>
+              </h3>
+              <p id="d-elektryka">
+                Przeróbki instalacji, białe montaże i próby szczelności.
+              </p>
+              <a class="card-link" href="#kontakt">Zamów wycenę</a>
+            </article>
+          </div>
 
-      <div class="block-cta"><a class="btn" href="#kontakt">Sprawdź terminy</a></div>
-    </div>
-  </section>
+          <div class="block-cta">
+            <a class="btn" href="#kontakt">Sprawdź terminy</a>
+          </div>
+        </div>
+      </section>
 
-  <!-- =========================================================
+      <!-- =========================================================
       MAIN - Realizacje / Logotypy
       ========================================================= -->
-  <!-- Realizacje / LOGOTYPY -->
-  <section id="realizacje" class="logos" role="region" aria-labelledby="logos-heading">
-    <div class="container">
-      <h2 id="logos-heading">Firmy, które nam zaufały</h2>
+      <!-- Realizacje / LOGOTYPY -->
+      <section
+        id="realizacje"
+        class="logos"
+        role="region"
+        aria-labelledby="logos-heading"
+      >
+        <div class="container">
+          <h2 id="logos-heading">Firmy, które nam zaufały</h2>
 
-      <div class="logos-grid" role="list" aria-label="Logotypy klientów">
-        <div class="logo" role="listitem">
-          <a href="https://www.alfasolutions.pl/" target="_blank" rel="noopener noreferrer"
-            aria-label="Otwórz stronę Alfa Sp. z o.o. w nowej karcie">
-            <img class="logo-img"
-                src="assets/img/partners-logos/alfa.svg"
-                alt="Alfa Sp. z o.o."
-                loading="lazy" decoding="async">
-          </a>
+          <div class="logos-grid" role="list" aria-label="Logotypy klientów">
+            <div class="logo" role="listitem">
+              <a
+                href="https://www.alfasolutions.pl/"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Otwórz stronę Alfa Sp. z o.o. w nowej karcie"
+              >
+                <img
+                  class="logo-img"
+                  src="assets/img/partners-logos/alfa.svg"
+                  alt=""
+                  aria-hidden="true"
+                  loading="lazy"
+                  decoding="async"
+                />
+              </a>
+            </div>
+
+            <div class="logo" role="listitem">
+              <a
+                href="https://www.alfasolutions.pl/"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Otwórz stronę Alfa Sp. z o.o. w nowej karcie"
+              >
+                <img
+                  class="logo-img"
+                  src="assets/img/partners-logos/alfa.svg"
+                  alt=""
+                  aria-hidden="true"
+                  loading="lazy"
+                  decoding="async"
+                />
+              </a>
+            </div>
+
+            <div class="logo" role="listitem">
+              <a
+                href="https://www.alfasolutions.pl/"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Otwórz stronę Alfa Sp. z o.o. w nowej karcie"
+              >
+                <img
+                  class="logo-img"
+                  src="assets/img/partners-logos/alfa.svg"
+                  alt=""
+                  aria-hidden="true"
+                  loading="lazy"
+                  decoding="async"
+                />
+              </a>
+            </div>
+
+            <div class="logo" role="listitem">
+              <a
+                href="https://www.alfasolutions.pl/"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Otwórz stronę Alfa Sp. z o.o. w nowej karcie"
+              >
+                <img
+                  class="logo-img"
+                  src="assets/img/partners-logos/alfa.svg"
+                  alt=""
+                  aria-hidden="true"
+                  loading="lazy"
+                  decoding="async"
+                />
+              </a>
+            </div>
+
+            <div class="logo" role="listitem">
+              <a
+                href="https://www.alfasolutions.pl/"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Otwórz stronę Alfa Sp. z o.o. w nowej karcie"
+              >
+                <img
+                  class="logo-img"
+                  src="assets/img/partners-logos/alfa.svg"
+                  alt=""
+                  aria-hidden="true"
+                  loading="lazy"
+                  decoding="async"
+                />
+              </a>
+            </div>
+
+            <div class="logo" role="listitem">
+              <a
+                href="https://www.alfasolutions.pl/"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Otwórz stronę Alfa Sp. z o.o. w nowej karcie"
+              >
+                <img
+                  class="logo-img"
+                  src="assets/img/partners-logos/alfa.svg"
+                  alt=""
+                  aria-hidden="true"
+                  loading="lazy"
+                  decoding="async"
+                />
+              </a>
+            </div>
+          </div>
+
+          <div class="center">
+            <a class="btn" href="#kontakt">Zostań naszym klientem</a>
+          </div>
         </div>
+      </section>
 
-        <div class="logo" role="listitem">
-          <a href="https://www.betasolutions.pl/" target="_blank" rel="noopener noreferrer"
-            aria-label="Otwórz stronę Beta S.A. w nowej karcie">
-            <img class="logo-img"
-                src="assets/img/partners-logos/beta.svg"
-                alt="Beta S.A."
-                loading="lazy" decoding="async">
-          </a>
-        </div>
-
-        <div class="logo" role="listitem">
-          <a href="https://www.gammagroup.pl/" target="_blank" rel="noopener noreferrer"
-            aria-label="Otwórz stronę Gamma Group w nowej karcie">
-            <img class="logo-img"
-                src="assets/img/partners-logos/gamma.svg"
-                alt="Gamma Group"
-                loading="lazy" decoding="async">
-          </a>
-        </div>
-
-        <div class="logo" role="listitem">
-          <a href="https://www.deltagroup.pl/" target="_blank" rel="noopener noreferrer"
-            aria-label="Otwórz stronę Delta Sp. k. w nowej karcie">
-            <img class="logo-img"
-                src="assets/img/partners-logos/delta.svg"
-                alt="Delta Sp. k."
-                loading="lazy" decoding="async">
-          </a>
-        </div>
-
-        <div class="logo" role="listitem">
-          <a href="https://www.epsilonsolutions.pl/" target="_blank" rel="noopener noreferrer"
-            aria-label="Otwórz stronę Epsilon Solutions w nowej karcie">
-            <img class="logo-img logo-light"
-                src="assets/img/partners-logos/epsilon.svg"
-                alt="Epsilon Solutions"
-                loading="lazy" decoding="async">
-          </a>
-        </div>
-
-        <div class="logo" role="listitem">
-          <a href="https://www.zeta.pl/" target="_blank" rel="noopener noreferrer"
-            aria-label="Otwórz stronę Zeta Technologies w nowej karcie">
-            <img class="logo-img"
-                src="assets/img/partners-logos/zeta.svg"
-                alt="Zeta Technologies"
-                loading="lazy" decoding="async">
-          </a>
-        </div>
-      </div>
-
-      <div class="center">
-        <a class="btn btn--ghost" href="#kontakt">Zostań naszym klientem</a>
-      </div>
-    </div>
-  </section>
-
-  <!-- =========================================================
+      <!-- =========================================================
       MAIN - OPINIE
       ========================================================= -->
-  <!-- OPINIE -->
-  <section id="opinie" class="block testimonials" role="region" aria-labelledby="opinie-heading" aria-describedby="opinie-desc">
-    <div class="container">
-      <header class="block-head">
-        <h2 id="opinie-heading">Opinie klientów</h2>
-        <p id="opinie-desc" class="muted">Średnia ocen 4.9/5 na podstawie 128 opinii</p>
-      </header>
+      <!-- OPINIE -->
+      <section
+        id="opinie"
+        class="block testimonials"
+        role="region"
+        aria-labelledby="opinie-heading"
+        aria-describedby="opinie-desc"
+      >
+        <div class="container">
+          <header class="block-head">
+            <h2 id="opinie-heading">Opinie klientów</h2>
+            <p id="opinie-desc" class="muted">
+              Średnia ocen 4.9/5 na podstawie 128 opinii
+            </p>
+          </header>
 
-      <div class="testimonials-grid" role="list" aria-label="Opinie naszych klientów">
-        <figure class="testimonial" role="listitem" aria-labelledby="op1-quote" aria-describedby="op1-author">
-          <blockquote id="op1-quote">
-            <p>Pełen profesjonalizm. Szybko i bardzo czysto.</p>
-          </blockquote>
-          <figcaption id="op1-author">— Joanna K.</figcaption>
-        </figure>
+          <div
+            class="testimonials-grid"
+            role="list"
+            aria-label="Opinie naszych klientów"
+          >
+            <figure
+              class="testimonial"
+              data-sentiment="pos"
+              role="listitem"
+              aria-labelledby="op1-quote"
+              aria-describedby="op1-author"
+              aria-label="Opinia pozytywna"
+            >
+              <blockquote id="op1-quote">
+                <p>Pełen profesjonalizm. Szybko i bardzo czysto.</p>
+              </blockquote>
+              <figcaption id="op1-author">— Joanna K.</figcaption>
+            </figure>
 
-        <figure class="testimonial" role="listitem" aria-labelledby="op2-quote" aria-describedby="op2-author">
-          <blockquote id="op2-quote">
-            <p>Świetny kontakt i terminowość. Polecam!</p>
-          </blockquote>
-          <figcaption id="op2-author">— Marcin P.</figcaption>
-        </figure>
+            <figure
+              class="testimonial"
+              data-sentiment="neu"
+              role="listitem"
+              aria-labelledby="op2-quote"
+              aria-describedby="op2-author"
+              aria-label="Opinia neutralna"
+            >
+              <blockquote id="op2-quote">
+                <p>Świetny kontakt i terminowość. Polecam!</p>
+              </blockquote>
+              <figcaption id="op2-author">— Marcin P.</figcaption>
+            </figure>
 
-        <figure class="testimonial" role="listitem" aria-labelledby="op2-quote" aria-describedby="op2-author">
-          <blockquote id="op2-quote">
-            <p>Świetny kontakt i terminowość. Polecam!</p>
-          </blockquote>
-          <figcaption id="op2-author">— Marcin P.</figcaption>
-        </figure>
+            <figure
+              class="testimonial"
+              data-sentiment="neg"
+              role="listitem"
+              aria-labelledby="op3-quote"
+              aria-describedby="op3-author"
+              aria-label="Opinia negatywna"
+            >
+              <blockquote id="op2-quote">
+                <p>Świetny kontakt i terminowość. Polecam!</p>
+              </blockquote>
+              <figcaption id="op2-author">— Marcin P.</figcaption>
+            </figure>
+            <!-- dodaj kolejne opinie jako kolejne <figure role="listitem"> -->
+          </div>
+        </div>
+      </section>
 
-        <!-- dodaj kolejne opinie jako kolejne <figure role="listitem"> -->
-      </div>
-    </div>
-  </section>
-  </main>
-
-  <!-- =========================================================
+      <!-- =========================================================
       MAIN - FAQ
       ========================================================= -->
-  <!-- FAQ -->
-  <section id="faq" class="block" role="region" aria-labelledby="faq-heading" aria-describedby="faq-desc">
-    <div class="container">
-      <header class="block-head">
-        <h2 id="faq-heading">FAQ — najczęstsze pytania</h2>
-        <p id="faq-desc">Krótko i konkretnie — jak pracujemy i jak wyglądają wyceny.</p>
-      </header>
+      <!-- FAQ -->
+      <section
+        id="faq"
+        class="block"
+        role="region"
+        aria-labelledby="faq-heading"
+        aria-describedby="faq-desc"
+      >
+        <div class="container">
+          <header class="block-head">
+            <h2 id="faq-heading">FAQ — najczęstsze pytania</h2>
+            <p id="faq-desc">
+              Krótko i konkretnie — jak pracujemy i jak wyglądają wyceny.
+            </p>
+          </header>
 
-      <ul class="faq-list" role="list">
-        <li role="listitem">
-          <details class="faq" id="faq-1">
-            <summary id="q-1">Ile trwa standardowy remont łazienki?</summary>
-            <div id="a-1" role="region" aria-labelledby="q-1">
-              <p>Zazwyczaj 10–14 dni roboczych, zależnie od zakresu i dostaw materiałów.</p>
-            </div>
-          </details>
-        </li>
+          <ul class="faq-list" role="list">
+            <li role="listitem">
+              <details class="faq" id="faq-1">
+                <summary id="q-1">
+                  Ile trwa standardowy remont łazienki?
+                </summary>
+                <div id="a-1" role="region" aria-labelledby="q-1">
+                  <p>
+                    Zazwyczaj 10–14 dni roboczych, zależnie od zakresu i dostaw
+                    materiałów.
+                  </p>
+                </div>
+              </details>
+            </li>
 
-        <li role="listitem">
-          <details class="faq" id="faq-2">
-            <summary id="q-2">Jak wygląda wycena?</summary>
-            <div id="a-2" role="region" aria-labelledby="q-2">
-              <p>Przyjeżdżamy na pomiar, ustalamy zakres, wysyłamy ofertę w 24–48 h.</p>
-            </div>
-          </details>
-        </li>
+            <li role="listitem">
+              <details class="faq" id="faq-2">
+                <summary id="q-2">Jak wygląda wycena?</summary>
+                <div id="a-2" role="region" aria-labelledby="q-2">
+                  <p>
+                    Przyjeżdżamy na pomiar, ustalamy zakres, wysyłamy ofertę w
+                    24–48 h.
+                  </p>
+                </div>
+              </details>
+            </li>
 
-        <li role="listitem">
-          <details class="faq" id="faq-3">
-            <summary id="q-3">Czy sprzątacie po zakończeniu prac?</summary>
-            <div id="a-3" role="region" aria-labelledby="q-3">
-              <p>Tak. Obejmuje to wyniesienie gruzu i podstawowe sprzątanie.</p>
-            </div>
-          </details>
-        </li>
+            <li role="listitem">
+              <details class="faq" id="faq-3">
+                <summary id="q-3">Czy sprzątacie po zakończeniu prac?</summary>
+                <div id="a-3" role="region" aria-labelledby="q-3">
+                  <p>
+                    Tak. Obejmuje to wyniesienie gruzu i podstawowe sprzątanie.
+                  </p>
+                </div>
+              </details>
+            </li>
 
-        <li role="listitem">
-          <details class="faq" id="faq-4">
-            <summary id="q-4">Na jakie prace dajecie gwarancję?</summary>
-            <div id="a-4" role="region" aria-labelledby="q-4">
-              <p>Na wszystkie prace montażowe i wykończeniowe — standardowo 24 miesiące.</p>
-            </div>
-          </details>
-        </li>
-      </ul>
-    </div>
-  </section>
+            <li role="listitem">
+              <details class="faq" id="faq-4">
+                <summary id="q-4">Na jakie prace dajecie gwarancję?</summary>
+                <div id="a-4" role="region" aria-labelledby="q-4">
+                  <p>
+                    Na wszystkie prace montażowe i wykończeniowe — standardowo
+                    24 miesiące.
+                  </p>
+                </div>
+              </details>
+            </li>
+          </ul>
+        </div>
+      </section>
 
-  <!-- =========================================================
+      <!-- =========================================================
       MAIN - CTA / Formularz
       ========================================================= -->
-  <!-- CTA KONTAKT -->
-  <section id="kontakt" class="cta" role="region" aria-labelledby="kontakt-heading" aria-describedby="kontakt-desc">
-    <div class="container cta-wrap">
-      <div class="cta-text">
-        <h2 id="kontakt-heading">Porozmawiajmy o Twoim remoncie</h2>
-        <p id="kontakt-desc">Skontaktuj się z nami — przygotujemy bezpłatną wycenę i doradzimy rozwiązania.</p>
+      <!-- CTA KONTAKT -->
+      <section
+        id="kontakt"
+        class="cta"
+        role="region"
+        aria-labelledby="kontakt-heading"
+        aria-describedby="kontakt-desc"
+      >
+        <div class="container cta-wrap">
+          <div class="cta-text">
+            <h2 id="kontakt-heading">Porozmawiajmy o Twoim remoncie</h2>
+            <p id="kontakt-desc">
+              Skontaktuj się z nami — przygotujemy bezpłatną wycenę i doradzimy
+              rozwiązania.
+            </p>
 
-        <ul class="contact-list" role="list" aria-label="Dane kontaktowe">
-          <li role="listitem">
-            <a class="contact-item" href="tel:+48600700800" aria-label="Zadzwoń pod numer: +48 600 700 800">
-              <svg class="icon" aria-hidden="true"><use href="#i-phone"/></svg>
-              <span>+48 600 700 800</span>
-            </a>
-          </li>
-          <li role="listitem">
-            <a class="contact-item" href="mailto:kontakt@twoja-firma.pl" aria-label="Napisz e-mail na adres: kontakt@twoja-firma.pl">
-              <svg class="icon" aria-hidden="true"><use href="#i-mail"/></svg>
-              <span>kontakt@twoja-firma.pl</span>
-            </a>
-          </li>
-        </ul>
-      </div>
+            <ul class="contact-list" role="list" aria-label="Dane kontaktowe">
+              <li role="listitem">
+                <a
+                  class="contact-item"
+                  href="tel:+48600700800"
+                  aria-label="Zadzwoń pod numer: +48 600 700 800"
+                >
+                  <svg class="icon" aria-hidden="true">
+                    <use href="#i-phone" />
+                  </svg>
+                  <span>+48 600 700 800</span>
+                </a>
+              </li>
+              <li role="listitem">
+                <a
+                  class="contact-item"
+                  href="mailto:kontakt@twoja-firma.pl"
+                  aria-label="Napisz e-mail na adres: kontakt@twoja-firma.pl"
+                >
+                  <svg class="icon" aria-hidden="true">
+                    <use href="#i-mail" />
+                  </svg>
+                  <span>kontakt@twoja-firma.pl</span>
+                </a>
+              </li>
+            </ul>
+          </div>
 
-      <!-- FORMULARZ -->
-      <form class="form" method="post" action="#" novalidate aria-labelledby="kontakt-heading">
-        <!-- Honeypot (anty-spam) -->
-        <div class="visually-hidden" aria-hidden="true">
-          <label for="hp-website">Nie wypełniaj tego pola</label>
-          <input id="hp-website" name="website" type="text" tabindex="-1" autocomplete="off" />
+          <!-- FORMULARZ -->
+          <form
+            class="form"
+            method="post"
+            action="#"
+            novalidate
+            aria-labelledby="kontakt-heading"
+          >
+            <!-- Honeypot (anty-spam) -->
+            <div class="visually-hidden" aria-hidden="true">
+              <label for="hp-website">Nie wypełniaj tego pola</label>
+              <input
+                id="hp-website"
+                name="website"
+                type="text"
+                tabindex="-1"
+                autocomplete="off"
+              />
+            </div>
+
+            <!-- Imię i nazwisko -->
+            <div class="form-row">
+              <label for="f-name">Imię i nazwisko</label>
+              <input
+                id="f-name"
+                name="name"
+                type="text"
+                inputmode="text"
+                autocomplete="name"
+                autocapitalize="words"
+                minlength="2"
+                required
+                aria-describedby="name-hint name-error"
+                placeholder="Jan Kowalski"
+              />
+              <small id="name-hint" class="visually-hidden"
+                >Wpisz co najmniej 2 znaki.</small
+              >
+              <span
+                id="name-error"
+                class="visually-hidden"
+                aria-live="polite"
+              ></span>
+            </div>
+
+            <!-- Telefon -->
+            <div class="form-row">
+              <label for="f-phone">Telefon</label>
+              <input
+                id="f-phone"
+                name="phone"
+                type="tel"
+                inputmode="tel"
+                autocomplete="tel-national"
+                required
+                placeholder="600 700 800 lub +48 600 700 800"
+                title="Wpisz 9 cyfr; dozwolone spacje/kreski; opcjonalnie +48"
+                pattern="^(?:\+?48)?[ \-]?(?:\d[ \-]?){9}$"
+                aria-describedby="phone-hint phone-error"
+                data-mask="pl-phone"
+              />
+              <small id="phone-hint" class="visually-hidden"
+                >9 cyfr, dozwolone spacje lub kreski, opcjonalnie +48 na
+                początku.</small
+              >
+              <span
+                id="phone-error"
+                class="visually-hidden"
+                aria-live="polite"
+              ></span>
+            </div>
+
+            <!-- Wiadomość -->
+            <div class="form-row">
+              <label for="f-msg">Opis prac</label>
+              <textarea
+                id="f-msg"
+                name="msg"
+                rows="4"
+                required
+                maxlength="1000"
+                placeholder="Krótko opisz zakres prac (np. remont łazienki 5 m², wymiana płytek i armatury)."
+                aria-describedby="msg-hint msg-error"
+              ></textarea>
+              <small id="msg-hint" class="visually-hidden"
+                >Maksymalnie 1000 znaków. Opisz w 1–3 zdaniach czego
+                potrzebujesz.</small
+              >
+              <span
+                id="msg-error"
+                class="visually-hidden"
+                aria-live="polite"
+              ></span>
+            </div>
+
+            <!-- Zgoda -->
+            <div class="form-row">
+              <label class="checkbox" for="f-consent">
+                <input
+                  id="f-consent"
+                  type="checkbox"
+                  name="consent"
+                  value="yes"
+                  required
+                  aria-describedby="consent-hint consent-error"
+                />
+                <span
+                  >Wyrażam zgodę na kontakt w celu przygotowania wyceny.</span
+                >
+              </label>
+              <small id="consent-hint" class="visually-hidden"
+                >Zaznacz to pole, abyśmy mogli się z Tobą skontaktować.</small
+              >
+              <span
+                id="consent-error"
+                class="visually-hidden"
+                aria-live="polite"
+              ></span>
+            </div>
+
+            <!-- Submit + globalny komunikat -->
+            <button class="btn" type="submit">Wyślij wiadomość</button>
+            <p class="form-note" aria-live="polite"></p>
+
+            <!-- (opcjonalnie) krótka klauzula -->
+            <p class="muted small" id="privacy-note">
+              Wysyłając formularz akceptujesz naszą
+              <a href="polityka-prywatnosci.html">Politykę prywatności</a>.
+            </p>
+          </form>
         </div>
+      </section>
+    </main>
 
-        <!-- Imię i nazwisko -->
-        <div class="form-row">
-          <label for="f-name">Imię i nazwisko</label>
-          <input
-            id="f-name"
-            name="name"
-            type="text"
-            inputmode="text"
-            autocomplete="name"
-            autocapitalize="words"
-            minlength="2"
-            required
-            aria-describedby="name-hint name-error"
-            placeholder="Jan Kowalski">
-          <small id="name-hint" class="visually-hidden">Wpisz co najmniej 2 znaki.</small>
-          <span id="name-error" class="visually-hidden" aria-live="polite"></span>
-        </div>
-
-        <!-- Telefon -->
-        <div class="form-row">
-          <label for="f-phone">Telefon</label>
-          <input
-            id="f-phone"
-            name="phone"
-            type="tel"
-            inputmode="tel"
-            autocomplete="tel-national"
-            required
-            placeholder="600 700 800 lub +48 600 700 800"
-            title="Wpisz 9 cyfr; dozwolone spacje/kreski; opcjonalnie +48"
-            pattern="^(?:\+?48)?[ \-]?(?:\d[ \-]?){9}$"
-            aria-describedby="phone-hint phone-error">
-          <small id="phone-hint" class="visually-hidden">9 cyfr, dozwolone spacje lub kreski, opcjonalnie +48 na początku.</small>
-          <span id="phone-error" class="visually-hidden" aria-live="polite"></span>
-        </div>
-
-        <!-- Wiadomość -->
-        <div class="form-row">
-          <label for="f-msg">Opis prac</label>
-          <textarea
-            id="f-msg"
-            name="msg"
-            rows="4"
-            required
-            maxlength="1000"
-            placeholder="Krótko opisz zakres prac (np. remont łazienki 5 m², wymiana płytek i armatury)."
-            aria-describedby="msg-hint msg-error"></textarea>
-          <small id="msg-hint" class="visually-hidden">Maksymalnie 1000 znaków. Opisz w 1–3 zdaniach czego potrzebujesz.</small>
-          <span id="msg-error" class="visually-hidden" aria-live="polite"></span>
-        </div>
-
-        <!-- Zgoda -->
-        <div class="form-row">
-          <label class="checkbox" for="f-consent">
-            <input
-              id="f-consent"
-              type="checkbox"
-              name="consent"
-              value="yes"
-              required
-              aria-describedby="consent-hint consent-error">
-            <span>Wyrażam zgodę na kontakt w celu przygotowania wyceny.</span>
-          </label>
-          <small id="consent-hint" class="visually-hidden">Zaznacz to pole, abyśmy mogli się z Tobą skontaktować.</small>
-          <span id="consent-error" class="visually-hidden" aria-live="polite"></span>
-        </div>
-
-        <!-- Submit + globalny komunikat -->
-        <button class="btn" type="submit">Wyślij wiadomość</button>
-        <p class="form-note" aria-live="polite"></p>
-
-        <!-- (opcjonalnie) krótka klauzula -->
-        <p class="muted small" id="privacy-note">
-          Wysyłając formularz akceptujesz naszą <a href="polityka-prywatnosci.html">Politykę prywatności</a>.
-        </p>
-      </form>
-    </div>
-  </section>
-
-</main>
-
-  <!-- =========================================================
+    <!-- =========================================================
         FOOTER
         ========================================================= -->
-          <!-- FOOTER -->
-  <footer id="footer" class="site-footer" role="contentinfo" aria-labelledby="footer-heading">
+    <!-- FOOTER -->
+    <footer
+      id="footer"
+      class="site-footer"
+      role="contentinfo"
+      aria-labelledby="footer-heading"
+    >
       <div class="container">
-              <h2 class="vh" id="footer-heading">Stopka serwisu</h2>
-            <div class="ft-grid">
+        <h2 class="vh" id="footer-heading">Stopka serwisu</h2>
+        <div class="ft-grid">
+          <!-- COL 1: BRAND + OPIS + KONTAKT -->
+          <div class="ft-col">
+            <a href="#top" class="brand-footer" aria-label="Strona główna">
+              <picture>
+                <source
+                  srcset="assets/img/main-logo/main-logo-footer-512.png"
+                  type="image/png"
+                />
+                <img
+                  src="assets/img/main-logo/main-logo-footer-512.png"
+                  alt=""
+                  aria-hidden="true"
+                  class="ft-logo"
+                  width="512"
+                  height="512"
+                  loading="lazy"
+                  decoding="async"
+                />
+              </picture>
+            </a>
 
-              <!-- COL 1: BRAND + OPIS + KONTAKT -->
-            <div class="ft-col">
-              <a href="#top" class="brand-footer" aria-label="Strona główna">
-                <picture>
-                  <source srcset="assets/img/main-logo/main-logo-footer-512.png" type="image/svg+xml">
-                  <img
-                    src="assets/img/main-logo/main-logo-footer-512.png"
-                    alt="Nazwa firmy"
-                    class="ft-logo"
-                    loading="lazy"
-                    decoding="async">
-                </picture>
+            <p class="ft-lead">
+              Solidne realizacje budowlane — oferta, wyceny i kontakt w
+              24&nbsp;h.
+            </p>
 
+            <ul class="ft-contact" role="list" aria-label="Dane kontaktowe">
+              <li role="listitem">
+                <svg class="i" aria-hidden="true">
+                  <use href="#i-phone"></use>
+                </svg>
+                <a href="tel:+48600700800" aria-label="Zadzwoń: +48 600 700 800"
+                  >+48 600 700 800</a
+                >
+              </li>
+              <li role="listitem">
+                <svg class="i" aria-hidden="true">
+                  <use href="#i-mail"></use>
+                </svg>
+                <a href="mailto:kontakt@twoja-firma.pl"
+                  >kontakt@twoja-firma.pl</a
+                >
+              </li>
+            </ul>
+          </div>
+
+          <!-- COL 2: NAWIGACJA -->
+          <nav class="ft-col" aria-label="Nawigacja w stopce">
+            <h3 class="ft-h">Nawigacja</h3>
+            <ul class="ft-links" role="list">
+              <li role="listitem"><a href="#oferta">Oferta</a></li>
+              <li role="listitem"><a href="#realizacje">Realizacje</a></li>
+              <li role="listitem"><a href="#opinie">Opinie</a></li>
+              <li role="listitem"><a href="#faq">FAQ</a></li>
+              <li role="listitem"><a href="#kontakt">Kontakt</a></li>
+            </ul>
+          </nav>
+
+          <!-- COL 3: DOKUMENTY -->
+          <nav class="ft-col" aria-label="Dokumenty">
+            <h3 class="ft-h">Dokumenty</h3>
+            <ul class="ft-links" role="list">
+              <li role="listitem">
+                <a href="/polityka-prywatnosci.html">Polityka prywatności</a>
+              </li>
+              <li role="listitem"><a href="/regulamin.html">Regulamin</a></li>
+              <li role="listitem"><a href="/cookies.html">Pliki cookies</a></li>
+            </ul>
+          </nav>
+
+          <!-- COL 4: MAPA + SOCIAL + CTA -->
+          <div class="ft-col">
+            <h3 class="ft-h">Znajdziesz nas tutaj:</h3>
+
+            <div class="ft-map">
+              <iframe
+                title="Mapa dojazdu — siedziba firmy"
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2437.123456!2d20.985!3d50.013!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zNTHCsDAxJzAwLjAiTiAyMMKwNTknMzAuMCJF!5e0!3m2!1spl!2spl!4v123456789"
+                width="100%"
+                height="160"
+                style="border: 0"
+                loading="lazy"
+                allowfullscreen
+                referrerpolicy="no-referrer-when-downgrade"
+              >
+              </iframe>
+            </div>
+
+            <address class="ft-address">
+              <p><strong>Nazwa Twojej Firmy Sp. z o.o.</strong></p>
+              <p>ul. Przykładowa 10,<br />33-100 Tarnów</p>
+              <p>
+                NIP: 123-456-78-90<br />
+                REGON: 123456789
+              </p>
+              <p>
+                tel. <a href="tel:+48123456789">+48 123 456 789</a><br />
+                e-mail:
+                <a href="mailto:kontakt@twoja-firma.pl"
+                  ><br />kontakt@twoja-firma.pl</a
+                >
+              </p>
+            </address>
+
+            <div class="ft-social" aria-label="Media społecznościowe">
+              <a
+                href="https://facebook.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Facebook"
+              >
+                <svg class="i" aria-hidden="true">
+                  <use href="#i-facebook"></use>
+                </svg>
               </a>
-
-          <p class="ft-lead">Solidne realizacje budowlane — oferta, wyceny i kontakt w 24&nbsp;h.</p>
-
-          <ul class="ft-contact" role="list" aria-label="Dane kontaktowe">
-            <li role="listitem">
-              <svg class="i" aria-hidden="true"><use href="#i-phone"></use></svg>
-              <a href="tel:+48600700800" aria-label="Zadzwoń: +48 600 700 800">+48 600 700 800</a>
-            </li>
-            <li role="listitem">
-              <svg class="i" aria-hidden="true"><use href="#i-mail"></use></svg>
-              <a href="mailto:kontakt@twoja-firma.pl">kontakt@twoja-firma.pl</a>
-            </li>
-          </ul>
+              <a
+                href="https://instagram.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Instagram"
+              >
+                <svg class="i" aria-hidden="true">
+                  <use href="#i-instagram"></use>
+                </svg>
+              </a>
+              <a
+                href="https://youtube.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="YouTube"
+              >
+                <svg class="i" aria-hidden="true">
+                  <use href="#i-youtube"></use>
+                </svg>
+              </a>
+              <a
+                href="https://linkedin.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="LinkedIn"
+              >
+                <svg class="i" aria-hidden="true">
+                  <use href="#i-linkedin"></use>
+                </svg>
+              </a>
+            </div>
+          </div>
         </div>
 
-        <!-- COL 2: NAWIGACJA -->
-        <nav class="ft-col" aria-label="Nawigacja w stopce">
-          <h3 class="ft-h">Nawigacja</h3>
-          <ul class="ft-links" role="list">
-            <li role="listitem"><a href="#oferta">Oferta</a></li>
-            <li role="listitem"><a href="#realizacje">Realizacje</a></li>
-            <li role="listitem"><a href="#opinie">Opinie</a></li>
-            <li role="listitem"><a href="#faq">FAQ</a></li>
-            <li role="listitem"><a href="#kontakt">Kontakt</a></li>
-          </ul>
-        </nav>
-
-        <!-- COL 3: DOKUMENTY -->
-        <nav class="ft-col" aria-label="Dokumenty">
-          <h3 class="ft-h">Dokumenty</h3>
-          <ul class="ft-links" role="list">
-            <li role="listitem"><a href="/polityka-prywatnosci.html">Polityka prywatności</a></li>
-            <li role="listitem"><a href="/regulamin.html">Regulamin</a></li>
-            <li role="listitem"><a href="/cookies.html">Pliki cookies</a></li>
-          </ul>
-        </nav>
-
-        <!-- COL 4: MAPA + SOCIAL + CTA -->
-        <div class="ft-col">
-          <h3 class="ft-h">Znajdziesz nas tutaj:</h3>
-
-          <div class="ft-map">
-            <iframe
-              title="Mapa dojazdu — siedziba firmy"
-              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2437.123456!2d20.985!3d50.013!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zNTHCsDAxJzAwLjAiTiAyMMKwNTknMzAuMCJF!5e0!3m2!1spl!2spl!4v123456789"
-              width="100%"
-              height="160"
-              style="border:0"
-              loading="lazy"
-              allowfullscreen
-              referrerpolicy="no-referrer-when-downgrade">
-            </iframe>
-          </div>
-
-          <address class="ft-address">
-            <p><strong>Nazwa Twojej Firmy Sp. z o.o.</strong></p>
-            <p>ul. Przykładowa 10,<br>33-100 Tarnów</p>
-            <p>
-              NIP: 123-456-78-90<br>
-              REGON: 123456789
-            </p>
-            <p>
-              tel. <a href="tel:+48123456789">+48 123 456 789</a><br>
-              e-mail: <a href="mailto:kontakt@twoja-firma.pl"><br>kontakt@twoja-firma.pl</a>
-            </p>
-          </address>
-
-          <div class="ft-social" aria-label="Media społecznościowe">
-            <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" aria-label="Facebook">
-              <svg class="i" aria-hidden="true"><use href="#i-facebook"></use></svg>
-            </a>
-            <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
-              <svg class="i" aria-hidden="true"><use href="#i-instagram"></use></svg>
-            </a>
-            <a href="https://youtube.com" target="_blank" rel="noopener noreferrer" aria-label="YouTube">
-              <svg class="i" aria-hidden="true"><use href="#i-youtube"></use></svg>
-            </a>
-            <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
-              <svg class="i" aria-hidden="true"><use href="#i-linkedin"></use></svg>
-            </a>
-          </div>
-
-          <a href="#kontakt" class="ft-quote" aria-label="Przejdź do sekcji kontakt">
-            <svg class="i" aria-hidden="true"><use href="#i-mail"></use></svg>
-            <span>Wycena</span>
-          </a>
+        <div class="ft-bottom">
+          <p>
+            © <span id="year"></span> KP_Code. Wszelkie prawa zastrzeżone.
+            Projekt i wdrożenie: <a href="#" rel="author">KP_Code</a>
+          </p>
         </div>
       </div>
+    </footer>
 
-      <div class="ft-bottom">
-        <p>© <span id="year"></span> KP_Code. Wszelkie prawa zastrzeżone. Projekt i wdrożenie: <a href="#" rel="author">KP_Code</a></p>
-      </div>
-    </div>
-  </footer>
-
-  <!-- =========================================================
+    <!-- =========================================================
         SCRIPTY
         ========================================================= -->
-  <!-- SCRIPTS -->
-  <script src="js/script.js" defer></script>
+    <!-- SCRIPTS -->
+    <script src="js/script.js" defer></script>
 
-  <!-- =========================================================
+    <!-- =========================================================
         SVG SPRITE
         ========================================================= -->
-  <!-- === SVG SPRITE (ukryty magazyn ikon) === -->
-  <svg xmlns="http://www.w3.org/2000/svg"
+    <!-- === SVG SPRITE (ukryty magazyn ikon) === -->
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
       aria-hidden="true"
       focusable="false"
-      style="position:absolute;width:0;height:0;overflow:hidden">
-    <!-- Telefon -->
-    <symbol id="i-phone" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-      <path d="M22 16.92v3a2 2 0 0 1-2.18 2A19.8 19.8 0 0 1 3.08 5.18 2 2 0 0 1 5 3h3a2 2 0 0 1 2 1.72c.08.96.3 1.9.7 2.81a2 2 0 0 1-.45 2.11L9 11a16 16 0 0 0 6 6l1.36-1.25a2 2 0 0 1 2.11-.45c.91.4 1.85.62 2.81.7A2 2 0 0 1 22 16.92z"/>
-    </symbol>
-    <!-- Mail -->
-    <symbol id="i-mail" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-      <rect x="3" y="5" width="18" height="14" rx="2" ry="2"></rect>
-      <polyline points="3 7 12 13 21 7"></polyline>
-    </symbol>
-    <!-- Facebook -->
-    <symbol id="i-facebook" viewBox="0 0 24 24" fill="currentColor">
-      <path d="M22 12c0-5.522-4.477-10-10-10S2 6.478 2 12c0 5 3.657 9.128 8.438 9.878v-6.99h-2.54V12h2.54V9.797c0-2.507 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.772-1.63 1.562V12h2.773l-.443 2.888h-2.33v6.99C18.343 21.128 22 17 22 12z"/>
-    </symbol>
-    <!-- Instagram -->
-    <symbol id="i-instagram" viewBox="0 0 24 24" fill="currentColor">
-      <path d="M7 2C4.243 2 2 4.243 2 7v10c0 2.757 2.243 5 5 5h10c2.757 0 5-2.243 5-5V7c0-2.757-2.243-5-5-5H7zm0 2h10c1.654 0 3 1.346 3 3v10c0 1.654-1.346 3-3 3H7c-1.654 0-3-1.346-3-3V7c0-1.654 1.346-3 3-3zm5 2a5 5 0 100 10 5 5 0 000-10zm0 2a3 3 0 110 6 3 3 0 010-6zm6.5-.25a1.25 1.25 0 11-2.5 0 1.25 1.25 0 012.5 0z"/>
-    </symbol>
-    <!-- YouTube -->
-    <symbol id="i-youtube" viewBox="0 0 24 24" fill="currentColor">
-      <path d="M21.8 8.001a2.749 2.749 0 00-1.933-1.948C18.262 6 12 6 12 6s-6.262 0-7.867.053a2.749 2.749 0 00-1.933 1.948A28.54 28.54 0 002 12a28.54 28.54 0 00.2 3.999 2.749 2.749 0 001.933 1.948C5.738 18 12 18 12 18s6.262 0 7.867-.053a2.749 2.749 0 001.933-1.948A28.54 28.54 0 0022 12a28.54 28.54 0 00-.2-3.999zM10 15V9l5.2 3-5.2 3z"/>
-    </symbol>
-    <!-- LinkedIn -->
-    <symbol id="i-linkedin" viewBox="0 0 24 24" fill="currentColor">
-      <path d="M4.98 3.5C4.98 4.88 3.87 6 2.5 6S0 4.88 0 3.5 1.12 1 2.5 1s2.48 1.12 2.48 2.5zM.5 8h4V23h-4V8zm7.5 0h3.8v2.04h.05c.53-1 1.84-2.04 3.78-2.04 4.04 0 4.87 2.66 4.87 6.1V23h-4v-7.9c0-1.89-.03-4.33-2.64-4.33-2.65 0-3.06 2.07-3.06 4.2V23h-4V8z"/>
-    </symbol>
-  </svg>
+      style="position: absolute; width: 0; height: 0; overflow: hidden"
+    >
+      <!-- Telefon -->
+      <symbol
+        id="i-phone"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      >
+        <path
+          d="M22 16.92v3a2 2 0 0 1-2.18 2A19.8 19.8 0 0 1 3.08 5.18 2 2 0 0 1 5 3h3a2 2 0 0 1 2 1.72c.08.96.3 1.9.7 2.81a2 2 0 0 1-.45 2.11L9 11a16 16 0 0 0 6 6l1.36-1.25a2 2 0 0 1 2.11-.45c.91.4 1.85.62 2.81.7A2 2 0 0 1 22 16.92z"
+        />
+      </symbol>
+      <!-- Mail -->
+      <symbol
+        id="i-mail"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      >
+        <rect x="3" y="5" width="18" height="14" rx="2" ry="2"></rect>
+        <polyline points="3 7 12 13 21 7"></polyline>
+      </symbol>
+      <!-- Facebook -->
+      <symbol id="i-facebook" viewBox="0 0 24 24" fill="currentColor">
+        <path
+          d="M22 12c0-5.522-4.477-10-10-10S2 6.478 2 12c0 5 3.657 9.128 8.438 9.878v-6.99h-2.54V12h2.54V9.797c0-2.507 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.772-1.63 1.562V12h2.773l-.443 2.888h-2.33v6.99C18.343 21.128 22 17 22 12z"
+        />
+      </symbol>
+      <!-- Instagram -->
+      <symbol id="i-instagram" viewBox="0 0 24 24" fill="currentColor">
+        <path
+          d="M7 2C4.243 2 2 4.243 2 7v10c0 2.757 2.243 5 5 5h10c2.757 0 5-2.243 5-5V7c0-2.757-2.243-5-5-5H7zm0 2h10c1.654 0 3 1.346 3 3v10c0 1.654-1.346 3-3 3H7c-1.654 0-3-1.346-3-3V7c0-1.654 1.346-3 3-3zm5 2a5 5 0 100 10 5 5 0 000-10zm0 2a3 3 0 110 6 3 3 0 010-6zm6.5-.25a1.25 1.25 0 11-2.5 0 1.25 1.25 0 012.5 0z"
+        />
+      </symbol>
+      <!-- YouTube -->
+      <symbol id="i-youtube" viewBox="0 0 24 24" fill="currentColor">
+        <path
+          d="M21.8 8.001a2.749 2.749 0 00-1.933-1.948C18.262 6 12 6 12 6s-6.262 0-7.867.053a2.749 2.749 0 00-1.933 1.948A28.54 28.54 0 002 12a28.54 28.54 0 00.2 3.999 2.749 2.749 0 001.933 1.948C5.738 18 12 18 12 18s6.262 0 7.867-.053a2.749 2.749 0 001.933-1.948A28.54 28.54 0 0022 12a28.54 28.54 0 00-.2-3.999zM10 15V9l5.2 3-5.2 3z"
+        />
+      </symbol>
+      <!-- LinkedIn -->
+      <symbol id="i-linkedin" viewBox="0 0 24 24" fill="currentColor">
+        <path
+          d="M4.98 3.5C4.98 4.88 3.87 6 2.5 6S0 4.88 0 3.5 1.12 1 2.5 1s2.48 1.12 2.48 2.5zM.5 8h4V23h-4V8zm7.5 0h3.8v2.04h.05c.53-1 1.84-2.04 3.78-2.04 4.04 0 4.87 2.66 4.87 6.1V23h-4v-7.9c0-1.89-.03-4.33-2.64-4.33-2.65 0-3.06 2.07-3.06 4.2V23h-4V8z"
+        />
+      </symbol>
+    </svg>
 
-  <!-- Pływające przyciski przewijania -->
-    <button class="scroll-btn scroll-top-float is-hidden" type="button" aria-label="Przewiń na górę strony" title="Do góry"></button>
+    <!-- Pływające przyciski przewijania -->
+    <button
+      class="scroll-btn scroll-top-float is-hidden"
+      type="button"
+      aria-label="Przewiń na górę strony"
+      title="Do góry"
+    ></button>
 
-  <!-- Mały helper: rok w stopce (bezpieczny, bez błędów jeśli #year nie istnieje) -->
-  <script>
-    (function() {
-      try {
-        var y = document.getElementById('year');
-        if (y) y.textContent = new Date().getFullYear();
-      } catch (e) { /* no-op */ }
-    })();
-  </script>
-
-</body>
+    <!-- Mały helper: rok w stopce (bezpieczny, bez błędów jeśli #year nie istnieje) -->
+    <script>
+      (function () {
+        try {
+          var y = document.getElementById("year");
+          if (y) y.textContent = new Date().getFullYear();
+        } catch (e) {
+          /* no-op */
+        }
+      })();
+    </script>
+  </body>
 </html>
-
