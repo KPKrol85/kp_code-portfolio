@@ -21,6 +21,7 @@
    11) Dodatki (animacje, media queries, focus ring, micro-utility)
    12) Scroll-buttons (TOP/BOTTOM)
    13) OVERRIDES / DODATKI (overlay hero, rytm sekcji, typografia, perf)
+   14) Podstrony (nagłówki H1 + .lead + CTA, breadcrumbs)                 
 
    Uwaga:
    - Sekcja 13 zawiera też „SECTION RHYTHM”, mikro-perf (content-visibility),
@@ -373,28 +374,69 @@ h2 + .lead {
   opacity: 0.6;
   pointer-events: none;
 }
-.btn--ghost {
-  background: transparent;
-  color: var(--fg);
-  border: 1px solid var(--line);
-}
-.btn--ghost:hover {
-  background: var(--brand-weak);
-  border-color: var(--line-strong);
-}
 .btn--sm {
   padding: 8px 12px;
   font-weight: 600;
   font-size: 0.9375rem;
   line-height: 1;
 }
-:root[data-theme="dark"] .btn:not(.btn--ghost) {
+/* 01) Buttons — GHOST (clean) */
+.btn--ghost {
+  background: transparent;
+  color: var(--fg);
+  border: 1px solid var(--line);
+  transition:
+    background 0.2s ease,
+    color 0.2s ease,
+    border-color 0.2s ease;
+}
+
+/* hover/focus: light mode */
+.btn--ghost:hover,
+.btn--ghost:focus-visible {
+  background: color-mix(
+    in srgb,
+    #000 6%,
+    transparent
+  ); /* lekkie przyciemnienie tła */
+  border-color: var(--line-strong);
+  color: var(--fg);
+}
+
+/* dark mode */
+[data-theme="dark"] .btn--ghost {
+  border-color: rgba(255, 255, 255, 0.22);
+  color: var(--fg);
+}
+[data-theme="dark"] .btn--ghost:hover,
+[data-theme="dark"] .btn--ghost:focus-visible {
+  background: color-mix(
+    in srgb,
+    #fff 12%,
+    transparent
+  ); /* lekkie rozjaśnienie tła */
+  border-color: rgba(255, 255, 255, 0.32);
+  color: #fff; /* kluczowe: czytelny tekst na hover w dark */
+}
+[data-theme="dark"] .btn:not(.btn--ghost) {
   color: #0f172a;
 }
-:root[data-theme="dark"] .btn--ghost:hover {
-  background: rgba(255, 255, 255, 0.06);
-  border-color: rgba(255, 255, 255, 0.24);
+
+/* Rozmiar S (zostaw jeśli już masz identycznie) */
+.btn--sm {
+  padding: 8px 12px;
+  font-weight: 600;
+  font-size: 0.9375rem;
+  line-height: 1;
 }
+
+/* (opcjonalnie) focus ring dla obu wariantów */
+.btn:focus-visible,
+.btn--ghost:focus-visible {
+  outline: 2px solid var(--accent, #ffd54d);
+  outline-offset: 2px;
+}
+
 @media (prefers-reduced-motion: reduce) {
   .btn {
     transition: none;
@@ -1692,6 +1734,10 @@ h2 + .lead {
   color: #0f172a;
   line-height: 1.4;
   box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.35);
+  /* płynny feedback obramowania */
+  transition:
+    border-color 0.18s ease,
+    box-shadow 0.18s ease;
 }
 .form textarea {
   resize: vertical;
@@ -1817,6 +1863,61 @@ section#kontakt .form-note {
 /* Mniejszy tekst TYLKO przy zgodzie */
 .cta .form label.checkbox > input#f-consent + span {
   font-size: 0.85rem; /* ~15px przy bazie 16px */
+}
+
+/* === PATCH: FORM FEEDBACK + LOADER (bez zmian w JS) === */
+/* Zielona ramka – poprawka selektora (bez osieroconego ; ) */
+.form
+  :is(input[type="text"], input[type="tel"], input[type="email"], textarea):not(
+    :placeholder-shown
+  ):valid:not([aria-invalid="true"]) {
+  border-color: color-mix(in srgb, var(--brand) 55%, #10b981);
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--brand) 22%, transparent);
+}
+:root[data-theme="dark"]
+  .cta
+  .form
+  :is(input[type="text"], input[type="tel"], input[type="email"], textarea):not(
+    :placeholder-shown
+  ):valid:not([aria-invalid="true"]) {
+  border-color: color-mix(in srgb, #6ee7b7 65%, var(--brand));
+  box-shadow: 0 0 0 3px color-mix(in srgb, #6ee7b7 24%, transparent);
+}
+
+/* Checkbox: zielona obwódka gdy zaznaczony i nie jest oznaczony jako invalid */
+.checkbox input[type="checkbox"]:checked:not([aria-invalid="true"]) {
+  outline: 3px solid color-mix(in srgb, #22c55e 28%, transparent);
+  outline-offset: 2px;
+  border-radius: 6px;
+}
+
+/* Loader na przycisku podczas wysyłki (form[aria-busy="true"]) */
+.form[aria-busy="true"] .btn {
+  position: relative;
+  pointer-events: none;
+  opacity: 0.9;
+}
+.form[aria-busy="true"] .btn::after {
+  content: "";
+  position: absolute;
+  inset: auto auto 50% 50%;
+  width: 1.1em;
+  height: 1.1em;
+  margin: -0.55em 0 0 -0.55em;
+  border-radius: 50%;
+  border: 0.18em solid currentColor;
+  border-right-color: transparent;
+  animation: spin 0.9s linear infinite;
+}
+@media (prefers-reduced-motion: reduce) {
+  .form[aria-busy="true"] .btn::after {
+    animation: none;
+  }
+}
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
 }
 
 /* ============================== 09) FOOTER (UKŁAD + BAZA) ============================== */
@@ -2416,15 +2517,7 @@ section#kontakt .form-note {
 .theme-toggle {
   -webkit-tap-highlight-color: transparent;
 }
-.btn--ghost {
-  background: transparent;
-  color: var(--fg);
-  border: 1px solid var(--line);
-}
-.btn--ghost:hover {
-  background: color-mix(in srgb, #fff 12%, transparent);
-  border-color: var(--line-strong);
-}
+
 :root[data-theme="dark"] .form input:focus,
 :root[data-theme="dark"] .form textarea:focus {
   outline: 3px solid color-mix(in srgb, #fff 85%, var(--brand-2));
@@ -2693,9 +2786,6 @@ section#kontakt .form-note {
   --sec-py-sm: clamp(36px, 6vw, 72px);
   --sec-head-mb: clamp(16px, 2.6vw, 28px);
 }
-.block,
-.cta,
-.testimonials,
 .logos,
 #opinie,
 #faq,
@@ -2703,16 +2793,8 @@ section#kontakt .form-note {
 #oferta {
   padding-block: var(--sec-py);
 }
-.cta {
-  padding-block: calc(var(--sec-py) * 0.85);
-}
-.testimonials {
-  padding-block: calc(var(--sec-py) * 0.9);
-}
+
 @media (max-width: 640px) {
-  .block,
-  .cta,
-  .testimonials,
   .logos,
   #opinie,
   #faq,
@@ -2724,6 +2806,7 @@ section#kontakt .form-note {
 .block-head {
   margin-bottom: var(--sec-head-mb);
 }
+
 /* HOVER LIFT — subtelny efekt dla kart */
 .hover-card {
   transition:
@@ -2853,6 +2936,14 @@ h3 {
     }
   }
 }
+
+/* BEGIN PATCH: section-spacing (.block/.cta/.testimonials) */
+.block,
+.cta,
+.testimonials {
+  padding-block: clamp(3rem, 6vw, 6rem);
+}
+/* END PATCH */
 
 /* ============================== 14) LIGHTBOX (galeria kart) ============================== */
 .lb-backdrop {
@@ -2990,4 +3081,50 @@ html.lb-no-scroll {
 #oferta .card picture img:focus-visible {
   outline: 2px solid var(--accent, #ffd54d);
   outline-offset: 3px;
+}
+
+/* ====================================================================== */
+/* 14) Podstrony (nagłówki H1 + .lead + CTA, breadcrumbs)                 */
+/*     scope: <body class="page-sub">                                     */
+/*     files: oferta/lazienki.html, oferta/malowanie.html,                */
+/*            oferta/kafelkowanie.html, oferta/elektryka.html, …          */
+/* ====================================================================== */
+
+/* Wycentrowany nagłówek sekcji na podstronach */
+.page-sub .block-head {
+  max-width: 72ch;
+  margin: 0 auto 2rem; /* wyśrodkowanie całego bloku */
+  text-align: center;
+}
+
+.page-sub .block-head h1 {
+  margin: 0.9rem;
+  line-height: 1.15;
+  text-wrap: balance;
+  letter-spacing: -0.01em;
+  font-size: clamp(28px, 4vw, 44px);
+}
+
+.page-sub .block-head .lead {
+  line-height: 1.6;
+  margin: 0.5rem 0 0;
+  color: var(--text-2); /* subtelniej niż kolor podstawowy */
+  font-size: 0.95em;
+}
+
+@media (max-width: 640px) {
+  .page-sub .block-head .lead {
+    font-size: 0.92em;
+  }
+}
+
+/* CTA pod nagłówkiem na środku */
+.page-sub .block-cta {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  margin-top: 1.25rem;
+}
+.page-sub .block + .block {
+  margin-top: 4rem;
 }

@@ -391,24 +391,24 @@
                 aria-label="Podmenu: Oferta"
               >
                 <li role="none">
-                  <a role="menuitem" href="#oferta">Przegląd oferty</a>
+                  <a role="menuitem" href="oferta/lazienki.html">Łazienki</a>
                 </li>
                 <li role="none">
-                  <a role="menuitem" href="#oferta-lazienki">Łazienki</a>
-                </li>
-                <li role="none">
-                  <a role="menuitem" href="#oferta-malowanie"
+                  <a role="menuitem" href="oferta/malowanie.html"
                     >Malowanie &amp; gładzie</a
                   >
                 </li>
                 <li role="none">
-                  <a role="menuitem" href="#oferta-kafelkowanie"
+                  <a role="menuitem" href="oferta/kafelkowanie.html"
                     >Kafelkowanie</a
                   >
                 </li>
                 <li role="none">
-                  <a role="menuitem" href="#oferta-elektryka"
-                    >Elektryka &amp; hydraulika</a
+                  <a role="menuitem" href="oferta/elektryka.html">Elektryka</a>
+                </li>
+                <li role="none">
+                  <a role="menuitem" href="oferta/hydraulika.html"
+                    >Hydraulika</a
                   >
                 </li>
               </ul>
@@ -726,17 +726,14 @@
               </p>
             </article>
 
-            <!-- Elektryka & hydraulika -->
+            <!-- Elektryka -->
             <article
               id="oferta-elektryka"
               class="card hover-card"
               aria-labelledby="h-elektryka"
               aria-describedby="d-elektryka"
             >
-              <a
-                href="#kontakt"
-                aria-label="Zamów wycenę — Elektryka i hydraulika"
-              >
+              <a href="#kontakt" aria-label="Zamów wycenę — Elektryka">
                 <picture>
                   <source
                     type="image/avif"
@@ -777,7 +774,7 @@
                       assets/img/oferta/electrition-1600.jpg 1600w
                     "
                     sizes="(min-width: 992px) 25vw, (min-width: 640px) 50vw, 100vw"
-                    alt="Elektryk i hydraulik przy pracy"
+                    alt="Elektryk w pracy"
                     width="400"
                     height="300"
                     loading="lazy"
@@ -786,11 +783,73 @@
                 </picture>
               </a>
               <h3 id="h-elektryka">
-                <a href="oferta/elektryka.html">Elektryka &amp; hydraulika</a>
+                <a href="oferta/elektryka.html">Elektryka</a>
               </h3>
               <p id="d-elektryka">
                 Przeróbki instalacji, białe montaże i próby szczelności.
               </p>
+            </article>
+
+            <!-- Hydraulika -->
+            <article
+              id="oferta-hydraulika"
+              class="card hover-card"
+              aria-labelledby="h-hydraulika"
+              aria-describedby="d-hydraulika"
+            >
+              <a href="#kontakt" aria-label="Zamów wycenę — Hydraulika">
+                <picture>
+                  <source
+                    type="image/avif"
+                    srcset="
+                      assets/img/oferta/electrition-400.avif   400w,
+                      assets/img/oferta/electrition-800.avif   800w,
+                      assets/img/oferta/electrition-1200.avif 1200w,
+                      assets/img/oferta/electrition-1600.avif 1600w
+                    "
+                    sizes="(min-width: 992px) 25vw, (min-width: 640px) 50vw, 100vw"
+                  />
+                  <source
+                    type="image/webp"
+                    srcset="
+                      assets/img/oferta/electrition-400.webp   400w,
+                      assets/img/oferta/electrition-800.webp   800w,
+                      assets/img/oferta/electrition-1200.webp 1200w,
+                      assets/img/oferta/electrition-1600.webp 1600w
+                    "
+                    sizes="(min-width: 992px) 25vw, (min-width: 640px) 50vw, 100vw"
+                  />
+                  <source
+                    type="image/jpeg"
+                    srcset="
+                      assets/img/oferta/electrition-400.jpg   400w,
+                      assets/img/oferta/electrition-800.jpg   800w,
+                      assets/img/oferta/electrition-1200.jpg 1200w,
+                      assets/img/oferta/electrition-1600.jpg 1600w
+                    "
+                    sizes="(min-width: 992px) 25vw, (min-width: 640px) 50vw, 100vw"
+                  />
+                  <img
+                    src="assets/img/oferta/electrition-800.jpg"
+                    srcset="
+                      assets/img/oferta/electrition-400.jpg   400w,
+                      assets/img/oferta/electrition-800.jpg   800w,
+                      assets/img/oferta/electrition-1200.jpg 1200w,
+                      assets/img/oferta/electrition-1600.jpg 1600w
+                    "
+                    sizes="(min-width: 992px) 25vw, (min-width: 640px) 50vw, 100vw"
+                    alt="Hydraulik w pracy"
+                    width="400"
+                    height="300"
+                    loading="lazy"
+                    decoding="async"
+                  />
+                </picture>
+              </a>
+              <h3 id="h-elektryka">
+                <a href="oferta/hydraulika.html">Hydraulika</a>
+              </h3>
+              <p id="d-hydrauilika">Wszystkie prace hydrauliczne.</p>
             </article>
           </div>
 
@@ -1496,7 +1555,6 @@
       aria-label="Przewiń na górę strony"
       title="Do góry"
     ></button>
-
     <!-- Mały helper: rok w stopce (bezpieczny, bez błędów jeśli #year nie istnieje) -->
     <script>
       (function () {
@@ -1506,6 +1564,58 @@
         } catch (e) {
           /* no-op */
         }
+      })();
+    </script>
+
+    <!-- Czyść hash po kliknięciu "Strona główna" na HOME -->
+    <script>
+      document.addEventListener("click", function (e) {
+        const link = e.target.closest("a.scroll-top");
+        if (!link) return;
+
+        // Działamy tylko na stronie głównej
+        const p = location.pathname.replace(/\/+$/, "");
+        const isHome = p === "" || p === "/" || p.endsWith("/index.html");
+        if (!isHome) return;
+
+        e.preventDefault();
+        // Płynny scroll do góry (#top jeśli jest)
+        const topEl = document.getElementById("top");
+        if (topEl) topEl.scrollIntoView({ behavior: "smooth" });
+        else window.scrollTo({ top: 0, behavior: "smooth" });
+
+        // Usuń hash z paska adresu
+        history.replaceState(null, "", location.pathname + location.search);
+      });
+    </script>
+
+    <!-- Prefill pola "usluga" na HOME po wejściu z ?usluga=...#kontakt -->
+    <script>
+      (function () {
+        // Działaj tylko na stronie głównej
+        var p = location.pathname.replace(/\/+$/, "");
+        var isHome = p === "" || p === "/" || p.endsWith("/index.html");
+        if (!isHome) return;
+
+        var params = new URLSearchParams(location.search);
+        var service = params.get("usluga");
+        if (!service) return;
+
+        var form = document.querySelector("#kontakt form"); // dopasuj selektor jeśli inny
+        if (!form) return;
+
+        // znajdź lub utwórz ukryte pole "usluga"
+        var input = form.querySelector('[name="usluga"]');
+        if (!input) {
+          input = document.createElement("input");
+          input.type = "hidden";
+          input.name = "usluga";
+          form.appendChild(input);
+        }
+        input.value = service;
+
+        // wyczyść query z adresu, zostaw hash (np. #kontakt)
+        history.replaceState(null, "", location.pathname + location.hash);
       })();
     </script>
   </body>
