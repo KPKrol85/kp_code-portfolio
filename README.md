@@ -2,17 +2,17 @@
 
 ![KP Code Logo](assets/LOGO-1200x630.png)
 
-Monorepo with website templates for **10 industries × 5 projects** (50 sites total).  
-Each project is self-contained: **industry → tech stack → project**.
+Monorepo with **50 website templates** (10 industries × 5 projects each).  
+Every project is self-contained and organized by **industry → tech stack → project**.  
+Deployed on **Netlify** for live demos, with source code versioned on **GitHub**.
 
 ---
 
-## 🚀 Live Demos
+## 🌐 Live Demos (Netlify)
 
-
-### Netlify
-- [🍽 Gastronomy — Project 01](https://gastronomy-project-01.netlify.app)
-- [🏗 Construction — Project 01](https://construction-project-01.netlify.app)
+- [🏗 Construction — Project 01](https://construction-project-01.netlify.app)  
+- [🍽 Gastronomy — Project 01](https://gastronomy-project-01.netlify.app)  
+*(more projects coming soon…)*
 
 ---
 
@@ -20,61 +20,98 @@ Each project is self-contained: **industry → tech stack → project**.
 
 ```
 kp_code-portfolio/
-├─ construction/
-│  └─ html-css-js/
-│     └─ project-01/
-│        ├─ index.html
-│        ├─ css/
-│        ├─ js/
-│        └─ assets/
+├─ construction/ # Industry 01
+│ ├─ html-css-js/ project-01 … project-05
+│ ├─ tailwind/ project-01 … project-05
+│ ├─ react/ project-01 … project-05
+│ ├─ nextjs-shadcn/ project-01 … project-05
+│ └─ fullstack/ project-01 … project-05
 │
-├─ gastronomy/
-│  └─ html-css-js/
-│     └─ project-01/
-│        ├─ index.html
-│        ├─ (optional) menu.html, gallery.html
-│        ├─ css/
-│        ├─ js/
-│        └─ assets/
-└─ ...
-```
+├─ gastronomy/ # Industry 02
+│ ├─ html-css-js/ … ├─ tailwind/ … ├─ react/ …
+│ ├─ nextjs-shadcn/ … └─ fullstack/ …
+│
+├─ ecommerce/ # Industry 03
+│ ├─ html-css-js/ … ├─ tailwind/ … ├─ react/ …
+│ ├─ nextjs-shadcn/ … └─ fullstack/ …
+│
+├─ education/ # Industry 04
+│ ├─ html-css-js/ … ├─ tailwind/ … ├─ react/ …
+│ ├─ nextjs-shadcn/ … └─ fullstack/ …
+│
+├─ healthcare/ # Industry 05
+│ ├─ html-css-js/ … ├─ tailwind/ … ├─ react/ …
+│ ├─ nextjs-shadcn/ … └─ fullstack/ …
+│
+├─ transport/ # Industry 06
+│ ├─ html-css-js/ … ├─ tailwind/ … ├─ react/ …
+│ ├─ nextjs-shadcn/ … └─ fullstack/ …
+│
+├─ it-software/ # Industry 07
+│ ├─ html-css-js/ … ├─ tailwind/ … ├─ react/ …
+│ ├─ nextjs-shadcn/ … └─ fullstack/ …
+│
+├─ tourism/ # Industry 08
+│ ├─ html-css-js/ … ├─ tailwind/ … ├─ react/ …
+│ ├─ nextjs-shadcn/ … └─ fullstack/ …
+│
+├─ fashion-beauty/ # Industry 09
+│ ├─ html-css-js/ … ├─ tailwind/ … ├─ react/ …
+│ ├─ nextjs-shadcn/ … └─ fullstack/ …
+│
+└─ creative-services/ # Industry 10
+├─ html-css-js/ … ├─ tailwind/ … ├─ react/ …
+├─ nextjs-shadcn/ … └─ fullstack/ …
 
----
+```
 
 ## 🖥 How to Run Locally
 
-1. Clone this repository:  
-   ```bash
-   git clone https://github.com/kpkrol85/kp_code-portfolio.git
-   ```
-2. Open any project's `index.html` in your browser.  
-   > Each project is standalone (its own `css/`, `js/`, `assets/`).
-
----
+### HTML / Tailwind
+```bash
+# open index.html in your browser
 
 ## 🗺 Roadmap (6 months)
 
-1–2) **HTML/CSS/JS** → Fundamentals + first portfolio projects  
-3) **Tailwind CSS** → Rapid prototyping  
-4) **React** → Component-based sites  
-5) **Next.js + shadcn/ui** → Modern SSR/SSG apps  
-6) **Full-stack basics** → APIs + databases
+npm install
+npm run dev
 
-Planned industries:  
+npm install
+npm run dev
+
+# production build:
+npm run build && npm start
+
+```
+
+🗺 Roadmap (6 months)
+
+1–2️⃣ HTML/CSS/JS → Fundamentals & first portfolio projects
+3️⃣ Tailwind CSS → Rapid prototyping with utility classes
+4️⃣ React → Component-based development
+5️⃣ Next.js + shadcn/ui → Modern SSR/SSG apps with UI components
+6️⃣ Full-stack basics → REST APIs, databases, deployments
+
+Planned industries:
 Construction, Gastronomy, E-commerce, Education, Healthcare, Transport, IT & Software, Tourism, Fashion & Beauty, Creative Services.
 
----
+```
 
-## 📏 Conventions
+📏 Conventions
 
-- **Commits:**  
-  - `feat:` new feature/page  
-  - `fix:` bugfix  
-  - `chore:` tooling/cleanup  
-  - `docs:` documentation  
-  - Example: `feat(gastronomy/project-01): add hero & menu sections`
-- **Folders:** lowercase, English, hyphenated  
-  - e.g., `restaurant-aurelia`, `renovation-team`
+Commits:
+
+feat: new feature/page
+
+fix: bugfix
+
+chore: tooling/cleanup
+
+docs: documentation
+Example: feat(gastronomy/project-01): add hero & menu sections
+
+Folders: lowercase, English, hyphenated
+Example: renovation-team, restaurant-aurelia
 
 ---
 
