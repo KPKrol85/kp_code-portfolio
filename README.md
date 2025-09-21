@@ -1,4 +1,4 @@
-# KP Code — Portfolio
+# KP_Code — Portfolio
 
 ![KP Code Logo](assets/LOGO-1200x630.png)
 
