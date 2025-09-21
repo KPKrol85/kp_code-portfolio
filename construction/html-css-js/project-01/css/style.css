@@ -2586,101 +2586,23 @@ section#kontakt .form-note {
 }
 
 /* ============================== 12) SCROLL-BUTTONS (discreet glass) ============================== */
-#strona-glowna {
-  position: relative;
-}
-.scroll-btn {
-  display: grid;
-  place-items: center;
-  width: 36px;
-  height: 36px;
-  border-radius: 999px;
-  border: 0;
-  background: color-mix(in srgb, var(--bg) 78%, transparent);
-  backdrop-filter: saturate(160%) blur(8px);
-  -webkit-backdrop-filter: saturate(160%) blur(8px);
-  color: var(--text);
-  box-shadow: 0 6px 18px rgba(2, 8, 23, 0.14);
-  cursor: pointer;
-  line-height: 1;
-  transition:
-    transform 0.22s,
-    box-shadow 0.22s,
-    background 0.22s,
-    opacity 0.22s;
-  -webkit-tap-highlight-color: transparent;
-  user-select: none;
-}
-.scroll-btn:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 12px 26px rgba(2, 8, 23, 0.18);
-}
-.scroll-btn:active {
-  transform: translateY(0) scale(0.98);
-}
-.scroll-btn:focus-visible {
-  outline: 3px solid var(--ring);
-  outline-offset: 3px;
-}
-.scroll-btn.is-hidden {
-  opacity: 0;
-  pointer-events: none;
-  transform: translateY(8px);
-}
-.scroll-top-float {
-  position: fixed;
-  right: 16px;
-  bottom: 16px;
-  z-index: 1200;
-}
-.scroll-top-float::before {
-  content: "↑";
-  font-size: 18px;
-}
-.scroll-down {
-  position: absolute;
-  right: 16px;
-  bottom: 16px;
-  z-index: 5;
-}
-.scroll-down::before {
-  content: "↓";
-  font-size: 18px;
-}
-@media (min-width: 1050px) {
-  .scroll-top-float {
-    right: 20px;
-    bottom: 20px;
-  }
-  .scroll-down {
-    right: 22px;
-    bottom: 22px;
-  }
-}
-@media (max-width: 640px) {
-  .scroll-top-float {
-    bottom: 42px;
-  }
-  :root[data-theme="dark"] .scroll-top-float {
-    background: rgba(0, 0, 0, 0.6);
-  }
-}
+#strona-glowna{position:relative;}
+.scroll-btn{display:grid;place-items:center;width:36px;height:36px;border-radius:999px;border:0;background:color-mix(in srgb,var(--bg) 78%,transparent);backdrop-filter:saturate(160%) blur(8px);-webkit-backdrop-filter:saturate(160%) blur(8px);color:var(--fg);box-shadow:0 6px 18px rgba(2,8,23,.14);cursor:pointer;line-height:1;transition:transform .22s,box-shadow .22s,background .22s,opacity .22s;-webkit-tap-highlight-color:transparent;user-select:none;}
+.scroll-btn:hover{transform:translateY(-2px);box-shadow:0 12px 26px rgba(2,8,23,.18);}
+.scroll-btn:active{transform:translateY(0) scale(.98);}
+.scroll-btn:focus-visible{outline:3px solid var(--ring);outline-offset:3px;}
+.scroll-btn.is-hidden{opacity:0;pointer-events:none;transform:translateY(8px);}
+.scroll-top-float{position:fixed;right:16px;bottom:16px;z-index:1200;}
+.scroll-top-float::before{content:"↑";font-size:18px;}
+/* jeśli używasz przycisku „w dół”, zostaw poniższe; jeśli nie — usuń trzy następne reguły */
+.scroll-down{position:absolute;right:16px;bottom:16px;z-index:5;}
+.scroll-down::before{content:"↓";font-size:18px;}
+@media (min-width:1050px){.scroll-top-float{right:20px;bottom:20px;}.scroll-down{right:22px;bottom:22px;}}
+@media (max-width:480px){.scroll-btn{width:34px;height:34px;}.scroll-down{right:12px;bottom:12px;}}
+@media (prefers-reduced-motion:reduce){.scroll-btn{transition:none;}}
+/* Ukrycie scroll-to-top na urządzeniach dotykowych / mobile */
+@media (hover:none) and (pointer:coarse){.scroll-top-float{display:none!important;}}
 
-@media (max-width: 480px) {
-  .scroll-btn {
-    width: 34px;
-    height: 34px;
-  }
-  .scroll-down {
-    right: 12px;
-    bottom: 12px;
-  }
-}
-@media (prefers-reduced-motion: reduce) {
-  .scroll-btn {
-    transition: none;
-  }
-}
 
 /* ============================== 13) OVERRIDES / DODATKI (koniec pliku) ============================== */
 :root[data-theme="dark"] .dropdown {

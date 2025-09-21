@@ -317,115 +317,192 @@ function initNav() {
 }
 
 /* ============================================================
- 2) SCROLLSPY — aktywne linki w menu + wsparcie dla "Oferta"
+ 2) SCROLLSPY — aktywne linki + preferuj podsekcje (Opinie > Oferta)
      - mapuje #top -> #strona-glowna
-     - offset z utils.getHeaderH() + 8px
-     - ustawia scroll-margin-top na sekcjach
+     - próg = live header + PEEK (domyślnie 12px)
+     - wybór sekcji: ta, która PRZECINA linię progu; gdy wiele — bierz najgłębszą (ostatnią)
+     - nie przelicza, gdy hamburger jest otwarty
+     - po kliknięciu: zamyka menu, scrolluje z offsetem, potwierdza po zakończeniu
 ============================================================ */
 function initScrollSpy() {
   const navLinks = [...document.querySelectorAll('.nav-menu a[href^="#"]')];
   if (!navLinks.length) return;
 
-  // Mapowanie #top -> #strona-glowna (hero)
+  const PEEK = 12;
   const mapHref = (href) => (href === "#top" ? "#strona-glowna" : href);
 
-  // kotwice z menu (+ opcjonalny #oferta)
-  const targetsFromMenu = navLinks
-    .map((a) => mapHref(a.getAttribute("href")))
-    .filter((href) => href && href.startsWith("#"));
+  // cele z menu
+const targetsFromMenu = navLinks
+  .map(a => mapHref(a.getAttribute("href")))
+  .filter(href => href && href.startsWith("#") && href.length > 1);
 
+
+  // ewentualne dodatkowe cele (zostawiamy #oferta, ale logika będzie faworyzować jej dzieci)
   const extraTargets = [];
   if (document.querySelector("#oferta")) extraTargets.push("#oferta");
 
-  // unikalne i istniejące sekcje
   const sections = [...new Set([...targetsFromMenu, ...extraTargets])]
     .map((sel) => document.querySelector(sel))
     .filter(Boolean);
   if (!sections.length) return;
 
-  // 1) scroll-margin-top wg aktualnego headera (bez getComputedStyle)
+  // helpers
+  const headerEl = document.querySelector(".site-header");
+  const getHeaderLive = () => (headerEl?.getBoundingClientRect().height || 0);
+  const navMenu = document.getElementById("navMenu");
+  const isMenuOpen = () =>
+    (navMenu && navMenu.classList.contains("open")) ||
+    document.body.classList.contains("nav-open") ||
+    document.documentElement.classList.contains("nav-open") ||
+    (headerEl && headerEl.classList.contains("open"));
+
+  // scroll-margin-top ułatwia przewijanie do hash
   const applyScrollMargin = () => {
-    const OFFSET = utils.getHeaderH() + 8;
+    const OFFSET = (utils?.getHeaderH?.() || getHeaderLive()) + PEEK;
     sections.forEach((sec) => {
-      // ustawiamy tylko gdy wartość się zmienia – bez czytania computed style
-      if (sec.dataset.appliedScrollMargin !== String(OFFSET)) {
+      const v = String(OFFSET);
+      if (sec.dataset.appliedScrollMargin !== v) {
         sec.style.scrollMarginTop = OFFSET + "px";
-        sec.dataset.appliedScrollMargin = String(OFFSET);
+        sec.dataset.appliedScrollMargin = v;
       }
     });
   };
 
-  // 2) podświetlanie aktywnego linku
+  let lastId = sections[0].id;
+
   const setActive = (id) => {
+    lastId = id;
     navLinks.forEach((a) => {
       const href = mapHref(a.getAttribute("href"));
       const match = href === "#" + id;
       a.classList.toggle("is-active", match);
-      if (match) a.setAttribute("aria-current", "true");
-      else a.removeAttribute("aria-current");
+      if (match) a.setAttribute("aria-current", "true"); else a.removeAttribute("aria-current");
     });
-
-    // Specjalnie dla "Oferta" (trigger dropdownu)
-    const ofertaTrigger = document.querySelector(
-      '.dropdown-trigger[aria-controls="dd-oferta"]'
-    );
+    // trigger dla dropdownu "Oferta"
+    const ofertaTrigger = document.querySelector('.dropdown-trigger[aria-controls="dd-oferta"]');
     if (ofertaTrigger) {
       const isOferta = id === "oferta" || id.startsWith("oferta-");
       ofertaTrigger.classList.toggle("is-active", isOferta);
-      if (isOferta) ofertaTrigger.setAttribute("aria-current", "true");
-      else ofertaTrigger.removeAttribute("aria-current");
+      if (isOferta) ofertaTrigger.setAttribute("aria-current", "true"); else ofertaTrigger.removeAttribute("aria-current");
     }
   };
 
-  // 3) logika wyboru sekcji
-  let ticking = false;
-  const compute = () => {
-    ticking = false;
-    const OFFSET = utils.getHeaderH() + 8;
+  // — Klucz: wybór sekcji po linii progu — preferuj podsekcje
+  const pickCurrent = () => {
+    const OFFSET = getHeaderLive() + PEEK;
+    const probeY = OFFSET + 1; // 1px pod nagłówkiem
 
+    // 1) sekcje, które PRZECINA linia progu (top<=probeY<bottom)
+    const candidates = sections.filter((sec) => {
+      const r = sec.getBoundingClientRect();
+      const top = r.top;
+      const bottom = r.bottom;
+      return top <= probeY && bottom > probeY;
+    });
+
+    if (candidates.length) {
+      // jeśli jest wiele (rodzic + dziecko), bierz najpóźniejszą w DOM (głębszą)
+      return candidates[candidates.length - 1].id;
+    }
+
+    // 2) fallback: ostatnia, której top <= próg
     let currentId = sections[0].id;
     let bestTop = -Infinity;
-
     for (const sec of sections) {
       const top = sec.getBoundingClientRect().top - OFFSET;
-      if (top <= 0 && top > bestTop) {
-        bestTop = top;
-        currentId = sec.id;
-      }
+      if (top <= 0 && top > bestTop) { bestTop = top; currentId = sec.id; }
     }
 
-    // jeśli jesteś na dole — wybierz ostatnią
-    if (
-      window.innerHeight + window.scrollY >=
-      document.documentElement.scrollHeight - 2
-    ) {
+    // dół strony → ostatnia sekcja
+    if (window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 2) {
       currentId = sections[sections.length - 1].id;
     }
-
-    setActive(currentId);
+    return currentId;
   };
 
-  const onScroll = () => {
-    if (!ticking) {
-      ticking = true;
-      requestAnimationFrame(compute);
+  // przeliczanie po zakończeniu scrolla
+  let scrollTimeout;
+  const compute = () => {
+    if (isMenuOpen()) return;
+    const id = pickCurrent();
+    if (id !== lastId) setActive(id);
+  };
+  const scheduleComputeAfterScroll = () => {
+    if ("onscrollend" in window) {
+      const handler = () => { compute(); window.removeEventListener("scrollend", handler); };
+      window.addEventListener("scrollend", handler);
+    } else {
+      clearTimeout(scrollTimeout);
+      scrollTimeout = setTimeout(compute, 120);
     }
   };
 
-  window.addEventListener("scroll", onScroll, { passive: true });
-  window.addEventListener(
-    "resize",
-    () => {
-      utils.refreshHeaderH();
-      applyScrollMargin();
-      requestAnimationFrame(compute);
-    },
-    { passive: true }
-  );
+// scroll / resize
+let ticking = false;
+const onScroll = () => {
+  if (isMenuOpen()) return;
+  if (!ticking) {
+    ticking = true;
+    requestAnimationFrame(() => {
+      ticking = false;
+      compute();               // ← LIVE update podczas scrollowania
+    });
+  }
+  scheduleComputeAfterScroll(); // ← potwierdzenie po zakończeniu scrolla
+};
+window.addEventListener("scroll", onScroll, { passive: true });
 
-  // Start
+
+
+
+  // klik w link: zamknij menu, przewiń z offsetem (sekcja w 100% widoczna), potwierdź po scrollu
+  const prefersNoAnim = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  const behavior = prefersNoAnim ? "auto" : "smooth";
+
+  navLinks.forEach((a) => {
+    a.addEventListener("click", (e) => {
+      const href = mapHref(a.getAttribute("href"));
+      if (!href.startsWith("#")) return;
+      e.preventDefault();
+
+      const target = document.querySelector(href);
+      if (!target) return;
+
+      // zamknij hamburger niezależnie od implementacji
+      navMenu?.classList.remove("open");
+      headerEl?.classList.remove("open");
+      document.body.classList.remove("nav-open");
+      document.documentElement.classList.remove("nav-open");
+
+      // pozycja docelowa: top - (header + PEEK)
+      const OFFSET = getHeaderLive() + PEEK;
+      const targetY = Math.max(0, window.scrollY + target.getBoundingClientRect().top - OFFSET);
+
+      // wrażenie spójności: natychmiast zaznacz cel
+      setActive(target.id);
+
+      // płynny scroll + potwierdzenie po zakończeniu
+      window.scrollTo({ top: targetY, behavior });
+      scheduleComputeAfterScroll();
+    });
+  });
+
+  // obserwacja zamykania menu → dopiero wtedy przelicz
+  if (navMenu) {
+    const mo = new MutationObserver(() => {
+      if (!isMenuOpen()) scheduleComputeAfterScroll();
+    });
+    mo.observe(navMenu, { attributes: true, attributeFilter: ["class"] });
+    window.addEventListener("pagehide", () => mo.disconnect(), { once: true });
+  }
+
+  // start
+  applyScrollMargin();
   compute();
 }
+
+
+
 
 /* ============================================================
  3) ROK W STOPCE 
@@ -467,23 +544,28 @@ function initSmoothTop() {
  5) FLOATING SCROLL BUTTONS — hero(↓) = na sam dół, top(↑)
      - ↓ widoczny tylko gdy hero w kadrze i menu nie jest otwarte
      - ↓ przewija NA SAM DÓŁ (jeden duży smooth scrollBy)
-     - ↑ pokazuje się po 200 px
+     - ↑ pokazuje się po 200 px (DESKTOP ONLY)
      - prefers-reduced-motion respektowane
 ============================================================ */
 function initScrollButtons() {
-  const btnTop = document.querySelector(".scroll-top-float"); // ↑
-  const btnDown = document.querySelector(".scroll-down"); // ↓ (w #strona-glowna)
+  let btnTop = document.querySelector(".scroll-top-float"); // ↑
+  const btnDown = document.querySelector(".scroll-down");   // ↓ (w #strona-glowna)
   const hero = document.querySelector("#strona-glowna");
   const navMenu = document.getElementById("navMenu");
   if (!btnTop && !btnDown) return;
 
-  const prefersNoAnim = window.matchMedia(
-    "(prefers-reduced-motion: reduce)"
-  ).matches;
+  // 🔹 Mobile/touch: usuń przycisk "↑" i nie rejestruj dla niego żadnych listenerów
+  const isTouch = window.matchMedia("(hover:none) and (pointer:coarse)").matches;
+  if (isTouch && btnTop) {
+    btnTop.remove();
+    btnTop = null; // żeby dalsza logika go pomijała
+  }
+
+  const prefersNoAnim = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
   const behavior = prefersNoAnim ? "auto" : "smooth";
   const root = document.scrollingElement || document.documentElement;
 
-  // ↑ do góry
+  // ↑ do góry (DESKTOP ONLY — na mobile btnTop == null)
   btnTop?.addEventListener("click", (e) => {
     e.preventDefault();
     window.scrollTo({ top: 0, behavior });
@@ -496,26 +578,18 @@ function initScrollButtons() {
   });
 
   // Widoczność (↓ tylko gdy hero w kadrze, brak menu, nie przy samym dole)
-  let ticking = false,
-    heroInView = true;
+  let ticking = false, heroInView = true;
   const update = () => {
     ticking = false;
     const vh = window.innerHeight || 0;
     const docH = Math.max(root.scrollHeight, document.body.scrollHeight);
-    const y = Math.min(
-      root.scrollTop || window.scrollY || 0,
-      Math.max(0, docH - vh)
-    );
+    const y = Math.min(root.scrollTop || window.scrollY || 0, Math.max(0, docH - vh));
     const nearTop = y < 200;
     const nearBottom = y + vh > docH - 40;
     const menuOpen = !!(navMenu && navMenu.classList.contains("open"));
 
     if (btnTop) btnTop.classList.toggle("is-hidden", nearTop);
-    if (btnDown)
-      btnDown.classList.toggle(
-        "is-hidden",
-        !heroInView || menuOpen || nearBottom
-      );
+    if (btnDown) btnDown.classList.toggle("is-hidden", !heroInView || menuOpen || nearBottom);
   };
 
   const onScrollOrResize = () => {
@@ -549,16 +623,13 @@ function initScrollButtons() {
   update();
   window.addEventListener("scroll", onScrollOrResize, { passive: true });
   window.addEventListener("resize", onScrollOrResize, { passive: true });
-  window.addEventListener(
-    "pagehide",
-    () => {
-      io?.disconnect();
-      mo?.disconnect();
-    },
-    { once: true }
-  );
+  window.addEventListener("pagehide", () => {
+    io?.disconnect();
+    mo?.disconnect();
+  }, { once: true });
 }
 initScrollButtons();
+
 
 /* ============================================================
  6) FORMULARZ: kontakt (honeypot + walidacja + a11y + maska + mock)
