@@ -29,6 +29,7 @@
       - Esc zamyka, ←/→ nawigują, klik tła zamyka
       - obsługa swipe (mobile)
       - wybiera największy wariant z srcset, fallback: currentSrc/src
+  12) OFERTA — poziomy scroller (snap + maski + strzałki)   
 ====================================================================== */
 
 /* =========================================================
@@ -103,7 +104,7 @@ const utils = (() => {
     () => {
       cached = null;
     },
-    { passive: true },
+    { passive: true }
   );
 
   return { getHeaderH, refreshHeaderH, syncHeaderCssVar };
@@ -133,6 +134,8 @@ function initNav() {
     toggle.setAttribute("aria-expanded", String(open));
     toggle.setAttribute("aria-label", open ? "Zamknij menu" : "Otwórz menu");
 
+    window.dispatchEvent(new CustomEvent("nav:toggle", { detail: { open } }));
+
     if (silentFocus) return;
 
     if (open) {
@@ -151,7 +154,7 @@ function initNav() {
 
   // otwieranie/zamykanie przyciskiem
   toggle.addEventListener("click", () =>
-    setOpen(!menu.classList.contains("open")),
+    setOpen(!menu.classList.contains("open"))
   );
 
   // zamykanie po kliknięciu w link anchor (tylko na mobile)
@@ -174,7 +177,7 @@ function initNav() {
         setOpen(false);
       }
     },
-    { passive: true },
+    { passive: true }
   );
 
   // Esc + focus trap
@@ -183,7 +186,7 @@ function initNav() {
       // jeśli jesteśmy w dropdownie — zostaw jego obsłudze
       const ddMenuLive = document.querySelector("#dd-oferta");
       const ddTrigLive = document.querySelector(
-        '.dropdown-trigger[href="#oferta"]',
+        '.dropdown-trigger[href="#oferta"]'
       );
       const active = document.activeElement;
       const insideDd =
@@ -197,7 +200,7 @@ function initNav() {
     }
     if (e.key === "Tab" && menu.classList.contains("open")) {
       const f = menu.querySelectorAll(
-        'a, button, input, select, textarea, [tabindex]:not([tabindex="-1"])',
+        'a, button, input, select, textarea, [tabindex]:not([tabindex="-1"])'
       );
       if (!f.length) return;
       const first = f[0],
@@ -288,7 +291,7 @@ function initNav() {
           setDd(false, { returnFocus: false });
         }
       },
-      { passive: true },
+      { passive: true }
     );
 
     // Esc zamyka dropdown
@@ -364,7 +367,7 @@ function initScrollSpy() {
 
     // Specjalnie dla "Oferta" (trigger dropdownu)
     const ofertaTrigger = document.querySelector(
-      '.dropdown-trigger[aria-controls="dd-oferta"]',
+      '.dropdown-trigger[aria-controls="dd-oferta"]'
     );
     if (ofertaTrigger) {
       const isOferta = id === "oferta" || id.startsWith("oferta-");
@@ -417,7 +420,7 @@ function initScrollSpy() {
       applyScrollMargin();
       requestAnimationFrame(compute);
     },
-    { passive: true },
+    { passive: true }
   );
 
   // Start
@@ -443,7 +446,7 @@ function initFooterYear() {
 ============================================================ */
 function initSmoothTop() {
   const prefersNoAnim = window.matchMedia(
-    "(prefers-reduced-motion: reduce)",
+    "(prefers-reduced-motion: reduce)"
   ).matches;
   const behavior = prefersNoAnim ? "auto" : "smooth";
 
@@ -463,7 +466,7 @@ function initSmoothTop() {
 /* ============================================================
  5) FLOATING SCROLL BUTTONS — hero(↓) = na sam dół, top(↑)
      - ↓ widoczny tylko gdy hero w kadrze i menu nie jest otwarte
-     - ↓ przewija NA SAM DÓŁ strony
+     - ↓ przewija NA SAM DÓŁ (jeden duży smooth scrollBy)
      - ↑ pokazuje się po 200 px
      - prefers-reduced-motion respektowane
 ============================================================ */
@@ -475,20 +478,21 @@ function initScrollButtons() {
   if (!btnTop && !btnDown) return;
 
   const prefersNoAnim = window.matchMedia(
-    "(prefers-reduced-motion: reduce)",
+    "(prefers-reduced-motion: reduce)"
   ).matches;
   const behavior = prefersNoAnim ? "auto" : "smooth";
-  const scrollEl = document.scrollingElement || document.documentElement;
+  const root = document.scrollingElement || document.documentElement;
 
-  // Kliknięcia
-  btnTop?.addEventListener("click", () =>
-    window.scrollTo({ top: 0, behavior }),
-  );
-  btnDown?.addEventListener("click", () => {
-    // jeden odczyt – brak zbędnych reflowów
-    const docH = (document.scrollingElement || document.documentElement)
-      .scrollHeight;
-    window.scrollTo({ top: docH, behavior });
+  // ↑ do góry
+  btnTop?.addEventListener("click", (e) => {
+    e.preventDefault();
+    window.scrollTo({ top: 0, behavior });
+  });
+
+  // ↓ na sam dół — jeden, duży, płynny scroll względny
+  btnDown?.addEventListener("click", (e) => {
+    e.preventDefault();
+    window.scrollBy({ top: 1e9, behavior }); // przeglądarka i tak "zaklamruje" do dołu
   });
 
   // Widoczność (↓ tylko gdy hero w kadrze, brak menu, nie przy samym dole)
@@ -497,10 +501,10 @@ function initScrollButtons() {
   const update = () => {
     ticking = false;
     const vh = window.innerHeight || 0;
-    const docH = Math.max(scrollEl.scrollHeight, document.body.scrollHeight);
+    const docH = Math.max(root.scrollHeight, document.body.scrollHeight);
     const y = Math.min(
-      scrollEl.scrollTop || window.scrollY || 0,
-      Math.max(0, docH - vh),
+      root.scrollTop || window.scrollY || 0,
+      Math.max(0, docH - vh)
     );
     const nearTop = y < 200;
     const nearBottom = y + vh > docH - 40;
@@ -510,9 +514,10 @@ function initScrollButtons() {
     if (btnDown)
       btnDown.classList.toggle(
         "is-hidden",
-        !heroInView || menuOpen || nearBottom,
+        !heroInView || menuOpen || nearBottom
       );
   };
+
   const onScrollOrResize = () => {
     if (!ticking) {
       ticking = true;
@@ -528,7 +533,7 @@ function initScrollButtons() {
         heroInView = !!entries[0]?.isIntersecting;
         update();
       },
-      { root: null, threshold: 0.12 },
+      { root: null, threshold: 0.12 }
     );
     io.observe(hero);
   }
@@ -550,7 +555,7 @@ function initScrollButtons() {
       io?.disconnect();
       mo?.disconnect();
     },
-    { once: true },
+    { once: true }
   );
 }
 initScrollButtons();
@@ -712,7 +717,7 @@ function initContactForm() {
       const t = e.target;
       if (t.matches('input[type="text"], textarea')) t.value = t.value.trim();
     },
-    true,
+    true
   );
 
   // Zapobiegaj podwójnemu submitowi (Enter + klik)
@@ -739,7 +744,7 @@ function initContactForm() {
       } else if (nameInput && nameInput.validity.tooShort) {
         setFieldError(
           nameInput,
-          "Imię i nazwisko powinno mieć co najmniej 2 znaki.",
+          "Imię i nazwisko powinno mieć co najmniej 2 znaki."
         );
       }
 
@@ -772,7 +777,7 @@ function initContactForm() {
       if (!PL_PHONE.test(raw)) {
         setFieldError(
           phoneInput,
-          "Podaj poprawny numer (np. 600 700 800 lub +48 600 700 800).",
+          "Podaj poprawny numer (np. 600 700 800 lub +48 600 700 800)."
         );
         form.reportValidity();
         phoneInput.focus({ preventScroll: true });
@@ -872,7 +877,7 @@ function initHeaderShrink() {
         ro.disconnect();
       } catch {}
     },
-    { once: true },
+    { once: true }
   );
 }
 
@@ -948,7 +953,7 @@ function initRipple() {
   if (!btn) return;
 
   const prefersReduced = window.matchMedia?.(
-    "(prefers-reduced-motion: reduce)",
+    "(prefers-reduced-motion: reduce)"
   ).matches;
   if (prefersReduced) return; // szanuj ustawienia dostępności – nie podpinaj efektu
 
@@ -1059,7 +1064,7 @@ function initHeroBlurSync() {
       cancelAnimationFrame(rafId);
       clearTimeout(debTimer);
     },
-    { once: true },
+    { once: true }
   );
 }
 
@@ -1070,60 +1075,84 @@ function initHeroBlurSync() {
       - obsługa swipe (mobile)
       - wybiera największy wariant z srcset, fallback: currentSrc/src
 ============================================================ */
-function initOfertaLightbox(){
-  const imgs = Array.from(document.querySelectorAll('#oferta .card picture img'));
-  if(!imgs.length) return;
+function initOfertaLightbox() {
+  const imgs = Array.from(
+    document.querySelectorAll("#oferta .card picture img")
+  );
+  if (!imgs.length) return;
 
   // Zbuduj DOM lightboxa raz
   const $ = (h) => document.createElement(h);
-  const backdrop = $('div'); backdrop.className = 'lb-backdrop';
-  const wrap = $('div'); wrap.className = 'lb-wrap';
-  const viewport = $('div'); viewport.className = 'lb-viewport';
-  const img = new Image(); img.alt = ''; img.decoding = 'async';
-  viewport.appendChild(img); wrap.appendChild(viewport);
+  const backdrop = $("div");
+  backdrop.className = "lb-backdrop";
+  const wrap = $("div");
+  wrap.className = "lb-wrap";
+  const viewport = $("div");
+  viewport.className = "lb-viewport";
+  const img = new Image();
+  img.alt = "";
+  img.decoding = "async";
+  viewport.appendChild(img);
+  wrap.appendChild(viewport);
 
   const mkBtn = (cls, svg) => {
-    const b = $('button');
+    const b = $("button");
     b.className = `lb-btn ${cls}`;
-    b.type = 'button';
+    b.type = "button";
     b.innerHTML = svg;
-    b.setAttribute('aria-label',
-      cls==='lb-close' ? 'Zamknij podgląd' :
-      cls==='lb-prev'  ? 'Poprzednie zdjęcie' :
-                         'Następne zdjęcie'
+    b.setAttribute(
+      "aria-label",
+      cls === "lb-close"
+        ? "Zamknij podgląd"
+        : cls === "lb-prev"
+          ? "Poprzednie zdjęcie"
+          : "Następne zdjęcie"
     );
     return b;
   };
-  const svgX = '<svg viewBox="0 0 24 24"><path d="M18.3 5.7a1 1 0 0 0-1.4 0L12 10.6 7.1 5.7A1 1 0 0 0 5.7 7.1L10.6 12l-4.9 4.9a1 1 0 1 0 1.4 1.4L12 13.4l4.9 4.9a1 1 0 0 0 1.4-1.4L13.4 12l4.9-4.9a1 1 0 0 0 0-1.4z"/></svg>';
-  const svgL = '<svg viewBox="0 0 24 24"><path d="M15.7 5.3a1 1 0 0 1 0 1.4L11.4 11l4.3 4.3a1 1 0 1 1-1.4 1.4l-5-5a1 1 0 0 1 0-1.4l5-5a1 1 0 0 1 1.4 0z"/></svg>';
-  const svgR = '<svg viewBox="0 0 24 24"><path d="M8.3 5.3a1 1 0 0 0 0 1.4L12.6 11l-4.3 4.3a1 1 0 1 0 1.4 1.4l5-5a1 1 0 0 0 0-1.4l-5-5a1 1 0 0 0-1.4 0z"/></svg>';
-  const btnClose = mkBtn('lb-close', svgX);
-  const btnPrev  = mkBtn('lb-prev',  svgL);
-  const btnNext  = mkBtn('lb-next',  svgR);
+  const svgX =
+    '<svg viewBox="0 0 24 24"><path d="M18.3 5.7a1 1 0 0 0-1.4 0L12 10.6 7.1 5.7A1 1 0 0 0 5.7 7.1L10.6 12l-4.9 4.9a1 1 0 1 0 1.4 1.4L12 13.4l4.9 4.9a1 1 0 0 0 1.4-1.4L13.4 12l4.9-4.9a1 1 0 0 0 0-1.4z"/></svg>';
+  const svgL =
+    '<svg viewBox="0 0 24 24"><path d="M15.7 5.3a1 1 0 0 1 0 1.4L11.4 11l4.3 4.3a1 1 0 1 1-1.4 1.4l-5-5a1 1 0 0 1 0-1.4l5-5a1 1 0 0 1 1.4 0z"/></svg>';
+  const svgR =
+    '<svg viewBox="0 0 24 24"><path d="M8.3 5.3a1 1 0 0 0 0 1.4L12.6 11l-4.3 4.3a1 1 0 1 0 1.4 1.4l5-5a1 1 0 0 0 0-1.4l-5-5a1 1 0 0 0-1.4 0z"/></svg>';
+  const btnClose = mkBtn("lb-close", svgX);
+  const btnPrev = mkBtn("lb-prev", svgL);
+  const btnNext = mkBtn("lb-next", svgR);
 
   document.body.append(backdrop, wrap, btnClose, btnPrev, btnNext);
 
-  let idx = 0, open = false, trap = null;
+  let idx = 0,
+    open = false,
+    trap = null;
 
   const parseSrcset = (ss) => {
-    if(!ss) return [];
-    return ss.split(',').map(s=>s.trim()).map(s=>{
-      const m = s.match(/(.+)\s+(\d+)w$/);
-      return m ? {url:m[1], w:parseInt(m[2],10)} : {url:s.split(' ')[0], w:0};
-    }).sort((a,b)=>b.w-a.w);
+    if (!ss) return [];
+    return ss
+      .split(",")
+      .map((s) => s.trim())
+      .map((s) => {
+        const m = s.match(/(.+)\s+(\d+)w$/);
+        return m
+          ? { url: m[1], w: parseInt(m[2], 10) }
+          : { url: s.split(" ")[0], w: 0 };
+      })
+      .sort((a, b) => b.w - a.w);
   };
 
   const bestUrlFor = (el) => {
     // Najpierw spróbuj z <img srcset>
-    let best = parseSrcset(el.getAttribute('srcset'))[0]?.url;
-    if(!best){
+    let best = parseSrcset(el.getAttribute("srcset"))[0]?.url;
+    if (!best) {
       // Potem z <picture><source>
-      const pic = el.closest('picture');
-      if(pic){
-        const sources = Array.from(pic.querySelectorAll('source'));
+      const pic = el.closest("picture");
+      if (pic) {
+        const sources = Array.from(pic.querySelectorAll("source"));
         let candidates = [];
-        sources.forEach(s => { candidates = candidates.concat(parseSrcset(s.getAttribute('srcset'))); });
-        candidates.sort((a,b)=>b.w-a.w);
+        sources.forEach((s) => {
+          candidates = candidates.concat(parseSrcset(s.getAttribute("srcset")));
+        });
+        candidates.sort((a, b) => b.w - a.w);
         best = candidates[0]?.url || null;
       }
     }
@@ -1134,70 +1163,209 @@ function initOfertaLightbox(){
     const el = imgs[idx];
     const url = bestUrlFor(el);
     img.src = url;
-    img.alt = el.getAttribute('alt') || '';
+    img.alt = el.getAttribute("alt") || "";
   };
 
   const setOpen = (want) => {
     open = want;
-    backdrop.classList.toggle('is-open', open);
-    wrap.style.pointerEvents = open ? 'auto' : 'none';
-    document.documentElement.classList.toggle('lb-no-scroll', open); // steruje też widocznością przycisków w CSS
-    if(open){
+    backdrop.classList.toggle("is-open", open);
+    wrap.style.pointerEvents = open ? "auto" : "none";
+    document.documentElement.classList.toggle("lb-no-scroll", open); // steruje też widocznością przycisków w CSS
+    if (open) {
       applyImage();
       // focus na zamykanie dla a11y
-      btnClose.focus({preventScroll:true});
+      btnClose.focus({ preventScroll: true });
       // prosty focus trap (między trzema przyciskami)
       trap = (e) => {
-        if(e.key!=='Tab') return;
+        if (e.key !== "Tab") return;
         const focusables = [btnClose, btnPrev, btnNext];
-        const first = focusables[0], last = focusables[focusables.length-1];
-        if(e.shiftKey && document.activeElement===first){e.preventDefault();last.focus();}
-        else if(!e.shiftKey && document.activeElement===last){e.preventDefault();first.focus();}
+        const first = focusables[0],
+          last = focusables[focusables.length - 1];
+        if (e.shiftKey && document.activeElement === first) {
+          e.preventDefault();
+          last.focus();
+        } else if (!e.shiftKey && document.activeElement === last) {
+          e.preventDefault();
+          first.focus();
+        }
       };
-      document.addEventListener('keydown', trap);
+      document.addEventListener("keydown", trap);
     } else {
-      document.removeEventListener('keydown', trap||(()=>{}));
-      img.src = '';   // wyczyść podgląd (żeby nie „zostawał”)
-      img.alt = '';
+      document.removeEventListener("keydown", trap || (() => {}));
+      img.src = ""; // wyczyść podgląd (żeby nie „zostawał”)
+      img.alt = "";
     }
   };
 
-  const prev = ()=>{ idx = (idx-1+imgs.length)%imgs.length; applyImage(); };
-  const next = ()=>{ idx = (idx+1)%imgs.length; applyImage(); };
+  const prev = () => {
+    idx = (idx - 1 + imgs.length) % imgs.length;
+    applyImage();
+  };
+  const next = () => {
+    idx = (idx + 1) % imgs.length;
+    applyImage();
+  };
 
   // Klik na miniaturę
-  imgs.forEach((el,i)=>{
-    el.addEventListener('click',(e)=>{ e.preventDefault(); idx = i; setOpen(true); });
-    el.addEventListener('keydown',(e)=>{ if((e.key==='Enter'||e.key===' ')&&!open){ e.preventDefault(); idx=i; setOpen(true);} });
-    el.setAttribute('tabindex','0');
-    el.setAttribute('role','button');
-    el.setAttribute('aria-label','Powiększ zdjęcie');
+  imgs.forEach((el, i) => {
+    el.addEventListener("click", (e) => {
+      e.preventDefault();
+      idx = i;
+      setOpen(true);
+    });
+    el.addEventListener("keydown", (e) => {
+      if ((e.key === "Enter" || e.key === " ") && !open) {
+        e.preventDefault();
+        idx = i;
+        setOpen(true);
+      }
+    });
+    el.setAttribute("tabindex", "0");
+    el.setAttribute("role", "button");
+    el.setAttribute("aria-label", "Powiększ zdjęcie");
   });
 
   // Sterowanie
-  btnClose.addEventListener('click', ()=>setOpen(false));
-  btnPrev.addEventListener('click', prev);
-  btnNext.addEventListener('click', next);
-  backdrop.addEventListener('click', ()=>setOpen(false));
-  document.addEventListener('keydown',(e)=>{
-    if(!open) return;
-    if(e.key==='Escape'){ setOpen(false); }
-    else if(e.key==='ArrowLeft'){ prev(); }
-    else if(e.key==='ArrowRight'){ next(); }
+  btnClose.addEventListener("click", () => setOpen(false));
+  btnPrev.addEventListener("click", prev);
+  btnNext.addEventListener("click", next);
+  backdrop.addEventListener("click", () => setOpen(false));
+  document.addEventListener("keydown", (e) => {
+    if (!open) return;
+    if (e.key === "Escape") {
+      setOpen(false);
+    } else if (e.key === "ArrowLeft") {
+      prev();
+    } else if (e.key === "ArrowRight") {
+      next();
+    }
   });
 
   // Swipe (mobile)
-  let startX=0, startY=0, moved=false;
-  viewport.addEventListener('touchstart', (e)=>{ const t=e.changedTouches[0]; startX=t.clientX; startY=t.clientY; moved=false; }, {passive:true});
-  viewport.addEventListener('touchmove', ()=>{ moved=true; }, {passive:true});
-  viewport.addEventListener('touchend', (e)=>{
-    if(!moved) return;
-    const t=e.changedTouches[0]; const dx=t.clientX-startX; const dy=t.clientY-startY;
-    if(Math.abs(dx)>50 && Math.abs(dx)>Math.abs(dy)){ dx<0 ? next() : prev(); }
-  }, {passive:true});
+  let startX = 0,
+    startY = 0,
+    moved = false;
+  viewport.addEventListener(
+    "touchstart",
+    (e) => {
+      const t = e.changedTouches[0];
+      startX = t.clientX;
+      startY = t.clientY;
+      moved = false;
+    },
+    { passive: true }
+  );
+  viewport.addEventListener(
+    "touchmove",
+    () => {
+      moved = true;
+    },
+    { passive: true }
+  );
+  viewport.addEventListener(
+    "touchend",
+    (e) => {
+      if (!moved) return;
+      const t = e.changedTouches[0];
+      const dx = t.clientX - startX;
+      const dy = t.clientY - startY;
+      if (Math.abs(dx) > 50 && Math.abs(dx) > Math.abs(dy)) {
+        dx < 0 ? next() : prev();
+      }
+    },
+    { passive: true }
+  );
 }
 // odpal po DOMContentLoaded (na końcu inicjalizacji)
-document.addEventListener('DOMContentLoaded', initOfertaLightbox);
+document.addEventListener("DOMContentLoaded", initOfertaLightbox);
+
+/* ============================================================
+ 12) OFERTA — poziomy scroller (snap + maski + strzałki)
+     (bez guardów WIDTH – sam wykrywa czy „fits”)
+============================================================ */
+function initOfertaScroller() {
+  const scroller = document.getElementById("oferta-scroller");
+  const track = document.getElementById("oferta-track");
+  if (!scroller || !track) return;
+
+  const prev = scroller.querySelector(".scroller-btn.prev");
+  const next = scroller.querySelector(".scroller-btn.next");
+
+  const prefersNoAnim = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  const behavior = prefersNoAnim ? "auto" : "smooth";
+
+  const gap = () => parseFloat(getComputedStyle(track).gap) || 0;
+  const cardW = () => {
+    const c = track.querySelector(".card");
+    return c ? c.getBoundingClientRect().width : 0;
+  };
+  // bezpieczny krok: karta+gap albo 90% widocznego toru
+  const step = () => Math.max(cardW() + gap(), Math.round(track.clientWidth * 0.9));
+
+  const update = () => {
+    const max = Math.max(0, track.scrollWidth - track.clientWidth - 1);
+    const x = track.scrollLeft;
+    const atStart = x <= 1;
+    const atEnd = x >= max;
+
+    scroller.classList.toggle("at-start", atStart);
+    scroller.classList.toggle("at-end", atEnd);
+
+    prev?.setAttribute("aria-disabled", String(atStart));
+    next?.setAttribute("aria-disabled", String(atEnd));
+
+    const fits = track.scrollWidth <= track.clientWidth + 1;
+    scroller.classList.toggle("fits", fits);
+  };
+
+  let ticking = false;
+  const onScrollOrResize = () => {
+    if (ticking) return;
+    ticking = true;
+    requestAnimationFrame(() => {
+      ticking = false;
+      update();
+    });
+  };
+
+  // Strzałki
+  prev?.addEventListener("click", () =>
+    track.scrollBy({ left: -step(), behavior })
+  );
+  next?.addEventListener("click", () =>
+    track.scrollBy({ left: step(), behavior })
+  );
+
+  // Klawiatura (gdy focus na torze)
+  track.addEventListener("keydown", (e) => {
+    if (e.key === "ArrowRight") { e.preventDefault(); track.scrollBy({ left: step(), behavior }); }
+    else if (e.key === "ArrowLeft") { e.preventDefault(); track.scrollBy({ left: -step(), behavior }); }
+    else if (e.key === "Home") { e.preventDefault(); track.scrollTo({ left: 0, behavior }); }
+    else if (e.key === "End") { e.preventDefault(); track.scrollTo({ left: track.scrollWidth, behavior }); }
+  });
+
+  // Wheel → poziomo (przy pionowym gestcie na touchpadzie)
+  track.addEventListener("wheel", (e) => {
+    if (Math.abs(e.deltaY) > Math.abs(e.deltaX)) {
+      track.scrollBy({ left: e.deltaY, behavior: "auto" });
+      e.preventDefault();
+    }
+  }, { passive: false });
+
+  // Kiedy obrazki się dograją — przelicz
+  track.querySelectorAll("img").forEach((img) => {
+    if (!img.complete) {
+      img.addEventListener("load", onScrollOrResize, { once: true });
+      img.addEventListener("error", onScrollOrResize, { once: true });
+    }
+  });
+
+  // Init + nasłuchy
+  update();
+  track.addEventListener("scroll", onScrollOrResize, { passive: true });
+  window.addEventListener("resize", onScrollOrResize, { passive: true });
+  window.addEventListener("load", onScrollOrResize, { once: true });
+}
 
 
 
@@ -1205,14 +1373,15 @@ document.addEventListener('DOMContentLoaded', initOfertaLightbox);
    INIT — odpal wszystko po załadowaniu DOM (kolejność ma sens)
 ========================================================= */
 document.addEventListener("DOMContentLoaded", () => {
-  initHeaderShrink(); // 7) header: --header-h + shrink
-  initNav(); // 1) nawigacja (hamburger + dropdown „Oferta”)
-  initScrollSpy(); // 2) scrollspy
-  initSmoothTop(); // 4) smooth scroll do #top
-  initScrollButtons(); // 5) pływające przyciski ↑/↓
-  initContactForm(); // 6) formularz kontaktowy
-  initFooterYear(); // 3) rok w stopce
-  initThemeToggle(); // 8) motyw (dark/light)
-  initRipple(); // 9) ripple na „Wycena”
-  initHeroBlurSync(); // 10) HERO blur sync
+  initHeaderShrink();     // 7) header: --header-h + shrink
+  initNav();              // 1) nawigacja (hamburger + dropdown „Oferta”)
+  initScrollSpy();        // 2) scrollspy
+  initSmoothTop();        // 4) smooth scroll do #top
+  initScrollButtons();    // 5) pływające przyciski ↑/↓
+  initOfertaScroller();   // 12) OFERTA — poziomy scroller (snap + maski + strzałki)
+  initContactForm();      // 6) formularz kontaktowy
+  initFooterYear();       // 3) rok w stopce
+  initThemeToggle();      // 8) motyw (dark/light)
+  initRipple();           // 9) ripple na „Wycena”
+  initHeroBlurSync();     // 10) HERO blur sync
 });

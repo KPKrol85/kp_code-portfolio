@@ -467,6 +467,11 @@ h2 + .lead {
 :root[data-theme="light"] .site-header.is-shrink {
   box-shadow: 0 8px 20px rgba(2, 8, 23, 0.06);
 }
+:root.is-nav-open,
+:root.is-nav-open body {
+  overflow: hidden;
+}
+
 .header-bar {
   display: flex;
   align-items: center;
@@ -1093,180 +1098,188 @@ h2 + .lead {
   }
 }
 
-/* ============================== 04) BLOKI / OFERTA ============================== */
-.block {
-  overflow: visible;
-}
-.block.alt {
-  background: var(--card);
-  border-block: 1px solid var(--line);
-  overflow: visible;
-}
-#oferta,
-#oferta :is(.container, .wrap, .section-inner, .content, .block, .cards) {
-  overflow: visible !important;
-}
-.block-head {
-  text-align: center;
-}
-.cards {
-  display: grid;
-  gap: 16px;
-  grid-template-columns: 1fr;
-  align-items: stretch;
-  overflow: visible;
+/* ============================== 04) BLOKI / OFERTA (SCROLLER) ============================== */
+.block { overflow: visible; }
+.block.alt { background: var(--card); border-block: 1px solid var(--line); overflow: visible; }
+.block-head { text-align: center; }
+
+/* ——— wrapper scrollera ——— */
+.services-scroller{
   position: relative;
-  padding: 20px 20px 28px;
-  margin: 0;
-  content-visibility: visible !important;
-  contain: unset !important;
-  contain-intrinsic-size: auto !important;
+  margin-top: 12px;
+  overflow: visible;               /* żeby strzałki/maski mogły „wystawać” */
+  --btn-outside: 18px;             /* bazowo (nadpisane wyżej w media) */
 }
-.cards .card {
-  height: 100%;
+
+/* ===== MOBILE/TABLET (DOMYŚLNIE): zwykła siatka, bez strzałek i masek ===== */
+.services-track{
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 16px;
+  overflow: visible;
+  padding: 0;
+  scroll-snap-type: none;
 }
-.cards .card .card-link {
-  margin-top: auto;
-  align-self: center;
+.services-track > .card{
+  width: auto;
+  height: auto;
 }
-@media (min-width: 640px) {
-  .cards {
-    grid-template-columns: repeat(2, 1fr);
+.scroller-btn{ display: none; }               /* strzałki OFF na mobile */
+.services-scroller::before,
+.services-scroller::after{ display: none; }   /* maski OFF na mobile */
+
+/* 2 kolumny na nieco większych telefonach / małych tabletach */
+@media (min-width: 640px){
+  .services-track{ grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+
+/* ===== DESKTOP (≥992px): poziomy scroller, maski, strzałki ===== */
+@media (min-width: 992px){
+  /* wysunięcie wrappera do krawędzi kontenera sekcji */
+  #oferta .services-scroller{ margin-inline: -24px; }
+
+  /* tor przewijany */
+  .services-track{
+    display: flex;
+    gap: 16px;
+    overflow-x: auto;
+    overflow-y: visible;
+    overscroll-behavior-x: contain;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+    padding: 24px 40px 32px;        /* wygodny oddech (40 px po bokach) */
+    scrollbar-width: none;          /* Firefox: ukryj pasek */
+    touch-action: pan-x pinch-zoom; /* lepszy UX na touchpadzie */
   }
-}
-@media (min-width: 992px) {
-  .cards {
-    grid-template-columns: repeat(4, 1fr);
+  .services-track::-webkit-scrollbar{ display: none; } /* WebKit */
+
+  .services-track > .card{
+    flex: 0 0 clamp(240px, 28vw, 300px);
+    scroll-snap-align: start;
+    height: auto;
   }
+
+  /* maski (gradienty) na brzegach toru */
+  .services-scroller::before,
+  .services-scroller::after{
+    content: "";
+    position: absolute; top: 0; bottom: 0;
+    width: 48px; pointer-events: none;
+    transition: opacity .2s; opacity: 0;
+  }
+  .services-scroller::before{
+    left: 0;  background: linear-gradient(to right, var(--bg) 0%, transparent 60%);
+  }
+  .services-scroller::after{
+    right: 0; background: linear-gradient(to left,  var(--bg) 0%, transparent 60%);
+  }
+  .services-scroller:not(.at-start)::before{ opacity: .85; }
+  .services-scroller:not(.at-end)::after{   opacity: .85; }
+
+  /* strzałki przewijania */
+  .scroller-btn{
+    display: grid;
+    position: absolute;
+    top: 50%; transform: translateY(-50%);
+    width: 36px; height: 36px; border-radius: 999px;
+    border: 1px solid var(--line); background: var(--bg);
+    box-shadow: var(--shadow); place-items: center;
+    font-size: 20px; line-height: 1;
+    transition: transform .15s ease, box-shadow .15s ease, opacity .15s ease;
+    z-index: 2;
+  }
+  .scroller-btn.prev{ left:  calc(-1 * var(--btn-outside)); }
+  .scroller-btn.next{ right: calc(-1 * var(--btn-outside)); }
+  .scroller-btn:hover{
+    transform: translateY(-50%) scale(1.04);
+    box-shadow: 0 6px 20px rgba(0,0,0,.12);
+  }
+  .scroller-btn[aria-disabled="true"]{ opacity: .3; pointer-events: none; }
+
+  /* gdy nic nie ma do przewijania — ukryj strzałki i maski */
+  .services-scroller.fits .scroller-btn{ display: none; }
+  .services-scroller.fits::before,
+  .services-scroller.fits::after{ opacity: 0; }
+
+  .services-scroller{ --btn-outside: 26px; }  /* desktop: odsunięcie strzałek */
 }
-.card {
+
+/* szerzej na dużych desktopach */
+@media (min-width: 1200px){
+  #oferta .services-scroller{ margin-inline: -32px; }
+  #oferta .services-track{ padding-inline: 48px; }   /* 48 px po bokach */
+  .services-scroller{ --btn-outside: 42px; }         /* strzałki jeszcze dalej */
+}
+
+/* ——— CTA pod scrollerem ——— */
+.block-cta{
+  display: flex; justify-content: center; align-items: center;
+  margin-top: 12px; position: relative; z-index: 0; overflow: visible;
+}
+.block-cta .btn{ margin: 0; }
+
+/* ===== KARTA ===== */
+.card{
   border: 1px solid var(--line);
   background: var(--bg);
   border-radius: var(--radius, 16px);
   padding: 18px;
   box-shadow: var(--shadow);
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-  transition:
-    transform 0.2s ease,
-    box-shadow 0.2s ease,
-    border-color 0.2s ease;
-  position: relative;
-  z-index: 0;
-  overflow: visible;
-  will-change: transform;
+  display: flex; flex-direction: column; gap: 8px;
+  transition: transform .2s ease, box-shadow .2s ease, border-color .2s ease;
+  position: relative; z-index: 0; overflow: visible; will-change: transform;
 }
-.card:hover,
-.card:focus-within {
+.card:hover, .card:focus-within{
   transform: translateY(-2px);
   border-color: var(--line-strong);
-  box-shadow: 0 10px 24px -6px rgba(0, 0, 0, 0.18);
+  box-shadow: 0 10px 24px -6px rgba(0,0,0,.18);
   z-index: 10;
 }
-.card > a {
-  display: block;
-}
-.card picture {
-  display: block;
-  aspect-ratio: 4/3;
-  overflow: hidden;
-  border-radius: 12px;
-}
-.card picture img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  display: block;
-  cursor: pointer;
-  transition:
-    transform 0.3s ease,
-    box-shadow 0.3s ease;
-  will-change: transform;
+.card > a{ display: block; }
+.card picture{ display: block; aspect-ratio: 4/3; overflow: hidden; border-radius: 12px; }
+.card picture img{
+  width: 100%; height: 100%; object-fit: cover; display: block; cursor: pointer;
+  transition: transform .3s ease, box-shadow .3s ease; will-change: transform;
 }
 .card a:hover picture img,
-.card a:focus-visible picture img {
+.card a:focus-visible picture img{
   transform: scale(1.03);
-  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.12);
+  box-shadow: 0 6px 16px rgba(0,0,0,.12);
 }
-.card a:focus-visible picture {
-  outline: 3px solid var(--ring);
-  outline-offset: 3px;
-  border-radius: 12px;
+.card a:focus-visible picture{ outline: 3px solid var(--ring); outline-offset: 3px; border-radius: 12px; }
+.card-icon{ font-size: 28px; }
+.card h3{ margin: .1em 0 .1em; }
+.card h3 a{ color: inherit; text-decoration: none; border-radius: 6px; }
+.card h3 a:hover{ text-decoration: underline; }
+.card h3 a:focus-visible{ outline: 3px solid var(--ring); outline-offset: 3px; }
+.card p{ color: var(--muted); margin: 0 0 6px; }
+
+.card-link{
+  display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+  min-height: 44px; padding: 10px 14px; border-radius: 999px;
+  background: var(--brand); color: #0f172a !important;
+  font-weight: 700; text-decoration: none; text-align: center;
 }
-.card-icon {
-  font-size: 28px;
-}
-.card h3 {
-  margin: 0.1em 0 0.1em;
-}
-.card p {
-  color: var(--muted);
-  margin: 0 0 6px;
-}
-.card-link {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 8px;
-  min-height: 44px;
-  padding: 10px 14px;
-  border-radius: 999px;
-  background: var(--brand);
-  color: #0f172a !important;
-  font-weight: 700;
-  text-decoration: none;
-  text-align: center;
-}
-.card-link:hover {
-  filter: contrast(1.05);
-}
-.card-link:focus-visible {
-  outline: 3px solid var(--ring);
-  outline-offset: 3px;
-}
-.card h3 a {
-  color: inherit;
-  text-decoration: none;
-  border-radius: 6px;
-}
-.card h3 a:hover {
-  text-decoration: underline;
-}
-.card h3 a:focus-visible {
-  outline: 3px solid var(--ring);
-  outline-offset: 3px;
-}
-.block-cta {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin-top: 12px;
-  overflow: visible;
-  position: relative;
-  z-index: 0;
-}
-.block-cta .btn {
-  margin: 0;
-}
-/* DARK MODE — wyraźniejszy hover kart */
-:root[data-theme="dark"] .card {
-  box-shadow:
-    0 1px 0 rgba(255, 255, 255, 0.04),
-    0 0 0 1px rgba(255, 255, 255, 0.04);
+.card-link:hover{ filter: contrast(1.05); }
+.card-link:focus-visible{ outline: 3px solid var(--ring); outline-offset: 3px; }
+
+/* ===== Dark mode: mocniejszy hover kart i delikatniejsze maski ===== */
+:root[data-theme="dark"] .card{
+  box-shadow: 0 1px 0 rgba(255,255,255,.04), 0 0 0 1px rgba(255,255,255,.04);
 }
 :root[data-theme="dark"] .card:hover,
-:root[data-theme="dark"] .card:focus-within {
-  border-color: rgba(255, 255, 255, 0.18);
-  box-shadow:
-    0 14px 32px -8px rgba(0, 0, 0, 0.65),
-    0 0 0 1px rgba(255, 255, 255, 0.1);
+:root[data-theme="dark"] .card:focus-within{
+  border-color: rgba(255,255,255,.18);
+  box-shadow: 0 14px 32px -8px rgba(0,0,0,.65), 0 0 0 1px rgba(255,255,255,.1);
 }
 :root[data-theme="dark"] .card a:hover picture img,
-:root[data-theme="dark"] .card a:focus-visible picture img {
+:root[data-theme="dark"] .card a:focus-visible picture img{
   transform: scale(1.03);
-  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.45);
+  box-shadow: 0 10px 24px rgba(0,0,0,.45);
 }
+:root[data-theme="dark"] .services-scroller::before,
+:root[data-theme="dark"] .services-scroller::after{ opacity: .65; }
+
 
 /* ============================== 05) LOGOTYPY ============================== */
 .logos {
@@ -1290,7 +1303,7 @@ h2 + .lead {
   justify-items: stretch;
   max-width: 1100px;
   margin: 0 auto;
-  overflow: visible; /* nie ucinaj cieni */
+  overflow: visible;
 }
 
 .logos .logo,
@@ -1303,7 +1316,6 @@ h2 + .lead {
   border: 1px solid var(--line);
   border-radius: var(--logo-radius);
   background-clip: padding-box;
-  /* efekt bazowy jak w Opinie/FAQ */
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.06);
   transition:
     box-shadow 0.2s ease,
@@ -1325,7 +1337,7 @@ h2 + .lead {
 .logos .logo:focus-within {
   transform: translateY(-1px);
   border-color: var(--line-strong);
-  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.1); /* jak Opinie/FAQ */
+  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.1);
 }
 
 .logos-grid .logo a {
@@ -1374,7 +1386,6 @@ h2 + .lead {
   }
 }
 
-/* Oddech nad przyciskiem pod logotypami */
 .logos .center {
   margin-top: clamp(16px, 2.6vw, 28px);
   display: flex;
@@ -1382,6 +1393,18 @@ h2 + .lead {
 }
 
 /* ============================== 06) OPINIE ============================== */
+.rating {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+.rating-icon {
+  width: 16px;
+  height: auto;
+  display: inline-block;
+}
+
 .testimonials {
   scroll-margin-top: calc(var(--header-h) + 8px);
 }
@@ -1406,10 +1429,11 @@ h2 + .lead {
     gap: 20px;
   }
 }
+
 .testimonial {
   border: 1px solid var(--line);
   border-radius: var(--radius, 16px);
-  padding: 16px;
+  padding: 20px 22px; /* było: 16px */
   background: var(--bg);
   box-shadow: var(--shadow);
   height: 100%;
@@ -1420,36 +1444,57 @@ h2 + .lead {
     box-shadow 0.2s ease,
     border-color 0.2s ease;
 }
+@media (min-width: 1024px) {
+  .testimonial {
+    padding: 24px;
+  }
+}
+
 .testimonial:hover,
 .testimonial:focus-within {
   transform: translateY(-2px);
   border-color: var(--line-strong);
   box-shadow: 0 12px 28px rgba(0, 0, 0, 0.12);
 }
+
 .testimonial blockquote {
-  margin: 0 0 12px;
+  margin: 0 0 14px;
   font-size: clamp(1rem, 0.95rem + 0.2vw, 1.1rem);
-  line-height: 1.6;
+  line-height: 1.55;
+  letter-spacing: 0.01em;
   hyphens: auto;
   overflow-wrap: anywhere;
   position: relative;
-  padding-left: 44px;
+  padding-left: 40px;
 }
+@media (max-width: 480px) {
+  .testimonial blockquote {
+    line-height: 1.6;
+  }
+}
+
 .testimonial blockquote::before {
   content: "“";
   position: absolute;
-  left: 12px;
-  top: 6px;
-  font-size: 2rem;
+  left: 14px;
+  top: 0.2em;
+  font-size: 2.25rem;
   line-height: 1;
-  color: var(--brand);
-  opacity: 0.28;
+  color: var(--accent, #ffd54d);
+  opacity: 0.38;
 }
+:root[data-theme="dark"] .testimonial blockquote::before {
+  opacity: 0.5;
+}
+
 .testimonial figcaption {
   margin-top: auto;
+  padding-top: 12px;
   color: var(--muted);
-  font-weight: 700;
+  font-weight: 600;
+  letter-spacing: 0.01em;
 }
+
 @media (prefers-reduced-motion: reduce) {
   .testimonial {
     transition: none;
@@ -1459,7 +1504,7 @@ h2 + .lead {
     transform: none;
   }
 }
-/* Dark mode: subtelny cień i lekka poświata kart opinii */
+
 :root[data-theme="dark"] .testimonial {
   box-shadow:
     0 12px 28px rgba(0, 0, 0, 0.55),
@@ -2193,18 +2238,20 @@ section#kontakt .form-note {
 }
 .ft-map {
   margin-top: 0.25rem;
-  border-radius: 12px;
+  border-radius: 14px;
   overflow: hidden;
   box-shadow: 0 0 0 1px var(--ft-border) inset;
   background: rgba(255, 255, 255, 0.04);
   aspect-ratio: 16/9;
-  max-height: 240px;
+  max-height: 300px;
+  max-width: 240px;
 }
 .ft-map iframe {
   width: 100% !important;
   height: 100% !important;
   border: 0;
   display: block;
+  border-radius: 12px;
 }
 .ft-social {
   display: flex;
@@ -2610,6 +2657,15 @@ section#kontakt .form-note {
     bottom: 22px;
   }
 }
+@media (max-width: 640px) {
+  .scroll-top-float {
+    bottom: 42px;
+  }
+  :root[data-theme="dark"] .scroll-top-float {
+    background: rgba(0, 0, 0, 0.6);
+  }
+}
+
 @media (max-width: 480px) {
   .scroll-btn {
     width: 34px;
@@ -2627,7 +2683,6 @@ section#kontakt .form-note {
 }
 
 /* ============================== 13) OVERRIDES / DODATKI (koniec pliku) ============================== */
-/* DARK MODE — lepszy kontrast dropdownów + mobile nav */
 :root[data-theme="dark"] .dropdown {
   background: var(--card);
   border-color: color-mix(in srgb, #fff 10%, var(--line));
@@ -2655,7 +2710,7 @@ section#kontakt .form-note {
     color: #fff;
   }
 }
-/* Mobile (light): ciemniejsze kreski hamburgera */
+
 @media (max-width: 1024px) {
   :root[data-theme="light"] .nav-toggle {
     color: var(--fg);
@@ -2666,7 +2721,7 @@ section#kontakt .form-note {
     opacity: 0.95;
   }
 }
-/* Caret przy "Oferta" — desktop + obrót; ukryty w mobile */
+
 .nav .nav-menu .caret {
   display: inline-block;
   margin-left: 6px;
@@ -2690,7 +2745,7 @@ section#kontakt .form-note {
     display: none;
   }
 }
-/* HERO — overlay sterowany zmiennymi + dodatkowa czytelność tekstu */
+
 :root {
   --hero-overlay-a: 0.3;
 }
@@ -2727,7 +2782,7 @@ section#kontakt .form-note {
 .hero .btn {
   box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
 }
-/* FAQ — większa hit-area, caret i focus */
+
 #faq details {
   border: 1px solid var(--line);
   border-radius: 12px;
@@ -2780,7 +2835,7 @@ section#kontakt .form-note {
     padding: 18px 44px 18px 16px;
   }
 }
-/* SECTION RHYTHM — spójne pionowe odstępy sekcji */
+
 :root {
   --sec-py: clamp(48px, 8vw, 96px);
   --sec-py-sm: clamp(36px, 6vw, 72px);
@@ -2807,7 +2862,6 @@ section#kontakt .form-note {
   margin-bottom: var(--sec-head-mb);
 }
 
-/* HOVER LIFT — subtelny efekt dla kart */
 .hover-card {
   transition:
     transform 0.25s ease,
@@ -2846,7 +2900,7 @@ section#kontakt .form-note {
 .hover-card a:not(.btn):hover {
   text-decoration: underline;
 }
-/* TYPO TUNING — h2 / h3 / .lead */
+
 :root {
   --fs-h2: clamp(1.7rem, 1.05rem + 2.1vw, 2.5rem);
   --lh-h2: 1.15;
@@ -2875,7 +2929,7 @@ h3 {
 :root[data-theme="dark"] .lead {
   color: color-mix(in srgb, var(--fg) 92%, #fff);
 }
-/* MICRO-PERF — content-visibility */
+
 @supports (content-visibility: auto) {
   #oferta .cards,
   .logos,
@@ -2889,29 +2943,27 @@ h3 {
     contain-intrinsic-size: 900px;
   }
 }
+
 @media (max-width: 640px) {
   @supports (content-visibility: auto) {
-    #oferta .cards,
-    .logos,
-    .testimonials,
-    #faq .faq-list,
     .site-footer .ft-grid {
-      contain-intrinsic-size: 600px;
+      content-visibility: visible;
+      contain-intrinsic-size: auto;
     }
   }
 }
-/* FORM: centrowanie w Grid (desktop) */
+
 @media (min-width: 900px) {
   .form .checkbox {
     width: fit-content;
     justify-self: center;
   }
 }
-/* Dark mode: mocniejszy ring dla checkboxa */
+
 :root[data-theme="dark"] .checkbox input:focus-visible {
   box-shadow: 0 0 0 3px color-mix(in srgb, #fff 80%, var(--brand-2));
 }
-/* MICRO-PERF — zostaje dla innych sekcji, ale NIE dla #oferta .cards */
+
 @supports (content-visibility: auto) {
   #oferta .cards {
     content-visibility: visible !important;
@@ -2937,13 +2989,11 @@ h3 {
   }
 }
 
-/* BEGIN PATCH: section-spacing (.block/.cta/.testimonials) */
 .block,
 .cta,
 .testimonials {
   padding-block: clamp(3rem, 6vw, 6rem);
 }
-/* END PATCH */
 
 /* ============================== 14) LIGHTBOX (galeria kart) ============================== */
 .lb-backdrop {
