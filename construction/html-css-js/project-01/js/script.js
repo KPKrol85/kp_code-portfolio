@@ -7,11 +7,7 @@
      - Podświetla .dropdown-trigger dla #oferta i #oferta-*
   3) ROK W STOPCE 
   4) SMOOTH SCROLL #TOP 
-  5) FLOATING SCROLL BUTTONS — mijanka w połowie widoku
-     - ↓ widoczny w górnej połowie strony, ↑ w dolnej
-     - chowa ↓ tuż przy dole i ↑ tuż przy górze
-     - respektuje prefers-reduced-motion
-     - wstrzymuje ↓ gdy menu mobilne jest otwarte
+  5) ................................................................
   6) FORMULARZ: kontakt (honeypot + walidacja + a11y + mock)
   7) HEADER — shrink + dokładne --header-h (z Fonts & ResizeObserver)
      - Dodaje .is-shrink po przewinięciu > ENTER, usuwa poniżej EXIT (histereza)
@@ -31,17 +27,6 @@
       - wybiera największy wariant z srcset, fallback: currentSrc/src
   12) OFERTA — poziomy scroller (snap + maski + strzałki)   
 ====================================================================== */
-
-/* =========================================================
-INIT — uruchom wszystko po załadowaniu DOM
-Kolejność:
-1) header (ustawia --header-h i cache w utils)
-2) nav (toggle + dropdown)
-3) scrollspy (używa utils.getHeaderH)
-4) smooth top + floating buttons
-5) formularz + rok w stopce
-6) motyw, ripple, hero blur
-========================================================= */
 
 /* ============================================================
  0) UTILS 
@@ -540,95 +525,109 @@ function initSmoothTop() {
   });
 }
 
-/* ============================================================
- 5) FLOATING SCROLL BUTTONS — hero(↓) = na sam dół, top(↑)
-     - ↓ widoczny tylko gdy hero w kadrze i menu nie jest otwarte
-     - ↓ przewija NA SAM DÓŁ (jeden duży smooth scrollBy)
-     - ↑ pokazuje się po 200 px (DESKTOP ONLY)
-     - prefers-reduced-motion respektowane
-============================================================ */
-function initScrollButtons() {
-  let btnTop = document.querySelector(".scroll-top-float"); // ↑
-  const btnDown = document.querySelector(".scroll-down");   // ↓ (w #strona-glowna)
-  const hero = document.querySelector("#strona-glowna");
-  const navMenu = document.getElementById("navMenu");
-  if (!btnTop && !btnDown) return;
 
-  // 🔹 Mobile/touch: usuń przycisk "↑" i nie rejestruj dla niego żadnych listenerów
-  const isTouch = window.matchMedia("(hover:none) and (pointer:coarse)").matches;
-  if (isTouch && btnTop) {
-    btnTop.remove();
-    btnTop = null; // żeby dalsza logika go pomijała
+/* 5) SKIP-NEXT — 2 kroki: Oferta → Kontakt (formularz) */
+function initSkipNext() {
+  // Mobile guard – tylko wewnątrz funkcji
+  const isMobile = window.matchMedia("(hover:none) and (pointer:coarse)").matches || window.innerWidth <= 768;
+  if (isMobile) {
+    document.getElementById("skipNext")?.remove();
+    document.getElementById("skipNextLive")?.remove();
+    return;
   }
 
-  const prefersNoAnim = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-  const behavior = prefersNoAnim ? "auto" : "smooth";
-  const root = document.scrollingElement || document.documentElement;
+  const btn = document.getElementById("skipNext");
+  if (!btn) return;
 
-  // ↑ do góry (DESKTOP ONLY — na mobile btnTop == null)
-  btnTop?.addEventListener("click", (e) => {
-    e.preventDefault();
-    window.scrollTo({ top: 0, behavior });
-  });
+  // Kolejność tylko: Oferta → Kontakt
+  const order = ["#oferta", "#kontakt"].map(sel => document.querySelector(sel)).filter(Boolean);
+  if (order.length < 1) return;
 
-  // ↓ na sam dół — jeden, duży, płynny scroll względny
-  btnDown?.addEventListener("click", (e) => {
-    e.preventDefault();
-    window.scrollBy({ top: 1e9, behavior }); // przeglądarka i tak "zaklamruje" do dołu
-  });
+  const live = document.getElementById("skipNextLive");
+  const headerEl = document.querySelector(".site-header");
+  const PEEK = 12;
+  const getHeaderH = () => (window.utils?.getHeaderH?.() || headerEl?.getBoundingClientRect().height || 0) + PEEK;
 
-  // Widoczność (↓ tylko gdy hero w kadrze, brak menu, nie przy samym dole)
-  let ticking = false, heroInView = true;
-  const update = () => {
-    ticking = false;
-    const vh = window.innerHeight || 0;
-    const docH = Math.max(root.scrollHeight, document.body.scrollHeight);
-    const y = Math.min(root.scrollTop || window.scrollY || 0, Math.max(0, docH - vh));
-    const nearTop = y < 200;
-    const nearBottom = y + vh > docH - 40;
-    const menuOpen = !!(navMenu && navMenu.classList.contains("open"));
-
-    if (btnTop) btnTop.classList.toggle("is-hidden", nearTop);
-    if (btnDown) btnDown.classList.toggle("is-hidden", !heroInView || menuOpen || nearBottom);
+  const labelFor = (el) => {
+    const id = (el?.id || "").toLowerCase();
+    if (id === "oferta") return "Oferta";
+    if (id === "kontakt") return "Formularz";
+    return "kolejna sekcja";
+  };
+  const setLabel = (el) => {
+    const name = labelFor(el);
+    btn.setAttribute("aria-label", "Przejdź do: " + name);
+    if (live) live.textContent = "Następny: " + name;
   };
 
-  const onScrollOrResize = () => {
+  const getCurrentIdx = () => {
+    const offset = getHeaderH();
+    const probeY = offset + 1;
+    let idx = -1;
+    for (let i = 0; i < order.length; i++) {
+      const r = order[i].getBoundingClientRect();
+      if (r.top <= probeY && r.bottom > probeY) { idx = i; break; }
+      if (r.top - offset <= 0) idx = i;
+    }
+    return idx;
+  };
+  const nextTarget = () => {
+    const idx = getCurrentIdx();
+    if (idx < 0) return order[0];           // start → Oferta
+    if (idx === 0 && order[1]) return order[1]; // po Ofercie → Kontakt
+    return null;                            // po Kontakcie → koniec
+  };
+
+  const updateVisibility = () => {
+    const next = nextTarget();
+    const done = !next;                     // po drugim kroku chowamy
+    btn.classList.toggle("is-hidden", done);
+    if (next) setLabel(next);
+  };
+
+  btn.addEventListener("click", () => {
+    const target = nextTarget();
+    if (!target) return;
+    const y = Math.max(0, window.scrollY + target.getBoundingClientRect().top - getHeaderH());
+    const prefersNoAnim = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    window.scrollTo({ top: y, behavior: prefersNoAnim ? "auto" : "smooth" });
+    setTimeout(updateVisibility, 60);
+  });
+
+  let ticking = false;
+  const onScroll = () => {
     if (!ticking) {
       ticking = true;
-      requestAnimationFrame(update);
+      requestAnimationFrame(() => { ticking = false; updateVisibility(); });
     }
   };
+  window.addEventListener("scroll", onScroll, { passive: true });
+  window.addEventListener("resize", updateVisibility, { passive: true });
 
-  // Obserwacja hero (czy w kadrze)
-  let io;
-  if (hero) {
-    io = new IntersectionObserver(
-      (entries) => {
-        heroInView = !!entries[0]?.isIntersecting;
-        update();
-      },
-      { root: null, threshold: 0.12 }
-    );
-    io.observe(hero);
-  }
-
-  // Obserwacja otwierania/zamykania menu
-  let mo;
-  if (navMenu) {
-    mo = new MutationObserver(update);
-    mo.observe(navMenu, { attributes: true, attributeFilter: ["class"] });
-  }
-
-  // Init + nasłuchy
-  update();
-  window.addEventListener("scroll", onScrollOrResize, { passive: true });
-  window.addEventListener("resize", onScrollOrResize, { passive: true });
-  window.addEventListener("pagehide", () => {
-    io?.disconnect();
-    mo?.disconnect();
-  }, { once: true });
+  updateVisibility();
 }
-initScrollButtons();
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 /* ============================================================
@@ -1448,7 +1447,7 @@ document.addEventListener("DOMContentLoaded", () => {
   initNav();              // 1) nawigacja (hamburger + dropdown „Oferta”)
   initScrollSpy();        // 2) scrollspy
   initSmoothTop();        // 4) smooth scroll do #top
-  initScrollButtons();    // 5) pływające przyciski ↑/↓
+  initSkipNext();         // 5) SKIP-NEXT  
   initOfertaScroller();   // 12) OFERTA — poziomy scroller (snap + maski + strzałki)
   initContactForm();      // 6) formularz kontaktowy
   initFooterYear();       // 3) rok w stopce

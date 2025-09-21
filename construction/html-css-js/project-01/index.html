@@ -449,12 +449,7 @@
     <!-- =========================================================
      HERO 
      ========================================================= -->
-    <button
-      class="scroll-btn scroll-down"
-      type="button"
-      aria-label="Przewiń do następnej sekcji"
-      title="W dół"
-    ></button>
+ 
 
     <section
       id="strona-glowna"
@@ -1622,13 +1617,6 @@
       </symbol>
     </svg>
 
-    <!-- Pływające przyciski przewijania -->
-    <button
-      class="scroll-btn scroll-top-float is-hidden"
-      type="button"
-      aria-label="Przewiń na górę strony"
-      title="Do góry"
-    ></button>
     <!-- Mały helper: rok w stopce (bezpieczny, bez błędów jeśli #year nie istnieje) -->
     <script>
       (function () {
@@ -1692,5 +1680,12 @@
         history.replaceState(null, "", location.pathname + location.hash);
       })();
     </script>
+
+    <!-- Skip-Next (Oferta → FAQ → Kontakt) -->
+<button id="skipNext" class="skip-next is-hidden" type="button" aria-label="Przejdź do: Oferta">
+  <span aria-hidden="true">↓</span>
+</button>
+<div id="skipNextLive" class="sr-only" aria-live="polite"></div>
+
   </body>
 </html>
