@@ -244,193 +244,196 @@
     />
     <link rel="manifest" href="../assets/img/favicon/site.webmanifest" />
   </head>
-<body class="page-sub">
-  <!-- A11Y: Skip link + kotwica #top -->
-  <a class="skip" href="#main">Pomiń do treści</a>
-  <div
-    id="top"
-    aria-hidden="true"
-    style="position: relative; inset: 0; height: 0"
-  ></div>
+  <body class="page-sub">
+    <!-- A11Y: Skip link + kotwica #top -->
+    <a class="skip" href="#main">Pomiń do treści</a>
+    <div
+      id="top"
+      aria-hidden="true"
+      style="position: relative; inset: 0; height: 0"
+    ></div>
 
-  <!-- =========================================================
+    <!-- =========================================================
      HEADER
      ========================================================= -->
-  <header class="site-header" role="banner">
-    <div class="container header-bar">
-      <!-- Brand -->
-      <a
-        class="brand"
-        href="#top"
-        aria-label="Strona główna — Ekipa Remontowa"
-      >
-        <picture class="brand-logo">
-          <img
-            src="../assets/img/main-logo/main-logo-light-512.svg"
-            alt="Nazwa firmy"
-            class="ft-logo logo--light"
-            loading="eager"
-            fetchpriority="high"
-            decoding="async"
-          />
-          <img
-            src="../assets/img/main-logo/main-logo-dark-512.svg"
-            alt="Nazwa firmy"
-            class="ft-logo logo--dark"
-            loading="eager"
-            fetchpriority="high"
-            decoding="async"
-          />
-        </picture>
-        <span class="brand-name">LOGO FIRMY</span>
-      </a>
-
-      <!-- Główna nawigacja (dla oferta/hydraulika.html) -->
-      <nav class="nav" role="navigation" aria-label="Główna nawigacja">
-        <ul id="navMenu" class="nav-menu">
-          <li>
-            <a href="../index.html">Strona główna</a>
-          </li>
-
-          <!-- Oferta (link + dropdown) -->
-          <li class="nav-item has-dropdown">
-            <a
-              href="../index.html#oferta"
-              class="nav-link dropdown-trigger"
-              aria-expanded="false"
-              aria-haspopup="menu"
-              aria-controls="dd-oferta"
-            >
-              Oferta <span class="caret" aria-hidden="true">▾</span>
-            </a>
-            <ul
-              id="dd-oferta"
-              class="dropdown"
-              role="menu"
-              aria-label="Podmenu: Oferta"
-            >
-              <li role="none">
-                <a role="menuitem" href="lazienki.html">Łazienki</a>
-              </li>
-              <li role="none">
-                <a role="menuitem" href="malowanie.html"
-                  >Malowanie &amp; gładzie</a
-                >
-              </li>
-              <li role="none">
-                <a role="menuitem" href="kafelkowanie.html">Kafelkowanie</a>
-              </li>
-              <li role="none">
-                <a role="menuitem" href="elektryka.html">Elektryka</a>
-              </li>
-              <li role="none">
-                <a role="menuitem" href="hydraulika.html">Hydraulika</a>
-              </li>
-            </ul>
-          </li>
-
-          <li><a href="../index.html#realizacje">Realizacje</a></li>
-          <li><a href="../index.html#opinie">Opinie</a></li>
-          <li><a href="../index.html#faq">FAQ</a></li>
-          <li><a href="../index.html#kontakt">Kontakt</a></li>
-          <li>
-            <a class="btn btn--sm" href="../index.html#kontakt">Wycena</a>
-          </li>
-        </ul>
-      </nav>
-
-      <!-- Akcje w pasku (po prawej): przełącznik motywu + hamburger -->
-      <div class="header-actions">
-        <button
-          class="theme-toggle"
-          type="button"
-          aria-pressed="false"
-          aria-label="Przełącz tryb"
-          title="Przełącz tryb"
-        ></button>
-        <button
-          class="nav-toggle"
-          type="button"
-          aria-expanded="false"
-          aria-controls="navMenu"
-          aria-label="Otwórz menu"
+    <header class="site-header" role="banner">
+      <div class="container header-bar">
+        <!-- Brand -->
+        <a
+          class="brand"
+          href="#top"
+          aria-label="Strona główna — Ekipa Remontowa"
         >
-          <span class="nav-line"></span><span class="nav-line"></span
-          ><span class="nav-line"></span>
-        </button>
-      </div>
-    </div>
-  </header>
+          <picture class="brand-logo">
+            <img
+              src="../assets/img/main-logo/main-logo-light-512.svg"
+              alt="Nazwa firmy"
+              class="ft-logo logo--light"
+              loading="eager"
+              fetchpriority="high"
+              decoding="async"
+            />
+            <img
+              src="../assets/img/main-logo/main-logo-dark-512.svg"
+              alt="Nazwa firmy"
+              class="ft-logo logo--dark"
+              loading="eager"
+              fetchpriority="high"
+              decoding="async"
+            />
+          </picture>
+          <span class="brand-name">LOGO FIRMY</span>
+        </a>
 
-  <main id="main" role="main">
-    <!-- SUBPAGE HEADER (lekki, bez .hero) -->
-    <section
-      class="block"
-      id="hydraulika"
-      role="region"
-      aria-labelledby="hydraulika-heading"
-    >
-      <div class="container">
-        <header class="block-head">
-          <h1 id="hydraulika-heading">Hydraulika — instalacje i serwis</h1>
-          <p class="lead">
-            Instalacje wod-kan od podstaw, przeróbki i naprawy, biały montaż oraz
-            szczelne rozwiązania w strefach mokrych. Czysto, terminowo, z gwarancją.
-          </p>
-        </header>
+        <!-- Główna nawigacja (dla oferta/hydraulika.html) -->
+        <nav class="nav" role="navigation" aria-label="Główna nawigacja">
+          <ul id="navMenu" class="nav-menu">
+            <li>
+              <a href="../index.html">Strona główna</a>
+            </li>
 
-        <!-- karty oferty (spójne .hover-card jak na innych podstronach) -->
-        <div class="cards">
-          <article class="card hover-card">
-            <h3>Instalacje od podstaw</h3>
-            <p>
-              Projekt trasy, rury PEX/PP, rozdzielacze, zawory i odpowietrzenia.
-              Mieszkania i domy jednorodzinne.
-            </p>
-          </article>
+            <!-- Oferta (link + dropdown) -->
+            <li class="nav-item has-dropdown">
+              <a
+                href="../index.html#oferta"
+                class="nav-link dropdown-trigger"
+                aria-expanded="false"
+                aria-haspopup="menu"
+                aria-controls="dd-oferta"
+              >
+                Oferta <span class="caret" aria-hidden="true">▾</span>
+              </a>
+              <ul
+                id="dd-oferta"
+                class="dropdown"
+                role="menu"
+                aria-label="Podmenu: Oferta"
+              >
+                <li role="none">
+                  <a role="menuitem" href="lazienki.html">Łazienki</a>
+                </li>
+                <li role="none">
+                  <a role="menuitem" href="malowanie.html"
+                    >Malowanie &amp; gładzie</a
+                  >
+                </li>
+                <li role="none">
+                  <a role="menuitem" href="kafelkowanie.html">Kafelkowanie</a>
+                </li>
+                <li role="none">
+                  <a role="menuitem" href="elektryka.html">Elektryka</a>
+                </li>
+                <li role="none">
+                  <a role="menuitem" href="hydraulika.html">Hydraulika</a>
+                </li>
+              </ul>
+            </li>
 
-          <article class="card hover-card">
-            <h3>Przeróbki i naprawy</h3>
-            <p>
-              Zmiany podejść, usuwanie nieszczelności, wymiana odcinków rur —
-              szybkie lokalne interwencje.
-            </p>
-          </article>
+            <li><a href="../index.html#realizacje">Realizacje</a></li>
+            <li><a href="../index.html#opinie">Opinie</a></li>
+            <li><a href="../index.html#faq">FAQ</a></li>
+            <li><a href="../index.html#kontakt">Kontakt</a></li>
+            <li>
+              <a class="btn btn--sm" href="../index.html#kontakt">Wycena</a>
+            </li>
+          </ul>
+        </nav>
 
-          <article class="card hover-card">
-            <h3>Biały montaż i armatura</h3>
-            <p>
-              WC podtynkowe, umywalki, baterie, zlewy, kabiny, wanny, syfony i
-              odwodnienia liniowe.
-            </p>
-          </article>
-
-          <article class="card hover-card">
-            <h3>Uszczelnienia i próby</h3>
-            <p>
-              Hydroizolacje w strefach mokrych, silikonowanie, próby ciśnieniowe
-              oraz protokół odbioru.
-            </p>
-          </article>
+        <!-- Akcje w pasku (po prawej): przełącznik motywu + hamburger -->
+        <div class="header-actions">
+          <button
+            class="theme-toggle"
+            type="button"
+            aria-pressed="false"
+            aria-label="Przełącz tryb"
+            title="Przełącz tryb"
+          ></button>
+          <button
+            class="nav-toggle"
+            type="button"
+            aria-expanded="false"
+            aria-controls="navMenu"
+            aria-label="Otwórz menu"
+          >
+            <span class="nav-line"></span><span class="nav-line"></span
+            ><span class="nav-line"></span>
+          </button>
         </div>
-
-        <div class="block-cta">
-          <a class="btn"
-            href="../index.html?usluga=Hydraulika#kontakt"
-            aria-label="Przejdź do formularza wyceny — Hydraulika">
-            Wycena
-          </a>
-
-          <a class="btn btn--ghost" 
-            href="../index.html#realizacje"
-            aria-label="Zobacz galerię realizacji hydraulicznych">
-            Galeria realizacji
-          </a>
-        </div>
-
       </div>
-    </section>
+    </header>
 
+    <main id="main" role="main">
+      <!-- SUBPAGE HEADER (lekki, bez .hero) -->
+      <section
+        class="block"
+        id="hydraulika"
+        role="region"
+        aria-labelledby="hydraulika-heading"
+      >
+        <div class="container">
+          <header class="block-head">
+            <h1 id="hydraulika-heading">Hydraulika — instalacje i serwis</h1>
+            <p class="lead">
+              Instalacje wod-kan od podstaw, przeróbki i naprawy, biały montaż
+              oraz szczelne rozwiązania w strefach mokrych. Czysto, terminowo, z
+              gwarancją.
+            </p>
+          </header>
+
+          <!-- karty oferty (spójne .hover-card jak na innych podstronach) -->
+          <div class="cards">
+            <article class="card hover-card">
+              <h3>Instalacje od podstaw</h3>
+              <p>
+                Projekt trasy, rury PEX/PP, rozdzielacze, zawory i
+                odpowietrzenia. Mieszkania i domy jednorodzinne.
+              </p>
+            </article>
+
+            <article class="card hover-card">
+              <h3>Przeróbki i naprawy</h3>
+              <p>
+                Zmiany podejść, usuwanie nieszczelności, wymiana odcinków rur —
+                szybkie lokalne interwencje.
+              </p>
+            </article>
+
+            <article class="card hover-card">
+              <h3>Biały montaż i armatura</h3>
+              <p>
+                WC podtynkowe, umywalki, baterie, zlewy, kabiny, wanny, syfony i
+                odwodnienia liniowe.
+              </p>
+            </article>
+
+            <article class="card hover-card">
+              <h3>Uszczelnienia i próby</h3>
+              <p>
+                Hydroizolacje w strefach mokrych, silikonowanie, próby
+                ciśnieniowe oraz protokół odbioru.
+              </p>
+            </article>
+          </div>
+
+          <div class="block-cta">
+            <a
+              class="btn"
+              href="../index.html?usluga=Hydraulika#kontakt"
+              aria-label="Przejdź do formularza wyceny — Hydraulika"
+            >
+              Wycena
+            </a>
+
+            <a
+              class="btn btn--ghost"
+              href="../index.html#realizacje"
+              aria-label="Zobacz galerię realizacji hydraulicznych"
+            >
+              Galeria realizacji
+            </a>
+          </div>
+        </div>
+      </section>
 
       <!-- =========================================================
 Hydraulika - FAQ
@@ -445,7 +448,7 @@ Hydraulika - FAQ
       >
         <div class="container">
           <header class="block-head">
-            <h2 id="faq-heading">FAQ — najczęstsze pytania</h2>
+            <h2 class="answer" id="faq-heading">FAQ — najczęstsze pytania</h2>
             <p id="faq-desc">
               Krótko i konkretnie — najważniejsze informacje o hydraulice
               (instalacje wod-kan i biały montaż).
@@ -458,7 +461,12 @@ Hydraulika - FAQ
                 <summary id="q-1">
                   Czy wykonujecie próbę szczelności po przeróbkach?
                 </summary>
-                <div id="a-1" role="region" aria-labelledby="q-1">
+                <div
+                  class="answer"
+                  id="a-1"
+                  role="region"
+                  aria-labelledby="q-1"
+                >
                   <p>
                     Tak — po zakończeniu prac robimy
                     <strong>próbę ciśnieniową</strong> i potwierdzamy wynik
@@ -474,7 +482,12 @@ Hydraulika - FAQ
                 <summary id="q-2">
                   Ile trwa przeróbka podejść w łazience?
                 </summary>
-                <div id="a-2" role="region" aria-labelledby="q-2">
+                <div
+                  class="answer"
+                  id="a-2"
+                  role="region"
+                  aria-labelledby="q-2"
+                >
                   <p>
                     Zazwyczaj <strong>1–2 dni robocze</strong>, w zależności od
                     zakresu zmian i koniecznych odkrywek. Pełne wykonanie
@@ -489,7 +502,12 @@ Hydraulika - FAQ
                 <summary id="q-3">
                   Czy montujecie zestawy podtynkowe (stelaże WC, baterie)?
                 </summary>
-                <div id="a-3" role="region" aria-labelledby="q-3">
+                <div
+                  class="answer"
+                  id="a-3"
+                  role="region"
+                  aria-labelledby="q-3"
+                >
                   <p>
                     Tak — montujemy <strong>stelaże WC</strong>, baterie
                     podtynkowe, odpływy liniowe oraz zabudowy z płyt
@@ -505,7 +523,12 @@ Hydraulika - FAQ
                 <summary id="q-4">
                   Czy pomagacie w doborze armatury i osprzętu?
                 </summary>
-                <div id="a-4" role="region" aria-labelledby="q-4">
+                <div
+                  class="answer"
+                  id="a-4"
+                  role="region"
+                  aria-labelledby="q-4"
+                >
                   <p>
                     Oczywiście. Przygotujemy listę zakupową (zawory, syfony,
                     przyłącza, baterie), a na życzenie zrealizujemy również
@@ -615,10 +638,16 @@ Hydraulika - FAQ
             <h3 class="ft-h">Dokumenty</h3>
             <ul class="ft-links" role="list">
               <li role="listitem">
-                <a href="/polityka-prywatnosci.html">Polityka prywatności</a>
+                <a href="../doc/polityka-prywatnosci.html"
+                  >Polityka prywatności</a
+                >
               </li>
-              <li role="listitem"><a href="/regulamin.html">Regulamin</a></li>
-              <li role="listitem"><a href="/cookies.html">Pliki cookies</a></li>
+              <li role="listitem">
+                <a href="../doc/regulamin.html">Regulamin</a>
+              </li>
+              <li role="listitem">
+                <a href="../doc/cookies.html">Pliki cookies</a>
+              </li>
             </ul>
           </nav>
 
@@ -778,14 +807,6 @@ Hydraulika - FAQ
         />
       </symbol>
     </svg>
-
-    <!-- Pływające przyciski przewijania -->
-    <button
-      class="scroll-btn scroll-top-float is-hidden"
-      type="button"
-      aria-label="Przewiń na górę strony"
-      title="Do góry"
-    ></button>
 
     <!-- Mały helper: rok w stopce (bezpieczny, bez błędów jeśli #year nie istnieje) -->
     <script>

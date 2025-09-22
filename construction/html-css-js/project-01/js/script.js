@@ -53,7 +53,7 @@ const utils = (() => {
 
   const computeHeaderH = () => {
     // 1) spróbuj z CSS var --header-h; 2) fallback: realny pomiar; 3) bezpieczny default
-    const fromVar = readCssVarPx("--header-h");
+    const fromVar = readCssVarPx('--header-h');
     const val = fromVar > 0 ? fromVar : measureHeaderPx();
     return val > 0 ? val : 74;
   };
@@ -78,14 +78,14 @@ const utils = (() => {
   const syncHeaderCssVar = () => {
     // ustaw zmienną CSS na aktualny pomiar + odśwież cache
     const h = computeHeaderH();
-    docEl.style.setProperty("--header-h", `${h}px`);
+    docEl.style.setProperty('--header-h', `${h}px`);
     cached = h;
     return h;
   };
 
   // reset cache przy zmianie viewportu
   window.addEventListener(
-    "resize",
+    'resize',
     () => {
       cached = null;
     },
@@ -102,32 +102,29 @@ const utils = (() => {
 ============================================================ */
 function initNav() {
   const html = document.documentElement;
-  const toggle = document.querySelector(".nav-toggle");
-  const menu = document.querySelector("#navMenu");
+  const toggle = document.querySelector('.nav-toggle');
+  const menu = document.querySelector('#navMenu');
   if (!toggle || !menu) return;
 
   // dopisz aria-controls dla dostępności
-  if (!toggle.getAttribute("aria-controls"))
-    toggle.setAttribute("aria-controls", "navMenu");
+  if (!toggle.getAttribute('aria-controls')) toggle.setAttribute('aria-controls', 'navMenu');
 
-  const OPEN_CLASS = "is-nav-open";
+  const OPEN_CLASS = 'is-nav-open';
   let lastFocus = null;
 
   const setOpen = (open, { silentFocus = false } = {}) => {
-    menu.classList.toggle("open", open);
+    menu.classList.toggle('open', open);
     html.classList.toggle(OPEN_CLASS, open);
-    toggle.setAttribute("aria-expanded", String(open));
-    toggle.setAttribute("aria-label", open ? "Zamknij menu" : "Otwórz menu");
+    toggle.setAttribute('aria-expanded', String(open));
+    toggle.setAttribute('aria-label', open ? 'Zamknij menu' : 'Otwórz menu');
 
-    window.dispatchEvent(new CustomEvent("nav:toggle", { detail: { open } }));
+    window.dispatchEvent(new CustomEvent('nav:toggle', { detail: { open } }));
 
     if (silentFocus) return;
 
     if (open) {
       lastFocus = document.activeElement;
-      menu
-        .querySelector('a, button, [tabindex]:not([tabindex="-1"])')
-        ?.focus({ preventScroll: true });
+      menu.querySelector('a, button, [tabindex]:not([tabindex="-1"])')?.focus({ preventScroll: true });
     } else {
       (lastFocus || toggle).focus({ preventScroll: true });
       lastFocus = null;
@@ -135,30 +132,24 @@ function initNav() {
   };
 
   // stan początkowy — bez zabierania focusu
-  setOpen(menu.classList.contains("open"), { silentFocus: true });
+  setOpen(menu.classList.contains('open'), { silentFocus: true });
 
   // otwieranie/zamykanie przyciskiem
-  toggle.addEventListener("click", () =>
-    setOpen(!menu.classList.contains("open"))
-  );
+  toggle.addEventListener('click', () => setOpen(!menu.classList.contains('open')));
 
   // zamykanie po kliknięciu w link anchor (tylko na mobile)
-  menu.addEventListener("click", (e) => {
+  menu.addEventListener('click', (e) => {
     const a = e.target.closest('a[href^="#"]');
     if (!a) return;
-    const isMobile = window.matchMedia("(max-width: 991.98px)").matches;
+    const isMobile = window.matchMedia('(max-width: 991.98px)').matches;
     if (isMobile) setOpen(false);
   });
 
   // zamykanie po kliknięciu poza menu
   document.addEventListener(
-    "click",
+    'click',
     (e) => {
-      if (
-        !menu.contains(e.target) &&
-        !toggle.contains(e.target) &&
-        menu.classList.contains("open")
-      ) {
+      if (!menu.contains(e.target) && !toggle.contains(e.target) && menu.classList.contains('open')) {
         setOpen(false);
       }
     },
@@ -166,27 +157,20 @@ function initNav() {
   );
 
   // Esc + focus trap
-  document.addEventListener("keydown", (e) => {
-    if (e.key === "Escape" && menu.classList.contains("open")) {
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && menu.classList.contains('open')) {
       // jeśli jesteśmy w dropdownie — zostaw jego obsłudze
-      const ddMenuLive = document.querySelector("#dd-oferta");
-      const ddTrigLive = document.querySelector(
-        '.dropdown-trigger[href="#oferta"]'
-      );
+      const ddMenuLive = document.querySelector('#dd-oferta');
+      const ddTrigLive = document.querySelector('.dropdown-trigger[href="#oferta"]');
       const active = document.activeElement;
-      const insideDd =
-        ddMenuLive &&
-        ddTrigLive &&
-        (ddMenuLive.contains(active) || ddTrigLive.contains(active));
+      const insideDd = ddMenuLive && ddTrigLive && (ddMenuLive.contains(active) || ddTrigLive.contains(active));
       if (!insideDd) {
         setOpen(false);
         return;
       }
     }
-    if (e.key === "Tab" && menu.classList.contains("open")) {
-      const f = menu.querySelectorAll(
-        'a, button, input, select, textarea, [tabindex]:not([tabindex="-1"])'
-      );
+    if (e.key === 'Tab' && menu.classList.contains('open')) {
+      const f = menu.querySelectorAll('a, button, input, select, textarea, [tabindex]:not([tabindex="-1"])');
       if (!f.length) return;
       const first = f[0],
         last = f[f.length - 1];
@@ -202,23 +186,20 @@ function initNav() {
 
   /* ===== Dropdown „Oferta” — pełne wsparcie klawiatury (Esc / focus) ===== */
   const ddTrigger = document.querySelector('.dropdown-trigger[href="#oferta"]');
-  const ddMenu = document.querySelector("#dd-oferta");
+  const ddMenu = document.querySelector('#dd-oferta');
 
   if (ddTrigger && ddMenu) {
-    let ddOpen = ddMenu.classList.contains("open");
-    const mqDesktop = window.matchMedia("(min-width: 992px)");
-    const parentLi =
-      ddTrigger.closest(".has-dropdown") || ddTrigger.parentElement;
+    let ddOpen = ddMenu.classList.contains('open');
+    const mqDesktop = window.matchMedia('(min-width: 992px)');
+    const parentLi = ddTrigger.closest('.has-dropdown') || ddTrigger.parentElement;
 
     const focusFirstItem = () => {
-      ddMenu
-        .querySelector('a, button, [tabindex]:not([tabindex="-1"])')
-        ?.focus({ preventScroll: true });
+      ddMenu.querySelector('a, button, [tabindex]:not([tabindex="-1"])')?.focus({ preventScroll: true });
     };
 
     const setDd = (open, { returnFocus = false, focusFirst = false } = {}) => {
-      ddMenu.classList.toggle("open", open);
-      ddTrigger.setAttribute("aria-expanded", String(open));
+      ddMenu.classList.toggle('open', open);
+      ddTrigger.setAttribute('aria-expanded', String(open));
       ddOpen = open;
 
       if (open && focusFirst) {
@@ -230,17 +211,17 @@ function initNav() {
 
     // Desktop: hover
     if (parentLi) {
-      parentLi.addEventListener("mouseenter", () => {
+      parentLi.addEventListener('mouseenter', () => {
         if (mqDesktop.matches) setDd(true);
       });
-      parentLi.addEventListener("mouseleave", () => {
+      parentLi.addEventListener('mouseleave', () => {
         if (mqDesktop.matches) setDd(false);
       });
     }
 
     // Mobile: 1. aktywacja -> otwórz submenu, 2. aktywacja -> nawigacja
     const openMobileOnce = () => {
-      const isMobile = window.matchMedia("(max-width: 991.98px)").matches;
+      const isMobile = window.matchMedia('(max-width: 991.98px)').matches;
       if (!isMobile) return false;
       if (!ddOpen) {
         setDd(true, { focusFirst: true });
@@ -249,15 +230,15 @@ function initNav() {
       return false;
     };
 
-    ddTrigger.addEventListener("click", (e) => {
+    ddTrigger.addEventListener('click', (e) => {
       if (openMobileOnce()) {
         e.preventDefault();
       }
     });
 
-    ddTrigger.addEventListener("keydown", (e) => {
-      const isEnter = e.key === "Enter";
-      const isSpace = e.key === " " || e.code === "Space";
+    ddTrigger.addEventListener('keydown', (e) => {
+      const isEnter = e.key === 'Enter';
+      const isSpace = e.key === ' ' || e.code === 'Space';
       if (!(isEnter || isSpace)) return;
       if (openMobileOnce()) {
         e.preventDefault();
@@ -266,13 +247,9 @@ function initNav() {
 
     // Zamykaj dropdown przy kliknięciu poza
     document.addEventListener(
-      "click",
+      'click',
       (e) => {
-        if (
-          ddOpen &&
-          !ddMenu.contains(e.target) &&
-          !ddTrigger.contains(e.target)
-        ) {
+        if (ddOpen && !ddMenu.contains(e.target) && !ddTrigger.contains(e.target)) {
           setDd(false, { returnFocus: false });
         }
       },
@@ -280,11 +257,10 @@ function initNav() {
     );
 
     // Esc zamyka dropdown
-    document.addEventListener("keydown", (e) => {
-      if (e.key !== "Escape") return;
+    document.addEventListener('keydown', (e) => {
+      if (e.key !== 'Escape') return;
       const active = document.activeElement;
-      const inside =
-        active && (ddMenu.contains(active) || ddTrigger.contains(active));
+      const inside = active && (ddMenu.contains(active) || ddTrigger.contains(active));
       if (ddOpen && inside) {
         e.preventDefault();
         setDd(false, { returnFocus: true });
@@ -292,12 +268,12 @@ function initNav() {
     });
 
     // Gdy chowamy całe menu — domknij też dropdown
-    toggle.addEventListener("click", () => {
-      if (!menu.classList.contains("open")) setDd(false);
+    toggle.addEventListener('click', () => {
+      if (!menu.classList.contains('open')) setDd(false);
     });
 
     // Inicjalizacja ARIA
-    ddTrigger.setAttribute("aria-expanded", String(ddOpen));
+    ddTrigger.setAttribute('aria-expanded', String(ddOpen));
   }
 }
 
@@ -314,17 +290,16 @@ function initScrollSpy() {
   if (!navLinks.length) return;
 
   const PEEK = 12;
-  const mapHref = (href) => (href === "#top" ? "#strona-glowna" : href);
+  const mapHref = (href) => (href === '#top' ? '#strona-glowna' : href);
 
   // cele z menu
-const targetsFromMenu = navLinks
-  .map(a => mapHref(a.getAttribute("href")))
-  .filter(href => href && href.startsWith("#") && href.length > 1);
-
+  const targetsFromMenu = navLinks
+    .map((a) => mapHref(a.getAttribute('href')))
+    .filter((href) => href && href.startsWith('#') && href.length > 1);
 
   // ewentualne dodatkowe cele (zostawiamy #oferta, ale logika będzie faworyzować jej dzieci)
   const extraTargets = [];
-  if (document.querySelector("#oferta")) extraTargets.push("#oferta");
+  if (document.querySelector('#oferta')) extraTargets.push('#oferta');
 
   const sections = [...new Set([...targetsFromMenu, ...extraTargets])]
     .map((sel) => document.querySelector(sel))
@@ -332,14 +307,14 @@ const targetsFromMenu = navLinks
   if (!sections.length) return;
 
   // helpers
-  const headerEl = document.querySelector(".site-header");
-  const getHeaderLive = () => (headerEl?.getBoundingClientRect().height || 0);
-  const navMenu = document.getElementById("navMenu");
+  const headerEl = document.querySelector('.site-header');
+  const getHeaderLive = () => headerEl?.getBoundingClientRect().height || 0;
+  const navMenu = document.getElementById('navMenu');
   const isMenuOpen = () =>
-    (navMenu && navMenu.classList.contains("open")) ||
-    document.body.classList.contains("nav-open") ||
-    document.documentElement.classList.contains("nav-open") ||
-    (headerEl && headerEl.classList.contains("open"));
+    (navMenu && navMenu.classList.contains('open')) ||
+    document.body.classList.contains('nav-open') ||
+    document.documentElement.classList.contains('nav-open') ||
+    (headerEl && headerEl.classList.contains('open'));
 
   // scroll-margin-top ułatwia przewijanie do hash
   const applyScrollMargin = () => {
@@ -347,7 +322,7 @@ const targetsFromMenu = navLinks
     sections.forEach((sec) => {
       const v = String(OFFSET);
       if (sec.dataset.appliedScrollMargin !== v) {
-        sec.style.scrollMarginTop = OFFSET + "px";
+        sec.style.scrollMarginTop = OFFSET + 'px';
         sec.dataset.appliedScrollMargin = v;
       }
     });
@@ -358,17 +333,19 @@ const targetsFromMenu = navLinks
   const setActive = (id) => {
     lastId = id;
     navLinks.forEach((a) => {
-      const href = mapHref(a.getAttribute("href"));
-      const match = href === "#" + id;
-      a.classList.toggle("is-active", match);
-      if (match) a.setAttribute("aria-current", "true"); else a.removeAttribute("aria-current");
+      const href = mapHref(a.getAttribute('href'));
+      const match = href === '#' + id;
+      a.classList.toggle('is-active', match);
+      if (match) a.setAttribute('aria-current', 'true');
+      else a.removeAttribute('aria-current');
     });
     // trigger dla dropdownu "Oferta"
     const ofertaTrigger = document.querySelector('.dropdown-trigger[aria-controls="dd-oferta"]');
     if (ofertaTrigger) {
-      const isOferta = id === "oferta" || id.startsWith("oferta-");
-      ofertaTrigger.classList.toggle("is-active", isOferta);
-      if (isOferta) ofertaTrigger.setAttribute("aria-current", "true"); else ofertaTrigger.removeAttribute("aria-current");
+      const isOferta = id === 'oferta' || id.startsWith('oferta-');
+      ofertaTrigger.classList.toggle('is-active', isOferta);
+      if (isOferta) ofertaTrigger.setAttribute('aria-current', 'true');
+      else ofertaTrigger.removeAttribute('aria-current');
     }
   };
 
@@ -395,7 +372,10 @@ const targetsFromMenu = navLinks
     let bestTop = -Infinity;
     for (const sec of sections) {
       const top = sec.getBoundingClientRect().top - OFFSET;
-      if (top <= 0 && top > bestTop) { bestTop = top; currentId = sec.id; }
+      if (top <= 0 && top > bestTop) {
+        bestTop = top;
+        currentId = sec.id;
+      }
     }
 
     // dół strony → ostatnia sekcja
@@ -413,51 +393,51 @@ const targetsFromMenu = navLinks
     if (id !== lastId) setActive(id);
   };
   const scheduleComputeAfterScroll = () => {
-    if ("onscrollend" in window) {
-      const handler = () => { compute(); window.removeEventListener("scrollend", handler); };
-      window.addEventListener("scrollend", handler);
+    if ('onscrollend' in window) {
+      const handler = () => {
+        compute();
+        window.removeEventListener('scrollend', handler);
+      };
+      window.addEventListener('scrollend', handler);
     } else {
       clearTimeout(scrollTimeout);
       scrollTimeout = setTimeout(compute, 120);
     }
   };
 
-// scroll / resize
-let ticking = false;
-const onScroll = () => {
-  if (isMenuOpen()) return;
-  if (!ticking) {
-    ticking = true;
-    requestAnimationFrame(() => {
-      ticking = false;
-      compute();               // ← LIVE update podczas scrollowania
-    });
-  }
-  scheduleComputeAfterScroll(); // ← potwierdzenie po zakończeniu scrolla
-};
-window.addEventListener("scroll", onScroll, { passive: true });
-
-
-
+  // scroll / resize
+  let ticking = false;
+  const onScroll = () => {
+    if (isMenuOpen()) return;
+    if (!ticking) {
+      ticking = true;
+      requestAnimationFrame(() => {
+        ticking = false;
+        compute(); // ← LIVE update podczas scrollowania
+      });
+    }
+    scheduleComputeAfterScroll(); // ← potwierdzenie po zakończeniu scrolla
+  };
+  window.addEventListener('scroll', onScroll, { passive: true });
 
   // klik w link: zamknij menu, przewiń z offsetem (sekcja w 100% widoczna), potwierdź po scrollu
-  const prefersNoAnim = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-  const behavior = prefersNoAnim ? "auto" : "smooth";
+  const prefersNoAnim = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const behavior = prefersNoAnim ? 'auto' : 'smooth';
 
   navLinks.forEach((a) => {
-    a.addEventListener("click", (e) => {
-      const href = mapHref(a.getAttribute("href"));
-      if (!href.startsWith("#")) return;
+    a.addEventListener('click', (e) => {
+      const href = mapHref(a.getAttribute('href'));
+      if (!href.startsWith('#')) return;
       e.preventDefault();
 
       const target = document.querySelector(href);
       if (!target) return;
 
       // zamknij hamburger niezależnie od implementacji
-      navMenu?.classList.remove("open");
-      headerEl?.classList.remove("open");
-      document.body.classList.remove("nav-open");
-      document.documentElement.classList.remove("nav-open");
+      navMenu?.classList.remove('open');
+      headerEl?.classList.remove('open');
+      document.body.classList.remove('nav-open');
+      document.documentElement.classList.remove('nav-open');
 
       // pozycja docelowa: top - (header + PEEK)
       const OFFSET = getHeaderLive() + PEEK;
@@ -477,8 +457,8 @@ window.addEventListener("scroll", onScroll, { passive: true });
     const mo = new MutationObserver(() => {
       if (!isMenuOpen()) scheduleComputeAfterScroll();
     });
-    mo.observe(navMenu, { attributes: true, attributeFilter: ["class"] });
-    window.addEventListener("pagehide", () => mo.disconnect(), { once: true });
+    mo.observe(navMenu, { attributes: true, attributeFilter: ['class'] });
+    window.addEventListener('pagehide', () => mo.disconnect(), { once: true });
   }
 
   // start
@@ -486,15 +466,12 @@ window.addEventListener("scroll", onScroll, { passive: true });
   compute();
 }
 
-
-
-
 /* ============================================================
  3) ROK W STOPCE 
    - automatycznie wpisuje bieżący rok w <span id="year">
 ============================================================ */
 function initFooterYear() {
-  const y = document.getElementById("year");
+  const y = document.getElementById('year');
   if (y) {
     y.textContent = new Date().getFullYear();
   }
@@ -507,57 +484,53 @@ function initFooterYear() {
      - delegacja zdarzeń (działa dla linków dodanych później)
 ============================================================ */
 function initSmoothTop() {
-  const prefersNoAnim = window.matchMedia(
-    "(prefers-reduced-motion: reduce)"
-  ).matches;
-  const behavior = prefersNoAnim ? "auto" : "smooth";
+  const prefersNoAnim = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const behavior = prefersNoAnim ? 'auto' : 'smooth';
 
-  document.addEventListener("click", (e) => {
+  document.addEventListener('click', (e) => {
     const a = e.target.closest('a[href="#top"], a.scroll-top');
     if (!a) return;
 
     // nie przechwytuj, jeśli user chce otworzyć w nowej karcie/oknie
-    if (e.metaKey || e.ctrlKey || e.shiftKey || e.altKey || e.button === 1)
-      return;
+    if (e.metaKey || e.ctrlKey || e.shiftKey || e.altKey || e.button === 1) return;
 
     e.preventDefault();
     window.scrollTo({ top: 0, behavior });
   });
 }
 
-
 /* 5) SKIP-NEXT — 2 kroki: Oferta → Kontakt (formularz) */
 function initSkipNext() {
   // Mobile guard – tylko wewnątrz funkcji
-  const isMobile = window.matchMedia("(hover:none) and (pointer:coarse)").matches || window.innerWidth <= 768;
+  const isMobile = window.matchMedia('(hover:none) and (pointer:coarse)').matches || window.innerWidth <= 768;
   if (isMobile) {
-    document.getElementById("skipNext")?.remove();
-    document.getElementById("skipNextLive")?.remove();
+    document.getElementById('skipNext')?.remove();
+    document.getElementById('skipNextLive')?.remove();
     return;
   }
 
-  const btn = document.getElementById("skipNext");
+  const btn = document.getElementById('skipNext');
   if (!btn) return;
 
   // Kolejność tylko: Oferta → Kontakt
-  const order = ["#oferta", "#kontakt"].map(sel => document.querySelector(sel)).filter(Boolean);
+  const order = ['#oferta', '#kontakt'].map((sel) => document.querySelector(sel)).filter(Boolean);
   if (order.length < 1) return;
 
-  const live = document.getElementById("skipNextLive");
-  const headerEl = document.querySelector(".site-header");
+  const live = document.getElementById('skipNextLive');
+  const headerEl = document.querySelector('.site-header');
   const PEEK = 12;
   const getHeaderH = () => (window.utils?.getHeaderH?.() || headerEl?.getBoundingClientRect().height || 0) + PEEK;
 
   const labelFor = (el) => {
-    const id = (el?.id || "").toLowerCase();
-    if (id === "oferta") return "Oferta";
-    if (id === "kontakt") return "Formularz";
-    return "kolejna sekcja";
+    const id = (el?.id || '').toLowerCase();
+    if (id === 'oferta') return 'Oferta';
+    if (id === 'kontakt') return 'Formularz';
+    return 'kolejna sekcja';
   };
   const setLabel = (el) => {
     const name = labelFor(el);
-    btn.setAttribute("aria-label", "Przejdź do: " + name);
-    if (live) live.textContent = "Następny: " + name;
+    btn.setAttribute('aria-label', 'Przejdź do: ' + name);
+    if (live) live.textContent = 'Następny: ' + name;
   };
 
   const getCurrentIdx = () => {
@@ -566,31 +539,34 @@ function initSkipNext() {
     let idx = -1;
     for (let i = 0; i < order.length; i++) {
       const r = order[i].getBoundingClientRect();
-      if (r.top <= probeY && r.bottom > probeY) { idx = i; break; }
+      if (r.top <= probeY && r.bottom > probeY) {
+        idx = i;
+        break;
+      }
       if (r.top - offset <= 0) idx = i;
     }
     return idx;
   };
   const nextTarget = () => {
     const idx = getCurrentIdx();
-    if (idx < 0) return order[0];           // start → Oferta
+    if (idx < 0) return order[0]; // start → Oferta
     if (idx === 0 && order[1]) return order[1]; // po Ofercie → Kontakt
-    return null;                            // po Kontakcie → koniec
+    return null; // po Kontakcie → koniec
   };
 
   const updateVisibility = () => {
     const next = nextTarget();
-    const done = !next;                     // po drugim kroku chowamy
-    btn.classList.toggle("is-hidden", done);
+    const done = !next; // po drugim kroku chowamy
+    btn.classList.toggle('is-hidden', done);
     if (next) setLabel(next);
   };
 
-  btn.addEventListener("click", () => {
+  btn.addEventListener('click', () => {
     const target = nextTarget();
     if (!target) return;
     const y = Math.max(0, window.scrollY + target.getBoundingClientRect().top - getHeaderH());
-    const prefersNoAnim = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    window.scrollTo({ top: y, behavior: prefersNoAnim ? "auto" : "smooth" });
+    const prefersNoAnim = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    window.scrollTo({ top: y, behavior: prefersNoAnim ? 'auto' : 'smooth' });
     setTimeout(updateVisibility, 60);
   });
 
@@ -598,74 +574,54 @@ function initSkipNext() {
   const onScroll = () => {
     if (!ticking) {
       ticking = true;
-      requestAnimationFrame(() => { ticking = false; updateVisibility(); });
+      requestAnimationFrame(() => {
+        ticking = false;
+        updateVisibility();
+      });
     }
   };
-  window.addEventListener("scroll", onScroll, { passive: true });
-  window.addEventListener("resize", updateVisibility, { passive: true });
+  window.addEventListener('scroll', onScroll, { passive: true });
+  window.addEventListener('resize', updateVisibility, { passive: true });
 
   updateVisibility();
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 /* ============================================================
  6) FORMULARZ: kontakt (honeypot + walidacja + a11y + maska + mock)
 ============================================================ */
 function initContactForm() {
-  const form = document.querySelector("section#kontakt .form");
+  const form = document.querySelector('section#kontakt .form');
   if (!form) return;
 
-  const note = form.querySelector(".form-note");
+  const note = form.querySelector('.form-note');
   const btnSubmit = form.querySelector('button[type="submit"]');
   const hpInput = form.querySelector('input[name="website"]'); // honeypot
-  const nameInput = form.querySelector("#f-name");
-  const phoneInput = form.querySelector("#f-phone");
-  const msgInput = form.querySelector("#f-msg");
-  const consentInput = form.querySelector("#f-consent");
+  const nameInput = form.querySelector('#f-name');
+  const phoneInput = form.querySelector('#f-phone');
+  const msgInput = form.querySelector('#f-msg');
+  const consentInput = form.querySelector('#f-consent');
 
   // Live region dla komunikatów globalnych
   if (note) {
-    note.setAttribute("role", "status");
-    note.setAttribute("aria-atomic", "true");
-    note.setAttribute("aria-live", "polite");
+    note.setAttribute('role', 'status');
+    note.setAttribute('aria-atomic', 'true');
+    note.setAttribute('aria-live', 'polite');
   }
 
   // Honeypot – bezpiecznie ukryj (na wypadek braku CSS)
   if (hpInput) {
-    const wrap = hpInput.closest("label, div");
+    const wrap = hpInput.closest('label, div');
     if (wrap) {
       Object.assign(wrap.style, {
-        position: "absolute",
-        left: "-9999px",
-        width: "1px",
-        height: "1px",
-        overflow: "hidden",
+        position: 'absolute',
+        left: '-9999px',
+        width: '1px',
+        height: '1px',
+        overflow: 'hidden',
       });
-      wrap.setAttribute("aria-hidden", "true");
-      hpInput.setAttribute("tabindex", "-1");
-      hpInput.setAttribute("autocomplete", "off");
+      wrap.setAttribute('aria-hidden', 'true');
+      hpInput.setAttribute('tabindex', '-1');
+      hpInput.setAttribute('autocomplete', 'off');
     }
   }
 
@@ -673,7 +629,7 @@ function initContactForm() {
   const startedAt = Date.now();
   const isTooFast = () => Date.now() - startedAt < 2000; // < 2s = bot
   const looksSpammy = (text) => {
-    const t = String(text || "").toLowerCase();
+    const t = String(text || '').toLowerCase();
     const links = (t.match(/https?:\/\//g) || []).length;
     return links >= 2 || /viagra|bitcoin|casino/.test(t);
   };
@@ -683,42 +639,42 @@ function initContactForm() {
 
   // Helpers
   const setBusy = (busy) => {
-    form.setAttribute("aria-busy", busy ? "true" : "false");
+    form.setAttribute('aria-busy', busy ? 'true' : 'false');
     if (btnSubmit) btnSubmit.disabled = !!busy;
   };
 
   const showNote = (msg, ok = false) => {
     if (!note) return;
     note.textContent = msg;
-    note.classList.toggle("is-ok", ok);
-    note.classList.toggle("is-err", !ok);
+    note.classList.toggle('is-ok', ok);
+    note.classList.toggle('is-err', !ok);
   };
 
   const errSpan = (el) => {
-    const ids = (el.getAttribute("aria-describedby") || "").split(/\s+/);
-    const id = ids.find((x) => x.endsWith("-error"));
+    const ids = (el.getAttribute('aria-describedby') || '').split(/\s+/);
+    const id = ids.find((x) => x.endsWith('-error'));
     return id ? document.getElementById(id) : null;
   };
 
   const setFieldError = (el, msg) => {
     if (!el) return;
-    el.setAttribute("aria-invalid", "true");
-    el.setCustomValidity(msg || "");
+    el.setAttribute('aria-invalid', 'true');
+    el.setCustomValidity(msg || '');
     const span = errSpan(el);
     if (span) {
-      span.textContent = msg || "";
-      span.classList.toggle("visually-hidden", !msg);
+      span.textContent = msg || '';
+      span.classList.toggle('visually-hidden', !msg);
     }
   };
 
   const clearFieldError = (el) => {
     if (!el) return;
-    el.removeAttribute("aria-invalid");
-    el.setCustomValidity("");
+    el.removeAttribute('aria-invalid');
+    el.setCustomValidity('');
     const span = errSpan(el);
     if (span) {
-      span.textContent = "";
-      span.classList.add("visually-hidden");
+      span.textContent = '';
+      span.classList.add('visually-hidden');
     }
   };
 
@@ -726,15 +682,15 @@ function initContactForm() {
   // - na bieżąco formatuje jako "600 700 800" lub "+48 600 700 800"
   // - toleruje wpisywanie spacji/kresek, pasty, backspace, itp.
   const formatPLPhone = (raw) => {
-    raw = String(raw || "");
-    const hasPlus48 = raw.trim().startsWith("+48");
+    raw = String(raw || '');
+    const hasPlus48 = raw.trim().startsWith('+48');
     // zachowaj +48 tylko jeśli rzeczywiście wpisane
-    let digits = raw.replace(/\D/g, "");
-    let prefix = "";
+    let digits = raw.replace(/\D/g, '');
+    let prefix = '';
 
     if (hasPlus48) {
-      if (digits.startsWith("48")) digits = digits.slice(2);
-      prefix = "+48 ";
+      if (digits.startsWith('48')) digits = digits.slice(2);
+      prefix = '+48 ';
     }
 
     // maks. 9 cyfr lokalnie
@@ -743,7 +699,7 @@ function initContactForm() {
     const g1 = digits.slice(0, 3);
     const g2 = digits.slice(3, 6);
     const g3 = digits.slice(6, 9);
-    const grouped = [g1, g2, g3].filter(Boolean).join(" ");
+    const grouped = [g1, g2, g3].filter(Boolean).join(' ');
     return (prefix + grouped).trim();
   };
 
@@ -762,27 +718,27 @@ function initContactForm() {
   };
 
   // Czyść komunikaty przy edycji + live walidacja telefonu + maska
-  form.addEventListener("input", (e) => {
+  form.addEventListener('input', (e) => {
     const t = e.target;
-    if (note?.textContent) showNote("", true);
-    if (t.matches("input, textarea")) clearFieldError(t);
+    if (note?.textContent) showNote('', true);
+    if (t.matches('input, textarea')) clearFieldError(t);
 
     if (t === phoneInput) {
       applyPhoneMask();
       const raw = phoneInput.value.trim();
-      if (raw === "" || PL_PHONE.test(raw)) clearFieldError(phoneInput);
+      if (raw === '' || PL_PHONE.test(raw)) clearFieldError(phoneInput);
     }
   });
 
   // Maska także przy wklejeniu i po blur
-  phoneInput?.addEventListener("paste", () => {
+  phoneInput?.addEventListener('paste', () => {
     requestAnimationFrame(applyPhoneMask);
   });
-  phoneInput?.addEventListener("blur", applyPhoneMask);
+  phoneInput?.addEventListener('blur', applyPhoneMask);
 
   // Trymowanie po blur (imię i opis)
   form.addEventListener(
-    "blur",
+    'blur',
     (e) => {
       const t = e.target;
       if (t.matches('input[type="text"], textarea')) t.value = t.value.trim();
@@ -793,16 +749,12 @@ function initContactForm() {
   // Zapobiegaj podwójnemu submitowi (Enter + klik)
   let submitting = false;
 
-  form.addEventListener("submit", (e) => {
+  form.addEventListener('submit', (e) => {
     e.preventDefault();
     if (submitting) return;
 
     // 0) Antyspam: honeypot / czas / heurystyka linków
-    if (
-      (hpInput && hpInput.value.trim() !== "") ||
-      isTooFast() ||
-      looksSpammy(msgInput?.value)
-    ) {
+    if ((hpInput && hpInput.value.trim() !== '') || isTooFast() || looksSpammy(msgInput?.value)) {
       form.reset();
       return;
     }
@@ -810,33 +762,28 @@ function initContactForm() {
     // 1) Podstawowa walidacja HTML5 z czytelnymi komunikatami
     if (!form.checkValidity()) {
       if (nameInput && nameInput.validity.valueMissing) {
-        setFieldError(nameInput, "Podaj imię i nazwisko (min. 2 znaki).");
+        setFieldError(nameInput, 'Podaj imię i nazwisko (min. 2 znaki).');
       } else if (nameInput && nameInput.validity.tooShort) {
-        setFieldError(
-          nameInput,
-          "Imię i nazwisko powinno mieć co najmniej 2 znaki."
-        );
+        setFieldError(nameInput, 'Imię i nazwisko powinno mieć co najmniej 2 znaki.');
       }
 
       if (phoneInput && phoneInput.validity.valueMissing) {
-        setFieldError(phoneInput, "Podaj numer telefonu.");
+        setFieldError(phoneInput, 'Podaj numer telefonu.');
       }
 
       if (msgInput && msgInput.validity.valueMissing) {
-        setFieldError(msgInput, "Napisz krótki opis prac.");
+        setFieldError(msgInput, 'Napisz krótki opis prac.');
       } else if (msgInput && msgInput.validity.tooLong) {
-        setFieldError(msgInput, "Opis może mieć maksymalnie 1000 znaków.");
+        setFieldError(msgInput, 'Opis może mieć maksymalnie 1000 znaków.');
       }
 
       if (consentInput && !consentInput.checked) {
-        setFieldError(consentInput, "Wymagana zgoda na kontakt w celu wyceny.");
+        setFieldError(consentInput, 'Wymagana zgoda na kontakt w celu wyceny.');
       }
 
       form.reportValidity();
-      form
-        .querySelector(':invalid, [aria-invalid="true"]')
-        ?.focus({ preventScroll: true });
-      showNote("Uzupełnij poprawnie wszystkie pola i zaznacz zgodę.", false);
+      form.querySelector(':invalid, [aria-invalid="true"]')?.focus({ preventScroll: true });
+      showNote('Uzupełnij poprawnie wszystkie pola i zaznacz zgodę.', false);
       return;
     }
 
@@ -845,13 +792,10 @@ function initContactForm() {
       applyPhoneMask();
       const raw = phoneInput.value.trim();
       if (!PL_PHONE.test(raw)) {
-        setFieldError(
-          phoneInput,
-          "Podaj poprawny numer (np. 600 700 800 lub +48 600 700 800)."
-        );
+        setFieldError(phoneInput, 'Podaj poprawny numer (np. 600 700 800 lub +48 600 700 800).');
         form.reportValidity();
         phoneInput.focus({ preventScroll: true });
-        showNote("Sprawdź format numeru telefonu.", false);
+        showNote('Sprawdź format numeru telefonu.', false);
         return;
       }
       clearFieldError(phoneInput);
@@ -860,16 +804,14 @@ function initContactForm() {
     // 3) „Wysyłka” (mock)
     submitting = true;
     setBusy(true);
-    showNote("Wysyłanie…", true);
+    showNote('Wysyłanie…', true);
 
     setTimeout(() => {
       setBusy(false);
       submitting = false;
-      form
-        .querySelectorAll('[aria-invalid="true"]')
-        .forEach((el) => el.removeAttribute("aria-invalid"));
+      form.querySelectorAll('[aria-invalid="true"]').forEach((el) => el.removeAttribute('aria-invalid'));
       form.reset();
-      showNote("Dziękujemy! Skontaktujemy się wkrótce.", true);
+      showNote('Dziękujemy! Skontaktujemy się wkrótce.', true);
       note?.focus?.();
     }, 900);
   });
@@ -891,7 +833,7 @@ function initHeaderShrink() {
   const syncVar = () => {
     // precyzyjny pomiar i wpis do CSS var
     const h = Math.round(header.getBoundingClientRect().height);
-    document.documentElement.style.setProperty("--header-h", `${h}px`);
+    document.documentElement.style.setProperty('--header-h', `${h}px`);
     // wyczyść cache w utils i niech kolejne getHeaderH() zwróci świeżą wartość
     utils.refreshHeaderH();
   };
@@ -919,7 +861,7 @@ function initHeaderShrink() {
       return;
     }
     isShrink = want;
-    header.classList.toggle("is-shrink", isShrink);
+    header.classList.toggle('is-shrink', isShrink);
     // Po zmianie klasy wysokość się zmienia — zaktualizuj var w następnym frame
     requestAnimationFrame(syncVar);
   };
@@ -933,15 +875,15 @@ function initHeaderShrink() {
   // Start
   syncVar();
   onScroll();
-  window.addEventListener("scroll", onScroll, { passive: true });
+  window.addEventListener('scroll', onScroll, { passive: true });
   // Na wypadek zmian viewportu (np. obrót telefonu)
-  window.addEventListener("resize", () => requestAnimationFrame(syncVar), {
+  window.addEventListener('resize', () => requestAnimationFrame(syncVar), {
     passive: true,
   });
 
   // Sprzątanie (na wypadek nawigacji SPA)
   window.addEventListener(
-    "pagehide",
+    'pagehide',
     () => {
       try {
         ro.disconnect();
@@ -958,12 +900,12 @@ function initHeaderShrink() {
      - aktualizuje: [data-theme] na <html>, aria-pressed, aria-label, title
 ============================================================ */
 function initThemeToggle() {
-  const btn = document.querySelector(".theme-toggle");
+  const btn = document.querySelector('.theme-toggle');
   const root = document.documentElement;
   if (!btn || !root) return;
 
-  const KEY = "theme";
-  const mq = window.matchMedia?.("(prefers-color-scheme: dark)");
+  const KEY = 'theme';
+  const mq = window.matchMedia?.('(prefers-color-scheme: dark)');
 
   const safeGet = (k) => {
     try {
@@ -980,37 +922,34 @@ function initThemeToggle() {
 
   const saved = safeGet(KEY); // 'dark' | 'light' | null
   const prefersDark = !!mq && mq.matches;
-  const initial = saved || (prefersDark ? "dark" : "light");
+  const initial = saved || (prefersDark ? 'dark' : 'light');
 
   const apply = (mode, { persist = true } = {}) => {
-    const dark = mode === "dark";
-    root.setAttribute("data-theme", dark ? "dark" : "light");
+    const dark = mode === 'dark';
+    root.setAttribute('data-theme', dark ? 'dark' : 'light');
 
     // a11y + UX
-    btn.setAttribute("aria-pressed", String(dark));
-    const nextLabel = dark
-      ? "Przełącz na jasny tryb"
-      : "Przełącz na ciemny tryb";
-    btn.setAttribute("aria-label", nextLabel);
-    btn.setAttribute("title", nextLabel);
+    btn.setAttribute('aria-pressed', String(dark));
+    const nextLabel = dark ? 'Przełącz na jasny tryb' : 'Przełącz na ciemny tryb';
+    btn.setAttribute('aria-label', nextLabel);
+    btn.setAttribute('title', nextLabel);
 
-    if (persist) safeSet(KEY, dark ? "dark" : "light");
+    if (persist) safeSet(KEY, dark ? 'dark' : 'light');
   };
 
   // Start — jeśli nie było zapisu, nie nadpisuj systemu
   apply(initial, { persist: !saved });
 
   // Klik — przełącz
-  btn.addEventListener("click", () => {
-    const current =
-      root.getAttribute("data-theme") === "dark" ? "dark" : "light";
-    apply(current === "dark" ? "light" : "dark", { persist: true });
+  btn.addEventListener('click', () => {
+    const current = root.getAttribute('data-theme') === 'dark' ? 'dark' : 'light';
+    apply(current === 'dark' ? 'light' : 'dark', { persist: true });
   });
 
   // Reaguj na zmianę systemowego motywu, JEŚLI user nic nie zapisał
   if (mq && !saved) {
-    mq.addEventListener?.("change", (e) => {
-      apply(e.matches ? "dark" : "light", { persist: false });
+    mq.addEventListener?.('change', (e) => {
+      apply(e.matches ? 'dark' : 'light', { persist: false });
     });
   }
 }
@@ -1019,12 +958,10 @@ function initThemeToggle() {
  9) RIPPLE — „Wycena” (prefers-reduced-motion respected)
 ============================================================ */
 function initRipple() {
-  const btn = document.querySelector(".nav-menu li > a.btn.btn--sm");
+  const btn = document.querySelector('.nav-menu li > a.btn.btn--sm');
   if (!btn) return;
 
-  const prefersReduced = window.matchMedia?.(
-    "(prefers-reduced-motion: reduce)"
-  ).matches;
+  const prefersReduced = window.matchMedia?.('(prefers-reduced-motion: reduce)').matches;
   if (prefersReduced) return; // szanuj ustawienia dostępności – nie podpinaj efektu
 
   const spawn = (x, y) => {
@@ -1032,28 +969,28 @@ function initRipple() {
     const d = Math.hypot(rect.width, rect.height);
 
     // usuń poprzednią falę, jeśli jeszcze jest
-    btn.querySelector(".ripple")?.remove();
+    btn.querySelector('.ripple')?.remove();
 
-    const ink = document.createElement("span");
-    ink.className = "ripple";
+    const ink = document.createElement('span');
+    ink.className = 'ripple';
     ink.style.width = ink.style.height = `${d}px`;
     ink.style.left = `${x - rect.left - d / 2}px`;
     ink.style.top = `${y - rect.top - d / 2}px`;
     btn.appendChild(ink);
 
-    ink.addEventListener("animationend", () => ink.remove());
+    ink.addEventListener('animationend', () => ink.remove());
   };
 
   // Pointer (mysz/touch/pen)
-  btn.addEventListener("pointerdown", (e) => {
+  btn.addEventListener('pointerdown', (e) => {
     if (e.button === 2) return; // ignoruj PPM
     spawn(e.clientX, e.clientY);
   });
 
   // Klawiatura (Enter/Spacja – ripple ze środka)
-  btn.addEventListener("keydown", (e) => {
-    const isEnter = e.key === "Enter";
-    const isSpace = e.key === " " || e.code === "Space";
+  btn.addEventListener('keydown', (e) => {
+    const isEnter = e.key === 'Enter';
+    const isSpace = e.key === ' ' || e.code === 'Space';
     if (!isEnter && !isSpace) return;
 
     const rect = btn.getBoundingClientRect();
@@ -1072,13 +1009,13 @@ function initRipple() {
      - Reaguje na: load obrazka, resize, visibilitychange, zmiany atrybutów (src/srcset/sizes)
 ============================================================ */
 function initHeroBlurSync() {
-  const picImg = document.querySelector(".hero-bg img");
-  const blurLay = document.querySelector(".hero__bg-blur");
+  const picImg = document.querySelector('.hero-bg img');
+  const blurLay = document.querySelector('.hero__bg-blur');
   if (!picImg || !blurLay) return;
 
   let rafId = 0;
   let debTimer = 0;
-  let lastBg = ""; // cache, żeby nie przepisywać tego samego tła
+  let lastBg = ''; // cache, żeby nie przepisywać tego samego tła
 
   const syncBlurBg = () => {
     // jeśli elementy zostały odpięte od DOM, przerwij
@@ -1105,32 +1042,32 @@ function initHeroBlurSync() {
   };
 
   const onVis = () => {
-    if (document.visibilityState === "visible") syncBlurBg();
+    if (document.visibilityState === 'visible') syncBlurBg();
   };
 
   // Obserwuj zmiany src/srcset/sizes na <img>
   const mo = new MutationObserver(syncBlurBg);
   mo.observe(picImg, {
     attributes: true,
-    attributeFilter: ["src", "srcset", "sizes"],
+    attributeFilter: ['src', 'srcset', 'sizes'],
   });
 
   // Start (po załadowaniu strony/obrazu)
-  if (document.readyState === "complete") syncBlurBg();
-  else window.addEventListener("load", syncBlurBg, { once: true });
+  if (document.readyState === 'complete') syncBlurBg();
+  else window.addEventListener('load', syncBlurBg, { once: true });
 
-  picImg.addEventListener("load", onImgLoad);
-  window.addEventListener("resize", onResize, { passive: true });
-  document.addEventListener("visibilitychange", onVis);
+  picImg.addEventListener('load', onImgLoad);
+  window.addEventListener('resize', onResize, { passive: true });
+  document.addEventListener('visibilitychange', onVis);
 
   // Sprzątanie (na wypadek nawigacji SPA)
   window.addEventListener(
-    "pagehide",
+    'pagehide',
     () => {
       mo.disconnect();
-      picImg.removeEventListener("load", onImgLoad);
-      window.removeEventListener("resize", onResize);
-      document.removeEventListener("visibilitychange", onVis);
+      picImg.removeEventListener('load', onImgLoad);
+      window.removeEventListener('resize', onResize);
+      document.removeEventListener('visibilitychange', onVis);
       cancelAnimationFrame(rafId);
       clearTimeout(debTimer);
     },
@@ -1146,37 +1083,31 @@ function initHeroBlurSync() {
       - wybiera największy wariant z srcset, fallback: currentSrc/src
 ============================================================ */
 function initOfertaLightbox() {
-  const imgs = Array.from(
-    document.querySelectorAll("#oferta .card picture img")
-  );
+  const imgs = Array.from(document.querySelectorAll('#oferta .card picture img'));
   if (!imgs.length) return;
 
   // Zbuduj DOM lightboxa raz
   const $ = (h) => document.createElement(h);
-  const backdrop = $("div");
-  backdrop.className = "lb-backdrop";
-  const wrap = $("div");
-  wrap.className = "lb-wrap";
-  const viewport = $("div");
-  viewport.className = "lb-viewport";
+  const backdrop = $('div');
+  backdrop.className = 'lb-backdrop';
+  const wrap = $('div');
+  wrap.className = 'lb-wrap';
+  const viewport = $('div');
+  viewport.className = 'lb-viewport';
   const img = new Image();
-  img.alt = "";
-  img.decoding = "async";
+  img.alt = '';
+  img.decoding = 'async';
   viewport.appendChild(img);
   wrap.appendChild(viewport);
 
   const mkBtn = (cls, svg) => {
-    const b = $("button");
+    const b = $('button');
     b.className = `lb-btn ${cls}`;
-    b.type = "button";
+    b.type = 'button';
     b.innerHTML = svg;
     b.setAttribute(
-      "aria-label",
-      cls === "lb-close"
-        ? "Zamknij podgląd"
-        : cls === "lb-prev"
-          ? "Poprzednie zdjęcie"
-          : "Następne zdjęcie"
+      'aria-label',
+      cls === 'lb-close' ? 'Zamknij podgląd' : cls === 'lb-prev' ? 'Poprzednie zdjęcie' : 'Następne zdjęcie'
     );
     return b;
   };
@@ -1186,9 +1117,9 @@ function initOfertaLightbox() {
     '<svg viewBox="0 0 24 24"><path d="M15.7 5.3a1 1 0 0 1 0 1.4L11.4 11l4.3 4.3a1 1 0 1 1-1.4 1.4l-5-5a1 1 0 0 1 0-1.4l5-5a1 1 0 0 1 1.4 0z"/></svg>';
   const svgR =
     '<svg viewBox="0 0 24 24"><path d="M8.3 5.3a1 1 0 0 0 0 1.4L12.6 11l-4.3 4.3a1 1 0 1 0 1.4 1.4l5-5a1 1 0 0 0 0-1.4l-5-5a1 1 0 0 0-1.4 0z"/></svg>';
-  const btnClose = mkBtn("lb-close", svgX);
-  const btnPrev = mkBtn("lb-prev", svgL);
-  const btnNext = mkBtn("lb-next", svgR);
+  const btnClose = mkBtn('lb-close', svgX);
+  const btnPrev = mkBtn('lb-prev', svgL);
+  const btnNext = mkBtn('lb-next', svgR);
 
   document.body.append(backdrop, wrap, btnClose, btnPrev, btnNext);
 
@@ -1199,28 +1130,26 @@ function initOfertaLightbox() {
   const parseSrcset = (ss) => {
     if (!ss) return [];
     return ss
-      .split(",")
+      .split(',')
       .map((s) => s.trim())
       .map((s) => {
         const m = s.match(/(.+)\s+(\d+)w$/);
-        return m
-          ? { url: m[1], w: parseInt(m[2], 10) }
-          : { url: s.split(" ")[0], w: 0 };
+        return m ? { url: m[1], w: parseInt(m[2], 10) } : { url: s.split(' ')[0], w: 0 };
       })
       .sort((a, b) => b.w - a.w);
   };
 
   const bestUrlFor = (el) => {
     // Najpierw spróbuj z <img srcset>
-    let best = parseSrcset(el.getAttribute("srcset"))[0]?.url;
+    let best = parseSrcset(el.getAttribute('srcset'))[0]?.url;
     if (!best) {
       // Potem z <picture><source>
-      const pic = el.closest("picture");
+      const pic = el.closest('picture');
       if (pic) {
-        const sources = Array.from(pic.querySelectorAll("source"));
+        const sources = Array.from(pic.querySelectorAll('source'));
         let candidates = [];
         sources.forEach((s) => {
-          candidates = candidates.concat(parseSrcset(s.getAttribute("srcset")));
+          candidates = candidates.concat(parseSrcset(s.getAttribute('srcset')));
         });
         candidates.sort((a, b) => b.w - a.w);
         best = candidates[0]?.url || null;
@@ -1233,21 +1162,21 @@ function initOfertaLightbox() {
     const el = imgs[idx];
     const url = bestUrlFor(el);
     img.src = url;
-    img.alt = el.getAttribute("alt") || "";
+    img.alt = el.getAttribute('alt') || '';
   };
 
   const setOpen = (want) => {
     open = want;
-    backdrop.classList.toggle("is-open", open);
-    wrap.style.pointerEvents = open ? "auto" : "none";
-    document.documentElement.classList.toggle("lb-no-scroll", open); // steruje też widocznością przycisków w CSS
+    backdrop.classList.toggle('is-open', open);
+    wrap.style.pointerEvents = open ? 'auto' : 'none';
+    document.documentElement.classList.toggle('lb-no-scroll', open); // steruje też widocznością przycisków w CSS
     if (open) {
       applyImage();
       // focus na zamykanie dla a11y
       btnClose.focus({ preventScroll: true });
       // prosty focus trap (między trzema przyciskami)
       trap = (e) => {
-        if (e.key !== "Tab") return;
+        if (e.key !== 'Tab') return;
         const focusables = [btnClose, btnPrev, btnNext];
         const first = focusables[0],
           last = focusables[focusables.length - 1];
@@ -1259,11 +1188,11 @@ function initOfertaLightbox() {
           first.focus();
         }
       };
-      document.addEventListener("keydown", trap);
+      document.addEventListener('keydown', trap);
     } else {
-      document.removeEventListener("keydown", trap || (() => {}));
-      img.src = ""; // wyczyść podgląd (żeby nie „zostawał”)
-      img.alt = "";
+      document.removeEventListener('keydown', trap || (() => {}));
+      img.src = ''; // wyczyść podgląd (żeby nie „zostawał”)
+      img.alt = '';
     }
   };
 
@@ -1278,35 +1207,35 @@ function initOfertaLightbox() {
 
   // Klik na miniaturę
   imgs.forEach((el, i) => {
-    el.addEventListener("click", (e) => {
+    el.addEventListener('click', (e) => {
       e.preventDefault();
       idx = i;
       setOpen(true);
     });
-    el.addEventListener("keydown", (e) => {
-      if ((e.key === "Enter" || e.key === " ") && !open) {
+    el.addEventListener('keydown', (e) => {
+      if ((e.key === 'Enter' || e.key === ' ') && !open) {
         e.preventDefault();
         idx = i;
         setOpen(true);
       }
     });
-    el.setAttribute("tabindex", "0");
-    el.setAttribute("role", "button");
-    el.setAttribute("aria-label", "Powiększ zdjęcie");
+    el.setAttribute('tabindex', '0');
+    el.setAttribute('role', 'button');
+    el.setAttribute('aria-label', 'Powiększ zdjęcie');
   });
 
   // Sterowanie
-  btnClose.addEventListener("click", () => setOpen(false));
-  btnPrev.addEventListener("click", prev);
-  btnNext.addEventListener("click", next);
-  backdrop.addEventListener("click", () => setOpen(false));
-  document.addEventListener("keydown", (e) => {
+  btnClose.addEventListener('click', () => setOpen(false));
+  btnPrev.addEventListener('click', prev);
+  btnNext.addEventListener('click', next);
+  backdrop.addEventListener('click', () => setOpen(false));
+  document.addEventListener('keydown', (e) => {
     if (!open) return;
-    if (e.key === "Escape") {
+    if (e.key === 'Escape') {
       setOpen(false);
-    } else if (e.key === "ArrowLeft") {
+    } else if (e.key === 'ArrowLeft') {
       prev();
-    } else if (e.key === "ArrowRight") {
+    } else if (e.key === 'ArrowRight') {
       next();
     }
   });
@@ -1316,7 +1245,7 @@ function initOfertaLightbox() {
     startY = 0,
     moved = false;
   viewport.addEventListener(
-    "touchstart",
+    'touchstart',
     (e) => {
       const t = e.changedTouches[0];
       startX = t.clientX;
@@ -1326,14 +1255,14 @@ function initOfertaLightbox() {
     { passive: true }
   );
   viewport.addEventListener(
-    "touchmove",
+    'touchmove',
     () => {
       moved = true;
     },
     { passive: true }
   );
   viewport.addEventListener(
-    "touchend",
+    'touchend',
     (e) => {
       if (!moved) return;
       const t = e.changedTouches[0];
@@ -1347,26 +1276,26 @@ function initOfertaLightbox() {
   );
 }
 // odpal po DOMContentLoaded (na końcu inicjalizacji)
-document.addEventListener("DOMContentLoaded", initOfertaLightbox);
+document.addEventListener('DOMContentLoaded', initOfertaLightbox);
 
 /* ============================================================
  12) OFERTA — poziomy scroller (snap + maski + strzałki)
      (bez guardów WIDTH – sam wykrywa czy „fits”)
 ============================================================ */
 function initOfertaScroller() {
-  const scroller = document.getElementById("oferta-scroller");
-  const track = document.getElementById("oferta-track");
+  const scroller = document.getElementById('oferta-scroller');
+  const track = document.getElementById('oferta-track');
   if (!scroller || !track) return;
 
-  const prev = scroller.querySelector(".scroller-btn.prev");
-  const next = scroller.querySelector(".scroller-btn.next");
+  const prev = scroller.querySelector('.scroller-btn.prev');
+  const next = scroller.querySelector('.scroller-btn.next');
 
-  const prefersNoAnim = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-  const behavior = prefersNoAnim ? "auto" : "smooth";
+  const prefersNoAnim = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const behavior = prefersNoAnim ? 'auto' : 'smooth';
 
   const gap = () => parseFloat(getComputedStyle(track).gap) || 0;
   const cardW = () => {
-    const c = track.querySelector(".card");
+    const c = track.querySelector('.card');
     return c ? c.getBoundingClientRect().width : 0;
   };
   // bezpieczny krok: karta+gap albo 90% widocznego toru
@@ -1378,14 +1307,14 @@ function initOfertaScroller() {
     const atStart = x <= 1;
     const atEnd = x >= max;
 
-    scroller.classList.toggle("at-start", atStart);
-    scroller.classList.toggle("at-end", atEnd);
+    scroller.classList.toggle('at-start', atStart);
+    scroller.classList.toggle('at-end', atEnd);
 
-    prev?.setAttribute("aria-disabled", String(atStart));
-    next?.setAttribute("aria-disabled", String(atEnd));
+    prev?.setAttribute('aria-disabled', String(atStart));
+    next?.setAttribute('aria-disabled', String(atEnd));
 
     const fits = track.scrollWidth <= track.clientWidth + 1;
-    scroller.classList.toggle("fits", fits);
+    scroller.classList.toggle('fits', fits);
   };
 
   let ticking = false;
@@ -1399,59 +1328,279 @@ function initOfertaScroller() {
   };
 
   // Strzałki
-  prev?.addEventListener("click", () =>
-    track.scrollBy({ left: -step(), behavior })
-  );
-  next?.addEventListener("click", () =>
-    track.scrollBy({ left: step(), behavior })
-  );
+  prev?.addEventListener('click', () => track.scrollBy({ left: -step(), behavior }));
+  next?.addEventListener('click', () => track.scrollBy({ left: step(), behavior }));
 
   // Klawiatura (gdy focus na torze)
-  track.addEventListener("keydown", (e) => {
-    if (e.key === "ArrowRight") { e.preventDefault(); track.scrollBy({ left: step(), behavior }); }
-    else if (e.key === "ArrowLeft") { e.preventDefault(); track.scrollBy({ left: -step(), behavior }); }
-    else if (e.key === "Home") { e.preventDefault(); track.scrollTo({ left: 0, behavior }); }
-    else if (e.key === "End") { e.preventDefault(); track.scrollTo({ left: track.scrollWidth, behavior }); }
+  track.addEventListener('keydown', (e) => {
+    if (e.key === 'ArrowRight') {
+      e.preventDefault();
+      track.scrollBy({ left: step(), behavior });
+    } else if (e.key === 'ArrowLeft') {
+      e.preventDefault();
+      track.scrollBy({ left: -step(), behavior });
+    } else if (e.key === 'Home') {
+      e.preventDefault();
+      track.scrollTo({ left: 0, behavior });
+    } else if (e.key === 'End') {
+      e.preventDefault();
+      track.scrollTo({ left: track.scrollWidth, behavior });
+    }
   });
 
   // Wheel → poziomo (przy pionowym gestcie na touchpadzie)
-  track.addEventListener("wheel", (e) => {
-    if (Math.abs(e.deltaY) > Math.abs(e.deltaX)) {
-      track.scrollBy({ left: e.deltaY, behavior: "auto" });
-      e.preventDefault();
-    }
-  }, { passive: false });
+  track.addEventListener(
+    'wheel',
+    (e) => {
+      if (Math.abs(e.deltaY) > Math.abs(e.deltaX)) {
+        track.scrollBy({ left: e.deltaY, behavior: 'auto' });
+        e.preventDefault();
+      }
+    },
+    { passive: false }
+  );
 
   // Kiedy obrazki się dograją — przelicz
-  track.querySelectorAll("img").forEach((img) => {
+  track.querySelectorAll('img').forEach((img) => {
     if (!img.complete) {
-      img.addEventListener("load", onScrollOrResize, { once: true });
-      img.addEventListener("error", onScrollOrResize, { once: true });
+      img.addEventListener('load', onScrollOrResize, { once: true });
+      img.addEventListener('error', onScrollOrResize, { once: true });
     }
   });
 
   // Init + nasłuchy
   update();
-  track.addEventListener("scroll", onScrollOrResize, { passive: true });
-  window.addEventListener("resize", onScrollOrResize, { passive: true });
-  window.addEventListener("load", onScrollOrResize, { once: true });
+  track.addEventListener('scroll', onScrollOrResize, { passive: true });
+  window.addEventListener('resize', onScrollOrResize, { passive: true });
+  window.addEventListener('load', onScrollOrResize, { once: true });
 }
 
+/* ========== Prefetch on hover/focus (offer subpages) ========== */
+(function () {
+  // Respect user's data saver and avoid very slow connections
+  function canPrefetch() {
+    var n = navigator;
+    if ('connection' in n) {
+      if (n.connection.saveData) return false;
+      var et = n.connection.effectiveType || '';
+      if (/2g/.test(et)) return false;
+    }
+    return true;
+  }
 
+  if (!canPrefetch()) return;
+
+  // Target only subpage links in the offer cards (the <h3><a href="oferta/*.html">…</a></h3>)
+  var offerLinks = Array.from(document.querySelectorAll('.services-track h3 a[href^="oferta/"]'));
+  if (!offerLinks.length) return;
+
+  var prefetched = new Set();
+  var timers = new WeakMap();
+
+  function injectPrefetch(url) {
+    if (prefetched.has(url)) return;
+    if (document.querySelector('link[rel="prefetch"][href="' + url + '"]')) {
+      prefetched.add(url);
+      return;
+    }
+    var l = document.createElement('link');
+    l.rel = 'prefetch';
+    l.href = url;
+    l.crossOrigin = 'anonymous';
+    document.head.appendChild(l);
+    prefetched.add(url);
+  }
+
+  function schedule(link) {
+    // small delay to filter accidental hovers
+    clear(link);
+    var id = setTimeout(function () {
+      injectPrefetch(link.href);
+    }, 120);
+    timers.set(link, id);
+  }
+
+  function clear(link) {
+    var id = timers.get(link);
+    if (id) {
+      clearTimeout(id);
+      timers.delete(link);
+    }
+  }
+
+  offerLinks.forEach(function (a) {
+    // Desktop pointer
+    a.addEventListener('mouseenter', function () {
+      schedule(a);
+    });
+    a.addEventListener('mouseleave', function () {
+      clear(a);
+    });
+
+    // Keyboard navigation
+    a.addEventListener('focus', function () {
+      schedule(a);
+    });
+    a.addEventListener('blur', function () {
+      clear(a);
+    });
+
+    // Touch (intent is high; no delay)
+    a.addEventListener(
+      'touchstart',
+      function () {
+        injectPrefetch(a.href);
+      },
+      { passive: true, once: true }
+    );
+  });
+})();
+
+/* ========== Form: light enhancements (keep native validation) ========== */
+(function () {
+  var form = document.querySelector('form.form');
+  if (!form) return;
+
+  var note = form.querySelector('.form-note');
+
+  function setNote(msg, ok) {
+    if (!note) return;
+    note.textContent = msg || '';
+    note.classList.toggle('is-ok', !!ok);
+    note.classList.toggle('is-err', !ok && !!msg);
+  }
+
+  // Normalize PL phone as user types (keep digits, group softly)
+  var phone = form.querySelector('#f-phone');
+  if (phone) {
+    phone.addEventListener('input', function () {
+      var digits = phone.value.replace(/[^\d+]/g, '');
+      // keep optional leading +48, rest digits grouped softly
+      var hasPlus = digits.startsWith('+');
+      if (hasPlus) {
+        // keep +48 if present, then rest
+        digits = '+' + digits.slice(1).replace(/\D/g, '');
+      }
+      phone.setCustomValidity(''); // clear custom message as user edits
+    });
+
+    // Custom error text for pattern/required
+    phone.addEventListener('invalid', function () {
+      if (phone.validity.valueMissing) {
+        phone.setCustomValidity('Podaj numer telefonu.');
+      } else if (phone.validity.patternMismatch) {
+        phone.setCustomValidity('Podaj 9 cyfr (spacje/kreski dozwolone), opcjonalnie +48 na początku.');
+      }
+      // Uwaga: przeglądarka pokaże ten tekst po submit/blur
+    });
+
+    // Clear custom message on input so the browser can re-validate
+    phone.addEventListener('input', function () {
+      phone.setCustomValidity('');
+    });
+  }
+
+  // On submit: let browser validate; show a global note; focus first invalid
+  form.addEventListener('submit', function (e) {
+    setNote('', false);
+    // reportValidity zwraca true/false i pokazuje natywne dymki
+    if (!form.reportValidity()) {
+      // focusuj pierwsze niepoprawne pole
+      var firstInvalid = form.querySelector(':invalid');
+      if (firstInvalid && typeof firstInvalid.focus === 'function') firstInvalid.focus();
+      setNote('Uzupełnij wymagane pola i popraw błędy.', false);
+      e.preventDefault();
+      return;
+    }
+    // Tu normalnie wysyłasz formularz (backend). Na razie tylko UX:
+    setNote('Wysyłanie…', true);
+    // e.preventDefault(); // odkomentuj, jeśli na razie nie masz backendu
+  });
+})();
+
+/* ========== Helpers: footer year text ========== */
+(function () {
+  try {
+    var y = document.getElementById('year');
+    if (y) y.textContent = new Date().getFullYear();
+  } catch (e) {
+    /* no-op */
+  }
+})();
+
+/* ========== HOME only: clear hash after ".scroll-top" click ========== */
+(function () {
+  // Determine if we are on the homepage (/, /index.html, or empty path)
+  var p = location.pathname.replace(/\/+$/, '');
+  var isHome = p === '' || p === '/' || p.endsWith('/index.html');
+  if (!isHome) return;
+
+  document.addEventListener('click', function (e) {
+    var link = e.target.closest('a.scroll-top');
+    if (!link) return;
+
+    e.preventDefault();
+
+    // Smooth-scroll to top
+    var topEl = document.getElementById('top');
+    if (topEl) {
+      topEl.scrollIntoView({ behavior: 'smooth' });
+      // Improve a11y: temporarily focus the top anchor
+      if (typeof topEl.focus === 'function') {
+        topEl.setAttribute('tabindex', '-1');
+        topEl.focus({ preventScroll: true });
+        setTimeout(function () {
+          topEl.removeAttribute('tabindex');
+        }, 1000);
+      }
+    } else {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    // Remove hash from the URL bar (keep query if any)
+    history.replaceState(null, '', location.pathname + location.search);
+  });
+})();
+
+/* ========== HOME only: prefill hidden "usluga" from ?usluga=...#kontakt ========== */
+(function () {
+  var p = location.pathname.replace(/\/+$/, '');
+  var isHome = p === '' || p === '/' || p.endsWith('/index.html');
+  if (!isHome) return;
+
+  var params = new URLSearchParams(location.search);
+  var service = params.get('usluga');
+  if (!service) return;
+
+  var form = document.querySelector('#kontakt form');
+  if (!form) return;
+
+  var input = form.querySelector('[name="usluga"]');
+  if (!input) {
+    input = document.createElement('input');
+    input.type = 'hidden';
+    input.name = 'usluga';
+    form.appendChild(input);
+  }
+  input.value = service;
+
+  // Clean the query string; keep the hash (e.g., #kontakt)
+  history.replaceState(null, '', location.pathname + location.hash);
+})();
 
 /* =========================================================
    INIT — odpal wszystko po załadowaniu DOM (kolejność ma sens)
 ========================================================= */
-document.addEventListener("DOMContentLoaded", () => {
-  initHeaderShrink();     // 7) header: --header-h + shrink
-  initNav();              // 1) nawigacja (hamburger + dropdown „Oferta”)
-  initScrollSpy();        // 2) scrollspy
-  initSmoothTop();        // 4) smooth scroll do #top
-  initSkipNext();         // 5) SKIP-NEXT  
-  initOfertaScroller();   // 12) OFERTA — poziomy scroller (snap + maski + strzałki)
-  initContactForm();      // 6) formularz kontaktowy
-  initFooterYear();       // 3) rok w stopce
-  initThemeToggle();      // 8) motyw (dark/light)
-  initRipple();           // 9) ripple na „Wycena”
-  initHeroBlurSync();     // 10) HERO blur sync
+document.addEventListener('DOMContentLoaded', () => {
+  initHeaderShrink(); // 7) header: --header-h + shrink
+  initNav(); // 1) nawigacja (hamburger + dropdown „Oferta”)
+  initScrollSpy(); // 2) scrollspy
+  initSmoothTop(); // 4) smooth scroll do #top
+  initSkipNext(); // 5) SKIP-NEXT
+  initOfertaScroller(); // 12) OFERTA — poziomy scroller (snap + maski + strzałki)
+  initContactForm(); // 6) formularz kontaktowy
+  initFooterYear(); // 3) rok w stopce
+  initThemeToggle(); // 8) motyw (dark/light)
+  initRipple(); // 9) ripple na „Wycena”
+  initHeroBlurSync(); // 10) HERO blur sync
 });
