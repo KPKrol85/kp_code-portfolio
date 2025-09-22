@@ -3480,77 +3480,125 @@ html.lb-no-scroll {
   margin-bottom: 0;
 }
 
-/* 16) DOCUMENTATION (content) */
+/* ========== DOCUMENTATION (content) ========== */
 .doc-content {
   max-width: 70ch;
   margin-inline: auto;
   font-size: 1rem;
   line-height: 1.75;
+  color: inherit; /* inherit theme color */
 }
-.doc-page .block-head h1 {
-  margin-bottom: 0.5rem;
-}
+
+.doc-page .block-head h1 { margin-bottom: 0.5rem; }
 .doc-page .block-head .lead {
   max-width: 70ch;
   margin-inline: auto;
 }
 
+/* Headings */
 .doc-content h2 {
   font-size: 1.125rem;
+  font-weight: 700;
   margin: 1.75rem 0 0.5rem;
-  font-weight: 700;
-  scroll-margin-top: var(--header-h, 72px);
+  scroll-margin-top: var(--header-h, 72px); /* sticky header offset */
 }
-.doc-content p {
-  margin: 0.75rem 0;
-}
-.doc-content strong {
-  font-weight: 700;
-}
-.doc-content ul {
-  list-style: disc;
-  padding-left: 1.25rem;
+
+/* Spacing */
+.doc-content > * { margin-block: 0.75rem; }
+.doc-content > :first-child { margin-block-start: 0; }
+.doc-content p { margin: 0.75rem 0; }
+
+/* Emphasis */
+.doc-content strong { font-weight: 700; }
+
+/* Lists */
+.doc-content ul,
+.doc-content ol {
+  padding-inline-start: 1.25rem; /* logical prop */
   margin: 0.5rem 0 1rem;
 }
-.doc-content li {
-  margin: 0.35rem 0;
-}
+.doc-content ul { list-style: disc; }
+.doc-content ol { list-style: decimal; }
+.doc-content li { margin: 0.35rem 0; }
+
+/* Links */
 .doc-content a {
   text-decoration: underline;
   text-underline-offset: 0.15em;
+  word-break: break-word;           /* long URLs */
+  overflow-wrap: anywhere;
 }
 @media (hover: hover) {
-  .doc-content a:hover {
-    opacity: 0.85;
-  }
+  .doc-content a:hover { opacity: 0.85; }
 }
-:root .doc-content {
-  color: inherit;
+/* Accessible focus state without relying on color only */
+.doc-content a:focus-visible {
+  outline: 2px solid currentColor;
+  outline-offset: 2px;
+  text-decoration-thickness: 2px;
 }
+
+/* Small devices */
+@media (max-width: 480px) {
+  .doc-content { max-width: 100%; }
+}
+
+/* Print styles */
 @media print {
+  /* Hide chrome */
   .site-header,
   .site-footer,
   .nav,
-  .header-actions {
-    display: none !important;
-  }
-  .doc-content a::after {
-    content: ' (' attr(href) ')';
+  .header-actions { display: none !important; }
+
+  /* Show URL after links, except phone/email/fragment */
+  .doc-content a[href^="http"]::after {
+    content: " (" attr(href) ")";
     font-weight: 400;
   }
-  body {
-    background: #fff;
-    color: #000;
-  }
+  .doc-content a[href^="mailto:" ]::after,
+  .doc-content a[href^="tel:"    ]::after,
+  .doc-content a[href^="#"]::after { content: ""; }
+
+  body { background: #fff; color: #000; }
+
+  /* Avoid bad breaks */
+  h1, h2 { break-after: avoid; }
+  p, li { orphans: 3; widows: 3; }
 }
 
-.doc-content ol {
-  list-style: decimal;
-  padding-left: 1.25rem;
-  margin: 0.5rem 0 1rem;
+/* Optional: if you add <h3> later, it will be consistent */
+.doc-content h3 {
+  font-size: 1rem;
+  font-weight: 700;
+  margin: 1.25rem 0 0.5rem;
+  scroll-margin-top: var(--header-h, 72px);
 }
-@media (max-width: 480px) {
-  .doc-content {
-    max-width: 100%;
-  }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* Minimal CSS for ripple */
+.nav-menu .btn { position: relative; overflow: hidden; }
+.ripple {
+  position: absolute; border-radius: 50%;
+  transform: scale(0); opacity: 0.35; pointer-events: none;
+  background: currentColor; /* or var(--btn-ripple, currentColor) */
+  animation: ripple-enter 600ms ease-out;
+}
+@keyframes ripple-enter {
+  to { transform: scale(1); opacity: 0; }
 }
