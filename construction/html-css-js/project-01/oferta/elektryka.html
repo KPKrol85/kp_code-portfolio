@@ -4,6 +4,8 @@
     <!-- ========== Core ========== -->
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta name="referrer" content="strict-origin-when-cross-origin" />
+    <meta name="format-detection" content="telephone=no, address=no, email=no" />
 
     <title>Elektryka — Nazwa Twojej Firmy</title>
     <meta
@@ -66,6 +68,7 @@
       name="twitter:image"
       content="https://construction-project-01.netlify.app/assets/img/og/og-image-1200x630.jpg" />
     <meta name="twitter:url" content="https://construction-project-01.netlify.app/oferta/elektryka.html" />
+    <meta name="twitter:image:alt" content="Elektryk przy rozdzielni — logo firmy w rogu" />
 
     <!-- ========== JSON-LD (Org + Service + Breadcrumb) ========== -->
     <script type="application/ld+json">
@@ -133,6 +136,7 @@
           },
           {
             "@type": "Service",
+            "@id": "https://construction-project-01.netlify.app/#service-elektryka",
             "name": "Elektryka",
             "serviceType": "Electrical services",
             "provider": { "@id": "https://construction-project-01.netlify.app/#org" },
@@ -168,16 +172,16 @@
 
     <!-- ========== Anti-FOUC (theme) ========== -->
     <script>
+      // Ustaw motyw przed renderem (przechwyć preferencję użytkownika)
       try {
-        var d = document.documentElement,
-          t = localStorage.getItem('theme');
-        if (!t) {
-          t = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
-        }
+        const d = document.documentElement;
+        let t = localStorage.getItem('theme');
+        if (!t) t = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
         d.setAttribute('data-theme', t);
-      } catch (e) {}
+      } catch (_) {}
     </script>
     <style>
+      /* Wyłącz animacje do czasu ustawienia motywu */
       html.preload-theme *,
       html.preload-theme *::before,
       html.preload-theme *::after {
@@ -185,6 +189,7 @@
       }
     </style>
     <script>
+      // Minimalizacja FOUC — zdjęcie klasy po pierwszym malowaniu
       document.documentElement.classList.add('preload-theme');
       window.addEventListener('DOMContentLoaded', () => {
         setTimeout(() => document.documentElement.classList.remove('preload-theme'), 0);
@@ -192,6 +197,8 @@
     </script>
 
     <!-- ========== Fonts (preconnect + stylesheet preload) ========== -->
+    <link rel="dns-prefetch" href="https://fonts.googleapis.com" />
+    <link rel="dns-prefetch" href="https://fonts.gstatic.com" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -219,70 +226,65 @@
   </head>
 
   <body class="page-sub">
-    <!-- A11Y: Skip link + kotwica #top -->
-    <a class="skip" href="#main">Pomiń do treści</a>
+    <!-- A11Y: Skip link + anchor #top -->
+    <a class="skip" href="#main">Skip to content</a>
     <div id="top" aria-hidden="true" style="position: relative; inset: 0; height: 0"></div>
 
-    <!-- =========================================================
-     HEADER
-     ========================================================= -->
+    <!-- ========== HEADER ========== -->
     <header class="site-header" role="banner">
       <div class="container header-bar">
-        <!-- Brand -->
-        <a class="brand" href="#top" aria-label="Strona główna — Ekipa Remontowa">
+        <!-- Brand (logo + text) -->
+        <a class="brand" href="../index.html#top" aria-label="Home — Ekipa Remontowa">
           <picture class="brand-logo">
+            <!-- Decorative: avoid duplicate name for screen readers -->
             <img
               src="../assets/img/main-logo/main-logo-light-512.svg"
-              alt="Nazwa firmy"
+              alt=""
+              aria-hidden="true"
               class="ft-logo logo--light"
+              width="128"
+              height="32"
               loading="eager"
-              fetchpriority="high"
+              fetchpriority="low"
               decoding="async" />
             <img
               src="../assets/img/main-logo/main-logo-dark-512.svg"
-              alt="Nazwa firmy"
+              alt=""
+              aria-hidden="true"
               class="ft-logo logo--dark"
+              width="128"
+              height="32"
               loading="eager"
-              fetchpriority="high"
+              fetchpriority="low"
               decoding="async" />
           </picture>
           <span class="brand-name">LOGO FIRMY</span>
         </a>
 
-        <!-- Główna nawigacja (dla oferta/lazienki.html) -->
-        <nav class="nav" role="navigation" aria-label="Główna nawigacja">
+        <!-- Main navigation (subpages: OFERTA/*) -->
+        <nav class="nav" role="navigation" aria-label="Main navigation">
           <ul id="navMenu" class="nav-menu">
-            <li>
-              <a href="../index.html">Strona główna</a>
-            </li>
+            <li><a href="../index.html">Strona Główna</a></li>
 
-            <!-- Oferta (link + dropdown) -->
+            <!-- Dropdown: Oferta -->
             <li class="nav-item has-dropdown">
               <a
                 href="../index.html#oferta"
+                id="nav-oferta-trigger"
                 class="nav-link dropdown-trigger"
                 aria-expanded="false"
-                aria-haspopup="menu"
+                aria-haspopup="true"
                 aria-controls="dd-oferta">
                 Oferta
                 <span class="caret" aria-hidden="true">▾</span>
               </a>
-              <ul id="dd-oferta" class="dropdown" role="menu" aria-label="Podmenu: Oferta">
-                <li role="none">
-                  <a role="menuitem" href="lazienki.html">Łazienki</a>
-                </li>
-                <li role="none">
-                  <a role="menuitem" href="malowanie.html">Malowanie &amp; gładzie</a>
-                </li>
-                <li role="none">
-                  <a role="menuitem" href="kafelkowanie.html">Kafelkowanie</a>
-                </li>
-                <li role="none">
-                  <a role="menuitem" href="elektryka.html">Elektryka</a>
-                </li>
-                <li role="none">
-                  <a role="menuitem" href="hydraulika.html">Hydraulika</a>
-                </li>
+              <ul id="dd-oferta" class="dropdown" role="menu" aria-label="Submenu: Oferta">
+                <li role="none"><a role="menuitem" href="lazienki.html">Łazienki</a></li>
+                <li role="none"><a role="menuitem" href="malowanie.html">Malowanie &amp; gładzie</a></li>
+                <li role="none"><a role="menuitem" href="kafelkowanie.html">Kafelkowanie</a></li>
+                <!-- A11Y: mark current page -->
+                <li role="none"><a role="menuitem" href="elektryka.html" aria-current="page">Elektryka</a></li>
+                <li role="none"><a role="menuitem" href="hydraulika.html">Hydraulika</a></li>
               </ul>
             </li>
 
@@ -290,26 +292,20 @@
             <li><a href="../index.html#opinie">Opinie</a></li>
             <li><a href="../index.html#faq">FAQ</a></li>
             <li><a href="../index.html#kontakt">Kontakt</a></li>
-            <li>
-              <a class="btn btn--sm" href="../index.html#kontakt">Wycena</a>
-            </li>
+            <li><a class="btn btn--sm" href="../index.html#kontakt">Wycena</a></li>
           </ul>
         </nav>
 
-        <!-- Akcje w pasku (po prawej): przełącznik motywu + hamburger -->
+        <!-- Header actions: theme toggle + hamburger -->
         <div class="header-actions">
           <button
             class="theme-toggle"
             type="button"
             aria-pressed="false"
-            aria-label="Przełącz tryb"
-            title="Przełącz tryb"></button>
-          <button
-            class="nav-toggle"
-            type="button"
-            aria-expanded="false"
-            aria-controls="navMenu"
-            aria-label="Otwórz menu">
+            aria-label="Toggle theme"
+            title="Toggle theme"></button>
+
+          <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="navMenu" aria-label="Open menu">
             <span class="nav-line"></span>
             <span class="nav-line"></span>
             <span class="nav-line"></span>
@@ -318,73 +314,85 @@
       </div>
     </header>
 
-    <main id="main" role="main">
-      <!-- SUBPAGE HEADER (lekki, bez .hero) -->
-      <section class="block" id="elektryka" role="region" aria-labelledby="elektryka-heading">
+    <!-- ========== MAIN / SUBPAGE HEADER ========== -->
+      <main id="main" role="main"></main>
+        <section
+        class="block subpage-header"
+        id="elektryka"
+        role="region"
+        aria-labelledby="elektryka-heading"
+        aria-describedby="elektryka-desc"
+        tabindex="-1">
+          <!-- focusable target for skip link -->
+
+          <div class="container">
+            <!-- Section header -->
+            <header class="block-head">
+              <h1 id="elektryka-heading">Elektryka — instalacje i przeróbki</h1>
+              <p id="elektryka-desc" class="lead">
+                Nowe instalacje, modernizacje i serwis. Pracujemy zgodnie z normami, dbając o bezpieczeństwo i estetykę
+                wykończenia.
+              </p>
+            </header>
+
+            <!-- Service cards (keep semantic <article> for SRs and SEO) -->
+            <div class="cards">
+              <article class="card hover-card" id="instalacje">
+                <h3>Instalacje od podstaw</h3>
+                <p>Okablowanie, rozdzielnie, zabezpieczenia, RCD/RCBO, uziemienie. Projekty pod mieszkania i domy.</p>
+              </article>
+
+              <article class="card hover-card" id="przerobki">
+                <h3>Przeróbki i dołożenia obwodów</h3>
+                <p>Nowe gniazda i punkty świetlne, strefy w łazienkach/kuchniach, pod sprzęty AGD i klimatyzację.</p>
+              </article>
+
+              <article class="card hover-card" id="oswietlenie">
+                <h3>Oświetlenie</h3>
+                <p>LED, taśmy i profile, oprawy natynkowe/podtynkowe, ściemniacze, czujniki ruchu i zmierzchu.</p>
+              </article>
+
+              <article class="card hover-card" id="pomiary">
+                <h3>Pomiary i przeglądy</h3>
+                <p>Impedancja pętli zwarcia, rezystancja izolacji, ciągłość PE, protokoły powykonawcze.</p>
+              </article>
+            </div>
+
+            <!-- Primary CTA block -->
+            <div class="block-cta">
+              <a
+                class="btn"
+                href="../index.html?usluga=Elektryka#kontakt"
+                aria-label="Przejdź do formularza wyceny — Elektryka">
+                Wycena
+              </a>
+
+              <a
+                class="btn btn--ghost"
+                href="../index.html#realizacje"
+                aria-label="Zobacz galerię realizacji elektrycznych">
+                Galeria realizacji
+              </a>
+            </div>
+          </div>
+        </section>
+
+        <!-- ========== MAIN — FAQ ========== -->
+      <section id="faq" class="block" role="region" aria-labelledby="faq-heading" aria-describedby="faq-desc">
         <div class="container">
+          <!-- Section header -->
           <header class="block-head">
-            <h1 id="elektryka-heading">Elektryka — instalacje i przeróbki</h1>
-            <p class="lead">
-              Nowe instalacje, modernizacje i serwis. Pracujemy zgodnie z normami, dbając o bezpieczeństwo i estetykę
-              wykończenia.
+            <h2 id="faq-heading">FAQ — najczęstsze pytania</h2>
+            <p id="faq-desc" class="lead">
+              Krótko i konkretnie — najważniejsze informacje o instalacjach elektrycznych.
             </p>
           </header>
 
-          <div class="cards">
-            <article class="card hover-card">
-              <h3>Instalacje od podstaw</h3>
-              <p>Okablowanie, rozdzielnie, zabezpieczenia, RCD/RCBO, uziemienie. Projekty pod mieszkania i domy.</p>
-            </article>
-
-            <article class="card hover-card">
-              <h3>Przeróbki i dołożenia obwodów</h3>
-              <p>Nowe gniazda i punkty świetlne, strefy w łazienkach/kuchniach, pod sprzęty AGD i klimatyzację.</p>
-            </article>
-
-            <article class="card hover-card">
-              <h3>Oświetlenie</h3>
-              <p>LED, taśmy i profile, oprawy natynkowe/podtynkowe, ściemniacze, czujniki ruchu i zmierzchu.</p>
-            </article>
-
-            <article class="card hover-card">
-              <h3>Pomiary i przeglądy</h3>
-              <p>Impedancja pętli zwarcia, rezystancja izolacji, ciągłość PE, protokoły powykonawcze.</p>
-            </article>
-          </div>
-
-          <div class="block-cta">
-            <a
-              class="btn"
-              href="../index.html?usluga=Elektryka#kontakt"
-              aria-label="Przejdź do formularza wyceny — Elektryka">
-              Wycena
-            </a>
-
-            <a
-              class="btn btn--ghost"
-              href="../index.html#realizacje"
-              aria-label="Zobacz galerię realizacji elektrycznych">
-              Galeria realizacji
-            </a>
-          </div>
-        </div>
-      </section>
-
-      <!-- =========================================================
-Elektryka - FAQ
-========================================================= -->
-
-      <section id="faq" class="block" role="region" aria-labelledby="faq-heading" aria-describedby="faq-desc">
-        <div class="container">
-          <header class="block-head">
-            <h2 id="faq-heading">FAQ — najczęstsze pytania</h2>
-            <p id="faq-desc">Krótko i konkretnie — najważniejsze informacje o instalacjach elektrycznych.</p>
-          </header>
-
-          <ul class="faq-list" role="list">
-            <li role="listitem">
+          <!-- FAQ list (use native <details>/<summary> for a11y) -->
+          <ul class="faq-list">
+            <li>
               <details class="faq" id="faq-1">
-                <summary id="q-1">Ile trwa modernizacja instalacji w mieszkaniu 50–60&nbsp;m²?</summary>
+                <summary id="q-1" class="faq-q">Ile trwa modernizacja instalacji w mieszkaniu 50–60&nbsp;m²?</summary>
                 <div class="answer" id="a-1" role="region" aria-labelledby="q-1">
                   <p>
                     Zwykle
@@ -397,9 +405,9 @@ Elektryka - FAQ
               </details>
             </li>
 
-            <li role="listitem">
+            <li>
               <details class="faq" id="faq-2">
-                <summary id="q-2">Czy wykonujecie pomiary i przekazujecie protokół?</summary>
+                <summary id="q-2" class="faq-q">Czy wykonujecie pomiary i przekazujecie protokół?</summary>
                 <div class="answer" id="a-2" role="region" aria-labelledby="q-2">
                   <p>
                     Tak. Po pracach wykonujemy pomiary (
@@ -416,9 +424,9 @@ Elektryka - FAQ
               </details>
             </li>
 
-            <li role="listitem">
+            <li>
               <details class="faq" id="faq-3">
-                <summary id="q-3">Czy można dołożyć gniazda/światła bez kucia całego mieszkania?</summary>
+                <summary id="q-3" class="faq-q">Czy można dołożyć gniazda/światła bez kucia całego mieszkania?</summary>
                 <div class="answer" id="a-3" role="region" aria-labelledby="q-3">
                   <p>
                     Najczęściej tak — wpinamy się w istniejące puszki, prowadzimy przewody
@@ -431,9 +439,9 @@ Elektryka - FAQ
               </details>
             </li>
 
-            <li role="listitem">
+            <li>
               <details class="faq" id="faq-4">
-                <summary id="q-4">Jakie zabezpieczenia montujecie standardowo?</summary>
+                <summary id="q-4" class="faq-q">Jakie zabezpieczenia montujecie standardowo?</summary>
                 <div class="answer" id="a-4" role="region" aria-labelledby="q-4">
                   <p>
                     Stosujemy wyłączniki
@@ -450,241 +458,166 @@ Elektryka - FAQ
         </div>
       </section>
 
-      <!-- lekkie CTA końcowe -->
-      <section class="cta" aria-labelledby="cta-end-heading">
+      <!-- ========== MAIN — CTA light ========== -->
+      <section class="cta" role="region" aria-labelledby="cta-end-heading">
         <div class="container">
           <header class="block-head">
             <h2 id="cta-end-heading">Masz projekt lub szkic instalacji?</h2>
             <p class="lead">Przyślij rzut i zakres prac — wycenimy w 24–48&nbsp;h i zaproponujemy najbliższy termin.</p>
           </header>
+
           <div class="block-cta">
-            <a class="btn" href="../index.html#kontakt">Wyślij zapytanie</a>
+            <a class="btn" href="../index.html#kontakt" aria-label="Wyślij zapytanie — formularz kontaktowy">
+              Wyślij zapytanie
+            </a>
           </div>
         </div>
       </section>
     </main>
 
-    <!-- =========================================================
-        FOOTER
-========================================================= -->
-    <footer id="footer" class="site-footer" role="contentinfo" aria-labelledby="footer-heading">
-      <div class="container">
-        <h2 class="vh" id="footer-heading">Stopka serwisu</h2>
-        <div class="ft-grid">
-          <!-- COL 1: BRAND + OPIS + KONTAKT -->
-          <div class="ft-col">
-            <a href="#top" class="brand-footer" aria-label="Strona główna">
-              <picture>
-                <source srcset="../assets/img/main-logo/main-logo-footer-512.png" type="image/png" />
-                <img
-                  src="../assets/img/main-logo/main-logo-footer-512.png"
-                  alt=""
-                  aria-hidden="true"
-                  class="ft-logo"
-                  width="512"
-                  height="512"
-                  loading="lazy"
-                  decoding="async" />
-              </picture>
-            </a>
+    <!-- ========== FOOTER ========== -->
+<footer id="footer" class="site-footer" role="contentinfo" aria-labelledby="footer-heading">
+  <div class="container">
+    <h2 class="vh" id="footer-heading">Stopka serwisu</h2>
 
-            <p class="ft-lead">Solidne realizacje budowlane — oferta, wyceny i kontakt w 24&nbsp;h.</p>
+    <div class="ft-grid">
+      <!-- COL 1: Brand + description + contact -->
+      <div class="ft-col">
+        <a href="../index.html#top" class="brand-footer" aria-label="Home">
+          <picture>
+            <source srcset="../assets/img/main-logo/main-logo-footer-512.png" type="image/png" />
+            <!-- Decorative: hide from SRs (text brand appears elsewhere) -->
+            <img
+              src="../assets/img/main-logo/main-logo-footer-512.png"
+              alt=""
+              aria-hidden="true"
+              class="ft-logo"
+              width="512"
+              height="512"
+              loading="lazy"
+              decoding="async" />
+          </picture>
+        </a>
 
-            <ul class="ft-contact" role="list" aria-label="Dane kontaktowe">
-              <li role="listitem">
-                <svg class="i" aria-hidden="true">
-                  <use href="#i-phone"></use>
-                </svg>
-                <a href="tel:+48600700800" aria-label="Zadzwoń: +48 600 700 800">+48 600 700 800</a>
-              </li>
-              <li role="listitem">
-                <svg class="i" aria-hidden="true">
-                  <use href="#i-mail"></use>
-                </svg>
-                <a href="mailto:kontakt@twoja-firma.pl">kontakt@twoja-firma.pl</a>
-              </li>
-            </ul>
-          </div>
+        <p class="ft-lead">Solidne realizacje budowlane — oferta, wyceny i kontakt w 24&nbsp;h.</p>
 
-          <!-- COL 2: NAWIGACJA -->
-          <nav class="ft-col" aria-label="Nawigacja w stopce">
-            <h3 class="ft-h">Nawigacja</h3>
-            <ul class="ft-links" role="list">
-              <li role="listitem"><a href="../index.html#oferta">Oferta</a></li>
-              <li role="listitem">
-                <a href="../index.html#realizacje">Realizacje</a>
-              </li>
-              <li role="listitem"><a href="../index.html#opinie">Opinie</a></li>
-              <li role="listitem"><a href="../index.html#faq">FAQ</a></li>
-              <li role="listitem">
-                <a href="../index.html#kontakt">Kontakt</a>
-              </li>
-            </ul>
-          </nav>
+        <!-- Contact data -->
+        <ul class="ft-contact" aria-label="Dane kontaktowe">
+          <li>
+            <svg class="i" aria-hidden="true"><use href="#i-phone"></use></svg>
+            <a href="tel:+48600700800" aria-label="Zadzwoń: +48 600 700 800">+48 600 700 800</a>
+          </li>
+          <li>
+            <svg class="i" aria-hidden="true"><use href="#i-mail"></use></svg>
+            <a href="mailto:kontakt@twoja-firma.pl">kontakt@twoja-firma.pl</a>
+          </li>
+        </ul>
+      </div>
 
-          <!-- COL 3: DOKUMENTY -->
-          <nav class="ft-col" aria-label="Dokumenty">
-            <h3 class="ft-h">Dokumenty</h3>
-            <ul class="ft-links" role="list">
-              <li role="listitem">
-                <a href="../doc/polityka-prywatnosci.html">Polityka prywatności</a>
-              </li>
-              <li role="listitem">
-                <a href="../doc/regulamin.html">Regulamin</a>
-              </li>
-              <li role="listitem">
-                <a href="../doc/cookies.html">Pliki cookies</a>
-              </li>
-            </ul>
-          </nav>
+      <!-- COL 2: Footer navigation -->
+      <nav class="ft-col" aria-label="Nawigacja w stopce">
+        <h3 class="ft-h">Nawigacja</h3>
+        <ul class="ft-links">
+          <li><a href="../index.html#oferta">Oferta</a></li>
+          <li><a href="../index.html#realizacje">Realizacje</a></li>
+          <li><a href="../index.html#opinie">Opinie</a></li>
+          <li><a href="../index.html#faq">FAQ</a></li>
+          <li><a href="../index.html#kontakt">Kontakt</a></li>
+        </ul>
+      </nav>
 
-          <!-- COL 4: MAPA + SOCIAL + CTA -->
-          <div class="ft-col">
-            <h3 class="ft-h">Znajdziesz nas tutaj:</h3>
+      <!-- COL 3: Documents -->
+      <nav class="ft-col" aria-label="Dokumenty">
+        <h3 class="ft-h">Dokumenty</h3>
+        <ul class="ft-links">
+          <li><a href="../doc/polityka-prywatnosci.html">Polityka prywatności</a></li>
+          <li><a href="../doc/regulamin.html">Regulamin</a></li>
+          <li><a href="../doc/cookies.html">Pliki cookies</a></li>
+        </ul>
+      </nav>
 
-            <div class="ft-map">
-              <iframe
-                title="Mapa dojazdu — siedziba firmy"
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2437.123456!2d20.985!3d50.013!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zNTHCsDAxJzAwLjAiTiAyMMKwNTknMzAuMCJF!5e0!3m2!1spl!2spl!4v123456789"
-                width="100%"
-                height="160"
-                style="border: 0"
-                loading="lazy"
-                allowfullscreen
-                referrerpolicy="no-referrer-when-downgrade"></iframe>
-            </div>
+      <!-- COL 4: Map + address + social -->
+      <div class="ft-col">
+        <h3 class="ft-h">Znajdziesz nas tutaj:</h3>
 
-            <address class="ft-address">
-              <p><strong>Nazwa Twojej Firmy Sp. z o.o.</strong></p>
-              <p>
-                ul. Przykładowa 10,
-                <br />
-                33-100 Tarnów
-              </p>
-              <p>
-                NIP: 123-456-78-90
-                <br />
-                REGON: 123456789
-              </p>
-              <p>
-                tel.
-                <a href="tel:+48123456789">+48 123 456 789</a>
-                <br />
-                e-mail:
-                <a href="mailto:kontakt@twoja-firma.pl">
-                  <br />
-                  kontakt@twoja-firma.pl
-                </a>
-              </p>
-            </address>
-
-            <div class="ft-social" aria-label="Media społecznościowe">
-              <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" aria-label="Facebook">
-                <svg class="i" aria-hidden="true">
-                  <use href="#i-facebook"></use>
-                </svg>
-              </a>
-              <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
-                <svg class="i" aria-hidden="true">
-                  <use href="#i-instagram"></use>
-                </svg>
-              </a>
-              <a href="https://youtube.com" target="_blank" rel="noopener noreferrer" aria-label="YouTube">
-                <svg class="i" aria-hidden="true">
-                  <use href="#i-youtube"></use>
-                </svg>
-              </a>
-              <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
-                <svg class="i" aria-hidden="true">
-                  <use href="#i-linkedin"></use>
-                </svg>
-              </a>
-            </div>
-          </div>
+        <!-- Embedded map -->
+        <div class="ft-map">
+          <iframe
+            title="Mapa dojazdu — siedziba firmy"
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2437.123456!2d20.985!3d50.013!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zNTHCsDAxJzAwLjAiTiAyMMKwNTknMzAuMCJF!5e0!3m2!1spl!2spl!4v123456789"
+            width="100%"
+            height="160"
+            style="border:0"
+            loading="lazy"
+            allowfullscreen
+            referrerpolicy="no-referrer-when-downgrade"></iframe>
         </div>
 
-        <div class="ft-bottom">
-          <p>
-            ©
-            <span id="year"></span>
-            KP_Code. Wszelkie prawa zastrzeżone. Projekt i wdrożenie:
-            <a href="#" rel="author">KP_Code</a>
-          </p>
+        <!-- Company address -->
+        <address class="ft-address">
+          <p><strong>Nazwa Twojej Firmy Sp. z o.o.</strong></p>
+          <p>ul. Przykładowa 10,<br />33-100 Tarnów</p>
+          <p>NIP: 123-456-78-90<br />REGON: 123456789</p>
+          <p>tel. <a href="tel:+48123456789">+48 123 456 789</a><br />e-mail: <a href="mailto:kontakt@twoja-firma.pl">kontakt@twoja-firma.pl</a></p>
+        </address>
+
+        <!-- Social links -->
+        <div class="ft-social" aria-label="Media społecznościowe">
+          <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" aria-label="Facebook">
+            <svg class="i" aria-hidden="true"><use href="#i-facebook"></use></svg>
+          </a>
+          <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
+            <svg class="i" aria-hidden="true"><use href="#i-instagram"></use></svg>
+          </a>
+          <a href="https://youtube.com" target="_blank" rel="noopener noreferrer" aria-label="YouTube">
+            <svg class="i" aria-hidden="true"><use href="#i-youtube"></use></svg>
+          </a>
+          <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+            <svg class="i" aria-hidden="true"><use href="#i-linkedin"></use></svg>
+          </a>
         </div>
       </div>
-    </footer>
+    </div>
 
-    <!-- =========================================================
-        SCRIPTY
-        ========================================================= -->
-    <!-- SCRIPTS -->
+    <!-- Bottom bar -->
+    <div class="ft-bottom">
+      <p>© <span id="year"></span> KP_Code. Wszelkie prawa zastrzeżone. Projekt i wdrożenie: <a href="#" rel="author">KP_Code</a></p>
+    </div>
+  </div>
+</footer>
+<!-- /FOOTER -->
+
+    <!-- ========== SCRIPT ========== -->
     <script src="../js/script.js" defer></script>
 
-    <!-- =========================================================
-        SVG SPRITE
-        ========================================================= -->
-    <!-- === SVG SPRITE (ukryty magazyn ikon) === -->
-    <svg
-      xmlns="http://www.w3.org/2000/svg"
-      aria-hidden="true"
-      focusable="false"
-      style="position: absolute; width: 0; height: 0; overflow: hidden">
-      <!-- Telefon -->
-      <symbol
-        id="i-phone"
-        viewBox="0 0 24 24"
-        fill="none"
-        stroke="currentColor"
-        stroke-width="2"
-        stroke-linecap="round"
-        stroke-linejoin="round">
-        <path
-          d="M22 16.92v3a2 2 0 0 1-2.18 2A19.8 19.8 0 0 1 3.08 5.18 2 2 0 0 1 5 3h3a2 2 0 0 1 2 1.72c.08.96.3 1.9.7 2.81a2 2 0 0 1-.45 2.11L9 11a16 16 0 0 0 6 6l1.36-1.25a2 2 0 0 1 2.11-.45c.91.4 1.85.62 2.81.7A2 2 0 0 1 22 16.92z" />
+    <!-- ========== SVG SPRITE ========== -->
+    <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" style="position:absolute;width:0;height:0;overflow:hidden">
+      <!-- Phone -->
+      <symbol id="i-phone" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M22 16.92v3a2 2 0 0 1-2.18 2A19.8 19.8 0 0 1 3.08 5.18 2 2 0 0 1 5 3h3a2 2 0 0 1 2 1.72c.08.96.3 1.9.7 2.81a2 2 0 0 1-.45 2.11L9 11a16 16 0 0 0 6 6l1.36-1.25a2 2 0 0 1 2.11-.45c.91.4 1.85.62 2.81.7A2 2 0 0 1 22 16.92z"/>
       </symbol>
       <!-- Mail -->
-      <symbol
-        id="i-mail"
-        viewBox="0 0 24 24"
-        fill="none"
-        stroke="currentColor"
-        stroke-width="2"
-        stroke-linecap="round"
-        stroke-linejoin="round">
+      <symbol id="i-mail" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
         <rect x="3" y="5" width="18" height="14" rx="2" ry="2"></rect>
         <polyline points="3 7 12 13 21 7"></polyline>
       </symbol>
       <!-- Facebook -->
       <symbol id="i-facebook" viewBox="0 0 24 24" fill="currentColor">
-        <path
-          d="M22 12c0-5.522-4.477-10-10-10S2 6.478 2 12c0 5 3.657 9.128 8.438 9.878v-6.99h-2.54V12h2.54V9.797c0-2.507 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.772-1.63 1.562V12h2.773l-.443 2.888h-2.33v6.99C18.343 21.128 22 17 22 12z" />
+        <path d="M22 12c0-5.522-4.477-10-10-10S2 6.478 2 12c0 5 3.657 9.128 8.438 9.878v-6.99h-2.54V12h2.54V9.797c0-2.507 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.772-1.63 1.562V12h2.773l-.443 2.888h-2.33v6.99C18.343 21.128 22 17 22 12z"/>
       </symbol>
       <!-- Instagram -->
       <symbol id="i-instagram" viewBox="0 0 24 24" fill="currentColor">
-        <path
-          d="M7 2C4.243 2 2 4.243 2 7v10c0 2.757 2.243 5 5 5h10c2.757 0 5-2.243 5-5V7c0-2.757-2.243-5-5-5H7zm0 2h10c1.654 0 3 1.346 3 3v10c0 1.654-1.346 3-3 3H7c-1.654 0-3-1.346-3-3V7c0-1.654 1.346-3 3-3zm5 2a5 5 0 100 10 5 5 0 000-10zm0 2a3 3 0 110 6 3 3 0 010-6zm6.5-.25a1.25 1.25 0 11-2.5 0 1.25 1.25 0 012.5 0z" />
+        <path d="M7 2C4.243 2 2 4.243 2 7v10c0 2.757 2.243 5 5 5h10c2.757 0 5-2.243 5-5V7c0-2.757-2.243-5-5-5H7zm0 2h10c1.654 0 3 1.346 3 3v10c0 1.654-1.346 3-3 3H7c-1.654 0-3-1.346-3-3V7c0-1.654 1.346-3 3-3zm5 2a5 5 0 100 10 5 5 0 000-10zm0 2a3 3 0 110 6 3 3 0 010-6zm6.5-.25a1.25 1.25 0 11-2.5 0 1.25 1.25 0 012.5 0z"/>
       </symbol>
       <!-- YouTube -->
       <symbol id="i-youtube" viewBox="0 0 24 24" fill="currentColor">
-        <path
-          d="M21.8 8.001a2.749 2.749 0 00-1.933-1.948C18.262 6 12 6 12 6s-6.262 0-7.867.053a2.749 2.749 0 00-1.933 1.948A28.54 28.54 0 002 12a28.54 28.54 0 00.2 3.999 2.749 2.749 0 001.933 1.948C5.738 18 12 18 12 18s6.262 0 7.867-.053a2.749 2.749 0 001.933-1.948A28.54 28.54 0 0022 12a28.54 28.54 0 00-.2-3.999zM10 15V9l5.2 3-5.2 3z" />
+        <path d="M21.8 8.001a2.749 2.749 0 00-1.933-1.948C18.262 6 12 6 12 6s-6.262 0-7.867.053a2.749 2.749 0 00-1.933 1.948A28.54 28.54 0 002 12a28.54 28.54 0 00.2 3.999 2.749 2.749 0 001.933 1.948C5.738 18 12 18 12 18s6.262 0 7.867-.053a2.749 2.749 0 001.933-1.948A28.54 28.54 0 0022 12a28.54 28.54 0 00-.2-3.999zM10 15V9l5.2 3-5.2 3z"/>
       </symbol>
       <!-- LinkedIn -->
       <symbol id="i-linkedin" viewBox="0 0 24 24" fill="currentColor">
-        <path
-          d="M4.98 3.5C4.98 4.88 3.87 6 2.5 6S0 4.88 0 3.5 1.12 1 2.5 1s2.48 1.12 2.48 2.5zM.5 8h4V23h-4V8zm7.5 0h3.8v2.04h.05c.53-1 1.84-2.04 3.78-2.04 4.04 0 4.87 2.66 4.87 6.1V23h-4v-7.9c0-1.89-.03-4.33-2.64-4.33-2.65 0-3.06 2.07-3.06 4.2V23h-4V8z" />
+        <path d="M4.98 3.5C4.98 4.88 3.87 6 2.5 6S0 4.88 0 3.5 1.12 1 2.5 1s2.48 1.12 2.48 2.5zM.5 8h4V23h-4V8zm7.5 0h3.8v2.04h.05c.53-1 1.84-2.04 3.78-2.04 4.04 0 4.87 2.66 4.87 6.1V23h-4v-7.9c0-1.89-.03-4.33-2.64-4.33-2.65 0-3.06 2.07-3.06 4.2V23h-4V8z"/>
       </symbol>
     </svg>
-
-    <!-- Mały helper: rok w stopce (bezpieczny, bez błędów jeśli #year nie istnieje) -->
-    <script>
-      (function () {
-        try {
-          var y = document.getElementById('year');
-          if (y) y.textContent = new Date().getFullYear();
-        } catch (e) {
-          /* no-op */
-        }
-      })();
-    </script>
   </body>
 </html>
+

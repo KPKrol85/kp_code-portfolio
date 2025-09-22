@@ -1484,15 +1484,13 @@ h2 + .lead {
   }
 }
 
-@media (max-width:480px){
-  .logos-grid{
-    grid-template-columns:repeat(2,minmax(120px,auto)); /* kolumny węższe */
-    gap:30px;
-    justify-content:center;  /* całość w środku */
+@media (max-width: 480px) {
+  .logos-grid {
+    grid-template-columns: repeat(2, minmax(120px, auto)); /* kolumny węższe */
+    gap: 30px;
+    justify-content: center; /* całość w środku */
   }
 }
-
-
 
 :root[data-theme='dark'] .logos .logo,
 :root[data-theme='dark'] .logos .logo-ph {
@@ -1538,9 +1536,9 @@ h2 + .lead {
   scroll-margin-top: calc(var(--header-h) + 8px);
 }
 .testimonials-grid {
-  list-style: none;   /* usuwa punktor */
-  padding: 0;         /* usuwa domyślny padding-left ul */
-  margin: 0 auto;     /* centrowanie w kontenerze */
+  list-style: none; /* usuwa punktor */
+  padding: 0; /* usuwa domyślny padding-left ul */
+  margin: 0 auto; /* centrowanie w kontenerze */
   display: grid;
   gap: 16px;
   grid-template-columns: 1fr;
@@ -2990,6 +2988,7 @@ section#kontakt .form-note {
 }
 .block-head {
   margin-bottom: var(--sec-head-mb);
+  text-align: center;
 }
 
 .hover-card {
@@ -3268,13 +3267,30 @@ html.lb-no-scroll {
 }
 
 /* ====================================================================== */
-/* 14) Podstrony (nagłówki H1 + .lead + CTA, breadcrumbs)                 */
+/* 15) Subpages (H1 + .lead + cards + CTA, breadcrumbs)                   */
 /*     scope: <body class="page-sub">                                     */
 /*     files: oferta/lazienki.html, oferta/malowanie.html,                */
 /*            oferta/kafelkowanie.html, oferta/elektryka.html, …          */
 /* ====================================================================== */
 
-/* 14.d) Podstrony — karty + hover jak na HOME (zastępuje poprzedni blok) */
+/* 15.a) Subpage header (section spacing, centered text) */
+.subpage-header {
+  padding-block: clamp(3rem, 6vw, 5rem);
+}
+.subpage-header .block-head {
+  text-align: center;
+  margin-bottom: 2.5rem;
+}
+.subpage-header .block-head h1 {
+  margin-bottom: 1rem;
+}
+.subpage-header .block-head .lead {
+  max-width: 60ch;
+  margin-inline: auto;
+  margin-bottom: 0;
+}
+
+/* 15.b) Cards grid (responsive) */
 .page-sub .cards {
   display: grid;
   gap: 18px;
@@ -3285,8 +3301,18 @@ html.lb-no-scroll {
     gap: 20px;
   }
 }
+@media (min-width: 1024px) {
+  .page-sub .cards {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+.subpage-header .cards {
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.75rem;
+  margin-bottom: 2.5rem;
+}
 
-/* Karta */
+/* 15.c) Card element */
 .page-sub .cards > .card {
   padding: 22px 26px;
   border-radius: 14px;
@@ -3299,8 +3325,6 @@ html.lb-no-scroll {
     border-color: rgba(255, 255, 255, 0.12);
   }
 }
-
-/* Tytuł + opis */
 .page-sub .cards > .card h3 {
   margin: 0 0 0.45rem;
   font-size: 1.12rem;
@@ -3310,7 +3334,7 @@ html.lb-no-scroll {
   color: var(--text-2);
 }
 
-/* Hover jak na HOME */
+/* 15.d) Hover effect (same as HOME) */
 .page-sub .cards > .hover-card {
   transition:
     transform 0.25s ease,
@@ -3326,10 +3350,16 @@ html.lb-no-scroll {
   border-color: var(--line-strong, rgba(0, 0, 0, 0.14));
   z-index: 10;
 }
+/* --- FIX: dark mode hover like HOME (stronger lift + brighter card) --- */
+:root[data-theme='dark'] .page-sub .cards > .hover-card {
+  background: rgba(255, 255, 255, 0.03);
+}
 :root[data-theme='dark'] .page-sub .cards > .hover-card:hover,
 :root[data-theme='dark'] .page-sub .cards > .hover-card:focus-within {
-  box-shadow: 0 10px 32px rgba(0, 0, 0, 0.45);
-  border-color: rgba(255, 255, 255, 0.18);
+  background: rgba(255, 255, 255, 0.06);
+  border-color: rgba(255, 255, 255, 0.22);
+  box-shadow: 0 14px 34px rgba(0, 0, 0, 0.6);
+  transform: translateY(-4px);
 }
 @media (prefers-reduced-motion: reduce) {
   .page-sub .cards > .hover-card {
@@ -3342,14 +3372,115 @@ html.lb-no-scroll {
   }
 }
 
-/* (Opcjonalnie) 2 kolumny na dużych ekranach */
-@media (min-width: 1024px) {
-  .page-sub .cards {
-    grid-template-columns: 1fr 1fr;
-  }
+/* 15.e) Call-to-action buttons */
+.subpage-header .block-cta {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+  margin-top: 1rem;
 }
 
-/* 14.a) Legal docs (czytelność) */
+/* 15.f) FAQ (spacing + affordance) */
+.page-sub .faq-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  gap: 0.75rem;
+}
+.page-sub .faq {
+  border: 1px solid var(--line, rgba(0, 0, 0, 0.12));
+  border-radius: 12px;
+  background: var(--surface-1, #fff);
+  padding: 0.25rem 0.75rem;
+  transition:
+    border-color 0.2s ease,
+    background-color 0.2s ease,
+    box-shadow 0.2s ease;
+}
+:root[data-theme='dark'] .page-sub .faq {
+  background: rgba(255, 255, 255, 0.03);
+  border-color: rgba(255, 255, 255, 0.12);
+}
+.page-sub .faq-q {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: center;
+  gap: 0.75rem;
+  cursor: pointer;
+  list-style: none;
+  padding: 0.9rem 0.25rem;
+  font-weight: 600;
+}
+.page-sub .faq-q::-webkit-details-marker {
+  display: none;
+}
+.page-sub .faq-q::after {
+  content: '▾';
+  inline-size: 1.25em;
+  text-align: center;
+  transform: translateY(-1px);
+  transition: transform 0.2s ease;
+  opacity: 0.75;
+}
+.page-sub .faq[open] .faq-q::after {
+  transform: rotate(-180deg);
+}
+.page-sub .faq .answer {
+  padding: 0 0 0.9rem 0;
+  color: var(--text, inherit);
+}
+.page-sub .faq .answer p {
+  margin: 0;
+}
+.page-sub .faq:hover,
+.page-sub .faq:has(.faq-q:focus-visible) {
+  border-color: var(--line-strong, rgba(0, 0, 0, 0.18));
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+}
+:root[data-theme='dark'] .page-sub .faq:hover,
+:root[data-theme='dark'] .page-sub .faq:has(.faq-q:focus-visible) {
+  border-color: rgba(255, 255, 255, 0.22);
+  box-shadow: 0 14px 32px rgba(0, 0, 0, 0.55);
+}
+@media (prefers-reduced-motion: reduce) {
+  .page-sub .faq,
+  .page-sub .faq-q::after {
+    transition: none;
+  }
+}
+/* 14.f.1) FAQ — center header like subpage header */
+.page-sub #faq .block-head {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+.page-sub #faq .block-head h2 {
+  margin-bottom: 1rem;
+}
+.page-sub #faq .block-head .lead {
+  max-width: 60ch;
+  margin-inline: auto;
+  margin-bottom: 0;
+}
+
+/* 14.g) CTA (end of subpage) */
+.page-sub .cta .block-head {
+  text-align: center;
+  margin-bottom: 2rem; /* space below heading+lead */
+}
+
+.page-sub .cta .block-head h2 {
+  margin-bottom: 1rem; /* space between heading and lead */
+}
+
+.page-sub .cta .block-head .lead {
+  max-width: 60ch; /* comfortable line length */
+  margin-inline: auto; /* center horizontally */
+  margin-bottom: 0;
+}
+
+/* 16) DOCUMENTATION (content) */
 .doc-content {
   max-width: 70ch;
   margin-inline: auto;

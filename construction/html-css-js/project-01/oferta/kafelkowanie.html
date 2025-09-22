@@ -1,85 +1,60 @@
 <!doctype html>
 <html lang="pl" data-accent="bhp">
   <head>
+    <!-- ========== Core ========== -->
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1" />
 
     <title>Kafelkowanie — Nazwa Twojej Firmy</title>
     <meta
       name="description"
-      content="Kafelkowanie ścian i podłóg: gres, lastryko, mozaiki, docinki pod kątem, listwy dekoracyjne, fugi epoksydowe. Czysto, precyzyjnie, z gwarancją."
-    />
+      content="Kafelkowanie ścian i podłóg: gres, lastryko, mozaiki, docinki pod kątem, listwy dekoracyjne, fugi epoksydowe. Czysto, precyzyjnie, z gwarancją." />
     <meta name="author" content="Kamil Król / KP_Code" />
 
-    <meta
-      name="robots"
-      content="index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1"
-    />
-    <link
-      rel="canonical"
-      href="https://construction-project-01.netlify.app/oferta/kafelkowanie/"
-    />
+    <!-- ========== SEO / Indexing ========== -->
+    <meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1" />
+    <link rel="canonical" href="https://construction-project-01.netlify.app/oferta/kafelkowanie/" />
 
-    <meta
-      name="theme-color"
-      content="#0ea5e9"
-      media="(prefers-color-scheme: light)"
-    />
-    <meta
-      name="theme-color"
-      content="#0b1220"
-      media="(prefers-color-scheme: dark)"
-    />
+    <!-- ========== UI Colors ========== -->
+    <meta name="theme-color" content="#0ea5e9" /> <!-- default for UA without media-query support -->
+    <meta name="theme-color" content="#0ea5e9" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#0b1220" media="(prefers-color-scheme: dark)" />
     <meta name="color-scheme" content="light dark" />
 
+    <!-- ========== Open Graph ========== -->
     <meta property="og:type" content="website" />
     <meta property="og:site_name" content="Nazwa Twojej Firmy" />
     <meta property="og:locale" content="pl_PL" />
     <meta property="og:title" content="Kafelkowanie — Nazwa Twojej Firmy" />
     <meta
       property="og:description"
-      content="Kafelkowanie ścian i podłóg: gres, mozaiki, listwy, fugi epoksydowe. Czysto, precyzyjnie, z gwarancją."
-    />
-    <meta
-      property="og:url"
-      content="https://construction-project-01.netlify.app/oferta/kafelkowanie/"
-    />
+      content="Kafelkowanie ścian i podłóg: gres, mozaiki, listwy, fugi epoksydowe. Czysto, precyzyjnie, z gwarancją." />
+    <meta property="og:url" content="https://construction-project-01.netlify.app/oferta/kafelkowanie/" />
     <meta
       property="og:image"
-      content="https://construction-project-01.netlify.app/assets/img/og/og-image-1200x630.jpg"
-    />
+      content="https://construction-project-01.netlify.app/assets/img/og/og-image-1200x630.jpg" />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
-    <meta
-      property="og:image:alt"
-      content="Ekipa układająca płytki — logo firmy w rogu"
-    />
+    <meta property="og:image:alt" content="Ekipa układająca płytki — logo firmy w rogu" />
 
+    <!-- ========== Twitter (X) ========== -->
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content="Kafelkowanie — Nazwa Twojej Firmy" />
     <meta
       name="twitter:description"
-      content="Kafelkowanie ścian i podłóg: gres, mozaiki, listwy, fugi epoksydowe. Czysto, precyzyjnie, z gwarancją."
-    />
+      content="Kafelkowanie ścian i podłóg: gres, mozaiki, listwy, fugi epoksydowe. Czysto, precyzyjnie, z gwarancją." />
     <meta
       name="twitter:image"
-      content="https://construction-project-01.netlify.app/assets/img/og/og-image-1200x630.jpg"
-    />
-    <meta
-      name="twitter:url"
-      content="https://construction-project-01.netlify.app/oferta/kafelkowanie/"
-    />
+      content="https://construction-project-01.netlify.app/assets/img/og/og-image-1200x630.jpg" />
+    <meta name="twitter:url" content="https://construction-project-01.netlify.app/oferta/kafelkowanie/" />
 
+    <!-- ========== JSON-LD (Org + Service) ========== -->
     <script type="application/ld+json">
       {
         "@context": "https://schema.org",
         "@graph": [
           {
-            "@type": [
-              "LocalBusiness",
-              "HomeAndConstructionBusiness",
-              "ConstructionCompany"
-            ],
+            "@type": ["LocalBusiness", "HomeAndConstructionBusiness", "ConstructionCompany"],
             "@id": "https://construction-project-01.netlify.app/#org",
             "name": "Nazwa Twojej Firmy",
             "url": "https://construction-project-01.netlify.app/",
@@ -104,22 +79,11 @@
             "openingHoursSpecification": [
               {
                 "@type": "OpeningHoursSpecification",
-                "dayOfWeek": [
-                  "Monday",
-                  "Tuesday",
-                  "Wednesday",
-                  "Thursday",
-                  "Friday"
-                ],
+                "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
                 "opens": "08:00",
                 "closes": "18:00"
               },
-              {
-                "@type": "OpeningHoursSpecification",
-                "dayOfWeek": "Saturday",
-                "opens": "09:00",
-                "closes": "14:00"
-              }
+              { "@type": "OpeningHoursSpecification", "dayOfWeek": "Saturday", "opens": "09:00", "closes": "14:00" }
             ],
             "contactPoint": [
               {
@@ -151,9 +115,7 @@
             "@type": "Service",
             "name": "Kafelkowanie",
             "serviceType": "Tiling",
-            "provider": {
-              "@id": "https://construction-project-01.netlify.app/#org"
-            },
+            "provider": { "@id": "https://construction-project-01.netlify.app/#org" },
             "areaServed": "PL",
             "url": "https://construction-project-01.netlify.app/oferta/kafelkowanie/"
           }
@@ -161,633 +123,460 @@
       }
     </script>
 
-    <!-- anty-FOUC motywu (jak u Ciebie) -->
+    <!-- ========== Anti-FOUC (theme) ========== -->
     <script>
       try {
-        var d = document.documentElement,
-          t = localStorage.getItem("theme");
-        if (!t) {
-          t = window.matchMedia("(prefers-color-scheme: dark)").matches
-            ? "dark"
-            : "light";
-        }
+        var d = document.documentElement, t = localStorage.getItem("theme");
+        if (!t) { t = window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light"; }
         d.setAttribute("data-theme", t);
       } catch (e) {}
     </script>
     <style>
-      html.preload-theme *,
-      html.preload-theme *::before,
-      html.preload-theme *::after {
-        transition: none !important;
-      }
+      html.preload-theme *, html.preload-theme *::before, html.preload-theme *::after { transition: none !important; }
     </style>
     <script>
       document.documentElement.classList.add("preload-theme");
       window.addEventListener("DOMContentLoaded", () => {
-        setTimeout(
-          () => document.documentElement.classList.remove("preload-theme"),
-          0
-        );
+        setTimeout(() => document.documentElement.classList.remove("preload-theme"), 0);
       });
     </script>
 
-    <!-- Fonts + CSS + favicons (ścieżki z /oferta/) -->
+    <!-- ========== Fonts + CSS + Favicons ========== -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
       rel="preload"
       as="style"
       href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700&family=Poppins:wght@400;600;700&display=swap"
-      onload="this.onload=null;this.rel='stylesheet'"
-    />
-    <noscript
-      ><link
+      onload="this.onload=null;this.rel='stylesheet'" />
+    <noscript>
+      <link
         rel="stylesheet"
-        href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700&family=Poppins:wght@400;600;700&display=swap"
-    /></noscript>
+        href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700&family=Poppins:wght@400;600;700&display=swap" />
+    </noscript>
 
     <link rel="stylesheet" href="../css/style.css" />
 
-    <link
-      rel="icon"
-      type="image/x-icon"
-      href="../assets/img/favicon/favicon.ico"
-    />
-    <link
-      rel="icon"
-      type="image/svg+xml"
-      href="../assets/img/favicon/favicon.svg"
-    />
-    <link
-      rel="icon"
-      type="image/png"
-      sizes="96x96"
-      href="../assets/img/favicon/favicon-96x96.png"
-    />
-    <link
-      rel="apple-touch-icon"
-      sizes="180x180"
-      href="../assets/img/favicon/apple-touch-icon.png"
-    />
-    <link
-      rel="icon"
-      type="image/png"
-      sizes="192x192"
-      href="../assets/img/favicon/web-app-manifest-192x192.png"
-    />
-    <link
-      rel="icon"
-      type="image/png"
-      sizes="512x512"
-      href="../assets/img/favicon/web-app-manifest-512x512.png"
-    />
+    <!-- Favicons / Manifest -->
+    <link rel="icon" type="image/x-icon" href="../assets/img/favicon/favicon.ico" />
+    <link rel="icon" type="image/svg+xml" href="../assets/img/favicon/favicon.svg" />
+    <link rel="icon" type="image/png" sizes="96x96" href="../assets/img/favicon/favicon-96x96.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="../assets/img/favicon/apple-touch-icon.png" />
+    <link rel="icon" type="image/png" sizes="192x192" href="../assets/img/favicon/web-app-manifest-192x192.png" />
+    <link rel="icon" type="image/png" sizes="512x512" href="../assets/img/favicon/web-app-manifest-512x512.png" />
     <link rel="manifest" href="../assets/img/favicon/site.webmanifest" />
   </head>
-  <body class="page-sub">
-    <!-- A11Y: Skip link + kotwica #top -->
-    <a class="skip" href="#main">Pomiń do treści</a>
-    <div
-      id="top"
-      aria-hidden="true"
-      style="position: relative; inset: 0; height: 0"
-    ></div>
 
-    <!-- =========================================================
-       HEADER
-       ========================================================= -->
-    <header class="site-header" role="banner">
-      <div class="container header-bar">
-        <!-- Brand -->
-        <a
-          class="brand"
-          href="#top"
-          aria-label="Strona główna — Ekipa Remontowa"
-        >
-          <picture class="brand-logo">
-            <img
-              src="../assets/img/main-logo/main-logo-light-512.svg"
-              alt="Nazwa firmy"
-              class="ft-logo logo--light"
-              loading="eager"
-              fetchpriority="high"
-              decoding="async"
-            />
-            <img
-              src="../assets/img/main-logo/main-logo-dark-512.svg"
-              alt="Nazwa firmy"
-              class="ft-logo logo--dark"
-              loading="eager"
-              fetchpriority="high"
-              decoding="async"
-            />
-          </picture>
-          <span class="brand-name">LOGO FIRMY</span>
-        </a>
 
-        <!-- Główna nawigacja (dla oferta/kafelkowanie.html) -->
-        <nav class="nav" role="navigation" aria-label="Główna nawigacja">
-          <ul id="navMenu" class="nav-menu">
-            <li><a href="../index.html">Strona główna</a></li>
 
-            <li class="nav-item has-dropdown">
-              <a
-                href="../index.html#oferta"
-                class="nav-link dropdown-trigger"
-                aria-expanded="false"
-                aria-haspopup="menu"
-                aria-controls="dd-oferta"
-              >
-                Oferta <span class="caret" aria-hidden="true">▾</span>
-              </a>
-              <ul
-                id="dd-oferta"
-                class="dropdown"
-                role="menu"
-                aria-label="Podmenu: Oferta"
-              >
-                <li role="none">
-                  <a role="menuitem" href="lazienki.html">Łazienki</a>
-                </li>
-                <li role="none">
-                  <a role="menuitem" href="malowanie.html"
-                    >Malowanie &amp; gładzie</a
-                  >
-                </li>
-                <li role="none">
-                  <a
-                    role="menuitem"
-                    href="kafelkowanie.html"
-                    aria-current="page"
-                    >Kafelkowanie</a
-                  >
-                </li>
-                <li role="none">
-                  <a role="menuitem" href="elektryka.html">Elektryka</a>
-                </li>
-                <li role="none">
-                  <a role="menuitem" href="hydraulika.html">Hydraulika</a>
-                </li>
-              </ul>
-            </li>
 
-            <li><a href="../index.html#realizacje">Realizacje</a></li>
-            <li><a href="../index.html#opinie">Opinie</a></li>
-            <li><a href="../index.html#faq">FAQ</a></li>
-            <li><a href="../index.html#kontakt">Kontakt</a></li>
-            <li>
-              <a class="btn btn--sm" href="../index.html#kontakt">Wycena</a>
-            </li>
-          </ul>
-        </nav>
 
-        <!-- Akcje w pasku (po prawej): przełącznik motywu + hamburger -->
-        <div class="header-actions">
-          <button
-            class="theme-toggle"
-            type="button"
-            aria-pressed="false"
-            aria-label="Przełącz tryb"
-            title="Przełącz tryb"
-          ></button>
-          <button
-            class="nav-toggle"
-            type="button"
+
+<!-- ========== HEADER ========== -->
+<header class="site-header" role="banner">
+  <div class="container header-bar">
+    <!-- Brand (logo + text) -->
+    <a class="brand" href="#top" aria-label="Strona główna — Ekipa Remontowa">
+      <picture class="brand-logo">
+        <!-- Decorative: avoid duplicate name for screen readers -->
+        <img
+          src="../assets/img/main-logo/main-logo-light-512.svg"
+          alt=""
+          aria-hidden="true"
+          class="ft-logo logo--light"
+          loading="eager"
+          fetchpriority="high"
+          decoding="async" />
+        <img
+          src="../assets/img/main-logo/main-logo-dark-512.svg"
+          alt=""
+          aria-hidden="true"
+          class="ft-logo logo--dark"
+          loading="eager"
+          fetchpriority="high"
+          decoding="async" />
+      </picture>
+      <span class="brand-name">LOGO FIRMY</span>
+    </a>
+
+    <!-- Main navigation (subpage: oferta/kafelkowanie.html) -->
+    <nav class="nav" role="navigation" aria-label="Główna nawigacja">
+      <ul id="navMenu" class="nav-menu">
+        <li><a href="../index.html">Strona główna</a></li>
+
+        <!-- Oferta (link + dropdown) -->
+        <li class="nav-item has-dropdown">
+          <a
+            href="../index.html#oferta"
+            class="nav-link dropdown-trigger"
             aria-expanded="false"
-            aria-controls="navMenu"
-            aria-label="Otwórz menu"
-          >
-            <span class="nav-line"></span><span class="nav-line"></span
-            ><span class="nav-line"></span>
-          </button>
-        </div>
-      </div>
+            aria-haspopup="menu"
+            aria-controls="dd-oferta">
+            Oferta <span class="caret" aria-hidden="true">▾</span>
+          </a>
+          <ul id="dd-oferta" class="dropdown" role="menu" aria-label="Podmenu: Oferta">
+            <li role="none"><a role="menuitem" href="lazienki.html">Łazienki</a></li>
+            <li role="none"><a role="menuitem" href="malowanie.html">Malowanie &amp; gładzie</a></li>
+            <li role="none"><a role="menuitem" href="kafelkowanie.html" aria-current="page">Kafelkowanie</a></li>
+            <li role="none"><a role="menuitem" href="elektryka.html">Elektryka</a></li>
+            <li role="none"><a role="menuitem" href="hydraulika.html">Hydraulika</a></li>
+          </ul>
+        </li>
+
+        <li><a href="../index.html#realizacje">Realizacje</a></li>
+        <li><a href="../index.html#opinie">Opinie</a></li>
+        <li><a href="../index.html#faq">FAQ</a></li>
+        <li><a href="../index.html#kontakt">Kontakt</a></li>
+        <li><a class="btn btn--sm" href="../index.html#kontakt">Wycena</a></li>
+      </ul>
+    </nav>
+
+    <!-- Header actions (theme toggle + hamburger) -->
+    <div class="header-actions">
+      <button
+        class="theme-toggle"
+        type="button"
+        aria-pressed="false"
+        aria-label="Przełącz tryb"
+        title="Przełącz tryb"></button>
+      <button
+        class="nav-toggle"
+        type="button"
+        aria-expanded="false"
+        aria-controls="navMenu"
+        aria-label="Otwórz menu">
+        <span class="nav-line"></span>
+        <span class="nav-line"></span>
+        <span class="nav-line"></span>
+      </button>
+    </div>
+  </div>
+</header>
+<!-- /HEADER -->
+
+<!-- ========== SUBPAGE HEADER (light, no hero) ========== -->
+<section
+  class="block subpage-header"
+  id="kafelkowanie"
+  role="region"
+  aria-labelledby="kafelkowanie-heading"
+  aria-describedby="kafelkowanie-desc"
+  tabindex="-1">
+  <div class="container">
+    <header class="block-head">
+      <h1 id="kafelkowanie-heading">Kafelkowanie — ściany i podłogi</h1>
+      <p class="lead" id="kafelkowanie-desc">
+        Gres, lastryko, mozaiki. Docinki pod kątem, idealne fugi i równe
+        poziomy. Pracujemy precyzyjnie i terminowo.
+      </p>
     </header>
 
-    <main id="main" role="main">
-      <section
-        class="block"
-        id="kafelkowanie"
-        role="region"
-        aria-labelledby="kafelkowanie-heading"
-      >
-        <div class="container">
-          <header class="block-head">
-            <h1 id="kafelkowanie-heading">Kafelkowanie — ściany i podłogi</h1>
-            <p class="lead">
-              Gres, lastryko, mozaiki. Docinki pod kątem, idealne fugi i równe
-              poziomy. Pracujemy precyzyjnie i terminowo.
+    <!-- Offer cards (hover consistent across subpages) -->
+    <div class="cards">
+      <article class="card hover-card">
+        <h3>Układanie płytek</h3>
+        <p>
+          Formaty od mozaiki po wielkoformat, kalibracja, krzyżyki/klipsy,
+          równe płaszczyzny i spoiny.
+        </p>
+      </article>
+      <article class="card hover-card">
+        <h3>Docinki i detale</h3>
+        <p>
+          Cięcia pod 45°, listwy aluminiowe/mosiężne, narożniki, zabudowy
+          wnęk, cokoły.
+        </p>
+      </article>
+      <article class="card hover-card">
+        <h3>Hydroizolacja</h3>
+        <p>
+          Folie w płynie, taśmy i narożniki. Szczelność w strefach mokrych
+          pod prysznicem i przy wannie.
+        </p>
+      </article>
+      <article class="card hover-card">
+        <h3>Fugi i uszczelnienia</h3>
+        <p>
+          Fugi epoksydowe/cementowe, silikonowanie, dylatacje, łatwe w
+          utrzymaniu czystości.
+        </p>
+      </article>
+    </div>
+
+    <!-- CTA -->
+    <div class="block-cta">
+      <a
+        class="btn"
+        href="../index.html?usluga=Kafelkowanie#kontakt"
+        aria-label="Przejdź do formularza wyceny — Kafelkowanie">
+        Wycena
+      </a>
+
+      <a
+        class="btn btn--ghost"
+        href="../index.html#realizacje"
+        aria-label="Zobacz galerię realizacji kafelkowania">
+        Galeria realizacji
+      </a>
+    </div>
+  </div>
+</section>
+<!-- /SUBPAGE HEADER -->
+
+<!-- ========== FAQ (accordion) ========== -->
+<section
+  id="faq"
+  class="block"
+  role="region"
+  aria-labelledby="faq-heading"
+  aria-describedby="faq-desc">
+  <div class="container">
+    <header class="block-head">
+      <h2 id="faq-heading">FAQ — najczęstsze pytania</h2>
+      <p id="faq-desc">
+        Krótko i konkretnie — najważniejsze informacje o kafelkowaniu
+        ścian i podłóg.
+      </p>
+    </header>
+
+    <ul class="faq-list" role="list">
+      <li>
+        <details class="faq" id="faq-1">
+          <summary id="q-1">Jak przygotować podłoże pod płytki?</summary>
+          <div class="answer" id="a-1" role="region" aria-labelledby="q-1">
+            <p>
+              Podłoże musi być
+              <strong>nośne, równe i zagruntowane</strong>. W strefach
+              mokrych wykonujemy <strong>hydroizolację</strong> (folia w
+              płynie, taśmy, narożniki) przed klejeniem płytek.
             </p>
-          </header>
-
-          <div class="cards">
-            <article class="card hover-card">
-              <h3>Układanie płytek</h3>
-              <p>
-                Formaty od mozaiki po wielkoformat, kalibracja, krzyżyki/klipsy,
-                równe płaszczyzny i spoiny.
-              </p>
-            </article>
-            <article class="card hover-card">
-              <h3>Docinki i detale</h3>
-              <p>
-                Cięcia pod 45°, listwy aluminiowe/mosiężne, narożniki, zabudowy
-                wnęk, cokoły.
-              </p>
-            </article>
-            <article class="card hover-card">
-              <h3>Hydroizolacja</h3>
-              <p>
-                Folie w płynie, taśmy i narożniki. Szczelność w strefach mokrych
-                pod prysznicem i przy wannie.
-              </p>
-            </article>
-            <article class="card hover-card">
-              <h3>Fugi i uszczelnienia</h3>
-              <p>
-                Fugi epoksydowe/cementowe, silikonowanie, dylatacje, łatwe w
-                utrzymaniu czystości.
-              </p>
-            </article>
           </div>
+        </details>
+      </li>
 
-          <div class="block-cta">
-            <a
-              class="btn"
-              href="../index.html?usluga=Łazienki#kontakt"
-              aria-label="Przejdź do formularza wyceny — Łazienki"
-            >
-              Wycena
-            </a>
-
-            <a
-              class="btn btn--ghost"
-              href="../index.html#realizacje"
-              aria-label="Zobacz galerię realizacji łazienek"
-            >
-              Galeria realizacji
-            </a>
-          </div>
-        </div>
-      </section>
-      <!-- =========================================================
-Kafelkowanie - FAQ
-========================================================= -->
-
-      <section
-        id="faq"
-        class="block"
-        role="region"
-        aria-labelledby="faq-heading"
-        aria-describedby="faq-desc"
-      >
-        <div class="container">
-          <header class="block-head">
-            <h2 id="faq-heading">FAQ — najczęstsze pytania</h2>
-            <p id="faq-desc">
-              Krótko i konkretnie — najważniejsze informacje o kafelkowaniu
-              ścian i podłóg.
+      <li>
+        <details class="faq" id="faq-2">
+          <summary id="q-2">
+            Ile trwa ułożenie płytek w standardowej łazience 5–7&nbsp;m²?
+          </summary>
+          <div class="answer" id="a-2" role="region" aria-labelledby="q-2">
+            <p>
+              Zwykle <strong>4–7 dni roboczych</strong>, w zależności od
+              formatu, ilości docinek, rodzaju fug (epoksyd/cement) i
+              przygotowania podłoża. Pełny remont trwa odpowiednio dłużej.
             </p>
-          </header>
+          </div>
+        </details>
+      </li>
 
-          <ul class="faq-list" role="list">
-            <li role="listitem">
-              <details class="faq" id="faq-1">
-                <summary id="q-1">Jak przygotować podłoże pod płytki?</summary>
-                <div class="answer" id="a-1" role="region" aria-labelledby="q-1">
-                  <p>
-                    Podłoże musi być
-                    <strong>nośne, równe i zagruntowane</strong>. W strefach
-                    mokrych wykonujemy <strong>hydroizolację</strong> (folia w
-                    płynie, taśmy, narożniki) przed klejeniem płytek.
-                  </p>
-                </div>
-              </details>
-            </li>
-
-            <li role="listitem">
-              <details class="faq" id="faq-2">
-                <summary id="q-2">
-                  Ile trwa ułożenie płytek w standardowej łazience 5–7&nbsp;m²?
-                </summary>
-                <div class="answer" id="a-2" role="region" aria-labelledby="q-2">
-                  <p>
-                    Zwykle <strong>4–7 dni roboczych</strong>, w zależności od
-                    formatu, ilości docinek, rodzaju fug (epoksyd/cement) i
-                    przygotowania podłoża. Pełny remont trwa odpowiednio dłużej.
-                  </p>
-                </div>
-              </details>
-            </li>
-
-            <li role="listitem">
-              <details class="faq" id="faq-3">
-                <summary id="q-3">
-                  Czy robicie docinki 45° (jolly) i układacie wielkoformat?
-                </summary>
-                <div class="answer" id="a-3" role="region" aria-labelledby="q-3">
-                  <p>
-                    Tak — wykonujemy <strong>cięcia pod 45°</strong>, montujemy
-                    listwy alum./mosiężne, stosujemy
-                    <strong>system poziomowania</strong> (klipsy) oraz technikę
-                    „buttering-floating” przy dużych formatach.
-                  </p>
-                </div>
-              </details>
-            </li>
-
-            <li role="listitem">
-              <details class="faq" id="faq-4">
-                <summary id="q-4">
-                  Jakie fugi stosujecie i jaka powinna być szerokość spoiny?
-                </summary>
-                <div class="answer" id="a-4" role="region" aria-labelledby="q-4">
-                  <p>
-                    Dobieramy fugę do miejsca: w kabinach często
-                    <strong>epoksydowa</strong>, poza strefami mokrymi wysokiej
-                    klasy <strong>cementowa</strong>. Typowo:
-                    <strong>2&nbsp;mm</strong> dla płytek rektyfikowanych,
-                    <strong>1–1,5&nbsp;mm</strong> dla mozaiki. Dylatacje i
-                    naroża uszczelniamy <strong>silikonem</strong>.
-                  </p>
-                </div>
-              </details>
-            </li>
-          </ul>
-        </div>
-      </section>
-
-      <section class="cta" aria-labelledby="cta-end-heading">
-        <div class="container">
-          <header class="block-head">
-            <h2 id="cta-end-heading">Masz projekt lub wytyczne?</h2>
-            <p class="lead">
-              Przyślij rzut i format płytek — wycenimy w 24–48&nbsp;h i
-              zaproponujemy najbliższy termin.
+      <li>
+        <details class="faq" id="faq-3">
+          <summary id="q-3">
+            Czy robicie docinki 45° (jolly) i układacie wielkoformat?
+          </summary>
+          <div class="answer" id="a-3" role="region" aria-labelledby="q-3">
+            <p>
+              Tak — wykonujemy <strong>cięcia pod 45°</strong>, montujemy
+              listwy alum./mosiężne, stosujemy
+              <strong>system poziomowania</strong> (klipsy) oraz technikę
+              „buttering-floating” przy dużych formatach.
             </p>
-          </header>
-          <div class="block-cta">
-            <a class="btn" href="../index.html#kontakt">Wyślij zapytanie</a>
           </div>
-        </div>
-      </section>
-    </main>
+        </details>
+      </li>
 
-    <!-- =========================================================
-        FOOTER
-        ========================================================= -->
-    <!-- FOOTER -->
-    <footer
-      id="footer"
-      class="site-footer"
-      role="contentinfo"
-      aria-labelledby="footer-heading"
-    >
-      <div class="container">
-        <h2 class="vh" id="footer-heading">Stopka serwisu</h2>
-        <div class="ft-grid">
-          <!-- COL 1: BRAND + OPIS + KONTAKT -->
-          <div class="ft-col">
-            <a href="#top" class="brand-footer" aria-label="Strona główna">
-              <picture>
-                <source
-                  srcset="../assets/img/main-logo/main-logo-footer-512.png"
-                  type="image/png"
-                />
-                <img
-                  src="../assets/img/main-logo/main-logo-footer-512.png"
-                  alt=""
-                  aria-hidden="true"
-                  class="ft-logo"
-                  width="512"
-                  height="512"
-                  loading="lazy"
-                  decoding="async"
-                />
-              </picture>
-            </a>
-
-            <p class="ft-lead">
-              Solidne realizacje budowlane — oferta, wyceny i kontakt w
-              24&nbsp;h.
+      <li>
+        <details class="faq" id="faq-4">
+          <summary id="q-4">
+            Jakie fugi stosujecie i jaka powinna być szerokość spoiny?
+          </summary>
+          <div class="answer" id="a-4" role="region" aria-labelledby="q-4">
+            <p>
+              Dobieramy fugę do miejsca: w kabinach często
+              <strong>epoksydowa</strong>, poza strefami mokrymi wysokiej
+              klasy <strong>cementowa</strong>. Typowo:
+              <strong>2&nbsp;mm</strong> dla płytek rektyfikowanych,
+              <strong>1–1,5&nbsp;mm</strong> dla mozaiki. Dylatacje i
+              naroża uszczelniamy <strong>silikonem</strong>.
             </p>
-
-            <ul class="ft-contact" role="list" aria-label="Dane kontaktowe">
-              <li role="listitem">
-                <svg class="i" aria-hidden="true">
-                  <use href="#i-phone"></use>
-                </svg>
-                <a href="tel:+48600700800" aria-label="Zadzwoń: +48 600 700 800"
-                  >+48 600 700 800</a
-                >
-              </li>
-              <li role="listitem">
-                <svg class="i" aria-hidden="true">
-                  <use href="#i-mail"></use>
-                </svg>
-                <a href="mailto:kontakt@twoja-firma.pl"
-                  >kontakt@twoja-firma.pl</a
-                >
-              </li>
-            </ul>
           </div>
+        </details>
+      </li>
+    </ul>
+  </div>
+</section>
+<!-- /FAQ -->
 
-          <!-- COL 2: NAWIGACJA -->
-          <nav class="ft-col" aria-label="Nawigacja w stopce">
-            <h3 class="ft-h">Nawigacja</h3>
-            <ul class="ft-links" role="list">
-              <li role="listitem"><a href="../index.html#oferta">Oferta</a></li>
-              <li role="listitem">
-                <a href="../index.html#realizacje">Realizacje</a>
-              </li>
-              <li role="listitem"><a href="../index.html#opinie">Opinie</a></li>
-              <li role="listitem"><a href="../index.html#faq">FAQ</a></li>
-              <li role="listitem">
-                <a href="../index.html#kontakt">Kontakt</a>
-              </li>
-            </ul>
-          </nav>
+<!-- ========== CTA (light) ========== -->
+<section class="cta" aria-labelledby="cta-end-heading">
+  <div class="container">
+    <header class="block-head">
+      <h2 id="cta-end-heading">Masz projekt lub wytyczne?</h2>
+      <p class="lead">
+        Przyślij rzut i format płytek — wycenimy w 24–48&nbsp;h i
+        zaproponujemy najbliższy termin.
+      </p>
+    </header>
+    <div class="block-cta">
+      <a class="btn" href="../index.html#kontakt">Wyślij zapytanie</a>
+    </div>
+  </div>
+</section>
+<!-- /CTA -->
 
-          <!-- COL 3: DOKUMENTY -->
-          <nav class="ft-col" aria-label="Dokumenty">
-            <h3 class="ft-h">Dokumenty</h3>
-            <ul class="ft-links" role="list">
-              <li role="listitem">
-                <a href="../doc/polityka-prywatnosci.html">Polityka prywatności</a>
-              </li>
-              <li role="listitem"><a href="../doc/regulamin.html">Regulamin</a></li>
-              <li role="listitem"><a href="../doc//cookies.html">Pliki cookies</a></li>
-            </ul>
-          </nav>
+<!-- ========== FOOTER ========== -->
+<footer
+  id="footer"
+  class="site-footer"
+  role="contentinfo"
+  aria-labelledby="footer-heading">
+  <div class="container">
+    <h2 class="vh" id="footer-heading">Stopka serwisu</h2>
 
-          <!-- COL 4: MAPA + SOCIAL + CTA -->
-          <div class="ft-col">
-            <h3 class="ft-h">Znajdziesz nas tutaj:</h3>
+    <div class="ft-grid">
+      <!-- COL 1: BRAND + OPIS + KONTAKT -->
+      <div class="ft-col">
+        <a href="../index.html#top" class="brand-footer" aria-label="Strona główna">
+          <picture>
+            <source srcset="../assets/img/main-logo/main-logo-footer-512.png" type="image/png" />
+            <img
+              src="../assets/img/main-logo/main-logo-footer-512.png"
+              alt=""
+              aria-hidden="true"
+              class="ft-logo"
+              width="512"
+              height="512"
+              loading="lazy"
+              decoding="async" />
+          </picture>
+        </a>
 
-            <div class="ft-map">
-              <iframe
-                title="Mapa dojazdu — siedziba firmy"
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2437.123456!2d20.985!3d50.013!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zNTHCsDAxJzAwLjAiTiAyMMKwNTknMzAuMCJF!5e0!3m2!1spl!2spl!4v123456789"
-                width="100%"
-                height="160"
-                style="border: 0"
-                loading="lazy"
-                allowfullscreen
-                referrerpolicy="no-referrer-when-downgrade"
-              >
-              </iframe>
-            </div>
+        <p class="ft-lead">Solidne realizacje budowlane — oferta, wyceny i kontakt w 24&nbsp;h.</p>
 
-            <address class="ft-address">
-              <p><strong>Nazwa Twojej Firmy Sp. z o.o.</strong></p>
-              <p>ul. Przykładowa 10,<br />33-100 Tarnów</p>
-              <p>
-                NIP: 123-456-78-90<br />
-                REGON: 123456789
-              </p>
-              <p>
-                tel. <a href="tel:+48123456789">+48 123 456 789</a><br />
-                e-mail:
-                <a href="mailto:kontakt@twoja-firma.pl"
-                  ><br />kontakt@twoja-firma.pl</a
-                >
-              </p>
-            </address>
+        <ul class="ft-contact" role="list" aria-label="Dane kontaktowe">
+          <li role="listitem">
+            <svg class="i" aria-hidden="true"><use href="#i-phone"></use></svg>
+            <a href="tel:+48600700800" aria-label="Zadzwoń: +48 600 700 800">+48 600 700 800</a>
+          </li>
+          <li role="listitem">
+            <svg class="i" aria-hidden="true"><use href="#i-mail"></use></svg>
+            <a href="mailto:kontakt@twoja-firma.pl">kontakt@twoja-firma.pl</a>
+          </li>
+        </ul>
+      </div>
 
-            <div class="ft-social" aria-label="Media społecznościowe">
-              <a
-                href="https://facebook.com"
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label="Facebook"
-              >
-                <svg class="i" aria-hidden="true">
-                  <use href="#i-facebook"></use>
-                </svg>
-              </a>
-              <a
-                href="https://instagram.com"
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label="Instagram"
-              >
-                <svg class="i" aria-hidden="true">
-                  <use href="#i-instagram"></use>
-                </svg>
-              </a>
-              <a
-                href="https://youtube.com"
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label="YouTube"
-              >
-                <svg class="i" aria-hidden="true">
-                  <use href="#i-youtube"></use>
-                </svg>
-              </a>
-              <a
-                href="https://linkedin.com"
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label="LinkedIn"
-              >
-                <svg class="i" aria-hidden="true">
-                  <use href="#i-linkedin"></use>
-                </svg>
-              </a>
-            </div>
-          </div>
+      <!-- COL 2: NAWIGACJA -->
+      <nav class="ft-col" aria-label="Nawigacja w stopce">
+        <h3 class="ft-h">Nawigacja</h3>
+        <ul class="ft-links" role="list">
+          <li role="listitem"><a href="../index.html#oferta">Oferta</a></li>
+          <li role="listitem"><a href="../index.html#realizacje">Realizacje</a></li>
+          <li role="listitem"><a href="../index.html#opinie">Opinie</a></li>
+          <li role="listitem"><a href="../index.html#faq">FAQ</a></li>
+          <li role="listitem"><a href="../index.html#kontakt">Kontakt</a></li>
+        </ul>
+      </nav>
+
+      <!-- COL 3: DOKUMENTY -->
+      <nav class="ft-col" aria-label="Dokumenty">
+        <h3 class="ft-h">Dokumenty</h3>
+        <ul class="ft-links" role="list">
+          <li role="listitem"><a href="../doc/polityka-prywatnosci.html">Polityka prywatności</a></li>
+          <li role="listitem"><a href="../doc/regulamin.html">Regulamin</a></li>
+          <li role="listitem"><a href="../doc/cookies.html">Pliki cookies</a></li>
+        </ul>
+      </nav>
+
+      <!-- COL 4: MAPA + SOCIAL + CTA -->
+      <div class="ft-col">
+        <h3 class="ft-h">Znajdziesz nas tutaj:</h3>
+
+        <div class="ft-map">
+          <iframe
+            title="Mapa dojazdu — siedziba firmy"
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2437.123456!2d20.985!3d50.013!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zNTHCsDAxJzAwLjAiTiAyMMKwNTknMzAuMCJF!5e0!3m2!1spl!2spl!4v123456789"
+            width="100%"
+            height="160"
+            style="border: 0"
+            loading="lazy"
+            allowfullscreen
+            referrerpolicy="no-referrer-when-downgrade">
+          </iframe>
         </div>
 
-        <div class="ft-bottom">
+        <address class="ft-address">
+          <p><strong>Nazwa Twojej Firmy Sp. z o.o.</strong></p>
+          <p>ul. Przykładowa 10,<br />33-100 Tarnów</p>
+          <p>NIP: 123-456-78-90<br />REGON: 123456789</p>
           <p>
-            © <span id="year"></span> KP_Code. Wszelkie prawa zastrzeżone.
-            Projekt i wdrożenie: <a href="#" rel="author">KP_Code</a>
+            tel. <a href="tel:+48123456789">+48 123 456 789</a><br />
+            e-mail:
+            <a href="mailto:kontakt@twoja-firma.pl"><br />kontakt@twoja-firma.pl</a>
           </p>
+        </address>
+
+        <div class="ft-social" aria-label="Media społecznościowe">
+          <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" aria-label="Facebook">
+            <svg class="i" aria-hidden="true"><use href="#i-facebook"></use></svg>
+          </a>
+          <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
+            <svg class="i" aria-hidden="true"><use href="#i-instagram"></use></svg>
+          </a>
+          <a href="https://youtube.com" target="_blank" rel="noopener noreferrer" aria-label="YouTube">
+            <svg class="i" aria-hidden="true"><use href="#i-youtube"></use></svg>
+          </a>
+          <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+            <svg class="i" aria-hidden="true"><use href="#i-linkedin"></use></svg>
+          </a>
         </div>
       </div>
-    </footer>
+    </div>
 
-    <!-- =========================================================
-        SCRIPTY
-        ========================================================= -->
-    <!-- SCRIPTS -->
-    <script src="../js/script.js" defer></script>
+    <div class="ft-bottom">
+      <p>
+        © <span id="year"></span> KP_Code. Wszelkie prawa zastrzeżone.
+        Projekt i wdrożenie: <a href="#" rel="author">KP_Code</a>
+      </p>
+    </div>
+  </div>
+</footer>
+<!-- /FOOTER -->
 
-    <!-- =========================================================
-        SVG SPRITE
-        ========================================================= -->
-    <!-- === SVG SPRITE (ukryty magazyn ikon) === -->
-    <svg
-      xmlns="http://www.w3.org/2000/svg"
-      aria-hidden="true"
-      focusable="false"
-      style="position: absolute; width: 0; height: 0; overflow: hidden"
-    >
-      <!-- Telefon -->
-      <symbol
-        id="i-phone"
-        viewBox="0 0 24 24"
-        fill="none"
-        stroke="currentColor"
-        stroke-width="2"
-        stroke-linecap="round"
-        stroke-linejoin="round"
-      >
-        <path
-          d="M22 16.92v3a2 2 0 0 1-2.18 2A19.8 19.8 0 0 1 3.08 5.18 2 2 0 0 1 5 3h3a2 2 0 0 1 2 1.72c.08.96.3 1.9.7 2.81a2 2 0 0 1-.45 2.11L9 11a16 16 0 0 0 6 6l1.36-1.25a2 2 0 0 1 2.11-.45c.91.4 1.85.62 2.81.7A2 2 0 0 1 22 16.92z"
-        />
-      </symbol>
-      <!-- Mail -->
-      <symbol
-        id="i-mail"
-        viewBox="0 0 24 24"
-        fill="none"
-        stroke="currentColor"
-        stroke-width="2"
-        stroke-linecap="round"
-        stroke-linejoin="round"
-      >
-        <rect x="3" y="5" width="18" height="14" rx="2" ry="2"></rect>
-        <polyline points="3 7 12 13 21 7"></polyline>
-      </symbol>
-      <!-- Facebook -->
-      <symbol id="i-facebook" viewBox="0 0 24 24" fill="currentColor">
-        <path
-          d="M22 12c0-5.522-4.477-10-10-10S2 6.478 2 12c0 5 3.657 9.128 8.438 9.878v-6.99h-2.54V12h2.54V9.797c0-2.507 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.772-1.63 1.562V12h2.773l-.443 2.888h-2.33v6.99C18.343 21.128 22 17 22 12z"
-        />
-      </symbol>
-      <!-- Instagram -->
-      <symbol id="i-instagram" viewBox="0 0 24 24" fill="currentColor">
-        <path
-          d="M7 2C4.243 2 2 4.243 2 7v10c0 2.757 2.243 5 5 5h10c2.757 0 5-2.243 5-5V7c0-2.757-2.243-5-5-5H7zm0 2h10c1.654 0 3 1.346 3 3v10c0 1.654-1.346 3-3 3H7c-1.654 0-3-1.346-3-3V7c0-1.654 1.346-3 3-3zm5 2a5 5 0 100 10 5 5 0 000-10zm0 2a3 3 0 110 6 3 3 0 010-6zm6.5-.25a1.25 1.25 0 11-2.5 0 1.25 1.25 0 012.5 0z"
-        />
-      </symbol>
-      <!-- YouTube -->
-      <symbol id="i-youtube" viewBox="0 0 24 24" fill="currentColor">
-        <path
-          d="M21.8 8.001a2.749 2.749 0 00-1.933-1.948C18.262 6 12 6 12 6s-6.262 0-7.867.053a2.749 2.749 0 00-1.933 1.948A28.54 28.54 0 002 12a28.54 28.54 0 00.2 3.999 2.749 2.749 0 001.933 1.948C5.738 18 12 18 12 18s6.262 0 7.867-.053a2.749 2.749 0 001.933-1.948A28.54 28.54 0 0022 12a28.54 28.54 0 00-.2-3.999zM10 15V9l5.2 3-5.2 3z"
-        />
-      </symbol>
-      <!-- LinkedIn -->
-      <symbol id="i-linkedin" viewBox="0 0 24 24" fill="currentColor">
-        <path
-          d="M4.98 3.5C4.98 4.88 3.87 6 2.5 6S0 4.88 0 3.5 1.12 1 2.5 1s2.48 1.12 2.48 2.5zM.5 8h4V23h-4V8zm7.5 0h3.8v2.04h.05c.53-1 1.84-2.04 3.78-2.04 4.04 0 4.87 2.66 4.87 6.1V23h-4v-7.9c0-1.89-.03-4.33-2.64-4.33-2.65 0-3.06 2.07-3.06 4.2V23h-4V8z"
-        />
-      </symbol>
-    </svg>
+<!-- ========== SCRIPTS ========== -->
+<script src="../js/script.js" defer></script>
 
+<!-- ========== SVG SPRITE ========== -->
+<svg
+  xmlns="http://www.w3.org/2000/svg"
+  aria-hidden="true"
+  focusable="false"
+  style="position: absolute; width: 0; height: 0; overflow: hidden">
+  <!-- Telefon -->
+  <symbol id="i-phone" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M22 16.92v3a2 2 0 0 1-2.18 2A19.8 19.8 0 0 1 3.08 5.18 2 2 0 0 1 5 3h3a2 2 0 0 1 2 1.72c.08.96.3 1.9.7 2.81a2 2 0 0 1-.45 2.11L9 11a16 16 0 0 0 6 6l1.36-1.25a2 2 0 0 1 2.11-.45c.91.4 1.85.62 2.81.7A2 2 0 0 1 22 16.92z" />
+  </symbol>
+  <!-- Mail -->
+  <symbol id="i-mail" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <rect x="3" y="5" width="18" height="14" rx="2" ry="2"></rect>
+    <polyline points="3 7 12 13 21 7"></polyline>
+  </symbol>
+  <!-- Facebook -->
+  <symbol id="i-facebook" viewBox="0 0 24 24" fill="currentColor">
+    <path d="M22 12c0-5.522-4.477-10-10-10S2 6.478 2 12c0 5 3.657 9.128 8.438 9.878v-6.99h-2.54V12h2.54V9.797c0-2.507 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.772-1.63 1.562V12h2.773l-.443 2.888h-2.33v6.99C18.343 21.128 22 17 22 12z" />
+  </symbol>
+  <!-- Instagram -->
+  <symbol id="i-instagram" viewBox="0 0 24 24" fill="currentColor">
+    <path d="M7 2C4.243 2 2 4.243 2 7v10c0 2.757 2.243 5 5 5h10c2.757 0 5-2.243 5-5V7c0-2.757-2.243-5-5-5H7zm0 2h10c1.654 0 3 1.346 3 3v10c0 1.654-1.346 3-3 3H7c-1.654 0-3-1.346-3-3V7c0-1.654 1.346-3 3-3zm5 2a5 5 0 100 10 5 5 0 000-10zm0 2a3 3 0 110 6 3 3 0 010-6zm6.5-.25a1.25 1.25 0 11-2.5 0 1.25 1.25 0 012.5 0z" />
+  </symbol>
+  <!-- YouTube -->
+  <symbol id="i-youtube" viewBox="0 0 24 24" fill="currentColor">
+    <path d="M21.8 8.001a2.749 2.749 0 00-1.933-1.948C18.262 6 12 6 12 6s-6.262 0-7.867.053a2.749 2.749 0 00-1.933 1.948A28.54 28.54 0 002 12a28.54 28.54 0 00.2 3.999 2.749 2.749 0 001.933 1.948C5.738 18 12 18 12 18s6.262 0 7.867-.053a2.749 2.749 0 001.933-1.948A28.54 28.54 0 0022 12a28.54 28.54 0 00-.2-3.999zM10 15V9l5.2 3-5.2 3z" />
+  </symbol>
+  <!-- LinkedIn -->
+  <symbol id="i-linkedin" viewBox="0 0 24 24" fill="currentColor">
+    <path d="M4.98 3.5C4.98 4.88 3.87 6 2.5 6S0 4.88 0 3.5 1.12 1 2.5 1s2.48 1.12 2.48 2.5zM.5 8h4V23h-4V8zm7.5 0h3.8v2.04h.05c.53-1 1.84-2.04 3.78-2.04 4.04 0 4.87 2.66 4.87 6.1V23h-4v-7.9c0-1.89-.03-4.33-2.64-4.33-2.65 0-3.06 2.07-3.06 4.2V23h-4V8z" />
+  </symbol>
+</svg>
 
-
-    <!-- Mały helper: rok w stopce (bezpieczny, bez błędów jeśli #year nie istnieje) -->
-    <script>
-      (function () {
-        try {
-          var y = document.getElementById("year");
-          if (y) y.textContent = new Date().getFullYear();
-        } catch (e) {
-          /* no-op */
-        }
-      })();
-    </script>
-  </body>
+</body>
 </html>

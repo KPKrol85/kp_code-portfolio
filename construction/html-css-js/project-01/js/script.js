@@ -1375,6 +1375,10 @@ function initOfertaScroller() {
   window.addEventListener('load', onScrollOrResize, { once: true });
 }
 
+
+
+
+
 /* ========== Prefetch on hover/focus (offer subpages) ========== */
 (function () {
   // Respect user's data saver and avoid very slow connections
@@ -1456,6 +1460,11 @@ function initOfertaScroller() {
   });
 })();
 
+
+
+
+
+
 /* ========== Form: light enhancements (keep native validation) ========== */
 (function () {
   var form = document.querySelector('form.form');
@@ -1518,6 +1527,10 @@ function initOfertaScroller() {
   });
 })();
 
+
+
+
+
 /* ========== Helpers: footer year text ========== */
 (function () {
   try {
@@ -1527,6 +1540,12 @@ function initOfertaScroller() {
     /* no-op */
   }
 })();
+
+
+
+
+
+
 
 /* ========== HOME only: clear hash after ".scroll-top" click ========== */
 (function () {

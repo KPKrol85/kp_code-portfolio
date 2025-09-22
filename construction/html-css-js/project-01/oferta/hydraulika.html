@@ -1,85 +1,82 @@
 <!doctype html>
 <html lang="pl" data-accent="bhp">
   <head>
+    <!-- ========== Core ========== -->
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta name="referrer" content="strict-origin-when-cross-origin" />
+    <meta name="format-detection" content="telephone=no, address=no, email=no" />
 
     <title>Hydraulika — Nazwa Twojej Firmy</title>
     <meta
       name="description"
-      content="Instalacje wodno-kanalizacyjne, przeróbki i naprawy, biały montaż, uszczelnienia oraz próby ciśnieniowe. Czysto, terminowo, z gwarancją."
-    />
+      content="Instalacje wodno-kanalizacyjne, przeróbki i naprawy, biały montaż, uszczelnienia oraz próby ciśnieniowe. Czysto, terminowo, z gwarancją." />
     <meta name="author" content="Kamil Król / KP_Code" />
 
-    <meta
-      name="robots"
-      content="index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1"
-    />
-    <link
-      rel="canonical"
-      href="https://construction-project-01.netlify.app/oferta/hydraulika/"
-    />
+    <!-- ========== SEO / Indexing ========== -->
+    <meta name="robots" content="index, follow" />
+    <link rel="canonical" href="https://construction-project-01.netlify.app/oferta/hydraulika.html" />
 
-    <meta
-      name="theme-color"
-      content="#0ea5e9"
-      media="(prefers-color-scheme: light)"
-    />
-    <meta
-      name="theme-color"
-      content="#0b1220"
-      media="(prefers-color-scheme: dark)"
-    />
+    <!-- ========== UI Colors ========== -->
+    <meta name="theme-color" content="#0ea5e9" />
+    <meta name="theme-color" content="#0ea5e9" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#0b1220" media="(prefers-color-scheme: dark)" />
     <meta name="color-scheme" content="light dark" />
 
+    <!-- ========== Preload LCP image (hero: Hydraulika) ========== -->
+    <link
+      rel="preload"
+      as="image"
+      type="image/avif"
+      imagesrcset="../assets/img/oferta/hydraulika/hero-800-450.avif 800w, ../assets/img/oferta/hydraulika/hero-1200-675.avif 1200w, ../assets/img/oferta/hydraulika/hero-1600-900.avif 1600w, ../assets/img/oferta/hydraulika/hero-2400-1350.avif 2400w"
+      imagesizes="100vw" />
+    <link
+      rel="preload"
+      as="image"
+      type="image/webp"
+      imagesrcset="../assets/img/oferta/hydraulika/hero-800-450.webp 800w, ../assets/img/oferta/hydraulika/hero-1200-675.webp 1200w, ../assets/img/oferta/hydraulika/hero-1600-900.webp 1600w, ../assets/img/oferta/hydraulika/hero-2400-1350.webp 2400w"
+      imagesizes="100vw" />
+    <link
+      rel="preload"
+      as="image"
+      imagesrcset="../assets/img/oferta/hydraulika/hero-800-450.jpg 800w, ../assets/img/oferta/hydraulika/hero-1200-675.jpg 1200w, ../assets/img/oferta/hydraulika/hero-1600-900.jpg 1600w, ../assets/img/oferta/hydraulika/hero-2400-1350.jpg 2400w"
+      imagesizes="100vw" />
+
+    <!-- ========== Open Graph ========== -->
     <meta property="og:type" content="website" />
     <meta property="og:site_name" content="Nazwa Twojej Firmy" />
     <meta property="og:locale" content="pl_PL" />
     <meta property="og:title" content="Hydraulika — Nazwa Twojej Firmy" />
     <meta
       property="og:description"
-      content="Instalacje wod-kan, przeróbki i naprawy, biały montaż oraz próby szczelności. Czysto, terminowo, z gwarancją."
-    />
-    <meta
-      property="og:url"
-      content="https://construction-project-01.netlify.app/oferta/hydraulika/"
-    />
+      content="Instalacje wod-kan, przeróbki i naprawy, biały montaż oraz próby szczelności. Czysto, terminowo, z gwarancją." />
+    <meta property="og:url" content="https://construction-project-01.netlify.app/oferta/hydraulika.html" />
     <meta
       property="og:image"
-      content="https://construction-project-01.netlify.app/assets/img/og/og-image-1200x630.jpg"
-    />
+      content="https://construction-project-01.netlify.app/assets/img/og/og-image-1200x630.jpg" />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
-    <meta
-      property="og:image:alt"
-      content="Hydraulik podczas montażu armatury — logo firmy w rogu"
-    />
+    <meta property="og:image:alt" content="Hydraulik podczas montażu armatury — logo firmy w rogu" />
 
+    <!-- ========== Twitter (X) ========== -->
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content="Hydraulika — Nazwa Twojej Firmy" />
     <meta
       name="twitter:description"
-      content="Instalacje wod-kan, przeróbki i naprawy, biały montaż oraz próby szczelności. Czysto, terminowo, z gwarancją."
-    />
+      content="Instalacje wod-kan, przeróbki i naprawy, biały montaż oraz próby szczelności. Czysto, terminowo, z gwarancją." />
     <meta
       name="twitter:image"
-      content="https://construction-project-01.netlify.app/assets/img/og/og-image-1200x630.jpg"
-    />
-    <meta
-      name="twitter:url"
-      content="https://construction-project-01.netlify.app/oferta/hydraulika/"
-    />
+      content="https://construction-project-01.netlify.app/assets/img/og/og-image-1200x630.jpg" />
+    <meta name="twitter:url" content="https://construction-project-01.netlify.app/oferta/hydraulika.html" />
+    <meta name="twitter:image:alt" content="Hydraulik podczas montażu armatury — logo firmy w rogu" />
 
+    <!-- ========== JSON-LD (Org + Service + Breadcrumb) ========== -->
     <script type="application/ld+json">
       {
         "@context": "https://schema.org",
         "@graph": [
           {
-            "@type": [
-              "LocalBusiness",
-              "HomeAndConstructionBusiness",
-              "ConstructionCompany"
-            ],
+            "@type": ["LocalBusiness", "HomeAndConstructionBusiness", "ConstructionCompany"],
             "@id": "https://construction-project-01.netlify.app/#org",
             "name": "Nazwa Twojej Firmy",
             "url": "https://construction-project-01.netlify.app/",
@@ -104,22 +101,11 @@
             "openingHoursSpecification": [
               {
                 "@type": "OpeningHoursSpecification",
-                "dayOfWeek": [
-                  "Monday",
-                  "Tuesday",
-                  "Wednesday",
-                  "Thursday",
-                  "Friday"
-                ],
+                "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
                 "opens": "08:00",
                 "closes": "18:00"
               },
-              {
-                "@type": "OpeningHoursSpecification",
-                "dayOfWeek": "Saturday",
-                "opens": "09:00",
-                "closes": "14:00"
-              }
+              { "@type": "OpeningHoursSpecification", "dayOfWeek": "Saturday", "opens": "09:00", "closes": "14:00" }
             ],
             "contactPoint": [
               {
@@ -150,32 +136,51 @@
           },
           {
             "@type": "Service",
+            "@id": "https://construction-project-01.netlify.app/#service-hydraulika",
             "name": "Hydraulika",
             "serviceType": "Plumbing services",
-            "provider": {
-              "@id": "https://construction-project-01.netlify.app/#org"
-            },
+            "provider": { "@id": "https://construction-project-01.netlify.app/#org" },
             "areaServed": "PL",
-            "url": "https://construction-project-01.netlify.app/oferta/hydraulika/"
+            "url": "https://construction-project-01.netlify.app/oferta/hydraulika.html"
+          },
+          {
+            "@type": "BreadcrumbList",
+            "itemListElement": [
+              {
+                "@type": "ListItem",
+                "position": 1,
+                "name": "Strona główna",
+                "item": "https://construction-project-01.netlify.app/"
+              },
+              {
+                "@type": "ListItem",
+                "position": 2,
+                "name": "Oferta",
+                "item": "https://construction-project-01.netlify.app/#oferta"
+              },
+              {
+                "@type": "ListItem",
+                "position": 3,
+                "name": "Hydraulika",
+                "item": "https://construction-project-01.netlify.app/oferta/hydraulika.html"
+              }
+            ]
           }
         ]
       }
     </script>
 
-    <!-- anty-FOUC motywu (jak u Ciebie) -->
+    <!-- ========== Anti-FOUC (theme) ========== -->
     <script>
       try {
-        var d = document.documentElement,
-          t = localStorage.getItem("theme");
-        if (!t) {
-          t = window.matchMedia("(prefers-color-scheme: dark)").matches
-            ? "dark"
-            : "light";
-        }
-        d.setAttribute("data-theme", t);
-      } catch (e) {}
+        const d = document.documentElement;
+        let t = localStorage.getItem('theme');
+        if (!t) t = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+        d.setAttribute('data-theme', t);
+      } catch (_) {}
     </script>
     <style>
+      /* Disable transitions until theme is applied */
       html.preload-theme *,
       html.preload-theme *::before,
       html.preload-theme *::after {
@@ -183,149 +188,102 @@
       }
     </style>
     <script>
-      document.documentElement.classList.add("preload-theme");
-      window.addEventListener("DOMContentLoaded", () => {
-        setTimeout(
-          () => document.documentElement.classList.remove("preload-theme"),
-          0
-        );
+      // Minimal FOUC mitigation
+      document.documentElement.classList.add('preload-theme');
+      window.addEventListener('DOMContentLoaded', () => {
+        setTimeout(() => document.documentElement.classList.remove('preload-theme'), 0);
       });
     </script>
 
-    <!-- Fonts + CSS + favicons (ścieżki z /oferta/) -->
+    <!-- ========== Fonts (preconnect + stylesheet preload) ========== -->
+    <link rel="dns-prefetch" href="https://fonts.googleapis.com" />
+    <link rel="dns-prefetch" href="https://fonts.gstatic.com" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
       rel="preload"
       as="style"
       href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700&family=Poppins:wght@400;600;700&display=swap"
-      onload="this.onload=null;this.rel='stylesheet'"
-    />
-    <noscript
-      ><link
+      onload="this.onload=null;this.rel='stylesheet'" />
+    <noscript>
+      <link
         rel="stylesheet"
-        href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700&family=Poppins:wght@400;600;700&display=swap"
-    /></noscript>
+        href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700&family=Poppins:wght@400;600;700&display=swap" />
+    </noscript>
 
+    <!-- ========== App CSS ========== -->
     <link rel="stylesheet" href="../css/style.css" />
 
-    <link
-      rel="icon"
-      type="image/x-icon"
-      href="../assets/img/favicon/favicon.ico"
-    />
-    <link
-      rel="icon"
-      type="image/svg+xml"
-      href="../assets/img/favicon/favicon.svg"
-    />
-    <link
-      rel="icon"
-      type="image/png"
-      sizes="96x96"
-      href="../assets/img/favicon/favicon-96x96.png"
-    />
-    <link
-      rel="apple-touch-icon"
-      sizes="180x180"
-      href="../assets/img/favicon/apple-touch-icon.png"
-    />
-    <link
-      rel="icon"
-      type="image/png"
-      sizes="192x192"
-      href="../assets/img/favicon/web-app-manifest-192x192.png"
-    />
-    <link
-      rel="icon"
-      type="image/png"
-      sizes="512x512"
-      href="../assets/img/favicon/web-app-manifest-512x512.png"
-    />
+    <!-- ========== Favicons / Manifest ========== -->
+    <link rel="icon" type="image/x-icon" href="../assets/img/favicon/favicon.ico" />
+    <link rel="icon" type="image/svg+xml" href="../assets/img/favicon/favicon.svg" />
+    <link rel="icon" type="image/png" sizes="96x96" href="../assets/img/favicon/favicon-96x96.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="../assets/img/favicon/apple-touch-icon.png" />
+    <link rel="icon" type="image/png" sizes="192x192" href="../assets/img/favicon/web-app-manifest-192x192.png" />
+    <link rel="icon" type="image/png" sizes="512x512" href="../assets/img/favicon/web-app-manifest-512x512.png" />
     <link rel="manifest" href="../assets/img/favicon/site.webmanifest" />
   </head>
-  <body class="page-sub">
-    <!-- A11Y: Skip link + kotwica #top -->
-    <a class="skip" href="#main">Pomiń do treści</a>
-    <div
-      id="top"
-      aria-hidden="true"
-      style="position: relative; inset: 0; height: 0"
-    ></div>
 
-    <!-- =========================================================
-     HEADER
-     ========================================================= -->
+  <body class="page-sub">
+    <!-- A11Y: Skip link + anchor #top -->
+    <a class="skip" href="#main">Pomiń do treści</a>
+    <div id="top" aria-hidden="true" style="position: relative; inset: 0; height: 0"></div>
+
+    <!-- ========== HEADER ========== -->
     <header class="site-header" role="banner">
       <div class="container header-bar">
-        <!-- Brand -->
-        <a
-          class="brand"
-          href="#top"
-          aria-label="Strona główna — Ekipa Remontowa"
-        >
+        <!-- Brand (logo + text) -->
+        <a class="brand" href="../index.html#top" aria-label="Strona główna — Ekipa Remontowa">
           <picture class="brand-logo">
+            <!-- Decorative: avoid duplicate name for screen readers -->
             <img
               src="../assets/img/main-logo/main-logo-light-512.svg"
-              alt="Nazwa firmy"
+              alt=""
+              aria-hidden="true"
               class="ft-logo logo--light"
+              width="128"
+              height="32"
               loading="eager"
-              fetchpriority="high"
-              decoding="async"
-            />
+              fetchpriority="low"
+              decoding="async" />
             <img
               src="../assets/img/main-logo/main-logo-dark-512.svg"
-              alt="Nazwa firmy"
+              alt=""
+              aria-hidden="true"
               class="ft-logo logo--dark"
+              width="128"
+              height="32"
               loading="eager"
-              fetchpriority="high"
-              decoding="async"
-            />
+              fetchpriority="low"
+              decoding="async" />
           </picture>
           <span class="brand-name">LOGO FIRMY</span>
         </a>
 
-        <!-- Główna nawigacja (dla oferta/hydraulika.html) -->
+        <!-- Main navigation (subpages: OFERTA/*) -->
         <nav class="nav" role="navigation" aria-label="Główna nawigacja">
           <ul id="navMenu" class="nav-menu">
-            <li>
-              <a href="../index.html">Strona główna</a>
-            </li>
+            <li><a href="../index.html">Strona główna</a></li>
 
-            <!-- Oferta (link + dropdown) -->
+            <!-- Dropdown: Oferta -->
             <li class="nav-item has-dropdown">
               <a
                 href="../index.html#oferta"
+                id="nav-oferta-trigger"
                 class="nav-link dropdown-trigger"
                 aria-expanded="false"
-                aria-haspopup="menu"
-                aria-controls="dd-oferta"
-              >
-                Oferta <span class="caret" aria-hidden="true">▾</span>
+                aria-haspopup="true"
+                aria-controls="dd-oferta">
+                Oferta
+                <span class="caret" aria-hidden="true">▾</span>
               </a>
-              <ul
-                id="dd-oferta"
-                class="dropdown"
-                role="menu"
-                aria-label="Podmenu: Oferta"
-              >
-                <li role="none">
-                  <a role="menuitem" href="lazienki.html">Łazienki</a>
-                </li>
-                <li role="none">
-                  <a role="menuitem" href="malowanie.html"
-                    >Malowanie &amp; gładzie</a
-                  >
-                </li>
-                <li role="none">
-                  <a role="menuitem" href="kafelkowanie.html">Kafelkowanie</a>
-                </li>
-                <li role="none">
-                  <a role="menuitem" href="elektryka.html">Elektryka</a>
-                </li>
-                <li role="none">
-                  <a role="menuitem" href="hydraulika.html">Hydraulika</a>
-                </li>
+              <ul id="dd-oferta" class="dropdown" role="menu" aria-label="Podmenu: Oferta">
+                <li role="none"><a role="menuitem" href="lazienki.html">Łazienki</a></li>
+                <li role="none"><a role="menuitem" href="malowanie.html">Malowanie &amp; gładzie</a></li>
+                <li role="none"><a role="menuitem" href="kafelkowanie.html">Kafelkowanie</a></li>
+                <li role="none"><a role="menuitem" href="elektryka.html">Elektryka</a></li>
+                <!-- A11Y: mark current page -->
+                <li role="none"><a role="menuitem" href="hydraulika.html" aria-current="page">Hydraulika</a></li>
               </ul>
             </li>
 
@@ -333,206 +291,162 @@
             <li><a href="../index.html#opinie">Opinie</a></li>
             <li><a href="../index.html#faq">FAQ</a></li>
             <li><a href="../index.html#kontakt">Kontakt</a></li>
-            <li>
-              <a class="btn btn--sm" href="../index.html#kontakt">Wycena</a>
-            </li>
+            <li><a class="btn btn--sm" href="../index.html#kontakt">Wycena</a></li>
           </ul>
         </nav>
 
-        <!-- Akcje w pasku (po prawej): przełącznik motywu + hamburger -->
+        <!-- Header actions: theme toggle + hamburger -->
         <div class="header-actions">
           <button
             class="theme-toggle"
             type="button"
             aria-pressed="false"
             aria-label="Przełącz tryb"
-            title="Przełącz tryb"
-          ></button>
+            title="Przełącz tryb"></button>
+
           <button
             class="nav-toggle"
             type="button"
             aria-expanded="false"
             aria-controls="navMenu"
-            aria-label="Otwórz menu"
-          >
-            <span class="nav-line"></span><span class="nav-line"></span
-            ><span class="nav-line"></span>
+            aria-label="Otwórz menu">
+            <span class="nav-line"></span>
+            <span class="nav-line"></span>
+            <span class="nav-line"></span>
           </button>
         </div>
       </div>
     </header>
+    <!-- /HEADER -->
 
     <main id="main" role="main">
-      <!-- SUBPAGE HEADER (lekki, bez .hero) -->
+      <!-- SUBPAGE HEADER (light intro, no .hero) -->
       <section
-        class="block"
+        class="block subpage-header"
         id="hydraulika"
         role="region"
         aria-labelledby="hydraulika-heading"
-      >
+        aria-describedby="hydraulika-desc"
+        tabindex="-1">
+        <!-- focusable target for skip link -->
+
         <div class="container">
+          <!-- Section header -->
           <header class="block-head">
             <h1 id="hydraulika-heading">Hydraulika — instalacje i serwis</h1>
-            <p class="lead">
-              Instalacje wod-kan od podstaw, przeróbki i naprawy, biały montaż
-              oraz szczelne rozwiązania w strefach mokrych. Czysto, terminowo, z
-              gwarancją.
+            <p id="hydraulika-desc" class="lead">
+              Instalacje wod-kan od podstaw, przeróbki i naprawy, biały montaż oraz szczelne rozwiązania w strefach
+              mokrych. Czysto, terminowo, z gwarancją.
             </p>
           </header>
 
-          <!-- karty oferty (spójne .hover-card jak na innych podstronach) -->
+          <!-- Service cards (consistent .hover-card across subpages) -->
           <div class="cards">
-            <article class="card hover-card">
+            <article class="card hover-card" id="instalacje">
               <h3>Instalacje od podstaw</h3>
-              <p>
-                Projekt trasy, rury PEX/PP, rozdzielacze, zawory i
-                odpowietrzenia. Mieszkania i domy jednorodzinne.
-              </p>
+              <p>Projekt trasy, rury PEX/PP, rozdzielacze, zawory i odpowietrzenia. Mieszkania i domy jednorodzinne.</p>
             </article>
 
-            <article class="card hover-card">
+            <article class="card hover-card" id="przerobki-naprawy">
               <h3>Przeróbki i naprawy</h3>
-              <p>
-                Zmiany podejść, usuwanie nieszczelności, wymiana odcinków rur —
-                szybkie lokalne interwencje.
-              </p>
+              <p>Zmiany podejść, usuwanie nieszczelności, wymiana odcinków rur — szybkie lokalne interwencje.</p>
             </article>
 
-            <article class="card hover-card">
+            <article class="card hover-card" id="bialy-montaz">
               <h3>Biały montaż i armatura</h3>
-              <p>
-                WC podtynkowe, umywalki, baterie, zlewy, kabiny, wanny, syfony i
-                odwodnienia liniowe.
-              </p>
+              <p>WC podtynkowe, umywalki, baterie, zlewy, kabiny, wanny, syfony i odwodnienia liniowe.</p>
             </article>
 
-            <article class="card hover-card">
+            <article class="card hover-card" id="uszczelnienia-proby">
               <h3>Uszczelnienia i próby</h3>
-              <p>
-                Hydroizolacje w strefach mokrych, silikonowanie, próby
-                ciśnieniowe oraz protokół odbioru.
-              </p>
+              <p>Hydroizolacje w strefach mokrych, silikonowanie, próby ciśnieniowe oraz protokół odbioru.</p>
             </article>
           </div>
 
+          <!-- Primary CTA block -->
           <div class="block-cta">
             <a
               class="btn"
               href="../index.html?usluga=Hydraulika#kontakt"
-              aria-label="Przejdź do formularza wyceny — Hydraulika"
-            >
+              aria-label="Przejdź do formularza wyceny — Hydraulika">
               Wycena
             </a>
 
             <a
               class="btn btn--ghost"
               href="../index.html#realizacje"
-              aria-label="Zobacz galerię realizacji hydraulicznych"
-            >
+              aria-label="Zobacz galerię realizacji hydraulicznych">
               Galeria realizacji
             </a>
           </div>
         </div>
       </section>
 
-      <!-- =========================================================
-Hydraulika - FAQ
-========================================================= -->
-
-      <section
-        id="faq"
-        class="block"
-        role="region"
-        aria-labelledby="faq-heading"
-        aria-describedby="faq-desc"
-      >
+      <!-- ========== FAQ ========== -->
+      <section id="faq" class="block" role="region" aria-labelledby="faq-heading" aria-describedby="faq-desc">
         <div class="container">
+          <!-- Section header -->
           <header class="block-head">
-            <h2 class="answer" id="faq-heading">FAQ — najczęstsze pytania</h2>
-            <p id="faq-desc">
-              Krótko i konkretnie — najważniejsze informacje o hydraulice
-              (instalacje wod-kan i biały montaż).
+            <h2 id="faq-heading">FAQ — najczęstsze pytania</h2>
+            <p id="faq-desc" class="lead">
+              Krótko i konkretnie — najważniejsze informacje o hydraulice (instalacje wod-kan i biały montaż).
             </p>
           </header>
 
-          <ul class="faq-list" role="list">
-            <li role="listitem">
+          <!-- FAQ list (native details/summary for a11y) -->
+          <ul class="faq-list">
+            <li>
               <details class="faq" id="faq-1">
-                <summary id="q-1">
-                  Czy wykonujecie próbę szczelności po przeróbkach?
-                </summary>
-                <div
-                  class="answer"
-                  id="a-1"
-                  role="region"
-                  aria-labelledby="q-1"
-                >
+                <summary id="q-1" class="faq-q">Czy wykonujecie próbę szczelności po przeróbkach?</summary>
+                <div class="answer" id="a-1" role="region" aria-labelledby="q-1">
                   <p>
                     Tak — po zakończeniu prac robimy
-                    <strong>próbę ciśnieniową</strong> i potwierdzamy wynik
-                    krótkim protokołem. W strefach mokrych stosujemy systemowe
-                    <strong>hydroizolacje</strong>.
+                    <strong>próbę ciśnieniową</strong>
+                    i potwierdzamy wynik krótkim protokołem. W strefach mokrych stosujemy systemowe
+                    <strong>hydroizolacje</strong>
+                    .
                   </p>
                 </div>
               </details>
             </li>
 
-            <li role="listitem">
+            <li>
               <details class="faq" id="faq-2">
-                <summary id="q-2">
-                  Ile trwa przeróbka podejść w łazience?
-                </summary>
-                <div
-                  class="answer"
-                  id="a-2"
-                  role="region"
-                  aria-labelledby="q-2"
-                >
+                <summary id="q-2" class="faq-q">Ile trwa przeróbka podejść w łazience?</summary>
+                <div class="answer" id="a-2" role="region" aria-labelledby="q-2">
                   <p>
-                    Zazwyczaj <strong>1–2 dni robocze</strong>, w zależności od
-                    zakresu zmian i koniecznych odkrywek. Pełne wykonanie
-                    instalacji w nowej łazience trwa odpowiednio dłużej.
+                    Zazwyczaj
+                    <strong>1–2 dni robocze</strong>
+                    , w zależności od zakresu zmian i koniecznych odkrywek. Pełne wykonanie instalacji w nowej łazience
+                    trwa odpowiednio dłużej.
                   </p>
                 </div>
               </details>
             </li>
 
-            <li role="listitem">
+            <li>
               <details class="faq" id="faq-3">
-                <summary id="q-3">
-                  Czy montujecie zestawy podtynkowe (stelaże WC, baterie)?
-                </summary>
-                <div
-                  class="answer"
-                  id="a-3"
-                  role="region"
-                  aria-labelledby="q-3"
-                >
+                <summary id="q-3" class="faq-q">Czy montujecie zestawy podtynkowe (stelaże WC, baterie)?</summary>
+                <div class="answer" id="a-3" role="region" aria-labelledby="q-3">
                   <p>
-                    Tak — montujemy <strong>stelaże WC</strong>, baterie
-                    podtynkowe, odpływy liniowe oraz zabudowy z płyt
-                    wodoodpornych. Zapewniamy szczelne połączenia i
-                    silikonowanie naroży.
+                    Tak — montujemy
+                    <strong>stelaże WC</strong>
+                    , baterie podtynkowe, odpływy liniowe oraz zabudowy z płyt wodoodpornych. Zapewniamy szczelne
+                    połączenia i silikonowanie naroży.
                   </p>
                 </div>
               </details>
             </li>
 
-            <li role="listitem">
+            <li>
               <details class="faq" id="faq-4">
-                <summary id="q-4">
-                  Czy pomagacie w doborze armatury i osprzętu?
-                </summary>
-                <div
-                  class="answer"
-                  id="a-4"
-                  role="region"
-                  aria-labelledby="q-4"
-                >
+                <summary id="q-4" class="faq-q">Czy pomagacie w doborze armatury i osprzętu?</summary>
+                <div class="answer" id="a-4" role="region" aria-labelledby="q-4">
                   <p>
-                    Oczywiście. Przygotujemy listę zakupową (zawory, syfony,
-                    przyłącza, baterie), a na życzenie zrealizujemy również
-                    <strong>kompleksowy biały montaż</strong>.
+                    Oczywiście. Przygotujemy listę zakupową (zawory, syfony, przyłącza, baterie), a na życzenie
+                    zrealizujemy również
+                    <strong>kompleksowy biały montaż</strong>
+                    .
                   </p>
                 </div>
               </details>
@@ -540,45 +454,39 @@ Hydraulika - FAQ
           </ul>
         </div>
       </section>
+      <!-- /FAQ -->
 
-      <!-- lekkie CTA końcowe -->
-      <section class="cta" aria-labelledby="cta-end-heading">
+      <!-- ========== CTA ========== -->
+      <section class="cta" role="region" aria-labelledby="cta-end-heading">
         <div class="container">
+          <!-- Section header -->
           <header class="block-head">
             <h2 id="cta-end-heading">Masz projekt lub szkic instalacji?</h2>
-            <p class="lead">
-              Przyślij rzut i zakres prac — wycenimy w 24–48&nbsp;h i
-              zaproponujemy najbliższy termin.
-            </p>
+            <p class="lead">Przyślij rzut i zakres prac — wycenimy w 24–48&nbsp;h i zaproponujemy najbliższy termin.</p>
           </header>
+
+          <!-- Primary CTA -->
           <div class="block-cta">
-            <a class="btn" href="../index.html#kontakt">Wyślij zapytanie</a>
+            <a class="btn" href="../index.html#kontakt" aria-label="Wyślij zapytanie — formularz kontaktowy">
+              Wyślij zapytanie
+            </a>
           </div>
         </div>
       </section>
+      <!-- /CTA -->
     </main>
 
-    <!-- =========================================================
-        FOOTER
-        ========================================================= -->
-    <!-- FOOTER -->
-    <footer
-      id="footer"
-      class="site-footer"
-      role="contentinfo"
-      aria-labelledby="footer-heading"
-    >
+    <!-- ========== FOOTER ========== -->
+    <footer id="footer" class="site-footer" role="contentinfo" aria-labelledby="footer-heading">
       <div class="container">
         <h2 class="vh" id="footer-heading">Stopka serwisu</h2>
+
         <div class="ft-grid">
-          <!-- COL 1: BRAND + OPIS + KONTAKT -->
+          <!-- COL 1: Brand + description + contact -->
           <div class="ft-col">
-            <a href="#top" class="brand-footer" aria-label="Strona główna">
+            <a href="../index.html#top" class="brand-footer" aria-label="Strona główna">
               <picture>
-                <source
-                  srcset="../assets/img/main-logo/main-logo-footer-512.png"
-                  type="image/png"
-                />
+                <source srcset="../assets/img/main-logo/main-logo-footer-512.png" type="image/png" />
                 <img
                   src="../assets/img/main-logo/main-logo-footer-512.png"
                   alt=""
@@ -587,71 +495,47 @@ Hydraulika - FAQ
                   width="512"
                   height="512"
                   loading="lazy"
-                  decoding="async"
-                />
+                  decoding="async" />
               </picture>
             </a>
 
-            <p class="ft-lead">
-              Solidne realizacje budowlane — oferta, wyceny i kontakt w
-              24&nbsp;h.
-            </p>
+            <p class="ft-lead">Solidne realizacje budowlane — oferta, wyceny i kontakt w 24&nbsp;h.</p>
 
-            <ul class="ft-contact" role="list" aria-label="Dane kontaktowe">
-              <li role="listitem">
-                <svg class="i" aria-hidden="true">
-                  <use href="#i-phone"></use>
-                </svg>
-                <a href="tel:+48600700800" aria-label="Zadzwoń: +48 600 700 800"
-                  >+48 600 700 800</a
-                >
+            <ul class="ft-contact" aria-label="Dane kontaktowe">
+              <li>
+                <svg class="i" aria-hidden="true"><use href="#i-phone"></use></svg>
+                <a href="tel:+48600700800" aria-label="Zadzwoń: +48 600 700 800">+48 600 700 800</a>
               </li>
-              <li role="listitem">
-                <svg class="i" aria-hidden="true">
-                  <use href="#i-mail"></use>
-                </svg>
-                <a href="mailto:kontakt@twoja-firma.pl"
-                  >kontakt@twoja-firma.pl</a
-                >
+              <li>
+                <svg class="i" aria-hidden="true"><use href="#i-mail"></use></svg>
+                <a href="mailto:kontakt@twoja-firma.pl">kontakt@twoja-firma.pl</a>
               </li>
             </ul>
           </div>
 
-          <!-- COL 2: NAWIGACJA -->
+          <!-- COL 2: Footer navigation -->
           <nav class="ft-col" aria-label="Nawigacja w stopce">
             <h3 class="ft-h">Nawigacja</h3>
-            <ul class="ft-links" role="list">
-              <li role="listitem"><a href="../index.html#oferta">Oferta</a></li>
-              <li role="listitem">
-                <a href="../index.html#realizacje">Realizacje</a>
-              </li>
-              <li role="listitem"><a href="../index.html#opinie">Opinie</a></li>
-              <li role="listitem"><a href="../index.html#faq">FAQ</a></li>
-              <li role="listitem">
-                <a href="../index.html#kontakt">Kontakt</a>
-              </li>
+            <ul class="ft-links">
+              <li><a href="../index.html#oferta">Oferta</a></li>
+              <li><a href="../index.html#realizacje">Realizacje</a></li>
+              <li><a href="../index.html#opinie">Opinie</a></li>
+              <li><a href="../index.html#faq">FAQ</a></li>
+              <li><a href="../index.html#kontakt">Kontakt</a></li>
             </ul>
           </nav>
 
-          <!-- COL 3: DOKUMENTY -->
+          <!-- COL 3: Documents -->
           <nav class="ft-col" aria-label="Dokumenty">
             <h3 class="ft-h">Dokumenty</h3>
-            <ul class="ft-links" role="list">
-              <li role="listitem">
-                <a href="../doc/polityka-prywatnosci.html"
-                  >Polityka prywatności</a
-                >
-              </li>
-              <li role="listitem">
-                <a href="../doc/regulamin.html">Regulamin</a>
-              </li>
-              <li role="listitem">
-                <a href="../doc/cookies.html">Pliki cookies</a>
-              </li>
+            <ul class="ft-links">
+              <li><a href="../doc/polityka-prywatnosci.html">Polityka prywatności</a></li>
+              <li><a href="../doc/regulamin.html">Regulamin</a></li>
+              <li><a href="../doc/cookies.html">Pliki cookies</a></li>
             </ul>
           </nav>
 
-          <!-- COL 4: MAPA + SOCIAL + CTA -->
+          <!-- COL 4: Map + address + social -->
           <div class="ft-col">
             <h3 class="ft-h">Znajdziesz nas tutaj:</h3>
 
@@ -664,67 +548,42 @@ Hydraulika - FAQ
                 style="border: 0"
                 loading="lazy"
                 allowfullscreen
-                referrerpolicy="no-referrer-when-downgrade"
-              >
-              </iframe>
+                referrerpolicy="no-referrer-when-downgrade"></iframe>
             </div>
 
             <address class="ft-address">
               <p><strong>Nazwa Twojej Firmy Sp. z o.o.</strong></p>
-              <p>ul. Przykładowa 10,<br />33-100 Tarnów</p>
               <p>
-                NIP: 123-456-78-90<br />
+                ul. Przykładowa 10,
+                <br />
+                33-100 Tarnów
+              </p>
+              <p>
+                NIP: 123-456-78-90
+                <br />
                 REGON: 123456789
               </p>
               <p>
-                tel. <a href="tel:+48123456789">+48 123 456 789</a><br />
+                tel.
+                <a href="tel:+48123456789">+48 123 456 789</a>
+                <br />
                 e-mail:
-                <a href="mailto:kontakt@twoja-firma.pl"
-                  ><br />kontakt@twoja-firma.pl</a
-                >
+                <a href="mailto:kontakt@twoja-firma.pl">kontakt@twoja-firma.pl</a>
               </p>
             </address>
 
             <div class="ft-social" aria-label="Media społecznościowe">
-              <a
-                href="https://facebook.com"
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label="Facebook"
-              >
-                <svg class="i" aria-hidden="true">
-                  <use href="#i-facebook"></use>
-                </svg>
+              <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" aria-label="Facebook">
+                <svg class="i" aria-hidden="true"><use href="#i-facebook"></use></svg>
               </a>
-              <a
-                href="https://instagram.com"
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label="Instagram"
-              >
-                <svg class="i" aria-hidden="true">
-                  <use href="#i-instagram"></use>
-                </svg>
+              <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
+                <svg class="i" aria-hidden="true"><use href="#i-instagram"></use></svg>
               </a>
-              <a
-                href="https://youtube.com"
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label="YouTube"
-              >
-                <svg class="i" aria-hidden="true">
-                  <use href="#i-youtube"></use>
-                </svg>
+              <a href="https://youtube.com" target="_blank" rel="noopener noreferrer" aria-label="YouTube">
+                <svg class="i" aria-hidden="true"><use href="#i-youtube"></use></svg>
               </a>
-              <a
-                href="https://linkedin.com"
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label="LinkedIn"
-              >
-                <svg class="i" aria-hidden="true">
-                  <use href="#i-linkedin"></use>
-                </svg>
+              <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+                <svg class="i" aria-hidden="true"><use href="#i-linkedin"></use></svg>
               </a>
             </div>
           </div>
@@ -732,30 +591,27 @@ Hydraulika - FAQ
 
         <div class="ft-bottom">
           <p>
-            © <span id="year"></span> KP_Code. Wszelkie prawa zastrzeżone.
-            Projekt i wdrożenie: <a href="#" rel="author">KP_Code</a>
+            ©
+            <span id="year"></span>
+            KP_Code. Wszelkie prawa zastrzeżone. Projekt i wdrożenie:
+            <a href="#" rel="author">KP_Code</a>
           </p>
         </div>
       </div>
     </footer>
+    <!-- /FOOTER -->
 
-    <!-- =========================================================
-        SCRIPTY
-        ========================================================= -->
-    <!-- SCRIPTS -->
+    <!-- ========== SCRIPTS ========== -->
     <script src="../js/script.js" defer></script>
+    <!-- /SCRIPTS -->
 
-    <!-- =========================================================
-        SVG SPRITE
-        ========================================================= -->
-    <!-- === SVG SPRITE (ukryty magazyn ikon) === -->
+    <!-- ========== SVG SPRITE ========== -->
     <svg
       xmlns="http://www.w3.org/2000/svg"
       aria-hidden="true"
       focusable="false"
-      style="position: absolute; width: 0; height: 0; overflow: hidden"
-    >
-      <!-- Telefon -->
+      style="position: absolute; width: 0; height: 0; overflow: hidden">
+      <!-- Phone -->
       <symbol
         id="i-phone"
         viewBox="0 0 24 24"
@@ -763,11 +619,9 @@ Hydraulika - FAQ
         stroke="currentColor"
         stroke-width="2"
         stroke-linecap="round"
-        stroke-linejoin="round"
-      >
+        stroke-linejoin="round">
         <path
-          d="M22 16.92v3a2 2 0 0 1-2.18 2A19.8 19.8 0 0 1 3.08 5.18 2 2 0 0 1 5 3h3a2 2 0 0 1 2 1.72c.08.96.3 1.9.7 2.81a2 2 0 0 1-.45 2.11L9 11a16 16 0 0 0 6 6l1.36-1.25a2 2 0 0 1 2.11-.45c.91.4 1.85.62 2.81.7A2 2 0 0 1 22 16.92z"
-        />
+          d="M22 16.92v3a2 2 0 0 1-2.18 2A19.8 19.8 0 0 1 3.08 5.18 2 2 0 0 1 5 3h3a2 2 0 0 1 2 1.72c.08.96.3 1.9.7 2.81a2 2 0 0 1-.45 2.11L9 11a16 16 0 0 0 6 6l1.36-1.25a2 2 0 0 1 2.11-.45c.91.4 1.85.62 2.81.7A2 2 0 0 1 22 16.92z" />
       </symbol>
       <!-- Mail -->
       <symbol
@@ -777,47 +631,31 @@ Hydraulika - FAQ
         stroke="currentColor"
         stroke-width="2"
         stroke-linecap="round"
-        stroke-linejoin="round"
-      >
+        stroke-linejoin="round">
         <rect x="3" y="5" width="18" height="14" rx="2" ry="2"></rect>
         <polyline points="3 7 12 13 21 7"></polyline>
       </symbol>
       <!-- Facebook -->
       <symbol id="i-facebook" viewBox="0 0 24 24" fill="currentColor">
         <path
-          d="M22 12c0-5.522-4.477-10-10-10S2 6.478 2 12c0 5 3.657 9.128 8.438 9.878v-6.99h-2.54V12h2.54V9.797c0-2.507 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.772-1.63 1.562V12h2.773l-.443 2.888h-2.33v6.99C18.343 21.128 22 17 22 12z"
-        />
+          d="M22 12c0-5.522-4.477-10-10-10S2 6.478 2 12c0 5 3.657 9.128 8.438 9.878v-6.99h-2.54V12h2.54V9.797c0-2.507 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.772-1.63 1.562V12h2.773l-.443 2.888h-2.33v6.99C18.343 21.128 22 17 22 12z" />
       </symbol>
       <!-- Instagram -->
       <symbol id="i-instagram" viewBox="0 0 24 24" fill="currentColor">
         <path
-          d="M7 2C4.243 2 2 4.243 2 7v10c0 2.757 2.243 5 5 5h10c2.757 0 5-2.243 5-5V7c0-2.757-2.243-5-5-5H7zm0 2h10c1.654 0 3 1.346 3 3v10c0 1.654-1.346 3-3 3H7c-1.654 0-3-1.346-3-3V7c0-1.654 1.346-3 3-3zm5 2a5 5 0 100 10 5 5 0 000-10zm0 2a3 3 0 110 6 3 3 0 010-6zm6.5-.25a1.25 1.25 0 11-2.5 0 1.25 1.25 0 012.5 0z"
-        />
+          d="M7 2C4.243 2 2 4.243 2 7v10c0 2.757 2.243 5 5 5h10c2.757 0 5-2.243 5-5V7c0-2.757-2.243-5-5-5H7zm0 2h10c1.654 0 3 1.346 3 3v10c0 1.654-1.346 3-3 3H7c-1.654 0-3-1.346-3-3V7c0-1.654 1.346-3 3-3zm5 2a5 5 0 100 10 5 5 0 000-10zm0 2a3 3 0 110 6 3 3 0 010-6zm6.5-.25a1.25 1.25 0 11-2.5 0 1.25 1.25 0 012.5 0z" />
       </symbol>
       <!-- YouTube -->
       <symbol id="i-youtube" viewBox="0 0 24 24" fill="currentColor">
         <path
-          d="M21.8 8.001a2.749 2.749 0 00-1.933-1.948C18.262 6 12 6 12 6s-6.262 0-7.867.053a2.749 2.749 0 00-1.933 1.948A28.54 28.54 0 002 12a28.54 28.54 0 00.2 3.999 2.749 2.749 0 001.933 1.948C5.738 18 12 18 12 18s6.262 0 7.867-.053a2.749 2.749 0 001.933-1.948A28.54 28.54 0 0022 12a28.54 28.54 0 00-.2-3.999zM10 15V9l5.2 3-5.2 3z"
-        />
+          d="M21.8 8.001a2.749 2.749 0 00-1.933-1.948C18.262 6 12 6 12 6s-6.262 0-7.867.053a2.749 2.749 0 00-1.933 1.948A28.54 28.54 0 002 12a28.54 28.54 0 00.2 3.999 2.749 2.749 0 001.933 1.948C5.738 18 12 18 12 18s6.262 0 7.867-.053a2.749 2.749 0 001.933-1.948A28.54 28.54 0 0022 12a28.54 28.54 0 00-.2-3.999zM10 15V9l5.2 3-5.2 3z" />
       </symbol>
       <!-- LinkedIn -->
       <symbol id="i-linkedin" viewBox="0 0 24 24" fill="currentColor">
         <path
-          d="M4.98 3.5C4.98 4.88 3.87 6 2.5 6S0 4.88 0 3.5 1.12 1 2.5 1s2.48 1.12 2.48 2.5zM.5 8h4V23h-4V8zm7.5 0h3.8v2.04h.05c.53-1 1.84-2.04 3.78-2.04 4.04 0 4.87 2.66 4.87 6.1V23h-4v-7.9c0-1.89-.03-4.33-2.64-4.33-2.65 0-3.06 2.07-3.06 4.2V23h-4V8z"
-        />
+          d="M4.98 3.5C4.98 4.88 3.87 6 2.5 6S0 4.88 0 3.5 1.12 1 2.5 1s2.48 1.12 2.48 2.5zM.5 8h4V23h-4V8zm7.5 0h3.8v2.04h.05c.53-1 1.84-2.04 3.78-2.04 4.04 0 4.87 2.66 4.87 6.1V23h-4v-7.9c0-1.89-.03-4.33-2.64-4.33-2.65 0-3.06 2.07-3.06 4.2V23h-4V8z" />
       </symbol>
     </svg>
-
-    <!-- Mały helper: rok w stopce (bezpieczny, bez błędów jeśli #year nie istnieje) -->
-    <script>
-      (function () {
-        try {
-          var y = document.getElementById("year");
-          if (y) y.textContent = new Date().getFullYear();
-        } catch (e) {
-          /* no-op */
-        }
-      })();
-    </script>
+    <!-- /SVG SPRITE -->
   </body>
 </html>
