@@ -3,131 +3,91 @@
   <head>
     <!-- ========== Core ========== -->
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <meta name="viewport" content="width=device-width,initial-scale=1, viewport-fit=cover" />
 
-    <title>Kafelkowanie — Nazwa Twojej Firmy</title>
-    <meta
-      name="description"
-      content="Kafelkowanie ścian i podłóg: gres, lastryko, mozaiki, docinki pod kątem, listwy dekoracyjne, fugi epoksydowe. Czysto, precyzyjnie, z gwarancją." />
+    <title>Demo — kafelkowanie i glazurnictwo | KP_Code</title>
+    <meta name="description" content="Demo szablonu: kafelkowanie ścian i podłóg (gres, lastryko, mozaiki), cięcia pod kątem, listwy dekoracyjne, fugi epoksydowe. Czysto, precyzyjnie, z gwarancją. Projekt i kod: KP_Code." />
     <meta name="author" content="Kamil Król / KP_Code" />
 
     <!-- ========== SEO / Indexing ========== -->
-    <meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1" />
-    <link rel="canonical" href="https://construction-project-01.netlify.app/oferta/kafelkowanie/" />
+    <meta name="robots" content="noindex, follow" />
+    <link rel="canonical" href="https://construction-project-01.netlify.app/oferta/kafelkowanie.html" />
 
     <!-- ========== UI Colors ========== -->
-    <meta name="theme-color" content="#0ea5e9" /> <!-- default for UA without media-query support -->
+    <meta name="theme-color" content="#0ea5e9" />
     <meta name="theme-color" content="#0ea5e9" media="(prefers-color-scheme: light)" />
     <meta name="theme-color" content="#0b1220" media="(prefers-color-scheme: dark)" />
     <meta name="color-scheme" content="light dark" />
 
     <!-- ========== Open Graph ========== -->
     <meta property="og:type" content="website" />
-    <meta property="og:site_name" content="Nazwa Twojej Firmy" />
+    <meta property="og:site_name" content="KP_Code Portfolio" />
     <meta property="og:locale" content="pl_PL" />
-    <meta property="og:title" content="Kafelkowanie — Nazwa Twojej Firmy" />
-    <meta
-      property="og:description"
-      content="Kafelkowanie ścian i podłóg: gres, mozaiki, listwy, fugi epoksydowe. Czysto, precyzyjnie, z gwarancją." />
-    <meta property="og:url" content="https://construction-project-01.netlify.app/oferta/kafelkowanie/" />
-    <meta
-      property="og:image"
-      content="https://construction-project-01.netlify.app/assets/img/og/og-image-1200x630.jpg" />
+    <meta property="og:title" content="Demo — kafelkowanie i glazurnictwo | KP_Code" />
+    <meta property="og:description" content="Demo szablonu: kafelkowanie ścian i podłóg (gres, lastryko, mozaiki), cięcia pod kątem, listwy dekoracyjne, fugi epoksydowe. Czysto, precyzyjnie, z gwarancją. Projekt i kod: KP_Code." />
+    <meta property="og:url" content="https://construction-project-01.netlify.app/oferta/kafelkowanie.html" />
+    <meta property="og:image" content="https://construction-project-01.netlify.app/assets/img/og/og-image-1200x630.jpg" />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
-    <meta property="og:image:alt" content="Ekipa układająca płytki — logo firmy w rogu" />
+    <meta property="og:image:alt" content="Ekipa układająca płytki — logo w rogu (DEMO szablonu)" />
 
     <!-- ========== Twitter (X) ========== -->
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="Kafelkowanie — Nazwa Twojej Firmy" />
-    <meta
-      name="twitter:description"
-      content="Kafelkowanie ścian i podłóg: gres, mozaiki, listwy, fugi epoksydowe. Czysto, precyzyjnie, z gwarancją." />
-    <meta
-      name="twitter:image"
-      content="https://construction-project-01.netlify.app/assets/img/og/og-image-1200x630.jpg" />
-    <meta name="twitter:url" content="https://construction-project-01.netlify.app/oferta/kafelkowanie/" />
+    <meta name="twitter:title" content="Demo — kafelkowanie i glazurnictwo | KP_Code" />
+    <meta name="twitter:description" content="Demo szablonu: kafelkowanie ścian i podłóg (gres, lastryko, mozaiki), cięcia pod kątem, listwy dekoracyjne, fugi epoksydowe. Czysto, precyzyjnie, z gwarancją. Projekt i kod: KP_Code." />
+    <meta name="twitter:image" content="https://construction-project-01.netlify.app/assets/img/og/og-image-1200x630.jpg" />
+    <meta name="twitter:image:alt" content="Ekipa układająca płytki — logo w rogu (DEMO szablonu)" />
+    <meta name="twitter:url" content="https://construction-project-01.netlify.app/oferta/kafelkowanie.html" />
 
-    <!-- ========== JSON-LD (Org + Service) ========== -->
+    <!-- ========== JSON-LD (Schema.org) — WebSite + CollectionPage + Breadcrumb + Service ========== -->
     <script type="application/ld+json">
-      {
-        "@context": "https://schema.org",
-        "@graph": [
-          {
-            "@type": ["LocalBusiness", "HomeAndConstructionBusiness", "ConstructionCompany"],
-            "@id": "https://construction-project-01.netlify.app/#org",
-            "name": "Nazwa Twojej Firmy",
-            "url": "https://construction-project-01.netlify.app/",
-            "logo": {
-              "@type": "ImageObject",
-              "url": "https://construction-project-01.netlify.app/assets/img/main-logo/main-logo-footer-512.png",
-              "width": 512,
-              "height": 512
-            },
-            "image": "https://construction-project-01.netlify.app/assets/img/og/og-image-1200x630.jpg",
-            "priceRange": "$$",
-            "telephone": "+48 600 700 800",
-            "email": "kontakt@twoja-firma.pl",
-            "address": {
-              "@type": "PostalAddress",
-              "streetAddress": "ul. Przykładowa 10",
-              "postalCode": "33-100",
-              "addressLocality": "Tarnów",
-              "addressRegion": "Małopolskie",
-              "addressCountry": "PL"
-            },
-            "openingHoursSpecification": [
-              {
-                "@type": "OpeningHoursSpecification",
-                "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
-                "opens": "08:00",
-                "closes": "18:00"
-              },
-              { "@type": "OpeningHoursSpecification", "dayOfWeek": "Saturday", "opens": "09:00", "closes": "14:00" }
-            ],
-            "contactPoint": [
-              {
-                "@type": "ContactPoint",
-                "telephone": "+48-600-700-800",
-                "contactType": "sales",
-                "areaServed": "PL",
-                "availableLanguage": ["pl"]
-              },
-              {
-                "@type": "ContactPoint",
-                "telephone": "+48-123-456-789",
-                "contactType": "customer support",
-                "areaServed": "PL",
-                "availableLanguage": ["pl"]
-              }
-            ],
-            "knowsAbout": [
-              "Remonty mieszkań",
-              "Wykończenia wnętrz",
-              "Łazienki",
-              "Malowanie i gładzie",
-              "Kafelkowanie",
-              "Elektryka i hydraulika"
-            ],
-            "areaServed": "PL"
-          },
-          {
-            "@type": "Service",
-            "name": "Kafelkowanie",
-            "serviceType": "Tiling",
-            "provider": { "@id": "https://construction-project-01.netlify.app/#org" },
-            "areaServed": "PL",
-            "url": "https://construction-project-01.netlify.app/oferta/kafelkowanie/"
-          }
-        ]
-      }
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "WebSite",
+          "@id": "https://construction-project-01.netlify.app/#website",
+          "url": "https://construction-project-01.netlify.app/",
+          "name": "KP_Code Portfolio — Demo",
+          "description": "Demo portfolio: strony dla branży budowlanej i remontowej.",
+          "inLanguage": "pl-PL",
+          "publisher": { "@type": "Person", "name": "Kamil Król" }
+        },
+        {
+          "@type": "CollectionPage",
+          "@id": "https://construction-project-01.netlify.app/oferta/kafelkowanie.html#page",
+          "url": "https://construction-project-01.netlify.app/oferta/kafelkowanie.html",
+          "name": "Demo — kafelkowanie i glazurnictwo | KP_Code",
+          "isPartOf": { "@id": "https://construction-project-01.netlify.app/#website" },
+          "inLanguage": "pl-PL"
+        },
+        {
+          "@type": "BreadcrumbList",
+          "itemListElement": [
+            { "@type": "ListItem", "position": 1, "name": "Strona główna", "item": "https://construction-project-01.netlify.app/" },
+            { "@type": "ListItem", "position": 2, "name": "Oferta", "item": "https://construction-project-01.netlify.app/#oferta" },
+            { "@type": "ListItem", "position": 3, "name": "Kafelkowanie i glazurnictwo", "item": "https://construction-project-01.netlify.app/oferta/kafelkowanie.html" }
+          ]
+        },
+        {
+          "@type": "Service",
+          "@id": "https://construction-project-01.netlify.app/#service-kafelkowanie",
+          "name": "Kafelkowanie i glazurnictwo (DEMO)",
+          "serviceType": "Tiling",
+          "provider": { "@id": "https://construction-project-01.netlify.app/#website" },
+          "areaServed": "PL",
+          "inLanguage": "pl-PL",
+          "url": "https://construction-project-01.netlify.app/oferta/kafelkowanie.html"
+        }
+      ]
+    }
     </script>
 
     <!-- ========== Anti-FOUC (theme) ========== -->
     <script>
       try {
         var d = document.documentElement, t = localStorage.getItem("theme");
-        if (!t) { t = window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light"; }
+        if (!t) t = window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
         d.setAttribute("data-theme", t);
       } catch (e) {}
     </script>
@@ -144,18 +104,13 @@
     <!-- ========== Fonts + CSS + Favicons ========== -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      rel="preload"
-      as="style"
-      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700&family=Poppins:wght@400;600;700&display=swap"
-      onload="this.onload=null;this.rel='stylesheet'" />
+    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700&family=Poppins:wght@400;600;700&display=swap" onload="this.onload=null;this.rel='stylesheet'" />
     <noscript>
-      <link
-        rel="stylesheet"
-        href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700&family=Poppins:wght@400;600;700&display=swap" />
+      <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700&family=Poppins:wght@400;600;700&display=swap" />
     </noscript>
 
-    <link rel="stylesheet" href="../css/style.css" />
+    <link rel="stylesheet" href="../css/style.min.css" />
+
 
     <!-- Favicons / Manifest -->
     <link rel="icon" type="image/x-icon" href="../assets/img/favicon/favicon.ico" />
@@ -166,9 +121,6 @@
     <link rel="icon" type="image/png" sizes="512x512" href="../assets/img/favicon/web-app-manifest-512x512.png" />
     <link rel="manifest" href="../assets/img/favicon/site.webmanifest" />
   </head>
-
-
-
 
  <body class="page-sub">
     <!-- A11Y: Skip link + anchor #top -->
@@ -199,7 +151,7 @@
           fetchpriority="high"
           decoding="async" />
       </picture>
-      <span class="brand-name">LOGO FIRMY</span>
+      <span class="brand-name">KP_Code</span>
     </a>
 
     <!-- Main navigation (subpage: oferta/kafelkowanie.html) -->
@@ -545,8 +497,8 @@
 </footer>
 <!-- /FOOTER -->
 
-<!-- ========== SCRIPTS ========== -->
-<script src="../js/script.js" defer></script>
+<!-- ========== SCRIPT ========== -->
+    <script src="../js/script.min.js" defer></script>
 
 <!-- ========== SVG SPRITE ========== -->
 <svg

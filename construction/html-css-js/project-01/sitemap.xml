@@ -1,15 +1,62 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <!-- Strona główna -->
   <url>
     <loc>https://construction-project-01.netlify.app/</loc>
     <lastmod>2025-09-19</lastmod>
     <priority>1.00</priority>
     <changefreq>weekly</changefreq>
   </url>
+
+  <!-- Oferta -->
   <url>
-    <loc>https://construction-project-01.netlify.app/polityka-prywatnosci.html</loc>
+    <loc>https://construction-project-01.netlify.app/oferta/malowanie.html</loc>
     <lastmod>2025-09-19</lastmod>
-    <priority>0.50</priority>
+    <priority>0.80</priority>
+    <changefreq>yearly</changefreq>
+  </url>
+  <url>
+    <loc>https://construction-project-01.netlify.app/oferta/lazienki.html</loc>
+    <lastmod>2025-09-19</lastmod>
+    <priority>0.80</priority>
+    <changefreq>yearly</changefreq>
+  </url>
+  <url>
+    <loc>https://construction-project-01.netlify.app/oferta/kafelkowanie.html</loc>
+    <lastmod>2025-09-19</lastmod>
+    <priority>0.80</priority>
+    <changefreq>yearly</changefreq>
+  </url>
+  <url>
+    <loc>https://construction-project-01.netlify.app/oferta/hydraulika.html</loc>
+    <lastmod>2025-09-19</lastmod>
+    <priority>0.80</priority>
+    <changefreq>yearly</changefreq>
+  </url>
+  <url>
+    <loc>https://construction-project-01.netlify.app/oferta/elektryka.html</loc>
+    <lastmod>2025-09-19</lastmod>
+    <priority>0.80</priority>
+    <changefreq>yearly</changefreq>
+  </url>
+
+  <!-- Dokumenty prawne -->
+  <url>
+    <loc>https://construction-project-01.netlify.app/doc/regulamin.html</loc>
+    <lastmod>2025-09-22</lastmod>
+    <priority>0.30</priority>
+    <changefreq>yearly</changefreq>
+  </url>
+  <url>
+    <loc>https://construction-project-01.netlify.app/doc/polityka-prywatnosci.html</loc>
+    <lastmod>2025-09-22</lastmod>
+    <priority>0.30</priority>
+    <changefreq>yearly</changefreq>
+  </url>
+  <url>
+    <loc>https://construction-project-01.netlify.app/doc/cookies.html</loc>
+    <lastmod>2025-09-22</lastmod>
+    <priority>0.30</priority>
     <changefreq>yearly</changefreq>
   </url>
 </urlset>

@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="pl" data-accent="bhp">
+  <head>
+    <!-- ========== CORE ========== -->
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+
+    <title>404 — Nie znaleziono | KP_Code</title>
+    <meta name="description" content="Strona, której szukasz, nie istnieje. Wróć na stronę główną demo szablonu budowlanego KP_Code." />
+    <meta name="robots" content="noindex, follow" />
+
+    <!-- ========== UI COLORS ========== -->
+    <meta name="theme-color" content="#0ea5e9" />
+    <meta name="theme-color" content="#0ea5e9" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#0b1220" media="(prefers-color-scheme: dark)" />
+    <meta name="color-scheme" content="light dark" />
+
+    <!-- ========== CSS ========== -->
+    <link rel="stylesheet" href="css/style.min.css" />
+
+    <!-- ========== FAVICONS / MANIFEST ========== -->
+    <link rel="icon" type="image/x-icon" href="assets/img/favicon/favicon.ico" />
+<link rel="icon" type="image/svg+xml" href="assets/img/favicon/favicon.svg" />
+<link rel="apple-touch-icon" sizes="180x180" href="assets/img/favicon/apple-touch-icon.png" />
+<link rel="manifest" href="assets/img/favicon/site.webmanifest" />
+
+  </head>
+
+  <body id="top" class="site-404">
+    <!-- HEADER -->
+    <header class="site-header" role="banner">
+      <div class="container flex-between">
+        <a href="/" class="brand" aria-label="Strona główna">
+          <img src="assets/img/main-logo/main-logo-footer-512.png" alt="Logo KP_Code" width="48" height="48" />
+          <span class="brand-name">KP_Code</span>
+        </a>
+      </div>
+    </header>
+
+    <!-- MAIN -->
+    <main class="site-main container" role="main" style="text-align:center;padding:4rem 1rem">
+      <h1>404 — Nie znaleziono</h1>
+      <p>Ups! Wygląda na to, że ta strona nie istnieje albo została przeniesiona.</p>
+      <a id="back-home" class="btn btn-primary" href="index.html">← Wróć na stronę główną</a>
+
+
+    </main>
+
+    <!-- FOOTER -->
+    <footer id="footer" class="site-footer" role="contentinfo">
+      <div class="container" style="text-align:center;padding:2rem 1rem">
+        <p>&copy; 2025 KP_Code — Demo szablonu budowlanego</p>
+      </div>
+    </footer>
+
+    <script>
+  (function () {
+    var home = (location.hostname === 'localhost' || location.hostname === '127.0.0.1') ? 'index.html' : '/';
+    var back = document.getElementById('back-home');
+    var brand = document.querySelector('a.brand');
+    if (back) back.href = home;
+    if (brand) brand.href = home;
+  })();
+</script>
+
+    <!-- JS -->
+    <script src="js/script.min.js" defer></script>
+  </body>
+</html>

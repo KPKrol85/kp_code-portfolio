@@ -1,2 +1,28 @@
-/* 
+/*
   X-Robots-Tag: all
+  X-Content-Type-Options: nosniff
+  Referrer-Policy: strict-origin-when-cross-origin
+  Permissions-Policy: geolocation=(), microphone=(), camera=()
+  X-Frame-Options: DENY
+  Strict-Transport-Security: max-age=63072000; includeSubDomains; preload
+
+/doc/*.html
+  X-Robots-Tag: noindex, follow
+
+/404.html
+  X-Robots-Tag: noindex, nofollow
+
+/assets/*
+  Cache-Control: public, max-age=31536000, immutable
+
+/css/style.min.css
+  Cache-Control: public, max-age=31536000, immutable
+
+/js/script.min.js
+  Cache-Control: public, max-age=31536000, immutable
+
+/sitemap.xml
+  Cache-Control: public, max-age=86400
+
+/robots.txt
+  Cache-Control: public, max-age=86400

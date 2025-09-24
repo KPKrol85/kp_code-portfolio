@@ -7,14 +7,14 @@
     <meta name="referrer" content="strict-origin-when-cross-origin" />
     <meta name="format-detection" content="telephone=no, address=no, email=no" />
 
-    <title>Remonty łazienek — Nazwa Twojej Firmy</title>
+    <title>Demo — wykończenia i remonty łazienek | KP_Code</title>
     <meta
       name="description"
-      content="Kompleksowe remonty łazienek: projekt, instalacje, hydroizolacja, płytki i biały montaż. Czysto, terminowo, z gwarancją." />
+      content="Demo szablonu: projekt łazienki, instalacje, hydroizolacja, płytki i biały montaż. Czysto, terminowo, z gwarancją. Projekt i kod: KP_Code." />
     <meta name="author" content="Kamil Król / KP_Code" />
 
     <!-- ========== SEO / Indexing ========== -->
-    <meta name="robots" content="index, follow" />
+    <meta name="robots" content="noindex, follow" />
     <link rel="canonical" href="https://construction-project-01.netlify.app/oferta/lazienki.html" />
 
     <!-- ========== UI Colors ========== -->
@@ -44,104 +44,56 @@
 
     <!-- ========== Open Graph ========== -->
     <meta property="og:type" content="website" />
-    <meta property="og:site_name" content="Nazwa Twojej Firmy" />
+    <meta property="og:site_name" content="KP_Code Portfolio" />
     <meta property="og:locale" content="pl_PL" />
-    <meta property="og:title" content="Remonty łazienek — Nazwa Twojej Firmy" />
+    <meta property="og:title" content="Demo — wykończenia i remonty łazienek | KP_Code" />
     <meta
       property="og:description"
-      content="Kompleksowe remonty łazienek: projekt, instalacje, hydroizolacja, płytki i biały montaż. Czysto, terminowo, z gwarancją." />
+      content="Demo szablonu: projekt łazienki, instalacje, hydroizolacja, płytki i biały montaż. Czysto, terminowo, z gwarancją. Projekt i kod: KP_Code." />
     <meta property="og:url" content="https://construction-project-01.netlify.app/oferta/lazienki.html" />
     <meta
       property="og:image"
       content="https://construction-project-01.netlify.app/assets/img/og/og-image-1200x630.jpg" />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
-    <meta property="og:image:alt" content="Ekipa remontowa przy pracy — logo firmy w rogu" />
+    <meta property="og:image:alt" content="Ekipa remontowa przy pracy — logo w rogu (DEMO szablonu)" />
 
     <!-- ========== Twitter (X) ========== -->
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="Remonty łazienek — Nazwa Twojej Firmy" />
+    <meta name="twitter:title" content="Demo — wykończenia i remonty łazienek | KP_Code" />
     <meta
       name="twitter:description"
-      content="Kompleksowe remonty łazienek: projekt, instalacje, hydroizolacja, płytki i biały montaż. Czysto, terminowo, z gwarancją." />
+      content="Demo szablonu: projekt łazienki, instalacje, hydroizolacja, płytki i biały montaż. Czysto, terminowo, z gwarancją. Projekt i kod: KP_Code." />
     <meta
       name="twitter:image"
       content="https://construction-project-01.netlify.app/assets/img/og/og-image-1200x630.jpg" />
+    <meta name="twitter:image:alt" content="Ekipa remontowa przy pracy — logo w rogu (DEMO szablonu)" />
     <meta name="twitter:url" content="https://construction-project-01.netlify.app/oferta/lazienki.html" />
-    <meta name="twitter:image:alt" content="Ekipa remontowa przy pracy — logo firmy w rogu" />
 
-    <!-- ========== JSON-LD (Org + Service + Breadcrumb + FAQ) ========== -->
+    <!-- ========== JSON-LD (Schema.org) — WebSite + CollectionPage + Breadcrumb + Service ========== -->
     <script type="application/ld+json">
       {
         "@context": "https://schema.org",
         "@graph": [
           {
-            "@type": ["LocalBusiness", "HomeAndConstructionBusiness", "ConstructionCompany"],
-            "@id": "https://construction-project-01.netlify.app/#org",
-            "name": "Nazwa Twojej Firmy",
+            "@type": "WebSite",
+            "@id": "https://construction-project-01.netlify.app/#website",
             "url": "https://construction-project-01.netlify.app/",
-            "logo": {
-              "@type": "ImageObject",
-              "url": "https://construction-project-01.netlify.app/assets/img/main-logo/main-logo-footer-512.png",
-              "width": 512,
-              "height": 512
-            },
-            "image": "https://construction-project-01.netlify.app/assets/img/og/og-image-1200x630.jpg",
-            "priceRange": "$$",
-            "telephone": "+48 600 700 800",
-            "email": "kontakt@twoja-firma.pl",
-            "address": {
-              "@type": "PostalAddress",
-              "streetAddress": "ul. Przykładowa 10",
-              "postalCode": "33-100",
-              "addressLocality": "Tarnów",
-              "addressRegion": "Małopolskie",
-              "addressCountry": "PL"
-            },
-            "openingHoursSpecification": [
-              {
-                "@type": "OpeningHoursSpecification",
-                "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
-                "opens": "08:00",
-                "closes": "18:00"
-              },
-              { "@type": "OpeningHoursSpecification", "dayOfWeek": "Saturday", "opens": "09:00", "closes": "14:00" }
-            ],
-            "contactPoint": [
-              {
-                "@type": "ContactPoint",
-                "telephone": "+48-600-700-800",
-                "contactType": "sales",
-                "areaServed": "PL",
-                "availableLanguage": ["pl"]
-              },
-              {
-                "@type": "ContactPoint",
-                "telephone": "+48-123-456-789",
-                "contactType": "customer support",
-                "areaServed": "PL",
-                "availableLanguage": ["pl"]
-              }
-            ],
-            "knowsAbout": [
-              "Remonty mieszkań",
-              "Wykończenia wnętrz",
-              "Łazienki",
-              "Malowanie i gładzie",
-              "Kafelkowanie",
-              "Elektryka",
-              "Hydraulika"
-            ],
-            "areaServed": "PL"
+            "name": "KP_Code Portfolio — Demo",
+            "description": "Demo portfolio: strony dla branży budowlanej i remontowej.",
+            "inLanguage": "pl-PL",
+            "publisher": {
+              "@type": "Person",
+              "name": "Kamil Król"
+            }
           },
           {
-            "@type": "Service",
-            "@id": "https://construction-project-01.netlify.app/#service-lazienki",
-            "name": "Remonty łazienek",
-            "serviceType": "Bathroom Renovation",
-            "provider": { "@id": "https://construction-project-01.netlify.app/#org" },
-            "areaServed": "PL",
-            "url": "https://construction-project-01.netlify.app/oferta/lazienki.html"
+            "@type": "CollectionPage",
+            "@id": "https://construction-project-01.netlify.app/oferta/lazienki.html#page",
+            "url": "https://construction-project-01.netlify.app/oferta/lazienki.html",
+            "name": "Demo — wykończenia i remonty łazienek | KP_Code",
+            "isPartOf": { "@id": "https://construction-project-01.netlify.app/#website" },
+            "inLanguage": "pl-PL"
           },
           {
             "@type": "BreadcrumbList",
@@ -161,44 +113,20 @@
               {
                 "@type": "ListItem",
                 "position": 3,
-                "name": "Łazienki",
+                "name": "Wykończenia i remonty łazienek",
                 "item": "https://construction-project-01.netlify.app/oferta/lazienki.html"
               }
             ]
-          }
-        ]
-      }
-    </script>
-
-    <!-- JSON-LD (FAQPage from this subpage) -->
-    <script type="application/ld+json">
-      {
-        "@context": "https://schema.org",
-        "@type": "FAQPage",
-        "mainEntity": [
-          {
-            "@type": "Question",
-            "name": "Ile trwa przygotowanie wyceny?",
-            "acceptedAnswer": {
-              "@type": "Answer",
-              "text": "Standardowo do 24 godzin od przesłania szczegółów zlecenia lub zdjęć."
-            }
           },
           {
-            "@type": "Question",
-            "name": "Czy dojeżdżacie do klienta i wykonujecie oględziny?",
-            "acceptedAnswer": {
-              "@type": "Answer",
-              "text": "Tak. Dojazd w obrębie miasta i okolic jest możliwy po ustaleniu terminu."
-            }
-          },
-          {
-            "@type": "Question",
-            "name": "Czy wystawiacie fakturę i udzielacie gwarancji?",
-            "acceptedAnswer": {
-              "@type": "Answer",
-              "text": "Tak, wystawiamy faktury oraz udzielamy gwarancji na wykonywane prace."
-            }
+            "@type": "Service",
+            "@id": "https://construction-project-01.netlify.app/#service-lazienki",
+            "name": "Wykończenia i remonty łazienek (DEMO)",
+            "serviceType": "Bathroom Renovation",
+            "provider": { "@id": "https://construction-project-01.netlify.app/#website" },
+            "areaServed": "PL",
+            "inLanguage": "pl-PL",
+            "url": "https://construction-project-01.netlify.app/oferta/lazienki.html"
           }
         ]
       }
@@ -246,7 +174,7 @@
     </noscript>
 
     <!-- ========== App CSS ========== -->
-    <link rel="stylesheet" href="../css/style.css" />
+    <link rel="stylesheet" href="../css/style.min.css" />
 
     <!-- ========== Favicons / Manifest ========== -->
     <link rel="icon" type="image/x-icon" href="../assets/img/favicon/favicon.ico" />
@@ -291,7 +219,7 @@
               fetchpriority="low"
               decoding="async" />
           </picture>
-          <span class="brand-name">LOGO FIRMY</span>
+          <span class="brand-name">KP_Code</span>
         </a>
 
         <!-- Main navigation (subpage: oferta/lazienki.html) -->
@@ -627,11 +555,8 @@
       </div>
     </footer>
 
-    <!-- =========================================================
-    SCRIPTY
-    ========================================================= -->
-    <!-- SCRIPTS -->
-    <script src="../js/script.js" defer></script>
+    <!-- ========== SCRIPT ========== -->
+    <script src="../js/script.min.js" defer></script>
 
     <!-- =========================================================
     SVG SPRITE

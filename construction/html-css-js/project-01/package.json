@@ -1,16 +1,24 @@
 {
-  "name": "ekipa-remontowa",
+  "name": "construction-website-demo",
   "version": "1.0.0",
   "private": true,
   "description": "Statyczna strona: remonty i wykończenia",
   "author": "KP_Code",
   "license": "UNLICENSED",
   "scripts": {
+    "start": "npm run dev",
     "dev": "live-server --port=15500 --open=index.html --quiet",
-    "format": "prettier --write \"**/*.{html,css,js,json,md}\""
+    "format": "prettier -w \"**/*.{html,css,js,json,md}\"",
+    "format:check": "prettier -c \"**/*.{html,css,js,json,md}\"",
+    "build:css": "cssnano ./css/style.css ./css/style.min.css"
   },
   "devDependencies": {
-    "live-server": "^1.2.2",
-    "prettier": "^3.3.3"
+    "cssnano-cli": "^1.0.5",
+    "live-server": "1.2.2",
+    "prettier": "3.3.3",
+    "terser": "^5.44.0"
+  },
+  "engines": {
+    "node": ">=18"
   }
 }
