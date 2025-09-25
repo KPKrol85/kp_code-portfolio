@@ -1,53 +1,40 @@
 /* ======================================================================
-   [PROD READY] Main stylesheet — final client build
-   Project: Company website (landing + CTA + form)
-   Author: KP_Code (Front-end)
-   Updated: 2025-09-24
+   Autor: KP_Code (Front-end)
+   Aktualizacja: 2025-09-25
    ======================================================================
-
-   TABLE OF CONTENTS
-   00) Global reset & design tokens
-   01) Typography, layout & buttons (base)
-   02) Header & navigation (fixed, shrink, mobile, dropdown, theme-toggle)
-   03) Hero (background, overlay, content)
-   04) Offer blocks (cards + horizontal scroller)
-   05) Logos grid (brands)
-   06) Testimonials (grid & cards)
-   07) FAQ (details/summary, caret, focus)
-   08) CTA / Contact (list & form)
-   09) Footer (layout, columns, map, social)
-   10) Footer — extended CTA
-   11) Add-ons (animations, media queries, focus ring, micro-utilities)
-   12) Skip-Next — single floating button (Offer → FAQ → Contact)
-   13) Overrides / adjustments (hero overlay, section rhythm, typography, perf)
-   14) Lightbox (card gallery)
-   15) Subpages (H1 + .lead + cards + CTA, breadcrumbs)
-
-   NOTES
-   - Section 13 includes section rhythm variables, content-visibility helpers,
-     typography tuning, and dark-mode adjustments.
-   - Code-only cleanup: deduplication, consistent comments, and a11y polish.
-   - No intentional visual changes.
+   STYLE — Budownictwo / Remonty — globalny arkusz (PROD)
+   Struktura:
+   ======================================================================
+   00) RESET + ZMIENNE + GLOBAL + MOTYWY
+   01) TYPOGRAFIA, UKŁAD I PRZYCISKI
+   02) NAGŁÓWEK I NAWIGACJA
+   03) HERO 
+   04) BLOKI OFERTY 
+   05) LOGOTYPY
+   06) OPINIE
+   07) FAQ 
+   08) CTA / KONTAKT
+   09) STOPKA
+   10) STOPKA — ROZSZERZONE CTA
+   11) DODATKI
+   12) SKIP-NEXT — PŁYWAJĄCY PRZYCISK
+   13) NADPISANIA / KOREKTY
+   14) LIGHTBOX
+   15) PODSTRONY STYL
+   16) PODSTRONY DOCUMENTACJA
    ====================================================================== */
 
-/* ============================================================
-   00) GLOBAL RESET & DESIGN TOKENS
-   ------------------------------------------------------------
-   - Base reset for box model, typography, and accessibility
-   - Core CSS custom properties (colors, radius, shadows, etc.)
-   - Light/Dark theme and accent color definitions
-   - Scroll/selection/focus defaults and a11y helpers
-   - Ensures consistent rendering across devices
-============================================================ */
-
-/* Box sizing reset */
+/* ===============================================================
+   ===============================================================
+   ========== 00) RESET + ZMIENNE + GLOBAL + MOTYWY ============== 
+   ===============================================================
+   =============================================================== */
 *,
 *::before,
 *::after {
   box-sizing: border-box;
 }
 
-/* Root document tuning */
 html {
   --header-h: 74px;
   scroll-padding-top: var(--header-h);
@@ -58,13 +45,13 @@ html {
   -moz-osx-font-smoothing: grayscale;
   scrollbar-gutter: stable;
 }
+
 @media (prefers-reduced-motion: no-preference) {
   html:focus-within {
     scroll-behavior: smooth;
   }
 }
 
-/* Base body */
 body {
   margin: 0;
   font-family:
@@ -81,7 +68,6 @@ body {
   padding-top: var(--header-h);
 }
 
-/* Headings */
 h1,
 h2,
 h3,
@@ -94,14 +80,12 @@ h6 {
   line-height: 1.3;
 }
 
-/* Paragraphs */
 p {
   margin: 0 0 1em;
   line-height: 1.7;
   letter-spacing: 0.2px;
 }
 
-/* Media */
 img {
   max-width: 100%;
   display: block;
@@ -111,7 +95,6 @@ img {
   display: block;
 }
 
-/* Optional aspect-ratio helpers */
 .thumb--1x1 {
   aspect-ratio: 1 / 1;
 }
@@ -122,13 +105,11 @@ img {
   aspect-ratio: 16 / 9;
 }
 
-/* Links */
 a {
   color: inherit;
   text-decoration: none;
 }
 
-/* Form controls inherit typography/colors */
 button,
 input,
 select,
@@ -143,19 +124,16 @@ button {
   cursor: not-allowed;
 }
 
-/* Prevent horizontal scrollbars on narrow viewports */
 html,
 body {
   overflow-x: hidden;
 }
 
-/* Accessible focus ring */
 :focus-visible {
   outline: 2px solid var(--ring);
   outline-offset: 2px;
 }
 
-/* Screen-reader-only utility */
 .visually-hidden,
 .vh,
 .sr-only {
@@ -171,7 +149,6 @@ body {
   border: 0 !important;
 }
 
-/* Skip link */
 .skip {
   position: absolute;
   left: -9999px;
@@ -185,7 +162,6 @@ body {
   color: #fff;
 }
 
-/* CSS Custom Properties — base palette and surfaces */
 :root {
   --bg: #ffffff;
   --fg: #0f172a;
@@ -204,7 +180,6 @@ body {
   --hero-overlay-a: 0.12;
 }
 
-/* System preference (fallback when no data-theme is set) */
 @media (prefers-color-scheme: dark) {
   :root {
     --bg: #0b1220;
@@ -218,7 +193,6 @@ body {
   }
 }
 
-/* Explicit theme switching (JS sets data-theme) */
 :root[data-theme='light'] {
   --bg: #ffffff;
   --fg: #0f172a;
@@ -240,7 +214,6 @@ body {
   --hero-overlay-a: 0.35;
 }
 
-/* Accent palettes */
 :root[data-accent='ocean'] {
   --brand: #0ea5e9;
   --brand-2: #0284c7;
@@ -312,7 +285,6 @@ body {
   --line: #cbd5e1;
 }
 
-/* Accent fine-tuning for theme + accent combos */
 :root[data-theme='light'][data-accent] {
   --ring: color-mix(in srgb, var(--brand) 45%, transparent);
   --brand-weak: color-mix(in srgb, var(--brand) 12%, var(--bg));
@@ -326,29 +298,22 @@ body {
   }
 }
 
-/* Nav underline detail (if used on hover/active) */
 :root[data-accent] .nav-menu a::after {
   background: var(--brand);
 }
 
-/* ============================================================
-   01) TYPOGRAPHY, LAYOUT & BUTTONS (BASE)
-   ------------------------------------------------------------
-   - Fluid heading scales (clamp) and lead text rhythm
-   - Container sizing, muted/center utilities
-   - Primary and ghost button variants, sizes & states
-   - Focus-visible outlines and reduced-motion fallbacks
-   - No visual changes beyond base polish
-============================================================ */
+/* ===============================================================
+   ===============================================================
+   ========== 01) TYPOGRAFIA, UKŁAD I PRZYCISKI ================== 
+   ===============================================================
+   =============================================================== */
 
-/* Responsive font sizes for headings */
 :root {
   --fs-h1: clamp(2.2rem, 1.1rem + 3.6vw, 3.5rem);
   --fs-h2: clamp(1.6rem, 1rem + 2vw, 2.3rem);
   --fs-h3: clamp(1.25rem, 1rem + 1vw, 1.6rem);
 }
 
-/* Headings */
 h1 {
   font-size: var(--fs-h1);
   line-height: 1.22;
@@ -366,7 +331,6 @@ h3 {
   font-weight: 800;
 }
 
-/* Lead paragraph */
 .lead {
   font-weight: 400;
   color: var(--muted);
@@ -377,7 +341,6 @@ h2 + .lead {
   margin-top: -0.2em;
 }
 
-/* Layout helpers */
 .container {
   max-width: 1140px;
   margin-inline: auto;
@@ -390,7 +353,6 @@ h2 + .lead {
   text-align: center;
 }
 
-/* Primary button */
 .btn {
   position: relative;
   overflow: hidden;
@@ -426,14 +388,12 @@ h2 + .lead {
   pointer-events: none;
 }
 
-/* Accessible focus ring */
 .btn:focus-visible,
 .btn--ghost:focus-visible {
   outline: 2px solid var(--ring);
   outline-offset: 2px;
 }
 
-/* Small button size */
 .btn--sm {
   padding: 8px 12px;
   font-weight: 600;
@@ -441,7 +401,6 @@ h2 + .lead {
   line-height: 1;
 }
 
-/* Ghost button (bordered / clean style) */
 .btn--ghost {
   background: transparent;
   color: var(--fg);
@@ -458,7 +417,6 @@ h2 + .lead {
   color: var(--fg);
 }
 
-/* Dark mode adjustments for ghost buttons */
 [data-theme='dark'] .btn--ghost {
   border-color: rgba(255, 255, 255, 0.22);
   color: var(--fg);
@@ -470,12 +428,10 @@ h2 + .lead {
   color: #fff;
 }
 
-/* Force readable text color for solid buttons in dark mode */
 [data-theme='dark'] .btn:not(.btn--ghost) {
   color: #0f172a;
 }
 
-/* Disable transitions for users with reduced motion */
 @media (prefers-reduced-motion: reduce) {
   .btn {
     transition: none;
@@ -483,17 +439,12 @@ h2 + .lead {
   }
 }
 
-/* ============================================================
-   02) HEADER & NAVIGATION
-   ------------------------------------------------------------
-   - Fixed header with shrink-on-scroll behavior
-   - Brand badge/name sizing and logo theme switching
-   - Desktop nav with dropdowns and caret animations
-   - Mobile drawer nav, masks, and toggle (hamburger + theme)
-   - A11y: focus rings, aria-expanded, and tap-target sizing
-============================================================ */
+/* ===============================================================
+   ===============================================================
+   ========== 02) NAGŁÓWEK I NAWIGACJA ===========================
+   ===============================================================
+   =============================================================== */
 
-/* Sticky, translucent header with blur */
 .site-header {
   position: fixed;
   top: 0;
@@ -517,13 +468,11 @@ h2 + .lead {
   box-shadow: 0 8px 20px rgba(2, 8, 23, 0.06);
 }
 
-/* Lock scroll when mobile nav is open */
 :root.is-nav-open,
 :root.is-nav-open body {
   overflow: hidden;
 }
 
-/* Header bar sizing */
 .header-bar {
   display: flex;
   align-items: center;
@@ -562,7 +511,6 @@ h2 + .lead {
   }
 }
 
-/* Brand (logo + badge) */
 .brand {
   display: inline-flex;
   gap: 10px;
@@ -628,7 +576,6 @@ h2 + .lead {
   }
 }
 
-/* Motion preferences */
 @media (prefers-reduced-motion: reduce) {
   .brand,
   .brand-badge {
@@ -662,7 +609,6 @@ h2 + .lead {
   }
 }
 
-/* Raster logo sizing (inline-block removes extra whitespace) */
 .brand-logo {
   display: inline-block;
   line-height: 0;
@@ -684,7 +630,6 @@ h2 + .lead {
   }
 }
 
-/* Light/Dark logo switching */
 .site-header .logo--dark {
   display: none;
 }
@@ -695,7 +640,6 @@ h2 + .lead {
   display: block;
 }
 
-/* Hamburger (hidden on desktop, shown on mobile in media query) */
 .nav-toggle {
   display: none;
   background: transparent;
@@ -715,7 +659,6 @@ h2 + .lead {
   }
 }
 
-/* Desktop nav list */
 .nav-menu {
   display: flex;
   align-items: center;
@@ -732,7 +675,6 @@ h2 + .lead {
   align-items: center;
 }
 
-/* Top-level links and dropdown triggers */
 .nav .nav-menu > li > a,
 .nav .nav-menu > li > .dropdown-trigger {
   position: relative;
@@ -762,7 +704,6 @@ h2 + .lead {
   transform: rotate(180deg);
 }
 
-/* Underline reveal on hover/active */
 .nav .nav-menu > li > a::after,
 .nav .nav-menu > li > .dropdown-trigger::after {
   content: '';
@@ -792,7 +733,6 @@ h2 + .lead {
   width: 100%;
 }
 
-/* Dropdown (desktop) */
 .has-dropdown {
   position: relative;
 }
@@ -840,9 +780,7 @@ h2 + .lead {
   transform: translateY(0);
 }
 
-/* ===== MOBILE ===== */
 @media (max-width: 1024px) {
-  /* Hamburger visible on mobile */
   .nav-toggle {
     display: inline-grid;
     gap: 5px;
@@ -851,7 +789,6 @@ h2 + .lead {
     margin-left: 14px;
   }
 
-  /* Off-canvas-like dropdown list */
   .nav-menu {
     position: fixed;
     top: var(--header-h, 64px);
@@ -883,7 +820,6 @@ h2 + .lead {
     }
   }
 
-  /* Items stack and stretch */
   .nav-menu > li {
     margin: 0;
     width: 100%;
@@ -901,7 +837,6 @@ h2 + .lead {
     min-height: 44px;
   }
 
-  /* Nested dropdown becomes collapsible block */
   .has-dropdown > .dropdown {
     position: static;
     border: 0;
@@ -919,7 +854,6 @@ h2 + .lead {
     max-height: 600px;
   }
 
-  /* Fine-tuning of nested items */
   .nav-menu .dropdown a {
     padding: 10px 12px;
     font-size: 0.94rem;
@@ -928,14 +862,12 @@ h2 + .lead {
     align-items: center;
   }
 
-  /* CTA button full-width on mobile */
   .nav-menu li > a.btn.btn--sm {
     width: 100%;
     padding: 10px 16px;
   }
 }
 
-/* Theme toggle button (next to hamburger) */
 .theme-toggle {
   display: inline-grid;
   place-items: center;
@@ -980,7 +912,6 @@ h2 + .lead {
     0 8px 20px rgba(2, 8, 23, 0.1);
 }
 
-/* CTA button inside nav (with sheen and ripple-ready hook) */
 .nav-menu li > a.btn.btn--sm {
   display: flex;
   align-items: center;
@@ -1041,7 +972,6 @@ h2 + .lead {
   outline-offset: 2px;
 }
 
-/* Ripple particle (injected via JS) */
 @media (prefers-reduced-motion: reduce) {
   .nav-menu li > a.btn.btn--sm .ripple {
     animation: none;
@@ -1070,17 +1000,12 @@ h2 + .lead {
   }
 }
 
-/* ============================================================
-   03) HERO (BACKGROUND, OVERLAY, CONTENT)
-   ------------------------------------------------------------
-   - Full-width background image with blur/brightness tune
-   - Theme-aware overlay gradient via --hero-overlay-a
-   - Balanced headline/lead sizing and CTA group
-   - Aspect-ratio safeguards to reduce CLS
-   - Large-screen height clamps and responsive tweaks
-============================================================ */
+/* ===============================================================
+   ===============================================================
+   ========== 03) SEKCJA HERO ====================================
+   ===============================================================
+   =============================================================== */
 
-/* Hero container */
 .hero {
   position: relative;
   z-index: 0;
@@ -1094,7 +1019,6 @@ h2 + .lead {
   isolation: isolate;
 }
 
-/* Background media layers */
 .hero__media {
   position: absolute;
   inset: 0;
@@ -1126,7 +1050,6 @@ h2 + .lead {
   aspect-ratio: 16/9;
 }
 
-/* Global overlay (theme-tinted) */
 .hero::before {
   content: '';
   position: absolute;
@@ -1136,7 +1059,6 @@ h2 + .lead {
   pointer-events: none;
 }
 
-/* Page-specific width tuning */
 #strona-glowna .container {
   max-width: 1040px;
 }
@@ -1145,7 +1067,6 @@ h2 + .lead {
   margin: 8px 0;
 }
 
-/* Heading and accent */
 .hero h1 {
   font-weight: 600;
   letter-spacing: -0.021em;
@@ -1166,7 +1087,6 @@ h2 + .lead {
   filter: brightness(1.06) contrast(1.04);
 }
 
-/* Lead text */
 .hero .lead {
   font-size: clamp(16px, 1.2vw, 18px);
   margin: 0 0 18px;
@@ -1175,7 +1095,6 @@ h2 + .lead {
   text-shadow: 0 2px 10px rgba(0, 0, 0, 0.28);
 }
 
-/* CTA group */
 .hero-cta {
   display: flex;
   gap: 12px;
@@ -1186,14 +1105,12 @@ h2 + .lead {
   padding: 12px 18px;
 }
 
-/* Ultra-wide monitors: contain to avoid cropping */
 @media (min-aspect-ratio: 21/9) {
   .hero-bg img {
     object-fit: contain;
   }
 }
 
-/* Progressive height ramps on larger viewports */
 @media (min-width: 1200px) {
   .hero {
     min-height: clamp(560px, 68vh, 880px);
@@ -1205,17 +1122,12 @@ h2 + .lead {
   }
 }
 
-/* ============================================================
-   04) OFFER BLOCKS (CARDS + HORIZONTAL SCROLLER)
-   ------------------------------------------------------------
-   - Grid on mobile → snapping horizontal scroller on desktop
-   - Edge masks and previous/next buttons with disabled state
-   - Card elevation, focus-visible, and image zoom-on-hover
-   - Dark-mode hover tuning and masked gradients
-   - CTA row below the scroller
-============================================================ */
+/* ===============================================================
+   ===============================================================
+   ========== 04) BLOKI OFERTY ===================================
+   ===============================================================
+   =============================================================== */
 
-/* Section blocks */
 .block {
   overflow: visible;
 }
@@ -1228,7 +1140,6 @@ h2 + .lead {
   text-align: center;
 }
 
-/* Scroller wrapper (allows arrows/masks to overflow) */
 .services-scroller {
   position: relative;
   margin-top: 12px;
@@ -1236,7 +1147,6 @@ h2 + .lead {
   --btn-outside: 18px;
 }
 
-/* ===== MOBILE/TABLET (default): simple grid, no arrows/masks ===== */
 .services-track {
   display: grid;
   grid-template-columns: 1fr;
@@ -1251,27 +1161,23 @@ h2 + .lead {
 }
 .scroller-btn {
   display: none;
-} /* arrows OFF on mobile */
+}
 .services-scroller::before,
 .services-scroller::after {
   display: none;
-} /* masks OFF on mobile */
+}
 
-/* 2 columns on larger phones / small tablets */
 @media (min-width: 640px) {
   .services-track {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 }
 
-/* ===== DESKTOP (≥992px): horizontal scroller, masks, arrows ===== */
 @media (min-width: 992px) {
-  /* pull wrapper to section edges */
   #oferta .services-scroller {
     margin-inline: -24px;
   }
 
-  /* scrollable track */
   .services-track {
     display: flex;
     gap: 16px;
@@ -1293,7 +1199,6 @@ h2 + .lead {
     height: auto;
   }
 
-  /* edge masks */
   .services-scroller::before,
   .services-scroller::after {
     content: '';
@@ -1320,7 +1225,6 @@ h2 + .lead {
     opacity: 0.85;
   }
 
-  /* scroll arrows */
   .scroller-btn {
     display: grid;
     position: absolute;
@@ -1356,7 +1260,6 @@ h2 + .lead {
     pointer-events: none;
   }
 
-  /* hide arrows/masks when content fits */
   .services-scroller.fits .scroller-btn {
     display: none;
   }
@@ -1365,13 +1268,11 @@ h2 + .lead {
     opacity: 0;
   }
 
-  /* arrow offset on desktop */
   .services-scroller {
     --btn-outside: 26px;
   }
 }
 
-/* Wider spacing on large desktops */
 @media (min-width: 1200px) {
   #oferta .services-scroller {
     margin-inline: -32px;
@@ -1384,7 +1285,6 @@ h2 + .lead {
   }
 }
 
-/* CTA under scroller */
 .block-cta {
   display: flex;
   justify-content: center;
@@ -1398,7 +1298,6 @@ h2 + .lead {
   margin: 0;
 }
 
-/* ===== CARD ===== */
 .card {
   border: 1px solid var(--line);
   background: var(--bg);
@@ -1477,7 +1376,6 @@ h2 + .lead {
   margin: 0 0 6px;
 }
 
-/* Card CTA */
 .card-link {
   display: inline-flex;
   align-items: center;
@@ -1500,7 +1398,6 @@ h2 + .lead {
   outline-offset: 3px;
 }
 
-/* ===== DARK MODE tweaks ===== */
 :root[data-theme='dark'] .card {
   box-shadow:
     0 1px 0 rgba(255, 255, 255, 0.04),
@@ -1523,16 +1420,12 @@ h2 + .lead {
   opacity: 0.65;
 }
 
-/* ============================================================
-   05) LOGOS GRID (BRANDS)
-   ------------------------------------------------------------
-   - Responsive grid of logo slots with fixed aspect/height
-   - Hover elevation and focus-visible outlines
-   - Filter presets (dim/boost/light) and dark-mode variants
-   - Small-screen column adjustments and spacing
-============================================================ */
+/* ===============================================================
+   ===============================================================
+   ========== 05) LOGOTYPY =======================================
+   ===============================================================
+   =============================================================== */
 
-/* Section spacing and defaults */
 .logos {
   --logo-slot-h: clamp(70px, 8vw, 96px);
   --logo-img-h: clamp(24px, 6vw, 48px);
@@ -1546,7 +1439,6 @@ h2 + .lead {
   margin-bottom: 12px;
 }
 
-/* Responsive grid */
 .logos-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
@@ -1561,7 +1453,6 @@ h2 + .lead {
   padding: 0;
 }
 
-/* Logo tile (and placeholder) */
 .logos .logo,
 .logos .logo-ph {
   height: var(--logo-slot-h);
@@ -1596,7 +1487,6 @@ h2 + .lead {
   box-shadow: 0 10px 24px rgba(0, 0, 0, 0.1);
 }
 
-/* Inner anchor and img */
 .logos-grid .logo a {
   display: flex;
   align-items: center;
@@ -1615,7 +1505,6 @@ h2 + .lead {
   outline-offset: 2px;
 }
 
-/* Small screens tweaks */
 @media (max-width: 640px) {
   .logos-grid .logo a {
     min-height: 56px;
@@ -1629,7 +1518,6 @@ h2 + .lead {
   }
 }
 
-/* Dark mode refinements */
 :root[data-theme='dark'] .logos .logo,
 :root[data-theme='dark'] .logos .logo-ph {
   box-shadow:
@@ -1644,7 +1532,6 @@ h2 + .lead {
   border-color: rgba(255, 255, 255, 0.12);
 }
 
-/* Reduced motion */
 @media (prefers-reduced-motion: reduce) {
   .logos .logo {
     transition: none;
@@ -1652,23 +1539,18 @@ h2 + .lead {
   }
 }
 
-/* Optional bottom CTA alignment */
 .logos .center {
   margin-top: clamp(16px, 2.6vw, 28px);
   display: flex;
   justify-content: center;
 }
 
-/* ============================================================
-   06) TESTIMONIALS (GRID & CARDS)
-   ------------------------------------------------------------
-   - Responsive grid columns and card spacing
-   - Blockquote styling with decorative quote mark
-   - Hover/focus lift with border/shadow transitions
-   - Dark-mode elevation adjustments and reduced-motion path
-============================================================ */
+/* ===============================================================
+   ===============================================================
+   ========== 06) OPINIE =========================================
+   ===============================================================
+   =============================================================== */
 
-/* Rating stars row */
 .rating {
   display: flex;
   align-items: center;
@@ -1681,7 +1563,6 @@ h2 + .lead {
   display: inline-block;
 }
 
-/* Testimonials section */
 .testimonials {
   scroll-margin-top: calc(var(--header-h) + 8px);
 }
@@ -1711,7 +1592,6 @@ h2 + .lead {
   }
 }
 
-/* Testimonial card */
 .testimonial {
   border: 1px solid var(--line);
   border-radius: var(--radius, 16px);
@@ -1738,7 +1618,6 @@ h2 + .lead {
   box-shadow: 0 12px 28px rgba(0, 0, 0, 0.12);
 }
 
-/* Quote block */
 .testimonial blockquote {
   margin: 0 0 14px;
   font-size: clamp(1rem, 0.95rem + 0.2vw, 1.1rem);
@@ -1768,7 +1647,6 @@ h2 + .lead {
   opacity: 0.5;
 }
 
-/* Author line */
 .testimonial figcaption {
   margin-top: auto;
   padding-top: 12px;
@@ -1777,7 +1655,6 @@ h2 + .lead {
   letter-spacing: 0.01em;
 }
 
-/* Reduced motion */
 @media (prefers-reduced-motion: reduce) {
   .testimonial {
     transition: none;
@@ -1788,7 +1665,6 @@ h2 + .lead {
   }
 }
 
-/* Dark mode adjustments */
 :root[data-theme='dark'] .testimonial {
   box-shadow:
     0 12px 28px rgba(0, 0, 0, 0.55),
@@ -1802,16 +1678,12 @@ h2 + .lead {
   border-color: rgba(255, 255, 255, 0.12);
 }
 
-/* ============================================================
-   07) FAQ (DETAILS/SUMMARY)
-   ------------------------------------------------------------
-   - Details/summary accordion with rotating caret
-   - Hover/expanded elevation and focus-visible ring
-   - Compact answer spacing and dark-mode shadows
-   - Reduced-motion friendly transitions
-============================================================ */
+/* ===============================================================
+   ===============================================================
+   ========== 07) FAQ ============================================
+   ===============================================================
+   =============================================================== */
 
-/* Section vars and scroll offset */
 #faq {
   scroll-margin-top: calc(var(--header-h) + 8px);
   --faq-gutter: clamp(12px, 2vw, 18px);
@@ -1821,7 +1693,6 @@ h2 + .lead {
   overflow: visible;
 }
 
-/* List wrapper */
 #faq .faq-list {
   max-width: 1040px;
   margin-inline: auto;
@@ -1837,7 +1708,6 @@ h2 + .lead {
   height: 16px;
 }
 
-/* Item (details) */
 #faq .faq-list details {
   border: 1px solid var(--line);
   border-radius: var(--faq-radius);
@@ -1856,10 +1726,9 @@ h2 + .lead {
   border-color: var(--line-strong);
 }
 
-/* Summary row (question) — reserve space for caret */
 #faq .faq-list summary {
-  --faq-caret-w: 22px; /* caret width */
-  --faq-caret-gap: 16px; /* gap between text and caret */
+  --faq-caret-w: 22px;
+  --faq-caret-gap: 16px;
   position: relative;
   display: flex;
   align-items: center;
@@ -1867,18 +1736,17 @@ h2 + .lead {
   cursor: pointer;
   min-height: 48px;
   line-height: 1.3;
-  padding: 14px calc(16px + var(--faq-caret-w) + var(--faq-caret-gap)) 14px 16px; /* L | R = caret + gap + edge */
+  padding: 14px calc(16px + var(--faq-caret-w) + var(--faq-caret-gap)) 14px 16px;
   font-weight: 600;
   border-radius: inherit;
   list-style: none;
   outline: none;
-  overflow-wrap: anywhere; /* avoid long-word overlap with caret */
+  overflow-wrap: anywhere;
 }
 #faq .faq-list summary::-webkit-details-marker {
   display: none;
 }
 
-/* Caret (absolute, right-aligned) */
 #faq .faq-list summary::after {
   content: '▾';
   position: absolute;
@@ -1887,7 +1755,9 @@ h2 + .lead {
   line-height: 1;
   opacity: 0.8;
   transform: translateY(-1px) rotate(0deg);
-  transition: transform 0.25s ease, opacity 0.2s ease;
+  transition:
+    transform 0.25s ease,
+    opacity 0.2s ease;
 }
 #faq .faq-list details[open] > summary {
   font-weight: 700;
@@ -1902,7 +1772,6 @@ h2 + .lead {
   outline-offset: 4px;
 }
 
-/* Answer body */
 #faq .faq-list .answer {
   padding: 0 16px 16px;
   color: var(--muted);
@@ -1912,7 +1781,6 @@ h2 + .lead {
   margin: 0.4em 0;
 }
 
-/* Dark mode */
 :root[data-theme='dark'] #faq .faq-list details {
   box-shadow:
     0 2px 10px rgba(0, 0, 0, 0.45),
@@ -1926,7 +1794,6 @@ h2 + .lead {
   border-color: rgba(255, 255, 255, 0.12);
 }
 
-/* Mobile tweaks — slightly more space for the caret */
 @media (max-width: 640px) {
   #faq .faq-list summary {
     --faq-caret-w: 24px;
@@ -1935,7 +1802,6 @@ h2 + .lead {
   }
 }
 
-/* Reduced motion */
 @media (prefers-reduced-motion: reduce) {
   #faq .faq-list details,
   #faq .faq-list summary::after {
@@ -1947,23 +1813,17 @@ h2 + .lead {
   }
 }
 
-/* ============================================================
-   08) CTA / CONTACT (LIST & FORM)
-   ------------------------------------------------------------
-   - Gradient CTA band and contact list interactions
-   - Glassmorphism form card with validation hints
-   - Theme-agnostic labels/notes; dark inputs only
-   - Focus, invalid/valid feedback, consent checkbox
-   - Busy/loader state on submit button
-============================================================ */
+/* ===============================================================
+   ===============================================================
+   ========== 08) CTA / KONTAKT ==================================
+   ===============================================================
+   =============================================================== */
 
-/* Gradient band */
 .cta {
   background: var(--brand-grad);
   color: #fff;
 }
 
-/* Two-column responsive wrapper */
 .cta-wrap {
   display: grid;
   gap: 20px;
@@ -1979,7 +1839,6 @@ h2 + .lead {
   margin: 0.2em 0;
 }
 
-/* Contact list */
 .contact-list {
   list-style: none;
   padding: 0;
@@ -2019,7 +1878,6 @@ h2 + .lead {
   outline-offset: 3px;
 }
 
-/* Mobile tweaks */
 @media (max-width: 640px) {
   .contact-list {
     justify-items: stretch;
@@ -2053,7 +1911,6 @@ h2 + .lead {
   }
 }
 
-/* Glass form card */
 .form {
   display: grid;
   gap: 12px;
@@ -2069,7 +1926,6 @@ h2 + .lead {
   gap: 6px;
 }
 
-/* Subtle validation hints */
 .form-row :invalid {
   outline: 2px solid rgba(239, 68, 68, 0.25);
 }
@@ -2077,7 +1933,6 @@ h2 + .lead {
   outline: 1px solid rgba(34, 197, 94, 0.25);
 }
 
-/* Fixed (theme-agnostic) text colors in the form */
 .cta .form label {
   color: #0f172a;
   font-weight: 700;
@@ -2096,7 +1951,6 @@ h2 + .lead {
   text-underline-offset: 2px;
 }
 
-/* Inputs */
 .form :is(input[type='text'], input[type='tel'], input[type='email'], textarea) {
   width: 100%;
   max-width: 100%;
@@ -2120,12 +1974,10 @@ h2 + .lead {
   overflow: auto;
 }
 
-/* Placeholders */
 .form :is(input, textarea)::placeholder {
   color: rgba(0, 0, 0, 0.52);
 }
 
-/* Dark theme: only field internals change */
 :root[data-theme='dark'] .cta .form :is(input, textarea) {
   background: rgba(15, 23, 42, 0.92);
   color: #e5e7eb;
@@ -2136,7 +1988,6 @@ h2 + .lead {
   color: rgba(255, 255, 255, 0.55);
 }
 
-/* Focus/invalid */
 .form :is(input[type='text'], input[type='tel'], input[type='email'], textarea):focus {
   outline: 3px solid var(--ring);
   outline-offset: 2px;
@@ -2148,7 +1999,6 @@ h2 + .lead {
   box-shadow: inset 0 0 0 1px rgba(239, 68, 68, 0.6);
 }
 
-/* Visually hidden (a11y helpers) */
 .form .visually-hidden {
   position: absolute;
   width: 1px;
@@ -2160,7 +2010,6 @@ h2 + .lead {
   overflow: hidden;
 }
 
-/* Checkbox row */
 .checkbox {
   display: flex;
   align-items: center;
@@ -2186,7 +2035,6 @@ h2 + .lead {
   box-shadow: 0 0 0 1px rgba(239, 68, 68, 0.6);
 }
 
-/* Global messages */
 section#kontakt .form-note {
   min-height: 1.6em;
 }
@@ -2201,7 +2049,6 @@ section#kontakt .form-note {
   color: #ef4444;
 }
 
-/* Submit button — 60% width centered */
 .cta .form .btn {
   width: 60%;
   min-height: 48px;
@@ -2219,7 +2066,6 @@ section#kontakt .form-note {
   }
 }
 
-/* Reduced motion */
 @media (prefers-reduced-motion: reduce) {
   .form,
   .contact-item {
@@ -2227,13 +2073,10 @@ section#kontakt .form-note {
   }
 }
 
-/* Slightly smaller consent label */
 .cta .form label.checkbox > input#f-consent + span {
   font-size: 0.85rem;
 }
 
-/* === PATCH: FORM FEEDBACK + LOADER (no JS changes) === */
-/* Green border for valid state (excluding aria-invalid) */
 .form
   :is(input[type='text'], input[type='tel'], input[type='email'], textarea):not(:placeholder-shown):valid:not(
     [aria-invalid='true']
@@ -2251,14 +2094,12 @@ section#kontakt .form-note {
   box-shadow: 0 0 0 3px color-mix(in srgb, #6ee7b7 24%, transparent);
 }
 
-/* Checkbox: green outline when checked and valid */
 .checkbox input[type='checkbox']:checked:not([aria-invalid='true']) {
   outline: 3px solid color-mix(in srgb, #22c55e 28%, transparent);
   outline-offset: 2px;
   border-radius: 6px;
 }
 
-/* Busy state spinner on submit button */
 .form[aria-busy='true'] .btn {
   position: relative;
   pointer-events: none;
@@ -2287,16 +2128,12 @@ section#kontakt .form-note {
   }
 }
 
-/* ============================================================
-   09) FOOTER (LAYOUT, COLUMNS, MAP, SOCIAL)
-   ------------------------------------------------------------
-   - Footer theming tokens (fg/muted/border) and spacing
-   - Responsive grid columns and brand/lead/links blocks
-   - Contact list, address, embedded map, social buttons
-   - Bottom bar with legal text; hover/focus states
-============================================================ */
+/* ===============================================================
+   ===============================================================
+   ========== 09) STOPKA =========================================
+   ===============================================================
+   =============================================================== */
 
-/* Theming and base spacing */
 .site-footer {
   --ft-bg: #0f1115;
   --ft-fg: #eef2f8;
@@ -2332,7 +2169,6 @@ section#kontakt .form-note {
   }
 }
 
-/* Grid layout */
 .ft-grid {
   display: grid;
   row-gap: clamp(16px, 3vw, 32px);
@@ -2362,7 +2198,6 @@ section#kontakt .form-note {
   }
 }
 
-/* Columns and content */
 .ft-col {
   display: grid;
   align-content: start;
@@ -2414,7 +2249,7 @@ section#kontakt .form-note {
 .brand img {
   height: 28px;
   width: auto;
-} /* keep as-is (used elsewhere too) */
+}
 .brand-footer {
   display: inline-flex;
   align-items: center;
@@ -2444,7 +2279,6 @@ section#kontakt .form-note {
   }
 }
 
-/* Text blocks and links */
 .ft-lead {
   margin: 0.75rem 0 1rem;
   color: var(--ft-muted);
@@ -2475,7 +2309,6 @@ section#kontakt .form-note {
   border-radius: 2px;
 }
 
-/* CTA column basics */
 .ft-cta {
   display: grid;
   gap: 0.5rem;
@@ -2500,7 +2333,6 @@ section#kontakt .form-note {
   box-shadow: 0 2px 12px hsl(0 0% 0% / 0.25);
 }
 
-/* Bottom bar */
 .ft-bottom {
   margin-top: clamp(18px, 4vw, 32px);
   padding-top: 16px;
@@ -2516,7 +2348,6 @@ section#kontakt .form-note {
   color: var(--ft-muted);
 }
 
-/* Brand block in footer */
 .site-footer .brand {
   display: inline-block;
   line-height: 0;
@@ -2533,7 +2364,6 @@ section#kontakt .form-note {
   border-radius: 8px;
 }
 
-/* Hover effects (desktop) */
 @media (hover: hover) {
   .site-footer a {
     transition:
@@ -2551,7 +2381,6 @@ section#kontakt .form-note {
   }
 }
 
-/* Address, map, and socials */
 .ft-address {
   margin-top: 0.5rem;
   font-style: normal;
@@ -2613,7 +2442,6 @@ section#kontakt .form-note {
   opacity: 0.9;
 }
 
-/* Extras */
 .ft-col .ft-cta {
   margin-top: 0.4rem;
 }
@@ -2626,16 +2454,12 @@ section#kontakt .form-note {
   border-color: var(--ft-border);
 }
 
-/* ============================================================
-   10) FOOTER — EXTENDED CTA
-   ------------------------------------------------------------
-   - Gradient “Get a quote” chip button
-   - Wide rounded quote button for bottom CTA row
-   - Bottom CTA layout (quote + socials) and overflow safety
-   - Reduced-motion friendly interactions
-============================================================ */
+/* ===============================================================
+   ===============================================================
+   ========== 10) STOPKA — ROZSZERZONE CTA =======================
+   ===============================================================
+   =============================================================== */
 
-/* Featured CTA (gradient chip) */
 .ft-cta .btn-quote {
   --q-grad: linear-gradient(135deg, var(--brand) 0%, var(--brand-2) 100%);
   display: inline-flex;
@@ -2688,7 +2512,6 @@ section#kontakt .form-note {
   }
 }
 
-/* Layout safety: avoid clipping */
 .site-footer,
 .site-footer .container,
 .site-footer .ft-grid,
@@ -2696,7 +2519,6 @@ section#kontakt .form-note {
   overflow: visible;
 }
 
-/* Bottom CTA row (quote + socials) */
 .ft-bottom-cta {
   display: flex;
   align-items: center;
@@ -2710,7 +2532,6 @@ section#kontakt .form-note {
   height: 34px;
 }
 
-/* Wide "Quote" button */
 .ft-quote {
   display: inline-flex;
   align-items: center;
@@ -2763,17 +2584,12 @@ section#kontakt .form-note {
   filter: drop-shadow(0 12px 28px rgba(0, 0, 0, 0.46));
 }
 
-/* ============================================================
-   11) ADD-ONS (ANIMATIONS, MEDIA QUERIES, FOCUS)
-   ------------------------------------------------------------
-   - Entry “rise” animation (respecting reduced-motion)
-   - Ultra-narrow screen tweaks (≤360px) for header/hero
-   - Logos filter utilities and focus treatment
-   - Global focus ring for interactive elements (excl. .btn)
-   - Minor CTA/form layout refinements on large screens
-============================================================ */
+/* ===============================================================
+   ===============================================================
+   ========== 11) DODATKI ========================================
+   ===============================================================
+   =============================================================== */
 
-/* Subtle rise-in animation (only when motion is allowed) */
 @media (prefers-reduced-motion: no-preference) {
   .card,
   .testimonial,
@@ -2805,7 +2621,6 @@ section#kontakt .form-note {
   }
 }
 
-/* Ultra-narrow screens (≤360px) — tighten header and hero */
 @media (max-width: 360px) {
   .header-bar {
     gap: 12px;
@@ -2843,7 +2658,6 @@ section#kontakt .form-note {
   }
 }
 
-/* Very small phones */
 @media (max-width: 420px) {
   .container {
     padding-left: 14px;
@@ -2851,7 +2665,6 @@ section#kontakt .form-note {
   }
 }
 
-/* LOGOS — a11y focus and filter helpers */
 .logos .logo a {
   display: grid;
   place-items: center;
@@ -2902,7 +2715,6 @@ section#kontakt .form-note {
   }
 }
 
-/* Global focus ring (keeps buttons' custom focus from section 01) */
 :where(a, button, [role='button'], .dropdown-trigger):not(.btn):focus-visible {
   outline: 3px solid var(--ring);
   outline-offset: 3px;
@@ -2913,7 +2725,6 @@ section#kontakt .form-note {
   z-index: 1;
 }
 
-/* Misc UX tweaks */
 .theme-toggle {
   -webkit-tap-highlight-color: transparent;
 }
@@ -2922,7 +2733,6 @@ section#kontakt .form-note {
   outline: 3px solid color-mix(in srgb, #fff 85%, var(--brand-2));
 }
 
-/* CTA layout refinements */
 @media (min-width: 920px) {
   .cta-wrap {
     gap: 24px;
@@ -2939,15 +2749,12 @@ section#kontakt .form-note {
   }
 }
 
-/* ============================================================
-   12) SKIP-NEXT (FLOATING BUTTON)
-   ------------------------------------------------------------
-   - Fixed, centered floating button with hover/active states
-   - Hidden on touch/mobile; theme-aware background/border
-   - Focus-visible outline and reduced-motion fallback
-============================================================ */
+/* ===============================================================
+   ===============================================================
+   ========== 12) SKIP-NEXT — PŁYWAJĄCY PRZYCISK =================
+   ===============================================================
+   =============================================================== */
 
-/* Floating button */
 .skip-next {
   position: fixed;
   left: 50%;
@@ -2990,7 +2797,6 @@ section#kontakt .form-note {
   transform: translateX(-50%) translateY(8px);
 }
 
-/* Mobile tweaks */
 @media (max-width: 480px) {
   .skip-next {
     width: 38px;
@@ -3004,7 +2810,6 @@ section#kontakt .form-note {
   }
 }
 
-/* Hide on touch/mobile */
 @media (hover: none) and (pointer: coarse) {
   #skipNext {
     display: none !important;
@@ -3016,7 +2821,6 @@ section#kontakt .form-note {
   }
 }
 
-/* Theme variants */
 :root[data-theme='light'] .skip-next {
   background: color-mix(in srgb, #fff 88%, transparent);
   color: #111;
@@ -3030,18 +2834,12 @@ section#kontakt .form-note {
   box-shadow: 0 10px 24px rgba(2, 8, 23, 0.18);
 }
 
-/* ============================================================
-   13) OVERRIDES / ADJUSTMENTS
-   ------------------------------------------------------------
-   - Dark dropdown styling and mobile nav contrast fixes
-   - Nav caret micro-interactions
-   - Hero overlay tuning (responsive, theme-aware)
-   - Section rhythm variables and hover-card helper
-   - Typography tuning (h2/h3/lead) and performance helpers
-   - NOTE: FAQ styles live in section 07 (no duplicates here)
-============================================================ */
+/* ===============================================================
+   ===============================================================
+   ========== 13) NADPISANIA / KOREKTY ===========================
+   ===============================================================
+   =============================================================== */
 
-/* Dark theme: dropdown styling */
 :root[data-theme='dark'] .dropdown {
   background: var(--card);
   border-color: color-mix(in srgb, #fff 10%, var(--line));
@@ -3071,7 +2869,6 @@ section#kontakt .form-note {
   }
 }
 
-/* Light theme: hamburger contrast on mobile */
 @media (max-width: 1024px) {
   :root[data-theme='light'] .nav-toggle {
     color: var(--fg);
@@ -3083,7 +2880,6 @@ section#kontakt .form-note {
   }
 }
 
-/* Nav caret micro-interactions */
 .nav .nav-menu .caret {
   display: inline-block;
   margin-left: 6px;
@@ -3108,7 +2904,6 @@ section#kontakt .form-note {
   }
 }
 
-/* Hero overlay tuning (responsive + theme-aware) */
 :root {
   --hero-overlay-a: 0.3;
 }
@@ -3146,9 +2941,6 @@ section#kontakt .form-note {
   box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
 }
 
-/* --------------------  (no FAQ overrides here — see section 07)  -------------------- */
-
-/* Section rhythm */
 :root {
   --sec-py: clamp(48px, 8vw, 96px);
   --sec-py-sm: clamp(36px, 6vw, 72px);
@@ -3175,7 +2967,6 @@ section#kontakt .form-note {
   text-align: center;
 }
 
-/* Hover-card helper */
 .hover-card {
   transition:
     transform 0.25s ease,
@@ -3215,7 +3006,6 @@ section#kontakt .form-note {
   text-decoration: underline;
 }
 
-/* Typography tuning */
 :root {
   --fs-h2: clamp(1.7rem, 1.05rem + 2.1vw, 2.5rem);
   --lh-h2: 1.15;
@@ -3245,7 +3035,6 @@ h3 {
   color: color-mix(in srgb, var(--fg) 92%, #fff);
 }
 
-/* Performance: content-visibility (consolidated) */
 @supports (content-visibility: auto) {
   .logos,
   .testimonials,
@@ -3270,7 +3059,7 @@ h3 {
       contain-intrinsic-size: 600px;
     }
   }
-  /* Keep cards always visible when supported (matches original intent) */
+
   #oferta .cards {
     content-visibility: visible !important;
     contain: unset !important;
@@ -3278,7 +3067,6 @@ h3 {
   }
 }
 
-/* Form micro-alignment */
 @media (min-width: 900px) {
   .form .checkbox {
     width: fit-content;
@@ -3289,44 +3077,39 @@ h3 {
   box-shadow: 0 0 0 3px color-mix(in srgb, #fff 80%, var(--brand-2));
 }
 
-/* Legacy section padding helper (kept to preserve look) */
 .block,
 .cta,
 .testimonials {
   padding-block: clamp(3rem, 6vw, 6rem);
 }
 
-/* Anchor targets inside FAQ (scroll offset) */
 [id^='faq-'] {
   scroll-margin-top: var(--header-h, 72px);
 }
 
-/* ============================================================
-   14) LIGHTBOX (CARD GALLERY)
-   ------------------------------------------------------------
-   - Backdrop layer and centered viewport with shadow
-   - Prev/next/close controls, hover/active transforms
-   - Scroll lock, mobile sizes, reduced-motion path
-   - Thumbnail interactions inside #oferta
-============================================================ */
+/* ===============================================================
+   ===============================================================
+   ========== 14) LIGHTBOX =======================================
+   ===============================================================
+   =============================================================== */
 
-/* Backdrop */
 .lb-backdrop {
   position: fixed;
   inset: 0;
   z-index: 2000;
-  background: rgba(0, 0, 0, 0.7);
-  backdrop-filter: saturate(140%) blur(2px);
   display: none;
   opacity: 0;
+  background: rgba(0, 0, 0, 0.7);
+  backdrop-filter: saturate(140%) blur(2px);
   transition: opacity 0.18s ease;
+  pointer-events: none;
 }
 .lb-backdrop.is-open {
   display: block;
   opacity: 1;
+  pointer-events: auto;
 }
 
-/* Centered viewport layer */
 .lb-wrap {
   position: fixed;
   inset: 0;
@@ -3335,15 +3118,16 @@ h3 {
   place-items: center;
   pointer-events: none;
 }
+
 .lb-viewport {
   max-width: 92vw;
   max-height: 86vh;
-  box-shadow:
-    0 20px 60px rgba(0, 0, 0, 0.45),
-    0 0 0 1px rgba(255, 255, 255, 0.12) inset;
   border-radius: 14px;
   overflow: hidden;
   background: #000;
+  box-shadow:
+    0 20px 60px rgba(0, 0, 0, 0.45),
+    0 0 0 1px rgba(255, 255, 255, 0.12) inset;
   pointer-events: auto;
 }
 .lb-viewport img {
@@ -3355,11 +3139,10 @@ h3 {
   -webkit-user-drag: none;
 }
 
-/* Controls */
 .lb-btn {
   position: fixed;
   z-index: 2002;
-  display: none;
+  display: grid;
   place-items: center;
   width: 44px;
   height: 44px;
@@ -3373,95 +3156,37 @@ h3 {
     transform 0.15s ease,
     background 0.15s ease,
     opacity 0.15s ease;
-  will-change: transform;
 }
-html.lb-no-scroll .lb-btn {
+
+.lb-btn.lb-close {
+  top: 24px;
+  right: 24px;
+  display: none;
+}
+.lb-btn.lb-close:hover {
+  background: rgba(255, 255, 255, 0.18);
+}
+
+.lb-btn.lb-close.is-open {
   display: grid;
-} /* show controls only when open */
-.lb-close {
-  top: 16px;
-  right: 16px;
-}
-.lb-prev,
-.lb-next {
-  top: 50%;
-  transform: translateY(-50%);
-}
-.lb-prev {
-  left: 16px;
-}
-.lb-next {
-  right: 16px;
-}
-.lb-btn:hover {
-  background: rgba(255, 255, 255, 0.14);
-}
-.lb-prev:hover {
-  transform: translateY(-50%) translateX(-2px);
-}
-.lb-next:hover {
-  transform: translateY(-50%) translateX(2px);
-}
-.lb-prev:active {
-  transform: translateY(-50%) translateX(-1px);
-}
-.lb-next:active {
-  transform: translateY(-50%) translateX(1px);
-}
-.lb-btn svg {
-  width: 20px;
-  height: 20px;
-  fill: #fff;
-  opacity: 0.95;
 }
 
-/* Lock scroll when open */
-html.lb-no-scroll {
-  overflow: hidden;
+.lb-btn.lb-prev,
+.lb-btn.lb-next {
+  display: none !important;
 }
 
-/* Mobile sizing */
-@media (max-width: 640px) {
-  .lb-prev,
-  .lb-next {
-    width: 40px;
-    height: 40px;
-  }
+html.lb-no-scroll,
+body.lb-no-scroll {
+  overflow: hidden !important;
 }
 
-/* Reduced motion */
-@media (prefers-reduced-motion: reduce) {
-  .lb-backdrop {
-    transition: none;
-  }
-  .lb-btn {
-    transition: none;
-  }
-}
+/* ===============================================================
+   ===============================================================
+   ========== 15) PODSTRONY ======================================
+   ===============================================================
+   =============================================================== */
 
-/* Thumbnails interaction inside #oferta */
-#oferta .card picture img {
-  cursor: pointer;
-  transition: transform 0.12s ease;
-}
-#oferta .card picture img:hover {
-  transform: translateY(-1px);
-}
-#oferta .card picture img:focus-visible {
-  outline: 2px solid var(--accent, #ffd54d);
-  outline-offset: 3px;
-}
-
-/* ============================================================
-   15) SUBPAGES (H1 + LEAD + CARDS + CTA, BREADCRUMBS)
-   ------------------------------------------------------------
-   - Subpage header spacing and centered lead text
-   - Responsive cards grid and card body styles
-   - Hover parity with home; dark-mode adjustments
-   - Subpage FAQ/CTA headers; documentation content/print
-============================================================ */
-
-/* Subpage header (section spacing, centered text) */
 .subpage-header {
   padding-block: clamp(3rem, 6vw, 5rem);
 }
@@ -3478,7 +3203,6 @@ html.lb-no-scroll {
   margin-bottom: 0;
 }
 
-/* Cards grid (responsive) */
 .page-sub .cards {
   display: grid;
   gap: 18px;
@@ -3500,7 +3224,6 @@ html.lb-no-scroll {
   margin-bottom: 2.5rem;
 }
 
-/* Card element */
 .page-sub .cards > .card {
   padding: 22px 26px;
   border-radius: 14px;
@@ -3522,7 +3245,6 @@ html.lb-no-scroll {
   color: var(--text-2);
 }
 
-/* Hover effect (parity with HOME) */
 .page-sub .cards > .hover-card {
   transition:
     transform 0.25s ease,
@@ -3538,7 +3260,7 @@ html.lb-no-scroll {
   border-color: var(--line-strong, rgba(0, 0, 0, 0.14));
   z-index: 10;
 }
-/* Dark mode hover parity with HOME */
+
 :root[data-theme='dark'] .page-sub .cards > .hover-card {
   background: rgba(255, 255, 255, 0.03);
 }
@@ -3560,7 +3282,6 @@ html.lb-no-scroll {
   }
 }
 
-/* Call-to-action buttons */
 .subpage-header .block-cta {
   display: flex;
   justify-content: center;
@@ -3569,7 +3290,6 @@ html.lb-no-scroll {
   margin-top: 1rem;
 }
 
-/* FAQ (spacing + affordance) */
 .page-sub .faq-list {
   list-style: none;
   padding: 0;
@@ -3639,7 +3359,6 @@ html.lb-no-scroll {
   }
 }
 
-/* FAQ — center header like subpage header */
 .page-sub #faq .block-head {
   text-align: center;
   margin-bottom: 2rem;
@@ -3653,7 +3372,6 @@ html.lb-no-scroll {
   margin-bottom: 0;
 }
 
-/* CTA (end of subpage) */
 .page-sub .cta .block-head {
   text-align: center;
   margin-bottom: 2rem;
@@ -3667,7 +3385,12 @@ html.lb-no-scroll {
   margin-bottom: 0;
 }
 
-/* ========== DOCUMENTATION PAGES (content) ========== */
+/* ===============================================================
+   ===============================================================
+   ========== 16) PODSTRONY DOC ==================================
+   ===============================================================
+   =============================================================== */
+
 .doc-content {
   max-width: 70ch;
   margin-inline: auto;
@@ -3683,7 +3406,6 @@ html.lb-no-scroll {
   margin-inline: auto;
 }
 
-/* Headings */
 .doc-content h2 {
   font-size: 1.125rem;
   font-weight: 700;
@@ -3691,7 +3413,6 @@ html.lb-no-scroll {
   scroll-margin-top: var(--header-h, 72px);
 }
 
-/* Spacing */
 .doc-content > * {
   margin-block: 0.75rem;
 }
@@ -3702,12 +3423,10 @@ html.lb-no-scroll {
   margin: 0.75rem 0;
 }
 
-/* Emphasis */
 .doc-content strong {
   font-weight: 700;
 }
 
-/* Lists */
 .doc-content ul,
 .doc-content ol {
   padding-inline-start: 1.25rem;
@@ -3723,7 +3442,6 @@ html.lb-no-scroll {
   margin: 0.35rem 0;
 }
 
-/* Links */
 .doc-content a {
   text-decoration: underline;
   text-underline-offset: 0.15em;
@@ -3735,21 +3453,19 @@ html.lb-no-scroll {
     opacity: 0.85;
   }
 }
-/* Accessible focus state */
+
 .doc-content a:focus-visible {
   outline: 2px solid currentColor;
   outline-offset: 2px;
   text-decoration-thickness: 2px;
 }
 
-/* Small devices */
 @media (max-width: 480px) {
   .doc-content {
     max-width: 100%;
   }
 }
 
-/* Print styles */
 @media print {
   .site-header,
   .site-footer,
@@ -3781,7 +3497,6 @@ html.lb-no-scroll {
   }
 }
 
-/* Optional future-proofing for h3 */
 .doc-content h3 {
   font-size: 1rem;
   font-weight: 700;
