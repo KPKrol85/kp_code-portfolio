@@ -1,0 +1,1098 @@
+/* ======================================================================
+   Autor: KP_Code (Front-end)
+   Aktualizacja: 2025-09-25
+   ======================================================================
+   STYLE — Budownictwo / Remonty — globalny arkusz (PROD)
+   Struktura:
+   ======================================================================
+   00) RESET + ZMIENNE + UTYLITY
+   01) BAZA TYPOGRAFIA + LAYOUT
+   02) NAGŁÓWEK
+   03) HERO
+   04) USŁUGI
+   05) OPINIE
+   06) GALERIA
+   07) KONTAKT 
+   08) FOOTER
+   09) STANY + ANIMACJE + PRZYCISKI GLOBALNE
+   ====================================================================== */
+
+/* ===============================================================
+   ===============================================================
+   ========== 00) GLOBALNE =======================================
+   ===============================================================
+   =============================================================== */
+
+:root {
+  --primary: #0f4c81;
+  --primary-600: #0c3a61;
+  --primary-400: #1560a9;
+  --accent: #ff8c42;
+  --accent-600: #e85d04;
+  --accent-400: #ffa366;
+
+  /* Tła i tekst */
+  --bg-light: #f6f7f9;
+  --bg-dark: #121212;
+  --text-light: #ffffff;
+  --text-dark: #1c1c1c;
+
+  /* Dla zgodności */
+  --primary-color: var(--primary);
+}
+
+:root {
+  --space-1: 0.35rem;
+  --space-2: 0.8rem;
+  --space-3: 1.25rem;
+  --space-4: 2rem;
+}
+:root {
+  --section-py: 4rem;
+  --section-px: 2rem;
+}
+:root {
+  --success: #2ecc71;
+  --error: #e74c3c;
+  --warning: #f1c40f;
+}
+
+/* ===============================================================
+   ===============================================================
+   ========== 01) BAZA TYPOGRAFIA LAYOUT =========================
+   ===============================================================
+   =============================================================== */
+
+html { scroll-behavior: smooth; }
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+
+/* Globalny layout sekcji (max-width i centrowanie robią wewnętrzne wrapy) */
+section {
+  scroll-margin-top: clamp(64px, 8vh, 96px);
+  padding: var(--section-py) var(--section-px);
+}
+
+/* Body + motywy */
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Lato', sans-serif;
+  background: var(--bg-light);
+  color: var(--text-dark);
+  line-height: 1.6;
+  transition: background-color .4s, color .4s;
+}
+body.dark-mode {
+  background: var(--bg-dark);
+  color: var(--text-light);
+}
+
+/* Płynne nagłówki (bez narzucania koloru – sekcje nadają własny, np. primary/accent) */
+h1 {
+  font-family: 'Montserrat', sans-serif;
+  font-size: clamp(2.2rem, 1.2rem + 3.2vw, 3.5rem);
+  line-height: 1.2;
+  margin: 0 0 .6em;
+}
+h2 {
+  font-family: 'Montserrat', sans-serif;
+  font-size: clamp(1.6rem, 1rem + 2.2vw, 2.4rem);
+  line-height: 1.25;
+  margin: 0 0 .65em;
+}
+h3 {
+  font-family: 'Montserrat', sans-serif;
+  font-size: clamp(1.25rem, .9rem + 1.2vw, 1.6rem);
+  line-height: 1.3;
+  margin: 0 0 .7em;
+}
+
+/* Lead */
+.lead {
+  font-size: clamp(1.05rem, .95rem + .6vw, 1.25rem);
+  line-height: 1.7;
+  color: var(--text-dark);
+}
+body.dark-mode .lead { color: var(--text-light); opacity: .9; }
+
+/* Tytuły sekcji z akcentem (kreska pod spodem) */
+.section-title {
+  position: relative;
+  display: inline-block;
+  padding-bottom: .4rem;
+  font-family: 'Montserrat', sans-serif;
+}
+.section-title::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  bottom: -.2rem;
+  width: 64px;
+  height: 2px;
+  background: var(--primary-600);
+  border-radius: 2px;
+  opacity: .7;
+}
+body.dark-mode .section-title::after { background: var(--accent-400); }
+
+/* Mobile: ciaśniejsze wypełnienia sekcji */
+@media (max-width: 768px) {
+  :root {
+    --section-py: 3rem;
+    --section-px: 1rem;
+  }
+}
+
+/* Drobny bonus – zaznaczenie tekstu w kolorach marki */
+::selection { background: color-mix(in srgb, var(--accent) 35%, transparent); color: var(--text-light); }
+
+
+/* ===============================================================
+   ===============================================================
+   ========== 02) NAGŁÓWEK =======================================
+   ===============================================================
+   =============================================================== */
+
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 2rem;
+  background: linear-gradient(
+    135deg,
+    var(--primary),
+    color-mix(in srgb, var(--primary) 75%, var(--text-light) 25%)
+  );
+  color: var(--text-light);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  box-shadow: 0 2px 15px color-mix(in srgb, var(--bg-dark) 10%, transparent);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  transition: background-color .3s ease, box-shadow .3s ease, transform .3s ease;
+}
+body.dark-mode header {
+  background: linear-gradient(
+    135deg,
+    color-mix(in srgb, var(--bg-dark) 75%, transparent),
+    color-mix(in srgb, var(--bg-dark) 90%, transparent)
+  );
+  box-shadow: 0 2px 15px color-mix(in srgb, var(--text-light) 5%, transparent);
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: .5rem;
+  text-decoration: none;
+}
+.logo .logo-img { height: 45px; width: auto; display: block; }
+.logo-text {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: var(--text-light);
+}
+
+nav {
+  display: flex;
+  align-items: center;
+  gap: .5rem;
+}
+nav a {
+  color: var(--text-light);
+  text-decoration: none;
+  padding: .7rem 1.2rem;
+  font-weight: 600;
+  border-radius: 25px;
+  transition: transform .3s ease, box-shadow .3s ease, background-color .3s ease;
+  position: relative;
+  font-size: .95rem;
+  outline-offset: 3px;
+}
+nav a:hover {
+  background: color-mix(in srgb, var(--text-light) 20%, transparent);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px color-mix(in srgb, var(--bg-dark) 15%, transparent);
+}
+nav a:focus-visible {
+  outline: 3px solid var(--accent);
+}
+nav a.active {
+  background: color-mix(in srgb, var(--text-light) 25%, transparent);
+  box-shadow: inset 0 2px 4px color-mix(in srgb, var(--bg-dark) 10%, transparent);
+}
+
+.header-actions { display: flex; align-items: center; gap: 1rem; }
+
+.contact-btn {
+  background: var(--text-light);
+  color: var(--primary);
+  padding: .7rem 1.5rem;
+  border-radius: 25px;
+  text-decoration: none;
+  font-weight: 700;
+  transition: all .3s ease;
+  border: 2px solid transparent;
+}
+.contact-btn:hover {
+  background: transparent;
+  color: var(--text-light);
+  border-color: var(--text-light);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px color-mix(in srgb, var(--bg-dark) 15%, transparent);
+}
+.contact-btn:focus-visible {
+  outline: 3px solid var(--accent-400);
+  outline-offset: 3px;
+}
+body.dark-mode .contact-btn {
+  background: var(--accent);
+  color: var(--text-light);
+  border-color: transparent;
+}
+body.dark-mode .contact-btn:hover {
+  background: transparent;
+  color: var(--accent);
+  border-color: var(--accent);
+}
+
+/* Toggle */
+.switch-toggle { position: relative; display: inline-block; width: 45px; height: 25.5px; }
+.switch-toggle input { opacity: 0; width: 0; height: 0; }
+.slider {
+  position: absolute; inset: 0; cursor: pointer;
+  background: color-mix(in srgb, var(--text-dark) 30%, var(--bg-light));
+  transition: .4s; border-radius: 34px;
+}
+.slider:before {
+  content: ""; position: absolute; height: 19.5px; width: 19.5px;
+  left: 3px; bottom: 3px; background: var(--text-light);
+  transition: .4s; border-radius: 50%;
+}
+input:checked + .slider { background-color: var(--accent); }
+input:checked + .slider:before { transform: translateX(19.5px); }
+body.dark-mode .slider { background: color-mix(in srgb, var(--text-light) 12%, var(--bg-dark)); }
+body.dark-mode input:checked + .slider { background-color: var(--accent-400); }
+
+/* Hamburger */
+.hamburger { display: none; flex-direction: column; cursor: pointer; gap: 3px; }
+.hamburger span {
+  width: 25px; height: 3px; background: var(--text-light);
+  border-radius: 2px; transition: all .3s ease;
+}
+.hamburger.active span:nth-child(1) { transform: rotate(45deg) translate(6px, 6px); }
+.hamburger.active span:nth-child(2) { opacity: 0; }
+.hamburger.active span:nth-child(3) { transform: rotate(-45deg) translate(6px, -6px); }
+
+/* Mobile nav */
+@media (max-width: 768px) {
+  header { padding: 1rem; }
+  .logo { font-size: 1.5rem; }
+  .logo-text { display: none; }
+
+  nav {
+    display: none;
+    position: absolute; top: 100%; left: 0; right: 0; z-index: 120;
+    background: linear-gradient(135deg, var(--primary), var(--accent));
+    flex-direction: column; padding: 1rem;
+    box-shadow: 0 4px 15px color-mix(in srgb, var(--bg-dark) 12%, transparent);
+  }
+  body.dark-mode nav {
+    background: linear-gradient(
+      135deg,
+      color-mix(in srgb, var(--bg-dark) 92%, transparent),
+      color-mix(in srgb, var(--bg-dark) 95%, transparent)
+    );
+  }
+  nav.mobile-open { display: flex; }
+  nav a { margin: .5rem 0; text-align: center; }
+  .hamburger { display: flex; }
+  .header-actions { gap: .5rem; }
+  .contact-btn { display: none; }
+}
+
+
+/* ===============================================================
+   ===============================================================
+   ========== 03) HERO ===========================================
+   ===============================================================
+   =============================================================== */
+
+.hero {
+  position: relative;
+  height: 85vh;
+  min-height: 500px;
+  max-height: 900px;
+  display: grid;
+  place-items: center;
+  text-align: center;
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+  overflow: clip;
+}
+@supports not (overflow: clip) {
+  .hero { overflow: hidden; }
+}
+
+/* Obraz tła */
+.hero-media,
+.hero-img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+.hero-img {
+  object-fit: cover;
+  object-position: center;
+}
+
+/* Warstwa przyciemniająca na obrazie (light/dark – różna intensywność) */
+.hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(
+      180deg,
+      color-mix(in srgb, var(--bg-dark) 55%, transparent),
+      color-mix(in srgb, var(--bg-dark) 55%, transparent)
+    );
+}
+body.dark-mode .hero::before {
+  background:
+    linear-gradient(
+      180deg,
+      color-mix(in srgb, var(--bg-dark) 65%, transparent),
+      color-mix(in srgb, var(--bg-dark) 65%, transparent)
+    );
+}
+
+/* Treść w hero */
+.hero-content {
+  position: relative;
+  z-index: 1;
+  color: var(--text-light);
+  padding: 1rem 2rem;
+}
+
+/* Panel z tytułem: szkło + delikatny cień, bez sztywnych hexów */
+.hero-content h1 {
+  font-size: clamp(1.8rem, 3vw, 2.6rem);
+  line-height: 1.3;
+  letter-spacing: 0.4px;
+  text-wrap: balance;
+  text-transform: uppercase;
+  text-shadow:
+    0 2px 6px color-mix(in srgb, var(--bg-dark) 45%, transparent),
+    0 1px 1px color-mix(in srgb, var(--bg-dark) 35%, transparent);
+  animation: fadeInUp 1s ease-out;
+  display: inline-block;
+  padding: 0.6rem 1rem;
+  border-radius: 12px;
+  background: color-mix(in srgb, var(--bg-dark) 28%, transparent);
+  backdrop-filter: blur(6px) saturate(115%);
+  -webkit-backdrop-filter: blur(6px) saturate(115%);
+  box-shadow: 0 10px 24px color-mix(in srgb, var(--bg-dark) 18%, transparent);
+}
+
+/* Akcent w tytule (np. <span class="accent">...) */
+.hero-content .accent {
+  color: var(--accent-400);
+}
+
+/* Fallback gdy brak wsparcia dla backdrop-filter */
+@supports not (backdrop-filter: blur(1px)) {
+  .hero-content h1 {
+    background: color-mix(in srgb, var(--bg-dark) 45%, transparent);
+  }
+}
+
+/* Preferencje ograniczonego ruchu */
+@media (prefers-reduced-motion: reduce) {
+  .hero-content h1 {
+    animation: none;
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+    background: color-mix(in srgb, var(--bg-dark) 55%, transparent);
+  }
+  * { scroll-behavior: auto; }
+}
+
+/* RWD */
+@media (max-width: 768px) {
+  .hero {
+    height: 56vh;
+    min-height: 320px;
+  }
+  .hero-content { padding: 0 1rem; }
+  .hero-content h1 { font-size: clamp(1.3rem, 6vw, 2rem); }
+  .hero-img { object-position: center 35%; }
+}
+
+@media (max-width: 480px) {
+  .hero {
+    height: 65vh;
+    min-height: 320px;
+    max-height: 600px;
+  }
+  .hero-content h1 {
+    font-size: clamp(1.2rem, 6vw, 1.8rem);
+    padding: 0.5rem 0.75rem;
+    border-radius: 10px;
+  }
+}
+
+/* ===============================================================
+   ===============================================================
+   ========== 04) USŁUGI  ========================================
+   ===============================================================
+   =============================================================== */
+
+.services-section {
+  background: var(--bg-light);
+}
+body.dark-mode .services-section {
+  background: var(--bg-dark);
+}
+
+.services-heading {
+  text-align: center;
+  font-size: 2rem;
+  margin-bottom: 3rem;
+  text-transform: none;
+  color: var(--primary);
+}
+body.dark-mode .services-heading {
+  color: var(--accent); /* w dark trybie akcent */
+}
+
+.services {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.service {
+  background: var(--text-light);
+  padding: 1.5rem;
+  border-radius: 10px;
+  text-align: center;
+  box-shadow: 0 4px 10px color-mix(in srgb, black 12%, transparent);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+body.dark-mode .service {
+  background: color-mix(in srgb, var(--bg-dark) 85%, white 15%);
+  box-shadow: 0 4px 10px color-mix(in srgb, var(--text-light) 6%, transparent);
+}
+
+.service picture {
+  display: block;
+  width: 100%;
+}
+.service img {
+  display: block;
+  width: 100%;
+  height: auto;
+  max-width: 100%;
+  border-radius: 10px;
+}
+
+.service:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 22px color-mix(in srgb, black 18%, transparent);
+  cursor: pointer;
+}
+
+.service h3 {
+  margin-top: var(--space-2);
+  color: var(--primary);
+}
+body.dark-mode .service h3 {
+  color: var(--accent-400);
+}
+
+.service p {
+  margin-top: var(--space-1);
+  color: var(--text-dark);
+}
+body.dark-mode .service p {
+  color: var(--text-light);
+  opacity: 0.9;
+}
+
+/* RWD */
+@media (max-width: 768px) {
+  .services {
+    gap: 1.25rem;
+  }
+  .service {
+    padding: 1.25rem;
+  }
+  .services-heading {
+    font-size: 1.75rem;
+    margin-bottom: 2rem;
+  }
+}
+
+
+/* ===============================================================
+   ===============================================================
+   ========== 05) OPINIE =========================================
+   ===============================================================
+   =============================================================== */
+
+
+.testimonials-section {
+  padding: 4rem 2rem;
+  text-align: center;
+  background: var(--bg-light);
+}
+body.dark-mode .testimonials-section {
+  background: var(--bg-dark);
+}
+
+.testimonials-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 2rem; /* odstęp od krawędzi na mobile */
+}
+
+.testimonials-section .section-title {
+  margin-bottom: 3rem;
+  font-size: 2rem;
+  color: var(--primary);
+}
+body.dark-mode .testimonials-section .section-title {
+  color: var(--accent); /* lepszy kontrast w dark */
+}
+
+.testimonials-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+}
+
+/* Karta opinii */
+.testimonial-card {
+  background: var(--text-light);
+  padding: 2rem;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px color-mix(in srgb, black 12%, transparent);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.testimonial-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 18px color-mix(in srgb, black 18%, transparent);
+}
+body.dark-mode .testimonial-card {
+  background: color-mix(in srgb, var(--bg-dark) 85%, white 15%);
+  box-shadow: 0 4px 10px color-mix(in srgb, var(--text-light) 6%, transparent);
+}
+
+/* Tekst opinii */
+.testimonial-card p {
+  font-style: italic;
+  color: color-mix(in srgb, var(--text-dark) 75%, transparent);
+  line-height: 1.6;
+}
+body.dark-mode .testimonial-card p {
+  color: color-mix(in srgb, var(--text-light) 85%, transparent);
+}
+
+/* Stopka karty */
+.client-info {
+  margin-top: 1.5rem;
+  border-top: 1px solid color-mix(in srgb, var(--text-dark) 12%, transparent);
+  padding-top: 1rem;
+}
+body.dark-mode .client-info {
+  border-color: color-mix(in srgb, var(--text-light) 24%, transparent);
+}
+.client-info h4 {
+  margin: 0;
+  font-size: 1.1rem;
+  color: var(--primary);
+}
+body.dark-mode .client-info h4 {
+  color: var(--accent-400);
+}
+
+/* prefers-reduced-motion */
+@media (prefers-reduced-motion: reduce) {
+  .testimonial-card { transition: none; }
+  .testimonial-card:hover {
+    transform: none;
+    box-shadow: 0 4px 10px color-mix(in srgb, black 12%, transparent);
+  }
+}
+
+/* RWD (≤768px) */
+@media (max-width: 768px) {
+  .testimonials-section { padding: 3rem 1rem; }
+  .testimonials-container {
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 1.25rem;
+  }
+  .testimonials-section .section-title {
+    font-size: 1.75rem;
+    margin-bottom: 2rem;
+  }
+}
+
+
+/* ===============================================================
+   ===============================================================
+   ========== 06) OGALERIA =======================================
+   ===============================================================
+  =============================================================== */
+
+.gallery-section {
+  text-align: center;
+  padding: 4rem 2rem;
+  background: var(--bg-light); /* jasne tło dla light mode */
+}
+body.dark-mode .gallery-section {
+  background: var(--bg-dark); /* ciemne dla dark mode */
+}
+
+/* Wewnętrzny wrapper – treść ograniczona do szerokości */
+.gallery-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.gallery-section .section-title {
+  text-align: center;
+  margin-bottom: 3rem;
+  font-size: 2rem;
+  color: var(--primary); /* tytuł sekcji w brandowym kolorze */
+}
+body.dark-mode .gallery-section .section-title {
+  color: var(--accent); /* w dark mode akcent dla lepszego kontrastu */
+}
+
+.gallery-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 1.5rem;
+}
+
+.gallery-item {
+  position: relative;
+  overflow: hidden;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  aspect-ratio: 4/3;
+}
+body.dark-mode .gallery-item {
+  box-shadow: 0 4px 10px rgba(255, 255, 255, 0.05);
+}
+
+.gallery-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.4s ease;
+  cursor: pointer;
+}
+.gallery-item:hover img {
+  transform: scale(1.05);
+}
+
+.gallery-item .overlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: color-mix(in srgb, var(--accent) 5%, black 60%);
+  color: var(--text-light);
+  padding: 1rem;
+  transform: translateY(100%);
+  transition: transform 0.4s ease;
+}
+.gallery-item:hover .overlay {
+  transform: translateY(0);
+}
+.overlay h3 {
+  margin: 0;
+  color: var(--accent-400); /* tytuł w overlay jaśniejszy akcent */
+}
+.overlay p {
+  margin: 0;
+  color: var(--text-light);
+  opacity: 0.9;
+}
+
+/* prefers-reduced-motion */
+@media (prefers-reduced-motion: reduce) {
+  .gallery-item img,
+  .gallery-item .overlay {
+    transition: none;
+  }
+  .gallery-item:hover img {
+    transform: none;
+  }
+  .gallery-item:hover .overlay {
+    transform: translateY(100%);
+  }
+}
+
+/* RWD */
+@media (max-width: 768px) {
+  .gallery-section {
+    padding: 3rem 1rem;
+  }
+  .gallery-section .section-title {
+    font-size: 1.75rem;
+    margin-bottom: 2rem;
+  }
+  .gallery-container {
+    gap: 1rem;
+  }
+}
+
+
+/* ============================================================
+  ===============================================================
+  ========== 07) KONTAKT ========================================
+  ===============================================================
+  =============================================================== */
+
+.contact-form-section {
+  padding: 2rem 2rem;
+  background: var(--bg-light); /* jasne tło dla light mode */
+  text-align: center;
+}
+body.dark-mode .contact-form-section {
+  background: var(--bg-dark); /* ciemne tło dla dark mode */
+}
+
+.contact-form-section h2 {
+  margin-bottom: 2rem;
+  font-size: 2rem;
+  color: var(--text-dark);
+}
+body.dark-mode .contact-form-section h2 {
+  color: var(--text-light);
+}
+
+.contact-form-container {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 1.5rem;
+  background: var(--text-light); /* białe tło light mode */
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+body.dark-mode .contact-form-container {
+  background: #2c2c2c; /* neutralny dark bg */
+  box-shadow: 0 4px 10px rgba(255, 255, 255, 0.05);
+}
+
+.contact-form .form-group {
+  margin-bottom: 1rem;
+}
+
+.contact-form label {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-weight: 600;
+  color: var(--text-dark);
+}
+body.dark-mode .contact-form label {
+  color: var(--text-light);
+  opacity: 0.85;
+}
+
+.contact-form input,
+.contact-form textarea {
+  width: 100%;
+  padding: 0.6rem;
+  border: 1px solid var(--primary-400);
+  border-radius: 5px;
+  font-family: 'Buenard', serif;
+  font-size: 0.9rem;
+  transition: all 0.3s ease;
+  box-sizing: border-box;
+  background: var(--text-light);
+  color: var(--text-dark);
+}
+body.dark-mode .contact-form input,
+body.dark-mode .contact-form textarea {
+  background: #3a3a3a;
+  color: var(--text-light);
+  border-color: var(--primary-600);
+}
+
+.contact-form input:focus-visible,
+.contact-form textarea:focus-visible {
+  border-color: var(--accent);
+  outline: 3px solid var(--accent-400);
+  outline-offset: 2px;
+}
+.contact-form input:focus,
+.contact-form textarea:focus {
+  border-color: var(--primary);
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--accent) 30%, transparent);
+  outline: none;
+}
+
+.contact-form .submit-btn {
+  display: block;
+  width: 100%;
+  padding: 1rem;
+  border: none;
+  background: var(--primary);
+  color: var(--text-light);
+  font-weight: 700;
+  font-size: 1.1rem;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+  margin-top: 1rem;
+}
+.contact-form .submit-btn:hover {
+  background: var(--accent-600);
+  transform: translateY(-2px);
+}
+.contact-form .submit-btn:focus-visible {
+  outline: 3px solid var(--accent-400);
+  outline-offset: 3px;
+}
+.contact-form .submit-btn:active {
+  background: var(--accent);
+  transform: scale(0.97);
+}
+
+@media (max-width: 768px) {
+  .contact-form-section {
+    padding: 1.5rem 1rem;
+  }
+  .contact-form-container {
+    padding: 1.25rem;
+  }
+  .contact-form-section h2 {
+    font-size: 1.75rem;
+    margin-bottom: 1.5rem;
+  }
+}
+
+/* ============================================================
+  ===============================================================
+  ========== 0) FOOTER ==========================================
+  ===============================================================
+  =============================================================== */
+
+footer {
+  background: #2c2c2c;
+  color: var(--text-light);
+  margin-top: 4rem;
+}
+body.dark-mode footer {
+  background: #0a0a0a;
+}
+
+.footer-content {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 3rem 2rem 1rem;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 2rem;
+}
+
+.footer-section h3 {
+  color: var(--accent); /* nagłówki w stopce na akcent */
+  margin-bottom: 1rem;
+  font-size: 1.2rem;
+}
+
+.footer-section p,
+.footer-section li {
+  line-height: 1.6;
+  margin-bottom: 0.5rem;
+}
+
+.footer-section ul {
+  list-style: none;
+  padding: 0;
+}
+
+.footer-section ul li a {
+  color: #ccc;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.footer-section ul li a:hover {
+  color: var(--accent-400); /* linki na hover w jaśniejszym pomarańczu */
+}
+
+.footer-section ul li a:focus-visible {
+  outline: 3px solid var(--accent-400);
+  outline-offset: 2px;
+  text-decoration: underline;
+}
+
+.social-icons {
+  display: flex;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.social-icon {
+  display: inline-block;
+  width: 40px;
+  height: 40px;
+  background: var(--primary-600); /* domyślnie niebieski */
+  color: #fff;
+  text-align: center;
+  line-height: 40px;
+  border-radius: 50%;
+  text-decoration: none;
+  font-weight: 700;
+  transition: transform 0.3s ease, background-color 0.3s ease;
+}
+
+.social-icon:hover {
+  background: var(--accent-600); /* pomarańcz przy hover */
+  transform: translateY(-3px);
+}
+
+.social-icon:focus-visible {
+  outline: 3px solid var(--accent-400); /* jaśniejszy pomarańcz przy focus */
+  outline-offset: 3px;
+}
+
+.contact-info {
+  color: #ccc;
+}
+.contact-info strong {
+  color: var(--accent); /* wyróżnij ważne informacje akcentem */
+}
+
+.footer-bottom {
+  border-top: 1px solid #444;
+  padding: 1.5rem 2rem;
+  text-align: center;
+  background: #1a1a1a;
+  color: #999;
+}
+body.dark-mode .footer-bottom {
+  background: #000;
+}
+
+.footer-bottom a {
+  color: var(--accent-400); /* subtelny akcent na linki w stopce */
+  text-decoration: none;
+}
+.footer-bottom a:hover {
+  color: var(--accent); /* mocniejszy akcent na hover */
+  text-decoration: underline;
+}
+.footer-bottom a:focus-visible {
+  outline: 3px solid var(--accent-400);
+  outline-offset: 2px;
+}
+
+.footer-bottom p {
+  margin: 0;
+}
+
+@media (max-width: 768px) {
+  .footer-content {
+    grid-template-columns: 1fr;
+    text-align: center;
+  }
+  .social-icons {
+    justify-content: center;
+  }
+}
+
+/* ===============================================================
+   ===============================================================
+   ========== 09) STANY + ANIMACJE + PRZYCISKI ===================
+   ===============================================================
+   =============================================================== */
+
+.skip-link {
+  position: absolute;
+  left: -9999px;
+  top: auto;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+}
+
+.skip-link:focus {
+  left: 1rem;
+  top: 1rem;
+  width: auto;
+  height: auto;
+  background: var(--accent-600); /* mocniejszy pomarańcz jako tło */
+  color: #fff;
+  padding: 0.5rem 0.75rem;
+  border-radius: 0.5rem;
+  z-index: 1000;
+  outline: 3px solid var(--accent-400); /* jaśniejszy pomarańcz jako obrys */
+  outline-offset: 2px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.hidden {
+  opacity: 0;
+  transform: translateY(50px);
+  transition: all 0.6s ease;
+}
+.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+#powrot-na-gore {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background-color: #333;
+  color: #fff;
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  display: none;
+  z-index: 150;
+}
+
+#powrot-na-gore:hover {
+  background-color: var(--accent-600); /* mocniejszy pomarańcz na hover */
+}
+
+#powrot-na-gore:focus-visible {
+  outline: 3px solid var(--accent-400); /* jaśniejszy akcent na focus */
+  outline-offset: 3px;
+}
+
+#powrot-na-gore:active {
+  background-color: var(--accent); /* lekko jaśniejszy przy "wciśnięciu" */
+  transform: scale(0.96);
+}
+
+.service,
+.testimonial-card,
+.gallery-item {
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+}
+.service:hover,
+.testimonial-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 18px rgba(0, 0, 0, 0.16);
+}
+
+
