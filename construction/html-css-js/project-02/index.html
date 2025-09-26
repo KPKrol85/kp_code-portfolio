@@ -39,10 +39,13 @@
         <a href="#">O nas</a>
         <a href="#">Kontakt</a>
       </nav>
-      <label class="switch-toggle">
-        <input type="checkbox" class="mode-toggle" id="darkModeToggle" />
-        <span class="slider"></span>
-      </label>
+      <!-- Przełącznik motywu: dyskretny przycisk z ikoną -->
+<button id="themeToggle" class="theme-toggle" aria-label="Przełącz motyw" aria-pressed="false" title="Przełącz motyw (Jasny/Ciemny)">
+  <!-- Ikony w SVG (sun/moon) -->
+  <svg class="icon-sun" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4.5a1 1 0 0 1 1-1h0a1 1 0 1 1-2 0h0a1 1 0 0 1 1 1Zm0 16a1 1 0 0 1 1 1h0a1 1 0 1 1-2 0h0a1 1 0 0 1 1-1Zm7.5-7.5a1 1 0 0 1 1-1h0a1 1 0 1 1 0 2h0a1 1 0 0 1-1-1ZM3.5 12a1 1 0 0 1 1-1h0a1 1 0 1 1 0 2h0a1 1 0 0 1-1-1Zm12.02-6.02a1 1 0 1 1 1.41-1.41h0a1 1 0 1 1-1.41 1.41Zm-9.04 12.04a1 1 0 1 1 1.41-1.41h0a1 1 0 1 1-1.41 1.41Zm12.04 0a1 1 0 1 1-1.41-1.41h0a1 1 0 1 1 1.41 1.41Zm-12.04-12.04a1 1 0 1 1-1.41-1.41h0a1 1 0 1 1 1.41 1.41ZM12 7a5 5 0 1 1 0 10A5 5 0 0 1 12 7Z"/></svg>
+  <svg class="icon-moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79Z"/></svg>
+</button>
+
     </header>
 
     <main id="main">
@@ -94,7 +97,9 @@
         </div>
       </section>
 
-      <section class="services-section" aria-labelledby="services-heading">
+
+<!-- SEKCJA - OFERTY -->
+      <section class="services-section bg-surface-1" aria-labelledby="services-heading">
         <h2 class="services-heading" class="services-heading">Nasze Usługi</h2>
 
         <div class="services">
@@ -200,7 +205,7 @@
       </section>
 
       <!-- SEKCJA - CO MÓWIĄ O NAS KLIENCI -->
-      <section class="testimonials-section">
+      <section class="testimonials-section bg-surface-2 section--divider">
         <div class="testimonials-inner">
           <h2 class="section-title">Co mówią o nas klienci?</h2>
           <div class="testimonials-container">
@@ -238,7 +243,7 @@
       </section>
 
       <!-- NASZE REALIZACJE - GALERIA -->
-      <section class="gallery-section">
+      <section class="gallery-section bg-surface-1 section--divider">
         <div class="gallery-inner">
           <h2 class="section-title">Nasze realizacje</h2>
           <div class="gallery-container">
@@ -296,7 +301,7 @@
       </section>
 
       <!-- FORMULARZ KONTAKTOWY -->
-      <section class="contact-form-section">
+      <section class="contact-form-section bg-surface-3 section--divider">
         <h2 class="section-title">Skontaktuj się z nami!</h2>
         <div class="contact-form-container">
           <form action="#" method="post" class="contact-form">
