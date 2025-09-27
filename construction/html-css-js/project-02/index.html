@@ -1,18 +1,88 @@
 <!DOCTYPE html>
-<html lang="pl">
+<html lang="pl" dir="ltr">
   <head>
+    <!-- Podstawy -->
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>ProBuild - Usługi Budowlane i Remontowe</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta http-equiv="x-ua-compatible" content="IE=edge" />
 
+    <!-- SEO -->
+    <title>Demo — strona dla firmy remontowej / budowlanej | KP_Code</title>
+    <meta
+      name="description"
+      content="Kompleksowe remonty, budowa domów, wykończenia wnętrz. Profesjonalna firma budowlana — terminowo, solidnie, z gwarancją. Darmowa wycena." />
+    <meta name="author" content="Kamil Król / KP_Code" />
+    <link rel="canonical" href="https://construction-project-02.netlify.app/" />
+    <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
+
+    <!-- Open Graph -->
+    <meta property="og:locale" content="pl_PL" />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="KP_Code" />
+    <meta property="og:title" content="Demo — strona dla firmy remontowej / budowlanej" />
+    <meta
+      property="og:description"
+      content="Kompleksowe remonty, budowa domów, wykończenia wnętrz. Profesjonalna firma budowlana — terminowo, solidnie, z gwarancją." />
+    <meta property="og:url" content="https://construction-project-02.netlify.app/" />
+    <meta property="og:image" content="https://construction-project-02.netlify.app/assets/img/og/og-1200x630.jpg" />
+    <meta
+      property="og:image:secure_url"
+      content="https://construction-project-02.netlify.app/assets/img/og/og-1200x630.jpg" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:type" content="image/jpeg" />
+    <meta property="og:image:alt" content="Wizualizacja nowoczesnego domu na tle planów architektonicznych — KP_Code" />
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Demo — strona dla firmy remontowej / budowlanej" />
+    <meta
+      name="twitter:description"
+      content="Kompleksowe remonty, budowa domów, wykończenia wnętrz. Profesjonalna firma budowlana — terminowo, solidnie, z gwarancją." />
+    <meta name="twitter:image" content="https://construction-project-02.netlify.app/assets/img/og/og-1200x630.jpg" />
+    <!-- <meta name="twitter:site" content="@TwojProfil"> -->
+    <!-- <meta name="twitter:creator" content="@TwojProfil"> -->
+
+    <!-- Ikony / manifest (ścieżki względne dla projektu w podkatalogu) -->
+    <link rel="icon" type="image/png" sizes="32x32" href="assets/icons/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="assets/icons/favicon-16x16.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="assets/icons/apple-touch-icon.png" />
+    <link rel="manifest" href="site.webmanifest" />
+    <link rel="mask-icon" href="assets/icons/safari-pinned-tab.svg" color="#0f4c81" />
+    <meta name="application-name" content="KP_Code" />
+    <meta name="apple-mobile-web-app-title" content="KP_Code" />
+    <meta name="msapplication-TileColor" content="#0f4c81" />
+
+    <!-- Kolor paska przeglądarki + wsparcie light/dark -->
+    <meta name="theme-color" content="#0f4c81" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#121212" media="(prefers-color-scheme: dark)" />
+    <meta name="color-scheme" content="light dark" />
+    <meta name="format-detection" content="telephone=no" />
+
+    <!-- Wydajność fontów -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
       href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&family=Montserrat:wght@600;700&display=swap"
       rel="stylesheet" />
 
-    <script src="https://kit.fontawesome.com/6e7b7ddf50.js" crossorigin="anonymous"></script>
+    <!-- Ikony (Font Awesome) – jeśli nie używasz, usuń ten skrypt -->
+    <script src="https://kit.fontawesome.com/6e7b7ddf50.js" crossorigin="anonymous" defer></script>
+
+    <!-- Główny CSS -->
     <link rel="stylesheet" href="css/style.css" />
+
+    <!-- Strukturalne dane JSON-LD (Organization) -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Organization",
+        "name": "KP_Code",
+        "url": "https://construction-project-02.netlify.app/",
+        "logo": "https://construction-project-02.netlify.app/assets/icons/apple-touch-icon.png",
+        "sameAs": []
+      }
+    </script>
   </head>
 
   <body>
@@ -21,9 +91,9 @@
       <a href="#top" class="logo">
         <img
           class="logo-img"
-          src="assets/img/logo/logo-light-mode-200x200.svg"
-          data-light="assets/img/logo/logo-light-mode-200x200.svg"
-          data-dark="assets/img/logo/logo-dark-mode-200x200.svg"
+          src="assets/img/logo/logo-02-light-mode-200x200.svg"
+          data-light="assets/img/logo/logo-02-light-mode-200x200.svg"
+          data-dark="assets/img/logo/logo-02-dark-mode-200x200.svg"
           alt="KP_Code — logo"
           width="200"
           height="200"
@@ -32,7 +102,7 @@
         <span class="logo-text">KP_Code</span>
       </a>
 
-      <nav>
+      <nav id="primaryNav" role="navigation" aria-label="Główne">
         <a href="#">Strona Główna</a>
         <a href="#">Galeria</a>
         <a href="#">Usługi</a>
@@ -40,12 +110,48 @@
         <a href="#">Kontakt</a>
       </nav>
       <!-- Przełącznik motywu: dyskretny przycisk z ikoną -->
-<button id="themeToggle" class="theme-toggle" aria-label="Przełącz motyw" aria-pressed="false" title="Przełącz motyw (Jasny/Ciemny)">
-  <!-- Ikony w SVG (sun/moon) -->
-  <svg class="icon-sun" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4.5a1 1 0 0 1 1-1h0a1 1 0 1 1-2 0h0a1 1 0 0 1 1 1Zm0 16a1 1 0 0 1 1 1h0a1 1 0 1 1-2 0h0a1 1 0 0 1 1-1Zm7.5-7.5a1 1 0 0 1 1-1h0a1 1 0 1 1 0 2h0a1 1 0 0 1-1-1ZM3.5 12a1 1 0 0 1 1-1h0a1 1 0 1 1 0 2h0a1 1 0 0 1-1-1Zm12.02-6.02a1 1 0 1 1 1.41-1.41h0a1 1 0 1 1-1.41 1.41Zm-9.04 12.04a1 1 0 1 1 1.41-1.41h0a1 1 0 1 1-1.41 1.41Zm12.04 0a1 1 0 1 1-1.41-1.41h0a1 1 0 1 1 1.41 1.41Zm-12.04-12.04a1 1 0 1 1-1.41-1.41h0a1 1 0 1 1 1.41 1.41ZM12 7a5 5 0 1 1 0 10A5 5 0 0 1 12 7Z"/></svg>
-  <svg class="icon-moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79Z"/></svg>
-</button>
+      <button
+        id="themeToggle"
+        class="theme-toggle"
+        aria-label="Przełącz motyw"
+        aria-pressed="false"
+        title="Przełącz motyw (Jasny/Ciemny)">
+        <!-- Ikony w SVG (sun/moon) -->
+        <svg class="icon-sun" viewBox="0 0 24 24" aria-hidden="true">
+          <path
+            d="M12 4.5a1 1 0 0 1 1-1h0a1 1 0 1 1-2 0h0a1 1 0 0 1 1 1Zm0 16a1 1 0 0 1 1 1h0a1 1 0 1 1-2 0h0a1 1 0 0 1 1-1Zm7.5-7.5a1 1 0 0 1 1-1h0a1 1 0 1 1 0 2h0a1 1 0 0 1-1-1ZM3.5 12a1 1 0 0 1 1-1h0a1 1 0 1 1 0 2h0a1 1 0 0 1-1-1Zm12.02-6.02a1 1 0 1 1 1.41-1.41h0a1 1 0 1 1-1.41 1.41Zm-9.04 12.04a1 1 0 1 1 1.41-1.41h0a1 1 0 1 1-1.41 1.41Zm12.04 0a1 1 0 1 1-1.41-1.41h0a1 1 0 1 1 1.41 1.41Zm-12.04-12.04a1 1 0 1 1-1.41-1.41h0a1 1 0 1 1 1.41 1.41ZM12 7a5 5 0 1 1 0 10A5 5 0 0 1 12 7Z" />
+        </svg>
+        <svg class="icon-moon" viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79Z" />
+        </svg>
+      </button>
 
+      <!-- Hamburger (Twoje SVG 40×40 jako <img>) -->
+      <button
+        id="hamburger"
+        type="button"
+        class="icon-btn hamburger"
+        aria-label="Otwórz menu"
+        aria-controls="primaryNav"
+        aria-haspopup="true"
+        aria-expanded="false">
+        <img
+          id="hamburgerIcon"
+          class="icon-svg icon-menu"
+          src="assets/img/icon/hamburger-02-light-mode-40.svg"
+          data-light="assets/img/icon/hamburger-02-light-mode-40.svg"
+          data-dark="assets/img/icon/hamburger-02-dark-mode-40.svg"
+          alt=""
+          aria-hidden="true" />
+
+        <!-- Ikona ZAMKNIJ (X) – klasyczne 24×24 dla spójności linii -->
+        <svg class="icon-svg icon-close" viewBox="0 0 24 24" aria-hidden="true">
+          <g stroke="currentColor" stroke-linecap="round" stroke-width="2" fill="none">
+            <line x1="5" y1="5" x2="19" y2="19" />
+            <line x1="19" y1="5" x2="5" y2="19" />
+          </g>
+        </svg>
+      </button>
     </header>
 
     <main id="main">
@@ -97,8 +203,7 @@
         </div>
       </section>
 
-
-<!-- SEKCJA - OFERTY -->
+      <!-- SEKCJA - OFERTY -->
       <section class="services-section bg-surface-1" aria-labelledby="services-heading">
         <h2 class="services-heading" class="services-heading">Nasze Usługi</h2>
 
@@ -201,6 +306,120 @@
             <h3>Wykończenia wnętrz</h3>
             <p>Stylowe i nowoczesne wykończenia dla każdego pomieszczenia.</p>
           </div>
+
+          <!-- 4) Adaptacje poddaszy -->
+          <div class="service hidden">
+            <picture>
+              <!-- AVIF -->
+              <source
+                type="image/avif"
+                srcset="
+                  assets/img/uslugi/remont-mieszkania-01-400x300.avif 400w,
+                  assets/img/uslugi/remont-mieszkania-01-600x400.avif 600w
+                "
+                sizes="(max-width: 768px) 92vw, 360px" />
+              <!-- WebP -->
+              <source
+                type="image/webp"
+                srcset="
+                  assets/img/uslugi/remont-mieszkania-01-400x300.webp 400w,
+                  assets/img/uslugi/remont-mieszkania-01-600x400.webp 600w
+                "
+                sizes="(max-width: 768px) 92vw, 360px" />
+              <!-- Fallback JPG -->
+              <img
+                src="assets/img/uslugi/remont-mieszkania-01-600x400.jpg"
+                srcset="
+                  assets/img/uslugi/remont-mieszkania-01-400x300.jpg 400w,
+                  assets/img/uslugi/remont-mieszkania-01-600x400.jpg 600w
+                "
+                sizes="(max-width: 768px) 92vw, 360px"
+                width="600"
+                height="400"
+                alt="Adaptacje poddaszy — przykład realizacji"
+                loading="lazy"
+                decoding="async"
+                fetchpriority="low" />
+            </picture>
+            <h3>Adaptacje poddaszy</h3>
+            <p>Kompleksowe remonty wnętrz dostosowane do Twoich potrzeb.</p>
+          </div>
+
+          <!-- 5) Instalacje sanitarne -->
+          <div class="service hidden">
+            <picture>
+              <!-- AVIF -->
+              <source
+                type="image/avif"
+                srcset="
+                  assets/img/uslugi/remont-mieszkania-01-400x300.avif 400w,
+                  assets/img/uslugi/remont-mieszkania-01-600x400.avif 600w
+                "
+                sizes="(max-width: 768px) 92vw, 360px" />
+              <!-- WebP -->
+              <source
+                type="image/webp"
+                srcset="
+                  assets/img/uslugi/remont-mieszkania-01-400x300.webp 400w,
+                  assets/img/uslugi/remont-mieszkania-01-600x400.webp 600w
+                "
+                sizes="(max-width: 768px) 92vw, 360px" />
+              <!-- Fallback JPG -->
+              <img
+                src="assets/img/uslugi/remont-mieszkania-01-600x400.jpg"
+                srcset="
+                  assets/img/uslugi/remont-mieszkania-01-400x300.jpg 400w,
+                  assets/img/uslugi/remont-mieszkania-01-600x400.jpg 600w
+                "
+                sizes="(max-width: 768px) 92vw, 360px"
+                width="600"
+                height="400"
+                alt="Adaptacje poddaszy — przykład realizacji"
+                loading="lazy"
+                decoding="async"
+                fetchpriority="low" />
+            </picture>
+            <h3>Instalacje sanitarne</h3>
+            <p>Kompleksowe remonty wnętrz dostosowane do Twoich potrzeb.</p>
+          </div>
+
+          <!-- 6) Instalacje elektryczne -->
+          <div class="service hidden">
+            <picture>
+              <!-- AVIF -->
+              <source
+                type="image/avif"
+                srcset="
+                  assets/img/uslugi/remont-mieszkania-01-400x300.avif 400w,
+                  assets/img/uslugi/remont-mieszkania-01-600x400.avif 600w
+                "
+                sizes="(max-width: 768px) 92vw, 360px" />
+              <!-- WebP -->
+              <source
+                type="image/webp"
+                srcset="
+                  assets/img/uslugi/remont-mieszkania-01-400x300.webp 400w,
+                  assets/img/uslugi/remont-mieszkania-01-600x400.webp 600w
+                "
+                sizes="(max-width: 768px) 92vw, 360px" />
+              <!-- Fallback JPG -->
+              <img
+                src="assets/img/uslugi/remont-mieszkania-01-600x400.jpg"
+                srcset="
+                  assets/img/uslugi/remont-mieszkania-01-400x300.jpg 400w,
+                  assets/img/uslugi/remont-mieszkania-01-600x400.jpg 600w
+                "
+                sizes="(max-width: 768px) 92vw, 360px"
+                width="600"
+                height="400"
+                alt="Adaptacje poddaszy — przykład realizacji"
+                loading="lazy"
+                decoding="async"
+                fetchpriority="low" />
+            </picture>
+            <h3>Instalacje elektryczne</h3>
+            <p>Kompleksowe remonty wnętrz dostosowane do Twoich potrzeb.</p>
+          </div>
         </div>
       </section>
 
@@ -247,48 +466,222 @@
         <div class="gallery-inner">
           <h2 class="section-title">Nasze realizacje</h2>
           <div class="gallery-container">
+            <!-- 1) Remont mieszkania -->
             <div class="gallery-item hidden">
-              <img src="assets/img/realizacje/remont-01-1200x800.jpg" alt="Realizacje - Remont mieszkania" />
+              <picture>
+                <!-- AVIF -->
+                <source
+                  type="image/avif"
+                  srcset="
+                    assets/img/realizacje/remont-01-800x600.avif   800w,
+                    assets/img/realizacje/remont-01-1200x800.avif 1200w
+                  "
+                  sizes="(max-width: 768px) 100vw, 400px" />
+                <!-- WebP -->
+                <source
+                  type="image/webp"
+                  srcset="
+                    assets/img/realizacje/remont-01-800x600.webp   800w,
+                    assets/img/realizacje/remont-01-1200x800.webp 1200w
+                  "
+                  sizes="(max-width: 768px) 100vw, 400px" />
+                <!-- JPEG fallback -->
+                <img
+                  src="assets/img/realizacje/remont-01-1200x800.jpg"
+                  srcset="
+                    assets/img/realizacje/remont-01-800x600.jpg   800w,
+                    assets/img/realizacje/remont-01-1200x800.jpg 1200w
+                  "
+                  sizes="(max-width: 768px) 100vw, 400px"
+                  alt="Realizacje - Remont mieszkania"
+                  width="1200"
+                  height="800"
+                  loading="lazy"
+                  decoding="async" />
+              </picture>
               <div class="overlay">
                 <h3>Remont mieszkania</h3>
                 <p>Warszawa</p>
               </div>
             </div>
 
+            <!-- 2) Budowa willi -->
             <div class="gallery-item hidden">
-              <img src="assets/img/realizacje/budowa-domu-01-1200x800.jpg" alt="Realizacje - Budowa willi" />
+              <picture>
+                <source
+                  type="image/avif"
+                  srcset="
+                    assets/img/realizacje/budowa-domu-01-800x600.avif   800w,
+                    assets/img/realizacje/budowa-domu-01-1200x800.avif 1200w
+                  "
+                  sizes="(max-width: 768px) 100vw, 400px" />
+                <source
+                  type="image/webp"
+                  srcset="
+                    assets/img/realizacje/budowa-domu-01-800x600.webp   800w,
+                    assets/img/realizacje/budowa-domu-01-1200x800.webp 1200w
+                  "
+                  sizes="(max-width: 768px) 100vw, 400px" />
+                <img
+                  src="assets/img/realizacje/budowa-domu-01-1200x800.jpg"
+                  srcset="
+                    assets/img/realizacje/budowa-domu-01-800x600.jpg   800w,
+                    assets/img/realizacje/budowa-domu-01-1200x800.jpg 1200w
+                  "
+                  sizes="(max-width: 768px) 100vw, 400px"
+                  alt="Realizacje - Budowa willi"
+                  width="1200"
+                  height="800"
+                  loading="lazy"
+                  decoding="async" />
+              </picture>
               <div class="overlay">
                 <h3>Budowa willi</h3>
                 <p>Rzeszów</p>
               </div>
             </div>
 
+            <!-- 3) Wykończenie salonu -->
             <div class="gallery-item hidden">
-              <img src="assets/img/realizacje/wykonczenia-02-1200x800.jpg" alt="Realizacje - Wykończenie salonu" />
+              <picture>
+                <source
+                  type="image/avif"
+                  srcset="
+                    assets/img/realizacje/wykonczenia-02-800x600.avif   800w,
+                    assets/img/realizacje/wykonczenia-02-1200x800.avif 1200w
+                  "
+                  sizes="(max-width: 768px) 100vw, 400px" />
+                <source
+                  type="image/webp"
+                  srcset="
+                    assets/img/realizacje/wykonczenia-02-800x600.webp   800w,
+                    assets/img/realizacje/wykonczenia-02-1200x800.webp 1200w
+                  "
+                  sizes="(max-width: 768px) 100vw, 400px" />
+                <img
+                  src="assets/img/realizacje/wykonczenia-02-1200x800.jpg"
+                  srcset="
+                    assets/img/realizacje/wykonczenia-02-800x600.jpg   800w,
+                    assets/img/realizacje/wykonczenia-02-1200x800.jpg 1200w
+                  "
+                  sizes="(max-width: 768px) 100vw, 400px"
+                  alt="Realizacje - Wykończenie salonu"
+                  width="1200"
+                  height="800"
+                  loading="lazy"
+                  decoding="async" />
+              </picture>
               <div class="overlay">
                 <h3>Wykończenie salonu</h3>
                 <p>Gdańsk</p>
               </div>
             </div>
 
+            <!-- 4) Remont mieszkania -->
             <div class="gallery-item hidden">
-              <img src="assets/img/realizacje/remont-02-1200x800.jpg" alt="Realizacje - Remont mieszkania" />
+              <picture>
+                <source
+                  type="image/avif"
+                  srcset="
+                    assets/img/realizacje/remont-02-800x600.avif   800w,
+                    assets/img/realizacje/remont-02-1200x800.avif 1200w
+                  "
+                  sizes="(max-width: 768px) 100vw, 400px" />
+                <source
+                  type="image/webp"
+                  srcset="
+                    assets/img/realizacje/remont-02-800x600.webp   800w,
+                    assets/img/realizacje/remont-02-1200x800.webp 1200w
+                  "
+                  sizes="(max-width: 768px) 100vw, 400px" />
+                <img
+                  src="assets/img/realizacje/remont-02-1200x800.jpg"
+                  srcset="
+                    assets/img/realizacje/remont-02-800x600.jpg   800w,
+                    assets/img/realizacje/remont-02-1200x800.jpg 1200w
+                  "
+                  sizes="(max-width: 768px) 100vw, 400px"
+                  alt="Realizacje - Remont mieszkania"
+                  width="1200"
+                  height="800"
+                  loading="lazy"
+                  decoding="async" />
+              </picture>
               <div class="overlay">
                 <h3>Remont mieszkania</h3>
                 <p>Wrocław</p>
               </div>
             </div>
 
+            <!-- 5) Budowa domu -->
             <div class="gallery-item hidden">
-              <img src="assets/img/realizacje/budowa-domu-02-1200x800.jpg" alt="Realizacje - Budowa domu" />
+              <picture>
+                <source
+                  type="image/avif"
+                  srcset="
+                    assets/img/realizacje/budowa-domu-02-800x600.avif   800w,
+                    assets/img/realizacje/budowa-domu-02-1200x800.avif 1200w
+                  "
+                  sizes="(max-width: 768px) 100vw, 400px" />
+                <source
+                  type="image/webp"
+                  srcset="
+                    assets/img/realizacje/budowa-domu-02-800x600.webp   800w,
+                    assets/img/realizacje/budowa-domu-02-1200x800.webp 1200w
+                  "
+                  sizes="(max-width: 768px) 100vw, 400px" />
+                <img
+                  src="assets/img/realizacje/budowa-domu-02-1200x800.jpg"
+                  srcset="
+                    assets/img/realizacje/budowa-domu-02-800x600.jpg   800w,
+                    assets/img/realizacje/budowa-domu-02-1200x800.jpg 1200w
+                  "
+                  sizes="(max-width: 768px) 100vw, 400px"
+                  alt="Realizacje - Budowa domu"
+                  width="1200"
+                  height="800"
+                  loading="lazy"
+                  decoding="async" />
+              </picture>
               <div class="overlay">
                 <h3>Budowa domu</h3>
                 <p>Poznań</p>
               </div>
             </div>
 
+            <!-- 6) Wykończenie kuchni (spójnie jak w #5: 800×600 + 1200×800) -->
             <div class="gallery-item hidden">
-              <img src="assets/img/realizacje/wykonczenia-01-800x600.jpg" alt="Realizacje - Wykończenie kuchni" />
+              <picture>
+                <!-- AVIF -->
+                <source
+                  type="image/avif"
+                  srcset="
+                    assets/img/realizacje/wykonczenia-01-800x600.avif   800w,
+                    assets/img/realizacje/wykonczenia-01-1200x800.avif 1200w
+                  "
+                  sizes="(max-width: 768px) 100vw, 400px" />
+                <!-- WebP -->
+                <source
+                  type="image/webp"
+                  srcset="
+                    assets/img/realizacje/wykonczenia-01-800x600.webp   800w,
+                    assets/img/realizacje/wykonczenia-01-1200x800.webp 1200w
+                  "
+                  sizes="(max-width: 768px) 100vw, 400px" />
+                <!-- JPEG fallback -->
+                <img
+                  src="assets/img/realizacje/wykonczenia-01-1200x800.jpg"
+                  srcset="
+                    assets/img/realizacje/wykonczenia-01-800x600.jpg   800w,
+                    assets/img/realizacje/wykonczenia-01-1200x800.jpg 1200w
+                  "
+                  sizes="(max-width: 768px) 100vw, 400px"
+                  alt="Realizacje - Wykończenie kuchni"
+                  width="1200"
+                  height="800"
+                  loading="lazy"
+                  decoding="async" />
+              </picture>
               <div class="overlay">
                 <h3>Wykończenie kuchni</h3>
                 <p>Kraków</p>
@@ -331,7 +724,7 @@
     <footer>
       <div class="footer-content">
         <div class="footer-section">
-          <h3>ProBuild</h3>
+          <h3>Demo - Twoja firma</h3>
           <p>
             Jesteśmy firmą budowlaną z wieloletnim doświadczeniem. Realizujemy projekty od A do Z z najwyższą jakością.
           </p>

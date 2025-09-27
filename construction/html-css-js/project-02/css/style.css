@@ -18,9 +18,7 @@
    ====================================================================== */
 
 /* ===============================================================
-   ===============================================================
    ========== 00) GLOBALNE =======================================
-   ===============================================================
    =============================================================== */
 
 :root {
@@ -54,14 +52,46 @@ body.dark-mode {
   --space-3: 1.25rem;
   --space-4: 2rem;
 }
+
 :root {
   --section-py: 4rem;
   --section-px: 2rem;
 }
+
 :root {
   --success: #2ecc71;
   --error: #e74c3c;
   --warning: #f1c40f;
+}
+
+:root {
+  --header-h: 56px;
+}
+
+/* Nudge ikon w przycisku hamburger/X — używaj bardzo małych wartości */
+:root {
+  --icon-nudge-x: 0px; /* było -20px → za dużo */
+  --icon-nudge-y: 1px;
+}
+
+/* Desktopowy padding boczny headera (reguła używająca tego będzie w sekcji 02) */
+@media (min-width: 769px) {
+  :root {
+    --header-pad-x: 28px;
+  }
+}
+
+/* Mobile tokens */
+@media (max-width: 768px) {
+  :root {
+    --header-h: 54px;
+    --edge-pad: 12px;
+    --tap-pad: 8px;
+    --logo-optical: 2px;
+    --burger-optical: -10px; /* było 28px → dawaj 0–8px, zwykle 3–5px */
+    --section-py: 3rem;
+    --section-px: 1rem;
+  }
 }
 
 /* ===============================================================
@@ -78,14 +108,10 @@ html {
     scroll-behavior: auto;
   }
 }
-
-/* Globalny layout sekcji (max-width i centrowanie robią wewnętrzne wrapy) */
 section {
   scroll-margin-top: clamp(64px, 8vh, 96px);
   padding: var(--section-py) var(--section-px);
 }
-
-/* Body + motywy */
 body {
   margin: 0;
   padding: 0;
@@ -99,8 +125,6 @@ body.dark-mode {
   background: var(--bg-dark);
   color: var(--text-light);
 }
-
-/* Płynne nagłówki (bez narzucania koloru – sekcje nadają własny, np. primary/accent) */
 h1 {
   font-family: 'Montserrat', sans-serif;
   font-size: clamp(2.2rem, 1.2rem + 3.2vw, 3.5rem);
@@ -119,8 +143,6 @@ h3 {
   line-height: 1.3;
   margin: 0 0 0.7em;
 }
-
-/* Lead */
 .lead {
   font-size: clamp(1.05rem, 0.95rem + 0.6vw, 1.25rem);
   line-height: 1.7;
@@ -130,8 +152,6 @@ body.dark-mode .lead {
   color: var(--text-light);
   opacity: 0.9;
 }
-
-/* Tytuły sekcji z akcentem (kreska pod spodem) */
 .section-title {
   position: relative;
   display: inline-block;
@@ -142,62 +162,77 @@ body.dark-mode .lead {
   content: '';
   position: absolute;
   left: 50%;
-  transform: translateX(-50%);
-  bottom: -0.2rem;
-  width: 64px;
+  bottom: -0.4rem;
+  width: 90px;
   height: 2px;
-  background: var(--primary-600);
-  border-radius: 2px;
-  opacity: 0.7;
-}
-body.dark-mode .section-title::after {
-  background: var(--accent-400);
+  background: linear-gradient(90deg, var(--primary-400), var(--accent-400));
+  clip-path: polygon(0 50%, 8% 0, 92% 0, 100% 50%, 92% 100%, 8% 100%);
+  box-shadow: 0 0 6px color-mix(in srgb, var(--primary-400) 40%, transparent);
+  transform: translateX(-50%) scaleX(0);
+  transform-origin: center;
+  animation: underlineGrow 0.6s ease forwards;
 }
 
-/* Mobile: ciaśniejsze wypełnienia sekcji */
-@media (max-width: 768px) {
-  :root {
-    --section-py: 3rem;
-    --section-px: 1rem;
+@keyframes underlineGrow {
+  to {
+    transform: translateX(-50%) scaleX(1);
   }
 }
 
-/* Drobny bonus – zaznaczenie tekstu w kolorach marki */
 ::selection {
   background: color-mix(in srgb, var(--accent) 35%, transparent);
   color: var(--text-light);
 }
 
 /* ===============================================================
-   ===============================================================
    ========== 02) NAGŁÓWEK =======================================
-   ===============================================================
    =============================================================== */
 
+/* HEADER */
 header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 1rem 2rem;
-  background: linear-gradient(135deg, var(--primary), color-mix(in srgb, var(--primary) 75%, var(--text-light) 25%));
+  gap: 12px;
+  padding: 8px 12px;
+  min-height: var(--header-h);
+  background: linear-gradient(
+    135deg,
+    color-mix(in srgb, var(--primary) 70%, transparent),
+    color-mix(in srgb, var(--primary) 45%, transparent)
+  );
   color: var(--text-light);
   position: sticky;
   top: 0;
   z-index: 100;
+  border-bottom: 1px solid color-mix(in srgb, var(--text-dark) 12%, transparent);
   box-shadow: 0 2px 15px color-mix(in srgb, var(--bg-dark) 10%, transparent);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px) saturate(1.1);
+  -webkit-backdrop-filter: blur(10px) saturate(1.1);
   transition: background-color 0.3s ease, box-shadow 0.3s ease, transform 0.3s ease;
 }
 body.dark-mode header {
   background: linear-gradient(
     135deg,
-    color-mix(in srgb, var(--bg-dark) 75%, transparent),
-    color-mix(in srgb, var(--bg-dark) 90%, transparent)
+    color-mix(in srgb, var(--bg-dark) 85%, transparent),
+    color-mix(in srgb, var(--bg-dark) 92%, transparent)
   );
+  border-bottom: 1px solid color-mix(in srgb, var(--text-light) 14%, transparent);
   box-shadow: 0 2px 15px color-mix(in srgb, var(--text-light) 5%, transparent);
+  backdrop-filter: blur(10px) saturate(1.1);
+  -webkit-backdrop-filter: blur(10px) saturate(1.1);
+}
+@supports not (backdrop-filter: blur(1px)) {
+  body.dark-mode header {
+    background: linear-gradient(
+      135deg,
+      color-mix(in srgb, var(--bg-dark) 95%, transparent),
+      color-mix(in srgb, var(--bg-dark) 98%, transparent)
+    );
+  }
 }
 
+/* LOGO */
 .logo {
   display: flex;
   align-items: center;
@@ -216,6 +251,7 @@ body.dark-mode header {
   color: var(--text-light);
 }
 
+/* NAV (desktop) */
 nav {
   display: flex;
   align-items: center;
@@ -227,10 +263,10 @@ nav a {
   padding: 0.7rem 1.2rem;
   font-weight: 600;
   border-radius: 25px;
-  transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
   position: relative;
   font-size: 0.95rem;
   outline-offset: 3px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
 }
 nav a:hover {
   background: color-mix(in srgb, var(--text-light) 20%, transparent);
@@ -245,12 +281,12 @@ nav a.active {
   box-shadow: inset 0 2px 4px color-mix(in srgb, var(--bg-dark) 10%, transparent);
 }
 
+/* ACTIONS */
 .header-actions {
   display: flex;
   align-items: center;
   gap: 1rem;
 }
-
 .contact-btn {
   background: var(--text-light);
   color: var(--primary);
@@ -258,8 +294,8 @@ nav a.active {
   border-radius: 25px;
   text-decoration: none;
   font-weight: 700;
-  transition: all 0.3s ease;
   border: 2px solid transparent;
+  transition: all 0.3s ease;
 }
 .contact-btn:hover {
   background: transparent;
@@ -275,24 +311,14 @@ nav a.active {
 body.dark-mode .contact-btn {
   background: var(--accent);
   color: var(--text-light);
-  border-color: transparent;
 }
 body.dark-mode .contact-btn:hover {
   background: transparent;
   color: var(--accent);
   border-color: var(--accent);
 }
-.switch-toggle {
-  position: relative;
-  display: inline-block;
-  width: 45px;
-  height: 25.5px;
-}
-.switch-toggle input {
-  opacity: 0;
-  width: 0;
-  height: 0;
-}
+
+/* THEME TOGGLE */
 .theme-toggle {
   position: relative;
   display: inline-grid;
@@ -302,11 +328,11 @@ body.dark-mode .contact-btn:hover {
   padding: 0;
   border-radius: 50%;
   border: 1px solid color-mix(in srgb, var(--text-dark) 12%, transparent);
-  background: color-mix(in srgb, var(--bg-light) 70%, transparent);
+  background: color-mix(in srgb, var(--bg-light) 90%, transparent);
   backdrop-filter: saturate(1.2) blur(2px);
   box-shadow: 0 1px 2px rgba(0, 0, 0, 0.06);
   cursor: pointer;
-  transition: background 0.25s ease, border-color 0.25s ease, transform 0.2s ease;
+  transition: background 0.25s, border-color 0.25s, transform 0.2s;
 }
 .theme-toggle:hover {
   transform: translateY(-1px);
@@ -320,10 +346,10 @@ body.dark-mode .contact-btn:hover {
   height: 18px;
   fill: currentColor;
   opacity: 0.9;
-  transition: opacity 0.2s ease, transform 0.2s ease;
+  transition: opacity 0.2s, transform 0.2s;
 }
 .theme-toggle .icon-sun {
-  color: var(--accent-400); /* ciepły żółto-pomarańczowy */
+  color: var(--accent-400);
 }
 .theme-toggle .icon-moon {
   position: absolute;
@@ -343,56 +369,108 @@ body.dark-mode .theme-toggle .icon-moon {
   transform: scale(1);
   color: var(--primary-400);
 }
-
 .theme-toggle:focus-visible {
   outline: 2px solid color-mix(in srgb, var(--primary, #0f4c81) 70%, white);
   outline-offset: 2px;
 }
 @media (prefers-reduced-motion: reduce) {
-  .theme-toggle {
-    transition: none;
-  }
+  .theme-toggle,
   .theme-toggle .icon-sun,
   .theme-toggle .icon-moon {
     transition: none;
   }
 }
 
-.hamburger {
+/* HAMBURGER (czyste SVG; X i burger w tym samym punkcie) */
+.icon-btn {
   display: none;
-  flex-direction: column;
-  cursor: pointer;
-  gap: 3px;
+  background: transparent;
+  border: 0;
+  box-shadow: none;
+  padding: 8px;
+  line-height: 0;
+  color: var(--text-light);
+  align-items: center;
+  justify-content: center;
 }
-.hamburger span {
-  width: 25px;
-  height: 3px;
-  background: var(--text-light);
-  border-radius: 2px;
-  transition: all 0.3s ease;
+.hamburger.icon-btn {
+  position: relative;
 }
-.hamburger.active span:nth-child(1) {
-  transform: rotate(45deg) translate(6px, 6px);
+.hamburger .icon-svg {
+  position: absolute;
+  inset: 0;
+  margin: auto;
+  display: block;
+  width: 26px;
+  height: 26px;
+  transition: opacity 0.18s ease, transform 0.18s ease;
 }
-.hamburger.active span:nth-child(2) {
+/* wspólny nudge dla obu ikon (wartości w 00) GLOBALNE) */
+#hamburgerIcon {
+  transform: translate(var(--icon-nudge-x), var(--icon-nudge-y));
+}
+.icon-close {
   opacity: 0;
+  transform: translate(var(--icon-nudge-x), var(--icon-nudge-y)) scale(0.9);
 }
-.hamburger.active span:nth-child(3) {
-  transform: rotate(-45deg) translate(6px, -6px);
+.hamburger.active .icon-menu {
+  opacity: 0;
+  transform: translate(var(--icon-nudge-x), var(--icon-nudge-y)) scale(0.9) rotate(90deg);
+}
+.hamburger.active .icon-close {
+  opacity: 1;
+  transform: translate(var(--icon-nudge-x), var(--icon-nudge-y)) scale(1);
 }
 
-/* Mobile nav */
-@media (max-width: 768px) {
+.icon-btn:hover,
+.icon-btn:active {
+  background: transparent;
+  transform: none;
+}
+.icon-btn:focus-visible {
+  outline: 2px solid var(--accent-400);
+  outline-offset: 2px;
+}
+
+/* ================= Desktop – większe odstępy po bokach ================= */
+@media (min-width: 769px) {
   header {
-    padding: 1rem;
+    padding-left: var(--header-pad-x);
+    padding-right: var(--header-pad-x);
   }
+}
+
+/* ================= Mobile ================= */
+@media (max-width: 768px) {
+  /* równe krawędzie headera (z notchem) */
+  header {
+    padding-top: 8px;
+    padding-bottom: 8px;
+    padding-left: calc(var(--edge-pad) + env(safe-area-inset-left));
+    padding-right: calc(var(--edge-pad) + env(safe-area-inset-right));
+  }
+
+  /* logo i hamburger – ta sama tap-area, symetryczne marginesy */
   .logo {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-left: var(--edge-pad);
+    padding: var(--tap-pad);
+    padding-left: calc(var(--tap-pad) + var(--logo-optical));
     font-size: 1.5rem;
   }
   .logo-text {
     display: none;
   }
 
+  .icon-btn {
+    display: inline-flex;
+    margin-right: calc(var(--edge-pad) - clamp(-12px, var(--burger-optical), 12px));
+    padding: var(--tap-pad);
+  }
+
+  /* menu mobilne */
   nav {
     display: none;
     position: absolute;
@@ -400,7 +478,11 @@ body.dark-mode .theme-toggle .icon-moon {
     left: 0;
     right: 0;
     z-index: 120;
-    background: linear-gradient(135deg, var(--primary), var(--accent));
+    background: linear-gradient(
+      135deg,
+      color-mix(in srgb, var(--primary) 85%, transparent),
+      color-mix(in srgb, var(--primary) 65%, transparent)
+    );
     flex-direction: column;
     padding: 1rem;
     box-shadow: 0 4px 15px color-mix(in srgb, var(--bg-dark) 12%, transparent);
@@ -409,7 +491,7 @@ body.dark-mode .theme-toggle .icon-moon {
     background: linear-gradient(
       135deg,
       color-mix(in srgb, var(--bg-dark) 92%, transparent),
-      color-mix(in srgb, var(--bg-dark) 95%, transparent)
+      color-mix(in srgb, var(--bg-dark) 96%, transparent)
     );
   }
   nav.mobile-open {
@@ -419,9 +501,7 @@ body.dark-mode .theme-toggle .icon-moon {
     margin: 0.5rem 0;
     text-align: center;
   }
-  .hamburger {
-    display: flex;
-  }
+
   .header-actions {
     gap: 0.5rem;
   }
@@ -453,8 +533,6 @@ body.dark-mode .theme-toggle .icon-moon {
     overflow: hidden;
   }
 }
-
-/* Obraz tła */
 .hero-media,
 .hero-img {
   position: absolute;
@@ -466,8 +544,6 @@ body.dark-mode .theme-toggle .icon-moon {
   object-fit: cover;
   object-position: center;
 }
-
-/* Warstwa przyciemniająca na obrazie (light/dark – różna intensywność) */
 .hero::before {
   content: '';
   position: absolute;
@@ -485,16 +561,12 @@ body.dark-mode .hero::before {
     color-mix(in srgb, var(--bg-dark) 65%, transparent)
   );
 }
-
-/* Treść w hero */
 .hero-content {
   position: relative;
   z-index: 1;
   color: var(--text-light);
   padding: 1rem 2rem;
 }
-
-/* Panel z tytułem: szkło + delikatny cień, bez sztywnych hexów */
 .hero-content h1 {
   font-size: clamp(1.8rem, 3vw, 2.6rem);
   line-height: 1.3;
@@ -512,20 +584,16 @@ body.dark-mode .hero::before {
   -webkit-backdrop-filter: blur(6px) saturate(115%);
   box-shadow: 0 10px 24px color-mix(in srgb, var(--bg-dark) 18%, transparent);
 }
-
-/* Akcent w tytule (np. <span class="accent">...) */
 .hero-content .accent {
   color: var(--accent-400);
 }
 
-/* Fallback gdy brak wsparcia dla backdrop-filter */
 @supports not (backdrop-filter: blur(1px)) {
   .hero-content h1 {
     background: color-mix(in srgb, var(--bg-dark) 45%, transparent);
   }
 }
 
-/* Preferencje ograniczonego ruchu */
 @media (prefers-reduced-motion: reduce) {
   .hero-content h1 {
     animation: none;
@@ -538,7 +606,6 @@ body.dark-mode .hero::before {
   }
 }
 
-/* RWD */
 @media (max-width: 768px) {
   .hero {
     height: 56vh;
@@ -786,7 +853,7 @@ body.dark-mode .client-info h4 {
   border-top: 1px solid color-mix(in srgb, var(--text-dark) 10%, transparent);
 }
 body.dark-mode .gallery-section {
-  background: var(--surface-1); 
+  background: var(--surface-1);
   border-top: 1px solid color-mix(in srgb, var(--text-light) 12%, transparent);
 }
 .gallery-inner {
@@ -800,7 +867,7 @@ body.dark-mode .gallery-section {
   color: var(--primary);
 }
 body.dark-mode .gallery-section .section-title {
-  color: var(--accent); 
+  color: var(--accent);
 }
 .gallery-container {
   display: grid;
@@ -828,53 +895,94 @@ body.dark-mode .gallery-item {
 .gallery-item:hover img {
   transform: scale(1.05);
 }
+/* Overlay galerii — „glass” na kolorach brandu (UI-perfect) */
 .gallery-item .overlay {
   position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  background: color-mix(in srgb, var(--accent) 5%, black 60%);
-  color: var(--text-light);
-  padding: 1rem;
-  transform: translateY(100%);
-  transition: transform 0.4s ease;
+  left: 0.5rem;
+  right: 0.5rem;
+  bottom: 0.5rem;
+  padding: 0.55rem 0.9rem;
+  border-radius: 10px;
+  background: color-mix(in srgb, var(--text-light) 56%, transparent);
+  border: 1px solid color-mix(in srgb, var(--primary-400) 25%, transparent);
+  backdrop-filter: blur(14px) saturate(1.05);
+  -webkit-backdrop-filter: blur(14px) saturate(1.05);
+  box-shadow: 0 8px 18px color-mix(in srgb, var(--bg-dark) 28%, transparent);
+  transform: translateY(110%);
+  opacity: 0;
+  transition: transform 0.35s ease, opacity 0.35s ease;
 }
 .gallery-item:hover .overlay {
   transform: translateY(0);
+  opacity: 1;
 }
+
+/* Tytuł realizacji — brandowo, elegancko */
 .overlay h3 {
   margin: 0;
-  color: var(--accent-400); 
-}
-.overlay p {
-  margin: 0;
-  color: var(--text-light);
-  opacity: 0.9;
+  font-size: 1rem;
+  line-height: 1.25;
+  font-weight: 700;
+  color: var(--text-dark); /* light mode: niebieski brand */
 }
 
+/* Miasto — wyraźniejsze, brandowe */
+.overlay p {
+  margin: 0.25rem 0 0;
+  font-size: 0.85rem;
+  line-height: 1.2;
+  font-style: italic;
+  font-weight: 600;
+  letter-spacing: 0.2px;
+  display: inline-block;
+  transform: skewX(-8deg);
+  color: var(--primary-600); /* mocniejszy kolor brandu */
+  opacity: 1; /* pełna czytelność */
+}
+body.dark-mode .overlay h3 {
+  color: var(--text-dark);
+}
+/* Dark mode — akcent */
+body.dark-mode .overlay p {
+  color: var(--accent-600);
+}
+
+/* Dark mode — jaśniejsze szkło + akcent na tytuł */
+body.dark-mode .gallery-item .overlay {
+  background: color-mix(in srgb, var(--text-light) 56%, transparent);
+  border-color: color-mix(in srgb, var(--accent-400) 25%, transparent);
+}
+
+/* Preferencje ograniczonego ruchu */
 @media (prefers-reduced-motion: reduce) {
-  .gallery-item img,
   .gallery-item .overlay {
     transition: none;
-  }
-  .gallery-item:hover img {
     transform: none;
-  }
-  .gallery-item:hover .overlay {
-    transform: translateY(100%);
+    opacity: 1;
   }
 }
 
+/* Mobile */
 @media (max-width: 768px) {
-  .gallery-section {
-    padding: 3rem 1rem;
+  .gallery-item .overlay {
+    left: 0.4rem;
+    right: 0.4rem;
+    bottom: 0.4rem;
+    padding: 0.5rem 0.7rem;
+    border-radius: 8px;
   }
-  .gallery-section .section-title {
-    font-size: 1.75rem;
-    margin-bottom: 2rem;
+  .overlay h3 {
+    font-size: 0.95rem;
   }
-  .gallery-container {
-    gap: 1rem;
+  .overlay p {
+    font-size: 0.8rem;
+  }
+}
+
+/* Fallback – gdy brak backdrop-filter */
+@supports not (backdrop-filter: blur(1px)) {
+  .gallery-item .overlay {
+    background: color-mix(in srgb, var(--text-light) 95%, transparent);
   }
 }
 
@@ -894,7 +1002,6 @@ body.dark-mode .contact-form-section {
   background: var(--surface-3);
   border-top: 1px solid color-mix(in srgb, var(--text-light) 12%, transparent);
 }
-
 .contact-form-section h2 {
   margin-bottom: 2rem;
   font-size: 2rem;
@@ -903,7 +1010,6 @@ body.dark-mode .contact-form-section {
 body.dark-mode .contact-form-section h2 {
   color: var(--text-light);
 }
-
 .contact-form-container {
   max-width: 600px;
   margin: 0 auto;
@@ -916,11 +1022,9 @@ body.dark-mode .contact-form-container {
   background: #2c2c2c;
   box-shadow: 0 4px 10px rgba(255, 255, 255, 0.05);
 }
-
 .contact-form .form-group {
   margin-bottom: 1rem;
 }
-
 .contact-form label {
   display: block;
   margin-bottom: 0.5rem;
@@ -931,7 +1035,6 @@ body.dark-mode .contact-form label {
   color: var(--text-light);
   opacity: 0.85;
 }
-
 .contact-form input,
 .contact-form textarea {
   width: 100%;
@@ -951,7 +1054,6 @@ body.dark-mode .contact-form textarea {
   color: var(--text-light);
   border-color: var(--primary-600);
 }
-
 .contact-form input:focus-visible,
 .contact-form textarea:focus-visible {
   border-color: var(--accent);
@@ -964,7 +1066,6 @@ body.dark-mode .contact-form textarea {
   box-shadow: 0 0 0 3px color-mix(in srgb, var(--accent) 30%, transparent);
   outline: none;
 }
-
 .contact-form .submit-btn {
   display: block;
   width: 100%;
@@ -1014,16 +1115,14 @@ body.dark-mode .contact-form textarea {
 footer {
   background: #2c2c2c;
   color: var(--text-light);
-  margin-top: 4rem;
 }
 body.dark-mode footer {
   background: #0a0a0a;
 }
-
 .footer-content {
   max-width: 1200px;
   margin: 0 auto;
-  padding: 3rem 2rem 1rem;
+  padding: 4rem 2rem 1rem; /* wcześniej 3rem 2rem 1rem – zwiększyliśmy top */
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
   gap: 2rem;
@@ -1143,6 +1242,10 @@ body.dark-mode .footer-bottom {
    ===============================================================
    =============================================================== */
 
+body.menu-open {
+  overflow: hidden;
+}
+
 .skip-link {
   position: absolute;
   left: -9999px;
@@ -1157,12 +1260,12 @@ body.dark-mode .footer-bottom {
   top: 1rem;
   width: auto;
   height: auto;
-  background: var(--accent-600); /* mocniejszy pomarańcz jako tło */
+  background: var(--accent-600);
   color: #fff;
   padding: 0.5rem 0.75rem;
   border-radius: 0.5rem;
   z-index: 1000;
-  outline: 3px solid var(--accent-400); /* jaśniejszy pomarańcz jako obrys */
+  outline: 3px solid var(--accent-400);
   outline-offset: 2px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
 }
@@ -1177,6 +1280,13 @@ body.dark-mode .footer-bottom {
   transform: translateY(0);
 }
 
+
+
+
+
+
+
+/* Powrót do góry — wersja final (zastępuje poprzednie) */
 #powrot-na-gore {
   position: fixed;
   bottom: 20px;
@@ -1185,38 +1295,74 @@ body.dark-mode .footer-bottom {
   height: 40px;
   display: grid;
   place-items: center;
-  border: none;
+  border: 0;
   border-radius: 50%;
   cursor: pointer;
   z-index: 150;
 
   /* Glassmorphism */
-  background: rgba(40, 40, 40, 0.45); /* półprzezroczyste tło */
+  background: rgba(40, 40, 40, 0.45);
   backdrop-filter: blur(6px) saturate(1.2);
   -webkit-backdrop-filter: blur(6px) saturate(1.2);
   color: var(--text-light);
-
-  /* Cień + animacja */
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.25);
-  transition: background 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+
+  /* Domyślnie ukryty (bez migania po odświeżeniu) */
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transform: translateY(6px) scale(.96);
+  transition:
+    opacity .25s ease,
+    transform .25s ease,
+    background .3s ease,
+    box-shadow .3s ease,
+    visibility 0s linear .25s;
+}
+
+/* Pokazany po przewinięciu (JS dodaje .is-visible) */
+#powrot-na-gore.is-visible {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+  transform: translateY(0) scale(1);
+  transition-delay: 0s;
 }
 
 #powrot-na-gore:hover {
-  background: rgba(40, 40, 40, 0.65); /* ciemniejsze tło przy hover */
+  background: rgba(40, 40, 40, 0.65);
   transform: translateY(-2px);
   box-shadow: 0 6px 14px rgba(0, 0, 0, 0.3);
 }
 
 #powrot-na-gore:focus-visible {
-  outline: 3px solid var(--accent-400); /* pomarańczowy akcent */
+  outline: 3px solid var(--accent-400);
   outline-offset: 4px;
 }
 
 #powrot-na-gore:active {
-  background: rgba(40, 40, 40, 0.8); /* mocniejszy przy kliknięciu */
+  background: rgba(40, 40, 40, 0.8);
   transform: scale(0.94);
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.25);
 }
+
+/* Gdy otwarte menu mobilne — chowamy strzałkę */
+body.menu-open #powrot-na-gore {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  #powrot-na-gore { transition: none; }
+}
+
+
+
+
+
+
+
 
 .service,
 .testimonial-card,
