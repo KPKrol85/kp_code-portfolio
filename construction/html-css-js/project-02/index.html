@@ -24,10 +24,12 @@
       property="og:description"
       content="Kompleksowe remonty, budowa domów, wykończenia wnętrz. Profesjonalna firma budowlana — terminowo, solidnie, z gwarancją." />
     <meta property="og:url" content="https://construction-project-02.netlify.app/" />
-    <meta property="og:image" content="https://construction-project-02.netlify.app/assets/img/og/og-1200x630.jpg" />
+    <meta
+      property="og:image"
+      content="https://construction-project-02.netlify.app/assets/img/og/og-image-01-1200x630.jpg" />
     <meta
       property="og:image:secure_url"
-      content="https://construction-project-02.netlify.app/assets/img/og/og-1200x630.jpg" />
+      content="https://construction-project-02.netlify.app/assets/img/og/og-image-01-1200x630.jpg" />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
     <meta property="og:image:type" content="image/jpeg" />
@@ -39,16 +41,24 @@
     <meta
       name="twitter:description"
       content="Kompleksowe remonty, budowa domów, wykończenia wnętrz. Profesjonalna firma budowlana — terminowo, solidnie, z gwarancją." />
-    <meta name="twitter:image" content="https://construction-project-02.netlify.app/assets/img/og/og-1200x630.jpg" />
+    <meta
+      name="twitter:image"
+      content="https://construction-project-02.netlify.app/assets/img/og/og-image-01-1200x630.jpg" />
+    <meta
+      name="twitter:image:alt"
+      content="Wizualizacja nowoczesnego domu na tle planów architektonicznych — KP_Code" />
     <!-- <meta name="twitter:site" content="@TwojProfil"> -->
     <!-- <meta name="twitter:creator" content="@TwojProfil"> -->
 
-    <!-- Ikony / manifest (ścieżki względne dla projektu w podkatalogu) -->
-    <link rel="icon" type="image/png" sizes="32x32" href="assets/icons/favicon-32x32.png" />
-    <link rel="icon" type="image/png" sizes="16x16" href="assets/icons/favicon-16x16.png" />
-    <link rel="apple-touch-icon" sizes="180x180" href="assets/icons/apple-touch-icon.png" />
-    <link rel="manifest" href="site.webmanifest" />
-    <link rel="mask-icon" href="assets/icons/safari-pinned-tab.svg" color="#0f4c81" />
+    <!-- Favicony / manifest (Twoje ścieżki) -->
+    <link rel="icon" href="assets/img/favicon/favicon.ico" sizes="any" />
+    <link rel="icon" type="image/png" sizes="96x96" href="assets/img/favicon/favicon-96x96.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="assets/img/favicon/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="assets/img/favicon/favicon-16x16.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="assets/img/favicon/apple-touch-icon.png" />
+    <link rel="manifest" href="assets/img/favicon/site.webmanifest" />
+    <!-- (Opcjonalnie) SVG jako dodatkowa ikona dla nowych przeglądarek -->
+    <link rel="icon" type="image/svg+xml" href="assets/img/favicon/favicon.svg" />
     <meta name="application-name" content="KP_Code" />
     <meta name="apple-mobile-web-app-title" content="KP_Code" />
     <meta name="msapplication-TileColor" content="#0f4c81" />
@@ -81,6 +91,218 @@
         "url": "https://construction-project-02.netlify.app/",
         "logo": "https://construction-project-02.netlify.app/assets/icons/apple-touch-icon.png",
         "sameAs": []
+      }
+    </script>
+
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "ItemList",
+        "name": "Oferta usług",
+        "inLanguage": "pl-PL",
+        "url": "https://construction-project-02.netlify.app/#services-heading",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "item": {
+              "@type": "Service",
+              "name": "Remonty mieszkań",
+              "description": "Kompleksowe remonty wnętrz dostosowane do Twoich potrzeb.",
+              "url": "https://construction-project-02.netlify.app/#svc-remonty-ttl",
+              "areaServed": { "@type": "Country", "name": "Polska" },
+              "provider": {
+                "@type": "Organization",
+                "name": "KP_Code",
+                "url": "https://construction-project-02.netlify.app/"
+              }
+            }
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "item": {
+              "@type": "Service",
+              "name": "Budowa domów",
+              "description": "Od fundamentów po dach — budujemy domy Twoich marzeń.",
+              "url": "https://construction-project-02.netlify.app/#svc-domy-ttl",
+              "areaServed": { "@type": "Country", "name": "Polska" },
+              "provider": {
+                "@type": "Organization",
+                "name": "KP_Code",
+                "url": "https://construction-project-02.netlify.app/"
+              }
+            }
+          },
+          {
+            "@type": "ListItem",
+            "position": 3,
+            "item": {
+              "@type": "Service",
+              "name": "Wykończenia wnętrz",
+              "description": "Stylowe i nowoczesne wykończenia dla każdego pomieszczenia.",
+              "url": "https://construction-project-02.netlify.app/#svc-wyk-ttl",
+              "areaServed": { "@type": "Country", "name": "Polska" },
+              "provider": {
+                "@type": "Organization",
+                "name": "KP_Code",
+                "url": "https://construction-project-02.netlify.app/"
+              }
+            }
+          },
+          {
+            "@type": "ListItem",
+            "position": 4,
+            "item": {
+              "@type": "Service",
+              "name": "Adaptacje poddaszy",
+              "description": "Przekształcamy poddasza w funkcjonalne i przytulne przestrzenie mieszkalne.",
+              "url": "https://construction-project-02.netlify.app/#svc-poddasze-ttl",
+              "areaServed": { "@type": "Country", "name": "Polska" },
+              "provider": {
+                "@type": "Organization",
+                "name": "KP_Code",
+                "url": "https://construction-project-02.netlify.app/"
+              }
+            }
+          },
+          {
+            "@type": "ListItem",
+            "position": 5,
+            "item": {
+              "@type": "Service",
+              "name": "Instalacje sanitarne",
+              "description": "Profesjonalny montaż i serwis instalacji wodno-kanalizacyjnych oraz grzewczych.",
+              "url": "https://construction-project-02.netlify.app/#svc-sanitarne-ttl",
+              "areaServed": { "@type": "Country", "name": "Polska" },
+              "provider": {
+                "@type": "Organization",
+                "name": "KP_Code",
+                "url": "https://construction-project-02.netlify.app/"
+              }
+            }
+          },
+          {
+            "@type": "ListItem",
+            "position": 6,
+            "item": {
+              "@type": "Service",
+              "name": "Instalacje elektryczne",
+              "description": "Bezpieczny montaż i modernizacja instalacji elektrycznych w domach i firmach.",
+              "url": "https://construction-project-02.netlify.app/#svc-elektryczne-ttl",
+              "areaServed": { "@type": "Country", "name": "Polska" },
+              "provider": {
+                "@type": "Organization",
+                "name": "KP_Code",
+                "url": "https://construction-project-02.netlify.app/"
+              }
+            }
+          }
+        ]
+      }
+    </script>
+
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "ImageGallery",
+        "name": "Nasze realizacje",
+        "inLanguage": "pl-PL",
+        "url": "https://construction-project-02.netlify.app/#gallery-heading",
+        "publisher": {
+          "@type": "Organization",
+          "name": "KP_Code",
+          "url": "https://construction-project-02.netlify.app/"
+        },
+        "hasPart": [
+          {
+            "@type": "ImageObject",
+            "name": "Remont mieszkania",
+            "caption": "Remont mieszkania – Warszawa",
+            "contentUrl": "https://construction-project-02.netlify.app/assets/img/realizacje/remont-01-1200x800.jpg",
+            "thumbnailUrl": "https://construction-project-02.netlify.app/assets/img/realizacje/remont-01-800x600.jpg",
+            "locationCreated": { "@type": "Place", "name": "Warszawa" }
+          },
+          {
+            "@type": "ImageObject",
+            "name": "Budowa willi",
+            "caption": "Budowa willi – Rzeszów",
+            "contentUrl": "https://construction-project-02.netlify.app/assets/img/realizacje/budowa-domu-01-1200x800.jpg",
+            "thumbnailUrl": "https://construction-project-02.netlify.app/assets/img/realizacje/budowa-domu-01-800x600.jpg",
+            "locationCreated": { "@type": "Place", "name": "Rzeszów" }
+          },
+          {
+            "@type": "ImageObject",
+            "name": "Wykończenie salonu",
+            "caption": "Wykończenie salonu – Gdańsk",
+            "contentUrl": "https://construction-project-02.netlify.app/assets/img/realizacje/wykonczenia-02-1200x800.jpg",
+            "thumbnailUrl": "https://construction-project-02.netlify.app/assets/img/realizacje/wykonczenia-02-800x600.jpg",
+            "locationCreated": { "@type": "Place", "name": "Gdańsk" }
+          },
+          {
+            "@type": "ImageObject",
+            "name": "Remont mieszkania",
+            "caption": "Remont mieszkania – Wrocław",
+            "contentUrl": "https://construction-project-02.netlify.app/assets/img/realizacje/remont-02-1200x800.jpg",
+            "thumbnailUrl": "https://construction-project-02.netlify.app/assets/img/realizacje/remont-02-800x600.jpg",
+            "locationCreated": { "@type": "Place", "name": "Wrocław" }
+          },
+          {
+            "@type": "ImageObject",
+            "name": "Budowa domu",
+            "caption": "Budowa domu – Poznań",
+            "contentUrl": "https://construction-project-02.netlify.app/assets/img/realizacje/budowa-domu-02-1200x800.jpg",
+            "thumbnailUrl": "https://construction-project-02.netlify.app/assets/img/realizacje/budowa-domu-02-800x600.jpg",
+            "locationCreated": { "@type": "Place", "name": "Poznań" }
+          },
+          {
+            "@type": "ImageObject",
+            "name": "Wykończenie kuchni",
+            "caption": "Wykończenie kuchni – Kraków",
+            "contentUrl": "https://construction-project-02.netlify.app/assets/img/realizacje/wykonczenia-01-1200x800.jpg",
+            "thumbnailUrl": "https://construction-project-02.netlify.app/assets/img/realizacje/wykonczenia-01-800x600.jpg",
+            "locationCreated": { "@type": "Place", "name": "Kraków" }
+          },
+          {
+            "@type": "ImageObject",
+            "name": "Instalacja elektryczna w kuchni",
+            "caption": "Instalacja elektryczna w kuchni – Olsztyn",
+            "contentUrl": "https://construction-project-02.netlify.app/assets/img/realizacje/instalacja-elektryczna-01-1200x800.jpg",
+            "thumbnailUrl": "https://construction-project-02.netlify.app/assets/img/realizacje/instalacja-elektryczna-01-800x600.jpg",
+            "locationCreated": { "@type": "Place", "name": "Olsztyn" }
+          },
+          {
+            "@type": "ImageObject",
+            "name": "Adaptacja poddasza",
+            "caption": "Adaptacja poddasza – Tarnów",
+            "contentUrl": "https://construction-project-02.netlify.app/assets/img/realizacje/poddasze-01-1200x800.jpg",
+            "thumbnailUrl": "https://construction-project-02.netlify.app/assets/img/realizacje/poddasze-01-800x600.jpg",
+            "locationCreated": { "@type": "Place", "name": "Tarnów" }
+          },
+          {
+            "@type": "ImageObject",
+            "name": "Adaptacja poddasza",
+            "caption": "Adaptacja poddasza – Kielce",
+            "contentUrl": "https://construction-project-02.netlify.app/assets/img/realizacje/poddasze-02-1200x800.jpg",
+            "thumbnailUrl": "https://construction-project-02.netlify.app/assets/img/realizacje/poddasze-02-800x600.jpg",
+            "locationCreated": { "@type": "Place", "name": "Kielce" }
+          }
+        ]
+      }
+    </script>
+
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "WebSite",
+        "name": "KP_Code — Demo strony budowlanej",
+        "url": "https://construction-project-02.netlify.app/",
+        "inLanguage": "pl-PL",
+        "publisher": {
+          "@type": "Organization",
+          "name": "KP_Code",
+          "url": "https://construction-project-02.netlify.app/"
+        }
       }
     </script>
   </head>
@@ -205,13 +427,18 @@
 
       <!-- SEKCJA - OFERTY -->
       <section class="services-section bg-surface-1" aria-labelledby="services-heading">
-        <h2 class="services-heading" class="services-heading">Nasze Usługi</h2>
+        <!-- Uwaga: wcześniej były dwa atrybuty class na H2 -->
+        <h2 id="services-heading" class="services-heading">Nasze Usługi</h2>
 
-        <div class="services">
+        <!-- role="list" + listitem poprawiają czytelność dla SR przy gridzie -->
+        <div class="services" role="list">
           <!-- 1) Remonty mieszkań -->
-          <div class="service hidden">
+          <article
+            class="service hidden"
+            role="listitem"
+            aria-labelledby="svc-remonty-ttl"
+            aria-describedby="svc-remonty-desc">
             <picture>
-              <!-- AVIF -->
               <source
                 type="image/avif"
                 srcset="
@@ -219,7 +446,6 @@
                   assets/img/uslugi/remont-mieszkania-01-600x400.avif 600w
                 "
                 sizes="(max-width: 768px) 92vw, 360px" />
-              <!-- WebP -->
               <source
                 type="image/webp"
                 srcset="
@@ -227,7 +453,6 @@
                   assets/img/uslugi/remont-mieszkania-01-600x400.webp 600w
                 "
                 sizes="(max-width: 768px) 92vw, 360px" />
-              <!-- Fallback JPG -->
               <img
                 src="assets/img/uslugi/remont-mieszkania-01-600x400.jpg"
                 srcset="
@@ -237,17 +462,21 @@
                 sizes="(max-width: 768px) 92vw, 360px"
                 width="600"
                 height="400"
-                alt="Remonty mieszkań — przykład realizacji"
+                alt="Remont mieszkania — wnętrze po renowacji"
                 loading="lazy"
                 decoding="async"
                 fetchpriority="low" />
             </picture>
-            <h3>Remonty mieszkań</h3>
-            <p>Kompleksowe remonty wnętrz dostosowane do Twoich potrzeb.</p>
-          </div>
+            <h3 id="svc-remonty-ttl">Remonty mieszkań</h3>
+            <p id="svc-remonty-desc">Kompleksowe remonty wnętrz dostosowane do Twoich potrzeb.</p>
+          </article>
 
           <!-- 2) Budowa domów -->
-          <div class="service hidden">
+          <article
+            class="service hidden"
+            role="listitem"
+            aria-labelledby="svc-domy-ttl"
+            aria-describedby="svc-domy-desc">
             <picture>
               <source
                 type="image/avif"
@@ -263,17 +492,17 @@
                 sizes="(max-width: 768px) 92vw, 360px"
                 width="600"
                 height="400"
-                alt="Budowa domów — przykładowa realizacja"
+                alt="Nowoczesny dom jednorodzinny — etap budowy"
                 loading="lazy"
                 decoding="async"
                 fetchpriority="low" />
             </picture>
-            <h3>Budowa domów</h3>
-            <p>Od fundamentów po dach — budujemy domy Twoich marzeń.</p>
-          </div>
+            <h3 id="svc-domy-ttl">Budowa domów</h3>
+            <p id="svc-domy-desc">Od fundamentów po dach — budujemy domy Twoich marzeń.</p>
+          </article>
 
           <!-- 3) Wykończenia wnętrz -->
-          <div class="service hidden">
+          <article class="service hidden" role="listitem" aria-labelledby="svc-wyk-ttl" aria-describedby="svc-wyk-desc">
             <picture>
               <source
                 type="image/avif"
@@ -298,128 +527,135 @@
                 sizes="(max-width: 768px) 92vw, 360px"
                 width="600"
                 height="400"
-                alt="Wykończenia wnętrz — przykładowa realizacja"
+                alt="Salon po wykończeniu — zabudowa i oświetlenie"
                 loading="lazy"
                 decoding="async"
                 fetchpriority="low" />
             </picture>
-            <h3>Wykończenia wnętrz</h3>
-            <p>Stylowe i nowoczesne wykończenia dla każdego pomieszczenia.</p>
-          </div>
+            <h3 id="svc-wyk-ttl">Wykończenia wnętrz</h3>
+            <p id="svc-wyk-desc">Stylowe i nowoczesne wykończenia dla każdego pomieszczenia.</p>
+          </article>
 
           <!-- 4) Adaptacje poddaszy -->
-          <div class="service hidden">
+          <article
+            class="service hidden"
+            role="listitem"
+            aria-labelledby="svc-poddasze-ttl"
+            aria-describedby="svc-poddasze-desc">
             <picture>
-              <!-- AVIF -->
               <source
                 type="image/avif"
                 srcset="
-                  assets/img/uslugi/remont-mieszkania-01-400x300.avif 400w,
-                  assets/img/uslugi/remont-mieszkania-01-600x400.avif 600w
+                  assets/img/uslugi/adaptacje-poddaszy-01-400x300.avif 400w,
+                  assets/img/uslugi/adaptacje-poddaszy-01-600x400.avif 600w
                 "
                 sizes="(max-width: 768px) 92vw, 360px" />
-              <!-- WebP -->
               <source
                 type="image/webp"
                 srcset="
-                  assets/img/uslugi/remont-mieszkania-01-400x300.webp 400w,
-                  assets/img/uslugi/remont-mieszkania-01-600x400.webp 600w
+                  assets/img/uslugi/adaptacje-poddaszy-01-400x300.webp 400w,
+                  assets/img/uslugi/adaptacje-poddaszy-01-600x400.webp 600w
                 "
                 sizes="(max-width: 768px) 92vw, 360px" />
-              <!-- Fallback JPG -->
               <img
-                src="assets/img/uslugi/remont-mieszkania-01-600x400.jpg"
+                src="assets/img/uslugi/adaptacje-poddaszy-01-600x400.jpg"
                 srcset="
-                  assets/img/uslugi/remont-mieszkania-01-400x300.jpg 400w,
-                  assets/img/uslugi/remont-mieszkania-01-600x400.jpg 600w
+                  assets/img/uslugi/adaptacje-poddaszy-01-400x300.jpg 400w,
+                  assets/img/uslugi/adaptacje-poddaszy-01-600x400.jpg 600w
                 "
                 sizes="(max-width: 768px) 92vw, 360px"
                 width="600"
                 height="400"
-                alt="Adaptacje poddaszy — przykład realizacji"
+                alt="Poddasze w trakcie adaptacji — ocieplenie i zabudowa"
                 loading="lazy"
                 decoding="async"
                 fetchpriority="low" />
             </picture>
-            <h3>Adaptacje poddaszy</h3>
-            <p>Kompleksowe remonty wnętrz dostosowane do Twoich potrzeb.</p>
-          </div>
+            <h3 id="svc-poddasze-ttl">Adaptacje poddaszy</h3>
+            <p id="svc-poddasze-desc">Przekształcamy poddasza w funkcjonalne i przytulne przestrzenie mieszkalne.</p>
+          </article>
 
           <!-- 5) Instalacje sanitarne -->
-          <div class="service hidden">
+          <article
+            class="service hidden"
+            role="listitem"
+            aria-labelledby="svc-sanitarne-ttl"
+            aria-describedby="svc-sanitarne-desc">
             <picture>
-              <!-- AVIF -->
               <source
                 type="image/avif"
                 srcset="
-                  assets/img/uslugi/remont-mieszkania-01-400x300.avif 400w,
-                  assets/img/uslugi/remont-mieszkania-01-600x400.avif 600w
+                  assets/img/uslugi/instalacje-sanitarne-01-400x300.avif 400w,
+                  assets/img/uslugi/instalacje-sanitarne-01-600x400.avif 600w
                 "
                 sizes="(max-width: 768px) 92vw, 360px" />
-              <!-- WebP -->
               <source
                 type="image/webp"
                 srcset="
-                  assets/img/uslugi/remont-mieszkania-01-400x300.webp 400w,
-                  assets/img/uslugi/remont-mieszkania-01-600x400.webp 600w
+                  assets/img/uslugi/instalacje-sanitarne-01-400x300.webp 400w,
+                  assets/img/uslugi/instalacje-sanitarne-01-600x400.webp 600w
                 "
                 sizes="(max-width: 768px) 92vw, 360px" />
-              <!-- Fallback JPG -->
               <img
-                src="assets/img/uslugi/remont-mieszkania-01-600x400.jpg"
+                src="assets/img/uslugi/instalacje-sanitarne-01-600x400.jpg"
                 srcset="
-                  assets/img/uslugi/remont-mieszkania-01-400x300.jpg 400w,
-                  assets/img/uslugi/remont-mieszkania-01-600x400.jpg 600w
+                  assets/img/uslugi/instalacje-sanitarne-01-400x300.jpg 400w,
+                  assets/img/uslugi/instalacje-sanitarne-01-600x400.jpg 600w
                 "
                 sizes="(max-width: 768px) 92vw, 360px"
                 width="600"
                 height="400"
-                alt="Adaptacje poddaszy — przykład realizacji"
+                alt="Łazienka — armatura i instalacja wodno-kanalizacyjna"
                 loading="lazy"
                 decoding="async"
                 fetchpriority="low" />
             </picture>
-            <h3>Instalacje sanitarne</h3>
-            <p>Kompleksowe remonty wnętrz dostosowane do Twoich potrzeb.</p>
-          </div>
+            <h3 id="svc-sanitarne-ttl">Instalacje sanitarne</h3>
+            <p id="svc-sanitarne-desc">
+              Profesjonalny montaż i serwis instalacji wodno-kanalizacyjnych oraz grzewczych.
+            </p>
+          </article>
 
           <!-- 6) Instalacje elektryczne -->
-          <div class="service hidden">
+          <article
+            class="service hidden"
+            role="listitem"
+            aria-labelledby="svc-elektryczne-ttl"
+            aria-describedby="svc-elektryczne-desc">
             <picture>
-              <!-- AVIF -->
               <source
                 type="image/avif"
                 srcset="
-                  assets/img/uslugi/remont-mieszkania-01-400x300.avif 400w,
-                  assets/img/uslugi/remont-mieszkania-01-600x400.avif 600w
+                  assets/img/uslugi/instalacje-elektryczne-01-400x300.avif 400w,
+                  assets/img/uslugi/instalacje-elektryczne-01-600x400.avif 600w
                 "
                 sizes="(max-width: 768px) 92vw, 360px" />
-              <!-- WebP -->
               <source
                 type="image/webp"
                 srcset="
-                  assets/img/uslugi/remont-mieszkania-01-400x300.webp 400w,
-                  assets/img/uslugi/remont-mieszkania-01-600x400.webp 600w
+                  assets/img/uslugi/instalacje-elektryczne-01-400x300.webp 400w,
+                  assets/img/uslugi/instalacje-elektryczne-01-600x400.webp 600w
                 "
                 sizes="(max-width: 768px) 92vw, 360px" />
-              <!-- Fallback JPG -->
               <img
-                src="assets/img/uslugi/remont-mieszkania-01-600x400.jpg"
+                src="assets/img/uslugi/instalacje-elektryczne-01-600x400.jpg"
                 srcset="
-                  assets/img/uslugi/remont-mieszkania-01-400x300.jpg 400w,
-                  assets/img/uslugi/remont-mieszkania-01-600x400.jpg 600w
+                  assets/img/uslugi/instalacje-elektryczne-01-400x300.jpg 400w,
+                  assets/img/uslugi/instalacje-elektryczne-01-600x400.jpg 600w
                 "
                 sizes="(max-width: 768px) 92vw, 360px"
                 width="600"
                 height="400"
-                alt="Adaptacje poddaszy — przykład realizacji"
+                alt="Rozdzielnia elektryczna — montaż i okablowanie"
                 loading="lazy"
                 decoding="async"
                 fetchpriority="low" />
             </picture>
-            <h3>Instalacje elektryczne</h3>
-            <p>Kompleksowe remonty wnętrz dostosowane do Twoich potrzeb.</p>
-          </div>
+            <h3 id="svc-elektryczne-ttl">Instalacje elektryczne</h3>
+            <p id="svc-elektryczne-desc">
+              Bezpieczny montaż i modernizacja instalacji elektrycznych w domach i firmach.
+            </p>
+          </article>
         </div>
       </section>
 
@@ -462,14 +698,17 @@
       </section>
 
       <!-- NASZE REALIZACJE - GALERIA -->
-      <section class="gallery-section bg-surface-1 section--divider">
+      <section class="gallery-section bg-surface-1 section--divider" aria-labelledby="gallery-heading">
         <div class="gallery-inner">
-          <h2 class="section-title">Nasze realizacje</h2>
-          <div class="gallery-container">
+          <h2 id="gallery-heading" class="section-title">Nasze realizacje</h2>
+          <div class="gallery-container" role="list">
             <!-- 1) Remont mieszkania -->
-            <div class="gallery-item hidden">
+            <figure
+              class="gallery-item hidden"
+              role="listitem"
+              aria-labelledby="gal-remont1-ttl"
+              aria-describedby="gal-remont1-desc">
               <picture>
-                <!-- AVIF -->
                 <source
                   type="image/avif"
                   srcset="
@@ -477,7 +716,6 @@
                     assets/img/realizacje/remont-01-1200x800.avif 1200w
                   "
                   sizes="(max-width: 768px) 100vw, 400px" />
-                <!-- WebP -->
                 <source
                   type="image/webp"
                   srcset="
@@ -485,7 +723,6 @@
                     assets/img/realizacje/remont-01-1200x800.webp 1200w
                   "
                   sizes="(max-width: 768px) 100vw, 400px" />
-                <!-- JPEG fallback -->
                 <img
                   src="assets/img/realizacje/remont-01-1200x800.jpg"
                   srcset="
@@ -493,20 +730,24 @@
                     assets/img/realizacje/remont-01-1200x800.jpg 1200w
                   "
                   sizes="(max-width: 768px) 100vw, 400px"
-                  alt="Realizacje - Remont mieszkania"
+                  alt="Nowoczesne wnętrze mieszkania po remoncie"
                   width="1200"
                   height="800"
                   loading="lazy"
                   decoding="async" />
               </picture>
-              <div class="overlay">
-                <h3>Remont mieszkania</h3>
-                <p>Warszawa</p>
-              </div>
-            </div>
+              <figcaption class="overlay">
+                <h3 id="gal-remont1-ttl">Remont mieszkania</h3>
+                <p id="gal-remont1-desc">Warszawa</p>
+              </figcaption>
+            </figure>
 
             <!-- 2) Budowa willi -->
-            <div class="gallery-item hidden">
+            <figure
+              class="gallery-item hidden"
+              role="listitem"
+              aria-labelledby="gal-willa-ttl"
+              aria-describedby="gal-willa-desc">
               <picture>
                 <source
                   type="image/avif"
@@ -529,20 +770,24 @@
                     assets/img/realizacje/budowa-domu-01-1200x800.jpg 1200w
                   "
                   sizes="(max-width: 768px) 100vw, 400px"
-                  alt="Realizacje - Budowa willi"
+                  alt="Willa w trakcie budowy z dużymi przeszkleniami"
                   width="1200"
                   height="800"
                   loading="lazy"
                   decoding="async" />
               </picture>
-              <div class="overlay">
-                <h3>Budowa willi</h3>
-                <p>Rzeszów</p>
-              </div>
-            </div>
+              <figcaption class="overlay">
+                <h3 id="gal-willa-ttl">Budowa willi</h3>
+                <p id="gal-willa-desc">Rzeszów</p>
+              </figcaption>
+            </figure>
 
             <!-- 3) Wykończenie salonu -->
-            <div class="gallery-item hidden">
+            <figure
+              class="gallery-item hidden"
+              role="listitem"
+              aria-labelledby="gal-salon-ttl"
+              aria-describedby="gal-salon-desc">
               <picture>
                 <source
                   type="image/avif"
@@ -565,20 +810,24 @@
                     assets/img/realizacje/wykonczenia-02-1200x800.jpg 1200w
                   "
                   sizes="(max-width: 768px) 100vw, 400px"
-                  alt="Realizacje - Wykończenie salonu"
+                  alt="Salon po wykończeniu z eleganckim oświetleniem"
                   width="1200"
                   height="800"
                   loading="lazy"
                   decoding="async" />
               </picture>
-              <div class="overlay">
-                <h3>Wykończenie salonu</h3>
-                <p>Gdańsk</p>
-              </div>
-            </div>
+              <figcaption class="overlay">
+                <h3 id="gal-salon-ttl">Wykończenie salonu</h3>
+                <p id="gal-salon-desc">Gdańsk</p>
+              </figcaption>
+            </figure>
 
             <!-- 4) Remont mieszkania -->
-            <div class="gallery-item hidden">
+            <figure
+              class="gallery-item hidden"
+              role="listitem"
+              aria-labelledby="gal-remont2-ttl"
+              aria-describedby="gal-remont2-desc">
               <picture>
                 <source
                   type="image/avif"
@@ -601,20 +850,24 @@
                     assets/img/realizacje/remont-02-1200x800.jpg 1200w
                   "
                   sizes="(max-width: 768px) 100vw, 400px"
-                  alt="Realizacje - Remont mieszkania"
+                  alt="Mieszkanie podczas remontu kuchni i salonu"
                   width="1200"
                   height="800"
                   loading="lazy"
                   decoding="async" />
               </picture>
-              <div class="overlay">
-                <h3>Remont mieszkania</h3>
-                <p>Wrocław</p>
-              </div>
-            </div>
+              <figcaption class="overlay">
+                <h3 id="gal-remont2-ttl">Remont mieszkania</h3>
+                <p id="gal-remont2-desc">Wrocław</p>
+              </figcaption>
+            </figure>
 
             <!-- 5) Budowa domu -->
-            <div class="gallery-item hidden">
+            <figure
+              class="gallery-item hidden"
+              role="listitem"
+              aria-labelledby="gal-dom-ttl"
+              aria-describedby="gal-dom-desc">
               <picture>
                 <source
                   type="image/avif"
@@ -637,22 +890,25 @@
                     assets/img/realizacje/budowa-domu-02-1200x800.jpg 1200w
                   "
                   sizes="(max-width: 768px) 100vw, 400px"
-                  alt="Realizacje - Budowa domu"
+                  alt="Dom jednorodzinny z tarasem w trakcie budowy"
                   width="1200"
                   height="800"
                   loading="lazy"
                   decoding="async" />
               </picture>
-              <div class="overlay">
-                <h3>Budowa domu</h3>
-                <p>Poznań</p>
-              </div>
-            </div>
+              <figcaption class="overlay">
+                <h3 id="gal-dom-ttl">Budowa domu</h3>
+                <p id="gal-dom-desc">Poznań</p>
+              </figcaption>
+            </figure>
 
-            <!-- 6) Wykończenie kuchni (spójnie jak w #5: 800×600 + 1200×800) -->
-            <div class="gallery-item hidden">
+            <!-- 6) Wykończenie kuchni -->
+            <figure
+              class="gallery-item hidden"
+              role="listitem"
+              aria-labelledby="gal-kuchnia-ttl"
+              aria-describedby="gal-kuchnia-desc">
               <picture>
-                <!-- AVIF -->
                 <source
                   type="image/avif"
                   srcset="
@@ -660,7 +916,6 @@
                     assets/img/realizacje/wykonczenia-01-1200x800.avif 1200w
                   "
                   sizes="(max-width: 768px) 100vw, 400px" />
-                <!-- WebP -->
                 <source
                   type="image/webp"
                   srcset="
@@ -668,7 +923,6 @@
                     assets/img/realizacje/wykonczenia-01-1200x800.webp 1200w
                   "
                   sizes="(max-width: 768px) 100vw, 400px" />
-                <!-- JPEG fallback -->
                 <img
                   src="assets/img/realizacje/wykonczenia-01-1200x800.jpg"
                   srcset="
@@ -676,17 +930,137 @@
                     assets/img/realizacje/wykonczenia-01-1200x800.jpg 1200w
                   "
                   sizes="(max-width: 768px) 100vw, 400px"
-                  alt="Realizacje - Wykończenie kuchni"
+                  alt="Nowoczesna kuchnia po wykończeniu"
                   width="1200"
                   height="800"
                   loading="lazy"
                   decoding="async" />
               </picture>
-              <div class="overlay">
-                <h3>Wykończenie kuchni</h3>
-                <p>Kraków</p>
-              </div>
-            </div>
+              <figcaption class="overlay">
+                <h3 id="gal-kuchnia-ttl">Wykończenie kuchni</h3>
+                <p id="gal-kuchnia-desc">Kraków</p>
+              </figcaption>
+            </figure>
+
+            <!-- 7) Instalacja elektryczna w kuchni -->
+            <figure
+              class="gallery-item hidden"
+              role="listitem"
+              aria-labelledby="gal-elektryka-ttl"
+              aria-describedby="gal-elektryka-desc">
+              <picture>
+                <source
+                  type="image/avif"
+                  srcset="
+                    assets/img/realizacje/instalacja-elektryczna-01-800x600.avif   800w,
+                    assets/img/realizacje/instalacja-elektryczna-01-1200x800.avif 1200w
+                  "
+                  sizes="(max-width: 768px) 100vw, 400px" />
+                <source
+                  type="image/webp"
+                  srcset="
+                    assets/img/realizacje/instalacja-elektryczna-01-800x600.webp   800w,
+                    assets/img/realizacje/instalacja-elektryczna-01-1200x800.webp 1200w
+                  "
+                  sizes="(max-width: 768px) 100vw, 400px" />
+                <img
+                  src="assets/img/realizacje/instalacja-elektryczna-01-1200x800.jpg"
+                  srcset="
+                    assets/img/realizacje/instalacja-elektryczna-01-800x600.jpg   800w,
+                    assets/img/realizacje/instalacja-elektryczna-01-1200x800.jpg 1200w
+                  "
+                  sizes="(max-width: 768px) 100vw, 400px"
+                  alt="Instalacja elektryczna wykonana w kuchni klienta"
+                  width="1200"
+                  height="800"
+                  loading="lazy"
+                  decoding="async" />
+              </picture>
+              <figcaption class="overlay">
+                <h3 id="gal-elektryka-ttl">Instalacja elektryczna w kuchni</h3>
+                <p id="gal-elektryka-desc">Olsztyn</p>
+              </figcaption>
+            </figure>
+
+            <!-- 8) Adaptacja poddasza -->
+            <figure
+              class="gallery-item hidden"
+              role="listitem"
+              aria-labelledby="gal-poddasze-ttl"
+              aria-describedby="gal-poddasze-desc">
+              <picture>
+                <source
+                  type="image/avif"
+                  srcset="
+                    assets/img/realizacje/poddasze-01-800x600.avif   800w,
+                    assets/img/realizacje/poddasze-01-1200x800.avif 1200w
+                  "
+                  sizes="(max-width: 768px) 100vw, 400px" />
+                <source
+                  type="image/webp"
+                  srcset="
+                    assets/img/realizacje/poddasze-01-800x600.webp   800w,
+                    assets/img/realizacje/poddasze-01-1200x800.webp 1200w
+                  "
+                  sizes="(max-width: 768px) 100vw, 400px" />
+                <img
+                  src="assets/img/realizacje/poddasze-01-1200x800.jpg"
+                  srcset="
+                    assets/img/realizacje/poddasze-01-800x600.jpg   800w,
+                    assets/img/realizacje/poddasze-01-1200x800.jpg 1200w
+                  "
+                  sizes="(max-width: 768px) 100vw, 400px"
+                  alt="Adaptacja poddasza na przestrzeń mieszkalną"
+                  width="1200"
+                  height="800"
+                  loading="lazy"
+                  decoding="async" />
+              </picture>
+              <figcaption class="overlay">
+                <h3 id="gal-poddasze-ttl">Adaptacja poddasza</h3>
+                <p id="gal-poddasze-desc">Tarnów</p>
+              </figcaption>
+            </figure>
+
+            <!-- 9) Adaptacja poddasza -->
+            <figure
+              class="gallery-item hidden"
+              role="listitem"
+              aria-labelledby="gal-poddasze2-ttl"
+              aria-describedby="gal-poddasze2-desc">
+              <picture>
+                <source
+                  type="image/avif"
+                  srcset="
+                    assets/img/realizacje/poddasze-02-800x600.avif   800w,
+                    assets/img/realizacje/poddasze-02-1200x800.avif 1200w
+                  "
+                  sizes="(max-width: 768px) 100vw, 400px" />
+                <source
+                  type="image/webp"
+                  srcset="
+                    assets/img/realizacje/poddasze-02-800x600.webp   800w,
+                    assets/img/realizacje/poddasze-02-1200x800.webp 1200w
+                  "
+                  sizes="(max-width: 768px) 100vw, 400px" />
+                <img
+                  src="assets/img/realizacje/poddasze-02-1200x800.jpg"
+                  srcset="
+                    assets/img/realizacje/poddasze-02-800x600.jpg   800w,
+                    assets/img/realizacje/poddasze-02-1200x800.jpg 1200w
+                  "
+                  sizes="(max-width: 768px) 100vw, 400px"
+                  alt="Zaaranżowane poddasze jako przytulna sypialnia z oknem dachowym"
+                  width="1200"
+                  height="800"
+                  loading="lazy"
+                  decoding="async" />
+              </picture>
+              <figcaption class="overlay">
+                <h3 id="gal-poddasze2-ttl">Adaptacja poddasza</h3>
+                <p id="gal-poddasze2-desc">Kielce</p>
+              </figcaption>
+            </figure>
           </div>
           <!-- /.gallery-container -->
         </div>

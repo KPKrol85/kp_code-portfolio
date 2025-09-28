@@ -45,59 +45,49 @@ body.dark-mode {
   --surface-2: color-mix(in srgb, var(--bg-dark) 84%, var(--text-light) 16%);
   --surface-3: color-mix(in srgb, var(--bg-dark) 78%, var(--text-light) 22%);
 }
-
 :root {
   --space-1: 0.35rem;
   --space-2: 0.8rem;
   --space-3: 1.25rem;
   --space-4: 2rem;
 }
-
 :root {
   --section-py: 4rem;
   --section-px: 2rem;
 }
-
 :root {
   --success: #2ecc71;
   --error: #e74c3c;
   --warning: #f1c40f;
 }
-
 :root {
   --header-h: 56px;
 }
-
-/* Nudge ikon w przycisku hamburger/X — używaj bardzo małych wartości */
 :root {
-  --icon-nudge-x: 0px; /* było -20px → za dużo */
+  --icon-nudge-x: 0px;
   --icon-nudge-y: 1px;
 }
 
-/* Desktopowy padding boczny headera (reguła używająca tego będzie w sekcji 02) */
 @media (min-width: 769px) {
   :root {
     --header-pad-x: 28px;
   }
 }
 
-/* Mobile tokens */
 @media (max-width: 768px) {
   :root {
     --header-h: 54px;
     --edge-pad: 12px;
     --tap-pad: 8px;
     --logo-optical: 2px;
-    --burger-optical: -10px; /* było 28px → dawaj 0–8px, zwykle 3–5px */
+    --burger-optical: -10px;
     --section-py: 3rem;
     --section-px: 1rem;
   }
 }
 
 /* ===============================================================
-   ===============================================================
    ========== 01) BAZA TYPOGRAFIA LAYOUT =========================
-   ===============================================================
    =============================================================== */
 
 html {
@@ -188,7 +178,6 @@ body.dark-mode .lead {
    ========== 02) NAGŁÓWEK =======================================
    =============================================================== */
 
-/* HEADER */
 header {
   display: flex;
   justify-content: space-between;
@@ -231,8 +220,6 @@ body.dark-mode header {
     );
   }
 }
-
-/* LOGO */
 .logo {
   display: flex;
   align-items: center;
@@ -251,7 +238,6 @@ body.dark-mode header {
   color: var(--text-light);
 }
 
-/* NAV (desktop) */
 nav {
   display: flex;
   align-items: center;
@@ -280,8 +266,6 @@ nav a.active {
   background: color-mix(in srgb, var(--text-light) 25%, transparent);
   box-shadow: inset 0 2px 4px color-mix(in srgb, var(--bg-dark) 10%, transparent);
 }
-
-/* ACTIONS */
 .header-actions {
   display: flex;
   align-items: center;
@@ -317,8 +301,6 @@ body.dark-mode .contact-btn:hover {
   color: var(--accent);
   border-color: var(--accent);
 }
-
-/* THEME TOGGLE */
 .theme-toggle {
   position: relative;
   display: inline-grid;
@@ -373,6 +355,7 @@ body.dark-mode .theme-toggle .icon-moon {
   outline: 2px solid color-mix(in srgb, var(--primary, #0f4c81) 70%, white);
   outline-offset: 2px;
 }
+
 @media (prefers-reduced-motion: reduce) {
   .theme-toggle,
   .theme-toggle .icon-sun,
@@ -381,7 +364,6 @@ body.dark-mode .theme-toggle .icon-moon {
   }
 }
 
-/* HAMBURGER (czyste SVG; X i burger w tym samym punkcie) */
 .icon-btn {
   display: none;
   background: transparent;
@@ -405,7 +387,6 @@ body.dark-mode .theme-toggle .icon-moon {
   height: 26px;
   transition: opacity 0.18s ease, transform 0.18s ease;
 }
-/* wspólny nudge dla obu ikon (wartości w 00) GLOBALNE) */
 #hamburgerIcon {
   transform: translate(var(--icon-nudge-x), var(--icon-nudge-y));
 }
@@ -421,7 +402,6 @@ body.dark-mode .theme-toggle .icon-moon {
   opacity: 1;
   transform: translate(var(--icon-nudge-x), var(--icon-nudge-y)) scale(1);
 }
-
 .icon-btn:hover,
 .icon-btn:active {
   background: transparent;
@@ -432,7 +412,6 @@ body.dark-mode .theme-toggle .icon-moon {
   outline-offset: 2px;
 }
 
-/* ================= Desktop – większe odstępy po bokach ================= */
 @media (min-width: 769px) {
   header {
     padding-left: var(--header-pad-x);
@@ -440,7 +419,6 @@ body.dark-mode .theme-toggle .icon-moon {
   }
 }
 
-/* ================= Mobile ================= */
 @media (max-width: 768px) {
   /* równe krawędzie headera (z notchem) */
   header {
@@ -449,8 +427,6 @@ body.dark-mode .theme-toggle .icon-moon {
     padding-left: calc(var(--edge-pad) + env(safe-area-inset-left));
     padding-right: calc(var(--edge-pad) + env(safe-area-inset-right));
   }
-
-  /* logo i hamburger – ta sama tap-area, symetryczne marginesy */
   .logo {
     display: inline-flex;
     align-items: center;
@@ -463,14 +439,11 @@ body.dark-mode .theme-toggle .icon-moon {
   .logo-text {
     display: none;
   }
-
   .icon-btn {
     display: inline-flex;
     margin-right: calc(var(--edge-pad) - clamp(-12px, var(--burger-optical), 12px));
     padding: var(--tap-pad);
   }
-
-  /* menu mobilne */
   nav {
     display: none;
     position: absolute;
@@ -649,7 +622,6 @@ body.dark-mode .services-section {
   background: var(--surface-1);
   border-top: 1px solid color-mix(in srgb, var(--text-light) 10%, transparent);
 }
-
 .services-heading {
   text-align: center;
   font-size: 2rem;
@@ -658,9 +630,8 @@ body.dark-mode .services-section {
   color: var(--primary);
 }
 body.dark-mode .services-heading {
-  color: var(--accent); /* w dark trybie akcent */
+  color: var(--accent); 
 }
-
 .services {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -668,7 +639,6 @@ body.dark-mode .services-heading {
   max-width: 1200px;
   margin: 0 auto;
 }
-
 .service {
   background: var(--text-light);
   padding: 1.5rem;
@@ -681,7 +651,6 @@ body.dark-mode .service {
   background: color-mix(in srgb, var(--bg-dark) 85%, white 15%);
   box-shadow: 0 4px 10px color-mix(in srgb, var(--text-light) 6%, transparent);
 }
-
 .service picture {
   display: block;
   width: 100%;
@@ -693,13 +662,11 @@ body.dark-mode .service {
   max-width: 100%;
   border-radius: 10px;
 }
-
 .service:hover {
   transform: translateY(-5px);
   box-shadow: 0 8px 22px color-mix(in srgb, black 18%, transparent);
   cursor: pointer;
 }
-
 .service h3 {
   margin-top: var(--space-2);
   color: var(--primary);
@@ -707,7 +674,6 @@ body.dark-mode .service {
 body.dark-mode .service h3 {
   color: var(--accent-400);
 }
-
 .service p {
   margin-top: var(--space-1);
   color: var(--text-dark);
@@ -717,7 +683,6 @@ body.dark-mode .service p {
   opacity: 0.9;
 }
 
-/* RWD */
 @media (max-width: 768px) {
   .services {
     gap: 1.25rem;
@@ -747,29 +712,24 @@ body.dark-mode .testimonials-section {
   background: var(--surface-2);
   border-top: 1px solid color-mix(in srgb, var(--text-light) 12%, transparent);
 }
-
 .testimonials-inner {
   max-width: 1200px;
   margin: 0 auto;
-  padding: 0 2rem; /* odstęp od krawędzi na mobile */
+  padding: 0 2rem;
 }
-
 .testimonials-section .section-title {
   margin-bottom: 3rem;
   font-size: 2rem;
   color: var(--primary);
 }
 body.dark-mode .testimonials-section .section-title {
-  color: var(--accent); /* lepszy kontrast w dark */
+  color: var(--accent); 
 }
-
 .testimonials-container {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   gap: 2rem;
 }
-
-/* Karta opinii */
 .testimonial-card {
   background: var(--text-light);
   padding: 2rem;
@@ -785,8 +745,6 @@ body.dark-mode .testimonial-card {
   background: color-mix(in srgb, var(--bg-dark) 85%, white 15%);
   box-shadow: 0 4px 10px color-mix(in srgb, var(--text-light) 6%, transparent);
 }
-
-/* Tekst opinii */
 .testimonial-card p {
   font-style: italic;
   color: color-mix(in srgb, var(--text-dark) 75%, transparent);
@@ -795,8 +753,6 @@ body.dark-mode .testimonial-card {
 body.dark-mode .testimonial-card p {
   color: color-mix(in srgb, var(--text-light) 85%, transparent);
 }
-
-/* Stopka karty */
 .client-info {
   margin-top: 1.5rem;
   border-top: 1px solid color-mix(in srgb, var(--text-dark) 12%, transparent);
@@ -814,7 +770,6 @@ body.dark-mode .client-info h4 {
   color: var(--accent-400);
 }
 
-/* prefers-reduced-motion */
 @media (prefers-reduced-motion: reduce) {
   .testimonial-card {
     transition: none;
@@ -825,7 +780,6 @@ body.dark-mode .client-info h4 {
   }
 }
 
-/* RWD (≤768px) */
 @media (max-width: 768px) {
   .testimonials-section {
     padding: 3rem 1rem;
@@ -880,6 +834,7 @@ body.dark-mode .gallery-section .section-title {
   border-radius: 10px;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
   aspect-ratio: 4/3;
+  margin: 0; 
 }
 body.dark-mode .gallery-item {
   box-shadow: 0 4px 10px rgba(255, 255, 255, 0.05);
@@ -895,7 +850,6 @@ body.dark-mode .gallery-item {
 .gallery-item:hover img {
   transform: scale(1.05);
 }
-/* Overlay galerii — „glass” na kolorach brandu (UI-perfect) */
 .gallery-item .overlay {
   position: absolute;
   left: 0.5rem;
@@ -911,49 +865,53 @@ body.dark-mode .gallery-item {
   transform: translateY(110%);
   opacity: 0;
   transition: transform 0.35s ease, opacity 0.35s ease;
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  justify-content: center;
+  text-align: center;
 }
 .gallery-item:hover .overlay {
   transform: translateY(0);
   opacity: 1;
 }
-
-/* Tytuł realizacji — brandowo, elegancko */
+.gallery-item:focus-within .overlay {
+  transform: translateY(0);
+  opacity: 1;
+}
 .overlay h3 {
   margin: 0;
   font-size: 1rem;
   line-height: 1.25;
   font-weight: 700;
-  color: var(--text-dark); /* light mode: niebieski brand */
+  color: var(--text-dark);
 }
-
-/* Miasto — wyraźniejsze, brandowe */
+.overlay h3::after {
+  content: ' -';
+  margin-right: 0.1rem;
+}
 .overlay p {
-  margin: 0.25rem 0 0;
+  margin: 0; 
   font-size: 0.85rem;
   line-height: 1.2;
   font-style: italic;
   font-weight: 600;
   letter-spacing: 0.2px;
-  display: inline-block;
   transform: skewX(-8deg);
-  color: var(--primary-600); /* mocniejszy kolor brandu */
-  opacity: 1; /* pełna czytelność */
+  color: var(--primary-600);
+  opacity: 1;
 }
 body.dark-mode .overlay h3 {
   color: var(--text-dark);
 }
-/* Dark mode — akcent */
 body.dark-mode .overlay p {
   color: var(--accent-600);
 }
-
-/* Dark mode — jaśniejsze szkło + akcent na tytuł */
 body.dark-mode .gallery-item .overlay {
   background: color-mix(in srgb, var(--text-light) 56%, transparent);
   border-color: color-mix(in srgb, var(--accent-400) 25%, transparent);
 }
 
-/* Preferencje ograniczonego ruchu */
 @media (prefers-reduced-motion: reduce) {
   .gallery-item .overlay {
     transition: none;
@@ -962,7 +920,6 @@ body.dark-mode .gallery-item .overlay {
   }
 }
 
-/* Mobile */
 @media (max-width: 768px) {
   .gallery-item .overlay {
     left: 0.4rem;
@@ -979,7 +936,6 @@ body.dark-mode .gallery-item .overlay {
   }
 }
 
-/* Fallback – gdy brak backdrop-filter */
 @supports not (backdrop-filter: blur(1px)) {
   .gallery-item .overlay {
     background: color-mix(in srgb, var(--text-light) 95%, transparent);
@@ -1106,10 +1062,8 @@ body.dark-mode .contact-form textarea {
   }
 }
 
-/* ============================================================
-  ===============================================================
+/* ==============================================================
   ========== 0) FOOTER ==========================================
-  ===============================================================
   =============================================================== */
 
 footer {
@@ -1122,56 +1076,48 @@ body.dark-mode footer {
 .footer-content {
   max-width: 1200px;
   margin: 0 auto;
-  padding: 4rem 2rem 1rem; /* wcześniej 3rem 2rem 1rem – zwiększyliśmy top */
+  padding: 4rem 2rem 1rem; 
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
   gap: 2rem;
 }
-
 .footer-section h3 {
-  color: var(--accent); /* nagłówki w stopce na akcent */
+  color: var(--accent);
   margin-bottom: 1rem;
   font-size: 1.2rem;
 }
-
 .footer-section p,
 .footer-section li {
   line-height: 1.6;
   margin-bottom: 0.5rem;
 }
-
 .footer-section ul {
   list-style: none;
   padding: 0;
 }
-
 .footer-section ul li a {
   color: #ccc;
   text-decoration: none;
   transition: color 0.3s ease;
 }
-
 .footer-section ul li a:hover {
-  color: var(--accent-400); /* linki na hover w jaśniejszym pomarańczu */
+  color: var(--accent-400); 
 }
-
 .footer-section ul li a:focus-visible {
   outline: 3px solid var(--accent-400);
   outline-offset: 2px;
   text-decoration: underline;
 }
-
 .social-icons {
   display: flex;
   gap: 1rem;
   margin-top: 1rem;
 }
-
 .social-icon {
   display: inline-block;
   width: 40px;
   height: 40px;
-  background: var(--primary-600); /* domyślnie niebieski */
+  background: var(--primary-600); 
   color: #fff;
   text-align: center;
   line-height: 40px;
@@ -1180,24 +1126,20 @@ body.dark-mode footer {
   font-weight: 700;
   transition: transform 0.3s ease, background-color 0.3s ease;
 }
-
 .social-icon:hover {
-  background: var(--accent-600); /* pomarańcz przy hover */
+  background: var(--accent-600); 
   transform: translateY(-3px);
 }
-
 .social-icon:focus-visible {
-  outline: 3px solid var(--accent-400); /* jaśniejszy pomarańcz przy focus */
+  outline: 3px solid var(--accent-400); 
   outline-offset: 3px;
 }
-
 .contact-info {
   color: #ccc;
 }
 .contact-info strong {
-  color: var(--accent); /* wyróżnij ważne informacje akcentem */
+  color: var(--accent); 
 }
-
 .footer-bottom {
   border-top: 1px solid #444;
   padding: 1.5rem 2rem;
@@ -1208,20 +1150,18 @@ body.dark-mode footer {
 body.dark-mode .footer-bottom {
   background: #000;
 }
-
 .footer-bottom a {
-  color: var(--accent-400); /* subtelny akcent na linki w stopce */
+  color: var(--accent-400); 
   text-decoration: none;
 }
 .footer-bottom a:hover {
-  color: var(--accent); /* mocniejszy akcent na hover */
+  color: var(--accent); 
   text-decoration: underline;
 }
 .footer-bottom a:focus-visible {
   outline: 3px solid var(--accent-400);
   outline-offset: 2px;
 }
-
 .footer-bottom p {
   margin: 0;
 }
@@ -1237,15 +1177,12 @@ body.dark-mode .footer-bottom {
 }
 
 /* ===============================================================
-   ===============================================================
    ========== 09) STANY + ANIMACJE + PRZYCISKI ===================
-   ===============================================================
    =============================================================== */
 
 body.menu-open {
   overflow: hidden;
 }
-
 .skip-link {
   position: absolute;
   left: -9999px;
@@ -1254,7 +1191,6 @@ body.menu-open {
   height: 1px;
   overflow: hidden;
 }
-
 .skip-link:focus {
   left: 1rem;
   top: 1rem;
@@ -1269,7 +1205,6 @@ body.menu-open {
   outline-offset: 2px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
 }
-
 .hidden {
   opacity: 0;
   transform: translateY(50px);
@@ -1279,14 +1214,6 @@ body.menu-open {
   opacity: 1;
   transform: translateY(0);
 }
-
-
-
-
-
-
-
-/* Powrót do góry — wersja final (zastępuje poprzednie) */
 #powrot-na-gore {
   position: fixed;
   bottom: 20px;
@@ -1299,28 +1226,18 @@ body.menu-open {
   border-radius: 50%;
   cursor: pointer;
   z-index: 150;
-
-  /* Glassmorphism */
   background: rgba(40, 40, 40, 0.45);
   backdrop-filter: blur(6px) saturate(1.2);
   -webkit-backdrop-filter: blur(6px) saturate(1.2);
   color: var(--text-light);
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.25);
-
-  /* Domyślnie ukryty (bez migania po odświeżeniu) */
   opacity: 0;
   visibility: hidden;
   pointer-events: none;
-  transform: translateY(6px) scale(.96);
-  transition:
-    opacity .25s ease,
-    transform .25s ease,
-    background .3s ease,
-    box-shadow .3s ease,
-    visibility 0s linear .25s;
+  transform: translateY(6px) scale(0.96);
+  transition: opacity 0.25s ease, transform 0.25s ease, background 0.3s ease, box-shadow 0.3s ease,
+    visibility 0s linear 0.25s;
 }
-
-/* Pokazany po przewinięciu (JS dodaje .is-visible) */
 #powrot-na-gore.is-visible {
   opacity: 1;
   visibility: visible;
@@ -1328,25 +1245,20 @@ body.menu-open {
   transform: translateY(0) scale(1);
   transition-delay: 0s;
 }
-
 #powrot-na-gore:hover {
   background: rgba(40, 40, 40, 0.65);
   transform: translateY(-2px);
   box-shadow: 0 6px 14px rgba(0, 0, 0, 0.3);
 }
-
 #powrot-na-gore:focus-visible {
   outline: 3px solid var(--accent-400);
   outline-offset: 4px;
 }
-
 #powrot-na-gore:active {
   background: rgba(40, 40, 40, 0.8);
   transform: scale(0.94);
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.25);
 }
-
-/* Gdy otwarte menu mobilne — chowamy strzałkę */
 body.menu-open #powrot-na-gore {
   opacity: 0;
   visibility: hidden;
@@ -1354,15 +1266,10 @@ body.menu-open #powrot-na-gore {
 }
 
 @media (prefers-reduced-motion: reduce) {
-  #powrot-na-gore { transition: none; }
+  #powrot-na-gore {
+    transition: none;
+  }
 }
-
-
-
-
-
-
-
 
 .service,
 .testimonial-card,
