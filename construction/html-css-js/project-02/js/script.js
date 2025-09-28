@@ -49,7 +49,7 @@ przyciskPowrotu.addEventListener('click', () => {
   const btnMobile = document.getElementById('themeToggleMobile');
 
   // Logo i hamburger (podmiana źródeł w zależności od motywu)
-  const logo = document.querySelector('.logo-img[data-light][data-dark]');
+  const logos = document.querySelectorAll('.logo-img[data-light][data-dark]');
   const hamburgerIcon = document.getElementById('hamburgerIcon');
 
   // preferencje systemowe
@@ -63,10 +63,11 @@ przyciskPowrotu.addEventListener('click', () => {
 
   // ——— Pomocnicze ———
   const setLogo = (isDark) => {
-    if (!logo) return;
-    const next = isDark ? logo.dataset.dark : logo.dataset.light;
-    if (logo.getAttribute('src') !== next) logo.setAttribute('src', next);
-  };
+  logos.forEach((img) => {
+    const next = isDark ? img.dataset.dark : img.dataset.light;
+    if (img.getAttribute('src') !== next) img.setAttribute('src', next);
+  });
+};
 
   const setHamburgerIcon = (isDark) => {
     if (!hamburgerIcon) return;
