@@ -309,6 +309,7 @@
 
   <body>
     <div id="top"></div>
+
     <header>
       <a href="#top" class="logo">
         <img
@@ -330,25 +331,51 @@
         <a href="#">Usługi</a>
         <a href="#">O nas</a>
         <a href="#">Kontakt</a>
+        <!-- Przełącznik motywu (tylko mobile, pokazuje się w rozwijanym menu) -->
+        <!-- w nav (mobile) -->
+        <button
+          id="themeToggleMobile"
+          class="theme-toggle theme-toggle--mobile nav-theme"
+          type="button"
+          aria-label="Przełącz motyw"
+          aria-pressed="false">
+          <svg class="icon-sun" viewBox="0 0 24 24" aria-hidden="true">
+            <g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round">
+              <!-- tarcza słońca -->
+              <circle cx="12" cy="12" r="3.5" fill="currentColor" stroke="none"></circle>
+              <!-- promienie (N, S, E, W + skośne) -->
+              <path
+                d="M12 2.5v2.5M12 19v2.5M4.5 12H2M22 12h-2.5M5.4 5.4l1.8 1.8M16.8 16.8l1.8 1.8M18.6 5.4l-1.8 1.8M7.2 16.8l-1.8 1.8"></path>
+            </g>
+          </svg>
+          <svg class="icon-moon" viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79Z"></path>
+          </svg>
+        </button>
       </nav>
-      <!-- Przełącznik motywu: dyskretny przycisk z ikoną -->
+
+      <!-- Przełącznik motywu (tylko desktop) -->
       <button
-        id="themeToggle"
-        class="theme-toggle"
+        id="themeToggleDesktop"
+        class="theme-toggle theme-toggle--desktop"
         aria-label="Przełącz motyw"
         aria-pressed="false"
         title="Przełącz motyw (Jasny/Ciemny)">
-        <!-- Ikony w SVG (sun/moon) -->
         <svg class="icon-sun" viewBox="0 0 24 24" aria-hidden="true">
-          <path
-            d="M12 4.5a1 1 0 0 1 1-1h0a1 1 0 1 1-2 0h0a1 1 0 0 1 1 1Zm0 16a1 1 0 0 1 1 1h0a1 1 0 1 1-2 0h0a1 1 0 0 1 1-1Zm7.5-7.5a1 1 0 0 1 1-1h0a1 1 0 1 1 0 2h0a1 1 0 0 1-1-1ZM3.5 12a1 1 0 0 1 1-1h0a1 1 0 1 1 0 2h0a1 1 0 0 1-1-1Zm12.02-6.02a1 1 0 1 1 1.41-1.41h0a1 1 0 1 1-1.41 1.41Zm-9.04 12.04a1 1 0 1 1 1.41-1.41h0a1 1 0 1 1-1.41 1.41Zm12.04 0a1 1 0 1 1-1.41-1.41h0a1 1 0 1 1 1.41 1.41Zm-12.04-12.04a1 1 0 1 1-1.41-1.41h0a1 1 0 1 1 1.41 1.41ZM12 7a5 5 0 1 1 0 10A5 5 0 0 1 12 7Z" />
+          <g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round">
+            <!-- tarcza słońca -->
+            <circle cx="12" cy="12" r="3.5" fill="currentColor" stroke="none"></circle>
+            <!-- promienie (N, S, E, W + skośne) -->
+            <path
+              d="M12 2.5v2.5M12 19v2.5M4.5 12H2M22 12h-2.5M5.4 5.4l1.8 1.8M16.8 16.8l1.8 1.8M18.6 5.4l-1.8 1.8M7.2 16.8l-1.8 1.8"></path>
+          </g>
         </svg>
         <svg class="icon-moon" viewBox="0 0 24 24" aria-hidden="true">
-          <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79Z" />
+          <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79Z"></path>
         </svg>
       </button>
 
-      <!-- Hamburger (Twoje SVG 40×40 jako <img>) -->
+      <!-- Hamburger -->
       <button
         id="hamburger"
         type="button"
@@ -366,7 +393,7 @@
           alt=""
           aria-hidden="true" />
 
-        <!-- Ikona ZAMKNIJ (X) – klasyczne 24×24 dla spójności linii -->
+        <!-- Ikona ZAMKNIJ (X) -->
         <svg class="icon-svg icon-close" viewBox="0 0 24 24" aria-hidden="true">
           <g stroke="currentColor" stroke-linecap="round" stroke-width="2" fill="none">
             <line x1="5" y1="5" x2="19" y2="19" />
