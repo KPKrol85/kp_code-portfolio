@@ -518,8 +518,6 @@ body.dark-mode .theme-toggle .icon-moon {
   display: grid;
   place-items: center;
   text-align: center;
-  border-bottom-left-radius: 10px;
-  border-bottom-right-radius: 10px;
   overflow: clip;
 }
 @supports not (overflow: clip) {
@@ -1086,14 +1084,17 @@ footer {
 body.dark-mode footer {
   background: #0a0a0a;
 }
+
 .footer-content {
   max-width: 1200px;
   margin: 0 auto;
   padding: clamp(3rem, 4vw, 4rem) clamp(1rem, 4vw, 3rem) 1.75rem;
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  grid-template-columns: 1fr; /* 1 kolumna (mobile/tablet) */
   gap: 2rem;
+  justify-items: center; /* centruj karty */
 }
+
 .footer-section h3 {
   color: var(--accent);
   margin: 0 0 0.75rem 0;
@@ -1128,12 +1129,21 @@ body.dark-mode footer {
 .footer-section li + li {
   margin-top: 0.35rem;
 }
+
+/* Mobile/Tablet: centrowane karty o spójnej szerokości */
+.footer-section {
+  width: 100%;
+  max-width: 560px;
+  text-align: center;
+}
+
 .footer-brand {
   display: flex;
   flex-direction: column;
   align-items: center;
   text-align: center;
-  max-width: 32ch;
+  max-width: 560px;
+  margin-inline: auto;
 }
 .footer-brand .logo-img {
   height: 56px;
@@ -1153,6 +1163,7 @@ body.dark-mode footer {
   margin-top: 0.75rem;
   gap: 0.75rem;
 }
+
 .social-icons {
   display: flex;
   gap: 1rem;
@@ -1180,14 +1191,15 @@ body.dark-mode footer {
   outline-offset: 3px;
   box-shadow: 0 0 0 3px color-mix(in srgb, var(--accent-400) 60%, transparent);
 }
+
 .contact-info {
   color: #ccc;
 }
 .contact-info strong {
   color: var(--accent);
 }
+
 .footer-bottom {
-  border-top: 1px solid #444;
   border-top: 1px solid color-mix(in srgb, var(--text-light) 15%, transparent);
   padding: 1.25rem clamp(1rem, 4vw, 3rem);
   text-align: center;
@@ -1213,37 +1225,66 @@ body.dark-mode .footer-bottom {
   margin: 0;
 }
 
-
-.footer-brand .gmaps-ico {display:inline-grid;place-items:center;width:40px;height:40px;border-radius:50%;border:1px solid color-mix(in srgb,var(--text-light) 22%,transparent);background:transparent;color:var(--text-light);text-decoration:none;margin-top:.75rem;transition:transform .2s ease,background-color .2s ease,border-color .2s ease,box-shadow .2s ease;}
-.footer-brand .gmaps-ico:hover {background:color-mix(in srgb,var(--text-light) 10%,transparent);border-color:var(--accent-400);transform:translateY(-1px);box-shadow:0 6px 14px rgba(0,0,0,.18);}
-.footer-brand .gmaps-ico:focus-visible {outline:3px solid var(--accent-400);outline-offset:3px;}
-.footer-brand .gmaps-icon {width:18px;height:18px;fill:currentColor;opacity:.95;transform:translateY(.5px);}
-
-
-@media (max-width: 768px) {
-  .footer-content {
-    grid-template-columns: 1fr;
-    text-align: center;
-  }
-  .social-icons {
-    justify-content: center;
-  }
+.footer-brand .gmaps-ico {
+  display: inline-grid;
+  place-items: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: 1px solid color-mix(in srgb, var(--text-light) 22%, transparent);
+  background: transparent;
+  color: var(--text-light);
+  text-decoration: none;
+  margin-top: 0.75rem;
+  transition: transform 0.2s ease, background-color 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+}
+.footer-brand .gmaps-ico:hover {
+  background: color-mix(in srgb, var(--text-light) 10%, transparent);
+  border-color: var(--accent-400);
+  transform: translateY(-1px);
+  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.18);
+}
+.footer-brand .gmaps-ico:focus-visible {
+  outline: 3px solid var(--accent-400);
+  outline-offset: 3px;
+}
+.footer-brand .gmaps-icon {
+  width: 18px;
+  height: 18px;
+  fill: currentColor;
+  opacity: 0.95;
+  transform: translateY(0.5px);
 }
 
-@media (min-width: 769px) {
+/* ========================= DESKTOP (>=1025px) ========================= */
+@media (min-width: 1025px) {
+  .footer-content {
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    justify-items: stretch; /* normalne rozciągnięcie kart */
+    gap: 2rem;
+  }
+  .footer-section {
+    max-width: none;
+    text-align: left;
+  } /* wraca lewostronne wyrównanie dla sekcji */
   .footer-brand {
-    padding-right: 1.5rem; 
-    border-right: 1px solid color-mix(in srgb, var(--text-light) 10%, transparent); 
-    margin-right: 1.5rem; 
+    max-width: 32ch;
+    margin-inline: 0;
+    padding-right: 1.5rem;
+    border-right: 1px solid color-mix(in srgb, var(--text-light) 10%, transparent);
+    margin-right: 1.5rem;
+    text-align: center;
+    align-items: center; /* brand może zostać centrowany wewnętrznie */
   }
   .footer-content > .footer-section:not(.footer-brand) {
     padding-left: 3rem;
   }
-
-  .footer-content {
-    gap: 2rem;
-  }
+  .footer-brand .social-icons {
+    justify-content: flex-start;
+  } /* opcja: ikony pod logo do lewej */
 }
+
+/* szeroki desktop */
 @media (min-width: 1200px) {
   .footer-content {
     gap: 2.5rem;

@@ -1,73 +1,90 @@
 /* ================================================================================
-   ========== Animacje pojawiania sekcji przy scrollu =============================
+   ========== Animacje pojawiania sekcji przy scrollu (powtarzalne + initial) =====
    ================================================================================ */
+(() => {
+  const hiddenElements = document.querySelectorAll('.hidden');
+  if (!hiddenElements.length) return;
 
-const hiddenElements = document.querySelectorAll('.hidden');
-const observer = new IntersectionObserver(
-  (entries) => {
-    entries.forEach((entry) => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add('show');
-      }
-    });
-  },
-  { threshold: 0.2 }
-);
-
-hiddenElements.forEach((el) => observer.observe(el));
-
-const przyciskPowrotu = document.getElementById('powrot-na-gore');
-
-window.addEventListener('scroll', () => {
-  if (window.scrollY > 200) {
-    przyciskPowrotu.style.display = 'block';
-  } else {
-    przyciskPowrotu.style.display = 'none';
+  // Fallback dla bardzo starych przeglądarek
+  if (!('IntersectionObserver' in window)) {
+    hiddenElements.forEach((el) => el.classList.add('show'));
+    return;
   }
-});
 
-przyciskPowrotu.addEventListener('click', () => {
-  window.scrollTo({ top: 0, behavior: 'smooth' });
-});
+  // Histereza: dodajemy show gdy ratio > ENTER, zdejmujemy gdy ratio == 0
+  const ENTER_RATIO = 0.12; // ok. 12% w kadrze wystarcza
+  const ROOT_MARGIN = '0px 0px -10% 0px'; // lekko wcześniej na dole
 
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        // Dodaj, gdy sensownie widać
+        if (entry.intersectionRatio > ENTER_RATIO) {
+          entry.target.classList.add('show');
+        }
+        // Zdejmij dopiero, gdy całkiem zniknie z widoku
+        else if (entry.intersectionRatio === 0) {
+          entry.target.classList.remove('show');
+        }
+      });
+    },
+    {
+      root: null,
+      rootMargin: ROOT_MARGIN,
+      threshold: [0, ENTER_RATIO, 0.5, 1],
+    }
+  );
 
+  hiddenElements.forEach((el) => observer.observe(el));
 
+  // Initial reveal: pokaż wszystko, co już jest w kadrze na starcie
+  const isInViewport = (el, ratio = ENTER_RATIO) => {
+    const r = el.getBoundingClientRect();
+    const vh = window.innerHeight || document.documentElement.clientHeight;
+    const vw = window.innerWidth || document.documentElement.clientWidth;
+    if (r.width === 0 || r.height === 0) return false;
+    const visibleVert = Math.min(r.bottom, vh) - Math.max(r.top, 0);
+    const visibleHorz = Math.min(r.right, vw) - Math.max(r.left, 0);
+    if (visibleVert <= 0 || visibleHorz <= 0) return false;
+    const visibleArea = visibleVert * visibleHorz;
+    const totalArea = r.width * r.height;
+    return visibleArea / totalArea > ratio;
+  };
 
+  const initialReveal = () => {
+    hiddenElements.forEach((el) => {
+      if (isInViewport(el)) el.classList.add('show');
+    });
+  };
 
-
-
-
-
-
+  // Odpal najszybciej jak się da i przy standardowych wejściach
+  initialReveal();
+  window.addEventListener('load', initialReveal, { once: true });
+  window.addEventListener('pageshow', initialReveal, { once: true });
+})();
 
 /* ================================================================================
    ========== Motyw + przełączanie logo + ikonka hamburgera (desktop+mobile) ======
    ================================================================================ */
 (() => {
-  // Przyciski przełącznika (mogą nie istnieć jednocześnie – sprawdzamy oba)
   const btnDesktop = document.getElementById('themeToggleDesktop');
   const btnMobile = document.getElementById('themeToggleMobile');
-
-  // Logo i hamburger (podmiana źródeł w zależności od motywu)
   const logos = document.querySelectorAll('.logo-img[data-light][data-dark]');
   const hamburgerIcon = document.getElementById('hamburgerIcon');
 
-  // preferencje systemowe
   const mq = window.matchMedia ? window.matchMedia('(prefers-color-scheme: dark)') : null;
 
-  // Ścieżki do ikon hamburgera (Twoje pliki)
   const HAMBURGER_SRC = {
     light: 'assets/img/icon/hamburger-02-light-mode-40.svg',
     dark: 'assets/img/icon/hamburger-02-dark-mode-40.svg',
   };
 
-  // ——— Pomocnicze ———
   const setLogo = (isDark) => {
-  logos.forEach((img) => {
-    const next = isDark ? img.dataset.dark : img.dataset.light;
-    if (img.getAttribute('src') !== next) img.setAttribute('src', next);
-  });
-};
+    logos.forEach((img) => {
+      const next = isDark ? img.dataset.dark : img.dataset.light;
+      if (img.src !== (new URL(next, document.baseURI)).href) img.setAttribute('src', next);
+    });
+  };
 
   const setHamburgerIcon = (isDark) => {
     if (!hamburgerIcon) return;
@@ -88,34 +105,41 @@ przyciskPowrotu.addEventListener('click', () => {
     }
   };
 
-  // Jedyna funkcja ustawiająca motyw (aktualizuje wszystko w 1 miejscu)
+  const safeSetItem = (k, v) => {
+    try { localStorage.setItem(k, v); } catch { /* np. tryb prywatny Safari */ }
+  };
+  const safeGetItem = (k) => {
+    try { return localStorage.getItem(k); } catch { return null; }
+  };
+
+  // Jedyna funkcja ustawiająca motyw
   const setTheme = (mode, persist = true) => {
     const isDark = mode === 'dark';
     document.body.classList.toggle('dark-mode', isDark);
     setLogo(isDark);
     setHamburgerIcon(isDark);
     syncButtonsA11y(isDark);
-    if (persist) localStorage.setItem('theme', isDark ? 'dark' : 'light');
+    if (persist) safeSetItem('theme', isDark ? 'dark' : 'light');
   };
 
-  // ——— Inicjalizacja: localStorage > prefers-color-scheme ———
-  const saved = localStorage.getItem('theme'); // 'dark' | 'light' | null
+  // Inicjalizacja: localStorage > prefers-color-scheme
+  const saved = safeGetItem('theme'); // 'dark' | 'light' | null
   if (saved === 'dark' || saved === 'light') setTheme(saved, false);
   else setTheme(mq && mq.matches ? 'dark' : 'light', false);
 
-  // ——— Obsługa kliknięć (oba przyciski sterują tym samym stanem) ———
+  // Obsługa kliknięć
   const onToggle = () => {
     const next = document.body.classList.contains('dark-mode') ? 'light' : 'dark';
     setTheme(next, true);
   };
-  btnDesktop && btnDesktop.addEventListener('click', onToggle);
-  btnMobile && btnMobile.addEventListener('click', onToggle);
+  if (btnDesktop) btnDesktop.addEventListener('click', onToggle);
+  if (btnMobile) btnMobile.addEventListener('click', onToggle);
 
-  // ——— Reakcja na zmianę motywu systemowego (gdy brak zapisu w LS) ———
+  // Reakcja na zmianę motywu systemowego (gdy brak zapisu w LS)
   if (!saved && mq) {
     const onSystemChange = (e) => setTheme(e.matches ? 'dark' : 'light', false);
     if (mq.addEventListener) mq.addEventListener('change', onSystemChange);
-    else if (mq.addListener) mq.addListener(onSystemChange); // Safari starsze
+    else if (mq.addListener) mq.addListener(onSystemChange);
   }
 })();
 
@@ -165,46 +189,47 @@ przyciskPowrotu.addEventListener('click', () => {
   else if (mql.addListener) mql.addListener(onChange);
 })();
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 /* ================================================================================
-   ========== Przycisk na góre====== ==============================================
+   ========== Przycisk „Powrót na górę” ===========================================
    ================================================================================ */
-
 (() => {
   const btn = document.getElementById('powrot-na-gore') || document.querySelector('.powrot-na-gore');
   if (!btn) return;
 
-  const THRESHOLD = 300; // px: po jakim przewinięciu pokazać
+  const THRESHOLD = 300; // px
 
-  const root = document.scrollingElement || document.documentElement;
+  const getScrollTop = () =>
+    typeof window.pageYOffset === 'number'
+      ? window.pageYOffset
+      : (document.scrollingElement || document.documentElement).scrollTop;
+
   const update = () => {
-    btn.classList.toggle('is-visible', root.scrollTop > THRESHOLD);
+    btn.classList.toggle('is-visible', getScrollTop() > THRESHOLD);
   };
 
-  // ustaw od razu po załadowaniu/odtworzeniu strony
-  window.addEventListener('load', update);
-  // reaguj na scroll
-  window.addEventListener('scroll', update, { passive: true });
-  // powrót z bfcache / zmiana zakładki
+  // rAF: delikatne „odszumienie” eventów scroll
+  let ticking = false;
+  const onScroll = () => {
+    if (ticking) return;
+    ticking = true;
+    requestAnimationFrame(() => {
+      update();
+      ticking = false;
+    });
+  };
+
+  // Ustaw stan na starcie i przy typowych powrotach z bfcache
+  update();
+  window.addEventListener('load', update, { once: true });
+  window.addEventListener('pageshow', update, { once: true }); // Safari/FF bfcache
   document.addEventListener('visibilitychange', () => {
     if (document.visibilityState === 'visible') update();
   });
 
-  // płynny powrót do góry
+  // Reaguj na scroll
+  window.addEventListener('scroll', onScroll, { passive: true });
+
+  // Płynny powrót do góry
   btn.addEventListener('click', (e) => {
     e.preventDefault();
     const smooth = !window.matchMedia('(prefers-reduced-motion: reduce)').matches;
