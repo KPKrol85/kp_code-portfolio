@@ -590,3 +590,77 @@
     pre.src = href;
   }, true);
 })();
+
+
+
+
+
+/* ===== ACCENT SWITCH (optional) =================================== */
+(() => {
+  const KEY = 'accent';
+  const html = document.documentElement;
+
+  const safeGet = (k) => { try { return localStorage.getItem(k); } catch { return null; } };
+  const safeSet = (k, v) => { try { localStorage.setItem(k, v); } catch {} };
+
+  const applyAccent = (name, persist = true) => {
+    if (!name) return;
+    html.setAttribute('data-accent', name);
+    if (persist) safeSet(KEY, name);
+  };
+
+  // Init: localStorage > atrybut w HTML > 'ocean'
+  const saved = safeGet(KEY);
+  const initial = saved || html.getAttribute('data-accent') || 'ocean';
+  applyAccent(initial, false);
+
+  // API globalnie (ułatwia testy w konsoli)
+  window.setAccent = applyAccent;
+
+  // Delegacja: dowolny element z [data-accent-pick="nazwa"]
+  document.addEventListener('click', (e) => {
+    const btn = e.target.closest('[data-accent-pick]');
+    if (!btn) return;
+    applyAccent(btn.getAttribute('data-accent-pick'), true);
+  });
+})();
+/* ===== KONIEC ===== */
+
+
+/* ===== Accent Picker UI (toggle + a11y) ========================== */
+(() => {
+  const picker = document.querySelector('[data-accent-panel]');
+  if (!picker) return;
+  const toggle = picker.querySelector('[data-accent-toggle]');
+  const panel = picker.querySelector('.accent-picker__panel');
+  const swatches = Array.from(picker.querySelectorAll('[data-accent-pick]'));
+  picker.hidden = false;
+
+  const open = () => { picker.dataset.open = 'true'; toggle.setAttribute('aria-expanded', 'true'); panel.focus({ preventScroll: true }); };
+  const close = () => { picker.dataset.open = 'false'; toggle.setAttribute('aria-expanded', 'false'); };
+
+  toggle.addEventListener('click', () => { (picker.dataset.open === 'true') ? close() : open(); });
+
+  document.addEventListener('click', (e) => {
+    if (picker.dataset.open !== 'true') return;
+    if (e.target.closest('[data-accent-panel]')) return;
+    close();
+  });
+
+  document.addEventListener('keydown', (e) => {
+    if (picker.dataset.open === 'true' && e.key === 'Escape') { close(); toggle.focus(); }
+  });
+
+  // Nawigacja klawiszami w gridzie
+  panel.addEventListener('keydown', (e) => {
+    const cols = 4;
+    const i = swatches.indexOf(document.activeElement);
+    if (i === -1) return;
+    let n = null;
+    if (e.key === 'ArrowRight') n = i + 1;
+    if (e.key === 'ArrowLeft') n = i - 1;
+    if (e.key === 'ArrowDown') n = i + cols;
+    if (e.key === 'ArrowUp') n = i - cols;
+    if (n != null) { e.preventDefault(); const next = swatches[(n + swatches.length) % swatches.length]; next?.focus(); }
+  });
+})();

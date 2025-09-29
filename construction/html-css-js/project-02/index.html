@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="pl" dir="ltr">
+<html lang="pl" dir="ltr" data-accent="ocean">
   <head>
     <!-- Podstawy -->
     <meta charset="UTF-8" />
@@ -70,9 +70,9 @@
     <meta name="format-detection" content="telephone=no" />
 
     <!-- Wydajność fontów -->
-    <link rel="preload" href="fonts/Montserrat.woff2" as="font" type="font/woff2" crossorigin />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="preload" href="fonts/Montserrat.woff2" as="font" type="font/woff2" crossorigin />
     <link
       href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&family=Montserrat:wght@600;700&display=swap"
       rel="stylesheet" />
@@ -208,7 +208,6 @@
         ]
       }
     </script>
-
     <script type="application/ld+json">
       {
         "@context": "https://schema.org",
@@ -297,7 +296,6 @@
         ]
       }
     </script>
-
     <script type="application/ld+json">
       {
         "@context": "https://schema.org",
@@ -314,10 +312,9 @@
     </script>
   </head>
 
+  <!-- BODY -->
   <body>
     <div id="top"></div>
-    <link rel="preload" href="fonts/Montserrat.woff2" as="font" type="font/woff2" crossorigin />
-
     <header>
       <a href="#top" class="logo">
         <img
@@ -339,8 +336,6 @@
         <a href="#">Usługi</a>
         <a href="#">O nas</a>
         <a href="#">Kontakt</a>
-        <!-- Przełącznik motywu (tylko mobile, pokazuje się w rozwijanym menu) -->
-        <!-- w nav (mobile) -->
         <button
           id="themeToggleMobile"
           class="theme-toggle theme-toggle--mobile nav-theme"
@@ -349,9 +344,7 @@
           aria-pressed="false">
           <svg class="icon-sun" viewBox="0 0 24 24" aria-hidden="true">
             <g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round">
-              <!-- tarcza słońca -->
               <circle cx="12" cy="12" r="3.5" fill="currentColor" stroke="none"></circle>
-              <!-- promienie (N, S, E, W + skośne) -->
               <path
                 d="M12 2.5v2.5M12 19v2.5M4.5 12H2M22 12h-2.5M5.4 5.4l1.8 1.8M16.8 16.8l1.8 1.8M18.6 5.4l-1.8 1.8M7.2 16.8l-1.8 1.8"></path>
             </g>
@@ -362,7 +355,6 @@
         </button>
       </nav>
 
-      <!-- Przełącznik motywu (tylko desktop) -->
       <button
         id="themeToggleDesktop"
         class="theme-toggle theme-toggle--desktop"
@@ -371,9 +363,7 @@
         title="Przełącz motyw (Jasny/Ciemny)">
         <svg class="icon-sun" viewBox="0 0 24 24" aria-hidden="true">
           <g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round">
-            <!-- tarcza słońca -->
             <circle cx="12" cy="12" r="3.5" fill="currentColor" stroke="none"></circle>
-            <!-- promienie (N, S, E, W + skośne) -->
             <path
               d="M12 2.5v2.5M12 19v2.5M4.5 12H2M22 12h-2.5M5.4 5.4l1.8 1.8M16.8 16.8l1.8 1.8M18.6 5.4l-1.8 1.8M7.2 16.8l-1.8 1.8"></path>
           </g>
@@ -477,37 +467,39 @@
             role="listitem"
             aria-labelledby="svc-remonty-ttl"
             aria-describedby="svc-remonty-desc">
-            <picture>
-              <source
-                type="image/avif"
-                srcset="
-                  assets/img/uslugi/remont-mieszkania-01-400x300.avif 400w,
-                  assets/img/uslugi/remont-mieszkania-01-600x400.avif 600w
-                "
-                sizes="(max-width: 768px) 92vw, 360px" />
-              <source
-                type="image/webp"
-                srcset="
-                  assets/img/uslugi/remont-mieszkania-01-400x300.webp 400w,
-                  assets/img/uslugi/remont-mieszkania-01-600x400.webp 600w
-                "
-                sizes="(max-width: 768px) 92vw, 360px" />
-              <img
-                src="assets/img/uslugi/remont-mieszkania-01-600x400.jpg"
-                srcset="
-                  assets/img/uslugi/remont-mieszkania-01-400x300.jpg 400w,
-                  assets/img/uslugi/remont-mieszkania-01-600x400.jpg 600w
-                "
-                sizes="(max-width: 768px) 92vw, 360px"
-                width="600"
-                height="400"
-                alt="Remont mieszkania — wnętrze po renowacji"
-                loading="lazy"
-                decoding="async"
-                fetchpriority="low" />
-            </picture>
-            <h3 id="svc-remonty-ttl">Remonty mieszkań</h3>
-            <p id="svc-remonty-desc">Kompleksowe remonty wnętrz dostosowane do Twoich potrzeb.</p>
+            <a href="services/remonty-mieszkan.html" class="service-link">
+              <picture>
+                <source
+                  type="image/avif"
+                  srcset="
+                    assets/img/uslugi/remont-mieszkania-01-400x300.avif 400w,
+                    assets/img/uslugi/remont-mieszkania-01-600x400.avif 600w
+                  "
+                  sizes="(max-width: 768px) 92vw, 360px" />
+                <source
+                  type="image/webp"
+                  srcset="
+                    assets/img/uslugi/remont-mieszkania-01-400x300.webp 400w,
+                    assets/img/uslugi/remont-mieszkania-01-600x400.webp 600w
+                  "
+                  sizes="(max-width: 768px) 92vw, 360px" />
+                <img
+                  src="assets/img/uslugi/remont-mieszkania-01-600x400.jpg"
+                  srcset="
+                    assets/img/uslugi/remont-mieszkania-01-400x300.jpg 400w,
+                    assets/img/uslugi/remont-mieszkania-01-600x400.jpg 600w
+                  "
+                  sizes="(max-width: 768px) 92vw, 360px"
+                  width="600"
+                  height="400"
+                  alt="Remont mieszkania — wnętrze po renowacji"
+                  loading="lazy"
+                  decoding="async"
+                  fetchpriority="low" />
+              </picture>
+              <h3 id="svc-remonty-ttl">Remonty mieszkań</h3>
+              <p id="svc-remonty-desc">Kompleksowe remonty wnętrz dostosowane do Twoich potrzeb.</p>
+            </a>
           </article>
 
           <!-- 2) Budowa domów -->
@@ -516,63 +508,67 @@
             role="listitem"
             aria-labelledby="svc-domy-ttl"
             aria-describedby="svc-domy-desc">
-            <picture>
-              <source
-                type="image/avif"
-                srcset="assets/img/uslugi/dom-01-400x300.avif 400w, assets/img/uslugi/dom-01-600x400.avif 600w"
-                sizes="(max-width: 768px) 92vw, 360px" />
-              <source
-                type="image/webp"
-                srcset="assets/img/uslugi/dom-01-400x300.webp 400w, assets/img/uslugi/dom-01-600x400.webp 600w"
-                sizes="(max-width: 768px) 92vw, 360px" />
-              <img
-                src="assets/img/uslugi/dom-01-600x400.jpg"
-                srcset="assets/img/uslugi/dom-01-400x300.jpg 400w, assets/img/uslugi/dom-01-600x400.jpg 600w"
-                sizes="(max-width: 768px) 92vw, 360px"
-                width="600"
-                height="400"
-                alt="Nowoczesny dom jednorodzinny — etap budowy"
-                loading="lazy"
-                decoding="async"
-                fetchpriority="low" />
-            </picture>
-            <h3 id="svc-domy-ttl">Budowa domów</h3>
-            <p id="svc-domy-desc">Od fundamentów po dach — budujemy domy Twoich marzeń.</p>
+            <a href="services/budowa-domow.html" class="service-link">
+              <picture>
+                <source
+                  type="image/avif"
+                  srcset="assets/img/uslugi/dom-01-400x300.avif 400w, assets/img/uslugi/dom-01-600x400.avif 600w"
+                  sizes="(max-width: 768px) 92vw, 360px" />
+                <source
+                  type="image/webp"
+                  srcset="assets/img/uslugi/dom-01-400x300.webp 400w, assets/img/uslugi/dom-01-600x400.webp 600w"
+                  sizes="(max-width: 768px) 92vw, 360px" />
+                <img
+                  src="assets/img/uslugi/dom-01-600x400.jpg"
+                  srcset="assets/img/uslugi/dom-01-400x300.jpg 400w, assets/img/uslugi/dom-01-600x400.jpg 600w"
+                  sizes="(max-width: 768px) 92vw, 360px"
+                  width="600"
+                  height="400"
+                  alt="Nowoczesny dom jednorodzinny — etap budowy"
+                  loading="lazy"
+                  decoding="async"
+                  fetchpriority="low" />
+              </picture>
+              <h3 id="svc-domy-ttl">Budowa domów</h3>
+              <p id="svc-domy-desc">Od fundamentów po dach — budujemy domy Twoich marzeń.</p>
+            </a>
           </article>
 
           <!-- 3) Wykończenia wnętrz -->
           <article class="service hidden" role="listitem" aria-labelledby="svc-wyk-ttl" aria-describedby="svc-wyk-desc">
-            <picture>
-              <source
-                type="image/avif"
-                srcset="
-                  assets/img/uslugi/wykonczenia-wnetrz-02-400x300.avif 400w,
-                  assets/img/uslugi/wykonczenia-wnetrz-02-600x400.avif 600w
-                "
-                sizes="(max-width: 768px) 92vw, 360px" />
-              <source
-                type="image/webp"
-                srcset="
-                  assets/img/uslugi/wykonczenia-wnetrz-02-400x300.webp 400w,
-                  assets/img/uslugi/wykonczenia-wnetrz-02-600x400.webp 600w
-                "
-                sizes="(max-width: 768px) 92vw, 360px" />
-              <img
-                src="assets/img/uslugi/wykonczenia-wnetrz-02-600x400.jpg"
-                srcset="
-                  assets/img/uslugi/wykonczenia-wnetrz-02-400x300.jpg 400w,
-                  assets/img/uslugi/wykonczenia-wnetrz-02-600x400.jpg 600w
-                "
-                sizes="(max-width: 768px) 92vw, 360px"
-                width="600"
-                height="400"
-                alt="Salon po wykończeniu — zabudowa i oświetlenie"
-                loading="lazy"
-                decoding="async"
-                fetchpriority="low" />
-            </picture>
-            <h3 id="svc-wyk-ttl">Wykończenia wnętrz</h3>
-            <p id="svc-wyk-desc">Stylowe i nowoczesne wykończenia dla każdego pomieszczenia.</p>
+            <a href="services/wykonczenia-wnetrz.html" class="service-link">
+              <picture>
+                <source
+                  type="image/avif"
+                  srcset="
+                    assets/img/uslugi/wykonczenia-wnetrz-02-400x300.avif 400w,
+                    assets/img/uslugi/wykonczenia-wnetrz-02-600x400.avif 600w
+                  "
+                  sizes="(max-width: 768px) 92vw, 360px" />
+                <source
+                  type="image/webp"
+                  srcset="
+                    assets/img/uslugi/wykonczenia-wnetrz-02-400x300.webp 400w,
+                    assets/img/uslugi/wykonczenia-wnetrz-02-600x400.webp 600w
+                  "
+                  sizes="(max-width: 768px) 92vw, 360px" />
+                <img
+                  src="assets/img/uslugi/wykonczenia-wnetrz-02-600x400.jpg"
+                  srcset="
+                    assets/img/uslugi/wykonczenia-wnetrz-02-400x300.jpg 400w,
+                    assets/img/uslugi/wykonczenia-wnetrz-02-600x400.jpg 600w
+                  "
+                  sizes="(max-width: 768px) 92vw, 360px"
+                  width="600"
+                  height="400"
+                  alt="Salon po wykończeniu — zabudowa i oświetlenie"
+                  loading="lazy"
+                  decoding="async"
+                  fetchpriority="low" />
+              </picture>
+              <h3 id="svc-wyk-ttl">Wykończenia wnętrz</h3>
+              <p id="svc-wyk-desc">Stylowe i nowoczesne wykończenia dla każdego pomieszczenia.</p>
+            </a>
           </article>
 
           <!-- 4) Adaptacje poddaszy -->
@@ -581,37 +577,39 @@
             role="listitem"
             aria-labelledby="svc-poddasze-ttl"
             aria-describedby="svc-poddasze-desc">
-            <picture>
-              <source
-                type="image/avif"
-                srcset="
-                  assets/img/uslugi/adaptacje-poddaszy-01-400x300.avif 400w,
-                  assets/img/uslugi/adaptacje-poddaszy-01-600x400.avif 600w
-                "
-                sizes="(max-width: 768px) 92vw, 360px" />
-              <source
-                type="image/webp"
-                srcset="
-                  assets/img/uslugi/adaptacje-poddaszy-01-400x300.webp 400w,
-                  assets/img/uslugi/adaptacje-poddaszy-01-600x400.webp 600w
-                "
-                sizes="(max-width: 768px) 92vw, 360px" />
-              <img
-                src="assets/img/uslugi/adaptacje-poddaszy-01-600x400.jpg"
-                srcset="
-                  assets/img/uslugi/adaptacje-poddaszy-01-400x300.jpg 400w,
-                  assets/img/uslugi/adaptacje-poddaszy-01-600x400.jpg 600w
-                "
-                sizes="(max-width: 768px) 92vw, 360px"
-                width="600"
-                height="400"
-                alt="Poddasze w trakcie adaptacji — ocieplenie i zabudowa"
-                loading="lazy"
-                decoding="async"
-                fetchpriority="low" />
-            </picture>
-            <h3 id="svc-poddasze-ttl">Adaptacje poddaszy</h3>
-            <p id="svc-poddasze-desc">Przekształcamy poddasza w funkcjonalne i przytulne przestrzenie mieszkalne.</p>
+            <a href="services/adaptacje-poddaszy.html" class="service-link">
+              <picture>
+                <source
+                  type="image/avif"
+                  srcset="
+                    assets/img/uslugi/adaptacje-poddaszy-01-400x300.avif 400w,
+                    assets/img/uslugi/adaptacje-poddaszy-01-600x400.avif 600w
+                  "
+                  sizes="(max-width: 768px) 92vw, 360px" />
+                <source
+                  type="image/webp"
+                  srcset="
+                    assets/img/uslugi/adaptacje-poddaszy-01-400x300.webp 400w,
+                    assets/img/uslugi/adaptacje-poddaszy-01-600x400.webp 600w
+                  "
+                  sizes="(max-width: 768px) 92vw, 360px" />
+                <img
+                  src="assets/img/uslugi/adaptacje-poddaszy-01-600x400.jpg"
+                  srcset="
+                    assets/img/uslugi/adaptacje-poddaszy-01-400x300.jpg 400w,
+                    assets/img/uslugi/adaptacje-poddaszy-01-600x400.jpg 600w
+                  "
+                  sizes="(max-width: 768px) 92vw, 360px"
+                  width="600"
+                  height="400"
+                  alt="Poddasze w trakcie adaptacji — ocieplenie i zabudowa"
+                  loading="lazy"
+                  decoding="async"
+                  fetchpriority="low" />
+              </picture>
+              <h3 id="svc-poddasze-ttl">Adaptacje poddaszy</h3>
+              <p id="svc-poddasze-desc">Przekształcamy poddasza w funkcjonalne i przytulne przestrzenie mieszkalne.</p>
+            </a>
           </article>
 
           <!-- 5) Instalacje sanitarne -->
@@ -620,39 +618,41 @@
             role="listitem"
             aria-labelledby="svc-sanitarne-ttl"
             aria-describedby="svc-sanitarne-desc">
-            <picture>
-              <source
-                type="image/avif"
-                srcset="
-                  assets/img/uslugi/instalacje-sanitarne-01-400x300.avif 400w,
-                  assets/img/uslugi/instalacje-sanitarne-01-600x400.avif 600w
-                "
-                sizes="(max-width: 768px) 92vw, 360px" />
-              <source
-                type="image/webp"
-                srcset="
-                  assets/img/uslugi/instalacje-sanitarne-01-400x300.webp 400w,
-                  assets/img/uslugi/instalacje-sanitarne-01-600x400.webp 600w
-                "
-                sizes="(max-width: 768px) 92vw, 360px" />
-              <img
-                src="assets/img/uslugi/instalacje-sanitarne-01-600x400.jpg"
-                srcset="
-                  assets/img/uslugi/instalacje-sanitarne-01-400x300.jpg 400w,
-                  assets/img/uslugi/instalacje-sanitarne-01-600x400.jpg 600w
-                "
-                sizes="(max-width: 768px) 92vw, 360px"
-                width="600"
-                height="400"
-                alt="Łazienka — armatura i instalacja wodno-kanalizacyjna"
-                loading="lazy"
-                decoding="async"
-                fetchpriority="low" />
-            </picture>
-            <h3 id="svc-sanitarne-ttl">Instalacje sanitarne</h3>
-            <p id="svc-sanitarne-desc">
-              Profesjonalny montaż i serwis instalacji wodno-kanalizacyjnych oraz grzewczych.
-            </p>
+            <a href="services/instalacje-sanitarne.html" class="service-link">
+              <picture>
+                <source
+                  type="image/avif"
+                  srcset="
+                    assets/img/uslugi/instalacje-sanitarne-01-400x300.avif 400w,
+                    assets/img/uslugi/instalacje-sanitarne-01-600x400.avif 600w
+                  "
+                  sizes="(max-width: 768px) 92vw, 360px" />
+                <source
+                  type="image/webp"
+                  srcset="
+                    assets/img/uslugi/instalacje-sanitarne-01-400x300.webp 400w,
+                    assets/img/uslugi/instalacje-sanitarne-01-600x400.webp 600w
+                  "
+                  sizes="(max-width: 768px) 92vw, 360px" />
+                <img
+                  src="assets/img/uslugi/instalacje-sanitarne-01-600x400.jpg"
+                  srcset="
+                    assets/img/uslugi/instalacje-sanitarne-01-400x300.jpg 400w,
+                    assets/img/uslugi/instalacje-sanitarne-01-600x400.jpg 600w
+                  "
+                  sizes="(max-width: 768px) 92vw, 360px"
+                  width="600"
+                  height="400"
+                  alt="Łazienka — armatura i instalacja wodno-kanalizacyjna"
+                  loading="lazy"
+                  decoding="async"
+                  fetchpriority="low" />
+              </picture>
+              <h3 id="svc-sanitarne-ttl">Instalacje sanitarne</h3>
+              <p id="svc-sanitarne-desc">
+                Profesjonalny montaż i serwis instalacji wodno-kanalizacyjnych oraz grzewczych.
+              </p>
+            </a>
           </article>
 
           <!-- 6) Instalacje elektryczne -->
@@ -661,39 +661,41 @@
             role="listitem"
             aria-labelledby="svc-elektryczne-ttl"
             aria-describedby="svc-elektryczne-desc">
-            <picture>
-              <source
-                type="image/avif"
-                srcset="
-                  assets/img/uslugi/instalacje-elektryczne-01-400x300.avif 400w,
-                  assets/img/uslugi/instalacje-elektryczne-01-600x400.avif 600w
-                "
-                sizes="(max-width: 768px) 92vw, 360px" />
-              <source
-                type="image/webp"
-                srcset="
-                  assets/img/uslugi/instalacje-elektryczne-01-400x300.webp 400w,
-                  assets/img/uslugi/instalacje-elektryczne-01-600x400.webp 600w
-                "
-                sizes="(max-width: 768px) 92vw, 360px" />
-              <img
-                src="assets/img/uslugi/instalacje-elektryczne-01-600x400.jpg"
-                srcset="
-                  assets/img/uslugi/instalacje-elektryczne-01-400x300.jpg 400w,
-                  assets/img/uslugi/instalacje-elektryczne-01-600x400.jpg 600w
-                "
-                sizes="(max-width: 768px) 92vw, 360px"
-                width="600"
-                height="400"
-                alt="Rozdzielnia elektryczna — montaż i okablowanie"
-                loading="lazy"
-                decoding="async"
-                fetchpriority="low" />
-            </picture>
-            <h3 id="svc-elektryczne-ttl">Instalacje elektryczne</h3>
-            <p id="svc-elektryczne-desc">
-              Bezpieczny montaż i modernizacja instalacji elektrycznych w domach i firmach.
-            </p>
+            <a href="services/instalacje-elektryczne.html" class="service-link">
+              <picture>
+                <source
+                  type="image/avif"
+                  srcset="
+                    assets/img/uslugi/instalacje-elektryczne-01-400x300.avif 400w,
+                    assets/img/uslugi/instalacje-elektryczne-01-600x400.avif 600w
+                  "
+                  sizes="(max-width: 768px) 92vw, 360px" />
+                <source
+                  type="image/webp"
+                  srcset="
+                    assets/img/uslugi/instalacje-elektryczne-01-400x300.webp 400w,
+                    assets/img/uslugi/instalacje-elektryczne-01-600x400.webp 600w
+                  "
+                  sizes="(max-width: 768px) 92vw, 360px" />
+                <img
+                  src="assets/img/uslugi/instalacje-elektryczne-01-600x400.jpg"
+                  srcset="
+                    assets/img/uslugi/instalacje-elektryczne-01-400x300.jpg 400w,
+                    assets/img/uslugi/instalacje-elektryczne-01-600x400.jpg 600w
+                  "
+                  sizes="(max-width: 768px) 92vw, 360px"
+                  width="600"
+                  height="400"
+                  alt="Rozdzielnia elektryczna — montaż i okablowanie"
+                  loading="lazy"
+                  decoding="async"
+                  fetchpriority="low" />
+              </picture>
+              <h3 id="svc-elektryczne-ttl">Instalacje elektryczne</h3>
+              <p id="svc-elektryczne-desc">
+                Bezpieczny montaż i modernizacja instalacji elektrycznych w domach i firmach.
+              </p>
+            </a>
           </article>
         </div>
       </section>
@@ -1349,12 +1351,12 @@
         <div class="footer-section" aria-labelledby="footer-services">
           <h3 id="footer-services">Nasze Usługi</h3>
           <ul>
-            <li><a href="#">Budowa domów</a></li>
-            <li><a href="#">Remonty mieszkań</a></li>
-            <li><a href="#">Wykończenia wnętrz</a></li>
-            <li><a href="#">Adaptacje poddaszy</a></li>
-            <li><a href="#">Instalacje sanitarne</a></li>
-            <li><a href="#">Instalacje elektryczne</a></li>
+            <li><a href="services/budowa-domow.html" class="service-link">Budowa domów</a></li>
+            <li><a href="services/remonty-mieszkan.html" class="service-link">Remonty mieszkań</a></li>
+            <li><a href="services/wykonczenia-wnetrz.html" class="service-link">Wykończenia wnętrz</a></li>
+            <li><a href="services/adaptacje-poddaszy.html" class="service-link">Adaptacje poddaszy</a></li>
+            <li><a href="services/instalacje-sanitarne.html" class="service-link">Instalacje sanitarne</a></li>
+            <li><a href="services/instalacje-elektryczne.html" class="service-link">Instalacje elektryczne</a></li>
           </ul>
         </div>
 
