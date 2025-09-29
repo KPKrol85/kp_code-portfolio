@@ -1,6 +1,6 @@
-/* ================================================================================
+/* ===
    ========== Animacje pojawiania sekcji przy scrollu (powtarzalne + initial) =====
-   ================================================================================ */
+   =======*/
 (() => {
   const hiddenElements = document.querySelectorAll('.hidden');
   if (!hiddenElements.length) return;
@@ -252,23 +252,66 @@
   const form = document.getElementById('contactForm');
   if (!form) return;
 
+  // USTAWIENIA / REFERENCJE
+  const IS_LOCAL = /localhost|127\.0\.0\.1/.test(location.hostname); // ← 1x deklaracja, używamy wszędzie
   const statusBox = form.querySelector('#formStatus');
   const submitBtn = form.querySelector('.submit-btn');
   const originalBtnText = submitBtn ? submitBtn.textContent : 'Wyślij wiadomość';
-
   const requiredFields = ['name', 'email', 'subject', 'service', 'message']; // phone opcjonalny
 
   const msg = form.querySelector('#message');
   const counter = document.getElementById('messageCounter');
   const MAX = 500;
 
-  const setInvalid = (el) => { el.classList.add('is-invalid'); el.setAttribute('aria-invalid', 'true'); };
-  const clearInvalid = (el) => { el.classList.remove('is-invalid'); el.removeAttribute('aria-invalid'); };
-  const showStatus = (msg, ok = false) => {
-    statusBox.classList.toggle('ok', ok);
-    statusBox.classList.toggle('err', !ok);
-    statusBox.textContent = msg;
+  // A11y: odwołania do elementów z HTML (już istnieją)
+  const a11ySummary = form.querySelector('#errorSummary');
+  const skipLink = form.querySelector('#skipToError');
+  if (skipLink) {
+    skipLink.addEventListener('click', (ev) => {
+      ev.preventDefault();
+      const firstInvalid = form.querySelector('.is-invalid');
+      if (firstInvalid) firstInvalid.focus();
+    });
+  }
+  // Skrót: Alt+Shift+E → fokus na 1. błędnym polu
+  form.addEventListener('keydown', (ev) => {
+    const k = ev.key || ev.code;
+    if (ev.altKey && ev.shiftKey && (k === 'E' || k === 'KeyE')) {
+      const firstInvalid = form.querySelector('.is-invalid');
+      if (firstInvalid) { ev.preventDefault(); firstInvalid.focus(); }
+    }
+  });
+
+  // UTILS
+  const setInvalid = (el) => {
+    if (!el) return;
+    el.classList.add('is-invalid');
+    el.setAttribute('aria-invalid', 'true');
   };
+  const clearInvalid = (el) => {
+    if (!el) return;
+    el.classList.remove('is-invalid');
+    el.removeAttribute('aria-invalid');
+  };
+  const showStatus = (message, ok = false) => {
+    if (!statusBox) return; // bezpiecznik
+    statusBox.classList.toggle('ok', !!ok);
+    statusBox.classList.toggle('err', !ok);
+    statusBox.textContent = message;
+  };
+
+
+
+
+
+
+
+
+
+
+
+
+
 
   function updateCounter() {
     if (!msg || !counter) return;
@@ -280,14 +323,58 @@
   }
   updateCounter();
 
+  // AUTO-SAVE szkicu wiadomości (localStorage)
+const MSG_KEY = 'contactFormMessage';
+if (msg) {
+  // Przy starcie: odczytaj poprzedni szkic
+  const savedMsg = localStorage.getItem(MSG_KEY);
+  if (savedMsg) {
+    msg.value = savedMsg;
+    updateCounter();
+  }
+
+  // Na każdą zmianę: zapisz
+  msg.addEventListener('input', () => {
+    try {
+      localStorage.setItem(MSG_KEY, msg.value);
+    } catch {
+      // np. tryb prywatny Safari
+    }
+  });
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
   form.addEventListener('input', (e) => {
     const t = e.target;
     if (t.matches('#name, #email, #subject, #service, #message, #phone, #consent')) clearInvalid(t);
     if (t === msg) updateCounter();
+
+    // Jeśli nie ma już błędów — schowaj summary/skip
+    if (![...form.querySelectorAll('.is-invalid')].length) {
+      if (a11ySummary) a11ySummary.classList.add('visually-hidden');
+      if (skipLink) skipLink.classList.add('visually-hidden');
+    }
   });
 
   form.addEventListener('submit', async (e) => {
     e.preventDefault();
+    if (form.getAttribute('aria-busy') === 'true') return; // hard guard
     showStatus('', false);
 
     let valid = true;
@@ -295,82 +382,149 @@
     // 1) required
     requiredFields.forEach((id) => {
       const el = form.querySelector('#' + id);
-      if (!el.value.trim()) { setInvalid(el); valid = false; }
+      if (!el || !el.value || !el.value.trim()) {
+        setInvalid(el);
+        valid = false;
+      }
     });
 
     // 2) email
     const email = form.querySelector('#email');
-    const emailVal = email.value.trim();
-    if (emailVal && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(emailVal)) { setInvalid(email); valid = false; showStatus('Wpisz poprawny adres e-mail.', false); }
+    const emailVal = email ? email.value.trim() : '';
+    if (email && emailVal && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(emailVal)) {
+      setInvalid(email);
+      valid = false;
+      showStatus('Wpisz poprawny adres e-mail.', false);
+    }
 
     // 3) phone (opcjonalny)
     const phone = form.querySelector('#phone');
     if (phone) {
       const phoneVal = phone.value.trim();
-      if (phoneVal && !/^[0-9 +()-]{7,20}$/.test(phoneVal)) { setInvalid(phone); valid = false; showStatus('Wpisz poprawny numer telefonu (np. +48 600 000 000).', false); }
+      if (phoneVal && !/^[0-9 +()-]{7,20}$/.test(phoneVal)) {
+        setInvalid(phone);
+        valid = false;
+        showStatus('Wpisz poprawny numer telefonu (np. +48 600 000 000).', false);
+      }
     }
 
     // 4) RODO
     const consent = form.querySelector('#consent');
-    if (consent && !consent.checked) { consent.classList.add('is-invalid'); valid = false; showStatus('Zaznacz zgodę na przetwarzanie danych.', false); }
+    if (consent && !consent.checked) {
+      setInvalid(consent);
+      valid = false;
+      showStatus('Zaznacz zgodę na przetwarzanie danych.', false);
+    }
+
+    // 4.5) reCAPTCHA (tylko kiedy Netlify wstawi widget i nie jesteśmy lokalnie)
+    const recaptchaWrap = form.querySelector('[data-recaptcha]');
+    if (recaptchaWrap && !IS_LOCAL) {
+      const tokenField = form.querySelector('[name="g-recaptcha-response"]');
+      if (!tokenField || !tokenField.value) {
+        valid = false;
+        showStatus('Potwierdź, że nie jesteś robotem (reCAPTCHA).', false);
+      }
+    }
 
     // 5) limit
-    if (msg && msg.value.length > MAX) { setInvalid(msg); valid = false; showStatus(`Wiadomość może mieć maks. ${MAX} znaków.`, false); }
+    if (msg && msg.value.length > MAX) {
+      setInvalid(msg);
+      valid = false;
+      showStatus(`Wiadomość może mieć maks. ${MAX} znaków.`, false);
+    }
 
     if (!valid) {
-      if (!statusBox.textContent) showStatus('Uzupełnij wymagane pola.', false);
-      const firstInvalid = form.querySelector('.is-invalid');
+      // ARIA SUMMARY + SKIP (tylko gdy są błędy)
+      const invalids = [...form.querySelectorAll('.is-invalid')];
+      if (a11ySummary) {
+        const labels = invalids.map((el) => {
+          const lab = el.id ? form.querySelector(`label[for="${el.id}"]`) : null;
+          return lab ? lab.textContent.trim() : (el.name || el.id || 'Pole');
+        });
+        const n = invalids.length;
+        const suf = n === 1 ? 'błąd' : (n >= 2 && n <= 4 ? 'błędy' : 'błędów');
+        a11ySummary.textContent = `Formularz zawiera ${n} ${suf}: ${labels.join(', ')}.`;
+        a11ySummary.classList.remove('visually-hidden');
+      }
+      if (skipLink) skipLink.classList.remove('visually-hidden');
+
+      const firstInvalid = invalids[0];
       if (firstInvalid) firstInvalid.focus();
+
+      if (statusBox && !statusBox.textContent) showStatus('Uzupełnij wymagane pola.', false);
       return;
     }
 
     // === SENDING UI ===
     form.setAttribute('aria-busy', 'true');
-    submitBtn.disabled = true;
-    submitBtn.classList.add('sending');
-    submitBtn.textContent = 'Wysyłanie…';
+    if (submitBtn) {
+      submitBtn.disabled = true;
+      submitBtn.classList.add('sending');
+      submitBtn.textContent = 'Wysyłanie…';
+    }
     showStatus('Wysyłanie…', true);
 
     // --- Netlify POST (działa po deployu na Netlify) ---
-    const isLocal = /localhost|127\.0\.0\.1/.test(location.hostname);
-    const formData = new FormData(form); // zawiera też hidden 'form-name'
+    const formData = new FormData(form); // zawiera też hidden 'form-name' i g-recaptcha-response (po rozwiązaniu)
     const body = new URLSearchParams(formData).toString();
 
     try {
-      if (!isLocal) {
+      if (!IS_LOCAL) {
         const res = await fetch('/', {
           method: 'POST',
           headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-          body
+          body,
         });
         if (!res.ok) throw new Error('Netlify response not OK');
       } else {
-        // lokalnie: symulujemy sukces (Netlify nie obsługuje POST na localhost)
-        await new Promise(r => setTimeout(r, 500));
+        // lokalnie: symulujemy sukces
+        await new Promise((r) => setTimeout(r, 500));
       }
 
       // === SUCCESS ===
       form.setAttribute('aria-busy', 'false');
       form.reset();
+      try { localStorage.removeItem(MSG_KEY); } catch {}
+
       updateCounter();
       showStatus('Dziękujemy! Wiadomość została wysłana.', true);
-      submitBtn.classList.remove('sending');
-      submitBtn.classList.add('sent');
-      submitBtn.textContent = 'Wysłano ✓';
-      setTimeout(() => { submitBtn.disabled = false; }, 1200);
-      setTimeout(() => {
-        showStatus('', true);
-        submitBtn.classList.remove('sent');
-        submitBtn.textContent = originalBtnText;
-      }, 6000);
+      if (submitBtn) {
+        submitBtn.classList.remove('sending');
+        submitBtn.classList.add('sent');
+        submitBtn.textContent = 'Wysłano ✓';
+        setTimeout(() => {
+          submitBtn.disabled = false;
+        }, 1200);
+        setTimeout(() => {
+          showStatus('', true);
+          submitBtn.classList.remove('sent');
+          submitBtn.textContent = originalBtnText;
+        }, 6000);
+      }
+
+      // Sprzątanie A11y po sukcesie
+      if (a11ySummary) a11ySummary.classList.add('visually-hidden');
+      if (skipLink) skipLink.classList.add('visually-hidden');
+
+      /* TRACKING — GA4 + Meta (tylko po sukcesie i nie lokalnie) */
+      if (!IS_LOCAL) {
+        if (typeof gtag === 'function') {
+          gtag('event', 'generate_lead', { event_category: 'Formularz', event_label: 'Kontakt — Budownictwo' });
+        }
+        if (typeof fbq === 'function') {
+          fbq('track', 'Lead');
+        }
+      }
     } catch (err) {
       // Błąd: dajmy czytelny komunikat
       form.setAttribute('aria-busy', 'false');
-      submitBtn.disabled = false;
-      submitBtn.classList.remove('sending');
-      submitBtn.textContent = originalBtnText;
+      if (submitBtn) {
+        submitBtn.disabled = false;
+        submitBtn.classList.remove('sending');
+        submitBtn.textContent = originalBtnText;
+      }
       showStatus('Ups! Nie udało się wysłać. Spróbuj ponownie za chwilę.', false);
       console.error(err);
     }
-  });
-})();
+  }); // ← koniec addEventListener('submit', ...)
+})(); // ← koniec IIFE

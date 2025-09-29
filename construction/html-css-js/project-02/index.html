@@ -82,7 +82,7 @@
     <!-- Główny CSS -->
     <link rel="stylesheet" href="css/style.css" />
 
-    <!-- Strukturalne dane JSON-LD (Organization) -->
+    <!-- Strukturalne dane JSON-LD (Organization + ContactPoint) — Demo -->
     <script type="application/ld+json">
       {
         "@context": "https://schema.org",
@@ -90,10 +90,16 @@
         "name": "KP_Code",
         "url": "https://construction-project-02.netlify.app/",
         "logo": "https://construction-project-02.netlify.app/assets/icons/apple-touch-icon.png",
-        "sameAs": []
+        "sameAs": [],
+        "contactPoint": {
+          "@type": "ContactPoint",
+          "telephone": "+48-600-000-000",
+          "contactType": "customer service",
+          "areaServed": "PL",
+          "availableLanguage": ["Polish"]
+        }
       }
     </script>
-
     <script type="application/ld+json">
       {
         "@context": "https://schema.org",
@@ -1094,7 +1100,7 @@
         <!-- /.gallery-inner -->
       </section>
 
-      <!-- FORMULARZ KONTAKTOWY -->
+      <!-- FORMULARZ KONTAKTOWY - zintegrowany z Netlify -->
       <section class="contact-form-section bg-surface-3 section--divider">
         <h2 class="section-title">Skontaktuj się z nami!</h2>
 
@@ -1109,6 +1115,10 @@
             class="contact-form"
             novalidate
             aria-describedby="formNote formStatus">
+            <!-- A11y: podsumowanie błędów + skrót do pierwszego błędu -->
+            <div id="errorSummary" class="visually-hidden" role="status" aria-live="assertive" aria-atomic="true"></div>
+            <a id="skipToError" class="visually-hidden-focusable" href="#">Przejdź do pierwszego błędu</a>
+
             <!-- Netlify: hidden form-name -->
             <input type="hidden" name="form-name" value="contact" />
 
@@ -1151,9 +1161,11 @@
               <select id="service" name="service" required>
                 <option value="">-- Wybierz usługę --</option>
                 <option value="remont">Remont mieszkania</option>
-                <option value="malowanie">Malowanie</option>
+                <option value="budowa">Budowa domu</option>
+                <option value="wnetrze">Wykończenie wnętrza</option>
+                <option value="poddasze">Adaptacja poddasza</option>
+                <option value="sanitarne">Instalacje sanitarne</option>
                 <option value="elektryka">Instalacje elektryczne</option>
-                <option value="hydraulika">Instalacje hydrauliczne</option>
                 <option value="inne">Inne</option>
               </select>
             </div>
@@ -1184,6 +1196,13 @@
             </div>
 
             <p id="formNote" class="form-note">Pola powyżej są wymagane. Odpowiadamy zwykle tego samego dnia.</p>
+
+            <!-- reCAPTCHA (Netlify) -->
+            <div class="form-group captcha-wrap" data-recaptcha>
+              <div data-netlify-recaptcha="true"></div>
+              <noscript><p class="form-note">Aby wysłać formularz, włącz JavaScript (reCAPTCHA).</p></noscript>
+            </div>
+
             <div id="formStatus" class="form-status" role="alert" aria-live="polite"></div>
 
             <button type="submit" class="submit-btn">Wyślij wiadomość</button>
