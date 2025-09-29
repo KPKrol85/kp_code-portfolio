@@ -278,7 +278,10 @@
     const k = ev.key || ev.code;
     if (ev.altKey && ev.shiftKey && (k === 'E' || k === 'KeyE')) {
       const firstInvalid = form.querySelector('.is-invalid');
-      if (firstInvalid) { ev.preventDefault(); firstInvalid.focus(); }
+      if (firstInvalid) {
+        ev.preventDefault();
+        firstInvalid.focus();
+      }
     }
   });
 
@@ -300,19 +303,6 @@
     statusBox.textContent = message;
   };
 
-
-
-
-
-
-
-
-
-
-
-
-
-
   function updateCounter() {
     if (!msg || !counter) return;
     if (msg.value.length > MAX) msg.value = msg.value.slice(0, MAX);
@@ -324,41 +314,24 @@
   updateCounter();
 
   // AUTO-SAVE szkicu wiadomości (localStorage)
-const MSG_KEY = 'contactFormMessage';
-if (msg) {
-  // Przy starcie: odczytaj poprzedni szkic
-  const savedMsg = localStorage.getItem(MSG_KEY);
-  if (savedMsg) {
-    msg.value = savedMsg;
-    updateCounter();
-  }
-
-  // Na każdą zmianę: zapisz
-  msg.addEventListener('input', () => {
-    try {
-      localStorage.setItem(MSG_KEY, msg.value);
-    } catch {
-      // np. tryb prywatny Safari
+  const MSG_KEY = 'contactFormMessage';
+  if (msg) {
+    // Przy starcie: odczytaj poprzedni szkic
+    const savedMsg = localStorage.getItem(MSG_KEY);
+    if (savedMsg) {
+      msg.value = savedMsg;
+      updateCounter();
     }
-  });
-}
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    // Na każdą zmianę: zapisz
+    msg.addEventListener('input', () => {
+      try {
+        localStorage.setItem(MSG_KEY, msg.value);
+      } catch {
+        // np. tryb prywatny Safari
+      }
+    });
+  }
 
   form.addEventListener('input', (e) => {
     const t = e.target;
@@ -439,10 +412,10 @@ if (msg) {
       if (a11ySummary) {
         const labels = invalids.map((el) => {
           const lab = el.id ? form.querySelector(`label[for="${el.id}"]`) : null;
-          return lab ? lab.textContent.trim() : (el.name || el.id || 'Pole');
+          return lab ? lab.textContent.trim() : el.name || el.id || 'Pole';
         });
         const n = invalids.length;
-        const suf = n === 1 ? 'błąd' : (n >= 2 && n <= 4 ? 'błędy' : 'błędów');
+        const suf = n === 1 ? 'błąd' : n >= 2 && n <= 4 ? 'błędy' : 'błędów';
         a11ySummary.textContent = `Formularz zawiera ${n} ${suf}: ${labels.join(', ')}.`;
         a11ySummary.classList.remove('visually-hidden');
       }
@@ -484,7 +457,9 @@ if (msg) {
       // === SUCCESS ===
       form.setAttribute('aria-busy', 'false');
       form.reset();
-      try { localStorage.removeItem(MSG_KEY); } catch {}
+      try {
+        localStorage.removeItem(MSG_KEY);
+      } catch {}
 
       updateCounter();
       showStatus('Dziękujemy! Wiadomość została wysłana.', true);
@@ -528,3 +503,90 @@ if (msg) {
     }
   }); // ← koniec addEventListener('submit', ...)
 })(); // ← koniec IIFE
+
+
+
+/* ======================================================================
+   LIGHTBOX — prosty podgląd zdjęcia (bez karuzeli)
+   - Otwiera się po kliknięciu w .gallery-link (delegacja zdarzeń)
+   - Zamknięcie: Esc, klik w tło lub przycisk ×
+   - Dostępność: focus-trap, aria-modal, przywracanie fokusu
+   ====================================================================== */
+(() => {
+  const lb = document.getElementById('lightbox');
+  if (!lb) return; // brak kontenera — nic nie robimy
+
+  const imgEl = lb.querySelector('.lb__img');
+  const captionEl = lb.querySelector('.lb__caption');
+  const closeBtn = lb.querySelector('.lb__close');
+  const backdrop = lb.querySelector('.lb__backdrop');
+
+  let lastActive = null;
+  let focusables = [], firstF = null, lastF = null;
+
+  const trapInit = () => {
+    focusables = Array.from(lb.querySelectorAll(
+      'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])'
+    )).filter(el => !el.hasAttribute('disabled') && el.offsetParent !== null);
+    firstF = focusables[0];
+    lastF  = focusables[focusables.length - 1];
+  };
+  const trapRelease = () => { focusables = []; firstF = lastF = null; };
+  const handleTrap = (e) => {
+    if (!focusables.length) return;
+    if (e.shiftKey && document.activeElement === firstF) { e.preventDefault(); lastF.focus(); }
+    else if (!e.shiftKey && document.activeElement === lastF) { e.preventDefault(); firstF.focus(); }
+  };
+
+  const open = (src, alt) => {
+    lastActive = document.activeElement;
+    imgEl.src = src;
+    imgEl.alt = alt || '';
+    if (alt) { captionEl.textContent = alt; captionEl.hidden = false; } else { captionEl.hidden = true; }
+    lb.setAttribute('aria-hidden', 'false');
+    document.body.classList.add('lb-open');
+    trapInit();
+    closeBtn.focus();
+  };
+
+  const close = () => {
+    lb.setAttribute('aria-hidden', 'true');
+    document.body.classList.remove('lb-open');
+    imgEl.removeAttribute('src');
+    trapRelease();
+    if (lastActive) lastActive.focus();
+  };
+
+  // Delegacja: kliknięcie w miniaturę/link w obrębie .gallery-container
+  document.addEventListener('click', (e) => {
+    const link = e.target.closest('.gallery-link');
+    if (!link) return;
+    if (!link.closest('.gallery-container')) return; // tylko galeria
+    e.preventDefault();
+    const href = link.getAttribute('href');
+    const thumbImg = link.querySelector('img');
+    open(href, thumbImg ? thumbImg.alt : '');
+  });
+
+  // Zamknięcie: klik w tło / przycisk ×
+  if (backdrop) backdrop.addEventListener('click', close);
+  if (closeBtn) closeBtn.addEventListener('click', close);
+
+  // Klawiatura: Esc + Tab (focus-trap)
+  document.addEventListener('keydown', (e) => {
+    if (lb.getAttribute('aria-hidden') !== 'false') return;
+    if (e.key === 'Escape') { e.preventDefault(); close(); }
+    if (e.key === 'Tab') { handleTrap(e); }
+  });
+
+  // Drobny UX: prefetch dużego zdjęcia po najechaniu (opcjonalnie, lekko)
+  document.addEventListener('mouseenter', (e) => {
+    const link = e.target.closest('.gallery-link');
+    if (!link || !link.closest('.gallery-container')) return;
+    const href = link.getAttribute('href');
+    if (!href) return;
+    const pre = new Image();
+    pre.decoding = 'async';
+    pre.src = href;
+  }, true);
+})();

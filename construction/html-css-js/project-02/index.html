@@ -70,6 +70,7 @@
     <meta name="format-detection" content="telephone=no" />
 
     <!-- Wydajność fontów -->
+    <link rel="preload" href="fonts/Montserrat.woff2" as="font" type="font/woff2" crossorigin />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -315,6 +316,7 @@
 
   <body>
     <div id="top"></div>
+    <link rel="preload" href="fonts/Montserrat.woff2" as="font" type="font/woff2" crossorigin />
 
     <header>
       <a href="#top" class="logo">
@@ -738,6 +740,7 @@
       <section class="gallery-section bg-surface-1 section--divider" aria-labelledby="gallery-heading">
         <div class="gallery-inner">
           <h2 id="gallery-heading" class="section-title">Nasze realizacje</h2>
+
           <div class="gallery-container" role="list">
             <!-- 1) Remont mieszkania -->
             <figure
@@ -745,34 +748,39 @@
               role="listitem"
               aria-labelledby="gal-remont1-ttl"
               aria-describedby="gal-remont1-desc">
-              <picture>
-                <source
-                  type="image/avif"
-                  srcset="
-                    assets/img/realizacje/remont-01-800x600.avif   800w,
-                    assets/img/realizacje/remont-01-1200x800.avif 1200w
-                  "
-                  sizes="(max-width: 768px) 100vw, 400px" />
-                <source
-                  type="image/webp"
-                  srcset="
-                    assets/img/realizacje/remont-01-800x600.webp   800w,
-                    assets/img/realizacje/remont-01-1200x800.webp 1200w
-                  "
-                  sizes="(max-width: 768px) 100vw, 400px" />
-                <img
-                  src="assets/img/realizacje/remont-01-1200x800.jpg"
-                  srcset="
-                    assets/img/realizacje/remont-01-800x600.jpg   800w,
-                    assets/img/realizacje/remont-01-1200x800.jpg 1200w
-                  "
-                  sizes="(max-width: 768px) 100vw, 400px"
-                  alt="Nowoczesne wnętrze mieszkania po remoncie"
-                  width="1200"
-                  height="800"
-                  loading="lazy"
-                  decoding="async" />
-              </picture>
+              <a
+                class="gallery-link"
+                href="assets/img/realizacje/remont-01-1200x800.jpg"
+                aria-label="Powiększ zdjęcie: Remont mieszkania, Warszawa">
+                <picture>
+                  <source
+                    type="image/avif"
+                    srcset="
+                      assets/img/realizacje/remont-01-800x600.avif   800w,
+                      assets/img/realizacje/remont-01-1200x800.avif 1200w
+                    "
+                    sizes="(max-width: 768px) 100vw, 400px" />
+                  <source
+                    type="image/webp"
+                    srcset="
+                      assets/img/realizacje/remont-01-800x600.webp   800w,
+                      assets/img/realizacje/remont-01-1200x800.webp 1200w
+                    "
+                    sizes="(max-width: 768px) 100vw, 400px" />
+                  <img
+                    src="assets/img/realizacje/remont-01-1200x800.jpg"
+                    srcset="
+                      assets/img/realizacje/remont-01-800x600.jpg   800w,
+                      assets/img/realizacje/remont-01-1200x800.jpg 1200w
+                    "
+                    sizes="(max-width: 768px) 100vw, 400px"
+                    alt="Nowoczesne wnętrze mieszkania po remoncie"
+                    width="1200"
+                    height="800"
+                    loading="lazy"
+                    decoding="async" />
+                </picture>
+              </a>
               <figcaption class="overlay">
                 <h3 id="gal-remont1-ttl">Remont mieszkania</h3>
                 <p id="gal-remont1-desc">Warszawa</p>
@@ -785,34 +793,39 @@
               role="listitem"
               aria-labelledby="gal-willa-ttl"
               aria-describedby="gal-willa-desc">
-              <picture>
-                <source
-                  type="image/avif"
-                  srcset="
-                    assets/img/realizacje/budowa-domu-01-800x600.avif   800w,
-                    assets/img/realizacje/budowa-domu-01-1200x800.avif 1200w
-                  "
-                  sizes="(max-width: 768px) 100vw, 400px" />
-                <source
-                  type="image/webp"
-                  srcset="
-                    assets/img/realizacje/budowa-domu-01-800x600.webp   800w,
-                    assets/img/realizacje/budowa-domu-01-1200x800.webp 1200w
-                  "
-                  sizes="(max-width: 768px) 100vw, 400px" />
-                <img
-                  src="assets/img/realizacje/budowa-domu-01-1200x800.jpg"
-                  srcset="
-                    assets/img/realizacje/budowa-domu-01-800x600.jpg   800w,
-                    assets/img/realizacje/budowa-domu-01-1200x800.jpg 1200w
-                  "
-                  sizes="(max-width: 768px) 100vw, 400px"
-                  alt="Willa w trakcie budowy z dużymi przeszkleniami"
-                  width="1200"
-                  height="800"
-                  loading="lazy"
-                  decoding="async" />
-              </picture>
+              <a
+                class="gallery-link"
+                href="assets/img/realizacje/budowa-domu-01-1200x800.jpg"
+                aria-label="Powiększ zdjęcie: Budowa willi, Rzeszów">
+                <picture>
+                  <source
+                    type="image/avif"
+                    srcset="
+                      assets/img/realizacje/budowa-domu-01-800x600.avif   800w,
+                      assets/img/realizacje/budowa-domu-01-1200x800.avif 1200w
+                    "
+                    sizes="(max-width: 768px) 100vw, 400px" />
+                  <source
+                    type="image/webp"
+                    srcset="
+                      assets/img/realizacje/budowa-domu-01-800x600.webp   800w,
+                      assets/img/realizacje/budowa-domu-01-1200x800.webp 1200w
+                    "
+                    sizes="(max-width: 768px) 100vw, 400px" />
+                  <img
+                    src="assets/img/realizacje/budowa-domu-01-1200x800.jpg"
+                    srcset="
+                      assets/img/realizacje/budowa-domu-01-800x600.jpg   800w,
+                      assets/img/realizacje/budowa-domu-01-1200x800.jpg 1200w
+                    "
+                    sizes="(max-width: 768px) 100vw, 400px"
+                    alt="Willa w trakcie budowy z dużymi przeszkleniami"
+                    width="1200"
+                    height="800"
+                    loading="lazy"
+                    decoding="async" />
+                </picture>
+              </a>
               <figcaption class="overlay">
                 <h3 id="gal-willa-ttl">Budowa willi</h3>
                 <p id="gal-willa-desc">Rzeszów</p>
@@ -825,34 +838,39 @@
               role="listitem"
               aria-labelledby="gal-salon-ttl"
               aria-describedby="gal-salon-desc">
-              <picture>
-                <source
-                  type="image/avif"
-                  srcset="
-                    assets/img/realizacje/wykonczenia-02-800x600.avif   800w,
-                    assets/img/realizacje/wykonczenia-02-1200x800.avif 1200w
-                  "
-                  sizes="(max-width: 768px) 100vw, 400px" />
-                <source
-                  type="image/webp"
-                  srcset="
-                    assets/img/realizacje/wykonczenia-02-800x600.webp   800w,
-                    assets/img/realizacje/wykonczenia-02-1200x800.webp 1200w
-                  "
-                  sizes="(max-width: 768px) 100vw, 400px" />
-                <img
-                  src="assets/img/realizacje/wykonczenia-02-1200x800.jpg"
-                  srcset="
-                    assets/img/realizacje/wykonczenia-02-800x600.jpg   800w,
-                    assets/img/realizacje/wykonczenia-02-1200x800.jpg 1200w
-                  "
-                  sizes="(max-width: 768px) 100vw, 400px"
-                  alt="Salon po wykończeniu z eleganckim oświetleniem"
-                  width="1200"
-                  height="800"
-                  loading="lazy"
-                  decoding="async" />
-              </picture>
+              <a
+                class="gallery-link"
+                href="assets/img/realizacje/wykonczenia-02-1200x800.jpg"
+                aria-label="Powiększ zdjęcie: Wykończenie salonu, Gdańsk">
+                <picture>
+                  <source
+                    type="image/avif"
+                    srcset="
+                      assets/img/realizacje/wykonczenia-02-800x600.avif   800w,
+                      assets/img/realizacje/wykonczenia-02-1200x800.avif 1200w
+                    "
+                    sizes="(max-width: 768px) 100vw, 400px" />
+                  <source
+                    type="image/webp"
+                    srcset="
+                      assets/img/realizacje/wykonczenia-02-800x600.webp   800w,
+                      assets/img/realizacje/wykonczenia-02-1200x800.webp 1200w
+                    "
+                    sizes="(max-width: 768px) 100vw, 400px" />
+                  <img
+                    src="assets/img/realizacje/wykonczenia-02-1200x800.jpg"
+                    srcset="
+                      assets/img/realizacje/wykonczenia-02-800x600.jpg   800w,
+                      assets/img/realizacje/wykonczenia-02-1200x800.jpg 1200w
+                    "
+                    sizes="(max-width: 768px) 100vw, 400px"
+                    alt="Salon po wykończeniu z eleganckim oświetleniem"
+                    width="1200"
+                    height="800"
+                    loading="lazy"
+                    decoding="async" />
+                </picture>
+              </a>
               <figcaption class="overlay">
                 <h3 id="gal-salon-ttl">Wykończenie salonu</h3>
                 <p id="gal-salon-desc">Gdańsk</p>
@@ -865,34 +883,39 @@
               role="listitem"
               aria-labelledby="gal-remont2-ttl"
               aria-describedby="gal-remont2-desc">
-              <picture>
-                <source
-                  type="image/avif"
-                  srcset="
-                    assets/img/realizacje/remont-02-800x600.avif   800w,
-                    assets/img/realizacje/remont-02-1200x800.avif 1200w
-                  "
-                  sizes="(max-width: 768px) 100vw, 400px" />
-                <source
-                  type="image/webp"
-                  srcset="
-                    assets/img/realizacje/remont-02-800x600.webp   800w,
-                    assets/img/realizacje/remont-02-1200x800.webp 1200w
-                  "
-                  sizes="(max-width: 768px) 100vw, 400px" />
-                <img
-                  src="assets/img/realizacje/remont-02-1200x800.jpg"
-                  srcset="
-                    assets/img/realizacje/remont-02-800x600.jpg   800w,
-                    assets/img/realizacje/remont-02-1200x800.jpg 1200w
-                  "
-                  sizes="(max-width: 768px) 100vw, 400px"
-                  alt="Mieszkanie podczas remontu kuchni i salonu"
-                  width="1200"
-                  height="800"
-                  loading="lazy"
-                  decoding="async" />
-              </picture>
+              <a
+                class="gallery-link"
+                href="assets/img/realizacje/remont-02-1200x800.jpg"
+                aria-label="Powiększ zdjęcie: Remont mieszkania, Wrocław">
+                <picture>
+                  <source
+                    type="image/avif"
+                    srcset="
+                      assets/img/realizacje/remont-02-800x600.avif   800w,
+                      assets/img/realizacje/remont-02-1200x800.avif 1200w
+                    "
+                    sizes="(max-width: 768px) 100vw, 400px" />
+                  <source
+                    type="image/webp"
+                    srcset="
+                      assets/img/realizacje/remont-02-800x600.webp   800w,
+                      assets/img/realizacje/remont-02-1200x800.webp 1200w
+                    "
+                    sizes="(max-width: 768px) 100vw, 400px" />
+                  <img
+                    src="assets/img/realizacje/remont-02-1200x800.jpg"
+                    srcset="
+                      assets/img/realizacje/remont-02-800x600.jpg   800w,
+                      assets/img/realizacje/remont-02-1200x800.jpg 1200w
+                    "
+                    sizes="(max-width: 768px) 100vw, 400px"
+                    alt="Mieszkanie podczas remontu kuchni i salonu"
+                    width="1200"
+                    height="800"
+                    loading="lazy"
+                    decoding="async" />
+                </picture>
+              </a>
               <figcaption class="overlay">
                 <h3 id="gal-remont2-ttl">Remont mieszkania</h3>
                 <p id="gal-remont2-desc">Wrocław</p>
@@ -905,34 +928,39 @@
               role="listitem"
               aria-labelledby="gal-dom-ttl"
               aria-describedby="gal-dom-desc">
-              <picture>
-                <source
-                  type="image/avif"
-                  srcset="
-                    assets/img/realizacje/budowa-domu-02-800x600.avif   800w,
-                    assets/img/realizacje/budowa-domu-02-1200x800.avif 1200w
-                  "
-                  sizes="(max-width: 768px) 100vw, 400px" />
-                <source
-                  type="image/webp"
-                  srcset="
-                    assets/img/realizacje/budowa-domu-02-800x600.webp   800w,
-                    assets/img/realizacje/budowa-domu-02-1200x800.webp 1200w
-                  "
-                  sizes="(max-width: 768px) 100vw, 400px" />
-                <img
-                  src="assets/img/realizacje/budowa-domu-02-1200x800.jpg"
-                  srcset="
-                    assets/img/realizacje/budowa-domu-02-800x600.jpg   800w,
-                    assets/img/realizacje/budowa-domu-02-1200x800.jpg 1200w
-                  "
-                  sizes="(max-width: 768px) 100vw, 400px"
-                  alt="Dom jednorodzinny z tarasem w trakcie budowy"
-                  width="1200"
-                  height="800"
-                  loading="lazy"
-                  decoding="async" />
-              </picture>
+              <a
+                class="gallery-link"
+                href="assets/img/realizacje/budowa-domu-02-1200x800.jpg"
+                aria-label="Powiększ zdjęcie: Budowa domu, Poznań">
+                <picture>
+                  <source
+                    type="image/avif"
+                    srcset="
+                      assets/img/realizacje/budowa-domu-02-800x600.avif   800w,
+                      assets/img/realizacje/budowa-domu-02-1200x800.avif 1200w
+                    "
+                    sizes="(max-width: 768px) 100vw, 400px" />
+                  <source
+                    type="image/webp"
+                    srcset="
+                      assets/img/realizacje/budowa-domu-02-800x600.webp   800w,
+                      assets/img/realizacje/budowa-domu-02-1200x800.webp 1200w
+                    "
+                    sizes="(max-width: 768px) 100vw, 400px" />
+                  <img
+                    src="assets/img/realizacje/budowa-domu-02-1200x800.jpg"
+                    srcset="
+                      assets/img/realizacje/budowa-domu-02-800x600.jpg   800w,
+                      assets/img/realizacje/budowa-domu-02-1200x800.jpg 1200w
+                    "
+                    sizes="(max-width: 768px) 100vw, 400px"
+                    alt="Dom jednorodzinny z tarasem w trakcie budowy"
+                    width="1200"
+                    height="800"
+                    loading="lazy"
+                    decoding="async" />
+                </picture>
+              </a>
               <figcaption class="overlay">
                 <h3 id="gal-dom-ttl">Budowa domu</h3>
                 <p id="gal-dom-desc">Poznań</p>
@@ -945,34 +973,39 @@
               role="listitem"
               aria-labelledby="gal-kuchnia-ttl"
               aria-describedby="gal-kuchnia-desc">
-              <picture>
-                <source
-                  type="image/avif"
-                  srcset="
-                    assets/img/realizacje/wykonczenia-01-800x600.avif   800w,
-                    assets/img/realizacje/wykonczenia-01-1200x800.avif 1200w
-                  "
-                  sizes="(max-width: 768px) 100vw, 400px" />
-                <source
-                  type="image/webp"
-                  srcset="
-                    assets/img/realizacje/wykonczenia-01-800x600.webp   800w,
-                    assets/img/realizacje/wykonczenia-01-1200x800.webp 1200w
-                  "
-                  sizes="(max-width: 768px) 100vw, 400px" />
-                <img
-                  src="assets/img/realizacje/wykonczenia-01-1200x800.jpg"
-                  srcset="
-                    assets/img/realizacje/wykonczenia-01-800x600.jpg   800w,
-                    assets/img/realizacje/wykonczenia-01-1200x800.jpg 1200w
-                  "
-                  sizes="(max-width: 768px) 100vw, 400px"
-                  alt="Nowoczesna kuchnia po wykończeniu"
-                  width="1200"
-                  height="800"
-                  loading="lazy"
-                  decoding="async" />
-              </picture>
+              <a
+                class="gallery-link"
+                href="assets/img/realizacje/wykonczenia-01-1200x800.jpg"
+                aria-label="Powiększ zdjęcie: Wykończenie kuchni, Kraków">
+                <picture>
+                  <source
+                    type="image/avif"
+                    srcset="
+                      assets/img/realizacje/wykonczenia-01-800x600.avif   800w,
+                      assets/img/realizacje/wykonczenia-01-1200x800.avif 1200w
+                    "
+                    sizes="(max-width: 768px) 100vw, 400px" />
+                  <source
+                    type="image/webp"
+                    srcset="
+                      assets/img/realizacje/wykonczenia-01-800x600.webp   800w,
+                      assets/img/realizacje/wykonczenia-01-1200x800.webp 1200w
+                    "
+                    sizes="(max-width: 768px) 100vw, 400px" />
+                  <img
+                    src="assets/img/realizacje/wykonczenia-01-1200x800.jpg"
+                    srcset="
+                      assets/img/realizacje/wykonczenia-01-800x600.jpg   800w,
+                      assets/img/realizacje/wykonczenia-01-1200x800.jpg 1200w
+                    "
+                    sizes="(max-width: 768px) 100vw, 400px"
+                    alt="Nowoczesna kuchnia po wykończeniu"
+                    width="1200"
+                    height="800"
+                    loading="lazy"
+                    decoding="async" />
+                </picture>
+              </a>
               <figcaption class="overlay">
                 <h3 id="gal-kuchnia-ttl">Wykończenie kuchni</h3>
                 <p id="gal-kuchnia-desc">Kraków</p>
@@ -985,34 +1018,39 @@
               role="listitem"
               aria-labelledby="gal-elektryka-ttl"
               aria-describedby="gal-elektryka-desc">
-              <picture>
-                <source
-                  type="image/avif"
-                  srcset="
-                    assets/img/realizacje/instalacja-elektryczna-01-800x600.avif   800w,
-                    assets/img/realizacje/instalacja-elektryczna-01-1200x800.avif 1200w
-                  "
-                  sizes="(max-width: 768px) 100vw, 400px" />
-                <source
-                  type="image/webp"
-                  srcset="
-                    assets/img/realizacje/instalacja-elektryczna-01-800x600.webp   800w,
-                    assets/img/realizacje/instalacja-elektryczna-01-1200x800.webp 1200w
-                  "
-                  sizes="(max-width: 768px) 100vw, 400px" />
-                <img
-                  src="assets/img/realizacje/instalacja-elektryczna-01-1200x800.jpg"
-                  srcset="
-                    assets/img/realizacje/instalacja-elektryczna-01-800x600.jpg   800w,
-                    assets/img/realizacje/instalacja-elektryczna-01-1200x800.jpg 1200w
-                  "
-                  sizes="(max-width: 768px) 100vw, 400px"
-                  alt="Instalacja elektryczna wykonana w kuchni klienta"
-                  width="1200"
-                  height="800"
-                  loading="lazy"
-                  decoding="async" />
-              </picture>
+              <a
+                class="gallery-link"
+                href="assets/img/realizacje/instalacja-elektryczna-01-1200x800.jpg"
+                aria-label="Powiększ zdjęcie: Instalacja elektryczna w kuchni, Olsztyn">
+                <picture>
+                  <source
+                    type="image/avif"
+                    srcset="
+                      assets/img/realizacje/instalacja-elektryczna-01-800x600.avif   800w,
+                      assets/img/realizacje/instalacja-elektryczna-01-1200x800.avif 1200w
+                    "
+                    sizes="(max-width: 768px) 100vw, 400px" />
+                  <source
+                    type="image/webp"
+                    srcset="
+                      assets/img/realizacje/instalacja-elektryczna-01-800x600.webp   800w,
+                      assets/img/realizacje/instalacja-elektryczna-01-1200x800.webp 1200w
+                    "
+                    sizes="(max-width: 768px) 100vw, 400px" />
+                  <img
+                    src="assets/img/realizacje/instalacja-elektryczna-01-1200x800.jpg"
+                    srcset="
+                      assets/img/realizacje/instalacja-elektryczna-01-800x600.jpg   800w,
+                      assets/img/realizacje/instalacja-elektryczna-01-1200x800.jpg 1200w
+                    "
+                    sizes="(max-width: 768px) 100vw, 400px"
+                    alt="Instalacja elektryczna wykonana w kuchni klienta"
+                    width="1200"
+                    height="800"
+                    loading="lazy"
+                    decoding="async" />
+                </picture>
+              </a>
               <figcaption class="overlay">
                 <h3 id="gal-elektryka-ttl">Instalacja elektryczna w kuchni</h3>
                 <p id="gal-elektryka-desc">Olsztyn</p>
@@ -1025,34 +1063,39 @@
               role="listitem"
               aria-labelledby="gal-poddasze-ttl"
               aria-describedby="gal-poddasze-desc">
-              <picture>
-                <source
-                  type="image/avif"
-                  srcset="
-                    assets/img/realizacje/poddasze-01-800x600.avif   800w,
-                    assets/img/realizacje/poddasze-01-1200x800.avif 1200w
-                  "
-                  sizes="(max-width: 768px) 100vw, 400px" />
-                <source
-                  type="image/webp"
-                  srcset="
-                    assets/img/realizacje/poddasze-01-800x600.webp   800w,
-                    assets/img/realizacje/poddasze-01-1200x800.webp 1200w
-                  "
-                  sizes="(max-width: 768px) 100vw, 400px" />
-                <img
-                  src="assets/img/realizacje/poddasze-01-1200x800.jpg"
-                  srcset="
-                    assets/img/realizacje/poddasze-01-800x600.jpg   800w,
-                    assets/img/realizacje/poddasze-01-1200x800.jpg 1200w
-                  "
-                  sizes="(max-width: 768px) 100vw, 400px"
-                  alt="Adaptacja poddasza na przestrzeń mieszkalną"
-                  width="1200"
-                  height="800"
-                  loading="lazy"
-                  decoding="async" />
-              </picture>
+              <a
+                class="gallery-link"
+                href="assets/img/realizacje/poddasze-01-1200x800.jpg"
+                aria-label="Powiększ zdjęcie: Adaptacja poddasza, Tarnów">
+                <picture>
+                  <source
+                    type="image/avif"
+                    srcset="
+                      assets/img/realizacje/poddasze-01-800x600.avif   800w,
+                      assets/img/realizacje/poddasze-01-1200x800.avif 1200w
+                    "
+                    sizes="(max-width: 768px) 100vw, 400px" />
+                  <source
+                    type="image/webp"
+                    srcset="
+                      assets/img/realizacje/poddasze-01-800x600.webp   800w,
+                      assets/img/realizacje/poddasze-01-1200x800.webp 1200w
+                    "
+                    sizes="(max-width: 768px) 100vw, 400px" />
+                  <img
+                    src="assets/img/realizacje/poddasze-01-1200x800.jpg"
+                    srcset="
+                      assets/img/realizacje/poddasze-01-800x600.jpg   800w,
+                      assets/img/realizacje/poddasze-01-1200x800.jpg 1200w
+                    "
+                    sizes="(max-width: 768px) 100vw, 400px"
+                    alt="Adaptacja poddasza na przestrzeń mieszkalną"
+                    width="1200"
+                    height="800"
+                    loading="lazy"
+                    decoding="async" />
+                </picture>
+              </a>
               <figcaption class="overlay">
                 <h3 id="gal-poddasze-ttl">Adaptacja poddasza</h3>
                 <p id="gal-poddasze-desc">Tarnów</p>
@@ -1065,44 +1108,56 @@
               role="listitem"
               aria-labelledby="gal-poddasze2-ttl"
               aria-describedby="gal-poddasze2-desc">
-              <picture>
-                <source
-                  type="image/avif"
-                  srcset="
-                    assets/img/realizacje/poddasze-02-800x600.avif   800w,
-                    assets/img/realizacje/poddasze-02-1200x800.avif 1200w
-                  "
-                  sizes="(max-width: 768px) 100vw, 400px" />
-                <source
-                  type="image/webp"
-                  srcset="
-                    assets/img/realizacje/poddasze-02-800x600.webp   800w,
-                    assets/img/realizacje/poddasze-02-1200x800.webp 1200w
-                  "
-                  sizes="(max-width: 768px) 100vw, 400px" />
-                <img
-                  src="assets/img/realizacje/poddasze-02-1200x800.jpg"
-                  srcset="
-                    assets/img/realizacje/poddasze-02-800x600.jpg   800w,
-                    assets/img/realizacje/poddasze-02-1200x800.jpg 1200w
-                  "
-                  sizes="(max-width: 768px) 100vw, 400px"
-                  alt="Zaaranżowane poddasze jako przytulna sypialnia z oknem dachowym"
-                  width="1200"
-                  height="800"
-                  loading="lazy"
-                  decoding="async" />
-              </picture>
+              <a
+                class="gallery-link"
+                href="assets/img/realizacje/poddasze-02-1200x800.jpg"
+                aria-label="Powiększ zdjęcie: Adaptacja poddasza, Kielce">
+                <picture>
+                  <source
+                    type="image/avif"
+                    srcset="
+                      assets/img/realizacje/poddasze-02-800x600.avif   800w,
+                      assets/img/realizacje/poddasze-02-1200x800.avif 1200w
+                    "
+                    sizes="(max-width: 768px) 100vw, 400px" />
+                  <source
+                    type="image/webp"
+                    srcset="
+                      assets/img/realizacje/poddasze-02-800x600.webp   800w,
+                      assets/img/realizacje/poddasze-02-1200x800.webp 1200w
+                    "
+                    sizes="(max-width: 768px) 100vw, 400px" />
+                  <img
+                    src="assets/img/realizacje/poddasze-02-1200x800.jpg"
+                    srcset="
+                      assets/img/realizacje/poddasze-02-800x600.jpg   800w,
+                      assets/img/realizacje/poddasze-02-1200x800.jpg 1200w
+                    "
+                    sizes="(max-width: 768px) 100vw, 400px"
+                    alt="Zaaranżowane poddasze jako przytulna sypialnia z oknem dachowym"
+                    width="1200"
+                    height="800"
+                    loading="lazy"
+                    decoding="async" />
+                </picture>
+              </a>
               <figcaption class="overlay">
                 <h3 id="gal-poddasze2-ttl">Adaptacja poddasza</h3>
                 <p id="gal-poddasze2-desc">Kielce</p>
               </figcaption>
             </figure>
           </div>
-          <!-- /.gallery-container -->
         </div>
-        <!-- /.gallery-inner -->
       </section>
+
+      <div class="lb" id="lightbox" role="dialog" aria-modal="true" aria-hidden="true">
+        <div class="lb__backdrop" data-lb-close></div>
+        <figure class="lb__figure">
+          <img class="lb__img" alt="" />
+          <figcaption class="lb__caption" id="lightbox-caption" hidden></figcaption>
+          <button class="lb__close" type="button" aria-label="Zamknij (Esc)" data-lb-close>&times;</button>
+        </figure>
+      </div>
 
       <!-- FORMULARZ KONTAKTOWY - zintegrowany z Netlify -->
       <section class="contact-form-section bg-surface-3 section--divider" aria-labelledby="contact-heading">
@@ -1283,7 +1338,11 @@
             target="_blank"
             rel="noopener noreferrer"
             aria-label="Otwórz naszą mapę w Google My Maps">
-            <svg class="gmaps-icon" viewBox="0 0 24 24" width="24" height="24" aria-hidden="true">…</svg>
+            <svg class="gmaps-icon" viewBox="0 0 24 24" width="24" height="24" aria-hidden="true">
+              <path
+                d="M12 22s7-7.14 7-12a7 7 0 10-14 0c0 4.86 7 12 7 12zM12 10a2 2 0 110-4 2 2 0 010 4z"
+                fill="currentColor" />
+            </svg>
           </a>
         </div>
 
