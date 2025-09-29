@@ -82,7 +82,7 @@
   const setLogo = (isDark) => {
     logos.forEach((img) => {
       const next = isDark ? img.dataset.dark : img.dataset.light;
-      if (img.src !== (new URL(next, document.baseURI)).href) img.setAttribute('src', next);
+      if (img.src !== new URL(next, document.baseURI).href) img.setAttribute('src', next);
     });
   };
 
@@ -106,10 +106,18 @@
   };
 
   const safeSetItem = (k, v) => {
-    try { localStorage.setItem(k, v); } catch { /* np. tryb prywatny Safari */ }
+    try {
+      localStorage.setItem(k, v);
+    } catch {
+      /* np. tryb prywatny Safari */
+    }
   };
   const safeGetItem = (k) => {
-    try { return localStorage.getItem(k); } catch { return null; }
+    try {
+      return localStorage.getItem(k);
+    } catch {
+      return null;
+    }
   };
 
   // Jedyna funkcja ustawiająca motyw
@@ -234,5 +242,135 @@
     e.preventDefault();
     const smooth = !window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     window.scrollTo({ top: 0, behavior: smooth ? 'smooth' : 'auto' });
+  });
+})();
+
+/* ============================================================
+   07) KONTAKT — submit + walidacja + licznik + success state + Netlify
+============================================================ */
+(() => {
+  const form = document.getElementById('contactForm');
+  if (!form) return;
+
+  const statusBox = form.querySelector('#formStatus');
+  const submitBtn = form.querySelector('.submit-btn');
+  const originalBtnText = submitBtn ? submitBtn.textContent : 'Wyślij wiadomość';
+
+  const requiredFields = ['name', 'email', 'subject', 'service', 'message']; // phone opcjonalny
+
+  const msg = form.querySelector('#message');
+  const counter = document.getElementById('messageCounter');
+  const MAX = 500;
+
+  const setInvalid = (el) => { el.classList.add('is-invalid'); el.setAttribute('aria-invalid', 'true'); };
+  const clearInvalid = (el) => { el.classList.remove('is-invalid'); el.removeAttribute('aria-invalid'); };
+  const showStatus = (msg, ok = false) => {
+    statusBox.classList.toggle('ok', ok);
+    statusBox.classList.toggle('err', !ok);
+    statusBox.textContent = msg;
+  };
+
+  function updateCounter() {
+    if (!msg || !counter) return;
+    if (msg.value.length > MAX) msg.value = msg.value.slice(0, MAX);
+    const len = msg.value.length;
+    counter.textContent = `${len}/${MAX}`;
+    counter.classList.toggle('warn', len >= MAX - 50 && len < MAX);
+    counter.classList.toggle('limit', len >= MAX);
+  }
+  updateCounter();
+
+  form.addEventListener('input', (e) => {
+    const t = e.target;
+    if (t.matches('#name, #email, #subject, #service, #message, #phone, #consent')) clearInvalid(t);
+    if (t === msg) updateCounter();
+  });
+
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    showStatus('', false);
+
+    let valid = true;
+
+    // 1) required
+    requiredFields.forEach((id) => {
+      const el = form.querySelector('#' + id);
+      if (!el.value.trim()) { setInvalid(el); valid = false; }
+    });
+
+    // 2) email
+    const email = form.querySelector('#email');
+    const emailVal = email.value.trim();
+    if (emailVal && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(emailVal)) { setInvalid(email); valid = false; showStatus('Wpisz poprawny adres e-mail.', false); }
+
+    // 3) phone (opcjonalny)
+    const phone = form.querySelector('#phone');
+    if (phone) {
+      const phoneVal = phone.value.trim();
+      if (phoneVal && !/^[0-9 +()-]{7,20}$/.test(phoneVal)) { setInvalid(phone); valid = false; showStatus('Wpisz poprawny numer telefonu (np. +48 600 000 000).', false); }
+    }
+
+    // 4) RODO
+    const consent = form.querySelector('#consent');
+    if (consent && !consent.checked) { consent.classList.add('is-invalid'); valid = false; showStatus('Zaznacz zgodę na przetwarzanie danych.', false); }
+
+    // 5) limit
+    if (msg && msg.value.length > MAX) { setInvalid(msg); valid = false; showStatus(`Wiadomość może mieć maks. ${MAX} znaków.`, false); }
+
+    if (!valid) {
+      if (!statusBox.textContent) showStatus('Uzupełnij wymagane pola.', false);
+      const firstInvalid = form.querySelector('.is-invalid');
+      if (firstInvalid) firstInvalid.focus();
+      return;
+    }
+
+    // === SENDING UI ===
+    form.setAttribute('aria-busy', 'true');
+    submitBtn.disabled = true;
+    submitBtn.classList.add('sending');
+    submitBtn.textContent = 'Wysyłanie…';
+    showStatus('Wysyłanie…', true);
+
+    // --- Netlify POST (działa po deployu na Netlify) ---
+    const isLocal = /localhost|127\.0\.0\.1/.test(location.hostname);
+    const formData = new FormData(form); // zawiera też hidden 'form-name'
+    const body = new URLSearchParams(formData).toString();
+
+    try {
+      if (!isLocal) {
+        const res = await fetch('/', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+          body
+        });
+        if (!res.ok) throw new Error('Netlify response not OK');
+      } else {
+        // lokalnie: symulujemy sukces (Netlify nie obsługuje POST na localhost)
+        await new Promise(r => setTimeout(r, 500));
+      }
+
+      // === SUCCESS ===
+      form.setAttribute('aria-busy', 'false');
+      form.reset();
+      updateCounter();
+      showStatus('Dziękujemy! Wiadomość została wysłana.', true);
+      submitBtn.classList.remove('sending');
+      submitBtn.classList.add('sent');
+      submitBtn.textContent = 'Wysłano ✓';
+      setTimeout(() => { submitBtn.disabled = false; }, 1200);
+      setTimeout(() => {
+        showStatus('', true);
+        submitBtn.classList.remove('sent');
+        submitBtn.textContent = originalBtnText;
+      }, 6000);
+    } catch (err) {
+      // Błąd: dajmy czytelny komunikat
+      form.setAttribute('aria-busy', 'false');
+      submitBtn.disabled = false;
+      submitBtn.classList.remove('sending');
+      submitBtn.textContent = originalBtnText;
+      showStatus('Ups! Nie udało się wysłać. Spróbuj ponownie za chwilę.', false);
+      console.error(err);
+    }
   });
 })();

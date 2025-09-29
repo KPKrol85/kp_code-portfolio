@@ -1097,24 +1097,93 @@
       <!-- FORMULARZ KONTAKTOWY -->
       <section class="contact-form-section bg-surface-3 section--divider">
         <h2 class="section-title">Skontaktuj się z nami!</h2>
+
         <div class="contact-form-container">
-          <form action="#" method="post" class="contact-form">
+          <form
+            id="contactForm"
+            name="contact"
+            method="POST"
+            data-netlify="true"
+            netlify-honeypot="trap"
+            class="contact-form"
+            novalidate
+            aria-describedby="formNote formStatus">
+            <!-- Netlify: hidden form-name -->
+            <input type="hidden" name="form-name" value="contact" />
+            <!-- Netlify: honeypot (ukryte) -->
+            <div class="hp-field" aria-hidden="true">
+              <label for="trap">Jeśli to widzisz, zostaw puste</label>
+              <input type="text" id="trap" name="trap" tabindex="-1" autocomplete="off" />
+            </div>
+
             <div class="form-group">
               <label for="name">Imię i nazwisko</label>
-              <input type="text" id="name" name="name" required />
+              <input type="text" id="name" name="name" required autocomplete="name" placeholder="Jan Kowalski" />
             </div>
+
             <div class="form-group">
               <label for="email">Adres e-mail</label>
-              <input type="email" id="email" name="email" required />
+              <input type="email" id="email" name="email" required autocomplete="email" placeholder="jan@example.com" />
             </div>
+
+            <div class="form-group">
+              <label for="phone">Telefon (opcjonalnie)</label>
+              <input
+                type="tel"
+                id="phone"
+                name="phone"
+                inputmode="tel"
+                autocomplete="tel"
+                placeholder="+48 600 000 000"
+                pattern="^[0-9 +()-]{7,20}$" />
+              <!-- TIP: Aby wymagać telefonu → dodaj atrybut required i dopisz 'phone' w JS do requiredFields -->
+            </div>
+
             <div class="form-group">
               <label for="subject">Temat</label>
-              <input type="text" id="subject" name="subject" required />
+              <input type="text" id="subject" name="subject" required placeholder="Wycena / Zapytanie / Inne" />
             </div>
+
+            <div class="form-group">
+              <label for="service">Rodzaj usługi</label>
+              <select id="service" name="service" required>
+                <option value="">-- Wybierz usługę --</option>
+                <option value="remont">Remont mieszkania</option>
+                <option value="malowanie">Malowanie</option>
+                <option value="elektryka">Instalacje elektryczne</option>
+                <option value="hydraulika">Instalacje hydrauliczne</option>
+                <option value="inne">Inne</option>
+              </select>
+            </div>
+
             <div class="form-group">
               <label for="message">Wiadomość</label>
-              <textarea id="message" name="message" rows="5" required></textarea>
+              <textarea
+                id="message"
+                name="message"
+                rows="5"
+                required
+                maxlength="500"
+                aria-describedby="messageCounter"
+                placeholder="Opisz krótko temat, lokalizację i termin…"></textarea>
+              <div id="messageCounter" class="char-counter" aria-live="polite">0/500</div>
             </div>
+
+            <!-- ZGODA RODO -->
+            <div class="form-group form-consent">
+              <label class="consent-label" for="consent">
+                <input type="checkbox" id="consent" name="consent" required />
+                <span>
+                  Wyrażam zgodę na przetwarzanie moich danych osobowych w celu obsługi zapytania.
+                  <a href="#polityka">Polityka prywatności</a>
+                  .
+                </span>
+              </label>
+            </div>
+
+            <p id="formNote" class="form-note">Pola powyżej są wymagane. Odpowiadamy zwykle tego samego dnia.</p>
+            <div id="formStatus" class="form-status" role="alert" aria-live="polite"></div>
+
             <button type="submit" class="submit-btn">Wyślij wiadomość</button>
           </form>
         </div>
@@ -1185,13 +1254,13 @@
             <p>
               <strong>Telefon:</strong>
               <br />
-              +48 123 456 789
+              <a href="tel:+48123456789">+48 123 456 789</a>
             </p>
 
             <p>
               <strong>Email:</strong>
               <br />
-              kontakt@Twoja-firma.pl
+              <a href="mailto:kontakt@Twoja-firma.pl">kontakt@Twoja-firma.pl</a>
             </p>
 
             <p>

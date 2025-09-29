@@ -686,10 +686,10 @@ body.dark-mode .service {
 }
 .service h3 {
   margin-top: var(--space-2);
-  color: var(--primary);
+  color: var(--text-dark);
 }
 body.dark-mode .service h3 {
-  color: var(--accent-400);
+  color: var(--text-light);
 }
 .service p {
   margin-top: var(--space-1);
@@ -957,7 +957,7 @@ body.dark-mode .gallery-item .overlay {
 
 /* ==============================================================
   ========== 07) KONTAKT ========================================
-  =============================================================== */
+  ============================================================== */
 
 .contact-form-section {
   padding: 2rem 2rem;
@@ -972,23 +972,26 @@ body.dark-mode .contact-form-section {
 .contact-form-section h2 {
   margin-bottom: 2rem;
   font-size: 2rem;
-  color: var(--text-dark);
+  color: var(--primary);
 }
 body.dark-mode .contact-form-section h2 {
-  color: var(--text-light);
+  color: var(--accent-400);
 }
+
 .contact-form-container {
-  max-width: 600px;
+  max-width: 500px;
   margin: 0 auto;
   padding: 1.5rem;
   background: var(--text-light);
   border-radius: 10px;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  text-align: left;
 }
 body.dark-mode .contact-form-container {
   background: #2c2c2c;
   box-shadow: 0 4px 10px rgba(255, 255, 255, 0.05);
 }
+
 .contact-form .form-group {
   margin-bottom: 1rem;
 }
@@ -996,69 +999,145 @@ body.dark-mode .contact-form-container {
   display: block;
   margin-bottom: 0.5rem;
   font-weight: 600;
+  font-size: 0.9rem;
   color: var(--text-dark);
 }
 body.dark-mode .contact-form label {
   color: var(--text-light);
-  opacity: 0.85;
+  opacity: 0.9;
 }
+
+/* Pola: input, textarea, select */
 .contact-form input,
-.contact-form textarea {
-  width: 100%;
-  padding: 0.6rem;
+.contact-form textarea,
+.contact-form select {
+  display: block;
+  margin: 0 auto;
+  width: 90%;
+  padding: 0.5rem 0.9rem;
   border: 1px solid var(--primary-400);
-  border-radius: 5px;
+  border-radius: 8px;
   font-family: 'Buenard', serif;
-  font-size: 0.9rem;
-  transition: all 0.3s ease;
+  font-size: 0.95rem;
+  transition: box-shadow 0.2s ease, border-color 0.2s ease;
   box-sizing: border-box;
   background: var(--text-light);
   color: var(--text-dark);
 }
 body.dark-mode .contact-form input,
-body.dark-mode .contact-form textarea {
-  background: #3a3a3a;
+body.dark-mode .contact-form textarea,
+body.dark-mode .contact-form select {
+  background-color: #3a3a3a;
   color: var(--text-light);
   border-color: var(--primary-600);
 }
+.contact-form input::placeholder,
+.contact-form textarea::placeholder {
+  opacity: 0.6;
+}
+.contact-form textarea {
+  min-height: 160px;
+  resize: vertical;
+}
+
+/* Select — strzałka + reset */
+.contact-form select {
+  appearance: none;
+  background-image: url("data:image/svg+xml;utf8,<svg fill='%230f4c81' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><path d='M7 10l5 5 5-5z'/></svg>");
+  background-repeat: no-repeat;
+  background-position: right 0.75rem center;
+  background-size: 1rem;
+}
+body.dark-mode .contact-form select {
+  background-image: url("data:image/svg+xml;utf8,<svg fill='%23ffffff' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><path d='M7 10l5 5 5-5z'/></svg>");
+}
+
+/* Focusy (spójne) */
 .contact-form input:focus-visible,
-.contact-form textarea:focus-visible {
+.contact-form textarea:focus-visible,
+.contact-form select:focus-visible {
   border-color: var(--accent);
   outline: 3px solid var(--accent-400);
   outline-offset: 2px;
 }
 .contact-form input:focus,
-.contact-form textarea:focus {
+.contact-form textarea:focus,
+.contact-form select:focus {
   border-color: var(--primary);
   box-shadow: 0 0 0 3px color-mix(in srgb, var(--accent) 30%, transparent);
   outline: none;
 }
-.contact-form .submit-btn {
-  display: block;
-  width: 100%;
-  padding: 1rem;
-  border: none;
-  background: var(--primary);
-  color: var(--text-light);
-  font-weight: 700;
-  font-size: 1.1rem;
-  border-radius: 5px;
-  cursor: pointer;
-  transition: background-color 0.3s ease, transform 0.3s ease;
-  margin-top: 1rem;
+
+/* Stany: invalid, autofill, disabled */
+.is-invalid {
+  border-color: #b00020 !important;
+  box-shadow: 0 0 0 3px color-mix(in srgb, #b00020 25%, transparent) !important;
 }
-.contact-form .submit-btn:hover {
-  background: var(--accent-600);
-  transform: translateY(-2px);
+.contact-form input:-webkit-autofill,
+.contact-form textarea:-webkit-autofill,
+.contact-form select:-webkit-autofill {
+  -webkit-text-fill-color: var(--text-dark);
+  box-shadow: 0 0 0 1000px var(--text-light) inset;
 }
-.contact-form .submit-btn:focus-visible {
-  outline: 3px solid var(--accent-400);
-  outline-offset: 3px;
+body.dark-mode .contact-form input:-webkit-autofill,
+body.dark-mode .contact-form textarea:-webkit-autofill,
+body.dark-mode .contact-form select:-webkit-autofill {
+  -webkit-text-fill-color: var(--text-light);
+  box-shadow: 0 0 0 1000px #3a3a3a inset;
 }
-.contact-form .submit-btn:active {
-  background: var(--accent);
-  transform: scale(0.97);
+
+
+/* Notka i status */
+.form-note {
+  margin: 0.25rem 0 0.5rem;
+  font-size: 0.9rem;
+  opacity: 0.75;
 }
+.form-status {
+  margin: 0.25rem 0 0.75rem;
+  font-size: 0.95rem;
+  min-height: 1.2em;
+}
+.form-status.ok {
+  color: #17803d;
+}
+.form-status.err {
+  color: #b00020;
+}
+
+/* Przycisk — gradient + polish */
+.submit-btn { display:inline-block; width:100%; padding:1rem; border:0; color:var(--text-light); font-weight:700; font-size:1.1rem; border-radius:8px; cursor:pointer; margin-top:.25rem; background:var(--primary); background-image:linear-gradient(90deg, var(--primary-400), var(--accent-400)); background-size:200% 100%; background-position:0 0; transition:background-position .35s ease, transform .15s ease, box-shadow .15s ease; }
+.submit-btn:hover { background-position:100% 0; transform:translateY(-2px); }
+.submit-btn:focus-visible { outline:3px solid var(--accent-400); outline-offset:3px; box-shadow:0 0 0 3px color-mix(in srgb, var(--accent) 30%, transparent); }
+.submit-btn:active { transform:translateY(0); }
+.submit-btn.sending { opacity:.9; cursor:progress; }
+.submit-btn.sent { background-image:linear-gradient(90deg, #17803d, #1fa656); }
+.submit-btn[disabled] { opacity:.7; cursor:progress; }
+@media (prefers-reduced-motion: reduce) { .submit-btn { transition:none; } .submit-btn:hover { transform:none; } }
+
+
+
+
+/* Zgoda RODO */
+.contact-form .form-consent { width: 90%; margin: .25rem auto 0; }
+.contact-form .form-consent .consent-label { display: grid; grid-template-columns: auto 1fr; gap: .6rem; align-items: start; font-size: .9rem; }
+.contact-form .form-consent input[type="checkbox"] { width: 1.1rem; height: 1.1rem; accent-color: var(--primary); transform: translateY(.15rem); }
+.contact-form .form-consent a { color: var(--primary); text-decoration: underline; text-underline-offset: 2px; }
+body.dark-mode .contact-form .form-consent a { color: var(--accent-600); }
+.contact-form .form-consent input[type="checkbox"].is-invalid { outline: 2px solid #b00020; outline-offset: 2px; }
+
+/* Licznik znaków */
+.char-counter { width: 90%; margin: .35rem auto 0; text-align: right; font-size: .85rem; opacity: .75; }
+.char-counter.warn { color: var(--accent-600, #b98c45); opacity: 1; }
+.char-counter.limit { color: #b00020; opacity: 1; }
+
+/* Status: zielony check przed tekstem sukcesu */
+.form-status.ok::before { content: ""; display: inline-block; width: 1em; height: 1em; margin-right: .4rem; vertical-align: -2px; background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' fill='%2317803d' viewBox='0 0 24 24'><path d='M9 16.2l-3.5-3.5L4 14.2l5 5 11-11-1.4-1.4z'/></svg>"); background-repeat: no-repeat; background-size: 1em 1em; }
+
+.hp-field { position:absolute; left:-9999px; width:1px; height:1px; overflow:hidden; }
+
+
+
 
 @media (max-width: 768px) {
   .contact-form-section {
