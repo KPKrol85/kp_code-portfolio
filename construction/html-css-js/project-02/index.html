@@ -397,7 +397,11 @@
           data-light="assets/img/icon/hamburger-02-light-mode-40.svg"
           data-dark="assets/img/icon/hamburger-02-dark-mode-40.svg"
           alt=""
-          aria-hidden="true" />
+          aria-hidden="true"
+          width="40"
+          height="40"
+          decoding="async"
+          fetchpriority="low" />
 
         <!-- Ikona ZAMKNIJ (X) -->
         <svg class="icon-svg icon-close" viewBox="0 0 24 24" aria-hidden="true">
@@ -444,7 +448,7 @@
             sizes="(max-width: 768px) 100vw, 100vw"
             width="1920"
             height="1080"
-            alt=""
+            alt="Ekipa remontowa przy pracy – KP_Code"
             fetchpriority="high"
             decoding="async" />
         </picture>
@@ -693,7 +697,7 @@
       </section>
 
       <!-- SEKCJA - CO MÓWIĄ O NAS KLIENCI -->
-      <section class="testimonials-section bg-surface-2 section--divider">
+      <section class="testimonials-section bg-surface-2 section--divider" aria-labelledby="testimonials-heading">
         <div class="testimonials-inner">
           <h2 class="section-title">Co mówią o nas klienci?</h2>
           <div class="testimonials-container">
@@ -1101,7 +1105,7 @@
       </section>
 
       <!-- FORMULARZ KONTAKTOWY - zintegrowany z Netlify -->
-      <section class="contact-form-section bg-surface-3 section--divider">
+      <section class="contact-form-section bg-surface-3 section--divider" aria-labelledby="contact-heading">
         <h2 class="section-title">Skontaktuj się z nami!</h2>
 
         <div class="contact-form-container">
@@ -1117,25 +1121,40 @@
             aria-describedby="formNote formStatus">
             <!-- A11y: podsumowanie błędów + skrót do pierwszego błędu -->
             <div id="errorSummary" class="visually-hidden" role="status" aria-live="assertive" aria-atomic="true"></div>
-            <a id="skipToError" class="visually-hidden-focusable" href="#">Przejdź do pierwszego błędu</a>
+            <a id="skipToError" class="visually-hidden-focusable" href="#errorSummary">Przejdź do pierwszego błędu</a>
 
             <!-- Netlify: hidden form-name -->
             <input type="hidden" name="form-name" value="contact" />
 
             <!-- Netlify: honeypot (ukryte) -->
-            <div class="hp-field" aria-hidden="true">
+            <div class="hp-field" aria-hidden="true" inert>
               <label for="trap">Jeśli to widzisz, zostaw puste</label>
               <input type="text" id="trap" name="trap" tabindex="-1" autocomplete="off" />
             </div>
 
             <div class="form-group">
               <label for="name">Imię i nazwisko</label>
-              <input type="text" id="name" name="name" required autocomplete="name" placeholder="Jan Kowalski" />
+              <input
+                type="text"
+                id="name"
+                name="name"
+                required
+                autocomplete="name"
+                placeholder="Jan Kowalski"
+                enterkeyhint="next" />
             </div>
 
             <div class="form-group">
               <label for="email">Adres e-mail</label>
-              <input type="email" id="email" name="email" required autocomplete="email" placeholder="jan@example.com" />
+              <input
+                type="email"
+                id="email"
+                name="email"
+                required
+                autocomplete="email"
+                placeholder="jan@example.com"
+                inputmode="email"
+                enterkeyhint="next" />
             </div>
 
             <div class="form-group">
@@ -1147,13 +1166,21 @@
                 inputmode="tel"
                 autocomplete="tel"
                 placeholder="+48 600 000 000"
-                pattern="^[0-9 +()-]{7,20}$" />
+                pattern="^[0-9 +()-]{7,20}$"
+                enterkeyhint="next" />
               <!-- TIP: Aby wymagać telefonu → dodaj atrybut required i dopisz 'phone' w JS do requiredFields -->
             </div>
 
             <div class="form-group">
               <label for="subject">Temat</label>
-              <input type="text" id="subject" name="subject" required placeholder="Wycena / Zapytanie / Inne" />
+              <input
+                type="text"
+                id="subject"
+                name="subject"
+                required
+                placeholder="Wycena / Zapytanie / Inne"
+                autocomplete="off"
+                enterkeyhint="next" />
             </div>
 
             <div class="form-group">
@@ -1179,7 +1206,9 @@
                 required
                 maxlength="500"
                 aria-describedby="messageCounter"
-                placeholder="Opisz krótko temat, lokalizację i termin…"></textarea>
+                placeholder="Opisz krótko temat, lokalizację i termin…"
+                spellcheck="true"
+                enterkeyhint="send"></textarea>
               <div id="messageCounter" class="char-counter" aria-live="polite">0/500</div>
             </div>
 
@@ -1199,11 +1228,12 @@
 
             <!-- reCAPTCHA (Netlify) -->
             <div class="form-group captcha-wrap" data-recaptcha>
-              <div data-netlify-recaptcha="true"></div>
+              <span class="visually-hidden" id="captchaLabel">Weryfikacja reCAPTCHA</span>
+              <div data-netlify-recaptcha="true" aria-labelledby="captchaLabel"></div>
               <noscript><p class="form-note">Aby wysłać formularz, włącz JavaScript (reCAPTCHA).</p></noscript>
             </div>
 
-            <div id="formStatus" class="form-status" role="alert" aria-live="polite"></div>
+            <div id="formStatus" class="form-status" role="status" aria-live="polite"></div>
 
             <button type="submit" class="submit-btn">Wyślij wiadomość</button>
           </form>
@@ -1213,7 +1243,8 @@
 
     <!-- STOPKA -->
 
-    <footer>
+    <footer role="contentinfo" aria-labelledby="footer-heading">
+      <h2 id="footer-heading" class="visually-hidden">Stopka serwisu</h2>
       <div class="footer-content">
         <div class="footer-section footer-brand">
           <img
@@ -1224,33 +1255,40 @@
             alt="KP_Code — logo"
             width="100"
             height="100"
+            loading="lazy"
             decoding="async"
-            fetchpriority="high" />
+            fetchpriority="low" />
           <h3>Demo - Twoja firma</h3>
           <p>
             Jesteśmy firmą budowlaną z wieloletnim doświadczeniem. Realizujemy projekty od A do Z z najwyższą jakością.
           </p>
           <div class="social-icons">
-            <a href="#" class="social-icon"><i class="fa-brands fa-github"></i></a>
-            <a href="#" class="social-icon"><i class="fa-brands fa-facebook"></i></a>
-            <a href="#" class="social-icon"><i class="fa-brands fa-linkedin"></i></a>
-            <a href="#" class="social-icon"><i class="fa-brands fa-discord"></i></a>
+            <a href="#" class="social-icon" aria-label="GitHub">
+              <i class="fa-brands fa-github" aria-hidden="true"></i>
+            </a>
+            <a href="#" class="social-icon" aria-label="Facebook">
+              <i class="fa-brands fa-facebook" aria-hidden="true"></i>
+            </a>
+            <a href="#" class="social-icon" aria-label="LinkedIn">
+              <i class="fa-brands fa-linkedin" aria-hidden="true"></i>
+            </a>
+            <a href="#" class="social-icon" aria-label="Discord">
+              <i class="fa-brands fa-discord" aria-hidden="true"></i>
+            </a>
           </div>
+
           <a
             class="gmaps-ico"
             href="https://www.google.com/maps/d/viewer?mid=1BjaF_JmJ_MRVz2naiDRgDnJT4a_A_40&ehbc=2E312F&noprof=1"
             target="_blank"
-            rel="noopener"
+            rel="noopener noreferrer"
             aria-label="Otwórz naszą mapę w Google My Maps">
-            <svg class="gmaps-icon" viewBox="0 0 24 24" aria-hidden="true">
-              <path
-                d="M12 2c-4.2 0-7 3-7 6.8 0 4.6 6.3 11.9 6.6 12.2.2.2.6.2.8 0 .3-.3 6.6-7.6 6.6-12.2C19 5 16.2 2 12 2zm0 9.5a3 3 0 1 1 0-6 3 3 0 0 1 0 6z" />
-            </svg>
+            <svg class="gmaps-icon" viewBox="0 0 24 24" width="24" height="24" aria-hidden="true">…</svg>
           </a>
         </div>
 
-        <div class="footer-section">
-          <h3>Nasze Usługi</h3>
+        <div class="footer-section" aria-labelledby="footer-services">
+          <h3 id="footer-services">Nasze Usługi</h3>
           <ul>
             <li><a href="#">Budowa domów</a></li>
             <li><a href="#">Remonty mieszkań</a></li>
@@ -1262,8 +1300,8 @@
         </div>
 
         <div class="footer-section">
-          <h3>Kontakt</h3>
-          <div class="contact-info">
+          <h3 id="footer-contact">Kontakt</h3>
+          <address class="contact-info">
             <p>
               <strong>Adres:</strong>
               <br />
@@ -1291,11 +1329,11 @@
               <br />
               Sb: 9:00 - 14:00
             </p>
-          </div>
+          </address>
         </div>
 
-        <div class="footer-section">
-          <h3>Informacje</h3>
+        <div class="footer-section" aria-labelledby="footer-info">
+          <h3 id="footer-info">Informacje</h3>
           <ul>
             <li><a href="#">O nas</a></li>
             <li><a href="#">Nasze realizacje</a></li>
@@ -1307,8 +1345,8 @@
         </div>
       </div>
 
-      <button id="powrot-na-gore" title="Powrót na górę">
-        <i class="fas fa-arrow-up"></i>
+      <button id="powrot-na-gore" type="button" aria-label="Powrót na górę" title="Powrót na górę">
+        <i class="fas fa-arrow-up" aria-hidden="true"></i>
       </button>
 
       <div class="footer-bottom">
@@ -1316,6 +1354,6 @@
       </div>
     </footer>
 
-    <script src="js/script.js"></script>
+    <script src="js/script.js" defer></script>
   </body>
 </html>

@@ -407,10 +407,10 @@ body.dark-mode .theme-toggle .icon-moon {
 
 .theme-toggle--desktop {
   display: inline-grid;
-} 
+}
 .theme-toggle--mobile {
   display: none;
-} 
+}
 .icon-btn {
   display: none;
   background: transparent;
@@ -528,14 +528,14 @@ body.dark-mode .theme-toggle .icon-moon {
   }
   .theme-toggle--desktop {
     display: none;
-  } 
+  }
   .theme-toggle--mobile {
     display: inline-grid;
-  } 
+  }
   .nav-theme {
     align-self: center;
     margin: 0.25rem 0;
-  } 
+  }
 }
 
 /* ===============================================================
@@ -754,6 +754,8 @@ body.dark-mode .service p {
   text-align: center;
   background: var(--surface-2);
   border-top: 1px solid color-mix(in srgb, var(--text-dark) 10%, transparent);
+  content-visibility: auto;
+  contain-intrinsic-size: 800px;
 }
 body.dark-mode .testimonials-section {
   background: var(--surface-2);
@@ -850,6 +852,8 @@ body.dark-mode .client-info h4 {
   padding: 4rem 2rem;
   background: var(--surface-1);
   border-top: 1px solid color-mix(in srgb, var(--text-dark) 10%, transparent);
+  content-visibility: auto;
+  contain-intrinsic-size: 1200px;
 }
 body.dark-mode .gallery-section {
   background: var(--surface-1);
@@ -996,6 +1000,8 @@ body.dark-mode .gallery-item .overlay {
   background: var(--surface-3);
   border-top: 1px solid color-mix(in srgb, var(--text-dark) 10%, transparent);
   text-align: center;
+  content-visibility: auto;
+  contain-intrinsic-size: 900px;
 }
 body.dark-mode .contact-form-section {
   background: var(--surface-3);
@@ -1293,6 +1299,8 @@ body.dark-mode footer {
   grid-template-columns: 1fr; /* 1 kolumna (mobile/tablet) */
   gap: 2rem;
   justify-items: center; /* centruj karty */
+  content-visibility: auto;
+  contain-intrinsic-size: 800px;
 }
 
 .footer-section h3 {
@@ -1405,6 +1413,8 @@ body.dark-mode footer {
   text-align: center;
   background: #1a1a1a;
   color: #999;
+  content-visibility: auto;
+  contain-intrinsic-size: 80px;
 }
 body.dark-mode .footer-bottom {
   background: #000;
@@ -1456,26 +1466,24 @@ body.dark-mode .footer-bottom {
   transform: translateY(0.5px);
 }
 
-
 /* 08) FOOTER – linki kontaktowe */
-footer a[href^="tel:"],
-footer a[href^="mailto:"]{
+footer a[href^='tel:'],
+footer a[href^='mailto:'] {
   color: inherit;
   text-decoration: none;
 }
-footer a[href^="tel:"]:visited,
-footer a[href^="mailto:"]:visited{ color: inherit; }
-footer a[href^="tel:"]:hover,
-footer a[href^="tel:"]:focus-visible,
-footer a[href^="mailto:"]:hover,
-footer a[href^="mailto:"]:focus-visible{
+footer a[href^='tel:']:visited,
+footer a[href^='mailto:']:visited {
+  color: inherit;
+}
+footer a[href^='tel:']:hover,
+footer a[href^='tel:']:focus-visible,
+footer a[href^='mailto:']:hover,
+footer a[href^='mailto:']:focus-visible {
   text-decoration: underline;
   text-underline-offset: 2px;
   outline: none;
 }
-
-
-
 
 /* ========================= DESKTOP (>=1025px) ========================= */
 @media (min-width: 1025px) {
