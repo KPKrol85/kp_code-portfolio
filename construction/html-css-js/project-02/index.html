@@ -1103,13 +1103,22 @@
             id="contactForm"
             name="contact"
             method="POST"
-            data-netlify="true"
-            netlify-honeypot="trap"
-            class="contact-form"
-            novalidate
-            aria-describedby="formNote formStatus">
+            action="/"
+            <!--
+            fallback
+            bez
+            JS;
+            Netlify
+            i
+            tak
+            przechwyci
+            -->
+            data-netlify="true" netlify-honeypot="trap" class="contact-form" novalidate aria-describedby="formNote
+            formStatus">
+
             <!-- Netlify: hidden form-name -->
             <input type="hidden" name="form-name" value="contact" />
+
             <!-- Netlify: honeypot (ukryte) -->
             <div class="hp-field" aria-hidden="true">
               <label for="trap">Jeśli to widzisz, zostaw puste</label>
