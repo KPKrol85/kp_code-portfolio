@@ -381,7 +381,6 @@ body.dark-mode .lead {
 /* ===============================================================
    ========== 02) NAGŁÓWEK =======================================
    =============================================================== */
-
 header {
   display: flex;
   justify-content: space-between;
@@ -424,6 +423,7 @@ body.dark-mode header {
     );
   }
 }
+/* Logo */
 .logo {
   display: flex;
   align-items: center;
@@ -441,13 +441,28 @@ body.dark-mode header {
   font-weight: 700;
   color: var(--text-light);
 }
-nav {
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
+/* NAV */
+#primaryNav {
+  display: block;
 }
-nav a {
+#primaryNav .nav {
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+#primaryNav .nav > li {
+  position: relative;
+}
+/* Linki (desktop) */
+#primaryNav .nav a {
+  appearance: none;
+  background: transparent;
+  border: 0;
   color: var(--text-light);
+  font: inherit;
   text-decoration: none;
   padding: 0.7rem 1.2rem;
   font-weight: 600;
@@ -456,19 +471,106 @@ nav a {
   font-size: 0.95rem;
   outline-offset: 3px;
   transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
+  cursor: pointer;
 }
-nav a:hover {
+#primaryNav .nav a:hover {
   background: color-mix(in srgb, var(--text-light) 20%, transparent);
   transform: translateY(-2px);
   box-shadow: 0 4px 12px color-mix(in srgb, var(--bg-dark) 15%, transparent);
 }
-nav a:focus-visible {
+#primaryNav .nav a:focus-visible {
   outline: 3px solid var(--accent);
 }
-nav a.active {
+#primaryNav .nav a.active,
+#primaryNav .nav a[aria-current='page'] {
   background: color-mix(in srgb, var(--text-light) 25%, transparent);
   box-shadow: inset 0 2px 4px color-mix(in srgb, var(--bg-dark) 10%, transparent);
 }
+/* Light mode – kolory linków */
+body:not(.dark-mode) #primaryNav .nav a {
+  color: var(--text-dark);
+}
+body:not(.dark-mode) #primaryNav .nav a:hover {
+  background: color-mix(in srgb, var(--text-dark) 12%, transparent);
+  box-shadow: 0 4px 12px color-mix(in srgb, var(--bg-dark) 10%, transparent);
+}
+body:not(.dark-mode) #primaryNav .nav a.active,
+body:not(.dark-mode) #primaryNav .nav a[aria-current='page'] {
+  background: color-mix(in srgb, var(--text-dark) 16%, transparent);
+  box-shadow: inset 0 2px 4px color-mix(in srgb, var(--bg-dark) 8%, transparent);
+}
+/* Dropdown (desktop) */
+#primaryNav .hasmenu {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+#primaryNav .hasmenu::after {
+  content: none !important;
+} /* wyłącz strzałkę globalnie */
+#primaryNav .submenu {
+  position: absolute;
+  left: 0;
+  top: 100%;
+  margin-top: 8px;
+  min-width: 240px;
+  list-style: none;
+  margin: 0;
+  padding: 0.5rem;
+  border-radius: 12px;
+  background: var(--surface-2, color-mix(in srgb, var(--bg-light) 92%, transparent));
+  color: var(--text, var(--text-dark));
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
+  display: none;
+  z-index: 2000;
+}
+#primaryNav .submenu a {
+  display: block;
+  padding: 0.55rem 0.75rem;
+  border-radius: 8px;
+  color: inherit;
+}
+#primaryNav .submenu a:hover,
+#primaryNav .submenu a:focus-visible {
+  background: color-mix(in srgb, var(--accent-400, #d4a75f) 18%, transparent);
+  outline: none;
+}
+#primaryNav .has-sub.open > .submenu {
+  display: block;
+}
+/* Dark mode – dropdown */
+body.dark-mode #primaryNav .submenu {
+  background: color-mix(in srgb, var(--bg-dark) 90%, transparent);
+  color: var(--text-light);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+}
+body.dark-mode #primaryNav .submenu a {
+  color: var(--text-light);
+}
+body.dark-mode #primaryNav .submenu a:hover,
+body.dark-mode #primaryNav .submenu a:focus-visible {
+  background: color-mix(in srgb, var(--accent-400, #d4a75f) 22%, transparent);
+  color: var(--text-light);
+}
+/* Desktop-only: hover/focus + hover-bridge */
+@media (hover: hover) and (pointer: fine) {
+  #primaryNav .has-sub {
+    position: relative;
+  }
+  #primaryNav .has-sub:hover > .submenu,
+  #primaryNav .has-sub:focus-within > .submenu {
+    display: block;
+  }
+  #primaryNav .has-sub::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 100%;
+    height: 10px;
+  }
+}
+/* Akcje w headerze */
 .header-actions {
   display: flex;
   align-items: center;
@@ -504,6 +606,7 @@ body.dark-mode .contact-btn:hover {
   color: var(--accent);
   border-color: var(--accent);
 }
+/* Theme toggle */
 .theme-toggle {
   position: relative;
   display: inline-grid;
@@ -512,12 +615,12 @@ body.dark-mode .contact-btn:hover {
   height: 36px;
   padding: 0;
   border-radius: 50%;
-  border: 1px solid color-mix(in srgb, var(--text-dark) 12%, transparent);
-  background: color-mix(in srgb, var(--bg-light) 90%, transparent);
-  backdrop-filter: saturate(1.2) blur(2px);
-  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.06);
+  border: 1px solid color-mix(in srgb, var(--text-light) 12%, transparent);
+  background: color-mix(in srgb, var(--primary) 85%, transparent); /* dopasowane do headera */
+  backdrop-filter: blur(6px) saturate(1.1);
+  box-shadow: 0 1px 2px rgba(0, 0, 0, .05);
   cursor: pointer;
-  transition: background 0.25s, border-color 0.25s, transform 0.2s;
+  transition: background .25s, border-color .25s, transform .2s;
 }
 .theme-toggle:hover {
   transform: translateY(-1px);
@@ -542,8 +645,8 @@ body:not(.dark-mode) .theme-toggle .icon-sun {
   fill: var(--accent-400);
 }
 body.dark-mode .theme-toggle {
-  border-color: color-mix(in srgb, var(--text-light) 16%, transparent);
-  background: color-mix(in srgb, var(--text-light) 15%, var(--bg-dark) 85%);
+  background: color-mix(in srgb, var(--bg-dark) 92%, transparent); /* dopasowane do dark headera */
+  border-color: color-mix(in srgb, var(--text-light) 15%, transparent);
 }
 body.dark-mode .theme-toggle .icon-sun {
   opacity: 0;
@@ -559,7 +662,6 @@ body.dark-mode .theme-toggle .icon-moon {
   outline: 2px solid color-mix(in srgb, var(--primary, #0f4c81) 70%, white);
   outline-offset: 2px;
 }
-
 @media (prefers-reduced-motion: reduce) {
   .theme-toggle,
   .theme-toggle .icon-sun,
@@ -567,13 +669,10 @@ body.dark-mode .theme-toggle .icon-moon {
     transition: none;
   }
 }
-
 .theme-toggle--desktop {
   display: inline-grid;
 }
-.theme-toggle--mobile {
-  display: none;
-}
+/* Hamburger */
 .icon-btn {
   display: none;
   background: transparent;
@@ -621,14 +720,14 @@ body.dark-mode .theme-toggle .icon-moon {
   outline: 2px solid var(--accent-400);
   outline-offset: 2px;
 }
-
+/* Desktop padding */
 @media (min-width: 769px) {
   header {
     padding-left: var(--header-pad-x);
     padding-right: var(--header-pad-x);
   }
 }
-
+/* === MOBILE (WSZYSTKO NA DOLE) ================================== */
 @media (max-width: 768px) {
   header {
     padding-top: 8px;
@@ -653,7 +752,8 @@ body.dark-mode .theme-toggle .icon-moon {
     margin-right: calc(var(--edge-pad) - clamp(-12px, var(--burger-optical), 12px));
     padding: var(--tap-pad);
   }
-  nav {
+  /* Panel nawigacji */
+  #primaryNav {
     display: none;
     position: absolute;
     top: 100%;
@@ -665,41 +765,74 @@ body.dark-mode .theme-toggle .icon-moon {
       color-mix(in srgb, var(--primary) 85%, transparent),
       color-mix(in srgb, var(--primary) 65%, transparent)
     );
-    flex-direction: column;
-    padding: 1rem;
     box-shadow: 0 4px 15px color-mix(in srgb, var(--bg-dark) 12%, transparent);
   }
-  body.dark-mode nav {
+  body.dark-mode #primaryNav {
     background: linear-gradient(
       135deg,
       color-mix(in srgb, var(--bg-dark) 92%, transparent),
       color-mix(in srgb, var(--bg-dark) 96%, transparent)
     );
   }
-  nav.mobile-open {
+  #primaryNav.mobile-open {
+    display: block;
+  }
+ 
+  #primaryNav {
+    position: absolute;
+  }
+
+  /* Lista w kolumnie */
+  #primaryNav .nav {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0;
+    padding: 56px 16px 16px;
+    list-style: none;
+    margin: 0;
+  }
+  #primaryNav .nav > li + li {
+    margin-top: 12px;
+  }
+  /* Jednolity box dla linków */
+  #primaryNav .nav > li > a {
     display: flex;
-  }
-  nav a {
-    margin: 0.5rem 0;
-    text-align: center;
-  }
-  .header-actions {
+    align-items: center;
+    justify-content: flex-start;
     gap: 0.5rem;
+    width: 100%;
+    padding: 12px 16px;
+    min-height: 44px;
+    line-height: 1;
+    border-radius: 10px;
+    background: transparent;
+    color: var(--text-light);
+    box-shadow: none;
+    transform: none;
+    -webkit-appearance: none;
+    appearance: none;
+    box-sizing: border-box;
   }
-  .contact-btn {
-    display: none;
+  /* Bez „piguły” z desktopu */
+  #primaryNav .nav > li > a.active,
+  #primaryNav .nav > li > a[aria-current='page'] {
+    background: transparent !important;
+    box-shadow: none !important;
   }
-  .theme-toggle--desktop {
-    display: none;
+  /* Mobile — submenu wyłączone */
+  #primaryNav .has-sub > .submenu {
+    display: none !important;
   }
-  .theme-toggle--mobile {
-    display: inline-grid;
-  }
-  .nav-theme {
-    align-self: center;
-    margin: 0.25rem 0;
+  /* Mobile — highlight na tap/focus */
+  #primaryNav .nav > li > a:active,
+  #primaryNav .nav > li > a:focus,
+  #primaryNav .nav > li > a:focus-visible {
+    background: color-mix(in srgb, var(--text-light) 14%, transparent);
+    box-shadow: 0 0 0 2px color-mix(in srgb, var(--text-light) 22%, transparent) inset;
+    border-radius: 10px;
   }
 }
+/* =============================================================== */
 
 /* ===============================================================
    ========== 03) HERO ===========================================
@@ -931,7 +1064,6 @@ body.dark-mode .service a:focus h3 {
   }
 }
 
-
 /* ===============================================================
    ========== 05) OPINIE =========================================
    =============================================================== */
@@ -1149,6 +1281,12 @@ body.dark-mode .gallery-item .overlay {
 }
 
 /* === LIGHTBOX (Galeria) ====================================== */
+/* Mobile: pierwszy tap = pokaż overlay (zabezpieczenie poza :focus-within) */
+.gallery-item.is-armed .overlay {
+  transform: translateY(0);
+  opacity: 1;
+}
+
 .gallery-link {
   display: block;
   line-height: 0;
@@ -1950,31 +2088,10 @@ body.menu-open #powrot-na-gore {
   outline-offset: 2px;
 }
 
+/* ===============================================================
+   ========== 10) PODSTRONY USŁUGI================================
+   =============================================================== */
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-/* ====== SERVICES SHARED ====== */
 .breadcrumbs {
   max-width: 1200px;
   margin: 0 auto;
