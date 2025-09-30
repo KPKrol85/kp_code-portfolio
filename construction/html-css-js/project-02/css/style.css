@@ -431,7 +431,7 @@ body.dark-mode header {
   text-decoration: none;
 }
 .logo .logo-img {
-  height: 45px;
+  height: 35px;
   width: auto;
   display: block;
 }
@@ -2087,6 +2087,9 @@ body.menu-open #powrot-na-gore {
   outline: 2px solid var(--accent);
   outline-offset: 2px;
 }
+
+
+#uslugi, #galeria, #onas, #kontakt { scroll-margin-top: var(--header-h); }
 
 /* ===============================================================
    ========== 10) PODSTRONY USŁUGI================================
