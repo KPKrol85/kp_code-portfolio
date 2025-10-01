@@ -69,7 +69,6 @@
   window.addEventListener('pageshow', initialReveal, { once: true });
 })();
 
-
 /* =======================================================================================@@@@@@@@@@@@@@@@@@@@
    ========== Motyw + przełączanie logo + ikonka hamburgera (desktop+mobile) =============
    - Umożliwia przełączanie motywu jasny/ciemny
@@ -129,10 +128,18 @@
 
   /* --- Safe localStorage (try/catch dla Safari Private) --- */
   const safeSetItem = (k, v) => {
-    try { localStorage.setItem(k, v); } catch { /* brak zapisu */ }
+    try {
+      localStorage.setItem(k, v);
+    } catch {
+      /* brak zapisu */
+    }
   };
   const safeGetItem = (k) => {
-    try { return localStorage.getItem(k); } catch { return null; }
+    try {
+      return localStorage.getItem(k);
+    } catch {
+      return null;
+    }
   };
 
   /* --- Główna funkcja zmiany motywu --- */
@@ -172,7 +179,7 @@
 /* =======================================================================================@@@@@@@@@@@@@@@@@@@@
    ========== Hamburger (mobile nav) =====================================================
    - Steruje otwieraniem/zamykaniem menu mobilnego
-   - A11y: aria-expanded + aria-label, blokada scrolla na <body> (menu-open)
+   - A11y: aria-expanded + aria-label, blokada scrolla na <body> (nav-open)
    - Zamyka się na: Esc, klik linku w menu, wyjście z zakresu mobile (>768px)
    ======================================================================================= */
 (() => {
@@ -180,13 +187,16 @@
   const nav = document.getElementById('primaryNav');
   if (!btn || !nav) return; // brak elementów — kończymy
 
+  // ensure default aria-expanded for a11y (defensywny)
+  if (!btn.hasAttribute('aria-expanded')) btn.setAttribute('aria-expanded', 'false');
+
   /* --- Zamknij menu i posprzątaj atrybuty/stany --- */
   const closeMenu = () => {
     nav.classList.remove('mobile-open');
     btn.classList.remove('active');
     btn.setAttribute('aria-expanded', 'false');
     btn.setAttribute('aria-label', 'Otwórz menu');
-    document.body.classList.remove('menu-open'); // odblokuj scroll
+    document.body.classList.remove('nav-open'); // odblokuj scroll (zgodnie z CSS)
   };
 
   /* --- Przełącz menu (open/close) + aktualizacja a11y --- */
@@ -196,7 +206,7 @@
     btn.classList.toggle('active', isOpen);
     btn.setAttribute('aria-expanded', String(isOpen));
     btn.setAttribute('aria-label', isOpen ? 'Zamknij menu' : 'Otwórz menu');
-    document.body.classList.toggle('menu-open', isOpen); // zablokuj/odblokuj scroll
+    document.body.classList.toggle('nav-open', isOpen); // zablokuj/odblokuj scroll (zgodnie z CSS)
   };
 
   /* --- Klik w przycisk hamburgera --- */
@@ -223,7 +233,6 @@
   if (mql.addEventListener) mql.addEventListener('change', onChange);
   else if (mql.addListener) mql.addListener(onChange); // Safari <14
 })();
-
 
 /* =======================================================================================@@@@@@@@@@@@@@@@@@@@
    ========== Przycisk „Powrót na górę” ==================================================
@@ -297,7 +306,7 @@
 
   /* --- USTAWIENIA / REFERENCJE --- */
   const IS_LOCAL = /localhost|127\.0\.0\.1/.test(location.hostname); // wspólny przełącznik środowiska
-  const statusBox = form.querySelector('#formStatus');               // rola: podgląd błędów/sukcesów
+  const statusBox = form.querySelector('#formStatus'); // rola: podgląd błędów/sukcesów
   const submitBtn = form.querySelector('.submit-btn');
   const originalBtnText = submitBtn ? submitBtn.textContent : 'Wyślij wiadomość'; // (1) defensywnie
   const requiredFields = ['name', 'email', 'subject', 'service', 'message']; // phone opcjonalny
@@ -332,8 +341,16 @@
   });
 
   /* --- UTILS: oznaczanie/odznaczanie błędów + status box --- */
-  const setInvalid = (el) => { if (!el) return; el.classList.add('is-invalid'); el.setAttribute('aria-invalid', 'true'); };
-  const clearInvalid = (el) => { if (!el) return; el.classList.remove('is-invalid'); el.removeAttribute('aria-invalid'); };
+  const setInvalid = (el) => {
+    if (!el) return;
+    el.classList.add('is-invalid');
+    el.setAttribute('aria-invalid', 'true');
+  };
+  const clearInvalid = (el) => {
+    if (!el) return;
+    el.classList.remove('is-invalid');
+    el.removeAttribute('aria-invalid');
+  };
   const showStatus = (message, ok = false) => {
     if (!statusBox) return;
     statusBox.classList.toggle('ok', !!ok);
@@ -356,12 +373,25 @@
   const MSG_KEY = 'contactFormMessage';
   if (msg) {
     // Przy starcie: odczyt i odświeżenie licznika
-    const savedMsg = (() => { try { return localStorage.getItem(MSG_KEY); } catch { return null; } })();
-    if (savedMsg) { msg.value = savedMsg; updateCounter(); }
+    const savedMsg = (() => {
+      try {
+        return localStorage.getItem(MSG_KEY);
+      } catch {
+        return null;
+      }
+    })();
+    if (savedMsg) {
+      msg.value = savedMsg;
+      updateCounter();
+    }
 
     // Zapis na input (try/catch pod Safari Private)
     msg.addEventListener('input', () => {
-      try { localStorage.setItem(MSG_KEY, msg.value); } catch { /* silent */ }
+      try {
+        localStorage.setItem(MSG_KEY, msg.value);
+      } catch {
+        /* silent */
+      }
     });
   }
 
@@ -391,14 +421,19 @@
     /* 1) Required — puste pola */
     requiredFields.forEach((id) => {
       const el = form.querySelector('#' + id);
-      if (!el || !el.value || !el.value.trim()) { setInvalid(el); valid = false; }
+      if (!el || !el.value || !el.value.trim()) {
+        setInvalid(el);
+        valid = false;
+      }
     });
 
     /* 2) Email — prosta walidacja struktury */
     const email = form.querySelector('#email');
     const emailVal = email ? email.value.trim() : '';
     if (email && emailVal && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(emailVal)) {
-      setInvalid(email); valid = false; showStatus('Wpisz poprawny adres e-mail.', false);
+      setInvalid(email);
+      valid = false;
+      showStatus('Wpisz poprawny adres e-mail.', false);
     }
 
     /* 3) Telefon (opcjonalny) — akceptuje cyfry, spacje i standardowe separatory */
@@ -406,26 +441,35 @@
     if (phone) {
       const phoneVal = phone.value.trim();
       if (phoneVal && !/^[0-9 +()-]{7,20}$/.test(phoneVal)) {
-        setInvalid(phone); valid = false; showStatus('Wpisz poprawny numer telefonu (np. +48 600 000 000).', false);
+        setInvalid(phone);
+        valid = false;
+        showStatus('Wpisz poprawny numer telefonu (np. +48 600 000 000).', false);
       }
     }
 
     /* 4) RODO — checkbox wymagany */
     const consent = form.querySelector('#consent');
     if (consent && !consent.checked) {
-      setInvalid(consent); valid = false; showStatus('Zaznacz zgodę na przetwarzanie danych.', false);
+      setInvalid(consent);
+      valid = false;
+      showStatus('Zaznacz zgodę na przetwarzanie danych.', false);
     }
 
     /* 4.5) reCAPTCHA (Netlify) — tylko gdy widget jest obecny i nie lokalnie */
     const recaptchaWrap = form.querySelector('[data-recaptcha]');
     if (recaptchaWrap && !IS_LOCAL) {
       const tokenField = form.querySelector('[name="g-recaptcha-response"]');
-      if (!tokenField || !tokenField.value) { valid = false; showStatus('Potwierdź, że nie jesteś robotem (reCAPTCHA).', false); }
+      if (!tokenField || !tokenField.value) {
+        valid = false;
+        showStatus('Potwierdź, że nie jesteś robotem (reCAPTCHA).', false);
+      }
     }
 
     /* 5) Limit treści wiadomości */
     if (msg && msg.value.length > MAX) {
-      setInvalid(msg); valid = false; showStatus(`Wiadomość może mieć maks. ${MAX} znaków.`, false);
+      setInvalid(msg);
+      valid = false;
+      showStatus(`Wiadomość może mieć maks. ${MAX} znaków.`, false);
     }
 
     /* --- Gdy są błędy: pokaż podsumowanie i przeskocz do pierwszego błędu --- */
@@ -461,8 +505,8 @@
     showStatus('Wysyłanie…', true);
 
     /* --- Przygotowanie danych do Netlify Forms --- */
-    const formData = new FormData(form);                            // zawiera też hidden 'form-name'
-    const body = new URLSearchParams(formData).toString();          // urlencoded do fetch
+    const formData = new FormData(form); // zawiera też hidden 'form-name'
+    const body = new URLSearchParams(formData).toString(); // urlencoded do fetch
 
     try {
       /* --- Wysyłka: produkcja vs. lokalnie (symulacja) --- */
@@ -480,9 +524,11 @@
       }
 
       /* === SUCCESS === */
-      form.setAttribute('aria-busy', 'false');                      // (2) sprzątanie flagi
+      form.setAttribute('aria-busy', 'false'); // (2) sprzątanie flagi
       form.reset();
-      try { localStorage.removeItem(MSG_KEY); } catch {}
+      try {
+        localStorage.removeItem(MSG_KEY);
+      } catch {}
 
       updateCounter();
       showStatus('Dziękujemy! Wiadomość została wysłana.', true);
@@ -491,7 +537,9 @@
         submitBtn.classList.remove('sending');
         submitBtn.classList.add('sent');
         submitBtn.textContent = 'Wysłano ✓';
-        setTimeout(() => { submitBtn.disabled = false; }, 1200);
+        setTimeout(() => {
+          submitBtn.disabled = false;
+        }, 1200);
         setTimeout(() => {
           showStatus('', true);
           submitBtn.classList.remove('sent');
@@ -526,12 +574,35 @@
   }); // ← koniec submit handlera
 })(); // ← koniec IIFE
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 /* =======================================================================================@@@@@@@@@@@@@@@@@@@@
    ========== LIGHTBOX — podgląd zdjęcia + „double-tap to open” na mobile ================
-   - Desktop/klawiatura: bez zmian (1 klik otwiera)
-   - Mobile (coarse pointer): 1. tap = pokaż overlay i uzbrój kartę, 2. tap (w tę samą) = otwórz
-   - Zamknięcie: Esc, klik w tło lub przycisk ×
-   - Dostępność: focus-trap, aria-modal, przywracanie fokusu
+   - HTML zgodny z:
+     <div id="lightbox" class="lb" role="dialog" aria-modal="true"
+          aria-labelledby="lightbox-title" aria-describedby="lightbox-caption"
+          hidden tabindex="-1"> … </div>
+   - Desktop/klawiatura: 1 klik otwiera
+   - Mobile (coarse pointer): 1. tap = overlay/„uzbrojenie”, 2. tap = otwarcie
+   - Zamknięcie: Esc, klik w tło (data-lb-close) lub przycisk ×
+   - A11y: focus-trap, aria-hidden, przywracanie fokusu, body lock (lb-open)
    ======================================================================================== */
 (() => {
   const lb = document.getElementById('lightbox');
@@ -548,34 +619,11 @@
   // Wykrywanie „mobile touch” (coarse, bez hover)
   const isTouchLike = window.matchMedia
     ? window.matchMedia('(hover: none) and (pointer: coarse)').matches
-    : ('ontouchstart' in window);
+    : 'ontouchstart' in window;
 
   // Stan „uzbrojenia” (pierwszy tap)
   let armedLink = null;
   let armTimer = null;
-
-  const arm = (link) => {
-    disarm();
-    armedLink = link;
-    // pokaż overlay poprzez focus + klasa (dla pewności)
-    const item = link.closest('.gallery-item');
-    if (item) item.classList.add('is-armed');
-    link.focus({ preventScroll: true });
-
-    // auto-rozbrojenie po chwili (1.5s) — naturalne UX
-    armTimer = setTimeout(disarm, 1500);
-
-    // dotknięcie w dowolne inne miejsce też rozbraja
-    const outsideOnce = (ev) => {
-      const t = ev.target;
-      if (!t || !armedLink) return;
-      if (!t.closest('.gallery-item') || t.closest('.gallery-item') !== armedLink.closest('.gallery-item')) {
-        disarm();
-      }
-    };
-    document.addEventListener('touchstart', outsideOnce, { once: true, passive: true });
-    document.addEventListener('pointerdown', outsideOnce, { once: true });
-  };
 
   const disarm = () => {
     if (armTimer) { clearTimeout(armTimer); armTimer = null; }
@@ -585,8 +633,27 @@
     }
     armedLink = null;
   };
+  const arm = (link) => {
+    disarm();
+    armedLink = link;
+    const item = link.closest('.gallery-item');
+    if (item) item.classList.add('is-armed');
+    link.focus({ preventScroll: true });
 
-  // Rozbrojenie przy scrollu/resize (częsty gest po „podglądzie”)
+    armTimer = setTimeout(disarm, 1500);
+    const outsideOnce = (ev) => {
+      const t = ev.target;
+      if (!t || !armedLink) return;
+      const armedItem = armedLink.closest('.gallery-item');
+      if (!t.closest('.gallery-item') || t.closest('.gallery-item') !== armedItem) {
+        disarm();
+      }
+    };
+    document.addEventListener('touchstart', outsideOnce, { once: true, passive: true });
+    document.addEventListener('pointerdown', outsideOnce, { once: true });
+  };
+
+  // Rozbrojenie przy scrollu/resize
   let disarmTick = false;
   const scheduleDisarm = () => {
     if (disarmTick) return;
@@ -596,81 +663,104 @@
   window.addEventListener('scroll', scheduleDisarm, { passive: true });
   window.addEventListener('resize', scheduleDisarm);
 
+  // Focus trap
   const trapInit = () => {
-    focusables = Array.from(lb.querySelectorAll(
-      'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])'
-    )).filter(el => !el.hasAttribute('disabled') && el.offsetParent !== null);
+    focusables = Array.from(
+      lb.querySelectorAll('button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])')
+    ).filter((el) => !el.hasAttribute('disabled') && el.offsetParent !== null);
     firstF = focusables[0];
-    lastF  = focusables[focusables.length - 1];
+    lastF = focusables[focusables.length - 1];
   };
   const trapRelease = () => { focusables = []; firstF = lastF = null; };
   const handleTrap = (e) => {
     if (!focusables.length) return;
-    if (e.shiftKey && document.activeElement === firstF) { e.preventDefault(); lastF.focus(); }
-    else if (!e.shiftKey && document.activeElement === lastF) { e.preventDefault(); firstF.focus(); }
+    if (e.shiftKey && document.activeElement === firstF) {
+      e.preventDefault(); lastF.focus();
+    } else if (!e.shiftKey && document.activeElement === lastF) {
+      e.preventDefault(); firstF.focus();
+    }
   };
 
+  // OTWARCIE
   const open = (src, alt) => {
     lastActive = document.activeElement;
+
     imgEl.src = src;
     imgEl.alt = alt || '';
-    if (alt) { captionEl.textContent = alt; captionEl.hidden = false; } else { captionEl.hidden = true; }
-    lb.setAttribute('aria-hidden', 'false');
-    document.body.classList.add('lb-open');
+
+    if (alt && alt.trim()) {
+      captionEl.textContent = alt;
+      captionEl.hidden = false;
+    } else {
+      captionEl.textContent = '';
+      captionEl.hidden = true;
+    }
+
+    // Kluczowe przy starcie z hidden w HTML:
+    lb.removeAttribute('hidden');                  // ← zdejmij atrybut hidden (UA display:none)
+    lb.setAttribute('aria-hidden', 'false');       // ← włącza display:flex z CSS
+    document.body.classList.add('lb-open');        // ← body lock (overflow:hidden w CSS)
+
     trapInit();
-    closeBtn.focus();
-    disarm(); // po otwarciu już nie potrzebujemy stanu „armed”
+    closeBtn && closeBtn.focus();
+    disarm();
   };
 
+  // ZAMKNIĘCIE
   const close = () => {
     lb.setAttribute('aria-hidden', 'true');
     document.body.classList.remove('lb-open');
     imgEl.removeAttribute('src');
+    captionEl.textContent = '';
+    captionEl.hidden = true;
+
     trapRelease();
-    if (lastActive) lastActive.focus();
+
+    // Przywróć „hidden” dla pełnej zgodności z czytnikami i UA stylesheet
+    lb.setAttribute('hidden', '');
+
+    if (lastActive && typeof lastActive.focus === 'function') {
+      lastActive.focus();
+    }
   };
 
-  // Delegacja kliknięcia w miniaturę/link w obrębie .gallery-container
+  // Delegacja kliknięcia w miniaturę/link
   document.addEventListener('click', (e) => {
     const link = e.target.closest('.gallery-link');
     if (!link) return;
     if (!link.closest('.gallery-container')) return;
 
-    // Mobile: double-tap flow
-    if (isTouchLike) {
-      // jeśli to pierwszy tap w tę miniaturę — tylko uzbrój i pokaż overlay
-      if (armedLink !== link) {
-        e.preventDefault();
-        arm(link);
-        return;
-      }
-      // drugi tap w tę samą miniaturę — otwieramy
-      e.preventDefault();
-      const href = link.getAttribute('href');
-      const thumbImg = link.querySelector('img');
-      open(href, thumbImg ? thumbImg.alt : '');
-      return;
-    }
-
-    // Desktop/klawiatura: normalne otwarcie 1-klik
-    e.preventDefault();
     const href = link.getAttribute('href');
     const thumbImg = link.querySelector('img');
-    open(href, thumbImg ? thumbImg.alt : '');
+    const alt = thumbImg ? thumbImg.alt : '';
+
+    if (isTouchLike) {
+      if (armedLink !== link) { e.preventDefault(); arm(link); return; }
+      e.preventDefault(); open(href, alt); return;
+    }
+
+    e.preventDefault();
+    open(href, alt);
   });
 
   // Zamknięcie: klik w tło / przycisk ×
-  if (backdrop) backdrop.addEventListener('click', close);
-  if (closeBtn) closeBtn.addEventListener('click', close);
+  backdrop && backdrop.addEventListener('click', close);
+  closeBtn && closeBtn.addEventListener('click', close);
 
   // Klawiatura: Esc + Tab (focus-trap)
   document.addEventListener('keydown', (e) => {
+    // reaguj tylko, gdy lightbox jest otwarty
     if (lb.getAttribute('aria-hidden') !== 'false') return;
-    if (e.key === 'Escape') { e.preventDefault(); close(); }
-    if (e.key === 'Tab') { handleTrap(e); }
+
+    if (e.key === 'Escape') {
+      e.preventDefault();
+      close();
+    } else if (e.key === 'Tab') {
+      handleTrap(e);
+    }
   });
 
-  // Prefetch dużego zdjęcia po najechaniu (desktop only)
+  // Prefetch dużego zdjęcia na hover (desktop only)
   if (!isTouchLike) {
     document.addEventListener('mouseenter', (e) => {
       const link = e.target.closest('.gallery-link');
@@ -683,6 +773,33 @@
     }, true);
   }
 })();
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 /* =======================================================================================@@@@@@@@@@@@@@@@@@@@
@@ -698,8 +815,18 @@
   const html = document.documentElement;
 
   /* --- Safe localStorage (np. Safari Private) --- */
-  const safeGet = (k) => { try { return localStorage.getItem(k); } catch { return null; } };
-  const safeSet = (k, v) => { try { localStorage.setItem(k, v); } catch {} };
+  const safeGet = (k) => {
+    try {
+      return localStorage.getItem(k);
+    } catch {
+      return null;
+    }
+  };
+  const safeSet = (k, v) => {
+    try {
+      localStorage.setItem(k, v);
+    } catch {}
+  };
 
   /* --- Ustaw akcent + zapisz (opcjonalnie) --- */
   const applyAccent = (name, persist = true) => {
@@ -722,67 +849,4 @@
     if (!btn) return;
     applyAccent(btn.getAttribute('data-accent-pick'), true);
   });
-})();
-
-
-
-/* ======================================================================
-   NAV — dropdown „Usługi” (stabilny)
-   - Działa z <button id="servicesToggle"> lub <a id="servicesToggle">
-   - A11y: aria-expanded + aria-hidden; Esc zamyka; ArrowDown skok do 1. linku
-   - Zamyka się przy kliknięciu poza nawigacją i po wyjściu z mobile
-   ====================================================================== */
-(() => {
-  const nav = document.getElementById('primaryNav');
-  if (!nav) return;
-
-  const toggle  = nav.querySelector('#servicesToggle');
-  const submenu = nav.querySelector('#servicesMenu');
-  const wrapper = toggle?.closest('.has-sub');
-  if (!toggle || !submenu || !wrapper) return;
-
-  // Normalizacja a11y
-  toggle.setAttribute('aria-haspopup', 'true');
-  toggle.setAttribute('aria-expanded', 'false');
-  submenu.setAttribute('aria-hidden', 'true');
-
-  const setOpen = (open) => {
-    wrapper.classList.toggle('open', open);
-    toggle.setAttribute('aria-expanded', String(open));
-    submenu.setAttribute('aria-hidden', String(!open));
-  };
-
-  // Klik/tap w „Usługi”
-  toggle.addEventListener('click', (e) => {
-    // jeśli to <a>, nie skacz do #:
-    if (toggle.tagName === 'A') e.preventDefault();
-    setOpen(toggle.getAttribute('aria-expanded') !== 'true');
-  });
-
-  // Klawiatura: Enter/Spacja = toggle, Esc zamyka; ArrowDown = fokus do 1. pozycji
-  toggle.addEventListener('keydown', (e) => {
-    if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); toggle.click(); }
-    if (e.key === 'ArrowDown') {
-      e.preventDefault();
-      const first = submenu.querySelector('a,button,[tabindex]:not([tabindex="-1"])');
-      if (first) first.focus();
-    }
-  });
-  submenu.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape') { e.preventDefault(); setOpen(false); toggle.focus(); }
-  });
-
-  // Klik/pointer poza nawigacją — zamknij
-  const outside = (e) => {
-    if (!wrapper.classList.contains('open')) return;
-    if (!nav.contains(e.target)) setOpen(false);
-  };
-  document.addEventListener('pointerdown', outside);
-  document.addEventListener('click', outside);
-
-  // Zmiana breakpointu: po wyjściu z mobile zamknij
-  const mq = window.matchMedia('(max-width: 768px)');
-  const onChange = () => { if (!mq.matches) setOpen(false); };
-  if (mq.addEventListener) mq.addEventListener('change', onChange);
-  else if (mq.addListener)   mq.addListener(onChange);
 })();

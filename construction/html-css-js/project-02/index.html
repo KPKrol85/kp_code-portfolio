@@ -335,21 +335,9 @@
       <nav id="primaryNav" aria-label="Nawigacja główna">
         <ul class="nav">
           <li><a href="index.html" aria-current="page">Strona Główna</a></li>
-
-          <li class="has-sub">
-            <a href="#uslugi" class="nav-link hasmenu">Usługi</a>
-            <ul id="servicesMenu" class="submenu">
-              <li><a href="services/remonty-mieszkan.html">Remonty mieszkań</a></li>
-              <li><a href="services/budowa-domow.html">Budowa domów</a></li>
-              <li><a href="services/wykonczenia-wnetrz.html">Wykończenia wnętrz</a></li>
-              <li><a href="services/adaptacje-poddaszy.html">Adaptacje poddaszy</a></li>
-              <li><a href="services/instalacje-sanitarne.html">Instalacje sanitarne</a></li>
-              <li><a href="services/instalacje-elektryczne.html">Instalacje elektryczne</a></li>
-            </ul>
-          </li>
+          <li><a href="#uslugi">Usługi</a></li>
           <li><a href="#onas">O nas</a></li>
           <li><a href="#galeria">Galeria</a></li>
-
           <li><a href="#kontakt">Kontakt</a></li>
         </ul>
       </nav>
@@ -415,7 +403,6 @@
               assets/img/hero/hero-1920x1080.avif 1920w
             "
             sizes="(max-width: 768px) 100vw, 100vw" />
-
           <!-- WebP -->
           <source
             type="image/webp"
@@ -425,7 +412,6 @@
               assets/img/hero/hero-1920x1080.webp 1920w
             "
             sizes="(max-width: 768px) 100vw, 100vw" />
-
           <!-- JPEG fallback -->
           <img
             class="hero-img"
@@ -453,233 +439,208 @@
       </section>
 
       <!-- SEKCJA - OFERTY -->
-      <section id="uslugi" class="services-section bg-surface-1" aria-labelledby="services-heading">
-        <!-- Uwaga: wcześniej były dwa atrybuty class na H2 -->
+      <section id="uslugi" class="services-section bg-surface-1">
         <h2 id="services-heading" class="services-heading">Nasze Usługi</h2>
-
-        <!-- role="list" + listitem poprawiają czytelność dla SR przy gridzie -->
-        <div class="services" role="list">
+        <div class="services">
           <!-- 1) Remonty mieszkań -->
-          <article
-            class="service hidden"
-            role="listitem"
-            aria-labelledby="svc-remonty-ttl"
-            aria-describedby="svc-remonty-desc">
+          <article class="service hidden">
             <a href="services/remonty-mieszkan.html" class="service-link">
               <picture>
                 <source
                   type="image/avif"
-                  srcset="
-                    assets/img/uslugi/remont-mieszkania-01-400x300.avif 400w,
-                    assets/img/uslugi/remont-mieszkania-01-600x400.avif 600w
-                  "
+                  srcset="assets/img/uslugi/remonty-400x300.avif 400w, assets/img/uslugi/remonty-600x400.avif 600w"
                   sizes="(max-width: 768px) 92vw, 360px" />
                 <source
                   type="image/webp"
-                  srcset="
-                    assets/img/uslugi/remont-mieszkania-01-400x300.webp 400w,
-                    assets/img/uslugi/remont-mieszkania-01-600x400.webp 600w
-                  "
+                  srcset="assets/img/uslugi/remonty-400x300.webp 400w, assets/img/uslugi/remonty-600x400.webp 600w"
                   sizes="(max-width: 768px) 92vw, 360px" />
                 <img
-                  src="assets/img/uslugi/remont-mieszkania-01-600x400.jpg"
-                  srcset="
-                    assets/img/uslugi/remont-mieszkania-01-400x300.jpg 400w,
-                    assets/img/uslugi/remont-mieszkania-01-600x400.jpg 600w
-                  "
+                  src="assets/img/uslugi/remonty-600x400.jpg"
+                  srcset="assets/img/uslugi/remonty-400x300.jpg 400w, assets/img/uslugi/remonty-600x400.jpg 600w"
                   sizes="(max-width: 768px) 92vw, 360px"
                   width="600"
                   height="400"
-                  alt="Remont mieszkania — wnętrze po renowacji"
+                  alt="Remont mieszkania — oferta"
                   loading="lazy"
                   decoding="async"
                   fetchpriority="low" />
               </picture>
-              <h3 id="svc-remonty-ttl">Remonty mieszkań</h3>
-              <p id="svc-remonty-desc">Kompleksowe remonty wnętrz dostosowane do Twoich potrzeb.</p>
+              <h3>Remonty</h3>
+              <p>Kompleksowe remonty wnętrz dostosowane do Twoich potrzeb.</p>
             </a>
           </article>
 
           <!-- 2) Budowa domów -->
-          <article
-            class="service hidden"
-            role="listitem"
-            aria-labelledby="svc-domy-ttl"
-            aria-describedby="svc-domy-desc">
+          <article class="service hidden">
             <a href="services/budowa-domow.html" class="service-link">
               <picture>
                 <source
                   type="image/avif"
-                  srcset="assets/img/uslugi/dom-01-400x300.avif 400w, assets/img/uslugi/dom-01-600x400.avif 600w"
+                  srcset="
+                    assets/img/uslugi/budowa-domow-400x300.avif 400w,
+                    assets/img/uslugi/budowa-domow-600x400.avif 600w
+                  "
                   sizes="(max-width: 768px) 92vw, 360px" />
                 <source
                   type="image/webp"
-                  srcset="assets/img/uslugi/dom-01-400x300.webp 400w, assets/img/uslugi/dom-01-600x400.webp 600w"
+                  srcset="
+                    assets/img/uslugi/budowa-domow-400x300.webp 400w,
+                    assets/img/uslugi/budowa-domow-600x400.webp 600w
+                  "
                   sizes="(max-width: 768px) 92vw, 360px" />
                 <img
-                  src="assets/img/uslugi/dom-01-600x400.jpg"
-                  srcset="assets/img/uslugi/dom-01-400x300.jpg 400w, assets/img/uslugi/dom-01-600x400.jpg 600w"
+                  src="assets/img/uslugi/budowa-domow-600x400.jpg"
+                  srcset="
+                    assets/img/uslugi/budowa-domow-400x300.jpg 400w,
+                    assets/img/uslugi/budowa-domow-600x400.jpg 600w
+                  "
                   sizes="(max-width: 768px) 92vw, 360px"
                   width="600"
                   height="400"
-                  alt="Nowoczesny dom jednorodzinny — etap budowy"
+                  alt="Budowa domu — oferta"
                   loading="lazy"
                   decoding="async"
                   fetchpriority="low" />
               </picture>
-              <h3 id="svc-domy-ttl">Budowa domów</h3>
-              <p id="svc-domy-desc">Od fundamentów po dach — budujemy domy Twoich marzeń.</p>
+              <h3>Budowa domów</h3>
+              <p>Od fundamentów po dach — budujemy domy Twoich marzeń.</p>
             </a>
           </article>
 
           <!-- 3) Wykończenia wnętrz -->
-          <article class="service hidden" role="listitem" aria-labelledby="svc-wyk-ttl" aria-describedby="svc-wyk-desc">
+          <article class="service hidden">
             <a href="services/wykonczenia-wnetrz.html" class="service-link">
               <picture>
                 <source
                   type="image/avif"
                   srcset="
-                    assets/img/uslugi/wykonczenia-wnetrz-02-400x300.avif 400w,
-                    assets/img/uslugi/wykonczenia-wnetrz-02-600x400.avif 600w
+                    assets/img/uslugi/wykonczenia-wnetrz-400x300.avif 400w,
+                    assets/img/uslugi/wykonczenia-wnetrz-600x400.avif 600w
                   "
                   sizes="(max-width: 768px) 92vw, 360px" />
                 <source
                   type="image/webp"
                   srcset="
-                    assets/img/uslugi/wykonczenia-wnetrz-02-400x300.webp 400w,
-                    assets/img/uslugi/wykonczenia-wnetrz-02-600x400.webp 600w
+                    assets/img/uslugi/wykonczenia-wnetrz-400x300.webp 400w,
+                    assets/img/uslugi/wykonczenia-wnetrz-600x400.webp 600w
                   "
                   sizes="(max-width: 768px) 92vw, 360px" />
                 <img
-                  src="assets/img/uslugi/wykonczenia-wnetrz-02-600x400.jpg"
+                  src="assets/img/uslugi/wykonczenia-wnetrz-600x400.jpg"
                   srcset="
-                    assets/img/uslugi/wykonczenia-wnetrz-02-400x300.jpg 400w,
-                    assets/img/uslugi/wykonczenia-wnetrz-02-600x400.jpg 600w
+                    assets/img/uslugi/wykonczenia-wnetrz-400x300.jpg 400w,
+                    assets/img/uslugi/wykonczenia-wnetrz-600x400.jpg 600w
                   "
                   sizes="(max-width: 768px) 92vw, 360px"
                   width="600"
                   height="400"
-                  alt="Salon po wykończeniu — zabudowa i oświetlenie"
+                  alt="Salon po wykończeniu — oferta"
                   loading="lazy"
                   decoding="async"
                   fetchpriority="low" />
               </picture>
-              <h3 id="svc-wyk-ttl">Wykończenia wnętrz</h3>
-              <p id="svc-wyk-desc">Stylowe i nowoczesne wykończenia dla każdego pomieszczenia.</p>
+              <h3>Wykończenia wnętrz</h3>
+              <p>Stylowe i nowoczesne wykończenia dla każdego pomieszczenia.</p>
             </a>
           </article>
 
           <!-- 4) Adaptacje poddaszy -->
-          <article
-            class="service hidden"
-            role="listitem"
-            aria-labelledby="svc-poddasze-ttl"
-            aria-describedby="svc-poddasze-desc">
+          <article class="service hidden">
             <a href="services/adaptacje-poddaszy.html" class="service-link">
               <picture>
                 <source
                   type="image/avif"
                   srcset="
-                    assets/img/uslugi/adaptacje-poddaszy-01-400x300.avif 400w,
-                    assets/img/uslugi/adaptacje-poddaszy-01-600x400.avif 600w
+                    assets/img/uslugi/adaptacja-poddaszy-400x300.avif 400w,
+                    assets/img/uslugi/adaptacja-poddaszy-600x400.avif 600w
                   "
                   sizes="(max-width: 768px) 92vw, 360px" />
                 <source
                   type="image/webp"
                   srcset="
-                    assets/img/uslugi/adaptacje-poddaszy-01-400x300.webp 400w,
-                    assets/img/uslugi/adaptacje-poddaszy-01-600x400.webp 600w
+                    assets/img/uslugi/adaptacja-poddaszy-400x300.webp 400w,
+                    assets/img/uslugi/adaptacja-poddaszy-600x400.webp 600w
                   "
                   sizes="(max-width: 768px) 92vw, 360px" />
                 <img
-                  src="assets/img/uslugi/adaptacje-poddaszy-01-600x400.jpg"
+                  src="assets/img/uslugi/adaptacja-poddaszy-600x400.jpg"
                   srcset="
-                    assets/img/uslugi/adaptacje-poddaszy-01-400x300.jpg 400w,
-                    assets/img/uslugi/adaptacje-poddaszy-01-600x400.jpg 600w
+                    assets/img/uslugi/adaptacja-poddaszy-400x300.jpg 400w,
+                    assets/img/uslugi/adaptacja-poddaszy-600x400.jpg 600w
                   "
                   sizes="(max-width: 768px) 92vw, 360px"
                   width="600"
                   height="400"
-                  alt="Poddasze w trakcie adaptacji — ocieplenie i zabudowa"
+                  alt="Adaptacja poddaszy - oferta"
                   loading="lazy"
                   decoding="async"
                   fetchpriority="low" />
               </picture>
-              <h3 id="svc-poddasze-ttl">Adaptacje poddaszy</h3>
-              <p id="svc-poddasze-desc">Przekształcamy poddasza w funkcjonalne i przytulne przestrzenie mieszkalne.</p>
+              <h3>Adaptacje poddaszy</h3>
+              <p>Przekształcamy poddasza w funkcjonalne i przytulne przestrzenie mieszkalne.</p>
             </a>
           </article>
 
           <!-- 5) Instalacje sanitarne -->
-          <article
-            class="service hidden"
-            role="listitem"
-            aria-labelledby="svc-sanitarne-ttl"
-            aria-describedby="svc-sanitarne-desc">
+          <article class="service hidden">
             <a href="services/instalacje-sanitarne.html" class="service-link">
               <picture>
                 <source
                   type="image/avif"
                   srcset="
-                    assets/img/uslugi/instalacje-sanitarne-01-400x300.avif 400w,
-                    assets/img/uslugi/instalacje-sanitarne-01-600x400.avif 600w
+                    assets/img/uslugi/instalacje-sanitarne-400x300.avif 400w,
+                    assets/img/uslugi/instalacje-sanitarne-600x400.avif 600w
                   "
                   sizes="(max-width: 768px) 92vw, 360px" />
                 <source
                   type="image/webp"
                   srcset="
-                    assets/img/uslugi/instalacje-sanitarne-01-400x300.webp 400w,
-                    assets/img/uslugi/instalacje-sanitarne-01-600x400.webp 600w
+                    assets/img/uslugi/instalacje-sanitarne-400x300.webp 400w,
+                    assets/img/uslugi/instalacje-sanitarne-600x400.webp 600w
                   "
                   sizes="(max-width: 768px) 92vw, 360px" />
                 <img
-                  src="assets/img/uslugi/instalacje-sanitarne-01-600x400.jpg"
+                  src="assets/img/uslugi/instalacje-sanitarne-600x400.jpg"
                   srcset="
-                    assets/img/uslugi/instalacje-sanitarne-01-400x300.jpg 400w,
-                    assets/img/uslugi/instalacje-sanitarne-01-600x400.jpg 600w
+                    assets/img/uslugi/instalacje-sanitarne-400x300.jpg 400w,
+                    assets/img/uslugi/instalacje-sanitarne-600x400.jpg 600w
                   "
                   sizes="(max-width: 768px) 92vw, 360px"
                   width="600"
                   height="400"
-                  alt="Łazienka — armatura i instalacja wodno-kanalizacyjna"
+                  alt="Instalacje sanitarne — armatura i instalacja wodno-kanalizacyjna"
                   loading="lazy"
                   decoding="async"
                   fetchpriority="low" />
               </picture>
-              <h3 id="svc-sanitarne-ttl">Instalacje sanitarne</h3>
-              <p id="svc-sanitarne-desc">
-                Profesjonalny montaż i serwis instalacji wodno-kanalizacyjnych oraz grzewczych.
-              </p>
+              <h3>Instalacje sanitarne</h3>
+              <p>Profesjonalny montaż i serwis instalacji wodno-kanalizacyjnych oraz grzewczych.</p>
             </a>
           </article>
 
           <!-- 6) Instalacje elektryczne -->
-          <article
-            class="service hidden"
-            role="listitem"
-            aria-labelledby="svc-elektryczne-ttl"
-            aria-describedby="svc-elektryczne-desc">
+          <article class="service hidden">
             <a href="services/instalacje-elektryczne.html" class="service-link">
               <picture>
                 <source
                   type="image/avif"
                   srcset="
-                    assets/img/uslugi/instalacje-elektryczne-01-400x300.avif 400w,
-                    assets/img/uslugi/instalacje-elektryczne-01-600x400.avif 600w
+                    assets/img/uslugi/instalacje-elektryczne-400x300.avif 400w,
+                    assets/img/uslugi/instalacje-elektryczne-600x400.avif 600w
                   "
                   sizes="(max-width: 768px) 92vw, 360px" />
                 <source
                   type="image/webp"
                   srcset="
-                    assets/img/uslugi/instalacje-elektryczne-01-400x300.webp 400w,
-                    assets/img/uslugi/instalacje-elektryczne-01-600x400.webp 600w
+                    assets/img/uslugi/instalacje-elektryczne-400x300.webp 400w,
+                    assets/img/uslugi/instalacje-elektryczne-600x400.webp 600w
                   "
                   sizes="(max-width: 768px) 92vw, 360px" />
                 <img
-                  src="assets/img/uslugi/instalacje-elektryczne-01-600x400.jpg"
+                  src="assets/img/uslugi/instalacje-elektryczne-600x400.jpg"
                   srcset="
-                    assets/img/uslugi/instalacje-elektryczne-01-400x300.jpg 400w,
-                    assets/img/uslugi/instalacje-elektryczne-01-600x400.jpg 600w
+                    assets/img/uslugi/instalacje-elektryczne-400x300.jpg 400w,
+                    assets/img/uslugi/instalacje-elektryczne-600x400.jpg 600w
                   "
                   sizes="(max-width: 768px) 92vw, 360px"
                   width="600"
@@ -689,10 +650,8 @@
                   decoding="async"
                   fetchpriority="low" />
               </picture>
-              <h3 id="svc-elektryczne-ttl">Instalacje elektryczne</h3>
-              <p id="svc-elektryczne-desc">
-                Bezpieczny montaż i modernizacja instalacji elektrycznych w domach i firmach.
-              </p>
+              <h3>Instalacje elektryczne</h3>
+              <p>Bezpieczny montaż i modernizacja instalacji elektrycznych w domach i firmach.</p>
             </a>
           </article>
         </div>
@@ -704,7 +663,8 @@
         class="testimonials-section bg-surface-2 section--divider"
         aria-labelledby="testimonials-heading">
         <div class="testimonials-inner">
-          <h2 class="section-title">Co mówią o nas klienci?</h2>
+          <h2 id="testimonials-heading" class="section-title">Co mówią o nas klienci?</h2>
+
           <div class="testimonials-container">
             <div class="testimonial-card hidden">
               <p>
@@ -743,18 +703,10 @@
       <section id="galeria" class="gallery-section bg-surface-1 section--divider" aria-labelledby="gallery-heading">
         <div class="gallery-inner">
           <h2 id="gallery-heading" class="section-title">Nasze realizacje</h2>
-
-          <div class="gallery-container" role="list">
+          <div class="gallery-container">
             <!-- 1) Remont mieszkania -->
-            <figure
-              class="gallery-item hidden"
-              role="listitem"
-              aria-labelledby="gal-remont1-ttl"
-              aria-describedby="gal-remont1-desc">
-              <a
-                class="gallery-link"
-                href="assets/img/realizacje/remont-02-1200x800.jpg"
-                aria-label="Powiększ zdjęcie: Remont mieszkania, Warszawa">
+            <figure class="gallery-item hidden">
+              <a class="gallery-link" href="assets/img/realizacje/remont-02-1200x800.jpg">
                 <picture>
                   <source
                     type="image/avif"
@@ -777,7 +729,7 @@
                       assets/img/realizacje/remont-02-1200x800.jpg 1200w
                     "
                     sizes="(max-width: 768px) 100vw, 400px"
-                    alt="Remont mieszkania o A do Z"
+                    alt="Remont mieszkania od A do Z"
                     width="1200"
                     height="800"
                     loading="lazy"
@@ -785,21 +737,14 @@
                 </picture>
               </a>
               <figcaption class="overlay">
-                <h3 id="gal-remont1-ttl">Remont mieszkania</h3>
-                <p id="gal-remont1-desc">Warszawa</p>
+                <h3>Remont mieszkania</h3>
+                <p>Warszawa</p>
               </figcaption>
             </figure>
 
             <!-- 2) Budowa willi -->
-            <figure
-              class="gallery-item hidden"
-              role="listitem"
-              aria-labelledby="gal-willa-ttl"
-              aria-describedby="gal-willa-desc">
-              <a
-                class="gallery-link"
-                href="assets/img/realizacje/budowa-domu-05-1200x800.jpg"
-                aria-label="Nowoczesna willa z basenem, Rzeszów">
+            <figure class="gallery-item hidden">
+              <a class="gallery-link" href="assets/img/realizacje/budowa-domu-05-1200x800.jpg">
                 <picture>
                   <source
                     type="image/avif"
@@ -830,21 +775,14 @@
                 </picture>
               </a>
               <figcaption class="overlay">
-                <h3 id="gal-willa-ttl">Willa z basenem</h3>
-                <p id="gal-willa-desc">Rzeszów</p>
+                <h3>Willa z basenem</h3>
+                <p>Rzeszów</p>
               </figcaption>
             </figure>
 
             <!-- 3) Wykończenie salonu -->
-            <figure
-              class="gallery-item hidden"
-              role="listitem"
-              aria-labelledby="gal-salon-ttl"
-              aria-describedby="gal-salon-desc">
-              <a
-                class="gallery-link"
-                href="assets/img/realizacje/wykonczenia-wnetrza-05-1200x800.jpg"
-                aria-label="Powiększ zdjęcie: Wykończenie salonu, Gdańsk">
+            <figure class="gallery-item hidden">
+              <a class="gallery-link" href="assets/img/realizacje/wykonczenia-wnetrza-05-1200x800.jpg">
                 <picture>
                   <source
                     type="image/avif"
@@ -875,21 +813,14 @@
                 </picture>
               </a>
               <figcaption class="overlay">
-                <h3 id="gal-salon-ttl">Wykończenie salonu</h3>
-                <p id="gal-salon-desc">Gdańsk</p>
+                <h3>Wykończenie salonu</h3>
+                <p>Gdańsk</p>
               </figcaption>
             </figure>
 
             <!-- 4) Remont mieszkania -->
-            <figure
-              class="gallery-item hidden"
-              role="listitem"
-              aria-labelledby="gal-remont2-ttl"
-              aria-describedby="gal-remont2-desc">
-              <a
-                class="gallery-link"
-                href="assets/img/realizacje/remont-04-1200x800.jpg"
-                aria-label="Powiększ zdjęcie: Remont mieszkania, Wrocław">
+            <figure class="gallery-item hidden">
+              <a class="gallery-link" href="assets/img/realizacje/remont-04-1200x800.jpg">
                 <picture>
                   <source
                     type="image/avif"
@@ -912,7 +843,7 @@
                       assets/img/realizacje/remont-04-1200x800.jpg 1200w
                     "
                     sizes="(max-width: 768px) 100vw, 400px"
-                    alt="Mieszkanie podczas remontu kuchni i salonu"
+                    alt="Świeżo wyremontowany salon"
                     width="1200"
                     height="800"
                     loading="lazy"
@@ -920,21 +851,14 @@
                 </picture>
               </a>
               <figcaption class="overlay">
-                <h3 id="gal-remont2-ttl">Remont mieszkania</h3>
-                <p id="gal-remont2-desc">Wrocław</p>
+                <h3>Remont mieszkania</h3>
+                <p>Wrocław</p>
               </figcaption>
             </figure>
 
             <!-- 5) Budowa domu -->
-            <figure
-              class="gallery-item hidden"
-              role="listitem"
-              aria-labelledby="gal-dom-ttl"
-              aria-describedby="gal-dom-desc">
-              <a
-                class="gallery-link"
-                href="assets/img/realizacje/budowa-domu-02-1200x800.jpg"
-                aria-label="Powiększ zdjęcie: Dom jednorodzinny, Poznań">
+            <figure class="gallery-item hidden">
+              <a class="gallery-link" href="assets/img/realizacje/budowa-domu-02-1200x800.jpg">
                 <picture>
                   <source
                     type="image/avif"
@@ -965,21 +889,14 @@
                 </picture>
               </a>
               <figcaption class="overlay">
-                <h3 id="gal-dom-ttl">Dom jednorodzinny</h3>
-                <p id="gal-dom-desc">Poznań</p>
+                <h3>Dom jednorodzinny</h3>
+                <p>Poznań</p>
               </figcaption>
             </figure>
 
             <!-- 6) Wykończenie kuchni -->
-            <figure
-              class="gallery-item hidden"
-              role="listitem"
-              aria-labelledby="gal-kuchnia-ttl"
-              aria-describedby="gal-kuchnia-desc">
-              <a
-                class="gallery-link"
-                href="assets/img/realizacje/wykonczenia-wnetrza-01-1200x800.jpg"
-                aria-label="Powiększ zdjęcie: Wykończenie kuchni, Kraków">
+            <figure class="gallery-item hidden">
+              <a class="gallery-link" href="assets/img/realizacje/wykonczenia-wnetrza-01-1200x800.jpg">
                 <picture>
                   <source
                     type="image/avif"
@@ -1010,21 +927,14 @@
                 </picture>
               </a>
               <figcaption class="overlay">
-                <h3 id="gal-kuchnia-ttl">Wykończenie kuchni</h3>
-                <p id="gal-kuchnia-desc">Kraków</p>
+                <h3>Wykończenie kuchni</h3>
+                <p>Kraków</p>
               </figcaption>
             </figure>
 
             <!-- 7) Adaptacja poddasza -->
-            <figure
-              class="gallery-item hidden"
-              role="listitem"
-              aria-labelledby="gal-poddasze-ttl"
-              aria-describedby="gal-poddasze-desc">
-              <a
-                class="gallery-link"
-                href="assets/img/realizacje/poddasze-06-1200x800.jpg"
-                aria-label="Powiększ zdjęcie: Adaptacja poddasza, Tarnów">
+            <figure class="gallery-item hidden">
+              <a class="gallery-link" href="assets/img/realizacje/poddasze-06-1200x800.jpg">
                 <picture>
                   <source
                     type="image/avif"
@@ -1055,21 +965,14 @@
                 </picture>
               </a>
               <figcaption class="overlay">
-                <h3 id="gal-elektryka-ttl">Poddasze adaptywne</h3>
-                <p id="gal-elektryka-desc">Tarnów</p>
+                <h3>Adaptacja poddasza</h3>
+                <p>Tarnów</p>
               </figcaption>
             </figure>
 
             <!-- 8) Instalacja sanitarna -->
-            <figure
-              class="gallery-item hidden"
-              role="listitem"
-              aria-labelledby="gal-instalacja-ttl"
-              aria-describedby="gal-instalacja-desc">
-              <a
-                class="gallery-link"
-                href="assets/img/realizacje/instalacje-sanitarne-06-1200x800.jpg"
-                aria-label="Powiększ zdjęcie: Instalacja sanitarna, Lublin">
+            <figure class="gallery-item hidden">
+              <a class="gallery-link" href="assets/img/realizacje/instalacje-sanitarne-06-1200x800.jpg">
                 <picture>
                   <source
                     type="image/avif"
@@ -1100,21 +1003,14 @@
                 </picture>
               </a>
               <figcaption class="overlay">
-                <h3 id="gal-poddasze-ttl">Instalacja sanitarna</h3>
-                <p id="gal-poddasze-desc">Lublin</p>
+                <h3>Instalacja sanitarna</h3>
+                <p>Lublin</p>
               </figcaption>
             </figure>
 
             <!-- 9) Adaptacja poddasza -->
-            <figure
-              class="gallery-item hidden"
-              role="listitem"
-              aria-labelledby="gal-poddasze2-ttl"
-              aria-describedby="gal-poddasze2-desc">
-              <a
-                class="gallery-link"
-                href="assets/img/realizacje/poddasze-03-1200x800.jpg"
-                aria-label="Powiększ zdjęcie: Adaptacja poddasza, Kielce">
+            <figure class="gallery-item hidden">
+              <a class="gallery-link" href="assets/img/realizacje/poddasze-03-1200x800.jpg">
                 <picture>
                   <source
                     type="image/avif"
@@ -1137,7 +1033,7 @@
                       assets/img/realizacje/poddasze-03-1200x800.jpg 1200w
                     "
                     sizes="(max-width: 768px) 100vw, 400px"
-                    alt="Zaaranżowane poddasze jako przytulna sypialnia z oknem dachowym"
+                    alt="Zaaranżowane poddasze jako przytulne pomieszczenie mieszkalne"
                     width="1200"
                     height="800"
                     loading="lazy"
@@ -1145,21 +1041,14 @@
                 </picture>
               </a>
               <figcaption class="overlay">
-                <h3 id="gal-poddasze2-ttl">Adaptacja poddasza</h3>
-                <p id="gal-poddasze2-desc">Kielce</p>
+                <h3>Adaptacja poddasza</h3>
+                <p>Kielce</p>
               </figcaption>
             </figure>
 
             <!-- 10) Adaptacja poddasza -->
-            <figure
-              class="gallery-item hidden"
-              role="listitem"
-              aria-labelledby="gal-poddasze2-ttl"
-              aria-describedby="gal-poddasze2-desc">
-              <a
-                class="gallery-link"
-                href="assets/img/realizacje/poddasze-02-1200x800.jpg"
-                aria-label="Powiększ zdjęcie: Adaptacja poddasza, Kielce">
+            <figure class="gallery-item hidden">
+              <a class="gallery-link" href="assets/img/realizacje/poddasze-02-1200x800.jpg">
                 <picture>
                   <source
                     type="image/avif"
@@ -1190,21 +1079,14 @@
                 </picture>
               </a>
               <figcaption class="overlay">
-                <h3 id="gal-poddasze2-ttl">Adaptacja poddasza</h3>
-                <p id="gal-poddasze2-desc">Olsztyn</p>
+                <h3>Adaptacja poddasza</h3>
+                <p>Olsztyn</p>
               </figcaption>
             </figure>
 
-            <!-- 11)Instalacje sanitarne -->
-            <figure
-              class="gallery-item hidden"
-              role="listitem"
-              aria-labelledby="gal-instalacja-ttl"
-              aria-describedby="gal-instalacja-desc">
-              <a
-                class="gallery-link"
-                href="assets/img/realizacje/instalacje-sanitarne-02-1200x800.jpg"
-                aria-label="Powiększ zdjęcie: Instalacja sanitarna, Bydgoszcz">
+            <!-- 11) Instalacje sanitarne -->
+            <figure class="gallery-item hidden">
+              <a class="gallery-link" href="assets/img/realizacje/instalacje-sanitarne-02-1200x800.jpg">
                 <picture>
                   <source
                     type="image/avif"
@@ -1235,44 +1117,37 @@
                 </picture>
               </a>
               <figcaption class="overlay">
-                <h3 id="gal-poddasze2-ttl">Instalacja sanitarna</h3>
-                <p id="gal-poddasze2-desc">Bydgoszcz</p>
+                <h3>Instalacja sanitarna</h3>
+                <p>Bydgoszcz</p>
               </figcaption>
             </figure>
 
-            <!-- 12) Insstalacje elektryczne -->
-            <figure
-              class="gallery-item hidden"
-              role="listitem"
-              aria-labelledby="gal-instalacja-ttl"
-              aria-describedby="gal-instalacja-desc">
-              <a
-                class="gallery-link"
-                href="assets/img/realizacje/instalacja-elektryczna-01-1200x800.jpg"
-                aria-label="Powiększ zdjęcie: Instalacja elektryczna, Kraków">
+            <!-- 12) Instalacje elektryczne -->
+            <figure class="gallery-item hidden">
+              <a class="gallery-link" href="assets/img/realizacje/instalacje-elektryczne-06-1200x800.jpg">
                 <picture>
                   <source
                     type="image/avif"
                     srcset="
-                      assets/img/realizacje/instalacja-elektryczna-01-800x600.avif   800w,
-                      assets/img/realizacje/instalacja-elektryczna-01-1200x800.avif 1200w
+                      assets/img/realizacje/instalacje-elektryczne-06-800x600.avif   800w,
+                      assets/img/realizacje/instalacje-elektryczne-06-1200x800.avif 1200w
                     "
                     sizes="(max-width: 768px) 100vw, 400px" />
                   <source
                     type="image/webp"
                     srcset="
-                      assets/img/realizacje/instalacja-elektryczna-01-800x600.webp   800w,
-                      assets/img/realizacje/instalacja-elektryczna-01-1200x800.webp 1200w
+                      assets/img/realizacje/instalacje-elektryczne-06-800x600.webp   800w,
+                      assets/img/realizacje/instalacje-elektryczne-06-1200x800.webp 1200w
                     "
                     sizes="(max-width: 768px) 100vw, 400px" />
                   <img
-                    src="assets/img/realizacje/instalacja-elektryczna-01-1200x800.jpg"
+                    src="assets/img/realizacje/instalacje-elektryczne-06-1200x800.jpg"
                     srcset="
-                      assets/img/realizacje/instalacja-elektryczna-01-800x600.jpg   800w,
-                      assets/img/realizacje/instalacja-elektryczna-01-1200x800.jpg 1200w
+                      assets/img/realizacje/instalacje-elektryczne-06-800x600.jpg   800w,
+                      assets/img/realizacje/instalacje-elektryczne-06-1200x800.jpg 1200w
                     "
                     sizes="(max-width: 768px) 100vw, 400px"
-                    alt="Instalacja elektryczna w domu jednorodzinnym"
+                    alt="Instalacja klimatyzacji w kuchni klienta"
                     width="1200"
                     height="800"
                     loading="lazy"
@@ -1280,19 +1155,34 @@
                 </picture>
               </a>
               <figcaption class="overlay">
-                <h3 id="gal-poddasze2-ttl">Instalacja elektryczna</h3>
-                <p id="gal-poddasze2-desc">Kraków</p>
+                <h3>Instalacja elektryczna</h3>
+                <p>Kraków</p>
               </figcaption>
             </figure>
           </div>
         </div>
       </section>
 
-      <div class="lb" id="lightbox" role="dialog" aria-modal="true" aria-hidden="true">
-        <div class="lb__backdrop" data-lb-close></div>
+      <div
+        class="lb"
+        id="lightbox"
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="lightbox-title"
+        aria-describedby="lightbox-caption"
+        hidden
+        tabindex="-1">
+        <div class="lb__backdrop" data-lb-close aria-hidden="true"></div>
+
         <figure class="lb__figure">
+          <!-- Tytuł dialogu tylko dla czytników -->
+          <h2 id="lightbox-title" class="sr-only">Podgląd zdjęcia</h2>
+
           <img class="lb__img" alt="" />
-          <figcaption class="lb__caption" id="lightbox-caption" hidden></figcaption>
+
+          <!-- Podpis/opis zdjęcia – widoczny, bez 'hidden' -->
+          <figcaption class="lb__caption" id="lightbox-caption"></figcaption>
+
           <button class="lb__close" type="button" aria-label="Zamknij (Esc)" data-lb-close>&times;</button>
         </figure>
       </div>
@@ -1302,7 +1192,7 @@
         id="kontakt"
         class="contact-form-section bg-surface-3 section--divider"
         aria-labelledby="contact-heading">
-        <h2 class="section-title">Skontaktuj się z nami!</h2>
+        <h2 id="contact-heading" class="section-title">Skontaktuj się z nami!</h2>
 
         <div class="contact-form-container">
           <form
@@ -1421,13 +1311,14 @@
             </div>
 
             <p id="formNote" class="form-note">Pola powyżej są wymagane. Odpowiadamy zwykle tego samego dnia.</p>
-
             <!-- reCAPTCHA (Netlify) -->
-            <div class="form-group captcha-wrap" data-recaptcha>
-              <span class="visually-hidden" id="captchaLabel">Weryfikacja reCAPTCHA</span>
-              <div data-netlify-recaptcha="true" aria-labelledby="captchaLabel"></div>
-              <noscript><p class="form-note">Aby wysłać formularz, włącz JavaScript (reCAPTCHA).</p></noscript>
-            </div>
+            <fieldset class="form-group captcha-wrap" data-recaptcha>
+              <legend class="sr-only">Weryfikacja reCAPTCHA</legend>
+              <div data-netlify-recaptcha="true"></div>
+              <noscript>
+                <p class="form-note">Aby wysłać formularz, włącz JavaScript (reCAPTCHA).</p>
+              </noscript>
+            </fieldset>
 
             <div id="formStatus" class="form-status" role="status" aria-live="polite"></div>
 
@@ -1437,8 +1328,7 @@
       </section>
     </main>
 
-    <!-- STOPKA -->
-
+    <!-- FOOTER -->
     <footer role="contentinfo" aria-labelledby="footer-heading">
       <h2 id="footer-heading" class="visually-hidden">Stopka serwisu</h2>
       <div class="footer-content">
@@ -1554,6 +1444,7 @@
       </div>
     </footer>
 
+    <!-- SCRIPTS -->
     <script src="js/script.js" defer></script>
   </body>
 </html>
