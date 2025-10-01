@@ -91,7 +91,7 @@ npm run build && npm start
 
 ---
 
-## 🗺 Roadmap (6 months)
+## 🗺 Desc.
 
 1–2️⃣ **HTML/CSS/JS** → Fundamentals & first portfolio projects  
 3️⃣ **Tailwind CSS** → Rapid prototyping with utility classes  
