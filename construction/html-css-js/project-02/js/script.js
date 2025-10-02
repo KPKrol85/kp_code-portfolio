@@ -574,25 +574,6 @@
   }); // ← koniec submit handlera
 })(); // ← koniec IIFE
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 /* =======================================================================================@@@@@@@@@@@@@@@@@@@@
    ========== LIGHTBOX — podgląd zdjęcia + „double-tap to open” na mobile ================
    - HTML zgodny z:
@@ -614,7 +595,9 @@
   const backdrop = lb.querySelector('.lb__backdrop');
 
   let lastActive = null;
-  let focusables = [], firstF = null, lastF = null;
+  let focusables = [],
+    firstF = null,
+    lastF = null;
 
   // Wykrywanie „mobile touch” (coarse, bez hover)
   const isTouchLike = window.matchMedia
@@ -626,7 +609,10 @@
   let armTimer = null;
 
   const disarm = () => {
-    if (armTimer) { clearTimeout(armTimer); armTimer = null; }
+    if (armTimer) {
+      clearTimeout(armTimer);
+      armTimer = null;
+    }
     if (armedLink) {
       const it = armedLink.closest('.gallery-item');
       if (it) it.classList.remove('is-armed');
@@ -658,7 +644,10 @@
   const scheduleDisarm = () => {
     if (disarmTick) return;
     disarmTick = true;
-    requestAnimationFrame(() => { disarm(); disarmTick = false; });
+    requestAnimationFrame(() => {
+      disarm();
+      disarmTick = false;
+    });
   };
   window.addEventListener('scroll', scheduleDisarm, { passive: true });
   window.addEventListener('resize', scheduleDisarm);
@@ -671,13 +660,18 @@
     firstF = focusables[0];
     lastF = focusables[focusables.length - 1];
   };
-  const trapRelease = () => { focusables = []; firstF = lastF = null; };
+  const trapRelease = () => {
+    focusables = [];
+    firstF = lastF = null;
+  };
   const handleTrap = (e) => {
     if (!focusables.length) return;
     if (e.shiftKey && document.activeElement === firstF) {
-      e.preventDefault(); lastF.focus();
+      e.preventDefault();
+      lastF.focus();
     } else if (!e.shiftKey && document.activeElement === lastF) {
-      e.preventDefault(); firstF.focus();
+      e.preventDefault();
+      firstF.focus();
     }
   };
 
@@ -697,9 +691,9 @@
     }
 
     // Kluczowe przy starcie z hidden w HTML:
-    lb.removeAttribute('hidden');                  // ← zdejmij atrybut hidden (UA display:none)
-    lb.setAttribute('aria-hidden', 'false');       // ← włącza display:flex z CSS
-    document.body.classList.add('lb-open');        // ← body lock (overflow:hidden w CSS)
+    lb.removeAttribute('hidden'); // ← zdejmij atrybut hidden (UA display:none)
+    lb.setAttribute('aria-hidden', 'false'); // ← włącza display:flex z CSS
+    document.body.classList.add('lb-open'); // ← body lock (overflow:hidden w CSS)
 
     trapInit();
     closeBtn && closeBtn.focus();
@@ -735,8 +729,14 @@
     const alt = thumbImg ? thumbImg.alt : '';
 
     if (isTouchLike) {
-      if (armedLink !== link) { e.preventDefault(); arm(link); return; }
-      e.preventDefault(); open(href, alt); return;
+      if (armedLink !== link) {
+        e.preventDefault();
+        arm(link);
+        return;
+      }
+      e.preventDefault();
+      open(href, alt);
+      return;
     }
 
     e.preventDefault();
@@ -762,45 +762,21 @@
 
   // Prefetch dużego zdjęcia na hover (desktop only)
   if (!isTouchLike) {
-    document.addEventListener('mouseenter', (e) => {
-      const link = e.target.closest('.gallery-link');
-      if (!link || !link.closest('.gallery-container')) return;
-      const href = link.getAttribute('href');
-      if (!href) return;
-      const pre = new Image();
-      pre.decoding = 'async';
-      pre.src = href;
-    }, true);
+    document.addEventListener(
+      'mouseenter',
+      (e) => {
+        const link = e.target.closest('.gallery-link');
+        if (!link || !link.closest('.gallery-container')) return;
+        const href = link.getAttribute('href');
+        if (!href) return;
+        const pre = new Image();
+        pre.decoding = 'async';
+        pre.src = href;
+      },
+      true
+    );
   }
 })();
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 /* =======================================================================================@@@@@@@@@@@@@@@@@@@@
    ========== Accent Switch (opcjonalne) =================================================
@@ -849,4 +825,54 @@
     if (!btn) return;
     applyAccent(btn.getAttribute('data-accent-pick'), true);
   });
+})();
+
+/* =======================================================================================@@@@@@@@@@@@@@@@@@@@
+   ========== Compact Header po scrollu ===================================================
+   - Po przewinięciu > THRESHOLD px dodaje klasę .header-compact na <body>
+   - Gdy otwarte mobile menu (body.nav-open) — kompakt wyłączony
+   - rAF do odszumienia scrolla; init na starcie/po powrocie z bfcache
+   ======================================================================================= */
+(() => {
+  const THRESHOLD = 40; // px przewinięcia, po którym header się „zbija”
+  let compactOn = false;
+  let ticking = false;
+
+ const shouldCompact = () =>
+  (window.scrollY || window.pageYOffset || 0) > THRESHOLD;
+
+  const apply = (on) => {
+    if (on === compactOn) return;
+    compactOn = on;
+    document.body.classList.toggle('header-compact', compactOn);
+  };
+
+  const update = () => apply(shouldCompact());
+
+  const onScroll = () => {
+    if (ticking) return;
+    ticking = true;
+    requestAnimationFrame(() => {
+      update();
+      ticking = false;
+    });
+  };
+
+  // Inicjalizacja + typowe zdarzenia
+  update();
+  window.addEventListener('scroll', onScroll, { passive: true });
+  window.addEventListener('resize', onScroll); // obrót ekranu / zmiana vh
+  window.addEventListener('pageshow', update, { once: true });
+
+  // Synchronizacja z hamburgerem (po otwarciu/zamknięciu menu)
+  const btn = document.getElementById('hamburger');
+  if (btn) {
+    btn.addEventListener('click', () => {
+      setTimeout(update, 0); // po zmianie body.nav-open
+    });
+  }
+
+  // Fallback: reaguj na każdą zmianę klas <body> (np. gdyby coś innego zmieniało nav-open)
+  const mo = new MutationObserver(update);
+  mo.observe(document.body, { attributes: true, attributeFilter: ['class'] });
 })();
