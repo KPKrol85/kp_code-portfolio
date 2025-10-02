@@ -12,9 +12,10 @@
    04) USŁUGI
    05) OPINIE
    06) GALERIA
-   07) KONTAKT 
-   08) FOOTER
-   09) STANY + ANIMACJE + PRZYCISKI GLOBALNE
+   07) FAQ
+   08) KONTAKT
+   09) FOOTER
+   10) STANY + ANIMACJE + PRZYCISKI GLOBALNE
    ====================================================================== */
 
 /* ===============================================================
@@ -774,7 +775,7 @@ body.dark-mode .theme-toggle .icon-moon {
     flex-direction: column;
     align-items: stretch;
     gap: 0;
-    padding: 56px 16px 16px;
+    padding: 16px 16px 16px;
     list-style: none;
     margin: 0;
   }
@@ -1470,7 +1471,146 @@ body.lb-open {
 }
 
 /* ==============================================================
-  ========== 07) KONTAKT ========================================
+   ========== 07) FAQ (home) — minimalist ========================
+   =============================================================== */
+.faq-section {
+  padding: 4rem 2rem;
+  background: var(--surface-2);
+  border-top: 1px solid color-mix(in srgb, var(--text-dark) 10%, transparent);
+  content-visibility: auto;
+  contain-intrinsic-size: 1000px;
+}
+body.dark-mode .faq-section {
+  background: var(--surface-2);
+  border-top: 1px solid color-mix(in srgb, var(--text-light) 12%, transparent);
+}
+.faq-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  text-align: center;
+}
+.faq-section .section-title {
+  display: inline-block;
+  text-align: center;
+  margin-bottom: 3rem;
+  font-size: 2rem;
+  color: var(--primary);
+}
+body.dark-mode .faq-section .section-title {
+  color: var(--accent);
+}
+
+.faq-list {
+  max-width: 900px;
+  margin: 0 auto;
+  display: grid;
+  gap: 1rem;
+  text-align: left;
+}
+
+/* Jednolita karta */
+.faq-item {
+  background: var(--text-light);
+  border: 1px solid color-mix(in srgb, var(--text-dark) 12%, transparent);
+  border-radius: 12px;
+  box-shadow: 0 4px 10px color-mix(in srgb, black 12%, transparent);
+  transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease, background-color 0.2s ease;
+  overflow: clip;
+}
+.faq-item:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 8px 18px color-mix(in srgb, black 18%, transparent);
+}
+body.dark-mode .faq-item {
+  background: color-mix(in srgb, var(--bg-dark) 82%, white 18%);
+  border-color: color-mix(in srgb, var(--text-light) 18%, transparent);
+  box-shadow: 0 4px 10px color-mix(in srgb, var(--text-light) 6%, transparent);
+}
+
+/* Pytanie — bez osobnego tła, duża hit-area */
+.faq-q {
+  position: relative;
+  list-style: none;
+  cursor: pointer;
+  padding: 1rem 3rem 1rem 1.1rem;
+  min-height: 48px;
+  display: flex;
+  align-items: center;
+  font-weight: 700;
+  line-height: 1.25;
+  letter-spacing: .1rem;
+}
+.faq-q::-webkit-details-marker {
+  display: none;
+}
+.faq-q::after {
+  content: '';
+  position: absolute;
+  right: 0.9rem;
+  top: 50%;
+  width: 18px;
+  height: 18px;
+  transform: translateY(-50%) rotate(0deg);
+  opacity: 0.7;
+  transition: transform 0.2s ease, opacity 0.2s ease;
+  background: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><path fill='%23AAAAAA' d='M9 6l6 6-6 6'/></svg>")
+    center/18px 18px no-repeat;
+}
+.faq-item:hover .faq-q::after {
+  opacity: 0.9;
+}
+.faq-item[open] .faq-q::after {
+  transform: translateY(-50%) rotate(90deg);
+  background: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><path fill='%23999999' d='M9 6l6 6-6 6'/></svg>")
+    center/18px 18px no-repeat;
+}
+.faq-q:focus-visible {
+  outline: 3px solid var(--accent-400);
+  outline-offset: 3px;
+  border-radius: 8px;
+}
+
+/* Odpowiedź — ten sam kolor tła co karta, zero pasków/borderów */
+.faq-a {
+  padding: 0 1.1rem 1.1rem 1.1rem;
+  background: transparent;
+  border: 0;
+  color: color-mix(in srgb, var(--text-dark) 92%, white 8%);
+  font-size: 1.1rem;
+  letter-spacing: .1rem;
+}
+body.dark-mode .faq-a {
+  color: color-mix(in srgb, var(--text-light) 92%, black 8%);
+}
+
+/* Po otwarciu: żadnych dodatkowych teł, tylko subtelniejsze obramowanie/shadow */
+.faq-item[open] {
+  border-color: color-mix(in srgb, var(--text-dark) 22%, transparent);
+  box-shadow: 0 10px 22px color-mix(in srgb, black 22%, transparent);
+
+}
+body.dark-mode .faq-item[open] {
+  border-color: color-mix(in srgb, var(--text-light) 22%, transparent);
+  box-shadow: 0 10px 22px color-mix(in srgb, var(--text-light) 8%, transparent);
+}
+
+@media (max-width: 768px) {
+  .faq-section {
+    padding: 3rem 1rem;
+  }
+  .faq-q {
+    padding-right: 2.5rem;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .faq-item,
+  .faq-q::after {
+    transition: none;
+  }
+}
+
+/* ==============================================================
+  ========== 08) KONTAKT ========================================
   ============================================================== */
 
 .contact-form-section {
@@ -1491,7 +1631,7 @@ body.dark-mode .contact-form-section {
   color: var(--primary);
 }
 body.dark-mode .contact-form-section h2 {
-  color: var(--accent-400);
+  color: var(--accent);
 }
 
 .contact-form-container {
@@ -1758,6 +1898,10 @@ body.dark-mode .contact-form .form-consent a {
 }
 
 .captcha-wrap {
+  width: 100%;
+  max-width: 304px; /* natywna szerokość reCAPTCHA */
+  margin: 0.5rem auto 1rem;
+  padding: 0; /* zbędne marginesy wewnętrzne */
   display: flex;
   justify-content: center;
   align-items: center;
@@ -1767,23 +1911,22 @@ body.dark-mode .contact-form .form-consent a {
 .captcha-wrap iframe {
   display: block;
   margin: 0 auto;
-  transform-origin: 50% 0;
+  transform-origin: 0 0; /* lepsze skalowanie od lewej */
   position: relative;
 }
 @media (max-width: 420px) {
+  .captcha-wrap {
+    max-width: 260px; /* dopasowane do skalowania */
+    height: auto; /* nie blokujemy na sztywno */
+  }
   .captcha-wrap .g-recaptcha,
   .captcha-wrap iframe {
-    transform: scale(0.84);
-    -webkit-transform: scale(0.84);
-    -ms-transform: scale(0.84);
-  }
-  .captcha-wrap {
-    height: calc(78px * 0.84);
+    transform: scale(0.85);
   }
 }
 
 /* ==============================================================
-  ========== 0) FOOTER ==========================================
+  ========== 09) FOOTER ==========================================
   =============================================================== */
 
 footer {
@@ -2031,7 +2174,7 @@ footer a[href^='mailto:']:focus-visible {
 }
 
 /* ===============================================================
-   ========== 09) STANY + ANIMACJE + PRZYCISKI ===================
+   ========== 10) STANY + ANIMACJE + PRZYCISKI ===================
    =============================================================== */
 
 body.menu-open {
