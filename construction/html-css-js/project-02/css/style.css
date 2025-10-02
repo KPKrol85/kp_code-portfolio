@@ -747,17 +747,21 @@ body.dark-mode .theme-toggle .icon-moon {
   /* Panel nawigacji (mobile) */
   #primaryNav {
     display: none;
-    position: absolute;
-    top: 100%;
+    position: fixed;
+    top: var(--header-h);
     left: 0;
     right: 0;
-    z-index: 120;
+    z-index: 140;
     background: linear-gradient(
       135deg,
       color-mix(in srgb, var(--primary) 85%, transparent),
       color-mix(in srgb, var(--primary) 65%, transparent)
     );
     box-shadow: 0 4px 15px color-mix(in srgb, var(--bg-dark) 12%, transparent);
+        /* KLUCZ DO SCROLLA */
+    max-height: calc(100dvh - var(--header-h)); /* wysokość ograniczona do okna */
+    overflow-y: auto; 
+    -webkit-overflow-scrolling: touch;          /* płynny scroll na iOS */
   }
   body.dark-mode #primaryNav {
     background: linear-gradient(
