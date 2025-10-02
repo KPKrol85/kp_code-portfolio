@@ -67,51 +67,22 @@ body.dark-mode {
 }
 
 :root {
-  --header-h: 56px;
-}
-
-:root {
   --icon-nudge-x: 0px;
   --icon-nudge-y: 1px;
 }
 
 :root {
+  --header-h: 50px;
   --header-pad-y: 8px;
   --logo-scale: 1;
 }
 
 body.header-compact {
   --header-h: 40px;
-  --header-pad-y: 2px;
-  --logo-scale: 0.9;
+  --header-pad-y: 3px;
+  --logo-scale: 0.86;
 }
 
-@media (prefers-reduced-motion: reduce) {
-  .no-motion {
-    transition: none !important;
-    animation: none !important;
-  }
-}
-
-@media (min-width: 769px) {
-  :root {
-    --header-pad-x: 28px;
-  }
-}
-
-@media (max-width: 768px) {
-  :root {
-    --header-h: 54px;
-    --edge-pad: 12px;
-    --tap-pad: 8px;
-    --logo-optical: 2px;
-    --burger-optical: -10px;
-    --section-py: 3rem;
-    --section-px: 1rem;
-  }
-}
-
-/* A11y — utilities (visually hidden / skip links) */
 .visually-hidden {
   position: absolute !important;
   clip: rect(1px, 1px, 1px, 1px);
@@ -168,6 +139,40 @@ body.header-compact {
   white-space: nowrap;
 }
 
+/* ===== Prefers reduced motion ===== */
+@media (prefers-reduced-motion: reduce) {
+  .no-motion {
+    transition: none !important;
+    animation: none !important;
+  }
+}
+
+/* ===== Media queries ( min-width: 769px) ===== */
+@media (min-width: 769px) {
+  :root {
+    --header-pad-x: 28px;
+  }
+}
+
+/* ===== Media queries ( max-width: 768px) ===== */
+@media (max-width: 768px) {
+  :root {
+    --header-h: 46px;
+    --header-pad-y: 6px;
+    --edge-pad: 12px;
+    --tap-pad: 8px;
+    --logo-optical: 2px;
+    --burger-optical: -10px;
+    --section-py: 3rem;
+    --section-px: 1rem;
+  }
+  body.header-compact {
+    --header-h: 40px;
+    --header-pad-y: 2px;
+    --logo-scale: 0.9;
+  }
+}
+
 /* ===============================================================
    ========== 01) BAZA TYPOGRAFIA LAYOUT =========================
    =============================================================== */
@@ -175,15 +180,12 @@ body.header-compact {
 html {
   scroll-behavior: smooth;
 }
-@media (prefers-reduced-motion: reduce) {
-  html {
-    scroll-behavior: auto;
-  }
-}
+
 section {
   scroll-margin-top: clamp(64px, 8vh, 96px);
   padding: var(--section-py) var(--section-px);
 }
+
 body {
   margin: 0;
   padding: 0;
@@ -193,43 +195,51 @@ body {
   line-height: 1.6;
   transition: background-color 0.4s, color 0.4s;
 }
+
 body.dark-mode {
   background: var(--bg-dark);
   color: var(--text-light);
 }
+
 h1 {
   font-family: 'Montserrat', sans-serif;
   font-size: clamp(2.2rem, 1.2rem + 3.2vw, 3.5rem);
   line-height: 1.2;
   margin: 0 0 0.6em;
 }
+
 h2 {
   font-family: 'Montserrat', sans-serif;
   font-size: clamp(1.6rem, 1rem + 2.2vw, 2.4rem);
   line-height: 1.25;
   margin: 0 0 0.65em;
 }
+
 h3 {
   font-family: 'Montserrat', sans-serif;
   font-size: clamp(1.25rem, 0.9rem + 1.2vw, 1.6rem);
   line-height: 1.3;
   margin: 0 0 0.7em;
 }
+
 .lead {
   font-size: clamp(1.05rem, 0.95rem + 0.6vw, 1.25rem);
   line-height: 1.7;
   color: var(--text-dark);
 }
+
 body.dark-mode .lead {
   color: var(--text-light);
   opacity: 0.9;
 }
+
 .section-title {
   position: relative;
   display: inline-block;
   padding-bottom: 0.4rem;
   font-family: 'Montserrat', sans-serif;
 }
+
 .section-title::after {
   content: '';
   position: absolute;
@@ -245,30 +255,35 @@ body.dark-mode .lead {
   animation: underlineGrow 0.6s ease forwards;
 }
 
+::selection {
+  background: color-mix(in srgb, var(--accent) 35%, transparent);
+  color: var(--text-light);
+}
+
+/* ===== Keyframes ===== */
 @keyframes underlineGrow {
   to {
     transform: translateX(-50%) scaleX(1);
   }
 }
 
-::selection {
-  background: color-mix(in srgb, var(--accent) 35%, transparent);
-  color: var(--text-light);
+/* ===== Prefers reduced motion ===== */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
 }
 
 /* ===============================================================
    ========== 02) NAGŁÓWEK =======================================
   =============================================================== */
-/* Header */
+
 header {
   display: flex;
   justify-content: space-between;
   align-items: center;
   gap: 12px;
-
-  /* BYŁO: padding: 8px 12px;  →  teraz sterowane zmienną */
   padding: var(--header-pad-y) 12px;
-
   min-height: var(--header-h);
   background: linear-gradient(
       135deg,
@@ -284,13 +299,10 @@ header {
   box-shadow: 0 6px 18px color-mix(in srgb, var(--bg-dark) 18%, transparent), inset 0 1px 0 rgba(255, 255, 255, 0.08);
   backdrop-filter: blur(10px) saturate(1.2);
   -webkit-backdrop-filter: blur(10px) saturate(1.2);
-
-  /* DODANE właściwości do transition: min-height i padding */
   transition: background-color 0.3s ease, box-shadow 0.3s ease, transform 0.3s ease, min-height 0.18s ease,
     padding 0.18s ease;
 }
 
-/* Dark Header */
 body.dark-mode header {
   background: linear-gradient(
       135deg,
@@ -303,6 +315,18 @@ body.dark-mode header {
   backdrop-filter: blur(10px) saturate(1.1);
   -webkit-backdrop-filter: blur(10px) saturate(1.1);
 }
+
+body.header-compact header {
+  box-shadow: 0 10px 22px color-mix(in srgb, var(--bg-dark) 26%, transparent), inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  border-bottom-color: color-mix(in srgb, var(--text-light) 22%, transparent);
+}
+
+body.dark-mode.header-compact header {
+  box-shadow: 0 10px 22px color-mix(in srgb, var(--text-light) 12%, transparent),
+    inset 0 1px 0 rgba(255, 255, 255, 0.06);
+  border-bottom-color: color-mix(in srgb, var(--text-light) 26%, transparent);
+}
+
 header::after {
   content: '';
   position: absolute;
@@ -313,7 +337,7 @@ header::after {
   background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.18), transparent);
   pointer-events: none;
 }
-/* Fallback jeśli brak backdrop-filter */
+
 @supports not (backdrop-filter: blur(1px)) {
   body.dark-mode header {
     background: linear-gradient(
@@ -324,7 +348,6 @@ header::after {
   }
 }
 
-/* Logo */
 .logo {
   display: flex;
   align-items: center;
@@ -355,7 +378,6 @@ body.dark-mode .logo-text {
   color: var(--text-light);
 }
 
-/* NAV */
 #primaryNav {
   display: block;
 }
@@ -373,7 +395,6 @@ body.dark-mode .logo-text {
   position: relative;
 }
 
-/* Linki (desktop) */
 #primaryNav .nav a {
   appearance: none;
   background: transparent;
@@ -407,7 +428,6 @@ body.dark-mode .logo-text {
   box-shadow: inset 0 2px 4px color-mix(in srgb, var(--bg-dark) 10%, transparent);
 }
 
-/* Light mode – kolory linków */
 body:not(.dark-mode) #primaryNav .nav a {
   color: var(--text-dark);
 }
@@ -423,7 +443,6 @@ body:not(.dark-mode) #primaryNav .nav a[aria-current='page'] {
   box-shadow: inset 0 2px 4px color-mix(in srgb, var(--bg-dark) 8%, transparent);
 }
 
-/* Akcje w headerze */
 .header-actions {
   display: flex;
   align-items: center;
@@ -453,7 +472,7 @@ body:not(.dark-mode) #primaryNav .nav a[aria-current='page'] {
   outline: 3px solid var(--accent-400);
   outline-offset: 3px;
 }
-/* Dark mode – kolory przycisku */
+
 body.dark-mode .contact-btn {
   background: var(--accent);
   color: var(--text-light);
@@ -465,7 +484,6 @@ body.dark-mode .contact-btn:hover {
   border-color: var(--accent);
 }
 
-/* Theme toggle */
 .theme-toggle {
   position: relative;
   display: inline-grid;
@@ -476,7 +494,7 @@ body.dark-mode .contact-btn:hover {
   border-radius: 50%;
   border: 1px solid color-mix(in srgb, var(--text-light) 12%, transparent);
   border-color: color-mix(in srgb, var(--text-light) 16%, transparent);
-  background: color-mix(in srgb, var(--primary) 15%, transparent); /* dopasowane do headera */
+  background: color-mix(in srgb, var(--primary) 15%, transparent); 
   backdrop-filter: blur(6px) saturate(1.1);
   box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
   cursor: pointer;
@@ -533,24 +551,6 @@ body.dark-mode .theme-toggle .icon-moon {
   outline-offset: 2px;
 }
 
-/* ==================== PREFERS REDUCED MOTION : reduce ==================== */
-@media (prefers-reduced-motion: reduce) {
-  header,
-  #primaryNav .nav a,
-  .contact-btn,
-  .theme-toggle,
-  .hamburger .icon-svg {
-    transition: none !important;
-    animation: none !important;
-  }
-  .theme-toggle,
-  .theme-toggle .icon-sun,
-  .theme-toggle .icon-moon {
-    transition: none;
-  }
-}
-
-/* Hamburger */
 .icon-btn {
   display: none;
   background: transparent;
@@ -562,9 +562,11 @@ body.dark-mode .theme-toggle .icon-moon {
   align-items: center;
   justify-content: center;
 }
+
 .hamburger.icon-btn {
   position: relative;
 }
+
 .hamburger .icon-svg {
   position: absolute;
   inset: 0;
@@ -574,32 +576,38 @@ body.dark-mode .theme-toggle .icon-moon {
   height: 26px;
   transition: opacity 0.18s ease, transform 0.18s ease;
 }
+
 #hamburgerIcon {
   transform: translate(var(--icon-nudge-x), var(--icon-nudge-y));
 }
+
 .icon-close {
   opacity: 0;
   transform: translate(var(--icon-nudge-x), var(--icon-nudge-y)) scale(0.9);
 }
+
 .hamburger.active .icon-menu {
   opacity: 0;
   transform: translate(var(--icon-nudge-x), var(--icon-nudge-y)) scale(0.9) rotate(90deg);
 }
+
 .hamburger.active .icon-close {
   opacity: 1;
   transform: translate(var(--icon-nudge-x), var(--icon-nudge-y)) scale(1);
 }
+
 .icon-btn:hover,
 .icon-btn:active {
   background: transparent;
   transform: none;
 }
+
 .icon-btn:focus-visible {
   outline: 2px solid var(--accent-400);
   outline-offset: 2px;
 }
 
-/* === DESKTOP ( min - width: === 769px === ) ================================= */
+/* ==== Media queries ( min - width: 769px ) ==== */
 @media (min-width: 769px) {
   header {
     padding-left: var(--header-pad-x);
@@ -731,8 +739,6 @@ body.dark-mode .theme-toggle .icon-moon {
   }
 }
 
-/* === MOBILE ( max - width: === 420px === ) ================================== */
-
 @media (max-width: 420px) {
   header {
     backdrop-filter: none;
@@ -746,14 +752,11 @@ body.dark-mode .theme-toggle .icon-moon {
   }
 }
 
-
-/* body lock used by JS when mobile menu is open */
 body.nav-open {
   overflow: hidden;
   touch-action: none;
 }
 
-/* skip-link (add <a class="skip-link" href="#main">Pomiń nawigację</a> in <body>) */
 .skip-link {
   position: absolute;
   left: 8px;
@@ -767,10 +770,28 @@ body.nav-open {
   opacity: 0;
   transition: transform 0.18s, opacity 0.18s;
 }
+
 .skip-link:focus {
   transform: translateY(0);
   opacity: 1;
   outline: 3px solid color-mix(in srgb, var(--accent) 60%, white);
+}
+
+/* ===== Prefers reduced motion ===== */
+@media (prefers-reduced-motion: reduce) {
+  header,
+  #primaryNav .nav a,
+  .contact-btn,
+  .theme-toggle,
+  .hamburger .icon-svg {
+    transition: none !important;
+    animation: none !important;
+  }
+  .theme-toggle,
+  .theme-toggle .icon-sun,
+  .theme-toggle .icon-moon {
+    transition: none;
+  }
 }
 
 /* ===============================================================

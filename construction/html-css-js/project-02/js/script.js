@@ -834,7 +834,7 @@
    - rAF do odszumienia scrolla; init na starcie/po powrocie z bfcache
    ======================================================================================= */
 (() => {
-  const THRESHOLD = 40; // px przewinięcia, po którym header się „zbija”
+  const THRESHOLD = 20; // px przewinięcia, po którym header się „zbija”
   let compactOn = false;
   let ticking = false;
 
