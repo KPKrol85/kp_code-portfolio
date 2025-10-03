@@ -112,7 +112,7 @@
   </head>
 
   <!-- BODY -->
-  <body>
+  <body class="page-service">
     <div id="top"></div>
 
     <!-- HEADER -->
@@ -131,29 +131,15 @@
         <span class="logo-text">KP_Code</span>
       </a>
 
-      <nav id="primaryNav" role="navigation" aria-label="Główne">
-        <a href="../index.html#top">Strona Główna</a>
-        <a href="../index.html#top">Galeria</a>
-        <a href="../index.html#top">Usługi</a>
-        <a href="../index.html#top">O nas</a>
-        <a href="../index.html#top">Kontakt</a>
-        <button
-          id="themeToggleMobile"
-          class="theme-toggle theme-toggle--mobile nav-theme"
-          type="button"
-          aria-label="Przełącz motyw"
-          aria-pressed="false">
-          <svg class="icon-sun" viewBox="0 0 24 24" aria-hidden="true">
-            <g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round">
-              <circle cx="12" cy="12" r="3.5" fill="currentColor" stroke="none"></circle>
-              <path
-                d="M12 2.5v2.5M12 19v2.5M4.5 12H2M22 12h-2.5M5.4 5.4l1.8 1.8M16.8 16.8l1.8 1.8M18.6 5.4l-1.8 1.8M7.2 16.8l-1.8 1.8"></path>
-            </g>
-          </svg>
-          <svg class="icon-moon" viewBox="0 0 24 24" aria-hidden="true">
-            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79Z"></path>
-          </svg>
-        </button>
+      <nav id="primaryNav" aria-label="Nawigacja główna">
+        <ul class="nav">
+          <li><a href="../index.html">Strona Główna</a></li>
+          <li><a href="../index.html#uslugi">Usługi</a></li>
+          <li><a href="../index.html#onas">O nas</a></li>
+          <li><a href="../index.html#galeria">Galeria</a></li>
+          <li><a href="../index.html#faq">Faq</a></li>
+          <li><a href="../index.html#kontakt">Kontakt</a></li>
+        </ul>
       </nav>
 
       <button
@@ -203,7 +189,230 @@
       </button>
     </header>
 
-    INSTALACJE SANITARNE
+    <main id="main">
+      <!-- Okruszki (breadcrumbs) -->
+      <nav class="breadcrumbs" aria-label="Okruszki">
+        <ol>
+          <li><a href="../index.html">Strona Główna</a></li>
+          <li><a href="../index.html#uslugi">Usługi</a></li>
+          <li aria-current="page">Instalacje sanitarne</li>
+        </ol>
+      </nav>
+
+      <!-- INTRO: obraz + tekst -->
+      <section class="service-intro bg-surface-1 section--divider" aria-labelledby="svc-intro-heading">
+        <div class="service-intro__inner">
+          <h1 id="svc-intro-heading" class="section-title">Instalacje sanitarne</h1>
+          <figure class="service-intro__media">
+            <picture>
+              <source
+                type="image/avif"
+                srcset="
+                  ../assets/img/uslugi/instalacje-sanitarne-400x300.avif 400w,
+                  ../assets/img/uslugi/instalacje-sanitarne-600x400.avif 600w
+                "
+                sizes="(max-width: 768px) 100vw, 520px" />
+              <source
+                type="image/webp"
+                srcset="
+                  ../assets/img/uslugi/instalacje-sanitarne-400x300.webp 400w,
+                  ../assets/img/uslugi/instalacje-sanitarne-600x400.webp 600w
+                "
+                sizes="(max-width: 768px) 100vw, 520px" />
+              <img
+                src="../assets/img/uslugi/instalacje-sanitarne-600x400.jpg"
+                srcset="
+                  ../assets/img/uslugi/instalacje-sanitarne-400x300.jpg 400w,
+                  ../assets/img/uslugi/instalacje-sanitarne-600x400.jpg 600w
+                "
+                sizes="(max-width: 768px) 100vw, 520px"
+                width="600"
+                height="400"
+                alt="Instalacje sanitarne — oferta"
+                loading="eager"
+                decoding="async" />
+            </picture>
+          </figure>
+
+          <div class="service-intro__copy">
+            <p class="lead">
+              Wykonujemy kompletne instalacje sanitarne w domach i lokalach: woda zimna/ciepła, kanalizacja, ogrzewanie
+              grzejnikowe i podłogowe oraz kotłownie i węzły cieplne. Projektujemy, montujemy i uruchamiamy instalacje
+              zgodnie z normami, a na końcu wykonujemy próby szczelności i odbiór.
+            </p>
+            <ul class="checklist">
+              <li>Projekt i doradztwo doboru urządzeń (armatura, źródło ciepła)</li>
+              <li>Instalacje wody ciepłej/zimnej (PP, PEX, miedź) + cyrkulacja</li>
+              <li>Kanalizacja wewnętrzna, podejścia pod przybory, odpowietrzenie</li>
+              <li>Ogrzewanie podłogowe i grzejnikowe, rozdzielacze, automatyka</li>
+              <li>Kotłownie / źródła ciepła: gaz, pompa ciepła, zasobniki CWU</li>
+              <li>Montaż armatury i białego montażu (WC, umywalki, baterie)</li>
+              <li>Próby ciśnieniowe, regulacja, uruchomienie i instruktaż</li>
+            </ul>
+
+            <div class="cta-row">
+              <a class="btn btn-primary" href="../index.html#kontakt">Wycena</a>
+              <a class="btn btn-ghost" href="#galeria-sanitarne">Zobacz realizacje</a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Sekcja: Zakres i proces -->
+      <section class="service-details bg-surface-2 section--divider" aria-labelledby="svc-scope-heading">
+        <div class="service-details__inner">
+          <h2 id="svc-scope-heading" class="section-title">Zakres prac i przebieg współpracy</h2>
+
+          <div class="features">
+            <article class="feature">
+              <h3>01 — Audyt i wycena techniczna</h3>
+              <p>
+                Oględziny na miejscu, weryfikacja zapotrzebowania na wodę/ciepło i możliwości prowadzenia instalacji.
+                Przygotowujemy kosztorys oraz wstępny schemat instalacji.
+              </p>
+            </article>
+
+            <article class="feature">
+              <h3>02 — Projekt i dobór urządzeń</h3>
+              <p>
+                Opracowujemy projekt instalacji: trasy przewodów, średnice, rozdzielacze. Dobieramy źródło ciepła,
+                armaturę i automatykę (kotłownia, pompa ciepła, zasobnik CWU).
+              </p>
+            </article>
+
+            <article class="feature">
+              <h3>03 — Montaż i uruchomienie</h3>
+              <p>
+                Wykonujemy podejścia wody zimnej/ciepłej, kanalizację, ogrzewanie podłogowe/grzejnikowe. Przeprowadzamy
+                próby szczelności, równoważenie i pierwsze uruchomienie instalacji.
+              </p>
+            </article>
+
+            <article class="feature">
+              <h3>04 — Odbiór i gwarancja</h3>
+              <p>
+                Wspólny odbiór z protokołami testów i instruktażem użytkowania. Zapewniamy gwarancję oraz wsparcie
+                serwisowe po zakończeniu prac.
+              </p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <!-- GALERIA -->
+      <section
+        id="galeria-instalacje-sanitarne"
+        class="gallery-section bg-surface-1 section--divider"
+        aria-labelledby="gallery-heading">
+        <div class="gallery-inner">
+          <h2 id="gallery-heading" class="section-title">GALERIA</h2>
+
+          <div class="gallery-container">
+            <!-- 1 -->
+            <figure class="gallery-item">
+              <a class="gallery-link" href="../assets/img/realizacje/instalacje-sanitarne-01-1200x800.jpg">
+                <img
+                  src="../assets/img/realizacje/instalacje-sanitarne-01-800x600.jpg"
+                  alt="Umywalka w łazience pełna instalacja — Warszawa"
+                  width="800"
+                  height="600"
+                  loading="lazy"
+                  decoding="async" />
+              </a>
+            </figure>
+            <!-- 2 -->
+            <figure class="gallery-item">
+              <a class="gallery-link" href="../assets/img/realizacje/instalacje-sanitarne-02-1200x800.jpg">
+                <img
+                  src="../assets/img/realizacje/instalacje-sanitarne-02-800x600.jpg"
+                  alt="Nowoczesna stylowa łazienka od A do Z — Wrocław"
+                  width="800"
+                  height="600"
+                  loading="lazy"
+                  decoding="async" />
+              </a>
+            </figure>
+            <!-- 3 -->
+            <figure class="gallery-item">
+              <a class="gallery-link" href="../assets/img/realizacje/instalacje-sanitarne-03-1200x800.jpg">
+                <img
+                  src="../assets/img/realizacje/instalacje-sanitarne-03-800x600.jpg"
+                  alt="Nowocześnie wykonana łazienka z prysznicem — Gdańsk"
+                  width="800"
+                  height="600"
+                  loading="lazy"
+                  decoding="async" />
+              </a>
+            </figure>
+            <!-- 4 -->
+            <figure class="gallery-item">
+              <a class="gallery-link" href="../assets/img/realizacje/instalacje-sanitarne-04-1200x800.jpg">
+                <img
+                  src="../assets/img/realizacje/instalacje-sanitarne-04-800x600.jpg"
+                  alt="Łazienka modern style — Kraków"
+                  width="800"
+                  height="600"
+                  loading="lazy"
+                  decoding="async" />
+              </a>
+            </figure>
+            <!-- 5 -->
+            <figure class="gallery-item">
+              <a class="gallery-link" href="../assets/img/realizacje/instalacje-sanitarne-05-1200x800.jpg">
+                <img
+                  src="../assets/img/realizacje/instalacje-sanitarne-05-800x600.jpg"
+                  alt="Instralacja umywalki w łazience — Tarnów"
+                  width="800"
+                  height="600"
+                  loading="lazy"
+                  decoding="async" />
+              </a>
+            </figure>
+            <!-- 6 -->
+            <figure class="gallery-item">
+              <a class="gallery-link" href="../assets/img/realizacje/instalacje-sanitarne-06-1200x800.jpg">
+                <img
+                  src="../assets/img/realizacje/instalacje-sanitarne-06-800x600.jpg"
+                  alt="Instalacja prysznica i umywalki — Olsztyn"
+                  width="800"
+                  height="600"
+                  loading="lazy"
+                  decoding="async" />
+              </a>
+            </figure>
+          </div>
+        </div>
+      </section>
+
+      <!-- CTA do kontaktu -->
+      <section class="cta-section bg-surface-3 section--divider" aria-labelledby="cta-heading">
+        <h2 id="cta-heading" class="section-title">Masz pytania? Zróbmy szybki kosztorys.</h2>
+        <p class="lead">Napisz kilka zdań o zakresie prac i preferowanym terminie — wrócimy z propozycją.</p>
+        <div class="cta-row">
+          <a class="btn btn-primary" href="../index.html#kontakt">Formularz kontaktowy</a>
+          <a class="btn btn-ghost" href="tel:+48123456789">Zadzwoń: +48 123 456 789</a>
+        </div>
+      </section>
+
+      <!-- LIGHTBOX (potrzebny do podglądu galerii) -->
+      <div
+        class="lb"
+        id="lightbox"
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="lightbox-title"
+        aria-describedby="lightbox-caption"
+        hidden
+        tabindex="-1">
+        <div class="lb__backdrop" data-lb-close aria-hidden="true"></div>
+        <figure class="lb__figure">
+          <h2 id="lightbox-title" class="sr-only">Podgląd zdjęcia</h2>
+          <img class="lb__img" alt="" />
+          <figcaption class="lb__caption" id="lightbox-caption"></figcaption>
+          <button class="lb__close" type="button" aria-label="Zamknij (Esc)" data-lb-close>&times;</button>
+        </figure>
+      </div>
+    </main>
 
     <!-- FOOTER -->
     <footer role="contentinfo" aria-labelledby="footer-heading">
