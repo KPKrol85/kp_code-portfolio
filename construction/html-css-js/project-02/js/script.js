@@ -558,17 +558,16 @@
   }); // ← koniec submit handlera
 })(); // ← koniec IIFE
 
-/* =======================================================================================@@@@@@@@@@@@@@@@@@@@
-   ========== LIGHTBOX — podgląd zdjęcia + „double-tap to open” na mobile ================
-   - HTML zgodny z:
+/* =======================================================================================
+   LIGHTBOX — podgląd zdjęcia (bez overlay i bez „double-tap”)
+   - HTML:
      <div id="lightbox" class="lb" role="dialog" aria-modal="true"
           aria-labelledby="lightbox-title" aria-describedby="lightbox-caption"
           hidden tabindex="-1"> … </div>
-   - Desktop/klawiatura: 1 klik otwiera
-   - Mobile (coarse pointer): 1. tap = overlay/„uzbrojenie”, 2. tap = otwarcie
+   - Otwieranie: 1 klik/tap w .gallery-link
    - Zamknięcie: Esc, klik w tło (data-lb-close) lub przycisk ×
    - A11y: focus-trap, aria-hidden, przywracanie fokusu, body lock (lb-open)
-   ======================================================================================== */
+   ======================================================================================= */
 (() => {
   const lb = document.getElementById('lightbox');
   if (!lb) return;
@@ -579,62 +578,12 @@
   const backdrop = lb.querySelector('.lb__backdrop');
 
   let lastActive = null;
-  let focusables = [],
-    firstF = null,
-    lastF = null;
+  let focusables = [], firstF = null, lastF = null;
 
-  // Wykrywanie „mobile touch” (coarse, bez hover)
+  // Wykrywanie desktopu do prefetchu (opcjonalne)
   const isTouchLike = window.matchMedia
     ? window.matchMedia('(hover: none) and (pointer: coarse)').matches
     : 'ontouchstart' in window;
-
-  // Stan „uzbrojenia” (pierwszy tap)
-  let armedLink = null;
-  let armTimer = null;
-
-  const disarm = () => {
-    if (armTimer) {
-      clearTimeout(armTimer);
-      armTimer = null;
-    }
-    if (armedLink) {
-      const it = armedLink.closest('.gallery-item');
-      if (it) it.classList.remove('is-armed');
-    }
-    armedLink = null;
-  };
-  const arm = (link) => {
-    disarm();
-    armedLink = link;
-    const item = link.closest('.gallery-item');
-    if (item) item.classList.add('is-armed');
-    link.focus({ preventScroll: true });
-
-    armTimer = setTimeout(disarm, 1500);
-    const outsideOnce = (ev) => {
-      const t = ev.target;
-      if (!t || !armedLink) return;
-      const armedItem = armedLink.closest('.gallery-item');
-      if (!t.closest('.gallery-item') || t.closest('.gallery-item') !== armedItem) {
-        disarm();
-      }
-    };
-    document.addEventListener('touchstart', outsideOnce, { once: true, passive: true });
-    document.addEventListener('pointerdown', outsideOnce, { once: true });
-  };
-
-  // Rozbrojenie przy scrollu/resize
-  let disarmTick = false;
-  const scheduleDisarm = () => {
-    if (disarmTick) return;
-    disarmTick = true;
-    requestAnimationFrame(() => {
-      disarm();
-      disarmTick = false;
-    });
-  };
-  window.addEventListener('scroll', scheduleDisarm, { passive: true });
-  window.addEventListener('resize', scheduleDisarm);
 
   // Focus trap
   const trapInit = () => {
@@ -674,27 +623,27 @@
       captionEl.hidden = true;
     }
 
-    // Kluczowe przy starcie z hidden w HTML:
-    lb.removeAttribute('hidden'); // ← zdejmij atrybut hidden (UA display:none)
-    lb.setAttribute('aria-hidden', 'false'); // ← włącza display:flex z CSS
-    document.body.classList.add('lb-open'); // ← body lock (overflow:hidden w CSS)
+    // start z hidden w HTML
+    lb.removeAttribute('hidden');           // zdejmij UA display:none
+    lb.setAttribute('aria-hidden', 'false'); // CSS pokazuje lightbox (np. display:flex)
+    document.body.classList.add('lb-open');  // body lock (overflow:hidden)
 
     trapInit();
-    closeBtn && closeBtn.focus();
-    disarm();
+    if (closeBtn) closeBtn.focus();
   };
 
   // ZAMKNIĘCIE
   const close = () => {
     lb.setAttribute('aria-hidden', 'true');
     document.body.classList.remove('lb-open');
+
     imgEl.removeAttribute('src');
     captionEl.textContent = '';
     captionEl.hidden = true;
 
     trapRelease();
 
-    // Przywróć „hidden” dla pełnej zgodności z czytnikami i UA stylesheet
+    // przywróć hidden dla pełnej zgodności
     lb.setAttribute('hidden', '');
 
     if (lastActive && typeof lastActive.focus === 'function') {
@@ -702,40 +651,25 @@
     }
   };
 
-  // Delegacja kliknięcia w miniaturę/link
+  // Delegacja kliknięcia w miniaturę/link (jednolicie: desktop + mobile)
   document.addEventListener('click', (e) => {
     const link = e.target.closest('.gallery-link');
-    if (!link) return;
-    if (!link.closest('.gallery-container')) return;
+    if (!link || !link.closest('.gallery-container')) return;
 
+    e.preventDefault();
     const href = link.getAttribute('href');
     const thumbImg = link.querySelector('img');
     const alt = thumbImg ? thumbImg.alt : '';
-
-    if (isTouchLike) {
-      if (armedLink !== link) {
-        e.preventDefault();
-        arm(link);
-        return;
-      }
-      e.preventDefault();
-      open(href, alt);
-      return;
-    }
-
-    e.preventDefault();
-    open(href, alt);
+    if (href) open(href, alt);
   });
 
   // Zamknięcie: klik w tło / przycisk ×
-  backdrop && backdrop.addEventListener('click', close);
-  closeBtn && closeBtn.addEventListener('click', close);
+  if (backdrop) backdrop.addEventListener('click', close);
+  if (closeBtn) closeBtn.addEventListener('click', close);
 
-  // Klawiatura: Esc + Tab (focus-trap)
+  // Klawiatura: Esc + Tab (focus-trap) — tylko gdy LB otwarty
   document.addEventListener('keydown', (e) => {
-    // reaguj tylko, gdy lightbox jest otwarty
     if (lb.getAttribute('aria-hidden') !== 'false') return;
-
     if (e.key === 'Escape') {
       e.preventDefault();
       close();
@@ -744,72 +678,50 @@
     }
   });
 
-  // Prefetch dużego zdjęcia na hover (desktop only)
+  // Prefetch dużego zdjęcia na hover (desktop only) — opcjonalnie pomaga wczytaniu
   if (!isTouchLike) {
-    document.addEventListener(
-      'mouseenter',
-      (e) => {
-        const link = e.target.closest('.gallery-link');
-        if (!link || !link.closest('.gallery-container')) return;
-        const href = link.getAttribute('href');
-        if (!href) return;
-        const pre = new Image();
-        pre.decoding = 'async';
-        pre.src = href;
-      },
-      true
-    );
+    document.addEventListener('mouseenter', (e) => {
+      const link = e.target.closest('.gallery-link');
+      if (!link || !link.closest('.gallery-container')) return;
+      const href = link.getAttribute('href');
+      if (!href) return;
+      const pre = new Image();
+      pre.decoding = 'async';
+      pre.src = href;
+    }, true);
   }
 })();
 
-/* =======================================================================================@@@@@@@@@@@@@@@@@@@@
-   ========== Accent Switch (opcjonalne) =================================================
-   - Zmienia akcent kolorystyczny (data-accent na <html>)
-   - Zapamiętuje wybór w localStorage (safe try/catch)
-   - Inicjalizacja: localStorage > atrybut w HTML > fallback 'ocean'
-   - API globalne: window.setAccent('nazwa') do debug/testów
-   - Delegacja: klik w element z atrybutem [data-accent-pick="nazwa"]
-   ======================================================================================= */
+
+// ===== Scroll Reveal dla .gallery-item.hidden =====
 (() => {
-  const KEY = 'accent';
-  const html = document.documentElement;
+  const items = document.querySelectorAll('.gallery-item.hidden');
+  if (!items.length) return;
 
-  /* --- Safe localStorage (np. Safari Private) --- */
-  const safeGet = (k) => {
-    try {
-      return localStorage.getItem(k);
-    } catch {
-      return null;
-    }
-  };
-  const safeSet = (k, v) => {
-    try {
-      localStorage.setItem(k, v);
-    } catch {}
+  const reveal = (el) => {
+    el.classList.add('revealed');
+    el.classList.remove('hidden');
   };
 
-  /* --- Ustaw akcent + zapisz (opcjonalnie) --- */
-  const applyAccent = (name, persist = true) => {
-    if (!name) return;
-    html.setAttribute('data-accent', name);
-    if (persist) safeSet(KEY, name);
-  };
+  // Fallback dla prefers-reduced-motion lub braku IntersectionObserver
+  const reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (reduceMotion || !('IntersectionObserver' in window)) {
+    items.forEach(reveal);
+    return;
+  }
 
-  /* --- Inicjalizacja: localStorage > atrybut w HTML > fallback --- */
-  const saved = safeGet(KEY);
-  const initial = saved || html.getAttribute('data-accent') || 'ocean';
-  applyAccent(initial, false);
+  const io = new IntersectionObserver((entries, obs) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        reveal(entry.target);
+        obs.unobserve(entry.target);
+      }
+    });
+  }, { root: null, rootMargin: '0px 0px -10% 0px', threshold: 0.1 });
 
-  /* --- API globalne: np. w konsoli window.setAccent('sky') --- */
-  window.setAccent = applyAccent;
-
-  /* --- Delegacja: dowolny element z [data-accent-pick="nazwa"] --- */
-  document.addEventListener('click', (e) => {
-    const btn = e.target.closest('[data-accent-pick]');
-    if (!btn) return;
-    applyAccent(btn.getAttribute('data-accent-pick'), true);
-  });
+  items.forEach((el) => io.observe(el));
 })();
+
 
 /* =======================================================================================@@@@@@@@@@@@@@@@@@@@
    ========== Compact Header po scrollu ===================================================
