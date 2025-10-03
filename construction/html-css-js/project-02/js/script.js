@@ -73,40 +73,35 @@
    ========== Motyw + przełączanie logo + ikonka hamburgera (desktop+mobile) =============
    - Umożliwia przełączanie motywu jasny/ciemny
    - Podmienia logotypy (.logo-img[data-light][data-dark]) i ikonę hamburgera
-   - Zapamiętuje wybór w localStorage (zabezpieczenie na Safari Private Mode)      
+   - Zapamiętuje wybór w localStorage (zabezpieczenie na Safari Private Mode)
    - Obsługuje dwa przyciski: desktopowy i mobilny
    - Synchronizuje aria-label i aria-pressed (a11y)
    - Reaguje na systemowy prefers-color-scheme, jeśli brak zapisu w LS
    ======================================================================================= */
 (() => {
   const btnDesktop = document.getElementById('themeToggleDesktop');
-  const btnMobile = document.getElementById('themeToggleMobile');
+  const btnMobile  = document.getElementById('themeToggleMobile');
   const logos = document.querySelectorAll('.logo-img[data-light][data-dark]');
   const hamburgerIcon = document.getElementById('hamburgerIcon');
 
   const mq = window.matchMedia ? window.matchMedia('(prefers-color-scheme: dark)') : null;
 
-  /* --- Ścieżki do ikonki hamburgera (light/dark) --- */
-  const HAMBURGER_SRC = {
-    light: 'assets/img/icon/hamburger-02-light-mode-40.svg',
-    dark: 'assets/img/icon/hamburger-02-dark-mode-40.svg',
-  };
-
   /* --- Podmiana logo w zależności od motywu --- */
   const setLogo = (isDark) => {
     logos.forEach((img) => {
       const next = isDark ? img.dataset.dark : img.dataset.light;
+      if (!next) return;
       // unikamy zbędnych podmian
-      if (img.src !== new URL(next, document.baseURI).href) {
-        img.setAttribute('src', next);
-      }
+      const absNext = new URL(next, document.baseURI).href;
+      if (img.src !== absNext) img.setAttribute('src', next);
     });
   };
 
-  /* --- Podmiana ikonki hamburgera --- */
+  /* --- Podmiana ikonki hamburgera — korzystamy z data-light / data-dark z HTML --- */
   const setHamburgerIcon = (isDark) => {
     if (!hamburgerIcon) return;
-    const next = isDark ? HAMBURGER_SRC.dark : HAMBURGER_SRC.light;
+    const next = isDark ? hamburgerIcon.dataset.dark : hamburgerIcon.dataset.light;
+    if (!next) return;
     if (hamburgerIcon.getAttribute('src') !== next) {
       hamburgerIcon.setAttribute('src', next);
     }
@@ -127,20 +122,8 @@
   };
 
   /* --- Safe localStorage (try/catch dla Safari Private) --- */
-  const safeSetItem = (k, v) => {
-    try {
-      localStorage.setItem(k, v);
-    } catch {
-      /* brak zapisu */
-    }
-  };
-  const safeGetItem = (k) => {
-    try {
-      return localStorage.getItem(k);
-    } catch {
-      return null;
-    }
-  };
+  const safeSetItem = (k, v) => { try { localStorage.setItem(k, v); } catch {} };
+  const safeGetItem = (k) => { try { return localStorage.getItem(k); } catch { return null; } };
 
   /* --- Główna funkcja zmiany motywu --- */
   const setTheme = (mode, persist = true) => {
@@ -166,15 +149,16 @@
     setTheme(next, true);
   };
   if (btnDesktop) btnDesktop.addEventListener('click', onToggle);
-  if (btnMobile) btnMobile.addEventListener('click', onToggle);
+  if (btnMobile)  btnMobile.addEventListener('click', onToggle);
 
-  /* --- Reakcja na zmianę systemowego motywu (tylko jeśli brak zapisu w LS) --- */
+  /* --- Reakcja na zmianę systemowego motywu (gdy brak zapisu w LS) --- */
   if (!saved && mq) {
     const onSystemChange = (e) => setTheme(e.matches ? 'dark' : 'light', false);
     if (mq.addEventListener) mq.addEventListener('change', onSystemChange);
     else if (mq.addListener) mq.addListener(onSystemChange); // Safari <14
   }
 })();
+
 
 /* =======================================================================================@@@@@@@@@@@@@@@@@@@@
    ========== Hamburger (mobile nav) =====================================================
