@@ -134,8 +134,8 @@
       <nav id="primaryNav" aria-label="Nawigacja główna">
         <ul class="nav">
           <li><a href="../index.html">Strona Główna</a></li>
+          <li><a href="../index.html#o-nas">O nas</a></li>
           <li><a href="../index.html#uslugi">Usługi</a></li>
-          <li><a href="../index.html#onas">O nas</a></li>
           <li><a href="../index.html#galeria">Galeria</a></li>
           <li><a href="../index.html#faq">Faq</a></li>
           <li><a href="../index.html#kontakt">Kontakt</a></li>
@@ -251,7 +251,7 @@
 
             <div class="cta-row">
               <a class="btn btn-primary" href="../index.html#kontakt">Wycena</a>
-              <a class="btn btn-ghost" href="#galeria-wnetrza">Zobacz realizacje</a>
+              <a class="btn btn-ghost" href="#galeria-wykonczenia-wnetrz">Zobacz realizacje</a>
             </div>
           </div>
         </div>
@@ -295,121 +295,235 @@
         </div>
       </section>
 
-
-
-
-
-
-
-
-
-
-
-
       <!-- GALERIA -->
       <section
-        id="galeria-bwykonczenia-wnetrz"
+        id="galeria-wykonczenia-wnetrz"
         class="gallery-section bg-surface-1 section--divider"
-        aria-labelledby="gallery-heading">
+        aria-labelledby="gallery-heading-wykonczenia-wnetrz">
         <div class="gallery-inner">
-          <h2 id="gallery-heading" class="section-title">GALERIA</h2>
+          <h2 id="gallery-heading-wykonczenia-wnetrz" class="section-title">GALERIA</h2>
 
           <div class="gallery-container">
             <!-- 1 -->
-            <figure class="gallery-item">
+            <figure class="gallery-item hidden">
               <a class="gallery-link" href="../assets/img/realizacje/wykonczenia-wnetrza-01-1600x1067.jpg">
-                <!-- AVIF -->
-                 <source srcset="
-                 ../assets/img/realizacje/wykonczenia-wnetrza-01.">
-                <img
-                  src="../assets/img/realizacje/wykonczenia-wnetrza-01-800x600.jpg"
-                  alt="Nowoczesna kuchnia — Warszawa"
-                  width="800"
-                  height="600"
-                  loading="lazy"
-                  decoding="async" />
+                <picture>
+                  <source
+                    type="image/avif"
+                    srcset="
+                      ../assets/img/realizacje/wykonczenia-wnetrza-01-800x600.avif    800w,
+                      ../assets/img/realizacje/wykonczenia-wnetrza-01-1200x800.avif  1200w,
+                      ../assets/img/realizacje/wykonczenia-wnetrza-01-1600x1067.avif 1600w
+                    "
+                    sizes="(max-width: 768px) 100vw, 400px" />
+                  <source
+                    type="image/webp"
+                    srcset="
+                      ../assets/img/realizacje/wykonczenia-wnetrza-01-800x600.webp    800w,
+                      ../assets/img/realizacje/wykonczenia-wnetrza-01-1200x800.webp  1200w,
+                      ../assets/img/realizacje/wykonczenia-wnetrza-01-1600x1067.webp 1600w
+                    "
+                    sizes="(max-width: 768px) 100vw, 400px" />
+                  <img
+                    src="../assets/img/realizacje/wykonczenia-wnetrza-01-1200x800.jpg"
+                    srcset="
+                      ../assets/img/realizacje/wykonczenia-wnetrza-01-800x600.jpg    800w,
+                      ../assets/img/realizacje/wykonczenia-wnetrza-01-1200x800.jpg  1200w3
+                      ../assets/img/realizacje/wykonczenia-wnetrza-01-1600x1067.jpg 1600w
+                    "
+                    sizes="(max-width: 768px) 100vw, 400px"
+                    alt="Nowoczesna kuchnia z zabudową meblową na wymiar i wykończeniem drewnianym"
+                    width="1200"
+                    height="800"
+                    loading="lazy"
+                    decoding="async" />
+                </picture>
               </a>
             </figure>
             <!-- 2 -->
-            <figure class="gallery-item">
-              <a class="gallery-link" href="../assets/img/realizacje/wykonczenia-wnetrza-02-1200x800.jpg">
-                <img
-                  src="../assets/img/realizacje/wykonczenia-wnetrza-02-800x600.jpg"
-                  alt="Przestronna kuchnia-salon-jadalnia — Wrocław"
-                  width="800"
-                  height="600"
-                  loading="lazy"
-                  decoding="async" />
+            <figure class="gallery-item hidden">
+              <a class="gallery-link" href="../assets/img/realizacje/wykonczenia-wnetrza-02-1600x1067.jpg">
+                <picture>
+                  <source
+                    type="image/avif"
+                    srcset="
+                      ../assets/img/realizacje/wykonczenia-wnetrza-02-800x600.avif    800w,
+                      ../assets/img/realizacje/wykonczenia-wnetrza-02-1200x800.avif  1200w,
+                      ../assets/img/realizacje/wykonczenia-wnetrza-02-1600x1067.avif 1600w
+                    "
+                    sizes="(max-width: 768px) 100vw, 400px" />
+                  <source
+                    type="image/webp"
+                    srcset="
+                      ../assets/img/realizacje/wykonczenia-wnetrza-02-800x600.webp    800w,
+                      ../assets/img/realizacje/wykonczenia-wnetrza-02-1200x800.webp  1200w,
+                      ../assets/img/realizacje/wykonczenia-wnetrza-02-1600x1067.webp 1600w
+                    "
+                    sizes="(max-width: 768px) 100vw, 400px" />
+                  <img
+                    src="../assets/img/realizacje/wykonczenia-wnetrza-02-1200x800.jpg"
+                    srcset="
+                      ../assets/img/realizacje/wykonczenia-wnetrza-02-800x600.jpg    800w,
+                      ../assets/img/realizacje/wykonczenia-wnetrza-02-1200x800.jpg  1200w,
+                      ../assets/img/realizacje/wykonczenia-wnetrza-02-1600x1067.jpg 1600w
+                    "
+                    sizes="(max-width: 768px) 100vw, 400px"
+                    alt="Przestronna kuchnia z jadalnią i dużymi oknami z widokiem na ogród"
+                    width="1200"
+                    height="800"
+                    loading="lazy"
+                    decoding="async" />
+                </picture>
               </a>
             </figure>
             <!-- 3 -->
-            <figure class="gallery-item">
-              <a class="gallery-link" href="../assets/img/realizacje/wykonczenia-wnetrza-03-1200x800.jpg">
-                <img
-                  src="../assets/img/realizacje/wykonczenia-wnetrza-03-800x600.jpg"
-                  alt="Nowocześnie urządzony salon — Gdańsk"
-                  width="800"
-                  height="600"
-                  loading="lazy"
-                  decoding="async" />
+            <figure class="gallery-item hidden">
+              <a class="gallery-link" href="../assets/img/realizacje/wykonczenia-wnetrza-03-1600x1067.jpg">
+                <picture>
+                  <source
+                    type="image/avif"
+                    srcset="
+                      ../assets/img/realizacje/wykonczenia-wnetrza-03-800x600.avif    800w,
+                      ../assets/img/realizacje/wykonczenia-wnetrza-03-1200x800.avif  1200w,
+                      ../assets/img/realizacje/wykonczenia-wnetrza-03-1600x1067.avif 1600w
+                    "
+                    sizes="(max-width: 768px) 100vw, 400px" />
+                  <source
+                    type="image/webp"
+                    srcset="
+                      ../assets/img/realizacje/wykonczenia-wnetrza-03-800x600.webp    800w,
+                      ../assets/img/realizacje/wykonczenia-wnetrza-03-1200x800.webp  1200w,
+                      ../assets/img/realizacje/wykonczenia-wnetrza-03-1600x1067.webp 1600w
+                    "
+                    sizes="(max-width: 768px) 100vw, 400px" />
+                  <img
+                    src="../assets/img/realizacje/wykonczenia-wnetrza-03-1200x800.jpg"
+                    srcset="
+                      ../assets/img/realizacje/wykonczenia-wnetrza-03-800x600.jpg    800w,
+                      ../assets/img/realizacje/wykonczenia-wnetrza-03-1200x800.jpg  1200w,
+                      ../assets/img/realizacje/wykonczenia-wnetrza-03-1600x1067.jpg 1600w
+                    "
+                    sizes="(max-width: 768px) 100vw, 400px"
+                    alt="Salon w nowoczesnym stylu z jasną sofą, dekoracjami i obrazem na ścianie"
+                    width="1200"
+                    height="800"
+                    loading="lazy"
+                    decoding="async" />
+                </picture>
               </a>
             </figure>
             <!-- 4 -->
-            <figure class="gallery-item">
-              <a class="gallery-link" href="../assets/img/realizacje/wykonczenia-wnetrza-04-1200x800.jpg">
-                <img
-                  src="../assets/img/realizacje/wykonczenia-wnetrza-04-800x600.jpg"
-                  alt="Przestronny salon — Kraków"
-                  width="800"
-                  height="600"
-                  loading="lazy"
-                  decoding="async" />
+            <figure class="gallery-item hidden">
+              <a class="gallery-link" href="../assets/img/realizacje/wykonczenia-wnetrza-04-1600x1067.jpg">
+                <picture>
+                  <source
+                    type="image/avif"
+                    srcset="
+                      ../assets/img/realizacje/wykonczenia-wnetrza-04-800x600.avif    800w,
+                      ../assets/img/realizacje/wykonczenia-wnetrza-04-1200x800.avif  1200w,
+                      ../assets/img/realizacje/wykonczenia-wnetrza-04-1600x1067.avif 1600w
+                    "
+                    sizes="(max-width: 768px) 100vw, 400px" />
+                  <source
+                    type="image/webp"
+                    srcset="
+                      ../assets/img/realizacje/wykonczenia-wnetrza-04-800x600.webp    800w,
+                      ../assets/img/realizacje/wykonczenia-wnetrza-04-1200x800.webp  1200w,
+                      ../assets/img/realizacje/wykonczenia-wnetrza-04-1600x1067.webp 1600w
+                    "
+                    sizes="(max-width: 768px) 100vw, 400px" />
+                  <img
+                    src="../assets/img/realizacje/wykonczenia-wnetrza-04-1200x800.jpg"
+                    srcset="
+                      ../assets/img/realizacje/wykonczenia-wnetrza-04-800x600.jpg    800w,
+                      ../assets/img/realizacje/wykonczenia-wnetrza-04-1200x800.jpg  1200w,
+                      ../assets/img/realizacje/wykonczenia-wnetrza-04-1600x1067.jpg 1600w
+                    "
+                    sizes="(max-width: 768px) 100vw, 400px"
+                    alt="Stylowy salon z dużymi oknami, skórzaną sofą i designerskim żyrandolem"
+                    width="1200"
+                    height="800"
+                    loading="lazy"
+                    decoding="async" />
+                </picture>
               </a>
             </figure>
             <!-- 5 -->
-            <figure class="gallery-item">
-              <a class="gallery-link" href="../assets/img/realizacje/wykonczenia-wnetrza-05-1200x800.jpg">
-                <img
-                  src="../assets/img/realizacje/wykonczenia-wnetrza-05-800x600.jpg"
-                  alt="Nowoczesne wnętrze domu — Tarnów"
-                  width="800"
-                  height="600"
-                  loading="lazy"
-                  decoding="async" />
+            <figure class="gallery-item hidden">
+              <a class="gallery-link" href="../assets/img/realizacje/wykonczenia-wnetrza-05-1600x1067.jpg">
+                <picture>
+                  <source
+                    type="image/avif"
+                    srcset="
+                      ../assets/img/realizacje/wykonczenia-wnetrza-05-800x600.avif    800w,
+                      ../assets/img/realizacje/wykonczenia-wnetrza-05-1200x800.avif  1200w2
+                      ../assets/img/realizacje/wykonczenia-wnetrza-05-1600x1067.avif 1600w
+                    "
+                    sizes="(max-width: 768px) 100vw, 400px" />
+                  <source
+                    type="image/webp"
+                    srcset="
+                      ../assets/img/realizacje/wykonczenia-wnetrza-05-800x600.webp    800w,
+                      ../assets/img/realizacje/wykonczenia-wnetrza-05-1200x800.webp  1200w,
+                      ../assets/img/realizacje/wykonczenia-wnetrza-05-1600x1067.webp 1600w
+                    "
+                    sizes="(max-width: 768px) 100vw, 400px" />
+                  <img
+                    src="../assets/img/realizacje/wykonczenia-wnetrza-05-1200x800.jpg"
+                    srcset="
+                      ../assets/img/realizacje/wykonczenia-wnetrza-05-800x600.jpg    800w,
+                      ../assets/img/realizacje/wykonczenia-wnetrza-05-1200x800.jpg  1200w,
+                      ../assets/img/realizacje/wykonczenia-wnetrza-05-1600x1067.jpg 1600w
+                    "
+                    sizes="(max-width: 768px) 100vw, 400px"
+                    alt="Wnętrze w stylu japońskim z drewnianym wykończeniem i tatami"
+                    width="1200"
+                    height="800"
+                    loading="lazy"
+                    decoding="async" />
+                </picture>
               </a>
             </figure>
             <!-- 6 -->
-            <figure class="gallery-item">
-              <a class="gallery-link" href="../assets/img/realizacje/wykonczenia-wnetrza-06-1200x800.jpg">
-                <img
-                  src="../assets/img/realizacje/wykonczenia-wnetrza-06-800x600.jpg"
-                  alt="Pięknie wykończona sypialnia — Olsztyn"
-                  width="800"
-                  height="600"
-                  loading="lazy"
-                  decoding="async" />
+            <figure class="gallery-item hidden">
+              <a class="gallery-link" href="../assets/img/realizacje/wykonczenia-wnetrza-06-1600x1067.jpg">
+                <picture>
+                  <sourc5
+                    type="image/avif"
+                    srcset="
+                      ../assets/img/realizacje/wykonczenia-wnetrza-06-800x600.avif    800w,
+                      ../assets/img/realizacje/wykonczenia-wnetrza-06-1200x800.avif  1200w,
+                      ../assets/img/realizacje/wykonczenia-wnetrza-06-1600x1067.avif 1600w
+                    "
+                    sizes="(max-width: 768px) 100vw, 400px" />
+                  <source
+                    type="image/webp"
+                    srcset="
+                      ../assets/img/realizacje/wykonczenia-wnetrza-06-800x600.webp    800w,
+                      ../assets/img/realizacje/wykonczenia-wnetrza-06-1200x800.webp  1200w,
+                      ../assets/img/realizacje/wykonczenia-wnetrza-06-1600x1067.webp 1600w
+                    "
+                    sizes="(max-width: 768px) 100vw, 400px" />
+                  <img
+                    src="../assets/img/realizacje/wykonczenia-wnetrza-06-1200x800.jpg"
+                    srcset="
+                      ../assets/img/realizacje/wykonczenia-wnetrza-06-800x600.jpg    800w,
+                      ../assets/img/realizacje/wykonczenia-wnetrza-06-1200x800.jpg  1200w,
+                      ../assets/img/realizacje/wykonczenia-wnetrza-06-1600x1067.jpg 1600w
+                    "
+                    sizes="(max-width: 768px) 100vw, 400px"
+                    alt="Elegancka sypialnia w stylu klasycznym z jasnymi meblami i dekoracyjnym sufitem"
+                    width="1200"
+                    height="800"
+                    loading="lazy"
+                    decoding="async" />
+                </picture>
               </a>
             </figure>
           </div>
         </div>
       </section>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-      
       <!-- CTA do kontaktu -->
       <section class="cta-section bg-surface-3 section--divider" aria-labelledby="cta-heading">
         <h2 id="cta-heading" class="section-title">Masz pytania? Zróbmy szybki kosztorys.</h2>
