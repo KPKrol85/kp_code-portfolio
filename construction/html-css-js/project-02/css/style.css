@@ -392,6 +392,22 @@ body.dark-mode .logo-text {
   color: var(--text-light);
 }
 
+/* Header nav: active state dla podstron usług (kontekst) */
+body[data-current='services'] .nav a[href$='#uslugi'] {
+  color: var(--primary);
+  font-weight: 700;
+  text-decoration: underline;
+  text-underline-offset: 0.2em;
+}
+
+/* Ogólna dostępność: każdy link z aria-current wyróżnij spójnie */
+.nav a[aria-current] {
+  color: var(--primary);
+  font-weight: 700;
+  text-decoration: underline;
+  text-underline-offset: 0.2em;
+}
+
 #primaryNav {
   display: block;
 }
@@ -854,6 +870,9 @@ body.nav-open {
   .theme-toggle,
   .theme-toggle .icon-sun,
   .theme-toggle .icon-moon {
+    transition: none;
+  }
+  .nav a[aria-current] {
     transition: none;
   }
 }
@@ -2735,6 +2754,9 @@ body.dark-mode .service-intro__inner .section-title {
 body.dark-mode .service-intro__media {
   box-shadow: 0 6px 20px color-mix(in srgb, var(--text-light) 8%, transparent);
 }
+
+body.page-service .service-details .features { list-style: none; margin: 0; padding: 0; }
+body.page-service .service-details .features > li::marker { content: ""; }
 
 .service-intro__media img {
   width: 100%;
