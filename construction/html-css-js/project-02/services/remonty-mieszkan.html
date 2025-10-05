@@ -1,10 +1,9 @@
 <!DOCTYPE html>
-<html lang="pl" data-accent="ocean">
+<html lang="pl">
   <head>
     <!-- Podstawy -->
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
-    <meta http-equiv="x-ua-compatible" content="IE=edge" />
 
     <!-- SEO -->
     <title>Remonty mieszkań — KP_Code</title>
@@ -45,8 +44,9 @@
       name="twitter:image"
       content="https://construction-project-02.netlify.app/assets/img/og/og-image-01-1200x630.jpg" />
     <meta name="twitter:image:alt" content="Schemat remontów mieszkań w nowoczesnym domu — KP_Code" />
+    <!-- <meta name="twitter:site" content="@kp_code" />  -- opcjonalnie, gdy będziesz mieć konto -->
 
-    <!-- Favicons / manifest -->
+    <!-- Favicons / manifest (UWAGA: ścieżki z ../ bo jesteśmy w /services/) -->
     <link rel="icon" href="../assets/img/favicon/favicon.ico" sizes="any" />
     <link rel="icon" type="image/png" sizes="96x96" href="../assets/img/favicon/favicon-96x96.png" />
     <link rel="icon" type="image/png" sizes="32x32" href="../assets/img/favicon/favicon-32x32.png" />
@@ -64,7 +64,7 @@
     <meta name="color-scheme" content="light dark" />
     <meta name="format-detection" content="telephone=no" />
 
-    <!-- Wydajność fontów -->
+    <!-- Wydajność fontów  -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link rel="preload" href="../fonts/Montserrat.woff2" as="font" type="font/woff2" crossorigin />
@@ -72,7 +72,7 @@
       href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&family=Montserrat:wght@600;700&display=swap"
       rel="stylesheet" />
 
-    <!-- Ikony (Font Awesome) – jeśli nie używasz, usuń ten skrypt -->
+    <!-- Ikony (Font Awesome) -->
     <script src="https://kit.fontawesome.com/6e7b7ddf50.js" crossorigin="anonymous" defer></script>
 
     <!-- Główny CSS -->
@@ -109,6 +109,7 @@
         }
       }
     </script>
+
     <!-- JSON-LD: BreadcrumbList -->
     <script type="application/ld+json">
       {
@@ -142,9 +143,12 @@
   <body class="page-service" data-current="services" data-service="remonty-mieszkan">
     <div id="top" tabindex="-1"></div>
 
-    <!-- HEADER -->
+    <!-- SKIP LINK (a11y) -->
+    <a class="skip-link" href="#main">Pomiń nawigację – przejdź do treści</a>
+
+    <!-- HEADER — WZORZEC PODSTRONY -->
     <header>
-      <a href="#top" class="logo">
+      <a href="../index.html#top" class="logo">
         <img
           class="logo-img"
           src="../assets/img/logo/logo-02-light-mode-200x200.svg"
@@ -226,6 +230,8 @@
         </ol>
       </nav>
 
+      <!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+
       <!-- INTRO: obraz + tekst -->
       <section class="service-intro bg-surface-1 section--divider" aria-labelledby="svc-intro-heading">
         <div class="service-intro__inner">
@@ -269,10 +275,12 @@
               <li>Drobne prace wykończeniowe i naprawcze</li>
             </ul>
             <div class="cta-row">
-              <a class="btn btn-primary" href="../index.html#kontakt" aria-label="WYCENA — poproś o wycenę remontu">
-                WYCENA
+              <a class="btn btn-primary" href="../index.html#kontakt" aria-label="Wycena — poproś o wycenę budowy domu">
+                Wycena
               </a>
-              <a class="btn btn-ghost" href="#galeria-remonty-mieszkan">Zobacz realizacje</a>
+              <a class="btn btn-ghost" href="#galeria-budowa-domow" aria-label="Zobacz realizacje budowy domów">
+                Zobacz realizacje
+              </a>
             </div>
           </div>
         </div>
@@ -537,14 +545,23 @@
       </section>
 
       <!-- CTA do kontaktu -->
-      <section class="cta-section bg-surface-3 section--divider" aria-labelledby="cta-heading">
-        <h2 id="cta-heading" class="section-title">Masz pytania? Zróbmy szybki kosztorys.</h2>
-        <p class="lead">Napisz kilka zdań o zakresie prac i preferowanym terminie — wrócimy z propozycją.</p>
-        <div class="cta-row">
-          <a class="btn btn-primary" href="../index.html#kontakt">Formularz kontaktowy</a>
-          <a class="btn btn-ghost" href="tel:+48123456789" aria-label="Zadzwoń pod numer +48 123 456 789">
-            Zadzwoń: +48 123 456 789
-          </a>
+      <section class="cta-section bg-surface-3 section--divider" aria-labelledby="cta-heading-remonty">
+        <div class="cta-inner">
+          <h2 id="cta-heading-remonty" class="section-title">Masz pytania? Zróbmy szybki kosztorys.</h2>
+          <p class="lead">
+            Opisz krótko planowany remont — zakres, metraż i termin. Odezwiemy się z propozycją wyceny.
+          </p>
+          <div class="cta-row">
+            <a
+              class="btn btn-primary"
+              href="../index.html#kontakt"
+              aria-label="Przejdź do formularza kontaktowego — poproś o wycenę remontu mieszkania">
+              Formularz kontaktowy
+            </a>
+            <a class="btn btn-ghost" href="tel:+48123456789" aria-label="Zadzwoń pod numer +48 123 456 789">
+              Zadzwoń: +48 123 456 789
+            </a>
+          </div>
         </div>
       </section>
 
@@ -556,13 +573,12 @@
         aria-modal="true"
         aria-labelledby="lightbox-title"
         aria-describedby="lightbox-caption"
-        aria-hidden="true"
         hidden
         tabindex="-1">
         <div class="lb__backdrop" data-lb-close aria-hidden="true"></div>
         <figure class="lb__figure">
           <h2 id="lightbox-title" class="sr-only">Podgląd zdjęcia</h2>
-          <img class="lb__img" alt="" />
+          <img class="lb__img" alt="" loading="eager" decoding="async" />
           <figcaption class="lb__caption" id="lightbox-caption" aria-live="polite"></figcaption>
           <button class="lb__close" type="button" aria-label="Zamknij (Esc)" data-lb-close>&times;</button>
         </figure>

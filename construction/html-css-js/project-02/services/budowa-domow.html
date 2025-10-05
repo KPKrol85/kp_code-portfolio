@@ -1,16 +1,16 @@
 <!DOCTYPE html>
-<html lang="pl" data-accent="ocean">
+<html lang="pl">
   <head>
     <!-- Podstawy -->
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
-    <meta http-equiv="x-ua-compatible" content="IE=edge" />
 
     <!-- SEO -->
-    <title>Budowa domów — KP_Code</title>
+    <title>Budowa domow — KP_Code</title>
     <meta
       name="description"
-      content="Kompleksowa budowa domów: od fundamentów po wykończenie. Terminowo, solidnie, z gwarancją." />
+      content="........................................ BUDOWA DOMOW ........................................" />
+    " />
     <meta name="author" content="Kamil Król / KP_Code" />
     <link rel="canonical" href="https://construction-project-02.netlify.app/services/budowa-domow.html" />
     <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
@@ -22,7 +22,7 @@
     <meta property="og:title" content="Budowa domów — KP_Code" />
     <meta
       property="og:description"
-      content="Kompleksowa budowa domów: od fundamentów po wykończenie. Terminowo, solidnie, z gwarancją." />
+      content="........................................ BUDOWA DOMOW ........................................" />
     <meta property="og:url" content="https://construction-project-02.netlify.app/services/budowa-domow.html" />
     <meta
       property="og:image"
@@ -33,22 +33,25 @@
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
     <meta property="og:image:type" content="image/jpeg" />
-    <meta property="og:image:alt" content="Wizualizacja nowoczesnego domu na tle planów architektonicznych — KP_Code" />
+    <meta
+      property="og:image:alt"
+      content="........................................ BUDOWA DOMOW ........................................ — KP_Code" />
 
     <!-- Twitter -->
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content="Budowa domów — KP_Code" />
     <meta
       name="twitter:description"
-      content="Kompleksowa budowa domów: od fundamentów po wykończenie. Terminowo, solidnie, z gwarancją." />
+      content="........................................ BUDOWA DOMOW ........................................" />
     <meta
       name="twitter:image"
       content="https://construction-project-02.netlify.app/assets/img/og/og-image-01-1200x630.jpg" />
     <meta
       name="twitter:image:alt"
-      content="Wizualizacja nowoczesnego domu na tle planów architektonicznych — KP_Code" />
+      content="........................................ BUDOWA DOMOW ........................................ — KP_Code" />
+    <!-- <meta name="twitter:site" content="@kp_code" />  -- opcjonalnie, gdy będziesz mieć konto -->
 
-    <!-- Favicons / manifest (uwaga: ../ z podfolderu) -->
+    <!-- Favicons / manifest (UWAGA: ścieżki z ../ bo jesteśmy w /services/) -->
     <link rel="icon" href="../assets/img/favicon/favicon.ico" sizes="any" />
     <link rel="icon" type="image/png" sizes="96x96" href="../assets/img/favicon/favicon-96x96.png" />
     <link rel="icon" type="image/png" sizes="32x32" href="../assets/img/favicon/favicon-32x32.png" />
@@ -66,7 +69,7 @@
     <meta name="color-scheme" content="light dark" />
     <meta name="format-detection" content="telephone=no" />
 
-    <!-- Wydajność fontów (../ z podfolderu) -->
+    <!-- Wydajność fontów (pozostaw jak masz, sprzątniemy na końcu) -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link rel="preload" href="../fonts/Montserrat.woff2" as="font" type="font/woff2" crossorigin />
@@ -74,20 +77,20 @@
       href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&family=Montserrat:wght@600;700&display=swap"
       rel="stylesheet" />
 
-    <!-- Ikony (Font Awesome) – jeśli nie używasz, usuń ten skrypt -->
+    <!-- Ikony (Font Awesome) – jeśli nie używasz, usuń ten skrypt) -->
     <script src="https://kit.fontawesome.com/6e7b7ddf50.js" crossorigin="anonymous" defer></script>
 
     <!-- Główny CSS -->
     <link rel="stylesheet" href="../css/style.css" />
 
-    <!-- JSON-LD: Service + WebPage (dla podstrony usługi) -->
+    <!-- JSON-LD: Service + WebPage -->
     <script type="application/ld+json">
       {
         "@context": "https://schema.org",
         "@type": "Service",
         "serviceType": "Budowa domów",
         "name": "Budowa domów",
-        "description": "Kompleksowa budowa domów: od fundamentów po wykończenie. Terminowo, solidnie, z gwarancją.",
+        "description": "........................................ BUDOWA DOMOW ........................................",
         "url": "https://construction-project-02.netlify.app/services/budowa-domow.html",
         "areaServed": { "@type": "Country", "name": "Polska" },
         "provider": {
@@ -111,15 +114,46 @@
         }
       }
     </script>
+
+    <!-- JSON-LD: BreadcrumbList -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Strona Główna",
+            "item": "https://construction-project-02.netlify.app/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "Usługi",
+            "item": "https://construction-project-02.netlify.app/index.html#uslugi"
+          },
+          {
+            "@type": "ListItem",
+            "position": 3,
+            "name": "Budowa domów",
+            "item": "https://construction-project-02.netlify.app/services/budowa-domow.html"
+          }
+        ]
+      }
+    </script>
   </head>
 
   <!-- BODY -->
-  <body class="page-service">
-    <div id="top"></div>
+  <body class="page-service" data-current="services" data-service="budowa-domow">
+    <div id="top" tabindex="-1"></div>
 
-    <!-- HEADER -->
+    <!-- SKIP LINK (a11y) -->
+    <a class="skip-link" href="#main">Pomiń nawigację – przejdź do treści</a>
+
+    <!-- HEADER — WZORZEC PODSTRONY -->
     <header>
-      <a href="#top" class="logo">
+      <a href="../index.html#top" class="logo">
         <img
           class="logo-img"
           src="../assets/img/logo/logo-02-light-mode-200x200.svg"
@@ -129,7 +163,7 @@
           width="200"
           height="200"
           decoding="async"
-          fetchpriority="high" />
+          fetchpriority="low" />
         <span class="logo-text">KP_Code</span>
       </a>
 
@@ -139,7 +173,7 @@
           <li><a href="../index.html#o-nas">O nas</a></li>
           <li><a href="../index.html#uslugi">Usługi</a></li>
           <li><a href="../index.html#galeria">Galeria</a></li>
-          <li><a href="../index.html#faq">Faq</a></li>
+          <li><a href="../index.html#faq">FAQ</a></li>
           <li><a href="../index.html#kontakt">Kontakt</a></li>
         </ul>
       </nav>
@@ -201,6 +235,7 @@
         </ol>
       </nav>
 
+      <!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
       <!-- INTRO: obraz + tekst -->
       <section class="service-intro bg-surface-1 section--divider" aria-labelledby="svc-intro-heading">
         <div class="service-intro__inner">
@@ -232,13 +267,15 @@
                 height="400"
                 alt="Budowa domów — oferta"
                 loading="eager"
-                decoding="async" />
+                decoding="async"
+                fetchpriority="high" />
             </picture>
           </figure>
 
           <div class="service-intro__copy">
+            <h2 class="sr-only">Zakres budowy</h2>
             <p class="lead">
-              Oferujemy kompleksową budowę domów jednorodzinnych – od przygotowania projektu i fundamentów, przez prace
+              Oferujemy kompleksową budowę domów jednorodzinnych — od przygotowania projektu i fundamentów, przez prace
               konstrukcyjne i instalacyjne, aż po pełne wykończenie wnętrz. Stawiamy na solidność, terminowość oraz
               przejrzystą współpracę na każdym etapie inwestycji.
             </p>
@@ -250,10 +287,13 @@
               <li>Ocieplenie, elewacja i prace izolacyjne</li>
               <li>Kompleksowe wykończenie wnętrz pod klucz</li>
             </ul>
-
             <div class="cta-row">
-              <a class="btn btn-primary" href="../index.html#kontakt">Wycena</a>
-              <a class="btn btn-ghost" href="#galeria-budowa-domow">Zobacz realizacje</a>
+              <a class="btn btn-primary" href="../index.html#kontakt" aria-label="Wycena — poproś o wycenę budowy domu">
+                Wycena
+              </a>
+              <a class="btn btn-ghost" href="#galeria-budowa-domow" aria-label="Zobacz realizacje budowy domów">
+                Zobacz realizacje
+              </a>
             </div>
           </div>
         </div>
@@ -264,234 +304,294 @@
         <div class="service-details__inner">
           <h2 id="svc-scope-heading" class="section-title">Zakres prac i przebieg współpracy</h2>
 
-          <div class="features">
-            <article class="feature">
+          <ol class="features">
+            <li class="feature">
               <h3>01 — Konsultacja i wycena</h3>
               <p>
                 Analizujemy projekt domu lub pomagamy w jego przygotowaniu. Na podstawie dokumentacji i wymagań
                 inwestora opracowujemy szczegółowy kosztorys budowy.
               </p>
-            </article>
-            <article class="feature">
+            </li>
+            <li class="feature">
               <h3>02 — Umowa i harmonogram</h3>
               <p>
                 Spisujemy przejrzystą umowę obejmującą etapy prac, terminy i koszty. Klient otrzymuje harmonogram,
                 dzięki któremu ma pełną kontrolę nad inwestycją.
               </p>
-            </article>
-            <article class="feature">
+            </li>
+            <li class="feature">
               <h3>03 — Budowa domu</h3>
               <p>
                 Realizujemy wszystkie etapy: fundamenty, konstrukcja ścian i dachu, instalacje wewnętrzne, ocieplenie i
                 elewacja. Na każdym etapie dbamy o jakość i bezpieczeństwo.
               </p>
-            </article>
-            <article class="feature">
+            </li>
+            <li class="feature">
               <h3>04 — Odbiór i gwarancja</h3>
               <p>
                 Po zakończeniu budowy przeprowadzamy wspólny odbiór techniczny domu. Na wykonane prace udzielamy
                 standardowej gwarancji i zapewniamy wsparcie posprzedażowe.
               </p>
-            </article>
+            </li>
+          </ol>
+        </div>
+      </section>
+
+      <!-- GALERIA -->
+      <section
+        id="galeria-budowa-domow"
+        class="gallery-section bg-surface-1 section--divider"
+        aria-labelledby="gallery-heading-budowa">
+        <div class="gallery-inner">
+          <h2 id="gallery-heading-budowa" class="section-title">GALERIA</h2>
+
+          <div class="gallery-container">
+            <!-- 1 -->
+            <figure class="gallery-item hidden">
+              <a
+                class="gallery-link"
+                href="../assets/img/realizacje/budowa-domu-01-1600x1067.jpg"
+                aria-label="Zobacz powiększenie — nowoczesny dom piętrowy z dużymi oknami i minimalistyczną elewacją">
+                <picture>
+                  <source
+                    type="image/avif"
+                    srcset="
+                      ../assets/img/realizacje/budowa-domu-01-800x600.avif    800w,
+                      ../assets/img/realizacje/budowa-domu-01-1200x800.avif  1200w,
+                      ../assets/img/realizacje/budowa-domu-01-1600x1067.avif 1600w
+                    "
+                    sizes="(max-width: 768px) 100vw, 400px" />
+                  <source
+                    type="image/webp"
+                    srcset="
+                      ../assets/img/realizacje/budowa-domu-01-800x600.webp    800w,
+                      ../assets/img/realizacje/budowa-domu-01-1200x800.webp  1200w,
+                      ../assets/img/realizacje/budowa-domu-01-1600x1067.webp 1600w
+                    "
+                    sizes="(max-width: 768px) 100vw, 400px" />
+                  <img
+                    src="../assets/img/realizacje/budowa-domu-01-1200x800.jpg"
+                    srcset="
+                      ../assets/img/realizacje/budowa-domu-01-800x600.jpg    800w,
+                      ../assets/img/realizacje/budowa-domu-01-1200x800.jpg  1200w,
+                      ../assets/img/realizacje/budowa-domu-01-1600x1067.jpg 1600w
+                    "
+                    sizes="(max-width: 768px) 100vw, 400px"
+                    alt="Nowoczesny dom piętrowy z dużymi oknami, minimalistyczną elewacją i zadbanym ogrodem"
+                    width="1200"
+                    height="800"
+                    loading="lazy"
+                    decoding="async" />
+                </picture>
+              </a>
+            </figure>
+
+            <!-- 2 -->
+            <figure class="gallery-item hidden">
+              <a class="gallery-link" href="../assets/img/realizacje/budowa-domu-02-1600x1067.jpg">
+                <picture>
+                  <source
+                    type="image/avif"
+                    srcset="
+                      ../assets/img/realizacje/budowa-domu-02-800x600.avif    800w,
+                      ../assets/img/realizacje/budowa-domu-02-1200x800.avif  1200w,
+                      ../assets/img/realizacje/budowa-domu-02-1600x1067.avif 1600w
+                    "
+                    sizes="(max-width: 768px) 100vw, 400px" />
+                  <source
+                    type="image/webp"
+                    srcset="
+                      ../assets/img/realizacje/budowa-domu-02-800x600.webp    800w,
+                      ../assets/img/realizacje/budowa-domu-02-1200x800.webp  1200w,
+                      ../assets/img/realizacje/budowa-domu-02-1600x1067.webp 1600w
+                    "
+                    sizes="(max-width: 768px) 100vw, 400px" />
+                  <img
+                    src="../assets/img/realizacje/budowa-domu-02-1200x800.jpg"
+                    srcset="
+                      ../assets/img/realizacje/budowa-domu-02-800x600.jpg    800w,
+                      ../assets/img/realizacje/budowa-domu-02-1200x800.jpg  1200w,
+                      ../assets/img/realizacje/budowa-domu-02-1600x1067.jpg 1600w
+                    "
+                    sizes="(max-width: 768px) 100vw, 400px"
+                    alt="Nowoczesny dom jednorodzinny z drewnianymi akcentami, dużym balkonem i ogrodem"
+                    width="1200"
+                    height="800"
+                    loading="lazy"
+                    decoding="async" />
+                </picture>
+              </a>
+            </figure>
+
+            <!-- 3 -->
+            <figure class="gallery-item hidden">
+              <a class="gallery-link" href="../assets/img/realizacje/budowa-domu-03-1600x1067.jpg">
+                <picture>
+                  <source
+                    type="image/avif"
+                    srcset="
+                      ../assets/img/realizacje/budowa-domu-03-800x600.avif    800w,
+                      ../assets/img/realizacje/budowa-domu-03-1200x800.avif  1200w,
+                      ../assets/img/realizacje/budowa-domu-03-1600x1067.avif 1600w
+                    "
+                    sizes="(max-width: 768px) 100vw, 400px" />
+                  <source
+                    type="image/webp"
+                    srcset="
+                      ../assets/img/realizacje/budowa-domu-03-800x600.webp    800w,
+                      ../assets/img/realizacje/budowa-domu-03-1200x800.webp  1200w,
+                      ../assets/img/realizacje/budowa-domu-03-1600x1067.webp 1600w
+                    "
+                    sizes="(max-width: 768px) 100vw, 400px" />
+                  <img
+                    src="../assets/img/realizacje/budowa-domu-03-1200x800.jpg"
+                    srcset="
+                      ../assets/img/realizacje/budowa-domu-03-800x600.jpg    800w,
+                      ../assets/img/realizacje/budowa-domu-03-1200x800.jpg  1200w,
+                      ../assets/img/realizacje/budowa-domu-03-1600x1067.jpg 1600w
+                    "
+                    sizes="(max-width: 768px) 100vw, 400px"
+                    alt="Tradycyjny dom jednorodzinny z czerwonym dachem, kolumnowym wejściem i zadbanym ogrodem"
+                    width="1200"
+                    height="800"
+                    loading="lazy"
+                    decoding="async" />
+                </picture>
+              </a>
+            </figure>
+
+            <!-- 4 -->
+            <figure class="gallery-item hidden">
+              <a class="gallery-link" href="../assets/img/realizacje/budowa-domu-04-1600x1067.jpg">
+                <picture>
+                  <source
+                    type="image/avif"
+                    srcset="
+                      ../assets/img/realizacje/budowa-domu-04-800x600.avif    800w,
+                      ../assets/img/realizacje/budowa-domu-04-1200x800.avif  1200w,
+                      ../assets/img/realizacje/budowa-domu-04-1600x1067.avif 1600w
+                    "
+                    sizes="(max-width: 768px) 100vw, 400px" />
+                  <source
+                    type="image/webp"
+                    srcset="
+                      ../assets/img/realizacje/budowa-domu-04-800x600.webp    800w,
+                      ../assets/img/realizacje/budowa-domu-04-1200x800.webp  1200w,
+                      ../assets/img/realizacje/budowa-domu-04-1600x1067.webp 1600w
+                    "
+                    sizes="(max-width: 768px) 100vw, 400px" />
+                  <img
+                    src="../assets/img/realizacje/budowa-domu-04-1200x800.jpg"
+                    srcset="
+                      ../assets/img/realizacje/budowa-domu-04-800x600.jpg    800w,
+                      ../assets/img/realizacje/budowa-domu-04-1200x800.jpg  1200w,
+                      ../assets/img/realizacje/budowa-domu-04-1600x1067.jpg 1600w
+                    "
+                    sizes="(max-width: 768px) 100vw, 400px"
+                    alt="Nowoczesny dom jednorodzinny z dużymi przeszkleniami, kamienną elewacją i oświetlonym tarasem"
+                    width="1200"
+                    height="800"
+                    loading="lazy"
+                    decoding="async" />
+                </picture>
+              </a>
+            </figure>
+
+            <!-- 5 -->
+            <figure class="gallery-item hidden">
+              <a class="gallery-link" href="../assets/img/realizacje/budowa-domu-05-1600x1067.jpg">
+                <picture>
+                  <source
+                    type="image/avif"
+                    srcset="
+                      ../assets/img/realizacje/budowa-domu-05-800x600.avif    800w,
+                      ../assets/img/realizacje/budowa-domu-05-1200x800.avif  1200w,
+                      ../assets/img/realizacje/budowa-domu-05-1600x1067.avif 1600w
+                    "
+                    sizes="(max-width: 768px) 100vw, 400px" />
+                  <source
+                    type="image/webp"
+                    srcset="
+                      ../assets/img/realizacje/budowa-domu-05-800x600.webp    800w,
+                      ../assets/img/realizacje/budowa-domu-05-1200x800.webp  1200w,
+                      ../assets/img/realizacje/budowa-domu-05-1600x1067.webp 1600w
+                    "
+                    sizes="(max-width: 768px) 100vw, 400px" />
+                  <img
+                    src="../assets/img/realizacje/budowa-domu-05-1200x800.jpg"
+                    srcset="
+                      ../assets/img/realizacje/budowa-domu-05-800x600.jpg    800w,
+                      ../assets/img/realizacje/budowa-domu-05-1200x800.jpg  1200w,
+                      ../assets/img/realizacje/budowa-domu-05-1600x1067.jpg 1600w
+                    "
+                    sizes="(max-width: 768px) 100vw, 400px"
+                    alt="Dwupiętrowy nowoczesny dom z tarasem, ogrodem i basenem w ogrodzie"
+                    width="1200"
+                    height="800"
+                    loading="lazy"
+                    decoding="async" />
+                </picture>
+              </a>
+            </figure>
+
+            <!-- 6 -->
+            <figure class="gallery-item hidden">
+              <a class="gallery-link" href="../assets/img/realizacje/budowa-domu-06-1600x1067.jpg">
+                <picture>
+                  <source
+                    type="image/avif"
+                    srcset="
+                      ../assets/img/realizacje/budowa-domu-06-800x600.avif    800w,
+                      ../assets/img/realizacje/budowa-domu-06-1200x800.avif  1200w,
+                      ../assets/img/realizacje/budowa-domu-06-1600x1067.avif 1600w
+                    "
+                    sizes="(max-width: 768px) 100vw, 400px" />
+                  <source
+                    type="image/webp"
+                    srcset="
+                      ../assets/img/realizacje/budowa-domu-06-800x600.webp    800w,
+                      ../assets/img/realizacje/budowa-domu-06-1200x800.webp  1200w,
+                      ../assets/img/realizacje/budowa-domu-06-1600x1067.webp 1600w
+                    "
+                    sizes="(max-width: 768px) 100vw, 400px" />
+                  <img
+                    src="../assets/img/realizacje/budowa-domu-06-1200x800.jpg"
+                    srcset="
+                      ../assets/img/realizacje/budowa-domu-06-800x600.jpg    800w,
+                      ../assets/img/realizacje/budowa-domu-06-1200x800.jpg  1200w,
+                      ../assets/img/realizacje/budowa-domu-06-1600x1067.jpg 1600w
+                    "
+                    sizes="(max-width: 768px) 100vw, 400px"
+                    alt="Nowoczesny dom parterowy z tarasem i basenem w ogrodzie"
+                    width="1200"
+                    height="800"
+                    loading="lazy"
+                    decoding="async" />
+                </picture>
+              </a>
+            </figure>
           </div>
         </div>
       </section>
 
-<!-- GALERIA -->
-<section
-  id="galeria-budowa-domow"
-  class="gallery-section bg-surface-1 section--divider"
-  aria-labelledby="gallery-heading-budowa"
->
-  <div class="gallery-inner">
-    <h2 id="gallery-heading-budowa" class="section-title">GALERIA</h2>
-
-    <div class="gallery-container">
-      <!-- 1 -->
-      <figure class="gallery-item hidden">
-        <a class="gallery-link" href="../assets/img/realizacje/budowa-domu-01-1600x1067.jpg">
-          <picture>
-            <source type="image/avif" srcset="
-              ../assets/img/realizacje/budowa-domu-01-800x600.avif    800w,
-              ../assets/img/realizacje/budowa-domu-01-1200x800.avif  1200w,
-              ../assets/img/realizacje/budowa-domu-01-1600x1067.avif 1600w
-            " sizes="(max-width: 768px) 100vw, 400px" />
-            <source type="image/webp" srcset="
-              ../assets/img/realizacje/budowa-domu-01-800x600.webp    800w,
-              ../assets/img/realizacje/budowa-domu-01-1200x800.webp  1200w,
-              ../assets/img/realizacje/budowa-domu-01-1600x1067.webp 1600w
-            " sizes="(max-width: 768px) 100vw, 400px" />
-            <img
-              src="../assets/img/realizacje/budowa-domu-01-1200x800.jpg"
-              srcset="
-                ../assets/img/realizacje/budowa-domu-01-800x600.jpg    800w,
-                ../assets/img/realizacje/budowa-domu-01-1200x800.jpg  1200w,
-                ../assets/img/realizacje/budowa-domu-01-1600x1067.jpg 1600w
-              "
-              sizes="(max-width: 768px) 100vw, 400px"
-              alt="Nowoczesny dom piętrowy z dużymi oknami, minimalistyczną elewacją i zadbanym ogrodem"
-              width="1200" height="800" loading="lazy" decoding="async"
-            />
-          </picture>
-        </a>
-      </figure>
-
-      <!-- 2 -->
-      <figure class="gallery-item hidden">
-        <a class="gallery-link" href="../assets/img/realizacje/budowa-domu-02-1600x1067.jpg">
-          <picture>
-            <source type="image/avif" srcset="
-              ../assets/img/realizacje/budowa-domu-02-800x600.avif    800w,
-              ../assets/img/realizacje/budowa-domu-02-1200x800.avif  1200w,
-              ../assets/img/realizacje/budowa-domu-02-1600x1067.avif 1600w
-            " sizes="(max-width: 768px) 100vw, 400px" />
-            <source type="image/webp" srcset="
-              ../assets/img/realizacje/budowa-domu-02-800x600.webp    800w,
-              ../assets/img/realizacje/budowa-domu-02-1200x800.webp  1200w,
-              ../assets/img/realizacje/budowa-domu-02-1600x1067.webp 1600w
-            " sizes="(max-width: 768px) 100vw, 400px" />
-            <img
-              src="../assets/img/realizacje/budowa-domu-02-1200x800.jpg"
-              srcset="
-                ../assets/img/realizacje/budowa-domu-02-800x600.jpg    800w,
-                ../assets/img/realizacje/budowa-domu-02-1200x800.jpg  1200w,
-                ../assets/img/realizacje/budowa-domu-02-1600x1067.jpg 1600w
-              "
-              sizes="(max-width: 768px) 100vw, 400px"
-              alt="Nowoczesny dom jednorodzinny z drewnianymi akcentami, dużym balkonem i ogrodem"
-              width="1200" height="800" loading="lazy" decoding="async"
-            />
-          </picture>
-        </a>
-      </figure>
-
-      <!-- 3 -->
-      <figure class="gallery-item hidden">
-        <a class="gallery-link" href="../assets/img/realizacje/budowa-domu-03-1600x1067.jpg">
-          <picture>
-            <source type="image/avif" srcset="
-              ../assets/img/realizacje/budowa-domu-03-800x600.avif    800w,
-              ../assets/img/realizacje/budowa-domu-03-1200x800.avif  1200w,
-              ../assets/img/realizacje/budowa-domu-03-1600x1067.avif 1600w
-            " sizes="(max-width: 768px) 100vw, 400px" />
-            <source type="image/webp" srcset="
-              ../assets/img/realizacje/budowa-domu-03-800x600.webp    800w,
-              ../assets/img/realizacje/budowa-domu-03-1200x800.webp  1200w,
-              ../assets/img/realizacje/budowa-domu-03-1600x1067.webp 1600w
-            " sizes="(max-width: 768px) 100vw, 400px" />
-            <img
-              src="../assets/img/realizacje/budowa-domu-03-1200x800.jpg"
-              srcset="
-                ../assets/img/realizacje/budowa-domu-03-800x600.jpg    800w,
-                ../assets/img/realizacje/budowa-domu-03-1200x800.jpg  1200w,
-                ../assets/img/realizacje/budowa-domu-03-1600x1067.jpg 1600w
-              "
-              sizes="(max-width: 768px) 100vw, 400px"
-              alt="Tradycyjny dom jednorodzinny z czerwonym dachem, kolumnowym wejściem i zadbanym ogrodem"
-              width="1200" height="800" loading="lazy" decoding="async"
-            />
-          </picture>
-        </a>
-      </figure>
-
-      <!-- 4 -->
-      <figure class="gallery-item hidden">
-        <a class="gallery-link" href="../assets/img/realizacje/budowa-domu-04-1600x1067.jpg">
-          <picture>
-            <source type="image/avif" srcset="
-              ../assets/img/realizacje/budowa-domu-04-800x600.avif    800w,
-              ../assets/img/realizacje/budowa-domu-04-1200x800.avif  1200w,
-              ../assets/img/realizacje/budowa-domu-04-1600x1067.avif 1600w
-            " sizes="(max-width: 768px) 100vw, 400px" />
-            <source type="image/webp" srcset="
-              ../assets/img/realizacje/budowa-domu-04-800x600.webp    800w,
-              ../assets/img/realizacje/budowa-domu-04-1200x800.webp  1200w,
-              ../assets/img/realizacje/budowa-domu-04-1600x1067.webp 1600w
-            " sizes="(max-width: 768px) 100vw, 400px" />
-            <img
-              src="../assets/img/realizacje/budowa-domu-04-1200x800.jpg"
-              srcset="
-                ../assets/img/realizacje/budowa-domu-04-800x600.jpg    800w,
-                ../assets/img/realizacje/budowa-domu-04-1200x800.jpg  1200w,
-                ../assets/img/realizacje/budowa-domu-04-1600x1067.jpg 1600w
-              "
-              sizes="(max-width: 768px) 100vw, 400px"
-              alt="Nowoczesny dom jednorodzinny z dużymi przeszkleniami, kamienną elewacją i oświetlonym tarasem"
-              width="1200" height="800" loading="lazy" decoding="async"
-            />
-          </picture>
-        </a>
-      </figure>
-
-      <!-- 5 -->
-      <figure class="gallery-item hidden">
-        <a class="gallery-link" href="../assets/img/realizacje/budowa-domu-05-1600x1067.jpg">
-          <picture>
-            <source type="image/avif" srcset="
-              ../assets/img/realizacje/budowa-domu-05-800x600.avif    800w,
-              ../assets/img/realizacje/budowa-domu-05-1200x800.avif  1200w,
-              ../assets/img/realizacje/budowa-domu-05-1600x1067.avif 1600w
-            " sizes="(max-width: 768px) 100vw, 400px" />
-            <source type="image/webp" srcset="
-              ../assets/img/realizacje/budowa-domu-05-800x600.webp    800w,
-              ../assets/img/realizacje/budowa-domu-05-1200x800.webp  1200w,
-              ../assets/img/realizacje/budowa-domu-05-1600x1067.webp 1600w
-            " sizes="(max-width: 768px) 100vw, 400px" />
-            <img
-              src="../assets/img/realizacje/budowa-domu-05-1200x800.jpg"
-              srcset="
-                ../assets/img/realizacje/budowa-domu-05-800x600.jpg    800w,
-                ../assets/img/realizacje/budowa-domu-05-1200x800.jpg  1200w,
-                ../assets/img/realizacje/budowa-domu-05-1600x1067.jpg 1600w
-              "
-              sizes="(max-width: 768px) 100vw, 400px"
-              alt="Dwupiętrowy nowoczesny dom z tarasem, ogrodem i basenem w ogrodzie"
-              width="1200" height="800" loading="lazy" decoding="async"
-            />
-          </picture>
-        </a>
-      </figure>
-
-      <!-- 6 -->
-      <figure class="gallery-item hidden">
-        <a class="gallery-link" href="../assets/img/realizacje/budowa-domu-06-1600x1067.jpg">
-          <picture>
-            <source type="image/avif" srcset="
-              ../assets/img/realizacje/budowa-domu-06-800x600.avif    800w,
-              ../assets/img/realizacje/budowa-domu-06-1200x800.avif  1200w,
-              ../assets/img/realizacje/budowa-domu-06-1600x1067.avif 1600w
-            " sizes="(max-width: 768px) 100vw, 400px" />
-            <source type="image/webp" srcset="
-              ../assets/img/realizacje/budowa-domu-06-800x600.webp    800w,
-              ../assets/img/realizacje/budowa-domu-06-1200x800.webp  1200w,
-              ../assets/img/realizacje/budowa-domu-06-1600x1067.webp 1600w
-            " sizes="(max-width: 768px) 100vw, 400px" />
-            <img
-              src="../assets/img/realizacje/budowa-domu-06-1200x800.jpg"
-              srcset="
-                ../assets/img/realizacje/budowa-domu-06-800x600.jpg    800w,
-                ../assets/img/realizacje/budowa-domu-06-1200x800.jpg  1200w,
-                ../assets/img/realizacje/budowa-domu-06-1600x1067.jpg 1600w
-              "
-              sizes="(max-width: 768px) 100vw, 400px"
-              alt="Nowoczesny dom parterowy z tarasem i basenem w ogrodzie"
-              width="1200" height="800" loading="lazy" decoding="async"
-            />
-          </picture>
-        </a>
-      </figure>
-    </div>
-  </div>
-</section>
-
-
       <!-- CTA do kontaktu -->
-      <section class="cta-section bg-surface-3 section--divider" aria-labelledby="cta-heading">
-        <h2 id="cta-heading" class="section-title">Masz pytania? Zróbmy szybki kosztorys.</h2>
-        <p class="lead">Napisz kilka zdań o zakresie prac i preferowanym terminie — wrócimy z propozycją.</p>
-        <div class="cta-row">
-          <a class="btn btn-primary" href="../index.html#kontakt">Formularz kontaktowy</a>
-          <a class="btn btn-ghost" href="tel:+48123456789">Zadzwoń: +48 123 456 789</a>
+      <section class="cta-section bg-surface-3 section--divider" aria-labelledby="cta-heading-budowa">
+        <div class="cta-inner">
+          <h2 id="cta-heading-budowa" class="section-title">Masz pytania? Zróbmy szybki kosztorys.</h2>
+          <p class="lead">
+            Napisz kilka zdań o planowanej budowie i preferowanym terminie — przygotujemy wstępną wycenę.
+          </p>
+          <div class="cta-row">
+            <a
+              class="btn btn-primary"
+              href="../index.html#kontakt"
+              aria-label="Przejdź do formularza kontaktowego — poproś o wycenę budowy domu">
+              Formularz kontaktowy
+            </a>
+            <a class="btn btn-ghost" href="tel:+48123456789" aria-label="Zadzwoń pod numer +48 123 456 789">
+              Zadzwoń: +48 123 456 789
+            </a>
+          </div>
         </div>
       </section>
 
@@ -508,8 +608,8 @@
         <div class="lb__backdrop" data-lb-close aria-hidden="true"></div>
         <figure class="lb__figure">
           <h2 id="lightbox-title" class="sr-only">Podgląd zdjęcia</h2>
-          <img class="lb__img" alt="" />
-          <figcaption class="lb__caption" id="lightbox-caption"></figcaption>
+          <img class="lb__img" alt="" loading="eager" decoding="async" />
+          <figcaption class="lb__caption" id="lightbox-caption" aria-live="polite"></figcaption>
           <button class="lb__close" type="button" aria-label="Zamknij (Esc)" data-lb-close>&times;</button>
         </figure>
       </div>
@@ -517,7 +617,7 @@
 
     <!-- FOOTER -->
     <footer role="contentinfo" aria-labelledby="footer-heading">
-      <h2 id="footer-heading" class="visually-hidden">Stopka serwisu</h2>
+      <h2 id="footer-heading" class="sr-only">Stopka serwisu</h2>
       <div class="footer-content">
         <div class="footer-section footer-brand">
           <img
@@ -567,7 +667,7 @@
         <div class="footer-section" aria-labelledby="footer-services">
           <h3 id="footer-services">Nasze Usługi</h3>
           <ul>
-            <li><a href="budowa-domow.html" aria-current="page">Budowa domów</a></li>
+            <li aria-current="page">Budowa domów</li>
             <li><a href="remonty-mieszkan.html">Remonty mieszkań</a></li>
             <li><a href="wykonczenia-wnetrz.html">Wykończenia wnętrz</a></li>
             <li><a href="adaptacje-poddaszy.html">Adaptacje poddaszy</a></li>
@@ -590,13 +690,15 @@
             <p>
               <strong>Telefon:</strong>
               <br />
-              <a href="tel:+48123456789">+48 123 456 789</a>
+              <a href="tel:+48123456789" aria-label="Zadzwoń pod numer +48 123 456 789">+48 123 456 789</a>
             </p>
 
             <p>
               <strong>Email:</strong>
               <br />
-              <a href="mailto:kontakt@Twoja-firma.pl">kontakt@Twoja-firma.pl</a>
+              <a href="mailto:kontakt@Twoja-firma.pl" aria-label="Napisz na adres kontakt@Twoja-firma.pl">
+                kontakt@Twoja-firma.pl
+              </a>
             </p>
 
             <p>
@@ -612,17 +714,15 @@
         <div class="footer-section" aria-labelledby="footer-info">
           <h3 id="footer-info">Informacje</h3>
           <ul>
-            <li><a href="#">O nas</a></li>
-            <li><a href="#">Nasze realizacje</a></li>
-            <li><a href="#">Certyfikaty</a></li>
             <li><a href="#">Polityka prywatności</a></li>
             <li><a href="#">Regulamin</a></li>
+            <li><a href="#">Certyfikaty</a></li>
             <li><a href="#">Kariera</a></li>
           </ul>
         </div>
       </div>
 
-      <button id="powrot-na-gore" type="button" aria-label="Powrót na górę" title="Powrót na górę">
+      <button id="powrot-na-gore" type="button" aria-label="Powrót na górę" title="Powrót na górę" aria-controls="top">
         <i class="fas fa-arrow-up" aria-hidden="true"></i>
       </button>
 

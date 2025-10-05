@@ -1,16 +1,15 @@
 <!DOCTYPE html>
-<html lang="pl" data-accent="ocean">
+<html lang="pl">
   <head>
     <!-- Podstawy -->
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
-    <meta http-equiv="x-ua-compatible" content="IE=edge" />
 
     <!-- SEO -->
     <title>Instalacje elektryczne — KP_Code</title>
     <meta
       name="description"
-      content="Profesjonalny montaż i modernizacja instalacji elektrycznych w domach i firmach. Bezpieczeństwo, nowoczesne rozwiązania, gwarancja jakości." />
+      content="........................................ INSTALACJE ELEKTRYCZNE ........................................" />
     <meta name="author" content="Kamil Król / KP_Code" />
     <link rel="canonical" href="https://construction-project-02.netlify.app/services/instalacje-elektryczne.html" />
     <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
@@ -22,7 +21,7 @@
     <meta property="og:title" content="Instalacje elektryczne — KP_Code" />
     <meta
       property="og:description"
-      content="Profesjonalny montaż i modernizacja instalacji elektrycznych w domach i firmach. Bezpieczeństwo, nowoczesne rozwiązania, gwarancja jakości." />
+      content="........................................ INSTALACJE ELEKTRYCZNE ........................................" />
     <meta
       property="og:url"
       content="https://construction-project-02.netlify.app/services/instalacje-elektryczne.html" />
@@ -35,20 +34,25 @@
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
     <meta property="og:image:type" content="image/jpeg" />
-    <meta property="og:image:alt" content="Schemat instalacji elektrycznej w nowoczesnym domu — KP_Code" />
+    <meta
+      property="og:image:alt"
+      content="........................................ INSTALACJE ELEKTRYCZNE ........................................ — KP_Code" />
 
     <!-- Twitter -->
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content="Instalacje elektryczne — KP_Code" />
     <meta
       name="twitter:description"
-      content="Profesjonalny montaż i modernizacja instalacji elektrycznych w domach i firmach. Bezpieczeństwo, nowoczesne rozwiązania, gwarancja jakości." />
+      content="........................................ INSTALACJE ELEKTRYCZNE ........................................" />
     <meta
       name="twitter:image"
       content="https://construction-project-02.netlify.app/assets/img/og/og-image-01-1200x630.jpg" />
-    <meta name="twitter:image:alt" content="Schemat instalacji elektrycznej w nowoczesnym domu — KP_Code" />
+    <meta
+      name="twitter:image:alt"
+      content="........................................ INSTALACJE ELEKTRYCZNE ........................................ — KP_Code" />
+    <!-- <meta name="twitter:site" content="@kp_code" />  -- opcjonalnie, gdy będziesz mieć konto -->
 
-    <!-- Favicons / manifest -->
+    <!-- Favicons / manifest (UWAGA: ścieżki z ../ bo jesteśmy w /services/) -->
     <link rel="icon" href="../assets/img/favicon/favicon.ico" sizes="any" />
     <link rel="icon" type="image/png" sizes="96x96" href="../assets/img/favicon/favicon-96x96.png" />
     <link rel="icon" type="image/png" sizes="32x32" href="../assets/img/favicon/favicon-32x32.png" />
@@ -66,7 +70,7 @@
     <meta name="color-scheme" content="light dark" />
     <meta name="format-detection" content="telephone=no" />
 
-    <!-- Wydajność fontów -->
+    <!-- Wydajność fontów (pozostaw jak masz, sprzątniemy na końcu) -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link rel="preload" href="../fonts/Montserrat.woff2" as="font" type="font/woff2" crossorigin />
@@ -74,7 +78,7 @@
       href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&family=Montserrat:wght@600;700&display=swap"
       rel="stylesheet" />
 
-    <!-- Ikony (Font Awesome) – jeśli nie używasz, usuń ten skrypt -->
+    <!-- Ikony (Font Awesome) – jeśli nie używasz, usuń ten skrypt) -->
     <script src="https://kit.fontawesome.com/6e7b7ddf50.js" crossorigin="anonymous" defer></script>
 
     <!-- Główny CSS -->
@@ -86,8 +90,8 @@
         "@context": "https://schema.org",
         "@type": "Service",
         "serviceType": "Instalacje elektryczne",
-        "name": "Instalacje elektryczne",
-        "description": "Profesjonalny montaż i modernizacja instalacji elektrycznych w domach i firmach. Bezpieczeństwo, nowoczesne rozwiązania, gwarancja jakości.",
+        "name": "Instalacje",
+        "description": "........................................ INSTALACJE ELEKTRYCZNE ........................................",
         "url": "https://construction-project-02.netlify.app/services/instalacje-elektryczne.html",
         "areaServed": { "@type": "Country", "name": "Polska" },
         "provider": {
@@ -111,15 +115,46 @@
         }
       }
     </script>
+
+    <!-- JSON-LD: BreadcrumbList -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Strona Główna",
+            "item": "https://construction-project-02.netlify.app/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "Usługi",
+            "item": "https://construction-project-02.netlify.app/index.html#uslugi"
+          },
+          {
+            "@type": "ListItem",
+            "position": 3,
+            "name": "Instalacje elektryczne",
+            "item": "https://construction-project-02.netlify.app/services/instalacje-elektryczne.html"
+          }
+        ]
+      }
+    </script>
   </head>
 
   <!-- BODY -->
-  <body class="page-service">
-    <div id="top"></div>
+  <body class="page-service" data-current="services" data-service="instalacje-elektryczne">
+    <div id="top" tabindex="-1"></div>
 
-    <!-- HEADER -->
+    <!-- SKIP LINK (a11y) -->
+    <a class="skip-link" href="#main">Pomiń nawigację – przejdź do treści</a>
+
+    <!-- HEADER — WZORZEC PODSTRONY -->
     <header>
-      <a href="#top" class="logo">
+      <a href="../index.html#top" class="logo">
         <img
           class="logo-img"
           src="../assets/img/logo/logo-02-light-mode-200x200.svg"
@@ -129,7 +164,7 @@
           width="200"
           height="200"
           decoding="async"
-          fetchpriority="high" />
+          fetchpriority="low" />
         <span class="logo-text">KP_Code</span>
       </a>
 
@@ -139,7 +174,7 @@
           <li><a href="../index.html#o-nas">O nas</a></li>
           <li><a href="../index.html#uslugi">Usługi</a></li>
           <li><a href="../index.html#galeria">Galeria</a></li>
-          <li><a href="../index.html#faq">Faq</a></li>
+          <li><a href="../index.html#faq">FAQ</a></li>
           <li><a href="../index.html#kontakt">Kontakt</a></li>
         </ul>
       </nav>
@@ -201,6 +236,7 @@
         </ol>
       </nav>
 
+      <!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
       <!-- INTRO: obraz + tekst -->
       <section class="service-intro bg-surface-1 section--divider" aria-labelledby="svc-intro-heading">
         <div class="service-intro__inner">
@@ -311,7 +347,7 @@
 
           <div class="gallery-container">
             <!-- 1 -->
-              <figure class="gallery-item hidden">
+            <figure class="gallery-item hidden">
               <a class="gallery-link" href="../assets/img/realizacje/instalacje-elektryczne-01-1600x1067.jpg">
                 <picture>
                   <source
@@ -383,7 +419,7 @@
               </a>
             </figure>
             <!-- 3 -->
-          <figure class="gallery-item hidden">
+            <figure class="gallery-item hidden">
               <a class="gallery-link" href="../assets/img/realizacje/instalacje-elektryczne-03-1600x1067.jpg">
                 <picture>
                   <source
@@ -411,7 +447,6 @@
                     "
                     sizes="(max-width: 768px) 100vw, 400px"
                     alt="Elektrycy montujący przewody w stacji transformatorowej wysokiego napięcia"
-
                     width="1200"
                     height="800"
                     loading="lazy"
@@ -420,7 +455,7 @@
               </a>
             </figure>
             <!-- 4 -->
-           <figure class="gallery-item hidden">
+            <figure class="gallery-item hidden">
               <a class="gallery-link" href="../assets/img/realizacje/instalacje-elektryczne-04-1600x1067.jpg">
                 <picture>
                   <source
@@ -448,7 +483,6 @@
                     "
                     sizes="(max-width: 768px) 100vw, 400px"
                     alt="Montaż paneli fotowoltaicznych na dachu budynku"
-
                     width="1200"
                     height="800"
                     loading="lazy"
@@ -485,7 +519,6 @@
                     "
                     sizes="(max-width: 768px) 100vw, 400px"
                     alt="Elektryk montujący lampę sufitową w mieszkaniu"
-
                     width="1200"
                     height="800"
                     loading="lazy"
@@ -494,7 +527,7 @@
               </a>
             </figure>
             <!-- 6 -->
-           <figure class="gallery-item hidden">
+            <figure class="gallery-item hidden">
               <a class="gallery-link" href="../assets/img/realizacje/instalacje-elektryczne-06-1600x1067.jpg">
                 <picture>
                   <source
@@ -522,7 +555,6 @@
                     "
                     sizes="(max-width: 768px) 100vw, 400px"
                     alt="Montaż klimatyzacji w mieszkaniu przez fachowca w obecności domowników"
-
                     width="1200"
                     height="800"
                     loading="lazy"
