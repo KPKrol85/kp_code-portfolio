@@ -19,39 +19,29 @@
   const ENTER_RATIO = 0.12; // próg wejścia: ≥12% elementu w kadrze
   const ROOT_MARGIN = '0px 0px -10% 0px'; // dolny margines — odpala nieco wcześniej
 
-  const observer = new IntersectionObserver(
-    (entries) => {
-      entries.forEach((entry) => {
-        // Dodaj .show, gdy element jest sensownie widoczny
-        if (entry.intersectionRatio > ENTER_RATIO) {
-          entry.target.classList.add('show');
-        }
-        // Usuń .show dopiero, gdy całkowicie zniknie z widoku
-        else if (entry.intersectionRatio === 0) {
-          entry.target.classList.remove('show');
-        }
-      });
-    },
-    {
-      root: null, // viewport
-      rootMargin: ROOT_MARGIN,
-      threshold: [0, ENTER_RATIO, 0.5, 1], // kilka progów dla precyzji
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach((entry) => {
+    if (entry.intersectionRatio > ENTER_RATIO) {
+      // ZMIANA: odłóż dodanie .show do następnej klatki
+      requestAnimationFrame(() => entry.target.classList.add('show'));
+    } else if (entry.intersectionRatio === 0) {
+      entry.target.classList.remove('show');
     }
-  );
+  });
+}, { root: null, rootMargin: ROOT_MARGIN, threshold: [0, ENTER_RATIO, 0.5, 1] });
+
 
   hiddenElements.forEach((el) => observer.observe(el));
 
-  /* --- Initial reveal: sprawdź, co już jest widoczne przy starcie --- */
+  // --- Initial reveal: sprawdź, co już jest widoczne przy starcie ---
   const isInViewport = (el, ratio = ENTER_RATIO) => {
     const r = el.getBoundingClientRect();
     const vh = window.innerHeight || document.documentElement.clientHeight;
     const vw = window.innerWidth || document.documentElement.clientWidth;
     if (r.width === 0 || r.height === 0) return false;
-
     const visibleVert = Math.min(r.bottom, vh) - Math.max(r.top, 0);
     const visibleHorz = Math.min(r.right, vw) - Math.max(r.left, 0);
     if (visibleVert <= 0 || visibleHorz <= 0) return false;
-
     const visibleArea = visibleVert * visibleHorz;
     const totalArea = r.width * r.height;
     return visibleArea / totalArea > ratio;
@@ -63,11 +53,16 @@
     });
   };
 
-  // Odpal jak najszybciej oraz przy typowych wejściach
-  initialReveal();
-  window.addEventListener('load', initialReveal, { once: true });
-  window.addEventListener('pageshow', initialReveal, { once: true });
+  // ZMIANA: odpal dopiero PO pierwszym paintcie (double rAF)
+  requestAnimationFrame(() => {
+    requestAnimationFrame(initialReveal);
+  });
+
+  // Zostaw też „bezpieczniki” na późniejsze wejścia
+  window.addEventListener('load', () => { setTimeout(initialReveal, 0); }, { once: true });
+  window.addEventListener('pageshow', () => { setTimeout(initialReveal, 0); }, { once: true });
 })();
+
 
 /* =======================================================================================@@@@@@@@@@@@@@@@@@@@
    ========== Motyw + przełączanie logo + ikonka hamburgera (desktop+mobile) =============
