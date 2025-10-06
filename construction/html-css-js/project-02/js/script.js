@@ -688,35 +688,6 @@ const observer = new IntersectionObserver((entries) => {
 })();
 
 
-// ===== Scroll Reveal dla .gallery-item.hidden =====
-(() => {
-  const items = document.querySelectorAll('.gallery-item.hidden');
-  if (!items.length) return;
-
-  const reveal = (el) => {
-    el.classList.add('revealed');
-    el.classList.remove('hidden');
-  };
-
-  // Fallback dla prefers-reduced-motion lub braku IntersectionObserver
-  const reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  if (reduceMotion || !('IntersectionObserver' in window)) {
-    items.forEach(reveal);
-    return;
-  }
-
-  const io = new IntersectionObserver((entries, obs) => {
-    entries.forEach((entry) => {
-      if (entry.isIntersecting) {
-        reveal(entry.target);
-        obs.unobserve(entry.target);
-      }
-    });
-  }, { root: null, rootMargin: '0px 0px -10% 0px', threshold: 0.1 });
-
-  items.forEach((el) => io.observe(el));
-})();
-
 
 /* =======================================================================================@@@@@@@@@@@@@@@@@@@@
    ========== Compact Header po scrollu ===================================================
