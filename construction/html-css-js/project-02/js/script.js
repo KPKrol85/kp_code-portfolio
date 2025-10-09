@@ -740,26 +740,62 @@ const observer = new IntersectionObserver((entries) => {
 })();
 
 
+
+
+
 /* =======================================================================================
-   ABOUT – tap = hover na mobile (pointer events)
+   Interactive cards — global tap/hover feedback (pointer-friendly, a11y-safe)
+   Target: .feature, .about-highlights > li, .interactive-card
+   Opt-out: .no-interaction
+   Custom duration: data-tap-ms="300"
    ======================================================================================= */
 (() => {
-  const cards = document.querySelectorAll('.about-highlights > li, .about-highlights .feature');
-  if (!cards.length) return;
+  const SELECTOR = '.feature, .about-highlights > li, .interactive-card';
 
-  cards.forEach((el) => {
-    if (!el.hasAttribute('tabindex')) el.tabIndex = 0; // a11y + :focus
+  // 1) A11y: nadaj tabindex tam, gdzie brak (focus z klawiatury)
+  const setTabIndexes = () => {
+    document.querySelectorAll(SELECTOR).forEach(el => {
+      if (!el.classList.contains('no-interaction') && !el.hasAttribute('tabindex')) {
+        el.tabIndex = 0;
+      }
+    });
+  };
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', setTabIndexes, { once: true });
+  } else {
+    setTabIndexes();
+  }
 
-    const onTap = () => {
-      el.classList.add('touched');
-      clearTimeout(el._tapTimer);
-      el._tapTimer = setTimeout(() => el.classList.remove('touched'), 450);
-    };
+  // Helper: „stuknięcie” z per-element timerem
+  const poke = (el, fallbackMs = 220) => {
+    if (!el || el.classList.contains('no-interaction')) return;
+    const ms = Number(el.getAttribute('data-tap-ms')) || fallbackMs;
+    el.classList.add('touched');
+    clearTimeout(el._tapTimer);
+    el._tapTimer = setTimeout(() => el.classList.remove('touched'), ms);
+  };
 
-    // działa na dotyk/mysz/rysik; lepsze niż 'touchstart'
-    el.addEventListener('pointerdown', onTap, { passive: true });
+  // 2) Delegacja zdarzeń — jedno miejsce obsługi dla całego DOM
+  document.addEventListener('pointerdown', (e) => {
+    const card = e.target.closest(SELECTOR);
+    if (!card) return;
+    poke(card);
+  }, { passive: true });
 
-    // czyścimy stan przy utracie fokusu
-    el.addEventListener('blur', () => el.classList.remove('touched'));
+  // 3) Czyść „touched” przy utracie fokusu (dla klawiatury)
+  document.addEventListener('focusout', (e) => {
+    const card = e.target && e.target.closest ? e.target.closest(SELECTOR) : null;
+    if (card) card.classList.remove('touched');
+  });
+
+  // 4) Wsparcie klawiatury: Enter/Space daje krótkie „tap” (wizualny feedback)
+  document.addEventListener('keydown', (e) => {
+    if (e.key !== 'Enter' && e.key !== ' ') return;
+    const card = document.activeElement && document.activeElement.matches(SELECTOR)
+      ? document.activeElement
+      : null;
+    if (!card) return;
+    // Nie blokujemy klawiszy; tylko feedback
+    poke(card, 180);
   });
 })();

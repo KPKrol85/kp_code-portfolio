@@ -2378,14 +2378,12 @@ body.dark-mode .footer-bottom {
 header + main .breadcrumbs {
   padding-top: clamp(0.5rem, 1.5vw, 1.25rem);
 }
-
 .breadcrumbs {
   max-width: var(--max-w, 1200px);
   margin: 0 auto var(--space-3, 1rem);
   padding: 0 var(--edge-pad, 1rem);
   font-size: 0.9rem;
 }
-
 .breadcrumbs ol {
   list-style: none;
   display: flex;
@@ -2395,18 +2393,13 @@ header + main .breadcrumbs {
   margin: 0;
 }
 
-body.page-service .service-intro,
-body.page-service .service-details,
-body.page-service .gallery-section,
-body.page-service .cta-section {
+body.page-service :is(.service-intro, .service-details, .gallery-section, .cta-section) {
   padding: var(--section-py, 3rem) var(--section-px, 1rem);
   background: transparent;
 }
-
 body.page-service .section--divider {
   border-top: 1px solid color-mix(in srgb, var(--text-dark) 10%, transparent);
 }
-
 body.dark-mode.page-service .section--divider {
   border-top: 1px solid color-mix(in srgb, var(--text-light) 12%, transparent);
 }
@@ -2414,31 +2407,21 @@ body.dark-mode.page-service .section--divider {
 body.page-service .service-intro {
   background: var(--surface-1);
 }
-
-body.page-service .service-details {
+body.page-service :is(.service-details, .cta-section) {
   background: var(--surface-2);
 }
-
 body.page-service .gallery-section {
   background: var(--surface-3);
 }
-
-body.page-service .cta-section {
-  background: var(--surface-2);
-}
-
 body.dark-mode.page-service .service-intro {
   background: var(--surface-3);
 }
-
 body.dark-mode.page-service .service-details {
   background: var(--surface-2);
 }
-
 body.dark-mode.page-service .gallery-section {
   background: var(--surface-1);
 }
-
 body.dark-mode.page-service .cta-section {
   background: var(--surface-2);
 }
@@ -2452,21 +2435,26 @@ body.dark-mode.page-service .cta-section {
   background: transparent !important;
 }
 
+.service-intro__inner .section-title,
+.service-details__inner .section-title,
+body.page-service .cta-section .section-title {
+  color: var(--primary);
+}
+body.dark-mode .service-intro__inner .section-title,
+body.dark-mode .service-details__inner .section-title,
+body.dark-mode.page-service .cta-section .section-title {
+  color: var(--accent);
+}
+
 .service-intro__inner {
   display: grid;
   grid-template-columns: 1fr;
   gap: 1.5rem;
 }
-
 .service-intro__inner .section-title {
   grid-column: 1 / -1;
   text-align: center;
   margin: 0 0 0.5rem;
-  color: var(--primary);
-}
-
-body.dark-mode .service-intro__inner .section-title {
-  color: var(--accent);
 }
 
 .service-intro__media {
@@ -2475,32 +2463,18 @@ body.dark-mode .service-intro__inner .section-title {
   box-shadow: 0 4px 12px color-mix(in srgb, var(--shadow) 10%, transparent);
   transition: box-shadow 0.3s ease;
 }
-
 body.dark-mode .service-intro__media {
   box-shadow: 0 6px 20px color-mix(in srgb, var(--text-light) 8%, transparent);
 }
-
-body.page-service .service-details .features {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-}
-
-body.page-service .service-details .features > li::marker {
-  content: "";
-}
-
 .service-intro__media img {
   width: 100%;
   height: auto;
   display: block;
   transition: transform 0.4s ease;
 }
-
 .service-intro__media:hover {
   box-shadow: 0 8px 22px color-mix(in srgb, var(--shadow) 25%, transparent);
 }
-
 .service-intro__media:hover img {
   transform: scale(1.05);
 }
@@ -2514,7 +2488,6 @@ body.page-service .service-details .features > li::marker {
   margin: 1rem 0 1.25rem;
   padding-left: 1.25rem;
 }
-
 .checklist li {
   margin: 0.35rem 0;
   letter-spacing: 0.05rem;
@@ -2527,22 +2500,7 @@ body.page-service .service-details .features > li::marker {
   color: var(--primary);
   position: relative;
 }
-
 body.dark-mode .service-details__inner h2 {
-  color: var(--accent);
-}
-
-.service-details__inner .section-title {
-  display: block;
-  width: fit-content;
-  max-width: 100%;
-  margin: 0 auto 2rem;
-  text-align: center;
-  color: var(--primary);
-  position: relative;
-}
-
-body.dark-mode .service-details__inner .section-title {
   color: var(--accent);
 }
 
@@ -2551,7 +2509,6 @@ body.dark-mode .service-details__inner .section-title {
   grid-template-columns: 1fr;
   gap: 1rem;
 }
-
 .feature {
   position: relative;
   padding: 1rem;
@@ -2561,29 +2518,26 @@ body.dark-mode .service-details__inner .section-title {
   transition: transform 0.18s ease, box-shadow 0.22s ease, border-color 0.22s ease, background 0.22s ease, color 0.22s ease;
   will-change: transform;
 }
-
 .feature h3 {
   transition: color 0.22s ease;
 }
 
-.feature :is(a, button):focus-visible {
-  outline: 3px solid var(--accent-400);
-  outline-offset: 3px;
-  border-radius: 8px;
+body.page-service .features .feature {
+  box-shadow: 0 2px 8px var(--feature-shadow);
+}
+
+body.page-service .service-details .features {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+body.page-service .service-details .features > li::marker {
+  content: "";
 }
 
 body.page-service .cta-section {
   text-align: center;
 }
-
-body.page-service .cta-section .section-title {
-  color: var(--primary);
-}
-
-body.dark-mode.page-service .cta-section .section-title {
-  color: var(--accent);
-}
-
 body.page-service .cta-row {
   display: flex;
   justify-content: center;
@@ -2591,16 +2545,15 @@ body.page-service .cta-row {
   gap: 1rem;
   margin-top: 0.5rem;
 }
-
 .cta-inner {
   max-width: 1200px;
   margin-inline: auto;
   padding-inline: var(--section-px);
 }
 
-/* ---------------------------------------- */
-/* ===== MQ - min width 900px ============= */
-/* ---------------------------------------- */
+/* ---------------------------------- */
+/* ===== MQ - min width 900px ======= */
+/* ---------------------------------- */
 @media (min-width: 900px) {
   .service-intro__inner {
     grid-template-columns: 520px 1fr;
@@ -2612,9 +2565,9 @@ body.page-service .cta-row {
   }
 }
 
-/* ---------------------------------------- */
-/* ===== MQ - min width 800px ============= */
-/* ---------------------------------------- */
+/* ---------------------------------- */
+/* ===== MQ - min width 800px ======= */
+/* ---------------------------------- */
 @media (min-width: 800px) {
   .features {
     grid-template-columns: repeat(2, 1fr);
@@ -2622,9 +2575,9 @@ body.page-service .cta-row {
   }
 }
 
-/* ---------------------------------------- */
-/* ===== MQ - min width 769px ============= */
-/* ---------------------------------------- */
+/* ---------------------------------- */
+/* ===== MQ - min width 769px ======= */
+/* ---------------------------------- */
 @media (min-width: 769px) {
   .service-intro__media img {
     width: 108%;
@@ -2639,9 +2592,9 @@ body.page-service .cta-row {
   }
 }
 
-/* ---------------------------------------- */
-/* ===== MQ - max width 768px ============= */
-/* ---------------------------------------- */
+/* ---------------------------------- */
+/* ===== MQ - max width 768px ======= */
+/* ---------------------------------- */
 @media (max-width: 768px) {
   header + main .breadcrumbs {
     padding-top: clamp(0.75rem, 2.5vw, 1.5rem);
@@ -2692,47 +2645,6 @@ body.page-service .cta-row {
     justify-content: center;
     gap: 0.75rem;
     margin-top: 1rem;
-  }
-}
-
-/* ---------------------------------------- */
-/* ===== MQ hover / pointer =============== */
-/* -------- none  / coarse ---------------- */
-@media (hover: none) and (pointer: coarse) {
-  .feature:active {
-    transform: translateY(-1px);
-    background: var(--feature-hover-bg);
-    border-color: color-mix(in srgb, var(--feature-accent) 35%, transparent);
-  }
-}
-
-/* ---------------------------------------- */
-/* ===== MQ hover / pointer =============== */
-/* ---------hover / fine------------------- */
-@media (hover: hover) and (pointer: fine) {
-  .feature:hover,
-  .feature:focus-within {
-    transform: translateY(-2px);
-    border-color: color-mix(in srgb, var(--feature-accent) 45%, transparent);
-    box-shadow: 0 8px 22px var(--feature-shadow);
-    background: var(--feature-hover-bg);
-  }
-  .feature:hover h3,
-  .feature:focus-within h3 {
-    color: var(--feature-accent);
-  }
-}
-
-/* ---------------------------------------- */
-/* ===== MQ Prefers reduced motion ======== */
-/* ---------------------------------------- */
-@media (prefers-reduced-motion: reduce) {
-  .feature {
-    transition: border-color 0.2s, background 0.2s, box-shadow 0.2s;
-  }
-  .feature:hover,
-  .feature:focus-within {
-    transform: none;
   }
 }
 
@@ -2973,7 +2885,7 @@ body.dark-mode .career-form textarea {
 }
 
 /* ================================================== */
-/* ===== 13) GLOBAL ACTIVE LINK & BREADCRUMBS STATE = */
+/* ===== 13) STATES + ANIMATIONS ==================== */
 /* ================================================== */
 
 #primaryNav .nav a[aria-current],
@@ -3073,10 +2985,6 @@ body.dark-mode .breadcrumbs a {
   color: currentColor;
   opacity: 0.6;
 }
-
-/* ================================================== */
-/* ===== 14) STATES + ANIMATIONS ==================== */
-/* ================================================== */
 
 body.menu-open {
   overflow: hidden;
@@ -3196,6 +3104,46 @@ body.menu-open #powrot-na-gore {
   scroll-margin-top: var(--header-h);
 }
 
+:where(.feature, .about-highlights > li, .interactive-card):not(.no-interaction) {
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
+}
+
+:where(.feature, .about-highlights > li, .interactive-card):not(.no-interaction) :is(a, button):focus-visible {
+  outline: 3px solid var(--accent-400);
+  outline-offset: 3px;
+  border-radius: 8px;
+}
+
+/* ---------------------------------------- */
+/* ===== MQ hover / pointer =============== */
+/* -------- hover / fine------------------- */
+@media (hover: hover) and (pointer: fine) {
+  :where(.feature, .about-highlights > li, .interactive-card):not(.no-interaction):hover,
+  :where(.feature, .about-highlights > li, .interactive-card):not(.no-interaction):focus-within {
+    transform: translateY(-2px);
+    border-color: color-mix(in srgb, var(--feature-accent) 45%, transparent);
+    box-shadow: 0 8px 22px var(--feature-shadow);
+    background: var(--feature-hover-bg);
+  }
+  :where(.feature, .about-highlights > li, .interactive-card):not(.no-interaction):hover h3,
+  :where(.feature, .about-highlights > li, .interactive-card):not(.no-interaction):focus-within h3 {
+    color: var(--feature-accent);
+  }
+}
+
+/* ---------------------------------------- */
+/* ===== MQ - hover / pointer ============= */
+/* ---------- none  / coarse -------------- */
+@media (hover: none) and (pointer: coarse) {
+  :where(.feature, .about-highlights > li, .interactive-card):not(.no-interaction):active,
+  :where(.feature, .about-highlights > li, .interactive-card):not(.no-interaction).touched {
+    transform: translateY(-1px);
+    background: var(--feature-hover-bg);
+    border-color: color-mix(in srgb, var(--feature-accent) 35%, transparent);
+  }
+}
+
 /* ---------------------------------------- */
 /* ===== MQ Prefers reduced motion ======== */
 /* ---------------------------------------- */
@@ -3203,10 +3151,17 @@ body.menu-open #powrot-na-gore {
   #powrot-na-gore {
     transition: none;
   }
+  :where(.feature, .about-highlights > li, .interactive-card):not(.no-interaction) {
+    transition: border-color 0.2s, background 0.2s, box-shadow 0.2s;
+  }
+  :where(.feature, .about-highlights > li, .interactive-card):not(.no-interaction):hover,
+  :where(.feature, .about-highlights > li, .interactive-card):not(.no-interaction):focus-within {
+    transform: none;
+  }
 }
 
 /* ================================================== */
-/* ===== 15) GLOBAL BUTTONS ========================= */
+/* ===== 14) GLOBAL BUTTONS ========================= */
 /* ========= primary / ghost / icon / hamburger ===== */
 /* ================================================== */
 
