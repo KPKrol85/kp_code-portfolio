@@ -541,10 +541,13 @@ body.dark-mode .theme-toggle .icon-moon {
     padding-left: var(--header-pad-x);
     padding-right: var(--header-pad-x);
   }
+  #primaryNav {
+    display: block;
+  }
 }
 
 /* ---------------------------------------- */
-/* ===== MQ - max width 769px ============= */
+/* ===== MQ - max width 768px ============= */
 /* ---------------------------------------- */
 @media (max-width: 768px) {
   header {
@@ -634,7 +637,6 @@ body.dark-mode .theme-toggle .icon-moon {
     text-decoration: none;
     box-shadow: none;
     transform: none;
-    -webkit-appearance: none;
     appearance: none;
     box-sizing: border-box;
   }
@@ -1892,57 +1894,47 @@ body.dark-mode .contact-form .form-consent a {
 }
 
 .captcha-wrap {
-  width: 100%;
-  max-width: 304px;
-  margin: 0.5rem auto 1rem;
-  padding: 0;
   display: flex;
   justify-content: center;
   align-items: center;
-  overflow: hidden;
+  width: 100%;
+  max-width: 100%;
+  margin: 1rem auto 1.25rem;
+  padding: 0;
+  text-align: center;
 }
 
+.captcha-wrap > div[data-netlify-recaptcha],
 .captcha-wrap .g-recaptcha,
 .captcha-wrap iframe {
-  display: block;
+  display: inline-block;
   margin: 0 auto;
-  transform-origin: 0 0;
-  position: relative;
-}
-
-.captcha-wrap iframe {
-  border: none !important;
-  box-shadow: none !important;
+  transform-origin: center center;
 }
 
 fieldset.form-group.captcha-wrap {
   border: 0;
   padding: 0;
-  margin: 0.75rem 0 1rem;
+  margin: 1rem 0 1.25rem;
   background: transparent;
   box-shadow: none;
-  min-inline-size: 0;
+  text-align: center;
 }
 
-fieldset.form-group.captcha-wrap > legend {
-  position: absolute;
-  inline-size: 1px;
-  block-size: 1px;
-  padding: 0;
-  overflow: hidden;
-  clip: rect(0 0 0 0);
-  clip-path: inset(50%);
-  white-space: nowrap;
-  border: 0;
+.contact-form button[type="submit"],
+.contact-form .btn[type="submit"] {
+  display: block;
+  margin: 0.9rem auto 0;
 }
 
-fieldset.form-group.captcha-wrap::before,
-fieldset.form-group.captcha-wrap::after {
-  display: none !important;
-}
-
-fieldset.form-group.captcha-wrap .g-recaptcha {
-  display: inline-block;
+/* ---------------------------------------- */
+/* ===== MQ - max width 380px ============= */
+/* ---------------------------------------- */
+@media (max-width: 380px) {
+  .contact-form button[type="submit"],
+  .contact-form .btn[type="submit"] {
+    width: 90%;
+  }
 }
 
 /* ---------------------------------------- */
@@ -1950,11 +1942,8 @@ fieldset.form-group.captcha-wrap .g-recaptcha {
 /* ---------------------------------------- */
 @media (max-width: 420px) {
   .captcha-wrap {
-    max-width: 260px;
-    height: auto;
-  }
-  .captcha-wrap :is(.g-recaptcha, iframe) {
-    transform: scale(0.85);
+    transform: scale(0.88);
+    transform-origin: center center;
   }
 }
 
@@ -2434,11 +2423,8 @@ body.dark-mode .service-intro__media {
   letter-spacing: 0.05rem;
 }
 
-/* ten h2 zwykle ma .section-title – trzymamy kolor, usuwamy zbędne centrowanie */
 .service-details__inner h2 {
-  /* margin: 0 auto 2rem; // simplified – auto niepotrzebne, bo centrowanie robi reguła globalna dla .section-title */
   margin: 0 0 2rem;
-  /* text-align: center;   // simplified */
   font-size: 2rem;
   color: var(--primary);
   position: relative;
@@ -2475,6 +2461,7 @@ body.page-service .service-details .features {
   margin: 0;
   padding: 0;
 }
+
 body.page-service .service-details .features > li::marker {
   content: "";
 }
@@ -3300,9 +3287,10 @@ body.dark-mode .icon-btn:not(.hamburger):hover {
   background: color-mix(in srgb, var(--accent) 15%, transparent);
 }
 
+/* === Hamburger only === */
 .hamburger.icon-btn {
   all: unset;
-  display: inline-grid;
+  display: none; /* domyślnie ukryty na desktopie */
   place-items: center;
   width: 40px;
   height: 40px;
@@ -3324,44 +3312,39 @@ body.dark-mode .icon-btn:not(.hamburger):hover {
   height: 26px;
   transition: opacity 0.18s ease, transform 0.18s ease;
 }
-
 #hamburgerIcon {
   transform: translate(var(--icon-nudge-x, 0), var(--icon-nudge-y, 0));
 }
-
 .hamburger .icon-menu {
   opacity: 1;
   transform: translate(var(--icon-nudge-x, 0), var(--icon-nudge-y, 0)) scale(1);
 }
-
 .hamburger .icon-close {
   opacity: 0;
   transform: translate(var(--icon-nudge-x, 0), var(--icon-nudge-y, 0)) scale(0.9);
 }
-
 .hamburger.active .icon-menu {
   opacity: 0;
   transform: translate(var(--icon-nudge-x, 0), var(--icon-nudge-y, 0)) scale(0.9) rotate(90deg);
 }
-
 .hamburger.active .icon-close {
   opacity: 1;
   transform: translate(var(--icon-nudge-x, 0), var(--icon-nudge-y, 0)) scale(1);
 }
 
 /* ---------------------------------------- */
-/* ===== MQ - min width 1025px ============ */
+/* ===== MQ - min width 769px ============ */
 /* ---------------------------------------- */
-@media (min-width: 1025px) {
+@media (min-width: 769px) {
   .hamburger.icon-btn {
     display: none;
   }
 }
 
 /* ---------------------------------------- */
-/* ===== MQ - max width 1024px ============ */
+/* ===== MQ - max width 768px ============ */
 /* ---------------------------------------- */
-@media (max-width: 1024px) {
+@media (max-width: 768px) {
   .hamburger.icon-btn {
     display: inline-grid;
   }
