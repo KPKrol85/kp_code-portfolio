@@ -3115,6 +3115,17 @@ body.menu-open #powrot-na-gore {
   border-radius: 8px;
 }
 
+/* Podbij specyficzność dla .touched, aby wygrać z .show/.hidden */
+.feature { pointer-events: auto; } /* na wszelki wypadek */
+.feature.touched,
+.about-highlights > li.touched,
+.interactive-card.touched {
+  transform: translateY(-1px);
+  background: var(--feature-hover-bg);
+  border-color: color-mix(in srgb, var(--feature-accent) 35%, transparent);
+  box-shadow: 0 8px 22px var(--feature-shadow);
+}
+
 /* ---------------------------------------- */
 /* ===== MQ hover / pointer =============== */
 /* -------- hover / fine------------------- */

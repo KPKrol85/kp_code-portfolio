@@ -744,15 +744,18 @@ const observer = new IntersectionObserver((entries) => {
 
 
 /* =======================================================================================
-   Interactive cards — global tap/hover feedback (pointer-friendly, a11y-safe)
-   Target: .feature, .about-highlights > li, .interactive-card
+   Interactive cards — global tap/hover feedback (pointer/touch/mouse, a11y-safe)
+   Targets: .feature, .about-highlights > li, .interactive-card
    Opt-out: .no-interaction
-   Custom duration: data-tap-ms="300"
+   Custom duration: data-tap-ms="450" (na karcie LUB na dowolnym przodku)
    ======================================================================================= */
 (() => {
   const SELECTOR = '.feature, .about-highlights > li, .interactive-card';
 
-  // 1) A11y: nadaj tabindex tam, gdzie brak (focus z klawiatury)
+  // znacznik debug (możesz usunąć po testach)
+  document.documentElement.setAttribute('data-interactive-cards', 'loaded');
+
+  // focus z klawiatury
   const setTabIndexes = () => {
     document.querySelectorAll(SELECTOR).forEach(el => {
       if (!el.classList.contains('no-interaction') && !el.hasAttribute('tabindex')) {
@@ -766,36 +769,66 @@ const observer = new IntersectionObserver((entries) => {
     setTabIndexes();
   }
 
-  // Helper: „stuknięcie” z per-element timerem
-  const poke = (el, fallbackMs = 220) => {
+  // pobieranie czasu z elementu lub przodka (np. <ol class="features" data-tap-ms="450">)
+  const getTapMs = (el, fallback = 400) => {
+    if (!el) return fallback;
+    const own = el.getAttribute('data-tap-ms');
+    if (own) return Number(own) || fallback;
+    const parentWith = el.closest('[data-tap-ms]');
+    return parentWith ? (Number(parentWith.getAttribute('data-tap-ms')) || fallback) : fallback;
+  };
+
+  // wizualny "tap" z per-element timerem
+  const poke = (el) => {
     if (!el || el.classList.contains('no-interaction')) return;
-    const ms = Number(el.getAttribute('data-tap-ms')) || fallbackMs;
+    const ms = getTapMs(el, 400);
     el.classList.add('touched');
     clearTimeout(el._tapTimer);
     el._tapTimer = setTimeout(() => el.classList.remove('touched'), ms);
   };
 
-  // 2) Delegacja zdarzeń — jedno miejsce obsługi dla całego DOM
-  document.addEventListener('pointerdown', (e) => {
-    const card = e.target.closest(SELECTOR);
+  // delegacja + guard przed ghost clickami
+  let lastTouchTs = 0;
+  const now = () => performance.now();
+
+  const onPointerDown = (evt) => {
+    const card = evt.target.closest(SELECTOR);
     if (!card) return;
     poke(card);
-  }, { passive: true });
+  };
 
-  // 3) Czyść „touched” przy utracie fokusu (dla klawiatury)
+  const onTouchStart = (evt) => {
+    lastTouchTs = now();
+    const card = evt.target.closest(SELECTOR);
+    if (!card) return;
+    poke(card);
+  };
+
+  const onMouseDown = (evt) => {
+    if (now() - lastTouchTs < 500) return; // pomiń klik ducha
+    const card = evt.target.closest(SELECTOR);
+    if (!card) return;
+    poke(card);
+  };
+
+  document.addEventListener('pointerdown', onPointerDown, { passive: true });
+  document.addEventListener('touchstart', onTouchStart, { passive: true });
+  document.addEventListener('mousedown', onMouseDown, { passive: true });
+
   document.addEventListener('focusout', (e) => {
-    const card = e.target && e.target.closest ? e.target.closest(SELECTOR) : null;
+    const card = e.target?.closest?.(SELECTOR);
     if (card) card.classList.remove('touched');
   });
 
-  // 4) Wsparcie klawiatury: Enter/Space daje krótkie „tap” (wizualny feedback)
   document.addEventListener('keydown', (e) => {
     if (e.key !== 'Enter' && e.key !== ' ') return;
-    const card = document.activeElement && document.activeElement.matches(SELECTOR)
-      ? document.activeElement
-      : null;
-    if (!card) return;
-    // Nie blokujemy klawiszy; tylko feedback
-    poke(card, 180);
+    const card = document.activeElement?.matches?.(SELECTOR) ? document.activeElement : null;
+    if (card) {
+      // krótszy feedback na klawiaturze
+      const ms = Math.min(getTapMs(card, 400), 250);
+      card.classList.add('touched');
+      clearTimeout(card._tapTimer);
+      card._tapTimer = setTimeout(() => card.classList.remove('touched'), ms);
+    }
   });
 })();
