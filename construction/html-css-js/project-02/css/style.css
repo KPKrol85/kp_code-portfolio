@@ -1,29 +1,31 @@
-/* ======================================================================
-   Autor: KP_Code (Front-end)
-   Aktualizacja: 2025-09-25
-   ======================================================================
-   STYLE — Budownictwo / Remonty — globalny arkusz (PROD)
-   Struktura:
-   ======================================================================
-   00) RESET + ZMIENNE + UTYLITY
-   01) BAZA TYPOGRAFIA + LAYOUT
-   02) NAGŁÓWEK
-   03) HERO
-   04) O NAS
-   05) USŁUGI
-   06) OPINIE
-   07) GALERIA
-   08) FAQ
-   09) KONTAKT
-   10) FOOTER
-   11) STANY + ANIMACJE + PRZYCISKI GLOBALNE
-   12) PODSTRONY USŁUGI
-   13) PODSTRONY LEGAL
-   ====================================================================== */
+/* ==================================================
+   ===== Autor: KP_Code (Front-end)
+   ===== Aktualizacja: 2025-10-07
+   ==================================================
+   ===== CSS Stylesheet
+   ===== Structure Overview
+   ==================================================
+   ===== 00) GLOBAL VARIABLES
+   ===== 01) BASE TYPOGRAPHY + LAYOUT
+   ===== 02) HEADER
+   ===== 03) HERO
+   ===== 04) ABOUT
+   ===== 05) SERVICES
+   ===== 06) TESTIMONIALS
+   ===== 07) GALLERY
+   ===== 08) FAQ
+   ===== 09) CONTACT
+   ===== 10) FOOTER
+   ===== 11) SERVICE SUBPAGES
+   ===== 12) LEGAL SUBPAGES
+   ===== 13) STATES + ANIMATIONS
+   ===== 14) GLOBAL BUTTONS
+   ===== 99) FEATURE SUPPORT & FALLBACKS
+   ================================================== */
 
-/* ===============================================================
-   ========== 00) RESET + ZMIENNE + UTILITY ======================
-   =============================================================== */
+/* ================================================== */
+/* ===== 00) GLOBAL VARIABLES ======================= */
+/* ================================================== */
 
 :root {
   --primary: #0f4c81;
@@ -96,15 +98,49 @@ body.dark-mode {
   --logo-scale: 1;
 }
 
+:root {
+  --nav-drop-gap: clamp(6px, 1.5vw, 12px);
+}
+
 body.header-compact {
   --header-h: 40px;
   --header-pad-y: 3px;
   --logo-scale: 0.86;
 }
 
-:root {
-  --nav-drop-gap: clamp(6px, 1.5vw, 12px);
+/* ---------------------------------------- */
+/* ===== MQ - min width 769px ============= */
+/* ---------------------------------------- */
+@media (min-width: 769px) {
+  :root {
+    --header-pad-x: 28px;
+  }
 }
+
+/* ---------------------------------------- */
+/* ===== MQ - max width 769px ============= */
+/* ---------------------------------------- */
+@media (max-width: 768px) {
+  :root {
+    --header-h: 46px;
+    --header-pad-y: 6px;
+    --edge-pad: 12px;
+    --tap-pad: 8px;
+    --logo-optical: 2px;
+    --burger-optical: -10px;
+    --section-py: 3rem;
+    --section-px: 1rem;
+  }
+  body.header-compact {
+    --header-h: 40px;
+    --header-pad-y: 2px;
+    --logo-scale: 0.9;
+  }
+}
+
+/* ================================================== */
+/* ===== 01) BASE TYPOGRAPHY + LAYOUT =============== */
+/* ================================================== */
 
 .visually-hidden {
   position: absolute !important;
@@ -162,51 +198,8 @@ body.header-compact {
   border: 0;
 }
 
-/* ===== Prefers reduced motion ===== */
-@media (prefers-reduced-motion: reduce) {
-  .no-motion {
-    transition: none !important;
-    animation: none !important;
-  }
-}
-
-/* ===== Media queries ( min-width: 769px) ===== */
-@media (min-width: 769px) {
-  :root {
-    --header-pad-x: 28px;
-  }
-}
-
-/* ===== Media queries ( max-width: 768px) ===== */
-@media (max-width: 768px) {
-  :root {
-    --header-h: 46px;
-    --header-pad-y: 6px;
-    --edge-pad: 12px;
-    --tap-pad: 8px;
-    --logo-optical: 2px;
-    --burger-optical: -10px;
-    --section-py: 3rem;
-    --section-px: 1rem;
-  }
-  body.header-compact {
-    --header-h: 40px;
-    --header-pad-y: 2px;
-    --logo-scale: 0.9;
-  }
-}
-
-/* ===============================================================
-   ========== 01) BAZA TYPOGRAFIA LAYOUT =========================
-   =============================================================== */
-
 html {
   scroll-behavior: smooth;
-}
-
-section {
-  scroll-margin-top: clamp(64px, 8vh, 96px);
-  padding: var(--section-py) var(--section-px);
 }
 
 body {
@@ -256,6 +249,11 @@ body.dark-mode .lead {
   opacity: 0.9;
 }
 
+section {
+  scroll-margin-top: clamp(64px, 8vh, 96px);
+  padding: var(--section-py) var(--section-px);
+}
+
 .section-title {
   position: relative;
   display: inline-block;
@@ -283,23 +281,31 @@ body.dark-mode .lead {
   color: var(--text-light);
 }
 
-/* ===== Keyframes ===== */
+/* ---------------------------------------- */
+/* ===== Keyframes ======================== */
+/* ----- underlineGrow -------------------- */
 @keyframes underlineGrow {
   to {
     transform: translateX(-50%) scaleX(1);
   }
 }
 
-/* ===== Prefers reduced motion ===== */
+/* ---------------------------------------- */
+/* ===== MQ Prefers reduced motion ======== */
+/* ---------------------------------------- */
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
   }
+  .no-motion {
+    transition: none !important;
+    animation: none !important;
+  }
 }
 
-/* ===============================================================
-   ========== 02) NAGŁÓWEK =======================================
-   =============================================================== */
+/* ================================================== */
+/* ===== 02) HEADER ================================= */
+/* ================================================== */
 
 header {
   display: flex;
@@ -527,7 +533,9 @@ body.dark-mode .theme-toggle .icon-moon {
   outline: 3px solid color-mix(in srgb, var(--accent) 60%, white);
 }
 
-/* ===== Desktop paddings */
+/* ---------------------------------------- */
+/* ===== MQ - min width 769px ============= */
+/* ---------------------------------------- */
 @media (min-width: 769px) {
   header {
     padding-left: var(--header-pad-x);
@@ -535,7 +543,9 @@ body.dark-mode .theme-toggle .icon-moon {
   }
 }
 
-/* ===== Mobile / menu ===== */
+/* ---------------------------------------- */
+/* ===== MQ - max width 769px ============= */
+/* ---------------------------------------- */
 @media (max-width: 768px) {
   header {
     padding-top: var(--header-pad-y);
@@ -665,7 +675,9 @@ body.dark-mode .theme-toggle .icon-moon {
   }
 }
 
-/* ===== Media query ( max-width: 420px ) ===== */
+/* ---------------------------------------- */
+/* ===== MQ - max width 420px ============= */
+/* ---------------------------------------- */
 @media (max-width: 420px) {
   header {
     backdrop-filter: none;
@@ -679,19 +691,9 @@ body.dark-mode .theme-toggle .icon-moon {
   }
 }
 
-/* ===== Fallback gdy brak backdrop-filter ===== */
-@supports not (backdrop-filter: blur(1px)) {
-  header {
-    background: linear-gradient(135deg, color-mix(in srgb, var(--bg-light) 92%, var(--primary) 8%) 0%, color-mix(in srgb, var(--bg-light) 96%, var(--bg-dark) 4%) 100%);
-    border-bottom-color: color-mix(in srgb, var(--text-dark) 14%, transparent);
-  }
-  body.dark-mode header {
-    background: linear-gradient(135deg, color-mix(in srgb, var(--bg-dark) 92%, transparent) 0%, color-mix(in srgb, var(--bg-dark) 98%, transparent) 100%);
-    border-bottom-color: color-mix(in srgb, var(--text-light) 18%, transparent);
-  }
-}
-
-/* ===== Prefers reduced motion ===== */
+/* ---------------------------------------- */
+/* ===== MQ Prefers reduced motion ======== */
+/* ---------------------------------------- */
 @media (prefers-reduced-motion: reduce) {
   header,
   #primaryNav .nav a,
@@ -706,9 +708,9 @@ body.dark-mode .theme-toggle .icon-moon {
   }
 }
 
-/* ===============================================================
-   ========== 03) HERO ===========================================
-   =============================================================== */
+/* ================================================== */
+/* ===== 03) HERO =================================== */
+/* ================================================== */
 
 .hero {
   position: relative;
@@ -773,7 +775,9 @@ body.dark-mode .hero::before {
   color: var(--accent-400);
 }
 
-/* ==== Media queries ( max - width: 768px ) ==== */
+/* ---------------------------------------- */
+/* ===== MQ - max width 768px ============= */
+/* ---------------------------------------- */
 @media (max-width: 768px) {
   .hero {
     height: 56vh;
@@ -790,7 +794,9 @@ body.dark-mode .hero::before {
   }
 }
 
-/* ==== Media queries ( max - width: 480px ) ==== */
+/* ---------------------------------------- */
+/* ===== MQ - max width 480px ============= */
+/* ---------------------------------------- */
 @media (max-width: 480px) {
   .hero {
     height: 65vh;
@@ -804,19 +810,9 @@ body.dark-mode .hero::before {
   }
 }
 
-/* ===== Supports not ===== */
-@supports not (backdrop-filter: blur(1px)) {
-  .hero-content h1 {
-    background: color-mix(in srgb, var(--bg-dark) 45%, transparent);
-  }
-}
-@supports not (overflow: clip) {
-  .hero {
-    overflow: hidden;
-  }
-}
-
-/* ===== Prefers reduced motion ===== */
+/* ---------------------------------------- */
+/* ===== MQ Prefers reduced motion ======== */
+/* ---------------------------------------- */
 @media (prefers-reduced-motion: reduce) {
   .hero-content h1 {
     animation: none;
@@ -829,9 +825,9 @@ body.dark-mode .hero::before {
   }
 }
 
-/* ===============================================================
-   ========== 03) O NAS ==========================================
-   =============================================================== */
+/* ================================================== */
+/* ===== 04) ABOUT ================================== */
+/* ================================================== */
 
 .about-section {
   text-align: center;
@@ -908,9 +904,10 @@ body.dark-mode .about-section .section-title {
   box-shadow: 0 2px 8px var(--feature-shadow);
   transition: transform 0.18s ease, box-shadow 0.22s ease, border-color 0.22s ease, background 0.22s ease, color 0.22s ease;
   will-change: transform;
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
 }
 
-/* Typografia w kartach */
 .about-highlights .feature strong,
 .about-highlights > li > strong {
   display: block;
@@ -926,6 +923,33 @@ body.dark-mode .about-section .section-title {
   font-size: 0.95rem;
   line-height: 1.5;
   opacity: 0.9;
+}
+
+.about-highlights > li:focus,
+.about-highlights > li:focus-visible,
+.about-highlights > li.touched,
+.about-highlights .feature:focus,
+.about-highlights .feature:focus-visible,
+.about-highlights .feature.touched {
+  transform: translateY(-2px);
+  border-color: color-mix(in srgb, var(--feature-accent) 45%, transparent);
+  box-shadow: 0 8px 22px var(--feature-shadow);
+  background: var(--feature-hover-bg);
+  outline: none;
+}
+
+.about-highlights > li:focus strong,
+.about-highlights > li:focus-visible strong,
+.about-highlights > li.touched strong,
+.about-highlights .feature:focus strong,
+.about-highlights .feature:focus-visible strong,
+.about-highlights .feature.touched strong {
+  color: var(--feature-accent);
+}
+
+.about-highlights > li:focus-visible,
+.about-highlights .feature:focus-visible {
+  box-shadow: 0 0 0 2px color-mix(in srgb, var(--feature-accent) 30%, transparent) inset, 0 8px 22px var(--feature-shadow);
 }
 
 .about-media .frame {
@@ -962,7 +986,9 @@ body.dark-mode .about-media .frame {
   gap: 1rem;
 }
 
-/* ===== Media queries ( max-width: 900px ) ===== */
+/* ---------------------------------------- */
+/* ===== MQ - max width 900px ============= */
+/* ---------------------------------------- */
 @media (max-width: 900px) {
   .about-grid {
     grid-template-columns: 1fr;
@@ -973,7 +999,9 @@ body.dark-mode .about-media .frame {
   }
 }
 
-/* ===== Media queries ( hover ) ===== */
+/* ---------------------------------------- */
+/* ===== MQ - hover / pointer ============= */
+/* ---------- hover / fine ---------------- */
 @media (hover: hover) and (pointer: fine) {
   .about-highlights > li:hover,
   .about-highlights > li:focus-within,
@@ -992,7 +1020,9 @@ body.dark-mode .about-media .frame {
   }
 }
 
-/* ===== Media queries ( no hover ) ===== */
+/* ---------------------------------------- */
+/* ===== MQ - hover / pointer ============= */
+/* ---------- none  / coarse -------------- */
 @media (hover: none) and (pointer: coarse) {
   .about-highlights > li:active,
   .about-highlights .feature:active {
@@ -1002,7 +1032,9 @@ body.dark-mode .about-media .frame {
   }
 }
 
-/* ===== Media queries ( prefers reduced motion ) ==== */
+/* ---------------------------------------- */
+/* ===== MQ Prefers reduced motion ======== */
+/* ---------------------------------------- */
 @media (prefers-reduced-motion: reduce) {
   .about-highlights > li,
   .about-highlights .feature {
@@ -1016,9 +1048,9 @@ body.dark-mode .about-media .frame {
   }
 }
 
-/* ===============================================================
-   ========== 04) USŁUGI  ========================================
-   =============================================================== */
+/* ================================================== */
+/* ===== 05) SERVICES =============================== */
+/* ================================================== */
 
 .services-section {
   background: var(--surface-1);
@@ -1128,7 +1160,9 @@ body.dark-mode .service a:focus h3 {
   color: var(--accent-400);
 }
 
-/* ===== Media queries ( max-width: 768px) ===== */
+/* ---------------------------------------- */
+/* ===== MQ - max width 768px ============= */
+/* ---------------------------------------- */
 @media (max-width: 768px) {
   .services {
     gap: 1.25rem;
@@ -1138,9 +1172,9 @@ body.dark-mode .service a:focus h3 {
   }
 }
 
-/* ===============================================================
-   ========== 05) OPINIE =========================================
-   =============================================================== */
+/* ================================================== */
+/* ===== 06) TESTIMONIALS =========================== */
+/* ================================================== */
 
 .testimonials-section {
   padding: 4rem 2rem;
@@ -1227,38 +1261,39 @@ body.dark-mode .client-info h4 {
   color: var(--accent-400);
 }
 
-/* ===== Media queries ( max-width: 768px) ===== */
+/* ---------------------------------------- */
+/* ===== MQ - max width 768px ============= */
+/* ---------------------------------------- */
 @media (max-width: 768px) {
   .testimonials-section {
     padding: 3rem 1rem;
   }
-
   .testimonials-container {
     grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
     gap: 1.25rem;
   }
-
   .testimonials-section .section-title {
     font-size: 1.75rem;
     margin-bottom: 2rem;
   }
 }
 
-/* ===== Prefers reduced motion ===== */
+/* ---------------------------------------- */
+/* ===== MQ Prefers reduced motion ======== */
+/* ---------------------------------------- */
 @media (prefers-reduced-motion: reduce) {
   .testimonial-card {
     transition: none;
   }
-
   .testimonial-card:hover {
     transform: none;
     box-shadow: 0 4px 10px color-mix(in srgb, black 12%, transparent);
   }
 }
 
-/* ===============================================================
-   ========== 06) GALERIA ========================================
-   =============================================================== */
+/* ================================================== */
+/* ===== 07) GALLERY ================================ */
+/* ================================================== */
 
 .gallery-section {
   text-align: center;
@@ -1370,8 +1405,6 @@ body.dark-mode .gallery-item {
   opacity: 1;
 }
 
-/* ===== LIGHTBOX =====*/
-
 .lb {
   position: fixed;
   inset: 0;
@@ -1460,7 +1493,9 @@ body.lb-open {
   overflow: hidden;
 }
 
-/* ===== Media Queries ( max-width: 600px ) ===== */
+/* ---------------------------------------- */
+/* ===== MQ - max width 600px ============= */
+/* ---------------------------------------- */
 @media (max-width: 600px) {
   .lb__figure {
     display: flex;
@@ -1480,7 +1515,9 @@ body.lb-open {
   }
 }
 
-/* ===== Media Queries ( max-width: 480px ) ===== */
+/* ---------------------------------------- */
+/* ===== MQ - max width 480px ============= */
+/* ---------------------------------------- */
 @media (max-width: 480px) {
   .lb__close {
     width: 36px;
@@ -1491,7 +1528,9 @@ body.lb-open {
   }
 }
 
-/* ===== Media Queries ( orientation: landscape ) ===== */
+/* ---------------------------------------- */
+/* ===== MQ - orientation =================== */
+/* ---------- landscape ------------------- */
 @media (orientation: landscape) {
   .lb__figure {
     max-height: 100vh;
@@ -1502,28 +1541,20 @@ body.lb-open {
   }
 }
 
-/* ===== Media Queries ( orientation: landscape and max-width: 900px ) ===== */
+/* ---------------------------------------- */
+/* ===== MQ - orientation ================= */
+/* ---------- landscape ------------------- */
+/* ---------- max width 900px ------------- */
+/* ---------- max height 480px ------------ */
 @media (orientation: landscape) and (max-width: 900px), (orientation: landscape) and (max-height: 480px) {
   .lb__caption {
     display: none;
   }
 }
 
-/* ===== Media Queries ( prefers-reduced-motion: no-preference ) ===== */
-@media (prefers-reduced-motion: no-preference) {
-  .lb__figure {
-    transform: scale(0.985);
-    opacity: 0;
-    transition: transform 0.18s ease, opacity 0.18s ease;
-  }
-
-  .lb[aria-hidden="false"] .lb__figure {
-    transform: scale(1);
-    opacity: 1;
-  }
-}
-
-/* ===== Media Queries ( prefers-reduced-motion: reduce ) ===== */
+/* ---------------------------------------- */
+/* ===== MQ Prefers reduced motion ======== */
+/* ---------------------------------------- */
 @media (prefers-reduced-motion: reduce) {
   .gallery-item img {
     transition: none;
@@ -1543,9 +1574,24 @@ body.lb-open {
   }
 }
 
-/* ===============================================================
-   ========== 07) FAQ ===========================================
-   =============================================================== */
+/* ---------------------------------------- */
+/* ===== MQ Prefers reduced motion ======== */
+/* -------- no preference ----------------- */
+@media (prefers-reduced-motion: no-preference) {
+  .lb__figure {
+    transform: scale(0.985);
+    opacity: 0;
+    transition: transform 0.18s ease, opacity 0.18s ease;
+  }
+  .lb[aria-hidden="false"] .lb__figure {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+/* ================================================== */
+/* ===== 08) FAQ ==================================== */
+/* ================================================== */
 
 .faq-section {
   padding: 4rem 2rem;
@@ -1673,7 +1719,9 @@ body.dark-mode .faq-a {
   color: color-mix(in srgb, var(--text-light) 92%, black 8%);
 }
 
-/* ===== Media queries ( max-width: 768px ) ===== */
+/* ---------------------------------------- */
+/* ===== MQ - max width 768px ============= */
+/* ---------------------------------------- */
 @media (max-width: 768px) {
   .faq-section {
     padding: 3rem 1rem;
@@ -1683,15 +1731,9 @@ body.dark-mode .faq-a {
   }
 }
 
-/* ===== Prefers reduced motion ===== */
-@media (prefers-reduced-motion: reduce) {
-  .faq-item,
-  .faq-q::after {
-    transition: none;
-  }
-}
-
-/* ===== Media queries ( hover: hover ) ===== */
+/* ---------------------------------------- */
+/* ===== MQ hover / pointer =============== */
+/* -------- hover / fine------------------- */
 @media (hover: hover) and (pointer: fine) {
   .faq-item:hover,
   .faq-item:focus-within {
@@ -1702,9 +1744,19 @@ body.dark-mode .faq-a {
   }
 }
 
-/* ==============================================================
-   ========== 08) KONTAKT =======================================
-   ============================================================== */
+/* ---------------------------------------- */
+/* ===== MQ Prefers reduced motion ======== */
+/* ---------------------------------------- */
+@media (prefers-reduced-motion: reduce) {
+  .faq-item,
+  .faq-q::after {
+    transition: none;
+  }
+}
+
+/* ================================================== */
+/* ===== 09) CONTACT ================================ */
+/* ================================================== */
 
 .contact-form-section {
   padding: 2rem 2rem;
@@ -1973,7 +2025,9 @@ fieldset.form-group.captcha-wrap .g-recaptcha {
   display: inline-block;
 }
 
-/* ===== Media queries ( max-width: 420px ) ===== */
+/* ---------------------------------------- */
+/* ===== MQ - max width 420px ============= */
+/* ---------------------------------------- */
 @media (max-width: 420px) {
   .captcha-wrap {
     max-width: 260px;
@@ -1984,9 +2038,9 @@ fieldset.form-group.captcha-wrap .g-recaptcha {
   }
 }
 
-/* ===============================================================
-   ========== 09) FOOTER =========================================
-   =============================================================== */
+/* ================================================== */
+/* ===== 10) FOOTER ================================= */
+/* ================================================== */
 
 footer {
   background: #2c2c2c;
@@ -2268,15 +2322,18 @@ body.dark-mode .footer-bottom {
   margin: 0;
 }
 
-/* ===== Media Queries ( prefers-reduced-motion: reduce ) ===== */
-@media (prefers-reduced-motion: reduce) {
-  footer[role="contentinfo"] a:not(.social-icon):not(.gmaps-ico)::after,
-  .footer-bottom a::after {
-    transition: none;
+/* ---------------------------------------- */
+/* ===== MQ - min width 1200px ============ */
+/* ---------------------------------------- */
+@media (min-width: 1200px) {
+  .footer-content {
+    gap: 2.5rem;
   }
 }
 
-/* ===== Media Queries ( min-width: 1025px ) ===== */
+/* ---------------------------------------- */
+/* ===== MQ - min width 1025px ============ */
+/* ---------------------------------------- */
 @media (min-width: 1025px) {
   .footer-content {
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
@@ -2304,145 +2361,19 @@ body.dark-mode .footer-bottom {
   }
 }
 
-/* ===== Media Queries ( min-width: 1200px ) ===== */
-@media (min-width: 1200px) {
-  .footer-content {
-    gap: 2.5rem;
-  }
-}
-
-/* ===============================================================
-   ========== 10) STANY + ANIMACJE + PRZYCISKI ===================
-   =============================================================== */
-
-body.menu-open {
-  overflow: hidden;
-}
-
-.skip-link {
-  position: absolute;
-  left: -9999px;
-  top: auto;
-  width: 1px;
-  height: 1px;
-  overflow: hidden;
-}
-
-.skip-link:focus {
-  left: 1rem;
-  top: 1rem;
-  width: auto;
-  height: auto;
-  background: var(--accent-600);
-  color: #fff;
-  padding: 0.5rem 0.75rem;
-  border-radius: 0.5rem;
-  z-index: 1000;
-  outline: 3px solid var(--accent-400);
-  outline-offset: 2px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-}
-
-.hidden {
-  opacity: 0;
-  transform: translateY(50px);
-  transition: all 0.6s ease;
-}
-
-.show {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-#powrot-na-gore {
-  position: fixed;
-  bottom: 20px;
-  right: 20px;
-  width: 40px;
-  height: 40px;
-  display: grid;
-  place-items: center;
-  border: 0;
-  border-radius: 50%;
-  cursor: pointer;
-  z-index: 150;
-  background: rgba(40, 40, 40, 0.45);
-  backdrop-filter: blur(6px) saturate(1.2);
-  -webkit-backdrop-filter: blur(6px) saturate(1.2);
-  color: var(--text-light);
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.25);
-  opacity: 0;
-  visibility: hidden;
-  pointer-events: none;
-  transform: translateY(6px) scale(0.96);
-  transition: opacity 0.25s ease, transform 0.25s ease, background 0.3s ease, box-shadow 0.3s ease, visibility 0s linear 0.25s;
-}
-
-#powrot-na-gore.is-visible {
-  opacity: 1;
-  visibility: visible;
-  pointer-events: auto;
-  transform: translateY(0) scale(1);
-  transition-delay: 0s;
-}
-
-#powrot-na-gore:hover {
-  background: rgba(40, 40, 40, 0.65);
-  transform: translateY(-2px);
-  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.3);
-}
-
-#powrot-na-gore:focus-visible {
-  outline: 3px solid var(--accent-400);
-  outline-offset: 4px;
-}
-
-#powrot-na-gore:active {
-  background: rgba(40, 40, 40, 0.8);
-  transform: scale(0.94);
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.25);
-}
-
-body.menu-open #powrot-na-gore {
-  opacity: 0;
-  visibility: hidden;
-  pointer-events: none;
-}
-
-.service,
-.testimonial-card,
-.gallery-item {
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
-}
-
-.service:hover,
-.testimonial-card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 8px 18px rgba(0, 0, 0, 0.16);
-}
-
-:focus-visible {
-  outline: 2px solid var(--accent);
-  outline-offset: 2px;
-}
-
-#uslugi,
-#galeria,
-#onas,
-#kontakt {
-  scroll-margin-top: var(--header-h);
-}
-
-/* ===== Prefers Reduced Motion : reduce ===== */
+/* ---------------------------------------- */
+/* ===== MQ Prefers reduced motion ======== */
+/* ---------------------------------------- */
 @media (prefers-reduced-motion: reduce) {
-  #powrot-na-gore {
+  footer[role="contentinfo"] a:not(.social-icon):not(.gmaps-ico)::after,
+  .footer-bottom a::after {
     transition: none;
   }
 }
 
-/* ===============================================================
-   ========== 11) PODSTRONY USŁUGI ===============================
-   =============================================================== */
+/* ================================================== */
+/* ===== 11) SERVICE SUBPAGES ======================= */
+/* ================================================== */
 
 header + main .breadcrumbs {
   padding-top: clamp(0.5rem, 1.5vw, 1.25rem);
@@ -2667,7 +2598,50 @@ body.page-service .cta-row {
   padding-inline: var(--section-px);
 }
 
-/* ===== Media queries ( max-width: 768px ) ====== */
+/* ---------------------------------------- */
+/* ===== MQ - min width 900px ============= */
+/* ---------------------------------------- */
+@media (min-width: 900px) {
+  .service-intro__inner {
+    grid-template-columns: 520px 1fr;
+    align-items: center;
+    gap: 2rem;
+  }
+  .service-intro__inner .section-title {
+    grid-column: 1 / -1;
+  }
+}
+
+/* ---------------------------------------- */
+/* ===== MQ - min width 800px ============= */
+/* ---------------------------------------- */
+@media (min-width: 800px) {
+  .features {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.25rem;
+  }
+}
+
+/* ---------------------------------------- */
+/* ===== MQ - min width 769px ============= */
+/* ---------------------------------------- */
+@media (min-width: 769px) {
+  .service-intro__media img {
+    width: 108%;
+    max-width: none;
+    margin-left: -4%;
+  }
+  .service-intro__inner {
+    text-align: initial;
+  }
+  .service-intro__copy {
+    text-align: left;
+  }
+}
+
+/* ---------------------------------------- */
+/* ===== MQ - max width 768px ============= */
+/* ---------------------------------------- */
 @media (max-width: 768px) {
   header + main .breadcrumbs {
     padding-top: clamp(0.75rem, 2.5vw, 1.5rem);
@@ -2721,42 +2695,9 @@ body.page-service .cta-row {
   }
 }
 
-/* ===== Media queries ( min-width: 769px ) ====== */
-@media (min-width: 769px) {
-  .service-intro__media img {
-    width: 108%;
-    max-width: none;
-    margin-left: -4%;
-  }
-  .service-intro__inner {
-    text-align: initial;
-  }
-  .service-intro__copy {
-    text-align: left;
-  }
-}
-
-/* ===== Media queries ( min-width: 800px ) ====== */
-@media (min-width: 800px) {
-  .features {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 1.25rem;
-  }
-}
-
-/* ===== Media queries ( min-width: 900px ) ====== */
-@media (min-width: 900px) {
-  .service-intro__inner {
-    grid-template-columns: 520px 1fr;
-    align-items: center;
-    gap: 2rem;
-  }
-  .service-intro__inner .section-title {
-    grid-column: 1 / -1;
-  }
-}
-
-/* ===== Media queries ( hover: none ) ====== */
+/* ---------------------------------------- */
+/* ===== MQ hover / pointer =============== */
+/* -------- none  / coarse ---------------- */
 @media (hover: none) and (pointer: coarse) {
   .feature:active {
     transform: translateY(-1px);
@@ -2765,19 +2706,9 @@ body.page-service .cta-row {
   }
 }
 
-/* ===== Media queries ( prefers-reduced-motion: reduce ) ====== */
-@media (prefers-reduced-motion: reduce) {
-  .feature {
-    transition: border-color 0.2s, background 0.2s, box-shadow 0.2s;
-  }
-
-  .feature:hover,
-  .feature:focus-within {
-    transform: none;
-  }
-}
-
-/* ===== Media queries ( hover: hover ) ====== */
+/* ---------------------------------------- */
+/* ===== MQ hover / pointer =============== */
+/* ---------hover / fine------------------- */
 @media (hover: hover) and (pointer: fine) {
   .feature:hover,
   .feature:focus-within {
@@ -2792,9 +2723,22 @@ body.page-service .cta-row {
   }
 }
 
-/* ===============================================================
-   ========== 11) PODSTRONY LEGAL ================================
-   =============================================================== */
+/* ---------------------------------------- */
+/* ===== MQ Prefers reduced motion ======== */
+/* ---------------------------------------- */
+@media (prefers-reduced-motion: reduce) {
+  .feature {
+    transition: border-color 0.2s, background 0.2s, box-shadow 0.2s;
+  }
+  .feature:hover,
+  .feature:focus-within {
+    transform: none;
+  }
+}
+
+/* ================================================== */
+/* ===== 12) LEGAL SUBPAGES ========================= */
+/* ================================================== */
 
 .page-legal .legal-simple {
   background: var(--surface-1);
@@ -2934,7 +2878,6 @@ body.dark-mode.page-legal .legal-content a {
   scroll-margin-top: var(--header-h);
 }
 
-/* ===== FORMULARZ KARIERY ===== */
 .career-form {
   display: flex;
   flex-direction: column;
@@ -2997,7 +2940,9 @@ body.dark-mode .career-form textarea {
   text-decoration: underline;
 }
 
-/* ===== Madia queries ( max-width: 768px ) ===== */
+/* ---------------------------------------- */
+/* ===== MQ - max width 768px ============= */
+/* ---------------------------------------- */
 @media (max-width: 768px) {
   .page-legal .legal-container {
     padding: clamp(0.75rem, 3.5vw, 1rem);
@@ -3008,14 +2953,9 @@ body.dark-mode .career-form textarea {
   }
 }
 
-/* ===== Media queries ( prefers-reduced-motion: reduce ) ===== */
-@media (prefers-reduced-motion: reduce) {
-  .page-legal .legal-container {
-    transition: none;
-  }
-}
-
-/* ===== Media queries ( hover: hover ) ===== */
+/* ---------------------------------------- */
+/* ===== MQ hover / pointer =============== */
+/* -------- hover / fine------------------- */
 @media (hover: hover) and (pointer: fine) {
   .page-legal .legal-container:hover {
     border-color: color-mix(in srgb, var(--feature-accent) 45%, transparent);
@@ -3023,9 +2963,18 @@ body.dark-mode .career-form textarea {
   }
 }
 
-/* ================================================================
-   ========== 12) GLOBAL ACTIVE LINK & BREADCRUMBS STATE ==========
-   ================================================================ */
+/* ---------------------------------------- */
+/* ===== MQ Prefers reduced motion ======== */
+/* ---------------------------------------- */
+@media (prefers-reduced-motion: reduce) {
+  .page-legal .legal-container {
+    transition: none;
+  }
+}
+
+/* ================================================== */
+/* ===== 13) GLOBAL ACTIVE LINK & BREADCRUMBS STATE = */
+/* ================================================== */
 
 #primaryNav .nav a[aria-current],
 body[data-current="services"] .nav a[href$="#uslugi"] {
@@ -3125,16 +3074,147 @@ body.dark-mode .breadcrumbs a {
   opacity: 0.6;
 }
 
-/* ===============================================================
-   ========== 13) GLOBAL BUTTONS (primary / ghost / icon / hamburger)
-   =============================================================== */
+/* ================================================== */
+/* ===== 14) STATES + ANIMATIONS ==================== */
+/* ================================================== */
 
-/* --- BASE --- */
+body.menu-open {
+  overflow: hidden;
+}
+
+.skip-link {
+  position: absolute;
+  left: -9999px;
+  top: auto;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+}
+
+.skip-link:focus {
+  left: 1rem;
+  top: 1rem;
+  width: auto;
+  height: auto;
+  background: var(--accent-600);
+  color: #fff;
+  padding: 0.5rem 0.75rem;
+  border-radius: 0.5rem;
+  z-index: 1000;
+  outline: 3px solid var(--accent-400);
+  outline-offset: 2px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.hidden {
+  opacity: 0;
+  transform: translateY(50px);
+  transition: all 0.6s ease;
+}
+
+.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+#powrot-na-gore {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  width: 40px;
+  height: 40px;
+  display: grid;
+  place-items: center;
+  border: 0;
+  border-radius: 50%;
+  cursor: pointer;
+  z-index: 150;
+  background: rgba(40, 40, 40, 0.45);
+  backdrop-filter: blur(6px) saturate(1.2);
+  -webkit-backdrop-filter: blur(6px) saturate(1.2);
+  color: var(--text-light);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.25);
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transform: translateY(6px) scale(0.96);
+  transition: opacity 0.25s ease, transform 0.25s ease, background 0.3s ease, box-shadow 0.3s ease, visibility 0s linear 0.25s;
+}
+
+#powrot-na-gore.is-visible {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+  transform: translateY(0) scale(1);
+  transition-delay: 0s;
+}
+
+#powrot-na-gore:hover {
+  background: rgba(40, 40, 40, 0.65);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.3);
+}
+
+#powrot-na-gore:focus-visible {
+  outline: 3px solid var(--accent-400);
+  outline-offset: 4px;
+}
+
+#powrot-na-gore:active {
+  background: rgba(40, 40, 40, 0.8);
+  transform: scale(0.94);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.25);
+}
+
+body.menu-open #powrot-na-gore {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+
+.service,
+.testimonial-card,
+.gallery-item {
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+}
+
+.service:hover,
+.testimonial-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 18px rgba(0, 0, 0, 0.16);
+}
+
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+#uslugi,
+#galeria,
+#onas,
+#kontakt {
+  scroll-margin-top: var(--header-h);
+}
+
+/* ---------------------------------------- */
+/* ===== MQ Prefers reduced motion ======== */
+/* ---------------------------------------- */
+@media (prefers-reduced-motion: reduce) {
+  #powrot-na-gore {
+    transition: none;
+  }
+}
+
+/* ================================================== */
+/* ===== 15) GLOBAL BUTTONS ========================= */
+/* ========= primary / ghost / icon / hamburger ===== */
+/* ================================================== */
+
 .btn {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: 0.55rem; /* odstęp między ikoną a tekstem */
+  gap: 0.55rem;
   padding: 0.65rem 1.1rem;
   border-radius: 8px;
   border: 1px solid color-mix(in srgb, var(--primary) 40%, transparent);
@@ -3143,37 +3223,41 @@ body.dark-mode .breadcrumbs a {
   -webkit-tap-highlight-color: transparent;
   transition: transform 0.15s ease, background 0.2s ease, box-shadow 0.15s ease, color 0.2s ease, border-color 0.2s ease;
 }
+
 .btn:hover {
   transform: translateY(-1px);
 }
+
 .btn:active {
   transform: translateY(0);
 }
+
 .btn[disabled],
 .btn:disabled {
   opacity: 0.6;
   pointer-events: none;
 }
 
-/* ikony / zawartość w przyciskach */
 .btn svg,
 .btn .icon {
   width: 1.1em;
   height: 1.1em;
   flex-shrink: 0;
 }
+
 .btn * {
   color: inherit;
   fill: currentColor;
 }
+
 .btn .icon-left {
   margin-right: 0.35rem;
 }
+
 .btn .icon-right {
   margin-left: 0.35rem;
 }
 
-/* --- PRIMARY --- */
 .btn-primary {
   text-transform: uppercase;
   padding: 0.9rem 1.4rem;
@@ -3190,32 +3274,33 @@ body.dark-mode .breadcrumbs a {
   background-position: 0 0;
   transition: background-position 0.35s ease, transform 0.15s ease, box-shadow 0.15s ease, color 0.2s ease;
 }
+
 .btn-primary:hover {
   background-position: 100% 0;
   transform: translateY(-2px);
-  color: var(--text-dark); /* czytelny tekst na hover */
+  color: var(--text-dark);
 }
+
 .btn-primary:focus-visible {
   outline: 3px solid var(--accent-400);
   outline-offset: 3px;
   box-shadow: 0 0 0 3px color-mix(in srgb, var(--accent) 30%, transparent);
 }
+
 .btn-primary:active {
   transform: translateY(0);
 }
 
-/* fix: gdy primary jest linkiem <a>, przebija globalne a:hover */
 a.btn-primary:hover,
 a.btn-primary:focus-visible {
   color: var(--text-dark) !important;
   text-decoration: none;
 }
-/* zachowanie visited dla linków-przycisków */
+
 a.btn-primary:visited {
   color: var(--text-light);
 }
 
-/* --- GHOST --- */
 .btn-ghost {
   padding: 0.9rem 1.4rem;
   border-radius: 8px;
@@ -3228,36 +3313,42 @@ a.btn-primary:visited {
   border: 1px solid color-mix(in srgb, var(--primary) 60%, transparent);
   transition: background 0.3s ease, color 0.3s ease, transform 0.15s ease, box-shadow 0.15s ease, border-color 0.2s ease;
 }
+
 .btn-ghost:hover {
   background: color-mix(in srgb, var(--primary) 12%, transparent);
   transform: translateY(-2px);
   box-shadow: 0 4px 12px color-mix(in srgb, var(--primary) 20%, transparent);
 }
+
 .btn-ghost:focus-visible {
   outline: 3px solid var(--accent-400);
   outline-offset: 3px;
   box-shadow: 0 0 0 3px color-mix(in srgb, var(--accent) 30%, transparent);
 }
+
 .btn-ghost:active {
   transform: translateY(0);
   box-shadow: none;
 }
+
 a.btn-ghost:visited {
   color: var(--primary);
 }
+
 body.dark-mode .btn-ghost {
   color: var(--accent);
   border-color: color-mix(in srgb, var(--accent) 60%, transparent);
 }
+
 body.dark-mode .btn-ghost:hover {
   background: color-mix(in srgb, var(--accent) 15%, transparent);
   box-shadow: 0 4px 12px color-mix(in srgb, var(--accent) 20%, transparent);
 }
+
 body.dark-mode a.btn-ghost:visited {
   color: var(--accent);
 }
 
-/* --- ICON BUTTONS (global, bez hamburgera) --- */
 .icon-btn:not(.hamburger) {
   display: inline-grid;
   place-items: center;
@@ -3269,28 +3360,32 @@ body.dark-mode a.btn-ghost:visited {
   color: var(--primary);
   transition: background 0.2s ease, transform 0.15s ease, box-shadow 0.15s ease, border-color 0.2s ease, color 0.2s ease;
 }
+
 .icon-btn:not(.hamburger) svg {
   width: 1.1em;
   height: 1.1em;
 }
+
 .icon-btn:not(.hamburger):hover {
   background: color-mix(in srgb, var(--primary) 12%, transparent);
   transform: translateY(-1px);
 }
+
 .icon-btn:not(.hamburger):focus-visible {
   outline: 3px solid var(--accent-400);
   outline-offset: 3px;
   box-shadow: 0 0 0 3px color-mix(in srgb, var(--accent) 30%, transparent);
 }
+
 body.dark-mode .icon-btn:not(.hamburger) {
   color: var(--accent);
   border-color: color-mix(in srgb, var(--accent) 60%, transparent);
 }
+
 body.dark-mode .icon-btn:not(.hamburger):hover {
   background: color-mix(in srgb, var(--accent) 15%, transparent);
 }
 
-/* --- HAMBURGER (hard override, nie dziedziczy globalnego icon-btn) --- */
 .hamburger.icon-btn {
   all: unset;
   display: inline-grid;
@@ -3301,10 +3396,11 @@ body.dark-mode .icon-btn:not(.hamburger):hover {
   line-height: 0;
   background: transparent;
   border: 0;
-  color: inherit; /* dziedziczy z headera */
+  color: inherit;
   position: relative;
   z-index: 5;
 }
+
 .hamburger .icon-svg {
   position: absolute;
   inset: 0;
@@ -3314,34 +3410,79 @@ body.dark-mode .icon-btn:not(.hamburger):hover {
   height: 26px;
   transition: opacity 0.18s ease, transform 0.18s ease;
 }
+
 #hamburgerIcon {
   transform: translate(var(--icon-nudge-x, 0), var(--icon-nudge-y, 0));
 }
+
 .hamburger .icon-menu {
   opacity: 1;
   transform: translate(var(--icon-nudge-x, 0), var(--icon-nudge-y, 0)) scale(1);
 }
+
 .hamburger .icon-close {
   opacity: 0;
   transform: translate(var(--icon-nudge-x, 0), var(--icon-nudge-y, 0)) scale(0.9);
 }
+
 .hamburger.active .icon-menu {
   opacity: 0;
   transform: translate(var(--icon-nudge-x, 0), var(--icon-nudge-y, 0)) scale(0.9) rotate(90deg);
 }
+
 .hamburger.active .icon-close {
   opacity: 1;
   transform: translate(var(--icon-nudge-x, 0), var(--icon-nudge-y, 0)) scale(1);
 }
+
+/* ---------------------------------------- */
+/* ===== MQ - min width 1025px ============ */
+/* ---------------------------------------- */
 @media (min-width: 1025px) {
   .hamburger.icon-btn {
     display: none;
   }
 }
+
+/* ---------------------------------------- */
+/* ===== MQ - max width 1024px ============ */
+/* ---------------------------------------- */
 @media (max-width: 1024px) {
   .hamburger.icon-btn {
     display: inline-grid;
   }
 }
+
+/* ================================================== */
+/* ===== 99) FEATURE SUPPORT & FALLBACKS ============ */
+/* ================================================== */
+
+/* ---------------------------------------- */
+/* ===== Supports not ===================== */
+/* ----- backdrop-filter: blur(1px) ------- */
+@supports not (backdrop-filter: blur(1px)) {
+  header {
+    background: linear-gradient(135deg, color-mix(in srgb, var(--bg-light) 92%, var(--primary) 8%) 0%, color-mix(in srgb, var(--bg-light) 96%, var(--bg-dark) 4%) 100%);
+    border-bottom-color: color-mix(in srgb, var(--text-dark) 14%, transparent);
+  }
+  body.dark-mode header {
+    background: linear-gradient(135deg, color-mix(in srgb, var(--bg-dark) 92%, transparent) 0%, color-mix(in srgb, var(--bg-dark) 98%, transparent) 100%);
+    border-bottom-color: color-mix(in srgb, var(--text-light) 18%, transparent);
+  }
+  .hero-content h1 {
+    background: color-mix(in srgb, var(--bg-dark) 45%, transparent);
+  }
+}
+
+/* ---------------------------------------- */
+/* ===== Supports not ===================== */
+/* ----- overflow: clip ------------------- */
+@supports not (overflow: clip) {
+  .hero {
+    overflow: hidden;
+  }
+}
+
+/* %%%%%%%%%%%%%%%%%%%%%%%% END OF FILE  %%%%%%%%%%%%%%%%%%%%%%%% */
 
 /* (opcjonalnie) prefers-reduced-motion dorzuć w osobnej sekcji PRM */

@@ -1,7 +1,7 @@
 /* =======================================================================================@@@@@@@@@@@@@@@@@@@@
    ========== Animacje pojawiania sekcji przy scrollu (powtarzalne + initial) ============
    - Dodaje klasę .show, gdy element .hidden pojawi się w kadrze
-   - Usuwa klasę .show, gdy element całkowicie znika z widoku                      
+   - Usuwa klasę .show, gdy element całkowicie znika z widoku
    - Obsługuje fallback dla starych przeglądarek (bez IntersectionObserver)
    - Initial reveal: pokazuje elementy widoczne od razu po wejściu na stronę
    ======================================================================================= */
@@ -737,4 +737,29 @@ const observer = new IntersectionObserver((entries) => {
   // Fallback: reaguj na każdą zmianę klas <body> (np. gdyby coś innego zmieniało nav-open)
   const mo = new MutationObserver(update);
   mo.observe(document.body, { attributes: true, attributeFilter: ['class'] });
+})();
+
+
+/* =======================================================================================
+   ABOUT – tap = hover na mobile (pointer events)
+   ======================================================================================= */
+(() => {
+  const cards = document.querySelectorAll('.about-highlights > li, .about-highlights .feature');
+  if (!cards.length) return;
+
+  cards.forEach((el) => {
+    if (!el.hasAttribute('tabindex')) el.tabIndex = 0; // a11y + :focus
+
+    const onTap = () => {
+      el.classList.add('touched');
+      clearTimeout(el._tapTimer);
+      el._tapTimer = setTimeout(() => el.classList.remove('touched'), 450);
+    };
+
+    // działa na dotyk/mysz/rysik; lepsze niż 'touchstart'
+    el.addEventListener('pointerdown', onTap, { passive: true });
+
+    // czyścimy stan przy utracie fokusu
+    el.addEventListener('blur', () => el.classList.remove('touched'));
+  });
 })();
