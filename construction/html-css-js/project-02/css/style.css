@@ -2449,6 +2449,7 @@ body.page-service .service-details .features {
   margin: 0;
   padding: 0;
 }
+
 body.page-service .service-details .features > li::marker {
   content: "";
 }
@@ -2456,6 +2457,7 @@ body.page-service .service-details .features > li::marker {
 body.page-service .cta-section {
   text-align: center;
 }
+
 body.page-service .cta-row {
   display: flex;
   justify-content: center;
@@ -2463,6 +2465,7 @@ body.page-service .cta-row {
   gap: 1rem;
   margin-top: 0.5rem;
 }
+
 .cta-inner {
   max-width: 1200px;
   margin-inline: auto;
@@ -2806,7 +2809,6 @@ body.dark-mode .career-form textarea {
 /* ===== 13) STATES + ANIMATIONS ==================== */
 /* ================================================== */
 
-/* --- Active link / breadcrumbs --- */
 #primaryNav .nav a[aria-current],
 body[data-current="services"] .nav a[href$="#uslugi"] {
   color: var(--primary);
@@ -2866,12 +2868,15 @@ footer .footer-section li[aria-current="page"] {
 .breadcrumbs {
   color: color-mix(in srgb, var(--text-dark) 75%, transparent);
 }
+
 body.dark-mode .breadcrumbs {
   color: color-mix(in srgb, var(--text-light) 85%, transparent);
 }
+
 body:not(.dark-mode) .breadcrumbs a {
   color: var(--primary);
 }
+
 body.dark-mode .breadcrumbs a {
   color: var(--accent);
 }
@@ -2881,6 +2886,7 @@ body.dark-mode .breadcrumbs a {
   border-bottom: 1px solid transparent;
   transition: border-color 0.2s ease, opacity 0.2s ease;
 }
+
 .breadcrumbs a:hover,
 .breadcrumbs a:focus-visible {
   border-bottom-color: currentColor;
@@ -2894,6 +2900,7 @@ body.dark-mode .breadcrumbs a {
   text-decoration: none;
   border-bottom: none;
 }
+
 .breadcrumbs li + li::before {
   content: "/";
   margin: 0 0.5rem;
@@ -2901,7 +2908,6 @@ body.dark-mode .breadcrumbs a {
   opacity: 0.6;
 }
 
-/* --- Global helpers --- */
 body.menu-open {
   overflow: hidden;
 }
@@ -2914,6 +2920,7 @@ body.menu-open {
   height: 1px;
   overflow: hidden;
 }
+
 .skip-link:focus {
   left: 1rem;
   top: 1rem;
@@ -2929,18 +2936,17 @@ body.menu-open {
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
 }
 
-/* Reveal on scroll */
 .hidden {
   opacity: 0;
   transform: translateY(50px);
   transition: all 0.6s ease;
 }
+
 .show {
   opacity: 1;
   transform: translateY(0);
 }
 
-/* Back-to-top */
 #powrot-na-gore {
   position: fixed;
   bottom: 20px;
@@ -2964,6 +2970,7 @@ body.menu-open {
   transform: translateY(6px) scale(0.96);
   transition: opacity 0.25s ease, transform 0.25s ease, background 0.3s ease, box-shadow 0.3s ease, visibility 0s linear 0.25s;
 }
+
 #powrot-na-gore.is-visible {
   opacity: 1;
   visibility: visible;
@@ -2971,45 +2978,47 @@ body.menu-open {
   transform: translateY(0) scale(1);
   transition-delay: 0s;
 }
+
 #powrot-na-gore:hover {
   background: rgba(40, 40, 40, 0.65);
   transform: translateY(-2px);
   box-shadow: 0 6px 14px rgba(0, 0, 0, 0.3);
 }
+
 #powrot-na-gore:focus-visible {
   outline: 3px solid var(--accent-400);
   outline-offset: 4px;
 }
+
 #powrot-na-gore:active {
   background: rgba(40, 40, 40, 0.8);
   transform: scale(0.94);
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.25);
 }
+
 body.menu-open #powrot-na-gore {
   opacity: 0;
   visibility: hidden;
   pointer-events: none;
 }
 
-/* Card hovers (usługi / opinie / galeria) */
 .service,
 .testimonial-card,
 .gallery-item {
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
 }
+
 .service:hover,
 .testimonial-card:hover {
   transform: translateY(-5px);
   box-shadow: 0 8px 18px rgba(0, 0, 0, 0.16);
 }
 
-/* Global focus */
 :focus-visible {
   outline: 2px solid var(--accent);
   outline-offset: 2px;
 }
 
-/* Anchor targets */
 #uslugi,
 #galeria,
 #onas,
@@ -3017,71 +3026,65 @@ body.menu-open #powrot-na-gore {
   scroll-margin-top: var(--header-h);
 }
 
-/* Bazowe zachowanie interakcji */
 :where(.feature, .about-highlights > li, .interactive-card):not(.no-interaction) {
   -webkit-tap-highlight-color: transparent;
   touch-action: manipulation;
   cursor: pointer;
   transition: transform 0.18s ease, box-shadow 0.22s ease, border-color 0.22s ease, background 0.22s ease, color 0.22s ease;
   will-change: transform;
-  pointer-events: auto; /* safety */
+  pointer-events: auto;
 }
 
-/* Dzieci-linki: wyraźny focus */
 :where(.feature, .about-highlights > li, .interactive-card):not(.no-interaction) :is(a, button):focus-visible {
   outline: 3px solid var(--accent-400);
   outline-offset: 3px;
   border-radius: 8px;
 }
 
-/* Stan TRWAŁY (JS dodaje .is-active; kompatybilny alias .touched) */
-:where(.feature, .about-highlights > li, .interactive-card):is(.is-active, .touched) {
+:where(.feature, .about-highlights > li, .interactive-card):not(.no-interaction):hover {
   transform: translateY(-2px);
   border-color: color-mix(in srgb, var(--feature-accent) 45%, transparent);
   box-shadow: 0 8px 22px var(--feature-shadow);
   background: var(--feature-hover-bg);
 }
-:where(.feature, .about-highlights > li, .interactive-card):is(.is-active, .touched) :is(h3, strong) {
+
+:where(.feature, .about-highlights > li, .interactive-card):not(.no-interaction):hover :is(h3, strong) {
   color: var(--feature-accent);
 }
 
-/* Hover/focus (desktop) */
+/* ---------------------------------------- */
+/* ===== MQ - Hover capable pointers ====== */
+/* ---------------------------------------- */
 @media (hover: hover) and (pointer: fine) {
-  :where(.feature, .about-highlights > li, .interactive-card):not(.no-interaction):is(:hover, :focus-within) {
+  :where(.feature, .about-highlights > li, .interactive-card):not(.no-interaction):hover {
     transform: translateY(-2px);
     border-color: color-mix(in srgb, var(--feature-accent) 45%, transparent);
     box-shadow: 0 8px 22px var(--feature-shadow);
     background: var(--feature-hover-bg);
   }
-  :where(.feature, .about-highlights > li, .interactive-card):not(.no-interaction):is(:hover, :focus-within) :is(h3, strong) {
+  :where(.feature, .about-highlights > li, .interactive-card):not(.no-interaction):hover :is(h3, strong) {
     color: var(--feature-accent);
   }
 }
 
-/* Tap (mobile) — chwilowy, stan docelowy zapewnia .is-active/.touched */
+/* ---------------------------------------- */
+/* ===== MQ - Touch pointers only ========= */
+/* ---------------------------------------- */
 @media (hover: none) and (pointer: coarse) {
   :where(.feature, .about-highlights > li, .interactive-card):not(.no-interaction):active {
     transform: translateY(-1px);
-    background: var(--feature-hover-bg);
     border-color: color-mix(in srgb, var(--feature-accent) 35%, transparent);
+    background: var(--feature-hover-bg);
+    box-shadow: 0 6px 16px var(--feature-shadow);
   }
 }
 
-/* Focus (klawiatura) */
-:where(.feature, .about-highlights > li, .interactive-card):not(.no-interaction):focus-visible {
-  outline: none;
-  box-shadow: 0 0 0 2px color-mix(in srgb, var(--feature-accent) 30%, transparent) inset, 0 8px 22px var(--feature-shadow);
-}
-
-/* Reduced motion */
+/* ---------------------------------------- */
+/* ===== MQ - Prefers reduced motion ====== */
+/* ---------------------------------------- */
 @media (prefers-reduced-motion: reduce) {
   :where(.feature, .about-highlights > li, .interactive-card):not(.no-interaction) {
     transition: border-color 0.2s, background 0.2s, box-shadow 0.2s;
-  }
-  @media (hover: hover) and (pointer: fine) {
-    :where(.feature, .about-highlights > li, .interactive-card):not(.no-interaction):is(:hover, :focus-within) {
-      transform: none;
-    }
   }
 }
 
