@@ -2298,12 +2298,14 @@ body.dark-mode .footer-bottom {
 header + main .breadcrumbs {
   padding-top: clamp(0.5rem, 1.5vw, 1.25rem);
 }
+
 .breadcrumbs {
   max-width: var(--max-w, 1200px);
   margin: 0 auto var(--space-3, 1rem);
   padding: 0 var(--edge-pad, 1rem);
   font-size: 0.9rem;
 }
+
 .breadcrumbs ol {
   list-style: none;
   display: flex;
@@ -2317,9 +2319,11 @@ body.page-service :is(.service-intro, .service-details, .gallery-section, .cta-s
   padding: var(--section-py, 3rem) var(--section-px, 1rem);
   background: transparent;
 }
+
 body.page-service .section--divider {
   border-top: 1px solid color-mix(in srgb, var(--text-dark) 10%, transparent);
 }
+
 body.dark-mode.page-service .section--divider {
   border-top: 1px solid color-mix(in srgb, var(--text-light) 12%, transparent);
 }
@@ -2333,6 +2337,7 @@ body.page-service :is(.service-details, .cta-section) {
 body.page-service .gallery-section {
   background: var(--surface-3);
 }
+
 body.dark-mode.page-service .service-intro {
   background: var(--surface-3);
 }
@@ -2360,6 +2365,7 @@ body.dark-mode.page-service .cta-section {
 body.page-service .cta-section .section-title {
   color: var(--primary);
 }
+
 body.dark-mode .service-intro__inner .section-title,
 body.dark-mode .service-details__inner .section-title,
 body.dark-mode.page-service .cta-section .section-title {
@@ -2371,11 +2377,23 @@ body.dark-mode.page-service .cta-section .section-title {
   grid-template-columns: 1fr;
   gap: 1.5rem;
 }
+
 .service-intro__inner .section-title {
   grid-column: 1 / -1;
-  text-align: center;
-  margin: 0 0 0.5rem;
+  /* text-align: center;  // simplified – centrowanie robi .page-service .section-title */
+  margin: 0 0 0.5rem; /* zachowujemy tylko odstęp dołu */
 }
+
+/* Center section titles on service subpages (independent of parent) */
+.page-service .section-title {
+  display: block;
+  width: fit-content;
+  margin-inline: auto;
+  text-align: center;
+}
+.page-service .section-title::after {
+  margin-inline: auto;
+} /* jeśli masz pseudo-ornament pod tytułem */
 
 .service-intro__media {
   overflow: hidden;
@@ -2383,15 +2401,18 @@ body.dark-mode.page-service .cta-section .section-title {
   box-shadow: 0 4px 12px color-mix(in srgb, var(--shadow) 10%, transparent);
   transition: box-shadow 0.3s ease;
 }
+
 body.dark-mode .service-intro__media {
   box-shadow: 0 6px 20px color-mix(in srgb, var(--text-light) 8%, transparent);
 }
+
 .service-intro__media img {
   width: 100%;
   height: auto;
   display: block;
   transition: transform 0.4s ease;
 }
+
 .service-intro__media:hover {
   box-shadow: 0 8px 22px color-mix(in srgb, var(--shadow) 25%, transparent);
 }
@@ -2413,13 +2434,16 @@ body.dark-mode .service-intro__media {
   letter-spacing: 0.05rem;
 }
 
+/* ten h2 zwykle ma .section-title – trzymamy kolor, usuwamy zbędne centrowanie */
 .service-details__inner h2 {
-  margin: 0 auto 2rem;
-  text-align: center;
+  /* margin: 0 auto 2rem; // simplified – auto niepotrzebne, bo centrowanie robi reguła globalna dla .section-title */
+  margin: 0 0 2rem;
+  /* text-align: center;   // simplified */
   font-size: 2rem;
   color: var(--primary);
   position: relative;
 }
+
 body.dark-mode .service-details__inner h2 {
   color: var(--accent);
 }
@@ -2429,6 +2453,7 @@ body.dark-mode .service-details__inner h2 {
   grid-template-columns: 1fr;
   gap: 1rem;
 }
+
 .feature {
   position: relative;
   padding: 1rem;
@@ -2436,6 +2461,7 @@ body.dark-mode .service-details__inner h2 {
   background: var(--feature-surface);
   border: 1px solid var(--feature-border);
 }
+
 .feature h3 {
   transition: color 0.22s ease;
 }
@@ -2449,7 +2475,6 @@ body.page-service .service-details .features {
   margin: 0;
   padding: 0;
 }
-
 body.page-service .service-details .features > li::marker {
   content: "";
 }
@@ -2507,7 +2532,7 @@ body.page-service .cta-row {
   }
   .service-intro__inner {
     text-align: initial;
-  }
+  } /* zostaw – dotyczy pozostałych tekstów, tytuł ma własne centrowanie */
   .service-intro__copy {
     text-align: left;
   }
@@ -2526,7 +2551,7 @@ body.page-service .cta-row {
   .service-intro__inner {
     text-align: center;
     row-gap: 1.25rem;
-  }
+  } /* tu centrowanie zostaje – dotyczy treści poza tytułem */
   .service-intro__media {
     max-width: 92%;
     margin: 0 auto 1rem;
@@ -2543,7 +2568,7 @@ body.page-service .cta-row {
     margin-top: 0.5rem;
   }
   .page-service .service-intro__copy .lead {
-    text-align: center;
+    text-align: left;
     margin: 0 auto 1rem;
     max-width: 50ch;
     padding: 0.5rem 0.5rem;
@@ -3197,10 +3222,19 @@ a.btn-primary:visited {
   transition: background 0.3s ease, color 0.3s ease, transform 0.15s ease, box-shadow 0.15s ease, border-color 0.2s ease;
 }
 
+a.btn-ghost {
+  color: var(--primary);
+}
+
+body.dark-mode a.btn-ghost {
+  color: var(--accent);
+}
+
 .btn-ghost:hover {
-  background: color-mix(in srgb, var(--primary) 12%, transparent);
+  color: var(--text-dark);
+  background: color-mix(in srgb, var(--primary) 8%, transparent);
   transform: translateY(-2px);
-  box-shadow: 0 4px 12px color-mix(in srgb, var(--primary) 20%, transparent);
+  box-shadow: 0 4px 12px color-mix(in srgb, var(--primary) 12%, transparent);
 }
 
 .btn-ghost:focus-visible {
@@ -3214,22 +3248,19 @@ a.btn-primary:visited {
   box-shadow: none;
 }
 
-a.btn-ghost:visited {
-  color: var(--primary);
-}
-
 body.dark-mode .btn-ghost {
   color: var(--accent);
   border-color: color-mix(in srgb, var(--accent) 60%, transparent);
 }
 
 body.dark-mode .btn-ghost:hover {
-  background: color-mix(in srgb, var(--accent) 15%, transparent);
-  box-shadow: 0 4px 12px color-mix(in srgb, var(--accent) 20%, transparent);
+  color: var(--text-light);
+  background: color-mix(in srgb, var(--accent) 8%, transparent);
+  box-shadow: 0 4px 12px color-mix(in srgb, var(--accent) 12%, transparent);
 }
 
-body.dark-mode a.btn-ghost:visited {
-  color: var(--accent);
+a.btn-ghost:hover {
+  color: var(--text-dark);
 }
 
 .icon-btn:not(.hamburger) {
