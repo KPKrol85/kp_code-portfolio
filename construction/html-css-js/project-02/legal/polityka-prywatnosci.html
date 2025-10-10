@@ -1,15 +1,15 @@
 <!DOCTYPE html>
 <html lang="pl">
   <head>
+    <!-- Core -->
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
     <title>Polityka prywatności — KP_Code</title>
-    <meta
-      name="description"
-      content="Zapoznaj się z zasadami przetwarzania danych osobowych na stronie KP_Code. Dowiedz się, jak chronimy Twoją prywatność i jakie prawa Ci przysługują zgodnie z RODO." />
+    <meta name="description" content="Zapoznaj się z zasadami przetwarzania danych osobowych na stronie KP_Code. Dowiedz się, jak chronimy Twoją prywatność i jakie prawa Ci przysługują zgodnie z RODO." />
     <meta name="author" content="Kamil Król / KP_Code" />
     <link rel="canonical" href="https://construction-project-02.netlify.app/legal/polityka-prywatnosci.html" />
     <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
+
     <!-- Open Graph -->
     <meta property="og:locale" content="pl_PL" />
     <meta property="og:type" content="website" />
@@ -23,39 +23,44 @@
     <meta property="og:image:height" content="630" />
     <meta property="og:image:type" content="image/jpeg" />
     <meta property="og:image:alt" content="Polityka prywatności — zasady ochrony danych osobowych — KP_Code" />
+
     <!-- Twitter -->
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content="Polityka prywatności — KP_Code" />
     <meta name="twitter:description" content="Zasady ochrony danych osobowych w KP_Code. Przeczytaj, jak dbamy o bezpieczeństwo Twoich danych i przestrzegamy przepisów RODO." />
     <meta name="twitter:image" content="https://construction-project-02.netlify.app/assets/img/og/og-image-01-1200x630.jpg" />
     <meta name="twitter:image:alt" content="Polityka prywatności — ochrona danych osobowych — KP_Code" />
-    <!-- <meta name="twitter:site"  opcjonalnie, gdy będziesz mieć konto -->
-    <!-- Favicons / manifest -->
-    <link rel="icon" href="../assets/img/favicon/favicon.ico" sizes="any" />
-    <link rel="icon" type="image/png" sizes="96x96" href="../assets/img/favicon/favicon-96x96.png" />
-    <link rel="icon" type="image/png" sizes="32x32" href="../assets/img/favicon/favicon-32x32.png" />
-    <link rel="icon" type="image/png" sizes="16x16" href="../assets/img/favicon/favicon-16x16.png" />
-    <link rel="apple-touch-icon" sizes="180x180" href="../assets/img/favicon/apple-touch-icon.png" />
-    <link rel="manifest" href="../assets/img/favicon/site.webmanifest" />
+
+    <!-- Icons / Manifest (podstrona: ścieżki z ../) -->
     <link rel="icon" type="image/svg+xml" href="../assets/img/favicon/favicon.svg" />
+    <link rel="alternate icon" href="../assets/img/favicon/favicon.ico" />
+    <link rel="apple-touch-icon" sizes="180x180" href="../assets/img/favicon/apple-touch-icon.png" />
+    <link rel="manifest" href="../manifest.webmanifest" />
+
+    <!-- App meta -->
     <meta name="application-name" content="KP_Code" />
     <meta name="apple-mobile-web-app-title" content="KP_Code" />
     <meta name="msapplication-TileColor" content="#0f4c81" />
-    <!-- Kolor paska przeglądarki + wsparcie light/dark -->
+
+    <!-- Theme color (fallback + light/dark) -->
+    <meta name="theme-color" content="#0f4c81">
     <meta name="theme-color" content="#0f4c81" media="(prefers-color-scheme: light)" />
     <meta name="theme-color" content="#121212" media="(prefers-color-scheme: dark)" />
     <meta name="color-scheme" content="light dark" />
     <meta name="format-detection" content="telephone=no" />
-    <!-- Wydajność fontów (pozostaw jak masz, sprzątniemy na końcu) -->
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link rel="preload" href="../fonts/Montserrat.woff2" as="font" type="font/woff2" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&family=Montserrat:wght@600;700&display=swap" rel="stylesheet" />
-    <!-- Ikony (Font Awesome) – jeśli nie używasz, usuń ten skrypt) -->
+
+    <!-- Fonts: lokalne .woff2 -->
+    <link rel="preload" href="../assets/fonts/lato-v25-latin/lato-v25-latin-regular.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href="../assets/fonts/montserrat-v31-latin/montserrat-v31-latin-600.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href="../assets/fonts/poppins-v24-latin/poppins-v24-latin-regular.woff2" as="font" type="font/woff2" crossorigin />
+
+    <!-- Icons library (jeśli używasz w layoucie) -->
     <script src="https://kit.fontawesome.com/6e7b7ddf50.js" crossorigin="anonymous" defer></script>
-    <!-- Główny CSS -->
+
+    <!-- CSS -->
     <link rel="stylesheet" href="../css/style.min.css" />
 
+    <!-- JSON-LD: WebPage -->
     <script type="application/ld+json">
       {
         "@context": "https://schema.org",
@@ -68,33 +73,24 @@
           "@type": "WebSite",
           "name": "KP_Code — Demo strony budowlanej",
           "url": "https://construction-project-02.netlify.app/"
-        },
-        "breadcrumb": {
-          "@type": "BreadcrumbList",
-          "itemListElement": [
-            {
-              "@type": "ListItem",
-              "position": 1,
-              "name": "Strona główna",
-              "item": "https://construction-project-02.netlify.app/"
-            },
-            {
-              "@type": "ListItem",
-              "position": 2,
-              "name": "Informacje",
-              "item": "https://construction-project-02.netlify.app/index.html#informacje"
-            },
-            {
-              "@type": "ListItem",
-              "position": 3,
-              "name": "Polityka prywatności",
-              "item": "https://construction-project-02.netlify.app/legal/polityka-prywatnosci.html"
-            }
-          ]
         }
       }
     </script>
+
+    <!-- JSON-LD: BreadcrumbList -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          { "@type": "ListItem", "position": 1, "name": "Strona Główna", "item": "https://construction-project-02.netlify.app/" },
+          { "@type": "ListItem", "position": 2, "name": "Informacje", "item": "https://construction-project-02.netlify.app/index.html#informacje" },
+          { "@type": "ListItem", "position": 3, "name": "Polityka prywatności", "item": "https://construction-project-02.netlify.app/legal/polityka-prywatnosci.html" }
+        ]
+      }
+    </script>
   </head>
+
 
   <!-- BODY -->
   <body class="page-legal" data-current="info" data-legal="polityka-prywatnosci">
