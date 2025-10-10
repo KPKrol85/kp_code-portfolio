@@ -5,6 +5,11 @@
    - Obsługuje fallback dla starych przeglądarek (bez IntersectionObserver)
    - Initial reveal: pokazuje elementy widoczne od razu po wejściu na stronę
    ======================================================================================= */
+
+
+/* ================================================================================
+   ==========================================
+   ================================================================================   */
 (() => {
   const hiddenElements = document.querySelectorAll(".hidden");
   if (!hiddenElements.length) return; // brak ukrytych elementów — nic nie robimy
