@@ -1,0 +1,26 @@
+{
+  "name": "Budownictwo — KP_Code",
+  "short_name": "Budownictwo",
+  "description": "Strona demo firmy budowlanej stworzona przez KP_Code. Nowoczesne projekty, remonty i wykończenia wnętrz.",
+  "lang": "pl-PL",
+  "dir": "ltr",
+  "start_url": "/index.html",
+  "display": "standalone",
+  "orientation": "portrait-primary",
+  "background_color": "#121212",
+  "theme_color": "#f0a641",
+  "icons": [
+    {
+      "src": "assets/img/favicon/web-app-manifest-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "assets/img/favicon/web-app-manifest-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}

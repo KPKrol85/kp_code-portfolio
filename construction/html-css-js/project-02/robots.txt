@@ -3,6 +3,9 @@
 User-agent: *
 Disallow:
 
+User-agent: Googlebot
+Allow: /
+
 # Dopuszczamy Facebook i Twitter
 User-agent: facebookexternalhit
 Allow: /

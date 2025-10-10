@@ -11,23 +11,70 @@
 
   <!-- Sekcja: Usługi -->
   <url>
-    <loc>https://construction-project-02.netlify.app/#uslugi</loc>
+    <loc>https://construction-project-02.netlify.app/services/budowa-domow.html</loc>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
 
-  <!-- Sekcja: Realizacje -->
   <url>
-    <loc>https://construction-project-02.netlify.app/#realizacje</loc>
+    <loc>https://construction-project-02.netlify.app/services/remonty-mieszkan.html</loc>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
 
-  <!-- Sekcja: Kontakt -->
   <url>
-    <loc>https://construction-project-02.netlify.app/#kontakt</loc>
+    <loc>https://construction-project-02.netlify.app/services/adaptacje-poddaszy.html</loc>
     <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://construction-project-02.netlify.app/services/wykonczenia-wnetrz.html</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://construction-project-02.netlify.app/services/instalacje-sanitarne.html</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://construction-project-02.netlify.app/services/instalacje-elektryczne.html</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <!-- Sekcja: Legal -->
+  <url>
+    <loc>https://construction-project-02.netlify.app/legal/polityka-prywatnosci.html</loc>
+    <changefreq>yearly</changefreq>
+    <priority>0.5</priority>
+  </url>
+
+  <url>
+    <loc>https://construction-project-02.netlify.app/legal/polityka-cookies.html</loc>
+    <changefreq>yearly</changefreq>
+    <priority>0.5</priority>
+  </url>
+
+  <url>
+    <loc>https://construction-project-02.netlify.app/legal/regulamin.html</loc>
+    <changefreq>yearly</changefreq>
+    <priority>0.5</priority>
+  </url>
+
+  <url>
+    <loc>https://construction-project-02.netlify.app/legal/kariera.html</loc>
+    <changefreq>yearly</changefreq>
+    <priority>0.4</priority>
+  </url>
+
+  <url>
+    <loc>https://construction-project-02.netlify.app/legal/certyfikaty.html</loc>
+    <changefreq>yearly</changefreq>
+    <priority>0.4</priority>
   </url>
 
 </urlset>
