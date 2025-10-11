@@ -5,7 +5,9 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
     <title>Adaptacje poddaszy — KP_Code</title>
-    <meta name="description" content="Adaptacje poddaszy: projekt, ocieplenie, zabudowy GK, instalacje, okna dachowe, podłogi i oświetlenie. Funkcjonalne, ciepłe i bezpieczne wnętrza. Darmowa wycena." />
+    <meta
+      name="description"
+      content="Adaptacje poddaszy: projekt, ocieplenie, zabudowy GK, instalacje, okna dachowe, podłogi i oświetlenie. Funkcjonalne, ciepłe i bezpieczne wnętrza. Darmowa wycena." />
     <meta name="author" content="Kamil Król / KP_Code" />
     <link rel="canonical" href="https://construction-project-02.netlify.app/services/adaptacje-poddaszy.html" />
     <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
@@ -15,7 +17,9 @@
     <meta property="og:type" content="website" />
     <meta property="og:site_name" content="KP_Code" />
     <meta property="og:title" content="Adaptacje poddaszy — KP_Code" />
-    <meta property="og:description" content="Adaptacje poddaszy: projekt, ocieplenie, zabudowy GK, instalacje, okna dachowe, podłogi i oświetlenie. Funkcjonalne, ciepłe i bezpieczne wnętrza. Darmowa wycena." />
+    <meta
+      property="og:description"
+      content="Adaptacje poddaszy: projekt, ocieplenie, zabudowy GK, instalacje, okna dachowe, podłogi i oświetlenie. Funkcjonalne, ciepłe i bezpieczne wnętrza. Darmowa wycena." />
     <meta property="og:url" content="https://construction-project-02.netlify.app/services/adaptacje-poddaszy.html" />
     <meta property="og:image" content="https://construction-project-02.netlify.app/assets/img/og/og-image-01-1200x630.jpg" />
     <meta property="og:image:secure_url" content="https://construction-project-02.netlify.app/assets/img/og/og-image-01-1200x630.jpg" />
@@ -27,7 +31,9 @@
     <!-- Twitter -->
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content="Adaptacje poddaszy — KP_Code" />
-    <meta name="twitter:description" content="Adaptacje poddaszy: projekt, ocieplenie, zabudowy GK, instalacje, okna dachowe, podłogi i oświetlenie. Funkcjonalne, ciepłe i bezpieczne wnętrza. Darmowa wycena." />
+    <meta
+      name="twitter:description"
+      content="Adaptacje poddaszy: projekt, ocieplenie, zabudowy GK, instalacje, okna dachowe, podłogi i oświetlenie. Funkcjonalne, ciepłe i bezpieczne wnętrza. Darmowa wycena." />
     <meta name="twitter:image" content="https://construction-project-02.netlify.app/assets/img/og/og-image-01-1200x630.jpg" />
     <meta name="twitter:image:alt" content="Nowoczesne poddasze po adaptacji — zabudowy GK, okna dachowe i oświetlenie LED — KP_Code" />
 
@@ -43,7 +49,7 @@
     <meta name="msapplication-TileColor" content="#0f4c81" />
 
     <!-- Theme color (fallback + light/dark) -->
-    <meta name="theme-color" content="#0f4c81">
+    <meta name="theme-color" content="#0f4c81" />
     <meta name="theme-color" content="#0f4c81" media="(prefers-color-scheme: light)" />
     <meta name="theme-color" content="#121212" media="(prefers-color-scheme: dark)" />
     <meta name="color-scheme" content="light dark" />
@@ -53,8 +59,22 @@
     <link rel="preload" href="../assets/fonts/lato-v25-latin/lato-v25-latin-regular.woff2" as="font" type="font/woff2" crossorigin />
     <link rel="preload" href="../assets/fonts/montserrat-v31-latin/montserrat-v31-latin-600.woff2" as="font" type="font/woff2" crossorigin />
 
-    <!-- Icons library (używasz FA w stopce) -->
-    <script src="https://kit.fontawesome.com/6e7b7ddf50.js" crossorigin="anonymous" defer></script>
+    <!-- Preload logotypów dla obu motywów -->
+    <link rel="preload" as="image" href="../assets/img/logo-dark.svg" media="(prefers-color-scheme: dark)" />
+    <link rel="preload" as="image" href="../assets/img/logo-light.svg" media="(prefers-color-scheme: light)" />
+
+    <!-- Wczesne ustawienie motywu (dark/light) — zapobiega migotaniu -->
+    <script>
+      (function () {
+        try {
+          var t = localStorage.getItem("theme");
+          if (t) document.body.classList.toggle("dark-mode", t === "dark");
+          else if (window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches) {
+            document.body.classList.add("dark-mode");
+          }
+        } catch (e) {}
+      })();
+    </script>
 
     <!-- CSS -->
     <link rel="stylesheet" href="../css/style.min.css" />
@@ -106,7 +126,6 @@
       }
     </script>
   </head>
-
 
   <!-- BODY -->
   <body class="page-service" data-current="services" data-service="adaptacje-poddaszy">
@@ -467,10 +486,18 @@
           <p>Jesteśmy firmą budowlaną z wieloletnim doświadczeniem. Realizujemy projekty od A do Z z najwyższą jakością.</p>
 
           <div class="social-icons">
-            <a href="#" class="social-icon" aria-label="GitHub"><i class="fa-brands fa-github" aria-hidden="true"></i></a>
-            <a href="#" class="social-icon" aria-label="Facebook"><i class="fa-brands fa-facebook" aria-hidden="true"></i></a>
-            <a href="#" class="social-icon" aria-label="LinkedIn"><i class="fa-brands fa-linkedin" aria-hidden="true"></i></a>
-            <a href="#" class="social-icon" aria-label="Discord"><i class="fa-brands fa-discord" aria-hidden="true"></i></a>
+            <a href="#" class="social-icon" aria-label="LinktIn">
+              <img src="../assets/img/icon/linkedin-brands-solid-full.svg" alt="LinktIn" width="30" height="30" loading="lazy" decoding="async" />
+            </a>
+            <a href="#" class="social-icon" aria-label="Facebook">
+              <img src="../assets\img\icon\facebook-brands-solid-full.svg" alt="Facebook" width="30" height="30" loading="lazy" decoding="async" />
+            </a>
+            <a href="#" class="social-icon" aria-label="GitHub">
+              <img src="../assets\img\icon\github-brands-solid-full.svg" alt="GitHub" width="30" height="30" loading="lazy" decoding="async" />
+            </a>
+            <a href="#" class="social-icon" aria-label="Instagram">
+              <img src="../assets\img\icon\instagram-brands-solid-full.svg" alt="LinktIn" width="30" height="30" loading="lazy" decoding="async" />
+            </a>
           </div>
 
           <a
@@ -479,9 +506,7 @@
             target="_blank"
             rel="noopener noreferrer"
             aria-label="Otwórz naszą mapę w Google My Maps">
-            <svg class="gmaps-icon" viewBox="0 0 24 24" width="24" height="24" aria-hidden="true">
-              <path d="M12 22s7-7.14 7-12a7 7 0 10-14 0c0 4.86 7 12 7 12zM12 10a2 2 0 110-4 2 2 0 010 4z" fill="currentColor" />
-            </svg>
+            <img src="../assets/img/icon/location-dot-solid-full.svg" alt="location" width="24" height="24" loading="lazy" decoding="async" />
           </a>
         </div>
 
@@ -492,12 +517,8 @@
             <li><a href="remonty-mieszkan.html">Remonty mieszkań</a></li>
             <li><a href="wykonczenia-wnetrz.html">Wykończenia wnętrz</a></li>
             <li aria-current="page">Adaptacje poddaszy</li>
-            <li>
-              <a href="instalacje-sanitarne.html">Instalacje sanitarne</a>
-            </li>
-            <li>
-              <a href="instalacje-elektryczne.html">Instalacje elektryczne</a>
-            </li>
+            <li><a href="instalacje-sanitarne.html">Instalacje sanitarne</a></li>
+            <li><a href="instalacje-elektryczne.html">Instalacje elektryczne</a></li>
           </ul>
         </div>
 
@@ -543,8 +564,8 @@
         </div>
       </div>
 
-      <button id="powrot-na-gore" type="button" aria-label="Powrót na górę" title="Powrót na górę" aria-controls="top">
-        <i class="fas fa-arrow-up" aria-hidden="true"></i>
+      <button id="powrot-na-gore" type="button" aria-label="Powrót na górę" title="Powrót na górę">
+        <img src="../assets/img/icon/arrow-up-solid-full.svg" alt="" width="20" height="20" decoding="async" />
       </button>
 
       <div class="footer-bottom">

@@ -2106,13 +2106,13 @@ footer[role="contentinfo"] a:not(.social-icon):not(.gmaps-ico):focus-visible {
   max-width: 36ch;
 }
 
-/* ===== SOCIAL ICONS =============================== */
 .footer-brand .social-icons {
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 0.75rem;
+  gap: 0;
   margin-top: 0.75rem;
+  overflow: visible;
 }
 
 .social-icon {
@@ -2124,24 +2124,32 @@ footer[role="contentinfo"] a:not(.social-icon):not(.gmaps-ico):focus-visible {
   border-radius: 50%;
   background: transparent;
   text-decoration: none;
-  transition: transform 0.3s ease, background-color 0.3s ease;
-  margin: 10px;
+  transition: transform 0.3s ease;
+  margin: 14px;
+  position: relative;
 }
+
 .social-icon:hover {
   background: transparent;
   transform: translateY(-2px);
-  box-shadow: 20px 200px 200px (var(--primary-400) 80%, transparent);
 }
 
 .social-icon img,
 .social-icon svg {
   width: 36px;
-  height:36px;
+  height: 36px;
   display: block;
   object-fit: contain;
-  color: white;
+  transition: transform 0.2s ease, filter 0.1s ease;
+  filter: none;
+  pointer-events: none;
 }
 
+.social-icon:hover img,
+.social-icon:hover svg {
+  transform: translateY(-2px);
+  filter: drop-shadow(0 0 10px color-mix(in srgb, var(--accent) 90%, transparent)) drop-shadow(0 0 22px color-mix(in srgb, var(--accent) 70%, transparent));
+}
 
 .social-icon:focus-visible {
   outline: 3px solid var(--accent-400);
@@ -2363,9 +2371,11 @@ body.dark-mode.page-service .section--divider {
 body.page-service .service-intro {
   background: var(--surface-1);
 }
+
 body.page-service :is(.service-details, .cta-section) {
   background: var(--surface-2);
 }
+
 body.page-service .gallery-section {
   background: var(--surface-3);
 }
@@ -2373,12 +2383,15 @@ body.page-service .gallery-section {
 body.dark-mode.page-service .service-intro {
   background: var(--surface-3);
 }
+
 body.dark-mode.page-service .service-details {
   background: var(--surface-2);
 }
+
 body.dark-mode.page-service .gallery-section {
   background: var(--surface-1);
 }
+
 body.dark-mode.page-service .cta-section {
   background: var(--surface-2);
 }
@@ -2412,11 +2425,9 @@ body.dark-mode.page-service .cta-section .section-title {
 
 .service-intro__inner .section-title {
   grid-column: 1 / -1;
-  /* text-align: center;  // simplified – centrowanie robi .page-service .section-title */
-  margin: 0 0 0.5rem; /* zachowujemy tylko odstęp dołu */
+  margin: 0 0 0.5rem;
 }
 
-/* Center section titles on service subpages (independent of parent) */
 .page-service .section-title {
   display: block;
   width: fit-content;
@@ -2425,7 +2436,7 @@ body.dark-mode.page-service .cta-section .section-title {
 }
 .page-service .section-title::after {
   margin-inline: auto;
-} /* jeśli masz pseudo-ornament pod tytułem */
+}
 
 .service-intro__media {
   overflow: hidden;
@@ -2562,7 +2573,7 @@ body.page-service .cta-row {
   }
   .service-intro__inner {
     text-align: initial;
-  } /* zostaw – dotyczy pozostałych tekstów, tytuł ma własne centrowanie */
+  }
   .service-intro__copy {
     text-align: left;
   }
@@ -2581,7 +2592,7 @@ body.page-service .cta-row {
   .service-intro__inner {
     text-align: center;
     row-gap: 1.25rem;
-  } /* tu centrowanie zostaje – dotyczy treści poza tytułem */
+  }
   .service-intro__media {
     max-width: 92%;
     margin: 0 auto 1rem;
@@ -3330,10 +3341,9 @@ body.dark-mode .icon-btn:not(.hamburger):hover {
   background: color-mix(in srgb, var(--accent) 15%, transparent);
 }
 
-/* === Hamburger only === */
 .hamburger.icon-btn {
   all: unset;
-  display: none; /* domyślnie ukryty na desktopie */
+  display: none;
   place-items: center;
   width: 40px;
   height: 40px;
@@ -3355,21 +3365,26 @@ body.dark-mode .icon-btn:not(.hamburger):hover {
   height: 26px;
   transition: opacity 0.18s ease, transform 0.18s ease;
 }
+
 #hamburgerIcon {
   transform: translate(var(--icon-nudge-x, 0), var(--icon-nudge-y, 0));
 }
+
 .hamburger .icon-menu {
   opacity: 1;
   transform: translate(var(--icon-nudge-x, 0), var(--icon-nudge-y, 0)) scale(1);
 }
+
 .hamburger .icon-close {
   opacity: 0;
   transform: translate(var(--icon-nudge-x, 0), var(--icon-nudge-y, 0)) scale(0.9);
 }
+
 .hamburger.active .icon-menu {
   opacity: 0;
   transform: translate(var(--icon-nudge-x, 0), var(--icon-nudge-y, 0)) scale(0.9) rotate(90deg);
 }
+
 .hamburger.active .icon-close {
   opacity: 1;
   transform: translate(var(--icon-nudge-x, 0), var(--icon-nudge-y, 0)) scale(1);
@@ -3424,5 +3439,3 @@ body.dark-mode .icon-btn:not(.hamburger):hover {
 }
 
 /* %%%%%%%%%%%%%%%%%%%%%%%% END OF FILE  %%%%%%%%%%%%%%%%%%%%%%%% */
-
-/* (opcjonalnie) prefers-reduced-motion dorzuć w osobnej sekcji PRM */

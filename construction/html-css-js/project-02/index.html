@@ -57,6 +57,23 @@
     <link rel="preload" href="assets/fonts/lato-v25-latin/lato-v25-latin-regular.woff2" as="font" type="font/woff2" crossorigin />
     <link rel="preload" href="assets/fonts/montserrat-v31-latin/montserrat-v31-latin-600.woff2" as="font" type="font/woff2" crossorigin />
 
+    <!-- Preload logotypów dla obu motywów -->
+    <link rel="preload" as="image" href="assets/img/logo-dark.svg" media="(prefers-color-scheme: dark)" />
+    <link rel="preload" as="image" href="assets/img/logo-light.svg" media="(prefers-color-scheme: light)" />
+
+    <!-- Wczesne ustawienie motywu (dark/light) — zapobiega migotaniu -->
+    <script>
+      (function () {
+        try {
+          var t = localStorage.getItem("theme");
+          if (t) document.body.classList.toggle("dark-mode", t === "dark");
+          else if (window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches) {
+            document.body.classList.add("dark-mode");
+          }
+        } catch (e) {}
+      })();
+    </script>
+
     <!-- Główny CSS -->
     <link rel="stylesheet" href="css/style.min.css" />
 
@@ -1171,19 +1188,17 @@
             fetchpriority="low" />
           <h3>Demo - Twoja firma</h3>
           <p>Jesteśmy firmą budowlaną z wieloletnim doświadczeniem. Realizujemy projekty od A do Z z najwyższą jakością.</p>
+
           <div class="social-icons">
             <a href="#" class="social-icon" aria-label="LinktIn">
               <img src="assets/img/icon/linkedin-brands-solid-full.svg" alt="LinktIn" width="30" height="30" loading="lazy" decoding="async" />
             </a>
-
             <a href="#" class="social-icon" aria-label="Facebook">
               <img src="assets\img\icon\facebook-brands-solid-full.svg" alt="Facebook" width="30" height="30" loading="lazy" decoding="async" />
             </a>
-
             <a href="#" class="social-icon" aria-label="GitHub">
               <img src="assets\img\icon\github-brands-solid-full.svg" alt="GitHub" width="30" height="30" loading="lazy" decoding="async" />
             </a>
-
             <a href="#" class="social-icon" aria-label="Instagram">
               <img src="assets\img\icon\instagram-brands-solid-full.svg" alt="LinktIn" width="30" height="30" loading="lazy" decoding="async" />
             </a>
@@ -1221,19 +1236,16 @@
               <br />
               00-001 Warszawa
             </p>
-
             <p>
               <strong>Telefon:</strong>
               <br />
               <a href="tel:+48123456789">+48 123 456 789</a>
             </p>
-
             <p>
               <strong>Email:</strong>
               <br />
               <a href="mailto:kontakt@Twoja-firma.pl">kontakt@Twoja-firma.pl</a>
             </p>
-
             <p>
               <strong>Godziny pracy:</strong>
               <br />

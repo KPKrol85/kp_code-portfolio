@@ -1,36 +1,38 @@
-/* =======================================================================================@@@@@@@@@@@@@@@@@@@@
-   ========== Animacje pojawiania sekcji przy scrollu (powtarzalne + initial) ============
-   - Dodaje klasę .show, gdy element .hidden pojawi się w kadrze
-   - Usuwa klasę .show, gdy element całkowicie znika z widoku
-   - Obsługuje fallback dla starych przeglądarek (bez IntersectionObserver)
-   - Initial reveal: pokazuje elementy widoczne od razu po wejściu na stronę
-   ======================================================================================= */
+/* 01) ======================================================================================
+   ========== ANIMACJE POJAWIENIA SIĘ SEKCJI PRZY SCROLLU ===================================
+   ==========================================================================================
+   ===== > Dodaje .show, gdy .hidden jest ≥12% w kadrze; usuwa .show po całkowitym wyjściu ==
+   ===== > Fallback bez IntersectionObserver ================================================
+   ===== > Initial reveal po pierwszym paintcie =============================================
+   ==========================================================================================
+   ==========================================================================================
+   ==========================================================================================
+   ========================================================================================== */
 
-
-/* ================================================================================
-   ==========================================
-   ================================================================================   */
 (() => {
   const hiddenElements = document.querySelectorAll(".hidden");
-  if (!hiddenElements.length) return; // brak ukrytych elementów — nic nie robimy
+  if (!hiddenElements.length) return;
 
-  /* --- Fallback dla bardzo starych przeglądarek (bez IntersectionObserver) --- */
+  // Fallback: stare przeglądarki
   if (!("IntersectionObserver" in window)) {
     hiddenElements.forEach((el) => el.classList.add("show"));
     return;
   }
 
-  /* --- Konfiguracja obserwatora --- */
-  const ENTER_RATIO = 0.12; // próg wejścia: ≥12% elementu w kadrze
-  const ROOT_MARGIN = "0px 0px -10% 0px"; // dolny margines — odpala nieco wcześniej
+  // Konfiguracja obserwatora
+  const ENTER_RATIO = 0.12; // próg wejścia: ≥12% elementu
+  const ROOT_MARGIN = "0px 0px 10% 0px"; // +10% na dole = odpala nieco wcześniej
 
   const observer = new IntersectionObserver(
     (entries) => {
       entries.forEach((entry) => {
-        if (entry.intersectionRatio > ENTER_RATIO) {
-          // ZMIANA: odłóż dodanie .show do następnej klatki
+        // Wejście: element przecina viewport i spełnia próg
+        if (entry.isIntersecting && entry.intersectionRatio >= ENTER_RATIO) {
           requestAnimationFrame(() => entry.target.classList.add("show"));
-        } else if (entry.intersectionRatio === 0) {
+          return;
+        }
+        // Wyjście: całkowicie poza viewportem → usuń .show
+        if (entry.intersectionRatio === 0) {
           entry.target.classList.remove("show");
         }
       });
@@ -40,7 +42,7 @@
 
   hiddenElements.forEach((el) => observer.observe(el));
 
-  // --- Initial reveal: sprawdź, co już jest widoczne przy starcie ---
+  // Initial reveal: elementy już widoczne przy starcie
   const isInViewport = (el, ratio = ENTER_RATIO) => {
     const r = el.getBoundingClientRect();
     const vh = window.innerHeight || document.documentElement.clientHeight;
@@ -51,7 +53,7 @@
     if (visibleVert <= 0 || visibleHorz <= 0) return false;
     const visibleArea = visibleVert * visibleHorz;
     const totalArea = r.width * r.height;
-    return visibleArea / totalArea > ratio;
+    return visibleArea / totalArea >= ratio;
   };
 
   const initialReveal = () => {
@@ -60,67 +62,46 @@
     });
   };
 
-  // ZMIANA: odpal dopiero PO pierwszym paintcie (double rAF)
-  requestAnimationFrame(() => {
-    requestAnimationFrame(initialReveal);
-  });
+  // Po pierwszym paintcie (double rAF)
+  requestAnimationFrame(() => requestAnimationFrame(initialReveal));
 
-  // Zostaw też „bezpieczniki” na późniejsze wejścia
-  window.addEventListener(
-    "load",
-    () => {
-      setTimeout(initialReveal, 0);
-    },
-    { once: true }
-  );
-  window.addEventListener(
-    "pageshow",
-    () => {
-      setTimeout(initialReveal, 0);
-    },
-    { once: true }
-  );
+  // Bezpieczniki: po 'load' i przy powrocie z bfcache
+  window.addEventListener("load", () => setTimeout(initialReveal, 0), { once: true });
+  window.addEventListener("pageshow", () => setTimeout(initialReveal, 0), { once: true });
 })();
 
-/* =======================================================================================@@@@@@@@@@@@@@@@@@@@
-   ========== Motyw + przełączanie logo + ikonka hamburgera (desktop+mobile) =============
-   - Umożliwia przełączanie motywu jasny/ciemny
-   - Podmienia logotypy (.logo-img[data-light][data-dark]) i ikonę hamburgera
-   - Zapamiętuje wybór w localStorage (zabezpieczenie na Safari Private Mode)
-   - Obsługuje dwa przyciski: desktopowy i mobilny
-   - Synchronizuje aria-label i aria-pressed (a11y)
-   - Reaguje na systemowy prefers-color-scheme, jeśli brak zapisu w LS
-   ======================================================================================= */
+/* 02) ======================================================================================
+   ========== MOTYW + PRZEŁĄCZENIE LOGO + IKONKA HAMBURGERA =================================
+   ==========================================================================================
+   ===== > Umożliwia przełączanie motywu jasny/ciemny =======================================
+   ===== > Podmienia logotypy (.logo-img[data-light][data-dark]) i ikonę hamburgera =========
+   ===== > Zapamiętuje wybór w localStorage (zabezpieczenie na Safari Private Mode) =========
+   ===== > Obsługuje dwa przyciski: desktopowy i mobilny ====================================
+   ===== > Synchronizuje aria-label i aria-pressed (a11y) ===================================
+   ===== > Reaguje na systemowy prefers-color-scheme, jeśli brak zapisu w LS ================
+   ========================================================================================== */
+
 (() => {
   const btnDesktop = document.getElementById("themeToggleDesktop");
   const btnMobile = document.getElementById("themeToggleMobile");
-  const logos = document.querySelectorAll(".logo-img[data-light][data-dark]");
   const hamburgerIcon = document.getElementById("hamburgerIcon");
-
   const mq = window.matchMedia ? window.matchMedia("(prefers-color-scheme: dark)") : null;
 
-  /* --- Podmiana logo w zależności od motywu --- */
   const setLogo = (isDark) => {
-    logos.forEach((img) => {
+    document.querySelectorAll(".logo-img[data-light][data-dark]").forEach((img) => {
       const next = isDark ? img.dataset.dark : img.dataset.light;
       if (!next) return;
-      // unikamy zbędnych podmian
       const absNext = new URL(next, document.baseURI).href;
       if (img.src !== absNext) img.setAttribute("src", next);
     });
   };
 
-  /* --- Podmiana ikonki hamburgera — korzystamy z data-light / data-dark z HTML --- */
   const setHamburgerIcon = (isDark) => {
     if (!hamburgerIcon) return;
     const next = isDark ? hamburgerIcon.dataset.dark : hamburgerIcon.dataset.light;
-    if (!next) return;
-    if (hamburgerIcon.getAttribute("src") !== next) {
-      hamburgerIcon.setAttribute("src", next);
-    }
+    if (next && hamburgerIcon.getAttribute("src") !== next) hamburgerIcon.setAttribute("src", next);
   };
 
-  /* --- Synchronizacja aria-* przycisków toggle (a11y) --- */
   const syncButtonsA11y = (isDark) => {
     const pressed = String(isDark);
     const label = isDark ? "Przełącz na jasny motyw" : "Przełącz na ciemny motyw";
@@ -134,7 +115,6 @@
     }
   };
 
-  /* --- Safe localStorage (try/catch dla Safari Private) --- */
   const safeSetItem = (k, v) => {
     try {
       localStorage.setItem(k, v);
@@ -148,7 +128,6 @@
     }
   };
 
-  /* --- Główna funkcja zmiany motywu --- */
   const setTheme = (mode, persist = true) => {
     const isDark = mode === "dark";
     document.body.classList.toggle("dark-mode", isDark);
@@ -158,110 +137,182 @@
     if (persist) safeSetItem("theme", isDark ? "dark" : "light");
   };
 
-  /* --- Inicjalizacja: localStorage > prefers-color-scheme --- */
   const saved = safeGetItem("theme"); // 'dark' | 'light' | null
-  if (saved === "dark" || saved === "light") {
-    setTheme(saved, false);
-  } else {
-    setTheme(mq && mq.matches ? "dark" : "light", false);
-  }
+  if (saved === "dark" || saved === "light") setTheme(saved, false);
+  else setTheme(mq && mq.matches ? "dark" : "light", false);
 
-  /* --- Obsługa kliknięć w przyciski --- */
-  const onToggle = () => {
-    const next = document.body.classList.contains("dark-mode") ? "light" : "dark";
-    setTheme(next, true);
-  };
+  const onToggle = () => setTheme(document.body.classList.contains("dark-mode") ? "light" : "dark", true);
   if (btnDesktop) btnDesktop.addEventListener("click", onToggle);
   if (btnMobile) btnMobile.addEventListener("click", onToggle);
 
-  /* --- Reakcja na zmianę systemowego motywu (gdy brak zapisu w LS) --- */
   if (!saved && mq) {
     const onSystemChange = (e) => setTheme(e.matches ? "dark" : "light", false);
     if (mq.addEventListener) mq.addEventListener("change", onSystemChange);
-    else if (mq.addListener) mq.addListener(onSystemChange); // Safari <14
+    else if (mq.addListener) mq.addListener(onSystemChange);
   }
 })();
 
-/* =======================================================================================@@@@@@@@@@@@@@@@@@@@
-   ========== Hamburger (mobile nav) =====================================================
-   - Steruje otwieraniem/zamykaniem menu mobilnego
-   - A11y: aria-expanded + aria-label, blokada scrolla na <body> (nav-open)
-   - Zamyka się na: Esc, klik linku w menu, wyjście z zakresu mobile (>768px)
-   ======================================================================================= */
+/* 03) ======================================================================================
+   ========== HAMBURGER MOBILE NAV ==========================================================
+   ==========================================================================================
+   ===== > Steruje otwieraniem/zamykaniem menu mobilnego ====================================
+   ===== > A11y: aria-expanded + aria-label, blokada scrolla na <body> (nav-open) ===========
+   ===== > Zameka się na: ESC, klik linku w menu, wyjście z zakresu mobile (>768px) =========
+   ==========================================================================================
+   ==========================================================================================
+   ==========================================================================================
+   ========================================================================================== */
+
 (() => {
   const btn = document.getElementById("hamburger");
   const nav = document.getElementById("primaryNav");
-  if (!btn || !nav) return; // brak elementów — kończymy
+  if (!btn || !nav) return;
 
-  // ensure default aria-expanded for a11y (defensywny)
+  // Media query (mobile breakpoint)
+  const mql = window.matchMedia("(max-width: 768px)");
+
+  // Domyślne a11y (defensive)
   if (!btn.hasAttribute("aria-expanded")) btn.setAttribute("aria-expanded", "false");
 
-  /* --- Zamknij menu i posprzątaj atrybuty/stany --- */
+  let lastTrigger = null; // do przywrócenia fokusa po zamknięciu
+
+  const unlock = () => document.body.classList.remove("nav-open");
+  const lock = () => document.body.classList.add("nav-open");
+
+  // Stany bazowe
+  const applyDesktopState = () => {
+    nav.classList.remove("mobile-open");
+    btn.classList.remove("active");
+    btn.setAttribute("aria-expanded", "false");
+    btn.setAttribute("aria-label", "Otwórz menu");
+    nav.toggleAttribute("inert", false);
+    nav.setAttribute("aria-hidden", "false");
+    unlock();
+    removeOutsideClick();
+  };
+
+  const applyMobileCollapsed = () => {
+    nav.classList.remove("mobile-open");
+    btn.classList.remove("active");
+    btn.setAttribute("aria-expanded", "false");
+    btn.setAttribute("aria-label", "Otwórz menu");
+    nav.toggleAttribute("inert", true);
+    nav.setAttribute("aria-hidden", "true");
+    unlock();
+    removeOutsideClick();
+  };
+
   const closeMenu = () => {
     nav.classList.remove("mobile-open");
     btn.classList.remove("active");
     btn.setAttribute("aria-expanded", "false");
     btn.setAttribute("aria-label", "Otwórz menu");
-    document.body.classList.remove("nav-open"); // odblokuj scroll (zgodnie z CSS)
+    nav.toggleAttribute("inert", true);
+    nav.setAttribute("aria-hidden", "true");
+    unlock();
+    (lastTrigger || btn).focus({ preventScroll: true });
+    lastTrigger = null;
+    removeOutsideClick();
   };
 
-  /* --- Przełącz menu (open/close) + aktualizacja a11y --- */
-  const toggleMenu = () => {
-    const isOpen = !nav.classList.contains("mobile-open");
-    nav.classList.toggle("mobile-open", isOpen);
-    btn.classList.toggle("active", isOpen);
-    btn.setAttribute("aria-expanded", String(isOpen));
-    btn.setAttribute("aria-label", isOpen ? "Zamknij menu" : "Otwórz menu");
-    document.body.classList.toggle("nav-open", isOpen); // zablokuj/odblokuj scroll (zgodnie z CSS)
+  const openMenu = () => {
+    nav.classList.add("mobile-open");
+    btn.classList.add("active");
+    btn.setAttribute("aria-expanded", "true");
+    btn.setAttribute("aria-label", "Zamknij menu");
+    nav.toggleAttribute("inert", false);
+    nav.setAttribute("aria-hidden", "false");
+    lock();
+    lastTrigger = document.activeElement instanceof HTMLElement ? document.activeElement : btn;
+    addOutsideClick();
   };
 
-  /* --- Klik w przycisk hamburgera --- */
+  const toggleMenu = () => (nav.classList.contains("mobile-open") ? closeMenu() : openMenu());
+
+  // Klik przycisku
   btn.addEventListener("click", toggleMenu);
 
-  /* --- Esc zamyka tylko, gdy naprawdę jest otwarte --- */
+  // ESC, tylko gdy otwarte
   document.addEventListener("keydown", (e) => {
-    if (e.key === "Escape" && nav.classList.contains("mobile-open")) {
-      closeMenu();
-    }
+    if (e.key === "Escape" && nav.classList.contains("mobile-open")) closeMenu();
   });
 
-  /* --- Klik w link w nawigacji = zamknij (UX mobilny) --- */
+  // Kliknięcie linku w nav = zamknij (na mobile)
   nav.addEventListener("click", (e) => {
     const link = e.target.closest("a[href], area[href]");
-    if (link) closeMenu();
+    if (link && mql.matches) closeMenu();
   });
 
-  /* --- Wyjście z mobile (np. rotacja/resize > 768px) — zamknij menu --- */
-  const mql = window.matchMedia("(max-width: 768px)");
-  const onChange = () => {
-    if (!mql.matches) closeMenu();
+  // Klik poza nav/przyciskiem = zamknij (gdy otwarte)
+  let outsideClickHandler = null;
+  function addOutsideClick() {
+    if (outsideClickHandler) return;
+    outsideClickHandler = (e) => {
+      if (!nav.classList.contains("mobile-open")) return;
+      const inNav = nav.contains(e.target);
+      const onBtn = btn.contains(e.target);
+      if (!inNav && !onBtn) closeMenu();
+    };
+    document.addEventListener("pointerdown", outsideClickHandler, true);
+  }
+  function removeOutsideClick() {
+    if (!outsideClickHandler) return;
+    document.removeEventListener("pointerdown", outsideClickHandler, true);
+    outsideClickHandler = null;
+  }
+
+  // Reakcja na zmianę szerokości
+  const onChange = (e) => {
+    if (e.matches) {
+      // weszliśmy w mobile
+      applyMobileCollapsed();
+    } else {
+      // wyszliśmy na desktop
+      applyDesktopState();
+    }
   };
   if (mql.addEventListener) mql.addEventListener("change", onChange);
   else if (mql.addListener) mql.addListener(onChange); // Safari <14
+
+  // Inicjalny stan: mobile vs desktop
+  if (mql.matches) applyMobileCollapsed();
+  else applyDesktopState();
 })();
 
-/* =======================================================================================@@@@@@@@@@@@@@@@@@@@
-   ========== Przycisk „Powrót na górę” ==================================================
-   - Pokazuje przycisk po przewinięciu > THRESHOLD
-   - rAF odszumia nasłuch scrolla
-   - Szanuje prefers-reduced-motion przy płynnym scrollu
-   - Aktualizuje stan na: start, load, pageshow (bfcache), visibilitychange, resize
-   ======================================================================================= */
+
+/* 04) ======================================================================================
+   ========== PRZYCISK "POWRÓT NA GÓRĘ" =====================================================
+   ==========================================================================================
+   ===== > Pokazuje przycisk po przewinięciu > THRESHOLD ====================================
+   ===== > rAF odszumia nasłuch scrolla =====================================================
+   ===== > Szanuje prefers-reduced-motion przy płynnym scrollu ==============================
+   ===== > Aktualizuje stan na: start, load, pageshow (bfcache), visibilitychange, resize ===
+   ==========================================================================================
+   ==========================================================================================
+   ========================================================================================== */
+
 (() => {
   const btn = document.getElementById("powrot-na-gore") || document.querySelector(".powrot-na-gore");
-  if (!btn) return; // brak przycisku — nic nie robimy
+  if (!btn) return;
 
-  const THRESHOLD = 300; // px — po tylu pikselach pojawia się przycisk
+  const THRESHOLD = 300; // px
+  const root = document.scrollingElement || document.documentElement;
 
-  /* --- Bezpieczny odczyt pozycji scrolla (zgodność) --- */
-  const getScrollTop = () => (typeof window.pageYOffset === "number" ? window.pageYOffset : (document.scrollingElement || document.documentElement).scrollTop);
+  // Bezpieczny odczyt scrollTop (clamp >= 0)
+  const getScrollTop = () => Math.max(0, typeof window.pageYOffset === "number" ? window.pageYOffset : root.scrollTop);
 
-  /* --- Uaktualnij widoczność przycisku --- */
-  const update = () => {
-    btn.classList.toggle("is-visible", getScrollTop() > THRESHOLD);
+  // Sterowanie widocznością + a11y
+  const setVisible = (v) => {
+    btn.classList.toggle("is-visible", v);
+    btn.setAttribute("aria-hidden", String(!v));
+    // inert usuwa z kolejki fokusa, starsze przeglądarki zignorują (OK)
+    if (v) btn.removeAttribute("inert");
+    else btn.setAttribute("inert", "");
   };
 
-  /* --- rAF: delikatne „odszumienie” eventów scroll --- */
+  const update = () => setVisible(getScrollTop() > THRESHOLD);
+
+  // rAF "odszumia" scroll
   let ticking = false;
   const onScroll = () => {
     if (ticking) return;
@@ -272,37 +323,40 @@
     });
   };
 
-  /* --- Inicjalizacja i typowe powroty z bfcache --- */
+  // Inicjal
   update();
+
+  // Powroty z cache + zmiany widoczności/rozmiaru
   window.addEventListener("load", update, { once: true });
-  window.addEventListener("pageshow", update, { once: true }); // Safari/FF bfcache
+  window.addEventListener("pageshow", update, { once: true });
   document.addEventListener("visibilitychange", () => {
     if (document.visibilityState === "visible") update();
   });
-  window.addEventListener("resize", update); // zmiana wysokości viewportu
+  window.addEventListener("resize", update, { passive: true });
 
-  /* --- Reakcja na scroll --- */
+  // Scroll
   window.addEventListener("scroll", onScroll, { passive: true });
 
-  /* --- Płynny powrót do góry (+ respect reduced motion) --- */
+  // Smooth scroll (z poszanowaniem reduced motion)
   btn.addEventListener("click", (e) => {
     e.preventDefault();
-    // Jeśli z jakiegoś powodu można kliknąć niewidoczny przycisk — ignorujemy
     if (!btn.classList.contains("is-visible")) return;
-
     const smooth = !window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     window.scrollTo({ top: 0, behavior: smooth ? "smooth" : "auto" });
   });
 })();
 
-/* =======================================================================================@@@@@@@@@@@@@@@@@@@@
-   ========== FORMULARZ — submit + walidacja + licznik + success state + Netlify =========
-   - Walidacja: required, email, phone (opcjonalny), RODO, reCAPTCHA (Netlify)
-   - A11y: aria-invalid, skrót do pierwszego błędu, error summary + skip link
-   - Licznik znaków wiadomości + auto-save szkicu w localStorage
-   - Wysyłka: POST application/x-www-form-urlencoded (Netlify Forms)
-   - Success state: dyskretny, bez przeładowania; GA4 + Meta po sukcesie (prod)
-   =========================================================== */
+/* 05) ======================================================================================
+   ========== FORMULARZ - SUBMIT + WALIDACJA + LICZNIK + SUCCESS STATE + NETLIFY ============
+   ==========================================================================================
+   ===== > Walidacja: required, email, phone (opcjonalny), RODO, reCAPTCHA (Netlify) ========
+   ===== > A11y: aria-invalid, skrót do pierwszego błędu, error summary + skip link =========
+   ===== > Licznik znaków wiadomości + auto-save szkicu w localStorage ======================
+   ===== > Wysyłka: POST application/x-www-form-urlencoded (Netlify Forms) ==================
+   ===== > Success state: dyskretny, bez przeładowania; GA4 + Meta po sukcesie (prod) =======
+   ==========================================================================================
+   ========================================================================================== */
+
 (() => {
   const form = document.getElementById("contactForm");
   if (!form) return;
@@ -574,19 +628,20 @@
       showStatus("Ups! Nie udało się wysłać. Spróbuj ponownie za chwilę.", false);
       console.error(err);
     }
-  }); // ← koniec submit handlera
-})(); // ← koniec IIFE
+  });
+})();
 
-/* =======================================================================================
-   LIGHTBOX — podgląd zdjęcia (bez overlay i bez „double-tap”)
-   - HTML:
-     <div id="lightbox" class="lb" role="dialog" aria-modal="true"
-          aria-labelledby="lightbox-title" aria-describedby="lightbox-caption"
-          hidden tabindex="-1"> … </div>
-   - Otwieranie: 1 klik/tap w .gallery-link
-   - Zamknięcie: Esc, klik w tło (data-lb-close) lub przycisk ×
-   - A11y: focus-trap, aria-hidden, przywracanie fokusu, body lock (lb-open)
-   ======================================================================================= */
+/* 06) ======================================================================================
+   ========== LIGHTBOX - PODGLĄD ZDJĘCIA (BEZ OVERLAY I BEZ "DOUBLE-TAP") ===================
+   ==========================================================================================
+   ===== > Otwieranie: 1 klik/tap w .gallery-link ===========================================
+   ===== > Zamknięcie: Esc, klik w tło (data-lb-close) lub przycisk x =======================
+   ===== > A11y: focus-trap, aria-hidden, przywracanie fokusu, body lock (lb-open) ==========
+   ==========================================================================================
+   ==========================================================================================
+   ==========================================================================================
+   ========================================================================================== */
+
 (() => {
   const lb = document.getElementById("lightbox");
   if (!lb) return;
@@ -713,12 +768,17 @@
   }
 })();
 
-/* =======================================================================================@@@@@@@@@@@@@@@@@@@@
-   ========== Compact Header po scrollu ===================================================
-   - Po przewinięciu > THRESHOLD px dodaje klasę .header-compact na <body>
-   - Gdy otwarte mobile menu (body.nav-open) — kompakt wyłączony
-   - rAF do odszumienia scrolla; init na starcie/po powrocie z bfcache
-   ======================================================================================= */
+/* 07) ======================================================================================
+   ========== COMPACT HEADER PO SCROLLU =====================================================
+   ==========================================================================================
+   ===== > Po przewinięciu > THRESHOLD px dodaje klasę .header-compact na <body> ============
+   ===== > Gdy otwarte mobile menu (body.nav-open) — kompakt wyłączony ======================
+   ===== > rAF do odszumienia scrolla; init na starcie/po powrocie z bfcache ================
+   ==========================================================================================
+   ==========================================================================================
+   ==========================================================================================
+   ========================================================================================== */
+
 (() => {
   const THRESHOLD = 20; // px przewinięcia, po którym header się „zbija”
   let compactOn = false;
