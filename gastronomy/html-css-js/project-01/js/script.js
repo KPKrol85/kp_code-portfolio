@@ -1140,3 +1140,9 @@ if (document.body) {
   if (pre) activateTab(pre);
   else activateTab(tabs[0]);
 })();
+
+/* ==================================== ADDED ===================================================== */
+// Sticky shadow on scroll
+window.addEventListener("scroll", () => {
+  document.body.classList.toggle("is-scrolled", window.scrollY > 10);
+});
