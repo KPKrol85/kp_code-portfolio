@@ -1454,6 +1454,42 @@ html[data-theme="dark"] input[type="time"]::-webkit-calendar-picker-indicator {
   min-width: 0;
 }
 
+#rezerwacja #booking-title {
+  text-align: center;
+  margin-bottom: 0.4rem;
+}
+
+#rezerwacja #booking-title + .muted {
+  text-align: center;
+  margin-inline: auto;
+  max-width: 60ch;
+  margin-bottom: 1rem;
+}
+
+/* Booking: akcje na pełną szerokość i na środku */
+#rezerwacja .form > .f-actions {
+  grid-column: 1 / -1;
+  display: flex;
+  justify-content: center;
+  margin-top: 1rem;
+}
+
+/* Komunikat pod przyciskiem też centralnie (jeśli używasz) */
+#rezerwacja .form .form-msg {
+  grid-column: 1 / -1;
+  text-align: center;
+  margin-top: 0.4rem;
+}
+
+@media (min-width: 900px) {
+  #rezerwacja .container.grid-2 {
+    /* zachowaj globalny row-gap */
+    row-gap: var(--g);
+    /* zwiększ tylko przerwę między kolumnami */
+    column-gap: clamp(24px, 3.6vw, 64px);
+  }
+}
+
 /* ---------------------------------------- */
 /* ===== MQ - max width 720px ============= */
 /* ---------------------------------------- */
@@ -1541,6 +1577,21 @@ html[data-theme="dark"] input[type="time"]::-webkit-calendar-picker-indicator {
   scroll-margin-top: calc((var(--header-h, 70px)) + (var(--nav-drop-gap, 8px)) + 12px);
 }
 
+#faq .section-head {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+#faq .section-head h2 {
+  justify-content: center;
+}
+
+#faq .section-head .lead {
+  text-align: center;
+  margin-inline: auto;
+  max-width: 60ch;
+}
+
 #faq details {
   border: 1px solid var(--c-border);
   border-radius: var(--radius);
@@ -1603,8 +1654,9 @@ html[data-theme="dark"] input[type="time"]::-webkit-calendar-picker-indicator {
 }
 
 #faq .content {
-  padding: 0 18px 16px 18px;
+  padding: 12px 22px 18px 22px;
   color: var(--c-ink);
+  line-height: 1.6;
 }
 
 #faq .content > * + * {
@@ -1658,7 +1710,6 @@ html[data-theme="light"] .site-footer {
   border-top: 1px solid var(--c-border);
   background: radial-gradient(circle at top right, color-mix(in oklab, var(--c-accent), transparent 96%) 0%, transparent 44%),
     linear-gradient(180deg, color-mix(in oklab, var(--c-surface), white 55%) 0%, color-mix(in oklab, var(--c-bg), white 0%) 100%);
-  color: var(--ft-ink);
 }
 
 html[data-theme="dark"] .site-footer {
@@ -1666,7 +1717,6 @@ html[data-theme="dark"] .site-footer {
   --ft-ink-muted: color-mix(in oklab, var(--ft-ink), #cdd2db 35%);
   border-top: 1px solid #2a2e36;
   background: radial-gradient(circle at top right, color-mix(in oklab, var(--c-accent), transparent 94%) 0%, transparent 42%), linear-gradient(180deg, #14161b 0%, #1b1f27 100%);
-  color: var(--ft-ink);
 }
 
 .site-footer a {
@@ -1688,15 +1738,6 @@ html[data-theme="dark"] .site-footer {
   color: inherit;
 }
 
-html[data-theme="dark"] .ft-title {
-  color: #ffffff;
-}
-
-html[data-theme="light"] .ft-title {
-  color: #000000;
-}
-
-/* --- Równe kolumny + centrowanie treści --- */
 .ft-grid {
   display: grid;
   grid-template-columns: 1fr;
@@ -1712,7 +1753,6 @@ html[data-theme="light"] .ft-title {
   text-align: center;
 }
 
-/* listy w kolumnach */
 :where(.ft-nav, .ft-contact, .ft-social, .ft-legal) {
   list-style: none;
   margin: 0;
@@ -1728,7 +1768,6 @@ html[data-theme="light"] .ft-title {
   text-align: center;
 }
 
-/* branding */
 .brand-footer {
   display: inline-block;
   font-family: var(--font-serif);
@@ -1751,7 +1790,6 @@ html[data-theme="light"] .ft-title {
   margin-bottom: 0.6rem;
 }
 
-/* linki z underline animowanym */
 .site-footer :where(.ft-nav a, .ft-contact a, .ft-legal a) {
   position: relative;
   color: inherit;
@@ -1774,18 +1812,6 @@ html[data-theme="light"] .ft-title {
   width: 100%;
 }
 
-.ft-contact .i {
-  inline-size: 1.2rem;
-  block-size: 1.2rem;
-  color: currentColor;
-}
-
-.ft-contact .i :where(path, circle, rect, line, polyline, polygon) {
-  fill: currentColor;
-  stroke: currentColor;
-}
-
-/* social */
 .ft-social {
   margin-top: 0.2em;
   grid-auto-flow: column;
@@ -1805,11 +1831,6 @@ html[data-theme="light"] .ft-title {
   transition: transform 0.18s ease, background-color 0.18s ease, border-color 0.18s ease;
 }
 
-.social-btn svg {
-  inline-size: 20px;
-  block-size: 20px;
-}
-
 .site-footer .social-btn {
   line-height: 1;
   transition: color 0.18s ease;
@@ -1817,18 +1838,6 @@ html[data-theme="light"] .ft-title {
 
 .site-footer .social-btn:hover {
   color: var(--c-accent);
-}
-
-.site-footer .social-btn svg :where([fill]:not([fill="none"])) {
-  fill: currentColor;
-}
-
-.site-footer .social-btn svg :where([stroke]:not([stroke="none"])) {
-  stroke: currentColor;
-}
-
-.site-footer .social-btn svg :where(path, circle, rect, polygon, polyline):not([fill]):not([stroke]) {
-  fill: currentColor;
 }
 
 .ft-social--bare {
@@ -1847,14 +1856,6 @@ html[data-theme="light"] .ft-title {
   color: currentColor;
 }
 
-html[data-theme="dark"] .ft-social--bare .social-btn {
-  color: #f7f2f4;
-}
-
-html[data-theme="light"] .ft-social--bare .social-btn {
-  color: #000000;
-}
-
 .ft-social--bare .social-btn:hover {
   color: var(--c-accent);
   transform: translateY(-1px);
@@ -1866,7 +1867,6 @@ html[data-theme="light"] .ft-social--bare .social-btn {
   border-radius: 8px;
 }
 
-/* mapa */
 .map-wrap {
   position: relative;
   aspect-ratio: 4/3;
@@ -1883,7 +1883,6 @@ html[data-theme="light"] .ft-social--bare .social-btn {
   border: 0;
 }
 
-/* dół stopki */
 .ft-bottom {
   display: flex;
   flex-wrap: wrap;
@@ -1933,15 +1932,10 @@ html[data-theme="dark"] .ft-legal a:hover {
   text-decoration: none;
 }
 
-/* drobne spacingi */
 .ft-title--sub {
   margin-top: 2.5rem;
   font-size: 0.98rem;
   opacity: 0.95;
-}
-
-.ft-address {
-  margin: 0.3rem;
 }
 
 .ft-address {
@@ -1958,10 +1952,6 @@ html[data-theme="dark"] .ft-legal a:hover {
   margin-top: 0.2rem;
   margin-bottom: 0.8rem;
 }
-
-/* ---------------------------------- */
-/* ===== Ikony Social Media ========= */
-/* ---------------------------------- */
 
 .social-btn img {
   display: none;
@@ -1982,22 +1972,6 @@ html[data-theme="dark"] .social-btn .icon-dark {
   opacity: 0.9;
 }
 
-/* ---------------------------------- */
-/* ===== Ikony uniwersalne (.icon-dual) ===== */
-/* ---------------------------------- */
-.icon-dual img {
-  display: none;
-  width: 1em;
-  height: 1em;
-}
-
-html[data-theme="light"] .icon-dual .icon-light {
-  display: inline-block;
-}
-html[data-theme="dark"] .icon-dual .icon-dark {
-  display: inline-block;
-}
-
 .icon-dual img {
   display: none;
   width: 20px;
@@ -2011,32 +1985,50 @@ html[data-theme="dark"] .icon-dual .icon-dark {
   display: inline-block;
 }
 
-/* --- KONTAKT: tekst po prawej, ikony w jednej pionowej linii --- */
-
-/* pozwól li mieć pełną szerokość i nie centruj elementów w .ft-contact */
 .ft-contact {
-  justify-items: stretch; /* nadpisuje wcześniejsze center */
+  justify-items: stretch;
   width: 100%;
 }
 
-/* siatka 2 kolumny: [ikona 20px] [tekst 1fr] */
 .ft-contact li {
   display: grid;
   grid-template-columns: 20px 1fr;
   align-items: center;
-  column-gap: 0.6rem;
-  text-align: center; /* tekst wyrównany do prawej */
+  column-gap: clamp(0.6rem, 1.2vw, 1.2rem);
+  text-align: left;
   width: 100%;
 }
 
-/* ikona w pierwszej kolumnie – przy lewym brzegu (pionowa linia ikon) */
 .ft-contact .icon-dual {
   justify-self: start;
 }
 
-/* linki w kontakcie nie łapią underline-animacji pod samą ikoną */
 .ft-contact a {
   display: inline-block;
+}
+
+.address-row {
+  display: grid;
+  grid-template-columns: 20px 1fr;
+  align-items: center;
+  column-gap: 0.6rem;
+  justify-items: start;
+}
+
+.address-row img {
+  vertical-align: middle;
+}
+
+/* ---------------------------------- */
+/* ===== MQ - max width 719px ======= */
+/* ---------------------------------- */
+@media (max-width: 719px) {
+  .ft-grid {
+    gap: 40px;
+  }
+  .site-footer {
+    padding-bottom: 40px;
+  }
 }
 
 /* ---------------------------------------- */
@@ -2061,15 +2053,6 @@ html[data-theme="dark"] .icon-dual .icon-dark {
 }
 
 /* ---------------------------------------- */
-/* ===== MQ - max width 420px ============= */
-/* ---------------------------------------- */
-@media (max-width: 420px) {
-  .ft-badge {
-    padding: 0.38rem 0.6rem;
-  }
-}
-
-/* ---------------------------------------- */
 /* ===== MQ - hover: hover ================ */
 /* ---------------------------------------- */
 
@@ -2089,8 +2072,7 @@ html[data-theme="dark"] .icon-dual .icon-dark {
 /* ===== MQ Prefers reduced motion ======== */
 /* ---------------------------------------- */
 @media (prefers-reduced-motion: reduce) {
-  .social-btn,
-  .ft-badge {
+  .social-btn {
     transition: none;
   }
   .social-btn:hover {
