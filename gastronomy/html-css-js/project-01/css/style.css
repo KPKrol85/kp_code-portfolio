@@ -222,8 +222,8 @@ h3 {
   z-index: 50;
   background: color-mix(in oklab, var(--c-bg), transparent 10%);
   backdrop-filter: saturate(1.2) blur(8px);
-  border-bottom: 1px solid var(--c-border);
   -webkit-backdrop-filter: saturate(1.2) blur(8px);
+  border-bottom: 1px solid var(--c-border);
 }
 
 .header-row {
@@ -241,6 +241,7 @@ h3 {
   gap: 8px;
 }
 
+/* ----- Brand / Logo ----- */
 .brand {
   display: flex;
   align-items: center;
@@ -255,17 +256,16 @@ h3 {
 .logo-dark {
   display: none;
 }
-
 html[data-theme="dark"] .logo-light,
 html[data-theme="light"] .logo-dark {
   display: none;
 }
-
 html[data-theme="dark"] .logo-dark,
 html[data-theme="light"] .logo-light {
   display: block;
 }
 
+/* ----- Action buttons (theme + nav) ----- */
 .theme-toggle,
 .nav-toggle {
   display: inline-flex;
@@ -282,15 +282,6 @@ html[data-theme="light"] .logo-light {
   transition: transform 0.15s ease, box-shadow 0.15s ease, background-color 0.15s ease, border-color 0.15s ease;
 }
 
-.theme-toggle .theme-icon,
-.nav-toggle .icon {
-  width: 15px;
-  height: 15px;
-  display: block;
-  font-size: 1rem;
-  line-height: 1;
-}
-
 .theme-toggle:active,
 .nav-toggle:active {
   transform: translateY(0) scale(0.98);
@@ -302,6 +293,7 @@ html[data-theme="light"] .logo-light {
   outline-offset: 2px;
 }
 
+/* ----- Główna nawigacja ----- */
 .site-nav {
   display: none;
   flex: 1 1 auto;
@@ -310,11 +302,11 @@ html[data-theme="light"] .logo-light {
 
 .site-nav ul {
   display: flex;
-  gap: 20px;
   justify-content: center;
+  gap: 20px;
   list-style: none;
-  padding: 0;
   margin: 0;
+  padding: 0;
 }
 
 .site-nav a {
@@ -355,6 +347,7 @@ html[data-theme="light"] .logo-light {
   transform: scaleX(1);
 }
 
+/* ----- Mobile: rozwijane menu ----- */
 .nav-open .site-nav {
   display: block;
   position: absolute;
@@ -380,9 +373,44 @@ html[data-theme="light"] .logo-light {
   transform: translateY(-1px);
 }
 
+/* ----- Shadow po scrollu ----- */
 body.is-scrolled .site-header {
   box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
   transition: box-shadow 0.25s ease;
+}
+
+/* ----- Rozmiary ikon przy numerze tel. ----- */
+.header-actions .btn-ghost .icon-dual {
+  width: 18px;
+  height: 18px;
+}
+
+/* ---------------------------------------- */
+/* ===== Dual icons (light/dark) ========== */
+/* ---------------------------------------- */
+.icon-dual {
+  display: inline-grid;
+  place-items: center;
+  width: 20px;
+  height: 20px;
+}
+.icon-dual img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+.icon-dual .icon-light {
+  display: block;
+}
+.icon-dual .icon-dark {
+  display: none;
+}
+
+html[data-theme="dark"] .icon-dual .icon-light {
+  display: none;
+}
+html[data-theme="dark"] .icon-dual .icon-dark {
+  display: block;
 }
 
 /* ---------------------------------------- */
@@ -392,6 +420,7 @@ body.is-scrolled .site-header {
   .nav-toggle {
     display: none;
   }
+
   .site-nav {
     display: block;
     position: static;
@@ -403,6 +432,7 @@ body.is-scrolled .site-header {
     flex-direction: row;
     align-items: center;
   }
+
   .site-nav a[aria-current="page"],
   .site-nav a[aria-current="true"] {
     background: var(--nav-hover-bg);
@@ -411,8 +441,8 @@ body.is-scrolled .site-header {
 }
 
 /* ---------------------------------------- */
-/* ===== MQ - min width 900px ============= */
-/* ----- hover: hover --------------------- */
+/* ===== MQ - min width 900px & hover ===== */
+/* ---------------------------------------- */
 @media (min-width: 900px) and (hover: hover) {
   .site-nav a:hover::after {
     transform: scaleX(1);
@@ -445,12 +475,19 @@ body.is-scrolled .site-header {
 
 /* ---------------------------------------- */
 /* ===== MQ Prefers Color Scheme ========== */
-/* ----- dark theme ----------------------- */
+/* ----- dark theme fallback -------------- */
 @media (prefers-color-scheme: dark) {
   html:not([data-theme]) .logo-light {
     display: none;
   }
   html:not([data-theme]) .logo-dark {
+    display: block;
+  }
+
+  html:not([data-theme]) .icon-dual .icon-light {
+    display: none;
+  }
+  html:not([data-theme]) .icon-dual .icon-dark {
     display: block;
   }
 }
@@ -459,10 +496,6 @@ body.is-scrolled .site-header {
 /* ===== MQ Prefers reduced motion ======== */
 /* ---------------------------------------- */
 @media (prefers-reduced-motion: reduce) {
-  .site-nav a,
-  .site-nav a::after {
-    transition: none;
-  }
   .site-nav a,
   .site-nav a::after,
   .theme-toggle,
@@ -576,7 +609,7 @@ body.is-scrolled .site-header {
 
 /* ================================================== */
 /* ================================================== */
-/* ===== 04) ABOUT ================================== */
+/* ===== 04) ABOUT (scoped) ========================= */
 /* ================================================== */
 /* ================================================== */
 
@@ -585,7 +618,6 @@ body.is-scrolled .site-header {
   overflow: hidden;
   box-shadow: var(--shadow);
 }
-
 .about-photo img {
   width: 100%;
   height: auto;
@@ -593,24 +625,56 @@ body.is-scrolled .site-header {
   object-fit: cover;
 }
 
-.bullets {
+/* Tylko w sekcji ABOUT */
+.about .bullets {
   display: grid;
-  gap: 0.4rem;
+  gap: 0.5rem;
   list-style: none;
   margin: 1rem 0 0;
   padding: 0;
 }
-
-.bullets li {
+.about .bullets li {
   display: flex;
   align-items: center;
-  gap: 0.5rem;
+  gap: 0.6rem;
+}
+.about .bullets a,
+.about .bullets time {
+  white-space: nowrap;
 }
 
-.bullets .i {
-  width: 1.1rem;
-  height: 1.1rem;
-  margin-right: 0.5rem;
+/* Ikony dualne – tylko w ABOUT */
+.about .icon-dual {
+  display: inline-grid;
+  place-items: center;
+  width: 20px;
+  height: 20px;
+  flex: 0 0 20px;
+}
+.about .icon-dual img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+.about .icon-dual .icon-light {
+  display: block;
+}
+.about .icon-dual .icon-dark {
+  display: none;
+}
+html[data-theme="dark"] .about .icon-dual .icon-light {
+  display: none;
+}
+html[data-theme="dark"] .about .icon-dual .icon-dark {
+  display: block;
+}
+@media (prefers-color-scheme: dark) {
+  html:not([data-theme]) .about .icon-dual .icon-light {
+    display: none;
+  }
+  html:not([data-theme]) .about .icon-dual .icon-dark {
+    display: block;
+  }
 }
 
 /* ================================================== */
@@ -619,11 +683,27 @@ body.is-scrolled .site-header {
 /* ================================================== */
 /* ================================================== */
 
+#menu {
+  scroll-margin-top: 90px;
+  text-align: center;
+}
+
+.menu .section-head {
+  margin-bottom: 1.2rem;
+}
+.menu .section-head h2 {
+  margin-bottom: 0.3rem;
+}
+.menu .section-head p {
+  color: var(--c-muted);
+}
+
 .tabs {
   display: flex;
   gap: 0.5rem;
   margin: 1rem 0 1.4rem;
   flex-wrap: wrap;
+  justify-content: center; /* centrowanie przycisków */
 }
 
 .tab {
@@ -650,6 +730,7 @@ body.is-scrolled .site-header {
   display: grid;
   grid-template-columns: 1fr;
   gap: 16px;
+  text-align: left; /* treść potraw zostaje justowana normalnie */
 }
 
 .dish {
@@ -720,6 +801,14 @@ body.is-scrolled .site-header {
   outline: 2px solid var(--c-accent);
   outline-offset: 2px;
   border-radius: 12px;
+}
+
+.about .section-head h2,
+#about-title {
+  text-align: center;
+  display: block;
+  width: 100%;
+  margin-bottom: 0.5rem;
 }
 
 /* ---------------------------------------- */
@@ -1034,12 +1123,24 @@ body.is-scrolled .site-header {
 
 #galeria {
   scroll-margin-top: 90px;
+  text-align: center;
+} /* centralny układ */
+
+.gallery .section-head {
+  margin-bottom: 1.2rem;
+}
+.gallery .section-head h2 {
+  margin-bottom: 0.3rem;
+}
+.gallery .section-head p {
+  color: var(--c-muted);
 }
 
 .gallery-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
   gap: var(--g);
+  justify-items: center; /* wyśrodkowanie miniaturek */
 }
 
 .g-item[hidden] {
@@ -1055,7 +1156,7 @@ body.is-scrolled .site-header {
   border: 1px solid var(--c-border);
   background: var(--c-surface);
   cursor: pointer;
-  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease;
 }
 
 .g-item picture,
@@ -1075,18 +1176,12 @@ body.is-scrolled .site-header {
   outline-offset: 2px;
   border-radius: var(--radius);
 }
-
-.card:hover,
-.g-item:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.12);
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
-}
 /* ---------------------------------------- */
 /* ===== MQ - hover: hover ================ */
 /* ---------------------------------------- */
 @media (hover: hover) {
   .g-item:hover {
+    transform: translateY(-4px);
     box-shadow: 0 12px 28px rgba(0, 0, 0, 0.1);
     border-color: color-mix(in oklab, var(--c-border), var(--c-accent) 30%);
   }
@@ -1104,53 +1199,57 @@ body.is-scrolled .site-header {
     transition: none;
   }
 }
-
 /* ================================================== */
 /* ================================================== */
 /* ===== 08) TESTIMONIALS =========================== */
 /* ================================================== */
 /* ================================================== */
 
+.testimonials.block {
+  padding-block: clamp(60px, 7vw, 110px);
+  text-align: center;
+}
 .testimonials .section-head {
-  margin-bottom: 0.8rem;
+  margin-bottom: 1rem;
+}
+.testimonials .section-head p {
+  margin-top: 0.4rem;
 }
 
 .testimonials .rating-badge.big {
-  margin-top: 0.3rem;
-}
-
-.testimonials.block {
-  padding-block: clamp(60px, 7vw, 110px);
+  margin: 0.8rem auto 0;
 }
 
 .testimonials-grid {
   display: grid;
   gap: var(--g);
-  margin-top: 0.8rem;
+  margin-top: 1.2rem;
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  justify-items: center;
   align-items: stretch;
 }
 
 .testimonial {
   display: grid;
-  grid-template-columns: 56px 1fr;
-  grid-template-rows: auto 1fr auto;
+  grid-template-columns: 1fr; /* ⟵ jedna kolumna */
+  grid-auto-rows: auto;
   gap: 0.8rem;
   padding: 1rem 1.1rem;
   min-height: 180px;
+  max-width: 420px;
   border: 1px solid var(--c-border);
   border-radius: var(--radius);
   background: color-mix(in oklab, var(--c-surface), white 6%);
   transition: transform 0.18s ease, border-color 0.18s ease, box-shadow 0.18s ease, background-color 0.18s ease;
+  text-align: center; /* treść na środku */
 }
 
 .testimonial .avatar {
-  grid-column: 1;
-  grid-row: 1 / span 2;
   width: 56px;
   height: 56px;
   border-radius: 50%;
   overflow: hidden;
+  margin: 0 auto; /* ⟵ środek */
 }
 
 .testimonial .avatar img {
@@ -1163,11 +1262,8 @@ body.is-scrolled .site-header {
 }
 
 .testimonial blockquote {
-  grid-column: 2;
-  grid-row: 1;
   margin: 0;
-}
-
+} /* żadnych grid-column / grid-row */
 .testimonial blockquote p {
   margin: 0;
   font-size: 0.98rem;
@@ -1175,11 +1271,9 @@ body.is-scrolled .site-header {
 }
 
 .testimonial figcaption {
-  grid-row: 3;
-  grid-column: 2;
   font-size: 0.85rem;
   color: var(--c-muted);
-  margin-top: 0.5rem;
+  margin-top: 0.6rem;
   position: relative;
   white-space: nowrap;
   overflow: hidden;
@@ -1191,7 +1285,7 @@ body.is-scrolled .site-header {
   display: block;
   width: 36px;
   height: 2px;
-  margin: 0 0 0.4rem;
+  margin: 0 auto 0.4rem; /* ⟵ kreseczka wyśrodkowana */
   background: linear-gradient(90deg, var(--c-accent) 0%, #f8d580 100%);
   opacity: 0.7;
   border-radius: 2px;
@@ -1205,8 +1299,9 @@ body.is-scrolled .site-header {
 .reviews-cta {
   display: flex;
   flex-wrap: wrap;
+  justify-content: center;
   gap: 0.6rem;
-  margin-top: 1rem;
+  margin-top: 1.4rem;
 }
 
 .btn-link {
@@ -1226,12 +1321,10 @@ body.is-scrolled .site-header {
   background: color-mix(in oklab, var(--c-surface), white 10%);
   border-color: color-mix(in oklab, var(--c-border), var(--c-accent) 20%);
 }
-
 .btn-link:focus-visible {
   outline: 2px solid var(--c-accent);
   outline-offset: 2px;
 }
-
 .reviews-cta .count {
   opacity: 0.75;
   font-weight: 600;
@@ -1244,33 +1337,36 @@ body.is-scrolled .site-header {
 .rating-badge {
   display: flex;
   align-items: center;
+  justify-content: center;
   gap: 0.5rem;
   font-family: var(--font-sans);
 }
-
 .rating-badge img {
   display: block;
   height: auto;
 }
-
 .rating-badge.big {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.6rem;
   padding: 0.8rem 1rem;
   border: 1px solid var(--c-border);
   border-radius: var(--radius);
   background: color-mix(in oklab, var(--c-surface), white 6%);
+  width: fit-content;
+  margin-inline: auto;
 }
 
 .rating-badge.big strong {
   font-size: 1.4rem;
   color: var(--c-accent);
 }
-
 .rating-badge.big .stars {
   color: #f8d580;
   font-size: 1.2rem;
   margin-left: 0.2rem;
 }
-
 .rating-badge.big small {
   display: block;
   font-size: 0.85rem;
@@ -1286,12 +1382,12 @@ body.is-scrolled .site-header {
   }
   .testimonial {
     padding: 0.9rem;
+    max-width: 100%;
   }
 }
-
 /* ---------------------------------------- */
 /* ===== MQ Prefers reduced motion ======== */
-/* ----- reduce --------------------------- */
+/* ---------------------------------------- */
 @media (prefers-reduced-motion: reduce) {
   .testimonial,
   .btn-link {
@@ -1466,7 +1562,6 @@ html[data-theme="dark"] input[type="time"]::-webkit-calendar-picker-indicator {
   margin-bottom: 1rem;
 }
 
-/* Booking: akcje na pełną szerokość i na środku */
 #rezerwacja .form > .f-actions {
   grid-column: 1 / -1;
   display: flex;
@@ -1474,18 +1569,22 @@ html[data-theme="dark"] input[type="time"]::-webkit-calendar-picker-indicator {
   margin-top: 1rem;
 }
 
-/* Komunikat pod przyciskiem też centralnie (jeśli używasz) */
 #rezerwacja .form .form-msg {
   grid-column: 1 / -1;
   text-align: center;
   margin-top: 0.4rem;
 }
 
+.booking-aside h3 {
+  text-align: center;
+}
+
+/* ---------------------------------------- */
+/* ===== MQ - min width 900px ============= */
+/* ---------------------------------------- */
 @media (min-width: 900px) {
   #rezerwacja .container.grid-2 {
-    /* zachowaj globalny row-gap */
     row-gap: var(--g);
-    /* zwiększ tylko przerwę między kolumnami */
     column-gap: clamp(24px, 3.6vw, 64px);
   }
 }
@@ -2416,21 +2515,28 @@ html[data-theme="dark"] .icon-dual .icon-dark {
   border-color: transparent;
 }
 
+/* ---------------------------------- */
+/* ===== Scroll Buttons (glass) ===== */
+/* ---------------------------------- */
+
 .scroll-btn {
   inline-size: 36px;
   block-size: 36px;
   display: grid;
   place-items: center;
   border-radius: 999px;
-  border: 1px solid var(--c-border);
-  background: color-mix(in oklab, var(--c-surface), white 6%);
-  color: currentColor;
-  transition: transform 0.18s ease, background-color 0.18s ease, border-color 0.18s ease, opacity 0.18s ease;
+  border: 1px solid color-mix(in oklab, var(--c-border), transparent 15%);
+  background: color-mix(in oklab, var(--c-bg), var(--c-ink) 6%);
+  backdrop-filter: saturate(1.2) blur(8px);
+  -webkit-backdrop-filter: saturate(1.2) blur(8px);
+  box-shadow: 0 3px 12px rgba(0, 0, 0, 0.18);
+  transition: transform 0.18s ease, background-color 0.18s ease, border-color 0.18s ease, opacity 0.18s ease, box-shadow 0.18s ease;
 }
 
-.scroll-btn .i {
-  width: 18px;
-  height: 18px;
+html[data-theme="dark"] .scroll-btn {
+  background: color-mix(in oklab, var(--c-bg), #fff 6%);
+  border-color: color-mix(in oklab, var(--c-border), #fff 8%);
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.36);
 }
 
 .scroll-up {
@@ -2441,10 +2547,6 @@ html[data-theme="dark"] .icon-dual .icon-dark {
   opacity: 0;
   pointer-events: none;
   transform: translateY(4px);
-  color: #fff;
-  border-color: color-mix(in oklab, #fff, transparent 70%);
-  background: color-mix(in oklab, var(--c-accent), #000 10%);
-  box-shadow: 0 3px 12px rgba(0, 0, 0, 0.25);
 }
 
 .scroll-up.is-visible {
@@ -2453,18 +2555,33 @@ html[data-theme="dark"] .icon-dual .icon-dark {
   transform: translateY(0);
 }
 
-.scroll-up .i {
-  transform: rotate(180deg);
-  filter: drop-shadow(0 1px 1px rgba(0, 0, 0, 0.25));
-}
-
-.scroll-up .i * {
-  stroke: #fff !important;
-}
-
 .scroll-btn:focus-visible {
   outline: 2px solid var(--c-accent);
   outline-offset: 2px;
+}
+
+/* Ikony (własne pliki SVG przez <img>) */
+.scroll-up .icon-light {
+  display: block;
+}
+.scroll-up .icon-dark {
+  display: none;
+}
+
+html[data-theme="dark"] .scroll-up .icon-light {
+  display: none;
+}
+html[data-theme="dark"] .scroll-up .icon-dark {
+  display: block;
+}
+
+@media (prefers-color-scheme: dark) {
+  html:not([data-theme]) .scroll-up .icon-light {
+    display: none;
+  }
+  html:not([data-theme]) .scroll-up .icon-dark {
+    display: block;
+  }
 }
 
 /* ---------------------------------------- */
@@ -2483,8 +2600,9 @@ html[data-theme="dark"] .icon-dual .icon-dark {
 @media (hover: hover) {
   .scroll-btn:hover {
     transform: translateY(-2px);
-    background: color-mix(in oklab, var(--c-surface), white 10%);
-    border-color: color-mix(in oklab, var(--c-border), var(--c-accent) 35%);
+    background: color-mix(in oklab, var(--c-bg), var(--c-ink) 10%);
+    border-color: color-mix(in oklab, var(--c-border), var(--c-accent) 25%);
+    box-shadow: 0 8px 22px rgba(0, 0, 0, 0.22);
   }
 }
 
@@ -2497,9 +2615,7 @@ html[data-theme="dark"] .icon-dual .icon-dark {
     animation: none !important;
   }
   .btn-cta,
-  .btn-form {
-    transition: none;
-  }
+  .btn-form,
   .scroll-btn {
     transition: none;
   }
