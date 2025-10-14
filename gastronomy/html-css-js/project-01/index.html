@@ -59,52 +59,49 @@
       href="assets/img/hero/hero-01-1600x900.avif"
       fetchpriority="high" />
 
- <!-- JSON-LD: WebSite + Restaurant (org) + WebPage (index) -->
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@graph": [
-    {
-      "@type": "WebSite",
-      "@id": "https://gastronomy-project-01.netlify.app/#website",
-      "url": "https://gastronomy-project-01.netlify.app/",
-      "name": "Demo — strona gastronomiczna | KP_Code",
-      "inLanguage": "pl-PL"
-    },
-    {
-      "@type": "Restaurant",
-      "@id": "https://gastronomy-project-01.netlify.app/#org",
-      "name": "Demo — strona gastronomiczna | KP_Code",
-      "url": "https://gastronomy-project-01.netlify.app/",
-      "image": [
-        "https://gastronomy-project-01.netlify.app/assets/img/og-img/og-1200x630.jpg"
-      ],
-      "telephone": "+48 600 000 000",
-      "address": {
-        "@type": "PostalAddress",
-        "streetAddress": "ul. Przykładowa 1",
-        "postalCode": "00-000",
-        "addressLocality": "Warszawa",
-        "addressCountry": "PL"
-      },
-      "servesCuisine": ["Fine Dining", "Polska", "Europejska"],
-      "priceRange": "$$"
-    },
-    {
-      "@type": "WebPage",
-      "@id": "https://gastronomy-project-01.netlify.app/",
-      "url": "https://gastronomy-project-01.netlify.app/",
-      "name": "Demo — strona dla firmy gastronomicznej / restauracji | KP_Code",
-      "description": "Elegancka restauracja z autorskim menu degustacyjnym. Zarezerwuj stolik online i poznaj nasze sezonowe dania.",
-      "isPartOf": { "@id": "https://gastronomy-project-01.netlify.app/#website" },
-      "about": { "@id": "https://gastronomy-project-01.netlify.app/#org" },
-      "inLanguage": "pl-PL",
-      "primaryImageOfPage": "https://gastronomy-project-01.netlify.app/assets/img/og-img/og-1200x630.jpg"
-    }
-  ]
-}
-</script>
-
+    <!-- JSON-LD: WebSite + Restaurant (org) + WebPage (index) -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@graph": [
+          {
+            "@type": "WebSite",
+            "@id": "https://gastronomy-project-01.netlify.app/#website",
+            "url": "https://gastronomy-project-01.netlify.app/",
+            "name": "Demo — strona gastronomiczna | KP_Code",
+            "inLanguage": "pl-PL"
+          },
+          {
+            "@type": "Restaurant",
+            "@id": "https://gastronomy-project-01.netlify.app/#org",
+            "name": "Demo — strona gastronomiczna | KP_Code",
+            "url": "https://gastronomy-project-01.netlify.app/",
+            "image": ["https://gastronomy-project-01.netlify.app/assets/img/og-img/og-1200x630.jpg"],
+            "telephone": "+48 600 000 000",
+            "address": {
+              "@type": "PostalAddress",
+              "streetAddress": "ul. Przykładowa 1",
+              "postalCode": "00-000",
+              "addressLocality": "Warszawa",
+              "addressCountry": "PL"
+            },
+            "servesCuisine": ["Fine Dining", "Polska", "Europejska"],
+            "priceRange": "$$"
+          },
+          {
+            "@type": "WebPage",
+            "@id": "https://gastronomy-project-01.netlify.app/",
+            "url": "https://gastronomy-project-01.netlify.app/",
+            "name": "Demo — strona dla firmy gastronomicznej / restauracji | KP_Code",
+            "description": "Elegancka restauracja z autorskim menu degustacyjnym. Zarezerwuj stolik online i poznaj nasze sezonowe dania.",
+            "isPartOf": { "@id": "https://gastronomy-project-01.netlify.app/#website" },
+            "about": { "@id": "https://gastronomy-project-01.netlify.app/#org" },
+            "inLanguage": "pl-PL",
+            "primaryImageOfPage": "https://gastronomy-project-01.netlify.app/assets/img/og-img/og-1200x630.jpg"
+          }
+        ]
+      }
+    </script>
   </head>
 
   <!-- BODY -->
@@ -158,16 +155,16 @@
     </header>
 
     <!-- HERO -->
-    <section class="hero" aria-label="Sekcja powitalna – demo strony gastronomicznej" data-img="light">
+    <section class="hero" aria-label="Sekcja powitalna – demo strony gastronomicznej" data-img="dark">
       <picture class="hero-media" aria-hidden="true">
         <!-- AVIF -->
-        <source type="image/avif" srcset="assets/img/hero/hero-01-2560x1440.avif 2560w, assets/img/hero/hero-01-1600x900.avif 1600w" sizes="100vw" />
+        <source type="image/avif" srcset="assets/img/hero/hero-03-2560x1440.avif 2560w, assets/img/hero/hero-03-1600x900.avif 1600w" sizes="100vw" />
         <!-- WebP -->
-        <source type="image/webp" srcset="assets/img/hero/hero-01-2560x1440.webp 2560w, assets/img/hero/hero-01-1600x900.webp 1600w" sizes="100vw" />
+        <source type="image/webp" srcset="assets/img/hero/hero-03-2560x1440.webp 2560w, assets/img/hero/hero-03-1600x900.webp 1600w" sizes="100vw" />
         <!-- Fallback JPG -->
         <img
-          src="assets/img/hero/hero-01-1600x900.jpg"
-          srcset="assets/img/hero/hero-01-2560x1440.jpg 2560w, assets/img/hero/hero-01-1600x900.jpg 1600w"
+          src="assets/img/hero/hero-03-1600x900.jpg"
+          srcset="assets/img/hero/hero-03-2560x1440.jpg 2560w, assets/img/hero/hero-01-1600x900.jpg 1600w"
           sizes="100vw"
           alt="Wnętrze eleganckiej restauracji z okrągłymi stolikami i złotym oświetleniem – demo strony gastronomicznej"
           decoding="async"
