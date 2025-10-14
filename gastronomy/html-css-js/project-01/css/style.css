@@ -58,8 +58,8 @@ html {
   --lead: 1.15;
   --block-y: clamp(40px, 5vw, 96px);
   --header-h: 64px;
-  --font-sans: "Inter", system-ui, "Segoe UI", Roboto, Ubuntu, "Helvetica Neue", Arial, sans-serif;
-  --font-serif: "Playfair Display", "Times New Roman", Times, serif;
+  --font-sans: "Source Sans 3", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-display: "Poppins", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
 }
 
 html[data-theme="light"] {
@@ -84,6 +84,42 @@ html[data-theme="dark"] {
   --nav-hover-bg: rgba(255, 255, 255, 0.1);
 }
 
+/* ================================================== */
+/* ===== LOCAL FONTS - POPPINS / SOURCE SANS 3 ====== */
+/* ================================================== */
+/* poppins-regular - latin */
+@font-face {
+  font-display: swap;
+  font-family: "Poppins";
+  font-style: normal;
+  font-weight: 400;
+  src: url("../fonts/poppins-v24-latin-regular.woff2") format("woff2"); /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
+}
+/* poppins-600 - latin */
+@font-face {
+  font-display: swap;
+  font-family: "Poppins";
+  font-style: normal;
+  font-weight: 600;
+  src: url("../fonts/poppins-v24-latin-600.woff2") format("woff2"); /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
+}
+/* source-sans-3-regular - latin */
+@font-face {
+  font-display: swap;
+  font-family: "Source Sans 3";
+  font-style: normal;
+  font-weight: 400;
+  src: url("../fonts/source-sans-3-v19-latin-regular.woff2") format("woff2"); /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
+}
+/* source-sans-3-500 - latin */
+@font-face {
+  font-display: swap;
+  font-family: "Source Sans 3";
+  font-style: normal;
+  font-weight: 500;
+  src: url("../fonts/source-sans-3-v19-latin-500.woff2") format("woff2"); /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
+}
+
 /* ---------------------------------------- */
 /* ===== MQ Prefers Color Scheme ========== */
 /* ----- dark theme ----------------------- */
@@ -106,11 +142,11 @@ html[data-theme="dark"] {
 /* ================================================== */
 
 body {
-  margin: 0;
   font-family: var(--font-sans);
-  line-height: 1.6;
+  font-weight: 400;
   color: var(--c-ink);
-  background: var(--c-bg);
+  background-color: var(--c-bg);
+  line-height: 1.6;
 }
 
 img {
@@ -121,9 +157,7 @@ img {
 
 button,
 [role="button"],
-.nav-toggle {
-  cursor: pointer;
-}
+.nav-toggle { cursor: pointer; }
 
 .container {
   max-width: var(--max);
@@ -136,34 +170,23 @@ a {
   text-decoration: underline;
   text-underline-offset: 2px;
 }
+a:hover { text-decoration-thickness: 2px; }
 
-a:hover {
-  text-decoration-thickness: 2px;
-}
-
-h1,
-h2,
-h3 {
-  font-family: var(--font-serif);
-  font-weight: 700;
-  line-height: 1.15;
+/* Nagłówki – baza */
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-display);
+  font-weight: 600;
+  line-height: 1.2;
   margin: 0 0 0.55em;
   font-kerning: normal;
   font-variant-ligatures: contextual;
   text-wrap: balance;
 }
 
-h1 {
-  font-size: clamp(1.9rem, 1.3rem + 3.6vw, 3.5rem);
-}
-
-h2 {
-  font-size: clamp(1.5rem, 1.1rem + 2vw, 2.5rem);
-}
-
-h3 {
-  font-size: clamp(1.2rem, 1rem + 0.9vw, 1.6rem);
-}
+/* Nagłówki – rozmiary + mocniejsza waga dla H1–H3 */
+h1 { font-size: clamp(1.9rem, 1.3rem + 3.6vw, 3.5rem); font-weight: 700; }
+h2 { font-size: clamp(1.5rem, 1.1rem + 2vw, 2.5rem);  font-weight: 700; }
+h3 { font-size: clamp(1.2rem, 1rem + 0.9vw, 1.6rem);  font-weight: 700; }
 
 .lead {
   font-size: clamp(1.125rem, 0.98rem + 0.9vw, 1.5rem);
@@ -182,13 +205,9 @@ h3 {
   font-family: var(--font-sans);
 }
 
-.muted {
-  color: var(--c-muted);
-}
+.muted { color: var(--c-muted); }
 
-.block {
-  padding-block: var(--block-y);
-}
+.block { padding-block: var(--block-y); }
 
 .grid-2 {
   display: grid;
@@ -197,17 +216,13 @@ h3 {
   align-items: center;
 }
 
-.section-head {
-  margin: 0 0 1.2rem;
-}
+.section-head { margin: 0 0 1.2rem; }
 
 /* ---------------------------------------- */
 /* ===== MQ - min width 900px ============= */
 /* ---------------------------------------- */
 @media (min-width: 900px) {
-  .grid-2 {
-    grid-template-columns: 1.05fr 0.95fr;
-  }
+  .grid-2 { grid-template-columns: 1.05fr 0.95fr; }
 }
 
 /* ================================================== */
@@ -1869,7 +1884,7 @@ html[data-theme="dark"] .site-footer {
 
 .brand-footer {
   display: inline-block;
-  font-family: var(--font-serif);
+  font-family: var(--font-display);
   font-weight: 700;
   font-size: 1.35rem;
   margin-bottom: 0.2rem;
