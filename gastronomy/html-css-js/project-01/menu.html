@@ -49,19 +49,12 @@
 
     <!-- Główny CSS -->
     <link rel="stylesheet" href="css/style.css" />
-
-    <!-- JSON-LD: WebSite + WebPage + BreadcrumbList + Restaurant -->
+    
+    <!-- JSON-LD: WebPage + BreadcrumbList (menu.html) -->
     <script type="application/ld+json">
       {
         "@context": "https://schema.org",
         "@graph": [
-          {
-            "@type": "WebSite",
-            "@id": "https://gastronomy-project-01.netlify.app/#website",
-            "url": "https://gastronomy-project-01.netlify.app/",
-            "name": "Demo — strona gastronomiczna | KP_Code",
-            "inLanguage": "pl-PL"
-          },
           {
             "@type": "WebPage",
             "@id": "https://gastronomy-project-01.netlify.app/menu.html",
@@ -69,8 +62,8 @@
             "name": "Menu",
             "description": "Pełne menu — przystawki, dania główne i desery. Sprawdź aktualne propozycje i ceny w naszym demo.",
             "isPartOf": { "@id": "https://gastronomy-project-01.netlify.app/#website" },
-            "about": { "@id": "https://gastronomy-project-01.netlify.app/#org" },
-            "inLanguage": "pl-PL"
+            "inLanguage": "pl-PL",
+            "primaryImageOfPage": "https://gastronomy-project-01.netlify.app/assets/img/og-img/og-1200x630.jpg"
           },
           {
             "@type": "BreadcrumbList",
@@ -78,23 +71,6 @@
               { "@type": "ListItem", "position": 1, "name": "Strona główna", "item": "https://gastronomy-project-01.netlify.app/" },
               { "@type": "ListItem", "position": 2, "name": "Menu", "item": "https://gastronomy-project-01.netlify.app/menu.html" }
             ]
-          },
-          {
-            "@type": "Restaurant",
-            "@id": "https://gastronomy-project-01.netlify.app/#org",
-            "name": "Demo — strona gastronomiczna | KP_Code",
-            "url": "https://gastronomy-project-01.netlify.app/",
-            "image": "https://gastronomy-project-01.netlify.app/assets/img/gallery/dish-01-600.jpg",
-            "telephone": "+48 600 000 000",
-            "address": {
-              "@type": "PostalAddress",
-              "streetAddress": "ul. Przykładowa 1",
-              "postalCode": "00-000",
-              "addressLocality": "Warszawa",
-              "addressCountry": "PL"
-            },
-            "servesCuisine": ["Fine Dining", "Polska", "Europejska"],
-            "priceRange": "$$"
           }
         ]
       }

@@ -50,26 +50,20 @@
     <!-- Główny CSS -->
     <link rel="stylesheet" href="css/style.css" />
 
-    <!-- JSON-LD: WebSite + WebPage + Breadcrumbs -->
+    <!-- JSON-LD: WebPage + BreadcrumbList (polityka-prywatnosci.html) -->
     <script type="application/ld+json">
       {
         "@context": "https://schema.org",
         "@graph": [
           {
-            "@type": "WebSite",
-            "@id": "https://gastronomy-project-01.netlify.app/#website",
-            "url": "https://gastronomy-project-01.netlify.app/",
-            "name": "Demo — strona gastronomiczna | KP_Code",
-            "inLanguage": "pl-PL"
-          },
-          {
             "@type": "WebPage",
             "@id": "https://gastronomy-project-01.netlify.app/polityka-prywatnosci.html",
             "url": "https://gastronomy-project-01.netlify.app/polityka-prywatnosci.html",
             "name": "Polityka prywatności",
-            "description": "Polityka prywatności — informacje o przetwarzaniu danych, cookies i prawach użytkowników.",
+            "description": "Polityka prywatności — informacje o przetwarzaniu danych osobowych, plikach cookies i prawach użytkowników.",
             "isPartOf": { "@id": "https://gastronomy-project-01.netlify.app/#website" },
-            "inLanguage": "pl-PL"
+            "inLanguage": "pl-PL",
+            "primaryImageOfPage": "https://gastronomy-project-01.netlify.app/assets/img/og-img/og-1200x630.jpg"
           },
           {
             "@type": "BreadcrumbList",

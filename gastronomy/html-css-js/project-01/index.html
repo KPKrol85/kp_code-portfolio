@@ -32,7 +32,7 @@
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content="Demo — strona dla firmy gastronomicznej / restauracji | KP_Code — Fine Dining" />
     <meta name="twitter:description" content="Elegancka restauracja z autorskim menu degustacyjnym. Zarezerwuj stolik online." />
-    <meta name="twitter:image" content="https://gastronomy-project-01.netlify.app//assets/img/og-img/og-1200x630.jpg" />
+    <meta name="twitter:image" content="https://gastronomy-project-01.netlify.app/assets/img/og-img/og-1200x630.jpg" />
     <meta name="twitter:image:alt" content="Demo — strona dla firmy gastronomicznej / restauracji | KP_Code – elegancka kuchnia" />
 
     <!-- Favicons + Web App Manifest -->
@@ -59,125 +59,133 @@
       href="assets/img/hero/hero-01-1600x900.avif"
       fetchpriority="high" />
 
-    <!-- Strukturalne dane JSON-LD (Restaurant — Demo) -->
-    <script type="application/ld+json">
-      {
-        "@context": "https://schema.org",
-        "@type": "Restaurant",
-        "@id": "https://gastronomy-project-01.netlify.app/#org",
-        "name": "Demo — strona gastronomiczna | KP_Code",
-        "url": "https://twojadomena.pl/",
-        "image": "https://gastronomy-project-01.netlify.app//assets/img/dish-01-600.jpg",
-        "telephone": "+48 600 000 000",
-        "address": {
-          "@type": "PostalAddress",
-          "streetAddress": "ul. Przykładowa 1",
-          "postalCode": "00-000",
-          "addressLocality": "Warszawa",
-          "addressCountry": "PL"
-        },
-        "servesCuisine": ["Fine Dining", "Polska", "Europejska"],
-        "priceRange": "$$",
-        "openingHoursSpecification": [
-          {
-            "@type": "OpeningHoursSpecification",
-            "dayOfWeek": ["Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"],
-            "opens": "17:00",
-            "closes": "23:00"
-          }
-        ],
-        "aggregateRating": {
-          "@type": "AggregateRating",
-          "ratingValue": "4.8",
-          "ratingCount": "327",
-          "bestRating": "5",
-          "worstRating": "1"
-        },
-        "sameAs": ["https://www.facebook.com/twojprofil", "https://www.instagram.com/twojprofil", "https://maps.google.com/", "https://www.tripadvisor.com/"]
-      }
-    </script>
+ <!-- JSON-LD: WebSite + Restaurant (org) + WebPage (index) -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebSite",
+      "@id": "https://gastronomy-project-01.netlify.app/#website",
+      "url": "https://gastronomy-project-01.netlify.app/",
+      "name": "Demo — strona gastronomiczna | KP_Code",
+      "inLanguage": "pl-PL"
+    },
+    {
+      "@type": "Restaurant",
+      "@id": "https://gastronomy-project-01.netlify.app/#org",
+      "name": "Demo — strona gastronomiczna | KP_Code",
+      "url": "https://gastronomy-project-01.netlify.app/",
+      "image": [
+        "https://gastronomy-project-01.netlify.app/assets/img/og-img/og-1200x630.jpg"
+      ],
+      "telephone": "+48 600 000 000",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "ul. Przykładowa 1",
+        "postalCode": "00-000",
+        "addressLocality": "Warszawa",
+        "addressCountry": "PL"
+      },
+      "servesCuisine": ["Fine Dining", "Polska", "Europejska"],
+      "priceRange": "$$"
+    },
+    {
+      "@type": "WebPage",
+      "@id": "https://gastronomy-project-01.netlify.app/",
+      "url": "https://gastronomy-project-01.netlify.app/",
+      "name": "Demo — strona dla firmy gastronomicznej / restauracji | KP_Code",
+      "description": "Elegancka restauracja z autorskim menu degustacyjnym. Zarezerwuj stolik online i poznaj nasze sezonowe dania.",
+      "isPartOf": { "@id": "https://gastronomy-project-01.netlify.app/#website" },
+      "about": { "@id": "https://gastronomy-project-01.netlify.app/#org" },
+      "inLanguage": "pl-PL",
+      "primaryImageOfPage": "https://gastronomy-project-01.netlify.app/assets/img/og-img/og-1200x630.jpg"
+    }
+  ]
+}
+</script>
+
   </head>
 
- <!-- BODY -->
-<body class="no-js">
-  <a class="skip-link" href="#main">Przejdź do treści</a>
+  <!-- BODY -->
+  <body class="no-js">
+    <a class="skip-link" href="#main">Przejdź do treści</a>
 
-  <!-- HEADER -->
-  <header id="top" class="site-header" data-sticky>
-    <div class="container header-row">
-      <a class="brand" href="#top" aria-label="Strona główna">
-        <img class="logo logo-light" src="assets/img/logo-img/logo-dark-180px.svg" alt="Demo strony gastronomicznej – logo" width="140" height="140" decoding="async" />
-        <img class="logo logo-dark" src="assets/img/logo-img/logo-dark-180px.svg" alt="" aria-hidden="true" width="140" height="140" decoding="async" />
-      </a>
-
-      <nav id="site-nav" class="site-nav" data-testid="site-nav" aria-label="Główna nawigacja">
-        <ul>
-          <li><a href="#onas">O nas</a></li>
-          <li><a href="#menu">Menu</a></li>
-          <li><a href="#galeria">Galeria</a></li>
-          <li><a href="#opinie">Opinie</a></li>
-          <li><a href="#rezerwacja">Rezerwacja</a></li>
-          <li><a href="#faq">FAQ</a></li>
-        </ul>
-      </nav>
-
-      <div class="header-actions">
-        <a class="btn btn-ghost hide-on-mobile" href="tel:+48600000000" aria-label="Zadzwoń do restauracji">
-          <span class="icon-dual" aria-hidden="true">
-            <img class="icon-light" src="assets/icons/phone-black.svg" alt="" width="20" height="20" decoding="async" />
-            <img class="icon-dark" src="assets/icons/phone-white.svg" alt="" width="20" height="20" decoding="async" />
-          </span>
-          <span class="phone-text">+48 600 000 000</span>
+    <!-- HEADER -->
+    <header id="top" class="site-header" data-sticky>
+      <div class="container header-row">
+        <a class="brand" href="#top" aria-label="Strona główna">
+          <img class="logo logo-light" src="assets/img/logo-img/logo-dark-180px.svg" alt="Demo strony gastronomicznej – logo" width="140" height="140" decoding="async" />
+          <img class="logo logo-dark" src="assets/img/logo-img/logo-dark-180px.svg" alt="" aria-hidden="true" width="140" height="140" decoding="async" />
         </a>
 
-        <button class="theme-toggle" data-testid="theme-toggle" type="button" aria-label="Przełącz motyw" aria-pressed="false" title="Motyw">
-          <span class="icon-dual" aria-hidden="true">
-            <img class="icon-light" src="assets/icons/sun-black.svg" alt="" width="20" height="20" decoding="async" />
-            <img class="icon-dark" src="assets/icons/moon-white.svg" alt="" width="20" height="20" decoding="async" />
-          </span>
-        </button>
+        <nav id="site-nav" class="site-nav" data-testid="site-nav" aria-label="Główna nawigacja">
+          <ul>
+            <li><a href="#onas">O nas</a></li>
+            <li><a href="#menu">Menu</a></li>
+            <li><a href="#galeria">Galeria</a></li>
+            <li><a href="#opinie">Opinie</a></li>
+            <li><a href="#rezerwacja">Rezerwacja</a></li>
+            <li><a href="#faq">FAQ</a></li>
+          </ul>
+        </nav>
 
-        <button class="nav-toggle" data-testid="nav-toggle" type="button" aria-controls="site-nav" aria-expanded="false" aria-label="Menu">
-          <span class="icon-dual" aria-hidden="true">
-            <img class="icon-light" src="assets/icons/hamburger-black.svg" alt="" width="20" height="20" decoding="async" />
-            <img class="icon-dark" src="assets/icons/hamburger-white.svg" alt="" width="20" height="20" decoding="async" />
-          </span>
-          <span class="sr-only">Menu</span>
-        </button>
+        <div class="header-actions">
+          <a class="btn btn-ghost hide-on-mobile" href="tel:+48600000000" aria-label="Zadzwoń do restauracji">
+            <span class="icon-dual" aria-hidden="true">
+              <img class="icon-light" src="assets/icons/phone-black.svg" alt="" width="20" height="20" decoding="async" />
+              <img class="icon-dark" src="assets/icons/phone-white.svg" alt="" width="20" height="20" decoding="async" />
+            </span>
+            <span class="phone-text">+48 600 000 000</span>
+          </a>
+
+          <button class="theme-toggle" data-testid="theme-toggle" type="button" aria-label="Przełącz motyw" aria-pressed="false" title="Motyw">
+            <span class="icon-dual" aria-hidden="true">
+              <img class="icon-light" src="assets/icons/sun-black.svg" alt="" width="20" height="20" decoding="async" />
+              <img class="icon-dark" src="assets/icons/moon-white.svg" alt="" width="20" height="20" decoding="async" />
+            </span>
+          </button>
+
+          <button class="nav-toggle" data-testid="nav-toggle" type="button" aria-controls="site-nav" aria-expanded="false" aria-label="Menu">
+            <span class="icon-dual" aria-hidden="true">
+              <img class="icon-light" src="assets/icons/hamburger-black.svg" alt="" width="20" height="20" decoding="async" />
+              <img class="icon-dark" src="assets/icons/hamburger-white.svg" alt="" width="20" height="20" decoding="async" />
+            </span>
+            <span class="sr-only">Menu</span>
+          </button>
+        </div>
       </div>
-    </div>
-  </header>
+    </header>
 
-  <!-- HERO -->
-  <section class="hero" aria-label="Sekcja powitalna – demo strony gastronomicznej" data-img="light">
-    <picture class="hero-media" aria-hidden="true">
-      <!-- AVIF -->
-      <source type="image/avif" srcset="assets/img/hero/hero-01-2560x1440.avif 2560w, assets/img/hero/hero-01-1600x900.avif 1600w" sizes="100vw" />
-      <!-- WebP -->
-      <source type="image/webp" srcset="assets/img/hero/hero-01-2560x1440.webp 2560w, assets/img/hero/hero-01-1600x900.webp 1600w" sizes="100vw" />
-      <!-- Fallback JPG -->
-      <img
-        src="assets/img/hero/hero-01-1600x900.jpg"
-        srcset="assets/img/hero/hero-01-2560x1440.jpg 2560w, assets/img/hero/hero-01-1600x900.jpg 1600w"
-        sizes="100vw"
-        alt="Wnętrze eleganckiej restauracji z okrągłymi stolikami i złotym oświetleniem – demo strony gastronomicznej"
-        decoding="async"
-        fetchpriority="high"
-        width="1600"
-        height="900" />
-    </picture>
+    <!-- HERO -->
+    <section class="hero" aria-label="Sekcja powitalna – demo strony gastronomicznej" data-img="light">
+      <picture class="hero-media" aria-hidden="true">
+        <!-- AVIF -->
+        <source type="image/avif" srcset="assets/img/hero/hero-01-2560x1440.avif 2560w, assets/img/hero/hero-01-1600x900.avif 1600w" sizes="100vw" />
+        <!-- WebP -->
+        <source type="image/webp" srcset="assets/img/hero/hero-01-2560x1440.webp 2560w, assets/img/hero/hero-01-1600x900.webp 1600w" sizes="100vw" />
+        <!-- Fallback JPG -->
+        <img
+          src="assets/img/hero/hero-01-1600x900.jpg"
+          srcset="assets/img/hero/hero-01-2560x1440.jpg 2560w, assets/img/hero/hero-01-1600x900.jpg 1600w"
+          sizes="100vw"
+          alt="Wnętrze eleganckiej restauracji z okrągłymi stolikami i złotym oświetleniem – demo strony gastronomicznej"
+          decoding="async"
+          fetchpriority="high"
+          width="1600"
+          height="900" />
+      </picture>
 
-    <div class="container hero-inner">
-      <p class="eyebrow">Fine Dining</p>
-      <h1>Sezonowe menu degustacyjne</h1>
-      <p class="lead">Autorskie dania, selekcja win i kameralna atmosfera w centrum miasta.</p>
-      <div class="hero-cta">
-        <a class="btn btn-primary btn-cta" href="#rezerwacja" aria-label="Przejdź do formularza rezerwacji stolika">Zarezerwuj stolik</a>
-        <a class="btn btn-ghost" href="#menu" aria-label="Przejdź do sekcji menu">Zobacz menu</a>
+      <div class="container hero-inner">
+        <p class="eyebrow">Fine Dining</p>
+        <h1>Sezonowe menu degustacyjne</h1>
+        <p class="lead">Autorskie dania, selekcja win i kameralna atmosfera w centrum miasta.</p>
+        <div class="hero-cta">
+          <a class="btn btn-primary btn-cta" href="#rezerwacja" aria-label="Przejdź do formularza rezerwacji stolika">Zarezerwuj stolik</a>
+          <a class="btn btn-ghost" href="#menu" aria-label="Przejdź do sekcji menu">Zobacz menu</a>
+        </div>
       </div>
-    </div>
-  </section>
-
+    </section>
 
     <!-- MAIN -->
     <main id="main">
