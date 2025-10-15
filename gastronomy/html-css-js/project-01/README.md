@@ -1,4 +1,4 @@
-# Gastronomy 01 — Restaurant Demo Website
+8# Gastronomy 01 — Restaurant Demo Website
 
 **Author:** KP_Code
 **Type:** Front-end project (HTML, CSS, JavaScript)
@@ -134,17 +134,3 @@ Feel free to use this project as an educational reference or template (with attr
 
 **October 2025**
 
-```
-
----
-
-### 💬 Co ten README daje:
-- wygląda **profesjonalnie na GitHubie** — z sekcjami, ikonami i listą cech,
-- tłumaczy **czego się nauczyłeś i jakiego poziomu to projekt**,
-- idealny przykład do portfolio / CV (pokazuje świadomość front-end standards).
-
----
-
-Chcesz, żebym Ci przygotowała też **README.md template** (uniwersalny wzór pod wszystkie kolejne 49 projektów)?
-Wtedy tylko wklejasz i podmieniasz dane — oszczędza mnóstwo czasu przy publikacjach.
-```
