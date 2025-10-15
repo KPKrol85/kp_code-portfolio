@@ -3,11 +3,18 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "minify:css": "postcss css/style.css --use cssnano -o css/style.min.css",
+     "minify:js": "terser js/script.js -o js/script.min.js -c -m"
   },
+
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "description": ""
-
+  "description": "",
+  "devDependencies": {
+    "cssnano": "^7.1.1",
+    "postcss": "^8.4.47",
+    "postcss-cli": "^11.0.0",
+    "terser": "^5.44.0"
+  }
 }

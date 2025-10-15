@@ -48,7 +48,7 @@
     <link rel="preload" href="assets/fonts/source-sans-3-v19-latin-500.woff2" as="font" type="font/woff2" crossorigin />
 
     <!-- Główny CSS -->
-    <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="css/style.min.css" />
 
     <!-- Preload LCP (hero) -->
     <link
@@ -384,8 +384,8 @@
             <p class="muted">Wybrane kompozycje i produkty premium.</p>
           </div>
 
-          <div class="gallery-grid" role="list">
-            <a class="g-item" role="listitem" href="assets/img/gallery/dish-01-1600.jpg" data-full="assets/img/gallery/dish-01-1600" aria-haspopup="dialog" aria-controls="lb">
+          <div class="gallery-grid">
+            <a class="g-item" href="assets/img/gallery/dish-01-1600.jpg" data-full="assets/img/gallery/dish-01-1600" aria-haspopup="dialog" aria-controls="lb">
               <picture>
                 <source type="image/avif" srcset="assets/img/gallery/dish-01-1200.avif 2x, assets/img/gallery/dish-01-600.avif 1x" />
                 <source type="image/webp" srcset="assets/img/gallery/dish-01-1200.webp 2x, assets/img/gallery/dish-01-600.webp 1x" />
@@ -401,7 +401,7 @@
               </picture>
             </a>
 
-            <a class="g-item" role="listitem" href="assets/img/gallery/wine-01-1600.jpg" data-full="assets/img/gallery/wine-01-1600" aria-haspopup="dialog" aria-controls="lb">
+            <a class="g-item" href="assets/img/gallery/wine-01-1600.jpg" data-full="assets/img/gallery/wine-01-1600" aria-haspopup="dialog" aria-controls="lb">
               <picture>
                 <source type="image/avif" srcset="assets/img/gallery/wine-01-1200.avif 2x, assets/img/gallery/wine-01-600.avif 1x" />
                 <source type="image/webp" srcset="assets/img/gallery/wine-01-1200.webp 2x, assets/img/gallery/wine-01-600.webp 1x" />
@@ -417,7 +417,7 @@
               </picture>
             </a>
 
-            <a class="g-item" role="listitem" href="assets/img/gallery/dessert-01-1600.jpg" data-full="assets/img/gallery/dessert-01-1600" aria-haspopup="dialog" aria-controls="lb">
+            <a class="g-item" href="assets/img/gallery/dessert-01-1600.jpg" data-full="assets/img/gallery/dessert-01-1600" aria-haspopup="dialog" aria-controls="lb">
               <picture>
                 <source type="image/avif" srcset="assets/img/gallery/dessert-01-1200.avif 2x, assets/img/gallery/dessert-01-600.avif 1x" />
                 <source type="image/webp" srcset="assets/img/gallery/dessert-01-1200.webp 2x, assets/img/gallery/dessert-01-600.webp 1x" />
@@ -433,7 +433,7 @@
               </picture>
             </a>
 
-            <a class="g-item" role="listitem" href="assets/img/gallery/interior-01-1600.jpg" data-full="assets/img/gallery/interior-01-1600" aria-haspopup="dialog" aria-controls="lb">
+            <a class="g-item" href="assets/img/gallery/interior-01-1600.jpg" data-full="assets/img/gallery/interior-01-1600" aria-haspopup="dialog" aria-controls="lb">
               <picture>
                 <source type="image/avif" srcset="assets/img/gallery/interior-01-1200.avif 2x, assets/img/gallery/interior-01-600.avif 1x" />
                 <source type="image/webp" srcset="assets/img/gallery/interior-01-1200.webp 2x, assets/img/gallery/interior-01-600.webp 1x" />
@@ -477,10 +477,10 @@
           </div>
 
           <!-- Testimonials grid -->
-          <div class="testimonials-grid" role="list">
+          <div class="testimonials-grid">
             <!-- Testimonials Cards -->
             <!-- Testimonial Card 1 -->
-            <figure class="testimonial" role="listitem">
+            <figure class="testimonial">
               <picture class="avatar">
                 <source type="image/avif" srcset="assets/img/avatars/customer-01-128.avif 2x, assets/img/avatars/customer-01-64.avif 1x" />
                 <source type="image/webp" srcset="assets/img/avatars/customer-01-128.webp 2x, assets/img/avatars/customer-01-64.webp 1x" />
@@ -497,7 +497,7 @@
               <figcaption>— Anna K., recenzja z Google</figcaption>
             </figure>
             <!-- Testimonial Card 2 -->
-            <figure class="testimonial" role="listitem">
+            <figure class="testimonial">
               <picture class="avatar">
                 <source type="image/avif" srcset="assets/img/avatars/customer-02-128.avif 2x, assets/img/avatars/customer-02-64.avif 1x" />
                 <source type="image/webp" srcset="assets/img/avatars/customer-02-128.webp 2x, assets/img/avatars/customer-02-64.webp 1x" />
@@ -514,7 +514,7 @@
               <figcaption>— Marek S., recenzja z Google</figcaption>
             </figure>
             <!-- Testimonial Card 3 -->
-            <figure class="testimonial" role="listitem">
+            <figure class="testimonial">
               <picture class="avatar">
                 <source type="image/avif" srcset="assets/img/avatars/customer-03-128.avif 2x, assets/img/avatars/customer-03-64.avif 1x" />
                 <source type="image/webp" srcset="assets/img/avatars/customer-03-128.webp 2x, assets/img/avatars/customer-03-64.webp 1x" />
@@ -820,6 +820,6 @@
     </button>
 
     <!-- JAVASCRIPT -->
-    <script src="js/script.js" defer></script>
+    <script src="js/script.min.js" defer></script>
   </body>
 </html>
