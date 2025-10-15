@@ -49,7 +49,7 @@
 
     <!-- Główny CSS -->
     <link rel="stylesheet" href="css/style.css" />
-    
+
     <!-- JSON-LD: WebPage + BreadcrumbList (menu.html) -->
     <script type="application/ld+json">
       {
@@ -84,19 +84,19 @@
     <!-- HEADER -->
     <header id="top" class="site-header" data-sticky>
       <div class="container header-row">
-        <a class="brand" href="#top" aria-label="Strona główna">
+        <a class="brand" href="index.html#top" aria-label="Strona główna">
           <img class="logo logo-light" src="assets/img/logo-img/logo-dark-180px.svg" alt="Demo strony gastronomicznej – logo" width="140" height="140" decoding="async" />
           <img class="logo logo-dark" src="assets/img/logo-img/logo-dark-180px.svg" alt="" aria-hidden="true" width="140" height="140" decoding="async" />
         </a>
 
         <nav id="site-nav" class="site-nav" data-testid="site-nav" aria-label="Główna nawigacja">
           <ul>
-            <li><a href="#onas">O nas</a></li>
-            <li><a href="#menu">Menu</a></li>
-            <li><a href="#galeria">Galeria</a></li>
-            <li><a href="#opinie">Opinie</a></li>
-            <li><a href="#rezerwacja">Rezerwacja</a></li>
-            <li><a href="#faq">FAQ</a></li>
+            <li><a href="index.html#onas">O nas</a></li>
+            <li><a href="menu.html#menu-title" aria-current="page">Menu</a></li>
+            <li><a href="index.html">Galeria</a></li>
+            <li><a href="index.html#opinie">Opinie</a></li>
+            <li><a href="index.html#rezerwacja">Rezerwacja</a></li>
+            <li><a href="index.html#faq">FAQ</a></li>
           </ul>
         </nav>
 
@@ -126,21 +126,31 @@
         </div>
       </div>
     </header>
+
+    <!-- BREADCRUMBS BAR  -->
+    <div class="breadcrumbs-bar" role="presentation">
+      <div class="container">
+        <nav class="breadcrumbs" aria-label="okruszki">
+          <a href="index.html">Strona główna</a>
+          <span aria-hidden="true">/</span>
+          <span aria-current="page">Menu</span>
+        </nav>
+      </div>
+    </div>
+
     <!-- MAIN -->
     <main id="main">
       <div class="container page-shell">
-        <section class="section-head block" style="padding-bottom: 0">
-          <h1>Pełne menu</h1>
-          <span class="title-divider" aria-hidden="true"></span>
-          <nav class="breadcrumbs" aria-label="okruszki">
-            <a href="index.html">Strona główna</a>
-            <span aria-current="page">Menu</span>
-          </nav>
+        <section class="section-head block">
+          <h1 id="menu-title">Pełne menu</h1>
+          <span class="title-divider" aria-hidden="true">
+            <img src="assets/icons/linia-ozdobna.svg" alt="" width="300" height="40" loading="lazy" decoding="async" />
+          </span>
           <p class="lead">Kompletne menu z podziałem na kategorie i aktualnymi cenami.</p>
         </section>
 
         <!-- Menu -->
-        <section id="menu" class="block" style="padding-top: clamp(10px, 2vw, 20px)">
+        <section id="menu" class="block">
           <!-- Categories -->
           <div class="tabs" role="tablist" aria-label="Kategorie menu">
             <button class="tab is-active" role="tab" aria-selected="true" data-filter="all">Wszystko</button>

@@ -84,19 +84,19 @@
     <!-- HEADER -->
     <header id="top" class="site-header" data-sticky>
       <div class="container header-row">
-        <a class="brand" href="#top" aria-label="Strona główna">
-          <img class="logo logo-light" src="assets/img/logo-img/logo-dark-180px.svg" alt="Demo strony gastronomicznej – logo" width="140" height="140" decoding="async" />
+        <a class="brand" href="index.html#top" aria-label="Strona główna">
+          <img class="logo logo-light" src="assets/img/logo-img/logo-light-180px.svg" alt="Demo strony gastronomicznej – logo" width="140" height="140" decoding="async" />
           <img class="logo logo-dark" src="assets/img/logo-img/logo-dark-180px.svg" alt="" aria-hidden="true" width="140" height="140" decoding="async" />
         </a>
 
         <nav id="site-nav" class="site-nav" data-testid="site-nav" aria-label="Główna nawigacja">
           <ul>
-            <li><a href="#onas">O nas</a></li>
-            <li><a href="#menu">Menu</a></li>
-            <li><a href="#galeria">Galeria</a></li>
-            <li><a href="#opinie">Opinie</a></li>
-            <li><a href="#rezerwacja">Rezerwacja</a></li>
-            <li><a href="#faq">FAQ</a></li>
+            <li><a href="index.html#onas">O nas</a></li>
+            <li><a href="index.html#menu">Menu</a></li>
+            <li><a href="galeria.html#gallery-title" aria-current="page">Galeria</a></li>
+            <li><a href="index.html#opinie">Opinie</a></li>
+            <li><a href="index.html#rezerwacja">Rezerwacja</a></li>
+            <li><a href="index.html#faq">FAQ</a></li>
           </ul>
         </nav>
 
@@ -127,29 +127,36 @@
       </div>
     </header>
 
+    <!-- BREADCRUMBS BAR  -->
+    <div class="breadcrumbs-bar" role="presentation">
+      <div class="container">
+        <nav class="breadcrumbs" aria-label="okruszki">
+          <a href="index.html">Strona główna</a>
+          <span aria-hidden="true">/</span>
+          <span aria-current="page">Galeria</span>
+        </nav>
+      </div>
+    </div>
+
     <!-- MAIN -->
     <main id="main">
       <!-- Container -->
       <div class="container page-shell">
-        <section class="section-head block" aria-labelledby="gallery-title" style="padding-bottom: 0">
+        <section class="section-head block" aria-labelledby="gallery-title">
           <h1 id="gallery-title">Galeria</h1>
-          <span class="title-divider" aria-hidden="true"></span>
 
-          <nav class="breadcrumbs" aria-label="Okruszki">
-            <ol>
-              <li><a href="index.html">Strona główna</a></li>
-              <li aria-current="page">Galeria</li>
-            </ol>
-          </nav>
+          <span class="title-divider" aria-hidden="true">
+            <img src="assets/icons/linia-ozdobna.svg" alt="" width="300" height="40" loading="lazy" decoding="async" />
+          </span>
 
-          <p class="lead"></p>
+          <p class="lead">Pełna galeria, miejsce na Twoją treść.</p>
         </section>
 
-        <!-- Menu -->
-        <section id="galeria-grid" class="block" style="padding-top: clamp(10px, 2vw, 20px)">
+        <!-- Galeria -->
+        <section id="galeria-grid" class="block">
           <!-- Kategorie -->
           <div class="tabs" role="tablist" aria-label="Kategorie galerii">
-            <button class="tab" role="tab" aria-selected="false" data-filter="">Wszystko</button>
+            <button class="tab is-active" role="tab" aria-selected="true" data-filter="all">Wszystko</button>
             <button class="tab" role="tab" aria-selected="false" data-filter="wnetrza">Wnętrza</button>
             <button class="tab" role="tab" aria-selected="false" data-filter="dania">Dania</button>
             <button class="tab" role="tab" aria-selected="false" data-filter="imprezy">Imprezy</button>
@@ -180,11 +187,8 @@
             <!-- Interior - img 02 -->
             <a class="g-item" role="listitem" href="assets/img/gallery/interior-02-1600.jpg" data-filter="wnetrza" aria-haspopup="dialog" aria-controls="lb">
               <picture>
-                <!-- AVIF -->
                 <source type="image/avif" srcset="assets/img/gallery/interior-02-1200.avif 2x, assets/img/gallery/interior-02-600.avif 1x" />
-                <!-- WebP -->
                 <source type="image/webp" srcset="assets/img/gallery/interior-02-1200.webp 2x, assets/img/gallery/interior-02-600.webp 1x" />
-                <!-- JPG fallback -->
                 <img
                   src="assets/img/gallery/interior-02-600.jpg"
                   srcset="assets/img/gallery/interior-02-1200.jpg 2x, assets/img/gallery/interior-02-600.jpg 1x"
@@ -199,11 +203,8 @@
             <!-- Interior - img 03 -->
             <a class="g-item" role="listitem" href="assets/img/gallery/interior-03-1600.jpg" data-filter="wnetrza" aria-haspopup="dialog" aria-controls="lb">
               <picture>
-                <!-- AVIF -->
                 <source type="image/avif" srcset="assets/img/gallery/interior-03-1200.avif 2x, assets/img/gallery/interior-03-600.avif 1x" />
-                <!-- WebP -->
                 <source type="image/webp" srcset="assets/img/gallery/interior-03-1200.webp 2x, assets/img/gallery/interior-03-600.webp 1x" />
-                <!-- JPG fallback -->
                 <img
                   src="assets/img/gallery/interior-03-600.jpg"
                   srcset="assets/img/gallery/interior-03-1200.jpg 2x, assets/img/gallery/interior-03-600.jpg 1x"
@@ -218,11 +219,8 @@
             <!-- Interior - img 04 -->
             <a class="g-item" role="listitem" href="assets/img/gallery/interior-04-1600.jpg" data-filter="wnetrza" aria-haspopup="dialog" aria-controls="lb">
               <picture>
-                <!-- AVIF -->
                 <source type="image/avif" srcset="assets/img/gallery/interior-04-1200.avif 2x, assets/img/gallery/interior-04-600.avif 1x" />
-                <!-- WebP -->
                 <source type="image/webp" srcset="assets/img/gallery/interior-04-1200.webp 2x, assets/img/gallery/interior-04-600.webp 1x" />
-                <!-- JPG fallback -->
                 <img
                   src="assets/img/gallery/interior-04-600.jpg"
                   srcset="assets/img/gallery/interior-04-1200.jpg 2x, assets/img/gallery/interior-04-600.jpg 1x"
@@ -234,15 +232,12 @@
                   height="600" />
               </picture>
             </a>
+
             <!-- DISH IMGS -->
-            <!-- Dish - img 01 -->
             <a class="g-item" role="listitem" href="assets/img/gallery/dish-01-1600.jpg" data-filter="dania" aria-haspopup="dialog" aria-controls="lb">
               <picture>
-                <!-- AVIF -->
                 <source type="image/avif" srcset="assets/img/gallery/dish-01-1200.avif 2x, assets/img/gallery/dish-01-600.avif 1x" />
-                <!-- WebP -->
                 <source type="image/webp" srcset="assets/img/gallery/dish-01-1200.webp 2x, assets/img/gallery/dish-01-600.webp 1x" />
-                <!-- JPG fallback -->
                 <img
                   src="assets/img/gallery/dish-01-600.jpg"
                   srcset="assets/img/gallery/dish-01-1200.jpg 2x, assets/img/gallery/dish-01-600.jpg 1x"
@@ -254,14 +249,10 @@
                   height="600" />
               </picture>
             </a>
-            <!-- Dish - img 02 -->
             <a class="g-item" role="listitem" href="assets/img/gallery/dish-02-1600.jpg" data-filter="dania" aria-haspopup="dialog" aria-controls="lb">
               <picture>
-                <!-- AVIF -->
                 <source type="image/avif" srcset="assets/img/gallery/dish-02-1200.avif 2x, assets/img/gallery/dish-02-600.avif 1x" />
-                <!-- WebP -->
                 <source type="image/webp" srcset="assets/img/gallery/dish-02-1200.webp 2x, assets/img/gallery/dish-02-600.webp 1x" />
-                <!-- JPG fallback -->
                 <img
                   src="assets/img/gallery/dish-02-600.jpg"
                   srcset="assets/img/gallery/dish-02-1200.jpg 2x, assets/img/gallery/dish-02-600.jpg 1x"
@@ -273,14 +264,10 @@
                   height="600" />
               </picture>
             </a>
-            <!-- Dish - img 03 -->
             <a class="g-item" role="listitem" href="assets/img/gallery/dish-03-1600.jpg" data-filter="dania" aria-haspopup="dialog" aria-controls="lb">
               <picture>
-                <!-- AVIF -->
                 <source type="image/avif" srcset="assets/img/gallery/dish-03-1200.avif 2x, assets/img/gallery/dish-03-600.avif 1x" />
-                <!-- WebP -->
                 <source type="image/webp" srcset="assets/img/gallery/dish-03-1200.webp 2x, assets/img/gallery/dish-03-600.webp 1x" />
-                <!-- JPG fallback -->
                 <img
                   src="assets/img/gallery/dish-03-600.jpg"
                   srcset="assets/img/gallery/dish-03-1200.jpg 2x, assets/img/gallery/dish-03-600.jpg 1x"
@@ -292,14 +279,10 @@
                   height="600" />
               </picture>
             </a>
-            <!-- Dish - img 04 -->
             <a class="g-item" role="listitem" href="assets/img/gallery/dish-04-1600.jpg" data-filter="dania" aria-haspopup="dialog" aria-controls="lb">
               <picture>
-                <!-- AVIF -->
                 <source type="image/avif" srcset="assets/img/gallery/dish-04-1200.avif 2x, assets/img/gallery/dish-04-600.avif 1x" />
-                <!-- WebP -->
                 <source type="image/webp" srcset="assets/img/gallery/dish-04-1200.webp 2x, assets/img/gallery/dish-04-600.webp 1x" />
-                <!-- JPG fallback -->
                 <img
                   src="assets/img/gallery/dish-04-600.jpg"
                   srcset="assets/img/gallery/dish-04-1200.jpg 2x, assets/img/gallery/dish-04-600.jpg 1x"
@@ -312,15 +295,11 @@
               </picture>
             </a>
 
-            <!-- PARTYS IMGS -->
-            <!-- Party - img 01 -->
+            <!-- PARTY IMGS -->
             <a class="g-item" role="listitem" href="assets/img/gallery/party-01-1600.jpg" data-filter="imprezy" aria-haspopup="dialog" aria-controls="lb">
               <picture>
-                <!-- AVIF -->
                 <source type="image/avif" srcset="assets/img/gallery/party-01-1200.avif 2x, assets/img/gallery/party-01-600.avif 1x" />
-                <!-- WebP -->
                 <source type="image/webp" srcset="assets/img/gallery/party-01-1200.webp 2x, assets/img/gallery/party-01-600.webp 1x" />
-                <!-- JPG fallback -->
                 <img
                   src="assets/img/gallery/party-01-600.jpg"
                   srcset="assets/img/gallery/party-01-1200.jpg 2x, assets/img/gallery/party-01-600.jpg 1x"
@@ -332,14 +311,10 @@
                   height="600" />
               </picture>
             </a>
-            <!-- Party - img 02 -->
             <a class="g-item" role="listitem" href="assets/img/gallery/party-02-1600.jpg" data-filter="imprezy" aria-haspopup="dialog" aria-controls="lb">
               <picture>
-                <!-- AVIF -->
                 <source type="image/avif" srcset="assets/img/gallery/party-02-1200.avif 2x, assets/img/gallery/party-02-600.avif 1x" />
-                <!-- WebP -->
                 <source type="image/webp" srcset="assets/img/gallery/party-02-1200.webp 2x, assets/img/gallery/party-02-600.webp 1x" />
-                <!-- JPG fallback -->
                 <img
                   src="assets/img/gallery/party-02-600.jpg"
                   srcset="assets/img/gallery/party-02-1200.jpg 2x, assets/img/gallery/party-02-600.jpg 1x"
@@ -351,14 +326,10 @@
                   height="600" />
               </picture>
             </a>
-            <!-- Party - img 03 -->
             <a class="g-item" role="listitem" href="assets/img/gallery/party-03-1600.jpg" data-filter="imprezy" aria-haspopup="dialog" aria-controls="lb">
               <picture>
-                <!-- AVIF -->
                 <source type="image/avif" srcset="assets/img/gallery/party-03-1200.avif 2x, assets/img/gallery/party-03-600.avif 1x" />
-                <!-- WebP -->
                 <source type="image/webp" srcset="assets/img/gallery/party-03-1200.webp 2x, assets/img/gallery/party-03-600.webp 1x" />
-                <!-- JPG fallback -->
                 <img
                   src="assets/img/gallery/party-03-600.jpg"
                   srcset="assets/img/gallery/party-03-1200.jpg 2x, assets/img/gallery/party-03-600.jpg 1x"

@@ -24,13 +24,6 @@
 
 /* 00) ======================================================================================
    ========== HELPERS / BOOT ================================================================
-   ==========================================================================================
-   ==========================================================================================
-   ==========================================================================================
-   ==========================================================================================
-   ==========================================================================================
-   ==========================================================================================
-   ==========================================================================================
    ========================================================================================== */
 const DEBUG = false;
 const log = (...a) => DEBUG && console.log("[ui]", ...a);
@@ -48,13 +41,6 @@ if (document.body) {
 
 /* 01) ======================================================================================
    ========== MOBILE NAV TOGGLE =============================================================
-   ==========================================================================================
-   ==========================================================================================
-   ==========================================================================================
-   ==========================================================================================
-   ==========================================================================================
-   ==========================================================================================
-   ==========================================================================================
    ========================================================================================== */
 (() => {
   const toggle = byTestId("nav-toggle") || $(".nav-toggle");
@@ -117,13 +103,6 @@ if (document.body) {
 
 /* 02) ======================================================================================
    ========== TABS : FILTROWANIE MENU (ARIA + KLAWIATURA) ===================================
-   ==========================================================================================
-   ==========================================================================================
-   ==========================================================================================
-   ==========================================================================================
-   ==========================================================================================
-   ==========================================================================================
-   ==========================================================================================
    ========================================================================================== */
 (() => {
   const tabsRoot = byTestId("menu-tabs") || document;
@@ -192,13 +171,6 @@ if (document.body) {
 
 /* 03) ======================================================================================
    ========== LIGHTBOX : KONTEKSTOWA NAWIGACJA ==============================================
-   ==========================================================================================
-   ==========================================================================================
-   ==========================================================================================
-   ==========================================================================================
-   ==========================================================================================
-   ==========================================================================================
-   ==========================================================================================
    ========================================================================================== */
 (() => {
   const lb = document.getElementById("lb") || document.querySelector(".lightbox");
@@ -242,11 +214,7 @@ if (document.body) {
   // resolve relative -> absolute URL
   const resolveUrl = (p) => {
     if (!p) return "";
-    try {
-      return new URL(p, location.href).href;
-    } catch {
-      return p;
-    }
+    try { return new URL(p, location.href).href; } catch { return p; }
   };
 
   // helper: usuń query/hash i rozszerzenie (na absolutnym URL)
@@ -260,11 +228,10 @@ if (document.body) {
   // bezpieczne pobranie base z elementu (data-full | href | obrazek.currentSrc | obrazek.src)
   const getBaseFromElement = (el) => {
     if (!el) return "";
-    // prefer dataset (data-full)
     try {
       const d = el.dataset && el.dataset.full;
       if (d) return resolveUrl(d);
-    } catch (e) {}
+    } catch(e){}
     const a = el.getAttribute && el.getAttribute("data-full");
     if (a) return resolveUrl(a);
     const h = el.getAttribute && el.getAttribute("href");
@@ -280,10 +247,7 @@ if (document.body) {
     if (!b) return;
     if (sAvif) sAvif.srcset = `${b}.avif`;
     if (sWebp) sWebp.srcset = `${b}.webp`;
-    if (img) {
-      img.src = `${b}.jpg`;
-      img.alt = alt || "";
-    }
+    if (img) { img.src = `${b}.jpg`; img.alt = alt || ""; }
   };
 
   let currentIndex = -1;
@@ -315,7 +279,6 @@ if (document.body) {
     if (typeof index === "number" && index >= 0) {
       currentIndex = index;
     } else {
-      // find element in collection whose resolved URL equals absBase
       currentIndex = currentCollection.findIndex((el) => {
         const candidate = getBaseFromElement(el) || "";
         return candidate && resolveUrl(candidate) === absBase;
@@ -324,11 +287,7 @@ if (document.body) {
     if (currentIndex === -1 && currentCollection.length) currentIndex = 0; // fallback
 
     if (isDialog) {
-      try {
-        if (!lb.open) lb.showModal();
-      } catch (e) {
-        console.error(e);
-      }
+      try { if (!lb.open) lb.showModal(); } catch (e) { console.error(e); }
     } else {
       lb.removeAttribute("hidden");
       lb.setAttribute("aria-hidden", "false");
@@ -338,14 +297,12 @@ if (document.body) {
     if (btnX && typeof btnX.focus === "function") btnX.focus();
 
     updateCounter();
-    preloadNeighbor(1);
-    preloadNeighbor(-1);
+    preloadNeighbor(1); preloadNeighbor(-1);
   };
 
   const closeLB = () => {
-    if (isDialog) {
-      if (lb.open) lb.close();
-    } else {
+    if (isDialog) { if (lb.open) lb.close(); }
+    else {
       lb.classList.remove("open");
       document.body.classList.remove("no-scroll");
       lb.setAttribute("aria-hidden", "true");
@@ -359,10 +316,7 @@ if (document.body) {
     if (lastFocused && typeof lastFocused.focus === "function") lastFocused.focus();
     currentIndex = -1;
     currentCollection = [];
-    if (counter) {
-      counter.hidden = true;
-      counter.textContent = "";
-    }
+    if (counter) { counter.hidden = true; counter.textContent = ""; }
   };
 
   const showAtIndex = (idx) => {
@@ -370,7 +324,7 @@ if (document.body) {
     currentIndex = (idx + currentCollection.length) % currentCollection.length;
     const el = currentCollection[currentIndex];
     const base = getBaseFromElement(el) || "";
-    const alt = el?.querySelector("img")?.alt || el?.getAttribute("aria-label") || "";
+    const alt  = el?.querySelector("img")?.alt || el?.getAttribute("aria-label") || "";
     setSources(base, alt);
     updateCounter();
   };
@@ -383,31 +337,15 @@ if (document.body) {
     const raw = getBaseFromElement(el) || "";
     if (raw) {
       const p = stripExt(raw);
-      // próba prefetch w formatach (webp/avif/jpg)
-      const tryUrls = [`${p}.webp`, `${p}.avif`, `${p}.jpg`];
-      tryUrls.forEach((u) => {
-        const im = new Image();
-        im.src = u;
-      });
+      [`${p}.webp`, `${p}.avif`, `${p}.jpg`].forEach(u => { const im = new Image(); im.src = u; });
     }
   }
 
   // keyboard navigation and Esc
   const onKey = (e) => {
-    if (e.key === "Escape") {
-      if (isDialog ? lb.open : lb.classList.contains("open")) closeLB();
-      return;
-    }
-    if (e.key === "ArrowLeft") {
-      e.preventDefault();
-      if (currentCollection.length) showAtIndex(currentIndex === -1 ? 0 : currentIndex - 1);
-      return;
-    }
-    if (e.key === "ArrowRight") {
-      e.preventDefault();
-      if (currentCollection.length) showAtIndex(currentIndex === -1 ? 0 : currentIndex + 1);
-      return;
-    }
+    if (e.key === "Escape") { if (isDialog ? lb.open : lb.classList.contains("open")) closeLB(); return; }
+    if (e.key === "ArrowLeft")  { e.preventDefault(); if (currentCollection.length) showAtIndex(currentIndex === -1 ? 0 : currentIndex - 1); return; }
+    if (e.key === "ArrowRight") { e.preventDefault(); if (currentCollection.length) showAtIndex(currentIndex === -1 ? 0 : currentIndex + 1); return; }
   };
 
   // Delegacja klików: miniatury dań + kafelki galerii
@@ -417,7 +355,6 @@ if (document.body) {
       const base = getBaseFromElement(thumb);
       const alt = thumb.querySelector("img")?.alt || thumb.getAttribute("aria-label") || "";
       if (thumb.tagName === "A") e.preventDefault();
-      // kolekcja dla dish-thumb: wszystkie widoczne dish-thumb
       const coll = visibleThumbItems();
       const idx = coll.indexOf(thumb);
       openLB(base, alt, idx >= 0 ? idx : -1, coll);
@@ -428,7 +365,6 @@ if (document.body) {
       const base = getBaseFromElement(tile);
       const alt = tile.querySelector("img")?.alt || tile.getAttribute("aria-label") || "";
       if (tile.tagName === "A") e.preventDefault();
-      // kolekcja dla gallery: tylko widoczne elementy w tym .gallery-grid (np. aktualna kategoria)
       const grid = tile.closest(".gallery-grid");
       const coll = visibleGridItems(grid);
       const idx = coll.indexOf(tile);
@@ -439,29 +375,46 @@ if (document.body) {
   // Zamknięcia
   btnX?.addEventListener("click", closeLB);
   if (overlayEl) overlayEl.addEventListener("click", closeLB);
-  lb.addEventListener("click", (e) => {
-    if (e.target === lb) closeLB();
-  });
+  lb.addEventListener("click", (e) => { if (e.target === lb) closeLB(); });
 
   document.addEventListener("keydown", onKey);
+
+  // --- Nawigacja myszką: przyciski Prev/Next (tworzymy, jeśli brak)
+  let btnPrev = lb.querySelector(".lb-prev");
+  let btnNext = lb.querySelector(".lb-next");
+  const mk = (cls, label, svg) => {
+    const b = document.createElement("button");
+    b.className = cls; b.type = "button"; b.setAttribute("aria-label", label);
+    b.innerHTML = svg;
+    return b;
+  };
+  if (!btnPrev) {
+    btnPrev = mk("lb-prev","Poprzednie zdjęcie",
+      '<svg class="chev" viewBox="0 0 24 24" aria-hidden="true"><path d="M15 19L8 12l7-7" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>');
+    lb.appendChild(btnPrev);
+  }
+  if (!btnNext) {
+    btnNext = mk("lb-next","Następne zdjęcie",
+      '<svg class="chev" viewBox="0 0 24 24" aria-hidden="true"><path d="M9 5l7 7-7 7" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>');
+    lb.appendChild(btnNext);
+  }
+
+  // Kliki (nie zamykaj modala, nie klikaj w obraz)
+  const onPrev = (e)=>{ e.stopPropagation(); if(currentCollection.length){ showAtIndex(currentIndex===-1?0:currentIndex-1); } };
+  const onNext = (e)=>{ e.stopPropagation(); if(currentCollection.length){ showAtIndex(currentIndex===-1?0:currentIndex+1); } };
+  btnPrev.addEventListener("click", onPrev);
+  btnNext.addEventListener("click", onNext);
 
   // === Swipe (telefony) — poziomy gest do zmiany zdjęcia ===
   (() => {
     if (!img) return;
-
-    // Jeśli przeglądarka wspiera Pointer Events, użyj ich; inaczej fallback na touch*
     const SUPPORTS_POINTER = "PointerEvent" in window;
 
-    let startX = 0,
-      startY = 0,
-      dx = 0,
-      dy = 0;
-    let tracking = false,
-      lockedHorizontal = false;
+    let startX = 0, startY = 0, dx = 0, dy = 0;
+    let tracking = false, lockedHorizontal = false;
 
-    // próg uznania „swipe”
     const THRESHOLD_PX = 60;
-    const LOCK_ANGLE = 0.577; // ~30deg => |dy/dx| < 0.577 traktujemy jako gest poziomy
+    const LOCK_ANGLE = 0.577; // ~30deg
 
     const setTransform = (x) => {
       img.style.transition = "none";
@@ -471,59 +424,31 @@ if (document.body) {
     const resetTransform = () => {
       img.style.transition = "transform .18s ease";
       img.style.transform = "translate3d(0,0,0)";
-      img.addEventListener(
-        "transitionend",
-        () => {
-          img.style.willChange = "";
-        },
-        { once: true }
-      );
+      img.addEventListener("transitionend", () => { img.style.willChange = ""; }, { once: true });
     };
 
-    const onDown = (x, y) => {
-      startX = x;
-      startY = y;
-      dx = 0;
-      dy = 0;
-      tracking = true;
-      lockedHorizontal = false;
-    };
+    const onDown = (x, y) => { startX=x; startY=y; dx=0; dy=0; tracking=true; lockedHorizontal=false; };
     const onMove = (x, y, e) => {
       if (!tracking) return;
-      dx = x - startX;
-      dy = y - startY;
-
-      // zablokuj kierunek po niewielkim ruchu, aby nie „walczyć” ze scrollowaniem
-      if (!lockedHorizontal) {
-        if (Math.abs(dx) > 8) {
-          const ratio = Math.abs(dy / (dx || 1));
-          lockedHorizontal = ratio < LOCK_ANGLE;
-        }
+      dx = x - startX; dy = y - startY;
+      if (!lockedHorizontal && Math.abs(dx) > 8) {
+        const ratio = Math.abs(dy / (dx || 1));
+        lockedHorizontal = ratio < LOCK_ANGLE;
       }
-      if (lockedHorizontal) {
-        // ważne: zablokuj przewijanie strony kiedy faktycznie przesuwamy w bok
-        e?.preventDefault?.();
-        setTransform(dx);
-      }
+      if (lockedHorizontal) { e?.preventDefault?.(); setTransform(dx); }
     };
     const onUp = () => {
-      if (!tracking) return;
-      tracking = false;
-
+      if (!tracking) return; tracking=false;
       if (lockedHorizontal && Math.abs(dx) > THRESHOLD_PX && currentCollection.length) {
         const dir = dx < 0 ? +1 : -1;
-        // szybki „slide-out” dla feelu
         img.style.transition = "transform .12s ease";
         img.style.transform = `translate3d(${Math.sign(dx) * window.innerWidth * 0.25}px,0,0)`;
-        // po krótkim czasie zmień slajd i zresetuj transform
         setTimeout(() => {
-          showAtIndex(currentIndex === -1 ? 0 : currentIndex + dir); // ←/→ jak strzałki
-          // króciutkie wejście z przeciwnej strony
+          showAtIndex(currentIndex === -1 ? 0 : currentIndex + dir);
           img.style.transition = "none";
           img.style.transform = `translate3d(${Math.sign(-dx) * 28}px,0,0)`;
           requestAnimationFrame(() => resetTransform());
-          preloadNeighbor(1);
-          preloadNeighbor(-1);
+          preloadNeighbor(1); preloadNeighbor(-1);
         }, 90);
       } else {
         resetTransform();
@@ -531,50 +456,74 @@ if (document.body) {
     };
 
     if (SUPPORTS_POINTER) {
-      // Pointer Events (Android/nowoczesne przeglądarki)
-      img.addEventListener(
-        "pointerdown",
-        (e) => {
-          if (e.pointerType !== "mouse") onDown(e.clientX, e.clientY);
-        },
-        { passive: true }
-      );
-      img.addEventListener(
-        "pointermove",
-        (e) => {
-          if (e.pointerType !== "mouse") onMove(e.clientX, e.clientY, e);
-        },
-        { passive: false }
-      );
-      img.addEventListener("pointerup", onUp, { passive: true });
-      img.addEventListener("pointercancel", onUp, { passive: true });
+      img.addEventListener("pointerdown", (e)=>{ if (e.pointerType!=="mouse") onDown(e.clientX,e.clientY); }, { passive:true });
+      img.addEventListener("pointermove", (e)=>{ if (e.pointerType!=="mouse") onMove(e.clientX,e.clientY,e); }, { passive:false });
+      img.addEventListener("pointerup", onUp, { passive:true });
+      img.addEventListener("pointercancel", onUp, { passive:true });
     } else {
-      // Fallback touch* (Safari iOS starsze)
-      img.addEventListener(
-        "touchstart",
-        (e) => {
-          const t = e.touches[0];
-          if (!t) return;
-          onDown(t.clientX, t.clientY);
-        },
-        { passive: true }
-      );
-      img.addEventListener(
-        "touchmove",
-        (e) => {
-          const t = e.touches[0];
-          if (!t) return;
-          onMove(t.clientX, t.clientY, e);
-        },
-        { passive: false }
-      ); // musimy móc wywołać preventDefault()
-      img.addEventListener("touchend", onUp, { passive: true });
-      img.addEventListener("touchcancel", onUp, { passive: true });
+      img.addEventListener("touchstart", (e)=>{ const t=e.touches[0]; if(!t) return; onDown(t.clientX,t.clientY); }, { passive:true });
+      img.addEventListener("touchmove",  (e)=>{ const t=e.touches[0]; if(!t) return; onMove(t.clientX,t.clientY,e); }, { passive:false });
+      img.addEventListener("touchend", onUp, { passive:true });
+      img.addEventListener("touchcancel", onUp, { passive:true });
     }
   })();
 
+  // ===== Fullscreen / Zoom toggle (dblclick + double-tap + 'F') =====
+  const fsEl = lb;
+  const canFS = !!(fsEl.requestFullscreen || fsEl.webkitRequestFullscreen || fsEl.msRequestFullscreen);
+  const reqFS = () => fsEl.requestFullscreen?.() || fsEl.webkitRequestFullscreen?.() || fsEl.msRequestFullscreen?.();
+  const exitFS = () => document.exitFullscreen?.() || document.webkitExitFullscreen?.() || document.msExitFullscreen?.();
+  const isFS = () => !!(document.fullscreenElement || document.webkitFullscreenElement || document.msFullscreenElement);
+
+  const enterZoomFallback = () => lb.classList.add("is-zoomed");
+  const exitZoomFallback  = () => lb.classList.remove("is-zoomed");
+  const isZoomFallback    = () => lb.classList.contains("is-zoomed");
+
+  // >>> DODANE: klasa wymuszająca czarne tło backdroppu
+  const setFsBackdrop = (on) => lb.classList.toggle("is-fs", !!on);
+
+  async function toggleFullscreen(){
+    if (canFS){
+      if (isFS()){
+        await exitFS();
+        setFsBackdrop(false);              // DODANE
+      } else {
+        try {
+          await reqFS();
+          setFsBackdrop(true);             // DODANE
+        } catch {
+          enterZoomFallback();
+          setFsBackdrop(true);             // DODANE
+        }
+      }
+    } else {
+      // brak API → fallback CSS
+      if (isZoomFallback()){ exitZoomFallback(); setFsBackdrop(false); }
+      else { enterZoomFallback(); setFsBackdrop(true); }
+    }
+  }
+  // wyjście z trybów
+  lb.addEventListener("close", ()=>{ exitZoomFallback(); setFsBackdrop(false); });    // DODANE
+  document.addEventListener("fullscreenchange", ()=> setFsBackdrop(isFS()));          // DODANE
+
+  // dblclick (desktop)
+  img.addEventListener("dblclick", (e)=>{ e.preventDefault(); toggleFullscreen(); });
+
+  // double-tap (mobile)
+  let lastTap=0;
+  img.addEventListener("touchend", (e)=>{
+    const now=Date.now();
+    if(now-lastTap<300){ e.preventDefault(); toggleFullscreen(); lastTap=0; }
+    else lastTap=now;
+  }, { passive:false });
+
+  // klawisz 'F'
+  lb.addEventListener("keydown",(e)=>{
+    if(e.key==='f' || e.key==='F'){ e.preventDefault(); toggleFullscreen(); }
+  });
+
   // expose for debug/inline usage
-  window.openLB = (base, alt, idx) => openLB(base, alt, idx);
+  window.openLB  = (base, alt, idx) => openLB(base, alt, idx);
   window.closeLB = closeLB;
 
   console.log("lightbox ready →", isDialog ? "<dialog>" : "<div>");
@@ -582,13 +531,6 @@ if (document.body) {
 
 /* 04) ======================================================================================
    ========== FORMULARZ REZERWACJI ( HONEYPOT + WALIDACJA HTML5 + MOCK) =====================
-   ==========================================================================================
-   ==========================================================================================
-   ==========================================================================================
-   ==========================================================================================
-   ==========================================================================================
-   ==========================================================================================
-   ==========================================================================================
    ========================================================================================== */
 (() => {
   const form = byTestId("booking-form") || $("#booking-form");
@@ -661,13 +603,6 @@ if (document.body) {
 
 /* 05) ======================================================================================
    ========== ROK W STOPCE ==================================================================
-   ==========================================================================================
-   ==========================================================================================
-   ==========================================================================================
-   ==========================================================================================
-   ==========================================================================================
-   ==========================================================================================
-   ==========================================================================================
    ========================================================================================== */
 (() => {
   const y = $("#year");
@@ -676,13 +611,6 @@ if (document.body) {
 
 /* 06) ======================================================================================
    ========== PRZEŁACZNIK MOTYWU ( LIGHT / DARK ) Z PAMIĘCIĘ ================================
-   ==========================================================================================
-   ==========================================================================================
-   ==========================================================================================
-   ==========================================================================================
-   ==========================================================================================
-   ==========================================================================================
-   ==========================================================================================
    ========================================================================================== */
 (() => {
   const btn = byTestId("theme-toggle") || $(".theme-toggle");
@@ -733,13 +661,6 @@ if (document.body) {
 
 /* 07) ======================================================================================
    ========== SCROLLSPY ( PODSWIETLENIE POZYCJI MENU ) ======================================
-   ==========================================================================================
-   ==========================================================================================
-   ==========================================================================================
-   ==========================================================================================
-   ==========================================================================================
-   ==========================================================================================
-   ==========================================================================================
    ========================================================================================== */
 (() => {
   const links = $$("#site-nav a[href^='#']");
@@ -786,13 +707,6 @@ if (document.body) {
 
 /* 08) ======================================================================================
    ========== SCROLL BUTTONS ( DOWN / UP ) ==================================================
-   ==========================================================================================
-   ==========================================================================================
-   ==========================================================================================
-   ==========================================================================================
-   ==========================================================================================
-   ==========================================================================================
-   ==========================================================================================
    ========================================================================================== */
 (() => {
   const btnDown = byTestId("scroll-down") || $(".scroll-down");
@@ -844,13 +758,6 @@ if (document.body) {
 
 /* 09) ======================================================================================
    ========== CTA - PULS TYLKO W VIEWPORT ===================================================
-   ==========================================================================================
-   ==========================================================================================
-   ==========================================================================================
-   ==========================================================================================
-   ==========================================================================================
-   ==========================================================================================
-   ==========================================================================================
    ========================================================================================== */
 (() => {
   const ctas = document.querySelectorAll(".btn-cta");
@@ -870,13 +777,6 @@ if (document.body) {
 
 /* 10) ======================================================================================
    ========== SMART NAV - ZMIANA #MENU / #GALERIA NA URL ====================================
-   ==========================================================================================
-   ==========================================================================================
-   ==========================================================================================
-   ==========================================================================================
-   ==========================================================================================
-   ==========================================================================================
-   ==========================================================================================
    ========================================================================================== */
 (() => {
   // Na stronie głównej zostawiamy anchor-scroll
@@ -894,13 +794,6 @@ if (document.body) {
 
 /* 11) ======================================================================================
    ========== NAV - AKTYWNA PODSTRONA W NAWIGACJI - ARIA-CURRENT  ===========================
-   ==========================================================================================
-   ==========================================================================================
-   ==========================================================================================
-   ==========================================================================================
-   ==========================================================================================
-   ==========================================================================================
-   ==========================================================================================
    ========================================================================================== */
 (function () {
   const nav = document.querySelector(".site-nav");
@@ -941,24 +834,10 @@ if (document.body) {
       }
     }
   }
-
-  // 3) ostatni fallback: jeśli jesteśmy na index.html i bez hash, ustaw domyślny (np. "Menu" jeśli potrzebne)
-  // (opcjonalne — odkomentuj i dostosuj jeśli chcesz domyślne zachowanie)
-  // const defaultText = 'Menu';
-  // for(const a of links){
-  //   if(a.textContent.trim() === defaultText){ a.setAttribute('aria-current','page'); break; }
-  // }
 })();
 
 /* 12) ======================================================================================
    ========== MENU ( PAGE-MENU ) ZACHOWANIE PANELU "WIĘCEJ O DANIU" =========================
-   ==========================================================================================
-   ==========================================================================================
-   ==========================================================================================
-   ==========================================================================================
-   ==========================================================================================
-   ==========================================================================================
-   ==========================================================================================
    ========================================================================================== */
 (() => {
   if (!document.body.classList.contains("page-menu")) return;
@@ -995,13 +874,6 @@ if (document.body) {
 
 /* 13) ======================================================================================
    ========== FAQ - ARIA SYNC ( ARIA-EXPANDED + ARIA-CONTROLS ) =============================
-   ==========================================================================================
-   ==========================================================================================
-   ==========================================================================================
-   ==========================================================================================
-   ==========================================================================================
-   ==========================================================================================
-   ==========================================================================================
    ========================================================================================== */
 (() => {
   // Obsłuż zarówno #faq jak i .faq na wszelki wypadek
@@ -1027,29 +899,24 @@ if (document.body) {
 })();
 
 /* 14) ======================================================================================
-   ========== GALLERY FILTER (PAGE-GALLERY) =================================================
-   ==========================================================================================
-   ==========================================================================================
-   ==========================================================================================
-   ==========================================================================================
-   ==========================================================================================
-   ==========================================================================================
-   ==========================================================================================
-   ========================================================================================== */
+   ========== GALLERY FILTER (PAGE-GALLERY) ================================================
+   ====================================================================================== */
 (function () {
   if (!document.body.classList.contains("page-gallery")) return; // tylko ta podstrona
 
   const tabsWrap = document.querySelector(".tabs");
   if (!tabsWrap) return;
 
-  const tabs = Array.from(tabsWrap.querySelectorAll(".tab"));
+  const tabs  = Array.from(tabsWrap.querySelectorAll(".tab"));
   const items = Array.from(document.querySelectorAll(".gallery-grid .g-item"));
 
   // Pokaż/ukryj według aktywnego filtra
-  function applyFilter(value) {
+  function applyFilter(valueRaw) {
+    const value = (valueRaw || "").trim();
+    const showAll = value === "" || value.toLowerCase() === "all";
     items.forEach((el) => {
       const cat = el.dataset.cat || el.dataset.filter || "";
-      el.hidden = value ? cat !== value : false; // bez value — pokaż wszystko
+      el.hidden = showAll ? false : cat !== value;
     });
   }
 
@@ -1059,87 +926,88 @@ if (document.body) {
   }
 
   // --- ACCESSIBLE TABS SETUP ---
-  // inicjalizacja roving tabindex i ról
   function initTabs() {
     tabs.forEach((t, i) => {
       t.setAttribute("role", "tab");
-      // jeśli w HTML ustawiono aria-selected, uwzględnij to; inaczej pierwszy jako active
       const selected = t.getAttribute("aria-selected") === "true";
       t.setAttribute("tabindex", selected ? "0" : i === 0 ? "0" : "-1");
       if (!t.hasAttribute("aria-selected")) t.setAttribute("aria-selected", String(i === 0));
     });
   }
 
-  // funkcja aktywacji: aktualizuje aria, tabindex i filtruje (applyFilter)
+  // Aktywacja taba + filtrowanie
   function activateTab(tab) {
     setActiveTab(tab);
     tabs.forEach((t) => t.setAttribute("tabindex", t === tab ? "0" : "-1"));
-    const value = tab.dataset.filter || "";
+    const value = (tab.dataset.filter || "").trim();
     applyFilter(value);
     tab.focus();
   }
 
-  // pomoc: przesunięcie fokusu z wrap-around
+  // Pomoc: przesunięcie fokusu z wrap-around
   function focusIndex(idx) {
     const i = (idx + tabs.length) % tabs.length;
     tabs[i].focus();
   }
 
-  // keyboard: manual activation zgodnie z WAI-ARIA (fokus != aktywacja)
+  // Klawiatura: manual activation (ARIA)
   tabsWrap.addEventListener("keydown", (e) => {
     const key = e.key;
     const activeEl = document.activeElement;
     const idx = tabs.indexOf(activeEl);
-    if (idx === -1) return; // nie na tabie
+    if (idx === -1) return;
 
     if (key === "ArrowRight" || key === "ArrowLeft") {
       e.preventDefault();
-      const next = key === "ArrowRight" ? idx + 1 : idx - 1;
-      focusIndex(next); // tylko focus
+      focusIndex(key === "ArrowRight" ? idx + 1 : idx - 1);
       return;
     }
-
-    if (key === "Home") {
-      e.preventDefault();
-      focusIndex(0);
-      return;
-    }
-
-    if (key === "End") {
-      e.preventDefault();
-      focusIndex(tabs.length - 1);
-      return;
-    }
+    if (key === "Home") { e.preventDefault(); focusIndex(0); return; }
+    if (key === "End")  { e.preventDefault(); focusIndex(tabs.length - 1); return; }
 
     if (key === "Enter" || key === " " || key === "Spacebar") {
       e.preventDefault();
-      // aktywuj fokusowany tab
       activateTab(activeEl);
       return;
     }
-
-    if (key === "Escape") {
-      activeEl.blur();
-      return;
-    }
+    if (key === "Escape") { activeEl.blur(); return; }
   });
 
-  // click: aktywacja od razu (mysz/pointer)
+  // Click: aktywacja
   tabs.forEach((t) => {
-    // upewnij się, że nie zostają duplikaty listenerów — jeśli wklejasz zamiennik to stare zostały usunięte
-    t.addEventListener("click", (ev) => {
-      activateTab(t);
-    });
-    // opcjonalnie: pointerdown pozostawiamy pusty, by wspierać model pointerów
-    t.addEventListener("pointerdown", () => {});
+    t.addEventListener("click", () => activateTab(t));
   });
 
   // Start: jeśli w HTML jest aria-selected="true" -> aktywuj go; inaczej pierwszy
-  const pre = tabs.find((t) => t.getAttribute("aria-selected") === "true");
   initTabs();
-  if (pre) activateTab(pre);
-  else activateTab(tabs[0]);
+  const pre = tabs.find((t) => t.getAttribute("aria-selected") === "true") || tabs[0];
+  activateTab(pre);
 })();
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 /* ==================================== ADDED ===================================================== */
 // Sticky shadow on scroll
