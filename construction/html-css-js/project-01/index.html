@@ -295,11 +295,9 @@
             <p id="oferta-lead">Kompleksowe prace w mieszkaniach i domach — czysto, terminowo, z gwarancją.</p>
           </header>
 
-          <div class="services-scroller" id="oferta-scroller" role="region" aria-label="Oferta — przewijana lista usług" aria-roledescription="carousel">
-            <button class="scroller-btn prev" type="button" aria-label="Przewiń w lewo" aria-controls="oferta-track">‹</button>
-
-            <div class="services-track" id="oferta-track" tabindex="0" role="list" aria-label="Lista usług">
-              <article id="oferta-lazienki" class="card hover-card" aria-labelledby="h-lazienki" aria-describedby="d-lazienki" role="listitem">
+          <div class="services-scroller" id="oferta-scroller">
+            <div class="services-track" id="oferta-track">
+              <article id="oferta-lazienki" class="card hover-card" aria-labelledby="h-lazienki" aria-describedby="d-lazienki">
                 <a href="#kontakt" aria-label="Zamów wycenę — Łazienki">
                   <picture>
                     <source
@@ -340,7 +338,7 @@
                 <p id="d-lazienki">Płytki wielkoformatowe, armatura, hydroizolacje, zabudowy i oświetlenie.</p>
               </article>
 
-              <article id="oferta-malowanie" class="card hover-card" aria-labelledby="h-malowanie" aria-describedby="d-malowanie" role="listitem">
+              <article id="oferta-malowanie" class="card hover-card" aria-labelledby="h-malowanie" aria-describedby="d-malowanie">
                 <a href="#kontakt" aria-label="Zamów wycenę — Malowanie i gładzie">
                   <picture>
                     <source
@@ -381,7 +379,7 @@
                 <p id="d-malowanie">Gładkie ściany, farby premium, precyzyjne odcięcia i szybkie terminy.</p>
               </article>
 
-              <article id="oferta-kafelkowanie" class="card hover-card" aria-labelledby="h-kafelkowanie" aria-describedby="d-kafelkowanie" role="listitem">
+              <article id="oferta-kafelkowanie" class="card hover-card" aria-labelledby="h-kafelkowanie" aria-describedby="d-kafelkowanie">
                 <a href="#kontakt" aria-label="Zamów wycenę — Kafelkowanie">
                   <picture>
                     <source
@@ -431,7 +429,7 @@
                 <p id="d-kafelkowanie">Tarasy, kuchnie, łazienki — równe fugi, poziomice laserowe i detale.</p>
               </article>
 
-              <article id="oferta-elektryka" class="card hover-card" aria-labelledby="h-elektryka" aria-describedby="d-elektryka" role="listitem">
+              <article id="oferta-elektryka" class="card hover-card" aria-labelledby="h-elektryka" aria-describedby="d-elektryka">
                 <a href="#kontakt" aria-label="Zamów wycenę — Elektryka">
                   <picture>
                     <source
@@ -481,7 +479,7 @@
                 <p id="d-elektryka">Przeróbki instalacji, białe montaże i próby szczelności.</p>
               </article>
 
-              <article id="oferta-hydraulika" class="card hover-card" aria-labelledby="h-hydraulika" aria-describedby="d-hydraulika" role="listitem">
+              <article id="oferta-hydraulika" class="card hover-card" aria-labelledby="h-hydraulika" aria-describedby="d-hydraulika">
                 <a href="#kontakt" aria-label="Zamów wycenę — Hydraulika">
                   <picture>
                     <source
@@ -530,9 +528,56 @@
                 <h3 id="h-hydraulika"><a href="oferta/hydraulika.html">Hydraulika</a></h3>
                 <p id="d-hydraulika">Wszystkie prace hydrauliczne.</p>
               </article>
+              <article id="oferta-elektryka" class="card hover-card" aria-labelledby="h-elektryka" aria-describedby="d-elektryka">
+                <a href="#kontakt" aria-label="Zamów wycenę — Elektryka">
+                  <picture>
+                    <source
+                      type="image/avif"
+                      srcset="
+                        assets/img/oferta/electrition-400x300.avif    400w,
+                        assets/img/oferta/electrition-800x600.avif    800w,
+                        assets/img/oferta/electrition-1200x900.avif  1200w,
+                        assets/img/oferta/electrition-1600x1200.avif 1600w
+                      "
+                      sizes="(min-width: 992px) 25vw, (min-width: 640px) 50vw, 100vw" />
+                    <source
+                      type="image/webp"
+                      srcset="
+                        assets/img/oferta/electrition-400x300.webp    400w,
+                        assets/img/oferta/electrition-800x600.webp    800w,
+                        assets/img/oferta/electrition-1200x900.webp  1200w,
+                        assets/img/oferta/electrition-1600x1200.webp 1600w
+                      "
+                      sizes="(min-width: 992px) 25vw, (min-width: 640px) 50vw, 100vw" />
+                    <source
+                      type="image/jpeg"
+                      srcset="
+                        assets/img/oferta/electrition-400x300.jpg    400w,
+                        assets/img/oferta/electrition-800x600.jpg    800w,
+                        assets/img/oferta/electrition-1200x900.jpg  1200w,
+                        assets/img/oferta/electrition-1600x1200.jpg 1600w
+                      "
+                      sizes="(min-width: 992px) 25vw, (min-width: 640px) 50vw, 100vw" />
+                    <img
+                      src="assets/img/oferta/electrition-800x600.jpg"
+                      srcset="
+                        assets/img/oferta/electrition-400x300.jpg    400w,
+                        assets/img/oferta/electrition-800x600.jpg    800w,
+                        assets/img/oferta/electrition-1200x900.jpg  1200w,
+                        assets/img/oferta/electrition-1600x1200.jpg 1600w
+                      "
+                      sizes="(min-width: 992px) 25vw, (min-width: 640px) 50vw, 100vw"
+                      alt="Elektryk w pracy"
+                      width="400"
+                      height="300"
+                      loading="lazy"
+                      decoding="async" />
+                  </picture>
+                </a>
+                <h3 id="h-elektryka"><a href="oferta/elektryka.html">Elektryka</a></h3>
+                <p id="d-elektryka">Przeróbki instalacji, białe montaże i próby szczelności.</p>
+              </article>
             </div>
-
-            <button class="scroller-btn next" type="button" aria-label="Przewiń w prawo" aria-controls="oferta-track">›</button>
           </div>
 
           <div class="block-cta">
@@ -584,6 +629,7 @@
         </div>
       </section>
 
+      <!-- TESTIMONIALS -->
       <section id="opinie" class="block testimonials" role="region" aria-labelledby="opinie-heading" aria-describedby="opinie-desc">
         <div class="container">
           <header class="block-head">
