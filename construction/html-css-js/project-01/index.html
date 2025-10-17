@@ -295,8 +295,9 @@
             <p id="oferta-lead">Kompleksowe prace w mieszkaniach i domach — czysto, terminowo, z gwarancją.</p>
           </header>
 
-          <div class="services-scroller" id="oferta-scroller">
-            <div class="services-track" id="oferta-track">
+          <div class="services-grid" id="oferta-grid">
+            <div class="services-list" id="oferta-list">
+              <!-- Offer card #1 -->
               <article id="oferta-lazienki" class="card hover-card" aria-labelledby="h-lazienki" aria-describedby="d-lazienki">
                 <a href="#kontakt" aria-label="Zamów wycenę — Łazienki">
                   <picture>
@@ -337,7 +338,7 @@
                 <h3 id="h-lazienki"><a href="oferta/lazienki.html">Łazienki</a></h3>
                 <p id="d-lazienki">Płytki wielkoformatowe, armatura, hydroizolacje, zabudowy i oświetlenie.</p>
               </article>
-
+              <!-- Offer card #2 -->
               <article id="oferta-malowanie" class="card hover-card" aria-labelledby="h-malowanie" aria-describedby="d-malowanie">
                 <a href="#kontakt" aria-label="Zamów wycenę — Malowanie i gładzie">
                   <picture>
@@ -378,7 +379,7 @@
                 <h3 id="h-malowanie"><a href="oferta/malowanie.html">Malowanie &amp; gładzie</a></h3>
                 <p id="d-malowanie">Gładkie ściany, farby premium, precyzyjne odcięcia i szybkie terminy.</p>
               </article>
-
+              <!-- Offer card #3 -->
               <article id="oferta-kafelkowanie" class="card hover-card" aria-labelledby="h-kafelkowanie" aria-describedby="d-kafelkowanie">
                 <a href="#kontakt" aria-label="Zamów wycenę — Kafelkowanie">
                   <picture>
@@ -428,7 +429,7 @@
                 <h3 id="h-kafelkowanie"><a href="oferta/kafelkowanie.html">Kafelkowanie</a></h3>
                 <p id="d-kafelkowanie">Tarasy, kuchnie, łazienki — równe fugi, poziomice laserowe i detale.</p>
               </article>
-
+              <!-- Offer card #4 -->
               <article id="oferta-elektryka" class="card hover-card" aria-labelledby="h-elektryka" aria-describedby="d-elektryka">
                 <a href="#kontakt" aria-label="Zamów wycenę — Elektryka">
                   <picture>
@@ -478,7 +479,7 @@
                 <h3 id="h-elektryka"><a href="oferta/elektryka.html">Elektryka</a></h3>
                 <p id="d-elektryka">Przeróbki instalacji, białe montaże i próby szczelności.</p>
               </article>
-
+              <!-- Offer card #5 -->
               <article id="oferta-hydraulika" class="card hover-card" aria-labelledby="h-hydraulika" aria-describedby="d-hydraulika">
                 <a href="#kontakt" aria-label="Zamów wycenę — Hydraulika">
                   <picture>
@@ -528,54 +529,46 @@
                 <h3 id="h-hydraulika"><a href="oferta/hydraulika.html">Hydraulika</a></h3>
                 <p id="d-hydraulika">Wszystkie prace hydrauliczne.</p>
               </article>
-              <article id="oferta-elektryka" class="card hover-card" aria-labelledby="h-elektryka" aria-describedby="d-elektryka">
-                <a href="#kontakt" aria-label="Zamów wycenę — Elektryka">
+              <!-- Offer card #6 -->
+              <article id="oferta-kompleksowe" class="card hover-card" aria-labelledby="h-kompleksowe" aria-describedby="d-kompleksowe" role="listitem">
+                <a href="#kontakt" aria-label="Zamów wycenę — Remonty kompleksowe">
                   <picture>
                     <source
                       type="image/avif"
                       srcset="
-                        assets/img/oferta/electrition-400x300.avif    400w,
-                        assets/img/oferta/electrition-800x600.avif    800w,
-                        assets/img/oferta/electrition-1200x900.avif  1200w,
-                        assets/img/oferta/electrition-1600x1200.avif 1600w
+                        assets/img/oferta/remonty-400x300.avif    400w,
+                        assets/img/oferta/remonty-800x600.avif    800w,
+                        assets/img/oferta/remonty-1200x900.avif  1200w,
+                        assets/img/oferta/remonty-1600x1200.avif 1600w
                       "
                       sizes="(min-width: 992px) 25vw, (min-width: 640px) 50vw, 100vw" />
                     <source
                       type="image/webp"
                       srcset="
-                        assets/img/oferta/electrition-400x300.webp    400w,
-                        assets/img/oferta/electrition-800x600.webp    800w,
-                        assets/img/oferta/electrition-1200x900.webp  1200w,
-                        assets/img/oferta/electrition-1600x1200.webp 1600w
-                      "
-                      sizes="(min-width: 992px) 25vw, (min-width: 640px) 50vw, 100vw" />
-                    <source
-                      type="image/jpeg"
-                      srcset="
-                        assets/img/oferta/electrition-400x300.jpg    400w,
-                        assets/img/oferta/electrition-800x600.jpg    800w,
-                        assets/img/oferta/electrition-1200x900.jpg  1200w,
-                        assets/img/oferta/electrition-1600x1200.jpg 1600w
+                        assets/img/oferta/remonty-400x300.webp    400w,
+                        assets/img/oferta/remonty-800x600.webp    800w,
+                        assets/img/oferta/remonty-1200x900.webp  1200w,
+                        assets/img/oferta/remonty-1600x1200.webp 1600w
                       "
                       sizes="(min-width: 992px) 25vw, (min-width: 640px) 50vw, 100vw" />
                     <img
-                      src="assets/img/oferta/electrition-800x600.jpg"
+                      src="assets/img/oferta/remonty-800x600.jpg"
                       srcset="
-                        assets/img/oferta/electrition-400x300.jpg    400w,
-                        assets/img/oferta/electrition-800x600.jpg    800w,
-                        assets/img/oferta/electrition-1200x900.jpg  1200w,
-                        assets/img/oferta/electrition-1600x1200.jpg 1600w
+                        assets/img/oferta/remonty-400x300.jpg    400w,
+                        assets/img/oferta/remonty-800x600.jpg    800w,
+                        assets/img/oferta/remonty-1200x900.jpg  1200w,
+                        assets/img/oferta/remonty-1600x1200.jpg 1600w
                       "
                       sizes="(min-width: 992px) 25vw, (min-width: 640px) 50vw, 100vw"
-                      alt="Elektryk w pracy"
+                      alt="Ręka projektanta szkicująca wnętrze podczas kompleksowego remontu mieszkania"
                       width="400"
                       height="300"
                       loading="lazy"
                       decoding="async" />
                   </picture>
                 </a>
-                <h3 id="h-elektryka"><a href="oferta/elektryka.html">Elektryka</a></h3>
-                <p id="d-elektryka">Przeróbki instalacji, białe montaże i próby szczelności.</p>
+                <h3 id="h-kompleksowe"><a href="oferta/remonty-kompleksowe.html">Remonty kompleksowe</a></h3>
+                <p id="d-kompleksowe">Pełna koordynacja prac: projekt, demontaż, instalacje, wykończenia i sprzątanie.</p>
               </article>
             </div>
           </div>
@@ -592,34 +585,29 @@
           <h2 id="logos-heading">Firmy, które nam zaufały</h2>
 
           <ul class="logos-grid" aria-label="Logotypy klientów">
+            <!-- Logo #1 -->
             <li class="logo">
-              <a href="https://www.alfasolutions.pl/" target="_blank" rel="noopener noreferrer" aria-label="Alfa Sp. z o.o. — otwórz w nowej karcie">
-                <img class="logo-img" src="assets/img/partners-logos/alfa.svg" alt="" aria-hidden="true" loading="lazy" decoding="async" />
-              </a>
+              <img class="logo-img" src="assets/img/partners-logos/partner-01-80x60.svg" alt="" aria-hidden="true" loading="lazy" decoding="async" />
             </li>
-
+            <!-- Logo #2 -->
             <li class="logo">
-              <a href="https://www.betasolutions.pl/" target="_blank" rel="noopener noreferrer" aria-label="Beta Sp. z o.o. — otwórz w nowej karcie">
-                <img class="logo-img" src="assets/img/partners-logos/beta.svg" alt="" aria-hidden="true" loading="lazy" decoding="async" />
-              </a>
+              <img class="logo-img" src="assets/img/partners-logos/partner-02-80x60.svg" alt="" aria-hidden="true" loading="lazy" decoding="async" />
             </li>
-
+            <!-- Logo #3 -->
             <li class="logo">
-              <a href="https://www.deltasolutions.pl/" target="_blank" rel="noopener noreferrer" aria-label="Delta Sp. z o.o. — otwórz w nowej karcie">
-                <img class="logo-img" src="assets/img/partners-logos/delta.svg" alt="" aria-hidden="true" loading="lazy" decoding="async" />
-              </a>
+              <img class="logo-img" src="assets/img/partners-logos/partner-03-80x60.svg" alt="" aria-hidden="true" loading="lazy" decoding="async" />
             </li>
-
+            <!-- Logo #4 -->
             <li class="logo">
-              <a href="https://www.epsilonsolutions.pl/" target="_blank" rel="noopener noreferrer" aria-label="Epsilon Sp. z o.o. — otwórz w nowej karcie">
-                <img class="logo-img" src="assets/img/partners-logos/epsilon.svg" alt="" aria-hidden="true" loading="lazy" decoding="async" />
-              </a>
+              <img class="logo-img" src="assets/img/partners-logos/partner-04-80x60.svg" alt="" aria-hidden="true" loading="lazy" decoding="async" />
             </li>
-
+            <!-- Logo #5 -->
             <li class="logo">
-              <a href="https://www.gammasolutions.pl/" target="_blank" rel="noopener noreferrer" aria-label="Gamma Sp. z o.o. — otwórz w nowej karcie">
-                <img class="logo-img" src="assets/img/partners-logos/gamma.svg" alt="" aria-hidden="true" loading="lazy" decoding="async" />
-              </a>
+              <img class="logo-img" src="assets/img/partners-logos/partner-05-80x60.svg" alt="" aria-hidden="true" loading="lazy" decoding="async" />
+            </li>
+            <!-- Logo #6 -->
+            <li class="logo">
+              <img class="logo-img" src="assets/img/partners-logos/partner-06-80x60.svg" alt="" aria-hidden="true" loading="lazy" decoding="async" />
             </li>
           </ul>
 

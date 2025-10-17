@@ -179,7 +179,7 @@ a {
 }
 
 a:hover {
-  text-decoration: underline;
+  text-decoration: none;
 }
 
 a:focus-visible {
@@ -478,7 +478,6 @@ h3 {
   padding-block: 4px;
 }
 
-/* --- brand --- */
 .brand {
   display: inline-flex;
   align-items: center;
@@ -1190,17 +1189,15 @@ a.brand:focus-visible {
 
 /* ========== 04) OFFER ========== */
 
-/* ========== 04) OFFER ========== */
-
 .block-head {
   text-align: center;
 }
 
-.services-scroller {
+.services-grid {
   margin-top: 12px;
 }
 
-.services-track {
+.services-list {
   display: grid;
   grid-template-columns: 1fr;
   gap: 16px;
@@ -1276,22 +1273,76 @@ a.brand:focus-visible {
 
 .card h3 {
   margin: 0.1em 0 0.1em;
+  text-align: center;
 }
 
 .card h3 a {
+  position: relative;
+  display: inline-block;
   color: inherit;
   text-decoration: none;
   border-radius: 6px;
 }
 
-.card h3 a:hover {
-  text-decoration: underline;
+.card h3 a:hover,
+.card h3 a:focus-visible {
+  text-decoration: none;
 }
 
-.card h3 a:focus-visible {
-  outline: 3px solid var(--ring, #94a3b8);
-  outline-offset: 3px;
+.card h3 a::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: -2px;
+  width: 0%;
+  height: 2px;
+  background: linear-gradient(to right, transparent 0%, var(--brand) 20%, var(--brand) 80%, transparent 100%);
+  border-radius: 999px;
+  transform: translateX(-50%);
+  transition: width 0.3s ease;
 }
+
+.card h3 a:hover::after,
+.card h3 a:focus-visible::after {
+  width: 100%;
+}
+
+/*
+.card h3 {
+  margin: 0.1em 0 0.1em;
+  text-align: center;
+}
+
+.card h3 a {
+  position: relative;
+  display: inline-block;
+  color: inherit;
+  text-decoration: none;
+  border-radius: 6px;
+}
+
+.card h3 a:hover,
+.card h3 a:focus-visible {
+  text-decoration: none;
+}
+
+.card h3 a::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -2px;
+  width: 0%;
+  height: 2px;
+  background: var(--brand);
+  border-radius: 2px;
+  transition: width 0.25s ease;
+}
+
+.card h3 a:hover::after,
+.card h3 a:focus-visible::after {
+  width: 100%;
+}
+*/
 
 .card p {
   color: var(--c-muted);
@@ -1358,14 +1409,14 @@ a.brand:focus-visible {
 
 /* ----- MQ min width 640px ----- */
 @media (min-width: 640px) {
-  .services-track {
+  .services-list {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 }
 
 /* ----- MQ min width 992px ----- */
 @media (min-width: 992px) {
-  .services-track {
+  .services-list {
     grid-template-columns: repeat(3, minmax(0, 1fr));
   }
 }
@@ -1383,7 +1434,7 @@ a.brand:focus-visible {
 
 .logos h2 {
   text-align: center;
-  margin-bottom: var(--space-3);
+  margin-bottom: var(--space-10);
 }
 
 .logos-grid {
@@ -1531,7 +1582,7 @@ a.brand:focus-visible {
 @media (max-width: 480px) {
   .logos-grid {
     grid-template-columns: repeat(2, minmax(120px, auto));
-    gap: var(--space-8);
+    gap: var(--space-4);
     justify-content: center;
   }
 }
@@ -2792,16 +2843,17 @@ section#kontakt .form-note {
   overflow-wrap: anywhere;
 }
 
+.doc-content a:focus-visible {
+  outline: 2px solid var(--ring);
+  outline-offset: var(--space-2);
+  text-decoration-thickness: 2px;
+}
+
 /* ----- MQ hover: hover ----- */
 @media (hover: hover) {
   .doc-content a:hover {
     opacity: 0.85;
   }
-}
-.doc-content a:focus-visible {
-  outline: 2px solid var(--ring);
-  outline-offset: var(--space-2);
-  text-decoration-thickness: 2px;
 }
 
 /* ----- MQ max width 480px ----- */
@@ -2841,10 +2893,6 @@ section#kontakt .form-note {
 .hover-card:focus-within {
   outline: 3px solid var(--ring);
   outline-offset: 2px;
-}
-
-.hover-card a:not(.btn):hover {
-  text-decoration: underline;
 }
 
 /* ----- MQ prefers reduced motion ------ */
