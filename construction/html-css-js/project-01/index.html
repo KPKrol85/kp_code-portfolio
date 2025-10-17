@@ -1,10 +1,10 @@
 <!doctype html>
-<html lang="pl" data-accent="bhp">
+<html lang="pl">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
 
-    <title>Demo — strona dla firmy remontowej (landing + oferta + wycena) | KP_Code</title>
+    <title>Demo — strona dla firmy remontowej | KP_Code</title>
     <meta name="description" content="Demo szablonu strony dla firmy remontowej: landing, oferta, realizacje, opinie, FAQ i formularz wyceny. Projekt i kod: KP_Code." />
     <meta name="author" content="Kamil Król / KP_Code" />
 
@@ -16,13 +16,21 @@
     <meta name="theme-color" content="#0b1220" media="(prefers-color-scheme: dark)" />
     <meta name="color-scheme" content="light dark" />
 
-    <link rel="preload" as="image" type="image/avif"
+    <link
+      rel="preload"
+      as="image"
+      type="image/avif"
       imagesrcset="assets/img/hero/hero-800-450.avif 800w, assets/img/hero/hero-1200-675.avif 1200w, assets/img/hero/hero-1600-900.avif 1600w, assets/img/hero/hero-2400-1350.avif 2400w, assets/img/hero/hero-3200-1800.avif 3200w"
       imagesizes="100vw" />
-    <link rel="preload" as="image" type="image/webp"
+    <link
+      rel="preload"
+      as="image"
+      type="image/webp"
       imagesrcset="assets/img/hero/hero-800-450.webp 800w, assets/img/hero/hero-1200-675.webp 1200w, assets/img/hero/hero-1600-900.webp 1600w, assets/img/hero/hero-2400-1350.webp 2400w, assets/img/hero/hero-3200-1800.webp 3200w"
       imagesizes="100vw" />
-    <link rel="preload" as="image"
+    <link
+      rel="preload"
+      as="image"
       imagesrcset="assets/img/hero/hero-800-450.jpg 800w, assets/img/hero/hero-1200-675.jpg 1200w, assets/img/hero/hero-1600-900.jpg 1600w, assets/img/hero/hero-2400-1350.jpg 2400w, assets/img/hero/hero-3200-1800.jpg 3200w"
       imagesizes="100vw" />
 
@@ -46,72 +54,76 @@
     <meta name="twitter:image:alt" content="Ekipa remontowa przy pracy — logo w rogu (DEMO szablonu)" />
 
     <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@graph": [
-        {
-          "@type": "WebSite",
-          "@id": "https://construction-project-01.netlify.app/#website",
-          "url": "https://construction-project-01.netlify.app/",
-          "name": "KP_Code Portfolio — Demo",
-          "description": "Demo szablonu strony dla firmy remontowej (landing + oferta + wycena).",
-          "inLanguage": "pl-PL",
-          "publisher": {
-            "@type": "Person",
-            "name": "Kamil Król"
-          }
-        },
-        {
-          "@type": "CollectionPage",
-          "@id": "https://construction-project-01.netlify.app/#page",
-          "url": "https://construction-project-01.netlify.app/",
-          "name": "Demo — strona dla firmy remontowej (landing + oferta + wycena) | KP_Code",
-          "isPartOf": { "@id": "https://construction-project-01.netlify.app/#website" },
-          "inLanguage": "pl-PL",
-          "about": {
-            "@type": "ItemList",
-            "name": "Zakres usług (demo)",
-            "itemListElement": [
-              { "@type": "ListItem", "position": 1, "name": "Wykończenia i remonty łazienek", "url": "https://construction-project-01.netlify.app/#oferta-lazienki" },
-              { "@type": "ListItem", "position": 2, "name": "Malowanie i gładzie", "url": "https://construction-project-01.netlify.app/#oferta-malowanie" },
-              { "@type": "ListItem", "position": 3, "name": "Kafelkowanie", "url": "https://construction-project-01.netlify.app/#oferta-kafelkowanie" },
-              { "@type": "ListItem", "position": 4, "name": "Elektryka i hydraulika", "url": "https://construction-project-01.netlify.app/#oferta-elektryka" }
+      {
+        "@context": "https://schema.org",
+        "@graph": [
+          {
+            "@type": "WebSite",
+            "@id": "https://construction-project-01.netlify.app/#website",
+            "url": "https://construction-project-01.netlify.app/",
+            "name": "KP_Code Portfolio — Demo",
+            "description": "Demo szablonu strony dla firmy remontowej (landing + oferta + wycena).",
+            "inLanguage": "pl-PL",
+            "publisher": {
+              "@type": "Person",
+              "name": "Kamil Król"
+            }
+          },
+          {
+            "@type": "CollectionPage",
+            "@id": "https://construction-project-01.netlify.app/#page",
+            "url": "https://construction-project-01.netlify.app/",
+            "name": "Demo — strona dla firmy remontowej (landing + oferta + wycena) | KP_Code",
+            "isPartOf": { "@id": "https://construction-project-01.netlify.app/#website" },
+            "inLanguage": "pl-PL",
+            "about": {
+              "@type": "ItemList",
+              "name": "Zakres usług (demo)",
+              "itemListElement": [
+                { "@type": "ListItem", "position": 1, "name": "Wykończenia i remonty łazienek", "url": "https://construction-project-01.netlify.app/#oferta-lazienki" },
+                { "@type": "ListItem", "position": 2, "name": "Malowanie i gładzie", "url": "https://construction-project-01.netlify.app/#oferta-malowanie" },
+                { "@type": "ListItem", "position": 3, "name": "Kafelkowanie", "url": "https://construction-project-01.netlify.app/#oferta-kafelkowanie" },
+                { "@type": "ListItem", "position": 4, "name": "Elektryka i hydraulika", "url": "https://construction-project-01.netlify.app/#oferta-elektryka" }
+              ]
+            }
+          },
+          {
+            "@type": "FAQPage",
+            "@id": "https://construction-project-01.netlify.app/#faq",
+            "mainEntity": [
+              {
+                "@type": "Question",
+                "name": "Ile trwa przygotowanie wyceny?",
+                "acceptedAnswer": { "@type": "Answer", "text": "Standardowo do 24 godzin od przesłania szczegółów zlecenia lub zdjęć." }
+              },
+              {
+                "@type": "Question",
+                "name": "Czy dojeżdżacie do klienta i wykonujecie oględziny?",
+                "acceptedAnswer": { "@type": "Answer", "text": "Tak. Dojazd w obrębie miasta i okolic jest możliwy po ustaleniu terminu." }
+              },
+              {
+                "@type": "Question",
+                "name": "Czy wystawiacie fakturę i udzielacie gwarancji?",
+                "acceptedAnswer": { "@type": "Answer", "text": "Tak, wystawiamy faktury oraz udzielamy gwarancji na wykonywane prace." }
+              }
             ]
           }
-        },
-        {
-          "@type": "FAQPage",
-          "@id": "https://construction-project-01.netlify.app/#faq",
-          "mainEntity": [
-            {
-              "@type": "Question",
-              "name": "Ile trwa przygotowanie wyceny?",
-              "acceptedAnswer": { "@type": "Answer", "text": "Standardowo do 24 godzin od przesłania szczegółów zlecenia lub zdjęć." }
-            },
-            {
-              "@type": "Question",
-              "name": "Czy dojeżdżacie do klienta i wykonujecie oględziny?",
-              "acceptedAnswer": { "@type": "Answer", "text": "Tak. Dojazd w obrębie miasta i okolic jest możliwy po ustaleniu terminu." }
-            },
-            {
-              "@type": "Question",
-              "name": "Czy wystawiacie fakturę i udzielacie gwarancji?",
-              "acceptedAnswer": { "@type": "Answer", "text": "Tak, wystawiamy faktury oraz udzielamy gwarancji na wykonywane prace." }
-            }
-          ]
-        }
-      ]
-    }
+        ]
+      }
     </script>
 
+    <!-- Boot theme (no flicker) -->
     <script>
       try {
-        var d = document.documentElement;
-        var t = localStorage.getItem('theme');
-        if (!t) t = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
-        d.setAttribute('data-theme', t);
-      } catch (e) {}
+        const d = document.documentElement;
+        let t = localStorage.getItem("theme");
+        if (t !== "light" && t !== "dark") {
+          t = window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+        }
+        d.setAttribute("data-theme", t);
+      } catch {}
     </script>
+
     <style>
       html.preload-theme *,
       html.preload-theme *::before,
@@ -119,12 +131,13 @@
         transition: none !important;
       }
     </style>
+
     <script>
-      document.documentElement.classList.add('preload-theme');
-      window.addEventListener('DOMContentLoaded', function () {
-        setTimeout(function () {
-          document.documentElement.classList.remove('preload-theme');
-        }, 0);
+      document.documentElement.classList.add("preload-theme");
+      window.addEventListener("DOMContentLoaded", () => {
+        requestAnimationFrame(() => {
+          document.documentElement.classList.remove("preload-theme");
+        });
       });
     </script>
 
@@ -136,12 +149,10 @@
       href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700&family=Poppins:wght@400;600;700&display=swap"
       onload="this.onload=null;this.rel='stylesheet'" />
     <noscript>
-      <link
-        rel="stylesheet"
-        href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700&family=Poppins:wght@400;600;700&display=swap" />
+      <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700&family=Poppins:wght@400;600;700&display=swap" />
     </noscript>
 
-    <link rel="stylesheet" href="css/style.min.css" />
+    <link rel="stylesheet" href="css/style.css" />
 
     <link rel="icon" type="image/x-icon" href="assets/img/favicon/favicon.ico" />
     <link rel="icon" type="image/svg+xml" href="assets/img/favicon/favicon.svg" />
@@ -150,61 +161,41 @@
     <link rel="icon" type="image/png" sizes="192x192" href="assets/img/favicon/web-app-manifest-192x192.png" />
     <link rel="icon" type="image/png" sizes="512x512" href="assets/img/favicon/web-app-manifest-512x512.png" />
     <link rel="manifest" href="assets/img/favicon/site.webmanifest" />
-    <!-- Optional: Safari pinned tab -->
-    <!-- <link rel="mask-icon" href="assets/img/favicon/safari-pinned-tab.svg" color="#0ea5e9" /> -->
   </head>
 
+  <!-- BODY -->
   <body class="site">
-
     <a class="skip" href="#main">Pomiń do treści</a>
     <div id="top" aria-hidden="true" style="position: relative; inset: 0; height: 0"></div>
 
-    <header class="site-header" role="banner">
+    <!-- HEADER -->
+    <header class="site-header">
       <div class="container header-bar">
         <a class="brand" href="#top" aria-label="Strona główna — Construction Project">
           <picture class="brand-logo">
-            <img
-              src="assets/img/main-logo/main-logo-light-512.svg"
-              alt=""
-              aria-hidden="true"
-              class="ft-logo logo--light"
-              loading="eager"
-              fetchpriority="high"
-              decoding="async" />
-            <img
-              src="assets/img/main-logo/main-logo-dark-512.svg"
-              alt=""
-              aria-hidden="true"
-              class="ft-logo logo--dark"
-              loading="eager"
-              fetchpriority="high"
-              decoding="async" />
+            <img src="assets/img/logo/logo-light-512.svg" alt="" aria-hidden="true" class="ft-logo logo--light" loading="eager" fetchpriority="high" decoding="async" />
+            <img src="assets/img/logo/logo-dark-512.svg" alt="" aria-hidden="true" class="ft-logo logo--dark" loading="eager" fetchpriority="high" decoding="async" />
           </picture>
-          <span class="brand-name">LOGO FIRMY</span>
+          <span class="brand-name">KP_Code</span>
         </a>
 
-        <nav class="nav" role="navigation" aria-label="Główna nawigacja">
+        <nav class="nav" aria-label="Główna nawigacja">
           <ul id="navMenu" class="nav-menu">
             <li>
               <a href="#top" class="scroll-top" aria-current="page">Strona główna</a>
             </li>
 
             <li class="nav-item has-dropdown">
-              <a
-                href="#oferta"
-                class="nav-link dropdown-trigger"
-                aria-expanded="false"
-                aria-haspopup="menu"
-                aria-controls="dd-oferta">
+              <a id="dd-oferta-trigger" href="#oferta" class="nav-link dropdown-trigger" aria-expanded="false" aria-haspopup="true" aria-controls="dd-oferta">
                 Oferta
                 <span class="caret" aria-hidden="true">▾</span>
               </a>
-              <ul id="dd-oferta" class="dropdown" role="menu" aria-label="Podmenu: Oferta">
-                <li role="none"><a role="menuitem" href="oferta/lazienki.html">Łazienki</a></li>
-                <li role="none"><a role="menuitem" href="oferta/malowanie.html">Malowanie &amp; gładzie</a></li>
-                <li role="none"><a role="menuitem" href="oferta/kafelkowanie.html">Kafelkowanie</a></li>
-                <li role="none"><a role="menuitem" href="oferta/elektryka.html">Elektryka</a></li>
-                <li role="none"><a role="menuitem" href="oferta/hydraulika.html">Hydraulika</a></li>
+              <ul id="dd-oferta" class="dropdown" aria-label="Podmenu: Oferta" aria-labelledby="dd-oferta-trigger">
+                <li><a href="oferta/lazienki.html">Łazienki</a></li>
+                <li><a href="oferta/malowanie.html">Malowanie &amp; gładzie</a></li>
+                <li><a href="oferta/kafelkowanie.html">Kafelkowanie</a></li>
+                <li><a href="oferta/elektryka.html">Elektryka</a></li>
+                <li><a href="oferta/hydraulika.html">Hydraulika</a></li>
               </ul>
             </li>
 
@@ -216,29 +207,24 @@
           </ul>
         </nav>
 
-          <div class="header-actions">
-            <button
-              class="theme-toggle"
-              type="button"
-              aria-pressed="false"
-              aria-label="Przełącz tryb"
-              title="Przełącz tryb">
-            </button>
+        <div class="header-actions">
+          <button class="theme-toggle" type="button" aria-pressed="false" aria-label="Przełącz tryb" title="Przełącz tryb">
+            <!-- Light mode: pokazujemy księżyc (akcja = przełącz na dark) -->
+            <img class="icon-moon" src="assets/img/icons/dark-mode-40.svg" alt="" width="20" height="20" decoding="async" aria-hidden="true" />
+            <!-- Dark mode: pokazujemy słońce (akcja = przełącz na light) -->
+            <img class="icon-sun" src="assets/img/icons/light-mode-40.svg" alt="" width="20" height="20" decoding="async" aria-hidden="true" />
+          </button>
 
-            <button
-              class="nav-toggle"
-              type="button"
-              aria-expanded="false"
-              aria-controls="navMenu"
-              aria-label="Otwórz menu">
-              <span class="nav-line"></span>
-              <span class="nav-line"></span>
-              <span class="nav-line"></span>
-            </button>
-          </div>
+          <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="navMenu" aria-label="Otwórz menu">
+            <span class="nav-line"></span>
+            <span class="nav-line"></span>
+            <span class="nav-line"></span>
+          </button>
         </div>
-      </header>
+      </div>
+    </header>
 
+    <!-- HERO -->
     <section id="strona-glowna" class="hero" role="region" aria-labelledby="hero-heading" aria-describedby="hero-lead">
       <div class="hero__media" aria-hidden="true">
         <div class="hero__bg-blur" aria-hidden="true"></div>
@@ -291,18 +277,17 @@
           <br />
           <span class="accent">Strona dla firmy remontowej/bud.</span>
         </h1>
-        <p class="lead" id="hero-lead">
-          Profesjonalne remonty mieszkań, budowy, przebudowy i pełne wykończenia „pod klucz”. Darmowa wycena w 24–48 h.
-        </p>
+        <p class="lead" id="hero-lead">Profesjonalne remonty mieszkań, budowy, przebudowy i pełne wykończenia „pod klucz”. Darmowa wycena w 24–48 h.</p>
         <div class="hero-cta">
           <a class="btn" href="#oferta">Sprawdź ofertę</a>
           <a class="btn btn--ghost" href="tel:+48600700800">Wyceń inwestycję</a>
         </div>
       </div>
     </section>
-   
+
+    <!-- MAIN -->
     <main id="main" role="main">
-  
+      <!-- OFFER -->
       <section id="oferta" class="block" role="region" aria-labelledby="oferta-heading" aria-describedby="oferta-lead">
         <div class="container">
           <header class="block-head">
@@ -310,24 +295,39 @@
             <p id="oferta-lead">Kompleksowe prace w mieszkaniach i domach — czysto, terminowo, z gwarancją.</p>
           </header>
 
-          <div
-            class="services-scroller"
-            id="oferta-scroller"
-            role="region"
-            aria-label="Oferta — przewijana lista usług"
-            aria-roledescription="carousel">
+          <div class="services-scroller" id="oferta-scroller" role="region" aria-label="Oferta — przewijana lista usług" aria-roledescription="carousel">
             <button class="scroller-btn prev" type="button" aria-label="Przewiń w lewo" aria-controls="oferta-track">‹</button>
 
             <div class="services-track" id="oferta-track" tabindex="0" role="list" aria-label="Lista usług">
-            
               <article id="oferta-lazienki" class="card hover-card" aria-labelledby="h-lazienki" aria-describedby="d-lazienki" role="listitem">
                 <a href="#kontakt" aria-label="Zamów wycenę — Łazienki">
                   <picture>
-                    <source type="image/avif" srcset="assets/img/oferta/bathroom-400x300.avif 400w, assets/img/oferta/bathroom-800x600.avif 800w, assets/img/oferta/bathroom-1200x900.avif 1200w, assets/img/oferta/bathroom-1600x1200.avif 1600w" sizes="(min-width: 992px) 25vw, (min-width: 640px) 50vw, 100vw" />
-                    <source type="image/webp" srcset="assets/img/oferta/bathroom-400x300.webp 400w, assets/img/oferta/bathroom-800x600.webp 800w, assets/img/oferta/bathroom-1200x900.webp 1200w, assets/img/oferta/bathroom-1600x1200.webp 1600w" sizes="(min-width: 992px) 25vw, (min-width: 640px) 50vw, 100vw" />
+                    <source
+                      type="image/avif"
+                      srcset="
+                        assets/img/oferta/bathroom-400x300.avif    400w,
+                        assets/img/oferta/bathroom-800x600.avif    800w,
+                        assets/img/oferta/bathroom-1200x900.avif  1200w,
+                        assets/img/oferta/bathroom-1600x1200.avif 1600w
+                      "
+                      sizes="(min-width: 992px) 25vw, (min-width: 640px) 50vw, 100vw" />
+                    <source
+                      type="image/webp"
+                      srcset="
+                        assets/img/oferta/bathroom-400x300.webp    400w,
+                        assets/img/oferta/bathroom-800x600.webp    800w,
+                        assets/img/oferta/bathroom-1200x900.webp  1200w,
+                        assets/img/oferta/bathroom-1600x1200.webp 1600w
+                      "
+                      sizes="(min-width: 992px) 25vw, (min-width: 640px) 50vw, 100vw" />
                     <img
                       src="assets/img/oferta/bathroom-800x600.jpg"
-                      srcset="assets/img/oferta/bathroom-400x300.jpg 400w, assets/img/oferta/bathroom-800x600.jpg 800w, assets/img/oferta/bathroom-1200x900.jpg 1200w, assets/img/oferta/bathroom-1600x1200.jpg 1600w"
+                      srcset="
+                        assets/img/oferta/bathroom-400x300.jpg    400w,
+                        assets/img/oferta/bathroom-800x600.jpg    800w,
+                        assets/img/oferta/bathroom-1200x900.jpg  1200w,
+                        assets/img/oferta/bathroom-1600x1200.jpg 1600w
+                      "
                       sizes="(min-width: 992px) 25vw, (min-width: 640px) 50vw, 100vw"
                       alt="Nowoczesna łazienka po remoncie"
                       width="400"
@@ -343,11 +343,32 @@
               <article id="oferta-malowanie" class="card hover-card" aria-labelledby="h-malowanie" aria-describedby="d-malowanie" role="listitem">
                 <a href="#kontakt" aria-label="Zamów wycenę — Malowanie i gładzie">
                   <picture>
-                    <source type="image/avif" srcset="assets/img/oferta/painting-400x300.avif 400w, assets/img/oferta/painting-800x600.avif 800w, assets/img/oferta/painting-1200x900.avif 1200w, assets/img/oferta/painting-1600x1200.avif 1600w" sizes="(min-width: 992px) 25vw, (min-width: 640px) 50vw, 100vw" />
-                    <source type="image/webp" srcset="assets/img/oferta/painting-400x300.webp 400w, assets/img/oferta/painting-800x600.webp 800w, assets/img/oferta/painting-1200x900.webp 1200w, assets/img/oferta/painting-1600x1200.webp 1600w" sizes="(min-width: 992px) 25vw, (min-width: 640px) 50vw, 100vw" />
+                    <source
+                      type="image/avif"
+                      srcset="
+                        assets/img/oferta/painting-400x300.avif    400w,
+                        assets/img/oferta/painting-800x600.avif    800w,
+                        assets/img/oferta/painting-1200x900.avif  1200w,
+                        assets/img/oferta/painting-1600x1200.avif 1600w
+                      "
+                      sizes="(min-width: 992px) 25vw, (min-width: 640px) 50vw, 100vw" />
+                    <source
+                      type="image/webp"
+                      srcset="
+                        assets/img/oferta/painting-400x300.webp    400w,
+                        assets/img/oferta/painting-800x600.webp    800w,
+                        assets/img/oferta/painting-1200x900.webp  1200w,
+                        assets/img/oferta/painting-1600x1200.webp 1600w
+                      "
+                      sizes="(min-width: 992px) 25vw, (min-width: 640px) 50vw, 100vw" />
                     <img
                       src="assets/img/oferta/painting-800x600.jpg"
-                      srcset="assets/img/oferta/painting-400x300.jpg 400w, assets/img/oferta/painting-800x600.jpg 800w, assets/img/oferta/painting-1200x900.jpg 1200w, assets/img/oferta/painting-1600x1200.jpg 1600w"
+                      srcset="
+                        assets/img/oferta/painting-400x300.jpg    400w,
+                        assets/img/oferta/painting-800x600.jpg    800w,
+                        assets/img/oferta/painting-1200x900.jpg  1200w,
+                        assets/img/oferta/painting-1600x1200.jpg 1600w
+                      "
                       sizes="(min-width: 992px) 25vw, (min-width: 640px) 50vw, 100vw"
                       alt="Malowanie ścian farbami premium"
                       width="400"
@@ -363,12 +384,41 @@
               <article id="oferta-kafelkowanie" class="card hover-card" aria-labelledby="h-kafelkowanie" aria-describedby="d-kafelkowanie" role="listitem">
                 <a href="#kontakt" aria-label="Zamów wycenę — Kafelkowanie">
                   <picture>
-                    <source type="image/avif" srcset="assets/img/oferta/kafelki-400x300.avif 400w, assets/img/oferta/kafelki-800x600.avif 800w, assets/img/oferta/kafelki-1200x900.avif 1200w, assets/img/oferta/kafelki-1600x1200.avif 1600w" sizes="(min-width: 992px) 25vw, (min-width: 640px) 50vw, 100vw" />
-                    <source type="image/webp" srcset="assets/img/oferta/kafelki-400x300.webp 400w, assets/img/oferta/kafelki-800x600.webp 800w, assets/img/oferta/kafelki-1200x900.webp 1200w, assets/img/oferta/kafelki-1600x1200.webp 1600w" sizes="(min-width: 992px) 25vw, (min-width: 640px) 50vw, 100vw" />
-                    <source type="image/jpeg" srcset="assets/img/oferta/kafelki-400x300.jpg 400w, assets/img/oferta/kafelki-800x600.jpg 800w, assets/img/oferta/kafelki-1200x900.jpg 1200w, assets/img/oferta/kafelki-1600x1200.jpg 1600w" sizes="(min-width: 992px) 25vw, (min-width: 640px) 50vw, 100vw" />
+                    <source
+                      type="image/avif"
+                      srcset="
+                        assets/img/oferta/kafelki-400x300.avif    400w,
+                        assets/img/oferta/kafelki-800x600.avif    800w,
+                        assets/img/oferta/kafelki-1200x900.avif  1200w,
+                        assets/img/oferta/kafelki-1600x1200.avif 1600w
+                      "
+                      sizes="(min-width: 992px) 25vw, (min-width: 640px) 50vw, 100vw" />
+                    <source
+                      type="image/webp"
+                      srcset="
+                        assets/img/oferta/kafelki-400x300.webp    400w,
+                        assets/img/oferta/kafelki-800x600.webp    800w,
+                        assets/img/oferta/kafelki-1200x900.webp  1200w,
+                        assets/img/oferta/kafelki-1600x1200.webp 1600w
+                      "
+                      sizes="(min-width: 992px) 25vw, (min-width: 640px) 50vw, 100vw" />
+                    <source
+                      type="image/jpeg"
+                      srcset="
+                        assets/img/oferta/kafelki-400x300.jpg    400w,
+                        assets/img/oferta/kafelki-800x600.jpg    800w,
+                        assets/img/oferta/kafelki-1200x900.jpg  1200w,
+                        assets/img/oferta/kafelki-1600x1200.jpg 1600w
+                      "
+                      sizes="(min-width: 992px) 25vw, (min-width: 640px) 50vw, 100vw" />
                     <img
                       src="assets/img/oferta/kafelki-800x600.jpg"
-                      srcset="assets/img/oferta/kafelki-400x300.jpg 400w, assets/img/oferta/kafelki-800x600.jpg 800w, assets/img/oferta/kafelki-1200x900.jpg 1200w, assets/img/oferta/kafelki-1600x1200.jpg 1600w"
+                      srcset="
+                        assets/img/oferta/kafelki-400x300.jpg    400w,
+                        assets/img/oferta/kafelki-800x600.jpg    800w,
+                        assets/img/oferta/kafelki-1200x900.jpg  1200w,
+                        assets/img/oferta/kafelki-1600x1200.jpg 1600w
+                      "
                       sizes="(min-width: 992px) 25vw, (min-width: 640px) 50vw, 100vw"
                       alt="Kafelkowanie tarasu i kuchni"
                       width="400"
@@ -384,12 +434,41 @@
               <article id="oferta-elektryka" class="card hover-card" aria-labelledby="h-elektryka" aria-describedby="d-elektryka" role="listitem">
                 <a href="#kontakt" aria-label="Zamów wycenę — Elektryka">
                   <picture>
-                    <source type="image/avif" srcset="assets/img/oferta/electrition-400x300.avif 400w, assets/img/oferta/electrition-800x600.avif 800w, assets/img/oferta/electrition-1200x900.avif 1200w, assets/img/oferta/electrition-1600x1200.avif 1600w" sizes="(min-width: 992px) 25vw, (min-width: 640px) 50vw, 100vw" />
-                    <source type="image/webp" srcset="assets/img/oferta/electrition-400x300.webp 400w, assets/img/oferta/electrition-800x600.webp 800w, assets/img/oferta/electrition-1200x900.webp 1200w, assets/img/oferta/electrition-1600x1200.webp 1600w" sizes="(min-width: 992px) 25vw, (min-width: 640px) 50vw, 100vw" />
-                    <source type="image/jpeg" srcset="assets/img/oferta/electrition-400x300.jpg 400w, assets/img/oferta/electrition-800x600.jpg 800w, assets/img/oferta/electrition-1200x900.jpg 1200w, assets/img/oferta/electrition-1600x1200.jpg 1600w" sizes="(min-width: 992px) 25vw, (min-width: 640px) 50vw, 100vw" />
+                    <source
+                      type="image/avif"
+                      srcset="
+                        assets/img/oferta/electrition-400x300.avif    400w,
+                        assets/img/oferta/electrition-800x600.avif    800w,
+                        assets/img/oferta/electrition-1200x900.avif  1200w,
+                        assets/img/oferta/electrition-1600x1200.avif 1600w
+                      "
+                      sizes="(min-width: 992px) 25vw, (min-width: 640px) 50vw, 100vw" />
+                    <source
+                      type="image/webp"
+                      srcset="
+                        assets/img/oferta/electrition-400x300.webp    400w,
+                        assets/img/oferta/electrition-800x600.webp    800w,
+                        assets/img/oferta/electrition-1200x900.webp  1200w,
+                        assets/img/oferta/electrition-1600x1200.webp 1600w
+                      "
+                      sizes="(min-width: 992px) 25vw, (min-width: 640px) 50vw, 100vw" />
+                    <source
+                      type="image/jpeg"
+                      srcset="
+                        assets/img/oferta/electrition-400x300.jpg    400w,
+                        assets/img/oferta/electrition-800x600.jpg    800w,
+                        assets/img/oferta/electrition-1200x900.jpg  1200w,
+                        assets/img/oferta/electrition-1600x1200.jpg 1600w
+                      "
+                      sizes="(min-width: 992px) 25vw, (min-width: 640px) 50vw, 100vw" />
                     <img
                       src="assets/img/oferta/electrition-800x600.jpg"
-                      srcset="assets/img/oferta/electrition-400x300.jpg 400w, assets/img/oferta/electrition-800x600.jpg 800w, assets/img/oferta/electrition-1200x900.jpg 1200w, assets/img/oferta/electrition-1600x1200.jpg 1600w"
+                      srcset="
+                        assets/img/oferta/electrition-400x300.jpg    400w,
+                        assets/img/oferta/electrition-800x600.jpg    800w,
+                        assets/img/oferta/electrition-1200x900.jpg  1200w,
+                        assets/img/oferta/electrition-1600x1200.jpg 1600w
+                      "
                       sizes="(min-width: 992px) 25vw, (min-width: 640px) 50vw, 100vw"
                       alt="Elektryk w pracy"
                       width="400"
@@ -405,12 +484,41 @@
               <article id="oferta-hydraulika" class="card hover-card" aria-labelledby="h-hydraulika" aria-describedby="d-hydraulika" role="listitem">
                 <a href="#kontakt" aria-label="Zamów wycenę — Hydraulika">
                   <picture>
-                    <source type="image/avif" srcset="assets/img/oferta/plumbing-400x300.avif 400w, assets/img/oferta/plumbing-800x600.avif 800w, assets/img/oferta/plumbing-1200x900.avif 1200w, assets/img/oferta/plumbing-1600x1200.avif 1600w" sizes="(min-width: 992px) 25vw, (min-width: 640px) 50vw, 100vw" />
-                    <source type="image/webp" srcset="assets/img/oferta/plumbing-400x300.webp 400w, assets/img/oferta/plumbing-800x600.webp 800w, assets/img/oferta/plumbing-1200x900.webp 1200w, assets/img/oferta/plumbing-1600x1200.webp 1600w" sizes="(min-width: 992px) 25vw, (min-width: 640px) 50vw, 100vw" />
-                    <source type="image/jpeg" srcset="assets/img/oferta/plumbing-400x300.jpg 400w, assets/img/oferta/plumbing-800x600.jpg 800w, assets/img/oferta/plumbing-1200x900.jpg 1200w, assets/img/oferta/plumbing-1600x1200.jpg 1600w" sizes="(min-width: 992px) 25vw, (min-width: 640px) 50vw, 100vw" />
+                    <source
+                      type="image/avif"
+                      srcset="
+                        assets/img/oferta/plumbing-400x300.avif    400w,
+                        assets/img/oferta/plumbing-800x600.avif    800w,
+                        assets/img/oferta/plumbing-1200x900.avif  1200w,
+                        assets/img/oferta/plumbing-1600x1200.avif 1600w
+                      "
+                      sizes="(min-width: 992px) 25vw, (min-width: 640px) 50vw, 100vw" />
+                    <source
+                      type="image/webp"
+                      srcset="
+                        assets/img/oferta/plumbing-400x300.webp    400w,
+                        assets/img/oferta/plumbing-800x600.webp    800w,
+                        assets/img/oferta/plumbing-1200x900.webp  1200w,
+                        assets/img/oferta/plumbing-1600x1200.webp 1600w
+                      "
+                      sizes="(min-width: 992px) 25vw, (min-width: 640px) 50vw, 100vw" />
+                    <source
+                      type="image/jpeg"
+                      srcset="
+                        assets/img/oferta/plumbing-400x300.jpg    400w,
+                        assets/img/oferta/plumbing-800x600.jpg    800w,
+                        assets/img/oferta/plumbing-1200x900.jpg  1200w,
+                        assets/img/oferta/plumbing-1600x1200.jpg 1600w
+                      "
+                      sizes="(min-width: 992px) 25vw, (min-width: 640px) 50vw, 100vw" />
                     <img
                       src="assets/img/oferta/plumbing-800x600.jpg"
-                      srcset="assets/img/oferta/plumbing-400x300.jpg 400w, assets/img/oferta/plumbing-800x600.jpg 800w, assets/img/oferta/plumbing-1200x900.jpg 1200w, assets/img/oferta/plumbing-1600x1200.jpg 1600w"
+                      srcset="
+                        assets/img/oferta/plumbing-400x300.jpg    400w,
+                        assets/img/oferta/plumbing-800x600.jpg    800w,
+                        assets/img/oferta/plumbing-1200x900.jpg  1200w,
+                        assets/img/oferta/plumbing-1600x1200.jpg 1600w
+                      "
                       sizes="(min-width: 992px) 25vw, (min-width: 640px) 50vw, 100vw"
                       alt="Hydraulik w pracy"
                       width="400"
@@ -432,391 +540,395 @@
           </div>
         </div>
       </section>
-    
-    <section id="realizacje" class="logos" role="region" aria-labelledby="logos-heading">
-      <div class="container">
-        <h2 id="logos-heading">Firmy, które nam zaufały</h2>
 
-        <ul class="logos-grid" aria-label="Logotypy klientów">
-          <li class="logo">
-            <a href="https://www.alfasolutions.pl/" target="_blank" rel="noopener noreferrer"
-              aria-label="Alfa Sp. z o.o. — otwórz w nowej karcie">
-              <img class="logo-img" src="assets/img/partners-logos/alfa.svg"
-                  alt="" aria-hidden="true" loading="lazy" decoding="async" />
-            </a>
-          </li>
+      <!-- LOGOS -->
+      <section id="realizacje" class="logos" role="region" aria-labelledby="logos-heading">
+        <div class="container">
+          <h2 id="logos-heading">Firmy, które nam zaufały</h2>
 
-          <li class="logo">
-            <a href="https://www.betasolutions.pl/" target="_blank" rel="noopener noreferrer"
-              aria-label="Beta Sp. z o.o. — otwórz w nowej karcie">
-              <img class="logo-img" src="assets/img/partners-logos/beta.svg"
-                  alt="" aria-hidden="true" loading="lazy" decoding="async" />
-            </a>
-          </li>
-
-          <li class="logo">
-            <a href="https://www.deltasolutions.pl/" target="_blank" rel="noopener noreferrer"
-              aria-label="Delta Sp. z o.o. — otwórz w nowej karcie">
-              <img class="logo-img" src="assets/img/partners-logos/delta.svg"
-                  alt="" aria-hidden="true" loading="lazy" decoding="async" />
-            </a>
-          </li>
-
-          <li class="logo">
-            <a href="https://www.epsilonsolutions.pl/" target="_blank" rel="noopener noreferrer"
-              aria-label="Epsilon Sp. z o.o. — otwórz w nowej karcie">
-              <img class="logo-img" src="assets/img/partners-logos/epsilon.svg"
-                  alt="" aria-hidden="true" loading="lazy" decoding="async" />
-            </a>
-          </li>
-
-          <li class="logo">
-            <a href="https://www.gammasolutions.pl/" target="_blank" rel="noopener noreferrer"
-              aria-label="Gamma Sp. z o.o. — otwórz w nowej karcie">
-              <img class="logo-img" src="assets/img/partners-logos/gamma.svg"
-                  alt="" aria-hidden="true" loading="lazy" decoding="async" />
-            </a>
-          </li>
-        </ul>
-
-        <div class="center">
-          <a class="btn" href="#kontakt">Zostań naszym klientem</a>
-        </div>
-      </div>
-    </section>
-   
-    <section id="opinie" class="block testimonials" role="region" aria-labelledby="opinie-heading" aria-describedby="opinie-desc">
-      <div class="container">
-        <header class="block-head">
-          <h2 id="opinie-heading">Opinie klientów</h2>
-          <p id="opinie-desc" class="muted rating">
-            <svg class="rating-icon" viewBox="0 0 24 24" aria-hidden="true">
-              <path fill="#EA4335" d="M12 10.2v3.6h5.1c-.2 1.1-1.2 3.1-5.1 3.1-3.1 0-5.7-2.5-5.7-5.7S8.9 5.5 12 5.5c1.8 0 3 .8 3.7 1.5l2.5-2.5C16.8 3.1 14.6 2 12 2 6.9 2 2.8 6.1 2.8 11.2S6.9 20.5 12 20.5c6 0 9.2-4.2 9.2-8.5 0-.6-.1-1-.2-1.5H12z" />
-              <path fill="#34A853" d="M3.9 7.1l3 2.2C7.9 7 9.8 5.5 12 5.5c1.8 0 3 .8 3.7 1.5l2.5-2.5C16.8 3.1 14.6 2 12 2 8.4 2 5.4 4 3.9 7.1z" />
-              <path fill="#FBBC05" d="M12 22c2.6 0 4.8-.9 6.4-2.5l-2.6-2c-.7.5-1.9 1.1-3.8 1.1-3 0-5.6-2-6.4-4.9l-3 .2C3.9 18.9 7.7 22 12 22z" />
-              <path fill="#4285F4" d="M21.2 12c0-.6-.1-1-.2-1.5H12v3.6h5.1c-.2 1.1-1.2 3.1-5.1 3.1v3.5c6 0 9.2-4.2 9.2-8.7z" />
-            </svg>
-            Średnia ocen 4.9/5 na podstawie 128 opinii
-          </p>
-        </header>
-
-        <ul class="testimonials-grid" aria-label="Opinie naszych klientów">
-          <li>
-            <figure class="testimonial" aria-labelledby="op1-quote" aria-describedby="op1-author">
-              <blockquote id="op1-quote">
-                <p>Pełen profesjonalizm. Szybko i bardzo czysto.</p>
-              </blockquote>
-              <figcaption id="op1-author">— <cite>Joanna K.</cite></figcaption>
-            </figure>
-          </li>
-
-          <li>
-            <figure class="testimonial" aria-labelledby="op2-quote" aria-describedby="op2-author">
-              <blockquote id="op2-quote">
-                <p>Świetny kontakt i terminowość. Polecam!</p>
-              </blockquote>
-              <figcaption id="op2-author">— <cite>Marcin P.</cite></figcaption>
-            </figure>
-          </li>
-
-          <li>
-            <figure class="testimonial" aria-labelledby="op3-quote" aria-describedby="op3-author">
-              <blockquote id="op3-quote">
-                <p>Świetny kontakt i terminowość. Polecam!</p>
-              </blockquote>
-              <figcaption id="op3-author">— <cite>Marcin P.</cite></figcaption>
-            </figure>
-          </li>
-        </ul>
-      </div>
-    </section>
-
-    <section id="faq" class="block" role="region" aria-labelledby="faq-heading" aria-describedby="faq-desc">
-      <div class="container">
-        <header class="block-head">
-          <h2 id="faq-heading">FAQ — najczęstsze pytania</h2>
-          <p id="faq-desc">Krótko i konkretnie — jak pracujemy i jak wyglądają wyceny.</p>
-        </header>
-
-        <ul class="faq-list">
-          <li>
-            <details class="faq" id="faq-1">
-              <summary id="q-1" aria-controls="a-1">Ile trwa standardowy remont łazienki?</summary>
-              <div class="answer" id="a-1" role="region" aria-labelledby="q-1">
-                <p>Zazwyczaj 10–14 dni roboczych, zależnie od zakresu i dostaw materiałów.</p>
-              </div>
-            </details>
-          </li>
-
-          <li>
-            <details class="faq" id="faq-2">
-              <summary id="q-2" aria-controls="a-2">Jak wygląda wycena?</summary>
-              <div class="answer" id="a-2" role="region" aria-labelledby="q-2">
-                <p>Przyjeżdżamy na pomiar, ustalamy zakres, wysyłamy ofertę w 24–48 h.</p>
-              </div>
-            </details>
-          </li>
-
-          <li>
-            <details class="faq" id="faq-3">
-              <summary id="q-3" aria-controls="a-3">Czy sprzątacie po zakończeniu prac?</summary>
-              <div class="answer" id="a-3" role="region" aria-labelledby="q-3">
-                <p>Tak. Obejmuje to wyniesienie gruzu i podstawowe sprzątanie.</p>
-              </div>
-            </details>
-          </li>
-
-          <li>
-            <details class="faq" id="faq-4">
-              <summary id="q-4" aria-controls="a-4">Na jakie prace dajecie gwarancję?</summary>
-              <div class="answer" id="a-4" role="region" aria-labelledby="q-4">
-                <p>Na wszystkie prace montażowe i wykończeniowe — standardowo 24 miesiące.</p>
-              </div>
-            </details>
-          </li>
-        </ul>
-      </div>
-    </section>
-
-    <section id="kontakt" class="cta" role="region" aria-labelledby="kontakt-heading" aria-describedby="kontakt-desc">
-      <div class="container cta-wrap">
-        <div class="cta-text">
-          <h2 id="kontakt-heading">Porozmawiajmy o Twoim remoncie</h2>
-          <p id="kontakt-desc">Skontaktuj się z nami — przygotujemy bezpłatną wycenę i doradzimy rozwiązania.</p>
-
-          <ul class="contact-list" aria-label="Dane kontaktowe">
-            <li>
-              <a class="contact-item" href="tel:+48600700800" aria-label="Zadzwoń pod numer: +48 600 700 800">
-                <svg class="icon" aria-hidden="true"><use href="#i-phone" /></svg>
-                <span>+48 600 700 800</span>
+          <ul class="logos-grid" aria-label="Logotypy klientów">
+            <li class="logo">
+              <a href="https://www.alfasolutions.pl/" target="_blank" rel="noopener noreferrer" aria-label="Alfa Sp. z o.o. — otwórz w nowej karcie">
+                <img class="logo-img" src="assets/img/partners-logos/alfa.svg" alt="" aria-hidden="true" loading="lazy" decoding="async" />
               </a>
             </li>
-            <li>
-              <a class="contact-item" href="mailto:kontakt@twoja-firma.pl" aria-label="Napisz e-mail na adres: kontakt@twoja-firma.pl">
-                <svg class="icon" aria-hidden="true"><use href="#i-mail" /></svg>
-                <span>kontakt@twoja-firma.pl</span>
+
+            <li class="logo">
+              <a href="https://www.betasolutions.pl/" target="_blank" rel="noopener noreferrer" aria-label="Beta Sp. z o.o. — otwórz w nowej karcie">
+                <img class="logo-img" src="assets/img/partners-logos/beta.svg" alt="" aria-hidden="true" loading="lazy" decoding="async" />
+              </a>
+            </li>
+
+            <li class="logo">
+              <a href="https://www.deltasolutions.pl/" target="_blank" rel="noopener noreferrer" aria-label="Delta Sp. z o.o. — otwórz w nowej karcie">
+                <img class="logo-img" src="assets/img/partners-logos/delta.svg" alt="" aria-hidden="true" loading="lazy" decoding="async" />
+              </a>
+            </li>
+
+            <li class="logo">
+              <a href="https://www.epsilonsolutions.pl/" target="_blank" rel="noopener noreferrer" aria-label="Epsilon Sp. z o.o. — otwórz w nowej karcie">
+                <img class="logo-img" src="assets/img/partners-logos/epsilon.svg" alt="" aria-hidden="true" loading="lazy" decoding="async" />
+              </a>
+            </li>
+
+            <li class="logo">
+              <a href="https://www.gammasolutions.pl/" target="_blank" rel="noopener noreferrer" aria-label="Gamma Sp. z o.o. — otwórz w nowej karcie">
+                <img class="logo-img" src="assets/img/partners-logos/gamma.svg" alt="" aria-hidden="true" loading="lazy" decoding="async" />
               </a>
             </li>
           </ul>
+
+          <div class="center">
+            <a class="btn" href="#kontakt">Zostań naszym klientem</a>
+          </div>
+        </div>
+      </section>
+
+      <section id="opinie" class="block testimonials" role="region" aria-labelledby="opinie-heading" aria-describedby="opinie-desc">
+        <div class="container">
+          <header class="block-head">
+            <h2 id="opinie-heading">Opinie klientów</h2>
+            <p id="opinie-desc" class="muted rating">
+              <svg class="rating-icon" viewBox="0 0 24 24" aria-hidden="true">
+                <path
+                  fill="#EA4335"
+                  d="M12 10.2v3.6h5.1c-.2 1.1-1.2 3.1-5.1 3.1-3.1 0-5.7-2.5-5.7-5.7S8.9 5.5 12 5.5c1.8 0 3 .8 3.7 1.5l2.5-2.5C16.8 3.1 14.6 2 12 2 6.9 2 2.8 6.1 2.8 11.2S6.9 20.5 12 20.5c6 0 9.2-4.2 9.2-8.5 0-.6-.1-1-.2-1.5H12z" />
+                <path fill="#34A853" d="M3.9 7.1l3 2.2C7.9 7 9.8 5.5 12 5.5c1.8 0 3 .8 3.7 1.5l2.5-2.5C16.8 3.1 14.6 2 12 2 8.4 2 5.4 4 3.9 7.1z" />
+                <path fill="#FBBC05" d="M12 22c2.6 0 4.8-.9 6.4-2.5l-2.6-2c-.7.5-1.9 1.1-3.8 1.1-3 0-5.6-2-6.4-4.9l-3 .2C3.9 18.9 7.7 22 12 22z" />
+                <path fill="#4285F4" d="M21.2 12c0-.6-.1-1-.2-1.5H12v3.6h5.1c-.2 1.1-1.2 3.1-5.1 3.1v3.5c6 0 9.2-4.2 9.2-8.7z" />
+              </svg>
+              Średnia ocen 4.9/5 na podstawie 128 opinii
+            </p>
+          </header>
+
+          <ul class="testimonials-grid" aria-label="Opinie naszych klientów">
+            <li>
+              <figure class="testimonial" aria-labelledby="op1-quote" aria-describedby="op1-author">
+                <blockquote id="op1-quote">
+                  <p>Pełen profesjonalizm. Szybko i bardzo czysto.</p>
+                </blockquote>
+                <figcaption id="op1-author">
+                  —
+                  <cite>Joanna K.</cite>
+                </figcaption>
+              </figure>
+            </li>
+
+            <li>
+              <figure class="testimonial" aria-labelledby="op2-quote" aria-describedby="op2-author">
+                <blockquote id="op2-quote">
+                  <p>Świetny kontakt i terminowość. Polecam!</p>
+                </blockquote>
+                <figcaption id="op2-author">
+                  —
+                  <cite>Marcin P.</cite>
+                </figcaption>
+              </figure>
+            </li>
+
+            <li>
+              <figure class="testimonial" aria-labelledby="op3-quote" aria-describedby="op3-author">
+                <blockquote id="op3-quote">
+                  <p>Świetny kontakt i terminowość. Polecam!</p>
+                </blockquote>
+                <figcaption id="op3-author">
+                  —
+                  <cite>Marcin P.</cite>
+                </figcaption>
+              </figure>
+            </li>
+          </ul>
+        </div>
+      </section>
+
+      <section id="faq" class="block" role="region" aria-labelledby="faq-heading" aria-describedby="faq-desc">
+        <div class="container">
+          <header class="block-head">
+            <h2 id="faq-heading">FAQ — najczęstsze pytania</h2>
+            <p id="faq-desc">Krótko i konkretnie — jak pracujemy i jak wyglądają wyceny.</p>
+          </header>
+
+          <ul class="faq-list">
+            <li>
+              <details class="faq" id="faq-1">
+                <summary id="q-1" aria-controls="a-1">Ile trwa standardowy remont łazienki?</summary>
+                <div class="answer" id="a-1" role="region" aria-labelledby="q-1">
+                  <p>Zazwyczaj 10–14 dni roboczych, zależnie od zakresu i dostaw materiałów.</p>
+                </div>
+              </details>
+            </li>
+
+            <li>
+              <details class="faq" id="faq-2">
+                <summary id="q-2" aria-controls="a-2">Jak wygląda wycena?</summary>
+                <div class="answer" id="a-2" role="region" aria-labelledby="q-2">
+                  <p>Przyjeżdżamy na pomiar, ustalamy zakres, wysyłamy ofertę w 24–48 h.</p>
+                </div>
+              </details>
+            </li>
+
+            <li>
+              <details class="faq" id="faq-3">
+                <summary id="q-3" aria-controls="a-3">Czy sprzątacie po zakończeniu prac?</summary>
+                <div class="answer" id="a-3" role="region" aria-labelledby="q-3">
+                  <p>Tak. Obejmuje to wyniesienie gruzu i podstawowe sprzątanie.</p>
+                </div>
+              </details>
+            </li>
+
+            <li>
+              <details class="faq" id="faq-4">
+                <summary id="q-4" aria-controls="a-4">Na jakie prace dajecie gwarancję?</summary>
+                <div class="answer" id="a-4" role="region" aria-labelledby="q-4">
+                  <p>Na wszystkie prace montażowe i wykończeniowe — standardowo 24 miesiące.</p>
+                </div>
+              </details>
+            </li>
+          </ul>
+        </div>
+      </section>
+
+      <section id="kontakt" class="cta" role="region" aria-labelledby="kontakt-heading" aria-describedby="kontakt-desc">
+        <div class="container cta-wrap">
+          <div class="cta-text">
+            <h2 id="kontakt-heading">Porozmawiajmy o Twoim remoncie</h2>
+            <p id="kontakt-desc">Skontaktuj się z nami — przygotujemy bezpłatną wycenę i doradzimy rozwiązania.</p>
+
+            <ul class="contact-list" aria-label="Dane kontaktowe">
+              <li>
+                <a class="contact-item" href="tel:+48600700800" aria-label="Zadzwoń pod numer: +48 600 700 800">
+                  <svg class="icon" aria-hidden="true"><use href="#i-phone" /></svg>
+                  <span>+48 600 700 800</span>
+                </a>
+              </li>
+              <li>
+                <a class="contact-item" href="mailto:kontakt@twoja-firma.pl" aria-label="Napisz e-mail na adres: kontakt@twoja-firma.pl">
+                  <svg class="icon" aria-hidden="true"><use href="#i-mail" /></svg>
+                  <span>kontakt@twoja-firma.pl</span>
+                </a>
+              </li>
+            </ul>
+          </div>
+
+          <form class="form" method="post" action="#" aria-labelledby="kontakt-heading" aria-describedby="privacy-note">
+            <div class="visually-hidden" aria-hidden="true">
+              <label for="hp-website">Nie wypełniaj tego pola</label>
+              <input id="hp-website" name="website" type="text" tabindex="-1" autocomplete="off" />
+            </div>
+
+            <div class="form-row">
+              <label for="f-name">Imię i nazwisko</label>
+              <input
+                id="f-name"
+                name="name"
+                type="text"
+                inputmode="text"
+                autocomplete="name"
+                autocapitalize="words"
+                minlength="2"
+                required
+                aria-describedby="name-hint name-error"
+                placeholder="Jan Kowalski" />
+              <small id="name-hint" class="visually-hidden">Wpisz co najmniej 2 znaki.</small>
+              <span id="name-error" class="visually-hidden" aria-live="polite"></span>
+            </div>
+
+            <div class="form-row">
+              <label for="f-phone">Telefon</label>
+              <input
+                id="f-phone"
+                name="phone"
+                type="tel"
+                inputmode="tel"
+                autocomplete="tel-national"
+                required
+                placeholder="600 700 800 lub +48 600 700 800"
+                title="Wpisz 9 cyfr; dozwolone spacje/kreski; opcjonalnie +48"
+                pattern="^(?:\+?48)?[ \-]?(?:\d[ \-]?){9}$"
+                aria-describedby="phone-hint phone-error"
+                data-mask="pl-phone" />
+              <small id="phone-hint" class="visually-hidden">9 cyfr, dozwolone spacje lub kreski, opcjonalnie +48 na początku.</small>
+              <span id="phone-error" class="visually-hidden" aria-live="polite"></span>
+            </div>
+
+            <div class="form-row">
+              <label for="f-msg">Opis prac</label>
+              <textarea
+                id="f-msg"
+                name="msg"
+                rows="4"
+                required
+                maxlength="1000"
+                placeholder="Krótko opisz zakres prac (np. remont łazienki 5 m², wymiana płytek i armatury)."
+                aria-describedby="msg-hint msg-error"></textarea>
+              <small id="msg-hint" class="visually-hidden">Maksymalnie 1000 znaków. Opisz w 1–3 zdaniach czego potrzebujesz.</small>
+              <span id="msg-error" class="visually-hidden" aria-live="polite"></span>
+            </div>
+
+            <div class="form-row">
+              <label class="checkbox" for="f-consent">
+                <input id="f-consent" type="checkbox" name="consent" value="yes" required aria-describedby="consent-hint consent-error" />
+                <span>Wyrażam zgodę na kontakt w celu przygotowania wyceny.</span>
+              </label>
+              <small id="consent-hint" class="visually-hidden">Zaznacz to pole, abyśmy mogli się z Tobą skontaktować.</small>
+              <span id="consent-error" class="visually-hidden" aria-live="polite"></span>
+            </div>
+
+            <button class="btn" type="submit">Wyślij wiadomość</button>
+            <p class="form-note" aria-live="polite"></p>
+
+            <p class="muted small" id="privacy-note">
+              Wysyłając formularz akceptujesz naszą
+              <a href="doc/polityka-prywatnosci.html">Politykę prywatności</a>
+              .
+            </p>
+          </form>
+        </div>
+      </section>
+    </main>
+    <footer id="footer" class="site-footer" role="contentinfo" aria-labelledby="footer-heading">
+      <div class="container">
+        <h2 class="vh" id="footer-heading">Stopka serwisu</h2>
+
+        <div class="ft-grid">
+          <div class="ft-col">
+            <a href="#top" class="brand-footer" aria-label="Strona główna">
+              <picture>
+                <source srcset="assets/img/logo/logo-dark-512.svg" type="image/svg" />
+                <img src="assets/img/logo/logo-dark-512.svg" alt="" aria-hidden="true" class="ft-logo" width="512" height="512" loading="lazy" decoding="async" />
+              </picture>
+            </a>
+
+            <p class="ft-lead">Solidne realizacje budowlane — oferta, wyceny i kontakt w 24&nbsp;h.</p>
+
+            <ul class="ft-contact" aria-label="Dane kontaktowe">
+              <li>
+                <svg class="i" aria-hidden="true"><use href="#i-phone"></use></svg>
+                <a href="tel:+48600700800" aria-label="Zadzwoń: +48 600 700 800">+48 600 700 800</a>
+              </li>
+              <li>
+                <svg class="i" aria-hidden="true"><use href="#i-mail"></use></svg>
+                <a href="mailto:kontakt@twoja-firma.pl">kontakt@twoja-firma.pl</a>
+              </li>
+            </ul>
+          </div>
+
+          <nav class="ft-col" aria-labelledby="ft-nav-heading">
+            <h3 class="ft-h" id="ft-nav-heading">Nawigacja</h3>
+            <ul class="ft-links">
+              <li><a href="#oferta">Oferta</a></li>
+              <li><a href="#realizacje">Realizacje</a></li>
+              <li><a href="#opinie">Opinie</a></li>
+              <li><a href="#faq">FAQ</a></li>
+              <li><a href="#kontakt">Kontakt</a></li>
+            </ul>
+          </nav>
+
+          <nav class="ft-col" aria-labelledby="ft-docs-heading">
+            <h3 class="ft-h" id="ft-docs-heading">Dokumenty</h3>
+            <ul class="ft-links">
+              <li><a href="doc/polityka-prywatnosci.html">Polityka prywatności</a></li>
+              <li><a href="doc/regulamin.html">Regulamin</a></li>
+              <li><a href="doc/cookies.html">Pliki cookies</a></li>
+            </ul>
+          </nav>
+
+          <div class="ft-col">
+            <h3 class="ft-h">Znajdziesz nas tutaj:</h3>
+
+            <div class="ft-map">
+              <iframe
+                title="Mapa dojazdu — siedziba firmy"
+                src="https://www.google.com/maps/d/embed?mid=1G-SSwnHbmPOA8W2edSCrrHSi410f0dU&ehbc=2E312F&noprof=1"
+                width="100%"
+                height="160"
+                style="border: 0"
+                loading="lazy"
+                allowfullscreen
+                referrerpolicy="no-referrer-when-downgrade"></iframe>
+            </div>
+
+            <address class="ft-address">
+              <p><strong>Nazwa Twojej Firmy Sp. z o.o.</strong></p>
+              <p>
+                ul. Przykładowa 10,
+                <br />
+                33-100 Tarnów
+              </p>
+              <p>
+                NIP: 123-456-78-90
+                <br />
+                REGON: 123456789
+              </p>
+              <p>
+                tel.
+                <a href="tel:+48123456789">+48 123 456 789</a>
+                <br />
+                e-mail:
+                <a href="mailto:kontakt@twoja-firma.pl">kontakt@twoja-firma.pl</a>
+              </p>
+            </address>
+
+            <div class="ft-social" aria-label="Media społecznościowe">
+              <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" aria-label="Facebook">
+                <svg class="i" aria-hidden="true"><use href="#i-facebook"></use></svg>
+              </a>
+              <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
+                <svg class="i" aria-hidden="true"><use href="#i-instagram"></use></svg>
+              </a>
+              <a href="https://youtube.com" target="_blank" rel="noopener noreferrer" aria-label="YouTube">
+                <svg class="i" aria-hidden="true"><use href="#i-youtube"></use></svg>
+              </a>
+              <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+                <svg class="i" aria-hidden="true"><use href="#i-linkedin"></use></svg>
+              </a>
+            </div>
+          </div>
         </div>
 
-        <form class="form" method="post" action="#" aria-labelledby="kontakt-heading" aria-describedby="privacy-note">
-          <div class="visually-hidden" aria-hidden="true">
-            <label for="hp-website">Nie wypełniaj tego pola</label>
-            <input id="hp-website" name="website" type="text" tabindex="-1" autocomplete="off" />
-          </div>
-
-          <div class="form-row">
-            <label for="f-name">Imię i nazwisko</label>
-            <input
-              id="f-name"
-              name="name"
-              type="text"
-              inputmode="text"
-              autocomplete="name"
-              autocapitalize="words"
-              minlength="2"
-              required
-              aria-describedby="name-hint name-error"
-              placeholder="Jan Kowalski" />
-            <small id="name-hint" class="visually-hidden">Wpisz co najmniej 2 znaki.</small>
-            <span id="name-error" class="visually-hidden" aria-live="polite"></span>
-          </div>
-
-          <div class="form-row">
-            <label for="f-phone">Telefon</label>
-            <input
-              id="f-phone"
-              name="phone"
-              type="tel"
-              inputmode="tel"
-              autocomplete="tel-national"
-              required
-              placeholder="600 700 800 lub +48 600 700 800"
-              title="Wpisz 9 cyfr; dozwolone spacje/kreski; opcjonalnie +48"
-              pattern="^(?:\+?48)?[ \-]?(?:\d[ \-]?){9}$"
-              aria-describedby="phone-hint phone-error"
-              data-mask="pl-phone" />
-            <small id="phone-hint" class="visually-hidden">9 cyfr, dozwolone spacje lub kreski, opcjonalnie +48 na początku.</small>
-            <span id="phone-error" class="visually-hidden" aria-live="polite"></span>
-          </div>
-
-          <div class="form-row">
-            <label for="f-msg">Opis prac</label>
-            <textarea
-              id="f-msg"
-              name="msg"
-              rows="4"
-              required
-              maxlength="1000"
-              placeholder="Krótko opisz zakres prac (np. remont łazienki 5 m², wymiana płytek i armatury)."
-              aria-describedby="msg-hint msg-error"></textarea>
-            <small id="msg-hint" class="visually-hidden">Maksymalnie 1000 znaków. Opisz w 1–3 zdaniach czego potrzebujesz.</small>
-            <span id="msg-error" class="visually-hidden" aria-live="polite"></span>
-          </div>
-
-          <div class="form-row">
-            <label class="checkbox" for="f-consent">
-              <input
-                id="f-consent"
-                type="checkbox"
-                name="consent"
-                value="yes"
-                required
-                aria-describedby="consent-hint consent-error" />
-              <span>Wyrażam zgodę na kontakt w celu przygotowania wyceny.</span>
-            </label>
-            <small id="consent-hint" class="visually-hidden">Zaznacz to pole, abyśmy mogli się z Tobą skontaktować.</small>
-            <span id="consent-error" class="visually-hidden" aria-live="polite"></span>
-          </div>
-
-          <button class="btn" type="submit">Wyślij wiadomość</button>
-          <p class="form-note" aria-live="polite"></p>
-
-          <p class="muted small" id="privacy-note">
-            Wysyłając formularz akceptujesz naszą
-            <a href="doc/polityka-prywatnosci.html">Politykę prywatności</a>.
+        <div class="ft-bottom">
+          <p>
+            ©
+            <span id="year"></span>
+            KP_Code. Wszelkie prawa zastrzeżone. Projekt i wdrożenie:
+            <a href="#" rel="author">KP_Code</a>
           </p>
-        </form>
+        </div>
       </div>
-    </section>
-    
-        <footer id="footer" class="site-footer" role="contentinfo" aria-labelledby="footer-heading">
-          <div class="container">
-            <h2 class="vh" id="footer-heading">Stopka serwisu</h2>
+    </footer>
 
-            <div class="ft-grid">
-              
-              <div class="ft-col">
-                <a href="#top" class="brand-footer" aria-label="Strona główna">
-                  <picture>
-                    <source srcset="assets/img/main-logo/main-logo-footer-512.png" type="image/png" />
-                    <img
-                      src="assets/img/main-logo/main-logo-footer-512.png"
-                      alt=""
-                      aria-hidden="true"
-                      class="ft-logo"
-                      width="512"
-                      height="512"
-                      loading="lazy"
-                      decoding="async" />
-                  </picture>
-                </a>
+    <script src="js/script.js" defer></script>
 
-                <p class="ft-lead">Solidne realizacje budowlane — oferta, wyceny i kontakt w 24&nbsp;h.</p>
+    <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" style="position: absolute; width: 0; height: 0; overflow: hidden">
+      <symbol id="i-phone" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path
+          d="M22 16.92v3a2 2 0 0 1-2.18 2A19.8 19.8 0 0 1 3.08 5.18 2 2 0 0 1 5 3h3a2 2 0 0 1 2 1.72c.08.96.3 1.9.7 2.81a2 2 0 0 1-.45 2.11L9 11a16 16 0 0 0 6 6l1.36-1.25a2 2 0 0 1 2.11-.45c.91.4 1.85.62 2.81.7A2 2 0 0 1 22 16.92z" />
+      </symbol>
+      <symbol id="i-mail" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <rect x="3" y="5" width="18" height="14" rx="2" ry="2"></rect>
+        <polyline points="3 7 12 13 21 7"></polyline>
+      </symbol>
+      <symbol id="i-facebook" viewBox="0 0 24 24" fill="currentColor">
+        <path
+          d="M22 12c0-5.522-4.477-10-10-10S2 6.478 2 12c0 5 3.657 9.128 8.438 9.878v-6.99h-2.54V12h2.54V9.797c0-2.507 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.772-1.63 1.562V12h2.773l-.443 2.888h-2.33v6.99C18.343 21.128 22 17 22 12z" />
+      </symbol>
+      <symbol id="i-instagram" viewBox="0 0 24 24" fill="currentColor">
+        <path
+          d="M7 2C4.243 2 2 4.243 2 7v10c0 2.757 2.243 5 5 5h10c2.757 0 5-2.243 5-5V7c0-2.757-2.243-5-5-5H7zm0 2h10c1.654 0 3 1.346 3 3v10c0 1.654-1.346 3-3 3H7c-1.654 0-3-1.346-3-3V7c0-1.654 1.346-3 3-3zm5 2a5 5 0 100 10 5 5 0 000-10zm0 2a3 3 0 110 6 3 3 0 010-6zm6.5-.25a1.25 1.25 0 11-2.5 0 1.25 1.25 0 012.5 0z" />
+      </symbol>
+      <symbol id="i-youtube" viewBox="0 0 24 24" fill="currentColor">
+        <path
+          d="M21.8 8.001a2.749 2.749 0 00-1.933-1.948C18.262 6 12 6 12 6s-6.262 0-7.867.053a2.749 2.749 0 00-1.933 1.948A28.54 28.54 0 002 12a28.54 28.54 0 00.2 3.999 2.749 2.749 0 001.933 1.948C5.738 18 12 18 12 18s6.262 0 7.867-.053a2.749 2.749 0 001.933-1.948A28.54 28.54 0 0022 12a28.54 28.54 0 00-.2-3.999zM10 15V9l5.2 3-5.2 3z" />
+      </symbol>
+      <symbol id="i-linkedin" viewBox="0 0 24 24" fill="currentColor">
+        <path
+          d="M4.98 3.5C4.98 4.88 3.87 6 2.5 6S0 4.88 0 3.5 1.12 1 2.5 1s2.48 1.12 2.48 2.5zM.5 8h4V23h-4V8zm7.5 0h3.8v2.04h.05c.53-1 1.84-2.04 3.78-2.04 4.04 0 4.87 2.66 4.87 6.1V23h-4v-7.9c0-1.89-.03-4.33-2.64-4.33-2.65 0-3.06 2.07-3.06 4.2V23h-4V8z" />
+      </symbol>
+    </svg>
 
-                <ul class="ft-contact" aria-label="Dane kontaktowe">
-                  <li>
-                    <svg class="i" aria-hidden="true"><use href="#i-phone"></use></svg>
-                    <a href="tel:+48600700800" aria-label="Zadzwoń: +48 600 700 800">+48 600 700 800</a>
-                  </li>
-                  <li>
-                    <svg class="i" aria-hidden="true"><use href="#i-mail"></use></svg>
-                    <a href="mailto:kontakt@twoja-firma.pl">kontakt@twoja-firma.pl</a>
-                  </li>
-                </ul>
-              </div>
-
-              <nav class="ft-col" aria-labelledby="ft-nav-heading">
-                <h3 class="ft-h" id="ft-nav-heading">Nawigacja</h3>
-                <ul class="ft-links">
-                  <li><a href="#oferta">Oferta</a></li>
-                  <li><a href="#realizacje">Realizacje</a></li>
-                  <li><a href="#opinie">Opinie</a></li>
-                  <li><a href="#faq">FAQ</a></li>
-                  <li><a href="#kontakt">Kontakt</a></li>
-                </ul>
-              </nav>
-
-              <nav class="ft-col" aria-labelledby="ft-docs-heading">
-                <h3 class="ft-h" id="ft-docs-heading">Dokumenty</h3>
-                <ul class="ft-links">
-                  <li><a href="doc/polityka-prywatnosci.html">Polityka prywatności</a></li>
-                  <li><a href="doc/regulamin.html">Regulamin</a></li>
-                  <li><a href="doc/cookies.html">Pliki cookies</a></li>
-                </ul>
-              </nav>
-
-              <div class="ft-col">
-                <h3 class="ft-h">Znajdziesz nas tutaj:</h3>
-
-                <div class="ft-map">
-                  <iframe
-                    title="Mapa dojazdu — siedziba firmy"
-                    src="https://www.google.com/maps/d/embed?mid=1G-SSwnHbmPOA8W2edSCrrHSi410f0dU&ehbc=2E312F&noprof=1"
-                    width="100%" height="160" style="border:0" loading="lazy" allowfullscreen
-                    referrerpolicy="no-referrer-when-downgrade"></iframe>
-                </div>
-
-                <address class="ft-address">
-                  <p><strong>Nazwa Twojej Firmy Sp. z o.o.</strong></p>
-                  <p>ul. Przykładowa 10,<br />33-100 Tarnów</p>
-                  <p>NIP: 123-456-78-90<br />REGON: 123456789</p>
-                  <p>tel. <a href="tel:+48123456789">+48 123 456 789</a><br />
-                    e-mail: <a href="mailto:kontakt@twoja-firma.pl">kontakt@twoja-firma.pl</a>
-                  </p>
-                </address>
-
-                <div class="ft-social" aria-label="Media społecznościowe">
-                  <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" aria-label="Facebook">
-                    <svg class="i" aria-hidden="true"><use href="#i-facebook"></use></svg>
-                  </a>
-                  <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
-                    <svg class="i" aria-hidden="true"><use href="#i-instagram"></use></svg>
-                  </a>
-                  <a href="https://youtube.com" target="_blank" rel="noopener noreferrer" aria-label="YouTube">
-                    <svg class="i" aria-hidden="true"><use href="#i-youtube"></use></svg>
-                  </a>
-                  <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
-                    <svg class="i" aria-hidden="true"><use href="#i-linkedin"></use></svg>
-                  </a>
-                </div>
-              </div>
-            </div>
-
-            <div class="ft-bottom">
-              <p>© <span id="year"></span> KP_Code. Wszelkie prawa zastrzeżone. Projekt i wdrożenie:
-                <a href="#" rel="author">KP_Code</a>
-              </p>
-            </div>
-          </div>
-        </footer>
-    
-      <script src="js/script.min.js" defer></script>
-
-      <svg
-        xmlns="http://www.w3.org/2000/svg"
-        aria-hidden="true"
-        focusable="false"
-        style="position: absolute; width: 0; height: 0; overflow: hidden">
-  
-        <symbol id="i-phone" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-          <path d="M22 16.92v3a2 2 0 0 1-2.18 2A19.8 19.8 0 0 1 3.08 5.18 2 2 0 0 1 5 3h3a2 2 0 0 1 2 1.72c.08.96.3 1.9.7 2.81a2 2 0 0 1-.45 2.11L9 11a16 16 0 0 0 6 6l1.36-1.25a2 2 0 0 1 2.11-.45c.91.4 1.85.62 2.81.7A2 2 0 0 1 22 16.92z" />
-        </symbol>
-        <symbol id="i-mail" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-          <rect x="3" y="5" width="18" height="14" rx="2" ry="2"></rect>
-          <polyline points="3 7 12 13 21 7"></polyline>
-        </symbol>
-        <symbol id="i-facebook" viewBox="0 0 24 24" fill="currentColor">
-          <path d="M22 12c0-5.522-4.477-10-10-10S2 6.478 2 12c0 5 3.657 9.128 8.438 9.878v-6.99h-2.54V12h2.54V9.797c0-2.507 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.772-1.63 1.562V12h2.773l-.443 2.888h-2.33v6.99C18.343 21.128 22 17 22 12z" />
-        </symbol>
-        <symbol id="i-instagram" viewBox="0 0 24 24" fill="currentColor">
-          <path d="M7 2C4.243 2 2 4.243 2 7v10c0 2.757 2.243 5 5 5h10c2.757 0 5-2.243 5-5V7c0-2.757-2.243-5-5-5H7zm0 2h10c1.654 0 3 1.346 3 3v10c0 1.654-1.346 3-3 3H7c-1.654 0-3-1.346-3-3V7c0-1.654 1.346-3 3-3zm5 2a5 5 0 100 10 5 5 0 000-10zm0 2a3 3 0 110 6 3 3 0 010-6zm6.5-.25a1.25 1.25 0 11-2.5 0 1.25 1.25 0 012.5 0z" />
-        </symbol>
-        <symbol id="i-youtube" viewBox="0 0 24 24" fill="currentColor">
-          <path d="M21.8 8.001a2.749 2.749 0 00-1.933-1.948C18.262 6 12 6 12 6s-6.262 0-7.867.053a2.749 2.749 0 00-1.933 1.948A28.54 28.54 0 002 12a28.54 28.54 0 00.2 3.999 2.749 2.749 0 001.933 1.948C5.738 18 12 18 12 18s6.262 0 7.867-.053a2.749 2.749 0 001.933-1.948A28.54 28.54 0 0022 12a28.54 28.54 0 00-.2-3.999zM10 15V9l5.2 3-5.2 3z" />
-        </symbol>
-        <symbol id="i-linkedin" viewBox="0 0 24 24" fill="currentColor">
-          <path d="M4.98 3.5C4.98 4.88 3.87 6 2.5 6S0 4.88 0 3.5 1.12 1 2.5 1s2.48 1.12 2.48 2.5zM.5 8h4V23h-4V8zm7.5 0h3.8v2.04h.05c.53-1 1.84-2.04 3.78-2.04 4.04 0 4.87 2.66 4.87 6.1V23h-4v-7.9c0-1.89-.03-4.33-2.64-4.33-2.65 0-3.06 2.07-3.06 4.2V23h-4V8z" />
-        </symbol>
-      </svg>
-
-      <button id="skipNext" class="skip-next is-hidden" type="button" aria-label="Przejdź do: Oferta">
-        <span aria-hidden="true">↓</span>
-      </button>
-      <div id="skipNextLive" class="sr-only" aria-live="polite"></div>
-
+    <button id="skipNext" class="skip-next is-hidden" type="button" aria-label="Przejdź do:   Oferta">
+      <span aria-hidden="true">↓</span>
+    </button>
+    <div id="skipNextLive" class="sr-only" aria-live="polite"></div>
   </body>
 </html>

@@ -2,31 +2,27 @@
    Autor: KP_Code (Front-end)
    Aktualizacja: 2025-09-25
    ======================================================================
-   SKRYPTY — Budownictwo / Remonty — globalny plik (PROD)
+   SCRIPT — Budownictwo / Remonty — globalny plik (PROD)
    Struktura:
    ======================================================================
-   00) NARZĘDZIA — WYSOKOŚĆ NAGŁÓWKA
-   01) NAWIGACJA — MOBILNE + „OFERTA”
-   02) SCROLLSPY — AKTYWNE LINKI
-   03) STOPKA — ROK
-   04) PRZEWIJANIE — DO GÓRY
-   05) SKIP-NEXT — OFERTA → KONTAKT
-   06) FORMULARZ — WALIDACJA + HONEYPOT
-   07) NAGŁÓWEK — STAN KURCZENIA
-   08) MOTYW — PRZEŁĄCZNIK
-   09) CTA — FALA (RIPPLE)
-   10) HERO — ROZMYCIE ULTRASZEROKIE
-   11) LIGHTBOX — PODGLĄD MINIATUREK
-   12) OFERTA — POZIOMY SCROLLER
-   13) PREFETCH — PODSTRONY OFERTY
-   14) STRONA GŁÓWNA — POMOCNIKI
+   ===== 00) WYSOKOŚĆ NAGŁÓWKA
+   ===== 01) NAWIGACJA — MOBILNE + „OFERTA”
+   ===== 02) SCROLLSPY — AKTYWNE LINKI
+   ===== 03) STOPKA — ROK
+   ===== 04) PRZEWIJANIE — DO GÓRY
+   ===== 05) SKIP-NEXT — OFERTA → KONTAKT
+   ===== 06) FORMULARZ — WALIDACJA + HONEYPOT
+   ===== 07) NAGŁÓWEK — STAN KURCZENIA
+   ===== 08) MOTYW — PRZEŁĄCZNIK
+   ===== 09) CTA — FALA (RIPPLE)
+   ===== 10) HERO — ROZMYCIE ULTRASZEROKIE
+   ===== 11) LIGHTBOX — PODGLĄD MINIATUREK
+   ===== 12) OFERTA — POZIOMY SCROLLER
+   ===== 13) PREFETCH — PODSTRONY OFERTY
+   ===== 14) STRONA GŁÓWNA — POMOCNIKI
    ====================================================================== */
 
-/* ===============================================================
-   ===============================================================
-   ========== 00) NARZĘDZIA — WYSOKOŚĆ NAGŁÓWKA ==================
-   ===============================================================
-   =============================================================== */
+/* ========== 00) WYSOKOŚĆ NAGŁÓWKA ========== */
 
 const utils = (() => {
   const docEl = document.documentElement;
@@ -88,11 +84,7 @@ const utils = (() => {
   return Object.freeze({ getHeaderH, refreshHeaderH, syncHeaderCssVar });
 })();
 
-/* ===============================================================
-   ===============================================================
-   ========== 01) NAWIGACJA — MOBILNE + „OFERTA” =================
-   ===============================================================
-   =============================================================== */
+/* ========== 01) NAWIGACJA — MOBILNE + „OFERTA” ========== */
 
 function initNav() {
   if (initNav._abort) initNav._abort.abort();
@@ -294,11 +286,7 @@ function initNav() {
   }
 }
 
-/* ===============================================================
-   ===============================================================
-   ========== 02) SCROLLSPY — AKTYWNE LINKI ======================
-   ===============================================================
-   =============================================================== */
+/* ========== 02) SCROLLSPY — AKTYWNE LINKI ========== */
 
 function initScrollSpy() {
   if (initScrollSpy._abort) initScrollSpy._abort.abort();
@@ -491,11 +479,7 @@ function initScrollSpy() {
   compute();
 }
 
-/* ===============================================================
-   ===============================================================
-   ========== 03) STOPKA — ROK ===================================
-   ===============================================================
-   =============================================================== */
+/* ========== 03) STOPKA - ROK ========== */
 
 function initFooterYear() {
   const el = document.getElementById('year');
@@ -513,11 +497,7 @@ function initFooterYear() {
   if (el.textContent !== yearNow) el.textContent = yearNow;
 }
 
-/* ===============================================================
-   ===============================================================
-   ========== 04) PRZEWIJANIE — DO GÓRY ==========================
-   ===============================================================
-   =============================================================== */
+/* ========== 04) PRZEWIJANIE — DO GÓRY ========== */
 
 function initSmoothTop() {
   if (initSmoothTop._abort) initSmoothTop._abort.abort();
@@ -558,11 +538,7 @@ function initSmoothTop() {
   );
 }
 
-/* ===============================================================
-   ===============================================================
-   ========== 05) SKIP-NEXT — OFERTA → KONTAKT ===================
-   ===============================================================
-   =============================================================== */
+/* ========== 05) SKIP-NEXT - OFERTA → KONTAKT ========== */
 
 function initSkipNext() {
   if (initSkipNext._abort) initSkipNext._abort.abort();
@@ -688,11 +664,7 @@ function initSkipNext() {
   updateVisibility();
 }
 
-/* ===============================================================
-   ===============================================================
-   ========== 06) FORMULARZ — WALIDACJA + HONEYPOT ===============
-   ===============================================================
-   =============================================================== */
+/* ========== 06) FORMULARZ - WALIDACJA + HONEYPOT ========== */
 
 function initContactForm() {
   if (initContactForm._abort) initContactForm._abort.abort();
@@ -927,11 +899,7 @@ function initContactForm() {
   );
 }
 
-/* ===============================================================
-   ===============================================================
-   ========== 07) NAGŁÓWEK — STAN KURCZENIA ======================
-   ===============================================================
-   =============================================================== */
+/* ========== 07) NAGŁÓWEK — STAN KURCZENIA ========== */
 
 function initHeaderShrink() {
   if (initHeaderShrink._abort) initHeaderShrink._abort.abort();
@@ -1011,11 +979,7 @@ function initHeaderShrink() {
   onScroll();
 }
 
-/* ===============================================================
-   ===============================================================
-   ========== 08) MOTYW — PRZEŁĄCZNIK ============================
-   ===============================================================
-   =============================================================== */
+/* ========== 08) MOTYW - DARK/LIGHT THEME ========== */
 
 function initThemeToggle() {
   if (initThemeToggle._abort) initThemeToggle._abort.abort();
@@ -1030,67 +994,46 @@ function initThemeToggle() {
   const KEY = 'theme';
   const mq = window.matchMedia?.('(prefers-color-scheme: dark)');
 
-  const safeGet = (k) => {
-    try {
-      return localStorage.getItem(k);
-    } catch {
-      return null;
-    }
-  };
-  const safeSet = (k, v) => {
-    try {
-      localStorage.setItem(k, v);
-    } catch {}
-  };
-  const safeDel = (k) => {
-    try {
-      localStorage.removeItem(k);
-    } catch {}
-  };
+  const safeGet = (k) => { try { return localStorage.getItem(k); } catch { return null; } };
+  const safeSet = (k, v) => { try { localStorage.setItem(k, v); } catch {} };
 
-  const labelFor = (mode) => (mode === 'dark' ? 'Przełącz na jasny tryb' : 'Przełącz na ciemny tryb');
+  const nextOf = (mode) => (mode === 'dark' ? 'light' : 'dark');
 
   const apply = (mode, { persist = false, silent = false } = {}) => {
-    const theme = mode === 'dark' ? 'dark' : 'light';
-    root.setAttribute('data-theme', theme);
+    const normalized = mode === 'dark' ? 'dark' : 'light';
+    root.setAttribute('data-theme', normalized);
 
-    btn.setAttribute('aria-pressed', String(theme === 'dark'));
-    const nextLabel = labelFor(theme);
-    btn.setAttribute('aria-label', nextLabel);
-    btn.setAttribute('title', nextLabel);
+    btn.setAttribute('data-theme-state', normalized);
+    btn.setAttribute('aria-pressed', String(normalized === 'dark'));
+    const label =
+      `Tryb: ${normalized === 'dark' ? 'ciemny' : 'jasny'}. ` +
+      (normalized === 'dark' ? 'Przełącz na jasny tryb' : 'Przełącz na ciemny tryb');
+    btn.setAttribute('aria-label', label);
+    btn.setAttribute('title', label);
 
-    if (persist) safeSet(KEY, theme);
-
+    if (persist) safeSet(KEY, normalized);
     if (!silent) {
-      window.dispatchEvent(new CustomEvent('theme:change', { detail: { theme } }));
+      window.dispatchEvent(new CustomEvent('theme:change', { detail: { theme: normalized } }));
     }
   };
 
   const saved = safeGet(KEY);
-  const prefersDark = !!mq && mq.matches;
-  const attrTheme = root.getAttribute('data-theme');
-  const initial = saved || attrTheme || (prefersDark ? 'dark' : 'light');
+  const start =
+    saved === 'light' || saved === 'dark'
+      ? saved
+      : (mq && mq.matches ? 'dark' : 'light');
+  apply(start, { persist: saved === 'light' || saved === 'dark', silent: true });
 
-  apply(initial, { persist: !!saved, silent: true });
 
   btn.addEventListener(
     'click',
     () => {
       const current = root.getAttribute('data-theme') === 'dark' ? 'dark' : 'light';
-      const next = current === 'dark' ? 'light' : 'dark';
+      const next = nextOf(current);
       apply(next, { persist: true });
     },
     { signal }
   );
-
-  if (mq && !saved) {
-    const onSystemChange = (e) => apply(e.matches ? 'dark' : 'light', { persist: false });
-    mq.addEventListener?.('change', onSystemChange, { signal });
-    if (mq.addListener && mq.removeListener && !mq.addEventListener) {
-      mq.addListener(onSystemChange);
-      signal.addEventListener('abort', () => mq.removeListener(onSystemChange));
-    }
-  }
 
   window.addEventListener(
     'storage',
@@ -1098,29 +1041,16 @@ function initThemeToggle() {
       if (e.key !== KEY) return;
       const v = e.newValue;
       if (v === 'dark' || v === 'light') apply(v, { persist: false });
-      else if (!v) {
-        if (mq) apply(mq.matches ? 'dark' : 'light', { persist: false });
-        else apply('light', { persist: false });
-      }
     },
     { signal }
   );
 
-  initThemeToggle.set = (modeOrNull) => {
-    if (modeOrNull === 'dark' || modeOrNull === 'light') {
-      apply(modeOrNull, { persist: true });
-    } else {
-      safeDel(KEY);
-      if (mq) apply(mq.matches ? 'dark' : 'light', { persist: false });
-    }
+  initThemeToggle.set = (mode) => {
+    apply(mode === 'dark' ? 'dark' : 'light', { persist: true });
   };
 }
 
-/* ===============================================================
-   ===============================================================
-   ========== 09) CTA — FALA (RIPPLE) ============================
-   ===============================================================
-   =============================================================== */
+/* ========== 09) CTA - FALA (RIPPLE) ========== */
 
 function initRipple() {
   if (initRipple._abort) initRipple._abort.abort();
@@ -1206,11 +1136,7 @@ function initRipple() {
   }
 }
 
-/* ===============================================================
-   ===============================================================
-   ========== 10) HERO — ROZMYCIE ULTRASZEROKIE ==================
-   ===============================================================
-   =============================================================== */
+/* ========== 10) HERO - ROZMYCIE ULTRA SZEROKIE ========== */
 
 function initHeroBlurSync() {
   if (initHeroBlurSync._abort) initHeroBlurSync._abort.abort();
@@ -1304,11 +1230,7 @@ function initHeroBlurSync() {
   syncNextFrame();
 }
 
-/* ===============================================================
-   ===============================================================
-   ========== 11) LIGHTBOX — PODGLĄD MINIATUREK ==================
-   ===============================================================
-   =============================================================== */
+/* ========== 11) LIGHTBOX - PODGLĄD MINIATUREK ========== */
 
 function initOfertaLightbox() {
   if (initOfertaLightbox._abort) initOfertaLightbox._abort.abort();
@@ -1556,11 +1478,7 @@ function initOfertaLightbox() {
   window.addEventListener('pagehide', () => ac.abort(), { once: true, signal });
 }
 
-/* ===============================================================
-   ===============================================================
-   ========== 12) OFERTA — POZIOMY SCROLLER ======================
-   ===============================================================
-   =============================================================== */
+/* ========== 12) OFERTA - POZIOMY SCROLLER ========== */
 
 function initOfertaScroller() {
   if (initOfertaScroller._abort) initOfertaScroller._abort.abort();
@@ -1723,11 +1641,7 @@ function initOfertaScroller() {
   window.addEventListener('pagehide', () => ac.abort(), { once: true, signal });
 }
 
-/* ===============================================================
-   ===============================================================
-   ========== 13) PREFETCH — PODSTRONY OFERTY ====================
-   ===============================================================
-   =============================================================== */
+/* ========== 13) PREFETCH — PODSTRONY OFERTY ========== */
 
 function initOfferPrefetch() {
   if (initOfferPrefetch._abort) initOfferPrefetch._abort.abort();
@@ -1802,11 +1716,7 @@ function initOfferPrefetch() {
   window.addEventListener('pagehide', () => ac.abort(), { once: true, signal });
 }
 
-/* ===============================================================
-   ===============================================================
-   ========== 14) STRONA GŁÓWNA — POMOCNIKI ======================
-   ===============================================================
-   =============================================================== */
+/* ========== 14) STRONA GŁÓWNA — POMOCNIKI ========== */
 
 function initHomeHelpers() {
   // Idempotent setup
@@ -1882,11 +1792,7 @@ function initHomeHelpers() {
   window.addEventListener('pagehide', () => ac.abort(), { once: true, signal });
 }
 
-/* =====================================================================================
-   =====================================================================================
-   ===== [99] Bootstrap — inicjalizacja wszystkich funkcji we właściwej kolejności =====
-   =====================================================================================
-   ===================================================================================== */
+/* ========== 99) BOOTSTRAP ========== */
 
 (function boot() {
   const start = () => {
