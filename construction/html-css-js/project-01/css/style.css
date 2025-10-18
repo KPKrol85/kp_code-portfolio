@@ -811,28 +811,22 @@ a.brand:focus-visible {
   opacity: 0.95;
 }
 
+/* ================================================== */
+/* ===== MQ - HEADER / NAVIGATION =================== */
+/* ================================================== */
+
 /* ----- MQ min-width: 1050px ----- */
 @media (min-width: 1050px) {
-  .header-bar {
-    min-height: 72px;
-  }
-  .site-header.is-shrink .header-bar {
-    min-height: 64px;
-  }
-  .nav-toggle {
-    display: none;
-  }
+  .header-bar { min-height: 72px; }
+  .site-header.is-shrink .header-bar { min-height: 64px; }
+  .nav-toggle { display: none; }
 }
 
 /* ----- MQ max-width: 1024px ----- */
 @media (max-width: 1024px) {
-  .nav-toggle {
-    display: inline-grid;
-    gap: 5px;
-  }
-  .header-bar .brand {
-    margin-left: 14px;
-  }
+  .nav-toggle { display: inline-grid; gap: 5px; }
+  .header-bar .brand { margin-left: 14px; }
+
   .nav-menu {
     position: fixed;
     top: var(--header-h, 64px);
@@ -843,30 +837,30 @@ a.brand:focus-visible {
     align-items: stretch;
     gap: 6px;
     padding: 10px 12px;
-    background: var(--bg);
+
+    background: color-mix(in oklab, var(--bg) 64%, transparent);
+    -webkit-backdrop-filter: saturate(180%) blur(10px);
+    backdrop-filter: saturate(180%) blur(10px);
     border-bottom: 1px solid var(--line);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.12);
+
     max-height: calc(100vh - var(--header-h, 64px) - 8px);
     overflow: auto;
     will-change: transform, opacity;
   }
+
   .nav-menu.open {
     display: flex;
     animation: menuIn 0.18s ease both;
   }
+
   @keyframes menuIn {
-    from {
-      opacity: 0;
-      transform: translateX(8px);
-    }
-    to {
-      opacity: 1;
-      transform: none;
-    }
+    from { opacity: 0; transform: translateX(8px); }
+    to { opacity: 1; transform: none; }
   }
-  .nav-menu > li {
-    width: 100%;
-    align-items: stretch;
-  }
+
+  .nav-menu > li { width: 100%; align-items: stretch; }
+
   .nav .nav-menu > li > a,
   .nav .nav-menu > li > .dropdown-trigger {
     width: 100%;
@@ -877,55 +871,41 @@ a.brand:focus-visible {
     border-radius: 10px;
     min-height: 44px;
   }
+
+  /* ----- Wyłącz dropdown na mobile ----- */
   .has-dropdown > .dropdown {
-    position: static;
-    border: 0;
-    margin: 0;
-    padding: 4px 0 8px 14px;
-    box-shadow: none;
-    max-height: 0;
-    overflow: hidden;
-    opacity: 1;
-    visibility: visible;
-    transform: none;
-    transition: max-height 0.22s ease;
+    display: none !important;
+    visibility: hidden;
+    opacity: 0;
+    pointer-events: none;
+    max-height: 0 !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    box-shadow: none !important;
+    border: 0 !important;
   }
-  .has-dropdown[aria-expanded="true"] > .dropdown {
-    max-height: 600px;
-  }
-  .nav-menu .dropdown a {
-    padding: 10px 12px;
-    font-size: 0.94rem;
-    border-radius: 10px;
-    display: flex;
-    align-items: center;
-  }
+
+  /* Zachowaj schowany caret */
+  .nav .nav-menu .caret { display: none; }
+
+  /* DARK THEME: blur menu */
   :root[data-theme="dark"] .nav-menu {
-    background: var(--card);
-    border-bottom-color: color-mix(in srgb, #fff 10%, var(--line));
+    background: color-mix(in oklab, var(--card) 72%, transparent);
+    border-bottom-color: color-mix(in srgb, #fff 12%, var(--line));
   }
+
   :root[data-theme="dark"] .nav-menu .dropdown a:hover,
   :root[data-theme="dark"] .nav-menu .dropdown a:focus-visible {
     background: color-mix(in srgb, var(--brand) 20%, transparent);
     color: #fff;
   }
-  .nav .nav-menu .caret {
-    display: none;
-  }
 }
 
 /* ----- MQ max-width: 768px ----- */
 @media (max-width: 768px) {
-  .brand-badge {
-    width: 40px;
-    height: 40px;
-  }
-  .brand-badge img {
-    height: 30px;
-  }
-  .brand-logo img {
-    max-height: 44px;
-  }
+  .brand-badge { width: 40px; height: 40px; }
+  .brand-badge img { height: 30px; }
+  .brand-logo img { max-height: 44px; }
 }
 
 /* ----- MQ max-width: 640px ----- */
@@ -939,13 +919,9 @@ a.brand:focus-visible {
     box-shadow: none;
     border: 1px solid rgba(15, 23, 42, 0.1);
   }
-  :root[data-theme="dark"] .theme-toggle {
-    border-color: rgba(255, 255, 255, 0.16);
-  }
-  .theme-toggle img {
-    width: 18px;
-    height: 18px;
-  }
+
+  :root[data-theme="dark"] .theme-toggle { border-color: rgba(255, 255, 255, 0.16); }
+  .theme-toggle img { width: 18px; height: 18px; }
 }
 
 /* ----- MQ max-width: 640px and hover: none ----- */
@@ -959,13 +935,8 @@ a.brand:focus-visible {
 
 /* ----- MQ max-width: 360px ----- */
 @media (max-width: 360px) {
-  .header-bar {
-    gap: 12px;
-  }
-  .header-bar .brand {
-    flex-shrink: 1;
-    min-width: 0;
-  }
+  .header-bar { gap: 12px; }
+  .header-bar .brand { flex-shrink: 1; min-width: 0; }
   .brand-name {
     font-size: 0.95rem;
     max-width: 62vw;
@@ -973,9 +944,7 @@ a.brand:focus-visible {
     overflow: hidden;
     text-overflow: ellipsis;
   }
-  .header-bar .nav {
-    padding-right: 12px;
-  }
+  .header-bar .nav { padding-right: 12px; }
 }
 
 /* ----- MQ hover: hover ----- */
@@ -1000,10 +969,10 @@ a.brand:focus-visible {
   .nav .nav-menu > li > .dropdown-trigger {
     transition: none;
   }
+
   .brand-badge,
-  .brand-badge.pulse {
-    animation: none !important;
-  }
+  .brand-badge.pulse { animation: none !important; }
+
   .theme-toggle:hover {
     transform: none;
     box-shadow: none;
@@ -1012,13 +981,8 @@ a.brand:focus-visible {
 
 /* ----- KeyFrames - pulse ------ */
 @keyframes pulse {
-  0%,
-  100% {
-    transform: scale(1);
-  }
-  50% {
-    transform: scale(1.08);
-  }
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.08); }
 }
 
 /* ========== 03) HERO ========== */
@@ -1389,6 +1353,7 @@ a.brand:focus-visible {
   --logo-img-h: clamp(24px, 6vw, 48px);
   --logo-pad: clamp(var(--space-3), 2vw, var(--space-5));
   --logo-radius: 14px;
+  --logo-min: 132px;
   padding-block: var(--space-10) var(--space-8);
   position: relative;
 }
@@ -1400,11 +1365,10 @@ a.brand:focus-visible {
 
 .logos-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(var(--logo-min), 1fr));
   gap: clamp(var(--space-3), 2.5vw, var(--space-5));
-  row-gap: var(--space-3-5, 14px);
   align-items: stretch;
-  justify-items: center;
+  justify-items: stretch;
   max-width: 1100px;
   margin: 0 auto;
   overflow: visible;
@@ -1414,6 +1378,7 @@ a.brand:focus-visible {
 
 .logos .logo,
 .logos .logo-ph {
+  min-width: var(--logo-min);
   height: var(--logo-slot-h);
   padding: var(--logo-pad);
   display: grid;
@@ -1438,7 +1403,7 @@ a.brand:focus-visible {
   place-items: center;
   width: 100%;
   height: 100%;
-  min-height: 64px;
+  min-height: 56px;
   padding: var(--space-2) var(--space-3);
   border-radius: inherit;
   text-decoration: none;
@@ -1466,6 +1431,8 @@ a.brand:focus-visible {
   display: block;
   height: var(--logo-img-h);
   width: auto;
+  max-width: 90%;
+  object-fit: contain;
   filter: none;
   transition: filter 0.2s ease;
 }
@@ -1495,23 +1462,15 @@ a.brand:focus-visible {
   border-color: rgba(255, 255, 255, 0.12);
 }
 
-/* ----- MQ max width 640px ----- */
-@media (max-width: 640px) {
-  .logos .logo a {
-    min-height: 56px;
-  }
-}
-
 /* ----- MQ max width 480px ----- */
 @media (max-width: 480px) {
   .logos-grid {
-    grid-template-columns: repeat(2, minmax(120px, auto));
+    grid-template-columns: repeat(2, minmax(var(--logo-min), 1fr));
     gap: var(--space-4);
-    justify-content: center;
   }
 }
 
-/* ----- MQ prefers-reduced-motion ----- */
+/* ----- Prefers-reduced-motion ----- */
 @media (prefers-reduced-motion: reduce) {
   .logos .logo {
     transition: none;
@@ -1533,7 +1492,7 @@ a.brand:focus-visible {
 }
 
 .rating-icon {
-  width: 16px;
+  width: 18px;
   height: auto;
   display: inline-block;
 }
@@ -1552,10 +1511,9 @@ a.brand:focus-visible {
 .testimonial {
   border: 1px solid var(--c-border);
   border-radius: var(--radius);
-  padding: var(--space-5) calc(var(--space-5) + 2px);
+  padding: var(--space-4) var(--space-5);
   background: var(--c-surface);
   box-shadow: var(--shadow);
-  height: 100%;
   display: flex;
   flex-direction: column;
   transition:
@@ -1572,14 +1530,14 @@ a.brand:focus-visible {
 }
 
 .testimonial blockquote {
-  margin: 0 0 var(--space-3-5);
+  margin: 0 0 var(--space-3);
   font-size: clamp(1rem, 0.95rem + 0.2vw, 1.1rem);
-  line-height: 1.55;
+  line-height: 1.5;
   letter-spacing: 0.01em;
   hyphens: auto;
   overflow-wrap: anywhere;
   position: relative;
-  padding-left: var(--space-10);
+  padding-left: var(--space-8);
 }
 
 .testimonial blockquote::before {
@@ -1587,7 +1545,7 @@ a.brand:focus-visible {
   position: absolute;
   left: var(--space-3-5);
   top: 0.2em;
-  font-size: 2.25rem;
+  font-size: 2.1rem;
   line-height: 1;
   color: var(--c-accent);
   opacity: 0.38;
@@ -1595,7 +1553,7 @@ a.brand:focus-visible {
 
 .testimonial figcaption {
   margin-top: auto;
-  padding-top: var(--space-3);
+  padding-top: var(--space-2);
   color: var(--c-muted);
   font-weight: 600;
   letter-spacing: 0.01em;
@@ -1619,6 +1577,19 @@ a.brand:focus-visible {
   opacity: 0.5;
 }
 
+/* ----- MQ max width 640px ----- */
+@media (max-width: 640px) {
+  .rating {
+    flex-direction: column;
+    gap: var(--space-1);
+  }
+
+  .rating-icon {
+    display: block;
+    margin: 0 auto var(--space-1);
+  }
+}
+
 /* ----- MQ min width 600px ----- */
 @media (min-width: 600px) {
   .testimonials-grid {
@@ -1639,7 +1610,7 @@ a.brand:focus-visible {
     gap: var(--space-5);
   }
   .testimonial {
-    padding: var(--space-6);
+    padding: var(--space-5) var(--space-6);
   }
 }
 
@@ -1807,7 +1778,8 @@ a.brand:focus-visible {
 }
 
 .cta h2 {
-  margin: 0.2em 0;
+  margin: 0.5em 0;
+  color: color-mix(in oklab, #fff 15%, #0f172a);
 }
 
 .cta-wrap {
@@ -1839,6 +1811,11 @@ a.brand:focus-visible {
   opacity: 1;
 }
 
+.contact-item .icon {
+  width: 38px;
+  height: 38px;
+}
+
 /* ----- MQ min width 1200px ----- */
 @media (min-width: 1200px) {
   .cta .form {
@@ -1863,7 +1840,24 @@ a.brand:focus-visible {
   }
 }
 
-/* ========== 09) CONTACT ========== */
+/* ----- MQ max-width: 599px ----- */
+@media (max-width: 599px) {
+  .cta-text {
+    text-align: center;
+  }
+  .cta-text h2,
+  .cta-text p {
+    margin-inline: auto;
+  }
+  .contact-list {
+    justify-content: center;
+  }
+  .cta h2 {
+    margin: 0.1em 0 0.3em;
+  }
+}
+
+/* ========== 09) CONTACT FORM ========== */
 
 .contact-list {
   list-style: none;
@@ -2252,8 +2246,8 @@ section#kontakt .form-note {
 }
 
 .ft-contact img {
-  width: 28px;
-  height: 28px;
+  width: 32px;
+  height: 32px;
   object-fit: contain;
   opacity: 0.9;
   transition:
@@ -3067,7 +3061,7 @@ body.lb-no-scroll {
 /* ----- MQ max-width: 640px ----- */
 @media (max-width: 640px) {
   .btn {
-    width: 100%;
+    width: 60%;
     justify-content: center;
   }
 }

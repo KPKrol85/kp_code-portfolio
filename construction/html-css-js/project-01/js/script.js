@@ -10,7 +10,7 @@
    ===== 02) SCROLLSPY — AKTYWNE LINKI
    ===== 03) STOPKA — ROK
    ===== 04) PRZEWIJANIE — DO GÓRY
-   ===== 05) --------------------------------
+   ===== 05)
    ===== 06) FORMULARZ — WALIDACJA + HONEYPOT
    ===== 07) NAGŁÓWEK — STAN KURCZENIA
    ===== 08) MOTYW — PRZEŁĄCZNIK
@@ -282,7 +282,7 @@ function initNav() {
 
     const onMqChange = () => setDd(false);
     if (mqDesktop.addEventListener) mqDesktop.addEventListener("change", onMqChange, { signal });
-    else mqDesktop.addListener(onMqChange); // Safari legacy
+    else mqDesktop.addListener(onMqChange);
   }
 }
 
@@ -532,8 +532,6 @@ function initSmoothTop() {
     { signal }
   );
 }
-
-/* ========== 05) ================== */
 
 /* ========== 06) FORMULARZ - WALIDACJA + HONEYPOT ========== */
 
@@ -1429,7 +1427,6 @@ function initOfferPrefetch() {
 /* ========== 14) STRONA GŁÓWNA — POMOCNIKI ========== */
 
 function initHomeHelpers() {
-  // Idempotent setup
   if (initHomeHelpers._abort) initHomeHelpers._abort.abort();
   const ac = new AbortController();
   const { signal } = ac;
@@ -1503,27 +1500,19 @@ function initHomeHelpers() {
 
 (function boot() {
   const start = () => {
-    // --- Główne elementy UI ---
-    if (typeof initNav === "function") initNav(); // 01) Nawigacja
-    if (typeof initHeaderShrink === "function") initHeaderShrink(); // 07) Nagłówek
-    if (typeof initScrollSpy === "function") initScrollSpy(); // 02) Scrollspy
-
-    // --- Udogodnienia / pomocnicze ---
-    if (typeof initFooterYear === "function") initFooterYear(); // 03) Stopka
-    if (typeof initSmoothTop === "function") initSmoothTop(); // 04) Przewijanie do góry
-
-    // --- Wizualne / ulepszenia ---
-    if (typeof initThemeToggle === "function") initThemeToggle(); // 08) Motyw
-    if (typeof initRipple === "function") initRipple(); // 09) Ripple
-    if (typeof initHeroBlurSync === "function") initHeroBlurSync(); // 10) Hero blur
-    if (typeof initOfertaLightbox === "function") initOfertaLightbox(); // 11) Lightbox
-    if (typeof initOfferPrefetch === "function") initOfferPrefetch(); // 13) Oferta prefetch
-    if (typeof initHomeHelpers === "function") initHomeHelpers(); // 14) Strona głowna pomocniki
-
-    // --- Formularze ---
-    if (typeof initContactForm === "function") initContactForm(); // 06) Kontakt
+    if (typeof initNav === "function") initNav();
+    if (typeof initHeaderShrink === "function") initHeaderShrink();
+    if (typeof initScrollSpy === "function") initScrollSpy();
+    if (typeof initFooterYear === "function") initFooterYear();
+    if (typeof initSmoothTop === "function") initSmoothTop();
+    if (typeof initThemeToggle === "function") initThemeToggle();
+    if (typeof initRipple === "function") initRipple();
+    if (typeof initHeroBlurSync === "function") initHeroBlurSync();
+    if (typeof initOfertaLightbox === "function") initOfertaLightbox();
+    if (typeof initOfferPrefetch === "function") initOfferPrefetch();
+    if (typeof initHomeHelpers === "function") initHomeHelpers();
+    if (typeof initContactForm === "function") initContactForm();
   };
-
   if (document.readyState === "loading") {
     document.addEventListener("DOMContentLoaded", start, { once: true });
   } else {
