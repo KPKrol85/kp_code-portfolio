@@ -10,7 +10,7 @@
    ===== 02) SCROLLSPY — AKTYWNE LINKI
    ===== 03) STOPKA — ROK
    ===== 04) PRZEWIJANIE — DO GÓRY
-   ===== 05) SKIP-NEXT — OFERTA → KONTAKT
+   ===== 05) --------------------------------
    ===== 06) FORMULARZ — WALIDACJA + HONEYPOT
    ===== 07) NAGŁÓWEK — STAN KURCZENIA
    ===== 08) MOTYW — PRZEŁĄCZNIK
@@ -533,128 +533,7 @@ function initSmoothTop() {
   );
 }
 
-/* ========== 05) SKIP-NEXT - OFERTA → KONTAKT ========== */
-
-function initSkipNext() {
-  if (initSkipNext._abort) initSkipNext._abort.abort();
-  const ac = new AbortController();
-  const { signal } = ac;
-  initSkipNext._abort = ac;
-
-  const isMobile = window.matchMedia("(hover:none) and (pointer:coarse)").matches || window.innerWidth <= 768;
-
-  const btn = document.getElementById("skipNext");
-  const live = document.getElementById("skipNextLive");
-  if (!btn) return;
-
-  if (isMobile) {
-    btn.remove();
-    live?.remove();
-    return;
-  }
-
-  const order = ["#oferta", "#kontakt"].map((sel) => document.querySelector(sel)).filter(Boolean);
-  if (!order.length) {
-    btn.remove();
-    live?.remove();
-    return;
-  }
-
-  const headerEl = document.querySelector(".site-header");
-  const PEEK = 12;
-  const getHeaderOffset = () => (typeof window.utils?.getHeaderH === "function" ? window.utils.getHeaderH() : Math.round(headerEl?.getBoundingClientRect().height || 0)) + PEEK;
-
-  const labelFor = (el) => {
-    const id = (el?.id || "").toLowerCase();
-    if (id === "oferta") return "Oferta";
-    if (id === "kontakt") return "Formularz";
-    return "kolejna sekcja";
-  };
-
-  const setLabel = (el) => {
-    const name = labelFor(el);
-    btn.setAttribute("aria-label", "Przejdź do: " + name);
-    if (live) live.textContent = "Następny: " + name;
-  };
-
-  const getCurrentIdx = () => {
-    const offset = getHeaderOffset();
-    const probeY = offset + 1;
-    let idx = -1;
-    for (let i = 0; i < order.length; i++) {
-      const r = order[i].getBoundingClientRect();
-      if (r.top <= probeY && r.bottom > probeY) {
-        idx = i;
-        break;
-      }
-      if (r.top - offset <= 0) idx = i;
-    }
-    return idx;
-  };
-
-  const nextTarget = () => {
-    const idx = getCurrentIdx();
-    if (idx < 0) return order[0];
-    if (idx === 0 && order[1]) return order[1];
-    return null;
-  };
-
-  const updateVisibility = () => {
-    const next = nextTarget();
-    const done = !next;
-    btn.classList.toggle("is-hidden", done);
-    if (next) setLabel(next);
-  };
-
-  const prefersNoAnim = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-
-  btn.addEventListener(
-    "click",
-    (e) => {
-      e.preventDefault();
-      const target = nextTarget();
-      if (!target) return;
-
-      const y = Math.max(0, window.scrollY + target.getBoundingClientRect().top - getHeaderOffset());
-      window.scrollTo({ top: y, behavior: prefersNoAnim ? "auto" : "smooth" });
-
-      if ("onscrollend" in window) {
-        const once = () => {
-          updateVisibility();
-          window.removeEventListener("scrollend", once);
-        };
-        window.addEventListener("scrollend", once, { signal });
-      } else {
-        setTimeout(updateVisibility, 120);
-      }
-    },
-    { signal }
-  );
-
-  let ticking = false;
-  const onScroll = () => {
-    if (!ticking) {
-      ticking = true;
-      requestAnimationFrame(() => {
-        ticking = false;
-        updateVisibility();
-      });
-    }
-  };
-  window.addEventListener("scroll", onScroll, { passive: true, signal });
-
-  let raf = 0;
-  const onResize = () => {
-    if (raf) return;
-    raf = requestAnimationFrame(() => {
-      raf = 0;
-      updateVisibility();
-    });
-  };
-  window.addEventListener("resize", onResize, { passive: true, signal });
-
-  updateVisibility();
-}
+/* ========== 05) ================== */
 
 /* ========== 06) FORMULARZ - WALIDACJA + HONEYPOT ========== */
 
@@ -1632,7 +1511,6 @@ function initHomeHelpers() {
     // --- Udogodnienia / pomocnicze ---
     if (typeof initFooterYear === "function") initFooterYear(); // 03) Stopka
     if (typeof initSmoothTop === "function") initSmoothTop(); // 04) Przewijanie do góry
-    if (typeof initSkipNext === "function") initSkipNext(); // 05) Przewijanie do kolejnego sekcji
 
     // --- Wizualne / ulepszenia ---
     if (typeof initThemeToggle === "function") initThemeToggle(); // 08) Motyw
