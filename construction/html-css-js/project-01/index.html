@@ -11,17 +11,20 @@
     <meta name="robots" content="index, follow" />
     <link rel="canonical" href="https://construction-project-01.netlify.app/" />
 
+    <!-- PWA / kolory motywu -->
     <meta name="theme-color" content="#0ea5e9" />
     <meta name="theme-color" content="#0ea5e9" media="(prefers-color-scheme: light)" />
     <meta name="theme-color" content="#0b1220" media="(prefers-color-scheme: dark)" />
     <meta name="color-scheme" content="light dark" />
 
+    <!-- Preload hero (AVIF/WEBP/JPG) -->
     <link
       rel="preload"
       as="image"
       type="image/avif"
       imagesrcset="assets/img/hero/hero-800-450.avif 800w, assets/img/hero/hero-1200-675.avif 1200w, assets/img/hero/hero-1600-900.avif 1600w, assets/img/hero/hero-2400-1350.avif 2400w, assets/img/hero/hero-3200-1800.avif 3200w"
-      imagesizes="100vw" />
+      imagesizes="100vw"
+      fetchpriority="high" />
     <link
       rel="preload"
       as="image"
@@ -34,6 +37,7 @@
       imagesrcset="assets/img/hero/hero-800-450.jpg 800w, assets/img/hero/hero-1200-675.jpg 1200w, assets/img/hero/hero-1600-900.jpg 1600w, assets/img/hero/hero-2400-1350.jpg 2400w, assets/img/hero/hero-3200-1800.jpg 3200w"
       imagesizes="100vw" />
 
+    <!-- Open Graph -->
     <meta property="og:type" content="website" />
     <meta property="og:site_name" content="KP_Code Portfolio" />
     <meta property="og:locale" content="pl_PL" />
@@ -46,6 +50,7 @@
     <meta property="og:image:alt" content="Ekipa remontowa przy pracy — logo w rogu (DEMO szablonu)" />
     <meta property="og:updated_time" content="2025-09-19T12:00:00+02:00" />
 
+    <!-- Twitter -->
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content="Demo — strona dla firmy remontowej (landing + oferta + wycena) | KP_Code" />
     <meta name="twitter:description" content="Demo szablonu strony dla firmy remontowej: landing, oferta, realizacje, opinie, FAQ i formularz wyceny. Projekt i kod: KP_Code." />
@@ -53,6 +58,7 @@
     <meta name="twitter:url" content="https://construction-project-01.netlify.app/" />
     <meta name="twitter:image:alt" content="Ekipa remontowa przy pracy — logo w rogu (DEMO szablonu)" />
 
+    <!-- JSON-LD -->
     <script type="application/ld+json">
       {
         "@context": "https://schema.org",
@@ -64,10 +70,8 @@
             "name": "KP_Code Portfolio — Demo",
             "description": "Demo szablonu strony dla firmy remontowej (landing + oferta + wycena).",
             "inLanguage": "pl-PL",
-            "publisher": {
-              "@type": "Person",
-              "name": "Kamil Król"
-            }
+            "publisher": { "@type": "Person", "name": "Kamil Król" },
+            "image": "https://construction-project-01.netlify.app/assets/img/og/og-image-1200x630.jpg"
           },
           {
             "@type": "CollectionPage",
@@ -76,6 +80,14 @@
             "name": "Demo — strona dla firmy remontowej (landing + oferta + wycena) | KP_Code",
             "isPartOf": { "@id": "https://construction-project-01.netlify.app/#website" },
             "inLanguage": "pl-PL",
+            "datePublished": "2025-09-19",
+            "dateModified": "2025-10-19",
+            "primaryImageOfPage": {
+              "@type": "ImageObject",
+              "url": "https://construction-project-01.netlify.app/assets/img/og/og-image-1200x630.jpg",
+              "width": 1200,
+              "height": 630
+            },
             "about": {
               "@type": "ItemList",
               "name": "Zakres usług (demo)",
@@ -108,6 +120,15 @@
               }
             ]
           }
+          /* Jeśli masz okruszki, dodaj:
+    ,{
+      "@type": "BreadcrumbList",
+      "@id": "https://construction-project-01.netlify.app/#breadcrumbs",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Strona główna", "item": "https://construction-project-01.netlify.app/" }
+      ]
+    }
+    */
         ]
       }
     </script>
@@ -123,7 +144,6 @@
         d.setAttribute("data-theme", t);
       } catch {}
     </script>
-
     <style>
       html.preload-theme *,
       html.preload-theme *::before,
@@ -131,30 +151,24 @@
         transition: none !important;
       }
     </style>
-
     <script>
       document.documentElement.classList.add("preload-theme");
       window.addEventListener("DOMContentLoaded", () => {
-        requestAnimationFrame(() => {
-          document.documentElement.classList.remove("preload-theme");
-        });
+        requestAnimationFrame(() => document.documentElement.classList.remove("preload-theme"));
       });
     </script>
 
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      rel="preload"
-      as="style"
-      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700&family=Poppins:wght@400;600;700&display=swap"
-      onload="this.onload=null;this.rel='stylesheet'" />
-    <noscript>
-      <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700&family=Poppins:wght@400;600;700&display=swap" />
-    </noscript>
+    <!-- Lokalne fonty (preload) -->
+    <link rel="preload" as="font" type="font/woff2" href="assets/fonts/poppins-v24-latin-regular.woff2" crossorigin />
+    <link rel="preload" as="font" type="font/woff2" href="assets/fonts/poppins-v24-latin-600.woff2" crossorigin />
+    <link rel="preload" as="font" type="font/woff2" href="assets/fonts/montserrat-v31-latin-700.woff2" crossorigin />
+    <link rel="preload" as="font" type="font/woff2" href="assets/fonts/montserrat-v31-latin-600.woff2" crossorigin />
 
+    <!-- Główny CSS -->
     <link rel="stylesheet" href="css/style.css" />
 
-    <link rel="icon" type="image/x-icon" href="assets/img/favicon/favicon.ico" />
+    <!-- Favicons / manifest (poprawione ścieżki) -->
+    <link rel="icon" href="assets/img/favicon/favicon.ico" sizes="any" />
     <link rel="icon" type="image/svg+xml" href="assets/img/favicon/favicon.svg" />
     <link rel="icon" type="image/png" sizes="96x96" href="assets/img/favicon/favicon-96x96.png" />
     <link rel="apple-touch-icon" sizes="180x180" href="assets/img/favicon/apple-touch-icon.png" />
@@ -224,7 +238,7 @@
     </header>
 
     <!-- HERO -->
-    <section id="strona-glowna" class="hero" role="region" aria-labelledby="hero-heading" aria-describedby="hero-lead">
+    <section id="strona-glowna" class="hero" aria-labelledby="hero-heading" aria-describedby="hero-lead">
       <div class="hero__media" aria-hidden="true">
         <div class="hero__bg-blur" aria-hidden="true"></div>
 
@@ -276,28 +290,30 @@
           <br />
           <span class="accent">Strona dla firmy remontowej/bud.</span>
         </h1>
-        <p class="lead" id="hero-lead">Profesjonalne remonty mieszkań, budowy, przebudowy i pełne wykończenia „pod klucz”. Darmowa wycena w 24–48 h.</p>
+
+        <p class="lead" id="hero-lead" data-reveal="up" data-reveal-delay="80">Profesjonalne remonty mieszkań, budowy, przebudowy i pełne wykończenia „pod klucz”. Darmowa wycena w 24–48 h.</p>
+
         <div class="hero-cta">
-          <a class="btn btn--ghost" href="#oferta">Sprawdź ofertę</a>
-          <a class="btn" href="tel:+48600700800">Wyceń inwestycję</a>
+          <a class="btn btn--ghost" href="#oferta" data-reveal="up" data-reveal-delay="160">Sprawdź ofertę</a>
+          <a class="btn" href="tel:+48600700800" data-reveal="up" data-reveal-delay="240">Wyceń inwestycję</a>
         </div>
       </div>
     </section>
 
     <!-- MAIN -->
-    <main id="main" role="main">
+    <main id="main">
       <!-- OFFER -->
-      <section id="oferta" class="block" role="region" aria-labelledby="oferta-heading" aria-describedby="oferta-lead">
+      <section id="oferta" class="block" aria-labelledby="oferta-heading" aria-describedby="oferta-lead">
         <div class="container">
           <header class="block-head">
-            <h2 id="oferta-heading">REMONTY I WYKOŃCZENIA</h2>
-            <p id="oferta-lead">Kompleksowe prace w mieszkaniach i domach — czysto, terminowo, z gwarancją.</p>
+            <h2 id="oferta-heading" data-reveal="up">REMONTY I WYKOŃCZENIA</h2>
+            <p id="oferta-lead" data-reveal="up" data-reveal-delay="80">Kompleksowe prace w mieszkaniach i domach — czysto, terminowo, z gwarancją.</p>
           </header>
 
           <div class="services-grid" id="oferta-grid">
             <div class="services-list" id="oferta-list">
               <!-- Offer card #1 -->
-              <article id="oferta-lazienki" class="card hover-card" aria-labelledby="h-lazienki" aria-describedby="d-lazienki">
+              <article id="oferta-lazienki" class="card hover-card" aria-labelledby="h-lazienki" aria-describedby="d-lazienki" data-reveal="up" data-reveal-delay="80">
                 <a href="#kontakt" aria-label="Zamów wycenę — Łazienki">
                   <picture>
                     <source
@@ -338,7 +354,7 @@
                 <p id="d-lazienki">Płytki wielkoformatowe, armatura, hydroizolacje, zabudowy i oświetlenie.</p>
               </article>
               <!-- Offer card #2 -->
-              <article id="oferta-malowanie" class="card hover-card" aria-labelledby="h-malowanie" aria-describedby="d-malowanie">
+              <article id="oferta-malowanie" class="card hover-card" aria-labelledby="h-malowanie" aria-describedby="d-malowanie" data-reveal="up" data-reveal-delay="160">
                 <a href="#kontakt" aria-label="Zamów wycenę — Malowanie i gładzie">
                   <picture>
                     <source
@@ -379,7 +395,7 @@
                 <p id="d-malowanie">Gładkie ściany, farby premium, precyzyjne odcięcia i szybkie terminy.</p>
               </article>
               <!-- Offer card #3 -->
-              <article id="oferta-kafelkowanie" class="card hover-card" aria-labelledby="h-kafelkowanie" aria-describedby="d-kafelkowanie">
+              <article id="oferta-kafelkowanie" class="card hover-card" aria-labelledby="h-kafelkowanie" aria-describedby="d-kafelkowanie" data-reveal="up" data-reveal-delay="240">
                 <a href="#kontakt" aria-label="Zamów wycenę — Kafelkowanie">
                   <picture>
                     <source
@@ -429,7 +445,7 @@
                 <p id="d-kafelkowanie">Tarasy, kuchnie, łazienki — równe fugi, poziomice laserowe i detale.</p>
               </article>
               <!-- Offer card #4 -->
-              <article id="oferta-elektryka" class="card hover-card" aria-labelledby="h-elektryka" aria-describedby="d-elektryka">
+              <article id="oferta-elektryka" class="card hover-card" aria-labelledby="h-elektryka" aria-describedby="d-elektryka" data-reveal="up" data-reveal-delay="320">
                 <a href="#kontakt" aria-label="Zamów wycenę — Elektryka">
                   <picture>
                     <source
@@ -479,7 +495,7 @@
                 <p id="d-elektryka">Przeróbki instalacji, białe montaże i próby szczelności.</p>
               </article>
               <!-- Offer card #5 -->
-              <article id="oferta-hydraulika" class="card hover-card" aria-labelledby="h-hydraulika" aria-describedby="d-hydraulika">
+              <article id="oferta-hydraulika" class="card hover-card" aria-labelledby="h-hydraulika" aria-describedby="d-hydraulika" data-reveal="up" data-reveal-delay="400">
                 <a href="#kontakt" aria-label="Zamów wycenę — Hydraulika">
                   <picture>
                     <source
@@ -529,7 +545,7 @@
                 <p id="d-hydraulika">Wszystkie prace hydrauliczne.</p>
               </article>
               <!-- Offer card #6 -->
-              <article id="oferta-kompleksowe" class="card hover-card" aria-labelledby="h-kompleksowe" aria-describedby="d-kompleksowe" role="listitem">
+              <article id="oferta-kompleksowe" class="card hover-card" aria-labelledby="h-kompleksowe" aria-describedby="d-kompleksowe" data-reveal="up" data-reveal-delay="480">
                 <a href="#kontakt" aria-label="Zamów wycenę — Remonty kompleksowe">
                   <picture>
                     <source
@@ -572,56 +588,56 @@
             </div>
           </div>
 
-          <div class="block-cta">
+          <div class="block-cta" data-reveal="up" data-reveal-delay="600">
             <a class="btn" href="#kontakt">Zamów wycenę</a>
           </div>
         </div>
       </section>
 
       <!-- LOGOS -->
-      <section id="realizacje" class="logos" role="region" aria-labelledby="logos-heading">
+      <section id="realizacje" class="logos" aria-labelledby="logos-heading">
         <div class="container">
-          <h2 id="logos-heading">Firmy, które nam zaufały</h2>
+          <h2 id="logos-heading" data-reveal="up" data-reveal-delay="80">Firmy, które nam zaufały</h2>
 
           <ul class="logos-grid" aria-label="Logotypy klientów">
             <!-- Logo #1 -->
-            <li class="logo">
+            <li class="logo" data-reveal="up" data-reveal-delay="100">
               <img class="logo-img" src="assets/img/partners-logos/partner-01-80x60.svg" alt="" aria-hidden="true" loading="lazy" decoding="async" />
             </li>
             <!-- Logo #2 -->
-            <li class="logo">
+            <li class="logo" data-reveal="down" data-reveal-delay="160">
               <img class="logo-img" src="assets/img/partners-logos/partner-02-80x60.svg" alt="" aria-hidden="true" loading="lazy" decoding="async" />
             </li>
             <!-- Logo #3 -->
-            <li class="logo">
+            <li class="logo" data-reveal="up" data-reveal-delay="220">
               <img class="logo-img" src="assets/img/partners-logos/partner-03-80x60.svg" alt="" aria-hidden="true" loading="lazy" decoding="async" />
             </li>
             <!-- Logo #4 -->
-            <li class="logo">
+            <li class="logo" data-reveal="down" data-reveal-delay="280">
               <img class="logo-img" src="assets/img/partners-logos/partner-04-80x60.svg" alt="" aria-hidden="true" loading="lazy" decoding="async" />
             </li>
             <!-- Logo #5 -->
-            <li class="logo">
+            <li class="logo" data-reveal="up" data-reveal-delay="340">
               <img class="logo-img" src="assets/img/partners-logos/partner-05-80x60.svg" alt="" aria-hidden="true" loading="lazy" decoding="async" />
             </li>
             <!-- Logo #6 -->
-            <li class="logo">
+            <li class="logo" data-reveal="down" data-reveal-delay="400">
               <img class="logo-img" src="assets/img/partners-logos/partner-06-80x60.svg" alt="" aria-hidden="true" loading="lazy" decoding="async" />
             </li>
           </ul>
 
-          <div class="center">
-            <a class="btn" href="#kontakt">Zostań naszym klientem</a>
+          <div class="center" data-reveal="up" data-reveal-delay="520">
+            <a class="btn" href="#kontakt">Formularz</a>
           </div>
         </div>
       </section>
 
       <!-- TESTIMONIALS -->
-      <section id="opinie" class="block testimonials" role="region" aria-labelledby="opinie-heading" aria-describedby="opinie-desc">
+      <section id="opinie" class="block testimonials" aria-labelledby="opinie-heading" aria-describedby="opinie-desc">
         <div class="container">
           <header class="block-head">
-            <h2 id="opinie-heading">Opinie klientów</h2>
-            <p id="opinie-desc" class="muted rating">
+            <h2 id="opinie-heading" data-reveal="up" data-reveal-delay="80">Opinie klientów</h2>
+            <p id="opinie-desc" class="muted rating" role="status" data-reveal="up" data-reveal-delay="120">
               <img src="assets/img/icons/google-40.svg" alt="" class="rating-icon" width="24" height="24" loading="lazy" decoding="async" />
               Średnia ocen 4.9/5 na podstawie 128 opinii
             </p>
@@ -629,7 +645,7 @@
 
           <ul class="testimonials-grid" aria-label="Opinie naszych klientów">
             <li>
-              <figure class="testimonial" aria-labelledby="op1-quote" aria-describedby="op1-author">
+              <figure class="testimonial" aria-labelledby="op1-quote" aria-describedby="op1-author" data-reveal="up" data-reveal-delay="160">
                 <blockquote id="op1-quote">
                   <p>Pełen profesjonalizm. Szybko i bardzo czysto.</p>
                 </blockquote>
@@ -641,7 +657,7 @@
             </li>
 
             <li>
-              <figure class="testimonial" aria-labelledby="op2-quote" aria-describedby="op2-author">
+              <figure class="testimonial" aria-labelledby="op2-quote" aria-describedby="op2-author" data-reveal="up" data-reveal-delay="240">
                 <blockquote id="op2-quote">
                   <p>Świetny kontakt i terminowość. Najlepsza jakość polecam!</p>
                 </blockquote>
@@ -653,7 +669,7 @@
             </li>
 
             <li>
-              <figure class="testimonial" aria-labelledby="op3-quote" aria-describedby="op3-author">
+              <figure class="testimonial" aria-labelledby="op3-quote" aria-describedby="op3-author" data-reveal="up" data-reveal-delay="360">
                 <blockquote id="op3-quote">
                   <p>Pełen profesjonalizm i współpraca. Najlepsze remonty ever!</p>
                 </blockquote>
@@ -668,45 +684,45 @@
       </section>
 
       <!-- FAQ -->
-      <section id="faq" class="block" role="region" aria-labelledby="faq-heading" aria-describedby="faq-desc">
+      <section id="faq" class="block" aria-labelledby="faq-heading" aria-describedby="faq-desc">
         <div class="container">
           <header class="block-head">
-            <h2 id="faq-heading">FAQ — najczęstsze pytania</h2>
-            <p id="faq-desc">Krótko i konkretnie — jak pracujemy i jak wyglądają wyceny.</p>
+            <h2 id="faq-heading" data-reveal="up" data-reveal-delay="80">FAQ — najczęstsze pytania</h2>
+            <p id="faq-desc" data-reveal="up" data-reveal-delay="120">Krótko i konkretnie — jak pracujemy i jak wyglądają wyceny.</p>
           </header>
 
           <ul class="faq-list">
             <li>
-              <details class="faq" id="faq-1">
+              <details class="faq" id="faq-1" data-reveal="up" data-reveal-delay="160">
                 <summary id="q-1" aria-controls="a-1">Ile trwa standardowy remont łazienki?</summary>
-                <div class="answer" id="a-1" role="region" aria-labelledby="q-1">
+                <div class="answer" id="a-1">
                   <p>Zazwyczaj 10–14 dni roboczych, zależnie od zakresu i dostaw materiałów.</p>
                 </div>
               </details>
             </li>
 
             <li>
-              <details class="faq" id="faq-2">
+              <details class="faq" id="faq-2" data-reveal="up" data-reveal-delay="240">
                 <summary id="q-2" aria-controls="a-2">Jak wygląda wycena?</summary>
-                <div class="answer" id="a-2" role="region" aria-labelledby="q-2">
+                <div class="answer" id="a-2">
                   <p>Przyjeżdżamy na pomiar, ustalamy zakres, wysyłamy ofertę w 24–48 h.</p>
                 </div>
               </details>
             </li>
 
             <li>
-              <details class="faq" id="faq-3">
+              <details class="faq" id="faq-3" data-reveal="up" data-reveal-delay="320">
                 <summary id="q-3" aria-controls="a-3">Czy sprzątacie po zakończeniu prac?</summary>
-                <div class="answer" id="a-3" role="region" aria-labelledby="q-3">
+                <div class="answer" id="a-3">
                   <p>Tak. Obejmuje to wyniesienie gruzu i podstawowe sprzątanie.</p>
                 </div>
               </details>
             </li>
 
             <li>
-              <details class="faq" id="faq-4">
+              <details class="faq" id="faq-4" data-reveal="up" data-reveal-delay="400">
                 <summary id="q-4" aria-controls="a-4">Na jakie prace dajecie gwarancję?</summary>
-                <div class="answer" id="a-4" role="region" aria-labelledby="q-4">
+                <div class="answer" id="a-4">
                   <p>Na wszystkie prace montażowe i wykończeniowe — standardowo 24 miesiące.</p>
                 </div>
               </details>
@@ -716,20 +732,20 @@
       </section>
 
       <!-- CONTACT -->
-      <section id="kontakt" class="cta" role="region" aria-labelledby="kontakt-heading" aria-describedby="kontakt-desc">
+      <section id="kontakt" class="cta" aria-labelledby="kontakt-heading" aria-describedby="kontakt-desc">
         <div class="container cta-wrap">
           <div class="cta-text">
-            <h2 id="kontakt-heading">Porozmawiajmy o Twoim remoncie</h2>
-            <p id="kontakt-desc">Skontaktuj się z nami — przygotujemy bezpłatną wycenę i doradzimy rozwiązania.</p>
+            <h2 id="kontakt-heading" data-reveal="up" data-reveal-delay="80">Porozmawiajmy o Twoim remoncie</h2>
+            <p id="kontakt-desc" data-reveal="up" data-reveal-delay="120">Skontaktuj się z nami — przygotujemy bezpłatną wycenę i doradzimy rozwiązania.</p>
 
             <ul class="contact-list" aria-label="Dane kontaktowe">
-              <li>
+              <li data-reveal="left" data-reveal-delay="180">
                 <a class="contact-item" href="tel:+48600700800" aria-label="Zadzwoń pod numer: +48 600 700 800">
                   <img src="assets/img/icons/tel-40.svg" alt="" class="icon" loading="lazy" decoding="async" />
                   <span>+48 600 700 800</span>
                 </a>
               </li>
-              <li>
+              <li data-reveal="left" data-reveal-delay="260">
                 <a class="contact-item" href="mailto:kontakt@twoja-firma.pl" aria-label="Napisz e-mail na adres: kontakt@twoja-firma.pl">
                   <img src="assets/img/icons/email-40.svg" alt="" class="icon" loading="lazy" decoding="async" />
                   <span>kontakt@twoja-firma.pl</span>
@@ -739,74 +755,39 @@
           </div>
 
           <!-- FORM -->
-          <form class="form" method="post" action="#" aria-labelledby="kontakt-heading" aria-describedby="privacy-note">
+
+          <form class="form" method="post" action="#" role="form" aria-labelledby="kontakt-heading" aria-describedby="privacy-note" data-reveal="right" data-reveal-delay="200">
             <div class="visually-hidden" aria-hidden="true">
               <label for="hp-website">Nie wypełniaj tego pola</label>
               <input id="hp-website" name="website" type="text" tabindex="-1" autocomplete="off" />
             </div>
 
-            <div class="form-row">
+            <div class="form-row" data-reveal="up" data-reveal-delay="240">
               <label for="f-name">Imię i nazwisko</label>
-              <input
-                id="f-name"
-                name="name"
-                type="text"
-                inputmode="text"
-                autocomplete="name"
-                autocapitalize="words"
-                minlength="2"
-                required
-                aria-describedby="name-hint name-error"
-                placeholder="Jan Kowalski" />
-              <small id="name-hint" class="visually-hidden">Wpisz co najmniej 2 znaki.</small>
-              <span id="name-error" class="visually-hidden" aria-live="polite"></span>
+              <input id="f-name" name="name" type="text" inputmode="text" autocomplete="name" autocapitalize="words" minlength="2" required placeholder="Jan Kowalski" />
             </div>
 
-            <div class="form-row">
+            <div class="form-row" data-reveal="up" data-reveal-delay="280">
               <label for="f-phone">Telefon</label>
-              <input
-                id="f-phone"
-                name="phone"
-                type="tel"
-                inputmode="tel"
-                autocomplete="tel-national"
-                required
-                placeholder="600 700 800 lub +48 600 700 800"
-                title="Wpisz 9 cyfr; dozwolone spacje/kreski; opcjonalnie +48"
-                pattern="^(?:\+?48)?[ \-]?(?:\d[ \-]?){9}$"
-                aria-describedby="phone-hint phone-error"
-                data-mask="pl-phone" />
-              <small id="phone-hint" class="visually-hidden">9 cyfr, dozwolone spacje lub kreski, opcjonalnie +48 na początku.</small>
-              <span id="phone-error" class="visually-hidden" aria-live="polite"></span>
+              <input id="f-phone" name="phone" type="tel" inputmode="tel" autocomplete="tel-national" required placeholder="600 700 800 lub +48 600 700 800" />
             </div>
 
-            <div class="form-row">
+            <div class="form-row" data-reveal="up" data-reveal-delay="320">
               <label for="f-msg">Opis prac</label>
-              <textarea
-                id="f-msg"
-                name="msg"
-                rows="4"
-                required
-                maxlength="1000"
-                placeholder="Krótko opisz zakres prac (np. remont łazienki 5 m², wymiana płytek i armatury)."
-                aria-describedby="msg-hint msg-error"></textarea>
-              <small id="msg-hint" class="visually-hidden">Maksymalnie 1000 znaków. Opisz w 1–3 zdaniach czego potrzebujesz.</small>
-              <span id="msg-error" class="visually-hidden" aria-live="polite"></span>
+              <textarea id="f-msg" name="msg" rows="4" required maxlength="1000" placeholder="Krótko opisz zakres prac..."></textarea>
             </div>
 
-            <div class="form-row">
+            <div class="form-row" data-reveal="up" data-reveal-delay="360">
               <label class="checkbox" for="f-consent">
-                <input id="f-consent" type="checkbox" name="consent" value="yes" required aria-describedby="consent-hint consent-error" />
+                <input id="f-consent" type="checkbox" name="consent" value="yes" required />
                 <span>Wyrażam zgodę na kontakt w celu przygotowania wyceny.</span>
               </label>
-              <small id="consent-hint" class="visually-hidden">Zaznacz to pole, abyśmy mogli się z Tobą skontaktować.</small>
-              <span id="consent-error" class="visually-hidden" aria-live="polite"></span>
             </div>
 
-            <button class="btn" type="submit">Wyślij wiadomość</button>
-            <p class="form-note" aria-live="polite"></p>
+            <button class="btn" type="submit" data-reveal="up" data-reveal-delay="420">Wyślij wiadomość</button>
+            <p class="form-note" aria-live="polite" data-reveal="up" data-reveal-delay="460"></p>
 
-            <p class="muted small" id="privacy-note">
+            <p class="muted small" id="privacy-note" data-reveal="up" data-reveal-delay="500">
               Wysyłając formularz akceptujesz naszą
               <a href="doc/polityka-prywatnosci.html">Politykę prywatności</a>
               .
@@ -817,12 +798,13 @@
     </main>
 
     <!-- FOOTER -->
-    <footer id="footer" class="site-footer" role="contentinfo" aria-labelledby="footer-heading">
+    <footer id="footer" class="site-footer" aria-labelledby="footer-heading">
       <div class="container">
         <h2 class="vh" id="footer-heading">Stopka serwisu</h2>
 
         <div class="ft-grid">
-          <div class="ft-col">
+          <!-- Column 1 -->
+          <div class="ft-col" data-reveal="up" data-reveal-delay="80">
             <a href="#top" class="brand-footer" aria-label="Strona główna">
               <picture>
                 <source srcset="assets/img/logo/logo-dark-512.svg" type="image/svg" />
@@ -848,10 +830,10 @@
               </li>
             </ul>
           </div>
-
+          <!-- Column 2 -->
           <nav class="ft-col" aria-labelledby="ft-nav-heading">
-            <h3 class="ft-h" id="ft-nav-heading">Nawigacja</h3>
-            <ul class="ft-links">
+            <h3 class="ft-h" id="ft-nav-heading" data-reveal="up" data-reveal-delay="160">Nawigacja</h3>
+            <ul class="ft-links" data-reveal="up" data-reveal-delay="160">
               <li><a href="#oferta">Oferta</a></li>
               <li><a href="#realizacje">Realizacje</a></li>
               <li><a href="#opinie">Opinie</a></li>
@@ -859,8 +841,8 @@
               <li><a href="#kontakt">Kontakt</a></li>
             </ul>
           </nav>
-
-          <nav class="ft-col" aria-labelledby="ft-docs-heading">
+          <!-- Column 3 -->
+          <nav class="ft-col" aria-labelledby="ft-docs-heading" data-reveal="up" data-reveal-delay="200">
             <h3 class="ft-h" id="ft-docs-heading">Dokumenty</h3>
             <ul class="ft-links">
               <li><a href="doc/polityka-prywatnosci.html">Polityka prywatności</a></li>
@@ -868,8 +850,8 @@
               <li><a href="doc/cookies.html">Pliki cookies</a></li>
             </ul>
           </nav>
-
-          <div class="ft-col">
+          <!-- Column 4 -->
+          <div class="ft-col" data-reveal="up" data-reveal-delay="260">
             <h3 class="ft-h">Znajdziesz nas tutaj:</h3>
 
             <div class="ft-map">
@@ -897,7 +879,7 @@
                 REGON: 123456789
               </p>
             </address>
-
+            <!-- Social Media -->
             <div class="ft-social" aria-label="Media społecznościowe">
               <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" aria-label="Facebook">
                 <img src="assets/img/icons/facebook.svg" alt="" width="20" height="20" loading="lazy" decoding="async" />
@@ -914,7 +896,7 @@
             </div>
           </div>
         </div>
-
+        <!-- Copyright -->
         <div class="ft-bottom">
           <p>
             ©

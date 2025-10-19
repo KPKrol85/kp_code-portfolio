@@ -1,28 +1,28 @@
 /* ======================================================================
-   Autor: KP_Code (Front-end)
-   Aktualizacja: 2025-09-25
+   Author: KP_Code (Front-end)
+   Updated: 2025-09-25
    ======================================================================
-   SCRIPT — Budownictwo / Remonty — globalny plik (PROD)
-   Struktura:
+   SCRIPT — Construction / Renovation — global JS file (PROD)
+   Structure:
    ======================================================================
-   ===== 00) WYSOKOŚĆ NAGŁÓWKA
-   ===== 01) NAWIGACJA — MOBILNE + „OFERTA”
-   ===== 02) SCROLLSPY — AKTYWNE LINKI
-   ===== 03) STOPKA — ROK
-   ===== 04) PRZEWIJANIE — DO GÓRY
-   ===== 05)
-   ===== 06) FORMULARZ — WALIDACJA + HONEYPOT
-   ===== 07) NAGŁÓWEK — STAN KURCZENIA
-   ===== 08) MOTYW — PRZEŁĄCZNIK
-   ===== 09) CTA — FALA (RIPPLE)
-   ===== 10) HERO — ROZMYCIE ULTRASZEROKIE
-   ===== 11) LIGHTBOX — PODGLĄD MINIATUREK
-   ===== 12) OFERTA — POZIOMY SCROLLER
-   ===== 13) PREFETCH — PODSTRONY OFERTY
-   ===== 14) STRONA GŁÓWNA — POMOCNIKI
+   ===== 00) HEADER HEIGHT — sync CSS var for header size
+   ===== 01) NAVIGATION — mobile menu + "Offer" dropdown
+   ===== 02) SCROLLSPY — active nav links on scroll
+   ===== 03) FOOTER YEAR — auto-update current year
+   ===== 04) SCROLL TO TOP — smooth scroll to page top
+   ===== 05) SCROLL REVEAL — fade-in elements on viewport enter
+   ===== 06) CONTACT FORM — validation + honeypot spam filter
+   ===== 07) HEADER SHRINK — compact header on scroll
+   ===== 08) THEME TOGGLE — dark/light mode switch
+   ===== 09) CTA RIPPLE — ripple wave animation for buttons
+   ===== 10) HERO BLUR — sync blurred background image
+   ===== 11) LIGHTBOX — preview offer thumbnails
+   ===== 12) OFFER SCROLLER — horizontal scroll for offer cards
+   ===== 13) PREFETCH — preload offer subpages on hover/focus
+   ===== 14) HOME HELPERS — misc helpers for main page
    ====================================================================== */
 
-/* ========== 00) WYSOKOŚĆ NAGŁÓWKA ========== */
+/* ========== 00) HEADER HEIGHT ========== */
 
 const utils = (() => {
   const docEl = document.documentElement;
@@ -84,7 +84,7 @@ const utils = (() => {
   return Object.freeze({ getHeaderH, refreshHeaderH, syncHeaderCssVar });
 })();
 
-/* ========== 01) NAWIGACJA — MOBILNE + „OFERTA” ========== */
+/* ========== 01) NAVIGATION ========== */
 
 function initNav() {
   if (initNav._abort) initNav._abort.abort();
@@ -286,7 +286,7 @@ function initNav() {
   }
 }
 
-/* ========== 02) SCROLLSPY — AKTYWNE LINKI ========== */
+/* ========== 02) SCROLLSPY ========== */
 
 function initScrollSpy() {
   if (initScrollSpy._abort) initScrollSpy._abort.abort();
@@ -475,7 +475,7 @@ function initScrollSpy() {
   compute();
 }
 
-/* ========== 03) STOPKA - ROK ========== */
+/* ========== 03) FOOTER YEAR ========== */
 
 function initFooterYear() {
   const el = document.getElementById("year");
@@ -493,7 +493,7 @@ function initFooterYear() {
   if (el.textContent !== yearNow) el.textContent = yearNow;
 }
 
-/* ========== 04) PRZEWIJANIE — DO GÓRY ========== */
+/* ========== 04) SCROLL TO TOP ========== */
 
 function initSmoothTop() {
   if (initSmoothTop._abort) initSmoothTop._abort.abort();
@@ -531,6 +531,59 @@ function initSmoothTop() {
     },
     { signal }
   );
+}
+
+/* ========== 05) SCROLL REVEAL ========== */
+
+function initScrollReveal() {
+  if (initScrollReveal._abort) initScrollReveal._abort.abort();
+  const ac = new AbortController();
+  const { signal } = ac;
+  initScrollReveal._abort = ac;
+
+  const prefersReduced = window.matchMedia?.("(prefers-reduced-motion: reduce)").matches;
+  const items = Array.from(document.querySelectorAll("[data-reveal]"));
+  if (!items.length) return;
+
+  if (prefersReduced) {
+    items.forEach((el) => el.classList.add("is-revealed"));
+    return;
+  }
+
+  const applyDelay = (el) => {
+    const ms = parseInt(el.getAttribute("data-reveal-delay") || "0", 10);
+    if (Number.isFinite(ms) && ms > 0) el.style.transitionDelay = `${ms}ms`;
+  };
+
+  const onceByDefault = true;
+
+ const io = new IntersectionObserver(
+   (entries) => {
+     entries.forEach((entry) => {
+       const el = entry.target;
+       const revealOnceAttr = el.getAttribute("data-reveal-once");
+       const revealOnce = revealOnceAttr == null ? true : revealOnceAttr !== "false";
+
+       if (entry.isIntersecting) {
+         if (!el.classList.contains("is-revealed")) {
+           applyDelay(el); // uwzględni ewentualny data-reveal-delay
+           requestAnimationFrame(() => el.classList.add("is-revealed"));
+         }
+         if (revealOnce) io.unobserve(el);
+       } else if (!revealOnce) {
+         el.classList.remove("is-revealed");
+       }
+     });
+   },
+   {
+     root: null,
+     rootMargin: "0px 0px -15% 0px", // było -35% → odpalamy wcześniej
+     threshold: 0.14, // było 0.30 → szybciej łapie widoczność
+   }
+ );
+
+  items.forEach((el) => io.observe(el));
+  window.addEventListener("pagehide", () => io.disconnect(), { once: true, signal });
 }
 
 /* ========== 06) FORMULARZ - WALIDACJA + HONEYPOT ========== */
@@ -1496,23 +1549,29 @@ function initHomeHelpers() {
   window.addEventListener("pagehide", () => ac.abort(), { once: true, signal });
 }
 
-/* ========== 99) BOOTSTRAP ========== */
+/* ================================================== */
+/* 99) BOOTSTRAP — INICJALIZACJA FUNKCJI              */
+/* ================================================== */
 
 (function boot() {
   const start = () => {
-    if (typeof initNav === "function") initNav();
-    if (typeof initHeaderShrink === "function") initHeaderShrink();
-    if (typeof initScrollSpy === "function") initScrollSpy();
-    if (typeof initFooterYear === "function") initFooterYear();
-    if (typeof initSmoothTop === "function") initSmoothTop();
-    if (typeof initThemeToggle === "function") initThemeToggle();
-    if (typeof initRipple === "function") initRipple();
-    if (typeof initHeroBlurSync === "function") initHeroBlurSync();
-    if (typeof initOfertaLightbox === "function") initOfertaLightbox();
-    if (typeof initOfferPrefetch === "function") initOfferPrefetch();
-    if (typeof initHomeHelpers === "function") initHomeHelpers();
-    if (typeof initContactForm === "function") initContactForm();
+    /*-00-*/ if (typeof utils?.syncHeaderCssVar === "function") utils.syncHeaderCssVar();
+    /*-01-*/ if (typeof initNav === "function") initNav();
+    /*-07-*/ if (typeof initHeaderShrink === "function") initHeaderShrink();
+    /*-02-*/ if (typeof initScrollSpy === "function") initScrollSpy();
+    /*-03-*/ if (typeof initFooterYear === "function") initFooterYear();
+    /*-04-*/ if (typeof initSmoothTop === "function") initSmoothTop();
+    /*-05-*/ if (typeof initScrollReveal === "function") initScrollReveal();
+    /*-08-*/ if (typeof initThemeToggle === "function") initThemeToggle();
+    /*-09-*/ if (typeof initRipple === "function") initRipple();
+    /*-10-*/ if (typeof initHeroBlurSync === "function") initHeroBlurSync();
+    /*-11-*/ if (typeof initOfertaLightbox === "function") initOfertaLightbox();
+    /*-12-*/ /*if (typeof initOfferScroller === "function") initOfferScroller();*/
+    /*-13-*/ if (typeof initOfferPrefetch === "function") initOfferPrefetch();
+    /*-14-*/ if (typeof initHomeHelpers === "function") initHomeHelpers();
+    /*-06-*/ if (typeof initContactForm === "function") initContactForm();
   };
+
   if (document.readyState === "loading") {
     document.addEventListener("DOMContentLoaded", start, { once: true });
   } else {
