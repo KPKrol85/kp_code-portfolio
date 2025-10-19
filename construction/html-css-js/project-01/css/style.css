@@ -1,9 +1,9 @@
 /* ======================================================================
-   Autor: KP_Code (Front-end)
-   Aktualizacja: 2025-09-25
+   AutHor: KP_Code (Front-end)
+   Updated: 2025-10-19
    ======================================================================
-   STYLE — Budownictwo / Remonty — globalny arkusz (PROD)
-   Struktura:
+   CSS STYLE — Construction / Renovation — global JS file (PROD)
+   Structure:
    ======================================================================
    ===== 00) GLOBAL VARIABLES
    ===== 01) BASE TYPOGRAPHY + LAYOUT
@@ -2750,12 +2750,12 @@ section#kontakt .form-note {
 
 /* ========== 12) SUBPAGES DOC ========== */
 
-.doc-content {
-  max-width: 70ch;
-  margin-inline: auto;
-  font-size: 1rem;
-  line-height: 1.75;
-  color: inherit;
+.doc-page .block {
+  padding-block: clamp(72px, 12vw, 136px) clamp(72px, 10vw, 120px);
+}
+
+.doc-page .block-head {
+  margin-bottom: var(--space-6);
 }
 
 .doc-page .block-head h1 {
@@ -2765,20 +2765,15 @@ section#kontakt .form-note {
 .doc-page .block-head .lead {
   max-width: 70ch;
   margin-inline: auto;
+  color: var(--c-muted);
 }
 
-.doc-content h2 {
-  font-size: 1.125rem;
-  font-weight: 700;
-  margin: var(--space-7) 0 var(--space-2);
-  scroll-margin-top: var(--header-h, 72px);
-}
-
-.doc-content h3 {
+.doc-content {
+  max-width: 70ch;
+  margin-inline: auto;
   font-size: 1rem;
-  font-weight: 700;
-  margin: var(--space-5) 0 var(--space-2);
-  scroll-margin-top: var(--header-h, 72px);
+  line-height: 1.75;
+  color: inherit;
 }
 
 .doc-content > * {
@@ -2793,10 +2788,34 @@ section#kontakt .form-note {
   margin: var(--space-3) 0;
 }
 
+.doc-content h2 {
+  font-size: 1.125rem;
+  font-weight: 700;
+  margin: var(--space-7) 0 var(--space-2);
+  scroll-margin-top: calc(var(--header-h, 72px) + 16px);
+  border-top: 1px solid var(--c-border);
+  padding-top: var(--space-4);
+}
+.doc-content h2:first-of-type {
+  border-top: 0;
+  padding-top: 0;
+}
+
+.doc-content h3 {
+  font-size: 1rem;
+  font-weight: 700;
+  margin: var(--space-5) 0 var(--space-2);
+  scroll-margin-top: calc(var(--header-h, 72px) + 16px);
+}
+
 .doc-content strong {
   font-weight: 700;
 }
 
+.doc-content p > small {
+  color: var(--c-muted);
+  display: inline-block;
+}
 .doc-content ul,
 .doc-content ol {
   padding-inline-start: var(--space-5);
@@ -2828,17 +2847,79 @@ section#kontakt .form-note {
   text-decoration-thickness: 2px;
 }
 
+.doc-toc {
+  max-width: 70ch;
+  margin: var(--space-4) auto var(--space-6);
+}
+
+.doc-toc ul {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.25rem 1.25rem;
+  padding-inline-start: var(--space-5);
+}
+
+.doc-toc a {
+  text-decoration: none;
+}
+
+.doc-toc a:focus-visible {
+  outline: 2px solid var(--ring);
+  outline-offset: 3px;
+}
+
+/* ----- MQ max width 640px ----- */
+@media (max-width: 640px) {
+  .doc-page .block {
+    padding-block: clamp(56px, 12vw, 88px) clamp(56px, 12vw, 96px);
+  }
+  .doc-content {
+    max-width: 100%;
+  }
+  .doc-toc ul {
+    grid-template-columns: 1fr;
+  }
+}
+
 /* ----- MQ hover: hover ----- */
 @media (hover: hover) {
   .doc-content a:hover {
     opacity: 0.85;
+    text-decoration-thickness: 2px;
   }
 }
 
-/* ----- MQ max width 480px ----- */
-@media (max-width: 480px) {
+/* ----- MQ print ----- */
+@media print {
+  .site-header,
+  .site-footer,
+  .doc-toc,
+  .breadcrumb,
+  .nav,
+  .header-actions {
+    display: none !important;
+  }
+  .block {
+    padding: 0 !important;
+  }
   .doc-content {
     max-width: 100%;
+    font-size: 12pt;
+    line-height: 1.7;
+  }
+  .doc-content a {
+    text-decoration: none;
+  }
+  h1 {
+    font-size: 20pt;
+    margin-bottom: 0.5cm;
+  }
+  h2 {
+    font-size: 14pt;
+    page-break-after: avoid;
+  }
+  h3 {
+    font-size: 12pt;
   }
 }
 
@@ -2980,14 +3061,12 @@ section#kontakt .form-note {
     opacity: 0;
     transform: translate3d(0, var(--sr-distance), 0);
   }
-
   .card:not([data-reveal]),
   .testimonial:not([data-reveal]) {
     animation: rise 0.5s ease forwards;
     opacity: 0;
     transform: translateY(8px);
   }
-
   .card:not([data-reveal]):nth-child(2) {
     animation-delay: 0.06s;
   }
@@ -2997,14 +3076,12 @@ section#kontakt .form-note {
   .card:not([data-reveal]):nth-child(4) {
     animation-delay: 0.18s;
   }
-
   .testimonial:not([data-reveal]):nth-child(2) {
     animation-delay: 0.06s;
   }
   .testimonial:not([data-reveal]):nth-child(3) {
     animation-delay: 0.12s;
   }
-
   @keyframes rise {
     to {
       opacity: 1;
@@ -3027,10 +3104,104 @@ section#kontakt .form-note {
     transform: rotate(360deg);
   }
 }
-/* Fallback: jeśli ktoś NIE doda data-reveal na testimonial, ma być widoczny */
+
 .testimonial:not([data-reveal]) {
   opacity: 1;
   transform: none;
+}
+
+/* ----- Cookie Banner (DEMO) ----- */
+.cc-banner {
+  position: fixed;
+  inset: auto 0 16px 0;
+  z-index: 1200;
+  display: grid;
+  place-items: center;
+  padding: 0 var(--space-3);
+}
+
+.cc-inner {
+  width: min(920px, calc(100% - var(--space-4)));
+  background: color-mix(in oklab, var(--c-surface), white 6%);
+  color: var(--c-ink);
+  border: 1px solid var(--c-border);
+  border-radius: 14px;
+  box-shadow: 0 10px 30px rgba(2, 6, 23, 0.12);
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-3);
+  padding: var(--space-3) var(--space-4);
+}
+
+[data-theme="dark"] .cc-inner {
+  background: color-mix(in oklab, var(--c-surface), black 4%);
+}
+
+.cc-text {
+  margin: 0;
+  flex: 1 1 520px;
+}
+
+.cc-text a {
+  text-decoration: underline;
+  text-underline-offset: 0.15em;
+}
+
+.cc-actions {
+  display: inline-flex;
+  gap: var(--space-2);
+  align-items: center;
+}
+
+.cc-banner .btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 40px;
+  padding: 0 0.9rem;
+  border-radius: 999px;
+  border: 1px solid transparent;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.cc-banner .btn-accept {
+  background: var(--c-accent);
+  color: var(--btn-contrast, #0f172a);
+}
+
+.cc-banner .btn-more {
+  background: transparent;
+  color: inherit;
+  border-color: var(--c-border);
+}
+
+.cc-banner[hidden] {
+  display: none !important;
+}
+
+/* ----- MQ hover: hover ----- */
+@media (hover: hover) {
+  .cc-banner .btn:hover {
+    filter: contrast(1.05);
+  }
+}
+.cc-banner .btn:focus-visible {
+  outline: 3px solid var(--ring);
+  outline-offset: 3px;
+}
+
+/* ----- MQ max-width: 640px ----- */
+@media (max-width: 640px) {
+  .cc-inner {
+    gap: var(--space-2);
+    padding: var(--space-3);
+  }
+  .cc-actions {
+    width: 100%;
+    justify-content: flex-start;
+  }
 }
 
 /* ========== 14) LIGHTBOX =========== */

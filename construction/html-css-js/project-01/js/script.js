@@ -1,6 +1,6 @@
 /* ======================================================================
    Author: KP_Code (Front-end)
-   Updated: 2025-09-25
+   Updated: 2025-10-19
    ======================================================================
    SCRIPT — Construction / Renovation — global JS file (PROD)
    Structure:
@@ -557,36 +557,36 @@ function initScrollReveal() {
 
   const onceByDefault = true;
 
- const io = new IntersectionObserver(
-   (entries) => {
-     entries.forEach((entry) => {
-       const el = entry.target;
-       const revealOnceAttr = el.getAttribute("data-reveal-once");
-       const revealOnce = revealOnceAttr == null ? true : revealOnceAttr !== "false";
+  const io = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        const el = entry.target;
+        const revealOnceAttr = el.getAttribute("data-reveal-once");
+        const revealOnce = revealOnceAttr == null ? true : revealOnceAttr !== "false";
 
-       if (entry.isIntersecting) {
-         if (!el.classList.contains("is-revealed")) {
-           applyDelay(el); // uwzględni ewentualny data-reveal-delay
-           requestAnimationFrame(() => el.classList.add("is-revealed"));
-         }
-         if (revealOnce) io.unobserve(el);
-       } else if (!revealOnce) {
-         el.classList.remove("is-revealed");
-       }
-     });
-   },
-   {
-     root: null,
-     rootMargin: "0px 0px -15% 0px", // było -35% → odpalamy wcześniej
-     threshold: 0.14, // było 0.30 → szybciej łapie widoczność
-   }
- );
+        if (entry.isIntersecting) {
+          if (!el.classList.contains("is-revealed")) {
+            applyDelay(el); // uwzględni ewentualny data-reveal-delay
+            requestAnimationFrame(() => el.classList.add("is-revealed"));
+          }
+          if (revealOnce) io.unobserve(el);
+        } else if (!revealOnce) {
+          el.classList.remove("is-revealed");
+        }
+      });
+    },
+    {
+      root: null,
+      rootMargin: "0px 0px -15% 0px", // było -35% → odpalamy wcześniej
+      threshold: 0.14, // było 0.30 → szybciej łapie widoczność
+    }
+  );
 
   items.forEach((el) => io.observe(el));
   window.addEventListener("pagehide", () => io.disconnect(), { once: true, signal });
 }
 
-/* ========== 06) FORMULARZ - WALIDACJA + HONEYPOT ========== */
+/* ========== 06) CONTACT FORM ========== */
 
 function initContactForm() {
   if (initContactForm._abort) initContactForm._abort.abort();
@@ -821,7 +821,7 @@ function initContactForm() {
   );
 }
 
-/* ========== 07) NAGŁÓWEK — STAN KURCZENIA ========== */
+/* ========== 07) HEADER SHRINK ========== */
 
 function initHeaderShrink() {
   if (initHeaderShrink._abort) initHeaderShrink._abort.abort();
@@ -901,7 +901,7 @@ function initHeaderShrink() {
   onScroll();
 }
 
-/* ========== 08) MOTYW - DARK/LIGHT THEME ========== */
+/* ========== 08) THEME TOGGLE ========== */
 
 function initThemeToggle() {
   if (initThemeToggle._abort) initThemeToggle._abort.abort();
@@ -976,7 +976,7 @@ function initThemeToggle() {
   };
 }
 
-/* ========== 09) CTA - FALA (RIPPLE) ========== */
+/* ========== 09) CTA RIPPLE ========== */
 
 function initRipple() {
   if (initRipple._abort) initRipple._abort.abort();
@@ -1062,7 +1062,7 @@ function initRipple() {
   }
 }
 
-/* ========== 10) HERO - ROZMYCIE ULTRA SZEROKIE ========== */
+/* ========== 10) HERO BLUR ========== */
 
 function initHeroBlurSync() {
   if (initHeroBlurSync._abort) initHeroBlurSync._abort.abort();
@@ -1156,7 +1156,7 @@ function initHeroBlurSync() {
   syncNextFrame();
 }
 
-/* ========== 11) LIGHTBOX - PODGLĄD MINIATUREK ========== */
+/* ========== 11) LIGHTBOX ========== */
 
 function initOfertaLightbox() {
   if (initOfertaLightbox._abort) initOfertaLightbox._abort.abort();
@@ -1402,9 +1402,9 @@ function initOfertaLightbox() {
   window.addEventListener("pagehide", () => ac.abort(), { once: true, signal });
 }
 
-/* ========== 12) ========== */
+/* ========== 12) OFFER SCROLLER ========== */
 
-/* ========== 13) PREFETCH — PODSTRONY OFERTY ========== */
+/* ========== 13) PREFETCH ========== */
 
 function initOfferPrefetch() {
   if (initOfferPrefetch._abort) initOfferPrefetch._abort.abort();
@@ -1477,7 +1477,7 @@ function initOfferPrefetch() {
   window.addEventListener("pagehide", () => ac.abort(), { once: true, signal });
 }
 
-/* ========== 14) STRONA GŁÓWNA — POMOCNIKI ========== */
+/* ========== 14) HOME HELPERS ========== */
 
 function initHomeHelpers() {
   if (initHomeHelpers._abort) initHomeHelpers._abort.abort();
@@ -1549,6 +1549,31 @@ function initHomeHelpers() {
   window.addEventListener("pagehide", () => ac.abort(), { once: true, signal });
 }
 
+/* ========== 15) COOKIE BANNER (Demo) ========== */
+
+function initCookieBanner() {
+  try {
+    var KEY = "cookies-consent-v1";
+    var banner = document.getElementById("cookie-banner");
+    if (!banner || localStorage.getItem(KEY) === "accepted") return;
+    banner.hidden = false;
+
+    var acceptBtn = document.getElementById("cc-accept");
+    if (acceptBtn)
+      acceptBtn.addEventListener("click", function () {
+        localStorage.setItem(KEY, "accepted");
+        banner.hidden = true;
+      });
+
+    banner.addEventListener("keydown", function (e) {
+      if (e.key === "Escape") {
+        localStorage.setItem(KEY, "accepted");
+        banner.hidden = true;
+      }
+    });
+  } catch (e) {}
+}
+
 /* ================================================== */
 /* 99) BOOTSTRAP — INICJALIZACJA FUNKCJI              */
 /* ================================================== */
@@ -1570,6 +1595,7 @@ function initHomeHelpers() {
     /*-13-*/ if (typeof initOfferPrefetch === "function") initOfferPrefetch();
     /*-14-*/ if (typeof initHomeHelpers === "function") initHomeHelpers();
     /*-06-*/ if (typeof initContactForm === "function") initContactForm();
+    /*-15-*/ if (typeof initCookieBanner === "function") initCookieBanner();
   };
 
   if (document.readyState === "loading") {
