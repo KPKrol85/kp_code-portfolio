@@ -1866,6 +1866,9 @@ a.brand:focus-visible {
 .cta {
   background: var(--brand-grad);
   color: #fff;
+  border-top-left-radius: 16px;
+  border-top-right-radius: 16px;
+  overflow: clip;
 }
 
 .cta h2 {
@@ -2561,6 +2564,7 @@ section#kontakt .form-note {
 
 /* ========== 11) SUBPAGES ========== */
 
+/* ----- Header ----- */
 .subpage-header {
   padding-block: clamp(3rem, 6vw, 5rem);
 }
@@ -2580,6 +2584,15 @@ section#kontakt .form-note {
   margin-bottom: 0;
 }
 
+.subpage-header .block-cta {
+  display: flex;
+  justify-content: center;
+  gap: var(--space-4);
+  flex-wrap: wrap;
+  margin-top: var(--space-4);
+}
+
+/* ----- Cards ----- */
 .page-sub .cards {
   display: grid;
   gap: var(--space-4-5, 18px);
@@ -2599,7 +2612,7 @@ section#kontakt .form-note {
   border: 1px solid var(--c-border);
 }
 
-.page-sub .cards > .card h3 {
+.page-sub .cards > .card h2 {
   margin: 0 0 0.45rem;
   font-size: 1.12rem;
 }
@@ -2626,19 +2639,63 @@ section#kontakt .form-note {
   z-index: 10;
 }
 
-.subpage-header .block-cta {
-  display: flex;
-  justify-content: center;
-  gap: var(--space-4);
-  flex-wrap: wrap;
-  margin-top: var(--space-4);
+/* ----- Gallery ----- */
+.page-sub .gallery {
+  padding-block: clamp(3rem, 6vw, 5rem);
+  margin-bottom: clamp(2rem, 4vw, 3rem);
 }
 
+.page-sub .gallery .block-head {
+  text-align: center;
+  margin-bottom: var(--space-8);
+}
+
+.page-sub .gallery .block-head .lead {
+  max-width: 65ch;
+  margin-inline: auto;
+  margin-top: 0.25rem;
+  color: var(--c-muted);
+}
+
+.page-sub .gallery-grid {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: var(--space-5);
+  grid-template-columns: 1fr; /* mobile-first */
+}
+
+.page-sub .gallery-item {
+  display: block;
+  position: relative;
+  overflow: hidden;
+  border-radius: 12px;
+  background: var(--c-surface);
+  border: 1px solid var(--c-border);
+  box-shadow: 0 8px 22px rgba(0, 0, 0, 0.08);
+  transition:
+    transform 0.25s ease,
+    box-shadow 0.25s ease,
+    border-color 0.25s ease;
+}
+
+.page-sub .gallery-item img {
+  width: 100%;
+  height: auto;
+  display: block;
+  object-fit: cover;
+  aspect-ratio: 4 / 3;
+  transform: translateZ(0);
+  transition: transform 0.35s ease;
+}
+
+/* ----- FAQ ----- */
 .page-sub .faq-list {
+  display: grid;
   list-style: none;
   padding: 0;
   margin: 0;
-  display: grid;
   gap: var(--space-3);
 }
 
@@ -2696,6 +2753,51 @@ section#kontakt .form-note {
   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
 }
 
+.page-sub .faq[data-reveal] {
+  transition:
+    opacity var(--sr-duration) var(--sr-ease),
+    transform var(--sr-duration) var(--sr-ease),
+    border-color 0.2s ease,
+    background-color 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+/* ----- CTA ----- */
+.page-sub .cta {
+  margin-top: clamp(var(--space-8), 6vw, var(--space-12));
+  padding-block: clamp(56px, 8vw, 112px);
+  border-top-left-radius: 16px;
+  border-top-right-radius: 16px;
+  overflow: clip;
+}
+
+.page-sub .cta .block-head {
+  text-align: center;
+  margin-bottom: var(--space-5);
+}
+
+.page-sub .cta .block-head h2 {
+  margin: 0 0 var(--space-2);
+  padding-bottom: var(--space-3);
+  line-height: 1.2;
+  scroll-margin-top: calc(var(--header-h, 72px) + 16px);
+}
+
+.page-sub .cta .block-head .lead {
+  max-width: 62ch;
+  margin-inline: auto;
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.page-sub .cta .block-cta {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: var(--space-3);
+  margin-top: var(--space-4);
+}
+
+/* ----- Dark Theme Overrides ----- */
 :root[data-theme="dark"] .page-sub .cards > .hover-card {
   background: rgba(255, 255, 255, 0.03);
 }
@@ -2718,21 +2820,66 @@ section#kontakt .form-note {
   box-shadow: 0 14px 32px rgba(0, 0, 0, 0.55);
 }
 
-/* ----- MQ min width 768px ----- */
+:root[data-theme="dark"] .page-sub .gallery-item {
+  background: rgba(255, 255, 255, 0.03);
+  border-color: rgba(255, 255, 255, 0.12);
+}
+
+:root[data-theme="dark"] .page-sub .gallery-item:hover,
+:root[data-theme="dark"] .page-sub .gallery-item:focus-visible {
+  border-color: rgba(255, 255, 255, 0.22);
+  box-shadow: 0 14px 30px rgba(0, 0, 0, 0.6);
+}
+
+/* ----- MQ: mobile tweaks ----- */
+@media (max-width: 640px) {
+  .page-sub .cta {
+    margin-top: var(--space-7);
+    padding-block: clamp(44px, 10vw, 72px);
+  }
+  .page-sub .cta .block-head {
+    margin-bottom: var(--space-4);
+  }
+}
+
+/* ----- MQ: columns ----- */
+@media (min-width: 640px) {
+  .page-sub .gallery-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
 @media (min-width: 768px) {
   .page-sub .cards {
     gap: var(--space-5);
   }
 }
 
-/* ----- MQ min width 1024px ----- */
+@media (min-width: 980px) {
+  .page-sub .gallery-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
 @media (min-width: 1024px) {
   .page-sub .cards {
     grid-template-columns: 1fr 1fr;
   }
 }
 
-/* ----- MQ prefers reduced motion ----- */
+/* ----- MQ: hover ----- */
+@media (hover: hover) {
+  .page-sub .gallery-item:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 12px 32px rgba(0, 0, 0, 0.14);
+    border-color: var(--c-border-strong);
+  }
+  .page-sub .gallery-item:hover img {
+    transform: scale(1.03);
+  }
+}
+
+/* ----- MQ: reduced motion ----- */
 @media (prefers-reduced-motion: reduce) {
   .page-sub .cards > .hover-card {
     transition: box-shadow 0.2s ease;
@@ -3110,6 +3257,13 @@ section#kontakt .form-note {
   transform: none;
 }
 
+/* FAQ na podstronach: reveal na LI, a nie na DETALS */
+.page-sub .faq-list li[data-reveal] {
+  transition:
+    opacity var(--sr-duration) var(--sr-ease),
+    transform var(--sr-duration) var(--sr-ease);
+}
+
 /* ----- Cookie Banner (DEMO) ----- */
 .cc-banner {
   position: fixed;
@@ -3255,6 +3409,7 @@ section#kontakt .form-note {
   -webkit-user-drag: none;
 }
 
+/* ----- Buttons (Close / Prev / Next) ----- */
 .lb-btn {
   position: fixed;
   z-index: 2002;
@@ -3274,6 +3429,12 @@ section#kontakt .form-note {
     opacity 0.15s ease;
 }
 
+.lb-btn svg {
+  width: 22px;
+  height: 22px;
+  fill: currentColor;
+}
+
 .lb-btn:hover {
   background: rgba(255, 255, 255, 0.14);
 }
@@ -3287,6 +3448,7 @@ section#kontakt .form-note {
   outline-offset: 2px;
 }
 
+/* ----- Close button ----- */
 .lb-btn.lb-close {
   top: 24px;
   right: 24px;
@@ -3297,11 +3459,28 @@ section#kontakt .form-note {
   display: grid;
 }
 
+/* ----- Prev / Next buttons ----- */
 .lb-btn.lb-prev,
 .lb-btn.lb-next {
+  top: 50%;
+  transform: translateY(-50%);
   display: none;
 }
 
+.lb-btn.lb-prev {
+  left: 24px;
+}
+
+.lb-btn.lb-next {
+  right: 24px;
+}
+
+.lb-btn.lb-prev.is-open,
+.lb-btn.lb-next.is-open {
+  display: grid;
+}
+
+/* ----- Disable scroll when open ----- */
 html.lb-no-scroll,
 body.lb-no-scroll {
   overflow: hidden;

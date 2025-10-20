@@ -1164,7 +1164,9 @@ function initOfertaLightbox() {
   const { signal } = ac;
   initOfertaLightbox._abort = ac;
 
-  const thumbs = Array.from(document.querySelectorAll("#oferta .card picture img"));
+  // ✔︎ Index: #oferta .card picture img
+  // ✔︎ Subpages: .gallery .gallery-item picture img
+  const thumbs = Array.from(document.querySelectorAll("#oferta .card picture img, .gallery .gallery-item picture img"));
   if (!thumbs.length) return;
 
   const $ = (t) => document.createElement(t);
@@ -1278,9 +1280,15 @@ function initOfertaLightbox() {
 
   const setOpen = (open) => {
     isOpen = open;
+
     backdrop.classList.toggle("is-open", open);
     wrap.classList.toggle("is-open", open);
     btnClose.classList.toggle("is-open", open);
+
+    // ⬅️ KLUCZ: klasa .is-open również na strzałkach
+    btnPrev.classList.toggle("is-open", open);
+    btnNext.classList.toggle("is-open", open);
+
     html.classList.toggle("lb-no-scroll", open);
     wrap.setAttribute("aria-hidden", open ? "false" : "true");
 
@@ -1292,15 +1300,27 @@ function initOfertaLightbox() {
     if (open) {
       lastFocus = document.activeElement;
       applyImage();
+
       const multi = thumbs.length > 1;
-      btnPrev.style.display = multi ? "" : "none";
-      btnNext.style.display = multi ? "" : "none";
+
+      // ⬅️ KLUCZ: wymuś widok strzałek inline (CSS ma domyślnie display:none)
+      btnPrev.style.display = multi ? "grid" : "none";
+      btnNext.style.display = multi ? "grid" : "none";
+
       (btnClose || wrap).focus({ preventScroll: true });
     } else {
       img.src = "";
       img.alt = "";
+
+      // schowaj strzałki po zamknięciu
+      btnPrev.style.display = "none";
+      btnNext.style.display = "none";
+
       lastFocus?.focus?.({ preventScroll: true });
       lastFocus = null;
+
+      // wyjście z fullscreen jeśli otwarte
+      if (document.fullscreenElement) document.exitFullscreen?.();
     }
   };
 
@@ -1315,6 +1335,7 @@ function initOfertaLightbox() {
     applyImage();
   };
 
+  // Aktywacja miniaturek
   thumbs.forEach((el, i) => {
     el.setAttribute("tabindex", "0");
     el.setAttribute("role", "button");
@@ -1343,6 +1364,7 @@ function initOfertaLightbox() {
     );
   });
 
+  // Sterowanie
   btnClose?.addEventListener("click", () => setOpen(false), { signal });
   btnPrev?.addEventListener("click", prev, { signal });
   btnNext?.addEventListener("click", next, { signal });
@@ -1372,6 +1394,7 @@ function initOfertaLightbox() {
     { signal }
   );
 
+  // Gesty (swipe)
   let sx = 0,
     sy = 0,
     moved = false;
@@ -1399,6 +1422,46 @@ function initOfertaLightbox() {
   (wrap.querySelector(".lb-viewport") || wrap).addEventListener("touchmove", onMove, { passive: true, signal });
   (wrap.querySelector(".lb-viewport") || wrap).addEventListener("touchend", onEnd, { passive: true, signal });
 
+  // ===== Fullscreen: double click / double tap =====
+  const viewportEl = wrap.querySelector(".lb-viewport") || wrap;
+  let lastTap = 0;
+
+  const toggleFs = () => {
+    const target = img || viewportEl;
+    if (!target) return;
+    if (!document.fullscreenElement) {
+      (target.requestFullscreen || target.webkitRequestFullscreen || target.msRequestFullscreen)?.call(target);
+    } else {
+      document.exitFullscreen?.();
+    }
+  };
+
+  // Desktop dblclick
+  viewportEl.addEventListener(
+    "dblclick",
+    (e) => {
+      if (!isOpen) return;
+      toggleFs();
+    },
+    { signal }
+  );
+
+  // Mobile double-tap
+  viewportEl.addEventListener(
+    "touchend",
+    (e) => {
+      if (!isOpen) return;
+      const now = Date.now();
+      if (now - lastTap < 350) {
+        e.preventDefault();
+        toggleFs();
+      }
+      lastTap = now;
+    },
+    { passive: true, signal }
+  );
+
+  // Cleanup
   window.addEventListener("pagehide", () => ac.abort(), { once: true, signal });
 }
 

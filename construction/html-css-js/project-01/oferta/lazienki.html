@@ -193,6 +193,7 @@
                 <li><a href="kafelkowanie.html">Kafelkowanie</a></li>
                 <li><a href="elektryka.html">Elektryka</a></li>
                 <li><a href="hydraulika.html">Hydraulika</a></li>
+                <li><a href="remonty.html">Remonty</a></li>
               </ul>
             </li>
 
@@ -224,52 +225,333 @@
       <section class="block subpage-header" id="lazienki" role="region" aria-labelledby="lazienki-heading" aria-describedby="lazienki-desc" tabindex="-1">
         <div class="container">
           <header class="block-head">
-            <h1 id="lazienki-heading">Łazienki — remonty i wykończenia</h1>
-            <p id="lazienki-desc" class="lead">Kompleksowe prace: projekt, instalacje, hydroizolacja, płytki i biały montaż. Czysto, terminowo, z gwarancją.</p>
+            <h1 id="lazienki-heading" data-reveal="up" data-reveal-delay="80">Łazienki — remonty i wykończenia</h1>
+            <p id="lazienki-desc" class="lead" data-reveal="up" data-reveal-delay="160">
+              Kompleksowe prace: projekt, instalacje, hydroizolacja, płytki i biały montaż. Czysto, terminowo, z gwarancją.
+            </p>
           </header>
 
           <div class="cards">
-            <article class="card hover-card" id="hydroizolacja">
-              <h3>Hydroizolacja</h3>
+            <!-- Card 1 -->
+            <article class="card hover-card" id="hydroizolacja" data-reveal="up" data-reveal-delay="160">
+              <h2>Hydroizolacja</h2>
               <p>Folie w płynie, taśmy i narożniki — pełna szczelność stref mokrych (prysznic, wanna).</p>
             </article>
-
-            <article class="card hover-card" id="ukladanie-plytek">
-              <h3>Układanie płytek</h3>
+            <!-- Card 2 -->
+            <article class="card hover-card" id="ukladanie-plytek" data-reveal="up" data-reveal-delay="240">
+              <h2>Układanie płytek</h2>
               <p>Gres, lastryko, mozaiki. Cięcia pod 45°, listwy dekoracyjne, równe fugi i poziomy.</p>
             </article>
-
-            <article class="card hover-card" id="bialy-montaz">
-              <h3>Biały montaż</h3>
+            <!-- Card 3 -->
+            <article class="card hover-card" id="bialy-montaz" data-reveal="up" data-reveal-delay="320">
+              <h2>Biały montaż</h2>
               <p>WC podtynkowe, umywalki, baterie, odwodnienia liniowe, kabiny i akcesoria.</p>
             </article>
-
-            <article class="card hover-card" id="instalacje">
-              <h3>Instalacje</h3>
+            <!-- Card 4 -->
+            <article class="card hover-card" id="instalacje" data-reveal="up" data-reveal-delay="400">
+              <h2>Instalacje</h2>
               <p>Przeróbki wod-kan i elektryczne zgodnie z projektem i normami.</p>
             </article>
           </div>
 
-          <div class="block-cta">
+          <div class="block-cta" data-reveal="scale" data-reveal-delay="480">
             <a class="btn" href="../index.html?usluga=Łazienki#kontakt" aria-label="Przejdź do formularza wyceny — Łazienki">Wycena</a>
 
             <a class="btn btn--ghost" href="#" aria-label="Zobacz galerię realizacji łazienek">Galeria realizacji</a>
           </div>
         </div>
       </section>
-      <!-- FAQ -->
-      <section id="faq" class="block" role="region" aria-labelledby="faq-heading" aria-describedby="faq-desc">
+
+      <!-- GALERIA -->
+      <section class="block gallery" id="galeria" aria-labelledby="galeria-heading">
         <div class="container">
           <header class="block-head">
-            <h2 id="faq-heading">FAQ — najczęstsze pytania</h2>
-            <p id="faq-desc" class="lead">Krótko i konkretnie — wszystko, co warto wiedzieć przy remoncie łazienki.</p>
+            <h2 id="galeria-heading" data-reveal="up" data-reveal-delay="80">Galeria realizacji</h2>
+            <p class="lead" data-reveal="up" data-reveal-delay="120">Kilka ujęć z ostatnich prac — więcej na życzenie.</p>
+          </header>
+
+          <ul class="gallery-grid">
+            <!-- 1 -->
+            <li data-reveal="up" data-reveal-delay="160">
+              <a class="gallery-item" href="../assets/img/gallery/bathr-01-2048x1536.jpg" data-lb="lazienki" data-lb-caption="Salon po remoncie — realizacja KP_Code">
+                <picture>
+                  <!-- AVIF -->
+                  <source
+                    type="image/avif"
+                    srcset="
+                      ../assets/img/gallery/bathr-01-480x360.avif    480w,
+                      ../assets/img/gallery/bathr-01-768x576.avif    768w,
+                      ../assets/img/gallery/bathr-01-1024x768.avif  1024w,
+                      ../assets/img/gallery/bathr-01-1536x1152.avif 1536w,
+                      ../assets/img/gallery/bathr-01-2048x1536.avif 2048w
+                    " />
+                  <!-- WebP -->
+                  <source
+                    type="image/webp"
+                    srcset="
+                      ../assets/img/gallery/bathr-01-480x360.webp    480w,
+                      ../assets/img/gallery/bathr-01-768x576.webp    768w,
+                      ../assets/img/gallery/bathr-01-1024x768.webp  1024w,
+                      ../assets/img/gallery/bathr-01-1536x1152.webp 1536w,
+                      ../assets/img/gallery/bathr-01-2048x1536.webp 2048w
+                    " />
+                  <!-- JPG fallback -->
+                  <img
+                    src="../assets/img/gallery/bathr-01-768x576.jpg"
+                    srcset="
+                      ../assets/img/gallery/bathr-01-480x360.jpg    480w,
+                      ../assets/img/gallery/bathr-01-768x576.jpg    768w,
+                      ../assets/img/gallery/bathr-01-1024x768.jpg  1024w,
+                      ../assets/img/gallery/bathr-01-1536x1152.jpg 1536w,
+                      ../assets/img/gallery/bathr-01-2048x1536.jpg 2048w
+                    "
+                    sizes="(min-width: 980px) 33vw, (min-width: 640px) 50vw, 100vw"
+                    width="768"
+                    height="576"
+                    loading="lazy"
+                    decoding="async"
+                    alt="Salon po remoncie" />
+                </picture>
+              </a>
+            </li>
+
+            <!-- 2 -->
+            <li data-reveal="up" data-reveal-delay="200">
+              <a class="gallery-item" href="../assets/img/gallery/bathr-02-2048x1536.jpg" data-lb="lazienki" data-lb-caption="Salon po remoncie — realizacja KP_Code">
+                <picture>
+                  <!-- AVIF -->
+                  <source
+                    type="image/avif"
+                    srcset="
+                      ../assets/img/gallery/bathr-02-480x360.avif    480w,
+                      ../assets/img/gallery/bathr-02-768x576.avif    768w,
+                      ../assets/img/gallery/bathr-02-1024x768.avif  1024w,
+                      ../assets/img/gallery/bathr-02-1536x1152.avif 1536w,
+                      ../assets/img/gallery/bathr-02-2048x1536.avif 2048w
+                    " />
+                  <!-- WebP -->
+                  <source
+                    type="image/webp"
+                    srcset="
+                      ../assets/img/gallery/bathr-02-480x360.webp    480w,
+                      ../assets/img/gallery/bathr-02-768x576.webp    768w,
+                      ../assets/img/gallery/bathr-02-1024x768.webp  1024w,
+                      ../assets/img/gallery/bathr-02-1536x1152.webp 1536w,
+                      ../assets/img/gallery/bathr-02-2048x1536.webp 2048w
+                    " />
+                  <!-- JPG fallback -->
+                  <img
+                    src="../assets/img/gallery/bathr-02-768x576.jpg"
+                    srcset="
+                      ../assets/img/gallery/bathr-02-480x360.jpg    480w,
+                      ../assets/img/gallery/bathr-02-768x576.jpg    768w,
+                      ../assets/img/gallery/bathr-02-1024x768.jpg  1024w,
+                      ../assets/img/gallery/bathr-02-1536x1152.jpg 1536w,
+                      ../assets/img/gallery/bathr-02-2048x1536.jpg 2048w
+                    "
+                    sizes="(min-width: 980px) 33vw, (min-width: 640px) 50vw, 100vw"
+                    width="768"
+                    height="576"
+                    loading="lazy"
+                    decoding="async"
+                    alt="Salon po remoncie" />
+                </picture>
+              </a>
+            </li>
+
+            <!-- 3 -->
+            <li data-reveal="up" data-reveal-delay="240">
+              <a class="gallery-item" href="../assets/img/gallery/bathr-03-2048x1536.jpg" data-lb="lazienki" data-lb-caption="Salon po remoncie — realizacja KP_Code">
+                <picture>
+                  <!-- AVIF -->
+                  <source
+                    type="image/avif"
+                    srcset="
+                      ../assets/img/gallery/bathr-03-480x360.avif    480w,
+                      ../assets/img/gallery/bathr-03-768x576.avif    768w,
+                      ../assets/img/gallery/bathr-03-1024x768.avif  1024w,
+                      ../assets/img/gallery/bathr-03-1536x1152.avif 1536w,
+                      ../assets/img/gallery/bathr-03-2048x1536.avif 2048w
+                    " />
+                  <!-- WebP -->
+                  <source
+                    type="image/webp"
+                    srcset="
+                      ../assets/img/gallery/bathr-03-480x360.webp    480w,
+                      ../assets/img/gallery/bathr-03-768x576.webp    768w,
+                      ../assets/img/gallery/bathr-03-1024x768.webp  1024w,
+                      ../assets/img/gallery/bathr-03-1536x1152.webp 1536w,
+                      ../assets/img/gallery/bathr-01-2048x1536.webp 2048w
+                    " />
+                  <!-- JPG fallback -->
+                  <img
+                    src="../assets/img/gallery/bathr-03-768x576.jpg"
+                    srcset="
+                      ../assets/img/gallery/bathr-03-480x360.jpg    480w,
+                      ../assets/img/gallery/bathr-03-768x576.jpg    768w,
+                      ../assets/img/gallery/bathr-03-1024x768.jpg  1024w,
+                      ../assets/img/gallery/bathr-03-1536x1152.jpg 1536w,
+                      ../assets/img/gallery/bathr-03-2048x1536.jpg 2048w
+                    "
+                    sizes="(min-width: 980px) 33vw, (min-width: 640px) 50vw, 100vw"
+                    width="768"
+                    height="576"
+                    loading="lazy"
+                    decoding="async"
+                    alt="Salon po remoncie" />
+                </picture>
+              </a>
+            </li>
+
+            <!-- 4 -->
+            <li data-reveal="up" data-reveal-delay="280">
+              <a class="gallery-item" href="../assets/img/gallery/bathr-04-2048x1536.jpg" data-lb="lazienki" data-lb-caption="Salon po remoncie — realizacja KP_Code">
+                <picture>
+                  <!-- AVIF -->
+                  <source
+                    type="image/avif"
+                    srcset="
+                      ../assets/img/gallery/bathr-04-480x360.avif    480w,
+                      ../assets/img/gallery/bathr-04-768x576.avif    768w,
+                      ../assets/img/gallery/bathr-04-1024x768.avif  1024w,
+                      ../assets/img/gallery/bathr-04-1536x1152.avif 1536w,
+                      ../assets/img/gallery/bathr-04-2048x1536.avif 2048w
+                    " />
+                  <!-- WebP -->
+                  <source
+                    type="image/webp"
+                    srcset="
+                      ../assets/img/gallery/bathr-04-480x360.webp    480w,
+                      ../assets/img/gallery/bathr-04-768x576.webp    768w,
+                      ../assets/img/gallery/bathr-04-1024x768.webp  1024w,
+                      ../assets/img/gallery/bathr-04-1536x1152.webp 1536w,
+                      ../assets/img/gallery/bathr-04-2048x1536.webp 2048w
+                    " />
+                  <!-- JPG fallback -->
+                  <img
+                    src="../assets/img/gallery/bathr-04-768x576.jpg"
+                    srcset="
+                      ../assets/img/gallery/bathr-04-480x360.jpg    480w,
+                      ../assets/img/gallery/bathr-04-768x576.jpg    768w,
+                      ../assets/img/gallery/bathr-04-1024x768.jpg  1024w,
+                      ../assets/img/gallery/bathr-04-1536x1152.jpg 1536w,
+                      ../assets/img/gallery/bathr-04-2048x1536.jpg 2048w
+                    "
+                    sizes="(min-width: 980px) 33vw, (min-width: 640px) 50vw, 100vw"
+                    width="768"
+                    height="576"
+                    loading="lazy"
+                    decoding="async"
+                    alt="Salon po remoncie" />
+                </picture>
+              </a>
+            </li>
+
+            <!-- 5 -->
+            <li data-reveal="up" data-reveal-delay="320">
+              <a class="gallery-item" href="../assets/img/gallery/bathr-05-2048x1536.jpg" data-lb="lazienki" data-lb-caption="Salon po remoncie — realizacja KP_Code">
+                <picture>
+                  <!-- AVIF -->
+                  <source
+                    type="image/avif"
+                    srcset="
+                      ../assets/img/gallery/bathr-05-480x360.avif    480w,
+                      ../assets/img/gallery/bathr-05-768x576.avif    768w,
+                      ../assets/img/gallery/bathr-05-1024x768.avif  1024w,
+                      ../assets/img/gallery/bathr-05-1536x1152.avif 1536w,
+                      ../assets/img/gallery/bathr-05-2048x1536.avif 2048w
+                    " />
+                  <!-- WebP -->
+                  <source
+                    type="image/webp"
+                    srcset="
+                      ../assets/img/gallery/bathr-05-480x360.webp    480w,
+                      ../assets/img/gallery/bathr-05-768x576.webp    768w,
+                      ../assets/img/gallery/bathr-05-1024x768.webp  1024w,
+                      ../assets/img/gallery/bathr-05-1536x1152.webp 1536w,
+                      ../assets/img/gallery/bathr-05-2048x1536.webp 2048w
+                    " />
+                  <!-- JPG fallback -->
+                  <img
+                    src="../assets/img/gallery/bathr-05-768x576.jpg"
+                    srcset="
+                      ../assets/img/gallery/bathr-05-480x360.jpg    480w,
+                      ../assets/img/gallery/bathr-05-768x576.jpg    768w,
+                      ../assets/img/gallery/bathr-05-1024x768.jpg  1024w,
+                      ../assets/img/gallery/bathr-05-1536x1152.jpg 1536w,
+                      ../assets/img/gallery/bathr-05-2048x1536.jpg 2048w
+                    "
+                    sizes="(min-width: 980px) 33vw, (min-width: 640px) 50vw, 100vw"
+                    width="768"
+                    height="576"
+                    loading="lazy"
+                    decoding="async"
+                    alt="Salon po remoncie" />
+                </picture>
+              </a>
+            </li>
+
+            <!-- 6 -->
+            <li data-reveal="up" data-reveal-delay="360">
+              <a class="gallery-item" href="../assets/img/gallery/bathr-06-2048x1536.jpg" data-lb="lazienki" data-lb-caption="Salon po remoncie — realizacja KP_Code">
+                <picture>
+                  <!-- AVIF -->
+                  <source
+                    type="image/avif"
+                    srcset="
+                      ../assets/img/gallery/bathr-06-480x360.avif    480w,
+                      ../assets/img/gallery/bathr-06-768x576.avif    768w,
+                      ../assets/img/gallery/bathr-06-1024x768.avif  1024w,
+                      ../assets/img/gallery/bathr-06-1536x1152.avif 1536w,
+                      ../assets/img/gallery/bathr-06-2048x1536.avif 2048w
+                    " />
+                  <!-- WebP -->
+                  <source
+                    type="image/webp"
+                    srcset="
+                      ../assets/img/gallery/bathr-06-480x360.webp    480w,
+                      ../assets/img/gallery/bathr-06-768x576.webp    768w,
+                      ../assets/img/gallery/bathr-06-1024x768.webp  1024w,
+                      ../assets/img/gallery/bathr-06-1536x1152.webp 1536w,
+                      ../assets/img/gallery/bathr-06-2048x1536.webp 2048w
+                    " />
+                  <!-- JPG fallback -->
+                  <img
+                    src="../assets/img/gallery/bathr-06-768x576.jpg"
+                    srcset="
+                      ../assets/img/gallery/bathr-06-480x360.jpg    480w,
+                      ../assets/img/gallery/bathr-06-768x576.jpg    768w,
+                      ../assets/img/gallery/bathr-06-1024x768.jpg  1024w,
+                      ../assets/img/gallery/bathr-06-1536x1152.jpg 1536w,
+                      ../assets/img/gallery/bathr-06-2048x1536.jpg 2048w
+                    "
+                    sizes="(min-width: 980px) 33vw, (min-width: 640px) 50vw, 100vw"
+                    width="768"
+                    height="576"
+                    loading="lazy"
+                    decoding="async"
+                    alt="Salon po remoncie" />
+                </picture>
+              </a>
+            </li>
+          </ul>
+        </div>
+      </section>
+
+      <!-- FAQ -->
+      <section id="faq" class="block" aria-labelledby="faq-heading" aria-describedby="faq-desc">
+        <div class="container">
+          <header class="block-head">
+            <h2 id="faq-heading" data-reveal="up" data-reveal-delay="80">FAQ — najczęstsze pytania</h2>
+            <p id="faq-desc" class="lead" data-reveal="up" data-reveal-delay="120">Krótko i konkretnie — wszystko, co warto wiedzieć przy remoncie łazienki.</p>
           </header>
 
           <ul class="faq-list">
-            <li>
+            <!-- FAQ 1 -->
+            <li data-reveal="up" data-reveal-delay="160">
               <details class="faq" id="faq-1">
                 <summary id="q-1" class="faq-q">Ile trwa remont łazienki 5–7&nbsp;m²?</summary>
-                <div class="answer" id="a-1" role="region" aria-labelledby="q-1">
+                <div class="answer" id="a-1">
                   <p>
                     Najczęściej
                     <strong>7–12 dni roboczych</strong>
@@ -278,11 +560,11 @@
                 </div>
               </details>
             </li>
-
-            <li>
+            <!-- FAQ 2 -->
+            <li data-reveal="up" data-reveal-delay="240">
               <details class="faq" id="faq-2">
                 <summary id="q-2" class="faq-q">Jak wygląda wycena łazienki?</summary>
-                <div class="answer" id="a-2" role="region" aria-labelledby="q-2">
+                <div class="answer" id="a-2">
                   <p>
                     Wysyłasz rzut/zdjęcia lub umawiamy wizję. Ustalamy
                     <em>format płytek</em>
@@ -295,11 +577,11 @@
                 </div>
               </details>
             </li>
-
-            <li>
+            <!-- FAQ 3 -->
+            <li data-reveal="up" data-reveal-delay="320">
               <details class="faq" id="faq-3">
                 <summary id="q-3" class="faq-q">Czy robicie hydroizolację i próbę szczelności?</summary>
-                <div class="answer" id="a-3" role="region" aria-labelledby="q-3">
+                <div class="answer" id="a-3">
                   <p>
                     Tak — stosujemy systemowe folie w płynie, taśmy i narożniki. W strefach mokrych wykonujemy
                     <strong>próbę szczelności</strong>
@@ -308,11 +590,11 @@
                 </div>
               </details>
             </li>
-
-            <li>
+            <!-- FAQ 4 -->
+            <li data-reveal="up" data-reveal-delay="400">
               <details class="faq" id="faq-4">
                 <summary id="q-4" class="faq-q">Cięcia 45° (jolly), listwy i fugi epoksydowe — ogarniacie?</summary>
-                <div class="answer" id="a-4" role="region" aria-labelledby="q-4">
+                <div class="answer" id="a-4">
                   <p>
                     Tak — wykonujemy docinki pod kątem, montujemy listwy alum./mosiężne. W kabinie prysznicowej zwykle rekomendujemy
                     <strong>fugę epoksydową</strong>
@@ -326,14 +608,15 @@
           </ul>
         </div>
       </section>
+
       <!-- CTA -->
       <section class="cta" role="region" aria-labelledby="cta-end-heading">
         <div class="container">
           <header class="block-head">
-            <h2 id="cta-end-heading">Masz projekt lub inspiracje?</h2>
-            <p class="lead">Wyślij szkic lub zdjęcia — doradzimy rozwiązania i wycenimy w 24–48&nbsp;h.</p>
+            <h2 id="cta-end-heading" data-reveal="up" data-reveal-delay="80">Masz projekt lub inspiracje?</h2>
+            <p class="lead" data-reveal="up" data-reveal-delay="160">Wyślij szkic lub zdjęcia — doradzimy rozwiązania i wycenimy w 24–48&nbsp;h.</p>
           </header>
-          <div class="block-cta">
+          <div class="block-cta" data-reveal="right" data-reveal-delay="240">
             <a class="btn" href="../index.html#kontakt" aria-label="Wyślij zapytanie — formularz kontaktowy">Wyślij zapytanie</a>
           </div>
         </div>

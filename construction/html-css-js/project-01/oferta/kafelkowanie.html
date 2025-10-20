@@ -157,6 +157,7 @@
                 <li><a href="kafelkowanie.html">Kafelkowanie</a></li>
                 <li><a href="elektryka.html">Elektryka</a></li>
                 <li><a href="hydraulika.html">Hydraulika</a></li>
+                <li><a href="remonty.html">Remonty</a></li>
               </ul>
             </li>
 
@@ -185,52 +186,336 @@
     <!-- MAIN CONTENT -->
     <main id="main">
       <!-- SUBPAGE CONTENT -->
-      <section class="block subpage-header" id="kafelkowanie" aria-labelledby="kafelkowanie-heading" aria-describedby="kafelkowanie-desc" tabindex="-1">
+      <section class="block subpage-header" id="kafelkowanie" role="region" aria-labelledby="kafelkowanie-heading" aria-describedby="kafelkowanie-desc" tabindex="-1">
         <div class="container">
           <header class="block-head">
-            <h1 id="kafelkowanie-heading">Kafelkowanie — ściany i podłogi</h1>
-            <p class="lead" id="kafelkowanie-desc">Gres, lastryko, mozaiki. Docinki pod kątem, idealne fugi i równe poziomy. Pracujemy precyzyjnie i terminowo.</p>
+            <h1 id="kafelkowanie-heading" data-reveal="up" data-reveal-delay="80">Kafelkowanie — ściany i podłogi</h1>
+            <p class="lead" id="kafelkowanie-desc" data-reveal="up" data-reveal-delay="160">
+              Gres, lastryko, mozaiki. Docinki pod kątem, idealne fugi i równe poziomy. Pracujemy precyzyjnie i terminowo.
+            </p>
           </header>
 
           <div class="cards">
-            <article class="card hover-card">
-              <h3>Układanie płytek</h3>
+            <!-- Card 1 -->
+            <article class="card hover-card" id="ukladanie" data-reveal="up" data-reveal-delay="160">
+              <h2>Układanie płytek</h2>
               <p>Formaty od mozaiki po wielkoformat, kalibracja, krzyżyki/klipsy, równe płaszczyzny i spoiny.</p>
             </article>
-            <article class="card hover-card">
-              <h3>Docinki i detale</h3>
+            <!-- Card 2 -->
+            <article class="card hover-card" id="docinki" data-reveal="up" data-reveal-delay="240">
+              <h2>Docinki i detale</h2>
               <p>Cięcia pod 45°, listwy aluminiowe/mosiężne, narożniki, zabudowy wnęk, cokoły.</p>
             </article>
-            <article class="card hover-card">
-              <h3>Hydroizolacja</h3>
+            <!-- Card 3 -->
+            <article class="card hover-card" id="hydroizolacja" data-reveal="up" data-reveal-delay="320">
+              <h2>Hydroizolacja</h2>
               <p>Folie w płynie, taśmy i narożniki. Szczelność w strefach mokrych pod prysznicem i przy wannie.</p>
             </article>
-            <article class="card hover-card">
-              <h3>Fugi i uszczelnienia</h3>
+            <!-- Card 4 -->
+            <article class="card hover-card" id="fugi" data-reveal="up" data-reveal-delay="400">
+              <h2>Fugi i uszczelnienia</h2>
               <p>Fugi epoksydowe/cementowe, silikonowanie, dylatacje, łatwe w utrzymaniu czystości.</p>
             </article>
           </div>
 
-          <div class="block-cta">
+          <div class="block-cta" data-reveal="scale" data-reveal-delay="480">
             <a class="btn" href="../index.html?usluga=Kafelkowanie#kontakt" aria-label="Przejdź do formularza wyceny — Kafelkowanie">Wycena</a>
 
             <a class="btn btn--ghost" href="#" aria-label="Zobacz galerię realizacji kafelkowania">Galeria realizacji</a>
           </div>
         </div>
       </section>
-      <!-- FAQ -->
-      <section id="faq" class="block" role="region" aria-labelledby="faq-heading" aria-describedby="faq-desc">
+
+      <!-- GALERIA -->
+      <section class="block gallery" id="galeria" aria-labelledby="galeria-heading">
         <div class="container">
           <header class="block-head">
-            <h2 id="faq-heading">FAQ — najczęstsze pytania</h2>
-            <p id="faq-desc">Krótko i konkretnie — najważniejsze informacje o kafelkowaniu ścian i podłóg.</p>
+            <h2 id="galeria-heading" data-reveal="up" data-reveal-delay="80">Galeria realizacji</h2>
+            <p class="lead" data-reveal="up" data-reveal-delay="120">Kilka ujęć z ostatnich prac — więcej na życzenie.</p>
+          </header>
+
+          <ul class="gallery-grid">
+            <!-- 1 -->
+            <li data-reveal="up" data-reveal-delay="160">
+              <a class="gallery-item" href="../assets/img/gallery/tilling-01-2048x1536.jpg" data-lb="kafelkowanie" data-lb-caption="Salon po remoncie — realizacja KP_Code">
+                <picture>
+                  <!-- AVIF -->
+                  <source
+                    type="image/avif"
+                    srcset="
+                      ../assets/img/gallery/tilling-01-480x360.avif    480w,
+                      ../assets/img/gallery/tilling-01-768x576.avif    768w,
+                      ../assets/img/gallery/tilling-01-1024x768.avif  1024w,
+                      ../assets/img/gallery/tilling-01-1536x1152.avif 1536w,
+                      ../assets/img/gallery/tilling-01-2048x1536.avif 2048w
+                    " />
+                  <!-- WebP -->
+                  <source
+                    type="image/webp"
+                    srcset="
+                      ../assets/img/gallery/tilling-01-480x360.webp    480w,
+                      ../assets/img/gallery/tilling-01-768x576.webp    768w,
+                      ../assets/img/gallery/tilling-01-1024x768.webp  1024w,
+                      ../assets/img/gallery/tilling-01-1536x1152.webp 1536w,
+                      ../assets/img/gallery/tilling-01-2048x1536.webp 2048w
+                    " />
+                  <!-- JPG fallback -->
+                  <img
+                    src="../assets/img/gallery/tilling-01-768x576.jpg"
+                    srcset="
+                      ../assets/img/gallery/tilling-01-480x360.jpg    480w,
+                      ../assets/img/gallery/tilling-01-768x576.jpg    768w,
+                      ../assets/img/gallery/tilling-01-1024x768.jpg  1024w,
+                      ../assets/img/gallery/tilling-01-1536x1152.jpg 1536w,
+                      ../assets/img/gallery/tilling-01-2048x1536.jpg 2048w
+                    "
+                    sizes="(min-width: 980px) 33vw, (min-width: 640px) 50vw, 100vw"
+                    width="768"
+                    height="576"
+                    loading="lazy"
+                    decoding="async"
+                    alt="Salon po remoncie" />
+                </picture>
+              </a>
+            </li>
+
+            <!-- 2 -->
+            <li data-reveal="up" data-reveal-delay="200">
+              <a class="gallery-item" href="../assets/img/gallery/tilling-02-2048x1536.jpg" data-lb="kafelkowanie" data-lb-caption="Salon po remoncie — realizacja KP_Code">
+                <picture>
+                  <!-- AVIF -->
+                  <source
+                    type="image/avif"
+                    srcset="
+                      ../assets/img/gallery/tilling-02-480x360.avif    480w,
+                      ../assets/img/gallery/tilling-02-768x576.avif    768w,
+                      ../assets/img/gallery/tilling-02-1024x768.avif  1024w,
+                      ../assets/img/gallery/tilling-02-1536x1152.avif 1536w,
+                      ../assets/img/gallery/tilling-02-2048x1536.avif 2048w
+                    " />
+                  <!-- WebP -->
+                  <source
+                    type="image/webp"
+                    srcset="
+                      ../assets/img/gallery/tilling-02-480x360.webp    480w,
+                      ../assets/img/gallery/tilling-02-768x576.webp    768w,
+                      ../assets/img/gallery/tilling-02-1024x768.webp  1024w,
+                      ../assets/img/gallery/tilling-02-1536x1152.webp 1536w,
+                      ../assets/img/gallery/tilling-02-2048x1536.webp 2048w
+                    " />
+                  <!-- JPG fallback -->
+                  <img
+                    src="../assets/img/gallery/tilling-02-768x576.jpg"
+                    srcset="
+                      ../assets/img/gallery/tilling-02-480x360.jpg    480w,
+                      ../assets/img/gallery/tilling-02-768x576.jpg    768w,
+                      ../assets/img/gallery/tilling-02-1024x768.jpg  1024w,
+                      ../assets/img/gallery/tilling-02-1536x1152.jpg 1536w,
+                      ../assets/img/gallery/tilling-02-2048x1536.jpg 2048w
+                    "
+                    sizes="(min-width: 980px) 33vw, (min-width: 640px) 50vw, 100vw"
+                    width="768"
+                    height="576"
+                    loading="lazy"
+                    decoding="async"
+                    alt="Salon po remoncie" />
+                </picture>
+              </a>
+            </li>
+
+            <!-- 3 -->
+            <li data-reveal="up" data-reveal-delay="240">
+              <a class="gallery-item" href="../assets/img/gallery/tilling-03-2048x1536.jpg" data-lb="kafelkowanie" data-lb-caption="Salon po remoncie — realizacja KP_Code">
+                <picture>
+                  <!-- AVIF -->
+                  <source
+                    type="image/avif"
+                    srcset="
+                      ../assets/img/gallery/tilling-03-480x360.avif    480w,
+                      ../assets/img/gallery/tilling-03-768x576.avif    768w,
+                      ../assets/img/gallery/tilling-03-1024x768.avif  1024w,
+                      ../assets/img/gallery/tilling-03-1536x1152.avif 1536w,
+                      ../assets/img/gallery/tilling-03-2048x1536.avif 2048w
+                    " />
+                  <!-- WebP -->
+                  <source
+                    type="image/webp"
+                    srcset="
+                      ../assets/img/gallery/tilling-03-480x360.webp    480w,
+                      ../assets/img/gallery/tilling-03-768x576.webp    768w,
+                      ../assets/img/gallery/tilling-03-1024x768.webp  1024w,
+                      ../assets/img/gallery/tilling-03-1536x1152.webp 1536w,
+                      ../assets/img/gallery/tilling-01-2048x1536.webp 2048w
+                    " />
+                  <!-- JPG fallback -->
+                  <img
+                    src="../assets/img/gallery/tilling-03-768x576.jpg"
+                    srcset="
+                      ../assets/img/gallery/tilling-03-480x360.jpg    480w,
+                      ../assets/img/gallery/tilling-03-768x576.jpg    768w,
+                      ../assets/img/gallery/tilling-03-1024x768.jpg  1024w,
+                      ../assets/img/gallery/tilling-03-1536x1152.jpg 1536w,
+                      ../assets/img/gallery/tilling-03-2048x1536.jpg 2048w
+                    "
+                    sizes="(min-width: 980px) 33vw, (min-width: 640px) 50vw, 100vw"
+                    width="768"
+                    height="576"
+                    loading="lazy"
+                    decoding="async"
+                    alt="Salon po remoncie" />
+                </picture>
+              </a>
+            </li>
+
+            <!-- 4 -->
+            <li data-reveal="up" data-reveal-delay="280">
+              <a class="gallery-item" href="../assets/img/gallery/tilling-04-2048x1536.jpg" data-lb="kafelkowanie" data-lb-caption="Salon po remoncie — realizacja KP_Code">
+                <picture>
+                  <!-- AVIF -->
+                  <source
+                    type="image/avif"
+                    srcset="
+                      ../assets/img/gallery/tilling-04-480x360.avif    480w,
+                      ../assets/img/gallery/tilling-04-768x576.avif    768w,
+                      ../assets/img/gallery/tilling-04-1024x768.avif  1024w,
+                      ../assets/img/gallery/tilling-04-1536x1152.avif 1536w,
+                      ../assets/img/gallery/tilling-04-2048x1536.avif 2048w
+                    " />
+                  <!-- WebP -->
+                  <source
+                    type="image/webp"
+                    srcset="
+                      ../assets/img/gallery/tilling-04-480x360.webp    480w,
+                      ../assets/img/gallery/tilling-04-768x576.webp    768w,
+                      ../assets/img/gallery/tilling-04-1024x768.webp  1024w,
+                      ../assets/img/gallery/tilling-04-1536x1152.webp 1536w,
+                      ../assets/img/gallery/tilling-04-2048x1536.webp 2048w
+                    " />
+                  <!-- JPG fallback -->
+                  <img
+                    src="../assets/img/gallery/tilling-04-768x576.jpg"
+                    srcset="
+                      ../assets/img/gallery/tilling-04-480x360.jpg    480w,
+                      ../assets/img/gallery/tilling-04-768x576.jpg    768w,
+                      ../assets/img/gallery/tilling-04-1024x768.jpg  1024w,
+                      ../assets/img/gallery/tilling-04-1536x1152.jpg 1536w,
+                      ../assets/img/gallery/tilling-04-2048x1536.jpg 2048w
+                    "
+                    sizes="(min-width: 980px) 33vw, (min-width: 640px) 50vw, 100vw"
+                    width="768"
+                    height="576"
+                    loading="lazy"
+                    decoding="async"
+                    alt="Salon po remoncie" />
+                </picture>
+              </a>
+            </li>
+
+            <!-- 5 -->
+            <li data-reveal="up" data-reveal-delay="320">
+              <a class="gallery-item" href="../assets/img/gallery/tilling-05-2048x1536.jpg" data-lb="kafelkowanie" data-lb-caption="Salon po remoncie — realizacja KP_Code">
+                <picture>
+                  <!-- AVIF -->
+                  <source
+                    type="image/avif"
+                    srcset="
+                      ../assets/img/gallery/tilling-05-480x360.avif    480w,
+                      ../assets/img/gallery/tilling-05-768x576.avif    768w,
+                      ../assets/img/gallery/tilling-05-1024x768.avif  1024w,
+                      ../assets/img/gallery/tilling-05-1536x1152.avif 1536w,
+                      ../assets/img/gallery/tilling-05-2048x1536.avif 2048w
+                    " />
+                  <!-- WebP -->
+                  <source
+                    type="image/webp"
+                    srcset="
+                      ../assets/img/gallery/tilling-05-480x360.webp    480w,
+                      ../assets/img/gallery/tilling-05-768x576.webp    768w,
+                      ../assets/img/gallery/tilling-05-1024x768.webp  1024w,
+                      ../assets/img/gallery/tilling-05-1536x1152.webp 1536w,
+                      ../assets/img/gallery/tilling-05-2048x1536.webp 2048w
+                    " />
+                  <!-- JPG fallback -->
+                  <img
+                    src="../assets/img/gallery/tilling-05-768x576.jpg"
+                    srcset="
+                      ../assets/img/gallery/tilling-05-480x360.jpg    480w,
+                      ../assets/img/gallery/tilling-05-768x576.jpg    768w,
+                      ../assets/img/gallery/tilling-05-1024x768.jpg  1024w,
+                      ../assets/img/gallery/tilling-05-1536x1152.jpg 1536w,
+                      ../assets/img/gallery/tilling-05-2048x1536.jpg 2048w
+                    "
+                    sizes="(min-width: 980px) 33vw, (min-width: 640px) 50vw, 100vw"
+                    width="768"
+                    height="576"
+                    loading="lazy"
+                    decoding="async"
+                    alt="Salon po remoncie" />
+                </picture>
+              </a>
+            </li>
+
+            <!-- 6 -->
+            <li data-reveal="up" data-reveal-delay="360">
+              <a class="gallery-item" href="../assets/img/gallery/tilling-06-2048x1536.jpg" data-lb="kafelkowanie" data-lb-caption="Salon po remoncie — realizacja KP_Code">
+                <picture>
+                  <!-- AVIF -->
+                  <source
+                    type="image/avif"
+                    srcset="
+                      ../assets/img/gallery/tilling-06-480x360.avif    480w,
+                      ../assets/img/gallery/tilling-06-768x576.avif    768w,
+                      ../assets/img/gallery/tilling-06-1024x768.avif  1024w,
+                      ../assets/img/gallery/tilling-06-1536x1152.avif 1536w,
+                      ../assets/img/gallery/tilling-06-2048x1536.avif 2048w
+                    " />
+                  <!-- WebP -->
+                  <source
+                    type="image/webp"
+                    srcset="
+                      ../assets/img/gallery/tilling-06-480x360.webp    480w,
+                      ../assets/img/gallery/tilling-06-768x576.webp    768w,
+                      ../assets/img/gallery/tilling-06-1024x768.webp  1024w,
+                      ../assets/img/gallery/tilling-06-1536x1152.webp 1536w,
+                      ../assets/img/gallery/tilling-06-2048x1536.webp 2048w
+                    " />
+                  <!-- JPG fallback -->
+                  <img
+                    src="../assets/img/gallery/tilling-06-768x576.jpg"
+                    srcset="
+                      ../assets/img/gallery/tilling-06-480x360.jpg    480w,
+                      ../assets/img/gallery/tilling-06-768x576.jpg    768w,
+                      ../assets/img/gallery/tilling-06-1024x768.jpg  1024w,
+                      ../assets/img/gallery/tilling-06-1536x1152.jpg 1536w,
+                      ../assets/img/gallery/tilling-06-2048x1536.jpg 2048w
+                    "
+                    sizes="(min-width: 980px) 33vw, (min-width: 640px) 50vw, 100vw"
+                    width="768"
+                    height="576"
+                    loading="lazy"
+                    decoding="async"
+                    alt="Salon po remoncie" />
+                </picture>
+              </a>
+            </li>
+          </ul>
+        </div>
+      </section>
+
+      <!-- FAQ -->
+      <section id="faq" class="block" aria-labelledby="faq-heading" aria-describedby="faq-desc">
+        <div class="container">
+          <header class="block-head">
+            <h2 id="faq-heading" data-reveal="up" data-reveal-delay="80">FAQ — najczęstsze pytania</h2>
+            <p id="faq-desc" data-reveal="up" data-reveal-delay="120">Krótko i konkretnie — najważniejsze informacje o kafelkowaniu ścian i podłóg.</p>
           </header>
 
           <ul class="faq-list" role="list">
-            <li>
+            <!-- FAQ 1 -->
+            <li data-reveal="up" data-reveal-delay="160">
               <details class="faq" id="faq-1">
                 <summary id="q-1">Jak przygotować podłoże pod płytki?</summary>
-                <div class="answer" id="a-1" role="region" aria-labelledby="q-1">
+                <div class="answer" id="a-1">
                   <p>
                     Podłoże musi być
                     <strong>nośne, równe i zagruntowane</strong>
@@ -241,11 +526,11 @@
                 </div>
               </details>
             </li>
-
-            <li>
+            <!-- FAQ 2 -->
+            <li data-reveal="up" data-reveal-delay="240">
               <details class="faq" id="faq-2">
                 <summary id="q-2">Ile trwa ułożenie płytek w standardowej łazience 5–7&nbsp;m²?</summary>
-                <div class="answer" id="a-2" role="region" aria-labelledby="q-2">
+                <div class="answer" id="a-2">
                   <p>
                     Zwykle
                     <strong>4–7 dni roboczych</strong>
@@ -254,11 +539,11 @@
                 </div>
               </details>
             </li>
-
-            <li>
+            <!-- FAQ 3 -->
+            <li data-reveal="up" data-reveal-delay="320">
               <details class="faq" id="faq-3">
                 <summary id="q-3">Czy robicie docinki 45° (jolly) i układacie wielkoformat?</summary>
-                <div class="answer" id="a-3" role="region" aria-labelledby="q-3">
+                <div class="answer" id="a-3">
                   <p>
                     Tak — wykonujemy
                     <strong>cięcia pod 45°</strong>
@@ -269,11 +554,11 @@
                 </div>
               </details>
             </li>
-
-            <li>
+            <!-- FAQ 4 -->
+            <li data-reveal="up" data-reveal-delay="400">
               <details class="faq" id="faq-4">
                 <summary id="q-4">Jakie fugi stosujecie i jaka powinna być szerokość spoiny?</summary>
-                <div class="answer" id="a-4" role="region" aria-labelledby="q-4">
+                <div class="answer" id="a-4">
                   <p>
                     Dobieramy fugę do miejsca: w kabinach często
                     <strong>epoksydowa</strong>
@@ -295,18 +580,19 @@
       </section>
 
       <!-- CTA -->
-      <section class="cta" aria-labelledby="cta-end-heading">
+      <section class="cta" role="region" aria-labelledby="cta-end-heading">
         <div class="container">
           <header class="block-head">
-            <h2 id="cta-end-heading">Masz projekt lub wytyczne?</h2>
-            <p class="lead">Przyślij rzut i format płytek — wycenimy w 24–48&nbsp;h i zaproponujemy najbliższy termin.</p>
+            <h2 id="cta-end-heading" data-reveal="up" data-reveal-delay="80">Masz projekt lub wytyczne?</h2>
+            <p class="lead" data-reveal="up" data-reveal-delay="160">Przyślij rzut i format płytek — wycenimy w 24–48&nbsp;h i zaproponujemy najbliższy termin.</p>
           </header>
-          <div class="block-cta">
+          <div class="block-cta" data-reveal="right" data-reveal-delay="240">
             <a class="btn" href="../index.html#kontakt">Wyślij zapytanie</a>
           </div>
         </div>
       </section>
     </main>
+
     <!-- FOOTER -->
     <footer id="footer" class="site-footer" aria-labelledby="footer-heading">
       <div class="container">

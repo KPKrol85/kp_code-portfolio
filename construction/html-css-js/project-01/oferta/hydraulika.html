@@ -179,6 +179,7 @@
                 <li><a href="kafelkowanie.html">Kafelkowanie</a></li>
                 <li><a href="elektryka.html">Elektryka</a></li>
                 <li><a href="hydraulika.html">Hydraulika</a></li>
+                <li><a href="remonty.html">Remonty</a></li>
               </ul>
             </li>
 
@@ -210,33 +211,36 @@
       <section class="block subpage-header" id="hydraulika" role="region" aria-labelledby="hydraulika-heading" aria-describedby="hydraulika-desc" tabindex="-1">
         <div class="container">
           <header class="block-head">
-            <h1 id="hydraulika-heading">Hydraulika — instalacje i serwis</h1>
-            <p id="hydraulika-desc" class="lead">Instalacje wod-kan od podstaw, przeróbki i naprawy, biały montaż oraz szczelne rozwiązania w strefach mokrych. Czysto, terminowo, z gwarancją.</p>
+            <h1 id="hydraulika-heading" data-reveal="up" data-reveal-delay="80">Hydraulika — instalacje i serwis</h1>
+            <p id="hydraulika-desc" class="lead" data-reveal="up" data-reveal-delay="160">
+              Instalacje wod-kan od podstaw, przeróbki i naprawy, biały montaż oraz szczelne rozwiązania w strefach mokrych. Czysto, terminowo, z gwarancją.
+            </p>
           </header>
 
           <div class="cards">
-            <article class="card hover-card" id="instalacje">
-              <h3>Instalacje od podstaw</h3>
+            <!-- Card 1-->
+            <article class="card hover-card" id="instalacje" data-reveal="up" data-reveal-delay="160">
+              <h2>Instalacje od podstaw</h2>
               <p>Projekt trasy, rury PEX/PP, rozdzielacze, zawory i odpowietrzenia. Mieszkania i domy jednorodzinne.</p>
             </article>
-
-            <article class="card hover-card" id="przerobki-naprawy">
-              <h3>Przeróbki i naprawy</h3>
+            <!-- Card 2-->
+            <article class="card hover-card" id="przerobki-naprawy" data-reveal="up" data-reveal-delay="240">
+              <h2>Przeróbki i naprawy</h2>
               <p>Zmiany podejść, usuwanie nieszczelności, wymiana odcinków rur — szybkie lokalne interwencje.</p>
             </article>
-
-            <article class="card hover-card" id="bialy-montaz">
-              <h3>Biały montaż i armatura</h3>
+            <!-- Card 3-->
+            <article class="card hover-card" id="bialy-montaz" data-reveal="up" data-reveal-delay="320">
+              <h2>Biały montaż i armatura</h2>
               <p>WC podtynkowe, umywalki, baterie, zlewy, kabiny, wanny, syfony i odwodnienia liniowe.</p>
             </article>
-
-            <article class="card hover-card" id="uszczelnienia-proby">
-              <h3>Uszczelnienia i próby</h3>
+            <!-- Card 4-->
+            <article class="card hover-card" id="uszczelnienia-proby" data-reveal="up" data-reveal-delay="400">
+              <h2>Uszczelnienia i próby</h2>
               <p>Hydroizolacje w strefach mokrych, silikonowanie, próby ciśnieniowe oraz protokół odbioru.</p>
             </article>
           </div>
 
-          <div class="block-cta">
+          <div class="block-cta" data-reveal="scale" data-reveal-delay="480">
             <a class="btn" href="../index.html?usluga=Hydraulika#kontakt" aria-label="Przejdź do formularza wyceny — Hydraulika">Wycena</a>
 
             <a class="btn btn--ghost" href="#" aria-label="Zobacz galerię realizacji hydraulicznych">Galeria realizacji</a>
@@ -244,19 +248,296 @@
         </div>
       </section>
 
-      <!-- FAQ -->
-      <section id="faq" class="block" role="region" aria-labelledby="faq-heading" aria-describedby="faq-desc">
+      <!-- GALERIA -->
+      <section class="block gallery" id="galeria" aria-labelledby="galeria-heading">
         <div class="container">
           <header class="block-head">
-            <h2 id="faq-heading">FAQ — najczęstsze pytania</h2>
-            <p id="faq-desc" class="lead">Krótko i konkretnie — najważniejsze informacje o hydraulice (instalacje wod-kan i biały montaż).</p>
+            <h2 id="galeria-heading" data-reveal="up" data-reveal-delay="80">Galeria realizacji</h2>
+            <p class="lead" data-reveal="up" data-reveal-delay="120">Kilka ujęć z ostatnich prac — więcej na życzenie.</p>
+          </header>
+
+          <ul class="gallery-grid">
+            <!-- 1 -->
+            <li data-reveal="up" data-reveal-delay="160">
+              <a class="gallery-item" href="../assets/img/gallery/plum-01-2048x1536.jpg" data-lb="hydraulika" data-lb-caption="Salon po remoncie — realizacja KP_Code">
+                <picture>
+                  <!-- AVIF -->
+                  <source
+                    type="image/avif"
+                    srcset="
+                      ../assets/img/gallery/plum-01-480x360.avif    480w,
+                      ../assets/img/gallery/plum-01-768x576.avif    768w,
+                      ../assets/img/gallery/plum-01-1024x768.avif  1024w,
+                      ../assets/img/gallery/plum-01-1536x1152.avif 1536w,
+                      ../assets/img/gallery/plum-01-2048x1536.avif 2048w
+                    " />
+                  <!-- WebP -->
+                  <source
+                    type="image/webp"
+                    srcset="
+                      ../assets/img/gallery/plum-01-480x360.webp    480w,
+                      ../assets/img/gallery/plum-01-768x576.webp    768w,
+                      ../assets/img/gallery/plum-01-1024x768.webp  1024w,
+                      ../assets/img/gallery/plum-01-1536x1152.webp 1536w,
+                      ../assets/img/gallery/plum-01-2048x1536.webp 2048w
+                    " />
+                  <!-- JPG fallback -->
+                  <img
+                    src="../assets/img/gallery/plum-01-768x576.jpg"
+                    srcset="
+                      ../assets/img/gallery/plum-01-480x360.jpg    480w,
+                      ../assets/img/gallery/plum-01-768x576.jpg    768w,
+                      ../assets/img/gallery/plum-01-1024x768.jpg  1024w,
+                      ../assets/img/gallery/plum-01-1536x1152.jpg 1536w,
+                      ../assets/img/gallery/plum-01-2048x1536.jpg 2048w
+                    "
+                    sizes="(min-width: 980px) 33vw, (min-width: 640px) 50vw, 100vw"
+                    width="768"
+                    height="576"
+                    loading="lazy"
+                    decoding="async"
+                    alt="Salon po remoncie" />
+                </picture>
+              </a>
+            </li>
+
+            <!-- 2 -->
+            <li data-reveal="up" data-reveal-delay="200">
+              <a class="gallery-item" href="../assets/img/gallery/plum-02-2048x1536.jpg" data-lb="hydraulika" data-lb-caption="Salon po remoncie — realizacja KP_Code">
+                <picture>
+                  <!-- AVIF -->
+                  <source
+                    type="image/avif"
+                    srcset="
+                      ../assets/img/gallery/plum-02-480x360.avif    480w,
+                      ../assets/img/gallery/plum-02-768x576.avif    768w,
+                      ../assets/img/gallery/plum-02-1024x768.avif  1024w,
+                      ../assets/img/gallery/plum-02-1536x1152.avif 1536w,
+                      ../assets/img/gallery/plum-02-2048x1536.avif 2048w
+                    " />
+                  <!-- WebP -->
+                  <source
+                    type="image/webp"
+                    srcset="
+                      ../assets/img/gallery/plum-02-480x360.webp    480w,
+                      ../assets/img/gallery/plum-02-768x576.webp    768w,
+                      ../assets/img/gallery/plum-02-1024x768.webp  1024w,
+                      ../assets/img/gallery/plum-02-1536x1152.webp 1536w,
+                      ../assets/img/gallery/plum-02-2048x1536.webp 2048w
+                    " />
+                  <!-- JPG fallback -->
+                  <img
+                    src="../assets/img/gallery/plum-02-768x576.jpg"
+                    srcset="
+                      ../assets/img/gallery/plum-02-480x360.jpg    480w,
+                      ../assets/img/gallery/plum-02-768x576.jpg    768w,
+                      ../assets/img/gallery/plum-02-1024x768.jpg  1024w,
+                      ../assets/img/gallery/plum-02-1536x1152.jpg 1536w,
+                      ../assets/img/gallery/plum-02-2048x1536.jpg 2048w
+                    "
+                    sizes="(min-width: 980px) 33vw, (min-width: 640px) 50vw, 100vw"
+                    width="768"
+                    height="576"
+                    loading="lazy"
+                    decoding="async"
+                    alt="Salon po remoncie" />
+                </picture>
+              </a>
+            </li>
+
+            <!-- 3 -->
+            <li data-reveal="up" data-reveal-delay="240">
+              <a class="gallery-item" href="../assets/img/gallery/plum-03-2048x1536.jpg" data-lb="hydraulika" data-lb-caption="Salon po remoncie — realizacja KP_Code">
+                <picture>
+                  <!-- AVIF -->
+                  <source
+                    type="image/avif"
+                    srcset="
+                      ../assets/img/gallery/plum-03-480x360.avif    480w,
+                      ../assets/img/gallery/plum-03-768x576.avif    768w,
+                      ../assets/img/gallery/plum-03-1024x768.avif  1024w,
+                      ../assets/img/gallery/plum-03-1536x1152.avif 1536w,
+                      ../assets/img/gallery/plum-03-2048x1536.avif 2048w
+                    " />
+                  <!-- WebP -->
+                  <source
+                    type="image/webp"
+                    srcset="
+                      ../assets/img/gallery/plum-03-480x360.webp    480w,
+                      ../assets/img/gallery/plum-03-768x576.webp    768w,
+                      ../assets/img/gallery/plum-03-1024x768.webp  1024w,
+                      ../assets/img/gallery/plum-03-1536x1152.webp 1536w,
+                      ../assets/img/gallery/plum-01-2048x1536.webp 2048w
+                    " />
+                  <!-- JPG fallback -->
+                  <img
+                    src="../assets/img/gallery/plum-03-768x576.jpg"
+                    srcset="
+                      ../assets/img/gallery/plum-03-480x360.jpg    480w,
+                      ../assets/img/gallery/plum-03-768x576.jpg    768w,
+                      ../assets/img/gallery/plum-03-1024x768.jpg  1024w,
+                      ../assets/img/gallery/plum-03-1536x1152.jpg 1536w,
+                      ../assets/img/gallery/plum-03-2048x1536.jpg 2048w
+                    "
+                    sizes="(min-width: 980px) 33vw, (min-width: 640px) 50vw, 100vw"
+                    width="768"
+                    height="576"
+                    loading="lazy"
+                    decoding="async"
+                    alt="Salon po remoncie" />
+                </picture>
+              </a>
+            </li>
+
+            <!-- 4 -->
+            <li data-reveal="up" data-reveal-delay="280">
+              <a class="gallery-item" href="../assets/img/gallery/plum-04-2048x1536.jpg" data-lb="hydraulika" data-lb-caption="Salon po remoncie — realizacja KP_Code">
+                <picture>
+                  <!-- AVIF -->
+                  <source
+                    type="image/avif"
+                    srcset="
+                      ../assets/img/gallery/plum-04-480x360.avif    480w,
+                      ../assets/img/gallery/plum-04-768x576.avif    768w,
+                      ../assets/img/gallery/plum-04-1024x768.avif  1024w,
+                      ../assets/img/gallery/plum-04-1536x1152.avif 1536w,
+                      ../assets/img/gallery/plum-04-2048x1536.avif 2048w
+                    " />
+                  <!-- WebP -->
+                  <source
+                    type="image/webp"
+                    srcset="
+                      ../assets/img/gallery/plum-04-480x360.webp    480w,
+                      ../assets/img/gallery/plum-04-768x576.webp    768w,
+                      ../assets/img/gallery/plum-04-1024x768.webp  1024w,
+                      ../assets/img/gallery/plum-04-1536x1152.webp 1536w,
+                      ../assets/img/gallery/plum-04-2048x1536.webp 2048w
+                    " />
+                  <!-- JPG fallback -->
+                  <img
+                    src="../assets/img/gallery/plum-04-768x576.jpg"
+                    srcset="
+                      ../assets/img/gallery/plum-04-480x360.jpg    480w,
+                      ../assets/img/gallery/plum-04-768x576.jpg    768w,
+                      ../assets/img/gallery/plum-04-1024x768.jpg  1024w,
+                      ../assets/img/gallery/plum-04-1536x1152.jpg 1536w,
+                      ../assets/img/gallery/plum-04-2048x1536.jpg 2048w
+                    "
+                    sizes="(min-width: 980px) 33vw, (min-width: 640px) 50vw, 100vw"
+                    width="768"
+                    height="576"
+                    loading="lazy"
+                    decoding="async"
+                    alt="Salon po remoncie" />
+                </picture>
+              </a>
+            </li>
+
+            <!-- 5 -->
+            <li data-reveal="up" data-reveal-delay="320">
+              <a class="gallery-item" href="../assets/img/gallery/plum-05-2048x1536.jpg" data-lb="hydraulika" data-lb-caption="Salon po remoncie — realizacja KP_Code">
+                <picture>
+                  <!-- AVIF -->
+                  <source
+                    type="image/avif"
+                    srcset="
+                      ../assets/img/gallery/plum-05-480x360.avif    480w,
+                      ../assets/img/gallery/plum-05-768x576.avif    768w,
+                      ../assets/img/gallery/plum-05-1024x768.avif  1024w,
+                      ../assets/img/gallery/plum-05-1536x1152.avif 1536w,
+                      ../assets/img/gallery/plum-05-2048x1536.avif 2048w
+                    " />
+                  <!-- WebP -->
+                  <source
+                    type="image/webp"
+                    srcset="
+                      ../assets/img/gallery/plum-05-480x360.webp    480w,
+                      ../assets/img/gallery/plum-05-768x576.webp    768w,
+                      ../assets/img/gallery/plum-05-1024x768.webp  1024w,
+                      ../assets/img/gallery/plum-05-1536x1152.webp 1536w,
+                      ../assets/img/gallery/plum-05-2048x1536.webp 2048w
+                    " />
+                  <!-- JPG fallback -->
+                  <img
+                    src="../assets/img/gallery/plum-05-768x576.jpg"
+                    srcset="
+                      ../assets/img/gallery/plum-05-480x360.jpg    480w,
+                      ../assets/img/gallery/plum-05-768x576.jpg    768w,
+                      ../assets/img/gallery/plum-05-1024x768.jpg  1024w,
+                      ../assets/img/gallery/plum-05-1536x1152.jpg 1536w,
+                      ../assets/img/gallery/plum-05-2048x1536.jpg 2048w
+                    "
+                    sizes="(min-width: 980px) 33vw, (min-width: 640px) 50vw, 100vw"
+                    width="768"
+                    height="576"
+                    loading="lazy"
+                    decoding="async"
+                    alt="Salon po remoncie" />
+                </picture>
+              </a>
+            </li>
+
+            <!-- 6 -->
+            <li data-reveal="up" data-reveal-delay="360">
+              <a class="gallery-item" href="../assets/img/gallery/plum-06-2048x1536.jpg" data-lb="hydraulika" data-lb-caption="Salon po remoncie — realizacja KP_Code">
+                <picture>
+                  <!-- AVIF -->
+                  <source
+                    type="image/avif"
+                    srcset="
+                      ../assets/img/gallery/plum-06-480x360.avif    480w,
+                      ../assets/img/gallery/plum-06-768x576.avif    768w,
+                      ../assets/img/gallery/plum-06-1024x768.avif  1024w,
+                      ../assets/img/gallery/plum-06-1536x1152.avif 1536w,
+                      ../assets/img/gallery/plum-06-2048x1536.avif 2048w
+                    " />
+                  <!-- WebP -->
+                  <source
+                    type="image/webp"
+                    srcset="
+                      ../assets/img/gallery/plum-06-480x360.webp    480w,
+                      ../assets/img/gallery/plum-06-768x576.webp    768w,
+                      ../assets/img/gallery/plum-06-1024x768.webp  1024w,
+                      ../assets/img/gallery/plum-06-1536x1152.webp 1536w,
+                      ../assets/img/gallery/plum-06-2048x1536.webp 2048w
+                    " />
+                  <!-- JPG fallback -->
+                  <img
+                    src="../assets/img/gallery/plum-06-768x576.jpg"
+                    srcset="
+                      ../assets/img/gallery/plum-06-480x360.jpg    480w,
+                      ../assets/img/gallery/plum-06-768x576.jpg    768w,
+                      ../assets/img/gallery/plum-06-1024x768.jpg  1024w,
+                      ../assets/img/gallery/plum-06-1536x1152.jpg 1536w,
+                      ../assets/img/gallery/plum-06-2048x1536.jpg 2048w
+                    "
+                    sizes="(min-width: 980px) 33vw, (min-width: 640px) 50vw, 100vw"
+                    width="768"
+                    height="576"
+                    loading="lazy"
+                    decoding="async"
+                    alt="Salon po remoncie" />
+                </picture>
+              </a>
+            </li>
+          </ul>
+        </div>
+      </section>
+
+      <!-- FAQ -->
+      <section id="faq" class="block" aria-labelledby="faq-heading" aria-describedby="faq-desc">
+        <div class="container">
+          <header class="block-head">
+            <h2 id="faq-heading" data-reveal="up" data-reveal-delay="80">FAQ — najczęstsze pytania</h2>
+            <p id="faq-desc" class="lead" data-reveal="up" data-reveal-delay="120">Krótko i konkretnie — najważniejsze informacje o hydraulice (instalacje wod-kan i biały montaż).</p>
           </header>
 
           <ul class="faq-list">
-            <li>
+            <!-- FAQ 1 -->
+            <li data-reveal="up" data-reveal-delay="160">
               <details class="faq" id="faq-1">
                 <summary id="q-1" class="faq-q">Czy wykonujecie próbę szczelności po przeróbkach?</summary>
-                <div class="answer" id="a-1" role="region" aria-labelledby="q-1">
+                <div class="answer" id="a-1">
                   <p>
                     Tak — po zakończeniu prac robimy
                     <strong>próbę ciśnieniową</strong>
@@ -267,11 +548,11 @@
                 </div>
               </details>
             </li>
-
-            <li>
+            <!-- FAQ 2 -->
+            <li data-reveal="up" data-reveal-delay="240">
               <details class="faq" id="faq-2">
                 <summary id="q-2" class="faq-q">Ile trwa przeróbka podejść w łazience?</summary>
-                <div class="answer" id="a-2" role="region" aria-labelledby="q-2">
+                <div class="answer" id="a-2">
                   <p>
                     Zazwyczaj
                     <strong>1–2 dni robocze</strong>
@@ -280,11 +561,11 @@
                 </div>
               </details>
             </li>
-
-            <li>
+            <!-- FAQ 3 -->
+            <li data-reveal="up" data-reveal-delay="320">
               <details class="faq" id="faq-3">
                 <summary id="q-3" class="faq-q">Czy montujecie zestawy podtynkowe (stelaże WC, baterie)?</summary>
-                <div class="answer" id="a-3" role="region" aria-labelledby="q-3">
+                <div class="answer" id="a-3">
                   <p>
                     Tak — montujemy
                     <strong>stelaże WC</strong>
@@ -293,11 +574,11 @@
                 </div>
               </details>
             </li>
-
-            <li>
+            <!-- FAQ 4 -->
+            <li data-reveal="up" data-reveal-delay="400">
               <details class="faq" id="faq-4">
                 <summary id="q-4" class="faq-q">Czy pomagacie w doborze armatury i osprzętu?</summary>
-                <div class="answer" id="a-4" role="region" aria-labelledby="q-4">
+                <div class="answer" id="a-4">
                   <p>
                     Oczywiście. Przygotujemy listę zakupową (zawory, syfony, przyłącza, baterie), a na życzenie zrealizujemy również
                     <strong>kompleksowy biały montaż</strong>
@@ -309,15 +590,16 @@
           </ul>
         </div>
       </section>
+
       <!-- CTA -->
       <section class="cta" role="region" aria-labelledby="cta-end-heading">
         <div class="container">
           <header class="block-head">
-            <h2 id="cta-end-heading">Masz projekt lub szkic instalacji?</h2>
-            <p class="lead">Przyślij rzut i zakres prac — wycenimy w 24–48&nbsp;h i zaproponujemy najbliższy termin.</p>
+            <h2 id="cta-end-heading" data-reveal="up" data-reveal-delay="80">Masz projekt lub szkic instalacji?</h2>
+            <p class="lead" data-reveal="up" data-reveal-delay="160">Przyślij rzut i zakres prac — wycenimy w 24–48&nbsp;h i zaproponujemy najbliższy termin.</p>
           </header>
 
-          <div class="block-cta">
+          <div class="block-cta" data-reveal="right" data-reveal-delay="240">
             <a class="btn" href="../index.html#kontakt" aria-label="Wyślij zapytanie — formularz kontaktowy">Wyślij zapytanie</a>
           </div>
         </div>
