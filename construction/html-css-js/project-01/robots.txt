@@ -1,5 +1,18 @@
-User-agent: *
-Allow: /
+# ==================================================
+# robots.txt — Construction Project 01 (Demo)
+# Author: KP_Code
+# Last update: 2025-10-21
+# ==================================================
 
-# Link do mapy strony
+# Zezwól wszystkim wyszukiwarkom na indeksowanie strony
+User-agent: *
+Disallow:
+
+# Lokalizacja mapy strony (dla Google i Bing)
 Sitemap: https://construction-project-01.netlify.app/sitemap.xml
+
+# Netlify hostuje stronę przez HTTPS — preferowany adres kanoniczny
+# Host: https://construction-project-01.netlify.app
+
+# Dodatkowe informacje (opcjonalnie)
+# Crawl-delay: 10  # jeśli chcesz ograniczyć tempo skanowania (rzadko używane)
