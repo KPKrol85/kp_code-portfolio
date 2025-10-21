@@ -2,7 +2,9 @@
 <html lang="pl">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width,initial-scale=1, viewport-fit=cover" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta name="referrer" content="strict-origin-when-cross-origin" />
+    <meta name="format-detection" content="telephone=no, address=no, email=no" />
 
     <title>Demo — kafelkowanie i glazurnictwo | KP_Code</title>
     <meta
@@ -13,11 +15,32 @@
     <meta name="robots" content="index, follow" />
     <link rel="canonical" href="https://construction-project-01.netlify.app/oferta/kafelkowanie.html" />
 
+    <!-- PWA / kolory motywu -->
     <meta name="theme-color" content="#0ea5e9" />
     <meta name="theme-color" content="#0ea5e9" media="(prefers-color-scheme: light)" />
     <meta name="theme-color" content="#0b1220" media="(prefers-color-scheme: dark)" />
     <meta name="color-scheme" content="light dark" />
 
+    <!-- Preload hero (AVIF/WEBP/JPG) -->
+    <link
+      rel="preload"
+      as="image"
+      type="image/avif"
+      imagesrcset="../assets/img/oferta/kafelkowanie/hero-800-450.avif 800w, ../assets/img/oferta/kafelkowanie/hero-1200-675.avif 1200w, ../assets/img/oferta/kafelkowanie/hero-1600-900.avif 1600w, ../assets/img/oferta/kafelkowanie/hero-2400-1350.avif 2400w"
+      imagesizes="100vw" />
+    <link
+      rel="preload"
+      as="image"
+      type="image/webp"
+      imagesrcset="../assets/img/oferta/kafelkowanie/hero-800-450.webp 800w, ../assets/img/oferta/kafelkowanie/hero-1200-675.webp 1200w, ../assets/img/oferta/kafelkowanie/hero-1600-900.webp 1600w, ../assets/img/oferta/kafelkowanie/hero-2400-1350.webp 2400w"
+      imagesizes="100vw" />
+    <link
+      rel="preload"
+      as="image"
+      imagesrcset="../assets/img/oferta/kafelkowanie/hero-800-450.jpg 800w, ../assets/img/oferta/kafelkowanie/hero-1200-675.jpg 1200w, ../assets/img/oferta/kafelkowanie/hero-1600-900.jpg 1600w, ../assets/img/oferta/kafelkowanie/hero-2400-1350.jpg 2400w"
+      imagesizes="100vw" />
+
+    <!-- Open Graph -->
     <meta property="og:type" content="website" />
     <meta property="og:site_name" content="KP_Code Portfolio" />
     <meta property="og:locale" content="pl_PL" />
@@ -31,6 +54,7 @@
     <meta property="og:image:height" content="630" />
     <meta property="og:image:alt" content="Ekipa układająca płytki — logo w rogu (DEMO szablonu)" />
 
+    <!-- Twitter -->
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content="Demo — kafelkowanie i glazurnictwo | KP_Code" />
     <meta
@@ -40,6 +64,7 @@
     <meta name="twitter:image:alt" content="Ekipa układająca płytki — logo w rogu (DEMO szablonu)" />
     <meta name="twitter:url" content="https://construction-project-01.netlify.app/oferta/kafelkowanie.html" />
 
+    <!-- JSON-LD -->
     <script type="application/ld+json">
       {
         "@context": "https://schema.org",
@@ -82,13 +107,17 @@
         ]
       }
     </script>
+
+    <!-- Boot theme (no flicker) -->
     <script>
       try {
-        var d = document.documentElement,
-          t = localStorage.getItem("theme");
-        if (!t) t = window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+        const d = document.documentElement;
+        let t = localStorage.getItem("theme");
+        if (t !== "light" && t !== "dark") {
+          t = window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+        }
         d.setAttribute("data-theme", t);
-      } catch (e) {}
+      } catch {}
     </script>
     <style>
       html.preload-theme *,
@@ -100,30 +129,35 @@
     <script>
       document.documentElement.classList.add("preload-theme");
       window.addEventListener("DOMContentLoaded", () => {
-        setTimeout(() => document.documentElement.classList.remove("preload-theme"), 0);
+        requestAnimationFrame(() => document.documentElement.classList.remove("preload-theme"));
       });
     </script>
 
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      rel="preload"
-      as="style"
-      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700&family=Poppins:wght@400;600;700&display=swap"
-      onload="this.onload=null;this.rel='stylesheet'" />
-    <noscript>
-      <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700&family=Poppins:wght@400;600;700&display=swap" />
-    </noscript>
+    <!-- Lokalne fonty (preload) -->
+    <link rel="preload" as="font" type="font/woff2" href="../assets/fonts/poppins-v24-latin-regular.woff2" crossorigin />
+    <link rel="preload" as="font" type="font/woff2" href="../assets/fonts/poppins-v24-latin-600.woff2" crossorigin />
+    <link rel="preload" as="font" type="font/woff2" href="../assets/fonts/montserrat-v31-latin-700.woff2" crossorigin />
+    <link rel="preload" as="font" type="font/woff2" href="../assets/fonts/montserrat-v31-latin-600.woff2" crossorigin />
 
+    <!-- Główny CSS -->
     <link rel="stylesheet" href="../css/style.css" />
 
-    <link rel="icon" type="image/x-icon" href="../assets/img/favicon/favicon.ico" />
+    <!-- Favicons -->
+    <!-- PWA meta / manifest -->
+    <link rel="manifest" href="/site.webmanifest" />
+    <meta name="theme-color" content="#0ea5e9" />
+    <meta name="application-name" content="KP_Code Demo" />
     <link rel="icon" type="image/svg+xml" href="../assets/img/favicon/favicon.svg" />
-    <link rel="icon" type="image/png" sizes="96x96" href="../assets/img/favicon/favicon-96x96.png" />
-    <link rel="apple-touch-icon" sizes="180x180" href="../assets/img/favicon/apple-touch-icon.png" />
-    <link rel="icon" type="image/png" sizes="192x192" href="../assets/img/favicon/web-app-manifest-192x192.png" />
+    <link rel="icon" href="../assets/img/favicon/favicon.ico" sizes="any" />
+    <link rel="icon" type="image/png" sizes="32x32" href="../assets/img/favicon/favicon-32x32.png" />
     <link rel="icon" type="image/png" sizes="512x512" href="../assets/img/favicon/web-app-manifest-512x512.png" />
-    <link rel="manifest" href="../assets/img/favicon/site.webmanifest" />
+    <link rel="apple-touch-icon" sizes="180x180" href="../assets/img/favicon/apple-touch-icon.png" />
+    <meta name="apple-mobile-web-app-title" content="KP_Code Demo" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta name="msapplication-TileColor" content="#0ea5e9" />
+    <meta name="msapplication-TileImage" content="../assets/img/favicon/web-app-manifest-144x144.png" />
+    <link rel="mask-icon" href="../assets/img/favicon/favicon.svg" color="#0ea5e9" />
   </head>
 
   <!-- BODY -->
@@ -220,8 +254,6 @@
 
           <div class="block-cta" data-reveal="scale" data-reveal-delay="480">
             <a class="btn" href="../index.html?usluga=Kafelkowanie#kontakt" aria-label="Przejdź do formularza wyceny — Kafelkowanie">Wycena</a>
-
-            <a class="btn btn--ghost" href="#" aria-label="Zobacz galerię realizacji kafelkowania">Galeria realizacji</a>
           </div>
         </div>
       </section>
@@ -237,7 +269,11 @@
           <ul class="gallery-grid">
             <!-- 1 -->
             <li data-reveal="up" data-reveal-delay="160">
-              <a class="gallery-item" href="../assets/img/gallery/tilling-01-2048x1536.jpg" data-lb="kafelkowanie" data-lb-caption="Salon po remoncie — realizacja KP_Code">
+              <a
+                class="gallery-item"
+                href="../assets/img/gallery/tilling-01-2048x1536.jpg"
+                data-lb="kafelkowanie"
+                data-lb-caption="Prace glazurnicze na zewnątrz — układanie płytek tarasowych z zastosowaniem mrozoodpornej zaprawy klejowej.">
                 <picture>
                   <!-- AVIF -->
                   <source
@@ -274,14 +310,18 @@
                     height="576"
                     loading="lazy"
                     decoding="async"
-                    alt="Salon po remoncie" />
+                    alt="Układanie płytek na tarasie z użyciem zaprawy klejowej" />
                 </picture>
               </a>
             </li>
 
             <!-- 2 -->
             <li data-reveal="up" data-reveal-delay="200">
-              <a class="gallery-item" href="../assets/img/gallery/tilling-02-2048x1536.jpg" data-lb="kafelkowanie" data-lb-caption="Salon po remoncie — realizacja KP_Code">
+              <a
+                class="gallery-item"
+                href="../assets/img/gallery/tilling-02-2048x1536.jpg"
+                data-lb="kafelkowanie"
+                data-lb-caption="Efekt końcowy — podłoga z dużych płytek gresowych o wysokim połysku, ułożonych na równą fugę.">
                 <picture>
                   <!-- AVIF -->
                   <source
@@ -318,14 +358,18 @@
                     height="576"
                     loading="lazy"
                     decoding="async"
-                    alt="Salon po remoncie" />
+                    alt="Połyskująca podłoga wyłożona dużymi płytkami gresowymi" />
                 </picture>
               </a>
             </li>
 
             <!-- 3 -->
             <li data-reveal="up" data-reveal-delay="240">
-              <a class="gallery-item" href="../assets/img/gallery/tilling-03-2048x1536.jpg" data-lb="kafelkowanie" data-lb-caption="Salon po remoncie — realizacja KP_Code">
+              <a
+                class="gallery-item"
+                href="../assets/img/gallery/tilling-03-2048x1536.jpg"
+                data-lb="kafelkowanie"
+                data-lb-caption="Zestawienie wzorów płytek — przykłady kolorystyki i faktur stosowanych w realizacjach wnętrz.">
                 <picture>
                   <!-- AVIF -->
                   <source
@@ -362,14 +406,18 @@
                     height="576"
                     loading="lazy"
                     decoding="async"
-                    alt="Salon po remoncie" />
+                    alt="Próbki i wzory płytek ceramicznych w różnych kolorach i fakturach" />
                 </picture>
               </a>
             </li>
 
             <!-- 4 -->
             <li data-reveal="up" data-reveal-delay="280">
-              <a class="gallery-item" href="../assets/img/gallery/tilling-04-2048x1536.jpg" data-lb="kafelkowanie" data-lb-caption="Salon po remoncie — realizacja KP_Code">
+              <a
+                class="gallery-item"
+                href="../assets/img/gallery/tilling-04-2048x1536.jpg"
+                data-lb="kafelkowanie"
+                data-lb-caption="Nowoczesna łazienka wykończona czarnym gresem — kontrastowe połączenie z elementami drewna.">
                 <picture>
                   <!-- AVIF -->
                   <source
@@ -406,14 +454,18 @@
                     height="576"
                     loading="lazy"
                     decoding="async"
-                    alt="Salon po remoncie" />
+                    alt="Łazienka z czarnymi płytkami i drewnianą szafką pod umywalką" />
                 </picture>
               </a>
             </li>
 
             <!-- 5 -->
             <li data-reveal="up" data-reveal-delay="320">
-              <a class="gallery-item" href="../assets/img/gallery/tilling-05-2048x1536.jpg" data-lb="kafelkowanie" data-lb-caption="Salon po remoncie — realizacja KP_Code">
+              <a
+                class="gallery-item"
+                href="../assets/img/gallery/tilling-05-2048x1536.jpg"
+                data-lb="kafelkowanie"
+                data-lb-caption="Układanie płytek na posadzce — precyzyjne poziomowanie przy pomocy systemu dystansowego.">
                 <picture>
                   <!-- AVIF -->
                   <source
@@ -450,14 +502,18 @@
                     height="576"
                     loading="lazy"
                     decoding="async"
-                    alt="Salon po remoncie" />
+                    alt="Glazurnik układający płytki na podłodze z użyciem poziomicy i klipsów dystansowych" />
                 </picture>
               </a>
             </li>
 
             <!-- 6 -->
             <li data-reveal="up" data-reveal-delay="360">
-              <a class="gallery-item" href="../assets/img/gallery/tilling-06-2048x1536.jpg" data-lb="kafelkowanie" data-lb-caption="Salon po remoncie — realizacja KP_Code">
+              <a
+                class="gallery-item"
+                href="../assets/img/gallery/tilling-06-2048x1536.jpg"
+                data-lb="kafelkowanie"
+                data-lb-caption="Końcowy etap kafelkowania — przykręcanie listew wykończeniowych i dopasowanie elementów podłogi.">
                 <picture>
                   <!-- AVIF -->
                   <source
@@ -494,7 +550,7 @@
                     height="576"
                     loading="lazy"
                     decoding="async"
-                    alt="Salon po remoncie" />
+                    alt="Montaż listew wykończeniowych przy podłodze z płytek" />
                 </picture>
               </a>
             </li>

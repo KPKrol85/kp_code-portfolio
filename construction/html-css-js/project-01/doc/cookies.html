@@ -13,11 +13,13 @@
     <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
     <link rel="canonical" href="https://construction-project-01.netlify.app/doc/cookies.html" />
 
+    <!-- PWA / kolory motywu -->
     <meta name="theme-color" content="#0ea5e9" />
     <meta name="theme-color" content="#0ea5e9" media="(prefers-color-scheme: light)" />
     <meta name="theme-color" content="#0b1220" media="(prefers-color-scheme: dark)" />
     <meta name="color-scheme" content="light dark" />
 
+    <!-- Open Graph -->
     <meta property="og:type" content="website" />
     <meta property="og:site_name" content="KP_Code Portfolio" />
     <meta property="og:locale" content="pl_PL" />
@@ -28,8 +30,9 @@
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
     <meta property="og:image:alt" content="Logo KP_Code — dokumenty prawne (DEMO)" />
-    <meta property="og:updated_time" content="2025-09-22T21:00:00+02:00" />
+    <meta property="og:updated_time" content="2025-10-19T12:00:00+02:00" />
 
+    <!-- Twitter -->
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content="Demo — pliki cookies | KP_Code" />
     <meta name="twitter:description" content="Informacje o plikach cookies (DEMO): rodzaje, cele, podmioty trzecie oraz sposób zarządzania zgodą i wyłączenia cookies w przeglądarce." />
@@ -37,6 +40,7 @@
     <meta name="twitter:image:alt" content="Logo KP_Code — dokumenty prawne (DEMO)" />
     <meta name="twitter:url" content="https://construction-project-01.netlify.app/doc/cookies.html" />
 
+    <!-- JSON-LD -->
     <script type="application/ld+json">
       {
         "@context": "https://schema.org",
@@ -48,31 +52,30 @@
             "name": "KP_Code Portfolio — Demo",
             "description": "Demo portfolio: strony dla branży budowlanej i remontowej.",
             "inLanguage": "pl-PL",
-            "publisher": { "@type": "Person", "name": "Kamil Król" }
+            "publisher": { "@type": "Person", "name": "Kamil Król" },
+            "image": "https://construction-project-01.netlify.app/assets/img/og/og-image-1200x630.jpg"
           },
           {
             "@type": ["WebPage", "CookiePolicy"],
             "@id": "https://construction-project-01.netlify.app/doc/cookies.html#page",
-            "name": "Demo — pliki cookies | KP_Code",
             "url": "https://construction-project-01.netlify.app/doc/cookies.html",
+            "name": "Demo — pliki cookies | KP_Code",
             "isPartOf": { "@id": "https://construction-project-01.netlify.app/#website" },
-            "inLanguage": "pl-PL"
+            "inLanguage": "pl-PL",
+            "dateModified": "2025-10-19",
+            "primaryImageOfPage": {
+              "@type": "ImageObject",
+              "url": "https://construction-project-01.netlify.app/assets/img/og/og-image-1200x630.jpg",
+              "width": 1200,
+              "height": 630
+            }
           },
           {
             "@type": "BreadcrumbList",
+            "@id": "https://construction-project-01.netlify.app/doc/cookies.html#breadcrumbs",
             "itemListElement": [
-              {
-                "@type": "ListItem",
-                "position": 1,
-                "name": "Strona główna",
-                "item": "https://construction-project-01.netlify.app/"
-              },
-              {
-                "@type": "ListItem",
-                "position": 2,
-                "name": "Pliki cookies",
-                "item": "https://construction-project-01.netlify.app/doc/cookies.html"
-              }
+              { "@type": "ListItem", "position": 1, "name": "Strona główna", "item": "https://construction-project-01.netlify.app/" },
+              { "@type": "ListItem", "position": 2, "name": "Pliki cookies", "item": "https://construction-project-01.netlify.app/doc/cookies.html" }
             ]
           },
           {
@@ -82,47 +85,39 @@
               {
                 "@type": "Question",
                 "name": "Do czego używamy plików cookies?",
-                "acceptedAnswer": {
-                  "@type": "Answer",
-                  "text": "Pliki cookies wykorzystujemy w celach statystycznych, funkcjonalnych oraz do zapamiętywania preferencji użytkownika."
-                }
+                "acceptedAnswer": { "@type": "Answer", "text": "Pliki cookies wykorzystujemy w celach statystycznych, funkcjonalnych oraz do zapamiętywania preferencji użytkownika." }
               },
               {
                 "@type": "Question",
                 "name": "Czy mogę wyłączyć pliki cookies?",
-                "acceptedAnswer": {
-                  "@type": "Answer",
-                  "text": "Tak. Możesz to zrobić w ustawieniach swojej przeglądarki. Pamiętaj jednak, że część funkcjonalności serwisu może wtedy nie działać poprawnie."
-                }
+                "acceptedAnswer": { "@type": "Answer", "text": "Tak. Możesz to zrobić w ustawieniach swojej przeglądarki. Część funkcji serwisu może wtedy nie działać poprawnie." }
               },
               {
                 "@type": "Question",
                 "name": "Czy stosujecie cookies podmiotów trzecich?",
-                "acceptedAnswer": {
-                  "@type": "Answer",
-                  "text": "Tak, korzystamy z cookies podmiotów trzecich, np. Google Analytics, aby analizować ruch i poprawiać jakość usług."
-                }
+                "acceptedAnswer": { "@type": "Answer", "text": "Tak, korzystamy z cookies podmiotów trzecich, np. Google Analytics, aby analizować ruch i poprawiać jakość usług." }
               },
               {
                 "@type": "Question",
                 "name": "Jak mogę zarządzać zgodą na cookies?",
-                "acceptedAnswer": {
-                  "@type": "Answer",
-                  "text": "Zgodą możesz zarządzać poprzez baner cookies widoczny przy pierwszej wizycie lub w każdej chwili w ustawieniach swojej przeglądarki."
-                }
+                "acceptedAnswer": { "@type": "Answer", "text": "Zgodą możesz zarządzać poprzez baner cookies przy pierwszej wizycie lub w każdej chwili w ustawieniach swojej przeglądarki." }
               }
             ]
           }
         ]
       }
     </script>
+
+    <!-- Boot theme (no flicker) -->
     <script>
       try {
-        var d = document.documentElement,
-          t = localStorage.getItem("theme");
-        if (!t) t = window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+        const d = document.documentElement;
+        let t = localStorage.getItem("theme");
+        if (t !== "light" && t !== "dark") {
+          t = window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+        }
         d.setAttribute("data-theme", t);
-      } catch (e) {}
+      } catch {}
     </script>
     <style>
       html.preload-theme *,
@@ -134,30 +129,39 @@
     <script>
       document.documentElement.classList.add("preload-theme");
       window.addEventListener("DOMContentLoaded", () => {
-        setTimeout(() => document.documentElement.classList.remove("preload-theme"), 0);
+        requestAnimationFrame(() => document.documentElement.classList.remove("preload-theme"));
       });
     </script>
 
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      rel="preload"
-      as="style"
-      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700&family=Poppins:wght@400;600;700&display=swap"
-      onload="this.onload=null;this.rel='stylesheet'" />
-    <noscript>
-      <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700&family=Poppins:wght@400;600;700&display=swap" />
-    </noscript>
+    <!-- Lokalne fonty -->
+    <link rel="preload" as="font" type="font/woff2" href="../assets/fonts/poppins-v24-latin-regular.woff2" crossorigin />
+    <link rel="preload" as="font" type="font/woff2" href="../assets/fonts/poppins-v24-latin-600.woff2" crossorigin />
+    <link rel="preload" as="font" type="font/woff2" href="../assets/fonts/montserrat-v31-latin-700.woff2" crossorigin />
+    <link rel="preload" as="font" type="font/woff2" href="../assets/fonts/montserrat-v31-latin-600.woff2" crossorigin />
 
+    <!-- Główny CSS -->
     <link rel="stylesheet" href="../css/style.css" />
 
-    <link rel="icon" type="image/x-icon" href="../assets/img/favicon/favicon.ico" />
+    <!-- Favicons -->
+    <!-- PWA meta / manifest -->
+    <link rel="manifest" href="/site.webmanifest" />
+
+    <meta name="theme-color" content="#0ea5e9" />
+    <meta name="application-name" content="KP_Code Demo" />
+
     <link rel="icon" type="image/svg+xml" href="../assets/img/favicon/favicon.svg" />
-    <link rel="icon" type="image/png" sizes="96x96" href="../assets/img/favicon/favicon-96x96.png" />
-    <link rel="apple-touch-icon" sizes="180x180" href="../assets/img/favicon/apple-touch-icon.png" />
-    <link rel="icon" type="image/png" sizes="192x192" href="../assets/img/favicon/web-app-manifest-192x192.png" />
+    <link rel="icon" href="../assets/img/favicon/favicon.ico" sizes="any" />
+    <link rel="icon" type="image/png" sizes="32x32" href="../assets/img/favicon/favicon-32x32.png" />
     <link rel="icon" type="image/png" sizes="512x512" href="../assets/img/favicon/web-app-manifest-512x512.png" />
-    <link rel="manifest" href="../assets/img/favicon/site.webmanifest" />
+    <link rel="apple-touch-icon" sizes="180x180" href="../assets/img/favicon/apple-touch-icon.png" />
+
+    <meta name="apple-mobile-web-app-title" content="KP_Code Demo" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+    <meta name="msapplication-TileColor" content="#0ea5e9" />
+    <meta name="msapplication-TileImage" content="../assets/img/favicon/web-app-manifest-144x144.png" />
+    <link rel="mask-icon" href="../assets/img/favicon/favicon.svg" color="#0ea5e9" />
   </head>
 
   <!-- BODY -->
@@ -186,12 +190,12 @@
                 <span class="caret" aria-hidden="true">▾</span>
               </a>
               <ul id="dd-oferta" class="dropdown" aria-label="Podmenu: Oferta" aria-labelledby="dd-oferta-trigger">
-                <li><a href="lazienki.html">Łazienki</a></li>
-                <li><a href="malowanie.html">Malowanie &amp; gładzie</a></li>
-                <li><a href="kafelkowanie.html">Kafelkowanie</a></li>
-                <li><a href="elektryka.html">Elektryka</a></li>
-                <li><a href="hydraulika.html">Hydraulika</a></li>
-                <li><a href="remonty.html">Remonty</a></li>
+                <li><a href="../oferta/lazienki.html">Łazienki</a></li>
+                <li><a href="../oferta/malowanie.html">Malowanie &amp; gładzie</a></li>
+                <li><a href="../oferta/kafelkowanie.html">Kafelkowanie</a></li>
+                <li><a href="../oferta/elektryka.html">Elektryka</a></li>
+                <li><a href="../oferta/hydraulika.html">Hydraulika</a></li>
+                <li><a href="../oferta/remonty.html">Remonty</a></li>
               </ul>
             </li>
 
@@ -209,81 +213,115 @@
           </button>
 
           <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="navMenu" aria-label="Otwórz menu">
-            <span class="nav-line"></span>
-            <span class="nav-line"></span>
-            <span class="nav-line"></span>
+            <span class="nav-line" aria-hidden="true"></span>
+            <span class="nav-line" aria-hidden="true"></span>
+            <span class="nav-line" aria-hidden="true"></span>
           </button>
         </div>
       </div>
     </header>
 
-<!-- MAIN -->
-<main id="main">
-  <section class="block" id="cookies" role="region" aria-labelledby="cookies-heading">
-    <div class="container">
-      <header class="block-head">
-        <h1 id="cookies-heading">Polityka plików cookies</h1>
-        <p class="lead">Wyjaśniamy, czym są pliki cookies, do czego ich używamy oraz jak możesz zarządzać ustawieniami swojej przeglądarki.</p>
-      </header>
+    <!-- MAIN -->
+    <main id="main">
+      <section class="block" id="cookies" role="region" aria-labelledby="cookies-heading">
+        <div class="container">
+          <header class="block-head">
+            <h1 id="cookies-heading">Polityka plików cookies</h1>
+            <p class="lead">Wyjaśniamy, czym są pliki cookies, do czego ich używamy oraz jak możesz zarządzać ustawieniami swojej przeglądarki.</p>
+          </header>
 
-      <!-- SPIS TREŚCI (opcjonalny) -->
-      <nav class="doc-toc" aria-label="Spis treści">
-        <ul>
-          <li><a href="#cookies-1">1. Czym są pliki cookies</a></li>
-          <li><a href="#cookies-2">2. Rodzaje wykorzystywanych cookies</a></li>
-          <li><a href="#cookies-3">3. Cele stosowania cookies</a></li>
-          <li><a href="#cookies-4">4. Cookies podmiotów trzecich</a></li>
-          <li><a href="#cookies-5">5. Zarządzanie cookies w przeglądarce</a></li>
-          <li><a href="#cookies-6">6. Zgoda i jej wycofanie</a></li>
-          <li><a href="#cookies-7">7. Zmiany w polityce cookies</a></li>
-          <li><a href="#cookies-8">8. Kontakt</a></li>
-        </ul>
-      </nav>
+          <!-- SPIS TREŚCI (opcjonalny) -->
+          <nav class="doc-toc" aria-label="Spis treści">
+            <ul>
+              <li><a href="#cookies-1">1. Czym są pliki cookies</a></li>
+              <li><a href="#cookies-2">2. Rodzaje wykorzystywanych cookies</a></li>
+              <li><a href="#cookies-3">3. Cele stosowania cookies</a></li>
+              <li><a href="#cookies-4">4. Cookies podmiotów trzecich</a></li>
+              <li><a href="#cookies-5">5. Zarządzanie cookies w przeglądarce</a></li>
+              <li><a href="#cookies-6">6. Zgoda i jej wycofanie</a></li>
+              <li><a href="#cookies-7">7. Zmiany w polityce cookies</a></li>
+              <li><a href="#cookies-8">8. Kontakt</a></li>
+            </ul>
+          </nav>
 
-      <article class="doc-content">
-        <p><small>Wersja DEMO na potrzeby portfolio. Dokument ma charakter przykładowy i nie stanowi porady prawnej.</small></p>
+          <article class="doc-content legal-doc">
+            <p><small>Wersja DEMO na potrzeby portfolio. Dokument ma charakter przykładowy i nie stanowi porady prawnej.</small></p>
 
-        <h2 id="cookies-1">1. Czym są pliki cookies</h2>
-        <p>Cookies (ciasteczka) to niewielkie pliki tekstowe zapisywane na urządzeniu końcowym Użytkownika podczas odwiedzania Serwisu. Pliki te pozwalają rozpoznać przeglądarkę i zapamiętać wybrane informacje lub ustawienia.</p>
+            <h2 id="cookies-1">1. Czym są pliki cookies</h2>
+            <p>
+              Cookies (ciasteczka) to niewielkie pliki tekstowe zapisywane na urządzeniu końcowym Użytkownika podczas odwiedzania Serwisu. Pliki te pozwalają rozpoznać przeglądarkę i zapamiętać
+              wybrane informacje lub ustawienia.
+            </p>
 
-        <h2 id="cookies-2">2. Rodzaje wykorzystywanych cookies</h2>
-        <ul>
-          <li><strong>Niezbędne</strong> — wymagane do prawidłowego działania Serwisu (sesja, nawigacja, bezpieczeństwo).</li>
-          <li><strong>Funkcjonalne</strong> — zapamiętują preferencje (np. motyw jasny/ciemny, język).</li>
-          <li><strong>Analityczne/statystyczne</strong> — pomagają zrozumieć, jak Użytkownicy korzystają z Serwisu (zestawienia anonimowe).</li>
-          <li><strong>Marketingowe</strong> — wykorzystywane do dopasowania treści/komunikacji (stosowane tylko, jeśli są włączone).</li>
-        </ul>
+            <h2 id="cookies-2">2. Rodzaje wykorzystywanych cookies</h2>
+            <ul>
+              <li>
+                <strong>Niezbędne</strong>
+                — wymagane do prawidłowego działania Serwisu (sesja, nawigacja, bezpieczeństwo).
+              </li>
+              <li>
+                <strong>Funkcjonalne</strong>
+                — zapamiętują preferencje (np. motyw jasny/ciemny, język).
+              </li>
+              <li>
+                <strong>Analityczne/statystyczne</strong>
+                — pomagają zrozumieć, jak Użytkownicy korzystają z Serwisu (zestawienia anonimowe).
+              </li>
+              <li>
+                <strong>Marketingowe</strong>
+                — wykorzystywane do dopasowania treści/komunikacji (stosowane tylko, jeśli są włączone).
+              </li>
+            </ul>
 
-        <h2 id="cookies-3">3. Cele stosowania cookies</h2>
-        <ul>
-          <li>zapewnienie poprawnego działania i wydajności Serwisu,</li>
-          <li>zapamiętanie ustawień i preferencji Użytkownika,</li>
-          <li>anonimowa analiza ruchu w celu ulepszania funkcjonalności i treści,</li>
-          <li>opcjonalnie — pomiar skuteczności komunikacji i kampanii.</li>
-        </ul>
+            <h2 id="cookies-3">3. Cele stosowania cookies</h2>
+            <ul>
+              <li>zapewnienie poprawnego działania i wydajności Serwisu,</li>
+              <li>zapamiętanie ustawień i preferencji Użytkownika,</li>
+              <li>anonimowa analiza ruchu w celu ulepszania funkcjonalności i treści,</li>
+              <li>opcjonalnie — pomiar skuteczności komunikacji i kampanii.</li>
+            </ul>
 
-        <h2 id="cookies-4">4. Cookies podmiotów trzecich</h2>
-        <p>W Serwisie mogą być stosowane cookies podmiotów zewnętrznych (np. dostawców hostingu, narzędzi analitycznych). Podmioty te mogą używać cookies we własnych celach zgodnie z własnymi politykami. Szczegóły wskazujemy w konfiguracji zgód (jeśli dostępna) lub na żądanie Użytkownika.</p>
+            <h2 id="cookies-4">4. Cookies podmiotów trzecich</h2>
+            <p>
+              W Serwisie mogą być stosowane cookies podmiotów zewnętrznych (np. dostawców hostingu, narzędzi analitycznych). Podmioty te mogą używać cookies we własnych celach zgodnie z własnymi
+              politykami. Szczegóły wskazujemy w konfiguracji zgód (jeśli dostępna) lub na żądanie Użytkownika.
+            </p>
 
-        <h2 id="cookies-5">5. Zarządzanie cookies w przeglądarce</h2>
-        <p>Użytkownik może w dowolnym momencie zmienić ustawienia dotyczące cookies, w tym zablokować ich obsługę lub usunąć zapisane pliki — poprzez ustawienia swojej przeglądarki. Wyłączenie cookies może jednak ograniczyć niektóre funkcje Serwisu.</p>
-        <p><small>Wskazówka: w większości przeglądarek opcje te znajdują się w sekcji „Prywatność i bezpieczeństwo”.</small></p>
+            <h2 id="cookies-5">5. Zarządzanie cookies w przeglądarce</h2>
+            <p>
+              Użytkownik może w dowolnym momencie zmienić ustawienia dotyczące cookies, w tym zablokować ich obsługę lub usunąć zapisane pliki — poprzez ustawienia swojej przeglądarki. Wyłączenie
+              cookies może jednak ograniczyć niektóre funkcje Serwisu.
+            </p>
+            <p><small>Wskazówka: w większości przeglądarek opcje te znajdują się w sekcji „Prywatność i bezpieczeństwo”.</small></p>
 
-        <h2 id="cookies-6">6. Zgoda i jej wycofanie</h2>
-        <p>W zakresie, w jakim wymagają tego przepisy, stosowanie niektórych kategorii cookies odbywa się na podstawie zgody Użytkownika. Zgodę można w każdej chwili wycofać poprzez zmianę ustawień przeglądarki lub panelu zgód (jeśli dostępny). Wycofanie zgody nie wpływa na zgodność z prawem przetwarzania sprzed jej wycofania.</p>
+            <h2 id="cookies-6">6. Zgoda i jej wycofanie</h2>
+            <p>
+              W zakresie, w jakim wymagają tego przepisy, stosowanie niektórych kategorii cookies odbywa się na podstawie zgody Użytkownika. Zgodę można w każdej chwili wycofać poprzez zmianę ustawień
+              przeglądarki lub panelu zgód (jeśli dostępny). Wycofanie zgody nie wpływa na zgodność z prawem przetwarzania sprzed jej wycofania.
+            </p>
 
-        <h2 id="cookies-7">7. Zmiany w polityce cookies</h2>
-        <p>Administrator zastrzega sobie prawo do aktualizacji niniejszej Polityki cookies. Nowa wersja obowiązuje od momentu opublikowania w Serwisie, o ile nie wskazano inaczej.</p>
+            <h2 id="cookies-7">7. Zmiany w polityce cookies</h2>
+            <p>Administrator zastrzega sobie prawo do aktualizacji niniejszej Polityki cookies. Nowa wersja obowiązuje od momentu opublikowania w Serwisie, o ile nie wskazano inaczej.</p>
 
-        <h2 id="cookies-8">8. Kontakt</h2>
-        <p>W sprawach dotyczących cookies lub prywatności prosimy o kontakt: <a href="mailto:kontakt@twoja-firma.pl">kontakt@twoja-firma.pl</a>. Zapoznaj się także z <a href="../doc/polityka-prywatnosci.html">Polityką prywatności</a>.</p>
+            <h2 id="cookies-8">8. Kontakt</h2>
+            <p>
+              W sprawach dotyczących cookies lub prywatności prosimy o kontakt:
+              <a href="mailto:kontakt@twoja-firma.pl">kontakt@twoja-firma.pl</a>
+              . Zapoznaj się także z
+              <a href="../doc/polityka-prywatnosci.html">Polityką prywatności</a>
+              .
+            </p>
 
-        <p><small>Data ostatniej aktualizacji: <time datetime="2025-10-19">19.10.2025</time></small></p>
-      </article>
-    </div>
-  </section>
-</main>
-
+            <p>
+              <small>
+                Data ostatniej aktualizacji:
+                <time datetime="2025-10-19">19.10.2025</time>
+              </small>
+            </p>
+          </article>
+        </div>
+      </section>
+    </main>
 
     <!-- FOOTER -->
     <footer id="footer" class="site-footer" aria-labelledby="footer-heading">

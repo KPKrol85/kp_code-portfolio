@@ -3,20 +3,23 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+
     <title>Demo — regulamin serwisu | KP_Code</title>
     <meta
       name="description"
-      content="Regulamin korzystania z serwisu: definicje, zasady świadczenia usług drogą elektroniczną, odpowiedzialność oraz tryb reklamacyjny. Projekt i kod: KP_Code (DEMO)." />
+      content="Regulamin korzystania z serwisu: definicje, warunki świadczenia usług drogą elektroniczną, odpowiedzialność oraz tryb reklamacyjny. Projekt i kod: KP_Code (DEMO)." />
     <meta name="author" content="Kamil Król / KP_Code" />
 
     <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
     <link rel="canonical" href="https://construction-project-01.netlify.app/doc/regulamin.html" />
 
+    <!-- PWA / kolory motywu -->
     <meta name="theme-color" content="#0ea5e9" />
     <meta name="theme-color" content="#0ea5e9" media="(prefers-color-scheme: light)" />
     <meta name="theme-color" content="#0b1220" media="(prefers-color-scheme: dark)" />
     <meta name="color-scheme" content="light dark" />
 
+    <!-- Open Graph -->
     <meta property="og:type" content="website" />
     <meta property="og:site_name" content="KP_Code Portfolio" />
     <meta property="og:locale" content="pl_PL" />
@@ -27,8 +30,9 @@
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
     <meta property="og:image:alt" content="Logo KP_Code — dokumenty prawne (DEMO)" />
-    <meta property="og:updated_time" content="2025-09-22T21:00:00+02:00" />
+    <meta property="og:updated_time" content="2025-10-19T12:00:00+02:00" />
 
+    <!-- Twitter -->
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content="Demo — regulamin serwisu | KP_Code" />
     <meta name="twitter:description" content="Regulamin korzystania z serwisu (wersja DEMO): definicje, zasady świadczenia usług, odpowiedzialność i reklamacje." />
@@ -36,6 +40,7 @@
     <meta name="twitter:image:alt" content="Logo KP_Code — dokumenty prawne (DEMO)" />
     <meta name="twitter:url" content="https://construction-project-01.netlify.app/doc/regulamin.html" />
 
+    <!-- JSON-LD -->
     <script type="application/ld+json">
       {
         "@context": "https://schema.org",
@@ -47,18 +52,27 @@
             "name": "KP_Code Portfolio — Demo",
             "description": "Demo portfolio: strony dla branży budowlanej i remontowej.",
             "inLanguage": "pl-PL",
-            "publisher": { "@type": "Person", "name": "Kamil Król" }
+            "publisher": { "@type": "Person", "name": "Kamil Król" },
+            "image": "https://construction-project-01.netlify.app/assets/img/og/og-image-1200x630.jpg"
           },
           {
             "@type": ["WebPage", "TermsOfService"],
             "@id": "https://construction-project-01.netlify.app/doc/regulamin.html#page",
-            "name": "Demo — regulamin serwisu | KP_Code",
             "url": "https://construction-project-01.netlify.app/doc/regulamin.html",
+            "name": "Demo — regulamin serwisu | KP_Code",
             "isPartOf": { "@id": "https://construction-project-01.netlify.app/#website" },
-            "inLanguage": "pl-PL"
+            "inLanguage": "pl-PL",
+            "dateModified": "2025-10-19",
+            "primaryImageOfPage": {
+              "@type": "ImageObject",
+              "url": "https://construction-project-01.netlify.app/assets/img/og/og-image-1200x630.jpg",
+              "width": 1200,
+              "height": 630
+            }
           },
           {
             "@type": "BreadcrumbList",
+            "@id": "https://construction-project-01.netlify.app/doc/regulamin.html#breadcrumbs",
             "itemListElement": [
               { "@type": "ListItem", "position": 1, "name": "Strona główna", "item": "https://construction-project-01.netlify.app/" },
               { "@type": "ListItem", "position": 2, "name": "Regulamin serwisu", "item": "https://construction-project-01.netlify.app/doc/regulamin.html" }
@@ -67,13 +81,17 @@
         ]
       }
     </script>
+
+    <!-- Boot theme (no flicker) -->
     <script>
       try {
-        var d = document.documentElement,
-          t = localStorage.getItem("theme");
-        if (!t) t = window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+        const d = document.documentElement;
+        let t = localStorage.getItem("theme");
+        if (t !== "light" && t !== "dark") {
+          t = window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+        }
         d.setAttribute("data-theme", t);
-      } catch (e) {}
+      } catch {}
     </script>
     <style>
       html.preload-theme *,
@@ -85,30 +103,39 @@
     <script>
       document.documentElement.classList.add("preload-theme");
       window.addEventListener("DOMContentLoaded", () => {
-        setTimeout(() => document.documentElement.classList.remove("preload-theme"), 0);
+        requestAnimationFrame(() => document.documentElement.classList.remove("preload-theme"));
       });
     </script>
 
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      rel="preload"
-      as="style"
-      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700&family=Poppins:wght@400;600;700&display=swap"
-      onload="this.onload=null;this.rel='stylesheet'" />
-    <noscript>
-      <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700&family=Poppins:wght@400;600;700&display=swap" />
-    </noscript>
+    <!-- Lokalne fonty (spójnie z index.html) -->
+    <link rel="preload" as="font" type="font/woff2" href="../assets/fonts/poppins-v24-latin-regular.woff2" crossorigin />
+    <link rel="preload" as="font" type="font/woff2" href="../assets/fonts/poppins-v24-latin-600.woff2" crossorigin />
+    <link rel="preload" as="font" type="font/woff2" href="../assets/fonts/montserrat-v31-latin-700.woff2" crossorigin />
+    <link rel="preload" as="font" type="font/woff2" href="../assets/fonts/montserrat-v31-latin-600.woff2" crossorigin />
 
+    <!-- Główny CSS -->
     <link rel="stylesheet" href="../css/style.css" />
 
-    <link rel="icon" type="image/x-icon" href="../assets/img/favicon/favicon.ico" />
+    <!-- Favicons -->
+    <!-- PWA meta / manifest -->
+    <link rel="manifest" href="/site.webmanifest" />
+
+    <meta name="theme-color" content="#0ea5e9" />
+    <meta name="application-name" content="KP_Code Demo" />
+
     <link rel="icon" type="image/svg+xml" href="../assets/img/favicon/favicon.svg" />
-    <link rel="icon" type="image/png" sizes="96x96" href="../assets/img/favicon/favicon-96x96.png" />
-    <link rel="apple-touch-icon" sizes="180x180" href="../assets/img/favicon/apple-touch-icon.png" />
-    <link rel="icon" type="image/png" sizes="192x192" href="../assets/img/favicon/web-app-manifest-192x192.png" />
+    <link rel="icon" href="../assets/img/favicon/favicon.ico" sizes="any" />
+    <link rel="icon" type="image/png" sizes="32x32" href="../assets/img/favicon/favicon-32x32.png" />
     <link rel="icon" type="image/png" sizes="512x512" href="../assets/img/favicon/web-app-manifest-512x512.png" />
-    <link rel="manifest" href="../assets/img/favicon/site.webmanifest" />
+    <link rel="apple-touch-icon" sizes="180x180" href="../assets/img/favicon/apple-touch-icon.png" />
+
+    <meta name="apple-mobile-web-app-title" content="KP_Code Demo" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+    <meta name="msapplication-TileColor" content="#0ea5e9" />
+    <meta name="msapplication-TileImage" content="../assets/img/favicon/web-app-manifest-144x144.png" />
+    <link rel="mask-icon" href="../assets/img/favicon/favicon.svg" color="#0ea5e9" />
   </head>
 
   <!-- BODY -->
@@ -142,7 +169,7 @@
                 <li><a href="../oferta/kafelkowanie.html">Kafelkowanie</a></li>
                 <li><a href="../oferta/elektryka.html">Elektryka</a></li>
                 <li><a href="../oferta/hydraulika.html">Hydraulika</a></li>
-                <li><a href="remonty.html">Remonty</a></li>
+                <li><a href="../oferta/remonty.html">Remonty</a></li>
               </ul>
             </li>
 
@@ -160,9 +187,9 @@
           </button>
 
           <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="navMenu" aria-label="Otwórz menu">
-            <span class="nav-line"></span>
-            <span class="nav-line"></span>
-            <span class="nav-line"></span>
+            <span class="nav-line" aria-hidden="true"></span>
+            <span class="nav-line" aria-hidden="true"></span>
+            <span class="nav-line" aria-hidden="true"></span>
           </button>
         </div>
       </div>
@@ -170,32 +197,31 @@
 
     <!-- MAIN -->
     <main id="main">
-      <section class="block" id="tos" role="region" aria-labelledby="tos-heading">
+      <section class="block" id="tos" aria-labelledby="tos-heading">
         <div class="container">
           <header class="block-head">
             <h1 id="tos-heading">Regulamin serwisu</h1>
             <p class="lead">Poniżej znajdziesz zasady korzystania z serwisu oraz świadczenia usług drogą elektroniczną.</p>
           </header>
 
-<nav class="doc-toc" aria-label="Spis treści">
-  <ul>
-    <li><a href="#tos-1">1. Definicje</a></li>
-    <li><a href="#tos-2">2. Postanowienia ogólne</a></li>
-    <li><a href="#tos-3">3. Warunki techniczne</a></li>
-    <li><a href="#tos-4">4. Zasady korzystania</a></li>
-    <li><a href="#tos-5">5. Własność intelektualna</a></li>
-    <li><a href="#tos-6">6. Formularz kontaktowy</a></li>
-    <li><a href="#tos-7">7. Odpowiedzialność</a></li>
-    <li><a href="#tos-8">8. Linki zewnętrzne</a></li>
-    <li><a href="#tos-9">9. Reklamacje</a></li>
-    <li><a href="#tos-10">10. Bezpieczeństwo</a></li>
-    <li><a href="#tos-11">11. Zmiany Regulaminu</a></li>
-    <li><a href="#tos-12">12. Postanowienia końcowe</a></li>
-  </ul>
-</nav>
+          <nav class="doc-toc" aria-label="Spis treści">
+            <ul>
+              <li><a href="#tos-1">1. Definicje</a></li>
+              <li><a href="#tos-2">2. Postanowienia ogólne</a></li>
+              <li><a href="#tos-3">3. Warunki techniczne</a></li>
+              <li><a href="#tos-4">4. Zasady korzystania</a></li>
+              <li><a href="#tos-5">5. Własność intelektualna</a></li>
+              <li><a href="#tos-6">6. Formularz kontaktowy</a></li>
+              <li><a href="#tos-7">7. Odpowiedzialność</a></li>
+              <li><a href="#tos-8">8. Linki zewnętrzne</a></li>
+              <li><a href="#tos-9">9. Reklamacje</a></li>
+              <li><a href="#tos-10">10. Bezpieczeństwo</a></li>
+              <li><a href="#tos-11">11. Zmiany Regulaminu</a></li>
+              <li><a href="#tos-12">12. Postanowienia końcowe</a></li>
+            </ul>
+          </nav>
 
-
-          <article class="doc-content">
+          <article class="doc-content legal-doc">
             <p><small>Wersja DEMO na potrzeby portfolio. Ten dokument ma charakter przykładowy i nie stanowi porady prawnej.</small></p>
 
             <h2 id="tos-1">1. Definicje</h2>

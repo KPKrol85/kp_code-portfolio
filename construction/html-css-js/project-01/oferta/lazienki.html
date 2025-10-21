@@ -13,11 +13,13 @@
     <meta name="robots" content="index, follow" />
     <link rel="canonical" href="https://construction-project-01.netlify.app/oferta/lazienki.html" />
 
+    <!-- PWA / kolory motywu -->
     <meta name="theme-color" content="#0ea5e9" />
     <meta name="theme-color" content="#0ea5e9" media="(prefers-color-scheme: light)" />
     <meta name="theme-color" content="#0b1220" media="(prefers-color-scheme: dark)" />
     <meta name="color-scheme" content="light dark" />
 
+    <!-- Preload hero (AVIF/WEBP/JPG) -->
     <link
       rel="preload"
       as="image"
@@ -36,6 +38,7 @@
       imagesrcset="../assets/img/oferta/lazienki/hero-800-450.jpg 800w, ../assets/img/oferta/lazienki/hero-1200-675.jpg 1200w, ../assets/img/oferta/lazienki/hero-1600-900.jpg 1600w, ../assets/img/oferta/lazienki/hero-2400-1350.jpg 2400w"
       imagesizes="100vw" />
 
+    <!-- Open Graph -->
     <meta property="og:type" content="website" />
     <meta property="og:site_name" content="KP_Code Portfolio" />
     <meta property="og:locale" content="pl_PL" />
@@ -47,6 +50,7 @@
     <meta property="og:image:height" content="630" />
     <meta property="og:image:alt" content="Ekipa remontowa przy pracy — logo w rogu (DEMO szablonu)" />
 
+    <!-- Twitter -->
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content="Demo — wykończenia i remonty łazienek | KP_Code" />
     <meta name="twitter:description" content="Demo szablonu: projekt łazienki, instalacje, hydroizolacja, płytki i biały montaż. Czysto, terminowo, z gwarancją. Projekt i kod: KP_Code." />
@@ -54,6 +58,7 @@
     <meta name="twitter:image:alt" content="Ekipa remontowa przy pracy — logo w rogu (DEMO szablonu)" />
     <meta name="twitter:url" content="https://construction-project-01.netlify.app/oferta/lazienki.html" />
 
+    <!-- JSON-LD -->
     <script type="application/ld+json">
       {
         "@context": "https://schema.org",
@@ -65,10 +70,7 @@
             "name": "KP_Code Portfolio — Demo",
             "description": "Demo portfolio: strony dla branży budowlanej i remontowej.",
             "inLanguage": "pl-PL",
-            "publisher": {
-              "@type": "Person",
-              "name": "Kamil Król"
-            }
+            "publisher": { "@type": "Person", "name": "Kamil Król" }
           },
           {
             "@type": "CollectionPage",
@@ -81,24 +83,9 @@
           {
             "@type": "BreadcrumbList",
             "itemListElement": [
-              {
-                "@type": "ListItem",
-                "position": 1,
-                "name": "Strona główna",
-                "item": "https://construction-project-01.netlify.app/"
-              },
-              {
-                "@type": "ListItem",
-                "position": 2,
-                "name": "Oferta",
-                "item": "https://construction-project-01.netlify.app/#oferta"
-              },
-              {
-                "@type": "ListItem",
-                "position": 3,
-                "name": "Wykończenia i remonty łazienek",
-                "item": "https://construction-project-01.netlify.app/oferta/lazienki.html"
-              }
+              { "@type": "ListItem", "position": 1, "name": "Strona główna", "item": "https://construction-project-01.netlify.app/" },
+              { "@type": "ListItem", "position": 2, "name": "Oferta", "item": "https://construction-project-01.netlify.app/#oferta" },
+              { "@type": "ListItem", "position": 3, "name": "Wykończenia i remonty łazienek", "item": "https://construction-project-01.netlify.app/oferta/lazienki.html" }
             ]
           },
           {
@@ -114,13 +101,17 @@
         ]
       }
     </script>
+
+    <!-- Boot theme (no flicker) -->
     <script>
       try {
-        var d = document.documentElement,
-          t = localStorage.getItem("theme");
-        if (!t) t = window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+        const d = document.documentElement;
+        let t = localStorage.getItem("theme");
+        if (t !== "light" && t !== "dark") {
+          t = window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+        }
         d.setAttribute("data-theme", t);
-      } catch (_) {}
+      } catch {}
     </script>
     <style>
       html.preload-theme *,
@@ -131,35 +122,36 @@
     </style>
     <script>
       document.documentElement.classList.add("preload-theme");
-      window.addEventListener("DOMContentLoaded", function () {
-        setTimeout(function () {
-          document.documentElement.classList.remove("preload-theme");
-        }, 0);
+      window.addEventListener("DOMContentLoaded", () => {
+        requestAnimationFrame(() => document.documentElement.classList.remove("preload-theme"));
       });
     </script>
 
-    <link rel="dns-prefetch" href="https://fonts.googleapis.com" />
-    <link rel="dns-prefetch" href="https://fonts.gstatic.com" />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      rel="preload"
-      as="style"
-      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700&family=Poppins:wght@400;600;700&display=swap"
-      onload="this.onload=null;this.rel='stylesheet'" />
-    <noscript>
-      <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700&family=Poppins:wght@400;600;700&display=swap" />
-    </noscript>
+    <!-- Lokalne fonty (preload) -->
+    <link rel="preload" as="font" type="font/woff2" href="../assets/fonts/poppins-v24-latin-regular.woff2" crossorigin />
+    <link rel="preload" as="font" type="font/woff2" href="../assets/fonts/poppins-v24-latin-600.woff2" crossorigin />
+    <link rel="preload" as="font" type="font/woff2" href="../assets/fonts/montserrat-v31-latin-700.woff2" crossorigin />
+    <link rel="preload" as="font" type="font/woff2" href="../assets/fonts/montserrat-v31-latin-600.woff2" crossorigin />
 
+    <!-- Główny CSS -->
     <link rel="stylesheet" href="../css/style.css" />
 
-    <link rel="icon" type="image/x-icon" href="../assets/img/favicon/favicon.ico" />
+    <!-- Favicons -->
+    <!-- PWA meta / manifest -->
+    <link rel="manifest" href="/site.webmanifest" />
+    <meta name="theme-color" content="#0ea5e9" />
+    <meta name="application-name" content="KP_Code Demo" />
     <link rel="icon" type="image/svg+xml" href="../assets/img/favicon/favicon.svg" />
-    <link rel="icon" type="image/png" sizes="96x96" href="../assets/img/favicon/favicon-96x96.png" />
-    <link rel="apple-touch-icon" sizes="180x180" href="../assets/img/favicon/apple-touch-icon.png" />
-    <link rel="icon" type="image/png" sizes="192x192" href="../assets/img/favicon/web-app-manifest-192x192.png" />
+    <link rel="icon" href="../assets/img/favicon/favicon.ico" sizes="any" />
+    <link rel="icon" type="image/png" sizes="32x32" href="../assets/img/favicon/favicon-32x32.png" />
     <link rel="icon" type="image/png" sizes="512x512" href="../assets/img/favicon/web-app-manifest-512x512.png" />
-    <link rel="manifest" href="../assets/img/favicon/site.webmanifest" />
+    <link rel="apple-touch-icon" sizes="180x180" href="../assets/img/favicon/apple-touch-icon.png" />
+    <meta name="apple-mobile-web-app-title" content="KP_Code Demo" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta name="msapplication-TileColor" content="#0ea5e9" />
+    <meta name="msapplication-TileImage" content="../assets/img/favicon/web-app-manifest-144x144.png" />
+    <link rel="mask-icon" href="../assets/img/favicon/favicon.svg" color="#0ea5e9" />
   </head>
 
   <!-- BODY -->
@@ -256,8 +248,6 @@
 
           <div class="block-cta" data-reveal="scale" data-reveal-delay="480">
             <a class="btn" href="../index.html?usluga=Łazienki#kontakt" aria-label="Przejdź do formularza wyceny — Łazienki">Wycena</a>
-
-            <a class="btn btn--ghost" href="#" aria-label="Zobacz galerię realizacji łazienek">Galeria realizacji</a>
           </div>
         </div>
       </section>
@@ -273,7 +263,11 @@
           <ul class="gallery-grid">
             <!-- 1 -->
             <li data-reveal="up" data-reveal-delay="160">
-              <a class="gallery-item" href="../assets/img/gallery/bathr-01-2048x1536.jpg" data-lb="lazienki" data-lb-caption="Salon po remoncie — realizacja KP_Code">
+              <a
+                class="gallery-item"
+                href="../assets/img/gallery/bathr-01-2048x1536.jpg"
+                data-lb="lazienki"
+                data-lb-caption="Łazienka w stylu nowoczesnym — kabina prysznicowa z drzwiami szklanymi, podświetlenie LED i minimalistyczne wykończenie.">
                 <picture>
                   <!-- AVIF -->
                   <source
@@ -310,14 +304,18 @@
                     height="576"
                     loading="lazy"
                     decoding="async"
-                    alt="Salon po remoncie" />
+                    alt="Nowoczesna łazienka z przeszkloną kabiną prysznicową i oświetleniem LED" />
                 </picture>
               </a>
             </li>
 
             <!-- 2 -->
             <li data-reveal="up" data-reveal-delay="200">
-              <a class="gallery-item" href="../assets/img/gallery/bathr-02-2048x1536.jpg" data-lb="lazienki" data-lb-caption="Salon po remoncie — realizacja KP_Code">
+              <a
+                class="gallery-item"
+                href="../assets/img/gallery/bathr-02-2048x1536.jpg"
+                data-lb="lazienki"
+                data-lb-caption="Strefa relaksu — wanna wolnostojąca z efektowną kaskadą wodną i roślinnymi aranżacjami.">
                 <picture>
                   <!-- AVIF -->
                   <source
@@ -354,14 +352,18 @@
                     height="576"
                     loading="lazy"
                     decoding="async"
-                    alt="Salon po remoncie" />
+                    alt="Luksusowa łazienka z wolnostojącą wanną i ścianą z kaskadą wodną w otoczeniu roślin" />
                 </picture>
               </a>
             </li>
 
             <!-- 3 -->
             <li data-reveal="up" data-reveal-delay="240">
-              <a class="gallery-item" href="../assets/img/gallery/bathr-03-2048x1536.jpg" data-lb="lazienki" data-lb-caption="Salon po remoncie — realizacja KP_Code">
+              <a
+                class="gallery-item"
+                href="../assets/img/gallery/bathr-03-2048x1536.jpg"
+                data-lb="lazienki"
+                data-lb-caption="Nowoczesna łazienka wykończona w bieli i marmurze — prysznic typu walk-in i duże okno doświetlające wnętrze.">
                 <picture>
                   <!-- AVIF -->
                   <source
@@ -398,14 +400,18 @@
                     height="576"
                     loading="lazy"
                     decoding="async"
-                    alt="Salon po remoncie" />
+                    alt="Przestronna łazienka w bieli i marmurze z prysznicem typu walk-in" />
                 </picture>
               </a>
             </li>
 
             <!-- 4 -->
             <li data-reveal="up" data-reveal-delay="280">
-              <a class="gallery-item" href="../assets/img/gallery/bathr-04-2048x1536.jpg" data-lb="lazienki" data-lb-caption="Salon po remoncie — realizacja KP_Code">
+              <a
+                class="gallery-item"
+                href="../assets/img/gallery/bathr-04-2048x1536.jpg"
+                data-lb="lazienki"
+                data-lb-caption="Stylowa łazienka w szarościach — połączenie wanny i prysznica w eleganckiej aranżacji.">
                 <picture>
                   <!-- AVIF -->
                   <source
@@ -442,14 +448,18 @@
                     height="576"
                     loading="lazy"
                     decoding="async"
-                    alt="Salon po remoncie" />
+                    alt="Łazienka w odcieniach szarości z wanną i prysznicem" />
                 </picture>
               </a>
             </li>
 
             <!-- 5 -->
             <li data-reveal="up" data-reveal-delay="320">
-              <a class="gallery-item" href="../assets/img/gallery/bathr-05-2048x1536.jpg" data-lb="lazienki" data-lb-caption="Salon po remoncie — realizacja KP_Code">
+              <a
+                class="gallery-item"
+                href="../assets/img/gallery/bathr-05-2048x1536.jpg"
+                data-lb="lazienki"
+                data-lb-caption="Wykończenie łazienki w jasnych barwach — narożna wanna, kabina prysznicowa i ozdobne detale na ścianie.">
                 <picture>
                   <!-- AVIF -->
                   <source
@@ -486,14 +496,18 @@
                     height="576"
                     loading="lazy"
                     decoding="async"
-                    alt="Salon po remoncie" />
+                    alt="Kąpielowa przestrzeń z narożną wanną i przeszkloną kabiną prysznicową" />
                 </picture>
               </a>
             </li>
 
             <!-- 6 -->
             <li data-reveal="up" data-reveal-delay="360">
-              <a class="gallery-item" href="../assets/img/gallery/bathr-06-2048x1536.jpg" data-lb="lazienki" data-lb-caption="Salon po remoncie — realizacja KP_Code">
+              <a
+                class="gallery-item"
+                href="../assets/img/gallery/bathr-06-2048x1536.jpg"
+                data-lb="lazienki"
+                data-lb-caption="Łazienka na poddaszu — połączenie bieli i naturalnego drewna, wolnostojąca wanna jako centralny element wnętrza.">
                 <picture>
                   <!-- AVIF -->
                   <source
@@ -530,7 +544,7 @@
                     height="576"
                     loading="lazy"
                     decoding="async"
-                    alt="Salon po remoncie" />
+                    alt="Jasna łazienka na poddaszu z wolnostojącą wanną i drewnianą podłogą" />
                 </picture>
               </a>
             </li>

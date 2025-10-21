@@ -13,11 +13,13 @@
     <meta name="robots" content="index, follow" />
     <link rel="canonical" href="https://construction-project-01.netlify.app/oferta/malowanie.html" />
 
+    <!-- PWA / kolory motywu -->
     <meta name="theme-color" content="#0ea5e9" />
     <meta name="theme-color" content="#0ea5e9" media="(prefers-color-scheme: light)" />
     <meta name="theme-color" content="#0b1220" media="(prefers-color-scheme: dark)" />
     <meta name="color-scheme" content="light dark" />
 
+    <!-- Preload hero (AVIF/WEBP/JPG) -->
     <link
       rel="preload"
       as="image"
@@ -36,6 +38,7 @@
       imagesrcset="../assets/img/oferta/malowanie/hero-800-450.jpg 800w, ../assets/img/oferta/malowanie/hero-1200-675.jpg 1200w, ../assets/img/oferta/malowanie/hero-1600-900.jpg 1600w, ../assets/img/oferta/malowanie/hero-2400-1350.jpg 2400w"
       imagesizes="100vw" />
 
+    <!-- Open Graph -->
     <meta property="og:type" content="website" />
     <meta property="og:site_name" content="KP_Code Portfolio" />
     <meta property="og:locale" content="pl_PL" />
@@ -45,15 +48,17 @@
     <meta property="og:image" content="https://construction-project-01.netlify.app/assets/img/og/og-image-1200x630.jpg" />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
-    <meta property="og:image:alt" content="Ekipa remontowa przy pracy — logo w rogu (DEMO szablonu)" />
+    <meta property="og:image:alt" content="Ekipa malarska w trakcie pracy — logo w rogu (DEMO szablonu)" />
 
+    <!-- Twitter -->
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content="Demo — malowanie wnętrz i elewacji | KP_Code" />
     <meta name="twitter:description" content="Demo szablonu: malowanie ścian i sufitów, gładzie gipsowe, przygotowanie podłoża. Czysto, terminowo, z gwarancją. Projekt i kod: KP_Code." />
     <meta name="twitter:image" content="https://construction-project-01.netlify.app/assets/img/og/og-image-1200x630.jpg" />
-    <meta name="twitter:image:alt" content="Ekipa remontowa przy pracy — logo w rogu (DEMO szablonu)" />
+    <meta name="twitter:image:alt" content="Ekipa malarska w trakcie pracy — logo w rogu (DEMO szablonu)" />
     <meta name="twitter:url" content="https://construction-project-01.netlify.app/oferta/malowanie.html" />
 
+    <!-- JSON-LD -->
     <script type="application/ld+json">
       {
         "@context": "https://schema.org",
@@ -65,10 +70,7 @@
             "name": "KP_Code Portfolio — Demo",
             "description": "Demo portfolio: strony dla branży budowlanej i remontowej.",
             "inLanguage": "pl-PL",
-            "publisher": {
-              "@type": "Person",
-              "name": "Kamil Król"
-            }
+            "publisher": { "@type": "Person", "name": "Kamil Król" }
           },
           {
             "@type": "CollectionPage",
@@ -81,24 +83,9 @@
           {
             "@type": "BreadcrumbList",
             "itemListElement": [
-              {
-                "@type": "ListItem",
-                "position": 1,
-                "name": "Strona główna",
-                "item": "https://construction-project-01.netlify.app/"
-              },
-              {
-                "@type": "ListItem",
-                "position": 2,
-                "name": "Oferta",
-                "item": "https://construction-project-01.netlify.app/#oferta"
-              },
-              {
-                "@type": "ListItem",
-                "position": 3,
-                "name": "Malowanie wnętrz i elewacji",
-                "item": "https://construction-project-01.netlify.app/oferta/malowanie.html"
-              }
+              { "@type": "ListItem", "position": 1, "name": "Strona główna", "item": "https://construction-project-01.netlify.app/" },
+              { "@type": "ListItem", "position": 2, "name": "Oferta", "item": "https://construction-project-01.netlify.app/#oferta" },
+              { "@type": "ListItem", "position": 3, "name": "Malowanie wnętrz i elewacji", "item": "https://construction-project-01.netlify.app/oferta/malowanie.html" }
             ]
           },
           {
@@ -114,13 +101,17 @@
         ]
       }
     </script>
+
+    <!-- Boot theme (no flicker) -->
     <script>
       try {
-        var d = document.documentElement,
-          t = localStorage.getItem("theme");
-        if (!t) t = window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+        const d = document.documentElement;
+        let t = localStorage.getItem("theme");
+        if (t !== "light" && t !== "dark") {
+          t = window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+        }
         d.setAttribute("data-theme", t);
-      } catch (e) {}
+      } catch {}
     </script>
     <style>
       html.preload-theme *,
@@ -131,35 +122,36 @@
     </style>
     <script>
       document.documentElement.classList.add("preload-theme");
-      window.addEventListener("DOMContentLoaded", function () {
-        setTimeout(function () {
-          document.documentElement.classList.remove("preload-theme");
-        }, 0);
+      window.addEventListener("DOMContentLoaded", () => {
+        requestAnimationFrame(() => document.documentElement.classList.remove("preload-theme"));
       });
     </script>
 
-    <link rel="dns-prefetch" href="https://fonts.googleapis.com" />
-    <link rel="dns-prefetch" href="https://fonts.gstatic.com" />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      rel="preload"
-      as="style"
-      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700&family=Poppins:wght@400;600;700&display=swap"
-      onload="this.onload=null;this.rel='stylesheet'" />
-    <noscript>
-      <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700&family=Poppins:wght@400;600;700&display=swap" />
-    </noscript>
+    <!-- Lokalne fonty (preload) -->
+    <link rel="preload" as="font" type="font/woff2" href="../assets/fonts/poppins-v24-latin-regular.woff2" crossorigin />
+    <link rel="preload" as="font" type="font/woff2" href="../assets/fonts/poppins-v24-latin-600.woff2" crossorigin />
+    <link rel="preload" as="font" type="font/woff2" href="../assets/fonts/montserrat-v31-latin-700.woff2" crossorigin />
+    <link rel="preload" as="font" type="font/woff2" href="../assets/fonts/montserrat-v31-latin-600.woff2" crossorigin />
 
+    <!-- Główny CSS -->
     <link rel="stylesheet" href="../css/style.css" />
 
-    <link rel="icon" type="image/x-icon" href="../assets/img/favicon/favicon.ico" />
+    <!-- Favicons -->
+    <!-- PWA meta / manifest -->
+    <link rel="manifest" href="/site.webmanifest" />
+    <meta name="theme-color" content="#0ea5e9" />
+    <meta name="application-name" content="KP_Code Demo" />
     <link rel="icon" type="image/svg+xml" href="../assets/img/favicon/favicon.svg" />
-    <link rel="icon" type="image/png" sizes="96x96" href="../assets/img/favicon/favicon-96x96.png" />
-    <link rel="apple-touch-icon" sizes="180x180" href="../assets/img/favicon/apple-touch-icon.png" />
-    <link rel="icon" type="image/png" sizes="192x192" href="../assets/img/favicon/web-app-manifest-192x192.png" />
+    <link rel="icon" href="../assets/img/favicon/favicon.ico" sizes="any" />
+    <link rel="icon" type="image/png" sizes="32x32" href="../assets/img/favicon/favicon-32x32.png" />
     <link rel="icon" type="image/png" sizes="512x512" href="../assets/img/favicon/web-app-manifest-512x512.png" />
-    <link rel="manifest" href="../assets/img/favicon/site.webmanifest" />
+    <link rel="apple-touch-icon" sizes="180x180" href="../assets/img/favicon/apple-touch-icon.png" />
+    <meta name="apple-mobile-web-app-title" content="KP_Code Demo" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta name="msapplication-TileColor" content="#0ea5e9" />
+    <meta name="msapplication-TileImage" content="../assets/img/favicon/web-app-manifest-144x144.png" />
+    <link rel="mask-icon" href="../assets/img/favicon/favicon.svg" color="#0ea5e9" />
   </head>
 
   <!-- BODY -->
@@ -254,8 +246,6 @@
 
           <div class="block-cta" data-reveal="scale" data-reveal-delay="480">
             <a class="btn" href="../index.html?usluga=Malowanie%20i%20gładzie#kontakt" aria-label="Przejdź do formularza wyceny — Malowanie i gładzie">Wycena</a>
-
-            <a class="btn btn--ghost" href="#" aria-label="Zobacz galerię realizacji malowania">Galeria realizacji</a>
           </div>
         </div>
       </section>
@@ -271,7 +261,11 @@
           <ul class="gallery-grid">
             <!-- 1 -->
             <li data-reveal="up" data-reveal-delay="160">
-              <a class="gallery-item" href="../assets/img/gallery/paint-01-2048x1536.jpg" data-lb="malowanie" data-lb-caption="Salon po remoncie — realizacja KP_Code">
+              <a
+                class="gallery-item"
+                href="../assets/img/gallery/paint-01-2048x1536.jpg"
+                data-lb="malowanie"
+                data-lb-caption="Malowanie ścian w intensywnym kolorze — etap nanoszenia pierwszej warstwy farby wałkiem.">
                 <picture>
                   <!-- AVIF -->
                   <source
@@ -308,14 +302,18 @@
                     height="576"
                     loading="lazy"
                     decoding="async"
-                    alt="Salon po remoncie" />
+                    alt="Malowanie ściany na żółto wałkiem przez pracownika w kombinezonie ochronnym" />
                 </picture>
               </a>
             </li>
 
             <!-- 2 -->
             <li data-reveal="up" data-reveal-delay="200">
-              <a class="gallery-item" href="../assets/img/gallery/paint-02-2048x1536.jpg" data-lb="malowanie" data-lb-caption="Salon po remoncie — realizacja KP_Code">
+              <a
+                class="gallery-item"
+                href="../assets/img/gallery/paint-02-2048x1536.jpg"
+                data-lb="malowanie"
+                data-lb-caption="Efekt końcowy — odświeżone wnętrze w naturalnych barwach beżu i zieleni z subtelnymi dodatkami.">
                 <picture>
                   <!-- AVIF -->
                   <source
@@ -352,14 +350,14 @@
                     height="576"
                     loading="lazy"
                     decoding="async"
-                    alt="Salon po remoncie" />
+                    alt="Salon po odmalowaniu w jasnych tonacjach beżu i zieleni z dekoracją z traw pampasowych" />
                 </picture>
               </a>
             </li>
 
             <!-- 3 -->
             <li data-reveal="up" data-reveal-delay="240">
-              <a class="gallery-item" href="../assets/img/gallery/paint-03-2048x1536.jpg" data-lb="malowanie" data-lb-caption="Salon po remoncie — realizacja KP_Code">
+              <a class="gallery-item" href="../assets/img/gallery/paint-03-2048x1536.jpg" data-lb="malowanie" data-lb-caption="Malowanie wnętrza przez parę — przyjemny etap wykończenia po remoncie.">
                 <picture>
                   <!-- AVIF -->
                   <source
@@ -396,14 +394,18 @@
                     height="576"
                     loading="lazy"
                     decoding="async"
-                    alt="Salon po remoncie" />
+                    alt="Para malująca wspólnie ścianę w nowym mieszkaniu" />
                 </picture>
               </a>
             </li>
 
             <!-- 4 -->
             <li data-reveal="up" data-reveal-delay="280">
-              <a class="gallery-item" href="../assets/img/gallery/paint-04-2048x1536.jpg" data-lb="malowanie" data-lb-caption="Salon po remoncie — realizacja KP_Code">
+              <a
+                class="gallery-item"
+                href="../assets/img/gallery/paint-04-2048x1536.jpg"
+                data-lb="malowanie"
+                data-lb-caption="Zabezpieczenie wnętrza przed malowaniem — przygotowanie ścian i sufitów do odświeżenia farbą.">
                 <picture>
                   <!-- AVIF -->
                   <source
@@ -440,14 +442,18 @@
                     height="576"
                     loading="lazy"
                     decoding="async"
-                    alt="Salon po remoncie" />
+                    alt="Pokój w trakcie malowania z zabezpieczonymi meblami i folią ochronną" />
                 </picture>
               </a>
             </li>
 
             <!-- 5 -->
             <li data-reveal="up" data-reveal-delay="320">
-              <a class="gallery-item" href="../assets/img/gallery/paint-05-2048x1536.jpg" data-lb="malowanie" data-lb-caption="Salon po remoncie — realizacja KP_Code">
+              <a
+                class="gallery-item"
+                href="../assets/img/gallery/paint-05-2048x1536.jpg"
+                data-lb="malowanie"
+                data-lb-caption="Malowanie elewacji domu jednorodzinnego — prace zewnętrzne w trakcie renowacji.">
                 <picture>
                   <!-- AVIF -->
                   <source
@@ -484,14 +490,18 @@
                     height="576"
                     loading="lazy"
                     decoding="async"
-                    alt="Salon po remoncie" />
+                    alt="Elewacja domu w trakcie odnawiania i malowania z użyciem rusztowań" />
                 </picture>
               </a>
             </li>
 
             <!-- 6 -->
             <li data-reveal="up" data-reveal-delay="360">
-              <a class="gallery-item" href="../assets/img/gallery/paint-06-2048x1536.jpg" data-lb="malowanie" data-lb-caption="Salon po remoncie — realizacja KP_Code">
+              <a
+                class="gallery-item"
+                href="../assets/img/gallery/paint-06-2048x1536.jpg"
+                data-lb="malowanie"
+                data-lb-caption="Prace malarskie w salonie — przygotowanie sufitu i ścian przed końcowym wykończeniem.">
                 <picture>
                   <!-- AVIF -->
                   <source
@@ -528,7 +538,7 @@
                     height="576"
                     loading="lazy"
                     decoding="async"
-                    alt="Salon po remoncie" />
+                    alt="Salon w trakcie remontu i malowania z rozłożonymi narzędziami i drabiną" />
                 </picture>
               </a>
             </li>

@@ -120,15 +120,6 @@
               }
             ]
           }
-          /* Jeśli masz okruszki, dodaj:
-    ,{
-      "@type": "BreadcrumbList",
-      "@id": "https://construction-project-01.netlify.app/#breadcrumbs",
-      "itemListElement": [
-        { "@type": "ListItem", "position": 1, "name": "Strona główna", "item": "https://construction-project-01.netlify.app/" }
-      ]
-    }
-    */
         ]
       }
     </script>
@@ -167,14 +158,22 @@
     <!-- Główny CSS -->
     <link rel="stylesheet" href="css/style.css" />
 
-    <!-- Favicons / manifest (poprawione ścieżki) -->
-    <link rel="icon" href="assets/img/favicon/favicon.ico" sizes="any" />
+    <!-- Favicons -->
+    <!-- PWA meta / manifest -->
+    <link rel="manifest" href="/site.webmanifest" />
+    <meta name="theme-color" content="#0ea5e9" />
+    <meta name="application-name" content="KP_Code Demo" />
     <link rel="icon" type="image/svg+xml" href="assets/img/favicon/favicon.svg" />
-    <link rel="icon" type="image/png" sizes="96x96" href="assets/img/favicon/favicon-96x96.png" />
-    <link rel="apple-touch-icon" sizes="180x180" href="assets/img/favicon/apple-touch-icon.png" />
-    <link rel="icon" type="image/png" sizes="192x192" href="assets/img/favicon/web-app-manifest-192x192.png" />
+    <link rel="icon" href="assets/img/favicon/favicon.ico" sizes="any" />
+    <link rel="icon" type="image/png" sizes="32x32" href="assets/img/favicon/favicon-32x32.png" />
     <link rel="icon" type="image/png" sizes="512x512" href="assets/img/favicon/web-app-manifest-512x512.png" />
-    <link rel="manifest" href="assets/img/favicon/site.webmanifest" />
+    <link rel="apple-touch-icon" sizes="180x180" href="assets/img/favicon/apple-touch-icon.png" />
+    <meta name="apple-mobile-web-app-title" content="KP_Code Demo" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta name="msapplication-TileColor" content="#0ea5e9" />
+    <meta name="msapplication-TileImage" content="assets/img/favicon/web-app-manifest-144x144.png" />
+    <link rel="mask-icon" href="assets/img/favicon/favicon.svg" color="#0ea5e9" />
   </head>
 
   <!-- BODY -->

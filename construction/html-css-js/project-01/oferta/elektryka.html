@@ -15,11 +15,13 @@
     <meta name="robots" content="index, follow" />
     <link rel="canonical" href="https://construction-project-01.netlify.app/oferta/elektryka.html" />
 
+    <!-- PWA / kolory motywu -->
     <meta name="theme-color" content="#0ea5e9" />
     <meta name="theme-color" content="#0ea5e9" media="(prefers-color-scheme: light)" />
     <meta name="theme-color" content="#0b1220" media="(prefers-color-scheme: dark)" />
     <meta name="color-scheme" content="light dark" />
 
+    <!-- Preload hero (AVIF/WEBP/JPG) -->
     <link
       rel="preload"
       as="image"
@@ -38,6 +40,7 @@
       imagesrcset="../assets/img/oferta/elektryka/hero-800-450.jpg 800w, ../assets/img/oferta/elektryka/hero-1200-675.jpg 1200w, ../assets/img/oferta/elektryka/hero-1600-900.jpg 1600w, ../assets/img/oferta/elektryka/hero-2400-1350.jpg 2400w"
       imagesizes="100vw" />
 
+    <!-- Open Graph -->
     <meta property="og:type" content="website" />
     <meta property="og:site_name" content="KP_Code Portfolio" />
     <meta property="og:locale" content="pl_PL" />
@@ -51,6 +54,7 @@
     <meta property="og:image:height" content="630" />
     <meta property="og:image:alt" content="Elektryk przy rozdzielni — logo w rogu (DEMO szablonu)" />
 
+    <!-- Twitter -->
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content="Demo — instalacje i usługi elektryczne | KP_Code" />
     <meta
@@ -60,6 +64,7 @@
     <meta name="twitter:image:alt" content="Elektryk przy rozdzielni — logo w rogu (DEMO szablonu)" />
     <meta name="twitter:url" content="https://construction-project-01.netlify.app/oferta/elektryka.html" />
 
+    <!-- JSON-LD -->
     <script type="application/ld+json">
       {
         "@context": "https://schema.org",
@@ -102,13 +107,17 @@
         ]
       }
     </script>
+
+    <!-- Boot theme (no flicker) -->
     <script>
       try {
         const d = document.documentElement;
         let t = localStorage.getItem("theme");
-        if (!t) t = window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+        if (t !== "light" && t !== "dark") {
+          t = window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+        }
         d.setAttribute("data-theme", t);
-      } catch (_) {}
+      } catch {}
     </script>
     <style>
       html.preload-theme *,
@@ -120,32 +129,35 @@
     <script>
       document.documentElement.classList.add("preload-theme");
       window.addEventListener("DOMContentLoaded", () => {
-        setTimeout(() => document.documentElement.classList.remove("preload-theme"), 0);
+        requestAnimationFrame(() => document.documentElement.classList.remove("preload-theme"));
       });
     </script>
 
-    <link rel="dns-prefetch" href="https://fonts.googleapis.com" />
-    <link rel="dns-prefetch" href="https://fonts.gstatic.com" />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      rel="preload"
-      as="style"
-      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700&family=Poppins:wght@400;600;700&display=swap"
-      onload="this.onload=null;this.rel='stylesheet'" />
-    <noscript>
-      <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700&family=Poppins:wght@400;600;700&display=swap" />
-    </noscript>
+    <!-- Lokalne fonty (preload) -->
+    <link rel="preload" as="font" type="font/woff2" href="../assets/fonts/poppins-v24-latin-regular.woff2" crossorigin />
+    <link rel="preload" as="font" type="font/woff2" href="../assets/fonts/poppins-v24-latin-600.woff2" crossorigin />
+    <link rel="preload" as="font" type="font/woff2" href="../assets/fonts/montserrat-v31-latin-700.woff2" crossorigin />
+    <link rel="preload" as="font" type="font/woff2" href="../assets/fonts/montserrat-v31-latin-600.woff2" crossorigin />
 
+    <!-- Główny CSS -->
     <link rel="stylesheet" href="../css/style.css" />
 
-    <link rel="icon" type="image/x-icon" href="../assets/img/favicon/favicon.ico" />
+    <!-- Favicons -->
+    <!-- PWA meta / manifest -->
+    <link rel="manifest" href="/site.webmanifest" />
+    <meta name="theme-color" content="#0ea5e9" />
+    <meta name="application-name" content="KP_Code Demo" />
     <link rel="icon" type="image/svg+xml" href="../assets/img/favicon/favicon.svg" />
-    <link rel="icon" type="image/png" sizes="96x96" href="../assets/img/favicon/favicon-96x96.png" />
-    <link rel="apple-touch-icon" sizes="180x180" href="../assets/img/favicon/apple-touch-icon.png" />
-    <link rel="icon" type="image/png" sizes="192x192" href="../assets/img/favicon/web-app-manifest-192x192.png" />
+    <link rel="icon" href="../assets/img/favicon/favicon.ico" sizes="any" />
+    <link rel="icon" type="image/png" sizes="32x32" href="../assets/img/favicon/favicon-32x32.png" />
     <link rel="icon" type="image/png" sizes="512x512" href="../assets/img/favicon/web-app-manifest-512x512.png" />
-    <link rel="manifest" href="../assets/img/favicon/site.webmanifest" />
+    <link rel="apple-touch-icon" sizes="180x180" href="../assets/img/favicon/apple-touch-icon.png" />
+    <meta name="apple-mobile-web-app-title" content="KP_Code Demo" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta name="msapplication-TileColor" content="#0ea5e9" />
+    <meta name="msapplication-TileImage" content="../assets/img/favicon/web-app-manifest-144x144.png" />
+    <link rel="mask-icon" href="../assets/img/favicon/favicon.svg" color="#0ea5e9" />
   </head>
 
   <!-- BODY -->
@@ -241,8 +253,6 @@
 
           <div class="block-cta" data-reveal="scale" data-reveal-delay="480">
             <a class="btn" href="../index.html?usluga=Elektryka#kontakt" aria-label="Przejdź do formularza wyceny — Elektryka">Wycena</a>
-
-            <a class="btn btn--ghost" href="#" aria-label="Zobacz galerię realizacji elektrycznych">Galeria realizacji</a>
           </div>
         </div>
       </section>
@@ -258,7 +268,11 @@
           <ul class="gallery-grid">
             <!-- 1 -->
             <li data-reveal="up" data-reveal-delay="160">
-              <a class="gallery-item" href="../assets/img/gallery/elec-01-2048x1536.jpg" data-lb="elektryka" data-lb-caption="Salon po remoncie — realizacja KP_Code">
+              <a
+                class="gallery-item"
+                href="../assets/img/gallery/elec-01-2048x1536.jpg"
+                data-lb="elektryka"
+                data-lb-caption="Kontrola napięcia i test połączeń w rozdzielni elektrycznej — etap sprawdzania instalacji przed odbiorem.">
                 <picture>
                   <!-- AVIF -->
                   <source
@@ -295,14 +309,18 @@
                     height="576"
                     loading="lazy"
                     decoding="async"
-                    alt="Salon po remoncie" />
+                    alt="Pomiar napięcia w rozdzielni elektrycznej za pomocą multimetru" />
                 </picture>
               </a>
             </li>
 
             <!-- 2 -->
             <li data-reveal="up" data-reveal-delay="200">
-              <a class="gallery-item" href="../assets/img/gallery/elec-02-2048x1536.jpg" data-lb="elektryka" data-lb-caption="Salon po remoncie — realizacja KP_Code">
+              <a
+                class="gallery-item"
+                href="../assets/img/gallery/elec-02-2048x1536.jpg"
+                data-lb="elektryka"
+                data-lb-caption="Montaż i konserwacja linii napowietrznych — prace serwisowe prowadzone z podnośnika koszowego.">
                 <picture>
                   <!-- AVIF -->
                   <source
@@ -339,14 +357,18 @@
                     height="576"
                     loading="lazy"
                     decoding="async"
-                    alt="Salon po remoncie" />
+                    alt="Elektryk pracujący na podnośniku przy montażu przewodów napowietrznych" />
                 </picture>
               </a>
             </li>
 
             <!-- 3 -->
             <li data-reveal="up" data-reveal-delay="240">
-              <a class="gallery-item" href="../assets/img/gallery/elec-03-2048x1536.jpg" data-lb="elektryka" data-lb-caption="Salon po remoncie — realizacja KP_Code">
+              <a
+                class="gallery-item"
+                href="../assets/img/gallery/elec-03-2048x1536.jpg"
+                data-lb="elektryka"
+                data-lb-caption="Instalacja systemu fotowoltaicznego — montaż paneli słonecznych na dachu budynku.">
                 <picture>
                   <!-- AVIF -->
                   <source
@@ -383,14 +405,18 @@
                     height="576"
                     loading="lazy"
                     decoding="async"
-                    alt="Salon po remoncie" />
+                    alt="Technik montujący panele fotowoltaiczne na dachu" />
                 </picture>
               </a>
             </li>
 
             <!-- 4 -->
             <li data-reveal="up" data-reveal-delay="280">
-              <a class="gallery-item" href="../assets/img/gallery/elec-04-2048x1536.jpg" data-lb="elektryka" data-lb-caption="Salon po remoncie — realizacja KP_Code">
+              <a
+                class="gallery-item"
+                href="../assets/img/gallery/elec-04-2048x1536.jpg"
+                data-lb="elektryka"
+                data-lb-caption="Okablowanie i konfiguracja rozdzielnicy elektrycznej — etap montażu komponentów zabezpieczających.">
                 <picture>
                   <!-- AVIF -->
                   <source
@@ -427,14 +453,18 @@
                     height="576"
                     loading="lazy"
                     decoding="async"
-                    alt="Salon po remoncie" />
+                    alt="Prace montażowe w rozdzielnicy z użyciem narzędzi serwisowych" />
                 </picture>
               </a>
             </li>
 
             <!-- 5 -->
             <li data-reveal="up" data-reveal-delay="320">
-              <a class="gallery-item" href="../assets/img/gallery/elec-05-2048x1536.jpg" data-lb="elektryka" data-lb-caption="Salon po remoncie — realizacja KP_Code">
+              <a
+                class="gallery-item"
+                href="../assets/img/gallery/elec-05-2048x1536.jpg"
+                data-lb="elektryka"
+                data-lb-caption="Montaż nowej instalacji elektrycznej w budynku — prowadzenie przewodów i zabezpieczanie połączeń.">
                 <picture>
                   <!-- AVIF -->
                   <source
@@ -471,14 +501,18 @@
                     height="576"
                     loading="lazy"
                     decoding="async"
-                    alt="Salon po remoncie" />
+                    alt="Elektryk instalujący przewody w ścianie podczas remontu" />
                 </picture>
               </a>
             </li>
 
             <!-- 6 -->
             <li data-reveal="up" data-reveal-delay="360">
-              <a class="gallery-item" href="../assets/img/gallery/elec-06-2048x1536.jpg" data-lb="elektryka" data-lb-caption="Salon po remoncie — realizacja KP_Code">
+              <a
+                class="gallery-item"
+                href="../assets/img/gallery/elec-06-2048x1536.jpg"
+                data-lb="elektryka"
+                data-lb-caption="Zbiorowa instalacja paneli fotowoltaicznych — prace montażowe na dachu w pełnym słońcu.">
                 <picture>
                   <!-- AVIF -->
                   <source
@@ -515,7 +549,7 @@
                     height="576"
                     loading="lazy"
                     decoding="async"
-                    alt="Salon po remoncie" />
+                    alt="Zespół monterów montujący panele słoneczne na konstrukcji dachowej" />
                 </picture>
               </a>
             </li>
