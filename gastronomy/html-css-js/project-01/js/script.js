@@ -1,10 +1,11 @@
-/* ==================================================
-   ===== Autor: KP_Code (Front-end)
-   ===== Aktualizacja: 2025-10-07
-   ==================================================
-   ===== JavaScript Script
+/* ===================================================================
+   ===== Project: gastronomy-html-css-js-project-01
+   ===== Author: KP_Code
+   ===== Last Update: 2025-10-22
+   ===================================================================
+   ===== script.js
    ===== Structure Overview
-   ==================================================
+   ===================================================================
    ===== 00) HELPERS / BOOT
    ===== 01) MOBILE NAV TOGGLE
    ===== 02) TABS : FILTROWANIE MENU (ARIA + KLAWIATURA)
@@ -20,11 +21,11 @@
    ===== 12) MENU ( PAGE-MENU ) ZACHOWANIE PANELU "WIĘCEJ O DANIU"
    ===== 13) FAQ - ARIA SYNC ( ARIA-EXPANDED + ARIA-CONTROLS )
    ===== 14) GALLERY FILTER (PAGE-GALLERY)
-   ================================================== */
+   ===== 15) STICKY SHADOW ON SCROLL
+   =================================================================== */
 
-/* 00) ======================================================================================
-   ========== HELPERS / BOOT ================================================================
-   ========================================================================================== */
+/* ========== 00) HELPERS / BOOT ========== */
+
 const DEBUG = false;
 const log = (...a) => DEBUG && console.log("[ui]", ...a);
 
@@ -39,9 +40,8 @@ if (document.body) {
   window.addEventListener("DOMContentLoaded", () => document.body && document.body.classList.remove("no-js"), { once: true });
 }
 
-/* 01) ======================================================================================
-   ========== MOBILE NAV TOGGLE =============================================================
-   ========================================================================================== */
+/* ========== 01) MOBILE NAV TOGGLE ========== */
+
 (() => {
   const toggle = byTestId("nav-toggle") || $(".nav-toggle");
   const nav = byTestId("site-nav") || $("#site-nav");
@@ -53,10 +53,8 @@ if (document.body) {
     toggle.setAttribute("aria-expanded", String(open));
   };
 
-  // a11y: dopnij aria-controls jeśli brak
   if (!toggle.hasAttribute("aria-controls")) toggle.setAttribute("aria-controls", nav.id || "site-nav");
 
-  // Toggle open/close
   toggle.addEventListener(
     "click",
     () => {
@@ -65,7 +63,6 @@ if (document.body) {
     { passive: true }
   );
 
-  // Delegacja: klik w link wewnątrz nav zamyka
   nav.addEventListener(
     "click",
     (e) => {
@@ -74,18 +71,15 @@ if (document.body) {
     { passive: true }
   );
 
-  // Zmiana układu: gdy wchodzimy w desktop, domknij menu
   let lastDesktop = mq.matches;
   const onMQChange = () => {
     const nowDesktop = mq.matches;
     if (nowDesktop && !lastDesktop) setExpanded(false);
     lastDesktop = nowDesktop;
   };
-  mq.addEventListener?.("change", onMQChange); // nowocześnie
-  // fallback dla starych przeglądarek (Safari starsze)
+  mq.addEventListener?.("change", onMQChange);
   window.addEventListener("resize", onMQChange, { passive: true });
 
-  // Klik poza nav/toggle zamyka
   document.addEventListener("click", (e) => {
     if (!document.body.classList.contains("nav-open")) return;
     const insideNav = e.target.closest("#site-nav");
@@ -93,7 +87,6 @@ if (document.body) {
     if (!insideNav && !insideBtn) setExpanded(false);
   });
 
-  // ESC zamyka
   document.addEventListener("keydown", (e) => {
     if (e.key === "Escape" && document.body.classList.contains("nav-open")) setExpanded(false);
   });
@@ -101,16 +94,14 @@ if (document.body) {
   log("nav-toggle:", !!toggle, "site-nav:", !!nav);
 })();
 
-/* 02) ======================================================================================
-   ========== TABS : FILTROWANIE MENU (ARIA + KLAWIATURA) ===================================
-   ========================================================================================== */
+/* ========== 02) TABS: FILTROWANIE MENU (ARIA + KLAWIATURA) ========== */
+
 (() => {
   const tabsRoot = byTestId("menu-tabs") || document;
   const tabs = $$(".tab", tabsRoot);
   const items = $$(".dish");
   if (!tabs.length) return;
 
-  // a11y: role tylko jeśli nie ustawione
   if (tabsRoot !== document && !tabsRoot.hasAttribute("role")) tabsRoot.setAttribute("role", "tablist");
   tabs.forEach((t) => {
     if (!t.hasAttribute("role")) t.setAttribute("role", "tab");
@@ -130,10 +121,8 @@ if (document.body) {
     });
   };
 
-  // init (jeśli brak .is-active, aktywuj pierwszy)
   activate($(".tab.is-active", tabsRoot) || tabs[0]);
 
-  // delegacja: click + Enter/Space aktywują
   tabsRoot.addEventListener(
     "click",
     (e) => {
@@ -169,22 +158,20 @@ if (document.body) {
   log("menu-tabs:", !!byTestId("menu-tabs"), "tabs:", tabs.length);
 })();
 
-/* 03) ======================================================================================
-   ========== LIGHTBOX : KONTEKSTOWA NAWIGACJA ==============================================
-   ========================================================================================== */
+/* ========== 03) LIGHTBOX: KONTEKSTOWA NAWIGACJA ========== */
+
 (() => {
   const lb = document.getElementById("lb") || document.querySelector(".lightbox");
   if (!lb) return;
 
   const isDialog = lb.nodeName === "DIALOG" && typeof lb.showModal === "function";
-  const pic = lb.querySelector("picture") || lb; // fallback
+  const pic = lb.querySelector("picture") || lb;
   const sAvif = pic?.querySelector('source[type="image/avif"]') || document.getElementById("lb-avif");
   const sWebp = pic?.querySelector('source[type="image/webp"]') || document.getElementById("lb-webp");
   const img = pic?.querySelector("img") || document.getElementById("lb-img");
   const btnX = lb.querySelector(".lb-close") || lb.querySelector("[data-close]");
   const overlayEl = lb.querySelector(".lb-overlay");
 
-  // --- Counter: element + aktualizacja ---
   let counter = lb.querySelector(".lb-counter");
   if (!counter) {
     counter = document.createElement("output");
@@ -202,8 +189,8 @@ if (document.body) {
     }
     counter.hidden = false;
     const txt = `${currentIndex + 1} / ${total}`;
-    counter.value = txt; // dla <output>
-    counter.textContent = txt; // dla screenreadera i fallbacku
+    counter.value = txt;
+    counter.textContent = txt;
   }
 
   if (!isDialog) {
@@ -211,13 +198,15 @@ if (document.body) {
     lb.setAttribute("aria-hidden", "true");
   }
 
-  // resolve relative -> absolute URL
   const resolveUrl = (p) => {
     if (!p) return "";
-    try { return new URL(p, location.href).href; } catch { return p; }
+    try {
+      return new URL(p, location.href).href;
+    } catch {
+      return p;
+    }
   };
 
-  // helper: usuń query/hash i rozszerzenie (na absolutnym URL)
   const stripExt = (s = "") => {
     if (!s) return "";
     const abs = resolveUrl(s);
@@ -225,13 +214,12 @@ if (document.body) {
     return clean.replace(/\.(avif|webp|jpe?g|png)$/i, "");
   };
 
-  // bezpieczne pobranie base z elementu (data-full | href | obrazek.currentSrc | obrazek.src)
   const getBaseFromElement = (el) => {
     if (!el) return "";
     try {
       const d = el.dataset && el.dataset.full;
       if (d) return resolveUrl(d);
-    } catch(e){}
+    } catch (e) {}
     const a = el.getAttribute && el.getAttribute("data-full");
     if (a) return resolveUrl(a);
     const h = el.getAttribute && el.getAttribute("href");
@@ -247,35 +235,33 @@ if (document.body) {
     if (!b) return;
     if (sAvif) sAvif.srcset = `${b}.avif`;
     if (sWebp) sWebp.srcset = `${b}.webp`;
-    if (img) { img.src = `${b}.jpg`; img.alt = alt || ""; }
+    if (img) {
+      img.src = `${b}.jpg`;
+      img.alt = alt || "";
+    }
   };
 
   let currentIndex = -1;
-  let currentCollection = []; // tutaj trzymamy aktualną listę (widoczne elementy tej kategorii)
+  let currentCollection = [];
   let lastFocused = null;
 
-  // zwraca widoczne elementy .g-item w danym kontenerze (.gallery-grid)
   const visibleGridItems = (grid) => {
     if (!grid) return [];
     return Array.from(grid.querySelectorAll(".g-item")).filter((el) => !el.hidden && el.offsetParent !== null);
   };
-  // widoczne dish-thumb (globalnie)
+
   const visibleThumbItems = () => Array.from(document.querySelectorAll(".dish-thumb")).filter((el) => !el.hidden && el.offsetParent !== null);
 
   const openLB = (base, alt, index = -1, collection = []) => {
     if (!base) return;
     lastFocused = document.activeElement;
 
-    // ustaw kolekcję (jeśli pusta, fallback do wszystkie widoczne .g-item)
     currentCollection = Array.isArray(collection) && collection.length ? collection : visibleGridItems(document.querySelector(".gallery-grid")) || [];
-    // jeśli nadal pusta — fallback do dish-thumb
     if (!currentCollection.length) currentCollection = visibleThumbItems();
 
-    // znormalizuj base na absolutny URL
     const absBase = resolveUrl(base);
     setSources(absBase, alt);
 
-    // ustal index na podstawie znormalizowanej ścieżki
     if (typeof index === "number" && index >= 0) {
       currentIndex = index;
     } else {
@@ -284,10 +270,14 @@ if (document.body) {
         return candidate && resolveUrl(candidate) === absBase;
       });
     }
-    if (currentIndex === -1 && currentCollection.length) currentIndex = 0; // fallback
+    if (currentIndex === -1 && currentCollection.length) currentIndex = 0;
 
     if (isDialog) {
-      try { if (!lb.open) lb.showModal(); } catch (e) { console.error(e); }
+      try {
+        if (!lb.open) lb.showModal();
+      } catch (e) {
+        console.error(e);
+      }
     } else {
       lb.removeAttribute("hidden");
       lb.setAttribute("aria-hidden", "false");
@@ -297,12 +287,14 @@ if (document.body) {
     if (btnX && typeof btnX.focus === "function") btnX.focus();
 
     updateCounter();
-    preloadNeighbor(1); preloadNeighbor(-1);
+    preloadNeighbor(1);
+    preloadNeighbor(-1);
   };
 
   const closeLB = () => {
-    if (isDialog) { if (lb.open) lb.close(); }
-    else {
+    if (isDialog) {
+      if (lb.open) lb.close();
+    } else {
       lb.classList.remove("open");
       document.body.classList.remove("no-scroll");
       lb.setAttribute("aria-hidden", "true");
@@ -316,7 +308,10 @@ if (document.body) {
     if (lastFocused && typeof lastFocused.focus === "function") lastFocused.focus();
     currentIndex = -1;
     currentCollection = [];
-    if (counter) { counter.hidden = true; counter.textContent = ""; }
+    if (counter) {
+      counter.hidden = true;
+      counter.textContent = "";
+    }
   };
 
   const showAtIndex = (idx) => {
@@ -324,12 +319,11 @@ if (document.body) {
     currentIndex = (idx + currentCollection.length) % currentCollection.length;
     const el = currentCollection[currentIndex];
     const base = getBaseFromElement(el) || "";
-    const alt  = el?.querySelector("img")?.alt || el?.getAttribute("aria-label") || "";
+    const alt = el?.querySelector("img")?.alt || el?.getAttribute("aria-label") || "";
     setSources(base, alt);
     updateCounter();
   };
 
-  // preload helper
   function preloadNeighbor(offset) {
     if (!currentCollection.length || currentIndex === -1) return;
     const idx = (currentIndex + offset + currentCollection.length) % currentCollection.length;
@@ -337,18 +331,30 @@ if (document.body) {
     const raw = getBaseFromElement(el) || "";
     if (raw) {
       const p = stripExt(raw);
-      [`${p}.webp`, `${p}.avif`, `${p}.jpg`].forEach(u => { const im = new Image(); im.src = u; });
+      [`${p}.webp`, `${p}.avif`, `${p}.jpg`].forEach((u) => {
+        const im = new Image();
+        im.src = u;
+      });
     }
   }
 
-  // keyboard navigation and Esc
   const onKey = (e) => {
-    if (e.key === "Escape") { if (isDialog ? lb.open : lb.classList.contains("open")) closeLB(); return; }
-    if (e.key === "ArrowLeft")  { e.preventDefault(); if (currentCollection.length) showAtIndex(currentIndex === -1 ? 0 : currentIndex - 1); return; }
-    if (e.key === "ArrowRight") { e.preventDefault(); if (currentCollection.length) showAtIndex(currentIndex === -1 ? 0 : currentIndex + 1); return; }
+    if (e.key === "Escape") {
+      if (isDialog ? lb.open : lb.classList.contains("open")) closeLB();
+      return;
+    }
+    if (e.key === "ArrowLeft") {
+      e.preventDefault();
+      if (currentCollection.length) showAtIndex(currentIndex === -1 ? 0 : currentIndex - 1);
+      return;
+    }
+    if (e.key === "ArrowRight") {
+      e.preventDefault();
+      if (currentCollection.length) showAtIndex(currentIndex === -1 ? 0 : currentIndex + 1);
+      return;
+    }
   };
 
-  // Delegacja klików: miniatury dań + kafelki galerii
   document.addEventListener("click", (e) => {
     const thumb = e.target.closest(".dish-thumb");
     if (thumb) {
@@ -372,49 +378,69 @@ if (document.body) {
     }
   });
 
-  // Zamknięcia
   btnX?.addEventListener("click", closeLB);
   if (overlayEl) overlayEl.addEventListener("click", closeLB);
-  lb.addEventListener("click", (e) => { if (e.target === lb) closeLB(); });
+  lb.addEventListener("click", (e) => {
+    if (e.target === lb) closeLB();
+  });
 
   document.addEventListener("keydown", onKey);
 
-  // --- Nawigacja myszką: przyciski Prev/Next (tworzymy, jeśli brak)
   let btnPrev = lb.querySelector(".lb-prev");
   let btnNext = lb.querySelector(".lb-next");
   const mk = (cls, label, svg) => {
     const b = document.createElement("button");
-    b.className = cls; b.type = "button"; b.setAttribute("aria-label", label);
+    b.className = cls;
+    b.type = "button";
+    b.setAttribute("aria-label", label);
     b.innerHTML = svg;
     return b;
   };
   if (!btnPrev) {
-    btnPrev = mk("lb-prev","Poprzednie zdjęcie",
-      '<svg class="chev" viewBox="0 0 24 24" aria-hidden="true"><path d="M15 19L8 12l7-7" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>');
+    btnPrev = mk(
+      "lb-prev",
+      "Poprzednie zdjęcie",
+      '<svg class="chev" viewBox="0 0 24 24" aria-hidden="true"><path d="M15 19L8 12l7-7" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>'
+    );
     lb.appendChild(btnPrev);
   }
   if (!btnNext) {
-    btnNext = mk("lb-next","Następne zdjęcie",
-      '<svg class="chev" viewBox="0 0 24 24" aria-hidden="true"><path d="M9 5l7 7-7 7" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>');
+    btnNext = mk(
+      "lb-next",
+      "Następne zdjęcie",
+      '<svg class="chev" viewBox="0 0 24 24" aria-hidden="true"><path d="M9 5l7 7-7 7" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>'
+    );
     lb.appendChild(btnNext);
   }
 
-  // Kliki (nie zamykaj modala, nie klikaj w obraz)
-  const onPrev = (e)=>{ e.stopPropagation(); if(currentCollection.length){ showAtIndex(currentIndex===-1?0:currentIndex-1); } };
-  const onNext = (e)=>{ e.stopPropagation(); if(currentCollection.length){ showAtIndex(currentIndex===-1?0:currentIndex+1); } };
+  const onPrev = (e) => {
+    e.stopPropagation();
+    if (currentCollection.length) {
+      showAtIndex(currentIndex === -1 ? 0 : currentIndex - 1);
+    }
+  };
+  const onNext = (e) => {
+    e.stopPropagation();
+    if (currentCollection.length) {
+      showAtIndex(currentIndex === -1 ? 0 : currentIndex + 1);
+    }
+  };
   btnPrev.addEventListener("click", onPrev);
   btnNext.addEventListener("click", onNext);
 
-  // === Swipe (telefony) — poziomy gest do zmiany zdjęcia ===
   (() => {
     if (!img) return;
     const SUPPORTS_POINTER = "PointerEvent" in window;
 
-    let startX = 0, startY = 0, dx = 0, dy = 0;
-    let tracking = false, lockedHorizontal = false;
+    let startX = 0,
+      startY = 0,
+      dx = 0,
+      dy = 0;
+    let tracking = false,
+      lockedHorizontal = false;
 
     const THRESHOLD_PX = 60;
-    const LOCK_ANGLE = 0.577; // ~30deg
+    const LOCK_ANGLE = 0.577;
 
     const setTransform = (x) => {
       img.style.transition = "none";
@@ -424,21 +450,39 @@ if (document.body) {
     const resetTransform = () => {
       img.style.transition = "transform .18s ease";
       img.style.transform = "translate3d(0,0,0)";
-      img.addEventListener("transitionend", () => { img.style.willChange = ""; }, { once: true });
+      img.addEventListener(
+        "transitionend",
+        () => {
+          img.style.willChange = "";
+        },
+        { once: true }
+      );
     };
 
-    const onDown = (x, y) => { startX=x; startY=y; dx=0; dy=0; tracking=true; lockedHorizontal=false; };
+    const onDown = (x, y) => {
+      startX = x;
+      startY = y;
+      dx = 0;
+      dy = 0;
+      tracking = true;
+      lockedHorizontal = false;
+    };
     const onMove = (x, y, e) => {
       if (!tracking) return;
-      dx = x - startX; dy = y - startY;
+      dx = x - startX;
+      dy = y - startY;
       if (!lockedHorizontal && Math.abs(dx) > 8) {
         const ratio = Math.abs(dy / (dx || 1));
         lockedHorizontal = ratio < LOCK_ANGLE;
       }
-      if (lockedHorizontal) { e?.preventDefault?.(); setTransform(dx); }
+      if (lockedHorizontal) {
+        e?.preventDefault?.();
+        setTransform(dx);
+      }
     };
     const onUp = () => {
-      if (!tracking) return; tracking=false;
+      if (!tracking) return;
+      tracking = false;
       if (lockedHorizontal && Math.abs(dx) > THRESHOLD_PX && currentCollection.length) {
         const dir = dx < 0 ? +1 : -1;
         img.style.transition = "transform .12s ease";
@@ -448,7 +492,8 @@ if (document.body) {
           img.style.transition = "none";
           img.style.transform = `translate3d(${Math.sign(-dx) * 28}px,0,0)`;
           requestAnimationFrame(() => resetTransform());
-          preloadNeighbor(1); preloadNeighbor(-1);
+          preloadNeighbor(1);
+          preloadNeighbor(-1);
         }, 90);
       } else {
         resetTransform();
@@ -456,19 +501,46 @@ if (document.body) {
     };
 
     if (SUPPORTS_POINTER) {
-      img.addEventListener("pointerdown", (e)=>{ if (e.pointerType!=="mouse") onDown(e.clientX,e.clientY); }, { passive:true });
-      img.addEventListener("pointermove", (e)=>{ if (e.pointerType!=="mouse") onMove(e.clientX,e.clientY,e); }, { passive:false });
-      img.addEventListener("pointerup", onUp, { passive:true });
-      img.addEventListener("pointercancel", onUp, { passive:true });
+      img.addEventListener(
+        "pointerdown",
+        (e) => {
+          if (e.pointerType !== "mouse") onDown(e.clientX, e.clientY);
+        },
+        { passive: true }
+      );
+      img.addEventListener(
+        "pointermove",
+        (e) => {
+          if (e.pointerType !== "mouse") onMove(e.clientX, e.clientY, e);
+        },
+        { passive: false }
+      );
+      img.addEventListener("pointerup", onUp, { passive: true });
+      img.addEventListener("pointercancel", onUp, { passive: true });
     } else {
-      img.addEventListener("touchstart", (e)=>{ const t=e.touches[0]; if(!t) return; onDown(t.clientX,t.clientY); }, { passive:true });
-      img.addEventListener("touchmove",  (e)=>{ const t=e.touches[0]; if(!t) return; onMove(t.clientX,t.clientY,e); }, { passive:false });
-      img.addEventListener("touchend", onUp, { passive:true });
-      img.addEventListener("touchcancel", onUp, { passive:true });
+      img.addEventListener(
+        "touchstart",
+        (e) => {
+          const t = e.touches[0];
+          if (!t) return;
+          onDown(t.clientX, t.clientY);
+        },
+        { passive: true }
+      );
+      img.addEventListener(
+        "touchmove",
+        (e) => {
+          const t = e.touches[0];
+          if (!t) return;
+          onMove(t.clientX, t.clientY, e);
+        },
+        { passive: false }
+      );
+      img.addEventListener("touchend", onUp, { passive: true });
+      img.addEventListener("touchcancel", onUp, { passive: true });
     }
   })();
 
-  // ===== Fullscreen / Zoom toggle (dblclick + double-tap + 'F') =====
   const fsEl = lb;
   const canFS = !!(fsEl.requestFullscreen || fsEl.webkitRequestFullscreen || fsEl.msRequestFullscreen);
   const reqFS = () => fsEl.requestFullscreen?.() || fsEl.webkitRequestFullscreen?.() || fsEl.msRequestFullscreen?.();
@@ -476,69 +548,81 @@ if (document.body) {
   const isFS = () => !!(document.fullscreenElement || document.webkitFullscreenElement || document.msFullscreenElement);
 
   const enterZoomFallback = () => lb.classList.add("is-zoomed");
-  const exitZoomFallback  = () => lb.classList.remove("is-zoomed");
-  const isZoomFallback    = () => lb.classList.contains("is-zoomed");
+  const exitZoomFallback = () => lb.classList.remove("is-zoomed");
+  const isZoomFallback = () => lb.classList.contains("is-zoomed");
 
-  // >>> DODANE: klasa wymuszająca czarne tło backdroppu
   const setFsBackdrop = (on) => lb.classList.toggle("is-fs", !!on);
 
-  async function toggleFullscreen(){
-    if (canFS){
-      if (isFS()){
+  async function toggleFullscreen() {
+    if (canFS) {
+      if (isFS()) {
         await exitFS();
-        setFsBackdrop(false);              // DODANE
+        setFsBackdrop(false);
       } else {
         try {
           await reqFS();
-          setFsBackdrop(true);             // DODANE
+          setFsBackdrop(true);
         } catch {
           enterZoomFallback();
-          setFsBackdrop(true);             // DODANE
+          setFsBackdrop(true);
         }
       }
     } else {
-      // brak API → fallback CSS
-      if (isZoomFallback()){ exitZoomFallback(); setFsBackdrop(false); }
-      else { enterZoomFallback(); setFsBackdrop(true); }
+      if (isZoomFallback()) {
+        exitZoomFallback();
+        setFsBackdrop(false);
+      } else {
+        enterZoomFallback();
+        setFsBackdrop(true);
+      }
     }
   }
-  // wyjście z trybów
-  lb.addEventListener("close", ()=>{ exitZoomFallback(); setFsBackdrop(false); });    // DODANE
-  document.addEventListener("fullscreenchange", ()=> setFsBackdrop(isFS()));          // DODANE
+  lb.addEventListener("close", () => {
+    exitZoomFallback();
+    setFsBackdrop(false);
+  });
+  document.addEventListener("fullscreenchange", () => setFsBackdrop(isFS()));
 
-  // dblclick (desktop)
-  img.addEventListener("dblclick", (e)=>{ e.preventDefault(); toggleFullscreen(); });
-
-  // double-tap (mobile)
-  let lastTap=0;
-  img.addEventListener("touchend", (e)=>{
-    const now=Date.now();
-    if(now-lastTap<300){ e.preventDefault(); toggleFullscreen(); lastTap=0; }
-    else lastTap=now;
-  }, { passive:false });
-
-  // klawisz 'F'
-  lb.addEventListener("keydown",(e)=>{
-    if(e.key==='f' || e.key==='F'){ e.preventDefault(); toggleFullscreen(); }
+  img.addEventListener("dblclick", (e) => {
+    e.preventDefault();
+    toggleFullscreen();
   });
 
-  // expose for debug/inline usage
-  window.openLB  = (base, alt, idx) => openLB(base, alt, idx);
+  let lastTap = 0;
+  img.addEventListener(
+    "touchend",
+    (e) => {
+      const now = Date.now();
+      if (now - lastTap < 300) {
+        e.preventDefault();
+        toggleFullscreen();
+        lastTap = 0;
+      } else lastTap = now;
+    },
+    { passive: false }
+  );
+
+  lb.addEventListener("keydown", (e) => {
+    if (e.key === "f" || e.key === "F") {
+      e.preventDefault();
+      toggleFullscreen();
+    }
+  });
+
+  window.openLB = (base, alt, idx) => openLB(base, alt, idx);
   window.closeLB = closeLB;
 
   console.log("lightbox ready →", isDialog ? "<dialog>" : "<div>");
 })();
 
-/* 04) ======================================================================================
-   ========== FORMULARZ REZERWACJI ( HONEYPOT + WALIDACJA HTML5 + MOCK) =====================
-   ========================================================================================== */
+/* ========== 04) FORM ========== */
+
 (() => {
   const form = byTestId("booking-form") || $("#booking-form");
   const msg = $("#form-msg");
   if (!form || !msg) return;
 
   const btn = form.querySelector(".btn-form");
-  // a11y: dopnij aria-live/role jeśli brak
   if (!msg.hasAttribute("aria-live")) msg.setAttribute("aria-live", "polite");
   if (!msg.hasAttribute("role")) msg.setAttribute("role", "status");
 
@@ -561,31 +645,25 @@ if (document.body) {
   form.addEventListener("submit", (e) => {
     e.preventDefault();
 
-    // jeśli już trwa wysyłka, ignoruj (blokuje podwójne kliki)
     if (btn && btn.classList.contains("is-loading")) return;
 
-    // Honeypot
     if (form.company && form.company.value.trim() !== "") {
       msg.textContent = "Wykryto bota — zgłoszenie odrzucone.";
       return;
     }
 
-    // Walidacja HTML5
     if (!form.checkValidity()) {
       form.reportValidity?.();
       msg.textContent = "Uzupełnij wymagane pola.";
       return;
     }
 
-    // START: „wysyłka”
     setLoading(true);
     msg.textContent = "";
 
-    // Tu normalnie: await fetch(...)
     const T = 1000 + Math.random() * 200;
     const timer = setTimeout(() => {
       try {
-        // Sukces (mock)
         msg.textContent = "Dziękujemy! Oddzwonimy, aby potwierdzić rezerwację.";
         form.reset();
       } finally {
@@ -593,7 +671,6 @@ if (document.body) {
       }
     }, T);
 
-    // ostrożność: gdyby formularz został usunięty z DOM podczas timera
     form.addEventListener("reset", () => {}, { once: true });
     form.addEventListener("submit", () => {}, { once: true });
   });
@@ -601,17 +678,15 @@ if (document.body) {
   log("booking-form:", !!form, "btn-form:", !!btn);
 })();
 
-/* 05) ======================================================================================
-   ========== ROK W STOPCE ==================================================================
-   ========================================================================================== */
+/* ========== 05) YEAR IN FOOTER ========== */
+
 (() => {
   const y = $("#year");
   if (y) y.textContent = new Date().getFullYear();
 })();
 
-/* 06) ======================================================================================
-   ========== PRZEŁACZNIK MOTYWU ( LIGHT / DARK ) Z PAMIĘCIĘ ================================
-   ========================================================================================== */
+/* ========== 06) THEME TOGGLE ========== */
+
 (() => {
   const btn = byTestId("theme-toggle") || $(".theme-toggle");
   if (!btn) return;
@@ -622,7 +697,6 @@ if (document.body) {
   const prefersDark = mql.matches;
   const saved = localStorage.getItem(STORAGE_KEY);
 
-  // a11y
   if (!btn.hasAttribute("role")) btn.setAttribute("role", "button");
 
   const icon = (mode) => (mode === "dark" ? "☀" : "☾");
@@ -640,10 +714,8 @@ if (document.body) {
     }
   };
 
-  // init
   apply(saved ?? (prefersDark ? "dark" : "light"));
 
-  // toggle
   btn.addEventListener("click", () => {
     const current = root.getAttribute("data-theme") || (prefersDark ? "dark" : "light");
     const next = current === "dark" ? "light" : "dark";
@@ -651,7 +723,6 @@ if (document.body) {
     apply(next);
   });
 
-  // system changes (tylko gdy brak zapisanej preferencji)
   mql.addEventListener("change", (e) => {
     if (!localStorage.getItem(STORAGE_KEY)) apply(e.matches ? "dark" : "light");
   });
@@ -659,9 +730,8 @@ if (document.body) {
   log("theme-toggle:", !!btn);
 })();
 
-/* 07) ======================================================================================
-   ========== SCROLLSPY ( PODSWIETLENIE POZYCJI MENU ) ======================================
-   ========================================================================================== */
+/* ========== 07) SCROLLSPY ========== */
+
 (() => {
   const links = $$("#site-nav a[href^='#']");
   if (!links.length) return;
@@ -673,7 +743,6 @@ if (document.body) {
     map.get(id)?.setAttribute("aria-current", "true");
   };
 
-  // Obserwuj tylko sekcje, do których faktycznie linkujemy
   const sections = [...document.querySelectorAll("section[id]")].filter((sec) => map.has(sec.id));
   if (!sections.length) return;
 
@@ -688,7 +757,6 @@ if (document.body) {
 
   sections.forEach((sec) => io.observe(sec));
 
-  // Natychmiastowe podświetlenie po kliknięciu w menu (lepszy feeling)
   const nav = document.getElementById("site-nav") || document;
   nav.addEventListener(
     "click",
@@ -701,13 +769,11 @@ if (document.body) {
     { passive: true }
   );
 
-  // Jeśli wchodzimy na stronę z hashem — ustaw od razu
   if (location.hash) setActive(location.hash.slice(1));
 })();
 
-/* 08) ======================================================================================
-   ========== SCROLL BUTTONS ( DOWN / UP ) ==================================================
-   ========================================================================================== */
+/* ========== 08) SCROLL BUTTONS ========== */
+
 (() => {
   const btnDown = byTestId("scroll-down") || $(".scroll-down");
   const btnUp = byTestId("scroll-up") || $(".scroll-up");
@@ -733,7 +799,6 @@ if (document.body) {
   btnDown?.addEventListener("click", goBottom);
   btnUp?.addEventListener("click", goTop);
 
-  // rAF-batched scroll handler
   let ticking = false;
   const onScrollRaw = () => {
     if (ticking) return;
@@ -749,16 +814,14 @@ if (document.body) {
     });
   };
 
-  // init + bind
   onScrollRaw();
   window.addEventListener("scroll", onScrollRaw, { passive: true });
 
   log("scroll-down:", !!btnDown, "scroll-up:", !!btnUp);
 })();
 
-/* 09) ======================================================================================
-   ========== CTA - PULS TYLKO W VIEWPORT ===================================================
-   ========================================================================================== */
+/* ========== 09) CTA ========== */
+
 (() => {
   const ctas = document.querySelectorAll(".btn-cta");
   if (!ctas.length) return;
@@ -770,16 +833,14 @@ if (document.body) {
       });
     },
     { threshold: 0.2 }
-  ); // min. 20% widoczne
+  );
 
   ctas.forEach((btn) => io.observe(btn));
 })();
 
-/* 10) ======================================================================================
-   ========== SMART NAV - ZMIANA #MENU / #GALERIA NA URL ====================================
-   ========================================================================================== */
+/* ========== 10) SMART NAV ========== */
+
 (() => {
-  // Na stronie głównej zostawiamy anchor-scroll
   const path = location.pathname;
   const isHome = /(?:^|\/)(index\.html)?$/.test(path) || path.endsWith("/");
   if (isHome) return;
@@ -792,30 +853,24 @@ if (document.body) {
   });
 })();
 
-/* 11) ======================================================================================
-   ========== NAV - AKTYWNA PODSTRONA W NAWIGACJI - ARIA-CURRENT  ===========================
-   ========================================================================================== */
+/* ========== 11) NAV - ACTIVE PAGE ========== */
+
 (function () {
   const nav = document.querySelector(".site-nav");
   if (!nav) return;
   const links = Array.from(nav.querySelectorAll("a"));
-  // aktualny plik (np. "galeria.html") -> "galeria"
   const file = location.pathname.split("/").pop() || "";
-  const page = file.replace(".html", ""); // "" | "galeria" | "menu" | "index"
-  const hash = (location.hash || "").replace("#", ""); // "" | "galeria"
+  const page = file.replace(".html", "");
+  const hash = (location.hash || "").replace("#", "");
 
-  // wyczyść stare stany
   links.forEach((l) => l.removeAttribute("aria-current"));
 
-  // funkcja pomocnicza - czy href linku zawiera szukaną frazę
   const hrefMatches = (a, token) => {
     if (!token) return false;
     const href = a.getAttribute("href") || "";
-    // uwzględnij zarówno "#galeria", "galeria.html" jak i "/folder/galeria.html"
     return href.includes("#" + token) || href.endsWith(token + ".html") || href.includes("/" + token + ".html") || href.includes("/" + token);
   };
 
-  // 1) próbujemy dopasować po nazwie pliku (np. galeria.html -> link zawiera 'galeria')
   if (page) {
     for (const a of links) {
       if (hrefMatches(a, page)) {
@@ -825,7 +880,6 @@ if (document.body) {
     }
   }
 
-  // 2) fallback: jeśli istnieje hash (#galeria) - dopasuj po hash
   if (hash) {
     for (const a of links) {
       if (hrefMatches(a, hash)) {
@@ -836,17 +890,15 @@ if (document.body) {
   }
 })();
 
-/* 12) ======================================================================================
-   ========== MENU ( PAGE-MENU ) ZACHOWANIE PANELU "WIĘCEJ O DANIU" =========================
-   ========================================================================================== */
+/* ========== 12) MENU ( PAGE-MENU ) ========== */
+
 (() => {
   if (!document.body.classList.contains("page-menu")) return;
 
-  // 1) Klik poza .dish-more zamyka otwarte panele
   document.addEventListener(
     "click",
     (e) => {
-      if (e.target.closest(".dish-more")) return; // klik w środku — ignoruj
+      if (e.target.closest(".dish-more")) return;
       const openDetails = document.querySelectorAll(".dish-more[open]");
       if (!openDetails.length) return;
       openDetails.forEach((d) => d.removeAttribute("open"));
@@ -854,13 +906,11 @@ if (document.body) {
     { passive: true }
   );
 
-  // 2) Esc zamyka wszystkie otwarte panele
   document.addEventListener("keydown", (e) => {
     if (e.key !== "Escape") return;
     document.querySelectorAll(".dish-more[open]").forEach((d) => d.removeAttribute("open"));
   });
 
-  // 3) Akordeon: otwarcie jednego zamyka pozostałe
   document.addEventListener("toggle", (e) => {
     const el = e.target;
     if (!el.matches?.(".dish-more")) return;
@@ -872,11 +922,9 @@ if (document.body) {
   });
 })();
 
-/* 13) ======================================================================================
-   ========== FAQ - ARIA SYNC ( ARIA-EXPANDED + ARIA-CONTROLS ) =============================
-   ========================================================================================== */
+/* ========== 13) ARIA SYNC ========== */
+
 (() => {
-  // Obsłuż zarówno #faq jak i .faq na wszelki wypadek
   const root = document.getElementById("faq") || document.querySelector(".faq");
   if (!root) return;
 
@@ -887,7 +935,6 @@ if (document.body) {
     const s = d.querySelector("summary");
     if (!s) return;
 
-    // Jeśli mamy panel treści, dopnij id i aria-controls
     const panel = d.querySelector(".content");
     if (panel && !panel.id) panel.id = `faqp-${i}-${Math.random().toString(36).slice(2)}`;
     if (panel && !s.hasAttribute("aria-controls")) s.setAttribute("aria-controls", panel.id);
@@ -898,19 +945,17 @@ if (document.body) {
   });
 })();
 
-/* 14) ======================================================================================
-   ========== GALLERY FILTER (PAGE-GALLERY) ================================================
-   ====================================================================================== */
+/* ========== 14) GALLERY FILTER ========== */
+
 (function () {
-  if (!document.body.classList.contains("page-gallery")) return; // tylko ta podstrona
+  if (!document.body.classList.contains("page-gallery")) return;
 
   const tabsWrap = document.querySelector(".tabs");
   if (!tabsWrap) return;
 
-  const tabs  = Array.from(tabsWrap.querySelectorAll(".tab"));
+  const tabs = Array.from(tabsWrap.querySelectorAll(".tab"));
   const items = Array.from(document.querySelectorAll(".gallery-grid .g-item"));
 
-  // Pokaż/ukryj według aktywnego filtra
   function applyFilter(valueRaw) {
     const value = (valueRaw || "").trim();
     const showAll = value === "" || value.toLowerCase() === "all";
@@ -920,12 +965,10 @@ if (document.body) {
     });
   }
 
-  // Ustaw aria-selected (nie aktywuje filtra samodzielnie)
   function setActiveTab(btn) {
     tabs.forEach((t) => t.setAttribute("aria-selected", String(t === btn)));
   }
 
-  // --- ACCESSIBLE TABS SETUP ---
   function initTabs() {
     tabs.forEach((t, i) => {
       t.setAttribute("role", "tab");
@@ -935,7 +978,6 @@ if (document.body) {
     });
   }
 
-  // Aktywacja taba + filtrowanie
   function activateTab(tab) {
     setActiveTab(tab);
     tabs.forEach((t) => t.setAttribute("tabindex", t === tab ? "0" : "-1"));
@@ -944,13 +986,11 @@ if (document.body) {
     tab.focus();
   }
 
-  // Pomoc: przesunięcie fokusu z wrap-around
   function focusIndex(idx) {
     const i = (idx + tabs.length) % tabs.length;
     tabs[i].focus();
   }
 
-  // Klawiatura: manual activation (ARIA)
   tabsWrap.addEventListener("keydown", (e) => {
     const key = e.key;
     const activeEl = document.activeElement;
@@ -962,55 +1002,41 @@ if (document.body) {
       focusIndex(key === "ArrowRight" ? idx + 1 : idx - 1);
       return;
     }
-    if (key === "Home") { e.preventDefault(); focusIndex(0); return; }
-    if (key === "End")  { e.preventDefault(); focusIndex(tabs.length - 1); return; }
+    if (key === "Home") {
+      e.preventDefault();
+      focusIndex(0);
+      return;
+    }
+    if (key === "End") {
+      e.preventDefault();
+      focusIndex(tabs.length - 1);
+      return;
+    }
 
     if (key === "Enter" || key === " " || key === "Spacebar") {
       e.preventDefault();
       activateTab(activeEl);
       return;
     }
-    if (key === "Escape") { activeEl.blur(); return; }
+    if (key === "Escape") {
+      activeEl.blur();
+      return;
+    }
   });
 
-  // Click: aktywacja
   tabs.forEach((t) => {
     t.addEventListener("click", () => activateTab(t));
   });
 
-  // Start: jeśli w HTML jest aria-selected="true" -> aktywuj go; inaczej pierwszy
   initTabs();
   const pre = tabs.find((t) => t.getAttribute("aria-selected") === "true") || tabs[0];
   activateTab(pre);
 })();
 
+/* ========== 15) STICKY SHADOW ON SCROLL ========== */
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-/* ==================================== ADDED ===================================================== */
-// Sticky shadow on scroll
 window.addEventListener("scroll", () => {
   document.body.classList.toggle("is-scrolled", window.scrollY > 10);
 });
+
+/* $$$$$$$$$$ END OF SCRIPT $$$$$$$$$$ */

@@ -1,0 +1,77 @@
+{
+  "id": "/",
+  "name": "KP_Code — Demo strony gastronomicznej",
+  "short_name": "KP_Code Demo",
+  "description": "Demo szablonu restauracji: menu, galeria, opinie i rezerwacja. Projekt i kod: KP_Code.",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "display_override": ["standalone", "window-controls-overlay"],
+  "orientation": "portrait-primary",
+  "theme_color": "#fab204",
+  "background_color": "#ffffff",
+  "categories": ["food", "restaurant", "business"],
+  "prefer_related_applications": false,
+  "lang": "pl-PL",
+  "dir": "ltr",
+
+  "icons": [
+    { "src": "/assets/icons/favicons/web-app-manifest-72x72.png", "sizes": "72x72", "type": "image/png" },
+    { "src": "/assets/icons/favicons/web-app-manifest-144x144.png", "sizes": "144x144", "type": "image/png" },
+    { "src": "/assets/icons/favicons/apple-touch-icon.png", "sizes": "180x180", "type": "image/png" },
+    { "src": "/assets/icons/favicons/web-app-manifest-192x192.png", "sizes": "192x192", "type": "image/png", "purpose": "any maskable" },
+    { "src": "/assets/icons/favicons/web-app-manifest-256x256.png", "sizes": "256x256", "type": "image/png" },
+    { "src": "/assets/icons/favicons/web-app-manifest-512x512.png", "sizes": "512x512", "type": "image/png", "purpose": "any maskable" },
+    { "src": "/assets/icons/favicons/favicon-96x96.png", "sizes": "96x96", "type": "image/png" }
+  ],
+
+  "shortcuts": [
+    {
+      "name": "Menu",
+      "short_name": "Menu",
+      "description": "Przejdź do pełnego menu",
+      "url": "/menu.html#menu",
+      "icons": [{ "src": "/assets/icons/shortcuts/offer-96.png", "sizes": "96x96", "type": "image/png", "purpose": "any maskable" }]
+    },
+    {
+      "name": "Galeria",
+      "short_name": "Galeria",
+      "description": "Otwórz galerię zdjęć",
+      "url": "/galeria.html#galeria-grid",
+      "icons": [{ "src": "/assets/icons/shortcuts/offer-96.png", "sizes": "96x96", "type": "image/png", "purpose": "any maskable" }]
+    },
+    {
+      "name": "Kontakt / Rezerwacja",
+      "short_name": "Kontakt",
+      "description": "Przejdź do sekcji rezerwacji",
+      "url": "/index.html#rezerwacja",
+      "icons": [{ "src": "/assets/icons/shortcuts/contact-96.png", "sizes": "96x96", "type": "image/png", "purpose": "any maskable" }]
+    },
+    {
+      "name": "Dokumenty",
+      "short_name": "Legal",
+      "description": "Polityka prywatności i cookies",
+      "url": "/polityka-prywatnosci.html",
+      "icons": [{ "src": "/assets/icons/shortcuts/legal-96.png", "sizes": "96x96", "type": "image/png", "purpose": "any maskable" }]
+    }
+  ],
+
+  "screenshots": [
+    {
+      "src": "/assets/icons/screenshots/mobile-home.png",
+      "sizes": "390x844",
+      "type": "image/png",
+      "form_factor": "narrow",
+      "label": "Strona główna — widok mobilny",
+      "platform": "narrow"
+    },
+    {
+      "src": "/assets/icons/screenshots/desktop-home.png",
+      "sizes": "1280x800",
+      "type": "image/png",
+      "form_factor": "wide",
+      "label": "Strona główna — widok desktopowy",
+      "platform": "wide"
+    }
+  ]
+}

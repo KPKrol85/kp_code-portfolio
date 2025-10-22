@@ -1,128 +1,136 @@
-# Gastronomy Project 01 — Responsive Restaurant Demo Website
+# Gastronomy 01 — Restaurant Demo Website
 
-A fully responsive and accessible demo website for a modern restaurant, built to demonstrate professional front-end practices in HTML, CSS, and JavaScript.
-
-🔗 **Live Demo:** [https://gastronomy-project-01.netlify.app](https://gastronomy-project-01.netlify.app)
-
----
-
-## Overview
-
-This project was created as part of the *KP_Code Professional Learning Plan* and showcases a complete, production-ready front-end workflow.  
-It focuses on **performance**, **accessibility**, and **visual polish**, implementing semantic HTML5 structure, local fonts, responsive layouts, and interactive components without relying on frameworks.  
-The site includes multiple pages and is fully optimized for SEO and Lighthouse performance.
+**Author:** KP_Code
+**Type:** Front-end project (HTML, CSS, JavaScript)
+**Status:** Completed ✅
+**Live demo:** [https://gastronomy-project-01.netlify.app/](https://gastronomy-project-01.netlify.app/)
 
 ---
 
-## Features
+## 📖 Overview
 
-- **100 / 100 / 100 / 100 Lighthouse score** (Performance / Accessibility / Best Practices / SEO)
-- Fully **responsive layout** built with Flexbox, Grid, and fluid typography
-- **Accessible navigation** with keyboard support, focus states, and ARIA roles
-- **Dark / Light theme switcher** with persistent preference (localStorage)
-- Local **WOFF2 fonts** (Poppins, Source Sans 3) with `font-display: swap`
-- Optimized **WebP/AVIF images** with lazy loading and `fetchpriority="high"` for LCP
-- **Gallery Lightbox** with keyboard navigation and focus trap
-- **Menu filtering system** with ARIA synchronization and animated transitions
-- **Contact form**:
-  - Native HTML5 validation
-  - Honeypot anti-spam protection
-  - aria-live feedback messages
-  - Netlify-compatible submission
-- **SEO-ready** meta tags, JSON-LD Restaurant schema, and AggregateRating data
-- **PWA manifest**, offline 404 page, and structured `robots.txt` + `sitemap.xml`
-- **Minified CSS/JS** via PostCSS + CSSNano and Terser
-- Accessibility extras: skip link, `prefers-reduced-motion`, and visible focus outlines
-- Fully deployable via **Netlify**, with `_headers` and `_redirects` configured
+**Gastronomy 01** is a fully responsive demo website for a modern restaurant.
+The project showcases semantic HTML5, accessible components (ARIA, keyboard navigation), and optimized performance (Lighthouse 100/100/100/100).
+It was built as part of the **KP_Code Professional Learning Plan**, focusing on professional front-end development workflow and clean, production-ready code.
 
 ---
 
-## Tech Stack
+## ✨ Features
 
-- **HTML5**, **CSS3**, **JavaScript (ES6)**
-- **PostCSS + CSSNano** — CSS minification
-- **Terser** — JS minification
-- **Netlify** — hosting and deployment
-- **VS Code / DevTools / Lighthouse** — development and testing
+- **Responsive design (RWD):** built with flexbox, grid, and fluid typography
+- **Accessibility (a11y):** ARIA roles, focus states, and keyboard navigation for tabs and modals
+- **Optimized assets:** AVIF/WebP images with fallbacks, lazy loading, and `fetchpriority` for LCP
+- **Local fonts:** `Poppins` and `Source Sans 3` served locally (no external requests)
+- **Lightbox gallery:** accessible modal with keyboard support and focus trap
+- **Menu filtering system:** interactive tabs with ARIA synchronization
+- **Contact form:** HTML5 validation, honeypot anti-spam field, live feedback messages
+- **Dark / light theme switcher** with saved preference in `localStorage`
+- **SEO ready:** meta tags, Open Graph, JSON-LD schema (`Restaurant`, `AggregateRating`),
+  plus complete `robots.txt` and `sitemap.xml`
+- **Performance ready:** minified CSS/JS with `postcss` + `cssnano` and `terser`
+- **Clean Git setup:** `.gitignore`, modular file structure, NPM workflow
 
 ---
 
-## Folder Structure
+## 🧩 File Structure
 
-```text
-gastronomy-project-01/
-├── assets/
-│   ├── img/
-│   ├── fonts/
-│   └── icons/
+```
+
+project-01/
+│
+├── assets/              # images, icons, fonts
 ├── css/
-│   ├── style.css
-│   └── style.min.css
+│   ├── style.css        # main stylesheet
+│   └── style.min.css    # production version
 ├── js/
-│   ├── script.js
-│   └── script.min.js
-├── index.html
-├── menu.html
-├── galeria.html
-├── cookies.html
-├── polityka-prywatnosci.html
+│   ├── script.js        # main JS file
+│   └── script.min.js    # production version
+├── index.html           # home page
+├── menu.html            # full menu page
+├── galeria.html         # gallery page
+├── cookies.html         # cookie policy
+├── polityka-prywatnosci.html  # privacy policy
 ├── sitemap.xml
 ├── robots.txt
-├── site.webmanifest
-├── _headers
-├── _redirects
 ├── package.json
 ├── .gitignore
 └── README.md
-````
-
----
-
-## Performance & Accessibility
-
-**Lighthouse Score:**
-Performance: **100** | Accessibility: **100** | Best Practices: **100** | SEO: **100**
-
-| Metric                   | Result |
-| ------------------------ | ------ |
-| First Contentful Paint   | 0.3 s  |
-| Largest Contentful Paint | 0.5 s  |
-| Total Blocking Time      | 0 ms   |
-| Cumulative Layout Shift  | 0      |
-| Speed Index              | 0.6 s  |
-
-The website meets Core Web Vitals thresholds and adheres to progressive enhancement principles.
-
----
-
-## SEO & PWA
-
-* **Meta tags** for Open Graph, Twitter Cards, and structured data
-* **robots.txt**, **sitemap.xml**, and canonical URLs
-* **JSON-LD Restaurant schema** with menu, location, and rating info
-* **Web App Manifest** with adaptive icons and app name
-* **Offline 404** for PWA support
-* **Netlify headers** for caching and security
-
----
-
-## Getting Started
-
-1. Clone or download the project folder.
-2. Open `index.html` in your browser, or serve locally using:
-
-   ```bash
-   npx serve .
-   ```
-3. For Netlify Forms support, ensure form attributes match the original markup.
-
----
-
-## Author
-
-**KP_Code**
-Front-End Developer focused on clean code, accessibility, and performance.
-
-© 2025 KP_Code — For educational and portfolio use only.
 
 ```
+
+---
+
+## ⚙️ Build & Minification
+
+### CSS
+
+```bash
+npm run minify:css
+```
+
+Uses `postcss` + `cssnano` to generate `style.min.css`.
+
+### JavaScript
+
+```bash
+npm run minify:js
+```
+
+Uses `terser` to generate `script.min.js`.
+
+---
+
+## 💡 Accessibility Highlights
+
+- Fully semantic HTML5 structure (`header`, `main`, `section`, `figure`, `footer`)
+- Proper focus management in navigation and modals
+- ARIA-labeled elements for dynamic sections
+- `aria-live` regions for form feedback
+- `prefers-reduced-motion` support for reduced animations
+
+---
+
+## 🧠 Learning Goals
+
+This project was part of **Stage 1** in the “KP_Code Professional Learning Plan”:
+building production-grade HTML/CSS/JS websites before moving to **Tailwind**, **React**, and **Next.js**.
+
+Key learning outcomes:
+
+- mastering semantic structure and accessibility
+- creating modular CSS architecture
+- understanding performance and Core Web Vitals
+- developing local build scripts and workflow automation
+
+---
+
+## 🚀 Deployment
+
+Deployed on **Netlify**
+Every push to `main` triggers an automatic redeploy to
+[`https://gastronomy-project-01.netlify.app/`](https://gastronomy-project-01.netlify.app/)
+
+---
+
+## 🧾 License
+
+MIT License © 2025 **KP_Code**
+Feel free to use this project as an educational reference or template (with attribution).
+
+---
+
+## 📈 Lighthouse Score
+
+| Category       | Score  |
+| -------------- | :----: |
+| Performance    |  100   |
+| Accessibility  |  100   |
+| Best Practices | 96–100 |
+| SEO            |  100   |
+
+---
+
+## 🗓️ Last Updated
+
+**October 2025**
+

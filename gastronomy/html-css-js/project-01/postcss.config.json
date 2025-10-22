@@ -1,0 +1,14 @@
+{
+  "plugins": {
+    "cssnano": {
+      "preset": [
+        "default",
+        {
+          "autoprefixer": false,
+          "discardComments": { "removeAll": true },
+          "normalizeWhitespace": true
+        }
+      ]
+    }
+  }
+}

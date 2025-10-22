@@ -1,11 +1,11 @@
-/* ==================================================
-   ===== Project: Project 01 - Gastronomy Website
-   ===== Autor: KP_Code (Front-end)
-   ===== Aktualizacja: 2025-10-07
-   ==================================================
+/* ================================================
+   ===== Project: gastronomy-html-css-js-project-01
+   ===== Author: KP_Code
+   ===== Updated: 2025-10-22
+   ================================================
    ===== CSS Stylesheet
    ===== Structure Overview
-   ==================================================
+   ================================================
    ===== 00) GLOBAL VARIABLES
    ===== 01) BASE TYPOGRAPHY + LAYOUT
    ===== 02) HEADER
@@ -25,12 +25,9 @@
    ===== 16) GLOBAL BUTTONS
    ===== 17) MODALS & OVERLAYS
    ===== 99) FEATURE SUPPORT & FALLBACKS
-   ================================================== */
+   ================================================ */
 
-/* ================================================== */
-/* 00) GLOBAL VARIABLES ============================= */
-/* ================================================== */
-/* ================================================== */
+/* ========== 00) GLOBAL VARIABLES ========== */
 
 *,
 *::before,
@@ -62,6 +59,7 @@ html {
   --font-sans: "Source Sans 3", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
   --font-display: "Poppins", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
 }
+
 :root {
   --glass-blur: 14px;
   --glass-alpha: 48%;
@@ -90,41 +88,41 @@ html[data-theme="dark"] {
   --nav-hover-bg: rgba(255, 255, 255, 0.1);
 }
 
-/* ---------- Local Fonts - Poppins & Source Sans 3 ---------- */
-/* poppins-regular - latin */
+/* ----- Local Fonts - Poppins & Source Sans 3 ----- */
+/* --- poppins-regular - latin --- */
 @font-face {
   font-display: swap;
   font-family: "Poppins";
   font-style: normal;
   font-weight: 400;
-  src: url("..assets/fonts/poppins-v24-latin-regular.woff2") format("woff2"); /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
+  src: url("..assets/fonts/poppins-v24-latin-regular.woff2") format("woff2");
 }
-/* poppins-600 - latin */
+/* --- poppins-600 - latin --- */
 @font-face {
   font-display: swap;
   font-family: "Poppins";
   font-style: normal;
   font-weight: 600;
-  src: url("..assets/fonts/poppins-v24-latin-600.woff2") format("woff2"); /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
+  src: url("..assets/fonts/poppins-v24-latin-600.woff2") format("woff2");
 }
-/* source-sans-3-regular - latin */
+/* --- source-sans-3-regular - latin --- */
 @font-face {
   font-display: swap;
   font-family: "Source Sans 3";
   font-style: normal;
   font-weight: 400;
-  src: url("..assets/fonts/source-sans-3-v19-latin-regular.woff2") format("woff2"); /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
+  src: url("..assets/fonts/source-sans-3-v19-latin-regular.woff2") format("woff2");
 }
-/* source-sans-3-500 - latin */
+/* --- source-sans-3-500 - latin --- */
 @font-face {
   font-display: swap;
   font-family: "Source Sans 3";
   font-style: normal;
   font-weight: 500;
-  src: url("..assets/fonts/source-sans-3-v19-latin-500.woff2") format("woff2"); /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
+  src: url("..assets/fonts/source-sans-3-v19-latin-500.woff2") format("woff2");
 }
 
-/* ---------- MQ Prefers Color Scheme - dark theme ---------- */
+/* ----- MQ Prefers Color Scheme - dark theme ----- */
 @media (prefers-color-scheme: dark) {
   :root {
     --c-bg: #0b0b0f;
@@ -137,10 +135,7 @@ html[data-theme="dark"] {
   }
 }
 
-/* ================================================== */
-/* 01) BASE TYPOGRAPHY + LAYOUT ===================== */
-/* ================================================== */
-/* ================================================== */
+/* ========== 01) BASE TYPOGRAPHY + LAYOUT ========== */
 
 body {
   margin: 0;
@@ -174,11 +169,11 @@ a {
   text-decoration: underline;
   text-underline-offset: 2px;
 }
+
 a:hover {
   text-decoration-thickness: 2px;
 }
 
-/* ----- Nagłówki – baza ----- */
 h1,
 h2,
 h3,
@@ -194,15 +189,16 @@ h6 {
   text-wrap: balance;
 }
 
-/* Nagłówki – rozmiary + mocniejsza waga dla H1–H3 */
 h1 {
   font-size: clamp(1.9rem, 1.3rem + 3.6vw, 3.5rem);
   font-weight: 700;
 }
+
 h2 {
   font-size: clamp(1.5rem, 1.1rem + 2vw, 2.5rem);
   font-weight: 700;
 }
+
 h3 {
   font-size: clamp(1.2rem, 1rem + 0.9vw, 1.6rem);
   font-weight: 700;
@@ -244,17 +240,14 @@ h3 {
   margin: 0 0 1.2rem;
 }
 
-/* ---------- MQ min width 900px ---------- */
+/* ----- MQ min width 900px ----- */
 @media (min-width: 900px) {
   .grid-2 {
     grid-template-columns: 1.05fr 0.95fr;
   }
 }
 
-/* ================================================== */
-/* 02) HEADER ======================================= */
-/* ================================================== */
-/* ================================================== */
+/* ========== 02) HEADER ========== */
 
 .site-header {
   position: sticky;
@@ -281,7 +274,6 @@ h3 {
   gap: 8px;
 }
 
-/* ----- Brand / Logo ----- */
 .brand {
   display: flex;
   align-items: center;
@@ -296,16 +288,17 @@ h3 {
 .logo-dark {
   display: none;
 }
+
 html[data-theme="dark"] .logo-light,
 html[data-theme="light"] .logo-dark {
   display: none;
 }
+
 html[data-theme="dark"] .logo-dark,
 html[data-theme="light"] .logo-light {
   display: block;
 }
 
-/* ----- Action buttons (theme + nav) ----- */
 .theme-toggle,
 .nav-toggle {
   display: inline-flex;
@@ -340,7 +333,6 @@ html[data-theme="light"] .logo-light {
   outline-offset: 2px;
 }
 
-/* ----- Główna nawigacja ----- */
 .site-nav {
   display: none;
   flex: 1 1 auto;
@@ -388,12 +380,12 @@ html[data-theme="light"] .logo-light {
 .site-nav a[aria-current="true"] {
   color: var(--c-accent);
 }
+
 .site-nav a[aria-current="page"]::after,
 .site-nav a[aria-current="true"]::after {
   transform: scaleX(1);
 }
 
-/* ----- Mobile: rozwijane menu ----- */
 .nav-open .site-nav {
   display: block;
   position: absolute;
@@ -419,19 +411,16 @@ html[data-theme="light"] .logo-light {
   transform: translateY(-1px);
 }
 
-/* ----- Shadow po scrollu ----- */
 body.is-scrolled .site-header {
   box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
   transition: box-shadow 0.25s ease;
 }
 
-/* ----- Rozmiary ikon przy numerze tel. ----- */
 .header-actions .btn-ghost .icon-dual {
   width: 20px;
   height: 20px;
 }
 
-/* ----- Dual icons (light/dark) ----- */
 .icon-dual {
   display: grid;
   place-items: center;
@@ -445,15 +434,19 @@ body.is-scrolled .site-header {
   width: 100%;
   height: auto;
 }
+
 .icon-dual .icon-light {
   display: block;
 }
+
 .icon-dual .icon-dark {
   display: none;
 }
+
 html[data-theme="dark"] .icon-dual .icon-light {
   display: none;
 }
+
 html[data-theme="dark"] .icon-dual .icon-dark {
   display: block;
 }
@@ -463,7 +456,7 @@ html[data-theme="dark"] .site-header {
   border-bottom: 1px solid color-mix(in oklab, var(--c-border), transparent calc(var(--glass-border-alpha) + 6%));
 }
 
-/* ---------- MQ max width 900px ---------- */
+/* ----- MQ max width 900px ----- */
 @media (max-width: 900px) {
   .site-header {
     backdrop-filter: saturate(1.2) blur(calc(var(--glass-blur) + 4px));
@@ -478,14 +471,14 @@ html[data-theme="dark"] .site-header {
   }
 }
 
-/* ---------- MQ max width 768px ---------- */
+/* ----- MQ max width 768px ----- */
 @media (max-width: 768px) {
   .header-actions {
     gap: 10px;
   }
 }
 
-/* ---------- MQ min width 900px ---------- */
+/* ----- MQ min width 900px ----- */
 @media (min-width: 900px) {
   .nav-toggle {
     display: none;
@@ -508,7 +501,7 @@ html[data-theme="dark"] .site-header {
   }
 }
 
-/* ---------- MQ min width 900px & hover ---------- */
+/* ----- MQ min width 900px & hover ----- */
 @media (min-width: 900px) and (hover: hover) {
   .site-nav a:hover::after {
     transform: scaleX(1);
@@ -519,7 +512,7 @@ html[data-theme="dark"] .site-header {
   }
 }
 
-/* ---------- MQ hover: hover ---------- */
+/* ----- MQ hover: hover ----- */
 @media (hover: hover) {
   .theme-toggle:hover,
   .nav-toggle:hover {
@@ -528,7 +521,7 @@ html[data-theme="dark"] .site-header {
   }
 }
 
-/* ---------- MQ Prefers Color Scheme ---------- */
+/* ----- MQ Prefers Color Scheme ----- */
 @media (prefers-color-scheme: dark) {
   html:not([data-theme]) .logo-light {
     display: none;
@@ -544,7 +537,7 @@ html[data-theme="dark"] .site-header {
   }
 }
 
-/* ---------- MQ Prefers reduced motion ---------- */
+/* ----- MQ Prefers reduced motion ----- */
 @media (prefers-reduced-motion: reduce) {
   .site-nav a,
   .site-nav a::after,
@@ -557,10 +550,7 @@ html[data-theme="dark"] .site-header {
   }
 }
 
-/* ================================================== */
-/* 03) HERO ========================================= */
-/* ================================================== */
-/* ================================================== */
+/* ========== 03) HERO ========== */
 
 .hero {
   position: relative;
@@ -573,6 +563,7 @@ html[data-theme="dark"] .site-header {
   --ov-mid: rgba(0, 0, 0, 0.38);
   --ov-bot: rgba(0, 0, 0, 0.28);
 }
+
 .hero::before {
   content: "";
   position: absolute;
@@ -581,6 +572,7 @@ html[data-theme="dark"] .site-header {
   pointer-events: none;
   background: radial-gradient(120% 90% at 50% 40%, transparent 0%, transparent 60%, rgba(0, 0, 0, 0.1) 85%, rgba(0, 0, 0, 0.18) 100%);
 }
+
 .hero::after {
   content: "";
   position: absolute;
@@ -590,7 +582,6 @@ html[data-theme="dark"] .site-header {
   background: linear-gradient(to bottom, var(--ov-top) 0%, var(--ov-mid) 55%, var(--ov-bot) 100%);
 }
 
-/* full-bleed media */
 .hero-media {
   position: absolute;
   inset: 0;
@@ -601,6 +592,7 @@ html[data-theme="dark"] .site-header {
   z-index: -1;
   pointer-events: none;
 }
+
 .hero-media img {
   width: 100%;
   height: 100%;
@@ -621,6 +613,7 @@ html[data-theme="dark"] .site-header {
   color: #fff;
   text-shadow: 0 2px 12px rgba(0, 0, 0, 0.6);
 }
+
 .hero .eyebrow {
   color: rgba(255, 255, 255, 0.9);
 }
@@ -630,38 +623,41 @@ html[data-theme="dark"] .site-header {
   --ov-mid: rgba(0, 0, 0, 0.26);
   --ov-bot: rgba(0, 0, 0, 0.18);
 }
+
 .hero[data-contrast="high"] {
   --ov-top: rgba(0, 0, 0, 0.72);
   --ov-mid: rgba(0, 0, 0, 0.52);
   --ov-bot: rgba(0, 0, 0, 0.4);
 }
+
 .hero[data-img="light"] {
   --ov-top: rgba(0, 0, 0, 0.7);
   --ov-mid: rgba(0, 0, 0, 0.5);
   --ov-bot: rgba(0, 0, 0, 0.38);
 }
+
 .hero[data-img="dark"] {
   --ov-top: rgba(0, 0, 0, 0.44);
   --ov-mid: rgba(0, 0, 0, 0.3);
   --ov-bot: rgba(0, 0, 0, 0.22);
 }
+
 .hero[data-img="light"]::after {
   background: linear-gradient(to bottom, rgba(0, 0, 0, 0.68), rgba(0, 0, 0, 0.48));
 }
+
 .hero[data-img="dark"]::after {
   background: linear-gradient(to bottom, rgba(0, 0, 0, 0.35), rgba(0, 0, 0, 0.18));
 }
 
-/* ================================================== */
-/* 04) ABOUT ======================================== */
-/* ================================================== */
-/* ================================================== */
+/* ========== 04) ABOUT ========== */
 
 .about-photo {
   border-radius: var(--radius);
   overflow: hidden;
   box-shadow: var(--shadow);
 }
+
 .about-photo img {
   width: 100%;
   height: auto;
@@ -669,7 +665,6 @@ html[data-theme="dark"] .site-header {
   object-fit: cover;
 }
 
-/* Tylko w sekcji ABOUT */
 .about .bullets {
   display: grid;
   gap: 0.5rem;
@@ -677,17 +672,18 @@ html[data-theme="dark"] .site-header {
   margin: 1rem 0 0;
   padding: 0;
 }
+
 .about .bullets li {
   display: flex;
   align-items: center;
   gap: 0.6rem;
 }
+
 .about .bullets a,
 .about .bullets time {
   white-space: nowrap;
 }
 
-/* Ikony dualne – tylko w ABOUT */
 .about .icon-dual {
   display: inline-grid;
   place-items: center;
@@ -718,6 +714,7 @@ html[data-theme="dark"] .about .icon-dual .icon-dark {
   display: block;
 }
 
+/* ----- MQ prefers-color-scheme ----- */
 @media (prefers-color-scheme: dark) {
   html:not([data-theme]) .about .icon-dual .icon-light {
     display: none;
@@ -727,10 +724,7 @@ html[data-theme="dark"] .about .icon-dual .icon-dark {
   }
 }
 
-/* ================================================== */
-/* 05) MENU ========================================= */
-/* ================================================== */
-/* ================================================== */
+/* ========== 05) MENU ========== */
 
 #menu {
   scroll-margin-top: 90px;
@@ -853,12 +847,14 @@ html[data-theme="dark"] .about .icon-dual .icon-dark {
   outline-offset: 2px;
 }
 
+/* ----- MQ min-width 720px ----- */
 @media (min-width: 720px) {
   body:not(.page-menu) .menu-grid {
     grid-template-columns: repeat(2, 1fr);
   }
 }
 
+/* ----- MQ max-width 520px ----- */
 @media (max-width: 520px) {
   .dish.has-thumb .dish-head {
     grid-template-columns: 1fr auto 56px;
@@ -870,6 +866,7 @@ html[data-theme="dark"] .about .icon-dual .icon-dark {
   }
 }
 
+/* ----- MQ hover: hover ----- */
 @media (hover: hover) {
   .dish:hover .dish-thumb img {
     transform: scale(1.05);
@@ -882,6 +879,7 @@ html[data-theme="dark"] .about .icon-dual .icon-dark {
   }
 }
 
+/* ----- MQ prefers-color-scheme: dark ----- */
 @media (prefers-color-scheme: dark) {
   .dish {
     background: color-mix(in oklab, var(--c-surface), black 10%);
@@ -889,6 +887,7 @@ html[data-theme="dark"] .about .icon-dual .icon-dark {
   }
 }
 
+/* ----- MQ prefers-reduced-motion: reduce ----- */
 @media (prefers-reduced-motion: reduce) {
   .dish {
     transition: none;
@@ -898,10 +897,7 @@ html[data-theme="dark"] .about .icon-dual .icon-dark {
   }
 }
 
-/* ================================================== */
-/* 06) PAGE MENU ==================================== */
-/* ================================================== */
-/* ================================================== */
+/* ========== 06) PAGE MENU ========== */
 
 .page-menu {
   --menu-col-max: 650px;
@@ -1046,7 +1042,7 @@ html[data-theme="dark"] .about .icon-dual .icon-dark {
   scroll-margin-top: var(--header-h, 64px);
 }
 
-/* ---------- MQ min width 900px ---------- */
+/* ----- MQ min width 900px ----- */
 @media (min-width: 900px) {
   .page-menu #menu .menu-grid {
     overflow: visible;
@@ -1086,7 +1082,7 @@ html[data-theme="dark"] .about .icon-dual .icon-dark {
   }
 }
 
-/* ---------- MQ max width 899.9px ---------- */
+/* ----- MQ max width 899.9px ----- */
 @media (max-width: 899.98px) {
   .page-menu .dish-more .content {
     position: static;
@@ -1099,7 +1095,7 @@ html[data-theme="dark"] .about .icon-dual .icon-dark {
   }
 }
 
-/* ---------- MQ max width 600px ---------- */
+/* ----- MQ max width 600px ----- */
 @media (max-width: 600px) {
   .page-menu .dish {
     grid-template-columns: minmax(0, 1fr) auto var(--menu-thumb-sm);
@@ -1111,7 +1107,7 @@ html[data-theme="dark"] .about .icon-dual .icon-dark {
   }
 }
 
-/* ---------- MQ max width 360px ---------- */
+/* ----- MQ max width 360px ----- */
 @media (max-width: 360px) {
   .page-menu .dish {
     grid-template-columns: 1fr var(--menu-thumb-sm);
@@ -1142,7 +1138,7 @@ html[data-theme="dark"] .about .icon-dual .icon-dark {
   }
 }
 
-/* ---------- MQ Prefers reduced motion ---------- */
+/* ----- MQ Prefers reduced motion ----- */
 @media (prefers-reduced-motion: reduce) {
   .page-menu .dish-more .content {
     transition: none;
@@ -1152,9 +1148,7 @@ html[data-theme="dark"] .about .icon-dual .icon-dark {
   }
 }
 
-/* ================================================== */
-/* 07) GALLERY ====================================== */
-/* ================================================== */
+/* ========== 07) GALLERY ========== */
 
 #galeria .section-head {
   text-align: center;
@@ -1206,7 +1200,7 @@ html[data-theme="dark"] .about .icon-dual .icon-dark {
   outline-offset: 2px;
 }
 
-/* ---------- MQ hover: hover ---------- */
+/* ----- MQ hover: hover ----- */
 @media (hover: hover) {
   .g-item:hover {
     transform: translateY(-4px);
@@ -1218,6 +1212,7 @@ html[data-theme="dark"] .about .icon-dual .icon-dark {
   }
 }
 
+/* ----- MQ Prefers reduced motion ----- */
 @media (prefers-reduced-motion: reduce) {
   .g-item,
   .g-item img {
@@ -1225,9 +1220,7 @@ html[data-theme="dark"] .about .icon-dual .icon-dark {
   }
 }
 
-/* ================================================== */
-/* 07) PAGE GALLERY ================================= */
-/* ================================================== */
+/* ========== 07) PAGE GALLERY ========== */
 
 #gallery-title {
   scroll-margin-top: var(--header-h, 64px);
@@ -1261,27 +1254,28 @@ html[data-theme="dark"] .about .icon-dual .icon-dark {
   gap: var(--g);
 }
 
+/* ----- MQ min width 1024px ----- */
 @media (min-width: 1024px) {
   .page-gallery .gallery-grid {
     grid-template-columns: repeat(3, minmax(220px, 320px));
   }
 }
 
+/* ----- MQ min width 640px and max width 1023.98px ----- */
 @media (min-width: 640px) and (max-width: 1023.98px) {
   .page-gallery .gallery-grid {
     grid-template-columns: repeat(2, minmax(200px, 1fr));
   }
 }
 
+/* ----- MQ max width 639.98px ----- */
 @media (max-width: 639.98px) {
   .page-gallery .gallery-grid {
     grid-template-columns: 1fr;
   }
 }
 
-/* ================================================== */
-/* 09) PAGE MENU & PAGE GALLERY ===================== */
-/* ================================================== */
+/* ========== 09) PAGE MENU & PAGE GALLERY ========== */
 
 .page-menu .breadcrumbs-bar,
 .page-gallery .breadcrumbs-bar {
@@ -1357,10 +1351,7 @@ html[data-theme="dark"] .about .icon-dual .icon-dark {
   block-size: auto;
 }
 
-/* ================================================== */
-/* 10) TESTIMONIALS ================================= */
-/* ================================================== */
-/* ================================================== */
+/* ========== 10) TESTIMONIALS ========== */
 
 .testimonials.block {
   padding-block: clamp(60px, 7vw, 110px);
@@ -1539,7 +1530,7 @@ html[data-theme="dark"] .about .icon-dual .icon-dark {
   color: var(--c-muted);
 }
 
-/* ---------- MQ max width 719px ---------- */
+/* ----- MQ max width 719px ----- */
 @media (max-width: 719px) {
   .testimonials-grid {
     gap: 16px;
@@ -1550,7 +1541,7 @@ html[data-theme="dark"] .about .icon-dual .icon-dark {
   }
 }
 
-/* ---------- MQ Prefers reduced motion ---------- */
+/* ----- MQ Prefers reduced motion ----- */
 @media (prefers-reduced-motion: reduce) {
   .testimonial,
   .btn-link {
@@ -1558,7 +1549,7 @@ html[data-theme="dark"] .about .icon-dual .icon-dark {
   }
 }
 
-/* ---------- MQ hover: hover ---------- */
+/* ----- MQ hover: hover ----- */
 @media (hover: hover) {
   .testimonial:hover {
     transform: translateY(-2px);
@@ -1568,10 +1559,7 @@ html[data-theme="dark"] .about .icon-dual .icon-dark {
   }
 }
 
-/* ================================================== */
-/* 11) FORM ========================================= */
-/* ================================================== */
-/* ================================================== */
+/* ========== 11) FORM ========== */
 
 .form {
   display: grid;
@@ -1739,9 +1727,7 @@ html[data-theme="dark"] input[type="time"]::-webkit-calendar-picker-indicator {
   text-align: center;
 }
 
-/* ---------------------------------------- */
-/* ===== MQ - min width 900px ============= */
-/* ---------------------------------------- */
+/* ----- MQ min width 900px ----- */
 @media (min-width: 900px) {
   #rezerwacja .container.grid-2 {
     row-gap: var(--g);
@@ -1749,28 +1735,21 @@ html[data-theme="dark"] input[type="time"]::-webkit-calendar-picker-indicator {
   }
 }
 
-/* ---------------------------------------- */
-/* ===== MQ - max width 720px ============= */
-/* ---------------------------------------- */
+/* ----- MQ max width 720px ----- */
 @media (max-width: 720px) {
   .form {
     grid-template-columns: 1fr;
   }
 }
 
-/* ---------------------------------------- */
-/* ===== MQ Prefers reduced motion ======== */
-/* ----- reduce --------------------------- */
+/* ----- MQ prefers-reduced-motion: reduce ----- */
 @media (prefers-reduced-motion: reduce) {
   .form :is(input, select, textarea) {
     transition: none;
   }
 }
 
-/* ================================================== */
-/* 12) CTA ========================================== */
-/* ================================================== */
-/* ================================================== */
+/* ========== 12) CTA ========== */
 
 .cta.block {
   padding-block: clamp(60px, 8vw, 120px);
@@ -1806,9 +1785,7 @@ html[data-theme="dark"] input[type="time"]::-webkit-calendar-picker-indicator {
   min-width: 14rem;
 }
 
-/* ---------------------------------------- */
-/* ===== MQ - max width 560px ============= */
-/* ---------------------------------------- */
+/* ----- MQ max width 560px ----- */
 @media (max-width: 560px) {
   .section-cta .btn {
     width: 100%;
@@ -1816,19 +1793,14 @@ html[data-theme="dark"] input[type="time"]::-webkit-calendar-picker-indicator {
   }
 }
 
-/* ---------------------------------------- */
-/* ===== MQ Prefers reduced motion ======== */
-/* ----- reduce --------------------------- */
+/* ----- MQ prefers-reduced-motion: reduce ----- */
 @media (prefers-reduced-motion: reduce) {
   .cta-box {
     transition: none;
   }
 }
 
-/* ================================================== */
-/* 13) FAQ ========================================== */
-/* ================================================== */
-/* ================================================== */
+/* ========== 13) FAQ ========== */
 
 #faq {
   scroll-margin-top: calc((var(--header-h, 70px)) + (var(--nav-drop-gap, 8px)) + 12px);
@@ -1924,18 +1896,14 @@ html[data-theme="dark"] input[type="time"]::-webkit-calendar-picker-indicator {
   margin-top: clamp(8px, 1.2vw, 10px);
 }
 
-/* ---------------------------------------- */
-/* ===== MQ - hover: hover ================ */
-/* ---------------------------------------- */
+/* ----- MQ hover: hover ----- */
 @media (hover: hover) {
   #faq summary:hover {
     background: color-mix(in oklab, var(--c-surface), var(--c-ink) 6%);
   }
 }
 
-/* ---------------------------------------- */
-/* ===== MQ Prefers reduced motion ======== */
-/* ----- reduce --------------------------- */
+/* ----- MQ prefers-reduced-motion: reduce ----- */
 @media (prefers-reduced-motion: reduce) {
   #faq summary::after {
     transition: none;
@@ -1945,10 +1913,7 @@ html[data-theme="dark"] input[type="time"]::-webkit-calendar-picker-indicator {
   }
 }
 
-/* ================================================== */
-/* 14) FOOTER ======================================= */
-/* ================================================== */
-/* ================================================== */
+/* ========== 14) FOOTER ========== */
 
 .site-footer {
   --ft-ink: #eef1f6;
@@ -2219,6 +2184,7 @@ html[data-theme="dark"] .ft-legal a:hover {
 html[data-theme="light"] .social-btn .icon-light {
   display: block;
 }
+
 html[data-theme="dark"] .social-btn .icon-dark {
   display: block;
 }
@@ -2237,6 +2203,7 @@ html[data-theme="dark"] .social-btn .icon-dark {
 html[data-theme="light"] .icon-dual .icon-light {
   display: inline-block;
 }
+
 html[data-theme="dark"] .icon-dual .icon-dark {
   display: inline-block;
 }
@@ -2275,9 +2242,7 @@ html[data-theme="dark"] .icon-dual .icon-dark {
   vertical-align: middle;
 }
 
-/* ---------------------------------- */
-/* ===== MQ - max width 719px ======= */
-/* ---------------------------------- */
+/* ----- MQ max width 719px ----- */
 @media (max-width: 719px) {
   .ft-grid {
     gap: 40px;
@@ -2287,9 +2252,7 @@ html[data-theme="dark"] .icon-dual .icon-dark {
   }
 }
 
-/* ---------------------------------------- */
-/* ===== MQ - min width 720px ============= */
-/* ---------------------------------------- */
+/* ----- MQ min width 720px ----- */
 @media (min-width: 720px) {
   .ft-grid {
     grid-template-columns: repeat(2, 1fr);
@@ -2297,9 +2260,7 @@ html[data-theme="dark"] .icon-dual .icon-dark {
   }
 }
 
-/* ---------------------------------------- */
-/* ===== MQ - min width 1024px ============ */
-/* ---------------------------------------- */
+/* ----- MQ min width 1024px ----- */
 @media (min-width: 1024px) {
   .ft-grid {
     grid-template-columns: repeat(4, 1fr);
@@ -2308,25 +2269,19 @@ html[data-theme="dark"] .icon-dual .icon-dark {
   }
 }
 
-/* ---------------------------------------- */
-/* ===== MQ - hover: hover ================ */
-/* ---------------------------------------- */
-
+/* ----- MQ hover: hover ----- */
 @media (hover: hover) {
   .social-btn:hover {
     transform: translateY(-3px);
     background: transparent;
     box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
   }
-
   html[data-theme="dark"] .social-btn:hover {
     box-shadow: 0 0 10px rgba(255, 255, 255, 0.12);
   }
 }
 
-/* ---------------------------------------- */
-/* ===== MQ Prefers reduced motion ======== */
-/* ---------------------------------------- */
+/* ----- MQ prefers-reduced-motion: reduce ----- */
 @media (prefers-reduced-motion: reduce) {
   .social-btn {
     transition: none;
@@ -2336,10 +2291,7 @@ html[data-theme="dark"] .icon-dual .icon-dark {
   }
 }
 
-/* ================================================== */
-/* 15) LEGAL PAGE =================================== */
-/* ================================================== */
-/* ================================================== */
+/* ========== 15) LEGAL PAGE ========== */
 
 .page-legal {
   padding-block: clamp(28px, 5vw, 72px);
@@ -2480,9 +2432,7 @@ html[data-theme="dark"] .icon-dual .icon-dark {
   scroll-margin-top: calc(var(--header-h) + 24px);
 }
 
-/* ---------------------------------------- */
-/* ===== MQ - max width 640px ============= */
-/* ---------------------------------------- */
+/* ----- MQ max width 640px ----- */
 @media (max-width: 640px) {
   .page-legal .defs {
     grid-template-columns: 1fr;
@@ -2493,9 +2443,7 @@ html[data-theme="dark"] .icon-dual .icon-dark {
   }
 }
 
-/* ---------------------------------------- */
-/* ===== MQ - print ======================= */
-/* ---------------------------------------- */
+/* ----- MQ print ----- */
 @media print {
   .site-header,
   .site-footer,
@@ -2515,19 +2463,14 @@ html[data-theme="dark"] .icon-dual .icon-dark {
   }
 }
 
-/* ---------------------------------------- */
-/* ===== MQ Prefers reduced motion ======== */
-/* ----- reduce --------------------------- */
+/* ----- MQ prefers-reduced-motion ----- */
 @media (prefers-reduced-motion: reduce) {
   .page-legal .btn-legal {
     transition: none;
   }
 }
 
-/* ================================================== */
-/* 16) GLOBAL BUTTONS =============================== */
-/* ================================================== */
-/* ================================================== */
+/* ========== 16) GLOBAL BUTTONS ========== */
 
 .btn {
   display: inline-flex;
@@ -2670,10 +2613,6 @@ html[data-theme="dark"] .icon-dual .icon-dark {
   border-color: transparent;
 }
 
-/* ---------------------------------- */
-/* ===== Scroll Buttons (glass) ===== */
-/* ---------------------------------- */
-
 .scroll-btn {
   inline-size: 36px;
   block-size: 36px;
@@ -2715,7 +2654,6 @@ html[data-theme="dark"] .scroll-btn {
   outline-offset: 2px;
 }
 
-/* Ikony (własne pliki SVG przez <img>) */
 .scroll-up .icon-light {
   display: block;
 }
@@ -2730,18 +2668,7 @@ html[data-theme="dark"] .scroll-up .icon-dark {
   display: block;
 }
 
-@media (prefers-color-scheme: dark) {
-  html:not([data-theme]) .scroll-up .icon-light {
-    display: none;
-  }
-  html:not([data-theme]) .scroll-up .icon-dark {
-    display: block;
-  }
-}
-
-/* ---------------------------------------- */
-/* ===== MQ - max width 720px ============= */
-/* ---------------------------------------- */
+/* ----- MQ max width 720px ----- */
 @media (max-width: 720px) {
   .scroll-up {
     right: 12px;
@@ -2749,9 +2676,7 @@ html[data-theme="dark"] .scroll-up .icon-dark {
   }
 }
 
-/* ---------------------------------------- */
-/* ===== MQ - hover: hover ================ */
-/* ---------------------------------------- */
+/* ----- MQ hover: hover ----- */
 @media (hover: hover) {
   .scroll-btn:hover {
     transform: translateY(-2px);
@@ -2761,9 +2686,17 @@ html[data-theme="dark"] .scroll-up .icon-dark {
   }
 }
 
-/* ---------------------------------------- */
-/* ===== MQ Prefers reduced motion ======== */
-/* ----- reduce --------------------------- */
+/* ----- MQ prefers-color-scheme: dark ----- */
+@media (prefers-color-scheme: dark) {
+  html:not([data-theme]) .scroll-up .icon-light {
+    display: none;
+  }
+  html:not([data-theme]) .scroll-up .icon-dark {
+    display: block;
+  }
+}
+
+/* ----- MQ prefers-reduced-motion: reduce ----- */
 @media (prefers-reduced-motion: reduce) {
   .btn-cta::after,
   .btn-cta.cta-inview::after {
@@ -2776,18 +2709,14 @@ html[data-theme="dark"] .scroll-up .icon-dark {
   }
 }
 
-/* ---------------------------------------- */
-/* ===== KEYFRAMES - btnspin ============== */
-/* ---------------------------------------- */
+/* ----- KeyFrames btnspin ----- */
 @keyframes btnspin {
   to {
     transform: translateY(-50%) rotate(360deg);
   }
 }
 
-/* ---------------------------------------- */
-/* ===== KEYFRAMES - cta-pulse ============ */
-/* ---------------------------------------- */
+/* ----- KeyFrames cta-pulse ----- */
 @keyframes cta-pulse {
   0% {
     transform: scale(1);
@@ -2803,12 +2732,8 @@ html[data-theme="dark"] .scroll-up .icon-dark {
   }
 }
 
-/* ================================================== */
-/* 17) MODALS @ OVERLAYS - LIGHTBOX ================= */
-/* ================================================== */
-/* ================================================== */
+/* ========== 17) MODALS & OVERLAYS - LIGHTBOX ========== */
 
-/* Kontener dialogu (+ fallback .lightbox) */
 .lightbox,
 #lb {
   padding: 0;
@@ -2820,21 +2745,23 @@ html[data-theme="dark"] .scroll-up .icon-dark {
   overflow: hidden;
   position: relative;
 }
+
 .lightbox::backdrop,
 #lb::backdrop {
   background: rgba(8, 8, 12, 0.6);
 }
+
 .lightbox[open],
 #lb[open] {
   display: grid;
   place-items: center;
 }
 
-/* Media (obraz wewnątrz) */
 .lb-media {
   position: relative;
   z-index: 1;
 }
+
 .lightbox img,
 #lb img {
   display: block;
@@ -2849,7 +2776,6 @@ html[data-theme="dark"] .scroll-up .icon-dark {
   touch-action: pan-y;
 }
 
-/* Zamknięcie (X) */
 .lightbox-close,
 .lb-close {
   position: absolute;
@@ -2869,22 +2795,26 @@ html[data-theme="dark"] .scroll-up .icon-dark {
   transition: background 0.25s ease, transform 0.2s ease;
   z-index: 5;
 }
+
 .lightbox-close:hover,
 .lb-close:hover {
   background: color-mix(in oklab, #fff, transparent 45%);
   transform: scale(1.1);
 }
+
 .lightbox-close:focus-visible,
 .lb-close:focus-visible {
   outline: 2px solid var(--c-accent);
   outline-offset: 2px;
 }
+
 .lightbox-close .icon-x,
 .lb-close .icon-x {
   inline-size: 18px;
   block-size: 18px;
   display: block;
 }
+
 .lightbox-close .icon-x path,
 .lb-close .icon-x path {
   stroke: #fff;
@@ -2893,7 +2823,6 @@ html[data-theme="dark"] .scroll-up .icon-dark {
   filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.5));
 }
 
-/* Nawigacja myszką (desktop) */
 .lb-prev,
 .lb-next {
   position: absolute;
@@ -2915,42 +2844,34 @@ html[data-theme="dark"] .scroll-up .icon-dark {
   opacity: 0.92;
   transition: background 0.2s ease, transform 0.2s ease;
 }
+
 .lb-prev {
   left: 12px;
 }
+
 .lb-next {
   right: 12px;
 }
+
 .lb-prev:hover,
 .lb-next:hover {
   background: rgba(0, 0, 0, 0.56);
   transform: translateY(-50%) scale(1.06);
 }
+
 .lb-prev:focus-visible,
 .lb-next:focus-visible {
   outline: 2px solid var(--c-accent);
   outline-offset: 2px;
 }
+
 .lb-prev .chev,
 .lb-next .chev {
   inline-size: 18px;
   block-size: 18px;
   display: block;
 }
-@media (pointer: coarse) {
-  .lb-prev,
-  .lb-next {
-    display: none;
-  }
-}
-@media (prefers-reduced-motion: reduce) {
-  .lb-prev,
-  .lb-next {
-    transition: none;
-  }
-}
 
-/* Licznik */
 .lb-counter {
   position: absolute;
   right: 12px;
@@ -2967,18 +2888,17 @@ html[data-theme="dark"] .scroll-up .icon-dark {
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
 }
 
-/* ===== Pełny ekran: API + fallback ===== */
-/* czarne tło (element + backdrop) */
 #lb.is-zoomed,
 #lb:fullscreen,
 #lb:-webkit-full-screen {
   background: #000;
 }
+
 #lb:fullscreen::backdrop,
 #lb:-webkit-full-screen::backdrop {
   background: #000;
 }
-/* media na full */
+
 #lb.is-zoomed img,
 #lb:fullscreen img,
 #lb:-webkit-full-screen img {
@@ -2987,7 +2907,7 @@ html[data-theme="dark"] .scroll-up .icon-dark {
   border-radius: 0;
   background: #000;
 }
-/* UI na czarnym tle */
+
 #lb.is-zoomed .lb-prev,
 #lb.is-zoomed .lb-next,
 #lb.is-zoomed .lb-close,
@@ -3003,6 +2923,7 @@ html[data-theme="dark"] .scroll-up .icon-dark {
   background: rgba(0, 0, 0, 0.65);
   box-shadow: none;
 }
+
 #lb.is-zoomed .lb-prev:hover,
 #lb.is-zoomed .lb-next:hover,
 #lb:fullscreen .lb-prev:hover,
@@ -3011,7 +2932,7 @@ html[data-theme="dark"] .scroll-up .icon-dark {
 #lb:-webkit-full-screen .lb-next:hover {
   background: rgba(0, 0, 0, 0.8);
 }
-/* pozycjonowanie strzałek w fullscreen/fallback — przy krawędziach okna */
+
 #lb:fullscreen .lb-prev,
 #lb:fullscreen .lb-next,
 #lb:-webkit-full-screen .lb-prev,
@@ -3023,7 +2944,11 @@ html[data-theme="dark"] .scroll-up .icon-dark {
   transform: translateY(-50%);
 }
 
-/* MQ: max-width 520px */
+#lb.is-fs::backdrop {
+  background: #000 !important;
+}
+
+/* ----- MQ max width 520px ----- */
 @media (max-width: 520px) {
   .lightbox-close,
   .lb-close {
@@ -3043,7 +2968,7 @@ html[data-theme="dark"] .scroll-up .icon-dark {
   }
 }
 
-/* Motion preferencje */
+/* ----- MQ prefers-reduced-motion: reduce ----- */
 @media (prefers-reduced-motion: reduce) {
   .lightbox-close,
   .lb-close {
@@ -3051,14 +2976,23 @@ html[data-theme="dark"] .scroll-up .icon-dark {
   }
 }
 
-/* Czarne tło backdroppu, gdy fullscreen/fallback aktywny */
-#lb.is-fs::backdrop {
-  background: #000 !important;
+/* ----- MQ pointer: coarse ----- */
+@media (pointer: coarse) {
+  .lb-prev,
+  .lb-next {
+    display: none;
+  }
 }
 
-/* ================================================== */
-/* 99) FEATURE SUPPORT & FALLBACKS ================== */
-/* ================================================== */
+/* ----- MQ prefers-reduced-motion: reduce ----- */
+@media (prefers-reduced-motion: reduce) {
+  .lb-prev,
+  .lb-next {
+    transition: none;
+  }
+}
+
+/* ========== 99) FEATURE SUPPORT & FALLBACKS ========== */
 
 .no-js .nav-toggle {
   display: none;
@@ -3070,6 +3004,7 @@ html[data-theme="dark"] .scroll-up .icon-dark {
   border: none;
   box-shadow: none;
 }
+
 .no-js .site-nav ul {
   flex-direction: row;
   align-items: center;
@@ -3126,30 +3061,21 @@ body.nav-open {
   border: 0 !important;
 }
 
-/* ---------------------------------------- */
-/* ===== MQ - print ======================= */
-/* ---------------------------------------- */
-@media print {
-  .sr-only {
-    display: none !important;
-  }
-}
-
-/* ---------------------------------------- */
-/* ===== MQ - min width 901px ============= */
-/* ---------------------------------------- */
+/* ----- MQ min width 901px ----- */
 @media (min-width: 901px) {
   .hide-on-desktop {
     display: none !important;
   }
 }
 
+/* ----- MQ max width 900px ----- */
 @media (max-width: 900px) {
   .hide-on-mobile {
     display: none !important;
   }
 }
 
+/* ----- MQ prefers-reduced-motion: reduce ----- */
 @media (prefers-reduced-motion: reduce) {
   * {
     animation-duration: 0s !important;
@@ -3157,19 +3083,28 @@ body.nav-open {
   }
 }
 
-/* ---------- Supports not  ---------- */
+/* ----- MQ print ----- */
+@media print {
+  .sr-only {
+    display: none !important;
+  }
+}
+
+/* ----- Supports not (backdrop-filter: blur(2px)) ----- */
 @supports not (backdrop-filter: blur(2px)) {
   .site-header {
     background: var(--c-bg);
   }
 }
 
+/* ----- Supports not (color: oklch(50% 0 0)) ----- */
 @supports not (color: oklch(50% 0 0)) {
   .site-header {
     background: var(--c-bg);
   }
 }
 
+/* ----- Supports not (height: 100dvh) ----- */
 @supports (height: 100dvh) {
   .lightbox img,
   #lb img {
@@ -3178,6 +3113,7 @@ body.nav-open {
   }
 }
 
+/* ----- Supports not (color: color-mix(in oklab, red, white 10%)) ----- */
 @supports not (color: color-mix(in oklab, red, white 10%)) {
   .page-menu .breadcrumbs-bar {
     background: var(--c-surface);
@@ -3187,4 +3123,4 @@ body.nav-open {
   }
 }
 
-/* @@@@@@@@@@@@@@@@@@@@ END OF FILE @@@@@@@@@@@@@@@@@@@@ */
+/* $$$$$$$$$$ END OF FILE $$$$$$$$$$ */
