@@ -2,7 +2,8 @@
   "devDependencies": {
     "cssnano": "^7.1.1",
     "cssnano-cli": "^1.0.5",
-    "ttf2woff2": "^8.0.0"
+    "ttf2woff2": "^8.0.0",
+    "terser": "^5.44.0"
   },
   "name": "budownictwo-projekt-02",
   "version": "1.0.0",
@@ -95,7 +96,9 @@
     "yerror": "^8.0.0"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "min:css": "cssnano css/style.css css/style.min.css",
+    "min:js": "npx terser js/script.js -o js/script.min.js -c -m",
+    "build": "npm run min:css && npm run min:js"
   },
   "keywords": [],
   "author": "",

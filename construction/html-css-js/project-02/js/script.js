@@ -1,37 +1,42 @@
-/* 01) ======================================================================================
-   ========== ANIMACJE POJAWIENIA SIĘ SEKCJI PRZY SCROLLU ===================================
-   ==========================================================================================
-   ===== > Dodaje .show, gdy .hidden jest ≥12% w kadrze; usuwa .show po całkowitym wyjściu ==
-   ===== > Fallback bez IntersectionObserver ================================================
-   ===== > Initial reveal po pierwszym paintcie =============================================
-   ==========================================================================================
-   ==========================================================================================
-   ==========================================================================================
-   ========================================================================================== */
+/* ==================================================
+   ===== Project: construction-html-css-js-project-02
+   ===== Author: KP_Code
+   ===== Last Update: 2025-10-22
+   ==================================================
+   ===== script.js
+   ===== Structure Overview
+   ==================================================
+   ===== 01) INTERSECTION OBSERVER
+   ===== 02) THEME TOGGLE
+   ===== 03) HAMBURGER MOBILE NAV
+   ===== 04) SCROLL TO TOP BUTTON
+   ===== 05) CONTACT FORM
+   ===== 06) LIGHTBOX
+   ===== 07) COMPACT HEADER
+   ===== 08) REGISTER SERVICE WORKER
+   ================================================== */
+
+/* ========== 01) INTER-SECTION-OBSERVER ========== */
 
 (() => {
   const hiddenElements = document.querySelectorAll(".hidden");
   if (!hiddenElements.length) return;
 
-  // Fallback: stare przeglądarki
   if (!("IntersectionObserver" in window)) {
     hiddenElements.forEach((el) => el.classList.add("show"));
     return;
   }
 
-  // Konfiguracja obserwatora
-  const ENTER_RATIO = 0.12; // próg wejścia: ≥12% elementu
-  const ROOT_MARGIN = "0px 0px 10% 0px"; // +10% na dole = odpala nieco wcześniej
+  const ENTER_RATIO = 0.12;
+  const ROOT_MARGIN = "0px 0px 10% 0px";
 
   const observer = new IntersectionObserver(
     (entries) => {
       entries.forEach((entry) => {
-        // Wejście: element przecina viewport i spełnia próg
         if (entry.isIntersecting && entry.intersectionRatio >= ENTER_RATIO) {
           requestAnimationFrame(() => entry.target.classList.add("show"));
           return;
         }
-        // Wyjście: całkowicie poza viewportem → usuń .show
         if (entry.intersectionRatio === 0) {
           entry.target.classList.remove("show");
         }
@@ -42,7 +47,6 @@
 
   hiddenElements.forEach((el) => observer.observe(el));
 
-  // Initial reveal: elementy już widoczne przy starcie
   const isInViewport = (el, ratio = ENTER_RATIO) => {
     const r = el.getBoundingClientRect();
     const vh = window.innerHeight || document.documentElement.clientHeight;
@@ -62,24 +66,13 @@
     });
   };
 
-  // Po pierwszym paintcie (double rAF)
   requestAnimationFrame(() => requestAnimationFrame(initialReveal));
 
-  // Bezpieczniki: po 'load' i przy powrocie z bfcache
   window.addEventListener("load", () => setTimeout(initialReveal, 0), { once: true });
   window.addEventListener("pageshow", () => setTimeout(initialReveal, 0), { once: true });
 })();
 
-/* 02) ======================================================================================
-   ========== MOTYW + PRZEŁĄCZENIE LOGO + IKONKA HAMBURGERA =================================
-   ==========================================================================================
-   ===== > Umożliwia przełączanie motywu jasny/ciemny =======================================
-   ===== > Podmienia logotypy (.logo-img[data-light][data-dark]) i ikonę hamburgera =========
-   ===== > Zapamiętuje wybór w localStorage (zabezpieczenie na Safari Private Mode) =========
-   ===== > Obsługuje dwa przyciski: desktopowy i mobilny ====================================
-   ===== > Synchronizuje aria-label i aria-pressed (a11y) ===================================
-   ===== > Reaguje na systemowy prefers-color-scheme, jeśli brak zapisu w LS ================
-   ========================================================================================== */
+/* ========== 02) THEME TOGGLE ========== */
 
 (() => {
   const btnDesktop = document.getElementById("themeToggleDesktop");
@@ -137,7 +130,7 @@
     if (persist) safeSetItem("theme", isDark ? "dark" : "light");
   };
 
-  const saved = safeGetItem("theme"); // 'dark' | 'light' | null
+  const saved = safeGetItem("theme");
   if (saved === "dark" || saved === "light") setTheme(saved, false);
   else setTheme(mq && mq.matches ? "dark" : "light", false);
 
@@ -152,34 +145,22 @@
   }
 })();
 
-/* 03) ======================================================================================
-   ========== HAMBURGER MOBILE NAV ==========================================================
-   ==========================================================================================
-   ===== > Steruje otwieraniem/zamykaniem menu mobilnego ====================================
-   ===== > A11y: aria-expanded + aria-label, blokada scrolla na <body> (nav-open) ===========
-   ===== > Zameka się na: ESC, klik linku w menu, wyjście z zakresu mobile (>768px) =========
-   ==========================================================================================
-   ==========================================================================================
-   ==========================================================================================
-   ========================================================================================== */
+/* ========== 03) HAMBURGER MOBILE NAV ========== */
 
 (() => {
   const btn = document.getElementById("hamburger");
   const nav = document.getElementById("primaryNav");
   if (!btn || !nav) return;
 
-  // Media query (mobile breakpoint)
   const mql = window.matchMedia("(max-width: 768px)");
 
-  // Domyślne a11y (defensive)
   if (!btn.hasAttribute("aria-expanded")) btn.setAttribute("aria-expanded", "false");
 
-  let lastTrigger = null; // do przywrócenia fokusa po zamknięciu
+  let lastTrigger = null;
 
   const unlock = () => document.body.classList.remove("nav-open");
   const lock = () => document.body.classList.add("nav-open");
 
-  // Stany bazowe
   const applyDesktopState = () => {
     nav.classList.remove("mobile-open");
     btn.classList.remove("active");
@@ -229,21 +210,17 @@
 
   const toggleMenu = () => (nav.classList.contains("mobile-open") ? closeMenu() : openMenu());
 
-  // Klik przycisku
   btn.addEventListener("click", toggleMenu);
 
-  // ESC, tylko gdy otwarte
   document.addEventListener("keydown", (e) => {
     if (e.key === "Escape" && nav.classList.contains("mobile-open")) closeMenu();
   });
 
-  // Kliknięcie linku w nav = zamknij (na mobile)
   nav.addEventListener("click", (e) => {
     const link = e.target.closest("a[href], area[href]");
     if (link && mql.matches) closeMenu();
   });
 
-  // Klik poza nav/przyciskiem = zamknij (gdy otwarte)
   let outsideClickHandler = null;
   function addOutsideClick() {
     if (outsideClickHandler) return;
@@ -261,58 +238,40 @@
     outsideClickHandler = null;
   }
 
-  // Reakcja na zmianę szerokości
   const onChange = (e) => {
     if (e.matches) {
-      // weszliśmy w mobile
       applyMobileCollapsed();
     } else {
-      // wyszliśmy na desktop
       applyDesktopState();
     }
   };
   if (mql.addEventListener) mql.addEventListener("change", onChange);
-  else if (mql.addListener) mql.addListener(onChange); // Safari <14
+  else if (mql.addListener) mql.addListener(onChange);
 
-  // Inicjalny stan: mobile vs desktop
   if (mql.matches) applyMobileCollapsed();
   else applyDesktopState();
 })();
 
-
-/* 04) ======================================================================================
-   ========== PRZYCISK "POWRÓT NA GÓRĘ" =====================================================
-   ==========================================================================================
-   ===== > Pokazuje przycisk po przewinięciu > THRESHOLD ====================================
-   ===== > rAF odszumia nasłuch scrolla =====================================================
-   ===== > Szanuje prefers-reduced-motion przy płynnym scrollu ==============================
-   ===== > Aktualizuje stan na: start, load, pageshow (bfcache), visibilitychange, resize ===
-   ==========================================================================================
-   ==========================================================================================
-   ========================================================================================== */
+/* ========== 04) BUTTON UP ========== */
 
 (() => {
   const btn = document.getElementById("powrot-na-gore") || document.querySelector(".powrot-na-gore");
   if (!btn) return;
 
-  const THRESHOLD = 300; // px
+  const THRESHOLD = 300;
   const root = document.scrollingElement || document.documentElement;
 
-  // Bezpieczny odczyt scrollTop (clamp >= 0)
   const getScrollTop = () => Math.max(0, typeof window.pageYOffset === "number" ? window.pageYOffset : root.scrollTop);
 
-  // Sterowanie widocznością + a11y
   const setVisible = (v) => {
     btn.classList.toggle("is-visible", v);
     btn.setAttribute("aria-hidden", String(!v));
-    // inert usuwa z kolejki fokusa, starsze przeglądarki zignorują (OK)
     if (v) btn.removeAttribute("inert");
     else btn.setAttribute("inert", "");
   };
 
   const update = () => setVisible(getScrollTop() > THRESHOLD);
 
-  // rAF "odszumia" scroll
   let ticking = false;
   const onScroll = () => {
     if (ticking) return;
@@ -323,10 +282,8 @@
     });
   };
 
-  // Inicjal
   update();
 
-  // Powroty z cache + zmiany widoczności/rozmiaru
   window.addEventListener("load", update, { once: true });
   window.addEventListener("pageshow", update, { once: true });
   document.addEventListener("visibilitychange", () => {
@@ -334,10 +291,8 @@
   });
   window.addEventListener("resize", update, { passive: true });
 
-  // Scroll
   window.addEventListener("scroll", onScroll, { passive: true });
 
-  // Smooth scroll (z poszanowaniem reduced motion)
   btn.addEventListener("click", (e) => {
     e.preventDefault();
     if (!btn.classList.contains("is-visible")) return;
@@ -346,37 +301,25 @@
   });
 })();
 
-/* 05) ======================================================================================
-   ========== FORMULARZ - SUBMIT + WALIDACJA + LICZNIK + SUCCESS STATE + NETLIFY ============
-   ==========================================================================================
-   ===== > Walidacja: required, email, phone (opcjonalny), RODO, reCAPTCHA (Netlify) ========
-   ===== > A11y: aria-invalid, skrót do pierwszego błędu, error summary + skip link =========
-   ===== > Licznik znaków wiadomości + auto-save szkicu w localStorage ======================
-   ===== > Wysyłka: POST application/x-www-form-urlencoded (Netlify Forms) ==================
-   ===== > Success state: dyskretny, bez przeładowania; GA4 + Meta po sukcesie (prod) =======
-   ==========================================================================================
-   ========================================================================================== */
+/* ========== 05) FORM ========== */
 
 (() => {
   const form = document.getElementById("contactForm");
   if (!form) return;
 
-  /* --- USTAWIENIA / REFERENCJE --- */
-  const IS_LOCAL = /localhost|127\.0\.0\.1/.test(location.hostname); // wspólny przełącznik środowiska
-  const statusBox = form.querySelector("#formStatus"); // rola: podgląd błędów/sukcesów
+  const IS_LOCAL = /localhost|127\.0\.0\.1/.test(location.hostname);
+  const statusBox = form.querySelector("#formStatus");
   const submitBtn = form.querySelector(".submit-btn");
-  const originalBtnText = submitBtn ? submitBtn.textContent : "Wyślij wiadomość"; // (1) defensywnie
-  const requiredFields = ["name", "email", "subject", "service", "message"]; // phone opcjonalny
+  const originalBtnText = submitBtn ? submitBtn.textContent : "Wyślij wiadomość";
+  const requiredFields = ["name", "email", "subject", "service", "message"];
 
   const msg = form.querySelector("#message");
   const counter = document.getElementById("messageCounter");
   const MAX = 500;
 
-  // A11y elementy istnieją w HTML (summary + skrót)
   const a11ySummary = form.querySelector("#errorSummary");
   const skipLink = form.querySelector("#skipToError");
 
-  /* --- Skrót „przejdź do pierwszego błędu” (link pod sumarycznym komunikatem) --- */
   if (skipLink) {
     skipLink.addEventListener("click", (ev) => {
       ev.preventDefault();
@@ -385,7 +328,6 @@
     });
   }
 
-  /* --- Skrót klawiaturowy: Alt+Shift+E → fokus na 1. błędnym polu --- */
   form.addEventListener("keydown", (ev) => {
     const k = ev.key || ev.code;
     if (ev.altKey && ev.shiftKey && (k === "E" || k === "KeyE")) {
@@ -397,7 +339,6 @@
     }
   });
 
-  /* --- UTILS: oznaczanie/odznaczanie błędów + status box --- */
   const setInvalid = (el) => {
     if (!el) return;
     el.classList.add("is-invalid");
@@ -415,7 +356,6 @@
     statusBox.textContent = message;
   };
 
-  /* --- Licznik znaków wiadomości + twardy limit --- */
   function updateCounter() {
     if (!msg || !counter) return;
     if (msg.value.length > MAX) msg.value = msg.value.slice(0, MAX);
@@ -426,10 +366,8 @@
   }
   updateCounter();
 
-  /* --- AUTO-SAVE szkicu wiadomości (localStorage) --- */
   const MSG_KEY = "contactFormMessage";
   if (msg) {
-    // Przy starcie: odczyt i odświeżenie licznika
     const savedMsg = (() => {
       try {
         return localStorage.getItem(MSG_KEY);
@@ -442,40 +380,32 @@
       updateCounter();
     }
 
-    // Zapis na input (try/catch pod Safari Private)
     msg.addEventListener("input", () => {
       try {
         localStorage.setItem(MSG_KEY, msg.value);
-      } catch {
-        /* silent */
-      }
+      } catch {}
     });
   }
 
-  /* --- Oczyszczanie błędów podczas wpisywania + ukrywanie summary/skip, gdy czysto --- */
   form.addEventListener("input", (e) => {
     const t = e.target;
     if (t.matches("#name, #email, #subject, #service, #message, #phone, #consent")) clearInvalid(t);
     if (t === msg) updateCounter();
 
-    // Jeśli nie ma już błędów — schowaj summary/skip (a11y)
     if (![...form.querySelectorAll(".is-invalid")].length) {
       if (a11ySummary) a11ySummary.classList.add("visually-hidden");
       if (skipLink) skipLink.classList.add("visually-hidden");
     }
   });
 
-  /* --- Główny handler submit --- */
   form.addEventListener("submit", async (e) => {
     e.preventDefault();
 
-    // Hard guard: nie pozwól na wielokrotny submit
     if (form.getAttribute("aria-busy") === "true") return;
     showStatus("", false);
 
     let valid = true;
 
-    /* 1) Required — puste pola */
     requiredFields.forEach((id) => {
       const el = form.querySelector("#" + id);
       if (!el || !el.value || !el.value.trim()) {
@@ -484,7 +414,6 @@
       }
     });
 
-    /* 2) Email — prosta walidacja struktury */
     const email = form.querySelector("#email");
     const emailVal = email ? email.value.trim() : "";
     if (email && emailVal && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(emailVal)) {
@@ -493,7 +422,6 @@
       showStatus("Wpisz poprawny adres e-mail.", false);
     }
 
-    /* 3) Telefon (opcjonalny) — akceptuje cyfry, spacje i standardowe separatory */
     const phone = form.querySelector("#phone");
     if (phone) {
       const phoneVal = phone.value.trim();
@@ -504,7 +432,6 @@
       }
     }
 
-    /* 4) RODO — checkbox wymagany */
     const consent = form.querySelector("#consent");
     if (consent && !consent.checked) {
       setInvalid(consent);
@@ -512,7 +439,6 @@
       showStatus("Zaznacz zgodę na przetwarzanie danych.", false);
     }
 
-    /* 4.5) reCAPTCHA (Netlify) — tylko gdy widget jest obecny i nie lokalnie */
     const recaptchaWrap = form.querySelector("[data-recaptcha]");
     if (recaptchaWrap && !IS_LOCAL) {
       const tokenField = form.querySelector('[name="g-recaptcha-response"]');
@@ -522,14 +448,12 @@
       }
     }
 
-    /* 5) Limit treści wiadomości */
     if (msg && msg.value.length > MAX) {
       setInvalid(msg);
       valid = false;
       showStatus(`Wiadomość może mieć maks. ${MAX} znaków.`, false);
     }
 
-    /* --- Gdy są błędy: pokaż podsumowanie i przeskocz do pierwszego błędu --- */
     if (!valid) {
       const invalids = [...form.querySelectorAll(".is-invalid")];
 
@@ -552,7 +476,6 @@
       return;
     }
 
-    /* === SENDING UI === */
     form.setAttribute("aria-busy", "true");
     if (submitBtn) {
       submitBtn.disabled = true;
@@ -561,27 +484,22 @@
     }
     showStatus("Wysyłanie…", true);
 
-    /* --- Przygotowanie danych do Netlify Forms --- */
-    const formData = new FormData(form); // zawiera też hidden 'form-name'
-    const body = new URLSearchParams(formData).toString(); // urlencoded do fetch
+    const formData = new FormData(form);
+    const body = new URLSearchParams(formData).toString();
 
     try {
-      /* --- Wysyłka: produkcja vs. lokalnie (symulacja) --- */
       if (!IS_LOCAL) {
         const res = await fetch("/", {
           method: "POST",
           headers: { "Content-Type": "application/x-www-form-urlencoded" },
           body,
-          // keepalive: true, // (opcjonalnie) pozwala wysłać, gdy user szybko nawigował dalej
         });
         if (!res.ok) throw new Error("Netlify response not OK");
       } else {
-        // Lokalnie: krótkie opóźnienie dla realizmu
         await new Promise((r) => setTimeout(r, 500));
       }
 
-      /* === SUCCESS === */
-      form.setAttribute("aria-busy", "false"); // (2) sprzątanie flagi
+      form.setAttribute("aria-busy", "false");
       form.reset();
       try {
         localStorage.removeItem(MSG_KEY);
@@ -604,11 +522,9 @@
         }, 6000);
       }
 
-      // Posprzątaj A11y (podsumowanie/skip niewidoczne przy czystym stanie)
       if (a11ySummary) a11ySummary.classList.add("visually-hidden");
       if (skipLink) skipLink.classList.add("visually-hidden");
 
-      /* --- TRACKING (tylko produkcja): GA4 + Meta --- */
       if (!IS_LOCAL) {
         if (typeof gtag === "function") {
           gtag("event", "generate_lead", { event_category: "Formularz", event_label: "Kontakt — Budownictwo" });
@@ -618,7 +534,6 @@
         }
       }
     } catch (err) {
-      /* === ERROR PATH === */
       form.setAttribute("aria-busy", "false");
       if (submitBtn) {
         submitBtn.disabled = false;
@@ -631,16 +546,7 @@
   });
 })();
 
-/* 06) ======================================================================================
-   ========== LIGHTBOX - PODGLĄD ZDJĘCIA (BEZ OVERLAY I BEZ "DOUBLE-TAP") ===================
-   ==========================================================================================
-   ===== > Otwieranie: 1 klik/tap w .gallery-link ===========================================
-   ===== > Zamknięcie: Esc, klik w tło (data-lb-close) lub przycisk x =======================
-   ===== > A11y: focus-trap, aria-hidden, przywracanie fokusu, body lock (lb-open) ==========
-   ==========================================================================================
-   ==========================================================================================
-   ==========================================================================================
-   ========================================================================================== */
+/* ========== 06) LIGHTBOX ========== */
 
 (() => {
   const lb = document.getElementById("lightbox");
@@ -656,10 +562,8 @@
     firstF = null,
     lastF = null;
 
-  // Wykrywanie desktopu do prefetchu (opcjonalne)
   const isTouchLike = window.matchMedia ? window.matchMedia("(hover: none) and (pointer: coarse)").matches : "ontouchstart" in window;
 
-  // Focus trap
   const trapInit = () => {
     focusables = Array.from(lb.querySelectorAll('button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])')).filter((el) => !el.hasAttribute("disabled") && el.offsetParent !== null);
     firstF = focusables[0];
@@ -680,7 +584,6 @@
     }
   };
 
-  // OTWARCIE
   const open = (src, alt) => {
     lastActive = document.activeElement;
 
@@ -695,16 +598,14 @@
       captionEl.hidden = true;
     }
 
-    // start z hidden w HTML
-    lb.removeAttribute("hidden"); // zdejmij UA display:none
-    lb.setAttribute("aria-hidden", "false"); // CSS pokazuje lightbox (np. display:flex)
-    document.body.classList.add("lb-open"); // body lock (overflow:hidden)
+    lb.removeAttribute("hidden");
+    lb.setAttribute("aria-hidden", "false");
+    document.body.classList.add("lb-open");
 
     trapInit();
     if (closeBtn) closeBtn.focus();
   };
 
-  // ZAMKNIĘCIE
   const close = () => {
     lb.setAttribute("aria-hidden", "true");
     document.body.classList.remove("lb-open");
@@ -715,7 +616,6 @@
 
     trapRelease();
 
-    // przywróć hidden dla pełnej zgodności
     lb.setAttribute("hidden", "");
 
     if (lastActive && typeof lastActive.focus === "function") {
@@ -723,7 +623,6 @@
     }
   };
 
-  // Delegacja kliknięcia w miniaturę/link (jednolicie: desktop + mobile)
   document.addEventListener("click", (e) => {
     const link = e.target.closest(".gallery-link");
     if (!link || !link.closest(".gallery-container")) return;
@@ -735,11 +634,9 @@
     if (href) open(href, alt);
   });
 
-  // Zamknięcie: klik w tło / przycisk ×
   if (backdrop) backdrop.addEventListener("click", close);
   if (closeBtn) closeBtn.addEventListener("click", close);
 
-  // Klawiatura: Esc + Tab (focus-trap) — tylko gdy LB otwarty
   document.addEventListener("keydown", (e) => {
     if (lb.getAttribute("aria-hidden") !== "false") return;
     if (e.key === "Escape") {
@@ -750,15 +647,19 @@
     }
   });
 
-  // Prefetch dużego zdjęcia na hover (desktop only) — opcjonalnie pomaga wczytaniu
   if (!isTouchLike) {
     document.addEventListener(
       "mouseenter",
       (e) => {
-        const link = e.target.closest(".gallery-link");
+        const el = e.target;
+        if (!el || el.nodeType !== 1 || typeof el.closest !== "function") return;
+
+        const link = el.closest(".gallery-link");
         if (!link || !link.closest(".gallery-container")) return;
+
         const href = link.getAttribute("href");
         if (!href) return;
+
         const pre = new Image();
         pre.decoding = "async";
         pre.src = href;
@@ -768,19 +669,10 @@
   }
 })();
 
-/* 07) ======================================================================================
-   ========== COMPACT HEADER PO SCROLLU =====================================================
-   ==========================================================================================
-   ===== > Po przewinięciu > THRESHOLD px dodaje klasę .header-compact na <body> ============
-   ===== > Gdy otwarte mobile menu (body.nav-open) — kompakt wyłączony ======================
-   ===== > rAF do odszumienia scrolla; init na starcie/po powrocie z bfcache ================
-   ==========================================================================================
-   ==========================================================================================
-   ==========================================================================================
-   ========================================================================================== */
+/* ========== 07) COMPACT HEADER ========== */
 
 (() => {
-  const THRESHOLD = 20; // px przewinięcia, po którym header się „zbija”
+  const THRESHOLD = 20;
   let compactOn = false;
   let ticking = false;
 
@@ -803,21 +695,29 @@
     });
   };
 
-  // Inicjalizacja + typowe zdarzenia
   update();
   window.addEventListener("scroll", onScroll, { passive: true });
-  window.addEventListener("resize", onScroll); // obrót ekranu / zmiana vh
+  window.addEventListener("resize", onScroll);
   window.addEventListener("pageshow", update, { once: true });
 
-  // Synchronizacja z hamburgerem (po otwarciu/zamknięciu menu)
   const btn = document.getElementById("hamburger");
   if (btn) {
     btn.addEventListener("click", () => {
-      setTimeout(update, 0); // po zmianie body.nav-open
+      setTimeout(update, 0);
     });
   }
 
-  // Fallback: reaguj na każdą zmianę klas <body> (np. gdyby coś innego zmieniało nav-open)
   const mo = new MutationObserver(update);
   mo.observe(document.body, { attributes: true, attributeFilter: ["class"] });
 })();
+
+/* ========== 08) REGISTER SERVICE WORKER ========== */
+
+if ("serviceWorker" in navigator) {
+  window.addEventListener("load", () => {
+    navigator.serviceWorker
+      .register("./sw.js")
+      .then(() => console.log("✅ Service Worker registered"))
+      .catch((err) => console.error("❌ Service Worker registration failed:", err));
+  });
+}

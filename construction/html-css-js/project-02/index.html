@@ -38,7 +38,7 @@
     <link rel="icon" type="image/png" sizes="96x96" href="assets/img/favicon/favicon-96x96.png" />
     <link rel="icon" type="image/x-icon" href="assets/img/favicon/favicon.ico" />
     <link rel="apple-touch-icon" sizes="180x180" href="assets/img/favicon/apple-touch-icon.png" />
-    <link rel="manifest" href="manifest.webmanifest" />
+    <link rel="manifest" href="site.webmanifest" />
 
     <!-- (Opcjonalnie) SVG jako dodatkowa ikona dla nowych przeglądarek -->
     <link rel="icon" type="image/svg+xml" href="assets/img/favicon/favicon.svg" />
@@ -58,8 +58,8 @@
     <link rel="preload" href="assets/fonts/montserrat-v31-latin/montserrat-v31-latin-600.woff2" as="font" type="font/woff2" crossorigin />
 
     <!-- Preload logotypów dla obu motywów -->
-    <link rel="preload" as="image" href="assets/img/logo-dark.svg" media="(prefers-color-scheme: dark)" />
-    <link rel="preload" as="image" href="assets/img/logo-light.svg" media="(prefers-color-scheme: light)" />
+    <link rel="preload" as="image" href="assets/img/logo/logo-dark-mode-200x200.svg" media="(prefers-color-scheme: dark)" />
+    <link rel="preload" as="image" href="assets/img/logo/logo-light-mode-200x200.svg" media="(prefers-color-scheme: light)" />
 
     <!-- Wczesne ustawienie motywu (dark/light) — zapobiega migotaniu -->
     <script>
@@ -75,7 +75,7 @@
     </script>
 
     <!-- Główny CSS -->
-    <link rel="stylesheet" href="css/style.min.css" />
+    <link rel="stylesheet" href="css/style.css" />
 
     <!-- Strukturalne dane JSON-LD (Organization + ContactPoint) — Demo -->
     <script type="application/ld+json">
@@ -84,7 +84,7 @@
         "@type": "Organization",
         "name": "KP_Code",
         "url": "https://construction-project-02.netlify.app/",
-        "logo": "https://construction-project-02.netlify.app/assets/img/logo/logo-02-light-mode-200x200.svg",
+        "logo": "https://construction-project-02.netlify.app/assets/img/logo/logo-light-mode-200x200.svg",
         "sameAs": [],
         "contactPoint": {
           "@type": "ContactPoint",
@@ -286,9 +286,9 @@
       <a href="#top" class="logo">
         <img
           class="logo-img"
-          src="assets/img/logo/logo-02-light-mode-200x200.svg"
-          data-light="assets/img/logo/logo-02-light-mode-200x200.svg"
-          data-dark="assets/img/logo/logo-02-dark-mode-200x200.svg"
+          src="assets/img/logo/logo-light-mode-200x200.svg"
+          data-light="assets/img/logo/logo-light-mode-200x200.svg"
+          data-dark="assets/img/logo/logo-dark-mode-200x200.svg"
           alt="KP_Code — logo"
           width="200"
           height="200"
@@ -1177,9 +1177,9 @@
         <div class="footer-section footer-brand">
           <img
             class="logo-img"
-            src="assets/img/logo/logo-02-light-mode-200x200.svg"
-            data-light="assets/img/logo/logo-02-light-mode-200x200.svg"
-            data-dark="assets/img/logo/logo-02-dark-mode-200x200.svg"
+            src="assets/img/logo/logo-light-mode-200x200.svg"
+            data-light="assets/img/logo/logo-light-mode-200x200.svg"
+            data-dark="assets/img/logo/logo-dark-mode-200x200.svg"
             alt="KP_Code — logo"
             width="100"
             height="100"
@@ -1275,6 +1275,8 @@
         <p>&copy; 2025 KP_Code. Wszystkie prawa zastrzeżone. | Projekt i wykonanie: KP_Code</p>
       </div>
     </footer>
+
+    <!-- COOKIES CONSENT (DEMO) -->
 
     <!-- SCRIPTS -->
     <script src="js/script.min.js" defer></script>

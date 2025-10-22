@@ -1,6 +1,7 @@
 /* ==================================================
-   ===== Autor: KP_Code (Front-end)
-   ===== Aktualizacja: 2025-10-07
+   ===== Project: construction-html-css-js-project-02
+   ===== Author: KP_Code (Front-end)
+   ===== Last Update: 2025-10-07
    ==================================================
    ===== CSS Stylesheet
    ===== Structure Overview
@@ -23,9 +24,7 @@
    ===== 99) FEATURE SUPPORT & FALLBACKS
    ================================================== */
 
-/* ================================================== */
-/* ===== 00) GLOBAL VARIABLES ======================= */
-/* ================================================== */
+/* ========== 00) GLOBAL VARIABLES =========== */
 
 :root {
   --primary: #0f4c81;
@@ -107,18 +106,14 @@ body.header-compact {
   --nav-mobile-offset: 14px;
 }
 
-/* ---------------------------------------- */
-/* ===== MQ - min width 769px ============= */
-/* ---------------------------------------- */
+/* ----- MQ  - min width 769px ----- */
 @media (min-width: 769px) {
   :root {
     --header-pad-x: 28px;
   }
 }
 
-/* ---------------------------------------- */
-/* ===== MQ - max width 769px ============= */
-/* ---------------------------------------- */
+/* ----- MQ  - max width 769px ----- */
 @media (max-width: 768px) {
   :root {
     --header-h: 46px;
@@ -137,11 +132,9 @@ body.header-compact {
   }
 }
 
-/* ================================================== */
-/* ===== 00) LOCAL FONTS ============================ */
-/* ================================================== */
+/* ----- LOCAL FONTS ----- */
 
-/* ===== MONTSERRAT (400, 600) ===== */
+/* ----- MONTSERRAT (400, 600) ----- */
 @font-face {
   font-family: "Montserrat";
   src: url("../assets/fonts/montserrat-v31-latin/montserrat-v31-latin-regular.woff2") format("woff2");
@@ -149,7 +142,6 @@ body.header-compact {
   font-style: normal;
   font-display: swap;
 }
-
 @font-face {
   font-family: "Montserrat";
   src: url("../assets/fonts/montserrat-v31-latin/montserrat-v31-latin-600.woff2") format("woff2");
@@ -158,7 +150,7 @@ body.header-compact {
   font-display: swap;
 }
 
-/* ===== LATO (400, 700) ===== */
+/* ----- LATO (400, 700) ----- */
 @font-face {
   font-family: "Lato";
   src: url("../assets/fonts/lato-v25-latin/lato-v25-latin-regular.woff2") format("woff2");
@@ -166,7 +158,6 @@ body.header-compact {
   font-style: normal;
   font-display: swap;
 }
-
 @font-face {
   font-family: "Lato";
   src: url("../assets/fonts/lato-v25-latin/lato-v25-latin-700.woff2") format("woff2");
@@ -175,9 +166,7 @@ body.header-compact {
   font-display: swap;
 }
 
-/* ================================================== */
-/* ===== 01) BASE TYPOGRAPHY + LAYOUT =============== */
-/* ================================================== */
+/* ========== 01) BASE TYPOGRAPHY + LAYOUT ========== */
 
 .visually-hidden {
   position: absolute !important;
@@ -318,18 +307,14 @@ section {
   color: var(--text-light);
 }
 
-/* ---------------------------------------- */
-/* ===== Keyframes ======================== */
-/* ----- underlineGrow -------------------- */
+/* ----- keyframes - underlineGrow ----- */
 @keyframes underlineGrow {
   to {
     transform: translateX(-50%) scaleX(1);
   }
 }
 
-/* ---------------------------------------- */
-/* ===== MQ Prefers reduced motion ======== */
-/* ---------------------------------------- */
+/* ----- MQ prefers reduced motion ----- */
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
@@ -340,9 +325,7 @@ section {
   }
 }
 
-/* ================================================== */
-/* ===== 02) HEADER ================================= */
-/* ================================================== */
+/* ========== 02) HEADER ========== */
 
 header {
   display: flex;
@@ -570,9 +553,7 @@ body.dark-mode .theme-toggle .icon-moon {
   outline: 3px solid color-mix(in srgb, var(--accent) 60%, white);
 }
 
-/* ---------------------------------------- */
-/* ===== MQ - min width 769px ============= */
-/* ---------------------------------------- */
+/* ----- MQ min-width: 769px ----- */
 @media (min-width: 769px) {
   header {
     padding-left: var(--header-pad-x);
@@ -583,9 +564,7 @@ body.dark-mode .theme-toggle .icon-moon {
   }
 }
 
-/* ---------------------------------------- */
-/* ===== MQ - max width 768px ============= */
-/* ---------------------------------------- */
+/* ----- MQ max-width: 768px ----- */
 @media (max-width: 768px) {
   header {
     padding-top: var(--header-pad-y);
@@ -714,9 +693,7 @@ body.dark-mode .theme-toggle .icon-moon {
   }
 }
 
-/* ---------------------------------------- */
-/* ===== MQ - max width 420px ============= */
-/* ---------------------------------------- */
+/* ----- MQ - max width 420px ----- */
 @media (max-width: 420px) {
   header {
     backdrop-filter: none;
@@ -730,9 +707,7 @@ body.dark-mode .theme-toggle .icon-moon {
   }
 }
 
-/* ---------------------------------------- */
-/* ===== MQ Prefers reduced motion ======== */
-/* ---------------------------------------- */
+/* ----- MQ - prefers reduced motion ----- */
 @media (prefers-reduced-motion: reduce) {
   header,
   #primaryNav .nav a,
@@ -747,9 +722,7 @@ body.dark-mode .theme-toggle .icon-moon {
   }
 }
 
-/* ================================================== */
-/* ===== 03) HERO =================================== */
-/* ================================================== */
+/* ========== 03) HERO ========== */
 
 .hero {
   position: relative;
@@ -814,9 +787,7 @@ body.dark-mode .hero::before {
   color: var(--accent-400);
 }
 
-/* ---------------------------------------- */
-/* ===== MQ - max width 768px ============= */
-/* ---------------------------------------- */
+/* ----- MQ - max width 768px ----- */
 @media (max-width: 768px) {
   .hero {
     height: 56vh;
@@ -833,9 +804,7 @@ body.dark-mode .hero::before {
   }
 }
 
-/* ---------------------------------------- */
-/* ===== MQ - max width 480px ============= */
-/* ---------------------------------------- */
+/* ----- MQ - max width 480px ----- */
 @media (max-width: 480px) {
   .hero {
     height: 65vh;
@@ -849,9 +818,7 @@ body.dark-mode .hero::before {
   }
 }
 
-/* ---------------------------------------- */
-/* ===== MQ Prefers reduced motion ======== */
-/* ---------------------------------------- */
+/* ----- MQ - prefers reduced motion ----- */
 @media (prefers-reduced-motion: reduce) {
   .hero-content h1 {
     animation: none;
@@ -864,9 +831,7 @@ body.dark-mode .hero::before {
   }
 }
 
-/* ================================================== */
-/* ===== 04) ABOUT ================================== */
-/* ================================================== */
+/* ========== 04) ABOUT ========== */
 
 .about-section {
   text-align: center;
@@ -994,9 +959,7 @@ body.dark-mode .about-media .frame {
   gap: 1rem;
 }
 
-/* ---------------------------------------- */
-/* ===== MQ - max width 900px ============= */
-/* ---------------------------------------- */
+/* ----- MQ max width 900px ----- */
 @media (max-width: 900px) {
   .about-grid {
     grid-template-columns: 1fr;
@@ -1007,9 +970,7 @@ body.dark-mode .about-media .frame {
   }
 }
 
-/* ================================================== */
-/* ===== 05) SERVICES =============================== */
-/* ================================================== */
+/* ========= 05) SERVICES =========== */
 
 .services-section {
   background: var(--surface-1);
@@ -1119,9 +1080,7 @@ body.dark-mode .service a:focus h3 {
   color: var(--accent-400);
 }
 
-/* ---------------------------------------- */
-/* ===== MQ - max width 768px ============= */
-/* ---------------------------------------- */
+/* ----- MQ max width 768px ----- */
 @media (max-width: 768px) {
   .services {
     gap: 1.25rem;
@@ -1131,9 +1090,7 @@ body.dark-mode .service a:focus h3 {
   }
 }
 
-/* ================================================== */
-/* ===== 06) TESTIMONIALS =========================== */
-/* ================================================== */
+/* ========== 06) TESTIMONIALS =========== */
 
 .testimonials-section {
   padding: 4rem 2rem;
@@ -1220,9 +1177,7 @@ body.dark-mode .client-info h4 {
   color: var(--accent-400);
 }
 
-/* ---------------------------------------- */
-/* ===== MQ - max width 768px ============= */
-/* ---------------------------------------- */
+/* ----- MQ max width 768px ----- */
 @media (max-width: 768px) {
   .testimonials-section {
     padding: 3rem 1rem;
@@ -1237,9 +1192,7 @@ body.dark-mode .client-info h4 {
   }
 }
 
-/* ---------------------------------------- */
-/* ===== MQ Prefers reduced motion ======== */
-/* ---------------------------------------- */
+/* ----- MQ Prefers reduced motion: reduce ----- */
 @media (prefers-reduced-motion: reduce) {
   .testimonial-card {
     transition: none;
@@ -1250,9 +1203,7 @@ body.dark-mode .client-info h4 {
   }
 }
 
-/* ================================================== */
-/* ===== 07) GALLERY ================================ */
-/* ================================================== */
+/* ========== 07) GALLERY =========== */
 
 .gallery-section {
   text-align: center;
@@ -1452,9 +1403,7 @@ body.lb-open {
   overflow: hidden;
 }
 
-/* ---------------------------------------- */
-/* ===== MQ - max width 600px ============= */
-/* ---------------------------------------- */
+/* ----- MQ max width 600px ----- */
 @media (max-width: 600px) {
   .lb__figure {
     display: flex;
@@ -1474,9 +1423,7 @@ body.lb-open {
   }
 }
 
-/* ---------------------------------------- */
-/* ===== MQ - max width 480px ============= */
-/* ---------------------------------------- */
+/* ----- MQ max width 480px ----- */
 @media (max-width: 480px) {
   .lb__close {
     width: 36px;
@@ -1487,33 +1434,25 @@ body.lb-open {
   }
 }
 
-/* ---------------------------------------- */
-/* ===== MQ - orientation =================== */
-/* ---------- landscape ------------------- */
+/* ---- MQ - orientation: landscape ----- */
 @media (orientation: landscape) {
   .lb__figure {
     max-height: 100vh;
   }
-
   .lb__img {
     max-height: 100vh;
   }
 }
 
-/* ---------------------------------------- */
-/* ===== MQ - orientation ================= */
-/* ---------- landscape ------------------- */
-/* ---------- max width 900px ------------- */
-/* ---------- max height 480px ------------ */
+/* ----- MQ max width 900px - landscape ----- */
+/* ----- MQ max height 480px - landscape ----- */
 @media (orientation: landscape) and (max-width: 900px), (orientation: landscape) and (max-height: 480px) {
   .lb__caption {
     display: none;
   }
 }
 
-/* ---------------------------------------- */
-/* ===== MQ Prefers reduced motion ======== */
-/* ---------------------------------------- */
+/* ----- MQ prefers reduced motion: reduce ----- */
 @media (prefers-reduced-motion: reduce) {
   .gallery-item img {
     transition: none;
@@ -1533,9 +1472,7 @@ body.lb-open {
   }
 }
 
-/* ---------------------------------------- */
-/* ===== MQ Prefers reduced motion ======== */
-/* -------- no preference ----------------- */
+/* ----- MQ prefers reduced motion: no-preference ----- */
 @media (prefers-reduced-motion: no-preference) {
   .lb__figure {
     transform: scale(0.985);
@@ -1548,9 +1485,7 @@ body.lb-open {
   }
 }
 
-/* ================================================== */
-/* ===== 08) FAQ ==================================== */
-/* ================================================== */
+/* ========== 08) FAQ ========== */
 
 .faq-section {
   padding: 4rem 2rem;
@@ -1613,12 +1548,17 @@ body.dark-mode .faq-section .section-title {
   font-weight: 700;
   line-height: 1.25;
   letter-spacing: 0.1rem;
+  background-color: var(--feature-surface);
   background: transparent;
   border: 0;
   outline: 0;
   width: 100%;
+  color: var(--text-dark);
   text-align: left;
   transition: color 0.22s ease;
+}
+body.dark-mode .faq-q {
+  color: var(--text-light);
 }
 
 .faq-item:hover .faq-q,
@@ -1640,7 +1580,9 @@ body.dark-mode .faq-section .section-title {
   transform: translateY(-50%) rotate(0deg);
   opacity: 0.8;
   transition: transform 0.22s ease, opacity 0.22s ease;
-  background: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><path fill='%23AAAAAA' d='M9 6l6 6-6 6'/></svg>") center/18px 18px no-repeat;
+  mask: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><path d='M9 6l6 6-6 6'/></svg>") center/18px 18px no-repeat;
+  background-color: currentColor;
+  background: none;
 }
 
 .faq-q:focus-visible {
@@ -1678,9 +1620,7 @@ body.dark-mode .faq-a {
   color: color-mix(in srgb, var(--text-light) 92%, black 8%);
 }
 
-/* ---------------------------------------- */
-/* ===== MQ - max width 768px ============= */
-/* ---------------------------------------- */
+/* ----- MQ max width 768px ----- */
 @media (max-width: 768px) {
   .faq-section {
     padding: 3rem 1rem;
@@ -1690,9 +1630,7 @@ body.dark-mode .faq-a {
   }
 }
 
-/* ---------------------------------------- */
-/* ===== MQ hover / pointer =============== */
-/* -------- hover / fine------------------- */
+/* ---- MQ hover: hover and pointer: fine ----- */
 @media (hover: hover) and (pointer: fine) {
   .faq-item:hover,
   .faq-item:focus-within {
@@ -1703,9 +1641,7 @@ body.dark-mode .faq-a {
   }
 }
 
-/* ---------------------------------------- */
-/* ===== MQ Prefers reduced motion ======== */
-/* ---------------------------------------- */
+/* ----- MQ prefers reduced motion: reduce ----- */
 @media (prefers-reduced-motion: reduce) {
   .faq-item,
   .faq-q::after {
@@ -1713,9 +1649,7 @@ body.dark-mode .faq-a {
   }
 }
 
-/* ================================================== */
-/* ===== 09) CONTACT ================================ */
-/* ================================================== */
+/* ========== 09) CONTACT ========== */
 
 .contact-form-section {
   padding: 2rem 2rem;
@@ -1964,9 +1898,7 @@ fieldset.form-group.captcha-wrap {
   margin: 0.9rem auto 0;
 }
 
-/* ---------------------------------------- */
-/* ===== MQ - max width 380px ============= */
-/* ---------------------------------------- */
+/* ----- MQ - max width 380px ----- */
 @media (max-width: 380px) {
   .contact-form button[type="submit"],
   .contact-form .btn[type="submit"] {
@@ -1974,9 +1906,7 @@ fieldset.form-group.captcha-wrap {
   }
 }
 
-/* ---------------------------------------- */
-/* ===== MQ - max width 420px ============= */
-/* ---------------------------------------- */
+/* ----- MQ - max width 420px ----- */
 @media (max-width: 420px) {
   .captcha-wrap {
     transform: scale(0.88);
@@ -1984,9 +1914,7 @@ fieldset.form-group.captcha-wrap {
   }
 }
 
-/* ================================================== */
-/* ===== 10) FOOTER ================================= */
-/* ================================================== */
+/* ========== 10) FOOTER ========== */
 
 footer {
   background: #2c2c2c;
@@ -2282,18 +2210,14 @@ body.dark-mode .footer-bottom {
   margin: 0;
 }
 
-/* ---------------------------------------- */
-/* ===== MQ - min width 1200px ============ */
-/* ---------------------------------------- */
+/* ----- MQ min width 1200px ----- */
 @media (min-width: 1200px) {
   .footer-content {
     gap: 2.5rem;
   }
 }
 
-/* ---------------------------------------- */
-/* ===== MQ - min width 1025px ============ */
-/* ---------------------------------------- */
+/* ----- MQ min width 1025px ----- */
 @media (min-width: 1025px) {
   .footer-content {
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
@@ -2321,9 +2245,7 @@ body.dark-mode .footer-bottom {
   }
 }
 
-/* ---------------------------------------- */
-/* ===== MQ Prefers reduced motion ======== */
-/* ---------------------------------------- */
+/* ----- MQ prefers reduced motion: reduce ----- */
 @media (prefers-reduced-motion: reduce) {
   footer[role="contentinfo"] a:not(.social-icon):not(.gmaps-ico)::after,
   .footer-bottom a::after {
@@ -2331,9 +2253,7 @@ body.dark-mode .footer-bottom {
   }
 }
 
-/* ================================================== */
-/* ===== 11) SERVICE SUBPAGES ======================= */
-/* ================================================== */
+/* ========= 11) SERVICE SUBPAGES ========== */
 
 header + main .breadcrumbs {
   padding-top: clamp(0.5rem, 1.5vw, 1.25rem);
@@ -2538,9 +2458,7 @@ body.page-service .cta-row {
   padding-inline: var(--section-px);
 }
 
-/* ---------------------------------- */
-/* ===== MQ - min width 900px ======= */
-/* ---------------------------------- */
+/* ----- MQ min width 900px ----- */
 @media (min-width: 900px) {
   .service-intro__inner {
     grid-template-columns: 520px 1fr;
@@ -2552,9 +2470,7 @@ body.page-service .cta-row {
   }
 }
 
-/* ---------------------------------- */
-/* ===== MQ - min width 800px ======= */
-/* ---------------------------------- */
+/* ----- MQ min width 800px ----- */
 @media (min-width: 800px) {
   .features {
     grid-template-columns: repeat(2, 1fr);
@@ -2562,9 +2478,7 @@ body.page-service .cta-row {
   }
 }
 
-/* ---------------------------------- */
-/* ===== MQ - min width 769px ======= */
-/* ---------------------------------- */
+/* ----- MQ min width 769px ----- */
 @media (min-width: 769px) {
   .service-intro__media img {
     width: 108%;
@@ -2579,9 +2493,7 @@ body.page-service .cta-row {
   }
 }
 
-/* ---------------------------------- */
-/* ===== MQ - max width 768px ======= */
-/* ---------------------------------- */
+/* ----- MQ max width 768px ----- */
 @media (max-width: 768px) {
   header + main .breadcrumbs {
     padding-top: clamp(0.75rem, 2.5vw, 1.5rem);
@@ -2635,9 +2547,7 @@ body.page-service .cta-row {
   }
 }
 
-/* ================================================== */
-/* ===== 12) LEGAL SUBPAGES ========================= */
-/* ================================================== */
+/* ========== 12) LEGAL SUBPAGES ========== */
 
 .page-legal .legal-simple {
   background: var(--surface-1);
@@ -2839,9 +2749,7 @@ body.dark-mode .career-form textarea {
   text-decoration: underline;
 }
 
-/* ---------------------------------------- */
-/* ===== MQ - max width 768px ============= */
-/* ---------------------------------------- */
+/* ----- MQ max width 768px ----- */
 @media (max-width: 768px) {
   .page-legal .legal-container {
     padding: clamp(0.75rem, 3.5vw, 1rem);
@@ -2852,9 +2760,7 @@ body.dark-mode .career-form textarea {
   }
 }
 
-/* ---------------------------------------- */
-/* ===== MQ hover / pointer =============== */
-/* -------- hover / fine------------------- */
+/* ----- MQ hover: hover and pointer: fine ----- */
 @media (hover: hover) and (pointer: fine) {
   .page-legal .legal-container:hover {
     border-color: color-mix(in srgb, var(--feature-accent) 45%, transparent);
@@ -2862,18 +2768,14 @@ body.dark-mode .career-form textarea {
   }
 }
 
-/* ---------------------------------------- */
-/* ===== MQ Prefers reduced motion ======== */
-/* ---------------------------------------- */
+/* ----- MQ prefers reduced motion: reduce ----- */
 @media (prefers-reduced-motion: reduce) {
   .page-legal .legal-container {
     transition: none;
   }
 }
 
-/* ================================================== */
-/* ===== 13) STATES + ANIMATIONS ==================== */
-/* ================================================== */
+/* ========== 13) STATES + ANIMATIONS ========== */
 
 #primaryNav .nav a[aria-current],
 body[data-current="services"] .nav a[href$="#uslugi"] {
@@ -3118,9 +3020,7 @@ body.menu-open #powrot-na-gore {
   color: var(--feature-accent);
 }
 
-/* ---------------------------------------- */
-/* ===== MQ - Hover capable pointers ====== */
-/* ---------------------------------------- */
+/* ----- MQ hover: hover and pointer: fine ----- */
 @media (hover: hover) and (pointer: fine) {
   :where(.feature, .about-highlights > li, .interactive-card):not(.no-interaction):hover {
     transform: translateY(-2px);
@@ -3133,9 +3033,7 @@ body.menu-open #powrot-na-gore {
   }
 }
 
-/* ---------------------------------------- */
-/* ===== MQ - Touch pointers only ========= */
-/* ---------------------------------------- */
+/* ----- MQ hover: none and pointer: coarse ----- */
 @media (hover: none) and (pointer: coarse) {
   :where(.feature, .about-highlights > li, .interactive-card):not(.no-interaction):active {
     transform: translateY(-1px);
@@ -3145,19 +3043,14 @@ body.menu-open #powrot-na-gore {
   }
 }
 
-/* ---------------------------------------- */
-/* ===== MQ - Prefers reduced motion ====== */
-/* ---------------------------------------- */
+/* ----- MQ prefers reduced motion: reduce ----- */
 @media (prefers-reduced-motion: reduce) {
   :where(.feature, .about-highlights > li, .interactive-card):not(.no-interaction) {
     transition: border-color 0.2s, background 0.2s, box-shadow 0.2s;
   }
 }
 
-/* ================================================== */
-/* ===== 14) GLOBAL BUTTONS ========================= */
-/* ========= primary / ghost / icon / hamburger ===== */
-/* ================================================== */
+/* ========== 14) GLOBAL BUTTONS =========== */
 
 .btn {
   display: inline-flex;
@@ -3390,31 +3283,23 @@ body.dark-mode .icon-btn:not(.hamburger):hover {
   transform: translate(var(--icon-nudge-x, 0), var(--icon-nudge-y, 0)) scale(1);
 }
 
-/* ---------------------------------------- */
-/* ===== MQ - min width 769px ============ */
-/* ---------------------------------------- */
+/* ----- MQ min width 769px ----- */
 @media (min-width: 769px) {
   .hamburger.icon-btn {
     display: none;
   }
 }
 
-/* ---------------------------------------- */
-/* ===== MQ - max width 768px ============ */
-/* ---------------------------------------- */
+/* ----- MQ max width 768px ----- */
 @media (max-width: 768px) {
   .hamburger.icon-btn {
     display: inline-grid;
   }
 }
 
-/* ================================================== */
-/* ===== 99) FEATURE SUPPORT & FALLBACKS ============ */
-/* ================================================== */
+/* ========== 99) FEATURE SUPPORT & FALLBACKS =========== */
 
-/* ---------------------------------------- */
-/* ===== Supports not ===================== */
-/* ----- backdrop-filter: blur(1px) ------- */
+/* ----- Supports not (backdrop-filter: blur(1px)) ----- */
 @supports not (backdrop-filter: blur(1px)) {
   header {
     background: linear-gradient(135deg, color-mix(in srgb, var(--bg-light) 92%, var(--primary) 8%) 0%, color-mix(in srgb, var(--bg-light) 96%, var(--bg-dark) 4%) 100%);
@@ -3429,13 +3314,11 @@ body.dark-mode .icon-btn:not(.hamburger):hover {
   }
 }
 
-/* ---------------------------------------- */
-/* ===== Supports not ===================== */
-/* ----- overflow: clip ------------------- */
+/* ----- Supports not (overflow: clip) ----- */
 @supports not (overflow: clip) {
   .hero {
     overflow: hidden;
   }
 }
 
-/* %%%%%%%%%%%%%%%%%%%%%%%% END OF FILE  %%%%%%%%%%%%%%%%%%%%%%%% */
+/* $$$$$$$$$$ END OF FILE  $$$$$$$$$$ */
