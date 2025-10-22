@@ -9,7 +9,7 @@ A fully responsive and accessible demo website for a construction company, built
 
 ## Overview
 
-This project was created as part of the *KP_Code Professional Learning Plan* and serves as a production-ready showcase of clean, optimized front-end code.
+This project was created as part of the _KP_Code Professional Learning Plan_ and serves as a production-ready showcase of clean, optimized front-end code.
 It focuses on **accessibility**, **performance**, and **maintainability**, implementing modern standards such as semantic HTML, responsive design, CSS variables, and lightweight JavaScript interactivity.
 The site is fully deployable, optimized for SEO, and PWA-ready with perfect Lighthouse results.
 
@@ -66,6 +66,7 @@ project-01/
 ├── sitemap.xml
 ├── _headers
 └── _redirects
+```
 ````
 
 ---
@@ -89,11 +90,11 @@ The project is fully optimized for Core Web Vitals and progressive enhancement.
 
 ## SEO & PWA
 
-* **Meta tags** for Open Graph and Twitter Cards
-* **robots.txt**, **sitemap.xml**, and canonical links
-* **Web App Manifest** with adaptive icons and name display
-* **Netlify headers** for security and caching
-* **Offline 404 page** for PWA support
+- **Meta tags** for Open Graph and Twitter Cards
+- **robots.txt**, **sitemap.xml**, and canonical links
+- **Web App Manifest** with adaptive icons and name display
+- **Netlify headers** for security and caching
+- **Offline 404 page** for PWA support
 
 ---
 
@@ -104,5 +105,7 @@ The project is fully optimized for Core Web Vitals and progressive enhancement.
 Front-End Developer focused on clean code, accessibility, and performance.
 
 © 2025 KP_Code — For educational and portfolio use only.
+
+```
 
 ```
