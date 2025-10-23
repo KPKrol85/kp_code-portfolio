@@ -6,7 +6,8 @@
         {
           "autoprefixer": false,
           "discardComments": { "removeAll": true },
-          "normalizeWhitespace": true
+          "normalizeWhitespace": true,
+          "mergeLonghand": false
         }
       ]
     }

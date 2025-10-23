@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "minify:css": "postcss css/style.css --use cssnano -o css/style.min.css",
+    "minify:css": "postcss css/style.css -o css/style.min.css --no-map -u cssnano",
     "minify:js": "terser js/script.js -o js/script.min.js -c -m"
   },
   "keywords": [],
@@ -12,8 +12,8 @@
   "description": "**Author:** KP_Code\r **Type:** Front-end project (HTML, CSS, JavaScript)\r **Status:** Completed ✅\r **Live demo:** [https://gastronomy-project-01.netlify.app/](https://gastronomy-project-01.netlify.app/)",
   "devDependencies": {
     "cssnano": "^7.1.1",
-    "postcss": "^8.4.47",
-    "postcss-cli": "^11.0.0",
+    "postcss": "^8.5.6",
+    "postcss-cli": "^11.0.1",
     "terser": "^5.44.0"
   },
   "dependencies": {

@@ -1,81 +1,87 @@
-<!DOCTYPE html>
-<html lang="pl">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="robots" content="index, follow" />
+  <meta name="format-detection" content="telephone=no" />
 
-    <!-- SEO -->
-    <title>Galeria — demo strony gastronomicznej | KP_Code</title>
-    <meta name="description" content="Galeria zdjęć — wnętrza, potrawy i atmosfera. Zobacz wybrane kompozycje i produkty premium." />
-    <meta name="author" content="KP_Code" />
-    <meta name="color-scheme" content="light dark" />
-    <link rel="canonical" href="https://gastronomy-project-01.netlify.app/galeria.html" />
+  <!-- SEO -->
+  <title>Galeria — demo strony gastronomicznej | KP_Code</title>
+  <meta name="description" content="Galeria zdjęć — wnętrza, potrawy i atmosfera. Zobacz wybrane kompozycje i produkty premium." />
+  <meta name="author" content="KP_Code" />
+  <meta name="color-scheme" content="light dark" />
+  <link rel="canonical" href="https://gastronomy-project-01.netlify.app/galeria.html" />
 
-    <!-- Kolory motywu (PWA / przeglądarka) -->
-    <meta name="theme-color" content="#fab204" media="(prefers-color-scheme: light)" />
-    <meta name="theme-color" content="#0b0b0f" media="(prefers-color-scheme: dark)" />
-    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <!-- Kolory motywu (PWA / przeglądarka) -->
+  <meta name="theme-color" content="#fab204" />
+  <meta name="theme-color" content="#fab204" media="(prefers-color-scheme: light)" />
+  <meta name="theme-color" content="#0b0b0f" media="(prefers-color-scheme: dark)" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
 
-    <!-- Open Graph -->
-    <meta property="og:locale" content="pl_PL" />
-    <meta property="og:type" content="website" />
-    <meta property="og:site_name" content="Demo — strona gastronomiczna | KP_Code" />
-    <meta property="og:title" content="Galeria — demo strony gastronomicznej | KP_Code" />
-    <meta property="og:description" content="Galeria zdjęć — wnętrza, potrawy i atmosfera. Zobacz wybrane kompozycje i produkty premium." />
-    <meta property="og:url" content="https://gastronomy-project-01.netlify.app/galeria.html" />
-    <meta property="og:image" content="https://gastronomy-project-01.netlify.app/assets/img/og-img/og-1200x630.jpg" />
-    <meta property="og:image:width" content="1200" />
-    <meta property="og:image:height" content="630" />
-    <meta property="og:image:alt" content="Galeria — demo strony gastronomicznej | KP_Code – wybrane zdjęcia potraw i wnętrz" />
+  <!-- Open Graph -->
+  <meta property="og:locale" content="pl_PL" />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="Demo — strona gastronomiczna | KP_Code" />
+  <meta property="og:title" content="Galeria — demo strony gastronomicznej | KP_Code" />
+  <meta property="og:description" content="Galeria zdjęć — wnętrza, potrawy i atmosfera. Zobacz wybrane kompozycje i produkty premium." />
+  <meta property="og:url" content="https://gastronomy-project-01.netlify.app/galeria.html" />
+  <meta property="og:image" content="https://gastronomy-project-01.netlify.app/assets/img/og-img/og-1200x630.jpg" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:image:alt" content="Galeria — demo strony gastronomicznej | KP_Code – wybrane zdjęcia potraw i wnętrz" />
 
-    <!-- Twitter Card -->
-    <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="Galeria — demo strony gastronomicznej | KP_Code" />
-    <meta name="twitter:description" content="Galeria zdjęć — wnętrza, potrawy i atmosfera. Zobacz wybrane kompozycje i produkty premium." />
-    <meta name="twitter:image" content="https://gastronomy-project-01.netlify.app/assets/img/og-img/og-1200x630.jpg" />
-    <meta name="twitter:image:alt" content="Galeria — demo strony gastronomicznej | KP_Code – wybrane zdjęcia potraw i wnętrz" />
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Galeria — demo strony gastronomicznej | KP_Code" />
+  <meta name="twitter:description" content="Galeria zdjęć — wnętrza, potrawy i atmosfera. Zobacz wybrane kompozycje i produkty premium." />
+  <meta name="twitter:image" content="https://gastronomy-project-01.netlify.app/assets/img/og-img/og-1200x630.jpg" />
+  <meta name="twitter:image:alt" content="Galeria — demo strony gastronomicznej | KP_Code – wybrane zdjęcia potraw i wnętrz" />
 
-    <!-- Favicons -->
-    <link rel="icon" href="assets/icons/favicons/favicon-32x32.png" sizes="32x32" type="image/png" />
-    <link rel="icon" href="assets/icons/favicons/favicon-16x16.png" sizes="16x16" type="image/png" />
-    <link rel="apple-touch-icon" href="assets/icons/favicons/apple-touch-icon.png" sizes="180x180" />
-    <link rel="shortcut icon" href="assets/icons/favicons/favicon.ico" type="image/x-icon" />
+  <!-- Favicons + PWA -->
+  <link rel="icon" href="assets/icons/favicons/favicon-32x32.png" sizes="32x32" type="image/png" />
+  <link rel="icon" href="assets/icons/favicons/favicon-16x16.png" sizes="16x16" type="image/png" />
+  <link rel="apple-touch-icon" href="assets/icons/favicons/apple-touch-icon.png" sizes="180x180" />
+  <link rel="shortcut icon" href="assets/icons/favicons/favicon.ico" type="image/x-icon" />
+  <link rel="manifest" href="site.webmanifest" />
+  <meta name="application-name" content="KP_Code — Demo gastronomiczne" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-title" content="KP_Code Demo" />
 
-    <!-- Lokalne fonty: Poppins + Source Sans 3 -->
-    <link rel="preload" href="assets/fonts/poppins-v24-latin-regular.woff2" as="font" type="font/woff2" crossorigin />
-    <link rel="preload" href="assets/fonts/poppins-v24-latin-600.woff2" as="font" type="font/woff2" crossorigin />
-    <link rel="preload" href="assets/fonts/source-sans-3-v19-latin-regular.woff2" as="font" type="font/woff2" crossorigin />
-    <link rel="preload" href="assets/fonts/source-sans-3-v19-latin-500.woff2" as="font" type="font/woff2" crossorigin />
+  <!-- Lokalne fonty: Poppins + Source Sans 3 -->
+  <link rel="preload" href="assets/fonts/poppins-v24-latin-regular.woff2" as="font" type="font/woff2" crossorigin />
+  <link rel="preload" href="assets/fonts/poppins-v24-latin-600.woff2" as="font" type="font/woff2" crossorigin />
+  <link rel="preload" href="assets/fonts/source-sans-3-v19-latin-regular.woff2" as="font" type="font/woff2" crossorigin />
+  <link rel="preload" href="assets/fonts/source-sans-3-v19-latin-500.woff2" as="font" type="font/woff2" crossorigin />
 
-    <!-- Główny CSS -->
-    <link rel="stylesheet" href="css/style.min.css" />
+  <!-- Główny CSS -->
+  <link rel="stylesheet" href="css/style.min.css" />
 
-    <!-- JSON-LD: WebPage + BreadcrumbList (galeria.html) -->
-    <script type="application/ld+json">
-      {
-        "@context": "https://schema.org",
-        "@graph": [
-          {
-            "@type": "WebPage",
-            "@id": "https://gastronomy-project-01.netlify.app/galeria.html",
-            "url": "https://gastronomy-project-01.netlify.app/galeria.html",
-            "name": "Galeria",
-            "description": "Galeria zdjęć — wnętrza, potrawy i atmosfera. Zobacz wybrane kompozycje i produkty premium.",
-            "isPartOf": { "@id": "https://gastronomy-project-01.netlify.app/#website" },
-            "inLanguage": "pl-PL"
-          },
-          {
-            "@type": "BreadcrumbList",
-            "itemListElement": [
-              { "@type": "ListItem", "position": 1, "name": "Strona główna", "item": "https://gastronomy-project-01.netlify.app/" },
-              { "@type": "ListItem", "position": 2, "name": "Galeria", "item": "https://gastronomy-project-01.netlify.app/galeria.html" }
-            ]
-          }
-        ]
-      }
-      "primaryImageOfPage": "https://gastronomy-project-01.netlify.app/assets/img/og-img/og-1200x630.jpg",
-    </script>
-  </head>
+  <!-- JSON-LD: WebPage + BreadcrumbList (galeria.html) -->
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "WebPage",
+          "@id": "https://gastronomy-project-01.netlify.app/galeria.html",
+          "url": "https://gastronomy-project-01.netlify.app/galeria.html",
+          "name": "Galeria",
+          "description": "Galeria zdjęć — wnętrza, potrawy i atmosfera. Zobacz wybrane kompozycje i produkty premium.",
+          "isPartOf": { "@id": "https://gastronomy-project-01.netlify.app/#website" },
+          "inLanguage": "pl-PL",
+          "primaryImageOfPage": "https://gastronomy-project-01.netlify.app/assets/img/og-img/og-1200x630.jpg"
+        },
+        {
+          "@type": "BreadcrumbList",
+          "itemListElement": [
+            { "@type": "ListItem", "position": 1, "name": "Strona główna", "item": "https://gastronomy-project-01.netlify.app/" },
+            { "@type": "ListItem", "position": 2, "name": "Galeria", "item": "https://gastronomy-project-01.netlify.app/galeria.html" }
+          ]
+        }
+      ]
+    }
+  </script>
+</head>
+
 
   <!-- BODY -->
   <body class="no-js page-gallery">
