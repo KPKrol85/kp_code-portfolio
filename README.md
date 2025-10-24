@@ -10,9 +10,11 @@ Deployed on **Netlify** for live demos, with source code versioned on **GitHub**
 
 ## 🌐 Live Demos (Netlify)
 
-- [🏗 Construction — Project 01](https://construction-project-01.netlify.app)
-- [🏗 Construction — Project 02](https://construction-project-02.netlify.app)
-- [🍽 Gastronomy — Project 01](https://gastronomy-project-01.netlify.app)  
+-  [Construction — Project 01](https://construction-project-01.netlify.app)
+-  [Construction — Project 02](https://construction-project-02.netlify.app)
+-  [Gastronomy — Project 01](https://gastronomy-project-01.netlify.app)
+-  [Gastronomy — Project 02](https://gastronomy-project-02.netlify.app)
+
 *(more projects coming soon…)*
 
 ---
