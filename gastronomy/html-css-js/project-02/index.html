@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Demo - strona dla gastronomii - KP_Code</title>
+    <meta name="description" content="Experience refined gastronomy with a curated seasonal menu, crafted cocktails, and warm hospitality." />
+    <link rel="canonical" href="https://kp.example/gastronomy-html-css-js-project-02/" />
+    <meta name="theme-color" content="#f8f1e7" />
+
+    <!-- Preload local fonts (Montserrat + Lato) -->
+    <link rel="preload" href="assets/fonts/montserrat-400-latin.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href="assets/fonts/montserrat-700-latin.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href="assets/fonts/lato-400-latin.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href="assets/fonts/lato-700-latin.woff2" as="font" type="font/woff2" crossorigin />
+
+    <script>
+      (function () {
+        var storageKey = "kp-theme";
+        var root = document.documentElement;
+        var theme = null;
+        try {
+          var stored = localStorage.getItem(storageKey);
+          if (stored === "light" || stored === "dark") {
+            theme = stored;
+          }
+        } catch (err) {}
+        if (!theme) {
+          var preset = root.getAttribute("data-theme");
+          if (preset === "light" || preset === "dark") {
+            theme = preset;
+          }
+        }
+        if (!theme) {
+          var prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+          theme = prefersDark ? "dark" : "light";
+        }
+        root.setAttribute("data-theme", theme);
+        var meta = document.querySelector('meta[name="theme-color"]');
+        if (meta) {
+          meta.setAttribute("content", theme === "dark" ? "#181210" : "#f8f1e7");
+        }
+      })();
+    </script>
+    <!-- Styles -->
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+  <body>
+    <a class="skip-link" href="#main" id="skip-to-content">Skip to content</a>
+
+    <!-- ===== HEADER ===== -->
+    <header class="site-header" role="banner" aria-label="Site header with navigation">
+      <div class="container header__inner">
+        <a class="brand" href="#hero" aria-label="Gastronomy home">
+          <!-- Light mode logo -->
+          <img src="assets/img/logo/logo-light-mode-50x50.svg" alt="KP_Code logo" class="brand__logo brand__logo--light" width="50" height="50" />
+          <!-- Dark mode logo -->
+          <img src="assets/img/logo/logo-dark-mode-50x50.svg" alt="KP_Code logo" class="brand__logo brand__logo--dark" width="50" height="50" />
+          <span class="brand__text">KP_Code</span>
+        </a>
+
+        <div class="header__actions">
+          <button class="nav-toggle" aria-label="Open menu" aria-controls="primary-nav" aria-expanded="false">
+            <span class="nav-toggle__bar" aria-hidden="true"></span>
+            <span class="nav-toggle__bar" aria-hidden="true"></span>
+            <span class="nav-toggle__bar" aria-hidden="true"></span>
+          </button>
+
+          <nav class="nav" id="primary-nav" role="navigation" aria-label="Primary">
+            <ul class="nav__list" role="list">
+              <li><a href="#about">About</a></li>
+              <li><a href="#menu">Menu</a></li>
+              <li><a href="#testimonials">Testimonials</a></li>
+              <li><a href="#contact">Contact</a></li>
+            </ul>
+          </nav>
+
+          <button class="theme-toggle" type="button" aria-pressed="false" aria-label="Toggle dark mode">
+            <span class="theme-toggle__icon theme-toggle__icon--sun" aria-hidden="true">☼</span>
+            <span class="theme-toggle__icon theme-toggle__icon--moon" aria-hidden="true">☾</span>
+            <span class="visually-hidden">Toggle dark mode</span>
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <!-- MAIN -->
+    <main id="main" tabindex="-1">
+      <!-- HERO -->
+      <section id="hero" class="hero" aria-label="Welcome hero">
+        <div class="container hero__inner">
+          <div class="hero__content">
+            <h1 class="hero__title">A Fine Dining Journey</h1>
+            <p class="hero__subtitle">Seasonal flavors, crafted with passion.</p>
+            <div class="hero__actions">
+              <a class="btn btn--primary" href="#menu" aria-label="Explore our seasonal menu">Explore Menu</a>
+              <a class="btn btn--ghost" href="#contact" aria-label="Reserve a table">Reserve</a>
+            </div>
+          </div>
+          <figure class="hero__media">
+            <img src="assets/img/hero/hero-02-1200x1000.jpg" alt="Assorted artisanal dishes on a warm-toned table" loading="lazy" width="560" height="480" />
+          </figure>
+        </div>
+      </section>
+
+      <!-- ABOUT -->
+      <section id="about" class="section about" aria-label="About Gastronomy">
+        <div class="container grid grid--2">
+          <div class="about__media">
+            <img src="assets/img/chef.jpg" alt="Chef plating a signature dish with delicate garnish" loading="lazy" width="640" height="480" />
+          </div>
+          <div class="about__content">
+            <h2>About Us</h2>
+            <p>We celebrate the art of cuisine with an elegant balance of tradition and innovation. Our team selects the finest local ingredients to craft unforgettable experiences.</p>
+            <p>Join us for an evening where each course tells a story—paired with curated wines and warm hospitality.</p>
+          </div>
+        </div>
+      </section>
+
+      <section id="menu" class="section menu" aria-label="Seasonal menu highlights">
+        <div class="container">
+          <h2>Seasonal Menu</h2>
+          <ul class="cards" role="list">
+            <li class="card" aria-label="Burgundy glazed duck">
+              <img class="card__image" src="assets/img/duck.jpg" alt="Sliced duck with burgundy glaze and roasted figs" loading="lazy" width="480" height="320" />
+              <div class="card__body">
+                <h3 class="card__title">Burgundy Glazed Duck</h3>
+                <p class="card__text">Roasted duck breast, fig reduction, charred chicory.</p>
+              </div>
+            </li>
+            <li class="card" aria-label="Golden saffron risotto">
+              <img class="card__image" src="assets/img/risotto.jpg" alt="Creamy saffron risotto topped with parmesan crisps" loading="lazy" width="480" height="320" />
+              <div class="card__body">
+                <h3 class="card__title">Saffron Risotto</h3>
+                <p class="card__text">Carnaroli rice, saffron threads, parmesan crisps.</p>
+              </div>
+            </li>
+            <li class="card" aria-label="Citrus olive oil cake">
+              <img class="card__image" src="assets/img/cake.jpg" alt="Citrus olive oil cake with candied orange" loading="lazy" width="480" height="320" />
+              <div class="card__body">
+                <h3 class="card__title">Citrus Olive Oil Cake</h3>
+                <p class="card__text">Candied orange, mascarpone cream, honey.</p>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </section>
+
+      <section id="testimonials" class="section testimonials" aria-label="Guest testimonials">
+        <div class="container">
+          <h2>What Guests Say</h2>
+          <ul class="quotes" role="list">
+            <li class="quote">
+              <blockquote>
+                <p>Every plate was a work of art—balanced, vibrant, and memorable.</p>
+                <cite>— Alex R.</cite>
+              </blockquote>
+            </li>
+            <li class="quote">
+              <blockquote>
+                <p>Service was impeccable and the wine pairings elevated each course.</p>
+                <cite>— Priya S.</cite>
+              </blockquote>
+            </li>
+          </ul>
+        </div>
+      </section>
+
+      <section id="contact" class="section contact" aria-label="Contact and reservations">
+        <div class="container grid grid--2">
+          <div class="contact__content">
+            <h2>Contact</h2>
+            <p>We would love to host you. Reserve a table or send us a message below.</p>
+            <ul class="contact__details" role="list">
+              <li>
+                <span aria-hidden="true">📍</span>
+                12 Heritage Lane, Old Town
+              </li>
+              <li>
+                <span aria-hidden="true">☎️</span>
+                <a href="tel:+1234567890">+1 (234) 567–890</a>
+              </li>
+              <li>
+                <span aria-hidden="true">✉️</span>
+                <a href="mailto:hello@gastronomy.example">hello@gastronomy.example</a>
+              </li>
+            </ul>
+          </div>
+          <form class="form" aria-label="Reservation form" novalidate>
+            <div class="form__row">
+              <label for="name">Name</label>
+              <input id="name" name="name" type="text" autocomplete="name" required aria-required="true" />
+            </div>
+            <div class="form__row">
+              <label for="email">Email</label>
+              <input id="email" name="email" type="email" autocomplete="email" required aria-required="true" />
+            </div>
+            <div class="form__row">
+              <label for="message">Message</label>
+              <textarea id="message" name="message" rows="4" required aria-required="true"></textarea>
+            </div>
+            <div class="form__row form__actions">
+              <button class="btn btn--primary" type="submit">Send</button>
+            </div>
+            <p id="form-status" class="visually-hidden" role="status" aria-live="polite"></p>
+          </form>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer" role="contentinfo" aria-label="Site footer">
+      <div class="container footer__inner">
+        <p>
+          &copy;
+          <span id="year"></span>
+          Gastronomy. All rights reserved.
+        </p>
+        <ul class="social" role="list" aria-label="Social links">
+          <li><a href="#" aria-label="Visit our Instagram">Instagram</a></li>
+          <li><a href="#" aria-label="Visit our Facebook">Facebook</a></li>
+          <li><a href="#" aria-label="Visit our X (Twitter)">X</a></li>
+        </ul>
+      </div>
+    </footer>
+
+    <noscript>
+      <div class="nojs" role="status" aria-live="polite">JavaScript is disabled. Some interactive features may be limited.</div>
+    </noscript>
+
+    <script src="js/script.js" defer></script>
+  </body>
+</html>
