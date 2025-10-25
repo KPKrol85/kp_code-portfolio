@@ -1,3 +1,24 @@
+/* ================================================
+   ===== Project: gastronomy-html-css-js-project-02
+   ===== Author: KP_Code
+   ===== Updated: 2025-10-25
+   ================================================
+   ===== CSS Stylesheet
+   ===== Structure Overview
+   ================================================
+   ===== 00) ROOT & RESETS
+   ===== 01) TYPOGRAPHY
+   ===== 02) LAYOUT
+   ===== 03) HEADER
+   ===== 04) HERO
+   ===== 05) ABOUT
+   ===== 06) MENU
+   ===== 07) TESTIMONIALS
+   ===== 08) CONTACT
+   ===== 09) COMPONENTS & UTILITIES
+   ================================================ */
+
+
 /* ========== 00) ROOT & RESETS ========== */
 
 @font-face {
@@ -821,9 +842,11 @@ img {
 }
 
 .contact__details {
-  margin: 1rem 0 0;
-  padding: 0;
   list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 0.75rem;
 }
 
 .contact__details li {
@@ -832,31 +855,75 @@ img {
   gap: 0.5rem;
 }
 
-/* ========== 10) FOOTER ========== */
-
-.footer {
-  background-color: color-mix(in oklab, var(--charcoal) 90%, black);
-  color: var(--cream);
-  border-top: 1px solid var(--border-soft);
-  padding: 3rem 0 2rem;
+.contact__details img {
+  width: 1.25rem;
+  height: 1.25rem;
+  display: block;
+  flex-shrink: 0;
+  filter: var(--contact-icon-filter);
+  transition: filter 0.3s ease;
 }
 
-.footer a {
-  color: inherit;
+.contact__details a {
+  color: var(--accent-color);
   text-decoration: none;
   transition: color 0.2s ease;
 }
 
-.footer a:hover,
-.footer a:focus-visible {
-  color: var(--white);
+.contact__details a:hover,
+.contact__details a:focus-visible {
+  color: var(--accent-hover);
   text-decoration: underline;
 }
 
-.footer a:focus-visible {
-  outline: 2px solid var(--white);
-  outline-offset: 2px;
+.contact__content {
+  --contact-icon-filter: invert(0);
 }
+
+body.dark-mode .contact__content {
+  --contact-icon-filter: invert(1);
+}
+/* ===== 09) CONTACT — ikonki: odwrotne mapowanie niż w footerze ===== */
+.contact__content .contact__details img { filter: invert(0); }              /* jasna sekcja → ciemne ikonki */
+body.dark-mode .contact__content .contact__details img { filter: invert(1); }/* dark-mode → jasne ikonki */
+
+
+/* ===== 09) CONTACT — ikonki: odwrotnie niż w footerze ===== */
+.contact__content { --contact-icon-filter: invert(0); } /* jasna sekcja → ciemne ikonki */
+
+body.dark-mode .contact__content,
+body.dark .contact__content,
+.dark .contact__content,
+.theme-dark .contact__content,
+[data-theme="dark"] .contact__content { --contact-icon-filter: invert(1); } /* dark → jasne ikonki */
+
+.contact__content .contact__details img { filter: var(--contact-icon-filter); } /* użyj lokalnej zmiennej */
+
+
+/* ========== 10) FOOTER ========== */
+
+/* ----- 10.1) BASE ----- */
+
+.footer {
+  padding: 3rem 0 2rem;
+  border-top: 1px solid var(--border-soft);
+  color: var(--cream);
+  background-color: color-mix(in oklab, var(--charcoal) 90%, black);
+}
+
+:root {
+  --footer-icon-filter: invert(1);
+}
+
+body.dark-mode,
+body.dark,
+.dark,
+.theme-dark,
+[data-theme="dark"] {
+  --footer-icon-filter: invert(0);
+}
+
+/* ----- 10.2) LAYOUT / GRID ----- */
 
 .footer__grid {
   display: grid;
@@ -865,20 +932,78 @@ img {
   margin-bottom: 2.5rem;
 }
 
-.footer__brand,
-.footer__nav,
-.footer__contact,
-.footer__social {
-  background-color: rgba(255, 255, 255, 0.02);
-  border: 1px solid var(--border-soft);
-  border-radius: var(--radius);
-  padding: 1.25rem;
+.footer__list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.footer__list li + li {
+  margin-top: 0.35rem;
+}
+
+.footer__contact address {
+  display: grid;
+  gap: 0.35rem;
+  margin: 0;
+  font-style: normal;
+}
+
+.footer__contact address p {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin: 0.4rem 0;
+}
+
+.footer__contact address p img {
+  flex-shrink: 0;
+  width: 1.25rem;
+  height: 1.25rem;
+  display: block;
+  filter: var(--footer-icon-filter);
+}
+
+.footer__contact address a {
+  color: inherit;
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.footer__contact address a:hover,
+.footer__contact address a:focus-visible {
+  color: var(--white);
+  text-decoration: underline;
+}
+
+.footer__contact .footer__heading {
+  text-align: center;
+}
+
+/* ----- 10.3) ELEMENTS ----- */
+
+.footer a {
+  color: inherit;
+  text-decoration: none;
+  transition: color 0.2s ease;
 }
 
 .footer__logo {
+  display: flex;
+  align-items: center;
+  justify-content: center; /* centruje logo + tekst */
+  gap: 0.5rem;
   font-size: 1.25rem;
   font-weight: 600;
   margin-bottom: 0.5rem;
+}
+
+.footer__logo img {
+  width: 1.75rem;
+  height: auto;
+  display: block;
+  flex-shrink: 0;
+  filter: var(--footer-icon-filter);
 }
 
 .footer__tagline {
@@ -888,40 +1013,64 @@ img {
 }
 
 .footer__heading {
+  margin-bottom: 0.75rem;
   font-size: 0.95rem;
   letter-spacing: 0.08em;
   text-transform: uppercase;
-  margin-bottom: 0.75rem;
 }
 
-.footer__list {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-}
+/* ----- 10.4) VARIANTS ----- */
 
-.footer__list li + li {
-  margin-top: 0.35rem;
-}
-
-.footer__contact address {
-  font-style: normal;
-  margin: 0;
-  display: grid;
-  gap: 0.35rem;
+.footer__brand,
+.footer__nav,
+.footer__contact,
+.footer__social {
+  padding: 1.25rem;
+  border: 1px solid var(--border-soft);
+  border-radius: var(--radius);
+  background-color: rgba(255, 255, 255, 0.02);
 }
 
 .footer__social .footer__heading {
   text-align: center;
 }
 
-
 .footer__social .footer__list {
   display: flex;
   align-items: center;
   justify-content: center;
   gap: 0.9rem;
-  flex-wrap: nowrap;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.footer__social .footer__list li + li {
+  margin-top: 0;
+}
+
+.footer__social li:first-child img {
+  transform: translateY(1px);
+}
+
+.footer__social a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2rem;
+  height: 2rem;
+  line-height: 0;
+  transition: transform 0.2s ease, opacity 0.2s ease;
+}
+
+.footer__social img {
+  width: 1.5rem;
+  height: 1.5rem;
+  display: block;
+  object-fit: contain;
+  object-position: center;
+  filter: var(--footer-icon-filter);
+  transition: filter 0.3s ease;
 }
 
 .footer__legal {
@@ -937,13 +1086,48 @@ img {
   position: fixed;
   bottom: 1rem;
   left: 50%;
-  transform: translateX(-50%);
-  background: var(--gold);
-  color: #2a1f14;
+  z-index: 100;
   padding: 0.5rem 1rem;
   border-radius: 999px;
+  color: #2a1f14;
+  background: var(--gold);
   box-shadow: var(--shadow);
-  z-index: 100;
+  transform: translateX(-50%);
+}
+
+/* ----- 10.5) STATES ----- */
+
+.footer a:hover,
+.footer a:focus-visible {
+  color: var(--white);
+  text-decoration: underline;
+}
+
+.footer a:focus-visible {
+  outline: 2px solid var(--white);
+  outline-offset: 2px;
+}
+
+.footer__social a:hover,
+.footer__social a:focus-visible {
+  opacity: 0.85;
+  transform: scale(1.1);
+}
+
+.footer__social a:hover img,
+.footer__social a:focus-visible img {
+  filter: var(--footer-icon-filter) brightness(1.5);
+}
+
+/* ----- 10.6) MEDIA QUERIES ----- */
+
+@media (max-width: 767px) {
+  .footer__nav {
+    text-align: center;
+  }
+  .footer__nav .footer__list {
+    align-items: center;
+  }
 }
 
 @media (min-width: 768px) {
@@ -956,42 +1140,6 @@ img {
   .footer__grid {
     grid-template-columns: repeat(4, minmax(0, 1fr));
   }
-}
-
-/* ----- 10.2) FOOTER SOCIAL ICONS ----- */
-
-.footer__social a {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 2rem;
-  height: 2rem;
-  transition: transform 0.2s ease, opacity 0.2s ease;
-}
-
-.footer__social a:hover,
-.footer__social a:focus-visible {
-  transform: scale(1.1);
-  opacity: 0.85;
-}
-
-:root {
-  --footer-icon-filter: invert(1);
-}
-
-body.dark-mode,
-body.dark,
-.dark,
-.theme-dark,
-[data-theme="dark"] {
-  --footer-icon-filter: invert(0);
-}
-
-.footer__social img {
-  width: 1.5rem;
-  height: 1.5rem;
-  filter: var(--footer-icon-filter);
-  transition: filter 0.3s ease;
 }
 
 /* ========== 99) COMPONENTS & UTILITIES ========== */
