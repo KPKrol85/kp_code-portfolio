@@ -6,6 +6,8 @@
   var systemPreference = typeof window !== "undefined" && window.matchMedia ? window.matchMedia("(prefers-color-scheme: dark)") : null;
   var hasStoredPreference = false;
 
+  /* ===== 00) DOM HELPERS & NAV STATE ===== */
+
   function q(selector) {
     return typeof selector === "string" ? document.querySelector(selector) : selector || null;
   }
@@ -14,6 +16,8 @@
     var nav = q("#primary-nav");
     nav && nav.setAttribute("data-open", String(expanded));
   }
+
+  /* ===== 01) THEME STATE MANAGEMENT ===== */
 
   function getStoredTheme() {
     try {
@@ -64,6 +68,9 @@
       emitThemeChange(nextTheme);
     }
   }
+
+  /* ===== 02) THEME TOGGLE INITIALIZATION ===== */
+
   function initThemeToggle() {
     var toggle = q(".theme-toggle");
     if (!toggle) return;
@@ -97,9 +104,13 @@
     window.initThemeToggle = initThemeToggle;
   }
 
+  /* ===== 03) DOMCONTENTLOADED INTERACTIONS ===== */
+
   document.addEventListener("DOMContentLoaded", function () {
-    var yearEl = document.getElementById("year");
-    yearEl && (yearEl.textContent = String(new Date().getFullYear()));
+    var legalYear = document.getElementById("year");
+    if (legalYear) {
+      legalYear.textContent = String(new Date().getFullYear());
+    }
     var navToggle = q(".nav-toggle");
     navToggle &&
       navToggle.addEventListener("click", function () {
@@ -147,3 +158,35 @@
     initThemeToggle();
   });
 })();
+
+/* ===== 04) LIGHTBOX (BASE VERSION) ===== */
+
+function initLightbox() {
+  const images = document.querySelectorAll("[data-lb-caption]");
+  const overlay = document.createElement("div");
+  const modal = document.createElement("div");
+  const caption = document.createElement("p");
+  const img = document.createElement("img");
+
+  overlay.className = "lb-overlay";
+  modal.className = "lb-modal";
+  caption.className = "lb-caption";
+
+  modal.append(img, caption);
+  overlay.append(modal);
+  document.body.appendChild(overlay);
+
+  images.forEach((image) => {
+    image.addEventListener("click", () => {
+      img.src = image.src;
+      caption.textContent = image.dataset.lbCaption || "";
+      overlay.classList.add("active");
+    });
+  });
+
+  overlay.addEventListener("click", (e) => {
+    if (e.target === overlay) overlay.classList.remove("active");
+  });
+}
+
+document.addEventListener("DOMContentLoaded", initLightbox);
