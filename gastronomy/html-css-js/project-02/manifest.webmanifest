@@ -1,0 +1,127 @@
+{
+  "id": "https://gastronomy-project-02.netlify.app/",
+  "name": "KP_Code – Gastronomy Demo",
+  "short_name": "Gastro Demo",
+  "description": "Demo strony gastronomicznej przygotowanej przez KP_Code – elegancki design, pełna responsywność i tryb PWA.",
+  "categories": ["food", "restaurant", "demo", "portfolio"],
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "orientation": "portrait-primary",
+  "theme_color": "#f8f1e7",
+  "background_color": "#f8f1e7",
+  "icons": [
+    {
+      "src": "/assets/icons/fav-icon/web-app-manifest-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/assets/icons/fav-icon/web-app-manifest-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/assets/icons/fav-icon/apple-touch-icon.png",
+      "sizes": "180x180",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/assets/icons/fav-icon/favicon-96x96.png",
+      "sizes": "96x96",
+      "type": "image/png"
+    },
+    {
+      "src": "/assets/icons/fav-icon/fav-icon-1024.png",
+      "sizes": "1024x1024",
+      "type": "image/png"
+    }
+  ],
+  "screenshots": [
+    {
+      "src": "assets/img/screenshots-img/screenshot-1280x720.jpg",
+      "sizes": "1280x720",
+      "type": "image/jpeg",
+      "form_factor": "wide",
+      "label": "Widok strony gastronomicznej – desktop"
+    },
+    {
+      "src": "assets/img/screenshots-img/screenshot-1920x1080.jpg",
+      "sizes": "1920x1080",
+      "type": "image/jpeg",
+      "form_factor": "wide",
+      "label": "Widok strony gastronomicznej – desktop (Full HD)"
+    },
+    {
+      "src": "assets/img/screenshots-img/screenshot-720x1280.jpg",
+      "sizes": "720x1280",
+      "type": "image/jpeg",
+      "form_factor": "narrow",
+      "label": "Widok strony gastronomicznej – mobile"
+    },
+    {
+      "src": "assets/img/screenshots-img/screenshot-1080x1920.jpg",
+      "sizes": "1080x1920",
+      "type": "image/jpeg",
+      "form_factor": "narrow",
+      "label": "Widok strony gastronomicznej – mobile (duży ekran)"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "Menu",
+      "short_name": "Menu",
+      "description": "Zobacz aktualne menu sezonowe",
+      "url": "/#menu",
+      "icons": [
+        {
+          "src": "assets/img/shortcuts-img/menu-96.png",
+          "sizes": "96x96",
+          "type": "image/png"
+        }
+      ]
+    },
+    {
+      "name": "Galeria",
+      "short_name": "Galeria",
+      "description": "Przeglądaj zdjęcia potraw i wnętrza restauracji",
+      "url": "/#gallery",
+      "icons": [
+        {
+          "src": "assets/img/shortcuts-img/gallery-96.png",
+          "sizes": "96x96",
+          "type": "image/png"
+        }
+      ]
+    },
+    {
+      "name": "Opinie",
+      "short_name": "Opinie",
+      "description": "Sprawdź opinie naszych gości",
+      "url": "/#testimonials",
+      "icons": [
+        {
+          "src": "assets/img/shortcuts-img/reviews-96.png",
+          "sizes": "96x96",
+          "type": "image/png"
+        }
+      ]
+    },
+    {
+      "name": "Kontakt",
+      "short_name": "Kontakt",
+      "description": "Skontaktuj się z nami lub zarezerwuj stolik",
+      "url": "/#contact",
+      "icons": [
+        {
+          "src": "assets/img/shortcuts-img/contact-96.png",
+          "sizes": "96x96",
+          "type": "image/png"
+        }
+      ]
+    }
+  ]
+}
