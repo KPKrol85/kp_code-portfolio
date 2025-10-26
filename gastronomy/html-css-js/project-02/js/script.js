@@ -163,18 +163,25 @@
 
 function initLightbox() {
   const images = document.querySelectorAll("[data-lb-caption]");
-  const overlay = document.createElement("div");
-  const modal = document.createElement("div");
-  const caption = document.createElement("p");
-  const img = document.createElement("img");
+  let overlay = document.querySelector(".lb-overlay");
+  let modal = overlay ? overlay.querySelector(".lb-modal") : null;
+  let caption = modal ? modal.querySelector(".lb-caption") : null;
+  let img = modal ? modal.querySelector("img") : null;
 
-  overlay.className = "lb-overlay";
-  modal.className = "lb-modal";
-  caption.className = "lb-caption";
+  if (!overlay) {
+    overlay = document.createElement("div");
+    modal = document.createElement("div");
+    caption = document.createElement("p");
+    img = document.createElement("img");
 
-  modal.append(img, caption);
-  overlay.append(modal);
-  document.body.appendChild(overlay);
+    overlay.className = "lb-overlay";
+    modal.className = "lb-modal";
+    caption.className = "lb-caption";
+
+    modal.append(img, caption);
+    overlay.append(modal);
+    document.body.appendChild(overlay);
+  }
 
   images.forEach((image) => {
     image.addEventListener("click", () => {
@@ -189,4 +196,49 @@ function initLightbox() {
   });
 }
 
-document.addEventListener("DOMContentLoaded", initLightbox);
+if (document.readyState === "loading") {
+  document.addEventListener("DOMContentLoaded", initLightbox);
+} else {
+  initLightbox();
+}
+
+/* ===== GALLERY – Lightbox integration (progressive enhancement) ===== */
+(function initGalleryLightbox() {
+  const overlay = document.querySelector(".lb-overlay");
+  if (!overlay) return;
+  const body = document.documentElement; // we toggle class on <html>
+  const imgEl =
+    overlay.querySelector("img") ||
+    (() => {
+      const img = document.createElement("img");
+      img.alt = "";
+      img.decoding = "async";
+      img.loading = "eager";
+      overlay.appendChild(img);
+      return img;
+    })();
+
+  function open(src, caption) {
+    imgEl.src = src;
+    imgEl.setAttribute("data-lb-caption", caption || "");
+    body.classList.add("lb-open");
+  }
+  function close() {
+    body.classList.remove("lb-open");
+    imgEl.removeAttribute("src");
+  }
+
+  overlay.addEventListener("click", (e) => {
+    if (e.target === overlay) close();
+  });
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape") close();
+  });
+
+  document.querySelectorAll(".gallery__link").forEach((a) => {
+    a.addEventListener("click", (e) => {
+      e.preventDefault();
+      open(a.getAttribute("href"), a.getAttribute("data-lb-caption"));
+    });
+  });
+})();

@@ -8,6 +8,8 @@
     <link rel="canonical" href="https://kp.example/gastronomy-html-css-js-project-02/" />
     <meta name="theme-color" content="#f8f1e7" />
 
+    <!-- NETLIFY DEPLOY -  https://gastronomy-project-02.netlify.app/ -->
+
     <!-- Preload local fonts (Montserrat + Lato) -->
     <link rel="preload" href="assets/fonts/montserrat-400-latin.woff2" as="font" type="font/woff2" crossorigin />
     <link rel="preload" href="assets/fonts/montserrat-700-latin.woff2" as="font" type="font/woff2" crossorigin />
@@ -55,9 +57,9 @@
       <div class="container header__inner">
         <a class="brand" href="#hero" aria-label="Gastronomy home">
           <!-- Light mode logo -->
-          <img src="assets/img/logo/logo-light-mode-50x50.svg" alt="KP_Code logo" class="brand__logo brand__logo--light" width="50" height="50" />
+          <img src="assets/img/logo/logo-light-mode-80.svg" alt="KP_Code logo" class="brand__logo brand__logo--light" width="50" height="50" />
           <!-- Dark mode logo -->
-          <img src="assets/img/logo/logo-dark-mode-50x50.svg" alt="KP_Code logo" class="brand__logo brand__logo--dark" width="50" height="50" />
+          <img src="assets/img/logo/logo-dark-mode-80.svg" alt="KP_Code logo" class="brand__logo brand__logo--dark" width="50" height="50" />
           <span class="brand__text">KP_Code</span>
         </a>
 
@@ -264,6 +266,195 @@
         </div>
       </section>
 
+      <!-- GALLERY -->
+      <section id="gallery" class="section gallery" aria-labelledby="gallery-title">
+        <div class="container">
+          <h2 id="gallery-title" class="gallery__title">Galeria</h2>
+          <ul class="gallery__grid">
+            <!-- Item 1 -->
+            <li class="gallery__item">
+              <a class="gallery__link" href="assets/img/gallery/gal-01-1000x750.jpg" data-lb-caption="" aria-label="">
+                <figure class="gallery__figure">
+                  <picture>
+                    <!-- AVIF -->
+                    <source
+                      type="image/avif"
+                      srcset="assets/img/gallery/gal-01-400x300.avif 400w, assets/img/gallery/gal-01-700x525.avif 700w, assets/img/gallery/gal-01-1000x750.avif 1000w"
+                      sizes="(min-width:1024px) 33vw, (min-width:768px) 50vw, 100vw" />
+                    <!-- WebP -->
+                    <source
+                      type="image/webp"
+                      srcset="assets/img/gallery/gal-01-400x300.webp 400w, assets/img/gallery/gal-01-700x525.webp 700w, assets/img/gallery/gal-01-1000x750.webp 1000w"
+                      sizes="(min-width:1024px) 33vw, (min-width:768px) 50vw, 100vw" />
+                    <!-- Fallback JPG -->
+                    <img
+                      class="gallery__img"
+                      src="assets/img/gallery/gal-01-700x525.jpg"
+                      srcset="assets/img/gallery/gal-01-400x300.jpg 400w, assets/img/gallery/gal-01-700x525.jpg 700w, assets/img/gallery/gal-01-1000x750.jpg 1000w"
+                      sizes="(min-width:1024px) 33vw, (min-width:768px) 50vw, 100vw"
+                      alt=""
+                      loading="lazy"
+                      decoding="async" />
+                  </picture>
+                  <figcaption class="visually-hidden"></figcaption>
+                </figure>
+              </a>
+            </li>
+
+            <!-- Item 2 -->
+            <li class="gallery__item">
+              <a class="gallery__link" href="assets/img/gallery/gal-02-1000x750.jpg" data-lb-caption="" aria-label="">
+                <figure class="gallery__figure">
+                  <picture>
+                    <!-- AVIF -->
+                    <source
+                      type="image/avif"
+                      srcset="assets/img/gallery/gal-02-400x300.avif 400w, assets/img/gallery/gal-02-700x525.avif 700w, assets/img/gallery/gal-02-1000x750.avif 1000w"
+                      sizes="(min-width:1024px) 33vw, (min-width:768px) 50vw, 100vw" />
+                    <!-- WebP -->
+                    <source
+                      type="image/webp"
+                      srcset="assets/img/gallery/gal-02-400x300.webp 400w, assets/img/gallery/gal-02-700x525.webp 700w, assets/img/gallery/gal-02-1000x750.webp 1000w"
+                      sizes="(min-width:1024px) 33vw, (min-width:768px) 50vw, 100vw" />
+                    <!-- Fallback JPG -->
+                    <img
+                      class="gallery__img"
+                      src="assets/img/gallery/gal-02-700x525.jpg"
+                      srcset="assets/img/gallery/gal-02-400x300.jpg 400w, assets/img/gallery/gal-02-700x525.jpg 700w, assets/img/gallery/gal-02-1000x750.jpg 1000w"
+                      sizes="(min-width:1024px) 33vw, (min-width:768px) 50vw, 100vw"
+                      alt=""
+                      loading="lazy"
+                      decoding="async" />
+                  </picture>
+                  <figcaption class="visually-hidden"></figcaption>
+                </figure>
+              </a>
+            </li>
+
+            <!-- Item 3 -->
+            <li class="gallery__item">
+              <a class="gallery__link" href="assets/img/gallery/gal-03-1000x750.jpg" data-lb-caption="" aria-label="">
+                <figure class="gallery__figure">
+                  <picture>
+                    <!-- AVIF -->
+                    <source
+                      type="image/avif"
+                      srcset="assets/img/gallery/gal-03-400x300.avif 400w, assets/img/gallery/gal-03-700x525.avif 700w, assets/img/gallery/gal-03-1000x750.avif 1000w"
+                      sizes="(min-width:1024px) 33vw, (min-width:768px) 50vw, 100vw" />
+                    <!-- WebP -->
+                    <source
+                      type="image/webp"
+                      srcset="assets/img/gallery/gal-03-400x300.webp 400w, assets/img/gallery/gal-03-700x525.webp 700w, assets/img/gallery/gal-03-1000x750.webp 1000w"
+                      sizes="(min-width:1024px) 33vw, (min-width:768px) 50vw, 100vw" />
+                    <!-- Fallback JPG -->
+                    <img
+                      class="gallery__img"
+                      src="assets/img/gallery/gal-03-700x525.jpg"
+                      srcset="assets/img/gallery/gal-03-400x300.jpg 400w, assets/img/gallery/gal-03-700x525.jpg 700w, assets/img/gallery/gal-03-1000x750.jpg 1000w"
+                      sizes="(min-width:1024px) 33vw, (min-width:768px) 50vw, 100vw"
+                      alt=""
+                      loading="lazy"
+                      decoding="async" />
+                  </picture>
+                  <figcaption class="visually-hidden"></figcaption>
+                </figure>
+              </a>
+            </li>
+
+            <!-- Item 4 -->
+            <li class="gallery__item">
+              <a class="gallery__link" href="assets/img/gallery/gal-04-1000x750.jpg" data-lb-caption="" aria-label="">
+                <figure class="gallery__figure">
+                  <picture>
+                    <!-- AVIF -->
+                    <source
+                      type="image/avif"
+                      srcset="assets/img/gallery/gal-04-400x300.avif 400w, assets/img/gallery/gal-04-700x525.avif 700w, assets/img/gallery/gal-04-1000x750.avif 1000w"
+                      sizes="(min-width:1024px) 33vw, (min-width:768px) 50vw, 100vw" />
+                    <!-- WebP -->
+                    <source
+                      type="image/webp"
+                      srcset="assets/img/gallery/gal-04-400x300.webp 400w, assets/img/gallery/gal-04-700x525.webp 700w, assets/img/gallery/gal-04-1000x750.webp 1000w"
+                      sizes="(min-width:1024px) 33vw, (min-width:768px) 50vw, 100vw" />
+                    <!-- Fallback JPG -->
+                    <img
+                      class="gallery__img"
+                      src="assets/img/gallery/gal-04-700x525.jpg"
+                      srcset="assets/img/gallery/gal-04-400x300.jpg 400w, assets/img/gallery/gal-04-700x525.jpg 700w, assets/img/gallery/gal-04-1000x750.jpg 1000w"
+                      sizes="(min-width:1024px) 33vw, (min-width:768px) 50vw, 100vw"
+                      alt=""
+                      loading="lazy"
+                      decoding="async" />
+                  </picture>
+                  <figcaption class="visually-hidden"></figcaption>
+                </figure>
+              </a>
+            </li>
+
+            <!-- Item 5 -->
+            <li class="gallery__item">
+              <a class="gallery__link" href="assets/img/gallery/gal-05-1000x750.jpg" data-lb-caption="" aria-label="">
+                <figure class="gallery__figure">
+                  <picture>
+                    <!-- AVIF -->
+                    <source
+                      type="image/avif"
+                      srcset="assets/img/gallery/gal-05-400x300.avif 400w, assets/img/gallery/gal-05-700x525.avif 700w, assets/img/gallery/gal-05-1000x750.avif 1000w"
+                      sizes="(min-width:1024px) 33vw, (min-width:768px) 50vw, 100vw" />
+                    <!-- WebP -->
+                    <source
+                      type="image/webp"
+                      srcset="assets/img/gallery/gal-05-400x300.webp 400w, assets/img/gallery/gal-05-700x525.webp 700w, assets/img/gallery/gal-05-1000x750.webp 1000w"
+                      sizes="(min-width:1024px) 33vw, (min-width:768px) 50vw, 100vw" />
+                    <!-- Fallback JPG -->
+                    <img
+                      class="gallery__img"
+                      src="assets/img/gallery/gal-05-700x525.jpg"
+                      srcset="assets/img/gallery/gal-05-400x300.jpg 400w, assets/img/gallery/gal-05-700x525.jpg 700w, assets/img/gallery/gal-05-1000x750.jpg 1000w"
+                      sizes="(min-width:1024px) 33vw, (min-width:768px) 50vw, 100vw"
+                      alt=""
+                      loading="lazy"
+                      decoding="async" />
+                  </picture>
+                  <figcaption class="visually-hidden"></figcaption>
+                </figure>
+              </a>
+            </li>
+
+            <!-- Item 6 -->
+            <li class="gallery__item">
+              <a class="gallery__link" href="assets/img/gallery/gal-06-1000x750.jpg" data-lb-caption="" aria-label="">
+                <figure class="gallery__figure">
+                  <picture>
+                    <!-- AVIF -->
+                    <source
+                      type="image/avif"
+                      srcset="assets/img/gallery/gal-06-400x300.avif 400w, assets/img/gallery/gal-06-700x525.avif 700w, assets/img/gallery/gal-06-1000x750.avif 1000w"
+                      sizes="(min-width:1024px) 33vw, (min-width:768px) 50vw, 100vw" />
+                    <!-- WebP -->
+                    <source
+                      type="image/webp"
+                      srcset="assets/img/gallery/gal-06-400x300.webp 400w, assets/img/gallery/gal-06-700x525.webp 700w, assets/img/gallery/gal-06-1000x750.webp 1000w"
+                      sizes="(min-width:1024px) 33vw, (min-width:768px) 50vw, 100vw" />
+                    <!-- Fallback JPG -->
+                    <img
+                      class="gallery__img"
+                      src="assets/img/gallery/gal-06-700x525.jpg"
+                      srcset="assets/img/gallery/gal-06-400x300.jpg 400w, assets/img/gallery/gal-06-700x525.jpg 700w, assets/img/gallery/gal-06-1000x750.jpg 1000w"
+                      sizes="(min-width:1024px) 33vw, (min-width:768px) 50vw, 100vw"
+                      alt=""
+                      loading="lazy"
+                      decoding="async" />
+                  </picture>
+                  <figcaption class="visually-hidden"></figcaption>
+                </figure>
+              </a>
+            </li>
+            <!-- End Gallery Items -->
+          </ul>
+        </div>
+      </section>
+
       <!-- TESTIMONIALS -->
       <section id="testimonials" class="section testimonials" aria-label="Guest testimonials">
         <div class="container">
@@ -295,15 +486,15 @@
             <ul class="contact__details">
               <li>
                 <img src="assets/icons/home-icon.svg" alt="" aria-hidden="true" width="24" height="24" />
-                <span>ul. Dziedzictwa 12, Stare Miasto</span>
+                <span>ul. Marynarki Wojennej 12/31 33-100 Tarnów</span>
               </li>
               <li>
                 <img src="assets/icons/phone-icon.svg" alt="" aria-hidden="true" width="24" height="24" />
-                <a href="tel:+48123456789">+48 123 456 789</a>
+                <a href="tel:+48533537091">+48 533 537 091</a>
               </li>
               <li>
                 <img src="assets/icons/mail-icon.svg" alt="" aria-hidden="true" width="24" height="24" />
-                <a href="mailto:kontakt@gastronomy.example">kontakt@gastronomy.example</a>
+                <a href="mailto:kontakt@gastronomy.example">kp_code_@gmail.com</a>
               </li>
             </ul>
           </div>
@@ -337,8 +528,8 @@
           <!-- Brand -->
           <div class="footer__brand">
             <a class="brand" href="#hero" aria-label="Gastronomy home">
-              <img src="assets/img/logo/logo-dark-mode-50x50.svg" alt="KP_Code logo" class="brand__logo brand__logo--light" width="50" height="50" />
-              <img src="assets/img/logo/logo-light-mode-50x50.svg" alt="KP_Code logo" class="brand__logo brand__logo--dark" width="50" height="50" />
+              <img src="assets/img/logo/logo-dark-mode-80.svg" alt="KP_Code logo" class="brand__logo brand__logo--light" width="50" height="50" />
+              <img src="assets/img/logo/logo-light-mode-80.svg" alt="KP_Code logo" class="brand__logo brand__logo--dark" width="50" height="50" />
               <span class="brand__text">KP_Code</span>
             </a>
             <p class="footer__tagline">Demo projektu przygotowane przez KP_Code. Jeśli chcesz podobną stronę dla swojej restauracji — skontaktuj się ze mną.</p>
@@ -361,7 +552,7 @@
             <address>
               <p>
                 <img src="assets/icons/home-icon.svg" alt="" aria-hidden="true" width="24" height="24" />
-                <a href="tel:+48533537091">ul. Marynarki Wojennej 12, 33-100 Tarnów</a>
+                <a href="tel:+48533537091">ul. Marynarki Wojennej 12/31 33-100 Tarnów</a>
               </p>
               <p>
                 <img src="assets/icons/phone-icon.svg" alt="" aria-hidden="true" width="24" height="24" />
@@ -369,7 +560,7 @@
               </p>
               <p>
                 <img src="assets/icons/mail-icon.svg" alt="" aria-hidden="true" width="24" height="24" />
-                <a href="mailto:hello@example.com">kp_code@gmail.com</a>
+                <a href="mailto:hello@example.com">kp_code_@gmail.com</a>
               </p>
             </address>
           </div>
