@@ -18,6 +18,7 @@
    ===== 09) CONTACT
    ===== 10) FOOTER
    ===== 11) LIGHTBOX
+   ===== 12) STATES + ANIMATIONS
    ===== 99) COMPONENTS & UTILITIES
    ================================================ */
 
@@ -1270,39 +1271,121 @@ body.dark,
 
 /* ========== 11) LIGHTBOX ========== */
 
-/* ===== LIGHTBOX (bez psucia strony) ===== */
-
-/* Overlay domyślnie niewidoczny */
 .lb-overlay {
   position: fixed;
   inset: 0;
-  display: none;                 /* <-- ważne */
+  display: none;
   background: rgba(0, 0, 0, 0.85);
   backdrop-filter: blur(3px);
   z-index: 9999;
 }
 
-/* Tylko gdy lightbox otwarty – pokaż i wycentruj */
 .lb-open .lb-overlay {
-  display: grid;                 /* <-- pokazujemy dopiero teraz */
+  display: grid;
   place-items: center;
   padding: 1.5rem;
 }
 
-/* Obraz w lightboxie */
 .lb-open .lb-overlay img {
   max-width: 92vw;
   max-height: 88vh;
   display: block;
   object-fit: contain;
-  border-radius: 10px;           /* delikatny radius */
-  box-shadow: 0 20px 60px rgba(0,0,0,.45);
+  border-radius: 10px;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.45);
 }
 
-/* (opcjonalnie – blokada scrolla gdy otwarte) */
 .lb-open,
 .lb-open body {
   overflow: hidden;
+}
+
+.lb-modal {
+  position: relative;
+  max-width: 92vw;
+  max-height: 88vh;
+  display: grid;
+  gap: 0.5rem;
+}
+.lb-figure {
+  margin: 0;
+}
+.lb-caption {
+  margin: 0 auto;
+  padding-top: 0.75rem;
+  color: #f1ece6;
+  text-align: center;
+  font-size: 0.95rem;
+  line-height: 1.5;
+  max-width: 70ch;
+  width: 100%;
+}
+
+.lb-close {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  background: rgba(0, 0, 0, 0.35);
+  color: #fff;
+  font-size: 1.4rem;
+  line-height: 1;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color 0.2s ease, border-color 0.2s ease;
+}
+.lb-close:hover,
+.lb-close:focus-visible {
+  background: rgba(0, 0, 0, 0.55);
+  border-color: rgba(255, 255, 255, 0.7);
+}
+
+/* ========== 13) STATES + ANIMATIONS ========== */
+
+/* ----- REVEAL ANIMATIONS ----- */
+[data-reveal] {
+  --rx: 0px;
+  --ry: 16px;
+  --reveal-delay: 0ms;
+}
+[data-reveal][data-reveal-dir="up"] {
+  --rx: 0px;
+  --ry: 16px;
+}
+[data-reveal][data-reveal-dir="down"] {
+  --rx: 0px;
+  --ry: -16px;
+}
+[data-reveal][data-reveal-dir="left"] {
+  --rx: -16px;
+  --ry: 0px;
+}
+[data-reveal][data-reveal-dir="right"] {
+  --rx: 16px;
+  --ry: 0px;
+}
+.reveal {
+  opacity: 0;
+  transform: translate3d(var(--rx), var(--ry), 0);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+  transition-delay: var(--reveal-delay);
+  will-change: opacity, transform;
+}
+.reveal.is-visible {
+  opacity: 1;
+  transform: translate3d(0, 0, 0);
+}
+@media (prefers-reduced-motion: reduce) {
+  .reveal {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+  }
 }
 
 /* ========== 99) COMPONENTS & UTILITIES ========== */
@@ -1434,3 +1517,7 @@ a.btn:focus {
   background: color-mix(in oklab, var(--burgundy) 25%, black);
   border-color: color-mix(in oklab, var(--burgundy) 80%, white);
 }
+
+/* Update summary:
+   Refined reveal motion states with axis variables/directions and reduced-motion safety to prevent flicker or layout shifts.
+   Ensures subtle fade translations align with data-reveal attributes across all sections. */

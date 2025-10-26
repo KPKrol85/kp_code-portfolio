@@ -155,90 +155,200 @@
           form.reset();
         }, 800);
       });
+    initReveal();
     initThemeToggle();
   });
 })();
 
-/* ===== 04) LIGHTBOX (BASE VERSION) ===== */
+/* ===== 04) LIGHTBOX (UNIFIED + A11Y) ===== */
+(function initUnifiedLightbox() {
+  const html = document.documentElement;
 
-function initLightbox() {
-  const images = document.querySelectorAll("[data-lb-caption]");
+  /* Build overlay once */
   let overlay = document.querySelector(".lb-overlay");
-  let modal = overlay ? overlay.querySelector(".lb-modal") : null;
-  let caption = modal ? modal.querySelector(".lb-caption") : null;
-  let img = modal ? modal.querySelector("img") : null;
-
   if (!overlay) {
     overlay = document.createElement("div");
-    modal = document.createElement("div");
-    caption = document.createElement("p");
-    img = document.createElement("img");
-
     overlay.className = "lb-overlay";
+    overlay.setAttribute("role", "dialog");
+    overlay.setAttribute("aria-modal", "true");
+    overlay.setAttribute("aria-label", "Podgląd zdjęcia");
+
+    const modal = document.createElement("div");
     modal.className = "lb-modal";
+
+    const figure = document.createElement("figure");
+    figure.className = "lb-figure";
+
+    const img = document.createElement("img");
+    img.alt = "";
+    img.decoding = "async";
+    img.loading = "eager";
+
+    const caption = document.createElement("figcaption");
     caption.className = "lb-caption";
 
-    modal.append(img, caption);
+    const closeBtn = document.createElement("button");
+    closeBtn.type = "button";
+    closeBtn.className = "lb-close";
+    closeBtn.setAttribute("aria-label", "Zamknij podgląd");
+    closeBtn.innerHTML = "&times;";
+
+    figure.append(img, caption);
+    modal.append(closeBtn, figure);
     overlay.append(modal);
     document.body.appendChild(overlay);
   }
 
-  images.forEach((image) => {
-    image.addEventListener("click", () => {
-      img.src = image.src;
-      caption.textContent = image.dataset.lbCaption || "";
-      overlay.classList.add("active");
-    });
-  });
+  const imgEl = overlay.querySelector("img");
+  const captionEl = overlay.querySelector(".lb-caption");
+  const closeBtn = overlay.querySelector(".lb-close");
 
-  overlay.addEventListener("click", (e) => {
-    if (e.target === overlay) overlay.classList.remove("active");
-  });
-}
-
-if (document.readyState === "loading") {
-  document.addEventListener("DOMContentLoaded", initLightbox);
-} else {
-  initLightbox();
-}
-
-/* ===== GALLERY – Lightbox integration (progressive enhancement) ===== */
-(function initGalleryLightbox() {
-  const overlay = document.querySelector(".lb-overlay");
-  if (!overlay) return;
-  const body = document.documentElement; // we toggle class on <html>
-  const imgEl =
-    overlay.querySelector("img") ||
-    (() => {
-      const img = document.createElement("img");
-      img.alt = "";
-      img.decoding = "async";
-      img.loading = "eager";
-      overlay.appendChild(img);
-      return img;
-    })();
-
-  function open(src, caption) {
-    imgEl.src = src;
-    imgEl.setAttribute("data-lb-caption", caption || "");
-    body.classList.add("lb-open");
+  function getCaptionFromLink(link) {
+    if (!link) return "";
+    // 1) data-lb-caption na linku
+    const dataCap = link.getAttribute("data-lb-caption");
+    if (dataCap) return dataCap.trim();
+    // 2) figcaption w środku linku
+    const fc = link.querySelector("figcaption");
+    if (fc && fc.textContent.trim()) return fc.textContent.trim();
+    // 3) alt obrazka wewnątrz
+    const innerImg = link.querySelector("img");
+    if (innerImg && innerImg.alt.trim()) return innerImg.alt.trim();
+    return "";
   }
-  function close() {
-    body.classList.remove("lb-open");
+
+  function openLightbox(src, captionText) {
+    imgEl.src = src;
+    captionEl.textContent = captionText || "";
+    html.classList.add("lb-open");
+    // Focus mgnt: po otwarciu focus na przycisku Zamknij
+    requestAnimationFrame(() => closeBtn.focus());
+  }
+
+  function closeLightbox() {
+    html.classList.remove("lb-open");
     imgEl.removeAttribute("src");
   }
 
+  // Click w tło zamyka
   overlay.addEventListener("click", (e) => {
-    if (e.target === overlay) close();
-  });
-  document.addEventListener("keydown", (e) => {
-    if (e.key === "Escape") close();
+    if (e.target === overlay) closeLightbox();
   });
 
-  document.querySelectorAll(".gallery__link").forEach((a) => {
-    a.addEventListener("click", (e) => {
+  // ESC zamyka
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape" && html.classList.contains("lb-open")) {
+      closeLightbox();
+    }
+  });
+
+  // TAB trap (prosta pętla po focusowalnych elementach w overlay)
+  overlay.addEventListener("keydown", (e) => {
+    if (e.key !== "Tab") return;
+    const focusables = overlay.querySelectorAll('button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])');
+    if (!focusables.length) return;
+    const first = focusables[0];
+    const last = focusables[focusables.length - 1];
+    if (e.shiftKey && document.activeElement === first) {
+      last.focus();
       e.preventDefault();
-      open(a.getAttribute("href"), a.getAttribute("data-lb-caption"));
-    });
+    } else if (!e.shiftKey && document.activeElement === last) {
+      first.focus();
+      e.preventDefault();
+    }
+  });
+
+  // Przycisk zamknięcia
+  closeBtn.addEventListener("click", closeLightbox);
+
+  // Delegacja: obsługuj kliknięcia w .gallery__link (i dowolny element z [data-lb] w przyszłości)
+  document.addEventListener("click", (e) => {
+    const a = e.target.closest(".gallery__link");
+    if (!a) return;
+    const href = a.getAttribute("href");
+    if (!href) return;
+    e.preventDefault();
+    const caption = getCaptionFromLink(a);
+    openLightbox(href, caption);
   });
 })();
+
+
+/* ===== 04) REVEAL (IntersectionObserver + fallbacks) ===== */
+function initReveal() {
+  var nodes = Array.prototype.slice.call(document.querySelectorAll("[data-reveal]"));
+  if (!nodes.length) return;
+
+  var motionQuery = typeof window.matchMedia === "function" ? window.matchMedia("(prefers-reduced-motion: reduce)") : null;
+  var prefersReduce = motionQuery ? motionQuery.matches : false;
+  var hasObserver = typeof window.IntersectionObserver === "function";
+  var observer = null;
+
+  var show = function (el) {
+    el.classList.add("is-visible");
+  };
+  var isInView = function (el) {
+    var rect = el.getBoundingClientRect();
+    var viewportH = window.innerHeight || document.documentElement.clientHeight || 0;
+    return rect.top <= viewportH * 0.9 && rect.bottom >= 0;
+  };
+
+  // Ensure baseline reveal class + per-group stagger tokens.
+  nodes.forEach(function (el) {
+    el.classList.add("reveal");
+  });
+  document.querySelectorAll("[data-reveal-group]").forEach(function (group) {
+    var groupItems = group.querySelectorAll("[data-reveal]");
+    groupItems.forEach(function (el, index) {
+      el.style.setProperty("--reveal-delay", (index * 80).toString() + "ms");
+    });
+  });
+
+  // Respect reduced motion and older browsers with an immediate reveal.
+  if (!hasObserver || prefersReduce) {
+    nodes.forEach(show);
+    return;
+  }
+
+  observer = new IntersectionObserver(
+    function (entries, obs) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting) {
+          show(entry.target);
+          obs.unobserve(entry.target);
+        }
+      });
+    },
+    { root: null, rootMargin: "0px 0px -10% 0px", threshold: 0.15 }
+  );
+
+  // Reveal anything already inside the viewport to avoid flicker.
+  nodes.forEach(function (el) {
+    if (isInView(el)) {
+      show(el);
+    } else {
+      observer.observe(el);
+    }
+  });
+
+  // If the user switches to reduced motion mid-session, stop animating.
+  if (motionQuery) {
+    var handleMotionChange = function (event) {
+      if (!event.matches || !observer) return;
+      observer.disconnect();
+      nodes.forEach(show);
+    };
+    if (typeof motionQuery.addEventListener === "function") {
+      motionQuery.addEventListener("change", handleMotionChange);
+    } else if (typeof motionQuery.addListener === "function") {
+      motionQuery.addListener(handleMotionChange);
+    }
+  }
+}
+if (typeof window !== "undefined") {
+  window.initReveal = initReveal;
+}
+
+// Update summary:
+// Refined initReveal to add classes, stagger groups, honor reduced motion, and gracefully reveal elements even without IntersectionObserver.
+// Keeps hero/above-the-fold content visible at load while scrolling animates the remaining sections.

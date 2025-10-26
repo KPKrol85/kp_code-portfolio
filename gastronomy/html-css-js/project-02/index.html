@@ -94,7 +94,7 @@
       <!-- HERO -->
       <section id="hero" class="hero" aria-label="Welcome hero">
         <div class="container hero__inner">
-          <div class="hero__content">
+          <div class="hero__content" data-reveal>
             <h1 class="hero__title">Podróż Przez Smaki Fine Dining</h1>
             <p class="hero__subtitle">Sezonowe smaki tworzone z pasją.</p>
             <div class="hero__actions">
@@ -136,7 +136,7 @@
       <!-- ABOUT -->
       <section id="about" class="section about" aria-label="About Gastronomy">
         <div class="container grid grid--2">
-          <div class="about__media">
+          <div class="about__media" data-reveal>
             <picture>
               <!-- AVIF -->
               <source
@@ -163,7 +163,7 @@
                 data-lb-caption="Szef kuchni przygotowuje dania autorskie na drewnianych deskach — kulisy sztuki fine diningu." />
             </picture>
           </div>
-          <div class="about__content">
+          <div class="about__content" data-reveal>
             <h2>O Nas</h2>
             <p>Celebrujemy sztukę kuchni, łącząc elegancję tradycji z odrobiną nowoczesności. Nasz zespół wybiera wyłącznie najlepsze lokalne składniki, tworząc niezapomniane doznania smakowe.</p>
             <p>Zapraszamy na wieczór, podczas którego każda potrawa opowiada własną historię — w towarzystwie wyselekcjonowanych win i ciepłej, gościnnej atmosfery.</p>
@@ -175,9 +175,9 @@
       <section id="menu" class="section menu" aria-label="Seasonal menu highlights">
         <div class="container">
           <h2>Sezonowe Menu</h2>
-          <ul class="cards">
+          <ul class="cards" data-reveal-group>
             <!-- Duck -->
-            <li class="card" aria-label="Burgundy glazed duck">
+            <li class="card" data-reveal aria-label="Burgundy glazed duck">
               <picture>
                 <source
                   type="image/avif"
@@ -206,7 +206,7 @@
             </li>
 
             <!-- Risotto -->
-            <li class="card" aria-label="Golden saffron risotto">
+            <li class="card" data-reveal aria-label="Golden saffron risotto">
               <picture>
                 <source
                   type="image/avif"
@@ -235,7 +235,7 @@
             </li>
 
             <!-- Cake -->
-            <li class="card" aria-label="Citrus olive oil cake">
+            <li class="card" data-reveal aria-label="Citrus olive oil cake">
               <picture>
                 <source
                   type="image/avif"
@@ -270,10 +270,14 @@
       <section id="gallery" class="section gallery" aria-labelledby="gallery-title">
         <div class="container">
           <h2 id="gallery-title" class="gallery__title">Galeria</h2>
-          <ul class="gallery__grid">
+          <ul class="gallery__grid" data-reveal-group>
             <!-- Item 1 -->
-            <li class="gallery__item">
-              <a class="gallery__link" href="assets/img/gallery/gal-01-1000x750.jpg" data-lb-caption="" aria-label="">
+            <li class="gallery__item" data-reveal>
+              <a
+                class="gallery__link"
+                href="assets/img/gallery/gal-01-1000x750.jpg"
+                data-lb-caption="Stylowa sala restauracyjna z ciepłym oświetleniem, klasycznymi meblami i winoteką w tle — idealne miejsce na kolację w eleganckiej atmosferze."
+                aria-label="Otwórz podgląd zdjęcia">
                 <figure class="gallery__figure">
                   <picture>
                     <!-- AVIF -->
@@ -292,7 +296,7 @@
                       src="assets/img/gallery/gal-01-700x525.jpg"
                       srcset="assets/img/gallery/gal-01-400x300.jpg 400w, assets/img/gallery/gal-01-700x525.jpg 700w, assets/img/gallery/gal-01-1000x750.jpg 1000w"
                       sizes="(min-width:1024px) 33vw, (min-width:768px) 50vw, 100vw"
-                      alt=""
+                      alt="Wnętrze eleganckiej restauracji z kamiennymi ścianami, nakrytymi stołami i oświetleniem w ciepłej tonacji."
                       loading="lazy"
                       decoding="async" />
                   </picture>
@@ -302,8 +306,12 @@
             </li>
 
             <!-- Item 2 -->
-            <li class="gallery__item">
-              <a class="gallery__link" href="assets/img/gallery/gal-02-1000x750.jpg" data-lb-caption="" aria-label="">
+            <li class="gallery__item" data-reveal>
+              <a
+                class="gallery__link"
+                href="assets/img/gallery/gal-02-1000x750.jpg"
+                data-lb-caption="Jasna, nowoczesna przestrzeń kawiarni z panoramicznymi oknami i bujną zielenią — miejsce, w którym natura spotyka się z designem i aromatem kawy."
+                aria-label="">
                 <figure class="gallery__figure">
                   <picture>
                     <!-- AVIF -->
@@ -322,7 +330,7 @@
                       src="assets/img/gallery/gal-02-700x525.jpg"
                       srcset="assets/img/gallery/gal-02-400x300.jpg 400w, assets/img/gallery/gal-02-700x525.jpg 700w, assets/img/gallery/gal-02-1000x750.jpg 1000w"
                       sizes="(min-width:1024px) 33vw, (min-width:768px) 50vw, 100vw"
-                      alt=""
+                      alt="Nowoczesne wnętrze kawiarni z dużymi przeszkleniami, roślinami i minimalistycznymi stolikami."
                       loading="lazy"
                       decoding="async" />
                   </picture>
@@ -332,8 +340,12 @@
             </li>
 
             <!-- Item 3 -->
-            <li class="gallery__item">
-              <a class="gallery__link" href="assets/img/gallery/gal-03-1000x750.jpg" data-lb-caption="" aria-label="">
+            <li class="gallery__item" data-reveal>
+              <a
+                class="gallery__link"
+                href="assets/img/gallery/gal-03-1000x750.jpg"
+                data-lb-caption="Nowoczesna restauracja o ciepłej, przyjaznej atmosferze — połączenie drewna, zieleni i subtelnego światła tworzy idealne miejsce na spotkania przy wykwintnym posiłku."
+                aria-label="">
                 <figure class="gallery__figure">
                   <picture>
                     <!-- AVIF -->
@@ -352,7 +364,7 @@
                       src="assets/img/gallery/gal-03-700x525.jpg"
                       srcset="assets/img/gallery/gal-03-400x300.jpg 400w, assets/img/gallery/gal-03-700x525.jpg 700w, assets/img/gallery/gal-03-1000x750.jpg 1000w"
                       sizes="(min-width:1024px) 33vw, (min-width:768px) 50vw, 100vw"
-                      alt=""
+                      alt="Przytulne wnętrze nowoczesnej restauracji z drewnianymi stołami, designerskim oświetleniem i eleganckimi nakryciami."
                       loading="lazy"
                       decoding="async" />
                   </picture>
@@ -362,8 +374,12 @@
             </li>
 
             <!-- Item 4 -->
-            <li class="gallery__item">
-              <a class="gallery__link" href="assets/img/gallery/gal-04-1000x750.jpg" data-lb-caption="" aria-label="">
+            <li class="gallery__item" data-reveal>
+              <a
+                class="gallery__link"
+                href="assets/img/gallery/gal-04-1000x750.jpg"
+                data-lb-caption="Subtelne danie główne z soczystego kurczaka, serwowane z warzywami i aromatycznym sosem — fine dining w eleganckim wnętrzu o ciepłym świetle."
+                aria-label="">
                 <figure class="gallery__figure">
                   <picture>
                     <!-- AVIF -->
@@ -382,7 +398,7 @@
                       src="assets/img/gallery/gal-04-700x525.jpg"
                       srcset="assets/img/gallery/gal-04-400x300.jpg 400w, assets/img/gallery/gal-04-700x525.jpg 700w, assets/img/gallery/gal-04-1000x750.jpg 1000w"
                       sizes="(min-width:1024px) 33vw, (min-width:768px) 50vw, 100vw"
-                      alt=""
+                      alt="Danie główne w eleganckiej restauracji — pierś z kurczaka z warzywami i sosem, podana w klasycznej aranżacji stołu."
                       loading="lazy"
                       decoding="async" />
                   </picture>
@@ -392,8 +408,12 @@
             </li>
 
             <!-- Item 5 -->
-            <li class="gallery__item">
-              <a class="gallery__link" href="assets/img/gallery/gal-05-1000x750.jpg" data-lb-caption="" aria-label="">
+            <li class="gallery__item" data-reveal>
+              <a
+                class="gallery__link"
+                href="assets/img/gallery/gal-05-1000x750.jpg"
+                data-lb-caption="Złociste krewetki w lekkiej panierce z dodatkiem świeżej limonki i sosu sojowego — połączenie chrupiącej tekstury i intensywnego smaku kuchni premium."
+                aria-label="">
                 <figure class="gallery__figure">
                   <picture>
                     <!-- AVIF -->
@@ -412,7 +432,7 @@
                       src="assets/img/gallery/gal-05-700x525.jpg"
                       srcset="assets/img/gallery/gal-05-400x300.jpg 400w, assets/img/gallery/gal-05-700x525.jpg 700w, assets/img/gallery/gal-05-1000x750.jpg 1000w"
                       sizes="(min-width:1024px) 33vw, (min-width:768px) 50vw, 100vw"
-                      alt=""
+                      alt="Chrupiące krewetki w panierce z limonką i sosem sojowym, podane na drewnianym stole w restauracji."
                       loading="lazy"
                       decoding="async" />
                   </picture>
@@ -422,8 +442,12 @@
             </li>
 
             <!-- Item 6 -->
-            <li class="gallery__item">
-              <a class="gallery__link" href="assets/img/gallery/gal-06-1000x750.jpg" data-lb-caption="" aria-label="">
+            <li class="gallery__item" data-reveal>
+              <a
+                class="gallery__link"
+                href="assets/img/gallery/gal-06-1000x750.jpg"
+                data-lb-caption="Soczyste żeberka w glazurze barbecue z grillowanymi warzywami i frytkami — klasyka kuchni w nowoczesnym, fine diningowym wydaniu."
+                aria-label="">
                 <figure class="gallery__figure">
                   <picture>
                     <!-- AVIF -->
@@ -442,7 +466,7 @@
                       src="assets/img/gallery/gal-06-700x525.jpg"
                       srcset="assets/img/gallery/gal-06-400x300.jpg 400w, assets/img/gallery/gal-06-700x525.jpg 700w, assets/img/gallery/gal-06-1000x750.jpg 1000w"
                       sizes="(min-width:1024px) 33vw, (min-width:768px) 50vw, 100vw"
-                      alt=""
+                      alt="Grillowane żeberka z warzywami i frytkami, podane na czarnym kamiennym półmisku w nowoczesnej restauracji."
                       loading="lazy"
                       decoding="async" />
                   </picture>
@@ -459,14 +483,14 @@
       <section id="testimonials" class="section testimonials" aria-label="Guest testimonials">
         <div class="container">
           <h2>Opinie Gości</h2>
-          <ul class="quotes" role="list">
-            <li class="quote">
+          <ul class="quotes" data-reveal-group>
+            <li class="quote" data-reveal>
               <blockquote>
                 <p>Każde danie było małym dziełem sztuki — doskonale zbalansowane, pełne smaku i zapadające w pamięć.</p>
                 <cite>— Alex R.</cite>
               </blockquote>
             </li>
-            <li class="quote">
+            <li class="quote" data-reveal data-reveal-dir="up">
               <blockquote>
                 <p>Obsługa na najwyższym poziomie, a dobrane wina idealnie podkreślały smak każdego dania.</p>
                 <cite>— Patrycja S.</cite>
@@ -480,7 +504,7 @@
       <section id="contact" class="section contact" aria-label="Contact and reservations">
         <div class="container grid grid--2">
           <!-- Contact -->
-          <div class="contact__content">
+          <div class="contact__content" data-reveal data-reveal-dir="left">
             <h2>Kontakt</h2>
             <p>Z przyjemnością ugościmy Cię w naszej restauracji. Zarezerwuj stolik lub wyślij nam wiadomość.</p>
             <ul class="contact__details">
@@ -499,7 +523,7 @@
             </ul>
           </div>
           <!-- Reservation form -->
-          <form class="form" aria-label="Reservation form" novalidate>
+          <form class="form" aria-label="Reservation form" novalidate data-reveal data-reveal-dir="right">
             <div class="form__row">
               <label for="name">Imię i nazwisko</label>
               <input id="name" name="name" type="text" autocomplete="name" required aria-required="true" />
@@ -611,5 +635,10 @@
     </noscript>
     <!-- SCRIPT -->
     <script src="js/script.js" defer></script>
+    <!--
+      Reveal update summary:
+      Added explicit data-reveal hooks/directions for testimonials and contact so JS/CSS can animate them smoothly at load and on scroll.
+      Ensures content appears instantly when reduced motion is enabled.
+    -->
   </body>
 </html>
