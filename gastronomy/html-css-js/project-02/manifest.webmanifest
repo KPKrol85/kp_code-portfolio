@@ -10,6 +10,7 @@
   "orientation": "portrait-primary",
   "theme_color": "#f8f1e7",
   "background_color": "#f8f1e7",
+
   "icons": [
     {
       "src": "/assets/icons/fav-icon/web-app-manifest-192x192.png",
@@ -40,36 +41,24 @@
       "type": "image/png"
     }
   ],
+
   "screenshots": [
     {
       "src": "assets/img/screenshots-img/screenshot-1280x720.jpg",
       "sizes": "1280x720",
       "type": "image/jpeg",
       "form_factor": "wide",
-      "label": "Widok strony gastronomicznej – desktop"
-    },
-    {
-      "src": "assets/img/screenshots-img/screenshot-1920x1080.jpg",
-      "sizes": "1920x1080",
-      "type": "image/jpeg",
-      "form_factor": "wide",
-      "label": "Widok strony gastronomicznej – desktop (Full HD)"
+      "label": "Widok strony gastronomicznej – desktop (16:9)"
     },
     {
       "src": "assets/img/screenshots-img/screenshot-720x1280.jpg",
       "sizes": "720x1280",
       "type": "image/jpeg",
       "form_factor": "narrow",
-      "label": "Widok strony gastronomicznej – mobile"
-    },
-    {
-      "src": "assets/img/screenshots-img/screenshot-1080x1920.jpg",
-      "sizes": "1080x1920",
-      "type": "image/jpeg",
-      "form_factor": "narrow",
-      "label": "Widok strony gastronomicznej – mobile (duży ekran)"
+      "label": "Widok strony gastronomicznej – mobile (9:16)"
     }
   ],
+
   "shortcuts": [
     {
       "name": "Menu",
