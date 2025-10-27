@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="pl">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="Strona nie została znaleziona — wróć do menu głównego restauracji Gastronomy 02." />
+    <title>Gastronomy 02 | Strona nie została znaleziona</title>
+    <style>
+      :root {
+        color-scheme: light;
+        --cream: #f8f1e7;
+        --gold: #c9a227;
+        --burgundy: #6b1e2f;
+        --charcoal: #2e2a27;
+        --text-muted: rgba(46, 42, 39, 0.72);
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        font-family: "Montserrat", "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+        color: var(--charcoal);
+        background: linear-gradient(135deg, var(--cream) 0%, color-mix(in srgb, var(--cream) 35%, var(--burgundy)) 55%, var(--burgundy) 100%);
+      }
+
+      main {
+        flex: 1;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: clamp(2rem, 5vw, 6rem) 1.5rem;
+      }
+
+      .card {
+        width: min(680px, 100%);
+        text-align: center;
+        background-color: rgba(248, 241, 231, 0.92);
+        padding: clamp(2.5rem, 6vw, 4rem);
+        border-radius: 18px;
+        box-shadow: 0 18px 45px rgba(0, 0, 0, 0.08);
+        backdrop-filter: blur(6px);
+        animation: soft-reveal 700ms ease-out both;
+      }
+
+      .overtitle {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        font-size: 0.95rem;
+        letter-spacing: 0.18em;
+        text-transform: uppercase;
+        font-weight: 600;
+        color: var(--burgundy);
+      }
+
+      .headline {
+        margin: 1rem 0 0.5rem;
+        font-size: clamp(3.5rem, 12vw, 6rem);
+        letter-spacing: -0.04em;
+        font-weight: 700;
+      }
+
+      .subheadline {
+        margin: 0 0 1.5rem;
+        font-size: clamp(1.25rem, 3vw, 1.75rem);
+        font-weight: 500;
+        color: var(--charcoal);
+      }
+
+      .description {
+        margin: 0 auto clamp(2rem, 6vw, 3rem);
+        font-family: "Lato", "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+        font-size: 1.05rem;
+        line-height: 1.7;
+        color: var(--text-muted);
+        max-width: 42ch;
+      }
+
+      .cta {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0.6rem;
+        padding: 0.85rem 2.6rem;
+        font-weight: 600;
+        letter-spacing: 0.04em;
+        text-decoration: none;
+        text-transform: uppercase;
+        border-radius: 999px;
+        border: none;
+        color: #fff;
+        background: var(--burgundy);
+        transition: background-color 0.35s ease, transform 0.35s ease, box-shadow 0.35s ease;
+        will-change: transform;
+      }
+
+      .cta:focus-visible {
+        outline: 2px solid color-mix(in srgb, var(--gold) 65%, white);
+        outline-offset: 3px;
+      }
+
+      .cta:hover {
+        background: color-mix(in srgb, var(--burgundy) 60%, var(--gold));
+        transform: translateY(-2px);
+        box-shadow: 0 14px 30px rgba(107, 30, 47, 0.22);
+      }
+
+      footer {
+        padding: 1.5rem;
+        text-align: center;
+        font-family: "Lato", "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+        font-size: 0.95rem;
+        color: rgba(248, 241, 231, 0.86);
+      }
+
+      @keyframes soft-reveal {
+        from {
+          opacity: 0;
+          transform: translateY(12px) scale(0.985);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0) scale(1);
+        }
+      }
+
+      @media (max-width: 640px) {
+        .card {
+          padding: clamp(2rem, 8vw, 3rem);
+          border-radius: 16px;
+        }
+
+        .description {
+          font-size: 1rem;
+        }
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        .card {
+          animation: none;
+        }
+
+        .cta {
+          transition: none;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <main role="main">
+      <article class="card" aria-labelledby="headline-404">
+        <span class="overtitle">Gastronomy 02</span>
+        <h1 id="headline-404" class="headline">404</h1>
+        <p class="subheadline">Nie znaleziono strony</p>
+        <p class="description">
+          Strona, której szukasz, mogła zostać przeniesiona lub już nie istnieje. Wróć na stronę główną i odkryj wyjątkowe doznania kulinarne.
+        </p>
+        <a class="cta" href="index.html" aria-label="Powrót na stronę główną Gastronomy 02">Powrót do strony głównej</a>
+      </article>
+    </main>
+    <footer aria-label="Stopka">
+      KP_Code · Gastronomy 02
+    </footer>
+  </body>
+</html>

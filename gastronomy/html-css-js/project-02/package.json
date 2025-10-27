@@ -1,0 +1,35 @@
+{
+  "name": "gastronomy-html-css-js-project-02",
+  "version": "1.0.0",
+  "description": "Demo strony gastronomicznej w portfolio KP_Code – nowoczesny design, responsywność i optymalizacja SEO.",
+  "main": "index.js",
+  "author": "KP_Code",
+  "license": "MIT",
+  "keywords": [
+    "KP_Code",
+    "frontend",
+    "portfolio",
+    "gastronomy",
+    "restaurant",
+    "HTML",
+    "CSS",
+    "JavaScript",
+    "responsive",
+    "PWA"
+  ],
+  "scripts": {
+    "start": "live-server --port=5500",
+    "build": "npm run build:css && npm run build:js",
+    "build:css": "postcss css/style.css -o css/style.min.css",
+    "build:js": "terser js/script.js -o js/script.min.js --compress --mangle",
+    "format": "prettier --write \"**/*.{html,css,js,json,md}\""
+  },
+  "devDependencies": {
+    "cssnano": "^6.1.2",
+    "live-server": "^1.2.2",
+    "postcss": "^8.5.6",
+    "postcss-cli": "^11.0.1",
+    "prettier": "^3.6.2",
+    "terser": "^5.44.0"
+  }
+}

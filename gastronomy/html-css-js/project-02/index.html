@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="pl">
   <head>
     <!-- NETLIFY DEPLOY -->
@@ -696,5 +696,15 @@
     </noscript>
     <!-- SCRIPT -->
     <script src="js/script.js" defer></script>
+    <script>
+      if ("serviceWorker" in navigator) {
+        window.addEventListener("load", function () {
+          navigator.serviceWorker
+            .register("/sw.js")
+            .then(() => console.log("✅ Service Worker registered"))
+            .catch((err) => console.warn("Service Worker failed:", err));
+        });
+      }
+    </script>
   </body>
 </html>
