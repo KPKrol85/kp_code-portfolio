@@ -273,7 +273,6 @@
   });
 })();
 
-
 /* ===== 04) REVEAL (IntersectionObserver + fallbacks) ===== */
 function initReveal() {
   var nodes = Array.prototype.slice.call(document.querySelectorAll("[data-reveal]"));

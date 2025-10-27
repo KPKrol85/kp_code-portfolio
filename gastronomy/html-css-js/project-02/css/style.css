@@ -17,8 +17,11 @@
    ===== 08) TESTIMONIALS
    ===== 09) CONTACT
    ===== 10) FOOTER
-   ===== 11) LIGHTBOX
-   ===== 12) STATES + ANIMATIONS
+   ===== 11) SUBPAGE MENU
+   ===== 12) SUBPAGE GALLERY
+   ===== 13) SUBPAGE ABOUT
+   ===== 12) LIGHTBOX
+   ===== 13) STATES + ANIMATIONS
    ===== 99) COMPONENTS & UTILITIES
    ================================================ */
 
@@ -116,7 +119,9 @@
   box-sizing: border-box;
 }
 html {
-  transition: background-color 0.18s ease, color 0.18s ease;
+  transition:
+    background-color 0.18s ease,
+    color 0.18s ease;
   margin: 0;
   padding: 0;
   overflow-x: clip;
@@ -182,7 +187,15 @@ select {
 /* ========== 01) TYPOGRAPHY ========== */
 
 body {
-  font-family: "Lato", system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
+  font-family:
+    "Lato",
+    system-ui,
+    -apple-system,
+    Segoe UI,
+    Roboto,
+    Helvetica,
+    Arial,
+    sans-serif;
   color: var(--ink);
   line-height: 1.6;
 }
@@ -447,7 +460,10 @@ main {
   min-width: 44px;
   min-height: 44px;
   border-radius: 999px;
-  transition: background-color 0.18s ease, border-color 0.18s ease, color 0.18s ease;
+  transition:
+    background-color 0.18s ease,
+    border-color 0.18s ease,
+    color 0.18s ease;
 }
 
 .nav-toggle:hover,
@@ -474,7 +490,11 @@ main {
   background: var(--surface-overlay);
   color: var(--charcoal);
   cursor: pointer;
-  transition: background-color 0.18s ease, color 0.18s ease, border-color 0.18s ease, box-shadow 0.18s ease;
+  transition:
+    background-color 0.18s ease,
+    color 0.18s ease,
+    border-color 0.18s ease,
+    box-shadow 0.18s ease;
 }
 
 .theme-toggle:hover,
@@ -496,7 +516,9 @@ main {
 .theme-toggle__icon {
   font-size: 1.1rem;
   line-height: 1;
-  transition: opacity 0.18s ease, transform 0.18s ease;
+  transition:
+    opacity 0.18s ease,
+    transform 0.18s ease;
 }
 
 .theme-toggle__icon--sun {
@@ -548,6 +570,24 @@ main {
   list-style: none;
 }
 
+/* ===== ACTIVE NAV LINK (aria-current) ===== */
+.nav__list a[aria-current="page"] {
+  font-weight: 700;
+  text-decoration: underline;
+  text-underline-offset: 0.35em;
+  text-decoration-thickness: 2px;
+}
+.nav__list a[aria-current="page"]:focus-visible {
+  outline: 2px solid currentColor;
+  outline-offset: 3px;
+  border-radius: 0.25rem;
+}
+.nav__list a:hover,
+.nav__list a:focus-visible {
+  text-decoration: underline;
+  text-underline-offset: 0.35em;
+}
+
 @media (min-width: 1024px) {
   .nav {
     position: static;
@@ -575,10 +615,15 @@ main {
 
 @media (prefers-reduced-motion: no-preference) {
   .site-header {
-    transition: background-color 0.18s ease, border-color 0.18s ease, box-shadow 0.18s ease;
+    transition:
+      background-color 0.18s ease,
+      border-color 0.18s ease,
+      box-shadow 0.18s ease;
   }
   .nav {
-    transition: transform 0.2s ease, opacity 0.2s ease;
+    transition:
+      transform 0.2s ease,
+      opacity 0.2s ease;
   }
 }
 
@@ -804,6 +849,15 @@ main {
   color: var(--text-muted);
 }
 
+/* ----- CTA Button under section title ----- */
+.menu__cta {
+  text-align: center;
+  margin-top: 1rem;
+}
+.menu__cta .btn {
+  margin-inline: auto;
+}
+
 @media (min-width: 768px) {
   .cards {
     grid-template-columns: repeat(2, 1fr);
@@ -979,7 +1033,9 @@ main {
 .contact__details a {
   color: var(--burgundy);
   text-decoration: none;
-  transition: color 0.2s ease, text-decoration-color 0.2s ease;
+  transition:
+    color 0.2s ease,
+    text-decoration-color 0.2s ease;
 }
 .contact__details a:hover,
 .contact__details a:focus-visible {
@@ -1198,7 +1254,9 @@ body.dark,
   width: 2rem;
   height: 2rem;
   line-height: 0;
-  transition: transform 0.2s ease, opacity 0.2s ease;
+  transition:
+    transform 0.2s ease,
+    opacity 0.2s ease;
 }
 .footer__social img {
   width: 1.5rem;
@@ -1258,6 +1316,7 @@ body.dark,
     width: 100%;
   }
 }
+
 @media (min-width: 768px) {
   .footer__grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -1269,7 +1328,232 @@ body.dark,
   }
 }
 
-/* ========== 11) LIGHTBOX ========== */
+/* ========== 11) SUBPAGE MENU ========== */
+
+.page--menu .page-hero {
+  position: relative;
+  background: linear-gradient(135deg, color-mix(in srgb, var(--cream) 88%, white), color-mix(in srgb, var(--burgundy) 12%, var(--cream)));
+  isolation: isolate;
+}
+
+.page--menu .page-hero::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at 25% 20%, rgba(201, 162, 39, 0.08), transparent 55%);
+  pointer-events: none;
+  z-index: -1;
+}
+
+.page--menu .page-hero__inner {
+  display: flex;
+  justify-content: center;
+}
+
+.page--menu .page-hero__content {
+  max-width: 640px;
+  text-align: center;
+  display: grid;
+  gap: 1rem;
+}
+
+.page--menu .page-hero__eyebrow {
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  font-size: 0.85rem;
+  color: var(--burgundy);
+}
+
+.page--menu .page-hero__lead {
+  margin: 0 auto;
+  color: var(--text-muted);
+  max-width: 56ch;
+}
+
+.page--menu .menu-navigation .container {
+  display: flex;
+  justify-content: center;
+}
+
+.page--menu .menu-tabs {
+  width: 100%;
+  max-width: 960px;
+  background: color-mix(in srgb, var(--surface-overlay) 80%, transparent);
+  border: 1px solid var(--border-soft);
+  border-radius: var(--radius);
+  padding: 0.75rem;
+  box-shadow: var(--shadow);
+  backdrop-filter: blur(8px);
+}
+
+.page--menu .menu-tabs__list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  justify-content: center;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  margin-top: 1rem;
+}
+
+.page--menu .menu-tabs__list .btn {
+  min-width: 140px;
+  text-align: center;
+}
+
+.page--menu .menu-section__header {
+  text-align: center;
+  max-width: 640px;
+  margin: 0 auto 2rem;
+  display: grid;
+  gap: 0.75rem;
+}
+
+.page--menu .menu-section__intro {
+  margin: 0;
+  color: var(--text-muted);
+}
+
+.page--menu .menu-card article {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.page--menu .menu-card__figure {
+  margin: 0;
+  overflow: hidden;
+}
+
+.page--menu .menu-card__figure picture {
+  display: block;
+}
+
+.page--menu .menu-card__figure img {
+  transition: transform 0.35s ease;
+}
+
+.page--menu .menu-card:hover .menu-card__figure img,
+.page--menu .menu-card:focus-within .menu-card__figure img {
+  transform: scale(1.03);
+}
+
+.page--menu .menu-card__heading {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+  margin-bottom: 0.5rem;
+}
+
+.page--menu .menu-card__price {
+  margin-left: auto;
+  font-weight: 600;
+  color: var(--burgundy);
+  white-space: nowrap;
+}
+
+.page--menu .menu-card__tags {
+  margin: 1rem 0 0;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.page--menu .menu-card__tag {
+  padding: 0.35rem 0.75rem;
+  border-radius: 999px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  background: color-mix(in srgb, var(--gold) 20%, var(--cream));
+  color: color-mix(in srgb, var(--charcoal), var(--burgundy) 10%);
+}
+
+.page--menu .menu-info {
+  background: color-mix(in srgb, var(--burgundy) 12%, var(--cream));
+  border-top: 1px solid var(--border-soft);
+  border-bottom: 1px solid var(--border-soft);
+}
+
+.page--menu .menu-info__inner {
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  color: var(--charcoal);
+  font-size: 0.95rem;
+}
+
+.page--menu .menu-cta {
+  background: color-mix(in srgb, var(--surface-overlay) 92%, transparent);
+}
+
+.page--menu .menu-cta__inner {
+  display: grid;
+  gap: 1.5rem;
+  text-align: center;
+  max-width: 720px;
+  margin: 0 auto;
+}
+
+.page--menu .menu-cta__text {
+  margin: 0;
+  color: var(--text-muted);
+}
+
+.page--menu .menu-cta__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  justify-content: center;
+}
+
+.page--menu .menu-cta__link {
+  min-width: 200px;
+  text-align: center;
+}
+
+/* ----- Active footer link ----- */
+.footer__list a[aria-current="page"] {
+  font-weight: 700;
+  color: var(--gold);
+  text-decoration: none;
+}
+.footer__list a:hover,
+.footer__list a:focus-visible {
+  color: var(--c-accent);
+  text-decoration: underline;
+  text-underline-offset: 0.25em;
+}
+
+/* ----- Anchor offset for fixed header ----- */
+.page--menu .menu-section {
+  scroll-margin-top: clamp(64px, 10vh, 120px);
+}
+html {
+  scroll-behavior: smooth;
+}
+
+/* ----- Menu Category Buttons ----- */
+.page--menu .menu-tabs__list .btn {
+  min-width: 140px;
+  text-align: center;
+}
+
+@media (max-width: 640px) {
+  .page--menu .menu-card__heading {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .page--menu .menu-card__price {
+    margin-left: 0;
+  }
+}
+
+/* ========== 12) LIGHTBOX ========== */
 
 .lb-overlay {
   position: fixed;
@@ -1337,7 +1621,9 @@ body.dark,
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  transition: background-color 0.2s ease, border-color 0.2s ease;
+  transition:
+    background-color 0.2s ease,
+    border-color 0.2s ease;
 }
 .lb-close:hover,
 .lb-close:focus-visible {
@@ -1372,7 +1658,9 @@ body.dark,
 .reveal {
   opacity: 0;
   transform: translate3d(var(--rx), var(--ry), 0);
-  transition: opacity 0.6s ease, transform 0.6s ease;
+  transition:
+    opacity 0.6s ease,
+    transform 0.6s ease;
   transition-delay: var(--reveal-delay);
   will-change: opacity, transform;
 }
@@ -1405,7 +1693,11 @@ body.dark,
   text-align: center;
   text-decoration: none;
   user-select: none;
-  transition: background-color 0.18s ease, border-color 0.18s ease, box-shadow 0.18s ease, transform 0.06s ease;
+  transition:
+    background-color 0.18s ease,
+    border-color 0.18s ease,
+    box-shadow 0.18s ease,
+    transform 0.06s ease;
 }
 
 a.btn {
@@ -1425,7 +1717,12 @@ a.btn:focus {
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
   background-image: linear-gradient(180deg, rgba(255, 255, 255, 0.16) 0%, rgba(255, 255, 255, 0) 44%, rgba(0, 0, 0, 0.08) 100%);
   background-blend-mode: normal;
-  transition: background-color 0.18s ease, border-color 0.18s ease, box-shadow 0.18s ease, transform 0.06s ease, opacity 0.18s ease;
+  transition:
+    background-color 0.18s ease,
+    border-color 0.18s ease,
+    box-shadow 0.18s ease,
+    transform 0.06s ease,
+    opacity 0.18s ease;
 }
 
 .btn--primary:hover,
@@ -1447,7 +1744,9 @@ a.btn:focus {
 
 .btn--primary:focus-visible {
   outline: none;
-  box-shadow: 0 0 0 3px color-mix(in oklab, var(--burgundy) 22%, white), 0 6px 18px rgba(0, 0, 0, 0.12);
+  box-shadow:
+    0 0 0 3px color-mix(in oklab, var(--burgundy) 22%, white),
+    0 6px 18px rgba(0, 0, 0, 0.12);
 }
 
 /* ----- BUTTON – Ghost ----- */
@@ -1473,7 +1772,9 @@ a.btn:focus {
 
 .btn--ghost:focus-visible {
   outline: none;
-  box-shadow: 0 0 0 3px color-mix(in oklab, var(--burgundy) 22%, white), 0 6px 18px rgba(0, 0, 0, 0.12);
+  box-shadow:
+    0 0 0 3px color-mix(in oklab, var(--burgundy) 22%, white),
+    0 6px 18px rgba(0, 0, 0, 0.12);
 }
 
 /* --- Disabled --- */
@@ -1488,7 +1789,10 @@ a.btn:focus {
 /* --- Motion-safe --- */
 @media (prefers-reduced-motion: reduce) {
   .btn {
-    transition: background-color 0.18s ease, border-color 0.18s ease, box-shadow 0.18s ease;
+    transition:
+      background-color 0.18s ease,
+      border-color 0.18s ease,
+      box-shadow 0.18s ease;
   }
   .btn--primary:hover,
   .btn--ghost:hover {
