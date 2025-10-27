@@ -15,62 +15,72 @@
   "dir": "ltr",
 
   "icons": [
-    { "src": "assets/icons/favicons/web-app-manifest-72x72.png", "sizes": "72x72", "type": "image/png" },
-    { "src": "assets/icons/favicons/web-app-manifest-144x144.png", "sizes": "144x144", "type": "image/png" },
-    { "src": "assets/icons/favicons/apple-touch-icon.png", "sizes": "180x180", "type": "image/png" },
+    { "src": "assets/icons/favicons/favicon-96x96.png", "sizes": "96x96", "type": "image/png" },
     { "src": "assets/icons/favicons/web-app-manifest-192x192.png", "sizes": "192x192", "type": "image/png", "purpose": "any maskable" },
-    { "src": "assets/icons/favicons/web-app-manifest-256x256.png", "sizes": "256x256", "type": "image/png" },
     { "src": "assets/icons/favicons/web-app-manifest-512x512.png", "sizes": "512x512", "type": "image/png", "purpose": "any maskable" },
-    { "src": "assets/icons/favicons/favicon-96x96.png", "sizes": "96x96", "type": "image/png" }
+    { "src": "assets/icons/favicons/apple-touch-icon.png", "sizes": "180x180", "type": "image/png" },
+    { "src": "assets/icons/favicons/fav-icon-1024.png", "sizes": "1024x1024", "type": "image/png" }
   ],
 
   "shortcuts": [
     {
-      "name": "Menu",
+      "name": "Menu degustacyjne",
       "short_name": "Menu",
-      "description": "Przejdź do pełnego menu",
+      "description": "Przejdź do pełnego menu degustacyjnego",
       "url": "menu.html#menu",
-      "icons": [{ "src": "assets/icons/shortcuts/offer-96.png", "sizes": "96x96", "type": "image/png", "purpose": "any maskable" }]
+      "icons": [
+        {
+          "src": "assets/icons/shortcuts/offer-96.png",
+          "sizes": "96x96",
+          "type": "image/png",
+          "purpose": "any maskable"
+        }
+      ]
     },
     {
-      "name": "Galeria",
-      "short_name": "Galeria",
-      "description": "Otwórz galerię zdjęć",
-      "url": "galeria.html#galeria-grid",
-      "icons": [{ "src": "assets/icons/shortcuts/offer-96.png", "sizes": "96x96", "type": "image/png", "purpose": "any maskable" }]
-    },
-    {
-      "name": "Kontakt / Rezerwacja",
+      "name": "Kontakt i rezerwacja",
       "short_name": "Kontakt",
-      "description": "Przejdź do sekcji rezerwacji",
+      "description": "Przejdź do sekcji rezerwacji stolika",
       "url": "index.html#rezerwacja",
-      "icons": [{ "src": "assets/icons/shortcuts/contact-96.png", "sizes": "96x96", "type": "image/png", "purpose": "any maskable" }]
+      "icons": [
+        {
+          "src": "assets/icons/shortcuts/contact-96.png",
+          "sizes": "96x96",
+          "type": "image/png",
+          "purpose": "any maskable"
+        }
+      ]
     },
     {
-      "name": "Dokumenty",
+      "name": "Dokumenty i regulaminy",
       "short_name": "Legal",
-      "description": "Polityka prywatności i cookies",
+      "description": "Polityka prywatności i plików cookies",
       "url": "polityka-prywatnosci.html",
-      "icons": [{ "src": "assets/icons/shortcuts/legal-96.png", "sizes": "96x96", "type": "image/png", "purpose": "any maskable" }]
+      "icons": [
+        {
+          "src": "assets/icons/shortcuts/legal-96.png",
+          "sizes": "96x96",
+          "type": "image/png",
+          "purpose": "any maskable"
+        }
+      ]
     }
   ],
 
   "screenshots": [
     {
-      "src": "assets/icons/screenshots/mobile-home.png",
-      "sizes": "390x844",
-      "type": "image/png",
+      "src": "assets/icons/screenshots/screenshot-720x1280.jpg",
+      "sizes": "720x1280",
+      "type": "image/jpeg",
       "form_factor": "narrow",
-      "label": "Strona główna — widok mobilny",
-      "platform": "narrow"
+      "label": "Strona główna — widok mobilny"
     },
     {
-      "src": "assets/icons/screenshots/desktop-home.png",
-      "sizes": "1280x800",
-      "type": "image/png",
+      "src": "assets/icons/screenshots/screenshot-1280x720.jpg",
+      "sizes": "1280x720",
+      "type": "image/jpeg",
       "form_factor": "wide",
-      "label": "Strona główna — widok desktopowy",
-      "platform": "wide"
+      "label": "Strona główna — widok desktopowy"
     }
   ]
 }
