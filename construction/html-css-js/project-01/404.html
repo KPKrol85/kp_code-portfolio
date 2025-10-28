@@ -2,132 +2,60 @@
 <html lang="pl">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
-    <title>404 — Nie znaleziono | KP_Code</title>
-    <meta name="description" content="Strona, której szukasz, nie istnieje. Wróć na stronę główną projektu KP_Code." />
-    <meta name="robots" content="noindex, follow" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>404 — Strona nie została znaleziona | KP_Code</title>
+    <meta
+      name="description"
+      content="Strona, której szukasz, nie istnieje lub została przeniesiona. Wróć na stronę główną Construction 01 by KP_Code."
+    />
+    <link rel="canonical" href="/404.html" />
+    <meta name="robots" content="noindex" />
+    <meta name="theme-color" content="#f8f1e7" />
 
-    <meta name="theme-color" content="#0ea5e9" media="(prefers-color-scheme: light)" />
-    <meta name="theme-color" content="#0b1220" media="(prefers-color-scheme: dark)" />
-    <meta name="color-scheme" content="light dark" />
-
-    <link rel="icon" type="image/svg+xml" href="assets/img/favicon/favicon.svg" />
-    <link rel="manifest" href="assets/img/favicon/site.webmanifest" />
-    <link rel="stylesheet" href="style.css" />
-
-    <style>
-      :root {
-        color-scheme: light dark;
-        --c-text: light-dark(#0b1220, #e2e8f0);
-        --c-bg: light-dark(#ffffff, #0b1220);
-        --c-accent: #f59e0b;
-        --brand: #f59e0b;
-        --brand-2: #c2410c;
-        --brand-grad: linear-gradient(135deg, var(--brand), var(--brand-2));
-        --ring: color-mix(in oklab, var(--brand) 55%, #334155);
-      }
-      body {
-        margin: 0;
-        display: grid;
-        place-items: center;
-        min-height: 100vh;
-        font-family: system-ui, sans-serif;
-        background: var(--c-bg);
-        color: var(--c-text);
-        text-align: center;
-        padding: 2rem;
-      }
-      h1 {
-        font-size: 2rem;
-        margin-bottom: 1rem;
-      }
-      p {
-        margin-bottom: 1.5rem;
-        font-size: 1.125rem;
-      }
-      /*
-      a.btn {
-        display: inline-block;
-        background: var(--c-accent);
-        color: #fff;
-        text-decoration: none;
-        padding: 0.75rem 1.5rem;
-        border-radius: 999px;
-        font-weight: 600;
-        transition: filter 0.2s ease;
-      }
-      a.btn:hover {
-        filter: brightness(1.1);
-      }
-*/
-      a.btn {
-        position: relative;
-        overflow: hidden;
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
-        min-height: 44px;
-        padding: 12px 22px;
-        border-radius: 999px;
-        background: var(--c-accent);
-        color: black;
-        font-weight: 700;
-        font-size: 1rem;
-        line-height: 1.1;
-        text-decoration: none;
-        border: none;
-        box-shadow:
-          0 6px 18px rgba(2, 8, 23, 0.18),
-          0 0 0 1px rgba(255, 255, 255, 0.15) inset;
-        transition:
-          transform 0.18s ease,
-          background 0.18s ease,
-          box-shadow 0.18s ease;
-        cursor: pointer;
-        -webkit-tap-highlight-color: transparent;
-        isolation: isolate;
-      }
-
-      a.btn:hover {
-        background: var(--brand-grad);
-        transform: translateY(-2px);
-        box-shadow:
-          0 14px 28px rgba(2, 8, 23, 0.18),
-          0 0 0 1px rgba(255, 255, 255, 0.25) inset;
-        color: white;
-      }
-
-      a.btn:active {
-        transform: translateY(0);
-      }
-
-      a.btn:focus-visible {
-        outline: 3px solid var(--ring);
-        outline-offset: 2px;
-      }
-
-      a.btn:disabled,
-      a.btn[aria-disabled="true"] {
-        opacity: 0.6;
-        pointer-events: none;
-      }
-      footer {
-        position: absolute;
-        bottom: 1rem;
-        left: 0;
-        right: 0;
-        font-size: 0.875rem;
-        color: #94a3b8;
-      }
-    </style>
+    <!-- Główne style -->
+    <link rel="stylesheet" href="css/style.css" />
   </head>
-
-  <body>
-    <main>
-      <h1>404 — Nie znaleziono</h1>
-      <p>Ups! Wygląda na to, że ta strona nie istnieje lub została przeniesiona.</p>
-      <a href="/" class="btn">← Wróć na stronę główną</a>
+  <body class="page page-404">
+    <main class="section" id="main" tabindex="-1" aria-labelledby="error-title">
+      <div class="container" style="text-align: center; padding: 6rem 1rem">
+        <h1
+          id="error-title"
+          style="
+            font-size: clamp(2.5rem, 6vw, 4rem);
+            margin-bottom: 1rem;
+            color: var(--accent);
+          "
+        >
+          404
+        </h1>
+        <p
+          style="
+            font-size: 1.25rem;
+            color: var(--text-muted);
+            margin-bottom: 2rem;
+          "
+        >
+          Strona, której szukasz, nie istnieje lub została przeniesiona.
+        </p>
+        <a href="/" class="btn btn--primary" aria-label="Wróć na stronę główną">
+          Wróć na stronę główną
+        </a>
+      </div>
     </main>
-    <footer>&copy; 2025 KP_Code — Demo budowlane</footer>
+
+    <footer
+      style="
+        text-align: center;
+        padding: 2rem 1rem;
+        font-size: 0.9rem;
+        color: var(--text-muted);
+      "
+    >
+      © <span id="year"></span> KP_Code. Projekt i wdrożenie: KP_Code.
+    </footer>
+
+    <script>
+      document.getElementById("year").textContent = new Date().getFullYear();
+    </script>
   </body>
 </html>

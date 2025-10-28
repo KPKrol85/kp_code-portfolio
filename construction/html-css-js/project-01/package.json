@@ -10,14 +10,19 @@
     "dev": "live-server --port=15500 --open=index.html --quiet",
     "format": "prettier -w \"**/*.{html,css,js,json,md}\"",
     "format:check": "prettier -c \"**/*.{html,css,js,json,md}\"",
-    "build:css": "cssnano css/style.css css/style.min.css",
-    "build": "npm run build:css && npm run format",
-    "build:js": "terser js/script.js -o js/script.min.js -c -m"
+    "build:css": "postcss css/style.css -o css/style.min.css --no-map",
+    "build:js": "terser js/script.js -o js/script.min.js -c -m",
+    "build": "npm run build:css && npm run build:js && npm run format"
   },
   "devDependencies": {
-    "cssnano-cli": "^1.0.5",
+    "autoprefixer": "^10.4.21",
+    "cssnano": "^6.1.2",
     "live-server": "1.2.2",
-    "prettier": "3.3.3"
+    "postcss": "^8.5.6",
+    "postcss-cli": "^11.0.1",
+    "postcss-preset-env": "^10.4.0",
+    "prettier": "3.3.3",
+    "terser": "^5.31.0"
   },
   "engines": {
     "node": ">=18"
