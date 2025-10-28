@@ -17,12 +17,17 @@
 
     <!-- PWA -->
     <meta name="theme-color" content="#f8f1e7" />
-    <link rel="manifest" href="manifest.webmanifest" />
+    <meta name="color-scheme" content="light dark" />
+
+    <meta name="application-name" content="Gastro Demo" />
+    <meta name="apple-mobile-web-app-title" content="Gastro Demo" />
+    <meta name="msapplication-TileColor" content="#f8f1e7" />
+    <link rel="manifest" href="/manifest.webmanifest" />
     <link rel="icon" type="image/svg+xml" href="assets/icons/fav-icon/favicon.svg" />
     <link rel="icon" type="image/png" sizes="96x96" href="assets/icons/fav-icon/favicon-96x96.png" />
     <link rel="shortcut icon" href="assets/icons/fav-icon/favicon.ico" type="image/x-icon" />
     <link rel="apple-touch-icon" sizes="180x180" href="assets/icons/fav-icon/apple-touch-icon.png" />
-
+    <link rel="mask-icon" href="/assets/icons/safari-pinned-tab.svg" color="#6b1e2f" />
     <!-- Open Graph (Facebook / LinkedIn) -->
     <meta property="og:site_name" content="KP_Code" />
     <meta property="og:type" content="website" />
@@ -84,7 +89,7 @@
         "name": "KP_Code",
         "description": "Demo strony gastronomicznej w portfolio KP_Code – nowoczesny design, responsywność i optymalizacja SEO.",
         "url": "https://gastronomy-project-02.netlify.app/",
-        "logo": "https://gastronomy-project-02.netlify.app/assets/img/logo/logo-light-mode-80.svg",
+        "logo": "https://gastronomy-project-02.netlify.app/assets/img/logo/kp_code-logo-512.png",
         "image": [
           {
             "@type": "ImageObject",
@@ -101,7 +106,7 @@
             "caption": "Profesjonalna Strona dla Gastronomii – projekt demonstracyjny KP_Code"
           }
         ],
-        "sameAs": ["https://github.com/", "https://x.com/KP_Code_85", "https://linkedin.com/", "https://instagram.com/"]
+        "sameAs": ["https://github.com/KP-Code", "https://x.com/KP_Code_85"]
       }
     </script>
 
@@ -118,9 +123,9 @@
       <div class="container header__inner">
         <a class="brand" href="#hero" aria-label="Gastronomy home">
           <!-- Light mode logo -->
-          <img src="assets/img/logo/logo-light-mode-80.svg" alt="KP_Code logo" class="brand__logo brand__logo--light" width="50" height="50" />
+          <img src="assets/img/logo/logo-light-mode-160x160.png" alt="KP_Code logo" class="brand__logo brand__logo--light" width="50" height="50" />
           <!-- Dark mode logo -->
-          <img src="assets/img/logo/logo-dark-mode-80.svg" alt="KP_Code logo" class="brand__logo brand__logo--dark" width="50" height="50" />
+          <img src="assets/img/logo/logo-dark-mode-160x160.png" alt="KP_Code logo" class="brand__logo brand__logo--dark" width="50" height="50" />
           <span class="brand__text">KP_Code</span>
         </a>
 
@@ -228,6 +233,9 @@
             <h2>O Nas</h2>
             <p>Celebrujemy sztukę kuchni, łącząc elegancję tradycji z odrobiną nowoczesności. Nasz zespół wybiera wyłącznie najlepsze lokalne składniki, tworząc niezapomniane doznania smakowe.</p>
             <p>Zapraszamy na wieczór, podczas którego każda potrawa opowiada własną historię — w towarzystwie wyselekcjonowanych win i ciepłej, gościnnej atmosfery.</p>
+            <div class="about__cta" data-reveal>
+              <a href="about.html" class="btn btn--primary" aria-label="Przejdź do podstrony O nas i poznaj nasz zespół bliżej">Poznaj nas bliżej</a>
+            </div>
           </div>
         </div>
       </section>
@@ -335,6 +343,10 @@
       <section id="gallery" class="section gallery" aria-labelledby="gallery-title">
         <div class="container">
           <h2 id="gallery-title" class="gallery__title">Galeria</h2>
+          <!-- CTA BUTTON POD TYTUŁEM -->
+          <div class="gallery__cta" data-reveal>
+            <a href="gallery.html" class="btn btn--primary" aria-label="Przejdź do pełnej galerii zdjęć">Przejdź do pełnej galerii</a>
+          </div>
           <ul class="gallery__grid" data-reveal-group>
             <!-- Item 1 -->
             <li class="gallery__item" data-reveal>
@@ -617,8 +629,8 @@
           <!-- Brand -->
           <div class="footer__brand">
             <a class="brand" href="#hero" aria-label="Gastronomy home">
-              <img src="assets/img/logo/logo-dark-mode-80.svg" alt="KP_Code logo" class="brand__logo brand__logo--light" width="50" height="50" />
-              <img src="assets/img/logo/logo-light-mode-80.svg" alt="KP_Code logo" class="brand__logo brand__logo--dark" width="50" height="50" />
+              <img src="assets/img/logo/logo-dark-mode-160x160.png" alt="KP_Code logo" class="brand__logo brand__logo--light" width="50" height="50" />
+              <img src="assets/img/logo/logo-light-mode-160x160.png" alt="KP_Code logo" class="brand__logo brand__logo--dark" width="50" height="50" />
               <span class="brand__text">KP_Code</span>
             </a>
             <p class="footer__tagline">Demo projektu przygotowane przez KP_Code. Jeśli chcesz podobną stronę dla swojej restauracji — skontaktuj się ze mną.</p>
@@ -627,7 +639,7 @@
           <!-- Nav -->
           <nav class="footer__nav" aria-label="Footer">
             <p class="footer__heading">Odkrywaj</p>
-            <ul class="footer__list" role="list">
+            <ul class="footer__list">
               <li><a href="#about">O nas</a></li>
               <li><a href="#menu">Menu</a></li>
               <li><a href="#gallery">Galeria</a></li>

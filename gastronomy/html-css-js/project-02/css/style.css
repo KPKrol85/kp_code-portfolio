@@ -787,6 +787,12 @@ main {
   color: var(--text-muted);
 }
 
+.about__cta {
+  display: flex;
+  justify-content: center;
+  margin-top: 1.5rem;
+}
+
 @media (min-width: 768px) {
   .about .container {
     grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -926,6 +932,13 @@ main {
 }
 .gallery__img {
   transition: transform 0.28s ease;
+}
+
+/* CTA pod tytułem Galeria */
+.gallery__cta {
+  display: flex;
+  justify-content: center;
+  margin: 1rem 0 1.5rem;
 }
 
 @media (min-width: 768px) {
@@ -1553,7 +1566,283 @@ html {
   }
 }
 
-/* ========== 12) LIGHTBOX ========== */
+/* ========== 12) SUBPAGE GALLERY ========== */
+
+.page.page-gallery .page-hero {
+  position: relative;
+  background: linear-gradient(135deg, color-mix(in srgb, var(--cream) 85%, white), color-mix(in srgb, var(--burgundy) 18%, var(--cream)));
+  isolation: isolate;
+}
+.page.page-gallery .page-hero::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at 30% 25%, rgba(201, 162, 39, 0.08), transparent 60%);
+  pointer-events: none;
+  z-index: -1;
+}
+.page.page-gallery .page-hero__inner {
+  display: flex;
+  justify-content: center;
+}
+.page.page-gallery .page-hero__content {
+  max-width: 640px;
+  text-align: center;
+  display: grid;
+  gap: 1rem;
+}
+.page.page-gallery .page-hero__eyebrow {
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  font-size: 0.85rem;
+  color: var(--burgundy);
+}
+.page.page-gallery .page-hero__lead {
+  margin: 0 auto;
+  max-width: 56ch;
+  color: var(--text-muted);
+}
+
+.page.page-gallery .gallery-tabs .container {
+  display: flex;
+  justify-content: center;
+}
+.page.page-gallery .gallery-tabs__wrapper {
+  width: 100%;
+  max-width: 960px;
+  background: color-mix(in srgb, var(--surface-overlay) 80%, transparent);
+  border: 1px solid var(--border-soft);
+  border-radius: var(--radius);
+  padding: 0.75rem;
+  box-shadow: var(--shadow);
+  backdrop-filter: blur(8px);
+}
+.page.page-gallery .gallery-tabs__list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  justify-content: center;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.page.page-gallery .gallery-section__header {
+  text-align: center;
+  max-width: 640px;
+  margin: 0 auto 2rem;
+  display: grid;
+  gap: 0.75rem;
+}
+.page.page-gallery .gallery-section__intro {
+  margin: 0;
+  color: var(--text-muted);
+}
+.page.page-gallery .gallery-note {
+  margin-top: 1.5rem;
+  text-align: center;
+  color: var(--text-muted);
+  font-size: 0.95rem;
+}
+
+/* ========== 13) SUBPAGE ABOUT ========== */
+
+/* ================================================== */
+/* ===== 12) SUBPAGE ABOUT ========================== */
+/* ================================================== */
+
+.page.page-about .page-hero {
+  position: relative;
+  background: linear-gradient(135deg, color-mix(in srgb, var(--cream) 85%, white 15%), color-mix(in srgb, var(--burgundy) 12%, var(--cream)));
+  isolation: isolate;
+}
+.page.page-about .page-hero::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at 20% 20%, rgba(201, 162, 39, 0.1), transparent 55%);
+  pointer-events: none;
+  z-index: -1;
+}
+.page.page-about .page-hero__inner {
+  display: flex;
+  justify-content: center;
+}
+.page.page-about .page-hero__content {
+  max-width: 680px;
+  text-align: center;
+  display: grid;
+  gap: 1rem;
+}
+.page.page-about .page-hero__eyebrow {
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  font-size: 0.85rem;
+  color: var(--burgundy);
+}
+.page.page-about .page-hero__lead {
+  margin: 0 auto;
+  color: var(--text-muted);
+}
+.page.page-about .section__header {
+  max-width: 720px;
+  margin: 0 auto 2.5rem;
+  text-align: center;
+  display: grid;
+  gap: 0.75rem;
+}
+.page.page-about .section__lead {
+  margin: 0;
+  color: var(--text-muted);
+}
+.page.page-about .timeline__cards .card__body,
+.page.page-about .suppliers__cards .card__body,
+.page.page-about .awards__cards .card__body,
+.page.page-about .faq__cards .card__body {
+  display: grid;
+  gap: 0.5rem;
+}
+.page.page-about .timeline__year {
+  font-size: 0.9rem;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--burgundy);
+}
+.page.page-about .timeline__heading {
+  margin: 0;
+}
+.page.page-about .timeline__text {
+  margin: 0;
+  color: var(--text-muted);
+}
+.page.page-about .team-card figure {
+  margin: 0;
+}
+.page.page-about .team-card__image {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+}
+.page.page-about .team-card__body {
+  display: grid;
+  gap: 0.35rem;
+}
+.page.page-about .team-card__role {
+  margin: 0;
+  font-weight: 600;
+  color: var(--burgundy);
+}
+.page.page-about .team-card__bio {
+  margin: 0;
+  color: var(--text-muted);
+}
+.page.page-about .philosophy__cards .card__body {
+  display: grid;
+  gap: 0.5rem;
+  text-align: center;
+}
+.page.page-about .chef-card {
+  display: grid;
+  gap: 1.5rem;
+  align-items: center;
+}
+.page.page-about .chef-card picture {
+  height: 100%;
+}
+.page.page-about .chef-card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.page.page-about .chef-card__body {
+  display: grid;
+  gap: 1rem;
+  padding: 1.5rem;
+}
+.page.page-about .chef-card__quote {
+  margin: 0;
+  font-style: italic;
+  color: var(--text-muted);
+}
+.page.page-about .chef-card__list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem 1rem;
+  padding: 0;
+  margin: 0;
+  list-style: none;
+  color: var(--text-muted);
+}
+.page.page-about .chef-card__signature {
+  font-weight: 600;
+  color: var(--burgundy);
+}
+.page.page-about .suppliers__tag {
+  font-weight: 600;
+  color: var(--burgundy);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+.page.page-about .awards__badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-weight: 600;
+  color: var(--charcoal);
+}
+.page.page-about .awards__icon {
+  color: var(--gold);
+  font-size: 1.1rem;
+}
+.page.page-about .location__grid {
+  gap: 1.5rem;
+}
+.page.page-about .location-card .card__body {
+  display: grid;
+  gap: 0.75rem;
+}
+.page.page-about .hours__table {
+  width: 100%;
+  border-collapse: collapse;
+}
+.page.page-about .hours__table th,
+.page.page-about .hours__table td {
+  text-align: left;
+  padding: 0.35rem 0;
+  border-bottom: 1px solid var(--border-soft);
+}
+.page.page-about .hours__table th {
+  font-weight: 600;
+}
+.page.page-about .faq__question {
+  margin: 0;
+}
+.page.page-about .faq__answer {
+  margin: 0;
+  color: var(--text-muted);
+}
+.page.page-about .cta__wrap {
+  text-align: center;
+  display: grid;
+  gap: 1rem;
+  max-width: 640px;
+  margin: 0 auto;
+}
+.page.page-about .cta__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  justify-content: center;
+}
+
+@media (min-width: 768px) {
+  .page.page-about .chef-card {
+    grid-template-columns: 1fr 1.1fr;
+  }
+}
+
+/* ========== 14) LIGHTBOX ========== */
 
 .lb-overlay {
   position: fixed;
@@ -1631,7 +1920,7 @@ html {
   border-color: rgba(255, 255, 255, 0.7);
 }
 
-/* ========== 13) STATES + ANIMATIONS ========== */
+/* ========== 15) STATES + ANIMATIONS ========== */
 
 /* ----- REVEAL ANIMATIONS ----- */
 [data-reveal] {
