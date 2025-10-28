@@ -51,21 +51,21 @@
       "short_name": "Oferta",
       "description": "Przejdź do sekcji Oferta na stronie głównej",
       "url": "/#oferta",
-      "icons": [{ "src": "/assets/img/shortcuts/offer-96.png", "sizes": "96x96", "type": "image/png", "purpose": "maskable" }]
+      "icons": [{ "src": "/assets/img/shortcuts/offer-96.png", "sizes": "96x96", "type": "image/png", "purpose": "any maskable" }]
     },
     {
       "name": "Dokumenty",
       "short_name": "Legal",
       "description": "Zobacz regulamin i politykę prywatności",
       "url": "/doc/regulamin.html",
-      "icons": [{ "src": "/assets/img/shortcuts/legal-96.png", "sizes": "96x96", "type": "image/png", "purpose": "maskable" }]
+      "icons": [{ "src": "/assets/img/shortcuts/legal-96.png", "sizes": "96x96", "type": "image/png", "purpose": "any maskable" }]
     },
     {
       "name": "Kontakt",
       "short_name": "Kontakt",
       "description": "Otwórz sekcję kontaktową z formularzem wyceny",
       "url": "/#kontakt",
-      "icons": [{ "src": "/assets/img/shortcuts/contact-96.png", "sizes": "96x96", "type": "image/png", "purpose": "maskable" }]
+      "icons": [{ "src": "/assets/img/shortcuts/contact-96.png", "sizes": "96x96", "type": "image/png", "purpose": "any maskable" }]
     }
   ],
 
