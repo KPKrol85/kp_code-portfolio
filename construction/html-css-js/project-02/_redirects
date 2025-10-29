@@ -1,0 +1,18 @@
+# ==================================================
+# KP_Code — Demo strony budowlano-remontowej
+# Redirects & Rewrite Rules (Netlify)
+# ==================================================
+
+# 1. Redirect WWW → non-WWW (canonical domain)
+https://www.construction-project-02.netlify.app/* https://construction-project-02.netlify.app/:splat 301!
+
+# 2. Force HTTPS
+http://construction-project-02.netlify.app/* https://construction-project-02.netlify.app/:splat 301!
+
+# 3. Handle trailing slashes (optional, SEO-friendly)
+# /services/ → /services
+/services/ /services 301
+/legal/ /legal 301
+
+# 4. Custom 404 page
+/* /404.html 404

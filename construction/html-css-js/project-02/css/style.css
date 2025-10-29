@@ -94,14 +94,14 @@ body.dark-mode {
 :root {
   --header-h: 50px;
   --nav-drop-gap: clamp(6px, 1.5vw, 12px);
-  --header-pad-y: 8px;
+  --header-pad-y: 10px;
   --logo-scale: 1;
   --nav-mobile-offset: 14px;
 }
 
 body.header-compact {
   --header-h: 40px;
-  --header-pad-y: 3px;
+  --header-pad-y: 8px;
   --logo-scale: 0.86;
   --nav-mobile-offset: 14px;
 }
@@ -387,18 +387,18 @@ body.dark-mode.header-compact header {
   align-items: center;
   gap: clamp(0.25rem, 0.6vw, 0.5rem);
   text-decoration: none;
-  padding: clamp(8px, 1.6vw, 20px);
-  padding-left: calc(clamp(8px, 1.6vw, 20px) + var(--logo-optical));
+  padding: clamp(4px, 0.8vw, 10px);
+  padding-left: calc(clamp(4px, 0.8vw, 10px) + var(--logo-optical));
   transform: scale(var(--logo-scale));
   transform-origin: left center;
   transition: transform 0.24s ease;
 }
 
 .logo .logo-img {
-  height: clamp(24px, 2.4vw, 36px);
+  height: clamp(20px, 1.8vw, 28px);
   width: auto;
   display: block;
-  max-height: 36px;
+  max-height: 28px;
 }
 
 .logo-text {
@@ -2047,13 +2047,13 @@ footer[role="contentinfo"] a:not(.social-icon):not(.gmaps-ico):focus-visible {
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 20px;
-  height: 20px;
+  width: 24px;
+  height: 24px;
   border-radius: 50%;
   background: transparent;
   text-decoration: none;
   transition: transform 0.3s ease;
-  margin: 14px;
+  margin: 10px;
   position: relative;
 }
 
@@ -2064,8 +2064,8 @@ footer[role="contentinfo"] a:not(.social-icon):not(.gmaps-ico):focus-visible {
 
 .social-icon img,
 .social-icon svg {
-  width: 36px;
-  height: 36px;
+  width: 24px;
+  height: 24px;
   display: block;
   object-fit: contain;
   transition: transform 0.2s ease, filter 0.1s ease;
@@ -2088,10 +2088,9 @@ footer[role="contentinfo"] a:not(.social-icon):not(.gmaps-ico):focus-visible {
 .footer-brand .gmaps-ico {
   display: inline-grid;
   place-items: center;
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  border: 1px solid color-mix(in srgb, var(--text-light) 22%, transparent);
+  width: 28px;
+  height: 28px;
+  border-radius: 99%;
   background: transparent;
   color: var(--text-light);
   text-decoration: none;
@@ -3020,6 +3019,7 @@ body.menu-open #powrot-na-gore {
   color: var(--feature-accent);
 }
 
+
 /* ----- MQ hover: hover and pointer: fine ----- */
 @media (hover: hover) and (pointer: fine) {
   :where(.feature, .about-highlights > li, .interactive-card):not(.no-interaction):hover {
@@ -3318,6 +3318,87 @@ body.dark-mode .icon-btn:not(.hamburger):hover {
 @supports not (overflow: clip) {
   .hero {
     overflow: hidden;
+  }
+}
+
+
+
+
+/* ========== Cookies Banner ========== */
+.cookie-banner {
+  position: fixed;
+  left: 50%;
+  bottom: 12px;
+  transform: translateX(-50%);
+  width: min(100%, 980px);
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+  justify-content: space-between;
+  background: var(--surface-1);
+  color: var(--text-dark);
+  border: 1px solid var(--feature-border);
+  border-radius: 12px;
+  padding: 12px 16px;
+  box-shadow: 0 10px 24px color-mix(in srgb, var(--bg-dark) 16%, transparent);
+  z-index: 9999;
+}
+body.dark-mode .cookie-banner {
+  background: var(--surface-2);
+  color: var(--text-light);
+  border-color: color-mix(in srgb, var(--text-light) 14%, transparent);
+}
+.cookie-text {
+  margin: 0;
+  line-height: 1.45;
+  font-size: 0.95rem;
+}
+.cookie-text a {
+  font-weight: 600;
+  color: var(--primary-400);
+  text-decoration: underline;
+}
+.cookie-actions {
+  display: flex;
+  gap: 10px;
+  flex-shrink: 0;
+}
+.cookie-actions .btn-primary,
+.cookie-actions .btn-secondary {
+  padding: 0.55rem 1rem;
+  border-radius: 10px;
+  border: 1px solid transparent;
+  cursor: pointer;
+}
+.cookie-actions .btn-primary {
+  background: var(--primary);
+  color: #fff;
+}
+.cookie-actions .btn-primary:hover {
+  filter: brightness(1.05);
+}
+.cookie-actions .btn-secondary {
+  background: transparent;
+  color: inherit;
+  border-color: color-mix(in srgb, currentColor 30%, transparent);
+}
+.cookie-actions .btn-secondary:hover {
+  background: color-mix(in srgb, currentColor 10%, transparent);
+}
+@media (max-width: 600px) {
+  .cookie-banner {
+    flex-direction: column;
+    gap: 12px;
+    padding: 12px;
+    bottom: 8px;
+    border-radius: 10px;
+  }
+  .cookie-actions {
+    width: 100%;
+  }
+  .cookie-actions .btn-primary,
+  .cookie-actions .btn-secondary {
+    flex: 1;
   }
 }
 
