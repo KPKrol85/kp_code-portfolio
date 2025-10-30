@@ -22,6 +22,7 @@
    ===== 13) FAQ - ARIA SYNC ( ARIA-EXPANDED + ARIA-CONTROLS )
    ===== 14) GALLERY FILTER (PAGE-GALLERY)
    ===== 15) STICKY SHADOW ON SCROLL
+   ===== 16) LOGO -> SCROLL TO TOP
    =================================================================== */
 
 /* ========== 00) HELPERS / BOOT ========== */
@@ -1039,4 +1040,42 @@ window.addEventListener("scroll", () => {
   document.body.classList.toggle("is-scrolled", window.scrollY > 10);
 });
 
+/* ========== 16) LOGO → SCROLL TO TOP ========== */
+
+(() => {
+  const prefersReduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  document.addEventListener("click", (e) => {
+    const link = e.target.closest("a.brand");
+    if (!link) return;
+    const href = link.getAttribute("href") || "";
+    if (href.includes("#top")) {
+      e.preventDefault();
+      window.scrollTo({ top: 0, behavior: prefersReduce ? "auto" : "smooth" });
+    }
+  });
+})();
+
 /* $$$$$$$$$$ END OF SCRIPT $$$$$$$$$$ */
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+document.querySelectorAll('[data-target]').forEach(btn => {
+  btn.addEventListener('click', () => {
+    const section = document.querySelector(btn.dataset.target);
+    section?.scrollIntoView({ behavior: 'smooth' });
+  });
+});
+
