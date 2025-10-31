@@ -1,5 +1,5 @@
 /* sw.js — gastronomy-01 */
-const APP_VERSION = "v1.0.0-2025-10-22";
+const APP_VERSION = "v2.0.0-2025-10-31";
 
 const CACHE_PAGES = `pages-${APP_VERSION}`;
 const CACHE_STATIC = `static-${APP_VERSION}`;

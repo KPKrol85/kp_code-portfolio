@@ -28,7 +28,7 @@
 
 /* ===== 00 - HELPERS ===== */
 
-const DEBUG = false;
+const DEBUG = true;
 const log = (...a) => DEBUG && console.log("[ui]", ...a);
 const byTestId = (id, root = document) => root.querySelector(`[data-testid="${id}"]`);
 const $ = (sel, root = document) => root.querySelector(sel);
@@ -1175,29 +1175,32 @@ function initScrollTargets() {
 /* ===== BOOTSTRAP ===== */
 
 const FEATURES = [
-  { name: "HELPERS", init: initHelpers }, // klasy no-js, utilsy
-  { name: "THEME SWITCHER", init: initThemeSwitcher }, // minimalizacja FOUC
-  { name: "FOOTER YEAR", init: initFooterYear }, // szybki, bez zależności
+  { name: "HELPERS", init: initHelpers },
+  { name: "THEME SWITCHER", init: initThemeSwitcher },
 
-  { name: "SMART NAV", init: initSmartNav }, // przepięcia hash->podstrony
-  { name: "NAV", init: initAriaCurrent }, // aria-current po przepisaniu hrefów
-  { name: "SCROLLSPY", init: initScrollspy }, // działa na gotowych linkach
+  { name: "MOBILE NAV", init: initMobileNav },
 
-  { name: "STICKY SHADOW", init: initStickyShadow }, // scroll listeners
-  { name: "SCROLL BUTTONS", init: initScrollButtons }, // scroll listeners
-  { name: "SCROLL TO TOP", init: initScrollToTop }, // global click
-  { name: "SCROLL TARGETS", init: initScrollTargets }, // global click
+  { name: "FOOTER YEAR", init: initFooterYear },
 
-  { name: "CTA", init: initCtaPulse }, // IO na przyciskach
+  { name: "SMART NAV", init: initSmartNav },
+  { name: "NAV", init: initAriaCurrent },
+  { name: "SCROLLSPY", init: initScrollspy },
 
-  { name: "TABS", init: initTabs }, // strona menu
-  { name: "PAGE MENU", init: initPageMenuPanel }, // panel „more about dish”
-  { name: "RESERVATION FORM", init: initReservationForm }, // walidacja i loading
+  { name: "STICKY SHADOW", init: initStickyShadow },
+  { name: "SCROLL BUTTONS", init: initScrollButtons },
+  { name: "SCROLL TO TOP", init: initScrollToTop },
+  { name: "SCROLL TARGETS", init: initScrollTargets },
 
-  { name: "GALLERY FILTER", init: initGalleryFilter }, // filtruje widoczne kafle
-  { name: "LIGHTBOX", init: initLightbox }, // kliki po filtrze
+  { name: "CTA", init: initCtaPulse },
 
-  { name: "FAQ", init: initFaqAria }, // aria sync w details
+  { name: "TABS", init: initTabs },
+  { name: "PAGE MENU", init: initPageMenuPanel },
+  { name: "RESERVATION FORM", init: initReservationForm },
+
+  { name: "GALLERY FILTER", init: initGalleryFilter },
+  { name: "LIGHTBOX", init: initLightbox },
+
+  { name: "FAQ", init: initFaqAria },
 ];
 
 function boot() {

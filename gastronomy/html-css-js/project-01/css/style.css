@@ -260,6 +260,7 @@ h3 {
 }
 
 .header-row {
+  position: relative;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -398,13 +399,21 @@ html[data-theme="light"] .logo-light {
   background: var(--c-bg);
   border-bottom: 1px solid var(--c-border);
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.12);
-  z-index: 9;
+  z-index: 100;
 }
 
 .nav-open .site-nav ul {
   flex-direction: column;
   align-items: center;
   gap: 12px;
+  padding: 12px 16px;
+}
+
+#site-nav ul {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin: 0;
   padding: 12px 16px;
 }
 
@@ -489,6 +498,11 @@ html[data-theme="dark"] .site-header {
 @media (min-width: 900px) {
   .nav-toggle {
     display: none;
+  }
+  #site-nav ul {
+    flex-direction: row;
+    gap: 20px;
+    padding: 0;
   }
   .site-nav {
     display: block;
