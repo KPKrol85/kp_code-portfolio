@@ -3,7 +3,8 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="robots" content="index, follow" />
+    <!-- PREVIEW: tymczasowo blokujemy indeksację (usuń na produkcji) -->
+    <meta name="robots" content="noindex, nofollow" data-preview />
     <meta name="format-detection" content="telephone=no" />
 
     <!-- SEO -->
@@ -11,7 +12,8 @@
     <meta name="description" content="Galeria zdjęć — wnętrza, potrawy i atmosfera. Zobacz wybrane kompozycje i produkty premium." />
     <meta name="author" content="KP_Code" />
     <meta name="color-scheme" content="light dark" />
-    <link rel="canonical" href="https://gastronomy-project-01.netlify.app/galeria.html" />
+    <!-- TODO: Ustaw prawdziwy host produkcyjny -->
+    <link rel="canonical" href="https://PRZYKLADOWA-DOMENA.pl/galeria" />
 
     <!-- Kolory motywu (PWA / przeglądarka) -->
     <meta name="theme-color" content="#fab204" />
@@ -48,6 +50,12 @@
     <meta name="apple-mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-title" content="KP_Code Demo" />
 
+    <!-- Preconnect/DNS-prefetch for Google Maps -->
+    <link rel="preconnect" href="https://www.google.com" crossorigin />
+    <link rel="preconnect" href="https://maps.google.com" crossorigin />
+    <link rel="dns-prefetch" href="//www.google.com" />
+    <link rel="dns-prefetch" href="//maps.google.com" />
+
     <!-- Lokalne fonty: Poppins + Source Sans 3 -->
     <link rel="preload" href="assets/fonts/poppins-v24-latin-regular.woff2" as="font" type="font/woff2" crossorigin />
     <link rel="preload" href="assets/fonts/poppins-v24-latin-600.woff2" as="font" type="font/woff2" crossorigin />
@@ -55,7 +63,7 @@
     <link rel="preload" href="assets/fonts/source-sans-3-v19-latin-500.woff2" as="font" type="font/woff2" crossorigin />
 
     <!-- Główny CSS -->
-    <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="css/style.min.css" />
 
     <!-- JSON-LD: WebPage + BreadcrumbList (galeria.html) -->
     <script type="application/ld+json">
@@ -86,6 +94,8 @@
 
   <!-- BODY -->
   <body class="no-js">
+    <a class="skip-link" href="#main">Przejdź do treści</a>
+    <noscript><p>Ta strona wykorzystuje JavaScript. Włącz JS, aby w pełni z niej korzystać.</p></noscript>
     <a class="skip-link" href="#main">Przejdź do treści</a>
 
     <!-- HEADER -->
@@ -507,6 +517,11 @@
 
     <!-- SCRIPT -->
 
-    <script src="js/script.js" defer></script>
+    <!-- przycisk instalacji PWA (ukryty do czasu beforeinstallprompt) -->
+    <button data-install-pwa hidden>📲 Zainstaluj aplikację</button>
+
+    <script src="js/sw-register.js" defer></script>
+    <script src="js/pwa-install.js" defer></script>
+    <script src="js/script.min.js" defer></script>
   </body>
 </html>

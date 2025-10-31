@@ -133,4 +133,12 @@ Feel free to use this project as an educational reference or template (with attr
 ## 🗓️ Last Updated
 
 **October 2025**
+---
 
+## Changelog (unminified sources)
+
+- 2025-10-31:
+  - Added global skip-link and ensured id=\"main\" on pages (A11y).
+  - Added subtle PWA install prompt logic (js/pwa-install.js) and hidden button in HTML.
+  - Unified preview SEO: placeholder canonical, <meta name=\"robots\" content=\"noindex, nofollow\" data-preview> across pages; added TODO notes in obots.txt and sitemap.xml.
+  - CSS: added .skip-link and [data-install-pwa] minimal styles in css/style.css.

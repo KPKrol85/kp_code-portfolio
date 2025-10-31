@@ -28,7 +28,7 @@
 
 /* ===== 00 - HELPERS ===== */
 
-const DEBUG = true;
+const DEBUG = false;
 const log = (...a) => DEBUG && console.log("[ui]", ...a);
 const byTestId = (id, root = document) => root.querySelector(`[data-testid="${id}"]`);
 const $ = (sel, root = document) => root.querySelector(sel);
@@ -50,6 +50,8 @@ function initMobileNav() {
   const toggle = byTestId("nav-toggle") || $(".nav-toggle");
   const nav = byTestId("site-nav") || $("#site-nav");
   if (!toggle || !nav) return;
+
+  // TODO: Rozważyć focus-trap w otwartym mobilnym menu, aby tab nie uciekał poza nawigację.
 
   const mq = window.matchMedia("(min-width: 900px)");
   const setExpanded = (open) => {
