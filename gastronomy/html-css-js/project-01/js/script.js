@@ -1,49 +1,52 @@
-/* ===================================================================
-   ===== Project: gastronomy-html-css-js-project-01
-   ===== Author: KP_Code
-   ===== Last Update: 2025-10-22
-   ===================================================================
-   ===== script.js
-   ===== Structure Overview
-   ===================================================================
-   ===== 00) HELPERS / BOOT
-   ===== 01) MOBILE NAV TOGGLE
-   ===== 02) TABS : FILTROWANIE MENU (ARIA + KLAWIATURA)
-   ===== 03) LIGHTBOX : KONTEKSTOWA NAWIGACJA
-   ===== 04) FORMULARZ REZERWACJI ( HONEYPOT + WALIDACJA HTML5 + MOCK)
-   ===== 05) ROK W STOPCE
-   ===== 06) PRZEŁACZNIK MOTYWU ( LIGHT / DARK ) Z PAMIĘCIĘ
-   ===== 07) SCROLLSPY ( PODSWIETLENIE POZYCJI MENU )
-   ===== 08) SCROLL BUTTONS ( DOWN / UP )
-   ===== 09) CTA - PULS TYLKO W VIEWPORT
-   ===== 10) SMART NAV - ZMIANA #MENU / #GALERIA NA URL
-   ===== 11) NAV - AKTYWNA PODSTRONA W NAWIGACJI - ARIA-CURRENT
-   ===== 12) MENU ( PAGE-MENU ) ZACHOWANIE PANELU "WIĘCEJ O DANIU"
-   ===== 13) FAQ - ARIA SYNC ( ARIA-EXPANDED + ARIA-CONTROLS )
-   ===== 14) GALLERY FILTER (PAGE-GALLERY)
-   ===== 15) STICKY SHADOW ON SCROLL
-   ===== 16) LOGO -> SCROLL TO TOP
-   =================================================================== */
+/* ===========================================================================
+   = Project: gastronomy-html-css-js-project-01
+   = Author: KP_Code
+   = Last Update: 2025-10-22
+   ===========================================================================
+   = script.js
+   = Structure Overview
+   ===========================================================================
+   = 00 - HELPERS                 - utility functions.
+   = 01 - MOBILE NAV TOGGLE       - open / close mobile nav.
+   = 02 - TABS                    - menu filtering.
+   = 03 - LIGHTBOX                - contextual navigation.
+   = 04 - RESERVATION FORM        - validation, feedback, loading state...
+   = 05 - FOOTER YEAR             - dynamic current year in footer.
+   = 06 - THEME SWITCHER          - light / dark mode with memory.
+   = 07 - SCROLLSPY               - menu item highlighting.
+   = 08 - SCROLL BUTTONS          - down / up.
+   = 09 - CTA                     - pulse only in viewport.
+   = 10 - SMART NAV               - navigation style change on scroll.
+   = 11 - NAV                     - navigation active subpage - aria-current.
+   = 12 - PAGE MENU               - behavior of "more about dish" panel.
+   = 13 - FAQ                     - aria sync (aria-expanded + aria-controls).
+   = 14 - GALLERY FILTER          - page-gallery.
+   = 15 - STICKY SHADOW ON SCROLL - add shadow to sticky elements on scroll.
+   = 16 - SCROLL TO TOP           - scroll to top button.
+   = 17 - SCROLL TARGETS          - smooth scroll to anchor targets.
+   =========================================================================== */
 
-/* ========== 00) HELPERS / BOOT ========== */
+/* ===== 00 - HELPERS ===== */
 
 const DEBUG = false;
 const log = (...a) => DEBUG && console.log("[ui]", ...a);
-
 const byTestId = (id, root = document) => root.querySelector(`[data-testid="${id}"]`);
 const $ = (sel, root = document) => root.querySelector(sel);
 const $$ = (sel, root = document) => Array.from(root.querySelectorAll(sel));
 
-document.documentElement.classList.remove("no-js");
-if (document.body) {
-  document.body.classList.remove("no-js");
-} else {
-  window.addEventListener("DOMContentLoaded", () => document.body && document.body.classList.remove("no-js"), { once: true });
+function initHelpers() {
+  document.documentElement.classList.remove("no-js");
+  if (document.body) {
+    document.body.classList.remove("no-js");
+  } else {
+    window.addEventListener("DOMContentLoaded", () => document.body && document.body.classList.remove("no-js"), { once: true });
+  }
+  log("helpers initialized");
 }
 
-/* ========== 01) MOBILE NAV TOGGLE ========== */
+/* ===== 01 - MOBILE NAV TOGGLE ===== */
 
-(() => {
+function initMobileNav() {
   const toggle = byTestId("nav-toggle") || $(".nav-toggle");
   const nav = byTestId("site-nav") || $("#site-nav");
   if (!toggle || !nav) return;
@@ -54,15 +57,11 @@ if (document.body) {
     toggle.setAttribute("aria-expanded", String(open));
   };
 
-  if (!toggle.hasAttribute("aria-controls")) toggle.setAttribute("aria-controls", nav.id || "site-nav");
+  if (!toggle.hasAttribute("aria-controls")) {
+    toggle.setAttribute("aria-controls", nav.id || "site-nav");
+  }
 
-  toggle.addEventListener(
-    "click",
-    () => {
-      setExpanded(!document.body.classList.contains("nav-open"));
-    },
-    { passive: true }
-  );
+  toggle.addEventListener("click", () => setExpanded(!document.body.classList.contains("nav-open")), { passive: true });
 
   nav.addEventListener(
     "click",
@@ -93,17 +92,20 @@ if (document.body) {
   });
 
   log("nav-toggle:", !!toggle, "site-nav:", !!nav);
-})();
+}
 
-/* ========== 02) TABS: FILTROWANIE MENU (ARIA + KLAWIATURA) ========== */
+/* ===== 02 - TABS ===== */
 
-(() => {
+function initTabs() {
   const tabsRoot = byTestId("menu-tabs") || document;
   const tabs = $$(".tab", tabsRoot);
-  const items = $$(".dish");
   if (!tabs.length) return;
 
-  if (tabsRoot !== document && !tabsRoot.hasAttribute("role")) tabsRoot.setAttribute("role", "tablist");
+  const items = $$(".dish");
+
+  if (tabsRoot !== document && !tabsRoot.hasAttribute("role")) {
+    tabsRoot.setAttribute("role", "tablist");
+  }
   tabs.forEach((t) => {
     if (!t.hasAttribute("role")) t.setAttribute("role", "tab");
   });
@@ -133,11 +135,13 @@ if (document.body) {
     },
     { passive: true }
   );
+
   tabsRoot.addEventListener("keydown", (e) => {
     const current = e.target.closest(".tab");
     if (!current || !tabs.includes(current)) return;
     const i = tabs.indexOf(current);
     const focusAt = (idx) => tabs[(idx + tabs.length) % tabs.length].focus();
+
     if (e.key === "ArrowRight") {
       e.preventDefault();
       focusAt(i + 1);
@@ -157,11 +161,11 @@ if (document.body) {
   });
 
   log("menu-tabs:", !!byTestId("menu-tabs"), "tabs:", tabs.length);
-})();
+}
 
-/* ========== 03) LIGHTBOX: KONTEKSTOWA NAWIGACJA ========== */
+/* ===== 03 - LIGHTBOX ===== */
 
-(() => {
+function initLightbox() {
   const lb = document.getElementById("lb") || document.querySelector(".lightbox");
   if (!lb) return;
 
@@ -220,11 +224,11 @@ if (document.body) {
     try {
       const d = el.dataset && el.dataset.full;
       if (d) return resolveUrl(d);
-    } catch (e) {}
+    } catch {}
     const a = el.getAttribute && el.getAttribute("data-full");
     if (a) return resolveUrl(a);
     const h = el.getAttribute && el.getAttribute("href");
-    if (h) return resolveUrl(h);
+    if (h && !h.startsWith("#")) return resolveUrl(h);
     const imgEl = el.querySelector && el.querySelector("img");
     if (imgEl) return imgEl.currentSrc || imgEl.src || "";
     return "";
@@ -245,12 +249,33 @@ if (document.body) {
   let currentIndex = -1;
   let currentCollection = [];
   let lastFocused = null;
+  let _scrollY = 0;
+  let _prevHash = "";
+  let _prevBodyPos = "";
+  let _prevBodyTop = "";
+  let _prevBodyWidth = "";
+
+  const lockScroll = () => {
+    _scrollY = window.scrollY;
+    _prevBodyPos = document.body.style.position;
+    _prevBodyTop = document.body.style.top;
+    _prevBodyWidth = document.body.style.width;
+    document.documentElement.style.scrollBehavior = "auto";
+    document.body.style.position = "fixed";
+    document.body.style.top = `-${_scrollY}px`;
+    document.body.style.width = "100%";
+  };
+  const unlockScroll = () => {
+    document.body.style.position = _prevBodyPos;
+    document.body.style.top = _prevBodyTop;
+    document.body.style.width = _prevBodyWidth;
+    window.scrollTo(0, _scrollY);
+  };
 
   const visibleGridItems = (grid) => {
     if (!grid) return [];
     return Array.from(grid.querySelectorAll(".g-item")).filter((el) => !el.hidden && el.offsetParent !== null);
   };
-
   const visibleThumbItems = () => Array.from(document.querySelectorAll(".dish-thumb")).filter((el) => !el.hidden && el.offsetParent !== null);
 
   const openLB = (base, alt, index = -1, collection = []) => {
@@ -263,15 +288,19 @@ if (document.body) {
     const absBase = resolveUrl(base);
     setSources(absBase, alt);
 
-    if (typeof index === "number" && index >= 0) {
-      currentIndex = index;
-    } else {
+    if (typeof index === "number" && index >= 0) currentIndex = index;
+    else {
       currentIndex = currentCollection.findIndex((el) => {
         const candidate = getBaseFromElement(el) || "";
         return candidate && resolveUrl(candidate) === absBase;
       });
     }
     if (currentIndex === -1 && currentCollection.length) currentIndex = 0;
+
+    _prevHash = location.hash || "";
+    if (_prevHash) history.replaceState(null, "", location.pathname + location.search);
+
+    lockScroll();
 
     if (isDialog) {
       try {
@@ -283,7 +312,6 @@ if (document.body) {
       lb.removeAttribute("hidden");
       lb.setAttribute("aria-hidden", "false");
       lb.classList.add("open");
-      document.body.classList.add("no-scroll");
     }
     if (btnX && typeof btnX.focus === "function") btnX.focus();
 
@@ -297,7 +325,6 @@ if (document.body) {
       if (lb.open) lb.close();
     } else {
       lb.classList.remove("open");
-      document.body.classList.remove("no-scroll");
       lb.setAttribute("aria-hidden", "true");
       lb.setAttribute("hidden", "");
       setTimeout(() => {
@@ -306,6 +333,10 @@ if (document.body) {
         img?.removeAttribute("src");
       }, 170);
     }
+
+    if (_prevHash) history.replaceState(null, "", location.pathname + location.search + _prevHash);
+    unlockScroll();
+
     if (lastFocused && typeof lastFocused.focus === "function") lastFocused.focus();
     currentIndex = -1;
     currentCollection = [];
@@ -361,7 +392,8 @@ if (document.body) {
     if (thumb) {
       const base = getBaseFromElement(thumb);
       const alt = thumb.querySelector("img")?.alt || thumb.getAttribute("aria-label") || "";
-      if (thumb.tagName === "A") e.preventDefault();
+      const link = e.target.closest("a");
+      if (link) e.preventDefault();
       const coll = visibleThumbItems();
       const idx = coll.indexOf(thumb);
       openLB(base, alt, idx >= 0 ? idx : -1, coll);
@@ -371,7 +403,8 @@ if (document.body) {
     if (tile) {
       const base = getBaseFromElement(tile);
       const alt = tile.querySelector("img")?.alt || tile.getAttribute("aria-label") || "";
-      if (tile.tagName === "A") e.preventDefault();
+      const link = e.target.closest("a");
+      if (link) e.preventDefault();
       const grid = tile.closest(".gallery-grid");
       const coll = visibleGridItems(grid);
       const idx = coll.indexOf(tile);
@@ -379,10 +412,39 @@ if (document.body) {
     }
   });
 
+  const galleryRoot = document.getElementById("galeria-grid") || document.querySelector("#galeria-grid");
+  if (galleryRoot) {
+    galleryRoot.addEventListener(
+      "click",
+      (e) => {
+        const a = e.target.closest('a[href^="#"]');
+        if (!a) return;
+        e.preventDefault();
+        e.stopPropagation();
+      },
+      true
+    );
+  }
+
+  window.addEventListener(
+    "hashchange",
+    () => {
+      if ((isDialog && lb.open) || (!isDialog && lb.classList.contains("open"))) {
+        history.replaceState(null, "", location.pathname + location.search);
+        window.scrollTo(0, _scrollY);
+      }
+    },
+    true
+  );
+
   btnX?.addEventListener("click", closeLB);
   if (overlayEl) overlayEl.addEventListener("click", closeLB);
   lb.addEventListener("click", (e) => {
     if (e.target === lb) closeLB();
+  });
+  lb.addEventListener("cancel", (e) => {
+    e.preventDefault();
+    closeLB();
   });
 
   document.addEventListener("keydown", onKey);
@@ -416,20 +478,17 @@ if (document.body) {
 
   const onPrev = (e) => {
     e.stopPropagation();
-    if (currentCollection.length) {
-      showAtIndex(currentIndex === -1 ? 0 : currentIndex - 1);
-    }
+    if (currentCollection.length) showAtIndex(currentIndex === -1 ? 0 : currentIndex - 1);
   };
   const onNext = (e) => {
     e.stopPropagation();
-    if (currentCollection.length) {
-      showAtIndex(currentIndex === -1 ? 0 : currentIndex + 1);
-    }
+    if (currentCollection.length) showAtIndex(currentIndex === -1 ? 0 : currentIndex + 1);
   };
   btnPrev.addEventListener("click", onPrev);
   btnNext.addEventListener("click", onNext);
 
-  (() => {
+  // swipe
+  (function () {
     if (!img) return;
     const SUPPORTS_POINTER = "PointerEvent" in window;
 
@@ -542,6 +601,7 @@ if (document.body) {
     }
   })();
 
+  // fullscreen + zoom fallback
   const fsEl = lb;
   const canFS = !!(fsEl.requestFullscreen || fsEl.webkitRequestFullscreen || fsEl.msRequestFullscreen);
   const reqFS = () => fsEl.requestFullscreen?.() || fsEl.webkitRequestFullscreen?.() || fsEl.msRequestFullscreen?.();
@@ -584,13 +644,13 @@ if (document.body) {
   });
   document.addEventListener("fullscreenchange", () => setFsBackdrop(isFS()));
 
-  img.addEventListener("dblclick", (e) => {
+  img?.addEventListener("dblclick", (e) => {
     e.preventDefault();
     toggleFullscreen();
   });
 
   let lastTap = 0;
-  img.addEventListener(
+  img?.addEventListener(
     "touchend",
     (e) => {
       const now = Date.now();
@@ -610,15 +670,16 @@ if (document.body) {
     }
   });
 
+  // API
   window.openLB = (base, alt, idx) => openLB(base, alt, idx);
   window.closeLB = closeLB;
 
   console.log("lightbox ready →", isDialog ? "<dialog>" : "<div>");
-})();
+}
 
-/* ========== 04) FORM ========== */
+/* ===== 04 - RESERVATION FORM ===== */
 
-(() => {
+function initReservationForm() {
   const form = byTestId("booking-form") || $("#booking-form");
   const msg = $("#form-msg");
   if (!form || !msg) return;
@@ -648,6 +709,7 @@ if (document.body) {
 
     if (btn && btn.classList.contains("is-loading")) return;
 
+    // honeypot
     if (form.company && form.company.value.trim() !== "") {
       msg.textContent = "Wykryto bota — zgłoszenie odrzucone.";
       return;
@@ -663,7 +725,7 @@ if (document.body) {
     msg.textContent = "";
 
     const T = 1000 + Math.random() * 200;
-    const timer = setTimeout(() => {
+    setTimeout(() => {
       try {
         msg.textContent = "Dziękujemy! Oddzwonimy, aby potwierdzić rezerwację.";
         form.reset();
@@ -671,24 +733,22 @@ if (document.body) {
         setLoading(false);
       }
     }, T);
-
-    form.addEventListener("reset", () => {}, { once: true });
-    form.addEventListener("submit", () => {}, { once: true });
   });
 
   log("booking-form:", !!form, "btn-form:", !!btn);
-})();
+}
 
-/* ========== 05) YEAR IN FOOTER ========== */
+/* ===== 05 - FOOTER YEAR ===== */
 
-(() => {
+function initFooterYear() {
   const y = $("#year");
-  if (y) y.textContent = new Date().getFullYear();
-})();
+  if (!y) return;
+  y.textContent = new Date().getFullYear();
+}
 
-/* ========== 06) THEME TOGGLE ========== */
+/* ===== 06 - THEME SWITCHER ===== */
 
-(() => {
+function initThemeSwitcher() {
   const btn = byTestId("theme-toggle") || $(".theme-toggle");
   if (!btn) return;
 
@@ -729,11 +789,11 @@ if (document.body) {
   });
 
   log("theme-toggle:", !!btn);
-})();
+}
 
-/* ========== 07) SCROLLSPY ========== */
+/* ===== 07 - SCROLLSPY ===== */
 
-(() => {
+function initScrollspy() {
   const links = $$("#site-nav a[href^='#']");
   if (!links.length) return;
 
@@ -771,13 +831,17 @@ if (document.body) {
   );
 
   if (location.hash) setActive(location.hash.slice(1));
-})();
 
-/* ========== 08) SCROLL BUTTONS ========== */
+  log("scrollspy:", links.length);
+}
 
-(() => {
+/* ===== 08 - SCROLL BUTTONS ===== */
+
+function initScrollButtons() {
   const btnDown = byTestId("scroll-down") || $(".scroll-down");
   const btnUp = byTestId("scroll-up") || $(".scroll-up");
+  if (!btnDown && !btnUp) return;
+
   const prefersReduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
   const behavior = prefersReduce ? "auto" : "smooth";
 
@@ -795,6 +859,7 @@ if (document.body) {
     const top = Math.max(0, docHeight() - window.innerHeight);
     window.scrollTo({ top, behavior });
   };
+
   const goTop = () => window.scrollTo({ top: 0, behavior });
 
   btnDown?.addEventListener("click", goBottom);
@@ -819,11 +884,11 @@ if (document.body) {
   window.addEventListener("scroll", onScrollRaw, { passive: true });
 
   log("scroll-down:", !!btnDown, "scroll-up:", !!btnUp);
-})();
+}
 
-/* ========== 09) CTA ========== */
+/* ===== 09 - CTA ===== */
 
-(() => {
+function initCtaPulse() {
   const ctas = document.querySelectorAll(".btn-cta");
   if (!ctas.length) return;
 
@@ -837,28 +902,35 @@ if (document.body) {
   );
 
   ctas.forEach((btn) => io.observe(btn));
-})();
 
-/* ========== 10) SMART NAV ========== */
+  log("cta buttons:", ctas.length);
+}
 
-(() => {
+/* ===== 10 - SMART NAV ===== */
+
+function initSmartNav() {
   const path = location.pathname;
   const isHome = /(?:^|\/)(index\.html)?$/.test(path) || path.endsWith("/");
   if (isHome) return;
 
   const map = { "#menu": "menu.html", "#galeria": "galeria.html" };
   const links = document.querySelectorAll(".site-nav a[href^='#']");
+  if (!links.length) return;
+
   links.forEach((a) => {
     const to = map[a.getAttribute("href") || ""];
     if (to) a.setAttribute("href", to);
   });
-})();
 
-/* ========== 11) NAV - ACTIVE PAGE ========== */
+  log("smart-nav links:", links.length);
+}
 
-(function () {
+/* ===== 11 - NAV ===== */
+
+function initAriaCurrent() {
   const nav = document.querySelector(".site-nav");
   if (!nav) return;
+
   const links = Array.from(nav.querySelectorAll("a"));
   const file = location.pathname.split("/").pop() || "";
   const page = file.replace(".html", "");
@@ -889,11 +961,13 @@ if (document.body) {
       }
     }
   }
-})();
 
-/* ========== 12) MENU ( PAGE-MENU ) ========== */
+  log("aria-current nav:", links.length);
+}
 
-(() => {
+/* ===== 12 - PAGE MENU ===== */
+
+function initPageMenuPanel() {
   if (!document.body.classList.contains("page-menu")) return;
 
   document.addEventListener(
@@ -921,11 +995,13 @@ if (document.body) {
       });
     }
   });
-})();
 
-/* ========== 13) ARIA SYNC ========== */
+  log("page-menu initialized");
+}
 
-(() => {
+/* ===== 13 - FAQ ===== */
+
+function initFaqAria() {
   const root = document.getElementById("faq") || document.querySelector(".faq");
   if (!root) return;
 
@@ -944,45 +1020,64 @@ if (document.body) {
     d.addEventListener("toggle", sync);
     sync();
   });
-})();
 
-/* ========== 14) GALLERY FILTER ========== */
+  log("faq panels:", panels.length);
+}
 
-(function () {
-  if (!document.body.classList.contains("page-gallery")) return;
+/* ===== 14 - GALLERY FILTER ===== */
 
-  const tabsWrap = document.querySelector(".tabs");
+function initGalleryFilter() {
+  const root = document.querySelector("main.page-gallery");
+  if (!root) return;
+
+  const tabsWrap = root.querySelector(".tabs");
   if (!tabsWrap) return;
 
   const tabs = Array.from(tabsWrap.querySelectorAll(".tab"));
-  const items = Array.from(document.querySelectorAll(".gallery-grid .g-item"));
+  const items = Array.from(root.querySelectorAll("#galeria-grid .g-item"));
+
+  const normalize = (s) =>
+    (s || "")
+      .toString()
+      .normalize("NFD")
+      .replace(/[\u0300-\u036f]/g, "")
+      .toLowerCase()
+      .trim();
 
   function applyFilter(valueRaw) {
-    const value = (valueRaw || "").trim();
-    const showAll = value === "" || value.toLowerCase() === "all";
+    const value = normalize(valueRaw);
+    const showAll = value === "" || value === "all";
     items.forEach((el) => {
-      const cat = el.dataset.cat || el.dataset.filter || "";
-      el.hidden = showAll ? false : cat !== value;
+      const raw = el.dataset.cat || el.dataset.filter || "";
+      const cats = normalize(raw)
+        .split(/[\s,]+/)
+        .filter(Boolean);
+      el.hidden = showAll ? false : !cats.includes(value);
     });
   }
 
   function setActiveTab(btn) {
-    tabs.forEach((t) => t.setAttribute("aria-selected", String(t === btn)));
+    tabs.forEach((t) => {
+      const isAct = t === btn;
+      t.setAttribute("aria-selected", String(isAct));
+      t.classList.toggle("is-active", isAct);
+    });
   }
 
-  function initTabs() {
+  function initTabsA11y() {
     tabs.forEach((t, i) => {
       t.setAttribute("role", "tab");
-      const selected = t.getAttribute("aria-selected") === "true";
-      t.setAttribute("tabindex", selected ? "0" : i === 0 ? "0" : "-1");
-      if (!t.hasAttribute("aria-selected")) t.setAttribute("aria-selected", String(i === 0));
+      const selectedAttr = t.getAttribute("aria-selected");
+      const selected = selectedAttr ? selectedAttr === "true" : i === 0;
+      t.setAttribute("aria-selected", String(selected));
+      t.setAttribute("tabindex", selected ? "0" : "-1");
     });
   }
 
   function activateTab(tab) {
     setActiveTab(tab);
     tabs.forEach((t) => t.setAttribute("tabindex", t === tab ? "0" : "-1"));
-    const value = (tab.dataset.filter || "").trim();
+    const value = tab.dataset.filter || "";
     applyFilter(value);
     tab.focus();
   }
@@ -1013,37 +1108,41 @@ if (document.body) {
       focusIndex(tabs.length - 1);
       return;
     }
-
     if (key === "Enter" || key === " " || key === "Spacebar") {
       e.preventDefault();
       activateTab(activeEl);
       return;
     }
-    if (key === "Escape") {
-      activeEl.blur();
-      return;
-    }
+    if (key === "Escape") activeEl.blur();
   });
 
-  tabs.forEach((t) => {
-    t.addEventListener("click", () => activateTab(t));
-  });
+  tabs.forEach((t) => t.addEventListener("click", () => activateTab(t)));
 
-  initTabs();
+  initTabsA11y();
   const pre = tabs.find((t) => t.getAttribute("aria-selected") === "true") || tabs[0];
-  activateTab(pre);
-})();
+  if (pre) activateTab(pre);
 
-/* ========== 15) STICKY SHADOW ON SCROLL ========== */
+  log("gallery-filter tabs:", tabs.length, "items:", items.length);
+}
 
-window.addEventListener("scroll", () => {
-  document.body.classList.toggle("is-scrolled", window.scrollY > 10);
-});
+/* ===== 15 - STICKY SHADOW ON SCROLL ===== */
 
-/* ========== 16) LOGO → SCROLL TO TOP ========== */
+function initStickyShadow() {
+  const onScroll = () => {
+    document.body.classList.toggle("is-scrolled", window.scrollY > 10);
+  };
 
-(() => {
+  onScroll(); // stan początkowy
+  window.addEventListener("scroll", onScroll, { passive: true });
+
+  log("sticky shadow active");
+}
+
+/* ===== 16 - SCROLL TO TOP ===== */
+
+function initScrollToTop() {
   const prefersReduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
   document.addEventListener("click", (e) => {
     const link = e.target.closest("a.brand");
     if (!link) return;
@@ -1053,29 +1152,63 @@ window.addEventListener("scroll", () => {
       window.scrollTo({ top: 0, behavior: prefersReduce ? "auto" : "smooth" });
     }
   });
-})();
 
-/* $$$$$$$$$$ END OF SCRIPT $$$$$$$$$$ */
+  log("scroll-to-top initialized");
+}
 
+/* ===== 17 - SCROLL TARGETS ===== */
 
+function initScrollTargets() {
+  const btns = document.querySelectorAll("[data-target]");
+  if (!btns.length) return;
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-document.querySelectorAll('[data-target]').forEach(btn => {
-  btn.addEventListener('click', () => {
-    const section = document.querySelector(btn.dataset.target);
-    section?.scrollIntoView({ behavior: 'smooth' });
+  btns.forEach((btn) => {
+    btn.addEventListener("click", () => {
+      const section = document.querySelector(btn.dataset.target);
+      section?.scrollIntoView({ behavior: "smooth" });
+    });
   });
-});
 
+  log("scroll-target buttons:", btns.length);
+}
+
+/* ===== BOOTSTRAP ===== */
+
+const FEATURES = [
+  { name: "HELPERS", init: initHelpers }, // klasy no-js, utilsy
+  { name: "THEME SWITCHER", init: initThemeSwitcher }, // minimalizacja FOUC
+  { name: "FOOTER YEAR", init: initFooterYear }, // szybki, bez zależności
+
+  { name: "SMART NAV", init: initSmartNav }, // przepięcia hash->podstrony
+  { name: "NAV", init: initAriaCurrent }, // aria-current po przepisaniu hrefów
+  { name: "SCROLLSPY", init: initScrollspy }, // działa na gotowych linkach
+
+  { name: "STICKY SHADOW", init: initStickyShadow }, // scroll listeners
+  { name: "SCROLL BUTTONS", init: initScrollButtons }, // scroll listeners
+  { name: "SCROLL TO TOP", init: initScrollToTop }, // global click
+  { name: "SCROLL TARGETS", init: initScrollTargets }, // global click
+
+  { name: "CTA", init: initCtaPulse }, // IO na przyciskach
+
+  { name: "TABS", init: initTabs }, // strona menu
+  { name: "PAGE MENU", init: initPageMenuPanel }, // panel „more about dish”
+  { name: "RESERVATION FORM", init: initReservationForm }, // walidacja i loading
+
+  { name: "GALLERY FILTER", init: initGalleryFilter }, // filtruje widoczne kafle
+  { name: "LIGHTBOX", init: initLightbox }, // kliki po filtrze
+
+  { name: "FAQ", init: initFaqAria }, // aria sync w details
+];
+
+function boot() {
+  for (const f of FEATURES) {
+    try {
+      f.init();
+    } catch (err) {
+      console.warn(err);
+    }
+  }
+}
+document.addEventListener("DOMContentLoaded", boot);
+
+/* ===== End of js/script.js ===== */
