@@ -829,14 +829,7 @@
     </button>
 
     <!-- inne skrypty projektu -->
+    <script src="js/sw-register.js" defer></script>
     <script src="js/script.js" defer></script>
-
-
-    <!-- Rejestracja Service Workera -->
-    <script>
-      if ("serviceWorker" in navigator) {
-        navigator.serviceWorker.register("/sw.js", { scope: "/" });
-      }
-    </script>
   </body>
 </html>
