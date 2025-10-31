@@ -1776,19 +1776,38 @@ function initCookieBanner() {
     var KEY = "cookies-consent-v1";
     var banner = document.getElementById("cookie-banner");
     if (!banner || localStorage.getItem(KEY) === "accepted") return;
+    var previousFocus = document.activeElement;
     banner.hidden = false;
+    try {
+      banner.tabIndex = -1;
+      banner.focus({ preventScroll: true });
+    } catch {}
 
     var acceptBtn = document.getElementById("cc-accept");
     if (acceptBtn)
       acceptBtn.addEventListener("click", function () {
         localStorage.setItem(KEY, "accepted");
         banner.hidden = true;
+        try {
+          (
+            previousFocus ||
+            document.querySelector(".theme-toggle") ||
+            document.body
+          ).focus({ preventScroll: true });
+        } catch {}
       });
 
     banner.addEventListener("keydown", function (e) {
       if (e.key === "Escape") {
         localStorage.setItem(KEY, "accepted");
         banner.hidden = true;
+        try {
+          (
+            previousFocus ||
+            document.querySelector(".theme-toggle") ||
+            document.body
+          ).focus({ preventScroll: true });
+        } catch {}
       }
     });
   } catch (e) {}
@@ -1824,3 +1843,7 @@ function initCookieBanner() {
     start();
   }
 })();
+
+
+
+

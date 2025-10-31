@@ -1,33 +1,33 @@
-/* ==================================================
-   ===== Project: construction-html-css-js-project-01
-   ===== Author: KP_Code
-   ===== Updated: 2025-10-22
-   ==================================================
-   ===== CSS Stylesheet
-   ===== Structure Overview
-   ==================================================
-   ===== 00) GLOBAL VARIABLES
-   ===== 01) BASE TYPOGRAPHY + LAYOUT
-   ===== 02) HEADER
-   ===== 03) HERO
-   ===== 04) OFFER
-   ===== 05) LOGOS
-   ===== 06) TESTIMONIALS
-   ===== 07) FAQ
-   ===== 08) CTA
-   ===== 09) CONTACT
-   ===== 10) FOOTER
-   ===== 11) SUBPAGES
-   ===== 12) SUBPAGES DOC
-   ===== 13) ANIMATIONS & MOTION
-   ===== 14) LIGHTBOX
-   ===== 15) GLOBAL BUTTONS
-   ===== 16) THEME OVERRIDES
-   ===== 98) PRINT STYLES
-   ===== 99) FEATURE SUPPORT
-   =================================================== */
+/* ==============================================
+   = Project: construction-html-css-js-project-01
+   = Author: KP_Code
+   = Updated: 2025-10-22
+   ==============================================
+   = CSS Stylesheet
+   = Structure Overview
+   ==============================================
+   = 00 - GLOBAL VARIABLES
+   = 01 - BASE TYPOGRAPHY + LAYOUT
+   = 02 - HEADER
+   = 03 - HERO
+   = 04 - OFFER
+   = 05 - LOGOS
+   = 06 - TESTIMONIALS
+   = 07 - FAQ
+   = 08 - CTA
+   = 09 - CONTACT
+   = 10 - FOOTER
+   = 11 - SUBPAGES
+   = 12 - SUBPAGES DOC
+   = 13 - ANIMATIONS & MOTION
+   = 14 - LIGHTBOX
+   = 15 - GLOBAL BUTTONS
+   = 16 - THEME OVERRIDES
+   = 98 - PRINT STYLES
+   = 99 - FEATURE SUPPORT
+   =============================================== */
 
-/* ========== 00) GLOBAL VARIABLES =========== */
+/* ===== 00 - GLOBAL VARIABLES ====== */
 
 :root {
   --bg: #ffffff;
@@ -72,9 +72,7 @@
   color-scheme: light dark;
 }
 
-/* ----- Fonts ----- */
-/* ----- Montserrat ----- */
-/* montserrat-regular - latin */
+/* -- Fonts -- */
 @font-face {
   font-display: swap;
   font-family: "Montserrat";
@@ -82,7 +80,7 @@
   font-weight: 400;
   src: url("../assets/fonts/montserrat-v31-latin-regular.woff2") format("woff2");
 }
-/* montserrat-600 - latin */
+
 @font-face {
   font-display: swap;
   font-family: "Montserrat";
@@ -90,7 +88,7 @@
   font-weight: 600;
   src: url("../assets/fonts/montserrat-v31-latin-600.woff2") format("woff2");
 }
-/* montserrat-700 - latin */
+
 @font-face {
   font-display: swap;
   font-family: "Montserrat";
@@ -98,8 +96,7 @@
   font-weight: 700;
   src: url("../assets/fonts/montserrat-v31-latin-700.woff2") format("woff2");
 }
-/* ----- Poppins ----- */
-/* poppins-regular - latin */
+
 @font-face {
   font-display: swap;
   font-family: "Poppins";
@@ -107,7 +104,7 @@
   font-weight: 400;
   src: url("../assets/fonts/poppins-v24-latin-regular.woff2") format("woff2");
 }
-/* poppins-500 - latin */
+
 @font-face {
   font-display: swap;
   font-family: "Poppins";
@@ -115,7 +112,7 @@
   font-weight: 500;
   src: url("../assets/fonts/poppins-v24-latin-500.woff2") format("woff2");
 }
-/* poppins-600 - latin */
+
 @font-face {
   font-display: swap;
   font-family: "Poppins";
@@ -124,7 +121,6 @@
   src: url("../assets/fonts/poppins-v24-latin-600.woff2") format("woff2");
 }
 
-/* ----- MQ prefers-color-scheme: dark ----- */
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme]) {
     --bg: #0b1220;
@@ -141,7 +137,7 @@
     --hero-overlay-a: 0.42;
   }
 }
-/* ========== 01) BASE TYPOGRAPHT + LAYOUT =========== */
+/* ===== 01 - BASE TYPOGRAPHT + LAYOUT ====== */
 
 :root {
   --fs-h1: clamp(2.2rem, 1.1rem + 3.6vw, 3.5rem);
@@ -415,7 +411,7 @@ h2 + .lead {
   text-align: center;
 }
 
-/* ----- MQ max-width: 640px ----- */
+/* -- MQ max-width: 640px -- */
 @media (max-width: 640px) {
   .logos,
   #opinie,
@@ -426,7 +422,7 @@ h2 + .lead {
   }
 }
 
-/* ----- MQ max-width: 420px ----- */
+/* -- MQ max-width: 420px -- */
 @media (max-width: 420px) {
   .container {
     padding-left: 14px;
@@ -434,7 +430,7 @@ h2 + .lead {
   }
 }
 
-/* ----- MQ max-width: 360px ----- */
+/* -- MQ max-width: 360px -- */
 @media (max-width: 360px) {
   .container {
     padding-left: 12px;
@@ -442,14 +438,14 @@ h2 + .lead {
   }
 }
 
-/* ----- MQ prefers-reduced-motion: no-preference ----- */
+/* -- MQ prefers-reduced-motion: no-preference -- */
 @media (prefers-reduced-motion: no-preference) {
   html:focus-within {
     scroll-behavior: smooth;
   }
 }
 
-/* ----- MQ supports text-wrap: balance ----- */
+/* -- MQ supports text-wrap: balance -- */
 @supports (text-wrap: balance) {
   h1,
   h2,
@@ -458,7 +454,7 @@ h2 + .lead {
   }
 }
 
-/* ========== 02) HEADER ========== */
+/* ===== 02 - HEADER ===== */
 
 .site-header {
   position: fixed;
@@ -493,7 +489,7 @@ h2 + .lead {
   padding-block: 4px;
 }
 
-/* ----- Brand ----- */
+/* -- Brand -- */
 .brand {
   display: inline-flex;
   align-items: center;
@@ -559,12 +555,14 @@ h2 + .lead {
   display: inline-block;
   line-height: 0;
 }
+
 .brand-logo img {
   display: block;
   max-height: 48px;
   height: auto;
   width: auto;
 }
+
 .site-header.is-shrink .brand-logo img {
   max-height: 44px;
 }
@@ -572,14 +570,16 @@ h2 + .lead {
 .site-header .logo--dark {
   display: none;
 }
+
 :root[data-theme="dark"] .site-header .logo--light {
   display: none;
 }
+
 :root[data-theme="dark"] .site-header .logo--dark {
   display: block;
 }
 
-/* ----- Nav ----- */
+/* -- Nav -- */
 .nav {
   flex: 1;
   display: flex;
@@ -683,7 +683,7 @@ h2 + .lead {
   position: relative;
 }
 
-/* ----- Dropdown ----- */
+/* -- Dropdown -- */
 .dropdown {
   position: absolute;
   left: 0;
@@ -717,7 +717,7 @@ h2 + .lead {
   background: var(--line);
 }
 
-/* ----- Header actions ----- */
+/* -- Header actions -- */
 .header-actions {
   display: flex;
   align-items: center;
@@ -740,7 +740,7 @@ h2 + .lead {
   background: currentColor;
 }
 
-/* ----- Theme toggle ----- */
+/* -- Theme toggle -- */
 .theme-toggle {
   display: inline-grid;
   place-items: center;
@@ -783,7 +783,7 @@ h2 + .lead {
   display: block;
 }
 
-/* ----- Dark theme tweaks ----- */
+/* -- Dark theme tweaks -- */
 :root[data-theme="dark"] .dropdown {
   background: var(--card);
   border-color: color-mix(in srgb, #fff 10%, var(--line));
@@ -808,7 +808,7 @@ h2 + .lead {
   opacity: 0.95;
 }
 
-/* ----- MQ min-width: 1050px ----- */
+/* -- MQ min-width: 1050px -- */
 @media (min-width: 1050px) {
   .header-bar {
     min-height: 72px;
@@ -821,7 +821,7 @@ h2 + .lead {
   }
 }
 
-/* ----- MQ max-width: 1024px ----- */
+/* -- MQ max-width: 1024px -- */
 @media (max-width: 1024px) {
   .nav-toggle {
     display: inline-grid;
@@ -830,7 +830,6 @@ h2 + .lead {
   .header-bar .brand {
     margin-left: 14px;
   }
-
   .nav-menu {
     position: fixed;
     top: var(--header-h, 64px);
@@ -850,12 +849,10 @@ h2 + .lead {
     overflow: auto;
     will-change: transform, opacity;
   }
-
   .nav-menu.open {
     display: flex;
     animation: menuIn 0.18s ease both;
   }
-
   @keyframes menuIn {
     from {
       opacity: 0;
@@ -866,12 +863,10 @@ h2 + .lead {
       transform: none;
     }
   }
-
   .nav-menu > li {
     width: 100%;
     align-items: stretch;
   }
-
   .nav .nav-menu > li > a,
   .nav .nav-menu > li > .dropdown-trigger {
     width: 100%;
@@ -882,7 +877,6 @@ h2 + .lead {
     border-radius: 10px;
     min-height: 44px;
   }
-
   .has-dropdown > .dropdown {
     display: none !important;
     visibility: hidden;
@@ -894,16 +888,13 @@ h2 + .lead {
     box-shadow: none !important;
     border: 0 !important;
   }
-
   .nav .nav-menu .caret {
     display: none;
   }
-
   :root[data-theme="dark"] .nav-menu {
     background: color-mix(in oklab, var(--card) 88%, transparent);
     border-bottom-color: color-mix(in srgb, #fff 12%, var(--line));
   }
-
   :root[data-theme="dark"] .nav-menu .dropdown a:hover,
   :root[data-theme="dark"] .nav-menu .dropdown a:focus-visible {
     background: color-mix(in srgb, var(--brand) 20%, transparent);
@@ -911,7 +902,7 @@ h2 + .lead {
   }
 }
 
-/* ----- MQ max-width: 768px ----- */
+/* -- MQ max-width: 768px -- */
 @media (max-width: 768px) {
   .brand-badge {
     width: 40px;
@@ -925,7 +916,7 @@ h2 + .lead {
   }
 }
 
-/* ----- MQ max-width: 640px ----- */
+/* -- MQ max-width: 640px -- */
 @media (max-width: 640px) {
   .theme-toggle {
     width: 34px;
@@ -945,7 +936,7 @@ h2 + .lead {
   }
 }
 
-/* ----- MQ max-width: 640px and hover: none ----- */
+/* -- MQ max-width: 640px and hover: none -- */
 @media (max-width: 640px) and (hover: none) {
   .theme-toggle:hover {
     transform: none;
@@ -954,7 +945,7 @@ h2 + .lead {
   }
 }
 
-/* ----- MQ max-width: 360px ----- */
+/* -- MQ max-width: 360px -- */
 @media (max-width: 360px) {
   .header-bar {
     gap: 12px;
@@ -975,7 +966,7 @@ h2 + .lead {
   }
 }
 
-/* ----- MQ hover: hover ----- */
+/* -- MQ hover: hover -- */
 @media (hover: hover) {
   .has-dropdown:hover > .dropdown,
   .has-dropdown:focus-within > .dropdown {
@@ -985,7 +976,7 @@ h2 + .lead {
   }
 }
 
-/* ----- MQ prefers-reduced-motion: reduce ----- */
+/* -- MQ prefers-reduced-motion: reduce -- */
 @media (prefers-reduced-motion: reduce) {
   .site-header,
   .header-bar,
@@ -1007,7 +998,7 @@ h2 + .lead {
   }
 }
 
-/* ----- KeyFrames - pulse ------ */
+/* -- KeyFrames - pulse --- */
 @keyframes pulse {
   0%,
   100% {
@@ -1018,7 +1009,7 @@ h2 + .lead {
   }
 }
 
-/* ========== 03) HERO ========== */
+/* ===== 03 - HERO ===== */
 
 .hero {
   position: relative;
@@ -1075,12 +1066,7 @@ h2 + .lead {
   position: absolute;
   inset: 0;
   z-index: -1;
-  background: linear-gradient(
-    to bottom,
-    rgba(0, 0, 0, calc(var(--overlay-a) * 0.85)) 0%,
-    rgba(0, 0, 0, var(--overlay-a)) 58%,
-    rgba(0, 0, 0, calc(var(--overlay-a) * 0.4)) 100%
-  );
+  background: linear-gradient(to bottom, rgba(0, 0, 0, calc(var(--overlay-a) * 0.85)) 0%, rgba(0, 0, 0, var(--overlay-a)) 58%, rgba(0, 0, 0, calc(var(--overlay-a) * 0.4)) 100%);
   pointer-events: none;
 }
 
@@ -1139,14 +1125,14 @@ h2 + .lead {
   margin: 8px 0;
 }
 
-/* ----- MQ min-aspect-ratio: 21/9 ----- */
+/* -- MQ min-aspect-ratio: 21/9 -- */
 @media (min-aspect-ratio: 21/9) {
   .hero-bg img {
     object-fit: contain;
   }
 }
 
-/* ----- MQ max-width: 640px ----- */
+/* -- MQ max-width: 640px -- */
 @media (max-width: 640px) {
   .hero {
     --overlay-a: 0.38;
@@ -1156,7 +1142,7 @@ h2 + .lead {
   }
 }
 
-/* ----- MQ max-width: 360px ----- */
+/* -- MQ max-width: 360px -- */
 @media (max-width: 360px) {
   .hero {
     min-height: 88vh;
@@ -1173,21 +1159,21 @@ h2 + .lead {
   }
 }
 
-/* ----- MQ min-width: 1200px ----- */
+/* -- MQ min-width: 1200px -- */
 @media (min-width: 1200px) {
   .hero {
     min-height: clamp(560px, 68vh, 880px);
   }
 }
 
-/* ----- MQ min-width: 1600px ----- */
+/* -- MQ min-width: 1600px -- */
 @media (min-width: 1600px) {
   .hero {
     min-height: clamp(600px, 72vh, 960px);
   }
 }
 
-/* ========== 04) OFFER ========== */
+/* ===== 04 - OFFER ===== */
 
 .block-head {
   text-align: center;
@@ -1223,10 +1209,7 @@ h2 + .lead {
 .card:hover,
 .card:focus-within {
   transform: translateY(-2px);
-  border-color: var(
-    --c-border-strong,
-    color-mix(in oklab, var(--c-border), black 14%)
-  );
+  border-color: var(--c-border-strong, color-mix(in oklab, var(--c-border), black 14%));
   box-shadow: 0 10px 24px -6px rgba(0, 0, 0, 0.18);
   z-index: 10;
 }
@@ -1295,13 +1278,7 @@ h2 + .lead {
   bottom: -2px;
   width: 0%;
   height: 2px;
-  background: linear-gradient(
-    to right,
-    transparent 0%,
-    var(--brand) 20%,
-    var(--brand) 80%,
-    transparent 100%
-  );
+  background: linear-gradient(to right, transparent 0%, var(--brand) 20%, var(--brand) 80%, transparent 100%);
   border-radius: 999px;
   transform: translateX(-50%);
   transition: width 0.3s ease;
@@ -1347,27 +1324,27 @@ h2 + .lead {
   box-shadow: 0 10px 24px rgba(0, 0, 0, 0.45);
 }
 
-/* ----- MQ min width 640px ----- */
+/* -- MQ min width 640px -- */
 @media (min-width: 640px) {
   .services-list {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 }
 
-/* ----- MQ min width 992px ----- */
+/* -- MQ min width 992px -- */
 @media (min-width: 992px) {
   .services-list {
     grid-template-columns: repeat(3, minmax(0, 1fr));
   }
 }
 
-/* ---------- 04-A) Section Dividers ---------- */
+/* ------ 04-A) Section Dividers ------- */
 :root {
   --sep-h: 14px;
   --sep-buffer: var(--space-section-sm);
 }
 
-/* --- sekcje --- */
+/* -- sekcje -- */
 :is(#oferta, .logos, #faq) {
   position: relative;
 }
@@ -1377,34 +1354,26 @@ h2 + .lead {
   position: absolute;
   inset: 0 0 auto 0;
   height: var(--sep-h);
-  background: linear-gradient(
-    to bottom,
-    color-mix(in srgb, var(--c-border) 85%, transparent),
-    transparent
-  );
+  background: linear-gradient(to bottom, color-mix(in srgb, var(--c-border) 85%, transparent), transparent);
   pointer-events: none;
 }
 
 :root[data-theme="dark"] :is(#oferta, .logos, #faq)::before {
-  background: linear-gradient(
-    to bottom,
-    color-mix(in srgb, #ffffff 14%, transparent),
-    transparent
-  );
+  background: linear-gradient(to bottom, color-mix(in srgb, #ffffff 14%, transparent), transparent);
 }
 
 :is(#oferta, .logos, #faq) > .container {
   padding-top: var(--sep-buffer);
 }
 
-/* ----- MQ prefers-reduced-motion ----- */
+/* -- MQ prefers-reduced-motion -- */
 @media (prefers-reduced-motion: reduce) {
   :is(#oferta, .logos, #faq)::before {
     transition: none;
   }
 }
 
-/* ========== 05) LOGOS ========== */
+/* ===== 05 - LOGOS ===== */
 
 .logos {
   --logo-slot-h: clamp(70px, 8vw, 96px);
@@ -1520,7 +1489,7 @@ h2 + .lead {
   border-color: rgba(255, 255, 255, 0.12);
 }
 
-/* ----- MQ max width 480px ----- */
+/* -- MQ max width 480px -- */
 @media (max-width: 480px) {
   .logos-grid {
     grid-template-columns: repeat(2, minmax(var(--logo-min), 1fr));
@@ -1528,7 +1497,7 @@ h2 + .lead {
   }
 }
 
-/* ----- Prefers-reduced-motion ----- */
+/* -- Prefers-reduced-motion -- */
 @media (prefers-reduced-motion: reduce) {
   .logos .logo {
     transition: none;
@@ -1536,7 +1505,7 @@ h2 + .lead {
   }
 }
 
-/* ========== 06) TESTIMONIALS ========== */
+/* ===== 06 - TESTIMONIALS ===== */
 
 .testimonials {
   scroll-margin-top: calc(var(--header-h) + var(--space-2));
@@ -1635,7 +1604,7 @@ h2 + .lead {
   opacity: 0.5;
 }
 
-/* ----- MQ max width 640px ----- */
+/* -- MQ max width 640px -- */
 @media (max-width: 640px) {
   .rating {
     flex-direction: column;
@@ -1648,21 +1617,21 @@ h2 + .lead {
   }
 }
 
-/* ----- MQ min width 600px ----- */
+/* -- MQ min width 600px -- */
 @media (min-width: 600px) {
   .testimonials-grid {
     grid-template-columns: repeat(2, 1fr);
   }
 }
 
-/* ----- MQ min width 800px ----- */
+/* -- MQ min width 800px -- */
 @media (min-width: 800px) {
   .testimonials-grid {
     grid-template-columns: repeat(3, 1fr);
   }
 }
 
-/* ----- MQ min width 1024px ----- */
+/* -- MQ min width 1024px -- */
 @media (min-width: 1024px) {
   .testimonials-grid {
     gap: var(--space-5);
@@ -1672,7 +1641,7 @@ h2 + .lead {
   }
 }
 
-/* ----- MQ prefers-reduced-motion ----- */
+/* -- MQ prefers-reduced-motion -- */
 @media (prefers-reduced-motion: reduce) {
   .testimonial {
     transition: none;
@@ -1683,7 +1652,7 @@ h2 + .lead {
   }
 }
 
-/* ========== 07) FAQ ========== */
+/* ===== 07 - FAQ ===== */
 
 #faq {
   scroll-margin-top: calc(var(--header-h) + var(--space-2));
@@ -1740,9 +1709,7 @@ h2 + .lead {
   cursor: pointer;
   min-height: 48px;
   line-height: 1.3;
-  padding: var(--space-3-5)
-    calc(var(--space-4) + var(--faq-caret-w) + var(--faq-caret-gap))
-    var(--space-3-5) var(--space-4);
+  padding: var(--space-3-5) calc(var(--space-4) + var(--faq-caret-w) + var(--faq-caret-gap)) var(--space-3-5) var(--space-4);
   font-weight: 600;
   border-radius: inherit;
   list-style: none;
@@ -1808,18 +1775,16 @@ h2 + .lead {
   scroll-margin-top: var(--header-h, 72px);
 }
 
-/* ----- MQ max-width: 640px ----- */
+/* -- MQ max-width: 640px -- */
 @media (max-width: 640px) {
   #faq .faq-list summary {
     --faq-caret-w: 24px;
     --faq-caret-gap: var(--space-4-5, 18px);
-    padding: var(--space-4)
-      calc(var(--space-4) + var(--faq-caret-w) + var(--faq-caret-gap))
-      var(--space-4) var(--space-4);
+    padding: var(--space-4) calc(var(--space-4) + var(--faq-caret-w) + var(--faq-caret-gap)) var(--space-4) var(--space-4);
   }
 }
 
-/* ----- Prefers-reduced-motion ----- */
+/* -- Prefers-reduced-motion -- */
 @media (prefers-reduced-motion: reduce) {
   #faq .faq-list details,
   #faq .faq-list summary::after {
@@ -1831,7 +1796,7 @@ h2 + .lead {
   }
 }
 
-/* ========== 08) CTA ========== */
+/* ===== 08 - CTA ===== */
 
 .cta {
   background: var(--brand-grad);
@@ -1880,7 +1845,7 @@ h2 + .lead {
   height: 38px;
 }
 
-/* ----- MQ min width 1200px ----- */
+/* -- MQ min width 1200px -- */
 @media (min-width: 1200px) {
   .cta .form {
     max-width: 560px;
@@ -1888,7 +1853,7 @@ h2 + .lead {
   }
 }
 
-/* ----- MQ min width 920px ----- */
+/* -- MQ min width 920px -- */
 @media (min-width: 920px) {
   .cta-wrap {
     grid-template-columns: 1.1fr 0.9fr;
@@ -1897,14 +1862,14 @@ h2 + .lead {
   }
 }
 
-/* ----- MQ max-width: 640px ----- */
+/* -- MQ max-width: 640px -- */
 @media (max-width: 640px) {
   .cta .contact-item:active {
     background: rgba(255, 255, 255, 0.18);
   }
 }
 
-/* ----- MQ max-width: 599px ----- */
+/* -- MQ max-width: 599px -- */
 @media (max-width: 599px) {
   .cta-text {
     text-align: center;
@@ -1921,7 +1886,7 @@ h2 + .lead {
   }
 }
 
-/* ========== 09) CONTACT FORM ========== */
+/* ===== 09 - CONTACT FORM ===== */
 
 .contact-list {
   list-style: none;
@@ -2010,8 +1975,7 @@ section#kontakt .form-note {
   text-underline-offset: 2px;
 }
 
-.form
-  :is(input[type="text"], input[type="tel"], input[type="email"], textarea) {
+.form :is(input[type="text"], input[type="tel"], input[type="email"], textarea) {
   width: 100%;
   max-width: 100%;
   min-width: 0;
@@ -2050,13 +2014,7 @@ section#kontakt .form-note {
   color: rgba(255, 255, 255, 0.55);
 }
 
-.form
-  :is(
-    input[type="text"],
-    input[type="tel"],
-    input[type="email"],
-    textarea
-  ):focus {
+.form :is(input[type="text"], input[type="tel"], input[type="email"], textarea):focus {
   outline: 3px solid var(--ring);
   outline-offset: var(--space-2);
   border-color: transparent;
@@ -2068,19 +2026,12 @@ section#kontakt .form-note {
   box-shadow: inset 0 0 0 1px rgba(239, 68, 68, 0.6);
 }
 
-.form
-  :is(input[type="text"], input[type="tel"], input[type="email"], textarea):not(
-    :placeholder-shown
-  ):valid:not([aria-invalid="true"]) {
+.form :is(input[type="text"], input[type="tel"], input[type="email"], textarea):not(:placeholder-shown):valid:not([aria-invalid="true"]) {
   border-color: color-mix(in srgb, var(--brand) 55%, #10b981);
   box-shadow: 0 0 0 3px color-mix(in srgb, var(--brand) 22%, transparent);
 }
 
-:root[data-theme="dark"]
-  .form
-  :is(input[type="text"], input[type="tel"], input[type="email"], textarea):not(
-    :placeholder-shown
-  ):valid:not([aria-invalid="true"]) {
+:root[data-theme="dark"] .form :is(input[type="text"], input[type="tel"], input[type="email"], textarea):not(:placeholder-shown):valid:not([aria-invalid="true"]) {
   border-color: color-mix(in srgb, #6ee7b7 65%, var(--brand));
   box-shadow: 0 0 0 3px color-mix(in srgb, #6ee7b7 24%, transparent);
 }
@@ -2154,7 +2105,7 @@ section#kontakt .form-note {
   animation: spin 0.9s linear infinite;
 }
 
-/* ----- MQ min-width: 900px ----- */
+/* -- MQ min-width: 900px -- */
 @media (min-width: 900px) {
   .form .checkbox {
     width: fit-content;
@@ -2162,7 +2113,7 @@ section#kontakt .form-note {
   }
 }
 
-/* ----- MQ max-width: 640px ----- */
+/* -- MQ max-width: 640px -- */
 @media (max-width: 640px) {
   .contact-list {
     justify-items: stretch;
@@ -2180,7 +2131,7 @@ section#kontakt .form-note {
   }
 }
 
-/* ----- Prefers-reduced-motion ----- */
+/* -- Prefers-reduced-motion -- */
 @media (prefers-reduced-motion: reduce) {
   .form,
   .contact-item {
@@ -2191,7 +2142,7 @@ section#kontakt .form-note {
   }
 }
 
-/* ========== 10) FOOTER ========== */
+/* ===== 10 - FOOTER ===== */
 
 .site-footer {
   --ft-bg: #0f1115;
@@ -2494,7 +2445,7 @@ section#kontakt .form-note {
   height: clamp(84px, 14vw, 120px);
 }
 
-/* ----- MQ min-width: 640px ----- */
+/* -- MQ min-width: 640px -- */
 @media (max-width: 640px) {
   .ft-lead {
     margin-inline: 0;
@@ -2505,14 +2456,14 @@ section#kontakt .form-note {
   }
 }
 
-/* ----- MQ min-width: 700px ----- */
+/* -- MQ min-width: 700px -- */
 @media (min-width: 700px) {
   .ft-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 }
 
-/* ----- MQ min-width: 1050px ----- */
+/* -- MQ min-width: 1050px -- */
 @media (min-width: 1050px) {
   .ft-grid {
     grid-template-columns:
@@ -2532,7 +2483,7 @@ section#kontakt .form-note {
   }
 }
 
-/* ----- MQ hover: hover ----- */
+/* -- MQ hover: hover -- */
 @media (hover: hover) {
   .site-footer a {
     transition:
@@ -2546,7 +2497,7 @@ section#kontakt .form-note {
   }
 }
 
-/* ========== 11) SUBPAGES ========== */
+/* ===== 11 - SUBPAGES ===== */
 
 /* ----- Header ----- */
 .subpage-header {
@@ -2572,7 +2523,7 @@ section#kontakt .form-note {
   margin-top: var(--space-4);
 }
 
-/* ----- Cards ----- */
+/* -- Cards -- */
 .page-sub .cards {
   display: grid;
   gap: var(--space-4-5, 18px);
@@ -2613,7 +2564,7 @@ section#kontakt .form-note {
   z-index: 10;
 }
 
-/* ----- Shared: section headers on subpages ----- */
+/* -- Shared: section headers on subpages -- */
 .page-sub .block-head {
   text-align: center;
 }
@@ -2625,7 +2576,7 @@ section#kontakt .form-note {
   color: var(--c-muted);
 }
 
-/* ----- Gallery ----- */
+/* -- Gallery -- */
 .page-sub .gallery {
   padding-block: clamp(3rem, 6vw, 5rem);
   margin-bottom: clamp(2rem, 4vw, 3rem);
@@ -2661,7 +2612,7 @@ section#kontakt .form-note {
   transition: transform 0.35s ease;
 }
 
-/* ----- FAQ ----- */
+/* -- FAQ -- */
 .page-sub .faq-list {
   display: grid;
   list-style: none;
@@ -2724,7 +2675,7 @@ section#kontakt .form-note {
     box-shadow 0.2s ease;
 }
 
-/* ----- CTA ----- */
+/* -- CTA -- */
 .page-sub .cta {
   margin-top: clamp(var(--space-8), 6vw, var(--space-12));
   padding-block: clamp(56px, 8vw, 112px);
@@ -2755,7 +2706,7 @@ section#kontakt .form-note {
   margin-top: var(--space-4);
 }
 
-/* ----- Dark Theme Overrides ----- */
+/* -- Dark Theme Overrides -- */
 :root[data-theme="dark"] .page-sub .cards > .hover-card {
   background: rgba(255, 255, 255, 0.03);
 }
@@ -2784,7 +2735,7 @@ section#kontakt .form-note {
   box-shadow: 0 14px 30px rgba(0, 0, 0, 0.6);
 }
 
-/* ----- MQ: mobile tweaks ----- */
+/* -- MQ: mobile tweaks -- */
 @media (max-width: 640px) {
   .page-sub .cta {
     margin-top: var(--space-7);
@@ -2795,7 +2746,7 @@ section#kontakt .form-note {
   }
 }
 
-/* ----- MQ: columns ----- */
+/* -- MQ: columns -- */
 @media (min-width: 640px) {
   .page-sub .gallery-grid {
     grid-template-columns: repeat(2, 1fr);
@@ -2817,7 +2768,7 @@ section#kontakt .form-note {
   }
 }
 
-/* ----- MQ: hover ----- */
+/* -- MQ: hover -- */
 @media (hover: hover) {
   .page-sub .gallery-item:hover {
     transform: translateY(-3px);
@@ -2829,7 +2780,7 @@ section#kontakt .form-note {
   }
 }
 
-/* ----- MQ: reduced motion ----- */
+/* -- MQ: reduced motion -- */
 @media (prefers-reduced-motion: reduce) {
   .page-sub .cards > .hover-card {
     transition: box-shadow 0.2s ease;
@@ -2845,7 +2796,7 @@ section#kontakt .form-note {
   }
 }
 
-/* ========== 12) SUBPAGES DOC ========== */
+/* ===== 12 - SUBPAGES DOC ===== */
 
 .doc-page .block {
   padding-block: clamp(72px, 12vw, 136px) clamp(72px, 10vw, 120px);
@@ -2965,7 +2916,7 @@ section#kontakt .form-note {
   outline-offset: 3px;
 }
 
-/* ----- MQ max width 640px ----- */
+/* -- MQ max width 640px -- */
 @media (max-width: 640px) {
   .doc-page .block {
     padding-block: clamp(56px, 12vw, 88px) clamp(56px, 12vw, 96px);
@@ -2978,7 +2929,7 @@ section#kontakt .form-note {
   }
 }
 
-/* ----- MQ hover: hover ----- */
+/* -- MQ hover: hover -- */
 @media (hover: hover) {
   .doc-content a:hover {
     opacity: 0.85;
@@ -2986,7 +2937,7 @@ section#kontakt .form-note {
   }
 }
 
-/* ----- MQ print ----- */
+/* -- MQ print -- */
 @media print {
   .site-header,
   .site-footer,
@@ -3020,7 +2971,7 @@ section#kontakt .form-note {
   }
 }
 
-/* ----- Legal pages wrapper ----- */
+/* -- Legal pages wrapper -- */
 .legal-doc {
   background: var(--c-surface);
   border: 1px solid rgba(0, 0, 0, 0.05);
@@ -3031,7 +2982,7 @@ section#kontakt .form-note {
   margin-inline: auto;
 }
 
-/* ========== 13) ANIMATIONS & MOTION ========== */
+/* ===== 13 - ANIMATIONS & MOTION ===== */
 
 .hover-card {
   transition:
@@ -3063,7 +3014,7 @@ section#kontakt .form-note {
   outline-offset: 2px;
 }
 
-/* ----- Scroll Reveal animations ----- */
+/* -- Scroll Reveal animations -- */
 
 :root {
   --sr-duration: 600ms;
@@ -3140,7 +3091,7 @@ section#kontakt .form-note {
     transform var(--sr-duration) var(--sr-ease);
 }
 
-/* ----- MQ prefers reduced motion ----- */
+/* -- MQ prefers reduced motion -- */
 @media (prefers-reduced-motion: reduce) {
   [data-reveal] {
     opacity: 1 !important;
@@ -3149,7 +3100,7 @@ section#kontakt .form-note {
   }
 }
 
-/* ----- MQ prefers reduced motion ------ */
+/* -- MQ prefers reduced motion -- */
 @media (prefers-reduced-motion: reduce) {
   .hover-card {
     transition: box-shadow 0.2s ease;
@@ -3161,7 +3112,7 @@ section#kontakt .form-note {
   }
 }
 
-/* ------- MQ prefers reduced motion: no-preference ------- */
+/* -- MQ prefers reduced motion: no-preference -- */
 @media (prefers-reduced-motion: no-preference) {
   .card[data-reveal],
   .hover-card[data-reveal] {
@@ -3198,7 +3149,7 @@ section#kontakt .form-note {
   }
 }
 
-/* ----- Keyframes - ripple ----- */
+/* -- Keyframes - ripple -- */
 @keyframes ripple {
   to {
     transform: scale(4);
@@ -3206,7 +3157,7 @@ section#kontakt .form-note {
   }
 }
 
-/* ----- Keyframes - spin ----- */
+/* -- Keyframes - spin -- */
 @keyframes spin {
   to {
     transform: rotate(360deg);
@@ -3224,7 +3175,7 @@ section#kontakt .form-note {
     transform var(--sr-duration) var(--sr-ease);
 }
 
-/* ----- Cookie Banner (DEMO) ----- */
+/* -- Cookie Banner -- */
 .cc-banner {
   position: fixed;
   inset: auto 0 16px 0;
@@ -3295,7 +3246,7 @@ section#kontakt .form-note {
   display: none !important;
 }
 
-/* ----- MQ hover: hover ----- */
+/* -- MQ hover: hover -- */
 @media (hover: hover) {
   .cc-banner .btn:hover {
     filter: contrast(1.05);
@@ -3306,7 +3257,7 @@ section#kontakt .form-note {
   outline-offset: 3px;
 }
 
-/* ----- MQ max-width: 640px ----- */
+/* -- MQ max-width: 640px -- */
 @media (max-width: 640px) {
   .cc-inner {
     gap: var(--space-2);
@@ -3318,7 +3269,7 @@ section#kontakt .form-note {
   }
 }
 
-/* ========== 14) LIGHTBOX =========== */
+/* ===== 14 - LIGHTBOX ====== */
 
 .lb-backdrop {
   position: fixed;
@@ -3369,7 +3320,7 @@ section#kontakt .form-note {
   -webkit-user-drag: none;
 }
 
-/* ----- Buttons (Close / Prev / Next) ----- */
+/* -- Buttons (Close / Prev / Next) -- */
 .lb-btn {
   position: fixed;
   z-index: 2002;
@@ -3408,7 +3359,7 @@ section#kontakt .form-note {
   outline-offset: 2px;
 }
 
-/* ----- Close button ----- */
+/* -- Close button -- */
 .lb-btn.lb-close {
   top: 24px;
   right: 24px;
@@ -3419,7 +3370,7 @@ section#kontakt .form-note {
   display: grid;
 }
 
-/* ----- Prev / Next buttons ----- */
+/* -- Prev / Next buttons -- */
 .lb-btn.lb-prev,
 .lb-btn.lb-next {
   top: 50%;
@@ -3440,13 +3391,13 @@ section#kontakt .form-note {
   display: grid;
 }
 
-/* ----- Disable scroll when open ----- */
+/* -- Disable scroll when open -- */
 html.lb-no-scroll,
 body.lb-no-scroll {
   overflow: hidden;
 }
 
-/* ----- MQ prefers reduced motion ----- */
+/* -- MQ prefers reduced motion -- */
 @media (prefers-reduced-motion: reduce) {
   .lb-backdrop {
     transition: opacity 0.001s linear;
@@ -3461,7 +3412,7 @@ body.lb-no-scroll {
   }
 }
 
-/* ========== 15) GLOBAL BUTTONS =========== */
+/* ===== 15 - GLOBAL BUTTONS ====== */
 
 .btn {
   position: relative;
@@ -3514,15 +3465,6 @@ body.lb-no-scroll {
   pointer-events: none;
 }
 
-/*
-.btn--sm {
-  padding: 8px 16px;
-  font-size: 0.9375rem;
-  line-height: 1;
-  font-weight: 600;
-}
-*/
-
 .btn--ghost {
   background: transparent;
   color: var(--fg);
@@ -3549,13 +3491,7 @@ body.lb-no-scroll {
   left: -40%;
   width: 40%;
   transform: translateX(-120%) rotate(20deg);
-  background: linear-gradient(
-    120deg,
-    transparent 0%,
-    rgba(255, 255, 255, 0.18) 45%,
-    rgba(255, 255, 255, 0.35) 55%,
-    transparent 100%
-  );
+  background: linear-gradient(120deg, transparent 0%, rgba(255, 255, 255, 0.18) 45%, rgba(255, 255, 255, 0.35) 55%, transparent 100%);
   transition: transform 0.55s ease;
   pointer-events: none;
 }
@@ -3564,7 +3500,7 @@ body.lb-no-scroll {
   transform: translateX(260%) rotate(20deg);
 }
 
-/* ----- MQ max-width: 640px ----- */
+/* -- MQ max-width: 640px -- */
 @media (max-width: 640px) {
   .btn {
     width: 60%;
@@ -3572,7 +3508,7 @@ body.lb-no-scroll {
   }
 }
 
-/* ----- MQ prefers-reduced-motion: reduce ----- */
+/* -- MQ prefers-reduced-motion: reduce -- */
 @media (prefers-reduced-motion: reduce) {
   .btn {
     transition: none;
@@ -3583,7 +3519,7 @@ body.lb-no-scroll {
   }
 }
 
-/* ========== 16) THEME OVERRIDES ========== */
+/* ===== 16 - THEME OVERRIDES ===== */
 
 :root[data-theme="light"] {
   color-scheme: light;
@@ -3617,9 +3553,9 @@ body.lb-no-scroll {
   --hero-overlay-a: 0.35;
 }
 
-/*  ========== 98) PRINT STYLES ========== */
+/*  ===== 98 - PRINT STYLES ===== */
 
-/* ----- Print styles ----- */
+/* -- Print styles -- */
 @media print {
   .site-header,
   .site-footer,
@@ -3651,9 +3587,9 @@ body.lb-no-scroll {
   }
 }
 
-/* ========== 99) FEATURE SUPPORT & FALLBACKS ==========*/
+/* ===== 99 - FEATURE SUPPORT & FALLBACKS =====*/
 
-/* ----- Supports content-visibility: auto ----- */
+/* -- Supports content-visibility: auto -- */
 @supports (content-visibility: auto) {
   .logos,
   .testimonials,
@@ -3685,18 +3621,48 @@ body.lb-no-scroll {
   }
 }
 
-/* ----- Supports backdrop-filter: blur(2px) ----- */
+/* -- Supports backdrop-filter: blur(2px) -- */
 @supports not (backdrop-filter: blur(2px)) {
   .lb-backdrop {
     background: rgba(0, 0, 0, 0.76);
   }
 }
 
-/* ----- Fallback dla starszych przeglądarek bez color-mix ----- */
+/* -- Fallback dla starszych przeglądarek bez color-mix -- */
 @supports not (color: color-mix(in oklab, white, black)) {
   :root {
     --brand-weak: rgba(245, 158, 11, 0.14);
     --line-strong: #c5cbd8;
     --ring: rgba(245, 158, 11, 0.55);
   }
+}
+
+#faq .faq-list summary::after {
+  content: "▾";
+}
+
+@media (min-width: 1024px) {
+  .hero {
+    min-height: clamp(72vh, 82vh, 94vh);
+  }
+  .hero .hero-bg img,
+  .hero-bg img {
+    object-position: center center;
+  }
+}
+
+/* Reduce potential top spacing of first section after hero on desktop only */
+@media (min-width: 1024px) {
+  #oferta > .container {
+    padding-top: calc(var(--sep-buffer) - 6px);
+  }
+}
+
+.nav .nav-menu .caret {
+  font-size: 0;
+}
+.nav .nav-menu .caret::before {
+  content: "▾";
+  font-size: 1em;
+  line-height: 1;
 }

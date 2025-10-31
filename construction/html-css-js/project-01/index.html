@@ -12,7 +12,7 @@
     <link rel="canonical" href="https://construction-project-01.netlify.app/" />
 
     <!-- PWA / kolory motywu -->
-    <meta name="theme-color" content="#0ea5e9" />
+
     <meta name="theme-color" content="#0ea5e9" media="(prefers-color-scheme: light)" />
     <meta name="theme-color" content="#0b1220" media="(prefers-color-scheme: dark)" />
     <meta name="color-scheme" content="light dark" />
@@ -56,7 +56,33 @@
     <meta name="twitter:description" content="Demo szablonu strony dla firmy remontowej: landing, oferta, realizacje, opinie, FAQ i formularz wyceny. Projekt i kod: KP_Code." />
     <meta name="twitter:image" content="https://construction-project-01.netlify.app/assets/img/og/og-image-1200x630.jpg" />
     <meta name="twitter:url" content="https://construction-project-01.netlify.app/" />
-    <meta name="twitter:image:alt" content="Ekipa remontowa przy pracy — logo w rogu (DEMO szablonu)" />
+    <meta name="twitter:image:alt" content="Ekipa remontowa przy pracy - logo w rogu (DEMO szablonu)" />
+
+    <!-- LocalBusiness / ConstructionCompany -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "ConstructionCompany",
+        "name": "KP_Code",
+        "telephone": "+48 533 537 091",
+        "email": "kp_code_@gmail.com",
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "ul. Marynarki Wojennej 12/31",
+          "postalCode": "33-100",
+          "addressLocality": "Tarnów",
+          "addressCountry": "PL"
+        },
+        "areaServed": "PL",
+        "openingHours": "Mo-Fr 08:00-18:00",
+        "url": "https://construction-project-01.netlify.app/",
+        "sameAs": ["https://facebook.com", "https://instagram.com"]
+      }
+    </script>
+
+    <!-- Maps performance hints -->
+    <link rel="preconnect" href="https://www.google.com" crossorigin />
+    <link rel="dns-prefetch" href="https://www.google.com" />
 
     <!-- JSON-LD -->
     <script type="application/ld+json">
@@ -192,7 +218,7 @@
     <!-- Favicons -->
     <!-- PWA meta / manifest -->
     <link rel="manifest" href="/manifest.webmanifest" />
-    <meta name="theme-color" content="#0ea5e9" />
+
     <meta name="application-name" content="KP_Code Demo" />
     <link rel="icon" type="image/svg+xml" href="assets/img/favicon/favicon.svg" />
     <link rel="icon" href="assets/img/favicon/favicon.ico" sizes="any" />
@@ -915,6 +941,7 @@
                 loading="lazy"
                 allowfullscreen
                 referrerpolicy="no-referrer-when-downgrade"></iframe>
+              <noscript><p>Mapa wymaga JavaScript. Adres: ul. Marynarki Wojennej 12/31, 33-100 Tarnów.</p></noscript>
             </div>
 
             <address class="ft-address">
@@ -978,6 +1005,7 @@
     </div>
 
     <!--SCRIPT -->
+    <script src="js/sw-register.js" defer></script>
     <script src="js/script.min.js" defer></script>
   </body>
 </html>

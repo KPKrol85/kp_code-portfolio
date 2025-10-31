@@ -12,12 +12,12 @@ const ASSETS = [
   "/js/script.min.js",
 
   // Ikony PWA (Twój standard)
-  "/assets/icons/fav-icon/favicon.ico",
-  "/assets/icons/fav-icon/favicon.svg",
-  "/assets/icons/fav-icon/favicon-96x96.png",
-  "/assets/icons/fav-icon/apple-touch-icon.png",
-  "/assets/icons/fav-icon/web-app-manifest-192x192.png",
-  "/assets/icons/fav-icon/web-app-manifest-512x512.png",
+  "/assets/img/favicon/favicon.ico",
+  "/assets/img/favicon/favicon.svg",
+  "/assets/img/favicon/favicon-96x96.png",
+  "/assets/img/favicon/apple-touch-icon.png",
+  "/assets/img/favicon/web-app-manifest-192x192.png",
+  "/assets/img/favicon/web-app-manifest-512x512.png",
 ];
 
 /* Install: pre-cache */
@@ -28,7 +28,17 @@ self.addEventListener("install", (event) => {
 
 /* Activate: cleanup */
 self.addEventListener("activate", (event) => {
-  event.waitUntil(caches.keys().then((keys) => Promise.all(keys.filter((k) => k.startsWith("construction-01-") && k !== CACHE_NAME).map((k) => caches.delete(k)))));
+  event.waitUntil(
+    caches
+      .keys()
+      .then((keys) =>
+        Promise.all(
+          keys
+            .filter((k) => k.startsWith("construction-01-") && k !== CACHE_NAME)
+            .map((k) => caches.delete(k)),
+        ),
+      ),
+  );
   self.clients.claim();
 });
 
@@ -46,7 +56,9 @@ self.addEventListener("fetch", (event) => {
           caches.open(CACHE_NAME).then((c) => c.put(req, res.clone()));
           return res;
         })
-        .catch(() => caches.match(req).then((res) => res || caches.match("/index.html")))
+        .catch(() =>
+          caches.match(req).then((res) => res || caches.match("/index.html")),
+        ),
     );
     return;
   }
@@ -58,6 +70,6 @@ self.addEventListener("fetch", (event) => {
         caches.open(CACHE_NAME).then((c) => c.put(req, res.clone()));
         return res;
       });
-    })
+    }),
   );
 });
