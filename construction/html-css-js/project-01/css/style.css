@@ -1066,7 +1066,12 @@ h2 + .lead {
   position: absolute;
   inset: 0;
   z-index: -1;
-  background: linear-gradient(to bottom, rgba(0, 0, 0, calc(var(--overlay-a) * 0.85)) 0%, rgba(0, 0, 0, var(--overlay-a)) 58%, rgba(0, 0, 0, calc(var(--overlay-a) * 0.4)) 100%);
+  background: linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, calc(var(--overlay-a) * 0.85)) 0%,
+    rgba(0, 0, 0, var(--overlay-a)) 58%,
+    rgba(0, 0, 0, calc(var(--overlay-a) * 0.4)) 100%
+  );
   pointer-events: none;
 }
 
@@ -1209,7 +1214,10 @@ h2 + .lead {
 .card:hover,
 .card:focus-within {
   transform: translateY(-2px);
-  border-color: var(--c-border-strong, color-mix(in oklab, var(--c-border), black 14%));
+  border-color: var(
+    --c-border-strong,
+    color-mix(in oklab, var(--c-border), black 14%)
+  );
   box-shadow: 0 10px 24px -6px rgba(0, 0, 0, 0.18);
   z-index: 10;
 }
@@ -1278,7 +1286,13 @@ h2 + .lead {
   bottom: -2px;
   width: 0%;
   height: 2px;
-  background: linear-gradient(to right, transparent 0%, var(--brand) 20%, var(--brand) 80%, transparent 100%);
+  background: linear-gradient(
+    to right,
+    transparent 0%,
+    var(--brand) 20%,
+    var(--brand) 80%,
+    transparent 100%
+  );
   border-radius: 999px;
   transform: translateX(-50%);
   transition: width 0.3s ease;
@@ -1354,12 +1368,20 @@ h2 + .lead {
   position: absolute;
   inset: 0 0 auto 0;
   height: var(--sep-h);
-  background: linear-gradient(to bottom, color-mix(in srgb, var(--c-border) 85%, transparent), transparent);
+  background: linear-gradient(
+    to bottom,
+    color-mix(in srgb, var(--c-border) 85%, transparent),
+    transparent
+  );
   pointer-events: none;
 }
 
 :root[data-theme="dark"] :is(#oferta, .logos, #faq)::before {
-  background: linear-gradient(to bottom, color-mix(in srgb, #ffffff 14%, transparent), transparent);
+  background: linear-gradient(
+    to bottom,
+    color-mix(in srgb, #ffffff 14%, transparent),
+    transparent
+  );
 }
 
 :is(#oferta, .logos, #faq) > .container {
@@ -1709,7 +1731,9 @@ h2 + .lead {
   cursor: pointer;
   min-height: 48px;
   line-height: 1.3;
-  padding: var(--space-3-5) calc(var(--space-4) + var(--faq-caret-w) + var(--faq-caret-gap)) var(--space-3-5) var(--space-4);
+  padding: var(--space-3-5)
+    calc(var(--space-4) + var(--faq-caret-w) + var(--faq-caret-gap))
+    var(--space-3-5) var(--space-4);
   font-weight: 600;
   border-radius: inherit;
   list-style: none;
@@ -1780,7 +1804,9 @@ h2 + .lead {
   #faq .faq-list summary {
     --faq-caret-w: 24px;
     --faq-caret-gap: var(--space-4-5, 18px);
-    padding: var(--space-4) calc(var(--space-4) + var(--faq-caret-w) + var(--faq-caret-gap)) var(--space-4) var(--space-4);
+    padding: var(--space-4)
+      calc(var(--space-4) + var(--faq-caret-w) + var(--faq-caret-gap))
+      var(--space-4) var(--space-4);
   }
 }
 
@@ -1975,7 +2001,8 @@ section#kontakt .form-note {
   text-underline-offset: 2px;
 }
 
-.form :is(input[type="text"], input[type="tel"], input[type="email"], textarea) {
+.form
+  :is(input[type="text"], input[type="tel"], input[type="email"], textarea) {
   width: 100%;
   max-width: 100%;
   min-width: 0;
@@ -2014,7 +2041,13 @@ section#kontakt .form-note {
   color: rgba(255, 255, 255, 0.55);
 }
 
-.form :is(input[type="text"], input[type="tel"], input[type="email"], textarea):focus {
+.form
+  :is(
+    input[type="text"],
+    input[type="tel"],
+    input[type="email"],
+    textarea
+  ):focus {
   outline: 3px solid var(--ring);
   outline-offset: var(--space-2);
   border-color: transparent;
@@ -2026,12 +2059,19 @@ section#kontakt .form-note {
   box-shadow: inset 0 0 0 1px rgba(239, 68, 68, 0.6);
 }
 
-.form :is(input[type="text"], input[type="tel"], input[type="email"], textarea):not(:placeholder-shown):valid:not([aria-invalid="true"]) {
+.form
+  :is(input[type="text"], input[type="tel"], input[type="email"], textarea):not(
+    :placeholder-shown
+  ):valid:not([aria-invalid="true"]) {
   border-color: color-mix(in srgb, var(--brand) 55%, #10b981);
   box-shadow: 0 0 0 3px color-mix(in srgb, var(--brand) 22%, transparent);
 }
 
-:root[data-theme="dark"] .form :is(input[type="text"], input[type="tel"], input[type="email"], textarea):not(:placeholder-shown):valid:not([aria-invalid="true"]) {
+:root[data-theme="dark"]
+  .form
+  :is(input[type="text"], input[type="tel"], input[type="email"], textarea):not(
+    :placeholder-shown
+  ):valid:not([aria-invalid="true"]) {
   border-color: color-mix(in srgb, #6ee7b7 65%, var(--brand));
   box-shadow: 0 0 0 3px color-mix(in srgb, #6ee7b7 24%, transparent);
 }
@@ -3491,7 +3531,13 @@ body.lb-no-scroll {
   left: -40%;
   width: 40%;
   transform: translateX(-120%) rotate(20deg);
-  background: linear-gradient(120deg, transparent 0%, rgba(255, 255, 255, 0.18) 45%, rgba(255, 255, 255, 0.35) 55%, transparent 100%);
+  background: linear-gradient(
+    120deg,
+    transparent 0%,
+    rgba(255, 255, 255, 0.18) 45%,
+    rgba(255, 255, 255, 0.35) 55%,
+    transparent 100%
+  );
   transition: transform 0.55s ease;
   pointer-events: none;
 }
