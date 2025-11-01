@@ -1,31 +1,32 @@
 /* ================================================
-   ===== Project: gastronomy-html-css-js-project-02
-   ===== Author: KP_Code
-   ===== Updated: 2025-10-25
+   = Project: gastronomy-html-css-js-project-02
+   = Author: KP_Code
+   = Updated: 2025-10-25
    ================================================
-   ===== CSS Stylesheet
-   ===== Structure Overview
+   = CSS Stylesheet
+   = Structure Overview
    ================================================
-   ===== 00) ROOT & RESETS
-   ===== 01) TYPOGRAPHY
-   ===== 02) LAYOUT
-   ===== 03) HEADER
-   ===== 04) HERO
-   ===== 05) ABOUT
-   ===== 06) MENU
-   ===== 07) GALLERY
-   ===== 08) TESTIMONIALS
-   ===== 09) CONTACT
-   ===== 10) FOOTER
-   ===== 11) SUBPAGE MENU
-   ===== 12) SUBPAGE GALLERY
-   ===== 13) SUBPAGE ABOUT
-   ===== 12) LIGHTBOX
-   ===== 13) STATES + ANIMATIONS
-   ===== 99) COMPONENTS & UTILITIES
+   = 00 - ROOT & RESETS
+   = 01 - TYPOGRAPHY
+   = 02 - LAYOUT
+   = 03 - HEADER
+   = 04 - HERO
+   = 05 - ABOUT
+   = 06 - MENU
+   = 07 - GALLERY
+   = 08 - TESTIMONIALS
+   = 09 - CONTACT
+   = 10 - FOOTER
+   = 11 - SUBPAGE MENU
+   = 12 - SUBPAGE GALLERY
+   = 13 - SUBPAGE ABOUT
+   = 12 - LIGHTBOX
+   = 13 - STATES + ANIMATIONS
+   = 99 - COMPONENTS & UTILITIES
    ================================================ */
 
-/* ========== 00) ROOT & RESETS ========== */
+/* ===== 00) ROOT & RESETS ===== */
+
 @font-face {
   font-family: "Montserrat";
   src: url("../assets/fonts/montserrat-400-latin.woff2") format("woff2");
@@ -76,8 +77,9 @@
   --surface-overlay: rgba(255, 253, 248, 0.96);
   --c-surface-1: var(--surface-overlay);
   --surface-overlay-border: rgba(0, 0, 0, 0.07);
-  --text-muted: rgba(27, 23, 21, 0.8);
-  --text-subtle: rgba(27, 23, 21, 0.7);
+  /* Slightly stronger muted/subtle for contrast on light surfaces */
+  --text-muted: rgba(27, 23, 21, 0.86);
+  --text-subtle: rgba(27, 23, 21, 0.78);
   --border-soft: rgba(0, 0, 0, 0.06);
   --input-bg: #ffffff;
   --input-border: rgba(0, 0, 0, 0.15);
@@ -104,8 +106,9 @@
   --surface-overlay: rgba(24, 18, 16, 0.92);
   --c-surface-1: var(--surface-overlay);
   --surface-overlay-border: rgba(255, 255, 255, 0.08);
-  --text-muted: rgba(242, 231, 220, 0.72);
-  --text-subtle: rgba(242, 231, 220, 0.68);
+  /* Slightly stronger muted/subtle for contrast in dark mode */
+  --text-muted: rgba(242, 231, 220, 0.82);
+  --text-subtle: rgba(242, 231, 220, 0.76);
   --border-soft: rgba(255, 255, 255, 0.08);
   --input-bg: #271c19;
   --input-border: rgba(255, 255, 255, 0.16);
@@ -184,7 +187,7 @@ select {
   z-index: 1000;
 }
 
-/* ========== 01) TYPOGRAPHY ========== */
+/* ===== 01 - TYPOGRAPHY ===== */
 
 body {
   font-family:
@@ -251,7 +254,7 @@ p {
   scroll-margin-top: 6rem;
 }
 
-/* ========== 02) LAYOUT ========== */
+/* ===== 02 - LAYOUT ===== */
 
 body {
   display: flex;
@@ -325,7 +328,7 @@ main {
   }
 }
 
-/* ========== 03) HEADER ========== */
+/* ===== 03 - HEADER ===== */
 
 .site-header {
   position: fixed;
@@ -407,8 +410,6 @@ main {
   color: var(--burgundy);
   letter-spacing: 0.5px;
 }
-
-/* ===== HEADER NAV LINK HOVER EFFECT (GRADIENT LINE) ===== */
 
 .nav__list a {
   position: relative;
@@ -570,7 +571,6 @@ main {
   list-style: none;
 }
 
-/* ===== ACTIVE NAV LINK (aria-current) ===== */
 .nav__list a[aria-current="page"] {
   font-weight: 700;
   text-decoration: underline;
@@ -588,6 +588,7 @@ main {
   text-underline-offset: 0.35em;
 }
 
+/* -- MQ - min-width: 1024px -- */
 @media (min-width: 1024px) {
   .nav {
     position: static;
@@ -613,6 +614,7 @@ main {
   }
 }
 
+/* -- MQ prefers-reduced-motion -- */
 @media (prefers-reduced-motion: no-preference) {
   .site-header {
     transition:
@@ -627,6 +629,7 @@ main {
   }
 }
 
+/* -- MQ prefers-reduced-motion -- */
 @media (prefers-reduced-motion: reduce) {
   .site-header {
     transition: none;
@@ -636,6 +639,7 @@ main {
   }
 }
 
+/* -- Fallback for browsers that do not support backdrop-filter -- */
 @supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
   .site-header {
     background-color: var(--header-backdrop);
@@ -646,7 +650,7 @@ main {
   }
 }
 
-/* ========== 04) HERO ========== */
+/* ===== 04 - HERO ===== */
 
 .hero {
   position: relative;
@@ -711,12 +715,14 @@ main {
   object-fit: cover;
 }
 
+/* ----- MQ - min-width: 768px ----- */
 @media (min-width: 768px) {
   .hero {
     padding: 5rem 0 4rem;
   }
 }
 
+/* ----- MQ - min-width: 1024px ----- */
 @media (min-width: 1024px) {
   .hero__inner {
     grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
@@ -735,6 +741,7 @@ main {
   }
 }
 
+/* ----- MQ prefers-reduced-motion ----- */
 @media (prefers-reduced-motion: reduce) {
   html,
   .nav,
@@ -748,7 +755,7 @@ main {
   }
 }
 
-/* ========== 05) ABOUT ========== */
+/* ===== 05 - ABOUT ===== */
 
 .about {
   overflow: hidden;
@@ -818,7 +825,7 @@ main {
   }
 }
 
-/* ========== 06) MENU ========== */
+/* ===== 06 - MENU ===== */
 
 .cards {
   display: grid;
@@ -855,7 +862,7 @@ main {
   color: var(--text-muted);
 }
 
-/* ----- CTA Button under section title ----- */
+/* -- CTA Button under section title -- */
 .menu__cta {
   text-align: center;
   margin-top: 1rem;
@@ -864,19 +871,21 @@ main {
   margin-inline: auto;
 }
 
+/* ----- MQ - min-width: 768px ----- */
 @media (min-width: 768px) {
   .cards {
     grid-template-columns: repeat(2, 1fr);
   }
 }
 
+/* ----- MQ - min-width: 1024px ----- */
 @media (min-width: 1024px) {
   .cards {
     grid-template-columns: repeat(3, 1fr);
   }
 }
 
-/* ========== 07) GALLERY ========== */
+/* ===== 07 - GALLERY ===== */
 
 .gallery {
   background: var(--c-surface-1);
@@ -934,7 +943,6 @@ main {
   transition: transform 0.28s ease;
 }
 
-/* CTA pod tytułem Galeria */
 .gallery__cta {
   display: flex;
   justify-content: center;
@@ -952,7 +960,7 @@ main {
   }
 }
 
-/* ========== 08) TESTIMONIALS ========== */
+/* ===== 08 - TESTIMONIALS ===== */
 
 .quotes {
   display: grid;
@@ -987,9 +995,9 @@ main {
   }
 }
 
-/* ========== 09) CONTACT ========== */
+/* ===== 09 - CONTACT ===== */
 
-/* ----- 09.1) Form ----- */
+/* -- 09.1) Form -- */
 .form {
   background: var(--bone);
   padding: 1rem;
@@ -1022,7 +1030,7 @@ main {
   outline-offset: 2px;
 }
 
-/* ----- 09.2) Details List ----- */
+/* -- 09.2) Details List -- */
 .contact__details {
   list-style: none;
   margin: 0;
@@ -1056,7 +1064,7 @@ main {
   text-decoration: underline;
 }
 
-/* ----- 09.3) Icon theme mapping ----- */
+/* -- 09.3) Icon theme mapping -- */
 .contact__content {
   --contact-icon-filter: invert(0);
 }
@@ -1068,13 +1076,13 @@ body.dark .contact__content,
   --contact-icon-filter: invert(1);
 }
 
-/* ========== 10) FOOTER ========== */
+/* ===== 10 - FOOTER ===== */
 
-/* ----- 10.1) Base ----- */
+/* -- 10.1 - Base -- */
 .footer {
   padding: 3rem 0 2rem;
   border-top: 1px solid var(--border-soft);
-  color: var(--footer-text); /* LIGHT: kremowy */
+  color: var(--footer-text);
   background-color: color-mix(in oklab, var(--charcoal) 90%, black);
 }
 
@@ -1093,7 +1101,7 @@ body.dark,
   color: var(--bone);
 }
 
-/* ----- 10.2) Layout / Grid ----- */
+/* -- 10.2 - Layout / Grid -- */
 .footer__grid {
   display: grid;
   grid-template-columns: 1fr;
@@ -1143,7 +1151,7 @@ body.dark,
   text-align: center;
 }
 
-/* ----- 10.3) Elements ----- */
+/* -- 10.3 - Elements -- */
 .footer a {
   color: inherit;
   text-decoration: none;
@@ -1195,7 +1203,7 @@ body.dark,
   text-transform: uppercase;
 }
 
-/* ===== 10.4) footer link hover ===== */
+/* -- 10.4 - footer link hover -- */
 .footer__list a {
   position: relative;
   color: inherit;
@@ -1230,7 +1238,7 @@ body.dark,
   );
 }
 
-/* ----- 10.5) Variants ----- */
+/* -- 10.5 - Variants -- */
 .footer__brand,
 .footer__nav,
 .footer__contact,
@@ -1303,7 +1311,7 @@ body.dark,
   transform: translateX(-50%);
 }
 
-/* ----- 10.6) States ----- */
+/* -- 10.6 - States -- */
 .footer a:hover,
 .footer a:focus-visible {
   color: var(--white);
@@ -1315,7 +1323,7 @@ body.dark,
   text-decoration: none !important;
 }
 
-/* ----- 10.7) Media Queries ----- */
+/* -- MQ - max-width: 767px -- */
 @media (max-width: 767px) {
   .footer__nav {
     text-align: center;
@@ -1330,6 +1338,7 @@ body.dark,
   }
 }
 
+/* -- MQ - min-width: 768px / grid columns -- */
 @media (min-width: 768px) {
   .footer__grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -1341,7 +1350,7 @@ body.dark,
   }
 }
 
-/* ========== 11) SUBPAGE MENU ========== */
+/* ===== 11 - SUBPAGE MENU ===== */
 
 .page--menu .page-hero {
   position: relative;
@@ -1425,7 +1434,10 @@ body.dark,
 
 .page--menu .menu-section__intro {
   margin: 0;
-  color: var(--text-muted);
+  color: var(--charcoal);
+}
+[data-theme="dark"] .page--menu .menu-section__intro {
+  color: var(--ink);
 }
 
 .page--menu .menu-card article {
@@ -1462,8 +1474,11 @@ body.dark,
 .page--menu .menu-card__price {
   margin-left: auto;
   font-weight: 600;
-  color: var(--burgundy);
+  color: color-mix(in oklab, var(--burgundy) 90%, black);
   white-space: nowrap;
+}
+[data-theme="dark"] .page--menu .menu-card__price {
+  color: color-mix(in oklab, var(--burgundy) 86%, white);
 }
 
 .page--menu .menu-card__tags {
@@ -1482,8 +1497,12 @@ body.dark,
   font-weight: 600;
   letter-spacing: 0.04em;
   text-transform: uppercase;
-  background: color-mix(in srgb, var(--gold) 20%, var(--cream));
-  color: color-mix(in srgb, var(--charcoal), var(--burgundy) 10%);
+  background: color-mix(in srgb, var(--gold) 30%, var(--cream));
+  color: var(--ink);
+}
+[data-theme="dark"] .page--menu .menu-card__tag {
+  background: color-mix(in srgb, var(--gold) 45%, var(--bone));
+  color: var(--ink);
 }
 
 .page--menu .menu-info {
@@ -1496,7 +1515,7 @@ body.dark,
   display: flex;
   justify-content: center;
   text-align: center;
-  color: var(--charcoal);
+  color: var(--ink);
   font-size: 0.95rem;
 }
 
@@ -1514,7 +1533,10 @@ body.dark,
 
 .page--menu .menu-cta__text {
   margin: 0;
-  color: var(--text-muted);
+  color: var(--charcoal);
+}
+[data-theme="dark"] .page--menu .menu-cta__text {
+  color: var(--ink);
 }
 
 .page--menu .menu-cta__actions {
@@ -1529,7 +1551,39 @@ body.dark,
   text-align: center;
 }
 
-/* ----- Active footer link ----- */
+/* Improve CTA ghost button contrast (WCAG AA) */
+.page--menu .menu-cta__link.btn--ghost {
+  color: color-mix(in oklab, var(--burgundy) 92%, black);
+  border-color: color-mix(in oklab, var(--burgundy) 92%, black);
+}
+[data-theme="dark"] .page--menu .menu-cta__link.btn--ghost {
+  color: var(--text-muted);
+  border-color: color-mix(in oklab, var(--burgundy) 80%, white);
+}
+.page--menu .menu-cta__link:focus-visible {
+  text-decoration: underline;
+  text-underline-offset: 0.22em;
+  text-decoration-thickness: 2px;
+}
+
+/* Stronger body text for cards on menu page */
+.page--menu .card__text {
+  color: var(--charcoal);
+}
+[data-theme="dark"] .page--menu .card__text {
+  color: var(--ink);
+}
+
+/* Accessible link focus in textual blocks */
+.page--menu .menu-section__intro a:focus-visible,
+.page--menu .card__text a:focus-visible {
+  outline: 2px solid currentColor;
+  outline-offset: 2px;
+  text-decoration: underline;
+  text-underline-offset: 0.18em;
+}
+
+/* -- Active footer link -- */
 .footer__list a[aria-current="page"] {
   font-weight: 700;
   color: var(--gold);
@@ -1542,7 +1596,7 @@ body.dark,
   text-underline-offset: 0.25em;
 }
 
-/* ----- Anchor offset for fixed header ----- */
+/* -- Anchor offset for fixed header -- */
 .page--menu .menu-section {
   scroll-margin-top: clamp(64px, 10vh, 120px);
 }
@@ -1550,7 +1604,7 @@ html {
   scroll-behavior: smooth;
 }
 
-/* ----- Menu Category Buttons ----- */
+/* -- Menu Category Buttons -- */
 .page--menu .menu-tabs__list .btn {
   min-width: 140px;
   text-align: center;
@@ -1566,7 +1620,7 @@ html {
   }
 }
 
-/* ========== 12) SUBPAGE GALLERY ========== */
+/* ===== 12 - SUBPAGE GALLERY ===== */
 
 .page.page-gallery .page-hero {
   position: relative;
@@ -1645,11 +1699,7 @@ html {
   font-size: 0.95rem;
 }
 
-/* ========== 13) SUBPAGE ABOUT ========== */
-
-/* ================================================== */
-/* ===== 12) SUBPAGE ABOUT ========================== */
-/* ================================================== */
+/* ===== 13 - SUBPAGE ABOUT ===== */
 
 .page.page-about .page-hero {
   position: relative;
@@ -1836,13 +1886,14 @@ html {
   justify-content: center;
 }
 
+/* ----- MQ - min-width: 768px ----- */
 @media (min-width: 768px) {
   .page.page-about .chef-card {
     grid-template-columns: 1fr 1.1fr;
   }
 }
 
-/* ========== 14) LIGHTBOX ========== */
+/* ===== 14 - LIGHTBOX ===== */
 
 .lb-overlay {
   position: fixed;
@@ -1920,9 +1971,9 @@ html {
   border-color: rgba(255, 255, 255, 0.7);
 }
 
-/* ========== 15) STATES + ANIMATIONS ========== */
+/* ===== 15 - STATES + ANIMATIONS ===== */
 
-/* ----- REVEAL ANIMATIONS ----- */
+/* -- REVEAL ANIMATIONS -- */
 [data-reveal] {
   --rx: 0px;
   --ry: 16px;
@@ -1965,9 +2016,9 @@ html {
   }
 }
 
-/* ========== 99) COMPONENTS & UTILITIES ========== */
+/* ===== 99 - COMPONENTS & UTILITIES ===== */
 
-/* ----- BUTTONS – Base ----- */
+/* -- BUTTONS – Base -- */
 .btn {
   display: inline-flex;
   align-items: center;
@@ -1998,7 +2049,7 @@ a.btn:focus {
   text-decoration: none;
 }
 
-/* ----- BUTTON – Primary (glassy) ----- */
+/* -- BUTTON – Primary (glassy) -- */
 .btn--primary {
   background-color: var(--burgundy);
   color: #fff;
@@ -2038,11 +2089,11 @@ a.btn:focus {
     0 6px 18px rgba(0, 0, 0, 0.12);
 }
 
-/* ----- BUTTON – Ghost ----- */
+/* -- BUTTON – Ghost -- */
 .btn--ghost {
   background: transparent;
-  color: var(--burgundy);
-  border: 1px solid var(--burgundy);
+  color: color-mix(in oklab, var(--burgundy) 92%, black);
+  border: 1px solid color-mix(in oklab, var(--burgundy) 92%, black);
 }
 
 .btn--ghost:hover,
@@ -2066,7 +2117,7 @@ a.btn:focus {
     0 6px 18px rgba(0, 0, 0, 0.12);
 }
 
-/* --- Disabled --- */
+/* -- Disabled -- */
 .btn[aria-disabled="true"],
 .btn:disabled {
   opacity: 0.6;
@@ -2075,7 +2126,7 @@ a.btn:focus {
   box-shadow: none;
 }
 
-/* --- Motion-safe --- */
+/* -- MQ - prefers-reduced-motion -- */
 @media (prefers-reduced-motion: reduce) {
   .btn {
     transition:
@@ -2089,7 +2140,7 @@ a.btn:focus {
   }
 }
 
-/* ----- DARK MODE ----- */
+/* -- DARK MODE -- */
 [data-theme="dark"] .btn--primary {
   color: var(--bone);
   box-shadow: 0 2px 12px rgba(0, 0, 0, 0.45);
@@ -2109,6 +2160,14 @@ a.btn:focus {
 [data-theme="dark"] .btn--ghost:focus-visible:hover {
   background: color-mix(in oklab, var(--burgundy) 25%, black);
   border-color: color-mix(in oklab, var(--burgundy) 80%, white);
+}
+
+/* Global accessible focus for text links without altering buttons */
+:where(a:not(.btn)):focus-visible {
+  outline: 2px solid currentColor;
+  outline-offset: 2px;
+  text-decoration: underline;
+  text-underline-offset: 0.18em;
 }
 
 /* Update summary:
