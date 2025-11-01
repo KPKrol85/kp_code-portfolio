@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="pl">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <title>Jesteś offline — KP_Code</title>
+    <meta name="robots" content="noindex, nofollow" />
+    <meta name="theme-color" content="#0ea5e9" />
+    <link rel="icon" type="image/svg+xml" href="assets/img/favicon/favicon.svg" />
+    <link rel="apple-touch-icon" sizes="180x180" href="assets/img/favicon/apple-touch-icon.png" />
+    <link rel="stylesheet" href="css/style.min.css" />
+  </head>
+  <body class="error-page">
+    <main role="main" class="not-found" aria-labelledby="ttl">
+      <section>
+        <h1 id="ttl" class="error-title">Jesteś offline</h1>
+        <p class="error-lead">Wygląda na to, że nie masz połączenia z internetem. Gdy połączenie wróci, spróbuj ponownie.</p>
+        <div class="error-actions">
+          <a class="btn-primary" href="/">Wróć na stronę główną</a>
+          <button class="btn-secondary" id="retryBtn" type="button">Spróbuj ponownie</button>
+        </div>
+        <p class="sr-only" id="netStatus" aria-live="polite"></p>
+      </section>
+    </main>
+
+    <script>
+      (function () {
+        const btn = document.getElementById('retryBtn');
+        if (btn) btn.addEventListener('click', () => location.reload());
+        window.addEventListener('online', () => location.reload());
+        document.addEventListener('keydown', (e) => { if (e.key === 'Escape') location.reload(); });
+      })();
+    </script>
+  </body>
+  </html>

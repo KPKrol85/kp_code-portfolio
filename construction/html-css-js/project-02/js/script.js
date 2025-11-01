@@ -1,22 +1,22 @@
-/* ==================================================
-   ===== Project: construction-html-css-js-project-02
-   ===== Author: KP_Code
-   ===== Last Update: 2025-10-22
-   ==================================================
-   ===== script.js
-   ===== Structure Overview
-   ==================================================
-   ===== 01) INTERSECTION OBSERVER
-   ===== 02) THEME TOGGLE
-   ===== 03) HAMBURGER MOBILE NAV
-   ===== 04) SCROLL TO TOP BUTTON
-   ===== 05) CONTACT FORM
-   ===== 06) LIGHTBOX
-   ===== 07) COMPACT HEADER
-   ===== 08) REGISTER SERVICE WORKER
-   ================================================== */
+/* ==============================================
+   = Project: construction-html-css-js-project-02
+   = Author: KP_Code
+   = Last Update: 2025-10-22
+   ==============================================
+   = script.js
+   = Structure Overview
+   ==============================================
+   = 01 - INTERSECTION OBSERVER
+   = 02 - THEME TOGGLE
+   = 03 - HAMBURGER MOBILE NAV
+   = 04 - SCROLL TO TOP BUTTON
+   = 05 - CONTACT FORM
+   = 06 - LIGHTBOX
+   = 07 - COMPACT HEADER
+   = 08 - REGISTER SERVICE WORKER
+   ============================================== */
 
-/* ========== 01) INTER-SECTION-OBSERVER ========== */
+/* ===== 01 - INTER-SECTION-OBSERVER ===== */
 
 (() => {
   const hiddenElements = document.querySelectorAll(".hidden");
@@ -72,7 +72,7 @@
   window.addEventListener("pageshow", () => setTimeout(initialReveal, 0), { once: true });
 })();
 
-/* ========== 02) THEME TOGGLE ========== */
+/* ===== 02 - THEME TOGGLE ===== */
 
 (() => {
   const btnDesktop = document.getElementById("themeToggleDesktop");
@@ -145,7 +145,7 @@
   }
 })();
 
-/* ========== 03) HAMBURGER MOBILE NAV ========== */
+/* ===== 03 - HAMBURGER MOBILE NAV ===== */
 
 (() => {
   const btn = document.getElementById("hamburger");
@@ -205,6 +205,10 @@
     nav.setAttribute("aria-hidden", "false");
     lock();
     lastTrigger = document.activeElement instanceof HTMLElement ? document.activeElement : btn;
+    const firstLink = nav.querySelector('.nav a');
+    if (firstLink && typeof firstLink.focus === 'function') {
+      firstLink.focus({ preventScroll: true });
+    }
     addOutsideClick();
   };
 
@@ -252,7 +256,7 @@
   else applyDesktopState();
 })();
 
-/* ========== 04) BUTTON UP ========== */
+/* ===== 04 - BUTTON UP ===== */
 
 (() => {
   const btn = document.getElementById("powrot-na-gore") || document.querySelector(".powrot-na-gore");
@@ -301,7 +305,7 @@
   });
 })();
 
-/* ========== 05) FORM ========== */
+/* ===== 05) - CONTACT FORM ===== */
 
 (() => {
   const form = document.getElementById("contactForm");
@@ -546,16 +550,24 @@
   });
 })();
 
-/* ========== 06) LIGHTBOX ========== */
+/* ===== 06 - LIGHTBOX ===== */
 
-(() => {
-  const lb = document.getElementById("lightbox");
-  if (!lb) return;
+  (() => {
+    const lb = document.getElementById("lightbox");
+    if (!lb) return;
 
-  const imgEl = lb.querySelector(".lb__img");
-  const captionEl = lb.querySelector(".lb__caption");
-  const closeBtn = lb.querySelector(".lb__close");
-  const backdrop = lb.querySelector(".lb__backdrop");
+    const imgEl = lb.querySelector(".lb__img");
+    const captionEl = lb.querySelector(".lb__caption");
+    const closeBtn = lb.querySelector(".lb__close");
+    const backdrop = lb.querySelector(".lb__backdrop");
+    const figureEl = lb.querySelector('.lb__figure');
+    let items = [];
+    let currentIndex = 0;
+    let currentContainer = null;
+    let prevBtn = null;
+    let nextBtn = null;
+    let liveRegion = null;
+    let fsBtn = null;
 
   let lastActive = null;
   let focusables = [],
@@ -587,15 +599,16 @@
   const open = (src, alt) => {
     lastActive = document.activeElement;
 
-    imgEl.src = src;
-    imgEl.alt = alt || "";
-
-    if (alt && alt.trim()) {
-      captionEl.textContent = alt;
-      captionEl.hidden = false;
-    } else {
-      captionEl.textContent = "";
-      captionEl.hidden = true;
+    if (!items.length) {
+      imgEl.src = src;
+      imgEl.alt = alt || "";
+      if (alt && alt.trim()) {
+        captionEl.textContent = alt;
+        captionEl.hidden = false;
+      } else {
+        captionEl.textContent = "";
+        captionEl.hidden = true;
+      }
     }
 
     lb.removeAttribute("hidden");
@@ -604,6 +617,9 @@
 
     trapInit();
     if (closeBtn) closeBtn.focus();
+
+    ensureControls();
+    announceSlide();
   };
 
   const close = () => {
@@ -616,11 +632,34 @@
 
     trapRelease();
 
+    // Make sure immersive fallback is removed on close
+    lb.classList.remove('is-immersive');
     lb.setAttribute("hidden", "");
 
     if (lastActive && typeof lastActive.focus === "function") {
       lastActive.focus();
     }
+    items = [];
+    currentIndex = 0;
+    currentContainer = null;
+    if (fsBtn) {
+      fsBtn.setAttribute('aria-pressed', 'false');
+      fsBtn.setAttribute('aria-label', 'Włącz pełny ekran');
+    }
+  };
+
+  const isFs = () => !!document.fullscreenElement;
+  const enterFs = (el) => el && el.requestFullscreen ? el.requestFullscreen() : Promise.resolve();
+  const exitFs = () => document.exitFullscreen ? document.exitFullscreen() : Promise.resolve();
+  const isImmersiveFallback = () => lb.classList.contains('is-immersive');
+  const toggleFs = () => {
+    if (figureEl && figureEl.requestFullscreen && document.exitFullscreen) {
+      return isFs() ? exitFs() : enterFs(figureEl);
+    }
+    // Fallback
+    lb.classList.toggle('is-immersive');
+    updateFsButton();
+    return Promise.resolve();
   };
 
   document.addEventListener("click", (e) => {
@@ -631,20 +670,181 @@
     const href = link.getAttribute("href");
     const thumbImg = link.querySelector("img");
     const alt = thumbImg ? thumbImg.alt : "";
-    if (href) open(href, alt);
+
+    currentContainer = link.closest('.gallery-container');
+    const links = currentContainer ? Array.from(currentContainer.querySelectorAll('.gallery-link')) : [link];
+    items = links.map((a) => {
+      const timg = a.querySelector('img');
+      return { href: a.getAttribute('href'), alt: timg ? timg.alt : '' };
+    }).filter(i => !!i.href);
+    currentIndex = Math.max(0, items.findIndex((i) => i.href === href));
+    open(href, alt);
+    render(currentIndex);
   });
 
-  if (backdrop) backdrop.addEventListener("click", close);
+  if (backdrop) backdrop.addEventListener("click", () => {
+    if (isFs()) {
+      exitFs().finally(() => close());
+      return;
+    }
+    if (isImmersiveFallback()) lb.classList.remove('is-immersive');
+    close();
+  });
+
+  if (imgEl) {
+    imgEl.addEventListener('click', () => { toggleFs(); });
+    imgEl.addEventListener('dblclick', (e) => { e.preventDefault(); toggleFs(); });
+  }
+
+  function ensureControls() {
+    if (!figureEl) return;
+    if (!prevBtn) {
+      prevBtn = document.createElement('button');
+      prevBtn.type = 'button';
+      prevBtn.className = 'lb__prev';
+      prevBtn.setAttribute('aria-label', 'Poprzednie zdjęcie');
+      prevBtn.innerHTML = '&#8249;';
+      prevBtn.addEventListener('click', () => { showPrev(); });
+      figureEl.appendChild(prevBtn);
+    }
+    if (!nextBtn) {
+      nextBtn = document.createElement('button');
+      nextBtn.type = 'button';
+      nextBtn.className = 'lb__next';
+      nextBtn.setAttribute('aria-label', 'Następne zdjęcie');
+      nextBtn.innerHTML = '&#8250;';
+      nextBtn.addEventListener('click', () => { showNext(); });
+      figureEl.appendChild(nextBtn);
+    }
+    if (!liveRegion) {
+      liveRegion = document.createElement('div');
+      liveRegion.className = 'sr-only';
+      liveRegion.setAttribute('aria-live', 'polite');
+      lb.appendChild(liveRegion);
+    }
+    if (!fsBtn) {
+      fsBtn = document.createElement('button');
+      fsBtn.type = 'button';
+      fsBtn.className = 'lb__fs';
+      fsBtn.setAttribute('aria-pressed', 'false');
+      fsBtn.setAttribute('aria-label', 'Włącz pełny ekran');
+      fsBtn.textContent = '⛶';
+      fsBtn.addEventListener('click', () => {
+        toggleFs();
+        // In fallback we update immediately; with real FS we sync via fullscreenchange
+        updateFsButton();
+      });
+      figureEl.appendChild(fsBtn);
+    }
+    updateFsButton();
+  }
+
+  function announceSlide() {
+    if (!liveRegion || !items.length) return;
+    const n = items.length;
+    liveRegion.textContent = `Zdjęcie ${currentIndex + 1} z ${n}`;
+  }
+
+  function updateFsButton() {
+    if (!fsBtn) return;
+    const active = isFs() || isImmersiveFallback();
+    fsBtn.setAttribute('aria-pressed', String(active));
+    fsBtn.setAttribute('aria-label', active ? 'Wyłącz pełny ekran' : 'Włącz pełny ekran');
+  }
+
+  function preloadNeighbor(i) {
+    if (!items.length) return;
+    const n = items.length;
+    const prev = items[(i - 1 + n) % n];
+    const next = items[(i + 1) % n];
+    [prev, next].forEach((it) => {
+      if (it && it.href) { const pre = new Image(); pre.decoding = 'async'; pre.src = it.href; }
+    });
+  }
+
+  function render(i) {
+    if (!items.length) return;
+    const it = items[i];
+    if (!it) return;
+    imgEl.classList.add('is-fading');
+    const onLoad = () => { imgEl.classList.remove('is-fading'); imgEl.removeEventListener('load', onLoad); };
+    imgEl.addEventListener('load', onLoad);
+    imgEl.src = it.href;
+    imgEl.alt = it.alt || '';
+    if (it.alt && it.alt.trim()) { captionEl.textContent = it.alt; captionEl.hidden = false; } else { captionEl.textContent = ''; captionEl.hidden = true; }
+    announceSlide();
+    preloadNeighbor(i);
+  }
+
+  function showNext() {
+    if (!items.length) return;
+    currentIndex = (currentIndex + 1) % items.length;
+    render(currentIndex);
+  }
+  function showPrev() {
+    if (!items.length) return;
+    currentIndex = (currentIndex - 1 + items.length) % items.length;
+    render(currentIndex);
+  }
+
+  (function initSwipe() {
+    if (!figureEl) return;
+    let startX = 0, startY = 0, dragging = false, dx = 0, dy = 0, active = false;
+    const H_THRESHOLD = 48; // px
+    const detectStart = (x, y) => { startX = x; startY = y; dragging = false; dx = 0; dy = 0; active = true; };
+    const detectMove = (x, y, ev) => {
+      if (!active) return;
+      dx = x - startX; dy = y - startY;
+      if (!dragging) {
+        if (Math.abs(dx) > 12 && Math.abs(dx) > Math.abs(dy) * 1.5) dragging = true;
+      }
+      if (dragging && ev && ev.cancelable) ev.preventDefault();
+    };
+    const detectEnd = () => {
+      if (dragging) {
+        if (Math.abs(dx) > H_THRESHOLD) {
+          if (dx < 0) showNext(); else showPrev();
+        }
+      }
+      dragging = false; active = false; dx = dy = 0;
+    };
+    figureEl.addEventListener('pointerdown', (e) => { detectStart(e.clientX, e.clientY); });
+    figureEl.addEventListener('pointermove', (e) => { detectMove(e.clientX, e.clientY, e); }, { passive: true });
+    figureEl.addEventListener('pointerup', detectEnd);
+    figureEl.addEventListener('pointercancel', detectEnd);
+    figureEl.addEventListener('pointerleave', () => { if (active) detectEnd(); });
+  })();
   if (closeBtn) closeBtn.addEventListener("click", close);
 
   document.addEventListener("keydown", (e) => {
     if (lb.getAttribute("aria-hidden") !== "false") return;
     if (e.key === "Escape") {
       e.preventDefault();
+      if (isFs()) {
+        exitFs();
+        return;
+      }
+      if (isImmersiveFallback()) {
+        lb.classList.remove('is-immersive');
+        return;
+      }
       close();
+    } else if (e.key === 'ArrowRight') {
+      e.preventDefault();
+      showNext();
+    } else if (e.key === 'ArrowLeft') {
+      e.preventDefault();
+      showPrev();
     } else if (e.key === "Tab") {
       handleTrap(e);
     }
+  });
+
+  document.addEventListener('fullscreenchange', () => {
+    if (!isFs()) {
+      lb.classList.remove('is-immersive');
+    }
+    updateFsButton();
   });
 
   if (!isTouchLike) {
@@ -669,7 +869,7 @@
   }
 })();
 
-/* ========== 07) COMPACT HEADER ========== */
+/* ===== 07 - COMPACT HEADER ===== */
 
 (() => {
   const THRESHOLD = 20;
@@ -711,13 +911,11 @@
   mo.observe(document.body, { attributes: true, attributeFilter: ["class"] });
 })();
 
-/* ========== 08) REGISTER SERVICE WORKER ========== */
+/* ===== 08 - REGISTER SERVICE WORKER ===== */
 
 if ("serviceWorker" in navigator) {
   window.addEventListener("load", () => {
-    navigator.serviceWorker
-      .register("./sw.js")
-      .then(() => console.log("✅ Service Worker registered"))
-      .catch((err) => console.error("❌ Service Worker registration failed:", err));
+    navigator.serviceWorker.register("./sw.js").catch(() => {});
   });
 }
+
