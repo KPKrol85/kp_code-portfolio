@@ -85,6 +85,8 @@
   --footer-bg: #2e2a27;
   --footer-text: #fffdf8;
   color-scheme: light;
+  /* LIGHTBOX a11y: ujednolicony kolor obrysu focus */
+  --focus-ring: color-mix(in oklab, var(--burgundy) 65%, white);
 }
 
 [data-theme="dark"] {
@@ -2350,6 +2352,11 @@ html {
   text-align: center;
   font-size: 0.95rem;
 }
+/* DARK MODE: jaśniejszy podpis pod zdjęciem dla lepszej czytelności */
+[data-theme="dark"] .lb-caption {
+  color: var(--black); /* w dark theme --black = #fff */
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.45);
+}
 /* Controls */
 .lb-controls {
   position: relative;
@@ -2380,11 +2387,15 @@ html {
   align-items: center;
   justify-content: center;
   box-shadow: 0 2px 12px rgba(0, 0, 0, 0.25);
+  /* hide any fallback characters inside buttons */
+  font-size: 0;
 }
 .lb-btn:hover,
 .lb-btn:focus-visible {
   border-color: var(--white);
-  outline: none;
+  /* LIGHTBOX a11y: wyraźny, ujednolicony focus */
+  outline: 2px solid var(--focus-ring);
+  outline-offset: 2px;
 }
 .lb-close,
 .lb-full {
@@ -2414,7 +2425,7 @@ html {
 .lb-prev,
 .lb-next {
   position: fixed;
-  top: 50%;
+  /* top is dynamically set from JS to image center */
   transform: translateY(-50%);
   font-size: 1.1rem;
 }
@@ -2427,9 +2438,13 @@ html {
 
 @media (max-width: 640px) {
   .lb-btn {
-    width: 40px;
-    height: 40px;
-    padding: 0.4rem;
+    width: 34px;
+    height: 34px;
+    padding: 0.3rem;
+  }
+  .lb-btn::before {
+    width: 18px;
+    height: 18px;
   }
   .lb-counter {
     right: 12px;
@@ -2438,25 +2453,98 @@ html {
   }
 }
 
+/* LIGHTBOX a11y: na urządzeniach dotykowych zapewnij min. 44x44 hit-area */
+@media (pointer: coarse) {
+  .lb-btn {
+    width: 44px;
+    height: 44px;
+    padding: 0.5rem; /* większa strefa dotyku bez powiększania ikony */
+  }
+  .lb-btn::before {
+    width: 20px;
+    height: 20px;
+  }
+}
+
 /* Dark mode accents */
 [data-theme="dark"] .lb-btn {
-  color: var(--burgundy);
-  border-color: color-mix(in oklab, var(--burgundy) 70%, white);
+  /* LIGHTBOX a11y: w dark mode wysoki kontrast ikony i tła */
+  color: var(--black); /* w dark theme to #fff */
+  background: rgba(0, 0, 0, 0.6);
+  border-color: rgba(255, 255, 255, 0.7);
 }
 [data-theme="dark"] .lb-counter {
-  color: var(--burgundy);
-  border-color: color-mix(in oklab, var(--burgundy) 70%, white);
-  background: rgba(0, 0, 0, 0.4);
+  /* LIGHTBOX a11y: solidne tło dla czytelności niezależnie od zdjęcia */
+  color: var(--black); /* jasny tekst */
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  /*border-color: color-mix(in oklab, var(--burgundy) 65%, white);*/
+  background: #1c1815;
 }
-/* Hide close button in fullscreen */
+/* LIGHTBOX a11y: nie ukrywamy przycisku zamykania w fullscreen */
 .is-fullscreen .lb-close {
-  display: none !important;
+  display: inline-flex !important;
 }
 
 @media (prefers-reduced-motion: reduce) {
   .lb-figure img {
-    transition: none;
+    transition: none !important;
   }
+  .lb-overlay,
+  .lb-modal,
+  .lb-btn {
+    transition: none !important;
+    animation: none !important;
+  }
+}
+
+/* ===== Lightbox SVG icons (mask-based, inherit currentColor) ===== */
+.lb-prev,
+.lb-next,
+.lb-full,
+.lb-close {
+  font-size: 0;
+}
+.lb-btn::before {
+  content: "";
+  width: 22px;
+  height: 22px;
+  display: block;
+  background-color: currentColor;
+  -webkit-mask-size: contain;
+  mask-size: contain;
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+  -webkit-mask-position: center;
+  mask-position: center;
+}
+
+/* Arrow left */
+.lb-prev::before {
+  -webkit-mask-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 19l-7-7 7-7"/></svg>');
+  mask-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 19l-7-7 7-7"/></svg>');
+}
+
+/* Arrow right */
+.lb-next::before {
+  -webkit-mask-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 5l7 7-7 7"/></svg>');
+  mask-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 5l7 7-7 7"/></svg>');
+}
+
+.lb-full::before {
+  -webkit-mask-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 9V4h5M20 15v5h-5M4 15v5h5M20 9V4h-5"/></svg>');
+  mask-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 9V4h5M20 15v5h-5M4 15v5h5M20 9V4h-5"/></svg>');
+}
+
+/* Fullscreen (maximize) */ /*
+.lb-full::before {
+  -webkit-mask-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 3H5v3M16 3h3v3M8 21H5v-3M19 21h-3v-3"/></svg>');
+  mask-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 3H5v3M16 3h3v3M8 21H5v-3M19 21h-3v-3"/></svg>');
+}
+*/
+/* Close (X) */
+.lb-close::before {
+  -webkit-mask-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 18L18 6M6 6l12 12"/></svg>');
+  mask-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 18L18 6M6 6l12 12"/></svg>');
 }
 
 /* ===== 15 - STATES + ANIMATIONS ===== */

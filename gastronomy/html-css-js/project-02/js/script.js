@@ -195,7 +195,7 @@
     prevBtn.type = "button";
     prevBtn.className = "lb-btn lb-prev";
     prevBtn.setAttribute("aria-label", "Poprzednie zdjęcie");
-    prevBtn.textContent = "←";
+    prevBtn.textContent = "←"; // hidden by CSS, kept for a11y fallback
     const counter = document.createElement("span");
     counter.className = "lb-counter";
     counter.textContent = "1/1";
@@ -203,7 +203,7 @@
     nextBtn.type = "button";
     nextBtn.className = "lb-btn lb-next";
     nextBtn.setAttribute("aria-label", "Następne zdjęcie");
-    nextBtn.textContent = "→";
+    nextBtn.textContent = "→"; // hidden by CSS, kept for a11y fallback
     const fullBtn = document.createElement("button");
     fullBtn.type = "button";
     fullBtn.className = "lb-btn lb-full";
@@ -215,6 +215,25 @@
     closeBtn.setAttribute("aria-label", "Zamknij podgląd");
     closeBtn.textContent = "×";
     controls.append(prevBtn, counter, nextBtn, fullBtn, closeBtn);
+    // LIGHTBOX a11y: poprawne etykiety UTF-8, tytuły i skróty, naprawa znaków
+    // Ustaw poprawne teksty i hinty desktop
+    try {
+      prevBtn.textContent = "←";
+      nextBtn.textContent = "→";
+      closeBtn.textContent = "×";
+      prevBtn.setAttribute("aria-label", "Poprzednie zdjęcie");
+      prevBtn.setAttribute("title", "Poprzednie zdjęcie");
+      nextBtn.setAttribute("aria-label", "Następne zdjęcie");
+      nextBtn.setAttribute("title", "Następne zdjęcie");
+      fullBtn.setAttribute("aria-label", "Pełny ekran");
+      fullBtn.setAttribute("title", "Pełny ekran");
+      closeBtn.setAttribute("aria-label", "Zamknij podgląd");
+      closeBtn.setAttribute("title", "Zamknij podgląd");
+      caption.id = "lb-caption";
+      overlay.setAttribute("aria-label", "Podgląd zdjęcia");
+      overlay.setAttribute("aria-describedby", "lb-caption");
+      overlay.setAttribute("aria-keyshortcuts", "Esc ArrowLeft ArrowRight F");
+    } catch (e) { /* no-op */ }
 
     const live = document.createElement("div");
     live.className = "visually-hidden";
@@ -235,6 +254,22 @@
   const fullBtn = overlay.querySelector(".lb-full");
   const counterEl = overlay.querySelector(".lb-counter");
   const liveEl = overlay.querySelector("#lb-live");
+  // LIGHTBOX a11y: sekcje strony, które wyłączamy dla SR podczas otwartego lightboxa
+  const pageSections = Array.prototype.slice.call(document.querySelectorAll("header, main, footer"));
+
+  // LIGHTBOX a11y: włącz/wyłącz inert/aria-hidden dla tła
+  function setPageInert(isInert) {
+    pageSections.forEach(function (el) {
+      if (!el) return;
+      if (isInert) {
+        try { el.setAttribute("inert", ""); } catch (e) {}
+        el.setAttribute("aria-hidden", "true");
+      } else {
+        try { el.removeAttribute("inert"); } catch (e) {}
+        el.removeAttribute("aria-hidden");
+      }
+    });
+  }
   if (fullBtn && !fullBtn.getAttribute("title")) {
     fullBtn.setAttribute("title", "Pełny ekran (F)");
   }
@@ -253,6 +288,16 @@
   let group = [];
   let index = 0;
   let lastTrigger = null;
+
+  // Center side arrows vertically relative to the displayed image
+  function placeArrows() {
+    if (!imgEl || !prevBtn || !nextBtn) return;
+    const rect = imgEl.getBoundingClientRect();
+    if (!rect || !rect.height) return;
+    const mid = rect.top + rect.height / 2;
+    prevBtn.style.top = mid + "px";
+    nextBtn.style.top = mid + "px";
+  }
 
   function updateCounter() {
     counterEl.textContent = index + 1 + "/" + group.length;
@@ -274,11 +319,14 @@
     imgEl.classList.remove("is-ready");
     imgEl.onload = function () {
       imgEl.classList.add("is-ready");
+      placeArrows();
     };
     imgEl.src = a.getAttribute("href");
     captionEl.textContent = getCaptionFromLink(a) || "";
     updateCounter();
     prefetch(i);
+    // In case of cached images where onload may not fire immediately
+    requestAnimationFrame(placeArrows);
   }
   function openFromLink(a) {
     lastTrigger = a;
@@ -288,12 +336,16 @@
     html.classList.add("lb-open");
     render(index);
     requestAnimationFrame(() => closeBtn.focus());
+    // LIGHTBOX a11y: odetnij tło dla czytnika
+    setPageInert(true);
   }
   function closeLightbox() {
     html.classList.remove("lb-open");
     imgEl.removeAttribute("src");
     if (lastTrigger) lastTrigger.focus();
     if (document.fullscreenElement) document.exitFullscreen().catch(() => {});
+    // LIGHTBOX a11y: przywróć nawigowalność tła
+    setPageInert(false);
   }
   function next() {
     index = (index + 1) % group.length;
@@ -330,6 +382,36 @@
       }
     }
   });
+
+  // Keep arrows centered on resize/orientation/fullscreen changes
+  window.addEventListener("resize", placeArrows);
+  window.addEventListener("orientationchange", placeArrows);
+  document.addEventListener("fullscreenchange", placeArrows);
+
+  // Basic touch swipe for mobile: left -> next, right -> prev
+  let touchStartX = 0, touchStartY = 0, touchStartTime = 0;
+  overlay.addEventListener("touchstart", function (e) {
+    if (!e.changedTouches || !e.changedTouches.length) return;
+    const t = e.changedTouches[0];
+    touchStartX = t.clientX;
+    touchStartY = t.clientY;
+    touchStartTime = Date.now();
+  }, { passive: true });
+  overlay.addEventListener("touchend", function (e) {
+    if (!e.changedTouches || !e.changedTouches.length) return;
+    const t = e.changedTouches[0];
+    const dx = t.clientX - touchStartX;
+    const dy = t.clientY - touchStartY;
+    const dt = Date.now() - touchStartTime;
+    // horizontal, fast enough swipe
+    if (Math.abs(dx) > 40 && Math.abs(dx) > Math.abs(dy) && dt < 600) {
+      if (dx < 0) {
+        next();
+      } else {
+        prev();
+      }
+    }
+  }, { passive: true });
 
   // Fullscreen state -> toggle helper class for CSS
   document.addEventListener("fullscreenchange", function () {
