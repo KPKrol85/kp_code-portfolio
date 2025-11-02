@@ -56,6 +56,26 @@
     <link rel="preload" href="assets/fonts/lato-400-latin.woff2" as="font" type="font/woff2" crossorigin />
     <link rel="preload" href="assets/fonts/lato-700-latin.woff2" as="font" type="font/woff2" crossorigin />
 
+    <!-- Restaurant JSON-LD -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Restaurant",
+        "@id": "https://gastronomy-project-02.netlify.app/#restaurant",
+        "name": "Gastronomy 02 – KP_Code",
+        "url": "https://gastronomy-project-02.netlify.app/",
+        "image": "https://gastronomy-project-02.netlify.app/assets/img/og-img/og-img-1200x630.jpg",
+        "servesCuisine": ["Fine dining", "Europejska"],
+        "address": {
+          "@type": "PostalAddress",
+          "addressLocality": "Tarnów",
+          "addressCountry": "PL"
+        },
+        "telephone": "+48 533 537 091",
+        "hasMenu": "https://gastronomy-project-02.netlify.app/menu.html"
+      }
+    </script>
+
     <!-- Motyw jasny / ciemny (dynamiczne theme-color) -->
     <script>
       (function () {
@@ -136,13 +156,13 @@
             <span class="nav-toggle__bar" aria-hidden="true"></span>
           </button>
 
-          <nav class="nav" id="primary-nav" aria-label="Primary">
+          <nav class="nav" id="primary-nav" aria-label="Nawigacja główna">
             <ul class="nav__list">
               <li><a href="#about">O nas</a></li>
               <li><a href="#menu">Menu</a></li>
               <li><a href="#gallery">Galeria</a></li>
               <li><a href="#testimonials">Opinie</a></li>
-              <li><a href="#contact">Kontact</a></li>
+              <li><a href="#contact">Kontakt</a></li>
             </ul>
           </nav>
 

@@ -138,11 +138,11 @@
     <!-- ===== HEADER ===== -->
     <header class="site-header" role="banner" aria-label="Nagłówek strony z nawigacją">
       <div class="container header__inner">
-        <a class="brand" href="/#hero" aria-label="Strona główna Gastronomy 02">
+        <a class="brand" href="index.html" aria-label="Strona główna Gastronomy 02">
           <!-- Light mode logo -->
-          <img src="assets/img/logo/logo-light-mode-160x160.png" alt="" class="brand__logo brand__logo--light" width="50" height="50" />
+          <img src="assets/img/logo/logo-light-mode-160x160.png" alt="Logo KP_Code" class="brand__logo brand__logo--light" width="50" height="50" />
           <!-- Dark mode logo -->
-          <img src="assets/img/logo/logo-dark-mode-160x160.png" alt="" class="brand__logo brand__logo--dark" width="50" height="50" />
+          <img src="assets/img/logo/logo-dark-mode-160x160.png" alt="" aria-hidden="true" class="brand__logo brand__logo--dark" width="50" height="50" />
           <span class="brand__text">KP_Code</span>
         </a>
 
@@ -153,24 +153,20 @@
             <span class="nav-toggle__bar" aria-hidden="true"></span>
           </button>
 
-          <nav class="nav" id="primary-nav" aria-label="Nawigacja główna">
+          <nav class="nav" id="primary-nav" aria-label="Primary">
             <ul class="nav__list">
-              <li><a href="/#about">O nas</a></li>
-              <li><a href="/menu.html">Menu</a></li>
-              <li><a href="/gallery.html" aria-current="page">Galeria</a></li>
-              <li><a href="/#testimonials">Opinie</a></li>
-              <li><a href="/#contact">Kontakt</a></li>
+              <li><a href="index.html#about">O nas</a></li>
+              <li><a href="index.html#menu">Menu</a></li>
+              <li><a href="gallery.html" aria-current="page">Galeria</a></li>
+              <li><a href="index.html#testimonials">Opinie</a></li>
+              <li><a href="index.html#contact">Kontakt</a></li>
             </ul>
           </nav>
 
-          <button class="theme-toggle" type="button" aria-pressed="false" aria-label="Przełącz tryb ciemny">
-            <span class="theme-toggle__icon theme-toggle__icon--sun" aria-hidden="true">
-              <img src="assets/icons/svg-icon/icon-sun.svg" alt="" width="24" height="24" />
-            </span>
-            <span class="theme-toggle__icon theme-toggle__icon--moon" aria-hidden="true">
-              <img src="assets/icons/svg-icon/icon-moon.svg" alt="" width="24" height="24" />
-            </span>
-            <span class="visually-hidden">Przełącz tryb jasny/ciemny</span>
+          <button class="theme-toggle" type="button" aria-pressed="false" aria-label="Przełącz motyw: jasny/ciemny">
+            <span class="theme-toggle__icon theme-toggle__icon--sun" aria-hidden="true"><img src="assets/icons/svg-icon/icon-sun.svg" alt="" width="24" height="24" /></span>
+            <span class="theme-toggle__icon theme-toggle__icon--moon" aria-hidden="true"><img src="assets/icons/svg-icon/icon-moon.svg" alt="" width="24" height="24" /></span>
+            <span class="visually-hidden">Przełącz motyw: jasny/ciemny</span>
           </button>
         </div>
       </div>
@@ -205,300 +201,722 @@
         </div>
       </section>
 
-  <!----- Wnętrza ----->
-<section id="wnetrza" class="section gallery" aria-labelledby="wnetrza-title">
-  <div class="container">
-    <header class="gallery-section__header" data-reveal>
-      <h2 id="wnetrza-title">Wnętrza</h2>
-      <p class="gallery-section__intro">Ciepłe światło, naturalne materiały i detale, które budują unikalną atmosferę wieczoru.</p>
-    </header>
+      <!----- Wnętrza ----->
+      <section id="wnetrza" class="section gallery" aria-labelledby="wnetrza-title">
+        <div class="container">
+          <header class="gallery-section__header" data-reveal>
+            <h2 id="wnetrza-title">Wnętrza</h2>
+            <p class="gallery-section__intro">Ciepłe światło, naturalne materiały i detale, które budują unikalną atmosferę wieczoru.</p>
+          </header>
+          <!-- Wnetrze 01 -->
+          <ul class="gallery__grid" data-reveal-group>
+            <li class="gallery__item" data-reveal>
+              <a
+                class="gallery__link"
+                href="assets/img/podstrona-galeria/wnetrze/wnetrze-01-1600x1200.jpg"
+                data-lightbox="wnetrze"
+                data-lb-caption="Sala restauracyjna oświetlona lampami w złotych odcieniach, gotowa na kolację degustacyjną.">
+                <figure class="gallery__figure">
+                  <picture>
+                    <!-- AVIF -->
+                    <source
+                      type="image/avif"
+                      srcset="
+                        assets/img/podstrona-galeria/wnetrze/wnetrze-01-400x300.avif    400w,
+                        assets/img/podstrona-galeria/wnetrze/wnetrze-01-800x600.avif    800w,
+                        assets/img/podstrona-galeria/wnetrze/wnetrze-01-1200x900.avif  1200w,
+                        assets/img/podstrona-galeria/wnetrze/wnetrze-01-1600x1200.avif 1600w
+                      "
+                      sizes="(min-width: 1280px) 25vw, (min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw" />
+                    <!-- WebP -->
+                    <source
+                      type="image/webp"
+                      srcset="
+                        assets/img/podstrona-galeria/wnetrze/wnetrze-01-400x300.webp    400w,
+                        assets/img/podstrona-galeria/wnetrze/wnetrze-01-800x600.webp    800w,
+                        assets/img/podstrona-galeria/wnetrze/wnetrze-01-1200x900.webp  1200w,
+                        assets/img/podstrona-galeria/wnetrze/wnetrze-01-1600x1200.webp 1600w
+                      "
+                      sizes="(min-width: 1280px) 25vw, (min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw" />
+                    <!-- JPG fallback -->
+                    <img
+                      class="gallery__img"
+                      src="assets/img/podstrona-galeria/wnetrze/wnetrze-01-800x600.jpg"
+                      srcset="
+                        assets/img/podstrona-galeria/wnetrze/wnetrze-01-400x300.jpg    400w,
+                        assets/img/podstrona-galeria/wnetrze/wnetrze-01-800x600.jpg    800w,
+                        assets/img/podstrona-galeria/wnetrze/wnetrze-01-1200x900.jpg  1200w,
+                        assets/img/podstrona-galeria/wnetrze/wnetrze-01-1600x1200.jpg 1600w
+                      "
+                      sizes="(min-width: 1280px) 25vw, (min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw"
+                      alt="Eleganckie wnętrze restauracji z kamiennymi ścianami i oświetleniem w ciepłym tonie."
+                      loading="eager"
+                      fetchpriority="high"
+                      decoding="async"
+                      width="800"
+                      height="600" />
+                  </picture>
+                </figure>
+              </a>
+            </li>
+            <!-- Wnetrze 02 -->
+            <li class="gallery__item" data-reveal>
+              <a
+                class="gallery__link"
+                href="assets/img/podstrona-galeria/wnetrze/wnetrze-02-1600x1200.jpg"
+                data-lightbox="wnetrze"
+                data-lb-caption="Elegancki stolik w pobliżu okna z widokiem na miasto.">
+                <figure class="gallery__figure">
+                  <picture>
+                    <!-- AVIF -->
+                    <source
+                      type="image/avif"
+                      srcset="
+                        assets/img/podstrona-galeria/wnetrze/wnetrze-02-400x300.avif    400w,
+                        assets/img/podstrona-galeria/wnetrze/wnetrze-02-800x600.avif    800w,
+                        assets/img/podstrona-galeria/wnetrze/wnetrze-02-1200x900.avif  1200w,
+                        assets/img/podstrona-galeria/wnetrze/wnetrze-02-1600x1200.avif 1600w
+                      "
+                      sizes="(min-width: 1280px) 25vw, (min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw" />
+                    <!-- WebP -->
+                    <source
+                      type="image/webp"
+                      srcset="
+                        assets/img/podstrona-galeria/wnetrze/wnetrze-02-400x300.webp    400w,
+                        assets/img/podstrona-galeria/wnetrze/wnetrze-02-800x600.webp    800w,
+                        assets/img/podstrona-galeria/wnetrze/wnetrze-02-1200x900.webp  1200w,
+                        assets/img/podstrona-galeria/wnetrze/wnetrze-02-1600x1200.webp 1600w
+                      "
+                      sizes="(min-width: 1280px) 25vw, (min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw" />
+                    <!-- JPG fallback -->
+                    <img
+                      class="gallery__img"
+                      src="assets/img/podstrona-galeria/wnetrze/wnetrze-02-800x600.jpg"
+                      srcset="
+                        assets/img/podstrona-galeria/wnetrze/wnetrze-02-400x300.jpg    400w,
+                        assets/img/podstrona-galeria/wnetrze/wnetrze-02-800x600.jpg    800w,
+                        assets/img/podstrona-galeria/wnetrze/wnetrze-02-1200x900.jpg  1200w,
+                        assets/img/podstrona-galeria/wnetrze/wnetrze-02-1600x1200.jpg 1600w
+                      "
+                      sizes="(min-width: 1280px) 25vw, (min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw"
+                      alt="Eleganckie wnętrze restauracji z kamiennymi ścianami i oświetleniem w ciepłym tonie."
+                      loading="eager"
+                      fetchpriority="high"
+                      decoding="async"
+                      width="800"
+                      height="600" />
+                  </picture>
+                </figure>
+              </a>
+            </li>
+            <!-- Wnetrze 03 -->
+            <li class="gallery__item" data-reveal>
+              <a
+                class="gallery__link"
+                href="assets/img/podstrona-galeria/wnetrze/wnetrze-03-1600x1200.jpg"
+                data-lightbox="wnetrze"
+                data-lb-caption="Kącik lounge z aksamitnymi fotelami i lampami w stylu art déco.">
+                <figure class="gallery__figure">
+                  <picture>
+                    <!-- AVIF -->
+                    <source
+                      type="image/avif"
+                      srcset="
+                        assets/img/podstrona-galeria/wnetrze/wnetrze-03-400x300.avif    400w,
+                        assets/img/podstrona-galeria/wnetrze/wnetrze-03-800x600.avif    800w,
+                        assets/img/podstrona-galeria/wnetrze/wnetrze-03-1200x900.avif  1200w,
+                        assets/img/podstrona-galeria/wnetrze/wnetrze-03-1600x1200.avif 1600w
+                      "
+                      sizes="(min-width: 1280px) 25vw, (min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw" />
+                    <!-- WebP -->
+                    <source
+                      type="image/webp"
+                      srcset="
+                        assets/img/podstrona-galeria/wnetrze/wnetrze-03-400x300.webp    400w,
+                        assets/img/podstrona-galeria/wnetrze/wnetrze-03-800x600.webp    800w,
+                        assets/img/podstrona-galeria/wnetrze/wnetrze-03-1200x900.webp  1200w,
+                        assets/img/podstrona-galeria/wnetrze/wnetrze-03-1600x1200.webp 1600w
+                      "
+                      sizes="(min-width: 1280px) 25vw, (min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw" />
+                    <!-- JPG fallback -->
+                    <img
+                      class="gallery__img"
+                      src="assets/img/podstrona-galeria/wnetrze/wnetrze-03-800x600.jpg"
+                      srcset="
+                        assets/img/podstrona-galeria/wnetrze/wnetrze-03-400x300.jpg    400w,
+                        assets/img/podstrona-galeria/wnetrze/wnetrze-03-800x600.jpg    800w,
+                        assets/img/podstrona-galeria/wnetrze/wnetrze-03-1200x900.jpg  1200w,
+                        assets/img/podstrona-galeria/wnetrze/wnetrze-03-1600x1200.jpg 1600w
+                      "
+                      sizes="(min-width: 1280px) 25vw, (min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw"
+                      alt="Eleganckie wnętrze restauracji z kamiennymi ścianami i oświetleniem w ciepłym tonie."
+                      loading="lazy"
+                      decoding="async"
+                      width="800"
+                      height="600" />
+                  </picture>
+                </figure>
+              </a>
+            </li>
+          </ul>
 
-    <ul class="gallery__grid" data-reveal-group>
-      <li class="gallery__item" data-reveal>
-        <a class="gallery__link" href="assets/img/gallery/gal-01-1000x750.jpg" data-lb-caption="Sala restauracyjna oświetlona lampami w złotych odcieniach, gotowa na kolację degustacyjną.">
-          <figure class="gallery__figure">
-            <picture>
-              <source type="image/avif" srcset="assets/img/gallery/gal-01-400x300.avif 400w, assets/img/gallery/gal-01-700x525.avif 700w, assets/img/gallery/gal-01-1000x750.avif 1000w" sizes="(min-width:1024px) 33vw, (min-width:768px) 50vw, 100vw" />
-              <source type="image/webp" srcset="assets/img/gallery/gal-01-400x300.webp 400w, assets/img/gallery/gal-01-700x525.webp 700w, assets/img/gallery/gal-01-1000x750.webp 1000w" sizes="(min-width:1024px) 33vw, (min-width:768px) 50vw, 100vw" />
-              <img class="gallery__img" src="assets/img/gallery/gal-01-700x525.jpg" srcset="assets/img/gallery/gal-01-400x300.jpg 400w, assets/img/gallery/gal-01-700x525.jpg 700w, assets/img/gallery/gal-01-1000x750.jpg 1000w" sizes="(min-width:1024px) 33vw, (min-width:768px) 50vw, 100vw" alt="Stylowa sala restauracyjna z kamiennymi ścianami i nakrytymi stołami." loading="lazy" decoding="async" width="700" height="525" />
-            </picture>
-          </figure>
-        </a>
-      </li>
+          <p class="gallery-note">Kliknij zdjęcie, aby powiększyć.</p>
+        </div>
+      </section>
 
-      <li class="gallery__item" data-reveal>
-        <a class="gallery__link" href="assets/img/gallery/gal-02-1000x750.jpg" data-lb-caption="Elegancki stolik w pobliżu okna z widokiem na miasto.">
-          <figure class="gallery__figure">
-            <picture>
-              <!-- PODMIEŃ na docelowe zdjęcie wnętrza -->
-              <source type="image/avif" srcset="assets/img/gallery/gal-02-400x300.avif 400w, assets/img/gallery/gal-02-700x525.avif 700w, assets/img/gallery/gal-02-1000x750.avif 1000w" sizes="(min-width:1024px) 33vw, (min-width:768px) 50vw, 100vw" />
-              <source type="image/webp" srcset="assets/img/gallery/gal-02-400x300.webp 400w, assets/img/gallery/gal-02-700x525.webp 700w, assets/img/gallery/gal-02-1000x750.webp 1000w" sizes="(min-width:1024px) 33vw, (min-width:768px) 50vw, 100vw" />
-              <img class="gallery__img" src="assets/img/gallery/gal-02-700x525.jpg" srcset="assets/img/gallery/gal-02-400x300.jpg 400w, assets/img/gallery/gal-02-700x525.jpg 700w, assets/img/gallery/gal-02-1000x750.jpg 1000w" sizes="(min-width:1024px) 33vw, (min-width:768px) 50vw, 100vw" alt="Stolik w restauracji z widokiem na nocną panoramę miasta." loading="lazy" decoding="async" width="700" height="525" />
-            </picture>
-          </figure>
-        </a>
-      </li>
+      <!----- Dania ----->
+      <section id="dania" class="section gallery" aria-labelledby="dania-title">
+        <div class="container">
+          <header class="gallery-section__header" data-reveal>
+            <h2 id="dania-title">Dania</h2>
+            <p class="gallery-section__intro">Autorskie kompozycje, które łączą sezonowe produkty i techniki fine dining.</p>
+          </header>
 
-      <li class="gallery__item" data-reveal>
-        <a class="gallery__link" href="assets/img/gallery/gal-03-1000x750.jpg" data-lb-caption="Kącik lounge z aksamitnymi fotelami i lampami w stylu art déco.">
-          <figure class="gallery__figure">
-            <picture>
-              <!-- PODMIEŃ na docelowe zdjęcie lounge -->
-              <source type="image/avif" srcset="assets/img/gallery/gal-03-400x300.avif 400w, assets/img/gallery/gal-03-700x525.avif 700w, assets/img/gallery/gal-03-1000x750.avif 1000w" sizes="(min-width:1024px) 33vw, (min-width:768px) 50vw, 100vw" />
-              <source type="image/webp" srcset="assets/img/gallery/gal-03-400x300.webp 400w, assets/img/gallery/gal-03-700x525.webp 700w, assets/img/gallery/gal-03-1000x750.webp 1000w" sizes="(min-width:1024px) 33vw, (min-width:768px) 50vw, 100vw" />
-              <img class="gallery__img" src="assets/img/gallery/gal-03-700x525.jpg" srcset="assets/img/gallery/gal-03-400x300.jpg 400w, assets/img/gallery/gal-03-700x525.jpg 700w, assets/img/gallery/gal-03-1000x750.jpg 1000w" sizes="(min-width:1024px) 33vw, (min-width:768px) 50vw, 100vw" alt="Kącik wypoczynkowy w restauracji z aksamitnymi fotelami i lampą art déco." loading="lazy" decoding="async" width="700" height="525" />
-            </picture>
-          </figure>
-        </a>
-      </li>
-    </ul>
+          <ul class="gallery__grid" data-reveal-group>
+            <!-- Danie 01 -->
+            <li class="gallery__item" data-reveal>
+              <a class="gallery__link" href="assets/img/podstrona-galeria/dania/danie-01-1600x1200.jpg" data-lightbox="dania" data-lb-caption="Pierś kaczki w glazurze burgundowej, cykoria i figa.">
+                <figure class="gallery__figure">
+                  <picture>
+                    <!-- AVIF -->
+                    <source
+                      type="image/avif"
+                      srcset="
+                        assets/img/podstrona-galeria/dania/danie-01-400x300.avif    400w,
+                        assets/img/podstrona-galeria/dania/danie-01-800x600.avif    800w,
+                        assets/img/podstrona-galeria/dania/danie-01-1200x900.avif  1200w,
+                        assets/img/podstrona-galeria/dania/danie-01-1600x1200.avif 1600w
+                      "
+                      sizes="(min-width: 1280px) 25vw, (min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw" />
+                    <!-- WebP -->
+                    <source
+                      type="image/webp"
+                      srcset="
+                        assets/img/podstrona-galeria/dania/danie-01-400x300.webp    400w,
+                        assets/img/podstrona-galeria/dania/danie-01-800x600.webp    800w,
+                        assets/img/podstrona-galeria/dania/danie-01-1200x900.webp  1200w,
+                        assets/img/podstrona-galeria/dania/danie-01-1600x1200.webp 1600w
+                      "
+                      sizes="(min-width: 1280px) 25vw, (min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw" />
+                    <!-- JPG fallback -->
+                    <img
+                      class="gallery__img"
+                      src="assets/img/podstrona-galeria/dania/danie-01-800x600.jpg"
+                      srcset="
+                        assets/img/podstrona-galeria/dania/danie-01-400x300.jpg    400w,
+                        assets/img/podstrona-galeria/dania/danie-01-800x600.jpg    800w,
+                        assets/img/podstrona-galeria/dania/danie-01-1200x900.jpg  1200w,
+                        assets/img/podstrona-galeria/dania/danie-01-1600x1200.jpg 1600w
+                      "
+                      sizes="(min-width: 1280px) 25vw, (min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw"
+                      alt="Kaczka w glazurze burgundowej"
+                      loading="lazy"
+                      decoding="async"
+                      width="800"
+                      height="600" />
+                  </picture>
+                </figure>
+              </a>
+            </li>
+            <!-- Danie 02 -->
+            <li class="gallery__item" data-reveal>
+              <a class="gallery__link" href="assets/img/podstrona-galeria/dania/danie-02-1600x1200.jpg" data-lightbox="dania" data-lb-caption="Kremowe risotto szafranowe z płatkami parmezanu.">
+                <figure class="gallery__figure">
+                  <picture>
+                    <!-- AVIF -->
+                    <source
+                      type="image/avif"
+                      srcset="
+                        assets/img/podstrona-galeria/dania/danie-02-400x300.avif    400w,
+                        assets/img/podstrona-galeria/dania/danie-02-800x600.avif    800w,
+                        assets/img/podstrona-galeria/dania/danie-02-1200x900.avif  1200w,
+                        assets/img/podstrona-galeria/dania/danie-02-1600x1200.avif 1600w
+                      "
+                      sizes="(min-width: 1280px) 25vw, (min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw" />
+                    <!-- WebP -->
+                    <source
+                      type="image/webp"
+                      srcset="
+                        assets/img/podstrona-galeria/dania/danie-02-400x300.webp    400w,
+                        assets/img/podstrona-galeria/dania/danie-02-800x600.webp    800w,
+                        assets/img/podstrona-galeria/dania/danie-02-1200x900.webp  1200w,
+                        assets/img/podstrona-galeria/dania/danie-02-1600x1200.webp 1600w
+                      "
+                      sizes="(min-width: 1280px) 25vw, (min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw" />
+                    <!-- JPG fallback -->
+                    <img
+                      class="gallery__img"
+                      src="assets/img/podstrona-galeria/dania/danie-02-800x600.jpg"
+                      srcset="
+                        assets/img/podstrona-galeria/dania/danie-02-400x300.jpg    400w,
+                        assets/img/podstrona-galeria/dania/danie-02-800x600.jpg    800w,
+                        assets/img/podstrona-galeria/dania/danie-02-1200x900.jpg  1200w,
+                        assets/img/podstrona-galeria/dania/danie-02-1600x1200.jpg 1600w
+                      "
+                      sizes="(min-width: 1280px) 25vw, (min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw"
+                      alt="Risotto szafranowe"
+                      loading="lazy"
+                      decoding="async"
+                      width="800"
+                      height="600" />
+                  </picture>
+                </figure>
+              </a>
+            </li>
+            <!-- Danie 03 -->
+            <li class="gallery__item" data-reveal>
+              <a class="gallery__link" href="assets/img/podstrona-galeria/dania/danie-03-1600x1200.jpg" data-lightbox="dania" data-lb-caption="Degustacyjna kompozycja sezonowa.">
+                <figure class="gallery__figure">
+                  <picture>
+                    <!-- AVIF -->
+                    <source
+                      type="image/avif"
+                      srcset="
+                        assets/img/podstrona-galeria/dania/danie-03-400x300.avif    400w,
+                        assets/img/podstrona-galeria/dania/danie-03-800x600.avif    800w,
+                        assets/img/podstrona-galeria/dania/danie-03-1200x900.avif  1200w,
+                        assets/img/podstrona-galeria/dania/danie-03-1600x1200.avif 1600w
+                      "
+                      sizes="(min-width: 1280px) 25vw, (min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw" />
+                    <!-- WebP -->
+                    <source
+                      type="image/webp"
+                      srcset="
+                        assets/img/podstrona-galeria/dania/danie-03-400x300.webp    400w,
+                        assets/img/podstrona-galeria/dania/danie-03-800x600.webp    800w,
+                        assets/img/podstrona-galeria/dania/danie-03-1200x900.webp  1200w,
+                        assets/img/podstrona-galeria/dania/danie-03-1600x1200.webp 1600w
+                      "
+                      sizes="(min-width: 1280px) 25vw, (min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw" />
+                    <!-- JPG fallback -->
+                    <img
+                      class="gallery__img"
+                      src="assets/img/podstrona-galeria/dania/danie-03-800x600.jpg"
+                      srcset="
+                        assets/img/podstrona-galeria/dania/danie-03-400x300.jpg    400w,
+                        assets/img/podstrona-galeria/dania/danie-03-800x600.jpg    800w,
+                        assets/img/podstrona-galeria/dania/danie-03-1200x900.jpg  1200w,
+                        assets/img/podstrona-galeria/dania/danie-03-1600x1200.jpg 1600w
+                      "
+                      sizes="(min-width: 1280px) 25vw, (min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw"
+                      alt="Degustacyjna kompozycja"
+                      loading="lazy"
+                      decoding="async"
+                      width="800"
+                      height="600" />
+                  </picture>
+                </figure>
+              </a>
+            </li>
+          </ul>
+        </div>
+      </section>
 
-    <p class="gallery-note">Kliknij zdjęcie, aby powiększyć.</p>
-  </div>
-</section>
-<!----- Dania ----->
-<section id="dania" class="section gallery" aria-labelledby="dania-title">
-  <div class="container">
-    <header class="gallery-section__header" data-reveal>
-      <h2 id="dania-title">Dania</h2>
-      <p class="gallery-section__intro">Autorskie kompozycje, które łączą sezonowe produkty i techniki fine dining.</p>
-    </header>
+      <!----- Desery ----->
+      <section id="desery" class="section gallery" aria-labelledby="desery-title">
+        <div class="container">
+          <header class="gallery-section__header" data-reveal>
+            <h2 id="desery-title">Desery</h2>
+            <p class="gallery-section__intro">Finezyjne kompozycje, które łączą subtelną słodycz z wyrazistymi teksturami.</p>
+          </header>
 
-    <ul class="gallery__grid" data-reveal-group>
-      <li class="gallery__item" data-reveal>
-        <a class="gallery__link" href="assets/img/menu/menu-duck-01-960x640.jpg" data-lb-caption="Pierś kaczki w glazurze burgundowej z cykorią i figą.">
-          <figure class="gallery__figure">
-            <picture>
-              <source type="image/avif" srcset="assets/img/menu/menu-duck-01-480x320.avif 480w, assets/img/menu/menu-duck-01-720x480.avif 720w, assets/img/menu/menu-duck-01-960x640.avif 960w" sizes="(min-width:1024px) 33vw, (min-width:768px) 50vw, 100vw" />
-              <source type="image/webp" srcset="assets/img/menu/menu-duck-01-480x320.webp 480w, assets/img/menu/menu-duck-01-720x480.webp 720w, assets/img/menu/menu-duck-01-960x640.webp 960w" sizes="(min-width:1024px) 33vw, (min-width:768px) 50vw, 100vw" />
-              <img class="gallery__img" src="assets/img/menu/menu-duck-01-720x480.jpg" srcset="assets/img/menu/menu-duck-01-480x320.jpg 480w, assets/img/menu/menu-duck-01-720x480.jpg 720w, assets/img/menu/menu-duck-01-960x640.jpg 960w" sizes="(min-width:1024px) 33vw, (min-width:768px) 50vw, 100vw" alt="Pierś kaczki w glazurze burgundowej z figą na talerzu." loading="lazy" decoding="async" width="720" height="480" />
-            </picture>
-          </figure>
-        </a>
-      </li>
+          <ul class="gallery__grid" data-reveal-group>
+            <!-- Deser 01 -->
+            <li class="gallery__item" data-reveal>
+              <a
+                class="gallery__link"
+                href="assets/img/podstrona-galeria/desery/deser-01-1600x1200.jpg"
+                data-lightbox="desery"
+                data-lb-caption="Cytrusowe ciasto na oliwie z kandyzowaną pomarańczą i kremem mascarpone.">
+                <figure class="gallery__figure">
+                  <picture>
+                    <!-- AVIF -->
+                    <source
+                      type="image/avif"
+                      srcset="
+                        assets/img/podstrona-galeria/desery/deser-01-400x300.avif    400w,
+                        assets/img/podstrona-galeria/desery/deser-01-800x600.avif    800w,
+                        assets/img/podstrona-galeria/desery/deser-01-1200x900.avif  1200w,
+                        assets/img/podstrona-galeria/desery/deser-01-1600x1200.avif 1600w
+                      "
+                      sizes="(min-width: 1280px) 25vw, (min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw" />
+                    <!-- WebP -->
+                    <source
+                      type="image/webp"
+                      srcset="
+                        assets/img/podstrona-galeria/desery/deser-01-400x300.webp    400w,
+                        assets/img/podstrona-galeria/desery/deser-01-800x600.webp    800w,
+                        assets/img/podstrona-galeria/desery/deser-01-1200x900.webp  1200w,
+                        assets/img/podstrona-galeria/desery/deser-01-1600x1200.webp 1600w
+                      "
+                      sizes="(min-width: 1280px) 25vw, (min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw" />
+                    <!-- JPG fallback -->
+                    <img
+                      class="gallery__img"
+                      src="assets/img/podstrona-galeria/desery/deser-01-800x600.jpg"
+                      srcset="
+                        assets/img/podstrona-galeria/desery/deser-01-400x300.jpg    400w,
+                        assets/img/podstrona-galeria/desery/deser-01-800x600.jpg    800w,
+                        assets/img/podstrona-galeria/desery/deser-01-1200x900.jpg  1200w,
+                        assets/img/podstrona-galeria/desery/deser-01-1600x1200.jpg 1600w
+                      "
+                      sizes="(min-width: 1280px) 25vw, (min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw"
+                      alt="Cytrusowe ciasto na oliwie"
+                      loading="lazy"
+                      decoding="async"
+                      width="800"
+                      height="600" />
+                  </picture>
+                </figure>
+              </a>
+            </li>
+            <!-- Deser 02 -->
+            <li class="gallery__item" data-reveal>
+              <a class="gallery__link" href="assets/img/podstrona-galeria/desery/deser-02-1600x1200.jpg" data-lightbox="desery" data-lb-caption="Deser z owocami leśnymi na złotej ceramice.">
+                <figure class="gallery__figure">
+                  <picture>
+                    <!-- AVIF -->
+                    <source
+                      type="image/avif"
+                      srcset="
+                        assets/img/podstrona-galeria/desery/deser-02-400x300.avif    400w,
+                        assets/img/podstrona-galeria/desery/deser-02-800x600.avif    800w,
+                        assets/img/podstrona-galeria/desery/deser-02-1200x900.avif  1200w,
+                        assets/img/podstrona-galeria/desery/deser-02-1600x1200.avif 1600w
+                      "
+                      sizes="(min-width: 1280px) 25vw, (min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw" />
+                    <!-- WebP -->
+                    <source
+                      type="image/webp"
+                      srcset="
+                        assets/img/podstrona-galeria/desery/deser-02-400x300.webp    400w,
+                        assets/img/podstrona-galeria/desery/deser-02-800x600.webp    800w,
+                        assets/img/podstrona-galeria/desery/deser-02-1200x900.webp  1200w,
+                        assets/img/podstrona-galeria/desery/deser-02-1600x1200.webp 1600w
+                      "
+                      sizes="(min-width: 1280px) 25vw, (min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw" />
+                    <!-- JPG fallback -->
+                    <img
+                      class="gallery__img"
+                      src="assets/img/podstrona-galeria/desery/deser-02-800x600.jpg"
+                      srcset="
+                        assets/img/podstrona-galeria/desery/deser-02-400x300.jpg    400w,
+                        assets/img/podstrona-galeria/desery/deser-02-800x600.jpg    800w,
+                        assets/img/podstrona-galeria/desery/deser-02-1200x900.jpg  1200w,
+                        assets/img/podstrona-galeria/desery/deser-02-1600x1200.jpg 1600w
+                      "
+                      sizes="(min-width: 1280px) 25vw, (min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw"
+                      alt="Deser z owocami leśnymi"
+                      loading="lazy"
+                      decoding="async"
+                      width="800"
+                      height="600" />
+                  </picture>
+                </figure>
+              </a>
+            </li>
+            <!-- Deser 03 -->
+            <li class="gallery__item" data-reveal>
+              <a class="gallery__link" href="assets/img/podstrona-galeria/desery/deser-03-1600x1200.jpg" data-lightbox="desery" data-lb-caption="Porcja semifreddo z karmelem i świeżymi owocami.">
+                <figure class="gallery__figure">
+                  <picture>
+                    <!-- AVIF -->
+                    <source
+                      type="image/avif"
+                      srcset="
+                        assets/img/podstrona-galeria/desery/deser-03-400x300.avif    400w,
+                        assets/img/podstrona-galeria/desery/deser-03-800x600.avif    800w,
+                        assets/img/podstrona-galeria/desery/deser-03-1200x900.avif  1200w,
+                        assets/img/podstrona-galeria/desery/deser-03-1600x1200.avif 1600w
+                      "
+                      sizes="(min-width: 1280px) 25vw, (min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw" />
+                    <!-- WebP -->
+                    <source
+                      type="image/webp"
+                      srcset="
+                        assets/img/podstrona-galeria/desery/deser-03-400x300.webp    400w,
+                        assets/img/podstrona-galeria/desery/deser-03-800x600.webp    800w,
+                        assets/img/podstrona-galeria/desery/deser-03-1200x900.webp  1200w,
+                        assets/img/podstrona-galeria/desery/deser-03-1600x1200.webp 1600w
+                      "
+                      sizes="(min-width: 1280px) 25vw, (min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw" />
 
-      <li class="gallery__item" data-reveal>
-        <a class="gallery__link" href="assets/img/menu/risotto-01-960x640.jpg" data-lb-caption="Kremowe risotto szafranowe z chrupiącymi płatkami parmezanu.">
-          <figure class="gallery__figure">
-            <picture>
-              <source type="image/avif" srcset="assets/img/menu/risotto-01-480x320.avif 480w, assets/img/menu/risotto-01-720x480.avif 720w, assets/img/menu/risotto-01-960x640.avif 960w" sizes="(min-width:1024px) 33vw, (min-width:768px) 50vw, 100vw" />
-              <source type="image/webp" srcset="assets/img/menu/risotto-01-480x320.webp 480w, assets/img/menu/risotto-01-720x480.webp 720w, assets/img/menu/risotto-01-960x640.webp 960w" sizes="(min-width:1024px) 33vw, (min-width:768px) 50vw, 100vw" />
-              <img class="gallery__img" src="assets/img/menu/risotto-01-720x480.jpg" srcset="assets/img/menu/risotto-01-480x320.jpg 480w, assets/img/menu/risotto-01-720x480.jpg 720w, assets/img/menu/risotto-01-960x640.jpg 960w" sizes="(min-width:1024px) 33vw, (min-width:768px) 50vw, 100vw" alt="Kremowe risotto szafranowe z płatkami parmezanu i ziołami." loading="lazy" decoding="async" width="720" height="480" />
-            </picture>
-          </figure>
-        </a>
-      </li>
+                    <!-- JPG fallback -->
+                    <img
+                      class="gallery__img"
+                      src="assets/img/podstrona-galeria/desery/deser-03-800x600.jpg"
+                      srcset="
+                        assets/img/podstrona-galeria/desery/deser-03-400x300.jpg    400w,
+                        assets/img/podstrona-galeria/desery/deser-03-800x600.jpg    800w,
+                        assets/img/podstrona-galeria/desery/deser-03-1200x900.jpg  1200w,
+                        assets/img/podstrona-galeria/desery/deser-03-1600x1200.jpg 1600w
+                      "
+                      sizes="(min-width: 1280px) 25vw, (min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw"
+                      alt="Semifreddo z karmelem i owocami"
+                      loading="lazy"
+                      decoding="async"
+                      width="800"
+                      height="600" />
+                  </picture>
+                </figure>
+              </a>
+            </li>
+          </ul>
+        </div>
+      </section>
 
-      <li class="gallery__item" data-reveal>
-        <a class="gallery__link" href="assets/img/hero/hero-02-1200x1000.jpg" data-lb-caption="Degustacyjna kompozycja z sezonowych warzyw, przypraw i sosów.">
-          <figure class="gallery__figure">
-            <picture>
-              <!-- PODMIEŃ na dedykowane zdjęcie dania -->
-              <source type="image/avif" srcset="assets/img/hero/hero-02-480x410.avif 480w, assets/img/hero/hero-02-768x640.avif 768w, assets/img/hero/hero-02-1200x1000.avif 1200w" sizes="(min-width:1024px) 33vw, (min-width:768px) 50vw, 100vw" />
-              <source type="image/webp" srcset="assets/img/hero/hero-02-480x410.webp 480w, assets/img/hero/hero-02-768x640.webp 768w, assets/img/hero/hero-02-1200x1000.webp 1200w" sizes="(min-width:1024px) 33vw, (min-width:768px) 50vw, 100vw" />
-              <img class="gallery__img" src="assets/img/hero/hero-02-768x640.jpg" srcset="assets/img/hero/hero-02-480x410.jpg 480w, assets/img/hero/hero-02-768x640.jpg 768w, assets/img/hero/hero-02-1200x1000.jpg 1200w" sizes="(min-width:1024px) 33vw, (min-width:768px) 50vw, 100vw" alt="Degustacyjna kompozycja warzyw i sosów na ceramicznym talerzu." loading="lazy" decoding="async" width="768" height="640" />
-            </picture>
-          </figure>
-        </a>
-      </li>
-    </ul>
-  </div>
-</section>
+      <!----- Napoje ----->
+      <section id="napoje" class="section gallery" aria-labelledby="napoje-title">
+        <div class="container">
+          <header class="gallery-section__header" data-reveal>
+            <h2 id="napoje-title">Napoje</h2>
+            <p class="gallery-section__intro">Wyważone koktajle i starannie przygotowane napary, które zamykają wieczór.</p>
+          </header>
 
-   <!----- Desery ----->
-<section id="desery" class="section gallery" aria-labelledby="desery-title">
-  <div class="container">
-    <header class="gallery-section__header" data-reveal>
-      <h2 id="desery-title">Desery</h2>
-      <p class="gallery-section__intro">Finezyjne kompozycje, które łączą subtelną słodycz z wyrazistymi teksturami.</p>
-    </header>
+          <ul class="gallery__grid" data-reveal-group>
+            <!-- Napoje 01 -->
+            <li class="gallery__item" data-reveal>
+              <a class="gallery__link" href="assets/img/podstrona-galeria/napoje/napoje-01-1600x1200.jpg" data-lightbox="napoje" data-lb-caption="Szampański koktajl z malinami i płatkami róży.">
+                <figure class="gallery__figure">
+                  <picture>
+                    <!-- AVIF -->
+                    <source
+                      type="image/avif"
+                      srcset="
+                        assets/img/podstrona-galeria/napoje/napoje-01-400x300.avif    400w,
+                        assets/img/podstrona-galeria/napoje/napoje-01-800x600.avif    800w,
+                        assets/img/podstrona-galeria/napoje/napoje-01-1200x900.avif  1200w,
+                        assets/img/podstrona-galeria/napoje/napoje-01-1600x1200.avif 1600w
+                      "
+                      sizes="(min-width: 1280px) 25vw, (min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw" />
+                    <!-- WebP -->
+                    <source
+                      type="image/webp"
+                      srcset="
+                        assets/img/podstrona-galeria/napoje/napoje-01-400x300.webp    400w,
+                        assets/img/podstrona-galeria/napoje/napoje-01-800x600.webp    800w,
+                        assets/img/podstrona-galeria/napoje/napoje-01-1200x900.webp  1200w,
+                        assets/img/podstrona-galeria/napoje/napoje-01-1600x1200.webp 1600w
+                      "
+                      sizes="(min-width: 1280px) 25vw, (min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw" />
+                    <!-- JPG fallback -->
+                    <img
+                      class="gallery__img"
+                      src="assets/img/podstrona-galeria/napoje/napoje-01-800x600.jpg"
+                      srcset="
+                        assets/img/podstrona-galeria/napoje/napoje-01-400x300.jpg    400w,
+                        assets/img/podstrona-galeria/napoje/napoje-01-800x600.jpg    800w,
+                        assets/img/podstrona-galeria/napoje/napoje-01-1200x900.jpg  1200w,
+                        assets/img/podstrona-galeria/napoje/napoje-01-1600x1200.jpg 1600w
+                      "
+                      sizes="(min-width: 1280px) 25vw, (min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw"
+                      alt="Koktajl szampański z malinami"
+                      loading="lazy"
+                      decoding="async"
+                      width="800"
+                      height="600" />
+                  </picture>
+                </figure>
+              </a>
+            </li>
+            <!-- Napoje 02 -->
+            <li class="gallery__item" data-reveal>
+              <a
+                class="gallery__link"
+                href="assets/img/podstrona-galeria/napoje/napoje-02-1600x1200.jpg"
+                data-lightbox="napoje"
+                data-lb-caption="Herbaciany koktajl z tonikiem ogórkowym i świeżą miętą.">
+                <figure class="gallery__figure">
+                  <picture>
+                    <!-- AVIF -->
+                    <source
+                      type="image/avif"
+                      srcset="
+                        assets/img/podstrona-galeria/napoje/napoje-02-400x300.avif    400w,
+                        assets/img/podstrona-galeria/napoje/napoje-02-800x600.avif    800w,
+                        assets/img/podstrona-galeria/napoje/napoje-02-1200x900.avif  1200w,
+                        assets/img/podstrona-galeria/napoje/napoje-02-1600x1200.avif 1600w
+                      "
+                      sizes="(min-width: 1280px) 25vw, (min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw" />
+                    <!-- WebP -->
+                    <source
+                      type="image/webp"
+                      srcset="
+                        assets/img/podstrona-galeria/napoje/napoje-02-400x300.webp    400w,
+                        assets/img/podstrona-galeria/napoje/napoje-02-800x600.webp    800w,
+                        assets/img/podstrona-galeria/napoje/napoje-02-1200x900.webp  1200w,
+                        assets/img/podstrona-galeria/napoje/napoje-02-1600x1200.webp 1600w
+                      "
+                      sizes="(min-width: 1280px) 25vw, (min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw" />
+                    <!-- JPG fallback -->
+                    <img
+                      class="gallery__img"
+                      src="assets/img/podstrona-galeria/napoje/napoje-02-800x600.jpg"
+                      srcset="
+                        assets/img/podstrona-galeria/napoje/napoje-02-400x300.jpg    400w,
+                        assets/img/podstrona-galeria/napoje/napoje-02-800x600.jpg    800w,
+                        assets/img/podstrona-galeria/napoje/napoje-02-1200x900.jpg  1200w,
+                        assets/img/podstrona-galeria/napoje/napoje-02-1600x1200.jpg 1600w
+                      "
+                      sizes="(min-width: 1280px) 25vw, (min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw"
+                      alt="Herbaciany koktajl"
+                      loading="lazy"
+                      decoding="async"
+                      width="800"
+                      height="600" />
+                  </picture>
+                </figure>
+              </a>
+            </li>
+            <!-- Napoje 03 -->
+            <li class="gallery__item" data-reveal>
+              <a
+                class="gallery__link"
+                href="assets/img/podstrona-galeria/napoje/napoje-03-1600x1200.jpg"
+                data-lightbox="napoje"
+                data-lb-caption="Herbaciany koktajl z tonikiem ogórkowym i świeżą miętą.">
+                <figure class="gallery__figure">
+                  <picture>
+                    <!-- AVIF -->
+                    <source
+                      type="image/avif"
+                      srcset="
+                        assets/img/podstrona-galeria/napoje/napoje-03-400x300.avif    400w,
+                        assets/img/podstrona-galeria/napoje/napoje-03-800x600.avif    800w,
+                        assets/img/podstrona-galeria/napoje/napoje-03-1200x900.avif  1200w,
+                        assets/img/podstrona-galeria/napoje/napoje-03-1600x1200.avif 1600w
+                      "
+                      sizes="(min-width: 1280px) 25vw, (min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw" />
+                    <!-- WebP -->
+                    <source
+                      type="image/webp"
+                      srcset="
+                        assets/img/podstrona-galeria/napoje/napoje-03-400x300.webp    400w,
+                        assets/img/podstrona-galeria/napoje/napoje-03-800x600.webp    800w,
+                        assets/img/podstrona-galeria/napoje/napoje-03-1200x900.webp  1200w,
+                        assets/img/podstrona-galeria/napoje/napoje-03-1600x1200.webp 1600w
+                      "
+                      sizes="(min-width: 1280px) 25vw, (min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw" />
+                    <!-- JPG fallback -->
+                    <img
+                      class="gallery__img"
+                      src="assets/img/podstrona-galeria/napoje/napoje-03-800x600.jpg"
+                      srcset="
+                        assets/img/podstrona-galeria/napoje/napoje-03-400x300.jpg    400w,
+                        assets/img/podstrona-galeria/napoje/napoje-03-800x600.jpg    800w,
+                        assets/img/podstrona-galeria/napoje/napoje-03-1200x900.jpg  1200w,
+                        assets/img/podstrona-galeria/napoje/napoje-03-1600x1200.jpg 1600w
+                      "
+                      sizes="(min-width: 1280px) 25vw, (min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw"
+                      alt="Herbaciany koktajl"
+                      loading="lazy"
+                      decoding="async"
+                      width="800"
+                      height="600" />
+                  </picture>
+                </figure>
+              </a>
+            </li>
+          </ul>
+        </div>
+      </section>
+    </main>
 
-    <ul class="gallery__grid" data-reveal-group>
-      <li class="gallery__item" data-reveal>
-        <a class="gallery__link" href="assets/img/menu/cake-01-960x640.jpg" data-lb-caption="Cytrusowe ciasto na oliwie z kandyzowaną pomarańczą i kremem mascarpone.">
-          <figure class="gallery__figure">
-            <picture>
-              <source type="image/avif" srcset="assets/img/menu/cake-01-480x320.avif 480w, assets/img/menu/cake-01-720x480.avif 720w, assets/img/menu/cake-01-960x640.avif 960w" sizes="(min-width:1024px) 33vw, (min-width:768px) 50vw, 100vw" />
-              <source type="image/webp" srcset="assets/img/menu/cake-01-480x320.webp 480w, assets/img/menu/cake-01-720x480.webp 720w, assets/img/menu/cake-01-960x640.webp 960w" sizes="(min-width:1024px) 33vw, (min-width:768px) 50vw, 100vw" />
-              <img class="gallery__img" src="assets/img/menu/cake-01-720x480.jpg" srcset="assets/img/menu/cake-01-480x320.jpg 480w, assets/img/menu/cake-01-720x480.jpg 720w, assets/img/menu/cake-01-960x640.jpg 960w" sizes="(min-width:1024px) 33vw, (min-width:768px) 50vw, 100vw" alt="Cytrusowe ciasto na oliwie z kandyzowaną pomarańczą i kremem mascarpone." loading="lazy" decoding="async" width="720" height="480" />
-            </picture>
-          </figure>
-        </a>
-      </li>
+    <!-- ===== FOOTER ===== -->
+    <footer class="footer" role="contentinfo" aria-label="Stopka strony">
+      <div class="container">
+        <div class="footer__grid">
+          <!-- Brand -->
+          <div class="footer__brand">
+            <a class="brand" href="index.html" aria-label="Strona główna Gastronomy 02">
+              <img src="assets/img/logo/logo-dark-mode-160x160.png" alt="Logo KP_Code" class="brand__logo brand__logo--light" width="50" height="50" />
+              <img src="assets/img/logo/logo-light-mode-160x160.png" alt="" aria-hidden="true" class="brand__logo brand__logo--dark" width="50" height="50" />
+              <span class="brand__text">KP_Code</span>
+            </a>
 
-      <li class="gallery__item" data-reveal>
-        <a class="gallery__link" href="assets/img/gallery/gal-05-1000x750.jpg" data-lb-caption="Deser z owocami leśnymi serwowany na złotej ceramice.">
-          <figure class="gallery__figure">
-            <picture>
-              <!-- PODMIEŃ na dedykowane zdjęcie deseru -->
-              <source type="image/avif" srcset="assets/img/gallery/gal-05-400x300.avif 400w, assets/img/gallery/gal-05-700x525.avif 700w, assets/img/gallery/gal-05-1000x750.avif 1000w" sizes="(min-width:1024px) 33vw, (min-width:768px) 50vw, 100vw" />
-              <source type="image/webp" srcset="assets/img/gallery/gal-05-400x300.webp 400w, assets/img/gallery/gal-05-700x525.webp 700w, assets/img/gallery/gal-05-1000x750.webp 1000w" sizes="(min-width:1024px) 33vw, (min-width:768px) 50vw, 100vw" />
-              <img class="gallery__img" src="assets/img/gallery/gal-05-700x525.jpg" srcset="assets/img/gallery/gal-05-400x300.jpg 400w, assets/img/gallery/gal-05-700x525.jpg 700w, assets/img/gallery/gal-05-1000x750.jpg 1000w" sizes="(min-width:1024px) 33vw, (min-width:768px) 50vw, 100vw" alt="Deser z owocami leśnymi podany na talerzu ze złotymi akcentami." loading="lazy" decoding="async" width="700" height="525" />
-            </picture>
-          </figure>
-        </a>
-      </li>
+            <p class="footer__tagline">Demo projektu przygotowane przez KP_Code. Jeśli chcesz podobną stronę dla swojej restauracji — skontaktuj się ze mną.</p>
+          </div>
+          <!-- Nav -->
+          <nav class="footer__nav" aria-label="Nawigacja w stopce">
+            <p class="footer__heading">Odkrywaj</p>
+            <ul class="footer__list">
+              <li><a href="index.html#about">O nas</a></li>
+              <li><a href="index.html#menu">Menu</a></li>
+              <li><a href="#main" aria-current="page">Galeria</a></li>
+              <li><a href="index.html#testimonials">Opinie</a></li>
+              <li><a href="index.html#contact">Kontakt</a></li>
+            </ul>
+          </nav>
 
-      <li class="gallery__item" data-reveal>
-        <a class="gallery__link" href="assets/img/gallery/gal-06-1000x750.jpg" data-lb-caption="Porcja semifreddo z karmelem i świeżymi owocami.">
-          <figure class="gallery__figure">
-            <picture>
-              <!-- PODMIEŃ na dedykowane zdjęcie semifreddo -->
-              <source type="image/avif" srcset="assets/img/gallery/gal-06-400x300.avif 400w, assets/img/gallery/gal-06-700x525.avif 700w, assets/img/gallery/gal-06-1000x750.avif 1000w" sizes="(min-width:1024px) 33vw, (min-width:768px) 50vw, 100vw" />
-              <source type="image/webp" srcset="assets/img/gallery/gal-06-400x300.webp 400w, assets/img/gallery/gal-06-700x525.webp 700w, assets/img/gallery/gal-06-1000x750.webp 1000w" sizes="(min-width:1024px) 33vw, (min-width:768px) 50vw, 100vw" />
-              <img class="gallery__img" src="assets/img/gallery/gal-06-700x525.jpg" srcset="assets/img/gallery/gal-06-400x300.jpg 400w, assets/img/gallery/gal-06-700x525.jpg 700w, assets/img/gallery/gal-06-1000x750.jpg 1000w" sizes="(min-width:1024px) 33vw, (min-width:768px) 50vw, 100vw" alt="Porcja semifreddo z karmelem i świeżymi owocami na talerzu." loading="lazy" decoding="async" width="700" height="525" />
-            </picture>
-          </figure>
-        </a>
-      </li>
-    </ul>
-  </div>
-</section>
+          <!-- Contact -->
+          <div class="footer__contact">
+            <p class="footer__heading">Kontakt</p>
+            <address>
+              <p>
+                <img src="assets/icons/svg-icon/home-icon.svg" alt="" aria-hidden="true" width="24" height="24" />
+                <span>ul. Marynarki Wojennej 12/31, 33-100 Tarnów</span>
+              </p>
+              <p>
+                <img src="assets/icons/svg-icon/phone-icon.svg" alt="" aria-hidden="true" width="24" height="24" />
+                <a href="tel:+48533537091">+48 533 537 091</a>
+              </p>
+              <p>
+                <img src="assets/icons/svg-icon/mail-icon.svg" alt="" aria-hidden="true" width="24" height="24" />
+                <a href="mailto:kp_code_@gmail.com">kp_code_@gmail.com</a>
+              </p>
+            </address>
+          </div>
 
-<!----- Napoje ----->
-<section id="napoje" class="section gallery" aria-labelledby="napoje-title">
-  <div class="container">
-    <header class="gallery-section__header" data-reveal>
-      <h2 id="napoje-title">Napoje</h2>
-      <p class="gallery-section__intro">Wyważone koktajle i starannie przygotowane napary, które zamykają wieczór.</p>
-    </header>
+          <!-- Social Media -->
+          <div class="footer__social">
+            <p class="footer__heading">Social Media</p>
+            <ul class="footer__list">
+              <li>
+                <a href="https://github.com/" target="_blank" rel="noopener" aria-label="Github – otwórz stronę">
+                  <img src="assets/icons/svg-icon/github-icon.svg" alt="" aria-hidden="true" width="24" height="24" />
+                  <span class="visually-hidden">Github</span>
+                </a>
+              </li>
+              <li>
+                <a href="https://instagram.com/" target="_blank" rel="noopener" aria-label="Instagram – otwórz profil">
+                  <img src="assets/icons/svg-icon/instagram-icon.svg" alt="" aria-hidden="true" width="24" height="24" />
+                  <span class="visually-hidden">Instagram</span>
+                </a>
+              </li>
+              <li>
+                <a href="https://x.com/" target="_blank" rel="noopener" aria-label="X – otwórz profil">
+                  <img src="assets/icons/svg-icon/x-icon.svg" alt="" aria-hidden="true" width="24" height="24" />
+                  <span class="visually-hidden">X</span>
+                </a>
+              </li>
+              <li>
+                <a href="https://facebook.com/" target="_blank" rel="noopener" aria-label="Facebook – otwórz profil">
+                  <img src="assets/icons/svg-icon/facebook-icon.svg" alt="" aria-hidden="true" width="24" height="24" />
+                  <span class="visually-hidden">Facebook</span>
+                </a>
+              </li>
+            </ul>
+          </div>
+        </div>
 
-    <ul class="gallery__grid" data-reveal-group>
-      <li class="gallery__item" data-reveal>
-        <a class="gallery__link" href="assets/img/gallery/gal-04-1000x750.jpg" data-lb-caption="Szampański koktajl z malinami i płatkami róży.">
-          <figure class="gallery__figure">
-            <picture>
-              <!-- PODMIEŃ na dedykowane zdjęcie koktajlu -->
-              <source type="image/avif" srcset="assets/img/gallery/gal-04-400x300.avif 400w, assets/img/gallery/gal-04-700x525.avif 700w, assets/img/gallery/gal-04-1000x750.avif 1000w" sizes="(min-width:1024px) 33vw, (min-width:768px) 50vw, 100vw" />
-              <source type="image/webp" srcset="assets/img/gallery/gal-04-400x300.webp 400w, assets/img/gallery/gal-04-700x525.webp 700w, assets/img/gallery/gal-04-1000x750.webp 1000w" sizes="(min-width:1024px) 33vw, (min-width:768px) 50vw, 100vw" />
-              <img class="gallery__img" src="assets/img/gallery/gal-04-700x525.jpg" srcset="assets/img/gallery/gal-04-400x300.jpg 400w, assets/img/gallery/gal-04-700x525.jpg 700w, assets/img/gallery/gal-04-1000x750.jpg 1000w" sizes="(min-width:1024px) 33vw, (min-width:768px) 50vw, 100vw" alt="Szampański koktajl z malinami w wysokim kieliszku." loading="lazy" decoding="async" width="700" height="525" />
-            </picture>
-          </figure>
-        </a>
-      </li>
-
-      <li class="gallery__item" data-reveal>
-        <a class="gallery__link" href="assets/img/hero/hero-01-1200x1000.jpg" data-lb-caption="Herbaciany koktajl z tonikiem ogórkowym i świeżą miętą.">
-          <figure class="gallery__figure">
-            <picture>
-              <!-- PODMIEŃ na dedykowane zdjęcie napoju -->
-              <source type="image/avif" srcset="assets/img/hero/hero-01-480x410.avif 480w, assets/img/hero/hero-01-768x640.avif 768w, assets/img/hero/hero-01-1200x1000.avif 1200w" sizes="(min-width:1024px) 33vw, (min-width:768px) 50vw, 100vw" />
-              <source type="image/webp" srcset="assets/img/hero/hero-01-480x410.webp 480w, assets/img/hero/hero-01-768x640.webp 768w, assets/img/hero/hero-01-1200x1000.webp 1200w" sizes="(min-width:1024px) 33vw, (min-width:768px) 50vw, 100vw" />
-              <img class="gallery__img" src="assets/img/hero/hero-01-768x640.jpg" srcset="assets/img/hero/hero-01-480x410.jpg 480w, assets/img/hero/hero-01-768x640.jpg 768w, assets/img/hero/hero-01-1200x1000.jpg 1200w" sizes="(min-width:1024px) 33vw, (min-width:768px) 50vw, 100vw" alt="Herbaciany koktajl z tonikiem ogórkowym i plasterkiem limonki." loading="lazy" decoding="async" width="768" height="640" />
-            </picture>
-          </figure>
-        </a>
-      </li>
-
-      <li class="gallery__item" data-reveal>
-        <a class="gallery__link" href="assets/img/gallery/gal-02-1000x750.jpg" data-lb-caption="Degustacyjny flight koktajli w kryształowych kieliszkach.">
-          <figure class="gallery__figure">
-            <picture>
-              <!-- PODMIEŃ na dedykowane zdjęcie flightu -->
-              <source type="image/avif" srcset="assets/img/gallery/gal-02-400x300.avif 400w, assets/img/gallery/gal-02-700x525.avif 700w, assets/img/gallery/gal-02-1000x750.avif 1000w" sizes="(min-width:1024px) 33vw, (min-width:768px) 50vw, 100vw" />
-              <source type="image/webp" srcset="assets/img/gallery/gal-02-400x300.webp 400w, assets/img/gallery/gal-02-700x525.webp 700w, assets/img/gallery/gal-02-1000x750.webp 1000w" sizes="(min-width:1024px) 33vw, (min-width:768px) 50vw, 100vw" />
-              <img class="gallery__img" src="assets/img/gallery/gal-02-700x525.jpg" srcset="assets/img/gallery/gal-02-400x300.jpg 400w, assets/img/gallery/gal-02-700x525.jpg 700w, assets/img/gallery/gal-02-1000x750.jpg 1000w" sizes="(min-width:1024px) 33vw, (min-width:768px) 50vw, 100vw" alt="Degustacyjny zestaw koktajli podany w kryształowych kieliszkach." loading="lazy" decoding="async" width="700" height="525" />
-            </picture>
-          </figure>
-        </a>
-      </li>
-    </ul>
-  </div>
-</section>
-</main>
-
-
-<!-- ===== FOOTER ===== -->
-<footer class="footer" role="contentinfo" aria-label="Stopka strony">
-  <div class="container">
-    <div class="footer__grid">
-      <!-- Brand -->
-      <div class="footer__brand">
-        <a class="brand" href="/#hero" aria-label="Strona główna Gastronomy 02">
-          <img src="assets/img/logo/logo-dark-mode-160x160.png" alt="" class="brand__logo brand__logo--light" width="50" height="50" />
-          <img src="assets/img/logo/logo-light-mode-160x160.png" alt="" class="brand__logo brand__logo--dark" width="50" height="50" />
-          <span class="brand__text">KP_Code</span>
-        </a>
-        <p class="footer__tagline">Demo projektu przygotowane przez KP_Code. Jeśli chcesz podobną stronę dla swojej restauracji — skontaktuj się ze mną.</p>
+        <!-- Legal -->
+        <div class="footer__legal">
+          <span>
+            ©
+            <span id="year"></span>
+            KP_Code. Wszelkie prawa zastrzeżone. Projekt i wdrożenie: KP_Code
+          </span>
+        </div>
       </div>
+    </footer>
 
-      <!-- Nav -->
-      <nav class="footer__nav" aria-label="Nawigacja w stopce">
-        <p class="footer__heading">Odkrywaj</p>
-        <ul class="footer__list">
-          <li><a href="/#about">O nas</a></li>
-          <li><a href="/menu.html">Menu</a></li>
-          <li><a href="/gallery.html" aria-current="page">Galeria</a></li>
-          <li><a href="/#testimonials">Opinie</a></li>
-          <li><a href="/#contact">Kontakt</a></li>
-        </ul>
-      </nav>
+    <noscript>
+      <div class="nojs" role="status" aria-live="polite">Masz wyłączony JavaScript — niektóre funkcje mogą być ograniczone.</div>
+    </noscript>
 
-      <!-- Contact -->
-      <div class="footer__contact">
-        <p class="footer__heading">Kontakt</p>
-        <address>
-          <p>
-            <img src="assets/icons/svg-icon/home-icon.svg" alt="" aria-hidden="true" width="24" height="24" />
-            <span>ul. Marynarki Wojennej 12/31, 33-100 Tarnów</span>
-          </p>
-          <p>
-            <img src="assets/icons/svg-icon/phone-icon.svg" alt="" aria-hidden="true" width="24" height="24" />
-            <a href="tel:+48533537091">+48 533 537 091</a>
-          </p>
-          <p>
-            <img src="assets/icons/svg-icon/mail-icon.svg" alt="" aria-hidden="true" width="24" height="24" />
-            <a href="mailto:kp_code_@gmail.com">kp_code_@gmail.com</a>
-          </p>
-        </address>
-      </div>
+    <script src="js/script.js" defer></script>
 
-      <!-- Social Media -->
-      <div class="footer__social">
-        <p class="footer__heading">Social Media</p>
-        <ul class="footer__list">
-          <li>
-            <a href="https://github.com/" target="_blank" rel="noopener" aria-label="Github – otwórz stronę">
-              <img src="assets/icons/svg-icon/github-icon.svg" alt="" aria-hidden="true" width="24" height="24" />
-              <span class="visually-hidden">Github</span>
-            </a>
-          </li>
-          <li>
-            <a href="https://instagram.com/" target="_blank" rel="noopener" aria-label="Instagram – otwórz profil">
-              <img src="assets/icons/svg-icon/instagram-icon.svg" alt="" aria-hidden="true" width="24" height="24" />
-              <span class="visually-hidden">Instagram</span>
-            </a>
-          </li>
-          <li>
-            <a href="https://x.com/" target="_blank" rel="noopener" aria-label="X – otwórz profil">
-              <img src="assets/icons/svg-icon/x-icon.svg" alt="" aria-hidden="true" width="24" height="24" />
-              <span class="visually-hidden">X</span>
-            </a>
-          </li>
-          <li>
-            <a href="https://facebook.com/" target="_blank" rel="noopener" aria-label="Facebook – otwórz profil">
-              <img src="assets/icons/svg-icon/facebook-icon.svg" alt="" aria-hidden="true" width="24" height="24" />
-              <span class="visually-hidden">Facebook</span>
-            </a>
-          </li>
-        </ul>
-      </div>
-    </div>
-
-    <!-- Legal -->
-    <div class="footer__legal">
-      <span>© <span id="year"></span> KP_Code. Wszelkie prawa zastrzeżone. Projekt i wdrożenie: KP_Code</span>
-    </div>
-  </div>
-</footer>
-
-<noscript>
-  <div class="nojs" role="status" aria-live="polite">Masz wyłączony JavaScript — niektóre funkcje mogą być ograniczone.</div>
-</noscript>
-
-<script src="js/script.js" defer></script>
-
-<!--
+    <!--
 <script>
   if ("serviceWorker" in navigator) {
     window.addEventListener("load", function () {
@@ -510,5 +928,5 @@
   }
 </script>
 -->
-</body>
+  </body>
 </html>
