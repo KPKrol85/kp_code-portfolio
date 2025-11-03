@@ -1,7 +1,7 @@
 /* ===== KP_Code – Basic Service Worker ===== */
 
 // Nazwa cache
-const CACHE_NAME = "kp_code_v0.03.00";
+const CACHE_NAME = "kp_code_v0.04.00";
 
 // Pliki do zbuforowania
 const FILES_TO_CACHE = ["/", "/index.html", "/css/style.min.css", "/js/script.min.js", "/assets/img/hero/hero-02-480x410.webp", "/assets/img/logo/logo-light-mode-80.svg"];

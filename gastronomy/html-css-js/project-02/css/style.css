@@ -1,7 +1,7 @@
 /* ============================================
    = Project: gastronomy-html-css-js-project-02
    = Author: KP_Code
-   = Updated: 2025-10-25
+   = Updated: 2025-11-03
    ============================================
    = CSS Stylesheet
    = Structure Overview
@@ -84,6 +84,9 @@
   --input-border: rgba(0, 0, 0, 0.15);
   --footer-bg: #2e2a27;
   --footer-text: #fffdf8;
+  /* Tabs – active state (light) */
+  --tab-active-bg: color-mix(in oklab, var(--burgundy) 10%, white);
+  --tab-active-border: color-mix(in oklab, var(--burgundy) 55%, white);
   color-scheme: light;
   /* LIGHTBOX a11y: ujednolicony kolor obrysu focus */
   --focus-ring: color-mix(in oklab, var(--burgundy) 65%, white);
@@ -114,6 +117,9 @@
   --input-border: rgba(255, 255, 255, 0.16);
   --footer-bg: #0f0908;
   --footer-text: #f5ece3;
+  /* Tabs – active state (dark) */
+  --tab-active-bg: color-mix(in oklab, var(--burgundy) 55%, black);
+  --tab-active-border: color-mix(in oklab, var(--burgundy) 92%, white);
 }
 
 *,
@@ -1504,14 +1510,20 @@ body.dark,
 .page--menu .menu-tabs__list a[aria-current="true"] {
   outline: none;
   border-width: 1px;
-  border-color: color-mix(in oklab, var(--burgundy) 55%, white);
-  background: color-mix(in oklab, var(--burgundy) 10%, white);
+  border-color: var(--tab-active-border);
+  background: var(--tab-active-bg);
+  background-color: var(--tab-active-bg);
+  /* Subtelna animacja aktywnej zakładki – spójna z galerią */
+  transform: translateY(-1px);
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.1);
 }
 [data-theme="dark"] .page--menu .menu-tabs__list a.is-active,
 [data-theme="dark"] .page--menu .menu-tabs__list a[aria-current="true"] {
-  border-color: color-mix(in oklab, var(--burgundy) 92%, white);
-  background: color-mix(in oklab, var(--burgundy) 55%, black);
+  border-color: var(--tab-active-border);
+  background: var(--tab-active-bg);
+  background-color: var(--tab-active-bg);
   color: var(--burgundy);
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.5);
 }
 
 .page--menu .menu-tabs__list .btn {
@@ -2024,14 +2036,25 @@ html {
   justify-content: center;
 }
 
+.page.page-gallery .gallery-tabs {
+  position: sticky;
+  top: var(--header-h, 64px);
+  z-index: 50;
+  background: var(--c-surface-1);
+  border-bottom: 1px solid var(--surface-overlay-border);
+  backdrop-filter: saturate(120%) blur(6px);
+  -webkit-backdrop-filter: saturate(120%) blur(6px);
+  padding: 1.5rem 0; /* identycznie jak .page--menu .menu-navigation */
+}
+
 .page.page-gallery .gallery-tabs__wrapper {
   width: 100%;
   max-width: 960px;
   background: color-mix(in srgb, var(--surface-overlay) 80%, transparent);
   border: 1px solid var(--border-soft);
-  border-radius: var(--radius);
-  padding: 0.75rem;
-  box-shadow: var(--shadow);
+  border-radius: var(--radius); /* takie samo zaokrąglenie */
+  padding: 0.75rem; /* takie samo wypełnienie */
+  box-shadow: var(--shadow); /* ten sam cień */
   backdrop-filter: blur(8px);
 }
 
@@ -2043,6 +2066,40 @@ html {
   margin: 0;
   padding: 0;
   list-style: none;
+  margin-top: 1rem;
+}
+
+.page.page-gallery .gallery-tabs__list .btn {
+  min-width: 140px;
+  text-align: center;
+}
+
+.page.page-gallery .gallery-tabs__list a.is-active,
+.page.page-gallery .gallery-tabs__list a[aria-current="true"],
+.page.page-gallery .gallery-tabs__list a.btn.btn--ghost.is-active,
+.page.page-gallery .gallery-tabs__list a.btn.btn--ghost[aria-current="true"] {
+  outline: none;
+  border-width: 1px;
+  border-color: var(--tab-active-border);
+  background: var(--tab-active-bg);
+  background-color: var(--tab-active-bg);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.1);
+}
+[data-theme="dark"] .page.page-gallery .gallery-tabs__list a.is-active,
+[data-theme="dark"] .page.page-gallery .gallery-tabs__list a[aria-current="true"],
+[data-theme="dark"] .page.page-gallery .gallery-tabs__list a.btn.btn--ghost.is-active,
+[data-theme="dark"] .page.page-gallery .gallery-tabs__list a.btn.btn--ghost[aria-current="true"] {
+  border-color: var(--tab-active-border);
+  background: var(--tab-active-bg);
+  background-color: var(--tab-active-bg);
+  color: var(--burgundy);
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.5);
+}
+
+.page.page-gallery .gallery-tabs__list a:focus-visible {
+  outline: 2px solid var(--accent, #6b1e2f);
+  outline-offset: 2px;
 }
 
 .page.page-gallery .gallery-section__header {
@@ -2063,6 +2120,78 @@ html {
   text-align: center;
   color: var(--text-muted);
   font-size: 0.95rem;
+}
+
+/* -- MQ - min-width: 768px -- */
+@media (min-width: 768px) {
+  .page.page-gallery .gallery-tabs__wrapper {
+    padding: 0.6rem;
+  }
+  .page.page-gallery .gallery-tabs__list {
+    gap: 0.6rem;
+  }
+  .page.page-gallery .gallery-tabs__list .btn {
+    min-width: 120px;
+    font-size: 0.95rem;
+    line-height: 1.15;
+    padding: 0.5rem 0.9rem;
+  }
+}
+
+/* -- MQ - max-width: 640px -- */
+@media (max-width: 640px) {
+  .page.page-gallery .gallery-tabs {
+    padding: 0.75rem 0;
+  }
+  .page.page-gallery .gallery-tabs__wrapper {
+    padding: 0.5rem;
+    border-radius: 10px;
+    box-shadow: none;
+  }
+  .page.page-gallery .gallery-tabs__list {
+    gap: 0.5rem;
+    margin-top: 0.5rem;
+  }
+  .page.page-gallery .gallery-tabs__list .btn {
+    min-width: 120px;
+    font-size: 0.9rem;
+    line-height: 1.1;
+    padding: 0.4rem 0.75rem;
+  }
+}
+
+/* -- MQ - max-width: 480px -- */
+@media (max-width: 480px) {
+  .page.page-gallery .gallery-tabs {
+    padding: 0.5rem 0;
+  }
+  .page.page-gallery .gallery-tabs__wrapper {
+    padding: 0.4rem;
+    border-radius: 8px;
+  }
+  .page.page-gallery .gallery-tabs__list {
+    gap: 0.4rem;
+    margin-top: 0.4rem;
+    justify-content: center;
+  }
+  .page.page-gallery .gallery-tabs__list li {
+    flex: 1 1 calc(50% - 0.4rem);
+    max-width: calc(50% - 0.4rem);
+  }
+  .page.page-gallery .gallery-tabs__list .btn {
+    width: 100%;
+    min-width: 0;
+    font-size: 0.85rem;
+    padding: 0.35rem 0.6rem;
+  }
+}
+
+/* -- MQ - max-width: 380px -- */
+@media (max-width: 380px) {
+  .page.page-gallery .gallery-tabs__list .btn {
+    font-size: 0.82rem;
+    padding: 0.32rem 0.55rem;
+  }
 }
 
 /* ===== 13 - SUBPAGE ABOUT ===== */
@@ -2535,12 +2664,6 @@ html {
   mask-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 9V4h5M20 15v5h-5M4 15v5h5M20 9V4h-5"/></svg>');
 }
 
-/* Fullscreen (maximize) */ /*
-.lb-full::before {
-  -webkit-mask-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 3H5v3M16 3h3v3M8 21H5v-3M19 21h-3v-3"/></svg>');
-  mask-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 3H5v3M16 3h3v3M8 21H5v-3M19 21h-3v-3"/></svg>');
-}
-*/
 /* Close (X) */
 .lb-close::before {
   -webkit-mask-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 18L18 6M6 6l12 12"/></svg>');
@@ -2672,7 +2795,8 @@ a.btn:focus {
 .btn--ghost {
   background: transparent;
   color: color-mix(in oklab, var(--burgundy) 92%, black);
-  border: 1px solid color-mix(in oklab, var(--burgundy) 92%, black);
+  /* Zwiększony subtelnie kontrast obramowania w jasnym trybie */
+  border: 1px solid color-mix(in oklab, var(--burgundy) 96%, white);
 }
 
 .btn--ghost:hover,
@@ -2704,20 +2828,6 @@ a.btn:focus {
   box-shadow: none;
 }
 
-/* -- MQ - prefers-reduced-motion -- */
-@media (prefers-reduced-motion: reduce) {
-  .btn {
-    transition:
-      background-color 0.18s ease,
-      border-color 0.18s ease,
-      box-shadow 0.18s ease;
-  }
-  .btn--primary:hover,
-  .btn--ghost:hover {
-    transform: none;
-  }
-}
-
 [data-theme="dark"] .btn--primary {
   color: var(--bone);
   box-shadow: 0 2px 12px rgba(0, 0, 0, 0.45);
@@ -2744,4 +2854,18 @@ a.btn:focus {
   outline-offset: 2px;
   text-decoration: underline;
   text-underline-offset: 0.18em;
+}
+
+/* -- MQ - prefers-reduced-motion -- */
+@media (prefers-reduced-motion: reduce) {
+  .btn {
+    transition:
+      background-color 0.18s ease,
+      border-color 0.18s ease,
+      box-shadow 0.18s ease;
+  }
+  .btn--primary:hover,
+  .btn--ghost:hover {
+    transform: none;
+  }
 }

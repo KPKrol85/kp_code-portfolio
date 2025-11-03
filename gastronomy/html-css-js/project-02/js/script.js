@@ -1,3 +1,20 @@
+/* ============================================
+   = Project: gastronomy-html-css-js-project-02
+   = Author: KP_Code
+   = Last Update: 2025-11-03
+   ============================================
+   = script.js
+   = Structure Overview
+   ============================================
+   = 00 - DOM HELPERS & NAV STATE
+   = 01 - THEME STATE MANAGEMENT
+   = 02 - THEME TOGGLE INITIALIZATION
+   = 03 - DOMCONTENTLOADED INTERACTIONS
+   = 04 - GALLERY PAGE
+   = 05 - REVEAL
+   = 06 - MENU PAGE
+   ============================================ */
+
 "use strict";
 (function () {
   var root = document.documentElement;
@@ -162,7 +179,125 @@
   });
 })();
 
-/* ===== 04 - LIGHTBOX (UNIFIED + A11Y) ===== */
+/* ===== Shared: Scrollspy Helper ===== */
+
+function initScrollspy(config) {
+  if (!config || !config.pageClass || !config.ids || !config.listSelector) return;
+  var onPage = document.body && document.body.classList.contains(config.pageClass);
+  if (!onPage) return;
+
+  var links = Array.prototype.slice.call(document.querySelectorAll(config.listSelector));
+  if (!links.length) return;
+
+  var linkMap = Object.create(null);
+  links.forEach(function (a) {
+    var id = (a.getAttribute("href") || "").replace(/^#/, "");
+    if (id) linkMap[id] = a;
+  });
+
+  function setActive(id) {
+    links.forEach(function (a) {
+      var match = (a.getAttribute("href") || "").replace(/^#/, "") === id;
+      if (match) {
+        a.classList.add("is-active");
+        a.setAttribute("aria-current", "true");
+      } else {
+        a.classList.remove("is-active");
+        a.removeAttribute("aria-current");
+      }
+    });
+  }
+
+  var listEl = links.length ? links[0].closest("ul") : null;
+  if (listEl) {
+    listEl.addEventListener("click", function (e) {
+      var a = e.target.closest('a[href^="#"]');
+      if (!a) return;
+      var id = (a.getAttribute("href") || "").replace(/^#/, "");
+      if (!id) return;
+      setActive(id);
+      if (typeof history !== "undefined" && typeof history.replaceState === "function") {
+        history.replaceState(null, "", "#" + id);
+      }
+    });
+  }
+
+  setActive(config.ids[0]);
+
+  var headerEl = document.querySelector(".site-header");
+  var stickyEl = config.stickySelector ? document.querySelector(config.stickySelector) : null;
+  var headerH = headerEl ? headerEl.offsetHeight : 64;
+  var stickyH = stickyEl ? stickyEl.offsetHeight : 0;
+  var isMobile = typeof window.matchMedia === "function" ? window.matchMedia("(max-width: 640px)").matches : false;
+  var topRM = config.topPercent ? config.topPercent : -(headerH + stickyH + 10) + "px";
+  var bottomRM = isMobile ? config.bottomPercentMobile || "-65%" : config.bottomPercent || "-55%";
+  var options = { root: null, rootMargin: topRM + " 0px " + bottomRM + " 0px", threshold: 0.01 };
+
+  if (typeof IntersectionObserver === "function") {
+    var observer = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (!entry.isIntersecting) return;
+        var id = entry.target.getAttribute("id");
+        if (id) setActive(id);
+      });
+    }, options);
+    config.ids.forEach(function (id) {
+      var el = document.getElementById(id);
+      if (el) observer.observe(el);
+    });
+  } else {
+    var initial = (location.hash || "").replace(/^#/, "");
+    setActive(initial && linkMap[initial] ? initial : config.ids[0]);
+  }
+
+  window.addEventListener("hashchange", function () {
+    var h = (location.hash || "").replace(/^#/, "");
+    if (h && linkMap[h]) setActive(h);
+  });
+
+  function computeActiveByPosition() {
+    headerH = headerEl ? headerEl.offsetHeight : 64;
+    stickyH = stickyEl ? stickyEl.offsetHeight : 0;
+    var y = window.scrollY + headerH + stickyH + 8;
+    var current = config.ids[0];
+    for (var i = 0; i < config.ids.length; i++) {
+      var el = document.getElementById(config.ids[i]);
+      if (!el) continue;
+      var top = el.getBoundingClientRect().top + window.scrollY;
+      if (top <= y) current = config.ids[i];
+    }
+    setActive(current);
+  }
+  var ticking = false;
+  function onScrollOrResize() {
+    if (ticking) return;
+    ticking = true;
+    requestAnimationFrame(function () {
+      computeActiveByPosition();
+      ticking = false;
+    });
+  }
+  window.addEventListener("scroll", onScrollOrResize, { passive: true });
+  window.addEventListener("resize", onScrollOrResize);
+  setTimeout(computeActiveByPosition, 0);
+}
+
+/* ===== 04 - GALLERY PAGE ===== */
+
+(function () {
+  document.addEventListener("DOMContentLoaded", function () {
+    initScrollspy({
+      pageClass: "page-gallery",
+      ids: ["wnetrza", "dania", "desery", "napoje"],
+      listSelector: '.gallery-tabs__list a[href^="#"]',
+      stickySelector: ".gallery-tabs",
+      bottomPercent: "-55%",
+      bottomPercentMobile: "-65%",
+    });
+  });
+})();
+
+/* ===== 04 - LIGHTBOX ===== */
 
 (function initUnifiedLightbox() {
   const html = document.documentElement;
@@ -195,7 +330,7 @@
     prevBtn.type = "button";
     prevBtn.className = "lb-btn lb-prev";
     prevBtn.setAttribute("aria-label", "Poprzednie zdjęcie");
-    prevBtn.textContent = "←"; // hidden by CSS, kept for a11y fallback
+    prevBtn.textContent = "←";
     const counter = document.createElement("span");
     counter.className = "lb-counter";
     counter.textContent = "1/1";
@@ -203,7 +338,7 @@
     nextBtn.type = "button";
     nextBtn.className = "lb-btn lb-next";
     nextBtn.setAttribute("aria-label", "Następne zdjęcie");
-    nextBtn.textContent = "→"; // hidden by CSS, kept for a11y fallback
+    nextBtn.textContent = "→";
     const fullBtn = document.createElement("button");
     fullBtn.type = "button";
     fullBtn.className = "lb-btn lb-full";
@@ -215,8 +350,6 @@
     closeBtn.setAttribute("aria-label", "Zamknij podgląd");
     closeBtn.textContent = "×";
     controls.append(prevBtn, counter, nextBtn, fullBtn, closeBtn);
-    // LIGHTBOX a11y: poprawne etykiety UTF-8, tytuły i skróty, naprawa znaków
-    // Ustaw poprawne teksty i hinty desktop
     try {
       prevBtn.textContent = "←";
       nextBtn.textContent = "→";
@@ -233,7 +366,9 @@
       overlay.setAttribute("aria-label", "Podgląd zdjęcia");
       overlay.setAttribute("aria-describedby", "lb-caption");
       overlay.setAttribute("aria-keyshortcuts", "Esc ArrowLeft ArrowRight F");
-    } catch (e) { /* no-op */ }
+    } catch (e) {
+      /* no-op */
+    }
 
     const live = document.createElement("div");
     live.className = "visually-hidden";
@@ -254,18 +389,20 @@
   const fullBtn = overlay.querySelector(".lb-full");
   const counterEl = overlay.querySelector(".lb-counter");
   const liveEl = overlay.querySelector("#lb-live");
-  // LIGHTBOX a11y: sekcje strony, które wyłączamy dla SR podczas otwartego lightboxa
   const pageSections = Array.prototype.slice.call(document.querySelectorAll("header, main, footer"));
 
-  // LIGHTBOX a11y: włącz/wyłącz inert/aria-hidden dla tła
   function setPageInert(isInert) {
     pageSections.forEach(function (el) {
       if (!el) return;
       if (isInert) {
-        try { el.setAttribute("inert", ""); } catch (e) {}
+        try {
+          el.setAttribute("inert", "");
+        } catch (e) {}
         el.setAttribute("aria-hidden", "true");
       } else {
-        try { el.removeAttribute("inert"); } catch (e) {}
+        try {
+          el.removeAttribute("inert");
+        } catch (e) {}
         el.removeAttribute("aria-hidden");
       }
     });
@@ -289,7 +426,6 @@
   let index = 0;
   let lastTrigger = null;
 
-  // Center side arrows vertically relative to the displayed image
   function placeArrows() {
     if (!imgEl || !prevBtn || !nextBtn) return;
     const rect = imgEl.getBoundingClientRect();
@@ -325,7 +461,6 @@
     captionEl.textContent = getCaptionFromLink(a) || "";
     updateCounter();
     prefetch(i);
-    // In case of cached images where onload may not fire immediately
     requestAnimationFrame(placeArrows);
   }
   function openFromLink(a) {
@@ -336,7 +471,7 @@
     html.classList.add("lb-open");
     render(index);
     requestAnimationFrame(() => closeBtn.focus());
-    // LIGHTBOX a11y: odetnij tło dla czytnika
+
     setPageInert(true);
   }
   function closeLightbox() {
@@ -344,7 +479,7 @@
     imgEl.removeAttribute("src");
     if (lastTrigger) lastTrigger.focus();
     if (document.fullscreenElement) document.exitFullscreen().catch(() => {});
-    // LIGHTBOX a11y: przywróć nawigowalność tła
+
     setPageInert(false);
   }
   function next() {
@@ -357,7 +492,6 @@
   }
 
   overlay.addEventListener("click", (e) => {
-    // Nie zamykaj po kliknięciu w tło (zarówno normalnie, jak i w fullscreen).
     if (e.target === overlay) return;
   });
 
@@ -383,47 +517,52 @@
     }
   });
 
-  // Keep arrows centered on resize/orientation/fullscreen changes
   window.addEventListener("resize", placeArrows);
   window.addEventListener("orientationchange", placeArrows);
   document.addEventListener("fullscreenchange", placeArrows);
 
-  // Basic touch swipe for mobile: left -> next, right -> prev
-  let touchStartX = 0, touchStartY = 0, touchStartTime = 0;
-  overlay.addEventListener("touchstart", function (e) {
-    if (!e.changedTouches || !e.changedTouches.length) return;
-    const t = e.changedTouches[0];
-    touchStartX = t.clientX;
-    touchStartY = t.clientY;
-    touchStartTime = Date.now();
-  }, { passive: true });
-  overlay.addEventListener("touchend", function (e) {
-    if (!e.changedTouches || !e.changedTouches.length) return;
-    const t = e.changedTouches[0];
-    const dx = t.clientX - touchStartX;
-    const dy = t.clientY - touchStartY;
-    const dt = Date.now() - touchStartTime;
-    // horizontal, fast enough swipe
-    if (Math.abs(dx) > 40 && Math.abs(dx) > Math.abs(dy) && dt < 600) {
-      if (dx < 0) {
-        next();
-      } else {
-        prev();
+  let touchStartX = 0,
+    touchStartY = 0,
+    touchStartTime = 0;
+  overlay.addEventListener(
+    "touchstart",
+    function (e) {
+      if (!e.changedTouches || !e.changedTouches.length) return;
+      const t = e.changedTouches[0];
+      touchStartX = t.clientX;
+      touchStartY = t.clientY;
+      touchStartTime = Date.now();
+    },
+    { passive: true }
+  );
+  overlay.addEventListener(
+    "touchend",
+    function (e) {
+      if (!e.changedTouches || !e.changedTouches.length) return;
+      const t = e.changedTouches[0];
+      const dx = t.clientX - touchStartX;
+      const dy = t.clientY - touchStartY;
+      const dt = Date.now() - touchStartTime;
+      if (Math.abs(dx) > 40 && Math.abs(dx) > Math.abs(dy) && dt < 600) {
+        if (dx < 0) {
+          next();
+        } else {
+          prev();
+        }
       }
-    }
-  }, { passive: true });
+    },
+    { passive: true }
+  );
 
-  // Fullscreen state -> toggle helper class for CSS
   document.addEventListener("fullscreenchange", function () {
     html.classList.toggle("is-fullscreen", !!document.fullscreenElement);
   });
 
-  // Hover-only w górnej strefie overlay (pokazuj krzyżyk tylko blisko górnej krawędzi)
   (function initTopZoneHover() {
     let raf = null;
     function updateTopZone(y) {
-      if (document.fullscreenElement) return; // w fullscreen i tak ukryte stylem
-      const threshold = 96; // px od góry overlay
+      if (document.fullscreenElement) return;
+      const threshold = 96;
       overlay.classList.toggle("lb-topzone", y <= threshold);
     }
     overlay.addEventListener("mousemove", function (e) {
@@ -472,7 +611,7 @@
   });
 })();
 
-/* ===== 04 - REVEAL ===== */
+/* ===== 05 - REVEAL ===== */
 
 function initReveal() {
   var nodes = Array.prototype.slice.call(document.querySelectorAll("[data-reveal]"));
@@ -544,70 +683,22 @@ if (typeof window !== "undefined") {
   window.initReveal = initReveal;
 }
 
-/* ===== 05 - MENU PAGE  ===== */
+/* ===== 06 - MENU PAGE  ===== */
 
 (function () {
   document.addEventListener("DOMContentLoaded", function () {
     var onMenuPage = document.body && document.body.classList.contains("page--menu");
     if (!onMenuPage) return;
 
-    (function initScrollspy() {
-      var ids = ["przystawki", "dania-glowne", "zupy", "kuchnia-szefa", "desery", "drinki"];
-      var linkMap = Object.create(null);
-      var tabsList = document.querySelector(".menu-tabs__list");
-      if (!tabsList) return;
-      var links = Array.prototype.slice.call(tabsList.querySelectorAll('a[href^="#"]'));
-      links.forEach(function (a) {
-        var id = (a.getAttribute("href") || "").replace(/^#/, "");
-        if (id) linkMap[id] = a;
-      });
-
-      function setActive(id) {
-        links.forEach(function (a) {
-          var match = (a.getAttribute("href") || "").replace(/^#/, "") === id;
-          if (match) {
-            a.classList.add("is-active");
-            a.setAttribute("aria-current", "true");
-          } else {
-            a.classList.remove("is-active");
-            a.removeAttribute("aria-current");
-          }
-        });
-      }
-
-      tabsList.addEventListener("click", function (e) {
-        var a = e.target.closest('a[href^="#"]');
-        if (!a) return;
-        var id = (a.getAttribute("href") || "").replace(/^#/, "");
-        if (!id) return;
-        setActive(id);
-        if (typeof history !== "undefined" && typeof history.replaceState === "function") {
-          history.replaceState(null, "", "#" + id);
-        }
-      });
-
-      var options = { root: null, rootMargin: "-40% 0% -55% 0%", threshold: 0.01 };
-      if (typeof IntersectionObserver !== "function") {
-        var initial = (location.hash || "").replace(/^#/, "");
-        setActive(initial && linkMap[initial] ? initial : ids[0]);
-        return;
-      }
-      var observer = new IntersectionObserver(function (entries) {
-        entries.forEach(function (entry) {
-          if (!entry.isIntersecting) return;
-          var id = entry.target.getAttribute("id");
-          if (id) setActive(id);
-        });
-      }, options);
-
-      ids.forEach(function (id) {
-        var el = document.getElementById(id);
-        if (el) observer.observe(el);
-      });
-
-      var initial = (location.hash || "").replace(/^#/, "");
-      if (initial && linkMap[initial]) setActive(initial);
-    })();
+    initScrollspy({
+      pageClass: "page--menu",
+      ids: ["przystawki", "dania-glowne", "zupy", "kuchnia-szefa", "desery", "drinki"],
+      listSelector: '.menu-tabs__list a[href^="#"]',
+      stickySelector: ".menu-navigation",
+      topPercent: "-40%",
+      bottomPercent: "-55%",
+      bottomPercentMobile: "-65%",
+    });
 
     (function initMenuFilters() {
       var search = document.getElementById("menu-search");
@@ -703,7 +794,8 @@ if (typeof window !== "undefined") {
       });
     })();
 
-    // Improve alt/figcaption: short alt = title, figcaption = title + opis + alergeny
+    /* ===== 06 - GALLERY PAGE ===== */
+
     (function enhanceFigureAlts() {
       var cards = Array.prototype.slice.call(document.querySelectorAll(".menu-card"));
       cards.forEach(function (card) {
@@ -729,7 +821,6 @@ if (typeof window !== "undefined") {
       });
     })();
 
-    // Add copy-link anchors to section headers and dish titles
     (function initAnchors() {
       function slugify(str) {
         return (str || "")
