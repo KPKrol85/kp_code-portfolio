@@ -17,7 +17,7 @@
     <meta name="application-name" content="Gastro Demo" />
     <meta name="apple-mobile-web-app-title" content="Gastro Demo" />
 
-    <!-- ===== PWA / ICONS ===== -->
+    <!-- PWA / ICONS -->
     <link rel="manifest" href="/manifest.webmanifest" />
     <link rel="icon" type="image/png" sizes="32x32" href="/assets/icons/favicon-32.png" />
     <link rel="icon" type="image/png" sizes="16x16" href="/assets/icons/favicon-16.png" />
@@ -387,19 +387,17 @@
     <link rel="stylesheet" href="css/style.css" />
   </head>
 
-  <!-- ===== BODY ===== -->
+  <!-- BODY -->
   <body class="page page--menu">
     <a class="skip-link" href="#main" id="skip-to-content">Przejdź do treści</a>
     <a class="skip-link" href="#menu-tabs-start" id="skip-to-categories">Pomiń do kategorii</a>
 
-    <!-- ===== HEADER ===== -->
+    <!-- HEADER -->
     <header class="site-header" aria-label="Nagłówek strony z nawigacją">
       <div class="container header__inner">
-        <a class="brand" href="/#hero" aria-label="Strona główna Gastronomy 02">
-          <!-- Light mode logo -->
-          <img src="assets/img/logo/logo-light-mode-160x160.png" alt="Logo KP_Code" class="brand__logo brand__logo--light" width="50" height="50" />
-          <!-- Dark mode logo -->
-          <img src="assets/img/logo/logo-dark-mode-160x160.png" alt="" aria-hidden="true" class="brand__logo brand__logo--dark" width="50" height="50" />
+        <a class="brand" href="/#hero" aria-label="Demo dla strony gastronomicznej – Strona główna">
+          <img src="assets/img/logo/logo-light-mode-40x40.svg" alt="" class="brand__logo brand__logo--light" width="40" height="40" />
+          <img src="assets/img/logo/logo-dark-mode-40x40.svg" alt="" class="brand__logo brand__logo--dark" width="40" height="40" />
           <span class="brand__text">KP_Code</span>
         </a>
 
@@ -429,7 +427,7 @@
       </div>
     </header>
 
-    <!-- ===== MAIN ===== -->
+    <!-- MAIN -->
     <main id="main" tabindex="-1">
       <nav class="breadcrumbs" aria-label="Okruchy nawigacji">
         <ol>
@@ -437,7 +435,7 @@
           <li aria-current="page">Menu</li>
         </ol>
       </nav>
-      <!-- ===== PAGE HERO ===== -->
+
       <section class="section page-hero" aria-labelledby="menu-page-title">
         <div class="container page-hero__inner">
           <div class="page-hero__content" data-reveal>
@@ -450,7 +448,6 @@
         </div>
       </section>
 
-      <!-- ===== MENU NAVIGATION ===== -->
       <section class="section menu-navigation" aria-label="Nawigacja po kategoriach menu">
         <div class="container" data-reveal>
           <span id="menu-tabs-start" tabindex="-1" aria-hidden="true"></span>
@@ -487,7 +484,6 @@
         </div>
       </section>
 
-      <!-- Legenda tagów -->
       <div class="menu-legend" aria-label="Legenda oznaczeń">
         <div class="container">
           <ul class="legend__list">
@@ -1052,7 +1048,6 @@
             <li class="card menu-card" data-reveal>
               <article>
                 <figure class="menu-card__figure">
-
                   <picture>
                     <source
                       type="image/avif"

@@ -25,6 +25,7 @@
     "format": "prettier --write \"**/*.{html,css,js,json,md}\""
   },
   "devDependencies": {
+    "@squoosh/cli": "^0.7.1",
     "cssnano": "^6.1.2",
     "live-server": "^1.2.2",
     "postcss": "^8.5.6",

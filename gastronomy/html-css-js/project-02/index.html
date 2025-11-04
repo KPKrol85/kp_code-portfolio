@@ -56,6 +56,14 @@
     <link rel="preload" href="assets/fonts/lato-400-latin.woff2" as="font" type="font/woff2" crossorigin />
     <link rel="preload" href="assets/fonts/lato-700-latin.woff2" as="font" type="font/woff2" crossorigin />
 
+    <!-- Preload LCP hero image (AVIF) -->
+    <link
+      rel="preload"
+      as="image"
+      href="assets/img/hero/hero-02-480x410.avif"
+      imagesrcset="assets/img/hero/hero-02-480x410.avif 480w, assets/img/hero/hero-02-768x640.avif 768w, assets/img/hero/hero-02-1200x1000.avif 1200w"
+      imagesizes="(max-width: 768px) 520px, 45vw" />
+
     <!-- Restaurant JSON-LD -->
     <script type="application/ld+json">
       {
@@ -134,18 +142,16 @@
     <link rel="stylesheet" href="css/style.css" />
   </head>
 
-  <!-- ===== BODY ===== -->
+  <!-- BODY -->
   <body>
     <a class="skip-link" href="#main" id="skip-to-content">Skip to content</a>
 
-    <!-- ===== HEADER ===== -->
-    <header class="site-header" aria-label="Site header with navigation">
+    <!-- HEADER -->
+    <header class="site-header" aria-label="Nagłówek strony z nawigacją">
       <div class="container header__inner">
-        <a class="brand" href="/#hero" aria-label="Gastronomy home">
-          <!-- Light mode logo -->
-          <img src="assets/img/logo/logo-light-mode-160x160.png" alt="KP_Code logo" class="brand__logo brand__logo--light" width="50" height="50" />
-          <!-- Dark mode logo -->
-          <img src="assets/img/logo/logo-dark-mode-160x160.png" alt="KP_Code logo" class="brand__logo brand__logo--dark" width="50" height="50" />
+        <a class="brand" href="/#hero" aria-label="Demo dla strony gastronomicznej – Strona główna">
+          <img src="assets/img/logo/logo-light-mode-40x40.svg" alt="" class="brand__logo brand__logo--light" width="40" height="40" />
+          <img src="assets/img/logo/logo-dark-mode-40x40.svg" alt="" class="brand__logo brand__logo--dark" width="40" height="40" />
           <span class="brand__text">KP_Code</span>
         </a>
 
@@ -188,32 +194,32 @@
               <a class="btn btn--ghost" href="/#contact" aria-label="Zarezerwuj stolik">Rezerwacja</a>
             </div>
           </div>
-          <figure class="hero__media">
+
+          <figure class="hero__media" data-reveal>
             <picture>
               <!-- AVIF -->
               <source
                 type="image/avif"
-                srcset="assets/img/hero/hero-02-480x410.avif 480w, assets/img/hero/hero-02-768x640.avif 768w, assets/img/hero/hero-02-1200x1000.avif 1200w"
-                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 600px" />
+                srcset="assets/img/hero/hero-640x512.avif 640w, assets/img/hero/hero-768x614.avif 768w, assets/img/hero/hero-960x768.avif 960w, assets/img/hero/hero-1200x960.avif 1200w"
+                sizes="(max-width: 768px) 520px, 45vw" />
 
               <!-- WebP -->
               <source
                 type="image/webp"
-                srcset="assets/img/hero/hero-02-480x410.webp 480w, assets/img/hero/hero-02-768x640.webp 768w, assets/img/hero/hero-02-1200x1000.webp 1200w"
-                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 600px" />
+                srcset="assets/img/hero/hero-640x512.webp 640w, assets/img/hero/hero-768x614.webp 768w, assets/img/hero/hero-960x768.webp 960w, assets/img/hero/hero-1200x960.webp 1200w"
+                sizes="(max-width: 768px) 520px, 45vw" />
 
               <!-- JPG fallback -->
               <img
-                src="assets/img/hero/hero-02-1200x1000.jpg"
-                srcset="assets/img/hero/hero-02-480x410.jpg 480w, assets/img/hero/hero-02-768x640.jpg 768w, assets/img/hero/hero-02-1200x1000.jpg 1200w"
-                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 600px"
-                alt="Markiza restauracji z napisem „restaurant” w ciepłym świetle popołudnia, zapraszająca do eleganckiego miejsca spotkań."
-                loading="lazy"
-                width="560"
-                height="480"
+                src="assets/img/hero/hero-1200x960.jpg"
+                srcset="assets/img/hero/hero-640x512.jpg 640w, assets/img/hero/hero-768x614.jpg 768w, assets/img/hero/hero-960x768.jpg 960w, assets/img/hero/hero-1200x960.jpg 1200w"
+                sizes="(max-width: 768px) 520px, 45vw"
+                alt='Markiza restauracji z napisem "restaurant" w ciepłym świetle popołudnia, zapraszająca do eleganckiego miejsca spotkań.'
+                width="1200"
+                height="960"
                 decoding="async"
                 fetchpriority="high"
-                data-lb-caption="Markiza restauracji w ciepłym świetle dnia — symbol gościnności i klasy gastronomii fine dining." />
+                loading="eager" />
             </picture>
           </figure>
         </div>
@@ -227,28 +233,28 @@
               <!-- AVIF -->
               <source
                 type="image/avif"
-                srcset="assets/img/about/about-02-640x480.avif 640w, assets/img/about/about-02-960x720.avif 960w, assets/img/about/about-02-1280x960.avif 1280w"
-                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 600px" />
+                srcset="assets/img/about/about-320x240.avif 320w, assets/img/about/about-480x360.avif 480w, assets/img/about/about-640x480.avif 640w, assets/img/about/about-960x720.avif 960w"
+                sizes="(max-width: 768px) 520px, 45vw" />
 
               <!-- WebP -->
               <source
                 type="image/webp"
-                srcset="assets/img/about/about-02-640x480.webp 640w, assets/img/about/about-02-960x720.webp 960w, assets/img/about/about-02-1280x960.webp 1280w"
-                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 600px" />
+                srcset="assets/img/about/about-320x240.webp 320w, assets/img/about/about-480x360.webp 480w, assets/img/about/about-640x480.webp 640w, assets/img/about/about-960x720.webp 960w"
+                sizes="(max-width: 768px) 520px, 45vw" />
 
               <!-- JPG fallback -->
               <img
-                src="assets/img/about/about-02-1280x960.jpg"
-                srcset="assets/img/about/about-02-640x480.jpg 640w, assets/img/about/about-02-960x720.jpg 960w, assets/img/about/about-02-1280x960.jpg 1280w"
-                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 600px"
+                src="assets/img/about/about-960x720.jpg"
+                srcset="assets/img/about/about-320x240.jpg 320w, assets/img/about/about-480x360.jpg 480w, assets/img/about/about-640x480.jpg 640w, assets/img/about/about-960x720.jpg 960w"
+                sizes="(max-width: 768px) 520px, 45vw"
                 alt="Szef kuchni delikatnie dekoruje dania na drewnianych deskach, z unoszącą się parą i aromatycznymi dodatkami."
                 loading="lazy"
-                width="640"
-                height="480"
-                decoding="async"
-                data-lb-caption="Szef kuchni przygotowuje dania autorskie na drewnianych deskach — kulisy sztuki fine diningu." />
+                width="960"
+                height="720"
+                decoding="async" />
             </picture>
           </div>
+
           <div class="about__content" data-reveal>
             <h2>O Nas</h2>
             <p>Celebrujemy sztukę kuchni, łącząc elegancję tradycji z odrobiną nowoczesności. Nasz zespół wybiera wyłącznie najlepsze lokalne składniki, tworząc niezapomniane doznania smakowe.</p>
@@ -272,24 +278,27 @@
             <!-- Duck -->
             <li class="card" data-reveal>
               <picture>
+                <!-- AVIF -->
                 <source
                   type="image/avif"
-                  srcset="assets/img/menu/menu-duck-01-480x320.avif 480w, assets/img/menu/menu-duck-01-720x480.avif 720w, assets/img/menu/menu-duck-01-960x640.avif 960w"
-                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 33vw, 400px" />
+                  srcset="assets/img/menu/duck-400x261.avif 400w, assets/img/menu/duck-800x534.avif 800w, assets/img/menu/duck-1200x801.avif 1200w"
+                  sizes="(max-width: 480px) 214px, (max-width: 768px) 320px, (max-width: 1200px) 33vw, 400px" />
+                <!-- WebP -->
                 <source
                   type="image/webp"
-                  srcset="assets/img/menu/menu-duck-01-480x320.webp 480w, assets/img/menu/menu-duck-01-720x480.webp 720w, assets/img/menu/menu-duck-01-960x640.webp 960w"
-                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 33vw, 400px" />
+                  srcset="assets/img/menu/duck-400x261.webp 400w, assets/img/menu/duck-800x534.webp 800w, assets/img/menu/duck-1200x801.webp 1200w"
+                  sizes="(max-width: 480px) 214px, (max-width: 768px) 320px, (max-width: 1200px) 33vw, 400px" />
+                <!-- JPG fallback -->
                 <img
                   class="card__image"
-                  src="assets/img/menu/menu-duck-01-960x640.jpg"
-                  srcset="assets/img/menu/menu-duck-01-480x320.jpg 480w, assets/img/menu/menu-duck-01-720x480.jpg 720w, assets/img/menu/menu-duck-01-960x640.jpg 960w"
-                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 33vw, 400px"
+                  src="assets/img/menu/duck-1200x801.jpg"
+                  srcset="assets/img/menu/duck-400x261.jpg 400w, assets/img/menu/duck-800x534.jpg 800w, assets/img/menu/duck-1200x801.jpg 1200w"
+                  sizes="(max-width: 480px) 214px, (max-width: 768px) 320px, (max-width: 1200px) 33vw, 400px"
                   alt="Plastry kaczki glazurowanej w sosie burgundowym, podane na sałatce z warzywami i figami."
                   loading="lazy"
-                  width="480"
-                  height="320"
-                  decoding="async" />
+                  decoding="async"
+                  width="1200"
+                  height="801" />
               </picture>
               <div class="card__body">
                 <h3 class="card__title">Kaczka w Glazurze Burgundowej</h3>
@@ -300,24 +309,27 @@
             <!-- Risotto -->
             <li class="card" data-reveal>
               <picture>
+                <!-- AVIF -->
                 <source
                   type="image/avif"
-                  srcset="assets/img/menu/risotto-01-480x320.avif 480w, assets/img/menu/risotto-01-720x480.avif 720w, assets/img/menu/risotto-01-960x640.avif 960w"
-                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 33vw, 400px" />
+                  srcset="assets/img/menu/risotto-400x261.avif 400w, assets/img/menu/risotto-800x534.avif 800w, assets/img/menu/risotto-1200x801.avif 1200w"
+                  sizes="(max-width: 480px) 214px, (max-width: 768px) 320px, (max-width: 1200px) 33vw, 400px" />
+                <!-- WebP -->
                 <source
                   type="image/webp"
-                  srcset="assets/img/menu/risotto-01-480x320.webp 480w, assets/img/menu/risotto-01-720x480.webp 720w, assets/img/menu/risotto-01-960x640.webp 960w"
-                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 33vw, 400px" />
+                  srcset="assets/img/menu/risotto-400x261.webp 400w, assets/img/menu/risotto-800x534.webp 800w, assets/img/menu/risotto-1200x801.webp 1200w"
+                  sizes="(max-width: 480px) 214px, (max-width: 768px) 320px, (max-width: 1200px) 33vw, 400px" />
+                <!-- JPG fallback -->
                 <img
                   class="card__image"
-                  src="assets/img/menu/risotto-01-960x640.jpg"
-                  srcset="assets/img/menu/risotto-01-480x320.jpg 480w, assets/img/menu/risotto-01-720x480.jpg 720w, assets/img/menu/risotto-01-960x640.jpg 960w"
-                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 33vw, 400px"
+                  src="assets/img/menu/risotto-1200x801.jpg"
+                  srcset="assets/img/menu/risotto-400x261.jpg 400w, assets/img/menu/risotto-800x534.jpg 800w, assets/img/menu/risotto-1200x801.jpg 1200w"
+                  sizes="(max-width: 480px) 214px, (max-width: 768px) 320px, (max-width: 1200px) 33vw, 400px"
                   alt="Kremowe risotto z szafranem, udekorowane parmezanem i świeżymi ziołami."
                   loading="lazy"
-                  width="480"
-                  height="320"
-                  decoding="async" />
+                  decoding="async"
+                  width="1200"
+                  height="801" />
               </picture>
               <div class="card__body">
                 <h3 class="card__title">Risotto Szafranowe</h3>
@@ -328,24 +340,27 @@
             <!-- Cake -->
             <li class="card" data-reveal>
               <picture>
+                <!-- AVIF -->
                 <source
                   type="image/avif"
-                  srcset="assets/img/menu/cake-01-480x320.avif 480w, assets/img/menu/cake-01-720x480.avif 720w, assets/img/menu/cake-01-960x640.avif 960w"
-                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 33vw, 400px" />
+                  srcset="assets/img/menu/cake-400x261.avif 400w, assets/img/menu/cake-800x534.avif 800w, assets/img/menu/cake-1200x801.avif 1200w"
+                  sizes="(max-width: 480px) 214px, (max-width: 768px) 320px, (max-width: 1200px) 33vw, 400px" />
+                <!-- WebP -->
                 <source
                   type="image/webp"
-                  srcset="assets/img/menu/cake-01-480x320.webp 480w, assets/img/menu/cake-01-720x480.webp 720w, assets/img/menu/cake-01-960x640.webp 960w"
-                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 33vw, 400px" />
+                  srcset="assets/img/menu/cake-400x261.webp 400w, assets/img/menu/cake-800x534.webp 800w, assets/img/menu/cake-1200x801.webp 1200w"
+                  sizes="(max-width: 480px) 214px, (max-width: 768px) 320px, (max-width: 1200px) 33vw, 400px" />
+                <!-- JPG fallback -->
                 <img
                   class="card__image"
-                  src="assets/img/menu/cake-01-960x640.jpg"
-                  srcset="assets/img/menu/cake-01-480x320.jpg 480w, assets/img/menu/cake-01-720x480.jpg 720w, assets/img/menu/cake-01-960x640.jpg 960w"
-                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 33vw, 400px"
+                  src="assets/img/menu/cake-1200x801.jpg"
+                  srcset="assets/img/menu/cake-400x261.jpg 400w, assets/img/menu/cake-800x534.jpg 800w, assets/img/menu/cake-1200x801.jpg 1200w"
+                  sizes="(max-width: 480px) 214px, (max-width: 768px) 320px, (max-width: 1200px) 33vw, 400px"
                   alt="Cytrusowe ciasto na oliwie z kandyzowaną pomarańczą, bitą śmietaną i płatkami migdałów."
                   loading="lazy"
-                  width="480"
-                  height="320"
-                  decoding="async" />
+                  decoding="async"
+                  width="1200"
+                  height="801" />
               </picture>
               <div class="card__body">
                 <h3 class="card__title">Cytrusowe Ciasto na Oliwie</h3>
@@ -613,7 +628,7 @@
               </li>
               <li>
                 <img src="assets/icons/svg-icon/mail-icon.svg" alt="" aria-hidden="true" width="24" height="24" />
-                <a href="mailto:kontakt@gastronomy.example">kp_code_@gmail.com</a>
+                <a href="mailto:kp_code_@gmail.com">kp_code_@gmail.com</a>
               </li>
             </ul>
           </div>
@@ -647,8 +662,8 @@
           <!-- Brand -->
           <div class="footer__brand">
             <a class="brand" href="/#hero" aria-label="Gastronomy home">
-              <img src="assets/img/logo/logo-dark-mode-160x160.png" alt="KP_Code logo" class="brand__logo brand__logo--light" width="50" height="50" />
-              <img src="assets/img/logo/logo-light-mode-160x160.png" alt="KP_Code logo" class="brand__logo brand__logo--dark" width="50" height="50" />
+              <img src="assets/img/logo/logo-dark-mode-40x40.svg" alt="KP_Code logo" class="brand__logo brand__logo--light" width="40" height="40" />
+              <img src="assets/img/logo/logo-light-mode-40x40.svg" alt="KP_Code logo" class="brand__logo brand__logo--dark" width="40" height="40" />
               <span class="brand__text">KP_Code</span>
             </a>
             <p class="footer__tagline">Demo projektu przygotowane przez KP_Code. Jeśli chcesz podobną stronę dla swojej restauracji — skontaktuj się ze mną.</p>
@@ -686,7 +701,7 @@
               </p>
               <p>
                 <img src="assets/icons/svg-icon/mail-icon.svg" alt="" aria-hidden="true" width="24" height="24" />
-                <a href="mailto:hello@example.com">kp_code_@gmail.com</a>
+                <a href="mailto:kp_code_@gmail.com">kp_code_@gmail.com</a>
               </p>
             </address>
           </div>

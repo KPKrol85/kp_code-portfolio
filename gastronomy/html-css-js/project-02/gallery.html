@@ -135,14 +135,12 @@
   <body class="page page-gallery">
     <a class="skip-link" href="#main" id="skip-to-content">Przejdź do treści głównej</a>
 
-    <!-- ===== HEADER ===== -->
+    <!-- HEADER -->
     <header class="site-header" aria-label="Nagłówek strony z nawigacją">
       <div class="container header__inner">
-        <a class="brand" href="/#hero" aria-label="Strona główna Gastronomy 02">
-          <!-- Light mode logo -->
-          <img src="assets/img/logo/logo-light-mode-160x160.png" alt="Logo KP_Code" class="brand__logo brand__logo--light" width="50" height="50" />
-          <!-- Dark mode logo -->
-          <img src="assets/img/logo/logo-dark-mode-160x160.png" alt="" aria-hidden="true" class="brand__logo brand__logo--dark" width="50" height="50" />
+        <a class="brand" href="/#hero" aria-label="Demo dla strony gastronomicznej – Strona główna">
+          <img src="assets/img/logo/logo-light-mode-40x40.svg" alt="" class="brand__logo brand__logo--light" width="40" height="40" />
+          <img src="assets/img/logo/logo-dark-mode-40x40.svg" alt="" class="brand__logo brand__logo--dark" width="40" height="40" />
           <span class="brand__text">KP_Code</span>
         </a>
 
@@ -174,6 +172,13 @@
 
     <!-- ===== MAIN ===== -->
     <main id="main" tabindex="-1">
+      <nav class="breadcrumbs" aria-label="Okruchy nawigacji">
+        <ol>
+          <li><a href="index.html">Strona główna</a></li>
+          <li aria-current="page">Galeria</li>
+        </ol>
+      </nav>
+
       <section class="section page-hero" aria-labelledby="gallery-page-title">
         <div class="container page-hero__inner">
           <div class="page-hero__content" data-reveal>
@@ -375,7 +380,11 @@
           <ul class="gallery__grid" data-reveal-group>
             <!-- Danie 01 -->
             <li class="gallery__item" data-reveal>
-              <a class="gallery__link" href="assets/img/podstrona-galeria/dania/danie-01-1600x1200.jpg" data-lightbox="dania" data-lb-caption="Kompozycja w trakcie serwisu — szef kuchni nakłada danie z precyzją na eleganckie talerze.">
+              <a
+                class="gallery__link"
+                href="assets/img/podstrona-galeria/dania/danie-01-1600x1200.jpg"
+                data-lightbox="dania"
+                data-lb-caption="Kompozycja w trakcie serwisu — szef kuchni nakłada danie z precyzją na eleganckie talerze.">
                 <figure class="gallery__figure">
                   <picture>
                     <!-- AVIF -->
@@ -420,7 +429,11 @@
             </li>
             <!-- Danie 02 -->
             <li class="gallery__item" data-reveal>
-              <a class="gallery__link" href="assets/img/podstrona-galeria/dania/danie-02-1600x1200.jpg" data-lightbox="dania" data-lb-caption="Zastawiony stół przy kominku — różnorodne dania serwowane w przytulnym wnętrzu.">
+              <a
+                class="gallery__link"
+                href="assets/img/podstrona-galeria/dania/danie-02-1600x1200.jpg"
+                data-lightbox="dania"
+                data-lb-caption="Zastawiony stół przy kominku — różnorodne dania serwowane w przytulnym wnętrzu.">
                 <figure class="gallery__figure">
                   <picture>
                     <!-- AVIF -->
@@ -465,7 +478,11 @@
             </li>
             <!-- Danie 03 -->
             <li class="gallery__item" data-reveal>
-              <a class="gallery__link" href="assets/img/podstrona-galeria/dania/danie-03-1600x1200.jpg" data-lightbox="dania" data-lb-caption="Bufet sushi i dań azjatyckich z kolorowymi składnikami na ladzie.">
+              <a
+                class="gallery__link"
+                href="assets/img/podstrona-galeria/dania/danie-03-1600x1200.jpg"
+                data-lightbox="dania"
+                data-lb-caption="Bufet sushi i dań azjatyckich z kolorowymi składnikami na ladzie.">
                 <figure class="gallery__figure">
                   <picture>
                     <!-- AVIF -->
@@ -572,7 +589,11 @@
             </li>
             <!-- Deser 02 -->
             <li class="gallery__item" data-reveal>
-              <a class="gallery__link" href="assets/img/podstrona-galeria/desery/deser-02-1600x1200.jpg" data-lightbox="desery" data-lb-caption="Deser warstwowy z karmelizowaną gruszką — delikatny krem, ciasto orzechowe i subtelne aromaty wanilii.">
+              <a
+                class="gallery__link"
+                href="assets/img/podstrona-galeria/desery/deser-02-1600x1200.jpg"
+                data-lightbox="desery"
+                data-lb-caption="Deser warstwowy z karmelizowaną gruszką — delikatny krem, ciasto orzechowe i subtelne aromaty wanilii.">
                 <figure class="gallery__figure">
                   <picture>
                     <!-- AVIF -->
@@ -617,7 +638,11 @@
             </li>
             <!-- Deser 03 -->
             <li class="gallery__item" data-reveal>
-              <a class="gallery__link" href="assets/img/podstrona-galeria/desery/deser-03-1600x1200.jpg" data-lightbox="desery" data-lb-caption="Degustacyjna kompozycja deserów — lekkie kremy, owoce i czekoladowe akcenty w stylu fine dining.">
+              <a
+                class="gallery__link"
+                href="assets/img/podstrona-galeria/desery/deser-03-1600x1200.jpg"
+                data-lightbox="desery"
+                data-lb-caption="Degustacyjna kompozycja deserów — lekkie kremy, owoce i czekoladowe akcenty w stylu fine dining.">
                 <figure class="gallery__figure">
                   <picture>
                     <!-- AVIF -->
@@ -675,7 +700,11 @@
           <ul class="gallery__grid" data-reveal-group>
             <!-- Napoje 01 -->
             <li class="gallery__item" data-reveal>
-              <a class="gallery__link" href="assets/img/podstrona-galeria/napoje/napoje-01-1600x1200.jpg" data-lightbox="napoje" data-lb-caption="Przygotowanie koktajlu — barman nalewa rum do szklanek z miętą, lodem i syropem cukrowym.">
+              <a
+                class="gallery__link"
+                href="assets/img/podstrona-galeria/napoje/napoje-01-1600x1200.jpg"
+                data-lightbox="napoje"
+                data-lb-caption="Przygotowanie koktajlu — barman nalewa rum do szklanek z miętą, lodem i syropem cukrowym.">
                 <figure class="gallery__figure">
                   <picture>
                     <!-- AVIF -->
@@ -822,7 +851,7 @@
     </main>
 
     <!-- ===== FOOTER ===== -->
-    <footer class="footer"  aria-label="Stopka strony">
+    <footer class="footer" aria-label="Stopka strony">
       <div class="container">
         <div class="footer__grid">
           <!-- Brand -->

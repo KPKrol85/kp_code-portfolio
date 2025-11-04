@@ -251,6 +251,7 @@ img {
   font-family: system-ui, sans-serif;
   font-weight: 400;
   color: CanvasText;
+  height: auto; /* <- dodaj tutaj, globalnie */
 }
 
 h1,
@@ -2235,6 +2236,44 @@ html {
   color: var(--text-muted);
 }
 
+/* ===== 13.x - SUBPAGE LEGAL ===== */
+.page.page-legal .page-hero {
+  position: relative;
+  background: linear-gradient(135deg, color-mix(in srgb, var(--cream) 85%, white), color-mix(in srgb, var(--burgundy) 15%, var(--cream)));
+  isolation: isolate;
+}
+.page.page-legal .page-hero::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at 25% 20%, rgba(201, 162, 39, 0.08), transparent 55%);
+  pointer-events: none;
+  z-index: -1;
+}
+.page.page-legal .page-hero__inner {
+  display: flex;
+  justify-content: center;
+}
+.page.page-legal .page-hero__content {
+  max-width: 640px;
+  text-align: center;
+  display: grid;
+  gap: 1rem;
+}
+.page.page-legal .page-hero__eyebrow {
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  font-size: 0.85rem;
+  color: var(--burgundy);
+}
+.page.page-legal .page-hero__lead {
+  margin: 0 auto;
+  max-width: 56ch;
+  color: var(--text-muted);
+}
+
+/* ===== 13 - SUBPAGE ABOUT ===== */
+
 .page.page-about .section__header {
   max-width: 720px;
   margin: 0 auto 2.5rem;
@@ -2869,3 +2908,40 @@ a.btn:focus {
     transform: none;
   }
 }
+
+/* ===== SUBPAGES HERO — SHARED (menu/about/gallery/legal) ===== */
+.page .page-hero {
+  position: relative;
+  background: linear-gradient(135deg, color-mix(in srgb, var(--cream) 85%, white), color-mix(in srgb, var(--burgundy) 15%, var(--cream)));
+  isolation: isolate;
+}
+.page .page-hero::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at 25% 20%, rgba(201, 162, 39, 0.08), transparent 55%);
+  pointer-events: none;
+  z-index: -1;
+}
+.page .page-hero__inner {
+  display: flex;
+  justify-content: center;
+}
+.page .page-hero__content {
+  max-width: 640px;
+  text-align: center;
+  display: grid;
+  gap: 1rem;
+}
+.page .page-hero__eyebrow {
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  font-size: 0.85rem;
+  color: var(--burgundy);
+}
+.page .page-hero__lead {
+  margin: 0 auto;
+  max-width: 56ch;
+  color: var(--text-muted);
+}
+/* spacing zapewnia globalna .section; nic więcej nie dodawać */
