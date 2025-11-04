@@ -634,24 +634,39 @@
                 <!-- AVIF -->
                 <source
                   type="image/avif"
-                  srcset="assets/img/podstrona-about/group-team/about-01-640x480.avif 640w, assets/img/about/about-01-960x720.avif 960w, assets/img/about/about-01-1280x960.avif 1280w"
-                  sizes="(max-width: 768px) 520px, 45vw" />
+                  srcset="
+                    assets/img/podstrona-about/group-team/about-01-640x480.avif   640w,
+                    assets/img/podstrona-about/group-team/about-01-960x720.avif   960w,
+                    assets/img/podstrona-about/group-team/about-01-1280x960.avif 1280w
+                  "
+                  sizes="(max-width: 768px) 100vw, 45vw" />
+
                 <!-- WebP -->
                 <source
                   type="image/webp"
-                  srcset="assets/img/podstrona-about/group-team/about-01-640x480.webp 640w, assets/img/about/about-01-960x720.webp 960w, assets/img/about/about-01-1280x960.webp 1280w"
-                  sizes="(max-width: 768px) 520px, 45vw" />
+                  srcset="
+                    assets/img/podstrona-about/group-team/about-01-640x480.webp   640w,
+                    assets/img/podstrona-about/group-team/about-01-960x720.webp   960w,
+                    assets/img/podstrona-about/group-team/about-01-1280x960.webp 1280w
+                  "
+                  sizes="(max-width: 768px) 100vw, 45vw" />
+
                 <!-- JPG fallback -->
                 <img
                   src="assets/img/podstrona-about/group-team/about-01-1280x960.jpg"
-                  srcset="assets/img/podstrona-about/group-team/about-01-640x480.jpg 640w, assets/img/about/about-01-960x720.jpg 960w, assets/img/about/about-01-1280x960.jpg 1280w"
-                  sizes="(max-width: 768px) 520px, 45vw"
+                  srcset="
+                    assets/img/podstrona-about/group-team/about-01-640x480.jpg   640w,
+                    assets/img/podstrona-about/group-team/about-01-960x720.jpg   960w,
+                    assets/img/podstrona-about/group-team/about-01-1280x960.jpg 1280w
+                  "
+                  sizes="(max-width: 768px) 100vw, 45vw"
                   alt="Szefowa kuchni degustuje sos przy blacie z miedzianymi garnkami."
                   loading="lazy"
                   decoding="async"
                   width="1280"
                   height="960" />
               </picture>
+
               <figcaption class="visually-hidden">Portret szefowej kuchni podczas pracy.</figcaption>
             </figure>
 
@@ -935,15 +950,15 @@
       </section>
     </main>
 
-    <!-- ===== FOOTER ===== -->
+    <!-- FOOTER -->
     <footer class="footer" aria-label="Site footer">
       <div class="container">
         <div class="footer__grid">
           <!-- Brand -->
           <div class="footer__brand">
             <a class="brand" href="/#hero" aria-label="Gastronomy home">
-              <img src="assets/icons/fav-icon/favicon.svg" alt="KP_Code logo" class="brand__logo brand__logo--light" width="40" height="40" />
-              <img src="assets/icons/fav-icon/favicon.svg" alt="KP_Code logo" class="brand__logo brand__logo--dark" width="40" height="40" />
+              <img src="assets/img/logo/logo-dark-mode-40x40.svg" alt="KP_Code logo" class="brand__logo brand__logo--light" width="40" height="40" />
+              <img src="assets/img/logo/logo-light-mode-40x40.svg" alt="KP_Code logo" class="brand__logo brand__logo--dark" width="40" height="40" />
               <span class="brand__text">KP_Code</span>
             </a>
             <p class="footer__tagline">Demo projektu przygotowane przez KP_Code. Jeśli chcesz podobną stronę dla swojej restauracji — skontaktuj się ze mną.</p>
