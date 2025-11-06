@@ -819,11 +819,14 @@ main {
 .about__media {
   display: flex;
   justify-content: center;
+  aspect-ratio: 4 / 3;
+  overflow: hidden;
 }
 
 .about__media img {
+  display: block;
   width: 100%;
-  height: auto;
+  height: 100%;
   object-fit: cover;
   border-radius: var(--radius);
   box-shadow: var(--shadow);
@@ -842,6 +845,20 @@ main {
   display: flex;
   justify-content: center;
   margin-top: 1.5rem;
+}
+
+[data-reveal] {
+  opacity: 0;
+  transform: translateY(12px);
+  will-change: transform, opacity;
+}
+
+[data-reveal].is-visible {
+  opacity: 1;
+  transform: translateY(0);
+  transition:
+    transform 0.4s ease,
+    opacity 0.4s ease;
 }
 
 /* -- MQ - min-width: 768px -- */

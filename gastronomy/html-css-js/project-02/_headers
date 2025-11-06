@@ -27,8 +27,8 @@
   Vary: Accept-Encoding
 
 # SERVICE WORKER (no-cache)
-/service-worker.js
-  Cache-Control: no-cache
+/sw.js
+  Cache-Control: no-cache, no-store, must-revalidate
 
 # IMAGES & ASSETS
 /assets/*
