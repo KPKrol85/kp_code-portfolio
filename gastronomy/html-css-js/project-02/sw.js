@@ -1,7 +1,6 @@
 /* ===== KP_Code – Service Worker (cache-first for static, network-first for HTML) ===== */
 
-// 🔹 Zmieniaj wersję przy każdej większej publikacji, by wymusić odświeżenie cache
-const CACHE_NAME = "kp_code_v0.08.00";
+const CACHE_NAME = "kp_code_v0.09.00";
 
 // 🔹 Zasoby do zbuforowania (realne ścieżki z projektu)
 const FILES_TO_CACHE = [
