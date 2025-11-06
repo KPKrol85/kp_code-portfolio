@@ -16,20 +16,18 @@
     <link rel="canonical" href="https://gastronomy-project-02.netlify.app/" />
 
     <!-- PWA -->
+    <meta name="theme-color" content="#f8f1e7" />
     <meta name="color-scheme" content="light dark" />
+
     <meta name="application-name" content="Gastro Demo" />
     <meta name="apple-mobile-web-app-title" content="Gastro Demo" />
     <meta name="msapplication-TileColor" content="#f8f1e7" />
-
-    <!-- ✅ Favicons + manifest (spójne z /assets/icons/fav-icon/) -->
-    <link rel="icon" type="image/png" sizes="32x32" href="assets/icons/fav-icon/favicon-32x32.png" />
-    <link rel="icon" type="image/png" sizes="16x16" href="assets/icons/fav-icon/favicon-16x16.png" />
+    <link rel="manifest" href="/manifest.webmanifest" />
+    <link rel="icon" type="image/svg+xml" href="assets/icons/fav-icon/favicon.svg" />
+    <link rel="icon" type="image/png" sizes="96x96" href="assets/icons/fav-icon/favicon-96x96.png" />
+    <link rel="shortcut icon" href="assets/icons/fav-icon/favicon.ico" type="image/x-icon" />
     <link rel="apple-touch-icon" sizes="180x180" href="assets/icons/fav-icon/apple-touch-icon.png" />
-    <link rel="mask-icon" href="assets/icons/fav-icon/safari-pinned-tab.svg" color="#000000" />
-    <link rel="manifest" href="manifest.webmanifest" />
-    <meta name="theme-color" content="#ffffff" />
-    <!-- ✅ Koniec sekcji favicon -->
-
+    <link rel="mask-icon" href="/assets/icons/safari-pinned-tab.svg" color="#6b1e2f" />
     <!-- Open Graph (Facebook / LinkedIn) -->
     <meta property="og:site_name" content="KP_Code" />
     <meta property="og:type" content="website" />
@@ -64,7 +62,7 @@
       as="image"
       href="assets/img/hero/hero-768x614.avif"
       imagesrcset="assets/img/hero/hero-640x512.avif 640w, assets/img/hero/hero-768x614.avif 768w, assets/img/hero/hero-960x768.avif 960w, assets/img/hero/hero-1200x960.avif 1200w"
-      imagesizes="(max-width: 768px) 100vw, 45vw" />
+      imagesizes="(max-width: 768px) 100vw, 45vw"/>
 
     <!-- Restaurant JSON-LD -->
     <script type="application/ld+json">
@@ -119,7 +117,7 @@
         "name": "KP_Code",
         "description": "Demo strony gastronomicznej w portfolio KP_Code – nowoczesny design, responsywność i optymalizacja SEO.",
         "url": "https://gastronomy-project-02.netlify.app/",
-        "logo": "https://gastronomy-project-02.netlify.app/assets/img/logo/logo-light-mode.svg",
+        "logo": "https://gastronomy-project-02.netlify.app/assets/img/logo/kp_code-logo-512.png",
         "image": [
           {
             "@type": "ImageObject",
@@ -152,8 +150,8 @@
     <header class="site-header" aria-label="Nagłówek strony z nawigacją">
       <div class="container header__inner">
         <a class="brand" href="/#hero" aria-label="Demo dla strony gastronomicznej – Strona główna">
-          <img src="assets/img/logo/logo-light-mode.svg" alt="" class="brand__logo brand__logo--light" width="40" height="40" />
-          <img src="assets/img/logo/logo-dark-mode.svg" alt="" class="brand__logo brand__logo--dark" width="40" height="40" />
+          <img src="assets/img/logo/logo-light-mode-40x40.svg" alt="" class="brand__logo brand__logo--light" width="40" height="40" />
+          <img src="assets/img/logo/logo-dark-mode-40x40.svg" alt="" class="brand__logo brand__logo--dark" width="40" height="40" />
           <span class="brand__text">KP_Code</span>
         </a>
 
@@ -208,8 +206,7 @@
               <!-- WebP -->
               <source
                 type="image/webp"
-                srcset="assets/img/hero/hero-640x512.webp 640w, assets/img/hero/hero-768x614.webp 768w, assets/img/
-                hero/hero-960x768.webp 960w, assets/img/hero/hero-1200x960.webp 1200w"
+                srcset="assets/img/hero/hero-640x512.webp 640w, assets/img/hero/hero-768x614.webp 768w, assets/img/hero/hero-960x768.webp 960w, assets/img/hero/hero-1200x960.webp 1200w"
                 sizes="(max-width: 768px) 100vw, 45vw" />
 
               <!-- JPG fallback -->
@@ -669,8 +666,8 @@
           <!-- Brand -->
           <div class="footer__brand">
             <a class="brand" href="/#hero" aria-label="Gastronomy home">
-              <img src="assets/img/logo/logo-dark-mode.svg" alt="KP_Code logo" class="brand__logo brand__logo--light" width="40" height="40" />
-              <img src="assets/img/logo/logo-light-mode.svg" alt="KP_Code logo" class="brand__logo brand__logo--dark" width="40" height="40" />
+              <img src="assets/img/logo/logo-dark-mode-40x40.svg" alt="KP_Code logo" class="brand__logo brand__logo--light" width="40" height="40" />
+              <img src="assets/img/logo/logo-light-mode-40x40.svg" alt="KP_Code logo" class="brand__logo brand__logo--dark" width="40" height="40" />
               <span class="brand__text">KP_Code</span>
             </a>
             <p class="footer__tagline">Demo projektu przygotowane przez KP_Code. Jeśli chcesz podobną stronę dla swojej restauracji — skontaktuj się ze mną.</p>
@@ -759,15 +756,19 @@
     </noscript>
     <!-- SCRIPT -->
     <script src="js/script.min.js" defer></script>
+
+    <!--
     <script>
       if ("serviceWorker" in navigator) {
-        window.addEventListener("load", () => {
+        window.addEventListener("load", function () {
           navigator.serviceWorker
             .register("/sw.js")
-            .then((reg) => console.log("✅ Service Worker zarejestrowany:", reg.scope))
-            .catch((err) => console.warn("❌ Błąd rejestracji Service Workera:", err));
+            .then(() => console.log("✅ Service Worker registered"))
+            .catch((err) => console.warn("Service Worker failed:", err));
         });
       }
     </script>
+    -->
   </body>
 </html>
+<!-- Codex update: restored root-relative anchors (/#hero, /#about, /#menu, /#gallery, /#contact) in all HTML files -->

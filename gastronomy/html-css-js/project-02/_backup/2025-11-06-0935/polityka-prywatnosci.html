@@ -9,10 +9,6 @@
     <meta name="color-scheme" content="light dark" />
     <meta name="description" content="Jak przetwarzamy dane osobowe: zakres, podstawy prawne (RODO), prawa użytkownika, kontakt do administratora, okresy retencji i odbiorcy danych." />
     <link rel="canonical" href="https://gastronomy-project-02.netlify.app/polityka-prywatnosci.html" />
-    <meta name="author" content="KP_Code" />
-    <meta name="application-name" content="Gastro Demo" />
-    <meta name="apple-mobile-web-app-title" content="Gastro Demo" />
-    <meta name="msapplication-TileColor" content="#f8f1e7" />
 
     <!-- Open Graph / Twitter -->
     <meta property="og:site_name" content="KP_Code" />
@@ -30,14 +26,11 @@
     <meta name="twitter:description" content="Zasady przetwarzania danych osobowych: RODO, podstawy prawne, prawa użytkownika, retencja i kontakt." />
     <meta name="twitter:image" content="https://gastronomy-project-02.netlify.app/assets/img/og-img/og-img-1200x630.jpg" />
 
-    <!-- ✅ Favicons + manifest (spójne z /assets/icons/fav-icon/) -->
-    <link rel="icon" type="image/png" sizes="32x32" href="assets/icons/fav-icon/favicon-32x32.png" />
-    <link rel="icon" type="image/png" sizes="16x16" href="assets/icons/fav-icon/favicon-16x16.png" />
+    <!-- PWA / Icons (spójne z projektem) -->
+    <link rel="manifest" href="/manifest.webmanifest" />
+    <link rel="icon" type="image/svg+xml" href="assets/icons/fav-icon/favicon.svg" />
     <link rel="apple-touch-icon" sizes="180x180" href="assets/icons/fav-icon/apple-touch-icon.png" />
-    <link rel="mask-icon" href="assets/icons/fav-icon/safari-pinned-tab.svg" color="#000000" />
-    <link rel="manifest" href="manifest.webmanifest" />
-    <meta name="theme-color" content="#ffffff" />
-    <!-- ✅ Koniec sekcji favicon -->
+    <link rel="mask-icon" href="/assets/icons/safari-pinned-tab.svg" color="#6b1e2f" />
 
     <!-- Preload lokalnych fontów -->
     <link rel="preload" href="assets/fonts/montserrat-400-latin.woff2" as="font" type="font/woff2" crossorigin />
@@ -102,8 +95,8 @@
     <header class="site-header" aria-label="Nagłówek strony z nawigacją">
       <div class="container header__inner">
         <a class="brand" href="/#hero" aria-label="Demo dla strony gastronomicznej – Strona główna">
-          <img src="assets/img/logo/logo-light-mode.svg" alt="" class="brand__logo brand__logo--light" width="40" height="40" />
-          <img src="assets/img/logo/logo-dark-mode.svg" alt="" class="brand__logo brand__logo--dark" width="40" height="40" />
+          <img src="assets/img/logo/logo-light-mode-40x40.svg" alt="" class="brand__logo brand__logo--light" width="40" height="40" />
+          <img src="assets/img/logo/logo-dark-mode-40x40.svg" alt="" class="brand__logo brand__logo--dark" width="40" height="40" />
           <span class="brand__text">KP_Code</span>
         </a>
 
@@ -346,45 +339,40 @@
     <footer class="footer" aria-label="Site footer">
       <div class="container">
         <div class="footer__grid">
-          <!-- Brand -->
           <div class="footer__brand">
             <a class="brand" href="/#hero" aria-label="Gastronomy home">
-              <img src="assets/img/logo/logo-dark-mode.svg" alt="KP_Code logo" class="brand__logo brand__logo--light" width="40" height="40" />
-              <img src="assets/img/logo/logo-light-mode.svg" alt="KP_Code logo" class="brand__logo brand__logo--dark" width="40" height="40" />
+              <img src="assets/img/logo/logo-dark-mode-160x160.png" alt="KP_Code logo" class="brand__logo brand__logo--light" width="50" height="50" />
+              <img src="assets/img/logo/logo-light-mode-160x160.png" alt="KP_Code logo" class="brand__logo brand__logo--dark" width="50" height="50" />
               <span class="brand__text">KP_Code</span>
             </a>
             <p class="footer__tagline">Demo projektu przygotowane przez KP_Code. Jeśli chcesz podobną stronę dla swojej restauracji — skontaktuj się ze mną.</p>
           </div>
-
-          <!-- Nav -->
+          <!-- Nawigacja -->
           <nav class="footer__nav" aria-label="Footer">
             <p class="footer__heading">Odkrywaj</p>
             <ul class="footer__list">
-              <li><a href="/#about">O nas</a></li>
-              <li><a href="/#menu">Menu</a></li>
-              <li><a href="/#gallery">Galeria</a></li>
-              <li><a href="#testimonials">Opinie</a></li>
-              <li><a href="/#contact">Kontact</a></li>
+              <li><a href="/about.html">O nas</a></li>
+              <li><a href="/menu.html">Menu</a></li>
+              <li><a href="/gallery.html">Galeria</a></li>
+              <li><a href="/#testimonials">Opinie</a></li>
+              <li><a href="/#contact">Kontakt</a></li>
             </ul>
           </nav>
+
           <nav class="footer__nav" aria-label="Informacje prawne">
             <p class="footer__heading">Informacje</p>
             <ul class="footer__list">
-              <li><a href="/polityka-prywatnosci.html">Polityka prywatności</a></li>
+              <li><a href="/polityka-prywatnosci.html" aria-current="page">Polityka prywatności</a></li>
               <li><a href="/cookies.html">Polityka cookies</a></li>
             </ul>
           </nav>
-          <!-- Contact -->
+
           <div class="footer__contact">
-            <p class="footer__heading">Kontact</p>
+            <p class="footer__heading">Kontakt</p>
             <address>
               <p>
                 <img src="assets/icons/svg-icon/home-icon.svg" alt="" aria-hidden="true" width="24" height="24" />
-                <a href="tel:+48533537091">ul. Marynarki Wojennej 12/31 33-100 Tarnów</a>
-              </p>
-              <p>
-                <img src="assets/icons/svg-icon/phone-icon.svg" alt="" aria-hidden="true" width="24" height="24" />
-                <a href="tel:+48533537091">+48 533 537 091</a>
+                <span>Plac Przykładowy 1, 00-000 Warszawa, Polska</span>
               </p>
               <p>
                 <img src="assets/icons/svg-icon/mail-icon.svg" alt="" aria-hidden="true" width="24" height="24" />
@@ -433,21 +421,8 @@
         </div>
       </div>
     </footer>
-    <!-- NO SCRIPT -->
-    <noscript>
-      <div class="nojs" role="status" aria-live="polite">JavaScript is disabled. Some interactive features may be limited.</div>
-    </noscript>
-    <!-- SCRIPT -->
+
+    <noscript><div class="nojs" role="status" aria-live="polite">JavaScript jest wyłączony. Niektóre funkcje mogą być ograniczone.</div></noscript>
     <script src="js/script.min.js" defer></script>
-    <script>
-      if ("serviceWorker" in navigator) {
-        window.addEventListener("load", () => {
-          navigator.serviceWorker
-            .register("/sw.js")
-            .then((reg) => console.log("✅ Service Worker zarejestrowany:", reg.scope))
-            .catch((err) => console.warn("❌ Błąd rejestracji Service Workera:", err));
-        });
-      }
-    </script>
   </body>
 </html>

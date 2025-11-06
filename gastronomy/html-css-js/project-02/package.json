@@ -19,17 +19,19 @@
   ],
   "scripts": {
     "start": "live-server --port=5500",
-    "build": "npm run build:css && npm run build:js",
-    "build:css": "postcss css/style.css -o css/style.min.css",
-    "build:js": "terser js/script.js -o js/script.min.js --compress --mangle",
+    "build": "npm run min",
+    "min:css": "cssnano css/style.css css/style.min.css",
+    "min:js": "terser js/script.js -o js/script.min.js -c -m",
+    "min": "npm run min:css && npm run min:js",
+    "watch": "chokidar \"css/style.css\" \"js/script.js\" -c \"npm run min\"",
     "format": "prettier --write \"**/*.{html,css,js,json,md}\""
   },
   "devDependencies": {
     "@squoosh/cli": "^0.7.1",
+    "chokidar-cli": "^3.0.0",
     "cssnano": "^6.1.2",
+    "cssnano-cli": "^1.0.5",
     "live-server": "^1.2.2",
-    "postcss": "^8.5.6",
-    "postcss-cli": "^11.0.1",
     "prettier": "^3.6.2",
     "terser": "^5.44.0"
   }
