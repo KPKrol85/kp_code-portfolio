@@ -5,6 +5,8 @@ import { initReveal } from './features/reveal.js';
 import { initLightbox } from './features/lightbox.js';
 import { initForm } from './features/form.js';
 import { initTabs } from './features/tabs.js';
+import { initCompactHeader } from "./features/compact-header.js";
+
 
 function setYear() {
   const el = document.querySelector('[data-year]');
@@ -38,6 +40,7 @@ function boot() {
   setAriaCurrent();
   initTheme();
   initNav();
+  initCompactHeader();
   initReveal();
   initLightbox();
   initForm();
