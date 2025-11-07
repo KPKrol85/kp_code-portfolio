@@ -1,0 +1,24 @@
+{
+  "name": "Tourism & Hotels",
+  "short_name": "T&H Hotel",
+  "start_url": "/index.html",
+  "scope": "/",
+  "display": "standalone",
+  "background_color": "#0d0f14",
+  "theme_color": "#0d0f14",
+  "description": "TODO: Po dodaniu /assets/img/ui/icon-192.png i icon-512.png podmień ikony w manifeście na ścieżki plików PNG.",
+  "icons": [
+    {
+      "src": "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='192' height='192'%3E%3Crect width='100%25' height='100%25' rx='24' fill='%23121621'/%3E%3Ctext x='50%25' y='55%25' text-anchor='middle' font-family='sans-serif' font-size='96' fill='%238da3ff'%3ETH%3C/text%3E%3C/svg%3E",
+      "sizes": "192x192",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    },
+    {
+      "src": "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='512' height='512'%3E%3Crect width='100%25' height='100%25' rx='64' fill='%23121621'/%3E%3Ctext x='50%25' y='55%25' text-anchor='middle' font-family='sans-serif' font-size='256' fill='%238da3ff'%3ETH%3C/text%3E%3C/svg%3E",
+      "sizes": "512x512",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    }
+  ]
+}

@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="pl" data-theme="auto">
+  <head>
+    <!-- Required -->
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Butikowy Hotel — Tourism & Hotels</title>
+    <meta name="description" content="Butikowy hotel: eleganckie pokoje, luksusowe doświadczenia, wyjątkowe oferty. Zarezerwuj pobyt już dziś." />
+    <meta name="color-scheme" content="light dark" />
+    <!-- Theme color for Light/Dark -->
+    <meta name="theme-color" media="(prefers-color-scheme: light)" content="#f7f6f3" />
+    <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#0d0f14" />
+
+    <!-- Indexing / privacy -->
+    <meta name="robots" content="index,follow" />
+    <meta name="referrer" content="strict-origin-when-cross-origin" />
+    <meta name="format-detection" content="telephone=no" />
+
+    <!-- Canonical (po wdrożeniu podmień na finalny adres produkcyjny) -->
+    <link rel="canonical" href="https://twoja-domena.netlify.app/" />
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="KP_Code_ | Tourism & Hotels Demo" />
+    <meta property="og:title" content="KP_Code_ — Butikowy Hotel (demo projektu)" />
+    <meta property="og:description" content="Butikowy hotel: eleganckie pokoje, luksusowe doświadczenia, wyjątkowe oferty." />
+    <meta property="og:url" content="https://twoja-domena.netlify.app/" />
+    <meta property="og:locale" content="pl_PL" />
+    <meta property="og:image" content="./assets/img/hero/hero-01-1280.jpg" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:type" content="image/jpeg" />
+    <!-- (Opcj.) alternatywny opis obrazu dla OG -->
+    <meta property="og:image:alt" content="Lobby butikowego hotelu — Tourism & Hotels demo" />
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Butikowy Hotel — Tourism & Hotels" />
+    <meta name="twitter:description" content="Elegancja, komfort i wyjątkowe oferty." />
+    <meta name="twitter:image" content="./assets/img/hero/hero-01-1280.jpg" />
+
+    <!-- PWA -->
+    <link rel="manifest" href="./site.webmanifest" />
+
+    <!-- Icons -->
+    <link rel="icon" href="./assets/img/ui/favicon.svg" type="image/svg+xml" />
+    <link rel="icon" href="./assets/img/ui/favicon.png" sizes="32x32" />
+    <link rel="apple-touch-icon" href="./assets/img/ui/apple-touch-icon.png" />
+    <link rel="mask-icon" href="./assets/img/ui/safari-pinned-tab.svg" color="#0d0f14" />
+
+    <!-- Styles -->
+    <link rel="stylesheet" href="./css/style.css" />
+
+    <!-- Preload LCP image (zaktualizuj ścieżki po podmianie grafik) -->
+    <link
+      rel="preload"
+      as="image"
+      href="./assets/img/hero/hero-1200x675.jpg"
+      imagesrcset="
+        ./assets/img/hero/hero-640x360.jpg 640w,
+        ./assets/img/hero/hero-960x540.jpg 960w,
+        ./assets/img/hero/hero-1200x675.jpg 1200w,
+        ./assets/img/hero/hero-1600x900.jpg 1600w"
+      imagesizes="(max-width: 900px) calc(100vw - 2rem), 628px" />
+
+    <!-- (Opcjonalnie) preconnect pod zewnętrzne fonty/CDN
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  --></head>
+
+  <!-- BODY -->
+  <body>
+    <a class="skip-link" href="#main">Przejdź do treści</a>
+
+    <!-- HEADER -->
+    <header class="site-header" id="top">
+      <div class="container site-header__inner">
+        <!-- LOGO + BRAND -->
+        <a class="site-header__brand" href="/" aria-label="Strona główna">
+          <img src="./assets/img/logo/logo-128x128.svg" alt="Logo KP_Code_" class="brand-logo" width="36" height="36" />
+          <span>KP_Code_</span>
+        </a>
+
+        <!-- NAV TOGGLE -->
+        <button class="site-header__nav-toggle" id="nav-toggle" aria-controls="site-nav" aria-expanded="false" aria-label="Otwórz menu">
+          <span class="visually-hidden">Menu</span>
+          <svg class="icon" viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M3 6h18M3 12h18M3 18h18" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+          </svg>
+        </button>
+
+        <!-- NAVIGATION -->
+        <nav class="site-nav" id="site-nav" aria-label="Główne">
+          <ul class="site-nav__list">
+            <li><a href="/index.html" data-nav>Strona główna</a></li>
+            <li><a href="/rooms.html" data-nav>Pokoje &amp; Apartamenty</a></li>
+            <li><a href="/offers.html" data-nav>Oferty specjalne</a></li>
+            <li><a href="/gallery.html" data-nav>Galeria</a></li>
+            <li><a href="/contact.html" data-nav>Kontakt</a></li>
+          </ul>
+
+          <div class="site-nav__extras">
+            <!-- THEME TOGGLE -->
+            <button id="theme-toggle" class="theme-toggle" type="button" aria-label="Przełącz motyw">
+              <img src="./assets/img/icons/sun-40x40.svg" alt="" class="theme-icon theme-icon--sun" />
+              <img src="./assets/img/icons/moon-40x40.svg" alt="" class="theme-icon theme-icon--moon" />
+            </button>
+
+            <a class="btn btn--primary" href="#book">Rezerwuj</a>
+          </div>
+        </nav>
+      </div>
+    </header>
+
+    <!-- MAIN CONTENT -->
+    <main id="main">
+      <!-- HERO SECTION -->
+
+      <section class="hero" aria-label="Demo strony turystyczno-hotelowej KP_Code_">
+        <div class="container hero__inner">
+          <div class="hero__media" data-reveal>
+            <picture>
+              <!-- AVIF -->
+              <source
+                type="image/avif"
+                srcset="./assets/img/hero/hero-640x360.avif 640w, ./assets/img/hero/hero-960x540.avif 960w, ./assets/img/hero/hero-1200x675.avif 1200w, ./assets/img/hero/hero-1600x900.avif 1600w"
+                sizes="(max-width: 900px) calc(100vw - 2rem), 628px" />
+
+              <!-- WebP -->
+              <source
+                type="image/webp"
+                srcset="./assets/img/hero/hero-640x360.webp 640w, ./assets/img/hero/hero-960x540.webp 960w, ./assets/img/hero/hero-1200x675.webp 1200w, ./assets/img/hero/hero-1600x900.webp 1600w"
+                sizes="(max-width: 900px) calc(100vw - 2rem), 628px" />
+
+              <!-- JPG fallback -->
+              <img
+                src="./assets/img/hero/hero-1200x675.jpg"
+                srcset="./assets/img/hero/hero-640x360.jpg 640w, ./assets/img/hero/hero-960x540.jpg 960w, ./assets/img/hero/hero-1200x675.jpg 1200w, ./assets/img/hero/hero-1600x900.jpg 1600w"
+                sizes="(max-width: 900px) calc(100vw - 2rem), 628px"
+                alt="Walizka podróżna pod palmą na tle turkusowego morza – motyw strony demonstracyjnej turystyki i hotelarstwa"
+                width="1600"
+                height="900"
+                fetchpriority="high"
+                decoding="async" />
+            </picture>
+          </div>
+
+          <div class="hero__content" data-reveal>
+            <h1 class="hero__title">Nowoczesne strony dla turystyki i hoteli</h1>
+            <p class="hero__subtitle">
+              Demonstracyjny projekt
+              <strong>KP_Code_</strong>
+              prezentujący elegancki i lekki motyw stworzony dla branży
+              <em>turystycznej, hotelarskiej i wypoczynkowej</em>
+              . Minimalizm, przejrzystość i morska świeżość w jednym.
+            </p>
+            <div class="hero__cta">
+              <a class="btn btn--primary" href="#book">Zarezerwuj pobyt</a>
+              <a class="btn btn--ghost" href="/rooms.html">Zobacz więcej</a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- CONTENT SECTIONS -->
+      <section class="section" aria-labelledby="benefits">
+        <div class="container">
+          <h2 id="benefits" class="section-title" data-reveal>Dlaczego my</h2>
+          <div class="benefits" data-reveal>
+            <article class="benefit">
+              <h3 class="benefit__title">Lokalizacja</h3>
+              <p class="benefit__text">W samym sercu miasta, kilka kroków od kultowych miejsc.</p>
+            </article>
+            <article class="benefit">
+              <h3 class="benefit__title">Komfort</h3>
+              <p class="benefit__text">Materace premium, blackout, selekcja poduszek i ciche wnętrza.</p>
+            </article>
+            <article class="benefit">
+              <h3 class="benefit__title">Smaki</h3>
+              <p class="benefit__text">Śniadania a la carte, autorska kawa, lokalne składniki.</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" aria-labelledby="rooms">
+        <div class="container">
+          <div class="section-header">
+            <h2 id="rooms" class="section-title" data-reveal>Pokoje &amp; Apartamenty</h2>
+            <a class="btn btn--link" href="/rooms.html">Wszystkie pokoje</a>
+          </div>
+          <div class="card-grid" data-reveal>
+            <article class="room-card">
+              <img
+                class="room-card__img"
+                src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='960' height='640'%3E%3Crect width='100%25' height='100%25' fill='%23d1d7e0'/%3E%3C/svg%3E"
+                width="960"
+                height="640"
+                alt="Pokój Classic"
+                loading="lazy"
+                decoding="async" />
+              <div class="room-card__body">
+                <h3 class="room-card__title">Classic</h3>
+                <p class="room-card__meta">18 m² • 1–2 os.</p>
+                <a class="btn btn--secondary" href="/rooms.html#classic">Szczegóły</a>
+              </div>
+            </article>
+            <article class="room-card">
+              <img
+                class="room-card__img"
+                src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='960' height='640'%3E%3Crect width='100%25' height='100%25' fill='%23d1d7e0'/%3E%3C/svg%3E"
+                width="960"
+                height="640"
+                alt="Pokój Deluxe"
+                loading="lazy"
+                decoding="async" />
+              <div class="room-card__body">
+                <h3 class="room-card__title">Deluxe</h3>
+                <p class="room-card__meta">24 m² • 2 os.</p>
+                <a class="btn btn--secondary" href="/rooms.html#deluxe">Szczegóły</a>
+              </div>
+            </article>
+            <article class="room-card">
+              <img
+                class="room-card__img"
+                src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='960' height='640'%3E%3Crect width='100%25' height='100%25' fill='%23d1d7e0'/%3E%3C/svg%3E"
+                width="960"
+                height="640"
+                alt="Apartament Luxury"
+                loading="lazy"
+                decoding="async" />
+              <div class="room-card__body">
+                <h3 class="room-card__title">Luxury Suite</h3>
+                <p class="room-card__meta">42 m² • 2–3 os.</p>
+                <a class="btn btn--secondary" href="/rooms.html#luxury">Szczegóły</a>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="section section--highlight" aria-labelledby="luxury">
+        <div class="container">
+          <h2 id="luxury" class="section-title" data-reveal>Luxury Room</h2>
+          <div class="highlight" data-reveal>
+            <div class="highlight__media">
+              <img
+                src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='1280' height='720'%3E%3Crect width='100%25' height='100%25' fill='%23cfd6df'/%3E%3C/svg%3E"
+                width="1280"
+                height="720"
+                alt="Wnętrze pokoju Luxury"
+                loading="lazy"
+                decoding="async" />
+            </div>
+            <div class="highlight__body">
+              <p>Przestronny układ, strefa dzienna i panoramiczne okna. Łazienka z prysznicem deszczowym i selekcją kosmetyków aromaterapeutycznych.</p>
+              <ul class="list">
+                <li>Łóżko King z materacem premium</li>
+                <li>Indywidualnie sterowana klimatyzacja</li>
+                <li>Smart TV 55” i szybkie Wi‑Fi</li>
+              </ul>
+              <a class="btn btn--primary" href="/rooms.html#luxury">Zobacz szczegóły</a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" aria-labelledby="offers">
+        <div class="container">
+          <div class="section-header">
+            <h2 id="offers" class="section-title" data-reveal>Oferty specjalne</h2>
+            <a class="btn btn--link" href="/offers.html">Wszystkie oferty</a>
+          </div>
+          <div class="card-grid" data-reveal>
+            <article class="offer-card">
+              <div class="offer-card__badge">-15%</div>
+              <h3 class="offer-card__title">Weekend dla dwojga</h3>
+              <p class="offer-card__text">Dwie noce ze śniadaniem i późnym check‑outem.</p>
+              <a class="btn btn--secondary" href="/offers.html#weekend">Skorzystaj</a>
+            </article>
+            <article class="offer-card">
+              <div class="offer-card__badge">-10%</div>
+              <h3 class="offer-card__title">Biznes w mieście</h3>
+              <p class="offer-card__text">Specjalny pakiet dla podróżujących służbowo.</p>
+              <a class="btn btn--secondary" href="/offers.html#biz">Skorzystaj</a>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" aria-labelledby="testimonials">
+        <div class="container">
+          <h2 id="testimonials" class="section-title" data-reveal>Opinie gości</h2>
+          <div class="testimonials" data-reveal>
+            <figure class="testimonial">
+              <blockquote class="testimonial__quote">„Najlepszy sen i najpyszniejsze śniadanie w mieście.”</blockquote>
+              <figcaption class="testimonial__author">— Marta, maj 2025</figcaption>
+            </figure>
+            <figure class="testimonial">
+              <blockquote class="testimonial__quote">„Dopracowane detale, świetna obsługa. Wracamy!”</blockquote>
+              <figcaption class="testimonial__author">— Kamil, kwiecień 2025</figcaption>
+            </figure>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" aria-labelledby="gallery">
+        <div class="container">
+          <div class="section-header">
+            <h2 id="gallery" class="section-title" data-reveal>Galeria</h2>
+            <a class="btn btn--link" href="/gallery.html">Więcej zdjęć</a>
+          </div>
+          <div class="gallery-grid" data-reveal>
+            <a class="gallery-grid__item" href="#" data-lightbox-item>
+              <img
+                src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='640' height='640'%3E%3Crect width='100%25' height='100%25' fill='%23d1d7e0'/%3E%3C/svg%3E"
+                width="640"
+                height="640"
+                alt="Detal wystroju"
+                loading="lazy"
+                decoding="async" />
+            </a>
+            <a class="gallery-grid__item" href="#" data-lightbox-item>
+              <img
+                src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='640' height='640'%3E%3Crect width='100%25' height='100%25' fill='%23cbd3dd'/%3E%3C/svg%3E"
+                width="640"
+                height="640"
+                alt="Lobby"
+                loading="lazy"
+                decoding="async" />
+            </a>
+            <a class="gallery-grid__item" href="#" data-lightbox-item>
+              <img
+                src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='640' height='640'%3E%3Crect width='100%25' height='100%25' fill='%23d7dce4'/%3E%3C/svg%3E"
+                width="640"
+                height="640"
+                alt="Strefa relaksu"
+                loading="lazy"
+                decoding="async" />
+            </a>
+          </div>
+        </div>
+      </section>
+
+      <section id="book" class="section section--cta" aria-label="Rezerwacja">
+        <div class="container" data-reveal>
+          <h2 class="section-title">Zarezerwuj swój pobyt</h2>
+          <p>Wybierz termin i korzystaj z najlepszej ceny bezpośredniej.</p>
+          <a class="btn btn--primary" href="/contact.html#form">Przejdź do formularza</a>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="container site-footer__inner">
+        <p>
+          &copy;
+          <span data-year></span>
+          Tourism & Hotels. Wszelkie prawa zastrzeżone.
+        </p>
+        <nav aria-label="Informacje prawne">
+          <a href="/legal.html">Polityka i warunki</a>
+        </nav>
+      </div>
+    </footer>
+
+    <!-- JSON-LD -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Hotel",
+        "name": "Tourism & Hotels",
+        "url": "/",
+        "address": { "@type": "PostalAddress", "streetAddress": "ul. Przykładowa 1", "addressLocality": "Miasto", "postalCode": "00-000", "addressCountry": "PL" },
+        "telephone": "+48 000 000 000",
+        "image": "/assets/img/hero/hero-01-1280.jpg"
+      }
+    </script>
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Organization",
+        "name": "Tourism & Hotels",
+        "url": "/",
+        "logo": "/assets/img/ui/icon-192.png"
+      }
+    </script>
+
+    <script type="module" defer src="js/script.js"></script>
+  </body>
+</html>

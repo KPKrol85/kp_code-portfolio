@@ -1,0 +1,138 @@
+<!doctype html>
+<html lang="pl" data-theme="auto">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Kontakt i rezerwacje — Tourism & Hotels</title>
+    <meta name="description" content="Skontaktuj się z nami lub złóż zapytanie o rezerwację.">
+    <meta name="theme-color" media="(prefers-color-scheme: light)" content="#f7f6f3">
+    <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#0d0f14">
+    <link rel="manifest" href="/site.webmanifest">
+    <link rel="preload" as="style" href="css/style.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="icon" href="/assets/img/ui/favicon.svg" type="image/svg+xml">
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Przejdź do treści</a>
+    <header class="site-header" id="top">
+      <div class="container site-header__inner">
+        <a class="site-header__brand" href="/">Tourism & Hotels</a>
+        <button class="site-header__nav-toggle" id="nav-toggle" aria-controls="site-nav" aria-expanded="false" aria-label="Otwórz menu">
+          <span class="visually-hidden">Menu</span>
+          <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 6h18M3 12h18M3 18h18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+        </button>
+        <nav class="site-nav" id="site-nav" aria-label="Główne">
+          <ul class="site-nav__list">
+            <li><a href="/index.html" data-nav>Strona główna</a></li>
+            <li><a href="/rooms.html" data-nav>Pokoje &amp; Apartamenty</a></li>
+            <li><a href="/offers.html" data-nav>Oferty specjalne</a></li>
+            <li><a href="/gallery.html" data-nav>Galeria</a></li>
+            <li><a href="/contact.html" data-nav>Kontakt</a></li>
+          </ul>
+          <div class="site-nav__extras">
+            <button id="theme-toggle" class="btn btn--ghost" aria-pressed="false" aria-label="Przełącz motyw"><span data-theme-label>Auto</span></button>
+            <a class="btn btn--primary" href="#form">Rezerwuj</a>
+          </div>
+        </nav>
+      </div>
+    </header>
+
+    <main id="main">
+      <nav class="breadcrumb" aria-label="Okruszki">
+        <ol>
+          <li><a href="/index.html">Strona główna</a></li>
+          <li aria-current="page">Kontakt</li>
+        </ol>
+      </nav>
+
+      <section class="section" aria-labelledby="contact-heading">
+        <div class="container">
+          <h1 id="contact-heading" class="section-title">Kontakt i rezerwacje</h1>
+
+          <div class="grid-2">
+            <article>
+              <h2>Dane kontaktowe</h2>
+              <p>ul. Przykładowa 1, 00-000 Miasto</p>
+              <p>Tel.: <a href="tel:+48000000000">+48 000 000 000</a></p>
+              <p>E-mail: <a href="mailto:rezerwacje@example.com">rezerwacje@example.com</a></p>
+              <figure class="map" aria-label="Mapa dojazdu">
+                <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='800' height='450'%3E%3Crect width='100%25' height='100%25' fill='%23e1e5ea'/%3E%3Ctext x='50%25' y='50%25' dominant-baseline='middle' text-anchor='middle' font-family='sans-serif' font-size='24' fill='%238a94a6'%3EMapa – placeholder%3C/text%3E%3C/svg%3E" width="800" height="450" alt="Mapa (placeholder)" loading="lazy" decoding="async">
+                <figcaption>Podmień na osadzoną mapę lub obraz.</figcaption>
+              </figure>
+            </article>
+
+            <article id="form">
+              <h2>Zapytanie o rezerwację</h2>
+              <form class="form" novalidate data-form>
+                <input type="text" name="website" class="visually-hidden" tabindex="-1" autocomplete="off">
+                <div class="form__field">
+                  <label for="name">Imię i nazwisko</label>
+                  <input id="name" name="name" type="text" required inputmode="text" autocomplete="name" placeholder="Jan Kowalski">
+                  <p class="form__error" id="err-name" aria-live="polite" hidden>Podaj imię i nazwisko.</p>
+                </div>
+                <div class="form__field">
+                  <label for="email">E‑mail</label>
+                  <input id="email" name="email" type="email" required autocomplete="email" placeholder="jan@example.com">
+                  <p class="form__error" id="err-email" aria-live="polite" hidden>Podaj poprawny adres e‑mail.</p>
+                </div>
+                <div class="form__field grid-2">
+                  <div>
+                    <label for="checkin">Przyjazd</label>
+                    <input id="checkin" name="checkin" type="date" required>
+                    <p class="form__error" id="err-checkin" aria-live="polite" hidden>Wybierz datę przyjazdu.</p>
+                  </div>
+                  <div>
+                    <label for="checkout">Wyjazd</label>
+                    <input id="checkout" name="checkout" type="date" required>
+                    <p class="form__error" id="err-checkout" aria-live="polite" hidden>Wybierz datę wyjazdu.</p>
+                  </div>
+                </div>
+                <div class="form__field">
+                  <label for="guests">Liczba osób</label>
+                  <input id="guests" name="guests" type="number" min="1" max="6" step="1" required value="2">
+                  <p class="form__error" id="err-guests" aria-live="polite" hidden>Podaj liczbę osób (1–6).</p>
+                </div>
+                <div class="form__field">
+                  <label for="message">Wiadomość</label>
+                  <textarea id="message" name="message" rows="4" placeholder="Preferencje, pytania (opcjonalnie)"></textarea>
+                </div>
+                <div class="form__actions">
+                  <button class="btn btn--primary" type="submit">Wyślij zapytanie</button>
+                </div>
+                <p class="form__success" role="status" aria-live="polite" hidden>Dziękujemy! Skontaktujemy się wkrótce.</p>
+              </form>
+            </article>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="container site-footer__inner">
+        <p>&copy; <span data-year></span> Tourism & Hotels.</p>
+        <nav aria-label="Informacje prawne">
+          <a href="/legal.html">Polityka i warunki</a>
+        </nav>
+      </div>
+    </footer>
+
+    <script type="module" defer src="js/script.js"></script>
+    <script type="application/ld+json">{
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {"@type": "ListItem", "position": 1, "name": "Strona główna", "item": "/index.html"},
+        {"@type": "ListItem", "position": 2, "name": "Kontakt", "item": "/contact.html"}
+      ]
+    }</script>
+  </body>
+</html>
+    <!-- Open Graph / Twitter -->
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="Tourism & Hotels">
+    <meta property="og:title" content="Kontakt i rezerwacje — Tourism & Hotels">
+    <meta property="og:description" content="Skontaktuj się z nami lub złóż zapytanie o rezerwację.">
+    <meta property="og:image" content="/assets/img/hero/hero-01-1280.jpg">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Kontakt i rezerwacje — Tourism & Hotels">
+    <meta name="twitter:description" content="Skontaktuj się z nami lub złóż zapytanie o rezerwację.">

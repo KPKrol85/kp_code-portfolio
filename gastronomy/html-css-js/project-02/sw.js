@@ -1,6 +1,6 @@
 /* ===== KP_Code – Service Worker (cache-first for static, network-first for HTML) ===== */
 
-const CACHE_NAME = "kp_code_v0.10.00";
+const CACHE_NAME = "kp_code_v0.11.00";
 
 // 🔹 Zasoby do zbuforowania (realne ścieżki z projektu)
 const FILES_TO_CACHE = [
