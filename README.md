@@ -14,6 +14,7 @@ Deployed on **Netlify** for live demos, with source code versioned on **GitHub**
 -  [Construction — Project 02](https://construction-project-02.netlify.app)
 -  [Gastronomy — Project 01](https://gastronomy-project-01.netlify.app)
 -  [Gastronomy — Project 02](https://gastronomy-project-02.netlify.app)
+-  [Tourism — Project 01](https://tourism-project-01.netlify.app)
 
 *(more projects coming soon…)*
 
