@@ -1,5 +1,5 @@
 /* Service Worker – Tourism & Hotels */
-const VERSION = "v1.0.1";
+const VERSION = "v1.0.2";
 const STATIC_CACHE = `th-static-${VERSION}`;
 const HTML_CACHE = `th-html-${VERSION}`;
 const STATIC_ASSETS = [
