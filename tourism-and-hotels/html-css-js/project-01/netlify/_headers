@@ -5,3 +5,27 @@
   X-Frame-Options: DENY
   X-XSS-Protection: 0
   Content-Security-Policy: default-src 'self'; script-src 'self'; worker-src 'self'; style-src 'self'; img-src 'self' data:; font-src 'self' data:; connect-src 'self'; manifest-src 'self'; object-src 'none'; base-uri 'self'; frame-ancestors 'none'; form-action 'self'; upgrade-insecure-requests
+
+/site.webmanifest
+  Content-Type: application/manifest+json
+  Cache-Control: public, max-age=86400
+
+/pwa/service-worker.js
+  # SW musi aktualizować się natychmiast – bez długiego cache
+  Cache-Control: no-cache, no-store, must-revalidate
+
+/assets/img/ui/*
+  # Ikony mogą być cachowane długo – zmiana nazwy = odświeżenie
+  Cache-Control: public, max-age=31536000, immutable
+
+/assets/img/ui/safari-pinned-tab.svg
+  Content-Type: image/svg+xml
+  Cache-Control: public, max-age=31536000, immutable
+
+/assets/img/ui/favicon.svg
+  Content-Type: image/svg+xml
+  Cache-Control: public, max-age=31536000, immutable
+
+/assets/img/ui/favicon.ico
+  Content-Type: image/x-icon
+  Cache-Control: public, max-age=31536000, immutable

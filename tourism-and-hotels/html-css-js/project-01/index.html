@@ -44,9 +44,13 @@
 
     <!-- Icons -->
     <link rel="icon" href="./assets/img/ui/favicon.svg" type="image/svg+xml" />
-    <link rel="icon" href="./assets/img/ui/favicon.png" sizes="32x32" />
-    <link rel="apple-touch-icon" href="./assets/img/ui/apple-touch-icon.png" />
+    <link rel="icon" href="./assets/img/ui/favicon-32x32.png" sizes="32x32" />
+    <link rel="icon" href="./assets/img/ui/favicon-16x16.png" sizes="16x16" />
+    <link rel="apple-touch-icon" href="./assets/img/ui/apple-touch-icon.png" sizes="180x180" />
     <link rel="mask-icon" href="./assets/img/ui/safari-pinned-tab.svg" color="#0d0f14" />
+    <link rel="manifest" href="./site.webmanifest" />
+    <meta name="theme-color" content="#2dc7a6" />
+    <meta name="msapplication-TileColor" content="#2dc7a6" />
 
     <!-- Styles -->
     <link rel="stylesheet" href="./css/style.css" />
@@ -55,12 +59,12 @@
     <link
       rel="preload"
       as="image"
-      href="./assets/img/hero/hero-1200x675.jpg"
+      href="./assets/img/hero/hero-01-1200x675.jpg"
       imagesrcset="
-        ./assets/img/hero/hero-640x360.jpg 640w,
-        ./assets/img/hero/hero-960x540.jpg 960w,
-        ./assets/img/hero/hero-1200x675.jpg 1200w,
-        ./assets/img/hero/hero-1600x900.jpg 1600w"
+        ./assets/img/hero/hero-01-640x360.jpg 640w,
+        ./assets/img/hero/hero-01-960x540.jpg 960w,
+        ./assets/img/hero/hero-01-1200x675.jpg 1200w,
+        ./assets/img/hero/hero-01-1600x900.jpg 1600w"
       imagesizes="(max-width: 900px) calc(100vw - 2rem), 628px" />
 
     <!-- (Opcjonalnie) preconnect pod zewnętrzne fonty/CDN
@@ -76,13 +80,13 @@
     <!-- HEADER -->
     <header class="site-header" id="top">
       <div class="container site-header__inner">
-        <!-- LOGO + BRAND -->
+        <!-- Logo + Brand -->
         <a class="site-header__brand" href="/" aria-label="Strona główna">
           <img src="./assets/img/logo/logo-128x128.svg" alt="Logo KP_Code_" class="brand-logo" width="36" height="36" />
           <span>KP_Code_</span>
         </a>
 
-        <!-- NAV TOGGLE -->
+        <!-- Nav toggle -->
         <button class="site-header__nav-toggle" id="nav-toggle" aria-controls="site-nav" aria-expanded="false" aria-label="Otwórz menu">
           <span class="visually-hidden">Menu</span>
           <svg class="icon" viewBox="0 0 24 24" aria-hidden="true">
@@ -90,7 +94,7 @@
           </svg>
         </button>
 
-        <!-- NAVIGATION -->
+        <!-- Nav -->
         <nav class="site-nav" id="site-nav" aria-label="Główne">
           <ul class="site-nav__list">
             <li><a href="/index.html" data-nav>Strona główna</a></li>
@@ -101,7 +105,7 @@
           </ul>
 
           <div class="site-nav__extras">
-            <!-- THEME TOGGLE -->
+            <!-- Theme toggle -->
             <button id="theme-toggle" class="theme-toggle" type="button" aria-label="Przełącz motyw">
               <img src="./assets/img/icons/sun-40x40.svg" alt="" class="theme-icon theme-icon--sun" />
               <img src="./assets/img/icons/moon-40x40.svg" alt="" class="theme-icon theme-icon--moon" />
@@ -116,7 +120,6 @@
     <!-- MAIN CONTENT -->
     <main id="main">
       <!-- HERO SECTION -->
-
       <section class="hero" aria-label="Demo strony turystyczno-hotelowej KP_Code_">
         <div class="container hero__inner">
           <div class="hero__media" data-reveal>
@@ -124,21 +127,36 @@
               <!-- AVIF -->
               <source
                 type="image/avif"
-                srcset="./assets/img/hero/hero-640x360.avif 640w, ./assets/img/hero/hero-960x540.avif 960w, ./assets/img/hero/hero-1200x675.avif 1200w, ./assets/img/hero/hero-1600x900.avif 1600w"
+                srcset="
+                  ./assets/img/hero/hero-01-640x360.avif   640w,
+                  ./assets/img/hero/hero-01-960x540.avif   960w,
+                  ./assets/img/hero/hero-01-1200x675.avif 1200w,
+                  ./assets/img/hero/hero-01-1600x900.avif 1600w
+                "
                 sizes="(max-width: 900px) calc(100vw - 2rem), 628px" />
 
               <!-- WebP -->
               <source
                 type="image/webp"
-                srcset="./assets/img/hero/hero-640x360.webp 640w, ./assets/img/hero/hero-960x540.webp 960w, ./assets/img/hero/hero-1200x675.webp 1200w, ./assets/img/hero/hero-1600x900.webp 1600w"
+                srcset="
+                  ./assets/img/hero/hero-01-640x360.webp   640w,
+                  ./assets/img/hero/hero-01-960x540.webp   960w,
+                  ./assets/img/hero/hero-01-1200x675.webp 1200w,
+                  ./assets/img/hero/hero-01-1600x900.webp 1600w
+                "
                 sizes="(max-width: 900px) calc(100vw - 2rem), 628px" />
 
               <!-- JPG fallback -->
               <img
-                src="./assets/img/hero/hero-1200x675.jpg"
-                srcset="./assets/img/hero/hero-640x360.jpg 640w, ./assets/img/hero/hero-960x540.jpg 960w, ./assets/img/hero/hero-1200x675.jpg 1200w, ./assets/img/hero/hero-1600x900.jpg 1600w"
+                src="./assets/img/hero/hero-01-1200x675.jpg"
+                srcset="
+                  ./assets/img/hero/hero-01-640x360.jpg   640w,
+                  ./assets/img/hero/hero-01-960x540.jpg   960w,
+                  ./assets/img/hero/hero-01-1200x675.jpg 1200w,
+                  ./assets/img/hero/hero-01-1600x900.jpg 1600w
+                "
                 sizes="(max-width: 900px) calc(100vw - 2rem), 628px"
-                alt="Walizka podróżna pod palmą na tle turkusowego morza – motyw strony demonstracyjnej turystyki i hotelarstwa"
+                alt="Nowoczesne wnętrze hotelowego lobby z recepcją, złotymi zdobieniami, stylowymi lampami i eleganckimi fotelami"
                 width="1600"
                 height="900"
                 fetchpriority="high"
@@ -215,74 +233,201 @@
             <a class="btn btn--link" href="/rooms.html">Wszystkie pokoje</a>
           </div>
           <div class="card-grid" data-reveal>
-            <article class="room-card">
-              <img
-                class="room-card__img"
-                src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='960' height='640'%3E%3Crect width='100%25' height='100%25' fill='%23d1d7e0'/%3E%3C/svg%3E"
-                width="960"
-                height="640"
-                alt="Pokój Classic"
-                loading="lazy"
-                decoding="async" />
+            <!-- Classic -->
+            <article class="room-card" data-reveal data-reveal-delay="100">
+              <picture>
+                <!-- AVIF -->
+                <source
+                  type="image/avif"
+                  srcset="
+                    ./assets/img/rooms/classic-640x427.avif    640w,
+                    ./assets/img/rooms/classic-960x640.avif    960w,
+                    ./assets/img/rooms/classic-1280x853.avif  1280w,
+                    ./assets/img/rooms/classic-1600x1067.avif 1600w
+                  "
+                  sizes="(max-width: 900px) calc(100vw - 2rem), 400px" />
+                <!-- WebP -->
+                <source
+                  type="image/webp"
+                  srcset="
+                    ./assets/img/rooms/classic-640x427.webp    640w,
+                    ./assets/img/rooms/classic-960x640.webp    960w,
+                    ./assets/img/rooms/classic-1280x853.webp  1280w,
+                    ./assets/img/rooms/classic-1600x1067.webp 1600w
+                  "
+                  sizes="(max-width: 900px) calc(100vw - 2rem), 400px" />
+                <!-- JPG -->
+                <img
+                  class="room-card__img"
+                  src="./assets/img/rooms/classic-1280x853.jpg"
+                  srcset="
+                    ./assets/img/rooms/classic-640x427.jpg    640w,
+                    ./assets/img/rooms/classic-960x640.jpg    960w,
+                    ./assets/img/rooms/classic-1280x853.jpg  1280w,
+                    ./assets/img/rooms/classic-1600x1067.jpg 1600w
+                  "
+                  sizes="(max-width: 900px) calc(100vw - 2rem), 400px"
+                  alt="Pokój Classic – jasne, przytulne wnętrze z dużym łóżkiem, dywanem i balkonem z widokiem na zewnątrz"
+                  width="1600"
+                  height="1067"
+                  loading="lazy"
+                  decoding="async" />
+              </picture>
               <div class="room-card__body">
                 <h3 class="room-card__title">Classic</h3>
                 <p class="room-card__meta">18 m² • 1–2 os.</p>
-                <a class="btn btn--secondary" href="/rooms.html#classic">Szczegóły</a>
+                <a class="btn btn--secondary" href="/rooms.html#classic" aria-label="Szczegóły — pokój Classic">Szczegóły</a>
               </div>
             </article>
-            <article class="room-card">
-              <img
-                class="room-card__img"
-                src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='960' height='640'%3E%3Crect width='100%25' height='100%25' fill='%23d1d7e0'/%3E%3C/svg%3E"
-                width="960"
-                height="640"
-                alt="Pokój Deluxe"
-                loading="lazy"
-                decoding="async" />
+
+            <!-- Deluxe -->
+            <article class="room-card" data-reveal data-reveal-delay="200">
+              <picture>
+                <!-- AVIF -->
+                <source
+                  type="image/avif"
+                  srcset="
+                    ./assets/img/rooms/deluxe-640x427.avif    640w,
+                    ./assets/img/rooms/deluxe-960x640.avif    960w,
+                    ./assets/img/rooms/deluxe-1280x853.avif  1280w,
+                    ./assets/img/rooms/deluxe-1600x1067.avif 1600w
+                  "
+                  sizes="(max-width: 900px) calc(100vw - 2rem), 400px" />
+                <!-- WebP -->
+                <source
+                  type="image/webp"
+                  srcset="
+                    ./assets/img/rooms/deluxe-640x427.webp    640w,
+                    ./assets/img/rooms/deluxe-960x640.webp    960w,
+                    ./assets/img/rooms/deluxe-1280x853.webp  1280w,
+                    ./assets/img/rooms/deluxe-1600x1067.webp 1600w
+                  "
+                  sizes="(max-width: 900px) calc(100vw - 2rem), 400px" />
+                <!-- JPG -->
+                <img
+                  class="room-card__img"
+                  src="./assets/img/rooms/deluxe-1280x853.jpg"
+                  srcset="
+                    ./assets/img/rooms/deluxe-640x427.jpg    640w,
+                    ./assets/img/rooms/deluxe-960x640.jpg    960w,
+                    ./assets/img/rooms/deluxe-1280x853.jpg  1280w,
+                    ./assets/img/rooms/deluxe-1600x1067.jpg 1600w
+                  "
+                  sizes="(max-width: 900px) calc(100vw - 2rem), 400px"
+                  alt="Pokój Deluxe – elegancki, nowoczesny pokój z dwoma łóżkami, nastrojowym oświetleniem i telewizorem na ścianie"
+                  width="1600"
+                  height="1067"
+                  loading="lazy"
+                  decoding="async" />
+              </picture>
               <div class="room-card__body">
                 <h3 class="room-card__title">Deluxe</h3>
                 <p class="room-card__meta">24 m² • 2 os.</p>
-                <a class="btn btn--secondary" href="/rooms.html#deluxe">Szczegóły</a>
+                <a class="btn btn--secondary" href="/rooms.html#deluxe" aria-label="Szczegóły — pokój Deluxe">Szczegóły</a>
               </div>
             </article>
-            <article class="room-card">
-              <img
-                class="room-card__img"
-                src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='960' height='640'%3E%3Crect width='100%25' height='100%25' fill='%23d1d7e0'/%3E%3C/svg%3E"
-                width="960"
-                height="640"
-                alt="Apartament Luxury"
-                loading="lazy"
-                decoding="async" />
+
+            <!-- Luxury Suite -->
+            <article class="room-card" data-reveal data-reveal-delay="300">
+              <picture>
+                <!-- AVIF -->
+                <source
+                  type="image/avif"
+                  srcset="
+                    ./assets/img/rooms/luxury-suite-640x427.avif    640w,
+                    ./assets/img/rooms/luxury-suite-960x640.avif    960w,
+                    ./assets/img/rooms/luxury-suite-1280x853.avif  1280w,
+                    ./assets/img/rooms/luxury-suite-1600x1067.avif 1600w
+                  "
+                  sizes="(max-width: 900px) calc(100vw - 2rem), 400px" />
+                <!-- WebP -->
+                <source
+                  type="image/webp"
+                  srcset="
+                    ./assets/img/rooms/luxury-suite-640x427.webp    640w,
+                    ./assets/img/rooms/luxury-suite-960x640.webp    960w,
+                    ./assets/img/rooms/luxury-suite-1280x853.webp  1280w,
+                    ./assets/img/rooms/luxury-suite-1600x1067.webp 1600w
+                  "
+                  sizes="(max-width: 900px) calc(100vw - 2rem), 400px" />
+                <!-- JPG -->
+                <img
+                  class="room-card__img"
+                  src="./assets/img/rooms/luxury-suite-1280x853.jpg"
+                  srcset="
+                    ./assets/img/rooms/luxury-suite-640x427.jpg    640w,
+                    ./assets/img/rooms/luxury-suite-960x640.jpg    960w,
+                    ./assets/img/rooms/luxury-suite-1280x853.jpg  1280w,
+                    ./assets/img/rooms/luxury-suite-1600x1067.jpg 1600w
+                  "
+                  sizes="(max-width: 900px) calc(100vw - 2rem), 400px"
+                  alt="Luxury Suite – przestronny apartament w stylu premium z częścią wypoczynkową, dużym łóżkiem i panoramicznym oknem na taras"
+                  width="1600"
+                  height="1067"
+                  loading="lazy"
+                  decoding="async" />
+              </picture>
               <div class="room-card__body">
                 <h3 class="room-card__title">Luxury Suite</h3>
                 <p class="room-card__meta">42 m² • 2–3 os.</p>
-                <a class="btn btn--secondary" href="/rooms.html#luxury">Szczegóły</a>
+                <a class="btn btn--secondary" href="/rooms.html#luxury" aria-label="Szczegóły — Luxury Suite">Szczegóły</a>
               </div>
             </article>
           </div>
         </div>
       </section>
 
+      <!-- HIGHLIGHT SECTION -->
       <section class="section section--highlight" aria-labelledby="luxury">
         <div class="container">
           <h2 id="luxury" class="section-title" data-reveal>Luxury Room</h2>
           <div class="highlight" data-reveal>
             <div class="highlight__media">
-              <img
-                src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='1280' height='720'%3E%3Crect width='100%25' height='100%25' fill='%23cfd6df'/%3E%3C/svg%3E"
-                width="1280"
-                height="720"
-                alt="Wnętrze pokoju Luxury"
-                loading="lazy"
-                decoding="async" />
+              <picture>
+                <!-- AVIF -->
+                <source
+                  type="image/avif"
+                  srcset="
+                    ./assets/img/rooms/luxury-room-640x360.avif   640w,
+                    ./assets/img/rooms/luxury-room-960x540.avif   960w,
+                    ./assets/img/rooms/luxury-room-1280x720.avif 1280w,
+                    ./assets/img/rooms/luxury-room-1600x900.avif 1600w
+                  "
+                  sizes="(max-width: 900px) calc(100vw - 2rem), 720px" />
+                <!-- WebP -->
+                <source
+                  type="image/webp"
+                  srcset="
+                    ./assets/img/rooms/luxury-room-640x360.webp   640w,
+                    ./assets/img/rooms/luxury-room-960x540.webp   960w,
+                    ./assets/img/rooms/luxury-room-1280x720.webp 1280w,
+                    ./assets/img/rooms/luxury-room-1600x900.webp 1600w
+                  "
+                  sizes="(max-width: 900px) calc(100vw - 2rem), 720px" />
+                <!-- JPG -->
+                <img
+                  src="./assets/img/rooms/luxury-room-1280x720.jpg"
+                  srcset="
+                    ./assets/img/rooms/luxury-room-640x360.jpg   640w,
+                    ./assets/img/rooms/luxury-room-960x540.jpg   960w,
+                    ./assets/img/rooms/luxury-room-1280x720.jpg 1280w,
+                    ./assets/img/rooms/luxury-room-1600x900.jpg 1600w
+                  "
+                  sizes="(max-width: 900px) calc(100vw - 2rem), 720px"
+                  alt="Apartament Luxury Room – przestronny pokój z częścią wypoczynkową i panoramicznym widokiem na taras"
+                  width="1600"
+                  height="900"
+                  loading="lazy"
+                  decoding="async" />
+              </picture>
             </div>
+
             <div class="highlight__body">
               <p>Przestronny układ, strefa dzienna i panoramiczne okna. Łazienka z prysznicem deszczowym i selekcją kosmetyków aromaterapeutycznych.</p>
               <ul class="list">
                 <li>Łóżko King z materacem premium</li>
                 <li>Indywidualnie sterowana klimatyzacja</li>
-                <li>Smart TV 55” i szybkie Wi‑Fi</li>
+                <li>Smart TV 55” i szybkie Wi-Fi</li>
               </ul>
               <a class="btn btn--primary" href="/rooms.html#luxury">Zobacz szczegóły</a>
             </div>
@@ -290,6 +435,7 @@
         </div>
       </section>
 
+      <!-- OFFERS SECTION -->
       <section class="section" aria-labelledby="offers">
         <div class="container">
           <div class="section-header">
@@ -313,79 +459,358 @@
         </div>
       </section>
 
+      <!-- TESTIMONIALS SECTION -->
       <section class="section" aria-labelledby="testimonials">
         <div class="container">
           <h2 id="testimonials" class="section-title" data-reveal>Opinie gości</h2>
+
           <div class="testimonials" data-reveal>
-            <figure class="testimonial">
+            <figure class="testimonial" data-reveal data-reveal-delay="100">
               <blockquote class="testimonial__quote">„Najlepszy sen i najpyszniejsze śniadanie w mieście.”</blockquote>
               <figcaption class="testimonial__author">— Marta, maj 2025</figcaption>
             </figure>
-            <figure class="testimonial">
+
+            <figure class="testimonial" data-reveal data-reveal-delay="200">
               <blockquote class="testimonial__quote">„Dopracowane detale, świetna obsługa. Wracamy!”</blockquote>
               <figcaption class="testimonial__author">— Kamil, kwiecień 2025</figcaption>
+            </figure>
+
+            <figure class="testimonial" data-reveal data-reveal-delay="300">
+              <blockquote class="testimonial__quote">„Cicho, czysto i bardzo wygodnie. Perfekcyjna lokalizacja.”</blockquote>
+              <figcaption class="testimonial__author">— Agnieszka, luty 2025</figcaption>
             </figure>
           </div>
         </div>
       </section>
 
+      <!-- GALLERY SECTION -->
       <section class="section" aria-labelledby="gallery">
         <div class="container">
           <div class="section-header">
             <h2 id="gallery" class="section-title" data-reveal>Galeria</h2>
             <a class="btn btn--link" href="/gallery.html">Więcej zdjęć</a>
           </div>
+
           <div class="gallery-grid" data-reveal>
-            <a class="gallery-grid__item" href="#" data-lightbox-item>
-              <img
-                src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='640' height='640'%3E%3Crect width='100%25' height='100%25' fill='%23d1d7e0'/%3E%3C/svg%3E"
-                width="640"
-                height="640"
-                alt="Detal wystroju"
-                loading="lazy"
-                decoding="async" />
+            <!-- 1 -->
+            <a class="gallery-grid__item" href="/gallery.html#gallery-01" data-lightbox-item>
+              <picture>
+                <source
+                  type="image/avif"
+                  srcset="
+                    ./assets/img/gallery/gallery-01-320x320.avif 320w,
+                    ./assets/img/gallery/gallery-01-480x480.avif 480w,
+                    ./assets/img/gallery/gallery-01-640x640.avif 640w,
+                    ./assets/img/gallery/gallery-01-800x800.avif 800w
+                  " />
+                <source
+                  type="image/webp"
+                  srcset="
+                    ./assets/img/gallery/gallery-01-320x320.webp 320w,
+                    ./assets/img/gallery/gallery-01-480x480.webp 480w,
+                    ./assets/img/gallery/gallery-01-640x640.webp 640w,
+                    ./assets/img/gallery/gallery-01-800x800.webp 800w
+                  " />
+                <img
+                  src="./assets/img/gallery/gallery-01-640x640.jpg"
+                  srcset="
+                    ./assets/img/gallery/gallery-01-320x320.jpg 320w,
+                    ./assets/img/gallery/gallery-01-480x480.jpg 480w,
+                    ./assets/img/gallery/gallery-01-640x640.jpg 640w,
+                    ./assets/img/gallery/gallery-01-800x800.jpg 800w
+                  "
+                  sizes="(max-width: 900px) calc(100vw - 2rem), (max-width: 1200px) 45vw, 360px"
+                  alt="Lobby hotelowe z detalami oświetlenia"
+                  width="800"
+                  height="800"
+                  loading="lazy"
+                  decoding="async" />
+              </picture>
             </a>
-            <a class="gallery-grid__item" href="#" data-lightbox-item>
-              <img
-                src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='640' height='640'%3E%3Crect width='100%25' height='100%25' fill='%23cbd3dd'/%3E%3C/svg%3E"
-                width="640"
-                height="640"
-                alt="Lobby"
-                loading="lazy"
-                decoding="async" />
+
+            <!-- 2 -->
+            <a class="gallery-grid__item" href="/gallery.html#gallery-02" data-lightbox-item>
+              <picture>
+                <source
+                  type="image/avif"
+                  srcset="
+                    ./assets/img/gallery/gallery-02-320x320.avif 320w,
+                    ./assets/img/gallery/gallery-02-480x480.avif 480w,
+                    ./assets/img/gallery/gallery-02-640x640.avif 640w,
+                    ./assets/img/gallery/gallery-02-800x800.avif 800w
+                  " />
+                <source
+                  type="image/webp"
+                  srcset="
+                    ./assets/img/gallery/gallery-02-320x320.webp 320w,
+                    ./assets/img/gallery/gallery-02-480x480.webp 480w,
+                    ./assets/img/gallery/gallery-02-640x640.webp 640w,
+                    ./assets/img/gallery/gallery-02-800x800.webp 800w
+                  " />
+                <img
+                  src="./assets/img/gallery/gallery-02-640x640.jpg"
+                  srcset="
+                    ./assets/img/gallery/gallery-02-320x320.jpg 320w,
+                    ./assets/img/gallery/gallery-02-480x480.jpg 480w,
+                    ./assets/img/gallery/gallery-02-640x640.jpg 640w,
+                    ./assets/img/gallery/gallery-02-800x800.jpg 800w
+                  "
+                  sizes="(max-width: 900px) calc(100vw - 2rem), (max-width: 1200px) 45vw, 360px"
+                  alt="Pokój dwuosobowy z nowoczesnym oświetleniem"
+                  width="800"
+                  height="800"
+                  loading="lazy"
+                  decoding="async" />
+              </picture>
             </a>
-            <a class="gallery-grid__item" href="#" data-lightbox-item>
-              <img
-                src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='640' height='640'%3E%3Crect width='100%25' height='100%25' fill='%23d7dce4'/%3E%3C/svg%3E"
-                width="640"
-                height="640"
-                alt="Strefa relaksu"
-                loading="lazy"
-                decoding="async" />
+
+            <!-- 3 -->
+            <a class="gallery-grid__item" href="/gallery.html#gallery-03" data-lightbox-item>
+              <picture>
+                <source
+                  type="image/avif"
+                  srcset="
+                    ./assets/img/gallery/gallery-03-320x320.avif 320w,
+                    ./assets/img/gallery/gallery-03-480x480.avif 480w,
+                    ./assets/img/gallery/gallery-03-640x640.avif 640w,
+                    ./assets/img/gallery/gallery-03-800x800.avif 800w
+                  " />
+                <source
+                  type="image/webp"
+                  srcset="
+                    ./assets/img/gallery/gallery-03-320x320.webp 320w,
+                    ./assets/img/gallery/gallery-03-480x480.webp 480w,
+                    ./assets/img/gallery/gallery-03-640x640.webp 640w,
+                    ./assets/img/gallery/gallery-03-800x800.webp 800w
+                  " />
+                <img
+                  src="./assets/img/gallery/gallery-03-640x640.jpg"
+                  srcset="
+                    ./assets/img/gallery/gallery-03-320x320.jpg 320w,
+                    ./assets/img/gallery/gallery-03-480x480.jpg 480w,
+                    ./assets/img/gallery/gallery-03-640x640.jpg 640w,
+                    ./assets/img/gallery/gallery-03-800x800.jpg 800w
+                  "
+                  sizes="(max-width: 900px) calc(100vw - 2rem), (max-width: 1200px) 45vw, 360px"
+                  alt="Restauracja hotelowa z drewnianym wystrojem i dekoracjami"
+                  width="800"
+                  height="800"
+                  loading="lazy"
+                  decoding="async" />
+              </picture>
+            </a>
+
+            <!-- 4 -->
+            <a class="gallery-grid__item" href="/gallery.html#gallery-04" data-lightbox-item>
+              <picture>
+                <source
+                  type="image/avif"
+                  srcset="
+                    ./assets/img/gallery/gallery-04-320x320.avif 320w,
+                    ./assets/img/gallery/gallery-04-480x480.avif 480w,
+                    ./assets/img/gallery/gallery-04-640x640.avif 640w,
+                    ./assets/img/gallery/gallery-04-800x800.avif 800w
+                  " />
+                <source
+                  type="image/webp"
+                  srcset="
+                    ./assets/img/gallery/gallery-04-320x320.webp 320w,
+                    ./assets/img/gallery/gallery-04-480x480.webp 480w,
+                    ./assets/img/gallery/gallery-04-640x640.webp 640w,
+                    ./assets/img/gallery/gallery-04-800x800.webp 800w
+                  " />
+                <img
+                  src="./assets/img/gallery/gallery-04-640x640.jpg"
+                  srcset="
+                    ./assets/img/gallery/gallery-04-320x320.jpg 320w,
+                    ./assets/img/gallery/gallery-04-480x480.jpg 480w,
+                    ./assets/img/gallery/gallery-04-640x640.jpg 640w,
+                    ./assets/img/gallery/gallery-04-800x800.jpg 800w
+                  "
+                  sizes="(max-width: 900px) calc(100vw - 2rem), (max-width: 1200px) 45vw, 360px"
+                  alt="Strefa relaksu z fotelami i roślinnością"
+                  width="800"
+                  height="800"
+                  loading="lazy"
+                  decoding="async" />
+              </picture>
+            </a>
+
+            <!-- 5 -->
+            <a class="gallery-grid__item" href="/gallery.html#gallery-05" data-lightbox-item>
+              <picture>
+                <source
+                  type="image/avif"
+                  srcset="
+                    ./assets/img/gallery/gallery-05-320x320.avif 320w,
+                    ./assets/img/gallery/gallery-05-480x480.avif 480w,
+                    ./assets/img/gallery/gallery-05-640x640.avif 640w,
+                    ./assets/img/gallery/gallery-05-800x800.avif 800w
+                  " />
+                <source
+                  type="image/webp"
+                  srcset="
+                    ./assets/img/gallery/gallery-05-320x320.webp 320w,
+                    ./assets/img/gallery/gallery-05-480x480.webp 480w,
+                    ./assets/img/gallery/gallery-05-640x640.webp 640w,
+                    ./assets/img/gallery/gallery-05-800x800.webp 800w
+                  " />
+                <img
+                  src="./assets/img/gallery/gallery-05-640x640.jpg"
+                  srcset="
+                    ./assets/img/gallery/gallery-05-320x320.jpg 320w,
+                    ./assets/img/gallery/gallery-05-480x480.jpg 480w,
+                    ./assets/img/gallery/gallery-05-640x640.jpg 640w,
+                    ./assets/img/gallery/gallery-05-800x800.jpg 800w
+                  "
+                  sizes="(max-width: 900px) calc(100vw - 2rem), (max-width: 1200px) 45vw, 360px"
+                  alt="Panorama miasta widoczna z okna apartamentu"
+                  width="800"
+                  height="800"
+                  loading="lazy"
+                  decoding="async" />
+              </picture>
+            </a>
+
+            <!-- 6 -->
+            <a class="gallery-grid__item" href="/gallery.html#gallery-06" data-lightbox-item>
+              <picture>
+                <source
+                  type="image/avif"
+                  srcset="
+                    ./assets/img/gallery/gallery-06-320x320.avif 320w,
+                    ./assets/img/gallery/gallery-06-480x480.avif 480w,
+                    ./assets/img/gallery/gallery-06-640x640.avif 640w,
+                    ./assets/img/gallery/gallery-06-800x800.avif 800w
+                  " />
+                <source
+                  type="image/webp"
+                  srcset="
+                    ./assets/img/gallery/gallery-06-320x320.webp 320w,
+                    ./assets/img/gallery/gallery-06-480x480.webp 480w,
+                    ./assets/img/gallery/gallery-06-640x640.webp 640w,
+                    ./assets/img/gallery/gallery-06-800x800.webp 800w
+                  " />
+                <img
+                  src="./assets/img/gallery/gallery-06-640x640.jpg"
+                  srcset="
+                    ./assets/img/gallery/gallery-06-320x320.jpg 320w,
+                    ./assets/img/gallery/gallery-06-480x480.jpg 480w,
+                    ./assets/img/gallery/gallery-06-640x640.jpg 640w,
+                    ./assets/img/gallery/gallery-06-800x800.jpg 800w
+                  "
+                  sizes="(max-width: 900px) calc(100vw - 2rem), (max-width: 1200px) 45vw, 360px"
+                  alt="Basen hotelowy — strefa wellness z leżakami"
+                  width="800"
+                  height="800"
+                  loading="lazy"
+                  decoding="async" />
+              </picture>
             </a>
           </div>
         </div>
       </section>
 
+      <!-- CTA SECTION -->
       <section id="book" class="section section--cta" aria-label="Rezerwacja">
         <div class="container" data-reveal>
-          <h2 class="section-title">Zarezerwuj swój pobyt</h2>
-          <p>Wybierz termin i korzystaj z najlepszej ceny bezpośredniej.</p>
-          <a class="btn btn--primary" href="/contact.html#form">Przejdź do formularza</a>
+          <div class="cta-panel">
+            <h2 class="section-title">Zarezerwuj swój pobyt</h2>
+            <p class="cta-text">Wybierz termin i korzystaj z najlepszej ceny bezpośredniej.</p>
+            <a class="btn btn--primary" href="/contact.html#form">Przejdź do formularza</a>
+          </div>
         </div>
       </section>
     </main>
 
-    <footer class="site-footer">
-      <div class="container site-footer__inner">
-        <p>
-          &copy;
-          <span data-year></span>
-          Tourism & Hotels. Wszelkie prawa zastrzeżone.
-        </p>
-        <nav aria-label="Informacje prawne">
-          <a href="/legal.html">Polityka i warunki</a>
-        </nav>
+    <!-- FOOTER -->
+    <footer class="site-footer" aria-labelledby="footer-heading">
+      <h2 id="footer-heading" class="sr-only">Stopka serwisu</h2>
+      <div class="container">
+        <div class="footer__inner">
+          <div class="footer__grid">
+            <!-- Kolumna 1 — Brand/Intro -->
+            <section class="footer__col footer__brand" aria-labelledby="footer-brand">
+              <img class="footer__brand-img" src="./assets/img/logo/logo-160x160.svg" alt="" width="160" height="160" decoding="async" loading="lazy" />
+              <h3 id="footer-brand" class="footer__heading">
+                <a href="/" class="footer__brand-link" aria-label="KP_Code_ – strona główna">KP_Code_</a>
+              </h3>
+              <p class="footer__text">Strona demonstracyjna dla branży turystyczno-hotelarskiej — nowoczesny front-end (HTML / CSS / JS).</p>
+              <a href="#" class="footer__brand-author" aria-label="Strona autora — KP_Code_">Strona autora</a>
+            </section>
+
+            <!-- Kolumna 2 — Nawigacja -->
+            <nav class="footer__col footer__nav" aria-labelledby="footer-nav">
+              <h3 id="footer-nav" class="footer__heading">NAWIGACJA</h3>
+              <ul class="footer__list">
+                <li><a href="/index.html">Strona główna</a></li>
+                <li><a href="/rooms.html">Pokoje</a></li>
+                <li><a href="/offers.html">Oferty</a></li>
+                <li><a href="/gallery.html">Galeria</a></li>
+                <li><a href="/contact.html">Kontakt</a></li>
+              </ul>
+            </nav>
+
+            <!-- Kolumna 3 — Informacje prawne -->
+            <nav class="footer__col footer__legal" aria-labelledby="footer-legal">
+              <h3 id="footer-legal" class="footer__heading">INFORMACJE PRAWNE</h3>
+              <ul class="footer__list">
+                <li><a href="/legal.html">Polityka prywatności</a></li>
+                <li><a href="#">Warunki korzystania</a></li>
+                <li><a href="#">Pliki cookies</a></li>
+              </ul>
+            </nav>
+
+            <!-- Kolumna 4 — Kontakt -->
+            <!-- Kolumna 4 — Kontakt -->
+            <section class="footer__col footer__contact" aria-labelledby="footer-contact">
+              <h3 id="footer-contact" class="footer__heading">KONTAKT</h3>
+
+              <address class="footer__text" translate="no">
+                KP_Code_
+                <br />
+                Hotel Demo Sp. z o.o.
+                <br />
+                ul. Marynarki Wojennej 12/31
+                <br />
+                33-100 Tarnów, Polska
+              </address>
+
+              <p class="footer__text">
+                <a href="mailto:kp_code_@gmail.com">kp_code_@gmail.com</a>
+                <br />
+                <a href="tel:+48533537091">+48 533 537 091</a>
+              </p>
+
+              <!-- Media społecznościowe -->
+              <h3 id="footer-contact" class="footer__heading">SOCIAL MEDIA</h3>
+              <div class="footer__social" aria-label="Media społecznościowe">
+                <a href="#" aria-label="Facebook — KP_Code_" rel="me noopener">
+                  <img src="assets/img/icons/fb.svg" alt="" class="footer__icon-img" aria-hidden="true" />
+                </a>
+                <a href="#" aria-label="LinkedIn — KP_Code_" rel="me noopener">
+                  <img src="assets/img/icons/linktin.svg" alt="" class="footer__icon-img" aria-hidden="true" />
+                </a>
+                <a href="#" aria-label="GitHub — KP_Code_" rel="me noopener">
+                  <img src="assets/img/icons/github.svg" alt="" class="footer__icon-img" aria-hidden="true" />
+                </a>
+                <a href="#" aria-label="X — KP_Code_" rel="me noopener">
+                  <img src="assets/img/icons/x.svg" alt="" class="footer__icon-img" aria-hidden="true" />
+                </a>
+              </div>
+            </section>
+          </div>
+
+          <!-- Bottom bar -->
+          <div class="footer__bottom">
+            <p>
+              ©
+              <span data-year></span>
+              KP_Code. Wszelkie prawa zastrzeżone. Projekt i wdrożenie: KP_Code
+            </p>
+            <p>Made for demo</p>
+          </div>
+        </div>
       </div>
     </footer>
 
@@ -410,7 +835,7 @@
         "logo": "/assets/img/ui/icon-192.png"
       }
     </script>
-
+    <!-- SCRIPTS -->
     <script type="module" defer src="js/script.js"></script>
   </body>
 </html>
