@@ -1,5 +1,6 @@
-/* Service Worker – Tourism & Hotels */
-const VERSION = "v1.0.2";
+/* Service Worker – KP_Code_ Website Demo for Tourism & Hotels */
+
+const VERSION = "kp_code_v1.0.0";
 const STATIC_CACHE = `th-static-${VERSION}`;
 const HTML_CACHE = `th-html-${VERSION}`;
 const STATIC_ASSETS = [
