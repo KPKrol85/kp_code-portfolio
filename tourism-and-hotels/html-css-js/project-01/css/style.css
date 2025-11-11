@@ -1346,6 +1346,7 @@ html[data-theme="dark"] .theme-toggle {
 /* ===== 14 - UI COMPONENTS (Buttons & Forms) ===== */
 
 /* -- Buttons -- */
+
 /* Tokens: sizes */
 :root {
   --fs-btn-sm: 0.4rem;
@@ -1436,6 +1437,13 @@ html[data-theme="dark"] .theme-toggle {
 }
 
 /* -- Forms -- */
+
+:root {
+  --danger: #ef4444;
+  --success: #0f766e;
+  --focus: #2dc7a6;
+}
+
 .form {
   display: grid;
   gap: 1rem;
@@ -1446,43 +1454,121 @@ html[data-theme="dark"] .theme-toggle {
   gap: 0.4rem;
 }
 
-.form__field input,
-.form__field textarea,
-.form__field select {
+.form__field :is(input, textarea, select) {
   width: 100%;
   padding: 0.7rem 0.9rem;
-  border-radius: 12px;
+  border-radius: var(--radius, 12px);
   border: 1px solid var(--border);
   background: var(--bg-elev);
   color: var(--text);
   font: inherit;
+  line-height: 1.3;
+  transition: border-color 120ms ease, box-shadow 120ms ease, outline-color 120ms ease;
 }
 
-.form__field input[aria-invalid="true"],
-.form__field textarea[aria-invalid="true"] {
-  border-color: #ef4444;
-  outline: 2px solid #ef4444;
+.form__field :is(input, textarea, select):focus-visible {
+  outline: 2px solid var(--focus, #2dc7a6);
+  outline-offset: 2px;
+  border-color: var(--focus, #2dc7a6);
+}
+
+.form__field :is(input, textarea)::placeholder {
+  opacity: 0.7;
+}
+
+.form__field textarea {
+  resize: vertical;
+  min-block-size: 6rem;
+}
+
+.form__field :is(input, textarea, select)[aria-invalid="true"] {
+  border-color: var(--danger, #ef4444);
+  outline: 2px solid var(--danger, #ef4444);
+  outline-offset: 2px;
 }
 
 .form__error {
-  color: #b91c1c;
+  color: var(--danger, #b91c1c);
   margin: 0;
 }
 
 .form__success {
-  color: #0f766e;
+  color: var(--success, #0f766e);
   margin: 0;
+}
+
+.form__hint,
+.form__note {
+  margin: 0;
+  font-size: 0.9em;
+  color: var(--muted);
 }
 
 .form__actions {
   display: flex;
   gap: 0.75rem;
+  flex-wrap: wrap;
 }
 
-.map img {
+.form__field :is(input, textarea, select):disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+}
+
+.form__field :is(input, textarea, select)[readonly] {
+  background: color-mix(in oklab, var(--bg-elev) 85%, transparent);
+}
+
+.form__field input:-webkit-autofill {
+  -webkit-text-fill-color: var(--text);
+  box-shadow: 0 0 0 1000px var(--bg-elev) inset;
+  transition: background-color 9999s;
+}
+
+.form__field--checkbox .checkbox {
+  display: grid;
+  grid-template-columns: 20px 1fr;
+  align-items: start;
+  gap: 0.6rem;
+}
+
+.form__field--checkbox input[type="checkbox"] {
+  inline-size: 18px;
+  block-size: 18px;
+  margin-top: 0.2rem;
+}
+
+fieldset.form__field {
+  border: 1px solid var(--border);
+  border-radius: var(--radius, 12px);
+  padding: 0.8rem;
+}
+
+fieldset.form__field legend {
+  padding: 0 0.4rem;
+  font-size: 0.95em;
+  color: var(--muted);
+}
+
+.map {
+  aspect-ratio: 16 / 9;
+  margin: 0;
+  inline-size: 100%;
+  max-width: 420px;
+}
+
+.map :is(img, iframe) {
+  display: block;
+  inline-size: 100%;
+  block-size: 100%;
+  object-fit: cover;
   border-radius: var(--radius);
   border: 1px solid var(--border);
   box-shadow: var(--elev);
+}
+
+.map figcaption {
+  margin: 0.5rem 0 0 0;
 }
 
 /* ===== 15 - OVERLAYS & MEDIA (Lightbox) ===== */
@@ -1498,7 +1584,7 @@ html[data-theme="dark"] .theme-toggle {
   z-index: var(--z-overlay);
   display: grid;
   place-items: center;
-  padding: 0.75rem; /* oddech od krawędzi ekranu */
+  padding: 0.75rem;
 }
 
 .lightbox__backdrop {
@@ -1514,29 +1600,30 @@ html[data-theme="dark"] .theme-toggle {
   border-radius: var(--radius-lg);
   box-shadow: var(--elev);
   width: min(96vw, 980px);
-  max-height: 100dvh; /* nie wychodzi poza ekran */
+  max-height: 100dvh;
   padding: 1rem;
   display: grid;
   grid-template-rows: auto 1fr auto;
   gap: 0.75rem;
-  overflow: hidden; /* zapobiega wyciekom obrazu */
+  overflow: hidden;
 }
 
 .lightbox__figure {
   margin: 0;
   min-height: 0;
   display: grid;
-  grid-template-rows: 1fr auto; /* [img] [caption] */
+  grid-template-rows: 1fr auto;
   gap: 0.25rem;
 }
 
 .lightbox__img {
   width: 100%;
-  height: 100%;
-  object-fit: contain; /* dopasuj do wysokości viewportu */
-  max-height: 100%;
+  height: auto;
+  max-height: 80vh;
+  object-fit: contain;
   border-radius: var(--radius);
   display: block;
+  margin-inline: auto;
 }
 
 .lightbox__nav {
@@ -1554,19 +1641,12 @@ html[data-theme="dark"] .theme-toggle {
   font-size: 1.4rem;
   line-height: 1;
   padding: 0.25rem;
-  width: auto;
-  height: auto;
-  border-radius: 0;
-  box-shadow: none;
   transition: color 0.2s ease;
 }
 
 .lightbox__close:hover,
 .lightbox__close:active {
-  background: transparent;
   color: var(--text, #e6ebef);
-  box-shadow: none;
-  transform: none;
 }
 
 .lightbox__close:focus-visible {
@@ -1583,17 +1663,108 @@ html[data-theme="dark"] .theme-toggle {
   margin-inline: auto;
 }
 
-@media (orientation: landscape) and (max-width: 900px) {
+/* -- MQ max-height: 420px -- */
+@media (max-height: 420px) {
   .lightbox__dialog {
-    width: 100vw;
-    max-height: 100dvh;
-    padding: 0.5rem;
+    overflow: hidden;
   }
 }
 
-@media (max-height: 420px) {
+/* -- MQ max-width: 900px -- */
+@media (max-width: 900px) {
+  .lightbox__nav button {
+    background: rgba(0, 0, 0, 0.4);
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    color: #fff;
+    width: 2.2rem;
+    height: 2.2rem;
+    border-radius: 50%;
+    display: grid;
+    place-items: center;
+    transition: background 0.2s ease, transform 0.2s ease;
+  }
+  .lightbox__nav button:hover {
+    background: rgba(0, 0, 0, 0.6);
+    transform: scale(1.05);
+  }
+}
+
+/* -- MQ orientation: landscape & max-width: 900px -- */
+@media (orientation: landscape) and (max-width: 900px) {
+  .lightbox {
+    padding: 0;
+  }
   .lightbox__dialog {
-    overflow: auto;
+    width: 100vw;
+    height: 100vh;
+    max-height: 100vh;
+    border-radius: 0;
+    padding: 0;
+    background: var(--bg-elev);
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  @supports (height: 1svh) {
+    .lightbox__dialog {
+      height: 100svh;
+      max-height: 100svh;
+    }
+  }
+  .lightbox__img {
+    width: 100%;
+    height: 100%;
+    max-height: 100%;
+    object-fit: contain;
+    border-radius: 0;
+  }
+  .lightbox__caption {
+    position: absolute;
+    bottom: 0.25rem;
+    left: 0;
+    right: 0;
+    background: rgba(0, 0, 0, 0.35);
+    color: #fff;
+    font-size: 0.8rem;
+    padding: 0.3rem;
+    margin: 0;
+    max-height: 3.5lh;
+    overflow: hidden;
+  }
+  .lightbox__close {
+    top: 0.25rem;
+    right: 0.5rem;
+    font-size: 1.1rem;
+    color: #fff;
+    z-index: 5;
+  }
+  .lightbox__nav {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    pointer-events: none;
+  }
+  .lightbox__nav button {
+    pointer-events: all;
+  }
+  .lightbox__nav button:first-child {
+    margin-left: 0.75rem;
+  }
+  .lightbox__nav button:last-child {
+    margin-right: 0.75rem;
+  }
+}
+
+/* -- MQ orientation: portrait & max-width: 900px -- */
+@media (orientation: portrait) and (max-width: 900px) {
+  .lightbox__nav button:first-child {
+    margin-left: 0.5rem;
+  }
+  .lightbox__nav button:last-child {
+    margin-right: 0.5rem;
   }
 }
 
