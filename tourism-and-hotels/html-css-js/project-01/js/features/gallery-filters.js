@@ -12,12 +12,13 @@ export function initGalleryFilters() {
       el.style.display = match ? "" : "none";
     });
 
+    document.body.dataset.galleryFilter = cat;
+
     filters.forEach((a) => a.removeAttribute("aria-current"));
     const active = document.querySelector('#gallery-filters .gallery-cats__link[data-filter="' + cat + '"]');
     active && active.setAttribute("aria-current", "true");
   }
 
-  // Start domyślnie od "wszystkie"
   applyFilter("all");
 
   filters.forEach((a) => {

@@ -11,22 +11,30 @@ export function initLightbox() {
   const nextBtn = lightbox.querySelector("[data-lightbox-next]");
   const dialogEl = lightbox.querySelector(".lightbox__dialog");
 
-  // Zbieramy WSZYSTKIE elementy w galerii (ze wszystkich .gallery-grid)
-  const items = () => Array.from(document.querySelectorAll(".gallery-grid [data-lightbox-item]"));
+  // helper: element faktycznie widoczny (nie display:none)
+  const isVisible = (el) => !!(el.offsetParent || el.getClientRects().length);
+
+  // Zbieramy elementy TYLKO z aktywnej kategorii (albo wszystkie, gdy 'all')
+  const items = () => {
+    const activeCat = document.body.dataset.galleryFilter || "all";
+    const all = Array.from(document.querySelectorAll(".gallery-grid [data-lightbox-item]"));
+    return all.filter((a) => {
+      const cat = a.getAttribute("data-cat-item");
+      const matchCat = activeCat === "all" || cat === activeCat;
+      return matchCat && isVisible(a);
+    });
+  };
+
   let index = 0;
   let lastFocused = null;
 
   function renderFromAnchor(a) {
-    // duże zdjęcie bierzemy z href
     const fullSrc = a.getAttribute("href");
-    // podpis: najpierw data-caption, potem alt miniatury
     const thumbImg = a.querySelector("img");
     const text = a.getAttribute("data-caption") || thumbImg?.alt || "";
 
     if (img && fullSrc) {
       img.src = fullSrc;
-      // opcjonalnie: jeżeli znamy rozmiary dużych plików, możemy je ustawić;
-      // tu czyścimy width/height, żeby nie blokować przeskalowania
       img.removeAttribute("width");
       img.removeAttribute("height");
       img.alt = text || "Podgląd";
@@ -62,18 +70,30 @@ export function initLightbox() {
     renderFromAnchor(list[index]);
   }
 
-  // DELEGACJA: klik w jakikolwiek [data-lightbox-item]
+  // DELEGACJA: klik w jakikolwiek [data-lightbox-item] w obrębie .gallery-grid
   document.addEventListener("click", (e) => {
     const a = e.target.closest("[data-lightbox-item]");
     if (!a) return;
-    // upewnij się, że to w obrębie galerii
     if (!a.closest(".gallery-grid")) return;
 
-    e.preventDefault(); // blokujemy przejście do JPG
+    e.preventDefault(); // nie przechodzimy do JPG
     const list = items();
+    // jeżeli kliknięty element nie jest w aktualnym zbiorze (np. filtr się właśnie zmienił) — wyjdź grzecznie
     const i = list.indexOf(a);
-    open(i >= 0 ? i : 0, a);
+    if (i === -1) return;
+    open(i, a);
   });
+
+  // Gdy filtr kategorii się zmieni (set w body), resetuj indeks jeśli trzeba
+  const observer = new MutationObserver(() => {
+    const list = items();
+    if (lightbox.hidden) return; // tylko gdy otwarty
+    if (!list.length) return close();
+    // jeżeli aktualny index poza zakresem po filtracji – wróć na 0
+    if (index >= list.length) index = 0;
+    renderFromAnchor(list[index]);
+  });
+  observer.observe(document.body, { attributes: true, attributeFilter: ["data-gallery-filter"] });
 
   // Przyciski
   closeBtns.forEach((btn) => btn.addEventListener("click", close));

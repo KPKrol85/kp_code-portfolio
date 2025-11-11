@@ -1,19 +1,22 @@
 /* Service Worker – KP_Code_ Website Demo for Tourism & Hotels */
 
-const VERSION = "kp_code_v1.0.0";
+const VERSION = "kp_code_v1.0.1";
 const STATIC_CACHE = `th-static-${VERSION}`;
 const HTML_CACHE = `th-html-${VERSION}`;
 const STATIC_ASSETS = [
   "/",
   "/index.html",
+  "/gallery.html",
   "/css/style.css",
   "/js/script.js",
   "/js/features/nav.js",
   "/js/features/theme.js",
   "/js/features/reveal.js",
+  "/js/features/gallery-filters.js",
   "/js/features/lightbox.js",
   "/js/features/form.js",
   "/js/features/tabs.js",
+  "/js/features/aria-current.js",
   "/site.webmanifest",
   "/offline.html",
 ];
@@ -28,7 +31,7 @@ self.addEventListener("activate", (event) => {
   self.clients.claim();
 });
 
-// Network-first for navigation requests, cache-first for static assets
+// Network-first for HTML; Cache-first for static assets
 self.addEventListener("fetch", (event) => {
   const req = event.request;
 
