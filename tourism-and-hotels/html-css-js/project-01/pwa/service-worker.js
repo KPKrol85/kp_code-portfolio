@@ -1,24 +1,23 @@
 /* Service Worker – KP_Code_ Website Demo for Tourism & Hotels */
 
-const VERSION = "kp_code_v1.0.2";
+const VERSION = "kp_code_v1.0.3";
 const STATIC_CACHE = `th-static-${VERSION}`;
 const HTML_CACHE = `th-html-${VERSION}`;
 const STATIC_ASSETS = [
-  "/",
-  "/index.html",
-  "/gallery.html",
-  "/css/style.css",
-  "/js/script.js",
-  "/js/features/nav.js",
-  "/js/features/theme.js",
-  "/js/features/reveal.js",
-  "/js/features/gallery-filters.js",
-  "/js/features/lightbox.js",
-  "/js/features/form.js",
-  "/js/features/tabs.js",
-  "/js/features/aria-current.js",
-  "/site.webmanifest",
-  "/offline.html",
+  "index.html",
+  "gallery.html",
+  "css/style.css",
+  "js/script.js",
+  "js/features/nav.js",
+  "js/features/theme.js",
+  "js/features/reveal.js",
+  "js/features/gallery-filters.js",
+  "js/features/lightbox.js",
+  "js/features/form.js",
+  "js/features/tabs.js",
+  "js/features/aria-current.js",
+  "site.webmanifest",
+  "offline.html",
 ];
 
 self.addEventListener("install", (event) => {
@@ -46,7 +45,7 @@ self.addEventListener("fetch", (event) => {
         })
         .catch(async () => {
           const cached = await caches.match(req);
-          return cached || caches.match("/offline.html");
+          return cached || caches.match("offline.html");
         })
     );
     return;

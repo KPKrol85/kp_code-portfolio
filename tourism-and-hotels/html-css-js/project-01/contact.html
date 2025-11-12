@@ -9,19 +9,15 @@
       name="description"
       content="Skontaktuj się z nami, aby uzyskać informacje o rezerwacjach, dostępności pokoi oraz ofertach specjalnych. Tourism & Hotels — elegancki projekt front-end HTML / CSS / JS autorstwa KP_Code_." />
     <meta name="color-scheme" content="light dark" />
-
     <!-- Theme color for Light/Dark -->
     <meta name="theme-color" media="(prefers-color-scheme: light)" content="#f7f6f3" />
     <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#0d0f14" />
-
     <!-- Indexing / privacy -->
     <meta name="robots" content="index,follow" />
     <meta name="referrer" content="strict-origin-when-cross-origin" />
     <meta name="format-detection" content="telephone=no" />
-
     <!-- Canonical -->
     <link rel="canonical" href="https://tourism-project-01.netlify.app/contact.html" />
-
     <!-- Open Graph -->
     <meta property="og:type" content="website" />
     <meta property="og:site_name" content="KP_Code_ | Turystyka & Hotele Demo" />
@@ -36,67 +32,57 @@
     <meta property="og:image:height" content="630" />
     <meta property="og:image:type" content="image/jpeg" />
     <meta property="og:image:alt" content="Nowoczesny hotel z widokiem na morze — projekt demo KP_Code_" />
-
     <!-- Twitter -->
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content="Kontakt i rezerwacje — Turystyka & Hotele 01" />
     <meta name="twitter:description" content="Skontaktuj się z nami w sprawie rezerwacji i ofert specjalnych. Projekt HTML / CSS / JS autorstwa KP_Code_." />
     <meta name="twitter:image" content="https://tourism-project-01.netlify.app/assets/img/og/og-1200x1200.jpg" />
-
     <!-- PWA -->
-    <link rel="manifest" href="./site.webmanifest" />
-
+    <link rel="manifest" href="site.webmanifest" />
     <!-- Icons -->
-    <link rel="icon" href="./assets/img/ui/favicon.svg" type="image/svg+xml" />
-    <link rel="icon" href="./assets/img/ui/favicon-32x32.png" sizes="32x32" />
-    <link rel="icon" href="./assets/img/ui/favicon-16x16.png" sizes="16x16" />
-    <link rel="apple-touch-icon" href="./assets/img/ui/apple-touch-icon.png" sizes="180x180" />
-    <link rel="mask-icon" href="./assets/img/ui/safari-pinned-tab.svg" color="#0d0f14" />
-    <meta name="theme-color" content="#2dc7a6" />
+    <link rel="icon" href="assets/img/ui/favicon.svg" type="image/svg+xml" />
+    <link rel="icon" href="assets/img/ui/favicon-32x32.png" sizes="32x32" />
+    <link rel="icon" href="assets/img/ui/favicon-16x16.png" sizes="16x16" />
+    <link rel="apple-touch-icon" href="assets/img/ui/apple-touch-icon.png" sizes="180x180" />
+    <link rel="mask-icon" href="assets/img/ui/safari-pinned-tab.svg" color="#0d0f14" />
     <meta name="msapplication-TileColor" content="#2dc7a6" />
-
     <!-- Styles -->
-    <link rel="stylesheet" href="./css/style.css" />
+    <link rel="stylesheet" href="css/style.css" />
   </head>
 
+
+  <!-- BODY  -->
   <body>
     <a class="skip-link" href="#main">Przejdź do treści</a>
-
     <!-- HEADER -->
     <header class="site-header" id="top">
       <div class="container site-header__inner">
-        <a class="site-header__brand" href="/" aria-label="Strona główna">
-          <img src="./assets/img/logo/logo-128x128.svg" alt="Logo KP_Code_" class="brand-logo" width="36" height="36" />
+        <a class="site-header__brand" href="index.html" aria-label="Strona główna">
+          <img src="assets/img/logo/logo-128x128.svg" alt="Logo KP_Code_" class="brand-logo" width="36" height="36" />
           <span>KP_Code_</span>
         </a>
-
         <button class="site-header__nav-toggle" id="nav-toggle" aria-controls="site-nav" aria-expanded="false" aria-label="Otwórz menu">
           <span class="visually-hidden">Menu</span>
-          <svg class="icon" viewBox="0 0 24 24" aria-hidden="true">
-            <path d="M3 6h18M3 12h18M3 18h18" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
-          </svg>
+          <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 6h18M3 12h18M3 18h18" stroke="currentColor" stroke-width="2" stroke-linecap="round" /></svg>
         </button>
-
         <button id="theme-toggle" class="theme-toggle" type="button" aria-label="Przełącz motyw">
-          <img src="./assets/img/icons/sun-40x40.svg" alt="" class="theme-icon theme-icon--sun" />
-          <img src="./assets/img/icons/moon-40x40.svg" alt="" class="theme-icon theme-icon--moon" />
+          <img src="assets/img/icons/sun-40x40.svg" alt="" class="theme-icon theme-icon--sun" />
+          <img src="assets/img/icons/moon-40x40.svg" alt="" class="theme-icon theme-icon--moon" />
         </button>
-
         <nav class="site-nav" id="site-nav" aria-label="Główne">
           <ul class="site-nav__list">
-            <li><a href="/index.html" data-nav>Strona główna</a></li>
-            <li><a href="/rooms.html" data-nav>Pokoje &amp; Apartamenty</a></li>
-            <li><a href="/offers.html" data-nav>Oferty specjalne</a></li>
-            <li><a href="/gallery.html" data-nav>Galeria</a></li>
-            <li><a href="/contact.html" data-nav>Kontakt</a></li>
+            <li><a href="index.html" data-nav>Strona główna</a></li>
+            <li><a href="rooms.html" data-nav>Pokoje &amp; Apartamenty</a></li>
+            <li><a href="offers.html" data-nav>Oferty specjalne</a></li>
+            <li><a href="gallery.html" data-nav>Galeria</a></li>
+            <li><a href="contact.html" data-nav aria-current="page">Kontakt</a></li>
           </ul>
-
-          <div class="site-nav__extras">
-            <a class="btn btn--primary" href="#book">Rezerwuj</a>
-          </div>
+          <div class="site-nav__extras"><a class="btn btn--primary" href="#book">Rezerwuj</a></div>
         </nav>
       </div>
     </header>
+
+
 
     <!-- MAIN -->
     <main id="main">
@@ -104,68 +90,67 @@
       <nav class="breadcrumb" aria-label="Okruszki">
         <div class="container">
           <ol>
-            <li><a href="/index.html">Strona główna</a></li>
+            <li><a href="index.html">Strona główna</a></li>
             <li aria-current="page">Kontakt</li>
           </ol>
         </div>
       </nav>
 
+
+
+
       <section class="section" aria-labelledby="contact-heading">
         <div class="container">
           <h1 id="contact-heading" class="section-title">Kontakt i rezerwacje</h1>
-
           <div class="grid-2">
-            <article>
+            <article class="contact-info">
               <h2>Dane kontaktowe</h2>
-              <p>ul. Marynarki Wojennej 12/31, 330-100 Tarnów</p>
-              <p>
-                Tel.:
-                <a href="tel:+48533537091">+48 533 537 091</a>
-              </p>
-              <p>
-                E-mail:
-                <a href="mailto:kp_code_@gmail.com">kp_code_@gmail.com</a>
-              </p>
-
+              <address class="contact-address" translate="no">
+                ul. Marynarki Wojennej 12/31, 33-100 Tarnów
+                <br />
+                <span class="contact-row">
+                  <img src="assets/img/icons/tel-40x40.svg" alt="" class="footer__icon-img icon--mono" width="20" height="20" decoding="async" loading="lazy" aria-hidden="true" />
+                  <a href="tel:+48533537091">+48 533 537 091</a>
+                </span>
+                <br />
+                <span class="contact-row">
+                  <img src="assets/img/icons/email-40x40.svg" alt="" class="footer__icon-img icon--mono" width="20" height="20" decoding="async" loading="lazy" aria-hidden="true" />
+                  <a href="mailto:kp_code_@gmail.com">kp_code_@gmail.com</a>
+                </span>
+              </address>
               <figure class="map" aria-label="Mapa dojazdu">
                 <iframe
+                  title="Mapa dojazdu — ul. Marynarki Wojennej 12/31, Tarnów"
                   src="https://www.google.com/maps?q=ul.+Marynarki+Wojennej+12,+33-100+Tarnów,+Polska&hl=pl&z=16&output=embed"
                   width="800"
                   height="450"
                   style="border: 0"
-                  allowfullscreen=""
+                  allowfullscreen
                   loading="lazy"
-                  referrerpolicy="no-referrer-when-downgrade"
+                  referrerpolicy="no-referrer-when-cross-origin"
                   aria-label="Mapa lokalizacji hotelu w Tarnowie"></iframe>
-                <figcaption>Nasza lokalizacja – ul. Marynarki Wojennej 12, Tarnów</figcaption>
               </figure>
             </article>
-
             <article id="form">
               <h2>Zapytanie o rezerwację</h2>
-
               <!-- Netlify-ready form -->
               <form class="form" name="booking" method="POST" data-netlify="true" netlify-honeypot="website" novalidate data-form aria-describedby="form-note">
                 <!-- required by Netlify -->
                 <input type="hidden" name="form-name" value="booking" />
                 <!-- honeypot (masz już) -->
                 <input type="text" name="website" class="visually-hidden" tabindex="-1" autocomplete="off" />
-
                 <p id="form-note" class="form__note">Wypełnij pola oznaczone * i wyślij zapytanie. Odezwiemy się mailowo lub telefonicznie.</p>
-
                 <div class="form__field">
                   <label for="name">Imię i nazwisko *</label>
                   <input id="name" name="name" type="text" required inputmode="text" autocomplete="name" placeholder="Jan Kowalski" aria-describedby="hint-name err-name" />
                   <p class="form__hint" id="hint-name">Minimum 2 znaki.</p>
                   <p class="form__error" id="err-name" aria-live="polite" hidden>Podaj imię i nazwisko.</p>
                 </div>
-
                 <div class="form__field">
                   <label for="email">E-mail *</label>
                   <input id="email" name="email" type="email" required autocomplete="email" placeholder="jan@example.com" aria-describedby="err-email" />
                   <p class="form__error" id="err-email" aria-live="polite" hidden>Podaj poprawny adres e-mail.</p>
                 </div>
-
                 <div class="form__field">
                   <label for="phone">Telefon (opcjonalnie)</label>
                   <input
@@ -179,7 +164,6 @@
                     aria-describedby="hint-phone" />
                   <p class="form__hint" id="hint-phone">Tylko do kontaktu w sprawie rezerwacji.</p>
                 </div>
-
                 <fieldset class="form__field">
                   <legend>Termin pobytu *</legend>
                   <div class="grid-2">
@@ -195,35 +179,28 @@
                     </div>
                   </div>
                 </fieldset>
-
                 <div class="form__field">
                   <label for="guests">Liczba osób *</label>
                   <input id="guests" name="guests" type="number" min="1" max="6" step="1" required value="2" aria-describedby="hint-guests err-guests" />
                   <p class="form__hint" id="hint-guests">Zakres 1–6.</p>
                   <p class="form__error" id="err-guests" aria-live="polite" hidden>Podaj liczbę osób (1–6).</p>
                 </div>
-
                 <div class="form__field">
                   <label for="message">Wiadomość</label>
                   <textarea id="message" name="message" rows="4" placeholder="Preferencje, pytania (opcjonalnie)"></textarea>
                 </div>
-
                 <div class="form__field form__field--checkbox">
                   <label class="checkbox">
                     <input id="consent" name="consent" type="checkbox" required aria-describedby="err-consent" />
                     <span>
                       Wyrażam zgodę na kontakt w sprawie rezerwacji oraz akceptuję
-                      <a href="/legal.html">Politykę prywatności</a>
+                      <a href="legal.html">Politykę prywatności</a>
                       *
                     </span>
                   </label>
                   <p class="form__error" id="err-consent" aria-live="polite" hidden>Wymagana zgoda na kontakt.</p>
                 </div>
-
-                <div class="form__actions">
-                  <button class="btn btn--primary" type="submit">Wyślij zapytanie</button>
-                </div>
-
+                <div class="form__actions"><button class="btn btn--primary" type="submit">Wyślij zapytanie</button></div>
                 <p class="form__success" role="status" aria-live="polite" hidden>Dziękujemy! Skontaktujemy się wkrótce.</p>
               </form>
             </article>
@@ -231,43 +208,40 @@
         </div>
       </section>
     </main>
-
-    <!-- FOOTER (bez zmian) -->
-    <footer class="site-footer" aria-labelledby="footer-heading">
+    <!-- FOOTER -->
+    <footer class="site-footer" role="contentinfo" aria-labelledby="footer-heading">
       <h2 id="footer-heading" class="sr-only">Stopka serwisu</h2>
       <div class="container">
         <div class="footer__inner">
           <div class="footer__grid">
-            <!-- Kolumny... (jak w Twojej wersji) -->
+            <!-- Kolumna 1 — Brand/Intro -->
             <section class="footer__col footer__brand" aria-labelledby="footer-brand">
-              <img class="footer__brand-img" src="./assets/img/logo/logo-160x160.svg" alt="" width="160" height="160" decoding="async" loading="lazy" />
-              <h3 id="footer-brand" class="footer__heading">
-                <a href="/" class="footer__brand-link" aria-label="KP_Code_ – strona główna">KP_Code_</a>
-              </h3>
-              <p class="footer__text">Strona demonstracyjna dla branży turystyczno-hotelarskiej — nowoczesny front-end (HTML / CSS / JS).</p>
+              <img class="footer__brand-img" src="assets/img/logo/logo-160x160.svg" alt="" width="160" height="160" decoding="async" loading="lazy" aria-hidden="true" />
+              <h3 id="footer-brand" class="footer__heading"><a href="index.html" class="footer__brand-link" aria-label="KP_Code_ – strona główna">KP_Code_</a></h3>
+              <p class="footer__text">Projekt demonstracyjny prezentujący nowoczesny front-end dla sektora turystyki i hoteli.</p>
               <a href="#" class="footer__brand-author" aria-label="Strona autora — KP_Code_">Strona autora</a>
             </section>
-
+            <!-- Kolumna 2 — Nawigacja -->
             <nav class="footer__col footer__nav" aria-labelledby="footer-nav">
               <h3 id="footer-nav" class="footer__heading">NAWIGACJA</h3>
               <ul class="footer__list">
-                <li><a href="/index.html" data-nav>Strona główna</a></li>
-                <li><a href="/rooms.html" data-nav>Pokoje</a></li>
-                <li><a href="/offers.html" data-nav>Oferty</a></li>
-                <li><a href="/gallery.html" data-nav>Galeria</a></li>
-                <li><a href="/contact.html" data-nav>Kontakt</a></li>
+                <li><a href="index.html" data-nav>Strona główna</a></li>
+                <li><a href="rooms.html" data-nav>Pokoje</a></li>
+                <li><a href="offers.html" data-nav>Oferty</a></li>
+                <li><a href="gallery.html" data-nav>Galeria</a></li>
+                <li><a href="contact.html" data-nav>Kontakt</a></li>
               </ul>
             </nav>
-
+            <!-- Kolumna 3 — Informacje prawne -->
             <nav class="footer__col footer__legal" aria-labelledby="footer-legal">
               <h3 id="footer-legal" class="footer__heading">INFORMACJE PRAWNE</h3>
               <ul class="footer__list">
-                <li><a href="/legal.html">Polityka prywatności</a></li>
+                <li><a href="legal.html">Polityka prywatności</a></li>
                 <li><a href="#">Warunki korzystania</a></li>
                 <li><a href="#">Pliki cookies</a></li>
               </ul>
             </nav>
-
+            <!-- Kolumna 4 — Kontakt + Social -->
             <section class="footer__col footer__contact" aria-labelledby="footer-contact">
               <h3 id="footer-contact" class="footer__heading">KONTAKT</h3>
               <address class="footer__text" translate="no">
@@ -279,23 +253,36 @@
                 <br />
                 33-100 Tarnów, Polska
               </address>
-
               <p class="footer__text">
-                <a href="mailto:kp_code_@gmail.com">kp_code_@gmail.com</a>
+                <a href="mailto:kp_code_@gmail.com">
+                  <img src="assets/img/icons/email-40x40.svg" alt="" class="footer__icon-img icon--mono" width="24" height="24" decoding="async" loading="lazy" aria-hidden="true" />
+                  kp_code_@gmail.com
+                </a>
                 <br />
-                <a href="tel:+48533537091">+48 533 537 091</a>
+                <a href="tel:+48533537091">
+                  <img src="assets/img/icons/tel-40x40.svg" alt="" class="footer__icon-img icon--mono" width="24" height="24" decoding="async" loading="lazy" aria-hidden="true" />
+                  +48 533 537 091
+                </a>
               </p>
-
-              <h3 class="footer__heading">SOCIAL MEDIA</h3>
-              <div class="footer__social" aria-label="Media społecznościowe">
-                <a href="#" aria-label="Facebook — KP_Code_" rel="me noopener"><img src="assets/img/icons/fb.svg" alt="" class="footer__icon-img" aria-hidden="true" /></a>
-                <a href="#" aria-label="LinkedIn — KP_Code_" rel="me noopener"><img src="assets/img/icons/linktin.svg" alt="" class="footer__icon-img" aria-hidden="true" /></a>
-                <a href="#" aria-label="GitHub — KP_Code_" rel="me noopener"><img src="assets/img/icons/github.svg" alt="" class="footer__icon-img" aria-hidden="true" /></a>
-                <a href="#" aria-label="X — KP_Code_" rel="me noopener"><img src="assets/img/icons/x.svg" alt="" class="footer__icon-img" aria-hidden="true" /></a>
+              <!-- Media społecznościowe -->
+              <h3 id="footer-social" class="footer__heading">SOCIAL MEDIA</h3>
+              <div class="footer__social" aria-labelledby="footer-social" aria-label="Media społecznościowe">
+                <a href="#" aria-label="Facebook — KP_Code_" rel="me noopener noreferrer">
+                  <img src="assets/img/icons/facebook.svg" alt="" class="footer__icon-img" width="24" height="24" decoding="async" loading="lazy" aria-hidden="true" />
+                </a>
+                <a href="#" aria-label="YouTube — KP_Code_" rel="me noopener noreferrer">
+                  <img src="assets/img/icons/youtube.svg" alt="" class="footer__icon-img" width="24" height="24" decoding="async" loading="lazy" aria-hidden="true" />
+                </a>
+                <a href="#" aria-label="GitHub — KP_Code_" rel="me noopener noreferrer">
+                  <img src="assets/img/icons/github.svg" alt="" class="footer__icon-img icon--mono" width="24" height="24" decoding="async" loading="lazy" aria-hidden="true" />
+                </a>
+                <a href="#" aria-label="X — KP_Code_" rel="me noopener noreferrer">
+                  <img src="assets/img/icons/x.svg" alt="" class="footer__icon-img icon--mono" width="24" height="24" decoding="async" loading="lazy" aria-hidden="true" />
+                </a>
               </div>
             </section>
           </div>
-
+          <!-- Bottom bar -->
           <div class="footer__bottom">
             <p>
               ©
@@ -307,23 +294,27 @@
         </div>
       </div>
     </footer>
-
     <!-- JSON-LD -->
     <script type="application/ld+json">
       {
         "@context": "https://schema.org",
         "@type": "Hotel",
         "name": "Tourism & Hotels",
-        "url": "/",
-        "address": { "@type": "PostalAddress", "streetAddress": "ul. Przykładowa 1", "addressLocality": "Miasto", "postalCode": "00-000", "addressCountry": "PL" },
-        "telephone": "+48 000 000 000",
-        "image": "/assets/img/hero/hero-01-1280.jpg"
+        "url": "https://tourism-project-01.netlify.app/contact.html",
+        "address": { "@type": "PostalAddress", "streetAddress": "ul. Marynarki Wojennej 12/31", "addressLocality": "Tarnów", "postalCode": "33-100", "addressCountry": "PL" },
+        "telephone": "+48 533 537 091",
+        "image": "https://tourism-project-01.netlify.app/assets/img/hero/hero-01-1280.jpg"
       }
     </script>
     <script type="application/ld+json">
-      { "@context": "https://schema.org", "@type": "Organization", "name": "Tourism & Hotels", "url": "/", "logo": "/assets/img/ui/icon-192.png" }
+      {
+        "@context": "https://schema.org",
+        "@type": "Organization",
+        "name": "Tourism & Hotels",
+        "url": "https://tourism-project-01.netlify.app/",
+        "logo": "https://tourism-project-01.netlify.app/assets/img/ui/icon-192.png"
+      }
     </script>
-
     <!-- SCRIPTS -->
     <script type="module" defer src="js/script.js"></script>
   </body>

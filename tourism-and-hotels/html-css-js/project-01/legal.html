@@ -40,14 +40,14 @@
     <meta name="twitter:image" content="https://tourism-project-01.netlify.app/assets/img/og/og-1200x1200.jpg" />
 
     <!-- PWA -->
-    <link rel="manifest" href="/site.webmanifest" />
+    <link rel="manifest" href="site.webmanifest" />
 
     <!-- Icons -->
-    <link rel="icon" href="/assets/img/ui/favicon.svg" type="image/svg+xml" />
-    <link rel="icon" href="/assets/img/ui/favicon-32x32.png" sizes="32x32" />
-    <link rel="icon" href="/assets/img/ui/favicon-16x16.png" sizes="16x16" />
-    <link rel="apple-touch-icon" href="/assets/img/ui/apple-touch-icon.png" sizes="180x180" />
-    <link rel="mask-icon" href="/assets/img/ui/safari-pinned-tab.svg" color="#0d0f14" />
+    <link rel="icon" href="assets/img/ui/favicon.svg" type="image/svg+xml" />
+    <link rel="icon" href="assets/img/ui/favicon-32x32.png" sizes="32x32" />
+    <link rel="icon" href="assets/img/ui/favicon-16x16.png" sizes="16x16" />
+    <link rel="apple-touch-icon" href="assets/img/ui/apple-touch-icon.png" sizes="180x180" />
+    <link rel="mask-icon" href="assets/img/ui/safari-pinned-tab.svg" color="#0d0f14" />
     <meta name="theme-color" content="#2dc7a6" />
     <meta name="msapplication-TileColor" content="#2dc7a6" />
 
@@ -64,8 +64,8 @@
     <header class="site-header" id="top">
       <div class="container site-header__inner">
         <!-- Logo + Brand -->
-        <a class="site-header__brand" href="/" aria-label="Strona główna">
-          <img src="./assets/img/logo/logo-128x128.svg" alt="Logo KP_Code_" class="brand-logo" width="36" height="36" />
+        <a class="site-header__brand" href="index.html" aria-label="Strona główna">
+          <img src="assets/img/logo/logo-128x128.svg" alt="Logo KP_Code_" class="brand-logo" width="36" height="36" />
           <span>KP_Code_</span>
         </a>
 
@@ -80,18 +80,18 @@
         <!-- Nav -->
         <nav class="site-nav" id="site-nav" aria-label="Główne">
           <ul class="site-nav__list">
-            <li><a href="/index.html" data-nav>Strona główna</a></li>
-            <li><a href="/rooms.html" data-nav>Pokoje &amp; Apartamenty</a></li>
-            <li><a href="/offers.html" data-nav>Oferty specjalne</a></li>
-            <li><a href="/gallery.html" data-nav>Galeria</a></li>
-            <li><a href="/contact.html" data-nav>Kontakt</a></li>
+            <li><a href="index.html" data-nav>Strona główna</a></li>
+            <li><a href="rooms.html" data-nav>Pokoje &amp; Apartamenty</a></li>
+            <li><a href="offers.html" data-nav>Oferty specjalne</a></li>
+            <li><a href="gallery.html" data-nav>Galeria</a></li>
+            <li><a href="contact.html" data-nav>Kontakt</a></li>
           </ul>
 
           <div class="site-nav__extras">
             <!-- Theme toggle -->
             <button id="theme-toggle" class="theme-toggle" type="button" aria-label="Przełącz motyw">
-              <img src="./assets/img/icons/sun-40x40.svg" alt="" class="theme-icon theme-icon--sun" />
-              <img src="./assets/img/icons/moon-40x40.svg" alt="" class="theme-icon theme-icon--moon" />
+              <img src="assets/img/icons/sun-40x40.svg" alt="" class="theme-icon theme-icon--sun" />
+              <img src="assets/img/icons/moon-40x40.svg" alt="" class="theme-icon theme-icon--moon" />
             </button>
 
             <a class="btn btn--primary" href="#book">Rezerwuj</a>
@@ -103,7 +103,7 @@
     <main id="main">
       <nav class="breadcrumb" aria-label="Okruszki">
         <ol>
-          <li><a href="/index.html">Strona główna</a></li>
+          <li><a href="index.html">Strona główna</a></li>
           <li aria-current="page">Polityka i warunki</li>
         </ol>
       </nav>
@@ -127,81 +127,105 @@
 
 
 
-    <!-- FOOTER (bez zmian) -->
-    <footer class="site-footer" aria-labelledby="footer-heading">
-      <h2 id="footer-heading" class="sr-only">Stopka serwisu</h2>
-      <div class="container">
-        <div class="footer__inner">
-          <div class="footer__grid">
-            <!-- Kolumny... (jak w Twojej wersji) -->
-            <section class="footer__col footer__brand" aria-labelledby="footer-brand">
-              <img class="footer__brand-img" src="./assets/img/logo/logo-160x160.svg" alt="" width="160" height="160" decoding="async" loading="lazy" />
-              <h3 id="footer-brand" class="footer__heading">
-                <a href="/" class="footer__brand-link" aria-label="KP_Code_ – strona główna">KP_Code_</a>
-              </h3>
-              <p class="footer__text">Strona demonstracyjna dla branży turystyczno-hotelarskiej — nowoczesny front-end (HTML / CSS / JS).</p>
-              <a href="#" class="footer__brand-author" aria-label="Strona autora — KP_Code_">Strona autora</a>
-            </section>
+<!-- FOOTER -->
+<footer class="site-footer" role="contentinfo" aria-labelledby="footer-heading">
+  <h2 id="footer-heading" class="sr-only">Stopka serwisu</h2>
+  <div class="container">
+    <div class="footer__inner">
+      <div class="footer__grid">
+        <!-- Kolumna 1 — Brand/Intro -->
+        <section class="footer__col footer__brand" aria-labelledby="footer-brand">
+          <img
+            class="footer__brand-img"
+            src="assets/img/logo/logo-160x160.svg"
+            alt=""
+            width="160"
+            height="160"
+            decoding="async"
+            loading="lazy"
+            aria-hidden="true"
+          />
+          <h3 id="footer-brand" class="footer__heading">
+            <a href="index.html" class="footer__brand-link" aria-label="KP_Code_ – strona główna">KP_Code_</a>
+          </h3>
+          <p class="footer__text">Projekt demonstracyjny prezentujący nowoczesny front-end dla sektora turystyki i hoteli.</p>
+          <a href="#" class="footer__brand-author" aria-label="Strona autora — KP_Code_">Strona autora</a>
+        </section>
 
-            <nav class="footer__col footer__nav" aria-labelledby="footer-nav">
-              <h3 id="footer-nav" class="footer__heading">NAWIGACJA</h3>
-              <ul class="footer__list">
-                <li><a href="/index.html" data-nav>Strona główna</a></li>
-                <li><a href="/rooms.html" data-nav>Pokoje</a></li>
-                <li><a href="/offers.html" data-nav>Oferty</a></li>
-                <li><a href="/gallery.html" data-nav>Galeria</a></li>
-                <li><a href="/contact.html" data-nav>Kontakt</a></li>
-              </ul>
-            </nav>
+        <!-- Kolumna 2 — Nawigacja -->
+        <nav class="footer__col footer__nav" aria-labelledby="footer-nav">
+          <h3 id="footer-nav" class="footer__heading">NAWIGACJA</h3>
+          <ul class="footer__list">
+            <li><a href="index.html" data-nav>Strona główna</a></li>
+            <li><a href="rooms.html" data-nav>Pokoje</a></li>
+            <li><a href="offers.html" data-nav>Oferty</a></li>
+            <li><a href="gallery.html" data-nav>Galeria</a></li>
+            <li><a href="contact.html" data-nav>Kontakt</a></li>
+          </ul>
+        </nav>
 
-            <nav class="footer__col footer__legal" aria-labelledby="footer-legal">
-              <h3 id="footer-legal" class="footer__heading">INFORMACJE PRAWNE</h3>
-              <ul class="footer__list">
-                <li><a href="/legal.html" data-nav>Polityka prywatności</a></li>
-                <li><a href="#">Warunki korzystania</a></li>
-                <li><a href="#">Pliki cookies</a></li>
-              </ul>
-            </nav>
+        <!-- Kolumna 3 — Informacje prawne -->
+        <nav class="footer__col footer__legal" aria-labelledby="footer-legal">
+          <h3 id="footer-legal" class="footer__heading">INFORMACJE PRAWNE</h3>
+          <ul class="footer__list">
+            <li><a href="legal.html">Polityka prywatności</a></li>
+            <li><a href="#">Warunki korzystania</a></li>
+            <li><a href="#">Pliki cookies</a></li>
+          </ul>
+        </nav>
 
-            <section class="footer__col footer__contact" aria-labelledby="footer-contact">
-              <h3 id="footer-contact" class="footer__heading">KONTAKT</h3>
-              <address class="footer__text" translate="no">
-                KP_Code_
-                <br />
-                Hotel Demo Sp. z o.o.
-                <br />
-                ul. Marynarki Wojennej 12/31
-                <br />
-                33-100 Tarnów, Polska
-              </address>
+        <!-- Kolumna 4 — Kontakt + Social -->
+        <section class="footer__col footer__contact" aria-labelledby="footer-contact">
+          <h3 id="footer-contact" class="footer__heading">KONTAKT</h3>
 
-              <p class="footer__text">
-                <a href="mailto:kp_code_@gmail.com">kp_code_@gmail.com</a>
-                <br />
-                <a href="tel:+48533537091">+48 533 537 091</a>
-              </p>
+          <address class="footer__text" translate="no">
+            KP_Code_<br />
+            Hotel Demo Sp. z o.o.<br />
+            ul. Marynarki Wojennej 12/31<br />
+            33-100 Tarnów, Polska
+          </address>
 
-              <h3 class="footer__heading">SOCIAL MEDIA</h3>
-              <div class="footer__social" aria-label="Media społecznościowe">
-                <a href="#" aria-label="Facebook — KP_Code_" rel="me noopener"><img src="assets/img/icons/fb.svg" alt="" class="footer__icon-img" aria-hidden="true" /></a>
-                <a href="#" aria-label="LinkedIn — KP_Code_" rel="me noopener"><img src="assets/img/icons/linktin.svg" alt="" class="footer__icon-img" aria-hidden="true" /></a>
-                <a href="#" aria-label="GitHub — KP_Code_" rel="me noopener"><img src="assets/img/icons/github.svg" alt="" class="footer__icon-img" aria-hidden="true" /></a>
-                <a href="#" aria-label="X — KP_Code_" rel="me noopener"><img src="assets/img/icons/x.svg" alt="" class="footer__icon-img" aria-hidden="true" /></a>
-              </div>
-            </section>
+          <p class="footer__text">
+
+            <a href="mailto:kp_code_@gmail.com"><img src="assets/img/icons/email-40x40.svg" alt="" class="footer__icon-img icon--mono" width="24" height="24" decoding="async" loading="lazy" aria-hidden="true" />kp_code_@gmail.com</a><br />
+
+            <a href="tel:+48533537091"><img src="assets/img/icons/tel-40x40.svg" alt="" class="footer__icon-img icon--mono" width="24" height="24" decoding="async" loading="lazy" aria-hidden="true" />+48 533 537 091</a>
+          </p>
+
+          <!-- Media społecznościowe -->
+          <h3 id="footer-social" class="footer__heading">SOCIAL MEDIA</h3>
+          <div class="footer__social" aria-labelledby="footer-social" aria-label="Media społecznościowe">
+
+            <a href="#" aria-label="Facebook — KP_Code_" rel="me noopener noreferrer">
+              <img src="assets/img/icons/facebook.svg" alt="" class="footer__icon-img" width="24" height="24" decoding="async" loading="lazy" aria-hidden="true" />
+            </a>
+
+            <a href="#" aria-label="YouTube — KP_Code_" rel="me noopener noreferrer">
+              <img src="assets/img/icons/youtube.svg" alt="" class="footer__icon-img" width="24" height="24" decoding="async" loading="lazy" aria-hidden="true" />
+            </a>
+
+            <a href="#" aria-label="GitHub — KP_Code_" rel="me noopener noreferrer">
+              <img src="assets/img/icons/github.svg" alt="" class="footer__icon-img icon--mono" width="24" height="24" decoding="async" loading="lazy" aria-hidden="true" />
+            </a>
+
+            <a href="#" aria-label="X — KP_Code_" rel="me noopener noreferrer">
+              <img src="assets/img/icons/x.svg" alt="" class="footer__icon-img icon--mono" width="24" height="24" decoding="async" loading="lazy" aria-hidden="true" />
+            </a>
+
           </div>
-
-          <div class="footer__bottom">
-            <p>
-              ©
-              <span data-year></span>
-              KP_Code. Wszelkie prawa zastrzeżone. Projekt i wdrożenie: KP_Code
-            </p>
-            <p>Made for demo</p>
-          </div>
-        </div>
+        </section>
       </div>
-    </footer>
+
+      <!-- Bottom bar -->
+      <div class="footer__bottom">
+        <p>
+          © <span data-year></span> KP_Code. Wszelkie prawa zastrzeżone. Projekt i wdrożenie: KP_Code
+        </p>
+        <p>Made for demo</p>
+      </div>
+    </div>
+  </div>
+</footer>
 
     <!-- JSON-LD -->
     <script type="application/ld+json">
@@ -209,14 +233,14 @@
         "@context": "https://schema.org",
         "@type": "Hotel",
         "name": "Tourism & Hotels",
-        "url": "/",
+        "url": "index.html",
         "address": { "@type": "PostalAddress", "streetAddress": "ul. Przykładowa 1", "addressLocality": "Miasto", "postalCode": "00-000", "addressCountry": "PL" },
         "telephone": "+48 000 000 000",
-        "image": "/assets/img/hero/hero-01-1280.jpg"
+        "image": "assets/img/hero/hero-01-1280.jpg"
       }
     </script>
     <script type="application/ld+json">
-      { "@context": "https://schema.org", "@type": "Organization", "name": "Tourism & Hotels", "url": "/", "logo": "/assets/img/ui/icon-192.png" }
+      { "@context": "https://schema.org", "@type": "Organization", "name": "Tourism & Hotels", "url": "index.html", "logo": "assets/img/ui/icon-192.png" }
     </script>
 
     <!-- SCRIPTS -->
