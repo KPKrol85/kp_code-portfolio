@@ -55,20 +55,18 @@
     <link rel="stylesheet" href="css/style.css" />
   </head>
 
+  <!-- BODY -->
   <body>
     <a class="skip-link" href="#main">Przejdź do treści</a>
-
 
     <!-- HEADER -->
     <header class="site-header" id="top">
       <div class="container site-header__inner">
-        <!-- Logo + Brand -->
         <a class="site-header__brand" href="index.html" aria-label="Strona główna">
           <img src="assets/img/logo/logo-128x128.svg" alt="Logo KP_Code_" class="brand-logo" width="36" height="36" />
           <span>KP_Code_</span>
         </a>
 
-        <!-- Nav toggle -->
         <button class="site-header__nav-toggle" id="nav-toggle" aria-controls="site-nav" aria-expanded="false" aria-label="Otwórz menu">
           <span class="visually-hidden">Menu</span>
           <svg class="icon" viewBox="0 0 24 24" aria-hidden="true">
@@ -76,7 +74,11 @@
           </svg>
         </button>
 
-        <!-- Nav -->
+        <button id="theme-toggle" class="theme-toggle" type="button" aria-label="Przełącz motyw">
+          <img src="assets/img/icons/sun-40x40.svg" alt="" class="theme-icon theme-icon--sun" />
+          <img src="assets/img/icons/moon-40x40.svg" alt="" class="theme-icon theme-icon--moon" />
+        </button>
+
         <nav class="site-nav" id="site-nav" aria-label="Główne">
           <ul class="site-nav__list">
             <li><a href="index.html" data-nav>Strona główna</a></li>
@@ -87,18 +89,11 @@
           </ul>
 
           <div class="site-nav__extras">
-            <!-- Theme toggle -->
-            <button id="theme-toggle" class="theme-toggle" type="button" aria-label="Przełącz motyw">
-              <img src="assets/img/icons/sun-40x40.svg" alt="" class="theme-icon theme-icon--sun" />
-              <img src="assets/img/icons/moon-40x40.svg" alt="" class="theme-icon theme-icon--moon" />
-            </button>
-
             <a class="btn btn--primary" href="#book">Rezerwuj</a>
           </div>
         </nav>
       </div>
     </header>
-
 
     <!-- MAIN -->
     <main id="main">
@@ -107,7 +102,7 @@
         <div class="container">
           <ol>
             <li><a href="index.html">Strona główna</a></li>
-            <li aria-current="page">Galeria</li>
+            <li aria-current="page">Oferty specjalne</li>
           </ol>
         </div>
       </nav>
@@ -119,20 +114,35 @@
             <article id="weekend" class="offer-card">
               <div class="offer-card__badge">-15%</div>
               <h2 class="offer-card__title">Weekend dla dwojga</h2>
-              <p class="offer-card__text">Dwie noce, śniadania i późny check‑out do 14:00.</p>
-              <a class="btn btn--secondary" href="contact.html#form">Skorzystaj</a>
+              <p class="offer-card__text">Dwie noce, śniadania i późny check-out do 14:00.</p>
+              <a
+                class="btn btn--secondary"
+                href="contact.html#form"
+                aria-label="Skorzystaj z oferty Weekend dla dwojga"
+                >Skorzystaj</a
+              >
             </article>
             <article id="biz" class="offer-card">
               <div class="offer-card__badge">-10%</div>
               <h2 class="offer-card__title">Biznes w mieście</h2>
-              <p class="offer-card__text">Elastyczne godziny, szybkie Wi‑Fi i ciche pokoje.</p>
-              <a class="btn btn--secondary" href="contact.html#form">Skorzystaj</a>
+              <p class="offer-card__text">Elastyczne godziny, szybkie Wi-Fi i ciche pokoje.</p>
+              <a
+                class="btn btn--secondary"
+                href="contact.html#form"
+                aria-label="Skorzystaj z oferty Biznes w mieście"
+                >Skorzystaj</a
+              >
             </article>
             <article class="offer-card">
               <div class="offer-card__badge">-20%</div>
               <h2 class="offer-card__title">Zostań dłużej</h2>
-              <p class="offer-card__text">Pobyt 4+ nocy ze zniżką i usługami dodatkowym.</p>
-              <a class="btn btn--secondary" href="contact.html#form">Skorzystaj</a>
+              <p class="offer-card__text">Pobyt 4+ nocy ze zniżką i usługami dodatkowymi.</p>
+              <a
+                class="btn btn--secondary"
+                href="contact.html#form"
+                aria-label="Skorzystaj z oferty Zostań dłużej"
+                >Skorzystaj</a
+              >
             </article>
           </div>
         </div>
@@ -180,9 +190,9 @@
         <nav class="footer__col footer__legal" aria-labelledby="footer-legal">
           <h3 id="footer-legal" class="footer__heading">INFORMACJE PRAWNE</h3>
           <ul class="footer__list">
-            <li><a href="legal.html">Polityka prywatności</a></li>
-            <li><a href="#">Warunki korzystania</a></li>
-            <li><a href="#">Pliki cookies</a></li>
+            <li><a href="polityka-prywatnosci.html">Polityka prywatności</a></li>
+            <li><a href="regulamin.html">Regulamin serwisu</a></li>
+            <li><a href="cookies.html">Pliki cookies</a></li>
           </ul>
         </nav>
 
@@ -239,14 +249,34 @@
   </div>
 </footer>
 
+    <!-- JSON-LD -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Hotel",
+        "name": "Tourism & Hotels",
+        "url": "https://tourism-project-01.netlify.app/",
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "ul. Marynarki Wojennej 12/31",
+          "addressLocality": "Tarnów",
+          "postalCode": "33-100",
+          "addressCountry": "PL"
+        },
+        "telephone": "+48 533 537 091",
+        "image": "https://tourism-project-01.netlify.app/assets/img/og/og-1200x630.jpg"
+      }
+    </script>
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Organization",
+        "name": "Tourism & Hotels",
+        "url": "https://tourism-project-01.netlify.app/",
+        "logo": "https://tourism-project-01.netlify.app/assets/img/ui/icon-192.png"
+      }
+    </script>
+    <!-- SCRIPTS -->
     <script type="module" defer src="js/script.js"></script>
-    <script type="application/ld+json">{
-      "@context": "https://schema.org",
-      "@type": "BreadcrumbList",
-      "itemListElement": [
-        {"@type": "ListItem", "position": 1, "name": "Strona główna", "item": "index.html"},
-        {"@type": "ListItem", "position": 2, "name": "Oferty specjalne", "item": "offers.html"}
-      ]
-    }</script>
   </body>
 </html>
