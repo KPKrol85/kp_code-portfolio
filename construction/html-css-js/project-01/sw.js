@@ -1,5 +1,5 @@
 /* ===== Service Worker — construction-01 ===== */
-const CACHE_NAME = "construction-01-v4.0.0";
+const CACHE_NAME = "construction-01-v4.0.1";
 
 /* Kluczowe zasoby (MINIFIED) */
 const ASSETS = [
