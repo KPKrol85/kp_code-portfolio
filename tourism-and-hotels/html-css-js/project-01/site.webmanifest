@@ -1,22 +1,25 @@
 {
-  "name": "Tourism & Hotels 01 — KP_Code_",
-  "short_name": "T&H 01",
+  "name": "KP_Code_ - Demo Turystyka & Hotele",
+  "short_name": "KP_Code - Demo",
   "start_url": "index.html",
   "scope": ".",
   "display": "standalone",
-  "orientation": "portrait",
+  "orientation": "any",
   "background_color": "#0d0f14",
   "theme_color": "#2dc7a6",
+
   "icons": [
     {
       "src": "assets/img/ui/android-chrome-192x192.png",
       "sizes": "192x192",
-      "type": "image/png"
+      "type": "image/png",
+      "purpose": "any maskable"
     },
     {
       "src": "assets/img/ui/android-chrome-512x512.png",
       "sizes": "512x512",
-      "type": "image/png"
+      "type": "image/png",
+      "purpose": "any maskable"
     },
     {
       "src": "assets/img/ui/web-app-manifest-192x192.png",
@@ -37,6 +40,44 @@
       "src": "assets/img/ui/favicon-1024x1024.png",
       "sizes": "1024x1024",
       "type": "image/png"
+    }
+  ],
+
+  "screenshots": [
+    {
+      "src": "assets/img/screenshots/screenshot-720x1280.jpg",
+      "sizes": "720x1280",
+      "type": "image/jpeg",
+      "form_factor": "narrow",
+      "label": "Widok strony mobilnej"
+    },
+    {
+      "src": "assets/img/screenshots/screenshot-1280x720.jpg",
+      "sizes": "1280x720",
+      "type": "image/jpeg",
+      "form_factor": "wide",
+      "label": "Widok strony desktopowej"
+    }
+  ],
+
+  "shortcuts": [
+    {
+      "name": "Pokoje & Apartamenty",
+      "short_name": "Pokoje",
+      "url": "rooms.html",
+      "icons": [{ "src": "assets/img/shortcuts/pokoje.png", "sizes": "96x96" }]
+    },
+    {
+      "name": "Oferty specjalne",
+      "short_name": "Oferty",
+      "url": "offers.html",
+      "icons": [{ "src": "assets/img/shortcuts/form.png", "sizes": "96x96" }]
+    },
+    {
+      "name": "Galeria",
+      "short_name": "Galeria",
+      "url": "gallery.html",
+      "icons": [{ "src": "assets/img/ushortcuts/galeria.png", "sizes": "96x96" }]
     }
   ]
 }

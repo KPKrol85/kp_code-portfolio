@@ -27,6 +27,7 @@ export function initLightbox() {
 
   let index = 0;
   let lastFocused = null;
+  let lastTapTime = 0; // do double-tap na mobile
 
   function renderFromAnchor(a) {
     const fullSrc = a.getAttribute("href");
@@ -42,6 +43,19 @@ export function initLightbox() {
     if (caption) caption.textContent = text;
   }
 
+  function setFullscreen(on) {
+    if (on) {
+      lightbox.classList.add("lightbox--fullscreen");
+    } else {
+      lightbox.classList.remove("lightbox--fullscreen");
+    }
+  }
+
+  function toggleFullscreen() {
+    const isOn = lightbox.classList.contains("lightbox--fullscreen");
+    setFullscreen(!isOn);
+  }
+
   function open(i, focusOrigin) {
     const list = items();
     if (!list.length) return;
@@ -50,6 +64,7 @@ export function initLightbox() {
     renderFromAnchor(list[index]);
     lastFocused = focusOrigin || document.activeElement;
 
+    setFullscreen(false); // zawsze start bez fullscreen
     lightbox.hidden = false;
     lightbox.setAttribute("aria-hidden", "false");
     (dialogEl || prevBtn || nextBtn || closeBtns[0])?.focus();
@@ -57,6 +72,7 @@ export function initLightbox() {
   }
 
   function close() {
+    setFullscreen(false);
     lightbox.hidden = true;
     lightbox.setAttribute("aria-hidden", "true");
     document.body.style.overflow = "";
@@ -78,7 +94,6 @@ export function initLightbox() {
 
     e.preventDefault(); // nie przechodzimy do JPG
     const list = items();
-    // jeżeli kliknięty element nie jest w aktualnym zbiorze (np. filtr się właśnie zmienił) — wyjdź grzecznie
     const i = list.indexOf(a);
     if (i === -1) return;
     open(i, a);
@@ -89,7 +104,6 @@ export function initLightbox() {
     const list = items();
     if (lightbox.hidden) return; // tylko gdy otwarty
     if (!list.length) return close();
-    // jeżeli aktualny index poza zakresem po filtracji – wróć na 0
     if (index >= list.length) index = 0;
     renderFromAnchor(list[index]);
   });
@@ -121,4 +135,35 @@ export function initLightbox() {
       }
     }
   });
+
+  // --- Fullscreen tylko na zdjęciu ---
+
+  // desktop: double-click
+  if (img) {
+    img.addEventListener("dblclick", (e) => {
+      if (lightbox.hidden) return;
+      e.stopPropagation(); // nie idzie do rodziców (dialog, body itd.)
+      e.preventDefault();
+      toggleFullscreen();
+    });
+  }
+
+  // mobile: double-tap (pointer events)
+  function handlePointerDown(e) {
+    if (lightbox.hidden) return;
+    if (e.pointerType !== "touch") return;
+
+    const now = Date.now();
+    if (now - lastTapTime < 300) {
+      // drugi tap w krótkim odstępie -> fullscreen toggle
+      e.preventDefault();
+      e.stopPropagation(); // również nie bąbelkuje wyżej
+      toggleFullscreen();
+    }
+    lastTapTime = now;
+  }
+
+  if (img) {
+    img.addEventListener("pointerdown", handlePointerDown);
+  }
 }

@@ -105,12 +105,22 @@
         <div class="container">
           <h1 id="rooms-heading" class="section-title">Pokoje &amp; Apartamenty</h1>
 
-          <div class="tabs" aria-label="Filtruj typ">
-            <button class="tabs__tab is-active" aria-pressed="true" tabindex="0" data-tab-target="all">Wszystkie</button>
-            <button class="tabs__tab" aria-pressed="false" tabindex="-1" data-tab-target="classic">Classic</button>
-            <button class="tabs__tab" aria-pressed="false" tabindex="-1" data-tab-target="deluxe">Deluxe</button>
-            <button class="tabs__tab" aria-pressed="false" tabindex="-1" data-tab-target="luxury">Luxury</button>
-          </div>
+          <nav class="tabs gallery-cats gallery-cats--panel rooms-filters" aria-label="Filtruj typ pokoi">
+            <ul class="gallery-cats__list">
+              <li class="gallery-cats__item">
+                <button class="gallery-cats__link tabs__tab is-active" type="button" aria-pressed="true" tabindex="0" data-tab-target="all">Wszystkie</button>
+              </li>
+              <li class="gallery-cats__item">
+                <button class="gallery-cats__link tabs__tab" type="button" aria-pressed="false" tabindex="-1" data-tab-target="classic">Classic</button>
+              </li>
+              <li class="gallery-cats__item">
+                <button class="gallery-cats__link tabs__tab" type="button" aria-pressed="false" tabindex="-1" data-tab-target="deluxe">Deluxe</button>
+              </li>
+              <li class="gallery-cats__item">
+                <button class="gallery-cats__link tabs__tab" type="button" aria-pressed="false" tabindex="-1" data-tab-target="luxury">Luxury</button>
+              </li>
+            </ul>
+          </nav>
 
           <div class="card-grid" data-tabs-panel data-active="all">
             <!-- Classic -->
