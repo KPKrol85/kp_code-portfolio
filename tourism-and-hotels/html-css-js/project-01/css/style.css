@@ -78,7 +78,7 @@ h4 {
   --bg: #faf8f3;
   --bg-elev: #ffffff;
   --text: #1f2430;
-  --muted: #7a808d;
+  --muted: #55585e;
   --primary: #2dc7a6;
   --primary-alt: #2d9bf0;
   --primary-contrast: #ffffff;
@@ -126,7 +126,7 @@ html[data-theme="light"] {
   --bg: #faf8f3;
   --bg-elev: #ffffff;
   --text: #1f2430;
-  --muted: #7a808d;
+  --muted: #55585e;
   --primary: #2d9bf0;
   --border: #e0e3e8;
   --bg-gradients: radial-gradient(60vw 60vw at 10% 6%, color-mix(in oklab, #ffd37a 35%, transparent) 0%, transparent 60%),
@@ -166,7 +166,7 @@ html[data-theme="dark"] {
     --bg: #faf8f3;
     --bg-elev: #ffffff;
     --text: #1f2430;
-    --muted: #7a808d;
+    --muted: #55585e;
     --primary: #2d9bf0;
     --border: #e0e3e8;
     --bg-gradients: radial-gradient(60vw 60vw at 10% 6%, color-mix(in oklab, #ffd37a 35%, transparent) 0%, transparent 60%),
@@ -212,10 +212,11 @@ picture {
   position: absolute;
   left: -999px;
   top: auto;
-  background: var(--bg-elev);
-  color: var(--text);
-  padding: 0.5rem 1rem;
-  border-radius: var(--radius-sm);
+  padding: 0.55rem 1.1rem;
+  background: var(--accent, #2dc7a6);
+  color: #ffffff;
+  font-weight: 600;
+  border-radius: var(--radius-pill, 999px);
   box-shadow: var(--elev);
 }
 
@@ -224,6 +225,7 @@ picture {
   top: 1rem;
   z-index: var(--z-overlay);
 }
+
 
 .visually-hidden {
   position: absolute !important;
@@ -1214,11 +1216,16 @@ html[data-theme="dark"] .theme-toggle {
 
 /* ===== 14 - FOOTER ===== */
 
+/* ===== 14 - FOOTER ===== */
+
 .site-footer {
   padding-block: clamp(2rem, 4vw, 3rem);
   border-top: 1px solid var(--border);
   background: color-mix(in oklab, var(--bg) 96%, transparent);
   font-size: var(--fs-300);
+
+  /* mocniejszy, ale nadal stonowany kolor tekstu w stopce */
+  --footer-text: color-mix(in oklab, var(--text) 75%, var(--muted) 25%);
 }
 
 .footer__inner {
@@ -1278,7 +1285,7 @@ html[data-theme="dark"] .theme-toggle {
 
 .footer__text {
   margin: 0 0 0.75rem;
-  color: var(--muted);
+  color: var(--footer-text);
   font-size: var(--fs-300);
   line-height: 1.55;
 }
@@ -1412,7 +1419,7 @@ html[data-theme="dark"] .theme-toggle {
   margin-top: 1.25rem;
   padding-top: 1rem;
   border-top: 1px solid var(--border);
-  color: var(--muted);
+  color: var(--footer-text);
 }
 
 .footer__bottom p {
@@ -1487,6 +1494,7 @@ html[data-theme="dark"] .theme-toggle {
     align-items: flex-start;
   }
 }
+
 
 /* ===== 15 - LEGAL PAGES ===== */
 
