@@ -1,0 +1,26 @@
+{
+  "name": "tourism-and-hotels-01",
+  "version": "1.0.0",
+  "description": "Profesjonalna, dostępna i responsywna wersja projektu „Tourism & Hotels – 01” w czystym HTML/CSS/JS. Projekt zawiera tryby Light/Dark/Auto, PWA, lekkie animacje, modularny JS oraz konfigurację Netlify z nagłówkami bezpieczeństwa.",
+  "scripts": {
+    "build:css": "postcss css/style.css -o css/style.min.css",
+    "build": "npm run build:css",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "frontend",
+    "css",
+    "html",
+    "js",
+    "pwa",
+    "tourism",
+    "portfolio"
+  ],
+  "author": "KP_Code_",
+  "license": "ISC",
+  "devDependencies": {
+    "autoprefixer": "^10.4.22",
+    "cssnano": "^7.1.2",
+    "postcss-cli": "^11.0.1"
+  }
+}
