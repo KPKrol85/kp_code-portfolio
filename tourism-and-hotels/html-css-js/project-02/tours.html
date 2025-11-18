@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="pl" data-theme="auto">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Wycieczki i oferty – KP Travel &amp; Tours</title>
+  <meta name="description" content="Przeglądaj premium city breaki, egzotyczne podróże i wyprawy szyte na miarę organizowane przez KP Travel &amp; Tours.">
+  <meta name="robots" content="index,follow">
+  <meta name="color-scheme" content="light dark">
+  <meta name="theme-color" media="(prefers-color-scheme: light)" content="#f8f7f2">
+  <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#05060a">
+  <link rel="canonical" href="https://travel-project-02.netlify.app/tours.html">
+  <link rel="manifest" href="site.webmanifest">
+  <link rel="icon" type="image/svg+xml" href="assets/img/favicon.svg">
+  <link rel="icon" type="image/png" sizes="32x32" href="assets/img/favicon-32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="assets/img/favicon-16.png">
+  <link rel="apple-touch-icon" href="assets/img/apple-touch-icon.png">
+  <link rel="mask-icon" href="assets/img/safari-pinned-tab.svg" color="#0c2d48">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="KP Travel &amp; Tours">
+  <meta property="og:title" content="Wycieczki i oferty – KP Travel &amp; Tours">
+  <meta property="og:description" content="Ekskluzywne podróże po całym świecie z dedykowanym concierge.">
+  <meta property="og:url" content="https://travel-project-02.netlify.app/tours.html">
+  <meta property="og:image" content="https://travel-project-02.netlify.app/assets/img/og-cover.jpg">
+  <meta property="og:locale" content="pl_PL">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Wycieczki KP Travel">
+  <meta name="twitter:description" content="Zobacz premiowe oferty podróży i wyprawy szyte na miarę.">
+  <meta name="twitter:image" content="https://travel-project-02.netlify.app/assets/img/og-cover.jpg">
+  <link rel="stylesheet" href="css/style.css">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "TouristTrip",
+        "name": "Tokio & Kyoto Private Edition",
+        "url": "https://travel-project-02.netlify.app/tours.html#tokio",
+        "description": "Indywidualna podróż po Japonii z prywatnym przewodnikiem i ekskluzywnymi doświadczeniami.",
+        "itinerary": "Tokio – Hakone – Kioto"
+      },
+      {
+        "@type": "TouristTrip",
+        "name": "Malediwy Lagoon Escape",
+        "url": "https://travel-project-02.netlify.app/tours.html#malediwy",
+        "description": "7 nocy w luksusowej willi na wodzie z butlerem i pakietem spa.",
+        "itinerary": "Male – Atol Baa"
+      },
+      {
+        "@type": "TouristTrip",
+        "name": "Patagonia Signature Expedition",
+        "url": "https://travel-project-02.netlify.app/tours.html#patagonia",
+        "description": "Wyprawa po lodowcach i winnicach Argentyny i Chile z prywatnym przewodnikiem.",
+        "itinerary": "Buenos Aires – El Calafate – Torres del Paine"
+      }
+    ]
+  }
+  </script>
+</head>
+<body data-page="tours">
+  <a class="skip-link" href="#main-content">Przejdź do treści</a>
+  <header class="site-header" data-header>
+    <div class="container site-header__inner">
+      <a class="logo" href="index.html">KP Travel &amp; Tours</a>
+      <button class="nav__toggle" data-nav-toggle aria-expanded="false" aria-controls="primary-navigation">
+        <span class="nav__toggle-line" aria-hidden="true"></span>
+        <span class="nav__toggle-line" aria-hidden="true"></span>
+        <span class="nav__toggle-line" aria-hidden="true"></span>
+        <span class="visually-hidden">Otwórz menu</span>
+      </button>
+      <nav class="nav" id="primary-navigation" aria-label="Główne menu" hidden data-nav>
+        <ul>
+          <li><a href="index.html">Strona główna</a></li>
+          <li><a href="tours.html">Wycieczki</a></li>
+          <li><a href="about.html">O nas</a></li>
+          <li><a href="gallery.html">Galeria</a></li>
+          <li><a href="contact.html">Kontakt</a></li>
+        </ul>
+        <button class="theme-toggle" type="button" data-theme-toggle aria-label="Przełącz motyw">
+          <span class="theme-toggle__icon" aria-hidden="true"></span>
+          <span data-theme-label>Auto</span>
+        </button>
+      </nav>
+    </div>
+  </header>
+  <main id="main-content">
+    <div class="page-hero">
+      <div class="container">
+        <nav class="breadcrumb" aria-label="Ścieżka nawigacyjna">
+          <ol>
+            <li><a href="index.html">Strona główna</a></li>
+            <li aria-current="page">Wycieczki</li>
+          </ol>
+        </nav>
+        <h1>Wycieczki i oferty</h1>
+        <p>Filtruj propozycje według typu podróży, regionu i ceny, aby znaleźć idealną wyprawę.</p>
+      </div>
+    </div>
+    <section class="section" aria-label="Filtry ofert">
+      <div class="container">
+        <form class="filters" data-filters>
+          <label>
+            Typ podróży
+            <select name="type" data-filter-type>
+              <option value="all">Wszystkie</option>
+              <option value="city">City break</option>
+              <option value="egzotyczne">Egzotyczne</option>
+              <option value="rodzinne">Rodzinne</option>
+              <option value="objazdowe">Objazdowe</option>
+            </select>
+          </label>
+          <label>
+            Region
+            <select name="region" data-filter-region>
+              <option value="all">Dowolny</option>
+              <option value="europa">Europa</option>
+              <option value="azja">Azja</option>
+              <option value="ameryka">Ameryki</option>
+              <option value="afryka">Afryka</option>
+              <option value="ocean">Oceania</option>
+            </select>
+          </label>
+          <label>
+            Sortowanie
+            <select name="sort" data-sort>
+              <option value="price-asc">Cena rosnąco</option>
+              <option value="price-desc">Cena malejąco</option>
+              <option value="days-asc">Długość rosnąco</option>
+              <option value="days-desc">Długość malejąco</option>
+            </select>
+          </label>
+          <p class="filters__count">Dopasowane oferty: <span data-results-count>0</span></p>
+        </form>
+      </div>
+    </section>
+    <section class="section" aria-label="Lista wycieczek">
+      <div class="container tour-list" data-tours-list>
+        <article class="tour-card tour-card--detailed" id="tokio" data-type="city" data-region="azja" data-days="12" data-price="24000">
+          <picture>
+            <source srcset="assets/img/tours/tokio.avif" type="image/avif">
+            <source srcset="assets/img/tours/tokio.webp" type="image/webp">
+            <img src="assets/img/tours/tokio.jpg" alt="Świątynia w Kioto otoczona zielenią">
+          </picture>
+          <div>
+            <h2>Tokio &amp; Kyoto Private Edition</h2>
+            <p>Zanurz się w futurystycznym Tokio i klasycznym Kioto z prywatnym przewodnikiem, ceremonią herbaty i noclegami w ryokanach.</p>
+            <ul class="tour-card__meta">
+              <li>12 dni</li>
+              <li>Od 24 000 PLN / os.</li>
+            </ul>
+            <a class="btn btn--ghost" href="contact.html?tour=tokio">Zapytaj o ofertę</a>
+          </div>
+        </article>
+        <article class="tour-card tour-card--detailed" id="malediwy" data-type="egzotyczne" data-region="ocean" data-days="7" data-price="32000">
+          <picture>
+            <source srcset="assets/img/tours/malediwy.avif" type="image/avif">
+            <source srcset="assets/img/tours/malediwy.webp" type="image/webp">
+            <img src="assets/img/tours/malediwy.jpg" alt="Laguna z krystaliczną wodą na Malediwach">
+          </picture>
+          <div>
+            <h2>Malediwy Lagoon Escape</h2>
+            <p>Willowe apartamenty na wodzie, prywatne rejsy o zachodzie słońca i indywidualne sesje spa.</p>
+            <ul class="tour-card__meta">
+              <li>7 nocy</li>
+              <li>Od 32 000 PLN / os.</li>
+            </ul>
+            <a class="btn btn--ghost" href="contact.html?tour=malediwy">Zapytaj o ofertę</a>
+          </div>
+        </article>
+        <article class="tour-card tour-card--detailed" id="patagonia" data-type="objazdowe" data-region="ameryka" data-days="14" data-price="28000">
+          <picture>
+            <source srcset="assets/img/tours/patagonia.avif" type="image/avif">
+            <source srcset="assets/img/tours/patagonia.webp" type="image/webp">
+            <img src="assets/img/tours/patagonia.jpg" alt="Lodowiec Perito Moreno w Patagonii">
+          </picture>
+          <div>
+            <h2>Patagonia Signature Expedition</h2>
+            <p>Wielowymiarowa wyprawa łącząca trekking po lodowcach, prywatne degustacje win i lot helikopterem nad lodowcami.</p>
+            <ul class="tour-card__meta">
+              <li>14 dni</li>
+              <li>Od 28 000 PLN / os.</li>
+            </ul>
+            <a class="btn btn--ghost" href="contact.html?tour=patagonia">Zapytaj o ofertę</a>
+          </div>
+        </article>
+        <article class="tour-card tour-card--detailed" id="nyc" data-type="city" data-region="ameryka" data-days="5" data-price="15000">
+          <picture>
+            <source srcset="assets/img/tours/nowy-jork.avif" type="image/avif">
+            <source srcset="assets/img/tours/nowy-jork.webp" type="image/webp">
+            <img src="assets/img/tours/nowy-jork.jpg" alt="Most Brookliński o świcie">
+          </picture>
+          <div>
+            <h2>New York City Break Platinum</h2>
+            <p>Apartament przy Central Parku, bilety na Broadway i kulisy muzeów po godzinach.</p>
+            <ul class="tour-card__meta">
+              <li>5 dni</li>
+              <li>Od 15 000 PLN / os.</li>
+            </ul>
+            <a class="btn btn--ghost" href="contact.html?tour=nyc">Zapytaj o ofertę</a>
+          </div>
+        </article>
+        <article class="tour-card tour-card--detailed" id="maroko" data-type="rodzinne" data-region="afryka" data-days="8" data-price="11000">
+          <picture>
+            <source srcset="assets/img/tours/maroko.avif" type="image/avif">
+            <source srcset="assets/img/tours/maroko.webp" type="image/webp">
+            <img src="assets/img/tours/maroko.jpg" alt="Kolorowe medyny w Marrakeszu">
+          </picture>
+          <div>
+            <h2>Maroko Family Discovery</h2>
+            <p>Bezpieczna trasa dla rodzin z dziećmi – Marrakesz, Atlas i noc pod gwiazdami na pustyni.</p>
+            <ul class="tour-card__meta">
+              <li>8 dni</li>
+              <li>Od 11 000 PLN / os.</li>
+            </ul>
+            <a class="btn btn--ghost" href="contact.html?tour=maroko">Zapytaj o ofertę</a>
+          </div>
+        </article>
+        <article class="tour-card tour-card--detailed" id="islandia" data-type="objazdowe" data-region="europa" data-days="9" data-price="19000">
+          <picture>
+            <source srcset="assets/img/tours/islandia.avif" type="image/avif">
+            <source srcset="assets/img/tours/islandia.webp" type="image/webp">
+            <img src="assets/img/tours/islandia.jpg" alt="Zorza polarna nad wodospadem w Islandii">
+          </picture>
+          <div>
+            <h2>Islandia Fjord Moments</h2>
+            <p>Road trip po Islandii z prywatnymi przewodnikami, super jeepami i sesją w geotermalnych spa.</p>
+            <ul class="tour-card__meta">
+              <li>9 dni</li>
+              <li>Od 19 000 PLN / os.</li>
+            </ul>
+            <a class="btn btn--ghost" href="contact.html?tour=islandia">Zapytaj o ofertę</a>
+          </div>
+        </article>
+      </div>
+    </section>
+  </main>
+  <footer class="site-footer">
+    <div class="container site-footer__grid">
+      <div>
+        <a class="logo" href="index.html">KP Travel &amp; Tours</a>
+        <p>Ekskluzywne biuro podróży tworzące spersonalizowane doświadczenia dla wymagających globtroterów.</p>
+        <p>ul. Podróżnicza 12, 00-950 Warszawa</p>
+      </div>
+      <div>
+        <h3>Nawigacja</h3>
+        <ul>
+          <li><a href="index.html">Strona główna</a></li>
+          <li><a href="tours.html">Wycieczki</a></li>
+          <li><a href="about.html">O nas</a></li>
+          <li><a href="gallery.html">Galeria</a></li>
+          <li><a href="contact.html">Kontakt</a></li>
+        </ul>
+      </div>
+      <div>
+        <h3>Regulaminy</h3>
+        <ul>
+          <li><a href="polityka-prywatnosci.html">Polityka prywatności</a></li>
+          <li><a href="regulamin.html">Regulamin</a></li>
+          <li><a href="cookies.html">Cookies</a></li>
+        </ul>
+      </div>
+      <div>
+        <h3>Kontakt</h3>
+        <p>+48 600 900 700</p>
+        <p><a href="mailto:kontakt@kptravel.pl">kontakt@kptravel.pl</a></p>
+        <div class="socials">
+          <a href="https://www.instagram.com/ktravel" aria-label="Instagram KP Travel">Instagram</a>
+          <a href="https://www.facebook.com/ktravel" aria-label="Facebook KP Travel">Facebook</a>
+          <a href="https://www.linkedin.com/company/ktravel" aria-label="LinkedIn KP Travel">LinkedIn</a>
+        </div>
+      </div>
+    </div>
+    <p class="site-footer__copy">&copy; <span id="current-year">2024</span> KP Travel &amp; Tours – wszelkie prawa zastrzeżone.</p>
+  </footer>
+  <script type="module" src="js/script.js"></script>
+</body>
+</html>
