@@ -678,11 +678,19 @@ h3 {
 
 /* ===== 07 - SECTION TESTIMONIALS ===== */
 
+.section--muted .section__header {
+  max-width: 960px;
+  margin-inline: auto;
+  padding-inline: var(--space-5);
+}
+
 .testimonials {
   border-radius: var(--radius-lg);
-  background: var(--bg);
   padding: var(--space-5);
   box-shadow: var(--shadow);
+  max-width: 960px;
+  margin-inline: auto;
+  background: linear-gradient(135deg, color-mix(in oklab, var(--bg) 96%, var(--primary) 4%) 0%, color-mix(in oklab, var(--bg) 98%, var(--primary) 2%) 100%);
 }
 
 .tabs__list {
@@ -696,23 +704,74 @@ h3 {
   border-radius: 999px;
   border: 1px solid var(--border);
   padding: var(--space-2) var(--space-4);
-  background: transparent;
+  background: color-mix(in oklab, var(--bg) 90%, var(--text) 10%);
+  color: var(--text);
   cursor: pointer;
+  font-weight: 500;
+  transition: background 0.2s ease, color 0.2s ease, border-color 0.2s ease, transform 0.15s ease;
+}
+
+.tabs__list button:hover {
+  background: color-mix(in oklab, var(--bg) 80%, var(--primary) 20%);
+  border-color: color-mix(in oklab, var(--border) 40%, var(--primary) 60%);
+}
+
+.tabs__list button:focus-visible {
+  outline: 2px solid var(--primary);
+  outline-offset: 3px;
 }
 
 .tabs__list button[aria-selected="true"] {
   background: var(--primary);
   color: #fff;
   border-color: var(--primary);
+  transform: translateY(-1px);
+}
+
+[data-theme="dark"] .tabs__list button {
+  background: color-mix(in oklab, var(--bg) 85%, var(--text) 15%);
+  color: var(--text);
 }
 
 .tabs__panel {
   margin: 0;
+  max-width: 56ch;
+  animation: testimonial-fade 200ms ease-out;
+}
+
+.tabs__panel > p:first-of-type {
+  font-style: italic;
+  position: relative;
+}
+
+.tabs__panel > p:first-of-type::before {
+  content: "“";
+  position: absolute;
+  left: -0.75em;
+  top: -0.1em;
+  font-size: 2.5rem;
+  line-height: 1;
+  opacity: 0.18;
 }
 
 .quote-author {
   font-weight: 700;
   margin-top: var(--space-3);
+}
+
+[data-theme="dark"] .tabs__panel > p:first-of-type::before {
+  opacity: 0.32;
+}
+
+@keyframes testimonial-fade {
+  from {
+    opacity: 0;
+    transform: translateY(4px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 /* ===== 08 - SECTION CTA ===== */
@@ -723,7 +782,26 @@ h3 {
   gap: var(--space-4);
   padding: var(--space-5);
   border-radius: var(--radius-lg);
-  background: linear-gradient(135deg, rgba(15, 109, 140, 0.1), rgba(111, 209, 255, 0.3));
+  max-width: 960px;
+  margin-inline: auto;
+  box-shadow: var(--shadow);
+  background: linear-gradient(135deg, color-mix(in oklab, var(--bg) 88%, var(--primary) 12%) 0%, color-mix(in oklab, var(--bg) 95%, var(--primary) 5%) 100%);
+}
+
+.cta h2 {
+  margin-bottom: var(--space-2);
+}
+
+.cta p {
+  max-width: 52ch;
+}
+
+.cta a {
+  text-decoration: none;
+}
+
+[data-theme="dark"] .cta {
+  background: linear-gradient(135deg, color-mix(in oklab, var(--bg) 92%, var(--primary) 8%) 0%, color-mix(in oklab, var(--bg) 97%, var(--primary) 3%) 100%);
 }
 
 @media (min-width: 768px) {
@@ -763,6 +841,18 @@ h3 {
   color: inherit;
 }
 
+.site-footer .logo {
+  font-weight: 700;
+  color: inherit;
+  text-decoration: none;
+  transition: color 0.25s ease, opacity 0.25s ease;
+}
+
+.site-footer .logo:hover {
+  color: var(--primary);
+  opacity: 0.9;
+}
+
 .site-footer__grid a.is-active {
   text-decoration: underline;
 }
@@ -773,11 +863,38 @@ h3 {
   color: #a0aec0;
 }
 
+.footer-logo {
+  width: 84px;
+  height: auto;
+  display: block;
+  margin-bottom: var(--space-3);
+}
+
+.footer-demo-note {
+  opacity: 0.8;
+  font-size: 0.875rem;
+  margin: var(--space-2) 0;
+}
+
+.site-footer .footer-logo-link {
+  text-decoration: none !important;
+  font-weight: 700;
+  color: inherit;
+  transition: color 0.25s ease;
+}
+
+.site-footer .footer-logo-link:hover {
+  color: #0cc0df;
+  text-decoration: none;
+}
+
 @media (min-width: 768px) {
   .site-footer__grid {
     grid-template-columns: repeat(4, minmax(0, 1fr));
   }
 }
+
+/* ===== OTHER NEEDS TO BE SEGREGATED ===== */
 
 .page-hero {
   padding: var(--space-6) 0 var(--space-4);
