@@ -85,10 +85,8 @@
         </a>
 
         <!-- HAMBURGER -->
-        <button class="nav__toggle" data-nav-toggle aria-expanded="false" aria-controls="primary-navigation">
-          <span class="nav__toggle-line" aria-hidden="true"></span>
-          <span class="nav__toggle-line" aria-hidden="true"></span>
-          <span class="nav__toggle-line" aria-hidden="true"></span>
+        <button class="nav__toggle" type="button" data-nav-toggle aria-expanded="false" aria-controls="primary-navigation">
+          <img src="assets/img/svg-icons/hamburger.svg" alt="" class="nav__toggle-icon" aria-hidden="true" />
           <span class="visually-hidden">Otwórz menu</span>
         </button>
 
@@ -119,15 +117,35 @@
             <p class="eyebrow">Biuro podróży klasy premium</p>
             <h1>Wyjątkowe wycieczki na wyciągnięcie ręki</h1>
             <p>Łączymy pasję do odkrywania z perfekcyjną organizacją i concierge 24/7. Zarezerwuj podróż, która spełni Twoje wysokie oczekiwania.</p>
+
             <div class="hero__actions">
               <a class="btn" href="tours.html">Zobacz wycieczki</a>
               <a class="btn btn--ghost" href="contact.html">Skontaktuj się</a>
             </div>
           </div>
+
           <picture class="hero__media">
-            <source srcset="assets/img/hero/hero-main.avif" type="image/avif" />
-            <source srcset="assets/img/hero/hero-main.webp" type="image/webp" />
-            <img src="assets/img/hero/hero-main.jpg" alt="Para na ekskluzywnym tarasie z widokiem na ocean" />
+            <!-- AVIF -->
+            <source
+              type="image/avif"
+              srcset="assets/img/hero/hero-800x534.avif 800w, assets/img/hero/hero-1200x800.avif 1200w, assets/img/hero/hero-1600x1067.avif 1600w, assets/img/hero/hero-2000x1333.avif 2000w"
+              sizes="(min-width: 1280px) 50vw, (min-width: 768px) 60vw, 100vw" />
+
+            <!-- WEBP -->
+            <source
+              type="image/webp"
+              srcset="assets/img/hero/hero-800x534.webp 800w, assets/img/hero/hero-1200x800.webp 1200w, assets/img/hero/hero-1600x1067.webp 1600w, assets/img/hero/hero-2000x1333.webp 2000w"
+              sizes="(min-width: 1280px) 50vw, (min-width: 768px) 60vw, 100vw" />
+
+            <!-- JPG fallback -->
+            <img
+              src="assets/img/hero/hero-1600x1067.jpg"
+              srcset="assets/img/hero/hero-800x534.jpg 800w, assets/img/hero/hero-1200x800.jpg 1200w, assets/img/hero/hero-1600x1067.jpg 1600w, assets/img/hero/hero-2000x1333.jpg 2000w"
+              sizes="(min-width: 1280px) 50vw, (min-width: 768px) 60vw, 100vw"
+              loading="eager"
+              fetchpriority="high"
+              decoding="async"
+              alt="Ekskluzywny taras z baldachimem i widokiem na turkusowy ocean — idealne miejsce na luksusowy wypoczynek" />
           </picture>
         </div>
       </section>
@@ -136,7 +154,7 @@
       <section class="section" aria-labelledby="why-heading">
         <div class="container">
           <div class="section__header">
-            <p class="eyebrow">Dlaczego KP Travel</p>
+            <p class="eyebrow">Dlaczego Aurora Travel</p>
             <h2 id="why-heading">Projektujemy podróże szyte na miarę</h2>
           </div>
           <div class="features-grid">
@@ -171,37 +189,136 @@
             <p class="eyebrow">Wyróżnione wycieczki</p>
             <h2 id="tours-heading">Najczęściej wybierane kierunki</h2>
           </div>
+
           <div class="cards-grid">
+            <!-- TOKYO -->
             <article class="tour-card">
               <picture>
-                <source srcset="assets/img/tours/tokio.avif" type="image/avif" />
-                <source srcset="assets/img/tours/tokio.webp" type="image/webp" />
-                <img src="assets/img/tours/tokio.jpg" alt="Panorama Tokio nocą" />
+                <!-- AVIF -->
+                <source
+                  type="image/avif"
+                  srcset="
+                    assets/img/tour-index/tokyo-400x260.avif   400w,
+                    assets/img/tour-index/tokyo-700x460.avif   700w,
+                    assets/img/tour-index/tokyo-1000x600.avif 1000w,
+                    assets/img/tour-index/tokyo-1400x920.avif 1400w
+                  "
+                  sizes="(min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw" />
+
+                <!-- WEBP -->
+                <source
+                  type="image/webp"
+                  srcset="
+                    assets/img/tour-index/tokyo-400x260.webp   400w,
+                    assets/img/tour-index/tokyo-700x460.webp   700w,
+                    assets/img/tour-index/tokyo-1000x600.webp 1000w,
+                    assets/img/tour-index/tokyo-1400x920.webp 1400w
+                  "
+                  sizes="(min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw" />
+
+                <!-- JPG fallback -->
+                <img
+                  src="assets/img/tour-index/tokyo-700x460.jpg"
+                  srcset="
+                    assets/img/tour-index/tokyo-400x260.jpg   400w,
+                    assets/img/tour-index/tokyo-700x460.jpg   700w,
+                    assets/img/tour-index/tokyo-1000x600.jpg 1000w,
+                    assets/img/tour-index/tokyo-1400x920.jpg 1400w
+                  "
+                  sizes="(min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw"
+                  alt="Panorama Tokio nocą" />
               </picture>
+
               <div>
                 <h3>Tokio &amp; Kyoto Private Edition</h3>
                 <p>Dwutygodniowy program z przewodnikiem, prywatnymi transferami i rezerwacjami w najlepszych restauracjach.</p>
                 <a class="btn btn--text" href="tours.html#tokio">Poznaj szczegóły</a>
               </div>
             </article>
+
+            <!-- MALEDIWY -->
             <article class="tour-card">
               <picture>
-                <source srcset="assets/img/tours/malediwy.avif" type="image/avif" />
-                <source srcset="assets/img/tours/malediwy.webp" type="image/webp" />
-                <img src="assets/img/tours/malediwy.jpg" alt="Bungalowy na wodzie na Malediwach" />
+                <!-- AVIF -->
+                <source
+                  type="image/avif"
+                  srcset="
+                    assets/img/tour-index/maledivy-400x260.avif   400w,
+                    assets/img/tour-index/maledivy-700x460.avif   700w,
+                    assets/img/tour-index/maledivy-1000x600.avif 1000w,
+                    assets/img/tour-index/maledivy-1400x920.avif 1400w
+                  "
+                  sizes="(min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw" />
+
+                <!-- WEBP -->
+                <source
+                  type="image/webp"
+                  srcset="
+                    assets/img/tour-index/maledivy-400x260.webp   400w,
+                    assets/img/tour-index/maledivy-700x460.webp   700w,
+                    assets/img/tour-index/maledivy-1000x600.webp 1000w,
+                    assets/img/tour-index/maledivy-1400x920.webp 1400w
+                  "
+                  sizes="(min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw" />
+
+                <!-- JPG fallback -->
+                <img
+                  src="assets/img/tour-index/maledivy-700x460.jpg"
+                  srcset="
+                    assets/img/tour-index/maledivy-400x260.jpg   400w,
+                    assets/img/tour-index/maledivy-700x460.jpg   700w,
+                    assets/img/tour-index/maledivy-1000x600.jpg 1000w,
+                    assets/img/tour-index/maledivy-1400x920.jpg 1400w
+                  "
+                  sizes="(min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw"
+                  alt="Bungalowy na wodzie na Malediwach" />
               </picture>
+
               <div>
                 <h3>Malediwy Lagoon Escape</h3>
                 <p>7 nocy w willi na wodzie z prywatnym butlerem, spa i ekskluzywnym pakietem kulinarnym.</p>
                 <a class="btn btn--text" href="tours.html#malediwy">Poznaj szczegóły</a>
               </div>
             </article>
+
+            <!-- MANHATTAN -->
             <article class="tour-card">
               <picture>
-                <source srcset="assets/img/tours/nowy-jork.avif" type="image/avif" />
-                <source srcset="assets/img/tours/nowy-jork.webp" type="image/webp" />
-                <img src="assets/img/tours/nowy-jork.jpg" alt="Skyline Manhattanu o zachodzie słońca" />
+                <!-- AVIF -->
+                <source
+                  type="image/avif"
+                  srcset="
+                    assets/img/tour-index/manhatan-400x260.avif   400w,
+                    assets/img/tour-index/manhatan-700x460.avif   700w,
+                    assets/img/tour-index/manhatan-1000x600.avif 1000w,
+                    assets/img/tour-index/manhatan-1400x920.avif 1400w
+                  "
+                  sizes="(min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw" />
+
+                <!-- WEBP -->
+                <source
+                  type="image/webp"
+                  srcset="
+                    assets/img/tour-index/manhatan-400x260.webp   400w,
+                    assets/img/tour-index/manhatan-700x460.webp   700w,
+                    assets/img/tour-index/manhatan-1000x600.webp 1000w,
+                    assets/img/tour-index/manhatan-1400x920.webp 1400w
+                  "
+                  sizes="(min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw" />
+
+                <!-- JPG fallback -->
+                <img
+                  src="assets/img/tour-index/manhatan-700x460.jpg"
+                  srcset="
+                    assets/img/tour-index/manhatan-400x260.jpg   400w,
+                    assets/img/tour-index/manhatan-700x460.jpg   700w,
+                    assets/img/tour-index/manhatan-1000x600.jpg 1000w,
+                    assets/img/tour-index/manhatan-1400x920.jpg 1400w
+                  "
+                  sizes="(min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw"
+                  alt="Skyline Manhattanu o zachodzie słońca" />
               </picture>
+
               <div>
                 <h3>New York City Break Platinum</h3>
                 <p>5 dni z apartamentem przy Central Parku, wejściami VIP i planem atrakcji przygotowanym przez concierge.</p>
@@ -230,7 +347,7 @@
               <p class="quote-author">Anna i Tomasz</p>
             </div>
             <div id="panel-2" class="tabs__panel" role="tabpanel" tabindex="0" aria-labelledby="tab-2" hidden>
-              <p>„KP Travel zadbało o każdy detal wyprawy na Kostarykę – od ekologicznych lodge po spotkania z lokalnymi przewodnikami. Czuliśmy się w pełni zaopiekowani.”</p>
+              <p>„Aurora Travel zadbało o każdy detal wyprawy na Kostarykę – od ekologicznych lodge po spotkania z lokalnymi przewodnikami. Czuliśmy się w pełni zaopiekowani.”</p>
               <p class="quote-author">Marta</p>
             </div>
             <div id="panel-3" class="tabs__panel" role="tabpanel" tabindex="0" aria-labelledby="tab-3" hidden>
@@ -257,7 +374,7 @@
     <footer class="site-footer">
       <div class="container site-footer__grid">
         <div>
-          <a class="logo" href="index.html">KP Travel &amp; Tours</a>
+          <a class="logo" href="index.html">Aurora Travel</a>
           <p>Ekskluzywne biuro podróży tworzące spersonalizowane doświadczenia dla wymagających globtroterów.</p>
           <p>ul. Podróżnicza 12, 00-950 Warszawa</p>
         </div>
