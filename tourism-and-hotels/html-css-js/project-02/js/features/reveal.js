@@ -1,7 +1,8 @@
 const SELECTORS = ['.hero', '.section', '.tour-card', '.feature-card', '.cta', '.page-hero', '.testimonials'];
 
 export function initReveal() {
-  const elements = document.querySelectorAll(SELECTORS.join(','));
+  const elements = [...document.querySelectorAll(SELECTORS.join(","))].filter((el) => !el.matches('[aria-label="Lista wycieczek"]'));
+
   if (!elements.length || !('IntersectionObserver' in window)) return;
 
   elements.forEach(el => el.classList.add('reveal'));
