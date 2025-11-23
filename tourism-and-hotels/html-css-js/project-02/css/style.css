@@ -974,8 +974,6 @@ h3 {
 
 /* ===== 10 - SUBPAGE TOURS ===== */
 
-/* ===== 10 - SUBPAGE TOURS ===== */
-
 .page-hero {
   padding: var(--space-6) 0 var(--space-4);
 }
@@ -1000,16 +998,16 @@ h3 {
   margin-top: var(--space-4);
 }
 
-/* FILTRY */
-
 .section--filters {
   position: relative;
   z-index: 20;
+  overflow: visible;
 }
 
 .filters {
   display: grid;
   gap: var(--space-4);
+  overflow: visible;
 }
 
 .filters label {
@@ -1021,7 +1019,6 @@ h3 {
   width: 100%;
 }
 
-/* WYGLĄD NATYWNEGO SELECTA (fallback, bez custom dropdown) */
 .filters select {
   width: 100%;
   margin-top: 0;
@@ -1037,13 +1034,9 @@ h3 {
   background-repeat: no-repeat;
   background-position: right 1rem center;
   background-size: 14px;
-  transition:
-    border-color 0.25s ease,
-    box-shadow 0.25s ease,
-    background 0.25s ease;
+  transition: border-color 0.25s ease, box-shadow 0.25s ease, background 0.25s ease;
 }
 
-/* WYGLĄD PRZYCISKU CUSTOM DROPDOWN (bez strzałki w tle!) */
 .filters .dropdown__button {
   width: 100%;
   margin-top: 0;
@@ -1054,22 +1047,17 @@ h3 {
   color: var(--text);
   box-shadow: 0 4px 14px rgba(15, 109, 140, 0.06);
   font-size: 1rem;
-  /* najważniejsze – żadnej strzałki z tła */
   background-image: none;
   background-repeat: no-repeat;
   background-position: right 1rem center;
   background-size: 14px;
-  transition:
-    border-color 0.25s ease,
-    box-shadow 0.25s ease,
-    background 0.25s ease;
+  transition: border-color 0.25s ease, box-shadow 0.25s ease, background 0.25s ease;
 }
 
 html[data-theme="dark"] .filters select {
   background-image: url("data:image/svg+xml,%3Csvg width='14' height='14' xmlns='http://www.w3.org/2000/svg' fill='%23ffffff'%3E%3Cpath d='M4 5l3 3 3-3' stroke='%23ffffff' stroke-width='2' fill='none'/%3E%3C/svg%3E");
 }
 
-/* dla dark theme przycisk NIE dostaje strzałki w tle */
 html[data-theme="dark"] .filters .dropdown__button {
   background-image: none;
 }
@@ -1084,9 +1072,7 @@ html[data-theme="dark"] .filters .dropdown__button {
 .filters .dropdown__button:focus {
   outline: none;
   border-color: var(--primary);
-  box-shadow:
-    0 0 0 3px rgba(15, 109, 140, 0.25),
-    0 6px 18px rgba(15, 109, 140, 0.1);
+  box-shadow: 0 0 0 3px rgba(15, 109, 140, 0.25), 0 6px 18px rgba(15, 109, 140, 0.1);
 }
 
 .filters__count {
@@ -1097,7 +1083,6 @@ body[data-page="tours"] .tour-card a:hover {
   text-decoration: none;
 }
 
-/* upewniamy się, że dropdown nie jest przycinany przez kartę */
 .tour-card {
   overflow: visible;
 }
@@ -1110,11 +1095,13 @@ body[data-page="tours"] .tour-card a:hover {
   list-style: none;
 }
 
-/* === Custom dropdown === */
-
 .dropdown {
   position: relative;
   width: 100%;
+  z-index: auto;
+}
+
+.dropdown.is-open {
   z-index: 30;
 }
 
@@ -1122,7 +1109,6 @@ body[data-page="tours"] .tour-card a:hover {
   display: none;
 }
 
-/* tu tylko zachowanie flex + kursor, wygląd już wyżej */
 .dropdown__button {
   display: flex;
   justify-content: space-between;
@@ -1131,7 +1117,6 @@ body[data-page="tours"] .tour-card a:hover {
   font: inherit;
 }
 
-/* JEDYNA strzałka – ten element */
 .dropdown__icon {
   width: 14px;
   height: 14px;
@@ -1206,7 +1191,6 @@ html[data-theme="dark"] .dropdown__icon {
     margin-top: var(--space-5);
   }
 }
-
 
 /* ===== 11 - SUBPAGE TOUR ===== */
 

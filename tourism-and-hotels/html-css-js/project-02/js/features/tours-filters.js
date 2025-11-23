@@ -39,6 +39,7 @@ export function initToursFilters() {
 
   update();
 }
+
 /* sortCards */
 function sortCards(cards, sortValue) {
   const sorted = [...cards];
@@ -58,12 +59,12 @@ export function initFiltersDropdowns() {
   selects.forEach((select) => {
     if (select.closest(".dropdown")) return;
 
+    const label = select.closest("label") || select.parentNode; // FIX – bierzemy cały label
     const wrapper = document.createElement("div");
     wrapper.className = "dropdown";
 
-    const parent = select.parentNode;
-    parent.insertBefore(wrapper, select);
-    wrapper.appendChild(select);
+    label.parentNode.insertBefore(wrapper, label); // FIX – owijamy label wrapperem
+    wrapper.appendChild(label); // FIX
 
     const button = document.createElement("button");
     button.type = "button";
@@ -86,7 +87,10 @@ export function initFiltersDropdowns() {
 
       li.addEventListener("click", () => {
         select.value = opt.value;
-        button.querySelector(".dropdown__label").textContent = opt.textContent;
+        const labelSpan = button.querySelector(".dropdown__label");
+        if (labelSpan) {
+          labelSpan.textContent = opt.textContent;
+        }
         wrapper.classList.remove("is-open");
         select.dispatchEvent(new Event("change"));
       });
