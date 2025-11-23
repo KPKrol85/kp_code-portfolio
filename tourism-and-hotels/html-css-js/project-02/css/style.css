@@ -972,63 +972,7 @@ h3 {
   }
 }
 
-/* ===== 00 - BUTTONS ===== */
-
-.btn {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  padding: var(--space-2) var(--space-5);
-  border-radius: 999px;
-  border: none;
-  font-weight: 600;
-  background: linear-gradient(135deg, var(--primary), var(--primary-alt));
-  color: #fff;
-  cursor: pointer;
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
-}
-
-.btn:focus-visible,
-.btn:hover {
-  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2);
-  transform: translateY(-2px);
-}
-
-.btn--ghost {
-  background: transparent;
-  padding: var(--space-2) var(--space-5);
-  border-radius: 999px;
-  border: 1px solid rgba(12, 27, 51, 0.14); /* light mode */
-  color: var(--text);
-  transition: background 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease, transform 0.2s ease;
-}
-
-.btn--ghost:hover,
-.btn--ghost:focus-visible {
-  background: var(--bg-elev);
-  border-color: rgba(12, 27, 51, 0.25);
-  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.1);
-  transform: translateY(-2px);
-}
-
-[data-theme="dark"] .btn--ghost {
-  border-color: rgba(255, 255, 255, 0.38);
-  color: #ffffff;
-  background: rgba(255, 255, 255, 0.03);
-}
-
-[data-theme="dark"] .btn--ghost:hover,
-[data-theme="dark"] .btn--ghost:focus-visible {
-  background: rgba(255, 255, 255, 0.1);
-  border-color: rgba(255, 255, 255, 0.6);
-  box-shadow: 0 16px 36px rgba(0, 0, 0, 0.75);
-}
-
-.btn--text {
-  background: none;
-  padding: 0;
-  color: var(--primary);
-}
+/* ===== 10 - SUBPAGE TOURS ===== */
 
 /* ===== 10 - SUBPAGE TOURS ===== */
 
@@ -1049,6 +993,20 @@ h3 {
   display: block;
 }
 
+.tour-card__actions {
+  display: flex;
+  gap: var(--space-4);
+  flex-wrap: wrap;
+  margin-top: var(--space-4);
+}
+
+/* FILTRY */
+
+.section--filters {
+  position: relative;
+  z-index: 20;
+}
+
 .filters {
   display: grid;
   gap: var(--space-4);
@@ -1057,27 +1015,91 @@ h3 {
 .filters label {
   display: flex;
   flex-direction: column;
+  align-items: flex-start;
   font-weight: 600;
+  gap: var(--space-2);
+  width: 100%;
 }
 
+/* WYGLĄD NATYWNEGO SELECTA (fallback, bez custom dropdown) */
 .filters select {
-  margin-top: var(--space-2);
-  border-radius: var(--radius);
+  width: 100%;
+  margin-top: 0;
+  border-radius: var(--radius-lg);
   border: 1px solid var(--border);
-  padding: var(--space-3);
+  padding: var(--space-3) var(--space-4);
   background: var(--bg-elev);
   color: var(--text);
+  box-shadow: 0 4px 14px rgba(15, 109, 140, 0.06);
+  font-size: 1rem;
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg width='14' height='14' xmlns='http://www.w3.org/2000/svg' fill='%230c1b33'%3E%3Cpath d='M4 5l3 3 3-3' stroke='%230c1b33' stroke-width='2' fill='none'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 1rem center;
+  background-size: 14px;
+  transition:
+    border-color 0.25s ease,
+    box-shadow 0.25s ease,
+    background 0.25s ease;
+}
+
+/* WYGLĄD PRZYCISKU CUSTOM DROPDOWN (bez strzałki w tle!) */
+.filters .dropdown__button {
+  width: 100%;
+  margin-top: 0;
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--border);
+  padding: var(--space-3) var(--space-4);
+  background: var(--bg-elev);
+  color: var(--text);
+  box-shadow: 0 4px 14px rgba(15, 109, 140, 0.06);
+  font-size: 1rem;
+  /* najważniejsze – żadnej strzałki z tła */
+  background-image: none;
+  background-repeat: no-repeat;
+  background-position: right 1rem center;
+  background-size: 14px;
+  transition:
+    border-color 0.25s ease,
+    box-shadow 0.25s ease,
+    background 0.25s ease;
+}
+
+html[data-theme="dark"] .filters select {
+  background-image: url("data:image/svg+xml,%3Csvg width='14' height='14' xmlns='http://www.w3.org/2000/svg' fill='%23ffffff'%3E%3Cpath d='M4 5l3 3 3-3' stroke='%23ffffff' stroke-width='2' fill='none'/%3E%3C/svg%3E");
+}
+
+/* dla dark theme przycisk NIE dostaje strzałki w tle */
+html[data-theme="dark"] .filters .dropdown__button {
+  background-image: none;
+}
+
+.filters select:hover,
+.filters .dropdown__button:hover {
+  border-color: var(--primary);
+  box-shadow: 0 6px 18px rgba(15, 109, 140, 0.1);
+}
+
+.filters select:focus,
+.filters .dropdown__button:focus {
+  outline: none;
+  border-color: var(--primary);
+  box-shadow:
+    0 0 0 3px rgba(15, 109, 140, 0.25),
+    0 6px 18px rgba(15, 109, 140, 0.1);
 }
 
 .filters__count {
   font-weight: 600;
 }
 
-@media (min-width: 768px) {
-  .filters {
-    grid-template-columns: repeat(4, minmax(0, 1fr));
-    align-items: end;
-  }
+body[data-page="tours"] .tour-card a:hover {
+  text-decoration: none;
+}
+
+/* upewniamy się, że dropdown nie jest przycinany przez kartę */
+.tour-card {
+  overflow: visible;
 }
 
 .tour-card__meta {
@@ -1086,6 +1108,82 @@ h3 {
   padding: 0;
   margin: 0 0 var(--space-3);
   list-style: none;
+}
+
+/* === Custom dropdown === */
+
+.dropdown {
+  position: relative;
+  width: 100%;
+  z-index: 30;
+}
+
+.dropdown select {
+  display: none;
+}
+
+/* tu tylko zachowanie flex + kursor, wygląd już wyżej */
+.dropdown__button {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
+  font: inherit;
+}
+
+/* JEDYNA strzałka – ten element */
+.dropdown__icon {
+  width: 14px;
+  height: 14px;
+  margin-left: var(--space-2);
+  flex-shrink: 0;
+  background-image: url("data:image/svg+xml,%3Csvg width='14' height='14' xmlns='http://www.w3.org/2000/svg' fill='%230c1b33'%3E%3Cpath d='M4 5l3 3 3-3' stroke='%230c1b33' stroke-width='2' fill='none'/%3E%3C/svg%3E");
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+
+html[data-theme="dark"] .dropdown__icon {
+  background-image: url("data:image/svg+xml,%3Csvg width='14' height='14' xmlns='http://www.w3.org/2000/svg' fill='%23ffffff'%3E%3Cpath d='M4 5l3 3 3-3' stroke='%23ffffff' stroke-width='2' fill='none'/%3E%3C/svg%3E");
+}
+
+.dropdown__list {
+  position: absolute;
+  top: calc(100% + 0.4rem);
+  left: 0;
+  min-width: 100%;
+  background: var(--bg-elev);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.12);
+  padding: 0;
+  margin: 0;
+  list-style: none;
+  overflow-y: auto;
+  font-size: 0.95rem;
+  display: none;
+  z-index: 40;
+}
+
+.dropdown.is-open .dropdown__list {
+  display: block;
+}
+
+.dropdown__option {
+  padding: var(--space-2) var(--space-4);
+  cursor: pointer;
+  white-space: nowrap;
+  transition: background 0.15s ease;
+}
+
+.dropdown__option:hover {
+  background: rgba(15, 109, 140, 0.08);
+}
+
+@media (min-width: 768px) {
+  .filters {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    align-items: end;
+  }
 }
 
 @media (max-width: 600px) {
@@ -1102,7 +1200,13 @@ h3 {
     opacity: 1 !important;
     transform: none !important;
   }
+
+  .tour-card__actions {
+    justify-content: center;
+    margin-top: var(--space-5);
+  }
 }
+
 
 /* ===== 11 - SUBPAGE TOUR ===== */
 
@@ -1427,4 +1531,62 @@ h3 {
 :focus-visible {
   outline: 2px solid var(--primary);
   outline-offset: 2px;
+}
+
+/* ===== 00 - BUTTONS ===== */
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--space-2) var(--space-5);
+  border-radius: 999px;
+  border: none;
+  font-weight: 600;
+  background: linear-gradient(135deg, var(--primary), var(--primary-alt));
+  color: #fff;
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.btn:focus-visible,
+.btn:hover {
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2);
+  transform: translateY(-2px);
+}
+
+.btn--ghost {
+  background: transparent;
+  padding: var(--space-2) var(--space-5);
+  border-radius: 999px;
+  border: 1px solid rgba(12, 27, 51, 0.14); /* light mode */
+  color: var(--text);
+  transition: background 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease, transform 0.2s ease;
+}
+
+.btn--ghost:hover,
+.btn--ghost:focus-visible {
+  background: var(--bg-elev);
+  border-color: rgba(12, 27, 51, 0.25);
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.1);
+  transform: translateY(-2px);
+}
+
+[data-theme="dark"] .btn--ghost {
+  border-color: rgba(255, 255, 255, 0.38);
+  color: #ffffff;
+  background: rgba(255, 255, 255, 0.03);
+}
+
+[data-theme="dark"] .btn--ghost:hover,
+[data-theme="dark"] .btn--ghost:focus-visible {
+  background: rgba(255, 255, 255, 0.1);
+  border-color: rgba(255, 255, 255, 0.6);
+  box-shadow: 0 16px 36px rgba(0, 0, 0, 0.75);
+}
+
+.btn--text {
+  background: none;
+  padding: 0;
+  color: var(--primary);
 }
