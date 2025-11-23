@@ -1,4 +1,3 @@
-// assets/js/features/tour-detail.js
 export function initTourDetail() {
   const params = new URLSearchParams(window.location.search);
   const tourId = params.get("id");
@@ -23,10 +22,7 @@ function fillTourContent(tour) {
   document.querySelector("[data-tour-breadcrumb-current]").textContent = tour.name;
   document.querySelector("[data-tour-days]").textContent = `${tour.days} dni`;
   document.querySelector("[data-tour-price]").textContent = tour.priceFrom;
-
-  // ZMIANA TUTAJ — było textContent
   document.querySelector("[data-tour-summary]").innerHTML = tour.shortSummary;
-
   document.querySelector("[data-tour-content]").innerHTML = tour.longDescription;
 
   const mainImage = tour.images[0];
@@ -34,7 +30,7 @@ function fillTourContent(tour) {
   if (mainImage && mainImageContainer) {
     mainImageContainer.innerHTML = createPictureMarkup(mainImage.base, mainImage.alt);
   }
-
+  
   const galleryEl = document.querySelector("[data-tour-gallery]");
   if (galleryEl && tour.images.length > 0) {
     galleryEl.innerHTML = tour.images.map((img) => createPictureMarkup(img.base, img.alt)).join("");
@@ -43,6 +39,7 @@ function fillTourContent(tour) {
 
 function createPictureMarkup(base, alt) {
   const basePath = `assets/img/tours/${base}`;
+
   return `
     <picture class="tour-gallery__item">
       <source
@@ -71,6 +68,8 @@ function createPictureMarkup(base, alt) {
         sizes="(min-width: 900px) 360px, 100vw"
         alt="${alt}"
         loading="lazy"
+        data-lightbox-src="${basePath}-1600x1040.jpg"
+        tabindex="0"
       />
     </picture>
   `;

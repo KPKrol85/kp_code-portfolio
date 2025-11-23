@@ -21,9 +21,9 @@ document.addEventListener("DOMContentLoaded", () => {
   initAccordionFaq();
   initForm();
   initAriaCurrent();
-  initLightbox();
-  initTourDetail();
 
+  initTourDetail();
+  initLightbox();
   updateYear();
 });
 

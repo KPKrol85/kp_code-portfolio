@@ -95,7 +95,7 @@
 
           <section class="tour-detail__gallery">
             <h2>Galeria z wyjazdu</h2>
-            <div class="tour-gallery" data-tour-gallery></div>
+            <div class="tour-gallery" data-tour-gallery data-gallery></div>
           </section>
         </article>
       </div>
@@ -173,5 +173,15 @@
     </footer>
 
     <script type="module" src="js/script.js"></script>
+
+    <div class="lightbox" data-lightbox hidden>
+      <button class="lightbox__close" data-lightbox-close aria-label="Zamknij"></button>
+      <button class="lightbox__nav lightbox__prev" data-lightbox-prev aria-label="Poprzednie zdjęcie"></button>
+      <figure class="lightbox__figure">
+        <img data-lightbox-image alt="" />
+        <figcaption data-lightbox-caption></figcaption>
+      </figure>
+      <button class="lightbox__nav lightbox__next" data-lightbox-next aria-label="Następne zdjęcie"></button>
+    </div>
   </body>
 </html>
