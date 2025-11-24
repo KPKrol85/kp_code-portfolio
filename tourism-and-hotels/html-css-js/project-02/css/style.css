@@ -18,6 +18,7 @@
    = 09 - FOOTER
    = 10 - SUBPAGE TOURS
    = 11 - SUBPAGE TOUR
+   = 12 - SUBPAGE CONTACT
 
    = 99 - LIGHTBOX
    = 00 - BUTTONS
@@ -1334,6 +1335,209 @@ html[data-theme="dark"] .dropdown__icon {
   }
 }
 
+/* ===== 12 - SUBPAGE CONTACT ===== */
+
+.contact-grid {
+  padding-top: var(--space-5);
+  padding-bottom: var(--space-7);
+}
+
+.contact-grid__inner {
+  display: grid;
+  gap: var(--space-5);
+  align-items: flex-start;
+}
+
+.contact-grid__inner > article {
+  background: var(--bg-elev);
+  border-radius: var(--radius-lg);
+  padding: var(--space-5);
+  box-shadow: var(--shadow);
+}
+
+.contact-grid__inner h2 {
+  margin-top: 0;
+  margin-bottom: var(--space-4);
+  text-align: center;
+}
+
+.contact-grid__inner p {
+  margin: 0 0 var(--space-2);
+}
+
+.contact-grid__inner strong {
+  font-weight: 600;
+}
+
+.map {
+  margin-top: var(--space-3);
+}
+
+.map iframe {
+  width: 100%;
+  height: 260px;
+  border: 0;
+  border-radius: var(--radius);
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.16);
+}
+
+.form {
+  display: grid;
+  gap: var(--space-2);
+  margin-top: 0;
+}
+
+.form__field {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+}
+
+.form__field label {
+  font-weight: 600;
+  font-size: 0.95rem;
+  color: var(--muted);
+}
+
+.form__field input,
+.form__field select,
+.form__field textarea {
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  padding: var(--space-2) var(--space-3);
+  background: var(--bg-elev);
+  color: var(--text);
+  font: inherit;
+  transition: border-color 0.22s ease, box-shadow 0.22s ease, background-color 0.22s ease, transform 0.12s ease;
+  box-shadow: 0 6px 18px rgba(15, 109, 140, 0.06);
+}
+
+.form__field textarea {
+  resize: vertical;
+  min-height: 140px;
+}
+
+.form__field input:hover,
+.form__field select:hover,
+.form__field textarea:hover {
+  border-color: color-mix(in oklab, var(--border) 40%, var(--primary) 60%);
+}
+
+.form__field input:focus-visible,
+.form__field select:focus-visible,
+.form__field textarea:focus-visible {
+  outline: none;
+  border-color: var(--primary);
+  box-shadow: 0 0 0 3px rgba(15, 109, 140, 0.22), 0 10px 28px rgba(15, 109, 140, 0.22);
+  transform: translateY(-1px);
+}
+
+.form__field--split {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 0;
+}
+
+.form__field--checkbox {
+  flex-direction: row;
+  align-items: flex-start;
+  gap: var(--space-3);
+}
+
+.form__field--checkbox input[type="checkbox"] {
+  margin-top: 0.35rem;
+  flex-shrink: 0;
+}
+
+.form__error {
+  min-height: 0.9rem;
+  color: #c0392b;
+  font-size: 0.85rem;
+}
+
+.form__success {
+  margin-top: var(--space-2);
+  color: #0a8754;
+  font-weight: 500;
+}
+
+.form[data-form] {
+  position: relative;
+}
+
+.form .btn {
+  justify-self: flex-start;
+  margin-top: var(--space-1);
+}
+
+.form__field + .form__field--split {
+  margin-top: 0;
+}
+
+.form__row--dates {
+  display: grid;
+  gap: var(--space-3);
+}
+
+@media (min-width: 768px) {
+  .form__row--dates {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+.contact-media {
+  position: relative;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  isolation: isolate;
+  margin-bottom: var(--space-4);
+}
+
+.contact-media img {
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: cover;
+  transition: transform 0.25s ease;
+}
+
+.contact-media::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at center, rgba(255, 255, 255, 0.15) 0%, transparent 70%);
+  opacity: 0;
+  transition: opacity 0.25s ease;
+}
+
+.contact-media:hover img,
+.contact-media:focus-visible img {
+  transform: scale(1.03);
+}
+.contact-media:hover::after,
+.contact-media:focus-visible::after {
+  opacity: 1;
+}
+
+.contact-grid__inner h2 {
+  text-align: center;
+  margin-top: var(--space-3);
+  margin-bottom: var(--space-4);
+}
+
+@media (min-width: 1024px) {
+  .contact-grid__inner {
+    grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.2fr);
+    gap: var(--space-6);
+  }
+}
+
+@media (min-width: 480px) {
+  .form__field--split {
+    flex: 1;
+  }
+}
+
 /* ===== OTHER NEEDS TO BE SEGREGATED ===== */
 
 .breadcrumb {
@@ -1434,79 +1638,6 @@ html[data-theme="dark"] .dropdown__icon {
   object-fit: cover;
 }
 
-@media (min-width: 1024px) {
-  .contact-grid__inner {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
-}
-
-.map iframe {
-  width: 100%;
-  height: 280px;
-  border: 0;
-  border-radius: var(--radius);
-}
-
-.form {
-  display: grid;
-  gap: var(--space-4);
-}
-
-.form__field {
-  display: flex;
-  flex-direction: column;
-  gap: var(--space-2);
-}
-
-.form__field input,
-.form__field select,
-.form__field textarea {
-  border-radius: var(--radius);
-  border: 1px solid var(--border);
-  padding: var(--space-3);
-  background: var(--bg-elev);
-  color: var(--text);
-}
-
-.form__field--split {
-  display: flex;
-  flex-direction: column;
-}
-
-@media (min-width: 480px) {
-  .form__field--split {
-    flex: 1;
-  }
-}
-
-.form__field--checkbox {
-  flex-direction: row;
-  align-items: flex-start;
-  gap: var(--space-3);
-}
-
-.form__error {
-  min-height: 1.2rem;
-  color: #c0392b;
-  font-size: 0.9rem;
-}
-
-.form__success {
-  color: #0a8754;
-}
-
-.form[data-form] {
-  position: relative;
-}
-
-.form .btn {
-  justify-self: flex-start;
-}
-
-.form__field + .form__field--split {
-  margin-top: 0;
-}
-
 .legal h2 {
   margin-top: var(--space-5);
 }
@@ -1571,7 +1702,7 @@ html[data-theme="dark"] .dropdown__icon {
   background: transparent;
   padding: var(--space-2) var(--space-5);
   border-radius: 999px;
-  border: 1px solid rgba(12, 27, 51, 0.14); /* light mode */
+  border: 1px solid rgba(12, 27, 51, 0.14);
   color: var(--text);
   transition: background 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease, transform 0.2s ease;
 }
@@ -1603,8 +1734,7 @@ html[data-theme="dark"] .dropdown__icon {
   color: var(--primary);
 }
 
-/* ===== LIGHTBOX ===== */
-/* ===== LIGHTBOX ===== */
+/* ===== 99 - LIGHTBOX ===== */
 
 .lightbox {
   position: fixed;
@@ -1617,9 +1747,8 @@ html[data-theme="dark"] .dropdown__icon {
   padding: clamp(1.5rem, 3vw, 3rem);
 }
 
-/* Większe zdjęcie + kontekst dla strzałek */
 .lightbox figure {
-  position: relative; /* strzałki pozycjonujemy względem FIGURE */
+  position: relative;
   max-width: min(96vw, 1300px);
   margin: 0;
   text-align: center;
@@ -1633,7 +1762,6 @@ html[data-theme="dark"] .dropdown__icon {
   border-radius: var(--radius-lg);
 }
 
-/* Przyciski — kółka, blur, ikony */
 .lightbox__close,
 .lightbox__prev,
 .lightbox__next {
@@ -1661,10 +1789,9 @@ html[data-theme="dark"] .dropdown__icon {
   display: flex;
   align-items: center;
   justify-content: center;
-  transform: translateY(-0.2px); /* delikatne podniesienie ikony */
+  transform: translateY(-0.2px);
 }
 
-/* Ikony — X oraz < > */
 .lightbox__close::before {
   content: "✕";
 }
@@ -1675,7 +1802,6 @@ html[data-theme="dark"] .dropdown__icon {
   content: "❯";
 }
 
-/* Hover */
 .lightbox__close:hover,
 .lightbox__prev:hover,
 .lightbox__next:hover {
@@ -1684,15 +1810,12 @@ html[data-theme="dark"] .dropdown__icon {
   transform: translateY(-1px);
 }
 
-/* Pozycjonowanie przycisków */
-
 .lightbox__close {
   position: absolute;
   top: clamp(1rem, 2vw, 1.5rem);
   right: clamp(1rem, 2vw, 1.5rem);
 }
 
-/* Strzałki względem FIGURE (zawsze przy krawędzi zdjęcia) */
 .lightbox__prev,
 .lightbox__next {
   position: absolute;
@@ -1729,32 +1852,25 @@ html[data-theme="dark"] .dropdown__icon {
     right: 0.5rem;
   }
 }
-/* ===== LIGHTBOX – układ mobilny < 600px ===== */
+
 @media (max-width: 600px) {
-  /* strzałki nie po bokach tylko góra/dół */
   .lightbox__prev,
   .lightbox__next {
-    top: auto; /* reset */
+    top: auto;
     left: 50%;
     transform: translateX(-50%);
     width: 2.6rem;
     height: 2.6rem;
     font-size: 1.1rem;
   }
-
-  /* ❮ na górze */
   .lightbox__prev {
     bottom: auto;
-    top: 3.75rem; /* odstęp od góry */
+    top: 3.75rem;
   }
-
-  /* ❯ na dole */
   .lightbox__next {
     top: auto;
-    bottom: 3.75rem; /* odstęp od dołu */
+    bottom: 3.75rem;
   }
-
-  /* zdjęcie może być nieco wyższe w mobilu */
   .lightbox img {
     max-height: 88vh;
   }
