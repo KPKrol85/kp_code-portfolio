@@ -1,37 +1,86 @@
 <!DOCTYPE html>
 <html lang="pl" data-theme="auto">
   <head>
+    <!-- PODSTAWOWE META -->
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Wycieczki i oferty – KP Travel &amp; Tours</title>
-    <meta name="description" content="Przeglądaj premium city breaki, egzotyczne podróże i wyprawy szyte na miarę organizowane przez KP Travel &amp; Tours." />
+
+    <title>Aurora Travel - Wycieczki | KP_Code_ Demo</title>
+
+    <meta name="description" content="Przeglądaj ekskluzywne wyprawy, city breaki i egzotyczne podróże przygotowane przez Aurora Travel – butikowe biuro podróży." />
+
     <meta name="robots" content="index,follow" />
     <meta name="color-scheme" content="light dark" />
     <meta name="theme-color" media="(prefers-color-scheme: light)" content="#f8f7f2" />
     <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#05060a" />
+
+    <!-- KANONICZNY ADRES -->
     <link rel="canonical" href="https://travel-project-02.netlify.app/tours.html" />
+
+    <!-- PWA -->
     <link rel="manifest" href="site.webmanifest" />
+
+    <!-- FAVICONY -->
     <link rel="icon" type="image/svg+xml" href="assets/img/favicon.svg" />
     <link rel="icon" type="image/png" sizes="32x32" href="assets/img/favicon-32.png" />
     <link rel="icon" type="image/png" sizes="16x16" href="assets/img/favicon-16.png" />
     <link rel="apple-touch-icon" href="assets/img/apple-touch-icon.png" />
     <link rel="mask-icon" href="assets/img/safari-pinned-tab.svg" color="#0c2d48" />
+
+    <!-- OPEN GRAPH -->
     <meta property="og:type" content="website" />
-    <meta property="og:site_name" content="KP Travel &amp; Tours" />
-    <meta property="og:title" content="Wycieczki i oferty – KP Travel &amp; Tours" />
-    <meta property="og:description" content="Ekskluzywne podróże po całym świecie z dedykowanym concierge." />
+    <meta property="og:site_name" content="Aurora Travel" />
+    <meta property="og:title" content="Aurora Travel - Wycieczki" />
+    <meta property="og:description" content="Ekskluzywne podróże po całym świecie z dedykowanym concierge Aurora Travel." />
     <meta property="og:url" content="https://travel-project-02.netlify.app/tours.html" />
     <meta property="og:image" content="https://travel-project-02.netlify.app/assets/img/og-cover.jpg" />
     <meta property="og:locale" content="pl_PL" />
+
+    <!-- TWITTER -->
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="Wycieczki KP Travel" />
-    <meta name="twitter:description" content="Zobacz premiowe oferty podróży i wyprawy szyte na miarę." />
+    <meta name="twitter:title" content="Aurora Travel - Wycieczki" />
+    <meta name="twitter:description" content="Odkryj premiowe oferty podróży i wyprawy szyte na miarę." />
     <meta name="twitter:image" content="https://travel-project-02.netlify.app/assets/img/og-cover.jpg" />
-    <link rel="stylesheet" href="css/style.css" />
+
+    <!-- JSON-LD -->
     <script type="application/ld+json">
       {
         "@context": "https://schema.org",
         "@graph": [
+          {
+            "@type": "WebPage",
+            "@id": "https://travel-project-02.netlify.app/tours.html",
+            "url": "https://travel-project-02.netlify.app/tours.html",
+            "name": "Aurora Travel - Wycieczki | KP_Code_ Demo",
+            "description": "Przeglądaj ekskluzywne wyprawy i wycieczki organizowane przez Aurora Travel.",
+            "inLanguage": "pl-PL",
+            "isPartOf": {
+              "@id": "https://travel-project-02.netlify.app/"
+            }
+          },
+          {
+            "@type": "TravelAgency",
+            "@id": "https://travel-project-02.netlify.app/",
+            "name": "Aurora Travel",
+            "url": "https://travel-project-02.netlify.app/",
+            "logo": "https://travel-project-02.netlify.app/assets/img/logo.svg",
+            "description": "Butikowe biuro podróży projektujące spersonalizowane wyjazdy z concierge 24/7.",
+            "telephone": "+48 533 537 091",
+            "email": "kp_code_@gmail.com",
+            "address": {
+              "@type": "PostalAddress",
+              "streetAddress": "ul. Marynarki Wojennej 12/31",
+              "addressLocality": "Tarnów",
+              "postalCode": "33-100",
+              "addressCountry": "PL"
+            },
+            "sameAs": [
+              "https://www.facebook.com/ktravel",
+              "https://github.com/kp-code",
+              "https://twitter.com/kp_code_",
+              "https://www.youtube.com/@kp_code_"
+            ]
+          },
           {
             "@type": "TouristTrip",
             "name": "Tokio & Kyoto Private Edition",
@@ -43,7 +92,7 @@
             "@type": "TouristTrip",
             "name": "Malediwy Lagoon Escape",
             "url": "https://travel-project-02.netlify.app/tours.html#malediwy",
-            "description": "7 nocy w luksusowej willi na wodzie z butlerem i pakietem spa.",
+            "description": "7 nocy w luksusowej willi na wodzie z prywatnym butlerem i pakietem spa.",
             "itinerary": "Male – Atol Baa"
           },
           {
@@ -56,7 +105,10 @@
         ]
       }
     </script>
+
+    <link rel="stylesheet" href="css/style.css" />
   </head>
+
 
   <!-- BODY -->
   <body data-page="tours">

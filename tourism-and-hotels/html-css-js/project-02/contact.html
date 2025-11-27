@@ -1,54 +1,86 @@
 <!DOCTYPE html>
 <html lang="pl" data-theme="auto">
   <head>
+    <!-- PODSTAWOWE META -->
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Kontakt – Aurora Travel | Biuro podróży premium</title>
-    <meta name="description" content="Skontaktuj się z doradcą Aurora Travel i zaplanuj swoją kolejną podróż." />
+
+    <title>Aurora Travel - Kontakt | KP_Code_ Demo</title>
+
+    <meta name="description" content="Skontaktuj się z doradcą Aurora Travel i zaplanuj swoją kolejną, szytą na miarę podróż." />
+
     <meta name="robots" content="index,follow" />
     <meta name="color-scheme" content="light dark" />
     <meta name="theme-color" media="(prefers-color-scheme: light)" content="#f8f7f2" />
     <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#05060a" />
+
+    <!-- KANONICZNY ADRES -->
     <link rel="canonical" href="https://travel-project-02.netlify.app/contact.html" />
+
+    <!-- PWA -->
     <link rel="manifest" href="site.webmanifest" />
+
+    <!-- FAVICONY -->
     <link rel="icon" type="image/svg+xml" href="assets/img/favicon.svg" />
     <link rel="icon" type="image/png" sizes="32x32" href="assets/img/favicon-32.png" />
     <link rel="icon" type="image/png" sizes="16x16" href="assets/img/favicon-16.png" />
     <link rel="apple-touch-icon" href="assets/img/apple-touch-icon.png" />
     <link rel="mask-icon" href="assets/img/safari-pinned-tab.svg" color="#0c2d48" />
+
+    <!-- OPEN GRAPH -->
     <meta property="og:type" content="website" />
     <meta property="og:site_name" content="Aurora Travel" />
-    <meta property="og:title" content="Kontakt – Aurora Travel | Biuro podróży premium" />
-    <meta property="og:description" content="Zadzwoń lub napisz, aby uzyskać indywidualną ofertę podróży." />
+    <meta property="og:title" content="Aurora Travel - Kontakt" />
+    <meta property="og:description" content="Zadzwoń lub napisz do Aurora Travel, aby otrzymać indywidualną ofertę podróży." />
     <meta property="og:url" content="https://travel-project-02.netlify.app/contact.html" />
     <meta property="og:image" content="https://travel-project-02.netlify.app/assets/img/og-cover.jpg" />
     <meta property="og:locale" content="pl_PL" />
+
+    <!-- TWITTER -->
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="Kontakt Aurora Travel" />
-    <meta name="twitter:description" content="Dedykowany concierge odpowie w 24 h." />
+    <meta name="twitter:title" content="Aurora Travel - Kontakt" />
+    <meta name="twitter:description" content="Dedykowany concierge odpowie na Twoje zapytanie w ciągu 24 godzin." />
     <meta name="twitter:image" content="https://travel-project-02.netlify.app/assets/img/og-cover.jpg" />
-    <link rel="stylesheet" href="css/style.css" />
+
+    <!-- JSON-LD -->
     <script type="application/ld+json">
       {
         "@context": "https://schema.org",
-        "@type": "TravelAgency",
-        "name": "Aurora Travel",
-        "url": "https://travel-project-02.netlify.app/contact.html",
-        "contactPoint": {
-          "@type": "ContactPoint",
-          "telephone": "+48-600-900-700",
-          "contactType": "customer service",
-          "availableLanguage": ["pl", "en"]
-        },
-        "address": {
-          "@type": "PostalAddress",
-          "streetAddress": "ul. Podróżnicza 12",
-          "addressLocality": "Warszawa",
-          "postalCode": "00-950",
-          "addressCountry": "PL"
-        }
+        "@graph": [
+          {
+            "@type": "WebPage",
+            "@id": "https://travel-project-02.netlify.app/contact.html",
+            "url": "https://travel-project-02.netlify.app/contact.html",
+            "name": "Aurora Travel - Kontakt | KP_Code_ Demo",
+            "description": "Skontaktuj się z doradcą Aurora Travel i zaplanuj swoją kolejną, szytą na miarę podróż.",
+            "inLanguage": "pl-PL",
+            "isPartOf": {
+              "@id": "https://travel-project-02.netlify.app/"
+            }
+          },
+          {
+            "@type": "TravelAgency",
+            "@id": "https://travel-project-02.netlify.app/",
+            "name": "Aurora Travel",
+            "url": "https://travel-project-02.netlify.app/",
+            "logo": "https://travel-project-02.netlify.app/assets/img/logo.svg",
+            "description": "Butikowe biuro podróży projektujące spersonalizowane wyjazdy z concierge 24/7.",
+            "telephone": "+48 533 537 091",
+            "email": "kp_code_@gmail.com",
+            "address": {
+              "@type": "PostalAddress",
+              "streetAddress": "ul. Marynarki Wojennej 12/31",
+              "addressLocality": "Tarnów",
+              "postalCode": "33-100",
+              "addressCountry": "PL"
+            },
+            "sameAs": ["https://www.facebook.com/ktravel", "https://github.com/kp-code", "https://twitter.com/kp_code_", "https://www.youtube.com/@kp_code_"]
+          }
+        ]
       }
     </script>
+
+    <link rel="stylesheet" href="css/style.css" />
   </head>
 
   <!-- BODY -->
@@ -90,7 +122,6 @@
 
     <!-- MAIN CONTENT -->
     <main id="main-content" tabindex="-1">
-
       <!-- HERO -->
       <div class="page-hero page-hero--contact">
         <div class="container">
@@ -140,8 +171,7 @@
                   assets/img/contact/contact-office-1400x920.jpg 1400w
                 "
                 sizes="(min-width: 1024px) 420px, (min-width: 768px) 50vw, 100vw"
-                alt="Zespół Aurora Travel w eleganckim biurze podróży"
-              />
+                alt="Zespół Aurora Travel w eleganckim biurze podróży" />
             </picture>
 
             <h2 id="contact-heading">Dane kontaktowe</h2>
@@ -160,7 +190,7 @@
             <div class="map">
               <iframe
                 title="Mapa biura Aurora Travel"
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2443.690935255144!2d21.0122283!3d52.2296756!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x471ecc669140c737%3A0x4213355b6c2ff1c8!2sWarszawa!5e0!3m2!1spl!2spl!4v1700000000001"
+                src="https://www.google.com/maps?q=Marynarki+Wojennej+12/31,+33-100+Tarnów&output=embed"
                 loading="lazy"
                 referrerpolicy="no-referrer-when-downgrade"></iframe>
             </div>
@@ -181,7 +211,14 @@
               </div>
               <div class="form__field">
                 <label for="phone">Telefon</label>
-                <input id="phone" name="phone" type="tel" pattern="^[0-9+\\-\\s]{7,}$" placeholder="+48 600 900 700" aria-describedby="error-phone" title="Podaj numer telefonu w formacie międzynarodowym, minimum 7 znaków." />
+                <input
+                  id="phone"
+                  name="phone"
+                  type="tel"
+                  pattern="^[0-9+\\-\\s]{7,}$"
+                  placeholder="+48 600 900 700"
+                  aria-describedby="error-phone"
+                  title="Podaj numer telefonu w formacie międzynarodowym, minimum 7 znaków." />
                 <p id="error-phone" class="form__error" aria-live="polite"></p>
               </div>
               <div class="form__field">

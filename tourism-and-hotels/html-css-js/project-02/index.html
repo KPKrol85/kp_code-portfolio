@@ -5,11 +5,11 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>KP_Code_ – Demo strony biura podróży | KP Travel & Tours</title>
+    <title>Aurora Travel - Butikowe biuro podróży | KP_Code_ Demo</title>
 
     <meta
       name="description"
-      content="Projekt demo stworzony przez KP_Code_. Nowoczesna strona biura podróży – wycieczki, city breaki i egzotyczne wyprawy zaprojektowane jako część profesjonalnego portfolio." />
+      content="Aurora Travel – butikowe biuro podróży tworzące spersonalizowane wycieczki, city breaki i egzotyczne wyprawy. Projekt demo zaprojektowany przez KP_Code_ jako część profesjonalnego portfolio." />
 
     <meta name="robots" content="index,follow" />
     <meta name="color-scheme" content="light dark" />
@@ -34,17 +34,17 @@
 
     <!-- OPEN GRAPH -->
     <meta property="og:type" content="website" />
-    <meta property="og:site_name" content="KP Travel &amp; Tours" />
-    <meta property="og:title" content="KP Travel &amp; Tours – Wyjątkowe wycieczki na wyciągnięcie ręki" />
-    <meta property="og:description" content="Nowoczesne biuro podróży łączące concierge, personalizowane oferty i najwyższą obsługę." />
+    <meta property="og:site_name" content="Aurora Travel" />
+    <meta property="og:title" content="Aurora Travel – butikowe biuro podróży" />
+    <meta property="og:description" content="Nowoczesne, butikowe biuro podróży łączące concierge, personalizowane oferty i najwyższą jakość obsługi." />
     <meta property="og:url" content="https://travel-project-02.netlify.app/" />
     <meta property="og:image" content="https://travel-project-02.netlify.app/assets/img/og-cover.jpg" />
     <meta property="og:locale" content="pl_PL" />
 
     <!-- TWITTER -->
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="KP Travel &amp; Tours – Premium wycieczki" />
-    <meta name="twitter:description" content="Ekskluzywne podróże, butikowe doświadczenia i dedykowany concierge." />
+    <meta name="twitter:title" content="Aurora Travel – butikowe biuro podróży" />
+    <meta name="twitter:description" content="Ekskluzywne podróże, butikowe doświadczenia i dedykowany concierge od Aurora Travel." />
     <meta name="twitter:image" content="https://travel-project-02.netlify.app/assets/img/og-cover.jpg" />
 
     <!-- CSS -->
@@ -54,19 +54,37 @@
     <script type="application/ld+json">
       {
         "@context": "https://schema.org",
-        "@type": "TravelAgency",
-        "name": "KP Travel & Tours",
-        "url": "https://travel-project-02.netlify.app/",
-        "logo": "https://travel-project-02.netlify.app/assets/img/logo.svg",
-        "telephone": "+48 600 900 700",
-        "address": {
-          "@type": "PostalAddress",
-          "streetAddress": "ul. Podróżnicza 12",
-          "addressLocality": "Warszawa",
-          "postalCode": "00-950",
-          "addressCountry": "PL"
-        },
-        "sameAs": ["https://www.facebook.com/ktravel", "https://www.instagram.com/ktravel"]
+        "@graph": [
+          {
+            "@type": "WebPage",
+            "@id": "https://travel-project-02.netlify.app/#home",
+            "url": "https://travel-project-02.netlify.app/",
+            "name": "Aurora Travel - Butikowe biuro podróży | KP_Code_ Demo",
+            "description": "Strona główna Aurora Travel – butikowego biura podróży. Projekt demo w portfolio KP_Code_.",
+            "inLanguage": "pl-PL",
+            "isPartOf": {
+              "@id": "https://travel-project-02.netlify.app/"
+            }
+          },
+          {
+            "@type": "TravelAgency",
+            "@id": "https://travel-project-02.netlify.app/",
+            "name": "Aurora Travel",
+            "url": "https://travel-project-02.netlify.app/",
+            "logo": "https://travel-project-02.netlify.app/assets/img/logo.svg",
+            "description": "Butikowe biuro podróży projektujące spersonalizowane wyjazdy z concierge 24/7.",
+            "telephone": "+48 533 537 091",
+            "email": "kp_code_@gmail.com",
+            "address": {
+              "@type": "PostalAddress",
+              "streetAddress": "ul. Marynarki Wojennej 12/31",
+              "addressLocality": "Tarnów",
+              "postalCode": "33-100",
+              "addressCountry": "PL"
+            },
+            "sameAs": ["https://www.facebook.com/ktravel", "https://github.com/kp-code", "https://twitter.com/kp_code_", "https://www.youtube.com/@kp_code_"]
+          }
+        ]
       }
     </script>
   </head>

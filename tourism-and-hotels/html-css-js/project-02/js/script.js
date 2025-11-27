@@ -9,6 +9,7 @@ import { initForm } from "./features/form.js";
 import { initAriaCurrent } from "./features/aria-current.js";
 import { initLightbox } from "./features/lightbox.js";
 import { initTourDetail } from "./features/tour-detail.js";
+import { initGalleryFilters } from "./features/gallery-filters.js";
 
 document.addEventListener("DOMContentLoaded", () => {
   initNav();
@@ -21,6 +22,10 @@ document.addEventListener("DOMContentLoaded", () => {
   initAccordionFaq();
   initForm();
   initAriaCurrent();
+
+  if (document.body.dataset.page === "gallery") {
+    initGalleryFilters();
+  }
 
   initTourDetail();
   initLightbox();

@@ -35,7 +35,6 @@ export function initLightbox() {
   function open(newIndex) {
     collectImages();
     index = newIndex;
-
     const img = images[index];
     if (!img) return;
 
@@ -50,7 +49,6 @@ export function initLightbox() {
     overlay.hidden = true;
     unlockScroll();
 
-    // Jeśli jesteśmy w fullscreen – wyjdź
     if (document.fullscreenElement && document.exitFullscreen) {
       document.exitFullscreen().catch(() => {});
     }
@@ -85,14 +83,13 @@ export function initLightbox() {
     }
   }
 
-  // 🔹 Kliknięcie w miniaturę (delegacja)
+  // 🔹 otwieranie po kliknięciu w miniaturę
   document.addEventListener("click", (event) => {
-    const picture = event.target.closest("picture.tour-gallery__item");
+    const picture = event.target.closest("picture.tour-gallery__item, picture.gallery-item");
     if (!picture) return;
 
     const img = picture.querySelector("img[data-lightbox-src]");
     if (!img) return;
-
     if (!img.closest("[data-gallery]")) return;
 
     collectImages();
@@ -101,7 +98,7 @@ export function initLightbox() {
     open(idx);
   });
 
-  // 🔹 Enter / spacja na miniaturze (klawiatura)
+  // 🔹 Enter / spacja na miniaturze
   document.addEventListener("keydown", (event) => {
     if (event.key !== "Enter" && event.key !== " ") return;
     const img = document.activeElement;
@@ -116,21 +113,13 @@ export function initLightbox() {
     open(idx);
   });
 
-  // 🔹 Sterowanie kiedy overlay jest otwarty
+  // 🔹 sterowanie w overlay
   closeBtn.addEventListener("click", close);
   prevBtn.addEventListener("click", () => navigate(-1));
   nextBtn.addEventListener("click", () => navigate(1));
 
-  // ❌ Kliknięcie w tło już NIE zamyka lightboxa
-  // overlay.addEventListener("click", (event) => {
-  //   if (event.target === overlay) {
-  //     close();
-  //   }
-  // });
-
   overlay.addEventListener("keydown", trapFocus);
 
-  // 🔹 Klawiatura: ESC, strzałki lewo/prawo
   document.addEventListener("keydown", (event) => {
     if (overlay.hidden) return;
 
@@ -143,48 +132,65 @@ export function initLightbox() {
     }
   });
 
-  // 🔹 Podwójny klik w zdjęcie = fullscreen / wyjście z fullscreen
-  preview.addEventListener("dblclick", () => {
-    // Jeśli nie ma wsparcia dla Fullscreen API – nic nie rób
+  // === FULLSCREEN – wspólna funkcja dla desktop + mobile ===
+  function toggleFullscreen() {
+    // brak wsparcia
     if (!preview.requestFullscreen && !preview.webkitRequestFullscreen) return;
 
-    if (!document.fullscreenElement && !document.webkitFullscreenElement) {
+    const isFs = document.fullscreenElement || document.webkitFullscreenElement;
+
+    if (!isFs) {
+      // wejście w fullscreen
       if (preview.requestFullscreen) {
         preview.requestFullscreen().catch(() => {});
       } else if (preview.webkitRequestFullscreen) {
         preview.webkitRequestFullscreen();
       }
     } else {
+      // wyjście z fullscreen
       if (document.exitFullscreen) {
         document.exitFullscreen().catch(() => {});
       } else if (document.webkitExitFullscreen) {
         document.webkitExitFullscreen();
       }
     }
+  }
+
+  // 🔹 Desktop – podwójny klik
+  preview.addEventListener("dblclick", () => {
+    toggleFullscreen();
   });
 
-  // 🔹 Swipe (przesuwanie palcem w lewo/prawo)
+  // === SWIPE + DOUBLE TAP NA MOBILE ===
   let touchStartX = 0;
-  let touchEndX = 0;
+  let lastTapTime = 0;
 
   preview.addEventListener("touchstart", (e) => {
     touchStartX = e.changedTouches[0].clientX;
   });
 
   preview.addEventListener("touchend", (e) => {
-    touchEndX = e.changedTouches[0].clientX;
-
+    const touchEndX = e.changedTouches[0].clientX;
     const diff = touchEndX - touchStartX;
-
-    // próg, żeby lekkie muśnięcia nie zmieniały zdjęcia
     const threshold = 50;
 
+    const now = Date.now();
+
+    // 1) SWIPE (lewo/prawo)
     if (Math.abs(diff) > threshold) {
       if (diff < 0) {
-        navigate(1); // przesunięcie w lewo → następne
+        navigate(1); // lewo → następne
       } else {
-        navigate(-1); // przesunięcie w prawo → poprzednie
+        navigate(-1); // prawo → poprzednie
       }
+      return;
     }
+
+    // 2) DOUBLE TAP (bez dużego przesunięcia)
+    if (now - lastTapTime < 300) {
+      e.preventDefault();
+      toggleFullscreen();
+    }
+    lastTapTime = now;
   });
 }

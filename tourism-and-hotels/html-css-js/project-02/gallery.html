@@ -1,179 +1,1513 @@
 <!DOCTYPE html>
 <html lang="pl" data-theme="auto">
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Galeria podróży – KP Travel &amp; Tours</title>
-  <meta name="description" content="Zobacz galerię luksusowych wypraw organizowanych przez KP Travel &amp; Tours.">
-  <meta name="robots" content="index,follow">
-  <meta name="color-scheme" content="light dark">
-  <meta name="theme-color" media="(prefers-color-scheme: light)" content="#f8f7f2">
-  <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#05060a">
-  <link rel="canonical" href="https://travel-project-02.netlify.app/gallery.html">
-  <link rel="manifest" href="site.webmanifest">
-  <link rel="icon" type="image/svg+xml" href="assets/img/favicon.svg">
-  <link rel="icon" type="image/png" sizes="32x32" href="assets/img/favicon-32.png">
-  <link rel="icon" type="image/png" sizes="16x16" href="assets/img/favicon-16.png">
-  <link rel="apple-touch-icon" href="assets/img/apple-touch-icon.png">
-  <link rel="mask-icon" href="assets/img/safari-pinned-tab.svg" color="#0c2d48">
-  <meta property="og:type" content="website">
-  <meta property="og:site_name" content="KP Travel &amp; Tours">
-  <meta property="og:title" content="Galeria podróży – KP Travel &amp; Tours">
-  <meta property="og:description" content="Inspirujące kadry z naszych wypraw po świecie.">
-  <meta property="og:url" content="https://travel-project-02.netlify.app/gallery.html">
-  <meta property="og:image" content="https://travel-project-02.netlify.app/assets/img/og-cover.jpg">
-  <meta property="og:locale" content="pl_PL">
-  <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Galeria KP Travel">
-  <meta name="twitter:description" content="Zainspiruj się zdjęciami z podróży.">
-  <meta name="twitter:image" content="https://travel-project-02.netlify.app/assets/img/og-cover.jpg">
-  <link rel="stylesheet" href="css/style.css">
-</head>
+  <head>
+    <!-- PODSTAWOWE META -->
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
 
+    <title>Aurora Travel - Galeria | KP_Code_ Demo</title>
 
+    <meta name="description" content="Zainspiruj się galerią luksusowych wypraw organizowanych przez Aurora Travel – butikowe biuro podróży." />
 
+    <meta name="robots" content="index,follow" />
+    <meta name="color-scheme" content="light dark" />
+    <meta name="theme-color" media="(prefers-color-scheme: light)" content="#f8f7f2" />
+    <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#05060a" />
 
-<body data-page="gallery">
-  <a class="skip-link" href="#main-content">Przejdź do treści</a>
-  <header class="site-header" data-header>
-    <div class="container site-header__inner">
-      <a class="logo" href="index.html">KP Travel &amp; Tours</a>
-      <button class="nav__toggle" data-nav-toggle aria-expanded="false" aria-controls="primary-navigation">
-        <span class="nav__toggle-line" aria-hidden="true"></span>
-        <span class="nav__toggle-line" aria-hidden="true"></span>
-        <span class="nav__toggle-line" aria-hidden="true"></span>
-        <span class="visually-hidden">Otwórz menu</span>
-      </button>
-      <nav class="nav" id="primary-navigation" aria-label="Główne menu" hidden data-nav>
-        <ul>
-          <li><a href="index.html">Strona główna</a></li>
-          <li><a href="tours.html">Wycieczki</a></li>
-          <li><a href="about.html">O nas</a></li>
-          <li><a href="gallery.html">Galeria</a></li>
-          <li><a href="contact.html">Kontakt</a></li>
-        </ul>
-        <button class="theme-toggle" type="button" data-theme-toggle aria-label="Przełącz motyw">
-          <span class="theme-toggle__icon" aria-hidden="true"></span>
-          <span data-theme-label>Auto</span>
+    <!-- KANONICZNY ADRES -->
+    <link rel="canonical" href="https://travel-project-02.netlify.app/gallery.html" />
+
+    <!-- PWA -->
+    <link rel="manifest" href="site.webmanifest" />
+
+    <!-- FAVICONY -->
+    <link rel="icon" type="image/svg+xml" href="assets/img/favicon.svg" />
+    <link rel="icon" type="image/png" sizes="32x32" href="assets/img/favicon-32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="assets/img/favicon-16.png" />
+    <link rel="apple-touch-icon" href="assets/img/apple-touch-icon.png" />
+    <link rel="mask-icon" href="assets/img/safari-pinned-tab.svg" color="#0c2d48" />
+
+    <!-- OPEN GRAPH -->
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Aurora Travel" />
+    <meta property="og:title" content="Aurora Travel - Galeria" />
+    <meta property="og:description" content="Inspirująca galeria zdjęć z naszych unikatowych wypraw po świecie." />
+    <meta property="og:url" content="https://travel-project-02.netlify.app/gallery.html" />
+    <meta property="og:image" content="https://travel-project-02.netlify.app/assets/img/og-cover.jpg" />
+    <meta property="og:locale" content="pl_PL" />
+
+    <!-- TWITTER -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Aurora Travel - Galeria" />
+    <meta name="twitter:description" content="Zobacz galerię zdjęć z ekskluzywnych podróży Aurora Travel." />
+    <meta name="twitter:image" content="https://travel-project-02.netlify.app/assets/img/og-cover.jpg" />
+
+    <!-- JSON-LD -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@graph": [
+          {
+            "@type": "WebPage",
+            "@id": "https://travel-project-02.netlify.app/gallery.html",
+            "url": "https://travel-project-02.netlify.app/gallery.html",
+            "name": "Aurora Travel - Galeria | KP_Code_ Demo",
+            "description": "Zainspiruj się galerią luksusowych wypraw Aurora Travel.",
+            "inLanguage": "pl-PL",
+            "isPartOf": {
+              "@id": "https://travel-project-02.netlify.app/"
+            }
+          },
+          {
+            "@type": "TravelAgency",
+            "@id": "https://travel-project-02.netlify.app/",
+            "name": "Aurora Travel",
+            "url": "https://travel-project-02.netlify.app/",
+            "logo": "https://travel-project-02.netlify.app/assets/img/logo.svg",
+            "description": "Butikowe biuro podróży projektujące spersonalizowane wyjazdy z concierge 24/7.",
+            "telephone": "+48 533 537 091",
+            "email": "kp_code_@gmail.com",
+            "address": {
+              "@type": "PostalAddress",
+              "streetAddress": "ul. Marynarki Wojennej 12/31",
+              "addressLocality": "Tarnów",
+              "postalCode": "33-100",
+              "addressCountry": "PL"
+            },
+            "sameAs": ["https://www.facebook.com/ktravel", "https://github.com/kp-code", "https://twitter.com/kp_code_", "https://www.youtube.com/@kp_code_"]
+          }
+        ]
+      }
+    </script>
+
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+
+  <!--BODY-->
+  <body data-page="gallery">
+    <a class="skip-link" href="#main-content">Przejdź do treści</a>
+
+    <!-- HEADER -->
+    <header class="site-header" data-header>
+      <div class="container site-header__inner">
+        <!-- LOGO + NAZWA FIRMY -->
+        <a class="logo" href="index.html" aria-label="Aurora Travel">
+          <img src="assets/img/logo/logo.svg" alt="" class="logo__icon" />
+          <span class="logo__text">Aurora Travel</span>
+        </a>
+
+        <!-- HAMBURGER -->
+        <button class="nav__toggle" type="button" data-nav-toggle aria-expanded="false" aria-controls="primary-navigation">
+          <img src="assets/img/svg-icons/hamburger.svg" alt="" class="nav__toggle-icon" aria-hidden="true" />
+          <span class="visually-hidden">Otwórz menu</span>
         </button>
-      </nav>
-    </div>
-  </header>
 
-  <main id="main-content">
-    <div class="page-hero">
-      <div class="container">
-        <nav class="breadcrumb" aria-label="Ścieżka nawigacyjna">
-          <ol>
+        <!-- NAV -->
+        <nav class="nav" id="primary-navigation" aria-label="Główne menu" hidden data-nav>
+          <ul>
             <li><a href="index.html">Strona główna</a></li>
-            <li aria-current="page">Galeria</li>
-          </ol>
+            <li><a href="tours.html">Wycieczki</a></li>
+            <li><a href="about.html">O nas</a></li>
+            <li><a href="gallery.html">Galeria</a></li>
+            <li><a href="contact.html">Kontakt</a></li>
+          </ul>
+
+          <!-- THEME TOGGLE (bez Auto) -->
+          <button class="theme-toggle" type="button" data-theme-toggle aria-label="Przełącz motyw">
+            <span class="theme-toggle__icon" aria-hidden="true"></span>
+          </button>
         </nav>
-        <h1>Galeria wyjazdów</h1>
-        <p>Kadry uchwycone przez naszych klientów i fotografów terenowych.</p>
       </div>
-    </div>
-    
-    <section class="section" aria-label="Galeria zdjęć">
-      <div class="container gallery-grid" data-gallery>
-        <figure>
-          <picture>
-            <source srcset="assets/img/gallery/santorini.avif" type="image/avif">
-            <source srcset="assets/img/gallery/santorini.webp" type="image/webp">
-            <img src="assets/img/gallery/santorini.jpg" alt="Zachód słońca nad Santorini" tabindex="0" data-lightbox-src="assets/img/gallery/santorini-large.jpg">
-          </picture>
-          <figcaption>Santorini Sunset Escape</figcaption>
-        </figure>
-        <figure>
-          <picture>
-            <source srcset="assets/img/gallery/kenia.avif" type="image/avif">
-            <source srcset="assets/img/gallery/kenia.webp" type="image/webp">
-            <img src="assets/img/gallery/kenia.jpg" alt="Safari w Masai Mara" tabindex="0" data-lightbox-src="assets/img/gallery/kenia-large.jpg">
-          </picture>
-          <figcaption>Safari Masai Mara</figcaption>
-        </figure>
-        <figure>
-          <picture>
-            <source srcset="assets/img/gallery/paryż.avif" type="image/avif">
-            <source srcset="assets/img/gallery/paryż.webp" type="image/webp">
-            <img src="assets/img/gallery/paryż.jpg" alt="Kolacja na dachu w Paryżu" tabindex="0" data-lightbox-src="assets/img/gallery/paryż-large.jpg">
-          </picture>
-          <figcaption>Paris Rooftop Dinner</figcaption>
-        </figure>
-        <figure>
-          <picture>
-            <source srcset="assets/img/gallery/bali.avif" type="image/avif">
-            <source srcset="assets/img/gallery/bali.webp" type="image/webp">
-            <img src="assets/img/gallery/bali.jpg" alt="Willa w dżungli na Bali" tabindex="0" data-lightbox-src="assets/img/gallery/bali-large.jpg">
-          </picture>
-          <figcaption>Bali Jungle Villa</figcaption>
-        </figure>
-        <figure>
-          <picture>
-            <source srcset="assets/img/gallery/islandia.avif" type="image/avif">
-            <source srcset="assets/img/gallery/islandia.webp" type="image/webp">
-            <img src="assets/img/gallery/islandia.jpg" alt="Zorza polarna nad Islandią" tabindex="0" data-lightbox-src="assets/img/gallery/islandia-large.jpg">
-          </picture>
-          <figcaption>Islandia Aurora</figcaption>
-        </figure>
-        <figure>
-          <picture>
-            <source srcset="assets/img/gallery/nowy-jork.avif" type="image/avif">
-            <source srcset="assets/img/gallery/nowy-jork.webp" type="image/webp">
-            <img src="assets/img/gallery/nowy-jork.jpg" alt="Helikopter nad Manhattanem" tabindex="0" data-lightbox-src="assets/img/gallery/nowy-jork-large.jpg">
-          </picture>
-          <figcaption>Heli over Manhattan</figcaption>
-        </figure>
-      </div>
-    </section>
-    <aside class="lightbox" data-lightbox hidden aria-modal="true" role="dialog" aria-label="Podgląd zdjęcia" tabindex="-1">
-      <button class="lightbox__close" type="button" data-lightbox-close aria-label="Zamknij podgląd">&times;</button>
-      <button class="lightbox__prev" type="button" data-lightbox-prev aria-label="Poprzednie zdjęcie">Poprzednie</button>
-      <figure>
-        <img src="" alt="Podgląd zdjęcia" data-lightbox-image>
-        <figcaption data-lightbox-caption></figcaption>
-      </figure>
-      <button class="lightbox__next" type="button" data-lightbox-next aria-label="Następne zdjęcie">Następne</button>
-    </aside>
-  </main>
-  <footer class="site-footer">
-    <div class="container site-footer__grid">
-      <div>
-        <a class="logo" href="index.html">KP Travel &amp; Tours</a>
-        <p>Ekskluzywne biuro podróży tworzące spersonalizowane doświadczenia dla wymagających globtroterów.</p>
-        <p>ul. Podróżnicza 12, 00-950 Warszawa</p>
-      </div>
-      <div>
-        <h3>Nawigacja</h3>
-        <ul>
-          <li><a href="index.html">Strona główna</a></li>
-          <li><a href="tours.html">Wycieczki</a></li>
-          <li><a href="about.html">O nas</a></li>
-          <li><a href="gallery.html">Galeria</a></li>
-          <li><a href="contact.html">Kontakt</a></li>
-        </ul>
-      </div>
-      <div>
-        <h3>Regulaminy</h3>
-        <ul>
-          <li><a href="polityka-prywatnosci.html">Polityka prywatności</a></li>
-          <li><a href="regulamin.html">Regulamin</a></li>
-          <li><a href="cookies.html">Cookies</a></li>
-        </ul>
-      </div>
-      <div>
-        <h3>Kontakt</h3>
-        <p>+48 600 900 700</p>
-        <p><a href="mailto:kontakt@kptravel.pl">kontakt@kptravel.pl</a></p>
-        <div class="socials">
-          <a href="https://www.instagram.com/ktravel" aria-label="Instagram KP Travel">Instagram</a>
-          <a href="https://www.facebook.com/ktravel" aria-label="Facebook KP Travel">Facebook</a>
-          <a href="https://www.linkedin.com/company/ktravel" aria-label="LinkedIn KP Travel">LinkedIn</a>
+    </header>
+
+    <!-- MAIN -->
+    <main id="main-content">
+      <a class="skip-link" href="#main-content">Przejdź do treści</a>
+
+      <!-- HERO -->
+      <div class="page-hero page-hero--gallery">
+        <div class="container">
+          <nav class="breadcrumb" aria-label="Ścieżka nawigacyjna">
+            <ol>
+              <li><a href="index.html">Strona główna</a></li>
+              <li aria-current="page">Galeria</li>
+            </ol>
+          </nav>
+          <h1>Galeria wyjazdów</h1>
+          <p>Kadry uchwycone przez naszych klientów i fotografów terenowych.</p>
         </div>
       </div>
+
+      <section class="gallery-filters" aria-label="Filtruj galeri� wyjazd�w">
+        <div class="container">
+          <div class="gallery-filters__inner">
+            <button type="button" class="gallery-filter is-active" data-gallery-filter="all">Wszystkie</button>
+            <button type="button" class="gallery-filter" data-gallery-filter="islandia">Islandia</button>
+            <button type="button" class="gallery-filter" data-gallery-filter="maledivy">Malediwy</button>
+            <button type="button" class="gallery-filter" data-gallery-filter="maroko">Maroko</button>
+            <button type="button" class="gallery-filter" data-gallery-filter="new-york">Nowy Jork</button>
+            <button type="button" class="gallery-filter" data-gallery-filter="patagonia">Patagonia</button>
+            <button type="button" class="gallery-filter" data-gallery-filter="tokio">Tokio</button>
+          </div>
+        </div>
+      </section>
+
+      <!-- GALLERY -->
+      <section class="section" aria-label="Galeria zdjęć">
+        <div class="container gallery-grid" data-gallery>
+          <!-- ISLANDIA (6 zdjęć) -->
+          <figure data-country="islandia">
+            <picture class="gallery-item">
+              <source
+                srcset="
+                  assets/img/tours/islandia/islandia-01-400x260.avif    400w,
+                  assets/img/tours/islandia/islandia-01-800x520.avif    800w,
+                  assets/img/tours/islandia/islandia-01-1200x780.avif  1200w,
+                  assets/img/tours/islandia/islandia-01-1600x1040.avif 1600w
+                "
+                type="image/avif" />
+              <source
+                srcset="
+                  assets/img/tours/islandia/islandia-01-400x260.webp    400w,
+                  assets/img/tours/islandia/islandia-01-800x520.webp    800w,
+                  assets/img/tours/islandia/islandia-01-1200x780.webp  1200w,
+                  assets/img/tours/islandia/islandia-01-1600x1040.webp 1600w
+                "
+                type="image/webp" />
+              <img
+                src="assets/img/tours/islandia/islandia-01-1200x780.jpg"
+                srcset="
+                  assets/img/tours/islandia/islandia-01-400x260.jpg    400w,
+                  assets/img/tours/islandia/islandia-01-800x520.jpg    800w,
+                  assets/img/tours/islandia/islandia-01-1200x780.jpg  1200w,
+                  assets/img/tours/islandia/islandia-01-1600x1040.jpg 1600w
+                "
+                sizes="(min-width: 900px) 360px, 100vw"
+                alt="Zorza polarna nad islandzkim wybrzeżem"
+                loading="lazy"
+                data-lightbox-src="assets/img/tours/islandia/islandia-01-1600x1040.jpg"
+                tabindex="0" />
+            </picture>
+            <figcaption>Islandia Aurora Coast</figcaption>
+          </figure>
+
+          <figure data-country="islandia">
+            <picture class="gallery-item">
+              <source
+                srcset="
+                  assets/img/tours/islandia/islandia-02-400x260.avif    400w,
+                  assets/img/tours/islandia/islandia-02-800x520.avif    800w,
+                  assets/img/tours/islandia/islandia-02-1200x780.avif  1200w,
+                  assets/img/tours/islandia/islandia-02-1600x1040.avif 1600w
+                "
+                type="image/avif" />
+              <source
+                srcset="
+                  assets/img/tours/islandia/islandia-02-400x260.webp    400w,
+                  assets/img/tours/islandia/islandia-02-800x520.webp    800w,
+                  assets/img/tours/islandia/islandia-02-1200x780.webp  1200w,
+                  assets/img/tours/islandia/islandia-02-1600x1040.webp 1600w
+                "
+                type="image/webp" />
+              <img
+                src="assets/img/tours/islandia/islandia-02-1200x780.jpg"
+                srcset="
+                  assets/img/tours/islandia/islandia-02-400x260.jpg    400w,
+                  assets/img/tours/islandia/islandia-02-800x520.jpg    800w,
+                  assets/img/tours/islandia/islandia-02-1200x780.jpg  1200w,
+                  assets/img/tours/islandia/islandia-02-1600x1040.jpg 1600w
+                "
+                sizes="(min-width: 900px) 360px, 100vw"
+                alt="Górzysty krajobraz Islandii zimą"
+                loading="lazy"
+                data-lightbox-src="assets/img/tours/islandia/islandia-02-1600x1040.jpg"
+                tabindex="0" />
+            </picture>
+            <figcaption>Winter Highlands of Iceland</figcaption>
+          </figure>
+
+          <figure data-country="islandia">
+            <picture class="gallery-item">
+              <source
+                srcset="
+                  assets/img/tours/islandia/islandia-03-400x260.avif    400w,
+                  assets/img/tours/islandia/islandia-03-800x520.avif    800w,
+                  assets/img/tours/islandia/islandia-03-1200x780.avif  1200w,
+                  assets/img/tours/islandia/islandia-03-1600x1040.avif 1600w
+                "
+                type="image/avif" />
+              <source
+                srcset="
+                  assets/img/tours/islandia/islandia-03-400x260.webp    400w,
+                  assets/img/tours/islandia/islandia-03-800x520.webp    800w,
+                  assets/img/tours/islandia/islandia-03-1200x780.webp  1200w,
+                  assets/img/tours/islandia/islandia-03-1600x1040.webp 1600w
+                "
+                type="image/webp" />
+              <img
+                src="assets/img/tours/islandia/islandia-03-1200x780.jpg"
+                srcset="
+                  assets/img/tours/islandia/islandia-03-400x260.jpg    400w,
+                  assets/img/tours/islandia/islandia-03-800x520.jpg    800w,
+                  assets/img/tours/islandia/islandia-03-1200x780.jpg  1200w,
+                  assets/img/tours/islandia/islandia-03-1600x1040.jpg 1600w
+                "
+                sizes="(min-width: 900px) 360px, 100vw"
+                alt="Islandzki wodospad o świcie"
+                loading="lazy"
+                data-lightbox-src="assets/img/tours/islandia/islandia-03-1600x1040.jpg"
+                tabindex="0" />
+            </picture>
+            <figcaption>Icelandic Sunrise Falls</figcaption>
+          </figure>
+
+          <figure data-country="islandia">
+            <picture class="gallery-item">
+              <source
+                srcset="
+                  assets/img/tours/islandia/islandia-04-400x260.avif    400w,
+                  assets/img/tours/islandia/islandia-04-800x520.avif    800w,
+                  assets/img/tours/islandia/islandia-04-1200x780.avif  1200w,
+                  assets/img/tours/islandia/islandia-04-1600x1040.avif 1600w
+                "
+                type="image/avif" />
+              <source
+                srcset="
+                  assets/img/tours/islandia/islandia-04-400x260.webp    400w,
+                  assets/img/tours/islandia/islandia-04-800x520.webp    800w,
+                  assets/img/tours/islandia/islandia-04-1200x780.webp  1200w,
+                  assets/img/tours/islandia/islandia-04-1600x1040.webp 1600w
+                "
+                type="image/webp" />
+              <img
+                src="assets/img/tours/islandia/islandia-04-1200x780.jpg"
+                srcset="
+                  assets/img/tours/islandia/islandia-04-400x260.jpg    400w,
+                  assets/img/tours/islandia/islandia-04-800x520.jpg    800w,
+                  assets/img/tours/islandia/islandia-04-1200x780.jpg  1200w,
+                  assets/img/tours/islandia/islandia-04-1600x1040.jpg 1600w
+                "
+                sizes="(min-width: 900px) 360px, 100vw"
+                alt="Czarne plaże i ocean w Islandii"
+                loading="lazy"
+                data-lightbox-src="assets/img/tours/islandia/islandia-04-1600x1040.jpg"
+                tabindex="0" />
+            </picture>
+            <figcaption>Black Sand Beaches</figcaption>
+          </figure>
+
+          <figure data-country="islandia">
+            <picture class="gallery-item">
+              <source
+                srcset="
+                  assets/img/tours/islandia/islandia-05-400x260.avif    400w,
+                  assets/img/tours/islandia/islandia-05-800x520.avif    800w,
+                  assets/img/tours/islandia/islandia-05-1200x780.avif  1200w,
+                  assets/img/tours/islandia/islandia-05-1600x1040.avif 1600w
+                "
+                type="image/avif" />
+              <source
+                srcset="
+                  assets/img/tours/islandia/islandia-05-400x260.webp    400w,
+                  assets/img/tours/islandia/islandia-05-800x520.webp    800w,
+                  assets/img/tours/islandia/islandia-05-1200x780.webp  1200w,
+                  assets/img/tours/islandia/islandia-05-1600x1040.webp 1600w
+                "
+                type="image/webp" />
+              <img
+                src="assets/img/tours/islandia/islandia-05-1200x780.jpg"
+                srcset="
+                  assets/img/tours/islandia/islandia-05-400x260.jpg    400w,
+                  assets/img/tours/islandia/islandia-05-800x520.jpg    800w,
+                  assets/img/tours/islandia/islandia-05-1200x780.jpg  1200w,
+                  assets/img/tours/islandia/islandia-05-1600x1040.jpg 1600w
+                "
+                sizes="(min-width: 900px) 360px, 100vw"
+                alt="Panorama islandzkich fiordów"
+                loading="lazy"
+                data-lightbox-src="assets/img/tours/islandia/islandia-05-1600x1040.jpg"
+                tabindex="0" />
+            </picture>
+            <figcaption>Icelandic Fjord Panorama</figcaption>
+          </figure>
+
+          <figure data-country="islandia">
+            <picture class="gallery-item">
+              <source
+                srcset="
+                  assets/img/tours/islandia/islandia-06-400x260.avif    400w,
+                  assets/img/tours/islandia/islandia-06-800x520.avif    800w,
+                  assets/img/tours/islandia/islandia-06-1200x780.avif  1200w,
+                  assets/img/tours/islandia/islandia-06-1600x1040.avif 1600w
+                "
+                type="image/avif" />
+              <source
+                srcset="
+                  assets/img/tours/islandia/islandia-06-400x260.webp    400w,
+                  assets/img/tours/islandia/islandia-06-800x520.webp    800w,
+                  assets/img/tours/islandia/islandia-06-1200x780.webp  1200w,
+                  assets/img/tours/islandia/islandia-06-1600x1040.webp 1600w
+                "
+                type="image/webp" />
+              <img
+                src="assets/img/tours/islandia/islandia-06-1200x780.jpg"
+                srcset="
+                  assets/img/tours/islandia/islandia-06-400x260.jpg    400w,
+                  assets/img/tours/islandia/islandia-06-800x520.jpg    800w,
+                  assets/img/tours/islandia/islandia-06-1200x780.jpg  1200w,
+                  assets/img/tours/islandia/islandia-06-1600x1040.jpg 1600w
+                "
+                sizes="(min-width: 900px) 360px, 100vw"
+                alt="Islandzki krajobraz z drogą pośród gór"
+                loading="lazy"
+                data-lightbox-src="assets/img/tours/islandia/islandia-06-1600x1040.jpg"
+                tabindex="0" />
+            </picture>
+            <figcaption>Road Through Iceland</figcaption>
+          </figure>
+
+          <!-- MALEDIWY (6 zdjęć) -->
+          <figure data-country="maledivy">
+            <picture class="gallery-item">
+              <source
+                srcset="
+                  assets/img/tours/malediwy/malediwy-01-400x260.avif    400w,
+                  assets/img/tours/malediwy/malediwy-01-800x520.avif    800w,
+                  assets/img/tours/malediwy/malediwy-01-1200x780.avif  1200w,
+                  assets/img/tours/malediwy/malediwy-01-1600x1040.avif 1600w
+                "
+                type="image/avif" />
+              <source
+                srcset="
+                  assets/img/tours/malediwy/malediwy-01-400x260.webp    400w,
+                  assets/img/tours/malediwy/malediwy-01-800x520.webp    800w,
+                  assets/img/tours/malediwy/malediwy-01-1200x780.webp  1200w,
+                  assets/img/tours/malediwy/malediwy-01-1600x1040.webp 1600w
+                "
+                type="image/webp" />
+              <img
+                src="assets/img/tours/malediwy/malediwy-01-1200x780.jpg"
+                srcset="
+                  assets/img/tours/malediwy/malediwy-01-400x260.jpg    400w,
+                  assets/img/tours/malediwy/malediwy-01-800x520.jpg    800w,
+                  assets/img/tours/malediwy/malediwy-01-1200x780.jpg  1200w,
+                  assets/img/tours/malediwy/malediwy-01-1600x1040.jpg 1600w
+                "
+                sizes="(min-width: 900px) 360px, 100vw"
+                alt="Wille na wodzie na Malediwach"
+                loading="lazy"
+                data-lightbox-src="assets/img/tours/malediwy/malediwy-01-1600x1040.jpg"
+                tabindex="0" />
+            </picture>
+            <figcaption>Maldives Overwater Villas</figcaption>
+          </figure>
+
+          <figure data-country="maledivy">
+            <picture class="gallery-item">
+              <source
+                srcset="
+                  assets/img/tours/malediwy/malediwy-02-400x260.avif    400w,
+                  assets/img/tours/malediwy/malediwy-02-800x520.avif    800w,
+                  assets/img/tours/malediwy/malediwy-02-1200x780.avif  1200w,
+                  assets/img/tours/malediwy/malediwy-02-1600x1040.avif 1600w
+                "
+                type="image/avif" />
+              <source
+                srcset="
+                  assets/img/tours/malediwy/malediwy-02-400x260.webp    400w,
+                  assets/img/tours/malediwy/malediwy-02-800x520.webp    800w,
+                  assets/img/tours/malediwy/malediwy-02-1200x780.webp  1200w,
+                  assets/img/tours/malediwy/malediwy-02-1600x1040.webp 1600w
+                "
+                type="image/webp" />
+              <img
+                src="assets/img/tours/malediwy/malediwy-02-1200x780.jpg"
+                srcset="
+                  assets/img/tours/malediwy/malediwy-02-400x260.jpg    400w,
+                  assets/img/tours/malediwy/malediwy-02-800x520.jpg    800w,
+                  assets/img/tours/malediwy/malediwy-02-1200x780.jpg  1200w,
+                  assets/img/tours/malediwy/malediwy-02-1600x1040.jpg 1600w
+                "
+                sizes="(min-width: 900px) 360px, 100vw"
+                alt="Plaża z turkusową laguną"
+                loading="lazy"
+                data-lightbox-src="assets/img/tours/malediwy/malediwy-02-1600x1040.jpg"
+                tabindex="0" />
+            </picture>
+            <figcaption>Turquoise Lagoon Beach</figcaption>
+          </figure>
+
+          <figure data-country="maledivy">
+            <picture class="gallery-item">
+              <source
+                srcset="
+                  assets/img/tours/malediwy/malediwy-03-400x260.avif    400w,
+                  assets/img/tours/malediwy/malediwy-03-800x520.avif    800w,
+                  assets/img/tours/malediwy/malediwy-03-1200x780.avif  1200w,
+                  assets/img/tours/malediwy/malediwy-03-1600x1040.avif 1600w
+                "
+                type="image/avif" />
+              <source
+                srcset="
+                  assets/img/tours/malediwy/malediwy-03-400x260.webp    400w,
+                  assets/img/tours/malediwy/malediwy-03-800x520.webp    800w,
+                  assets/img/tours/malediwy/malediwy-03-1200x780.webp  1200w,
+                  assets/img/tours/malediwy/malediwy-03-1600x1040.webp 1600w
+                "
+                type="image/webp" />
+              <img
+                src="assets/img/tours/malediwy/malediwy-03-1200x780.jpg"
+                srcset="
+                  assets/img/tours/malediwy/malediwy-03-400x260.jpg    400w,
+                  assets/img/tours/malediwy/malediwy-03-800x520.jpg    800w,
+                  assets/img/tours/malediwy/malediwy-03-1200x780.jpg  1200w,
+                  assets/img/tours/malediwy/malediwy-03-1600x1040.jpg 1600w
+                "
+                sizes="(min-width: 900px) 360px, 100vw"
+                alt="Zachód słońca nad oceanem na Malediwach"
+                loading="lazy"
+                data-lightbox-src="assets/img/tours/malediwy/malediwy-03-1600x1040.jpg"
+                tabindex="0" />
+            </picture>
+            <figcaption>Maldives Sunset View</figcaption>
+          </figure>
+
+          <figure data-country="maledivy">
+            <picture class="gallery-item">
+              <source
+                srcset="
+                  assets/img/tours/malediwy/malediwy-04-400x260.avif    400w,
+                  assets/img/tours/malediwy/malediwy-04-800x520.avif    800w,
+                  assets/img/tours/malediwy/malediwy-04-1200x780.avif  1200w,
+                  assets/img/tours/malediwy/malediwy-04-1600x1040.avif 1600w
+                "
+                type="image/avif" />
+              <source
+                srcset="
+                  assets/img/tours/malediwy/malediwy-04-400x260.webp    400w,
+                  assets/img/tours/malediwy/malediwy-04-800x520.webp    800w,
+                  assets/img/tours/malediwy/malediwy-04-1200x780.webp  1200w,
+                  assets/img/tours/malediwy/malediwy-04-1600x1040.webp 1600w
+                "
+                type="image/webp" />
+              <img
+                src="assets/img/tours/malediwy/malediwy-04-1200x780.jpg"
+                srcset="
+                  assets/img/tours/malediwy/malediwy-04-400x260.jpg    400w,
+                  assets/img/tours/malediwy/malediwy-04-800x520.jpg    800w,
+                  assets/img/tours/malediwy/malediwy-04-1200x780.jpg  1200w,
+                  assets/img/tours/malediwy/malediwy-04-1600x1040.jpg 1600w
+                "
+                sizes="(min-width: 900px) 360px, 100vw"
+                alt="Pomost prowadzący do willi na wodzie"
+                loading="lazy"
+                data-lightbox-src="assets/img/tours/malediwy/malediwy-04-1600x1040.jpg"
+                tabindex="0" />
+            </picture>
+            <figcaption>Overwater Walkway</figcaption>
+          </figure>
+
+          <figure data-country="maledivy">
+            <picture class="gallery-item">
+              <source
+                srcset="
+                  assets/img/tours/malediwy/malediwy-05-400x260.avif    400w,
+                  assets/img/tours/malediwy/malediwy-05-800x520.avif    800w,
+                  assets/img/tours/malediwy/malediwy-05-1200x780.avif  1200w,
+                  assets/img/tours/malediwy/malediwy-05-1600x1040.avif 1600w
+                "
+                type="image/avif" />
+              <source
+                srcset="
+                  assets/img/tours/malediwy/malediwy-05-400x260.webp    400w,
+                  assets/img/tours/malediwy/malediwy-05-800x520.webp    800w,
+                  assets/img/tours/malediwy/malediwy-05-1200x780.webp  1200w,
+                  assets/img/tours/malediwy/malediwy-05-1600x1040.webp 1600w
+                "
+                type="image/webp" />
+              <img
+                src="assets/img/tours/malediwy/malediwy-05-1200x780.jpg"
+                srcset="
+                  assets/img/tours/malediwy/malediwy-05-400x260.jpg    400w,
+                  assets/img/tours/malediwy/malediwy-05-800x520.jpg    800w,
+                  assets/img/tours/malediwy/malediwy-05-1200x780.jpg  1200w,
+                  assets/img/tours/malediwy/malediwy-05-1600x1040.jpg 1600w
+                "
+                sizes="(min-width: 900px) 360px, 100vw"
+                alt="Leżaki na prywatnej plaży"
+                loading="lazy"
+                data-lightbox-src="assets/img/tours/malediwy/malediwy-05-1600x1040.jpg"
+                tabindex="0" />
+            </picture>
+            <figcaption>Private Beach Retreat</figcaption>
+          </figure>
+
+          <figure data-country="maledivy">
+            <picture class="gallery-item">
+              <source
+                srcset="
+                  assets/img/tours/malediwy/malediwy-06-400x260.avif    400w,
+                  assets/img/tours/malediwy/malediwy-06-800x520.avif    800w,
+                  assets/img/tours/malediwy/malediwy-06-1200x780.avif  1200w,
+                  assets/img/tours/malediwy/malediwy-06-1600x1040.avif 1600w
+                "
+                type="image/avif" />
+              <source
+                srcset="
+                  assets/img/tours/malediwy/malediwy-06-400x260.webp    400w,
+                  assets/img/tours/malediwy/malediwy-06-800x520.webp    800w,
+                  assets/img/tours/malediwy/malediwy-06-1200x780.webp  1200w,
+                  assets/img/tours/malediwy/malediwy-06-1600x1040.webp 1600w
+                "
+                type="image/webp" />
+              <img
+                src="assets/img/tours/malediwy/malediwy-06-1200x780.jpg"
+                srcset="
+                  assets/img/tours/malediwy/malediwy-06-400x260.jpg    400w,
+                  assets/img/tours/malediwy/malediwy-06-800x520.jpg    800w,
+                  assets/img/tours/malediwy/malediwy-06-1200x780.jpg  1200w,
+                  assets/img/tours/malediwy/malediwy-06-1600x1040.jpg 1600w
+                "
+                sizes="(min-width: 900px) 360px, 100vw"
+                alt="Widok z willi na lagunę"
+                loading="lazy"
+                data-lightbox-src="assets/img/tours/malediwy/malediwy-06-1600x1040.jpg"
+                tabindex="0" />
+            </picture>
+            <figcaption>Lagoon View Suite</figcaption>
+          </figure>
+
+          <!-- MAROKO (6 zdjęć) -->
+          <figure data-country="maroko">
+            <picture class="gallery-item">
+              <source
+                srcset="
+                  assets/img/tours/maroko/maroko-01-400x260.avif    400w,
+                  assets/img/tours/maroko/maroko-01-800x520.avif    800w,
+                  assets/img/tours/maroko/maroko-01-1200x780.avif  1200w,
+                  assets/img/tours/maroko/maroko-01-1600x1040.avif 1600w
+                "
+                type="image/avif" />
+              <source
+                srcset="
+                  assets/img/tours/maroko/maroko-01-400x260.webp    400w,
+                  assets/img/tours/maroko/maroko-01-800x520.webp    800w,
+                  assets/img/tours/maroko/maroko-01-1200x780.webp  1200w,
+                  assets/img/tours/maroko/maroko-01-1600x1040.webp 1600w
+                "
+                type="image/webp" />
+              <img
+                src="assets/img/tours/maroko/maroko-01-1200x780.jpg"
+                srcset="
+                  assets/img/tours/maroko/maroko-01-400x260.jpg    400w,
+                  assets/img/tours/maroko/maroko-01-800x520.jpg    800w,
+                  assets/img/tours/maroko/maroko-01-1200x780.jpg  1200w,
+                  assets/img/tours/maroko/maroko-01-1600x1040.jpg 1600w
+                "
+                sizes="(min-width: 900px) 360px, 100vw"
+                alt="Kolorowe uliczki Marrakeszu"
+                loading="lazy"
+                data-lightbox-src="assets/img/tours/maroko/maroko-01-1600x1040.jpg"
+                tabindex="0" />
+            </picture>
+            <figcaption>Marrakesh Colorful Streets</figcaption>
+          </figure>
+
+          <figure data-country="maroko">
+            <picture class="gallery-item">
+              <source
+                srcset="
+                  assets/img/tours/maroko/maroko-02-400x260.avif    400w,
+                  assets/img/tours/maroko/maroko-02-800x520.avif    800w,
+                  assets/img/tours/maroko/maroko-02-1200x780.avif  1200w,
+                  assets/img/tours/maroko/maroko-02-1600x1040.avif 1600w
+                "
+                type="image/avif" />
+              <source
+                srcset="
+                  assets/img/tours/maroko/maroko-02-400x260.webp    400w,
+                  assets/img/tours/maroko/maroko-02-800x520.webp    800w,
+                  assets/img/tours/maroko/maroko-02-1200x780.webp  1200w,
+                  assets/img/tours/maroko/maroko-02-1600x1040.webp 1600w
+                "
+                type="image/webp" />
+              <img
+                src="assets/img/tours/maroko/maroko-02-1200x780.jpg"
+                srcset="
+                  assets/img/tours/maroko/maroko-02-400x260.jpg    400w,
+                  assets/img/tours/maroko/maroko-02-800x520.jpg    800w,
+                  assets/img/tours/maroko/maroko-02-1200x780.jpg  1200w,
+                  assets/img/tours/maroko/maroko-02-1600x1040.jpg 1600w
+                "
+                sizes="(min-width: 900px) 360px, 100vw"
+                alt="Tradycyjny rynek w Maroku"
+                loading="lazy"
+                data-lightbox-src="assets/img/tours/maroko/maroko-02-1600x1040.jpg"
+                tabindex="0" />
+            </picture>
+            <figcaption>Moroccan Souk Experience</figcaption>
+          </figure>
+
+          <figure data-country="maroko">
+            <picture class="gallery-item">
+              <source
+                srcset="
+                  assets/img/tours/maroko/maroko-03-400x260.avif    400w,
+                  assets/img/tours/maroko/maroko-03-800x520.avif    800w,
+                  assets/img/tours/maroko/maroko-03-1200x780.avif  1200w,
+                  assets/img/tours/maroko/maroko-03-1600x1040.avif 1600w
+                "
+                type="image/avif" />
+              <source
+                srcset="
+                  assets/img/tours/maroko/maroko-03-400x260.webp    400w,
+                  assets/img/tours/maroko/maroko-03-800x520.webp    800w,
+                  assets/img/tours/maroko/maroko-03-1200x780.webp  1200w,
+                  assets/img/tours/maroko/maroko-03-1600x1040.webp 1600w
+                "
+                type="image/webp" />
+              <img
+                src="assets/img/tours/maroko/maroko-03-1200x780.jpg"
+                srcset="
+                  assets/img/tours/maroko/maroko-03-400x260.jpg    400w,
+                  assets/img/tours/maroko/maroko-03-800x520.jpg    800w,
+                  assets/img/tours/maroko/maroko-03-1200x780.jpg  1200w,
+                  assets/img/tours/maroko/maroko-03-1600x1040.jpg 1600w
+                "
+                sizes="(min-width: 900px) 360px, 100vw"
+                alt="Złote wydmy pustyni w Maroku"
+                loading="lazy"
+                data-lightbox-src="assets/img/tours/maroko/maroko-03-1600x1040.jpg"
+                tabindex="0" />
+            </picture>
+            <figcaption>Desert Dunes Adventure</figcaption>
+          </figure>
+
+          <figure data-country="maroko">
+            <picture class="gallery-item">
+              <source
+                srcset="
+                  assets/img/tours/maroko/maroko-04-400x260.avif    400w,
+                  assets/img/tours/maroko/maroko-04-800x520.avif    800w,
+                  assets/img/tours/maroko/maroko-04-1200x780.avif  1200w,
+                  assets/img/tours/maroko/maroko-04-1600x1040.avif 1600w
+                "
+                type="image/avif" />
+              <source
+                srcset="
+                  assets/img/tours/maroko/maroko-04-400x260.webp    400w,
+                  assets/img/tours/maroko/maroko-04-800x520.webp    800w,
+                  assets/img/tours/maroko/maroko-04-1200x780.webp  1200w,
+                  assets/img/tours/maroko/maroko-04-1600x1040.webp 1600w
+                "
+                type="image/webp" />
+              <img
+                src="assets/img/tours/maroko/maroko-04-1200x780.jpg"
+                srcset="
+                  assets/img/tours/maroko/maroko-04-400x260.jpg    400w,
+                  assets/img/tours/maroko/maroko-04-800x520.jpg    800w,
+                  assets/img/tours/maroko/maroko-04-1200x780.jpg  1200w,
+                  assets/img/tours/maroko/maroko-04-1600x1040.jpg 1600w
+                "
+                sizes="(min-width: 900px) 360px, 100vw"
+                alt="Riad z basenem w Maroku"
+                loading="lazy"
+                data-lightbox-src="assets/img/tours/maroko/maroko-04-1600x1040.jpg"
+                tabindex="0" />
+            </picture>
+            <figcaption>Luxury Riad Retreat</figcaption>
+          </figure>
+
+          <figure data-country="maroko">
+            <picture class="gallery-item">
+              <source
+                srcset="
+                  assets/img/tours/maroko/maroko-05-400x260.avif    400w,
+                  assets/img/tours/maroko/maroko-05-800x520.avif    800w,
+                  assets/img/tours/maroko/maroko-05-1200x780.avif  1200w,
+                  assets/img/tours/maroko/maroko-05-1600x1040.avif 1600w
+                "
+                type="image/avif" />
+              <source
+                srcset="
+                  assets/img/tours/maroko/maroko-05-400x260.webp    400w,
+                  assets/img/tours/maroko/maroko-05-800x520.webp    800w,
+                  assets/img/tours/maroko/maroko-05-1200x780.webp  1200w,
+                  assets/img/tours/maroko/maroko-05-1600x1040.webp 1600w
+                "
+                type="image/webp" />
+              <img
+                src="assets/img/tours/maroko/maroko-05-1200x780.jpg"
+                srcset="
+                  assets/img/tours/maroko/maroko-05-400x260.jpg    400w,
+                  assets/img/tours/maroko/maroko-05-800x520.jpg    800w,
+                  assets/img/tours/maroko/maroko-05-1200x780.jpg  1200w,
+                  assets/img/tours/maroko/maroko-05-1600x1040.jpg 1600w
+                "
+                sizes="(min-width: 900px) 360px, 100vw"
+                alt="Widok na starą zabudowę w Maroku"
+                loading="lazy"
+                data-lightbox-src="assets/img/tours/maroko/maroko-05-1600x1040.jpg"
+                tabindex="0" />
+            </picture>
+            <figcaption>Old Town Panorama</figcaption>
+          </figure>
+
+          <figure data-country="maroko">
+            <picture class="gallery-item">
+              <source
+                srcset="
+                  assets/img/tours/maroko/maroko-06-400x260.avif    400w,
+                  assets/img/tours/maroko/maroko-06-800x520.avif    800w,
+                  assets/img/tours/maroko/maroko-06-1200x780.avif  1200w,
+                  assets/img/tours/maroko/maroko-06-1600x1040.avif 1600w
+                "
+                type="image/avif" />
+              <source
+                srcset="
+                  assets/img/tours/maroko/maroko-06-400x260.webp    400w,
+                  assets/img/tours/maroko/maroko-06-800x520.webp    800w,
+                  assets/img/tours/maroko/maroko-06-1200x780.webp  1200w,
+                  assets/img/tours/maroko/maroko-06-1600x1040.webp 1600w
+                "
+                type="image/webp" />
+              <img
+                src="assets/img/tours/maroko/maroko-06-1200x780.jpg"
+                srcset="
+                  assets/img/tours/maroko/maroko-06-400x260.jpg    400w,
+                  assets/img/tours/maroko/maroko-06-800x520.jpg    800w,
+                  assets/img/tours/maroko/maroko-06-1200x780.jpg  1200w,
+                  assets/img/tours/maroko/maroko-06-1600x1040.jpg 1600w
+                "
+                sizes="(min-width: 900px) 360px, 100vw"
+                alt="Marokańskie góry o zachodzie słońca"
+                loading="lazy"
+                data-lightbox-src="assets/img/tours/maroko/maroko-06-1600x1040.jpg"
+                tabindex="0" />
+            </picture>
+            <figcaption>Atlas Mountains Sunset</figcaption>
+          </figure>
+
+          <!-- NEW YORK (6 zdjęć) -->
+          <figure data-country="new-york">
+            <picture class="gallery-item">
+              <source
+                srcset="
+                  assets/img/tours/new-york/new-york-01-400x260.avif    400w,
+                  assets/img/tours/new-york/new-york-01-800x520.avif    800w,
+                  assets/img/tours/new-york/new-york-01-1200x780.avif  1200w,
+                  assets/img/tours/new-york/new-york-01-1600x1040.avif 1600w
+                "
+                type="image/avif" />
+              <source
+                srcset="
+                  assets/img/tours/new-york/new-york-01-400x260.webp    400w,
+                  assets/img/tours/new-york/new-york-01-800x520.webp    800w,
+                  assets/img/tours/new-york/new-york-01-1200x780.webp  1200w,
+                  assets/img/tours/new-york/new-york-01-1600x1040.webp 1600w
+                "
+                type="image/webp" />
+              <img
+                src="assets/img/tours/new-york/new-york-01-1200x780.jpg"
+                srcset="
+                  assets/img/tours/new-york/new-york-01-400x260.jpg    400w,
+                  assets/img/tours/new-york/new-york-01-800x520.jpg    800w,
+                  assets/img/tours/new-york/new-york-01-1200x780.jpg  1200w,
+                  assets/img/tours/new-york/new-york-01-1600x1040.jpg 1600w
+                "
+                sizes="(min-width: 900px) 360px, 100vw"
+                alt="Panorama Manhattanu o zachodzie słońca"
+                loading="lazy"
+                data-lightbox-src="assets/img/tours/new-york/new-york-01-1600x1040.jpg"
+                tabindex="0" />
+            </picture>
+            <figcaption>Manhattan Sunset Skyline</figcaption>
+          </figure>
+
+          <figure data-country="new-york">
+            <picture class="gallery-item">
+              <source
+                srcset="
+                  assets/img/tours/new-york/new-york-02-400x260.avif    400w,
+                  assets/img/tours/new-york/new-york-02-800x520.avif    800w,
+                  assets/img/tours/new-york/new-york-02-1200x780.avif  1200w,
+                  assets/img/tours/new-york/new-york-02-1600x1040.avif 1600w
+                "
+                type="image/avif" />
+              <source
+                srcset="
+                  assets/img/tours/new-york/new-york-02-400x260.webp    400w,
+                  assets/img/tours/new-york/new-york-02-800x520.webp    800w,
+                  assets/img/tours/new-york/new-york-02-1200x780.webp  1200w,
+                  assets/img/tours/new-york/new-york-02-1600x1040.webp 1600w
+                "
+                type="image/webp" />
+              <img
+                src="assets/img/tours/new-york/new-york-02-1200x780.jpg"
+                srcset="
+                  assets/img/tours/new-york/new-york-02-400x260.jpg    400w,
+                  assets/img/tours/new-york/new-york-02-800x520.jpg    800w,
+                  assets/img/tours/new-york/new-york-02-1200x780.jpg  1200w,
+                  assets/img/tours/new-york/new-york-02-1600x1040.jpg 1600w
+                "
+                sizes="(min-width: 900px) 360px, 100vw"
+                alt="Most Brookliński nocą z oświetloną panoramą miasta"
+                loading="lazy"
+                data-lightbox-src="assets/img/tours/new-york/new-york-02-1600x1040.jpg"
+                tabindex="0" />
+            </picture>
+            <figcaption>Brooklyn Bridge by Night</figcaption>
+          </figure>
+
+          <figure data-country="new-york">
+            <picture class="gallery-item">
+              <source
+                srcset="
+                  assets/img/tours/new-york/new-york-03-400x260.avif    400w,
+                  assets/img/tours/new-york/new-york-03-800x520.avif    800w,
+                  assets/img/tours/new-york/new-york-03-1200x780.avif  1200w,
+                  assets/img/tours/new-york/new-york-03-1600x1040.avif 1600w
+                "
+                type="image/avif" />
+              <source
+                srcset="
+                  assets/img/tours/new-york/new-york-03-400x260.webp    400w,
+                  assets/img/tours/new-york/new-york-03-800x520.webp    800w,
+                  assets/img/tours/new-york/new-york-03-1200x780.webp  1200w,
+                  assets/img/tours/new-york/new-york-03-1600x1040.webp 1600w
+                "
+                type="image/webp" />
+              <img
+                src="assets/img/tours/new-york/new-york-03-1200x780.jpg"
+                srcset="
+                  assets/img/tours/new-york/new-york-03-400x260.jpg    400w,
+                  assets/img/tours/new-york/new-york-03-800x520.jpg    800w,
+                  assets/img/tours/new-york/new-york-03-1200x780.jpg  1200w,
+                  assets/img/tours/new-york/new-york-03-1600x1040.jpg 1600w
+                "
+                sizes="(min-width: 900px) 360px, 100vw"
+                alt="Times Square pełen świateł i reklam"
+                loading="lazy"
+                data-lightbox-src="assets/img/tours/new-york/new-york-03-1600x1040.jpg"
+                tabindex="0" />
+            </picture>
+            <figcaption>Times Square Lights</figcaption>
+          </figure>
+
+          <figure data-country="new-york">
+            <picture class="gallery-item">
+              <source
+                srcset="
+                  assets/img/tours/new-york/new-york-04-400x260.avif    400w,
+                  assets/img/tours/new-york/new-york-04-800x520.avif    800w,
+                  assets/img/tours/new-york/new-york-04-1200x780.avif  1200w,
+                  assets/img/tours/new-york/new-york-04-1600x1040.avif 1600w
+                "
+                type="image/avif" />
+              <source
+                srcset="
+                  assets/img/tours/new-york/new-york-04-400x260.webp    400w,
+                  assets/img/tours/new-york/new-york-04-800x520.webp    800w,
+                  assets/img/tours/new-york/new-york-04-1200x780.webp  1200w,
+                  assets/img/tours/new-york/new-york-04-1600x1040.webp 1600w
+                "
+                type="image/webp" />
+              <img
+                src="assets/img/tours/new-york/new-york-04-1200x780.jpg"
+                srcset="
+                  assets/img/tours/new-york/new-york-04-400x260.jpg    400w,
+                  assets/img/tours/new-york/new-york-04-800x520.jpg    800w,
+                  assets/img/tours/new-york/new-york-04-1200x780.jpg  1200w,
+                  assets/img/tours/new-york/new-york-04-1600x1040.jpg 1600w
+                "
+                sizes="(min-width: 900px) 360px, 100vw"
+                alt="Central Park otoczony wieżowcami Nowego Jorku"
+                loading="lazy"
+                data-lightbox-src="assets/img/tours/new-york/new-york-04-1600x1040.jpg"
+                tabindex="0" />
+            </picture>
+            <figcaption>Central Park from Above</figcaption>
+          </figure>
+
+          <figure data-country="new-york">
+            <picture class="gallery-item">
+              <source
+                srcset="
+                  assets/img/tours/new-york/new-york-05-400x260.avif    400w,
+                  assets/img/tours/new-york/new-york-05-800x520.avif    800w,
+                  assets/img/tours/new-york/new-york-05-1200x780.avif  1200w,
+                  assets/img/tours/new-york/new-york-05-1600x1040.avif 1600w
+                "
+                type="image/avif" />
+              <source
+                srcset="
+                  assets/img/tours/new-york/new-york-05-400x260.webp    400w,
+                  assets/img/tours/new-york/new-york-05-800x520.webp    800w,
+                  assets/img/tours/new-york/new-york-05-1200x780.webp  1200w,
+                  assets/img/tours/new-york/new-york-05-1600x1040.webp 1600w
+                "
+                type="image/webp" />
+              <img
+                src="assets/img/tours/new-york/new-york-05-1200x780.jpg"
+                srcset="
+                  assets/img/tours/new-york/new-york-05-400x260.jpg    400w,
+                  assets/img/tours/new-york/new-york-05-800x520.jpg    800w,
+                  assets/img/tours/new-york/new-york-05-1200x780.jpg  1200w,
+                  assets/img/tours/new-york/new-york-05-1600x1040.jpg 1600w
+                "
+                sizes="(min-width: 900px) 360px, 100vw"
+                alt="Statua Wolności z widokiem na Manhattan"
+                loading="lazy"
+                data-lightbox-src="assets/img/tours/new-york/new-york-05-1600x1040.jpg"
+                tabindex="0" />
+            </picture>
+            <figcaption>Liberty & Manhattan View</figcaption>
+          </figure>
+
+          <figure data-country="new-york">
+            <picture class="gallery-item">
+              <source
+                srcset="
+                  assets/img/tours/new-york/new-york-06-400x260.avif    400w,
+                  assets/img/tours/new-york/new-york-06-800x520.avif    800w,
+                  assets/img/tours/new-york/new-york-06-1200x780.avif  1200w,
+                  assets/img/tours/new-york/new-york-06-1600x1040.avif 1600w
+                "
+                type="image/avif" />
+              <source
+                srcset="
+                  assets/img/tours/new-york/new-york-06-400x260.webp    400w,
+                  assets/img/tours/new-york/new-york-06-800x520.webp    800w,
+                  assets/img/tours/new-york/new-york-06-1200x780.webp  1200w,
+                  assets/img/tours/new-york/new-york-06-1600x1040.webp 1600w
+                "
+                type="image/webp" />
+              <img
+                src="assets/img/tours/new-york/new-york-06-1200x780.jpg"
+                srcset="
+                  assets/img/tours/new-york/new-york-06-400x260.jpg    400w,
+                  assets/img/tours/new-york/new-york-06-800x520.jpg    800w,
+                  assets/img/tours/new-york/new-york-06-1200x780.jpg  1200w,
+                  assets/img/tours/new-york/new-york-06-1600x1040.jpg 1600w
+                "
+                sizes="(min-width: 900px) 360px, 100vw"
+                alt="Ulica Nowego Jorku z żółtymi taksówkami"
+                loading="lazy"
+                data-lightbox-src="assets/img/tours/new-york/new-york-06-1600x1040.jpg"
+                tabindex="0" />
+            </picture>
+            <figcaption>Yellow Cabs on 5th Avenue</figcaption>
+          </figure>
+
+          <!-- PATAGONIA (6 zdjęć) -->
+          <figure data-country="patagonia">
+            <picture class="gallery-item">
+              <source
+                srcset="
+                  assets/img/tours/patagonia/patagonia-01-400x260.avif    400w,
+                  assets/img/tours/patagonia/patagonia-01-800x520.avif    800w,
+                  assets/img/tours/patagonia/patagonia-01-1200x780.avif  1200w,
+                  assets/img/tours/patagonia/patagonia-01-1600x1040.avif 1600w
+                "
+                type="image/avif" />
+              <source
+                srcset="
+                  assets/img/tours/patagonia/patagonia-01-400x260.webp    400w,
+                  assets/img/tours/patagonia/patagonia-01-800x520.webp    800w,
+                  assets/img/tours/patagonia/patagonia-01-1200x780.webp  1200w,
+                  assets/img/tours/patagonia/patagonia-01-1600x1040.webp 1600w
+                "
+                type="image/webp" />
+              <img
+                src="assets/img/tours/patagonia/patagonia-01-1200x780.jpg"
+                srcset="
+                  assets/img/tours/patagonia/patagonia-01-400x260.jpg    400w,
+                  assets/img/tours/patagonia/patagonia-01-800x520.jpg    800w,
+                  assets/img/tours/patagonia/patagonia-01-1200x780.jpg  1200w,
+                  assets/img/tours/patagonia/patagonia-01-1600x1040.jpg 1600w
+                "
+                sizes="(min-width: 900px) 360px, 100vw"
+                alt="Panorama gór w Patagonii o złotej godzinie"
+                loading="lazy"
+                data-lightbox-src="assets/img/tours/patagonia/patagonia-01-1600x1040.jpg"
+                tabindex="0" />
+            </picture>
+            <figcaption>Patagonia Golden Peaks</figcaption>
+          </figure>
+
+          <figure data-country="patagonia">
+            <picture class="gallery-item">
+              <source
+                srcset="
+                  assets/img/tours/patagonia/patagonia-02-400x260.avif    400w,
+                  assets/img/tours/patagonia/patagonia-02-800x520.avif    800w,
+                  assets/img/tours/patagonia/patagonia-02-1200x780.avif  1200w,
+                  assets/img/tours/patagonia/patagonia-02-1600x1040.avif 1600w
+                "
+                type="image/avif" />
+              <source
+                srcset="
+                  assets/img/patagonia/patagonia-02-400x260.webp    400w,
+                  assets/img/patagonia/patagonia-02-800x520.webp    800w,
+                  assets/img/patagonia/patagonia-02-1200x780.webp  1200w,
+                  assets/img/patagonia/patagonia-02-1600x1040.webp 1600w
+                "
+                type="image/webp" />
+              <img
+                src="assets/img/tours/patagonia/patagonia-02-1200x780.jpg"
+                srcset="
+                  assets/img/tours/patagonia/patagonia-02-400x260.jpg    400w,
+                  assets/img/tours/patagonia/patagonia-02-800x520.jpg    800w,
+                  assets/img/tours/patagonia/patagonia-02-1200x780.jpg  1200w,
+                  assets/img/tours/patagonia/patagonia-02-1600x1040.jpg 1600w
+                "
+                sizes="(min-width: 900px) 360px, 100vw"
+                alt="Lazurowe jezioro u podnóża ośnieżonych gór Patagonii"
+                loading="lazy"
+                data-lightbox-src="assets/img/tours/patagonia/patagonia-02-1600x1040.jpg"
+                tabindex="0" />
+            </picture>
+            <figcaption>Patagonian Glacial Lake</figcaption>
+          </figure>
+
+          <figure data-country="patagonia">
+            <picture class="gallery-item">
+              <source
+                srcset="
+                  assets/img/tours/patagonia/patagonia-03-400x260.avif    400w,
+                  assets/img/tours/patagonia/patagonia-03-800x520.avif    800w,
+                  assets/img/tours/patagonia/patagonia-03-1200x780.avif  1200w,
+                  assets/img/tours/patagonia/patagonia-03-1600x1040.avif 1600w
+                "
+                type="image/avif" />
+              <source
+                srcset="
+                  assets/img/tours/patagonia/patagonia-03-400x260.webp    400w,
+                  assets/img/tours/patagonia/patagonia-03-800x520.webp    800w,
+                  assets/img/tours/patagonia/patagonia-03-1200x780.webp  1200w,
+                  assets/img/tours/patagonia/patagonia-03-1600x1040.webp 1600w
+                "
+                type="image/webp" />
+              <img
+                src="assets/img/tours/patagonia/patagonia-03-1200x780.jpg"
+                srcset="
+                  assets/img/tours/patagonia/patagonia-03-400x260.jpg    400w,
+                  assets/img/tours/patagonia/patagonia-03-800x520.jpg    800w,
+                  assets/img/tours/patagonia/patagonia-03-1200x780.jpg  1200w,
+                  assets/img/tours/patagonia/patagonia-03-1600x1040.jpg 1600w
+                "
+                sizes="(min-width: 900px) 360px, 100vw"
+                alt="Ikoniczne szczyty Fitz Roy w Patagonii"
+                loading="lazy"
+                data-lightbox-src="assets/img/tours/patagonia/patagonia-03-1600x1040.jpg"
+                tabindex="0" />
+            </picture>
+            <figcaption>Fitz Roy Sunrise</figcaption>
+          </figure>
+
+          <figure data-country="patagonia">
+            <picture class="gallery-item">
+              <source
+                srcset="
+                  assets/img/tours/patagonia/patagonia-04-400x260.avif    400w,
+                  assets/img/tours/patagonia/patagonia-04-800x520.avif    800w,
+                  assets/img/tours/patagonia/patagonia-04-1200x780.avif  1200w,
+                  assets/img/tours/patagonia/patagonia-04-1600x1040.avif 1600w
+                "
+                type="image/avif" />
+              <source
+                srcset="
+                  assets/img/tours/patagonia/patagonia-04-400x260.webp    400w,
+                  assets/img/tours/patagonia/patagonia-04-800x520.webp    800w,
+                  assets/img/tours/patagonia/patagonia-04-1200x780.webp  1200w,
+                  assets/img/tours/patagonia/patagonia-04-1600x1040.webp 1600w
+                "
+                type="image/webp" />
+              <img
+                src="assets/img/tours/patagonia/patagonia-04-1200x780.jpg"
+                srcset="
+                  assets/img/tours/patagonia/patagonia-04-400x260.jpg    400w,
+                  assets/img/tours/patagonia/patagonia-04-800x520.jpg    800w,
+                  assets/img/tours/patagonia/patagonia-04-1200x780.jpg  1200w,
+                  assets/img/tours/patagonia/patagonia-04-1600x1040.jpg 1600w
+                "
+                sizes="(min-width: 900px) 360px, 100vw"
+                alt="Turkusowa laguna pośród gór Patagonii"
+                loading="lazy"
+                data-lightbox-src="assets/img/tours/patagonia/patagonia-04-1600x1040.jpg"
+                tabindex="0" />
+            </picture>
+            <figcaption>Laguna de los Tres</figcaption>
+          </figure>
+
+          <figure data-country="patagonia">
+            <picture class="gallery-item">
+              <source
+                srcset="
+                  assets/img/tours/patagonia/patagonia-05-400x260.avif    400w,
+                  assets/img/tours/patagonia/patagonia-05-800x520.avif    800w,
+                  assets/img/tours/patagonia/patagonia-05-1200x780.avif  1200w,
+                  assets/img/tours/patagonia/patagonia-05-1600x1040.avif 1600w
+                "
+                type="image/avif" />
+              <source
+                srcset="
+                  assets/img/tours/patagonia/patagonia-05-400x260.webp    400w,
+                  assets/img/tours/patagonia/patagonia-05-800x520.webp    800w,
+                  assets/img/tours/patagonia/patagonia-05-1200x780.webp  1200w,
+                  assets/img/tours/patagonia/patagonia-05-1600x1040.webp 1600w
+                "
+                type="image/webp" />
+              <img
+                src="assets/img/tours/patagonia/patagonia-05-1200x780.jpg"
+                srcset="
+                  assets/img/tours/patagonia/patagonia-05-400x260.jpg    400w,
+                  assets/img/tours/patagonia/patagonia-05-800x520.jpg    800w,
+                  assets/img/tours/patagonia/patagonia-05-1200x780.jpg  1200w,
+                  assets/img/tours/patagonia/patagonia-05-1600x1040.jpg 1600w
+                "
+                sizes="(min-width: 900px) 360px, 100vw"
+                alt="Potężny lodowiec w Patagonii"
+                loading="lazy"
+                data-lightbox-src="assets/img/tours/patagonia/patagonia-05-1600x1040.jpg"
+                tabindex="0" />
+            </picture>
+            <figcaption>Patagonian Glacier Wall</figcaption>
+          </figure>
+
+          <figure data-country="patagonia">
+            <picture class="gallery-item">
+              <source
+                srcset="
+                  assets/img/tours/patagonia/patagonia-06-400x260.avif    400w,
+                  assets/img/tours/patagonia/patagonia-06-800x520.avif    800w,
+                  assets/img/tours/patagonia/patagonia-06-1200x780.avif  1200w,
+                  assets/img/tours/patagonia/patagonia-06-1600x1040.avif 1600w
+                "
+                type="image/avif" />
+              <source
+                srcset="
+                  assets/img/tours/patagonia/patagonia-06-400x260.webp    400w,
+                  assets/img/tours/patagonia/patagonia-06-800x520.webp    800w,
+                  assets/img/tours/patagonia/patagonia-06-1200x780.webp  1200w,
+                  assets/img/tours/patagonia/patagonia-06-1600x1040.webp 1600w
+                "
+                type="image/webp" />
+              <img
+                src="assets/img/tours/patagonia/patagonia-06-1200x780.jpg"
+                srcset="
+                  assets/img/tours/patagonia/patagonia-06-400x260.jpg    400w,
+                  assets/img/tours/patagonia/patagonia-06-800x520.jpg    800w,
+                  assets/img/tours/patagonia/patagonia-06-1200x780.jpg  1200w,
+                  assets/img/tours/patagonia/patagonia-06-1600x1040.jpg 1600w
+                "
+                sizes="(min-width: 900px) 360px, 100vw"
+                alt="Patagońskie klify nad oceanem"
+                loading="lazy"
+                data-lightbox-src="assets/img/tours/patagonia/patagonia-06-1600x1040.jpg"
+                tabindex="0" />
+            </picture>
+            <figcaption>Cliffs of Patagonia</figcaption>
+          </figure>
+          <!-- TOKIO (6 zdjęć) -->
+          <figure data-country="tokio">
+            <picture class="gallery-item">
+              <source
+                srcset="
+                  assets/img/tours/tokio/tokio-01-400x260.avif    400w,
+                  assets/img/tours/tokio/tokio-01-800x520.avif    800w,
+                  assets/img/tours/tokio/tokio-01-1200x780.avif  1200w,
+                  assets/img/tours/tokio/tokio-01-1600x1040.avif 1600w
+                "
+                type="image/avif" />
+              <source
+                srcset="
+                  assets/img/tours/tokio/tokio-01-400x260.webp    400w,
+                  assets/img/tours/tokio/tokio-01-800x520.webp    800w,
+                  assets/img/tours/tokio/tokio-01-1200x780.webp  1200w,
+                  assets/img/tours/tokio/tokio-01-1600x1040.webp 1600w
+                "
+                type="image/webp" />
+              <img
+                src="assets/img/tours/tokio/tokio-01-1200x780.jpg"
+                srcset="
+                  assets/img/tours/tokio/tokio-01-400x260.jpg    400w,
+                  assets/img/tours/tokio/tokio-01-800x520.jpg    800w,
+                  assets/img/tours/tokio/tokio-01-1200x780.jpg  1200w,
+                  assets/img/tours/tokio/tokio-01-1600x1040.jpg 1600w
+                "
+                sizes="(min-width: 900px) 360px, 100vw"
+                alt="Nocna panorama Tokio z iluminacją miasta"
+                loading="lazy"
+                data-lightbox-src="assets/img/tours/tokio/tokio-01-1600x1040.jpg"
+                tabindex="0" />
+            </picture>
+            <figcaption>Tokyo Night Skyline</figcaption>
+          </figure>
+
+          <figure data-country="tokio">
+            <picture class="gallery-item">
+              <source
+                srcset="
+                  assets/img/tours/tokio/tokio-02-400x260.avif    400w,
+                  assets/img/tours/tokio/tokio-02-800x520.avif    800w,
+                  assets/img/tours/tokio/tokio-02-1200x780.avif  1200w,
+                  assets/img/tours/tokio/tokio-02-1600x1040.avif 1600w
+                "
+                type="image/avif" />
+              <source
+                srcset="
+                  assets/img/tours/tokio/tokio-02-400x260.webp    400w,
+                  assets/img/tours/tokio/tokio-02-800x520.webp    800w,
+                  assets/img/tours/tokio/tokio-02-1200x780.webp  1200w,
+                  assets/img/tours/tokio/tokio-02-1600x1040.webp 1600w
+                "
+                type="image/webp" />
+              <img
+                src="assets/img/tours/tokio/tokio-02-1200x780.jpg"
+                srcset="
+                  assets/img/tours/tokio/tokio-02-400x260.jpg    400w,
+                  assets/img/tours/tokio/tokio-02-800x520.jpg    800w,
+                  assets/img/tours/tokio/tokio-02-1200x780.jpg  1200w,
+                  assets/img/tours/tokio/tokio-02-1600x1040.jpg 1600w
+                "
+                sizes="(min-width: 900px) 360px, 100vw"
+                alt="Ulica Shibuya Crossing pełna ludzi"
+                loading="lazy"
+                data-lightbox-src="assets/img/tours/tokio/tokio-02-1600x1040.jpg"
+                tabindex="0" />
+            </picture>
+            <figcaption>Shibuya Crossing</figcaption>
+          </figure>
+
+          <figure data-country="tokio">
+            <picture class="gallery-item">
+              <source
+                srcset="
+                  assets/img/tours/tokio/tokio-03-400x260.avif    400w,
+                  assets/img/tours/tokio/tokio-03-800x520.avif    800w,
+                  assets/img/tours/tokio/tokio-03-1200x780.avif  1200w,
+                  assets/img/tours/tokio/tokio-03-1600x1040.avif 1600w
+                "
+                type="image/avif" />
+              <source
+                srcset="
+                  assets/img/tours/tokio/tokio-03-400x260.webp    400w,
+                  assets/img/tours/tokio/tokio-03-800x520.webp    800w,
+                  assets/img/tours/tokio/tokio-03-1200x780.webp  1200w,
+                  assets/img/tours/tokio/tokio-03-1600x1040.webp 1600w
+                "
+                type="image/webp" />
+              <img
+                src="assets/img/tours/tokio/tokio-03-1200x780.jpg"
+                srcset="
+                  assets/img/tours/tokio/tokio-03-400x260.jpg    400w,
+                  assets/img/tours/tokio/tokio-03-800x520.jpg    800w,
+                  assets/img/tours/tokio/tokio-03-1200x780.jpg  1200w,
+                  assets/img/tours/tokio/tokio-03-1600x1040.jpg 1600w
+                "
+                sizes="(min-width: 900px) 360px, 100vw"
+                alt="Świątynia Senso-ji z czerwonym lampionem"
+                loading="lazy"
+                data-lightbox-src="assets/img/tours/tokio/tokio-03-1600x1040.jpg"
+                tabindex="0" />
+            </picture>
+            <figcaption>Senso-ji Temple</figcaption>
+          </figure>
+
+          <figure data-country="tokio">
+            <picture class="gallery-item">
+              <source
+                srcset="
+                  assets/img/tours/tokio/tokio-04-400x260.avif    400w,
+                  assets/img/tours/tokio/tokio-04-800x520.avif    800w,
+                  assets/img/tours/tokio/tokio-04-1200x780.avif  1200w,
+                  assets/img/tours/tokio/tokio-04-1600x1040.avif 1600w
+                "
+                type="image/avif" />
+              <source
+                srcset="
+                  assets/img/tours/tokio/tokio-04-400x260.webp    400w,
+                  assets/img/tours/tokio/tokio-04-800x520.webp    800w,
+                  assets/img/tours/tokio/tokio-04-1200x780.webp  1200w,
+                  assets/img/tours/tokio/tokio-04-1600x1040.webp 1600w
+                "
+                type="image/webp" />
+              <img
+                src="assets/img/tours/tokio/tokio-04-1200x780.jpg"
+                srcset="
+                  assets/img/tours/tokio/tokio-04-400x260.jpg    400w,
+                  assets/img/tours/tokio/tokio-04-800x520.jpg    800w,
+                  assets/img/tours/tokio/tokio-04-1200x780.jpg  1200w,
+                  assets/img/tours/tokio/tokio-04-1600x1040.jpg 1600w
+                "
+                sizes="(min-width: 900px) 360px, 100vw"
+                alt="Tokyo Tower oświetlona nocą"
+                loading="lazy"
+                data-lightbox-src="assets/img/tours/tokio/tokio-04-1600x1040.jpg"
+                tabindex="0" />
+            </picture>
+            <figcaption>Tokyo Tower at Night</figcaption>
+          </figure>
+
+          <figure data-country="tokio">
+            <picture class="gallery-item">
+              <source
+                srcset="
+                  assets/img/tours/tokio/tokio-05-400x260.avif    400w,
+                  assets/img/tours/tokio/tokio-05-800x520.avif    800w,
+                  assets/img/tours/tokio/tokio-05-1200x780.avif  1200w,
+                  assets/img/tours/tokio/tokio-05-1600x1040.avif 1600w
+                "
+                type="image/avif" />
+              <source
+                srcset="
+                  assets/img/tours/tokio/tokio-05-400x260.webp    400w,
+                  assets/img/tours/tokio/tokio-05-800x520.webp    800w,
+                  assets/img/tours/tokio/tokio-05-1200x780.webp  1200w,
+                  assets/img/tours/tokio/tokio-05-1600x1040.webp 1600w
+                "
+                type="image/webp" />
+              <img
+                src="assets/img/tours/tokio/tokio-05-1200x780.jpg"
+                srcset="
+                  assets/img/tours/tokio/tokio-05-400x260.jpg    400w,
+                  assets/img/tours/tokio/tokio-05-800x520.jpg    800w,
+                  assets/img/tours/tokio/tokio-05-1200x780.jpg  1200w,
+                  assets/img/tours/tokio/tokio-05-1600x1040.jpg 1600w
+                "
+                sizes="(min-width: 900px) 360px, 100vw"
+                alt="Tradycyjna japońska herbaciarnia w ogrodzie"
+                loading="lazy"
+                data-lightbox-src="assets/img/tours/tokio/tokio-05-1600x1040.jpg"
+                tabindex="0" />
+            </picture>
+            <figcaption>Japanese Tea House</figcaption>
+          </figure>
+
+          <figure data-country="tokio">
+            <picture class="gallery-item">
+              <source
+                srcset="
+                  assets/img/tours/tokio/tokio-06-400x260.avif    400w,
+                  assets/img/tours/tokio/tokio-06-800x520.avif    800w,
+                  assets/img/tours/tokio/tokio-06-1200x780.avif  1200w,
+                  assets/img/tours/tokio/tokio-06-1600x1040.avif 1600w
+                "
+                type="image/avif" />
+              <source
+                srcset="
+                  assets/img/tours/tokio/tokio-06-400x260.webp    400w,
+                  assets/img/tours/tokio/tokio-06-800x520.webp    800w,
+                  assets/img/tours/tokio/tokio-06-1200x780.webp  1200w,
+                  assets/img/tours/tokio/tokio-06-1600x1040.webp 1600w
+                "
+                type="image/webp" />
+              <img
+                src="assets/img/tours/tokio/tokio-06-1200x780.jpg"
+                srcset="
+                  assets/img/tours/tokio/tokio-06-400x260.jpg    400w,
+                  assets/img/tours/tokio/tokio-06-800x520.jpg    800w,
+                  assets/img/tours/tokio/tokio-06-1200x780.jpg  1200w,
+                  assets/img/tours/tokio/tokio-06-1600x1040.jpg 1600w
+                "
+                sizes="(min-width: 900px) 360px, 100vw"
+                alt="Kwitnące wiśnie sakura z widokiem na Tokio"
+                loading="lazy"
+                data-lightbox-src="assets/img/tours/tokio/tokio-06-1600x1040.jpg"
+                tabindex="0" />
+            </picture>
+            <figcaption>Sakura Blossoms in Tokyo</figcaption>
+          </figure>
+
+        </div>
+      </section>
+
+      <!-- LIGHTBOX -->
+          <div class="lightbox" data-lightbox hidden>
+      <button class="lightbox__close" data-lightbox-close aria-label="Zamknij"></button>
+      <button class="lightbox__nav lightbox__prev" data-lightbox-prev aria-label="Poprzednie zdjęcie"></button>
+      <figure class="lightbox__figure">
+        <img data-lightbox-image alt="" />
+        <figcaption data-lightbox-caption></figcaption>
+      </figure>
+      <button class="lightbox__nav lightbox__next" data-lightbox-next aria-label="Następne zdjęcie"></button>
     </div>
-    <p class="site-footer__copy">&copy; <span id="current-year">2024</span> KP Travel &amp; Tours – wszelkie prawa zastrzeżone.</p>
-  </footer>
-  <script type="module" src="js/script.js"></script>
-</body>
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="site-footer">
+      <div class="container site-footer__grid">
+        <div>
+          <img src="assets/img/logo/logo.svg" alt="Logo Aurora Travel" class="footer-logo" />
+          <a class="logo footer-logo-link" href="index.html">Aurora Travel</a>
+          <p>Ekskluzywne biuro podróży tworzące spersonalizowane doświadczenia dla wymagających globtroterów.</p>
+          <p class="footer-demo-note">
+            Projekt demo stworzony przez
+            <strong>KP_Code_</strong>
+          </p>
+          <p>ul. Marynarki Wojennej 12/31, 33-100 Tarnów</p>
+        </div>
+
+        <div>
+          <h3>Nawigacja</h3>
+          <ul>
+            <li><a href="index.html">Strona główna</a></li>
+            <li><a href="tours.html">Wycieczki</a></li>
+            <li><a href="about.html">O nas</a></li>
+            <li><a href="gallery.html">Galeria</a></li>
+            <li><a href="contact.html">Kontakt</a></li>
+          </ul>
+        </div>
+        <div>
+          <h3>Regulaminy</h3>
+          <ul>
+            <li><a href="polityka-prywatnosci.html">Polityka prywatności</a></li>
+            <li><a href="regulamin.html">Regulamin</a></li>
+            <li><a href="cookies.html">Cookies</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h3>Kontakt</h3>
+
+          <p class="contact-item">
+            <img src="assets/img/svg-icons/tel.svg" alt="" class="contact-icon" />
+            <a href="tel:+48533537091">+48 533 537 091</a>
+          </p>
+
+          <p class="contact-item">
+            <img src="assets/img/svg-icons/email.svg" alt="" class="contact-icon" />
+            <a href="mailto:kp_code_@gmail.com">kp_code_@gmail.com</a>
+          </p>
+
+          <div class="socials" aria-label="Linki do profili w mediach społecznościowych">
+            <a href="https://www.facebook.com/ktravel" aria-label="Facebook KP Travel">
+              <img src="assets/img/svg-icons/fb.svg" alt="" class="socials__icon" loading="lazy" />
+            </a>
+
+            <a href="#" aria-label="GitHub KP_Code_">
+              <img src="assets/img/svg-icons/github.svg" alt="" class="socials__icon" loading="lazy" />
+            </a>
+
+            <a href="#" aria-label="Profil na X (Twitter) KP_Code_">
+              <img src="assets/img/svg-icons/x.svg" alt="" class="socials__icon" loading="lazy" />
+            </a>
+
+            <a href="#" aria-label="Kanał YouTube KP_Code_">
+              <img src="assets/img/svg-icons/youtube.svg" alt="" class="socials__icon" loading="lazy" />
+            </a>
+          </div>
+        </div>
+      </div>
+      <p class="site-footer__copy">
+        &copy;
+        <span id="current-year">2024</span>
+        KP_Code_ &amp; Demo Aurora Travel – wszelkie prawa zastrzeżone.
+      </p>
+    </footer>
+
+    <!-- JS -->
+    <script type="module" src="js/script.js"></script>
+  </body>
 </html>
