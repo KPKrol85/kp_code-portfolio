@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html lang="pl" data-theme="auto">
   <head>
-    <!-- PODSTAWOWE META -->
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Aurora Travel - Butikowe biuro podróży | KP_Code_ Demo</title>
@@ -12,19 +11,13 @@
     <meta name="color-scheme" content="light dark" />
     <meta name="theme-color" media="(prefers-color-scheme: light)" content="#f8f7f2" />
     <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#05060a" />
-    <!-- KANONICZNY ADRES -->
     <link rel="canonical" href="https://travel-project-02.netlify.app/" />
-    <!-- PRELOAD WAŻNEGO OBRAZU HERO -->
-    <link rel="preload" href="assets/img/hero/hero-main.webp" as="image" />
-    <!-- PWA -->
     <link rel="manifest" href="site.webmanifest" />
-    <!-- FAVICONY -->
-    <link rel="icon" type="image/svg+xml" href="assets/img/favicon.svg" />
-    <link rel="icon" type="image/png" sizes="32x32" href="assets/img/favicon-32.png" />
-    <link rel="icon" type="image/png" sizes="16x16" href="assets/img/favicon-16.png" />
-    <link rel="apple-touch-icon" href="assets/img/apple-touch-icon.png" />
-    <link rel="mask-icon" href="assets/img/safari-pinned-tab.svg" color="#0c2d48" />
-    <!-- OPEN GRAPH -->
+    <link rel="icon" type="image/svg+xml" href="assets/img/icons/favicon.svg" />
+    <link rel="icon" type="image/png" sizes="32x32" href="assets/img/icons/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="assets/img/icons/favicon-16x16.png" />
+    <link rel="apple-touch-icon" href="assets/img/icons/apple-touch-icon.png" />
+    <link rel="mask-icon" href="assets/img/icons/safari-pinned-tab.svg" color="#0c2d48" />
     <meta property="og:type" content="website" />
     <meta property="og:site_name" content="Aurora Travel" />
     <meta property="og:title" content="Aurora Travel – butikowe biuro podróży" />
@@ -32,14 +25,13 @@
     <meta property="og:url" content="https://travel-project-02.netlify.app/" />
     <meta property="og:image" content="https://travel-project-02.netlify.app/assets/img/og-cover.jpg" />
     <meta property="og:locale" content="pl_PL" />
-    <!-- TWITTER -->
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content="Aurora Travel – butikowe biuro podróży" />
     <meta name="twitter:description" content="Ekskluzywne podróże, butikowe doświadczenia i dedykowany concierge od Aurora Travel." />
     <meta name="twitter:image" content="https://travel-project-02.netlify.app/assets/img/og-cover.jpg" />
     <!-- CSS -->
     <link rel="stylesheet" href="css/style.min.css" />
-    <!-- DANE STRUKTURALNE JSON-LD -->
+    <!-- JSON-LD -->
     <script type="application/ld+json">
       {
         "@context": "https://schema.org",
@@ -85,17 +77,14 @@
     <!-- HEADER -->
     <header class="site-header" data-header>
       <div class="container site-header__inner">
-        <!-- LOGO + NAZWA FIRMY -->
         <a class="logo" href="index.html" aria-label="Aurora Travel">
           <img src="assets/img/logo/logo.svg" alt="" class="logo__icon" />
           <span class="logo__text">Aurora Travel</span>
         </a>
-        <!-- HAMBURGER -->
         <button class="nav__toggle" type="button" data-nav-toggle aria-expanded="false" aria-controls="primary-navigation">
           <img src="assets/img/svg-icons/hamburger.svg" alt="" class="nav__toggle-icon" aria-hidden="true" />
           <span class="visually-hidden">Otwórz menu</span>
         </button>
-        <!-- NAV -->
         <nav class="nav" id="primary-navigation" aria-label="Główne menu" hidden data-nav>
           <ul>
             <li><a href="index.html">Strona główna</a></li>
@@ -104,7 +93,6 @@
             <li><a href="gallery.html">Galeria</a></li>
             <li><a href="contact.html">Kontakt</a></li>
           </ul>
-          <!-- THEME TOGGLE (bez Auto) -->
           <button class="theme-toggle" type="button" data-theme-toggle aria-label="Przełącz motyw">
             <span class="theme-toggle__icon" aria-hidden="true"></span>
           </button>
@@ -121,27 +109,20 @@
             <p class="eyebrow">Biuro podróży klasy premium</p>
             <h1>Wyjątkowe wycieczki na wyciągnięcie ręki</h1>
             <p>Łączymy pasję do odkrywania z perfekcyjną organizacją i concierge 24/7. Zarezerwuj podróż, która spełni Twoje wysokie oczekiwania.</p>
-
             <div class="hero__actions">
               <a class="btn" href="tours.html">Zobacz wycieczki</a>
               <a class="btn btn--ghost" href="contact.html">Skontaktuj się</a>
             </div>
           </div>
-
           <picture class="hero__media">
-            <!-- AVIF -->
             <source
               type="image/avif"
               srcset="assets/img/hero/hero-800x534.avif 800w, assets/img/hero/hero-1200x800.avif 1200w, assets/img/hero/hero-1600x1067.avif 1600w, assets/img/hero/hero-2000x1333.avif 2000w"
               sizes="(min-width: 1280px) 50vw, (min-width: 768px) 60vw, 100vw" />
-
-            <!-- WEBP -->
             <source
               type="image/webp"
               srcset="assets/img/hero/hero-800x534.webp 800w, assets/img/hero/hero-1200x800.webp 1200w, assets/img/hero/hero-1600x1067.webp 1600w, assets/img/hero/hero-2000x1333.webp 2000w"
               sizes="(min-width: 1280px) 50vw, (min-width: 768px) 60vw, 100vw" />
-
-            <!-- JPG fallback -->
             <img
               src="assets/img/hero/hero-1600x1067.jpg"
               srcset="assets/img/hero/hero-800x534.jpg 800w, assets/img/hero/hero-1200x800.jpg 1200w, assets/img/hero/hero-1600x1067.jpg 1600w, assets/img/hero/hero-2000x1333.jpg 2000w"
@@ -149,7 +130,9 @@
               loading="eager"
               fetchpriority="high"
               decoding="async"
-              alt="Ekskluzywny taras z baldachimem i widokiem na turkusowy ocean — idealne miejsce na luksusowy wypoczynek" />
+              alt="Ekskluzywny taras z baldachimem i widokiem na turkusowy ocean — idealne miejsce na luksusowy wypoczynek"
+              width="1600"
+              height="1067" />
           </picture>
         </div>
       </section>
@@ -198,7 +181,6 @@
             <!-- TOKYO -->
             <article class="tour-card">
               <picture>
-                <!-- AVIF -->
                 <source
                   type="image/avif"
                   srcset="
@@ -208,8 +190,6 @@
                     assets/img/tour-index/tokyo-1400x920.avif 1400w
                   "
                   sizes="(min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw" />
-
-                <!-- WEBP -->
                 <source
                   type="image/webp"
                   srcset="
@@ -219,8 +199,6 @@
                     assets/img/tour-index/tokyo-1400x920.webp 1400w
                   "
                   sizes="(min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw" />
-
-                <!-- JPG fallback -->
                 <img
                   src="assets/img/tour-index/tokyo-700x460.jpg"
                   srcset="
@@ -232,7 +210,6 @@
                   sizes="(min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw"
                   alt="Panorama Tokio nocą" />
               </picture>
-
               <div>
                 <h3>Tokio &amp; Kyoto Private Edition</h3>
                 <p>Dwutygodniowy program z przewodnikiem, prywatnymi transferami i rezerwacjami w najlepszych restauracjach.</p>
@@ -243,7 +220,6 @@
             <!-- MALEDIWY -->
             <article class="tour-card">
               <picture>
-                <!-- AVIF -->
                 <source
                   type="image/avif"
                   srcset="
@@ -253,8 +229,6 @@
                     assets/img/tour-index/maledivy-1400x920.avif 1400w
                   "
                   sizes="(min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw" />
-
-                <!-- WEBP -->
                 <source
                   type="image/webp"
                   srcset="
@@ -264,8 +238,6 @@
                     assets/img/tour-index/maledivy-1400x920.webp 1400w
                   "
                   sizes="(min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw" />
-
-                <!-- JPG fallback -->
                 <img
                   src="assets/img/tour-index/maledivy-700x460.jpg"
                   srcset="
@@ -277,7 +249,6 @@
                   sizes="(min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw"
                   alt="Bungalowy na wodzie na Malediwach" />
               </picture>
-
               <div>
                 <h3>Malediwy Lagoon Escape</h3>
                 <p>7 nocy w willi na wodzie z prywatnym butlerem, spa i ekskluzywnym pakietem kulinarnym.</p>
@@ -288,7 +259,6 @@
             <!-- MANHATTAN -->
             <article class="tour-card">
               <picture>
-                <!-- AVIF -->
                 <source
                   type="image/avif"
                   srcset="
@@ -298,8 +268,6 @@
                     assets/img/tour-index/manhatan-1400x920.avif 1400w
                   "
                   sizes="(min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw" />
-
-                <!-- WEBP -->
                 <source
                   type="image/webp"
                   srcset="
@@ -309,8 +277,6 @@
                     assets/img/tour-index/manhatan-1400x920.webp 1400w
                   "
                   sizes="(min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw" />
-
-                <!-- JPG fallback -->
                 <img
                   src="assets/img/tour-index/manhatan-700x460.jpg"
                   srcset="
@@ -322,7 +288,6 @@
                   sizes="(min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw"
                   alt="Skyline Manhattanu o zachodzie słońca" />
               </picture>
-
               <div>
                 <h3>New York City Break Platinum</h3>
                 <p>5 dni z apartamentem przy Central Parku, wejściami VIP i planem atrakcji przygotowanym przez concierge.</p>
@@ -378,7 +343,7 @@
     <footer class="site-footer">
       <div class="container site-footer__grid">
         <div>
-          <img src="assets/img/logo/logo.svg" alt="Logo Aurora Travel" class="footer-logo" />
+          <img src="assets/img/logo/logo.svg" alt="Logo Aurora Travel" class="footer-logo" width="52" height="52" />
           <a class="logo footer-logo-link" href="index.html">Aurora Travel</a>
           <p>Ekskluzywne biuro podróży tworzące spersonalizowane doświadczenia dla wymagających globtroterów.</p>
           <p class="footer-demo-note">

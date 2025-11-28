@@ -3,8 +3,8 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Szczegóły oferty – KP Travel &amp; Tours</title>
-    <meta name="description" content="Poznaj szczegóły wybranej oferty podróży przygotowanej przez KP Travel &amp; Tours." />
+    <title>Aurora Travel – Szczegóły oferty | KP_Code_ Demo</title>
+    <meta name="description" content="Poznaj szczegóły wybranej oferty Aurora Travel – butikowego biura podróży specjalizującego się w personalizowanych wyjazdach. Projekt demo KP_Code_." />
     <meta name="robots" content="index,follow" />
     <meta name="color-scheme" content="light dark" />
     <meta name="theme-color" media="(prefers-color-scheme: light)" content="#f8f7f2" />
@@ -16,20 +16,35 @@
     <link rel="icon" type="image/png" sizes="16x16" href="assets/img/favicon-16.png" />
     <link rel="apple-touch-icon" href="assets/img/apple-touch-icon.png" />
     <link rel="mask-icon" href="assets/img/safari-pinned-tab.svg" color="#0c2d48" />
-    <meta property="og:type" content="website" />
-    <meta property="og:site_name" content="KP Travel &amp; Tours" />
-    <meta property="og:title" content="Wycieczki i oferty – KP Travel &amp; Tours" />
-    <meta property="og:description" content="Ekskluzywne podróże po całym świecie z dedykowanym concierge." />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="Aurora Travel" />
+    <meta property="og:title" content="Szczegóły oferty – Aurora Travel" />
+    <meta property="og:description" content="Poznaj szczegóły wybranej wycieczki i spersonalizowanych usług Aurora Travel." />
     <meta property="og:url" content="https://travel-project-02.netlify.app/tour.html" />
     <meta property="og:image" content="https://travel-project-02.netlify.app/assets/img/og-cover.jpg" />
     <meta property="og:locale" content="pl_PL" />
     <meta name="twitter:card" content="summary_large_image" />
-    <meta property="og:title" content="Szczegóły oferty – KP Travel &amp; Tours" />
-    <meta property="og:description" content="Ekskluzywne podróże po całym świecie z dedykowanym concierge." />
+    <meta name="twitter:title" content="Szczegóły oferty – Aurora Travel" />
+    <meta name="twitter:description" content="Ekskluzywne podróże szyte na miarę – Aurora Travel." />
     <meta name="twitter:image" content="https://travel-project-02.netlify.app/assets/img/og-cover.jpg" />
+    <!-- CSS -->
     <link rel="stylesheet" href="css/style.min.css" />
+    <!-- JSON-LD -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "WebPage",
+        "@id": "https://travel-project-02.netlify.app/tour.html",
+        "url": "https://travel-project-02.netlify.app/tour.html",
+        "name": "Szczegóły oferty – Aurora Travel | KP_Code_ Demo",
+        "description": "Podstrona szczegółów pojedynczej oferty Aurora Travel – butikowego biura podróży.",
+        "inLanguage": "pl-PL",
+        "isPartOf": {
+          "@id": "https://travel-project-02.netlify.app/"
+        }
+      }
+    </script>
   </head>
-  
 
   <body data-page="tour-detail">
     <a class="skip-link" href="#main-content">Przejdź do treści</a>
@@ -41,12 +56,10 @@
           <img src="assets/img/logo/logo.svg" alt="" class="logo__icon" />
           <span class="logo__text">Aurora Travel</span>
         </a>
-
         <button class="nav__toggle" type="button" data-nav-toggle aria-expanded="false" aria-controls="primary-navigation">
           <img src="assets/img/svg-icons/hamburger.svg" alt="" class="nav__toggle-icon" aria-hidden="true" />
           <span class="visually-hidden">Otwórz menu</span>
         </button>
-
         <nav class="nav" id="primary-navigation" aria-label="Główne menu" hidden data-nav>
           <ul>
             <li><a href="index.html">Strona główna</a></li>
@@ -55,7 +68,6 @@
             <li><a href="gallery.html">Galeria</a></li>
             <li><a href="contact.html">Kontakt</a></li>
           </ul>
-
           <button class="theme-toggle" type="button" data-theme-toggle aria-label="Przełącz motyw">
             <span class="theme-toggle__icon" aria-hidden="true"></span>
           </button>
