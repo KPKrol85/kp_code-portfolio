@@ -33,23 +33,30 @@
     <meta name="twitter:description" content="Strona jest niedostępna z powodu braku internetu. Projekt demonstracyjny KP_Code_." />
     <meta name="twitter:image" content="https://travel-project-02.netlify.app/assets/img/og-cover.jpg" />
 
+    
     <script>
       (function () {
-        var storageKey = "kp-travel-theme";
-        var storedTheme;
+        var key = "kp-travel-theme";
+        var value = null;
 
         try {
-          storedTheme = localStorage.getItem(storageKey);
-        } catch (error) {
-          storedTheme = null;
+          value = localStorage.getItem(key);
+        } catch (e) {
+          value = null;
         }
 
-        var allowed = ["light", "dark"];
-        var theme = allowed.indexOf(storedTheme) !== -1 ? storedTheme : "auto";
-
+        // Domyślnie ZAWSZE light.
+        // Tylko jeśli user wybrał 'dark', ustaw dark.
+        var theme = value === "dark" ? "dark" : "light";
         document.documentElement.setAttribute("data-theme", theme);
       })();
     </script>
+
+    <style>
+      html { background-color: #f8f7f2; }
+      html[data-theme="dark"] { background-color: #05060a; }
+    </style>
+
     <link rel="stylesheet" href="css/style.min.css" />
 
     <!-- JSON-LD -->
