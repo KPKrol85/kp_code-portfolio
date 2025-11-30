@@ -1940,8 +1940,13 @@ html[data-theme="dark"] .dropdown__icon {
   font-size: 0.83rem;
   margin-top: 6px;
   line-height: 1.4;
-  color: rgba(255, 255, 255, 0.85); /* w dark theme wygląda super */
+  color:var(--text);
 }
+[data-theme="dark"] .gallery-grid figcaption {
+  color: var(--text);
+
+}
+
 
 @media (min-width: 768px) {
   .gallery-grid {
