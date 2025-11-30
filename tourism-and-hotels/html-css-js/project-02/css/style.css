@@ -54,6 +54,8 @@
   --space-6: 3.2rem;
   --space-7: 4.8rem;
   --space-8: 6.4rem;
+  --space-9: 9.6rem;
+  --space-10: 12.8rem;
 }
 
 [data-theme="dark"] {
@@ -1804,7 +1806,7 @@ html[data-theme="dark"] .dropdown__icon {
 
 .page-hero--gallery {
   position: relative;
-  padding-bottom: 9rem;
+  padding-bottom: 15rem;
   overflow: visible;
 }
 
@@ -1812,20 +1814,25 @@ html[data-theme="dark"] .dropdown__icon {
   content: "";
   position: absolute;
   left: 50%;
-  bottom: -2rem;
+  bottom: -10rem;
   transform: translateX(-50%);
-  width: clamp(150px, 55vw, 230px);
+  width: clamp(170px, 80vw, 240px);
   aspect-ratio: 1;
   background-image: url("../assets/img/gallery/camera.svg");
   background-repeat: no-repeat;
   background-size: contain;
   opacity: 0.45;
   pointer-events: none;
+  z-index: 0;
 }
 
 .page-hero--gallery .container {
   position: relative;
   z-index: 1;
+}
+
+.page-hero--gallery .container h1 {
+  padding-top: var(--space-4);
 }
 
 .gallery-filters {
@@ -1839,8 +1846,10 @@ html[data-theme="dark"] .dropdown__icon {
   gap: var(--space-2);
   align-items: center;
   overflow-x: auto;
-  padding: var(--space-5) var(--space-6);
+  padding: var(--space-2) var(--space-4);
+  padding-top: var(--space-9);
   scrollbar-width: none;
+  justify-content: center;
 }
 
 .gallery-filters__inner::-webkit-scrollbar {
@@ -1868,7 +1877,6 @@ html[data-theme="dark"] .dropdown__icon {
   border-color: rgba(12, 27, 51, 0.22);
   background: #ffffff;
   box-shadow: 0 4px 10px rgba(15, 24, 40, 0.14);
-
   transform: translateY(-1px);
 }
 
@@ -1884,7 +1892,6 @@ html[data-theme="dark"] .dropdown__icon {
   background: radial-gradient(circle at top left, rgba(255, 255, 255, 0.08), rgba(5, 8, 15, 0.9));
   color: var(--muted);
   backdrop-filter: blur(18px);
-  -webkit-backdrop-filter: blur(18px);
   box-shadow: 0 12px 30px rgba(0, 0, 0, 0.35);
 }
 
@@ -1894,7 +1901,6 @@ html[data-theme="dark"] .dropdown__icon {
   border-color: rgba(111, 209, 255, 0.65);
   background: radial-gradient(circle at top left, rgba(255, 255, 255, 0.14), rgba(5, 8, 15, 0.85));
   box-shadow: 0 16px 36px rgba(0, 0, 0, 0.4);
-  transform: translateY(-1px);
 }
 
 [data-theme="dark"] .gallery-filter.is-active {
@@ -1934,28 +1940,21 @@ html[data-theme="dark"] .dropdown__icon {
   }
 }
 
-@media (min-width: 580px) {
+@media (min-width: 1400px) {
   .page-hero--gallery {
-    padding-bottom: var(--space-4);
-    overflow: hidden;
+    padding-bottom: 4rem;
   }
+
   .page-hero--gallery::before {
+    top: 0;
     bottom: auto;
-    top: -1.5rem;
-    left: 72%;
-    transform: translateX(-50%);
-    width: clamp(220px, 22vw, 340px);
+    left: auto;
+    right: 17%;
+    transform: none;
+    width: clamp(220px, 18vw, 320px);
   }
 }
 
-@media (max-width: 1024px) {
-  .gallery-filters__inner {
-    justify-content: center;
-    display: flex;
-    column-gap: var(--space-1);
-    padding: 0;
-  }
-}
 
 /* ===== 16 - SUBPAGES LEGAL ===== */
 
