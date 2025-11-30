@@ -1,28 +1,6 @@
 <!DOCTYPE html>
-<html lang="pl" data-theme="light">
+<html lang="pl">
   <head>
-    <script>
-      (function () {
-        var key = "kp-travel-theme";
-        var value = null;
-
-        try {
-          value = localStorage.getItem(key);
-        } catch (e) {
-          value = null;
-        }
-
-        var theme = value === "dark" ? "dark" : "light";
-        document.documentElement.setAttribute("data-theme", theme);
-        document.documentElement.style.backgroundColor = theme === "dark" ? "#05060a" : "#f8f7f2";
-      })();
-    </script>
-
-    <style>
-      html { background-color: #f8f7f2; }
-      html[data-theme="dark"] { background-color: #05060a; }
-    </style>
-
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Aurora Travel - Kontakt | KP_Code_ Demo</title>
@@ -87,7 +65,36 @@
       }
     </script>
     <!-- CSS -->
-<link rel="stylesheet" href="css/style.min.css" />
+
+    <script>
+      (function () {
+        var key = "kp-travel-theme";
+        var stored = null;
+
+        try {
+          stored = localStorage.getItem(key);
+        } catch (e) {
+          stored = null;
+        }
+
+        var theme;
+
+        if (stored === "light" || stored === "dark") {
+          theme = stored;
+        } else if (window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches) {
+          theme = "dark";
+        } else {
+          theme = "light";
+        }
+
+        var background = theme === "dark" ? "#05060a" : "#f8f7f2";
+        document.documentElement.setAttribute("data-theme", theme);
+        document.documentElement.style.backgroundColor = background;
+        document.documentElement.style.colorScheme = theme;
+      })();
+    </script>
+
+    <link rel="stylesheet" href="css/style.min.css" />
   </head>
 
   <!-- BODY -->
