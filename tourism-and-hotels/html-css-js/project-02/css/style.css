@@ -352,6 +352,7 @@ h3 {
 .nav__toggle:active {
   transform: scale(0.97);
 }
+
 .nav__toggle-icon {
   width: 28px;
   height: 28px;
@@ -496,54 +497,18 @@ h3 {
   border-color: rgba(255, 255, 255, 0.18);
 }
 
-@media (prefers-color-scheme: light) {
-  [data-theme="auto"] .nav__toggle-icon {
-    filter: none;
-  }
-  [data-theme="auto"] .theme-toggle {
-    color: #1a1a1a;
-  }
-  [data-theme="auto"] .theme-toggle__icon {
-    background-image: url("../assets/img/svg-icons/sun.svg");
-  }
-  [data-theme="auto"] .nav {
-    background: linear-gradient(to bottom, rgba(255, 252, 245, 0.98), rgba(246, 239, 228, 0.98));
-    color: #0c1b33;
-  }
-  [data-theme="auto"] .nav a {
-    color: #0c1b33;
-  }
-}
-
-@media (prefers-color-scheme: dark) {
-  [data-theme="auto"] .nav__toggle-icon {
-    filter: invert(1) brightness(1.2) contrast(1.05);
-  }
-  [data-theme="auto"] .theme-toggle {
-    color: #ffffff;
-  }
-  [data-theme="auto"] .theme-toggle__icon {
-    background-image: url("../assets/img/svg-icons/moon.svg");
-  }
-  [data-theme="auto"] .nav {
-    background: linear-gradient(to bottom, rgba(32, 48, 67, 0.96), rgba(14, 22, 33, 0.98));
-    color: #ffffff;
-  }
-  [data-theme="auto"] .nav a {
-    color: #ffffff;
-  }
-}
-
 @media (min-width: 1004px) {
+  [data-theme] .nav {
+    background: transparent;
+    box-shadow: none;
+    backdrop-filter: none;
+  }
   .nav {
     position: static;
-    backdrop-filter: none;
     flex-direction: row;
     align-items: center;
-    background: transparent;
     padding: 0;
     gap: var(--space-4);
-    box-shadow: none;
     min-width: 0;
   }
   .nav ul {
@@ -2334,7 +2299,6 @@ html[data-theme="dark"] .dropdown__icon {
     max-height: 88vh;
   }
 }
-
 
 .test-autoprefix {
   user-select: none;
