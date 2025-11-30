@@ -19,15 +19,32 @@
     <meta property="og:type" content="article" />
     <meta property="og:site_name" content="Aurora Travel" />
     <meta property="og:title" content="Regulamin serwisu – Aurora Travel" />
-    <meta property="og:description" content="Zapoznaj się z regulaminem korzystania z serwisu Aurora Travel." />
+    <meta property="og:description" content="Regulamin demonstracyjnego serwisu Aurora Travel – projekt portfolio przygotowany przez KP_Code_." />
     <meta property="og:url" content="https://travel-project-02.netlify.app/regulamin.html" />
     <meta property="og:image" content="https://travel-project-02.netlify.app/assets/img/og-cover.jpg" />
     <meta property="og:locale" content="pl_PL" />
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content="Regulamin serwisu – Aurora Travel" />
-    <meta name="twitter:description" content="Najważniejsze postanowienia i zasady korzystania z serwisu Aurora Travel." />
+    <meta name="twitter:description" content="Przykładowy regulamin serwisu Aurora Travel – fikcyjny projekt demo KP_Code_." />
     <meta name="twitter:image" content="https://travel-project-02.netlify.app/assets/img/og-cover.jpg" />
     <!-- CSS -->
+    <script>
+      (function () {
+        var storageKey = "kp-travel-theme";
+        var storedTheme;
+
+        try {
+          storedTheme = localStorage.getItem(storageKey);
+        } catch (error) {
+          storedTheme = null;
+        }
+
+        var allowed = ["light", "dark"];
+        var theme = allowed.indexOf(storedTheme) !== -1 ? storedTheme : "auto";
+
+        document.documentElement.setAttribute("data-theme", theme);
+      })();
+    </script>
     <link rel="stylesheet" href="css/style.min.css" />
     <!-- JSON-LD -->
     <script type="application/ld+json">
@@ -37,7 +54,7 @@
         "@id": "https://travel-project-02.netlify.app/regulamin.html",
         "url": "https://travel-project-02.netlify.app/regulamin.html",
         "name": "Regulamin serwisu – Aurora Travel | KP_Code_ Demo",
-        "description": "Regulamin serwisu Aurora Travel – zasady korzystania, postanowienia prawne i informacje dla użytkowników.",
+        "description": "Przykładowy regulamin demonstracyjnego serwisu Aurora Travel – projekt portfolio przygotowany przez KP_Code_.",
         "inLanguage": "pl-PL",
         "isPartOf": {
           "@id": "https://travel-project-02.netlify.app/"
@@ -89,10 +106,7 @@
             </ol>
           </nav>
           <h1>Regulamin serwisu</h1>
-          <p>
-            Niniejszy regulamin ma charakter informacyjny i dotyczy korzystania z serwisu demo Aurora Travel.
-            Treść poniżej ma charakter przykładowy i służy wyłącznie celom prezentacyjnym.
-          </p>
+          <p>Niniejszy regulamin ma charakter informacyjny i dotyczy korzystania z serwisu demo Aurora Travel. Treść poniżej ma charakter przykładowy i służy wyłącznie celom prezentacyjnym.</p>
         </div>
       </div>
       <section class="section legal" aria-labelledby="terms-heading">
@@ -100,15 +114,16 @@
           <h2 id="terms-heading">1. Postanowienia ogólne</h2>
           <p>
             Serwis internetowy Aurora Travel (dalej: „Serwis”), dostępny pod adresem
-            <strong>https://travel-project-02.netlify.app</strong>, prowadzony jest jako projekt demonstracyjny
-            portfolio przez <strong>KP_Code_</strong>.
+            <strong>https://travel-project-02.netlify.app</strong>
+            , prowadzony jest jako projekt demonstracyjny portfolio przez
+            <strong>KP_Code_</strong>
+            i nie należy do rzeczywiście działającego biura podróży.
           </p>
 
           <h2>2. Zakres usług</h2>
           <p>
-            Serwis umożliwia zapoznanie się z przykładową ofertą wycieczek, prezentacją destynacji oraz
-            wysłanie zapytania kontaktowego za pomocą formularza. Treści nie stanowią rzeczywistej oferty
-            w rozumieniu Kodeksu cywilnego.
+            Serwis umożliwia zapoznanie się z przykładową ofertą wycieczek, prezentacją destynacji oraz wysłanie zapytania kontaktowego za pomocą formularza. Treści nie stanowią rzeczywistej oferty w
+            rozumieniu Kodeksu cywilnego.
           </p>
 
           <h2>3. Rezerwacje</h2>
@@ -120,35 +135,30 @@
 
           <h2>4. Odpowiedzialność</h2>
           <p>
-            Aurora Travel jako projekt demonstracyjny nie ponosi odpowiedzialności za sposób wykorzystania
-            prezentowanych treści przez użytkowników. W przypadku rzeczywistego wdrożenia operator serwisu
-            zapewniłby wsparcie w sytuacjach losowych oraz zmianach programu podróży.
+            Aurora Travel jako projekt demonstracyjny nie ponosi odpowiedzialności za sposób wykorzystania prezentowanych treści przez użytkowników. W przypadku rzeczywistego wdrożenia operator
+            serwisu zapewniłby wsparcie w sytuacjach losowych oraz zmianach programu podróży.
           </p>
 
           <h2>5. Reklamacje</h2>
           <p>
-            W realnie funkcjonującym serwisie reklamacje dotyczące usług turystycznych mogłyby być zgłaszane
-            w formie elektronicznej w określonym regulaminem terminie. W niniejszej wersji demo zapisy mają
-            charakter poglądowy i edukacyjny.
+            W realnie funkcjonującym serwisie reklamacje dotyczące usług turystycznych mogłyby być zgłaszane w formie elektronicznej w określonym regulaminem terminie. W niniejszej wersji demo zapisy
+            mają charakter poglądowy i edukacyjny.
           </p>
 
           <h2>6. Postanowienia końcowe</h2>
           <p>
-            W sprawach nieuregulowanych niniejszym regulaminem – w przypadku rzeczywistego świadczenia usług –
-            zastosowanie miałyby przepisy Kodeksu cywilnego oraz ustawy o imprezach turystycznych i powiązanych usługach turystycznych.
-            Aktualna wersja regulaminu w Serwisie ma charakter wyłącznie prezentacyjny i może być modyfikowana
-            w ramach rozwoju portfolio KP_Code_.
+            W sprawach nieuregulowanych niniejszym regulaminem – w przypadku rzeczywistego świadczenia usług – zastosowanie miałyby przepisy Kodeksu cywilnego oraz ustawy o imprezach turystycznych i
+            powiązanych usługach turystycznych. Aktualna wersja regulaminu w Serwisie ma charakter wyłącznie prezentacyjny i może być modyfikowana w ramach rozwoju portfolio KP_Code_.
           </p>
         </div>
       </section>
     </main>
 
-
     <!-- FOOTER -->
     <footer class="site-footer">
       <div class="container site-footer__grid">
         <div>
-          <img src="assets/img/logo/logo.svg" alt="Logo Aurora Travel" class="footer-logo" />
+          <img src="assets/img/logo/logo.svg" alt="" class="footer-logo" />
           <a class="logo footer-logo-link" href="index.html">Aurora Travel</a>
           <p>Ekskluzywne biuro podróży tworzące spersonalizowane doświadczenia dla wymagających globtroterów.</p>
           <p class="footer-demo-note">
@@ -190,21 +200,21 @@
             <a href="mailto:kp_code_@gmail.com">kp_code_@gmail.com</a>
           </p>
 
-          <div class="socials" aria-label="Linki do profili w mediach społecznościowych">
-            <a href="https://www.facebook.com/ktravel" aria-label="Facebook KP Travel">
-              <img src="assets/img/svg-icons/fb.svg" alt="" class="socials__icon" loading="lazy" />
+          <div class="socials">
+            <a href="https://www.facebook.com/ktravel" aria-label="Facebook">
+              <img src="assets/img/svg-icons/fb.svg" alt="" class="socials__icon" />
             </a>
 
-            <a href="#" aria-label="GitHub KP_Code_">
-              <img src="assets/img/svg-icons/github.svg" alt="" class="socials__icon" loading="lazy" />
+            <a href="https://github.com/kp-code" aria-label="GitHub">
+              <img src="assets/img/svg-icons/github.svg" alt="" class="socials__icon" />
             </a>
 
-            <a href="#" aria-label="Profil na X (Twitter) KP_Code_">
-              <img src="assets/img/svg-icons/x.svg" alt="" class="socials__icon" loading="lazy" />
+            <a href="https://twitter.com/kp_code_" aria-label="X (Twitter)">
+              <img src="assets/img/svg-icons/x.svg" alt="" class="socials__icon" />
             </a>
 
-            <a href="#" aria-label="Kanał YouTube KP_Code_">
-              <img src="assets/img/svg-icons/youtube.svg" alt="" class="socials__icon" loading="lazy" />
+            <a href="https://www.youtube.com/@kp_code_" aria-label="YouTube">
+              <img src="assets/img/svg-icons/youtube.svg" alt="" class="socials__icon" />
             </a>
           </div>
         </div>

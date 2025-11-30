@@ -1,18 +1,79 @@
 <!DOCTYPE html>
 <html lang="pl" data-theme="auto">
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Jesteś offline – KP Travel &amp; Tours</title>
-  <meta name="description" content="Brak połączenia z siecią. Spróbuj ponownie za chwilę.">
-  <meta name="color-scheme" content="light dark">
-  <link rel="stylesheet" href="css/style.min.css">
-</head>
-<body class="offline">
-  <main class="offline__wrapper">
-    <h1>Brak połączenia</h1>
-    <p>Wygląda na to, że utracono dostęp do sieci. Sprawdź połączenie i odśwież stronę.</p>
-    <a class="btn" href="index.html">Powrót do strony głównej</a>
-  </main>
-</body>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Aurora Travel – Tryb offline | KP_Code_ Demo</title>
+
+    <meta name="description" content="Strona Aurora Travel jest niedostępna z powodu braku połączenia z internetem. Projekt demo KP_Code_." />
+    <meta name="robots" content="noindex,follow" />
+
+    <meta name="color-scheme" content="light dark" />
+    <meta name="theme-color" media="(prefers-color-scheme: light)" content="#f8f7f2" />
+    <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#05060a" />
+
+    <link rel="manifest" href="site.webmanifest" />
+    <link rel="icon" type="image/svg+xml" href="assets/img/icons/favicon.svg" />
+    <link rel="icon" type="image/png" sizes="32x32" href="assets/img/icons/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="assets/img/icons/favicon-16x16.png" />
+    <link rel="apple-touch-icon" href="assets/img/icons/apple-touch-icon.png" />
+    <link rel="mask-icon" href="assets/img/icons/safari-pinned-tab.svg" color="#0c2d48" />
+
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="Aurora Travel" />
+    <meta property="og:title" content="Tryb offline – Aurora Travel" />
+    <meta property="og:description" content="Brak połączenia z siecią. Strona Aurora Travel działa w trybie offline. Projekt demo KP_Code_." />
+    <meta property="og:url" content="https://travel-project-02.netlify.app/offline.html" />
+    <meta property="og:image" content="https://travel-project-02.netlify.app/assets/img/og-cover.jpg" />
+    <meta property="og:locale" content="pl_PL" />
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Tryb offline – Aurora Travel" />
+    <meta name="twitter:description" content="Strona jest niedostępna z powodu braku internetu. Projekt demonstracyjny KP_Code_." />
+    <meta name="twitter:image" content="https://travel-project-02.netlify.app/assets/img/og-cover.jpg" />
+
+    <script>
+      (function () {
+        var storageKey = "kp-travel-theme";
+        var storedTheme;
+
+        try {
+          storedTheme = localStorage.getItem(storageKey);
+        } catch (error) {
+          storedTheme = null;
+        }
+
+        var allowed = ["light", "dark"];
+        var theme = allowed.indexOf(storedTheme) !== -1 ? storedTheme : "auto";
+
+        document.documentElement.setAttribute("data-theme", theme);
+      })();
+    </script>
+    <link rel="stylesheet" href="css/style.min.css" />
+
+    <!-- JSON-LD -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "WebPage",
+        "@id": "https://travel-project-02.netlify.app/offline.html",
+        "url": "https://travel-project-02.netlify.app/offline.html",
+        "name": "Tryb offline – Aurora Travel | KP_Code_ Demo",
+        "description": "Strona Aurora Travel jest aktualnie offline. Jest to demonstracyjna podstrona projektu KP_Code_.",
+        "inLanguage": "pl-PL",
+        "isPartOf": {
+          "@id": "https://travel-project-02.netlify.app/"
+        }
+      }
+    </script>
+  </head>
+
+  <body class="offline">
+    <main class="offline__wrapper">
+      <h1>Brak połączenia</h1>
+      <p>Wygląda na to, że nie masz połączenia z internetem. Spróbuj ponownie za chwilę.</p>
+      <a class="btn" href="index.html">Powrót do strony głównej</a>
+    </main>
+  </body>
 </html>

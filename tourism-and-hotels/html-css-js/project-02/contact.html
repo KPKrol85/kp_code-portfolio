@@ -65,6 +65,23 @@
       }
     </script>
     <!-- CSS -->
+    <script>
+      (function () {
+        var storageKey = "kp-travel-theme";
+        var storedTheme;
+
+        try {
+          storedTheme = localStorage.getItem(storageKey);
+        } catch (error) {
+          storedTheme = null;
+        }
+
+        var allowed = ["light", "dark"];
+        var theme = allowed.indexOf(storedTheme) !== -1 ? storedTheme : "auto";
+
+        document.documentElement.setAttribute("data-theme", theme);
+      })();
+    </script>
     <link rel="stylesheet" href="css/style.min.css" />
   </head>
 
@@ -100,7 +117,6 @@
 
     <!-- MAIN CONTENT -->
     <main id="main-content" tabindex="-1">
-
       <!-- HERO -->
       <div class="page-hero page-hero--contact">
         <div class="container">
@@ -291,21 +307,21 @@
             <a href="mailto:kp_code_@gmail.com">kp_code_@gmail.com</a>
           </p>
 
-          <div class="socials" aria-label="Linki do profili w mediach społecznościowych">
-            <a href="https://www.facebook.com/ktravel" aria-label="Facebook Aurora Travel">
-              <img src="assets/img/svg-icons/fb.svg" alt="" class="socials__icon" loading="lazy" />
+          <div class="socials">
+            <a href="https://www.facebook.com/ktravel" aria-label="Facebook">
+              <img src="assets/img/svg-icons/fb.svg" alt="" class="socials__icon" />
             </a>
 
-            <a href="#" aria-label="GitHub KP_Code_">
-              <img src="assets/img/svg-icons/github.svg" alt="" class="socials__icon" loading="lazy" />
+            <a href="https://github.com/kp-code" aria-label="GitHub">
+              <img src="assets/img/svg-icons/github.svg" alt="" class="socials__icon" />
             </a>
 
-            <a href="#" aria-label="Profil na X (Twitter) KP_Code_">
-              <img src="assets/img/svg-icons/x.svg" alt="" class="socials__icon" loading="lazy" />
+            <a href="https://twitter.com/kp_code_" aria-label="X (Twitter)">
+              <img src="assets/img/svg-icons/x.svg" alt="" class="socials__icon" />
             </a>
 
-            <a href="#" aria-label="Kanał YouTube KP_Code_">
-              <img src="assets/img/svg-icons/youtube.svg" alt="" class="socials__icon" loading="lazy" />
+            <a href="https://www.youtube.com/@kp_code_" aria-label="YouTube">
+              <img src="assets/img/svg-icons/youtube.svg" alt="" class="socials__icon" />
             </a>
           </div>
         </div>

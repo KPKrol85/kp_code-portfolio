@@ -4,7 +4,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Aurora Travel – Polityka prywatności | KP_Code_ Demo</title>
-    <meta name="description" content="Polityka prywatności Aurora Travel – dowiedz się, w jaki sposób przetwarzamy dane osobowe i dbamy o bezpieczeństwo informacji. Projekt demo KP_Code_." />
+    <meta name="description" content="Przykładowa polityka prywatności dla demonstracyjnego serwisu Aurora Travel – projekt portfolio stworzony przez KP_Code_." />
     <meta name="robots" content="index,follow" />
     <meta name="color-scheme" content="light dark" />
     <meta name="theme-color" media="(prefers-color-scheme: light)" content="#f8f7f2" />
@@ -19,15 +19,33 @@
     <meta property="og:type" content="article" />
     <meta property="og:site_name" content="Aurora Travel" />
     <meta property="og:title" content="Polityka prywatności – Aurora Travel" />
-    <meta property="og:description" content="Informacje o tym, jak Aurora Travel przetwarza dane osobowe i zapewnia bezpieczeństwo informacji." />
+    <meta property="og:description" content="Polityka prywatności fikcyjnego serwisu Aurora Travel – przykładowy dokument w projekcie demo KP_Code_." />
+
     <meta property="og:url" content="https://travel-project-02.netlify.app/polityka-prywatnosci.html" />
     <meta property="og:image" content="https://travel-project-02.netlify.app/assets/img/og-cover.jpg" />
     <meta property="og:locale" content="pl_PL" />
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content="Polityka prywatności – Aurora Travel" />
-    <meta name="twitter:description" content="Poznaj zasady przetwarzania i ochrony danych osobowych w Aurora Travel." />
+    <meta name="twitter:description" content="Przykładowa polityka prywatności przygotowana na potrzeby demonstracyjnego projektu Aurora Travel (portfolio KP_Code_)." />
     <meta name="twitter:image" content="https://travel-project-02.netlify.app/assets/img/og-cover.jpg" />
     <!-- CSS -->
+    <script>
+      (function () {
+        var storageKey = "kp-travel-theme";
+        var storedTheme;
+
+        try {
+          storedTheme = localStorage.getItem(storageKey);
+        } catch (error) {
+          storedTheme = null;
+        }
+
+        var allowed = ["light", "dark"];
+        var theme = allowed.indexOf(storedTheme) !== -1 ? storedTheme : "auto";
+
+        document.documentElement.setAttribute("data-theme", theme);
+      })();
+    </script>
     <link rel="stylesheet" href="css/style.min.css" />
     <!-- JSON-LD -->
     <script type="application/ld+json">
@@ -37,7 +55,7 @@
         "@id": "https://travel-project-02.netlify.app/polityka-prywatnosci.html",
         "url": "https://travel-project-02.netlify.app/polityka-prywatnosci.html",
         "name": "Polityka prywatności – Aurora Travel | KP_Code_ Demo",
-        "description": "Polityka prywatności Aurora Travel dotycząca przetwarzania danych osobowych i bezpieczeństwa informacji.",
+        "description": "Przykładowa polityka prywatności dla demonstracyjnego serwisu Aurora Travel – projekt portfolio KP_Code_.",
         "inLanguage": "pl-PL",
         "isPartOf": {
           "@id": "https://travel-project-02.netlify.app/"
@@ -92,30 +110,61 @@
       </div>
       <section class="section legal" aria-labelledby="privacy-heading">
         <div class="container">
-          <h2 id="privacy-heading">1. Administrator danych</h2>
-          <p>Administratorem danych osobowych jest KP Travel &amp; Tours Sp. z o.o. z siedzibą w Warszawie.</p>
-          <h2>2. Zakres i cele przetwarzania</h2>
-          <ul>
-            <li>Obsługa zapytań ofertowych oraz rezerwacji.</li>
-            <li>Realizacja umów i obsługa posprzedażowa.</li>
-            <li>Działania marketingowe prowadzone na podstawie zgody.</li>
-          </ul>
-          <h2>3. Podstawy prawne</h2>
-          <p>Przetwarzamy dane zgodnie z art. 6 ust. 1 lit. a, b oraz f RODO.</p>
-          <h2>4. Odbiorcy danych</h2>
-          <p>Dane mogą być przekazywane zaufanym partnerom turystycznym w zakresie niezbędnym do realizacji usług.</p>
-          <h2>5. Prawa użytkownika</h2>
+          <h2 id="privacy-heading">1. Informacje ogólne</h2>
           <p>
-            Masz prawo do dostępu, sprostowania, usunięcia, ograniczenia oraz przenoszenia danych. Żądania można kierować na adres
-            <a href="mailto:rodo@kptravel.pl">rodo@kptravel.pl</a>
+            Niniejszy dokument stanowi przykładową politykę prywatności przygotowaną dla projektu demonstracyjnego
+            <strong>Aurora Travel</strong>
+            . Strona pełni funkcję portfolio i została opracowana przez
+            <strong>KP_Code_</strong>
+            . Serwis nie prowadzi rzeczywistego przetwarzania danych osobowych użytkowników.
+          </p>
+
+          <h2>2. Administrator danych</h2>
+          <p>
+            Ponieważ serwis ma charakter demonstracyjny, nie występuje rzeczywisty administrator danych w rozumieniu RODO. Dane przesyłane przez formularze kontaktowe nie są zapisywane, przetwarzane
+            ani przekazywane osobom trzecim.
+          </p>
+          <p>W przypadku realnego wdrożenia funkcji kontaktowych administratorem danych byłby operator serwisu wskazany w regulaminie.</p>
+
+          <h2>3. Zakres i cele przetwarzania</h2>
+          <p>Strona Aurora Travel pełni funkcję demonstracyjną, dlatego wszelkie opisy procesów przetwarzania mają charakter poglądowy. W ramach projektu:</p>
+          <ul>
+            <li>nie są przetwarzane dane osobowe użytkowników,</li>
+            <li>formularze kontaktowe mają charakter wizualny i edukacyjny,</li>
+            <li>przedstawione cele przetwarzania są przykładem dla realnego wdrożenia.</li>
+          </ul>
+
+          <h2>4. Podstawy prawne</h2>
+          <p>
+            W środowisku demonstracyjnym nie obowiązują podstawy prawne RODO, ponieważ nie dochodzi do faktycznego przetwarzania danych osobowych. Opisy podstaw prawnych mają charakter edukacyjny.
+          </p>
+
+          <h2>5. Odbiorcy danych</h2>
+          <p>
+            Projekt nie gromadzi i nie przekazuje żadnych informacji użytkowników. W sytuacji rzeczywistego działania serwisu odbiorcami danych mogliby być partnerzy świadczący usługi turystyczne,
+            zgodnie z odrębną umową.
+          </p>
+
+          <h2>6. Prawa użytkownika</h2>
+          <p>
+            Ponieważ strona nie przetwarza danych osobowych, prawa wynikające z RODO (dostęp, sprostowanie, usunięcie, ograniczenie, przenoszenie) nie znajdują realnego zastosowania. Zostały
+            przedstawione jedynie w celach informacyjnych.
+          </p>
+
+          <h2>7. Okres przechowywania</h2>
+          <p>Serwis nie przechowuje żadnych danych przesyłanych przez użytkowników. W rzeczywistym systemie okres przechowywania zależałby od charakteru usługi.</p>
+
+          <h2>8. Pliki cookie</h2>
+          <p>
+            Informacje o stosowanych plikach cookie w wersji demonstracyjnej serwisu znajdują się w dokumencie:
+            <a href="cookies.html">Informacja o cookies</a>
             .
           </p>
-          <h2>6. Okres przechowywania</h2>
-          <p>Dane przechowujemy przez okres obowiązywania umowy oraz zgodnie z przepisami dotyczącymi archiwizacji dokumentów.</p>
-          <h2>7. Pliki cookie</h2>
+
+          <h2>9. Kontakt w sprawach demonstracyjnych</h2>
           <p>
-            Więcej szczegółów w dokumencie
-            <a href="cookies.html">Informacja o cookies</a>
+            W przypadku pytań dotyczących projektu portfolio można kontaktować się z jego autorem:
+            <a href="mailto:kp_code_@gmail.com">kp_code_@gmail.com</a>
             .
           </p>
         </div>
@@ -126,7 +175,7 @@
     <footer class="site-footer">
       <div class="container site-footer__grid">
         <div>
-          <img src="assets/img/logo/logo.svg" alt="Logo Aurora Travel" class="footer-logo" />
+          <img src="assets/img/logo/logo.svg" alt="" class="footer-logo" />
           <a class="logo footer-logo-link" href="index.html">Aurora Travel</a>
           <p>Ekskluzywne biuro podróży tworzące spersonalizowane doświadczenia dla wymagających globtroterów.</p>
           <p class="footer-demo-note">
@@ -168,21 +217,21 @@
             <a href="mailto:kp_code_@gmail.com">kp_code_@gmail.com</a>
           </p>
 
-          <div class="socials" aria-label="Linki do profili w mediach społecznościowych">
-            <a href="https://www.facebook.com/ktravel" aria-label="Facebook KP Travel">
-              <img src="assets/img/svg-icons/fb.svg" alt="" class="socials__icon" loading="lazy" />
+          <div class="socials">
+            <a href="https://www.facebook.com/ktravel" aria-label="Facebook">
+              <img src="assets/img/svg-icons/fb.svg" alt="" class="socials__icon" />
             </a>
 
-            <a href="#" aria-label="GitHub KP_Code_">
-              <img src="assets/img/svg-icons/github.svg" alt="" class="socials__icon" loading="lazy" />
+            <a href="https://github.com/kp-code" aria-label="GitHub">
+              <img src="assets/img/svg-icons/github.svg" alt="" class="socials__icon" />
             </a>
 
-            <a href="#" aria-label="Profil na X (Twitter) KP_Code_">
-              <img src="assets/img/svg-icons/x.svg" alt="" class="socials__icon" loading="lazy" />
+            <a href="https://twitter.com/kp_code_" aria-label="X (Twitter)">
+              <img src="assets/img/svg-icons/x.svg" alt="" class="socials__icon" />
             </a>
 
-            <a href="#" aria-label="Kanał YouTube KP_Code_">
-              <img src="assets/img/svg-icons/youtube.svg" alt="" class="socials__icon" loading="lazy" />
+            <a href="https://www.youtube.com/@kp_code_" aria-label="YouTube">
+              <img src="assets/img/svg-icons/youtube.svg" alt="" class="socials__icon" />
             </a>
           </div>
         </div>

@@ -46,5 +46,44 @@
       "type": "image/jpeg",
       "form_factor": "narrow"
     }
+  ],
+
+  "shortcuts": [
+    {
+      "name": "Wycieczki & Kierunki",
+      "short_name": "Wycieczki",
+      "url": "tours.html",
+      "icons": [
+        {
+          "src": "assets/img/shortcuts/wycieczki.png",
+          "sizes": "96x96",
+          "type": "image/png"
+        }
+      ]
+    },
+    {
+      "name": "Kontakt & Concierge",
+      "short_name": "Kontakt",
+      "url": "contact.html",
+      "icons": [
+        {
+          "src": "assets/img/shortcuts/kontakt.png",
+          "sizes": "96x96",
+          "type": "image/png"
+        }
+      ]
+    },
+    {
+      "name": "Dlaczego my?",
+      "short_name": "Dlaczego",
+      "url": "about.html",
+      "icons": [
+        {
+          "src": "assets/img/shortcuts/dlaczego-my.png",
+          "sizes": "96x96",
+          "type": "image/png"
+        }
+      ]
+    }
   ]
 }

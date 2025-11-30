@@ -19,15 +19,32 @@
     <meta property="og:type" content="article" />
     <meta property="og:site_name" content="Aurora Travel" />
     <meta property="og:title" content="Informacja o cookies – Aurora Travel" />
-    <meta property="og:description" content="Dowiedz się, jakie pliki cookies wykorzystuje Aurora Travel i w jakich celach są przetwarzane." />
+    <meta property="og:description" content="Informacja o plikach cookies w demonstracyjnym serwisie Aurora Travel – projekt portfolio KP_Code_." />
     <meta property="og:url" content="https://travel-project-02.netlify.app/cookies.html" />
     <meta property="og:image" content="https://travel-project-02.netlify.app/assets/img/og-cover.jpg" />
     <meta property="og:locale" content="pl_PL" />
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content="Informacja o cookies – Aurora Travel" />
-    <meta name="twitter:description" content="Informacje o plikach cookies stosowanych przez Aurora Travel." />
+    <meta name="twitter:description" content="Informacja o cookies w fikcyjnym serwisie Aurora Travel. Projekt demo KP_Code_." />
     <meta name="twitter:image" content="https://travel-project-02.netlify.app/assets/img/og-cover.jpg" />
     <!-- CSS -->
+    <script>
+      (function () {
+        var storageKey = "kp-travel-theme";
+        var storedTheme;
+
+        try {
+          storedTheme = localStorage.getItem(storageKey);
+        } catch (error) {
+          storedTheme = null;
+        }
+
+        var allowed = ["light", "dark"];
+        var theme = allowed.indexOf(storedTheme) !== -1 ? storedTheme : "auto";
+
+        document.documentElement.setAttribute("data-theme", theme);
+      })();
+    </script>
     <link rel="stylesheet" href="css/style.min.css" />
     <!--  JSON-LD -->
     <script type="application/ld+json">
@@ -37,7 +54,7 @@
         "@id": "https://travel-project-02.netlify.app/cookies.html",
         "url": "https://travel-project-02.netlify.app/cookies.html",
         "name": "Informacja o cookies – Aurora Travel | KP_Code_ Demo",
-        "description": "Informacja o stosowanych plikach cookies, ich rodzaju, funkcji oraz okresie przechowywania.",
+        "description": "Przykładowa informacja o plikach cookies w demonstracyjnym serwisie Aurora Travel – projekt portfolio KP_Code_.",
         "inLanguage": "pl-PL",
         "isPartOf": {
           "@id": "https://travel-project-02.netlify.app/"
@@ -86,32 +103,53 @@
             </ol>
           </nav>
           <h1>Informacja o cookies</h1>
-          <p>Opis poniżej wyjaśnia, w jaki sposób korzystamy z plików cookies w celach analitycznych i funkcjonalnych.</p>
+          <p>
+            Niniejsza strona jest projektem demonstracyjnym przygotowanym przez
+            <strong>KP_Code_</strong>
+            . Poniższy opis przedstawia sposób użycia plików cookies na potrzeby funkcjonalności testowych oraz symulacji działania serwisu Aurora Travel.
+          </p>
         </div>
       </div>
+
       <section class="section legal" aria-labelledby="cookies-heading">
         <div class="container">
           <h2 id="cookies-heading">1. Czym są cookies?</h2>
-          <p>Cookies to niewielkie pliki tekstowe przechowywane na urządzeniu użytkownika w celu usprawnienia korzystania z serwisu.</p>
-          <h2>2. Rodzaje cookies</h2>
+          <p>
+            Pliki cookies to niewielkie pliki tekstowe zapisywane w przeglądarce użytkownika. W ramach demonstracyjnej strony Aurora Travel służą one poprawnemu działaniu elementów interfejsu oraz
+            prezentacji funkcji dostępnych w projekcie.
+          </p>
+
+          <h2>2. Rodzaje cookies wykorzystywane w projekcie</h2>
           <ul>
             <li>
               <strong>Niezbędne:</strong>
-              zapewniają działanie formularzy i nawigacji.
-            </li>
-            <li>
-              <strong>Analityczne:</strong>
-              pomagają zrozumieć zachowanie użytkowników na stronie.
+              umożliwiają działanie kluczowych elementów strony, takich jak menu czy formularze kontaktowe.
             </li>
             <li>
               <strong>Funkcjonalne:</strong>
-              zapamiętują preferencje, np. wybrany motyw.
+              zapamiętują preferencje użytkownika — m.in. wybrany motyw jasny/ciemny — aby prezentacja projektu była bardziej spójna.
+            </li>
+            <li>
+              <strong>Analityczne (symulowane):</strong>
+              stosowane jedynie w ramach demonstracji. Pozwalają pokazać, jak działają funkcje analityczne w prawdziwych projektach. Nie zbierają danych osobowych.
             </li>
           </ul>
+
           <h2>3. Zarządzanie cookies</h2>
-          <p>Możesz zmieniać ustawienia cookies w swojej przeglądarce lub korzystać z baneru zgód, jeśli jest dostępny.</p>
+          <p>
+            Możesz zarządzać plikami cookies poprzez ustawienia swojej przeglądarki. W projekcie demo nie stosujemy zaawansowanego modułu zgód, jednak mechanizmy opisane tutaj obrazują sposób ich
+            użycia w rzeczywistej implementacji.
+          </p>
+
           <h2>4. Okres przechowywania</h2>
-          <p>Cookies sesyjne są usuwane po zamknięciu przeglądarki, a stałe po upływie od 1 do 12 miesięcy.</p>
+          <p>Cookies sesyjne są usuwane po zamknięciu przeglądarki. Cookies funkcjonalne mogą być przechowywane od 1 do 12 miesięcy, co odzwierciedla standardową praktykę w tego typu projektach.</p>
+
+          <h2>5. Informacje dodatkowe</h2>
+          <p>
+            Projekt ma charakter edukacyjno-portfolio i nie prowadzi rzeczywistego przetwarzania danych. Szczegółowe informacje o zasadach przetwarzania znajdują się w dokumencie:
+            <a href="polityka-prywatnosci.html">Polityka prywatności</a>
+            .
+          </p>
         </div>
       </section>
     </main>
@@ -120,7 +158,7 @@
     <footer class="site-footer">
       <div class="container site-footer__grid">
         <div>
-          <img src="assets/img/logo/logo.svg" alt="Logo Aurora Travel" class="footer-logo" />
+          <img src="assets/img/logo/logo.svg" alt="" class="footer-logo" />
           <a class="logo footer-logo-link" href="index.html">Aurora Travel</a>
           <p>Ekskluzywne biuro podróży tworzące spersonalizowane doświadczenia dla wymagających globtroterów.</p>
           <p class="footer-demo-note">
@@ -162,21 +200,21 @@
             <a href="mailto:kp_code_@gmail.com">kp_code_@gmail.com</a>
           </p>
 
-          <div class="socials" aria-label="Linki do profili w mediach społecznościowych">
-            <a href="https://www.facebook.com/ktravel" aria-label="Facebook KP Travel">
-              <img src="assets/img/svg-icons/fb.svg" alt="" class="socials__icon" loading="lazy" />
+          <div class="socials">
+            <a href="https://www.facebook.com/ktravel" aria-label="Facebook">
+              <img src="assets/img/svg-icons/fb.svg" alt="" class="socials__icon" />
             </a>
 
-            <a href="#" aria-label="GitHub KP_Code_">
-              <img src="assets/img/svg-icons/github.svg" alt="" class="socials__icon" loading="lazy" />
+            <a href="https://github.com/kp-code" aria-label="GitHub">
+              <img src="assets/img/svg-icons/github.svg" alt="" class="socials__icon" />
             </a>
 
-            <a href="#" aria-label="Profil na X (Twitter) KP_Code_">
-              <img src="assets/img/svg-icons/x.svg" alt="" class="socials__icon" loading="lazy" />
+            <a href="https://twitter.com/kp_code_" aria-label="X (Twitter)">
+              <img src="assets/img/svg-icons/x.svg" alt="" class="socials__icon" />
             </a>
 
-            <a href="#" aria-label="Kanał YouTube KP_Code_">
-              <img src="assets/img/svg-icons/youtube.svg" alt="" class="socials__icon" loading="lazy" />
+            <a href="https://www.youtube.com/@kp_code_" aria-label="YouTube">
+              <img src="assets/img/svg-icons/youtube.svg" alt="" class="socials__icon" />
             </a>
           </div>
         </div>
