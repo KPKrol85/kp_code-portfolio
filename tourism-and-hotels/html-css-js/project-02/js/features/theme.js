@@ -12,7 +12,8 @@ export function initThemeToggle() {
     stored = null;
   }
 
-  const initial = USER_THEMES.includes(stored) ? stored : "auto";
+  const inlineTheme = document.documentElement.getAttribute("data-theme") || "light";
+  const initial = USER_THEMES.includes(stored) ? stored : inlineTheme;
   applyTheme(initial);
 
   toggle.addEventListener("click", () => {

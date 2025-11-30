@@ -1,4 +1,4 @@
-const VERSION = "kp_code_v1.00.17";
+const VERSION = "kp_code_v1.00.20";
 
 const STATIC_CACHE = `${VERSION}_static`;
 const HTML_CACHE = `${VERSION}_html`;
