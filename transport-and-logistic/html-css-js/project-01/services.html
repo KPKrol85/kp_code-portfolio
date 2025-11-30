@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="pl" class="theme-light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Usługi transportowe | TransLogix</title>
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+  <a class="skip-link" href="#main">Przejdź do treści głównej</a>
+  <header>
+    <div class="header-inner">
+      <div class="brand">TransLogix – KP_Code_ Demo</div>
+      <nav class="nav" aria-label="Główna nawigacja">
+        <button class="nav__toggle" aria-expanded="false" aria-controls="mobile-nav" aria-label="Otwórz menu">
+          <span aria-hidden="true"></span>
+        </button>
+        <div id="mobile-nav" class="nav__panel" hidden>
+          <div class="nav__links">
+            <a href="index.html">Start</a>
+            <a href="services.html">Usługi</a>
+            <a href="fleet.html">Flota</a>
+            <a href="pricing.html">Cennik</a>
+            <a href="contact.html">Kontakt</a>
+          </div>
+        </div>
+      </nav>
+      <div class="header-actions">
+        <button class="theme-toggle" aria-pressed="false" aria-label="Przełącz tryb kolorów">Tryb</button>
+        <a class="btn" href="contact.html#quote">Zamów</a>
+      </div>
+    </div>
+  </header>
+
+  <main id="main">
+    <section class="section">
+      <div class="container stack reveal">
+        <p class="eyebrow">Oferta</p>
+        <h1>Transport i logistyka szyte na miarę</h1>
+        <p class="lead">Wybierz rodzaj przewozu, a my pokażemy dostępne trasy, czasy i stawki. Filtry zawężą wyniki do konkretnych wymagań.</p>
+        <div class="filters" aria-label="Filtry usług">
+          <button class="filter-chip" data-filter="all">Wszystkie</button>
+          <button class="filter-chip" data-filter="krajowy">Krajowy</button>
+          <button class="filter-chip" data-filter="miedzynarodowy">Międzynarodowy</button>
+          <button class="filter-chip" data-filter="express">Express</button>
+          <button class="filter-chip" data-filter="adr">ADR</button>
+          <button class="filter-chip" data-filter="chlodnia">Chłodnia</button>
+        </div>
+        <label for="priceRange">Maksymalna cena (PLN)</label>
+        <input type="range" id="priceRange" min="1000" max="10000" step="500" value="10000">
+        <div class="filters">
+          <label for="sort">Sortowanie</label>
+          <select id="sort">
+            <option value="none">Domyślne</option>
+            <option value="price-asc">Cena rosnąco</option>
+            <option value="price-desc">Cena malejąco</option>
+            <option value="time-asc">Czas realizacji</option>
+          </select>
+        </div>
+        <p id="results-count" class="text-muted" aria-live="polite"></p>
+        <div id="services-list" class="grid grid-3" aria-live="polite"></div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container reveal">
+        <div class="tabs" data-tabs>
+          <div class="tablist" role="tablist" aria-label="Zestawienia usług">
+            <button role="tab" aria-selected="true" aria-controls="tab1" id="tab-btn1">Najpopularniejsze</button>
+            <button role="tab" aria-selected="false" aria-controls="tab2" id="tab-btn2">Czas realizacji</button>
+            <button role="tab" aria-selected="false" aria-controls="tab3" id="tab-btn3">Bezpieczeństwo</button>
+          </div>
+          <div id="tab1" role="tabpanel" tabindex="0" aria-labelledby="tab-btn1" class="tabpanel">
+            <p>Ekspresowe przewozy do Niemiec i Francji, chłodnia EU i dedykowane ADR Polska. Najczęściej wybierane przez e-commerce, pharma i automotive.</p>
+          </div>
+          <div id="tab2" role="tabpanel" tabindex="0" aria-labelledby="tab-btn2" class="tabpanel" hidden>
+            <p>Express door-to-door z czasem poniżej 18h na głównych trasach UE. Track &amp; trace plus raportowanie statusów co 2h.</p>
+          </div>
+          <div id="tab3" role="tabpanel" tabindex="0" aria-labelledby="tab-btn3" class="tabpanel" hidden>
+            <p>Standard ADR, monitoring GPS, kontrola temperatury, ubezpieczenie cargo i procedury ISO 28000 dla bezpieczeństwa ładunku.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="section">
+    <div class="container stack">
+      <p class="text-muted">Potrzebujesz niestandardowej trasy lub okien czasowych? Zadzwoń: +48 500 600 700.</p>
+    </div>
+  </footer>
+
+  <script type="module" src="assets/js/main.js"></script>
+</body>
+</html>

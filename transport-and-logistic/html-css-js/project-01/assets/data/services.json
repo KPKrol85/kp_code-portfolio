@@ -1,0 +1,67 @@
+[
+  {
+    "id": 1,
+    "name": "Ekspres PL → DE",
+    "type": "miedzynarodowy",
+    "category": "express",
+    "route": "Poznań → Berlin",
+    "price": 2800,
+    "time": 12,
+    "weightLimit": "1,2 t",
+    "tags": ["express", "UE"],
+    "image": "assets/img/van.svg",
+    "description": "Dedykowany bus z plandeką. Załadunek w 2h, dostawa następnego dnia rano."
+  },
+  {
+    "id": 2,
+    "name": "Krajowy standard",
+    "type": "krajowy",
+    "category": "standard",
+    "route": "Łódź → Gdańsk",
+    "price": 1800,
+    "time": 10,
+    "weightLimit": "6 t",
+    "tags": ["krajowy"],
+    "image": "assets/img/solo.svg",
+    "description": "Stałe linie krajowe, okna czasowe do uzgodnienia, monitoring GPS."
+  },
+  {
+    "id": 3,
+    "name": "Chłodnia EU",
+    "type": "miedzynarodowy",
+    "category": "chlodnia",
+    "route": "Warszawa → Amsterdam",
+    "price": 4100,
+    "time": 20,
+    "weightLimit": "18 palet",
+    "tags": ["chlodnia", "UE"],
+    "image": "assets/img/refrigerated.svg",
+    "description": "Kontrola 2–8°C, czujniki drzwi, rejestrator temperatury, raporty PDF."
+  },
+  {
+    "id": 4,
+    "name": "Międzynarodowy standard",
+    "type": "miedzynarodowy",
+    "category": "standard",
+    "route": "Wrocław → Mediolan",
+    "price": 3600,
+    "time": 30,
+    "weightLimit": "24 t",
+    "tags": ["UE"],
+    "image": "assets/img/mega.svg",
+    "description": "Zestaw Mega 100 m3, kurtyna XL, pełne zabezpieczenia, monitorowanie statusów."
+  },
+  {
+    "id": 5,
+    "name": "ADR Polska",
+    "type": "krajowy",
+    "category": "adr",
+    "route": "Gliwice → Gdynia",
+    "price": 3300,
+    "time": 18,
+    "weightLimit": "24 t",
+    "tags": ["adr"],
+    "image": "assets/img/mega.svg",
+    "description": "Kierowcy z ADR, dokumentacja DGSA, kontrole szczelności i zabezpieczeń."
+  }
+]

@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="pl" class="theme-light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Flota pojazdów | TransLogix</title>
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+  <a class="skip-link" href="#main">Przejdź do treści głównej</a>
+  <header>
+    <div class="header-inner">
+      <div class="brand">TransLogix – KP_Code_ Demo</div>
+      <nav class="nav" aria-label="Główna nawigacja">
+        <button class="nav__toggle" aria-expanded="false" aria-controls="mobile-nav" aria-label="Otwórz menu">
+          <span aria-hidden="true"></span>
+        </button>
+        <div id="mobile-nav" class="nav__panel" hidden>
+          <div class="nav__links">
+            <a href="index.html">Start</a>
+            <a href="services.html">Usługi</a>
+            <a href="fleet.html">Flota</a>
+            <a href="pricing.html">Cennik</a>
+            <a href="contact.html">Kontakt</a>
+          </div>
+        </div>
+      </nav>
+      <div class="header-actions">
+        <button class="theme-toggle" aria-pressed="false" aria-label="Przełącz tryb kolorów">Tryb</button>
+        <a class="btn" href="contact.html#quote">Zamów</a>
+      </div>
+    </div>
+  </header>
+
+  <main id="main">
+    <section class="section">
+      <div class="container stack reveal">
+        <p class="eyebrow">Flota</p>
+        <h1>Sprzęt, który dowozi wyniki</h1>
+        <p class="lead">Od lekkich busów po zestawy Mega i chłodnie. Każdy pojazd z GPS, telematyką i pełnym serwisem.</p>
+        <div class="filters" aria-label="Filtry floty">
+          <button class="filter-chip" data-filter="all">Wszystko</button>
+          <button class="filter-chip" data-filter="bus">Busy</button>
+          <button class="filter-chip" data-filter="solo">Solówki</button>
+          <button class="filter-chip" data-filter="set">Zestawy</button>
+          <button class="filter-chip" data-filter="chlodnia">Chłodnie</button>
+        </div>
+        <div class="fleet-grid" id="fleet-grid" aria-live="polite">
+          <article class="card" data-type="bus" data-load="1.2" data-purpose="express">
+            <img src="assets/img/van.svg" alt="Bus plandeka 10 palet" data-full="assets/img/van.svg" class="lightbox-trigger">
+            <h3>Bus plandeka</h3>
+            <p>10 europalet, 1,2t ładowności, pasy i plandeka XL.</p>
+            <span class="badge">Express</span>
+          </article>
+          <article class="card" data-type="chlodnia" data-load="1.0" data-purpose="chlodnia">
+            <img src="assets/img/refrigerated.svg" alt="Chłodnia bus" data-full="assets/img/refrigerated.svg" class="lightbox-trigger">
+            <h3>Chłodnia bus</h3>
+            <p>Utrzymanie 2–8°C, rejestrator temperatury, podwójne drzwi.</p>
+            <span class="badge">Chłodnia</span>
+          </article>
+          <article class="card" data-type="solo" data-load="6" data-purpose="uniwersalny">
+            <img src="assets/img/solo.svg" alt="Solówka 18 palet" data-full="assets/img/solo.svg" class="lightbox-trigger">
+            <h3>Solówka 18 palet</h3>
+            <p>Ładowność 6t, windą 1,5t, idealna do dostaw miejskich.</p>
+            <span class="badge">Miejski</span>
+          </article>
+          <article class="card" data-type="set" data-load="24" data-purpose="dalsze">
+            <img src="assets/img/mega.svg" alt="Zestaw Mega 100 m3" data-full="assets/img/mega.svg" class="lightbox-trigger">
+            <h3>Zestaw Mega</h3>
+            <p>100 m3, kurtyny XL, zabezpieczenia i monitoring GSM.</p>
+            <span class="badge">Linehaul</span>
+          </article>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <div class="lightbox" role="dialog" aria-modal="true" aria-hidden="true" hidden>
+    <div class="lightbox__dialog">
+      <img class="lightbox__img" alt="" src="">
+      <div class="lightbox__controls">
+        <button class="btn" data-lightbox-prev>Poprzednie</button>
+        <button class="btn" data-lightbox-next>Następne</button>
+        <button class="btn" data-lightbox-close>Zamknij</button>
+      </div>
+    </div>
+  </div>
+
+  <footer class="section">
+    <div class="container stack">
+      <p class="text-muted">Flota serwisowana zgodnie z OEM, gotowa do tras 24/7.</p>
+    </div>
+  </footer>
+
+  <script type="module" src="assets/js/main.js"></script>
+</body>
+</html>
