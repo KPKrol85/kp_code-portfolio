@@ -1869,6 +1869,8 @@ html[data-theme="dark"] .dropdown__icon {
   box-shadow: 0 2px 6px rgba(15, 24, 40, 0.1);
   cursor: pointer;
   transition: background 0.25s ease, color 0.25s ease, box-shadow 0.25s ease, transform 0.15s ease, border-color 0.25s ease;
+  min-width: 110px;
+  text-align: center;
 }
 
 .gallery-filter:hover,
@@ -1934,6 +1936,13 @@ html[data-theme="dark"] .dropdown__icon {
   object-fit: cover;
 }
 
+.gallery-grid figcaption {
+  font-size: 0.83rem;
+  margin-top: 6px;
+  line-height: 1.4;
+  color: rgba(255, 255, 255, 0.85); /* w dark theme wygląda super */
+}
+
 @media (min-width: 768px) {
   .gallery-grid {
     grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -1944,7 +1953,6 @@ html[data-theme="dark"] .dropdown__icon {
   .page-hero--gallery {
     padding-bottom: 4rem;
   }
-
   .page-hero--gallery::before {
     top: 0;
     bottom: auto;
@@ -1953,8 +1961,18 @@ html[data-theme="dark"] .dropdown__icon {
     transform: none;
     width: clamp(220px, 18vw, 320px);
   }
+  .gallery-filters__inner {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-2);
+    align-items: center;
+    overflow-x: auto;
+    padding: var(--space-2) var(--space-4);
+    padding-top: var(--space-3);
+    scrollbar-width: none;
+    justify-content: center;
+  }
 }
-
 
 /* ===== 16 - SUBPAGES LEGAL ===== */
 
@@ -2175,6 +2193,19 @@ html[data-theme="dark"] .dropdown__icon {
   max-width: min(96vw, 1300px);
   margin: 0;
   text-align: center;
+}
+
+[data-lightbox-caption] {
+  font-size: 0.92rem;
+  margin-top: 14px;
+  color: rgba(255, 255, 255, 0.88);
+  text-align: center;
+  line-height: 1.55;
+  max-width: 75%;
+  margin-left: auto;
+  margin-right: auto;
+  font-weight: 300;
+  letter-spacing: 0.2px;
 }
 
 .lightbox img {
