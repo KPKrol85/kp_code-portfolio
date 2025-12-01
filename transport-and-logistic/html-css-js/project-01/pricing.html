@@ -1,129 +1,152 @@
 <!DOCTYPE html>
 <html lang="pl" class="theme-light">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Cennik i kalkulator | TransLogix</title>
-  <link rel="stylesheet" href="assets/css/style.css">
-</head>
-<body>
-  <a class="skip-link" href="#main">Przejdź do treści głównej</a>
-  <header>
-    <div class="header-inner">
-      <div class="brand">TransLogix – KP_Code_ Demo</div>
-      <nav class="nav" aria-label="Główna nawigacja">
-        <button class="nav__toggle" aria-expanded="false" aria-controls="mobile-nav" aria-label="Otwórz menu">
-          <span aria-hidden="true"></span>
-        </button>
-        <div id="mobile-nav" class="nav__panel" hidden>
-          <div class="nav__links">
-            <a href="index.html">Start</a>
-            <a href="services.html">Usługi</a>
-            <a href="fleet.html">Flota</a>
-            <a href="pricing.html">Cennik</a>
-            <a href="contact.html">Kontakt</a>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Cennik i kalkulator | TransLogix</title>
+    <link rel="stylesheet" href="assets/css/style.css" />
+  </head>
+
+  <!-- BODY -->
+  <body>
+    <a class="skip-link" href="#main">Przejdź do treści głównej</a>
+
+    <!-- HEADER -->
+    <header>
+      <div class="header-inner">
+        <a href="index.html" class="brand">
+          <img src="assets/img//logo/logo-translogix-light.svg" alt="" class="brand__logo brand__logo--light" />
+          <img src="assets/img/logo/logo-translogix-dark.svg" alt="" class="brand__logo brand__logo--dark" />
+          <span class="brand__text">TransLogix</span>
+        </a>
+        <nav class="nav" aria-label="Główna nawigacja">
+          <button class="nav__toggle" aria-expanded="false" aria-controls="mobile-nav" aria-label="Otwórz menu">
+            <span aria-hidden="true"></span>
+          </button>
+          <div id="mobile-nav" class="nav__panel" hidden>
+            <div class="nav__links">
+              <a href="index.html">Start</a>
+              <a href="services.html">Usługi</a>
+              <a href="fleet.html">Flota</a>
+              <a href="pricing.html">Cennik</a>
+              <a href="contact.html">Kontakt</a>
+            </div>
+            <a class="btn nav__cta nav__order-btn" href="contact.html#quote">Zamów</a>
+          </div>
+        </nav>
+        <div class="header-actions">
+          <button class="theme-toggle" aria-pressed="false" aria-label="Przełącz tryb kolorów">
+            <img src="assets/img/svg/sun.svg" alt="" class="icon-sun" aria-hidden="true" />
+            <img src="assets/img/svg/moon.svg" alt="" class="icon-moon" aria-hidden="true" />
+          </button>
+          <a class="btn" href="contact.html#quote">Zamów</a>
+        </div>
+      </div>
+    </header>
+
+    <main id="main">
+      <section class="section">
+        <div class="container reveal">
+          <p class="eyebrow">Cennik</p>
+          <h1>Proste pakiety z klarownymi stawkami</h1>
+          <p class="lead">Wybierz orientacyjny pakiet lub przelicz koszt indywidualnie. Ceny finalne ustalamy po potwierdzeniu okien czasowych.</p>
+          <table class="pricing-table" aria-label="Pakiety cenowe">
+            <thead>
+              <tr>
+                <th>Pakiet</th>
+                <th>Co zawiera</th>
+                <th>Cena od</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Standard</td>
+                <td>Przewóz krajowy, monitoring online, ubezpieczenie do 200k zł</td>
+                <td>1,80 zł/km</td>
+              </tr>
+              <tr>
+                <td>Express</td>
+                <td>Dedykowany bus, SLA czasowe, kierowca standby</td>
+                <td>2,40 zł/km</td>
+              </tr>
+              <tr>
+                <td>ADR</td>
+                <td>Zestaw ADR, kierowca z uprawnieniami, dokumentacja, DGSA</td>
+                <td>2,90 zł/km</td>
+              </tr>
+              <tr>
+                <td>Chłodnia</td>
+                <td>Pełna kontrola temperatury, rejestrator, raporty PDF</td>
+                <td>3,10 zł/km</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <section class="section" id="calculator">
+        <div class="container reveal">
+          <div class="section__header">
+            <p class="eyebrow">Kalkulator</p>
+            <h2>Policz szacunkowy koszt transportu</h2>
+            <p class="text-muted">Wypełnij parametry, a my obliczymy orientacyjną stawkę. Wynik jest aktualizowany na żywo.</p>
+          </div>
+          <div class="calculator">
+            <form class="form" id="pricing-form" novalidate>
+              <label for="distance">Dystans (km)</label>
+              <input type="number" id="distance" name="distance" min="1" required aria-describedby="distance-error-pricing" />
+              <div class="form__error" id="distance-error-pricing"></div>
+
+              <label for="weight">Waga (kg)</label>
+              <input type="number" id="weight" name="weight" min="1" required aria-describedby="weight-error-pricing" />
+              <div class="form__error" id="weight-error-pricing"></div>
+
+              <label for="service">Typ usługi</label>
+              <select id="service" name="service" required aria-describedby="service-error-pricing">
+                <option value="">Wybierz</option>
+                <option value="standard">Standard</option>
+                <option value="express">Express</option>
+                <option value="adr">ADR</option>
+                <option value="chlodnia">Chłodnia</option>
+              </select>
+              <div class="form__error" id="service-error-pricing"></div>
+
+              <fieldset>
+                <legend>Dodatki</legend>
+                <label>
+                  <input type="checkbox" name="lift" value="lift" />
+                  Winda
+                </label>
+                <br />
+                <label>
+                  <input type="checkbox" name="tail" value="tail" />
+                  Drzwi tylne z podjazdem
+                </label>
+                <br />
+                <label>
+                  <input type="checkbox" name="insurance" value="insurance" />
+                  Wysokie ubezpieczenie
+                </label>
+              </fieldset>
+
+              <button class="cta cta--primary" type="submit">Przelicz</button>
+            </form>
+            <div class="summary" aria-live="polite">
+              <h3>Szacowany koszt</h3>
+              <p class="lead" id="pricing-result">Wpisz parametry, aby zobaczyć koszt.</p>
+              <p class="text-muted">Stawka orientacyjna. Skontaktuj się z nami po finalną ofertę.</p>
+            </div>
           </div>
         </div>
-      </nav>
-      <div class="header-actions">
-        <button class="theme-toggle" aria-pressed="false" aria-label="Przełącz tryb kolorów">Tryb</button>
-        <a class="btn" href="contact.html#quote">Zamów</a>
+      </section>
+    </main>
+
+    <footer class="section">
+      <div class="container stack">
+        <p class="text-muted">Masz stałe wolumeny? Przygotujemy stawkę kontraktową.</p>
       </div>
-    </div>
-  </header>
+    </footer>
 
-  <main id="main">
-    <section class="section">
-      <div class="container reveal">
-        <p class="eyebrow">Cennik</p>
-        <h1>Proste pakiety z klarownymi stawkami</h1>
-        <p class="lead">Wybierz orientacyjny pakiet lub przelicz koszt indywidualnie. Ceny finalne ustalamy po potwierdzeniu okien czasowych.</p>
-        <table class="pricing-table" aria-label="Pakiety cenowe">
-          <thead>
-            <tr>
-              <th>Pakiet</th>
-              <th>Co zawiera</th>
-              <th>Cena od</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>Standard</td>
-              <td>Przewóz krajowy, monitoring online, ubezpieczenie do 200k zł</td>
-              <td>1,80 zł/km</td>
-            </tr>
-            <tr>
-              <td>Express</td>
-              <td>Dedykowany bus, SLA czasowe, kierowca standby</td>
-              <td>2,40 zł/km</td>
-            </tr>
-            <tr>
-              <td>ADR</td>
-              <td>Zestaw ADR, kierowca z uprawnieniami, dokumentacja, DGSA</td>
-              <td>2,90 zł/km</td>
-            </tr>
-            <tr>
-              <td>Chłodnia</td>
-              <td>Pełna kontrola temperatury, rejestrator, raporty PDF</td>
-              <td>3,10 zł/km</td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-    </section>
-
-    <section class="section" id="calculator">
-      <div class="container reveal">
-        <div class="section__header">
-          <p class="eyebrow">Kalkulator</p>
-          <h2>Policz szacunkowy koszt transportu</h2>
-          <p class="text-muted">Wypełnij parametry, a my obliczymy orientacyjną stawkę. Wynik jest aktualizowany na żywo.</p>
-        </div>
-        <div class="calculator">
-          <form class="form" id="pricing-form" novalidate>
-            <label for="distance">Dystans (km)</label>
-            <input type="number" id="distance" name="distance" min="1" required aria-describedby="distance-error-pricing">
-            <div class="form__error" id="distance-error-pricing"></div>
-
-            <label for="weight">Waga (kg)</label>
-            <input type="number" id="weight" name="weight" min="1" required aria-describedby="weight-error-pricing">
-            <div class="form__error" id="weight-error-pricing"></div>
-
-            <label for="service">Typ usługi</label>
-            <select id="service" name="service" required aria-describedby="service-error-pricing">
-              <option value="">Wybierz</option>
-              <option value="standard">Standard</option>
-              <option value="express">Express</option>
-              <option value="adr">ADR</option>
-              <option value="chlodnia">Chłodnia</option>
-            </select>
-            <div class="form__error" id="service-error-pricing"></div>
-
-            <fieldset>
-              <legend>Dodatki</legend>
-              <label><input type="checkbox" name="lift" value="lift"> Winda</label><br>
-              <label><input type="checkbox" name="tail" value="tail"> Drzwi tylne z podjazdem</label><br>
-              <label><input type="checkbox" name="insurance" value="insurance"> Wysokie ubezpieczenie</label>
-            </fieldset>
-
-            <button class="cta cta--primary" type="submit">Przelicz</button>
-          </form>
-          <div class="summary" aria-live="polite">
-            <h3>Szacowany koszt</h3>
-            <p class="lead" id="pricing-result">Wpisz parametry, aby zobaczyć koszt.</p>
-            <p class="text-muted">Stawka orientacyjna. Skontaktuj się z nami po finalną ofertę.</p>
-          </div>
-        </div>
-      </div>
-    </section>
-  </main>
-
-  <footer class="section">
-    <div class="container stack">
-      <p class="text-muted">Masz stałe wolumeny? Przygotujemy stawkę kontraktową.</p>
-    </div>
-  </footer>
-
-  <script type="module" src="assets/js/main.js"></script>
-</body>
+    <script type="module" src="assets/js/main.js"></script>
+  </body>
 </html>

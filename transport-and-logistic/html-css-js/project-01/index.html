@@ -1,214 +1,238 @@
 <!DOCTYPE html>
 <html lang="pl" class="theme-light">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>TransLogix – KP_Code_ Demo | Transport i logistyka</title>
-  <link rel="stylesheet" href="assets/css/style.css">
-</head>
-<body>
-  <a class="skip-link" href="#main">Przejdź do treści głównej</a>
-  <header>
-    <div class="header-inner">
-      <div class="brand" aria-label="TransLogix logo">TransLogix – KP_Code_ Demo</div>
-      <nav class="nav" aria-label="Główna nawigacja">
-        <button class="nav__toggle" aria-expanded="false" aria-controls="mobile-nav" aria-label="Otwórz menu">
-          <span aria-hidden="true"></span>
-        </button>
-        <div id="mobile-nav" class="nav__panel" hidden>
-          <div class="nav__links">
-            <a href="index.html">Start</a>
-            <a href="services.html">Usługi</a>
-            <a href="fleet.html">Flota</a>
-            <a href="pricing.html">Cennik</a>
-            <a href="contact.html">Kontakt</a>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>TransLogix – KP_Code_ Demo | Transport i logistyka</title>
+    <link rel="stylesheet" href="assets/css/style.css" />
+  </head>
+
+  <!-- BODY -->
+  <body>
+    <a class="skip-link" href="#main">Przejdź do treści głównej</a>
+
+    <!-- HEADER -->
+    <header>
+      <div class="header-inner">
+        <a href="index.html" class="brand">
+          <img src="assets/img//logo/logo-translogix-light.svg" alt="" class="brand__logo brand__logo--light" />
+          <img src="assets/img/logo/logo-translogix-dark.svg" alt="" class="brand__logo brand__logo--dark" />
+          <span class="brand__text">TransLogix</span>
+        </a>
+        <nav class="nav" aria-label="Główna nawigacja">
+          <button class="nav__toggle" aria-expanded="false" aria-controls="mobile-nav" aria-label="Otwórz menu">
+            <span aria-hidden="true"></span>
+          </button>
+          <div id="mobile-nav" class="nav__panel" hidden>
+            <div class="nav__links">
+              <a href="index.html">Start</a>
+              <a href="services.html">Usługi</a>
+              <a href="fleet.html">Flota</a>
+              <a href="pricing.html">Cennik</a>
+              <a href="contact.html">Kontakt</a>
+            </div>
+            <a class="btn nav__cta nav__order-btn" href="contact.html#quote">Zamów</a>
+          </div>
+        </nav>
+        <div class="header-actions">
+          <button class="theme-toggle" aria-pressed="false" aria-label="Przełącz tryb kolorów">
+            <img src="assets/img/svg/sun.svg" alt="" class="icon-sun" aria-hidden="true" />
+            <img src="assets/img/svg/moon.svg" alt="" class="icon-moon" aria-hidden="true" />
+          </button>
+          <a class="btn" href="contact.html#quote">Zamów</a>
+        </div>
+      </div>
+    </header>
+
+    <!-- MAIN -->
+    <main id="main">
+      <section class="hero">
+        <div class="hero__content reveal">
+          <p class="pill">24/7 – kraj &amp; UE</p>
+          <h1>Transport, który dowozi Twój biznes na czas.</h1>
+          <p class="lead">TransLogix obsługuje pełne łańcuchy dostaw: od lekkich busów po zestawy zestawów ciężarowych. Bezpiecznie, terminowo, z pełną widocznością online.</p>
+          <div class="hero__actions">
+            <a class="cta cta--primary" href="#quote">Zamów transport</a>
+            <a class="cta cta--ghost" href="#fleet">Poznaj flotę</a>
           </div>
         </div>
-      </nav>
-      <div class="header-actions">
-        <button class="theme-toggle" aria-pressed="false" aria-label="Przełącz tryb kolorów">Tryb</button>
-        <a class="btn" href="contact.html#quote">Zamów</a>
-      </div>
-    </div>
-  </header>
+      </section>
 
-  <main id="main">
-    <section class="hero">
-      <div class="hero__content reveal">
-        <p class="pill">24/7 – kraj &amp; UE</p>
-        <h1>Transport, który dowozi Twój biznes na czas.</h1>
-        <p class="lead">TransLogix obsługuje pełne łańcuchy dostaw: od lekkich busów po zestawy zestawów ciężarowych. Bezpiecznie, terminowo, z pełną widocznością online.</p>
-        <div class="hero__actions">
-          <a class="cta cta--primary" href="#quote">Zamów transport</a>
-          <a class="cta cta--ghost" href="#fleet">Poznaj flotę</a>
-        </div>
-      </div>
-    </section>
-
-    <section class="section" id="why">
-      <div class="container reveal">
-        <div class="section__header">
-          <p class="eyebrow">Dlaczego my</p>
-          <h2>Wspieramy Twoją logistykę od planu do dostawy</h2>
-          <p class="text-muted">Zespół dyspozytorów i kierowców dostępny całą dobę. Nowoczesna telemetria, ubezpieczenie cargo i procesy ISO.</p>
-        </div>
-        <div class="grid grid-3">
-          <article class="card">
-            <div class="card__icon" aria-hidden="true">🚚</div>
-            <h3>Pełna flota</h3>
-            <p>Dostęp do busów, chłodni, plandek i zestawów ADR. Dobieramy pojazd do ładunku i terminów.</p>
-          </article>
-          <article class="card">
-            <div class="card__icon" aria-hidden="true">⏱️</div>
-            <h3>Czas reakcji</h3>
-            <p>Załadunek nawet w 90 minut od zgłoszenia. Stałe SLA i monitoring postępu online.</p>
-          </article>
-          <article class="card">
-            <div class="card__icon" aria-hidden="true">🛡️</div>
-            <h3>Bezpieczeństwo</h3>
-            <p>System podwójnego potwierdzenia, śledzenie GPS, ubezpieczenie cargo do 500k EUR.</p>
-          </article>
-          <article class="card">
-            <div class="card__icon" aria-hidden="true">🌐</div>
-            <h3>Międzynarodowo</h3>
-            <p>Obsługa w całej UE i UK, kierowcy z uprawnieniami ADR, wsparcie celne i dokumenty.</p>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <section class="section" id="top-services">
-      <div class="container reveal">
-        <div class="section__header">
-          <p class="eyebrow">Najpopularniejsze trasy</p>
-          <h2>Transport dedykowany pod Twój ładunek</h2>
-          <p class="text-muted">Sprawdzone kierunki i stawki — kliknij “Szczegóły”, aby zobaczyć czasy i parametry.</p>
-        </div>
-        <div class="services-list grid grid-3">
-          <article class="card">
-            <h3>Ekspres PL → DE</h3>
-            <p>Bus do 3,5t. Załadunek w 2h, doręczenie w 12–18h.</p>
-            <div class="filters">
-              <span class="tag">Ekspres</span>
-              <span class="tag">Międzynarodowy</span>
-            </div>
-            <a class="btn-inline" href="service.html?id=1">Szczegóły</a>
-          </article>
-          <article class="card">
-            <h3>Chłodnia EU</h3>
-            <p>Stała kontrola temperatury 2–8°C, czujniki otwarcia drzwi, raporty PDF.</p>
-            <div class="filters">
-              <span class="tag">Chłodnia</span>
-              <span class="tag">UE</span>
-            </div>
-            <a class="btn-inline" href="service.html?id=3">Szczegóły</a>
-          </article>
-          <article class="card">
-            <h3>ADR Polska</h3>
-            <p>Zestawy z certyfikatem ADR, kierowcy z uprawnieniami, gotowe karty charakterystyki.</p>
-            <div class="filters">
-              <span class="tag">ADR</span>
-              <span class="tag">Krajowy</span>
-            </div>
-            <a class="btn-inline" href="service.html?id=5">Szczegóły</a>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <section class="section" id="fleet">
-      <div class="container reveal">
-        <div class="section__header">
-          <p class="eyebrow">Flota</p>
-          <h2>Pojazdy gotowe do jazdy</h2>
-          <p class="text-muted">Nowe roczniki, regularny serwis i monitoring online. Sprawdź wszystkie pojazdy w dziale flota.</p>
-        </div>
-        <div class="fleet-grid">
-          <article class="card">
-            <img src="assets/img/van.svg" alt="Bus plandeka 10 palet">
-            <h3>Bus plandeka</h3>
-            <p>10 europalet, 1,2t ładowności. Idealny dla ekspresów door-to-door.</p>
-          </article>
-          <article class="card">
-            <img src="assets/img/refrigerated.svg" alt="Chłodnia solo 18 palet">
-            <h3>Chłodnia solo</h3>
-            <p>18 palet, kontrola temperatury, czujniki otwarcia, rejestrator.</p>
-          </article>
-          <article class="card">
-            <img src="assets/img/mega.svg" alt="Zestaw Mega 100 m3">
-            <h3>Zestaw Mega</h3>
-            <p>100 m3, podłoga antypoślizgowa, pasy i belki do zabezpieczeń.</p>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <section class="section" id="quote">
-      <div class="container reveal">
-        <div class="section__header">
-          <p class="eyebrow">Szybka wycena</p>
-          <h2>Oblicz koszt w 30 sekund</h2>
-          <p class="text-muted">Podaj podstawowe parametry, a my wyświetlimy szacunkową kwotę. Dokładną wycenę otrzymasz po weryfikacji trasy.</p>
-        </div>
-        <div class="calculator">
-          <form class="form" id="quick-quote" novalidate>
-            <label for="distance">Dystans (km)</label>
-            <input type="number" id="distance" name="distance" min="1" required aria-describedby="distance-error">
-            <div class="form__error" id="distance-error"></div>
-
-            <label for="weight">Waga ładunku (kg)</label>
-            <input type="number" id="weight" name="weight" min="1" required aria-describedby="weight-error">
-            <div class="form__error" id="weight-error"></div>
-
-            <label for="serviceType">Typ usługi</label>
-            <select id="serviceType" name="serviceType" required aria-describedby="serviceType-error">
-              <option value="">Wybierz</option>
-              <option value="standard">Standard</option>
-              <option value="express">Express</option>
-              <option value="adr">ADR</option>
-              <option value="cold">Chłodnia</option>
-            </select>
-            <div class="form__error" id="serviceType-error"></div>
-
-            <fieldset>
-              <legend>Dodatki</legend>
-              <label><input type="checkbox" name="lift" value="lift"> Winda załadunkowa</label><br>
-              <label><input type="checkbox" name="insurance" value="insurance"> Podwyższone ubezpieczenie</label><br>
-              <label><input type="checkbox" name="weekend" value="weekend"> Dostawa weekend</label>
-            </fieldset>
-
-            <button class="cta cta--primary" type="submit">Przelicz</button>
-          </form>
-          <div class="summary" aria-live="polite">
-            <h3>Wynik wyceny</h3>
-            <p class="lead" id="quote-result">Wprowadź parametry, aby zobaczyć stawkę.</p>
-            <p class="text-muted">Ceny orientacyjne. Finalna stawka zależy od okien czasowych, wymaganego sprzętu i okolic dokumentowych.</p>
+      <section class="section" id="why">
+        <div class="container reveal">
+          <div class="section__header">
+            <p class="eyebrow">Dlaczego my</p>
+            <h2>Wspieramy Twoją logistykę od planu do dostawy</h2>
+            <p class="text-muted">Zespół dyspozytorów i kierowców dostępny całą dobę. Nowoczesna telemetria, ubezpieczenie cargo i procesy ISO.</p>
+          </div>
+          <div class="grid grid-3">
+            <article class="card">
+              <div class="card__icon" aria-hidden="true">🚚</div>
+              <h3>Pełna flota</h3>
+              <p>Dostęp do busów, chłodni, plandek i zestawów ADR. Dobieramy pojazd do ładunku i terminów.</p>
+            </article>
+            <article class="card">
+              <div class="card__icon" aria-hidden="true">⏱️</div>
+              <h3>Czas reakcji</h3>
+              <p>Załadunek nawet w 90 minut od zgłoszenia. Stałe SLA i monitoring postępu online.</p>
+            </article>
+            <article class="card">
+              <div class="card__icon" aria-hidden="true">🛡️</div>
+              <h3>Bezpieczeństwo</h3>
+              <p>System podwójnego potwierdzenia, śledzenie GPS, ubezpieczenie cargo do 500k EUR.</p>
+            </article>
+            <article class="card">
+              <div class="card__icon" aria-hidden="true">🌐</div>
+              <h3>Międzynarodowo</h3>
+              <p>Obsługa w całej UE i UK, kierowcy z uprawnieniami ADR, wsparcie celne i dokumenty.</p>
+            </article>
           </div>
         </div>
-      </div>
-    </section>
-  </main>
+      </section>
 
-  <footer class="section">
-    <div class="container stack">
-      <div class="stats">
-        <div class="stat">
-          <h3>850+</h3>
-          <p class="text-muted">Udanych dostaw miesięcznie</p>
+      <section class="section" id="top-services">
+        <div class="container reveal">
+          <div class="section__header">
+            <p class="eyebrow">Najpopularniejsze trasy</p>
+            <h2>Transport dedykowany pod Twój ładunek</h2>
+            <p class="text-muted">Sprawdzone kierunki i stawki — kliknij “Szczegóły”, aby zobaczyć czasy i parametry.</p>
+          </div>
+          <div class="services-list grid grid-3">
+            <article class="card">
+              <h3>Ekspres PL → DE</h3>
+              <p>Bus do 3,5t. Załadunek w 2h, doręczenie w 12–18h.</p>
+              <div class="filters">
+                <span class="tag">Ekspres</span>
+                <span class="tag">Międzynarodowy</span>
+              </div>
+              <a class="btn-inline" href="service.html?id=1">Szczegóły</a>
+            </article>
+            <article class="card">
+              <h3>Chłodnia EU</h3>
+              <p>Stała kontrola temperatury 2–8°C, czujniki otwarcia drzwi, raporty PDF.</p>
+              <div class="filters">
+                <span class="tag">Chłodnia</span>
+                <span class="tag">UE</span>
+              </div>
+              <a class="btn-inline" href="service.html?id=3">Szczegóły</a>
+            </article>
+            <article class="card">
+              <h3>ADR Polska</h3>
+              <p>Zestawy z certyfikatem ADR, kierowcy z uprawnieniami, gotowe karty charakterystyki.</p>
+              <div class="filters">
+                <span class="tag">ADR</span>
+                <span class="tag">Krajowy</span>
+              </div>
+              <a class="btn-inline" href="service.html?id=5">Szczegóły</a>
+            </article>
+          </div>
         </div>
-        <div class="stat">
-          <h3>45</h3>
-          <p class="text-muted">Pojazdów w ruchu</p>
-        </div>
-        <div class="stat">
-          <h3>17</h3>
-          <p class="text-muted">Obsługiwanych krajów UE</p>
-        </div>
-      </div>
-      <p class="text-muted">TransLogix – KP_Code_ Demo. Twój partner w przewozach krajowych i międzynarodowych.</p>
-    </div>
-  </footer>
+      </section>
 
-  <script type="module" src="assets/js/main.js"></script>
-</body>
+      <section class="section" id="fleet">
+        <div class="container reveal">
+          <div class="section__header">
+            <p class="eyebrow">Flota</p>
+            <h2>Pojazdy gotowe do jazdy</h2>
+            <p class="text-muted">Nowe roczniki, regularny serwis i monitoring online. Sprawdź wszystkie pojazdy w dziale flota.</p>
+          </div>
+          <div class="fleet-grid">
+            <article class="card">
+              <img src="assets/img/van.svg" alt="Bus plandeka 10 palet" />
+              <h3>Bus plandeka</h3>
+              <p>10 europalet, 1,2t ładowności. Idealny dla ekspresów door-to-door.</p>
+            </article>
+            <article class="card">
+              <img src="assets/img/refrigerated.svg" alt="Chłodnia solo 18 palet" />
+              <h3>Chłodnia solo</h3>
+              <p>18 palet, kontrola temperatury, czujniki otwarcia, rejestrator.</p>
+            </article>
+            <article class="card">
+              <img src="assets/img/mega.svg" alt="Zestaw Mega 100 m3" />
+              <h3>Zestaw Mega</h3>
+              <p>100 m3, podłoga antypoślizgowa, pasy i belki do zabezpieczeń.</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" id="quote">
+        <div class="container reveal">
+          <div class="section__header">
+            <p class="eyebrow">Szybka wycena</p>
+            <h2>Oblicz koszt w 30 sekund</h2>
+            <p class="text-muted">Podaj podstawowe parametry, a my wyświetlimy szacunkową kwotę. Dokładną wycenę otrzymasz po weryfikacji trasy.</p>
+          </div>
+          <div class="calculator">
+            <form class="form" id="quick-quote" novalidate>
+              <label for="distance">Dystans (km)</label>
+              <input type="number" id="distance" name="distance" min="1" required aria-describedby="distance-error" />
+              <div class="form__error" id="distance-error"></div>
+
+              <label for="weight">Waga ładunku (kg)</label>
+              <input type="number" id="weight" name="weight" min="1" required aria-describedby="weight-error" />
+              <div class="form__error" id="weight-error"></div>
+
+              <label for="serviceType">Typ usługi</label>
+              <select id="serviceType" name="serviceType" required aria-describedby="serviceType-error">
+                <option value="">Wybierz</option>
+                <option value="standard">Standard</option>
+                <option value="express">Express</option>
+                <option value="adr">ADR</option>
+                <option value="cold">Chłodnia</option>
+              </select>
+              <div class="form__error" id="serviceType-error"></div>
+
+              <fieldset>
+                <legend>Dodatki</legend>
+                <label>
+                  <input type="checkbox" name="lift" value="lift" />
+                  Winda załadunkowa
+                </label>
+                <br />
+                <label>
+                  <input type="checkbox" name="insurance" value="insurance" />
+                  Podwyższone ubezpieczenie
+                </label>
+                <br />
+                <label>
+                  <input type="checkbox" name="weekend" value="weekend" />
+                  Dostawa weekend
+                </label>
+              </fieldset>
+
+              <button class="cta cta--primary" type="submit">Przelicz</button>
+            </form>
+            <div class="summary" aria-live="polite">
+              <h3>Wynik wyceny</h3>
+              <p class="lead" id="quote-result">Wprowadź parametry, aby zobaczyć stawkę.</p>
+              <p class="text-muted">Ceny orientacyjne. Finalna stawka zależy od okien czasowych, wymaganego sprzętu i okolic dokumentowych.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="section">
+      <div class="container stack">
+        <div class="stats">
+          <div class="stat">
+            <h3>850+</h3>
+            <p class="text-muted">Udanych dostaw miesięcznie</p>
+          </div>
+          <div class="stat">
+            <h3>45</h3>
+            <p class="text-muted">Pojazdów w ruchu</p>
+          </div>
+          <div class="stat">
+            <h3>17</h3>
+            <p class="text-muted">Obsługiwanych krajów UE</p>
+          </div>
+        </div>
+        <p class="text-muted">TransLogix – KP_Code_ Demo. Twój partner w przewozach krajowych i międzynarodowych.</p>
+      </div>
+    </footer>
+
+    <script type="module" src="assets/js/main.js"></script>
+  </body>
 </html>

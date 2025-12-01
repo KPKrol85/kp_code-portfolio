@@ -12,20 +12,28 @@ function applyTheme(theme) {
   root.classList.toggle("theme-light", theme === "light");
 }
 
+function updateToggleA11y(toggle, theme) {
+  const isDark = theme === "dark";
+  toggle.setAttribute("aria-pressed", isDark);
+  toggle.setAttribute("aria-label", isDark ? "Przełącz na tryb jasny" : "Przełącz na tryb ciemny");
+}
+
 export function initThemeToggle() {
   const toggle = document.querySelector(".theme-toggle");
   if (!toggle) return;
 
   let current = getPreferredTheme();
   applyTheme(current);
-  toggle.setAttribute("aria-pressed", current === "dark");
-  toggle.textContent = current === "dark" ? "Jasny" : "Ciemny";
+
+  // Ustawiamy ARIA po załadowaniu
+  updateToggleA11y(toggle, current);
 
   toggle.addEventListener("click", () => {
     current = current === "dark" ? "light" : "dark";
     applyTheme(current);
     localStorage.setItem(STORAGE_KEY, current);
-    toggle.setAttribute("aria-pressed", current === "dark");
-    toggle.textContent = current === "dark" ? "Jasny" : "Ciemny";
+
+    // Ustawiamy ARIA po zmianie trybu
+    updateToggleA11y(toggle, current);
   });
 }

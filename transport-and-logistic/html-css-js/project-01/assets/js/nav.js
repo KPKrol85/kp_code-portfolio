@@ -1,23 +1,44 @@
 // Handles mobile navigation interactions and focus management
 export function initNav() {
-  const toggle = document.querySelector(".nav__toggle");
-  const panel = document.querySelector(".nav__panel");
-  const links = panel?.querySelectorAll("a");
-  if (!toggle || !panel) return;
+  const nav = document.querySelector(".nav");
+  const toggle = nav?.querySelector(".nav__toggle");
+  const panel = nav?.querySelector(".nav__panel");
+  if (!nav || !toggle || !panel) return;
 
+  const closeTriggers = panel.querySelectorAll(".nav__links a, .nav__cta");
+  const mq = window.matchMedia("(min-width: 900px)");
+  const isMobile = () => !mq.matches;
+
+  const panelId = panel.id || "nav-panel";
+  panel.id = panelId;
+  toggle.setAttribute("aria-controls", panelId);
+  toggle.setAttribute("aria-expanded", "false");
+  toggle.setAttribute("aria-label", "Otwórz menu");
+  panel.hidden = false;
+  panel.setAttribute("role", panel.getAttribute("role") || "navigation");
+  panel.setAttribute("aria-label", panel.getAttribute("aria-label") || "Główne menu");
+  panel.setAttribute("aria-hidden", "true");
+
+  // Close dropdown and reset a11y state
   const closeMenu = () => {
     toggle.setAttribute("aria-expanded", "false");
-    panel.classList.remove("is-open");
-    panel.hidden = true;
-    document.body.classList.remove("no-scroll");
+    toggle.setAttribute("aria-label", "Otwórz menu");
+    panel.classList.remove("nav__panel--open", "is-open");
+    panel.setAttribute("aria-hidden", "true");
+    if (isMobile()) {
+      document.body.classList.remove("no-scroll");
+    }
   };
 
+  // Open dropdown and lock body scroll on mobile
   const openMenu = () => {
-    panel.hidden = false;
+    panel.classList.add("nav__panel--open", "is-open");
     toggle.setAttribute("aria-expanded", "true");
-    panel.classList.add("is-open");
-    document.body.classList.add("no-scroll");
-    links?.[0]?.focus();
+    toggle.setAttribute("aria-label", "Zamknij menu");
+    panel.setAttribute("aria-hidden", "false");
+    if (isMobile()) {
+      document.body.classList.add("no-scroll");
+    }
   };
 
   toggle.addEventListener("click", () => {
@@ -25,31 +46,49 @@ export function initNav() {
     isOpen ? closeMenu() : openMenu();
   });
 
-  document.addEventListener("keyup", (e) => {
-    if (e.key === "Escape" && toggle.getAttribute("aria-expanded") === "true") {
+  // Close menu when selecting a link on mobile
+  closeTriggers.forEach((link) =>
+    link.addEventListener("click", () => {
+      if (toggle.getAttribute("aria-expanded") === "true") {
+        closeMenu();
+      }
+    })
+  );
+
+  // Close when clicking outside of the nav area
+  document.addEventListener("click", (event) => {
+    const isOpen = toggle.getAttribute("aria-expanded") === "true";
+    if (!isOpen) return;
+    const target = event.target;
+    if (!panel.contains(target) && !toggle.contains(target)) {
+      closeMenu();
+    }
+  });
+
+  document.addEventListener("keyup", (event) => {
+    if (event.key === "Escape" && toggle.getAttribute("aria-expanded") === "true") {
       closeMenu();
       toggle.focus();
     }
   });
 
-  document.addEventListener("click", (e) => {
-    if (!panel.contains(e.target) && !toggle.contains(e.target) && toggle.getAttribute("aria-expanded") === "true") {
-      closeMenu();
-    }
-  });
-
-  // Ensure menu is visible on desktop sizes
-  const mq = window.matchMedia("(min-width: 900px)");
-  const handleMq = () => {
+  // Sync state when resizing across the breakpoint
+  const handleBreakpointChange = () => {
     if (mq.matches) {
-      panel.hidden = false;
-      document.body.classList.remove("no-scroll");
+      panel.classList.remove("nav__panel--open", "is-open");
+      panel.setAttribute("aria-hidden", "false");
       toggle.setAttribute("aria-expanded", "false");
-      panel.classList.remove("is-open");
-    } else {
-      panel.hidden = true;
+      toggle.setAttribute("aria-label", "Otwórz menu");
+      document.body.classList.remove("no-scroll");
+      return;
     }
+    panel.classList.remove("nav__panel--open", "is-open");
+    toggle.setAttribute("aria-expanded", "false");
+    toggle.setAttribute("aria-label", "Otwórz menu");
+    panel.setAttribute("aria-hidden", "true");
+    document.body.classList.remove("no-scroll");
   };
-  handleMq();
-  mq.addEventListener("change", handleMq);
+
+  handleBreakpointChange();
+  mq.addEventListener("change", handleBreakpointChange);
 }

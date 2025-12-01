@@ -1,139 +1,160 @@
 <!DOCTYPE html>
 <html lang="pl" class="theme-light">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Kontakt i wycena | TransLogix</title>
-  <link rel="stylesheet" href="assets/css/style.css">
-</head>
-<body>
-  <a class="skip-link" href="#main">Przejdź do treści głównej</a>
-  <header>
-    <div class="header-inner">
-      <div class="brand">TransLogix – KP_Code_ Demo</div>
-      <nav class="nav" aria-label="Główna nawigacja">
-        <button class="nav__toggle" aria-expanded="false" aria-controls="mobile-nav" aria-label="Otwórz menu">
-          <span aria-hidden="true"></span>
-        </button>
-        <div id="mobile-nav" class="nav__panel" hidden>
-          <div class="nav__links">
-            <a href="index.html">Start</a>
-            <a href="services.html">Usługi</a>
-            <a href="fleet.html">Flota</a>
-            <a href="pricing.html">Cennik</a>
-            <a href="contact.html">Kontakt</a>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Kontakt i wycena | TransLogix</title>
+    <link rel="stylesheet" href="assets/css/style.css" />
+  </head>
+
+  <!-- BODY -->
+  <body>
+    <a class="skip-link" href="#main">Przejdź do treści głównej</a>
+
+    <!-- HEADER -->
+    <header>
+      <div class="header-inner">
+        <a href="index.html" class="brand">
+          <img src="assets/img//logo/logo-translogix-light.svg" alt="" class="brand__logo brand__logo--light" />
+          <img src="assets/img/logo/logo-translogix-dark.svg" alt="" class="brand__logo brand__logo--dark" />
+          <span class="brand__text">TransLogix</span>
+        </a>
+        <nav class="nav" aria-label="Główna nawigacja">
+          <button class="nav__toggle" aria-expanded="false" aria-controls="mobile-nav" aria-label="Otwórz menu">
+            <span aria-hidden="true"></span>
+          </button>
+          <div id="mobile-nav" class="nav__panel" hidden>
+            <div class="nav__links">
+              <a href="index.html">Start</a>
+              <a href="services.html">Usługi</a>
+              <a href="fleet.html">Flota</a>
+              <a href="pricing.html">Cennik</a>
+              <a href="contact.html">Kontakt</a>
+            </div>
+            <a class="btn nav__cta nav__order-btn" href="contact.html#quote">Zamów</a>
           </div>
-        </div>
-      </nav>
-      <div class="header-actions">
-        <button class="theme-toggle" aria-pressed="false" aria-label="Przełącz tryb kolorów">Tryb</button>
-        <a class="btn" href="contact.html#quote">Zamów</a>
-      </div>
-    </div>
-  </header>
-
-  <main id="main">
-    <section class="section">
-      <div class="container reveal">
-        <p class="eyebrow">Kontakt</p>
-        <h1>Porozmawiajmy o Twoim ładunku</h1>
-        <p class="lead">Zadzwoń lub wypełnij formularz, a dyspozytor odpowie w 15 minut.</p>
-        <div class="grid grid-2">
-          <div class="stack">
-            <h2>Biuro operacyjne</h2>
-            <p class="text-muted">ul. Logistyczna 12, 01-200 Warszawa</p>
-            <p><strong>Telefon:</strong> +48 500 600 700<br><strong>Email:</strong> dispatch@translogix.pl</p>
-            <div class="map-placeholder" role="img" aria-label="Mapa dojazdu">Mapa w przygotowaniu</div>
-          </div>
-          <div class="stack" id="quote">
-            <form class="form" id="contact-form" novalidate>
-              <label for="name">Imię i nazwisko</label>
-              <input type="text" id="name" name="name" required aria-describedby="name-error">
-              <div class="form__error" id="name-error"></div>
-
-              <label for="company">Firma</label>
-              <input type="text" id="company" name="company" aria-describedby="company-error">
-              <div class="form__error" id="company-error"></div>
-
-              <label for="email">Email</label>
-              <input type="email" id="email" name="email" required aria-describedby="email-error">
-              <div class="form__error" id="email-error"></div>
-
-              <label for="phone">Telefon</label>
-              <input type="tel" id="phone" name="phone" required aria-describedby="phone-error">
-              <div class="form__error" id="phone-error"></div>
-
-              <label for="serviceType">Typ usługi</label>
-              <select id="serviceType" name="serviceType" required aria-describedby="serviceType-error">
-                <option value="">Wybierz</option>
-                <option value="standard">Standard</option>
-                <option value="express">Express</option>
-                <option value="adr">ADR</option>
-                <option value="chlodnia">Chłodnia</option>
-              </select>
-              <div class="form__error" id="serviceType-error"></div>
-
-              <label for="route">Trasa (miejsce załadunku → dostawy)</label>
-              <input type="text" id="route" name="route" required aria-describedby="route-error">
-              <div class="form__error" id="route-error"></div>
-
-              <label for="message">Opis ładunku</label>
-              <textarea id="message" name="message" rows="4" aria-describedby="message-error"></textarea>
-              <div class="form__error" id="message-error"></div>
-
-              <label><input type="checkbox" id="rodo" name="rodo" required aria-describedby="rodo-error"> Zgadzam się na przetwarzanie danych w celu przygotowania oferty.</label>
-              <div class="form__error" id="rodo-error"></div>
-
-              <button type="submit" class="cta cta--primary">Wyślij zapytanie</button>
-              <div class="form__success" id="contact-success" aria-live="polite" hidden>Twoje zgłoszenie zostało przyjęte. Wracamy do Ciebie w 15 minut.</div>
-            </form>
-          </div>
+        </nav>
+        <div class="header-actions">
+          <button class="theme-toggle" aria-pressed="false" aria-label="Przełącz tryb kolorów">
+            <img src="assets/img/svg/sun.svg" alt="" class="icon-sun" aria-hidden="true" />
+            <img src="assets/img/svg/moon.svg" alt="" class="icon-moon" aria-hidden="true" />
+          </button>
+          <a class="btn" href="contact.html#quote">Zamów</a>
         </div>
       </div>
-    </section>
+    </header>
 
-    <section class="section">
-      <div class="container reveal">
-        <div class="section__header">
-          <p class="eyebrow">FAQ</p>
-          <h2>Najczęstsze pytania</h2>
-        </div>
-        <div class="faq" id="faq">
-          <div class="accordion__item">
-            <h3>
-              <button class="accordion__button" aria-expanded="false" aria-controls="faq1" id="faq1-label">Jak szybko możecie podstawić pojazd?</button>
-            </h3>
-            <div class="accordion__panel" role="region" aria-labelledby="faq1-label" id="faq1" hidden>
-              <p>W większych miastach podstawiamy busa w 90 minut, a zestaw w 3h. Poza godzinami szczytu zwykle szybciej.</p>
+    <main id="main">
+      <section class="section">
+        <div class="container reveal">
+          <p class="eyebrow">Kontakt</p>
+          <h1>Porozmawiajmy o Twoim ładunku</h1>
+          <p class="lead">Zadzwoń lub wypełnij formularz, a dyspozytor odpowie w 15 minut.</p>
+          <div class="grid grid-2">
+            <div class="stack">
+              <h2>Biuro operacyjne</h2>
+              <p class="text-muted">ul. Logistyczna 12, 01-200 Warszawa</p>
+              <p>
+                <strong>Telefon:</strong>
+                +48 500 600 700
+                <br />
+                <strong>Email:</strong>
+                dispatch@translogix.pl
+              </p>
+              <div class="map-placeholder" role="img" aria-label="Mapa dojazdu">Mapa w przygotowaniu</div>
             </div>
-          </div>
-          <div class="accordion__item">
-            <h3>
-              <button class="accordion__button" aria-expanded="false" aria-controls="faq2" id="faq2-label">Czy obsługujecie ADR?</button>
-            </h3>
-            <div class="accordion__panel" role="region" aria-labelledby="faq2-label" id="faq2" hidden>
-              <p>Tak, posiadamy zestawy i kierowców z pełnymi uprawnieniami ADR. Dostarczamy dokumentację i konsultacje DGSA.</p>
-            </div>
-          </div>
-          <div class="accordion__item">
-            <h3>
-              <button class="accordion__button" aria-expanded="false" aria-controls="faq3" id="faq3-label">Jak wygląda raportowanie?</button>
-            </h3>
-            <div class="accordion__panel" role="region" aria-labelledby="faq3-label" id="faq3" hidden>
-              <p>Otrzymujesz link do śledzenia GPS oraz raporty statusowe co 2 godziny lub częściej na życzenie.</p>
+            <div class="stack" id="quote">
+              <form class="form" id="contact-form" novalidate>
+                <label for="name">Imię i nazwisko</label>
+                <input type="text" id="name" name="name" required aria-describedby="name-error" />
+                <div class="form__error" id="name-error"></div>
+
+                <label for="company">Firma</label>
+                <input type="text" id="company" name="company" aria-describedby="company-error" />
+                <div class="form__error" id="company-error"></div>
+
+                <label for="email">Email</label>
+                <input type="email" id="email" name="email" required aria-describedby="email-error" />
+                <div class="form__error" id="email-error"></div>
+
+                <label for="phone">Telefon</label>
+                <input type="tel" id="phone" name="phone" required aria-describedby="phone-error" />
+                <div class="form__error" id="phone-error"></div>
+
+                <label for="serviceType">Typ usługi</label>
+                <select id="serviceType" name="serviceType" required aria-describedby="serviceType-error">
+                  <option value="">Wybierz</option>
+                  <option value="standard">Standard</option>
+                  <option value="express">Express</option>
+                  <option value="adr">ADR</option>
+                  <option value="chlodnia">Chłodnia</option>
+                </select>
+                <div class="form__error" id="serviceType-error"></div>
+
+                <label for="route">Trasa (miejsce załadunku → dostawy)</label>
+                <input type="text" id="route" name="route" required aria-describedby="route-error" />
+                <div class="form__error" id="route-error"></div>
+
+                <label for="message">Opis ładunku</label>
+                <textarea id="message" name="message" rows="4" aria-describedby="message-error"></textarea>
+                <div class="form__error" id="message-error"></div>
+
+                <label>
+                  <input type="checkbox" id="rodo" name="rodo" required aria-describedby="rodo-error" />
+                  Zgadzam się na przetwarzanie danych w celu przygotowania oferty.
+                </label>
+                <div class="form__error" id="rodo-error"></div>
+
+                <button type="submit" class="cta cta--primary">Wyślij zapytanie</button>
+                <div class="form__success" id="contact-success" aria-live="polite" hidden>Twoje zgłoszenie zostało przyjęte. Wracamy do Ciebie w 15 minut.</div>
+              </form>
             </div>
           </div>
         </div>
+      </section>
+
+      <section class="section">
+        <div class="container reveal">
+          <div class="section__header">
+            <p class="eyebrow">FAQ</p>
+            <h2>Najczęstsze pytania</h2>
+          </div>
+          <div class="faq" id="faq">
+            <div class="accordion__item">
+              <h3>
+                <button class="accordion__button" aria-expanded="false" aria-controls="faq1" id="faq1-label">Jak szybko możecie podstawić pojazd?</button>
+              </h3>
+              <div class="accordion__panel" role="region" aria-labelledby="faq1-label" id="faq1" hidden>
+                <p>W większych miastach podstawiamy busa w 90 minut, a zestaw w 3h. Poza godzinami szczytu zwykle szybciej.</p>
+              </div>
+            </div>
+            <div class="accordion__item">
+              <h3>
+                <button class="accordion__button" aria-expanded="false" aria-controls="faq2" id="faq2-label">Czy obsługujecie ADR?</button>
+              </h3>
+              <div class="accordion__panel" role="region" aria-labelledby="faq2-label" id="faq2" hidden>
+                <p>Tak, posiadamy zestawy i kierowców z pełnymi uprawnieniami ADR. Dostarczamy dokumentację i konsultacje DGSA.</p>
+              </div>
+            </div>
+            <div class="accordion__item">
+              <h3>
+                <button class="accordion__button" aria-expanded="false" aria-controls="faq3" id="faq3-label">Jak wygląda raportowanie?</button>
+              </h3>
+              <div class="accordion__panel" role="region" aria-labelledby="faq3-label" id="faq3" hidden>
+                <p>Otrzymujesz link do śledzenia GPS oraz raporty statusowe co 2 godziny lub częściej na życzenie.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="section">
+      <div class="container stack">
+        <p class="text-muted">Telefon dyspozytora: +48 500 600 700 • dispatch@translogix.pl</p>
       </div>
-    </section>
-  </main>
+    </footer>
 
-  <footer class="section">
-    <div class="container stack">
-      <p class="text-muted">Telefon dyspozytora: +48 500 600 700 • dispatch@translogix.pl</p>
-    </div>
-  </footer>
-
-  <script type="module" src="assets/js/main.js"></script>
-</body>
+    <script type="module" src="assets/js/main.js"></script>
+  </body>
 </html>

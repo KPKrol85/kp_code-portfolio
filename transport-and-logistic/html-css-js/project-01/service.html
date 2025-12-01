@@ -1,51 +1,63 @@
 <!DOCTYPE html>
 <html lang="pl" class="theme-light">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Szczegóły usługi | TransLogix</title>
-  <link rel="stylesheet" href="assets/css/style.css">
-</head>
-<body>
-  <a class="skip-link" href="#main">Przejdź do treści głównej</a>
-  <header>
-    <div class="header-inner">
-      <div class="brand">TransLogix – KP_Code_ Demo</div>
-      <nav class="nav" aria-label="Główna nawigacja">
-        <button class="nav__toggle" aria-expanded="false" aria-controls="mobile-nav" aria-label="Otwórz menu">
-          <span aria-hidden="true"></span>
-        </button>
-        <div id="mobile-nav" class="nav__panel" hidden>
-          <div class="nav__links">
-            <a href="index.html">Start</a>
-            <a href="services.html">Usługi</a>
-            <a href="fleet.html">Flota</a>
-            <a href="pricing.html">Cennik</a>
-            <a href="contact.html">Kontakt</a>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Szczegóły usługi | TransLogix</title>
+    <link rel="stylesheet" href="assets/css/style.css" />
+  </head>
+
+  <!-- BODY -->
+  <body>
+    <a class="skip-link" href="#main">Przejdź do treści głównej</a>
+
+    <!-- HEADER -->
+    <header>
+      <div class="header-inner">
+        <a href="index.html" class="brand">
+          <img src="assets/img//logo/logo-translogix-light.svg" alt="" class="brand__logo brand__logo--light" />
+          <img src="assets/img/logo/logo-translogix-dark.svg" alt="" class="brand__logo brand__logo--dark" />
+          <span class="brand__text">TransLogix</span>
+        </a>
+        <nav class="nav" aria-label="Główna nawigacja">
+          <button class="nav__toggle" aria-expanded="false" aria-controls="mobile-nav" aria-label="Otwórz menu">
+            <span aria-hidden="true"></span>
+          </button>
+          <div id="mobile-nav" class="nav__panel" hidden>
+            <div class="nav__links">
+              <a href="index.html">Start</a>
+              <a href="services.html">Usługi</a>
+              <a href="fleet.html">Flota</a>
+              <a href="pricing.html">Cennik</a>
+              <a href="contact.html">Kontakt</a>
+            </div>
+            <a class="btn nav__cta nav__order-btn" href="contact.html#quote">Zamów</a>
           </div>
+        </nav>
+        <div class="header-actions">
+          <button class="theme-toggle" aria-pressed="false" aria-label="Przełącz tryb kolorów">
+            <img src="assets/img/svg/sun.svg" alt="" class="icon-sun" aria-hidden="true" />
+            <img src="assets/img/svg/moon.svg" alt="" class="icon-moon" aria-hidden="true" />
+          </button>
+          <a class="btn" href="contact.html#quote">Zamów</a>
         </div>
-      </nav>
-      <div class="header-actions">
-        <button class="theme-toggle" aria-pressed="false" aria-label="Przełącz tryb kolorów">Tryb</button>
-        <a class="btn" href="contact.html#quote">Zamów</a>
       </div>
-    </div>
-  </header>
+    </header>
 
-  <main id="main">
-    <section class="section">
-      <div class="container reveal" id="service-detail" aria-live="polite">
-        <p class="text-muted">Ładowanie szczegółów usługi...</p>
+    <main id="main">
+      <section class="section">
+        <div class="container reveal" id="service-detail" aria-live="polite">
+          <p class="text-muted">Ładowanie szczegółów usługi...</p>
+        </div>
+      </section>
+    </main>
+
+    <footer class="section">
+      <div class="container stack">
+        <p class="text-muted">Skontaktuj się z nami po indywidualną wycenę.</p>
       </div>
-    </section>
-  </main>
+    </footer>
 
-  <footer class="section">
-    <div class="container stack">
-      <p class="text-muted">Skontaktuj się z nami po indywidualną wycenę.</p>
-    </div>
-  </footer>
-
-  <script type="module" src="assets/js/main.js"></script>
-</body>
+    <script type="module" src="assets/js/main.js"></script>
+  </body>
 </html>
