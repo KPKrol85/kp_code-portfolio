@@ -492,14 +492,14 @@ html.theme-dark .header-actions .btn:hover {
     display: none;
   }
 
- .brand {
+  .brand {
     display: flex;
     align-items: center;
     margin-left: 6px;
     margin-right: 16px;
   }
 
- .nav {
+  .nav {
     display: flex;
     justify-content: center;
     width: auto;
@@ -561,7 +561,7 @@ html.theme-dark .header-actions .btn:hover {
 
 .hero {
   position: relative;
-  min-height: 80vh;
+  min-height: 90vh;
   display: grid;
   align-items: center;
   color: #fff;
@@ -572,8 +572,13 @@ html.theme-dark .header-actions .btn:hover {
   content: "";
   position: absolute;
   inset: 0;
-  background: linear-gradient(120deg, rgba(14, 165, 233, 0.7), rgba(15, 23, 42, 0.8)), url("../img/hero.svg") center/cover no-repeat;
-  filter: grayscale(0.1);
+  z-index: 0;
+  background-image: linear-gradient(120deg, rgba(14, 165, 233, 0.55), rgba(15, 23, 42, 0.88)),
+    image-set(url("../img/hero/hero-01-1920x1080.avif") type("image/avif"), url("../img/hero/hero-01-1920x1080.webp") type("image/webp"), url("../img/hero/hero-01-1920x1080.jpg") type("image/jpeg"));
+  background-size: cover;
+  background-position: center bottom;
+  background-repeat: no-repeat;
+  filter: brightness(0.96) contrast(1.05) saturate(1.1);
 }
 
 .hero__content {
@@ -612,6 +617,44 @@ html.theme-dark .header-actions .btn:hover {
 
 .cta:hover {
   transform: translateY(-2px);
+}
+
+/* ===== HERO – większe ekrany ===== */
+
+/* duże monitory */
+@media (min-width: 1600px) {
+  .hero::before {
+    background-image: linear-gradient(120deg, rgba(14, 165, 233, 0.55), rgba(15, 23, 42, 0.88)),
+      image-set(url("../img/hero/hero-01-2560x1440.avif") type("image/avif"), url("../img/hero/hero-01-2560x1440.webp") type("image/webp"), url("../img/hero/hero-01-2560x1440.jpg") type("image/jpeg"));
+  }
+}
+
+/* ultra-wide, 21:9 itp. */
+@media (min-width: 2200px) {
+  .hero::before {
+    background-image: linear-gradient(120deg, rgba(14, 165, 233, 0.55), rgba(15, 23, 42, 0.88)),
+      image-set(url("../img/hero/hero-01-3840x1600.avif") type("image/avif"), url("../img/hero/hero-01-3840x1600.webp") type("image/webp"), url("../img/hero/hero-01-3840x1600.jpg") type("image/jpeg"));
+  }
+}
+
+/* ===== HERO – mobile ===== */
+
+@media (max-width: 768px) {
+  .hero {
+    min-height: 70vh;
+  }
+
+  .hero::before {
+    background-image: linear-gradient(150deg, rgba(15, 23, 42, 0.92), rgba(14, 165, 233, 0.7)),
+      image-set(url("../img/hero/hero-01-1080x1500.avif") type("image/avif"), url("../img/hero/hero-01-1080x1500.webp") type("image/webp"), url("../img/hero/hero-01-1080x1500.jpg") type("image/jpeg"));
+    background-size: cover;
+    background-position: center top;
+    filter: brightness(0.9) contrast(1.08) saturate(1.05);
+  }
+
+  .hero__content {
+    padding-inline: var(--space-4);
+  }
 }
 
 /* ==========================================================================
