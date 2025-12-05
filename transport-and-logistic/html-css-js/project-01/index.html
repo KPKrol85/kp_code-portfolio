@@ -148,19 +148,28 @@
             <h2>Pojazdy gotowe do jazdy</h2>
             <p class="text-muted">Nowe roczniki, regularny serwis i monitoring online. Sprawdź wszystkie pojazdy w dziale flota.</p>
           </div>
+
           <div class="fleet-grid">
-            <article class="card">
-              <img src="assets/img/van.svg" alt="Bus plandeka 10 palet" />
+            <article class="card fleet-card">
+              <div class="fleet-card__icon">
+                <img src="assets/img/svg/fleet-boxtruck-tarpaulin.svg" alt="Bus plandeka 10 palet" loading="lazy" />
+              </div>
               <h3>Bus plandeka</h3>
               <p>10 europalet, 1,2t ładowności. Idealny dla ekspresów door-to-door.</p>
             </article>
-            <article class="card">
-              <img src="assets/img/refrigerated.svg" alt="Chłodnia solo 18 palet" />
+
+            <article class="card fleet-card">
+              <div class="fleet-card__icon">
+                <img src="assets/img/svg/fleet-refrigerated.svg" alt="Chłodnia solo 18 palet" loading="lazy" />
+              </div>
               <h3>Chłodnia solo</h3>
               <p>18 palet, kontrola temperatury, czujniki otwarcia, rejestrator.</p>
             </article>
-            <article class="card">
-              <img src="assets/img/mega.svg" alt="Zestaw Mega 100 m3" />
+
+            <article class="card fleet-card">
+              <div class="fleet-card__icon">
+                <img src="assets/img/svg/fleet-mega-set.svg" alt="Zestaw Mega 100 m3" loading="lazy" />
+              </div>
               <h3>Zestaw Mega</h3>
               <p>100 m3, podłoga antypoślizgowa, pasy i belki do zabezpieczeń.</p>
             </article>
@@ -168,6 +177,7 @@
         </div>
       </section>
 
+      <!-- QUICK QUOTE -->
       <section class="section" id="quote">
         <div class="container reveal">
           <div class="section__header">
@@ -219,29 +229,84 @@
               <h3>Wynik wyceny</h3>
               <p class="lead" id="quote-result">Wprowadź parametry, aby zobaczyć stawkę.</p>
               <p class="text-muted">Ceny orientacyjne. Finalna stawka zależy od okien czasowych, wymaganego sprzętu i okolic dokumentowych.</p>
+              <div class="quote-history" aria-live="polite">
+                <h4 class="quote-history__title">Ostatnie wyceny</h4>
+                <ul class="quote-history__list" id="quote-history"></ul>
+              </div>
             </div>
           </div>
         </div>
       </section>
     </main>
 
-    <footer class="section">
-      <div class="container stack">
-        <div class="stats">
-          <div class="stat">
-            <h3>850+</h3>
-            <p class="text-muted">Udanych dostaw miesięcznie</p>
+    <!-- FOOTER -->
+    <footer class="footer section">
+      <div class="container footer__inner">
+        <section class="footer__stats" aria-label="Kluczowe liczby TransLogix">
+          <div class="stats">
+            <div class="stat">
+              <h3>850+</h3>
+              <p class="text-muted">Udanych dostaw miesięcznie</p>
+            </div>
+            <div class="stat">
+              <h3>45</h3>
+              <p class="text-muted">Pojazdów w ruchu</p>
+            </div>
+            <div class="stat">
+              <h3>17</h3>
+              <p class="text-muted">Obsługiwanych krajów UE</p>
+            </div>
           </div>
-          <div class="stat">
-            <h3>45</h3>
-            <p class="text-muted">Pojazdów w ruchu</p>
+        </section>
+
+        <nav class="footer__nav" aria-label="Nawigacja w stopce">
+          <div class="footer__grid">
+            <div class="footer__column">
+              <h2 class="footer__title">TransLogix</h2>
+              <p class="footer__brand-text">
+                TransLogix wspiera ciągi dostaw w trybie 24/7, łącząc przewozy drogowe i zarządzanie zleceniami w jednym miejscu. Stawiamy na przewidywalność czasu dostaw i transparentne raportowanie
+                dla klientów B2B. Zespół operacyjny monitoruje każdy kurs, aby reagować na zmiany tras w czasie rzeczywistym.
+              </p>
+            </div>
+
+            <div class="footer__column">
+              <h2 class="footer__title">Oferta</h2>
+              <ul class="footer__list">
+                <li><a href="index.html">Start</a></li>
+                <li><a href="services.html">Usługi</a></li>
+                <li><a href="fleet.html">Flota</a></li>
+                <li><a href="pricing.html">Cennik</a></li>
+              </ul>
+            </div>
+
+            <div class="footer__column">
+              <h2 class="footer__title">Wsparcie</h2>
+              <ul class="footer__list">
+                <li><a href="contact.html">Kontakt</a></li>
+                <li><a href="contact.html#quote">Szybka wycena</a></li>
+                <li><a href="#faq">FAQ</a></li>
+              </ul>
+            </div>
+
+            <div class="footer__column">
+              <h2 class="footer__title">Dane firmy</h2>
+              <ul class="footer__list footer__list--meta">
+                <li>TransLogix Sp. z o.o.</li>
+                <li>ul. Przemysłowa 10, 00-000 Warszawa</li>
+                <li><a href="mailto:kontakt@translogix-demo.pl">kontakt@translogix-demo.pl</a></li>
+                <li><a href="tel:+48500000000">+48 500 000 000</a></li>
+              </ul>
+            </div>
           </div>
-          <div class="stat">
-            <h3>17</h3>
-            <p class="text-muted">Obsługiwanych krajów UE</p>
-          </div>
+        </nav>
+
+        <div class="footer__bottom">
+          <p class="footer__bottom-text">© 2025 TransLogix – KP_Code_ Demo. Wszystkie prawa zastrzeżone.</p>
+          <ul class="footer__bottom-links">
+            <li><a href="#privacy">Polityka prywatności</a></li>
+            <li><a href="#terms">Regulamin serwisu</a></li>
+          </ul>
         </div>
-        <p class="text-muted">TransLogix – KP_Code_ Demo. Twój partner w przewozach krajowych i międzynarodowych.</p>
       </div>
     </footer>
 
