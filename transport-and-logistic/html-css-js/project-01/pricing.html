@@ -1,10 +1,64 @@
 <!DOCTYPE html>
 <html lang="pl" class="theme-light">
   <head>
+    <!-- Podstawowe metadane -->
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Cennik i kalkulator | TransLogix</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <title>Cennik i kalkulator transportu | TransLogix – KP_Code_ Demo</title>
+    <meta
+      name="description"
+      content="Cennik usług transportowych TransLogix oraz interaktywny kalkulator kosztów. Sprawdź orientacyjne stawki przewozów krajowych i międzynarodowych. Wsparcie 24/7." />
+    <meta name="author" content="KP_Code_" />
+    <meta name="robots" content="index,follow" />
+    <meta name="color-scheme" content="light dark" />
+    <meta name="theme-color" content="#020617" />
+
+    <!-- Canonical -->
+    <link rel="canonical" href="https://transport-project-01.netlify.app/pricing.html" />
+
+    <!-- Ikony i manifest -->
+    <link rel="icon" type="image/x-icon" href="assets/favicons/favicon.ico" />
+    <link rel="icon" type="image/png" sizes="32x32" href="assets/favicons/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="assets/favicons/favicon-16x16.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="assets/favicons/apple-touch-icon.png" />
+    <link rel="mask-icon" href="assets/favicons/safari-pinned-tab.svg" color="#0ea5e9" />
+    <link rel="manifest" href="site.webmanifest" />
+
+    <!-- Preload + CSS -->
+    <link rel="preload" href="assets/css/style.css" as="style" />
     <link rel="stylesheet" href="assets/css/style.css" />
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Cennik i kalkulator transportu | TransLogix" />
+    <meta property="og:description" content="Zobacz aktualny cennik usług transportowych i oblicz koszt przewozu dzięki kalkulatorowi TransLogix. Przewozy krajowe i międzynarodowe." />
+    <meta property="og:url" content="https://transport-project-01.netlify.app/pricing.html" />
+    <meta property="og:site_name" content="TransLogix" />
+    <meta property="og:locale" content="pl_PL" />
+    <meta property="og:image" content="https://transport-project-01.netlify.app/assets/img/og/translogix-og.jpg" />
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Cennik i kalkulator transportu | TransLogix" />
+    <meta name="twitter:description" content="Sprawdź cennik transportu i skorzystaj z kalkulatora kosztów dostępnego w systemie TransLogix." />
+    <meta name="twitter:image" content="https://transport-project-01.netlify.app/assets/img/og/translogix-og.jpg" />
+
+    <!-- JSON-LD – WebPage (Cennik) -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "WebPage",
+        "name": "Cennik usług – TransLogix",
+        "url": "https://transport-project-01.netlify.app/pricing.html",
+        "description": "Aktualny cennik usług transportowych TransLogix oraz kalkulator kosztów przewozu.",
+        "publisher": {
+          "@type": "Organization",
+          "name": "TransLogix",
+          "url": "https://transport-project-01.netlify.app/",
+          "logo": "https://transport-project-01.netlify.app/assets/img/brand/logo-translogix.svg"
+        }
+      }
+    </script>
   </head>
 
   <!-- BODY -->
@@ -44,7 +98,9 @@
       </div>
     </header>
 
+    <!-- MAIN CONTENT -->
     <main id="main">
+      <!-- PRICING -->
       <section class="section">
         <div class="container reveal">
           <p class="eyebrow">Cennik</p>
@@ -84,57 +140,62 @@
         </div>
       </section>
 
-      <section class="section" id="calculator">
+      <!-- QUICK QUOTE -->
+      <section class="section" id="quote">
         <div class="container reveal">
           <div class="section__header">
-            <p class="eyebrow">Kalkulator</p>
-            <h2>Policz szacunkowy koszt transportu</h2>
-            <p class="text-muted">Wypełnij parametry, a my obliczymy orientacyjną stawkę. Wynik jest aktualizowany na żywo.</p>
+            <p class="eyebrow">Szybka wycena</p>
+            <h2>Oblicz koszt w 30 sekund</h2>
+            <p class="text-muted">Podaj podstawowe parametry, a my wyświetlimy szacunkową kwotę. Dokładną wycenę otrzymasz po weryfikacji trasy.</p>
           </div>
           <div class="calculator">
-            <form class="form" id="pricing-form" novalidate>
+            <form class="form" id="quick-quote" novalidate>
               <label for="distance">Dystans (km)</label>
-              <input type="number" id="distance" name="distance" min="1" required aria-describedby="distance-error-pricing" />
-              <div class="form__error" id="distance-error-pricing"></div>
+              <input type="number" id="distance" name="distance" min="1" required aria-describedby="distance-error" />
+              <div class="form__error" id="distance-error"></div>
 
-              <label for="weight">Waga (kg)</label>
-              <input type="number" id="weight" name="weight" min="1" required aria-describedby="weight-error-pricing" />
-              <div class="form__error" id="weight-error-pricing"></div>
+              <label for="weight">Waga ładunku (kg)</label>
+              <input type="number" id="weight" name="weight" min="1" required aria-describedby="weight-error" />
+              <div class="form__error" id="weight-error"></div>
 
-              <label for="service">Typ usługi</label>
-              <select id="service" name="service" required aria-describedby="service-error-pricing">
+              <label for="serviceType">Typ usługi</label>
+              <select id="serviceType" name="serviceType" required aria-describedby="serviceType-error">
                 <option value="">Wybierz</option>
                 <option value="standard">Standard</option>
                 <option value="express">Express</option>
                 <option value="adr">ADR</option>
-                <option value="chlodnia">Chłodnia</option>
+                <option value="cold">Chłodnia</option>
               </select>
-              <div class="form__error" id="service-error-pricing"></div>
+              <div class="form__error" id="serviceType-error"></div>
 
               <fieldset>
                 <legend>Dodatki</legend>
                 <label>
                   <input type="checkbox" name="lift" value="lift" />
-                  Winda
-                </label>
-                <br />
-                <label>
-                  <input type="checkbox" name="tail" value="tail" />
-                  Drzwi tylne z podjazdem
+                  Winda załadunkowa
                 </label>
                 <br />
                 <label>
                   <input type="checkbox" name="insurance" value="insurance" />
-                  Wysokie ubezpieczenie
+                  Podwyższone ubezpieczenie
+                </label>
+                <br />
+                <label>
+                  <input type="checkbox" name="weekend" value="weekend" />
+                  Dostawa weekend
                 </label>
               </fieldset>
 
               <button class="cta cta--primary" type="submit">Przelicz</button>
             </form>
             <div class="summary" aria-live="polite">
-              <h3>Szacowany koszt</h3>
-              <p class="lead" id="pricing-result">Wpisz parametry, aby zobaczyć koszt.</p>
-              <p class="text-muted">Stawka orientacyjna. Skontaktuj się z nami po finalną ofertę.</p>
+              <h3>Wynik wyceny</h3>
+              <p class="lead" id="quote-result">Wprowadź parametry, aby zobaczyć stawkę.</p>
+              <p class="text-muted">Ceny orientacyjne. Finalna stawka zależy od okien czasowych, wymaganego sprzętu i okolic dokumentowych.</p>
+              <div class="quote-history" aria-live="polite">
+                <h4 class="quote-history__title">Ostatnie wyceny</h4>
+                <ul class="quote-history__list" id="quote-history"></ul>
+              </div>
             </div>
           </div>
         </div>
@@ -145,29 +206,31 @@
     <footer class="footer section">
       <div class="container footer__inner">
         <section class="footer__stats" aria-label="Kluczowe liczby TransLogix">
-          <div class="stats">
-            <div class="stat">
-              <h3>850+</h3>
+          <ul class="stats">
+            <li class="stat">
+              <h3 data-stat="deliveries" data-value="550">612+</h3>
               <p class="text-muted">Udanych dostaw miesięcznie</p>
-            </div>
-            <div class="stat">
-              <h3>45</h3>
+            </li>
+            <li class="stat">
+              <h3 data-stat="vehicles" data-value="45">45</h3>
               <p class="text-muted">Pojazdów w ruchu</p>
-            </div>
-            <div class="stat">
-              <h3>17</h3>
+            </li>
+            <li class="stat">
+              <h3 data-stat="countries" data-value="27">27</h3>
               <p class="text-muted">Obsługiwanych krajów UE</p>
-            </div>
-          </div>
+            </li>
+          </ul>
         </section>
 
         <nav class="footer__nav" aria-label="Nawigacja w stopce">
           <div class="footer__grid">
-            <div class="footer__column">
-              <h2 class="footer__title">TransLogix</h2>
+            <div class="footer__column footer__brand">
+              <a href="index.html" class="brand brand--footer" aria-label="Strona główna TransLogix">
+                <img src="assets/img/logo/logo-translogix-light.svg" alt="" class="brand__logo brand__logo--light" />
+                <img src="assets/img/logo/logo-translogix-dark.svg" alt="" class="brand__logo brand__logo--dark" />
+              </a>
               <p class="footer__brand-text">
-                TransLogix wspiera ciągi dostaw w trybie 24/7, łącząc przewozy drogowe i zarządzanie zleceniami w jednym miejscu. Stawiamy na przewidywalność czasu dostaw i transparentne raportowanie
-                dla klientów B2B. Zespół operacyjny monitoruje każdy kurs, aby reagować na zmiany tras w czasie rzeczywistym.
+                TransLogix dostarcza nowoczesne rozwiązania transportowe 24/7 — real-time monitoring floty, przewozy krajowe i międzynarodowe oraz pełną transparentność operacyjną.
               </p>
             </div>
 

@@ -10,6 +10,7 @@ import { initGalleryFilters } from "./gallery-filters.js";
 import { initLightbox } from "./lightbox.js";
 import { initServicesFilters } from "./services-filters.js";
 import { initServiceDetail } from "./service-detail.js";
+import { initFooterStats } from "./stats.js";
 
 // Bootstraps all modules depending on available DOM hooks
 initNav();
@@ -24,3 +25,5 @@ initGalleryFilters();
 initLightbox();
 initServicesFilters();
 initServiceDetail();
+
+initFooterStats();
