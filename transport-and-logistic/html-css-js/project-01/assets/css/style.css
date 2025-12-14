@@ -1065,7 +1065,7 @@ html.theme-dark #quick-quote fieldset {
   align-items: flex-start;
 }
 .brand--footer .brand__logo {
-  width: 140px;
+  width: 152px;
   height: auto;
 }
 .footer__brand-text {
@@ -1237,7 +1237,7 @@ html.theme-dark #quick-quote fieldset {
   }
   .brand--footer .brand__logo {
     max-height: none;
-    height: 44px;
+    height: 104px;
     width: auto;
   }
   .footer__brand-text {
@@ -1264,7 +1264,7 @@ html.theme-dark #quick-quote fieldset {
 @media (min-width: 601px) {
   .brand--footer .brand__logo {
     max-height: none;
-    height: 100px;
+    height: 126px;
     width: auto;
   }
   .footer__title {
