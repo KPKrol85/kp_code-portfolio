@@ -103,6 +103,7 @@
       </div>
     </header>
 
+    <!-- MAIN CONTENT -->
     <main id="main">
       <section class="section">
         <div class="container stack reveal">
@@ -111,48 +112,330 @@
           <p class="lead">Od lekkich busów po zestawy Mega i chłodnie. Każdy pojazd z GPS, telematyką i pełnym serwisem.</p>
           <div class="filters" aria-label="Filtry floty">
             <button class="filter-chip" data-filter="all">Wszystko</button>
-            <button class="filter-chip" data-filter="bus">Busy</button>
-            <button class="filter-chip" data-filter="solo">Solówki</button>
-            <button class="filter-chip" data-filter="set">Zestawy</button>
+            <button class="filter-chip" data-filter="solo">Busy</button>
+            <button class="filter-chip" data-filter="truck">Ciężarówki</button>
             <button class="filter-chip" data-filter="chlodnia">Chłodnie</button>
+            <button class="filter-chip" data-filter="set">Zestawy</button>
           </div>
           <div class="fleet-grid" id="fleet-grid" aria-live="polite">
-            <article class="card" data-type="bus" data-load="1.2" data-purpose="express">
-              <img src="assets/img/van.svg" alt="Bus plandeka 10 palet" data-full="assets/img/van.svg" class="lightbox-trigger" />
-              <h3>Bus plandeka</h3>
-              <p>10 europalet, 1,2t ładowności, pasy i plandeka XL.</p>
-              <span class="badge">Express</span>
+            <!-- BUS DOSTAWCZY SOLO -->
+            <article class="card fleet-card" data-type="solo" data-load="6" data-purpose="uniwersalny">
+              <div class="fleet-card__media">
+                <div class="fleet-card__icon">
+                  <!-- ZMIANA: dodałem data-gallery="solo" + data-title (tytuł w lightboxie) -->
+                  <img class="lightbox-trigger" data-gallery="solo" data-title="Bus dostawczy" src="assets/img/svg/fleet-solo.svg" alt="Bus dostawczy – otwórz galerię" loading="lazy" />
+                </div>
+                <div class="fleet-card__brand" aria-hidden="true">
+                  <img class="logo logo--light" src="assets/img/logo/logo-translogix-light.svg" alt="" loading="lazy" />
+                  <img class="logo logo--dark" src="assets/img/logo/logo-translogix-dark.svg" alt="" loading="lazy" />
+                  <p class="fleet-card__brand-text">
+                    Transport krajowy i międzynarodowy
+                    <br />
+                    oparty na niezawodnej flocie
+                  </p>
+                </div>
+              </div>
+              <div class="fleet-card__content">
+                <h3>Bus dostawczy</h3>
+                <p class="fleet-card__summary">Ładowność do 3,5t, winda, idealny do dostaw miejskich.</p>
+                <span class="badge">Miejski</span>
+                <div class="fleet-card__single">
+                  <p class="fleet-card__lead">
+                    Lekki bus dostawczy do dystrybucji miejskiej i ostatniej mili. Winda ułatwia obsługę w punktach bez rampy, a kompaktowe wymiary pozwalają na sprawną obsługę centrów miast.
+                  </p>
+                  <div class="fleet-card__highlights">
+                    <div class="fleet-highlight">
+                      <span class="fleet-highlight__label">Ładowność</span>
+                      <span class="fleet-highlight__value">do 3,5 t</span>
+                    </div>
+                    <div class="fleet-highlight">
+                      <span class="fleet-highlight__label">Winda</span>
+                      <span class="fleet-highlight__value">1,5 t</span>
+                    </div>
+                    <div class="fleet-highlight">
+                      <span class="fleet-highlight__label">Palety</span>
+                      <span class="fleet-highlight__value">do 6</span>
+                    </div>
+                    <div class="fleet-highlight">
+                      <span class="fleet-highlight__label">Tryb</span>
+                      <span class="fleet-highlight__value">miejski</span>
+                    </div>
+                  </div>
+                  <div class="fleet-card__details">
+                    <h4>Szczegóły oferty</h4>
+                    <ul class="fleet-details">
+                      <li>
+                        <strong>Załadunek:</strong>
+                        tył + winda
+                      </li>
+                      <li>
+                        <strong>Obsługa:</strong>
+                        dostawy miejskie, punkty bez rampy
+                      </li>
+                      <li>
+                        <strong>Monitoring:</strong>
+                        GPS + telematyka
+                      </li>
+                      <li>
+                        <strong>Zastosowanie:</strong>
+                        last-mile, dystrybucja miejska, retail
+                      </li>
+                    </ul>
+                  </div>
+                  <div class="fleet-card__footer">
+                    <span class="badge badge--subtle">Miejski</span>
+                    <a class="btn btn--primary" href="order.html">Zamów wycenę</a>
+                  </div>
+                </div>
+              </div>
             </article>
-            <article class="card" data-type="chlodnia" data-load="1.0" data-purpose="chlodnia">
-              <img src="assets/img/refrigerated.svg" alt="Chłodnia bus" data-full="assets/img/refrigerated.svg" class="lightbox-trigger" />
-              <h3>Chłodnia bus</h3>
-              <p>Utrzymanie 2–8°C, rejestrator temperatury, podwójne drzwi.</p>
-              <span class="badge">Chłodnia</span>
+
+            <!-- CIĘŻARÓWKA PLANDEKA -->
+            <article class="card fleet-card" data-type="truck" data-load="1.2" data-purpose="express">
+              <div class="fleet-card__media">
+                <div class="fleet-card__icon">
+                  <img class="lightbox-trigger" data-gallery="truck" data-title="Ciężarówka plandeka" src="assets/img/svg/fleet-boxtruck-tarpaulin.svg" alt="Ciężarówka plandeka" loading="lazy" />
+                </div>
+                <div class="fleet-card__brand" aria-hidden="true">
+                  <img class="logo logo--light" src="assets/img/logo/logo-translogix-light.svg" alt="" loading="lazy" />
+                  <img class="logo logo--dark" src="assets/img/logo/logo-translogix-dark.svg" alt="" loading="lazy" />
+                  <p class="fleet-card__brand-text">
+                    Transport krajowy i międzynarodowy
+                    <br />
+                    oparty na niezawodnej flocie
+                  </p>
+                </div>
+              </div>
+              <div class="fleet-card__content">
+                <h3>Ciężarówka plandeka</h3>
+                <p class="fleet-card__summary">18 europalet, do 10t ładowności, pasy i plandeka XL.</p>
+                <span class="badge">Express</span>
+                <div class="fleet-card__single">
+                  <p class="fleet-card__lead">
+                    Uniwersalna ciężarówka plandeka do transportu krajowego i międzynarodowego. Większa przestrzeń ładunkowa umożliwia przewóz paletowych ładunków przy zachowaniu elastycznego
+                    załadunku i rozładunku.
+                  </p>
+                  <div class="fleet-card__highlights">
+                    <div class="fleet-highlight">
+                      <span class="fleet-highlight__label">Załadunek</span>
+                      <span class="fleet-highlight__value">boczny + tył</span>
+                    </div>
+                    <div class="fleet-highlight">
+                      <span class="fleet-highlight__label">Ładowność</span>
+                      <span class="fleet-highlight__value">do 10 t</span>
+                    </div>
+                    <div class="fleet-highlight">
+                      <span class="fleet-highlight__label">Europalety</span>
+                      <span class="fleet-highlight__value">do 18</span>
+                    </div>
+                    <div class="fleet-highlight">
+                      <span class="fleet-highlight__label">Zasięg</span>
+                      <span class="fleet-highlight__value">PL / UE</span>
+                    </div>
+                  </div>
+                  <div class="fleet-card__details">
+                    <h4>Szczegóły oferty</h4>
+                    <ul class="fleet-details">
+                      <li>
+                        <strong>Wyposażenie:</strong>
+                        pasy, narożniki, plandeka XL
+                      </li>
+                      <li>
+                        <strong>Monitoring:</strong>
+                        GPS + telematyka
+                      </li>
+                      <li>
+                        <strong>Bezpieczeństwo:</strong>
+                        regularny serwis
+                      </li>
+                      <li>
+                        <strong>Zastosowanie:</strong>
+                        transport paletowy, dystrybucja, trasy krajowe i UE
+                      </li>
+                    </ul>
+                  </div>
+                  <div class="fleet-card__footer">
+                    <span class="badge badge--subtle">Express</span>
+                    <a class="btn btn--primary" href="order.html">Zamów wycenę</a>
+                  </div>
+                </div>
+              </div>
             </article>
-            <article class="card" data-type="solo" data-load="6" data-purpose="uniwersalny">
-              <img src="assets/img/solo.svg" alt="Solówka 18 palet" data-full="assets/img/solo.svg" class="lightbox-trigger" />
-              <h3>Solówka 18 palet</h3>
-              <p>Ładowność 6t, windą 1,5t, idealna do dostaw miejskich.</p>
-              <span class="badge">Miejski</span>
+
+            <!-- CIĘŻARÓWKA CHŁODNIA -->
+            <article class="card fleet-card" data-type="chlodnia" data-load="10" data-purpose="chlodnia">
+              <div class="fleet-card__media">
+                <div class="fleet-card__icon">
+                  <img class="lightbox-trigger" data-gallery="chlodnia" data-title="Ciężarówka chłodnia" src="assets/img/svg/fleet-refrigerated.svg" alt="Ciężarówka chłodnia" loading="lazy" />
+                </div>
+                <div class="fleet-card__brand" aria-hidden="true">
+                  <img class="logo logo--light" src="assets/img/logo/logo-translogix-light.svg" alt="" loading="lazy" />
+                  <img class="logo logo--dark" src="assets/img/logo/logo-translogix-dark.svg" alt="" loading="lazy" />
+                  <p class="fleet-card__brand-text">
+                    Transport krajowy i międzynarodowy
+                    <br />
+                    oparty na niezawodnej flocie
+                  </p>
+                </div>
+              </div>
+              <div class="fleet-card__content">
+                <h3>Ciężarówka chłodnia</h3>
+                <p class="fleet-card__summary">18 europalet, chłodnia 2–8°C, rejestracja temperatury, plandeka XL.</p>
+                <span class="badge">Chłodnia</span>
+                <div class="fleet-card__single">
+                  <p class="fleet-card__lead">
+                    Transport paletowy w kontrolowanej temperaturze dla produktów wrażliwych. Chłodnia na bazie ciężarówki plandeka zapewnia większą ładowność, stabilne warunki 2–8°C i elastyczny
+                    załadunek.
+                  </p>
+                  <div class="fleet-card__highlights">
+                    <div class="fleet-highlight">
+                      <span class="fleet-highlight__label">Temperatura</span>
+                      <span class="fleet-highlight__value">2–8°C</span>
+                    </div>
+                    <div class="fleet-highlight">
+                      <span class="fleet-highlight__label">Rejestracja</span>
+                      <span class="fleet-highlight__value">logger</span>
+                    </div>
+                    <div class="fleet-highlight">
+                      <span class="fleet-highlight__label">Europalety</span>
+                      <span class="fleet-highlight__value">do 18</span>
+                    </div>
+                    <div class="fleet-highlight">
+                      <span class="fleet-highlight__label">Załadunek</span>
+                      <span class="fleet-highlight__value">boczny + tył</span>
+                    </div>
+                  </div>
+                  <div class="fleet-card__details">
+                    <h4>Szczegóły oferty</h4>
+                    <ul class="fleet-details">
+                      <li>
+                        <strong>Utrzymanie:</strong>
+                        2–8°C
+                      </li>
+                      <li>
+                        <strong>Wyposażenie:</strong>
+                        agregat chłodniczy, rejestrator temperatury, plandeka XL
+                      </li>
+                      <li>
+                        <strong>Monitoring:</strong>
+                        GPS + telematyka
+                      </li>
+                      <li>
+                        <strong>Zastosowanie:</strong>
+                        transport chłodniczy, paletowy, trasy krajowe i UE
+                      </li>
+                      <li>
+                        <strong>Ładowność:</strong>
+                        do 10 t
+                      </li>
+                      <li>
+                        <strong>Zasięg:</strong>
+                        PL / UE
+                      </li>
+                    </ul>
+                  </div>
+                  <div class="fleet-card__footer">
+                    <span class="badge badge--subtle">Chłodnia</span>
+                    <a class="btn btn--primary" href="order.html">Zamów wycenę</a>
+                  </div>
+                </div>
+              </div>
             </article>
-            <article class="card" data-type="set" data-load="24" data-purpose="dalsze">
-              <img src="assets/img/mega.svg" alt="Zestaw Mega 100 m3" data-full="assets/img/mega.svg" class="lightbox-trigger" />
-              <h3>Zestaw Mega</h3>
-              <p>100 m3, kurtyny XL, zabezpieczenia i monitoring GSM.</p>
-              <span class="badge">Linehaul</span>
+
+            <!-- ZESTAW MEGA -->
+            <article class="card fleet-card" data-type="set" data-load="24" data-purpose="dalsze">
+              <div class="fleet-card__media">
+                <div class="fleet-card__icon">
+                  <img class="lightbox-trigger" data-gallery="set" data-title="Zestaw Mega" src="assets/img/svg/fleet-mega-set.svg" alt="Zestaw Mega" loading="lazy" />
+                </div>
+                <div class="fleet-card__brand" aria-hidden="true">
+                  <img class="logo logo--light" src="assets/img/logo/logo-translogix-light.svg" alt="" loading="lazy" />
+                  <img class="logo logo--dark" src="assets/img/logo/logo-translogix-dark.svg" alt="" loading="lazy" />
+                  <p class="fleet-card__brand-text">
+                    Transport krajowy i międzynarodowy
+                    <br />
+                    oparty na niezawodnej flocie
+                  </p>
+                </div>
+              </div>
+              <div class="fleet-card__content">
+                <h3>Zestaw Mega</h3>
+                <p class="fleet-card__summary">100 m³, kurtyny XL, możliwość dopięcia dodatkowej przyczepy, zabezpieczenia i monitoring.</p>
+                <span class="badge">Linehaul</span>
+                <div class="fleet-card__single">
+                  <p class="fleet-card__lead">
+                    Zestaw Mega przeznaczony do transportu dalekobieżnego i bardzo dużych wolumenów. Konstrukcja zestawu umożliwia dopięcie dodatkowej przyczepy, co pozwala elastycznie zwiększyć
+                    kubaturę ładunku w zależności od potrzeb klienta. Kurtyny XL przyspieszają załadunek, a zaawansowane systemy zabezpieczeń wspierają bezpieczne trasy krajowe i międzynarodowe.
+                  </p>
+                  <div class="fleet-card__highlights">
+                    <div class="fleet-highlight">
+                      <span class="fleet-highlight__label">Kubatura</span>
+                      <span class="fleet-highlight__value">100 m³+</span>
+                    </div>
+                    <div class="fleet-highlight">
+                      <span class="fleet-highlight__label">Konfiguracja</span>
+                      <span class="fleet-highlight__value">zestaw + przyczepa</span>
+                    </div>
+                    <div class="fleet-highlight">
+                      <span class="fleet-highlight__label">Załadunek</span>
+                      <span class="fleet-highlight__value">kurtyny XL</span>
+                    </div>
+                    <div class="fleet-highlight">
+                      <span class="fleet-highlight__label">Zasięg</span>
+                      <span class="fleet-highlight__value">UE</span>
+                    </div>
+                  </div>
+                  <div class="fleet-card__details">
+                    <h4>Szczegóły oferty</h4>
+                    <ul class="fleet-details">
+                      <li>
+                        <strong>Zabezpieczenia:</strong>
+                        pasy, belki, podłoga antypoślizgowa
+                      </li>
+                      <li>
+                        <strong>Monitoring:</strong>
+                        GPS + telematyka
+                      </li>
+                      <li>
+                        <strong>Elastyczność:</strong>
+                        możliwość dopięcia dodatkowej przyczepy
+                      </li>
+                      <li>
+                        <strong>Zastosowanie:</strong>
+                        długie trasy, hub-to-hub, bardzo duże wolumeny
+                      </li>
+                    </ul>
+                  </div>
+                  <div class="fleet-card__footer">
+                    <span class="badge badge--subtle">Linehaul</span>
+                    <a class="btn btn--primary" href="order.html">Zamów wycenę</a>
+                  </div>
+                </div>
+              </div>
             </article>
           </div>
         </div>
       </section>
     </main>
 
+    <!-- LIGHTBOX -->
     <div class="lightbox" role="dialog" aria-modal="true" aria-hidden="true" hidden>
       <div class="lightbox__dialog">
-        <img class="lightbox__img" alt="" src="" />
+        <h3 class="lightbox__title">Galeria pojazdu</h3>
+
+
+        <div class="lightbox__hero-frame" aria-hidden="true">
+  <img class="lightbox__hero" alt="" src="" />
+</div>
+
+
+
+
+        <div class="lightbox__grid" role="list"></div>
         <div class="lightbox__controls">
-          <button class="btn" data-lightbox-prev>Poprzednie</button>
-          <button class="btn" data-lightbox-next>Następne</button>
-          <button class="btn" data-lightbox-close>Zamknij</button>
+          <button class="btn" type="button" data-lightbox-prev>Poprzednie</button>
+          <button class="btn" type="button" data-lightbox-close>Zamknij</button>
+          <button class="btn" type="button" data-lightbox-next>Następne</button>
         </div>
       </div>
     </div>
@@ -213,7 +496,7 @@
               <ul class="footer__list footer__list--meta">
                 <li>TransLogix Sp. z o.o.</li>
                 <li>ul. Marynarki Wojennej 12, 33-100 Tarnów</li>
-                <li><a href="mailto:kp_code_@gmail.com">kp_code_@gmail.com</a></li>
+                <li><a href="mailto:kontakt@kp-code.pl">kontakt@kp-code.pl</a></li>
                 <li><a href="tel:+48533537091">+48 533 537 091</a></li>
               </ul>
             </div>
