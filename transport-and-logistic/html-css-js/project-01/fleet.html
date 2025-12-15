@@ -418,27 +418,33 @@
       </section>
     </main>
 
-    <!-- LIGHTBOX -->
-    <div class="lightbox" role="dialog" aria-modal="true" aria-hidden="true" hidden>
-      <div class="lightbox__dialog">
-        <h3 class="lightbox__title">Galeria pojazdu</h3>
+  <!-- LIGHTBOX -->
+<div class="lightbox" role="dialog" aria-modal="true" aria-hidden="true" hidden>
+  <div class="lightbox__dialog">
+    <h3 class="lightbox__title">Galeria pojazdu</h3>
 
+    <!-- CLOSE: osobny byt -->
+    <button class="btn lightbox__close" type="button" data-lightbox-close aria-label="Zamknij"></button>
 
-        <div class="lightbox__hero-frame" aria-hidden="true">
-  <img class="lightbox__hero" alt="" src="" />
+    <div class="lightbox__hero-frame" aria-hidden="true">
+      <img class="lightbox__hero" alt="" src="" />
+    </div>
+
+    <div class="lightbox__grid" role="list"></div>
+
+    <div class="lightbox__controls">
+      <button class="btn" type="button" data-lightbox-prev aria-label="Poprzednie"></button>
+      <button class="btn" type="button" data-lightbox-next aria-label="Następne"></button>
+    </div>
+
+    <!-- ZOOM overlay (lightbox w lightboxie) -->
+    <div class="lightbox__zoom" aria-hidden="true" hidden>
+      <button class="lightbox__zoom-close" type="button" aria-label="Zamknij podgląd"></button>
+      <img class="lightbox__zoom-img" alt="" src="" />
+    </div>
+  </div>
 </div>
 
-
-
-
-        <div class="lightbox__grid" role="list"></div>
-        <div class="lightbox__controls">
-          <button class="btn" type="button" data-lightbox-prev>Poprzednie</button>
-          <button class="btn" type="button" data-lightbox-close>Zamknij</button>
-          <button class="btn" type="button" data-lightbox-next>Następne</button>
-        </div>
-      </div>
-    </div>
 
     <!-- FOOTER -->
     <footer class="footer section">
