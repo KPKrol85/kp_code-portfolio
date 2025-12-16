@@ -1,6 +1,7 @@
 import { initNav } from "./nav.js";
 import { initCompactHeader } from "./compact-header.js";
 import { initThemeToggle } from "./theme.js";
+import { initDemoConsent } from "./demo-consent.js";
 import { applyAriaCurrent } from "./aria-current.js";
 import { initTabs } from "./tabs.js";
 import { initAccordion } from "./accordion-faq.js";
@@ -16,6 +17,7 @@ import { initFooterStats } from "./stats.js";
 initNav();
 initCompactHeader();
 initThemeToggle();
+initDemoConsent();
 applyAriaCurrent();
 initReveal();
 initTabs();
