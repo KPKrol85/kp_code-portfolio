@@ -1,4 +1,4 @@
-const CACHE_NAME = "translogix-v1";
+const CACHE_NAME = "translogix-v1.01";
 
 const PRECACHE_URLS = [
   "/",
