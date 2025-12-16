@@ -29,3 +29,14 @@ initServicesFilters();
 initServiceDetail();
 
 initFooterStats();
+
+if (
+  "serviceWorker" in navigator &&
+  (location.protocol === "https:" || location.hostname === "localhost")
+) {
+  window.addEventListener("load", () => {
+    navigator.serviceWorker.register("/sw.js").catch(() => {
+      // Ignore registration errors to avoid impacting page load.
+    });
+  });
+}

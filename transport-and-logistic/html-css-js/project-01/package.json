@@ -1,0 +1,18 @@
+{
+  "name": "translogix",
+  "version": "1.0.0",
+  "private": true,
+  "description": "TransLogix – B2B transport & logistics demo website (HTML, CSS, JS)",
+  "author": "KP_Code_",
+  "license": "UNLICENSED",
+  "scripts": {
+    "css:min": "postcss assets/css/style.css -o assets/css/style.min.css",
+    "css:watch": "postcss assets/css/style.css -o assets/css/style.min.css --watch",
+    "build": "npm run css:min"
+  },
+  "devDependencies": {
+    "cssnano": "^7.1.2",
+    "postcss": "^8.5.6",
+    "postcss-cli": "^11.0.1"
+  }
+}

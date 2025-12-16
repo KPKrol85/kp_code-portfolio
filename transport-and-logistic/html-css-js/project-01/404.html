@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="pl" class="theme-light">
+  <head>
+    <!-- Podstawowe metadane -->
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <title>404 | TransLogix</title>
+    <meta name="description" content="Strona, której szukasz, nie istnieje lub została przeniesiona. Wróć do strony głównej TransLogix lub przejdź do oferty usług." />
+    <meta name="robots" content="noindex,follow" />
+
+    <meta name="color-scheme" content="light dark" />
+    <meta name="theme-color" content="#020617" />
+    <meta name="theme-color" media="(prefers-color-scheme: light)" content="#ffffff" />
+    <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#020617" />
+
+    <!-- Ikony i manifest -->
+    <link rel="icon" type="image/png" href="/assets/icons/favicon-96x96.png" sizes="96x96" />
+    <link rel="icon" type="image/svg+xml" href="/assets/icons/favicon.svg" />
+    <link rel="shortcut icon" href="/assets/icons/favicon.ico" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/assets/icons/apple-touch-icon.png" />
+    <meta name="apple-mobile-web-app-title" content="TransLogix" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <link rel="manifest" href="/assets/icons/site.webmanifest" />
+
+    <!-- Preload + CSS -->
+    <link rel="preload" href="/assets/css/style.min.css" as="style" />
+    <link rel="stylesheet" href="/assets/css/style.min.css" />
+  </head>
+
+  <!-- BODY -->
+  <body>
+    <a class="skip-link" href="#main">Przejdź do treści głównej</a>
+
+    <!-- HEADER -->
+    <header>
+      <div class="header-inner">
+        <a href="index.html" class="brand">
+          <img src="assets/img/logo/logo-translogix-light.svg" alt="" class="brand__logo brand__logo--light" />
+          <img src="assets/img/logo/logo-translogix-dark.svg" alt="" class="brand__logo brand__logo--dark" />
+          <span class="brand__text">TransLogix</span>
+        </a>
+        <nav class="nav" aria-label="Główna nawigacja">
+          <button class="nav__toggle" aria-expanded="false" aria-controls="mobile-nav" aria-label="Otwórz menu">
+            <span aria-hidden="true"></span>
+          </button>
+          <div id="mobile-nav" class="nav__panel" hidden>
+            <div class="nav__links">
+              <a href="index.html">Start</a>
+              <a href="services.html">Usługi</a>
+              <a href="fleet.html">Flota</a>
+              <a href="pricing.html">Cennik</a>
+              <a href="contact.html">Kontakt</a>
+            </div>
+            <a class="btn nav__cta nav__order-btn" href="contact.html#quote">Zamów</a>
+          </div>
+        </nav>
+        <div class="header-actions">
+          <button class="theme-toggle" aria-pressed="false" aria-label="Przełącz tryb kolorów">
+            <img src="assets/img/svg/sun.svg" alt="" class="icon-sun" aria-hidden="true" />
+            <img src="assets/img/svg/moon.svg" alt="" class="icon-moon" aria-hidden="true" />
+          </button>
+          <a class="btn" href="contact.html#quote">Zamów</a>
+        </div>
+      </div>
+    </header>
+
+    <!-- MAIN -->
+    <main id="main">
+      <section class="section">
+        <div class="container stack reveal">
+          <p class="eyebrow">Błąd 404</p>
+          <h1>Nie znaleziono strony</h1>
+          <p class="lead">Adres mógł zostać zmieniony lub strona nie istnieje. Wróć do strony głównej lub skorzystaj z menu powyżej.</p>
+          <hr class="divider" aria-hidden="true" />
+          <div class="hero__actions">
+            <a class="cta cta--primary" href="index.html">Wróć na start</a>
+            <a class="cta cta--ghost" href="services.html">Przejdź do usług</a>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <script type="module" src="assets/js/main.js"></script>
+  </body>
+</html>
