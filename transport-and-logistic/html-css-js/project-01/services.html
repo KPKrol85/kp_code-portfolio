@@ -10,21 +10,24 @@
     <meta name="robots" content="index,follow" />
     <meta name="color-scheme" content="light dark" />
     <meta name="theme-color" content="#020617" />
+    <meta name="theme-color" media="(prefers-color-scheme: light)" content="#ffffff" />
+    <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#020617" />
 
     <!-- Canonical -->
     <link rel="canonical" href="https://transport-project-01.netlify.app/services.html" />
 
     <!-- Ikony i manifest -->
-    <link rel="icon" type="image/x-icon" href="assets/favicons/favicon.ico" />
-    <link rel="icon" type="image/png" sizes="32x32" href="assets/favicons/favicon-32x32.png" />
-    <link rel="icon" type="image/png" sizes="16x16" href="assets/favicons/favicon-16x16.png" />
-    <link rel="apple-touch-icon" sizes="180x180" href="assets/favicons/apple-touch-icon.png" />
-    <link rel="mask-icon" href="assets/favicons/safari-pinned-tab.svg" color="#0ea5e9" />
-    <link rel="manifest" href="site.webmanifest" />
+    <link rel="icon" type="image/png" href="/assets/icons/favicon-96x96.png" sizes="96x96" />
+    <link rel="icon" type="image/svg+xml" href="/assets/icons/favicon.svg" />
+    <link rel="shortcut icon" href="/assets/icons/favicon.ico" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/assets/icons/apple-touch-icon.png" />
+    <meta name="apple-mobile-web-app-title" content="TransLogix" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <link rel="manifest" href="/assets/icons/site.webmanifest" />
 
     <!-- Preload + CSS -->
-    <link rel="preload" href="assets/css/style.css" as="style" />
-    <link rel="stylesheet" href="assets/css/style.css" />
+    <link rel="preload" href="/assets/css/style.css" as="style" />
+    <link rel="stylesheet" href="/assets/css/style.css" />
 
     <!-- Open Graph -->
     <meta property="og:type" content="website" />
@@ -33,13 +36,16 @@
     <meta property="og:url" content="https://transport-project-01.netlify.app/services.html" />
     <meta property="og:site_name" content="TransLogix" />
     <meta property="og:locale" content="pl_PL" />
-    <meta property="og:image" content="https://transport-project-01.netlify.app/assets/img/og/translogix-og.jpg" />
+    <meta property="og:image" content="https://transport-project-01.netlify.app/assets/img/og-img/og-1200x630.jpg" />
+    <meta property="og:image:alt" content="TransLogix – transport and logistics B2B" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
 
     <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content="Usługi transportowe | TransLogix" />
     <meta name="twitter:description" content="Lista usług transportowych TransLogix: transport krajowy, międzynarodowy i usługi ekspresowe." />
-    <meta name="twitter:image" content="https://transport-project-01.netlify.app/assets/img/og/translogix-og.jpg" />
+    <meta name="twitter:image" content="https://transport-project-01.netlify.app/assets/img/og-img/og-1200x630.jpg" />
 
     <!-- JSON-LD – CollectionPage (lista usług) -->
     <script type="application/ld+json">
@@ -72,7 +78,7 @@
     <header>
       <div class="header-inner">
         <a href="index.html" class="brand">
-          <img src="assets/img//logo/logo-translogix-light.svg" alt="" class="brand__logo brand__logo--light" />
+          <img src="assets/img/logo/logo-translogix-light.svg" alt="" class="brand__logo brand__logo--light" />
           <img src="assets/img/logo/logo-translogix-dark.svg" alt="" class="brand__logo brand__logo--dark" />
           <span class="brand__text">TransLogix</span>
         </a>
@@ -101,7 +107,9 @@
       </div>
     </header>
 
+    <!-- MAIN -->
     <main id="main">
+      <!--SECTION SERVICES-->
       <section class="section">
         <div class="container stack reveal">
           <p class="eyebrow">Oferta</p>
@@ -115,8 +123,18 @@
             <button class="filter-chip" data-filter="adr">ADR</button>
             <button class="filter-chip" data-filter="chlodnia">Chłodnia</button>
           </div>
+
           <label for="priceRange">Maksymalna cena (PLN)</label>
           <input type="range" id="priceRange" min="1000" max="10000" step="500" value="10000" />
+
+          <p class="text-muted">
+            Maksymalnie:
+            <strong>
+              <span id="priceValue"></span>
+              PLN
+            </strong>
+          </p>
+
           <div class="filters">
             <label for="sort">Sortowanie</label>
             <select id="sort">
@@ -131,22 +149,31 @@
         </div>
       </section>
 
+      <!--SECTION TABS-->
       <section class="section">
         <div class="container reveal">
           <div class="tabs" data-tabs>
             <div class="tablist" role="tablist" aria-label="Zestawienia usług">
               <button role="tab" aria-selected="true" aria-controls="tab1" id="tab-btn1">Najpopularniejsze</button>
-              <button role="tab" aria-selected="false" aria-controls="tab2" id="tab-btn2">Czas realizacji</button>
+              <button role="tab" aria-selected="false" aria-controls="tab2" id="tab-btn2">Proces</button>
               <button role="tab" aria-selected="false" aria-controls="tab3" id="tab-btn3">Bezpieczeństwo</button>
+              <button role="tab" aria-selected="false" aria-controls="tab4" id="tab-btn4">Ładunki</button>
+              <button role="tab" aria-selected="false" aria-controls="tab5" id="tab-btn5">Dokumenty &amp; SLA</button>
             </div>
             <div id="tab1" role="tabpanel" tabindex="0" aria-labelledby="tab-btn1" class="tabpanel">
-              <p>Ekspresowe przewozy do Niemiec i Francji, chłodnia EU i dedykowane ADR Polska. Najczęściej wybierane przez e-commerce, pharma i automotive.</p>
+              <p>Ekspresowe przewozy do Niemiec i Francji, chłodnia EU oraz ADR Polska. Wybierane przez e-commerce, pharma, automotive i high-value retail.</p>
             </div>
             <div id="tab2" role="tabpanel" tabindex="0" aria-labelledby="tab-btn2" class="tabpanel" hidden>
-              <p>Express door-to-door z czasem poniżej 18h na głównych trasach UE. Track &amp; trace plus raportowanie statusów co 2h.</p>
+              <p>Onboarding w 24h, stałe sloty załadunku, planowanie tras, check-call co 2-3h i raport dostarczenia z POD/CMR w D+0.</p>
             </div>
             <div id="tab3" role="tabpanel" tabindex="0" aria-labelledby="tab-btn3" class="tabpanel" hidden>
-              <p>Standard ADR, monitoring GPS, kontrola temperatury, ubezpieczenie cargo i procedury ISO 28000 dla bezpieczeństwa ładunku.</p>
+              <p>Standard ADR, monitoring GPS, czujniki drzwi, kontrola temperatury, plomby i audyty ISO 28000. Alerty odstępstw w czasie rzeczywistym.</p>
+            </div>
+            <div id="tab4" role="tabpanel" tabindex="0" aria-labelledby="tab-btn4" class="tabpanel" hidden>
+              <p>Palety, FTL/LTL, chłodnie 2-8°C, ADR kl. 3/6/8, ładunki high-value, med-tech i e-commerce z dedykowanymi slotami.</p>
+            </div>
+            <div id="tab5" role="tabpanel" tabindex="0" aria-labelledby="tab-btn5" class="tabpanel" hidden>
+              <p>CMR, karty charakterystyki, GDP SOP, odprawy celne i KPI: OTIF, czas reakcji, temperatura, raporty PDF/CSV dostarczane cyklicznie.</p>
             </div>
           </div>
         </div>
@@ -200,7 +227,7 @@
               <ul class="footer__list">
                 <li><a href="contact.html">Kontakt</a></li>
                 <li><a href="contact.html#quote">Szybka wycena</a></li>
-                <li><a href="#faq">FAQ</a></li>
+                <li><a href="contact.html#faq">FAQ</a></li>
               </ul>
             </div>
 
@@ -247,7 +274,7 @@
         </div>
       </div>
     </footer>
-
+    <!--SCRIPT-->
     <script type="module" src="assets/js/main.js"></script>
   </body>
 </html>

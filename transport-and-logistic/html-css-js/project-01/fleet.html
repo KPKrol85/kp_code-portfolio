@@ -17,12 +17,13 @@
     <link rel="canonical" href="https://transport-project-01.netlify.app/fleet.html" />
 
     <!-- Ikony i manifest -->
-    <link rel="icon" type="image/x-icon" href="assets/favicons/favicon.ico" />
-    <link rel="icon" type="image/png" sizes="32x32" href="assets/favicons/favicon-32x32.png" />
-    <link rel="icon" type="image/png" sizes="16x16" href="assets/favicons/favicon-16x16.png" />
-    <link rel="apple-touch-icon" sizes="180x180" href="assets/favicons/apple-touch-icon.png" />
-    <link rel="mask-icon" href="assets/favicons/safari-pinned-tab.svg" color="#0ea5e9" />
-    <link rel="manifest" href="site.webmanifest" />
+    <link rel="icon" type="image/png" href="/assets/icons/favicon-96x96.png" sizes="96x96" />
+    <link rel="icon" type="image/svg+xml" href="/assets/icons/favicon.svg" />
+    <link rel="shortcut icon" href="/assets/icons/favicon.ico" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/assets/icons/apple-touch-icon.png" />
+    <meta name="apple-mobile-web-app-title" content="TransLogix" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <link rel="manifest" href="/assets/icons/site.webmanifest" />
 
     <!-- Preload + CSS -->
     <link rel="preload" href="assets/css/style.css" as="style" />
@@ -35,7 +36,10 @@
     <meta property="og:url" content="https://transport-project-01.netlify.app/fleet.html" />
     <meta property="og:site_name" content="TransLogix" />
     <meta property="og:locale" content="pl_PL" />
-    <meta property="og:image" content="https://transport-project-01.netlify.app/assets/img/og/translogix-og.jpg" />
+    <meta property="og:image" content="https://transport-project-01.netlify.app/assets/img/og-img/og-1200x630.jpg" />
+    <meta property="og:image:alt" content="TransLogix – transport and logistics B2B" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
 
     <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image" />
@@ -419,9 +423,9 @@
     </main>
 
   <!-- LIGHTBOX -->
-<div class="lightbox" role="dialog" aria-modal="true" aria-hidden="true" hidden>
+<div class="lightbox" role="dialog" aria-modal="true" aria-hidden="true" aria-labelledby="lightbox-title" hidden>
   <div class="lightbox__dialog">
-    <h3 class="lightbox__title">Galeria pojazdu</h3>
+    <h3 class="lightbox__title" id="lightbox-title">Galeria pojazdu</h3>
 
     <!-- CLOSE: osobny byt -->
     <button class="btn lightbox__close" type="button" data-lightbox-close aria-label="Zamknij"></button>
@@ -493,7 +497,7 @@
               <ul class="footer__list">
                 <li><a href="contact.html">Kontakt</a></li>
                 <li><a href="contact.html#quote">Szybka wycena</a></li>
-                <li><a href="#faq">FAQ</a></li>
+                <li><a href="contact.html#faq">FAQ</a></li>
               </ul>
             </div>
 

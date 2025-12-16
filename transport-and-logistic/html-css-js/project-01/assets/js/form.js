@@ -61,7 +61,7 @@ function validateField(input) {
   return true;
 }
 
-function attachValidation(form, { onValid, resetOnValid = true } = {}) {
+function attachValidation(form, { onValid, resetOnValid = true, allowNativeSubmit = false } = {}) {
   const inputs = form.querySelectorAll("input, select, textarea");
   inputs.forEach((input) => {
     input.addEventListener("blur", () => validateField(input));
@@ -89,6 +89,11 @@ function attachValidation(form, { onValid, resetOnValid = true } = {}) {
 
     if (typeof onValid === "function") {
       onValid();
+      return;
+    }
+
+    if (allowNativeSubmit) {
+      form.submit();
       return;
     }
 
@@ -205,7 +210,15 @@ function initPricingForm() {
 function initContactForm() {
   const form = document.getElementById("contact-form");
   if (!form) return;
-  attachValidation(form);
+  const success = document.getElementById("contact-success");
+  const params = new URLSearchParams(window.location.search);
+  if (params.get("success") === "1" && success) {
+    success.hidden = false;
+    success.tabIndex = -1;
+    success.focus?.();
+  }
+
+  attachValidation(form, { allowNativeSubmit: true });
 }
 
 function renderQuoteHistory(listEl) {
