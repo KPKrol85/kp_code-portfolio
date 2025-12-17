@@ -1,5 +1,5 @@
 function renderInfoPage({ title, body }) {
-  const app = document.getElementById('app');
+  const app = document.getElementById("app");
   app.innerHTML = `
     <div class="landing">
       <header class="container navbar">
@@ -21,7 +21,7 @@ function renderInfoPage({ title, body }) {
 }
 
 function renderLogin() {
-  const app = document.getElementById('app');
+  const app = document.getElementById("app");
   app.innerHTML = `
     <main class="container section" id="main-content">
       <div class="hero-card" style="max-width: 520px; margin: 40px auto;">
@@ -47,73 +47,85 @@ function renderLogin() {
     </main>
   `;
 
-  const form = document.getElementById('loginForm');
-  form.addEventListener('submit', (e) => {
+  const form = document.getElementById("loginForm");
+  form.addEventListener("submit", (e) => {
     e.preventDefault();
     const email = form.email.value;
     const password = form.password.value;
-    if (!email || password.length < 4) { Toast.show('Podaj email i hasło (min 4 znaki)'); return; }
-    const name = email.split('@')[0];
+    if (!email || password.length < 4) {
+      Toast.show("Podaj email i hasło (min 4 znaki)");
+      return;
+    }
+    const name = email.split("@")[0];
     FleetStore.login({ email, name });
-    Toast.show('Zalogowano', 'success');
-    window.location.hash = '#/app';
+    Toast.show("Zalogowano", "success");
+    const intended = FleetStorage.get("fleet-intended-route", "/app");
+    FleetStorage.remove("fleet-intended-route");
+    window.location.hash = `#${intended}`;
   });
-  document.getElementById('demoLogin').addEventListener('click', () => {
-    FleetStore.login({ email: 'demo@fleetops.app', name: 'Demo User' });
-    window.location.hash = '#/app';
+  document.getElementById("demoLogin").addEventListener("click", () => {
+    FleetStore.login({ email: "demo@fleetops.app", name: "Demo User" });
+    const intended = FleetStorage.get("fleet-intended-route", "/app");
+    FleetStorage.remove("fleet-intended-route");
+    window.location.hash = `#${intended}`;
   });
 }
 
 function routeTo(hash) {
-  const path = hash.replace('#', '') || '/';
-  const requiresAuth = path.startsWith('/app');
+  const path = hash.replace("#", "") || "/";
+  const requiresAuth = path.startsWith("/app");
   if (requiresAuth && !FleetStore.state.auth.isAuthenticated) {
+    FleetStorage.set("fleet-intended-route", path); // zapamiętaj cel wejścia
     window.location.hash = "#/login";
     return;
   }
+  if (path.startsWith("/app")) {
+    FleetStorage.set("fleet-last-route", path);
+  }
+
 
   switch (path) {
-    case '/':
+    case "/":
       renderLanding();
       break;
-    case '/login':
+    case "/login":
       renderLogin();
       break;
-    case '/about':
-      renderInfoPage({ title: 'About FleetOps', body: '<p>FleetOps to koncepcja centrum operacji transportu. Ten projekt to front-end demo inspirowane Linear.</p>' });
+    case "/about":
+      renderInfoPage({ title: "About FleetOps", body: "<p>FleetOps to koncepcja centrum operacji transportu. Ten projekt to front-end demo inspirowane Linear.</p>" });
       break;
-    case '/contact':
-      renderInfoPage({ title: 'Contact', body: '<p>Email: contact@fleetops.app<br/>Telefon: +48 600 200 100</p>' });
+    case "/contact":
+      renderInfoPage({ title: "Contact", body: "<p>Email: contact@fleetops.app<br/>Telefon: +48 600 200 100</p>" });
       break;
-    case '/privacy':
-      renderInfoPage({ title: 'Privacy Policy', body: '<p>Szanujemy prywatność. Dane demo trzymane są lokalnie (localStorage). Brak backendu.</p>' });
+    case "/privacy":
+      renderInfoPage({ title: "Privacy Policy", body: "<p>Szanujemy prywatność. Dane demo trzymane są lokalnie (localStorage). Brak backendu.</p>" });
       break;
-    case '/terms':
-      renderInfoPage({ title: 'Terms of Service', body: '<p>FleetOps demo dostarczone “as-is” wyłącznie do celów portfolio.</p>' });
+    case "/terms":
+      renderInfoPage({ title: "Terms of Service", body: "<p>FleetOps demo dostarczone “as-is” wyłącznie do celów portfolio.</p>" });
       break;
-    case '/cookies':
-      renderInfoPage({ title: 'Cookies', body: '<p>Używamy jedynie localStorage na potrzeby preferencji i mock danych.</p>' });
+    case "/cookies":
+      renderInfoPage({ title: "Cookies", body: "<p>Używamy jedynie localStorage na potrzeby preferencji i mock danych.</p>" });
       break;
-    case '/app':
-      renderAppShell('Overview', dashboardView());
+    case "/app":
+      renderAppShell("Overview", dashboardView());
       break;
-    case '/app/orders':
-      renderAppShell('Orders', ordersView());
+    case "/app/orders":
+      renderAppShell("Orders", ordersView());
       break;
-    case '/app/fleet':
-      renderAppShell('Fleet', fleetView());
+    case "/app/fleet":
+      renderAppShell("Fleet", fleetView());
       break;
-    case '/app/drivers':
-      renderAppShell('Drivers', driversView());
+    case "/app/drivers":
+      renderAppShell("Drivers", driversView());
       break;
-    case '/app/reports':
-      renderAppShell('Reports', reportsView());
+    case "/app/reports":
+      renderAppShell("Reports", reportsView());
       break;
-    case '/app/settings':
-      renderAppShell('Settings', settingsView());
+    case "/app/settings":
+      renderAppShell("Settings", settingsView());
       break;
     default:
-      window.location.hash = '#/';
+      window.location.hash = "#/";
       renderLanding();
   }
 }
