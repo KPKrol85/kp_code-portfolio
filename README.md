@@ -34,16 +34,16 @@ Each project belongs to a **specific industry**, ensuring realistic business con
 
 ## 🌐 Live Demos
 
-All completed frontend projects are deployed on **Netlify** and publicly available:
+Completed and actively developed frontend projects are deployed on **Netlify** and publicly available:
 
-- Construction — Project 01  
-- Construction — Project 02  
-- Gastronomy — Project 01  
-- Gastronomy — Project 02  
-- Tourism — Project 01  
-- Tourism — Project 02  
-- Transport — Project 01  
-- Transport — Project 02  
+- [Construction — Project 01](https://construction-project-01.netlify.app/)
+- [Construction — Project 02](https://construction-project-02.netlify.app/)
+- [Gastronomy — Project 01](https://gastronomy-project-01.netlify.app/)
+- [Gastronomy — Project 02](https://gastronomy-project-02.netlify.app/)
+- [Tourism — Project 01](https://tourism-project-01.netlify.app/)
+- [Tourism — Project 02](https://tourism-project-02.netlify.app/)
+- [Transport — Project 01](https://transport-project-01.netlify.app/)
+- [Transport — Project 02](https://transport-project-02.netlify.app/)
 
 *(More projects are added continuously.)*
 
