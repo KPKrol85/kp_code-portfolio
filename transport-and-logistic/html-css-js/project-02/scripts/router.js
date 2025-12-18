@@ -1,3 +1,4 @@
+
 function renderInfoPage({ title, body }) {
   const app = document.getElementById("app");
   app.innerHTML = `
@@ -63,6 +64,7 @@ function renderLogin() {
     FleetStorage.remove("fleet-intended-route");
     window.location.hash = `#${intended}`;
   });
+
   document.getElementById("demoLogin").addEventListener("click", () => {
     FleetStore.login({ email: "demo@fleetops.app", name: "Demo User" });
     const intended = FleetStorage.get("fleet-intended-route", "/app");
@@ -74,15 +76,16 @@ function renderLogin() {
 function routeTo(hash) {
   const path = hash.replace("#", "") || "/";
   const requiresAuth = path.startsWith("/app");
+
   if (requiresAuth && !FleetStore.state.auth.isAuthenticated) {
-    FleetStorage.set("fleet-intended-route", path); // zapamiętaj cel wejścia
+    FleetStorage.set("fleet-intended-route", path);
     window.location.hash = "#/login";
     return;
   }
+
   if (path.startsWith("/app")) {
     FleetStorage.set("fleet-last-route", path);
   }
-
 
   switch (path) {
     case "/":
@@ -92,19 +95,34 @@ function routeTo(hash) {
       renderLogin();
       break;
     case "/about":
-      renderInfoPage({ title: "About FleetOps", body: "<p>FleetOps to koncepcja centrum operacji transportu. Ten projekt to front-end demo inspirowane Linear.</p>" });
+      renderInfoPage({
+        title: "About FleetOps",
+        body: "<p>FleetOps to koncepcja centrum operacji transportu. Ten projekt to front-end demo inspirowane Linear.</p>",
+      });
       break;
     case "/contact":
-      renderInfoPage({ title: "Contact", body: "<p>Email: contact@fleetops.app<br/>Telefon: +48 600 200 100</p>" });
+      renderInfoPage({
+        title: "Contact",
+        body: "<p>Email: contact@fleetops.app<br/>Telefon: +48 600 200 100</p>",
+      });
       break;
     case "/privacy":
-      renderInfoPage({ title: "Privacy Policy", body: "<p>Szanujemy prywatność. Dane demo trzymane są lokalnie (localStorage). Brak backendu.</p>" });
+      renderInfoPage({
+        title: "Privacy Policy",
+        body: "<p>Szanujemy prywatność. Dane demo trzymane są lokalnie (localStorage). Brak backendu.</p>",
+      });
       break;
     case "/terms":
-      renderInfoPage({ title: "Terms of Service", body: "<p>FleetOps demo dostarczone “as-is” wyłącznie do celów portfolio.</p>" });
+      renderInfoPage({
+        title: "Terms of Service",
+        body: "<p>FleetOps demo dostarczone “as-is” wyłącznie do celów portfolio.</p>",
+      });
       break;
     case "/cookies":
-      renderInfoPage({ title: "Cookies", body: "<p>Używamy jedynie localStorage na potrzeby preferencji i mock danych.</p>" });
+      renderInfoPage({
+        title: "Cookies",
+        body: "<p>Używamy jedynie localStorage na potrzeby preferencji i mock danych.</p>",
+      });
       break;
     case "/app":
       renderAppShell("Overview", dashboardView());
