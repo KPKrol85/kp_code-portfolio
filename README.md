@@ -65,6 +65,25 @@ Projects are organized by:
 
 **Industry → Technology Stack → Project**
 
+industry/
+├─ html-css-js/
+├─ tailwind/
+├─ react/
+└─ fullstack/
+
+---
+
+Each project is fully self-contained and documented.
+
+---
+
+## 👤 Author & Brand
+
+**Author:** Kamil Król  
+**Brand:** KP_Code  
+**Focus:** Professional frontend & web application development
+
+This repository represents an evolving personal brand and a long-term commitment to high-quality software engineering.
 
 ---
 
