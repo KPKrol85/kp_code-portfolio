@@ -1,111 +1,137 @@
-````markdown
-# Construction Project 01 — Responsive Demo Website
+## 🇬🇧 English version
 
-A fully responsive and accessible demo website for a construction company, built to demonstrate professional front-end practices in HTML, CSS, and JavaScript.
+# SolidCraft — Construction Company Website (Demo)
 
-🔗 **Live Demo:** [construction-project-01.netlify.app](https://construction-project-01.netlify.app)
+Responsive demo website for a construction and renovation company, created as a portfolio project.
+The focus is on clean UI, accessibility, performance, and modern front-end best practices.
 
----
-
-## Overview
-
-This project was created as part of the _KP_Code Professional Learning Plan_ and serves as a production-ready showcase of clean, optimized front-end code.
-It focuses on **accessibility**, **performance**, and **maintainability**, implementing modern standards such as semantic HTML, responsive design, CSS variables, and lightweight JavaScript interactivity.
-The site is fully deployable, optimized for SEO, and PWA-ready with perfect Lighthouse results.
+🔗 **Live demo:** https://construction-project-01.netlify.app
 
 ---
 
-## Features
+## Project Purpose
 
-- **100 / 100 / 100 / 100 Lighthouse score** (Performance / Accessibility / Best Practices / SEO)
-- Fully **responsive layout** (mobile-first, adaptive to all breakpoints)
-- **Accessible navigation** with ARIA labels, focus management, and scrollspy
-- **Light / Dark theme support** with CSS `color-scheme` and custom properties
-- Local **WOFF2 fonts** with `font-display: swap` for optimal rendering
-- Optimized **lazy-loaded images** with `decoding="async"`
-- **Hero section** with text overlay and improved contrast readability
-- **Testimonials**, **FAQ**, and **Contact form** with accessibility polish
-- **PWA manifest**, icons (96px+), and offline 404 page
-- **SEO-ready** meta tags, JSON-LD, sitemap, and robots.txt
-- Hosted and deployed via **Netlify** with `_headers` and `_redirects` configured
-- Skip link and `prefers-reduced-motion` support for accessibility
-- Netlify security headers (HSTS, X-Content-Type-Options, X-Frame-Options)
+This project was created as part of a professional front-end portfolio.
+It demonstrates how a real-world construction company website could be designed and implemented
+using semantic HTML, modern CSS, and vanilla JavaScript — without frameworks.
+
+The goal of the project is to showcase layout architecture, accessibility awareness,
+and production-ready front-end structure.
+
+---
+
+## Key Characteristics
+
+- Fully responsive, mobile-first layout
+- Accessible navigation and semantic HTML
+- Light / dark theme support
+- Optimized performance and SEO fundamentals
+- Clean, scalable project structure
 
 ---
 
 ## Tech Stack
 
-- **HTML5**, **CSS3**, **JavaScript (ES6)**
-- **Netlify** for hosting and deployment
-- **CSSNano** — CSS minification
-- **Terser** — JS minification
-- **Google Lighthouse**, **DevTools**, **VS Code** — performance & accessibility testing
+- HTML5
+- CSS3 (custom properties, responsive layout)
+- Vanilla JavaScript (ES6)
+- Netlify (hosting & deployment)
 
 ---
 
-## Folder Structure
+## Project Status
 
-```text
-project-01/
-├── assets/
-│   ├── img/
-│   ├── fonts/
-│   └── icons/
-├── css/
-│   ├── style.css
-│   └── style.min.css
-├── js/
-│   ├── script.js
-│   └── script.min.js
-├── doc/
-├── oferta/
-├── index.html
-├── 404.html
-├── site.webmanifest
-├── robots.txt
-├── sitemap.xml
-├── _headers
-└── _redirects
-```
-````
+✔ Completed (v1)
+
+Future improvements planned:
+
+- SVG logo optimization
+- UI polish and minor refactors
+- Further accessibility enhancements
 
 ---
 
-## Performance & Accessibility
+## Disclaimer
 
-**Lighthouse Score:**
-Performance: **100** | Accessibility: **100** | Best Practices: **100** | SEO: **100**
-
-| Metric                   | Result |
-| ------------------------ | ------ |
-| First Contentful Paint   | 0.3 s  |
-| Largest Contentful Paint | 0.5 s  |
-| Total Blocking Time      | 0 ms   |
-| Cumulative Layout Shift  | 0      |
-| Speed Index              | 0.6 s  |
-
-The project is fully optimized for Core Web Vitals and progressive enhancement.
-
----
-
-## SEO & PWA
-
-- **Meta tags** for Open Graph and Twitter Cards
-- **robots.txt**, **sitemap.xml**, and canonical links
-- **Web App Manifest** with adaptive icons and name display
-- **Netlify headers** for security and caching
-- **Offline 404 page** for PWA support
+This website is a fictional demo project created for portfolio purposes only.
+All company names, addresses, and data are used as examples and do not represent a real business.
 
 ---
 
 ## Author
 
-**KP_Code**
+**KP_Code_**
+Front-End Developer
+Portfolio project — 2025
 
-Front-End Developer focused on clean code, accessibility, and performance.
+---
 
-© 2025 KP_Code — For educational and portfolio use only.
+## 🇵🇱 Wersja polska
 
-```
+# SolidCraft — strona firmy remontowo-budowlanej (demo)
 
-```
+Responsywna demonstracyjna strona internetowa dla firmy remontowo-budowlanej,
+stworzona jako projekt portfolio.
+Projekt koncentruje się na czytelnym interfejsie, dostępności, wydajności
+oraz nowoczesnych standardach front-end.
+
+🔗 **Demo online:** https://construction-project-01.netlify.app
+
+---
+
+## Cel projektu
+
+Projekt został stworzony jako element profesjonalnego portfolio front-end.
+Pokazuje, w jaki sposób może wyglądać i działać nowoczesna strona firmy
+remontowo-budowlanej oparta o czysty HTML, CSS i JavaScript — bez użycia frameworków.
+
+Celem projektu jest zaprezentowanie architektury layoutu,
+świadomego podejścia do dostępności oraz struktury gotowej do wdrożenia produkcyjnego.
+
+---
+
+## Główne cechy
+
+- W pełni responsywny layout (mobile-first)
+- Dostępna nawigacja i semantyczny HTML
+- Obsługa trybu jasnego i ciemnego
+- Optymalizacja wydajności i podstaw SEO
+- Czysta i skalowalna struktura projektu
+
+---
+
+## Stack technologiczny
+
+- HTML5
+- CSS3 (custom properties, layout responsywny)
+- JavaScript (ES6, vanilla)
+- Netlify (hosting i deployment)
+
+---
+
+## Status projektu
+
+✔ Zakończony (v1)
+
+Planowane usprawnienia:
+
+- optymalizacja logo SVG
+- drobne poprawki UI i refaktoryzacja
+- dalsze usprawnienia dostępności
+
+---
+
+## Informacja prawna
+
+Strona jest fikcyjnym projektem demonstracyjnym stworzonym wyłącznie
+w celach portfolio.
+Wszystkie nazwy firm, adresy i dane mają charakter przykładowy
+i nie odnoszą się do rzeczywistej działalności.
+
+---
+
+## Autor
+
+**KP_Code_**
+Front-End Developer
+Projekt portfolio — 2025
