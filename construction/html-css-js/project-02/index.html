@@ -3,49 +3,42 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
-    <title>Axiom Construction — firma budowlano-remontowa</title>
-    <meta name="description" content="Kompleksowe remonty, budowa domów, wykończenia wnętrz. Profesjonalna firma budowlana — terminowo, solidnie, z gwarancją. Darmowa wycena." />
+    <title>Axiom Construction - firma budowlano-remontowa</title>
+    <meta name="description" content="Kompleksowe remonty, budowa domów i wykończenia wnętrz. Profesjonalna firma budowlana Axiom Construction: terminowo, solidnie, z gwarancją." />
     <meta name="author" content="Kamil Król / KP_Code" />
     <link rel="canonical" href="https://construction-project-02.netlify.app/" />
     <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
-
     <meta property="og:locale" content="pl_PL" />
     <meta property="og:type" content="website" />
     <meta property="og:site_name" content="Axiom Construction" />
-    <meta property="og:title" content="Axiom Construction — firma budowlano-remontowa" />
-    <meta property="og:description" content="Axiom Construction: oferta, realizacje, opinie i formularz kontaktowy. Projekt i kod: KP_Code." />
+    <meta property="og:title" content="Axiom Construction - firma budowlano-remontowa" />
+    <meta property="og:description" content="Kompleksowe remonty i wykończenia wnętrz, budowa domów oraz adaptacje poddaszy. Terminowo, solidnie i z gwarancją jakości." />
     <meta property="og:url" content="https://construction-project-02.netlify.app/" />
     <meta property="og:image" content="https://construction-project-02.netlify.app/assets/img/og/og-1200x630.jpg" />
     <meta property="og:image:secure_url" content="https://construction-project-02.netlify.app/assets/img/og/og-1200x630.jpg" />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
     <meta property="og:image:type" content="image/jpeg" />
-    <meta property="og:image:alt" content="Nowoczesna strona firmowa Axiom Construction — projekt i kod by KP_Code" />
-
+    <meta property="og:image:alt" content="Axiom Construction - usługi budowlano-remontowe i realizacje" />
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="Axiom Construction — firma budowlano-remontowa" />
-    <meta name="twitter:description" content="Axiom Construction: oferta, realizacje, opinie i formularz kontaktowy. Projekt i kod: KP_Code." />
+    <meta name="twitter:title" content="Axiom Construction - firma budowlano-remontowa" />
+    <meta name="twitter:description" content="Remonty, budowa domów i wykończenia wnętrz. Sprawdź ofertę, realizacje i skontaktuj się z Axiom Construction." />
     <meta name="twitter:image" content="https://construction-project-02.netlify.app/assets/img/og/og-1200x630.jpg" />
-    <meta name="twitter:image:alt" content="Nowoczesna strona firmowa Axiom Construction — projekt i kod by KP_Code" />
+    <meta name="twitter:image:alt" content="Axiom Construction - usługi budowlano-remontowe i realizacje" />
     <meta name="twitter:site" content="@KP_Code_85" />
     <meta name="twitter:creator" content="@KP_Code_85" />
-
     <link rel="icon" type="image/svg+xml" href="assets/img/favicon/favicon.svg" />
     <link rel="icon" type="image/png" sizes="96x96" href="assets/img/favicon/favicon-96x96.png" />
     <link rel="apple-touch-icon" sizes="180x180" href="assets/img/favicon/apple-touch-icon.png" />
     <link rel="shortcut icon" href="assets/img/favicon/favicon.ico" type="image/x-icon" />
     <link rel="manifest" href="manifest.webmanifest" />
-
     <meta name="application-name" content="Axiom Construction" />
     <meta name="apple-mobile-web-app-title" content="Axiom Construction" />
     <meta name="msapplication-TileColor" content="#0ea5e9" />
-
-    <meta name="theme-color" content="#0f4c81" />
     <meta name="theme-color" content="#0f4c81" media="(prefers-color-scheme: light)" />
     <meta name="theme-color" content="#121212" media="(prefers-color-scheme: dark)" />
     <meta name="color-scheme" content="light dark" />
     <meta name="format-detection" content="telephone=no" />
-
     <link rel="preload" href="assets/fonts/lato-v25-latin/lato-v25-latin-regular.woff2" as="font" type="font/woff2" crossorigin />
     <link rel="preload" href="assets/fonts/montserrat-v31-latin/montserrat-v31-latin-600.woff2" as="font" type="font/woff2" crossorigin />
 
@@ -53,9 +46,9 @@
       (function () {
         try {
           var t = localStorage.getItem("theme");
-          if (t) document.body.classList.toggle("dark-mode", t === "dark");
+          if (t) document.documentElement.classList.toggle("dark-mode", t === "dark");
           else if (window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches) {
-            document.body.classList.add("dark-mode");
+            document.documentElement.classList.add("dark-mode");
           }
         } catch (e) {}
       })();
@@ -67,23 +60,41 @@
     <script type="application/ld+json">
       {
         "@context": "https://schema.org",
-        "@type": "Organization",
-        "@id": "https://construction-project-02.netlify.app/#organization",
+        "@type": "HomeAndConstructionBusiness",
+        "@id": "https://construction-project-02.netlify.app/#localbusiness",
         "name": "Axiom Construction",
         "url": "https://construction-project-02.netlify.app/",
         "logo": "https://construction-project-02.netlify.app/assets/img/favicon/web-app-manifest-1024x1024.png",
-        "description": "Axiom Construction: oferta, realizacje, opinie i formularz kontaktowy. Projekt i kod: KP_Code.",
         "image": ["https://construction-project-02.netlify.app/assets/img/og/og-1200x630.jpg", "https://construction-project-02.netlify.app/assets/img/og/og-1200x1200.jpg"],
-        "sameAs": ["https://github.com/KP-Code", "https://x.com/KP_Code_85"],
-        "contactPoint": [
+        "description": "Firma budowlano-remontowa oferująca kompleksowe remonty, budowę domów, wykończenia wnętrz oraz adaptacje poddaszy na terenie Polski.",
+        "telephone": "+48533537091",
+        "email": "kontakt@kp-code.pl",
+        "priceRange": "$$",
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "ul. Marynarki Wojennej 12/31",
+          "addressLocality": "Tarnów",
+          "postalCode": "33-100",
+          "addressCountry": "PL"
+        },
+        "areaServed": {
+          "@type": "Country",
+          "name": "Polska"
+        },
+        "geo": {
+          "@type": "GeoCoordinates",
+          "latitude": 50.0121,
+          "longitude": 20.9858
+        },
+        "openingHoursSpecification": [
           {
-            "@type": "ContactPoint",
-            "telephone": "+48533537091",
-            "contactType": "customer support",
-            "areaServed": "PL",
-            "availableLanguage": ["pl"]
+            "@type": "OpeningHoursSpecification",
+            "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+            "opens": "08:00",
+            "closes": "17:00"
           }
-        ]
+        ],
+        "sameAs": ["https://github.com/KP-Code", "https://x.com/KP_Code_85"]
       }
     </script>
     <script type="application/ld+json">
@@ -102,8 +113,13 @@
               "name": "Remonty mieszkań",
               "description": "Kompleksowe remonty wnętrz dostosowane do Twoich potrzeb.",
               "url": "https://construction-project-02.netlify.app/#svc-remonty-ttl",
-              "areaServed": { "@type": "Country", "name": "Polska" },
-              "provider": { "@type": "Organization", "name": "Axiom Construction", "url": "https://construction-project-02.netlify.app/" }
+              "areaServed": {
+                "@type": "Country",
+                "name": "Polska"
+              },
+              "provider": {
+                "@id": "https://construction-project-02.netlify.app/#localbusiness"
+              }
             }
           },
           {
@@ -112,10 +128,15 @@
             "item": {
               "@type": "Service",
               "name": "Budowa domów",
-              "description": "Od fundamentów po dach — budujemy domy Twoich marzeń.",
+              "description": "Od fundamentów po dach - budujemy domy Twoich marzeń.",
               "url": "https://construction-project-02.netlify.app/#svc-domy-ttl",
-              "areaServed": { "@type": "Country", "name": "Polska" },
-              "provider": { "@type": "Organization", "name": "Axiom Construction", "url": "https://construction-project-02.netlify.app/" }
+              "areaServed": {
+                "@type": "Country",
+                "name": "Polska"
+              },
+              "provider": {
+                "@id": "https://construction-project-02.netlify.app/#localbusiness"
+              }
             }
           },
           {
@@ -126,8 +147,13 @@
               "name": "Wykończenia wnętrz",
               "description": "Stylowe i nowoczesne wykończenia dla każdego pomieszczenia.",
               "url": "https://construction-project-02.netlify.app/#svc-wyk-ttl",
-              "areaServed": { "@type": "Country", "name": "Polska" },
-              "provider": { "@type": "Organization", "name": "Axiom Construction", "url": "https://construction-project-02.netlify.app/" }
+              "areaServed": {
+                "@type": "Country",
+                "name": "Polska"
+              },
+              "provider": {
+                "@id": "https://construction-project-02.netlify.app/#localbusiness"
+              }
             }
           },
           {
@@ -138,8 +164,13 @@
               "name": "Adaptacje poddaszy",
               "description": "Przekształcamy poddasza w funkcjonalne i przytulne przestrzenie mieszkalne.",
               "url": "https://construction-project-02.netlify.app/#svc-poddasze-ttl",
-              "areaServed": { "@type": "Country", "name": "Polska" },
-              "provider": { "@type": "Organization", "name": "Axiom Construction", "url": "https://construction-project-02.netlify.app/" }
+              "areaServed": {
+                "@type": "Country",
+                "name": "Polska"
+              },
+              "provider": {
+                "@id": "https://construction-project-02.netlify.app/#localbusiness"
+              }
             }
           },
           {
@@ -150,8 +181,13 @@
               "name": "Instalacje sanitarne",
               "description": "Profesjonalny montaż i serwis instalacji wodno-kanalizacyjnych oraz grzewczych.",
               "url": "https://construction-project-02.netlify.app/#svc-sanitarne-ttl",
-              "areaServed": { "@type": "Country", "name": "Polska" },
-              "provider": { "@type": "Organization", "name": "Axiom Construction", "url": "https://construction-project-02.netlify.app/" }
+              "areaServed": {
+                "@type": "Country",
+                "name": "Polska"
+              },
+              "provider": {
+                "@id": "https://construction-project-02.netlify.app/#localbusiness"
+              }
             }
           },
           {
@@ -162,14 +198,18 @@
               "name": "Instalacje elektryczne",
               "description": "Bezpieczny montaż i modernizacja instalacji elektrycznych w domach i firmach.",
               "url": "https://construction-project-02.netlify.app/#svc-elektryczne-ttl",
-              "areaServed": { "@type": "Country", "name": "Polska" },
-              "provider": { "@type": "Organization", "name": "Axiom Construction", "url": "https://construction-project-02.netlify.app/" }
+              "areaServed": {
+                "@type": "Country",
+                "name": "Polska"
+              },
+              "provider": {
+                "@id": "https://construction-project-02.netlify.app/#localbusiness"
+              }
             }
           }
         ]
       }
     </script>
-
     <script type="application/ld+json">
       {
         "@context": "https://schema.org",
@@ -177,93 +217,72 @@
         "name": "Nasze realizacje",
         "inLanguage": "pl-PL",
         "url": "https://construction-project-02.netlify.app/#gallery-heading",
-        "publisher": { "@type": "Organization", "name": "Axiom Construction", "url": "https://construction-project-02.netlify.app/" },
+        "publisher": {
+          "@id": "https://construction-project-02.netlify.app/#localbusiness"
+        },
         "hasPart": [
           {
             "@type": "ImageObject",
-            "name": "Remont mieszkania",
-            "caption": "Remont mieszkania – Warszawa",
-            "contentUrl": "https://construction-project-02.netlify.app/assets/img/realizacje/remont-01-1200x800.jpg",
-            "thumbnailUrl": "https://construction-project-02.netlify.app/assets/img/realizacje/remont-01-800x600.jpg",
-            "locationCreated": { "@type": "Place", "name": "Warszawa" }
-          },
-          {
-            "@type": "ImageObject",
-            "name": "Budowa willi",
-            "caption": "Budowa willi – Rzeszów",
+            "name": "Budowa domu jednorodzinnego",
             "contentUrl": "https://construction-project-02.netlify.app/assets/img/realizacje/budowa-domu-01-1200x800.jpg",
-            "thumbnailUrl": "https://construction-project-02.netlify.app/assets/img/realizacje/budowa-domu-01-800x600.jpg",
-            "locationCreated": { "@type": "Place", "name": "Rzeszów" }
+            "url": "https://construction-project-02.netlify.app/assets/img/realizacje/budowa-domu-01-1200x800.jpg",
+            "width": 1200,
+            "height": 800
           },
           {
             "@type": "ImageObject",
-            "name": "Wykończenie salonu",
-            "caption": "Wykończenie salonu – Gdańsk",
-            "contentUrl": "https://construction-project-02.netlify.app/assets/img/realizacje/wykonczenia-02-1200x800.jpg",
-            "thumbnailUrl": "https://construction-project-02.netlify.app/assets/img/realizacje/wykonczenia-02-800x600.jpg",
-            "locationCreated": { "@type": "Place", "name": "Gdańsk" }
-          },
-          {
-            "@type": "ImageObject",
-            "name": "Remont mieszkania",
-            "caption": "Remont mieszkania – Wrocław",
-            "contentUrl": "https://construction-project-02.netlify.app/assets/img/realizacje/remont-02-1200x800.jpg",
-            "thumbnailUrl": "https://construction-project-02.netlify.app/assets/img/realizacje/remont-02-800x600.jpg",
-            "locationCreated": { "@type": "Place", "name": "Wrocław" }
-          },
-          {
-            "@type": "ImageObject",
-            "name": "Budowa domu",
-            "caption": "Budowa domu – Poznań",
+            "name": "Budowa domu w stanie deweloperskim",
             "contentUrl": "https://construction-project-02.netlify.app/assets/img/realizacje/budowa-domu-02-1200x800.jpg",
-            "thumbnailUrl": "https://construction-project-02.netlify.app/assets/img/realizacje/budowa-domu-02-800x600.jpg",
-            "locationCreated": { "@type": "Place", "name": "Poznań" }
+            "url": "https://construction-project-02.netlify.app/assets/img/realizacje/budowa-domu-02-1200x800.jpg",
+            "width": 1200,
+            "height": 800
           },
           {
             "@type": "ImageObject",
-            "name": "Wykończenie kuchni",
-            "caption": "Wykończenie kuchni – Kraków",
+            "name": "Remont mieszkania z wykończeniem",
+            "contentUrl": "https://construction-project-02.netlify.app/assets/img/realizacje/remont-01-1200x800.jpg",
+            "url": "https://construction-project-02.netlify.app/assets/img/realizacje/remont-01-1200x800.jpg",
+            "width": 1200,
+            "height": 800
+          },
+          {
+            "@type": "ImageObject",
+            "name": "Instalacje elektryczne w budynku",
+            "contentUrl": "https://construction-project-02.netlify.app/assets/img/realizacje/instalacje-elektryczne-01-1200x800.jpg",
+            "url": "https://construction-project-02.netlify.app/assets/img/realizacje/instalacje-elektryczne-01-1200x800.jpg",
+            "width": 1200,
+            "height": 800
+          },
+          {
+            "@type": "ImageObject",
+            "name": "Instalacje sanitarne i przyłącza",
+            "contentUrl": "https://construction-project-02.netlify.app/assets/img/realizacje/instalacje-sanitarne-01-1200x800.jpg",
+            "url": "https://construction-project-02.netlify.app/assets/img/realizacje/instalacje-sanitarne-01-1200x800.jpg",
+            "width": 1200,
+            "height": 800
+          },
+          {
+            "@type": "ImageObject",
+            "name": "Wykończenia wnętrz pod klucz",
             "contentUrl": "https://construction-project-02.netlify.app/assets/img/realizacje/wykonczenia-01-1200x800.jpg",
-            "thumbnailUrl": "https://construction-project-02.netlify.app/assets/img/realizacje/wykonczenia-01-800x600.jpg",
-            "locationCreated": { "@type": "Place", "name": "Kraków" }
-          },
-          {
-            "@type": "ImageObject",
-            "name": "Instalacja elektryczna w kuchni",
-            "caption": "Instalacja elektryczna w kuchni – Olsztyn",
-            "contentUrl": "https://construction-project-02.netlify.app/assets/img/realizacje/instalacja-elektryczna-01-1200x800.jpg",
-            "thumbnailUrl": "https://construction-project-02.netlify.app/assets/img/realizacje/instalacja-elektryczna-01-800x600.jpg",
-            "locationCreated": { "@type": "Place", "name": "Olsztyn" }
-          },
-          {
-            "@type": "ImageObject",
-            "name": "Adaptacja poddasza",
-            "caption": "Adaptacja poddasza – Tarnów",
-            "contentUrl": "https://construction-project-02.netlify.app/assets/img/realizacje/poddasze-01-1200x800.jpg",
-            "thumbnailUrl": "https://construction-project-02.netlify.app/assets/img/realizacje/poddasze-01-800x600.jpg",
-            "locationCreated": { "@type": "Place", "name": "Tarnów" }
-          },
-          {
-            "@type": "ImageObject",
-            "name": "Adaptacja poddasza",
-            "caption": "Adaptacja poddasza – Kielce",
-            "contentUrl": "https://construction-project-02.netlify.app/assets/img/realizacje/poddasze-02-1200x800.jpg",
-            "thumbnailUrl": "https://construction-project-02.netlify.app/assets/img/realizacje/poddasze-02-800x600.jpg",
-            "locationCreated": { "@type": "Place", "name": "Kielce" }
+            "url": "https://construction-project-02.netlify.app/assets/img/realizacje/wykonczenia-01-1200x800.jpg",
+            "width": 1200,
+            "height": 800
           }
         ]
       }
     </script>
-
     <script type="application/ld+json">
       {
         "@context": "https://schema.org",
         "@type": "WebSite",
         "@id": "https://construction-project-02.netlify.app/#website",
-        "name": "Axiom Construction — firma budowlano-remontowa",
+        "name": "Axiom Construction - firma budowlano-remontowa",
         "url": "https://construction-project-02.netlify.app/",
         "inLanguage": "pl-PL",
-        "publisher": { "@id": "https://construction-project-02.netlify.app/#organization" },
+        "publisher": {
+          "@id": "https://construction-project-02.netlify.app/#localbusiness"
+        },
         "potentialAction": {
           "@type": "SearchAction",
           "target": "https://construction-project-02.netlify.app/?q={search_term_string}",
@@ -336,7 +355,7 @@
       </button>
     </header>
 
-    <!-- MAIN -->
+    <!-- Main -->
     <main id="main">
       <!-- Hero -->
       <section class="hero">
@@ -369,7 +388,7 @@
         </div>
       </section>
 
-      <!-- SEKCJA – O NAS -->
+      <!-- About -->
       <section id="o-nas" class="about-section bg-surface-2 section--divider" aria-labelledby="about-heading" data-reveal="defer">
         <div class="about-inner">
           <h2 id="about-heading" class="section-title hidden">O nas</h2>
@@ -429,7 +448,7 @@
         </div>
       </section>
 
-      <!-- SEKCJA - OFERTY -->
+      <!-- Offerts -->
       <section id="uslugi" class="services-section bg-surface-1">
         <h2 id="services-heading" class="section-title">Nasze Usługi</h2>
         <div class="services">
@@ -586,7 +605,7 @@
         </div>
       </section>
 
-      <!-- SEKCJA - CO MÓWIĄ O NAS KLIENCI -->
+      <!--  Testimonials -->
       <section id="testimonial-cards" class="testimonials-section bg-surface-2 section--divider" aria-labelledby="testimonials-heading">
         <div class="testimonials-inner">
           <h2 id="testimonials-heading" class="section-title">Co mówią o nas klienci?</h2>
@@ -616,7 +635,7 @@
         </div>
       </section>
 
-      <!-- NASZE REALIZACJE - GALERIA -->
+      <!-- Gallery -->
       <section id="galeria" class="gallery-section bg-surface-1 section--divider" aria-labelledby="gallery-heading">
         <div class="gallery-inner">
           <h2 id="gallery-heading" class="section-title">Nasze realizacje</h2>
@@ -1057,16 +1076,14 @@
         </script>
       </section>
 
-      <!-- FORMULARZ KONTAKTOWY - zintegrowany z Netlify -->
+      <!-- Form Contact Netlify -->
       <section id="kontakt" class="contact-form-section bg-surface-3 section--divider" aria-labelledby="contact-heading">
         <h2 id="contact-heading" class="section-title">Skontaktuj się z nami!</h2>
         <div class="contact-form-container">
           <form id="contactForm" name="contact" method="POST" action="/" data-netlify="true" netlify-honeypot="trap" class="contact-form" novalidate aria-describedby="formNote formStatus">
             <div id="errorSummary" class="visually-hidden" role="status" aria-live="assertive" aria-atomic="true"></div>
             <a id="skipToError" class="visually-hidden-focusable" href="#errorSummary">Przejdź do pierwszego błędu</a>
-            <!-- Netlify: hidden form-name -->
             <input type="hidden" name="form-name" value="contact" />
-            <!-- Netlify: honeypot (ukryte) -->
             <div class="hp-field" aria-hidden="true" inert>
               <label for="trap">Jeśli to widzisz, zostaw puste</label>
               <input type="text" id="trap" name="trap" tabindex="-1" autocomplete="off" />
@@ -1082,7 +1099,6 @@
             <div class="form-group">
               <label for="phone">Telefon (opcjonalnie)</label>
               <input type="tel" id="phone" name="phone" inputmode="tel" autocomplete="tel" placeholder="+48 600 000 000" pattern="^[0-9 +()-]{7,20}$" enterkeyhint="next" />
-              <!-- TIP: Aby wymagać telefonu → dodaj atrybut required i dopisz 'phone' w JS do requiredFields -->
             </div>
             <div class="form-group">
               <label for="subject">Temat</label>
@@ -1115,7 +1131,6 @@
                 enterkeyhint="send"></textarea>
               <div id="messageCounter" class="char-counter" aria-live="polite">0/500</div>
             </div>
-            <!-- ZGODA RODO -->
             <div class="form-group form-consent">
               <label class="consent-label" for="consent">
                 <input type="checkbox" id="consent" name="consent" required />
@@ -1127,7 +1142,6 @@
               </label>
             </div>
             <p id="formNote" class="form-note">Pola powyżej są wymagane. Odpowiadamy zwykle tego samego dnia.</p>
-            <!-- reCAPTCHA (Netlify) -->
             <fieldset class="form-group captcha-wrap" data-recaptcha>
               <legend class="sr-only">Weryfikacja reCAPTCHA</legend>
               <div data-netlify-recaptcha="true"></div>
@@ -1164,9 +1178,8 @@
             Budownictwo • Remonty • Wykończenia wnętrz
           </h3>
           <p>
-            Nowoczesna firma budowlana specjalizująca się w budowie domów, kompleksowych remontach oraz wykończeniach wnętrz.
-            Stawiamy na jakość wykonania, terminowość i przejrzystą komunikację
-            na każdym etapie realizacji.
+            Nowoczesna firma budowlana specjalizująca się w budowie domów, kompleksowych remontach oraz wykończeniach wnętrz. Stawiamy na jakość wykonania, terminowość i przejrzystą komunikację na
+            każdym etapie realizacji.
           </p>
           <div class="social-icons">
             <a href="https://github.com/KPKrol85" class="social-icon" aria-label="GitHub — KP_Code" target="_blank" rel="me noopener noreferrer">
@@ -1274,7 +1287,6 @@
         const KEY = "cookie-consent-v1";
         const banner = document.getElementById("cookieBanner");
         if (!banner) return;
-
         const stored = (() => {
           try {
             return localStorage.getItem(KEY);
@@ -1286,9 +1298,7 @@
           banner.remove();
           return;
         }
-
         banner.hidden = false;
-
         function save(val) {
           try {
             localStorage.setItem(KEY, JSON.stringify({ v: 1, value: val, ts: Date.now() }));
@@ -1304,11 +1314,3 @@
     </script>
   </body>
 </html>
-<!-- Preload hero image -->
-<link
-  rel="preload"
-  as="image"
-  href="assets/img/hero/hero-1280x720.jpg"
-  imagesrcset="assets/img/hero/hero-800x600.jpg 800w, assets/img/hero/hero-1280x720.jpg 1280w, assets/img/hero/hero-1920x1080.jpg 1920w"
-  imagesizes="100vw"
-  fetchpriority="high" />

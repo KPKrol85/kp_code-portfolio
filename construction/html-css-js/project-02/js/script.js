@@ -58,15 +58,12 @@
     const totalArea = r.width * r.height;
     return visibleArea / totalArea >= ratio;
   };
-
   const initialReveal = () => {
     hiddenElements.forEach((el) => {
       if (isInViewport(el)) el.classList.add("show");
     });
   };
-
   requestAnimationFrame(() => requestAnimationFrame(initialReveal));
-
   window.addEventListener("load", () => setTimeout(initialReveal, 0), { once: true });
   window.addEventListener("pageshow", () => setTimeout(initialReveal, 0), { once: true });
 })();
@@ -86,13 +83,11 @@
       if (img.src !== absNext) img.setAttribute("src", next);
     });
   };
-
   const setHamburgerIcon = (isDark) => {
     if (!hamburgerIcon) return;
     const next = isDark ? hamburgerIcon.dataset.dark : hamburgerIcon.dataset.light;
     if (next && hamburgerIcon.getAttribute("src") !== next) hamburgerIcon.setAttribute("src", next);
   };
-
   const syncButtonsA11y = (isDark) => {
     const pressed = String(isDark);
     const label = isDark ? "Przełącz na jasny motyw" : "Przełącz na ciemny motyw";
@@ -105,7 +100,6 @@
       btnMobile.setAttribute("aria-label", label);
     }
   };
-
   const safeSetItem = (k, v) => {
     try {
       localStorage.setItem(k, v);
@@ -118,7 +112,6 @@
       return null;
     }
   };
-
   const setTheme = (mode, persist = true) => {
     const isDark = mode === "dark";
     document.body.classList.toggle("dark-mode", isDark);
@@ -127,7 +120,6 @@
     syncButtonsA11y(isDark);
     if (persist) safeSetItem("theme", isDark ? "dark" : "light");
   };
-
   const saved = safeGetItem("theme");
   if (saved === "dark" || saved === "light") setTheme(saved, false);
   else setTheme(mq && mq.matches ? "dark" : "light", false);
@@ -141,7 +133,7 @@
   }
 })();
 
-/* === 03 - HHamburger mobile nav=== */
+/* === 03 - Hamburger mobile nav=== */
 
 (() => {
   const btn = document.getElementById("hamburger");
@@ -309,7 +301,6 @@
       }
     }
   });
-
   const setInvalid = (el) => {
     if (!el) return;
     el.classList.add("is-invalid");
@@ -515,7 +506,6 @@
   let focusables = [],
     firstF = null,
     lastF = null;
-
   const isTouchLike = window.matchMedia ? window.matchMedia("(hover: none) and (pointer: coarse)").matches : "ontouchstart" in window;
   const trapInit = () => {
     focusables = Array.from(lb.querySelectorAll('button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])')).filter((el) => !el.hasAttribute("disabled") && el.offsetParent !== null);
@@ -526,7 +516,6 @@
     focusables = [];
     firstF = lastF = null;
   };
-
   const handleTrap = (e) => {
     if (!focusables.length) return;
     if (e.shiftKey && document.activeElement === firstF) {
@@ -537,7 +526,6 @@
       firstF.focus();
     }
   };
-
   const open = (src, alt) => {
     lastActive = document.activeElement;
     if (!items.length) {
@@ -559,7 +547,6 @@
     ensureControls();
     announceSlide();
   };
-
   const close = () => {
     lb.setAttribute("aria-hidden", "true");
     document.body.classList.remove("lb-open");
@@ -580,7 +567,6 @@
       fsBtn.setAttribute("aria-label", "Włącz pełny ekran");
     }
   };
-
   const isFs = () => !!document.fullscreenElement;
   const enterFs = (el) => (el && el.requestFullscreen ? el.requestFullscreen() : Promise.resolve());
   const exitFs = () => (document.exitFullscreen ? document.exitFullscreen() : Promise.resolve());
@@ -831,13 +817,10 @@
       (e) => {
         const el = e.target;
         if (!el || el.nodeType !== 1 || typeof el.closest !== "function") return;
-
         const link = el.closest(".gallery-link");
         if (!link || !link.closest(".gallery-container")) return;
-
         const href = link.getAttribute("href");
         if (!href) return;
-
         const pre = new Image();
         pre.decoding = "async";
         pre.src = href;
