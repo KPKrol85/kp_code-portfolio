@@ -1,134 +1,110 @@
-# KP_Code — Portfolio
+# KP_Code — Professional Web Development Portfolio
 
 ![KP Code Logo](assets/LOGO-1200x630.png)
 
-Monorepo with **50 website templates** (10 industries × 5 projects each).  
-Every project is self-contained and organized by **industry → tech stack → project**.  
-Deployed on **Netlify** for live demos, with source code versioned on **GitHub**.
+> A professional, long-term portfolio showcasing real-world web projects and SaaS-style web applications.
+
+**KP_Code** is a long-term, structured **professional portfolio project** focused on building **50 high-quality web projects** across multiple industries and modern technology stacks.
+
+This repository is a **monorepo** documenting real, production-ready work — including both professional websites and **SaaS-style web applications** — built with clean architecture, scalability in mind, and strong attention to UI/UX and code quality.
+
+The goal of this portfolio is not quantity, but **depth, consistency, and professional growth**.
 
 ---
 
-## 🌐 Live Demos (Netlify)
+## 🚀 Portfolio Roadmap (50 Projects)
 
--  [Construction — Project 01](https://construction-project-01.netlify.app)
--  [Construction — Project 02](https://construction-project-02.netlify.app)
--  [Gastronomy — Project 01](https://gastronomy-project-01.netlify.app)
--  [Gastronomy — Project 02](https://gastronomy-project-02.netlify.app)
--  [Tourism — Project 01](https://tourism-project-01.netlify.app)
--  [Tourism — Project 02](https://tourism-project-02.netlify.app)
--  [Transport — Project 01](https://transport-project-01.netlify.app)
--  [Transport — Project 02](https://transport-project-02.netlify.app)
+The portfolio is divided into **four technical stages**, each representing a clear step in professional development:
 
+1. **HTML / CSS / JavaScript (20 projects)**  
+   Solid fundamentals, semantic HTML, accessibility, performance, clean CSS architecture, and vanilla JS logic.
 
+2. **Tailwind CSS (10 projects)**  
+   Utility-first workflows, design systems, rapid prototyping, and scalable UI patterns.
 
-*(more projects coming soon…)*
+3. **React (10 projects)**  
+   Component-based architecture, state management, reusable UI logic, modern frontend practices.
 
----
+4. **Full-stack (10 projects)**  
+   Complete applications including backend logic, APIs, databases, authentication, and deployment.
 
-## 📂 Repository Structure
-
-```
-kp_code-portfolio/
-├─ construction/          # Industry 01
-│  ├─ html-css-js/        project-01 … project-05
-│  ├─ tailwind/           project-01 … project-05
-│  ├─ react/              project-01 … project-05
-│  ├─ nextjs-shadcn/      project-01 … project-05
-│  └─ fullstack/          project-01 … project-05
-│
-├─ gastronomy/            # Industry 02
-│  ├─ html-css-js/ … ├─ tailwind/ … ├─ react/ …  
-│  ├─ nextjs-shadcn/ … └─ fullstack/ …
-│
-├─ ecommerce/             # Industry 03
-│  ├─ html-css-js/ … ├─ tailwind/ … ├─ react/ …  
-│  ├─ nextjs-shadcn/ … └─ fullstack/ …
-│
-├─ education/             # Industry 04
-│  ├─ html-css-js/ … ├─ tailwind/ … ├─ react/ …  
-│  ├─ nextjs-shadcn/ … └─ fullstack/ …
-│
-├─ healthcare/            # Industry 05
-│  ├─ html-css-js/ … ├─ tailwind/ … ├─ react/ …  
-│  ├─ nextjs-shadcn/ … └─ fullstack/ …
-│
-├─ transport/             # Industry 06
-│  ├─ html-css-js/ … ├─ tailwind/ … ├─ react/ …  
-│  ├─ nextjs-shadcn/ … └─ fullstack/ …
-│
-├─ it-software/           # Industry 07
-│  ├─ html-css-js/ … ├─ tailwind/ … ├─ react/ …  
-│  ├─ nextjs-shadcn/ … └─ fullstack/ …
-│
-├─ tourism/               # Industry 08
-│  ├─ html-css-js/ … ├─ tailwind/ … ├─ react/ …  
-│  ├─ nextjs-shadcn/ … └─ fullstack/ …
-│
-├─ fashion-beauty/        # Industry 09
-│  ├─ html-css-js/ … ├─ tailwind/ … ├─ react/ …  
-│  ├─ nextjs-shadcn/ … └─ fullstack/ …
-│
-└─ creative-services/     # Industry 10
-   ├─ html-css-js/ … ├─ tailwind/ … ├─ react/ …  
-   ├─ nextjs-shadcn/ … └─ fullstack/ …
-```
+Each project belongs to a **specific industry**, ensuring realistic business contexts rather than artificial demos.
 
 ---
 
-## 🖥 How to Run Locally
+## 🌐 Live Demos
 
-### HTML / Tailwind
-```bash
-# open index.html in your browser
-```
+Completed and actively developed frontend projects are deployed on **Netlify** and publicly available:
 
-### React
-```bash
-npm install
-npm run dev
-```
+- [Construction — Project 01](https://construction-project-01.netlify.app/)
+- [Construction — Project 02](https://construction-project-02.netlify.app/)
+- [Gastronomy — Project 01](https://gastronomy-project-01.netlify.app/)
+- [Gastronomy — Project 02](https://gastronomy-project-02.netlify.app/)
+- [Tourism — Project 01](https://tourism-project-01.netlify.app/)
+- [Tourism — Project 02](https://tourism-project-02.netlify.app/)
+- [Transport — Project 01](https://transport-project-01.netlify.app/)
+- [Transport — Project 02](https://transport-project-02.netlify.app/)
 
-### Next.js (with shadcn/ui or Fullstack)
-```bash
-npm install
-npm run dev
-
-# production build
-npm run build && npm start
-```
+*(More projects are added continuously.)*
 
 ---
 
-## 🗺 Desc.
+## 🧠 Project Philosophy
 
-1–2️⃣ **HTML/CSS/JS** → Fundamentals & first portfolio projects  
-3️⃣ **Tailwind CSS** → Rapid prototyping with utility classes  
-4️⃣ **React** → Component-based development  
-5️⃣ **Next.js + shadcn/ui** → Modern SSR/SSG apps with UI components  
-6️⃣ **Full-stack basics** → REST APIs, databases, deployments  
+- Clean, readable, and maintainable code  
+- No code generators or shortcuts  
+- Focus on real-world use cases  
+- App-like UI and architecture for SaaS-style web applications  
+- Strong emphasis on structure, consistency, and long-term scalability  
 
-Planned industries:  
-Construction, Gastronomy, E-commerce, Education, Healthcare, Transport, IT & Software, Tourism, Fashion & Beauty, Creative Services.
+This repository reflects **professional discipline**, not tutorial experiments.
 
 ---
 
-## 📏 Conventions
+## 🧩 SaaS Focus
 
-- **Commits:**  
-  - `feat:` new feature/page  
-  - `fix:` bugfix  
-  - `chore:` tooling/cleanup  
-  - `docs:` documentation  
-  Example:  
-  ```
-  feat(gastronomy/project-01): add hero & menu sections
-  ```
+Selected projects in this portfolio are designed as **SaaS-style web applications**, not traditional marketing websites.
 
-- **Folders:** lowercase, English, hyphenated  
-  Example: `renovation-team`, `restaurant-aurelia`
+These projects include:
+- dashboard-style layouts
+- client-side routing and state management
+- modular UI components
+- authentication and session concepts (where applicable)
+- scalability-oriented frontend architecture
+
+SaaS projects are treated as **application-level products**, reflecting real-world B2B and platform use cases.
+
+---
+
+## 📁 Repository Organization
+
+Projects are organized by:
+
+**Industry → Technology Stack → Project**
+
+```
+industry/
+├─ html-css-js/
+├─ tailwind/
+├─ react/
+└─ fullstack/
+```
+
+Each project is fully self-contained and documented.
+
+---
+
+## 👤 Author & Brand
+
+**Author:** Kamil Król  
+**Brand:** KP_Code  
+**Focus:** Professional frontend & web application development
+
+This repository represents an evolving personal brand and a long-term commitment to high-quality software engineering.
 
 ---
 
 ## 📜 License
 
 MIT © [kpkrol85](https://github.com/kpkrol85)
+
