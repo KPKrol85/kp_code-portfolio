@@ -44,6 +44,29 @@ function ordersView() {
       .filter((o) => (priority === "all" ? true : o.priority === priority))
       .filter((o) => `${o.client} ${o.route}`.toLowerCase().includes(search.toLowerCase()));
 
+    if (rows.length === 0) {
+      tableWrap.innerHTML = `
+        <div class="empty-state">
+          <div class="empty-state__card">
+            <p class="tag">Empty</p>
+            <h3 class="empty-state__title">Brak wyników</h3>
+            <p class="muted">Zmień filtry lub wyszukiwanie, żeby zobaczyć zlecenia.</p>
+            <button class="button secondary" id="clearOrdersFilters" type="button">Wyczyść filtry</button>
+          </div>
+        </div>
+      `;
+
+      tableWrap.querySelector("#clearOrdersFilters")?.addEventListener("click", () => {
+        FleetStore.setOrderFilters({ status: "all", priority: "all", search: "" });
+        statusSelect.value = "all";
+        prioritySelect.value = "all";
+        searchInput.value = "";
+        renderRows();
+      });
+
+      return;
+    }
+
     const renderedRows = rows.map(
       (order) => `
       <tr class="order-row" data-id="${order.id}">

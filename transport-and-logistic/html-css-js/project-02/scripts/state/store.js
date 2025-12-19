@@ -1,4 +1,3 @@
-
 const defaultPreferences = {
   theme: FleetStorage.get("fleet-theme", "light"),
   compact: FleetStorage.get("fleet-compact", false),

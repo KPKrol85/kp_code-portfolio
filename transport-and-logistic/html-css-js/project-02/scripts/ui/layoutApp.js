@@ -1,13 +1,13 @@
 function renderAppShell(viewTitle, contentNode) {
-  const app = document.getElementById('app');
+  const app = document.getElementById("app");
   const { auth, preferences } = FleetStore.state;
-  const theme = preferences.theme || 'light';
-  document.documentElement.setAttribute('data-theme', theme);
-  const initials = auth.user ? format.avatarInitials(auth.user.name || auth.user.email) : 'FO';
+  const theme = preferences.theme || "light";
+  document.documentElement.setAttribute("data-theme", theme);
+  const initials = auth.user ? format.avatarInitials(auth.user.name || auth.user.email) : "FO";
 
-  const shell = dom.h('div', 'app-shell');
+  const shell = dom.h("div", "app-shell");
 
-  const sidebar = dom.h('aside', 'sidebar');
+  const sidebar = dom.h("aside", "sidebar");
   sidebar.innerHTML = `
     <div class="logo" aria-label="FleetOps">
       <img src="assets/icons/logo.svg" alt="FleetOps logo" width="24" height="24" />
@@ -21,13 +21,13 @@ function renderAppShell(viewTitle, contentNode) {
       <a href="#/app/reports" data-route="/app/reports">Reports</a>
       <a href="#/app/settings" data-route="/app/settings">Settings</a>
     </nav>
-    <div class="muted small">Status: ${auth.user ? auth.user.email : 'demo user'}</div>
+    <div class="muted small">Status: ${auth.user ? auth.user.email : "demo user"}</div>
   `;
 
   shell.appendChild(sidebar);
 
-  const main = dom.h('div', 'app-main');
-  const topbar = dom.h('div', 'topbar');
+  const main = dom.h("div", "app-main");
+  const topbar = dom.h("div", "topbar");
   topbar.innerHTML = `
     <div class="topbar-left">
       <h2>${viewTitle}</h2>
@@ -48,19 +48,19 @@ function renderAppShell(viewTitle, contentNode) {
     </div>
   `;
 
-  topbar.querySelector('#themeToggle').addEventListener('click', () => FleetStore.toggleTheme());
-  topbar.querySelector('#userMenuBtn').addEventListener('click', (e) => {
-    const menu = topbar.querySelector('#userMenu');
+  topbar.querySelector("#themeToggle").addEventListener("click", () => FleetStore.toggleTheme());
+  topbar.querySelector("#userMenuBtn").addEventListener("click", (e) => {
+    const menu = topbar.querySelector("#userMenu");
     Dropdown.toggle(e.currentTarget, menu);
   });
-  topbar.querySelector('#logoutBtn').addEventListener('click', () => {
+  topbar.querySelector("#logoutBtn").addEventListener("click", () => {
     FleetStore.logout();
-    Toast.show('Wylogowano', 'success');
-    window.location.hash = '#/login';
+    Toast.show("Wylogowano", "success");
+    window.location.hash = "#/login";
   });
 
   main.appendChild(topbar);
-  const contentWrap = dom.h('div', 'app-content');
+  const contentWrap = dom.h("div", "app-content");
   contentWrap.appendChild(contentNode);
   main.appendChild(contentWrap);
   shell.appendChild(main);
@@ -68,8 +68,16 @@ function renderAppShell(viewTitle, contentNode) {
   dom.mount(app, shell);
 
   // highlight active nav
-  const active = sidebar.querySelector(`a[data-route="${window.location.hash.replace('#', '') || '/app'}"]`);
-  if (active) active.classList.add('active');
+  // highlight active nav (class + aria-current)
+  const currentPath = window.location.hash.replace("#", "") || "/app";
+  const links = sidebar.querySelectorAll("nav a[data-route]");
+
+  links.forEach((a) => {
+    const isActive = a.dataset.route === currentPath;
+    a.classList.toggle("active", isActive);
+    if (isActive) a.setAttribute("aria-current", "page");
+    else a.removeAttribute("aria-current");
+  });
 }
 
 window.renderAppShell = renderAppShell;

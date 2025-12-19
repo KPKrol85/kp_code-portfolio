@@ -3,7 +3,7 @@
 FleetOps is a **conceptual frontend-only SaaS dashboard** for transport and fleet operations management.
 The project is part of a larger professional portfolio and focuses on **application architecture, UI state management, and SaaS-style navigation patterns**, rather than backend implementation.
 
-The application combines a marketing landing page with an authenticated, app-like dashboard inspired by modern B2B tools, Notion, or internal operations panels.
+The application combines a marketing landing page with an authenticated, app-like dashboard inspired by modern B2B tools such as Linear, Notion, or internal operations panels.
 
 ---
 
