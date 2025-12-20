@@ -1,117 +1,147 @@
-# Construction Project 02 — Advanced Responsive Demo Website
+## 🇬🇧 English version
 
-A fully optimized and production-ready demo website for a construction and renovation company, built with clean, accessible, and high-performance front-end code using HTML, CSS, and JavaScript.
+# Axiom Construction — Construction Company Website (Demo)
 
-🔗 **Live Demo:** [construction-project-02.netlify.app](https://construction-project-02.netlify.app)
+Responsive demo website for a modern construction company, created as a professional portfolio project.
+The project focuses on clean UI, strong brand presentation, accessibility,
+performance optimization, and production-ready front-end structure.
 
----
-
-## Overview
-
-This project is part of the _KP_Code Professional Learning Plan_ and represents the next step after Construction Project 01 — expanding from a single-page layout to a **multi-page professional website**.
-It demonstrates **scalable architecture**, **advanced accessibility**, **structured SEO**, and **progressive enhancement**.
-All code follows modern web standards and achieves perfect Lighthouse results.
+🔗 **Live demo:** [https://construction-project-02.netlify.app](https://construction-project-02.netlify.app)
 
 ---
 
-## Features
+## Project Purpose
 
-- **100 / 100 / 100 / 100 Lighthouse score** (Performance / Accessibility / Best Practices / SEO)
-- **Multi-page layout** with consistent header/footer across all subpages
-- **Semantic structure** with proper heading hierarchy and ARIA roles
-- **Scrollspy** with `aria-current="page"` for active navigation
-- **Light / Dark mode** with `prefers-color-scheme` and custom accent themes
-- **Fully responsive** (mobile-first + fluid typography + section padding system)
-- **Accessible forms** with ARIA validation, honeypot field, and success state
-- **SEO-ready** meta, canonical, and structured JSON-LD (`Organization`, `ContactPoint`)
-- **Local WOFF2 fonts** and optimized images in AVIF/WebP formats
-- **Auto-save** message content to `localStorage` for better UX
-- **PWA manifest** with full KP_Code standard icon set and offline 404
-- **Netlify deployment** with `_headers`, `_redirects`, and `robots.txt`
-- **Clean modular JavaScript** with individual initialization functions (`boot()` sequence)
-- **Accessibility polish:** skip link, focus states, reduced motion, aria-summary
+This project was created as part of an advanced front-end portfolio.
+It presents a more refined and brand-oriented construction company website,
+built with semantic HTML, modern CSS architecture, and vanilla JavaScript — without frameworks.
+
+The goal of the project is to demonstrate real-world layout structure,
+design consistency, accessibility awareness, and scalable front-end patterns.
+
+---
+
+## Key Characteristics
+
+- Fully responsive, mobile-first layout
+- Strong visual identity and brand consistency
+- Accessible navigation and semantic HTML
+- Light / dark theme support
+- Optimized performance and SEO fundamentals
+- Clean, modular, and scalable project structure
 
 ---
 
 ## Tech Stack
 
-- **HTML5**, **CSS3**, **JavaScript (ES6)**
-- **Netlify** — hosting and continuous deployment
-- **CSSNano** — CSS minification
-- **Terser** — JS minification
-- **Google Lighthouse**, **DevTools**, **VS Code**, **WSL (Ubuntu)** — testing and optimization
+- HTML5
+- CSS3 (custom properties, modular architecture)
+- Vanilla JavaScript (ES6)
+- Netlify (hosting & deployment)
 
 ---
 
-## Folder Structure
+## Project Status
 
-```text
-construction-project-02/
-├── assets/
-│   ├── img/
-│   ├── fonts/
-│   └── icons/
-├── css/
-│   ├── style.css
-│   └── style.min.css
-├── js/
-│   ├── script.js
-│   └── script.min.js
-├── oferta/
-│   ├── budowa-domow.html
-│   ├── remonty-mieszkan.html
-│   ├── instalacje-elektryczne.html
-│   ├── instalacje-sanitarne.html
-│   └── adaptacje-poddaszy.html
-├── legal/
-│   ├── polityka-prywatnosci.html
-│   ├── regulamin.html
-│   ├── cookies.html
-│   ├── certyfikaty.html
-│   └── kariera.html
-├── index.html
-├── 404.html
-├── site.webmanifest
-├── robots.txt
-├── sitemap.xml
-├── _headers
-└── _redirects
-```
----
+✔ Completed (v1)
 
-## Performance & Accessibility
+Future improvements planned:
 
-**Lighthouse Score:**
-Performance: **100** | Accessibility: **100** | Best Practices: **100** | SEO: **100**
-
-| Metric                   | Result |
-| ------------------------ | ------ |
-| First Contentful Paint   | 0.4 s  |
-| Largest Contentful Paint | 0.6 s  |
-| Total Blocking Time      | 0 ms   |
-| Cumulative Layout Shift  | 0      |
-| Speed Index              | 0.7 s  |
-
-Every metric meets or exceeds Core Web Vitals thresholds, ensuring top-tier UX and performance.
+- UI refinements and visual polish
+- SVG and asset optimization
+- Further accessibility enhancements
+- Minor code refactors
 
 ---
 
-## SEO & PWA
+## Disclaimer
 
-- **Open Graph** and **Twitter Cards** with unified KP_Code metadata
-- **JSON-LD** (`Organization` + `ContactPoint`) for structured search results
-- **Web App Manifest** with 192×192, 512×512, and 1024×1024 icons
-- **Screenshots**: 1280×720 (desktop) and 720×1280 (mobile)
-- **Shortcuts**: Menu / Gallery / Contact (96×96 icons)
-- **Netlify caching + security headers** (`HSTS`, `X-Frame-Options`, etc.)
-- **Offline 404 page** and PWA installable on all platforms
+This website is a fictional demo project created for portfolio purposes only.
+All company names, addresses, branding, and content are used as examples
+and do not represent a real business.
 
 ---
 
 ## Author
 
-**KP_Code**
+Kamil Król
+**KP*Code***
+Front-End Developer
+Portfolio project — 2025
 
-Front-End Developer focused on accessibility, performance, and clean UI engineering.
+---
 
-© 2025 KP_Code — For educational and portfolio use only.
+## 🇵🇱 Wersja polska
+
+# Axiom Construction — strona firmy budowlanej (demo)
+
+Responsywna demonstracyjna strona internetowa dla nowoczesnej firmy budowlanej,
+stworzona jako projekt portfolio.
+Projekt skupia się na spójnym brandingu, czytelnym interfejsie,
+dostępności, wydajności oraz strukturze gotowej do wdrożenia produkcyjnego.
+
+🔗 **Demo online:** [https://construction-project-02.netlify.app](https://construction-project-02.netlify.app)
+
+---
+
+## Cel projektu
+
+Projekt został stworzony jako element rozbudowanego portfolio front-end.
+Prezentuje bardziej dopracowaną i świadomie zaprojektowaną stronę firmy budowlanej,
+opartą o czysty HTML, nowoczesny CSS oraz JavaScript — bez użycia frameworków.
+
+Celem projektu jest pokazanie realistycznej architektury layoutu,
+spójności wizualnej, dostępności oraz skalowalnych wzorców front-endowych.
+
+---
+
+## Główne cechy
+
+- W pełni responsywny layout (mobile-first)
+- Spójna identyfikacja wizualna i branding
+- Dostępna nawigacja i semantyczny HTML
+- Obsługa trybu jasnego i ciemnego
+- Optymalizacja wydajności i podstaw SEO
+- Modularna i skalowalna struktura projektu
+
+---
+
+## Stack technologiczny
+
+- HTML5
+- CSS3 (custom properties, architektura modularna)
+- JavaScript (ES6, vanilla)
+- Netlify (hosting i deployment)
+
+---
+
+## Status projektu
+
+✔ Zakończony (v1)
+
+Planowane usprawnienia:
+
+- dopracowanie interfejsu i detali wizualnych
+- optymalizacja SVG i assetów
+- dalsze usprawnienia dostępności
+- drobna refaktoryzacja kodu
+
+---
+
+## Informacja prawna
+
+Strona jest fikcyjnym projektem demonstracyjnym stworzonym wyłącznie
+w celach portfolio.
+Wszystkie nazwy firm, branding, adresy i treści mają charakter przykładowy
+i nie odnoszą się do rzeczywistej działalności.
+
+---
+
+## Autor
+
+Kamil Król
+**KP*Code***
+Front-End Developer
+Projekt portfolio — 2025
+
+---

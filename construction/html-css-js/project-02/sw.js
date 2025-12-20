@@ -1,6 +1,6 @@
-/* === Service worker - construction-02 ===*/
+/* === Service worker - Axiom_Construction ===*/
 
-const CACHE_NAME = "construction-02-v1.03";
+const CACHE_NAME = "Axiom_Construction_v.1.0";
 const ASSETS = ["./", "./index.html", "./offline.html", "./css/style.min.css", "./js/script.min.js", "./assets/img/favicon/favicon-96x96.png", "./assets/img/og/og-1200x630.jpg"];
 
 self.addEventListener("install", (event) => {
