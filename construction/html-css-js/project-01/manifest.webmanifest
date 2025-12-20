@@ -1,20 +1,19 @@
 {
   "id": "/",
-  "name": "SolidCraft — Demo strony budowlanej i remontowej",
-  "short_name": "SolidCraft Demo",
-  "description": "Demo szablonu dla firmy budowlano-remontowej: oferta, realizacje, opinie i formularz kontaktowy. demo KP_Code_.",
+  "name": "SolidCraft — firma budowlano-remontowa",
+  "short_name": "SolidCraft",
+  "description": "SolidCraft — firma budowlano-remontowa: oferta, realizacje, opinie, FAQ oraz formularz wyceny. Sprawdź zakres usług i skontaktuj się z nami.",
   "start_url": "/",
   "scope": "/",
   "display": "standalone",
   "display_override": ["standalone", "window-controls-overlay"],
-  "orientation": "portrait-primary",
+  "orientation": "any",
   "theme_color": "#0ea5e9",
   "background_color": "#ffffff",
   "categories": ["business", "productivity"],
   "prefer_related_applications": false,
   "lang": "pl-PL",
   "dir": "ltr",
-
   "icons": [
     {
       "src": "/assets/img/favicon/favicon.svg",
@@ -44,31 +43,50 @@
       "purpose": "maskable"
     }
   ],
-
   "shortcuts": [
     {
       "name": "Oferta",
       "short_name": "Oferta",
       "description": "Przejdź do sekcji Oferta na stronie głównej",
       "url": "/#oferta",
-      "icons": [{ "src": "/assets/img/shortcuts/offer-96.png", "sizes": "96x96", "type": "image/png", "purpose": "any maskable" }]
+      "icons": [
+        {
+          "src": "/assets/img/shortcuts/offer-96.png",
+          "sizes": "96x96",
+          "type": "image/png",
+          "purpose": "any maskable"
+        }
+      ]
     },
     {
       "name": "Dokumenty",
-      "short_name": "Legal",
+      "short_name": "Dokumenty",
       "description": "Zobacz regulamin i politykę prywatności",
       "url": "/doc/regulamin.html",
-      "icons": [{ "src": "/assets/img/shortcuts/legal-96.png", "sizes": "96x96", "type": "image/png", "purpose": "any maskable" }]
+      "icons": [
+        {
+          "src": "/assets/img/shortcuts/legal-96.png",
+          "sizes": "96x96",
+          "type": "image/png",
+          "purpose": "any maskable"
+        }
+      ]
     },
     {
       "name": "Kontakt",
       "short_name": "Kontakt",
       "description": "Otwórz sekcję kontaktową z formularzem wyceny",
       "url": "/#kontakt",
-      "icons": [{ "src": "/assets/img/shortcuts/contact-96.png", "sizes": "96x96", "type": "image/png", "purpose": "any maskable" }]
+      "icons": [
+        {
+          "src": "/assets/img/shortcuts/contact-96.png",
+          "sizes": "96x96",
+          "type": "image/png",
+          "purpose": "any maskable"
+        }
+      ]
     }
   ],
-
   "screenshots": [
     {
       "src": "/assets/img/screenshots/screenshot-720x1280.jpg",

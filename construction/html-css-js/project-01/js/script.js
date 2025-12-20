@@ -1,29 +1,32 @@
-/* =========================================================
-   = Project: construction-html-css-js-project-01
-   = Author: KP_Code_
-   = Last Update: 2025-12-18
-   =========================================================
-   = script.js
-   = Structure Overview
-   =========================================================
-   = 00) HEADER HEIGHT — sync CSS var for header size
-   = 01) NAVIGATION — mobile menu + "Offer" dropdown
-   = 02) SCROLLSPY — active nav links on scroll
-   = 03) FOOTER YEAR — auto-update current year
-   = 04) SCROLL TO TOP — smooth scroll to page top
-   = 05) SCROLL REVEAL — fade-in elements on viewport enter
-   = 06) CONTACT FORM — validation + honeypot spam filter
-   = 07) HEADER SHRINK — compact header on scroll
-   = 08) THEME TOGGLE — dark/light mode switch
-   = 09) CTA RIPPLE — ripple wave animation for buttons
-   = 10) HERO BLUR — sync blurred background image
-   = 11) LIGHTBOX — preview offer thumbnails
-   = 12) PREFETCH — preload offer subpages on hover/focus
-   = 13) HOME HELPERS — misc helpers for main page
-   = 14) COOKIES BANNER — banner for cookie consent
-   ========================================================= */
+/* ================================
+   = Project: construction-01
+   = Name: SolidCraft
+   = Technology: html/css/js
+   = Author: Kamil Król - kp_code_
+   = Last Update: 2025-12-20
+   = Version: 1.00
+   ================================
+   = CSS Stylesheet
+   = Structure overview
+   ================================
+   = 00 - Header height
+   = 01 - Navigation dropdown
+   = 02 - Scroll spy
+   = 03 - Footer year
+   = 04 - Scroll to top
+   = 05 - Scroll reveal
+   = 06 - Contact form
+   = 07 - Header shrink
+   = 08 - Theme toggle
+   = 09 - CTA ripple
+   = 10 - Hero blur
+   = 11 - Lightbox
+   = 12 - Prefetch
+   = 13 - Home helpers
+   = 14 - Cookies banner
+   ================================= */
 
-/* === 00) HEADER HEIGHT === */
+/* === 00 - Header height === */
 
 const utils = (() => {
   const docEl = document.documentElement;
@@ -85,22 +88,28 @@ const utils = (() => {
   return Object.freeze({ getHeaderH, refreshHeaderH, syncHeaderCssVar });
 })();
 
-/* === 01) NAVIGATION === */
+/* === 01 - Navigation dropdown === */
 
 function initNav() {
   if (initNav._abort) initNav._abort.abort();
+
   const ac = new AbortController();
   const { signal } = ac;
+
   initNav._abort = ac;
+
   const html = document.documentElement;
   const toggle = document.querySelector(".nav-toggle");
   const menu = document.querySelector("#navMenu");
+
   if (!toggle || !menu) return;
   if (!toggle.getAttribute("aria-controls")) toggle.setAttribute("aria-controls", "navMenu");
+
   const OPEN_CLASS = "is-nav-open";
   const OUTSIDE_EVT = "pointerdown" in window ? "pointerdown" : "click";
 
   let lastFocus = null;
+
   const setOpen = (open, { silentFocus = false } = {}) => {
     menu.classList.toggle("open", open);
     html.classList.toggle(OPEN_CLASS, open);
@@ -279,34 +288,35 @@ function initNav() {
   }
 }
 
-/* === 02) SCROLLSPY === */
+/* === 02 - ScrollSpy === */
 
 function initScrollSpy() {
   if (initScrollSpy._abort) initScrollSpy._abort.abort();
   const ac = new AbortController();
   const { signal } = ac;
+
   initScrollSpy._abort = ac;
 
   const html = document.documentElement;
   const headerEl = document.querySelector(".site-header");
   const navMenu = document.getElementById("navMenu");
   const navLinks = [...document.querySelectorAll('.nav-menu a[href^="#"]')];
+
   if (!navLinks.length) return;
 
   const PEEK = 12;
   const mapHref = (href) => (href === "#top" ? "#strona-glowna" : href);
-
   const targetsFromMenu = navLinks.map((a) => mapHref(a.getAttribute("href"))).filter((href) => href && href.startsWith("#") && href.length > 1);
-
   const extraTargets = [];
+
   if (document.querySelector("#oferta")) extraTargets.push("#oferta");
 
   const sections = [...new Set([...targetsFromMenu, ...extraTargets])].map((sel) => document.querySelector(sel)).filter(Boolean);
+
   if (!sections.length) return;
 
   const getHeaderLive = () => (headerEl ? Math.round(headerEl.getBoundingClientRect().height) : 0);
   const getOffset = () => (typeof utils?.getHeaderH === "function" ? utils.getHeaderH() : getHeaderLive()) + PEEK;
-
   const isMenuOpen = () => {
     return (
       (navMenu && navMenu.classList.contains("open")) ||
@@ -463,7 +473,7 @@ function initScrollSpy() {
   compute();
 }
 
-/* === 03) FOOTER YEAR === */
+/* === 03 - Footer Year === */
 
 function initFooterYear() {
   const el = document.getElementById("year");
@@ -478,7 +488,7 @@ function initFooterYear() {
   if (el.textContent !== yearNow) el.textContent = yearNow;
 }
 
-/* === 04) SCROLL TO TOP === */
+/* === 04 - Scroll to Top === */
 
 function initSmoothTop() {
   if (initSmoothTop._abort) initSmoothTop._abort.abort();
@@ -511,7 +521,7 @@ function initSmoothTop() {
   );
 }
 
-/* === 05) SCROLL REVEAL === */
+/* === 05 - Scroll Reveal === */
 
 function initScrollReveal() {
   if (initScrollReveal._abort) initScrollReveal._abort.abort();
@@ -560,7 +570,7 @@ function initScrollReveal() {
   });
 }
 
-/* === 06) CONTACT FORM === */
+/* === 06 - Contact Form === */
 
 function initContactForm() {
   if (initContactForm._abort) initContactForm._abort.abort();
@@ -779,7 +789,7 @@ function initContactForm() {
   );
 }
 
-/* === 07) HEADER SHRINK === */
+/* === 07 - Header Shrink === */
 
 function initHeaderShrink() {
   if (initHeaderShrink._abort) initHeaderShrink._abort.abort();
@@ -859,7 +869,7 @@ function initHeaderShrink() {
   onScroll();
 }
 
-/* === 08) THEME TOGGLE === */
+/* === 08 - Theme Toggle === */
 
 function initThemeToggle() {
   if (initThemeToggle._abort) initThemeToggle._abort.abort();
@@ -933,7 +943,7 @@ function initThemeToggle() {
   };
 }
 
-/* === 09) CTA RIPPLE === */
+/* === 09 - CTA ripple === */
 
 function initRipple() {
   if (initRipple._abort) initRipple._abort.abort();
@@ -1009,7 +1019,7 @@ function initRipple() {
   }
 }
 
-/* === 10) HERO BLUR === */
+/* === 10 - Hero blur === */
 
 function initHeroBlurSync() {
   if (initHeroBlurSync._abort) initHeroBlurSync._abort.abort();
@@ -1102,38 +1112,50 @@ function initHeroBlurSync() {
   syncNextFrame();
 }
 
-/* === 11) LIGHTBOX === */
+/* === 11 - Lightbox === */
 
 function initOfertaLightbox() {
   if (initOfertaLightbox._abort) initOfertaLightbox._abort.abort();
+
   const ac = new AbortController();
   const { signal } = ac;
   initOfertaLightbox._abort = ac;
+
   const thumbs = Array.from(document.querySelectorAll("#oferta .card picture img, .gallery .gallery-item picture img"));
+
   if (!thumbs.length) return;
+
   const $ = (t) => document.createElement(t);
+
   const html = document.documentElement;
   const main = document.getElementById("main") || document.querySelector("main");
   const header = document.querySelector(".site-header");
+
   let backdrop = document.querySelector(".lb-backdrop");
   let wrap = document.querySelector(".lb-wrap");
   let viewport, img, btnClose, btnPrev, btnNext;
+
   if (!backdrop || !wrap) {
     backdrop = $("div");
     backdrop.className = "lb-backdrop";
+
     wrap = $("div");
     wrap.className = "lb-wrap";
     wrap.setAttribute("role", "dialog");
     wrap.setAttribute("aria-modal", "true");
     wrap.setAttribute("aria-label", "Podgląd zdjęcia");
     wrap.tabIndex = -1;
+
     viewport = $("div");
     viewport.className = "lb-viewport";
+
     img = new Image();
     img.alt = "";
     img.decoding = "async";
+
     viewport.appendChild(img);
     wrap.appendChild(viewport);
+
     const mkBtn = (cls, label, svg) => {
       const b = $("button");
       b.type = "button";
@@ -1142,17 +1164,23 @@ function initOfertaLightbox() {
       b.innerHTML = svg;
       return b;
     };
+
     const svgX =
       '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M18.3 5.7a1 1 0 0 0-1.4 0L12 10.6 7.1 5.7A1 1 0 0 0 5.7 7.1L10.6 12l-4.9 4.9a1 1 0 1 0 1.4 1.4L12 13.4l4.9 4.9a1 1 0 0 0 1.4-1.4L13.4 12l4.9-4.9a1 1 0 0 0 0-1.4z"/></svg>';
+
     const svgL = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15.7 5.3a1 1 0 0 1 0 1.4L11.4 11l4.3 4.3a 1 1 0 1 1-1.4 1.4l-5-5a 1 1 0 0 1 0-1.4l5-5a 1 1 0 0 1 1.4 0z"/></svg>';
+
     const svgR = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8.3 5.3a 1 1 0 0 0 0 1.4L12.6 11l-4.3 4.3a 1 1 0 1 0 1.4 1.4l5-5a 1 1 0 0 0 0-1.4l-5-5a 1 1 0 0 0-1.4 0z"/></svg>';
+
     btnClose = mkBtn("lb-close", "Zamknij podgląd", svgX);
     btnPrev = mkBtn("lb-prev", "Poprzednie zdjęcie", svgL);
     btnNext = mkBtn("lb-next", "Następne zdjęcie", svgR);
+
     document.body.append(backdrop, wrap, btnClose, btnPrev, btnNext);
   } else {
     viewport = wrap.querySelector(".lb-viewport") || $("div");
     img = wrap.querySelector("img") || new Image();
+
     btnClose = document.querySelector(".lb-btn.lb-close");
     btnPrev = document.querySelector(".lb-btn.lb-prev");
     btnNext = document.querySelector(".lb-btn.lb-next");
@@ -1160,6 +1188,7 @@ function initOfertaLightbox() {
 
   const parseSrcset = (ss) => {
     if (!ss) return [];
+
     return ss
       .split(",")
       .map((s) => s.trim())
@@ -1172,38 +1201,49 @@ function initOfertaLightbox() {
 
   const bestUrlFor = (el) => {
     let best = parseSrcset(el.getAttribute("srcset"))[0]?.url;
+
     if (!best) {
       const pic = el.closest("picture");
+
       if (pic) {
         const candidates = [];
+
         pic.querySelectorAll("source").forEach((s) => {
           candidates.push(...parseSrcset(s.getAttribute("srcset")));
         });
+
         candidates.sort((a, b) => b.w - a.w);
         best = candidates[0]?.url || null;
       }
     }
+
     return best || el.currentSrc || el.src || "";
   };
 
   const preload = (i) => {
     if (i < 0 || i >= thumbs.length) return;
+
     const url = bestUrlFor(thumbs[i]);
-    if (url) {
-      const tmp = new Image();
-      tmp.src = url;
-    }
+
+    if (!url) return;
+
+    const tmp = new Image();
+    tmp.src = url;
   };
 
   let index = 0;
   let isOpen = false;
   let lastFocus = null;
+
   const applyImage = () => {
     const el = thumbs[index];
     const url = bestUrlFor(el);
+
     if (!url) return;
+
     img.src = url;
     img.alt = el.getAttribute("alt") || "";
+
     preload((index + 1) % thumbs.length);
     preload((index - 1 + thumbs.length) % thumbs.length);
   };
@@ -1212,42 +1252,56 @@ function initOfertaLightbox() {
 
   const setOpen = (open) => {
     isOpen = open;
+
     backdrop.classList.toggle("is-open", open);
     wrap.classList.toggle("is-open", open);
     btnClose.classList.toggle("is-open", open);
     btnPrev.classList.toggle("is-open", open);
     btnNext.classList.toggle("is-open", open);
+
     html.classList.toggle("lb-no-scroll", open);
     wrap.setAttribute("aria-hidden", open ? "false" : "true");
+
     try {
       if (main && "inert" in main) main.inert = open;
       if (header && "inert" in header) header.inert = open;
     } catch {}
+
     if (open) {
       lastFocus = document.activeElement;
+
       applyImage();
+
       const multi = thumbs.length > 1;
       btnPrev.style.display = multi ? "grid" : "none";
       btnNext.style.display = multi ? "grid" : "none";
+
       (btnClose || wrap).focus({ preventScroll: true });
-    } else {
-      img.src = "";
-      img.alt = "";
-      btnPrev.style.display = "none";
-      btnNext.style.display = "none";
-      lastFocus?.focus?.({ preventScroll: true });
-      lastFocus = null;
-      if (document.fullscreenElement) document.exitFullscreen?.();
+      return;
     }
+
+    img.src = "";
+    img.alt = "";
+
+    btnPrev.style.display = "none";
+    btnNext.style.display = "none";
+
+    lastFocus?.focus?.({ preventScroll: true });
+    lastFocus = null;
+
+    if (document.fullscreenElement) document.exitFullscreen?.();
   };
 
   const prev = () => {
     if (thumbs.length < 2) return;
+
     index = (index - 1 + thumbs.length) % thumbs.length;
     applyImage();
   };
+
   const next = () => {
     if (thumbs.length < 2) return;
+
     index = (index + 1) % thumbs.length;
     applyImage();
   };
@@ -1256,6 +1310,7 @@ function initOfertaLightbox() {
     el.setAttribute("tabindex", "0");
     el.setAttribute("role", "button");
     el.setAttribute("aria-label", "Powiększ zdjęcie");
+
     el.addEventListener(
       "click",
       (e) => {
@@ -1265,6 +1320,7 @@ function initOfertaLightbox() {
       },
       { signal }
     );
+
     el.addEventListener(
       "keydown",
       (e) => {
@@ -1281,73 +1337,102 @@ function initOfertaLightbox() {
   btnClose?.addEventListener("click", () => setOpen(false), { signal });
   btnPrev?.addEventListener("click", prev, { signal });
   btnNext?.addEventListener("click", next, { signal });
+
   backdrop.addEventListener("click", () => setOpen(false), { signal });
+
   document.addEventListener(
     "keydown",
     (e) => {
       if (!isOpen) return;
-      if (e.key === "Escape") setOpen(false);
-      else if (e.key === "ArrowLeft") prev();
-      else if (e.key === "ArrowRight") next();
-      else if (e.key === "Tab") {
-        const list = focusables();
-        if (!list.length) return;
-        const first = list[0],
-          last = list[list.length - 1];
-        if (e.shiftKey && document.activeElement === first) {
-          e.preventDefault();
-          last.focus();
-        } else if (!e.shiftKey && document.activeElement === last) {
-          e.preventDefault();
-          first.focus();
-        }
+
+      if (e.key === "Escape") {
+        setOpen(false);
+        return;
+      }
+
+      if (e.key === "ArrowLeft") {
+        prev();
+        return;
+      }
+
+      if (e.key === "ArrowRight") {
+        next();
+        return;
+      }
+
+      if (e.key !== "Tab") return;
+
+      const list = focusables();
+      if (!list.length) return;
+
+      const first = list[0];
+      const last = list[list.length - 1];
+
+      if (e.shiftKey && document.activeElement === first) {
+        e.preventDefault();
+        last.focus();
+      } else if (!e.shiftKey && document.activeElement === last) {
+        e.preventDefault();
+        first.focus();
       }
     },
     { signal }
   );
 
-  let sx = 0,
-    sy = 0,
-    moved = false;
+  let sx = 0;
+  let sy = 0;
+  let moved = false;
+
   const onStart = (e) => {
     const t = e.changedTouches?.[0];
     if (!t) return;
+
     sx = t.clientX;
     sy = t.clientY;
     moved = false;
   };
+
   const onMove = () => {
     moved = true;
   };
+
   const onEnd = (e) => {
     if (!moved) return;
+
     const t = e.changedTouches?.[0];
     if (!t) return;
+
     const dx = t.clientX - sx;
     const dy = t.clientY - sy;
+
     if (Math.abs(dx) > 50 && Math.abs(dx) > Math.abs(dy)) {
       dx < 0 ? next() : prev();
     }
   };
-  (wrap.querySelector(".lb-viewport") || wrap).addEventListener("touchstart", onStart, { passive: true, signal });
-  (wrap.querySelector(".lb-viewport") || wrap).addEventListener("touchmove", onMove, { passive: true, signal });
-  (wrap.querySelector(".lb-viewport") || wrap).addEventListener("touchend", onEnd, { passive: true, signal });
 
   const viewportEl = wrap.querySelector(".lb-viewport") || wrap;
+
+  viewportEl.addEventListener("touchstart", onStart, { passive: true, signal });
+  viewportEl.addEventListener("touchmove", onMove, { passive: true, signal });
+  viewportEl.addEventListener("touchend", onEnd, { passive: true, signal });
+
   let lastTap = 0;
+
   const toggleFs = () => {
     const target = img || viewportEl;
     if (!target) return;
+
     if (!document.fullscreenElement) {
       (target.requestFullscreen || target.webkitRequestFullscreen || target.msRequestFullscreen)?.call(target);
-    } else {
-      document.exitFullscreen?.();
+      return;
     }
+
+    document.exitFullscreen?.();
   };
 
   viewportEl.addEventListener(
     "dblclick",
-    (e) => {
+    () => {
       if (!isOpen) return;
       toggleFs();
     },
@@ -1358,19 +1443,23 @@ function initOfertaLightbox() {
     "touchend",
     (e) => {
       if (!isOpen) return;
+
       const now = Date.now();
+
       if (now - lastTap < 350) {
         e.preventDefault();
         toggleFs();
       }
+
       lastTap = now;
     },
     { passive: true, signal }
   );
+
   window.addEventListener("pagehide", () => ac.abort(), { once: true, signal });
 }
 
-/* === 12) PREFETCH === */
+/* === 12 - Prefetch === */
 
 function initOfferPrefetch() {
   if (initOfferPrefetch._abort) initOfferPrefetch._abort.abort();
@@ -1441,120 +1530,170 @@ function initOfferPrefetch() {
   window.addEventListener("pagehide", () => ac.abort(), { once: true, signal });
 }
 
-/* === 13) HOME HELPERS === */
+/* === 13 - Home helpers === */
 
 function initHomeHelpers() {
+  // Reset previous listeners (if re-initialized)
   if (initHomeHelpers._abort) initHomeHelpers._abort.abort();
+
   const ac = new AbortController();
   const { signal } = ac;
   initHomeHelpers._abort = ac;
+
   const isHome = !!document.querySelector("#kontakt") || !!document.querySelector("#oferta") || !!document.querySelector("#strona-glowna");
-  if (isHome) {
-    document.addEventListener(
-      "click",
-      (e) => {
-        const link = e.target.closest('a.scroll-top, a[href="#top"]');
-        if (!link) return;
-        const alreadyHandled = e.defaultPrevented;
-        const prefersNoAnim = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-        const behavior = prefersNoAnim ? "auto" : "smooth";
-        const topEl = document.getElementById("top");
-        if (!alreadyHandled) {
-          e.preventDefault();
-          if (topEl?.scrollIntoView) {
-            topEl.scrollIntoView({ behavior });
-            if (typeof topEl.focus === "function") {
-              topEl.setAttribute("tabindex", "-1");
-              topEl.focus({ preventScroll: true });
-              setTimeout(() => topEl.removeAttribute("tabindex"), 800);
-            }
-          } else {
-            window.scrollTo({ top: 0, behavior });
-          }
-        } else if (topEl && typeof topEl.focus === "function") {
-          topEl.setAttribute("tabindex", "-1");
-          topEl.focus({ preventScroll: true });
-          setTimeout(() => topEl.removeAttribute("tabindex"), 800);
-        }
-        history.replaceState(null, "", location.pathname + location.search);
-      },
-      { signal }
-    );
+
+  if (!isHome) {
+    window.addEventListener("pagehide", () => ac.abort(), { once: true, signal });
+    return;
   }
 
+  const focusTopEl = (topEl) => {
+    if (!topEl || typeof topEl.focus !== "function") return;
+
+    topEl.setAttribute("tabindex", "-1");
+    topEl.focus({ preventScroll: true });
+
+    setTimeout(() => topEl.removeAttribute("tabindex"), 800);
+  };
+
+  const getScrollBehavior = () => {
+    const prefersNoAnim = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    return prefersNoAnim ? "auto" : "smooth";
+  };
+
+  const cleanUrlKeepQuery = () => {
+    history.replaceState(null, "", location.pathname + location.search);
+  };
+
+  const cleanUrlKeepHash = () => {
+    history.replaceState(null, "", location.pathname + location.hash);
+  };
+
+  const scrollToTop = () => {
+    const behavior = getScrollBehavior();
+    const topEl = document.getElementById("top");
+
+    if (topEl?.scrollIntoView) {
+      topEl.scrollIntoView({ behavior });
+      focusTopEl(topEl);
+      return;
+    }
+
+    window.scrollTo({ top: 0, behavior });
+    focusTopEl(topEl);
+  };
+
+  document.addEventListener(
+    "click",
+    (e) => {
+      const link = e.target.closest('a.scroll-top, a[href="#top"]');
+      if (!link) return;
+
+      if (!e.defaultPrevented) {
+        e.preventDefault();
+        scrollToTop();
+      } else {
+        focusTopEl(document.getElementById("top"));
+      }
+
+      cleanUrlKeepQuery();
+    },
+    { signal }
+  );
+
   (function prefillService() {
-    if (!isHome) return;
     const form = document.querySelector("#kontakt form");
     if (!form) return;
+
     const params = new URLSearchParams(location.search);
     const service = params.get("usluga");
     if (!service) return;
+
     let input = form.querySelector('[name="usluga"]');
+
     if (!input) {
       input = document.createElement("input");
       input.type = "hidden";
       input.name = "usluga";
       form.appendChild(input);
     }
+
     input.value = service;
-    history.replaceState(null, "", location.pathname + location.hash);
+    cleanUrlKeepHash();
   })();
+
   window.addEventListener("pagehide", () => ac.abort(), { once: true, signal });
 }
 
-/* === 14) COOKIE BANNER (Demo) === */
+/* === 14 - Cookie Banner === */
 
 function initCookieBanner() {
   try {
-    var KEY = "cookies-consent-v1";
-    var banner = document.getElementById("cookie-banner");
-    if (!banner || localStorage.getItem(KEY) === "accepted") return;
-    var previousFocus = document.activeElement;
+    const KEY = "cookies-consent-v1";
+    const banner = document.getElementById("cookie-banner");
+
+    if (!banner) return;
+    if (localStorage.getItem(KEY) === "accepted") return;
+
+    const previousFocus = document.activeElement;
+
     banner.hidden = false;
+
     try {
       banner.tabIndex = -1;
       banner.focus({ preventScroll: true });
     } catch {}
-    var acceptBtn = document.getElementById("cc-accept");
-    if (acceptBtn)
-      acceptBtn.addEventListener("click", function () {
+
+    const acceptBtn = document.getElementById("cc-accept");
+
+    if (acceptBtn) {
+      acceptBtn.addEventListener("click", () => {
         localStorage.setItem(KEY, "accepted");
         banner.hidden = true;
+
         try {
           (previousFocus || document.querySelector(".theme-toggle") || document.body).focus({ preventScroll: true });
         } catch {}
       });
-    banner.addEventListener("keydown", function (e) {
-      if (e.key === "Escape") {
-        localStorage.setItem(KEY, "accepted");
-        banner.hidden = true;
-        try {
-          (previousFocus || document.querySelector(".theme-toggle") || document.body).focus({ preventScroll: true });
-        } catch {}
-      }
+    }
+
+    banner.addEventListener("keydown", (e) => {
+      if (e.key !== "Escape") return;
+
+      localStorage.setItem(KEY, "accepted");
+      banner.hidden = true;
+
+      try {
+        (previousFocus || document.querySelector(".theme-toggle") || document.body).focus({ preventScroll: true });
+      } catch {}
     });
-  } catch (e) {}
+  } catch {}
 }
 
-/* === 99) BOOTSTRAP — INICJALIZACJA FUNKCJI === */
+/* === 99 - Bootstrap === */
 
 (function boot() {
   const start = () => {
-    /*-00-*/ if (typeof utils?.syncHeaderCssVar === "function") utils.syncHeaderCssVar();
-    /*-01-*/ if (typeof initNav === "function") initNav();
-    /*-07-*/ if (typeof initHeaderShrink === "function") initHeaderShrink();
-    /*-02-*/ if (typeof initScrollSpy === "function") initScrollSpy();
-    /*-03-*/ if (typeof initFooterYear === "function") initFooterYear();
-    /*-04-*/ if (typeof initSmoothTop === "function") initSmoothTop();
-    /*-05-*/ if (typeof initScrollReveal === "function") initScrollReveal();
-    /*-08-*/ if (typeof initThemeToggle === "function") initThemeToggle();
-    /*-09-*/ if (typeof initRipple === "function") initRipple();
-    /*-10-*/ if (typeof initHeroBlurSync === "function") initHeroBlurSync();
-    /*-11-*/ if (typeof initOfertaLightbox === "function") initOfertaLightbox();
-    /*-12-*/ if (typeof initOfferPrefetch === "function") initOfferPrefetch();
-    /*-13-*/ if (typeof initHomeHelpers === "function") initHomeHelpers();
-    /*-06-*/ if (typeof initContactForm === "function") initContactForm();
-    /*-14-*/ if (typeof initCookieBanner === "function") initCookieBanner();
+    if (typeof utils?.syncHeaderCssVar === "function") utils.syncHeaderCssVar();
+
+    if (typeof initNav === "function") initNav();
+    if (typeof initHeaderShrink === "function") initHeaderShrink();
+    if (typeof initScrollSpy === "function") initScrollSpy();
+
+    if (typeof initFooterYear === "function") initFooterYear();
+    if (typeof initSmoothTop === "function") initSmoothTop();
+    if (typeof initScrollReveal === "function") initScrollReveal();
+
+    if (typeof initThemeToggle === "function") initThemeToggle();
+    if (typeof initRipple === "function") initRipple();
+
+    if (typeof initHeroBlurSync === "function") initHeroBlurSync();
+    if (typeof initOfertaLightbox === "function") initOfertaLightbox();
+    if (typeof initOfferPrefetch === "function") initOfferPrefetch();
+
+    if (typeof initHomeHelpers === "function") initHomeHelpers();
+    if (typeof initContactForm === "function") initContactForm();
+    if (typeof initCookieBanner === "function") initCookieBanner();
   };
 
   if (document.readyState === "loading") {

@@ -3,22 +3,39 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
-
-    <title>SolidCraft — firma remontowo-budowlana | demo KP_Code_</title>
-    <meta
-      name="description"
-      content="SolidCraft (demo) — strona firmy remontowo-budowlanej: oferta, realizacje, opinie, FAQ oraz formularz wyceny. Projekt demonstracyjny KP_Code_."
-    />
+    <title>SolidCraft — firma remontowo-budowlana</title>
+    <meta name="description" content="SolidCraft — firma remontowo-budowlana. Oferta, realizacje, opinie, FAQ oraz formularz wyceny. Sprawdź zakres usług i skontaktuj się z nami." />
     <meta name="author" content="KP_Code_" />
     <meta name="robots" content="index, follow" />
     <link rel="canonical" href="https://construction-project-01.netlify.app/" />
-
-    <!-- PWA / kolory motywu -->
     <meta name="theme-color" content="#0ea5e9" media="(prefers-color-scheme: light)" />
     <meta name="theme-color" content="#0b1220" media="(prefers-color-scheme: dark)" />
     <meta name="color-scheme" content="light dark" />
 
-    <!-- Preload hero (AVIF/WEBP/JPG) -->
+    <script>
+      try {
+        const root = document.documentElement;
+        const stored = localStorage.getItem("theme");
+
+        const theme = stored === "light" || stored === "dark" ? stored : window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+
+        root.dataset.theme = theme;
+        root.classList.add("preload-theme");
+      } catch {}
+    </script>
+    <style>
+      html.preload-theme *,
+      html.preload-theme *::before,
+      html.preload-theme *::after {
+        transition: none !important;
+      }
+    </style>
+    <script>
+      window.addEventListener("DOMContentLoaded", () => {
+        requestAnimationFrame(() => document.documentElement.classList.remove("preload-theme"));
+      });
+    </script>
+
     <link
       rel="preload"
       as="image"
@@ -26,46 +43,25 @@
       imagesrcset="assets/img/hero/hero-800-450.avif 800w, assets/img/hero/hero-1200-675.avif 1200w, assets/img/hero/hero-1600-900.avif 1600w, assets/img/hero/hero-2400-1350.avif 2400w, assets/img/hero/hero-3200-1800.avif 3200w"
       imagesizes="100vw"
       fetchpriority="high" />
-    <link
-      rel="preload"
-      as="image"
-      type="image/webp"
-      imagesrcset="assets/img/hero/hero-800-450.webp 800w, assets/img/hero/hero-1200-675.webp 1200w, assets/img/hero/hero-1600-900.webp 1600w, assets/img/hero/hero-2400-1350.webp 2400w, assets/img/hero/hero-3200-1800.webp 3200w"
-      imagesizes="100vw" />
-    <link
-      rel="preload"
-      as="image"
-      imagesrcset="assets/img/hero/hero-800-450.jpg 800w, assets/img/hero/hero-1200-675.jpg 1200w, assets/img/hero/hero-1600-900.jpg 1600w, assets/img/hero/hero-2400-1350.jpg 2400w, assets/img/hero/hero-3200-1800.jpg 3200w"
-      imagesizes="100vw" />
 
-    <!-- Open Graph -->
     <meta property="og:type" content="website" />
     <meta property="og:site_name" content="SolidCraft" />
     <meta property="og:locale" content="pl_PL" />
-    <meta property="og:title" content="SolidCraft — firma remontowo-budowlana | demo KP_Code_" />
-    <meta
-      property="og:description"
-      content="SolidCraft (demo) — oferta, realizacje, opinie, FAQ oraz formularz wyceny. Projekt demonstracyjny KP_Code_."
-    />
+    <meta property="og:title" content="SolidCraft — firma remontowo-budowlana" />
+    <meta property="og:description" content="Oferta, realizacje, opinie, FAQ oraz formularz wyceny. SolidCraft — solidne wykończenia i remonty." />
     <meta property="og:url" content="https://construction-project-01.netlify.app/" />
     <meta property="og:image" content="https://construction-project-01.netlify.app/assets/img/og/og-image-1200x630.jpg" />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
-    <meta property="og:image:alt" content="SolidCraft — strona firmy remontowo-budowlanej (demo)" />
+    <meta property="og:image:alt" content="SolidCraft — firma remontowo-budowlana" />
     <meta property="og:updated_time" content="2025-10-28T12:00:00+02:00" />
-
-    <!-- Twitter -->
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="SolidCraft — firma remontowo-budowlana | demo KP_Code_" />
-    <meta
-      name="twitter:description"
-      content="SolidCraft (demo) — oferta, realizacje, opinie, FAQ oraz formularz wyceny. Projekt demonstracyjny KP_Code_."
-    />
+    <meta name="twitter:title" content="SolidCraft — firma remontowo-budowlana" />
+    <meta name="twitter:description" content="Oferta, realizacje, opinie, FAQ oraz formularz wyceny. SolidCraft — solidne wykończenia i remonty." />
     <meta name="twitter:image" content="https://construction-project-01.netlify.app/assets/img/og/og-image-1200x630.jpg" />
     <meta name="twitter:url" content="https://construction-project-01.netlify.app/" />
-    <meta name="twitter:image:alt" content="SolidCraft — strona firmy remontowo-budowlanej (demo)" />
+    <meta name="twitter:image:alt" content="SolidCraft — firma remontowo-budowlana" />
 
-    <!-- LocalBusiness / GeneralContractor (DEMO) -->
     <script type="application/ld+json">
       {
         "@context": "https://schema.org",
@@ -86,12 +82,6 @@
         "sameAs": ["https://facebook.com", "https://instagram.com"]
       }
     </script>
-
-    <!-- Maps performance hints -->
-    <link rel="preconnect" href="https://www.google.com" crossorigin />
-    <link rel="dns-prefetch" href="https://www.google.com" />
-
-    <!-- JSON-LD (DEMO: Website + Page + FAQ) -->
     <script type="application/ld+json">
       {
         "@context": "https://schema.org",
@@ -100,17 +90,17 @@
             "@type": "WebSite",
             "@id": "https://construction-project-01.netlify.app/#website",
             "url": "https://construction-project-01.netlify.app/",
-            "name": "SolidCraft — demo KP_Code_",
-            "description": "SolidCraft (demo) — projekt demonstracyjny strony firmy remontowo-budowlanej.",
+            "name": "SolidCraft",
+            "description": "SolidCraft — firma remontowo-budowlana. Oferta, realizacje, opinie, FAQ oraz formularz wyceny.",
             "inLanguage": "pl-PL",
-            "publisher": { "@type": "Organization", "name": "KP_Code_" },
+            "publisher": { "@type": "Organization", "name": "SolidCraft" },
             "image": "https://construction-project-01.netlify.app/assets/img/og/og-image-1200x630.jpg"
           },
           {
             "@type": "CollectionPage",
             "@id": "https://construction-project-01.netlify.app/#page",
             "url": "https://construction-project-01.netlify.app/",
-            "name": "SolidCraft — firma remontowo-budowlana | demo KP_Code_",
+            "name": "SolidCraft — firma remontowo-budowlana",
             "isPartOf": { "@id": "https://construction-project-01.netlify.app/#website" },
             "inLanguage": "pl-PL",
             "datePublished": "2025-09-19",
@@ -123,7 +113,7 @@
             },
             "about": {
               "@type": "ItemList",
-              "name": "Zakres usług (demo)",
+              "name": "Zakres usług",
               "itemListElement": [
                 { "@type": "ListItem", "position": 1, "name": "Wykończenia i remonty łazienek", "url": "https://construction-project-01.netlify.app/#oferta-lazienki" },
                 { "@type": "ListItem", "position": 2, "name": "Malowanie i gładzie", "url": "https://construction-project-01.netlify.app/#oferta-malowanie" },
@@ -157,49 +147,21 @@
       }
     </script>
 
-    <!-- Boot theme (no flicker) -->
-    <script>
-      try {
-        const d = document.documentElement;
-        let t = localStorage.getItem("theme");
-        if (t !== "light" && t !== "dark") {
-          t = window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
-        }
-        d.setAttribute("data-theme", t);
-      } catch {}
-    </script>
-    <style>
-      html.preload-theme *,
-      html.preload-theme *::before,
-      html.preload-theme *::after {
-        transition: none !important;
-      }
-    </style>
-    <script>
-      document.documentElement.classList.add("preload-theme");
-      window.addEventListener("DOMContentLoaded", () => {
-        requestAnimationFrame(() => document.documentElement.classList.remove("preload-theme"));
-      });
-    </script>
-
-    <!-- Lokalne fonty (preload) -->
     <link rel="preload" as="font" type="font/woff2" href="assets/fonts/poppins-v24-latin-regular.woff2" crossorigin />
     <link rel="preload" as="font" type="font/woff2" href="assets/fonts/poppins-v24-latin-600.woff2" crossorigin />
     <link rel="preload" as="font" type="font/woff2" href="assets/fonts/montserrat-v31-latin-700.woff2" crossorigin />
     <link rel="preload" as="font" type="font/woff2" href="assets/fonts/montserrat-v31-latin-600.woff2" crossorigin />
 
-    <!-- Główny CSS -->
     <link rel="stylesheet" href="css/style.min.css" />
 
-    <!-- PWA meta / manifest -->
     <link rel="manifest" href="/manifest.webmanifest" />
-    <meta name="application-name" content="SolidCraft (demo)" />
+    <meta name="application-name" content="SolidCraft" />
     <link rel="icon" type="image/svg+xml" href="assets/img/favicon/favicon.svg" />
     <link rel="icon" href="assets/img/favicon/favicon.ico" sizes="any" />
     <link rel="icon" type="image/png" sizes="32x32" href="assets/img/favicon/favicon-32x32.png" />
     <link rel="icon" type="image/png" sizes="512x512" href="assets/img/favicon/web-app-manifest-512x512.png" />
     <link rel="apple-touch-icon" sizes="180x180" href="assets/img/favicon/apple-touch-icon.png" />
-    <meta name="apple-mobile-web-app-title" content="SolidCraft (demo)" />
+    <meta name="apple-mobile-web-app-title" content="SolidCraft" />
     <meta name="apple-mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
     <meta name="msapplication-TileColor" content="#0ea5e9" />
@@ -207,12 +169,12 @@
     <link rel="mask-icon" href="assets/img/favicon/favicon.svg" color="#0ea5e9" />
   </head>
 
-  <!-- BODY -->
+  <!-- Body -->
   <body class="site">
     <a class="skip" href="#main">Pomiń do treści</a>
     <div id="top" aria-hidden="true" style="position: relative; inset: 0; height: 0"></div>
 
-    <!-- HEADER -->
+    <!-- Header -->
     <header class="site-header">
       <div class="container header-bar">
         <a class="brand" href="#top" aria-label="Strona główna — SolidCraft">
@@ -222,6 +184,7 @@
           </picture>
           <span class="brand-name">SolidCraft</span>
         </a>
+
         <nav class="nav" aria-label="Główna nawigacja">
           <ul id="navMenu" class="nav-menu">
             <li>
@@ -249,6 +212,7 @@
             <li><a href="#kontakt">Kontakt</a></li>
           </ul>
         </nav>
+
         <div class="header-actions">
           <button class="theme-toggle" type="button" aria-pressed="false" aria-label="Przełącz tryb" title="Przełącz tryb">
             <img class="icon-moon" src="assets/img/icons/dark-mode-40.svg" alt="" width="20" height="20" decoding="async" aria-hidden="true" />
@@ -263,7 +227,7 @@
       </div>
     </header>
 
-    <!-- HERO -->
+    <!-- Hero -->
     <section id="strona-glowna" class="hero" aria-labelledby="hero-heading" aria-describedby="hero-lead">
       <div class="hero__media" aria-hidden="true">
         <div class="hero__bg-blur" aria-hidden="true"></div>
@@ -308,15 +272,14 @@
             draggable="false" />
         </picture>
       </div>
+
       <div class="container">
         <h1 id="hero-heading">
           SolidCraft — firma remontowo-budowlana
           <br />
           <span class="accent">Solidnie. Terminowo. Pod klucz.</span>
         </h1>
-
         <p class="lead" id="hero-lead" data-reveal="up" data-reveal-delay="80">Remonty mieszkań i domów, przebudowy oraz kompleksowe wykończenia wnętrz. Darmowa wycena w 24–48 godzin.</p>
-
         <div class="hero-cta">
           <a class="btn btn--ghost" href="#oferta" data-reveal="up" data-reveal-delay="160">Sprawdź ofertę</a>
           <a class="btn" href="tel:+48600700800" data-reveal="up" data-reveal-delay="240">Wyceń inwestycję</a>
@@ -324,9 +287,9 @@
       </div>
     </section>
 
-    <!-- MAIN -->
+    <!-- Main -->
     <main id="main">
-      <!-- OFFER -->
+      <!-- Offer -->
       <section id="oferta" class="block" aria-labelledby="oferta-heading" aria-describedby="oferta-lead">
         <div class="container">
           <header class="block-head">
@@ -334,7 +297,7 @@
             <p id="oferta-lead" data-reveal="up" data-reveal-delay="80">Kompleksowe prace w mieszkaniach i domach — czysto, terminowo, z gwarancją.</p>
           </header>
 
-          <!-- SERVICES -->
+          <!-- Services -->
           <div class="services-grid" id="oferta-grid">
             <div class="services-list" id="oferta-list">
               <!-- Offer card #1 -->
@@ -630,7 +593,7 @@
         </div>
       </section>
 
-      <!-- LOGOS -->
+      <!-- Logos -->
       <section id="realizacje" class="logos" aria-labelledby="logos-heading">
         <div class="container">
           <h2 id="logos-heading" data-reveal="up" data-reveal-delay="80">Firmy, które nam zaufały</h2>
@@ -660,7 +623,7 @@
         </div>
       </section>
 
-      <!-- TESTIMONIALS -->
+      <!-- Testimonials -->
       <section id="opinie" class="block testimonials" aria-labelledby="opinie-heading" aria-describedby="opinie-desc">
         <div class="container">
           <header class="block-head">
@@ -708,7 +671,7 @@
         </div>
       </section>
 
-      <!-- FAQ -->
+      <!-- Faq -->
       <section id="faq" class="block" aria-labelledby="faq-heading" aria-describedby="faq-desc">
         <div class="container">
           <header class="block-head">
@@ -752,7 +715,7 @@
         </div>
       </section>
 
-      <!-- CONTACT CTA -->
+      <!-- Cta -->
       <section id="kontakt" class="cta" aria-labelledby="kontakt-heading" aria-describedby="kontakt-desc">
         <div class="container cta-wrap">
           <div class="cta-text">
@@ -774,7 +737,7 @@
             </ul>
           </div>
 
-          <!-- FORM -->
+          <!-- Form -->
           <form class="form" method="post" action="#" role="form" aria-labelledby="kontakt-heading" aria-describedby="privacy-note" data-reveal="right" data-reveal-delay="200">
             <div class="visually-hidden" aria-hidden="true">
               <label for="hp-website">Nie wypełniaj tego pola</label>
@@ -810,12 +773,11 @@
       </section>
     </main>
 
-    <!-- FOOTER -->
+    <!-- Footer -->
     <footer id="footer" class="site-footer" aria-labelledby="footer-heading">
       <div class="container">
         <h2 class="vh" id="footer-heading">Stopka serwisu</h2>
         <div class="ft-grid">
-          <!-- Column 1 -->
           <div class="ft-col" data-reveal="up" data-reveal-delay="80">
             <a href="#top" class="brand-footer" aria-label="Strona główna">
               <picture>
@@ -827,7 +789,6 @@
               SolidCraft to firma remontowo-budowlana specjalizująca się w kompleksowych remontach mieszkań i domów. Stawiamy na solidne wykonanie, terminowość oraz nowoczesne rozwiązania dopasowane
               do potrzeb klientów.
             </p>
-
             <h3 class="ft-h" id="ft-contact-heading">Kontakt i wycena</h3>
             <ul class="ft-contact" aria-label="Dane kontaktowe">
               <li>
@@ -844,7 +805,6 @@
               </li>
             </ul>
           </div>
-          <!-- Column 2 -->
           <nav class="ft-col" aria-labelledby="ft-nav-heading">
             <h3 class="ft-h" id="ft-nav-heading" data-reveal="up" data-reveal-delay="160">Nawigacja</h3>
             <ul class="ft-links" data-reveal="up" data-reveal-delay="160">
@@ -855,7 +815,6 @@
               <li><a href="#kontakt">Kontakt</a></li>
             </ul>
           </nav>
-          <!-- Column 3 -->
           <nav class="ft-col" aria-labelledby="ft-docs-heading" data-reveal="up" data-reveal-delay="200">
             <h3 class="ft-h" id="ft-docs-heading">Dokumenty</h3>
             <ul class="ft-links">
@@ -866,7 +825,6 @@
               <li><a href="doc/cookies.html">Pliki cookies</a></li>
             </ul>
           </nav>
-          <!-- Column 4 -->
           <div class="ft-col" data-reveal="up" data-reveal-delay="260">
             <h3 class="ft-h">Znajdziesz nas tutaj:</h3>
             <div class="ft-map">
@@ -894,7 +852,6 @@
                 REGON: 123456789
               </p>
             </address>
-            <!-- Social Media -->
             <div class="ft-social" aria-label="Media społecznościowe">
               <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" aria-label="Facebook">
                 <img src="assets/img/icons/facebook.svg" alt="" width="20" height="20" loading="lazy" decoding="async" />
@@ -915,13 +872,15 @@
         <!-- Copyright -->
         <div class="ft-bottom">
           <p>
-            © <span id="year"></span> KP_Code_. Wszelkie prawa zastrzeżone.
+            ©
+            <span id="year"></span>
+            KP_Code_. Wszelkie prawa zastrzeżone.
           </p>
         </div>
       </div>
     </footer>
 
-    <!-- COOKIES CONSENT (DEMO) -->
+    <!-- Cookie banner -->
     <div id="cookie-banner" class="cc-banner" role="dialog" aria-live="polite" aria-label="Informacja o plikach cookies" hidden>
       <div class="cc-inner">
         <p class="cc-text">
@@ -939,7 +898,7 @@
       </div>
     </div>
 
-    <!--SCRIPT -->
+    <!--Script -->
     <script src="js/sw-register.js" defer></script>
     <script src="js/script.min.js" defer></script>
   </body>

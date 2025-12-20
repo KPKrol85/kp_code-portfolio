@@ -3,51 +3,24 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
-
-    <title>SolidCraft — 404 | demo KP_Code_</title>
-    <meta name="description" content="SolidCraft (demo) — strona nie została znaleziona. Projekt demonstracyjny KP_Code_." />
+    <title>SolidCraft — 404</title>
+    <meta name="description" content="Nie znaleziono strony. Sprawdź adres URL lub przejdź na stronę główną SolidCraft." />
     <meta name="author" content="KP_Code_" />
-    <meta name="robots" content="noindex, follow" />
+    <meta name="robots" content="index, follow" />
     <link rel="canonical" href="https://construction-project-01.netlify.app/404.html" />
-
-    <!-- PWA / kolory motywu -->
     <meta name="theme-color" content="#0ea5e9" media="(prefers-color-scheme: light)" />
     <meta name="theme-color" content="#0b1220" media="(prefers-color-scheme: dark)" />
     <meta name="color-scheme" content="light dark" />
 
-    <!-- Open Graph -->
-    <meta property="og:type" content="website" />
-    <meta property="og:site_name" content="SolidCraft" />
-    <meta property="og:locale" content="pl_PL" />
-    <meta property="og:title" content="SolidCraft — 404 | demo KP_Code_" />
-    <meta property="og:description" content="SolidCraft (demo) — strona nie została znaleziona. Projekt demonstracyjny KP_Code_." />
-    <meta property="og:url" content="https://construction-project-01.netlify.app/404.html" />
-    <meta property="og:image" content="https://construction-project-01.netlify.app/assets/img/og/og-image-1200x630.jpg" />
-    <meta property="og:image:width" content="1200" />
-    <meta property="og:image:height" content="630" />
-    <meta property="og:image:alt" content="SolidCraft — strona firmy remontowo-budowlanej (demo)" />
-
-    <!-- Twitter -->
-    <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="SolidCraft — 404 | demo KP_Code_" />
-    <meta name="twitter:description" content="SolidCraft (demo) — strona nie została znaleziona. Projekt demonstracyjny KP_Code_." />
-    <meta name="twitter:image" content="https://construction-project-01.netlify.app/assets/img/og/og-image-1200x630.jpg" />
-    <meta name="twitter:url" content="https://construction-project-01.netlify.app/404.html" />
-    <meta name="twitter:image:alt" content="SolidCraft — strona firmy remontowo-budowlanej (demo)" />
-
-    <!-- Maps performance hints -->
-    <link rel="preconnect" href="https://www.google.com" crossorigin />
-    <link rel="dns-prefetch" href="https://www.google.com" />
-
-    <!-- Boot theme (no flicker) -->
     <script>
       try {
-        const d = document.documentElement;
-        let t = localStorage.getItem("theme");
-        if (t !== "light" && t !== "dark") {
-          t = window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
-        }
-        d.setAttribute("data-theme", t);
+        const root = document.documentElement;
+        const stored = localStorage.getItem("theme");
+
+        const theme = stored === "light" || stored === "dark" ? stored : window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+
+        root.dataset.theme = theme;
+        root.classList.add("preload-theme");
       } catch {}
     </script>
     <style>
@@ -58,36 +31,134 @@
       }
     </style>
     <script>
-      document.documentElement.classList.add("preload-theme");
       window.addEventListener("DOMContentLoaded", () => {
         requestAnimationFrame(() => document.documentElement.classList.remove("preload-theme"));
       });
     </script>
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="SolidCraft" />
+    <meta property="og:locale" content="pl_PL" />
+    <meta property="og:title" content="SolidCraft — 404" />
+    <meta property="og:description" content="Nie znaleziono strony. Sprawdź adres URL lub przejdź na stronę główną SolidCraft." />
+    <meta property="og:url" content="https://construction-project-01.netlify.app/404.html" />
+    <meta property="og:image" content="https://construction-project-01.netlify.app/assets/img/og/og-image-1200x630.jpg" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="SolidCraft — 404" />
+    <meta property="og:updated_time" content="2025-10-28T12:00:00+02:00" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="SolidCraft — 404" />
+    <meta name="twitter:description" content="Nie znaleziono strony. Sprawdź adres URL lub przejdź na stronę główną SolidCraft." />
+    <meta name="twitter:image" content="https://construction-project-01.netlify.app/assets/img/og/og-image-1200x630.jpg" />
+    <meta name="twitter:url" content="https://construction-project-01.netlify.app/404.html" />
+    <meta name="twitter:image:alt" content="SolidCraft — 404" />
 
-    <!-- Lokalne fonty (preload) -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "GeneralContractor",
+        "name": "SolidCraft",
+        "telephone": "+48 533 537 091",
+        "email": "kontakt@kp-code.pl",
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "ul. Marynarki Wojennej 12/31",
+          "postalCode": "33-100",
+          "addressLocality": "Tarnów",
+          "addressCountry": "PL"
+        },
+        "areaServed": "PL",
+        "openingHours": "Mo-Fr 08:00-18:00",
+        "url": "https://construction-project-01.netlify.app/",
+        "sameAs": ["https://facebook.com", "https://instagram.com"]
+      }
+    </script>
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@graph": [
+          {
+            "@type": "WebSite",
+            "@id": "https://construction-project-01.netlify.app/#website",
+            "url": "https://construction-project-01.netlify.app/",
+            "name": "SolidCraft",
+            "description": "SolidCraft — firma remontowo-budowlana. Oferta, realizacje, opinie, FAQ oraz formularz wyceny.",
+            "inLanguage": "pl-PL",
+            "publisher": { "@type": "Organization", "name": "SolidCraft" },
+            "image": "https://construction-project-01.netlify.app/assets/img/og/og-image-1200x630.jpg"
+          },
+          {
+            "@type": "CollectionPage",
+            "@id": "https://construction-project-01.netlify.app/#page",
+            "url": "https://construction-project-01.netlify.app/404.html",
+            "name": "SolidCraft — 404",
+            "isPartOf": { "@id": "https://construction-project-01.netlify.app/#website" },
+            "inLanguage": "pl-PL",
+            "datePublished": "2025-09-19",
+            "dateModified": "2025-10-19",
+            "primaryImageOfPage": {
+              "@type": "ImageObject",
+              "url": "https://construction-project-01.netlify.app/assets/img/og/og-image-1200x630.jpg",
+              "width": 1200,
+              "height": 630
+            },
+            "about": {
+              "@type": "ItemList",
+              "name": "Zakres usług",
+              "itemListElement": [
+                { "@type": "ListItem", "position": 1, "name": "Wykończenia i remonty łazienek", "url": "https://construction-project-01.netlify.app/#oferta-lazienki" },
+                { "@type": "ListItem", "position": 2, "name": "Malowanie i gładzie", "url": "https://construction-project-01.netlify.app/#oferta-malowanie" },
+                { "@type": "ListItem", "position": 3, "name": "Kafelkowanie", "url": "https://construction-project-01.netlify.app/#oferta-kafelkowanie" },
+                { "@type": "ListItem", "position": 4, "name": "Elektryka i hydraulika", "url": "https://construction-project-01.netlify.app/#oferta-elektryka" }
+              ]
+            }
+          },
+          {
+            "@type": "FAQPage",
+            "@id": "https://construction-project-01.netlify.app/#faq",
+            "mainEntity": [
+              {
+                "@type": "Question",
+                "name": "Ile trwa przygotowanie wyceny?",
+                "acceptedAnswer": { "@type": "Answer", "text": "Standardowo do 24 godzin od przesłania szczegółów zlecenia lub zdjęć." }
+              },
+              {
+                "@type": "Question",
+                "name": "Czy dojeżdżacie do klienta i wykonujecie oględziny?",
+                "acceptedAnswer": { "@type": "Answer", "text": "Tak. Dojazd w obrębie miasta i okolic jest możliwy po ustaleniu terminu." }
+              },
+              {
+                "@type": "Question",
+                "name": "Czy wystawiacie fakturę i udzielacie gwarancji?",
+                "acceptedAnswer": { "@type": "Answer", "text": "Tak, wystawiamy faktury oraz udzielamy gwarancji na wykonywane prace." }
+              }
+            ]
+          }
+        ]
+      }
+    </script>
+
     <link rel="preload" as="font" type="font/woff2" href="assets/fonts/poppins-v24-latin-regular.woff2" crossorigin />
     <link rel="preload" as="font" type="font/woff2" href="assets/fonts/poppins-v24-latin-600.woff2" crossorigin />
     <link rel="preload" as="font" type="font/woff2" href="assets/fonts/montserrat-v31-latin-700.woff2" crossorigin />
     <link rel="preload" as="font" type="font/woff2" href="assets/fonts/montserrat-v31-latin-600.woff2" crossorigin />
 
-    <!-- Główny CSS -->
     <link rel="stylesheet" href="css/style.min.css" />
 
-    <!-- PWA meta / manifest -->
     <link rel="manifest" href="/manifest.webmanifest" />
-    <meta name="application-name" content="SolidCraft (demo)" />
+    <meta name="application-name" content="SolidCraft" />
     <link rel="icon" type="image/svg+xml" href="assets/img/favicon/favicon.svg" />
     <link rel="icon" href="assets/img/favicon/favicon.ico" sizes="any" />
     <link rel="icon" type="image/png" sizes="32x32" href="assets/img/favicon/favicon-32x32.png" />
     <link rel="icon" type="image/png" sizes="512x512" href="assets/img/favicon/web-app-manifest-512x512.png" />
     <link rel="apple-touch-icon" sizes="180x180" href="assets/img/favicon/apple-touch-icon.png" />
-    <meta name="apple-mobile-web-app-title" content="SolidCraft (demo)" />
+    <meta name="apple-mobile-web-app-title" content="SolidCraft" />
     <meta name="apple-mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
     <meta name="msapplication-TileColor" content="#0ea5e9" />
     <meta name="msapplication-TileImage" content="assets/img/favicon/web-app-manifest-144x144.png" />
     <link rel="mask-icon" href="assets/img/favicon/favicon.svg" color="#0ea5e9" />
-</head>
+  </head>
   <body class="page page-404">
     <main class="section" id="main" tabindex="-1" aria-labelledby="error-title">
       <div class="container" style="text-align: center; padding: 6rem 1rem">

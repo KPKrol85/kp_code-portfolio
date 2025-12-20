@@ -1,5 +1,6 @@
-/* ===== Service Worker — construction-01 ===== */
-const CACHE_NAME = "construction-01-v1.0";
+/* ===== Service Worker — SolidCraft ===== */
+
+const CACHE_NAME = "SolidCraft_v.1.1";
 
 const ASSETS = [
   "/",

@@ -3,90 +3,24 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
-
-    <title>SolidCraft — malowanie wnętrz i elewacji | demo KP_Code_</title>
-    <meta name="description" content="SolidCraft (demo) — malowanie ścian i sufitów, gładzie oraz przygotowanie podłoża. Projekt demonstracyjny KP_Code_." />
+    <title>SolidCraft — Malowanie i gładzie</title>
+    <meta name="description" content="SolidCraft — malowanie, gładzie i przygotowanie ścian: równe powierzchnie, czyste wykończenie i sprawna realizacja." />
     <meta name="author" content="KP_Code_" />
     <meta name="robots" content="index, follow" />
     <link rel="canonical" href="https://construction-project-01.netlify.app/oferta/malowanie.html" />
-
-    <!-- PWA / kolory motywu -->
     <meta name="theme-color" content="#0ea5e9" media="(prefers-color-scheme: light)" />
     <meta name="theme-color" content="#0b1220" media="(prefers-color-scheme: dark)" />
     <meta name="color-scheme" content="light dark" />
 
-    <!-- Open Graph -->
-    <meta property="og:type" content="website" />
-    <meta property="og:site_name" content="SolidCraft" />
-    <meta property="og:locale" content="pl_PL" />
-    <meta property="og:title" content="SolidCraft — malowanie wnętrz i elewacji | demo KP_Code_" />
-    <meta property="og:description" content="SolidCraft (demo) — malowanie ścian i sufitów, gładzie oraz przygotowanie podłoża. Projekt demonstracyjny KP_Code_." />
-    <meta property="og:url" content="https://construction-project-01.netlify.app/oferta/malowanie.html" />
-    <meta property="og:image" content="https://construction-project-01.netlify.app/assets/img/og/og-image-1200x630.jpg" />
-    <meta property="og:image:width" content="1200" />
-    <meta property="og:image:height" content="630" />
-    <meta property="og:image:alt" content="SolidCraft — strona firmy remontowo-budowlanej (demo)" />
-
-    <!-- Twitter -->
-    <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="SolidCraft — malowanie wnętrz i elewacji | demo KP_Code_" />
-    <meta name="twitter:description" content="SolidCraft (demo) — malowanie ścian i sufitów, gładzie oraz przygotowanie podłoża. Projekt demonstracyjny KP_Code_." />
-    <meta name="twitter:image" content="https://construction-project-01.netlify.app/assets/img/og/og-image-1200x630.jpg" />
-    <meta name="twitter:url" content="https://construction-project-01.netlify.app/oferta/malowanie.html" />
-    <meta name="twitter:image:alt" content="SolidCraft — strona firmy remontowo-budowlanej (demo)" />
-
-    <!-- Maps performance hints -->
-    <link rel="preconnect" href="https://www.google.com" crossorigin />
-    <link rel="dns-prefetch" href="https://www.google.com" />
-
-    <!-- JSON-LD (DEMO: Website + Page) -->
-    <script type="application/ld+json">
-      {
-        "@context": "https://schema.org",
-        "@graph": [
-          {
-            "@type": "WebSite",
-            "@id": "https://construction-project-01.netlify.app/#website",
-            "url": "https://construction-project-01.netlify.app/",
-            "name": "SolidCraft — demo KP_Code_",
-            "description": "SolidCraft (demo) — projekt demonstracyjny strony firmy remontowo-budowlanej.",
-            "inLanguage": "pl-PL",
-            "publisher": {
-              "@type": "Organization",
-              "name": "KP_Code_"
-            },
-            "image": "https://construction-project-01.netlify.app/assets/img/og/og-image-1200x630.jpg"
-          },
-          {
-            "@type": "WebPage",
-            "@id": "https://construction-project-01.netlify.app/oferta/malowanie.html#page",
-            "url": "https://construction-project-01.netlify.app/oferta/malowanie.html",
-            "name": "SolidCraft — malowanie wnętrz i elewacji | demo KP_Code_",
-            "description": "SolidCraft (demo) — malowanie ścian i sufitów, gładzie oraz przygotowanie podłoża. Projekt demonstracyjny KP_Code_.",
-            "isPartOf": {
-              "@id": "https://construction-project-01.netlify.app/#website"
-            },
-            "inLanguage": "pl-PL",
-            "primaryImageOfPage": {
-              "@type": "ImageObject",
-              "url": "https://construction-project-01.netlify.app/assets/img/og/og-image-1200x630.jpg",
-              "width": 1200,
-              "height": 630
-            }
-          }
-        ]
-      }
-    </script>
-
-    <!-- Boot theme (no flicker) -->
     <script>
       try {
-        const d = document.documentElement;
-        let t = localStorage.getItem("theme");
-        if (t !== "light" && t !== "dark") {
-          t = window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
-        }
-        d.setAttribute("data-theme", t);
+        const root = document.documentElement;
+        const stored = localStorage.getItem("theme");
+
+        const theme = stored === "light" || stored === "dark" ? stored : window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+
+        root.dataset.theme = theme;
+        root.classList.add("preload-theme");
       } catch {}
     </script>
     <style>
@@ -97,73 +31,148 @@
       }
     </style>
     <script>
-      document.documentElement.classList.add("preload-theme");
       window.addEventListener("DOMContentLoaded", () => {
         requestAnimationFrame(() => document.documentElement.classList.remove("preload-theme"));
       });
     </script>
+    
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="SolidCraft" />
+    <meta property="og:locale" content="pl_PL" />
+    <meta property="og:title" content="SolidCraft — Malowanie i gładzie" />
+    <meta property="og:description" content="SolidCraft — malowanie, gładzie i przygotowanie ścian: równe powierzchnie, czyste wykończenie i sprawna realizacja." />
+    <meta property="og:url" content="https://construction-project-01.netlify.app/oferta/malowanie.html" />
+    <meta property="og:image" content="https://construction-project-01.netlify.app/assets/img/og/og-image-1200x630.jpg" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="SolidCraft — Malowanie i gładzie" />
+    <meta property="og:updated_time" content="2025-10-28T12:00:00+02:00" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="SolidCraft — Malowanie i gładzie" />
+    <meta name="twitter:description" content="SolidCraft — malowanie, gładzie i przygotowanie ścian: równe powierzchnie, czyste wykończenie i sprawna realizacja." />
+    <meta name="twitter:image" content="https://construction-project-01.netlify.app/assets/img/og/og-image-1200x630.jpg" />
+    <meta name="twitter:url" content="https://construction-project-01.netlify.app/oferta/malowanie.html" />
+    <meta name="twitter:image:alt" content="SolidCraft — Malowanie i gładzie" />
 
-    <!-- Lokalne fonty (preload) -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "GeneralContractor",
+        "name": "SolidCraft",
+        "telephone": "+48 533 537 091",
+        "email": "kontakt@kp-code.pl",
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "ul. Marynarki Wojennej 12/31",
+          "postalCode": "33-100",
+          "addressLocality": "Tarnów",
+          "addressCountry": "PL"
+        },
+        "areaServed": "PL",
+        "openingHours": "Mo-Fr 08:00-18:00",
+        "url": "https://construction-project-01.netlify.app/",
+        "sameAs": ["https://facebook.com", "https://instagram.com"]
+      }
+    </script>
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@graph": [
+          {
+            "@type": "WebSite",
+            "@id": "https://construction-project-01.netlify.app/#website",
+            "url": "https://construction-project-01.netlify.app/",
+            "name": "SolidCraft",
+            "description": "SolidCraft — firma remontowo-budowlana. Oferta, realizacje, opinie, FAQ oraz formularz wyceny.",
+            "inLanguage": "pl-PL",
+            "publisher": { "@type": "Organization", "name": "SolidCraft" },
+            "image": "https://construction-project-01.netlify.app/assets/img/og/og-image-1200x630.jpg"
+          },
+          {
+            "@type": "CollectionPage",
+            "@id": "https://construction-project-01.netlify.app/#page",
+            "url": "https://construction-project-01.netlify.app/oferta/malowanie.html",
+            "name": "SolidCraft — Malowanie i gładzie",
+            "isPartOf": { "@id": "https://construction-project-01.netlify.app/#website" },
+            "inLanguage": "pl-PL",
+            "datePublished": "2025-09-19",
+            "dateModified": "2025-10-19",
+            "primaryImageOfPage": {
+              "@type": "ImageObject",
+              "url": "https://construction-project-01.netlify.app/assets/img/og/og-image-1200x630.jpg",
+              "width": 1200,
+              "height": 630
+            },
+            "about": {
+              "@type": "ItemList",
+              "name": "Zakres usług",
+              "itemListElement": [
+                { "@type": "ListItem", "position": 1, "name": "Wykończenia i remonty łazienek", "url": "https://construction-project-01.netlify.app/#oferta-lazienki" },
+                { "@type": "ListItem", "position": 2, "name": "Malowanie i gładzie", "url": "https://construction-project-01.netlify.app/#oferta-malowanie" },
+                { "@type": "ListItem", "position": 3, "name": "Kafelkowanie", "url": "https://construction-project-01.netlify.app/#oferta-kafelkowanie" },
+                { "@type": "ListItem", "position": 4, "name": "Elektryka i hydraulika", "url": "https://construction-project-01.netlify.app/#oferta-elektryka" }
+              ]
+            }
+          },
+          {
+            "@type": "FAQPage",
+            "@id": "https://construction-project-01.netlify.app/#faq",
+            "mainEntity": [
+              {
+                "@type": "Question",
+                "name": "Ile trwa przygotowanie wyceny?",
+                "acceptedAnswer": { "@type": "Answer", "text": "Standardowo do 24 godzin od przesłania szczegółów zlecenia lub zdjęć." }
+              },
+              {
+                "@type": "Question",
+                "name": "Czy dojeżdżacie do klienta i wykonujecie oględziny?",
+                "acceptedAnswer": { "@type": "Answer", "text": "Tak. Dojazd w obrębie miasta i okolic jest możliwy po ustaleniu terminu." }
+              },
+              {
+                "@type": "Question",
+                "name": "Czy wystawiacie fakturę i udzielacie gwarancji?",
+                "acceptedAnswer": { "@type": "Answer", "text": "Tak, wystawiamy faktury oraz udzielamy gwarancji na wykonywane prace." }
+              }
+            ]
+          }
+        ]
+      }
+    </script>
+
     <link rel="preload" as="font" type="font/woff2" href="../assets/fonts/poppins-v24-latin-regular.woff2" crossorigin />
     <link rel="preload" as="font" type="font/woff2" href="../assets/fonts/poppins-v24-latin-600.woff2" crossorigin />
     <link rel="preload" as="font" type="font/woff2" href="../assets/fonts/montserrat-v31-latin-700.woff2" crossorigin />
     <link rel="preload" as="font" type="font/woff2" href="../assets/fonts/montserrat-v31-latin-600.woff2" crossorigin />
 
-    <!-- Główny CSS -->
     <link rel="stylesheet" href="../css/style.min.css" />
 
-    <!-- PWA meta / manifest -->
     <link rel="manifest" href="/manifest.webmanifest" />
-    <meta name="application-name" content="SolidCraft (demo)" />
+    <meta name="application-name" content="SolidCraft" />
     <link rel="icon" type="image/svg+xml" href="../assets/img/favicon/favicon.svg" />
     <link rel="icon" href="../assets/img/favicon/favicon.ico" sizes="any" />
     <link rel="icon" type="image/png" sizes="32x32" href="../assets/img/favicon/favicon-32x32.png" />
     <link rel="icon" type="image/png" sizes="512x512" href="../assets/img/favicon/web-app-manifest-512x512.png" />
     <link rel="apple-touch-icon" sizes="180x180" href="../assets/img/favicon/apple-touch-icon.png" />
-    <meta name="apple-mobile-web-app-title" content="SolidCraft (demo)" />
+    <meta name="apple-mobile-web-app-title" content="SolidCraft" />
     <meta name="apple-mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
     <meta name="msapplication-TileColor" content="#0ea5e9" />
     <meta name="msapplication-TileImage" content="../assets/img/favicon/web-app-manifest-144x144.png" />
     <link rel="mask-icon" href="../assets/img/favicon/favicon.svg" color="#0ea5e9" />
-</head>
+  </head>
 
-  <!-- BODY -->
+  <!-- Body -->
   <body class="page-sub">
     <a class="skip" href="#main">Pomiń do treści</a>
-    <div
-      id="top"
-      aria-hidden="true"
-      style="position: relative; inset: 0; height: 0"
-    ></div>
+    <div id="top" aria-hidden="true" style="position: relative; inset: 0; height: 0"></div>
 
-    <!-- HEADER -->
+    <!-- Header -->
     <header class="site-header">
       <div class="container header-bar">
-        <a
-          class="brand"
-          href="../index.html#top"
-          aria-label="Strona główna — Construction Project"
-        >
+        <a class="brand" href="../index.html#top" aria-label="Strona główna — Construction Project">
           <picture class="brand-logo">
-            <img
-              src="../assets/img/logo/logo-light-160x160.png"
-              alt=""
-              aria-hidden="true"
-              class="logo--light"
-              loading="eager"
-              fetchpriority="high"
-              decoding="async"
-            />
-            <img
-              src="../assets/img/logo/logo-dark-160x160.png"
-              alt=""
-              aria-hidden="true"
-              class="logo--dark"
-              loading="eager"
-              fetchpriority="high"
-              decoding="async"
-            />
+            <img src="../assets/img/logo/logo-light-160x160.png" alt="" aria-hidden="true" class="logo--light" loading="eager" fetchpriority="high" decoding="async" />
+            <img src="../assets/img/logo/logo-dark-160x160.png" alt="" aria-hidden="true" class="logo--dark" loading="eager" fetchpriority="high" decoding="async" />
           </picture>
           <span class="brand-name">SolidCraft</span>
         </a>
@@ -173,23 +182,11 @@
             <li><a href="../index.html#top">Strona główna</a></li>
 
             <li class="nav-item has-dropdown">
-              <a
-                id="dd-oferta-trigger"
-                href="../index.html#oferta"
-                class="nav-link dropdown-trigger"
-                aria-expanded="false"
-                aria-haspopup="true"
-                aria-controls="dd-oferta"
-              >
+              <a id="dd-oferta-trigger" href="../index.html#oferta" class="nav-link dropdown-trigger" aria-expanded="false" aria-haspopup="true" aria-controls="dd-oferta">
                 Oferta
                 <span class="caret" aria-hidden="true">▾</span>
               </a>
-              <ul
-                id="dd-oferta"
-                class="dropdown"
-                aria-label="Podmenu: Oferta"
-                aria-labelledby="dd-oferta-trigger"
-              >
+              <ul id="dd-oferta" class="dropdown" aria-label="Podmenu: Oferta" aria-labelledby="dd-oferta-trigger">
                 <li><a href="lazienki.html">Łazienki</a></li>
                 <li><a href="malowanie.html">Malowanie &amp; gładzie</a></li>
                 <li><a href="kafelkowanie.html">Kafelkowanie</a></li>
@@ -207,40 +204,12 @@
         </nav>
 
         <div class="header-actions">
-          <button
-            class="theme-toggle"
-            type="button"
-            aria-pressed="false"
-            aria-label="Przełącz tryb"
-            title="Przełącz tryb"
-          >
-            <img
-              class="icon-moon"
-              src="../assets/img/icons/dark-mode-40.svg"
-              alt=""
-              width="20"
-              height="20"
-              decoding="async"
-              aria-hidden="true"
-            />
-            <img
-              class="icon-sun"
-              src="../assets/img/icons/light-mode-40.svg"
-              alt=""
-              width="20"
-              height="20"
-              decoding="async"
-              aria-hidden="true"
-            />
+          <button class="theme-toggle" type="button" aria-pressed="false" aria-label="Przełącz tryb" title="Przełącz tryb">
+            <img class="icon-moon" src="../assets/img/icons/dark-mode-40.svg" alt="" width="20" height="20" decoding="async" aria-hidden="true" />
+            <img class="icon-sun" src="../assets/img/icons/light-mode-40.svg" alt="" width="20" height="20" decoding="async" aria-hidden="true" />
           </button>
 
-          <button
-            class="nav-toggle"
-            type="button"
-            aria-expanded="false"
-            aria-controls="navMenu"
-            aria-label="Otwórz menu"
-          >
+          <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="navMenu" aria-label="Otwórz menu">
             <span class="nav-line"></span>
             <span class="nav-line"></span>
             <span class="nav-line"></span>
@@ -249,114 +218,51 @@
       </div>
     </header>
 
-    <!-- MAIN -->
+    <!-- Main -->
     <main id="main">
-      <!-- SUBPAGE CONTENT -->
-      <section
-        class="block subpage-header"
-        id="malowanie"
-        role="region"
-        aria-labelledby="malowanie-heading"
-        aria-describedby="malowanie-desc"
-        tabindex="-1"
-      >
+      <!-- Subpage content -->
+      <section class="block subpage-header" id="malowanie" role="region" aria-labelledby="malowanie-heading" aria-describedby="malowanie-desc" tabindex="-1">
         <div class="container">
           <header class="block-head">
-            <h1 id="malowanie-heading" data-reveal="up" data-reveal-delay="80">
-              Malowanie &amp; gładzie
-            </h1>
-            <p
-              id="malowanie-desc"
-              class="lead"
-              data-reveal="up"
-              data-reveal-delay="160"
-            >
-              Gładkie ściany, ostre odcięcia i powtarzalny kolor. Pracujemy
-              czysto, terminowo i z gwarancją.
-            </p>
+            <h1 id="malowanie-heading" data-reveal="up" data-reveal-delay="80">Malowanie &amp; gładzie</h1>
+            <p id="malowanie-desc" class="lead" data-reveal="up" data-reveal-delay="160">Gładkie ściany, ostre odcięcia i powtarzalny kolor. Pracujemy czysto, terminowo i z gwarancją.</p>
           </header>
 
           <div class="cards">
             <!-- Card 1 -->
-            <article
-              class="card hover-card"
-              id="malowanie-sciany-sufity"
-              data-reveal="up"
-              data-reveal-delay="160"
-            >
+            <article class="card hover-card" id="malowanie-sciany-sufity" data-reveal="up" data-reveal-delay="160">
               <h2>Malowanie ścian i sufitów</h2>
-              <p>
-                Farby premium (Tikkurila, Beckers, Dulux). Dwa krycia w
-                standardzie, wałek lub natrysk, kontrola połysku i jednolitości
-                koloru.
-              </p>
+              <p>Farby premium (Tikkurila, Beckers, Dulux). Dwa krycia w standardzie, wałek lub natrysk, kontrola połysku i jednolitości koloru.</p>
             </article>
             <!-- Card 2 -->
-            <article
-              class="card hover-card"
-              id="gladzie-gipsowe"
-              data-reveal="up"
-              data-reveal-delay="240"
-            >
+            <article class="card hover-card" id="gladzie-gipsowe" data-reveal="up" data-reveal-delay="240">
               <h2>Gładzie gipsowe</h2>
-              <p>
-                Gładzie ręczne i agregatem, szlif bezpyłowy, powierzchnia
-                przygotowana pod malowanie lub tapetę.
-              </p>
+              <p>Gładzie ręczne i agregatem, szlif bezpyłowy, powierzchnia przygotowana pod malowanie lub tapetę.</p>
             </article>
             <!-- Card 3 -->
-            <article
-              class="card hover-card"
-              id="przygotowanie-podloza"
-              data-reveal="up"
-              data-reveal-delay="320"
-            >
+            <article class="card hover-card" id="przygotowanie-podloza" data-reveal="up" data-reveal-delay="320">
               <h2>Przygotowanie podłoża</h2>
-              <p>
-                Mycie, odtłuszczanie, gruntowanie, naprawy rys i ubytków, taśmy
-                i zabezpieczenia — w cenie.
-              </p>
+              <p>Mycie, odtłuszczanie, gruntowanie, naprawy rys i ubytków, taśmy i zabezpieczenia — w cenie.</p>
             </article>
             <!-- Card 4 -->
-            <article
-              class="card hover-card"
-              id="dodatki-detale"
-              data-reveal="up"
-              data-reveal-delay="400"
-            >
+            <article class="card hover-card" id="dodatki-detale" data-reveal="up" data-reveal-delay="400">
               <h2>Dodatki i detale</h2>
-              <p>
-                Listwy, lamperie, kolory akcentowe, farby strukturalne,
-                renowacja drzwi i ościeżnic.
-              </p>
+              <p>Listwy, lamperie, kolory akcentowe, farby strukturalne, renowacja drzwi i ościeżnic.</p>
             </article>
           </div>
 
           <div class="block-cta" data-reveal="scale" data-reveal-delay="480">
-            <a
-              class="btn"
-              href="../index.html?usluga=Malowanie%20i%20gładzie#kontakt"
-              aria-label="Przejdź do formularza wyceny — Malowanie i gładzie"
-              >Wycena</a
-            >
+            <a class="btn" href="../index.html?usluga=Malowanie%20i%20gładzie#kontakt" aria-label="Przejdź do formularza wyceny — Malowanie i gładzie">Wycena</a>
           </div>
         </div>
       </section>
 
-      <!-- GALERIA -->
-      <section
-        class="block gallery"
-        id="galeria"
-        aria-labelledby="galeria-heading"
-      >
+      <!-- Gallery -->
+      <section class="block gallery" id="galeria" aria-labelledby="galeria-heading">
         <div class="container">
           <header class="block-head">
-            <h2 id="galeria-heading" data-reveal="up" data-reveal-delay="80">
-              Galeria realizacji
-            </h2>
-            <p class="lead" data-reveal="up" data-reveal-delay="120">
-              Kilka ujęć z ostatnich prac — więcej na życzenie.
-            </p>
+            <h2 id="galeria-heading" data-reveal="up" data-reveal-delay="80">Galeria realizacji</h2>
+            <p class="lead" data-reveal="up" data-reveal-delay="120">Kilka ujęć z ostatnich prac — więcej na życzenie.</p>
           </header>
 
           <ul class="gallery-grid">
@@ -366,10 +272,8 @@
                 class="gallery-item"
                 href="../assets/img/gallery/paint-01-2048x1536.jpg"
                 data-lb="malowanie"
-                data-lb-caption="Malowanie ścian w intensywnym kolorze — etap nanoszenia pierwszej warstwy farby wałkiem."
-              >
+                data-lb-caption="Malowanie ścian w intensywnym kolorze — etap nanoszenia pierwszej warstwy farby wałkiem.">
                 <picture>
-                  <!-- AVIF -->
                   <source
                     type="image/avif"
                     srcset="
@@ -378,9 +282,8 @@
                       ../assets/img/gallery/paint-01-1024x768.avif  1024w,
                       ../assets/img/gallery/paint-01-1536x1152.avif 1536w,
                       ../assets/img/gallery/paint-01-2048x1536.avif 2048w
-                    "
-                  />
-                  <!-- WebP -->
+                    " />
+
                   <source
                     type="image/webp"
                     srcset="
@@ -389,9 +292,8 @@
                       ../assets/img/gallery/paint-01-1024x768.webp  1024w,
                       ../assets/img/gallery/paint-01-1536x1152.webp 1536w,
                       ../assets/img/gallery/paint-01-2048x1536.webp 2048w
-                    "
-                  />
-                  <!-- JPG fallback -->
+                    " />
+
                   <img
                     src="../assets/img/gallery/paint-01-768x576.jpg"
                     srcset="
@@ -406,8 +308,7 @@
                     height="576"
                     loading="lazy"
                     decoding="async"
-                    alt="Malowanie ściany na żółto wałkiem przez pracownika w kombinezonie ochronnym"
-                  />
+                    alt="Malowanie ściany na żółto wałkiem przez pracownika w kombinezonie ochronnym" />
                 </picture>
               </a>
             </li>
@@ -418,10 +319,8 @@
                 class="gallery-item"
                 href="../assets/img/gallery/paint-02-2048x1536.jpg"
                 data-lb="malowanie"
-                data-lb-caption="Efekt końcowy — odświeżone wnętrze w naturalnych barwach beżu i zieleni z subtelnymi dodatkami."
-              >
+                data-lb-caption="Efekt końcowy — odświeżone wnętrze w naturalnych barwach beżu i zieleni z subtelnymi dodatkami.">
                 <picture>
-                  <!-- AVIF -->
                   <source
                     type="image/avif"
                     srcset="
@@ -430,9 +329,8 @@
                       ../assets/img/gallery/paint-02-1024x768.avif  1024w,
                       ../assets/img/gallery/paint-02-1536x1152.avif 1536w,
                       ../assets/img/gallery/paint-02-2048x1536.avif 2048w
-                    "
-                  />
-                  <!-- WebP -->
+                    " />
+
                   <source
                     type="image/webp"
                     srcset="
@@ -441,9 +339,8 @@
                       ../assets/img/gallery/paint-02-1024x768.webp  1024w,
                       ../assets/img/gallery/paint-02-1536x1152.webp 1536w,
                       ../assets/img/gallery/paint-02-2048x1536.webp 2048w
-                    "
-                  />
-                  <!-- JPG fallback -->
+                    " />
+
                   <img
                     src="../assets/img/gallery/paint-02-768x576.jpg"
                     srcset="
@@ -458,22 +355,15 @@
                     height="576"
                     loading="lazy"
                     decoding="async"
-                    alt="Salon po odmalowaniu w jasnych tonacjach beżu i zieleni z dekoracją z traw pampasowych"
-                  />
+                    alt="Salon po odmalowaniu w jasnych tonacjach beżu i zieleni z dekoracją z traw pampasowych" />
                 </picture>
               </a>
             </li>
 
             <!-- 3 -->
             <li data-reveal="up" data-reveal-delay="240">
-              <a
-                class="gallery-item"
-                href="../assets/img/gallery/paint-03-2048x1536.jpg"
-                data-lb="malowanie"
-                data-lb-caption="Malowanie wnętrza przez parę — przyjemny etap wykończenia po remoncie."
-              >
+              <a class="gallery-item" href="../assets/img/gallery/paint-03-2048x1536.jpg" data-lb="malowanie" data-lb-caption="Malowanie wnętrza przez parę — przyjemny etap wykończenia po remoncie.">
                 <picture>
-                  <!-- AVIF -->
                   <source
                     type="image/avif"
                     srcset="
@@ -482,9 +372,8 @@
                       ../assets/img/gallery/paint-03-1024x768.avif  1024w,
                       ../assets/img/gallery/paint-03-1536x1152.avif 1536w,
                       ../assets/img/gallery/paint-03-2048x1536.avif 2048w
-                    "
-                  />
-                  <!-- WebP -->
+                    " />
+
                   <source
                     type="image/webp"
                     srcset="
@@ -493,9 +382,8 @@
                       ../assets/img/gallery/paint-03-1024x768.webp  1024w,
                       ../assets/img/gallery/paint-03-1536x1152.webp 1536w,
                       ../assets/img/gallery/paint-01-2048x1536.webp 2048w
-                    "
-                  />
-                  <!-- JPG fallback -->
+                    " />
+
                   <img
                     src="../assets/img/gallery/paint-03-768x576.jpg"
                     srcset="
@@ -510,8 +398,7 @@
                     height="576"
                     loading="lazy"
                     decoding="async"
-                    alt="Para malująca wspólnie ścianę w nowym mieszkaniu"
-                  />
+                    alt="Para malująca wspólnie ścianę w nowym mieszkaniu" />
                 </picture>
               </a>
             </li>
@@ -522,10 +409,8 @@
                 class="gallery-item"
                 href="../assets/img/gallery/paint-04-2048x1536.jpg"
                 data-lb="malowanie"
-                data-lb-caption="Zabezpieczenie wnętrza przed malowaniem — przygotowanie ścian i sufitów do odświeżenia farbą."
-              >
+                data-lb-caption="Zabezpieczenie wnętrza przed malowaniem — przygotowanie ścian i sufitów do odświeżenia farbą.">
                 <picture>
-                  <!-- AVIF -->
                   <source
                     type="image/avif"
                     srcset="
@@ -534,9 +419,8 @@
                       ../assets/img/gallery/paint-04-1024x768.avif  1024w,
                       ../assets/img/gallery/paint-04-1536x1152.avif 1536w,
                       ../assets/img/gallery/paint-04-2048x1536.avif 2048w
-                    "
-                  />
-                  <!-- WebP -->
+                    " />
+
                   <source
                     type="image/webp"
                     srcset="
@@ -545,9 +429,8 @@
                       ../assets/img/gallery/paint-04-1024x768.webp  1024w,
                       ../assets/img/gallery/paint-04-1536x1152.webp 1536w,
                       ../assets/img/gallery/paint-04-2048x1536.webp 2048w
-                    "
-                  />
-                  <!-- JPG fallback -->
+                    " />
+
                   <img
                     src="../assets/img/gallery/paint-04-768x576.jpg"
                     srcset="
@@ -562,8 +445,7 @@
                     height="576"
                     loading="lazy"
                     decoding="async"
-                    alt="Pokój w trakcie malowania z zabezpieczonymi meblami i folią ochronną"
-                  />
+                    alt="Pokój w trakcie malowania z zabezpieczonymi meblami i folią ochronną" />
                 </picture>
               </a>
             </li>
@@ -574,10 +456,8 @@
                 class="gallery-item"
                 href="../assets/img/gallery/paint-05-2048x1536.jpg"
                 data-lb="malowanie"
-                data-lb-caption="Malowanie elewacji domu jednorodzinnego — prace zewnętrzne w trakcie renowacji."
-              >
+                data-lb-caption="Malowanie elewacji domu jednorodzinnego — prace zewnętrzne w trakcie renowacji.">
                 <picture>
-                  <!-- AVIF -->
                   <source
                     type="image/avif"
                     srcset="
@@ -586,9 +466,8 @@
                       ../assets/img/gallery/paint-05-1024x768.avif  1024w,
                       ../assets/img/gallery/paint-05-1536x1152.avif 1536w,
                       ../assets/img/gallery/paint-05-2048x1536.avif 2048w
-                    "
-                  />
-                  <!-- WebP -->
+                    " />
+
                   <source
                     type="image/webp"
                     srcset="
@@ -597,9 +476,8 @@
                       ../assets/img/gallery/paint-05-1024x768.webp  1024w,
                       ../assets/img/gallery/paint-05-1536x1152.webp 1536w,
                       ../assets/img/gallery/paint-05-2048x1536.webp 2048w
-                    "
-                  />
-                  <!-- JPG fallback -->
+                    " />
+
                   <img
                     src="../assets/img/gallery/paint-05-768x576.jpg"
                     srcset="
@@ -614,8 +492,7 @@
                     height="576"
                     loading="lazy"
                     decoding="async"
-                    alt="Elewacja domu w trakcie odnawiania i malowania z użyciem rusztowań"
-                  />
+                    alt="Elewacja domu w trakcie odnawiania i malowania z użyciem rusztowań" />
                 </picture>
               </a>
             </li>
@@ -626,10 +503,8 @@
                 class="gallery-item"
                 href="../assets/img/gallery/paint-06-2048x1536.jpg"
                 data-lb="malowanie"
-                data-lb-caption="Prace malarskie w salonie — przygotowanie sufitu i ścian przed końcowym wykończeniem."
-              >
+                data-lb-caption="Prace malarskie w salonie — przygotowanie sufitu i ścian przed końcowym wykończeniem.">
                 <picture>
-                  <!-- AVIF -->
                   <source
                     type="image/avif"
                     srcset="
@@ -638,9 +513,8 @@
                       ../assets/img/gallery/paint-06-1024x768.avif  1024w,
                       ../assets/img/gallery/paint-06-1536x1152.avif 1536w,
                       ../assets/img/gallery/paint-06-2048x1536.avif 2048w
-                    "
-                  />
-                  <!-- WebP -->
+                    " />
+
                   <source
                     type="image/webp"
                     srcset="
@@ -649,9 +523,8 @@
                       ../assets/img/gallery/paint-06-1024x768.webp  1024w,
                       ../assets/img/gallery/paint-06-1536x1152.webp 1536w,
                       ../assets/img/gallery/paint-06-2048x1536.webp 2048w
-                    "
-                  />
-                  <!-- JPG fallback -->
+                    " />
+
                   <img
                     src="../assets/img/gallery/paint-06-768x576.jpg"
                     srcset="
@@ -666,8 +539,7 @@
                     height="576"
                     loading="lazy"
                     decoding="async"
-                    alt="Salon w trakcie remontu i malowania z rozłożonymi narzędziami i drabiną"
-                  />
+                    alt="Salon w trakcie remontu i malowania z rozłożonymi narzędziami i drabiną" />
                 </picture>
               </a>
             </li>
@@ -675,36 +547,19 @@
         </div>
       </section>
 
-      <!-- FAQ -->
-      <section
-        id="faq"
-        class="block"
-        aria-labelledby="faq-heading"
-        aria-describedby="faq-desc"
-      >
+      <!-- Faq -->
+      <section id="faq" class="block" aria-labelledby="faq-heading" aria-describedby="faq-desc">
         <div class="container">
           <header class="block-head">
-            <h2 id="faq-heading" data-reveal="up" data-reveal-delay="80">
-              FAQ — najczęstsze pytania
-            </h2>
-            <p
-              id="faq-desc"
-              class="lead"
-              data-reveal="up"
-              data-reveal-delay="120"
-            >
-              Krótko i konkretnie — najważniejsze informacje o malowaniu i
-              gładziach.
-            </p>
+            <h2 id="faq-heading" data-reveal="up" data-reveal-delay="80">FAQ — najczęstsze pytania</h2>
+            <p id="faq-desc" class="lead" data-reveal="up" data-reveal-delay="120">Krótko i konkretnie — najważniejsze informacje o malowaniu i gładziach.</p>
           </header>
 
           <ul class="faq-list">
-            <!-- FAQ 1 -->
+            <!-- Faq 1 -->
             <li data-reveal="up" data-reveal-delay="160">
               <details class="faq" id="faq-1">
-                <summary id="q-1" class="faq-q">
-                  Ile trwa odświeżenie mieszkania ~50–60&nbsp;m²?
-                </summary>
+                <summary id="q-1" class="faq-q">Ile trwa odświeżenie mieszkania ~50–60&nbsp;m²?</summary>
                 <div class="answer" id="a-1">
                   <p>
                     Zwykle
@@ -716,27 +571,19 @@
                 </div>
               </details>
             </li>
-            <!-- FAQ 2 -->
+            <!-- Faq 2 -->
             <li data-reveal="up" data-reveal-delay="240">
               <details class="faq" id="faq-2">
-                <summary id="q-2" class="faq-q">
-                  Czy pracujecie „bezpyłowo” przy gładziach?
-                </summary>
+                <summary id="q-2" class="faq-q">Czy pracujecie „bezpyłowo” przy gładziach?</summary>
                 <div class="answer" id="a-2">
-                  <p>
-                    Tak — używamy szlifierek z odciągiem, a pomieszczenia
-                    zabezpieczamy foliami i taśmami. Podłoża gruntujemy przed
-                    malowaniem.
-                  </p>
+                  <p>Tak — używamy szlifierek z odciągiem, a pomieszczenia zabezpieczamy foliami i taśmami. Podłoża gruntujemy przed malowaniem.</p>
                 </div>
               </details>
             </li>
-            <!-- FAQ 3 -->
+            <!-- Faq 3 -->
             <li data-reveal="up" data-reveal-delay="320">
               <details class="faq" id="faq-3">
-                <summary id="q-3" class="faq-q">
-                  Jakie farby stosujecie i ile warstw?
-                </summary>
+                <summary id="q-3" class="faq-q">Jakie farby stosujecie i ile warstw?</summary>
                 <div class="answer" id="a-3">
                   <p>
                     Standardowo farby premium (np. Tikkurila/Beckers/Dulux) i
@@ -750,19 +597,15 @@
                 </div>
               </details>
             </li>
-            <!-- FAQ 4 -->
+            <!-- Faq 4 -->
             <li data-reveal="up" data-reveal-delay="400">
               <details class="faq" id="faq-4">
-                <summary id="q-4" class="faq-q">
-                  Czy mogę dostarczyć własną farbę i kolory?
-                </summary>
+                <summary id="q-4" class="faq-q">Czy mogę dostarczyć własną farbę i kolory?</summary>
                 <div class="answer" id="a-4">
                   <p>
-                    Oczywiście — realizujemy na materiałach Klienta lub naszych.
-                    Wykonujemy także
+                    Oczywiście — realizujemy na materiałach Klienta lub naszych. Wykonujemy także
                     <strong>precyzyjne odcięcia</strong>
-                    i ściany akcentowe; rozliczamy samą robociznę lub
-                    kompleksowo.
+                    i ściany akcentowe; rozliczamy samą robociznę lub kompleksowo.
                   </p>
                 </div>
               </details>
@@ -771,36 +614,25 @@
         </div>
       </section>
 
-      <!-- CTA -->
+      <!-- Cta -->
       <section class="cta" role="region" aria-labelledby="cta-end-heading">
         <div class="container">
           <header class="block-head">
-            <h2 id="cta-end-heading" data-reveal="up" data-reveal-delay="80">
-              Masz projekt lub inspiracje?
-            </h2>
-            <p class="lead" data-reveal="up" data-reveal-delay="160">
-              Wyślij szkic lub zdjęcia — doradzimy farby i wycenimy w
-              24–48&nbsp;h.
-            </p>
+            <h2 id="cta-end-heading" data-reveal="up" data-reveal-delay="80">Masz projekt lub inspiracje?</h2>
+            <p class="lead" data-reveal="up" data-reveal-delay="160">Wyślij szkic lub zdjęcia — doradzimy farby i wycenimy w 24–48&nbsp;h.</p>
           </header>
           <div class="block-cta" data-reveal="right" data-reveal-delay="240">
-            <a
-              class="btn"
-              href="../index.html#kontakt"
-              aria-label="Wyślij zapytanie — formularz kontaktowy"
-              >Wyślij zapytanie</a
-            >
+            <a class="btn" href="../index.html#kontakt" aria-label="Wyślij zapytanie — formularz kontaktowy">Wyślij zapytanie</a>
           </div>
         </div>
       </section>
     </main>
 
-    <!-- FOOTER -->
+    <!-- Footer -->
     <footer id="footer" class="site-footer" aria-labelledby="footer-heading">
       <div class="container">
         <h2 class="vh" id="footer-heading">Stopka serwisu</h2>
         <div class="ft-grid">
-          <!-- Column 1 -->
           <div class="ft-col" data-reveal="up" data-reveal-delay="80">
             <a href="../index.html#top" class="brand-footer" aria-label="Strona główna">
               <picture>
@@ -829,7 +661,7 @@
               </li>
             </ul>
           </div>
-          <!-- Column 2 -->
+
           <nav class="ft-col" aria-labelledby="ft-nav-heading">
             <h3 class="ft-h" id="ft-nav-heading" data-reveal="up" data-reveal-delay="160">Nawigacja</h3>
             <ul class="ft-links" data-reveal="up" data-reveal-delay="160">
@@ -840,7 +672,7 @@
               <li><a href="../index.html#kontakt">Kontakt</a></li>
             </ul>
           </nav>
-          <!-- Column 3 -->
+
           <nav class="ft-col" aria-labelledby="ft-docs-heading" data-reveal="up" data-reveal-delay="200">
             <h3 class="ft-h" id="ft-docs-heading">Dokumenty</h3>
             <ul class="ft-links">
@@ -851,7 +683,7 @@
               <li><a href="../doc/cookies.html">Pliki cookies</a></li>
             </ul>
           </nav>
-          <!-- Column 4 -->
+
           <div class="ft-col" data-reveal="up" data-reveal-delay="260">
             <h3 class="ft-h">Znajdziesz nas tutaj:</h3>
             <div class="ft-map">
@@ -879,7 +711,7 @@
                 REGON: 123456789
               </p>
             </address>
-            <!-- Social Media -->
+
             <div class="ft-social" aria-label="Media społecznościowe">
               <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" aria-label="Facebook">
                 <img src="../assets/img/icons/facebook.svg" alt="" width="20" height="20" loading="lazy" decoding="async" />
@@ -900,13 +732,15 @@
         <!-- Copyright -->
         <div class="ft-bottom">
           <p>
-            © <span id="year"></span> KP_Code_. Wszelkie prawa zastrzeżone.
+            ©
+            <span id="year"></span>
+            KP_Code_. Wszelkie prawa zastrzeżone.
           </p>
         </div>
       </div>
     </footer>
 
-    <!--SCRIPT -->
+    <!-- Script -->
     <script src="../js/sw-register.js" defer></script>
     <script src="../js/script.min.js" defer></script>
   </body>

@@ -3,90 +3,24 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
-
-    <title>SolidCraft — remonty kompleksowe i wykończenia wnętrz | demo KP_Code_</title>
-    <meta name="description" content="SolidCraft (demo) — remonty kompleksowe i wykończenia wnętrz z koordynacją prac. Projekt demonstracyjny KP_Code_." />
+    <title>SolidCraft — Remonty i wykończenia</title>
+    <meta name="description" content="SolidCraft — remonty i wykończenia wnętrz: plan prac, materiały i wykonanie. Terminowo, solidnie i z dbałością o detale." />
     <meta name="author" content="KP_Code_" />
     <meta name="robots" content="index, follow" />
     <link rel="canonical" href="https://construction-project-01.netlify.app/oferta/remonty.html" />
-
-    <!-- PWA / kolory motywu -->
     <meta name="theme-color" content="#0ea5e9" media="(prefers-color-scheme: light)" />
     <meta name="theme-color" content="#0b1220" media="(prefers-color-scheme: dark)" />
     <meta name="color-scheme" content="light dark" />
 
-    <!-- Open Graph -->
-    <meta property="og:type" content="website" />
-    <meta property="og:site_name" content="SolidCraft" />
-    <meta property="og:locale" content="pl_PL" />
-    <meta property="og:title" content="SolidCraft — remonty kompleksowe i wykończenia wnętrz | demo KP_Code_" />
-    <meta property="og:description" content="SolidCraft (demo) — remonty kompleksowe i wykończenia wnętrz z koordynacją prac. Projekt demonstracyjny KP_Code_." />
-    <meta property="og:url" content="https://construction-project-01.netlify.app/oferta/remonty.html" />
-    <meta property="og:image" content="https://construction-project-01.netlify.app/assets/img/og/og-image-1200x630.jpg" />
-    <meta property="og:image:width" content="1200" />
-    <meta property="og:image:height" content="630" />
-    <meta property="og:image:alt" content="SolidCraft — strona firmy remontowo-budowlanej (demo)" />
-
-    <!-- Twitter -->
-    <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="SolidCraft — remonty kompleksowe i wykończenia wnętrz | demo KP_Code_" />
-    <meta name="twitter:description" content="SolidCraft (demo) — remonty kompleksowe i wykończenia wnętrz z koordynacją prac. Projekt demonstracyjny KP_Code_." />
-    <meta name="twitter:image" content="https://construction-project-01.netlify.app/assets/img/og/og-image-1200x630.jpg" />
-    <meta name="twitter:url" content="https://construction-project-01.netlify.app/oferta/remonty.html" />
-    <meta name="twitter:image:alt" content="SolidCraft — strona firmy remontowo-budowlanej (demo)" />
-
-    <!-- Maps performance hints -->
-    <link rel="preconnect" href="https://www.google.com" crossorigin />
-    <link rel="dns-prefetch" href="https://www.google.com" />
-
-    <!-- JSON-LD (DEMO: Website + Page) -->
-    <script type="application/ld+json">
-      {
-        "@context": "https://schema.org",
-        "@graph": [
-          {
-            "@type": "WebSite",
-            "@id": "https://construction-project-01.netlify.app/#website",
-            "url": "https://construction-project-01.netlify.app/",
-            "name": "SolidCraft — demo KP_Code_",
-            "description": "SolidCraft (demo) — projekt demonstracyjny strony firmy remontowo-budowlanej.",
-            "inLanguage": "pl-PL",
-            "publisher": {
-              "@type": "Organization",
-              "name": "KP_Code_"
-            },
-            "image": "https://construction-project-01.netlify.app/assets/img/og/og-image-1200x630.jpg"
-          },
-          {
-            "@type": "WebPage",
-            "@id": "https://construction-project-01.netlify.app/oferta/remonty.html#page",
-            "url": "https://construction-project-01.netlify.app/oferta/remonty.html",
-            "name": "SolidCraft — remonty kompleksowe i wykończenia wnętrz | demo KP_Code_",
-            "description": "SolidCraft (demo) — remonty kompleksowe i wykończenia wnętrz z koordynacją prac. Projekt demonstracyjny KP_Code_.",
-            "isPartOf": {
-              "@id": "https://construction-project-01.netlify.app/#website"
-            },
-            "inLanguage": "pl-PL",
-            "primaryImageOfPage": {
-              "@type": "ImageObject",
-              "url": "https://construction-project-01.netlify.app/assets/img/og/og-image-1200x630.jpg",
-              "width": 1200,
-              "height": 630
-            }
-          }
-        ]
-      }
-    </script>
-
-    <!-- Boot theme (no flicker) -->
     <script>
       try {
-        const d = document.documentElement;
-        let t = localStorage.getItem("theme");
-        if (t !== "light" && t !== "dark") {
-          t = window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
-        }
-        d.setAttribute("data-theme", t);
+        const root = document.documentElement;
+        const stored = localStorage.getItem("theme");
+
+        const theme = stored === "light" || stored === "dark" ? stored : window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+
+        root.dataset.theme = theme;
+        root.classList.add("preload-theme");
       } catch {}
     </script>
     <style>
@@ -97,73 +31,147 @@
       }
     </style>
     <script>
-      document.documentElement.classList.add("preload-theme");
       window.addEventListener("DOMContentLoaded", () => {
         requestAnimationFrame(() => document.documentElement.classList.remove("preload-theme"));
       });
     </script>
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="SolidCraft" />
+    <meta property="og:locale" content="pl_PL" />
+    <meta property="og:title" content="SolidCraft — Remonty i wykończenia" />
+    <meta property="og:description" content="SolidCraft — remonty i wykończenia wnętrz: plan prac, materiały i wykonanie. Terminowo, solidnie i z dbałością o detale." />
+    <meta property="og:url" content="https://construction-project-01.netlify.app/oferta/remonty.html" />
+    <meta property="og:image" content="https://construction-project-01.netlify.app/assets/img/og/og-image-1200x630.jpg" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="SolidCraft — Remonty i wykończenia" />
+    <meta property="og:updated_time" content="2025-10-28T12:00:00+02:00" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="SolidCraft — Remonty i wykończenia" />
+    <meta name="twitter:description" content="SolidCraft — remonty i wykończenia wnętrz: plan prac, materiały i wykonanie. Terminowo, solidnie i z dbałością o detale." />
+    <meta name="twitter:image" content="https://construction-project-01.netlify.app/assets/img/og/og-image-1200x630.jpg" />
+    <meta name="twitter:url" content="https://construction-project-01.netlify.app/oferta/remonty.html" />
+    <meta name="twitter:image:alt" content="SolidCraft — Remonty i wykończenia" />
 
-    <!-- Lokalne fonty (preload) -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "GeneralContractor",
+        "name": "SolidCraft",
+        "telephone": "+48 533 537 091",
+        "email": "kontakt@kp-code.pl",
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "ul. Marynarki Wojennej 12/31",
+          "postalCode": "33-100",
+          "addressLocality": "Tarnów",
+          "addressCountry": "PL"
+        },
+        "areaServed": "PL",
+        "openingHours": "Mo-Fr 08:00-18:00",
+        "url": "https://construction-project-01.netlify.app/",
+        "sameAs": ["https://facebook.com", "https://instagram.com"]
+      }
+    </script>
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@graph": [
+          {
+            "@type": "WebSite",
+            "@id": "https://construction-project-01.netlify.app/#website",
+            "url": "https://construction-project-01.netlify.app/",
+            "name": "SolidCraft",
+            "description": "SolidCraft — firma remontowo-budowlana. Oferta, realizacje, opinie, FAQ oraz formularz wyceny.",
+            "inLanguage": "pl-PL",
+            "publisher": { "@type": "Organization", "name": "SolidCraft" },
+            "image": "https://construction-project-01.netlify.app/assets/img/og/og-image-1200x630.jpg"
+          },
+          {
+            "@type": "CollectionPage",
+            "@id": "https://construction-project-01.netlify.app/#page",
+            "url": "https://construction-project-01.netlify.app/oferta/remonty.html",
+            "name": "SolidCraft — Remonty i wykończenia",
+            "isPartOf": { "@id": "https://construction-project-01.netlify.app/#website" },
+            "inLanguage": "pl-PL",
+            "datePublished": "2025-09-19",
+            "dateModified": "2025-10-19",
+            "primaryImageOfPage": {
+              "@type": "ImageObject",
+              "url": "https://construction-project-01.netlify.app/assets/img/og/og-image-1200x630.jpg",
+              "width": 1200,
+              "height": 630
+            },
+            "about": {
+              "@type": "ItemList",
+              "name": "Zakres usług",
+              "itemListElement": [
+                { "@type": "ListItem", "position": 1, "name": "Wykończenia i remonty łazienek", "url": "https://construction-project-01.netlify.app/#oferta-lazienki" },
+                { "@type": "ListItem", "position": 2, "name": "Malowanie i gładzie", "url": "https://construction-project-01.netlify.app/#oferta-malowanie" },
+                { "@type": "ListItem", "position": 3, "name": "Kafelkowanie", "url": "https://construction-project-01.netlify.app/#oferta-kafelkowanie" },
+                { "@type": "ListItem", "position": 4, "name": "Elektryka i hydraulika", "url": "https://construction-project-01.netlify.app/#oferta-elektryka" }
+              ]
+            }
+          },
+          {
+            "@type": "FAQPage",
+            "@id": "https://construction-project-01.netlify.app/#faq",
+            "mainEntity": [
+              {
+                "@type": "Question",
+                "name": "Ile trwa przygotowanie wyceny?",
+                "acceptedAnswer": { "@type": "Answer", "text": "Standardowo do 24 godzin od przesłania szczegółów zlecenia lub zdjęć." }
+              },
+              {
+                "@type": "Question",
+                "name": "Czy dojeżdżacie do klienta i wykonujecie oględziny?",
+                "acceptedAnswer": { "@type": "Answer", "text": "Tak. Dojazd w obrębie miasta i okolic jest możliwy po ustaleniu terminu." }
+              },
+              {
+                "@type": "Question",
+                "name": "Czy wystawiacie fakturę i udzielacie gwarancji?",
+                "acceptedAnswer": { "@type": "Answer", "text": "Tak, wystawiamy faktury oraz udzielamy gwarancji na wykonywane prace." }
+              }
+            ]
+          }
+        ]
+      }
+    </script>
+
     <link rel="preload" as="font" type="font/woff2" href="../assets/fonts/poppins-v24-latin-regular.woff2" crossorigin />
     <link rel="preload" as="font" type="font/woff2" href="../assets/fonts/poppins-v24-latin-600.woff2" crossorigin />
     <link rel="preload" as="font" type="font/woff2" href="../assets/fonts/montserrat-v31-latin-700.woff2" crossorigin />
     <link rel="preload" as="font" type="font/woff2" href="../assets/fonts/montserrat-v31-latin-600.woff2" crossorigin />
 
-    <!-- Główny CSS -->
     <link rel="stylesheet" href="../css/style.min.css" />
 
-    <!-- PWA meta / manifest -->
     <link rel="manifest" href="/manifest.webmanifest" />
-    <meta name="application-name" content="SolidCraft (demo)" />
+    <meta name="application-name" content="SolidCraft" />
     <link rel="icon" type="image/svg+xml" href="../assets/img/favicon/favicon.svg" />
     <link rel="icon" href="../assets/img/favicon/favicon.ico" sizes="any" />
     <link rel="icon" type="image/png" sizes="32x32" href="../assets/img/favicon/favicon-32x32.png" />
     <link rel="icon" type="image/png" sizes="512x512" href="../assets/img/favicon/web-app-manifest-512x512.png" />
     <link rel="apple-touch-icon" sizes="180x180" href="../assets/img/favicon/apple-touch-icon.png" />
-    <meta name="apple-mobile-web-app-title" content="SolidCraft (demo)" />
+    <meta name="apple-mobile-web-app-title" content="SolidCraft" />
     <meta name="apple-mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
     <meta name="msapplication-TileColor" content="#0ea5e9" />
     <meta name="msapplication-TileImage" content="../assets/img/favicon/web-app-manifest-144x144.png" />
     <link rel="mask-icon" href="../assets/img/favicon/favicon.svg" color="#0ea5e9" />
-</head>
+  </head>
 
-  <!-- BODY -->
+  <!-- Body -->
   <body class="page-sub">
     <a class="skip" href="#main">Pomiń do treści</a>
-    <div
-      id="top"
-      aria-hidden="true"
-      style="position: relative; inset: 0; height: 0"
-    ></div>
+    <div id="top" aria-hidden="true" style="position: relative; inset: 0; height: 0"></div>
 
-    <!-- HEADER -->
+    <!-- Header -->
     <header class="site-header">
       <div class="container header-bar">
-        <a
-          class="brand"
-          href="../index.html#top"
-          aria-label="Strona główna — Construction Project"
-        >
+        <a class="brand" href="../index.html#top" aria-label="Strona główna — Construction Project">
           <picture class="brand-logo">
-            <img
-              src="../assets/img/logo/logo-light-160x160.png"
-              alt=""
-              aria-hidden="true"
-              class="logo--light"
-              loading="eager"
-              fetchpriority="high"
-              decoding="async"
-            />
-            <img
-              src="../assets/img/logo/logo-dark-160x160.png"
-              alt=""
-              aria-hidden="true"
-              class="logo--dark"
-              loading="eager"
-              fetchpriority="high"
-              decoding="async"
-            />
+            <img src="../assets/img/logo/logo-light-160x160.png" alt="" aria-hidden="true" class="logo--light" loading="eager" fetchpriority="high" decoding="async" />
+            <img src="../assets/img/logo/logo-dark-160x160.png" alt="" aria-hidden="true" class="logo--dark" loading="eager" fetchpriority="high" decoding="async" />
           </picture>
           <span class="brand-name">SolidCraft</span>
         </a>
@@ -173,23 +181,11 @@
             <li><a href="../index.html#top">Strona główna</a></li>
 
             <li class="nav-item has-dropdown">
-              <a
-                id="dd-oferta-trigger"
-                href="../index.html#oferta"
-                class="nav-link dropdown-trigger"
-                aria-expanded="false"
-                aria-haspopup="true"
-                aria-controls="dd-oferta"
-              >
+              <a id="dd-oferta-trigger" href="../index.html#oferta" class="nav-link dropdown-trigger" aria-expanded="false" aria-haspopup="true" aria-controls="dd-oferta">
                 Oferta
                 <span class="caret" aria-hidden="true">▾</span>
               </a>
-              <ul
-                id="dd-oferta"
-                class="dropdown"
-                aria-label="Podmenu: Oferta"
-                aria-labelledby="dd-oferta-trigger"
-              >
+              <ul id="dd-oferta" class="dropdown" aria-label="Podmenu: Oferta" aria-labelledby="dd-oferta-trigger">
                 <li><a href="lazienki.html">Łazienki</a></li>
                 <li><a href="malowanie.html">Malowanie &amp; gładzie</a></li>
                 <li><a href="kafelkowanie.html">Kafelkowanie</a></li>
@@ -207,40 +203,12 @@
         </nav>
 
         <div class="header-actions">
-          <button
-            class="theme-toggle"
-            type="button"
-            aria-pressed="false"
-            aria-label="Przełącz tryb"
-            title="Przełącz tryb"
-          >
-            <img
-              class="icon-moon"
-              src="../assets/img/icons/dark-mode-40.svg"
-              alt=""
-              width="20"
-              height="20"
-              decoding="async"
-              aria-hidden="true"
-            />
-            <img
-              class="icon-sun"
-              src="../assets/img/icons/light-mode-40.svg"
-              alt=""
-              width="20"
-              height="20"
-              decoding="async"
-              aria-hidden="true"
-            />
+          <button class="theme-toggle" type="button" aria-pressed="false" aria-label="Przełącz tryb" title="Przełącz tryb">
+            <img class="icon-moon" src="../assets/img/icons/dark-mode-40.svg" alt="" width="20" height="20" decoding="async" aria-hidden="true" />
+            <img class="icon-sun" src="../assets/img/icons/light-mode-40.svg" alt="" width="20" height="20" decoding="async" aria-hidden="true" />
           </button>
 
-          <button
-            class="nav-toggle"
-            type="button"
-            aria-expanded="false"
-            aria-controls="navMenu"
-            aria-label="Otwórz menu"
-          >
+          <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="navMenu" aria-label="Otwórz menu">
             <span class="nav-line"></span>
             <span class="nav-line"></span>
             <span class="nav-line"></span>
@@ -249,114 +217,52 @@
       </div>
     </header>
 
-    <!-- MAIN -->
+    <!-- Main -->
     <main id="main">
-      <!-- SUBPAGE CONTENT -->
-      <section
-        class="block subpage-header"
-        id="remonty"
-        role="region"
-        aria-labelledby="remonty-heading"
-        aria-describedby="remonty-desc"
-        tabindex="-1"
-      >
+      <!-- Subpage content -->
+      <section class="block subpage-header" id="remonty" role="region" aria-labelledby="remonty-heading" aria-describedby="remonty-desc" tabindex="-1">
         <div class="container">
           <header class="block-head">
-            <h1 id="remonty-heading" data-reveal="up" data-reveal-delay="80">
-              Remonty kompleksowe — od projektu po wykończenie
-            </h1>
-            <p
-              id="remonty-desc"
-              class="lead"
-              data-reveal="up"
-              data-reveal-delay="160"
-            >
-              Kompleksowe remonty i adaptacje wnętrz. Koordynujemy wszystkie
-              etapy prac — od koncepcji i wyceny po realizację i sprzątanie.
+            <h1 id="remonty-heading" data-reveal="up" data-reveal-delay="80">Remonty kompleksowe — od projektu po wykończenie</h1>
+            <p id="remonty-desc" class="lead" data-reveal="up" data-reveal-delay="160">
+              Kompleksowe remonty i adaptacje wnętrz. Koordynujemy wszystkie etapy prac — od koncepcji i wyceny po realizację i sprzątanie.
             </p>
           </header>
           <div class="cards">
             <!-- Card 1 -->
-            <article
-              class="card hover-card"
-              id="zakres"
-              data-reveal="up"
-              data-reveal-delay="160"
-            >
+            <article class="card hover-card" id="zakres" data-reveal="up" data-reveal-delay="160">
               <h2>Pełny zakres prac</h2>
-              <p>
-                Od demontażu i instalacji po prace wykończeniowe. Ściany,
-                podłogi, instalacje, zabudowy, oświetlenie i malowanie —
-                wszystko w jednym zespole.
-              </p>
+              <p>Od demontażu i instalacji po prace wykończeniowe. Ściany, podłogi, instalacje, zabudowy, oświetlenie i malowanie — wszystko w jednym zespole.</p>
             </article>
             <!-- Card 2 -->
-            <article
-              class="card hover-card"
-              id="koordynacja"
-              data-reveal="up"
-              data-reveal-delay="240"
-            >
+            <article class="card hover-card" id="koordynacja" data-reveal="up" data-reveal-delay="240">
               <h2>Koordynacja i harmonogram</h2>
-              <p>
-                Ustalamy etapy robót, zamówienia materiałów i kolejność ekip. Ty
-                masz jednego wykonawcę i spokój na każdym etapie.
-              </p>
+              <p>Ustalamy etapy robót, zamówienia materiałów i kolejność ekip. Ty masz jednego wykonawcę i spokój na każdym etapie.</p>
             </article>
             <!-- Card 3 -->
-            <article
-              class="card hover-card"
-              id="projekty"
-              data-reveal="up"
-              data-reveal-delay="320"
-            >
+            <article class="card hover-card" id="projekty" data-reveal="up" data-reveal-delay="320">
               <h2>Projekty i wizualizacje</h2>
-              <p>
-                Współpracujemy z projektantami wnętrz — przygotujemy
-                wizualizacje, doradzimy w wyborze materiałów i kolorystyki.
-              </p>
+              <p>Współpracujemy z projektantami wnętrz — przygotujemy wizualizacje, doradzimy w wyborze materiałów i kolorystyki.</p>
             </article>
             <!-- Card 4 -->
-            <article
-              class="card hover-card"
-              id="gwarancja"
-              data-reveal="up"
-              data-reveal-delay="400"
-            >
+            <article class="card hover-card" id="gwarancja" data-reveal="up" data-reveal-delay="400">
               <h2>Jakość i gwarancja</h2>
-              <p>
-                Stosujemy sprawdzone technologie i certyfikowane materiały.
-                Każda realizacja objęta gwarancją i pełną dokumentacją
-                powykonawczą.
-              </p>
+              <p>Stosujemy sprawdzone technologie i certyfikowane materiały. Każda realizacja objęta gwarancją i pełną dokumentacją powykonawczą.</p>
             </article>
           </div>
 
           <div class="block-cta" data-reveal="scale" data-reveal-delay="480">
-            <a
-              class="btn"
-              href="../index.html?usluga=Remonty%20kompleksowe#kontakt"
-              aria-label="Przejdź do formularza wyceny — Remonty kompleksowe"
-              >Wycena</a
-            >
+            <a class="btn" href="../index.html?usluga=Remonty%20kompleksowe#kontakt" aria-label="Przejdź do formularza wyceny — Remonty kompleksowe">Wycena</a>
           </div>
         </div>
       </section>
 
-      <!-- GALERIA -->
-      <section
-        class="block gallery"
-        id="galeria"
-        aria-labelledby="galeria-heading"
-      >
+      <!-- Gallery -->
+      <section class="block gallery" id="galeria" aria-labelledby="galeria-heading">
         <div class="container">
           <header class="block-head">
-            <h2 id="galeria-heading" data-reveal="up" data-reveal-delay="80">
-              Galeria realizacji
-            </h2>
-            <p class="lead" data-reveal="up" data-reveal-delay="120">
-              Kilka ujęć z ostatnich prac — więcej na życzenie.
-            </p>
+            <h2 id="galeria-heading" data-reveal="up" data-reveal-delay="80">Galeria realizacji</h2>
+            <p class="lead" data-reveal="up" data-reveal-delay="120">Kilka ujęć z ostatnich prac — więcej na życzenie.</p>
           </header>
 
           <ul class="gallery-grid">
@@ -366,10 +272,8 @@
                 class="gallery-item"
                 href="../assets/img/gallery/reno-01-2048x1536.jpg"
                 data-lb="remonty"
-                data-lb-caption="Etap montażu kuchni — nowe meble na wymiar przed wykończeniem blatu i oświetlenia."
-              >
+                data-lb-caption="Etap montażu kuchni — nowe meble na wymiar przed wykończeniem blatu i oświetlenia.">
                 <picture>
-                  <!-- AVIF -->
                   <source
                     type="image/avif"
                     srcset="
@@ -378,9 +282,8 @@
                       ../assets/img/gallery/reno-01-1024x768.avif  1024w,
                       ../assets/img/gallery/reno-01-1536x1152.avif 1536w,
                       ../assets/img/gallery/reno-01-2048x1536.avif 2048w
-                    "
-                  />
-                  <!-- WebP -->
+                    " />
+
                   <source
                     type="image/webp"
                     srcset="
@@ -389,9 +292,8 @@
                       ../assets/img/gallery/reno-01-1024x768.webp  1024w,
                       ../assets/img/gallery/reno-01-1536x1152.webp 1536w,
                       ../assets/img/gallery/reno-01-2048x1536.webp 2048w
-                    "
-                  />
-                  <!-- JPG fallback -->
+                    " />
+
                   <img
                     src="../assets/img/gallery/reno-01-768x576.jpg"
                     srcset="
@@ -406,8 +308,7 @@
                     height="576"
                     loading="lazy"
                     decoding="async"
-                    alt="Montaż nowej zabudowy kuchennej w trakcie prac wykończeniowych"
-                  />
+                    alt="Montaż nowej zabudowy kuchennej w trakcie prac wykończeniowych" />
                 </picture>
               </a>
             </li>
@@ -418,10 +319,8 @@
                 class="gallery-item"
                 href="../assets/img/gallery/reno-02-2048x1536.jpg"
                 data-lb="remonty"
-                data-lb-caption="Prace remontowe w salonie — odświeżanie ścian i montaż oświetlenia sufitowego."
-              >
+                data-lb-caption="Prace remontowe w salonie — odświeżanie ścian i montaż oświetlenia sufitowego.">
                 <picture>
-                  <!-- AVIF -->
                   <source
                     type="image/avif"
                     srcset="
@@ -430,9 +329,8 @@
                       ../assets/img/gallery/reno-02-1024x768.avif  1024w,
                       ../assets/img/gallery/reno-02-1536x1152.avif 1536w,
                       ../assets/img/gallery/reno-02-2048x1536.avif 2048w
-                    "
-                  />
-                  <!-- WebP -->
+                    " />
+
                   <source
                     type="image/webp"
                     srcset="
@@ -441,9 +339,8 @@
                       ../assets/img/gallery/reno-02-1024x768.webp  1024w,
                       ../assets/img/gallery/reno-02-1536x1152.webp 1536w,
                       ../assets/img/gallery/reno-02-2048x1536.webp 2048w
-                    "
-                  />
-                  <!-- JPG fallback -->
+                    " />
+
                   <img
                     src="../assets/img/gallery/reno-02-768x576.jpg"
                     srcset="
@@ -458,8 +355,7 @@
                     height="576"
                     loading="lazy"
                     decoding="async"
-                    alt="Salon w trakcie malowania i prac wykończeniowych sufitu"
-                  />
+                    alt="Salon w trakcie malowania i prac wykończeniowych sufitu" />
                 </picture>
               </a>
             </li>
@@ -470,10 +366,8 @@
                 class="gallery-item"
                 href="../assets/img/gallery/reno-03-2048x1536.jpg"
                 data-lb="remonty"
-                data-lb-caption="Realizacja nowoczesnej kuchni z czarną zabudową, oświetleniem LED i fornirowanymi frontami."
-              >
+                data-lb-caption="Realizacja nowoczesnej kuchni z czarną zabudową, oświetleniem LED i fornirowanymi frontami.">
                 <picture>
-                  <!-- AVIF -->
                   <source
                     type="image/avif"
                     srcset="
@@ -482,9 +376,8 @@
                       ../assets/img/gallery/reno-03-1024x768.avif  1024w,
                       ../assets/img/gallery/reno-03-1536x1152.avif 1536w,
                       ../assets/img/gallery/reno-03-2048x1536.avif 2048w
-                    "
-                  />
-                  <!-- WebP -->
+                    " />
+
                   <source
                     type="image/webp"
                     srcset="
@@ -493,9 +386,8 @@
                       ../assets/img/gallery/reno-03-1024x768.webp  1024w,
                       ../assets/img/gallery/reno-03-1536x1152.webp 1536w,
                       ../assets/img/gallery/reno-01-2048x1536.webp 2048w
-                    "
-                  />
-                  <!-- JPG fallback -->
+                    " />
+
                   <img
                     src="../assets/img/gallery/reno-03-768x576.jpg"
                     srcset="
@@ -510,8 +402,7 @@
                     height="576"
                     loading="lazy"
                     decoding="async"
-                    alt="Nowoczesna kuchnia w czarnej zabudowie z oświetleniem LED"
-                  />
+                    alt="Nowoczesna kuchnia w czarnej zabudowie z oświetleniem LED" />
                 </picture>
               </a>
             </li>
@@ -522,10 +413,8 @@
                 class="gallery-item"
                 href="../assets/img/gallery/reno-04-2048x1536.jpg"
                 data-lb="remonty"
-                data-lb-caption="Wykończone poddasze z odkrytymi belkami — jasna przestrzeń po remoncie generalnym."
-              >
+                data-lb-caption="Wykończone poddasze z odkrytymi belkami — jasna przestrzeń po remoncie generalnym.">
                 <picture>
-                  <!-- AVIF -->
                   <source
                     type="image/avif"
                     srcset="
@@ -534,9 +423,8 @@
                       ../assets/img/gallery/reno-04-1024x768.avif  1024w,
                       ../assets/img/gallery/reno-04-1536x1152.avif 1536w,
                       ../assets/img/gallery/reno-04-2048x1536.avif 2048w
-                    "
-                  />
-                  <!-- WebP -->
+                    " />
+
                   <source
                     type="image/webp"
                     srcset="
@@ -545,9 +433,8 @@
                       ../assets/img/gallery/reno-04-1024x768.webp  1024w,
                       ../assets/img/gallery/reno-04-1536x1152.webp 1536w,
                       ../assets/img/gallery/reno-04-2048x1536.webp 2048w
-                    "
-                  />
-                  <!-- JPG fallback -->
+                    " />
+
                   <img
                     src="../assets/img/gallery/reno-04-768x576.jpg"
                     srcset="
@@ -562,8 +449,7 @@
                     height="576"
                     loading="lazy"
                     decoding="async"
-                    alt="Jasne poddasze po remoncie z widocznymi belkami stropowymi"
-                  />
+                    alt="Jasne poddasze po remoncie z widocznymi belkami stropowymi" />
                 </picture>
               </a>
             </li>
@@ -574,10 +460,8 @@
                 class="gallery-item"
                 href="../assets/img/gallery/reno-05-2048x1536.jpg"
                 data-lb="remonty"
-                data-lb-caption="Kuchnia po remoncie — pełna zabudowa, wyspa robocza i oświetlenie punktowe LED."
-              >
+                data-lb-caption="Kuchnia po remoncie — pełna zabudowa, wyspa robocza i oświetlenie punktowe LED.">
                 <picture>
-                  <!-- AVIF -->
                   <source
                     type="image/avif"
                     srcset="
@@ -586,9 +470,8 @@
                       ../assets/img/gallery/reno-05-1024x768.avif  1024w,
                       ../assets/img/gallery/reno-05-1536x1152.avif 1536w,
                       ../assets/img/gallery/reno-05-2048x1536.avif 2048w
-                    "
-                  />
-                  <!-- WebP -->
+                    " />
+
                   <source
                     type="image/webp"
                     srcset="
@@ -597,9 +480,8 @@
                       ../assets/img/gallery/reno-05-1024x768.webp  1024w,
                       ../assets/img/gallery/reno-05-1536x1152.webp 1536w,
                       ../assets/img/gallery/reno-05-2048x1536.webp 2048w
-                    "
-                  />
-                  <!-- JPG fallback -->
+                    " />
+
                   <img
                     src="../assets/img/gallery/reno-05-768x576.jpg"
                     srcset="
@@ -614,22 +496,15 @@
                     height="576"
                     loading="lazy"
                     decoding="async"
-                    alt="Nowoczesna kuchnia z wyspą i zabudową pod sufit"
-                  />
+                    alt="Nowoczesna kuchnia z wyspą i zabudową pod sufit" />
                 </picture>
               </a>
             </li>
 
             <!-- 6 -->
             <li data-reveal="up" data-reveal-delay="360">
-              <a
-                class="gallery-item"
-                href="../assets/img/gallery/reno-06-2048x1536.jpg"
-                data-lb="remonty"
-                data-lb-caption="Końcowy etap remontu kuchni — montaż mebli i dopasowanie blatów roboczych."
-              >
+              <a class="gallery-item" href="../assets/img/gallery/reno-06-2048x1536.jpg" data-lb="remonty" data-lb-caption="Końcowy etap remontu kuchni — montaż mebli i dopasowanie blatów roboczych.">
                 <picture>
-                  <!-- AVIF -->
                   <source
                     type="image/avif"
                     srcset="
@@ -638,9 +513,8 @@
                       ../assets/img/gallery/reno-06-1024x768.avif  1024w,
                       ../assets/img/gallery/reno-06-1536x1152.avif 1536w,
                       ../assets/img/gallery/reno-06-2048x1536.avif 2048w
-                    "
-                  />
-                  <!-- WebP -->
+                    " />
+
                   <source
                     type="image/webp"
                     srcset="
@@ -649,9 +523,8 @@
                       ../assets/img/gallery/reno-06-1024x768.webp  1024w,
                       ../assets/img/gallery/reno-06-1536x1152.webp 1536w,
                       ../assets/img/gallery/reno-06-2048x1536.webp 2048w
-                    "
-                  />
-                  <!-- JPG fallback -->
+                    " />
+
                   <img
                     src="../assets/img/gallery/reno-06-768x576.jpg"
                     srcset="
@@ -666,8 +539,7 @@
                     height="576"
                     loading="lazy"
                     decoding="async"
-                    alt="Prace montażowe w kuchni na etapie wykończeń"
-                  />
+                    alt="Prace montażowe w kuchni na etapie wykończeń" />
                 </picture>
               </a>
             </li>
@@ -675,86 +547,56 @@
         </div>
       </section>
 
-      <!-- FAQ -->
-      <section
-        id="faq"
-        class="block"
-        aria-labelledby="faq-heading"
-        aria-describedby="faq-desc"
-      >
+      <!-- Faq -->
+      <section id="faq" class="block" aria-labelledby="faq-heading" aria-describedby="faq-desc">
         <div class="container">
           <header class="block-head">
-            <h2 id="faq-heading" data-reveal="up" data-reveal-delay="80">
-              FAQ — najczęstsze pytania
-            </h2>
-            <p
-              id="faq-desc"
-              class="lead"
-              data-reveal="up"
-              data-reveal-delay="120"
-            >
-              Najważniejsze informacje o przebiegu i organizacji remontu
-              kompleksowego.
-            </p>
+            <h2 id="faq-heading" data-reveal="up" data-reveal-delay="80">FAQ — najczęstsze pytania</h2>
+            <p id="faq-desc" class="lead" data-reveal="up" data-reveal-delay="120">Najważniejsze informacje o przebiegu i organizacji remontu kompleksowego.</p>
           </header>
 
           <ul class="faq-list">
-            <!-- FAQ 1 -->
+            <!-- Faq 1 -->
             <li data-reveal="up" data-reveal-delay="160">
               <details class="faq" id="faq-1">
-                <summary id="q-1" class="faq-q">
-                  Ile trwa remont mieszkania 50–70&nbsp;m²?
-                </summary>
+                <summary id="q-1" class="faq-q">Ile trwa remont mieszkania 50–70&nbsp;m²?</summary>
                 <div class="answer" id="a-1">
                   <p>
                     Średnio
                     <strong>4–6 tygodni</strong>
-                    , w zależności od zakresu prac i dostępności materiałów.
-                    Przy pełnym remoncie (ściany, podłogi, instalacje) — do
+                    , w zależności od zakresu prac i dostępności materiałów. Przy pełnym remoncie (ściany, podłogi, instalacje) — do
                     <strong>8 tygodni</strong>
                     .
                   </p>
                 </div>
               </details>
             </li>
-            <!-- FAQ 2 -->
+            <!-- Faq 2 -->
             <li data-reveal="up" data-reveal-delay="240">
               <details class="faq" id="faq-2">
-                <summary id="q-2" class="faq-q">
-                  Czy zajmujecie się również projektem i doradztwem
-                  materiałowym?
-                </summary>
+                <summary id="q-2" class="faq-q">Czy zajmujecie się również projektem i doradztwem materiałowym?</summary>
                 <div class="answer" id="a-2">
-                  <p>
-                    Tak — współpracujemy z projektantami wnętrz. Pomagamy dobrać
-                    materiały, kolory, oświetlenie i wykończenia pod styl
-                    inwestora.
-                  </p>
+                  <p>Tak — współpracujemy z projektantami wnętrz. Pomagamy dobrać materiały, kolory, oświetlenie i wykończenia pod styl inwestora.</p>
                 </div>
               </details>
             </li>
-            <!-- FAQ 3 -->
+            <!-- Faq 3 -->
             <li data-reveal="up" data-reveal-delay="320">
               <details class="faq" id="faq-3">
-                <summary id="q-3" class="faq-q">
-                  Czy oferujecie wycenę przed rozpoczęciem prac?
-                </summary>
+                <summary id="q-3" class="faq-q">Czy oferujecie wycenę przed rozpoczęciem prac?</summary>
                 <div class="answer" id="a-3">
                   <p>
                     Tak, przygotowujemy
                     <strong>bezpłatną wycenę</strong>
-                    po oględzinach lub na podstawie przesłanego projektu. Wycena
-                    obejmuje robociznę, materiały i czas realizacji.
+                    po oględzinach lub na podstawie przesłanego projektu. Wycena obejmuje robociznę, materiały i czas realizacji.
                   </p>
                 </div>
               </details>
             </li>
-            <!-- FAQ 4 -->
+            <!-- Faq 4 -->
             <li data-reveal="up" data-reveal-delay="400">
               <details class="faq" id="faq-4">
-                <summary id="q-4" class="faq-q">
-                  Czy sprzątanie po remoncie jest wliczone w usługę?
-                </summary>
+                <summary id="q-4" class="faq-q">Czy sprzątanie po remoncie jest wliczone w usługę?</summary>
                 <div class="answer" id="a-4">
                   <p>
                     Tak. Każdy remont kończymy
@@ -768,32 +610,22 @@
         </div>
       </section>
 
-      <!-- CTA -->
+      <!-- Cta -->
       <section class="cta" role="region" aria-labelledby="cta-end-heading">
         <div class="container">
           <header class="block-head">
-            <h2 id="cta-end-heading" data-reveal="up" data-reveal-delay="80">
-              Planujesz generalny remont?
-            </h2>
-            <p class="lead" data-reveal="up" data-reveal-delay="160">
-              Zadzwoń lub wyślij szkic pomieszczeń — przygotujemy szczegółową
-              wycenę i harmonogram prac w 48&nbsp;h.
-            </p>
+            <h2 id="cta-end-heading" data-reveal="up" data-reveal-delay="80">Planujesz generalny remont?</h2>
+            <p class="lead" data-reveal="up" data-reveal-delay="160">Zadzwoń lub wyślij szkic pomieszczeń — przygotujemy szczegółową wycenę i harmonogram prac w 48&nbsp;h.</p>
           </header>
 
           <div class="block-cta" data-reveal="right" data-reveal-delay="240">
-            <a
-              class="btn"
-              href="../index.html#kontakt"
-              aria-label="Wyślij zapytanie — formularz kontaktowy"
-              >Wyślij zapytanie</a
-            >
+            <a class="btn" href="../index.html#kontakt" aria-label="Wyślij zapytanie — formularz kontaktowy">Wyślij zapytanie</a>
           </div>
         </div>
       </section>
     </main>
 
-    <!-- FOOTER -->
+    <!-- Footer -->
     <footer id="footer" class="site-footer" aria-labelledby="footer-heading">
       <div class="container">
         <h2 class="vh" id="footer-heading">Stopka serwisu</h2>
@@ -898,13 +730,15 @@
         <!-- Copyright -->
         <div class="ft-bottom">
           <p>
-            © <span id="year"></span> KP_Code_. Wszelkie prawa zastrzeżone.
+            ©
+            <span id="year"></span>
+            KP_Code_. Wszelkie prawa zastrzeżone.
           </p>
         </div>
       </div>
     </footer>
 
-    <!--SCRIPT -->
+    <!--Script -->
     <script src="../js/sw-register.js" defer></script>
     <script src="../js/script.min.js" defer></script>
   </body>

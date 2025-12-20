@@ -1,9 +1,13 @@
 {
-  "name": "construction-website-demo",
+  "name": "solidcraft-construction-website",
   "version": "1.0.0",
   "private": true,
-  "description": "Statyczna strona demo: remonty i wykończenia",
-  "author": "KP_Code_",
+  "description": "SolidCraft — statyczna strona internetowa firmy budowlano-remontowej. Oferta, realizacje, opinie, FAQ oraz formularz kontaktowy.",
+  "author": {
+    "name": "Kamil Król",
+    "email": "kontakt@kp-code.pl"
+  },
+  "homepage": "https://construction-project-01.netlify.app/",
   "license": "UNLICENSED",
   "scripts": {
     "start": "npm run dev",

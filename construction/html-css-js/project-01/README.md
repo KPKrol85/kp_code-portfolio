@@ -60,6 +60,7 @@ All company names, addresses, and data are used as examples and do not represent
 
 ## Author
 
+Kamil Król
 **KP_Code_**
 Front-End Developer
 Portfolio project — 2025
@@ -132,6 +133,7 @@ i nie odnoszą się do rzeczywistej działalności.
 
 ## Autor
 
+Kamil Król
 **KP_Code_**
 Front-End Developer
 Projekt portfolio — 2025

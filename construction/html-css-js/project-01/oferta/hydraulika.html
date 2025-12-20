@@ -3,90 +3,24 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
-
-    <title>SolidCraft — instalacje i usługi hydrauliczne | demo KP_Code_</title>
-    <meta name="description" content="SolidCraft (demo) — instalacje wodno-kanalizacyjne, naprawy, biały montaż i próby ciśnieniowe. Projekt demonstracyjny KP_Code_." />
+    <title>SolidCraft — Hydraulika</title>
+    <meta name="description" content="SolidCraft — usługi hydrauliczne: montaż, wymiana i naprawy instalacji wod.-kan. Szybka diagnoza i sprawna realizacja." />
     <meta name="author" content="KP_Code_" />
     <meta name="robots" content="index, follow" />
     <link rel="canonical" href="https://construction-project-01.netlify.app/oferta/hydraulika.html" />
-
-    <!-- PWA / kolory motywu -->
     <meta name="theme-color" content="#0ea5e9" media="(prefers-color-scheme: light)" />
     <meta name="theme-color" content="#0b1220" media="(prefers-color-scheme: dark)" />
     <meta name="color-scheme" content="light dark" />
 
-    <!-- Open Graph -->
-    <meta property="og:type" content="website" />
-    <meta property="og:site_name" content="SolidCraft" />
-    <meta property="og:locale" content="pl_PL" />
-    <meta property="og:title" content="SolidCraft — instalacje i usługi hydrauliczne | demo KP_Code_" />
-    <meta property="og:description" content="SolidCraft (demo) — instalacje wodno-kanalizacyjne, naprawy, biały montaż i próby ciśnieniowe. Projekt demonstracyjny KP_Code_." />
-    <meta property="og:url" content="https://construction-project-01.netlify.app/oferta/hydraulika.html" />
-    <meta property="og:image" content="https://construction-project-01.netlify.app/assets/img/og/og-image-1200x630.jpg" />
-    <meta property="og:image:width" content="1200" />
-    <meta property="og:image:height" content="630" />
-    <meta property="og:image:alt" content="SolidCraft — strona firmy remontowo-budowlanej (demo)" />
-
-    <!-- Twitter -->
-    <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="SolidCraft — instalacje i usługi hydrauliczne | demo KP_Code_" />
-    <meta name="twitter:description" content="SolidCraft (demo) — instalacje wodno-kanalizacyjne, naprawy, biały montaż i próby ciśnieniowe. Projekt demonstracyjny KP_Code_." />
-    <meta name="twitter:image" content="https://construction-project-01.netlify.app/assets/img/og/og-image-1200x630.jpg" />
-    <meta name="twitter:url" content="https://construction-project-01.netlify.app/oferta/hydraulika.html" />
-    <meta name="twitter:image:alt" content="SolidCraft — strona firmy remontowo-budowlanej (demo)" />
-
-    <!-- Maps performance hints -->
-    <link rel="preconnect" href="https://www.google.com" crossorigin />
-    <link rel="dns-prefetch" href="https://www.google.com" />
-
-    <!-- JSON-LD (DEMO: Website + Page) -->
-    <script type="application/ld+json">
-      {
-        "@context": "https://schema.org",
-        "@graph": [
-          {
-            "@type": "WebSite",
-            "@id": "https://construction-project-01.netlify.app/#website",
-            "url": "https://construction-project-01.netlify.app/",
-            "name": "SolidCraft — demo KP_Code_",
-            "description": "SolidCraft (demo) — projekt demonstracyjny strony firmy remontowo-budowlanej.",
-            "inLanguage": "pl-PL",
-            "publisher": {
-              "@type": "Organization",
-              "name": "KP_Code_"
-            },
-            "image": "https://construction-project-01.netlify.app/assets/img/og/og-image-1200x630.jpg"
-          },
-          {
-            "@type": "WebPage",
-            "@id": "https://construction-project-01.netlify.app/oferta/hydraulika.html#page",
-            "url": "https://construction-project-01.netlify.app/oferta/hydraulika.html",
-            "name": "SolidCraft — instalacje i usługi hydrauliczne | demo KP_Code_",
-            "description": "SolidCraft (demo) — instalacje wodno-kanalizacyjne, naprawy, biały montaż i próby ciśnieniowe. Projekt demonstracyjny KP_Code_.",
-            "isPartOf": {
-              "@id": "https://construction-project-01.netlify.app/#website"
-            },
-            "inLanguage": "pl-PL",
-            "primaryImageOfPage": {
-              "@type": "ImageObject",
-              "url": "https://construction-project-01.netlify.app/assets/img/og/og-image-1200x630.jpg",
-              "width": 1200,
-              "height": 630
-            }
-          }
-        ]
-      }
-    </script>
-
-    <!-- Boot theme (no flicker) -->
     <script>
       try {
-        const d = document.documentElement;
-        let t = localStorage.getItem("theme");
-        if (t !== "light" && t !== "dark") {
-          t = window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
-        }
-        d.setAttribute("data-theme", t);
+        const root = document.documentElement;
+        const stored = localStorage.getItem("theme");
+
+        const theme = stored === "light" || stored === "dark" ? stored : window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+
+        root.dataset.theme = theme;
+        root.classList.add("preload-theme");
       } catch {}
     </script>
     <style>
@@ -97,99 +31,160 @@
       }
     </style>
     <script>
-      document.documentElement.classList.add("preload-theme");
       window.addEventListener("DOMContentLoaded", () => {
         requestAnimationFrame(() => document.documentElement.classList.remove("preload-theme"));
       });
     </script>
+    
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="SolidCraft" />
+    <meta property="og:locale" content="pl_PL" />
+    <meta property="og:title" content="SolidCraft — Hydraulika" />
+    <meta property="og:description" content="SolidCraft — usługi hydrauliczne: montaż, wymiana i naprawy instalacji wod.-kan. Szybka diagnoza i sprawna realizacja." />
+    <meta property="og:url" content="https://construction-project-01.netlify.app/oferta/hydraulika.html" />
+    <meta property="og:image" content="https://construction-project-01.netlify.app/assets/img/og/og-image-1200x630.jpg" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="SolidCraft — Hydraulika" />
+    <meta property="og:updated_time" content="2025-10-28T12:00:00+02:00" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="SolidCraft — Hydraulika" />
+    <meta name="twitter:description" content="SolidCraft — usługi hydrauliczne: montaż, wymiana i naprawy instalacji wod.-kan. Szybka diagnoza i sprawna realizacja." />
+    <meta name="twitter:image" content="https://construction-project-01.netlify.app/assets/img/og/og-image-1200x630.jpg" />
+    <meta name="twitter:url" content="https://construction-project-01.netlify.app/oferta/hydraulika.html" />
+    <meta name="twitter:image:alt" content="SolidCraft — Hydraulika" />
 
-    <!-- Lokalne fonty (preload) -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "GeneralContractor",
+        "name": "SolidCraft",
+        "telephone": "+48 533 537 091",
+        "email": "kontakt@kp-code.pl",
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "ul. Marynarki Wojennej 12/31",
+          "postalCode": "33-100",
+          "addressLocality": "Tarnów",
+          "addressCountry": "PL"
+        },
+        "areaServed": "PL",
+        "openingHours": "Mo-Fr 08:00-18:00",
+        "url": "https://construction-project-01.netlify.app/",
+        "sameAs": ["https://facebook.com", "https://instagram.com"]
+      }
+    </script>
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@graph": [
+          {
+            "@type": "WebSite",
+            "@id": "https://construction-project-01.netlify.app/#website",
+            "url": "https://construction-project-01.netlify.app/",
+            "name": "SolidCraft",
+            "description": "SolidCraft — firma remontowo-budowlana. Oferta, realizacje, opinie, FAQ oraz formularz wyceny.",
+            "inLanguage": "pl-PL",
+            "publisher": { "@type": "Organization", "name": "SolidCraft" },
+            "image": "https://construction-project-01.netlify.app/assets/img/og/og-image-1200x630.jpg"
+          },
+          {
+            "@type": "CollectionPage",
+            "@id": "https://construction-project-01.netlify.app/#page",
+            "url": "https://construction-project-01.netlify.app/oferta/hydraulika.html",
+            "name": "SolidCraft — Hydraulika",
+            "isPartOf": { "@id": "https://construction-project-01.netlify.app/#website" },
+            "inLanguage": "pl-PL",
+            "datePublished": "2025-09-19",
+            "dateModified": "2025-10-19",
+            "primaryImageOfPage": {
+              "@type": "ImageObject",
+              "url": "https://construction-project-01.netlify.app/assets/img/og/og-image-1200x630.jpg",
+              "width": 1200,
+              "height": 630
+            },
+            "about": {
+              "@type": "ItemList",
+              "name": "Zakres usług",
+              "itemListElement": [
+                { "@type": "ListItem", "position": 1, "name": "Wykończenia i remonty łazienek", "url": "https://construction-project-01.netlify.app/#oferta-lazienki" },
+                { "@type": "ListItem", "position": 2, "name": "Malowanie i gładzie", "url": "https://construction-project-01.netlify.app/#oferta-malowanie" },
+                { "@type": "ListItem", "position": 3, "name": "Kafelkowanie", "url": "https://construction-project-01.netlify.app/#oferta-kafelkowanie" },
+                { "@type": "ListItem", "position": 4, "name": "Elektryka i hydraulika", "url": "https://construction-project-01.netlify.app/#oferta-elektryka" }
+              ]
+            }
+          },
+          {
+            "@type": "FAQPage",
+            "@id": "https://construction-project-01.netlify.app/#faq",
+            "mainEntity": [
+              {
+                "@type": "Question",
+                "name": "Ile trwa przygotowanie wyceny?",
+                "acceptedAnswer": { "@type": "Answer", "text": "Standardowo do 24 godzin od przesłania szczegółów zlecenia lub zdjęć." }
+              },
+              {
+                "@type": "Question",
+                "name": "Czy dojeżdżacie do klienta i wykonujecie oględziny?",
+                "acceptedAnswer": { "@type": "Answer", "text": "Tak. Dojazd w obrębie miasta i okolic jest możliwy po ustaleniu terminu." }
+              },
+              {
+                "@type": "Question",
+                "name": "Czy wystawiacie fakturę i udzielacie gwarancji?",
+                "acceptedAnswer": { "@type": "Answer", "text": "Tak, wystawiamy faktury oraz udzielamy gwarancji na wykonywane prace." }
+              }
+            ]
+          }
+        ]
+      }
+    </script>
+
     <link rel="preload" as="font" type="font/woff2" href="../assets/fonts/poppins-v24-latin-regular.woff2" crossorigin />
     <link rel="preload" as="font" type="font/woff2" href="../assets/fonts/poppins-v24-latin-600.woff2" crossorigin />
     <link rel="preload" as="font" type="font/woff2" href="../assets/fonts/montserrat-v31-latin-700.woff2" crossorigin />
     <link rel="preload" as="font" type="font/woff2" href="../assets/fonts/montserrat-v31-latin-600.woff2" crossorigin />
 
-    <!-- Główny CSS -->
     <link rel="stylesheet" href="../css/style.min.css" />
 
-    <!-- PWA meta / manifest -->
     <link rel="manifest" href="/manifest.webmanifest" />
-    <meta name="application-name" content="SolidCraft (demo)" />
+    <meta name="application-name" content="SolidCraft" />
     <link rel="icon" type="image/svg+xml" href="../assets/img/favicon/favicon.svg" />
     <link rel="icon" href="../assets/img/favicon/favicon.ico" sizes="any" />
     <link rel="icon" type="image/png" sizes="32x32" href="../assets/img/favicon/favicon-32x32.png" />
     <link rel="icon" type="image/png" sizes="512x512" href="../assets/img/favicon/web-app-manifest-512x512.png" />
     <link rel="apple-touch-icon" sizes="180x180" href="../assets/img/favicon/apple-touch-icon.png" />
-    <meta name="apple-mobile-web-app-title" content="SolidCraft (demo)" />
+    <meta name="apple-mobile-web-app-title" content="SolidCraft" />
     <meta name="apple-mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
     <meta name="msapplication-TileColor" content="#0ea5e9" />
     <meta name="msapplication-TileImage" content="../assets/img/favicon/web-app-manifest-144x144.png" />
     <link rel="mask-icon" href="../assets/img/favicon/favicon.svg" color="#0ea5e9" />
-</head>
+  </head>
 
-  <!-- BODY -->
+  <!-- Body -->
   <body class="page-sub">
     <a class="skip" href="#main">Pomiń do treści</a>
-    <div
-      id="top"
-      aria-hidden="true"
-      style="position: relative; inset: 0; height: 0"
-    ></div>
+    <div id="top" aria-hidden="true" style="position: relative; inset: 0; height: 0"></div>
 
-    <!-- HEADER -->
+    <!-- Header -->
     <header class="site-header">
       <div class="container header-bar">
-        <a
-          class="brand"
-          href="../index.html#top"
-          aria-label="Strona główna — Construction Project"
-        >
+        <a class="brand" href="../index.html#top" aria-label="Strona główna — Construction Project">
           <picture class="brand-logo">
-            <img
-              src="../assets/img/logo/logo-light-160x160.png"
-              alt=""
-              aria-hidden="true"
-              class="logo--light"
-              loading="eager"
-              fetchpriority="high"
-              decoding="async"
-            />
-            <img
-              src="../assets/img/logo/logo-dark-160x160.png"
-              alt=""
-              aria-hidden="true"
-              class="logo--dark"
-              loading="eager"
-              fetchpriority="high"
-              decoding="async"
-            />
+            <img src="../assets/img/logo/logo-light-160x160.png" alt="" aria-hidden="true" class="logo--light" loading="eager" fetchpriority="high" decoding="async" />
+            <img src="../assets/img/logo/logo-dark-160x160.png" alt="" aria-hidden="true" class="logo--dark" loading="eager" fetchpriority="high" decoding="async" />
           </picture>
           <span class="brand-name">SolidCraft</span>
         </a>
-
         <nav class="nav" aria-label="Główna nawigacja">
           <ul id="navMenu" class="nav-menu">
             <li><a href="../index.html#top">Strona główna</a></li>
-
             <li class="nav-item has-dropdown">
-              <a
-                id="dd-oferta-trigger"
-                href="../index.html#oferta"
-                class="nav-link dropdown-trigger"
-                aria-expanded="false"
-                aria-haspopup="true"
-                aria-controls="dd-oferta"
-              >
+              <a id="dd-oferta-trigger" href="../index.html#oferta" class="nav-link dropdown-trigger" aria-expanded="false" aria-haspopup="true" aria-controls="dd-oferta">
                 Oferta
                 <span class="caret" aria-hidden="true">▾</span>
               </a>
-              <ul
-                id="dd-oferta"
-                class="dropdown"
-                aria-label="Podmenu: Oferta"
-                aria-labelledby="dd-oferta-trigger"
-              >
+              <ul id="dd-oferta" class="dropdown" aria-label="Podmenu: Oferta" aria-labelledby="dd-oferta-trigger">
                 <li><a href="lazienki.html">Łazienki</a></li>
                 <li><a href="malowanie.html">Malowanie &amp; gładzie</a></li>
                 <li><a href="kafelkowanie.html">Kafelkowanie</a></li>
@@ -198,49 +193,18 @@
                 <li><a href="remonty.html">Remonty</a></li>
               </ul>
             </li>
-
             <li><a href="../index.html#realizacje">Realizacje</a></li>
             <li><a href="../index.html#opinie">Opinie</a></li>
             <li><a href="../index.html#faq">FAQ</a></li>
             <li><a href="../index.html#kontakt">Kontakt</a></li>
           </ul>
         </nav>
-
         <div class="header-actions">
-          <button
-            class="theme-toggle"
-            type="button"
-            aria-pressed="false"
-            aria-label="Przełącz tryb"
-            title="Przełącz tryb"
-          >
-            <img
-              class="icon-moon"
-              src="../assets/img/icons/dark-mode-40.svg"
-              alt=""
-              width="20"
-              height="20"
-              decoding="async"
-              aria-hidden="true"
-            />
-            <img
-              class="icon-sun"
-              src="../assets/img/icons/light-mode-40.svg"
-              alt=""
-              width="20"
-              height="20"
-              decoding="async"
-              aria-hidden="true"
-            />
+          <button class="theme-toggle" type="button" aria-pressed="false" aria-label="Przełącz tryb" title="Przełącz tryb">
+            <img class="icon-moon" src="../assets/img/icons/dark-mode-40.svg" alt="" width="20" height="20" decoding="async" aria-hidden="true" />
+            <img class="icon-sun" src="../assets/img/icons/light-mode-40.svg" alt="" width="20" height="20" decoding="async" aria-hidden="true" />
           </button>
-
-          <button
-            class="nav-toggle"
-            type="button"
-            aria-expanded="false"
-            aria-controls="navMenu"
-            aria-label="Otwórz menu"
-          >
+          <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="navMenu" aria-label="Otwórz menu">
             <span class="nav-line"></span>
             <span class="nav-line"></span>
             <span class="nav-line"></span>
@@ -249,116 +213,48 @@
       </div>
     </header>
 
-    <!-- MAIN CONTENT -->
+    <!-- Main -->
     <main id="main">
-      <!-- SUBPAGE CONTENT -->
-      <section
-        class="block subpage-header"
-        id="hydraulika"
-        role="region"
-        aria-labelledby="hydraulika-heading"
-        aria-describedby="hydraulika-desc"
-        tabindex="-1"
-      >
+      <!-- Subpage content -->
+      <section class="block subpage-header" id="hydraulika" role="region" aria-labelledby="hydraulika-heading" aria-describedby="hydraulika-desc" tabindex="-1">
         <div class="container">
           <header class="block-head">
-            <h1 id="hydraulika-heading" data-reveal="up" data-reveal-delay="80">
-              Hydraulika — instalacje i serwis
-            </h1>
-            <p
-              id="hydraulika-desc"
-              class="lead"
-              data-reveal="up"
-              data-reveal-delay="160"
-            >
-              Instalacje wod-kan od podstaw, przeróbki i naprawy, biały montaż
-              oraz szczelne rozwiązania w strefach mokrych. Czysto, terminowo, z
-              gwarancją.
+            <h1 id="hydraulika-heading" data-reveal="up" data-reveal-delay="80">Hydraulika — instalacje i serwis</h1>
+            <p id="hydraulika-desc" class="lead" data-reveal="up" data-reveal-delay="160">
+              Instalacje wod-kan od podstaw, przeróbki i naprawy, biały montaż oraz szczelne rozwiązania w strefach mokrych. Czysto, terminowo, z gwarancją.
             </p>
           </header>
-
           <div class="cards">
-            <!-- Card 1-->
-            <article
-              class="card hover-card"
-              id="instalacje"
-              data-reveal="up"
-              data-reveal-delay="160"
-            >
+            <article class="card hover-card" id="instalacje" data-reveal="up" data-reveal-delay="160">
               <h2>Instalacje od podstaw</h2>
-              <p>
-                Projekt trasy, rury PEX/PP, rozdzielacze, zawory i
-                odpowietrzenia. Mieszkania i domy jednorodzinne.
-              </p>
+              <p>Projekt trasy, rury PEX/PP, rozdzielacze, zawory i odpowietrzenia. Mieszkania i domy jednorodzinne.</p>
             </article>
-            <!-- Card 2-->
-            <article
-              class="card hover-card"
-              id="przerobki-naprawy"
-              data-reveal="up"
-              data-reveal-delay="240"
-            >
+            <article class="card hover-card" id="przerobki-naprawy" data-reveal="up" data-reveal-delay="240">
               <h2>Przeróbki i naprawy</h2>
-              <p>
-                Zmiany podejść, usuwanie nieszczelności, wymiana odcinków rur —
-                szybkie lokalne interwencje.
-              </p>
+              <p>Zmiany podejść, usuwanie nieszczelności, wymiana odcinków rur — szybkie lokalne interwencje.</p>
             </article>
-            <!-- Card 3-->
-            <article
-              class="card hover-card"
-              id="bialy-montaz"
-              data-reveal="up"
-              data-reveal-delay="320"
-            >
+            <article class="card hover-card" id="bialy-montaz" data-reveal="up" data-reveal-delay="320">
               <h2>Biały montaż i armatura</h2>
-              <p>
-                WC podtynkowe, umywalki, baterie, zlewy, kabiny, wanny, syfony i
-                odwodnienia liniowe.
-              </p>
+              <p>WC podtynkowe, umywalki, baterie, zlewy, kabiny, wanny, syfony i odwodnienia liniowe.</p>
             </article>
-            <!-- Card 4-->
-            <article
-              class="card hover-card"
-              id="uszczelnienia-proby"
-              data-reveal="up"
-              data-reveal-delay="400"
-            >
+            <article class="card hover-card" id="uszczelnienia-proby" data-reveal="up" data-reveal-delay="400">
               <h2>Uszczelnienia i próby</h2>
-              <p>
-                Hydroizolacje w strefach mokrych, silikonowanie, próby
-                ciśnieniowe oraz protokół odbioru.
-              </p>
+              <p>Hydroizolacje w strefach mokrych, silikonowanie, próby ciśnieniowe oraz protokół odbioru.</p>
             </article>
           </div>
-
           <div class="block-cta" data-reveal="scale" data-reveal-delay="480">
-            <a
-              class="btn"
-              href="../index.html?usluga=Hydraulika#kontakt"
-              aria-label="Przejdź do formularza wyceny — Hydraulika"
-              >Wycena</a
-            >
+            <a class="btn" href="../index.html?usluga=Hydraulika#kontakt" aria-label="Przejdź do formularza wyceny — Hydraulika">Wycena</a>
           </div>
         </div>
       </section>
 
-      <!-- GALERIA -->
-      <section
-        class="block gallery"
-        id="galeria"
-        aria-labelledby="galeria-heading"
-      >
+      <!-- Gallery -->
+      <section class="block gallery" id="galeria" aria-labelledby="galeria-heading">
         <div class="container">
           <header class="block-head">
-            <h2 id="galeria-heading" data-reveal="up" data-reveal-delay="80">
-              Galeria realizacji
-            </h2>
-            <p class="lead" data-reveal="up" data-reveal-delay="120">
-              Kilka ujęć z ostatnich prac — więcej na życzenie.
-            </p>
+            <h2 id="galeria-heading" data-reveal="up" data-reveal-delay="80">Galeria realizacji</h2>
+            <p class="lead" data-reveal="up" data-reveal-delay="120">Kilka ujęć z ostatnich prac — więcej na życzenie.</p>
           </header>
-
           <ul class="gallery-grid">
             <!-- 1 -->
             <li data-reveal="up" data-reveal-delay="160">
@@ -366,10 +262,8 @@
                 class="gallery-item"
                 href="../assets/img/gallery/plum-01-2048x1536.jpg"
                 data-lb="hydraulika"
-                data-lb-caption="Zbliżenie elementów instalacji hydraulicznej — przewody ciśnieniowe i złącza w układzie przemysłowym."
-              >
+                data-lb-caption="Zbliżenie elementów instalacji hydraulicznej — przewody ciśnieniowe i złącza w układzie przemysłowym.">
                 <picture>
-                  <!-- AVIF -->
                   <source
                     type="image/avif"
                     srcset="
@@ -378,9 +272,7 @@
                       ../assets/img/gallery/plum-01-1024x768.avif  1024w,
                       ../assets/img/gallery/plum-01-1536x1152.avif 1536w,
                       ../assets/img/gallery/plum-01-2048x1536.avif 2048w
-                    "
-                  />
-                  <!-- WebP -->
+                    " />
                   <source
                     type="image/webp"
                     srcset="
@@ -389,9 +281,7 @@
                       ../assets/img/gallery/plum-01-1024x768.webp  1024w,
                       ../assets/img/gallery/plum-01-1536x1152.webp 1536w,
                       ../assets/img/gallery/plum-01-2048x1536.webp 2048w
-                    "
-                  />
-                  <!-- JPG fallback -->
+                    " />
                   <img
                     src="../assets/img/gallery/plum-01-768x576.jpg"
                     srcset="
@@ -406,22 +296,18 @@
                     height="576"
                     loading="lazy"
                     decoding="async"
-                    alt="Metalowe złącza i przewody hydrauliczne w instalacji ciśnieniowej"
-                  />
+                    alt="Metalowe złącza i przewody hydrauliczne w instalacji ciśnieniowej" />
                 </picture>
               </a>
             </li>
-
             <!-- 2 -->
             <li data-reveal="up" data-reveal-delay="200">
               <a
                 class="gallery-item"
                 href="../assets/img/gallery/plum-02-2048x1536.jpg"
                 data-lb="hydraulika"
-                data-lb-caption="Naprawa instalacji sanitarnej — montaż i uszczelnianie syfonu pod umywalką."
-              >
+                data-lb-caption="Naprawa instalacji sanitarnej — montaż i uszczelnianie syfonu pod umywalką.">
                 <picture>
-                  <!-- AVIF -->
                   <source
                     type="image/avif"
                     srcset="
@@ -430,9 +316,7 @@
                       ../assets/img/gallery/plum-02-1024x768.avif  1024w,
                       ../assets/img/gallery/plum-02-1536x1152.avif 1536w,
                       ../assets/img/gallery/plum-02-2048x1536.avif 2048w
-                    "
-                  />
-                  <!-- WebP -->
+                    " />
                   <source
                     type="image/webp"
                     srcset="
@@ -441,9 +325,7 @@
                       ../assets/img/gallery/plum-02-1024x768.webp  1024w,
                       ../assets/img/gallery/plum-02-1536x1152.webp 1536w,
                       ../assets/img/gallery/plum-02-2048x1536.webp 2048w
-                    "
-                  />
-                  <!-- JPG fallback -->
+                    " />
                   <img
                     src="../assets/img/gallery/plum-02-768x576.jpg"
                     srcset="
@@ -458,22 +340,18 @@
                     height="576"
                     loading="lazy"
                     decoding="async"
-                    alt="Hydraulik dokręcający syfon pod zlewem w łazience"
-                  />
+                    alt="Hydraulik dokręcający syfon pod zlewem w łazience" />
                 </picture>
               </a>
             </li>
-
             <!-- 3 -->
             <li data-reveal="up" data-reveal-delay="240">
               <a
                 class="gallery-item"
                 href="../assets/img/gallery/plum-03-2048x1536.jpg"
                 data-lb="hydraulika"
-                data-lb-caption="Wykonywanie instalacji wodnej w nowym budynku — montaż rur i zaworów w ścianie nośnej."
-              >
+                data-lb-caption="Wykonywanie instalacji wodnej w nowym budynku — montaż rur i zaworów w ścianie nośnej.">
                 <picture>
-                  <!-- AVIF -->
                   <source
                     type="image/avif"
                     srcset="
@@ -482,9 +360,8 @@
                       ../assets/img/gallery/plum-03-1024x768.avif  1024w,
                       ../assets/img/gallery/plum-03-1536x1152.avif 1536w,
                       ../assets/img/gallery/plum-03-2048x1536.avif 2048w
-                    "
-                  />
-                  <!-- WebP -->
+                    " />
+
                   <source
                     type="image/webp"
                     srcset="
@@ -493,9 +370,8 @@
                       ../assets/img/gallery/plum-03-1024x768.webp  1024w,
                       ../assets/img/gallery/plum-03-1536x1152.webp 1536w,
                       ../assets/img/gallery/plum-01-2048x1536.webp 2048w
-                    "
-                  />
-                  <!-- JPG fallback -->
+                    " />
+
                   <img
                     src="../assets/img/gallery/plum-03-768x576.jpg"
                     srcset="
@@ -510,8 +386,7 @@
                     height="576"
                     loading="lazy"
                     decoding="async"
-                    alt="Montaż instalacji wodnej w ścianie podczas budowy domu"
-                  />
+                    alt="Montaż instalacji wodnej w ścianie podczas budowy domu" />
                 </picture>
               </a>
             </li>
@@ -522,10 +397,8 @@
                 class="gallery-item"
                 href="../assets/img/gallery/plum-04-2048x1536.jpg"
                 data-lb="hydraulika"
-                data-lb-caption="Diagnostyka instalacji wodno-kanalizacyjnej — kontrola szczelności połączeń pod zlewem kuchennym."
-              >
+                data-lb-caption="Diagnostyka instalacji wodno-kanalizacyjnej — kontrola szczelności połączeń pod zlewem kuchennym.">
                 <picture>
-                  <!-- AVIF -->
                   <source
                     type="image/avif"
                     srcset="
@@ -534,9 +407,8 @@
                       ../assets/img/gallery/plum-04-1024x768.avif  1024w,
                       ../assets/img/gallery/plum-04-1536x1152.avif 1536w,
                       ../assets/img/gallery/plum-04-2048x1536.avif 2048w
-                    "
-                  />
-                  <!-- WebP -->
+                    " />
+
                   <source
                     type="image/webp"
                     srcset="
@@ -545,9 +417,8 @@
                       ../assets/img/gallery/plum-04-1024x768.webp  1024w,
                       ../assets/img/gallery/plum-04-1536x1152.webp 1536w,
                       ../assets/img/gallery/plum-04-2048x1536.webp 2048w
-                    "
-                  />
-                  <!-- JPG fallback -->
+                    " />
+
                   <img
                     src="../assets/img/gallery/plum-04-768x576.jpg"
                     srcset="
@@ -562,8 +433,7 @@
                     height="576"
                     loading="lazy"
                     decoding="async"
-                    alt="Hydraulik z narzędziami sprawdzający szczelność rur pod zlewem"
-                  />
+                    alt="Hydraulik z narzędziami sprawdzający szczelność rur pod zlewem" />
                 </picture>
               </a>
             </li>
@@ -574,10 +444,8 @@
                 class="gallery-item"
                 href="../assets/img/gallery/plum-05-2048x1536.jpg"
                 data-lb="hydraulika"
-                data-lb-caption="Montaż armatury kuchennej — instalacja baterii i podłączenie wody w nowej zabudowie."
-              >
+                data-lb-caption="Montaż armatury kuchennej — instalacja baterii i podłączenie wody w nowej zabudowie.">
                 <picture>
-                  <!-- AVIF -->
                   <source
                     type="image/avif"
                     srcset="
@@ -586,9 +454,8 @@
                       ../assets/img/gallery/plum-05-1024x768.avif  1024w,
                       ../assets/img/gallery/plum-05-1536x1152.avif 1536w,
                       ../assets/img/gallery/plum-05-2048x1536.avif 2048w
-                    "
-                  />
-                  <!-- WebP -->
+                    " />
+
                   <source
                     type="image/webp"
                     srcset="
@@ -597,9 +464,8 @@
                       ../assets/img/gallery/plum-05-1024x768.webp  1024w,
                       ../assets/img/gallery/plum-05-1536x1152.webp 1536w,
                       ../assets/img/gallery/plum-05-2048x1536.webp 2048w
-                    "
-                  />
-                  <!-- JPG fallback -->
+                    " />
+
                   <img
                     src="../assets/img/gallery/plum-05-768x576.jpg"
                     srcset="
@@ -614,8 +480,7 @@
                     height="576"
                     loading="lazy"
                     decoding="async"
-                    alt="Para montująca baterię kuchenną przy zlewie w nowym mieszkaniu"
-                  />
+                    alt="Para montująca baterię kuchenną przy zlewie w nowym mieszkaniu" />
                 </picture>
               </a>
             </li>
@@ -626,10 +491,8 @@
                 class="gallery-item"
                 href="../assets/img/gallery/plum-06-2048x1536.jpg"
                 data-lb="hydraulika"
-                data-lb-caption="Komponenty instalacyjne — złączki, kolanka i uszczelki wykorzystywane podczas montażu hydrauliki."
-              >
+                data-lb-caption="Komponenty instalacyjne — złączki, kolanka i uszczelki wykorzystywane podczas montażu hydrauliki.">
                 <picture>
-                  <!-- AVIF -->
                   <source
                     type="image/avif"
                     srcset="
@@ -638,9 +501,8 @@
                       ../assets/img/gallery/plum-06-1024x768.avif  1024w,
                       ../assets/img/gallery/plum-06-1536x1152.avif 1536w,
                       ../assets/img/gallery/plum-06-2048x1536.avif 2048w
-                    "
-                  />
-                  <!-- WebP -->
+                    " />
+
                   <source
                     type="image/webp"
                     srcset="
@@ -649,9 +511,8 @@
                       ../assets/img/gallery/plum-06-1024x768.webp  1024w,
                       ../assets/img/gallery/plum-06-1536x1152.webp 1536w,
                       ../assets/img/gallery/plum-06-2048x1536.webp 2048w
-                    "
-                  />
-                  <!-- JPG fallback -->
+                    " />
+
                   <img
                     src="../assets/img/gallery/plum-06-768x576.jpg"
                     srcset="
@@ -666,8 +527,7 @@
                     height="576"
                     loading="lazy"
                     decoding="async"
-                    alt="Zestaw elementów instalacji hydraulicznej na stole warsztatowym"
-                  />
+                    alt="Zestaw elementów instalacji hydraulicznej na stole warsztatowym" />
                 </picture>
               </a>
             </li>
@@ -675,92 +535,63 @@
         </div>
       </section>
 
-      <!-- FAQ -->
-      <section
-        id="faq"
-        class="block"
-        aria-labelledby="faq-heading"
-        aria-describedby="faq-desc"
-      >
+      <!-- Faq -->
+      <section id="faq" class="block" aria-labelledby="faq-heading" aria-describedby="faq-desc">
         <div class="container">
           <header class="block-head">
-            <h2 id="faq-heading" data-reveal="up" data-reveal-delay="80">
-              FAQ — najczęstsze pytania
-            </h2>
-            <p
-              id="faq-desc"
-              class="lead"
-              data-reveal="up"
-              data-reveal-delay="120"
-            >
-              Krótko i konkretnie — najważniejsze informacje o hydraulice
-              (instalacje wod-kan i biały montaż).
-            </p>
+            <h2 id="faq-heading" data-reveal="up" data-reveal-delay="80">FAQ — najczęstsze pytania</h2>
+            <p id="faq-desc" class="lead" data-reveal="up" data-reveal-delay="120">Krótko i konkretnie — najważniejsze informacje o hydraulice (instalacje wod-kan i biały montaż).</p>
           </header>
 
           <ul class="faq-list">
-            <!-- FAQ 1 -->
+            <!-- Faq 1 -->
             <li data-reveal="up" data-reveal-delay="160">
               <details class="faq" id="faq-1">
-                <summary id="q-1" class="faq-q">
-                  Czy wykonujecie próbę szczelności po przeróbkach?
-                </summary>
+                <summary id="q-1" class="faq-q">Czy wykonujecie próbę szczelności po przeróbkach?</summary>
                 <div class="answer" id="a-1">
                   <p>
                     Tak — po zakończeniu prac robimy
                     <strong>próbę ciśnieniową</strong>
-                    i potwierdzamy wynik krótkim protokołem. W strefach mokrych
-                    stosujemy systemowe
+                    i potwierdzamy wynik krótkim protokołem. W strefach mokrych stosujemy systemowe
                     <strong>hydroizolacje</strong>
                     .
                   </p>
                 </div>
               </details>
             </li>
-            <!-- FAQ 2 -->
+            <!-- Faq 2 -->
             <li data-reveal="up" data-reveal-delay="240">
               <details class="faq" id="faq-2">
-                <summary id="q-2" class="faq-q">
-                  Ile trwa przeróbka podejść w łazience?
-                </summary>
+                <summary id="q-2" class="faq-q">Ile trwa przeróbka podejść w łazience?</summary>
                 <div class="answer" id="a-2">
                   <p>
                     Zazwyczaj
                     <strong>1–2 dni robocze</strong>
-                    , w zależności od zakresu zmian i koniecznych odkrywek.
-                    Pełne wykonanie instalacji w nowej łazience trwa odpowiednio
-                    dłużej.
+                    , w zależności od zakresu zmian i koniecznych odkrywek. Pełne wykonanie instalacji w nowej łazience trwa odpowiednio dłużej.
                   </p>
                 </div>
               </details>
             </li>
-            <!-- FAQ 3 -->
+            <!-- Faq 3 -->
             <li data-reveal="up" data-reveal-delay="320">
               <details class="faq" id="faq-3">
-                <summary id="q-3" class="faq-q">
-                  Czy montujecie zestawy podtynkowe (stelaże WC, baterie)?
-                </summary>
+                <summary id="q-3" class="faq-q">Czy montujecie zestawy podtynkowe (stelaże WC, baterie)?</summary>
                 <div class="answer" id="a-3">
                   <p>
                     Tak — montujemy
                     <strong>stelaże WC</strong>
-                    , baterie podtynkowe, odpływy liniowe oraz zabudowy z płyt
-                    wodoodpornych. Zapewniamy szczelne połączenia i
-                    silikonowanie naroży.
+                    , baterie podtynkowe, odpływy liniowe oraz zabudowy z płyt wodoodpornych. Zapewniamy szczelne połączenia i silikonowanie naroży.
                   </p>
                 </div>
               </details>
             </li>
-            <!-- FAQ 4 -->
+            <!-- Faq 4 -->
             <li data-reveal="up" data-reveal-delay="400">
               <details class="faq" id="faq-4">
-                <summary id="q-4" class="faq-q">
-                  Czy pomagacie w doborze armatury i osprzętu?
-                </summary>
+                <summary id="q-4" class="faq-q">Czy pomagacie w doborze armatury i osprzętu?</summary>
                 <div class="answer" id="a-4">
                   <p>
-                    Oczywiście. Przygotujemy listę zakupową (zawory, syfony,
-                    przyłącza, baterie), a na życzenie zrealizujemy również
+                    Oczywiście. Przygotujemy listę zakupową (zawory, syfony, przyłącza, baterie), a na życzenie zrealizujemy również
                     <strong>kompleksowy biały montaż</strong>
                     .
                   </p>
@@ -771,32 +602,22 @@
         </div>
       </section>
 
-      <!-- CTA -->
+      <!-- Cta -->
       <section class="cta" role="region" aria-labelledby="cta-end-heading">
         <div class="container">
           <header class="block-head">
-            <h2 id="cta-end-heading" data-reveal="up" data-reveal-delay="80">
-              Masz projekt lub szkic instalacji?
-            </h2>
-            <p class="lead" data-reveal="up" data-reveal-delay="160">
-              Przyślij rzut i zakres prac — wycenimy w 24–48&nbsp;h i
-              zaproponujemy najbliższy termin.
-            </p>
+            <h2 id="cta-end-heading" data-reveal="up" data-reveal-delay="80">Masz projekt lub szkic instalacji?</h2>
+            <p class="lead" data-reveal="up" data-reveal-delay="160">Przyślij rzut i zakres prac — wycenimy w 24–48&nbsp;h i zaproponujemy najbliższy termin.</p>
           </header>
 
           <div class="block-cta" data-reveal="right" data-reveal-delay="240">
-            <a
-              class="btn"
-              href="../index.html#kontakt"
-              aria-label="Wyślij zapytanie — formularz kontaktowy"
-              >Wyślij zapytanie</a
-            >
+            <a class="btn" href="../index.html#kontakt" aria-label="Wyślij zapytanie — formularz kontaktowy">Wyślij zapytanie</a>
           </div>
         </div>
       </section>
     </main>
 
-    <!-- FOOTER -->
+    <!-- Footer -->
     <footer id="footer" class="site-footer" aria-labelledby="footer-heading">
       <div class="container">
         <h2 class="vh" id="footer-heading">Stopka serwisu</h2>
@@ -901,13 +722,15 @@
         <!-- Copyright -->
         <div class="ft-bottom">
           <p>
-            © <span id="year"></span> KP_Code_. Wszelkie prawa zastrzeżone.
+            ©
+            <span id="year"></span>
+            KP_Code_. Wszelkie prawa zastrzeżone.
           </p>
         </div>
       </div>
     </footer>
 
-    <!--SCRIPT -->
+    <!--Script -->
     <script src="../js/sw-register.js" defer></script>
     <script src="../js/script.min.js" defer></script>
   </body>

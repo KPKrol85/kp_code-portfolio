@@ -3,90 +3,24 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
-
-    <title>SolidCraft — polityka prywatności | demo KP_Code_</title>
-    <meta name="description" content="SolidCraft (demo) — polityka prywatności i zasady przetwarzania danych. Projekt demonstracyjny KP_Code_." />
+    <title>SolidCraft — Polityka prywatności</title>
+    <meta name="description" content="Zasady przetwarzania danych osobowych w serwisie SolidCraft: cele, podstawy prawne, prawa użytkownika oraz kontakt." />
     <meta name="author" content="KP_Code_" />
     <meta name="robots" content="index, follow" />
     <link rel="canonical" href="https://construction-project-01.netlify.app/doc/polityka-prywatnosci.html" />
-
-    <!-- PWA / kolory motywu -->
     <meta name="theme-color" content="#0ea5e9" media="(prefers-color-scheme: light)" />
     <meta name="theme-color" content="#0b1220" media="(prefers-color-scheme: dark)" />
     <meta name="color-scheme" content="light dark" />
 
-    <!-- Open Graph -->
-    <meta property="og:type" content="website" />
-    <meta property="og:site_name" content="SolidCraft" />
-    <meta property="og:locale" content="pl_PL" />
-    <meta property="og:title" content="SolidCraft — polityka prywatności | demo KP_Code_" />
-    <meta property="og:description" content="SolidCraft (demo) — polityka prywatności i zasady przetwarzania danych. Projekt demonstracyjny KP_Code_." />
-    <meta property="og:url" content="https://construction-project-01.netlify.app/doc/polityka-prywatnosci.html" />
-    <meta property="og:image" content="https://construction-project-01.netlify.app/assets/img/og/og-image-1200x630.jpg" />
-    <meta property="og:image:width" content="1200" />
-    <meta property="og:image:height" content="630" />
-    <meta property="og:image:alt" content="SolidCraft — strona firmy remontowo-budowlanej (demo)" />
-
-    <!-- Twitter -->
-    <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="SolidCraft — polityka prywatności | demo KP_Code_" />
-    <meta name="twitter:description" content="SolidCraft (demo) — polityka prywatności i zasady przetwarzania danych. Projekt demonstracyjny KP_Code_." />
-    <meta name="twitter:image" content="https://construction-project-01.netlify.app/assets/img/og/og-image-1200x630.jpg" />
-    <meta name="twitter:url" content="https://construction-project-01.netlify.app/doc/polityka-prywatnosci.html" />
-    <meta name="twitter:image:alt" content="SolidCraft — strona firmy remontowo-budowlanej (demo)" />
-
-    <!-- Maps performance hints -->
-    <link rel="preconnect" href="https://www.google.com" crossorigin />
-    <link rel="dns-prefetch" href="https://www.google.com" />
-
-    <!-- JSON-LD (DEMO: Website + Page) -->
-    <script type="application/ld+json">
-      {
-        "@context": "https://schema.org",
-        "@graph": [
-          {
-            "@type": "WebSite",
-            "@id": "https://construction-project-01.netlify.app/#website",
-            "url": "https://construction-project-01.netlify.app/",
-            "name": "SolidCraft — demo KP_Code_",
-            "description": "SolidCraft (demo) — projekt demonstracyjny strony firmy remontowo-budowlanej.",
-            "inLanguage": "pl-PL",
-            "publisher": {
-              "@type": "Organization",
-              "name": "KP_Code_"
-            },
-            "image": "https://construction-project-01.netlify.app/assets/img/og/og-image-1200x630.jpg"
-          },
-          {
-            "@type": "WebPage",
-            "@id": "https://construction-project-01.netlify.app/doc/polityka-prywatnosci.html#page",
-            "url": "https://construction-project-01.netlify.app/doc/polityka-prywatnosci.html",
-            "name": "SolidCraft — polityka prywatności | demo KP_Code_",
-            "description": "SolidCraft (demo) — polityka prywatności i zasady przetwarzania danych. Projekt demonstracyjny KP_Code_.",
-            "isPartOf": {
-              "@id": "https://construction-project-01.netlify.app/#website"
-            },
-            "inLanguage": "pl-PL",
-            "primaryImageOfPage": {
-              "@type": "ImageObject",
-              "url": "https://construction-project-01.netlify.app/assets/img/og/og-image-1200x630.jpg",
-              "width": 1200,
-              "height": 630
-            }
-          }
-        ]
-      }
-    </script>
-
-    <!-- Boot theme (no flicker) -->
     <script>
       try {
-        const d = document.documentElement;
-        let t = localStorage.getItem("theme");
-        if (t !== "light" && t !== "dark") {
-          t = window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
-        }
-        d.setAttribute("data-theme", t);
+        const root = document.documentElement;
+        const stored = localStorage.getItem("theme");
+
+        const theme = stored === "light" || stored === "dark" ? stored : window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+
+        root.dataset.theme = theme;
+        root.classList.add("preload-theme");
       } catch {}
     </script>
     <style>
@@ -97,73 +31,148 @@
       }
     </style>
     <script>
-      document.documentElement.classList.add("preload-theme");
       window.addEventListener("DOMContentLoaded", () => {
         requestAnimationFrame(() => document.documentElement.classList.remove("preload-theme"));
       });
     </script>
 
-    <!-- Lokalne fonty (preload) -->
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="SolidCraft" />
+    <meta property="og:locale" content="pl_PL" />
+    <meta property="og:title" content="SolidCraft — Polityka prywatności" />
+    <meta property="og:description" content="Zasady przetwarzania danych osobowych w serwisie SolidCraft: cele, podstawy prawne, prawa użytkownika oraz kontakt." />
+    <meta property="og:url" content="https://construction-project-01.netlify.app/doc/polityka-prywatnosci.html" />
+    <meta property="og:image" content="https://construction-project-01.netlify.app/assets/img/og/og-image-1200x630.jpg" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="SolidCraft — Polityka prywatności" />
+    <meta property="og:updated_time" content="2025-10-28T12:00:00+02:00" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="SolidCraft — Polityka prywatności" />
+    <meta name="twitter:description" content="Zasady przetwarzania danych osobowych w serwisie SolidCraft: cele, podstawy prawne, prawa użytkownika oraz kontakt." />
+    <meta name="twitter:image" content="https://construction-project-01.netlify.app/assets/img/og/og-image-1200x630.jpg" />
+    <meta name="twitter:url" content="https://construction-project-01.netlify.app/doc/polityka-prywatnosci.html" />
+    <meta name="twitter:image:alt" content="SolidCraft — Polityka prywatności" />
+
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "GeneralContractor",
+        "name": "SolidCraft",
+        "telephone": "+48 533 537 091",
+        "email": "kontakt@kp-code.pl",
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "ul. Marynarki Wojennej 12/31",
+          "postalCode": "33-100",
+          "addressLocality": "Tarnów",
+          "addressCountry": "PL"
+        },
+        "areaServed": "PL",
+        "openingHours": "Mo-Fr 08:00-18:00",
+        "url": "https://construction-project-01.netlify.app/",
+        "sameAs": ["https://facebook.com", "https://instagram.com"]
+      }
+    </script>
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@graph": [
+          {
+            "@type": "WebSite",
+            "@id": "https://construction-project-01.netlify.app/#website",
+            "url": "https://construction-project-01.netlify.app/",
+            "name": "SolidCraft",
+            "description": "SolidCraft — firma remontowo-budowlana. Oferta, realizacje, opinie, FAQ oraz formularz wyceny.",
+            "inLanguage": "pl-PL",
+            "publisher": { "@type": "Organization", "name": "SolidCraft" },
+            "image": "https://construction-project-01.netlify.app/assets/img/og/og-image-1200x630.jpg"
+          },
+          {
+            "@type": "CollectionPage",
+            "@id": "https://construction-project-01.netlify.app/#page",
+            "url": "https://construction-project-01.netlify.app/doc/polityka-prywatnosci.html",
+            "name": "SolidCraft — Polityka prywatności",
+            "isPartOf": { "@id": "https://construction-project-01.netlify.app/#website" },
+            "inLanguage": "pl-PL",
+            "datePublished": "2025-09-19",
+            "dateModified": "2025-10-19",
+            "primaryImageOfPage": {
+              "@type": "ImageObject",
+              "url": "https://construction-project-01.netlify.app/assets/img/og/og-image-1200x630.jpg",
+              "width": 1200,
+              "height": 630
+            },
+            "about": {
+              "@type": "ItemList",
+              "name": "Zakres usług",
+              "itemListElement": [
+                { "@type": "ListItem", "position": 1, "name": "Wykończenia i remonty łazienek", "url": "https://construction-project-01.netlify.app/#oferta-lazienki" },
+                { "@type": "ListItem", "position": 2, "name": "Malowanie i gładzie", "url": "https://construction-project-01.netlify.app/#oferta-malowanie" },
+                { "@type": "ListItem", "position": 3, "name": "Kafelkowanie", "url": "https://construction-project-01.netlify.app/#oferta-kafelkowanie" },
+                { "@type": "ListItem", "position": 4, "name": "Elektryka i hydraulika", "url": "https://construction-project-01.netlify.app/#oferta-elektryka" }
+              ]
+            }
+          },
+          {
+            "@type": "FAQPage",
+            "@id": "https://construction-project-01.netlify.app/#faq",
+            "mainEntity": [
+              {
+                "@type": "Question",
+                "name": "Ile trwa przygotowanie wyceny?",
+                "acceptedAnswer": { "@type": "Answer", "text": "Standardowo do 24 godzin od przesłania szczegółów zlecenia lub zdjęć." }
+              },
+              {
+                "@type": "Question",
+                "name": "Czy dojeżdżacie do klienta i wykonujecie oględziny?",
+                "acceptedAnswer": { "@type": "Answer", "text": "Tak. Dojazd w obrębie miasta i okolic jest możliwy po ustaleniu terminu." }
+              },
+              {
+                "@type": "Question",
+                "name": "Czy wystawiacie fakturę i udzielacie gwarancji?",
+                "acceptedAnswer": { "@type": "Answer", "text": "Tak, wystawiamy faktury oraz udzielamy gwarancji na wykonywane prace." }
+              }
+            ]
+          }
+        ]
+      }
+    </script>
+
     <link rel="preload" as="font" type="font/woff2" href="../assets/fonts/poppins-v24-latin-regular.woff2" crossorigin />
     <link rel="preload" as="font" type="font/woff2" href="../assets/fonts/poppins-v24-latin-600.woff2" crossorigin />
     <link rel="preload" as="font" type="font/woff2" href="../assets/fonts/montserrat-v31-latin-700.woff2" crossorigin />
     <link rel="preload" as="font" type="font/woff2" href="../assets/fonts/montserrat-v31-latin-600.woff2" crossorigin />
 
-    <!-- Główny CSS -->
     <link rel="stylesheet" href="../css/style.min.css" />
 
-    <!-- PWA meta / manifest -->
     <link rel="manifest" href="/manifest.webmanifest" />
-    <meta name="application-name" content="SolidCraft (demo)" />
+    <meta name="application-name" content="SolidCraft" />
     <link rel="icon" type="image/svg+xml" href="../assets/img/favicon/favicon.svg" />
     <link rel="icon" href="../assets/img/favicon/favicon.ico" sizes="any" />
     <link rel="icon" type="image/png" sizes="32x32" href="../assets/img/favicon/favicon-32x32.png" />
     <link rel="icon" type="image/png" sizes="512x512" href="../assets/img/favicon/web-app-manifest-512x512.png" />
     <link rel="apple-touch-icon" sizes="180x180" href="../assets/img/favicon/apple-touch-icon.png" />
-    <meta name="apple-mobile-web-app-title" content="SolidCraft (demo)" />
+    <meta name="apple-mobile-web-app-title" content="SolidCraft" />
     <meta name="apple-mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
     <meta name="msapplication-TileColor" content="#0ea5e9" />
     <meta name="msapplication-TileImage" content="../assets/img/favicon/web-app-manifest-144x144.png" />
     <link rel="mask-icon" href="../assets/img/favicon/favicon.svg" color="#0ea5e9" />
-</head>
+  </head>
 
-  <!-- BODY -->
+  <!-- Body -->
   <body class="page-sub doc-page">
     <a class="skip" href="#main">Pomiń do treści</a>
-    <div
-      id="top"
-      aria-hidden="true"
-      style="position: relative; inset: 0; height: 0"
-    ></div>
+    <div id="top" aria-hidden="true" style="position: relative; inset: 0; height: 0"></div>
 
-    <!-- HEADER -->
+    <!-- Header -->
     <header class="site-header">
       <div class="container header-bar">
-        <a
-          class="brand"
-          href="../index.html#top"
-          aria-label="Strona główna — Construction Project"
-        >
+        <a class="brand" href="../index.html#top" aria-label="Strona główna — Construction Project">
           <picture class="brand-logo">
-            <img
-              src="../assets/img/logo/logo-light-160x160.png"
-              alt=""
-              aria-hidden="true"
-              class="logo--light"
-              loading="eager"
-              fetchpriority="high"
-              decoding="async"
-            />
-            <img
-              src="../assets/img/logo/logo-dark-160x160.png"
-              alt=""
-              aria-hidden="true"
-              class="logo--dark"
-              loading="eager"
-              fetchpriority="high"
-              decoding="async"
-            />
+            <img src="../assets/img/logo/logo-light-160x160.png" alt="" aria-hidden="true" class="logo--light" loading="eager" fetchpriority="high" decoding="async" />
+            <img src="../assets/img/logo/logo-dark-160x160.png" alt="" aria-hidden="true" class="logo--dark" loading="eager" fetchpriority="high" decoding="async" />
           </picture>
           <span class="brand-name">SolidCraft</span>
         </a>
@@ -173,23 +182,11 @@
             <li><a href="../index.html#top">Strona główna</a></li>
 
             <li class="nav-item has-dropdown">
-              <a
-                id="dd-oferta-trigger"
-                href="../index.html#oferta"
-                class="nav-link dropdown-trigger"
-                aria-expanded="false"
-                aria-haspopup="true"
-                aria-controls="dd-oferta"
-              >
+              <a id="dd-oferta-trigger" href="../index.html#oferta" class="nav-link dropdown-trigger" aria-expanded="false" aria-haspopup="true" aria-controls="dd-oferta">
                 Oferta
                 <span class="caret" aria-hidden="true">▾</span>
               </a>
-              <ul
-                id="dd-oferta"
-                class="dropdown"
-                aria-label="Podmenu: Oferta"
-                aria-labelledby="dd-oferta-trigger"
-              >
+              <ul id="dd-oferta" class="dropdown" aria-label="Podmenu: Oferta" aria-labelledby="dd-oferta-trigger">
                 <li><a href="../oferta/lazienki.html">Łazienki</a></li>
                 <li>
                   <a href="../oferta/malowanie.html">Malowanie &amp; gładzie</a>
@@ -209,40 +206,12 @@
         </nav>
 
         <div class="header-actions">
-          <button
-            class="theme-toggle"
-            type="button"
-            aria-pressed="false"
-            aria-label="Przełącz tryb"
-            title="Przełącz tryb"
-          >
-            <img
-              class="icon-moon"
-              src="../assets/img/icons/dark-mode-40.svg"
-              alt=""
-              width="20"
-              height="20"
-              decoding="async"
-              aria-hidden="true"
-            />
-            <img
-              class="icon-sun"
-              src="../assets/img/icons/light-mode-40.svg"
-              alt=""
-              width="20"
-              height="20"
-              decoding="async"
-              aria-hidden="true"
-            />
+          <button class="theme-toggle" type="button" aria-pressed="false" aria-label="Przełącz tryb" title="Przełącz tryb">
+            <img class="icon-moon" src="../assets/img/icons/dark-mode-40.svg" alt="" width="20" height="20" decoding="async" aria-hidden="true" />
+            <img class="icon-sun" src="../assets/img/icons/light-mode-40.svg" alt="" width="20" height="20" decoding="async" aria-hidden="true" />
           </button>
 
-          <button
-            class="nav-toggle"
-            type="button"
-            aria-expanded="false"
-            aria-controls="navMenu"
-            aria-label="Otwórz menu"
-          >
+          <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="navMenu" aria-label="Otwórz menu">
             <span class="nav-line" aria-hidden="true"></span>
             <span class="nav-line" aria-hidden="true"></span>
             <span class="nav-line" aria-hidden="true"></span>
@@ -251,183 +220,123 @@
       </div>
     </header>
 
-<!-- MAIN -->
-<main id="main">
-  <section
-    class="block"
-    id="privacy"
-    role="region"
-    aria-labelledby="privacy-heading"
-  >
-    <div class="container">
-      <header class="block-head">
-        <h1 id="privacy-heading">Polityka prywatności</h1>
-        <p class="lead">
-          Transparentność i bezpieczeństwo danych — poniżej opisujemy zasady
-          prywatności dla demonstracyjnej strony projektu
-          <strong>SolidCraft</strong>
-          , przygotowanej jako element portfolio
-          <strong>KP_Code_</strong>
-          .
-        </p>
-      </header>
+    <!-- Main -->
+    <main id="main">
+      <section class="block" id="privacy" role="region" aria-labelledby="privacy-heading">
+        <div class="container">
+          <header class="block-head">
+            <h1 id="privacy-heading">Polityka prywatności</h1>
+            <p class="lead">
+              Transparentność i bezpieczeństwo danych — poniżej opisujemy zasady prywatności dla demonstracyjnej strony projektu
+              <strong>SolidCraft</strong>
+              , przygotowanej jako element portfolio
+              <strong>KP_Code_</strong>
+              .
+            </p>
+          </header>
 
-      <!-- SPIS TREŚCI -->
-      <nav class="doc-toc" aria-label="Spis treści">
-        <ul>
-          <li><a href="#privacy-1">1. Zakres i charakter przetwarzania</a></li>
-          <li><a href="#privacy-2">2. Podstawy prawne (informacyjnie)</a></li>
-          <li><a href="#privacy-3">3. Odbiorcy danych</a></li>
-          <li><a href="#privacy-4">4. Okres przechowywania</a></li>
-          <li><a href="#privacy-5">5. Prawa użytkownika</a></li>
-          <li><a href="#privacy-6">6. Bezpieczeństwo danych</a></li>
-          <li><a href="#privacy-7">7. Pliki cookies</a></li>
-          <li><a href="#privacy-8">8. Kontakt</a></li>
-          <li><a href="#privacy-9">9. Zmiany w polityce prywatności</a></li>
-        </ul>
-      </nav>
+          <nav class="doc-toc" aria-label="Spis treści">
+            <ul>
+              <li><a href="#privacy-1">1. Zakres i charakter przetwarzania</a></li>
+              <li><a href="#privacy-2">2. Podstawy prawne (informacyjnie)</a></li>
+              <li><a href="#privacy-3">3. Odbiorcy danych</a></li>
+              <li><a href="#privacy-4">4. Okres przechowywania</a></li>
+              <li><a href="#privacy-5">5. Prawa użytkownika</a></li>
+              <li><a href="#privacy-6">6. Bezpieczeństwo danych</a></li>
+              <li><a href="#privacy-7">7. Pliki cookies</a></li>
+              <li><a href="#privacy-8">8. Kontakt</a></li>
+              <li><a href="#privacy-9">9. Zmiany w polityce prywatności</a></li>
+            </ul>
+          </nav>
 
-      <article class="doc-content legal-doc">
-        <p>
-          <small>
-            <strong>Uwaga:</strong>
-            Serwis stanowi
-            <strong>projekt demo / portfolio</strong>.
-            Nie prowadzi rzeczywistej działalności remontowo-budowlanej.
-            Wszelkie treści, procesy i opisy mają charakter przykładowy
-            i edukacyjny.
-          </small>
-        </p>
+          <article class="doc-content legal-doc">
+            <p>
+              <small>
+                <strong>Uwaga:</strong>
+                Serwis stanowi
+                <strong>projekt demo / portfolio</strong>
+                . Nie prowadzi rzeczywistej działalności remontowo-budowlanej. Wszelkie treści, procesy i opisy mają charakter przykładowy i edukacyjny.
+              </small>
+            </p>
 
-        <h2 id="privacy-1">1. Zakres i charakter przetwarzania</h2>
-        <p>
-          Strona demonstracyjna nie prowadzi rzeczywistego przetwarzania danych
-          osobowych w ramach realizacji usług budowlanych/remontowych ani umów
-          handlowych.
-        </p>
-        <ul>
-          <li>
-            Dane wprowadzane w formularzach (jeśli występują) służą wyłącznie
-            prezentacji interfejsu (UI/UX) i działania front-end.
-          </li>
-          <li>
-            Serwis nie gromadzi danych operacyjnych, księgowych ani
-            zleceń/realizacji prac.
-          </li>
-          <li>
-            Nie dochodzi do faktycznej obsługi klientów, zamówień ani rozliczeń
-            przez ten serwis demo.
-          </li>
-        </ul>
+            <h2 id="privacy-1">1. Zakres i charakter przetwarzania</h2>
+            <p>Strona demonstracyjna nie prowadzi rzeczywistego przetwarzania danych osobowych w ramach realizacji usług budowlanych/remontowych ani umów handlowych.</p>
+            <ul>
+              <li>Dane wprowadzane w formularzach (jeśli występują) służą wyłącznie prezentacji interfejsu (UI/UX) i działania front-end.</li>
+              <li>Serwis nie gromadzi danych operacyjnych, księgowych ani zleceń/realizacji prac.</li>
+              <li>Nie dochodzi do faktycznej obsługi klientów, zamówień ani rozliczeń przez ten serwis demo.</li>
+            </ul>
 
-        <h2 id="privacy-2">2. Podstawy prawne (informacyjnie)</h2>
-        <p>
-          Poniższe podstawy prawne mają charakter informacyjny i prezentacyjny —
-          wskazują przykładowe rozwiązania stosowane w rzeczywistych serwisach:
-        </p>
-        <ul>
-          <li>
-            Art. 6 ust. 1 lit. a RODO — zgoda użytkownika (np. w przypadku
-            formularzy demo, jeśli są używane).
-          </li>
-          <li>
-            Art. 6 ust. 1 lit. f RODO — prawnie uzasadniony interes w postaci
-            prezentacji projektu portfolio oraz zapewnienia bezpieczeństwa.
-          </li>
-        </ul>
+            <h2 id="privacy-2">2. Podstawy prawne (informacyjnie)</h2>
+            <p>Poniższe podstawy prawne mają charakter informacyjny i prezentacyjny — wskazują przykładowe rozwiązania stosowane w rzeczywistych serwisach:</p>
+            <ul>
+              <li>Art. 6 ust. 1 lit. a RODO — zgoda użytkownika (np. w przypadku formularzy demo, jeśli są używane).</li>
+              <li>Art. 6 ust. 1 lit. f RODO — prawnie uzasadniony interes w postaci prezentacji projektu portfolio oraz zapewnienia bezpieczeństwa.</li>
+            </ul>
 
-        <h2 id="privacy-3">3. Odbiorcy danych</h2>
-        <p>
-          Dane nie są przekazywane żadnym podmiotom trzecim ani wykorzystywane w
-          celach komercyjnych, marketingowych lub analitycznych o charakterze
-          identyfikującym.
-        </p>
-        <ul>
-          <li>
-            Brak przekazywania danych wykonawcom, kontrahentom, podwykonawcom czy
-            instytucjom.
-          </li>
-          <li>
-            Brak integracji z zewnętrznymi systemami CRM/ERP w ramach projektu
-            demonstracyjnego.
-          </li>
-        </ul>
+            <h2 id="privacy-3">3. Odbiorcy danych</h2>
+            <p>Dane nie są przekazywane żadnym podmiotom trzecim ani wykorzystywane w celach komercyjnych, marketingowych lub analitycznych o charakterze identyfikującym.</p>
+            <ul>
+              <li>Brak przekazywania danych wykonawcom, kontrahentom, podwykonawcom czy instytucjom.</li>
+              <li>Brak integracji z zewnętrznymi systemami CRM/ERP w ramach projektu demonstracyjnego.</li>
+            </ul>
 
-        <h2 id="privacy-4">4. Okres przechowywania</h2>
-        <p>
-          Dane wprowadzane w ramach projektu demo nie są archiwizowane ani
-          przechowywane długoterminowo.
-        </p>
-        <ul>
-          <li>
-            Dane testowe mogą zostać usunięte w dowolnym momencie.
-          </li>
-          <li>
-            Serwis nie prowadzi bazy danych użytkowników.
-          </li>
-        </ul>
+            <h2 id="privacy-4">4. Okres przechowywania</h2>
+            <p>Dane wprowadzane w ramach projektu demo nie są archiwizowane ani przechowywane długoterminowo.</p>
+            <ul>
+              <li>Dane testowe mogą zostać usunięte w dowolnym momencie.</li>
+              <li>Serwis nie prowadzi bazy danych użytkowników.</li>
+            </ul>
 
-        <h2 id="privacy-5">5. Prawa użytkownika</h2>
-        <p>
-          Użytkownikowi przysługuje prawo do informacji, wglądu, usunięcia oraz
-          ograniczenia przetwarzania danych w zakresie projektu demonstracyjnego.
-        </p>
-        <p>
-          W sprawach dotyczących danych napisz na
-          <a href="mailto:kontakt@kp-code.pl">kontakt@kp-code.pl</a>
-          z dopiskiem „portfolio”.
-        </p>
+            <h2 id="privacy-5">5. Prawa użytkownika</h2>
+            <p>Użytkownikowi przysługuje prawo do informacji, wglądu, usunięcia oraz ograniczenia przetwarzania danych w zakresie projektu demonstracyjnego.</p>
+            <p>
+              W sprawach dotyczących danych napisz na
+              <a href="mailto:kontakt@kp-code.pl">kontakt@kp-code.pl</a>
+              z dopiskiem „portfolio”.
+            </p>
 
-        <h2 id="privacy-6">6. Bezpieczeństwo danych</h2>
-        <p>
-          Projekt demonstracyjny stosuje standardowe środki techniczne
-          charakterystyczne dla nowoczesnych stron internetowych:
-        </p>
-        <ul>
-          <li>Szyfrowanie połączeń HTTPS.</li>
-          <li>Ograniczenie dostępu do zasobów serwera.</li>
-          <li>Brak przetwarzania danych wrażliwych w ramach projektu demo.</li>
-        </ul>
+            <h2 id="privacy-6">6. Bezpieczeństwo danych</h2>
+            <p>Projekt demonstracyjny stosuje standardowe środki techniczne charakterystyczne dla nowoczesnych stron internetowych:</p>
+            <ul>
+              <li>Szyfrowanie połączeń HTTPS.</li>
+              <li>Ograniczenie dostępu do zasobów serwera.</li>
+              <li>Brak przetwarzania danych wrażliwych w ramach projektu demo.</li>
+            </ul>
 
-        <h2 id="privacy-7">7. Pliki cookies</h2>
-        <p>
-          Serwis wykorzystuje wyłącznie cookies techniczne niezbędne do poprawnego
-          działania strony (np. zapamiętanie trybu kolorów oraz podstawowe
-          ustawienia interfejsu).
-        </p>
-        <p>
-          Szczegóły opisano w dokumencie
-          <a href="cookies.html">Polityka plików cookies</a>.
-        </p>
+            <h2 id="privacy-7">7. Pliki cookies</h2>
+            <p>Serwis wykorzystuje wyłącznie cookies techniczne niezbędne do poprawnego działania strony (np. zapamiętanie trybu kolorów oraz podstawowe ustawienia interfejsu).</p>
+            <p>
+              Szczegóły opisano w dokumencie
+              <a href="cookies.html">Polityka plików cookies</a>
+              .
+            </p>
 
-        <h2 id="privacy-8">8. Kontakt</h2>
-        <p>
-          W sprawach związanych z projektem demonstracyjnym możesz skontaktować
-          się pod adresem
-          <a href="mailto:kontakt@kp-code.pl">kontakt@kp-code.pl</a>.
-        </p>
+            <h2 id="privacy-8">8. Kontakt</h2>
+            <p>
+              W sprawach związanych z projektem demonstracyjnym możesz skontaktować się pod adresem
+              <a href="mailto:kontakt@kp-code.pl">kontakt@kp-code.pl</a>
+              .
+            </p>
 
-        <h2 id="privacy-9">9. Zmiany w polityce prywatności</h2>
-        <p>
-          Operator zastrzega sobie prawo do aktualizacji niniejszej Polityki
-          prywatności (np. w związku ze zmianami technicznymi, bezpieczeństwem lub
-          rozwojem projektu demo). Nowa wersja obowiązuje od momentu publikacji w
-          Serwisie, o ile nie wskazano inaczej.
-        </p>
+            <h2 id="privacy-9">9. Zmiany w polityce prywatności</h2>
+            <p>
+              Operator zastrzega sobie prawo do aktualizacji niniejszej Polityki prywatności (np. w związku ze zmianami technicznymi, bezpieczeństwem lub rozwojem projektu demo). Nowa wersja
+              obowiązuje od momentu publikacji w Serwisie, o ile nie wskazano inaczej.
+            </p>
 
-        <p>
-          <small>
-            Data ostatniej aktualizacji:
-            <time datetime="2025-12-18">18.12.2025</time>
-          </small>
-        </p>
-      </article>
-    </div>
-  </section>
-</main>
+            <p>
+              <small>
+                Data ostatniej aktualizacji:
+                <time datetime="2025-12-18">18.12.2025</time>
+              </small>
+            </p>
+          </article>
+        </div>
+      </section>
+    </main>
 
-
-    <!-- FOOTER -->
+    <!-- Footer -->
     <footer id="footer" class="site-footer" aria-labelledby="footer-heading">
       <div class="container">
         <h2 class="vh" id="footer-heading">Stopka serwisu</h2>
@@ -532,13 +441,15 @@
         <!-- Copyright -->
         <div class="ft-bottom">
           <p>
-            © <span id="year"></span> KP_Code_. Wszelkie prawa zastrzeżone.
+            ©
+            <span id="year"></span>
+            KP_Code_. Wszelkie prawa zastrzeżone.
           </p>
         </div>
       </div>
     </footer>
 
-    <!--SCRIPT -->
+    <!--Script -->
     <script src="../js/sw-register.js" defer></script>
     <script src="../js/script.min.js" defer></script>
   </body>
