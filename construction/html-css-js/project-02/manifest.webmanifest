@@ -7,7 +7,7 @@
   "scope": ".",
   "display": "standalone",
   "display_override": ["standalone", "window-controls-overlay"],
-  "orientation": "portrait-primary",
+  "orientation": "any",
   "theme_color": "#0ea5e9",
   "background_color": "#ffffff",
   "categories": ["business", "productivity"],
@@ -32,7 +32,7 @@
       "url": "#oferta",
       "icons": [
         {
-          "src": "assets/img/icon/offer-96.png",
+          "src": "assets/img/shortcuts/offer.png",
           "sizes": "96x96",
           "type": "image/png",
           "purpose": "any maskable"
@@ -46,7 +46,7 @@
       "url": "legal/regulamin.html",
       "icons": [
         {
-          "src": "assets/img/icon/legal-96.png",
+          "src": "assets/img/shortcuts/legal.png",
           "sizes": "96x96",
           "type": "image/png",
           "purpose": "any maskable"
@@ -60,7 +60,7 @@
       "url": "#kontakt",
       "icons": [
         {
-          "src": "assets/img/icon/contact-96.png",
+          "src": "assets/img/shortcuts/contact.png",
           "sizes": "96x96",
           "type": "image/png",
           "purpose": "any maskable"
