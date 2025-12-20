@@ -37,7 +37,37 @@ function ordersView() {
   prioritySelect.value = filters.priority;
   searchInput.value = filters.search;
 
+  // <!-- NEW: pseudo-loading state -->
+  let isLoading = true;
+
+  // <!-- NEW: skeleton renderer -->
+  const renderOrdersSkeleton = () => {
+    tableWrap.innerHTML = `
+      <div class="skeleton-table">
+        ${Array.from({ length: 6 })
+          .map(
+            () => `
+          <div class="skeleton-row">
+            <div class="skeleton skeleton-cell lg"></div>
+            <div class="skeleton skeleton-cell"></div>
+            <div class="skeleton skeleton-cell"></div>
+            <div class="skeleton skeleton-cell"></div>
+            <div class="skeleton skeleton-cell"></div>
+            <div class="skeleton skeleton-cell"></div>
+          </div>`
+          )
+          .join("")}
+      </div>
+    `;
+  };
+
   const renderRows = () => {
+    // <!-- NEW: show skeleton before real render -->
+    if (isLoading) {
+      renderOrdersSkeleton();
+      return;
+    }
+
     const { status, priority, search } = FleetStore.state.filters.orders;
     const rows = FleetSeed.orders
       .filter((o) => (status === "all" ? true : o.status === status))
@@ -128,8 +158,6 @@ function ordersView() {
   const applyFiltersDebounced = debounce(applyFilters, 250);
   searchInput.addEventListener("input", applyFiltersDebounced);
 
-  header.querySelector("#exportOrders")?.addEventListener("click", () => exportOrders());
-
   const exportOrders = () => {
     const data = FleetSeed.orders;
     const csv = ["id,client,route,status,eta,priority"];
@@ -144,7 +172,24 @@ function ordersView() {
     Toast.show("CSV exported", "success");
   };
 
+  // <!-- NEW: permission/disabled state for demo -->
+  const exportBtn = header.querySelector("#exportOrders");
+  if (exportBtn) {
+    exportBtn.disabled = true;
+    exportBtn.title = "Brak uprawnień w wersji demo";
+    exportBtn.addEventListener("click", (e) => {
+      e.preventDefault();
+      Toast.show("Brak uprawnień w wersji demo", "warning");
+    });
+  }
+
+  // <!-- CHANGED: initial skeleton then render real table -->
   renderRows();
+  setTimeout(() => {
+    isLoading = false;
+    renderRows();
+  }, 180);
+
   return root;
 }
 
