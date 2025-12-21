@@ -13,16 +13,23 @@ function renderLanding() {
           <img src="assets/icons/logo-02.svg" alt="FleetOps logo" width="52" height="52" />
           <span>FleetOps</span>
         </div>
-        <nav aria-label="Nawigacja główna">
-          <ul class="nav-links">
-            <li><a href="#/">Product</a></li>
-            <li><a href="#/">Features</a></li>
-            <li><a href="#/">Pricing</a></li>
-            <li><a href="#/about">About</a></li>
-            <li><a href="#/contact">Contact</a></li>
-            <li><button class="button ghost" id="themeToggleLanding" type="button">${theme === "light" ? "☾" : "☼"}</button></li>
-            <li><a class="button ghost" href="#/login">Log in</a></li>
-          </ul>
+        <nav class="nav" aria-label="Nawigacja główna">
+          <button class="button ghost nav-toggle" id="navToggle" type="button" aria-expanded="false" aria-controls="mobileNav" aria-label="Toggle navigation">
+            <img class="nav-toggle__icon nav-toggle__icon--light" src="assets/icons/hamburger-light.svg" alt="" aria-hidden="true" />
+            <img class="nav-toggle__icon nav-toggle__icon--dark" src="assets/icons/hamburger-dark.svg" alt="" aria-hidden="true" />
+          </button>
+          <div class="nav-backdrop" data-nav-close></div>
+          <div class="nav-drawer" id="mobileNav" role="dialog" aria-modal="true" aria-label="Mobile navigation">
+            <ul class="nav-links">
+              <li><a href="#/">Product</a></li>
+              <li><a href="#/">Features</a></li>
+              <li><a href="#/">Pricing</a></li>
+              <li><a href="#/about">About</a></li>
+              <li><a href="#/contact">Contact</a></li>
+              <li><a class="button ghost" href="#/login">Log in</a></li>
+              <li><button class="button ghost" id="themeToggleLanding" type="button">${theme === "light" ? "?" : ""}</button></li>
+            </ul>
+          </div>
         </nav>
       </header>
 
@@ -39,30 +46,74 @@ function renderLanding() {
             </div>
           </div>
           <div class="hero-visual">
-            <div class="flex-between">
-              <div>
-                <p class="muted small">Rezerwacje</p>
-                <h3>124 aktywne</h3>
+            <div class="hero-preview" role="img" aria-label="FleetOps app preview with topbar, sidebar, and analytics cards.">
+              <div class="hero-preview__topbar">
+                <div class="hero-preview__brand">
+                  <span class="hero-preview__dot"></span>
+                  FleetOps Console
+                </div>
+                <div class="hero-preview__actions">
+                  <span class="hero-preview__pill">Live ops</span>
+                  <span class="hero-preview__avatar">KP</span>
+                </div>
               </div>
-              <div class="badge">99.2% on-time</div>
+              <div class="hero-preview__body">
+                <aside class="hero-preview__sidebar" aria-hidden="true">
+                  <span class="hero-preview__nav is-active">Overview</span>
+                  <span class="hero-preview__nav">Orders</span>
+                  <span class="hero-preview__nav">Fleet</span>
+                  <span class="hero-preview__nav">Drivers</span>
+                  <span class="hero-preview__nav">Reports</span>
+                </aside>
+                <div class="hero-preview__main">
+                  <div class="hero-preview__kpis">
+                    <div class="hero-preview__card">
+                      <p class="muted small">On-time rate</p>
+                      <h4>99.2%</h4>
+                      <span class="hero-preview__trend up">+1.2%</span>
+                    </div>
+                    <div class="hero-preview__card">
+                      <p class="muted small">Active routes</p>
+                      <h4>124</h4>
+                      <span class="hero-preview__trend">Stable</span>
+                    </div>
+                    <div class="hero-preview__card">
+                      <p class="muted small">Alerts</p>
+                      <h4>3</h4>
+                      <span class="hero-preview__trend warn">2 SLA</span>
+                    </div>
+                  </div>
+                  <div class="hero-preview__chart">
+                    <div class="hero-preview__chart-head">
+                      <div>
+                        <p class="muted small">Weekly throughput</p>
+                        <h4>3.2k deliveries</h4>
+                      </div>
+                      <span class="hero-preview__chip">Last 7d</span>
+                    </div>
+                    <div class="hero-preview__chart-body">
+                      <div class="hero-preview__chart-line"></div>
+                      <div class="hero-preview__chart-bars"></div>
+                    </div>
+                  </div>
+                  <div class="hero-preview__list">
+                    <div class="hero-preview__row">
+                      <span>HUB-12 / ETA 14:20</span>
+                      <span class="hero-preview__status ok">On track</span>
+                    </div>
+                    <div class="hero-preview__row">
+                      <span>KRK-06 / ETA 15:05</span>
+                      <span class="hero-preview__status warn">Delay risk</span>
+                    </div>
+                    <div class="hero-preview__row">
+                      <span>WAW-03 / ETA 16:10</span>
+                      <span class="hero-preview__status ok">On track</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
-            <div class="progress-bar" style="margin: 14px 0 18px;">
-              <span style="width: 72%"></span>
-            </div>
-            <div class="hero-stats">
-              <div class="hero-stat">
-                <p class="muted small">Orders w trasie</p>
-                <h4>48</h4>
-              </div>
-              <div class="hero-stat">
-                <p class="muted small">Opóźnienia</p>
-                <h4>3</h4>
-              </div>
-              <div class="hero-stat">
-                <p class="muted small">Dostawy dziś</p>
-                <h4>71</h4>
-              </div>
-            </div>
+          </div>
           </div>
         </section>
 
@@ -202,6 +253,85 @@ function renderLanding() {
       document.documentElement.setAttribute("data-theme", next);
       tBtn.textContent = next === "light" ? "☾" : "☼";
     });
+  }
+
+  const navToggle = document.getElementById("navToggle");
+  const navDrawer = document.getElementById("mobileNav");
+  const navBackdrop = document.querySelector(".nav-backdrop");
+  let navOpen = false;
+
+  const openNav = () => {
+    if (!navToggle || !navDrawer) return;
+    document.documentElement.classList.add("is-nav-open");
+    navToggle.setAttribute("aria-expanded", "true");
+    navOpen = true;
+    window.requestAnimationFrame(() => {
+      const firstItem = navDrawer.querySelector("a, button");
+      if (firstItem) firstItem.focus();
+    });
+  };
+
+  const closeNav = () => {
+    if (!navToggle) return;
+    document.documentElement.classList.remove("is-nav-open");
+    navToggle.setAttribute("aria-expanded", "false");
+    navOpen = false;
+    navToggle.focus();
+  };
+
+  if (navToggle) {
+    navToggle.addEventListener("click", () => {
+      if (navOpen) {
+        closeNav();
+      } else {
+        openNav();
+      }
+    });
+  }
+
+  if (navBackdrop) {
+    navBackdrop.addEventListener("click", () => {
+      if (navOpen) closeNav();
+    });
+  }
+
+  if (navDrawer) {
+    navDrawer.addEventListener("click", (event) => {
+      if (event.target && event.target.closest("a")) {
+        closeNav();
+      }
+    });
+  }
+
+  document.addEventListener("keydown", (event) => {
+    if (event.key === "Escape" && navOpen) {
+      closeNav();
+    }
+  });
+
+  const navbar = document.querySelector(".landing .navbar");
+  if (navbar) {
+    let lastY = 0;
+    let ticking = false;
+    const addAt = 18;
+    const removeAt = 6;
+
+    const onScroll = () => {
+      lastY = window.scrollY || 0;
+      if (ticking) return;
+      ticking = true;
+      window.requestAnimationFrame(() => {
+        if (lastY > addAt) {
+          navbar.classList.add("is-scrolled");
+        } else if (lastY < removeAt) {
+          navbar.classList.remove("is-scrolled");
+        }
+        ticking = false;
+      });
+    };
+
+    window.addEventListener("scroll", onScroll, { passive: true });
+    onScroll();
   }
 
   const faq = document.getElementById("faq");

@@ -284,7 +284,7 @@ textarea:invalid:focus-visible {
   gap: 10px;
 }
 
-@media (max-width: 720px) {
+@media (max-width: 768px) {
   .navbar {
     align-items: flex-start;
     padding: 14px 0;
@@ -547,14 +547,13 @@ textarea:invalid:focus-visible {
   flex-wrap: wrap;
 }
 
-/* === 14 - Responsive === */
-@media (max-width: 960px) {
-  .navbar {
+@media (max-width: 1024px) {
+  .app-shell .navbar {
     flex-direction: column;
     gap: 12px;
     align-items: flex-start;
   }
-  .nav-links {
+  .app-shell .nav-links {
     flex-wrap: wrap;
   }
 }
