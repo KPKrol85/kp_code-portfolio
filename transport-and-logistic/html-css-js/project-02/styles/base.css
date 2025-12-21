@@ -1,3 +1,30 @@
+/* ==================================
+   = Project: transport-02
+   = Name: FleetOps
+   = Technology: html/css/js
+   = Author: Kamil Król - kp_code_
+   = Last Update: 2025-12-21
+   = Version: 1.00
+   ==================================
+   = CSS Stylesheet base.css
+   = Structure overview
+   ==================================
+   = 00 - Design Tokens
+   = 01 - Global Reset & Selection
+   = 02 - Document Base
+   = 03 - Links & Media
+   = 04 - Form Elements & Focus Styles
+   = 05 - App Root
+   = 06 - Accessibility
+   = 07 - Layout Utilities
+   = 08 - Typography Base
+   = 09 - Lists & Content Defaults
+   = 10 - UI Primitives
+   = 11 - Tables / Overflow Helpers
+   = 12 - Responsive
+   ================================== */
+
+/* === 00 - Design Tokens === */
 :root {
   --font-sans: "Sora", "Inter", "SF Pro Text", system-ui, -apple-system, sans-serif;
   --bg: #0b0d10;
@@ -17,6 +44,7 @@
   --shadow: 0 10px 40px rgba(0, 0, 0, 0.35);
   --radius-sm: 8px;
   --radius: 12px;
+  --radius-md: 14px;
   --radius-lg: 18px;
   --space-1: 6px;
   --space-2: 10px;
@@ -43,10 +71,18 @@
   color-scheme: light;
 }
 
-* { box-sizing: border-box; }
-*::selection { background: var(--accent-ghost); color: var(--text); }
+/* === 01 - Global Reset & Selection === */
+* {
+  box-sizing: border-box;
+}
+*::selection {
+  background: var(--accent-ghost);
+  color: var(--text);
+}
 
-html, body {
+/* === 02 - Document Base === */
+html,
+body {
   margin: 0;
   padding: 0;
   min-height: 100%;
@@ -57,28 +93,47 @@ html, body {
   -webkit-font-smoothing: antialiased;
 }
 
-a { color: inherit; text-decoration: none; }
-a:hover { color: var(--accent); }
+/* === 03 - Links & Media === */
+a {
+  color: inherit;
+  text-decoration: none;
+}
+a:hover {
+  color: var(--accent);
+}
 
-img { max-width: 100%; display: block; }
+img {
+  max-width: 100%;
+  display: block;
+}
 
-button, input, select, textarea {
+/* === 04 - Form Elements & Focus Styles === */
+button,
+input,
+select,
+textarea {
   font-family: inherit;
   color: inherit;
   background: none;
   border: none;
 }
 
-button:focus, input:focus, select:focus, textarea:focus, a:focus-visible {
+button:focus,
+input:focus,
+select:focus,
+textarea:focus,
+a:focus-visible {
   outline: 2px solid var(--accent);
   outline-offset: 2px;
   border-radius: 6px;
 }
 
+/* === 05 - App Root === */
 body > #app {
   min-height: 100vh;
 }
 
+/* === 06 - Accessibility === */
 .skip-link {
   position: absolute;
   left: -999px;
@@ -89,38 +144,96 @@ body > #app {
   border-radius: var(--radius-sm);
   z-index: 999;
 }
-.skip-link:focus { left: 16px; }
+.skip-link:focus {
+  left: 16px;
+}
 
-.container { width: min(1120px, 92vw); margin: 0 auto; }
+/* === 07 - Layout Utilities === */
+.container {
+  width: min(1120px, 92vw);
+  margin: 0 auto;
+}
 
 .section {
   padding: var(--space-6) 0;
 }
 
-.grid { display: grid; gap: var(--space-3); }
-.flex { display: flex; }
-.flex-between { display: flex; justify-content: space-between; align-items: center; }
-.muted { color: var(--text-muted); }
+.grid {
+  display: grid;
+  gap: var(--space-3);
+}
+.flex {
+  display: flex;
+}
+.flex-between {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.muted {
+  color: var(--text-muted);
+}
 
-h1, h2, h3, h4, h5, h6 {
+/* === 08 - Typography Base === */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
   margin: 0;
   font-weight: 700;
   letter-spacing: -0.02em;
 }
 
-p { margin: 0; line-height: 1.6; color: var(--text-muted); }
+p {
+  margin: 0;
+  line-height: 1.6;
+  color: var(--text-muted);
+}
 
-ul { margin: 0; padding: 0; list-style: none; }
+/* === 09 - Lists & Content Defaults === */
+ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
 
-main { min-height: 60vh; }
+main {
+  min-height: 60vh;
+}
 
-.tag { padding: 4px 10px; border-radius: 999px; background: var(--accent-ghost); color: var(--accent); display: inline-flex; align-items: center; gap: 6px; font-size: 12px; }
+/* === 10 - UI Primitives === */
+.tag {
+  padding: 4px 10px;
+  border-radius: 999px;
+  background: var(--accent-ghost);
+  color: var(--accent);
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 12px;
+}
 
-.badge { padding: 4px 8px; border-radius: 10px; font-size: 12px; border: 1px solid var(--border); background: var(--surface-2); color: var(--text); }
+.badge {
+  padding: 4px 8px;
+  border-radius: 10px;
+  font-size: 12px;
+  border: 1px solid var(--border);
+  background: var(--surface-2);
+  color: var(--text);
+}
 
-.small { font-size: 14px; }
+.small {
+  font-size: 14px;
+}
 
-hr { border: 0; height: 1px; background: var(--border); margin: var(--space-3) 0; }
+hr {
+  border: 0;
+  height: 1px;
+  background: var(--border);
+  margin: var(--space-3) 0;
+}
 
 .card {
   background: var(--surface);
@@ -130,9 +243,18 @@ hr { border: 0; height: 1px; background: var(--border); margin: var(--space-3) 0
   box-shadow: var(--shadow);
 }
 
-.table-responsive { width: 100%; overflow-x: auto; }
+/* === 11 - Tables / Overflow Helpers === */
+.table-responsive {
+  width: 100%;
+  overflow-x: auto;
+}
 
+/* === 12 - Responsive === */
 @media (max-width: 800px) {
-  .section { padding: var(--space-5) 0; }
-  .container { width: 92vw; }
+  .section {
+    padding: var(--space-5) 0;
+  }
+  .container {
+    width: 92vw;
+  }
 }

@@ -1,3 +1,33 @@
+/* ==================================
+   = Project: transport-02
+   = Name: FleetOps
+   = Technology: html/css/js
+   = Author: Kamil Król - kp_code_
+   = Last Update: 2025-12-21
+   = Version: 1.00
+   ==================================
+   = CSS Stylesheet: components.css
+   = Structure overview
+   ==================================
+   = 00 - Buttons
+   = 01 - Inputs & Forms
+   = 02 - Navbar
+   = 03 - Landing Cards (Hero / Feature)
+   = 04 - Accordion
+   = 05 - Tables
+   = 06 - Status Badges
+   = 07 - Modal
+   = 08 - Dropdown
+   = 09 - Toast
+   = 10 - Filters (Table Filter / Chips)
+   = 11 - Dashboard Blocks (KPI / Feed / Alerts)
+   = 12 - Lists / Cards Layout
+   = 13 - Utility Components (Progress / Pills / Inline)
+   = 14 - Responsive
+   = 15 - Skeleton (Loading State)
+   ================================== */
+
+/* === 00 - Buttons === */
 .button {
   display: inline-flex;
   align-items: center;
@@ -44,6 +74,37 @@
   border-color: transparent;
 }
 
+.button:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+  box-shadow: 0 0 0 4px var(--accent-ghost);
+}
+.button:disabled,
+.button[aria-disabled="true"] {
+  opacity: 0.55;
+  cursor: not-allowed;
+  pointer-events: none;
+  transform: none;
+  box-shadow: none;
+}
+
+#themeToggle,
+#themeToggleLanding {
+  width: 36px;
+  height: 36px;
+  padding: 0;
+  border-radius: 50%;
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  font-size: 14px;
+  line-height: 1;
+}
+
+/* === 01 - Inputs & Forms === */
+
 .input,
 select,
 textarea {
@@ -53,6 +114,58 @@ textarea {
   border: 1px solid var(--border);
   background: var(--surface-2);
   color: var(--text);
+  transition: border-color 120ms ease, box-shadow 120ms ease, background 120ms ease;
+}
+
+.input::placeholder,
+textarea::placeholder {
+  color: var(--text-muted);
+  opacity: 0.8;
+}
+
+.input:hover,
+select:hover,
+textarea:hover {
+  background: var(--bg-muted);
+}
+
+.input:focus-visible,
+select:focus-visible,
+textarea:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+  box-shadow: 0 0 0 4px var(--accent-ghost);
+  border-color: transparent;
+}
+
+.input:disabled,
+select:disabled,
+textarea:disabled,
+.input[aria-disabled="true"],
+select[aria-disabled="true"],
+textarea[aria-disabled="true"] {
+  opacity: 0.6;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+.input[aria-invalid="true"],
+select[aria-invalid="true"],
+textarea[aria-invalid="true"],
+.input:invalid,
+select:invalid,
+textarea:invalid {
+  border-color: var(--danger);
+}
+
+.input[aria-invalid="true"]:focus-visible,
+select[aria-invalid="true"]:focus-visible,
+textarea[aria-invalid="true"]:focus-visible,
+.input:invalid:focus-visible,
+select:invalid:focus-visible,
+textarea:invalid:focus-visible {
+  outline-color: var(--danger);
+  box-shadow: 0 0 0 4px rgba(248, 113, 113, 0.22);
 }
 
 .label {
@@ -60,24 +173,133 @@ textarea {
   margin-bottom: 6px;
   display: inline-block;
 }
+
 .form-control {
   display: flex;
   flex-direction: column;
   gap: 6px;
 }
 
+.form-hint {
+  font-size: 12px;
+  color: var(--text-muted);
+  line-height: 1.4;
+}
+
+.form-error {
+  font-size: 12px;
+  color: var(--danger);
+  line-height: 1.4;
+}
+
+/* === 02 - Navbar === */
 .navbar {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 18px 0;
-}
-.nav-links {
-  display: flex;
+  min-height: 64px;
   gap: 16px;
+
+  padding: 12px 0;
+
+  border-bottom: 1px solid var(--border);
+}
+
+.navbar .logo {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+}
+
+.navbar nav {
+  display: flex;
   align-items: center;
 }
 
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.nav-links a {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 8px 12px;
+  border-radius: var(--radius-sm);
+
+  color: var(--text-muted);
+  border: 1px solid transparent;
+
+  transition: background 140ms ease, color 140ms ease, border-color 140ms ease;
+}
+
+.nav-links a:hover {
+  color: var(--text);
+  background: var(--bg-muted);
+  border-color: var(--border);
+}
+
+.nav-links a:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+  background: var(--accent-ghost);
+  color: var(--text);
+  border-color: transparent;
+}
+
+.nav-links a[aria-current="page"] {
+  color: var(--accent);
+  background: var(--accent-ghost);
+  border-color: transparent;
+  font-weight: 700;
+}
+
+.nav-links a[aria-current="page"]::after {
+  content: "";
+  position: absolute;
+  left: 10px;
+  right: 10px;
+  bottom: 4px;
+  height: 2px;
+  border-radius: 999px;
+  background: var(--accent);
+  opacity: 0.7;
+}
+
+.nav-links .button {
+  padding: 9px 12px;
+  border-radius: 999px;
+}
+
+.navbar .nav-actions {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+}
+
+@media (max-width: 720px) {
+  .navbar {
+    align-items: flex-start;
+    padding: 14px 0;
+  }
+
+  .nav-links {
+    gap: 8px;
+  }
+
+  .nav-links a {
+    padding: 8px 10px;
+  }
+}
+
+/* === 03 - Landing Cards (Hero / Feature) === */
 .hero-card {
   padding: var(--space-5);
   border-radius: var(--radius-lg);
@@ -98,6 +320,7 @@ textarea {
   box-shadow: var(--shadow);
 }
 
+/* === 04 - Accordion === */
 .accordion {
   border: 1px solid var(--border);
   border-radius: var(--radius);
@@ -131,6 +354,7 @@ textarea {
   padding-bottom: 14px;
 }
 
+/* === 05 - Tables === */
 .table {
   width: 100%;
   border-collapse: collapse;
@@ -149,6 +373,7 @@ textarea {
   background: var(--bg-muted);
 }
 
+/* === 06 - Status Badges === */
 .badge.status {
   border: 0;
   font-weight: 700;
@@ -167,6 +392,7 @@ textarea {
   background: #fde68a;
 }
 
+/* === 07 - Modal === */
 .modal-backdrop {
   position: fixed;
   inset: 0;
@@ -198,6 +424,7 @@ textarea {
   cursor: pointer;
 }
 
+/* === 08 - Dropdown === */
 .dropdown {
   position: relative;
 }
@@ -227,6 +454,7 @@ textarea {
   background: var(--bg-muted);
 }
 
+/* === 09 - Toast === */
 .toast-container {
   position: fixed;
   bottom: 18px;
@@ -246,6 +474,7 @@ textarea {
   gap: 10px;
 }
 
+/* === 10 - Filters (Table Filter / Chips) === */
 .table-filter {
   display: flex;
   flex-wrap: wrap;
@@ -266,6 +495,7 @@ textarea {
   background: var(--accent-ghost);
 }
 
+/* === 11 - Dashboard Blocks (KPI / Feed / Alerts) === */
 .kpi-grid {
   grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
   gap: 14px;
@@ -284,12 +514,14 @@ textarea {
   background: var(--bg-muted);
 }
 
+/* === 12 - Lists / Cards Layout === */
 .card-list {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
   gap: 14px;
 }
 
+/* === 13 - Utility Components (Progress / Pills / Inline) === */
 .label-pill {
   padding: 4px 8px;
   border-radius: 999px;
@@ -315,6 +547,7 @@ textarea {
   flex-wrap: wrap;
 }
 
+/* === 14 - Responsive === */
 @media (max-width: 960px) {
   .navbar {
     flex-direction: column;
@@ -326,7 +559,7 @@ textarea {
   }
 }
 
-/* === Skeleton (loading state) === */
+/* === 15 - Skeleton (Loading State) === */
 .skeleton {
   position: relative;
   overflow: hidden;

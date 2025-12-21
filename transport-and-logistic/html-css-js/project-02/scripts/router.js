@@ -1,4 +1,3 @@
-
 function renderInfoPage({ title, body }) {
   const app = document.getElementById("app");
   app.innerHTML = `
@@ -70,6 +69,24 @@ function renderLogin() {
     const intended = FleetStorage.get("fleet-intended-route", "/app");
     FleetStorage.remove("fleet-intended-route");
     window.location.hash = `#${intended}`;
+  });
+}
+
+// === Dynamic aria-current (global) ===
+function applyAriaCurrent() {
+  const currentHash = window.location.hash || "#/";
+  const links = document.querySelectorAll(".nav-links a, .sidebar nav a, .footer-links a");
+
+  let matched = false;
+
+  links.forEach((link) => {
+    const href = link.getAttribute("href");
+    if (!matched && href === currentHash) {
+      link.setAttribute("aria-current", "page");
+      matched = true;
+    } else {
+      link.removeAttribute("aria-current");
+    }
   });
 }
 
@@ -146,6 +163,9 @@ function routeTo(hash) {
       window.location.hash = "#/";
       renderLanding();
   }
+
+  // <<< TO JEST JEDYNE MIEJSCE, GDZIE USTAWIAMY aria-current >>>
+  applyAriaCurrent();
 }
 
 window.FleetRouter = { routeTo };

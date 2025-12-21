@@ -1,11 +1,16 @@
 function renderLanding() {
-  const app = document.getElementById('app');
+  const app = document.getElementById("app");
   if (!app) return;
+
+  const { preferences } = FleetStore.state;
+  const theme = preferences.theme || "light";
+  document.documentElement.setAttribute("data-theme", theme);
+
   app.innerHTML = `
     <div class="landing">
       <header class="container navbar" role="banner">
         <div class="logo flex" aria-label="FleetOps">
-          <img src="assets/icons/logo.svg" alt="FleetOps logo" width="28" height="28" />
+          <img src="assets/icons/logo-02.svg" alt="FleetOps logo" width="52" height="52" />
           <span>FleetOps</span>
         </div>
         <nav aria-label="Nawigacja główna">
@@ -15,6 +20,7 @@ function renderLanding() {
             <li><a href="#/">Pricing</a></li>
             <li><a href="#/about">About</a></li>
             <li><a href="#/contact">Contact</a></li>
+            <li><button class="button ghost" id="themeToggleLanding" type="button">${theme === "light" ? "☾" : "☼"}</button></li>
             <li><a class="button ghost" href="#/login">Log in</a></li>
           </ul>
         </nav>
@@ -188,7 +194,17 @@ function renderLanding() {
     </div>
   `;
 
-  const faq = document.getElementById('faq');
+  const tBtn = document.getElementById("themeToggleLanding");
+  if (tBtn) {
+    tBtn.addEventListener("click", () => {
+      FleetStore.toggleTheme();
+      const next = FleetStore.state.preferences.theme || "light";
+      document.documentElement.setAttribute("data-theme", next);
+      tBtn.textContent = next === "light" ? "☾" : "☼";
+    });
+  }
+
+  const faq = document.getElementById("faq");
   if (faq) Accordion.init(faq);
 }
 
