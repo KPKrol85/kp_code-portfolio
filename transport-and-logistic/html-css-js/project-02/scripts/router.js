@@ -4,7 +4,7 @@ function renderInfoPage({ title, body }) {
     <div class="landing">
       <header class="container navbar">
         <div class="logo flex" aria-label="FleetOps">
-          <img src="assets/icons/logo.svg" alt="FleetOps" width="24" height="24" />
+          <img src="assets/icons/logo-02.svg" alt="FleetOps" width="24" height="24" />
           <span>FleetOps</span>
         </div>
         <a class="button ghost" href="#/login">Log in</a>
@@ -26,7 +26,7 @@ function renderLogin() {
     <main class="container section" id="main-content">
       <div class="hero-card" style="max-width: 520px; margin: 40px auto;">
         <div class="flex-between" style="margin-bottom: 12px;">
-          <div class="logo flex"><img src="assets/icons/logo.svg" alt="FleetOps" width="22" height="22" /><strong>FleetOps</strong></div>
+          <div class="logo flex"><img src="assets/icons/logo-02.svg" alt="FleetOps" width="22" height="22" /><strong>FleetOps</strong></div>
           <a class="button ghost" href="#/">Back</a>
         </div>
         <h2>Zaloguj się</h2>

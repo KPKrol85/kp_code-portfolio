@@ -117,6 +117,60 @@
   font-weight: 700;
 }
 
+/* === 02b - App Topbar (Mobile) === */
+.app-topbar {
+  display: none;
+}
+.app-topbar__brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+.app-topbar__actions {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+.drawer-toggle__icon {
+  display: none;
+}
+html[data-theme="light"] .drawer-toggle__icon--light {
+  display: block;
+}
+html[data-theme="dark"] .drawer-toggle__icon--dark {
+  display: block;
+}
+.theme-toggle__icon {
+  display: none;
+}
+html[data-theme="light"] #themeToggleMobile .theme-toggle__icon--light {
+  display: block;
+}
+html[data-theme="dark"] #themeToggleMobile .theme-toggle__icon--dark {
+  display: block;
+}
+.drawer {
+  transition: transform 0.2s ease, visibility 0.2s ease;
+}
+.drawer-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(9, 13, 20, 0.45);
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.2s ease, visibility 0.2s ease;
+  z-index: 40;
+}
+.drawer-backdrop.is-visible {
+  opacity: 1;
+  visibility: visible;
+}
+body.drawer-open {
+  overflow: hidden;
+}
+
 /* === 03 - App Main & Content === */
 .app-main {
   background: var(--bg);
@@ -204,16 +258,92 @@ body[data-compact="true"] .topbar {
 /* === 10 - Responsive === */
 @media (max-width: 1024px) {
   .app-shell {
-    grid-template-columns: 1fr;
+    display: block;
+  }
+  .app-topbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 50;
+    min-height: 58px;
+    padding: calc(env(safe-area-inset-top) + 8px) var(--space-3) 10px;
+    background: var(--bg-elevated);
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+  }
+  .app-topbar__brand span {
+    font-size: 14px;
   }
   .sidebar {
-    position: relative;
-    height: auto;
-    grid-template-rows: auto auto;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: min(280px, 84vw);
+    height: 100vh;
+    padding-top: calc(env(safe-area-inset-top) + var(--space-4));
+    background: var(--surface);
+    z-index: 50;
+    transform: translateX(-100%);
+    visibility: hidden;
+    box-shadow: var(--shadow);
+  }
+  .sidebar.is-open {
+    transform: translateX(0);
+    visibility: visible;
+  }
+  .app-main {
+    padding-top: calc(58px + env(safe-area-inset-top));
   }
   .topbar {
-    position: sticky;
-    top: 0;
+    position: static;
+    padding: var(--space-3);
+  }
+  .topbar-actions #themeToggle {
+    display: none;
+  }
+  .app-main .grid,
+  .app-main .kpi-grid,
+  .app-main .card-list {
+    grid-template-columns: 1fr !important;
+  }
+  .settings-grid {
+    grid-template-columns: 1fr;
+  }
+  .activity-row {
+    flex-direction: column;
+    gap: 6px;
+  }
+}
+
+@media (max-width: 640px) {
+  .topbar {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+  }
+  .topbar-left {
+    width: 100%;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+  }
+  .topbar-actions {
+    width: 100%;
+    justify-content: flex-start;
+  }
+  .search {
+    min-width: 0;
+    width: 100%;
+  }
+  .app-content {
+    padding: var(--space-3);
+  }
+  .module-header {
+    gap: 8px;
   }
 }
 

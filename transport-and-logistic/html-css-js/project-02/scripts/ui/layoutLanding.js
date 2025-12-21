@@ -13,21 +13,31 @@ function renderLanding() {
           <img src="assets/icons/logo-02.svg" alt="FleetOps logo" width="52" height="52" />
           <span>FleetOps</span>
         </div>
-        <nav class="nav" aria-label="Nawigacja główna">
-          <button class="button ghost nav-toggle" id="navToggle" type="button" aria-expanded="false" aria-controls="mobileNav" aria-label="Toggle navigation">
+        <nav class="nav" aria-label="Nawigacja glowna">
+          <button class="button ghost nav-toggle" id="navToggle" type="button" aria-expanded="false" aria-controls="mobileNav" aria-label="Przelacz nawigacje">
             <img class="nav-toggle__icon nav-toggle__icon--light" src="assets/icons/hamburger-light.svg" alt="" aria-hidden="true" />
             <img class="nav-toggle__icon nav-toggle__icon--dark" src="assets/icons/hamburger-dark.svg" alt="" aria-hidden="true" />
           </button>
           <div class="nav-backdrop" data-nav-close></div>
-          <div class="nav-drawer" id="mobileNav" role="dialog" aria-modal="true" aria-label="Mobile navigation">
+          <div class="nav-drawer" id="mobileNav" role="dialog" aria-modal="true" aria-label="Nawigacja mobilna">
             <ul class="nav-links">
-              <li><a href="#/">Product</a></li>
-              <li><a href="#/">Features</a></li>
-              <li><a href="#/">Pricing</a></li>
-              <li><a href="#/about">About</a></li>
-              <li><a href="#/contact">Contact</a></li>
-              <li><a class="button ghost" href="#/login">Log in</a></li>
-              <li><button class="button ghost" id="themeToggleLanding" type="button">${theme === "light" ? "?" : ""}</button></li>
+              <li><a href="#/">Produkt</a></li>
+              <li><a href="#/">Funkcje</a></li>
+              <li><a href="#/">Cennik</a></li>
+              <li><a href="#/about">O nas</a></li>
+              <li><a href="#/contact">Kontakt</a></li>
+              <li><a class="button ghost" href="#/login">Zaloguj sie</a></li>
+              <li>
+                <button class="button ghost" id="themeToggleLanding" type="button" aria-label="Toggle theme">
+                  <svg class="theme-toggle__icon theme-toggle__icon--light" width="18" height="18" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                    <circle cx="12" cy="12" r="4" fill="currentColor"></circle>
+                    <path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41" stroke="currentColor" stroke-width="2" stroke-linecap="round"></path>
+                  </svg>
+                  <svg class="theme-toggle__icon theme-toggle__icon--dark" width="18" height="18" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                    <path d="M20 12.5A7.5 7.5 0 1 1 11.5 4a6 6 0 0 0 8.5 8.5Z" fill="currentColor"></path>
+                  </svg>
+                </button>
+              </li>
             </ul>
           </div>
         </nav>
@@ -231,15 +241,15 @@ function renderLanding() {
 
       <footer class="container footer">
         <div class="logo flex">
-          <img src="assets/icons/logo.svg" alt="FleetOps" width="22" height="22" />
+          <img src="assets/icons/logo-02.svg" alt="FleetOps" width="22" height="22" />
           <span>FleetOps</span>
         </div>
         <div class="footer-links">
           <a href="#/privacy">Privacy</a>
           <a href="#/terms">Terms</a>
           <a href="#/cookies">Cookies</a>
-          <a href="#/about">About</a>
-          <a href="#/contact">Contact</a>
+          <a href="#/about">O nas</a>
+          <a href="#/contact">Kontakt</a>
         </div>
       </footer>
     </div>
@@ -251,7 +261,6 @@ function renderLanding() {
       FleetStore.toggleTheme();
       const next = FleetStore.state.preferences.theme || "light";
       document.documentElement.setAttribute("data-theme", next);
-      tBtn.textContent = next === "light" ? "☾" : "☼";
     });
   }
 

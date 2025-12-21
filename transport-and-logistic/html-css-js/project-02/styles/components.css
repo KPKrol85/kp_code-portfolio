@@ -102,6 +102,21 @@
   font-size: 14px;
   line-height: 1;
 }
+.theme-toggle__icon {
+  display: none;
+}
+html[data-theme="light"] #themeToggleLanding .theme-toggle__icon--light {
+  display: block;
+}
+html[data-theme="light"] #themeToggle .theme-toggle__icon--light {
+  display: block;
+}
+html[data-theme="dark"] #themeToggleLanding .theme-toggle__icon--dark {
+  display: block;
+}
+html[data-theme="dark"] #themeToggle .theme-toggle__icon--dark {
+  display: block;
+}
 
 /* === 01 - Inputs & Forms === */
 
