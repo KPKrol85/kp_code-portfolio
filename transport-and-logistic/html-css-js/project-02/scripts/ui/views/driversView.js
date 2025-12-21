@@ -27,6 +27,59 @@ function driversView() {
   statusSelect.value = filters.status;
   searchInput.value = filters.search;
 
+  let isLoading = true;
+  let loadingTimer = null;
+
+  let filterTimer = null;
+  const FILTER_DELAY = 160;
+
+  const startFilterLoading = () => {
+    if (filterTimer) clearTimeout(filterTimer);
+
+    isLoading = true;
+    renderSkeleton();
+
+    filterTimer = setTimeout(() => {
+      isLoading = false;
+      renderRows();
+    }, FILTER_DELAY);
+  };
+
+  const renderSkeleton = () => {
+    tableWrap.innerHTML = `
+      <table class="table">
+        <thead>
+          <tr><th>Name</th><th>Status</th><th>Last trip</th><th>Phone</th></tr>
+        </thead>
+        <tbody>
+          ${Array.from({ length: 6 })
+            .map(
+              () => `
+            <tr>
+              <td><div class="skeleton" style="height:12px;width:140px;"></div></td>
+              <td><div class="skeleton" style="height:12px;width:90px;"></div></td>
+              <td><div class="skeleton" style="height:12px;width:120px;"></div></td>
+              <td><div class="skeleton" style="height:12px;width:110px;"></div></td>
+            </tr>
+          `
+            )
+            .join("")}
+        </tbody>
+      </table>
+    `;
+  };
+
+  const startLoading = () => {
+    isLoading = true;
+    renderSkeleton();
+
+    if (loadingTimer) clearTimeout(loadingTimer);
+    loadingTimer = setTimeout(() => {
+      isLoading = false;
+      renderRows();
+    }, 180);
+  };
+
   const openDriver = (driver) => {
     const body = dom.h("div");
     body.innerHTML = `
@@ -52,6 +105,11 @@ function driversView() {
   };
 
   const renderRows = () => {
+    if (isLoading) {
+      renderSkeleton();
+      return;
+    }
+
     const { status, search } = FleetStore.state.filters.drivers;
 
     const rows = FleetSeed.drivers.filter((d) => (status === "all" ? true : d.status === status)).filter((d) => d.name.toLowerCase().includes(search.toLowerCase()));
@@ -72,7 +130,8 @@ function driversView() {
         FleetStore.setDriverFilters({ status: "all", search: "" });
         statusSelect.value = "all";
         searchInput.value = "";
-        renderRows();
+
+        startFilterLoading();
       });
 
       return;
@@ -96,15 +155,15 @@ function driversView() {
 
   statusSelect.addEventListener("change", () => {
     saveFilters();
-    renderRows();
+    startFilterLoading();
   });
 
   searchInput.addEventListener("input", () => {
     saveFilters();
-    renderRows();
+    startFilterLoading();
   });
 
-  renderRows();
+  startLoading();
   return root;
 }
 

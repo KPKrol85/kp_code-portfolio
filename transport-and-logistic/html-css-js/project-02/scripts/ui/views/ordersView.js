@@ -37,10 +37,10 @@ function ordersView() {
   prioritySelect.value = filters.priority;
   searchInput.value = filters.search;
 
-  // <!-- NEW: pseudo-loading state -->
   let isLoading = true;
+  let filterTimer = null;
+  const FILTER_DELAY = 160;
 
-  // <!-- NEW: skeleton renderer -->
   const renderOrdersSkeleton = () => {
     tableWrap.innerHTML = `
       <div class="skeleton-table">
@@ -61,8 +61,19 @@ function ordersView() {
     `;
   };
 
+  const startFilterLoading = () => {
+    if (filterTimer) clearTimeout(filterTimer);
+
+    isLoading = true;
+    renderOrdersSkeleton();
+
+    filterTimer = setTimeout(() => {
+      isLoading = false;
+      renderRows();
+    }, FILTER_DELAY);
+  };
+
   const renderRows = () => {
-    // <!-- NEW: show skeleton before real render -->
     if (isLoading) {
       renderOrdersSkeleton();
       return;
@@ -91,7 +102,8 @@ function ordersView() {
         statusSelect.value = "all";
         prioritySelect.value = "all";
         searchInput.value = "";
-        renderRows();
+
+        startFilterLoading();
       });
 
       return;
@@ -147,16 +159,28 @@ function ordersView() {
     });
   };
 
-  const applyFilters = () => {
+  const applySelectFilters = () => {
     pushFilters();
-    renderRows();
+    startFilterLoading();
   };
 
-  statusSelect.addEventListener("change", applyFilters);
-  prioritySelect.addEventListener("change", applyFilters);
+  statusSelect.addEventListener("change", applySelectFilters);
+  prioritySelect.addEventListener("change", applySelectFilters);
 
-  const applyFiltersDebounced = debounce(applyFilters, 250);
-  searchInput.addEventListener("input", applyFiltersDebounced);
+  const applySearch = () => {
+    pushFilters();
+
+    isLoading = true;
+    renderRows();
+
+    setTimeout(() => {
+      isLoading = false;
+      renderRows();
+    }, 140);
+  };
+
+  const applySearchDebounced = debounce(applySearch, 250);
+  searchInput.addEventListener("input", applySearchDebounced);
 
   const exportOrders = () => {
     const data = FleetSeed.orders;
@@ -172,7 +196,6 @@ function ordersView() {
     Toast.show("CSV exported", "success");
   };
 
-  // <!-- NEW: permission/disabled state for demo -->
   const exportBtn = header.querySelector("#exportOrders");
   if (exportBtn) {
     exportBtn.disabled = true;
@@ -183,7 +206,6 @@ function ordersView() {
     });
   }
 
-  // <!-- CHANGED: initial skeleton then render real table -->
   renderRows();
   setTimeout(() => {
     isLoading = false;

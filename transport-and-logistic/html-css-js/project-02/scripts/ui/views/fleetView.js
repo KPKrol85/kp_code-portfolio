@@ -24,6 +24,68 @@ function fleetView() {
   statusSelect.value = filters.status;
   searchInput.value = filters.search;
 
+  let isLoading = true;
+  let loadingTimer = null;
+
+  let filterTimer = null;
+  const FILTER_DELAY = 160;
+
+  const startFilterLoading = () => {
+    if (filterTimer) clearTimeout(filterTimer);
+
+    isLoading = true;
+    renderSkeletonCards();
+
+    filterTimer = setTimeout(() => {
+      isLoading = false;
+      renderCards();
+    }, FILTER_DELAY);
+  };
+
+  const renderSkeletonCards = () => {
+    cards.innerHTML = `
+      ${Array.from({ length: 6 })
+        .map(
+          () => `
+        <div class="panel">
+          <div class="flex-between">
+            <div class="skeleton" style="height:14px;width:120px;"></div>
+            <div class="skeleton" style="height:18px;width:70px;border-radius:999px;"></div>
+          </div>
+
+          <div style="margin-top:10px;">
+            <div class="skeleton" style="height:12px;width:160px;"></div>
+          </div>
+
+          <div style="margin-top:8px;">
+            <div class="skeleton" style="height:12px;width:140px;"></div>
+          </div>
+
+          <div style="margin-top:8px;">
+            <div class="skeleton" style="height:12px;width:150px;"></div>
+          </div>
+
+          <div style="margin-top:12px;">
+            <div class="skeleton" style="height:30px;width:90px;border-radius:10px;"></div>
+          </div>
+        </div>
+      `
+        )
+        .join("")}
+    `;
+  };
+
+  const startLoading = () => {
+    isLoading = true;
+    renderSkeletonCards();
+
+    if (loadingTimer) clearTimeout(loadingTimer);
+    loadingTimer = setTimeout(() => {
+      isLoading = false;
+      renderCards();
+    }, 180);
+  };
+
   const openVehicle = (vehicle) => {
     const body = dom.h("div");
     body.innerHTML = `
@@ -41,6 +103,11 @@ function fleetView() {
   };
 
   const renderCards = () => {
+    if (isLoading) {
+      renderSkeletonCards();
+      return;
+    }
+
     const { status, search } = FleetStore.state.filters.fleet;
 
     const rows = FleetSeed.vehicles.filter((v) => (status === "all" ? true : v.status === status)).filter((v) => `${v.id} ${v.type}`.toLowerCase().includes(search.toLowerCase()));
@@ -61,7 +128,8 @@ function fleetView() {
         FleetStore.setFleetFilters({ status: "all", search: "" });
         statusSelect.value = "all";
         searchInput.value = "";
-        renderCards();
+
+        startFilterLoading();
       });
 
       return;
@@ -87,15 +155,15 @@ function fleetView() {
 
   statusSelect.addEventListener("change", () => {
     saveFilters();
-    renderCards();
+    startFilterLoading();
   });
 
   searchInput.addEventListener("input", () => {
     saveFilters();
-    renderCards();
+    startFilterLoading();
   });
 
-  renderCards();
+  startLoading();
   return root;
 }
 
