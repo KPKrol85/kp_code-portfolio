@@ -21,9 +21,9 @@ function renderLanding() {
           <div class="nav-backdrop" data-nav-close></div>
           <div class="nav-drawer" id="mobileNav" role="dialog" aria-modal="true" aria-label="Nawigacja mobilna">
             <ul class="nav-links">
-              <li><a href="#/">Produkt</a></li>
-              <li><a href="#/">Funkcje</a></li>
-              <li><a href="#/">Cennik</a></li>
+              <li><a href="#/product">Produkt</a></li>
+              <li><a href="#/features">Funkcje</a></li>
+              <li><a href="#/pricing">Cennik</a></li>
               <li><a href="#/about">O nas</a></li>
               <li><a href="#/contact">Kontakt</a></li>
               <li><a class="button ghost" href="#/login">Zaloguj sie</a></li>
@@ -245,6 +245,9 @@ function renderLanding() {
           <span>FleetOps</span>
         </div>
         <div class="footer-links">
+          <a href="#/product">Produkt</a>
+          <a href="#/features">Funkcje</a>
+          <a href="#/pricing">Cennik</a>
           <a href="#/privacy">Privacy</a>
           <a href="#/terms">Terms</a>
           <a href="#/cookies">Cookies</a>

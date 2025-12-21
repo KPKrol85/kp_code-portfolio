@@ -251,9 +251,13 @@ hr {
 }
 
 /* === 11 - Tables / Overflow Helpers === */
-.table-responsive {
+.table-responsive,
+.table-wrap,
+.scroll-x {
   width: 100%;
+  max-width: 100%;
   overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
 }
 
 /* === 12 - Responsive === */

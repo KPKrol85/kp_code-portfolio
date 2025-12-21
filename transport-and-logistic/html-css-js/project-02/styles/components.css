@@ -379,6 +379,8 @@ textarea:invalid:focus-visible {
   text-align: left;
   padding: 12px;
   border-bottom: 1px solid var(--border);
+  overflow-wrap: anywhere;
+  word-break: break-word;
 }
 .table th {
   color: var(--text-muted);
@@ -495,6 +497,9 @@ textarea:invalid:focus-visible {
   flex-wrap: wrap;
   gap: 10px;
   align-items: center;
+}
+.table-filter > * {
+  min-width: 0;
 }
 .chip {
   padding: 6px 10px;

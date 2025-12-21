@@ -175,11 +175,17 @@ body.drawer-open {
 .app-main {
   background: var(--bg);
   min-height: 100vh;
+  min-width: 0;
 }
 .app-content {
   padding: var(--space-4);
   display: grid;
   gap: var(--space-3);
+  min-width: 0;
+}
+.app-content > * {
+  min-width: 0;
+  max-width: 100%;
 }
 
 /* === 04 - Modules & Panels === */

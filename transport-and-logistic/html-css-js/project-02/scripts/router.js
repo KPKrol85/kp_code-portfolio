@@ -112,16 +112,19 @@ function routeTo(hash) {
       renderLogin();
       break;
     case "/about":
-      renderInfoPage({
-        title: "About FleetOps",
-        body: "<p>FleetOps to koncepcja centrum operacji transportu. Ten projekt to front-end demo inspirowane Linear.</p>",
-      });
+      renderAboutPage();
       break;
     case "/contact":
-      renderInfoPage({
-        title: "Contact",
-        body: "<p>Email: contact@fleetops.app<br/>Telefon: +48 600 200 100</p>",
-      });
+      renderContactPage();
+      break;
+    case "/product":
+      renderProductPage();
+      break;
+    case "/features":
+      renderFeaturesPage();
+      break;
+    case "/pricing":
+      renderPricingPage();
       break;
     case "/privacy":
       renderInfoPage({
