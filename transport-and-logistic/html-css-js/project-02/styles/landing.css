@@ -155,7 +155,7 @@
   align-items: center;
   gap: 10px;
   flex-wrap: wrap;
-  margin-top: 16px;
+  margin-top: var(--space-4);
 }
 
 .landing .hero-cta .button {
@@ -770,7 +770,7 @@ html[data-theme="dark"] .landing .testimonial:focus-within {
   margin: 0 auto;
 }
 .landing .faq h2 {
-  margin-bottom: var(--space-3);
+  margin-bottom: var(--space-4);
 }
 
 /* === 07 - Footer === */
@@ -780,7 +780,7 @@ html[data-theme="dark"] .landing .testimonial:focus-within {
   flex-wrap: wrap;
   gap: 12px;
   justify-content: space-between;
-  padding: var(--space-4) 0 var(--space-5);
+  padding: var(--space-5) 0 var(--space-5);
   color: var(--text-muted);
 }
 .landing .footer-links {
@@ -806,14 +806,14 @@ html[data-theme="dark"] .landing .testimonial:focus-within {
   max-width: 64ch;
 }
 
-.landing .section-tight {
-  padding: var(--space-5) 0;
+.landing.marketing .section-tight {
+  padding: var(--space-6) 0;
 }
 
 .landing .marketing-hero {
   display: grid;
   grid-template-columns: minmax(0, 1.2fr) minmax(0, 0.8fr);
-  gap: var(--space-4);
+  gap: var(--space-3);
   align-items: center;
 }
 .landing .marketing-hero__content,
@@ -823,7 +823,7 @@ html[data-theme="dark"] .landing .testimonial:focus-within {
 
 .landing .stat-grid {
   display: grid;
-  gap: 12px;
+  gap: var(--space-3);
 }
 .landing .stat-card {
   border: 1px solid var(--border);

@@ -511,7 +511,7 @@ function renderPricingPage() {
       <section class="section-tight">
         <p class="tag">Porownanie</p>
         <h2>Funkcje w planach</h2>
-        <div class="table-responsive" style="margin-top: var(--space-3);">
+        <div class="table-responsive">
           <table class="table">
             <thead>
               <tr>
