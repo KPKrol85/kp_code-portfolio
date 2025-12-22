@@ -1,6 +1,14 @@
 const format = {
   statusLabel(value) {
-    const map = { 'in-progress': 'In progress', delayed: 'Delayed', delivered: 'Delivered', pending: 'Pending', 'on-route': 'On route', available: 'Available', maintenance: 'Maintenance' };
+    const map = {
+      'in-progress': 'W realizacji',
+      delayed: 'Opóźnione',
+      delivered: 'Dostarczone',
+      pending: 'Oczekujące',
+      'on-route': 'W trasie',
+      available: 'Dostępny',
+      maintenance: 'Serwis'
+    };
     return map[value] || value;
   },
   badgeClass(status) {

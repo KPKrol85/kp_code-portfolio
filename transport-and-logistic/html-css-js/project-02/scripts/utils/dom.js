@@ -27,7 +27,7 @@ function emptyState({ title = "Brak danych", description = "", actionLabel = "",
 
   wrap.innerHTML = `
     <div class="empty-state__card">
-      <p class="tag">Empty</p>
+      <p class="tag">Brak</p>
       <h3 class="empty-state__title">${title}</h3>
       ${description ? `<p class="muted">${description}</p>` : ""}
       ${

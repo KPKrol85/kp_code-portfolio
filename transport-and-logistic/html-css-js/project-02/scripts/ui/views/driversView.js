@@ -1,24 +1,24 @@
 function driversView() {
   const root = dom.h("div");
-  root.appendChild(dom.h("div", "module-header", `<div><h3>Drivers</h3><p class="muted small">Status i ostatnie kursy</p></div>`));
+  root.appendChild(dom.h("div", "module-header", `<div><h3>Kierowcy</h3><p class="muted small">Status i ostatnie kursy</p></div>`));
 
   const filterBar = dom.h("div", "table-filter");
   const statusSelect = dom.h("select");
   statusSelect.innerHTML = `
-    <option value="all">Status: all</option>
-    <option value="available">Available</option>
-    <option value="on-route">On route</option>
-    <option value="maintenance">Maintenance</option>`;
+    <option value="all">Status: wszystkie</option>
+    <option value="available">Dostępny</option>
+    <option value="on-route">W trasie</option>
+    <option value="maintenance">Serwis</option>`;
   const searchInput = dom.h("input");
   searchInput.type = "search";
-  searchInput.placeholder = "Search driver";
+  searchInput.placeholder = "Szukaj kierowcy";
   [statusSelect, searchInput].forEach((el) => el.classList.add("input"));
   filterBar.appendChild(statusSelect);
   filterBar.appendChild(searchInput);
   root.appendChild(filterBar);
 
   const list = dom.h("div", "panel");
-  list.innerHTML = '<div class="table-responsive"><table class="table"><thead><tr><th>Name</th><th>Status</th><th>Last trip</th><th>Phone</th></tr></thead><tbody></tbody></table></div>';
+  list.innerHTML = '<div class="table-responsive"><table class="table"><thead><tr><th>Imię i nazwisko</th><th>Status</th><th>Ostatni kurs</th><th>Telefon</th></tr></thead><tbody></tbody></table></div>';
   root.appendChild(list);
 
   const tableWrap = list.querySelector(".table-responsive");
@@ -49,7 +49,7 @@ function driversView() {
     tableWrap.innerHTML = `
       <table class="table">
         <thead>
-          <tr><th>Name</th><th>Status</th><th>Last trip</th><th>Phone</th></tr>
+          <tr><th>Imię i nazwisko</th><th>Status</th><th>Ostatni kurs</th><th>Telefon</th></tr>
         </thead>
         <tbody>
           ${Array.from({ length: 6 })
@@ -85,10 +85,10 @@ function driversView() {
     body.innerHTML = `
       <p><strong>${driver.name}</strong></p>
       <p>Status: ${format.statusLabel(driver.status)}</p>
-      <p>Last trip: ${driver.lastTrip}</p>
-      <p>Phone: ${driver.phone}</p>
+      <p>Ostatni kurs: ${driver.lastTrip}</p>
+      <p>Telefon: ${driver.phone}</p>
     `;
-    Modal.open({ title: "Driver details", body });
+    Modal.open({ title: "Szczegóły kierowcy", body });
   };
 
   const saveFilters = () => {
@@ -101,7 +101,7 @@ function driversView() {
   const ensureTable = () => {
     if (list.querySelector("tbody")) return;
 
-    tableWrap.innerHTML = '<table class="table"><thead><tr><th>Name</th><th>Status</th><th>Last trip</th><th>Phone</th></tr></thead><tbody></tbody></table>';
+    tableWrap.innerHTML = '<table class="table"><thead><tr><th>Imię i nazwisko</th><th>Status</th><th>Ostatni kurs</th><th>Telefon</th></tr></thead><tbody></tbody></table>';
   };
 
   const renderRows = () => {
@@ -118,7 +118,7 @@ function driversView() {
       tableWrap.innerHTML = `
         <div class="empty-state">
           <div class="empty-state__card">
-            <p class="tag">Empty</p>
+            <p class="tag">Brak</p>
             <h3 class="empty-state__title">Brak wyników</h3>
             <p class="muted">Zmień filtry lub wyszukiwanie, żeby zobaczyć kierowców.</p>
             <button class="button secondary" id="clearDriversFilters" type="button">Wyczyść filtry</button>

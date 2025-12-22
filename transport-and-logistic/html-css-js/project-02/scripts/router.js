@@ -162,22 +162,22 @@ function routeTo(hash) {
       renderCookiesPage();
       break;
     case "/app":
-      renderAppShell("Overview", dashboardView());
+      renderAppShell("Przegląd", dashboardView());
       break;
     case "/app/orders":
-      renderAppShell("Orders", ordersView());
+      renderAppShell("Zlecenia", ordersView());
       break;
     case "/app/fleet":
-      renderAppShell("Fleet", fleetView());
+      renderAppShell("Flota", fleetView());
       break;
     case "/app/drivers":
-      renderAppShell("Drivers", driversView());
+      renderAppShell("Kierowcy", driversView());
       break;
     case "/app/reports":
-      renderAppShell("Reports", reportsView());
+      renderAppShell("Raporty", reportsView());
       break;
     case "/app/settings":
-      renderAppShell("Settings", settingsView());
+      renderAppShell("Ustawienia", settingsView());
       break;
     default:
       window.location.hash = "#/";

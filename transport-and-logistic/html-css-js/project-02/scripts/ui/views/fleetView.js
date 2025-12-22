@@ -1,17 +1,17 @@
 function fleetView() {
   const root = dom.h("div");
-  root.appendChild(dom.h("div", "module-header", `<div><h3>Fleet</h3><p class="muted small">Zarządzaj pojazdami</p></div>`));
+  root.appendChild(dom.h("div", "module-header", `<div><h3>Flota</h3><p class="muted small">Zarządzaj pojazdami</p></div>`));
 
   const filterBar = dom.h("div", "table-filter");
   const statusSelect = dom.h("select");
   statusSelect.innerHTML = `
-    <option value="all">Status: all</option>
-    <option value="available">Available</option>
-    <option value="on-route">On route</option>
-    <option value="maintenance">Maintenance</option>`;
+    <option value="all">Status: wszystkie</option>
+    <option value="available">Dostępny</option>
+    <option value="on-route">W trasie</option>
+    <option value="maintenance">Serwis</option>`;
   const searchInput = dom.h("input");
   searchInput.type = "search";
-  searchInput.placeholder = "Search plate / type";
+  searchInput.placeholder = "Szukaj rejestracji / typu";
   [statusSelect, searchInput].forEach((el) => el.classList.add("input"));
   filterBar.appendChild(statusSelect);
   filterBar.appendChild(searchInput);
@@ -89,13 +89,13 @@ function fleetView() {
   const openVehicle = (vehicle) => {
     const body = dom.h("div");
     body.innerHTML = `
-      <p><strong>Plate:</strong> ${vehicle.id}</p>
-      <p><strong>Type:</strong> ${vehicle.type}</p>
+      <p><strong>Rejestracja:</strong> ${vehicle.id}</p>
+      <p><strong>Typ:</strong> ${vehicle.type}</p>
       <p><strong>Status:</strong> ${format.statusLabel(vehicle.status)}</p>
-      <p><strong>Driver:</strong> ${vehicle.driver}</p>
-      <p><strong>Last check:</strong> ${format.dateShort(vehicle.lastCheck)}</p>
+      <p><strong>Kierowca:</strong> ${vehicle.driver}</p>
+      <p><strong>Ostatni przegląd:</strong> ${format.dateShort(vehicle.lastCheck)}</p>
     `;
-    Modal.open({ title: "Vehicle details", body });
+    Modal.open({ title: "Szczegóły pojazdu", body });
   };
 
   const saveFilters = () => {
@@ -116,7 +116,7 @@ function fleetView() {
       cards.innerHTML = `
         <div class="empty-state">
           <div class="empty-state__card">
-            <p class="tag">Empty</p>
+            <p class="tag">Brak</p>
             <h3 class="empty-state__title">Brak pojazdów</h3>
             <p class="muted">Zmień filtry lub wyszukiwanie, żeby zobaczyć pojazdy we flocie.</p>
             <button class="button secondary" id="clearFleetFilters" type="button">Wyczyść filtry</button>
@@ -144,9 +144,9 @@ function fleetView() {
           <span class="badge">${format.statusLabel(vehicle.status)}</span>
         </div>
         <p class="muted">${vehicle.type}</p>
-        <p class="small">Driver: ${vehicle.driver}</p>
-        <p class="small">Last check: ${format.dateShort(vehicle.lastCheck)}</p>
-        <button class="button ghost small">Details</button>
+        <p class="small">Kierowca: ${vehicle.driver}</p>
+        <p class="small">Ostatni przegląd: ${format.dateShort(vehicle.lastCheck)}</p>
+        <button class="button ghost small">Szczegóły</button>
       `;
       card.querySelector("button").addEventListener("click", () => openVehicle(vehicle));
       cards.appendChild(card);

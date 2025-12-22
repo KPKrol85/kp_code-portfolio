@@ -2,26 +2,26 @@ function ordersView() {
   const root = dom.h("div");
 
   const header = dom.h("div", "module-header");
-  header.innerHTML = `<div><h3>Orders</h3><p class="muted small">Monitoruj status dostaw</p></div><div class="toolbar"><button class="button secondary" id="exportOrders">Export CSV</button></div>`;
+  header.innerHTML = `<div><h3>Zlecenia</h3><p class="muted small">Monitoruj status dostaw</p></div><div class="toolbar"><button class="button secondary" id="exportOrders">Eksportuj CSV</button></div>`;
   root.appendChild(header);
 
   const filterBar = dom.h("div", "table-filter");
   const statusSelect = dom.h("select");
   statusSelect.innerHTML = `
-    <option value="all">Status: all</option>
-    <option value="in-progress">In progress</option>
-    <option value="delayed">Delayed</option>
-    <option value="delivered">Delivered</option>
-    <option value="pending">Pending</option>`;
+    <option value="all">Status: wszystkie</option>
+    <option value="in-progress">W realizacji</option>
+    <option value="delayed">Opóźnione</option>
+    <option value="delivered">Dostarczone</option>
+    <option value="pending">Oczekujące</option>`;
   const prioritySelect = dom.h("select");
   prioritySelect.innerHTML = `
-    <option value="all">Priority: all</option>
-    <option value="high">High</option>
-    <option value="medium">Medium</option>
-    <option value="low">Low</option>`;
+    <option value="all">Priorytet: wszystkie</option>
+    <option value="high">Wysoki</option>
+    <option value="medium">Średni</option>
+    <option value="low">Niski</option>`;
   const searchInput = dom.h("input");
   searchInput.type = "search";
-  searchInput.placeholder = "Search client / route";
+  searchInput.placeholder = "Szukaj klienta / trasy";
   [statusSelect, prioritySelect, searchInput].forEach((el) => el.classList.add("input"));
   filterBar.appendChild(statusSelect);
   filterBar.appendChild(prioritySelect);
@@ -40,6 +40,7 @@ function ordersView() {
   let isLoading = true;
   let filterTimer = null;
   const FILTER_DELAY = 160;
+  const priorityLabel = (value) => ({ high: "Wysoki", medium: "Średni", low: "Niski" }[value] || value);
 
   const renderOrdersSkeleton = () => {
     tableWrap.innerHTML = `
@@ -89,7 +90,7 @@ function ordersView() {
       tableWrap.innerHTML = `
         <div class="empty-state">
           <div class="empty-state__card">
-            <p class="tag">Empty</p>
+            <p class="tag">Brak</p>
             <h3 class="empty-state__title">Brak wyników</h3>
             <p class="muted">Zmień filtry lub wyszukiwanie, żeby zobaczyć zlecenia.</p>
             <button class="button secondary" id="clearOrdersFilters" type="button">Wyczyść filtry</button>
@@ -117,11 +118,11 @@ function ordersView() {
         <td>${order.route}</td>
         <td><span class="${format.badgeClass(order.status)}">${format.statusLabel(order.status)}</span></td>
         <td>${order.eta}</td>
-        <td><span class="badge">${order.priority}</span></td>
+        <td><span class="badge">${priorityLabel(order.priority)}</span></td>
       </tr>`
     );
 
-    tableWrap.innerHTML = Table.render(["ID", "Client", "Route", "Status", "ETA", "Priority"], renderedRows);
+    tableWrap.innerHTML = Table.render(["ID", "Klient", "Trasa", "Status", "ETA", "Priorytet"], renderedRows);
 
     tableWrap.querySelectorAll("tr.order-row").forEach((row) => {
       row.addEventListener("click", () => openOrder(row.dataset.id));
@@ -133,14 +134,14 @@ function ordersView() {
     if (!order) return;
     const body = dom.h("div");
     body.innerHTML = `
-      <p><strong>Client:</strong> ${order.client}</p>
-      <p><strong>Route:</strong> ${order.route}</p>
+      <p><strong>Klient:</strong> ${order.client}</p>
+      <p><strong>Trasa:</strong> ${order.route}</p>
       <p><strong>Status:</strong> ${format.statusLabel(order.status)}</p>
       <p><strong>ETA:</strong> ${order.eta}</p>
-      <p><strong>Priority:</strong> ${order.priority}</p>
-      <p class="muted small">Last update: ${format.dateShort(order.updated)}</p>
+      <p><strong>Priorytet:</strong> ${priorityLabel(order.priority)}</p>
+      <p class="muted small">Ostatnia aktualizacja: ${format.dateShort(order.updated)}</p>
     `;
-    Modal.open({ title: `Order ${order.id}`, body });
+    Modal.open({ title: `Zlecenie ${order.id}`, body });
   };
 
   const debounce = (fn, wait = 250) => {
@@ -193,7 +194,7 @@ function ordersView() {
     a.download = "fleetops-orders.csv";
     a.click();
     URL.revokeObjectURL(url);
-    Toast.show("CSV exported", "success");
+    Toast.show("CSV wyeksportowano", "success");
   };
 
   const exportBtn = header.querySelector("#exportOrders");

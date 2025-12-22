@@ -35,12 +35,12 @@ function renderAppShell(viewTitle, contentNode) {
 
   const appTopbar = dom.h("div", "app-topbar");
   appTopbar.innerHTML = `
-    <a class="app-topbar__brand logo flex" href="#/app" aria-label="FleetOps — Dashboard" data-scroll-top="app">
+    <a class="app-topbar__brand logo flex" href="#/app" aria-label="FleetOps — Panel" data-scroll-top="app">
       <img src="assets/icons/logo-02.svg" alt="FleetOps logo" width="26" height="26" />
       <span>FleetOps</span>
     </a>
     <div class="app-topbar__actions">
-      <button class="button ghost" id="themeToggleMobile" type="button" aria-label="Toggle theme">
+      <button class="button ghost" id="themeToggleMobile" type="button" aria-label="Przełącz motyw">
         <svg class="theme-toggle__icon theme-toggle__icon--light" width="18" height="18" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
           <circle cx="12" cy="12" r="4" fill="currentColor"></circle>
           <path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41" stroke="currentColor" stroke-width="2" stroke-linecap="round"></path>
@@ -65,19 +65,19 @@ function renderAppShell(viewTitle, contentNode) {
   sidebar.setAttribute("id", "appDrawer");
   sidebar.setAttribute("aria-hidden", "true");
   sidebar.innerHTML = `
-    <a class="logo flex" href="#/app" aria-label="FleetOps — Dashboard" data-scroll-top="app">
+    <a class="logo flex" href="#/app" aria-label="FleetOps — Panel" data-scroll-top="app">
       <img src="assets/icons/logo-02.svg" alt="FleetOps logo" width="30" height="30" />
       <span>FleetOps</span>
     </a>
     <nav aria-label="Aplikacja">
-      <a href="#/app" data-route="/app">Overview</a>
-      <a href="#/app/orders" data-route="/app/orders">Orders</a>
-      <a href="#/app/fleet" data-route="/app/fleet">Fleet</a>
-      <a href="#/app/drivers" data-route="/app/drivers">Drivers</a>
-      <a href="#/app/reports" data-route="/app/reports">Reports</a>
-      <a href="#/app/settings" data-route="/app/settings">Settings</a>
+      <a href="#/app" data-route="/app">Przegląd</a>
+      <a href="#/app/orders" data-route="/app/orders">Zlecenia</a>
+      <a href="#/app/fleet" data-route="/app/fleet">Flota</a>
+      <a href="#/app/drivers" data-route="/app/drivers">Kierowcy</a>
+      <a href="#/app/reports" data-route="/app/reports">Raporty</a>
+      <a href="#/app/settings" data-route="/app/settings">Ustawienia</a>
     </nav>
-    <div class="muted small">Status: ${auth.user ? auth.user.email : "demo user"}</div>
+    <div class="muted small">Użytkownik: ${auth.user ? auth.user.email : "użytkownik demo"}</div>
   `;
   shell.appendChild(sidebar);
 
@@ -86,10 +86,10 @@ function renderAppShell(viewTitle, contentNode) {
   topbar.innerHTML = `
     <div class="topbar-left">
       <h2>${viewTitle}</h2>
-      <div class="search"><input aria-label="Search" type="search" placeholder="Search..." /></div>
+      <div class="search"><input aria-label="Szukaj" type="search" placeholder="Szukaj..." /></div>
     </div>
     <div class="topbar-actions">
-      <button class="button ghost" id="themeToggle" type="button" aria-label="Toggle theme">
+      <button class="button ghost" id="themeToggle" type="button" aria-label="Przełącz motyw">
         <svg class="theme-toggle__icon theme-toggle__icon--light" width="18" height="18" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
           <circle cx="12" cy="12" r="4" fill="currentColor"></circle>
           <path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41" stroke="currentColor" stroke-width="2" stroke-linecap="round"></path>
@@ -98,14 +98,14 @@ function renderAppShell(viewTitle, contentNode) {
           <path d="M20 12.5A7.5 7.5 0 1 1 11.5 4a6 6 0 0 0 8.5 8.5Z" fill="currentColor"></path>
         </svg>
       </button>
-      <button class="button ghost" aria-label="Notifications" type="button">🔔</button>
+      <button class="button ghost" aria-label="Powiadomienia" type="button">Powiadomienia</button>
       <div class="dropdown">
         <button class="button ghost avatar" id="userMenuBtn" type="button">${initials}</button>
         <div class="dropdown-menu" id="userMenu" role="menu">
-          <div class="dropdown-item muted">${auth.user ? auth.user.name : "Demo user"}</div>
-          <div class="dropdown-item"><a href="#/about">About</a></div>
-          <div class="dropdown-item"><a href="#/privacy">Privacy</a></div>
-          <button class="dropdown-item" id="logoutBtn" type="button">Logout</button>
+          <div class="dropdown-item muted">${auth.user ? auth.user.name : "Użytkownik demo"}</div>
+          <div class="dropdown-item"><a href="#/about">O projekcie</a></div>
+          <div class="dropdown-item"><a href="#/privacy">Polityka prywatności</a></div>
+          <button class="dropdown-item" id="logoutBtn" type="button">Wyloguj się</button>
         </div>
       </div>
     </div>
