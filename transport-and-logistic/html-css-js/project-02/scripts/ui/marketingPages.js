@@ -5,12 +5,15 @@ function setMarketingTheme() {
 }
 
 function setPageMeta(title, description) {
-  document.title = `${title} | FleetOps`;
+  const normalizedTitle = title.includes("|") ? title : `${title} | FleetOps`;
+  document.title = normalizedTitle;
   const meta = document.querySelector('meta[name="description"]');
   if (meta && description) meta.setAttribute("content", description);
 }
 
 function initMarketingShell() {
+  bindLogoScroll("home");
+
   const tBtn = document.getElementById("themeToggleLanding");
   if (tBtn) {
     tBtn.addEventListener("click", () => {
@@ -25,13 +28,43 @@ function initMarketingShell() {
   const navBackdrop = document.querySelector(".nav-backdrop");
   let navOpen = false;
 
+  const getDrawerFocusables = () => {
+    if (!navDrawer) return [];
+    return Array.from(
+      navDrawer.querySelectorAll(
+        'a[href], button:not([disabled]), [tabindex]:not([tabindex="-1"])'
+      )
+    );
+  };
+
+  const trapDrawerFocus = (event) => {
+    if (!navOpen || event.key !== "Tab") return;
+    const focusables = getDrawerFocusables();
+    if (!focusables.length) return;
+
+    const first = focusables[0];
+    const last = focusables[focusables.length - 1];
+    const active = document.activeElement;
+
+    if (event.shiftKey) {
+      if (active === first || !navDrawer.contains(active)) {
+        event.preventDefault();
+        last.focus();
+      }
+    } else if (active === last) {
+      event.preventDefault();
+      first.focus();
+    }
+  };
+
   const openNav = () => {
     if (!navToggle || !navDrawer) return;
     document.documentElement.classList.add("is-nav-open");
     navToggle.setAttribute("aria-expanded", "true");
     navOpen = true;
     window.requestAnimationFrame(() => {
-      const firstItem = navDrawer.querySelector("a, button");
+      const focusables = getDrawerFocusables();
+      const firstItem = focusables[0];
       if (firstItem) firstItem.focus();
     });
   };
@@ -71,7 +104,9 @@ function initMarketingShell() {
   document.addEventListener("keydown", (event) => {
     if (event.key === "Escape" && navOpen) {
       closeNav();
+      return;
     }
+    trapDrawerFocus(event);
   });
 
   const navbar = document.querySelector(".landing .navbar");
@@ -102,6 +137,30 @@ function initMarketingShell() {
   document.querySelectorAll(".accordion").forEach((el) => Accordion.init(el));
 }
 
+function bindLogoScroll(kind, getContainer) {
+  const links = document.querySelectorAll(`[data-scroll-top="${kind}"]`);
+  if (!links.length) return;
+
+  links.forEach((link) => {
+    link.addEventListener("click", (event) => {
+      const targetHash = kind === "app" ? "#/app" : "#/";
+      const currentHash = window.location.hash || "#/";
+      if (currentHash === targetHash) {
+        event.preventDefault();
+      }
+
+      window.setTimeout(() => {
+        const container = getContainer ? getContainer() : null;
+        if (container && typeof container.scrollTo === "function") {
+          container.scrollTo({ top: 0, left: 0, behavior: "smooth" });
+        } else {
+          window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
+        }
+      }, 0);
+    });
+  });
+}
+
 function renderMarketingShell({ title, description, eyebrow, lead, body }) {
   const app = document.getElementById("app");
   if (!app) return;
@@ -112,10 +171,10 @@ function renderMarketingShell({ title, description, eyebrow, lead, body }) {
   app.innerHTML = `
     <div class="landing marketing">
       <header class="container navbar" role="banner">
-        <div class="logo flex" aria-label="FleetOps">
+        <a class="logo flex" href="#/" aria-label="FleetOps — Strona główna" data-scroll-top="home">
           <img src="assets/icons/logo-02.svg" alt="FleetOps logo" width="52" height="52" />
           <span>FleetOps</span>
-        </div>
+        </a>
         <nav class="nav" aria-label="Nawigacja glowna">
           <button class="button ghost nav-toggle" id="navToggle" type="button" aria-expanded="false" aria-controls="mobileNav" aria-label="Przelacz nawigacje">
             <img class="nav-toggle__icon nav-toggle__icon--light" src="assets/icons/hamburger-light.svg" alt="" aria-hidden="true" />
@@ -131,7 +190,7 @@ function renderMarketingShell({ title, description, eyebrow, lead, body }) {
               <li><a href="#/contact">Kontakt</a></li>
               <li><a class="button ghost" href="#/login">Zaloguj sie</a></li>
               <li>
-                <button class="button ghost" id="themeToggleLanding" type="button" aria-label="Toggle theme">
+                <button class="button ghost" id="themeToggleLanding" type="button" aria-label="Przelacz motyw">
                   <svg class="theme-toggle__icon theme-toggle__icon--light" width="18" height="18" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
                     <circle cx="12" cy="12" r="4" fill="currentColor"></circle>
                     <path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41" stroke="currentColor" stroke-width="2" stroke-linecap="round"></path>
@@ -168,9 +227,9 @@ function renderMarketingShell({ title, description, eyebrow, lead, body }) {
           <a href="#/pricing">Cennik</a>
           <a href="#/about">O nas</a>
           <a href="#/contact">Kontakt</a>
-          <a href="#/privacy">Privacy</a>
-          <a href="#/terms">Terms</a>
-          <a href="#/cookies">Cookies</a>
+          <a href="#/privacy">Polityka prywatnosci</a>
+          <a href="#/terms">Regulamin</a>
+          <a href="#/cookies">Polityka cookies</a>
         </div>
       </footer>
     </div>
@@ -184,31 +243,31 @@ function renderProductPage() {
     title: "Produkt FleetOps",
     eyebrow: "Produkt",
     lead: "Jeden system do zarzadzania zleceniami, flota i kierowcami. Klarowny obraz operacji, mniej recznej pracy, szybsze decyzje.",
-    description: "FleetOps to platforma do zarzadzania transportem: orders, fleet, drivers, raporty i SLA w jednym panelu.",
+    description: "FleetOps to platforma do zarzadzania transportem: zlecenia, flota, kierowcy, raporty i SLA w jednym panelu.",
     body: `
       <section class="section-tight">
         <div class="marketing-hero">
           <div class="marketing-hero__content">
             <h2>Operacje w czasie rzeczywistym</h2>
-            <p>Widoki Orders, Fleet i Drivers synchronizuja statusy, ETA i alerty. Zespol operacyjny ma jedno zrodlo prawdy.</p>
+            <p>Widoki Zlecen, Floty i Kierowcow synchronizuja statusy, ETA i alerty. Zespol operacyjny ma jedno zrodlo prawdy.</p>
             <div class="hero-cta">
               <a class="button primary" href="#/login">Umow demo</a>
-              <a class="button secondary" href="#/app">Zobacz dashboard</a>
+              <a class="button secondary" href="#/app">Zobacz panel</a>
             </div>
           </div>
           <div class="marketing-hero__panel">
-            <p class="tag">Trust metrics</p>
+            <p class="tag">Wskazniki zaufania</p>
             <div class="stat-grid">
               <div class="stat-card">
-                <p class="muted small">Accuracy ETA</p>
+                <p class="muted small">Dokladnosc ETA</p>
                 <h3>96.8%</h3>
               </div>
               <div class="stat-card">
-                <p class="muted small">SLA uptime</p>
+                <p class="muted small">Dostepnosc SLA</p>
                 <h3>99.6%</h3>
               </div>
               <div class="stat-card">
-                <p class="muted small">Alert response</p>
+                <p class="muted small">Reakcja na alert</p>
                 <h3>12 min</h3>
               </div>
             </div>
@@ -230,7 +289,7 @@ function renderProductPage() {
           </div>
           <div class="marketing-card">
             <h3>3. Monitoruj</h3>
-            <p>Live statusy, ETA i timeline serwisow w jednym widoku.</p>
+            <p>Statusy na zywo, ETA i os czasu serwisow w jednym widoku.</p>
           </div>
           <div class="marketing-card">
             <h3>4. Ulepszaj</h3>
@@ -244,19 +303,19 @@ function renderProductPage() {
         <h2>Najwazniejsze obszary pod kontrola</h2>
         <div class="grid marketing-grid" style="margin-top: var(--space-3);">
           <div class="marketing-card">
-            <h3>Orders</h3>
+            <h3>Zlecenia</h3>
             <p>Statusy, priorytety, ETA, alerty opoznien i szybkie wyszukiwanie tras.</p>
           </div>
           <div class="marketing-card">
-            <h3>Fleet</h3>
+            <h3>Flota</h3>
             <p>Przeglady, zdarzenia, koszty i harmonogramy serwisowe floty.</p>
           </div>
           <div class="marketing-card">
-            <h3>Drivers</h3>
+            <h3>Kierowcy</h3>
             <p>Widok dyspozycyjnosci, ostatnie kursy, telefon i przypisania.</p>
           </div>
           <div class="marketing-card">
-            <h3>Reports</h3>
+            <h3>Raporty</h3>
             <p>KPI, SLA, wydajnosc i zgodnosc z wymaganiami klienta.</p>
           </div>
         </div>
@@ -268,7 +327,7 @@ function renderProductPage() {
         <div class="grid marketing-grid" style="margin-top: var(--space-3);">
           <div class="marketing-card">
             <h3>GPS i telematyka</h3>
-            <p>Live pozycje, predkosci i przestoje w jednej osi czasu.</p>
+            <p>Pozycje na zywo, predkosci i przestoje w jednej osi czasu.</p>
           </div>
           <div class="marketing-card">
             <h3>ERP / TMS</h3>
@@ -287,7 +346,7 @@ function renderProductPage() {
         <div class="grid marketing-grid" style="margin-top: var(--space-3);">
           <div class="marketing-card">
             <h3>RBAC</h3>
-            <p>Role: Dispatcher, Fleet Manager, Operations Lead, Viewer.</p>
+            <p>Role: Dyspozytor, Menedzer floty, Lider operacji, Podglad.</p>
           </div>
           <div class="marketing-card">
             <h3>Audyt zmian</h3>
@@ -319,12 +378,12 @@ function renderFeaturesPage() {
     title: "Funkcje FleetOps",
     eyebrow: "Funkcje",
     lead: "Wszystko, czego potrzebuje zespol operacyjny: dispatch, monitoring, kierowcy, analityka i compliance.",
-    description: "Lista funkcji FleetOps: dispatch, monitoring, drivers, analytics i compliance dla zespolow transportowych.",
+    description: "Lista funkcji FleetOps: dyspozycja, monitoring, kierowcy, analityka i zgodnosc dla zespolow transportowych.",
     body: `
       <section class="section-tight">
         <div class="grid marketing-grid">
           <div class="feature-group">
-            <h3>Dispatch</h3>
+            <h3>Dyspozycja</h3>
             <ul class="list-check">
               <li>Przypisania kursow i priorytetow</li>
               <li>Widok statusow i szybkie filtry</li>
@@ -342,7 +401,7 @@ function renderFeaturesPage() {
             </ul>
           </div>
           <div class="feature-group">
-            <h3>Drivers</h3>
+            <h3>Kierowcy</h3>
             <ul class="list-check">
               <li>Dyspozycyjnosc i ostatnie kursy</li>
               <li>Kontakt do kierowcy z panelu</li>
@@ -351,7 +410,7 @@ function renderFeaturesPage() {
             </ul>
           </div>
           <div class="feature-group">
-            <h3>Analytics</h3>
+            <h3>Analityka</h3>
             <ul class="list-check">
               <li>Raporty KPI i SLA</li>
               <li>Eksport CSV do klienta</li>
@@ -360,7 +419,7 @@ function renderFeaturesPage() {
             </ul>
           </div>
           <div class="feature-group">
-            <h3>Compliance</h3>
+            <h3>Zgodnosc</h3>
             <ul class="list-check">
               <li>Audit log zmian statusow</li>
               <li>Role i uprawnienia RBAC</li>
@@ -376,7 +435,7 @@ function renderFeaturesPage() {
         <h2>Branze, ktore wspiera FleetOps</h2>
         <div class="grid marketing-grid" style="margin-top: var(--space-3);">
           <div class="marketing-card">
-            <h3>SME logistics</h3>
+            <h3>Logistyka MSP</h3>
             <p>Kompletny panel do operacji bez kosztownych wdrozen enterprise.</p>
           </div>
           <div class="marketing-card">
@@ -384,7 +443,7 @@ function renderFeaturesPage() {
             <p>Wiele flot, wielu kierowcow, jeden standard SLA i raportowania.</p>
           </div>
           <div class="marketing-card">
-            <h3>E-commerce i retail</h3>
+            <h3>Handel internetowy i detaliczny</h3>
             <p>Widocznosc dostaw last mile i SLA dla kluczowych klientow.</p>
           </div>
         </div>
@@ -409,7 +468,7 @@ function renderPricingPage() {
     title: "Cennik FleetOps",
     eyebrow: "Cennik",
     lead: "Proste plany dla zespolow operacyjnych. Bez ukrytych oplat, z jasnym SLA i wsparciem.",
-    description: "Cennik FleetOps: Start, Growth i Enterprise z porownaniem funkcji.",
+    description: "Cennik FleetOps: Start, Rozwoj i Korporacyjny z porownaniem funkcji.",
     body: `
       <section class="section-tight">
         <div class="pricing">
@@ -418,25 +477,25 @@ function renderPricingPage() {
             <div class="price">199 PLN</div>
             <p class="muted small">miesiecznie, do 15 pojazdow</p>
             <ul class="list-check">
-              <li>Orders + Fleet</li>
+              <li>Zlecenia + Flota</li>
               <li>Podstawowe alerty</li>
               <li>Raporty CSV</li>
             </ul>
             <a class="button secondary" href="#/login">Zacznij za darmo</a>
           </div>
           <div class="price-card featured">
-            <div class="badge">Growth</div>
+            <div class="badge">Rozwoj</div>
             <div class="price">499 PLN</div>
             <p class="muted small">miesiecznie, do 60 pojazdow</p>
             <ul class="list-check">
               <li>Pelny monitoring ETA</li>
               <li>SLA alerts + raporty</li>
-              <li>Drivers + Roles</li>
+              <li>Kierowcy + Role</li>
             </ul>
             <a class="button primary" href="#/contact">Umow demo</a>
           </div>
           <div class="price-card">
-            <div class="badge">Enterprise</div>
+            <div class="badge">Korporacyjny</div>
             <div class="price">Indywidualnie</div>
             <p class="muted small">dla flot 60+ pojazdow</p>
             <ul class="list-check">
@@ -458,17 +517,17 @@ function renderPricingPage() {
               <tr>
                 <th>Funkcja</th>
                 <th>Start</th>
-                <th>Growth</th>
-                <th>Enterprise</th>
+                <th>Rozwoj</th>
+                <th>Korporacyjny</th>
               </tr>
             </thead>
             <tbody>
-              <tr><td>Orders + Fleet</td><td>Tak</td><td>Tak</td><td>Tak</td></tr>
+              <tr><td>Zlecenia + Flota</td><td>Tak</td><td>Tak</td><td>Tak</td></tr>
               <tr><td>Monitoring ETA</td><td>Podstawowy</td><td>Zaawansowany</td><td>Zaawansowany</td></tr>
-              <tr><td>Drivers + dyspozycyjnosc</td><td>Nie</td><td>Tak</td><td>Tak</td></tr>
-              <tr><td>Raporty SLA</td><td>Podstawowe</td><td>Rozszerzone</td><td>Custom</td></tr>
+              <tr><td>Kierowcy + dyspozycyjnosc</td><td>Nie</td><td>Tak</td><td>Tak</td></tr>
+              <tr><td>Raporty SLA</td><td>Podstawowe</td><td>Rozszerzone</td><td>Indywidualnie</td></tr>
               <tr><td>Integracje ERP / TMS</td><td>Nie</td><td>Opcja</td><td>Tak</td></tr>
-              <tr><td>SLA + wsparcie</td><td>Email</td><td>Business</td><td>Dedicated</td></tr>
+              <tr><td>SLA + wsparcie</td><td>E-mail</td><td>Biznes</td><td>Dedykowane</td></tr>
             </tbody>
           </table>
         </div>
@@ -585,8 +644,8 @@ function renderContactPage() {
                 <input class="input" name="name" type="text" required minlength="3" placeholder="Jan Kowalski" />
               </label>
               <label class="form-control">
-                <span class="label">Email sluzbowy</span>
-                <input class="input" name="email" type="email" required placeholder="you@company.com" />
+                <span class="label">E-mail sluzbowy</span>
+                <input class="input" name="email" type="email" required placeholder="twoja@firma.pl" />
               </label>
               <label class="form-control">
                 <span class="label">Wielkosc floty</span>
@@ -610,23 +669,24 @@ function renderContactPage() {
           </div>
           <div class="marketing-card">
             <h2>Dane kontaktowe</h2>
-            <p class="muted">FleetOps Operations</p>
+            <p class="muted">Kontakt do twórcy projektu</p>
             <div class="grid" style="gap: 10px; margin-top: var(--space-2);">
               <div>
-                <p class="muted small">Email</p>
-                <p>hello@fleetops.app</p>
+                <p class="muted small">E-mail</p>
+                <p>kontakt@kp-code.pl</p>
               </div>
               <div>
                 <p class="muted small">Telefon</p>
-                <p>+48 600 200 100</p>
+                <p>+48 533 537 091</p>
               </div>
               <div>
-                <p class="muted small">Godziny</p>
-                <p>Mon-Fri, 9:00-17:00 CET</p>
+                <p class="muted small">Adres</p>
+                <p>Marynarki Wojennej 12/3<br />33-100 Tarnow<br />Polska</p>
               </div>
             </div>
             <div class="card-soft" style="margin-top: var(--space-3);">
-              <p class="muted small">SLA, integracje i onboarding omawiamy w 30-min call.</p>
+              <p class="muted small">FleetOps to projekt demonstracyjny (portfolio). Kontakt dotyczy twórcy projektu.</p>
+              <p class="muted small">Projekt i interfejs: Kamil Krol (kp_code_).</p>
               <a class="button secondary" href="#/pricing" style="margin-top: var(--space-2);">Zobacz cennik</a>
             </div>
           </div>
@@ -634,7 +694,7 @@ function renderContactPage() {
       </section>
 
       <section class="section-tight">
-        <p class="tag">FAQ</p>
+        <p class="tag">Pytania</p>
         <h2>Najczestsze pytania</h2>
         <div class="accordion" id="faq" style="margin-top: var(--space-3);">
           <div class="accordion-item">
@@ -668,8 +728,288 @@ function renderContactPage() {
   });
 }
 
+function renderPrivacyPage() {
+  renderMarketingShell({
+    title: "Polityka prywatnosci",
+    eyebrow: "Polityka prywatnosci",
+    lead: "Szanujemy prywatnosc uzytkownikow wersji demonstracyjnej FleetOps. Ponizej opisujemy zakres danych i sposob ich przetwarzania w modelu demo.",
+    description: "Polityka prywatnosci FleetOps (wersja demo). Dane lokalne, brak backendu i jasne zasady przetwarzania informacji.",
+    body: `
+      <section class="section-tight">
+        <p class="tag">Informacja o wersji demo</p>
+        <h2>Serwis demonstracyjny bez backendu</h2>
+        <div class="grid marketing-grid" style="margin-top: var(--space-3);">
+          <div class="marketing-card">
+            <h3>Brak kont produkcyjnych</h3>
+            <p>FleetOps to portfolio / demo. Nie tworzymy kont w chmurze ani nie udostepniamy panelu klientom komercyjnym.</p>
+          </div>
+          <div class="marketing-card">
+            <h3>Dane w przegladarce</h3>
+            <p>Wszelkie dane sa zapisywane lokalnie w przegladarce uzytkownika (localStorage) i nie sa wysylane na serwer.</p>
+          </div>
+          <div class="marketing-card">
+            <h3>Brak integracji z osobami trzecimi</h3>
+            <p>Demo nie przekazuje danych do zewnetrznych systemow poza standardowymi narzedziami przegladarki.</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="section-tight">
+        <p class="tag">Administrator</p>
+        <h2>Kto jest administratorem danych</h2>
+        <div class="marketing-card">
+          <p>Administratorem danych w ramach wersji demonstracyjnej jest wlasciciel projektu:</p>
+          <div class="grid" style="gap: 8px; margin-top: var(--space-2);">
+            <div><strong>Adres:</strong> Marynarki Wojennej 12/3, 33-100 Tarnow, Polska</div>
+            <div><strong>Telefon:</strong> +48 533 537 091</div>
+            <div><strong>E-mail:</strong> kontakt@kp-code.pl</div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section-tight">
+        <p class="tag">Zakres danych</p>
+        <h2>Jakie dane moga wystapic w demo</h2>
+        <div class="grid marketing-grid" style="margin-top: var(--space-3);">
+          <div class="marketing-card">
+            <h3>Formularz kontaktowy</h3>
+            <ul class="list-check">
+              <li>Imie i nazwisko</li>
+              <li>E-mail sluzbowy</li>
+              <li>Wiadomosc i wielkosc floty</li>
+            </ul>
+            <p class="muted small">Formularz dziala lokalnie i nie wysyla danych na serwer.</p>
+          </div>
+          <div class="marketing-card">
+            <h3>Dane demo w aplikacji</h3>
+            <ul class="list-check">
+              <li>Mockowe zlecenia, pojazdy i kierowcy</li>
+              <li>Ustawienia SLA i statusy operacyjne</li>
+              <li>Preferencje uzytkownika (np. motyw)</li>
+            </ul>
+          </div>
+          <div class="marketing-card">
+            <h3>LocalStorage</h3>
+            <ul class="list-check">
+              <li>Preferencje interfejsu</li>
+              <li>Dane demo wygenerowane lokalnie</li>
+              <li>Ostatnio otwarte widoki</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <section class="section-tight">
+        <p class="tag">Prawa uzytkownika</p>
+        <h2>Kontrola nad danymi w wersji demo</h2>
+        <div class="grid marketing-grid" style="margin-top: var(--space-3);">
+          <div class="marketing-card">
+            <h3>Dostep i poprawa</h3>
+            <p>Masz prawo uzyskac informacje o danych zapisanych lokalnie. W wersji demo wystarczy przejrzec dane w przegladarce.</p>
+          </div>
+          <div class="marketing-card">
+            <h3>Usuniecie danych</h3>
+            <p>Mozesz wyczyscic localStorage w ustawieniach przegladarki, aby usunac dane demo i preferencje.</p>
+          </div>
+          <div class="marketing-card">
+            <h3>Kontakt z administratorem</h3>
+            <p>Jesli potrzebujesz wsparcia lub potwierdzenia usuniecia danych, napisz na kontakt@kp-code.pl.</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="section-tight">
+        <p class="tag">Bezpieczenstwo</p>
+        <h2>Jak dbamy o bezpieczenstwo</h2>
+        <div class="marketing-card">
+          <p>Wersja demo dziala wylacznie po stronie klienta. Nie przechowujemy danych na serwerze, nie profilujemy i nie sprzedajemy informacji. Stosujemy podstawowe praktyki bezpieczenstwa: aktualne zaleznosci, brak publicznych endpointow i minimalny zakres danych.</p>
+        </div>
+      </section>
+
+      <section class="section-tight cta-panel">
+        <div>
+          <h2>Masz pytania o prywatnosc?</h2>
+          <p>Skontaktuj sie z nami, odpowiemy w sprawie wersji demo FleetOps.</p>
+        </div>
+        <div class="hero-cta">
+          <a class="button primary" href="#/contact">Kontakt</a>
+          <a class="button secondary" href="#/app">Przejdz do demo</a>
+        </div>
+      </section>
+    `,
+  });
+}
+
+function renderTermsPage() {
+  renderMarketingShell({
+    title: "Regulamin",
+    eyebrow: "Regulamin",
+    lead: "Regulamin okresla zasady korzystania z demonstracyjnej wersji FleetOps. To aplikacja portfolio bez backendu i bez gwarancji produkcyjnej.",
+    description: "Regulamin korzystania z wersji demo FleetOps. Zasady uzytkowania, ograniczenia odpowiedzialnosci i prawa autorskie.",
+    body: `
+      <section class="section-tight">
+        <p class="tag">Zakres</p>
+        <h2>Charakter uslugi</h2>
+        <div class="grid marketing-grid" style="margin-top: var(--space-3);">
+          <div class="marketing-card">
+            <h3>Demo / portfolio</h3>
+            <p>FleetOps to pokazowa aplikacja SaaS stworzona w celach prezentacyjnych. Nie jest to komercyjny produkt produkcyjny.</p>
+          </div>
+          <div class="marketing-card">
+            <h3>Brak gwarancji SLA</h3>
+            <p>Nie gwarantujemy ciaglosci dzialania, kompletnosci funkcji ani dostepnosci okreslonych danych.</p>
+          </div>
+          <div class="marketing-card">
+            <h3>Tryb lokalny</h3>
+            <p>Dane demo zapisywane sa lokalnie w przegladarce, bez synchronizacji z serwerem.</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="section-tight">
+        <p class="tag">Zasady korzystania</p>
+        <h2>Co jest dozwolone</h2>
+        <div class="marketing-card">
+          <ul class="list-check">
+            <li>Korzystanie z demo w celach edukacyjnych i prezentacyjnych.</li>
+            <li>Przegladanie interfejsu, funkcji i przykladowych danych.</li>
+            <li>Kontakt w celu omowienia wspolpracy lub wdrozenia.</li>
+          </ul>
+        </div>
+      </section>
+
+      <section class="section-tight">
+        <p class="tag">Naduzycia</p>
+        <h2>Czego zabrania regulamin</h2>
+        <div class="grid marketing-grid" style="margin-top: var(--space-3);">
+          <div class="marketing-card">
+            <h3>Proby lamania zabezpieczen</h3>
+            <p>Zakaz przeprowadzania testow penetracyjnych, prob obejscia zabezpieczen i manipulowania danymi aplikacji.</p>
+          </div>
+          <div class="marketing-card">
+            <h3>Automaty i spam</h3>
+            <p>Zakaz wysylania automatycznych zgloszen w formularzu kontaktowym lub obciazania aplikacji ruchem.</p>
+          </div>
+          <div class="marketing-card">
+            <h3>Uzycie komercyjne</h3>
+            <p>Zakaz wykorzystywania demo jako gotowego systemu produkcyjnego.</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="section-tight">
+        <p class="tag">Prawa autorskie</p>
+        <h2>Wlasnosc intelektualna</h2>
+        <div class="marketing-card">
+          <p>Interfejs, tresci, layout, grafiki i kod zrodlowy FleetOps sa chronione prawem autorskim i naleza do wlasciciela projektu. Zabronione jest kopiowanie lub udostepnianie bez pisemnej zgody.</p>
+        </div>
+      </section>
+
+      <section class="section-tight">
+        <p class="tag">Kontakt</p>
+        <h2>Dane wlasciciela</h2>
+        <div class="card-soft">
+          <div class="grid" style="gap: 8px;">
+            <div><strong>Adres:</strong> Marynarki Wojennej 12/3, 33-100 Tarnow, Polska</div>
+            <div><strong>Telefon:</strong> +48 533 537 091</div>
+            <div><strong>E-mail:</strong> kontakt@kp-code.pl</div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section-tight cta-panel">
+        <div>
+          <h2>Chcesz poznac FleetOps blizej?</h2>
+          <p>Przetestuj demo lub napisz do nas z pytaniami o wdrozenie.</p>
+        </div>
+        <div class="hero-cta">
+          <a class="button primary" href="#/app">Otworz demo</a>
+          <a class="button secondary" href="#/contact">Skontaktuj sie</a>
+        </div>
+      </section>
+    `,
+  });
+}
+
+function renderCookiesPage() {
+  renderMarketingShell({
+    title: "Polityka cookies",
+    eyebrow: "Polityka cookies",
+    lead: "Wersja demo FleetOps nie stosuje sledzacych plikow cookies. Wyjasniamy, jakie dane techniczne moga byc zapisane lokalnie.",
+    description: "Polityka cookies FleetOps. Informacje o danych technicznych, localStorage i sposobach zarzadzania ustawieniami.",
+    body: `
+      <section class="section-tight">
+        <p class="tag">Podstawy</p>
+        <h2>Jakich mechanizmow uzywamy</h2>
+        <div class="grid marketing-grid" style="margin-top: var(--space-3);">
+          <div class="marketing-card">
+            <h3>Brak tracking cookies</h3>
+            <p>FleetOps nie wykorzystuje marketingowych ani analitycznych ciasteczek sledzacych.</p>
+          </div>
+          <div class="marketing-card">
+            <h3>LocalStorage</h3>
+            <p>Preferencje interfejsu i dane demo sa przechowywane lokalnie w przegladarce.</p>
+          </div>
+          <div class="marketing-card">
+            <h3>Pliki techniczne</h3>
+            <p>Przegladarka moze zapisywac dane niezbedne do poprawnego dzialania strony (np. cache).</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="section-tight">
+        <p class="tag">Kategorie</p>
+        <h2>Jakie dane techniczne moga wystapic</h2>
+        <div class="marketing-card">
+          <ul class="list-check">
+            <li>Ustawienia motywu i jezyka interfejsu</li>
+            <li>Historia ostatnich widokow w demo</li>
+            <li>Mockowe dane operacyjne zapisane lokalnie</li>
+          </ul>
+        </div>
+      </section>
+
+      <section class="section-tight">
+        <p class="tag">Zarzadzanie</p>
+        <h2>Jak kontrolowac dane w przegladarce</h2>
+        <div class="grid marketing-grid" style="margin-top: var(--space-3);">
+          <div class="marketing-card">
+            <h3>Ustawienia przegladarki</h3>
+            <p>W ustawieniach przegladarki mozesz wyczyscic dane strony oraz zablokowac zapisywanie danych lokalnych.</p>
+          </div>
+          <div class="marketing-card">
+            <h3>Czyszczenie localStorage</h3>
+            <p>Usuniecie danych lokalnych przywroci demo do stanu poczatkowego.</p>
+          </div>
+          <div class="marketing-card">
+            <h3>Brak zewnetrznych narzedzi</h3>
+            <p>Nie korzystamy z zewnetrznych skryptow analitycznych ani reklamowych.</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="section-tight">
+        <p class="tag">Kontakt</p>
+        <h2>Masz pytania o polityke cookies?</h2>
+        <div class="card-soft">
+          <div class="grid" style="gap: 8px;">
+            <div><strong>Adres:</strong> Marynarki Wojennej 12/3, 33-100 Tarnow, Polska</div>
+            <div><strong>Telefon:</strong> +48 533 537 091</div>
+            <div><strong>E-mail:</strong> kontakt@kp-code.pl</div>
+          </div>
+        </div>
+      </section>
+    `,
+  });
+}
+
 window.renderProductPage = renderProductPage;
 window.renderFeaturesPage = renderFeaturesPage;
 window.renderPricingPage = renderPricingPage;
 window.renderAboutPage = renderAboutPage;
 window.renderContactPage = renderContactPage;
+window.renderPrivacyPage = renderPrivacyPage;
+window.renderTermsPage = renderTermsPage;
+window.renderCookiesPage = renderCookiesPage;
+
+

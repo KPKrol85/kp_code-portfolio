@@ -1,13 +1,37 @@
+function bindLogoScroll(kind, getContainer) {
+  const links = document.querySelectorAll(`[data-scroll-top="${kind}"]`);
+  if (!links.length) return;
+
+  links.forEach((link) => {
+    link.addEventListener("click", (event) => {
+      const targetHash = kind === "app" ? "#/app" : "#/";
+      const currentHash = window.location.hash || "#/";
+      if (currentHash === targetHash) {
+        event.preventDefault();
+      }
+
+      window.setTimeout(() => {
+        const container = getContainer ? getContainer() : null;
+        if (container && typeof container.scrollTo === "function") {
+          container.scrollTo({ top: 0, left: 0, behavior: "smooth" });
+        } else {
+          window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
+        }
+      }, 0);
+    });
+  });
+}
+
 function renderInfoPage({ title, body }) {
   const app = document.getElementById("app");
   app.innerHTML = `
     <div class="landing">
       <header class="container navbar">
-        <div class="logo flex" aria-label="FleetOps">
-          <img src="assets/icons/logo-02.svg" alt="FleetOps" width="24" height="24" />
+        <a class="logo flex" href="#/" aria-label="FleetOps — Strona główna" data-scroll-top="home">
+          <img src="assets/icons/logo-02.svg" alt="FleetOps logo" width="24" height="24" />
           <span>FleetOps</span>
-        </div>
-        <a class="button ghost" href="#/login">Log in</a>
+        </a>
+        <a class="button ghost" href="#/login">Zaloguj sie</a>
       </header>
       <main class="container section" id="main-content">
         <div class="hero-card">
@@ -18,6 +42,8 @@ function renderInfoPage({ title, body }) {
       </main>
     </div>
   `;
+
+  bindLogoScroll("home");
 }
 
 function renderLogin() {
@@ -27,21 +53,21 @@ function renderLogin() {
       <div class="hero-card" style="max-width: 520px; margin: 40px auto;">
         <div class="flex-between" style="margin-bottom: 12px;">
           <div class="logo flex"><img src="assets/icons/logo-02.svg" alt="FleetOps" width="22" height="22" /><strong>FleetOps</strong></div>
-          <a class="button ghost" href="#/">Back</a>
+          <a class="button ghost" href="#/">Wroc</a>
         </div>
-        <h2>Zaloguj się</h2>
-        <p class="muted">Mock auth — dane zapisane w przeglądarce.</p>
+        <h1>Zaloguj się</h1>
+        <p class="muted">Uwierzytelnianie demo - dane zapisane w przegladarce.</p>
         <form id="loginForm" style="display:grid; gap:12px; margin-top: 16px;">
           <label class="form-control">
-            <span class="label">Email</span>
+            <span class="label">E-mail</span>
             <input required type="email" name="email" class="input" placeholder="you@fleetops.app" />
           </label>
           <label class="form-control">
-            <span class="label">Password</span>
+            <span class="label">Haslo</span>
             <input required minlength="4" type="password" name="password" class="input" placeholder="••••••" />
           </label>
-          <button class="button primary" type="submit">Sign in</button>
-          <button class="button secondary" type="button" id="demoLogin">Continue as demo</button>
+          <button class="button primary" type="submit">Zaloguj sie</button>
+          <button class="button secondary" type="button" id="demoLogin">Kontynuuj jako demo</button>
         </form>
       </div>
     </main>
@@ -127,22 +153,13 @@ function routeTo(hash) {
       renderPricingPage();
       break;
     case "/privacy":
-      renderInfoPage({
-        title: "Privacy Policy",
-        body: "<p>Szanujemy prywatność. Dane demo trzymane są lokalnie (localStorage). Brak backendu.</p>",
-      });
+      renderPrivacyPage();
       break;
     case "/terms":
-      renderInfoPage({
-        title: "Terms of Service",
-        body: "<p>FleetOps demo dostarczone “as-is” wyłącznie do celów portfolio.</p>",
-      });
+      renderTermsPage();
       break;
     case "/cookies":
-      renderInfoPage({
-        title: "Cookies",
-        body: "<p>Używamy jedynie localStorage na potrzeby preferencji i mock danych.</p>",
-      });
+      renderCookiesPage();
       break;
     case "/app":
       renderAppShell("Overview", dashboardView());
@@ -172,3 +189,7 @@ function routeTo(hash) {
 }
 
 window.FleetRouter = { routeTo };
+
+
+
+

@@ -1,3 +1,27 @@
+function bindLogoScroll(kind, getContainer) {
+  const links = document.querySelectorAll(`[data-scroll-top="${kind}"]`);
+  if (!links.length) return;
+
+  links.forEach((link) => {
+    link.addEventListener("click", (event) => {
+      const targetHash = kind === "app" ? "#/app" : "#/";
+      const currentHash = window.location.hash || "#/";
+      if (currentHash === targetHash) {
+        event.preventDefault();
+      }
+
+      window.setTimeout(() => {
+        const container = getContainer ? getContainer() : null;
+        if (container && typeof container.scrollTo === "function") {
+          container.scrollTo({ top: 0, left: 0, behavior: "smooth" });
+        } else {
+          window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
+        }
+      }, 0);
+    });
+  });
+}
+
 function renderAppShell(viewTitle, contentNode) {
   const app = document.getElementById("app");
   const { auth, preferences } = FleetStore.state;
@@ -11,10 +35,10 @@ function renderAppShell(viewTitle, contentNode) {
 
   const appTopbar = dom.h("div", "app-topbar");
   appTopbar.innerHTML = `
-    <div class="app-topbar__brand" aria-label="FleetOps">
+    <a class="app-topbar__brand logo flex" href="#/app" aria-label="FleetOps — Dashboard" data-scroll-top="app">
       <img src="assets/icons/logo-02.svg" alt="FleetOps logo" width="26" height="26" />
       <span>FleetOps</span>
-    </div>
+    </a>
     <div class="app-topbar__actions">
       <button class="button ghost" id="themeToggleMobile" type="button" aria-label="Toggle theme">
         <svg class="theme-toggle__icon theme-toggle__icon--light" width="18" height="18" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
@@ -41,10 +65,10 @@ function renderAppShell(viewTitle, contentNode) {
   sidebar.setAttribute("id", "appDrawer");
   sidebar.setAttribute("aria-hidden", "true");
   sidebar.innerHTML = `
-    <div class="logo" aria-label="FleetOps">
+    <a class="logo flex" href="#/app" aria-label="FleetOps — Dashboard" data-scroll-top="app">
       <img src="assets/icons/logo-02.svg" alt="FleetOps logo" width="30" height="30" />
       <span>FleetOps</span>
-    </div>
+    </a>
     <nav aria-label="Aplikacja">
       <a href="#/app" data-route="/app">Overview</a>
       <a href="#/app/orders" data-route="/app/orders">Orders</a>
@@ -130,6 +154,8 @@ function renderAppShell(viewTitle, contentNode) {
 
   shell.appendChild(main);
   dom.mount(app, shell);
+
+  bindLogoScroll("app", () => shell.querySelector(".app-main"));
 
   // === highlight active nav (class + aria-current) ===
   const currentPath = window.location.hash.replace("#", "") || "/app";
