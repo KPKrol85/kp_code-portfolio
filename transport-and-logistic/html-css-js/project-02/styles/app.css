@@ -187,6 +187,9 @@ body.drawer-open {
   min-width: 0;
   max-width: 100%;
 }
+.app-content > * + * {
+  margin-top: var(--space-3);
+}
 
 /* === 04 - Modules & Panels === */
 .module-header {
@@ -225,12 +228,101 @@ body.drawer-open {
   cursor: pointer;
 }
 
+/* === 06b - App interactive hover/focus (tool-style) === */
+.app-shell .sidebar a,
+.app-shell .order-row td {
+  transition: background-color 140ms ease, border-color 140ms ease, color 140ms ease;
+}
+
+.app-shell .sidebar a[aria-current="page"],
+.app-shell .sidebar a.active {
+  color: var(--accent);
+  background: var(--accent-ghost);
+  border-color: transparent;
+}
+
+.app-shell .sidebar a:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+  color: var(--text);
+  background: var(--bg-muted);
+  border-color: transparent;
+}
+
+.app-shell .order-row:focus-within td {
+  background: color-mix(in srgb, var(--bg-muted) 85%, transparent);
+}
+
+.app-shell .panel:has(input, select, textarea, button, a):focus-within,
+.app-shell .setting-card:has(input, select, textarea, button, a):focus-within {
+  border-color: color-mix(in srgb, var(--border) 75%, var(--text-muted));
+  background: color-mix(in srgb, var(--surface) 94%, var(--bg-muted) 6%);
+}
+
+.app-shell .input:focus-visible,
+.app-shell select:focus-visible,
+.app-shell textarea:focus-visible,
+.app-shell .table a:focus-visible,
+.app-shell .table button:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+  box-shadow: 0 0 0 3px var(--accent-ghost);
+  border-color: transparent;
+}
+
+html[data-theme="dark"] .app-shell .sidebar a:focus-visible {
+  background: color-mix(in srgb, var(--bg-elevated) 70%, transparent);
+}
+
+html[data-theme="dark"] .app-shell .panel:has(input, select, textarea, button, a):focus-within,
+html[data-theme="dark"] .app-shell .setting-card:has(input, select, textarea, button, a):focus-within {
+  border-color: color-mix(in srgb, var(--border) 70%, #fff);
+  background: color-mix(in srgb, var(--surface) 90%, var(--bg-elevated) 10%);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .app-shell .sidebar a:hover {
+    color: var(--text);
+    background: var(--bg-muted);
+    border-color: var(--border);
+  }
+
+  .app-shell .order-row:hover td {
+    background: color-mix(in srgb, var(--bg-muted) 85%, transparent);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .app-shell .sidebar a,
+  .app-shell .order-row td {
+    transition: none;
+  }
+}
+
 /* === 07 - Toolbars === */
 .toolbar {
   display: flex;
   gap: 8px;
   align-items: center;
   flex-wrap: wrap;
+}
+
+/* App spacing between filters and main data panel */
+.app-shell .table-filter + .panel,
+.app-shell .table-filter + .card-list,
+.app-shell .table-filter + .panel.table-responsive {
+  margin-top: var(--space-3);
+}
+
+/* Overview: spacing between KPI grid and main panels */
+.app-shell .app-content .grid.kpi-grid + .grid {
+  margin-top: var(--space-3);
+}
+
+/* Reports: spacing between stacked panels */
+.app-shell .app-content .panel + .panel,
+.app-shell .app-content .panel + .panel.table-responsive {
+  margin-top: var(--space-3);
 }
 
 /* === 08 - Settings === */

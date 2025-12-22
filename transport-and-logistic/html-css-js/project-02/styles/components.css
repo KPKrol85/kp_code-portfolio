@@ -335,6 +335,92 @@ textarea:invalid:focus-visible {
   box-shadow: var(--shadow);
 }
 
+/* === Shared hover/focus system for marketing cards === */
+.feature-card,
+.feature-group,
+.price-card,
+.marketing-card,
+.stat-card {
+  transition: transform 140ms ease, box-shadow 160ms ease, border-color 160ms ease, background-color 160ms ease;
+}
+
+html[data-theme="light"] .feature-card:focus-within,
+html[data-theme="light"] .feature-group:focus-within,
+html[data-theme="light"] .price-card:focus-within,
+html[data-theme="light"] .marketing-card:focus-within,
+html[data-theme="light"] .stat-card:focus-within {
+  border-color: color-mix(in srgb, var(--accent) 28%, var(--border));
+  background-color: color-mix(in srgb, var(--surface) 92%, var(--accent-ghost) 8%);
+  box-shadow: 0 10px 24px rgba(15, 23, 42, 0.08);
+  transform: translateY(-1px);
+}
+
+html[data-theme="dark"] .feature-card:focus-within,
+html[data-theme="dark"] .feature-group:focus-within,
+html[data-theme="dark"] .price-card:focus-within,
+html[data-theme="dark"] .marketing-card:focus-within,
+html[data-theme="dark"] .stat-card:focus-within {
+  border-color: color-mix(in srgb, var(--accent) 32%, var(--border));
+  background-color: color-mix(in srgb, var(--surface) 86%, var(--accent-ghost) 14%);
+  box-shadow: 0 12px 26px rgba(0, 0, 0, 0.38), 0 0 0 1px color-mix(in srgb, var(--accent) 28%, transparent);
+  transform: translateY(-1px);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  html[data-theme="light"] .feature-card:hover,
+  html[data-theme="light"] .feature-group:hover,
+  html[data-theme="light"] .price-card:hover,
+  html[data-theme="light"] .marketing-card:hover,
+  html[data-theme="light"] .stat-card:hover {
+    border-color: color-mix(in srgb, var(--accent) 28%, var(--border));
+    background-color: color-mix(in srgb, var(--surface) 92%, var(--accent-ghost) 8%);
+    box-shadow: 0 10px 24px rgba(15, 23, 42, 0.08);
+    transform: translateY(-1px);
+  }
+
+  html[data-theme="dark"] .feature-card:hover,
+  html[data-theme="dark"] .feature-group:hover,
+  html[data-theme="dark"] .price-card:hover,
+  html[data-theme="dark"] .marketing-card:hover,
+  html[data-theme="dark"] .stat-card:hover {
+    border-color: color-mix(in srgb, var(--accent) 32%, var(--border));
+    background-color: color-mix(in srgb, var(--surface) 86%, var(--accent-ghost) 14%);
+    box-shadow: 0 12px 26px rgba(0, 0, 0, 0.38), 0 0 0 1px color-mix(in srgb, var(--accent) 28%, transparent);
+    transform: translateY(-1px);
+  }
+}
+
+.feature-card:active,
+.feature-group:active,
+.price-card:active,
+.marketing-card:active,
+.stat-card:active {
+  transform: translateY(0);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .feature-card,
+  .feature-group,
+  .price-card,
+  .marketing-card,
+  .stat-card {
+    transition: none;
+  }
+
+  .feature-card:focus-within,
+  .feature-group:focus-within,
+  .price-card:focus-within,
+  .marketing-card:focus-within,
+  .stat-card:focus-within,
+  .feature-card:hover,
+  .feature-group:hover,
+  .price-card:hover,
+  .marketing-card:hover,
+  .stat-card:hover {
+    transform: none;
+  }
+}
+
 /* === 04 - Accordion === */
 .accordion {
   border: 1px solid var(--border);
@@ -366,7 +452,8 @@ textarea:invalid:focus-visible {
   padding: 0 14px;
 }
 .accordion-content.open {
-  padding-bottom: 14px;
+  padding-top: var(--space-2);
+  padding-bottom: var(--space-3);
 }
 
 /* === 05 - Tables === */

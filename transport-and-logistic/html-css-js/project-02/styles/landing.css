@@ -191,6 +191,29 @@
   padding-left: 4px;
 }
 
+.landing .section {
+  padding: var(--space-section) 0;
+}
+
+.landing .section.hero {
+  padding: var(--space-section-lg) 0;
+}
+
+.landing .section .tag + h2 {
+  margin-top: var(--space-2);
+}
+
+.landing .section h2 + p {
+  margin-top: var(--space-2);
+}
+
+.landing .section .grid,
+.landing .section .pricing,
+.landing .section .testimonials,
+.landing .section .accordion {
+  margin-top: var(--space-4);
+}
+
 @media (max-width: 1024px) {
   .landing .hero {
     grid-template-columns: 1fr;
@@ -646,6 +669,65 @@
   background: var(--surface);
 }
 
+/* === Subtle hover/focus for steps & testimonials === */
+.landing .step,
+.landing .testimonial {
+  transition: transform 140ms ease, box-shadow 160ms ease, border-color 160ms ease, background-color 160ms ease;
+}
+
+html[data-theme="light"] .landing .step:focus-within,
+html[data-theme="light"] .landing .testimonial:focus-within {
+  border-color: color-mix(in srgb, var(--border) 80%, var(--text-muted));
+  background-color: color-mix(in srgb, var(--surface) 94%, var(--bg-muted) 6%);
+  box-shadow: 0 8px 18px rgba(15, 23, 42, 0.06);
+  transform: translateY(-1px);
+}
+
+html[data-theme="dark"] .landing .step:focus-within,
+html[data-theme="dark"] .landing .testimonial:focus-within {
+  border-color: color-mix(in srgb, var(--border) 85%, #fff);
+  background-color: color-mix(in srgb, var(--surface) 90%, var(--bg-elevated) 10%);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.35);
+  transform: translateY(-1px);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  html[data-theme="light"] .landing .step:hover,
+  html[data-theme="light"] .landing .testimonial:hover {
+    border-color: color-mix(in srgb, var(--border) 80%, var(--text-muted));
+    background-color: color-mix(in srgb, var(--surface) 94%, var(--bg-muted) 6%);
+    box-shadow: 0 8px 18px rgba(15, 23, 42, 0.06);
+    transform: translateY(-1px);
+  }
+
+  html[data-theme="dark"] .landing .step:hover,
+  html[data-theme="dark"] .landing .testimonial:hover {
+    border-color: color-mix(in srgb, var(--border) 85%, #fff);
+    background-color: color-mix(in srgb, var(--surface) 90%, var(--bg-elevated) 10%);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.35);
+    transform: translateY(-1px);
+  }
+}
+
+.landing .step:active,
+.landing .testimonial:active {
+  transform: translateY(0);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .landing .step,
+  .landing .testimonial {
+    transition: none;
+  }
+
+  .landing .step:focus-within,
+  .landing .testimonial:focus-within,
+  .landing .step:hover,
+  .landing .testimonial:hover {
+    transform: none;
+  }
+}
+
 /* === 04 - Pricing === */
 
 .landing .pricing {
@@ -687,6 +769,9 @@
   max-width: 840px;
   margin: 0 auto;
 }
+.landing .faq h2 {
+  margin-bottom: var(--space-3);
+}
 
 /* === 07 - Footer === */
 
@@ -709,7 +794,7 @@
 .landing .page-hero {
   display: grid;
   gap: var(--space-3);
-  margin-bottom: var(--space-4);
+  margin-bottom: var(--space-5);
 }
 .landing .page-hero h1 {
   font-size: clamp(30px, 4vw, 42px);
@@ -722,7 +807,7 @@
 }
 
 .landing .section-tight {
-  padding: var(--space-4) 0;
+  padding: var(--space-5) 0;
 }
 
 .landing .marketing-hero {
