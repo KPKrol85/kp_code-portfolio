@@ -272,8 +272,8 @@ function renderLanding() {
               <h3 class="footer__title">Kontakt</h3>
 
               <ul class="footer__list footer__contact-list">
-                <li><a href="tel:+48600000000" aria-label="Zadzwoń do FleetOps">+48 600 000 000</a></li>
-                <li><a href="mailto:kontakt@fleetops.pl" aria-label="Napisz do FleetOps">kontakt@fleetops.pl</a></li>
+                <li><a href="tel:+48533537091" aria-label="Zadzwoń do FleetOps">+48 533 537 091</a></li>
+                <li><a href="mailto:kontakt@kp-code.pl" aria-label="Napisz do FleetOps">kontakt@kp-code.pl</a></li>
                 <li><span class="footer__contact-text">Warszawa, Polska</span></li>
               </ul>
 
