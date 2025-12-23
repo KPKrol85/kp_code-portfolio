@@ -422,18 +422,22 @@ html[data-theme="dark"] .stat-card:focus-within {
 }
 
 /* === 04 - Accordion === */
+
 .accordion {
   border: 1px solid var(--border);
   border-radius: var(--radius);
   overflow: hidden;
 }
+
 .accordion-item {
   border-bottom: 1px solid var(--border);
   background: var(--surface);
 }
+
 .accordion-item:last-child {
   border-bottom: 0;
 }
+
 .accordion-header {
   width: 100%;
   text-align: left;
@@ -445,12 +449,14 @@ html[data-theme="dark"] .stat-card:focus-within {
   align-items: center;
   justify-content: space-between;
 }
+
 .accordion-content {
   max-height: 0;
   overflow: hidden;
   transition: max-height 0.2s ease;
   padding: 0 14px;
 }
+
 .accordion-content.open {
   padding-top: var(--space-2);
   padding-bottom: var(--space-3);
@@ -497,6 +503,7 @@ html[data-theme="dark"] .stat-card:focus-within {
 }
 
 /* === 07 - Modal === */
+
 .modal-backdrop {
   position: fixed;
   inset: 0;
@@ -507,6 +514,7 @@ html[data-theme="dark"] .stat-card:focus-within {
   z-index: 900;
   padding: 16px;
 }
+
 .modal {
   background: var(--surface);
   border: 1px solid var(--border);
@@ -516,12 +524,14 @@ html[data-theme="dark"] .stat-card:focus-within {
   padding: var(--space-4);
   box-shadow: var(--shadow);
 }
+
 .modal-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
   margin-bottom: var(--space-3);
 }
+
 .modal-close {
   background: transparent;
   color: var(--text-muted);

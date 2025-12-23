@@ -79,73 +79,15 @@ function renderLanding() {
               <span class="muted small">Bez instalacji. Dane demo.</span>
             </div>
           </div>
+
           <div class="hero-visual">
-            <div class="hero-preview" role="img" aria-label="FleetOps — Strona główna">
-              <div class="hero-preview__topbar">
-                <div class="hero-preview__brand">
-                  <span class="hero-preview__dot"></span>
-                  Panel FleetOps
-                </div>
-                <div class="hero-preview__actions">
-                  <span class="hero-preview__pill">Operacje na zywo</span>
-                  <span class="hero-preview__avatar">KP</span>
-                </div>
-              </div>
-              <div class="hero-preview__body">
-                <aside class="hero-preview__sidebar" aria-hidden="true">
-                  <span class="hero-preview__nav is-active">Przeglad</span>
-                  <span class="hero-preview__nav">Zlecenia</span>
-                  <span class="hero-preview__nav">Flota</span>
-                  <span class="hero-preview__nav">Kierowcy</span>
-                  <span class="hero-preview__nav">Raporty</span>
-                </aside>
-                <div class="hero-preview__main">
-                  <div class="hero-preview__kpis">
-                    <div class="hero-preview__card">
-                      <p class="muted small">Terminowosc</p>
-                      <h4>99.2%</h4>
-                      <span class="hero-preview__trend up">+1.2%</span>
-                    </div>
-                    <div class="hero-preview__card">
-                      <p class="muted small">Aktywne trasy</p>
-                      <h4>124</h4>
-                      <span class="hero-preview__trend">Stabilnie</span>
-                    </div>
-                    <div class="hero-preview__card">
-                      <p class="muted small">Alerty</p>
-                      <h4>3</h4>
-                      <span class="hero-preview__trend warn">2 SLA</span>
-                    </div>
-                  </div>
-                  <div class="hero-preview__chart">
-                    <div class="hero-preview__chart-head">
-                      <div>
-                        <p class="muted small">Przepustowosc tygodniowa</p>
-                        <h4>3.2k dostaw</h4>
-                      </div>
-                      <span class="hero-preview__chip">Ostatnie 7d</span>
-                    </div>
-                    <div class="hero-preview__chart-body">
-                      <div class="hero-preview__chart-line"></div>
-                      <div class="hero-preview__chart-bars"></div>
-                    </div>
-                  </div>
-                  <div class="hero-preview__list">
-                    <div class="hero-preview__row">
-                      <span>HUB-12 / ETA 14:20</span>
-                      <span class="hero-preview__status ok">Na czas</span>
-                    </div>
-                    <div class="hero-preview__row">
-                      <span>KRK-06 / ETA 15:05</span>
-                      <span class="hero-preview__status warn">Ryzyko opoznienia</span>
-                    </div>
-                    <div class="hero-preview__row">
-                      <span>WAW-03 / ETA 16:10</span>
-                      <span class="hero-preview__status ok">Na czas</span>
-                    </div>
-                  </div>
-                </div>
-              </div>
+            <div class="hero-image">
+              <img
+                src="assets/images/hero/hero-dark.jpg"
+                alt="Podgląd panelu FleetOps — widok aplikacji"
+                loading="lazy"
+                decoding="async"
+              />
             </div>
           </div>
         </section>
@@ -262,24 +204,100 @@ function renderLanding() {
         </section>
       </main>
 
-      <footer class="container footer">
-        <div class="logo flex">
-          <img src="assets/icons/logo-02.svg" alt="FleetOps" width="22" height="22" />
-          <span>FleetOps</span>
-        </div>
-        <div class="footer-links">
-          <a href="#/product">Produkt</a>
-          <a href="#/features">Funkcje</a>
-          <a href="#/pricing">Cennik</a>
-          <a href="#/about">O nas</a>
-          <a href="#/contact">Kontakt</a>
-          <a href="#/privacy">Polityka prywatnosci</a>
-          <a href="#/terms">Regulamin</a>
-          <a href="#/cookies">Polityka cookies</a>
+      <footer class="footer" aria-label="FleetOps footer">
+        <div class="container footer__inner">
+          <div class="footer__grid">
+            <div class="footer__brand">
+              <a class="footer__logo" href="#/" aria-label="FleetOps home" data-scroll-top="home">
+                <img src="assets/icons/logo-02.svg" alt="FleetOps" width="28" height="28" />
+                <span>FleetOps</span>
+              </a>
+              <p class="footer__desc">Zarządzaj flotą, dyspozytornią i SLA w jednym, spokojnym środowisku pracy dla zespołów operacyjnych.</p>
+              <span class="footer__eyebrow">Stworzone dla zespołów operacyjnych</span>
+            </div>
+            <div class="footer__col">
+              <h3 class="footer__title">Produkt</h3>
+              <ul class="footer__list">
+                <li><a href="#/app">Panel</a></li>
+                <li><a href="#/fleet">Flota</a></li>
+                <li><a href="#/dispatch">Dyspozytornia</a></li>
+                <li><a href="#/reports">Analityka</a></li>
+                <li><a href="#/settings">Ustawienia</a></li>
+              </ul>
+            </div>
+            <div class="footer__col">
+              <h3 class="footer__title">Firma</h3>
+              <ul class="footer__list">
+                <li><a href="#/about">O nas</a></li>
+                <li><a href="#/pricing">Cennik</a></li>
+                <li><a href="#/security">Bezpieczeństwo</a></li>
+                <li><a href="#/contact">Kontakt</a></li>
+                <li><a href="#/careers">Kariera</a></li>
+              </ul>
+            </div>
+            <div class="footer__col">
+              <h3 class="footer__title">Informacje prawne</h3>
+              <ul class="footer__list">
+                <li><a href="#/terms">Regulamin</a></li>
+                <li><a href="#/privacy">Polityka prywatności</a></li>
+                <li><a href="#/cookies">Polityka cookies</a></li>
+              </ul>
+              <div class="footer__social" aria-label="FleetOps social links">
+                <a class="footer__social-link" href="https://www.linkedin.com" aria-label="Profil FleetOps na LinkedIn">
+                  <svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                    <path d="M6 9H3v12h3V9Zm-1.5-6a1.75 1.75 0 1 0 0 3.5A1.75 1.75 0 0 0 4.5 3ZM21 14.5c0-3.1-1.65-5.1-4.6-5.1-1.4 0-2.4.77-2.8 1.5V9H10v12h3v-6.2c0-1.65.6-2.8 2.1-2.8 1.15 0 1.8.77 1.8 2.8V21h3v-6.5Z" fill="currentColor"></path>
+                  </svg>
+                </a>
+                <a class="footer__social-link" href="https://github.com" aria-label="Profil FleetOps na GitHub">
+                  <svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                    <path d="M12 2a10 10 0 0 0-3.16 19.5c.5.1.68-.22.68-.5v-1.75c-2.78.6-3.36-1.18-3.36-1.18-.46-1.2-1.12-1.52-1.12-1.52-.92-.64.07-.63.07-.63 1.02.08 1.56 1.06 1.56 1.06.9 1.56 2.36 1.1 2.94.84.1-.67.35-1.1.64-1.36-2.22-.25-4.56-1.12-4.56-4.98 0-1.1.4-2 .98-2.72-.1-.25-.42-1.28.1-2.66 0 0 .8-.26 2.62 1a9.1 9.1 0 0 1 4.78 0c1.82-1.26 2.62-1 2.62-1 .52 1.38.2 2.4.1 2.66.62.72 1 1.62 1 2.72 0 3.88-2.34 4.72-4.58 4.98.36.32.68.94.68 1.9v2.82c0 .28.18.6.7.5A10 10 0 0 0 12 2Z" fill="currentColor"></path>
+                  </svg>
+                </a>
+                <a class="footer__social-link" href="https://x.com" aria-label="Profil FleetOps na X">
+                  <svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                    <path d="M18.3 3H21l-6.6 7.5L22 21h-6.9l-4.5-5.9L4.8 21H2.1l7.1-8.2L2 3h7l4.1 5.4L18.3 3Zm-1.2 16h1.7L8.8 5H7.1l10 14Z" fill="currentColor"></path>
+                  </svg>
+                </a>
+              </div>
+            </div>
+          </div>
+          <div class="footer__bottom">
+            <span>© 2025 FleetOps — Stworzone dla zespołów operacyjnych</span>
+          </div>
         </div>
       </footer>
     </div>
   `;
+
+  (function () {
+    const img = document.querySelector(".hero-image img");
+    if (!img) return;
+
+    const supportsAvif = CSS.supports("background-image", 'url("data:image/avif;base64,AAAA")');
+    const supportsWebp = CSS.supports("background-image", 'url("data:image/webp;base64,AAAA")');
+
+    function getExt() {
+      if (supportsAvif) return "avif";
+      if (supportsWebp) return "webp";
+      return "jpg";
+    }
+
+    function updateHeroImage() {
+      const theme = document.documentElement.getAttribute("data-theme") || "dark";
+      const ext = getExt();
+      img.src = `assets/images/hero/hero-${theme}.${ext}`;
+    }
+
+    // init
+    updateHeroImage();
+
+    // react to theme change
+    const observer = new MutationObserver(updateHeroImage);
+    observer.observe(document.documentElement, {
+      attributes: true,
+      attributeFilter: ["data-theme"],
+    });
+  })();
 
   const tBtn = document.getElementById("themeToggleLanding");
   if (tBtn) {
@@ -297,11 +315,7 @@ function renderLanding() {
 
   const getDrawerFocusables = () => {
     if (!navDrawer) return [];
-    return Array.from(
-      navDrawer.querySelectorAll(
-        'a[href], button:not([disabled]), [tabindex]:not([tabindex="-1"])'
-      )
-    );
+    return Array.from(navDrawer.querySelectorAll('a[href], button:not([disabled]), [tabindex]:not([tabindex="-1"])'));
   };
 
   const trapDrawerFocus = (event) => {
@@ -407,15 +421,8 @@ function renderLanding() {
   bindLogoScroll("home");
 }
 
+
+
+
+
 window.renderLanding = renderLanding;
-
-
-
-
-
-
-
-
-
-
-
