@@ -9,6 +9,7 @@
    = CSS Stylesheet: components.css
    = Structure overview
    ==================================
+   = -01 - Logo
    = 00 - Buttons
    = 01 - Inputs & Forms
    = 02 - Navbar
@@ -27,6 +28,23 @@
    = 15 - Skeleton (Loading State)
    ================================== */
 
+
+
+/* === -01 -Logo (shared) === */
+
+.logo {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+}
+
+.logo__icon--dark { display: none; }
+
+[data-theme="dark"] .logo__icon--light { display: none; }
+[data-theme="dark"] .logo__icon--dark  { display: inline-block; }
+
 /* === 00 - Buttons === */
 
 .button {
@@ -43,9 +61,11 @@
   cursor: pointer;
   transition: transform 120ms ease, box-shadow 120ms ease, background 120ms ease;
 }
+
 .button:hover {
   background: var(--bg-muted);
 }
+
 .button:active {
   transform: translateY(1px);
 }
@@ -81,6 +101,7 @@
     0 8px 18px rgba(34, 211, 238, 0.28),
     inset 0 2px 8px rgba(0, 0, 0, 0.22);
 }
+
 html[data-theme="dark"] .button.primary {
   color: #0b0d10;
 }
@@ -90,6 +111,7 @@ html[data-theme="dark"] .button.primary {
   color: var(--text-muted);
   border-color: var(--border);
 }
+
 .button.ghost:hover {
   color: var(--text);
 }
@@ -105,6 +127,7 @@ html[data-theme="dark"] .button.primary {
   outline-offset: 3px;
   box-shadow: 0 0 0 4px var(--accent-ghost);
 }
+
 .button:disabled,
 .button[aria-disabled="true"] {
   opacity: 0.55;
@@ -126,6 +149,7 @@ html[data-theme="dark"] .button.primary {
   font-size: 14px;
   line-height: 1;
 }
+
 .theme-toggle__icon {
   display: none;
 }
@@ -141,98 +165,6 @@ html[data-theme="dark"] #themeToggleLanding .theme-toggle__icon--dark {
 html[data-theme="dark"] #themeToggle .theme-toggle__icon--dark {
   display: block;
 }
-/*
-.button {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 8px;
-  border-radius: var(--radius-sm);
-  padding: 10px 14px;
-  border: 1px solid var(--border);
-  background: var(--surface-2);
-  color: var(--text);
-  font-weight: 600;
-  cursor: pointer;
-  transition: transform 120ms ease, box-shadow 120ms ease, background 120ms ease;
-}
-.button:hover {
-  background: var(--bg-muted);
-}
-.button:active {
-  transform: translateY(1px);
-}
-
-.button.primary {
-  background: linear-gradient(120deg, var(--accent), var(--accent-strong));
-  color: #0b0d10;
-  border-color: transparent;
-  box-shadow: 0 12px 30px rgba(34, 211, 238, 0.35);
-}
-.button.primary:hover {
-  opacity: 0.95;
-}
-
-.button.ghost {
-  background: transparent;
-  color: var(--text-muted);
-  border-color: var(--border);
-}
-.button.ghost:hover {
-  color: var(--text);
-}
-
-.button.secondary {
-  background: var(--accent-ghost);
-  color: var(--accent);
-  border-color: transparent;
-}
-
-.button:focus-visible {
-  outline: 2px solid var(--accent);
-  outline-offset: 3px;
-  box-shadow: 0 0 0 4px var(--accent-ghost);
-}
-.button:disabled,
-.button[aria-disabled="true"] {
-  opacity: 0.55;
-  cursor: not-allowed;
-  pointer-events: none;
-  transform: none;
-  box-shadow: none;
-}
-
-#themeToggle,
-#themeToggleLanding {
-  width: 36px;
-  height: 36px;
-  padding: 0;
-  border-radius: 50%;
-
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-
-  font-size: 14px;
-  line-height: 1;
-}
-.theme-toggle__icon {
-  display: none;
-}
-html[data-theme="light"] #themeToggleLanding .theme-toggle__icon--light {
-  display: block;
-}
-html[data-theme="light"] #themeToggle .theme-toggle__icon--light {
-  display: block;
-}
-html[data-theme="dark"] #themeToggleLanding .theme-toggle__icon--dark {
-  display: block;
-}
-html[data-theme="dark"] #themeToggle .theme-toggle__icon--dark {
-  display: block;
-}
-
-*/
 
 /* === 01 - Inputs & Forms === */
 
@@ -324,6 +256,7 @@ textarea:invalid:focus-visible {
 }
 
 /* === 02 - Navbar === */
+
 .navbar {
   display: flex;
   align-items: center;
@@ -334,14 +267,6 @@ textarea:invalid:focus-visible {
   padding: 12px 0;
 
   border-bottom: 1px solid var(--border);
-}
-
-.navbar .logo {
-  display: inline-flex;
-  align-items: center;
-  gap: 10px;
-  font-weight: 800;
-  letter-spacing: -0.02em;
 }
 
 .navbar nav {

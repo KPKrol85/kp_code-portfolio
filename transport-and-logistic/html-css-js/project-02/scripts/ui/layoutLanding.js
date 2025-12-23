@@ -34,7 +34,10 @@ function renderLanding() {
     <div class="landing">
       <header class="container navbar" role="banner">
         <a class="logo flex" href="#/" aria-label="FleetOps — Strona główna" data-scroll-top="home">
-          <img src="assets/icons/logo-02.svg" alt="FleetOps logo" width="52" height="52" />
+
+          <img class="logo__icon logo__icon--light" src="assets/icons/logo-black.svg" alt="FleetOps logo" width="52" height="52" />
+          <img class="logo__icon logo__icon--dark"  src="assets/icons/logo-white.svg" alt="" aria-hidden="true" width="52" height="52" />
+
           <span>FleetOps</span>
         </a>
         <nav class="nav" aria-label="Nawigacja glowna">
@@ -164,21 +167,21 @@ function renderLanding() {
           <div class="pricing" style="margin-top: var(--space-3);">
             <div class="price-card">
               <div class="badge">Start</div>
-              <div class="price">$39</div>
-              <p>10 pojazdów, podstawowe alerty, export CSV.</p>
+              <div class="price">199 PLN</div>
+              <p>miesiecznie, do 15 pojazdow</p>
               <a class="button secondary" href="#/login">Zacznij za darmo</a>
             </div>
             <div class="price-card">
               <div class="badge">Rozwoj</div>
-              <div class="price">$79</div>
-              <p>50 pojazdów, Alerty SLA, raporty tygodniowe.</p>
-              <a class="button primary" href="#/contact">Popros o demo</a>
+              <div class="price">499 PLN</div>
+              <p>miesiecznie, do 60 pojazdow</p>
+              <a class="button primary" href="#/contact">Umow demo</a>
             </div>
             <div class="price-card">
               <div class="badge">Korporacyjny</div>
               <p>Indywidualnie</p>
-              <p>Integracje, SSO, dedykowane wsparcie.</p>
-              <a class="button ghost" href="#/contact">Porozmawiaj z nami</a>
+              <p>dla flot 60+ pojazdow</p>
+              <a class="button ghost" href="#/contact">Porozmawiajmy</a>
             </div>
           </div>
         </section>
@@ -227,8 +230,8 @@ function renderLanding() {
           <div class="footer__grid">
             <div class="footer__brand">
               <a class="footer__logo" href="#/" aria-label="FleetOps home" data-scroll-top="home">
-                <img src="assets/icons/logo-02.svg" alt="FleetOps" width="28" height="28" />
-                <span>FleetOps</span>
+               <img class="logo__icon logo__icon--light" src="assets/icons/logo-black.svg" alt="FleetOps logo" width="52" height="52" />
+              <img class="logo__icon logo__icon--dark"  src="assets/icons/logo-white.svg" alt="" aria-hidden="true" width="52" height="52" />
               </a>
               <p class="footer__desc">Zarządzaj flotą, dyspozytornią i SLA w jednym, spokojnym środowisku pracy dla zespołów operacyjnych.</p>
               <span class="footer__eyebrow">Stworzone dla zespołów operacyjnych</span>
@@ -286,7 +289,6 @@ function renderLanding() {
       </footer>
     </div>
   `;
-
 
   /*
   (function () {
@@ -438,9 +440,5 @@ function renderLanding() {
 
   bindLogoScroll("home");
 }
-
-
-
-
 
 window.renderLanding = renderLanding;
