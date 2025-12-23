@@ -241,6 +241,7 @@ main {
 
 .tag {
   padding: 4px 10px;
+  margin-bottom: var(--space-1);
   border-radius: 999px;
   background: var(--accent-ghost);
   color: var(--accent);
@@ -290,6 +291,13 @@ hr {
 }
 
 /* === 12 - Responsive === */
+
+@media (max-width: 1024px) {
+  .section {
+    padding: var(--space-6) 0;
+    text-align: center;
+  }
+}
 
 @media (max-width: 768px) {
   .section {

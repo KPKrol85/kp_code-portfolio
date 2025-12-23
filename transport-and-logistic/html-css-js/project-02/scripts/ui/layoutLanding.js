@@ -82,12 +82,30 @@ function renderLanding() {
 
           <div class="hero-visual">
             <div class="hero-image">
-              <img
-                src="assets/images/hero/hero-dark.jpg"
-                alt="Podgląd panelu FleetOps — widok aplikacji"
-                loading="lazy"
-                decoding="async"
-              />
+              <picture class="img-swap img-swap--dark">
+                <source srcset="assets/images/hero/hero-dark.avif" type="image/avif">
+                <source srcset="assets/images/hero/hero-dark.webp" type="image/webp">
+                <img
+                  src="assets/images/hero/hero-dark.jpg"
+                  alt="FleetOps Dark Panel"
+                  loading="eager"
+                  fetchpriority="high"
+                  width="1200"
+                  height="750"
+                  decoding="async">
+              </picture>
+              <picture class="img-swap img-swap--light">
+                <source srcset="assets/images/hero/hero-light.avif" type="image/avif">
+                <source srcset="assets/images/hero/hero-light.webp" type="image/webp">
+                <img
+                  src="assets/images/hero/hero-light.jpg"
+                  alt="FleetOps Light Panel"
+                  loading="eager"
+                  fetchpriority="high"
+                  width="1200"
+                  height="750"
+                  decoding="async">
+              </picture>
             </div>
           </div>
         </section>
@@ -269,6 +287,8 @@ function renderLanding() {
     </div>
   `;
 
+
+  /*
   (function () {
     const img = document.querySelector(".hero-image img");
     if (!img) return;
@@ -288,17 +308,15 @@ function renderLanding() {
       img.src = `assets/images/hero/hero-${theme}.${ext}`;
     }
 
-    // init
     updateHeroImage();
 
-    // react to theme change
     const observer = new MutationObserver(updateHeroImage);
     observer.observe(document.documentElement, {
       attributes: true,
       attributeFilter: ["data-theme"],
     });
   })();
-
+*/
   const tBtn = document.getElementById("themeToggleLanding");
   if (tBtn) {
     tBtn.addEventListener("click", () => {
