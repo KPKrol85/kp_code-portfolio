@@ -272,15 +272,9 @@
 
 .landing .hero-cta .button {
   height: 40px;
+  min-width: 140px;
   padding: 0 14px;
   border-radius: 999px;
-  box-shadow: none;
-  transform: none;
-}
-
-.landing .hero-cta .button.primary {
-  border-color: transparent;
-  box-shadow: none;
 }
 
 .landing .hero-cta .button.secondary {
@@ -289,18 +283,16 @@
   color: var(--text);
 }
 
-.landing .hero-cta .button:hover {
-  transform: none;
-}
-
 .landing .hero-cta .button.secondary:hover {
   background: var(--bg-muted);
 }
 
 .landing .hero-cta .muted.small {
   color: var(--text-muted);
-  line-height: 1.2;
+  font-size: 12px;
+  flex-basis: 100%;
   padding-left: 4px;
+  margin-top: var(--space-1);
 }
 
 .landing .section {
@@ -339,6 +331,11 @@
   .landing .section.hero {
     grid-template-columns: 1fr;
   }
+/*
+  .landing .hero-cta .muted.small {
+
+  }
+*/
   .landing .hero-visual {
     order: 2;
     justify-self: center;
