@@ -230,12 +230,13 @@ function renderLanding() {
           <div class="footer__grid">
             <div class="footer__brand">
               <a class="footer__logo" href="#/" aria-label="FleetOps home" data-scroll-top="home">
-               <img class="logo__icon logo__icon--light" src="assets/icons/logo-black.svg" alt="FleetOps logo" width="52" height="52" />
-              <img class="logo__icon logo__icon--dark"  src="assets/icons/logo-white.svg" alt="" aria-hidden="true" width="52" height="52" />
+                <img class="logo__icon logo__icon--light" src="assets/icons/logo-black.svg" alt="FleetOps logo" width="52" height="52" />
+                <img class="logo__icon logo__icon--dark"  src="assets/icons/logo-white.svg" alt="" aria-hidden="true" width="52" height="52" />
               </a>
               <p class="footer__desc">Zarządzaj flotą, dyspozytornią i SLA w jednym, spokojnym środowisku pracy dla zespołów operacyjnych.</p>
               <span class="footer__eyebrow">Stworzone dla zespołów operacyjnych</span>
             </div>
+
             <div class="footer__col">
               <h3 class="footer__title">Produkt</h3>
               <ul class="footer__list">
@@ -246,6 +247,7 @@ function renderLanding() {
                 <li><a href="#/settings">Ustawienia</a></li>
               </ul>
             </div>
+
             <div class="footer__col">
               <h3 class="footer__title">Firma</h3>
               <ul class="footer__list">
@@ -256,6 +258,7 @@ function renderLanding() {
                 <li><a href="#/careers">Kariera</a></li>
               </ul>
             </div>
+
             <div class="footer__col">
               <h3 class="footer__title">Informacje prawne</h3>
               <ul class="footer__list">
@@ -263,6 +266,19 @@ function renderLanding() {
                 <li><a href="#/privacy">Polityka prywatności</a></li>
                 <li><a href="#/cookies">Polityka cookies</a></li>
               </ul>
+            </div>
+
+            <div class="footer__col footer__contact">
+              <h3 class="footer__title">Kontakt</h3>
+
+              <ul class="footer__list footer__contact-list">
+                <li><a href="tel:+48600000000" aria-label="Zadzwoń do FleetOps">+48 600 000 000</a></li>
+                <li><a href="mailto:kontakt@fleetops.pl" aria-label="Napisz do FleetOps">kontakt@fleetops.pl</a></li>
+                <li><span class="footer__contact-text">Warszawa, Polska</span></li>
+              </ul>
+
+              <h4 class="footer__title">Social Media</h4>
+
               <div class="footer__social" aria-label="FleetOps social links">
                 <a class="footer__social-link" href="https://www.linkedin.com" aria-label="Profil FleetOps na LinkedIn">
                   <svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
@@ -282,43 +298,15 @@ function renderLanding() {
               </div>
             </div>
           </div>
+
           <div class="footer__bottom">
-            <span>© 2025 FleetOps — Stworzone dla zespołów operacyjnych</span>
+            <span>© 2025 kp_code_ — Wszelkie prawa zastrzeżone</span>
           </div>
         </div>
       </footer>
     </div>
   `;
 
-  /*
-  (function () {
-    const img = document.querySelector(".hero-image img");
-    if (!img) return;
-
-    const supportsAvif = CSS.supports("background-image", 'url("data:image/avif;base64,AAAA")');
-    const supportsWebp = CSS.supports("background-image", 'url("data:image/webp;base64,AAAA")');
-
-    function getExt() {
-      if (supportsAvif) return "avif";
-      if (supportsWebp) return "webp";
-      return "jpg";
-    }
-
-    function updateHeroImage() {
-      const theme = document.documentElement.getAttribute("data-theme") || "dark";
-      const ext = getExt();
-      img.src = `assets/images/hero/hero-${theme}.${ext}`;
-    }
-
-    updateHeroImage();
-
-    const observer = new MutationObserver(updateHeroImage);
-    observer.observe(document.documentElement, {
-      attributes: true,
-      attributeFilter: ["data-theme"],
-    });
-  })();
-*/
   const tBtn = document.getElementById("themeToggleLanding");
   if (tBtn) {
     tBtn.addEventListener("click", () => {
