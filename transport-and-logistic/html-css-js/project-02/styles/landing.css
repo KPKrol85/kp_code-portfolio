@@ -586,9 +586,35 @@ html[data-theme="dark"] .landing .testimonial:focus-within {
   margin-bottom: var(--space-2);
 }
 
-.landing .footer__contact .footer__contact-list + .footer__title {
+.landing .footer__contact address + .footer__title {
   margin-top: var(--space-4);
 }
+
+.landing .footer__contact address li:first-child {
+  margin-bottom: var(--space-2);
+}
+
+.landing .footer__contact address a {
+  text-underline-offset: 4px;
+}
+
+.landing .footer__contact address a:hover {
+  color: var(--accent);
+  text-decoration: underline;
+}
+/* === 🔒 UI LOCK
+.landing .footer__contact address a {
+  position: relative;
+  font-weight: 500;
+  transition: color 120ms ease, background 120ms ease;
+}
+
+.landing .footer__contact address a:hover {
+  color: var(--accent);
+  background: var(--accent-ghost);
+  border-radius: 6px;
+}
+*/
 
 .landing .footer__list {
   display: grid;
@@ -596,11 +622,17 @@ html[data-theme="dark"] .landing .testimonial:focus-within {
 
 .landing .footer__list a {
   display: block;
-  padding: var(--space-1) 0;
+  padding: var(--space-0) 0;
   color: var(--text-muted);
   border-radius: 6px;
   transition: color 140ms ease, background-color 140ms ease;
 }
+.landing footer .footer__list a,
+.landing footer address a {
+  display: inline-block;
+}
+
+
 
 .landing .footer__list a:hover,
 .landing .footer__list a:focus-visible {
@@ -677,8 +709,8 @@ html[data-theme="dark"] .landing .testimonial:focus-within {
     margin-top: var(--space-2);
   }
   .landing .footer__list a {
-    padding: var(--space-2) 0;
-    min-height: 44px;
+    padding: var(--space-0) 0;
+    min-height: 28px;
   }
   .landing .footer__social {
     justify-content: center;

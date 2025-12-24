@@ -175,13 +175,13 @@ function renderLanding() {
               <div class="badge">Rozwoj</div>
               <div class="price">499 PLN</div>
               <p>miesiecznie, do 60 pojazdow</p>
-              <a class="button primary" href="#/contact">Umow demo</a>
+              <a class="button secondary" href="#/contact">Umow demo</a>
             </div>
             <div class="price-card">
               <div class="badge">Korporacyjny</div>
               <p>Indywidualnie</p>
               <p>dla flot 60+ pojazdow</p>
-              <a class="button ghost" href="#/contact">Porozmawiajmy</a>
+              <a class="button secondary" href="#/contact">Porozmawiajmy</a>
             </div>
           </div>
         </section>
@@ -199,7 +199,7 @@ function renderLanding() {
               <p class="muted small">Lider operacji, FreshLine</p>
             </div>
             <div class="testimonial">
-              <p>"UI jak Linear, ale dla transportu. Zespół pokochał."</p>
+              <p>"Profesjonalne rozwiązania, i jedno zrodlo prawdy. Dziekujemy, zespół pokochał."</p>
               <p class="muted small">Flota Manager, AeroParts</p>
             </div>
           </div>
@@ -271,11 +271,27 @@ function renderLanding() {
             <div class="footer__col footer__contact">
               <h3 class="footer__title">Kontakt</h3>
 
-              <ul class="footer__list footer__contact-list">
-                <li><a href="tel:+48600000000" aria-label="Zadzwoń do FleetOps">+48 600 000 000</a></li>
-                <li><a href="mailto:kontakt@fleetops.pl" aria-label="Napisz do FleetOps">kontakt@fleetops.pl</a></li>
-                <li><span class="footer__contact-text">Warszawa, Polska</span></li>
-              </ul>
+               <address class="footer__contact">
+                  <ul class="footer__list footer__contact-list">
+                    <li>
+                      <span class="footer__contact-text">
+                      ul. Marynarki Wojennej 12<br>
+                       33-100 Tarnów, Polska
+                      </span>
+                    </li>
+                    <li>
+                      <a href="tel:+48600000000" aria-label="Zadzwoń do FleetOps">
+                      +48 600 000 000
+                      </a>
+                    </li>
+                    <li>
+                      <a href="mailto:kontakt@fleetops.pl" aria-label="Napisz do FleetOps">
+                      kontakt@fleetops.pl
+                      </a>
+                    </li>
+                  </ul>
+              </address>
+
 
               <h4 class="footer__title">Social Media</h4>
 
