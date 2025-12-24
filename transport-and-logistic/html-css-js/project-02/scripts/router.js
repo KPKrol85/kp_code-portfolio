@@ -52,7 +52,11 @@ function renderLogin() {
     <main class="container section" id="main-content">
       <div class="hero-card" style="max-width: 520px; margin: 40px auto;">
         <div class="flex-between" style="margin-bottom: 12px;">
-          <div class="logo flex"><img src="assets/icons/logo-02.svg" alt="FleetOps" width="22" height="22" /><strong>FleetOps</strong></div>
+          <div class="logo flex">
+            <img class="logo__icon logo__icon--light" src="assets/icons/logo-black.svg" alt="FleetOps logo" width="22" height="22" />
+            <img class="logo__icon logo__icon--dark" src="assets/icons/logo-white.svg" alt="" aria-hidden="true" width="22" height="22" />
+            <strong>FleetOps</strong>
+          </div>
           <a class="button ghost" href="#/">Wroc</a>
         </div>
         <h1>Zaloguj się</h1>
@@ -213,7 +217,3 @@ function routeTo(hash) {
 }
 
 window.FleetRouter = { routeTo };
-
-
-
-
