@@ -913,6 +913,44 @@ html[data-theme="dark"] .landing .testimonial:focus-within {
   .landing .page-hero__mark {
     display: none;
   }
+  .landing .page-hero {
+    justify-items: center;
+    text-align: center;
+  }
+  .landing .page-hero h1,
+  .landing .page-hero p {
+    max-width: 64ch;
+  }
+  .landing .card-soft {
+    text-align: left;
+    padding-left: var(--space-5);
+    padding-right: var(--space-5);
+    max-width: 720px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .landing .list-check {
+    justify-items: start;
+  }
+  .landing .list-check li {
+    text-align: left;
+  }
+  .landing .marketing-card .list-check + .muted {
+    margin-top: var(--space-2);
+    text-align: left;
+  }
+  .landing.marketing #terms .marketing-card .list-check {
+    max-width: 60ch;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .landing .marketing-hero__content .list-check {
+    text-align: left;
+    width: 60%;
+    max-width: 560px;
+    margin-left: auto;
+    margin-right: auto;
+  }
 }
 
 @media (max-width: 768px) {
