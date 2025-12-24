@@ -271,11 +271,27 @@ function renderLanding() {
             <div class="footer__col footer__contact">
               <h3 class="footer__title">Kontakt</h3>
 
-              <ul class="footer__list footer__contact-list">
-                <li><a href="tel:+48600000000" aria-label="Zadzwoń do FleetOps">+48 600 000 000</a></li>
-                <li><a href="mailto:kontakt@fleetops.pl" aria-label="Napisz do FleetOps">kontakt@fleetops.pl</a></li>
-                <li><span class="footer__contact-text">Warszawa, Polska</span></li>
-              </ul>
+               <address class="footer__contact">
+                  <ul class="footer__list footer__contact-list">
+                    <li>
+                      <span class="footer__contact-text">
+                      ul. Marynarki Wojennej 12<br>
+                       33-100 Tarnów, Polska
+                      </span>
+                    </li>
+                    <li>
+                      <a href="tel:+48600000000" aria-label="Zadzwoń do FleetOps">
+                      +48 600 000 000
+                      </a>
+                    </li>
+                    <li>
+                      <a href="mailto:kontakt@fleetops.pl" aria-label="Napisz do FleetOps">
+                      kontakt@fleetops.pl
+                      </a>
+                    </li>
+                  </ul>
+              </address>
+
 
               <h4 class="footer__title">Social Media</h4>
 
