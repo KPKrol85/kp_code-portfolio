@@ -433,6 +433,7 @@ textarea:invalid:focus-visible {
 }
 
 /* === 03 - Landing Cards (Hero / Feature) === */
+
 .hero-card {
   padding: var(--space-5);
   border-radius: var(--radius-lg);
@@ -453,7 +454,6 @@ textarea:invalid:focus-visible {
   box-shadow: var(--shadow);
 }
 
-/* === Shared hover/focus system for marketing cards === */
 .feature-card,
 .feature-group,
 .price-card,
@@ -495,7 +495,6 @@ html[data-theme="dark"] .stat-card:focus-within {
     box-shadow: 0 10px 24px rgba(15, 23, 42, 0.08);
     transform: translateY(-1px);
   }
-
   html[data-theme="dark"] .feature-card:hover,
   html[data-theme="dark"] .feature-group:hover,
   html[data-theme="dark"] .price-card:hover,
@@ -524,7 +523,6 @@ html[data-theme="dark"] .stat-card:focus-within {
   .stat-card {
     transition: none;
   }
-
   .feature-card:focus-within,
   .feature-group:focus-within,
   .price-card:focus-within,
@@ -581,10 +579,12 @@ html[data-theme="dark"] .stat-card:focus-within {
 }
 
 /* === 05 - Tables === */
+
 .table {
   width: 100%;
   border-collapse: collapse;
 }
+
 .table th,
 .table td {
   text-align: left;
@@ -593,10 +593,12 @@ html[data-theme="dark"] .stat-card:focus-within {
   overflow-wrap: anywhere;
   word-break: break-word;
 }
+
 .table th {
   color: var(--text-muted);
   font-weight: 600;
 }
+
 .table tr:hover td {
   background: var(--bg-muted);
 }

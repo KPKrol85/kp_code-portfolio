@@ -794,6 +794,12 @@ html[data-theme="dark"] .landing .testimonial:focus-within {
   min-width: 0;
 }
 
+.landing .marketing-card h3 {
+  margin-bottom: var(--space-0);
+}
+
+
+
 .landing .feature-group h3 {
   margin-top: 0;
 }
