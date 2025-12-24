@@ -301,10 +301,10 @@ function renderLanding() {
               <h3 class="footer__title">Produkt</h3>
               <ul class="footer__list">
                 <li><a href="#/app">Panel</a></li>
-                <li><a href="#/fleet">Flota</a></li>
-                <li><a href="#/dispatch">Dyspozytornia</a></li>
-                <li><a href="#/reports">Analityka</a></li>
-                <li><a href="#/settings">Ustawienia</a></li>
+                <li><a href="#/app/fleet">Flota</a></li>
+                <li><a href="#/app/orders">Dyspozytornia</a></li>
+                <li><a href="#/app/reports">Analityka</a></li>
+                <li><a href="#/app/settings">Ustawienia</a></li>
               </ul>
             </div>
 

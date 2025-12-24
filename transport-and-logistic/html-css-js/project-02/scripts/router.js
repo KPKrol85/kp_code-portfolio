@@ -85,16 +85,16 @@ function renderLogin() {
     const name = email.split("@")[0];
     FleetStore.login({ email, name });
     Toast.show("Zalogowano", "success");
-    const intended = FleetStorage.get("fleet-intended-route", "/app");
-    FleetStorage.remove("fleet-intended-route");
-    window.location.hash = `#${intended}`;
+    const returnTo = sessionStorage.getItem("auth:returnTo");
+    if (returnTo) sessionStorage.removeItem("auth:returnTo");
+    window.location.hash = returnTo || "#/app";
   });
 
   document.getElementById("demoLogin").addEventListener("click", () => {
     FleetStore.login({ email: "demo@fleetops.app", name: "Demo User" });
-    const intended = FleetStorage.get("fleet-intended-route", "/app");
-    FleetStorage.remove("fleet-intended-route");
-    window.location.hash = `#${intended}`;
+    const returnTo = sessionStorage.getItem("auth:returnTo");
+    if (returnTo) sessionStorage.removeItem("auth:returnTo");
+    window.location.hash = returnTo || "#/app";
   });
 }
 
@@ -135,11 +135,17 @@ function applyAriaCurrent() {
 }
 
 function routeTo(hash) {
+  const returnToKey = "auth:returnTo";
   const path = hash.replace("#", "") || "/";
   const requiresAuth = path.startsWith("/app");
 
   if (requiresAuth && !FleetStore.state.auth.isAuthenticated) {
-    FleetStorage.set("fleet-intended-route", path);
+    const targetHash = hash || window.location.hash || "#/app";
+    try {
+      sessionStorage.setItem(returnToKey, targetHash);
+    } catch (e) {
+      console.warn("ReturnTo storage error", e);
+    }
     window.location.hash = "#/login";
     return;
   }
