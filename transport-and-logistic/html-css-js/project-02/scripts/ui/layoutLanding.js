@@ -280,7 +280,7 @@ function renderLanding() {
                       </span>
                     </li>
                     <li>
-                      <a href="tel:+48600000000" aria-label="Zadzwoń do FleetOps">
+                      <a href="tel:+48" aria-label="Zadzwoń do FleetOps">
                       +48 600 000 000
                       </a>
                     </li>
