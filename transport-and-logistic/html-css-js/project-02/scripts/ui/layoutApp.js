@@ -35,8 +35,9 @@ function renderAppShell(viewTitle, contentNode) {
 
   const appTopbar = dom.h("div", "app-topbar");
   appTopbar.innerHTML = `
-    <a class="app-topbar__brand logo flex" href="#/app" aria-label="FleetOps — Panel" data-scroll-top="app">
-      <img src="assets/icons/logo-02.svg" alt="FleetOps logo" width="26" height="26" />
+    <a class="app-topbar__brand logo flex" href="#/app" aria-label="FleetOps - Panel" data-scroll-top="app" style="--app-logo-size: 26px;">
+      <img class="logo__icon logo__icon--light" src="assets/icons/logo-black.svg" alt="FleetOps logo" style="width: var(--app-logo-size); height: var(--app-logo-size);" />
+      <img class="logo__icon logo__icon--dark" src="assets/icons/logo-white.svg" alt="" aria-hidden="true" style="width: var(--app-logo-size); height: var(--app-logo-size);" />
       <span>FleetOps</span>
     </a>
     <div class="app-topbar__actions">
@@ -65,8 +66,9 @@ function renderAppShell(viewTitle, contentNode) {
   sidebar.setAttribute("id", "appDrawer");
   sidebar.setAttribute("aria-hidden", "true");
   sidebar.innerHTML = `
-    <a class="logo flex" href="#/app" aria-label="FleetOps — Panel" data-scroll-top="app">
-      <img src="assets/icons/logo-02.svg" alt="FleetOps logo" width="30" height="30" />
+    <a class="logo flex" href="#/app" aria-label="FleetOps - Panel" data-scroll-top="app" style="--app-logo-size: 30px;">
+      <img class="logo__icon logo__icon--light" src="assets/icons/logo-black.svg" alt="FleetOps logo" style="width: var(--app-logo-size); height: var(--app-logo-size);" />
+      <img class="logo__icon logo__icon--dark" src="assets/icons/logo-white.svg" alt="" aria-hidden="true" style="width: var(--app-logo-size); height: var(--app-logo-size);" />
       <span>FleetOps</span>
     </a>
     <nav aria-label="Aplikacja">

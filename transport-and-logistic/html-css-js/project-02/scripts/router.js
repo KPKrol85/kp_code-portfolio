@@ -52,9 +52,9 @@ function renderLogin() {
     <main class="container section" id="main-content">
       <div class="hero-card" style="max-width: 520px; margin: 40px auto;">
         <div class="flex-between" style="margin-bottom: 12px;">
-          <div class="logo flex">
-            <img class="logo__icon logo__icon--light" src="assets/icons/logo-black.svg" alt="FleetOps logo" width="22" height="22" />
-            <img class="logo__icon logo__icon--dark" src="assets/icons/logo-white.svg" alt="" aria-hidden="true" width="22" height="22" />
+          <div class="logo flex" style="--login-logo-size: 32px;">
+            <img class="logo__icon logo__icon--light" src="assets/icons/logo-black.svg" alt="FleetOps logo" style="width: var(--login-logo-size); height: var(--login-logo-size);" />
+            <img class="logo__icon logo__icon--dark" src="assets/icons/logo-white.svg" alt="" aria-hidden="true" style="width: var(--login-logo-size); height: var(--login-logo-size);" />
             <strong>FleetOps</strong>
           </div>
           <a class="button ghost" href="#/">Wroc</a>
