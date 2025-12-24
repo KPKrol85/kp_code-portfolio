@@ -101,19 +101,36 @@ function renderLogin() {
 // === Dynamic aria-current (global) ===
 function applyAriaCurrent() {
   const currentHash = window.location.hash || "#/";
-  const links = document.querySelectorAll(".nav-links a, .sidebar nav a, .footer-links a");
+  const normalizedHash = currentHash === "#" ? "#/" : currentHash;
 
-  let matched = false;
+  const updateGroup = (groupLinks) => {
+    let matched = false;
+    groupLinks.forEach((link) => {
+      const href = link.getAttribute("href");
+      if (!matched && href === normalizedHash) {
+        link.setAttribute("aria-current", "page");
+        matched = true;
+      } else {
+        link.removeAttribute("aria-current");
+      }
+    });
+    return matched;
+  };
 
-  links.forEach((link) => {
-    const href = link.getAttribute("href");
-    if (!matched && href === currentHash) {
-      link.setAttribute("aria-current", "page");
-      matched = true;
+  const navLinks = document.querySelectorAll(".nav-links a");
+  const hasNavMatch = updateGroup(navLinks);
+
+  const homeLogo = document.querySelector('.navbar .logo[data-scroll-top="home"]');
+  if (homeLogo) {
+    if (!hasNavMatch && normalizedHash === "#/") {
+      homeLogo.setAttribute("aria-current", "page");
     } else {
-      link.removeAttribute("aria-current");
+      homeLogo.removeAttribute("aria-current");
     }
-  });
+  }
+
+  updateGroup(document.querySelectorAll(".sidebar nav a"));
+  updateGroup(document.querySelectorAll(".footer-links a"));
 }
 
 function routeTo(hash) {
