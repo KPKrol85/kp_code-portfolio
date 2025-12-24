@@ -221,12 +221,13 @@ function renderMarketingShell({ title, description, eyebrow, lead, body }) {
           <div class="footer__grid">
             <div class="footer__brand">
               <a class="footer__logo" href="#/" aria-label="FleetOps home" data-scroll-top="home">
-                <img src="assets/icons/logo-02.svg" alt="FleetOps" width="28" height="28" />
-                <span>FleetOps</span>
+                <img class="logo__icon logo__icon--light" src="assets/icons/logo-black.svg" alt="FleetOps logo" width="52" height="52" />
+                <img class="logo__icon logo__icon--dark"  src="assets/icons/logo-white.svg" alt="" aria-hidden="true" width="52" height="52" />
               </a>
               <p class="footer__desc">Zarządzaj flotą, dyspozytornią i SLA w jednym, spokojnym środowisku pracy dla zespołów operacyjnych.</p>
               <span class="footer__eyebrow">Stworzone dla zespołów operacyjnych</span>
             </div>
+
             <div class="footer__col">
               <h3 class="footer__title">Produkt</h3>
               <ul class="footer__list">
@@ -237,6 +238,7 @@ function renderMarketingShell({ title, description, eyebrow, lead, body }) {
                 <li><a href="#/settings">Ustawienia</a></li>
               </ul>
             </div>
+
             <div class="footer__col">
               <h3 class="footer__title">Firma</h3>
               <ul class="footer__list">
@@ -247,6 +249,7 @@ function renderMarketingShell({ title, description, eyebrow, lead, body }) {
                 <li><a href="#/careers">Kariera</a></li>
               </ul>
             </div>
+
             <div class="footer__col">
               <h3 class="footer__title">Informacje prawne</h3>
               <ul class="footer__list">
@@ -254,6 +257,35 @@ function renderMarketingShell({ title, description, eyebrow, lead, body }) {
                 <li><a href="#/privacy">Polityka prywatności</a></li>
                 <li><a href="#/cookies">Polityka cookies</a></li>
               </ul>
+            </div>
+
+            <div class="footer__col footer__contact">
+              <h3 class="footer__title">Kontakt</h3>
+
+               <address class="footer__contact">
+                  <ul class="footer__list footer__contact-list">
+                    <li>
+                      <span class="footer__contact-text">
+                      ul. Marynarki Wojennej 12<br>
+                       33-100 Tarnów, Polska
+                      </span>
+                    </li>
+                    <li>
+                      <a href="tel:+48533537091" aria-label="Zadzwoń">
+                      +48 533 537 091
+                      </a>
+                    </li>
+                    <li>
+                      <a href="mailto:kontakt@kp-code.pl" aria-label="Napisz emaila">
+                      kontakt@kp-code.pl
+                      </a>
+                    </li>
+                  </ul>
+              </address>
+
+
+              <h4 class="footer__title">Social Media</h4>
+
               <div class="footer__social" aria-label="FleetOps social links">
                 <a class="footer__social-link" href="https://www.linkedin.com" aria-label="Profil FleetOps na LinkedIn">
                   <svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
@@ -273,8 +305,9 @@ function renderMarketingShell({ title, description, eyebrow, lead, body }) {
               </div>
             </div>
           </div>
+
           <div class="footer__bottom">
-            <span>© 2025 FleetOps — Stworzone dla zespołów operacyjnych</span>
+            <span>© 2025 kp_code_ — Wszelkie prawa zastrzeżone</span>
           </div>
         </div>
       </footer>

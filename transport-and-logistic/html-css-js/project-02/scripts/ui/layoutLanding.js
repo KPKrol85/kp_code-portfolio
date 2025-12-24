@@ -280,13 +280,13 @@ function renderLanding() {
                       </span>
                     </li>
                     <li>
-                      <a href="tel:+48" aria-label="Zadzwoń do FleetOps">
-                      +48 600 000 000
+                      <a href="tel:+48533537091" aria-label="Zadzwoń">
+                      +48 533 537 091
                       </a>
                     </li>
                     <li>
-                      <a href="mailto:kontakt@fleetops.pl" aria-label="Napisz do FleetOps">
-                      kontakt@fleetops.pl
+                      <a href="mailto:kontakt@kp-code.pl" aria-label="Napisz emaila">
+                      kontakt@kp-code.pl
                       </a>
                     </li>
                   </ul>
