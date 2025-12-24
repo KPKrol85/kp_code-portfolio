@@ -172,7 +172,10 @@ function renderMarketingShell({ title, description, eyebrow, lead, body }) {
     <div class="landing marketing">
       <header class="container navbar" role="banner">
         <a class="logo flex" href="#/" aria-label="FleetOps — Strona główna" data-scroll-top="home">
-          <img src="assets/icons/logo-02.svg" alt="FleetOps logo" width="52" height="52" />
+
+          <img class="logo__icon logo__icon--light" src="assets/icons/logo-black.svg" alt="FleetOps logo" width="52" height="52" />
+          <img class="logo__icon logo__icon--dark"  src="assets/icons/logo-white.svg" alt="" aria-hidden="true" width="52" height="52" />
+
           <span>FleetOps</span>
         </a>
         <nav class="nav" aria-label="Nawigacja glowna">
