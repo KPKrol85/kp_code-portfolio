@@ -22,6 +22,56 @@ function bindLogoScroll(kind, getContainer) {
   });
 }
 
+function initResourcesMenu() {
+  const toggle = document.getElementById("resourcesToggle");
+  const menu = document.getElementById("resourcesMenu");
+  if (!toggle || !menu) return;
+
+  let isOpen = false;
+
+  const closeMenu = () => {
+    if (!isOpen) return;
+    isOpen = false;
+    menu.classList.remove("open");
+    toggle.setAttribute("aria-expanded", "false");
+  };
+
+  const openMenu = () => {
+    if (isOpen) return;
+    isOpen = true;
+    menu.classList.add("open");
+    toggle.setAttribute("aria-expanded", "true");
+  };
+
+  toggle.setAttribute("aria-expanded", "false");
+
+  toggle.addEventListener("click", (event) => {
+    event.preventDefault();
+    if (isOpen) {
+      closeMenu();
+    } else {
+      openMenu();
+    }
+  });
+
+  menu.querySelectorAll("a").forEach((link) => {
+    link.addEventListener("click", closeMenu);
+  });
+
+  document.addEventListener("click", (event) => {
+    if (!menu.contains(event.target) && !toggle.contains(event.target)) {
+      closeMenu();
+    }
+  });
+
+  document.addEventListener("keydown", (event) => {
+    if (event.key === "Escape" && isOpen) {
+      closeMenu();
+      toggle.focus();
+    }
+  });
+}
+
 function renderLanding() {
   const app = document.getElementById("app");
   if (!app) return;
@@ -53,6 +103,16 @@ function renderLanding() {
               <li><a href="#/pricing">Cennik</a></li>
               <li><a href="#/about">O nas</a></li>
               <li><a href="#/contact">Kontakt</a></li>
+              <li class="dropdown">
+                <button class="nav-link" id="resourcesToggle" type="button" aria-haspopup="menu" aria-expanded="false" aria-controls="resourcesMenu">
+                  Zasoby
+                </button>
+                <div class="dropdown-menu" id="resourcesMenu" role="menu" aria-label="Zasoby">
+                  <a class="dropdown-item" href="#/privacy">Polityka prywatnosci</a>
+                  <a class="dropdown-item" href="#/terms">Regulamin</a>
+                  <a class="dropdown-item" href="#/cookies">Polityka cookies</a>
+                </div>
+              </li>
               <li><a class="button ghost" href="#/login">Zaloguj sie</a></li>
               <li>
                 <button class="button ghost" id="themeToggleLanding" type="button" aria-label="Przelacz motyw">
@@ -405,6 +465,8 @@ function renderLanding() {
       }
     });
   }
+
+  initResourcesMenu();
 
   document.addEventListener("keydown", (event) => {
     if (event.key === "Escape" && navOpen) {
