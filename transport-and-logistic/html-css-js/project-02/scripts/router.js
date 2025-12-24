@@ -107,7 +107,8 @@ function applyAriaCurrent() {
     let matched = false;
     groupLinks.forEach((link) => {
       const href = link.getAttribute("href");
-      if (!matched && href === normalizedHash) {
+      const isMatch = href === normalizedHash;
+      if (isMatch) {
         link.setAttribute("aria-current", "page");
         matched = true;
       } else {
