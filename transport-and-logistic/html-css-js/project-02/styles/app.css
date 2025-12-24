@@ -307,6 +307,7 @@ html[data-theme="dark"] .app-shell .setting-card:has(input, select, textarea, bu
 }
 
 /* === 07 - Toolbars === */
+
 .toolbar {
   display: flex;
   gap: 8px;
@@ -346,6 +347,7 @@ html[data-theme="dark"] .app-shell .setting-card:has(input, select, textarea, bu
 }
 
 /* === 09 - Compact Mode === */
+
 body[data-compact="true"] .app-content {
   padding: 16px;
   gap: 12px;

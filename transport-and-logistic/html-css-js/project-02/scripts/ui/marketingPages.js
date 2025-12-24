@@ -30,11 +30,7 @@ function initMarketingShell() {
 
   const getDrawerFocusables = () => {
     if (!navDrawer) return [];
-    return Array.from(
-      navDrawer.querySelectorAll(
-        'a[href], button:not([disabled]), [tabindex]:not([tabindex="-1"])'
-      )
-    );
+    return Array.from(navDrawer.querySelectorAll('a[href], button:not([disabled]), [tabindex]:not([tabindex="-1"])'));
   };
 
   const trapDrawerFocus = (event) => {
@@ -422,7 +418,7 @@ function renderProductPage() {
       <section class="section-tight">
         <p class="tag">Jak to dziala</p>
         <h2>Od danych do decyzji w 4 krokach</h2>
-        <div class="grid marketing-grid" style="margin-top: var(--space-3);">
+        <div class="grid marketing-grid">
           <div class="marketing-card">
             <h3>1. Zasil dane</h3>
             <p>Import zlecen, pojazdow i kierowcow lub start na danych demo.</p>
@@ -445,7 +441,7 @@ function renderProductPage() {
       <section class="section-tight">
         <p class="tag">Moduly</p>
         <h2>Najwazniejsze obszary pod kontrola</h2>
-        <div class="grid marketing-grid" style="margin-top: var(--space-3);">
+        <div class="grid marketing-grid"">
           <div class="marketing-card">
             <h3>Zlecenia</h3>
             <p>Statusy, priorytety, ETA, alerty opoznien i szybkie wyszukiwanie tras.</p>
@@ -468,7 +464,7 @@ function renderProductPage() {
       <section class="section-tight">
         <p class="tag">Integracje</p>
         <h2>Podlacz swoje systemy</h2>
-        <div class="grid marketing-grid" style="margin-top: var(--space-3);">
+        <div class="grid marketing-grid">
           <div class="marketing-card">
             <h3>GPS i telematyka</h3>
             <p>Pozycje na zywo, predkosci i przestoje w jednej osi czasu.</p>
@@ -487,7 +483,7 @@ function renderProductPage() {
       <section class="section-tight">
         <p class="tag">Bezpieczenstwo</p>
         <h2>Role, uprawnienia i audyt</h2>
-        <div class="grid marketing-grid" style="margin-top: var(--space-3);">
+        <div class="grid marketing-grid">
           <div class="marketing-card">
             <h3>RBAC</h3>
             <p>Role: Dyspozytor, Menedzer floty, Lider operacji, Podglad.</p>
@@ -515,6 +511,19 @@ function renderProductPage() {
       </section>
     `,
   });
+
+  const hero = document.querySelector(".landing .page-hero");
+  if (hero && !hero.querySelector(".page-hero__mark")) {
+    const mark = document.createElement("div");
+    mark.className = "page-hero__mark";
+    mark.setAttribute("aria-hidden", "true");
+    mark.setAttribute("role", "presentation");
+    mark.innerHTML = `
+      <img class="logo__icon logo__icon--light" src="assets/icons/logo-black.svg" alt="" aria-hidden="true" />
+      <img class="logo__icon logo__icon--dark" src="assets/icons/logo-white.svg" alt="" aria-hidden="true" />
+    `;
+    hero.appendChild(mark);
+  }
 }
 
 function renderFeaturesPage() {
@@ -577,7 +586,7 @@ function renderFeaturesPage() {
       <section class="section-tight">
         <p class="tag">Dla kogo</p>
         <h2>Branze, ktore wspiera FleetOps</h2>
-        <div class="grid marketing-grid" style="margin-top: var(--space-3);">
+        <div class="grid marketing-grid">
           <div class="marketing-card">
             <h3>Logistyka MSP</h3>
             <p>Kompletny panel do operacji bez kosztownych wdrozen enterprise.</p>
@@ -721,7 +730,7 @@ function renderAboutPage() {
       <section class="section-tight">
         <p class="tag">Dlaczego FleetOps</p>
         <h2>Operacje bez chaosu</h2>
-        <div class="grid marketing-grid" style="margin-top: var(--space-3);">
+        <div class="grid marketing-grid">
           <div class="marketing-card">
             <h3>Transparentnosc</h3>
             <p>Jasne statusy, ETA i alerty dla calego zespolu.</p>
@@ -740,7 +749,7 @@ function renderAboutPage() {
       <section class="section-tight">
         <p class="tag">Podejscie</p>
         <h2>Praca w iteracjach</h2>
-        <div class="grid marketing-grid" style="margin-top: var(--space-3);">
+        <div class="grid marketing-grid">
           <div class="marketing-card">
             <h3>Diagnoza</h3>
             <p>Mapujemy procesy dispatch i SLA, by dobrze ustawic priorytety.</p>
@@ -814,22 +823,32 @@ function renderContactPage() {
           <div class="marketing-card">
             <h2>Dane kontaktowe</h2>
             <p class="muted">Kontakt do twórcy projektu</p>
-            <div class="grid" style="gap: 10px; margin-top: var(--space-2);">
-              <div>
-                <p class="muted small">E-mail</p>
-                <p>kontakt@kp-code.pl</p>
-              </div>
-              <div>
-                <p class="muted small">Telefon</p>
-                <p>+48 533 537 091</p>
-              </div>
-              <div>
-                <p class="muted small">Adres</p>
-                <p>Marynarki Wojennej 12/3<br />33-100 Tarnow<br />Polska</p>
-              </div>
-            </div>
-            <div class="card-soft" style="margin-top: var(--space-3);">
-              <p class="muted small">FleetOps to projekt demonstracyjny (portfolio). Kontakt dotyczy twórcy projektu.</p>
+
+              <address class="contact-address">
+                <div>
+                  <p class="muted small">E-mail</p>
+                  <p>
+                    <a href="mailto:kontakt@kp-code.pl">kontakt@kp-code.pl</a>
+                  </p>
+                </div>
+                <div>
+                  <p class="muted small">Telefon</p>
+                  <p>
+                    <a href="tel:+48533537091">+48 533 537 091</a>
+                  </p>
+                </div>
+                <div>
+                  <p class="muted small">Adres</p>
+                  <p>
+                    Marynarki Wojennej 12/3<br />
+                    33-100 Tarnów<br />
+                    Polska
+                  </p>
+                </div>
+              </address>
+
+            <div class="card-soft">
+              <p class="muted small">FleetOps to projekt demonstracyjny. Kontakt dotyczy twórcy projektu.</p>
               <p class="muted small">Projekt i interfejs: Kamil Krol (kp_code_).</p>
               <a class="button secondary" href="#/pricing" style="margin-top: var(--space-2);">Zobacz cennik</a>
             </div>
@@ -882,10 +901,10 @@ function renderPrivacyPage() {
       <section class="section-tight">
         <p class="tag">Informacja o wersji demo</p>
         <h2>Serwis demonstracyjny bez backendu</h2>
-        <div class="grid marketing-grid" style="margin-top: var(--space-3);">
+        <div class="grid marketing-grid"">
           <div class="marketing-card">
             <h3>Brak kont produkcyjnych</h3>
-            <p>FleetOps to portfolio / demo. Nie tworzymy kont w chmurze ani nie udostepniamy panelu klientom komercyjnym.</p>
+            <p>FleetOps to projekt portfolio / demo. Nie tworzymy kont w chmurze ani nie udostepniamy panelu klientom komercyjnym.</p>
           </div>
           <div class="marketing-card">
             <h3>Dane w przegladarce</h3>
@@ -893,28 +912,50 @@ function renderPrivacyPage() {
           </div>
           <div class="marketing-card">
             <h3>Brak integracji z osobami trzecimi</h3>
-            <p>Demo nie przekazuje danych do zewnetrznych systemow poza standardowymi narzedziami przegladarki.</p>
+            <p>Demo nie przekazuje danych do zewnetrznych systemow ani narzedzi analitycznych poza standardowymi funkcjami przegladarki.</p>
           </div>
         </div>
       </section>
 
       <section class="section-tight">
         <p class="tag">Administrator</p>
-        <h2>Kto jest administratorem danych</h2>
-        <div class="marketing-card">
-          <p>Administratorem danych w ramach wersji demonstracyjnej jest wlasciciel projektu:</p>
-          <div class="grid" style="gap: 8px; margin-top: var(--space-2);">
-            <div><strong>Adres:</strong> Marynarki Wojennej 12/3, 33-100 Tarnow, Polska</div>
-            <div><strong>Telefon:</strong> +48 533 537 091</div>
-            <div><strong>E-mail:</strong> kontakt@kp-code.pl</div>
-          </div>
-        </div>
-      </section>
+          <h2>Kto jest administratorem danych</h2>
+            <div class="card-soft">
+              <p>
+                Administratorem danych w ramach wersji demonstracyjnej FleetOps jest:
+              </p>
+            <div class="grid">
+            <div>
+              <strong>Imię i nazwisko:</strong> Kamil Król (KP_Code_)
+            </div>
+            <div>
+              <strong>Adres:</strong>
+                <a
+                  href="https://www.google.com/maps?q=Marynarki+Wojennej+12/3,+33-100+Tarn%C3%B3w,+Polska"
+                  target="_blank"
+                  rel="noopener noreferrer">
+                    Marynarki Wojennej 12/3, 33-100 Tarnów, Polska
+                </a>
+              </div>
+                 <div>
+              <strong>Telefon:</strong>
+                <a href="tel:+48533537091">+48 533 537 091</a>
+              </div>
+            <div>
+                  <strong>E-mail:</strong>
+                  <a href="mailto:kontakt@kp-code.pl">kontakt@kp-code.pl</a>
+                </div>
+              </div>
+              <p class="muted small">
+                Dane kontaktowe dotyczą twórcy projektu demonstracyjnego FleetOps.
+              </p>
+            </div>
+    </section>
 
       <section class="section-tight">
         <p class="tag">Zakres danych</p>
         <h2>Jakie dane moga wystapic w demo</h2>
-        <div class="grid marketing-grid" style="margin-top: var(--space-3);">
+        <div class="grid marketing-grid"">
           <div class="marketing-card">
             <h3>Formularz kontaktowy</h3>
             <ul class="list-check">
@@ -922,7 +963,7 @@ function renderPrivacyPage() {
               <li>E-mail sluzbowy</li>
               <li>Wiadomosc i wielkosc floty</li>
             </ul>
-            <p class="muted small">Formularz dziala lokalnie i nie wysyla danych na serwer.</p>
+            <p class="muted small">Formularz dziala lokalnie i nie wysyla danych na serwer. Dane wpisane w formularzu pozostaja wyłącznie w przegladarce uzytkownika.</p>
           </div>
           <div class="marketing-card">
             <h3>Dane demo w aplikacji</h3>
@@ -944,9 +985,17 @@ function renderPrivacyPage() {
       </section>
 
       <section class="section-tight">
+        <p class="tag">Cookies i technologie podobne</p>
+        <h2>Pliki cookies oraz localStorage</h2>
+        <div class="marketing-card">
+          <p>W wersji demo nie korzystamy z cookies marketingowych ani narzedzi analitycznych. Serwis moze wykorzystywac localStorage w celu zapisania preferencji (np. motyw) oraz danych demo generowanych lokalnie w przegladarce.</p>
+        </div>
+      </section>
+
+      <section class="section-tight">
         <p class="tag">Prawa uzytkownika</p>
         <h2>Kontrola nad danymi w wersji demo</h2>
-        <div class="grid marketing-grid" style="margin-top: var(--space-3);">
+        <div class="grid marketing-grid">
           <div class="marketing-card">
             <h3>Dostep i poprawa</h3>
             <p>Masz prawo uzyskac informacje o danych zapisanych lokalnie. W wersji demo wystarczy przejrzec dane w przegladarce.</p>
@@ -957,7 +1006,7 @@ function renderPrivacyPage() {
           </div>
           <div class="marketing-card">
             <h3>Kontakt z administratorem</h3>
-            <p>Jesli potrzebujesz wsparcia lub potwierdzenia usuniecia danych, napisz na kontakt@kp-code.pl.</p>
+            <p>Jesli potrzebujesz wsparcia, napisz na kontakt@kp-code.pl. Uwaga: wiadomosc wyslana e-mailem (mailto) trafia do administratora i jest przetwarzana w celu odpowiedzi na zapytanie.</p>
           </div>
         </div>
       </section>
@@ -966,7 +1015,7 @@ function renderPrivacyPage() {
         <p class="tag">Bezpieczenstwo</p>
         <h2>Jak dbamy o bezpieczenstwo</h2>
         <div class="marketing-card">
-          <p>Wersja demo dziala wylacznie po stronie klienta. Nie przechowujemy danych na serwerze, nie profilujemy i nie sprzedajemy informacji. Stosujemy podstawowe praktyki bezpieczenstwa: aktualne zaleznosci, brak publicznych endpointow i minimalny zakres danych.</p>
+          <p>Wersja demo dziala wylacznie po stronie klienta. Nie przechowujemy danych na serwerze, nie profilujemy i nie sprzedajemy informacji. Stosujemy podstawowe praktyki bezpieczenstwa: aktualne zaleznosci, brak publicznego API / endpointow do przesylania danych oraz minimalny zakres danych.</p>
         </div>
       </section>
 
@@ -988,24 +1037,24 @@ function renderTermsPage() {
   renderMarketingShell({
     title: "Regulamin",
     eyebrow: "Regulamin",
-    lead: "Regulamin okresla zasady korzystania z demonstracyjnej wersji FleetOps. To aplikacja portfolio bez backendu i bez gwarancji produkcyjnej.",
+    lead: "Regulamin okresla zasady korzystania z demonstracyjnej wersji FleetOps. To projekt demo bez backendu i bez gwarancji produkcyjnej.",
     description: "Regulamin korzystania z wersji demo FleetOps. Zasady uzytkowania, ograniczenia odpowiedzialnosci i prawa autorskie.",
     body: `
       <section class="section-tight">
         <p class="tag">Zakres</p>
         <h2>Charakter uslugi</h2>
-        <div class="grid marketing-grid" style="margin-top: var(--space-3);">
+        <div class="grid marketing-grid">
           <div class="marketing-card">
-            <h3>Demo / portfolio</h3>
-            <p>FleetOps to pokazowa aplikacja SaaS stworzona w celach prezentacyjnych. Nie jest to komercyjny produkt produkcyjny.</p>
+            <h3>Projekt demonstracyjny</h3>
+            <p>FleetOps jest projektem demonstracyjnym (demo). Aplikacja sluzy do prezentacji interfejsu i funkcji i nie stanowi komercyjnego produktu produkcyjnego.</p>
           </div>
           <div class="marketing-card">
             <h3>Brak gwarancji SLA</h3>
-            <p>Nie gwarantujemy ciaglosci dzialania, kompletnosci funkcji ani dostepnosci okreslonych danych.</p>
+            <p>Nie gwarantujemy ciaglosci dzialania, dostepnosci, kompletnosci funkcji ani okreslonego poziomu wsparcia. Dostep do demo moze byc zmieniany lub wstrzymany.</p>
           </div>
           <div class="marketing-card">
             <h3>Tryb lokalny</h3>
-            <p>Dane demo zapisywane sa lokalnie w przegladarce, bez synchronizacji z serwerem.</p>
+            <p>Dane demo zapisywane sa lokalnie w przegladarce uzytkownika (np. localStorage), bez synchronizacji z serwerem.</p>
           </div>
         </div>
       </section>
@@ -1025,19 +1074,27 @@ function renderTermsPage() {
       <section class="section-tight">
         <p class="tag">Naduzycia</p>
         <h2>Czego zabrania regulamin</h2>
-        <div class="grid marketing-grid" style="margin-top: var(--space-3);">
+        <div class="grid marketing-grid">
           <div class="marketing-card">
             <h3>Proby lamania zabezpieczen</h3>
-            <p>Zakaz przeprowadzania testow penetracyjnych, prob obejscia zabezpieczen i manipulowania danymi aplikacji.</p>
+            <p>Zakazane sa proby obejscia zabezpieczen, ingerencja w dzialanie aplikacji, testy penetracyjne oraz dzialania zmierzajace do uzyskania nieuprawnionego dostepu.</p>
           </div>
           <div class="marketing-card">
             <h3>Automaty i spam</h3>
-            <p>Zakaz wysylania automatycznych zgloszen w formularzu kontaktowym lub obciazania aplikacji ruchem.</p>
+            <p>Zakazane jest generowanie sztucznego ruchu, wysylanie automatycznych zgloszen oraz naduzywanie formularzy kontaktowych.</p>
           </div>
           <div class="marketing-card">
             <h3>Uzycie komercyjne</h3>
-            <p>Zakaz wykorzystywania demo jako gotowego systemu produkcyjnego.</p>
+            <p>Zakazane jest wykorzystywanie wersji demo jako gotowego systemu produkcyjnego, w tym do obslugi realnych procesow firmy lub danych osobowych.</p>
           </div>
+        </div>
+      </section>
+
+      <section class="section-tight">
+        <p class="tag">Odpowiedzialnosc</p>
+        <h2>Ograniczenie odpowiedzialnosci</h2>
+        <div class="marketing-card">
+          <p>Wersja demo jest udostepniana "tak jak jest" (as is). W najszerszym zakresie dopuszczalnym przez prawo wlasciciel projektu nie ponosi odpowiedzialnosci za szkody wynikajace z korzystania z demo, w tym za utrate danych lokalnych, przerwy w dostepie, bledy interfejsu lub decyzje podjete na podstawie prezentowanych informacji.</p>
         </div>
       </section>
 
@@ -1045,19 +1102,42 @@ function renderTermsPage() {
         <p class="tag">Prawa autorskie</p>
         <h2>Wlasnosc intelektualna</h2>
         <div class="marketing-card">
-          <p>Interfejs, tresci, layout, grafiki i kod zrodlowy FleetOps sa chronione prawem autorskim i naleza do wlasciciela projektu. Zabronione jest kopiowanie lub udostepnianie bez pisemnej zgody.</p>
+          <p>Interfejs, tresci, layout, grafiki oraz kod zrodlowy FleetOps sa chronione prawem autorskim i naleza do wlasciciela projektu: Kamil Krol (KP_Code_). Zabronione jest kopiowanie, rozpowszechnianie lub udostepnianie bez uprzedniej pisemnej zgody.</p>
         </div>
       </section>
 
       <section class="section-tight">
         <p class="tag">Kontakt</p>
-        <h2>Dane wlasciciela</h2>
+        <h2>Dane właściciela</h2>
+
         <div class="card-soft">
-          <div class="grid" style="gap: 8px;">
-            <div><strong>Adres:</strong> Marynarki Wojennej 12/3, 33-100 Tarnow, Polska</div>
-            <div><strong>Telefon:</strong> +48 533 537 091</div>
-            <div><strong>E-mail:</strong> kontakt@kp-code.pl</div>
-          </div>
+          <address class="contact-address">
+            <div><strong>Imię i nazwisko:</strong> Kamil Krol (KP_Code_)</div>
+
+            <div>
+              <strong>Adres:</strong>
+                <a
+                  href="https://www.google.com/maps?q=Marynarki+Wojennej+12/3+33-100+Tarnów"
+                  target="_blank"
+                  rel="noopener noreferrer">
+                  Marynarki Wojennej 12/3, 33-100 Tarnów, Polska
+                </a>
+            </div>
+
+            <div>
+              <strong>Telefon:</strong>
+              <a href="tel:+48533537091">+48 533 537 091</a>
+            </div>
+
+            <div>
+              <strong>E-mail:</strong>
+              <a href="mailto:kontakt@kp-code.pl">kontakt@kp-code.pl</a>
+            </div>
+          </address>
+
+          <p class="muted small">
+            Dane kontaktowe dotyczą twórcy projektu demonstracyjnego FleetOps.
+          </p>
         </div>
       </section>
 
@@ -1080,23 +1160,23 @@ function renderCookiesPage() {
     title: "Polityka cookies",
     eyebrow: "Polityka cookies",
     lead: "Wersja demo FleetOps nie stosuje sledzacych plikow cookies. Wyjasniamy, jakie dane techniczne moga byc zapisane lokalnie.",
-    description: "Polityka cookies FleetOps. Informacje o danych technicznych, localStorage i sposobach zarzadzania ustawieniami.",
+    description: "Polityka cookies FleetOps (wersja demo). Informacje o danych technicznych, localStorage i sposobach zarzadzania ustawieniami.",
     body: `
       <section class="section-tight">
         <p class="tag">Podstawy</p>
         <h2>Jakich mechanizmow uzywamy</h2>
-        <div class="grid marketing-grid" style="margin-top: var(--space-3);">
+        <div class="grid marketing-grid">
           <div class="marketing-card">
             <h3>Brak tracking cookies</h3>
             <p>FleetOps nie wykorzystuje marketingowych ani analitycznych ciasteczek sledzacych.</p>
           </div>
           <div class="marketing-card">
             <h3>LocalStorage</h3>
-            <p>Preferencje interfejsu i dane demo sa przechowywane lokalnie w przegladarce.</p>
+            <p>Preferencje interfejsu i dane demo sa przechowywane lokalnie w przegladarce uzytkownika.</p>
           </div>
           <div class="marketing-card">
-            <h3>Pliki techniczne</h3>
-            <p>Przegladarka moze zapisywac dane niezbedne do poprawnego dzialania strony (np. cache).</p>
+            <h3>Dane techniczne przegladarki</h3>
+            <p>Przegladarka moze zapisywac dane niezbedne do poprawnego dzialania strony (np. cache), zgodnie z jej wlasnymi zasadami.</p>
           </div>
         </div>
       </section>
@@ -1106,28 +1186,29 @@ function renderCookiesPage() {
         <h2>Jakie dane techniczne moga wystapic</h2>
         <div class="marketing-card">
           <ul class="list-check">
-            <li>Ustawienia motywu i jezyka interfejsu</li>
+            <li>Ustawienia motywu i preferencje interfejsu</li>
             <li>Historia ostatnich widokow w demo</li>
             <li>Mockowe dane operacyjne zapisane lokalnie</li>
           </ul>
+          <p class="muted small">Wersja demo nie wykorzystuje zewnetrznych skryptow analitycznych ani reklamowych.</p>
         </div>
       </section>
 
       <section class="section-tight">
         <p class="tag">Zarzadzanie</p>
         <h2>Jak kontrolowac dane w przegladarce</h2>
-        <div class="grid marketing-grid" style="margin-top: var(--space-3);">
+        <div class="grid marketing-grid">
           <div class="marketing-card">
             <h3>Ustawienia przegladarki</h3>
-            <p>W ustawieniach przegladarki mozesz wyczyscic dane strony oraz zablokowac zapisywanie danych lokalnych.</p>
+            <p>W ustawieniach przegladarki mozesz wyczyscic dane strony oraz ograniczyc zapisywanie danych lokalnych.</p>
           </div>
           <div class="marketing-card">
             <h3>Czyszczenie localStorage</h3>
-            <p>Usuniecie danych lokalnych przywroci demo do stanu poczatkowego.</p>
+            <p>Usuniecie danych lokalnych przywroci demo do stanu poczatkowego (np. motyw, ustawienia, dane demo).</p>
           </div>
           <div class="marketing-card">
-            <h3>Brak zewnetrznych narzedzi</h3>
-            <p>Nie korzystamy z zewnetrznych skryptow analitycznych ani reklamowych.</p>
+            <h3>Brak narzedzi stron trzecich</h3>
+            <p>Nie korzystamy z zewnetrznych narzedzi analitycznych ani reklamowych, ktore moglyby ustawic cookies sledzace.</p>
           </div>
         </div>
       </section>
@@ -1136,11 +1217,30 @@ function renderCookiesPage() {
         <p class="tag">Kontakt</p>
         <h2>Masz pytania o polityke cookies?</h2>
         <div class="card-soft">
-          <div class="grid" style="gap: 8px;">
-            <div><strong>Adres:</strong> Marynarki Wojennej 12/3, 33-100 Tarnow, Polska</div>
-            <div><strong>Telefon:</strong> +48 533 537 091</div>
-            <div><strong>E-mail:</strong> kontakt@kp-code.pl</div>
-          </div>
+          <address class="contact-address">
+            <div>
+              <strong>Imię i nazwisko:</strong> Kamil Król (KP_Code_)
+            </div>
+            <div>
+              <strong>Adres:</strong>
+              <a href="https://www.google.com/maps?q=Marynarki+Wojennej+12/3,+33-100+Tarn%C3%B3w,+Polska"
+                target="_blank"
+                rel="noopener noreferrer">
+                Marynarki Wojennej 12/3, 33-100 Tarnów, Polska
+              </a>
+            </div>
+            <div>
+              <strong>Telefon:</strong>
+              <a href="tel:+48533537091">+48 533 537 091</a>
+            </div>
+            <div>
+              <strong>E-mail:</strong>
+              <a href="mailto:kontakt@kp-code.pl">kontakt@kp-code.pl</a>
+            </div>
+          </address>
+          <p class="muted small">
+            Dane kontaktowe dotycza twórcy projektu demonstracyjnego FleetOps.
+          </p>
         </div>
       </section>
     `,
@@ -1155,5 +1255,3 @@ window.renderContactPage = renderContactPage;
 window.renderPrivacyPage = renderPrivacyPage;
 window.renderTermsPage = renderTermsPage;
 window.renderCookiesPage = renderCookiesPage;
-
-

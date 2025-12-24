@@ -25,6 +25,7 @@
    ================================== */
 
 /* === 00 - Design Tokens === */
+
 @font-face {
   font-family: "Inter";
   font-style: normal;
@@ -69,6 +70,9 @@
   --space-8: 80px;
   --space-section: 48px;
   --space-section-lg: 56px;
+  --hero-mark-size-sm: 160px;
+  --hero-mark-size-md: 200px;
+  --hero-mark-size-lg: 240px;
   color-scheme: dark;
 }
 
@@ -89,7 +93,7 @@
   --shadow-elev-2: 0 24px 48px rgba(15, 23, 42, 0.16);
   --shadow-elev-3: 0 36px 70px rgba(15, 23, 42, 0.2);
   color-scheme: light;
-   /* 🔒 UI LOCK === shadow: 0 12px 40px rgba(15, 23, 42, 0.08); */
+  /* 🔒 UI LOCK === shadow: 0 12px 40px rgba(15, 23, 42, 0.08); */
 }
 
 /* === 01 - Global Reset & Selection === */
