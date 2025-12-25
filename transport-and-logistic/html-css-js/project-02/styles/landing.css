@@ -965,6 +965,45 @@ html[data-theme="dark"] .landing .testimonial:focus-within {
   }
 }
 
+@media (max-width: 640px) {
+  .table-responsive {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    width: 100%;
+    max-width: 100%;
+  }
+  .table-responsive .table {
+    width: max-content;
+    min-width: 640px;
+    border-collapse: collapse;
+  }
+  .table-responsive th,
+  .table-responsive td {
+    white-space: nowrap;
+  }
+  .table-responsive td:first-child,
+  .table-responsive th:first-child {
+    white-space: normal;
+    min-width: 160px;
+  }
+}
+
+@media (max-width: 640px) {
+  .cta-panel {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+  .cta-panel > div:first-child {
+    max-width: 36ch;
+    margin: 0 auto;
+  }
+  .cta-panel .hero-cta {
+    width: 100%;
+    justify-content: center;
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   .landing .page-hero__mark {
     animation: none;
