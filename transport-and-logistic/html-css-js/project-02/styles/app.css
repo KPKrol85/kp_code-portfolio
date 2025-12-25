@@ -86,14 +86,17 @@
   justify-content: space-between;
   gap: 12px;
 }
+
 .topbar-left {
   display: flex;
   align-items: center;
   gap: 12px;
 }
+
 .topbar h2 {
   font-size: 18px;
 }
+
 .search {
   min-width: 220px;
   background: var(--surface);
@@ -101,17 +104,20 @@
   border-radius: var(--radius-sm);
   padding: 10px 12px;
 }
+
 .search input {
   width: 100%;
   background: transparent;
   border: 0;
   color: var(--text);
 }
+
 .topbar-actions {
   display: flex;
   align-items: center;
   gap: 8px;
 }
+
 .avatar {
   width: 34px;
   height: 34px;
@@ -125,9 +131,11 @@
 }
 
 /* === 02b - App Topbar (Mobile) === */
+
 .app-topbar {
   display: none;
 }
+
 .app-topbar__brand {
   display: inline-flex;
   align-items: center;
@@ -135,6 +143,7 @@
   font-weight: 700;
   letter-spacing: -0.02em;
 }
+
 .app-topbar__actions {
   display: inline-flex;
   align-items: center;
@@ -199,13 +208,7 @@ body.drawer-open {
 }
 
 /* === 04 - Modules & Panels === */
-.module-header {
-  display: flex;
-  justify-content: space-between;
-  gap: 10px;
-  align-items: center;
-  flex-wrap: wrap;
-}
+
 .panel {
   border: 1px solid var(--border);
   border-radius: var(--radius);
@@ -214,7 +217,17 @@ body.drawer-open {
   box-shadow: var(--shadow);
 }
 
+.module-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: var(--space-3);
+}
+
 /* === 05 - Activity & Lists === */
+
 .activity-row {
   display: flex;
   justify-content: space-between;
@@ -222,20 +235,40 @@ body.drawer-open {
   padding: 10px 0;
   border-bottom: 1px solid var(--border);
 }
+
 .activity-row:last-child {
   border-bottom: 0;
 }
+
 .alerts {
   display: grid;
-  gap: 12px;
+  gap: 30px;
+}
+
+.alert {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+  align-items: flex-start;
+}
+
+.alerts .badge {
+  background: color-mix(in srgb, var(--surface) 78%, var(--bg-muted));
+  border-color: color-mix(in srgb, var(--border) 80%, transparent);
+}
+
+.alert-content strong {
+  display: block;
 }
 
 /* === 06 - Tables & Rows === */
+
 .order-row {
   cursor: pointer;
 }
 
 /* === 06b - App interactive hover/focus (tool-style) === */
+
 .app-shell .sidebar a,
 .app-shell .order-row td {
   transition: background-color 140ms ease, border-color 140ms ease, color 140ms ease;
@@ -327,18 +360,21 @@ html[data-theme="dark"] .app-shell .setting-card:has(input, select, textarea, bu
   margin-top: var(--space-3);
 }
 
-/* Reports: spacing between stacked panels */
+/* Reports: spacing between stacked panels *//*
 .app-shell .app-content .panel + .panel,
 .app-shell .app-content .panel + .panel.table-responsive {
   margin-top: var(--space-3);
 }
+*/
 
 /* === 08 - Settings === */
+
 .settings-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
   gap: 14px;
 }
+
 .setting-card {
   border: 1px solid var(--border);
   padding: var(--space-3);
@@ -475,7 +511,6 @@ body[data-compact="true"] .topbar {
 .empty-state__title {
   margin: 0;
 }
-
 
 /* === 13 - Utility Components (Progress / Pills / Inline) === */
 
