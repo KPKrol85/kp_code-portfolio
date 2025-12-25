@@ -475,3 +475,50 @@ body[data-compact="true"] .topbar {
 .empty-state__title {
   margin: 0;
 }
+
+
+/* === 13 - Utility Components (Progress / Pills / Inline) === */
+
+.label-pill {
+  padding: 4px 8px;
+  border-radius: 999px;
+  font-size: 12px;
+  border: 1px solid var(--border);
+}
+
+/* Progress */
+
+.progress-bar {
+  height: 6px;
+  background: var(--bg-muted);
+  border-radius: 999px;
+  overflow: hidden;
+}
+
+.progress-bar span {
+  display: block;
+  height: 100%;
+  background: var(--accent);
+}
+
+/* Inline form */
+
+.form-inline {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+/* Responsive (app shell navbar) */
+
+@media (max-width: 1024px) {
+  .app-shell .navbar {
+    flex-direction: column;
+    gap: 12px;
+    align-items: flex-start;
+  }
+
+  .app-shell .nav-links {
+    flex-wrap: wrap;
+  }
+}
