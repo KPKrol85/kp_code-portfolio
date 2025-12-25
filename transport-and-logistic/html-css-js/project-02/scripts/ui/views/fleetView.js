@@ -164,6 +164,12 @@ function fleetView() {
   });
 
   startLoading();
+
+  CleanupRegistry.add(() => {
+    if (loadingTimer) clearTimeout(loadingTimer);
+    if (filterTimer) clearTimeout(filterTimer);
+  });
+
   return root;
 }
 

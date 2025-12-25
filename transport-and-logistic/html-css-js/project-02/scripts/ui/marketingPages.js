@@ -12,7 +12,8 @@ function setPageMeta(title, description) {
 }
 
 function initMarketingShell() {
-  bindLogoScroll("home");
+  const logoCleanup = bindLogoScroll("home");
+  CleanupRegistry.add(logoCleanup);
 
   const tBtn = document.getElementById("themeToggleLanding");
   if (tBtn) {
@@ -99,13 +100,14 @@ function initMarketingShell() {
 
   initResourcesMenu();
 
-  document.addEventListener("keydown", (event) => {
+  const handleKeydown = (event) => {
     if (event.key === "Escape" && navOpen) {
       closeNav();
       return;
     }
     trapDrawerFocus(event);
-  });
+  };
+  document.addEventListener("keydown", handleKeydown);
 
   const navbar = document.querySelector(".landing .navbar");
   if (navbar) {
@@ -113,6 +115,7 @@ function initMarketingShell() {
     let ticking = false;
     const addAt = 18;
     const removeAt = 6;
+    const scrollOptions = { passive: true };
 
     const onScroll = () => {
       lastY = window.scrollY || 0;
@@ -128,19 +131,29 @@ function initMarketingShell() {
       });
     };
 
-    window.addEventListener("scroll", onScroll, { passive: true });
+    window.addEventListener("scroll", onScroll, scrollOptions);
     onScroll();
+
+    CleanupRegistry.add(() => {
+      window.removeEventListener("scroll", onScroll, scrollOptions);
+    });
   }
 
   document.querySelectorAll(".accordion").forEach((el) => Accordion.init(el));
+
+  CleanupRegistry.add(() => {
+    document.removeEventListener("keydown", handleKeydown);
+  });
 }
 
 function bindLogoScroll(kind, getContainer) {
   const links = document.querySelectorAll(`[data-scroll-top="${kind}"]`);
-  if (!links.length) return;
+  if (!links.length) return () => {};
+
+  const cleanups = [];
 
   links.forEach((link) => {
-    link.addEventListener("click", (event) => {
+    const handleClick = (event) => {
       const targetHash = kind === "app" ? "#/app" : "#/";
       const currentHash = window.location.hash || "#/";
       if (currentHash === targetHash) {
@@ -155,8 +168,12 @@ function bindLogoScroll(kind, getContainer) {
           window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
         }
       }, 0);
-    });
+    };
+    link.addEventListener("click", handleClick);
+    cleanups.push(() => link.removeEventListener("click", handleClick));
   });
+
+  return () => cleanups.forEach((fn) => fn());
 }
 
 function initResourcesMenu() {
@@ -195,17 +212,24 @@ function initResourcesMenu() {
     link.addEventListener("click", closeMenu);
   });
 
-  document.addEventListener("click", (event) => {
+  const handleDocClick = (event) => {
     if (!menu.contains(event.target) && !toggle.contains(event.target)) {
       closeMenu();
     }
-  });
+  };
+  document.addEventListener("click", handleDocClick);
 
-  document.addEventListener("keydown", (event) => {
+  const handleDocKeydown = (event) => {
     if (event.key === "Escape" && isOpen) {
       closeMenu();
       toggle.focus();
     }
+  };
+  document.addEventListener("keydown", handleDocKeydown);
+
+  CleanupRegistry.add(() => {
+    document.removeEventListener("click", handleDocClick);
+    document.removeEventListener("keydown", handleDocKeydown);
   });
 }
 

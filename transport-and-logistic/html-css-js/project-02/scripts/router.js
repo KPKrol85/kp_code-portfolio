@@ -143,6 +143,8 @@ function routeTo(hash) {
   const path = hash.replace("#", "") || "/";
   const requiresAuth = path.startsWith("/app");
 
+  if (window.CleanupRegistry) CleanupRegistry.runAll();
+
   if (requiresAuth && !FleetStore.state.auth.isAuthenticated) {
     const targetHash = hash || window.location.hash || "#/app";
     try {

@@ -39,8 +39,15 @@ function ordersView() {
 
   let isLoading = true;
   let filterTimer = null;
+  let searchDebounceTimer = null;
+  let searchLoadingTimer = null;
+  let initialLoadTimer = null;
   const FILTER_DELAY = 160;
   const priorityLabel = (value) => ({ high: "Wysoki", medium: "Średni", low: "Niski" }[value] || value);
+  const debounce = (fn, wait = 250) => (...args) => {
+    if (searchDebounceTimer) clearTimeout(searchDebounceTimer);
+    searchDebounceTimer = setTimeout(() => fn(...args), wait);
+  };
 
   const renderOrdersSkeleton = () => {
     tableWrap.innerHTML = `
@@ -144,14 +151,6 @@ function ordersView() {
     Modal.open({ title: `Zlecenie ${order.id}`, body });
   };
 
-  const debounce = (fn, wait = 250) => {
-    let t;
-    return (...args) => {
-      clearTimeout(t);
-      t = setTimeout(() => fn(...args), wait);
-    };
-  };
-
   const pushFilters = () => {
     FleetStore.setOrderFilters({
       status: statusSelect.value,
@@ -174,7 +173,8 @@ function ordersView() {
     isLoading = true;
     renderRows();
 
-    setTimeout(() => {
+    if (searchLoadingTimer) clearTimeout(searchLoadingTimer);
+    searchLoadingTimer = setTimeout(() => {
       isLoading = false;
       renderRows();
     }, 140);
@@ -208,10 +208,17 @@ function ordersView() {
   }
 
   renderRows();
-  setTimeout(() => {
+  initialLoadTimer = setTimeout(() => {
     isLoading = false;
     renderRows();
   }, 180);
+
+  CleanupRegistry.add(() => {
+    if (filterTimer) clearTimeout(filterTimer);
+    if (searchDebounceTimer) clearTimeout(searchDebounceTimer);
+    if (searchLoadingTimer) clearTimeout(searchLoadingTimer);
+    if (initialLoadTimer) clearTimeout(initialLoadTimer);
+  });
 
   return root;
 }

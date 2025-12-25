@@ -1,9 +1,11 @@
 function bindLogoScroll(kind, getContainer) {
   const links = document.querySelectorAll(`[data-scroll-top="${kind}"]`);
-  if (!links.length) return;
+  if (!links.length) return () => {};
+
+  const cleanups = [];
 
   links.forEach((link) => {
-    link.addEventListener("click", (event) => {
+    const handleClick = (event) => {
       const targetHash = kind === "app" ? "#/app" : "#/";
       const currentHash = window.location.hash || "#/";
       if (currentHash === targetHash) {
@@ -18,8 +20,12 @@ function bindLogoScroll(kind, getContainer) {
           window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
         }
       }, 0);
-    });
+    };
+    link.addEventListener("click", handleClick);
+    cleanups.push(() => link.removeEventListener("click", handleClick));
   });
+
+  return () => cleanups.forEach((fn) => fn());
 }
 
 function renderAppShell(viewTitle, contentNode) {
@@ -157,7 +163,8 @@ function renderAppShell(viewTitle, contentNode) {
   shell.appendChild(main);
   dom.mount(app, shell);
 
-  bindLogoScroll("app", () => shell.querySelector(".app-main"));
+  const logoCleanup = bindLogoScroll("app", () => shell.querySelector(".app-main"));
+  CleanupRegistry.add(logoCleanup);
 
   // === highlight active nav (class + aria-current) ===
   const currentPath = window.location.hash.replace("#", "") || "/app";
@@ -202,10 +209,15 @@ function renderAppShell(viewTitle, contentNode) {
     link.addEventListener("click", closeDrawer);
   });
 
-  document.addEventListener("keydown", (event) => {
+  const handleKeydown = (event) => {
     if (event.key === "Escape" && isDrawerOpen) {
       closeDrawer();
     }
+  };
+  document.addEventListener("keydown", handleKeydown);
+
+  CleanupRegistry.add(() => {
+    document.removeEventListener("keydown", handleKeydown);
   });
 }
 

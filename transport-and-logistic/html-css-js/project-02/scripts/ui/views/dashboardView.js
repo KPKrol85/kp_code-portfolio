@@ -147,6 +147,8 @@ let alertsRulesState = {
   menu: null,
   setOpen: null,
 };
+let alertsRulesDocClickHandler = null;
+let alertsRulesDocKeydownHandler = null;
 
 function initAlertsRulesDropdown(scopeEl) {
   const dd = scopeEl.querySelector('[data-dropdown="alerts-rules"]');
@@ -220,7 +222,7 @@ function initAlertsRulesDropdown(scopeEl) {
   };
 
   if (!alertsRulesDocListenersBound) {
-    document.addEventListener("click", (e) => {
+    alertsRulesDocClickHandler = (e) => {
       const { dd: activeDd, setOpen: activeSetOpen } = alertsRulesState;
       if (!activeDd || !activeSetOpen) return;
       if (!activeDd.isConnected) {
@@ -228,9 +230,9 @@ function initAlertsRulesDropdown(scopeEl) {
         return;
       }
       if (!activeDd.contains(e.target)) activeSetOpen(false);
-    });
+    };
 
-    document.addEventListener("keydown", (e) => {
+    alertsRulesDocKeydownHandler = (e) => {
       const { dd: activeDd, setOpen: activeSetOpen } = alertsRulesState;
       if (!activeDd || !activeSetOpen) return;
       if (!activeDd.isConnected) {
@@ -238,6 +240,22 @@ function initAlertsRulesDropdown(scopeEl) {
         return;
       }
       if (e.key === "Escape") activeSetOpen(false);
+    };
+
+    document.addEventListener("click", alertsRulesDocClickHandler);
+    document.addEventListener("keydown", alertsRulesDocKeydownHandler);
+
+    CleanupRegistry.add(() => {
+      if (alertsRulesDocClickHandler) {
+        document.removeEventListener("click", alertsRulesDocClickHandler);
+        alertsRulesDocClickHandler = null;
+      }
+      if (alertsRulesDocKeydownHandler) {
+        document.removeEventListener("keydown", alertsRulesDocKeydownHandler);
+        alertsRulesDocKeydownHandler = null;
+      }
+      alertsRulesDocListenersBound = false;
+      alertsRulesState = { dd: null, btn: null, menu: null, setOpen: null };
     });
 
     alertsRulesDocListenersBound = true;
