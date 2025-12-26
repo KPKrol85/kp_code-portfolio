@@ -232,6 +232,44 @@ body.drawer-open {
 }
 
 .module-header {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: var(--space-3);
+  padding-bottom: var(--space-2);
+}
+
+.module-header::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 1px;
+  background: linear-gradient(
+    to right,
+    transparent 0%,
+    var(--border) 30%,
+    var(--border) 70%,
+    transparent 100%
+  );
+  opacity: 0.6;
+}
+
+
+/*
+.panel {
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background: var(--surface);
+  padding: var(--space-3);
+  box-shadow: var(--shadow);
+}
+
+.module-header {
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -239,6 +277,7 @@ body.drawer-open {
   gap: 10px;
   margin-bottom: var(--space-3);
 }
+*/
 
 /* === 05 - Activity & Lists === */
 
