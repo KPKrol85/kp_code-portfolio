@@ -1,33 +1,3 @@
-function bindLogoScroll(kind, getContainer) {
-  const links = document.querySelectorAll(`[data-scroll-top="${kind}"]`);
-  if (!links.length) return () => {};
-
-  const cleanups = [];
-
-  links.forEach((link) => {
-    const handleClick = (event) => {
-      const targetHash = kind === "app" ? "#/app" : "#/";
-      const currentHash = window.location.hash || "#/";
-      if (currentHash === targetHash) {
-        event.preventDefault();
-      }
-
-      window.setTimeout(() => {
-        const container = getContainer ? getContainer() : null;
-        if (container && typeof container.scrollTo === "function") {
-          container.scrollTo({ top: 0, left: 0, behavior: "smooth" });
-        } else {
-          window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
-        }
-      }, 0);
-    };
-    link.addEventListener("click", handleClick);
-    cleanups.push(() => link.removeEventListener("click", handleClick));
-  });
-
-  return () => cleanups.forEach((fn) => fn());
-}
-
 function renderAppShell(viewTitle, contentNode) {
   const app = document.getElementById("app");
   const { auth, preferences } = FleetStore.state;
@@ -163,7 +133,7 @@ function renderAppShell(viewTitle, contentNode) {
   shell.appendChild(main);
   dom.mount(app, shell);
 
-  const logoCleanup = bindLogoScroll("app", () => shell.querySelector(".app-main"));
+  const logoCleanup = FleetUI.bindLogoScroll("app", () => shell.querySelector(".app-main"));
   CleanupRegistry.add(logoCleanup);
 
   // === highlight active nav (class + aria-current) ===

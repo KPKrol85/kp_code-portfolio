@@ -1,27 +1,3 @@
-function bindLogoScroll(kind, getContainer) {
-  const links = document.querySelectorAll(`[data-scroll-top="${kind}"]`);
-  if (!links.length) return;
-
-  links.forEach((link) => {
-    link.addEventListener("click", (event) => {
-      const targetHash = kind === "app" ? "#/app" : "#/";
-      const currentHash = window.location.hash || "#/";
-      if (currentHash === targetHash) {
-        event.preventDefault();
-      }
-
-      window.setTimeout(() => {
-        const container = getContainer ? getContainer() : null;
-        if (container && typeof container.scrollTo === "function") {
-          container.scrollTo({ top: 0, left: 0, behavior: "smooth" });
-        } else {
-          window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
-        }
-      }, 0);
-    });
-  });
-}
-
 function renderInfoPage({ title, body }) {
   const app = document.getElementById("app");
   app.innerHTML = `
@@ -43,7 +19,8 @@ function renderInfoPage({ title, body }) {
     </div>
   `;
 
-  bindLogoScroll("home");
+  const cleanup = FleetUI.bindLogoScroll("home");
+  CleanupRegistry.add(cleanup);
 }
 
 function renderLogin() {

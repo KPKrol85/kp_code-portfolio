@@ -1,13 +1,47 @@
 const Dropdown = (() => {
+  const activeHandlers = new WeakMap();
+  const registeredForCleanup = new WeakSet();
+
+  const detach = (menu) => {
+    const entry = activeHandlers.get(menu);
+    if (entry) {
+      if (entry.timeoutId) clearTimeout(entry.timeoutId);
+      document.removeEventListener("click", entry.handler);
+      activeHandlers.delete(menu);
+    }
+    menu.classList.remove("open");
+  };
+
   const toggle = (trigger, menu) => {
-    menu.classList.toggle('open');
-    const handler = (e) => {
-      if (!menu.contains(e.target) && !trigger.contains(e.target)) {
-        menu.classList.remove('open');
-        document.removeEventListener('click', handler);
+    const isOpen = menu.classList.contains("open");
+
+    if (isOpen) {
+      detach(menu);
+      return;
+    }
+
+    detach(menu);
+
+    const handler = (event) => {
+      if (!menu.contains(event.target) && !trigger.contains(event.target)) {
+        detach(menu);
       }
     };
-    setTimeout(() => document.addEventListener('click', handler), 0);
+
+    const timeoutId = setTimeout(() => {
+      const entry = activeHandlers.get(menu);
+      if (!entry || entry.handler !== handler) return;
+      entry.timeoutId = null;
+      document.addEventListener("click", handler);
+    }, 0);
+
+    activeHandlers.set(menu, { handler, trigger, timeoutId });
+    menu.classList.add("open");
+
+    if (window.CleanupRegistry && !registeredForCleanup.has(menu)) {
+      CleanupRegistry.add(() => detach(menu));
+      registeredForCleanup.add(menu);
+    }
   };
 
   return { toggle };
