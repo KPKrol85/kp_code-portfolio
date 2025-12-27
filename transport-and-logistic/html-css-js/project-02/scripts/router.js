@@ -159,6 +159,12 @@ function routeTo(hash) {
     case "/pricing":
       renderPricingPage();
       break;
+    case "/security":
+      renderSecurityPage();
+      break;
+    case "/careers":
+      renderCareersPage();
+      break;
     case "/privacy":
       renderPrivacyPage();
       break;

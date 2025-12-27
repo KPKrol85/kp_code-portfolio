@@ -695,6 +695,52 @@ function renderPricingPage() {
   });
 }
 
+function renderSecurityPage() {
+  renderMarketingShell({
+    title: "Bezpieczenstwo",
+    eyebrow: "Bezpieczenstwo",
+    lead: "Informacje o standardach bezpieczenstwa FleetOps udostepnimy wkrotce.",
+    description: "Bezpieczenstwo FleetOps - strona w przygotowaniu.",
+    body: `
+      <section class="section-tight">
+        <div class="marketing-card">
+          <p class="tag">Coming soon</p>
+          <h2>Bezpieczenstwo w przygotowaniu</h2>
+          <p>Ta podstrona jest w trakcie przygotowan. Udostepnimy szczegoly o praktykach i certyfikacjach bezpieczenstwa.</p>
+          <p class="muted small">Under construction - wroc wkrotce.</p>
+          <div class="hero-cta" style="margin-top: var(--space-2);">
+            <a class="button primary" href="#/contact">Skontaktuj sie</a>
+            <a class="button secondary" href="#/app">Zobacz demo</a>
+          </div>
+        </div>
+      </section>
+    `,
+  });
+}
+
+function renderCareersPage() {
+  renderMarketingShell({
+    title: "Kariera",
+    eyebrow: "Kariera",
+    lead: "Otwarte role i informacje o zespolach FleetOps pojawia sie wkrotce.",
+    description: "Kariera w FleetOps - strona w przygotowaniu.",
+    body: `
+      <section class="section-tight">
+        <div class="marketing-card">
+          <p class="tag">Coming soon</p>
+          <h2>Kariera w przygotowaniu</h2>
+          <p>Budujemy sekcje z ofertami pracy i opisem zespolu. Jesli chcesz porozmawiac wczesniej, odezwij sie.</p>
+          <p class="muted small">Under construction - sprawdz ponownie niebawem.</p>
+          <div class="hero-cta" style="margin-top: var(--space-2);">
+            <a class="button primary" href="#/contact">Skontaktuj sie</a>
+            <a class="button secondary" href="#/app">Zobacz demo</a>
+          </div>
+        </div>
+      </section>
+    `,
+  });
+}
+
 function renderAboutPage() {
   renderMarketingShell({
     title: "O nas",
@@ -1244,6 +1290,8 @@ function renderCookiesPage() {
 window.renderProductPage = renderProductPage;
 window.renderFeaturesPage = renderFeaturesPage;
 window.renderPricingPage = renderPricingPage;
+window.renderSecurityPage = renderSecurityPage;
+window.renderCareersPage = renderCareersPage;
 window.renderAboutPage = renderAboutPage;
 window.renderContactPage = renderContactPage;
 window.renderPrivacyPage = renderPrivacyPage;
