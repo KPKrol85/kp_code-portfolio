@@ -64,21 +64,20 @@ function renderLanding() {
   const { preferences } = FleetStore.state;
   const theme = preferences.theme || "light";
   document.documentElement.setAttribute("data-theme", theme);
+  const themeAsset = (light, dark) => (theme === "dark" ? dark : light);
 
   app.innerHTML = `
     <div class="landing">
       <header class="container navbar" role="banner">
         <a class="logo flex" href="#/" aria-label="FleetOps — Strona główna" data-scroll-top="home">
 
-          <img class="logo__icon logo__icon--light" src="assets/icons/logo-black.svg" alt="FleetOps logo" width="52" height="52" />
-          <img class="logo__icon logo__icon--dark"  src="assets/icons/logo-white.svg" alt="" aria-hidden="true" width="52" height="52" />
+          <img class="logo__icon" src="${themeAsset("assets/icons/logo-black.svg", "assets/icons/logo-white.svg")}" data-theme-src-light="assets/icons/logo-black.svg" data-theme-src-dark="assets/icons/logo-white.svg" alt="FleetOps logo" width="52" height="52" />
 
           <span>FleetOps</span>
         </a>
         <nav class="nav" aria-label="Nawigacja glowna">
           <button class="button ghost nav-toggle" id="navToggle" type="button" aria-expanded="false" aria-controls="mobileNav" aria-label="Przelacz nawigacje">
-            <img class="nav-toggle__icon nav-toggle__icon--light" src="assets/icons/hamburger-light.svg" alt="" aria-hidden="true" />
-            <img class="nav-toggle__icon nav-toggle__icon--dark" src="assets/icons/hamburger-dark.svg" alt="" aria-hidden="true" />
+            <img class="nav-toggle__icon" src="${themeAsset("assets/icons/hamburger-light.svg", "assets/icons/hamburger-dark.svg")}" data-theme-src-light="assets/icons/hamburger-light.svg" data-theme-src-dark="assets/icons/hamburger-dark.svg" alt="" aria-hidden="true" />
           </button>
           <div class="nav-backdrop" data-nav-close></div>
           <div class="nav-drawer" id="mobileNav" role="dialog" aria-modal="true" aria-label="Nawigacja mobilna">
@@ -130,24 +129,14 @@ function renderLanding() {
 
           <div class="hero-visual">
             <div class="hero-image">
-              <picture class="img-swap img-swap--dark">
-                <source srcset="assets/images/hero/hero-dark.avif" type="image/avif">
-                <source srcset="assets/images/hero/hero-dark.webp" type="image/webp">
+              <picture class="img-swap">
+                <source srcset="${themeAsset("assets/images/hero/hero-light.avif", "assets/images/hero/hero-dark.avif")}" data-theme-srcset-light="assets/images/hero/hero-light.avif" data-theme-srcset-dark="assets/images/hero/hero-dark.avif" type="image/avif">
+                <source srcset="${themeAsset("assets/images/hero/hero-light.webp", "assets/images/hero/hero-dark.webp")}" data-theme-srcset-light="assets/images/hero/hero-light.webp" data-theme-srcset-dark="assets/images/hero/hero-dark.webp" type="image/webp">
                 <img
-                  src="assets/images/hero/hero-dark.jpg"
-                  alt="FleetOps Dark Panel"
-                  loading="eager"
-                  fetchpriority="high"
-                  width="1200"
-                  height="750"
-                  decoding="async">
-              </picture>
-              <picture class="img-swap img-swap--light">
-                <source srcset="assets/images/hero/hero-light.avif" type="image/avif">
-                <source srcset="assets/images/hero/hero-light.webp" type="image/webp">
-                <img
-                  src="assets/images/hero/hero-light.jpg"
-                  alt="FleetOps Light Panel"
+                  src="${themeAsset("assets/images/hero/hero-light.jpg", "assets/images/hero/hero-dark.jpg")}"
+                  data-theme-src-light="assets/images/hero/hero-light.jpg"
+                  data-theme-src-dark="assets/images/hero/hero-dark.jpg"
+                  alt="FleetOps Panel"
                   loading="eager"
                   fetchpriority="high"
                   width="1200"
@@ -275,8 +264,7 @@ function renderLanding() {
           <div class="footer__grid">
             <div class="footer__brand">
               <a class="footer__logo" href="#/" aria-label="FleetOps home" data-scroll-top="home">
-                <img class="logo__icon logo__icon--light" src="assets/icons/logo-black.svg" alt="FleetOps logo" width="52" height="52" />
-                <img class="logo__icon logo__icon--dark"  src="assets/icons/logo-white.svg" alt="" aria-hidden="true" width="52" height="52" />
+                <img class="logo__icon" src="${themeAsset("assets/icons/logo-black.svg", "assets/icons/logo-white.svg")}" data-theme-src-light="assets/icons/logo-black.svg" data-theme-src-dark="assets/icons/logo-white.svg" alt="FleetOps logo" width="52" height="52" />
               </a>
               <p class="footer__desc">Zarządzaj flotą, dyspozytornią i SLA w jednym, spokojnym środowisku pracy dla zespołów operacyjnych.</p>
               <span class="footer__eyebrow">Stworzone dla zespołów operacyjnych</span>

@@ -12,8 +12,7 @@ function renderAppShell(viewTitle, contentNode) {
   const appTopbar = dom.h("div", "app-topbar");
   appTopbar.innerHTML = `
     <a class="app-topbar__brand logo flex" href="#/app" aria-label="FleetOps - Panel" data-scroll-top="app" style="--app-logo-size: 26px;">
-      <img class="logo__icon logo__icon--light" src="assets/icons/logo-black.svg" alt="FleetOps logo" style="width: var(--app-logo-size); height: var(--app-logo-size);" />
-      <img class="logo__icon logo__icon--dark" src="assets/icons/logo-white.svg" alt="" aria-hidden="true" style="width: var(--app-logo-size); height: var(--app-logo-size);" />
+      <img class="logo__icon" src="${theme === "dark" ? "assets/icons/logo-white.svg" : "assets/icons/logo-black.svg"}" data-theme-src-light="assets/icons/logo-black.svg" data-theme-src-dark="assets/icons/logo-white.svg" alt="FleetOps logo" style="width: var(--app-logo-size); height: var(--app-logo-size);" />
       <span>FleetOps</span>
     </a>
     <div class="app-topbar__actions">
@@ -27,8 +26,7 @@ function renderAppShell(viewTitle, contentNode) {
         </svg>
       </button>
       <button class="button ghost" id="drawerToggle" type="button" aria-label="Menu" aria-expanded="false" aria-controls="appDrawer">
-        <img class="drawer-toggle__icon drawer-toggle__icon--light" src="assets/icons/hamburger-light.svg" alt="Menu" width="22" height="22" />
-        <img class="drawer-toggle__icon drawer-toggle__icon--dark" src="assets/icons/hamburger-dark.svg" alt="Menu" width="22" height="22" />
+        <img class="drawer-toggle__icon" src="${theme === "dark" ? "assets/icons/hamburger-dark.svg" : "assets/icons/hamburger-light.svg"}" data-theme-src-light="assets/icons/hamburger-light.svg" data-theme-src-dark="assets/icons/hamburger-dark.svg" alt="Menu" width="22" height="22" />
       </button>
     </div>
   `;
@@ -46,8 +44,7 @@ function renderAppShell(viewTitle, contentNode) {
   sidebar.setAttribute("aria-hidden", "true");
   sidebar.innerHTML = `
     <a class="logo flex" href="#/app" aria-label="FleetOps - Panel" data-scroll-top="app" style="--app-logo-size: 30px;">
-      <img class="logo__icon logo__icon--light" src="assets/icons/logo-black.svg" alt="FleetOps logo" style="width: var(--app-logo-size); height: var(--app-logo-size);" />
-      <img class="logo__icon logo__icon--dark" src="assets/icons/logo-white.svg" alt="" aria-hidden="true" style="width: var(--app-logo-size); height: var(--app-logo-size);" />
+      <img class="logo__icon" src="${theme === "dark" ? "assets/icons/logo-white.svg" : "assets/icons/logo-black.svg"}" data-theme-src-light="assets/icons/logo-black.svg" data-theme-src-dark="assets/icons/logo-white.svg" alt="FleetOps logo" style="width: var(--app-logo-size); height: var(--app-logo-size);" />
       <span>FleetOps</span>
     </a>
     <nav aria-label="Aplikacja">

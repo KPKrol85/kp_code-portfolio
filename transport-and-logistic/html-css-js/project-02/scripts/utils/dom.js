@@ -63,6 +63,29 @@ function bindLogoScroll(kind, getContainer) {
 window.FleetUI = window.FleetUI || {};
 window.FleetUI.bindLogoScroll = bindLogoScroll;
 
+// ===== Theme-aware asset swapping =====
+function syncThemeImages(root = document) {
+  const theme = document.documentElement.getAttribute("data-theme") || "light";
+  const useDark = theme === "dark";
+
+  root.querySelectorAll("[data-theme-src-light][data-theme-src-dark]").forEach((el) => {
+    const next = useDark ? el.dataset.themeSrcDark : el.dataset.themeSrcLight;
+    if (next && el.getAttribute("src") !== next) {
+      el.setAttribute("src", next);
+    }
+  });
+
+  root.querySelectorAll("[data-theme-srcset-light][data-theme-srcset-dark]").forEach((el) => {
+    const next = useDark ? el.dataset.themeSrcsetDark : el.dataset.themeSrcsetLight;
+    if (next && el.getAttribute("srcset") !== next) {
+      el.setAttribute("srcset", next);
+    }
+  });
+}
+
+window.FleetUI = window.FleetUI || {};
+window.FleetUI.syncThemeImages = syncThemeImages;
+
 
 // ===== Empty state =====
 function emptyState({ title = "Brak danych", description = "", actionLabel = "", actionHref = "" } = {}) {

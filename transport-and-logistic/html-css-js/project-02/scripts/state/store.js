@@ -42,11 +42,13 @@ const Store = {
     const next = this.state.preferences.theme === "light" ? "dark" : "light";
     this.setState({ preferences: { ...this.state.preferences, theme: next } });
     document.documentElement.setAttribute("data-theme", next);
+    if (window.FleetUI && FleetUI.syncThemeImages) FleetUI.syncThemeImages();
   },
 
   setTheme(theme) {
     this.setState({ preferences: { ...this.state.preferences, theme } });
     document.documentElement.setAttribute("data-theme", theme);
+    if (window.FleetUI && FleetUI.syncThemeImages) FleetUI.syncThemeImages();
   },
 
   setCompact(compact) {
@@ -109,6 +111,7 @@ const Store = {
 
     document.documentElement.setAttribute("data-theme", "light");
     delete document.body.dataset.compact;
+    if (window.FleetUI && FleetUI.syncThemeImages) FleetUI.syncThemeImages();
   },
 };
 
