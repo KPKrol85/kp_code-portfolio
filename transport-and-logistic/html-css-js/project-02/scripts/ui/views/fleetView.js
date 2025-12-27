@@ -47,27 +47,16 @@ function fleetView() {
       ${Array.from({ length: 6 })
         .map(
           () => `
-        <div class="panel">
+        <div class="panel skeleton-card">
           <div class="flex-between">
-            <div class="skeleton" style="height:14px;width:120px;"></div>
+            <div class="skeleton line" style="width:120px;margin-top:0;"></div>
             <div class="skeleton" style="height:18px;width:70px;border-radius:999px;"></div>
           </div>
 
-          <div style="margin-top:10px;">
-            <div class="skeleton" style="height:12px;width:160px;"></div>
-          </div>
-
-          <div style="margin-top:8px;">
-            <div class="skeleton" style="height:12px;width:140px;"></div>
-          </div>
-
-          <div style="margin-top:8px;">
-            <div class="skeleton" style="height:12px;width:150px;"></div>
-          </div>
-
-          <div style="margin-top:12px;">
-            <div class="skeleton" style="height:30px;width:90px;border-radius:10px;"></div>
-          </div>
+          <div class="skeleton line" style="width:160px;"></div>
+          <div class="skeleton line" style="width:140px;"></div>
+          <div class="skeleton line" style="width:150px;"></div>
+          <div class="skeleton" style="height:30px;width:90px;border-radius:10px;margin-top:12px;"></div>
         </div>
       `
         )

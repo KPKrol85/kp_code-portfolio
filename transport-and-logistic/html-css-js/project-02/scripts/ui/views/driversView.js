@@ -47,25 +47,20 @@ function driversView() {
 
   const renderSkeleton = () => {
     tableWrap.innerHTML = `
-      <table class="table">
-        <thead>
-          <tr><th>Imię i nazwisko</th><th>Status</th><th>Ostatni kurs</th><th>Telefon</th></tr>
-        </thead>
-        <tbody>
-          ${Array.from({ length: 6 })
-            .map(
-              () => `
-            <tr>
-              <td><div class="skeleton" style="height:12px;width:140px;"></div></td>
-              <td><div class="skeleton" style="height:12px;width:90px;"></div></td>
-              <td><div class="skeleton" style="height:12px;width:120px;"></div></td>
-              <td><div class="skeleton" style="height:12px;width:110px;"></div></td>
-            </tr>
-          `
-            )
-            .join("")}
-        </tbody>
-      </table>
+      <div class="skeleton-table">
+        ${Array.from({ length: 6 })
+          .map(
+            () => `
+          <div class="skeleton-row" style="grid-template-columns: 1.2fr 0.7fr 1fr 0.8fr;">
+            <div class="skeleton skeleton-cell lg"></div>
+            <div class="skeleton skeleton-cell"></div>
+            <div class="skeleton skeleton-cell"></div>
+            <div class="skeleton skeleton-cell"></div>
+          </div>
+        `
+          )
+          .join("")}
+      </div>
     `;
   };
 
@@ -174,3 +169,4 @@ function driversView() {
 }
 
 window.driversView = driversView;
+
