@@ -151,7 +151,9 @@
 }
 
 .drawer-toggle__icon {
-  display: none;
+  display: block;
+  width: 22px;
+  height: 22px;
 }
 
 html[data-theme="light"] .drawer-toggle__icon--light {
@@ -259,6 +261,9 @@ body.drawer-open {
   opacity: 0.6;
 }
 
+.panel + .panel.table-responsive {
+  margin-top: var(--space-1);
+}
 
 /*
 .panel {
