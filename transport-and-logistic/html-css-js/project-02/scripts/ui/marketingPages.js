@@ -153,11 +153,12 @@ function initResourcesMenu() {
 
   let isOpen = false;
 
-  const closeMenu = () => {
+  const closeMenu = (returnFocus = false) => {
     if (!isOpen) return;
     isOpen = false;
     menu.classList.remove("open");
     toggle.setAttribute("aria-expanded", "false");
+    if (returnFocus) toggle.focus();
   };
 
   const openMenu = () => {
@@ -172,27 +173,26 @@ function initResourcesMenu() {
   toggle.addEventListener("click", (event) => {
     event.preventDefault();
     if (isOpen) {
-      closeMenu();
+      closeMenu(true);
     } else {
       openMenu();
     }
   });
 
   menu.querySelectorAll("a").forEach((link) => {
-    link.addEventListener("click", closeMenu);
+    link.addEventListener("click", () => closeMenu(true));
   });
 
   const handleDocClick = (event) => {
     if (!menu.contains(event.target) && !toggle.contains(event.target)) {
-      closeMenu();
+      closeMenu(true);
     }
   };
   document.addEventListener("click", handleDocClick);
 
   const handleDocKeydown = (event) => {
     if (event.key === "Escape" && isOpen) {
-      closeMenu();
-      toggle.focus();
+      closeMenu(true);
     }
   };
   document.addEventListener("keydown", handleDocKeydown);

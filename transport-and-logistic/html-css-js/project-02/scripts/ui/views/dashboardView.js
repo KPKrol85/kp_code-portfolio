@@ -158,9 +158,10 @@ function initAlertsRulesDropdown(scopeEl) {
   const menu = dd.querySelector(".dropdown-menu");
   if (!btn || !menu) return;
 
-  const setOpen = (open) => {
+  const setOpen = (open, returnFocus = false) => {
     menu.classList.toggle("open", open);
     btn.setAttribute("aria-expanded", open ? "true" : "false");
+    if (!open && returnFocus) btn.focus();
   };
 
   const normalizeSeverity = (value) => {
@@ -197,7 +198,8 @@ function initAlertsRulesDropdown(scopeEl) {
     const trigger = e.target.closest(".dropdown-trigger");
     if (!trigger || !dd.contains(trigger)) return;
     e.preventDefault();
-    setOpen(!menu.classList.contains("open"));
+    const isOpen = menu.classList.contains("open");
+    setOpen(!isOpen, isOpen);
   });
 
   dd.addEventListener("change", (e) => {
@@ -229,7 +231,7 @@ function initAlertsRulesDropdown(scopeEl) {
         alertsRulesState = { dd: null, btn: null, menu: null, setOpen: null };
         return;
       }
-      if (!activeDd.contains(e.target)) activeSetOpen(false);
+      if (!activeDd.contains(e.target)) activeSetOpen(false, true);
     };
 
     alertsRulesDocKeydownHandler = (e) => {
@@ -239,7 +241,7 @@ function initAlertsRulesDropdown(scopeEl) {
         alertsRulesState = { dd: null, btn: null, menu: null, setOpen: null };
         return;
       }
-      if (e.key === "Escape") activeSetOpen(false);
+      if (e.key === "Escape") activeSetOpen(false, true);
     };
 
     document.addEventListener("click", alertsRulesDocClickHandler);

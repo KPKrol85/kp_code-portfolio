@@ -40,6 +40,9 @@ function renderAppShell(viewTitle, contentNode) {
 
   const sidebar = dom.h("aside", "sidebar drawer");
   sidebar.setAttribute("id", "appDrawer");
+  sidebar.setAttribute("role", "dialog");
+  sidebar.setAttribute("aria-modal", "true");
+  sidebar.setAttribute("aria-label", "Nawigacja aplikacji");
   sidebar.setAttribute("aria-hidden", "true");
   sidebar.innerHTML = `
     <a class="logo flex" href="#/app" aria-label="FleetOps - Panel" data-scroll-top="app" style="--app-logo-size: 30px;">
@@ -78,7 +81,7 @@ function renderAppShell(viewTitle, contentNode) {
       </button>
       <button class="button ghost" aria-label="Powiadomienia" type="button">Powiadomienia</button>
       <div class="dropdown">
-        <button class="button ghost avatar" id="userMenuBtn" type="button">${initials}</button>
+        <button class="button ghost avatar" id="userMenuBtn" type="button" aria-haspopup="menu" aria-expanded="false" aria-controls="userMenu">${initials}</button>
         <div class="dropdown-menu" id="userMenu" role="menu">
           <div class="dropdown-item muted">${auth.user ? auth.user.name : "Użytkownik demo"}</div>
           <div class="dropdown-item"><a href="#/about">O projekcie</a></div>
@@ -151,6 +154,30 @@ function renderAppShell(viewTitle, contentNode) {
   const firstLink = sidebar.querySelector("nav a");
   let isDrawerOpen = false;
 
+  const getDrawerFocusables = () => Array.from(
+    sidebar.querySelectorAll('a[href], button:not([disabled]), [tabindex]:not([tabindex="-1"])')
+  );
+
+  const trapDrawerFocus = (event) => {
+    if (!isDrawerOpen || event.key !== "Tab") return;
+    const focusables = getDrawerFocusables();
+    if (!focusables.length) return;
+
+    const first = focusables[0];
+    const last = focusables[focusables.length - 1];
+    const active = document.activeElement;
+
+    if (event.shiftKey) {
+      if (active === first || !sidebar.contains(active)) {
+        event.preventDefault();
+        last.focus();
+      }
+    } else if (active === last) {
+      event.preventDefault();
+      first.focus();
+    }
+  };
+
   const syncDrawerUI = () => {
     sidebar.setAttribute("aria-hidden", String(!isDrawerOpen));
     drawerBackdrop.classList.toggle("is-visible", isDrawerOpen);
@@ -166,6 +193,7 @@ function renderAppShell(viewTitle, contentNode) {
   const closeDrawer = () => {
     isDrawerOpen = false;
     syncDrawerUI();
+    drawerToggle.focus();
   };
 
   drawerToggle.addEventListener("click", () => {
@@ -182,7 +210,9 @@ function renderAppShell(viewTitle, contentNode) {
   const handleKeydown = (event) => {
     if (event.key === "Escape" && isDrawerOpen) {
       closeDrawer();
+      return;
     }
+    trapDrawerFocus(event);
   };
   document.addEventListener("keydown", handleKeydown);
 
