@@ -2,7 +2,7 @@
 <html lang="pl" data-theme="light">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
     <meta name="description" content="FleetOps – Zarządzanie transportem i flotą. SaaS dashboard Linear-style." />
     <meta name="color-scheme" content="light dark" />
     <meta name="theme-color" content="#0b0f19" />
@@ -47,5 +47,24 @@
     <script src="scripts/ui/views/settingsView.js"></script>
     <script src="scripts/router.js"></script>
     <script src="scripts/main.js"></script>
+
+    <script>
+      (function forceFullscreenOnFirstTap() {
+        const isStandalone = window.matchMedia("(display-mode: standalone)").matches || window.matchMedia("(display-mode: fullscreen)").matches;
+
+        if (!isStandalone) return;
+
+        const onFirst = async () => {
+          try {
+            if (document.fullscreenEnabled && !document.fullscreenElement) {
+              await document.documentElement.requestFullscreen();
+            }
+          } catch (e) {}
+          window.removeEventListener("pointerdown", onFirst, true);
+        };
+
+        window.addEventListener("pointerdown", onFirst, true);
+      })();
+    </script>
   </body>
 </html>
