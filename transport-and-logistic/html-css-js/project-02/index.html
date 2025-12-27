@@ -47,24 +47,5 @@
     <script src="scripts/ui/views/settingsView.js"></script>
     <script src="scripts/router.js"></script>
     <script src="scripts/main.js"></script>
-
-    <script>
-      (function forceFullscreenOnFirstTap() {
-        const isStandalone = window.matchMedia("(display-mode: standalone)").matches || window.matchMedia("(display-mode: fullscreen)").matches;
-
-        if (!isStandalone) return;
-
-        const onFirst = async () => {
-          try {
-            if (document.fullscreenEnabled && !document.fullscreenElement) {
-              await document.documentElement.requestFullscreen();
-            }
-          } catch (e) {}
-          window.removeEventListener("pointerdown", onFirst, true);
-        };
-
-        window.addEventListener("pointerdown", onFirst, true);
-      })();
-    </script>
   </body>
 </html>
