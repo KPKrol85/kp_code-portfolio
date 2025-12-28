@@ -99,7 +99,7 @@ function fleetView() {
 
     const { status, search } = FleetStore.state.filters.fleet;
 
-    const rows = FleetSeed.vehicles.filter((v) => (status === "all" ? true : v.status === status)).filter((v) => `${v.id} ${v.type}`.toLowerCase().includes(search.toLowerCase()));
+    const rows = FleetStore.state.domain.fleet.filter((v) => (status === "all" ? true : v.status === status)).filter((v) => `${v.id} ${v.type}`.toLowerCase().includes(search.toLowerCase()));
 
     if (rows.length === 0) {
       cards.innerHTML = `

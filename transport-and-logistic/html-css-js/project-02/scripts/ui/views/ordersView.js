@@ -88,7 +88,7 @@ function ordersView() {
     }
 
     const { status, priority, search } = FleetStore.state.filters.orders;
-    const rows = FleetSeed.orders
+    const rows = FleetStore.state.domain.orders
       .filter((o) => (status === "all" ? true : o.status === status))
       .filter((o) => (priority === "all" ? true : o.priority === priority))
       .filter((o) => `${o.client} ${o.route}`.toLowerCase().includes(search.toLowerCase()));
@@ -137,7 +137,7 @@ function ordersView() {
   };
 
   const openOrder = (id) => {
-    const order = FleetSeed.orders.find((o) => o.id === id);
+    const order = FleetStore.state.domain.orders.find((o) => o.id === id);
     if (!order) return;
     const body = dom.h("div");
     body.innerHTML = `
@@ -184,7 +184,7 @@ function ordersView() {
   searchInput.addEventListener("input", applySearchDebounced);
 
   const exportOrders = () => {
-    const data = FleetSeed.orders;
+    const data = FleetStore.state.domain.orders;
     const csv = ["id,client,route,status,eta,priority"];
     data.forEach((o) => csv.push([o.id, o.client, o.route, o.status, o.eta, o.priority].join(",")));
     const blob = new Blob([csv.join("\n")], { type: "text/csv" });

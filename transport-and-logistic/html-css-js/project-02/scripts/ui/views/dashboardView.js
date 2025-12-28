@@ -4,9 +4,9 @@ function dashboardView() {
   // ===== KPI =====
   const kpis = dom.h("div", "grid kpi-grid");
   const kpiData = [
-    { label: "Łączna liczba zleceń", value: FleetSeed.orders.length },
+    { label: "Łączna liczba zleceń", value: FleetStore.state.domain.orders.length },
     { label: "Terminowość", value: "94.2%" },
-    { label: "Aktywne pojazdy", value: FleetSeed.vehicles.filter((v) => v.status !== "maintenance").length },
+    { label: "Aktywne pojazdy", value: FleetStore.state.domain.fleet.filter((v) => v.status !== "maintenance").length },
     { label: "Zdarzenia", value: FleetSeed.alerts.length },
   ];
 
@@ -265,3 +265,4 @@ function initAlertsRulesDropdown(scopeEl) {
 
   applyRules();
 }
+

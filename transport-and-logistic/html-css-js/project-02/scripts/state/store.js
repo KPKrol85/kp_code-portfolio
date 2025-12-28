@@ -4,6 +4,36 @@ const defaultPreferences = {
 };
 
 const defaultAuth = FleetStorage.get("fleet-auth", { isAuthenticated: false, user: null });
+const DOMAIN_STORAGE_KEY = "fleet-domain-v1";
+
+const nowIso = () => new Date().toISOString();
+const todayIso = () => new Date().toISOString().slice(0, 10);
+const cloneList = (items = []) => items.map((item) => ({ ...item }));
+const ensureIds = (items = [], prefix) =>
+  items.map((item, index) => (item.id ? { ...item } : { ...item, id: `${prefix}-${String(index + 1).padStart(3, "0")}` }));
+const isValidDomain = (data) =>
+  data &&
+  Array.isArray(data.orders) &&
+  Array.isArray(data.fleet) &&
+  Array.isArray(data.drivers);
+const normalizeDomain = (data) => ({
+  orders: ensureIds(cloneList(data.orders || []), "FO"),
+  fleet: ensureIds(cloneList(data.fleet || []), "VH"),
+  drivers: ensureIds(cloneList(data.drivers || []), "DRV"),
+});
+const buildDomainFromSeed = () => {
+  if (!window.FleetSeed) return { orders: [], fleet: [], drivers: [] };
+  return normalizeDomain({
+    orders: FleetSeed.orders || [],
+    fleet: FleetSeed.vehicles || [],
+    drivers: FleetSeed.drivers || [],
+  });
+};
+const generateId = (prefix) => {
+  if (window.crypto?.randomUUID) return `${prefix}-${window.crypto.randomUUID()}`;
+  const rand = Math.random().toString(36).slice(2, 10);
+  return `${prefix}-${Date.now().toString(36)}-${rand}`;
+};
 
 const defaultFiltersFallback = {
   orders: { status: "all", priority: "all", search: "" },
@@ -18,8 +48,10 @@ const Store = {
     auth: defaultAuth,
     preferences: defaultPreferences,
     filters: defaultFilters,
+    domain: { orders: [], fleet: [], drivers: [] },
   },
   listeners: [],
+  domainReady: false,
 
   setState(partial) {
     this.state = { ...this.state, ...partial };
@@ -36,6 +68,100 @@ const Store = {
     FleetStorage.set("fleet-compact", this.state.preferences.compact);
     FleetStorage.set("fleet-auth", this.state.auth);
     FleetStorage.set("fleet-filters", this.state.filters);
+    if (this.domainReady) {
+      FleetStorage.set(DOMAIN_STORAGE_KEY, this.state.domain);
+    }
+  },
+
+  initDomain() {
+    const stored = FleetStorage.get(DOMAIN_STORAGE_KEY, null);
+    const domain = isValidDomain(stored) ? normalizeDomain(stored) : buildDomainFromSeed();
+    this.domainReady = true;
+    this.setState({ domain });
+  },
+
+  resetDomainData() {
+    const domain = buildDomainFromSeed();
+    this.domainReady = true;
+    this.setState({ domain });
+  },
+
+  updateDomainList(key, updater) {
+    const current = this.state.domain[key] || [];
+    const next = updater(current);
+    this.setState({ domain: { ...this.state.domain, [key]: next } });
+  },
+
+  addOrder(payload = {}) {
+    const now = nowIso();
+    const order = {
+      ...payload,
+      id: payload.id || generateId("FO"),
+      createdAt: payload.createdAt || now,
+      updatedAt: now,
+      updated: payload.updated || now,
+    };
+    this.updateDomainList("orders", (list) => [...list, order]);
+  },
+
+  updateOrder(id, patch = {}) {
+    const now = nowIso();
+    this.updateDomainList("orders", (list) =>
+      list.map((item) =>
+        item.id === id
+          ? { ...item, ...patch, updatedAt: now, updated: now }
+          : item
+      )
+    );
+  },
+
+  deleteOrder(id) {
+    this.updateDomainList("orders", (list) => list.filter((item) => item.id !== id));
+  },
+
+  addVehicle(payload = {}) {
+    const now = nowIso();
+    const vehicle = {
+      ...payload,
+      id: payload.id || generateId("VH"),
+      createdAt: payload.createdAt || now,
+      updatedAt: now,
+      lastCheck: payload.lastCheck || todayIso(),
+    };
+    this.updateDomainList("fleet", (list) => [...list, vehicle]);
+  },
+
+  updateVehicle(id, patch = {}) {
+    const now = nowIso();
+    this.updateDomainList("fleet", (list) =>
+      list.map((item) => (item.id === id ? { ...item, ...patch, updatedAt: now } : item))
+    );
+  },
+
+  deleteVehicle(id) {
+    this.updateDomainList("fleet", (list) => list.filter((item) => item.id !== id));
+  },
+
+  addDriver(payload = {}) {
+    const now = nowIso();
+    const driver = {
+      ...payload,
+      id: payload.id || generateId("DRV"),
+      createdAt: payload.createdAt || now,
+      updatedAt: now,
+    };
+    this.updateDomainList("drivers", (list) => [...list, driver]);
+  },
+
+  updateDriver(id, patch = {}) {
+    const now = nowIso();
+    this.updateDomainList("drivers", (list) =>
+      list.map((item) => (item.id === id ? { ...item, ...patch, updatedAt: now } : item))
+    );
+  },
+
+  deleteDriver(id) {
+    this.updateDomainList("drivers", (list) => list.filter((item) => item.id !== id));
   },
 
   toggleTheme() {
@@ -102,6 +228,7 @@ const Store = {
     FleetStorage.remove("fleet-theme");
     FleetStorage.remove("fleet-compact");
     FleetStorage.remove("fleet-filters");
+    FleetStorage.remove(DOMAIN_STORAGE_KEY);
 
     this.setState({
       auth: { isAuthenticated: false, user: null },
@@ -112,6 +239,8 @@ const Store = {
     document.documentElement.setAttribute("data-theme", "light");
     delete document.body.dataset.compact;
     if (window.FleetUI && FleetUI.syncThemeImages) FleetUI.syncThemeImages();
+
+    this.resetDomainData();
   },
 };
 

@@ -107,7 +107,7 @@ function driversView() {
 
     const { status, search } = FleetStore.state.filters.drivers;
 
-    const rows = FleetSeed.drivers.filter((d) => (status === "all" ? true : d.status === status)).filter((d) => d.name.toLowerCase().includes(search.toLowerCase()));
+    const rows = FleetStore.state.domain.drivers.filter((d) => (status === "all" ? true : d.status === status)).filter((d) => d.name.toLowerCase().includes(search.toLowerCase()));
 
     if (rows.length === 0) {
       tableWrap.innerHTML = `

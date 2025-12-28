@@ -1,4 +1,8 @@
 (function init() {
+  if (window.FleetStore?.initDomain) {
+    FleetStore.initDomain();
+  }
+
   const savedTheme = FleetStore.state.preferences.theme;
   if (!savedTheme) {
     const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
