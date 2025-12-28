@@ -136,7 +136,7 @@ const Store = {
     const activity = {
       title: payload.title || "Nowe zdarzenie",
       detail: payload.detail || "",
-      time: payload.time || "przed chwilą",
+      time: payload.time || nowIso(),
     };
     const next = [activity, ...(this.state.activity || [])];
     this.setState({ activity: next });

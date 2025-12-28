@@ -22,13 +22,26 @@ function dashboardView() {
   const activity = dom.h("div", "panel");
   activity.innerHTML = `<div class="module-header"><h3>Aktywność</h3><span class="muted small">Operacje na żywo</span></div>`;
 
+  const formatActivityTime = (value) => {
+    if (!value) return "";
+    const ts = Date.parse(value);
+    if (Number.isNaN(ts)) return value;
+    const diffMinutes = Math.floor((Date.now() - ts) / 60000);
+    if (diffMinutes < 1) return "przed chwila";
+    if (diffMinutes < 60) return `${diffMinutes} min temu`;
+    const diffHours = Math.floor(diffMinutes / 60);
+    if (diffHours < 24) return `${diffHours} h temu`;
+    const diffDays = Math.floor(diffHours / 24);
+    return `${diffDays} d temu`;
+  };
+
   const feed = dom.h("div", "feed");
   const activities = FleetStore.state.activity && FleetStore.state.activity.length
     ? FleetStore.state.activity
     : FleetSeed.activities;
   activities.forEach((a) => {
     const row = dom.h("div", "activity-row");
-    row.innerHTML = `<div><strong>${a.title}</strong><p class="muted small">${a.detail}</p></div><span class="muted small">${a.time}</span>`;
+    row.innerHTML = `<div><strong>${a.title}</strong><p class="muted small">${a.detail}</p></div><span class="muted small">${formatActivityTime(a.time)}</span>`;
     feed.appendChild(row);
   });
 

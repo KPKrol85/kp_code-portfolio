@@ -67,7 +67,7 @@ function ordersView() {
     FleetStore.addActivity({
       title: order ? `Zlecenie ${order.id} ${verb}` : `Zlecenie ${verb}`,
       detail,
-      time: "przed chwila",
+      time: new Date().toISOString(),
     });
   };
 
