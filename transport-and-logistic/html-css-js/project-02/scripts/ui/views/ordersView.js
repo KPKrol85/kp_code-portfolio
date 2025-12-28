@@ -2,7 +2,7 @@ function ordersView() {
   const root = dom.h("div");
 
   const header = dom.h("div", "module-header");
-  header.innerHTML = `<div><h3>Zlecenia</h3><p class="muted small">Monitoruj status dostaw</p></div><div class="toolbar"><button class="button primary" id="addOrder" type="button">Add order</button><button class="button secondary" id="exportOrders" type="button">Eksportuj CSV</button></div>`;
+  header.innerHTML = `<div><h3>Zlecenia</h3><p class="muted small">Monitoruj status dostaw</p></div><div class="toolbar"><select class="input" id="ordersSortBy" aria-label="Sortuj"><option value="updated">Aktualizacja</option><option value="client">Klient</option><option value="status">Status</option><option value="priority">Priorytet</option></select><select class="input" id="ordersSortDir" aria-label="Kierunek"><option value="asc">Rosnaco</option><option value="desc">Malejaco</option></select><button class="button primary" id="addOrder" type="button">Add order</button><button class="button secondary" id="exportOrders" type="button">Eksportuj CSV</button></div>`;
   root.appendChild(header);
 
   const filterBar = dom.h("div", "table-filter");
@@ -32,10 +32,45 @@ function ordersView() {
   tableWrap.id = "ordersTable";
   root.appendChild(tableWrap);
 
+  const loadMoreWrap = dom.h("div");
+  loadMoreWrap.style.marginTop = "12px";
+  loadMoreWrap.style.display = "flex";
+  loadMoreWrap.style.justifyContent = "center";
+  const loadMoreBtn = dom.h("button", "button secondary", "Load more");
+  loadMoreBtn.type = "button";
+  loadMoreWrap.appendChild(loadMoreBtn);
+  root.appendChild(loadMoreWrap);
+
   const filters = FleetStore.state.filters.orders;
   statusSelect.value = filters.status;
   prioritySelect.value = filters.priority;
   searchInput.value = filters.search;
+
+  const sortBySelect = header.querySelector("#ordersSortBy");
+  const sortDirSelect = header.querySelector("#ordersSortDir");
+  const listPrefsFallback = { sortBy: "updated", sortDir: "desc", pageSize: 10, visibleCount: 10 };
+  const getListPrefs = () => FleetStore.state.listPrefs?.orders || listPrefsFallback;
+  const syncSortControls = () => {
+    const prefs = getListPrefs();
+    if (sortBySelect) sortBySelect.value = prefs.sortBy || listPrefsFallback.sortBy;
+    if (sortDirSelect) sortDirSelect.value = prefs.sortDir || listPrefsFallback.sortDir;
+  };
+
+  syncSortControls();
+  if (sortBySelect) {
+    sortBySelect.addEventListener("change", () => {
+      const prefs = getListPrefs();
+      FleetStore.setListPrefs("orders", { sortBy: sortBySelect.value, visibleCount: prefs.pageSize || listPrefsFallback.pageSize });
+      renderRows();
+    });
+  }
+  if (sortDirSelect) {
+    sortDirSelect.addEventListener("change", () => {
+      const prefs = getListPrefs();
+      FleetStore.setListPrefs("orders", { sortDir: sortDirSelect.value, visibleCount: prefs.pageSize || listPrefsFallback.pageSize });
+      renderRows();
+    });
+  }
 
   let isLoading = true;
   let filterTimer = null;
@@ -44,6 +79,15 @@ function ordersView() {
   let initialLoadTimer = null;
   const FILTER_DELAY = 160;
   const priorityLabel = (value) => ({ high: "Wysoki", medium: "Średni", low: "Niski" }[value] || value);
+  const statusOrder = { "in-progress": 1, delayed: 2, pending: 3, delivered: 4 };
+  const priorityOrder = { high: 1, medium: 2, low: 3 };
+  const getOrderSortValue = (order, sortBy) => {
+    if (sortBy === "updated") return Date.parse(order.updated || order.updatedAt || "");
+    if (sortBy === "client") return String(order.client || "").toLowerCase();
+    if (sortBy === "status") return statusOrder[order.status] || 99;
+    if (sortBy === "priority") return priorityOrder[order.priority] || 99;
+    return String(order.id || "").toLowerCase();
+  };
   const debounce = (fn, wait = 250) => (...args) => {
     if (searchDebounceTimer) clearTimeout(searchDebounceTimer);
     searchDebounceTimer = setTimeout(() => fn(...args), wait);
@@ -72,6 +116,7 @@ function ordersView() {
   };
 
   const renderOrdersSkeleton = () => {
+    loadMoreWrap.style.display = "none";
     tableWrap.innerHTML = `
       <div class="skeleton-table">
         ${Array.from({ length: 6 })
@@ -79,6 +124,7 @@ function ordersView() {
             () => `
           <div class="skeleton-row">
             <div class="skeleton skeleton-cell lg"></div>
+            <div class="skeleton skeleton-cell"></div>
             <div class="skeleton skeleton-cell"></div>
             <div class="skeleton skeleton-cell"></div>
             <div class="skeleton skeleton-cell"></div>
@@ -300,7 +346,33 @@ function ordersView() {
       .filter((o) => (priority === "all" ? true : o.priority === priority))
       .filter((o) => `${o.client} ${o.route}`.toLowerCase().includes(search.toLowerCase()));
 
+    const prefs = getListPrefs();
+    const sortBy = prefs.sortBy || listPrefsFallback.sortBy;
+    const sortDir = prefs.sortDir === "desc" ? -1 : 1;
+    const sortedRows = rows
+      .map((item, index) => ({ item, index }))
+      .sort((a, b) => {
+        const aVal = getOrderSortValue(a.item, sortBy);
+        const bVal = getOrderSortValue(b.item, sortBy);
+        let diff = 0;
+        if (typeof aVal === "string" || typeof bVal === "string") {
+          diff = String(aVal).localeCompare(String(bVal));
+        } else {
+          diff = (aVal || 0) - (bVal || 0);
+        }
+        if (diff === 0) return a.index - b.index;
+        return diff * sortDir;
+      })
+      .map((entry) => entry.item);
+
+    const pageSize = prefs.pageSize || listPrefsFallback.pageSize;
+    const visibleCount = prefs.visibleCount || pageSize;
+    const visibleRows = sortedRows.slice(0, visibleCount);
+    const canLoadMore = sortedRows.length > visibleRows.length;
+
     if (rows.length === 0) {
+      loadMoreWrap.style.display = "none";
+      
       tableWrap.innerHTML = `
         <div class="empty-state">
           <div class="empty-state__card">
@@ -314,6 +386,8 @@ function ordersView() {
 
       tableWrap.querySelector("#clearOrdersFilters")?.addEventListener("click", () => {
         FleetStore.setOrderFilters({ status: "all", priority: "all", search: "" });
+        const prefs = getListPrefs();
+        FleetStore.setListPrefs("orders", { visibleCount: prefs.pageSize || listPrefsFallback.pageSize });
         statusSelect.value = "all";
         prioritySelect.value = "all";
         searchInput.value = "";
@@ -324,7 +398,7 @@ function ordersView() {
       return;
     }
 
-    const renderedRows = rows.map(
+    const renderedRows = visibleRows.map(
       (order) => `
       <tr class="order-row" data-id="${order.id}">
         <td>${order.id}</td>
@@ -346,6 +420,9 @@ function ordersView() {
     );
 
     tableWrap.innerHTML = Table.render(["ID", "Klient", "Trasa", "Status", "ETA", "Priorytet", "Akcje"], renderedRows);
+
+    loadMoreWrap.style.display = canLoadMore ? "flex" : "none";
+    loadMoreBtn.disabled = !canLoadMore;
 
     tableWrap.querySelectorAll("tr.order-row").forEach((row) => {
       row.addEventListener("click", (event) => {
@@ -407,6 +484,8 @@ function ordersView() {
 
   const applySelectFilters = () => {
     pushFilters();
+    const prefs = getListPrefs();
+    FleetStore.setListPrefs("orders", { visibleCount: prefs.pageSize || listPrefsFallback.pageSize });
     startFilterLoading();
   };
 
@@ -415,6 +494,8 @@ function ordersView() {
 
   const applySearch = () => {
     pushFilters();
+    const prefs = getListPrefs();
+    FleetStore.setListPrefs("orders", { visibleCount: prefs.pageSize || listPrefsFallback.pageSize });
 
     isLoading = true;
 
@@ -462,6 +543,14 @@ function ordersView() {
       openOrderForm({ mode: "add" });
     });
   }
+
+  loadMoreBtn.addEventListener("click", () => {
+    const prefs = getListPrefs();
+    const pageSize = prefs.pageSize || listPrefsFallback.pageSize;
+    const nextCount = (prefs.visibleCount || pageSize) + pageSize;
+    FleetStore.setListPrefs("orders", { visibleCount: nextCount });
+    renderRows();
+  });
 
   renderRows();
   initialLoadTimer = setTimeout(() => {

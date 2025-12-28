@@ -1,7 +1,7 @@
 function driversView() {
   const root = dom.h("div");
   const header = dom.h("div", "module-header");
-  header.innerHTML = `<div><h3>Kierowcy</h3><p class="muted small">Status i ostatnie kursy</p></div><div class="toolbar"><button class="button primary" id="addDriver" type="button">Dodaj kierowce</button></div>`;
+  header.innerHTML = `<div><h3>Kierowcy</h3><p class="muted small">Status i ostatnie kursy</p></div><div class="toolbar"><select class="input" id="driversSortBy" aria-label="Sortuj"><option value="name">Imie i nazwisko</option><option value="status">Status</option><option value="phone">Telefon</option><option value="lastTrip">Ostatni kurs</option></select><select class="input" id="driversSortDir" aria-label="Kierunek"><option value="asc">Rosnaco</option><option value="desc">Malejaco</option></select><button class="button primary" id="addDriver" type="button">Dodaj kierowce</button></div>`;
   root.appendChild(header);
 
   const filterBar = dom.h("div", "table-filter");
@@ -23,11 +23,46 @@ function driversView() {
   list.innerHTML = '<div class="table-responsive"><table class="table"><thead><tr><th>Imię i nazwisko</th><th>Status</th><th>Ostatni kurs</th><th>Telefon</th><th>Akcje</th></tr></thead><tbody></tbody></table></div>';
   root.appendChild(list);
 
+  const loadMoreWrap = dom.h("div");
+  loadMoreWrap.style.marginTop = "12px";
+  loadMoreWrap.style.display = "flex";
+  loadMoreWrap.style.justifyContent = "center";
+  const loadMoreBtn = dom.h("button", "button secondary", "Load more");
+  loadMoreBtn.type = "button";
+  loadMoreWrap.appendChild(loadMoreBtn);
+  root.appendChild(loadMoreWrap);
+
   const tableWrap = list.querySelector(".table-responsive");
 
   const filters = FleetStore.state.filters.drivers;
   statusSelect.value = filters.status;
   searchInput.value = filters.search;
+
+  const sortBySelect = header.querySelector("#driversSortBy");
+  const sortDirSelect = header.querySelector("#driversSortDir");
+  const listPrefsFallback = { sortBy: "name", sortDir: "asc", pageSize: 10, visibleCount: 10 };
+  const getListPrefs = () => FleetStore.state.listPrefs?.drivers || listPrefsFallback;
+  const syncSortControls = () => {
+    const prefs = getListPrefs();
+    if (sortBySelect) sortBySelect.value = prefs.sortBy || listPrefsFallback.sortBy;
+    if (sortDirSelect) sortDirSelect.value = prefs.sortDir || listPrefsFallback.sortDir;
+  };
+
+  syncSortControls();
+  if (sortBySelect) {
+    sortBySelect.addEventListener("change", () => {
+      const prefs = getListPrefs();
+      FleetStore.setListPrefs("drivers", { sortBy: sortBySelect.value, visibleCount: prefs.pageSize || listPrefsFallback.pageSize });
+      renderRows();
+    });
+  }
+  if (sortDirSelect) {
+    sortDirSelect.addEventListener("change", () => {
+      const prefs = getListPrefs();
+      FleetStore.setListPrefs("drivers", { sortDir: sortDirSelect.value, visibleCount: prefs.pageSize || listPrefsFallback.pageSize });
+      renderRows();
+    });
+  }
 
   let isLoading = true;
   let loadingTimer = null;
@@ -39,6 +74,14 @@ function driversView() {
     { value: "on-route", label: "W trasie" },
     { value: "maintenance", label: "Serwis" },
   ];
+  const statusOrder = { available: 1, "on-route": 2, maintenance: 3 };
+  const getDriverSortValue = (driver, sortBy) => {
+    if (sortBy === "name") return String(driver.name || "").toLowerCase();
+    if (sortBy === "status") return statusOrder[driver.status] || 99;
+    if (sortBy === "phone") return normalizePhone(driver.phone);
+    if (sortBy === "lastTrip") return String(driver.lastTrip || "").toLowerCase();
+    return String(driver.name || "").toLowerCase();
+  };
   const normalizePhone = (value) => String(value || "").replace(/\D/g, "");
   const buildActivityEntry = (action, driver) => {
     const verb = { created: "added", updated: "updated", deleted: "deleted" }[action] || "updated";
@@ -63,6 +106,7 @@ function driversView() {
   };
 
   const renderSkeleton = () => {
+    loadMoreWrap.style.display = "none";
     tableWrap.innerHTML = `
       <div class="skeleton-table">
         ${Array.from({ length: 6 })
@@ -286,9 +330,37 @@ function driversView() {
 
     const { status, search } = FleetStore.state.filters.drivers;
 
-    const rows = FleetStore.state.domain.drivers.filter((d) => (status === "all" ? true : d.status === status)).filter((d) => d.name.toLowerCase().includes(search.toLowerCase()));
+    const rows = FleetStore.state.domain.drivers
+      .filter((d) => (status === "all" ? true : d.status === status))
+      .filter((d) => d.name.toLowerCase().includes(search.toLowerCase()));
+
+    const prefs = getListPrefs();
+    const sortBy = prefs.sortBy || listPrefsFallback.sortBy;
+    const sortDir = prefs.sortDir === "desc" ? -1 : 1;
+    const sortedRows = rows
+      .map((item, index) => ({ item, index }))
+      .sort((a, b) => {
+        const aVal = getDriverSortValue(a.item, sortBy);
+        const bVal = getDriverSortValue(b.item, sortBy);
+        let diff = 0;
+        if (typeof aVal === "string" || typeof bVal === "string") {
+          diff = String(aVal).localeCompare(String(bVal));
+        } else {
+          diff = (aVal || 0) - (bVal || 0);
+        }
+        if (diff === 0) return a.index - b.index;
+        return diff * sortDir;
+      })
+      .map((entry) => entry.item);
+
+    const pageSize = prefs.pageSize || listPrefsFallback.pageSize;
+    const visibleCount = prefs.visibleCount || pageSize;
+    const visibleRows = sortedRows.slice(0, visibleCount);
+    const canLoadMore = sortedRows.length > visibleRows.length;
 
     if (rows.length === 0) {
+      loadMoreWrap.style.display = "none";
+      
       tableWrap.innerHTML = `
         <div class="empty-state">
           <div class="empty-state__card">
@@ -302,6 +374,8 @@ function driversView() {
 
       tableWrap.querySelector("#clearDriversFilters")?.addEventListener("click", () => {
         FleetStore.setDriverFilters({ status: "all", search: "" });
+        const prefs = getListPrefs();
+        FleetStore.setListPrefs("drivers", { visibleCount: prefs.pageSize || listPrefsFallback.pageSize });
         statusSelect.value = "all";
         searchInput.value = "";
 
@@ -315,7 +389,10 @@ function driversView() {
     const tbody = list.querySelector("tbody");
     tbody.innerHTML = "";
 
-    rows.forEach((driver) => {
+    loadMoreWrap.style.display = canLoadMore ? "flex" : "none";
+    loadMoreBtn.disabled = !canLoadMore;
+
+    visibleRows.forEach((driver) => {
       const tr = dom.h("tr");
       tr.innerHTML = `
         <td>${driver.name}</td>
@@ -368,11 +445,15 @@ function driversView() {
 
   statusSelect.addEventListener("change", () => {
     saveFilters();
+    const prefs = getListPrefs();
+    FleetStore.setListPrefs("drivers", { visibleCount: prefs.pageSize || listPrefsFallback.pageSize });
     startFilterLoading();
   });
 
   searchInput.addEventListener("input", () => {
     saveFilters();
+    const prefs = getListPrefs();
+    FleetStore.setListPrefs("drivers", { visibleCount: prefs.pageSize || listPrefsFallback.pageSize });
     startFilterLoading();
   });
 
@@ -383,6 +464,14 @@ function driversView() {
       openDriverForm({ mode: "add" });
     });
   }
+
+  loadMoreBtn.addEventListener("click", () => {
+    const prefs = getListPrefs();
+    const pageSize = prefs.pageSize || listPrefsFallback.pageSize;
+    const nextCount = (prefs.visibleCount || pageSize) + pageSize;
+    FleetStore.setListPrefs("drivers", { visibleCount: nextCount });
+    renderRows();
+  });
 
   startLoading();
 

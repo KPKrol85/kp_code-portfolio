@@ -1,7 +1,7 @@
 function fleetView() {
   const root = dom.h("div");
   const header = dom.h("div", "module-header");
-  header.innerHTML = `<div><h3>Flota</h3><p class="muted small">Zarządzaj pojazdami</p></div><div class="toolbar"><button class="button primary" id="addVehicle" type="button">Dodaj pojazd</button></div>`;
+  header.innerHTML = `<div><h3>Flota</h3><p class="muted small">Zarządzaj pojazdami</p></div><div class="toolbar"><select class="input" id="fleetSortBy" aria-label="Sortuj"><option value="id">Rejestracja</option><option value="status">Status</option><option value="lastCheck">Ostatni przeglad</option><option value="type">Typ</option></select><select class="input" id="fleetSortDir" aria-label="Kierunek"><option value="asc">Rosnaco</option><option value="desc">Malejaco</option></select><button class="button primary" id="addVehicle" type="button">Dodaj pojazd</button></div>`;
   root.appendChild(header);
 
   const filterBar = dom.h("div", "table-filter");
@@ -22,9 +22,44 @@ function fleetView() {
   const cards = dom.h("div", "card-list");
   root.appendChild(cards);
 
+  const loadMoreWrap = dom.h("div");
+  loadMoreWrap.style.marginTop = "12px";
+  loadMoreWrap.style.display = "flex";
+  loadMoreWrap.style.justifyContent = "center";
+  const loadMoreBtn = dom.h("button", "button secondary", "Load more");
+  loadMoreBtn.type = "button";
+  loadMoreWrap.appendChild(loadMoreBtn);
+  root.appendChild(loadMoreWrap);
+
   const filters = FleetStore.state.filters.fleet;
   statusSelect.value = filters.status;
   searchInput.value = filters.search;
+
+  const sortBySelect = header.querySelector("#fleetSortBy");
+  const sortDirSelect = header.querySelector("#fleetSortDir");
+  const listPrefsFallback = { sortBy: "id", sortDir: "asc", pageSize: 10, visibleCount: 10 };
+  const getListPrefs = () => FleetStore.state.listPrefs?.fleet || listPrefsFallback;
+  const syncSortControls = () => {
+    const prefs = getListPrefs();
+    if (sortBySelect) sortBySelect.value = prefs.sortBy || listPrefsFallback.sortBy;
+    if (sortDirSelect) sortDirSelect.value = prefs.sortDir || listPrefsFallback.sortDir;
+  };
+
+  syncSortControls();
+  if (sortBySelect) {
+    sortBySelect.addEventListener("change", () => {
+      const prefs = getListPrefs();
+      FleetStore.setListPrefs("fleet", { sortBy: sortBySelect.value, visibleCount: prefs.pageSize || listPrefsFallback.pageSize });
+      renderCards();
+    });
+  }
+  if (sortDirSelect) {
+    sortDirSelect.addEventListener("change", () => {
+      const prefs = getListPrefs();
+      FleetStore.setListPrefs("fleet", { sortDir: sortDirSelect.value, visibleCount: prefs.pageSize || listPrefsFallback.pageSize });
+      renderCards();
+    });
+  }
 
   let isLoading = true;
   let loadingTimer = null;
@@ -36,6 +71,14 @@ function fleetView() {
     { value: "on-route", label: "W trasie" },
     { value: "maintenance", label: "Serwis" },
   ];
+  const statusOrder = { available: 1, "on-route": 2, maintenance: 3 };
+  const getFleetSortValue = (vehicle, sortBy) => {
+    if (sortBy === "id") return String(vehicle.id || "").toLowerCase();
+    if (sortBy === "status") return statusOrder[vehicle.status] || 99;
+    if (sortBy === "lastCheck") return Date.parse(vehicle.lastCheck || "");
+    if (sortBy === "type") return String(vehicle.type || "").toLowerCase();
+    return String(vehicle.id || "").toLowerCase();
+  };
   const datePattern = /^\d{4}-\d{2}-\d{2}$/;
   const buildActivityEntry = (action, vehicle) => {
     const verb = { created: "dodany", updated: "zaktualizowany", deleted: "usuniety" }[action] || "zaktualizowany";
@@ -60,6 +103,7 @@ function fleetView() {
   };
 
   const renderSkeletonCards = () => {
+    loadMoreWrap.style.display = "none";
     cards.innerHTML = `
       ${Array.from({ length: 6 })
         .map(
@@ -284,9 +328,37 @@ function fleetView() {
 
     const { status, search } = FleetStore.state.filters.fleet;
 
-    const rows = FleetStore.state.domain.fleet.filter((v) => (status === "all" ? true : v.status === status)).filter((v) => `${v.id} ${v.type}`.toLowerCase().includes(search.toLowerCase()));
+    const rows = FleetStore.state.domain.fleet
+      .filter((v) => (status === "all" ? true : v.status === status))
+      .filter((v) => `${v.id} ${v.type}`.toLowerCase().includes(search.toLowerCase()));
+
+    const prefs = getListPrefs();
+    const sortBy = prefs.sortBy || listPrefsFallback.sortBy;
+    const sortDir = prefs.sortDir === "desc" ? -1 : 1;
+    const sortedRows = rows
+      .map((item, index) => ({ item, index }))
+      .sort((a, b) => {
+        const aVal = getFleetSortValue(a.item, sortBy);
+        const bVal = getFleetSortValue(b.item, sortBy);
+        let diff = 0;
+        if (typeof aVal === "string" || typeof bVal === "string") {
+          diff = String(aVal).localeCompare(String(bVal));
+        } else {
+          diff = (aVal || 0) - (bVal || 0);
+        }
+        if (diff === 0) return a.index - b.index;
+        return diff * sortDir;
+      })
+      .map((entry) => entry.item);
+
+    const pageSize = prefs.pageSize || listPrefsFallback.pageSize;
+    const visibleCount = prefs.visibleCount || pageSize;
+    const visibleRows = sortedRows.slice(0, visibleCount);
+    const canLoadMore = sortedRows.length > visibleRows.length;
 
     if (rows.length === 0) {
+      loadMoreWrap.style.display = "none";
+      
       cards.innerHTML = `
         <div class="empty-state">
           <div class="empty-state__card">
@@ -300,6 +372,8 @@ function fleetView() {
 
       cards.querySelector("#clearFleetFilters")?.addEventListener("click", () => {
         FleetStore.setFleetFilters({ status: "all", search: "" });
+        const prefs = getListPrefs();
+        FleetStore.setListPrefs("fleet", { visibleCount: prefs.pageSize || listPrefsFallback.pageSize });
         statusSelect.value = "all";
         searchInput.value = "";
 
@@ -310,7 +384,9 @@ function fleetView() {
     }
 
     dom.clear(cards);
-    rows.forEach((vehicle) => {
+    loadMoreWrap.style.display = canLoadMore ? "flex" : "none";
+    loadMoreBtn.disabled = !canLoadMore;
+    visibleRows.forEach((vehicle) => {
       const card = dom.h("div", "panel");
       card.innerHTML = `
         <div class="flex-between">
@@ -364,11 +440,15 @@ function fleetView() {
 
   statusSelect.addEventListener("change", () => {
     saveFilters();
+    const prefs = getListPrefs();
+    FleetStore.setListPrefs("fleet", { visibleCount: prefs.pageSize || listPrefsFallback.pageSize });
     startFilterLoading();
   });
 
   searchInput.addEventListener("input", () => {
     saveFilters();
+    const prefs = getListPrefs();
+    FleetStore.setListPrefs("fleet", { visibleCount: prefs.pageSize || listPrefsFallback.pageSize });
     startFilterLoading();
   });
 
@@ -379,6 +459,14 @@ function fleetView() {
       openVehicleForm({ mode: "add" });
     });
   }
+
+  loadMoreBtn.addEventListener("click", () => {
+    const prefs = getListPrefs();
+    const pageSize = prefs.pageSize || listPrefsFallback.pageSize;
+    const nextCount = (prefs.visibleCount || pageSize) + pageSize;
+    FleetStore.setListPrefs("fleet", { visibleCount: nextCount });
+    renderCards();
+  });
 
   startLoading();
 

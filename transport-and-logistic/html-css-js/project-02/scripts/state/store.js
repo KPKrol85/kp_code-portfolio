@@ -6,6 +6,7 @@ const defaultPreferences = {
 const defaultAuth = FleetStorage.get("fleet-auth", { isAuthenticated: false, user: null });
 const DOMAIN_STORAGE_KEY = "fleet-domain-v1";
 const ACTIVITY_STORAGE_KEY = "fleet-activity-v1";
+const LIST_PREFS_STORAGE_KEY = "fleet-list-prefs-v1";
 
 const nowIso = () => new Date().toISOString();
 const todayIso = () => new Date().toISOString().slice(0, 10);
@@ -47,12 +48,19 @@ const defaultFiltersFallback = {
 };
 
 const defaultFilters = FleetStorage.get("fleet-filters", defaultFiltersFallback);
+const defaultListPrefsFallback = {
+  orders: { sortBy: "updated", sortDir: "desc", pageSize: 10, visibleCount: 10 },
+  fleet: { sortBy: "id", sortDir: "asc", pageSize: 10, visibleCount: 10 },
+  drivers: { sortBy: "name", sortDir: "asc", pageSize: 10, visibleCount: 10 },
+};
+const defaultListPrefs = FleetStorage.get(LIST_PREFS_STORAGE_KEY, defaultListPrefsFallback);
 
 const Store = {
   state: {
     auth: defaultAuth,
     preferences: defaultPreferences,
     filters: defaultFilters,
+    listPrefs: defaultListPrefs,
     domain: { orders: [], fleet: [], drivers: [] },
     activity: [],
   },
@@ -74,6 +82,7 @@ const Store = {
     FleetStorage.set("fleet-compact", this.state.preferences.compact);
     FleetStorage.set("fleet-auth", this.state.auth);
     FleetStorage.set("fleet-filters", this.state.filters);
+    FleetStorage.set(LIST_PREFS_STORAGE_KEY, this.state.listPrefs);
     FleetStorage.set(ACTIVITY_STORAGE_KEY, this.state.activity);
     if (this.domainReady) {
       FleetStorage.set(DOMAIN_STORAGE_KEY, this.state.domain);
@@ -221,6 +230,12 @@ const Store = {
     this.setState({ filters: { ...this.state.filters, drivers: nextDrivers } });
   },
 
+  setListPrefs(moduleKey, patch) {
+    const current = this.state.listPrefs[moduleKey] || {};
+    const nextModule = { ...current, ...patch };
+    this.setState({ listPrefs: { ...this.state.listPrefs, [moduleKey]: nextModule } });
+  },
+
   login(user) {
     this.setState({ auth: { isAuthenticated: true, user } });
   },
@@ -253,11 +268,13 @@ const Store = {
     FleetStorage.remove("fleet-filters");
     FleetStorage.remove(DOMAIN_STORAGE_KEY);
     FleetStorage.remove(ACTIVITY_STORAGE_KEY);
+    FleetStorage.remove(LIST_PREFS_STORAGE_KEY);
 
     this.setState({
       auth: { isAuthenticated: false, user: null },
       preferences: { theme: "light", compact: false },
       filters: defaultFiltersFallback,
+      listPrefs: defaultListPrefsFallback,
       activity: buildActivityFromSeed(),
     });
 
