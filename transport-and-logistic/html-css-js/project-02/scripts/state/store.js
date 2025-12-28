@@ -1,6 +1,7 @@
 const defaultPreferences = {
   theme: FleetStorage.get("fleet-theme", "light"),
   compact: FleetStorage.get("fleet-compact", false),
+  dashboardRangeDays: FleetStorage.get("fleet-dashboard-range", 30),
 };
 
 const defaultAuth = FleetStorage.get("fleet-auth", { isAuthenticated: false, user: null });
@@ -80,6 +81,7 @@ const Store = {
   persist() {
     FleetStorage.set("fleet-theme", this.state.preferences.theme);
     FleetStorage.set("fleet-compact", this.state.preferences.compact);
+    FleetStorage.set("fleet-dashboard-range", this.state.preferences.dashboardRangeDays);
     FleetStorage.set("fleet-auth", this.state.auth);
     FleetStorage.set("fleet-filters", this.state.filters);
     FleetStorage.set(LIST_PREFS_STORAGE_KEY, this.state.listPrefs);
@@ -215,6 +217,10 @@ const Store = {
     else delete document.body.dataset.compact;
   },
 
+  setDashboardRangeDays(days) {
+    this.setState({ preferences: { ...this.state.preferences, dashboardRangeDays: days } });
+  },
+
   setOrderFilters(partial) {
     const nextOrders = { ...this.state.filters.orders, ...partial };
     this.setState({ filters: { ...this.state.filters, orders: nextOrders } });
@@ -265,6 +271,7 @@ const Store = {
     FleetStorage.remove("fleet-auth");
     FleetStorage.remove("fleet-theme");
     FleetStorage.remove("fleet-compact");
+    FleetStorage.remove("fleet-dashboard-range");
     FleetStorage.remove("fleet-filters");
     FleetStorage.remove(DOMAIN_STORAGE_KEY);
     FleetStorage.remove(ACTIVITY_STORAGE_KEY);
@@ -272,7 +279,7 @@ const Store = {
 
     this.setState({
       auth: { isAuthenticated: false, user: null },
-      preferences: { theme: "light", compact: false },
+      preferences: { theme: "light", compact: false, dashboardRangeDays: 30 },
       filters: defaultFiltersFallback,
       listPrefs: defaultListPrefsFallback,
       activity: buildActivityFromSeed(),

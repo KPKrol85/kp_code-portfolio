@@ -1,25 +1,108 @@
 function dashboardView() {
   const root = dom.h("div");
-
   // ===== KPI =====
+  const rangeHeader = dom.h("div", "module-header");
+  rangeHeader.innerHTML = `
+    <div>
+      <h3>Przeglad KPI</h3>
+      <p class="muted small">Zakres czasu</p>
+    </div>
+    <div class="toolbar">
+      <select class="input" id="dashboardRange" aria-label="Zakres czasu">
+        <option value="7">7 dni</option>
+        <option value="30">30 dni</option>
+        <option value="90">90 dni</option>
+      </select>
+    </div>
+  `;
+  root.appendChild(rangeHeader);
+
+  const rangeSelect = rangeHeader.querySelector("#dashboardRange");
+  const getRangeDays = () => Number(FleetStore.state.preferences.dashboardRangeDays) || 30;
+  if (rangeSelect) rangeSelect.value = String(getRangeDays());
+
   const kpis = dom.h("div", "grid kpi-grid");
-  const kpiData = [
-    { label: "Łączna liczba zleceń", value: FleetStore.state.domain.orders.length },
-    { label: "Terminowość", value: "94.2%" },
-    { label: "Aktywne pojazdy", value: FleetStore.state.domain.fleet.filter((v) => v.status !== "maintenance").length },
-    { label: "Zdarzenia", value: FleetSeed.alerts.length },
-  ];
+  const isInRange = (value, rangeDays) => {
+    const ts = Date.parse(value);
+    if (Number.isNaN(ts)) return false;
+    const rangeMs = rangeDays * 24 * 60 * 60 * 1000;
+    return ts >= Date.now() - rangeMs;
+  };
 
-  kpiData.forEach((item) => {
-    const card = dom.h("div", "panel");
-    card.innerHTML = `<p class="muted small">${item.label}</p><h3>${item.value}</h3>`;
-    kpis.appendChild(card);
-  });
+  const renderKpis = () => {
+    const rangeDays = getRangeDays();
+    const ordersInRange = FleetStore.state.domain.orders.filter((o) => isInRange(o.updated || o.updatedAt, rangeDays));
+    const deliveredCount = ordersInRange.filter((o) => o.status === "delivered").length;
+    const onTimePct = ordersInRange.length ? `${((deliveredCount / ordersInRange.length) * 100).toFixed(1)}%` : "0%";
+    const activeVehicles = FleetStore.state.domain.fleet
+      .filter((v) => v.status !== "maintenance")
+      .filter((v) => isInRange(v.lastCheck, rangeDays));
+    const activityInRange = (FleetStore.state.activity || []).filter((a) => isInRange(a.time, rangeDays));
 
+    const kpiData = [
+      { label: "Laczna liczba zlecen", value: ordersInRange.length, action: "orders" },
+      { label: "Terminowosc", value: onTimePct, action: "ontime" },
+      { label: "Aktywne pojazdy", value: activeVehicles.length, action: "fleet" },
+      { label: "Zdarzenia", value: activityInRange.length, action: "alerts" },
+    ];
+
+    dom.clear(kpis);
+    kpiData.forEach((item) => {
+      const card = dom.h("button", "panel");
+      card.type = "button";
+      card.style.textAlign = "left";
+      card.style.width = "100%";
+      card.style.cursor = "pointer";
+      card.setAttribute("aria-label", item.label);
+      card.innerHTML = `<p class="muted small">${item.label}</p><h3>${item.value}</h3>`;
+      card.addEventListener("click", () => handleKpiClick(item.action));
+      kpis.appendChild(card);
+    });
+  };
+
+  const handleKpiClick = (action) => {
+    if (action === "orders") {
+      window.location.hash = "#/app/orders";
+      return;
+    }
+    if (action === "ontime") {
+      FleetStore.setOrderFilters({ status: "delayed" });
+      const prefs = FleetStore.state.listPrefs?.orders;
+      if (prefs) FleetStore.setListPrefs("orders", { visibleCount: prefs.pageSize || 10 });
+      window.location.hash = "#/app/orders";
+      return;
+    }
+    if (action === "fleet") {
+      FleetStore.setFleetFilters({ status: "on-route" });
+      const prefs = FleetStore.state.listPrefs?.fleet;
+      if (prefs) FleetStore.setListPrefs("fleet", { visibleCount: prefs.pageSize || 10 });
+      window.location.hash = "#/app/fleet";
+      return;
+    }
+    if (action === "alerts") {
+      window.location.hash = "#/app";
+      window.setTimeout(() => {
+        document.getElementById("dashboard-alerts")?.scrollIntoView({ behavior: "smooth", block: "start" });
+      }, 200);
+    }
+  };
+
+  if (rangeSelect) {
+    rangeSelect.addEventListener("mousedown", (e) => e.stopPropagation());
+    rangeSelect.addEventListener("click", (e) => e.stopPropagation());
+    rangeSelect.addEventListener("change", () => {
+      const next = Number(rangeSelect.value) || 30;
+      FleetStore.setDashboardRangeDays(next);
+      renderKpis();
+    });
+  }
+
+  renderKpis();
   root.appendChild(kpis);
 
   // ===== Activity =====
   const activity = dom.h("div", "panel");
+  activity.id = "dashboard-activity";
   activity.innerHTML = `<div class="module-header"><h3>Aktywność</h3><span class="muted small">Operacje na żywo</span></div>`;
 
   const formatActivityTime = (value) => {
@@ -49,6 +132,7 @@ function dashboardView() {
 
   // ===== Alerts =====
   const alerts = dom.h("div", "panel");
+  alerts.id = "dashboard-alerts";
 
   alerts.innerHTML = `
     <div class="module-header">
