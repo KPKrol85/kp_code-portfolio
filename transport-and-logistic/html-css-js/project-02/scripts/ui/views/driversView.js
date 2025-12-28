@@ -1,5 +1,13 @@
 function driversView() {
   const root = dom.h("div");
+  const permissions = window.FleetPermissions || {};
+  const Actions = permissions.Actions || {};
+  const can = permissions.can || (() => true);
+  const explainDeny = permissions.explainDeny || (() => "");
+  const applyDisabledState = permissions.applyDisabledState || ((el) => el && el.setAttribute("aria-disabled", "false"));
+  const guard = permissions.guard || (() => true);
+  const getPermissionContext = (record) => ({ user: FleetStore.state.currentUser, record });
+
   const header = dom.h("div", "module-header");
   header.innerHTML = `<div><h3>Kierowcy</h3><p class="muted small">Status i ostatnie kursy</p></div><div class="toolbar"><select class="input" id="driversSortBy" aria-label="Sortuj"><option value="name">Imie i nazwisko</option><option value="status">Status</option><option value="phone">Telefon</option><option value="lastTrip">Ostatni kurs</option></select><select class="input" id="driversSortDir" aria-label="Kierunek"><option value="asc">Rosnaco</option><option value="desc">Malejaco</option></select><button class="button primary" id="addDriver" type="button">Dodaj kierowce</button></div>`;
   root.appendChild(header);
@@ -239,6 +247,9 @@ function driversView() {
     form.addEventListener("submit", (e) => {
       e.preventDefault();
       clearFormErrors(form);
+      const action = isEdit ? Actions.DRIVERS_EDIT : Actions.DRIVERS_CREATE;
+      const context = getPermissionContext(driver);
+      if (!guard(action, context)) return;
       const formValues = getDriverFormValues(form);
       const errors = validateDriverForm(formValues, { isEdit, currentId: driver ? driver.id : null });
       Object.keys(errors).forEach((name) => setFieldError(form, name, errors[name]));
@@ -271,6 +282,7 @@ function driversView() {
   };
 
   const openDeleteConfirm = (driver) => {
+    if (!guard(Actions.DRIVERS_DELETE, getPermissionContext(driver))) return;
     const body = dom.h("div");
     body.innerHTML = `
       <p>Usunac kierowce <strong>${driver.name}</strong>?</p>
@@ -288,6 +300,7 @@ function driversView() {
 
     body.querySelector("[data-modal-confirm]").addEventListener("click", (e) => {
       e.preventDefault();
+      if (!guard(Actions.DRIVERS_DELETE, getPermissionContext(driver))) return;
       FleetStore.deleteDriver(driver.id);
       buildActivityEntry("deleted", driver);
       Toast.show("Kierowca usuniety", "success");
@@ -417,6 +430,13 @@ function driversView() {
       const trigger = tr.querySelector(".dropdown-trigger");
       const menu = tr.querySelector(".dropdown-menu");
 
+      const editBtn = tr.querySelector('[data-driver-action="edit"]');
+      const deleteBtn = tr.querySelector('[data-driver-action="delete"]');
+      const editAllowed = can(Actions.DRIVERS_EDIT, getPermissionContext(driver));
+      const deleteAllowed = can(Actions.DRIVERS_DELETE, getPermissionContext(driver));
+      applyDisabledState(editBtn, editAllowed, explainDeny(Actions.DRIVERS_EDIT, getPermissionContext(driver)));
+      applyDisabledState(deleteBtn, deleteAllowed, explainDeny(Actions.DRIVERS_DELETE, getPermissionContext(driver)));
+
       if (trigger && menu) {
         trigger.addEventListener("click", (event) => {
           event.stopPropagation();
@@ -430,8 +450,10 @@ function driversView() {
           event.stopPropagation();
 
           if (action.dataset.driverAction === "edit") {
+            if (!guard(Actions.DRIVERS_EDIT, getPermissionContext(driver))) return;
             openDriverForm({ mode: "edit", driver });
           } else if (action.dataset.driverAction === "delete") {
+            if (!guard(Actions.DRIVERS_DELETE, getPermissionContext(driver))) return;
             openDeleteConfirm(driver);
           }
 
@@ -459,8 +481,11 @@ function driversView() {
 
   const addBtn = header.querySelector("#addDriver");
   if (addBtn) {
+    const allowCreate = can(Actions.DRIVERS_CREATE, getPermissionContext());
+    applyDisabledState(addBtn, allowCreate, explainDeny(Actions.DRIVERS_CREATE, getPermissionContext()));
     addBtn.addEventListener("click", (e) => {
       e.preventDefault();
+      if (!guard(Actions.DRIVERS_CREATE, getPermissionContext())) return;
       openDriverForm({ mode: "add" });
     });
   }

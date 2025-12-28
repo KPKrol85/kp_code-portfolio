@@ -259,9 +259,10 @@ function initAlertsRulesDropdown(scopeEl) {
   if (!btn || !menu) return;
 
   const setOpen = (open, returnFocus = false) => {
+    const wasOpen = menu.classList.contains("open");
     menu.classList.toggle("open", open);
     btn.setAttribute("aria-expanded", open ? "true" : "false");
-    if (!open && returnFocus) btn.focus();
+    if (wasOpen && !open && returnFocus) btn.focus();
   };
 
   const normalizeSeverity = (value) => {

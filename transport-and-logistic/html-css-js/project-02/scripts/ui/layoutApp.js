@@ -1,11 +1,16 @@
 function renderAppShell(viewTitle, contentNode) {
   const app = document.getElementById("app");
   const { auth, preferences } = FleetStore.state;
+  const currentUser = FleetStore.state.currentUser || window.FleetPermissions?.defaultUser;
+  const demoUsers = window.FleetPermissions?.DemoUsers || [];
 
   const theme = preferences.theme || "light";
   document.documentElement.setAttribute("data-theme", theme);
 
   const initials = auth.user ? format.avatarInitials(auth.user.name || auth.user.email) : "FO";
+  const roleOptions = demoUsers
+    .map((user) => `<option value="${user.id}">${user.displayName || user.role}</option>`)
+    .join("");
 
   const shell = dom.h("div", "app-shell");
 
@@ -56,6 +61,7 @@ function renderAppShell(viewTitle, contentNode) {
       <a href="#/app/settings" data-route="/app/settings">Ustawienia</a>
     </nav>
     <div class="muted small">Użytkownik: ${auth.user ? auth.user.email : "użytkownik demo"}</div>
+    <div class="muted small">Rola: ${currentUser ? currentUser.role : "admin"}</div>
   `;
   shell.appendChild(sidebar);
 
@@ -67,6 +73,12 @@ function renderAppShell(viewTitle, contentNode) {
       <div class="search"><input aria-label="Szukaj" type="search" placeholder="Szukaj..." /></div>
     </div>
     <div class="topbar-actions">
+      <label class="role-switcher">
+        <span class="muted small">Role</span>
+        <select class="input" id="roleSwitcher" aria-label="Role switcher">
+          ${roleOptions}
+        </select>
+      </label>
       <button class="button ghost" id="themeToggle" type="button" aria-label="Przełącz motyw">
         <svg class="theme-toggle__icon theme-toggle__icon--light" width="18" height="18" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
           <circle cx="12" cy="12" r="4" fill="currentColor"></circle>
@@ -81,6 +93,7 @@ function renderAppShell(viewTitle, contentNode) {
         <button class="button ghost avatar" id="userMenuBtn" type="button" aria-haspopup="menu" aria-expanded="false" aria-controls="userMenu">${initials}</button>
         <div class="dropdown-menu" id="userMenu" role="menu">
           <div class="dropdown-item muted">${auth.user ? auth.user.name : "Użytkownik demo"}</div>
+          <div class="dropdown-item muted">Rola: ${currentUser ? currentUser.displayName || currentUser.role : "Admin"}</div>
           <div class="dropdown-item"><a href="#/about">O projekcie</a></div>
           <div class="dropdown-item"><a href="#/privacy">Polityka prywatności</a></div>
           <button class="dropdown-item" id="logoutBtn" type="button">Wyloguj się</button>
@@ -92,6 +105,24 @@ function renderAppShell(viewTitle, contentNode) {
   // === Theme toggle (app) ===
   const themeBtn = topbar.querySelector("#themeToggle");
   const themeBtnMobile = appTopbar.querySelector("#themeToggleMobile");
+  const roleSwitcher = topbar.querySelector("#roleSwitcher");
+
+  if (roleSwitcher && currentUser) {
+    roleSwitcher.value = currentUser.id;
+    roleSwitcher.addEventListener("change", () => {
+      const selected = demoUsers.find((user) => user.id === roleSwitcher.value) || currentUser;
+      FleetStore.setCurrentUser(selected);
+      FleetStore.addActivity({
+        title: "Role switched",
+        detail: `Rola zmieniona: ${selected.displayName || selected.role}`,
+        time: new Date().toISOString(),
+      });
+      Toast.show(`Rola zmieniona: ${selected.displayName || selected.role}`, "success");
+      if (window.FleetRouter?.routeTo) {
+        FleetRouter.routeTo(window.location.hash);
+      }
+    });
+  }
 
   const syncThemeUI = () => {
     const current = FleetStore.state.preferences.theme || "light";

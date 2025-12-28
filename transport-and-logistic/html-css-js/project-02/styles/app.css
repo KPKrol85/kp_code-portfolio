@@ -118,6 +118,17 @@
   gap: 8px;
 }
 
+.role-switcher {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.role-switcher .input {
+  min-width: 160px;
+  padding: 8px 10px;
+}
+
 .avatar {
   width: 34px;
   height: 34px;

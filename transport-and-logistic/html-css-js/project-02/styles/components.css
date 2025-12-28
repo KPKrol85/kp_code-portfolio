@@ -714,6 +714,12 @@ html[data-theme="dark"] .stat-card:focus-within {
   background: var(--bg-muted);
 }
 
+.dropdown-item.is-disabled,
+.dropdown-item[aria-disabled="true"] {
+  opacity: 0.55;
+  cursor: not-allowed;
+}
+
 .dropdown-item[aria-current="page"] {
   color: var(--accent);
   background: var(--accent-ghost);

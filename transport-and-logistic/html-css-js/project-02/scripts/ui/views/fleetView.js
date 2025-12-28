@@ -1,5 +1,13 @@
 function fleetView() {
   const root = dom.h("div");
+  const permissions = window.FleetPermissions || {};
+  const Actions = permissions.Actions || {};
+  const can = permissions.can || (() => true);
+  const explainDeny = permissions.explainDeny || (() => "");
+  const applyDisabledState = permissions.applyDisabledState || ((el) => el && el.setAttribute("aria-disabled", "false"));
+  const guard = permissions.guard || (() => true);
+  const getPermissionContext = (record) => ({ user: FleetStore.state.currentUser, record });
+
   const header = dom.h("div", "module-header");
   header.innerHTML = `<div><h3>Flota</h3><p class="muted small">Zarządzaj pojazdami</p></div><div class="toolbar"><select class="input" id="fleetSortBy" aria-label="Sortuj"><option value="id">Rejestracja</option><option value="status">Status</option><option value="lastCheck">Ostatni przeglad</option><option value="type">Typ</option></select><select class="input" id="fleetSortDir" aria-label="Kierunek"><option value="asc">Rosnaco</option><option value="desc">Malejaco</option></select><button class="button primary" id="addVehicle" type="button">Dodaj pojazd</button></div>`;
   root.appendChild(header);
@@ -243,6 +251,9 @@ function fleetView() {
     form.addEventListener("submit", (e) => {
       e.preventDefault();
       clearFormErrors(form);
+      const action = isEdit ? Actions.FLEET_EDIT : Actions.FLEET_CREATE;
+      const context = getPermissionContext(vehicle);
+      if (!guard(action, context)) return;
       const formValues = getVehicleFormValues(form);
       const existingIds = FleetStore.state.domain.fleet.map((v) => v.id);
       const errors = validateVehicleForm(formValues, { isEdit, existingIds });
@@ -277,6 +288,7 @@ function fleetView() {
   };
 
   const openDeleteConfirm = (vehicle) => {
+    if (!guard(Actions.FLEET_DELETE, getPermissionContext(vehicle))) return;
     const body = dom.h("div");
     body.innerHTML = `
       <p>Usunac pojazd <strong>${vehicle.id}</strong>?</p>
@@ -294,6 +306,7 @@ function fleetView() {
 
     body.querySelector("[data-modal-confirm]").addEventListener("click", (e) => {
       e.preventDefault();
+      if (!guard(Actions.FLEET_DELETE, getPermissionContext(vehicle))) return;
       FleetStore.deleteVehicle(vehicle.id);
       buildActivityEntry("deleted", vehicle);
       Toast.show("Pojazd usuniety", "success");
@@ -413,6 +426,13 @@ function fleetView() {
       const trigger = card.querySelector(".dropdown-trigger");
       const menu = card.querySelector(".dropdown-menu");
 
+      const editBtn = card.querySelector('[data-vehicle-action="edit"]');
+      const deleteBtn = card.querySelector('[data-vehicle-action="delete"]');
+      const editAllowed = can(Actions.FLEET_EDIT, getPermissionContext(vehicle));
+      const deleteAllowed = can(Actions.FLEET_DELETE, getPermissionContext(vehicle));
+      applyDisabledState(editBtn, editAllowed, explainDeny(Actions.FLEET_EDIT, getPermissionContext(vehicle)));
+      applyDisabledState(deleteBtn, deleteAllowed, explainDeny(Actions.FLEET_DELETE, getPermissionContext(vehicle)));
+
       if (trigger && menu) {
         trigger.addEventListener("click", (event) => {
           event.stopPropagation();
@@ -426,8 +446,10 @@ function fleetView() {
           event.stopPropagation();
 
           if (action.dataset.vehicleAction === "edit") {
+            if (!guard(Actions.FLEET_EDIT, getPermissionContext(vehicle))) return;
             openVehicleForm({ mode: "edit", vehicle });
           } else if (action.dataset.vehicleAction === "delete") {
+            if (!guard(Actions.FLEET_DELETE, getPermissionContext(vehicle))) return;
             openDeleteConfirm(vehicle);
           }
 
@@ -454,8 +476,11 @@ function fleetView() {
 
   const addBtn = header.querySelector("#addVehicle");
   if (addBtn) {
+    const allowCreate = can(Actions.FLEET_CREATE, getPermissionContext());
+    applyDisabledState(addBtn, allowCreate, explainDeny(Actions.FLEET_CREATE, getPermissionContext()));
     addBtn.addEventListener("click", (e) => {
       e.preventDefault();
+      if (!guard(Actions.FLEET_CREATE, getPermissionContext())) return;
       openVehicleForm({ mode: "add" });
     });
   }

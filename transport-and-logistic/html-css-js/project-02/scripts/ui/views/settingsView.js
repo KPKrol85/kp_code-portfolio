@@ -37,11 +37,13 @@ function settingsView() {
 
   const accountCard = dom.h('div', 'setting-card');
   const user = FleetStore.state.auth.user || { name: 'Użytkownik demo', email: 'demo@fleetops.app' };
+  const currentUser = FleetStore.state.currentUser || window.FleetPermissions?.defaultUser;
   accountCard.innerHTML = `
     <h4>Konto</h4>
     <p>${user.name}</p>
     <p class="muted small">${user.email}</p>
-    <p class="muted small">Rola: Operacje</p>
+    <p class="muted small">Rola: ${currentUser ? currentUser.displayName || currentUser.role : 'Admin'}</p>
+    <p class="muted small">ID: ${currentUser ? currentUser.id : 'u_admin_1'}</p>
   `;
   grid.appendChild(accountCard);
 

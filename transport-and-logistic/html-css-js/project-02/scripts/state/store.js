@@ -8,6 +8,11 @@ const defaultAuth = FleetStorage.get("fleet-auth", { isAuthenticated: false, use
 const DOMAIN_STORAGE_KEY = "fleet-domain-v1";
 const ACTIVITY_STORAGE_KEY = "fleet-activity-v1";
 const LIST_PREFS_STORAGE_KEY = "fleet-list-prefs-v1";
+const CURRENT_USER_STORAGE_KEY = "fleet-current-user";
+const defaultCurrentUser = FleetStorage.get(
+  CURRENT_USER_STORAGE_KEY,
+  window.FleetPermissions?.defaultUser || { id: "u_admin_1", role: "admin", displayName: "Admin Demo" }
+);
 
 const nowIso = () => new Date().toISOString();
 const todayIso = () => new Date().toISOString().slice(0, 10);
@@ -59,6 +64,7 @@ const defaultListPrefs = FleetStorage.get(LIST_PREFS_STORAGE_KEY, defaultListPre
 const Store = {
   state: {
     auth: defaultAuth,
+    currentUser: defaultCurrentUser,
     preferences: defaultPreferences,
     filters: defaultFilters,
     listPrefs: defaultListPrefs,
@@ -83,6 +89,7 @@ const Store = {
     FleetStorage.set("fleet-compact", this.state.preferences.compact);
     FleetStorage.set("fleet-dashboard-range", this.state.preferences.dashboardRangeDays);
     FleetStorage.set("fleet-auth", this.state.auth);
+    FleetStorage.set(CURRENT_USER_STORAGE_KEY, this.state.currentUser);
     FleetStorage.set("fleet-filters", this.state.filters);
     FleetStorage.set(LIST_PREFS_STORAGE_KEY, this.state.listPrefs);
     FleetStorage.set(ACTIVITY_STORAGE_KEY, this.state.activity);
@@ -118,9 +125,11 @@ const Store = {
 
   addOrder(payload = {}) {
     const now = nowIso();
+    const createdBy = payload.createdBy || this.state.currentUser?.id || "u_admin_1";
     const order = {
       ...payload,
       id: payload.id || generateId("FO"),
+      createdBy,
       createdAt: payload.createdAt || now,
       updatedAt: now,
       updated: payload.updated || now,
@@ -155,9 +164,11 @@ const Store = {
 
   addVehicle(payload = {}) {
     const now = nowIso();
+    const createdBy = payload.createdBy || this.state.currentUser?.id || "u_admin_1";
     const vehicle = {
       ...payload,
       id: payload.id || generateId("VH"),
+      createdBy,
       createdAt: payload.createdAt || now,
       updatedAt: now,
       lastCheck: payload.lastCheck || todayIso(),
@@ -178,9 +189,11 @@ const Store = {
 
   addDriver(payload = {}) {
     const now = nowIso();
+    const createdBy = payload.createdBy || this.state.currentUser?.id || "u_admin_1";
     const driver = {
       ...payload,
       id: payload.id || generateId("DRV"),
+      createdBy,
       createdAt: payload.createdAt || now,
       updatedAt: now,
     };
@@ -240,6 +253,10 @@ const Store = {
     const current = this.state.listPrefs[moduleKey] || {};
     const nextModule = { ...current, ...patch };
     this.setState({ listPrefs: { ...this.state.listPrefs, [moduleKey]: nextModule } });
+  },
+
+  setCurrentUser(user) {
+    this.setState({ currentUser: user });
   },
 
   login(user) {
