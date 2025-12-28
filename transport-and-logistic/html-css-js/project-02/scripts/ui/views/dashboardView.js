@@ -23,7 +23,10 @@ function dashboardView() {
   activity.innerHTML = `<div class="module-header"><h3>Aktywność</h3><span class="muted small">Operacje na żywo</span></div>`;
 
   const feed = dom.h("div", "feed");
-  FleetSeed.activities.forEach((a) => {
+  const activities = FleetStore.state.activity && FleetStore.state.activity.length
+    ? FleetStore.state.activity
+    : FleetSeed.activities;
+  activities.forEach((a) => {
     const row = dom.h("div", "activity-row");
     row.innerHTML = `<div><strong>${a.title}</strong><p class="muted small">${a.detail}</p></div><span class="muted small">${a.time}</span>`;
     feed.appendChild(row);

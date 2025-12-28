@@ -2,6 +2,9 @@
   if (window.FleetStore?.initDomain) {
     FleetStore.initDomain();
   }
+  if (window.FleetStore?.initActivity) {
+    FleetStore.initActivity();
+  }
 
   const savedTheme = FleetStore.state.preferences.theme;
   if (!savedTheme) {

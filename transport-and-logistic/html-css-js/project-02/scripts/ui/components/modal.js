@@ -72,7 +72,7 @@ const Modal = (() => {
     }
     header.appendChild(titleEl);
 
-    const closeBtn = dom.h("button", "modal-close", "ž");
+    const closeBtn = dom.h("button", "modal-close", "x");
     closeBtn.setAttribute("aria-label", "Zamknij");
     closeBtn.addEventListener("click", close);
     header.appendChild(closeBtn);

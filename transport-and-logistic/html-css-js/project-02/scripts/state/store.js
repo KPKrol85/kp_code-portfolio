@@ -5,6 +5,7 @@ const defaultPreferences = {
 
 const defaultAuth = FleetStorage.get("fleet-auth", { isAuthenticated: false, user: null });
 const DOMAIN_STORAGE_KEY = "fleet-domain-v1";
+const ACTIVITY_STORAGE_KEY = "fleet-activity-v1";
 
 const nowIso = () => new Date().toISOString();
 const todayIso = () => new Date().toISOString().slice(0, 10);
@@ -29,6 +30,10 @@ const buildDomainFromSeed = () => {
     drivers: FleetSeed.drivers || [],
   });
 };
+const buildActivityFromSeed = () => {
+  if (!window.FleetSeed) return [];
+  return cloneList(FleetSeed.activities || []);
+};
 const generateId = (prefix) => {
   if (window.crypto?.randomUUID) return `${prefix}-${window.crypto.randomUUID()}`;
   const rand = Math.random().toString(36).slice(2, 10);
@@ -49,6 +54,7 @@ const Store = {
     preferences: defaultPreferences,
     filters: defaultFilters,
     domain: { orders: [], fleet: [], drivers: [] },
+    activity: [],
   },
   listeners: [],
   domainReady: false,
@@ -68,6 +74,7 @@ const Store = {
     FleetStorage.set("fleet-compact", this.state.preferences.compact);
     FleetStorage.set("fleet-auth", this.state.auth);
     FleetStorage.set("fleet-filters", this.state.filters);
+    FleetStorage.set(ACTIVITY_STORAGE_KEY, this.state.activity);
     if (this.domainReady) {
       FleetStorage.set(DOMAIN_STORAGE_KEY, this.state.domain);
     }
@@ -78,6 +85,12 @@ const Store = {
     const domain = isValidDomain(stored) ? normalizeDomain(stored) : buildDomainFromSeed();
     this.domainReady = true;
     this.setState({ domain });
+  },
+
+  initActivity() {
+    const stored = FleetStorage.get(ACTIVITY_STORAGE_KEY, null);
+    const activity = Array.isArray(stored) ? cloneList(stored) : buildActivityFromSeed();
+    this.setState({ activity });
   },
 
   resetDomainData() {
@@ -117,6 +130,16 @@ const Store = {
 
   deleteOrder(id) {
     this.updateDomainList("orders", (list) => list.filter((item) => item.id !== id));
+  },
+
+  addActivity(payload = {}) {
+    const activity = {
+      title: payload.title || "Nowe zdarzenie",
+      detail: payload.detail || "",
+      time: payload.time || "przed chwilą",
+    };
+    const next = [activity, ...(this.state.activity || [])];
+    this.setState({ activity: next });
   },
 
   addVehicle(payload = {}) {
@@ -229,11 +252,13 @@ const Store = {
     FleetStorage.remove("fleet-compact");
     FleetStorage.remove("fleet-filters");
     FleetStorage.remove(DOMAIN_STORAGE_KEY);
+    FleetStorage.remove(ACTIVITY_STORAGE_KEY);
 
     this.setState({
       auth: { isAuthenticated: false, user: null },
       preferences: { theme: "light", compact: false },
       filters: defaultFiltersFallback,
+      activity: buildActivityFromSeed(),
     });
 
     document.documentElement.setAttribute("data-theme", "light");
