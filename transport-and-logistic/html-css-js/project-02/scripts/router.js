@@ -192,8 +192,12 @@ function routeTo(hash) {
       renderAppShell("Ustawienia", settingsView());
       break;
     default:
-      window.location.hash = "#/";
-      renderLanding();
+      if (path.startsWith("/app")) {
+        renderAppShell("Nie znaleziono", notFoundView());
+      } else {
+        window.location.hash = "#/";
+        renderLanding();
+      }
   }
 
   // <<< TO JEST JEDYNE MIEJSCE, GDZIE USTAWIAMY aria-current >>>
