@@ -897,11 +897,16 @@ function initThemeToggle() {
 
   const nextOf = (mode) => (mode === "dark" ? "light" : "dark");
 
+  const syncThemeToggleState = () => {
+    const current = root.getAttribute("data-theme") === "dark" ? "dark" : "light";
+    btn.setAttribute("aria-pressed", String(current === "dark"));
+  };
+
   const apply = (mode, { persist = false, silent = false } = {}) => {
     const normalized = mode === "dark" ? "dark" : "light";
     root.setAttribute("data-theme", normalized);
     btn.setAttribute("data-theme-state", normalized);
-    btn.setAttribute("aria-pressed", String(normalized === "dark"));
+    syncThemeToggleState();
     const label = `Tryb: ${normalized === "dark" ? "ciemny" : "jasny"}. ` + (normalized === "dark" ? "Przełącz na jasny tryb" : "Przełącz na ciemny tryb");
     btn.setAttribute("aria-label", label);
     btn.setAttribute("title", label);
@@ -917,6 +922,7 @@ function initThemeToggle() {
     persist: saved === "light" || saved === "dark",
     silent: true,
   });
+  syncThemeToggleState();
 
   btn.addEventListener(
     "click",

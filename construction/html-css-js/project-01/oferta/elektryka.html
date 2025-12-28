@@ -203,8 +203,15 @@
 
         <div class="header-actions">
           <button class="theme-toggle" type="button" aria-pressed="false" aria-label="Przełącz tryb" title="Przełącz tryb">
-            <img class="icon-moon" src="../assets/img/icons/dark-mode-40.svg" alt="" width="20" height="20" decoding="async" aria-hidden="true" />
-            <img class="icon-sun" src="../assets/img/icons/light-mode-40.svg" alt="" width="20" height="20" decoding="async" aria-hidden="true" />
+            <svg class="icon-sun" viewBox="0 0 24 24" aria-hidden="true">
+              <g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round">
+                <circle cx="12" cy="12" r="3.5" fill="currentColor" stroke="none"></circle>
+                <path d="M12 2.5v2.5M12 19v2.5M4.5 12H2M22 12h-2.5M5.4 5.4l1.8 1.8M16.8 16.8l1.8 1.8M18.6 5.4l-1.8 1.8M7.2 16.8l-1.8 1.8"></path>
+              </g>
+            </svg>
+            <svg class="icon-moon" viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79Z"></path>
+            </svg>
           </button>
 
           <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="navMenu" aria-label="Otwórz menu">

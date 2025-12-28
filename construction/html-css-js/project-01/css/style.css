@@ -740,8 +740,9 @@ h2 + .lead {
 }
 
 .theme-toggle {
-  display: inline-grid;
-  place-items: center;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
   width: 40px;
   height: 40px;
   margin-left: 6px;
@@ -756,6 +757,16 @@ h2 + .lead {
     box-shadow 0.22s,
     background 0.22s,
     border-color 0.22s;
+}
+
+.theme-toggle svg {
+  display: block;
+  width: 20px;
+  height: 20px;
+}
+
+.theme-toggle .icon-moon {
+  fill: currentColor;
 }
 
 .theme-toggle .icon-sun {
@@ -924,7 +935,7 @@ h2 + .lead {
   :root[data-theme="dark"] .theme-toggle {
     border-color: rgba(255, 255, 255, 0.16);
   }
-  .theme-toggle img {
+  .theme-toggle svg {
     width: 18px;
     height: 18px;
   }
