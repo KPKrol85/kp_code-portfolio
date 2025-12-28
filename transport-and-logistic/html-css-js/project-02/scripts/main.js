@@ -17,6 +17,17 @@
     document.body.dataset.compact = "true";
   }
 
+  const syncOnlineStatus = () => {
+    if (window.FleetStore?.setOnlineStatus) {
+      const isOnline = typeof navigator !== "undefined" ? navigator.onLine : true;
+      FleetStore.setOnlineStatus(isOnline);
+    }
+  };
+
+  window.addEventListener("online", syncOnlineStatus);
+  window.addEventListener("offline", syncOnlineStatus);
+  syncOnlineStatus();
+
   window.addEventListener("hashchange", () => FleetRouter.routeTo(window.location.hash));
 
   const hasHash = window.location.hash && window.location.hash !== "#";

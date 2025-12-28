@@ -263,12 +263,12 @@ function driversView() {
       };
 
       if (isEdit && driver) {
-        FleetStore.updateDriver(driver.id, payload);
+        if (!FleetStore.updateDriver(driver.id, payload)) return;
         const updatedDriver = FleetStore.state.domain.drivers.find((d) => d.id === driver.id);
         buildActivityEntry("updated", updatedDriver || driver);
         Toast.show("Kierowca zaktualizowany", "success");
       } else {
-        FleetStore.addDriver(payload);
+        if (!FleetStore.addDriver(payload)) return;
         const createdDriver = FleetStore.state.domain.drivers[FleetStore.state.domain.drivers.length - 1];
         buildActivityEntry("created", createdDriver || payload);
         Toast.show("Kierowca dodany", "success");
@@ -301,7 +301,7 @@ function driversView() {
     body.querySelector("[data-modal-confirm]").addEventListener("click", (e) => {
       e.preventDefault();
       if (!guard(Actions.DRIVERS_DELETE, getPermissionContext(driver))) return;
-      FleetStore.deleteDriver(driver.id);
+      if (!FleetStore.deleteDriver(driver.id)) return;
       buildActivityEntry("deleted", driver);
       Toast.show("Kierowca usuniety", "success");
       Modal.close();

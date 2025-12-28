@@ -101,6 +101,22 @@ function renderAppShell(viewTitle, contentNode) {
       </div>
     </div>
   `;
+  const offlineBanner = dom.h("div", "offline-banner");
+  offlineBanner.setAttribute("role", "status");
+  offlineBanner.textContent = "Offline mode";
+
+  const updateOfflineBanner = () => {
+    const isOnline = typeof navigator !== "undefined" ? navigator.onLine : true;
+    offlineBanner.hidden = isOnline;
+    offlineBanner.classList.toggle("is-visible", !isOnline);
+  };
+  updateOfflineBanner();
+  window.addEventListener("online", updateOfflineBanner);
+  window.addEventListener("offline", updateOfflineBanner);
+  CleanupRegistry.add(() => {
+    window.removeEventListener("online", updateOfflineBanner);
+    window.removeEventListener("offline", updateOfflineBanner);
+  });
 
   // === Theme toggle (app) ===
   const themeBtn = topbar.querySelector("#themeToggle");
@@ -156,6 +172,7 @@ function renderAppShell(viewTitle, contentNode) {
   });
 
   main.appendChild(topbar);
+  main.appendChild(offlineBanner);
 
   const contentWrap = dom.h("div", "app-content");
   contentWrap.appendChild(contentNode);

@@ -297,12 +297,12 @@ function ordersView() {
       };
 
       if (isEdit && order) {
-        FleetStore.updateOrder(order.id, payload);
+        if (!FleetStore.updateOrder(order.id, payload)) return;
         const updatedOrder = FleetStore.state.domain.orders.find((o) => o.id === order.id);
         buildActivityEntry("updated", updatedOrder || order);
         Toast.show("Zlecenie zaktualizowane", "success");
       } else {
-        FleetStore.addOrder(payload);
+        if (!FleetStore.addOrder(payload)) return;
         const createdOrder = FleetStore.state.domain.orders[FleetStore.state.domain.orders.length - 1];
         buildActivityEntry("created", createdOrder || payload);
         Toast.show("Zlecenie dodane", "success");
@@ -336,7 +336,7 @@ function ordersView() {
     body.querySelector("[data-modal-confirm]").addEventListener("click", (e) => {
       e.preventDefault();
       if (!guard(Actions.ORDERS_DELETE, getPermissionContext(order))) return;
-      FleetStore.deleteOrder(order.id);
+      if (!FleetStore.deleteOrder(order.id)) return;
       buildActivityEntry("deleted", order);
       Toast.show("Zlecenie usuniete", "success");
       Modal.close();

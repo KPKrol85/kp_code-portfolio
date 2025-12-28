@@ -269,12 +269,12 @@ function fleetView() {
       };
 
       if (isEdit && vehicle) {
-        FleetStore.updateVehicle(vehicle.id, payload);
+        if (!FleetStore.updateVehicle(vehicle.id, payload)) return;
         const updatedVehicle = FleetStore.state.domain.fleet.find((v) => v.id === vehicle.id);
         buildActivityEntry("updated", updatedVehicle || vehicle);
         Toast.show("Pojazd zaktualizowany", "success");
       } else {
-        FleetStore.addVehicle(payload);
+        if (!FleetStore.addVehicle(payload)) return;
         const createdVehicle = FleetStore.state.domain.fleet.find((v) => v.id === payload.id);
         buildActivityEntry("created", createdVehicle || payload);
         Toast.show("Pojazd dodany", "success");
@@ -307,7 +307,7 @@ function fleetView() {
     body.querySelector("[data-modal-confirm]").addEventListener("click", (e) => {
       e.preventDefault();
       if (!guard(Actions.FLEET_DELETE, getPermissionContext(vehicle))) return;
-      FleetStore.deleteVehicle(vehicle.id);
+      if (!FleetStore.deleteVehicle(vehicle.id)) return;
       buildActivityEntry("deleted", vehicle);
       Toast.show("Pojazd usuniety", "success");
       Modal.close();

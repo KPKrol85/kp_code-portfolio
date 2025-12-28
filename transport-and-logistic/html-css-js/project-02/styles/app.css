@@ -118,6 +118,22 @@
   gap: 8px;
 }
 
+.offline-banner {
+  display: none;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  padding: 8px var(--space-4);
+  background: color-mix(in srgb, var(--accent) 12%, var(--bg-elevated));
+  border-bottom: 1px solid var(--border);
+  color: var(--text);
+  font-size: 13px;
+}
+
+.offline-banner.is-visible {
+  display: flex;
+}
+
 .role-switcher {
   display: inline-flex;
   align-items: center;
