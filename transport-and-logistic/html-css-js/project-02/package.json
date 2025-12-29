@@ -8,7 +8,7 @@
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "min:css": "postcss styles/*.css --dir styles/dist",
+    "min:css": "postcss \"styles/!(*.min).css\" --dir styles --ext .min.css",
     "min:js": "node minify-js.js",
     "min:all": "npm run min:css && npm run min:js"
   },
