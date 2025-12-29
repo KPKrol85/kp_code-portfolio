@@ -1,5 +1,5 @@
-const CACHE_NAME = "Fleetops-v1.01";
-const SHELL_URLS = ["/", "/index.html"];
+const CACHE_NAME = "Fleetops-v1.02";
+const SHELL_URLS = ["./", "./index.html"];
 
 self.addEventListener("install", (event) => {
   event.waitUntil(
@@ -63,7 +63,7 @@ function networkFirst(request) {
       }
       throw new Error("Network response not ok");
     })
-    .catch(() => caches.match("/index.html"));
+    .catch(() => caches.match("./index.html"));
 }
 
 function staleWhileRevalidate(request) {
