@@ -8,14 +8,17 @@
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "min:css": "postcss styles/*.css --dir styles/dist"
+    "min:css": "postcss styles/*.css --dir styles/dist",
+    "min:js": "node minify-js.js",
+    "min:all": "npm run min:css && npm run min:js"
   },
   "keywords": [],
-  "author": "",
+  "author": "Kamil Król - kp_code_",
   "license": "ISC",
   "devDependencies": {
     "cssnano": "^7.1.2",
     "postcss": "^8.5.6",
-    "postcss-cli": "^11.0.1"
+    "postcss-cli": "^11.0.1",
+    "terser": "^5.44.1"
   }
 }
