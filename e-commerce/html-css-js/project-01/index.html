@@ -1,0 +1,200 @@
+<!doctype html>
+<html lang="pl" data-theme="light">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="VOLT GARAGE – nowoczesny sklep z akcesoriami samochodowymi." />
+  <meta name="color-scheme" content="light dark" />
+  <title>VOLT GARAGE | Akcesoria samochodowe</title>
+  <link rel="stylesheet" href="css/themes.css" />
+  <link rel="stylesheet" href="css/base.css" />
+  <link rel="stylesheet" href="css/layout.css" />
+  <link rel="stylesheet" href="css/components.css" />
+</head>
+<body>
+  <header class="site-header" data-header>
+    <a class="skip-link" href="#main">Przejdź do treści</a>
+    <div class="container header-inner">
+      <a class="brand" href="index.html">VOLT GARAGE</a>
+      <nav class="nav" id="primary-nav" role="navigation" aria-label="Główne">
+        <a href="index.html" aria-current="page">Start</a>
+        <a href="pages/shop.html">Sklep</a>
+        <a href="pages/product.html">Produkt</a>
+        <a href="pages/cart.html">Koszyk</a>
+        <a href="pages/contact.html">Kontakt</a>
+        <div class="nav-item" data-dropdown>
+          <button class="nav-button" type="button" aria-haspopup="true" aria-expanded="false" data-dropdown-toggle>Informacje</button>
+          <div class="dropdown-menu" role="menu" data-dropdown-menu>
+            <a role="menuitem" href="pages/polityka-prywatnosci.html">Polityka prywatności</a>
+            <a role="menuitem" href="pages/cookies.html">Cookies</a>
+            <a role="menuitem" href="pages/regulamin.html">Regulamin</a>
+          </div>
+        </div>
+      </nav>
+      <div class="header-actions">
+        <button class="theme-toggle" type="button" aria-label="Zmień motyw" aria-pressed="false" data-theme-toggle>
+          <svg class="icon-moon" viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M21 12.4A8.5 8.5 0 1 1 11.6 3a7 7 0 0 0 9.4 9.4Z" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" />
+          </svg>
+          <svg class="icon-sun" viewBox="0 0 24 24" aria-hidden="true">
+            <circle cx="12" cy="12" r="4.5" fill="none" stroke="currentColor" stroke-width="1.6" />
+            <path d="M12 2.5v3M12 18.5v3M4.5 12h3M16.5 12h3M5.7 5.7l2.1 2.1M16.2 16.2l2.1 2.1M5.7 18.3l2.1-2.1M16.2 7.8l2.1-2.1" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" />
+          </svg>
+        </button>
+        <a class="cart-link" href="pages/cart.html" aria-label="Koszyk">
+          <span>Koszyk</span>
+          <span class="cart-count" data-cart-count>0</span>
+        </a>
+        <button class="nav-toggle" type="button" aria-controls="primary-nav" aria-expanded="false" data-nav-toggle>Menu</button>
+      </div>
+    </div>
+  </header>
+
+  <main id="main">
+    <section class="hero">
+      <div class="container hero-grid">
+        <div data-reveal>
+          <span class="badge">Nowa kolekcja 2025</span>
+          <h1 class="hero-title">Projektuj styl auta, który wyróżnia się na ulicy.</h1>
+          <p>Ekskluzywne emblematy, naklejki i gadżety w sportowym stylu. Twój garaż, twoje zasady.</p>
+          <div class="tag-list">
+            <a class="btn btn-accent" href="pages/shop.html">Przejdź do sklepu</a>
+            <a class="btn btn-outline" href="pages/contact.html">Porozmawiaj z nami</a>
+          </div>
+        </div>
+        <div class="hero-card" data-reveal>
+          <h3>Pakiet startowy VOLT</h3>
+          <p>Limitowany zestaw akcesoriów, który od razu buduje charakter auta.</p>
+          <div class="stats">
+            <div class="stat">
+              <strong>42</strong>
+              <p>Nowe produkty</p>
+            </div>
+            <div class="stat">
+              <strong>4.9/5</strong>
+              <p>Ocena klientów</p>
+            </div>
+            <div class="stat">
+              <strong>48h</strong>
+              <p>Wysyłka ekspresowa</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="container">
+        <div class="section-title">
+          <h2>Polecane produkty</h2>
+          <a class="btn btn-outline" href="pages/shop.html">Zobacz wszystkie</a>
+        </div>
+        <div class="grid-3" data-products="featured"></div>
+      </div>
+    </section>
+
+    <section>
+      <div class="container promo" data-reveal>
+        <div>
+          <h2>Akcesoria z charakterem</h2>
+          <p>Buduj wnętrze i zewnętrzną linię auta z elementami premium, które wyglądają jak z auta koncepcyjnego.</p>
+        </div>
+        <div class="tag-list">
+          <span class="category-pill">Emblematy</span>
+          <span class="category-pill">Naklejki</span>
+          <span class="category-pill">Gadżety</span>
+          <span class="category-pill">Wnętrze</span>
+          <span class="category-pill">Zewnętrzne</span>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="container">
+        <div class="section-title">
+          <h2>Dlaczego VOLT GARAGE</h2>
+        </div>
+        <div class="grid-3">
+          <div class="card" data-reveal>
+            <h3 class="card-title">Projekt premium</h3>
+            <p>Minimalistyczne wzory i dopracowane detale w stylu motoryzacyjnym.</p>
+          </div>
+          <div class="card" data-reveal>
+            <h3 class="card-title">Szybka wysyłka</h3>
+            <p>Produkty gotowe do wysyłki w 24-48 h, ze śledzeniem przesyłki i wsparciem.</p>
+          </div>
+          <div class="card" data-reveal>
+            <h3 class="card-title">Gwarancja dopasowania</h3>
+            <p>Pomagamy w doborze akcesoriów i dopasowaniu do modelu.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="container promo" data-reveal>
+        <div>
+          <h2>Zapisz się do biuletynu</h2>
+          <p>Dostęp do premier, dropów i limitowanych akcesoriów.</p>
+        </div>
+        <form class="footer-form" aria-label="Biuletyn">
+          <label class="input-group">
+            <span>E-mail</span>
+            <input type="email" placeholder="kontakt@kp-code.pl" required />
+          </label>
+          <button class="btn btn-accent" type="submit">Dołączam</button>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer-grid">
+      <div>
+        <h3>VOLT GARAGE</h3>
+        <p>Nowoczesny sklep z akcesoriami samochodowymi. Projektowany przez pasjonatów dla pasjonatów.</p>
+      </div>
+      <div>
+        <h4>Sklep</h4>
+        <ul class="stacked">
+          <li><a href="pages/shop.html">Nowości</a></li>
+          <li><a href="pages/shop.html">Bestsellery</a></li>
+          <li><a href="pages/shop.html">Zestawy</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Pomoc</h4>
+        <ul class="stacked">
+          <li><a href="pages/contact.html">Kontakt</a></li>
+          <li><a href="pages/checkout.html">Dostawa</a></li>
+          <li><a href="pages/cart.html">Zwroty</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Biuletyn</h4>
+        <p>Ekskluzywne rabaty i newsy co tydzień.</p>
+        <form class="footer-form" aria-label="Stopka biuletynu">
+          <label class="input-group">
+            <span>E-mail</span>
+            <input type="email" placeholder="kontakt@kp-code.pl" required />
+          </label>
+          <button class="btn btn-outline" type="submit">Zapisz się</button>
+        </form>
+      </div>
+      <div>
+        <h4>Informacje</h4>
+        <ul class="stacked">
+          <li><a href="pages/polityka-prywatnosci.html">Polityka prywatności</a></li>
+          <li><a href="pages/cookies.html">Cookies</a></li>
+          <li><a href="pages/regulamin.html">Regulamin</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="container footer-bottom">
+      <small>© 2025 VOLT GARAGE. Wszelkie prawa zastrzeżone.</small>
+    </div>
+  </footer>
+
+  <script type="module" src="js/main.js"></script>
+</body>
+</html>
