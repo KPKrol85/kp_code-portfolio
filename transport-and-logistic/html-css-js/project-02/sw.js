@@ -1,5 +1,6 @@
-const CACHE_NAME = "Fleetops-v1.02";
-const SHELL_URLS = ["./", "./index.html"];
+const CACHE_NAME = "fleetops-v1.04";
+
+const SHELL_URLS = ["/", "/index.html"];
 
 self.addEventListener("install", (event) => {
   event.waitUntil(
@@ -20,20 +21,14 @@ self.addEventListener("activate", (event) => {
 });
 
 self.addEventListener("fetch", (event) => {
-  const { request } = event;
+  const request = event.request;
 
-  if (request.method !== "GET") {
-    return;
-  }
+  if (request.method !== "GET") return;
 
   const url = new URL(request.url);
-  if (url.origin !== self.location.origin) {
-    return;
-  }
+  if (url.origin !== self.location.origin) return;
 
-  if (url.searchParams.has("no-sw") || request.headers.has("range")) {
-    return;
-  }
+  if (request.headers.has("range")) return;
 
   if (request.mode === "navigate") {
     event.respondWith(networkFirst(request));
@@ -47,9 +42,7 @@ self.addEventListener("fetch", (event) => {
 });
 
 function isStaticAsset(pathname) {
-  if (pathname.startsWith("/assets/")) {
-    return true;
-  }
+  if (pathname.startsWith("/assets/")) return true;
 
   const lower = pathname.toLowerCase();
   return lower.endsWith(".css") || lower.endsWith(".js") || lower.endsWith(".png") || lower.endsWith(".svg") || lower.endsWith(".ico") || lower.endsWith(".webp") || lower.endsWith(".woff2");
@@ -58,12 +51,10 @@ function isStaticAsset(pathname) {
 function networkFirst(request) {
   return fetch(request)
     .then((response) => {
-      if (response && response.ok) {
-        return response;
-      }
-      throw new Error("Network response not ok");
+      if (response && response.ok) return response;
+      throw new Error("Network error");
     })
-    .catch(() => caches.match("./index.html"));
+    .catch(() => caches.match("/index.html"));
 }
 
 function staleWhileRevalidate(request) {
@@ -71,22 +62,15 @@ function staleWhileRevalidate(request) {
     const fetchPromise = fetch(request)
       .then((response) => {
         if (response && response.ok) {
-          caches.open(CACHE_NAME).then((cache) => cache.put(request, response.clone()));
+          caches.open(CACHE_NAME).then((cache) => {
+            cache.put(request, response.clone());
+          });
           return response;
         }
-
-        if (cached) {
-          return cached;
-        }
-
-        return response;
+        return cached || response;
       })
       .catch(() => cached);
 
-    if (cached) {
-      return cached;
-    }
-
-    return fetchPromise;
+    return cached || fetchPromise;
   });
 }
