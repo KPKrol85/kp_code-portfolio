@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="pl" data-theme="light">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="FleetOps - strona nie istnieje lub zostala przeniesiona." />
+    <meta name="color-scheme" content="light dark" />
+    <meta name="theme-color" content="#0b0f19" />
+    <title>404 – Page not found | FleetOps</title>
+
+    <link rel="stylesheet" href="/styles/base.css" />
+    <link rel="stylesheet" href="/styles/components.css" />
+
+    <style>
+      .error-page {
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: var(--space-6) 0;
+      }
+
+      .error-card {
+        width: min(560px, 92vw);
+        background: var(--surface);
+        border: 1px solid var(--border);
+        border-radius: var(--radius-lg);
+        box-shadow: var(--shadow);
+        padding: var(--space-5);
+        text-align: center;
+        display: grid;
+        gap: var(--space-2);
+      }
+
+      .error-code {
+        font-size: clamp(48px, 8vw, 96px);
+        letter-spacing: -0.04em;
+        margin: 0;
+      }
+
+      .error-title {
+        font-size: clamp(20px, 3vw, 28px);
+        margin: 0;
+      }
+
+      .error-actions {
+        margin-top: var(--space-2);
+        display: flex;
+        justify-content: center;
+      }
+    </style>
+  </head>
+
+  <body>
+    <main class="error-page" role="main">
+      <section class="error-card" aria-labelledby="error-title">
+        <div class="logo" aria-hidden="true">FleetOps</div>
+        <h1 class="error-code">404</h1>
+        <h2 id="error-title" class="error-title">Page not found</h2>
+        <p>The page you are looking for does not exist or has been moved.</p>
+        <div class="error-actions">
+          <a class="button primary" href="/">Back to FleetOps</a>
+        </div>
+      </section>
+    </main>
+  </body>
+</html>
