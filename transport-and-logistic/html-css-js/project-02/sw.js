@@ -1,4 +1,4 @@
-const CACHE_NAME = "fleetops-v1.08";
+const CACHE_NAME = "fleetops-v1.09";
 
 const SHELL_URLS = ["/", "/index.html"];
 
