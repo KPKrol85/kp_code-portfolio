@@ -1,4 +1,4 @@
-const CACHE_NAME = "Fleetops-v1.0.0";
+const CACHE_NAME = "Fleetops-v1.01";
 const SHELL_URLS = ["/", "/index.html"];
 
 self.addEventListener("install", (event) => {

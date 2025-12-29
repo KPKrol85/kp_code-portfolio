@@ -1,9 +1,17 @@
+# 🇬🇧 English version below | 🇵🇱 Wersja polska na dole
+
+# 🇬🇧 English version
+
 # FleetOps — transport-02
 
-FleetOps is a **conceptual frontend-only SaaS dashboard** for transport and fleet operations management.
-The project is part of a larger professional portfolio and focuses on **application architecture, UI state management, and SaaS-style navigation patterns**, rather than backend implementation.
+FleetOps is a modern, app-like **frontend-only SaaS dashboard** for transport and fleet operations management, created as a professional portfolio project.
+The application focuses on clean UI architecture, predictable state management, and real-world SaaS navigation patterns — without backend integration.
 
-The application combines a marketing landing page with an authenticated, app-like dashboard inspired by modern B2B tools such as Linear, Notion, or internal operations panels.
+🔗 **Live demo:** *(add Netlify URL after deploy)*
+
+This project is part of a larger professional portfolio aimed at demonstrating
+production-ready frontend structure, performance awareness,
+and scalable application design using **Vanilla JavaScript**.
 
 ---
 
@@ -76,8 +84,10 @@ There is **no backend by design**. All data and authentication are mocked to kee
 ### Stack
 
 - HTML5
-- CSS3 (custom design system, no frameworks)
-- Vanilla JavaScript (no React, no libraries)
+- CSS3 (custom design system, modular architecture)
+- Vanilla JavaScript (ES6)
+- Service Worker (offline-ready app shell)
+- Netlify (hosting & production configuration)
 
 ### Architecture Highlights
 
@@ -91,7 +101,21 @@ There is **no backend by design**. All data and authentication are mocked to kee
   - routing
 - Predictable app bootstrap and session restore flow
 
-### File Structure (Simplified)
+### Build & Tooling
+
+- PostCSS + cssnano for production CSS minification
+- Optional Terser-based JavaScript minification (no bundling, no mangling)
+- Dist-based build structure (`styles/dist`, `js/dist`)
+- Netlify configuration:
+  - `_headers`
+  - `_redirects`
+  - `robots.txt`
+  - `sitemap.xml`
+  - custom `404.html`
+
+---
+
+## File Structure (Simplified)
 
 scripts/
 ├── utils/ # storage, DOM helpers, formatting
@@ -103,6 +127,7 @@ scripts/
 │ └── layouts/ # landing and app shell layouts
 ├── router.js # hash router and route guards
 └── main.js # application bootstrap
+
 
 ---
 
@@ -155,22 +180,252 @@ Routing is hash-based, so no additional server configuration is required.
 
 ## Status
 
-FleetOps is an **active learning project** and will continue to evolve with:
+✔ Completed (v1)
 
-- UI polish and branding
-- improved UX details
-- additional SaaS interaction patterns
+Possible future improvements:
+
+- UI polish and branding refinements
+- UX micro-interactions
+- Extended accessibility (a11y)
+- Optional backend or mock API integration
+- Further performance fine-tuning
+
+---
+
+## Disclaimer
+
+FleetOps is a fictional demo project created solely for portfolio and educational purposes.
+All names, data, branding, and UI elements are illustrative and do not represent a real transport or logistics company.
 
 ---
 
 ## Author
 
 Kamil Król
-Created by **KP_Code**
-Frontend developer focused on clean architecture, UI state management, and SaaS-style web applications.
+**KP_Code**
+Front-End Developer
+Portfolio project — 2025
 
 ---
 
 ## License
 
-This project is provided for portfolio and educational purposes.
+This project is provided for portfolio and educational purposes only.
+
+---
+
+---
+
+# 🇵🇱 Wersja polska
+
+# FleetOps — transport-02
+
+FleetOps to nowoczesny, aplikacyjny **frontend-only dashboard typu SaaS** do zarządzania transportem i flotą, stworzony jako profesjonalny projekt portfolio.
+Aplikacja skupia się na czystej architekturze interfejsu, przewidywalnym zarządzaniu stanem oraz wzorcach nawigacji znanych z realnych systemów SaaS — bez integracji backendowej.
+
+🔗 **Demo online:** *(uzupełnij po wdrożeniu na Netlify)*
+
+Projekt jest częścią większego, profesjonalnego portfolio, którego celem jest pokazanie
+struktury frontendu gotowej do produkcji, świadomości wydajnościowej
+oraz skalowalnego projektowania aplikacji przy użyciu **czystego JavaScriptu (Vanilla JS)**.
+
+---
+
+## Cel projektu
+
+Projekt został stworzony w celu ćwiczenia i zaprezentowania:
+
+- architektury frontendu w stylu SaaS (app shell + widoki)
+- zarządzania stanem interfejsu bez użycia frameworków
+- routingu i nawigacji świadomej stanu autoryzacji
+- mechanizmów sesji i wzorców UX spotykanych w realnych produktach SaaS
+- wyraźnego podziału na layout, widoki, komponenty i stan
+- inżynierii frontendu na poziomie portfolio z użyciem **Vanilla JavaScript**
+
+Projekt **celowo nie posiada backendu**. Dane oraz autoryzacja są mockowane,
+aby cała uwaga była skupiona na logice i strukturze frontendu.
+
+---
+
+## Główne funkcjonalności
+
+### Landing & marketing
+
+- Landing marketingowy z sekcjami: hero, funkcje, cennik, FAQ, referencje
+- Obsługa trybu jasnego i ciemnego
+- Dostępna struktura (skip link, semantyczny HTML)
+
+### Autoryzacja (mock)
+
+- Logowanie email/hasło (mock)
+- Tryb logowania demo
+- Stan autoryzacji zapisywany w `localStorage`
+- Ochrona tras aplikacyjnych `/app/*` w zależności od stanu logowania
+
+### Dashboard SaaS
+
+- Interfejs aplikacyjny z bocznym menu i górną nawigacją
+- Widok główny z KPI oraz feedem aktywności
+- Zarządzanie zamówieniami:
+  - widok tabelaryczny
+  - filtry i statusy
+  - modal ze szczegółami
+  - eksport do CSV
+- Sekcje Flota i Kierowcy z filtrami i modalami
+- Widok raportów z prostymi wykresami i tabelami podsumowującymi
+- Panel ustawień:
+  - przełącznik motywu (jasny/ciemny)
+  - tryb kompaktowy
+  - reset danych demo
+
+### Nawigacja i logika UX
+
+- Routing oparty o hash (`#/...`) odporny na odświeżenie strony
+- Chronione trasy aplikacyjne (`/app/*`)
+- Przekierowanie do pierwotnej trasy po zalogowaniu
+- Zapamiętywanie ostatniego widoku aplikacji
+- Preferencje użytkownika i stan UI zapisywane w `localStorage`
+
+### Strony informacyjne i prawne
+
+- O projekcie
+- Kontakt
+- Polityka prywatności
+- Regulamin
+- Informacja o cookies
+
+---
+
+## Przegląd techniczny
+
+### Stack technologiczny
+
+- HTML5
+- CSS3 (własny system projektowy, architektura modularna)
+- JavaScript (ES6, vanilla)
+- Service Worker (app shell gotowy do pracy offline)
+- Netlify (hosting i konfiguracja produkcyjna)
+
+### Architektura
+
+- Centralny store stanu (`store.js`)
+- Bezstanowe komponenty UI (modale, tabele, dropdowny, toasty)
+- Wyraźny podział na:
+  - layout
+  - widoki
+  - komponenty
+  - stan
+  - routing
+- Przewidywalny proces inicjalizacji aplikacji i odtwarzania sesji
+
+### Build & tooling
+
+- PostCSS + cssnano do produkcyjnej minifikacji CSS
+- Opcjonalna minifikacja JavaScriptu oparta o Terser (bez bundlingu i manglingu)
+- Struktura build oparta o katalogi `dist` (`styles/dist`, `js/dist`)
+- Konfiguracja Netlify:
+  - `_headers`
+  - `_redirects`
+  - `robots.txt`
+  - `sitemap.xml`
+  - własna strona `404.html`
+
+---
+
+## Struktura plików (uproszczona)
+
+scripts/
+├── utils/ # storage, helpery DOM, formatowanie
+├── state/ # globalny store i stan UI
+├── data/ # mockowane dane startowe
+├── ui/
+│ ├── components/ # modale, toasty, tabele, dropdowny itd.
+│ ├── views/ # dashboard, orders, fleet, drivers, reports, settings
+│ └── layouts/ # layout landingowy i app shell
+├── router.js # routing hash + ochrona tras
+└── main.js # bootstrap aplikacji
+
+---
+
+## Uruchomienie lokalne
+
+1. Otwórz katalog `transport-02` w edytorze.
+2. Uruchom dowolny serwer statyczny, np.:
+   - **VS Code Live Server**
+   - lub:
+     ```
+     python -m http.server 3000
+     ```
+3. Otwórz `index.html` w przeglądarce.
+
+Routing oparty o hash nie wymaga dodatkowej konfiguracji serwera.
+
+---
+
+## Dostępne trasy
+
+### Publiczne
+
+- `#/` — landing
+- `#/login` — logowanie
+- `#/about`
+- `#/contact`
+- `#/privacy`
+- `#/terms`
+- `#/cookies`
+
+### Aplikacja (wymaga mockowanej autoryzacji)
+
+- `#/app` — dashboard główny
+- `#/app/orders`
+- `#/app/fleet`
+- `#/app/drivers`
+- `#/app/reports`
+- `#/app/settings`
+
+---
+
+## Uwagi
+
+- Projekt **celowo nie posiada backendu**.
+- Wszystkie dane i autoryzacja są przechowywane lokalnie w `localStorage`.
+- Opcja **Reset demo** w ustawieniach czyści cały zapisany stan.
+- Kod jest przygotowany pod przyszłą integrację z API lub frameworkiem.
+
+---
+
+## Status
+
+✔ Zakończony (v1)
+
+Możliwe dalsze usprawnienia:
+
+- dopracowanie UI i brandingu
+- mikro-interakcje UX
+- rozszerzona dostępność (a11y)
+- opcjonalna integracja backendowa lub mock API
+- dalsze optymalizacje wydajności
+
+---
+
+## Informacja prawna
+
+FleetOps jest fikcyjnym projektem demonstracyjnym stworzonym wyłącznie
+w celach portfolio i edukacyjnych.
+Wszystkie nazwy, dane, branding i elementy interfejsu mają charakter przykładowy
+i nie odnoszą się do rzeczywistej firmy transportowej.
+
+---
+
+## Autor
+
+Kamil Król
+**KP_Code**
+Front-End Developer
+Projekt portfolio — 2025
+
+---
+
+## Licencja
+
+Projekt udostępniony wyłącznie w celach portfolio i edukacyjnych.
