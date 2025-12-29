@@ -1,9 +1,9 @@
 # VOLT GARAGE — Frontend E-commerce (In Progress)
 
-**VOLT GARAGE** is a modern frontend e-commerce demo project built as part of a professional portfolio.  
+**VOLT GARAGE** is a modern frontend e-commerce demo project built as part of a professional portfolio.
 The project focuses on clean architecture, accessibility, performance, and a production-ready UI.
 
-> ⚠️ **Status:** In progress  
+> ⚠️ **Status:** In progress
 > This project is actively developed and refined. Features, UI, and structure may evolve.
 
 ---
@@ -54,10 +54,9 @@ The project focuses on clean architecture, accessibility, performance, and a pro
 
 ## Disclaimer
 
-This is a **demo project** created for educational and portfolio purposes.  
+This is a **demo project** created for educational and portfolio purposes.
 It does not represent a live commercial store.
 
 ---
 
 © 2025 Kamil Król — KP_Code
-
