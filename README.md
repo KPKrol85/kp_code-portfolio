@@ -44,6 +44,7 @@ Completed and actively developed frontend projects are deployed on **Netlify** a
 - [Tourism — Project 02](https://tourism-project-02.netlify.app/)
 - [Transport — Project 01](https://transport-project-01.netlify.app/)
 - [Transport — Project 02](https://transport-project-02.netlify.app/)
+- [E-commerce — Project 01](https://kpcode-ecommerce-01.netlify.app/)
 
 *(More projects are added continuously.)*
 
