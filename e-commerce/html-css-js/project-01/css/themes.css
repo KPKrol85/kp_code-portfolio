@@ -20,6 +20,7 @@
    ====================================================================== */
 
 /* === 01 - Local fonts (WOFF2) === */
+/* TODO: If needed, generate latin-only subsets (including Polish glyphs) via `pyftsubset` and swap src to `*-latin.woff2`. */
 
 @font-face {
   font-family: 'Manrope';
