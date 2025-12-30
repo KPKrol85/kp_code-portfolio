@@ -92,7 +92,28 @@
 
     <!-- Main -->
     <main id="main">
+      <!-- Hero -->
       <section class="hero">
+        <!-- Decorative hero art stays out of the a11y tree to keep focus on content. -->
+        <picture class="hero-media" aria-hidden="true">
+          <source
+            type="image/avif"
+            srcset="assets/images/hero/hero-05-800x600.avif 800w, assets/images/hero/hero-05-1280x720.avif 1280w, assets/images/hero/hero-05-1920x1080.avif 1920w"
+            sizes="100vw" />
+          <source
+            type="image/webp"
+            srcset="assets/images/hero/hero-05-800x600.webp 800w, assets/images/hero/hero-05-1280x720.webp 1280w, assets/images/hero/hero-05-1920x1080.webp 1920w"
+            sizes="100vw" />
+          <img
+            src="assets/images/hero/hero-05-1280x720.jpg"
+            srcset="assets/images/hero/hero-05-800x600.jpg 800w, assets/images/hero/hero-05-1280x720.jpg 1280w, assets/images/hero/hero-05-1920x1080.jpg 1920w"
+            sizes="100vw"
+            width="1920"
+            height="1080"
+            alt=""
+            loading="eager"
+            fetchpriority="high" />
+        </picture>
         <div class="container hero-grid">
           <div data-reveal>
             <span class="badge">Nowa kolekcja 2025</span>
@@ -124,6 +145,7 @@
         </div>
       </section>
 
+      <!-- Featured products -->
       <section>
         <div class="container">
           <div class="section-title">

@@ -116,6 +116,7 @@
 
   --color-hero: #0f1520;
   --color-hero-text: #fef7ef;
+  --color-hero-text-muted: #1a1a1a;
   --gradient-hero: radial-gradient(circle at 20% 20%, #ff8b5f 0%, #1c212b 55%, #0c0f14 100%);
 
   --icon-fill: var(--color-ink);
@@ -142,6 +143,7 @@
 
   --color-hero: #0c0f14;
   --color-hero-text: #fef2e9;
+  --color-hero-text-muted: rgba(255, 255, 255, 0.75);
   --gradient-hero: radial-gradient(circle at 20% 20%, #ff6a3d 0%, #1d2330 52%, #0c0f14 100%);
 
   --icon-fill: var(--color-ink);
