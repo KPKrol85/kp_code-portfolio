@@ -23,13 +23,19 @@
 
       </a>
       <nav class="nav" id="primary-nav" role="navigation" aria-label="Główne">
-        <a href="../index.html">Start</a>
-        <a href="shop.html">Sklep</a>
-        <a href="product.html">Produkt</a>
-        <a href="cart.html">Koszyk</a>
+        <a href="../index.html">Strona główna</a>
+        <div class="nav-item" data-dropdown>
+          <button class="nav-button" type="button" aria-haspopup="menu" aria-expanded="false" data-dropdown-toggle>Sklep</button>
+          <div class="dropdown-menu" role="menu" data-dropdown-menu>
+            <a role="menuitem" href="shop.html">Wszystkie produkty</a>
+            <a role="menuitem" href="shop.html#nowosci">Nowości</a>
+            <a role="menuitem" href="product.html">Produkt</a>
+            <a role="menuitem" href="shop.html#kolekcje">Kolekcje / Kategorie</a>
+          </div>
+        </div>
         <a href="contact.html">Kontakt</a>
         <div class="nav-item" data-dropdown>
-          <button class="nav-button" type="button" aria-haspopup="true" aria-expanded="false" data-dropdown-toggle>Informacje</button>
+          <button class="nav-button" type="button" aria-haspopup="menu" aria-expanded="false" data-dropdown-toggle>Informacje</button>
           <div class="dropdown-menu" role="menu" data-dropdown-menu>
             <a role="menuitem" href="polityka-prywatnosci.html">Polityka prywatności</a>
             <a role="menuitem" href="cookies.html">Cookies</a>

@@ -23,13 +23,19 @@
 
       </a>
       <nav class="nav" id="primary-nav" role="navigation" aria-label="Główne">
-        <a href="../index.html">Start</a>
-        <a href="shop.html">Sklep</a>
-        <a href="product.html">Produkt</a>
-        <a href="cart.html" aria-current="page">Koszyk</a>
+        <a href="../index.html">Strona główna</a>
+        <div class="nav-item" data-dropdown>
+          <button class="nav-button" type="button" aria-haspopup="menu" aria-expanded="false" data-dropdown-toggle>Sklep</button>
+          <div class="dropdown-menu" role="menu" data-dropdown-menu>
+            <a role="menuitem" href="shop.html">Wszystkie produkty</a>
+            <a role="menuitem" href="shop.html#nowosci">Nowości</a>
+            <a role="menuitem" href="product.html">Produkt</a>
+            <a role="menuitem" href="shop.html#kolekcje">Kolekcje / Kategorie</a>
+          </div>
+        </div>
         <a href="contact.html">Kontakt</a>
         <div class="nav-item" data-dropdown>
-          <button class="nav-button" type="button" aria-haspopup="true" aria-expanded="false" data-dropdown-toggle>Informacje</button>
+          <button class="nav-button" type="button" aria-haspopup="menu" aria-expanded="false" data-dropdown-toggle>Informacje</button>
           <div class="dropdown-menu" role="menu" data-dropdown-menu>
             <a role="menuitem" href="polityka-prywatnosci.html">Polityka prywatności</a>
             <a role="menuitem" href="cookies.html">Cookies</a>
@@ -47,7 +53,7 @@
             <path d="M12 2.5v3M12 18.5v3M4.5 12h3M16.5 12h3M5.7 5.7l2.1 2.1M16.2 16.2l2.1 2.1M5.7 18.3l2.1-2.1M16.2 7.8l2.1-2.1" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" />
           </svg>
         </button>
-        <a class="cart-link" href="cart.html" aria-label="Koszyk">
+        <a class="cart-link" href="cart.html" aria-label="Koszyk" aria-current="page">
           <span>Koszyk</span>
           <span class="cart-count" data-cart-count>0</span>
         </a>

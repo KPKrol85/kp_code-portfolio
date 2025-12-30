@@ -109,6 +109,27 @@
   display: none;
 }
 
+@media (hover: hover) and (pointer: fine) {
+  .nav-item:hover .dropdown-menu {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+  }
+
+  .nav-item:hover .nav-button {
+    color: var(--color-accent);
+  }
+}
+
+
+
+
+
+
+
+
+/* === Hero Section === */
+
 .hero {
   background: var(--gradient-hero);
   color: var(--color-hero-text);

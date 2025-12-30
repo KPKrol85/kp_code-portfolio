@@ -20,13 +20,19 @@
           <span class="brand-text">VOLT GARAGE</span>
         </a>
         <nav class="nav" id="primary-nav" role="navigation" aria-label="Główne">
-          <a href="index.html" aria-current="page">Start</a>
-          <a href="pages/shop.html">Sklep</a>
-          <a href="pages/product.html">Produkt</a>
-          <a href="pages/cart.html">Koszyk</a>
+          <a href="index.html" aria-current="page">Strona główna</a>
+          <div class="nav-item" data-dropdown>
+            <button class="nav-button" type="button" aria-haspopup="menu" aria-expanded="false" data-dropdown-toggle>Sklep</button>
+            <div class="dropdown-menu" role="menu" data-dropdown-menu>
+              <a role="menuitem" href="pages/shop.html">Wszystkie produkty</a>
+              <a role="menuitem" href="pages/shop.html#nowosci">Nowości</a>
+              <a role="menuitem" href="pages/product.html">Produkt</a>
+              <a role="menuitem" href="pages/shop.html#kolekcje">Kolekcje / Kategorie</a>
+            </div>
+          </div>
           <a href="pages/contact.html">Kontakt</a>
           <div class="nav-item" data-dropdown>
-            <button class="nav-button" type="button" aria-haspopup="true" aria-expanded="false" data-dropdown-toggle>Informacje</button>
+            <button class="nav-button" type="button" aria-haspopup="menu" aria-expanded="false" data-dropdown-toggle>Informacje</button>
             <div class="dropdown-menu" role="menu" data-dropdown-menu>
               <a role="menuitem" href="pages/polityka-prywatnosci.html">Polityka prywatności</a>
               <a role="menuitem" href="pages/cookies.html">Cookies</a>
