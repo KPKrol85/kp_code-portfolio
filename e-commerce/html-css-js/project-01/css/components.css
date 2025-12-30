@@ -23,7 +23,6 @@
    = 11 - Responsive tweaks
    ================================== */
 
-
 /* === 01 - Buttons === */
 
 .btn {
@@ -37,9 +36,7 @@
   background: var(--color-ink);
   color: var(--color-surface);
   font-weight: 600;
-  transition: transform var(--transition-fast),
-              box-shadow var(--transition-fast),
-              background var(--transition-fast);
+  transition: transform var(--transition-fast), box-shadow var(--transition-fast), background var(--transition-fast);
 }
 
 .btn:hover {
@@ -58,7 +55,6 @@
   color: #10131a;
 }
 
-
 /* === 02 - Badges & Labels === */
 
 .badge {
@@ -70,7 +66,6 @@
   font-size: 0.75rem;
   font-weight: 600;
 }
-
 
 /* === 03 - Cards === */
 
@@ -101,7 +96,6 @@
   font-size: 0.9rem;
 }
 
-
 /* === 04 - Pricing === */
 
 .price {
@@ -118,7 +112,6 @@
 .price-new {
   color: var(--color-accent);
 }
-
 
 /* === 05 - Navigation helpers === */
 
@@ -172,20 +165,20 @@
   stroke: var(--icon-fill-hover);
 }
 
-[data-theme='dark'] .sun-and-moon > .sun {
+[data-theme="dark"] .sun-and-moon > .sun {
   transform: scale(1.75);
 }
 
-[data-theme='dark'] .sun-and-moon > .sun-beams {
+[data-theme="dark"] .sun-and-moon > .sun-beams {
   opacity: 0;
 }
 
-[data-theme='dark'] .sun-and-moon > .moon > circle {
+[data-theme="dark"] .sun-and-moon > .moon > circle {
   transform: translateX(-7px);
 }
 
 @supports (cx: 1) {
-  [data-theme='dark'] .sun-and-moon > .moon > circle {
+  [data-theme="dark"] .sun-and-moon > .moon > circle {
     cx: 17;
     transform: translateX(0);
   }
@@ -195,11 +188,9 @@
   .sun-and-moon > .sun {
     transition: transform 0.5s var(--ease-elastic-3);
   }
-
   .sun-and-moon > .sun-beams {
     transition: transform 0.5s var(--ease-elastic-4), opacity 0.5s var(--ease-3);
   }
-
   .sun-and-moon .moon > circle {
     transition: transform 0.25s var(--ease-out-5);
   }
@@ -209,19 +200,16 @@
       transition: cx 0.25s var(--ease-out-5);
     }
   }
-
-  [data-theme='dark'] .sun-and-moon > .sun {
+  [data-theme="dark"] .sun-and-moon > .sun {
     transition-timing-function: var(--ease-3);
     transition-duration: 0.25s;
     transform: scale(1.75);
   }
-
-  [data-theme='dark'] .sun-and-moon > .sun-beams {
+  [data-theme="dark"] .sun-and-moon > .sun-beams {
     transition-duration: 0.15s;
     transform: rotateZ(-25deg);
   }
-
-  [data-theme='dark'] .sun-and-moon > .moon > circle {
+  [data-theme="dark"] .sun-and-moon > .moon > circle {
     transition-duration: 0.5s;
     transition-delay: 0.25s;
   }
@@ -232,10 +220,27 @@
   display: inline-flex;
   align-items: center;
   gap: 6px;
-  padding: 8px 10px;
-  border-radius: var(--radius-xs);
+  padding: 8px 14px;
+  border-radius: var(--radius-lg);
   border: 1px solid var(--color-border);
   background: var(--color-surface);
+  transition: border-color 0.2s ease, box-shadow 0.2s ease, transform 0.15s ease, background-color 0.2s ease;
+}
+
+.cart-link:hover {
+  border-color: var(--color-border-strong);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.12);
+}
+
+.cart-link:focus-visible {
+  outline: none;
+  border-color: var(--color-accent);
+  box-shadow: 0 0 0 2px color-mix(in srgb, var(--color-accent) 35%, transparent), 0 2px 6px rgba(0, 0, 0, 0.12);
+}
+
+.cart-link:active {
+  transform: translateY(1px);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.18);
 }
 
 .cart-count {
@@ -250,7 +255,6 @@
   justify-content: center;
   font-weight: 700;
 }
-
 
 /* === 06 - Forms === */
 
@@ -299,7 +303,6 @@ textarea {
   color: var(--color-ink);
 }
 
-
 /* === 07 - Cart & Checkout === */
 
 .cart-item {
@@ -340,7 +343,6 @@ textarea {
   gap: 12px;
 }
 
-
 /* === 08 - Lists & Utilities === */
 
 .tag-list {
@@ -367,7 +369,6 @@ textarea {
   gap: 12px;
 }
 
-
 /* === 09 - Stats & Panels === */
 
 .stats {
@@ -383,7 +384,6 @@ textarea {
   border: 1px solid var(--color-border);
 }
 
-
 /* === 10 - Footer components === */
 
 .footer-form {
@@ -396,7 +396,6 @@ textarea {
 .footer-form input {
   flex: 1 1 200px;
 }
-
 
 /* === 11 - Responsive tweaks === */
 
