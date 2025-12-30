@@ -11,6 +11,19 @@ export const initFilters = async () => {
   const resultCount = document.querySelector('[data-result-count]');
 
   const products = await loadProducts();
+  const params = new URLSearchParams(window.location.search);
+  const categoryParam = params.get('category');
+
+  const normalize = (value) => value.toLowerCase().replace(/[^a-z0-9]/g, '');
+  const resolveCategory = (value) => {
+    if (!categorySelect) return null;
+    const options = Array.from(categorySelect.options);
+    const directMatch = options.find((option) => option.value === value);
+    if (directMatch) return directMatch.value;
+    const normalized = normalize(value);
+    const normalizedMatch = options.find((option) => normalize(option.value) === normalized);
+    return normalizedMatch?.value || null;
+  };
 
   const applyFilters = () => {
     const category = categorySelect?.value || 'all';
@@ -48,6 +61,13 @@ export const initFilters = async () => {
 
   categorySelect?.addEventListener('change', applyFilters);
   sortSelect?.addEventListener('change', applyFilters);
+
+  if (categoryParam && categorySelect) {
+    const resolved = resolveCategory(categoryParam);
+    if (resolved) {
+      categorySelect.value = resolved;
+    }
+  }
 
   applyFilters();
 };

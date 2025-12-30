@@ -71,6 +71,15 @@
   font-size: 1.1rem;
 }
 
+.price-old {
+  text-decoration: line-through;
+  color: var(--color-ink-muted);
+}
+
+.price-new {
+  color: var(--color-accent);
+}
+
 .category-pill {
   display: inline-flex;
   align-items: center;

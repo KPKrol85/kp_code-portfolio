@@ -3,9 +3,9 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="description" content="Produkt – VOLT GARAGE." />
+  <meta name="description" content="Kolekcje i kategorie produktów VOLT GARAGE." />
   <meta name="color-scheme" content="light dark" />
-  <title>Produkt | VOLT GARAGE</title>
+  <title>Kolekcje | VOLT GARAGE</title>
   <link rel="stylesheet" href="../css/themes.css" />
   <link rel="stylesheet" href="../css/base.css" />
   <link rel="stylesheet" href="../css/layout.css" />
@@ -16,11 +16,8 @@
     <a class="skip-link" href="#main">Przejdź do treści</a>
     <div class="container header-inner">
       <a class="brand" href="../index.html">
-
         <img class="brand-logo" src="../assets/images/logo/logo.svg" alt="" aria-hidden="true">
-
         <span class="brand-text">VOLT GARAGE</span>
-
       </a>
       <nav class="nav" id="primary-nav" role="navigation" aria-label="Główne">
         <a href="../index.html">Strona główna</a>
@@ -29,8 +26,8 @@
           <div class="dropdown-menu" role="menu" data-dropdown-menu>
             <a role="menuitem" href="shop.html">Wszystkie produkty</a>
             <a role="menuitem" href="nowosci.html">Nowości</a>
-            <a role="menuitem" href="product.html" aria-current="page">Produkt</a>
-            <a role="menuitem" href="kolekcje.html">Kolekcje / Kategorie</a>
+            <a role="menuitem" href="product.html">Produkt</a>
+            <a role="menuitem" href="kolekcje.html" aria-current="page">Kolekcje / Kategorie</a>
             <a role="menuitem" href="promocje.html">Promocje</a>
           </div>
         </div>
@@ -66,22 +63,71 @@
   <main id="main">
     <section class="page-hero">
       <div class="container">
-        <h1>Szczegóły produktu</h1>
-        <p>Wybierz dopasowanie i dodaj do koszyka.</p>
+        <h1>Kolekcje / Kategorie</h1>
+        <p>Wybierz interesującą Cię kategorię i przejdź prosto do filtrowanego sklepu.</p>
       </div>
     </section>
 
     <section>
-      <div class="container" data-product-details></div>
+      <div class="container">
+        <div class="tag-list">
+          <a class="btn btn-accent" href="shop.html">Zobacz wszystkie produkty</a>
+        </div>
+      </div>
     </section>
 
     <section>
       <div class="container">
-        <div class="section-title">
-          <h2>Powiązane produkty</h2>
-          <a class="btn btn-outline" href="shop.html">Przeglądaj sklep</a>
+        <div class="grid-3">
+          <article class="card" data-reveal>
+            <span class="badge">Emblematy</span>
+            <h3 class="card-title">Emblematy</h3>
+            <p>Subtelne akcenty w stylu premium do grilli i pokryw silnika.</p>
+            <div class="tag-list">
+              <a class="btn btn-outline" href="shop.html?category=Emblematy">Zobacz produkty</a>
+            </div>
+          </article>
+          <article class="card" data-reveal>
+            <span class="badge">Naklejki</span>
+            <h3 class="card-title">Naklejki</h3>
+            <p>Matowe i odblaskowe zestawy, które budują charakter auta.</p>
+            <div class="tag-list">
+              <a class="btn btn-outline" href="shop.html?category=Naklejki">Zobacz produkty</a>
+            </div>
+          </article>
+          <article class="card" data-reveal>
+            <span class="badge">Gadżety</span>
+            <h3 class="card-title">Gadżety</h3>
+            <p>Elektronika, detailing i wyposażenie garażowe dla fanów detali.</p>
+            <div class="tag-list">
+              <a class="btn btn-outline" href="shop.html?category=Gadżety">Zobacz produkty</a>
+            </div>
+          </article>
+          <article class="card" data-reveal>
+            <span class="badge">Wnętrze</span>
+            <h3 class="card-title">Wnętrze</h3>
+            <p>Komfortowe dodatki i tekstylia, które odmienią kabinę.</p>
+            <div class="tag-list">
+              <a class="btn btn-outline" href="shop.html?category=Wnętrze">Zobacz produkty</a>
+            </div>
+          </article>
+          <article class="card" data-reveal>
+            <span class="badge">Zewnętrzne</span>
+            <h3 class="card-title">Zewnętrzne</h3>
+            <p>Elementy aerodynamiczne i ochronne dla dopracowanego looku.</p>
+            <div class="tag-list">
+              <a class="btn btn-outline" href="shop.html?category=Zewnętrzne">Zobacz produkty</a>
+            </div>
+          </article>
+          <article class="card" data-reveal>
+            <span class="badge">Detailing</span>
+            <h3 class="card-title">Detailing</h3>
+            <p>Zestawy i akcesoria do pielęgnacji z tej samej półki jakości.</p>
+            <div class="tag-list">
+              <a class="btn btn-outline" href="shop.html?category=Gadżety">Zobacz produkty</a>
+            </div>
+          </article>
         </div>
-        <div class="grid-3" data-products="related"></div>
       </div>
     </section>
   </main>
@@ -90,11 +136,8 @@
     <div class="container footer-grid">
       <div>
         <div class="footer-brand">
-
           <img class="footer-logo" src="../assets/images/logo/logo.svg" alt="" aria-hidden="true">
-
           <span class="footer-brand-text">VOLT GARAGE</span>
-
         </div>
         <p>Nowoczesny sklep z akcesoriami samochodowymi. Projektowany przez pasjonatów dla pasjonatów.</p>
       </div>
@@ -133,22 +176,12 @@
           <button class="btn btn-outline" type="submit">Zapisz się</button>
         </form>
       </div>
-      
     </div>
     <div class="container footer-bottom">
-      <small>© 2025 VOLT GARAGE. Wszelkie prawa zastrzeżone.</small>
+      <small>c 2025 VOLT GARAGE. Wszelkie prawa zastrzeżone.</small>
     </div>
   </footer>
 
   <script type="module" src="../js/main.js"></script>
 </body>
 </html>
-
-
-
-
-
-
-
-
-

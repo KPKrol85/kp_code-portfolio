@@ -3,9 +3,9 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="description" content="Produkt – VOLT GARAGE." />
+  <meta name="description" content="Promocje w sklepie VOLT GARAGE." />
   <meta name="color-scheme" content="light dark" />
-  <title>Produkt | VOLT GARAGE</title>
+  <title>Promocje | VOLT GARAGE</title>
   <link rel="stylesheet" href="../css/themes.css" />
   <link rel="stylesheet" href="../css/base.css" />
   <link rel="stylesheet" href="../css/layout.css" />
@@ -16,11 +16,8 @@
     <a class="skip-link" href="#main">Przejdź do treści</a>
     <div class="container header-inner">
       <a class="brand" href="../index.html">
-
         <img class="brand-logo" src="../assets/images/logo/logo.svg" alt="" aria-hidden="true">
-
         <span class="brand-text">VOLT GARAGE</span>
-
       </a>
       <nav class="nav" id="primary-nav" role="navigation" aria-label="Główne">
         <a href="../index.html">Strona główna</a>
@@ -29,9 +26,9 @@
           <div class="dropdown-menu" role="menu" data-dropdown-menu>
             <a role="menuitem" href="shop.html">Wszystkie produkty</a>
             <a role="menuitem" href="nowosci.html">Nowości</a>
-            <a role="menuitem" href="product.html" aria-current="page">Produkt</a>
+            <a role="menuitem" href="product.html">Produkt</a>
             <a role="menuitem" href="kolekcje.html">Kolekcje / Kategorie</a>
-            <a role="menuitem" href="promocje.html">Promocje</a>
+            <a role="menuitem" href="promocje.html" aria-current="page">Promocje</a>
           </div>
         </div>
         <a href="contact.html">Kontakt</a>
@@ -66,22 +63,27 @@
   <main id="main">
     <section class="page-hero">
       <div class="container">
-        <h1>Szczegóły produktu</h1>
-        <p>Wybierz dopasowanie i dodaj do koszyka.</p>
+        <h1>Promocje</h1>
+        <p>Okazje ograniczone czasowo na produkty, które dodają charakteru Twojemu autu.</p>
       </div>
     </section>
 
     <section>
-      <div class="container" data-product-details></div>
+      <div class="container">
+        <div class="tag-list">
+          <a class="btn btn-accent" href="shop.html">Zobacz wszystkie produkty</a>
+          <a class="btn btn-outline" href="nowosci.html">Zobacz nowości</a>
+        </div>
+      </div>
     </section>
 
     <section>
       <div class="container">
         <div class="section-title">
-          <h2>Powiązane produkty</h2>
-          <a class="btn btn-outline" href="shop.html">Przeglądaj sklep</a>
+          <h2>Produkty w promocji</h2>
+          <span data-result-count="sale">0 produktów</span>
         </div>
-        <div class="grid-3" data-products="related"></div>
+        <div class="grid-3" data-products="sale"></div>
       </div>
     </section>
   </main>
@@ -90,11 +92,8 @@
     <div class="container footer-grid">
       <div>
         <div class="footer-brand">
-
           <img class="footer-logo" src="../assets/images/logo/logo.svg" alt="" aria-hidden="true">
-
           <span class="footer-brand-text">VOLT GARAGE</span>
-
         </div>
         <p>Nowoczesny sklep z akcesoriami samochodowymi. Projektowany przez pasjonatów dla pasjonatów.</p>
       </div>
@@ -133,22 +132,12 @@
           <button class="btn btn-outline" type="submit">Zapisz się</button>
         </form>
       </div>
-      
     </div>
     <div class="container footer-bottom">
-      <small>© 2025 VOLT GARAGE. Wszelkie prawa zastrzeżone.</small>
+      <small>c 2025 VOLT GARAGE. Wszelkie prawa zastrzeżone.</small>
     </div>
   </footer>
 
   <script type="module" src="../js/main.js"></script>
 </body>
 </html>
-
-
-
-
-
-
-
-
-

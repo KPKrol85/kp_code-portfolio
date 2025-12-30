@@ -3,7 +3,14 @@ import { initTheme } from './modules/theme.js';
 import { initReveal } from './modules/reveal.js';
 import { initAccessibility } from './modules/accessibility.js';
 import { initCart, initCartPage, bindAddToCartButtons, renderCheckoutSummary } from './modules/cart.js';
-import { initFeaturedProducts, initShopProducts, initProductDetails, initRelatedProducts } from './modules/products.js';
+import {
+  initFeaturedProducts,
+  initShopProducts,
+  initProductDetails,
+  initRelatedProducts,
+  initNewArrivalsProducts,
+  initSaleProducts
+} from './modules/products.js';
 import { initFilters } from './modules/filters.js';
 
 const initForms = () => {
@@ -51,8 +58,10 @@ const initApp = () => {
   initCart();
   initFeaturedProducts();
   initShopProducts();
+  initNewArrivalsProducts();
   initProductDetails();
   initRelatedProducts();
+  initSaleProducts();
   initFilters();
   initCartPage();
   renderCheckoutSummary();
