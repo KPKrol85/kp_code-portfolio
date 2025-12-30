@@ -112,6 +112,18 @@
   font-weight: 600;
 }
 
+.nav a:focus-visible,
+.nav .nav-button:focus-visible {
+  color: var(--color-accent);
+  outline: 2px solid var(--color-accent);
+  outline-offset: 4px;
+  border-radius: var(--radius-xs);
+}
+
+.nav a[aria-current="page"]:focus-visible {
+  color: var(--color-ink);
+}
+
 .nav-item {
   position: relative;
 }
@@ -205,8 +217,13 @@
 }
 
 @media (hover: hover) and (pointer: fine) {
+  .nav a:hover,
   .nav-item:hover .nav-button {
     color: var(--color-accent);
+  }
+
+  .nav a[aria-current="page"]:hover {
+    color: var(--color-ink);
   }
 }
 
