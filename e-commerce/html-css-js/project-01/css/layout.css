@@ -1,7 +1,39 @@
+/* ==================================
+   = Project: e-commerce-01
+   = Name: Volt Garage
+   = Technology: html/css/js
+   = Author: Kamil Król - kp_code_
+   = Last Update: 2025-12-30
+   = Version: 1.00
+   ==================================
+   = CSS Stylesheet
+   = File: layout.css
+   = Structure overview
+   ==================================
+   = 01 - Global layout
+   = 02 - Header layout
+   = 03 - Hero Section
+   = 04 - Grid layouts
+   = 05 - Footer layout
+   = 06 - Page layouts
+   ================================== */
+
+/* === 01 - Global layout === */
+
 .container {
   width: min(1200px, 92vw);
   margin: 0 auto;
 }
+
+.section-title {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  margin-bottom: 32px;
+}
+
+/* === 02 - Header layout === */
 
 .site-header {
   position: sticky;
@@ -10,7 +42,7 @@
   backdrop-filter: blur(16px);
   background: color-mix(in srgb, var(--color-surface) 85%, transparent);
   border-bottom: 1px solid var(--color-border);
-  transition: padding var(--transition-base), box-shadow var(--transition-base);
+  transition: box-shadow var(--transition-base);
 }
 
 .header-inner {
@@ -18,7 +50,8 @@
   align-items: center;
   justify-content: space-between;
   gap: 24px;
-  padding: 18px 0;
+  padding: 16px 0;
+  transition: padding var(--transition-base);
 }
 
 .site-header.shrink .header-inner {
@@ -41,7 +74,6 @@
   flex-shrink: 0;
 }
 
-
 .nav {
   display: flex;
   align-items: center;
@@ -58,7 +90,7 @@
   cursor: pointer;
 }
 
-.nav a[aria-current='page'] {
+.nav a[aria-current="page"] {
   color: var(--color-ink);
   font-weight: 600;
 }
@@ -109,26 +141,59 @@
   display: none;
 }
 
-@media (hover: hover) and (pointer: fine) {
-  .nav-item:hover .dropdown-menu {
+@media (max-width: 899px) {
+  .nav {
+    position: absolute;
+    right: 4vw;
+    top: 72px;
+    flex-direction: column;
+    padding: 20px 24px;
+    background: var(--color-surface);
+    border-radius: var(--radius-md);
+    box-shadow: var(--shadow-md);
+    border: 1px solid var(--color-border);
+    opacity: 0;
+    pointer-events: none;
+    transform: translateY(-10px);
+    transition: opacity var(--transition-base), transform var(--transition-base);
+  }
+  .nav.is-open {
     opacity: 1;
-    visibility: visible;
+    pointer-events: auto;
     transform: translateY(0);
   }
+  .nav-toggle {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 8px 12px;
+    border-radius: var(--radius-xs);
+    border: 1px solid var(--color-border);
+    background: var(--color-surface);
+  }
+  .dropdown-menu {
+    position: static;
+    min-width: auto;
+    box-shadow: none;
+    border: 0;
+    padding: 6px 0 0;
+  }
+  .nav-item:hover .dropdown-menu {
+    display: none;
+  }
+  .nav-item.is-open .dropdown-menu,
+  .nav-item:focus-within .dropdown-menu {
+    display: block;
+  }
+}
 
+@media (hover: hover) and (pointer: fine) {
   .nav-item:hover .nav-button {
     color: var(--color-accent);
   }
 }
 
-
-
-
-
-
-
-
-/* === Hero Section === */
+/* === 03 - Hero Section === */
 
 .hero {
   background: var(--gradient-hero);
@@ -154,13 +219,19 @@
   box-shadow: var(--shadow-lg);
 }
 
-.section-title {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 24px;
-  margin-bottom: 32px;
+@media (max-width: 899px) {
+  .hero-grid {
+    grid-template-columns: 1fr;
+  }
 }
+
+@media (min-width: 900px) {
+  .hero-grid {
+    grid-template-columns: 1.1fr 0.9fr;
+  }
+}
+
+/* === 04 - Grid layouts === */
 
 .grid-3 {
   display: grid;
@@ -181,6 +252,8 @@
   display: grid;
   gap: 24px;
 }
+
+/* === 05 - Footer layout === */
 
 .footer {
   background: var(--color-hero);
@@ -209,7 +282,6 @@
   transform: translateY(1px);
 }
 
-
 .footer-brand-text {
   font-family: var(--font-display);
   font-weight: 700;
@@ -225,6 +297,8 @@
   color: color-mix(in srgb, var(--color-hero-text) 70%, transparent);
 }
 
+/* === 06 - Page layouts === */
+
 .page-hero {
   padding: 96px 0 48px;
   background: var(--color-surface-alt);
@@ -237,70 +311,10 @@
   align-items: start;
 }
 
-@media (max-width: 900px) {
-  .nav {
-    position: absolute;
-    right: 4vw;
-    top: 72px;
-    flex-direction: column;
-    padding: 20px 24px;
-    background: var(--color-surface);
-    border-radius: var(--radius-md);
-    box-shadow: var(--shadow-md);
-    border: 1px solid var(--color-border);
-    opacity: 0;
-    pointer-events: none;
-    transform: translateY(-10px);
-    transition: opacity var(--transition-base), transform var(--transition-base);
-  }
-
-  .nav.is-open {
-    opacity: 1;
-    pointer-events: auto;
-    transform: translateY(0);
-  }
-
-  .nav-toggle {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    padding: 8px 12px;
-    border-radius: var(--radius-xs);
-    border: 1px solid var(--color-border);
-    background: var(--color-surface);
-  }
-
-  .dropdown-menu {
-    position: static;
-    min-width: auto;
-    box-shadow: none;
-    border: 0;
-    padding: 6px 0 0;
-  }
-
-  .nav-item:hover .dropdown-menu {
-    display: none;
-  }
-
-  .nav-item.is-open .dropdown-menu,
-  .nav-item:focus-within .dropdown-menu {
-    display: block;
-  }
-
-  .hero-grid {
-    grid-template-columns: 1fr;
-  }
-}
-
 @media (min-width: 900px) {
-  .hero-grid {
-    grid-template-columns: 1.1fr 0.9fr;
-  }
-
   .page-layout {
     grid-template-columns: minmax(280px, 320px) minmax(0, 1fr);
   }
-
   .filter-panel {
     position: sticky;
     top: 96px;
