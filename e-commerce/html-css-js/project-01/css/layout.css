@@ -124,6 +124,15 @@
   color: var(--color-ink);
 }
 
+.nav a:active,
+.nav .nav-button:active {
+  color: color-mix(in srgb, var(--color-accent) 85%, var(--color-ink));
+}
+
+.nav a[aria-current="page"]:active {
+  color: var(--color-ink);
+}
+
 .nav-item {
   position: relative;
 }
