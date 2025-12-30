@@ -1,8 +1,32 @@
+/* ==================================
+   = Project: e-commerce-01
+   = Name: Volt Garage
+   = Technology: html/css/js
+   = Author: Kamil Król - kp_code_
+   = Last Update: 2025-12-30
+   = Version: 1.00
+   ==================================
+   = CSS Stylesheet
+   = File: base.css
+   = Structure overview
+   ==================================
+   = 01 - Reset & box model
+   = 02 - Document & media defaults
+   = 03 - Typography
+   = 04 - Links & form controls
+   = 05 - Accessibility
+   = 06 - Motion & reveal
+   ================================== */
+
+/* === 01 - Reset & box model === */
+
 *,
 *::before,
 *::after {
   box-sizing: border-box;
 }
+
+/* === 02 - Document & media defaults === */
 
 html {
   scroll-behavior: smooth;
@@ -23,6 +47,38 @@ svg {
   display: block;
 }
 
+main {
+  display: block;
+}
+
+section {
+  padding: 72px 0;
+}
+
+/* === 03 - Typography === */
+
+h1,
+h2,
+h3,
+h4 {
+  font-family: var(--font-display);
+  line-height: 1.1;
+  margin: 0 0 12px;
+}
+
+p {
+  margin: 0 0 16px;
+  color: var(--color-ink-muted);
+}
+
+ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+/* === 04 - Links & form controls === */
+
 a {
   color: inherit;
   text-decoration: none;
@@ -39,6 +95,8 @@ textarea {
 button {
   cursor: pointer;
 }
+
+/* === 05 - Accessibility === */
 
 :focus-visible {
   outline: 2px solid var(--color-accent);
@@ -61,33 +119,7 @@ button {
   transform: translateY(64px);
 }
 
-main {
-  display: block;
-}
-
-section {
-  padding: 72px 0;
-}
-
-h1,
-h2,
-h3,
-h4 {
-  font-family: var(--font-display);
-  line-height: 1.1;
-  margin: 0 0 12px;
-}
-
-p {
-  margin: 0 0 16px;
-  color: var(--color-ink-muted);
-}
-
-ul {
-  margin: 0;
-  padding: 0;
-  list-style: none;
-}
+/* === 06 - Motion & reveal === */
 
 [data-reveal] {
   opacity: 1;
@@ -109,7 +141,6 @@ html.reveal-ready [data-reveal].is-visible {
   html {
     scroll-behavior: auto;
   }
-
   [data-reveal] {
     transition: none;
     transform: none;
