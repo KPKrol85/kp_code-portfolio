@@ -89,6 +89,11 @@
   --transition-fast: 150ms ease;
   --transition-base: 240ms ease;
   --transition-slow: 420ms ease;
+
+  --ease-3: cubic-bezier(0.25, 0, 0.3, 1);
+  --ease-out-5: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-elastic-3: cubic-bezier(0.34, 1.56, 0.64, 1);
+  --ease-elastic-4: cubic-bezier(0.34, 1.8, 0.64, 1);
 }
 
 /* === 03 - Light theme tokens (default) === */
@@ -113,6 +118,9 @@
   --color-hero: #0f1520;
   --color-hero-text: #fef7ef;
   --gradient-hero: radial-gradient(circle at 20% 20%, #ff8b5f 0%, #1c212b 55%, #0c0f14 100%);
+
+  --icon-fill: var(--color-ink);
+  --icon-fill-hover: var(--color-accent);
 }
 
 /* === 04 - Dark theme tokens === */
@@ -135,6 +143,9 @@
   --color-hero: #0c0f14;
   --color-hero-text: #fef2e9;
   --gradient-hero: radial-gradient(circle at 20% 20%, #ff6a3d 0%, #1d2330 52%, #0c0f14 100%);
+
+  --icon-fill: var(--color-ink);
+  --icon-fill-hover: var(--color-accent);
 }
 
 /* === 05 - System theme mapping (future) === */

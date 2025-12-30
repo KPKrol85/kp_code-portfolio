@@ -1,11 +1,27 @@
 <!doctype html>
-<html lang="pl" data-theme="light">
+<html lang="pl">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="description" content="Produkt – VOLT GARAGE." />
   <meta name="color-scheme" content="light dark" />
-  <title>Produkt | VOLT GARAGE</title>
+    <script data-theme-preload>
+      (function () {
+        var storageKey = 'vg_theme';
+        var theme = null;
+        try {
+          theme = localStorage.getItem(storageKey);
+        } catch (e) {
+          theme = null;
+        }
+        if (!theme) {
+          var prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+          theme = prefersDark ? 'dark' : 'light';
+        }
+        document.documentElement.setAttribute('data-theme', theme);
+      })();
+    </script>
+    <title>Produkt | VOLT GARAGE</title>
 <link rel="preload" href="../assets/fonts/space-grotesk/SpaceGrotesk-700.woff2" as="font" type="font/woff2" crossorigin />
   <link rel="stylesheet" href="../css/themes.css" />
   <link rel="stylesheet" href="../css/base.css" />
@@ -46,13 +62,23 @@
         </div>
       </nav>
       <div class="header-actions">
-        <button class="theme-toggle" type="button" aria-label="Zmień motyw" aria-pressed="false" data-theme-toggle>
-          <svg class="icon-moon" viewBox="0 0 24 24" aria-hidden="true">
-            <path d="M21 12.4A8.5 8.5 0 1 1 11.6 3a7 7 0 0 0 9.4 9.4Z" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" />
-          </svg>
-          <svg class="icon-sun" viewBox="0 0 24 24" aria-hidden="true">
-            <circle cx="12" cy="12" r="4.5" fill="none" stroke="currentColor" stroke-width="1.6" />
-            <path d="M12 2.5v3M12 18.5v3M4.5 12h3M16.5 12h3M5.7 5.7l2.1 2.1M16.2 16.2l2.1 2.1M5.7 18.3l2.1-2.1M16.2 7.8l2.1-2.1" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" />
+        <button class="theme-toggle" id="theme-toggle" data-theme-toggle title="Toggle theme" aria-label="auto" aria-live="polite" aria-pressed="false" type="button">
+          <svg class="sun-and-moon" aria-hidden="true" width="24" height="24" viewBox="0 0 24 24">
+            <mask class="moon" id="moon-mask">
+              <rect x="0" y="0" width="100%" height="100%" fill="white"></rect>
+              <circle cx="24" cy="10" r="6" fill="black"></circle>
+            </mask>
+            <circle class="sun" cx="12" cy="12" r="6" mask="url(#moon-mask)" fill="currentColor"></circle>
+            <g class="sun-beams" stroke="currentColor">
+              <line x1="12" y1="1" x2="12" y2="3"></line>
+              <line x1="12" y1="21" x2="12" y2="23"></line>
+              <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+              <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+              <line x1="1" y1="12" x2="3" y2="12"></line>
+              <line x1="21" y1="12" x2="23" y2="12"></line>
+              <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+              <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+            </g>
           </svg>
         </button>
         <a class="cart-link" href="cart.html" aria-label="Koszyk">
@@ -142,8 +168,11 @@
   </footer>
 
   <script type="module" src="../js/main.js"></script>
-</body>
+    </body>
 </html>
+
+
+
 
 
 
