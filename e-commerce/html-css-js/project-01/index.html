@@ -7,7 +7,7 @@
     <meta name="color-scheme" content="light dark" />
     <script data-theme-preload>
       (function () {
-        var storageKey = 'vg_theme';
+        var storageKey = "vg_theme";
         var theme = null;
         try {
           theme = localStorage.getItem(storageKey);
@@ -15,10 +15,10 @@
           theme = null;
         }
         if (!theme) {
-          var prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
-          theme = prefersDark ? 'dark' : 'light';
+          var prefersDark = window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches;
+          theme = prefersDark ? "dark" : "light";
         }
-        document.documentElement.setAttribute('data-theme', theme);
+        document.documentElement.setAttribute("data-theme", theme);
       })();
     </script>
     <title>VOLT GARAGE | Akcesoria samochodowe</title>
@@ -29,9 +29,9 @@
     <link rel="stylesheet" href="css/components.css" />
   </head>
 
-
-  
+  <!-- Body -->
   <body>
+    <!-- Header -->
     <header class="site-header" data-header>
       <a class="skip-link" href="#main">Przejdź do treści</a>
       <div class="container header-inner">
@@ -90,6 +90,7 @@
       </div>
     </header>
 
+    <!-- Main -->
     <main id="main">
       <section class="hero">
         <div class="container hero-grid">
@@ -240,8 +241,5 @@
     </footer>
 
     <script type="module" src="js/main.js"></script>
-    </body>
+  </body>
 </html>
-
-
-
