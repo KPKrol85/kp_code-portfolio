@@ -407,6 +407,32 @@ textarea {
   gap: 10px;
 }
 
+.card .card-meta {
+  position: relative;
+  padding: var(--space-1) var(--space-3);
+  margin-bottom: var(--space-3);
+}
+
+.card .card-meta::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 1px;
+  background: color-mix(in srgb, var(--color-accent) 35%, transparent);
+}
+
+.card .tag-list {
+  justify-content: center;
+}
+
+.card .tag-list > .btn {
+  flex: 0 0 140px;
+  justify-content: center;
+  text-align: center;
+}
+
 .tag-list img {
   width: 84px;
   height: 64px;
