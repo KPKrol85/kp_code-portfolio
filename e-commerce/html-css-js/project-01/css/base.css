@@ -63,11 +63,11 @@ h3,
 h4 {
   font-family: var(--font-display);
   line-height: 1.1;
-  margin: 0 0 12px;
+  margin: 0 0 var(--space-3);
 }
 
 p {
-  margin: 0 0 16px;
+  margin: 0 0 var(--space-4);
   color: var(--color-ink-muted);
 }
 
@@ -109,7 +109,7 @@ button {
   left: 24px;
   background: var(--color-accent);
   color: #10131a;
-  padding: 10px 16px;
+  padding: 10px var(--space-4);
   border-radius: var(--radius-xs);
   z-index: 1000;
   transition: transform var(--transition-fast);
