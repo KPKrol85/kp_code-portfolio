@@ -39,6 +39,7 @@
   position: sticky;
   top: 0;
   z-index: 999;
+  isolation: isolate;
   backdrop-filter: blur(16px);
   background: color-mix(in srgb, var(--color-surface) 85%, transparent);
   border-bottom: 1px solid var(--color-border);
@@ -46,8 +47,7 @@
 }
 
 [data-theme="light"] .site-header {
-  position: sticky;
-  overflow: hidden;
+  overflow: visible;
 }
 
 [data-theme="light"] .site-header::before {
@@ -138,8 +138,9 @@
 
 .dropdown-menu {
   position: absolute;
-  top: calc(100% + 12px);
+  top: calc(100% + var(--space-4));
   left: 0;
+  z-index: 50;
   min-width: 200px;
   padding: 10px;
   background: var(--color-surface);
@@ -339,6 +340,10 @@
   display: inline-block;
   font-size: var(--fs-1);
   letter-spacing: 0.1rem;
+}
+
+.hero .btn-outline {
+  color: #f5f7fb;
 }
 
 @media (max-width: 899px) {
