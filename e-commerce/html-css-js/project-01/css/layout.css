@@ -277,12 +277,20 @@
   z-index: 1;
 }
 
+.hero p {
+  max-width: 56ch;
+  color: color-mix(in srgb, var(--color-hero-text) 78%, transparent);
+  font-size: var(--fs-3);
+  line-height: 1.55;
+  margin: var(--space-2) 0 var(--space-4);
+}
+
 .hero .badge {
   background: color-mix(in srgb, var(--color-accent) 40%, transparent);
   color: #111;
   color: white;
   font-weight: 400;
-  margin-bottom: .75rem;
+  margin-bottom: 0.75rem;
 }
 
 .hero-media {
@@ -292,6 +300,16 @@
   pointer-events: none;
 }
 
+.stat:nth-child(3) {
+  grid-column: 1 / -1;
+  justify-self: center;
+  max-width: 60%;
+}
+
+.hero-card h3 {
+  letter-spacing: 0.02em;
+}
+
 .hero-media img {
   width: 100%;
   height: 100%;
@@ -299,12 +317,17 @@
   filter: var(--hero-image-filter);
 }
 
+.hero-card .stats {
+  margin-top: var(--space-4);
+}
+
 .hero-card {
-  background: color-mix(in srgb, var(--color-surface) 42%, transparent);
+  background: color-mix(in srgb, black 38%, transparent);
   border: 1px solid color-mix(in srgb, var(--color-border) 60%, transparent);
   padding: var(--space-6);
   border-radius: var(--radius-lg);
   box-shadow: var(--shadow-lg);
+  text-align: center;
 }
 
 .hero-card .stat {
@@ -313,12 +336,9 @@
 
 .hero-card .stat p {
   color: var(--color-hero-text);
-  background: color-mix(in srgb, black 30%, transparent);
   display: inline-block;
-  padding: 6px var(--space-3);
-  border-radius: var(--radius-lg);
-  font-size: 0.8rem;
-  letter-spacing: .1rem;
+  font-size: var(--fs-1);
+  letter-spacing: 0.1rem;
 }
 
 @media (max-width: 899px) {

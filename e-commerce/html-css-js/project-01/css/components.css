@@ -69,7 +69,6 @@
   font-weight: 600;
 }
 
-
 /*
 .badge {
   display: inline-flex;
@@ -91,8 +90,6 @@
   color: var(--color-ink);
 }
 */
-
-
 
 /* === 03 - Cards === */
 
@@ -398,30 +395,10 @@ textarea {
 
 /* === 09 - Stats & Panels === */
 
-/*
-.stats{
-  display:grid;
-  gap: var(--space-4);
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-}
-
-@media (max-width: 560px){
-  .stats{
-    grid-template-columns: 1fr;
-  }
-}
-*/
-
 .stats {
   display: grid;
   gap: var(--space-4);
   grid-template-columns: repeat(2, 1fr);
-}
-
-.stat:nth-child(3) {
-  grid-column: 1 / -1;
-  justify-self: center;
-  max-width: 60%;
 }
 
 .stat {
@@ -430,11 +407,16 @@ textarea {
   align-items: center;
   justify-content: center;
   text-align: center;
-  padding: 20px;
+  padding: var(--space-6);
   border-radius: var(--radius-md);
   background: color-mix(in srgb, var(--color-surface) 10%, transparent);
   border: 1px solid color-mix(in srgb, var(--color-border) 35%, transparent);
   backdrop-filter: blur(6px);
+}
+
+.stat strong {
+  font-size: var(--fs-5);
+  line-height: 1.1;
 }
 
 /* === 10 - Footer components === */
