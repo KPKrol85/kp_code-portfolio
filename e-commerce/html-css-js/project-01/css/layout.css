@@ -204,8 +204,8 @@
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    padding: var(--space-2) var(--space-3);
-    border-radius: var(--radius-xs);
+    padding: var(--space-2) var(--space-4);
+    border-radius: var(--radius-lg);
     border: 1px solid var(--color-border);
     background: var(--color-surface);
   }
@@ -224,6 +224,12 @@
     display: block;
   }
 }
+
+@media (max-width: 530px) {
+  .brand-text { display: none; }
+  .brand { gap: 0; }
+}
+
 
 @media (hover: hover) and (pointer: fine) {
   .nav a:hover,
@@ -389,6 +395,11 @@
 @media (max-width: 899px) {
   .hero-grid {
     grid-template-columns: 1fr;
+  }
+  .hero-card > p {
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
   }
 }
 
