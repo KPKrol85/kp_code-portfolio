@@ -101,28 +101,6 @@
   font-weight: 600;
 }
 
-/*
-.badge {
-  display: inline-flex;
-  align-items: center;
-  padding: var(--space-1) 10px;
-  border-radius: 999px;
-  font-size: 0.75rem;
-  font-weight: 600;
-}
-
-
-[data-theme="light"] .badge {
-  background: color-mix(in srgb, var(--color-accent) 85%, white);
-  color: #111;
-}
-
-[data-theme="dark"] .badge {
-  background: color-mix(in srgb, var(--color-accent) 25%, transparent);
-  color: var(--color-ink);
-}
-*/
-
 /* === 03 - Cards === */
 
 .card {
@@ -133,6 +111,16 @@
   box-shadow: var(--shadow-sm);
   display: grid;
   gap: 14px;
+}
+
+.card .tag-list {
+  justify-content: center;
+}
+
+.card .tag-list > .btn {
+  flex: 0 0 140px;
+  justify-content: center;
+  text-align: center;
 }
 
 .card img {
@@ -150,6 +138,32 @@
   gap: var(--space-3);
   color: var(--color-ink-muted);
   font-size: 0.9rem;
+}
+
+.card .card-meta {
+  position: relative;
+  padding: var(--space-1) var(--space-3);
+  margin-bottom: var(--space-3);
+}
+
+.card .card-meta::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 1px;
+  background: color-mix(in srgb, var(--color-accent) 35%, transparent);
+}
+@media (hover: hover) {
+  .card {
+    transition: box-shadow 0.25s ease, border-color 0.25s ease;
+  }
+
+  .card:hover {
+    box-shadow: var(--shadow-md);
+    border-color: color-mix(in srgb, var(--color-accent) 35%, var(--color-border));
+  }
 }
 
 /* === 04 - Pricing === */
@@ -405,32 +419,6 @@ textarea {
   display: flex;
   flex-wrap: wrap;
   gap: 10px;
-}
-
-.card .card-meta {
-  position: relative;
-  padding: var(--space-1) var(--space-3);
-  margin-bottom: var(--space-3);
-}
-
-.card .card-meta::after {
-  content: "";
-  position: absolute;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  height: 1px;
-  background: color-mix(in srgb, var(--color-accent) 35%, transparent);
-}
-
-.card .tag-list {
-  justify-content: center;
-}
-
-.card .tag-list > .btn {
-  flex: 0 0 140px;
-  justify-content: center;
-  text-align: center;
 }
 
 .tag-list img {

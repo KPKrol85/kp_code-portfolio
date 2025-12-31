@@ -56,7 +56,13 @@
   inset: 0;
   pointer-events: none;
   z-index: 0;
-  background: linear-gradient(to right, color-mix(in srgb, var(--color-accent) 10%, transparent), transparent 18%, transparent 82%, color-mix(in srgb, var(--color-accent) 10%, transparent));
+  background: linear-gradient(
+    to right,
+    color-mix(in srgb, var(--color-accent) 10%, transparent),
+    transparent 18%,
+    transparent 82%,
+    color-mix(in srgb, var(--color-accent) 10%, transparent)
+  );
 }
 
 .header-inner {
@@ -172,22 +178,7 @@
 .dropdown-menu .dropdown-subitem {
   font-size: 0.92em;
   color: color-mix(in srgb, var(--color-ink) 70%, transparent);
-  padding-left: calc(var(--space-2) + 18px);
-  position: relative;
   opacity: 0.92;
-}
-
-.dropdown-menu .dropdown-subitem::before {
-  content: "";
-  position: absolute;
-  left: 10px;
-  top: 50%;
-  width: 10px;
-  height: 1px;
-  transform: translateY(-50%);
-  background: color-mix(in srgb, var(--color-accent) 45%, transparent);
-
-  opacity: 0.6;
 }
 
 .dropdown-menu .dropdown-subitem:hover,
@@ -250,6 +241,21 @@
   .nav-item:focus-within .dropdown-menu {
     display: block;
   }
+  .nav.is-open .dropdown-menu .dropdown-subitem {
+    position: relative;
+    padding-left: calc(var(--space-2) + 18px);
+  }
+  .nav.is-open .dropdown-menu .dropdown-subitem::before {
+    content: "";
+    position: absolute;
+    left: 10px;
+    top: 50%;
+    width: 10px;
+    height: 1px;
+    transform: translateY(-50%);
+    background: color-mix(in srgb, var(--color-accent) 45%, transparent);
+    opacity: 0.6;
+  }
 }
 
 @media (max-width: 530px) {
@@ -270,6 +276,7 @@
     color: var(--color-ink);
   }
 }
+
 
 /* === 03 - Hero Section === */
 
