@@ -17,10 +17,13 @@
   "devDependencies": {
     "cssnano": "^7.1.1",
     "cssnano-cli": "^1.0.5",
+    "sharp": "^0.33.5",
     "terser": "^5.44.0",
     "ttf2woff2": "^8.0.0"
   },
   "scripts": {
+    "img:build": "node tools/images/build-images.mjs",
+    "img:clean": "node tools/images/build-images.mjs --clean",
     "min:css": "cssnano css/style.css css/style.min.css",
     "min:js": "terser js/script.js -o js/script.min.js -c -m --source-map",
     "build": "npm run min:css && npm run min:js"
