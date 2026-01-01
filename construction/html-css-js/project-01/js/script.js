@@ -82,7 +82,7 @@ const utils = (() => {
         cached = null;
       });
     },
-    { passive: true }
+    { passive: true },
   );
 
   return Object.freeze({ getHeaderH, refreshHeaderH, syncHeaderCssVar });
@@ -103,7 +103,8 @@ function initNav() {
   const menu = document.querySelector("#navMenu");
 
   if (!toggle || !menu) return;
-  if (!toggle.getAttribute("aria-controls")) toggle.setAttribute("aria-controls", "navMenu");
+  if (!toggle.getAttribute("aria-controls"))
+    toggle.setAttribute("aria-controls", "navMenu");
 
   const OPEN_CLASS = "is-nav-open";
   const OUTSIDE_EVT = "pointerdown" in window ? "pointerdown" : "click";
@@ -119,7 +120,9 @@ function initNav() {
     if (silentFocus) return;
     if (open) {
       lastFocus = document.activeElement;
-      menu.querySelector('a, button, [tabindex]:not([tabindex="-1"])')?.focus({ preventScroll: true });
+      menu
+        .querySelector('a, button, [tabindex]:not([tabindex="-1"])')
+        ?.focus({ preventScroll: true });
     } else {
       (lastFocus || toggle).focus({ preventScroll: true });
       lastFocus = null;
@@ -128,7 +131,11 @@ function initNav() {
 
   setOpen(menu.classList.contains("open"), { silentFocus: true });
 
-  toggle.addEventListener("click", () => setOpen(!menu.classList.contains("open")), { signal });
+  toggle.addEventListener(
+    "click",
+    () => setOpen(!menu.classList.contains("open")),
+    { signal },
+  );
 
   menu.addEventListener(
     "click",
@@ -138,16 +145,17 @@ function initNav() {
       const isMobile = window.matchMedia("(max-width: 991.98px)").matches;
       if (isMobile) setOpen(false);
     },
-    { signal }
+    { signal },
   );
 
   document.addEventListener(
     OUTSIDE_EVT,
     (e) => {
       if (!menu.classList.contains("open")) return;
-      if (!menu.contains(e.target) && !toggle.contains(e.target)) setOpen(false);
+      if (!menu.contains(e.target) && !toggle.contains(e.target))
+        setOpen(false);
     },
-    { capture: true, passive: true, signal }
+    { capture: true, passive: true, signal },
   );
 
   document.addEventListener(
@@ -157,16 +165,23 @@ function initNav() {
       if (!isOpen) return;
       if (e.key === "Escape") {
         const ddMenuLive = document.querySelector("#dd-oferta");
-        const ddTrigLive = document.querySelector('.dropdown-trigger[href="#oferta"]');
+        const ddTrigLive = document.querySelector(
+          '.dropdown-trigger[href="#oferta"]',
+        );
         const active = document.activeElement;
-        const insideDd = ddMenuLive && ddTrigLive && (ddMenuLive.contains(active) || ddTrigLive.contains(active));
+        const insideDd =
+          ddMenuLive &&
+          ddTrigLive &&
+          (ddMenuLive.contains(active) || ddTrigLive.contains(active));
         if (!insideDd) {
           setOpen(false);
           return;
         }
       }
       if (e.key === "Tab") {
-        const focusables = menu.querySelectorAll('a, button, input, select, textarea, [tabindex]:not([tabindex="-1"])');
+        const focusables = menu.querySelectorAll(
+          'a, button, input, select, textarea, [tabindex]:not([tabindex="-1"])',
+        );
         if (!focusables.length) return;
         const first = focusables[0];
         const last = focusables[focusables.length - 1];
@@ -179,7 +194,7 @@ function initNav() {
         }
       }
     },
-    { signal }
+    { signal },
   );
 
   const ddTrigger = document.querySelector('.dropdown-trigger[href="#oferta"]');
@@ -188,12 +203,16 @@ function initNav() {
   if (ddTrigger && ddMenu) {
     let ddOpen = ddMenu.classList.contains("open");
     const mqDesktop = window.matchMedia("(min-width: 992px)");
-    const parentLi = ddTrigger.closest(".has-dropdown") || ddTrigger.parentElement;
+    const parentLi =
+      ddTrigger.closest(".has-dropdown") || ddTrigger.parentElement;
     ddTrigger.setAttribute("aria-expanded", String(ddOpen));
     ddTrigger.setAttribute("aria-haspopup", "true");
-    if (!ddTrigger.getAttribute("aria-controls")) ddTrigger.setAttribute("aria-controls", "dd-oferta");
+    if (!ddTrigger.getAttribute("aria-controls"))
+      ddTrigger.setAttribute("aria-controls", "dd-oferta");
     const focusFirstItem = () => {
-      ddMenu.querySelector('a, button, [tabindex]:not([tabindex="-1"])')?.focus({ preventScroll: true });
+      ddMenu
+        .querySelector('a, button, [tabindex]:not([tabindex="-1"])')
+        ?.focus({ preventScroll: true });
     };
 
     const setDd = (open, { returnFocus = false, focusFirst = false } = {}) => {
@@ -209,14 +228,14 @@ function initNav() {
         () => {
           if (mqDesktop.matches) setDd(true);
         },
-        { signal }
+        { signal },
       );
       parentLi.addEventListener(
         "mouseleave",
         () => {
           if (mqDesktop.matches) setDd(false);
         },
-        { signal }
+        { signal },
       );
     }
 
@@ -235,7 +254,7 @@ function initNav() {
       (e) => {
         if (openMobileOnce()) e.preventDefault();
       },
-      { signal }
+      { signal },
     );
 
     ddTrigger.addEventListener(
@@ -246,17 +265,21 @@ function initNav() {
         if (!(isEnter || isSpace)) return;
         if (openMobileOnce()) e.preventDefault();
       },
-      { signal }
+      { signal },
     );
 
     document.addEventListener(
       OUTSIDE_EVT,
       (e) => {
-        if (ddOpen && !ddMenu.contains(e.target) && !ddTrigger.contains(e.target)) {
+        if (
+          ddOpen &&
+          !ddMenu.contains(e.target) &&
+          !ddTrigger.contains(e.target)
+        ) {
           setDd(false, { returnFocus: false });
         }
       },
-      { capture: true, passive: true, signal }
+      { capture: true, passive: true, signal },
     );
 
     document.addEventListener(
@@ -264,13 +287,14 @@ function initNav() {
       (e) => {
         if (e.key !== "Escape" || !ddOpen) return;
         const active = document.activeElement;
-        const inside = active && (ddMenu.contains(active) || ddTrigger.contains(active));
+        const inside =
+          active && (ddMenu.contains(active) || ddTrigger.contains(active));
         if (inside) {
           e.preventDefault();
           setDd(false, { returnFocus: true });
         }
       },
-      { signal }
+      { signal },
     );
 
     toggle.addEventListener(
@@ -279,11 +303,12 @@ function initNav() {
         const willClose = menu.classList.contains("open");
         if (willClose) setDd(false);
       },
-      { signal }
+      { signal },
     );
 
     const onMqChange = () => setDd(false);
-    if (mqDesktop.addEventListener) mqDesktop.addEventListener("change", onMqChange, { signal });
+    if (mqDesktop.addEventListener)
+      mqDesktop.addEventListener("change", onMqChange, { signal });
     else mqDesktop.addListener(onMqChange);
   }
 }
@@ -306,17 +331,25 @@ function initScrollSpy() {
 
   const PEEK = 12;
   const mapHref = (href) => (href === "#top" ? "#strona-glowna" : href);
-  const targetsFromMenu = navLinks.map((a) => mapHref(a.getAttribute("href"))).filter((href) => href && href.startsWith("#") && href.length > 1);
+  const targetsFromMenu = navLinks
+    .map((a) => mapHref(a.getAttribute("href")))
+    .filter((href) => href && href.startsWith("#") && href.length > 1);
   const extraTargets = [];
 
   if (document.querySelector("#oferta")) extraTargets.push("#oferta");
 
-  const sections = [...new Set([...targetsFromMenu, ...extraTargets])].map((sel) => document.querySelector(sel)).filter(Boolean);
+  const sections = [...new Set([...targetsFromMenu, ...extraTargets])]
+    .map((sel) => document.querySelector(sel))
+    .filter(Boolean);
 
   if (!sections.length) return;
 
-  const getHeaderLive = () => (headerEl ? Math.round(headerEl.getBoundingClientRect().height) : 0);
-  const getOffset = () => (typeof utils?.getHeaderH === "function" ? utils.getHeaderH() : getHeaderLive()) + PEEK;
+  const getHeaderLive = () =>
+    headerEl ? Math.round(headerEl.getBoundingClientRect().height) : 0;
+  const getOffset = () =>
+    (typeof utils?.getHeaderH === "function"
+      ? utils.getHeaderH()
+      : getHeaderLive()) + PEEK;
   const isMenuOpen = () => {
     return (
       (navMenu && navMenu.classList.contains("open")) ||
@@ -348,7 +381,9 @@ function initScrollSpy() {
       if (match) a.setAttribute("aria-current", "true");
       else a.removeAttribute("aria-current");
     });
-    const ofertaTrigger = document.querySelector('.dropdown-trigger[aria-controls="dd-oferta"]');
+    const ofertaTrigger = document.querySelector(
+      '.dropdown-trigger[aria-controls="dd-oferta"]',
+    );
     if (ofertaTrigger) {
       const isOfertaCtx = id === "oferta" || id.startsWith("oferta-");
       ofertaTrigger.classList.toggle("is-active", isOfertaCtx);
@@ -375,7 +410,10 @@ function initScrollSpy() {
         currentId = sec.id;
       }
     }
-    if (window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 2) {
+    if (
+      window.innerHeight + window.scrollY >=
+      document.documentElement.scrollHeight - 2
+    ) {
       currentId = sections[sections.length - 1].id;
     }
     return currentId;
@@ -427,7 +465,9 @@ function initScrollSpy() {
   window.addEventListener("resize", onResize, { passive: true, signal });
   window.addEventListener("nav:toggle", onResize, { signal });
 
-  const prefersNoAnim = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  const prefersNoAnim = window.matchMedia(
+    "(prefers-reduced-motion: reduce)",
+  ).matches;
   const behavior = prefersNoAnim ? "auto" : "smooth";
 
   navLinks.forEach((a) => {
@@ -445,16 +485,21 @@ function initScrollSpy() {
         html.classList.remove("is-nav-open");
         document.body.classList.remove("nav-open");
         document.documentElement.classList.remove("nav-open");
-        window.dispatchEvent(new CustomEvent("nav:toggle", { detail: { open: false } }));
+        window.dispatchEvent(
+          new CustomEvent("nav:toggle", { detail: { open: false } }),
+        );
         setActive(target.id);
         const OFFSET = getOffset();
-        const targetY = Math.max(0, window.scrollY + target.getBoundingClientRect().top - OFFSET);
+        const targetY = Math.max(
+          0,
+          window.scrollY + target.getBoundingClientRect().top - OFFSET,
+        );
         window.scrollTo({ top: targetY, behavior });
         if (history.pushState) history.pushState(null, "", href);
         else location.hash = href;
         scheduleComputeAfterScroll();
       },
-      { signal }
+      { signal },
     );
   });
 
@@ -495,16 +540,30 @@ function initSmoothTop() {
   const ac = new AbortController();
   const { signal } = ac;
   initSmoothTop._abort = ac;
-  const prefersNoAnim = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  const prefersNoAnim = window.matchMedia(
+    "(prefers-reduced-motion: reduce)",
+  ).matches;
   const behavior = prefersNoAnim ? "auto" : "smooth";
-  const isPrimaryClick = (e) => e.button === 0 && !e.defaultPrevented && !e.metaKey && !e.ctrlKey && !e.shiftKey && !e.altKey;
+  const isPrimaryClick = (e) =>
+    e.button === 0 &&
+    !e.defaultPrevented &&
+    !e.metaKey &&
+    !e.ctrlKey &&
+    !e.shiftKey &&
+    !e.altKey;
   document.addEventListener(
     "click",
     (e) => {
-      const el = e.target.closest('a[href="#top"], .scroll-top, [data-scroll="top"]');
+      const el = e.target.closest(
+        'a[href="#top"], .scroll-top, [data-scroll="top"]',
+      );
       if (!el) return;
       if (!isPrimaryClick(e)) return;
-      if (el.getAttribute && (el.getAttribute("target") === "_blank" || el.hasAttribute("download"))) return;
+      if (
+        el.getAttribute &&
+        (el.getAttribute("target") === "_blank" || el.hasAttribute("download"))
+      )
+        return;
       e.preventDefault();
       window.scrollTo({ top: 0, behavior });
       const topAnchor = document.getElementById("top");
@@ -517,7 +576,7 @@ function initSmoothTop() {
       if (history.pushState) history.pushState(null, "", "#top");
       else location.hash = "#top";
     },
-    { signal }
+    { signal },
   );
 }
 
@@ -528,7 +587,9 @@ function initScrollReveal() {
   const ac = new AbortController();
   const { signal } = ac;
   initScrollReveal._abort = ac;
-  const prefersReduced = window.matchMedia?.("(prefers-reduced-motion: reduce)").matches;
+  const prefersReduced = window.matchMedia?.(
+    "(prefers-reduced-motion: reduce)",
+  ).matches;
   const items = Array.from(document.querySelectorAll("[data-reveal]"));
   if (!items.length) return;
   if (prefersReduced) {
@@ -545,7 +606,8 @@ function initScrollReveal() {
       entries.forEach((entry) => {
         const el = entry.target;
         const revealOnceAttr = el.getAttribute("data-reveal-once");
-        const revealOnce = revealOnceAttr == null ? true : revealOnceAttr !== "false";
+        const revealOnce =
+          revealOnceAttr == null ? true : revealOnceAttr !== "false";
         if (entry.isIntersecting) {
           if (!el.classList.contains("is-revealed")) {
             applyDelay(el);
@@ -561,7 +623,7 @@ function initScrollReveal() {
       root: null,
       rootMargin: "0px 0px -15% 0px",
       threshold: 0.14,
-    }
+    },
   );
   items.forEach((el) => io.observe(el));
   window.addEventListener("pagehide", () => io.disconnect(), {
@@ -703,9 +765,13 @@ function initContactForm() {
         if (raw === "" || isValidPLPhone(raw)) clearFieldError(phoneInput);
       }
     },
-    { signal }
+    { signal },
   );
-  phoneInput?.addEventListener("paste", () => requestAnimationFrame(applyPhoneMask), { signal });
+  phoneInput?.addEventListener(
+    "paste",
+    () => requestAnimationFrame(applyPhoneMask),
+    { signal },
+  );
   phoneInput?.addEventListener("blur", applyPhoneMask, { signal });
   form.addEventListener(
     "blur",
@@ -714,15 +780,17 @@ function initContactForm() {
       if (t.matches('input[type="text"], textarea')) t.value = t.value.trim();
     },
     true,
-    { signal }
+    { signal },
   );
   form.addEventListener(
     "reset",
     () => {
       showNote("", true);
-      form.querySelectorAll('[aria-invalid="true"]').forEach((el) => clearFieldError(el));
+      form
+        .querySelectorAll('[aria-invalid="true"]')
+        .forEach((el) => clearFieldError(el));
     },
-    { signal }
+    { signal },
   );
 
   let submitting = false;
@@ -732,7 +800,11 @@ function initContactForm() {
       e.preventDefault();
       if (submitting) return;
 
-      if ((hpInput && hpInput.value.trim() !== "") || isTooFast() || looksSpammy(msgInput?.value)) {
+      if (
+        (hpInput && hpInput.value.trim() !== "") ||
+        isTooFast() ||
+        looksSpammy(msgInput?.value)
+      ) {
         form.reset();
         return;
       }
@@ -740,7 +812,10 @@ function initContactForm() {
         if (nameInput && nameInput.validity.valueMissing) {
           setFieldError(nameInput, "Podaj imię i nazwisko (min. 2 znaki).");
         } else if (nameInput && nameInput.validity.tooShort) {
-          setFieldError(nameInput, "Imię i nazwisko powinno mieć co najmniej 2 znaki.");
+          setFieldError(
+            nameInput,
+            "Imię i nazwisko powinno mieć co najmniej 2 znaki.",
+          );
         }
         if (phoneInput && phoneInput.validity.valueMissing) {
           setFieldError(phoneInput, "Podaj numer telefonu.");
@@ -751,10 +826,15 @@ function initContactForm() {
           setFieldError(msgInput, "Opis może mieć maksymalnie 1000 znaków.");
         }
         if (consentInput && !consentInput.checked) {
-          setFieldError(consentInput, "Wymagana zgoda na kontakt w celu wyceny.");
+          setFieldError(
+            consentInput,
+            "Wymagana zgoda na kontakt w celu wyceny.",
+          );
         }
         form.reportValidity();
-        form.querySelector(':invalid, [aria-invalid="true"]')?.focus({ preventScroll: true });
+        form
+          .querySelector(':invalid, [aria-invalid="true"]')
+          ?.focus({ preventScroll: true });
         showNote("Uzupełnij poprawnie wszystkie pola i zaznacz zgodę.", false);
         return;
       }
@@ -763,7 +843,10 @@ function initContactForm() {
         applyPhoneMask();
         const raw = phoneInput.value.trim();
         if (!isValidPLPhone(raw)) {
-          setFieldError(phoneInput, "Podaj poprawny numer (np. 600 700 800 lub +48 600 700 800).");
+          setFieldError(
+            phoneInput,
+            "Podaj poprawny numer (np. 600 700 800 lub +48 600 700 800).",
+          );
           form.reportValidity();
           phoneInput.focus({ preventScroll: true });
           showNote("Sprawdź format numeru telefonu.", false);
@@ -779,13 +862,15 @@ function initContactForm() {
       setTimeout(() => {
         setBusy(false);
         submitting = false;
-        form.querySelectorAll('[aria-invalid="true"]').forEach((el) => el.removeAttribute("aria-invalid"));
+        form
+          .querySelectorAll('[aria-invalid="true"]')
+          .forEach((el) => el.removeAttribute("aria-invalid"));
         form.reset();
         showNote("Dziękujemy! Skontaktujemy się wkrótce.", true);
         note?.focus?.();
       }, 900);
     },
-    { signal }
+    { signal },
   );
 }
 
@@ -807,7 +892,9 @@ function initHeaderShrink() {
     const h = measureHeader();
     document.documentElement.style.setProperty("--header-h", `${h}px`);
     if (window.utils?.refreshHeaderH) window.utils.refreshHeaderH();
-    window.dispatchEvent(new CustomEvent("header:sync", { detail: { height: h } }));
+    window.dispatchEvent(
+      new CustomEvent("header:sync", { detail: { height: h } }),
+    );
     return h;
   };
 
@@ -836,7 +923,9 @@ function initHeaderShrink() {
   });
   ro.observe(header);
   if (document.fonts && document.fonts.ready) {
-    document.fonts.ready.then(() => requestAnimationFrame(syncVar)).catch(() => {});
+    document.fonts.ready
+      .then(() => requestAnimationFrame(syncVar))
+      .catch(() => {});
   }
   window.addEventListener("nav:toggle", () => requestAnimationFrame(syncVar), {
     signal,
@@ -851,7 +940,7 @@ function initHeaderShrink() {
     () => {
       if (!document.hidden) requestAnimationFrame(syncVar);
     },
-    { signal }
+    { signal },
   );
 
   window.addEventListener("scroll", onScroll, { passive: true, signal });
@@ -898,7 +987,8 @@ function initThemeToggle() {
   const nextOf = (mode) => (mode === "dark" ? "light" : "dark");
 
   const syncThemeToggleState = () => {
-    const current = root.getAttribute("data-theme") === "dark" ? "dark" : "light";
+    const current =
+      root.getAttribute("data-theme") === "dark" ? "dark" : "light";
     btn.setAttribute("aria-pressed", String(current === "dark"));
   };
 
@@ -907,17 +997,28 @@ function initThemeToggle() {
     root.setAttribute("data-theme", normalized);
     btn.setAttribute("data-theme-state", normalized);
     syncThemeToggleState();
-    const label = `Tryb: ${normalized === "dark" ? "ciemny" : "jasny"}. ` + (normalized === "dark" ? "Przełącz na jasny tryb" : "Przełącz na ciemny tryb");
+    const label =
+      `Tryb: ${normalized === "dark" ? "ciemny" : "jasny"}. ` +
+      (normalized === "dark"
+        ? "Przełącz na jasny tryb"
+        : "Przełącz na ciemny tryb");
     btn.setAttribute("aria-label", label);
     btn.setAttribute("title", label);
     if (persist) safeSet(KEY, normalized);
     if (!silent) {
-      window.dispatchEvent(new CustomEvent("theme:change", { detail: { theme: normalized } }));
+      window.dispatchEvent(
+        new CustomEvent("theme:change", { detail: { theme: normalized } }),
+      );
     }
   };
 
   const saved = safeGet(KEY);
-  const start = saved === "light" || saved === "dark" ? saved : mq && mq.matches ? "dark" : "light";
+  const start =
+    saved === "light" || saved === "dark"
+      ? saved
+      : mq && mq.matches
+        ? "dark"
+        : "light";
   apply(start, {
     persist: saved === "light" || saved === "dark",
     silent: true,
@@ -927,11 +1028,12 @@ function initThemeToggle() {
   btn.addEventListener(
     "click",
     () => {
-      const current = root.getAttribute("data-theme") === "dark" ? "dark" : "light";
+      const current =
+        root.getAttribute("data-theme") === "dark" ? "dark" : "light";
       const next = nextOf(current);
       apply(next, { persist: true });
     },
-    { signal }
+    { signal },
   );
 
   window.addEventListener(
@@ -941,7 +1043,7 @@ function initThemeToggle() {
       const v = e.newValue;
       if (v === "dark" || v === "light") apply(v, { persist: false });
     },
-    { signal }
+    { signal },
   );
 
   initThemeToggle.set = (mode) => {
@@ -969,7 +1071,12 @@ function initRipple() {
     const dy1 = y - rect.top;
     const dx2 = rect.right - x;
     const dy2 = rect.bottom - y;
-    const maxDist = Math.max(Math.hypot(dx1, dy1), Math.hypot(dx1, dy2), Math.hypot(dx2, dy1), Math.hypot(dx2, dy2));
+    const maxDist = Math.max(
+      Math.hypot(dx1, dy1),
+      Math.hypot(dx1, dy2),
+      Math.hypot(dx2, dy1),
+      Math.hypot(dx2, dy2),
+    );
     return Math.ceil(maxDist * 2);
   };
 
@@ -988,14 +1095,15 @@ function initRipple() {
     setTimeout(() => ink.isConnected && cleanup(), 1200);
   };
 
-  const isPrimary = (e) => e.button === 0 && !e.metaKey && !e.ctrlKey && !e.shiftKey && !e.altKey;
+  const isPrimary = (e) =>
+    e.button === 0 && !e.metaKey && !e.ctrlKey && !e.shiftKey && !e.altKey;
   btn.addEventListener(
     "pointerdown",
     (e) => {
       if (!isPrimary(e)) return;
       spawn(e.clientX, e.clientY);
     },
-    { signal }
+    { signal },
   );
 
   btn.addEventListener(
@@ -1011,7 +1119,7 @@ function initRipple() {
         btn.click();
       }
     },
-    { signal }
+    { signal },
   );
 
   if (mql?.addEventListener) {
@@ -1020,7 +1128,7 @@ function initRipple() {
       (e) => {
         if (e.matches) initRipple._abort?.abort();
       },
-      { signal }
+      { signal },
     );
   }
 }
@@ -1044,7 +1152,9 @@ function initHeroBlurSync() {
     if (want !== lastBg) {
       blur.style.backgroundImage = want;
       lastBg = want;
-      window.dispatchEvent(new CustomEvent("hero:blurSync", { detail: { url } }));
+      window.dispatchEvent(
+        new CustomEvent("hero:blurSync", { detail: { url } }),
+      );
     }
   };
 
@@ -1078,7 +1188,7 @@ function initHeroBlurSync() {
     () => {
       if (document.visibilityState === "visible") syncNextFrame();
     },
-    { signal }
+    { signal },
   );
 
   const mqlColor = window.matchMedia?.("(prefers-color-scheme: dark)");
@@ -1086,7 +1196,9 @@ function initHeroBlurSync() {
     mqlColor.addEventListener("change", syncNextFrame, { signal });
   } else if (mqlColor?.addListener && !mqlColor.addEventListener) {
     mqlColor.addListener(syncNextFrame);
-    signal.addEventListener("abort", () => mqlColor.removeListener(syncNextFrame));
+    signal.addEventListener("abort", () =>
+      mqlColor.removeListener(syncNextFrame),
+    );
   }
 
   const moAttrs = ["src", "srcset", "sizes", "media"];
@@ -1110,7 +1222,7 @@ function initHeroBlurSync() {
       cancelAnimationFrame(rafId);
       clearTimeout(debTimer);
     },
-    { once: true, signal }
+    { once: true, signal },
   );
 
   if (document.readyState === "complete") sync();
@@ -1127,14 +1239,19 @@ function initOfertaLightbox() {
   const { signal } = ac;
   initOfertaLightbox._abort = ac;
 
-  const thumbs = Array.from(document.querySelectorAll("#oferta .card picture img, .gallery .gallery-item picture img"));
+  const thumbs = Array.from(
+    document.querySelectorAll(
+      "#oferta .card picture img, .gallery .gallery-item picture img",
+    ),
+  );
 
   if (!thumbs.length) return;
 
   const $ = (t) => document.createElement(t);
 
   const html = document.documentElement;
-  const main = document.getElementById("main") || document.querySelector("main");
+  const main =
+    document.getElementById("main") || document.querySelector("main");
   const header = document.querySelector(".site-header");
 
   let backdrop = document.querySelector(".lb-backdrop");
@@ -1174,9 +1291,11 @@ function initOfertaLightbox() {
     const svgX =
       '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M18.3 5.7a1 1 0 0 0-1.4 0L12 10.6 7.1 5.7A1 1 0 0 0 5.7 7.1L10.6 12l-4.9 4.9a1 1 0 1 0 1.4 1.4L12 13.4l4.9 4.9a1 1 0 0 0 1.4-1.4L13.4 12l4.9-4.9a1 1 0 0 0 0-1.4z"/></svg>';
 
-    const svgL = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15.7 5.3a1 1 0 0 1 0 1.4L11.4 11l4.3 4.3a 1 1 0 1 1-1.4 1.4l-5-5a 1 1 0 0 1 0-1.4l5-5a 1 1 0 0 1 1.4 0z"/></svg>';
+    const svgL =
+      '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15.7 5.3a1 1 0 0 1 0 1.4L11.4 11l4.3 4.3a 1 1 0 1 1-1.4 1.4l-5-5a 1 1 0 0 1 0-1.4l5-5a 1 1 0 0 1 1.4 0z"/></svg>';
 
-    const svgR = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8.3 5.3a 1 1 0 0 0 0 1.4L12.6 11l-4.3 4.3a 1 1 0 1 0 1.4 1.4l5-5a 1 1 0 0 0 0-1.4l-5-5a 1 1 0 0 0-1.4 0z"/></svg>';
+    const svgR =
+      '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8.3 5.3a 1 1 0 0 0 0 1.4L12.6 11l-4.3 4.3a 1 1 0 1 0 1.4 1.4l5-5a 1 1 0 0 0 0-1.4l-5-5a 1 1 0 0 0-1.4 0z"/></svg>';
 
     btnClose = mkBtn("lb-close", "Zamknij podgląd", svgX);
     btnPrev = mkBtn("lb-prev", "Poprzednie zdjęcie", svgL);
@@ -1200,7 +1319,9 @@ function initOfertaLightbox() {
       .map((s) => s.trim())
       .map((s) => {
         const m = s.match(/(.+)\s+(\d+)w$/);
-        return m ? { url: m[1], w: parseInt(m[2], 10) } : { url: s.split(" ")[0], w: 0 };
+        return m
+          ? { url: m[1], w: parseInt(m[2], 10) }
+          : { url: s.split(" ")[0], w: 0 };
       })
       .sort((a, b) => b.w - a.w);
   };
@@ -1324,7 +1445,7 @@ function initOfertaLightbox() {
         index = i;
         setOpen(true);
       },
-      { signal }
+      { signal },
     );
 
     el.addEventListener(
@@ -1336,7 +1457,7 @@ function initOfertaLightbox() {
           setOpen(true);
         }
       },
-      { signal }
+      { signal },
     );
   });
 
@@ -1382,7 +1503,7 @@ function initOfertaLightbox() {
         first.focus();
       }
     },
-    { signal }
+    { signal },
   );
 
   let sx = 0;
@@ -1429,7 +1550,11 @@ function initOfertaLightbox() {
     if (!target) return;
 
     if (!document.fullscreenElement) {
-      (target.requestFullscreen || target.webkitRequestFullscreen || target.msRequestFullscreen)?.call(target);
+      (
+        target.requestFullscreen ||
+        target.webkitRequestFullscreen ||
+        target.msRequestFullscreen
+      )?.call(target);
       return;
     }
 
@@ -1442,7 +1567,7 @@ function initOfertaLightbox() {
       if (!isOpen) return;
       toggleFs();
     },
-    { signal }
+    { signal },
   );
 
   viewportEl.addEventListener(
@@ -1459,7 +1584,7 @@ function initOfertaLightbox() {
 
       lastTap = now;
     },
-    { passive: true, signal }
+    { passive: true, signal },
   );
 
   window.addEventListener("pagehide", () => ac.abort(), { once: true, signal });
@@ -1481,14 +1606,21 @@ function initOfferPrefetch() {
     return true;
   };
   if (!canPrefetch()) return;
-  const links = Array.from(document.querySelectorAll('.services-track h3 a[href^="oferta/"], #oferta .card h3 a[href^="oferta/"]'));
+  const links = Array.from(
+    document.querySelectorAll(
+      '.services-track h3 a[href^="oferta/"], #oferta .card h3 a[href^="oferta/"]',
+    ),
+  );
   if (!links.length) return;
   const prefetched = new Set();
   const timers = new WeakMap();
   const isSameOriginHttp = (href) => {
     try {
       const u = new URL(href, location.href);
-      return (u.protocol === "http:" || u.protocol === "https:") && u.origin === location.origin;
+      return (
+        (u.protocol === "http:" || u.protocol === "https:") &&
+        u.origin === location.origin
+      );
     } catch {
       return false;
     }
@@ -1546,10 +1678,16 @@ function initHomeHelpers() {
   const { signal } = ac;
   initHomeHelpers._abort = ac;
 
-  const isHome = !!document.querySelector("#kontakt") || !!document.querySelector("#oferta") || !!document.querySelector("#strona-glowna");
+  const isHome =
+    !!document.querySelector("#kontakt") ||
+    !!document.querySelector("#oferta") ||
+    !!document.querySelector("#strona-glowna");
 
   if (!isHome) {
-    window.addEventListener("pagehide", () => ac.abort(), { once: true, signal });
+    window.addEventListener("pagehide", () => ac.abort(), {
+      once: true,
+      signal,
+    });
     return;
   }
 
@@ -1563,7 +1701,9 @@ function initHomeHelpers() {
   };
 
   const getScrollBehavior = () => {
-    const prefersNoAnim = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    const prefersNoAnim = window.matchMedia(
+      "(prefers-reduced-motion: reduce)",
+    ).matches;
     return prefersNoAnim ? "auto" : "smooth";
   };
 
@@ -1604,7 +1744,7 @@ function initHomeHelpers() {
 
       cleanUrlKeepQuery();
     },
-    { signal }
+    { signal },
   );
 
   (function prefillService() {
@@ -1658,7 +1798,11 @@ function initCookieBanner() {
         banner.hidden = true;
 
         try {
-          (previousFocus || document.querySelector(".theme-toggle") || document.body).focus({ preventScroll: true });
+          (
+            previousFocus ||
+            document.querySelector(".theme-toggle") ||
+            document.body
+          ).focus({ preventScroll: true });
         } catch {}
       });
     }
@@ -1670,7 +1814,11 @@ function initCookieBanner() {
       banner.hidden = true;
 
       try {
-        (previousFocus || document.querySelector(".theme-toggle") || document.body).focus({ preventScroll: true });
+        (
+          previousFocus ||
+          document.querySelector(".theme-toggle") ||
+          document.body
+        ).focus({ preventScroll: true });
       } catch {}
     });
   } catch {}

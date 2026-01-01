@@ -101,7 +101,9 @@
             "@id": "https://construction-project-01.netlify.app/#page",
             "url": "https://construction-project-01.netlify.app/",
             "name": "SolidCraft — firma remontowo-budowlana",
-            "isPartOf": { "@id": "https://construction-project-01.netlify.app/#website" },
+            "isPartOf": {
+              "@id": "https://construction-project-01.netlify.app/#website"
+            },
             "inLanguage": "pl-PL",
             "datePublished": "2025-09-19",
             "dateModified": "2025-10-19",
@@ -115,10 +117,30 @@
               "@type": "ItemList",
               "name": "Zakres usług",
               "itemListElement": [
-                { "@type": "ListItem", "position": 1, "name": "Wykończenia i remonty łazienek", "url": "https://construction-project-01.netlify.app/#oferta-lazienki" },
-                { "@type": "ListItem", "position": 2, "name": "Malowanie i gładzie", "url": "https://construction-project-01.netlify.app/#oferta-malowanie" },
-                { "@type": "ListItem", "position": 3, "name": "Kafelkowanie", "url": "https://construction-project-01.netlify.app/#oferta-kafelkowanie" },
-                { "@type": "ListItem", "position": 4, "name": "Elektryka i hydraulika", "url": "https://construction-project-01.netlify.app/#oferta-elektryka" }
+                {
+                  "@type": "ListItem",
+                  "position": 1,
+                  "name": "Wykończenia i remonty łazienek",
+                  "url": "https://construction-project-01.netlify.app/#oferta-lazienki"
+                },
+                {
+                  "@type": "ListItem",
+                  "position": 2,
+                  "name": "Malowanie i gładzie",
+                  "url": "https://construction-project-01.netlify.app/#oferta-malowanie"
+                },
+                {
+                  "@type": "ListItem",
+                  "position": 3,
+                  "name": "Kafelkowanie",
+                  "url": "https://construction-project-01.netlify.app/#oferta-kafelkowanie"
+                },
+                {
+                  "@type": "ListItem",
+                  "position": 4,
+                  "name": "Elektryka i hydraulika",
+                  "url": "https://construction-project-01.netlify.app/#oferta-elektryka"
+                }
               ]
             }
           },
@@ -129,17 +151,26 @@
               {
                 "@type": "Question",
                 "name": "Ile trwa przygotowanie wyceny?",
-                "acceptedAnswer": { "@type": "Answer", "text": "Standardowo do 24 godzin od przesłania szczegółów zlecenia lub zdjęć." }
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "Standardowo do 24 godzin od przesłania szczegółów zlecenia lub zdjęć."
+                }
               },
               {
                 "@type": "Question",
                 "name": "Czy dojeżdżacie do klienta i wykonujecie oględziny?",
-                "acceptedAnswer": { "@type": "Answer", "text": "Tak. Dojazd w obrębie miasta i okolic jest możliwy po ustaleniu terminu." }
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "Tak. Dojazd w obrębie miasta i okolic jest możliwy po ustaleniu terminu."
+                }
               },
               {
                 "@type": "Question",
                 "name": "Czy wystawiacie fakturę i udzielacie gwarancji?",
-                "acceptedAnswer": { "@type": "Answer", "text": "Tak, wystawiamy faktury oraz udzielamy gwarancji na wykonywane prace." }
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "Tak, wystawiamy faktury oraz udzielamy gwarancji na wykonywane prace."
+                }
               }
             ]
           }
@@ -179,8 +210,8 @@
       <div class="container header-bar">
         <a class="brand" href="#top" aria-label="Strona główna — SolidCraft">
           <picture class="brand-logo">
-            <img src="assets/img/logo/logo-light-160x160.png" alt="" aria-hidden="true" class="ft-logo logo--light" loading="eager" fetchpriority="high" decoding="async" />
-            <img src="assets/img/logo/logo-dark-160x160.png" alt="" aria-hidden="true" class="ft-logo logo--dark" loading="eager" fetchpriority="high" decoding="async" />
+            <img src="assets/img/logo/logo-light.svg" alt="" aria-hidden="true" class="ft-logo logo--light" loading="eager" fetchpriority="high" decoding="async" />
+            <img src="assets/img/logo/logo-dark.svg" alt="" aria-hidden="true" class="ft-logo logo--dark" loading="eager" fetchpriority="high" decoding="async" />
           </picture>
           <span class="brand-name">SolidCraft</span>
         </a>
@@ -731,13 +762,18 @@
             <ul class="contact-list" aria-label="Dane kontaktowe">
               <li data-reveal="left" data-reveal-delay="180">
                 <a class="contact-item" href="tel:+48533537091" aria-label="Zadzwoń pod numer: +48 533 537 091">
-                  <img src="assets/img/icons/tel-40.svg" alt="" class="icon" loading="lazy" decoding="async" />
+                  <svg class="contact-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24">
+                    <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.8 19.8 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.18 2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.12.9.33 1.77.63 2.61a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.47-1.2a2 2 0 0 1 2.11-.45c.84.3 1.71.51 2.61.63A2 2 0 0 1 22 16.92z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" />
+                  </svg>
                   <span>+48 533 537 091</span>
                 </a>
               </li>
               <li data-reveal="left" data-reveal-delay="260">
                 <a class="contact-item" href="mailto:kontakt@kp-code.pl" aria-label="Napisz e-mail na adres: kontakt@kp-code.pl">
-                  <img src="assets/img/icons/email-40.svg" alt="" class="icon" loading="lazy" decoding="async" />
+                  <svg class="contact-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24">
+                    <path d="M4 4h16a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" />
+                    <path d="M22 6 12 13 2 6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" />
+                  </svg>
                   <span>kontakt@kp-code.pl</span>
                 </a>
               </li>
@@ -788,8 +824,8 @@
           <div class="ft-col" data-reveal="up" data-reveal-delay="80">
             <a href="#top" class="brand-footer" aria-label="Strona główna">
               <picture>
-                <source srcset="assets/img/logo/logo-dark-160x160.png" type="image/svg+xml" />
-                <img src="assets/img/logo/logo-dark-160x160.png" alt="" aria-hidden="true" class="ft-logo" width="512" height="512" loading="lazy" decoding="async" />
+                <source srcset="assets/img/logo/logo-dark.svg" type="image/svg+xml" />
+                <img src="assets/img/logo/logo-dark.svg" alt="" aria-hidden="true" class="ft-logo" width="512" height="512" loading="lazy" decoding="async" />
               </picture>
             </a>
             <p class="ft-lead">
@@ -799,14 +835,31 @@
             <h3 class="ft-h" id="ft-contact-heading">Kontakt i wycena</h3>
             <ul class="ft-contact" aria-label="Dane kontaktowe">
               <li>
-                <a href="tel:+48533537091" aria-label="Zadzwoń: +48 533 537 091">
-                  <img src="assets/img/icons/tel-40.svg" alt="" width="40" height="40" loading="lazy" decoding="async" />
+                <a href="tel:+48533537091" aria-label="Zadzwoń: +48 533 537 091" class="ft-contact-link">
+                  <svg class="ft-contact-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24">
+                    <path
+                      d="M22 16.92v3a2 2 0 0 1-2.18 2 19.8 19.8 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.18 2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.12.9.33 1.77.63 2.61a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.47-1.2a2 2 0 0 1 2.11-.45c.84.3 1.71.51 2.61.63A2 2 0 0 1 22 16.92z"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="1.8"
+                      stroke-linecap="round"
+                      stroke-linejoin="round" />
+                  </svg>
                   <span>+48 533 537 091</span>
                 </a>
               </li>
               <li>
-                <a href="mailto:kontakt@kp-code.pl" aria-label="Napisz e-mail na adres: kontakt@kp-code.pl">
-                  <img src="assets/img/icons/email-40.svg" alt="" width="40" height="40" loading="lazy" decoding="async" />
+                <a href="mailto:kontakt@kp-code.pl" aria-label="Napisz e-mail na adres: kontakt@kp-code.pl" class="ft-contact-link">
+                  <svg class="ft-contact-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24">
+                    <path
+                      d="M4 4h16a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2z"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="1.8"
+                      stroke-linecap="round"
+                      stroke-linejoin="round" />
+                    <path d="M22 6 12 13 2 6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" />
+                  </svg>
                   <span>kontakt@kp-code.pl</span>
                 </a>
               </li>
@@ -907,9 +960,6 @@
 
     <!--Script -->
     <script src="js/sw-register.js" defer></script>
-    <script src="js/script.js" defer></script>
+    <script src="js/script.min.js" defer></script>
   </body>
 </html>
-
-
-

@@ -45,10 +45,12 @@ Source images live in `assets/img-src` and are generated into `assets/img`.
 Only these folders are processed: `hero`, `oferta`, `gallery`, `og`, `screenshots`.
 
 How to add a new image:
+
 - Put the original JPG/JPEG/PNG in the matching folder under `assets/img-src`.
 - Run `npm run images:build` to generate AVIF/WEBP and JPG fallbacks.
 
 Commands:
+
 - `npm run images:build`
 - `npm run images:clean`
 
@@ -76,7 +78,7 @@ All company names, addresses, and data are used as examples and do not represent
 ## Author
 
 Kamil Król
-**KP_Code_**
+**KP*Code***
 Front-End Developer
 Portfolio project — 2025
 
@@ -149,6 +151,6 @@ i nie odnoszą się do rzeczywistej działalności.
 ## Autor
 
 Kamil Król
-**KP_Code_**
+**KP*Code***
 Front-End Developer
 Projekt portfolio — 2025
