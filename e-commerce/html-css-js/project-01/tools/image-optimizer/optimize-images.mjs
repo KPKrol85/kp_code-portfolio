@@ -7,7 +7,7 @@ import sharp from "sharp";
 
 const DEFAULTS = {
   qualityJpg: 80,
-  qualityWebp: 80,
+  qualityWebp: 70,
   qualityAvif: 50,
   effortAvif: 6,
   mode: "inplace",

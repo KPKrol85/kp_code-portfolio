@@ -56,13 +56,7 @@
   inset: 0;
   pointer-events: none;
   z-index: 0;
-  background: linear-gradient(
-    to right,
-    color-mix(in srgb, var(--color-accent) 10%, transparent),
-    transparent 18%,
-    transparent 82%,
-    color-mix(in srgb, var(--color-accent) 10%, transparent)
-  );
+  background: linear-gradient(to right, color-mix(in srgb, var(--color-accent) 10%, transparent), transparent 18%, transparent 82%, color-mix(in srgb, var(--color-accent) 10%, transparent));
 }
 
 .header-inner {
@@ -276,7 +270,6 @@
     color: var(--color-ink);
   }
 }
-
 
 /* === 03 - Hero Section === */
 
@@ -503,8 +496,36 @@
   border-radius: var(--radius-lg);
   padding: var(--space-7);
   display: grid;
-  gap: var(--space-5);
+  gap: var(--space-3);
+  justify-items: center;
+  text-align: center;
+  position: relative;
 }
+
+.promo > div:first-child {
+  position: relative;
+  padding-bottom: var(--space-3);
+}
+
+.promo > div:first-child::after {
+  content: "";
+  display: block;
+  width: min(520px, 70%);
+  height: 1px;
+  margin: var(--space-4) auto 0;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    color-mix(in srgb, var(--color-accent) 35%, var(--color-border)),
+    transparent
+  );
+  opacity: 0.65;
+}
+
+.promo p {
+  max-width: 60ch;
+}
+
 
 /* === 05 - Footer layout === */
 
