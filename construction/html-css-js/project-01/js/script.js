@@ -3,7 +3,7 @@
    = Name: SolidCraft
    = Technology: html/css/js
    = Author: Kamil Król - kp_code_
-   = Last Update: 2025-12-20
+   = Last Update: 2026-01-01
    = Version: 1.00
    ================================
    = CSS Stylesheet
