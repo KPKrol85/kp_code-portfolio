@@ -16,7 +16,9 @@
     "format:check": "prettier -c \"**/*.{html,css,js,json,md}\"",
     "build:css": "postcss css/style.css -o css/style.min.css --no-map",
     "build:js": "terser js/script.js -o js/script.min.js -c -m",
-    "build": "npm run build:css && npm run build:js && npm run format"
+    "build": "npm run build:css && npm run build:js && npm run format",
+    "images:build": "node scripts/images.js build",
+    "images:clean": "node scripts/images.js clean"
   },
   "devDependencies": {
     "autoprefixer": "^10.4.21",
@@ -26,6 +28,7 @@
     "postcss-cli": "^11.0.1",
     "postcss-preset-env": "^10.4.0",
     "prettier": "3.3.3",
+    "sharp": "^0.34.5",
     "terser": "^5.31.0"
   },
   "engines": {

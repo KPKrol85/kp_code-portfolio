@@ -39,6 +39,21 @@ and production-ready front-end structure.
 
 ---
 
+## Image optimization
+
+Source images live in `assets/img-src` and are generated into `assets/img`.
+Only these folders are processed: `hero`, `oferta`, `gallery`, `og`, `screenshots`.
+
+How to add a new image:
+- Put the original JPG/JPEG/PNG in the matching folder under `assets/img-src`.
+- Run `npm run images:build` to generate AVIF/WEBP and JPG fallbacks.
+
+Commands:
+- `npm run images:build`
+- `npm run images:clean`
+
+---
+
 ## Project Status
 
 ✔ Completed (v1)
