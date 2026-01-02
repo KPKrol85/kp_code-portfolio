@@ -2187,10 +2187,11 @@ html[data-theme="dark"] .cta-box {
   --ft-ink: #eef1f6;
   --ft-ink-muted: color-mix(in oklab, var(--ft-ink), #cdd2db 35%);
   --ft-underline: linear-gradient(90deg, var(--c-accent) 0%, #f8d580 100%);
+
   border-top: 1px solid #2a2e36;
   background: radial-gradient(circle at top right, color-mix(in oklab, var(--c-accent), transparent 94%) 0%, transparent 42%), linear-gradient(180deg, #14161b 0%, #1b1f27 100%);
   color: var(--ft-ink);
-  padding: 60px 0 30px;
+  padding: 40px 0 20px;
 }
 
 html[data-theme="light"] .site-footer {
@@ -2199,13 +2200,6 @@ html[data-theme="light"] .site-footer {
   border-top: 1px solid var(--c-border);
   background: radial-gradient(circle at top right, color-mix(in oklab, var(--c-accent), transparent 96%) 0%, transparent 44%),
     linear-gradient(180deg, color-mix(in oklab, var(--c-surface), white 55%) 0%, color-mix(in oklab, var(--c-bg), white 0%) 100%);
-}
-
-html[data-theme="dark"] .site-footer {
-  --ft-ink: #eef1f6;
-  --ft-ink-muted: color-mix(in oklab, var(--ft-ink), #cdd2db 35%);
-  border-top: 1px solid #2a2e36;
-  background: radial-gradient(circle at top right, color-mix(in oklab, var(--c-accent), transparent 94%) 0%, transparent 42%), linear-gradient(180deg, #14161b 0%, #1b1f27 100%);
 }
 
 .site-footer a {
@@ -2220,7 +2214,12 @@ html[data-theme="dark"] .site-footer {
   font-weight: 600;
   letter-spacing: 0.04em;
   text-transform: uppercase;
-  color: inherit;
+}
+
+.ft-title--sub {
+  margin-top: 2.5rem;
+  font-size: 0.98rem;
+  opacity: 0.95;
 }
 
 .ft-grid {
@@ -2238,7 +2237,7 @@ html[data-theme="dark"] .site-footer {
   text-align: center;
 }
 
-:where(.ft-nav, .ft-contact, .ft-social, .ft-legal) {
+.ft-grid :where(.ft-nav, .ft-contact, .ft-social, .ft-legal) {
   list-style: none;
   margin: 0;
   padding: 0;
@@ -2250,34 +2249,35 @@ html[data-theme="dark"] .site-footer {
 .ft-nav a {
   padding: 0.2rem 0;
   display: inline-block;
-  text-align: center;
 }
 
 .brand-footer {
-  display: inline-block;
   font-family: var(--font-display);
   font-weight: 700;
   font-size: 1.35rem;
-  margin-bottom: 0.2rem;
   letter-spacing: 0.02em;
+  margin-bottom: 0.2rem;
 }
 
 .ft-col:first-child .brand-footer {
   display: flex;
   flex-direction: column;
   align-items: center;
-  text-align: center;
 }
 
 .brand-footer img {
   inline-size: 100px;
-  block-size: auto;
   margin-bottom: 0.6rem;
+}
+
+.brand-desc {
+  max-width: 46ch;
+  margin: 0.5rem auto 0;
+  text-align: left;
 }
 
 .site-footer :where(.ft-nav a, .ft-contact a, .ft-legal a) {
   position: relative;
-  color: inherit;
 }
 
 .site-footer :where(.ft-nav a, .ft-contact a, .ft-legal a)::after {
@@ -2286,8 +2286,8 @@ html[data-theme="dark"] .site-footer {
   right: 0;
   bottom: -2px;
   width: 0;
-  height: 2px;
-  background: var(--ft-underline);
+  height: 1px;
+  background: color-mix(in oklab, var(--c-accent), transparent 45%);
   transition: width 0.28s ease;
 }
 
@@ -2297,10 +2297,18 @@ html[data-theme="dark"] .site-footer {
   width: 100%;
 }
 
+.site-footer p.muted {
+  margin: 0.35em 0;
+}
+
+.site-footer .ft-address {
+  max-width: 26ch;
+  margin-inline: auto;
+}
+
 .ft-social {
   margin-top: 0.2em;
   grid-auto-flow: column;
-  justify-content: center;
   gap: 0.6rem;
 }
 
@@ -2308,9 +2316,35 @@ html[data-theme="dark"] .site-footer {
   gap: 0.8rem;
 }
 
+.ft-contact {
+  width: 100%;
+}
+
+.site-footer .ft-contact {
+  width: 100%;
+  max-width: 190px; /* dopasuj: 240–280px */
+  margin-inline: auto; /* wycentruje w kolumnie */
+  justify-items: start; /* ikony/tekst startują równo od tej samej osi */
+}
+
+.ft-contact li {
+  display: grid;
+  grid-template-columns: 20px 1fr;
+  align-items: center;
+  column-gap: clamp(0.6rem, 1.2vw, 1.2rem);
+  text-align: left;
+}
+
+.address-row {
+  display: grid;
+  grid-template-columns: 1fr;
+  column-gap: 0.6rem;
+  align-items: center;
+}
+
 .map-wrap {
   position: relative;
-  aspect-ratio: 16/10;
+  aspect-ratio: 16 / 10;
   border-radius: var(--radius);
   overflow: hidden;
   inline-size: 100%;
@@ -2326,159 +2360,48 @@ html[data-theme="dark"] .site-footer {
   border: 0;
 }
 
-@media (max-width: 640px) {
-  .map-wrap {
-    aspect-ratio: 4/3.2;
-    max-inline-size: 80%;
-  }
-}
-
 .ft-bottom {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
   justify-content: space-between;
   gap: 12px;
-  border-top: 1px solid color-mix(in oklab, #ffffff, transparent 90%);
-  margin-top: 40px;
+  margin-top: 0px;
   padding-top: 20px;
+  border-top: 1px solid color-mix(in oklab, #ffffff, transparent 90%);
 }
 
 html[data-theme="light"] .ft-bottom {
-  border-top: 1px solid color-mix(in oklab, #000000, transparent 90%);
-}
-
-html[data-theme="dark"] .ft-bottom {
-  border-top: 1px solid color-mix(in oklab, #ffffff, transparent 90%);
+  border-top-color: color-mix(in oklab, #000000, transparent 90%);
 }
 
 .copy {
   margin: 0;
-  font-size: 0.95rem;
+  font-size: 0.8rem;
   color: var(--ft-ink-muted);
+  opacity: 0.75;
 }
 
-.ft-legal {
+.ft-bottom .ft-legal {
+  list-style: none;
+  margin: 0;
+  padding: 0;
   display: flex;
   gap: 24px;
+  flex-wrap: wrap;
 }
 
-.ft-legal a {
+.ft-bottom .ft-legal a {
   color: var(--ft-ink-muted);
   transition: color 0.18s ease;
 }
 
-html[data-theme="light"] .ft-legal a:hover {
+html[data-theme="light"] .ft-bottom .ft-legal a:hover {
   color: #000000;
 }
 
-html[data-theme="dark"] .ft-legal a:hover {
+html[data-theme="dark"] .ft-bottom .ft-legal a:hover {
   color: #ffffff;
-}
-
-.ft-title--sub {
-  margin-top: 2.5rem;
-  font-size: 0.98rem;
-  opacity: 0.95;
-}
-
-.ft-address {
-  margin: 0.6rem 0;
-}
-
-.brand-desc {
-  max-width: 46ch;
-  margin: 0.5rem auto 0;
-  text-align: left;
-}
-
-.ft-address p {
-  margin-top: 0.2rem;
-  margin-bottom: 0.8rem;
-}
-
-.icon-dual img {
-  display: none;
-  width: 22px;
-  height: 22px;
-}
-
-html[data-theme="light"] .icon-dual .icon-light {
-  display: inline-block;
-}
-
-html[data-theme="dark"] .icon-dual .icon-dark {
-  display: inline-block;
-}
-
-.ft-contact {
-  justify-items: stretch;
-  width: 100%;
-}
-
-.ft-contact li {
-  display: grid;
-  grid-template-columns: 20px 1fr;
-  align-items: center;
-  column-gap: clamp(0.6rem, 1.2vw, 1.2rem);
-  text-align: left;
-  width: 100%;
-}
-
-.ft-contact .icon-dual {
-  justify-self: start;
-}
-
-.ft-contact a {
-  display: inline-block;
-}
-
-.address-row {
-  display: grid;
-  grid-template-columns: 20px 1fr;
-  align-items: center;
-  column-gap: 0.6rem;
-  justify-items: start;
-}
-
-.address-row img {
-  vertical-align: middle;
-}
-
-.site-footer a:not(.btn-social) {
-  text-underline-offset: 2px;
-}
-
-.site-footer .btn-social {
-  line-height: 1;
-  transition: color 0.18s ease;
-}
-
-.site-footer .btn-social:hover {
-  color: var(--c-accent);
-}
-
-.ft-social--bare .btn-social {
-  background: transparent;
-  border: 0;
-  box-shadow: none;
-  inline-size: auto;
-  block-size: auto;
-  padding: 8px;
-  line-height: 1;
-  transform: none;
-  color: currentColor;
-}
-
-.ft-social--bare .btn-social:hover {
-  color: var(--c-accent);
-  transform: translateY(-1px);
-}
-
-.ft-social--bare .btn-social:focus-visible {
-  outline: 2px solid var(--c-accent);
-  outline-offset: 3px;
-  border-radius: 8px;
 }
 
 :where(.btn-social, .ft-nav a, .ft-contact a, .ft-legal a):focus-visible {
@@ -2487,12 +2410,58 @@ html[data-theme="dark"] .icon-dual .icon-dark {
   text-decoration: none;
 }
 
+.ft-legal {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 24px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.ft-legalbar {
+  position: relative;
+  margin-top: 34px;
+  padding: 16px 0 12px;
+}
+
+.ft-legalbar::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: max(30%, 2rem);
+  right: max(30%, 2rem);
+  height: 1px;
+  background: color-mix(in oklab, var(--c-ink), transparent 88%);
+}
+
+.ft-legal a {
+  color: inherit;
+  text-decoration: none;
+  opacity: 0.85;
+  font-size: 0.875rem;
+}
+
 @media (max-width: 719px) {
   .ft-grid {
     gap: 40px;
   }
   .site-footer {
     padding-bottom: 40px;
+  }
+  .copy {
+    text-align: center;
+    width: 100%;
+  }
+  .ft-legalbar::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: max(15%, 2rem);
+    right: max(15%, 2rem);
+    height: 1px;
+    background: color-mix(in oklab, var(--c-ink), transparent 88%);
   }
 }
 
@@ -2505,7 +2474,7 @@ html[data-theme="dark"] .icon-dual .icon-dark {
 
 @media (min-width: 1024px) {
   .ft-grid {
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: 1.3fr 1fr 1.5fr 1fr;
     gap: 32px;
     justify-items: center;
   }
