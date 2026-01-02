@@ -489,7 +489,6 @@ html[data-theme="light"] .logo-light {
   height: calc(100dvh - var(--header-h));
   width: min(86vw, 360px);
   padding: 22px 16px 18px;
-  background: var(--c-bg);
   color: var(--c-ink);
   box-shadow: -18px 0 40px rgba(0, 0, 0, 0.25);
   transform: translate3d(100%, 0, 0);
@@ -498,6 +497,9 @@ html[data-theme="light"] .logo-light {
   z-index: 910;
   overflow-y: auto;
   -webkit-overflow-scrolling: touch;
+  background: color-mix(in oklab, var(--c-bg), transparent 12%);
+  backdrop-filter: blur(10px) saturate(1.1);
+  -webkit-backdrop-filter: blur(10px) saturate(1.1);
 }
 
 body.nav-open .nav-overlay {
