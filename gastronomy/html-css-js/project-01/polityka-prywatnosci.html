@@ -3,27 +3,22 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <!-- PREVIEW: tymczasowo blokujemy indeksację (usuń na produkcji) -->
     <meta name="robots" content="index,follow" />
     <meta name="format-detection" content="telephone=no" />
 
-    <!-- SEO -->
     <title>Polityka prywatności – Ambre</title>
     <meta name="description" content="Zapoznaj się z polityką prywatności Ambre: zasady przetwarzania danych, kontakt, cele i podstawy prawne oraz prawa użytkownika." />
     <meta name="author" content="Kamil Król | KP_Code_" />
     <meta name="color-scheme" content="light dark" />
-    <!-- TODO: Ustaw prawdziwy host produkcyjny -->
     <link rel="canonical" href="https://gastronomy-project-01.netlify.app/polityka-prywatnosci.html" />
 
-    <!-- Kolory motywu (PWA / przeglądarka) -->
     <meta name="theme-color" content="#fab204" />
     <meta name="theme-color" content="#fab204" media="(prefers-color-scheme: light)" />
     <meta name="theme-color" content="#0b0b0f" media="(prefers-color-scheme: dark)" />
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
 
-    <!-- Open Graph -->
     <meta property="og:locale" content="pl_PL" />
-    <meta property="og:type" content="article" />
+    <meta property="og:type" content="website" />
     <meta property="og:site_name" content="Ambre – Restauracja Fine Dining" />
     <meta property="og:title" content="Polityka prywatności – Ambre" />
     <meta property="og:description" content="Zapoznaj się z polityką prywatności Ambre: zasady przetwarzania danych, kontakt, cele i podstawy prawne oraz prawa użytkownika." />
@@ -33,14 +28,12 @@
     <meta property="og:image:height" content="630" />
     <meta property="og:image:alt" content="Ambre – restauracja fine dining" />
 
-    <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content="Polityka prywatności – Ambre" />
     <meta name="twitter:description" content="Zapoznaj się z polityką prywatności Ambre: zasady przetwarzania danych, kontakt, cele i podstawy prawne oraz prawa użytkownika." />
     <meta name="twitter:image" content="https://gastronomy-project-01.netlify.app/assets/img/og-img/og-1200x630.jpg" />
     <meta name="twitter:image:alt" content="Ambre – restauracja fine dining" />
 
-    <!-- Favicons + PWA -->
     <link rel="icon" href="assets/icons/favicons/favicon-32x32.png" sizes="32x32" type="image/png" />
     <link rel="icon" href="assets/icons/favicons/favicon-16x16.png" sizes="16x16" type="image/png" />
     <link rel="apple-touch-icon" href="assets/icons/favicons/apple-touch-icon.png" sizes="180x180" />
@@ -50,22 +43,18 @@
     <meta name="apple-mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-title" content="Ambre" />
 
-    <!-- Preconnect/DNS-prefetch for Google Maps -->
     <link rel="preconnect" href="https://www.google.com" crossorigin />
     <link rel="preconnect" href="https://maps.google.com" crossorigin />
     <link rel="dns-prefetch" href="//www.google.com" />
     <link rel="dns-prefetch" href="//maps.google.com" />
 
-    <!-- Lokalne fonty: Poppins + Source Sans 3 -->
     <link rel="preload" href="assets/fonts/poppins-v24-latin-regular.woff2" as="font" type="font/woff2" crossorigin />
     <link rel="preload" href="assets/fonts/poppins-v24-latin-600.woff2" as="font" type="font/woff2" crossorigin />
     <link rel="preload" href="assets/fonts/source-sans-3-v19-latin-regular.woff2" as="font" type="font/woff2" crossorigin />
     <link rel="preload" href="assets/fonts/source-sans-3-v19-latin-500.woff2" as="font" type="font/woff2" crossorigin />
 
-    <!-- Główny CSS -->
     <link rel="stylesheet" href="css/style.css" />
 
-    <!-- JSON-LD: WebPage + BreadcrumbList -->
     <script type="application/ld+json">
       {
         "@context": "https://schema.org",
@@ -85,9 +74,7 @@
             "@id": "https://gastronomy-project-01.netlify.app/#restaurant",
             "name": "Ambre",
             "url": "https://gastronomy-project-01.netlify.app/",
-            "image": [
-              "https://gastronomy-project-01.netlify.app/assets/img/og-img/og-1200x630.jpg"
-            ],
+            "image": ["https://gastronomy-project-01.netlify.app/assets/img/og-img/og-1200x630.jpg"],
             "telephone": "+48 533 537 091",
             "email": "kontakt@kp-code.pl",
             "address": {
@@ -97,11 +84,7 @@
               "addressLocality": "Tarnów",
               "addressCountry": "PL"
             },
-            "servesCuisine": [
-              "Fine Dining",
-              "Polska",
-              "Europejska"
-            ],
+            "servesCuisine": ["Fine Dining", "Polska", "Europejska"],
             "priceRange": "$$",
             "description": "Kameralna restauracja fine dining z autorskim, sezonowym menu degustacyjnym i starannie dobraną selekcją win."
           },
@@ -126,15 +109,16 @@
         ]
       }
     </script>
-    
   </head>
 
-  <!-- BODY -->
+  <!-- Body -->
   <body class="no-js">
-    <a class="skip-link" href="#main">Przejdź do treści</a>
+    <noscript>
+      <p>Ta strona wykorzystuje JavaScript. Włącz JS, aby w pełni z niej korzystać.</p>
+    </noscript>
     <a class="skip-link" href="#main">Przejdź do treści</a>
 
-    <!-- HEADER -->
+    <!-- Header -->
     <header id="top" class="site-header" data-sticky>
       <div class="container header-row">
         <a class="brand" href="index.html#top" aria-label="Strona główna restauracji Ambre">
@@ -190,7 +174,7 @@
       </div>
     </header>
 
-    <!-- Breadcrumbs (zaraz pod headerem) -->
+    <!-- Breadcrumbs -->
     <nav class="breadcrumbs" aria-label="Okruszki nawigacyjne">
       <div class="container">
         <ol>
@@ -200,110 +184,108 @@
       </div>
     </nav>
 
-    <!-- MAIN: page-legal -->
+    <!-- Main page-legal -->
     <main id="main" class="page-legal">
-      <section class="container">
-        <p class="eyebrow">Informacje prawne</p>
-        <h1>Polityka prywatności</h1>
+      <section class="container legal-simple" id="privacy" aria-labelledby="privacy-heading">
+        <div class="legal-container">
+          <p class="eyebrow">Informacje prawne</p>
+          <h1 id="privacy-heading" class="legal-title">Polityka prywatności</h1>
+          <p class="legal-lead">
+            Dokument opisuje zasady przetwarzania danych w ramach demonstracyjnej strony restauracji
+            <strong>Ambre</strong>
+            przygotowanej jako element portfolio
+            <strong>KP_Code_</strong>
+            .
+          </p>
+          <nav class="doc-toc" aria-label="Spis tresci">
+            <ul>
+              <li><a href="#privacy-1">1. Zakres i charakter przetwarzania</a></li>
+              <li><a href="#privacy-2">2. Podstawy prawne</a></li>
+              <li><a href="#privacy-3">3. Odbiorcy danych</a></li>
+              <li><a href="#privacy-4">4. Okres przechowywania</a></li>
+              <li><a href="#privacy-5">5. Prawa użytkownika</a></li>
+              <li><a href="#privacy-6">6. Bezpieczeństwo</a></li>
+              <li><a href="#privacy-7">7. Pliki cookies</a></li>
+              <li><a href="#privacy-8">8. Kontakt</a></li>
+              <li><a href="#privacy-9">9. Zmiany polityki</a></li>
+            </ul>
+          </nav>
+          <article class="doc-content legal-doc legal-content">
+            <p>
+              <small>
+                <strong>Uwaga:</strong>
+                Serwis stanowi
+                <strong>projekt demonstracyjny / portfolio</strong>
+                . Treści mają charakter informacyjny i nie są ofertą handlową.
+              </small>
+            </p>
 
-        <p class="muted">Ostatnia aktualizacja: 13.09.2025</p>
+            <h2 id="privacy-1">1. Zakres i charakter przetwarzania</h2>
+            <p>
+              Strona Ambre ma charakter demo UI/UX i nie prowadzi rzeczywistej działalności gastronomicznej ani sprzedaży. Formularze (np. rezerwacji lub kontaktowy) służą wyłącznie prezentacji
+              interfejsu i nie generują rzeczywistych zamówień ani płatności.
+            </p>
 
-        <h2 id="pp-1" tabindex="-1">1. Administrator danych</h2>
-        <p>
-          Administratorem danych osobowych jest
-          <strong>Demo — strona gastronomiczna</strong>
-          , ul. Marynarki Wojennej 12/31, 33-100 Tarnów, NIP 000-000-00-00. Kontakt:
-          <a href="mailto:twoja-firma@rezerwacja.pl">kp_code_@gmail.com</a>
-          , tel.
-          <a href="tel:+48533537091">+48 533 537 091</a>
-          .
-        </p>
+            <h2 id="privacy-2">2. Podstawy prawne</h2>
+            <p>
+              Podstawy prawne przetwarzania mają charakter informacyjny i odpowiadają typowym scenariuszom:
+              <em>art. 6 ust. 1 lit. a RODO</em>
+              (zgoda) oraz
+              <em>art. 6 ust. 1 lit. f RODO</em>
+              (uzasadniony interes administratora).
+            </p>
 
-        <h2 id="pp-2" tabindex="-1">2. Zakres przetwarzanych danych</h2>
-        <dl class="defs">
-          <dt>Dane podane dobrowolnie</dt>
-          <dd>np. imię i nazwisko, e-mail, telefon, preferencje, liczba osób, data i godzina rezerwacji (formularz/telefon/e-mail).</dd>
+            <h2 id="privacy-3">3. Odbiorcy danych</h2>
+            <p>Dane nie są przekazywane podmiotom trzecim w celach marketingowych. Serwis nie korzysta z zewnętrznych systemów sprzedaży ani automatycznych narzędzi profilowania.</p>
 
-          <dt>Dane techniczne</dt>
-          <dd>adres IP, znaczniki i identyfikatory cookies, typ urządzenia/przeglądarki, dane o aktywności na stronie.</dd>
-        </dl>
+            <h2 id="privacy-4">4. Okres przechowywania</h2>
+            <p>Dane nie są przechowywane długoterminowo. Wszelkie treści wprowadzane w formularzach mają charakter testowy i nie służą prowadzeniu realnej obsługi klientów.</p>
 
-        <h2 id="pp-3" tabindex="-1">3. Cele i podstawy prawne</h2>
-        <ul>
-          <li>
-            obsługa zapytań i rezerwacji –
-            <em>art. 6 ust. 1 lit. b RODO</em>
-            (niezbędność do zawarcia/wykonania umowy),
-          </li>
-          <li>
-            korespondencja i obsługa reklamacji –
-            <em>art. 6 ust. 1 lit. f RODO</em>
-            (prawnie uzasadniony interes),
-          </li>
-          <li>
-            analizy, bezpieczeństwo i statystyki –
-            <em>art. 6 ust. 1 lit. f RODO</em>
-            ,
-          </li>
-          <li>
-            marketing własny (np. newsletter) –
-            <em>art. 6 ust. 1 lit. a RODO</em>
-            (zgoda).
-          </li>
-        </ul>
+            <h2 id="privacy-5">5. Prawa użytkownika</h2>
+            <p>
+              Użytkownik ma prawo do informacji, sprostowania, ograniczenia przetwarzania oraz usunięcia danych. W sprawach dotyczących prywatności prosimy o kontakt na adres
+              <a href="mailto:kontakt@kp-code.pl">kontakt@kp-code.pl</a>
+              .
+            </p>
 
-        <h2 id="pp-4" tabindex="-1">4. Okres przechowywania</h2>
-        <p>
-          Dane przechowujemy przez czas niezbędny do realizacji celu: realizacja rezerwacji i rozliczenia – do czasu upływu terminów przedawnienia, korespondencja – do 12 miesięcy, działania
-          marketingowe – do wycofania zgody, statystyki/bezpieczeństwo – zgodnie z uzasadnionym interesem lub przepisami.
-        </p>
+            <h2 id="privacy-6">6. Bezpieczeństwo</h2>
+            <p>
+              Serwis korzysta z szyfrowanego połączenia HTTPS i nie wymaga podawania danych wrażliwych. Dane testowe nie są udostępniane publicznie ani wykorzystywane do identyfikacji użytkowników.
+            </p>
 
-        <h2 id="pp-5" tabindex="-1">5. Odbiorcy danych</h2>
-        <p>
-          Dane mogą być przekazywane dostawcom usług IT (hosting, poczta, systemy rezerwacyjne), firmie obsługującej księgowość/prawo – wyłącznie w zakresie niezbędnym do realizacji usług i na
-          podstawie umów powierzenia.
-        </p>
+            <h2 id="privacy-7">7. Pliki cookies</h2>
+            <p>
+              Strona wykorzystuje wyłącznie cookies techniczne niezbędne do poprawnego działania interfejsu. Szczegóły znajdują się w dokumencie
+              <a href="cookies.html">Polityka cookies</a>
+              .
+            </p>
 
-        <h2 id="pp-6" tabindex="-1">6. Przekazywanie poza EOG</h2>
-        <p>
-          Co do zasady nie przekazujemy danych poza Europejski Obszar Gospodarczy. Jeżeli doszłoby do takiego przekazania, zastosujemy odpowiednie zabezpieczenia (np. standardowe klauzule umowne).
-        </p>
+            <h2 id="privacy-8">8. Kontakt</h2>
+            <p>
+              Operatorem projektu jest
+              <strong>Kamil Król (KP_Code_)</strong>
+              . W sprawach związanych z danymi prosimy o kontakt:
+              <a href="mailto:kontakt@kp-code.pl">kontakt@kp-code.pl</a>
+              .
+            </p>
 
-        <h2 id="pp-7" tabindex="-1">7. Twoje prawa</h2>
-        <ul>
-          <li>dostęp do danych, ich sprostowanie, usunięcie lub ograniczenie przetwarzania,</li>
-          <li>przeniesienie danych, wniesienie sprzeciwu wobec przetwarzania,</li>
-          <li>wycofanie zgody w dowolnym momencie (bez wpływu na zgodność z prawem wcześniejszego przetwarzania),</li>
-          <li>skarga do Prezesa UODO, ul. Stawki 2, 00-193 Warszawa.</li>
-        </ul>
+            <h2 id="privacy-9">9. Zmiany polityki</h2>
+            <p>Aktualizacje dokumentu publikowane są na tej stronie i obowiązują od momentu publikacji.</p>
 
-        <h2 id="pp-8" tabindex="-1">8. Pliki cookies i analityka</h2>
-        <p>Serwis wykorzystuje niezbędne pliki cookies do prawidłowego działania (sesja, bezpieczeństwo). Za Twoją zgodą mogą działać cookies funkcjonalne/analityczne/marketingowe.</p>
-        <p class="legal-actions">
-          <a href="#zmien-zgode" class="btn-legal">Zmień zgodę na cookies</a>
-        </p>
-
-        <h2 id="pp-9" tabindex="-1">9. Zabezpieczenia</h2>
-        <p>Stosujemy środki organizacyjne i techniczne adekwatne do ryzyka (m.in. szyfrowanie połączenia HTTPS, kontrola uprawnień, kopie zapasowe).</p>
-
-        <h2 id="pp-10" tabindex="-1">10. Zmiany polityki</h2>
-        <p>Polityka może być okresowo aktualizowana. Nową wersję publikujemy na tej stronie wraz z datą aktualizacji powyżej.</p>
-
-        <h2 id="pp-11" tabindex="-1">11. Kontakt</h2>
-        <p>
-          W sprawach dotyczących danych osobowych skontaktuj się z nami:
-          <a href="mailto:twoja-firma@rezerwacja.pl">twoja-firma@rezerwacja.pl</a>
-          , tel.
-          <a href="tel:+48600000000">+48 600 000 000</a>
-          .
-        </p>
+            <p>
+              <small>
+                Data ostatniej aktualizacji:
+                <time datetime="2025-12-19">19.12.2025</time>
+              </small>
+            </p>
+          </article>
+        </div>
       </section>
     </main>
 
-    <!-- FOOTER -->
+    <!-- Footer -->
     <footer id="footer" class="site-footer" role="contentinfo">
       <div class="container ft-grid">
-        <!-- Kolumna 1: Branding + opis -->
         <div class="ft-col">
           <a href="index.html#top" class="brand-footer" aria-label="Strona główna KP_Code">
             <img class="logo logo-light" src="assets/img/logo-img/logo-light.svg" alt="Ambre – logo restauracji" width="140" height="140" decoding="async" />
@@ -315,7 +297,6 @@
           </p>
         </div>
 
-        <!-- Kolumna 2: Nawigacja -->
         <nav class="ft-col" aria-label="Nawigacja w stopce">
           <h3 class="ft-title">Nawigacja</h3>
           <ul class="ft-nav">
@@ -328,7 +309,6 @@
           </ul>
         </nav>
 
-        <!-- Kolumna 3: Adres + mapa -->
         <div class="ft-col" aria-labelledby="ft-findus">
           <h3 id="ft-findus" class="ft-title">Tu nas znajdziesz</h3>
 
@@ -357,7 +337,6 @@
           </div>
         </div>
 
-        <!-- Kolumna 4: Kontakt + Social -->
         <div class="ft-col" aria-labelledby="ft-contact">
           <h3 id="ft-contact" class="ft-title">Kontakt</h3>
           <ul class="ft-contact" aria-label="Dane kontaktowe">
@@ -386,10 +365,8 @@
             </li>
           </ul>
 
-          <!-- Social Media -->
           <h3 class="ft-title ft-title--sub">Social Media</h3>
           <ul class="ft-social ft-social--bare" aria-label="Linki społecznościowe">
-            <!-- Facebook -->
             <li>
               <a class="btn-social" href="https://facebook.com" aria-label="Facebook" rel="me external noopener" target="_blank">
                 <img class="icon-light" src="assets/icons/icons-svg/facebook-light-mode-40x40.svg" alt="Facebook" width="24" height="24" decoding="async" />
@@ -428,12 +405,13 @@
         </p>
         <!-- Legal -->
         <ul class="ft-legal">
+          <li><a href="regulamin.html" rel="nofollow">Regulamin</a></li>
           <li><a href="cookies.html" rel="nofollow">Cookies</a></li>
         </ul>
       </div>
     </footer>
 
-    <!-- LIGHTBOX -->
+    <!-- Lightbox -->
     <div id="lb" role="dialog" aria-modal="true" aria-label="Podgląd dania">
       <button class="lb-close" aria-label="Zamknij">×</button>
       <picture class="lb-media">
@@ -443,16 +421,13 @@
       </picture>
     </div>
 
-    <!-- SCROLL UP -->
+    <!-- Scrool Up -->
     <button class="scroll-btn scroll-up" data-testid="scroll-up" type="button" aria-label="Przewiń na górę" title="Na górę" aria-hidden="true" tabindex="-1" hidden>
       <img class="icon-light" src="assets/icons/icons-svg/chevron-up-black.svg" alt="" width="16" height="16" decoding="async" />
       <img class="icon-dark" src="assets/icons/icons-svg/chevron-up-white.svg" alt="" width="16" height="16" decoding="async" />
     </button>
 
-    <!-- SCRIPT -->
-    <!-- przycisk instalacji PWA (ukryty do czasu beforeinstallprompt) -->
-    <button data-install-pwa hidden>📲 Zainstaluj aplikację</button>
-
+    <!-- JS scripts -->
     <script src="js/sw-register.js" defer></script>
     <script src="js/pwa-install.js" defer></script>
     <script src="js/script.min.js" defer></script>

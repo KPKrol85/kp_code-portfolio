@@ -10,26 +10,26 @@
    = Structure Overview
    ================================
    = 00 - Helpers
-   = 01 - MOBILE NAV TOGGLE
-   = 02 - TABS
-   = 03 - LIGHTBOX
-   = 04 - RESERVATION FORM
-   = 05 - FOOTER YEAR
-   = 06 - THEME SWITCHER
-   = 07 - SCROLLSPY
-   = 08 - SCROLL BUTTONS
+   = 01 - Mobile nav toggle
+   = 02 - Tabs
+   = 03 - Lightbox
+   = 04 - Rezerwation form
+   = 05 - Footer year
+   = 06 - Theme switcher
+   = 07 - Scroll spy
+   = 08 - Scroll buttons
    = 09 - CTA
-   = 10 - SMART NAV
-   = 11 - NAV
-   = 12 - PAGE MENU
+   = 10 - Smart nav
+   = 11 - Nav
+   = 12 - Page menu
    = 13 - FAQ
-   = 14 - GALLERY FILTER
-   = 15 - STICKY SHADOW ON SCROLL
-   = 16 - SCROLL TO TOP
-   = 17 - SCROLL TARGETS
+   = 14 - Gallery filter
+   = 15 - Sticky shadow on scroll
+   = 16 - Scroll to top
+   = 17 - Scroll targets
    =============================== */
 
-/* ===== 00 - Helpers ===== */
+/* === 00 - Helpers === */
 
 const DEBUG = false;
 const log = (...a) => DEBUG && console.log("[ui]", ...a);
@@ -47,14 +47,12 @@ function initHelpers() {
   log("helpers initialized");
 }
 
-/* ===== 01 - MOBILE NAV TOGGLE ===== */
+/* === 01 - Mobile nav toggle === */
 
 function initMobileNav() {
   const toggle = byTestId("nav-toggle") || $(".nav-toggle");
   const nav = byTestId("site-nav") || $("#site-nav");
   if (!toggle || !nav) return;
-
-  // TODO: Rozważyć focus-trap w otwartym mobilnym menu, aby tab nie uciekał poza nawigację.
 
   const mq = window.matchMedia("(min-width: 900px)");
   const setExpanded = (open) => {
@@ -99,7 +97,7 @@ function initMobileNav() {
   log("nav-toggle:", !!toggle, "site-nav:", !!nav);
 }
 
-/* ===== 02 - TABS ===== */
+/* === 02 - Tabs === */
 
 function initTabs() {
   const tabsRoot = byTestId("menu-tabs") || document;
@@ -168,7 +166,7 @@ function initTabs() {
   log("menu-tabs:", !!byTestId("menu-tabs"), "tabs:", tabs.length);
 }
 
-/* ===== 03 - LIGHTBOX ===== */
+/* === 03 - Lightbox === */
 
 function initLightbox() {
   const lb = document.getElementById("lb") || document.querySelector(".lightbox");
@@ -492,7 +490,6 @@ function initLightbox() {
   btnPrev.addEventListener("click", onPrev);
   btnNext.addEventListener("click", onNext);
 
-  // swipe
   (function () {
     if (!img) return;
     const SUPPORTS_POINTER = "PointerEvent" in window;
@@ -606,7 +603,6 @@ function initLightbox() {
     }
   })();
 
-  // fullscreen + zoom fallback
   const fsEl = lb;
   const canFS = !!(fsEl.requestFullscreen || fsEl.webkitRequestFullscreen || fsEl.msRequestFullscreen);
   const reqFS = () => fsEl.requestFullscreen?.() || fsEl.webkitRequestFullscreen?.() || fsEl.msRequestFullscreen?.();
@@ -675,14 +671,13 @@ function initLightbox() {
     }
   });
 
-  // API
   window.openLB = (base, alt, idx) => openLB(base, alt, idx);
   window.closeLB = closeLB;
 
   console.log("lightbox ready →", isDialog ? "<dialog>" : "<div>");
 }
 
-/* ===== 04 - RESERVATION FORM ===== */
+/* === 04 - Reservation form === */
 
 function initReservationForm() {
   const form = byTestId("booking-form") || $("#booking-form");
@@ -714,7 +709,6 @@ function initReservationForm() {
 
     if (btn && btn.classList.contains("is-loading")) return;
 
-    // honeypot
     if (form.company && form.company.value.trim() !== "") {
       msg.textContent = "Wykryto bota — zgłoszenie odrzucone.";
       return;
@@ -743,7 +737,7 @@ function initReservationForm() {
   log("booking-form:", !!form, "btn-form:", !!btn);
 }
 
-/* ===== 05 - FOOTER YEAR ===== */
+/* === 05 - Footer year === */
 
 function initFooterYear() {
   const y = $("#year");
@@ -751,7 +745,7 @@ function initFooterYear() {
   y.textContent = new Date().getFullYear();
 }
 
-/* ===== 06 - THEME SWITCHER ===== */
+/* === 06 - THheme switcher === */
 
 function initThemeSwitcher() {
   const btn = byTestId("theme-toggle") || $(".theme-toggle");
@@ -796,7 +790,7 @@ function initThemeSwitcher() {
   log("theme-toggle:", !!btn);
 }
 
-/* ===== 07 - SCROLLSPY ===== */
+/* === 07 - Scrollspy === */
 
 function initScrollspy() {
   const links = $$("#site-nav a[href^='#']");
@@ -840,7 +834,7 @@ function initScrollspy() {
   log("scrollspy:", links.length);
 }
 
-/* ===== 08 - SCROLL BUTTONS ===== */
+/* === 08 - Scroll buttons === */
 
 function initScrollButtons() {
   const btnDown = byTestId("scroll-down") || $(".scroll-down");
@@ -891,7 +885,7 @@ function initScrollButtons() {
   log("scroll-down:", !!btnDown, "scroll-up:", !!btnUp);
 }
 
-/* ===== 09 - CTA ===== */
+/* === 09 - CTA === */
 
 function initCtaPulse() {
   const ctas = document.querySelectorAll(".btn-cta");
@@ -911,7 +905,7 @@ function initCtaPulse() {
   log("cta buttons:", ctas.length);
 }
 
-/* ===== 10 - SMART NAV ===== */
+/* === 10 - Smart nav === */
 
 function initSmartNav() {
   const path = location.pathname;
@@ -930,7 +924,7 @@ function initSmartNav() {
   log("smart-nav links:", links.length);
 }
 
-/* ===== 11 - NAV ===== */
+/* === 11 - Nav === */
 
 function initAriaCurrent() {
   const nav = document.querySelector(".site-nav");
@@ -970,7 +964,7 @@ function initAriaCurrent() {
   log("aria-current nav:", links.length);
 }
 
-/* ===== 12 - PAGE MENU ===== */
+/* === 12 - Page menu === */
 
 function initPageMenuPanel() {
   if (!document.body.classList.contains("page-menu")) return;
@@ -1004,7 +998,7 @@ function initPageMenuPanel() {
   log("page-menu initialized");
 }
 
-/* ===== 13 - FAQ ===== */
+/* === 13 - FAQ === */
 
 function initFaqAria() {
   const root = document.getElementById("faq") || document.querySelector(".faq");
@@ -1029,7 +1023,7 @@ function initFaqAria() {
   log("faq panels:", panels.length);
 }
 
-/* ===== 14 - GALLERY FILTER ===== */
+/* === 14 - Gallery filter === */
 
 function initGalleryFilter() {
   const root = document.querySelector("main.page-gallery");
@@ -1130,20 +1124,20 @@ function initGalleryFilter() {
   log("gallery-filter tabs:", tabs.length, "items:", items.length);
 }
 
-/* ===== 15 - STICKY SHADOW ON SCROLL ===== */
+/* === 15 - Sticky shadow on scroll === */
 
 function initStickyShadow() {
   const onScroll = () => {
     document.body.classList.toggle("is-scrolled", window.scrollY > 10);
   };
 
-  onScroll(); // stan początkowy
+  onScroll();
   window.addEventListener("scroll", onScroll, { passive: true });
 
   log("sticky shadow active");
 }
 
-/* ===== 16 - SCROLL TO TOP ===== */
+/* === 16 - Scroll to top === */
 
 function initScrollToTop() {
   const prefersReduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
@@ -1162,7 +1156,7 @@ function initScrollToTop() {
   log("scroll-to-top initialized");
 }
 
-/* ===== 17 - SCROLL TARGETS ===== */
+/* === 17 - Scroll targets === */
 
 function initScrollTargets() {
   const btns = document.querySelectorAll("[data-target]");
@@ -1178,7 +1172,7 @@ function initScrollTargets() {
   log("scroll-target buttons:", btns.length);
 }
 
-/* ===== BOOTSTRAP ===== */
+/* === Bootstrap === */
 
 const FEATURES = [
   { name: "HELPERS", init: initHelpers },
@@ -1219,5 +1213,3 @@ function boot() {
   }
 }
 document.addEventListener("DOMContentLoaded", boot);
-
-/* ===== End of js/script.js ===== */
