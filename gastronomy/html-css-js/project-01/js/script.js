@@ -52,49 +52,105 @@ function initHelpers() {
 function initMobileNav() {
   const toggle = byTestId("nav-toggle") || $(".nav-toggle");
   const nav = byTestId("site-nav") || $("#site-nav");
-  if (!toggle || !nav) return;
+  const drawer = $(".nav-drawer");
+  const overlay = $(".nav-overlay");
+  if (!toggle || !nav || !drawer || !overlay) return;
 
-  const mq = window.matchMedia("(min-width: 900px)");
-  const setExpanded = (open) => {
-    document.body.classList.toggle("nav-open", open);
-    toggle.setAttribute("aria-expanded", String(open));
+  const mqMobile = window.matchMedia("(max-width: 900px)");
+  const drawerNav = drawer.querySelector(".nav-drawer-inner") || drawer;
+  let closeTimer = null;
+
+  const setupAccordion = (root) => {
+    const items = Array.from(root.querySelectorAll(".has-submenu"));
+    items.forEach((item, index) => {
+      const trigger = item.querySelector(":scope > a");
+      const submenu = item.querySelector(":scope > .nav-submenu");
+      if (!trigger || !submenu) return;
+      if (!submenu.id) submenu.id = `drawer-submenu-${index + 1}`;
+      trigger.classList.add("drawer-accordion-trigger");
+      trigger.setAttribute("aria-controls", submenu.id);
+      trigger.setAttribute("aria-expanded", "false");
+    });
+
+    root.addEventListener("click", (e) => {
+      const trigger = e.target.closest(".drawer-accordion-trigger");
+      if (trigger) {
+        if (!mqMobile.matches) return;
+        e.preventDefault();
+        const item = trigger.closest(".has-submenu");
+        const isOpen = item.classList.contains("is-accordion-open");
+        items.forEach((other) => {
+          if (other === item) return;
+          other.classList.remove("is-accordion-open");
+          other.querySelector(":scope > .drawer-accordion-trigger")?.setAttribute("aria-expanded", "false");
+        });
+        item.classList.toggle("is-accordion-open", !isOpen);
+        trigger.setAttribute("aria-expanded", String(!isOpen));
+        return;
+      }
+      if (e.target.closest("a")) setOpen(false);
+    });
   };
 
-  if (!toggle.hasAttribute("aria-controls")) {
-    toggle.setAttribute("aria-controls", nav.id || "site-nav");
-  }
-
-  toggle.addEventListener("click", () => setExpanded(!document.body.classList.contains("nav-open")), { passive: true });
-
-  nav.addEventListener(
-    "click",
-    (e) => {
-      if (e.target.closest("a")) setExpanded(false);
-    },
-    { passive: true }
-  );
-
-  let lastDesktop = mq.matches;
-  const onMQChange = () => {
-    const nowDesktop = mq.matches;
-    if (nowDesktop && !lastDesktop) setExpanded(false);
-    lastDesktop = nowDesktop;
+  const buildDrawer = () => {
+    if (drawerNav.dataset.built === "true") return;
+    const list = nav.querySelector("ul");
+    if (!list) return;
+    const cloned = list.cloneNode(true);
+    cloned.classList.add("drawer-menu");
+    drawerNav.innerHTML = "";
+    drawerNav.appendChild(cloned);
+    drawerNav.dataset.built = "true";
+    setupAccordion(cloned);
   };
-  mq.addEventListener?.("change", onMQChange);
-  window.addEventListener("resize", onMQChange, { passive: true });
 
-  document.addEventListener("click", (e) => {
-    if (!document.body.classList.contains("nav-open")) return;
-    const insideNav = e.target.closest("#site-nav");
-    const insideBtn = e.target.closest(".nav-toggle");
-    if (!insideNav && !insideBtn) setExpanded(false);
-  });
+  const drawerId = drawer.id || "mobile-drawer";
+  if (!drawer.id) drawer.id = drawerId;
+  toggle.setAttribute("aria-controls", drawerId);
+
+  const setOpen = (open) => {
+    if (closeTimer) {
+      clearTimeout(closeTimer);
+      closeTimer = null;
+    }
+    if (!mqMobile.matches && open) return;
+    if (open) {
+      buildDrawer();
+      overlay.hidden = false;
+      drawer.hidden = false;
+      drawer.setAttribute("aria-hidden", "false");
+      requestAnimationFrame(() => {
+        document.body.classList.add("nav-open");
+        toggle.setAttribute("aria-expanded", "true");
+        const firstLink = drawer.querySelector("a, button, [tabindex]:not([tabindex='-1'])");
+        firstLink?.focus();
+      });
+      return;
+    }
+    document.body.classList.remove("nav-open");
+    toggle.setAttribute("aria-expanded", "false");
+    drawer.setAttribute("aria-hidden", "true");
+    closeTimer = window.setTimeout(() => {
+      overlay.hidden = true;
+      drawer.hidden = true;
+    }, 260);
+    toggle.focus();
+  };
+
+  toggle.addEventListener("click", () => setOpen(!document.body.classList.contains("nav-open")), { passive: true });
+  overlay.addEventListener("click", () => setOpen(false));
 
   document.addEventListener("keydown", (e) => {
-    if (e.key === "Escape" && document.body.classList.contains("nav-open")) setExpanded(false);
+    if (e.key === "Escape" && document.body.classList.contains("nav-open")) setOpen(false);
   });
 
-  log("nav-toggle:", !!toggle, "site-nav:", !!nav);
+  const onMQChange = () => {
+    if (!mqMobile.matches) setOpen(false);
+  };
+  mqMobile.addEventListener?.("change", onMQChange);
+  window.addEventListener("resize", onMQChange, { passive: true });
+
+  log("nav-toggle:", !!toggle, "site-nav:", !!nav, "drawer:", !!drawer);
 }
 
 /* === 02 - Tabs === */
