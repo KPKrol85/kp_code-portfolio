@@ -51,11 +51,6 @@
     <meta name="apple-mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-title" content="Ambre" />
 
-    <link rel="preconnect" href="https://www.google.com" crossorigin />
-    <link rel="preconnect" href="https://maps.google.com" crossorigin />
-    <link rel="dns-prefetch" href="//www.google.com" />
-    <link rel="dns-prefetch" href="//maps.google.com" />
-
     <link rel="preload" href="assets/fonts/poppins-v24-latin-regular.woff2" as="font" type="font/woff2" crossorigin />
     <link rel="preload" href="assets/fonts/poppins-v24-latin-600.woff2" as="font" type="font/woff2" crossorigin />
     <link rel="preload" href="assets/fonts/source-sans-3-v19-latin-regular.woff2" as="font" type="font/woff2" crossorigin />
@@ -141,7 +136,6 @@
           <img class="logo logo-light" src="assets/img/logo-img/logo-name-light.svg" alt="Ambre – restauracja fine dining" width="140" height="140" decoding="async" />
           <img class="logo logo-dark" src="assets/img/logo-img/logo-name-dark.svg" alt="" aria-hidden="true" width="140" height="140" decoding="async" />
         </a>
-
         <nav id="site-nav" class="site-nav" data-testid="site-nav" aria-label="Główna nawigacja">
           <ul>
             <li><a href="index.html#onas">O nas</a></li>
@@ -162,7 +156,6 @@
             <li><a href="index.html#faq">FAQ</a></li>
           </ul>
         </nav>
-
         <div class="header-actions">
           <a href="tel:+48533537091" class="btn btn-ring" aria-label="Zadzwoń do restauracji KP_Code">
             <span class="icon-dual" aria-hidden="true">
@@ -171,14 +164,12 @@
             </span>
             <span class="phone-text">+48&nbsp;533&nbsp;537&nbsp;091</span>
           </a>
-
           <button class="theme-toggle" data-testid="theme-toggle" type="button" aria-label="Przełącz motyw" aria-pressed="false" title="Motyw">
             <span class="icon-dual" aria-hidden="true">
               <img class="icon-light" src="assets/icons/icons-svg/sun-outline.svg" alt="Tryb jasny" width="20" height="20" decoding="async" />
               <img class="icon-dark" src="assets/icons/icons-svg/moon-outline.svg" alt="Tryb ciemny" width="20" height="20" decoding="async" />
             </span>
           </button>
-
           <button class="nav-toggle" data-testid="nav-toggle" type="button" aria-controls="site-nav" aria-expanded="false" aria-label="Menu">
             <span class="icon-dual" aria-hidden="true">
               <img class="icon-light" src="assets/icons/icons-svg/hamburger-black.svg" alt="" width="20" height="20" decoding="async" />
@@ -205,11 +196,12 @@
           width="1600"
           height="900" />
       </picture>
-
       <div class="container hero-inner">
-        <p class="eyebrow">Fine Dining</p>
+        <div class="hero-brand">
+          <img src="assets/img/logo-img/logo-name-dark.svg" class="hero-brand-logo" alt="" aria-hidden="true" decoding="async" />
+        </div>
         <h1>Sezonowe menu degustacyjne</h1>
-        <p class="lead">Autorskie dania, selekcja win i kameralna atmosfera w centrum miasta.</p>
+        <p class="lead">Autorskie dania tworzone z najlepszych składników, starannie dobrane wina i kameralna atmosfera sprzyjająca spokojnemu celebrowaniu smaku.</p>
         <div class="hero-cta btn-group">
           <button type="button" class="btn btn-primary" data-target="#rezerwacja" aria-label="Przejdź do formularza rezerwacji stolika">Zarezerwuj stolik</button>
           <button type="button" class="btn btn-ghost" data-target="#menu">Zobacz menu</button>
@@ -736,9 +728,8 @@
 
           <div class="map-wrap">
             <iframe
-              id="map-embed"
-              title="Mapa lokalizacji – demo strony gastronomicznej"
-              src="https://www.google.com/maps?q=ul.+Smakoszy+12,+00-950+Warszawa&z=15&output=embed"
+              title="Mapa lokalizacji – Ambre Restauracja"
+              src="https://www.google.com/maps?q=ul.+Marynarki+Wojennej+12,+33-100+Tarnów,+Polska&z=15&output=embed"
               loading="lazy"
               referrerpolicy="no-referrer-when-downgrade"
               allowfullscreen
@@ -811,9 +802,10 @@
         <p class="copy">
           ©
           <span id="year"></span>
-          KP_Code. Wszelkie prawa zastrzeżone. Projekt i wdrożenie:
-          <a href="#" rel="author">KP_Code</a>
+          Wszelkie prawa zastrzeżone. | Projekt i wdrożenie:
+          <a href="#" rel="author">KP_Code_</a>
         </p>
+
         <!-- Legal -->
         <ul class="ft-legal">
           <li><a href="regulamin.html" rel="nofollow">Regulamin</a></li>

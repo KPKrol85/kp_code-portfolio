@@ -1,22 +1,12 @@
-/* sw.js — gastronomy-01 */
-const APP_VERSION = "v2.0.3-2025-10-31";
+/* ambre-v1.0.0 */
+const APP_VERSION = "ambre-v1.0.0";
 
 const CACHE_PAGES = `pages-${APP_VERSION}`;
 const CACHE_STATIC = `static-${APP_VERSION}`;
 const CACHE_MEDIA = `media-${APP_VERSION}`;
-const CORE_FALLBACK = "/404.html"; // offline fallback
+const CORE_FALLBACK = "/404.html";
 
-// Pliki krytyczne do wstępnego cache
-const PRECACHE = [
-  "/", // shell
-  "/index.html",
-  "/menu.html",
-  "/galeria.html",
-  "/cookies.html",
-  "/polityka-prywatnosci.html",
-  "/manifest.webmanifest",
-  CORE_FALLBACK,
-];
+const PRECACHE = ["/", "/index.html", "/menu.html", "/galeria.html", "/cookies.html", "/polityka-prywatnosci.html", "/manifest.webmanifest", CORE_FALLBACK];
 
 self.addEventListener("install", (e) => {
   e.waitUntil(
@@ -31,13 +21,11 @@ self.addEventListener("install", (e) => {
 self.addEventListener("activate", (e) => {
   e.waitUntil(
     (async () => {
-      // Navigation Preload dla szybszego fetch, jeśli dostępne
       if ("navigationPreload" in self.registration) {
         try {
           await self.registration.navigationPreload.enable();
         } catch {}
       }
-      // Usuń stare cache
       const keep = new Set([CACHE_PAGES, CACHE_STATIC, CACHE_MEDIA]);
       const keys = await caches.keys();
       await Promise.all(keys.filter((k) => !keep.has(k)).map((k) => caches.delete(k)));
@@ -46,7 +34,6 @@ self.addEventListener("activate", (e) => {
   self.clients.claim();
 });
 
-// Helpery cache
 async function putSafe(cacheName, request, response) {
   try {
     const cache = await caches.open(cacheName);
@@ -58,7 +45,6 @@ async function putSafe(cacheName, request, response) {
 self.addEventListener("fetch", (e) => {
   const req = e.request;
 
-  // 1) Nawigacje (HTML) — network-first z fallbackami
   if (req.mode === "navigate") {
     e.respondWith(
       (async () => {
@@ -67,7 +53,6 @@ self.addEventListener("fetch", (e) => {
           const net = preload || (await fetch(req, { credentials: "same-origin" }));
           return putSafe(CACHE_PAGES, req, net);
         } catch {
-          // sieć niedostępna → cache lub fallback
           const cached = await caches.match(req);
           return cached || caches.match(CORE_FALLBACK);
         }
@@ -78,7 +63,6 @@ self.addEventListener("fetch", (e) => {
 
   const dest = req.destination;
 
-  // 2) CSS/JS/Worker — stale-while-revalidate
   if (dest === "style" || dest === "script" || dest === "worker") {
     e.respondWith(
       (async () => {
@@ -92,7 +76,6 @@ self.addEventListener("fetch", (e) => {
     return;
   }
 
-  // 3) Obrazy i fonty — cache-first
   if (dest === "image" || dest === "font") {
     e.respondWith(
       (async () => {
@@ -102,7 +85,6 @@ self.addEventListener("fetch", (e) => {
           const res = await fetch(req, { credentials: "same-origin" });
           return putSafe(CACHE_MEDIA, req, res);
         } catch {
-          // brak sieci i brak w cache → nic nie rób, przeglądarka pokaże własny placeholder
           return Response.error();
         }
       })()
@@ -110,7 +92,6 @@ self.addEventListener("fetch", (e) => {
     return;
   }
 
-  // 4) Inne żądania — passthrough z łagodnym cache static
   if (req.url.includes("/assets/") || req.url.includes("/css/") || req.url.includes("/js/")) {
     e.respondWith(
       (async () => {
@@ -127,7 +108,6 @@ self.addEventListener("fetch", (e) => {
   }
 });
 
-// Manualne odświeżenie SW z aplikacji: postMessage({type:"SKIP_WAITING"})
 self.addEventListener("message", (e) => {
   if (e?.data && e.data.type === "SKIP_WAITING") self.skipWaiting();
 });

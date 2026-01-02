@@ -43,11 +43,6 @@
     <meta name="apple-mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-title" content="Ambre" />
 
-    <link rel="preconnect" href="https://www.google.com" crossorigin />
-    <link rel="preconnect" href="https://maps.google.com" crossorigin />
-    <link rel="dns-prefetch" href="//www.google.com" />
-    <link rel="dns-prefetch" href="//maps.google.com" />
-
     <link rel="preload" href="assets/fonts/poppins-v24-latin-regular.woff2" as="font" type="font/woff2" crossorigin />
     <link rel="preload" href="assets/fonts/poppins-v24-latin-600.woff2" as="font" type="font/woff2" crossorigin />
     <link rel="preload" href="assets/fonts/source-sans-3-v19-latin-regular.woff2" as="font" type="font/woff2" crossorigin />
@@ -172,9 +167,8 @@
       </div>
     </header>
 
-    <!-- MAIN -->
+    <!-- Main -->
     <main id="main" class="page-gallery">
-      <!-- Breadcrumbs (zaraz pod headerem) -->
       <nav class="breadcrumbs" aria-label="Okruszki nawigacyjne">
         <div class="container">
           <ol>
@@ -198,7 +192,6 @@
 
         <!-- Galeria -->
         <section id="galeria-grid" class="block">
-          <!-- Kategorie -->
           <div class="tabs" role="tablist" aria-label="Kategorie galerii">
             <button type="button" class="btn btn-tab tab is-active" aria-selected="true" data-filter="all">Wszystko</button>
             <button type="button" class="btn btn-tab tab" aria-selected="false" data-filter="wnetrza">Wnętrza</button>
@@ -206,16 +199,11 @@
             <button type="button" class="btn btn-tab tab" aria-selected="false" data-filter="imprezy">Imprezy</button>
           </div>
 
-          <!-- Grid galerii -->
           <div class="gallery-grid" aria-live="polite" aria-label="Wyniki filtrowania — zdjęcia">
-            <!-- INTERIOR IMGS -->
-
             <a class="g-item" href="assets/img/gallery/interior-01-1600.jpg" data-filter="wnetrza" aria-haspopup="dialog" aria-controls="lb">
               <picture>
                 <source type="image/avif" srcset="assets/img/gallery/interior-01-1200.avif 2x, assets/img/gallery/interior-01-600.avif 1x" />
-
                 <source type="image/webp" srcset="assets/img/gallery/interior-01-1200.webp 2x, assets/img/gallery/interior-01-600.webp 1x" />
-
                 <img
                   src="assets/img/gallery/interior-01-600.jpg"
                   srcset="assets/img/gallery/interior-01-1200.jpg 2x, assets/img/gallery/interior-01-600.jpg 1x"
@@ -227,7 +215,6 @@
                   height="600" />
               </picture>
             </a>
-            <!-- Interior - img 02 -->
             <a class="g-item" href="assets/img/gallery/interior-02-1600.jpg" data-filter="wnetrza" aria-haspopup="dialog" aria-controls="lb">
               <picture>
                 <source type="image/avif" srcset="assets/img/gallery/interior-02-1200.avif 2x, assets/img/gallery/interior-02-600.avif 1x" />
@@ -243,7 +230,6 @@
                   height="600" />
               </picture>
             </a>
-            <!-- Interior - img 03 -->
             <a class="g-item" href="assets/img/gallery/interior-03-1600.jpg" data-filter="wnetrza" aria-haspopup="dialog" aria-controls="lb">
               <picture>
                 <source type="image/avif" srcset="assets/img/gallery/interior-03-1200.avif 2x, assets/img/gallery/interior-03-600.avif 1x" />
@@ -259,7 +245,6 @@
                   height="600" />
               </picture>
             </a>
-            <!-- Interior - img 04 -->
             <a class="g-item" href="assets/img/gallery/interior-04-1600.jpg" data-filter="wnetrza" aria-haspopup="dialog" aria-controls="lb">
               <picture>
                 <source type="image/avif" srcset="assets/img/gallery/interior-04-1200.avif 2x, assets/img/gallery/interior-04-600.avif 1x" />
@@ -276,7 +261,6 @@
               </picture>
             </a>
 
-            <!-- DISH IMGS -->
             <a class="g-item" href="assets/img/gallery/dish-01-1600.jpg" data-filter="dania" aria-haspopup="dialog" aria-controls="lb">
               <picture>
                 <source type="image/avif" srcset="assets/img/gallery/dish-01-1200.avif 2x, assets/img/gallery/dish-01-600.avif 1x" />
@@ -338,7 +322,6 @@
               </picture>
             </a>
 
-            <!-- PARTY IMGS -->
             <a class="g-item" href="assets/img/gallery/party-01-1600.jpg" data-filter="imprezy" aria-haspopup="dialog" aria-controls="lb">
               <picture>
                 <source type="image/avif" srcset="assets/img/gallery/party-01-1200.avif 2x, assets/img/gallery/party-01-600.avif 1x" />
@@ -389,10 +372,9 @@
       </div>
     </main>
 
-    <!-- FOOTER -->
+    <!-- Footer -->
     <footer id="footer" class="site-footer" role="contentinfo">
       <div class="container ft-grid">
-        <!-- Kolumna 1: Branding + opis -->
         <div class="ft-col">
           <a href="index.html#top" class="brand-footer" aria-label="Strona główna KP_Code">
             <img class="logo logo-light" src="assets/img/logo-img/logo-light.svg" alt="Ambre – logo restauracji" width="140" height="140" decoding="async" />
@@ -404,7 +386,6 @@
           </p>
         </div>
 
-        <!-- Kolumna 2: Nawigacja -->
         <nav class="ft-col" aria-label="Nawigacja w stopce">
           <h3 class="ft-title">Nawigacja</h3>
           <ul class="ft-nav">
@@ -417,7 +398,6 @@
           </ul>
         </nav>
 
-        <!-- Kolumna 3: Adres + mapa -->
         <div class="ft-col" aria-labelledby="ft-findus">
           <h3 id="ft-findus" class="ft-title">Tu nas znajdziesz</h3>
 
@@ -434,9 +414,8 @@
 
           <div class="map-wrap">
             <iframe
-              id="map-embed"
-              title="Mapa lokalizacji – demo strony gastronomicznej"
-              src="https://www.google.com/maps?q=ul.+Smakoszy+12,+00-950+Warszawa&z=15&output=embed"
+              title="Mapa lokalizacji – Ambre Restauracja"
+              src="https://www.google.com/maps?q=ul.+Marynarki+Wojennej+12,+33-100+Tarnów,+Polska&z=15&output=embed"
               loading="lazy"
               referrerpolicy="no-referrer-when-downgrade"
               allowfullscreen
@@ -446,7 +425,6 @@
           </div>
         </div>
 
-        <!-- Kolumna 4: Kontakt + Social -->
         <div class="ft-col" aria-labelledby="ft-contact">
           <h3 id="ft-contact" class="ft-title">Kontakt</h3>
           <ul class="ft-contact" aria-label="Dane kontaktowe">
@@ -475,10 +453,8 @@
             </li>
           </ul>
 
-          <!-- Social Media -->
           <h3 class="ft-title ft-title--sub">Social Media</h3>
           <ul class="ft-social ft-social--bare" aria-label="Linki społecznościowe">
-            <!-- Facebook -->
             <li>
               <a class="btn-social" href="https://facebook.com" aria-label="Facebook" rel="me external noopener" target="_blank">
                 <img class="icon-light" src="assets/icons/icons-svg/facebook-light-mode-40x40.svg" alt="Facebook" width="24" height="24" decoding="async" />
@@ -512,18 +488,19 @@
         <p class="copy">
           ©
           <span id="year"></span>
-          KP_Code. Wszelkie prawa zastrzeżone. Projekt i wdrożenie:
-          <a href="#" rel="author">KP_Code</a>
+          Wszelkie prawa zastrzeżone. | Projekt i wdrożenie:
+          <a href="#" rel="author">KP_Code_</a>
         </p>
         <!-- Legal -->
         <ul class="ft-legal">
+          <li><a href="regulamin.html" rel="nofollow">Regulamin</a></li>
           <li><a href="polityka-prywatnosci.html" rel="nofollow">Polityka prywatności</a></li>
           <li><a href="cookies.html" rel="nofollow">Cookies</a></li>
         </ul>
       </div>
     </footer>
 
-    <!-- LIGHTBOX -->
+    <!-- Lightbox -->
     <dialog id="lb" aria-modal="true" aria-labelledby="lb-title" aria-describedby="lb-help lb-counter">
       <h2 id="lb-title" class="sr-only">Podgląd zdjęcia dania</h2>
       <button class="lb-close" type="button" aria-label="Zamknij">×</button>
@@ -536,7 +513,7 @@
       <output class="lb-counter" data-testid="lb-counter" aria-live="polite" aria-atomic="true"></output>
     </dialog>
 
-    <!-- SCROLL UP -->
+    <!-- Scroll Up -->
     <button class="scroll-btn scroll-up" data-testid="scroll-up" type="button" aria-label="Przewiń na górę" title="Na górę" aria-hidden="true" tabindex="-1" hidden>
       <img class="icon-light" src="assets/icons/icons-svg/chevron-up-black.svg" alt="" width="16" height="16" decoding="async" />
       <img class="icon-dark" src="assets/icons/icons-svg/chevron-up-white.svg" alt="" width="16" height="16" decoding="async" />
