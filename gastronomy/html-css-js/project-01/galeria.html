@@ -3,114 +3,142 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <!-- PREVIEW: tymczasowo blokujemy indeksację (usuń na produkcji) -->
-    <meta name="robots" content="noindex, nofollow" data-preview />
+    <meta name="robots" content="index,follow" />
     <meta name="format-detection" content="telephone=no" />
 
-    <!-- SEO -->
-    <title>Galeria — demo strony gastronomicznej | KP_Code</title>
-    <meta name="description" content="Galeria zdjęć — wnętrza, potrawy i atmosfera. Zobacz wybrane kompozycje i produkty premium." />
-    <meta name="author" content="KP_Code" />
+    <title>Galeria – Ambre | Wnętrze, dania i atmosfera</title>
+    <meta name="description" content="Zobacz galerię Ambre: wnętrze restauracji, kompozycje dań i klimat wieczoru. Kadry, które oddają smak, światło i detale." />
+    <meta name="author" content="Kamil Król | KP_Code_" />
     <meta name="color-scheme" content="light dark" />
-    <!-- TODO: Ustaw prawdziwy host produkcyjny -->
-    <link rel="canonical" href="https://PRZYKLADOWA-DOMENA.pl/galeria" />
+    <link rel="canonical" href="https://gastronomy-project-01.netlify.app/galeria.html" />
 
-    <!-- Kolory motywu (PWA / przeglądarka) -->
     <meta name="theme-color" content="#fab204" />
     <meta name="theme-color" content="#fab204" media="(prefers-color-scheme: light)" />
     <meta name="theme-color" content="#0b0b0f" media="(prefers-color-scheme: dark)" />
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
 
-    <!-- Open Graph -->
     <meta property="og:locale" content="pl_PL" />
     <meta property="og:type" content="website" />
-    <meta property="og:site_name" content="Demo — strona gastronomiczna | KP_Code" />
-    <meta property="og:title" content="Galeria — demo strony gastronomicznej | KP_Code" />
-    <meta property="og:description" content="Galeria zdjęć — wnętrza, potrawy i atmosfera. Zobacz wybrane kompozycje i produkty premium." />
+    <meta property="og:site_name" content="Ambre – Restauracja Fine Dining" />
+    <meta property="og:title" content="Galeria – Ambre | Wnętrze, dania i atmosfera" />
+    <meta property="og:description" content="Zobacz galerię Ambre: wnętrze restauracji, kompozycje dań i klimat wieczoru. Kadry, które oddają smak, światło i detale." />
     <meta property="og:url" content="https://gastronomy-project-01.netlify.app/galeria.html" />
     <meta property="og:image" content="https://gastronomy-project-01.netlify.app/assets/img/og-img/og-1200x630.jpg" />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
-    <meta property="og:image:alt" content="Galeria — demo strony gastronomicznej | KP_Code – wybrane zdjęcia potraw i wnętrz" />
+    <meta property="og:image:alt" content="Ambre – restauracja fine dining" />
 
-    <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="Galeria — demo strony gastronomicznej | KP_Code" />
-    <meta name="twitter:description" content="Galeria zdjęć — wnętrza, potrawy i atmosfera. Zobacz wybrane kompozycje i produkty premium." />
+    <meta name="twitter:title" content="Galeria – Ambre | Wnętrze, dania i atmosfera" />
+    <meta name="twitter:description" content="Zobacz galerię Ambre: wnętrze restauracji, kompozycje dań i klimat wieczoru. Kadry, które oddają smak, światło i detale." />
     <meta name="twitter:image" content="https://gastronomy-project-01.netlify.app/assets/img/og-img/og-1200x630.jpg" />
-    <meta name="twitter:image:alt" content="Galeria — demo strony gastronomicznej | KP_Code – wybrane zdjęcia potraw i wnętrz" />
+    <meta name="twitter:image:alt" content="Ambre – restauracja fine dining" />
 
-    <!-- Favicons + PWA -->
     <link rel="icon" href="assets/icons/favicons/favicon-32x32.png" sizes="32x32" type="image/png" />
     <link rel="icon" href="assets/icons/favicons/favicon-16x16.png" sizes="16x16" type="image/png" />
     <link rel="apple-touch-icon" href="assets/icons/favicons/apple-touch-icon.png" sizes="180x180" />
     <link rel="shortcut icon" href="assets/icons/favicons/favicon.ico" type="image/x-icon" />
     <link rel="manifest" href="manifest.webmanifest" />
-    <meta name="application-name" content="KP_Code — Demo gastronomiczne" />
+    <meta name="application-name" content="Ambre" />
     <meta name="apple-mobile-web-app-capable" content="yes" />
-    <meta name="apple-mobile-web-app-title" content="KP_Code Demo" />
+    <meta name="apple-mobile-web-app-title" content="Ambre" />
 
-    <!-- Preconnect/DNS-prefetch for Google Maps -->
     <link rel="preconnect" href="https://www.google.com" crossorigin />
     <link rel="preconnect" href="https://maps.google.com" crossorigin />
     <link rel="dns-prefetch" href="//www.google.com" />
     <link rel="dns-prefetch" href="//maps.google.com" />
 
-    <!-- Lokalne fonty: Poppins + Source Sans 3 -->
     <link rel="preload" href="assets/fonts/poppins-v24-latin-regular.woff2" as="font" type="font/woff2" crossorigin />
     <link rel="preload" href="assets/fonts/poppins-v24-latin-600.woff2" as="font" type="font/woff2" crossorigin />
     <link rel="preload" href="assets/fonts/source-sans-3-v19-latin-regular.woff2" as="font" type="font/woff2" crossorigin />
     <link rel="preload" href="assets/fonts/source-sans-3-v19-latin-500.woff2" as="font" type="font/woff2" crossorigin />
 
-    <!-- Główny CSS -->
-    <link rel="stylesheet" href="css/style.min.css" />
+    <link rel="stylesheet" href="css/style.css" />
 
-    <!-- JSON-LD: WebPage + BreadcrumbList (galeria.html) -->
     <script type="application/ld+json">
       {
         "@context": "https://schema.org",
         "@graph": [
           {
-            "@type": "WebPage",
-            "@id": "https://gastronomy-project-01.netlify.app/galeria.html",
-            "url": "https://gastronomy-project-01.netlify.app/galeria.html",
-            "name": "Galeria",
-            "description": "Galeria zdjęć — wnętrza, potrawy i atmosfera. Zobacz wybrane kompozycje i produkty premium.",
-            "isPartOf": { "@id": "https://gastronomy-project-01.netlify.app/#website" },
+            "@type": "WebSite",
+            "@id": "https://gastronomy-project-01.netlify.app/#website",
+            "url": "https://gastronomy-project-01.netlify.app/",
+            "name": "Ambre – Restauracja Fine Dining",
             "inLanguage": "pl-PL",
-            "primaryImageOfPage": "https://gastronomy-project-01.netlify.app/assets/img/og-img/og-1200x630.jpg"
+            "publisher": {
+              "@id": "https://gastronomy-project-01.netlify.app/#restaurant"
+            }
           },
           {
-            "@type": "BreadcrumbList",
-            "itemListElement": [
-              { "@type": "ListItem", "position": 1, "name": "Strona główna", "item": "https://gastronomy-project-01.netlify.app/" },
-              { "@type": "ListItem", "position": 2, "name": "Galeria", "item": "https://gastronomy-project-01.netlify.app/galeria.html" }
-            ]
+            "@type": "Restaurant",
+            "@id": "https://gastronomy-project-01.netlify.app/#restaurant",
+            "name": "Ambre",
+            "url": "https://gastronomy-project-01.netlify.app/",
+            "image": ["https://gastronomy-project-01.netlify.app/assets/img/og-img/og-1200x630.jpg"],
+            "telephone": "+48 533 537 091",
+            "email": "kontakt@kp-code.pl",
+            "address": {
+              "@type": "PostalAddress",
+              "streetAddress": "ul. Marynarki Wojennej 12",
+              "postalCode": "33-100",
+              "addressLocality": "Tarnów",
+              "addressCountry": "PL"
+            },
+            "servesCuisine": ["Fine Dining", "Polska", "Europejska"],
+            "priceRange": "$$",
+            "description": "Kameralna restauracja fine dining z autorskim, sezonowym menu degustacyjnym i starannie dobraną selekcją win."
+          },
+          {
+            "@type": "WebPage",
+            "@id": "https://gastronomy-project-01.netlify.app/#webpage",
+            "url": "https://gastronomy-project-01.netlify.app/galeria.html",
+            "name": "Galeria – Ambre | Wnętrze, dania i atmosfera",
+            "description": "Zobacz galerię Ambre: wnętrze restauracji, kompozycje dań i klimat wieczoru. Kadry, które oddają smak, światło i detale.",
+            "isPartOf": {
+              "@id": "https://gastronomy-project-01.netlify.app/#website"
+            },
+            "about": {
+              "@id": "https://gastronomy-project-01.netlify.app/#restaurant"
+            },
+            "primaryImageOfPage": {
+              "@type": "ImageObject",
+              "url": "https://gastronomy-project-01.netlify.app/assets/img/og-img/og-1200x630.jpg"
+            },
+            "inLanguage": "pl-PL"
           }
         ]
       }
     </script>
   </head>
 
-  <!-- BODY -->
+  <!-- Body -->
   <body class="no-js">
     <a class="skip-link" href="#main">Przejdź do treści</a>
     <noscript><p>Ta strona wykorzystuje JavaScript. Włącz JS, aby w pełni z niej korzystać.</p></noscript>
-    <a class="skip-link" href="#main">Przejdź do treści</a>
 
-    <!-- HEADER -->
+    <!-- Header -->
     <header id="top" class="site-header" data-sticky>
       <div class="container header-row">
-        <a class="brand" href="index.html" aria-label="Strona główna">
-          <img class="logo logo-light" src="assets/img/logo-img/logo-light-160.png" alt="Demo strony gastronomicznej – logo" width="140" height="140" decoding="async" />
-          <img class="logo logo-dark" src="assets/img/logo-img/logo-dark-160.png" alt="" aria-hidden="true" width="140" height="140" decoding="async" />
+        <a class="brand" href="index.html#top" aria-label="Strona główna restauracji Ambre">
+          <img class="logo logo-light" src="assets/img/logo-img/logo-name-light.svg" alt="Ambre – restauracja fine dining" width="140" height="140" decoding="async" />
+          <img class="logo logo-dark" src="assets/img/logo-img/logo-name-dark.svg" alt="" aria-hidden="true" width="140" height="140" decoding="async" />
         </a>
 
         <nav id="site-nav" class="site-nav" data-testid="site-nav" aria-label="Główna nawigacja">
           <ul>
             <li><a href="index.html#onas">O nas</a></li>
-            <li><a href="index.html#menu">Menu</a></li>
-            <li><a href="#galeria">Galeria</a></li>
+            <li class="has-submenu">
+              <a href="index.html#menu">Menu</a>
+              <ul class="nav-submenu" aria-label="Podmenu Menu">
+                <li><a href="menu.html">Pełne menu</a></li>
+              </ul>
+            </li>
+            <li class="has-submenu">
+              <a href="index.html#galeria">Galeria</a>
+              <ul class="nav-submenu" aria-label="Podmenu Galeria">
+                <li><a href="galeria.html">Pełna galeria</a></li>
+              </ul>
+            </li>
             <li><a href="index.html#opinie">Opinie</a></li>
             <li><a href="index.html#rezerwacja">Rezerwacja</a></li>
             <li><a href="index.html#faq">FAQ</a></li>
@@ -181,14 +209,13 @@
           <!-- Grid galerii -->
           <div class="gallery-grid" aria-live="polite" aria-label="Wyniki filtrowania — zdjęcia">
             <!-- INTERIOR IMGS -->
-            <!-- Interior - img 01-->
+
             <a class="g-item" href="assets/img/gallery/interior-01-1600.jpg" data-filter="wnetrza" aria-haspopup="dialog" aria-controls="lb">
               <picture>
-                <!-- AVIF -->
                 <source type="image/avif" srcset="assets/img/gallery/interior-01-1200.avif 2x, assets/img/gallery/interior-01-600.avif 1x" />
-                <!-- WebP -->
+
                 <source type="image/webp" srcset="assets/img/gallery/interior-01-1200.webp 2x, assets/img/gallery/interior-01-600.webp 1x" />
-                <!-- JPG fallback -->
+
                 <img
                   src="assets/img/gallery/interior-01-600.jpg"
                   srcset="assets/img/gallery/interior-01-1200.jpg 2x, assets/img/gallery/interior-01-600.jpg 1x"
@@ -368,8 +395,8 @@
         <!-- Kolumna 1: Branding + opis -->
         <div class="ft-col">
           <a href="index.html#top" class="brand-footer" aria-label="Strona główna KP_Code">
-            <img class="logo logo-light" src="assets/img/logo-img/logo-light-160.png" alt="Demo strony gastronomicznej – logo w stopce" width="140" height="140" decoding="async" />
-            <img class="logo logo-dark" src="assets/img/logo-img/logo-dark-160.png" alt="" aria-hidden="true" width="140" height="140" decoding="async" />
+            <img class="logo logo-light" src="assets/img/logo-img/logo-light.svg" alt="Ambre – logo restauracji" width="140" height="140" decoding="async" />
+            <img class="logo logo-dark" src="assets/img/logo-img/logo-dark.svg" alt="" aria-hidden="true" width="140" height="140" decoding="async" />
           </a>
           <p class="brand-desc muted">
             <strong>KP_Code</strong>
@@ -515,13 +542,9 @@
       <img class="icon-dark" src="assets/icons/icons-svg/chevron-up-white.svg" alt="" width="16" height="16" decoding="async" />
     </button>
 
-    <!-- SCRIPT -->
-
-    <!-- przycisk instalacji PWA (ukryty do czasu beforeinstallprompt) -->
-    <button data-install-pwa hidden>📲 Zainstaluj aplikację</button>
-
+    <!-- JS scripts -->
     <script src="js/sw-register.js" defer></script>
     <script src="js/pwa-install.js" defer></script>
-    <script src="js/script.min.js" defer></script>
+    <script src="js/script.js" defer></script>
   </body>
 </html>

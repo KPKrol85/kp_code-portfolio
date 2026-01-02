@@ -1,32 +1,35 @@
-/* ===========================================================================
-   = Project: gastronomy-html-css-js-project-01
-   = Author: KP_Code
-   = Last Update: 2025-10-22
-   ===========================================================================
+/* ================================
+   = Project: gastronomy-01
+   = Name: Ambre
+   = Technology: html/css/js
+   = Author: Kamil Król - kp_code_
+   = Last Update: 2026-01-02
+   = Version: 1.00
+   ================================
    = script.js
    = Structure Overview
-   ===========================================================================
-   = 00 - HELPERS                 - utility functions.
-   = 01 - MOBILE NAV TOGGLE       - open / close mobile nav.
-   = 02 - TABS                    - menu filtering.
-   = 03 - LIGHTBOX                - contextual navigation.
-   = 04 - RESERVATION FORM        - validation, feedback, loading state...
-   = 05 - FOOTER YEAR             - dynamic current year in footer.
-   = 06 - THEME SWITCHER          - light / dark mode with memory.
-   = 07 - SCROLLSPY               - menu item highlighting.
-   = 08 - SCROLL BUTTONS          - down / up.
-   = 09 - CTA                     - pulse only in viewport.
-   = 10 - SMART NAV               - navigation style change on scroll.
-   = 11 - NAV                     - navigation active subpage - aria-current.
-   = 12 - PAGE MENU               - behavior of "more about dish" panel.
-   = 13 - FAQ                     - aria sync (aria-expanded + aria-controls).
-   = 14 - GALLERY FILTER          - page-gallery.
-   = 15 - STICKY SHADOW ON SCROLL - add shadow to sticky elements on scroll.
-   = 16 - SCROLL TO TOP           - scroll to top button.
-   = 17 - SCROLL TARGETS          - smooth scroll to anchor targets.
-   =========================================================================== */
+   ================================
+   = 00 - Helpers
+   = 01 - MOBILE NAV TOGGLE
+   = 02 - TABS
+   = 03 - LIGHTBOX
+   = 04 - RESERVATION FORM
+   = 05 - FOOTER YEAR
+   = 06 - THEME SWITCHER
+   = 07 - SCROLLSPY
+   = 08 - SCROLL BUTTONS
+   = 09 - CTA
+   = 10 - SMART NAV
+   = 11 - NAV
+   = 12 - PAGE MENU
+   = 13 - FAQ
+   = 14 - GALLERY FILTER
+   = 15 - STICKY SHADOW ON SCROLL
+   = 16 - SCROLL TO TOP
+   = 17 - SCROLL TARGETS
+   =============================== */
 
-/* ===== 00 - HELPERS ===== */
+/* ===== 00 - Helpers ===== */
 
 const DEBUG = false;
 const log = (...a) => DEBUG && console.log("[ui]", ...a);
@@ -1149,6 +1152,7 @@ function initScrollToTop() {
     const link = e.target.closest("a.brand");
     if (!link) return;
     const href = link.getAttribute("href") || "";
+    if (!href.startsWith("#")) return;
     if (href.includes("#top")) {
       e.preventDefault();
       window.scrollTo({ top: 0, behavior: prefersReduce ? "auto" : "smooth" });

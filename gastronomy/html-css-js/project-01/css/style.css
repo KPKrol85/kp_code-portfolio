@@ -1,11 +1,14 @@
-/* ============================================
-   = Project: gastronomy-html-css-js-project-01
-   = Author: KP_Code
-   = Updated: 2025-10-22
-   ============================================
+/* ==================================
+   = Project: gastronomy-01
+   = Name: Ambre
+   = Technology: html/css/js
+   = Author: Kamil Król - kp_code_
+   = Last Update: 2026-01-01
+   = Version: 1.00
+   ==================================
    = CSS Stylesheet
-   = Structure Overview
-   ============================================
+   = Structure overview
+   ==================================
    = 00 - GLOBAL VARIABLES
    = 01 - BASE TYPOGRAPHY + LAYOUT
    = 02 - HEADER
@@ -25,7 +28,7 @@
    = 16 - GLOBAL BUTTONS
    = 17 - MODALS & OVERLAYS
    = 99 - FEATURE SUPPORT & FALLBACKS
-   ============================================ */
+   ================================== */
 
 /* ===== 00 - GLOBAL VARIABLES ===== */
 
@@ -56,6 +59,14 @@ html {
   --lead: 1.15;
   --block-y: clamp(40px, 5vw, 96px);
   --header-h: 64px;
+
+  --fs-xs: clamp(0.75rem, 0.7rem + 0.2vw, 0.875rem);
+  --fs-sm: clamp(0.875rem, 0.8rem + 0.3vw, 1rem);
+  --fs-md: clamp(1rem, 0.95rem + 0.4vw, 1.125rem);
+  --fs-lg: clamp(1.25rem, 1.1rem + 0.6vw, 1.5rem);
+  --fs-xl: clamp(1.75rem, 1.4rem + 1.2vw, 2.5rem);
+  --fs-xxl: clamp(2.5rem, 2rem + 2vw, 4rem);
+
   --font-sans: "Source Sans 3", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
   --font-display: "Poppins", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
 }
@@ -97,7 +108,6 @@ html[data-theme="dark"] {
   font-weight: 400;
   src: url("../assets/fonts/poppins-v24-latin-regular.woff2") format("woff2");
 }
-
 @font-face {
   font-display: swap;
   font-family: "Poppins";
@@ -105,7 +115,6 @@ html[data-theme="dark"] {
   font-weight: 600;
   src: url("../assets/fonts/poppins-v24-latin-600.woff2") format("woff2");
 }
-
 @font-face {
   font-display: swap;
   font-family: "Source Sans 3";
@@ -113,7 +122,6 @@ html[data-theme="dark"] {
   font-weight: 400;
   src: url("../assets/fonts/source-sans-3-v19-latin-regular.woff2") format("woff2");
 }
-
 @font-face {
   font-display: swap;
   font-family: "Source Sans 3";
@@ -122,7 +130,6 @@ html[data-theme="dark"] {
   src: url("../assets/fonts/source-sans-3-v19-latin-500.woff2") format("woff2");
 }
 
-/* -- MQ Prefers Color Scheme - dark theme -- */
 @media (prefers-color-scheme: dark) {
   :root {
     --c-bg: #0b0b0f;
@@ -131,7 +138,7 @@ html[data-theme="dark"] {
     --c-surface: #12121a;
     --c-border: #2b2d34;
     --c-link: #fab204;
-   --nav-hover-bg: rgba(255, 255, 255, 0.1);
+    --nav-hover-bg: rgba(255, 255, 255, 0.1);
   }
 }
 
@@ -146,7 +153,6 @@ body {
   line-height: 1.6;
 }
 
-/* A11y: Skip-link (minimal, zgodny z tokenami) */
 .skip-link {
   position: absolute;
   left: -9999px;
@@ -163,7 +169,6 @@ body {
   outline: 2px solid currentColor;
 }
 
-/* Subtelny styl przycisku instalacji PWA (widoczny tylko gdy nie ma [hidden]) */
 [data-install-pwa]:not([hidden]) {
   display: inline-flex;
   align-items: center;
@@ -231,12 +236,10 @@ h1 {
   font-size: clamp(1.9rem, 1.3rem + 3.6vw, 3.5rem);
   font-weight: 700;
 }
-
 h2 {
   font-size: clamp(1.5rem, 1.1rem + 2vw, 2.5rem);
   font-weight: 700;
 }
-
 h3 {
   font-size: clamp(1.2rem, 1rem + 0.9vw, 1.6rem);
   font-weight: 700;
@@ -278,7 +281,6 @@ h3 {
   margin: 0 0 1.2rem;
 }
 
-/* -- MQ min width 900px -- */
 @media (min-width: 900px) {
   .grid-2 {
     grid-template-columns: 1.05fr 0.95fr;
@@ -326,7 +328,7 @@ h3 {
 
 .brand .logo {
   display: block;
-  height: 46px;
+  height: 52px;
   width: auto;
 }
 
@@ -390,6 +392,10 @@ html[data-theme="light"] .logo-light {
   padding: 0;
 }
 
+.site-nav li {
+  position: relative;
+}
+
 .site-nav a {
   position: relative;
   display: inline-block;
@@ -397,6 +403,45 @@ html[data-theme="light"] .logo-light {
   color: var(--c-ink);
   text-decoration: none;
   transition: color 0.2s ease, background-color 0.2s ease;
+}
+
+.nav-submenu {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  min-width: 180px;
+  list-style: none;
+  margin: 0;
+  padding: 8px 0;
+  background: var(--c-surface);
+  border: 1px solid var(--c-border);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(6px);
+  transition: opacity 0.15s ease, transform 0.15s ease, visibility 0.15s ease;
+  z-index: 20;
+}
+
+.nav-submenu a {
+  display: block;
+  padding: 0.5rem 0.75rem;
+  text-decoration: none;
+  color: var(--c-ink);
+}
+
+.nav-submenu a:hover,
+.nav-submenu a:focus-visible {
+  background: var(--nav-hover-bg);
+  border-radius: 10px;
+}
+
+.site-nav li:hover > .nav-submenu,
+.site-nav li:focus-within > .nav-submenu {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
 }
 
 .site-nav a::after {
@@ -501,7 +546,6 @@ html[data-theme="dark"] .site-header {
   border-bottom: 1px solid color-mix(in oklab, var(--c-border), transparent calc(var(--glass-border-alpha) + 6%));
 }
 
-/* -- MQ hover: hover -- */
 @media (hover: hover) {
   .theme-toggle:hover,
   .nav-toggle:hover {
@@ -510,7 +554,6 @@ html[data-theme="dark"] .site-header {
   }
 }
 
-/* -- MQ max width 900px -- */
 @media (max-width: 900px) {
   .site-header {
     backdrop-filter: saturate(1.2) blur(calc(var(--glass-blur) + 4px));
@@ -523,16 +566,27 @@ html[data-theme="dark"] .site-header {
     -webkit-backdrop-filter: blur(12px) saturate(1.05);
     border-bottom: 1px solid color-mix(in oklab, var(--c-border), transparent 70%);
   }
+  .nav-submenu {
+    position: static;
+    opacity: 1;
+    visibility: visible;
+    transform: none;
+    box-shadow: none;
+    border: none;
+    background: transparent;
+    padding: 0;
+  }
+  .nav-submenu a {
+    padding: 0.4rem 0.75rem;
+  }
 }
 
-/* -- MQ max width 768px -- */
 @media (max-width: 768px) {
   .header-actions {
     gap: 10px;
   }
 }
 
-/* -- MQ min width 900px -- */
 @media (min-width: 900px) {
   .nav-toggle {
     display: none;
@@ -560,7 +614,6 @@ html[data-theme="dark"] .site-header {
   }
 }
 
-/* -- MQ min width 900px and hover: hover -- */
 @media (min-width: 900px) and (hover: hover) {
   .site-nav a:hover::after {
     transform: scaleX(1);
@@ -571,7 +624,6 @@ html[data-theme="dark"] .site-header {
   }
 }
 
-/* -- MQ prefers-color-scheme: dark -- */
 @media (prefers-color-scheme: dark) {
   html:not([data-theme]) .logo-light {
     display: none;
@@ -587,7 +639,6 @@ html[data-theme="dark"] .site-header {
   }
 }
 
-/* -- Prefers Reduced Motion -- */
 @media (prefers-reduced-motion: reduce) {
   .site-nav a,
   .site-nav a::after,
