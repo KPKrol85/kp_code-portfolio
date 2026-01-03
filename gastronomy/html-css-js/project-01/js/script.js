@@ -27,6 +27,8 @@
    = 15 - Sticky shadow on scroll
    = 16 - Scroll to top
    = 17 - Scroll targets
+   = 18 - Load more
+   = 19 - Demo banner
    =============================== */
 
 /* === 00 - Helpers === */
@@ -161,6 +163,7 @@ function initTabs() {
   if (!tabs.length) return;
 
   const items = $$(".dish");
+  const grid = document.querySelector(".menu-grid");
 
   if (tabsRoot !== document && !tabsRoot.hasAttribute("role")) {
     tabsRoot.setAttribute("role", "tablist");
@@ -178,12 +181,19 @@ function initTabs() {
     });
     const filter = btn.dataset.filter;
     items.forEach((card) => {
-      const show = filter === "all" || card.dataset.cat === filter;
-      card.style.display = show ? "" : "none";
+      const loadVisible = card.dataset.loadVisible !== "false";
+      const show = (filter === "all" || card.dataset.cat === filter) && loadVisible;
+      card.hidden = !show;
     });
   };
 
   activate($(".tab.is-active", tabsRoot) || tabs[0]);
+
+  const onLoadMoreUpdate = () => {
+    const active = $(".tab.is-active", tabsRoot) || tabs[0];
+    if (active) activate(active);
+  };
+  grid?.addEventListener("loadmore:update", onLoadMoreUpdate);
 
   tabsRoot.addEventListener(
     "click",
@@ -220,6 +230,66 @@ function initTabs() {
   });
 
   log("menu-tabs:", !!byTestId("menu-tabs"), "tabs:", tabs.length);
+}
+
+/* === 18 - Load more === */
+
+function setupLoadMore({ root, items, button, status, step = 12 }) {
+  if (!root || !items?.length || !button || !status) return;
+
+  const total = items.length;
+  let visibleCount = Math.min(step, total);
+
+  const update = () => {
+    items.forEach((item, idx) => {
+      const isVisible = idx < visibleCount;
+      item.dataset.loadVisible = isVisible ? "true" : "false";
+      item.hidden = !isVisible;
+    });
+
+    status.textContent = `Zaladowano ${Math.min(visibleCount, total)} z ${total}`;
+    const done = visibleCount >= total;
+    button.disabled = done;
+    button.setAttribute("aria-disabled", done ? "true" : "false");
+    button.textContent = done ? "Wszystko zaladowane" : "Zaladuj wiecej";
+    button.hidden = total <= step && done;
+  };
+
+  update();
+  root.dispatchEvent(new CustomEvent("loadmore:update", { bubbles: true }));
+
+  button.addEventListener("click", () => {
+    if (visibleCount >= total) return;
+    visibleCount = Math.min(visibleCount + step, total);
+    update();
+    root.dispatchEvent(new CustomEvent("loadmore:update", { bubbles: true }));
+  });
+}
+
+function initLoadMoreMenu() {
+  const root = document.querySelector("main.page-menu");
+  if (!root) return;
+
+  const grid = root.querySelector(".menu-grid");
+  const button = root.querySelector("[data-load-more]");
+  const status = root.querySelector("[data-load-status]");
+  if (!grid || !button || !status) return;
+
+  const items = Array.from(grid.querySelectorAll(".dish"));
+  setupLoadMore({ root: grid, items, button, status, step: 12 });
+}
+
+function initLoadMoreGallery() {
+  const root = document.querySelector("main.page-gallery");
+  if (!root) return;
+
+  const grid = root.querySelector(".gallery-grid");
+  const button = root.querySelector("[data-load-more]");
+  const status = root.querySelector("[data-load-status]");
+  if (!grid || !button || !status) return;
+
+  const items = Array.from(grid.querySelectorAll(".g-item"));
+  setupLoadMore({ root: grid, items, button, status, step: 12 });
 }
 
 /* === 03 - Lightbox === */
@@ -746,6 +816,10 @@ function initReservationForm() {
   if (!form || !msg) return;
 
   const btn = form.querySelector(".btn-form");
+  const phone = form.querySelector("#phone");
+  const consent = form.querySelector("#consent");
+  const phoneError = $("#phone-error");
+  const consentError = $("#consent-error");
   if (!msg.hasAttribute("aria-live")) msg.setAttribute("aria-live", "polite");
   if (!msg.hasAttribute("role")) msg.setAttribute("role", "status");
 
@@ -765,6 +839,47 @@ function initReservationForm() {
     }
   };
 
+  const digitsOnly = (value) => (value || "").replace(/\D/g, "");
+
+  const formatPhonePL = (value) => {
+    let digits = digitsOnly(value);
+    if (digits.startsWith("48") && digits.length > 9) digits = digits.slice(2);
+    digits = digits.slice(0, 9);
+    const p1 = digits.slice(0, 3);
+    const p2 = digits.slice(3, 6);
+    const p3 = digits.slice(6, 9);
+    const groups = [p1, p2, p3].filter(Boolean);
+    return groups.length ? `+48 ${groups.join(" ")}` : "";
+  };
+
+  const isValidPhonePL = (value) => {
+    let digits = digitsOnly(value);
+    if (digits.startsWith("48") && digits.length > 9) digits = digits.slice(2);
+    return digits.length === 9;
+  };
+
+  const setFieldError = (field, errorEl, text) => {
+    if (errorEl) errorEl.textContent = text || "";
+    if (!field) return;
+    if (text) field.setAttribute("aria-invalid", "true");
+    else field.removeAttribute("aria-invalid");
+  };
+
+  if (phone) {
+    phone.addEventListener("input", () => {
+      const formatted = formatPhonePL(phone.value);
+      if (formatted !== phone.value) phone.value = formatted;
+      setFieldError(phone, phoneError, "");
+    });
+    phone.addEventListener("blur", () => {
+      if (phone.value && !isValidPhonePL(phone.value)) {
+        setFieldError(phone, phoneError, "Podaj poprawny numer telefonu w formacie +48 123 456 789.");
+      }
+    });
+  }
+
+  consent?.addEventListener("change", () => setFieldError(consent, consentError, ""));
+
   form.addEventListener("submit", (e) => {
     e.preventDefault();
 
@@ -775,9 +890,14 @@ function initReservationForm() {
       return;
     }
 
-    if (!form.checkValidity()) {
+    const phoneOk = phone ? isValidPhonePL(phone.value) : true;
+    const consentOk = consent ? consent.checked : true;
+    setFieldError(phone, phoneError, phoneOk ? "" : "Podaj poprawny numer telefonu w formacie +48 123 456 789.");
+    setFieldError(consent, consentError, consentOk ? "" : "Wymagana zgoda na przetwarzanie danych.");
+
+    if (!phoneOk || !consentOk || !form.checkValidity()) {
       form.reportValidity?.();
-      msg.textContent = "Uzupełnij wymagane pola.";
+      msg.textContent = "Popraw bledy w formularzu.";
       return;
     }
 
@@ -1112,7 +1232,8 @@ function initGalleryFilter() {
       const cats = normalize(raw)
         .split(/[\s,]+/)
         .filter(Boolean);
-      el.hidden = showAll ? false : !cats.includes(value);
+      const loadVisible = el.dataset.loadVisible !== "false";
+      el.hidden = !loadVisible || (!showAll && !cats.includes(value));
     });
   }
 
@@ -1134,12 +1255,12 @@ function initGalleryFilter() {
     });
   }
 
-  function activateTab(tab) {
+  function activateTab(tab, shouldFocus = true) {
     setActiveTab(tab);
     tabs.forEach((t) => t.setAttribute("tabindex", t === tab ? "0" : "-1"));
     const value = tab.dataset.filter || "";
     applyFilter(value);
-    tab.focus();
+    if (shouldFocus) tab.focus();
   }
 
   function focusIndex(idx) {
@@ -1181,6 +1302,13 @@ function initGalleryFilter() {
   initTabsA11y();
   const pre = tabs.find((t) => t.getAttribute("aria-selected") === "true") || tabs[0];
   if (pre) activateTab(pre);
+
+  const grid = root.querySelector(".gallery-grid");
+  const onLoadMoreUpdate = () => {
+    const active = tabs.find((t) => t.getAttribute("aria-selected") === "true") || tabs[0];
+    if (active) activateTab(active, false);
+  };
+  grid?.addEventListener("loadmore:update", onLoadMoreUpdate);
 
   log("gallery-filter tabs:", tabs.length, "items:", items.length);
 }
@@ -1233,6 +1361,80 @@ function initScrollTargets() {
   log("scroll-target buttons:", btns.length);
 }
 
+/* === 19 - Demo banner === */
+
+function initDemoBanner() {
+  const banner = document.getElementById("demo-banner");
+  if (!banner) return;
+
+  const STORAGE_KEY = "gastronomy_demo_accepted";
+  const acceptBtn = banner.querySelector("[data-demo-accept]");
+  const panel = banner.querySelector(".demo-banner__panel");
+  let lastFocused = null;
+
+  const focusableSelector =
+    'a[href], button:not([disabled]), textarea, input, select, [tabindex]:not([tabindex=\"-1\"])';
+
+  const getFocusable = () => Array.from(banner.querySelectorAll(focusableSelector)).filter((el) => !el.hasAttribute("disabled"));
+
+  const open = () => {
+    lastFocused = document.activeElement;
+    banner.hidden = false;
+    banner.setAttribute("aria-hidden", "false");
+    document.body.classList.add("demo-banner-open");
+    const focusables = getFocusable();
+    (focusables[0] || panel || banner).focus?.();
+  };
+
+  const close = () => {
+    banner.setAttribute("aria-hidden", "true");
+    banner.hidden = true;
+    document.body.classList.remove("demo-banner-open");
+    if (lastFocused && typeof lastFocused.focus === "function") lastFocused.focus();
+  };
+
+  const onKeydown = (e) => {
+    if (e.key === "Escape") {
+      e.preventDefault();
+      return;
+    }
+    if (e.key !== "Tab") return;
+
+    const focusables = getFocusable();
+    if (!focusables.length) return;
+    const first = focusables[0];
+    const last = focusables[focusables.length - 1];
+    const active = document.activeElement;
+
+    if (e.shiftKey && active === first) {
+      e.preventDefault();
+      last.focus();
+    } else if (!e.shiftKey && active === last) {
+      e.preventDefault();
+      first.focus();
+    }
+  };
+
+  banner.addEventListener("keydown", onKeydown);
+
+  acceptBtn?.addEventListener("click", () => {
+    try {
+      localStorage.setItem(STORAGE_KEY, "true");
+    } catch {}
+    close();
+  });
+
+  const accepted = (() => {
+    try {
+      return localStorage.getItem(STORAGE_KEY) === "true";
+    } catch {
+      return false;
+    }
+  })();
+
+  if (!accepted) open();
+}
+
 /* === Bootstrap === */
 
 const FEATURES = [
@@ -1254,10 +1456,13 @@ const FEATURES = [
 
   { name: "CTA", init: initCtaPulse },
 
+  { name: "DEMO BANNER", init: initDemoBanner },
+  { name: "LOAD MORE MENU", init: initLoadMoreMenu },
   { name: "TABS", init: initTabs },
   { name: "PAGE MENU", init: initPageMenuPanel },
   { name: "RESERVATION FORM", init: initReservationForm },
 
+  { name: "LOAD MORE GALLERY", init: initLoadMoreGallery },
   { name: "GALLERY FILTER", init: initGalleryFilter },
   { name: "LIGHTBOX", init: initLightbox },
 

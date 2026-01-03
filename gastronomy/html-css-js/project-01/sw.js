@@ -1,34 +1,57 @@
-/* ambre-v1.0.0 */
-const APP_VERSION = "ambre-v1.0.2";
+/* PWA Service Worker */
+const CACHE_VERSION = "v1.2.0";
 
-const CACHE_PAGES = `pages-${APP_VERSION}`;
-const CACHE_STATIC = `static-${APP_VERSION}`;
-const CACHE_MEDIA = `media-${APP_VERSION}`;
-const CORE_FALLBACK = "/404.html";
+const APP_SHELL_CACHE = `app-shell-${CACHE_VERSION}`;
+const RUNTIME_IMG_CACHE = `runtime-img-${CACHE_VERSION}`;
 
-const PRECACHE = ["/", "/index.html", "/menu.html", "/galeria.html", "/cookies.html", "/polityka-prywatnosci.html", "/manifest.webmanifest", CORE_FALLBACK];
+const OFFLINE_PAGE = "/offline.html";
+const OFFLINE_IMAGE = "/assets/img/offline-image.svg";
 
-self.addEventListener("install", (e) => {
-  e.waitUntil(
+const PRECACHE = [
+  "/",
+  "/index.html",
+  "/menu.html",
+  "/galeria.html",
+  "/cookies.html",
+  "/polityka-prywatnosci.html",
+  "/manifest.webmanifest",
+  "/css/style.css",
+  "/js/script.js",
+  "/js/sw-register.js",
+  "/js/pwa-install.js",
+  "/assets/icons/favicons/favicon-96x96.png",
+  "/assets/icons/favicons/web-app-manifest-192x192.png",
+  "/assets/icons/favicons/web-app-manifest-512x512.png",
+  "/assets/icons/favicons/apple-touch-icon.png",
+  "/assets/icons/favicons/fav-icon-1024.png",
+  "/assets/icons/shortcuts/offer-96.png",
+  "/assets/icons/shortcuts/contact-96.png",
+  "/assets/icons/shortcuts/legal-96.png",
+  OFFLINE_PAGE,
+  OFFLINE_IMAGE,
+];
+
+self.addEventListener("install", (event) => {
+  event.waitUntil(
     (async () => {
-      const c1 = await caches.open(CACHE_PAGES);
-      await c1.addAll(PRECACHE);
+      const cache = await caches.open(APP_SHELL_CACHE);
+      await cache.addAll(PRECACHE);
     })()
   );
   self.skipWaiting();
 });
 
-self.addEventListener("activate", (e) => {
-  e.waitUntil(
+self.addEventListener("activate", (event) => {
+  event.waitUntil(
     (async () => {
       if ("navigationPreload" in self.registration) {
         try {
           await self.registration.navigationPreload.enable();
         } catch {}
       }
-      const keep = new Set([CACHE_PAGES, CACHE_STATIC, CACHE_MEDIA]);
+      const keep = new Set([APP_SHELL_CACHE, RUNTIME_IMG_CACHE]);
       const keys = await caches.keys();
-      await Promise.all(keys.filter((k) => !keep.has(k)).map((k) => caches.delete(k)));
+      await Promise.all(keys.filter((key) => !keep.has(key)).map((key) => caches.delete(key)));
     })()
   );
   self.clients.claim();
@@ -42,72 +65,75 @@ async function putSafe(cacheName, request, response) {
   return response;
 }
 
-self.addEventListener("fetch", (e) => {
-  const req = e.request;
+self.addEventListener("fetch", (event) => {
+  const req = event.request;
+  const url = new URL(req.url);
 
-  if (req.mode === "navigate") {
-    e.respondWith(
+  if (url.origin !== self.location.origin) return;
+
+  const acceptsHtml = req.headers.get("accept")?.includes("text/html");
+  if (req.mode === "navigate" || acceptsHtml) {
+    event.respondWith(
       (async () => {
         try {
-          const preload = await e.preloadResponse;
-          const net = preload || (await fetch(req, { credentials: "same-origin" }));
-          return putSafe(CACHE_PAGES, req, net);
+          const preload = await event.preloadResponse;
+          const res = preload || (await fetch(req));
+          if (res && res.ok) {
+            await putSafe(APP_SHELL_CACHE, req, res);
+          }
+          return res;
         } catch {
           const cached = await caches.match(req);
-          return cached || caches.match(CORE_FALLBACK);
+          return cached || caches.match(OFFLINE_PAGE);
         }
       })()
     );
     return;
   }
 
-  const dest = req.destination;
-
-  if (dest === "style" || dest === "script" || dest === "worker") {
-    e.respondWith(
-      (async () => {
-        const cacheMatch = await caches.match(req);
-        const fetchPromise = fetch(req)
-          .then((res) => putSafe(CACHE_STATIC, req, res))
-          .catch(() => null);
-        return cacheMatch || fetchPromise || fetch(req);
-      })()
-    );
-    return;
-  }
-
-  if (dest === "image" || dest === "font") {
-    e.respondWith(
+  if (req.destination === "style" || req.destination === "script" || req.destination === "worker") {
+    event.respondWith(
       (async () => {
         const cached = await caches.match(req);
-        if (cached) return cached;
-        try {
-          const res = await fetch(req, { credentials: "same-origin" });
-          return putSafe(CACHE_MEDIA, req, res);
-        } catch {
-          return Response.error();
+        const fetchPromise = fetch(req)
+          .then((res) => {
+            if (res && res.ok) {
+              return putSafe(APP_SHELL_CACHE, req, res);
+            }
+            return res;
+          })
+          .catch(() => null);
+
+        if (cached) {
+          event.waitUntil(fetchPromise);
+          return cached;
         }
+
+        return fetchPromise || Response.error();
       })()
     );
     return;
   }
 
-  if (req.url.includes("/assets/") || req.url.includes("/css/") || req.url.includes("/js/")) {
-    e.respondWith(
+  if (req.destination === "image") {
+    event.respondWith(
       (async () => {
         const cached = await caches.match(req);
         if (cached) return cached;
         try {
           const res = await fetch(req);
-          return putSafe(CACHE_STATIC, req, res);
+          if (res && res.ok) {
+            return putSafe(RUNTIME_IMG_CACHE, req, res);
+          }
+          return res;
         } catch {
-          return Response.error();
+          return caches.match(OFFLINE_IMAGE);
         }
       })()
     );
   }
 });
 
-self.addEventListener("message", (e) => {
-  if (e?.data && e.data.type === "SKIP_WAITING") self.skipWaiting();
+self.addEventListener("message", (event) => {
+  if (event?.data && event.data.type === "SKIP_WAITING") self.skipWaiting();
 });

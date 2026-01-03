@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="pl">
   <head>
     <meta charset="utf-8" />
@@ -54,16 +54,6 @@
     <link rel="preload" href="assets/fonts/source-sans-3-v19-latin-500.woff2" as="font" type="font/woff2" crossorigin />
 
     <link rel="stylesheet" href="css/style.css" />
-
-    <link
-      rel="preload"
-      as="image"
-      imagesrcset="
-        assets/img/hero/hero-03-2560x1440.avif 2560w,
-        assets/img/hero/hero-03-1600x900.avif 1600w"
-      imagesizes="100vw"
-      href="assets/img/hero/hero-03-1600x900.avif"
-      fetchpriority="high" />
 
     <script type="application/ld+json">
       {
@@ -240,8 +230,14 @@
 
           <figure class="about-photo">
             <picture>
-              <source type="image/avif" srcset="assets/img/_optimized/about/chef-01-1600x1200.avif 1600w, assets/img/_optimized/about/chef-01-800x600.avif 800w" sizes="(min-width: 768px) 50vw, 100vw" />
-              <source type="image/webp" srcset="assets/img/_optimized/about/chef-01-1600x1200.webp 1600w, assets/img/_optimized/about/chef-01-800x600.webp 800w" sizes="(min-width: 768px) 50vw, 100vw" />
+              <source
+                type="image/avif"
+                srcset="assets/img/_optimized/about/chef-01-1600x1200.avif 1600w, assets/img/_optimized/about/chef-01-800x600.avif 800w"
+                sizes="(min-width: 768px) 50vw, 100vw" />
+              <source
+                type="image/webp"
+                srcset="assets/img/_optimized/about/chef-01-1600x1200.webp 1600w, assets/img/_optimized/about/chef-01-800x600.webp 800w"
+                sizes="(min-width: 768px) 50vw, 100vw" />
               <img
                 src="assets/img/about/chef-01-800x600.jpg"
                 srcset="assets/img/about/chef-01-1600x1200.jpg 1600w, assets/img/about/chef-01-800x600.jpg 800w"
@@ -291,7 +287,7 @@
                     <img
                       src="assets/img/dishes/ostrygi-z-granita-200.jpg"
                       srcset="assets/img/dishes/ostrygi-z-granita-600.jpg 2x, assets/img/dishes/ostrygi-z-granita-200.jpg 1x"
-                      alt=""
+                      alt="Ostrygi z granita z ogorka i yuzu"
                       width="64"
                       height="64"
                       decoding="async"
@@ -321,7 +317,7 @@
                     <img
                       src="assets/img/dishes/polik-wolowy-200.jpg"
                       srcset="assets/img/dishes/polik-wolowy-600.jpg 2x, assets/img/dishes/polik-wolowy-200.jpg 1x"
-                      alt=""
+                      alt="Polik wolowy z kremem z selera i sosem porto"
                       width="64"
                       height="64"
                       decoding="async"
@@ -351,7 +347,7 @@
                     <img
                       src="assets/img/dishes/creme-z-brulee-z-tonka-200.jpg"
                       srcset="assets/img/dishes/creme-z-brulee-z-tonka-600.jpg 2x, assets/img/dishes/creme-z-brulee-z-tonka-200.jpg 1x"
-                      alt=""
+                      alt="Creme brulee z tonka i karmelem"
                       width="64"
                       height="64"
                       decoding="async"
@@ -375,7 +371,7 @@
                     <img
                       src="assets/img/dishes/sandacz-200.jpg"
                       srcset="assets/img/dishes/sandacz-600.jpg 2x, assets/img/dishes/sandacz-200.jpg 1x"
-                      alt=""
+                      alt="Sandacz z risotto szafranowym i fenkulem"
                       width="64"
                       height="64"
                       decoding="async"
@@ -579,7 +575,8 @@
 
               <div class="f-row">
                 <label for="phone">Telefon</label>
-                <input id="phone" name="phone" autocomplete="tel" type="tel" required inputmode="tel" placeholder="+48 600 000 000" aria-describedby="form-msg" />
+                <input id="phone" name="phone" autocomplete="tel" type="tel" required inputmode="tel" placeholder="+48 123 456 789" aria-describedby="form-msg phone-error" />
+                <p id="phone-error" class="form-msg" aria-live="polite"></p>
               </div>
 
               <div class="f-row">
@@ -608,6 +605,17 @@
               <div class="f-row">
                 <label for="notes">Uwagi (opcjonalnie)</label>
                 <textarea id="notes" name="notes" rows="3" placeholder="Preferencje stolika, alergie…"></textarea>
+              </div>
+
+              <div class="f-row consent-row">
+                <label class="consent" for="consent">
+                  <input id="consent" name="consent" type="checkbox" required aria-describedby="consent-error form-msg" />
+                  <span>
+                    Wyrazam zgode na przetwarzanie moich danych osobowych zgodnie z
+                    <a href="/polityka-prywatnosci.html" target="_blank" rel="noopener">Polityka prywatnosci</a>.
+                  </span>
+                </label>
+                <p id="consent-error" class="form-msg" aria-live="polite"></p>
               </div>
 
               <div class="f-actions">
@@ -687,7 +695,7 @@
     <footer id="footer" class="site-footer" role="contentinfo">
       <div class="container ft-grid">
         <div class="ft-col">
-          <a href="index.html#top" class="brand-footer" aria-label="Strona główna KP_Code">
+          <a href="/#top" class="brand-footer" aria-label="Strona główna KP_Code">
             <img class="logo logo-light" src="assets/img/logo-img/logo-light.svg" alt="Ambre – logo restauracji" width="140" height="140" decoding="async" />
             <img class="logo logo-dark" src="assets/img/logo-img/logo-dark.svg" alt="" aria-hidden="true" width="140" height="140" decoding="async" />
           </a>
@@ -703,12 +711,12 @@
         <nav class="ft-col" aria-label="Nawigacja w stopce">
           <h3 class="ft-title">Nawigacja</h3>
           <ul class="ft-nav">
-            <li><a href="index.html#onas">O nas</a></li>
-            <li><a href="index.html#menu">Menu</a></li>
-            <li><a href="index.html#galeria">Galeria</a></li>
-            <li><a href="index.html#opinie">Opinie</a></li>
-            <li><a href="index.html#rezerwacja">Rezerwacja</a></li>
-            <li><a href="index.html#faq">FAQ</a></li>
+            <li><a href="/#onas">O nas</a></li>
+            <li><a href="/#menu">Menu</a></li>
+            <li><a href="/#galeria">Galeria</a></li>
+            <li><a href="/#opinie">Opinie</a></li>
+            <li><a href="/#rezerwacja">Rezerwacja</a></li>
+            <li><a href="/#faq">FAQ</a></li>
           </ul>
         </nav>
 
@@ -731,7 +739,7 @@
               allowfullscreen
               width="100%"
               height="260"
-              style="border: 0; border-radius: var(--radius); box-shadow: var(--shadow)"></iframe>
+              class="map-embed"></iframe>
           </div>
         </div>
 
@@ -797,9 +805,9 @@
       <div class="ft-legalbar" aria-label="Informacje prawne">
         <div class="container">
           <ul class="ft-legal">
-            <li><a href="regulamin.html" rel="nofollow">Regulamin</a></li>
-            <li><a href="polityka-prywatnosci.html" rel="nofollow">Polityka prywatności</a></li>
-            <li><a href="cookies.html" rel="nofollow">Cookies</a></li>
+            <li><a href="/regulamin.html" rel="nofollow">Regulamin</a></li>
+            <li><a href="/polityka-prywatnosci.html" rel="nofollow">Polityka prywatności</a></li>
+            <li><a href="/cookies.html" rel="nofollow">Cookies</a></li>
           </ul>
         </div>
       </div>
@@ -843,5 +851,26 @@
     <script src="js/sw-register.js" defer></script>
     <script src="js/pwa-install.js" defer></script>
     <script src="js/script.js" defer></script>
-  </body>
+    <!-- Demo Banner -->
+    <div id="demo-banner" class="demo-banner" role="dialog" aria-modal="true" aria-labelledby="demo-banner-title" aria-describedby="demo-banner-desc" aria-hidden="true" hidden>
+      <div class="demo-banner__panel" role="document" tabindex="-1">
+        <span class="demo-badge">Projekt DEMO / Portfolio</span>
+        <h2 id="demo-banner-title">Projekt DEMO / Portfolio</h2>
+        <p id="demo-banner-desc">
+          Ta strona jest projektem demonstracyjnym w portfolio KP_Code_.
+          Nie przedstawia rzeczywistej oferty gastronomicznej.
+          Wszystkie tresci, dane i opinie sa przykladowe.
+        </p>
+        <p class="demo-legal">Przed korzystaniem z serwisu zapoznaj sie z Regulaminem.</p>
+        <div class="demo-actions">
+          <button type="button" class="btn btn-primary" data-demo-accept>Akceptuje i przechodze</button>
+          <a class="btn btn-ghost" href="/regulamin.html">Przeczytaj regulamin</a>
+        </div>
+        <div class="demo-links">
+          <a href="/polityka-prywatnosci.html">Polityka prywatnosci</a>
+          <span aria-hidden="true">•</span>
+          <a href="/cookies.html">Cookies</a>
+        </div>
+      </div>
+    </div>\n  </body>
 </html>
