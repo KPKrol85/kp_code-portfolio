@@ -8,15 +8,18 @@ export function initDemoBanner() {
   const acceptBtn = banner.querySelector("[data-demo-accept]");
   const storageKey = "gastronomy_demo_accepted";
 
-  if (localStorage.getItem(storageKey) === "true") return;
+  if (localStorage.getItem(storageKey) === "true") {
+    banner.setAttribute("aria-hidden", "true");
+    banner.setAttribute("hidden", "");
+    document.body?.classList.remove("demo-banner-open");
+    return;
+  }
 
   let lastFocused = null;
-  let prevOverflow = "";
 
   const open = () => {
     lastFocused = document.activeElement;
-    prevOverflow = document.body.style.overflow;
-    document.body.style.overflow = "hidden";
+    document.body?.classList.add("demo-banner-open");
 
     banner.removeAttribute("hidden");
     banner.setAttribute("aria-hidden", "false");
@@ -30,7 +33,7 @@ export function initDemoBanner() {
     localStorage.setItem(storageKey, "true");
     banner.setAttribute("aria-hidden", "true");
     banner.setAttribute("hidden", "");
-    document.body.style.overflow = prevOverflow;
+    document.body?.classList.remove("demo-banner-open");
 
     if (lastFocused && typeof lastFocused.focus === "function") {
       lastFocused.focus();
