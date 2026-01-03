@@ -1,0 +1,72 @@
+/* === 07 - Page Gallery === */
+
+.page-gallery {
+  --gallery-col-max: 960px;
+  --gallery-gap: var(--g);
+  --gallery-radius: var(--radius);
+  padding-bottom: clamp(32px, 5vw, 72px);
+}
+
+.page-gallery .section-head {
+  text-align: center;
+  margin-top: clamp(12px, 1.5vw, 24px);
+  padding-bottom: 0;
+}
+
+.page-gallery .section-head .title-divider {
+  display: block;
+  line-height: 0;
+  margin: clamp(8px, 1.8vw, 16px) auto 0;
+}
+
+.page-gallery .section-head .title-divider img {
+  display: block;
+  margin-inline: auto;
+  height: auto;
+  max-width: 100%;
+}
+
+.page-gallery .section-head .lead {
+  max-width: 65ch;
+  margin: 0.6rem auto 0;
+  text-align: center;
+  color: color-mix(in oklab, var(--c-muted), transparent 0%);
+}
+
+.page-gallery #galeria-grid {
+  padding-top: clamp(10px, 2vw, 20px);
+}
+
+.page-gallery #galeria-grid .tabs {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: clamp(16px, 2vw, 28px);
+}
+
+.page-gallery .gallery-grid {
+  display: grid;
+  justify-content: center;
+  gap: var(--gallery-gap);
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+}
+
+@media (min-width: 1024px) {
+  .page-gallery .gallery-grid {
+    grid-template-columns: repeat(3, minmax(220px, 320px));
+  }
+}
+
+@media (min-width: 640px) and (max-width: 1023.98px) {
+  .page-gallery .gallery-grid {
+    grid-template-columns: repeat(2, minmax(200px, 1fr));
+  }
+}
+
+@media (max-width: 639.98px) {
+  .page-gallery .gallery-grid {
+    grid-template-columns: 1fr;
+  }
+}

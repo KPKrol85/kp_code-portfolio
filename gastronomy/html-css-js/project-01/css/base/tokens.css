@@ -1,0 +1,112 @@
+/* === 00 - Global variables === */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+:root {
+  --c-bg: #ffffff;
+  --c-ink: #1b1b1f;
+  --c-muted: #565a61;
+  --c-surface: #f7f2f4;
+  --c-border: #e6e2e6;
+  --c-accent: #fab204;
+  --c-accent-2: #a0183f;
+  --c-link: #6f4800;
+  --nav-hover-bg: rgba(0, 0, 0, 0.06);
+  --radius: 14px;
+  --shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+  --max: 1140px;
+  --g: 24px;
+  --lead: 1.15;
+  --block-y: clamp(40px, 5vw, 96px);
+  --header-h: 64px;
+
+  --fs-xs: clamp(0.75rem, 0.7rem + 0.2vw, 0.875rem);
+  --fs-sm: clamp(0.875rem, 0.8rem + 0.3vw, 1rem);
+  --fs-md: clamp(1rem, 0.95rem + 0.4vw, 1.125rem);
+  --fs-lg: clamp(1.25rem, 1.1rem + 0.6vw, 1.5rem);
+  --fs-xl: clamp(1.75rem, 1.4rem + 1.2vw, 2.5rem);
+  --fs-xxl: clamp(2.5rem, 2rem + 2vw, 4rem);
+
+  --font-sans: "Source Sans 3", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-display: "Poppins", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+}
+
+:root {
+  --glass-blur: 14px;
+  --glass-alpha: 48%;
+  --glass-border-alpha: 65%;
+}
+
+html[data-theme="light"] {
+  color-scheme: light;
+  --c-bg: #ffffff;
+  --c-ink: #1b1b1f;
+  --c-muted: #565a61;
+  --c-surface: #f7f2f4;
+  --c-border: #e6e2e6;
+  --c-link: #6f4800;
+  --nav-hover-bg: rgba(0, 0, 0, 0.06);
+}
+html[data-theme="dark"] {
+  color-scheme: dark;
+  --c-bg: #0b0b0f;
+  --c-ink: #eef1f6;
+  --c-muted: #a2a7b3;
+  --c-surface: #12121a;
+  --c-border: #2b2d34;
+  --c-link: #fab204;
+  --nav-hover-bg: rgba(255, 255, 255, 0.1);
+}
+
+@font-face {
+  font-display: swap;
+  font-family: "Poppins";
+  font-style: normal;
+  font-weight: 400;
+  src: url("../../assets/fonts/poppins-v24-latin-regular.woff2") format("woff2");
+}
+
+@font-face {
+  font-display: swap;
+  font-family: "Poppins";
+  font-style: normal;
+  font-weight: 600;
+  src: url("../../assets/fonts/poppins-v24-latin-600.woff2") format("woff2");
+}
+
+@font-face {
+  font-display: swap;
+  font-family: "Source Sans 3";
+  font-style: normal;
+  font-weight: 400;
+  src: url("../../assets/fonts/source-sans-3-v19-latin-regular.woff2") format("woff2");
+}
+
+@font-face {
+  font-display: swap;
+  font-family: "Source Sans 3";
+  font-style: normal;
+  font-weight: 500;
+  src: url("../../assets/fonts/source-sans-3-v19-latin-500.woff2") format("woff2");
+}
+
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --c-bg: #0b0b0f;
+    --c-ink: #eef1f6;
+    --c-muted: #a2a7b3;
+    --c-surface: #12121a;
+    --c-border: #2b2d34;
+    --c-link: #fab204;
+    --nav-hover-bg: rgba(255, 255, 255, 0.1);
+  }
+}

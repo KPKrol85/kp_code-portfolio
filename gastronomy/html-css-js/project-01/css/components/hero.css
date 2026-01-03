@@ -1,0 +1,130 @@
+/* === 03 - Hero === */
+
+.hero {
+  position: relative;
+  display: grid;
+  place-items: center;
+  min-height: clamp(78vh, 86vh, 96vh);
+  border-bottom: 1px solid var(--c-border);
+  width: 100%;
+  --ov-top: rgba(0, 0, 0, 0.58);
+  --ov-mid: rgba(0, 0, 0, 0.38);
+  --ov-bot: rgba(0, 0, 0, 0.28);
+}
+.hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background: radial-gradient(120% 90% at 50% 40%, transparent 0%, transparent 60%, rgba(0, 0, 0, 0.1) 85%, rgba(0, 0, 0, 0.18) 100%);
+}
+.hero::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background: linear-gradient(to bottom, var(--ov-top) 0%, var(--ov-mid) 55%, var(--ov-bot) 100%);
+}
+
+.hero-media {
+  position: absolute;
+  inset: 0;
+  display: block;
+  width: 100%;
+  height: 100%;
+  max-width: none;
+  z-index: -1;
+  pointer-events: none;
+}
+.hero-media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  filter: saturate(0.95) brightness(1.12);
+}
+
+.hero-inner {
+  position: relative;
+  z-index: 1;
+  text-align: center;
+  color: #fff;
+}
+
+.hero-brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 0.75rem;
+  filter: drop-shadow(0 2px 6px rgba(0, 0, 0, 0.15));
+}
+.hero-brand-logo {
+  height: 104px;
+  width: auto;
+  opacity: 0.95;
+}
+
+.hero h1,
+.hero .lead {
+  color: #fff;
+  text-shadow: 0 2px 12px rgba(0, 0, 0, 0.6);
+}
+.hero .lead {
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+}
+
+.hero .eyebrow {
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.hero-cta {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 0.75rem;
+  margin-top: 1.5rem;
+}
+
+.hero[data-contrast="low"] {
+  --ov-top: rgba(0, 0, 0, 0.4);
+  --ov-mid: rgba(0, 0, 0, 0.26);
+  --ov-bot: rgba(0, 0, 0, 0.18);
+}
+.hero[data-contrast="high"] {
+  --ov-top: rgba(0, 0, 0, 0.72);
+  --ov-mid: rgba(0, 0, 0, 0.52);
+  --ov-bot: rgba(0, 0, 0, 0.4);
+}
+.hero[data-img="light"] {
+  --ov-top: rgba(0, 0, 0, 0.7);
+  --ov-mid: rgba(0, 0, 0, 0.5);
+  --ov-bot: rgba(0, 0, 0, 0.38);
+}
+.hero[data-img="dark"] {
+  --ov-top: rgba(0, 0, 0, 0.44);
+  --ov-mid: rgba(0, 0, 0, 0.3);
+  --ov-bot: rgba(0, 0, 0, 0.22);
+}
+.hero[data-img="light"]::after {
+  background: linear-gradient(to bottom, rgba(0, 0, 0, 0.68), rgba(0, 0, 0, 0.48));
+}
+.hero[data-img="dark"]::after {
+  background: linear-gradient(to bottom, rgba(0, 0, 0, 0.35), rgba(0, 0, 0, 0.18));
+}
+
+@media (max-width: 600px) {
+  .hero-brand-logo {
+    height: 52px;
+  }
+}
+
+@media (max-width: 480px) {
+  .hero {
+    min-height: 88vh;
+  }
+}

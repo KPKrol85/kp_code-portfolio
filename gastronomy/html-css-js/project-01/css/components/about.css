@@ -1,0 +1,121 @@
+/* === 04 - About === */
+
+.about-photo {
+  border-radius: var(--radius);
+  overflow: hidden;
+  box-shadow: var(--shadow);
+}
+
+.about-photo img {
+  width: 100%;
+  height: auto;
+  border-radius: var(--radius);
+  object-fit: cover;
+}
+
+.about .bullets {
+  display: grid;
+  gap: 0.5rem;
+  list-style: none;
+  margin: 1rem 0 0;
+  padding: 0;
+}
+
+.about .bullets li {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+.about .bullets a,
+.about .bullets time {
+  white-space: nowrap;
+}
+
+.about .icon-dual {
+  display: inline-grid;
+  place-items: center;
+  width: 20px;
+  height: 20px;
+  flex: 0 0 20px;
+}
+
+.about .icon-dual img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.about .icon-dual .icon-light {
+  display: block;
+}
+
+.about .icon-dual .icon-dark {
+  display: none;
+}
+
+html[data-theme="dark"] .about .icon-dual .icon-light {
+  display: none;
+}
+
+html[data-theme="dark"] .about .icon-dual .icon-dark {
+  display: block;
+}
+
+.about .bullets a {
+  color: var(--c-ink);
+  font-weight: 600;
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+.about .bullets a:hover,
+.about .bullets a:focus-visible {
+  color: var(--c-accent);
+}
+
+.about .bullets a:visited {
+  color: var(--c-ink);
+}
+
+#onas #about-title {
+  text-align: center;
+  margin-bottom: 0.5rem;
+}
+
+@media (min-width: 720px) {
+  #onas #about-title {
+    text-align: left;
+  }
+}
+@media (max-width: 899px) {
+  #onas .grid-2 > div {
+    text-align: center;
+  }
+
+  #onas .bullets li {
+    justify-content: center;
+  }
+}
+
+@media (max-width: 899px) {
+  #onas .lead {
+    margin-inline: auto;
+    text-align: center;
+    padding: 0 1.8rem;
+  }
+}
+
+@media (max-width: 899px) {
+  #onas #about-title {
+    text-align: center;
+  }
+}
+
+@media (prefers-color-scheme: dark) {
+  html:not([data-theme]) .about .icon-dual .icon-light {
+    display: none;
+  }
+  html:not([data-theme]) .about .icon-dual .icon-dark {
+    display: block;
+  }
+}

@@ -1,0 +1,144 @@
+/* === 01 - Base typography + layout === */
+
+body {
+  margin: 0;
+  font-family: var(--font-sans);
+  font-weight: 400;
+  color: var(--c-ink);
+  background-color: var(--c-bg);
+  line-height: 1.6;
+}
+
+.skip-link {
+  position: absolute;
+  left: -9999px;
+  top: 0;
+}
+.skip-link:focus-visible {
+  left: 1rem;
+  top: 1rem;
+  z-index: 9999;
+  padding: 0.5rem 0.75rem;
+  border-radius: 0.5rem;
+  background: var(--surface-elevated, var(--c-surface));
+  color: var(--text-strong, var(--c-ink));
+  outline: 2px solid currentColor;
+}
+
+[data-install-pwa]:not([hidden]) {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 0.75rem;
+  border-radius: 9999px;
+  border: 1px solid var(--c-border);
+  background: color-mix(in oklab, var(--c-surface) 92%, transparent);
+  color: var(--c-ink);
+  text-decoration: none;
+  font: inherit;
+}
+[data-install-pwa]:not([hidden]):hover {
+  background: color-mix(in oklab, var(--c-surface) 85%, transparent);
+}
+[data-install-pwa]:focus-visible {
+  outline: 2px solid var(--c-link);
+  outline-offset: 2px;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+button,
+[role="button"],
+.nav-toggle {
+  cursor: pointer;
+}
+
+.container {
+  max-width: var(--max);
+  margin-inline: auto;
+  padding: 0 20px;
+}
+
+a {
+  color: var(--c-link);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+a:hover {
+  text-decoration-thickness: 2px;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: var(--font-display);
+  font-weight: 600;
+  line-height: 1.2;
+  margin: 0 0 0.55em;
+  font-kerning: normal;
+  font-variant-ligatures: contextual;
+  text-wrap: balance;
+}
+
+h1 {
+  font-size: clamp(1.9rem, 1.3rem + 3.6vw, 3.5rem);
+  font-weight: 700;
+}
+h2 {
+  font-size: clamp(1.5rem, 1.1rem + 2vw, 2.5rem);
+  font-weight: 700;
+}
+h3 {
+  font-size: clamp(1.2rem, 1rem + 0.9vw, 1.6rem);
+  font-weight: 700;
+}
+
+.lead {
+  font-size: clamp(1.125rem, 0.98rem + 0.9vw, 1.5rem);
+  line-height: 1.5;
+  font-weight: 400;
+  color: var(--c-muted);
+  max-width: 65ch;
+  margin: 0.1rem 0 1rem;
+}
+
+.eyebrow {
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  opacity: 0.9;
+  font-weight: 600;
+  font-family: var(--font-sans);
+}
+
+.muted {
+  color: var(--c-muted);
+}
+
+.block {
+  padding-block: var(--block-y);
+}
+
+.grid-2 {
+  display: grid;
+  gap: var(--g);
+  grid-template-columns: 1fr;
+  align-items: center;
+}
+
+.section-head {
+  margin: 0 0 1.2rem;
+}
+
+@media (min-width: 900px) {
+  .grid-2 {
+    grid-template-columns: 1.05fr 0.95fr;
+  }
+}
