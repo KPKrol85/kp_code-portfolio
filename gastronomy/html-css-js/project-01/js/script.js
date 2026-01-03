@@ -56,7 +56,7 @@ function initMobileNav() {
   const overlay = $(".nav-overlay");
   if (!toggle || !nav || !drawer || !overlay) return;
 
-  const mqMobile = window.matchMedia("(max-width: 900px)");
+  const mqMobile = window.matchMedia("(max-width: 938px)");
   const drawerNav = drawer.querySelector(".nav-drawer-inner") || drawer;
   let closeTimer = null;
 

@@ -1,5 +1,5 @@
 /* ambre-v1.0.0 */
-const APP_VERSION = "ambre-v1.0.1";
+const APP_VERSION = "ambre-v1.0.2";
 
 const CACHE_PAGES = `pages-${APP_VERSION}`;
 const CACHE_STATIC = `static-${APP_VERSION}`;
