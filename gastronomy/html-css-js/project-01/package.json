@@ -9,12 +9,18 @@
     "minify:css": "postcss css/style.css -o css/style.min.css --no-map -u cssnano",
     "minify:js": "terser js/script.js -o js/script.min.js -c -m",
     "build": "npm run minify:css && npm run minify:js",
-    "watch:css": "postcss css/style.css -o css/style.min.css --watch --no-map -u cssnano"
+    "watch:css": "postcss css/style.css -o css/style.min.css --watch --no-map -u cssnano",
+    "img:opt": "node scripts/optimize-images.mjs",
+    "img:webp": "node scripts/optimize-images.mjs --webp",
+    "img:avif": "node scripts/optimize-images.mjs --avif",
+    "img:clean": "node -e \"require('fs').rmSync('assets/img/_optimized', { recursive: true, force: true })\"",
+    "img:verify": "node scripts/img-verify.mjs"
   },
   "devDependencies": {
     "cssnano": "^7.1.1",
     "postcss": "^8.5.6",
     "postcss-cli": "^11.0.1",
+    "sharp": "^0.33.5",
     "terser": "^5.44.0"
   }
 }
