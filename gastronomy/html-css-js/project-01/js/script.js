@@ -278,32 +278,35 @@ function initLightbox() {
     return clean.replace(/\.(avif|webp|jpe?g|png)$/i, "");
   };
 
-  const getBaseFromElement = (el) => {
-    if (!el) return "";
-    try {
-      const d = el.dataset && el.dataset.full;
-      if (d) return resolveUrl(d);
-    } catch {}
-    const a = el.getAttribute && el.getAttribute("data-full");
-    if (a) return resolveUrl(a);
-    const h = el.getAttribute && el.getAttribute("href");
-    if (h && !h.startsWith("#")) return resolveUrl(h);
-    const imgEl = el.querySelector && el.querySelector("img");
-    if (imgEl) return imgEl.currentSrc || imgEl.src || "";
-    return "";
-  };
+const getBaseFromElement = (el) => {
+  if (!el) return "";
+  try {
+    const d = el.dataset && el.dataset.full;
+    if (d) return resolveUrl(d);
+  } catch {}
+  const a = el.getAttribute && el.getAttribute("data-full");
+  if (a) return resolveUrl(a);
+  const h = el.getAttribute && el.getAttribute("href");
+  if (h && !h.startsWith("#")) return resolveUrl(h);
+  const imgEl = el.querySelector && el.querySelector("img");
+  if (imgEl) return imgEl.src || imgEl.currentSrc || "";
+  return "";
+};
 
-  const setSources = (base, alt = "") => {
-    if (!base) return;
-    const b = stripExt(base);
-    if (!b) return;
-    if (sAvif) sAvif.srcset = `${b}.avif`;
-    if (sWebp) sWebp.srcset = `${b}.webp`;
-    if (img) {
-      img.src = `${b}.jpg`;
-      img.alt = alt || "";
-    }
-  };
+
+const setSources = (base, alt = "") => {
+  if (!base) return;
+  const p = stripExt(base);
+  if (!p) return;
+  const pOpt = p.replace("/assets/img/", "/assets/img/_optimized/");
+  if (sAvif) sAvif.srcset = `${pOpt}.avif`;
+  if (sWebp) sWebp.srcset = `${pOpt}.webp`;
+  if (img) {
+    img.src = `${p}.jpg`;
+    img.alt = alt || "";
+  }
+};
+
 
   let currentIndex = -1;
   let currentCollection = [];
@@ -415,19 +418,21 @@ function initLightbox() {
     updateCounter();
   };
 
-  function preloadNeighbor(offset) {
-    if (!currentCollection.length || currentIndex === -1) return;
-    const idx = (currentIndex + offset + currentCollection.length) % currentCollection.length;
-    const el = currentCollection[idx];
-    const raw = getBaseFromElement(el) || "";
-    if (raw) {
-      const p = stripExt(raw);
-      [`${p}.webp`, `${p}.avif`, `${p}.jpg`].forEach((u) => {
-        const im = new Image();
-        im.src = u;
-      });
-    }
+function preloadNeighbor(offset) {
+  if (!currentCollection.length || currentIndex === -1) return;
+  const idx = (currentIndex + offset + currentCollection.length) % currentCollection.length;
+  const el = currentCollection[idx];
+  const raw = getBaseFromElement(el) || "";
+  if (raw) {
+    const p = stripExt(raw);
+    const pOpt = p.replace("/assets/img/", "/assets/img/_optimized/");
+    [`${pOpt}.webp`, `${pOpt}.avif`, `${p}.jpg`].forEach((u) => {
+      const im = new Image();
+      im.src = u;
+    });
   }
+}
+
 
   const onKey = (e) => {
     if (e.key === "Escape") {
