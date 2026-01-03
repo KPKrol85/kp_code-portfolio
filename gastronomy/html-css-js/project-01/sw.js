@@ -1,5 +1,5 @@
 /* PWA Service Worker */
-const CACHE_VERSION = "v1.3.0";
+const CACHE_VERSION = "v1.4.0";
 
 const APP_SHELL_CACHE = `app-shell-${CACHE_VERSION}`;
 const RUNTIME_IMG_CACHE = `runtime-img-${CACHE_VERSION}`;

@@ -7,11 +7,6 @@
 
 .page-legal > .container {
   max-width: min(900px, 92vw);
-  margin-top: clamp(14px, 2vw, 22px);
-}
-
-.page-legal > .container {
-  max-width: min(900px, 92vw);
   margin-inline: auto;
   background: color-mix(in oklab, var(--c-surface), white 8%);
   border: 1px solid color-mix(in oklab, var(--c-border), transparent 30%);

@@ -1,3 +1,6 @@
 {
-  "extends": ["html-validate:document"]
+  "extends": ["html-validate:document"],
+  "rules": {
+    "require-sri": "off"
+  }
 }

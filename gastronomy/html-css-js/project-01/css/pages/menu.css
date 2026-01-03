@@ -279,7 +279,9 @@
   .page-menu .dish-more > summary::after {
     transition: none;
   }
-}\n\n/* === 09 - Page menu / Page gallery  === */
+}
+
+/* === 09 - Page menu / Page gallery  === */
 
 nav.breadcrumbs {
   font-size: 0.9375rem;
