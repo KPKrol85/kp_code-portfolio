@@ -8,7 +8,9 @@
     "sharp": "^0.33.2"
   },
   "scripts": {
-    "img:opt": "node tools/image-optimizer/optimize-images.mjs --only=jpg",
+    "img:opt": "node tools/image-optimizer/optimize-images.mjs --only=all",
+    "img:opt:jpg": "node tools/image-optimizer/optimize-images.mjs --only=jpg",
+    "img:opt:png": "node tools/image-optimizer/optimize-images.mjs --only=png",
     "img:opt:all": "node tools/image-optimizer/optimize-images.mjs --only=all",
     "img:opt:out": "node tools/image-optimizer/optimize-images.mjs --mode=output --out=tools/image-optimizer/output --only=all",
     "img:opt:dry": "node tools/image-optimizer/optimize-images.mjs --dry-run --only=all"

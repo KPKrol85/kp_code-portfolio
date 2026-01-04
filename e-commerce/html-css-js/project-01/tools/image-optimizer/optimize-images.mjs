@@ -10,7 +10,7 @@ const DEFAULTS = {
   qualityWebp: 70,
   qualityAvif: 50,
   effortAvif: 6,
-  mode: "inplace",
+  mode: "default",
   only: "all",
 };
 
@@ -56,12 +56,12 @@ const config = {
   glob: argv.glob ? String(argv.glob) : null,
 };
 
-if (!["inplace", "output"].includes(config.mode)) {
+if (!["default", "output", "inplace"].includes(config.mode)) {
   console.error(chalk.red(`Invalid --mode: ${config.mode}`));
   process.exit(1);
 }
 
-if (!["jpg", "all"].includes(config.only)) {
+if (!["jpg", "png", "all"].includes(config.only)) {
   console.error(chalk.red(`Invalid --only: ${config.only}`));
   process.exit(1);
 }
@@ -69,6 +69,11 @@ if (!["jpg", "all"].includes(config.only)) {
 if (config.mode === "output" && !config.out) {
   console.error(chalk.red("--out is required when --mode=output"));
   process.exit(1);
+}
+
+if (config.mode === "inplace") {
+  console.log(chalk.yellow("WARN: --mode=inplace is deprecated; using --mode=default."));
+  config.mode = "default";
 }
 
 const formatBytes = (bytes) => {
@@ -81,43 +86,69 @@ const formatBytes = (bytes) => {
   return `${sign}${mb.toFixed(2)} MB`;
 };
 
-const formatPct = (before, after) => {
-  if (before === 0) return "0%";
-  const pct = ((before - after) / before) * 100;
-  return `${pct.toFixed(1)}%`;
-};
-
-const replaceExt = (filePath, ext) => {
-  return `${filePath.slice(0, -path.extname(filePath).length)}.${ext}`;
-};
-
-const pad = (value) => String(value).padStart(2, "0");
-const now = new Date();
-const backupStamp = `${now.getFullYear()}${pad(now.getMonth() + 1)}${pad(
-  now.getDate()
-)}-${pad(now.getHours())}${pad(now.getMinutes())}${pad(now.getSeconds())}`;
+const replaceExt = (filePath, ext) =>
+  `${filePath.slice(0, -path.extname(filePath).length)}.${ext}`;
 
 const projectRoot = process.cwd();
-const inputRoot = path.resolve(projectRoot, "assets/images/products");
-const backupRoot = path.resolve(
-  projectRoot,
-  "tools/image-optimizer/backup",
-  backupStamp
-);
-const outputRoot = config.mode === "output" ? path.resolve(projectRoot, config.out) : null;
+const inputRoot = path.resolve(projectRoot, "assets/images");
+const outputRoot =
+  config.mode === "output"
+    ? path.resolve(projectRoot, config.out)
+    : path.resolve(projectRoot, "assets/images/_optimized");
 
-const defaultGlob = "assets/images/products/**/*.{jpg,jpeg,JPG,JPEG}";
+const defaultGlob = "assets/images/**/*.{jpg,jpeg,png,JPG,JPEG,PNG}";
 const globPattern = config.glob || defaultGlob;
+
+const isOptimizedPath = (absPath) =>
+  absPath.split(path.sep).includes("_optimized");
+
+const isSupportedSource = (absPath) => {
+  const ext = path.extname(absPath).toLowerCase();
+  if (config.only === "jpg") {
+    return ext === ".jpg" || ext === ".jpeg";
+  }
+  if (config.only === "png") {
+    return ext === ".png";
+  }
+  return ext === ".jpg" || ext === ".jpeg" || ext === ".png";
+};
+
+const resolveRelativePath = (absPath) => {
+  const relFromRoot = path.relative(inputRoot, absPath);
+  if (relFromRoot.startsWith("..") || path.isAbsolute(relFromRoot)) {
+    return path.basename(absPath);
+  }
+  return relFromRoot;
+};
+
+const resolveOutputPaths = (absPath) => {
+  const relPath = resolveRelativePath(absPath);
+  const outputBase = path.join(outputRoot, relPath);
+  return {
+    webpPath: replaceExt(outputBase, "webp"),
+    avifPath: replaceExt(outputBase, "avif"),
+  };
+};
+
+const isUpToDate = async (outputPath, inputStat) => {
+  try {
+    const outStat = await fs.stat(outputPath);
+    return outStat.mtimeMs >= inputStat.mtimeMs;
+  } catch {
+    return false;
+  }
+};
 
 const run = async () => {
   const start = Date.now();
   let warnings = 0;
   let errors = 0;
   let processed = 0;
-  let totalJpgBefore = 0;
-  let totalJpgAfter = 0;
+  let sourcesFound = 0;
+  let generatedWebp = 0;
+  let generatedAvif = 0;
+  let skipped = 0;
   let warnedOutsideRoot = false;
-  let backupReady = false;
 
   const files = await fg(globPattern, {
     onlyFiles: true,
@@ -126,10 +157,11 @@ const run = async () => {
     cwd: projectRoot,
     dot: false,
     caseSensitiveMatch: false,
+    ignore: ["**/_optimized/**"],
   });
 
   if (files.length === 0) {
-    console.log(chalk.yellow(`No JPG/JPEG files found for glob: ${globPattern}`));
+    console.log(chalk.yellow(`No source images found for glob: ${globPattern}`));
     return;
   }
 
@@ -137,6 +169,13 @@ const run = async () => {
 
   for (const filePath of files) {
     const absPath = path.resolve(projectRoot, filePath);
+    if (isOptimizedPath(absPath)) {
+      continue;
+    }
+    if (!isSupportedSource(absPath)) {
+      continue;
+    }
+
     const relFromRoot = path.relative(inputRoot, absPath);
     const relPath =
       relFromRoot.startsWith("..") || path.isAbsolute(relFromRoot)
@@ -148,126 +187,82 @@ const run = async () => {
       warnings += 1;
       console.log(
         chalk.yellow(
-          "WARN: Some files are outside assets/images/products; output paths will use basenames."
+          "WARN: Some files are outside assets/images; output paths will use basenames."
         )
       );
     }
 
     try {
-      const stat = await fs.stat(absPath);
-      const originalSize = stat.size;
-      totalJpgBefore += originalSize;
+      sourcesFound += 1;
+      const inputStat = await fs.stat(absPath);
+      const { webpPath, avifPath } = resolveOutputPaths(absPath);
+      const webpUpToDate = await isUpToDate(webpPath, inputStat);
+      const avifUpToDate = await isUpToDate(avifPath, inputStat);
+
+      const relInput = path.relative(projectRoot, absPath);
+      const relWebp = path.relative(projectRoot, webpPath);
+      const relAvif = path.relative(projectRoot, avifPath);
+
+      if (webpUpToDate && avifUpToDate) {
+        skipped += 2;
+        processed += 1;
+        console.log(
+          `${chalk.yellow("SKIP")} ${relInput} -> webp: ${relWebp} (up-to-date) | avif: ${relAvif} (up-to-date)`
+        );
+        continue;
+      }
 
       const inputBuffer = await fs.readFile(absPath);
       const baseImage = sharp(inputBuffer, { failOn: "none" });
 
-      const jpgBuffer = await baseImage
-        .clone()
-        .jpeg({
-          quality: config.qualityJpg,
-          progressive: true,
-          mozjpeg: true,
-        })
-        .toBuffer();
+      let webpInfo = `webp: ${relWebp}`;
+      let avifInfo = `avif: ${relAvif}`;
 
-      const optimizedSize = jpgBuffer.length;
-      const optimizedSmaller = optimizedSize < originalSize;
-
-      const jpgAfterSize =
-        config.mode === "inplace" ? (optimizedSmaller ? optimizedSize : originalSize) : optimizedSize;
-      totalJpgAfter += jpgAfterSize;
-
-      if (config.mode === "output" && outputRoot) {
-        const outputJpgPath = path.join(outputRoot, relPath);
-        if (!config.dryRun) {
-          await fs.mkdir(path.dirname(outputJpgPath), { recursive: true });
-          await fs.writeFile(outputJpgPath, jpgBuffer);
-        }
-      } else if (config.mode === "inplace") {
-        if (optimizedSmaller) {
+      if (webpUpToDate) {
+        skipped += 1;
+        webpInfo += " (up-to-date)";
+      } else {
+        try {
+          const webpBuffer = await baseImage
+            .clone()
+            .webp({ quality: config.qualityWebp })
+            .toBuffer();
           if (!config.dryRun) {
-            if (!backupReady) {
-              await fs.mkdir(backupRoot, { recursive: true });
-              backupReady = true;
-            }
-            const backupPath = path.join(backupRoot, relPath);
-            await fs.mkdir(path.dirname(backupPath), { recursive: true });
-            await fs.copyFile(absPath, backupPath);
-            await fs.writeFile(absPath, jpgBuffer);
+            await fs.mkdir(path.dirname(webpPath), { recursive: true });
+            await fs.writeFile(webpPath, webpBuffer);
           }
-        } else {
-          warnings += 1;
-          console.log(
-            chalk.yellow(
-              `WARN: ${path.relative(projectRoot, absPath)} optimized JPG is larger; keeping original.`
-            )
-          );
+          generatedWebp += 1;
+          webpInfo += ` (${formatBytes(webpBuffer.length)})`;
+        } catch (err) {
+          errors += 1;
+          webpInfo += ` (ERROR: ${err.message})`;
         }
       }
 
-      let webpInfo = "webp: skipped";
-      let avifInfo = "avif: skipped";
-
-      if (config.only === "all") {
-        const webpBuffer = await baseImage.clone().webp({ quality: config.qualityWebp }).toBuffer();
-        const avifBuffer = await baseImage
-          .clone()
-          .avif({ quality: config.qualityAvif, effort: config.effortAvif })
-          .toBuffer();
-
-        const baseCompare = optimizedSize;
-        if (webpBuffer.length > baseCompare) {
-          warnings += 1;
-          console.log(
-            chalk.yellow(
-              `WARN: ${path.relative(projectRoot, absPath)} WEBP (${formatBytes(
-                webpBuffer.length
-              )}) larger than optimized JPG (${formatBytes(baseCompare)}).`
-            )
-          );
-        }
-        if (avifBuffer.length > baseCompare) {
-          warnings += 1;
-          console.log(
-            chalk.yellow(
-              `WARN: ${path.relative(projectRoot, absPath)} AVIF (${formatBytes(
-                avifBuffer.length
-              )}) larger than optimized JPG (${formatBytes(baseCompare)}).`
-            )
-          );
-        }
-
-        if (config.mode === "output" && outputRoot) {
-          const outputBase = path.join(outputRoot, relPath);
-          const outputWebpPath = replaceExt(outputBase, "webp");
-          const outputAvifPath = replaceExt(outputBase, "avif");
+      if (avifUpToDate) {
+        skipped += 1;
+        avifInfo += " (up-to-date)";
+      } else {
+        try {
+          const avifBuffer = await baseImage
+            .clone()
+            .avif({ quality: config.qualityAvif, effort: config.effortAvif })
+            .toBuffer();
           if (!config.dryRun) {
-            await fs.mkdir(path.dirname(outputWebpPath), { recursive: true });
-            await fs.writeFile(outputWebpPath, webpBuffer);
-            await fs.writeFile(outputAvifPath, avifBuffer);
+            await fs.mkdir(path.dirname(avifPath), { recursive: true });
+            await fs.writeFile(avifPath, avifBuffer);
           }
-        } else if (config.mode === "inplace") {
-          const outputWebpPath = replaceExt(absPath, "webp");
-          const outputAvifPath = replaceExt(absPath, "avif");
-          if (!config.dryRun) {
-            await fs.writeFile(outputWebpPath, webpBuffer);
-            await fs.writeFile(outputAvifPath, avifBuffer);
-          }
+          generatedAvif += 1;
+          avifInfo += ` (${formatBytes(avifBuffer.length)})`;
+        } catch (err) {
+          errors += 1;
+          avifInfo += ` (ERROR: ${err.message})`;
         }
-
-        webpInfo = `webp: ${formatBytes(webpBuffer.length)}`;
-        avifInfo = `avif: ${formatBytes(avifBuffer.length)}`;
       }
 
       processed += 1;
-      const relDisplay = path.relative(projectRoot, absPath);
-      const jpgMsg = `${formatBytes(originalSize)} -> ${formatBytes(jpgAfterSize)} (${formatPct(
-        originalSize,
-        jpgAfterSize
-      )})`;
-      console.log(
-        `${chalk.green("OK")} ${relDisplay} | jpg: ${jpgMsg} | ${webpInfo} | ${avifInfo}`
-      );
+      const tag = config.dryRun ? chalk.cyan("DRY") : chalk.green("OK");
+      console.log(`${tag} ${relInput} -> ${webpInfo} | ${avifInfo}`);
     } catch (err) {
       errors += 1;
       console.log(
@@ -277,14 +272,14 @@ const run = async () => {
   }
 
   const durationSec = ((Date.now() - start) / 1000).toFixed(2);
-  const totalDelta = totalJpgBefore - totalJpgAfter;
 
   console.log("");
   console.log(chalk.bold("Summary"));
-  console.log(`Files processed: ${processed}/${files.length}`);
-  console.log(`Total JPG before: ${formatBytes(totalJpgBefore)}`);
-  console.log(`Total JPG after:  ${formatBytes(totalJpgAfter)}`);
-  console.log(`Total savings:    ${formatBytes(totalDelta)}`);
+  console.log(`Sources found: ${sourcesFound}`);
+  console.log(`Files processed: ${processed}`);
+  console.log(`WebP generated: ${generatedWebp}`);
+  console.log(`AVIF generated: ${generatedAvif}`);
+  console.log(`Skipped: ${skipped}`);
   console.log(`Warnings: ${warnings}`);
   console.log(`Errors: ${errors}`);
   console.log(`Duration: ${durationSec}s`);
