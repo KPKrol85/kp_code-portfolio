@@ -543,22 +543,36 @@
 .footer {
   background: var(--color-hero);
   color: var(--color-hero-text);
-  padding: 72px 0 40px;
+  padding: 72px 0 20px;
 }
 
 .footer-grid {
   display: grid;
-  gap: var(--space-6);
-  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: var(--space-8);
+  grid-template-columns: 2fr 1fr 1fr 1fr 2fr;
+}
+.footer-grid p {
+  color: color-mix(in srgb, var(--color-hero-text) 78%, transparent);
+  line-height: 1.55;
+  font-size: var(--fs-2);
+}
+.footer-grid > :first-child > p {
+  text-align: center;
+  max-width: 32ch;
+  margin-inline: auto;
+}
+.footer-col--newsletter {
+  text-align: center;
 }
 
 .footer-brand {
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
+  align-items: center;
+  text-align: center;
   gap: 10px;
+  margin-bottom: 20px;
 }
-
 .footer-logo {
   height: clamp(56px, 5vw, 72px);
   width: auto;
@@ -566,10 +580,52 @@
   margin-bottom: 2px;
   transform: translateY(1px);
 }
-
 .footer-brand-text {
   font-family: var(--font-display);
   font-weight: 700;
+}
+
+.footer-social {
+  display: flex;
+  justify-content: center;
+  padding-block: var(--space-5);
+}
+
+.footer-social-list {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-4);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.footer-social-link {
+  inline-size: 40px;
+  block-size: 40px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--radius-lg);
+  color: color-mix(in srgb, var(--color-hero-text) 80%, transparent);
+  transition: color var(--transition-fast), transform var(--transition-fast),
+    box-shadow var(--transition-fast);
+}
+
+.footer-social-link:hover {
+  color: color-mix(in srgb, var(--color-hero-text) 100%, white 10%);
+  transform: translateY(-1px);
+}
+
+.footer-social-link:focus-visible {
+  outline: 2px solid color-mix(in srgb, var(--color-hero-text) 70%, white);
+  outline-offset: 3px;
+}
+
+.footer-social-link svg {
+  inline-size: 24px;
+  block-size: 24px;
 }
 
 .footer-bottom {
@@ -580,6 +636,12 @@
 
 .footer small {
   color: color-mix(in srgb, var(--color-hero-text) 70%, transparent);
+}
+
+@media (max-width: 900px) {
+  .footer-grid {
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  }
 }
 
 /* === 06 - Page layouts === */
