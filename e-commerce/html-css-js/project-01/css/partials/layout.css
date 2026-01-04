@@ -702,8 +702,25 @@
     text-align: center;
   }
   .footer-grid {
-    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    grid-template-columns: repeat(3, 1fr);
+    row-gap: var(--space-7);
+    column-gap: var(--space-6);
     justify-items: center;
+  }
+  .footer-grid > :nth-child(1),
+  .footer-grid > :nth-child(5) {
+    grid-column: 1 / -1;
+  }
+  .footer-brand {
+    gap: var(--space-3);
+  }
+  .footer-logo {
+    width: 104px;
+    height: auto;
+  }
+  .footer-brand-text {
+    font-size: 1.1rem;
+    letter-spacing: 0.02em;
   }
 }
 
