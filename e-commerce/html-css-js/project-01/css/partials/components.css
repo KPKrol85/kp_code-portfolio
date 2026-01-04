@@ -248,7 +248,8 @@
 .category-pill {
   display: inline-flex;
   align-items: center;
-  gap: var(--space-2);
+  justify-content: center;
+  min-width: 124px;
   padding: var(--space-3) var(--space-4);
   border-radius: var(--radius-lg);
   border: 1px solid var(--color-border);
@@ -498,15 +499,18 @@ textarea {
 .tag-list {
   display: flex;
   flex-wrap: wrap;
-  gap: 10px;
+  gap: var(--space-3);
 }
-
 .tag-list img {
   width: 84px;
   height: 64px;
   object-fit: cover;
   border-radius: var(--radius-xs);
   border: 1px solid var(--color-border);
+}
+.promo .tag-list {
+  gap: var(--space-2);
+  padding-bottom: var(--space-3);
 }
 
 .stacked {

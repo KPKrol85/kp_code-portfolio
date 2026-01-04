@@ -549,7 +549,8 @@
 .footer-grid {
   display: grid;
   gap: var(--space-6);
-  grid-template-columns: 1.8fr 1fr .7fr 1fr 1.6fr;
+  grid-template-columns: 1.8fr 1fr 0.7fr 1fr 1.6fr;
+  padding-bottom: var(--space-6);
 }
 .footer-grid p {
   color: color-mix(in srgb, var(--color-hero-text) 78%, transparent);
@@ -571,7 +572,9 @@
   background-repeat: no-repeat;
   background-size: 0 2px;
   background-position: left 100%;
-  transition: color var(--transition-fast), background-size var(--transition-fast);
+  transition:
+    color var(--transition-fast),
+    background-size var(--transition-fast);
 }
 
 .footer a:not(.footer-social-link):hover {
@@ -618,8 +621,6 @@
   font-weight: 700;
 }
 
-
-
 .footer .btn-outline {
   color: var(--color-hero-text);
   border-color: color-mix(in srgb, var(--color-hero-text) 55%, transparent);
@@ -630,16 +631,6 @@
   background: color-mix(in srgb, var(--color-hero-text) 12%, transparent);
   border-color: color-mix(in srgb, var(--color-hero-text) 75%, transparent);
 }
-
-
-
-
-
-
-
-
-
-
 
 .footer-social {
   display: flex;
@@ -665,7 +656,9 @@
   justify-content: center;
   border-radius: var(--radius-lg);
   color: color-mix(in srgb, var(--color-hero-text) 80%, transparent);
-  transition: color var(--transition-fast), transform var(--transition-fast),
+  transition:
+    color var(--transition-fast),
+    transform var(--transition-fast),
     box-shadow var(--transition-fast);
 }
 
@@ -694,44 +687,31 @@
   color: color-mix(in srgb, var(--color-hero-text) 70%, transparent);
 }
 
-
-
-@media (max-width: 900px) {
+@media (max-width: 1024px) {
   .footer-grid {
-    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    grid-template-columns: 1.6fr 1fr 0.7fr 0.9fr;
+    row-gap: var(--space-8);
+  }
+  .footer-col--newsletter {
+    grid-column: 1 / -1;
   }
 }
 
-/* Tablet i niżej – centrowanie treści */
 @media (max-width: 900px) {
   .footer {
     text-align: center;
   }
-
   .footer-grid {
     grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
     justify-items: center;
   }
 }
 
-/* Mobile – jedna kolumna */
 @media (max-width: 460px) {
   .footer-grid {
     grid-template-columns: 1fr;
   }
 }
-
-
-@media (max-width: 460px) {
-  .footer-grid {
-    grid-template-columns: 1fr;
-  }
-
-  .footer {
-    text-align: center;
-  }
-}
-
 
 /* === 06 - Page layouts === */
 
