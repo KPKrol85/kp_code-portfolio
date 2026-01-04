@@ -1,149 +1,71 @@
-## 🇬🇧 English version
-
 # Gastronomy 01 Ambre — Restaurant Website (Demo)
-
-Responsive demo website for a modern restaurant, created as a professional portfolio project.
-The project focuses on clean UI, clear brand presentation, accessibility awareness,
-performance optimization, and a production-ready front-end structure.
+Responsive, multi-page demo site for a fine dining restaurant, built with semantic HTML, modular CSS, and vanilla JS — including PWA support and Netlify-friendly deployment settings.
 
 🔗 **Live demo:** [https://gastronomy-project-01.netlify.app/]
 
 ---
 
 ## Project Purpose
-
-This project was created as part of an advanced front-end portfolio.
-It presents a modern restaurant website built with semantic HTML,
-modular CSS architecture, and vanilla JavaScript — without frameworks.
-
-The goal of the project is to demonstrate practical layout structure,
-visual consistency, accessibility-conscious development,
-and a clean front-end architecture suitable for real-world projects.
-
----
+Showcase a production-ready front-end for a modern restaurant: mobile-first layouts, consistent brand storytelling, accessible navigation, and practical interactions (menu, gallery, reservation cues) without frameworks.
 
 ## Key Characteristics
-
-- Fully responsive, mobile-first layout
-- Consistent visual identity and modern UI
-- Semantic HTML and accessibility-aware components
-- Light / dark theme support
-- Performance-focused front-end approach
-- SEO-ready structure and metadata
-- Clean, modular, and maintainable codebase
-
----
+- Multi-page structure: home, full menu, gallery, cookies, privacy policy, terms, custom 404, and offline fallback.
+- Mobile-first responsive design with sticky navigation, scrollspy, and skip link for fast orientation.
+- Theme toggle and ARIA-aware components (FAQ controls, submenu labels, tabbed sections) handled via modular JS.
+- Gallery filters/lightbox, “load more” interactions for menu/gallery, and gentle PWA install prompt.
+- SEO-optimized head (OG/Twitter, canonical, sitemap/robots) plus Netlify security headers and clean redirects.
+- PWA caching strategy with offline page and image fallback.
 
 ## Tech Stack
-
-- HTML5
-- CSS3 (custom properties, modular architecture)
-- Vanilla JavaScript (ES6)
-- Netlify (hosting & deployment)
-
----
+- HTML5 with structured metadata (JSON-LD schema, Open Graph/Twitter cards).
+- CSS3 with custom properties and modular organization across base/layout/components/pages.
+- Vanilla JavaScript (ES modules) for navigation, accessibility helpers, gallery/filter logic, forms, and PWA registration.
+- PWA assets: `manifest.webmanifest`, service worker with precache/runtime caches, offline page/install handler.
+- Node.js tooling for linting and optimization (PostCSS + cssnano, Terser, ESLint, Stylelint, html-validate, Sharp-based image workflows).
 
 ## Project Status
-
-✔ Completed (v1)
-
-Future improvements planned:
-
-- UI refinements and visual polish
-- Asset and SVG optimization
-- Additional accessibility enhancements
-- Minor code refactors and cleanup
-
----
+✅ Completed (v1) — ready for portfolio/demo use, with room for iterative refinements and content updates.
 
 ## Disclaimer
-
-This website is a fictional demo project created for portfolio purposes only.
-All company names, branding, addresses, and content are used as examples
-and do not represent a real business.
-
----
+Fictional restaurant project for portfolio purposes only. Names, addresses, and content are sample data, not real business information.
 
 ## Author
-
-Kamil Król
-**KP*Code***
-Front-End Developer
-Portfolio project — 2026
+Kamil Król — **KP*Code***
+Front-End Developer | Portfolio project
 
 ---
 
-## 🇵🇱 Wersja polska
-
-# Gastronomy 01 — strona restauracji (demo)
-
-Responsywna demonstracyjna strona internetowa nowoczesnej restauracji,
-stworzona jako profesjonalny projekt portfolio.
-Projekt skupia się na czytelnym interfejsie, spójnej prezentacji marki,
-świadomej dostępności, wydajności oraz strukturze gotowej do wdrożenia produkcyjnego.
+# Gastronomy 01 Ambre — strona restauracji (demo)
+Responsywna, wielostronicowa strona demo restauracji fine dining, zbudowana w oparciu o semantyczny HTML, modularne CSS i czysty JavaScript — z obsługą PWA i konfiguracją pod Netlify.
 
 🔗 **Demo online:** [https://gastronomy-project-01.netlify.app/]
 
 ---
 
 ## Cel projektu
-
-Projekt został stworzony jako element zaawansowanego portfolio front-end.
-Prezentuje nowoczesną stronę restauracji zbudowaną w oparciu o semantyczny HTML,
-modularną architekturę CSS oraz czysty JavaScript — bez użycia frameworków.
-
-Celem projektu jest pokazanie praktycznej architektury layoutu,
-spójności wizualnej, świadomego podejścia do dostępności
-oraz czystej struktury front-endowej odpowiedniej dla realnych projektów.
-
----
+Zaprezentować front-end gotowy do wdrożenia dla nowoczesnej restauracji: układ mobile-first, spójna narracja marki, dostępna nawigacja i praktyczne interakcje (menu, galeria, rezerwacja) bez użycia frameworków.
 
 ## Główne cechy
-
-- W pełni responsywny layout (mobile-first)
-- Spójna identyfikacja wizualna i nowoczesny interfejs
-- Semantyczny HTML i komponenty tworzone z myślą o dostępności
-- Obsługa trybu jasnego i ciemnego
-- Front-end zorientowany na wydajność
-- Struktura przygotowana pod SEO
-- Czysty, modularny i łatwy w utrzymaniu kod
-
----
+- Wielostronicowa struktura: strona główna, pełne menu, galeria, cookies, polityka prywatności, regulamin, własna 404 oraz tryb offline.
+- Projekt mobile-first z przyklejaną nawigacją, scrollspy i linkiem pomijającym do treści dla szybkiej orientacji.
+- Przełącznik motywu i komponenty z atrybutami ARIA (FAQ, etykiety podmenu, sekcje zakładkowe) obsługiwane modularnym JS.
+- Filtry i lightbox galerii, interakcje „pokaż więcej” w menu/galerii oraz nienachalna zachęta do instalacji PWA.
+- Metadane pod SEO (OG/Twitter, canonical, sitemap/robots) plus nagłówki bezpieczeństwa Netlify i przyjazne przekierowania.
+- Strategia PWA z precache, stroną offline i rezerwowym obrazem dla zasobów graficznych.
 
 ## Stack technologiczny
-
-- HTML5
-- CSS3 (custom properties, architektura modularna)
-- JavaScript (ES6, vanilla)
-- Netlify (hosting i deployment)
-
----
+- HTML5 z rozbudowanymi metadanymi (schema JSON-LD, Open Graph/Twitter).
+- CSS3 z custom properties i modularną organizacją bazową, layoutową, komponentową i stronicową.
+- JavaScript (ES modules) do nawigacji, usprawnień dostępności, logiki galerii/filtrów, formularzy oraz rejestracji PWA.
+- Zasoby PWA: `manifest.webmanifest`, service worker z precache/cachowaniem runtime, strona offline i obsługa instalacji.
+- Narzędzia Node.js do lintowania i optymalizacji (PostCSS + cssnano, Terser, ESLint, Stylelint, html-validate, workflow optymalizacji obrazów w Sharp).
 
 ## Status projektu
-
-✔ Zakończony (v1)
-
-Planowane usprawnienia:
-
-- dopracowanie interfejsu i detali wizualnych
-- optymalizacja assetów i SVG
-- dalsze usprawnienia dostępności
-- drobna refaktoryzacja kodu
-
----
+✅ Zakończony (v1) — gotowy do prezentacji w portfolio, z przestrzenią na kolejne iteracje i aktualizacje treści.
 
 ## Informacja prawna
-
-Strona jest fikcyjnym projektem demonstracyjnym stworzonym wyłącznie
-w celach portfolio.
-Wszystkie nazwy, branding, adresy i treści mają charakter przykładowy
-i nie odnoszą się do rzeczywistej działalności.
-
----
+Fikcyjny projekt demonstracyjny stworzony wyłącznie na potrzeby portfolio. Nazwy, adresy i treści są przykładowe i nie odnoszą się do realnej działalności.
 
 ## Autor
-
-Kamil Król
-**KP*Code***
-Front-End Developer
-Projekt portfolio — 2026
+Kamil Król — **KP*Code***
+Front-End Developer | Projekt portfolio
