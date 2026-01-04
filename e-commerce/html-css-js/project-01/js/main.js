@@ -56,6 +56,15 @@ const initForms = () => {
   });
 };
 
+const initCopyrightYear = () => {
+  const yearTargets = document.querySelectorAll('[data-current-year]');
+  if (!yearTargets.length) return;
+  const year = String(new Date().getFullYear());
+  yearTargets.forEach((el) => {
+    el.textContent = year;
+  });
+};
+
 const initApp = () => {
   const has = (selector) => document.querySelector(selector);
 
@@ -77,6 +86,7 @@ const initApp = () => {
   if (has('[data-checkout-summary]')) initCheckoutSummary();
   if (has('[data-contact-form], [data-checkout-form]')) initForms();
   if (has('[data-add-to-cart]')) initAddToCartButtons();
+  if (has('[data-current-year]')) initCopyrightYear();
 };
 
 if (document.readyState === 'loading') {

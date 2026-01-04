@@ -548,13 +548,46 @@
 
 .footer-grid {
   display: grid;
-  gap: var(--space-8);
-  grid-template-columns: 2fr 1fr 1fr 1fr 2fr;
+  gap: var(--space-6);
+  grid-template-columns: 1.8fr 1fr .7fr 1fr 1.6fr;
 }
 .footer-grid p {
   color: color-mix(in srgb, var(--color-hero-text) 78%, transparent);
   line-height: 1.55;
   font-size: var(--fs-2);
+}
+
+.footer a:not(.footer-social-link) {
+  color: color-mix(in srgb, var(--color-hero-text) 82%, transparent);
+  text-decoration: none;
+  background-image: linear-gradient(
+    90deg,
+    transparent,
+    color-mix(in srgb, var(--color-accent) 65%, transparent) 18%,
+    color-mix(in srgb, var(--color-accent) 85%, transparent) 50%,
+    color-mix(in srgb, var(--color-accent) 65%, transparent) 82%,
+    transparent
+  );
+  background-repeat: no-repeat;
+  background-size: 0 2px;
+  background-position: left 100%;
+  transition: color var(--transition-fast), background-size var(--transition-fast);
+}
+
+.footer a:not(.footer-social-link):hover {
+  color: color-mix(in srgb, var(--color-accent) 90%, white 10%);
+  background-size: 100% 2px;
+}
+
+.footer a:not(.footer-social-link):focus-visible {
+  outline: 2px solid color-mix(in srgb, var(--color-hero-text) 70%, white);
+  outline-offset: 3px;
+  border-radius: var(--radius-xs);
+}
+
+.footer a.is-current:not(.footer-social-link) {
+  color: color-mix(in srgb, var(--color-accent) 92%, white 6%);
+  background-size: 100% 2px;
 }
 .footer-grid > :first-child > p {
   text-align: center;
@@ -661,11 +694,44 @@
   color: color-mix(in srgb, var(--color-hero-text) 70%, transparent);
 }
 
+
+
 @media (max-width: 900px) {
   .footer-grid {
     grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
   }
 }
+
+/* Tablet i niżej – centrowanie treści */
+@media (max-width: 900px) {
+  .footer {
+    text-align: center;
+  }
+
+  .footer-grid {
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    justify-items: center;
+  }
+}
+
+/* Mobile – jedna kolumna */
+@media (max-width: 460px) {
+  .footer-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+
+@media (max-width: 460px) {
+  .footer-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .footer {
+    text-align: center;
+  }
+}
+
 
 /* === 06 - Page layouts === */
 

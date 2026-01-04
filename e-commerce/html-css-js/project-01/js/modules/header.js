@@ -1,4 +1,48 @@
+const normalizePath = (pathname) => {
+  let path = pathname.replace(/\\/g, '/');
+  if (path.endsWith('/index.html')) {
+    path = path.slice(0, -'/index.html'.length) || '/';
+  }
+  if (path.length > 1 && path.endsWith('/')) {
+    path = path.slice(0, -1);
+  }
+  return path || '/';
+};
+
+const applyAriaCurrent = () => {
+  const currentPath = normalizePath(window.location.pathname);
+  const links = document.querySelectorAll('.nav a[href], .footer a[href]');
+
+  links.forEach((link) => {
+    const href = link.getAttribute('href');
+    if (!href || href.startsWith('#') || href.startsWith('mailto:') || href.startsWith('tel:')) {
+      return;
+    }
+
+    let url;
+    try {
+      url = new URL(href, window.location.href);
+    } catch {
+      return;
+    }
+
+    if (url.origin !== window.location.origin) {
+      return;
+    }
+
+    const linkPath = normalizePath(url.pathname);
+    if (linkPath === currentPath) {
+      link.setAttribute('aria-current', 'page');
+      link.classList.add('is-current');
+    } else {
+      link.removeAttribute('aria-current');
+      link.classList.remove('is-current');
+    }
+  });
+};
+
 export const initHeader = () => {
+  applyAriaCurrent();
   const header = document.querySelector('[data-header]');
   const nav = document.querySelector('.nav');
   const toggle = document.querySelector('[data-nav-toggle]');
