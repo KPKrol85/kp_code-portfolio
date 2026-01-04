@@ -124,7 +124,9 @@ button {
 [data-reveal] {
   opacity: 1;
   transform: none;
-  transition: opacity 480ms ease, transform 480ms ease;
+  transition:
+    opacity 480ms ease,
+    transform 480ms ease;
 }
 
 html.reveal-ready [data-reveal] {

@@ -52,6 +52,24 @@ The project focuses on clean architecture, accessibility, performance, and a pro
 
 ---
 
+## Quality & Build
+
+This project includes a lightweight quality toolchain for HTML/CSS/JS and a simple minify step.
+
+- `npm run qa` - runs HTML validation, ESLint, and Stylelint
+- `npm run build` - generates `css/main.min.css` and `js/main.min.js`
+- `npm run watch:css` - watches `css/main.css` and rebuilds `css/main.min.css`
+- `npm run minify:css` - minifies `css/main.css` into `css/main.min.css`
+- `npm run minify:js` - minifies `js/main.js` into `js/main.min.js`
+
+Notes:
+
+- HTML validation uses `htmlvalidate.json`
+- JS lint runs on `js/**/*.js` and `tools/**/*.mjs`
+- CSS lint runs on `css/**/*.css`
+
+---
+
 ## Disclaimer
 
 This is a **demo project** created for educational and portfolio purposes.

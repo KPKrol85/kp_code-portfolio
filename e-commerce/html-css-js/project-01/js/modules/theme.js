@@ -16,7 +16,8 @@ const setStoredTheme = (theme) => {
   }
 };
 
-const getSystemTheme = () => (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+const getSystemTheme = () =>
+  window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
 
 const resolveInitialTheme = (storedTheme) => storedTheme ?? getSystemTheme();
 
@@ -49,7 +50,8 @@ export const initTheme = () => {
 
   if (toggle) {
     toggle.addEventListener('click', () => {
-      const next = document.documentElement.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+      const next =
+        document.documentElement.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
       userHasPreference = true;
       applyTheme(next, { persist: true, toggle });
     });

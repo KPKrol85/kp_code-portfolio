@@ -1,13 +1,13 @@
-import { initReveal } from "./reveal.js";
+import { initReveal } from './reveal.js';
 
-const DATA_URL = new URL("../../data/products.json", import.meta.url);
+const DATA_URL = new URL('../../data/products.json', import.meta.url);
 
 let cached = null;
 
-const getPrefix = () => (window.location.pathname.includes("/pages/") ? "../" : "");
+const getPrefix = () => (window.location.pathname.includes('/pages/') ? '../' : '');
 
 const formatPrice = (value) => `${value.toFixed(0)} zł`;
-const isNewProduct = (product) => product.badge?.toLowerCase().includes("nowo");
+const isNewProduct = (product) => product.badge?.toLowerCase().includes('nowo');
 
 export const loadProducts = async () => {
   if (cached) return cached;
@@ -23,9 +23,10 @@ const productLink = (id) => {
 
 const productImage = (path) => `${getPrefix()}${path}`;
 
-const productPicture = (path, alt, loading = "lazy") => {
+const productPicture = (path, alt, loading = 'lazy') => {
   const src = productImage(path);
-  const base = src.replace(/\.(jpe?g)$/i, "");
+  const optimizedSrc = src.replace('assets/images/', 'assets/images/_optimized/');
+  const base = optimizedSrc.replace(/\.(jpe?g|png)$/i, '');
   return `
     <picture>
       <source srcset="${base}.avif" type="image/avif" />
@@ -34,12 +35,6 @@ const productPicture = (path, alt, loading = "lazy") => {
     </picture>
   `;
 };
-const imagesHtml = `
-${productPicture("assets/images/products/emblemat-01.jpg", "Emblemat 01")}
-${productPicture("assets/images/products/emblemat-02.jpg", "Produkt 02")}
-${productPicture("assets/images/products/p-03.jpg", "Produkt 03")}
-`;
-
 const renderCard = (product) => `
   <article class="card" aria-label="${product.name}" data-reveal>
     <!-- CHANGED: img -> picture -->
@@ -82,13 +77,13 @@ const renderSaleCard = (product) => {
 
 export const renderGrid = (container, products) => {
   if (!container) return;
-  container.innerHTML = products.map(renderCard).join("");
+  container.innerHTML = products.map(renderCard).join('');
   initReveal();
 };
 
 const renderSaleGrid = (container, products) => {
   if (!container) return;
-  container.innerHTML = products.map(renderSaleCard).join("");
+  container.innerHTML = products.map(renderSaleCard).join('');
   initReveal();
 };
 
@@ -138,19 +133,19 @@ export const initSaleProducts = async () => {
 };
 
 export const initProductDetails = async () => {
-  const container = document.querySelector("[data-product-details]");
+  const container = document.querySelector('[data-product-details]');
   if (!container) return;
 
   const products = await loadProducts();
   const params = new URLSearchParams(window.location.search);
-  const currentId = params.get("id") || products[0].id;
+  const currentId = params.get('id') || products[0].id;
   const product = products.find((item) => item.id === currentId) || products[0];
 
   container.innerHTML = `
     <div class="page-layout">
       <div class="card" data-reveal>
         <!-- CHANGED: img -> picture -->
-        ${productPicture(product.image, product.name, "eager")}
+        ${productPicture(product.image, product.name, 'eager')}
         <div class="tag-list">
           <!-- CHANGED: thumbnails img -> picture -->
           ${productPicture(product.image, `${product.name} miniatura`)}
@@ -163,7 +158,7 @@ export const initProductDetails = async () => {
         <p>${product.description}</p>
         <div class="price">${formatPrice(product.price)}</div>
         <ul class="stacked">
-          ${product.features.map((feature) => `<li>${feature}</li>`).join("")}
+          ${product.features.map((feature) => `<li>${feature}</li>`).join('')}
         </ul>
         <label class="input-group">
           <span>Ilość</span>

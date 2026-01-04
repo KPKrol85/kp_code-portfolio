@@ -3,14 +3,19 @@ import { initHeader } from './modules/header.js';
 import { initTheme } from './modules/theme.js';
 import { initReveal } from './modules/reveal.js';
 import { initAccessibility } from './modules/accessibility.js';
-import { initCart, initCartPage, initAddToCartButtons, initCheckoutSummary } from './modules/cart.js';
+import {
+  initCart,
+  initCartPage,
+  initAddToCartButtons,
+  initCheckoutSummary,
+} from './modules/cart.js';
 import {
   initFeaturedProducts,
   initShopProducts,
   initProductDetails,
   initRelatedProducts,
   initNewArrivalsProducts,
-  initSaleProducts
+  initSaleProducts,
 } from './modules/products.js';
 import { initFilters } from './modules/filters.js';
 

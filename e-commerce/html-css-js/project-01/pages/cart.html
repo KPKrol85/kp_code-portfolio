@@ -1,10 +1,10 @@
 <!doctype html>
 <html lang="pl">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="description" content="Koszyk – VOLT GARAGE." />
-  <meta name="color-scheme" content="light dark" />
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="Koszyk – VOLT GARAGE." />
+    <meta name="color-scheme" content="light dark" />
     <script data-theme-preload>
       (function () {
         var storageKey = 'vg_theme';
@@ -15,171 +15,207 @@
           theme = null;
         }
         if (!theme) {
-          var prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+          var prefersDark =
+            window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
           theme = prefersDark ? 'dark' : 'light';
         }
         document.documentElement.setAttribute('data-theme', theme);
       })();
     </script>
     <title>Koszyk | VOLT GARAGE</title>
-<link rel="preload" href="../assets/fonts/space-grotesk/SpaceGrotesk-700.woff2" as="font" type="font/woff2" crossorigin />
-  <link rel="stylesheet" href="../css/main.css" />
-</head>
-<body>
-  <header class="site-header" data-header>
-    <a class="skip-link" href="#main">Przejdź do treści</a>
-    <div class="container header-inner">
-      <a class="brand" href="../index.html">
+    <link
+      rel="preload"
+      href="../assets/fonts/space-grotesk/SpaceGrotesk-700.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin
+    />
+    <link rel="stylesheet" href="../css/main.css" />
+  </head>
+  <body>
+    <header class="site-header" data-header>
+      <a class="skip-link" href="#main">Przejdź do treści</a>
+      <div class="container header-inner">
+        <a class="brand" href="../index.html">
+          <img class="brand-logo" src="../assets/images/logo/logo.svg" alt="" aria-hidden="true" />
 
-        <img class="brand-logo" src="../assets/images/logo/logo.svg" alt="" aria-hidden="true">
-
-        <span class="brand-text">VOLT GARAGE</span>
-
-      </a>
-      <nav class="nav" id="primary-nav" role="navigation" aria-label="Główne">
-        <a href="../index.html">Strona główna</a>
-        <div class="nav-item" data-dropdown>
-          <button class="nav-button" type="button" aria-haspopup="menu" aria-expanded="false" data-dropdown-toggle>Sklep</button>
-          <div class="dropdown-menu" role="menu" data-dropdown-menu>
-            <a role="menuitem" href="shop.html">Wszystkie produkty</a>
-            <a role="menuitem" href="nowosci.html">Nowości</a>
-            <a role="menuitem" href="product.html">Produkt</a>
-            <a role="menuitem" href="kolekcje.html">Kolekcje / Kategorie</a>
-            <a role="menuitem" href="promocje.html">Promocje</a>
-          </div>
-        </div>
-        <a href="contact.html">Kontakt</a>
-        <div class="nav-item" data-dropdown>
-          <button class="nav-button" type="button" aria-haspopup="menu" aria-expanded="false" data-dropdown-toggle>Informacje</button>
-          <div class="dropdown-menu" role="menu" data-dropdown-menu>
-            <a role="menuitem" href="polityka-prywatnosci.html">Polityka prywatności</a>
-            <a role="menuitem" href="cookies.html">Cookies</a>
-            <a role="menuitem" href="regulamin.html">Regulamin</a>
-          </div>
-        </div>
-      </nav>
-      <div class="header-actions">
-        <button class="theme-toggle" id="theme-toggle" data-theme-toggle title="Toggle theme" aria-label="auto" aria-live="polite" aria-pressed="false" type="button">
-          <svg class="sun-and-moon" aria-hidden="true" width="24" height="24" viewBox="0 0 24 24">
-            <mask class="moon" id="moon-mask">
-              <rect x="0" y="0" width="100%" height="100%" fill="white"></rect>
-              <circle cx="24" cy="10" r="6" fill="black"></circle>
-            </mask>
-            <circle class="sun" cx="12" cy="12" r="6" mask="url(#moon-mask)" fill="currentColor"></circle>
-            <g class="sun-beams" stroke="currentColor">
-              <line x1="12" y1="1" x2="12" y2="3"></line>
-              <line x1="12" y1="21" x2="12" y2="23"></line>
-              <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
-              <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
-              <line x1="1" y1="12" x2="3" y2="12"></line>
-              <line x1="21" y1="12" x2="23" y2="12"></line>
-              <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
-              <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
-            </g>
-          </svg>
-        </button>
-        <a class="cart-link" href="cart.html" aria-label="Koszyk" aria-current="page">
-          <span>Koszyk</span>
-          <span class="cart-count" data-cart-count>0</span>
+          <span class="brand-text">VOLT GARAGE</span>
         </a>
-        <button class="nav-toggle" type="button" aria-controls="primary-nav" aria-expanded="false" data-nav-toggle>Menu</button>
-      </div>
-    </div>
-  </header>
-
-  <main id="main">
-    <section class="page-hero">
-      <div class="container">
-        <h1>Koszyk</h1>
-        <p>Sprawdź podsumowanie i przejdź do zamówienia.</p>
-      </div>
-    </section>
-
-    <section>
-      <div class="container page-layout">
-        <div class="table-like" data-cart-items></div>
-        <aside class="total-panel" aria-live="polite" data-cart-summary data-reveal>
-          <h3>Podsumowanie</h3>
-          <div class="stacked">
-            <span>Wartość produktów: <strong data-cart-subtotal>0 zł</strong></span>
-            <span>Dostawa: <strong data-cart-shipping>0 zł</strong></span>
-            <span>Razem: <strong data-cart-total>0 zł</strong></span>
+        <nav class="nav" id="primary-nav" role="navigation" aria-label="Główne">
+          <a href="../index.html">Strona główna</a>
+          <div class="nav-item" data-dropdown>
+            <button
+              class="nav-button"
+              type="button"
+              aria-haspopup="menu"
+              aria-expanded="false"
+              data-dropdown-toggle
+            >
+              Sklep
+            </button>
+            <div class="dropdown-menu" role="menu" data-dropdown-menu>
+              <a role="menuitem" href="shop.html">Wszystkie produkty</a>
+              <a role="menuitem" href="nowosci.html">Nowości</a>
+              <a role="menuitem" href="product.html">Produkt</a>
+              <a role="menuitem" href="kolekcje.html">Kolekcje / Kategorie</a>
+              <a role="menuitem" href="promocje.html">Promocje</a>
+            </div>
           </div>
-          <a class="btn btn-accent" href="checkout.html">Przejdź do zamówienia</a>
-          <p class="notice">Zmiany w koszyku są aktualizowane automatycznie.</p>
-        </aside>
-      </div>
-    </section>
-  </main>
-
-  <footer class="footer">
-    <div class="container footer-grid">
-      <div>
-        <div class="footer-brand">
-
-          <img class="footer-logo" src="../assets/images/logo/logo.svg" alt="" aria-hidden="true">
-
-          <span class="footer-brand-text">VOLT GARAGE</span>
-
+          <a href="contact.html">Kontakt</a>
+          <div class="nav-item" data-dropdown>
+            <button
+              class="nav-button"
+              type="button"
+              aria-haspopup="menu"
+              aria-expanded="false"
+              data-dropdown-toggle
+            >
+              Informacje
+            </button>
+            <div class="dropdown-menu" role="menu" data-dropdown-menu>
+              <a role="menuitem" href="polityka-prywatnosci.html">Polityka prywatności</a>
+              <a role="menuitem" href="cookies.html">Cookies</a>
+              <a role="menuitem" href="regulamin.html">Regulamin</a>
+            </div>
+          </div>
+        </nav>
+        <div class="header-actions">
+          <button
+            class="theme-toggle"
+            id="theme-toggle"
+            data-theme-toggle
+            title="Toggle theme"
+            aria-label="auto"
+            aria-live="polite"
+            aria-pressed="false"
+            type="button"
+          >
+            <svg class="sun-and-moon" aria-hidden="true" width="24" height="24" viewBox="0 0 24 24">
+              <mask class="moon" id="moon-mask">
+                <rect x="0" y="0" width="100%" height="100%" fill="white"></rect>
+                <circle cx="24" cy="10" r="6" fill="black"></circle>
+              </mask>
+              <circle
+                class="sun"
+                cx="12"
+                cy="12"
+                r="6"
+                mask="url(#moon-mask)"
+                fill="currentColor"
+              ></circle>
+              <g class="sun-beams" stroke="currentColor">
+                <line x1="12" y1="1" x2="12" y2="3"></line>
+                <line x1="12" y1="21" x2="12" y2="23"></line>
+                <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                <line x1="1" y1="12" x2="3" y2="12"></line>
+                <line x1="21" y1="12" x2="23" y2="12"></line>
+                <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+              </g>
+            </svg>
+          </button>
+          <a class="cart-link" href="cart.html" aria-label="Koszyk" aria-current="page">
+            <span>Koszyk</span>
+            <span class="cart-count" data-cart-count>0</span>
+          </a>
+          <button
+            class="nav-toggle"
+            type="button"
+            aria-controls="primary-nav"
+            aria-expanded="false"
+            data-nav-toggle
+          >
+            Menu
+          </button>
         </div>
-        <p>Nowoczesny sklep z akcesoriami samochodowymi. Projektowany przez pasjonatów dla pasjonatów.</p>
       </div>
-      <div>
-        <h4>Sklep</h4>
-        <ul class="stacked">
-          <li><a href="shop.html">Nowości</a></li>
-          <li><a href="shop.html">Bestsellery</a></li>
-          <li><a href="shop.html">Zestawy</a></li>
-        </ul>
-      </div>
-      <div>
-        <h4>Pomoc</h4>
-        <ul class="stacked">
-          <li><a href="contact.html">Kontakt</a></li>
-          <li><a href="checkout.html">Dostawa</a></li>
-          <li><a href="cart.html">Zwroty</a></li>
-        </ul>
-      </div>
-      <div>
-        <h4>Informacje</h4>
-        <ul class="stacked">
-          <li><a href="polityka-prywatnosci.html">Polityka prywatności</a></li>
-          <li><a href="cookies.html">Cookies</a></li>
-          <li><a href="regulamin.html">Regulamin</a></li>
-        </ul>
-      </div>
-      <div>
-        <h4>Biuletyn</h4>
-        <p>Ekskluzywne rabaty i newsy co tydzień.</p>
-        <form class="footer-form" aria-label="Stopka biuletynu">
-          <label class="input-group">
-            <span>E-mail</span>
-            <input type="email" placeholder="kontakt@kp-code.pl" required />
-          </label>
-          <button class="btn btn-outline" type="submit">Zapisz się</button>
-        </form>
-      </div>
-      
-    </div>
-    <div class="container footer-bottom">
-      <small>© 2025 VOLT GARAGE. Wszelkie prawa zastrzeżone.</small>
-    </div>
-  </footer>
+    </header>
 
-  <script type="module" src="../js/main.js"></script>
-    </body>
+    <main id="main">
+      <section class="page-hero">
+        <div class="container">
+          <h1>Koszyk</h1>
+          <p>Sprawdź podsumowanie i przejdź do zamówienia.</p>
+        </div>
+      </section>
+
+      <section>
+        <div class="container page-layout">
+          <div class="table-like" data-cart-items></div>
+          <aside class="total-panel" aria-live="polite" data-cart-summary data-reveal>
+            <h3>Podsumowanie</h3>
+            <div class="stacked">
+              <span>Wartość produktów: <strong data-cart-subtotal>0 zł</strong></span>
+              <span>Dostawa: <strong data-cart-shipping>0 zł</strong></span>
+              <span>Razem: <strong data-cart-total>0 zł</strong></span>
+            </div>
+            <a class="btn btn-accent" href="checkout.html">Przejdź do zamówienia</a>
+            <p class="notice">Zmiany w koszyku są aktualizowane automatycznie.</p>
+          </aside>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <div class="container footer-grid">
+        <div>
+          <div class="footer-brand">
+            <img
+              class="footer-logo"
+              src="../assets/images/logo/logo.svg"
+              alt=""
+              aria-hidden="true"
+            />
+
+            <span class="footer-brand-text">VOLT GARAGE</span>
+          </div>
+          <p>
+            Nowoczesny sklep z akcesoriami samochodowymi. Projektowany przez pasjonatów dla
+            pasjonatów.
+          </p>
+        </div>
+        <div>
+          <h4>Sklep</h4>
+          <ul class="stacked">
+            <li><a href="shop.html">Nowości</a></li>
+            <li><a href="shop.html">Bestsellery</a></li>
+            <li><a href="shop.html">Zestawy</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4>Pomoc</h4>
+          <ul class="stacked">
+            <li><a href="contact.html">Kontakt</a></li>
+            <li><a href="checkout.html">Dostawa</a></li>
+            <li><a href="cart.html">Zwroty</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4>Informacje</h4>
+          <ul class="stacked">
+            <li><a href="polityka-prywatnosci.html">Polityka prywatności</a></li>
+            <li><a href="cookies.html">Cookies</a></li>
+            <li><a href="regulamin.html">Regulamin</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4>Biuletyn</h4>
+          <p>Ekskluzywne rabaty i newsy co tydzień.</p>
+          <form class="footer-form" aria-label="Stopka biuletynu">
+            <label class="input-group">
+              <span>E-mail</span>
+              <input type="email" placeholder="kontakt@kp-code.pl" required />
+            </label>
+            <button class="btn btn-outline" type="submit">Zapisz się</button>
+          </form>
+        </div>
+      </div>
+      <div class="container footer-bottom">
+        <small>© 2025 VOLT GARAGE. Wszelkie prawa zastrzeżone.</small>
+      </div>
+    </footer>
+
+    <script type="module" src="../js/main.js"></script>
+  </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-

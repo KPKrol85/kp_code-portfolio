@@ -9,66 +9,66 @@
    = CSS Stylesheet
    = File: themes.css
    = Structure overview
-   ======================================================================
+   ==================================
    = 01 - Fonts import
-   = 02 - Global design tokens (typography, radius, shadows, transitions)
-   = 03 - Light theme tokens (default)
+   = 02 - Global design tokens
+   = 03 - Light theme tokens
    = 04 - Dark theme tokens
    = 05 - System theme mapping (future)
    = 06 - High contrast / accessibility themes (future)
    = 07 - Component theme overrides (future)
-   ====================================================================== */
+   =================================== */
 
-/* === 01 - Local fonts (WOFF2) === */
+/* === 01 - Local fonts === */
 
 @font-face {
-  font-family: "Manrope";
+  font-family: 'Manrope';
   font-style: normal;
   font-weight: 400;
   font-display: swap;
-  src: url("../assets/fonts/manrope/Manrope-400.woff2") format("woff2");
+  src: url('../../assets/fonts/manrope/Manrope-400.woff2') format('woff2');
 }
 @font-face {
-  font-family: "Manrope";
+  font-family: 'Manrope';
   font-style: normal;
   font-weight: 500;
   font-display: swap;
-  src: url("../assets/fonts/manrope/Manrope-500.woff2") format("woff2");
+  src: url('../../assets/fonts/manrope/Manrope-500.woff2') format('woff2');
 }
 @font-face {
-  font-family: "Manrope";
+  font-family: 'Manrope';
   font-style: normal;
   font-weight: 600;
   font-display: swap;
-  src: url("../assets/fonts/manrope/Manrope-600.woff2") format("woff2");
+  src: url('../../assets/fonts/manrope/Manrope-600.woff2') format('woff2');
 }
 @font-face {
-  font-family: "Space Grotesk";
+  font-family: 'Space Grotesk';
   font-style: normal;
   font-weight: 500;
   font-display: swap;
-  src: url("../assets/fonts/space-grotesk/SpaceGrotesk-500.woff2") format("woff2");
+  src: url('../../assets/fonts/space-grotesk/SpaceGrotesk-500.woff2') format('woff2');
 }
 @font-face {
-  font-family: "Space Grotesk";
+  font-family: 'Space Grotesk';
   font-style: normal;
   font-weight: 600;
   font-display: swap;
-  src: url("../assets/fonts/space-grotesk/SpaceGrotesk-600.woff2") format("woff2");
+  src: url('../../assets/fonts/space-grotesk/SpaceGrotesk-600.woff2') format('woff2');
 }
 @font-face {
-  font-family: "Space Grotesk";
+  font-family: 'Space Grotesk';
   font-style: normal;
   font-weight: 700;
   font-display: swap;
-  src: url("../assets/fonts/space-grotesk/SpaceGrotesk-700.woff2") format("woff2");
+  src: url('../../assets/fonts/space-grotesk/SpaceGrotesk-700.woff2') format('woff2');
 }
 
 /* === 02 - Global design tokens === */
 
 :root {
-  --font-display: "Space Grotesk", sans-serif;
-  --font-body: "Manrope", sans-serif;
+  --font-display: 'Space Grotesk', sans-serif;
+  --font-body: 'Manrope', sans-serif;
 
   --fs-0: 0.625rem;
   --fs-1: 0.75rem;
@@ -115,7 +115,7 @@
 /* === 03 - Light theme tokens (default) === */
 
 :root,
-[data-theme="light"] {
+[data-theme='light'] {
   --color-bg: #f4f6f8;
   --color-surface: #ffffff;
   --color-surface-alt: #e9edf1;
@@ -142,7 +142,7 @@
 
 /* === 04 - Dark theme tokens === */
 
-[data-theme="dark"] {
+[data-theme='dark'] {
   --color-bg: #0c0f14;
   --color-surface: #151a22;
   --color-surface-alt: #1d2330;

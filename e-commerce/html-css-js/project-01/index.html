@@ -1,13 +1,16 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="pl">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="description" content="VOLT GARAGE – nowoczesny sklep z akcesoriami samochodowymi." />
+    <meta
+      name="description"
+      content="VOLT GARAGE – nowoczesny sklep z akcesoriami samochodowymi."
+    />
     <meta name="color-scheme" content="light dark" />
     <script data-theme-preload>
       (function () {
-        var storageKey = "vg_theme";
+        var storageKey = 'vg_theme';
         var theme = null;
         try {
           theme = localStorage.getItem(storageKey);
@@ -15,14 +18,21 @@
           theme = null;
         }
         if (!theme) {
-          var prefersDark = window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches;
-          theme = prefersDark ? "dark" : "light";
+          var prefersDark =
+            window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+          theme = prefersDark ? 'dark' : 'light';
         }
-        document.documentElement.setAttribute("data-theme", theme);
+        document.documentElement.setAttribute('data-theme', theme);
       })();
     </script>
     <title>VOLT GARAGE | Akcesoria samochodowe</title>
-    <link rel="preload" href="assets/fonts/space-grotesk/SpaceGrotesk-700.woff2" as="font" type="font/woff2" crossorigin />
+    <link
+      rel="preload"
+      href="assets/fonts/space-grotesk/SpaceGrotesk-700.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin
+    />
     <link rel="stylesheet" href="./css/main.css" />
   </head>
 
@@ -39,33 +49,71 @@
         <nav class="nav" id="primary-nav" role="navigation" aria-label="Główne">
           <a href="index.html" aria-current="page">Strona główna</a>
           <div class="nav-item" data-dropdown>
-            <button class="nav-button" type="button" aria-haspopup="menu" aria-expanded="false" data-dropdown-toggle>Sklep</button>
+            <button
+              class="nav-button"
+              type="button"
+              aria-haspopup="menu"
+              aria-expanded="false"
+              data-dropdown-toggle
+            >
+              Sklep
+            </button>
             <div class="dropdown-menu" role="menu" data-dropdown-menu>
-              <a role="menuitem" class="dropdown-subitem" href="pages/shop.html">Wszystkie produkty</a>
+              <a role="menuitem" class="dropdown-subitem" href="pages/shop.html"
+                >Wszystkie produkty</a
+              >
               <a role="menuitem" class="dropdown-subitem" href="pages/nowosci.html">Nowości</a>
               <a role="menuitem" class="dropdown-subitem" href="pages/product.html">Produkt</a>
-              <a role="menuitem" class="dropdown-subitem" href="pages/kolekcje.html">Kolekcje / Kategorie</a>
+              <a role="menuitem" class="dropdown-subitem" href="pages/kolekcje.html"
+                >Kolekcje / Kategorie</a
+              >
               <a role="menuitem" class="dropdown-subitem" href="pages/promocje.html">Promocje</a>
             </div>
           </div>
           <a href="pages/contact.html">Kontakt</a>
           <div class="nav-item" data-dropdown>
-            <button class="nav-button" type="button" aria-haspopup="menu" aria-expanded="false" data-dropdown-toggle>Informacje</button>
+            <button
+              class="nav-button"
+              type="button"
+              aria-haspopup="menu"
+              aria-expanded="false"
+              data-dropdown-toggle
+            >
+              Informacje
+            </button>
             <div class="dropdown-menu" role="menu" data-dropdown-menu>
-              <a role="menuitem" class="dropdown-subitem" href="pages/polityka-prywatnosci.html">Polityka prywatności</a>
+              <a role="menuitem" class="dropdown-subitem" href="pages/polityka-prywatnosci.html"
+                >Polityka prywatności</a
+              >
               <a role="menuitem" class="dropdown-subitem" href="pages/cookies.html">Cookies</a>
               <a role="menuitem" class="dropdown-subitem" href="pages/regulamin.html">Regulamin</a>
             </div>
           </div>
         </nav>
         <div class="header-actions">
-          <button class="theme-toggle" id="theme-toggle" data-theme-toggle title="Toggle theme" aria-label="auto" aria-live="polite" aria-pressed="false" type="button">
+          <button
+            class="theme-toggle"
+            id="theme-toggle"
+            data-theme-toggle
+            title="Toggle theme"
+            aria-label="auto"
+            aria-live="polite"
+            aria-pressed="false"
+            type="button"
+          >
             <svg class="sun-and-moon" aria-hidden="true" width="24" height="24" viewBox="0 0 24 24">
               <mask class="moon" id="moon-mask">
                 <rect x="0" y="0" width="100%" height="100%" fill="white"></rect>
                 <circle cx="24" cy="10" r="6" fill="black"></circle>
               </mask>
-              <circle class="sun" cx="12" cy="12" r="6" mask="url(#moon-mask)" fill="currentColor"></circle>
+              <circle
+                class="sun"
+                cx="12"
+                cy="12"
+                r="6"
+                mask="url(#moon-mask)"
+                fill="currentColor"
+              ></circle>
               <g class="sun-beams" stroke="currentColor">
                 <line x1="12" y1="1" x2="12" y2="3"></line>
                 <line x1="12" y1="21" x2="12" y2="23"></line>
@@ -82,7 +130,15 @@
             <span>Koszyk</span>
             <span class="cart-count" data-cart-count>0</span>
           </a>
-          <button class="nav-toggle" type="button" aria-controls="primary-nav" aria-expanded="false" data-nav-toggle>Menu</button>
+          <button
+            class="nav-toggle"
+            type="button"
+            aria-controls="primary-nav"
+            aria-expanded="false"
+            data-nav-toggle
+          >
+            Menu
+          </button>
         </div>
       </div>
     </header>
@@ -94,21 +150,36 @@
         <picture class="hero-media" aria-hidden="true">
           <source
             type="image/avif"
-            srcset="assets/images/hero/hero-05-800x600.avif 800w, assets/images/hero/hero-05-1280x720.avif 1280w, assets/images/hero/hero-05-1920x1080.avif 1920w"
-            sizes="100vw" />
+            srcset="
+              assets/images/_optimized/hero/hero-05-800x600.avif    800w,
+              assets/images/_optimized/hero/hero-05-1280x720.avif  1280w,
+              assets/images/_optimized/hero/hero-05-1920x1080.avif 1920w
+            "
+            sizes="100vw"
+          />
           <source
             type="image/webp"
-            srcset="assets/images/hero/hero-05-800x600.webp 800w, assets/images/hero/hero-05-1280x720.webp 1280w, assets/images/hero/hero-05-1920x1080.webp 1920w"
-            sizes="100vw" />
+            srcset="
+              assets/images/_optimized/hero/hero-05-800x600.webp    800w,
+              assets/images/_optimized/hero/hero-05-1280x720.webp  1280w,
+              assets/images/_optimized/hero/hero-05-1920x1080.webp 1920w
+            "
+            sizes="100vw"
+          />
           <img
             src="assets/images/hero/hero-05-1280x720.jpg"
-            srcset="assets/images/hero/hero-05-800x600.jpg 800w, assets/images/hero/hero-05-1280x720.jpg 1280w, assets/images/hero/hero-05-1920x1080.jpg 1920w"
+            srcset="
+              assets/images/hero/hero-05-800x600.jpg    800w,
+              assets/images/hero/hero-05-1280x720.jpg  1280w,
+              assets/images/hero/hero-05-1920x1080.jpg 1920w
+            "
             sizes="100vw"
             width="1920"
             height="1080"
             alt=""
             loading="eager"
-            fetchpriority="high" />
+            fetchpriority="high"
+          />
         </picture>
         <div class="container hero-grid">
           <div data-reveal>
@@ -118,7 +189,9 @@
               <br />
               Twój styl. Twoje auto. Twoje zasady.
             </h1>
-            <p>Ekskluzywne emblematy, naklejki i gadżety w sportowym stylu. Twój garaż, twoje zasady.</p>
+            <p>
+              Ekskluzywne emblematy, naklejki i gadżety w sportowym stylu. Twój garaż, twoje zasady.
+            </p>
             <div class="tag-list">
               <a class="btn btn-accent" href="pages/shop.html">Przejdź do sklepu</a>
               <a class="btn btn-outline" href="pages/contact.html">Porozmawiaj z nami</a>
@@ -161,7 +234,10 @@
         <div class="container promo" data-reveal>
           <div>
             <h2>Akcesoria z charakterem</h2>
-            <p>Buduj wnętrze i zewnętrzną linię auta z elementami premium, które wyglądają jak z auta koncepcyjnego.</p>
+            <p>
+              Buduj wnętrze i zewnętrzną linię auta z elementami premium, które wyglądają jak z auta
+              koncepcyjnego.
+            </p>
           </div>
           <div class="tag-list">
             <span class="category-pill">Emblematy</span>
@@ -225,7 +301,10 @@
 
             <span class="footer-brand-text">VOLT GARAGE</span>
           </div>
-          <p>Nowoczesny sklep z akcesoriami samochodowymi. Projektowany przez pasjonatów dla pasjonatów.</p>
+          <p>
+            Nowoczesny sklep z akcesoriami samochodowymi. Projektowany przez pasjonatów dla
+            pasjonatów.
+          </p>
         </div>
         <div>
           <h4>Sklep</h4>
@@ -271,4 +350,3 @@
     <script type="module" src="./js/main.js"></script>
   </body>
 </html>
-
