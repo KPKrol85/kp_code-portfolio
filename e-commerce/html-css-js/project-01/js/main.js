@@ -1,8 +1,9 @@
+// Entry point: bootstrap site modules.
 import { initHeader } from './modules/header.js';
 import { initTheme } from './modules/theme.js';
 import { initReveal } from './modules/reveal.js';
 import { initAccessibility } from './modules/accessibility.js';
-import { initCart, initCartPage, bindAddToCartButtons, renderCheckoutSummary } from './modules/cart.js';
+import { initCart, initCartPage, initAddToCartButtons, initCheckoutSummary } from './modules/cart.js';
 import {
   initFeaturedProducts,
   initShopProducts,
@@ -51,22 +52,26 @@ const initForms = () => {
 };
 
 const initApp = () => {
-  initAccessibility();
-  initHeader();
-  initTheme();
-  initReveal();
-  initCart();
-  initFeaturedProducts();
-  initShopProducts();
-  initNewArrivalsProducts();
-  initProductDetails();
-  initRelatedProducts();
-  initSaleProducts();
-  initFilters();
-  initCartPage();
-  renderCheckoutSummary();
-  initForms();
-  bindAddToCartButtons();
+  const has = (selector) => document.querySelector(selector);
+
+  if (document.body) initAccessibility();
+  if (has('[data-header]')) initHeader();
+  if (has('[data-theme-toggle]')) initTheme();
+  if (has('[data-reveal]')) initReveal();
+  if (has('[data-cart-count]')) initCart();
+  if (has('[data-products="featured"]')) initFeaturedProducts();
+  if (has('[data-products="shop"]')) {
+    initShopProducts();
+    initFilters();
+  }
+  if (has('[data-products="new"]')) initNewArrivalsProducts();
+  if (has('[data-products="related"]')) initRelatedProducts();
+  if (has('[data-products="sale"]')) initSaleProducts();
+  if (has('[data-product-details]')) initProductDetails();
+  if (has('[data-cart-items]')) initCartPage();
+  if (has('[data-checkout-summary]')) initCheckoutSummary();
+  if (has('[data-contact-form], [data-checkout-form]')) initForms();
+  if (has('[data-add-to-cart]')) initAddToCartButtons();
 };
 
 if (document.readyState === 'loading') {

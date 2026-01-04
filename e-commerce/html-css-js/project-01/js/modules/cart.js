@@ -39,7 +39,7 @@ export const initCart = () => {
   window.addEventListener('cart:updated', updateCount);
 };
 
-export const bindAddToCartButtons = () => {
+export const initAddToCartButtons = () => {
   document.addEventListener('click', (event) => {
     const button = event.target.closest('[data-add-to-cart]');
     if (!button) return;
@@ -153,7 +153,7 @@ export const initCartPage = async () => {
   });
 };
 
-export const renderCheckoutSummary = async () => {
+export const initCheckoutSummary = async () => {
   const summary = document.querySelector('[data-checkout-summary]');
   if (!summary) return;
   const products = await loadProducts();
