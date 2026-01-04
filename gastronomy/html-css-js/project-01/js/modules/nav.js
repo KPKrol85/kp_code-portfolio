@@ -5,21 +5,42 @@ export function initMobileNav() {
   const nav = byTestId("site-nav") || $("#site-nav");
   if (!toggle || !nav) return;
 
-  const mq = window.matchMedia("(min-width: 900px)");
+  const overlay = $(".nav-overlay");
+  const drawer = $(".nav-drawer");
+  const drawerInner = $(".nav-drawer-inner", drawer || document);
+  const navList = nav.querySelector("ul");
+  if (drawerInner && navList && !drawerInner.children.length) {
+    drawerInner.appendChild(navList.cloneNode(true));
+  }
+  if (drawerInner) {
+    drawerInner.querySelectorAll(".has-submenu").forEach((item) => {
+      if (item.querySelector(".drawer-accordion-trigger")) return;
+      const trigger = document.createElement("button");
+      trigger.type = "button";
+      trigger.className = "drawer-accordion-trigger";
+      trigger.setAttribute("aria-expanded", "false");
+      trigger.setAttribute("aria-label", "Pokaż podmenu");
+      const submenu = item.querySelector(".nav-submenu");
+      if (submenu) {
+        item.insertBefore(trigger, submenu);
+      }
+    });
+  }
+  if (overlay) overlay.hidden = false;
+  if (drawer) drawer.hidden = false;
+
+  const mq = window.matchMedia("(min-width: 939px)");
   const setOpen = (open) => {
     document.body.classList.toggle("nav-open", open);
     toggle.setAttribute("aria-expanded", String(open));
+    if (drawer) drawer.setAttribute("aria-hidden", String(!open));
   };
 
   if (!toggle.hasAttribute("aria-controls")) {
     toggle.setAttribute("aria-controls", nav.id || "site-nav");
   }
 
-  toggle.addEventListener(
-    "click",
-    () => setOpen(!document.body.classList.contains("nav-open")),
-    { passive: true }
-  );
+  toggle.addEventListener("click", () => setOpen(!document.body.classList.contains("nav-open")), { passive: true });
 
   nav.addEventListener(
     "click",
@@ -28,6 +49,25 @@ export function initMobileNav() {
     },
     { passive: true }
   );
+
+  drawer?.addEventListener(
+    "click",
+    (event) => {
+      const trigger = event.target.closest(".drawer-accordion-trigger");
+      if (trigger) {
+        const item = trigger.closest(".has-submenu");
+        if (!item) return;
+        const isOpen = !item.classList.contains("is-accordion-open");
+        item.classList.toggle("is-accordion-open", isOpen);
+        trigger.setAttribute("aria-expanded", String(isOpen));
+        return;
+      }
+      if (event.target.closest("a")) setOpen(false);
+    },
+    { passive: true }
+  );
+
+  overlay?.addEventListener("click", () => setOpen(false), { passive: true });
 
   let wasDesktop = mq.matches;
   const handleResize = () => {
@@ -43,7 +83,8 @@ export function initMobileNav() {
     if (!document.body.classList.contains("nav-open")) return;
     const insideNav = event.target.closest("#site-nav");
     const insideToggle = event.target.closest(".nav-toggle");
-    if (!insideNav && !insideToggle) setOpen(false);
+    const insideDrawer = event.target.closest(".nav-drawer");
+    if (!insideNav && !insideToggle && !insideDrawer) setOpen(false);
   });
 
   document.addEventListener("keydown", (event) => {
@@ -66,9 +107,7 @@ export function initScrollspy() {
     map.get(id)?.setAttribute("aria-current", "true");
   };
 
-  const sections = [...document.querySelectorAll("section[id]")].filter((section) =>
-    map.has(section.id)
-  );
+  const sections = [...document.querySelectorAll("section[id]")].filter((section) => map.has(section.id));
   if (!sections.length) return;
 
   const observer = new IntersectionObserver(
@@ -129,12 +168,7 @@ export function initAriaCurrent() {
   const matches = (link, value) => {
     if (!value) return false;
     const href = link.getAttribute("href") || "";
-    return (
-      href.includes(`#${value}`) ||
-      href.endsWith(`${value}.html`) ||
-      href.includes(`/${value}.html`) ||
-      href.includes(`/${value}`)
-    );
+    return href.includes(`#${value}`) || href.endsWith(`${value}.html`) || href.includes(`/${value}.html`) || href.includes(`/${value}`);
   };
 
   if (path) {

@@ -1,144 +1,149 @@
-# Gastronomy 01 — Restaurant Demo Website
+## 🇬🇧 English version
 
-**Author:** KP_Code
-**Type:** Front-end project (HTML, CSS, JavaScript)
-**Status:** Completed ✅
-**Live demo:** [https://gastronomy-project-01.netlify.app/](https://gastronomy-project-01.netlify.app/)
+# Gastronomy 01 Ambre — Restaurant Website (Demo)
 
----
+Responsive demo website for a modern restaurant, created as a professional portfolio project.
+The project focuses on clean UI, clear brand presentation, accessibility awareness,
+performance optimization, and a production-ready front-end structure.
 
-## 📖 Overview
-
-**Gastronomy 01** is a fully responsive demo website for a modern restaurant.
-The project showcases semantic HTML5, accessible components (ARIA, keyboard navigation), and optimized performance (Lighthouse 100/100/100/100).
-It was built as part of the **KP_Code Professional Learning Plan**, focusing on professional front-end development workflow and clean, production-ready code.
+🔗 **Live demo:** [https://gastronomy-project-01.netlify.app/]
 
 ---
 
-## ✨ Features
+## Project Purpose
 
-- **Responsive design (RWD):** built with flexbox, grid, and fluid typography
-- **Accessibility (a11y):** ARIA roles, focus states, and keyboard navigation for tabs and modals
-- **Optimized assets:** AVIF/WebP images with fallbacks, lazy loading, and `fetchpriority` for LCP
-- **Local fonts:** `Poppins` and `Source Sans 3` served locally (no external requests)
-- **Lightbox gallery:** accessible modal with keyboard support and focus trap
-- **Menu filtering system:** interactive tabs with ARIA synchronization
-- **Contact form:** HTML5 validation, honeypot anti-spam field, live feedback messages
-- **Dark / light theme switcher** with saved preference in `localStorage`
-- **SEO ready:** meta tags, Open Graph, JSON-LD schema (`Restaurant`, `AggregateRating`),
-  plus complete `robots.txt` and `sitemap.xml`
-- **Performance ready:** minified CSS/JS with `postcss` + `cssnano` and `terser`
-- **Clean Git setup:** `.gitignore`, modular file structure, NPM workflow
+This project was created as part of an advanced front-end portfolio.
+It presents a modern restaurant website built with semantic HTML,
+modular CSS architecture, and vanilla JavaScript — without frameworks.
+
+The goal of the project is to demonstrate practical layout structure,
+visual consistency, accessibility-conscious development,
+and a clean front-end architecture suitable for real-world projects.
 
 ---
 
-## 🧩 File Structure
+## Key Characteristics
 
-```
-
-project-01/
-│
-├── assets/              # images, icons, fonts
-├── css/
-│   ├── style.css        # main stylesheet
-│   └── style.min.css    # production version
-├── js/
-│   ├── script.js        # main JS file
-│   └── script.min.js    # production version
-├── index.html           # home page
-├── menu.html            # full menu page
-├── galeria.html         # gallery page
-├── cookies.html         # cookie policy
-├── polityka-prywatnosci.html  # privacy policy
-├── sitemap.xml
-├── robots.txt
-├── package.json
-├── .gitignore
-└── README.md
-
-```
+- Fully responsive, mobile-first layout
+- Consistent visual identity and modern UI
+- Semantic HTML and accessibility-aware components
+- Light / dark theme support
+- Performance-focused front-end approach
+- SEO-ready structure and metadata
+- Clean, modular, and maintainable codebase
 
 ---
 
-## ⚙️ Build & Minification
+## Tech Stack
 
-### CSS
-
-```bash
-npm run minify:css
-```
-
-Uses `postcss` + `cssnano` to generate `style.min.css`.
-
-### JavaScript
-
-```bash
-npm run minify:js
-```
-
-Uses `terser` to generate `script.min.js`.
+- HTML5
+- CSS3 (custom properties, modular architecture)
+- Vanilla JavaScript (ES6)
+- Netlify (hosting & deployment)
 
 ---
 
-## 💡 Accessibility Highlights
+## Project Status
 
-- Fully semantic HTML5 structure (`header`, `main`, `section`, `figure`, `footer`)
-- Proper focus management in navigation and modals
-- ARIA-labeled elements for dynamic sections
-- `aria-live` regions for form feedback
-- `prefers-reduced-motion` support for reduced animations
+✔ Completed (v1)
 
----
+Future improvements planned:
 
-## 🧠 Learning Goals
-
-This project was part of **Stage 1** in the “KP_Code Professional Learning Plan”:
-building production-grade HTML/CSS/JS websites before moving to **Tailwind**, **React**, and **Next.js**.
-
-Key learning outcomes:
-
-- mastering semantic structure and accessibility
-- creating modular CSS architecture
-- understanding performance and Core Web Vitals
-- developing local build scripts and workflow automation
+- UI refinements and visual polish
+- Asset and SVG optimization
+- Additional accessibility enhancements
+- Minor code refactors and cleanup
 
 ---
 
-## 🚀 Deployment
+## Disclaimer
 
-Deployed on **Netlify**
-Every push to `main` triggers an automatic redeploy to
-[`https://gastronomy-project-01.netlify.app/`](https://gastronomy-project-01.netlify.app/)
-
----
-
-## 🧾 License
-
-MIT License © 2025 **KP_Code**
-Feel free to use this project as an educational reference or template (with attribution).
+This website is a fictional demo project created for portfolio purposes only.
+All company names, branding, addresses, and content are used as examples
+and do not represent a real business.
 
 ---
 
-## 📈 Lighthouse Score
+## Author
 
-| Category       | Score  |
-| -------------- | :----: |
-| Performance    |  100   |
-| Accessibility  |  100   |
-| Best Practices | 96–100 |
-| SEO            |  100   |
+Kamil Król
+**KP*Code***
+Front-End Developer
+Portfolio project — 2026
 
 ---
 
-## 🗓️ Last Updated
+## 🇵🇱 Wersja polska
 
-**October 2025**
+# Gastronomy 01 — strona restauracji (demo)
+
+Responsywna demonstracyjna strona internetowa nowoczesnej restauracji,
+stworzona jako profesjonalny projekt portfolio.
+Projekt skupia się na czytelnym interfejsie, spójnej prezentacji marki,
+świadomej dostępności, wydajności oraz strukturze gotowej do wdrożenia produkcyjnego.
+
+🔗 **Demo online:** [https://gastronomy-project-01.netlify.app/]
+
 ---
 
-## Changelog (unminified sources)
+## Cel projektu
 
-- 2025-10-31:
-  - Added global skip-link and ensured id=\"main\" on pages (A11y).
-  - Added subtle PWA install prompt logic (js/pwa-install.js) and hidden button in HTML.
-  - Unified preview SEO: placeholder canonical, <meta name=\"robots\" content=\"noindex, nofollow\" data-preview> across pages; added TODO notes in obots.txt and sitemap.xml.
-  - CSS: added .skip-link and [data-install-pwa] minimal styles in css/style.css.
+Projekt został stworzony jako element zaawansowanego portfolio front-end.
+Prezentuje nowoczesną stronę restauracji zbudowaną w oparciu o semantyczny HTML,
+modularną architekturę CSS oraz czysty JavaScript — bez użycia frameworków.
+
+Celem projektu jest pokazanie praktycznej architektury layoutu,
+spójności wizualnej, świadomego podejścia do dostępności
+oraz czystej struktury front-endowej odpowiedniej dla realnych projektów.
+
+---
+
+## Główne cechy
+
+- W pełni responsywny layout (mobile-first)
+- Spójna identyfikacja wizualna i nowoczesny interfejs
+- Semantyczny HTML i komponenty tworzone z myślą o dostępności
+- Obsługa trybu jasnego i ciemnego
+- Front-end zorientowany na wydajność
+- Struktura przygotowana pod SEO
+- Czysty, modularny i łatwy w utrzymaniu kod
+
+---
+
+## Stack technologiczny
+
+- HTML5
+- CSS3 (custom properties, architektura modularna)
+- JavaScript (ES6, vanilla)
+- Netlify (hosting i deployment)
+
+---
+
+## Status projektu
+
+✔ Zakończony (v1)
+
+Planowane usprawnienia:
+
+- dopracowanie interfejsu i detali wizualnych
+- optymalizacja assetów i SVG
+- dalsze usprawnienia dostępności
+- drobna refaktoryzacja kodu
+
+---
+
+## Informacja prawna
+
+Strona jest fikcyjnym projektem demonstracyjnym stworzonym wyłącznie
+w celach portfolio.
+Wszystkie nazwy, branding, adresy i treści mają charakter przykładowy
+i nie odnoszą się do rzeczywistej działalności.
+
+---
+
+## Autor
+
+Kamil Król
+**KP*Code***
+Front-End Developer
+Projekt portfolio — 2026

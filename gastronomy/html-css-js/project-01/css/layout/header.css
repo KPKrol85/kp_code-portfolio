@@ -90,12 +90,13 @@ html[data-theme="light"] .logo-light {
   transform: scale(0.97);
 }
 
+/* Desktop nav base (pokazywany tylko >= 939px) */
 .site-nav {
-  display: none;
   flex: 1 1 auto;
   min-width: 0;
 }
 
+/* Desktop list look */
 .site-nav ul {
   display: flex;
   justify-content: center;
@@ -147,6 +148,7 @@ html[data-theme="light"] .logo-light {
   transform: scaleX(1);
 }
 
+/* Submenu (desktop hover) */
 .nav-submenu {
   position: absolute;
   top: calc(100% + 8px);
@@ -186,6 +188,7 @@ html[data-theme="light"] .logo-light {
   transform: translateY(0);
 }
 
+/* Overlay + Drawer (mobile) */
 .nav-overlay {
   position: fixed;
   inset: 0;
@@ -278,21 +281,44 @@ body.nav-open .nav-drawer {
 }
 
 .nav-drawer .drawer-accordion-trigger {
-  position: relative;
-  padding-right: 44px;
+  position: absolute;
+  top: 8px;
+  right: 10px;
+  width: 32px;
+  height: 32px;
+  border: 0;
+  border-radius: 10px;
+  background: transparent;
+  display: grid;
+  place-items: center;
+  color: inherit;
+  cursor: pointer;
 }
 
 .nav-drawer .drawer-accordion-trigger::after {
   content: "";
   position: absolute;
-  right: 16px;
+  left: 50%;
   top: 50%;
   width: 0.5rem;
   height: 0.5rem;
   border-right: 2px solid currentColor;
   border-bottom: 2px solid currentColor;
-  transform: translateY(-50%) rotate(45deg);
+  transform: translate(-50%, -50%) rotate(45deg);
   transition: transform 0.2s ease;
+}
+
+.nav-drawer .drawer-accordion-trigger:focus-visible {
+  outline: 2px solid var(--c-accent);
+  outline-offset: 2px;
+}
+
+.nav-drawer .has-submenu {
+  position: relative;
+}
+
+.nav-drawer .has-submenu > a {
+  padding-right: 52px;
 }
 
 .nav-drawer .has-submenu.is-accordion-open > .nav-submenu {
@@ -355,22 +381,26 @@ html[data-theme="dark"] .site-header {
     transform: translateY(-1px);
     box-shadow: 0 8px 22px rgba(0, 0, 0, 0.1);
   }
+
   .site-nav a:hover::after {
     transform: scaleX(1);
   }
+
   .site-nav a:hover {
     background: var(--nav-hover-bg);
   }
 }
 
+/* Mobile/tablet <= 938px: chowamy desktop nav, używamy drawer */
 @media (max-width: 938px) {
   .site-header {
     backdrop-filter: saturate(1.2) blur(calc(var(--glass-blur) + 4px));
     -webkit-backdrop-filter: saturate(1.2) blur(calc(var(--glass-blur) + 4px));
     background: color-mix(in oklab, var(--c-bg), transparent calc(var(--glass-alpha) + 40%));
   }
-  .site-nav {
-    display: none !important;
+
+  .site-nav > ul {
+    display: none;
   }
 }
 
@@ -385,6 +415,7 @@ html[data-theme="dark"] .site-header {
   .nav-toggle {
     display: none;
   }
+
   .site-nav {
     display: block;
     position: static;
@@ -392,9 +423,16 @@ html[data-theme="dark"] .site-header {
     border: none;
     box-shadow: none;
   }
+
   .site-nav ul {
     flex-direction: row;
     align-items: center;
+  }
+
+  /* Na desktop drawer i overlay niepotrzebne */
+  .nav-overlay,
+  .nav-drawer {
+    display: none;
   }
 }
 
@@ -423,6 +461,7 @@ html[data-theme="dark"] .site-header {
   .drawer-accordion-trigger::after {
     transition: none !important;
   }
+
   body.is-scrolled .site-header {
     transition: none !important;
   }
