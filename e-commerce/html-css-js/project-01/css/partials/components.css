@@ -220,7 +220,6 @@
       box-shadow 0.25s ease,
       border-color 0.25s ease;
   }
-
   .card:hover {
     box-shadow: var(--shadow-md);
     border-color: color-mix(in srgb, var(--color-accent) 35%, var(--color-border));
@@ -439,6 +438,12 @@ textarea {
 .form-grid {
   display: grid;
   gap: var(--space-4);
+}
+
+.page-layout .form-grid {
+  background-color: var(--color-surface-alt);
+  border-radius: var(--radius-lg);
+  padding: var(--space-6);
 }
 
 .form-row {

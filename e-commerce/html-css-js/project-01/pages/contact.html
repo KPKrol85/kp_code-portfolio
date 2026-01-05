@@ -137,11 +137,12 @@
         <div class="container">
           <h1>Kontakt</h1>
           <p>Zapytania, dopasowanie do modelu, współpraca. Jesteśmy online.</p>
+          <span class="page-hero-mark" aria-hidden="true"></span>
         </div>
       </section>
 
       <section>
-        <div class="container page-layout">
+        <div class="container page-layout page-layout--contact">
           <div class="promo" data-reveal>
             <h2>Skontaktuj się z nami</h2>
             <p>Odpowiadamy w ciągu 24 h. Dobieramy akcesoria i pomagamy w zamówieniach.</p>
@@ -151,25 +152,93 @@
               <span>ul. Marynarki Wojennej 12/31, 33-100 Tarnów, Polska</span>
             </div>
           </div>
-          <form class="form-grid" data-contact-form novalidate data-reveal>
+          <div class="map-card" data-reveal>
+            <iframe
+              title="Mapa dojazdu — VOLT GARAGE"
+              src="https://www.google.com/maps?q=ul.%20Marynarki%20Wojennej%2012%2F31%2C%2033-100%20Tarn%C3%B3w%2C%20Polska&output=embed"
+              loading="lazy"
+              referrerpolicy="no-referrer-when-downgrade"
+              allowfullscreen
+            ></iframe>
+          </div>
+          <form
+            class="form-grid"
+            name="contact"
+            method="POST"
+            data-netlify="true"
+            netlify
+            data-contact-form
+            novalidate
+            data-reveal
+          >
+            <input type="hidden" name="form-name" value="contact" />
             <div class="section-title">
               <h2>Formularz kontaktowy</h2>
             </div>
-            <label class="input-group">
-              <span>Imię i nazwisko</span>
-              <input type="text" name="name" required aria-required="true" />
-            </label>
+            <div class="form-row">
+              <label class="input-group">
+                <span>Imię</span>
+                <input
+                  type="text"
+                  name="name"
+                  autocomplete="name"
+                  minlength="2"
+                  maxlength="40"
+                  required
+                  aria-required="true"
+                />
+              </label>
+              <label class="input-group">
+                <span>Nazwisko</span>
+                <input
+                  type="text"
+                  name="last-name"
+                  autocomplete="family-name"
+                  minlength="2"
+                  maxlength="50"
+                  required
+                  aria-required="true"
+                />
+              </label>
+            </div>
             <label class="input-group">
               <span>E-mail</span>
-              <input type="email" name="email" required aria-required="true" />
+              <input
+                type="email"
+                name="email"
+                autocomplete="email"
+                maxlength="120"
+                required
+                aria-required="true"
+              />
+            </label>
+            <label class="input-group">
+              <span>Telefon</span>
+              <input
+                type="tel"
+                name="phone"
+                autocomplete="tel"
+                minlength="7"
+                maxlength="20"
+                pattern="^[0-9+][0-9\\s-]{6,19}$"
+                required
+                aria-required="true"
+              />
             </label>
             <label class="input-group">
               <span>Temat</span>
-              <input type="text" name="subject" required aria-required="true" />
+              <input type="text" name="subject" autocomplete="off" minlength="2" maxlength="120" />
             </label>
             <label class="input-group">
               <span>Wiadomość</span>
-              <textarea name="message" rows="4" required aria-required="true"></textarea>
+              <textarea
+                name="message"
+                rows="4"
+                minlength="10"
+                maxlength="1000"
+                required
+                aria-required="true"
+              ></textarea>
             </label>
             <button class="btn btn-accent" type="submit">Wyślij</button>
             <p class="notice" role="status" aria-live="polite" data-form-status></p>
@@ -314,7 +383,7 @@
         </ul>
       </nav>
       <div class="container footer-bottom">
-        <small>© <span data-current-year>2025</span> KP_Code_. Wszelkie prawa zastrzeżone.</small>
+        <small>© <span data-current-year>2026</span> KP_Code | Wszelkie prawa zastrzeżone</small>
       </div>
     </footer>
 
