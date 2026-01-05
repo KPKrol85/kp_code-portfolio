@@ -6,7 +6,7 @@ Responsive demo website for a modern construction company, created as a professi
 The project focuses on clean UI, strong brand presentation, accessibility,
 performance optimization, and production-ready front-end structure.
 
-🔗 **Live demo:** [https://construction-project-02.netlify.app](https://construction-project-02.netlify.app)
+🔗 **Live demo:** [https://construction-project-02.netlify.app]
 
 ---
 

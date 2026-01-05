@@ -1,4 +1,4 @@
-/* === Service worker - Axiom_Construction ===*/
+/* Service worker - Axiom_Construction */
 
 const CACHE_NAME = "axiom-construction-v1.0.0";
 const ASSETS = ["./", "./index.html", "./offline.html", "./css/style.min.css", "./js/script.min.js", "./assets/img/favicon/favicon-96x96.png", "./assets/img/og/og-1200x630.jpg"];
