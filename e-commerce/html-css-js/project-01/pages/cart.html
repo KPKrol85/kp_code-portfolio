@@ -61,7 +61,22 @@
               <a role="menuitem" href="promocje.html">Promocje</a>
             </div>
           </div>
-          <a href="contact.html">Kontakt</a>
+                    <div class="nav-item" data-dropdown>
+            <button
+              class="nav-button"
+              type="button"
+              aria-haspopup="menu"
+              aria-expanded="false"
+              data-dropdown-toggle
+            >
+              Kontakt
+            </button>
+            <div class="dropdown-menu" role="menu" data-dropdown-menu>
+              <a role="menuitem" href="contact.html">Formularz</a>
+              <a role="menuitem" href="checkout.html">Dostawa</a>
+              <a role="menuitem" href="cart.html" aria-current="page">Zwroty</a>
+            </div>
+          </div>
           <div class="nav-item" data-dropdown>
             <button
               class="nav-button"
@@ -158,11 +173,16 @@
       </section>
     </main>
 
-            <footer class="footer">
+    <footer class="footer">
       <div class="container footer-grid">
         <div>
           <div class="footer-brand">
-            <img class="footer-logo" src="../assets/images/logo/logo.svg" alt="" aria-hidden="true" />
+            <img
+              class="footer-logo"
+              src="../assets/images/logo/logo.svg"
+              alt=""
+              aria-hidden="true"
+            />
 
             <span class="footer-brand-text">VOLT GARAGE</span>
           </div>
@@ -301,12 +321,3 @@
     <script type="module" src="../js/main.js"></script>
   </body>
 </html>
-
-
-
-
-
-
-
-
-

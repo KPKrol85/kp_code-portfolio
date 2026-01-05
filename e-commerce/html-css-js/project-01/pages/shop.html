@@ -61,7 +61,22 @@
               <a role="menuitem" href="promocje.html">Promocje</a>
             </div>
           </div>
-          <a href="contact.html">Kontakt</a>
+                    <div class="nav-item" data-dropdown>
+            <button
+              class="nav-button"
+              type="button"
+              aria-haspopup="menu"
+              aria-expanded="false"
+              data-dropdown-toggle
+            >
+              Kontakt
+            </button>
+            <div class="dropdown-menu" role="menu" data-dropdown-menu>
+              <a role="menuitem" href="contact.html">Formularz</a>
+              <a role="menuitem" href="checkout.html">Dostawa</a>
+              <a role="menuitem" href="cart.html">Zwroty</a>
+            </div>
+          </div>
           <div class="nav-item" data-dropdown>
             <button
               class="nav-button"
@@ -143,7 +158,43 @@
 
       <section>
         <div class="container page-layout">
+          <div class="notice notice--shop">Darmowa wysyłka od 300 zł.</div>
           <aside class="filter-panel" aria-label="Filtrowanie produktów" data-reveal>
+            <div class="input-group search-field" data-search>
+              <label class="visually-hidden" for="filter-search">Szukaj produktu</label>
+              <div class="search-input">
+                <input
+                  type="search"
+                  id="filter-search"
+                  name="search"
+                  placeholder="Szukaj produktu&hellip;"
+                  autocomplete="off"
+                  aria-label="Szukaj produktu"
+                  aria-controls="search-suggestions"
+                  aria-expanded="false"
+                  aria-autocomplete="list"
+                  role="combobox"
+                  data-search-input
+                />
+                <button
+                  class="search-clear"
+                  type="button"
+                  aria-label="Wyczyść wyszukiwanie"
+                  data-search-clear
+                  hidden
+                >
+                  ×
+                </button>
+              </div>
+              <div
+                class="search-suggestions"
+                id="search-suggestions"
+                role="listbox"
+                aria-label="Sugestie produktów"
+                data-search-suggestions
+                hidden
+              ></div>
+            </div>
             <div class="input-group">
               <label for="filter-category">Kategoria</label>
               <select id="filter-category" name="category">
@@ -168,7 +219,6 @@
                 <option value="name-asc">Nazwa A-Z</option>
               </select>
             </div>
-            <div class="notice">Darmowa wysyłka od 300 zł.</div>
           </aside>
           <div>
             <div class="section-title">

@@ -162,17 +162,11 @@ export const initProductDetails = async () => {
   const product = products.find((item) => item.id === currentId) || products[0];
 
   container.innerHTML = `
-    <div class="page-layout">
-      <div class="card" data-reveal>
-        <!-- CHANGED: img -> picture -->
+    <div class="page-layout product-details">
+      <div class="card product-media" data-reveal>
         ${productPicture(product.image, product.name, 'eager')}
-        <div class="tag-list">
-          <!-- CHANGED: thumbnails img -> picture -->
-          ${productPicture(product.image, `${product.name} miniatura`)}
-          ${productPicture(product.image, `${product.name} detal`)}
-        </div>
       </div>
-      <div class="card" data-reveal>
+      <div class="card product-info" data-reveal>
         <span class="badge">${product.badge}</span>
         <h2>${product.name}</h2>
         <p>${product.description}</p>
