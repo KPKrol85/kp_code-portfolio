@@ -135,6 +135,18 @@
   --color-hero-text: #fef7ef;
   --color-hero-text-muted: #1a1a1a;
   --gradient-hero: radial-gradient(circle at 20% 20%, #ff8b5f 0%, #1c212b 55%, #0c0f14 100%);
+  --hero-light-base: #f5f7fa;
+  --hero-light-accent: color-mix(in srgb, var(--color-accent) 10%, transparent);
+  --hero-light-glow: color-mix(in srgb, var(--color-accent) 6%, transparent);
+  --contact-hero-grad-1: #fbe4d2;
+  --contact-hero-grad-2: #e6b089;
+  --contact-hero-grad-3: #121a26;
+  --contact-hero-overlay: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(7, 12, 18, 0.12) 55%,
+    rgba(7, 12, 18, 0.36) 100%
+  );
 
   --icon-fill: var(--color-ink);
   --icon-fill-hover: var(--color-accent);
@@ -162,6 +174,15 @@
   --color-hero-text: #fef2e9;
   --color-hero-text-muted: rgba(255, 255, 255, 0.75);
   --gradient-hero: radial-gradient(circle at 20% 20%, #ff6a3d 0%, #1d2330 52%, #0c0f14 100%);
+  --contact-hero-grad-1: #ff6a3d;
+  --contact-hero-grad-2: #1d2330;
+  --contact-hero-grad-3: #0c0f14;
+  --contact-hero-overlay: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(7, 10, 16, 0.25) 60%,
+    rgba(7, 10, 16, 0.45) 100%
+  );
 
   --icon-fill: var(--color-ink);
   --icon-fill-hover: var(--color-accent);

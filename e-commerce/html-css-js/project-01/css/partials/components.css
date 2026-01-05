@@ -459,6 +459,11 @@ textarea {
   border: 1px solid color-mix(in srgb, var(--color-accent) 35%, transparent);
   color: var(--color-ink);
 }
+.page-layout--contact .map-card iframe {
+  width: 100%;
+  height: clamp(320px, 45vw, 520px);
+}
+
 
 /* === 07 - Cart & Checkout === */
 

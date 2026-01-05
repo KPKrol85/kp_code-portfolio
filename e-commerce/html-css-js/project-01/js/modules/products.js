@@ -35,10 +35,30 @@ const productPicture = (path, alt, loading = 'lazy') => {
     </picture>
   `;
 };
+
+const cardPicture = (product) => {
+  if (!product.imageBase) {
+    return productPicture(product.image, product.name);
+  }
+
+  const base = product.imageBase;
+  const fallbackSrc = product.image
+    ? productImage(product.image)
+    : `${getPrefix()}assets/images/products/${base}.jpg`;
+
+  return `
+    <picture>
+      <source srcset="${getPrefix()}assets/images/_optimized/products/${base}.avif" type="image/avif" />
+      <source srcset="${getPrefix()}assets/images/_optimized/products/${base}.webp" type="image/webp" />
+      <img src="${fallbackSrc}" alt="${product.name}" loading="lazy" />
+    </picture>
+  `;
+};
+
 const renderCard = (product) => `
   <article class="card" aria-label="${product.name}" data-reveal>
     <!-- CHANGED: img -> picture -->
-    ${productPicture(product.image, product.name)}
+    ${cardPicture(product)}
     <span class="badge">${product.badge}</span>
     <h3 class="card-title">${product.name}</h3>
     <p>${product.description}</p>

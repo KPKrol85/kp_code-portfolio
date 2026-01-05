@@ -85,7 +85,9 @@ const initApp = () => {
   if (has('[data-cart-items]')) initCartPage();
   if (has('[data-checkout-summary]')) initCheckoutSummary();
   if (has('[data-contact-form], [data-checkout-form]')) initForms();
-  if (has('[data-add-to-cart]')) initAddToCartButtons();
+  // Przyczyna: przyciski są renderowane po async load produktów, więc selektor na starcie zwraca null.
+  // Delegacja klików musi być podpięta zawsze, niezależnie od chwili renderu.
+  initAddToCartButtons();
   if (has('[data-current-year]')) initCopyrightYear();
 };
 
