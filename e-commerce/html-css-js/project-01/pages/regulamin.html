@@ -33,6 +33,26 @@
     <link rel="stylesheet" href="../css/main.css" />
   </head>
   <body>
+    <div class="demo-modal" data-demo-modal hidden>
+      <div class="demo-modal__backdrop" aria-hidden="true"></div>
+      <div class="demo-modal__panel" role="dialog" aria-modal="true" aria-labelledby="demo-modal-title">
+        <span class="demo-modal__badge">DEMO</span>
+        <h2 id="demo-modal-title">Projekt demonstracyjny</h2>
+        <p>
+          To jest wersja DEMO — brak realnej sprzedaży i płatności.
+        </p>
+        <p>Przed korzystaniem z serwisu zaakceptuj Regulamin.</p>
+        <div class="demo-modal__actions">
+          <button class="btn btn-accent" type="button" data-demo-accept>Akceptuję i przechodzę</button>
+          <a class="btn btn-outline" data-demo-regulamin href="#">Przeczytaj regulamin</a>
+        </div>
+        <div class="demo-modal__links">
+          <a data-demo-privacy href="#">Polityka prywatności</a>
+          <span aria-hidden="true">•</span>
+          <a data-demo-cookies href="#">Cookies</a>
+        </div>
+      </div>
+    </div>
     <header class="site-header" data-header>
       <a class="skip-link" href="#main">Przejdź do treści</a>
       <div class="container header-inner">
@@ -148,60 +168,140 @@
     </header>
 
     <main id="main">
-      <section class="page-hero">
-        <div class="container">
-          <h1>Regulamin</h1>
-          <p>Regulamin wersji demonstracyjnej (demo) sklepu VOLT GARAGE.</p>
-          <span class="page-hero-mark" aria-hidden="true"></span>
-        </div>
-      </section>
-
-      <section>
-        <div class="container">
-          <article class="card" data-reveal>
-            <h2>1. Postanowienia ogólne</h2>
-            <p>
-              Niniejszy serwis jest projektem demonstracyjnym (demo). Nie stanowi sklepu
-              internetowego w rozumieniu przepisów prawa i nie prowadzi rzeczywistej sprzedaży.
-            </p>
-
-            <h2>2. Zakres działania demo</h2>
-            <ul class="stacked">
-              <li>prezentacja interfejsu sklepu i jego funkcji,</li>
-              <li>symulacja koszyka, filtrów, formularzy i checkoutu,</li>
-              <li>brak obsługi płatności oraz realizacji zamówień.</li>
+</div>
+      </div>
+      <nav class="breadcrumbs" aria-label="Okruszki">
+        <ol>
+          <li><a href="../index.html">Strona główna</a></li>
+          <li aria-current="page">Regulamin</li>
+        </ol>
+      </nav>
+      <section class="legal-simple" aria-labelledby="terms-title">
+        <div class="legal-container">
+          <h1 id="terms-title" class="legal-title">Regulamin serwisu VOLT GARAGE (demo)</h1>
+          <p class="legal-lead">
+            Niniejszy dokument określa zasady korzystania z demonstracyjnej strony internetowej
+            <strong>VOLT GARAGE</strong> oraz warunki korzystania z udostępnionych funkcjonalności.
+          </p>
+          <nav class="doc-toc" aria-label="Spis treści">
+            <ul>
+              <li><a href="#tos-1">1. Definicje</a></li>
+              <li><a href="#tos-2">2. Postanowienia ogólne</a></li>
+              <li><a href="#tos-3">3. Charakter projektu i brak sprzedaży</a></li>
+              <li><a href="#tos-4">4. Funkcjonalności demonstracyjne</a></li>
+              <li><a href="#tos-5">5. Dane i formularze</a></li>
+              <li><a href="#tos-6">6. Własność intelektualna</a></li>
+              <li><a href="#tos-7">7. Odpowiedzialność i gwarancje</a></li>
+              <li><a href="#tos-8">8. Linki zewnętrzne i social media</a></li>
+              <li><a href="#tos-9">9. Kontakt z Operatorem</a></li>
+              <li><a href="#tos-10">10. Bezpieczeństwo</a></li>
+              <li><a href="#tos-11">11. Zmiany Regulaminu</a></li>
+              <li><a href="#tos-12">12. Postanowienia końcowe</a></li>
             </ul>
-
-            <h2>3. Zamówienia i płatności</h2>
+          </nav>
+          <article class="doc-content legal-doc legal-content">
             <p>
-              Wersja demo nie umożliwia składania realnych zamówień. Wszystkie działania w koszyku i
-              checkout są wyłącznie symulacją.
+              <small>
+                <strong>Uwaga:</strong> Serwis stanowi <strong>projekt demonstracyjny / portfolio</strong>.
+                Dokument ma charakter przykładowy i nie stanowi porady prawnej ani oferty handlowej.
+              </small>
             </p>
-
-            <h2>4. Formularze</h2>
+            <h2 id="tos-1">1. Definicje</h2>
+            <p>Na potrzeby niniejszego Regulaminu przyjmuje się następujące definicje:</p>
+            <ul>
+              <li><strong>Serwis</strong> – demonstracyjna strona internetowa VOLT GARAGE (demo).</li>
+              <li><strong>Użytkownik</strong> – każda osoba odwiedzająca Serwis i korzystająca z treści.</li>
+              <li>
+                <strong>Operator</strong> – autor projektu portfolio: <strong>Kamil Król (KP_Code_)</strong>
+                (kontakt: <a href="mailto:kontakt@kp-code.pl">kontakt@kp-code.pl</a>).
+              </li>
+              <li>
+                <strong>Funkcjonalności</strong> – elementy interfejsu i treści (np. koszyk, checkout,
+                formularze), które mają charakter demonstracyjny.
+              </li>
+              <li><strong>Dane testowe</strong> – dane wprowadzane przez Użytkownika wyłącznie w celach demo.</li>
+            </ul>
+            <h2 id="tos-2">2. Postanowienia ogólne</h2>
             <p>
-              Formularze kontaktu, biuletynu i zamówienia mają charakter demonstracyjny i nie są
-              połączone z backendem.
+              Regulamin określa zasady korzystania z Serwisu udostępnionego publicznie w celach
+              prezentacyjnych. Korzystanie z Serwisu oznacza akceptację niniejszego Regulaminu i
+              zobowiązanie do jego przestrzegania.
             </p>
-
-            <h2>5. Właściciel i dane kontaktowe</h2>
-            <div class="stacked">
-              <span>Właściciel: Kamil Król (KP_Code)</span>
-              <span>Telefon: +48 533 537 091</span>
-              <span>E-mail: kontakt@kp-code.pl</span>
-              <span>Adres: ul. Marynarki Wojennej 12/31, 33-100 Tarnów, Polska</span>
-            </div>
-
-            <h2>6. Ograniczenie odpowiedzialności</h2>
+            <h2 id="tos-3">3. Charakter projektu i brak sprzedaży</h2>
             <p>
-              Właściciel nie ponosi odpowiedzialności za wykorzystanie tego demo jako realnego
-              sklepu bez odpowiednich dostosowań prawnych i technicznych.
+              Serwis <strong>VOLT GARAGE</strong> jest projektem demonstracyjnym i nie prowadzi realnej
+              działalności handlowej. Nie dochodzi do zawierania umów sprzedaży.
             </p>
-
-            <h2>7. Postanowienia końcowe</h2>
+            <ul>
+              <li>Brak backendu i systemu realizacji zamówień.</li>
+              <li>Brak płatności online i integracji z bramkami płatniczymi.</li>
+              <li>Koszyk i checkout stanowią wyłącznie symulację działania sklepu.</li>
+            </ul>
+            <h2 id="tos-4">4. Funkcjonalności demonstracyjne</h2>
+            <p>Serwis może prezentować funkcje typowe dla sklepu internetowego, jednak:</p>
+            <ul>
+              <li>wszystkie działania mają charakter poglądowy i testowy,</li>
+              <li>nie dochodzi do realizacji dostaw ani obsługi zamówień,</li>
+              <li>przyciski i formularze służą wyłącznie prezentacji UI/UX.</li>
+            </ul>
+            <h2 id="tos-5">5. Dane i formularze</h2>
+            <ol>
+              <li>Dane wpisywane w formularzach są traktowane jako testowe.</li>
+              <li>Nie gwarantujemy odpowiedzi ani przetwarzania danych jak w realnym sklepie.</li>
+              <li>
+                Zasady prywatności opisują dokumenty
+                <a href="polityka-prywatnosci.html">Polityka prywatności</a> oraz
+                <a href="cookies.html">Cookies</a>.
+              </li>
+            </ol>
+            <h2 id="tos-6">6. Własność intelektualna</h2>
             <p>
-              Korzystanie z demo oznacza akceptację niniejszego regulaminu w zakresie właściwym dla
-              projektu demonstracyjnego.
+              Układ strony, elementy graficzne, kod źródłowy oraz treści stanowią utwór w rozumieniu
+              prawa autorskiego i należą do autora projektu <strong>Kamil Król (KP_Code_)</strong>,
+              o ile nie wskazano inaczej.
+            </p>
+            <ul>
+              <li>Zakazane jest kopiowanie projektu w całości do celów komercyjnych bez zgody autora.</li>
+              <li>Dopuszczalne jest przeglądanie Serwisu w celach edukacyjnych i oceny portfolio.</li>
+            </ul>
+            <h2 id="tos-7">7. Odpowiedzialność i gwarancje</h2>
+            <ul>
+              <li>Serwis udostępniany jest w stanie „as is”, bez gwarancji ciągłości działania.</li>
+              <li>Operator nie ponosi odpowiedzialności za przerwy techniczne i ograniczenia dostępu.</li>
+              <li>Operator nie odpowiada za decyzje podjęte na podstawie treści demo.</li>
+            </ul>
+            <h2 id="tos-8">8. Linki zewnętrzne i social media</h2>
+            <p>
+              Serwis może zawierać odnośniki do stron zewnętrznych i profili społecznościowych.
+              Operator nie ponosi odpowiedzialności za treści publikowane w serwisach zewnętrznych
+              ani za ich polityki prywatności.
+            </p>
+            <h2 id="tos-9">9. Kontakt z Operatorem</h2>
+            <p>
+              W sprawach związanych z projektem portfolio można kontaktować się z Operatorem:
+              <a href="mailto:kontakt@kp-code.pl">kontakt@kp-code.pl</a>.
+            </p>
+            <h2 id="tos-10">10. Bezpieczeństwo</h2>
+            <ul>
+              <li>Operator stosuje podstawowe środki techniczne w celu ochrony Serwisu.</li>
+              <li>Użytkownik powinien korzystać z aktualnej przeglądarki i dbać o bezpieczeństwo urządzenia.</li>
+              <li>Zakazane są działania naruszające bezpieczeństwo Serwisu.</li>
+            </ul>
+            <h2 id="tos-11">11. Zmiany Regulaminu</h2>
+            <ol>
+              <li>Operator zastrzega sobie prawo do zmian Regulaminu w dowolnym momencie.</li>
+              <li>Zmiany obowiązują od dnia publikacji w Serwisie, chyba że wskazano inaczej.</li>
+            </ol>
+            <h2 id="tos-12">12. Postanowienia końcowe</h2>
+            <ul>
+              <li>Niniejszy dokument dotyczy wyłącznie projektu demonstracyjnego.</li>
+              <li>W sprawach nieuregulowanych stosuje się odpowiednie przepisy prawa.</li>
+            </ul>
+            <p>
+              <small>
+                Data ostatniej aktualizacji:
+                <time datetime="2026-01-06">06.01.2026</time>
+              </small>
             </p>
           </article>
         </div>
@@ -217,8 +317,8 @@
             <span class="footer-brand-text">VOLT GARAGE</span>
           </div>
           <p>
-            Nowoczesny sklep z akcesoriami samochodowymi. Projektowany przez pasjonat¢w dla
-            pasjonat¢w.
+            Nowoczesny sklep z akcesoriami samochodowymi. Projektowany przez pasjonatów dla
+            pasjonatów.
           </p>
         </div>
         <div>
@@ -249,13 +349,13 @@
         </div>
         <div class="footer-col footer-col--newsletter">
           <h4>Biuletyn</h4>
-          <p>Ekskluzywne rabaty i newsy co tydzieä.</p>
+          <p>Ekskluzywne rabaty i newsy co tydzień.</p>
           <form class="footer-form" aria-label="Stopka biuletynu">
             <label class="input-group">
               <span>E-mail</span>
               <input type="email" placeholder="kontakt@kp-code.pl" required />
             </label>
-            <button class="btn btn-outline" type="submit">Zapisz si©</button>
+            <button class="btn btn-outline" type="submit">Zapisz się</button>
           </form>
         </div>
       </div>
@@ -344,7 +444,7 @@
         </ul>
       </nav>
       <div class="container footer-bottom">
-        <small>© <span data-current-year>2026</span> KP_Code | Wszelkie prawa zastrzeżone</small>
+        <small>&copy; <span data-current-year>2026</span> KP_Code | Wszelkie prawa zastrzeżone</small>
       </div>
     </footer>
 

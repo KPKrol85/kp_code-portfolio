@@ -33,6 +33,26 @@
     <link rel="stylesheet" href="../css/main.css" />
   </head>
   <body>
+    <div class="demo-modal" data-demo-modal hidden>
+      <div class="demo-modal__backdrop" aria-hidden="true"></div>
+      <div class="demo-modal__panel" role="dialog" aria-modal="true" aria-labelledby="demo-modal-title">
+        <span class="demo-modal__badge">DEMO</span>
+        <h2 id="demo-modal-title">Projekt demonstracyjny</h2>
+        <p>
+          To jest wersja DEMO — brak realnej sprzedaży i płatności.
+        </p>
+        <p>Przed korzystaniem z serwisu zaakceptuj Regulamin.</p>
+        <div class="demo-modal__actions">
+          <button class="btn btn-accent" type="button" data-demo-accept>Akceptuję i przechodzę</button>
+          <a class="btn btn-outline" data-demo-regulamin href="#">Przeczytaj regulamin</a>
+        </div>
+        <div class="demo-modal__links">
+          <a data-demo-privacy href="#">Polityka prywatności</a>
+          <span aria-hidden="true">•</span>
+          <a data-demo-cookies href="#">Cookies</a>
+        </div>
+      </div>
+    </div>
     <header class="site-header" data-header>
       <a class="skip-link" href="#main">Przejdź do treści</a>
       <div class="container header-inner">
@@ -150,65 +170,115 @@
     </header>
 
     <main id="main">
-      <section class="page-hero">
-        <div class="container">
-          <h1>Polityka prywatności</h1>
-          <p>Dokument informacyjny dla wersji demonstracyjnej (demo) sklepu VOLT GARAGE.</p>
-          <span class="page-hero-mark" aria-hidden="true"></span>
-        </div>
-      </section>
-
-      <section>
-        <div class="container">
-          <article class="card" data-reveal>
-            <h2>1. Informacje ogólne</h2>
+</div>
+      </div>
+      <nav class="breadcrumbs" aria-label="Okruszki">
+        <ol>
+          <li><a href="../index.html">Strona główna</a></li>
+          <li aria-current="page">Polityka prywatności</li>
+        </ol>
+      </nav>
+      <section class="legal-simple" aria-labelledby="terms-title">
+        <div class="legal-container">
+          <h1 id="terms-title" class="legal-title">Polityka prywatności VOLT GARAGE (demo)</h1>
+          <p class="legal-lead">
+            Dokument opisuje zasady przetwarzania danych w demonstracyjnym serwisie
+            <strong>VOLT GARAGE</strong> oraz charakter używanych formularzy.
+          </p>
+          <nav class="doc-toc" aria-label="Spis treści">
+            <ul>
+              <li><a href="#tos-1">1. Definicje</a></li>
+              <li><a href="#tos-2">2. Administrator danych</a></li>
+              <li><a href="#tos-3">3. Charakter projektu demo</a></li>
+              <li><a href="#tos-4">4. Zakres danych</a></li>
+              <li><a href="#tos-5">5. Źródła danych</a></li>
+              <li><a href="#tos-6">6. Cele przetwarzania</a></li>
+              <li><a href="#tos-7">7. Odbiorcy danych</a></li>
+              <li><a href="#tos-8">8. Cookies i pamięć lokalna</a></li>
+              <li><a href="#tos-9">9. Prawa Użytkownika</a></li>
+              <li><a href="#tos-10">10. Bezpieczeństwo</a></li>
+              <li><a href="#tos-11">11. Kontakt</a></li>
+              <li><a href="#tos-12">12. Zmiany dokumentu</a></li>
+            </ul>
+          </nav>
+          <article class="doc-content legal-doc legal-content">
             <p>
-              Serwis jest projektem demonstracyjnym (demo). Nie realizujemy sprzedaży, płatności ani
-              wysyłek. Treści i formularze służą wyłącznie prezentacji możliwości interfejsu.
+              <small>
+                <strong>Uwaga:</strong> Serwis stanowi <strong>projekt demonstracyjny / portfolio</strong>.
+                Dokument ma charakter przykładowy i nie stanowi porady prawnej ani oferty handlowej.
+              </small>
             </p>
-
-            <h2>2. Administrator danych</h2>
-            <p>Administratorem danych w ramach demo jest Kamil Król (KP_Code).</p>
-            <div class="stacked">
-              <span>Telefon: +48 533 537 091</span>
-              <span>E-mail: kontakt@kp-code.pl</span>
-              <span>Adres: ul. Marynarki Wojennej 12/31, 33-100 Tarnów, Polska</span>
-            </div>
-
-            <h2>3. Zakres danych wprowadzanych w demo</h2>
+            <h2 id="tos-1">1. Definicje</h2>
+            <ul>
+              <li><strong>Serwis</strong> – demonstracyjna strona internetowa VOLT GARAGE (demo).</li>
+              <li><strong>Użytkownik</strong> – każda osoba korzystająca z Serwisu.</li>
+              <li>
+                <strong>Administrator</strong> – autor projektu portfolio: <strong>Kamil Król (KP_Code_)</strong>
+                (kontakt: <a href="mailto:kontakt@kp-code.pl">kontakt@kp-code.pl</a>).
+              </li>
+            </ul>
+            <h2 id="tos-2">2. Administrator danych</h2>
             <p>
-              Użytkownik może wprowadzić dane w formularzach kontaktu, biuletynu lub zamówienia.
-              Mogą to być:
+              Administratorem danych w ramach projektu demo jest <strong>Kamil Król (KP_Code_)</strong>.
+              Kontakt: <a href="mailto:kontakt@kp-code.pl">kontakt@kp-code.pl</a>.
             </p>
-            <ul class="stacked">
+            <h2 id="tos-3">3. Charakter projektu demo</h2>
+            <p>
+              Serwis nie prowadzi rzeczywistej sprzedaży i nie posiada backendu. Koszyk, checkout oraz
+              formularze mają charakter demonstracyjny.
+            </p>
+            <h2 id="tos-4">4. Zakres danych</h2>
+            <p>Użytkownik może wprowadzić dane testowe, takie jak:</p>
+            <ul>
               <li>imię i nazwisko,</li>
               <li>adres e-mail i numer telefonu,</li>
               <li>adres dostawy oraz treść wiadomości.</li>
             </ul>
-
-            <h2>4. Charakter przetwarzania</h2>
+            <h2 id="tos-5">5. Źródła danych</h2>
             <p>
-              Demo nie posiada backendu. Dane wpisane w formularzach nie są przesyłane do systemu
-              zewnętrznego i nie są zapisywane na serwerze.
+              Dane pochodzą wyłącznie od Użytkownika i są wprowadzane dobrowolnie w formularzach.
             </p>
-
-            <h2>5. Dane techniczne (localStorage)</h2>
+            <h2 id="tos-6">6. Cele przetwarzania</h2>
             <p>
-              Serwis wykorzystuje localStorage przeglądarki do zapisu stanu koszyka oraz wybranego
-              motywu. Dane te pozostają lokalnie na urządzeniu użytkownika.
+              Dane mają charakter testowy i służą jedynie prezentacji działania interfejsu. Serwis nie
+              przetwarza danych w sposób produkcyjny i nie realizuje żadnych usług handlowych.
             </p>
-
-            <h2>6. Prawa użytkownika</h2>
+            <h2 id="tos-7">7. Odbiorcy danych</h2>
             <p>
-              Informacyjnie, w duchu RODO, użytkownik ma prawo do dostępu, sprostowania, usunięcia,
-              ograniczenia przetwarzania oraz wniesienia sprzeciwu. W praktyce, ze względu na brak
-              backendu, dane nie są utrwalane poza przeglądarką.
+              Dane nie są przekazywane podmiotom trzecim ani zapisywane na serwerach, ponieważ Serwis
+              nie posiada backendu.
             </p>
-
-            <h2>7. Kontakt</h2>
+            <h2 id="tos-8">8. Cookies i pamięć lokalna</h2>
             <p>
-              W razie pytań dotyczących prywatności prosimy o kontakt pod adresem:
-              kontakt@kp-code.pl.
+              Serwis korzysta z cookies technicznych i localStorage w celach funkcjonalnych.
+              Szczegóły opisuje dokument <a href="cookies.html">Cookies</a>.
+            </p>
+            <h2 id="tos-9">9. Prawa Użytkownika</h2>
+            <p>
+              Informacyjnie, Użytkownik ma prawo do dostępu do danych, ich sprostowania, usunięcia
+              oraz ograniczenia przetwarzania. W praktyce dane nie są utrwalane poza przeglądarką.
+            </p>
+            <h2 id="tos-10">10. Bezpieczeństwo</h2>
+            <ul>
+              <li>Operator stosuje podstawowe środki techniczne w celu ochrony Serwisu.</li>
+              <li>Użytkownik powinien dbać o bezpieczeństwo urządzenia i aktualność przeglądarki.</li>
+              <li>Nie należy wprowadzać rzeczywistych danych osobowych do formularzy demo.</li>
+            </ul>
+            <h2 id="tos-11">11. Kontakt</h2>
+            <p>
+              W sprawach dotyczących prywatności można kontaktować się z Administratorem:
+              <a href="mailto:kontakt@kp-code.pl">kontakt@kp-code.pl</a>.
+            </p>
+            <h2 id="tos-12">12. Zmiany dokumentu</h2>
+            <p>
+              Operator może aktualizować niniejszy dokument w razie zmian technicznych lub rozwoju
+              projektu demo.
+            </p>
+            <p>
+              <small>
+                Data ostatniej aktualizacji:
+                <time datetime="2026-01-06">06.01.2026</time>
+              </small>
             </p>
           </article>
         </div>
@@ -224,8 +294,8 @@
             <span class="footer-brand-text">VOLT GARAGE</span>
           </div>
           <p>
-            Nowoczesny sklep z akcesoriami samochodowymi. Projektowany przez pasjonat¢w dla
-            pasjonat¢w.
+            Nowoczesny sklep z akcesoriami samochodowymi. Projektowany przez pasjonatów dla
+            pasjonatów.
           </p>
         </div>
         <div>
@@ -256,13 +326,13 @@
         </div>
         <div class="footer-col footer-col--newsletter">
           <h4>Biuletyn</h4>
-          <p>Ekskluzywne rabaty i newsy co tydzieä.</p>
+          <p>Ekskluzywne rabaty i newsy co tydzień.</p>
           <form class="footer-form" aria-label="Stopka biuletynu">
             <label class="input-group">
               <span>E-mail</span>
               <input type="email" placeholder="kontakt@kp-code.pl" required />
             </label>
-            <button class="btn btn-outline" type="submit">Zapisz si©</button>
+            <button class="btn btn-outline" type="submit">Zapisz się</button>
           </form>
         </div>
       </div>
@@ -351,7 +421,7 @@
         </ul>
       </nav>
       <div class="container footer-bottom">
-        <small>© <span data-current-year>2026</span> KP_Code | Wszelkie prawa zastrzeżone</small>
+        <small>&copy; <span data-current-year>2026</span> KP_Code | Wszelkie prawa zastrzeżone</small>
       </div>
     </footer>
 

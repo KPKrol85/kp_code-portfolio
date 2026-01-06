@@ -18,6 +18,7 @@ import {
   initSaleProducts,
 } from './modules/products.js';
 import { initFilters } from './modules/filters.js';
+import { initDemoModal } from './modules/demo-modal.js';
 
 const initForms = () => {
   const forms = document.querySelectorAll('[data-contact-form], [data-checkout-form]');
@@ -88,6 +89,7 @@ const initApp = () => {
   // Przyczyna: przyciski są renderowane po async load produktów, więc selektor na starcie zwraca null.
   // Delegacja klików musi być podpięta zawsze, niezależnie od chwili renderu.
   initAddToCartButtons();
+  initDemoModal();
   if (has('[data-current-year]')) initCopyrightYear();
 };
 
@@ -95,4 +97,13 @@ if (document.readyState === 'loading') {
   document.addEventListener('DOMContentLoaded', initApp, { once: true });
 } else {
   initApp();
+}
+
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', () => {
+    const isLocalhost = location.hostname === 'localhost' || location.hostname === '127.0.0.1';
+    if (location.protocol === 'https:' || isLocalhost) {
+      navigator.serviceWorker.register('/sw.js').catch(() => {});
+    }
+  });
 }

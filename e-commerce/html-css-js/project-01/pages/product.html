@@ -33,6 +33,26 @@
     <link rel="stylesheet" href="../css/main.css" />
   </head>
   <body>
+    <div class="demo-modal" data-demo-modal hidden>
+      <div class="demo-modal__backdrop" aria-hidden="true"></div>
+      <div class="demo-modal__panel" role="dialog" aria-modal="true" aria-labelledby="demo-modal-title">
+        <span class="demo-modal__badge">DEMO</span>
+        <h2 id="demo-modal-title">Projekt demonstracyjny</h2>
+        <p>
+          To jest wersja DEMO — brak realnej sprzedaży i płatności.
+        </p>
+        <p>Przed korzystaniem z serwisu zaakceptuj Regulamin.</p>
+        <div class="demo-modal__actions">
+          <button class="btn btn-accent" type="button" data-demo-accept>Akceptuję i przechodzę</button>
+          <a class="btn btn-outline" data-demo-regulamin href="#">Przeczytaj regulamin</a>
+        </div>
+        <div class="demo-modal__links">
+          <a data-demo-privacy href="#">Polityka prywatności</a>
+          <span aria-hidden="true">•</span>
+          <a data-demo-cookies href="#">Cookies</a>
+        </div>
+      </div>
+    </div>
     <header class="site-header" data-header>
       <a class="skip-link" href="#main">Przejdź do treści</a>
       <div class="container header-inner">
@@ -148,6 +168,15 @@
     </header>
 
     <main id="main">
+</div>
+      </div>
+      <nav class="breadcrumbs" aria-label="Okruszki">
+        <ol>
+          <li><a href="../index.html">Strona główna</a></li>
+          <li aria-current="page">Szczegóły produktu</li>
+        </ol>
+      </nav>
+
       <section class="page-hero">
         <div class="container">
           <h1>Szczegóły produktu</h1>
@@ -180,8 +209,8 @@
             <span class="footer-brand-text">VOLT GARAGE</span>
           </div>
           <p>
-            Nowoczesny sklep z akcesoriami samochodowymi. Projektowany przez pasjonat¢w dla
-            pasjonat¢w.
+            Nowoczesny sklep z akcesoriami samochodowymi. Projektowany przez pasjonatów dla
+            pasjonatów.
           </p>
         </div>
         <div>
@@ -212,13 +241,13 @@
         </div>
         <div class="footer-col footer-col--newsletter">
           <h4>Biuletyn</h4>
-          <p>Ekskluzywne rabaty i newsy co tydzieä.</p>
+          <p>Ekskluzywne rabaty i newsy co tydzień.</p>
           <form class="footer-form" aria-label="Stopka biuletynu">
             <label class="input-group">
               <span>E-mail</span>
               <input type="email" placeholder="kontakt@kp-code.pl" required />
             </label>
-            <button class="btn btn-outline" type="submit">Zapisz si©</button>
+            <button class="btn btn-outline" type="submit">Zapisz się</button>
           </form>
         </div>
       </div>
@@ -307,7 +336,7 @@
         </ul>
       </nav>
       <div class="container footer-bottom">
-        <small>© <span data-current-year>2026</span> KP_Code | Wszelkie prawa zastrzeżone</small>
+        <small>&copy; <span data-current-year>2026</span> KP_Code | Wszelkie prawa zastrzeżone</small>
       </div>
     </footer>
 

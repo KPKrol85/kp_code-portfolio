@@ -33,6 +33,26 @@
     <link rel="stylesheet" href="../css/main.css" />
   </head>
   <body>
+    <div class="demo-modal" data-demo-modal hidden>
+      <div class="demo-modal__backdrop" aria-hidden="true"></div>
+      <div class="demo-modal__panel" role="dialog" aria-modal="true" aria-labelledby="demo-modal-title">
+        <span class="demo-modal__badge">DEMO</span>
+        <h2 id="demo-modal-title">Projekt demonstracyjny</h2>
+        <p>
+          To jest wersja DEMO — brak realnej sprzedaży i płatności.
+        </p>
+        <p>Przed korzystaniem z serwisu zaakceptuj Regulamin.</p>
+        <div class="demo-modal__actions">
+          <button class="btn btn-accent" type="button" data-demo-accept>Akceptuję i przechodzę</button>
+          <a class="btn btn-outline" data-demo-regulamin href="#">Przeczytaj regulamin</a>
+        </div>
+        <div class="demo-modal__links">
+          <a data-demo-privacy href="#">Polityka prywatności</a>
+          <span aria-hidden="true">•</span>
+          <a data-demo-cookies href="#">Cookies</a>
+        </div>
+      </div>
+    </div>
     <header class="site-header" data-header>
       <a class="skip-link" href="#main">Przejdź do treści</a>
       <div class="container header-inner">
@@ -148,45 +168,116 @@
     </header>
 
     <main id="main">
-      <section class="page-hero">
-        <div class="container">
-          <h1>Cookies</h1>
-          <p>Informacje o plikach cookie i pamięci lokalnej w wersji demo sklepu.</p>
-          <span class="page-hero-mark" aria-hidden="true"></span>
-        </div>
-      </section>
-
-      <section>
-        <div class="container">
-          <article class="card" data-reveal>
-            <h2>1. Czym są pliki cookie?</h2>
+</div>
+      </div>
+      <nav class="breadcrumbs" aria-label="Okruszki">
+        <ol>
+          <li><a href="../index.html">Strona główna</a></li>
+          <li aria-current="page">Cookies</li>
+        </ol>
+      </nav>
+      <section class="legal-simple" aria-labelledby="terms-title">
+        <div class="legal-container">
+          <h1 id="terms-title" class="legal-title">Polityka cookies VOLT GARAGE (demo)</h1>
+          <p class="legal-lead">
+            Dokument opisuje zasady stosowania plików cookies oraz pamięci lokalnej w ramach
+            demonstracyjnego serwisu <strong>VOLT GARAGE</strong>.
+          </p>
+          <nav class="doc-toc" aria-label="Spis treści">
+            <ul>
+              <li><a href="#tos-1">1. Definicje</a></li>
+              <li><a href="#tos-2">2. Informacje ogólne</a></li>
+              <li><a href="#tos-3">3. Charakter projektu demo</a></li>
+              <li><a href="#tos-4">4. Zakres stosowania cookies</a></li>
+              <li><a href="#tos-5">5. Rodzaje cookies</a></li>
+              <li><a href="#tos-6">6. Cele wykorzystania</a></li>
+              <li><a href="#tos-7">7. Brak cookies marketingowych</a></li>
+              <li><a href="#tos-8">8. Narzędzia zewnętrzne</a></li>
+              <li><a href="#tos-9">9. Zarządzanie cookies</a></li>
+              <li><a href="#tos-10">10. Okres przechowywania</a></li>
+              <li><a href="#tos-11">11. Kontakt z Operatorem</a></li>
+              <li><a href="#tos-12">12. Zmiany dokumentu</a></li>
+            </ul>
+          </nav>
+          <article class="doc-content legal-doc legal-content">
             <p>
-              Pliki cookie to niewielkie dane zapisywane w przeglądarce, które wspierają działanie
-              serwisu i wygodę użytkownika.
+              <small>
+                <strong>Uwaga:</strong> Serwis stanowi <strong>projekt demonstracyjny / portfolio</strong>.
+                Dokument ma charakter przykładowy i nie stanowi porady prawnej ani oferty handlowej.
+              </small>
             </p>
-
-            <h2>2. Jakich cookies używamy</h2>
+            <h2 id="tos-1">1. Definicje</h2>
+            <ul>
+              <li><strong>Serwis</strong> – demonstracyjna strona internetowa VOLT GARAGE (demo).</li>
+              <li><strong>Cookies</strong> – małe pliki tekstowe zapisywane w przeglądarce Użytkownika.</li>
+              <li><strong>Pamięć lokalna</strong> – mechanizmy przechowywania danych w przeglądarce (np. localStorage).</li>
+              <li>
+                <strong>Operator</strong> – autor projektu portfolio: <strong>Kamil Król (KP_Code_)</strong>
+                (kontakt: <a href="mailto:kontakt@kp-code.pl">kontakt@kp-code.pl</a>).
+              </li>
+            </ul>
+            <h2 id="tos-2">2. Informacje ogólne</h2>
             <p>
-              W projekcie demo wykorzystujemy wyłącznie cookies techniczne, niezbędne do poprawnego
-              działania interfejsu. Nie stosujemy cookies reklamowych ani profilujących.
+              Pliki cookies oraz pamięć lokalna wspierają działanie interfejsu i komfort korzystania
+              z Serwisu. Użytkownik może samodzielnie zarządzać tymi ustawieniami w swojej przeglądarce.
             </p>
-
-            <h2>3. LocalStorage</h2>
+            <h2 id="tos-3">3. Charakter projektu demo</h2>
             <p>
-              Wersja demo korzysta z localStorage do zapisywania ustawień motywu oraz stanu koszyka.
-              Dane te pozostają lokalnie na urządzeniu użytkownika.
+              VOLT GARAGE jest projektem demonstracyjnym. Serwis nie realizuje sprzedaży, płatności
+              ani wysyłek, a funkcje koszyka i checkoutu mają wyłącznie charakter testowy.
             </p>
-
-            <h2>4. Brak trackingu reklamowego</h2>
+            <h2 id="tos-4">4. Zakres stosowania cookies</h2>
             <p>
-              Demo nie zawiera narzędzi analitycznych ani zewnętrznych systemów śledzenia
-              reklamowego.
+              W Serwisie wykorzystywane są wyłącznie podstawowe cookies techniczne, niezbędne do
+              poprawnego działania interfejsu.
             </p>
-
-            <h2>5. Zarządzanie cookies</h2>
+            <h2 id="tos-5">5. Rodzaje cookies</h2>
+            <ul>
+              <li><strong>Sesyjne</strong> – usuwane po zamknięciu przeglądarki.</li>
+              <li><strong>Stałe</strong> – przechowywane do czasu ich usunięcia przez Użytkownika.</li>
+            </ul>
+            <h2 id="tos-6">6. Cele wykorzystania</h2>
+            <ul>
+              <li>zapamiętanie ustawień motywu (jasny/ciemny),</li>
+              <li>przechowanie stanu koszyka w celach demonstracyjnych,</li>
+              <li>zapewnienie spójnego działania interfejsu.</li>
+            </ul>
+            <h2 id="tos-7">7. Brak cookies marketingowych</h2>
             <p>
-              Użytkownik może w każdej chwili zarządzać plikami cookie w ustawieniach swojej
-              przeglądarki, w tym je usuwać lub blokować.
+              Serwis nie wykorzystuje cookies reklamowych ani profilujących. Nie prowadzimy analityki
+              marketingowej i nie śledzimy Użytkowników.
+            </p>
+            <h2 id="tos-8">8. Narzędzia zewnętrzne</h2>
+            <p>
+              Serwis nie integruje zewnętrznych narzędzi wymagających dodatkowych cookies. Linki do
+              serwisów zewnętrznych (np. social media) działają niezależnie od polityki cookies Serwisu.
+            </p>
+            <h2 id="tos-9">9. Zarządzanie cookies</h2>
+            <p>
+              Użytkownik może w każdej chwili usunąć lub zablokować cookies w ustawieniach przeglądarki.
+              Ograniczenie cookies może wpłynąć na poprawne działanie niektórych elementów interfejsu.
+            </p>
+            <h2 id="tos-10">10. Okres przechowywania</h2>
+            <p>
+              Cookies sesyjne są usuwane po zamknięciu przeglądarki. Cookies stałe pozostają do czasu
+              ich usunięcia przez Użytkownika. Dane w pamięci lokalnej przechowywane są do momentu
+              ich skasowania w przeglądarce.
+            </p>
+            <h2 id="tos-11">11. Kontakt z Operatorem</h2>
+            <p>
+              W sprawach dotyczących cookies i prywatności można kontaktować się z Operatorem:
+              <a href="mailto:kontakt@kp-code.pl">kontakt@kp-code.pl</a>.
+            </p>
+            <h2 id="tos-12">12. Zmiany dokumentu</h2>
+            <p>
+              Operator może aktualizować niniejszy dokument w razie zmian technicznych lub rozwoju
+              projektu demo.
+            </p>
+            <p>
+              <small>
+                Data ostatniej aktualizacji:
+                <time datetime="2026-01-06">06.01.2026</time>
+              </small>
             </p>
           </article>
         </div>
@@ -202,8 +293,8 @@
             <span class="footer-brand-text">VOLT GARAGE</span>
           </div>
           <p>
-            Nowoczesny sklep z akcesoriami samochodowymi. Projektowany przez pasjonat¢w dla
-            pasjonat¢w.
+            Nowoczesny sklep z akcesoriami samochodowymi. Projektowany przez pasjonatów dla
+            pasjonatów.
           </p>
         </div>
         <div>
@@ -234,13 +325,13 @@
         </div>
         <div class="footer-col footer-col--newsletter">
           <h4>Biuletyn</h4>
-          <p>Ekskluzywne rabaty i newsy co tydzieä.</p>
+          <p>Ekskluzywne rabaty i newsy co tydzień.</p>
           <form class="footer-form" aria-label="Stopka biuletynu">
             <label class="input-group">
               <span>E-mail</span>
               <input type="email" placeholder="kontakt@kp-code.pl" required />
             </label>
-            <button class="btn btn-outline" type="submit">Zapisz si©</button>
+            <button class="btn btn-outline" type="submit">Zapisz się</button>
           </form>
         </div>
       </div>
@@ -329,7 +420,7 @@
         </ul>
       </nav>
       <div class="container footer-bottom">
-        <small>© <span data-current-year>2026</span> KP_Code | Wszelkie prawa zastrzeżone</small>
+        <small>&copy; <span data-current-year>2026</span> KP_Code | Wszelkie prawa zastrzeżone</small>
       </div>
     </footer>
 
