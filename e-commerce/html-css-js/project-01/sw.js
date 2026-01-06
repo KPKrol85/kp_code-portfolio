@@ -1,15 +1,10 @@
-const CACHE_VERSION = 'volt-garage-v1.0.0';
+const CACHE_VERSION = 'volt-garage-v1.0.1';
 const STATIC_CACHE = `${CACHE_VERSION}-static`;
 const HTML_CACHE = `${CACHE_VERSION}-html`;
 const ASSETS_CACHE = `${CACHE_VERSION}-assets`;
 
 const OFFLINE_URL = '/offline.html';
-const SKIP_CACHE_PATHS = new Set([
-  '/_redirects',
-  '/_headers',
-  '/robots.txt',
-  '/sitemap.xml',
-]);
+const SKIP_CACHE_PATHS = new Set(['/_redirects', '/_headers', '/robots.txt', '/sitemap.xml']);
 
 const precache = async () => {
   const cache = await caches.open(STATIC_CACHE);
@@ -17,8 +12,7 @@ const precache = async () => {
 };
 
 const isHtmlRequest = (request) =>
-  request.mode === 'navigate' ||
-  (request.headers.get('accept') || '').includes('text/html');
+  request.mode === 'navigate' || (request.headers.get('accept') || '').includes('text/html');
 
 const trimCache = async (cacheName, maxEntries) => {
   const cache = await caches.open(cacheName);
