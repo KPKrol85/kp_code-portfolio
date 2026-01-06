@@ -1,4 +1,4 @@
-const CACHE_VERSION = 'volt-garage-v1.0.1';
+const CACHE_VERSION = 'volt-garage-v1.0.2';
 const STATIC_CACHE = `${CACHE_VERSION}-static`;
 const HTML_CACHE = `${CACHE_VERSION}-html`;
 const ASSETS_CACHE = `${CACHE_VERSION}-assets`;
