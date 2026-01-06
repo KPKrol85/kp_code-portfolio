@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="description" content="Sklep – akcesoria samochodowe VOLT GARAGE." />
+    <meta name="description" content="Wszystkie produkty VOLT GARAGE – emblematy, naklejki, gadżety i akcesoria samochodowe." />
     <meta name="color-scheme" content="light dark" />
     <script data-theme-preload>
       (function () {
@@ -22,22 +22,19 @@
         document.documentElement.setAttribute('data-theme', theme);
       })();
     </script>
-    <title>Sklep | VOLT GARAGE</title>
-    <link rel="canonical" href="https://kpcode-ecommerce-01.netlify.app/" />
+    <title>Sklep | VOLT GARAGE – wszystkie produkty</title>
+    <link rel="canonical" href="https://kpcode-ecommerce-01.netlify.app/pages/shop.html" />
     <meta property="og:type" content="website" />
-    <meta property="og:title" content="Sklep | VOLT GARAGE" />
-    <meta property="og:description" content="Sklep – akcesoria samochodowe VOLT GARAGE." />
-    <meta property="og:url" content="https://kpcode-ecommerce-01.netlify.app/" />
-        <meta
-      property="og:image"
-      content="https://kpcode-ecommerce-01.netlify.app/assets/images/og/og-1200x630.jpg"
-    />
+    <meta property="og:title" content="Sklep | VOLT GARAGE – wszystkie produkty" />
+    <meta property="og:description" content="Wszystkie produkty VOLT GARAGE – emblematy, naklejki, gadżety i akcesoria samochodowe." />
+    <meta property="og:url" content="https://kpcode-ecommerce-01.netlify.app/pages/shop.html" />
+    <meta property="og:image" content="https://kpcode-ecommerce-01.netlify.app/assets/images/og/og-1200x630.jpg" />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="Sklep | VOLT GARAGE" />
-    <meta name="twitter:description" content="Sklep – akcesoria samochodowe VOLT GARAGE." />
-    <meta name="twitter:image" content="https://kpcode-ecommerce-01.netlify.app/assets/og/og-image.jpg" />
+    <meta name="twitter:title" content="Sklep | VOLT GARAGE – wszystkie produkty" />
+    <meta name="twitter:description" content="Wszystkie produkty VOLT GARAGE – emblematy, naklejki, gadżety i akcesoria samochodowe." />
+    <meta name="twitter:image" content="https://kpcode-ecommerce-01.netlify.app/assets/images/og/og-1200x630.jpg" />
     <link rel="icon" href="/assets/icons/favicon/favicon.ico" />
     <link rel="icon" type="image/svg+xml" href="/assets/icons/favicon/favicon.svg" />
     <link rel="apple-touch-icon" href="/assets/icons/favicon/apple-touch-icon.png" />
@@ -53,15 +50,20 @@
     />
     <link rel="stylesheet" href="/css/main.css" />
 
-    <!-- TODO: uzupelnij sameAs linkami do sociali. -->
     <script type="application/ld+json">
       {
         "@context": "https://schema.org",
         "@type": "Organization",
         "name": "Volt Garage",
         "url": "https://kpcode-ecommerce-01.netlify.app/",
-        "logo": "https://kpcode-ecommerce-01.netlify.app/assets/logo/logo.png",
-        "sameAs": []
+        "logo": "https://kpcode-ecommerce-01.netlify.app/assets/images/logo/logo-512.png",
+        "sameAs": [
+          "https://facebook.com/voltgarage",
+          "https://x.com/voltgarage",
+          "https://github.com",
+          "https://instagram.com/voltgarage",
+          "https://tiktok.com/@voltgarage"
+        ]
       }
     </script>
     <script type="application/ld+json">
@@ -103,7 +105,7 @@
       <a class="skip-link" href="#main">Przejdź do treści</a>
       <div class="container header-inner">
         <a class="brand" href="../index.html">
-          <img class="brand-logo" src="../assets/images/logo/logo.svg" alt="" aria-hidden="true" />
+          <img class="brand-logo" src="../assets/images/logo/logo.svg" alt="" aria-hidden="true" width="120" height="32" decoding="async" />
 
           <span class="brand-text">VOLT GARAGE</span>
         </a>
@@ -214,8 +216,6 @@
     </header>
 
     <main id="main">
-</div>
-      </div>
       <nav class="breadcrumbs" aria-label="Okruszki">
         <ol>
           <li><a href="../index.html">Strona główna</a></li>
@@ -233,10 +233,10 @@
 
       <section>
         <div class="container page-layout">
-          <div class="notice notice--shop">Darmowa wysyłka od 300 zł.</div>
-          <aside class="filter-panel" aria-label="Filtrowanie produktów" data-reveal>
+          <div class="notice notice--shop" id="filter-summary">Darmowa wysyłka od 300 zł.</div>
+          <aside class="filter-panel" data-reveal aria-labelledby="filter-heading" aria-describedby="filter-summary">
             <div class="input-group search-field" data-search>
-              <label class="visually-hidden" for="filter-search">Szukaj produktu</label>
+              <label for="filter-search">Szukaj produktu</label>
               <div class="search-input">
                 <input
                   type="search"
@@ -244,11 +244,10 @@
                   name="search"
                   placeholder="Szukaj produktu&hellip;"
                   autocomplete="off"
-                  aria-label="Szukaj produktu"
                   aria-controls="search-suggestions"
                   aria-expanded="false"
                   aria-autocomplete="list"
-                  role="combobox"
+                  
                   data-search-input
                 />
                 <button
@@ -261,18 +260,17 @@
                   ×
                 </button>
               </div>
-              <div
+              <ul
                 class="search-suggestions"
                 id="search-suggestions"
-                role="listbox"
-                aria-label="Sugestie produktów"
                 data-search-suggestions
                 hidden
-              ></div>
+                aria-live="polite"
+              ></ul>
             </div>
             <div class="input-group">
               <label for="filter-category">Kategoria</label>
-              <select id="filter-category" name="category">
+              <select id="filter-category" name="category" data-native-select="true">
                 <option value="all">Wszystkie</option>
                 <option value="Emblematy">Emblematy</option>
                 <option value="Naklejki">Naklejki</option>
@@ -297,8 +295,8 @@
           </aside>
           <div>
             <div class="section-title">
-              <h2>Produkty</h2>
-              <span data-result-count>0 wyników</span>
+              <h2 id="filter-heading">Produkty</h2>
+              <span data-result-count aria-live="polite">0 wyników</span>
             </div>
             <div class="grid-3" data-products="shop"></div>
           </div>

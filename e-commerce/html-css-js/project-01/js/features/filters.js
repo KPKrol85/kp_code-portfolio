@@ -1,4 +1,7 @@
-import { loadProducts, renderGrid } from './products.js';
+import { fetchProducts } from '../services/products.js';
+import { renderGrid } from './products.js';
+import { renderState } from '../ui/state.js';
+import { logError } from '../core/errors.js';
 
 export const initFilters = async () => {
   const container = document.querySelector('[data-products="shop"]');
@@ -14,7 +17,16 @@ export const initFilters = async () => {
   const suggestions = document.querySelector('[data-search-suggestions]');
   const searchField = document.querySelector('[data-search]');
 
-  const products = await loadProducts();
+  renderState(container, 'loading', 'Ładowanie produktów...');
+
+  let products = [];
+  try {
+    products = await fetchProducts();
+  } catch (error) {
+    logError('filters:load', error);
+    renderState(container, 'error', 'Nie udało się wczytać produktów do filtrowania.');
+    return;
+  }
   const params = new URLSearchParams(window.location.search);
   const categoryParam = params.get('category');
 
@@ -226,6 +238,7 @@ export const initFilters = async () => {
     renderGrid(container, filtered);
     if (resultCount) {
       resultCount.textContent = `${filtered.length} wynik\u00f3w`;
+      resultCount.setAttribute('aria-live', 'polite');
     }
   };
 

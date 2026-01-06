@@ -101,11 +101,17 @@ export const initHeader = () => {
       });
     };
 
-    dropdowns.forEach((item) => {
+    dropdowns.forEach((item, index) => {
       const button = item.querySelector('[data-dropdown-toggle]');
-      if (!button) return;
+      const menu = item.querySelector('[data-dropdown-menu]');
 
-      const getMenuLinks = () => Array.from(item.querySelectorAll('[data-dropdown-menu] a'));
+      if (!button || !menu) return;
+
+      const menuId = `dropdown-menu-${index}`;
+      menu.id = menu.id || menuId;
+      button.setAttribute('aria-controls', menu.id);
+
+      const getMenuLinks = () => Array.from(menu.querySelectorAll('a'));
 
       button.addEventListener('click', () => {
         const willOpen = !item.classList.contains('is-open');
@@ -120,10 +126,39 @@ export const initHeader = () => {
         }
       });
 
-      item.addEventListener('keydown', (event) => {
+      button.addEventListener('keydown', (event) => {
+        if (event.key === 'ArrowDown') {
+          event.preventDefault();
+          if (!item.classList.contains('is-open')) {
+            item.classList.add('is-open');
+            button.setAttribute('aria-expanded', 'true');
+          }
+          getMenuLinks()[0]?.focus();
+        }
+      });
+
+      menu.addEventListener('keydown', (event) => {
+        const links = getMenuLinks();
+        if (!links.length) return;
+
+        const currentIndex = links.indexOf(document.activeElement);
+
         if (event.key === 'Escape') {
           closeAll();
           button.focus();
+        }
+        if (event.key === 'ArrowDown') {
+          event.preventDefault();
+          const next = links[currentIndex + 1] || links[0];
+          next.focus();
+        }
+        if (event.key === 'ArrowUp') {
+          event.preventDefault();
+          const prev = links[currentIndex - 1] || links[links.length - 1];
+          prev.focus();
+        }
+        if (event.key === 'Tab' && !event.shiftKey && currentIndex === links.length - 1) {
+          closeAll();
         }
       });
     });

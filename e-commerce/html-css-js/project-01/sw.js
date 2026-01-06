@@ -1,4 +1,4 @@
-const CACHE_VERSION = 'volt-garage-v1.0.3';
+const CACHE_VERSION = 'volt-garage-v1.0.4';
 const STATIC_CACHE = `${CACHE_VERSION}-static`;
 const HTML_CACHE = `${CACHE_VERSION}-html`;
 const ASSETS_CACHE = `${CACHE_VERSION}-assets`;
@@ -110,5 +110,11 @@ self.addEventListener('fetch', (event) => {
         }
       })()
     );
+  }
+});
+
+self.addEventListener('message', (event) => {
+  if (event.data === 'SKIP_WAITING') {
+    self.skipWaiting();
   }
 });

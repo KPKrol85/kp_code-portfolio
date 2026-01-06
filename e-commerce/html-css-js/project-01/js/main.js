@@ -1,14 +1,19 @@
 // Entry point: bootstrap site modules.
-import { initHeader } from './modules/header.js';
-import { initTheme } from './modules/theme.js';
-import { initReveal } from './modules/reveal.js';
-import { initAccessibility } from './modules/accessibility.js';
+import { initHeader } from './ui/header.js';
+import { initTheme } from './ui/theme.js';
+import { initReveal } from './ui/reveal.js';
+import { initAccessibility } from './ui/accessibility.js';
+import { initDemoModal } from './ui/demo-modal.js';
+import { initGlobalErrorHandling } from './core/errors.js';
+import { emit, events, on } from './core/events.js';
+import { injectBreadcrumbJsonLd } from './ui/structured-data.js';
+import { initPwaPrompts } from './ui/pwa-prompts.js';
 import {
   initCart,
   initCartPage,
   initAddToCartButtons,
   initCheckoutSummary,
-} from './modules/cart.js';
+} from './features/cart.js';
 import {
   initFeaturedProducts,
   initShopProducts,
@@ -16,36 +21,94 @@ import {
   initRelatedProducts,
   initNewArrivalsProducts,
   initSaleProducts,
-} from './modules/products.js';
-import { initFilters } from './modules/filters.js';
-import { initDemoModal } from './modules/demo-modal.js';
+} from './features/products.js';
+import { initFilters } from './features/filters.js';
 
 const initForms = () => {
   const forms = document.querySelectorAll('[data-contact-form], [data-checkout-form]');
   if (!forms.length) return;
 
   const isEmail = (value) => /\S+@\S+\.\S+/.test(value);
+  const getOrCreateError = (field) => {
+    const wrapper = field.closest('.input-group') || field.parentElement;
+    if (!wrapper) return null;
+    let message = wrapper.querySelector('[data-field-error]');
+    if (!message) {
+      message = document.createElement('p');
+      message.className = 'input-error';
+      message.dataset.fieldError = field.name || field.id || 'field';
+      message.setAttribute('aria-live', 'polite');
+      message.hidden = true;
+      wrapper.appendChild(message);
+    }
+    return message;
+  };
+
+  const validators = {
+    email: (field, value) => (value && !isEmail(value) ? 'Podaj poprawny adres e-mail.' : ''),
+    tel: (field, value) =>
+      value && field.pattern && !new RegExp(field.pattern).test(value)
+        ? 'Podaj poprawny numer telefonu.'
+        : '',
+  };
+
+  const validateField = (field) => {
+    const value = field.value.trim();
+    let message = '';
+
+    if (field.hasAttribute('required') && !value) {
+      message = 'To pole jest wymagane.';
+    }
+
+    if (!message) {
+      const validator = validators[field.type];
+      if (validator) message = validator(field, value);
+    }
+
+    if (!message && field.minLength > 0 && value && value.length < field.minLength) {
+      message = `Wpisz min. ${field.minLength} znaków.`;
+    }
+
+    const errorEl = getOrCreateError(field);
+    if (message) {
+      field.setAttribute('aria-invalid', 'true');
+      if (errorEl) {
+        errorEl.textContent = message;
+        errorEl.hidden = false;
+      }
+      return false;
+    }
+
+    field.setAttribute('aria-invalid', 'false');
+    if (errorEl) {
+      errorEl.textContent = '';
+      errorEl.hidden = true;
+    }
+    return true;
+  };
 
   forms.forEach((form) => {
     const status = form.querySelector('[data-form-status]');
+    if (status) {
+      status.setAttribute('aria-live', 'polite');
+    }
+
+    const focusFirstInvalid = (fields) => {
+      const invalid = fields.find((field) => field.getAttribute('aria-invalid') === 'true');
+      invalid?.focus();
+    };
 
     form.addEventListener('submit', (event) => {
       event.preventDefault();
-      let isValid = true;
-
-      form.querySelectorAll('input, textarea, select').forEach((field) => {
-        if (field.hasAttribute('required')) {
-          const value = field.value.trim();
-          const valid = value.length > 0 && (!field.type.includes('email') || isEmail(value));
-          field.setAttribute('aria-invalid', String(!valid));
-          if (!valid) isValid = false;
-        }
-      });
+      const fields = Array.from(form.querySelectorAll('input, textarea, select'));
+      const results = fields.map((field) => validateField(field));
+      const isValid = results.every(Boolean);
 
       if (!isValid) {
         if (status) {
-          status.textContent = 'Uzupełnij wymagane pola i popraw adres e-mail.';
+          status.textContent = 'Uzupełnij wymagane pola i popraw zaznaczone błędy.';
         }
+        focusFirstInvalid(fields);
         return;
       }
 
@@ -53,6 +116,14 @@ const initForms = () => {
         status.textContent = 'Dziękujemy! Twoje zgłoszenie zostało przyjęte.';
       }
       form.reset();
+      fields.forEach((field) => validateField(field));
+    });
+
+    form.addEventListener('input', (event) => {
+      const target = event.target;
+      if (!(target instanceof HTMLElement)) return;
+      if (!['INPUT', 'TEXTAREA', 'SELECT'].includes(target.tagName)) return;
+      validateField(target);
     });
   });
 };
@@ -67,6 +138,15 @@ const initCopyrightYear = () => {
 };
 
 const initApp = () => {
+  initGlobalErrorHandling();
+  on(events.app.error, ({ source, error }) => {
+    if (error) {
+      console.error('[VOLT][app]', source, error);
+    }
+  });
+
+  emit(events.app.error, { source: 'init:ready', error: null });
+
   const has = (selector) => document.querySelector(selector);
 
   if (document.body) initAccessibility();
@@ -86,10 +166,17 @@ const initApp = () => {
   if (has('[data-cart-items]')) initCartPage();
   if (has('[data-checkout-summary]')) initCheckoutSummary();
   if (has('[data-contact-form], [data-checkout-form]')) initForms();
+  if (has('.breadcrumbs')) injectBreadcrumbJsonLd();
   // Przyczyna: przyciski są renderowane po async load produktów, więc selektor na starcie zwraca null.
   // Delegacja klików musi być podpięta zawsze, niezależnie od chwili renderu.
   initAddToCartButtons();
   initDemoModal();
+  if ('serviceWorker' in navigator) {
+    const registrationPromise = navigator.serviceWorker
+      .register('/sw.js')
+      .catch((error) => console.error('[VOLT][sw]', error));
+    initPwaPrompts(registrationPromise);
+  }
   if (has('[data-current-year]')) initCopyrightYear();
 };
 
@@ -97,13 +184,4 @@ if (document.readyState === 'loading') {
   document.addEventListener('DOMContentLoaded', initApp, { once: true });
 } else {
   initApp();
-}
-
-if ('serviceWorker' in navigator) {
-  window.addEventListener('load', () => {
-    const isLocalhost = location.hostname === 'localhost' || location.hostname === '127.0.0.1';
-    if (location.protocol === 'https:' || isLocalhost) {
-      navigator.serviceWorker.register('/sw.js').catch(() => {});
-    }
-  });
 }

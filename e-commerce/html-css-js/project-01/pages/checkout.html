@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="description" content="Zamówienie – VOLT GARAGE." />
+    <meta name="description" content="Finalizacja zamówienia VOLT GARAGE – dane dostawy, płatności demo i podsumowanie koszyka." />
     <meta name="color-scheme" content="light dark" />
     <script data-theme-preload>
       (function () {
@@ -22,22 +22,19 @@
         document.documentElement.setAttribute('data-theme', theme);
       })();
     </script>
-    <title>Zamówienie | VOLT GARAGE</title>
-    <link rel="canonical" href="https://kpcode-ecommerce-01.netlify.app/" />
+    <title>Zamówienie | VOLT GARAGE – finalizacja</title>
+    <link rel="canonical" href="https://kpcode-ecommerce-01.netlify.app/pages/checkout.html" />
     <meta property="og:type" content="website" />
-    <meta property="og:title" content="Zamówienie | VOLT GARAGE" />
-    <meta property="og:description" content="Zamówienie – VOLT GARAGE." />
-    <meta property="og:url" content="https://kpcode-ecommerce-01.netlify.app/" />
-        <meta
-      property="og:image"
-      content="https://kpcode-ecommerce-01.netlify.app/assets/images/og/og-1200x630.jpg"
-    />
+    <meta property="og:title" content="Zamówienie | VOLT GARAGE – finalizacja" />
+    <meta property="og:description" content="Finalizacja zamówienia VOLT GARAGE – dane dostawy, płatności demo i podsumowanie koszyka." />
+    <meta property="og:url" content="https://kpcode-ecommerce-01.netlify.app/pages/checkout.html" />
+    <meta property="og:image" content="https://kpcode-ecommerce-01.netlify.app/assets/images/og/og-1200x630.jpg" />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="Zamówienie | VOLT GARAGE" />
-    <meta name="twitter:description" content="Zamówienie – VOLT GARAGE." />
-    <meta name="twitter:image" content="https://kpcode-ecommerce-01.netlify.app/assets/og/og-image.jpg" />
+    <meta name="twitter:title" content="Zamówienie | VOLT GARAGE – finalizacja" />
+    <meta name="twitter:description" content="Finalizacja zamówienia VOLT GARAGE – dane dostawy, płatności demo i podsumowanie koszyka." />
+    <meta name="twitter:image" content="https://kpcode-ecommerce-01.netlify.app/assets/images/og/og-1200x630.jpg" />
     <link rel="icon" href="/assets/icons/favicon/favicon.ico" />
     <link rel="icon" type="image/svg+xml" href="/assets/icons/favicon/favicon.svg" />
     <link rel="apple-touch-icon" href="/assets/icons/favicon/apple-touch-icon.png" />
@@ -53,15 +50,20 @@
     />
     <link rel="stylesheet" href="/css/main.css" />
 
-    <!-- TODO: uzupelnij sameAs linkami do sociali. -->
     <script type="application/ld+json">
       {
         "@context": "https://schema.org",
         "@type": "Organization",
         "name": "Volt Garage",
         "url": "https://kpcode-ecommerce-01.netlify.app/",
-        "logo": "https://kpcode-ecommerce-01.netlify.app/assets/logo/logo.png",
-        "sameAs": []
+        "logo": "https://kpcode-ecommerce-01.netlify.app/assets/images/logo/logo-512.png",
+        "sameAs": [
+          "https://facebook.com/voltgarage",
+          "https://x.com/voltgarage",
+          "https://github.com",
+          "https://instagram.com/voltgarage",
+          "https://tiktok.com/@voltgarage"
+        ]
       }
     </script>
     <script type="application/ld+json">
@@ -103,7 +105,7 @@
       <a class="skip-link" href="#main">Przejdź do treści</a>
       <div class="container header-inner">
         <a class="brand" href="../index.html">
-          <img class="brand-logo" src="../assets/images/logo/logo.svg" alt="" aria-hidden="true" />
+          <img class="brand-logo" src="../assets/images/logo/logo.svg" alt="" aria-hidden="true" width="120" height="32" decoding="async" />
 
           <span class="brand-text">VOLT GARAGE</span>
         </a>
@@ -214,8 +216,6 @@
     </header>
 
     <main id="main">
-</div>
-      </div>
       <nav class="breadcrumbs" aria-label="Okruszki">
         <ol>
           <li><a href="../index.html">Strona główna</a></li>
@@ -240,21 +240,21 @@
             <div class="form-row">
               <label class="input-group">
                 <span>Imię</span>
-                <input type="text" name="firstName" required aria-required="true" />
+                <input type="text" name="firstName" autocomplete="given-name" required aria-required="true" />
               </label>
               <label class="input-group">
                 <span>Nazwisko</span>
-                <input type="text" name="lastName" required aria-required="true" />
+                <input type="text" name="lastName" autocomplete="family-name" required aria-required="true" />
               </label>
             </div>
             <div class="form-row">
               <label class="input-group">
                 <span>E-mail</span>
-                <input type="email" name="email" required aria-required="true" />
+                <input type="email" name="email" autocomplete="email" inputmode="email" required aria-required="true" />
               </label>
               <label class="input-group">
                 <span>Telefon</span>
-                <input type="tel" name="phone" required aria-required="true" />
+                <input type="tel" name="phone" autocomplete="tel" inputmode="tel" pattern="^[0-9+][0-9\\s-]{6,19}$" required aria-required="true" />
               </label>
             </div>
             <div class="section-title">
@@ -263,17 +263,17 @@
             <div class="form-row">
               <label class="input-group">
                 <span>Ulica i numer</span>
-                <input type="text" name="street" required aria-required="true" />
+                <input type="text" name="street" autocomplete="address-line1" required aria-required="true" />
               </label>
               <label class="input-group">
                 <span>Miasto</span>
-                <input type="text" name="city" required aria-required="true" />
+                <input type="text" name="city" autocomplete="address-level2" required aria-required="true" />
               </label>
             </div>
             <div class="form-row">
               <label class="input-group">
                 <span>Kod pocztowy</span>
-                <input type="text" name="zip" required aria-required="true" placeholder="00-000" />
+                <input type="text" name="zip" autocomplete="postal-code" inputmode="numeric" pattern="^[0-9]{2}-?[0-9]{3}$" required aria-required="true" placeholder="00-000" />
               </label>
               <label class="input-group">
                 <span>Kraj</span>

@@ -1,20 +1,10 @@
+import { safeStorage } from '../services/storage.js';
+
 const STORAGE_KEY = 'vg_theme';
 
-const getStoredTheme = () => {
-  try {
-    return localStorage.getItem(STORAGE_KEY);
-  } catch {
-    return null;
-  }
-};
+const getStoredTheme = () => safeStorage.get(STORAGE_KEY);
 
-const setStoredTheme = (theme) => {
-  try {
-    localStorage.setItem(STORAGE_KEY, theme);
-  } catch {
-    // Storage can be blocked (privacy mode); ignore and keep runtime theme.
-  }
-};
+const setStoredTheme = (theme) => safeStorage.set(STORAGE_KEY, theme);
 
 const getSystemTheme = () =>
   window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';

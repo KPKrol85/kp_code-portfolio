@@ -1,17 +1,30 @@
-import { loadProducts, getProductImage, formatProductPrice } from './products.js';
-import { initReveal } from './reveal.js';
+import { fetchProducts, getProductImage, formatProductPrice } from './products.js';
+import { initReveal } from '../ui/reveal.js';
+import { renderState } from '../ui/state.js';
+import { safeStorage } from '../services/storage.js';
+import { logError } from '../core/errors.js';
 
 const CART_KEY = 'volt_cart';
 const FREE_SHIPPING = 300;
 const SHIPPING_FEE = 20;
 
 const getCart = () => {
-  const raw = localStorage.getItem(CART_KEY);
-  return raw ? JSON.parse(raw) : [];
+  const raw = safeStorage.get(CART_KEY);
+  if (!raw) return [];
+  try {
+    return JSON.parse(raw) || [];
+  } catch (error) {
+    logError('cart:parse', error);
+    return [];
+  }
 };
 
 const saveCart = (items) => {
-  localStorage.setItem(CART_KEY, JSON.stringify(items));
+  try {
+    safeStorage.set(CART_KEY, JSON.stringify(items));
+  } catch (error) {
+    logError('cart:save', error);
+  }
   window.dispatchEvent(new CustomEvent('cart:updated'));
 };
 
@@ -45,6 +58,7 @@ export const initAddToCartButtons = () => {
     if (!button) return;
 
     const id = button.getAttribute('data-product-id');
+    if (!id) return;
     const qtySelect = document.querySelector('[data-qty-select]');
     const qty = qtySelect ? Number(qtySelect.value) : 1;
     const originalLabel = button.textContent;
@@ -68,7 +82,7 @@ const buildCartItems = (cart, products) => {
       if (!product) return '';
       return `
         <div class="cart-item" role="group" aria-label="${product.name}" data-reveal>
-          <img src="${getProductImage(product.image)}" alt="${product.name}" />
+          <img src="${getProductImage(product.image)}" alt="${product.name}" loading="lazy" decoding="async" width="120" height="120" />
           <div class="stacked">
             <strong>${product.name}</strong>
             <span>${formatProductPrice(product.price)}</span>
@@ -112,9 +126,26 @@ export const initCartPage = async () => {
   const container = document.querySelector('[data-cart-items]');
   if (!container) return;
 
-  const products = await loadProducts();
+  renderState(container, 'loading', 'Ładowanie koszyka...');
+
+  let products = [];
+  try {
+    products = await fetchProducts();
+  } catch (error) {
+    logError('cart:load-products', error);
+    renderState(container, 'error', 'Nie udało się wczytać produktów koszyka.');
+    return;
+  }
+
   const render = () => {
     const cart = getCart();
+    if (!cart.length) {
+      renderState(container, 'empty', 'Koszyk jest pusty. Dodaj produkty ze sklepu.');
+      const summary = document.querySelector('[data-cart-summary]');
+      updateSummary(summary, calculateTotals(cart, products));
+      return;
+    }
+
     container.innerHTML = buildCartItems(cart, products);
     const summary = document.querySelector('[data-cart-summary]');
     updateSummary(summary, calculateTotals(cart, products));
@@ -156,7 +187,12 @@ export const initCartPage = async () => {
 export const initCheckoutSummary = async () => {
   const summary = document.querySelector('[data-checkout-summary]');
   if (!summary) return;
-  const products = await loadProducts();
-  const cart = getCart();
-  updateSummary(summary, calculateTotals(cart, products));
+  try {
+    const products = await fetchProducts();
+    const cart = getCart();
+    updateSummary(summary, calculateTotals(cart, products));
+  } catch (error) {
+    logError('cart:checkout-summary', error);
+    updateSummary(summary, { subtotal: 0, shipping: 0, total: 0 });
+  }
 };
