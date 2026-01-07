@@ -200,7 +200,7 @@ export const initFilters = async () => {
     suggestions.innerHTML = scored
       .map((entry, index) => {
         const name = entry.product.name;
-        return `<div class="search-option" role="option" id="search-option-${index}" data-search-option data-index="${index}" aria-selected="false">${highlightMatch(
+        return `<div class="search-option" role="option" id="search-option-${index}" data-search-option data-index="${index}" aria-selected="false" tabindex="-1">${highlightMatch(
           name,
           query
         )}</div>`;

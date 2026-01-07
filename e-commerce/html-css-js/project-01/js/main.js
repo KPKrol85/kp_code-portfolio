@@ -41,6 +41,11 @@ const initForms = () => {
       message.hidden = true;
       wrapper.appendChild(message);
     }
+    if (!message.id) {
+      const base = field.id || field.name || 'field';
+      const safeBase = base.trim().toLowerCase().replace(/[^a-z0-9_-]+/g, '-') || 'field';
+      message.id = `${safeBase}-error`;
+    }
     return message;
   };
 
@@ -75,6 +80,12 @@ const initForms = () => {
       if (errorEl) {
         errorEl.textContent = message;
         errorEl.hidden = false;
+        const describedBy = field.getAttribute('aria-describedby');
+        const ids = describedBy ? describedBy.split(/\s+/) : [];
+        if (!ids.includes(errorEl.id)) {
+          ids.push(errorEl.id);
+          field.setAttribute('aria-describedby', ids.join(' ').trim());
+        }
       }
       return false;
     }
@@ -83,6 +94,15 @@ const initForms = () => {
     if (errorEl) {
       errorEl.textContent = '';
       errorEl.hidden = true;
+      const describedBy = field.getAttribute('aria-describedby');
+      if (describedBy) {
+        const ids = describedBy.split(/\s+/).filter((id) => id && id !== errorEl.id);
+        if (ids.length) {
+          field.setAttribute('aria-describedby', ids.join(' '));
+        } else {
+          field.removeAttribute('aria-describedby');
+        }
+      }
     }
     return true;
   };
