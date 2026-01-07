@@ -84,7 +84,10 @@ export const initFilters = async () => {
   };
 
   const escapeHtml = (value) =>
-    value.replace(/[&<>"]/g, (char) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' })[char]);
+    value.replace(
+      /[&<>"]/g,
+      (char) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' })[char]
+    );
 
   const highlightMatch = (value, query) => {
     const foldedQuery = foldText(query);
@@ -101,7 +104,9 @@ export const initFilters = async () => {
   };
 
   const buildSearchText = (product) =>
-    [product.name, product.category, product.badge, ...(product.tags || [])].filter(Boolean).join(' ');
+    [product.name, product.category, product.badge, ...(product.tags || [])]
+      .filter(Boolean)
+      .join(' ');
 
   const fuzzyScore = (query, text) => {
     if (query.length < 2) return 0;
@@ -128,7 +133,7 @@ export const initFilters = async () => {
   const searchable = products.map((product) => ({
     product,
     nameIndex: foldText(product.name),
-    searchIndex: foldText(buildSearchText(product))
+    searchIndex: foldText(buildSearchText(product)),
   }));
 
   const resolveCategory = (value) => {
@@ -144,7 +149,7 @@ export const initFilters = async () => {
   const state = {
     query: '',
     activeIndex: -1,
-    suggestions: []
+    suggestions: [],
   };
 
   const clearSuggestions = () => {
@@ -183,7 +188,7 @@ export const initFilters = async () => {
     const scored = searchable
       .map(({ product, nameIndex, searchIndex }) => ({
         product,
-        score: scoreMatch(foldedQuery, nameIndex, searchIndex)
+        score: scoreMatch(foldedQuery, nameIndex, searchIndex),
       }))
       .filter((entry) => entry.score > 0)
       .sort((a, b) => b.score - a.score || a.product.name.localeCompare(b.product.name))

@@ -43,7 +43,11 @@ const initForms = () => {
     }
     if (!message.id) {
       const base = field.id || field.name || 'field';
-      const safeBase = base.trim().toLowerCase().replace(/[^a-z0-9_-]+/g, '-') || 'field';
+      const safeBase =
+        base
+          .trim()
+          .toLowerCase()
+          .replace(/[^a-z0-9_-]+/g, '-') || 'field';
       message.id = `${safeBase}-error`;
     }
     return message;

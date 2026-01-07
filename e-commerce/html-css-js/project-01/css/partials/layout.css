@@ -886,15 +886,13 @@
     grid-template-columns: minmax(0, 1fr);
   }
 
-
-
- .product-details {
+  .product-details {
     grid-template-columns: 1.3fr 0.7fr;
     align-items: start;
   }
-.page-layout.product-details {
-  align-items: stretch;
-}
+  .page-layout.product-details {
+    align-items: stretch;
+  }
 
   .page-layout--contact {
     grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
