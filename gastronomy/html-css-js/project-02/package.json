@@ -23,10 +23,14 @@
   ],
   "scripts": {
     "start": "live-server --port=5500",
-    "build": "npm run min",
-    "min:css": "cssnano css/style.css css/style.min.css",
-    "min:js": "terser js/script.js -o js/script.min.js -c -m",
-    "min": "npm run min:css && npm run min:js",
+    "optimize:images": "squoosh-cli --webp \"{quality:75}\" --avif \"{quality:45}\" --output-dir assets/img \"assets/img/**/*.{jpg,jpeg,png}\"",
+    "build:css": "cssnano css/style.css css/style.min.css",
+    "build:js": "terser js/script.js -o js/script.min.js -c -m",
+    "build": "npm run optimize:images && npm run build:css && npm run build:js",
+    "build:note": "echo \"Build = finalny krok. Zrodla: css/style.css, js/script.js, assets/img/**/*.{jpg,png}. Output: style.min.css, script.min.js, AVIF/WebP w assets/img/.\"",
+    "min:css": "npm run build:css",
+    "min:js": "npm run build:js",
+    "min": "npm run build:css && npm run build:js",
     "watch": "chokidar \"css/style.css\" \"js/script.js\" -c \"npm run min\"",
     "format": "prettier --write \"**/*.{html,css,js,json,md}\""
   },

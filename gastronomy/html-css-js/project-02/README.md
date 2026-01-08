@@ -11,7 +11,7 @@ Live Demo:
    - Strong focus on performance, accessibility, SEO, and PWA best practices.
 
 2. **Features**
-   - Responsive layout (mobile‑first grid/flex, fluid typography).
+   - Responsive layout (mobile-first grid/flex, fluid typography).
    - Semantic HTML with proper headings and landmarks.
    - Accessibility: `aria-labels`, focus styles, high contrast, skip links.
    - Images: modern formats (WebP/JPG), `loading="lazy"`, width/height set to avoid layout shift.
@@ -22,14 +22,19 @@ Live Demo:
    - Netlify headers: caching, security headers, and file-specific rules via `_headers`.
    - Build optimizations: CSSNano and Terser minification pipelines.
 
-3. **Tech Stack**
+3. **Manual Build (final step only)**
+   - Dev source: `css/style.css`, `js/script.js`, and `assets/img/**/*.{jpg,png}`.
+   - Run `npm run build` to generate optimized images (WebP/AVIF) and minified CSS/JS (`style.min.css`, `script.min.js`).
+   - Add new images by placing JPG/PNG files under `assets/img/` and rerun `npm run optimize:images`.
+
+4. **Tech Stack**
    - HTML5, CSS3, JavaScript (ES6)
    - Netlify (hosting & headers)
    - CSSNano, Terser (minification)
    - Lighthouse, Chrome DevTools (audits)
    - VS Code (editor)
 
-4. **Folder Structure**
+5. **Folder Structure**
 
 ```text
 gastronomy-html-css-js-project-02/
@@ -89,7 +94,7 @@ gastronomy-html-css-js-project-02/
 └── postcss.config.js
 ```
 
-5. **Performance & Accessibility**
+6. **Performance & Accessibility**
    - Performance: 100
      Accessibility: 100
      Best Practices: 100
@@ -103,7 +108,7 @@ gastronomy-html-css-js-project-02/
    | CLS           | 0.00  |
    | Speed Index   | 1.0s  |
 
-6. **SEO & PWA**
+7. **SEO & PWA**
    - Meta Open Graph & Twitter Cards for rich sharing.
    - `robots.txt` configured for crawl directives.
    - `sitemap.xml` for search engine indexing.
@@ -111,10 +116,9 @@ gastronomy-html-css-js-project-02/
    - Netlify `_headers` for cache and security policies.
    - Offline support via Service Worker and `404.html` fallback.
 
-7. **Author**
+8. **Author**
    - **KP_Code**
      Front-End Developer focused on clean code, accessibility, and performance.
      © 2025 KP_Code — For educational and portfolio use only.
 
 > This project is part of the KP_Code portfolio series — Gastronomy Demo 02.
-
