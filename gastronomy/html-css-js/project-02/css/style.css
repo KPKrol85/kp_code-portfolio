@@ -858,13 +858,13 @@ html:not(.js) .nav-toggle {
   margin-top: 1.5rem;
 }
 
-[data-reveal] {
+.reveal {
   opacity: 0;
   transform: translateY(12px);
   will-change: transform, opacity;
 }
 
-[data-reveal].is-visible {
+.reveal.is-visible {
   opacity: 1;
   transform: translateY(0);
   transition:
@@ -919,6 +919,12 @@ html:not(.js) .nav-toggle {
 .card__image {
   aspect-ratio: 3/2;
   object-fit: cover;
+}
+
+.card__image.img-fallback,
+.gallery__img.img-fallback {
+  background: color-mix(in oklab, var(--surface-overlay) 60%, var(--bone));
+  object-fit: contain;
 }
 
 .card__body {
@@ -1415,6 +1421,44 @@ body.dark,
   font-size: 0.875rem;
   color: inherit;
   opacity: 0.85;
+}
+
+.net-status {
+  position: fixed;
+  left: 50%;
+  bottom: 1rem;
+  z-index: 1100;
+  padding: 0.6rem 1rem;
+  border-radius: 999px;
+  background: var(--surface-overlay);
+  border: 1px solid var(--surface-overlay-border);
+  color: var(--c-ink);
+  font-size: 0.9rem;
+  box-shadow: var(--shadow);
+  transform: translate(-50%, 8px);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
+.net-status.is-visible {
+  opacity: 1;
+  transform: translate(-50%, 0);
+}
+
+.net-status.is-offline {
+  background: color-mix(in oklab, var(--gold) 12%, var(--surface-overlay));
+  border-color: color-mix(in oklab, var(--gold) 35%, var(--surface-overlay-border));
+}
+
+.offline-note {
+  margin-top: 0.75rem;
+  padding: 0.75rem 1rem;
+  border-radius: 12px;
+  background: var(--surface-overlay);
+  border: 1px solid var(--surface-overlay-border);
+  color: var(--text-muted);
+  font-size: 0.95rem;
 }
 
 .nojs {

@@ -26,6 +26,9 @@ Live Demo:
    - Dev source: `css/style.css`, `js/script.js`, and `assets/img/**/*.{jpg,png}`.
    - Run `npm run build` to generate optimized images (WebP/AVIF) and minified CSS/JS (`style.min.css`, `script.min.js`).
    - Add new images by placing JPG/PNG files under `assets/img/` and rerun `npm run optimize:images`.
+   - Switch HTML asset links:
+     - `npm run dev` or `npm run dev:assets` (use `style.css` / `script.js`)
+     - `npm run prod` or `npm run prod:assets` (use `style.min.css` / `script.min.js`)
 
 4. **Tech Stack**
    - HTML5, CSS3, JavaScript (ES6)

@@ -22,6 +22,82 @@
   function q(selector) {
     return typeof selector === "string" ? document.querySelector(selector) : selector || null;
   }
+  function setOfflineNotes(isOnline) {
+    var autoNotes = document.querySelectorAll(".offline-note[data-auto]");
+    if (isOnline) {
+      autoNotes.forEach(function (note) {
+        note.remove();
+      });
+      return;
+    }
+    var menuHero = document.querySelector(".page--menu .page-hero__content");
+    if (menuHero && !menuHero.querySelector(".offline-note")) {
+      var menuNote = document.createElement("p");
+      menuNote.className = "offline-note";
+      menuNote.dataset.auto = "true";
+      menuNote.setAttribute("role", "status");
+      menuNote.setAttribute("aria-live", "polite");
+      menuNote.textContent = "Jesteś offline — wyświetlamy ostatnio zapisane menu. Część zdjęć może być niedostępna.";
+      menuHero.appendChild(menuNote);
+    }
+    var galleryHero = document.querySelector(".page-gallery .page-hero__content");
+    if (galleryHero && !galleryHero.querySelector(".offline-note")) {
+      var galleryNote = document.createElement("p");
+      galleryNote.className = "offline-note";
+      galleryNote.dataset.auto = "true";
+      galleryNote.setAttribute("role", "status");
+      galleryNote.setAttribute("aria-live", "polite");
+      galleryNote.textContent = "Jesteś offline — jeśli galeria nie była wcześniej odwiedzona, część zdjęć może się nie wczytać.";
+      galleryHero.appendChild(galleryNote);
+    }
+  }
+
+  function initNetworkStatusBanner() {
+    var banner = document.getElementById("network-status");
+    if (!banner) {
+      banner = document.createElement("div");
+      banner.id = "network-status";
+      banner.className = "net-status";
+      banner.setAttribute("role", "status");
+      banner.setAttribute("aria-live", "polite");
+      banner.setAttribute("aria-atomic", "true");
+      document.body.appendChild(banner);
+    }
+
+    var hideTimer = null;
+    var lastState = null;
+
+    function update(isOnline) {
+      if (lastState === isOnline) return;
+      lastState = isOnline;
+      if (hideTimer) {
+        clearTimeout(hideTimer);
+        hideTimer = null;
+      }
+      if (isOnline) {
+        banner.textContent = "Połączenie przywrócone.";
+        banner.classList.add("is-visible");
+        banner.classList.remove("is-offline");
+        hideTimer = setTimeout(function () {
+          banner.classList.remove("is-visible");
+        }, 4000);
+      } else {
+        banner.textContent = "Jesteś offline — część treści może być niedostępna.";
+        banner.classList.add("is-visible");
+        banner.classList.add("is-offline");
+      }
+      setOfflineNotes(isOnline);
+    }
+
+    var isOnline = typeof navigator !== "undefined" && "onLine" in navigator ? navigator.onLine : true;
+    update(isOnline);
+    window.addEventListener("online", function () {
+      update(true);
+    });
+    window.addEventListener("offline", function () {
+      update(false);
+    });
+  }
   function isNavMobile() {
     return typeof window !== "undefined" && typeof window.matchMedia === "function" ? window.matchMedia("(max-width: 1023px)").matches : false;
   }
@@ -144,6 +220,8 @@
     if (legalYear) {
       legalYear.textContent = String(new Date().getFullYear());
     }
+    initNetworkStatusBanner();
+    initImageFallbacks();
     var navToggle = q(".nav-toggle");
     var nav = q("#primary-nav");
     navToggle &&
@@ -837,6 +915,29 @@ if (typeof window !== "undefined") {
 
 /* ===== 06 - MENU DATA RENDER ===== */
 
+var FALLBACK_IMAGE =
+  "data:image/svg+xml;charset=UTF-8," +
+  encodeURIComponent(
+    '<svg xmlns="http://www.w3.org/2000/svg" width="960" height="640" viewBox="0 0 960 640"><rect width="960" height="640" fill="#f3ede3"/><rect x="18" y="18" width="924" height="604" fill="none" stroke="#e2d6c3" stroke-width="2"/><text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" fill="#6b1e2f" font-family="sans-serif" font-size="24">Brak obrazu</text></svg>'
+  );
+
+function initImageFallbacks(root) {
+  var scope = root || document;
+  var images = scope.querySelectorAll(".menu-card__figure img, .gallery__img");
+  images.forEach(function (img) {
+    if (img.dataset.fallbackBound) return;
+    img.dataset.fallbackBound = "true";
+    img.addEventListener("error", function () {
+      if (img.dataset.fallbackApplied) return;
+      img.dataset.fallbackApplied = "true";
+      img.classList.add("img-fallback");
+      img.removeAttribute("srcset");
+      img.removeAttribute("sizes");
+      img.src = FALLBACK_IMAGE;
+    });
+  });
+}
+
 var menuDataPromise = null;
 
 function fetchMenuDataOnce() {
@@ -1033,6 +1134,7 @@ function renderFeaturedMenu() {
       .join("");
     if (!html) return false;
     list.innerHTML = html;
+    initImageFallbacks(list);
     return true;
   });
 }
@@ -1058,6 +1160,7 @@ function renderMenuByCategory() {
         })
         .join("");
       if (html) list.innerHTML = html;
+      if (html) initImageFallbacks(list);
     });
     return true;
   });
