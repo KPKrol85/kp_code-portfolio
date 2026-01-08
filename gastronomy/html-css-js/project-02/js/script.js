@@ -28,10 +28,32 @@
   function q(selector) {
     return typeof selector === "string" ? document.querySelector(selector) : selector || null;
   }
+  function isNavMobile() {
+    return typeof window !== "undefined" && typeof window.matchMedia === "function" ? window.matchMedia("(max-width: 1023px)").matches : false;
+  }
+  function syncNavA11y(nav, expanded) {
+    if (!nav) return;
+    if (!isNavMobile()) {
+      nav.removeAttribute("aria-hidden");
+      nav.removeAttribute("inert");
+      return;
+    }
+    nav.setAttribute("aria-hidden", String(!expanded));
+    if (expanded) {
+      nav.removeAttribute("inert");
+    } else {
+      try {
+        nav.setAttribute("inert", "");
+      } catch (err) {}
+    }
+  }
   function s(button, expanded) {
     button.setAttribute("aria-expanded", String(expanded));
     var nav = q("#primary-nav");
-    nav && nav.setAttribute("data-open", String(expanded));
+    if (nav) {
+      nav.setAttribute("data-open", String(expanded));
+      syncNavA11y(nav, expanded);
+    }
   }
 
   /* ===== 01 - THEME STATE MANAGEMENT ===== */
@@ -129,6 +151,7 @@
       legalYear.textContent = String(new Date().getFullYear());
     }
     var navToggle = q(".nav-toggle");
+    var nav = q("#primary-nav");
     navToggle &&
       navToggle.addEventListener("click", function () {
         var expanded = navToggle.getAttribute("aria-expanded") === "true";
@@ -136,6 +159,20 @@
         var nowExpanded = !expanded;
         navToggle.setAttribute("aria-label", nowExpanded ? "Zamknij menu" : "Otwórz menu");
       });
+    if (nav) {
+      syncNavA11y(nav, navToggle && navToggle.getAttribute("aria-expanded") === "true");
+      nav.addEventListener("click", function (event) {
+        var link = event.target.closest("a");
+        if (!link || !isNavMobile()) return;
+        if (navToggle && navToggle.getAttribute("aria-expanded") === "true") {
+          s(navToggle, false);
+          navToggle.setAttribute("aria-label", "Otwórz menu");
+        }
+      });
+      window.addEventListener("resize", function () {
+        syncNavA11y(nav, navToggle && navToggle.getAttribute("aria-expanded") === "true");
+      });
+    }
     document.addEventListener("keyup", function (event) {
       event.key === "Escape" && navToggle && navToggle.getAttribute("aria-expanded") === "true" && s(navToggle, false);
     });

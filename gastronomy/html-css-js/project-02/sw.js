@@ -1,4 +1,4 @@
-const CACHE_NAME = "atelierno02-v1.0.0";
+const CACHE_NAME = "atelierno02-v1.0.1";
 
 const FILES_TO_CACHE = [
   "/",
@@ -8,8 +8,9 @@ const FILES_TO_CACHE = [
   "/gallery.html",
   "/cookies.html",
   "/polityka-prywatnosci.html",
-  "/css/style.css",
-  "/js/script.js",
+  "/regulamin.html",
+  "/css/style.min.css",
+  "/js/script.min.js",
   "/manifest.webmanifest",
   "/assets/icons/fav-icon/web-app-manifest-192x192.png",
   "/assets/icons/fav-icon/web-app-manifest-512x512.png",

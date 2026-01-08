@@ -581,6 +581,7 @@ main {
   transform: translateY(-8px);
   opacity: 0;
   pointer-events: none;
+  visibility: hidden;
   transition: none;
   background: var(--surface-overlay);
   border-bottom: 1px solid var(--surface-overlay-border);
@@ -593,6 +594,7 @@ main {
   transform: translateY(0);
   opacity: 1;
   pointer-events: auto;
+  visibility: visible;
 }
 
 .nav__list {
@@ -628,6 +630,7 @@ main {
     transform: none;
     opacity: 1;
     pointer-events: auto;
+    visibility: visible;
     background: transparent;
     border: 0;
     box-shadow: none;
