@@ -1,79 +1,81 @@
 <!doctype html>
 <html lang="pl">
   <head>
-    <!-- NETLIFY DEPLOY -->
-    <!-- https://gastronomy-project-02.netlify.app/about.html -->
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>O nas — KP_Code | Fine Dining, sezonowość i kuchnia autorska</title>
-    <meta name="color-scheme" content="light dark" />
+    <title>O nas | Atelier No.02</title>
 
     <!-- SEO -->
     <meta
       name="description"
-      content="O nas — KP_Code. Fine dining oparty na sezonowości i kuchni autorskiej: lokalne składniki, rzemiosło i troska o doświadczenie gościa. Poznaj zespół, filozofię i dostawców." />
+      content="Poznaj Atelier No.02: fine dining oparty na sezonowości i kuchni autorskiej. Lokalni dostawcy, rzemiosło i troska o doświadczenie gościa — zobacz zespół i filozofię." />
     <link rel="canonical" href="https://gastronomy-project-02.netlify.app/about.html" />
+    <meta name="robots" content="index,follow" />
     <meta name="author" content="KP_Code" />
-    <meta name="application-name" content="Gastro Demo" />
-    <meta name="apple-mobile-web-app-title" content="Gastro Demo" />
-    <meta name="msapplication-TileColor" content="#f8f1e7" />
 
-    <!-- ✅ Favicons + manifest (spójne z /assets/icons/fav-icon/) -->
+    <!-- PWA / UI -->
+    <meta name="color-scheme" content="light dark" />
+    <meta name="application-name" content="Atelier No.02" />
+    <meta name="apple-mobile-web-app-title" content="Atelier No.02" />
+    <meta name="msapplication-TileColor" content="#f8f1e7" />
+    <meta name="theme-color" content="#ffffff" />
+
+    <!-- Favicons + manifest -->
     <link rel="icon" type="image/png" sizes="32x32" href="assets/icons/fav-icon/favicon-32x32.png" />
     <link rel="icon" type="image/png" sizes="16x16" href="assets/icons/fav-icon/favicon-16x16.png" />
     <link rel="apple-touch-icon" sizes="180x180" href="assets/icons/fav-icon/apple-touch-icon.png" />
     <link rel="mask-icon" href="assets/icons/fav-icon/safari-pinned-tab.svg" color="#000000" />
     <link rel="manifest" href="manifest.webmanifest" />
-    <meta name="theme-color" content="#ffffff" />
-    <!-- ✅ Koniec sekcji favicon -->
 
     <!-- Open Graph -->
-    <meta property="og:site_name" content="KP_Code" />
+    <meta property="og:site_name" content="Atelier No.02" />
     <meta property="og:type" content="website" />
-    <meta property="og:title" content="O nas — KP_Code | Fine Dining, sezonowość i kuchnia autorska" />
-    <meta property="og:description" content="Fine dining, sezonowość i kuchnia autorska. Odkryj filozofię KP_Code, zespół i lokalnych dostawców. Zarezerwuj stolik i poznaj nasze menu." />
+    <meta property="og:title" content="O nas | Atelier No.02 – Fine dining, sezonowość i kuchnia autorska" />
+    <meta property="og:description" content="Fine dining oparty na sezonowości i kuchni autorskiej. Poznaj filozofię Atelier No.02, zespół i lokalnych dostawców." />
+    <meta property="og:url" content="https://gastronomy-project-02.netlify.app/about.html" />
     <meta property="og:image" content="https://gastronomy-project-02.netlify.app/assets/img/og-img/og-img-1200x630.jpg" />
     <meta property="og:image:type" content="image/jpeg" />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
-    <meta property="og:image:alt" content="Fine dining – kompozycja dań Gastronomy 02" />
-    <meta property="og:url" content="https://gastronomy-project-02.netlify.app/about.html" />
+    <meta property="og:image:alt" content="Atelier No.02 — fine dining" />
     <meta property="og:locale" content="pl_PL" />
 
     <!-- Twitter -->
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="O nas — KP_Code | Fine Dining, sezonowość i kuchnia autorska" />
-    <meta name="twitter:description" content="Fine dining oparty na sezonowości i kuchni autorskiej. Poznaj zespół KP_Code, filozofię i lokalnych dostawców. Zarezerwuj stolik." />
+    <meta name="twitter:title" content="O nas | Atelier No.02 – Fine dining, sezonowość i kuchnia autorska" />
+    <meta name="twitter:description" content="Poznaj zespół i filozofię Atelier No.02. Sezonowość, lokalni dostawcy i kuchnia autorska w eleganckim wydaniu." />
     <meta name="twitter:image" content="https://gastronomy-project-02.netlify.app/assets/img/og-img/og-img-1200x630.jpg" />
-    <meta name="twitter:image:alt" content="Fine dining – kompozycja dań Gastronomy 02" />
+    <meta name="twitter:image:alt" content="Atelier No.02 — fine dining" />
     <meta name="twitter:site" content="@KP_Code_85" />
     <meta name="twitter:creator" content="@KP_Code_85" />
 
-    <!-- Preload lokalnych fontów -->
     <link rel="preload" href="assets/fonts/montserrat-400-latin.woff2" as="font" type="font/woff2" crossorigin />
     <link rel="preload" href="assets/fonts/montserrat-700-latin.woff2" as="font" type="font/woff2" crossorigin />
-    <link rel="preload" href="assets/fonts/lato-400-latin.woff2" as="font" type="font/woff2" crossorigin />
-    <link rel="preload" href="assets/fonts/lato-700-latin.woff2" as="font" type="font/woff2" crossorigin />
 
-    <!-- Motyw jasny / ciemny (dynamiczne theme-color) -->
+    <!-- Theme preload -->
     <script>
       (function () {
         var storageKey = "kp-theme";
         var root = document.documentElement;
         var theme = null;
+
         try {
           var stored = localStorage.getItem(storageKey);
           if (stored === "light" || stored === "dark") theme = stored;
         } catch (err) {}
+
         if (!theme) {
           var preset = root.getAttribute("data-theme");
           if (preset === "light" || preset === "dark") theme = preset;
         }
+
         if (!theme) {
           var prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
           theme = prefersDark ? "dark" : "light";
         }
+
         root.setAttribute("data-theme", theme);
+
         var meta = document.querySelector('meta[name="theme-color"]');
         if (meta) meta.setAttribute("content", theme === "dark" ? "#181210" : "#f8f1e7");
       })();
@@ -97,13 +99,7 @@
             "name": "KP_Code",
             "url": "https://gastronomy-project-02.netlify.app/",
             "logo": "https://gastronomy-project-02.netlify.app/assets/img/logo/logo-light-mode.svg",
-            "description": "KP_Code – demo fine dining oparte na sezonowości i kuchni autorskiej. Lokalni dostawcy, rzemiosło, doświadczenie gościa.",
-            "image": [
-              { "@type": "ImageObject", "url": "https://gastronomy-project-02.netlify.app/assets/img/og-img/og-img-1200x630.jpg", "width": 1200, "height": 630 },
-              { "@type": "ImageObject", "url": "https://gastronomy-project-02.netlify.app/assets/img/og-img/og-img-1200x1200.jpg", "width": 1200, "height": 1200 }
-            ],
-            "knowsAbout": ["fine dining", "sezonowość", "kuchnia autorska", "lokalne składniki", "lokalni dostawcy"],
-            "address": { "@type": "PostalAddress", "addressLocality": "Kraków", "addressCountry": "PL" }
+            "email": "kontakt@kp-code.pl"
           },
           {
             "@type": "FAQPage",
@@ -111,32 +107,50 @@
               {
                 "@type": "Question",
                 "name": "Jak wcześnie warto zarezerwować stolik?",
-                "acceptedAnswer": { "@type": "Answer", "text": "Weekendy rezerwują się z dwutygodniowym wyprzedzeniem. W tygodniu zwykle znajdziemy stolik z 3–4-dniowym wyprzedzeniem." }
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "Weekendy rezerwują się z dwutygodniowym wyprzedzeniem. W tygodniu zwykle znajdziemy stolik z 3–4-dniowym wyprzedzeniem."
+                }
               },
               {
                 "@type": "Question",
                 "name": "Czy uwzględniacie alergie pokarmowe?",
-                "acceptedAnswer": { "@type": "Answer", "text": "Tak, przygotowujemy alternatywy dla najczęstszych alergenów. Prosimy o informację przy rezerwacji." }
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "Tak, przygotowujemy alternatywy dla najczęstszych alergenów. Prosimy o informację przy rezerwacji."
+                }
               },
               {
                 "@type": "Question",
                 "name": "Czy menu ulega zmianom sezonowym?",
-                "acceptedAnswer": { "@type": "Answer", "text": "Dwa razy w sezonie aktualizujemy menu degustacyjne, a karta à la carte rotuje w rytmie tygodniowych dostaw." }
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "Dwa razy w sezonie aktualizujemy menu degustacyjne, a karta à la carte rotuje w rytmie tygodniowych dostaw."
+                }
               },
               {
                 "@type": "Question",
                 "name": "Czy przyjmujecie większe grupy?",
-                "acceptedAnswer": { "@type": "Answer", "text": "Tak, do 20 osób. Przygotowujemy dedykowane menu i możliwość prywatnego saloniku." }
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "Tak, do 20 osób. Przygotowujemy dedykowane menu i możliwość prywatnego saloniku."
+                }
               },
               {
                 "@type": "Question",
                 "name": "Czy dostępne są opcje wegetariańskie i wegańskie?",
-                "acceptedAnswer": { "@type": "Answer", "text": "Tak. W menu znajdziesz pełne kompozycje roślinne, a w degustacyjnym przygotujemy alternatywne kursy na prośbę." }
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "Tak. W menu znajdziesz pełne kompozycje roślinne, a w degustacyjnym przygotujemy alternatywne kursy na prośbę."
+                }
               },
               {
                 "@type": "Question",
                 "name": "Czy oferujecie bony prezentowe?",
-                "acceptedAnswer": { "@type": "Answer", "text": "Tak. Bony kwotowe oraz na menu degustacyjne. Zamówisz je online — napisz do nas przez formularz kontaktowy." }
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "Tak. Bony kwotowe oraz na menu degustacyjne. Zamówisz je online — napisz do nas przez formularz kontaktowy."
+                }
               }
             ]
           }
@@ -144,54 +158,49 @@
       }
     </script>
 
-    <!-- Główne style -->
+    <!-- Styles -->
     <link rel="stylesheet" href="css/style.min.css" />
   </head>
 
-  <!-- BODY -->
-  <body class="page page-about">
-    <a class="skip-link" href="#main" id="skip-to-content">Przejdź do treści głównej</a>
+  <!-- Body -->
+  <body class="page page--about">
+    <a class="skip-link" href="#main" id="skip-to-content">Przejdź do treści</a>
 
-    <!-- HEADER -->
+    <!-- Header -->
     <header class="site-header" aria-label="Nagłówek strony z nawigacją">
       <div class="container header__inner">
-        <a class="brand" href="/#hero" aria-label="Demo dla strony gastronomicznej – Strona główna">
-          <img src="assets/img/logo/logo-light-mode.svg" alt="" class="brand__logo brand__logo--light" width="40" height="40" />
-          <img src="assets/img/logo/logo-dark-mode.svg" alt="" class="brand__logo brand__logo--dark" width="40" height="40" />
-          <span class="brand__text">KP_Code</span>
+        <a class="brand" href="/#hero" aria-label="Atelier No.02 — Strona główna">
+          <img src="assets/img/logo/logo-and-name/header-logo-light.svg" alt="" class="brand__logo brand__logo--light" width="40" height="30" />
+          <img src="assets/img/logo/logo-and-name/header-logo-dark.svg" alt="" class="brand__logo brand__logo--dark" width="40" height="30" />
         </a>
 
         <div class="header__actions">
-          <button class="nav-toggle" aria-label="Otwórz menu nawigacji" aria-controls="primary-nav" aria-expanded="false">
+          <button class="nav-toggle" aria-label="Open menu" aria-controls="primary-nav" aria-expanded="false">
             <span class="nav-toggle__bar" aria-hidden="true"></span>
             <span class="nav-toggle__bar" aria-hidden="true"></span>
             <span class="nav-toggle__bar" aria-hidden="true"></span>
           </button>
 
-          <nav class="nav" id="primary-nav" aria-label="Główna nawigacja">
+          <nav class="nav" id="primary-nav" aria-label="Nawigacja główna">
             <ul class="nav__list">
-              <li><a href="/about.html" aria-current="page">O nas</a></li>
-              <li><a href="/menu.html">Menu</a></li>
+              <li><a href="/#about">O nas</a></li>
+              <li><a href="/#menu">Menu</a></li>
               <li><a href="/#gallery">Galeria</a></li>
               <li><a href="/#testimonials">Opinie</a></li>
               <li><a href="/#contact">Kontakt</a></li>
             </ul>
           </nav>
 
-          <button class="theme-toggle" type="button" aria-pressed="false" aria-label="Przełącz tryb ciemny">
-            <span class="theme-toggle__icon theme-toggle__icon--sun" aria-hidden="true">
-              <img src="assets/icons/svg-icon/icon-sun.svg" alt="" width="24" height="24" />
-            </span>
-            <span class="theme-toggle__icon theme-toggle__icon--moon" aria-hidden="true">
-              <img src="assets/icons/svg-icon/icon-moon.svg" alt="" width="24" height="24" />
-            </span>
-            <span class="visually-hidden">Przełącz tryb ciemny</span>
+          <button class="theme-toggle" type="button" aria-pressed="false" aria-label="Toggle dark mode">
+            <span class="theme-toggle__icon theme-toggle__icon--sun" aria-hidden="true"><img src="assets/icons/svg-icon/icon-sun.svg" alt="" width="24" height="24" /></span>
+            <span class="theme-toggle__icon theme-toggle__icon--moon" aria-hidden="true"><img src="assets/icons/svg-icon/icon-moon.svg" alt="" width="24" height="24" /></span>
+            <span class="visually-hidden">Toggle dark mode</span>
           </button>
         </div>
       </div>
     </header>
 
-    <!-- MAIN -->
+    <!-- Main -->
     <main id="main" tabindex="-1">
       <nav class="breadcrumbs" aria-label="Okruchy nawigacji">
         <ol>
@@ -207,7 +216,7 @@
             <h1 id="about-page-title">O nas</h1>
             <p class="page-hero__lead">
               Gastronomy 02 to autorska restauracja fine dining, w której technika spotyka się z emocjami. Tworzymy wielozmysłowe doświadczenia, oparte na sezonowych produktach i kunszcie zespołu
-              KP_Code.
+              Atelier No.02.
             </p>
           </div>
         </div>
@@ -225,7 +234,7 @@
               <article class="timeline__entry">
                 <div class="card__body">
                   <span class="timeline__year">2016</span>
-                  <h3 class="timeline__heading">Pierwsze degustacje KP_Code</h3>
+                  <h3 class="timeline__heading">Pierwsze degustacje Atelier No.02</h3>
                   <p class="timeline__text">Seria pop-upów w industrialnym lofcie pokazała, że lokalna publiczność tęskni za autorskim fine diningiem.</p>
                 </div>
               </article>
@@ -293,12 +302,10 @@
           </div>
 
           <ul class="cards team__grid" data-reveal-group>
-            <!-- Lena Wysocka -->
             <li class="card team-card" data-reveal>
               <article class="team-card__entry" aria-labelledby="team-lena-name" aria-label="Dowiedz się więcej o: Lena Wysocka">
                 <figure class="team-card__media">
                   <picture>
-                    <!-- AVIF -->
                     <source
                       type="image/avif"
                       srcset="
@@ -307,7 +314,7 @@
                         assets/img/podstrona-about/team/lena-w-960x720.avif 960w
                       "
                       sizes="(max-width: 768px) 100vw, (max-width: 1200px) 33vw, 360px" />
-                    <!-- WebP -->
+
                     <source
                       type="image/webp"
                       srcset="
@@ -316,7 +323,7 @@
                         assets/img/podstrona-about/team/lena-w-960x720.webp 960w
                       "
                       sizes="(max-width: 768px) 100vw, (max-width: 1200px) 33vw, 360px" />
-                    <!-- JPG fallback -->
+
                     <img
                       class="team-card__image"
                       src="assets/img/podstrona-about/team/lena-w-960x720.jpg"
@@ -340,12 +347,10 @@
               </article>
             </li>
 
-            <!-- Maks Wroński -->
             <li class="card team-card" data-reveal>
               <article class="team-card__entry" aria-labelledby="team-maks-name" aria-label="Dowiedz się więcej o: Maks Wroński">
                 <figure class="team-card__media">
                   <picture>
-                    <!-- AVIF -->
                     <source
                       type="image/avif"
                       srcset="
@@ -354,7 +359,7 @@
                         assets/img/podstrona-about/team/maks-w-960x720.avif 960w
                       "
                       sizes="(max-width: 768px) 100vw, (max-width: 1200px) 33vw, 360px" />
-                    <!-- WebP -->
+
                     <source
                       type="image/webp"
                       srcset="
@@ -363,7 +368,7 @@
                         assets/img/podstrona-about/team/maks-w-960x720.webp 960w
                       "
                       sizes="(max-width: 768px) 100vw, (max-width: 1200px) 33vw, 360px" />
-                    <!-- JPG fallback -->
+
                     <img
                       class="team-card__image"
                       src="assets/img/podstrona-about/team/maks-w-960x720.jpg"
@@ -386,12 +391,10 @@
               </article>
             </li>
 
-            <!-- Nadia Górska -->
             <li class="card team-card" data-reveal>
               <article class="team-card__entry" aria-labelledby="team-nadia-name" aria-label="Dowiedz się więcej o: Nadia Górska">
                 <figure class="team-card__media">
                   <picture>
-                    <!-- AVIF -->
                     <source
                       type="image/avif"
                       srcset="
@@ -400,7 +403,7 @@
                         assets/img/podstrona-about/team/nadia-g-960x720.avif 960w
                       "
                       sizes="(max-width: 768px) 100vw, (max-width: 1200px) 33vw, 360px" />
-                    <!-- WebP -->
+
                     <source
                       type="image/webp"
                       srcset="
@@ -409,7 +412,7 @@
                         assets/img/podstrona-about/team/nadia-g-960x720.webp 960w
                       "
                       sizes="(max-width: 768px) 100vw, (max-width: 1200px) 33vw, 360px" />
-                    <!-- JPG fallback -->
+
                     <img
                       class="team-card__image"
                       src="assets/img/podstrona-about/team/nadia-g-960x720.jpg"
@@ -436,12 +439,10 @@
               </article>
             </li>
 
-            <!-- Filip Laskowski -->
             <li class="card team-card" data-reveal>
               <article class="team-card__entry" aria-labelledby="team-filip-name" aria-label="Dowiedz się więcej o: Filip Laskowski">
                 <figure class="team-card__media">
                   <picture>
-                    <!-- AVIF -->
                     <source
                       type="image/avif"
                       srcset="
@@ -450,7 +451,7 @@
                         assets/img/podstrona-about/team/filip-l-960x720.avif 960w
                       "
                       sizes="(max-width: 768px) 100vw, (max-width: 1200px) 33vw, 360px" />
-                    <!-- WebP -->
+
                     <source
                       type="image/webp"
                       srcset="
@@ -459,7 +460,7 @@
                         assets/img/podstrona-about/team/filip-l-960x720.webp 960w
                       "
                       sizes="(max-width: 768px) 100vw, (max-width: 1200px) 33vw, 360px" />
-                    <!-- JPG fallback -->
+
                     <img
                       class="team-card__image"
                       src="assets/img/podstrona-about/team/filip-l-960x720.jpg"
@@ -486,12 +487,10 @@
               </article>
             </li>
 
-            <!-- Amelia Ryś -->
             <li class="card team-card" data-reveal>
               <article class="team-card__entry" aria-labelledby="team-amelia-name" aria-label="Dowiedz się więcej o: Amelia Ryś">
                 <figure class="team-card__media">
                   <picture>
-                    <!-- AVIF -->
                     <source
                       type="image/avif"
                       srcset="
@@ -500,7 +499,7 @@
                         assets/img/podstrona-about/team/amelia-r-960x720.avif 960w
                       "
                       sizes="(max-width: 768px) 100vw, (max-width: 1200px) 33vw, 360px" />
-                    <!-- WebP -->
+
                     <source
                       type="image/webp"
                       srcset="
@@ -509,7 +508,7 @@
                         assets/img/podstrona-about/team/amelia-r-960x720.webp 960w
                       "
                       sizes="(max-width: 768px) 100vw, (max-width: 1200px) 33vw, 360px" />
-                    <!-- JPG fallback -->
+
                     <img
                       class="team-card__image"
                       src="assets/img/podstrona-about/team/amelia-r-960x720.jpg"
@@ -536,12 +535,10 @@
               </article>
             </li>
 
-            <!-- Olga Ryś -->
             <li class="card team-card" data-reveal>
               <article class="team-card__entry" aria-labelledby="team-olga-name" aria-label="Dowiedz się więcej o: Olga Ryś">
                 <figure class="team-card__media">
                   <picture>
-                    <!-- AVIF -->
                     <source
                       type="image/avif"
                       srcset="
@@ -550,7 +547,7 @@
                         assets/img/podstrona-about/team/olga-r-960x720.avif 960w
                       "
                       sizes="(max-width: 768px) 100vw, (max-width: 1200px) 33vw, 360px" />
-                    <!-- WebP -->
+
                     <source
                       type="image/webp"
                       srcset="
@@ -559,7 +556,7 @@
                         assets/img/podstrona-about/team/olga-r-960x720.webp 960w
                       "
                       sizes="(max-width: 768px) 100vw, (max-width: 1200px) 33vw, 360px" />
-                    <!-- JPG fallback -->
+
                     <img
                       class="team-card__image"
                       src="assets/img/podstrona-about/team/olga-r-960x720.jpg"
@@ -581,13 +578,10 @@
                 </div>
               </article>
             </li>
-
-            <!-- End of team cards -->
           </ul>
         </div>
       </section>
 
-      <!-- Philosophy -->
       <section id="philosophy" class="section philosophy" aria-labelledby="philosophy-title">
         <div class="container">
           <div class="section__header" data-reveal>
@@ -626,13 +620,11 @@
         </div>
       </section>
 
-      <!-- Chef Spotlight -->
       <section id="chef" class="section chef" aria-labelledby="chef-title">
         <div class="container">
           <article class="card chef-card" data-reveal>
             <figure class="chef-card__media">
               <picture>
-                <!-- AVIF -->
                 <source
                   type="image/avif"
                   srcset="
@@ -642,7 +634,6 @@
                   "
                   sizes="(max-width: 768px) 100vw, 45vw" />
 
-                <!-- WebP -->
                 <source
                   type="image/webp"
                   srcset="
@@ -652,7 +643,6 @@
                   "
                   sizes="(max-width: 768px) 100vw, 45vw" />
 
-                <!-- JPG fallback -->
                 <img
                   src="assets/img/podstrona-about/group-team/about-01-1280x960.jpg"
                   srcset="
@@ -690,48 +680,47 @@
         </div>
       </section>
 
-      <!-- Suppliers -->
       <section id="suppliers" class="section suppliers" aria-labelledby="suppliers-title">
         <div class="container">
           <div class="section__header" data-reveal>
             <h2 id="suppliers-title">Składniki i dostawcy</h2>
             <p class="section__lead">Budujemy sieć współpracy z producentami, których wartości odzwierciedlają nasze ambicje — transparentność, etyka, konsekwencja.</p>
           </div>
-          <!-- Warzywa -->
+
           <ul class="cards suppliers__cards" data-reveal-group>
             <li class="card suppliers-card" data-reveal>
               <article>
                 <div class="card__body">
                   <span class="suppliers__tag">Warzywa</span>
                   <h3>Ekofarmę Podzamcze</h3>
-                  <!-- PODMIEŃ: opis dostawcy -->
+
                   <p>Rodzinna farma biodynamiczna dostarczająca nam marchew, topinambur i sezonowe mikroliście zbierane na kilka godzin przed serwisem.</p>
                 </div>
               </article>
             </li>
-            <!-- Ryby -->
+
             <li class="card suppliers-card" data-reveal>
               <article>
                 <div class="card__body">
                   <span class="suppliers__tag">Ryby</span>
                   <h3>Stawy Rymanów</h3>
-                  <!-- PODMIEŃ: opis dostawcy -->
+
                   <p>Niewielkie gospodarstwo rybne z Podkarpacia, które prowadzi zrównoważoną hodowlę pstrąga źródlanego w wodach o kontrolowanym przepływie.</p>
                 </div>
               </article>
             </li>
-            <!-- Pieczywo -->
+
             <li class="card suppliers-card" data-reveal>
               <article>
                 <div class="card__body">
                   <span class="suppliers__tag">Pieczywo</span>
                   <h3>Pracownia Młyn</h3>
-                  <!-- PODMIEŃ: opis dostawcy -->
+
                   <p>Mistrzowie wypieku na zakwasie z regionalnych zbóż. Specjalnie dla nas tworzą chleby z dodatkiem kaszy gryczanej i prażonych pestek.</p>
                 </div>
               </article>
             </li>
-            <!-- Napoje -->
+
             <li class="card suppliers-card" data-reveal>
               <article>
                 <div class="card__body">
@@ -741,24 +730,24 @@
                 </div>
               </article>
             </li>
-            <!-- Napoje -->
+
             <li class="card suppliers-card" data-reveal>
               <article>
                 <div class="card__body">
                   <span class="suppliers__tag">Napoje</span>
                   <h3>Atelier Ferment</h3>
-                  <!-- PODMIEŃ: opis dostawcy -->
+
                   <p>Laboratorium naturalnych napojów gazowanych i kombuch, które współtworzy nasze pairingi z menu degustacyjnym bez alkoholu.</p>
                 </div>
               </article>
             </li>
-            <!-- Owoce -->
+
             <li class="card suppliers-card" data-reveal>
               <article>
                 <div class="card__body">
                   <span class="suppliers__tag">Owoce</span>
                   <h3>Sad Brzozowy</h3>
-                  <!-- PODMIEŃ: opis dostawcy -->
+
                   <p>Rodzinny sad z Małopolski, w którym dojrzewają stare odmiany jabłek, grusz i śliwek. Ich naturalne przeciery i konfitury wykorzystujemy w naszych deserach oraz sosach do mięs.</p>
                 </div>
               </article>
@@ -767,7 +756,6 @@
         </div>
       </section>
 
-      <!-- Awards -->
       <section id="awards" class="section awards" aria-labelledby="awards-title">
         <div class="container">
           <div class="section__header" data-reveal>
@@ -815,7 +803,6 @@
         </div>
       </section>
 
-      <!-- Hours & Location -->
       <section id="location" class="section location" aria-labelledby="location-title">
         <div class="container">
           <div class="section__header" data-reveal>
@@ -861,7 +848,7 @@
                   33-100 Tarnów
                 </p>
                 <p class="timeline__text">Parking miejski znajduje się 120 m od wejścia, a przystanek tramwajowy „Zakątek” tuż przy restauracji.</p>
-                <!-- PODMIEŃ: docelowy link do mapy -->
+
                 <a class="btn btn--ghost" href="https://maps.example.com" target="_blank" rel="noopener noreferrer" aria-label="Otwórz lokalizację restauracji na mapie w nowej karcie">
                   Pokaż na mapie
                 </a>
@@ -951,28 +938,25 @@
       </section>
     </main>
 
-    <!-- FOOTER -->
-    <footer class="footer" aria-label="Site footer">
+    <!-- Footer -->
+    <footer class="footer" aria-label="Stopka strony">
       <div class="container">
         <div class="footer__grid">
-          <!-- Brand -->
           <div class="footer__brand">
-            <a class="brand" href="/#hero" aria-label="Gastronomy home">
-              <img src="assets/img/logo/logo-dark-mode.svg" alt="KP_Code logo" class="brand__logo brand__logo--light" width="40" height="40" />
-              <img src="assets/img/logo/logo-light-mode.svg" alt="KP_Code logo" class="brand__logo brand__logo--dark" width="40" height="40" />
-              <span class="brand__text">KP_Code</span>
+            <a class="brand" href="/#hero" aria-label="Atelier No.02 — Strona główna">
+              <img src="assets/img/logo/logo-and-name/footer-logo-light.svg" alt="Logo Atelier No.02" class="footer__logo footer__logo--light" width="40" height="40" />
+              <img src="assets/img/logo/logo-and-name/footer-logo-dark.svg" alt="" class="footer__logo footer__logo--dark" width="40" height="40" />
             </a>
-            <p class="footer__tagline">Demo projektu przygotowane przez KP_Code. Jeśli chcesz podobną stronę dla swojej restauracji — skontaktuj się ze mną.</p>
+            <p class="footer__tagline">Autorska kuchnia oparta na sezonowości i jakości składników.</p>
           </div>
 
-          <!-- Nav -->
           <nav class="footer__nav" aria-label="Footer">
             <p class="footer__heading">Odkrywaj</p>
             <ul class="footer__list">
               <li><a href="/#about">O nas</a></li>
               <li><a href="/#menu">Menu</a></li>
               <li><a href="/#gallery">Galeria</a></li>
-              <li><a href="#testimonials">Opinie</a></li>
+              <li><a href="/#testimonials">Opinie</a></li>
               <li><a href="/#contact">Kontact</a></li>
             </ul>
           </nav>
@@ -983,7 +967,7 @@
               <li><a href="/cookies.html">Polityka cookies</a></li>
             </ul>
           </nav>
-          <!-- Contact -->
+
           <div class="footer__contact">
             <p class="footer__heading">Kontact</p>
             <address>
@@ -997,11 +981,11 @@
               </p>
               <p>
                 <img src="assets/icons/svg-icon/mail-icon.svg" alt="" aria-hidden="true" width="24" height="24" />
-                <a href="mailto:kp_code_@gmail.com">kp_code_@gmail.com</a>
+                <a href="mailto:kontakt@kp-code.pl">kontakt@kp-code.pl</a>
               </p>
             </address>
           </div>
-          <!-- Social Media -->
+
           <div class="footer__social">
             <p class="footer__heading">Social Media</p>
             <ul class="footer__list">
@@ -1032,22 +1016,23 @@
             </ul>
           </div>
         </div>
-        <!-- Legal -->
+
         <div class="footer__legal">
           <span>
             ©
             <span id="year"></span>
-            KP_Code. Wszelkie prawa zastrzeżone. Projekt i wdrożenie: KP_Code
+            Atelier No.02. Wszelkie prawa zastrzeżone. Projekt i wdrożenie: Atelier No.02
           </span>
         </div>
       </div>
     </footer>
-    <!-- NO SCRIPT -->
+
+    <!-- No script -->
     <noscript>
       <div class="nojs" role="status" aria-live="polite">JavaScript is disabled. Some interactive features may be limited.</div>
     </noscript>
-    <!-- SCRIPT -->
-    <script src="js/script.min.js" defer></script>
+    <!-- Script -->
+    <script src="js/script.js" defer></script>
     <script>
       if ("serviceWorker" in navigator) {
         window.addEventListener("load", () => {

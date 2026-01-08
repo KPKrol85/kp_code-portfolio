@@ -9,6 +9,7 @@
     <link rel="icon" type="image/png" sizes="16x16" href="assets/icons/fav-icon/favicon-16x16.png" />
     <link rel="apple-touch-icon" sizes="180x180" href="assets/icons/fav-icon/apple-touch-icon.png" />
     <link rel="manifest" href="manifest.webmanifest" />
+    <link rel="stylesheet" href="css/style.css" />
     <style>
       :root {
         color-scheme: light;
@@ -160,7 +161,44 @@
       }
     </style>
   </head>
+
+  <!-- Body -->
   <body>
+    <!-- Header -->
+    <header class="site-header" aria-label="Nagłówek strony z nawigacją">
+      <div class="container header__inner">
+        <a class="brand" href="/#hero" aria-label="Atelier No.02 — Strona główna">
+          <img src="assets/img/logo/logo-and-name/header-logo-light.svg" alt="" class="brand__logo brand__logo--light" width="40" height="30" />
+          <img src="assets/img/logo/logo-and-name/header-logo-dark.svg" alt="" class="brand__logo brand__logo--dark" width="40" height="30" />
+        </a>
+
+        <div class="header__actions">
+          <button class="nav-toggle" aria-label="Open menu" aria-controls="primary-nav" aria-expanded="false">
+            <span class="nav-toggle__bar" aria-hidden="true"></span>
+            <span class="nav-toggle__bar" aria-hidden="true"></span>
+            <span class="nav-toggle__bar" aria-hidden="true"></span>
+          </button>
+
+          <nav class="nav" id="primary-nav" aria-label="Nawigacja główna">
+            <ul class="nav__list">
+              <li><a href="/#about">O nas</a></li>
+              <li><a href="/#menu">Menu</a></li>
+              <li><a href="/#gallery">Galeria</a></li>
+              <li><a href="/#testimonials">Opinie</a></li>
+              <li><a href="/#contact">Kontakt</a></li>
+            </ul>
+          </nav>
+
+          <button class="theme-toggle" type="button" aria-pressed="false" aria-label="Toggle dark mode">
+            <span class="theme-toggle__icon theme-toggle__icon--sun" aria-hidden="true"><img src="assets/icons/svg-icon/icon-sun.svg" alt="" width="24" height="24" /></span>
+            <span class="theme-toggle__icon theme-toggle__icon--moon" aria-hidden="true"><img src="assets/icons/svg-icon/icon-moon.svg" alt="" width="24" height="24" /></span>
+            <span class="visually-hidden">Toggle dark mode</span>
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <!-- Main -->
     <main role="main">
       <article class="card" aria-labelledby="headline-404">
         <span class="overtitle">Gastronomy 02</span>
@@ -170,6 +208,111 @@
         <a class="cta" href="/" aria-label="Powrót na stronę główną Gastronomy 02">Powrót do strony głównej</a>
       </article>
     </main>
-    <footer aria-label="Stopka">KP_Code · Gastronomy 02</footer>
+
+    <!-- Footer -->
+    <footer class="footer" aria-label="Stopka strony">
+      <div class="container">
+        <div class="footer__grid">
+          <div class="footer__brand">
+            <a class="brand" href="/#hero" aria-label="Atelier No.02 — Strona główna">
+              <img src="assets/img/logo/logo-and-name/footer-logo-light.svg" alt="Logo Atelier No.02" class="footer__logo footer__logo--light" width="40" height="40" />
+              <img src="assets/img/logo/logo-and-name/footer-logo-dark.svg" alt="" class="footer__logo footer__logo--dark" width="40" height="40" />
+            </a>
+            <p class="footer__tagline">Autorska kuchnia oparta na sezonowości i jakości składników.</p>
+          </div>
+
+          <nav class="footer__nav" aria-label="Footer">
+            <p class="footer__heading">Odkrywaj</p>
+            <ul class="footer__list">
+              <li><a href="/#about">O nas</a></li>
+              <li><a href="/#menu">Menu</a></li>
+              <li><a href="/#gallery">Galeria</a></li>
+              <li><a href="/#testimonials">Opinie</a></li>
+              <li><a href="/#contact">Kontact</a></li>
+            </ul>
+          </nav>
+          <nav class="footer__nav" aria-label="Informacje prawne">
+            <p class="footer__heading">Informacje</p>
+            <ul class="footer__list">
+              <li><a href="/polityka-prywatnosci.html">Polityka prywatności</a></li>
+              <li><a href="/cookies.html">Polityka cookies</a></li>
+            </ul>
+          </nav>
+
+          <div class="footer__contact">
+            <p class="footer__heading">Kontact</p>
+            <address>
+              <p>
+                <img src="assets/icons/svg-icon/home-icon.svg" alt="" aria-hidden="true" width="24" height="24" />
+                <a href="tel:+48533537091">ul. Marynarki Wojennej 12/31 33-100 Tarnów</a>
+              </p>
+              <p>
+                <img src="assets/icons/svg-icon/phone-icon.svg" alt="" aria-hidden="true" width="24" height="24" />
+                <a href="tel:+48533537091">+48 533 537 091</a>
+              </p>
+              <p>
+                <img src="assets/icons/svg-icon/mail-icon.svg" alt="" aria-hidden="true" width="24" height="24" />
+                <a href="mailto:kontakt@kp-code.pl">kontakt@kp-code.pl</a>
+              </p>
+            </address>
+          </div>
+
+          <div class="footer__social">
+            <p class="footer__heading">Social Media</p>
+            <ul class="footer__list">
+              <li>
+                <a href="https://github.com/" aria-label="Github – otwórz stronę">
+                  <img src="assets/icons/svg-icon/github-icon.svg" alt="" aria-hidden="true" width="24" height="24" />
+                  <span class="visually-hidden">Github</span>
+                </a>
+              </li>
+              <li>
+                <a href="https://instagram.com/" aria-label="Instagram – otwórz profil">
+                  <img src="assets/icons/svg-icon/instagram-icon.svg" alt="" aria-hidden="true" width="24" height="24" />
+                  <span class="visually-hidden">Instagram</span>
+                </a>
+              </li>
+              <li>
+                <a href="https://x.com/" aria-label="X – otwórz profil">
+                  <img src="assets/icons/svg-icon/x-icon.svg" alt="" aria-hidden="true" width="24" height="24" />
+                  <span class="visually-hidden">X</span>
+                </a>
+              </li>
+              <li>
+                <a href="https://facebook.com/" aria-label="Facebook – otwórz profil">
+                  <img src="assets/icons/svg-icon/facebook-icon.svg" alt="" aria-hidden="true" width="24" height="24" />
+                  <span class="visually-hidden">Facebook</span>
+                </a>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="footer__legal">
+          <span>
+            ©
+            <span id="year"></span>
+            Atelier No.02. Wszelkie prawa zastrzeżone. Projekt i wdrożenie: Atelier No.02
+          </span>
+        </div>
+      </div>
+    </footer>
+
+    <!-- No script -->
+    <noscript>
+      <div class="nojs" role="status" aria-live="polite">JavaScript is disabled. Some interactive features may be limited.</div>
+    </noscript>
+    <!-- Script -->
+    <script src="js/script.js" defer></script>
+    <script>
+      if ("serviceWorker" in navigator) {
+        window.addEventListener("load", () => {
+          navigator.serviceWorker
+            .register("/sw.js")
+            .then((reg) => console.log("✅ Service Worker zarejestrowany:", reg.scope))
+            .catch((err) => console.warn("❌ Błąd rejestracji Service Workera:", err));
+        });
+      }
+    </script>
   </body>
 </html>

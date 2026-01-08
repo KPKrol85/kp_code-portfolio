@@ -1,178 +1,207 @@
 <!doctype html>
 <html lang="pl">
   <head>
-    <!-- NETLIFY DEPLOY -->
-    <!-- https://gastronomy-project-02.netlify.app/gallery.html -->
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Galeria • Gastronomy 02 – KP_Code</title>
+    <title>Galeria | Atelier No.02</title>
 
     <!-- SEO -->
+    <meta
+      name="description"
+      content="Poznaj Atelier No.02: fine dining oparty na sezonowości i kuchni autorskiej. Lokalni dostawcy, rzemiosło i troska o doświadczenie gościa — zobacz zespół i filozofię." />
+    <link rel="canonical" href="https://gastronomy-project-02.netlify.app/about.html" />
+    <meta name="robots" content="index,follow" />
     <meta name="author" content="KP_Code" />
-    <meta name="description" content="Galeria Gastronomy 02: wnętrza restauracji, autorskie dania, desery i koktajle. Zanurz się w atmosferze fine dining przygotowanej przez KP_Code." />
-    <link rel="canonical" href="https://gastronomy-project-02.netlify.app/gallery.html" />
 
-    <!-- PWA -->
+    <!-- PWA / UI -->
     <meta name="color-scheme" content="light dark" />
-    <meta name="application-name" content="Gastro Demo" />
-    <meta name="apple-mobile-web-app-title" content="Gastro Demo" />
+    <meta name="application-name" content="Atelier No.02" />
+    <meta name="apple-mobile-web-app-title" content="Atelier No.02" />
     <meta name="msapplication-TileColor" content="#f8f1e7" />
+    <meta name="theme-color" content="#ffffff" />
 
-    <!-- ✅ Favicons + manifest (spójne z /assets/icons/fav-icon/) -->
+    <!-- Favicons + manifest -->
     <link rel="icon" type="image/png" sizes="32x32" href="assets/icons/fav-icon/favicon-32x32.png" />
     <link rel="icon" type="image/png" sizes="16x16" href="assets/icons/fav-icon/favicon-16x16.png" />
     <link rel="apple-touch-icon" sizes="180x180" href="assets/icons/fav-icon/apple-touch-icon.png" />
     <link rel="mask-icon" href="assets/icons/fav-icon/safari-pinned-tab.svg" color="#000000" />
     <link rel="manifest" href="manifest.webmanifest" />
-    <meta name="theme-color" content="#ffffff" />
-    <!-- ✅ Koniec sekcji favicon -->
 
     <!-- Open Graph -->
-    <meta property="og:site_name" content="KP_Code" />
+    <meta property="og:site_name" content="Atelier No.02" />
     <meta property="og:type" content="website" />
-    <meta property="og:title" content="Galeria Gastronomy 02 – fine dining w kadrach | KP_Code" />
-    <meta property="og:description" content="Wnętrza, dania i koktajle Gastronomy 02. Poznaj atmosferę restauracji w galerii zdjęć przygotowanej przez KP_Code." />
+    <meta property="og:title" content="O nas | Atelier No.02 – Fine dining, sezonowość i kuchnia autorska" />
+    <meta property="og:description" content="Fine dining oparty na sezonowości i kuchni autorskiej. Poznaj filozofię Atelier No.02, zespół i lokalnych dostawców." />
+    <meta property="og:url" content="https://gastronomy-project-02.netlify.app/about.html" />
     <meta property="og:image" content="https://gastronomy-project-02.netlify.app/assets/img/og-img/og-img-1200x630.jpg" />
     <meta property="og:image:type" content="image/jpeg" />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
-    <meta property="og:image:alt" content="Fine dining – elegancka aranżacja Gastronomy 02" />
-    <meta property="og:url" content="https://gastronomy-project-02.netlify.app/gallery.html" />
+    <meta property="og:image:alt" content="Atelier No.02 — fine dining" />
     <meta property="og:locale" content="pl_PL" />
 
     <!-- Twitter -->
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="Galeria Gastronomy 02 – fine dining w kadrach | KP_Code" />
-    <meta name="twitter:description" content="Wnętrza, dania oraz koktajle Gastronomy 02 uchwycone w eleganckich ujęciach. Galeria portfolio KP_Code." />
+    <meta name="twitter:title" content="O nas | Atelier No.02 – Fine dining, sezonowość i kuchnia autorska" />
+    <meta name="twitter:description" content="Poznaj zespół i filozofię Atelier No.02. Sezonowość, lokalni dostawcy i kuchnia autorska w eleganckim wydaniu." />
     <meta name="twitter:image" content="https://gastronomy-project-02.netlify.app/assets/img/og-img/og-img-1200x630.jpg" />
-    <meta name="twitter:image:alt" content="Fine dining – elegancka aranżacja Gastronomy 02" />
+    <meta name="twitter:image:alt" content="Atelier No.02 — fine dining" />
     <meta name="twitter:site" content="@KP_Code_85" />
     <meta name="twitter:creator" content="@KP_Code_85" />
 
-    <!-- Preload lokalnych fontów -->
+    <!-- Preload fonts -->
     <link rel="preload" href="assets/fonts/montserrat-400-latin.woff2" as="font" type="font/woff2" crossorigin />
     <link rel="preload" href="assets/fonts/montserrat-700-latin.woff2" as="font" type="font/woff2" crossorigin />
-    <link rel="preload" href="assets/fonts/lato-400-latin.woff2" as="font" type="font/woff2" crossorigin />
-    <link rel="preload" href="assets/fonts/lato-700-latin.woff2" as="font" type="font/woff2" crossorigin />
 
-    <!-- Motyw jasny / ciemny (dynamiczne theme-color) -->
+    <!-- Theme preload -->
     <script>
       (function () {
         var storageKey = "kp-theme";
         var root = document.documentElement;
         var theme = null;
+
         try {
           var stored = localStorage.getItem(storageKey);
           if (stored === "light" || stored === "dark") theme = stored;
         } catch (err) {}
+
         if (!theme) {
           var preset = root.getAttribute("data-theme");
           if (preset === "light" || preset === "dark") theme = preset;
         }
+
         if (!theme) {
           var prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
           theme = prefersDark ? "dark" : "light";
         }
+
         root.setAttribute("data-theme", theme);
+
         var meta = document.querySelector('meta[name="theme-color"]');
         if (meta) meta.setAttribute("content", theme === "dark" ? "#181210" : "#f8f1e7");
       })();
     </script>
 
-    <!-- Breadcrumbs JSON-LD -->
+    <!-- JSON-LD -->
     <script type="application/ld+json">
       {
         "@context": "https://schema.org",
-        "@type": "BreadcrumbList",
-        "itemListElement": [
+        "@graph": [
           {
-            "@type": "ListItem",
-            "position": 1,
-            "name": "Strona główna",
-            "item": "https://gastronomy-project-02.netlify.app/"
+            "@type": "BreadcrumbList",
+            "itemListElement": [
+              { "@type": "ListItem", "position": 1, "name": "Strona główna", "item": "https://gastronomy-project-02.netlify.app/" },
+              { "@type": "ListItem", "position": 2, "name": "O nas", "item": "https://gastronomy-project-02.netlify.app/about.html" }
+            ]
           },
           {
-            "@type": "ListItem",
-            "position": 2,
-            "name": "Galeria",
-            "item": "https://gastronomy-project-02.netlify.app/gallery.html"
+            "@type": "Organization",
+            "@id": "https://gastronomy-project-02.netlify.app/#organization",
+            "name": "Atelier No.02",
+            "url": "https://gastronomy-project-02.netlify.app/",
+            "logo": "https://gastronomy-project-02.netlify.app/assets/img/logo/logo-light-mode.svg",
+            "email": "kontakt@kp-code.pl"
+          },
+          {
+            "@type": "FAQPage",
+            "mainEntity": [
+              {
+                "@type": "Question",
+                "name": "Jak wcześnie warto zarezerwować stolik?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "Weekendy rezerwują się z dwutygodniowym wyprzedzeniem. W tygodniu zwykle znajdziemy stolik z 3–4-dniowym wyprzedzeniem."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "Czy uwzględniacie alergie pokarmowe?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "Tak, przygotowujemy alternatywy dla najczęstszych alergenów. Prosimy o informację przy rezerwacji."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "Czy menu ulega zmianom sezonowym?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "Dwa razy w sezonie aktualizujemy menu degustacyjne, a karta à la carte rotuje w rytmie tygodniowych dostaw."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "Czy przyjmujecie większe grupy?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "Tak, do 20 osób. Przygotowujemy dedykowane menu i możliwość prywatnego saloniku."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "Czy dostępne są opcje wegetariańskie i wegańskie?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "Tak. W menu znajdziesz pełne kompozycje roślinne, a w degustacyjnym przygotujemy alternatywne kursy na prośbę."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "Czy oferujecie bony prezentowe?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "Tak. Bony kwotowe oraz na menu degustacyjne. Zamówisz je online — napisz do nas przez formularz kontaktowy."
+                }
+              }
+            ]
           }
         ]
       }
     </script>
 
-    <!-- Organization JSON-LD (global) -->
-    <script type="application/ld+json">
-      {
-        "@context": "https://schema.org",
-        "@type": "Organization",
-        "@id": "https://gastronomy-project-02.netlify.app/#organization",
-        "name": "KP_Code",
-        "url": "https://gastronomy-project-02.netlify.app/",
-        "logo": "https://gastronomy-project-02.netlify.app/assets/img/logo/logo-light-mode.svg",
-        "description": "Demo strony gastronomicznej w portfolio KP_Code – nowoczesny design, responsywność i SEO.",
-        "image": [
-          {
-            "@type": "ImageObject",
-            "url": "https://gastronomy-project-02.netlify.app/assets/img/og-img/og-img-1200x630.jpg",
-            "width": 1200,
-            "height": 630
-          },
-          {
-            "@type": "ImageObject",
-            "url": "https://gastronomy-project-02.netlify.app/assets/img/og-img/og-img-1200x1200.jpg",
-            "width": 1200,
-            "height": 1200
-          }
-        ],
-        "sameAs": ["https://github.com/KP-Code", "https://x.com/KP_Code_85"]
-      }
-    </script>
-
-    <!-- Główne style -->
-    <link rel="stylesheet" href="css/style.min.css" />
+    <!-- Styles -->
+    <link rel="stylesheet" href="css/style.css" />
   </head>
 
-  <!-- BODY -->
+  <!-- Body -->
   <body class="page page-gallery">
-    <a class="skip-link" href="#main" id="skip-to-content">Przejdź do treści głównej</a>
+    <a class="skip-link" href="#main" id="skip-to-content">Przejdź do treści</a>
 
-    <!-- HEADER -->
+    <!-- Header -->
     <header class="site-header" aria-label="Nagłówek strony z nawigacją">
       <div class="container header__inner">
-        <a class="brand" href="/#hero" aria-label="Demo dla strony gastronomicznej – Strona główna">
-          <img src="assets/img/logo/logo-light-mode.svg" alt="" class="brand__logo brand__logo--light" width="40" height="40" />
-          <img src="assets/img/logo/logo-dark-mode.svg" alt="" class="brand__logo brand__logo--dark" width="40" height="40" />
-          <span class="brand__text">KP_Code</span>
+        <a class="brand" href="/#hero" aria-label="Atelier No.02 — Strona główna">
+          <img src="assets/img/logo/logo-and-name/header-logo-light.svg" alt="" class="brand__logo brand__logo--light" width="40" height="30" />
+          <img src="assets/img/logo/logo-and-name/header-logo-dark.svg" alt="" class="brand__logo brand__logo--dark" width="40" height="30" />
         </a>
 
         <div class="header__actions">
-          <button class="nav-toggle" aria-label="Otwórz menu" aria-controls="primary-nav" aria-expanded="false">
+          <button class="nav-toggle" aria-label="Open menu" aria-controls="primary-nav" aria-expanded="false">
             <span class="nav-toggle__bar" aria-hidden="true"></span>
             <span class="nav-toggle__bar" aria-hidden="true"></span>
             <span class="nav-toggle__bar" aria-hidden="true"></span>
           </button>
 
-          <nav class="nav" id="primary-nav" aria-label="Primary">
+          <nav class="nav" id="primary-nav" aria-label="Nawigacja główna">
             <ul class="nav__list">
-              <li><a href="/about.html">O nas</a></li>
-              <li><a href="/menu.html">Menu</a></li>
-              <li><a href="gallery.html" aria-current="page">Galeria</a></li>
+              <li><a href="/#about">O nas</a></li>
+              <li><a href="/#menu">Menu</a></li>
+              <li><a href="/#gallery">Galeria</a></li>
               <li><a href="/#testimonials">Opinie</a></li>
               <li><a href="/#contact">Kontakt</a></li>
             </ul>
           </nav>
 
-          <button class="theme-toggle" type="button" aria-pressed="false" aria-label="Przełącz motyw: jasny/ciemny">
+          <button class="theme-toggle" type="button" aria-pressed="false" aria-label="Toggle dark mode">
             <span class="theme-toggle__icon theme-toggle__icon--sun" aria-hidden="true"><img src="assets/icons/svg-icon/icon-sun.svg" alt="" width="24" height="24" /></span>
             <span class="theme-toggle__icon theme-toggle__icon--moon" aria-hidden="true"><img src="assets/icons/svg-icon/icon-moon.svg" alt="" width="24" height="24" /></span>
-            <span class="visually-hidden">Przełącz motyw: jasny/ciemny</span>
+            <span class="visually-hidden">Toggle dark mode</span>
           </button>
         </div>
       </div>
     </header>
 
-    <!-- ===== MAIN ===== -->
+    <!-- Main -->
     <main id="main" tabindex="-1">
       <nav class="breadcrumbs" aria-label="Okruchy nawigacji">
         <ol>
@@ -191,7 +220,7 @@
         </div>
       </section>
 
-      <!-- ===== GALLERY ===== -->
+      <!-- Gallery -->
       <section class="section gallery-tabs" aria-labelledby="gallery-tabs-title">
         <h2 id="gallery-tabs-title" class="visually-hidden">Kategorie galerii</h2>
         <div class="container" data-reveal>
@@ -208,14 +237,9 @@
         </div>
       </section>
 
-      <!----- Wnętrza ----->
+      <!-- Wnętrza -->
       <section id="wnetrza" class="section gallery" aria-labelledby="wnetrza-title">
         <div class="container">
-          <header class="gallery-section__header" data-reveal>
-            <h2 id="wnetrza-title">Wnętrza</h2>
-            <p class="gallery-section__intro">Ciepłe światło, naturalne materiały i detale, które budują unikalną atmosferę wieczoru.</p>
-          </header>
-          <!-- Wnetrze 01 -->
           <ul class="gallery__grid" data-reveal-group>
             <li class="gallery__item" data-reveal>
               <a
@@ -225,7 +249,6 @@
                 data-lb-caption="Sala w naturalnych barwach z drewnianymi stołami i delikatnym oświetleniem nad każdym miejscem.">
                 <figure class="gallery__figure">
                   <picture>
-                    <!-- AVIF -->
                     <source
                       type="image/avif"
                       srcset="
@@ -235,7 +258,7 @@
                         assets/img/podstrona-galeria/wnetrze/wnetrze-01-1600x1200.avif 1600w
                       "
                       sizes="(min-width: 1280px) 25vw, (min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw" />
-                    <!-- WebP -->
+
                     <source
                       type="image/webp"
                       srcset="
@@ -245,7 +268,7 @@
                         assets/img/podstrona-galeria/wnetrze/wnetrze-01-1600x1200.webp 1600w
                       "
                       sizes="(min-width: 1280px) 25vw, (min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw" />
-                    <!-- JPG fallback -->
+
                     <img
                       class="gallery__img"
                       src="assets/img/podstrona-galeria/wnetrze/wnetrze-01-800x600.jpg"
@@ -266,7 +289,7 @@
                 </figure>
               </a>
             </li>
-            <!-- Wnetrze 02 -->
+
             <li class="gallery__item" data-reveal>
               <a
                 class="gallery__link"
@@ -275,7 +298,6 @@
                 data-lb-caption="Przestronna strefa kawiarniana z widokiem na miasto, pełna naturalnego światła i ciepłych tonów drewna.">
                 <figure class="gallery__figure">
                   <picture>
-                    <!-- AVIF -->
                     <source
                       type="image/avif"
                       srcset="
@@ -285,7 +307,7 @@
                         assets/img/podstrona-galeria/wnetrze/wnetrze-02-1600x1200.avif 1600w
                       "
                       sizes="(min-width: 1280px) 25vw, (min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw" />
-                    <!-- WebP -->
+
                     <source
                       type="image/webp"
                       srcset="
@@ -295,7 +317,7 @@
                         assets/img/podstrona-galeria/wnetrze/wnetrze-02-1600x1200.webp 1600w
                       "
                       sizes="(min-width: 1280px) 25vw, (min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw" />
-                    <!-- JPG fallback -->
+
                     <img
                       class="gallery__img"
                       src="assets/img/podstrona-galeria/wnetrze/wnetrze-02-800x600.jpg"
@@ -316,7 +338,7 @@
                 </figure>
               </a>
             </li>
-            <!-- Wnetrze 03 -->
+
             <li class="gallery__item" data-reveal>
               <a
                 class="gallery__link"
@@ -325,7 +347,6 @@
                 data-lb-caption="Kameralna część restauracji z industrialnymi akcentami, świecami i ciepłym światłem wieczoru.">
                 <figure class="gallery__figure">
                   <picture>
-                    <!-- AVIF -->
                     <source
                       type="image/avif"
                       srcset="
@@ -335,7 +356,7 @@
                         assets/img/podstrona-galeria/wnetrze/wnetrze-03-1600x1200.avif 1600w
                       "
                       sizes="(min-width: 1280px) 25vw, (min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw" />
-                    <!-- WebP -->
+
                     <source
                       type="image/webp"
                       srcset="
@@ -345,7 +366,7 @@
                         assets/img/podstrona-galeria/wnetrze/wnetrze-03-1600x1200.webp 1600w
                       "
                       sizes="(min-width: 1280px) 25vw, (min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw" />
-                    <!-- JPG fallback -->
+
                     <img
                       class="gallery__img"
                       src="assets/img/podstrona-galeria/wnetrze/wnetrze-03-800x600.jpg"
@@ -371,16 +392,10 @@
         </div>
       </section>
 
-      <!----- Dania ----->
+      <!-- Dania -->
       <section id="dania" class="section gallery" aria-labelledby="dania-title">
         <div class="container">
-          <header class="gallery-section__header" data-reveal>
-            <h2 id="dania-title">Dania</h2>
-            <p class="gallery-section__intro">Autorskie kompozycje, które łączą sezonowe produkty i techniki fine dining.</p>
-          </header>
-
           <ul class="gallery__grid" data-reveal-group>
-            <!-- Danie 01 -->
             <li class="gallery__item" data-reveal>
               <a
                 class="gallery__link"
@@ -389,7 +404,6 @@
                 data-lb-caption="Kompozycja w trakcie serwisu — szef kuchni nakłada danie z precyzją na eleganckie talerze.">
                 <figure class="gallery__figure">
                   <picture>
-                    <!-- AVIF -->
                     <source
                       type="image/avif"
                       srcset="
@@ -399,7 +413,7 @@
                         assets/img/podstrona-galeria/dania/danie-01-1600x1200.avif 1600w
                       "
                       sizes="(min-width: 1280px) 25vw, (min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw" />
-                    <!-- WebP -->
+
                     <source
                       type="image/webp"
                       srcset="
@@ -409,7 +423,7 @@
                         assets/img/podstrona-galeria/dania/danie-01-1600x1200.webp 1600w
                       "
                       sizes="(min-width: 1280px) 25vw, (min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw" />
-                    <!-- JPG fallback -->
+
                     <img
                       class="gallery__img"
                       src="assets/img/podstrona-galeria/dania/danie-01-800x600.jpg"
@@ -429,7 +443,7 @@
                 </figure>
               </a>
             </li>
-            <!-- Danie 02 -->
+
             <li class="gallery__item" data-reveal>
               <a
                 class="gallery__link"
@@ -438,7 +452,6 @@
                 data-lb-caption="Zastawiony stół przy kominku — różnorodne dania serwowane w przytulnym wnętrzu.">
                 <figure class="gallery__figure">
                   <picture>
-                    <!-- AVIF -->
                     <source
                       type="image/avif"
                       srcset="
@@ -448,7 +461,7 @@
                         assets/img/podstrona-galeria/dania/danie-02-1600x1200.avif 1600w
                       "
                       sizes="(min-width: 1280px) 25vw, (min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw" />
-                    <!-- WebP -->
+
                     <source
                       type="image/webp"
                       srcset="
@@ -458,7 +471,7 @@
                         assets/img/podstrona-galeria/dania/danie-02-1600x1200.webp 1600w
                       "
                       sizes="(min-width: 1280px) 25vw, (min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw" />
-                    <!-- JPG fallback -->
+
                     <img
                       class="gallery__img"
                       src="assets/img/podstrona-galeria/dania/danie-02-800x600.jpg"
@@ -478,7 +491,7 @@
                 </figure>
               </a>
             </li>
-            <!-- Danie 03 -->
+
             <li class="gallery__item" data-reveal>
               <a
                 class="gallery__link"
@@ -487,7 +500,6 @@
                 data-lb-caption="Bufet sushi i dań azjatyckich z kolorowymi składnikami na ladzie.">
                 <figure class="gallery__figure">
                   <picture>
-                    <!-- AVIF -->
                     <source
                       type="image/avif"
                       srcset="
@@ -497,7 +509,7 @@
                         assets/img/podstrona-galeria/dania/danie-03-1600x1200.avif 1600w
                       "
                       sizes="(min-width: 1280px) 25vw, (min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw" />
-                    <!-- WebP -->
+
                     <source
                       type="image/webp"
                       srcset="
@@ -507,7 +519,7 @@
                         assets/img/podstrona-galeria/dania/danie-03-1600x1200.webp 1600w
                       "
                       sizes="(min-width: 1280px) 25vw, (min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw" />
-                    <!-- JPG fallback -->
+
                     <img
                       class="gallery__img"
                       src="assets/img/podstrona-galeria/dania/danie-03-800x600.jpg"
@@ -531,16 +543,10 @@
         </div>
       </section>
 
-      <!----- Desery ----->
+      <!-- Desery -->
       <section id="desery" class="section gallery" aria-labelledby="desery-title">
         <div class="container">
-          <header class="gallery-section__header" data-reveal>
-            <h2 id="desery-title">Desery</h2>
-            <p class="gallery-section__intro">Finezyjne kompozycje, które łączą subtelną słodycz z wyrazistymi teksturami.</p>
-          </header>
-
           <ul class="gallery__grid" data-reveal-group>
-            <!-- Deser 01 -->
             <li class="gallery__item" data-reveal>
               <a
                 class="gallery__link"
@@ -549,7 +555,6 @@
                 data-lb-caption="Czekoladowy tort z wiśniami — intensywnie czekoladowy deser z owocowym akcentem i świeżą miętą.">
                 <figure class="gallery__figure">
                   <picture>
-                    <!-- AVIF -->
                     <source
                       type="image/avif"
                       srcset="
@@ -559,7 +564,7 @@
                         assets/img/podstrona-galeria/desery/deser-01-1600x1200.avif 1600w
                       "
                       sizes="(min-width: 1280px) 25vw, (min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw" />
-                    <!-- WebP -->
+
                     <source
                       type="image/webp"
                       srcset="
@@ -569,7 +574,7 @@
                         assets/img/podstrona-galeria/desery/deser-01-1600x1200.webp 1600w
                       "
                       sizes="(min-width: 1280px) 25vw, (min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw" />
-                    <!-- JPG fallback -->
+
                     <img
                       class="gallery__img"
                       src="assets/img/podstrona-galeria/desery/deser-01-800x600.jpg"
@@ -589,7 +594,7 @@
                 </figure>
               </a>
             </li>
-            <!-- Deser 02 -->
+
             <li class="gallery__item" data-reveal>
               <a
                 class="gallery__link"
@@ -598,7 +603,6 @@
                 data-lb-caption="Deser warstwowy z karmelizowaną gruszką — delikatny krem, ciasto orzechowe i subtelne aromaty wanilii.">
                 <figure class="gallery__figure">
                   <picture>
-                    <!-- AVIF -->
                     <source
                       type="image/avif"
                       srcset="
@@ -608,7 +612,7 @@
                         assets/img/podstrona-galeria/desery/deser-02-1600x1200.avif 1600w
                       "
                       sizes="(min-width: 1280px) 25vw, (min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw" />
-                    <!-- WebP -->
+
                     <source
                       type="image/webp"
                       srcset="
@@ -618,7 +622,7 @@
                         assets/img/podstrona-galeria/desery/deser-02-1600x1200.webp 1600w
                       "
                       sizes="(min-width: 1280px) 25vw, (min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw" />
-                    <!-- JPG fallback -->
+
                     <img
                       class="gallery__img"
                       src="assets/img/podstrona-galeria/desery/deser-02-800x600.jpg"
@@ -638,7 +642,7 @@
                 </figure>
               </a>
             </li>
-            <!-- Deser 03 -->
+
             <li class="gallery__item" data-reveal>
               <a
                 class="gallery__link"
@@ -647,7 +651,6 @@
                 data-lb-caption="Degustacyjna kompozycja deserów — lekkie kremy, owoce i czekoladowe akcenty w stylu fine dining.">
                 <figure class="gallery__figure">
                   <picture>
-                    <!-- AVIF -->
                     <source
                       type="image/avif"
                       srcset="
@@ -657,7 +660,7 @@
                         assets/img/podstrona-galeria/desery/deser-03-1600x1200.avif 1600w
                       "
                       sizes="(min-width: 1280px) 25vw, (min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw" />
-                    <!-- WebP -->
+
                     <source
                       type="image/webp"
                       srcset="
@@ -668,7 +671,6 @@
                       "
                       sizes="(min-width: 1280px) 25vw, (min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw" />
 
-                    <!-- JPG fallback -->
                     <img
                       class="gallery__img"
                       src="assets/img/podstrona-galeria/desery/deser-03-800x600.jpg"
@@ -692,15 +694,10 @@
         </div>
       </section>
 
-      <!----- Napoje ----->
+      <!-- Napoje -->
       <section id="napoje" class="section gallery" aria-labelledby="napoje-title">
         <div class="container">
-          <header class="gallery-section__header" data-reveal>
-            <h2 id="napoje-title">Napoje</h2>
-            <p class="gallery-section__intro">Wyważone koktajle i starannie przygotowane napary, które zamykają wieczór.</p>
-          </header>
           <ul class="gallery__grid" data-reveal-group>
-            <!-- Napoje 01 -->
             <li class="gallery__item" data-reveal>
               <a
                 class="gallery__link"
@@ -709,7 +706,6 @@
                 data-lb-caption="Przygotowanie koktajlu — barman nalewa rum do szklanek z miętą, lodem i syropem cukrowym.">
                 <figure class="gallery__figure">
                   <picture>
-                    <!-- AVIF -->
                     <source
                       type="image/avif"
                       srcset="
@@ -719,7 +715,7 @@
                         assets/img/podstrona-galeria/napoje/napoje-01-1600x1200.avif 1600w
                       "
                       sizes="(min-width: 1280px) 25vw, (min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw" />
-                    <!-- WebP -->
+
                     <source
                       type="image/webp"
                       srcset="
@@ -729,7 +725,7 @@
                         assets/img/podstrona-galeria/napoje/napoje-01-1600x1200.webp 1600w
                       "
                       sizes="(min-width: 1280px) 25vw, (min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw" />
-                    <!-- JPG fallback -->
+
                     <img
                       class="gallery__img"
                       src="assets/img/podstrona-galeria/napoje/napoje-01-800x600.jpg"
@@ -749,7 +745,7 @@
                 </figure>
               </a>
             </li>
-            <!-- Napoje 02 -->
+
             <li class="gallery__item" data-reveal>
               <a
                 class="gallery__link"
@@ -758,7 +754,6 @@
                 data-lb-caption="Toast przy stole — kolorowe koktajle w wysokich szklankach podczas spotkania towarzyskiego.">
                 <figure class="gallery__figure">
                   <picture>
-                    <!-- AVIF -->
                     <source
                       type="image/avif"
                       srcset="
@@ -768,7 +763,7 @@
                         assets/img/podstrona-galeria/napoje/napoje-02-1600x1200.avif 1600w
                       "
                       sizes="(min-width: 1280px) 25vw, (min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw" />
-                    <!-- WebP -->
+
                     <source
                       type="image/webp"
                       srcset="
@@ -778,7 +773,7 @@
                         assets/img/podstrona-galeria/napoje/napoje-02-1600x1200.webp 1600w
                       "
                       sizes="(min-width: 1280px) 25vw, (min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw" />
-                    <!-- JPG fallback -->
+
                     <img
                       class="gallery__img"
                       src="assets/img/podstrona-galeria/napoje/napoje-02-800x600.jpg"
@@ -798,7 +793,7 @@
                 </figure>
               </a>
             </li>
-            <!-- Napoje 03 -->
+
             <li class="gallery__item" data-reveal>
               <a
                 class="gallery__link"
@@ -807,7 +802,6 @@
                 data-lb-caption="Owoce i napoje — orzeźwiające napary z cytrusami, truskawkami i listkami mięty.">
                 <figure class="gallery__figure">
                   <picture>
-                    <!-- AVIF -->
                     <source
                       type="image/avif"
                       srcset="
@@ -817,7 +811,7 @@
                         assets/img/podstrona-galeria/napoje/napoje-03-1600x1200.avif 1600w
                       "
                       sizes="(min-width: 1280px) 25vw, (min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw" />
-                    <!-- WebP -->
+
                     <source
                       type="image/webp"
                       srcset="
@@ -827,7 +821,7 @@
                         assets/img/podstrona-galeria/napoje/napoje-03-1600x1200.webp 1600w
                       "
                       sizes="(min-width: 1280px) 25vw, (min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw" />
-                    <!-- JPG fallback -->
+
                     <img
                       class="gallery__img"
                       src="assets/img/podstrona-galeria/napoje/napoje-03-800x600.jpg"
@@ -852,28 +846,25 @@
       </section>
     </main>
 
-    <!-- FOOTER -->
-    <footer class="footer" aria-label="Site footer">
+    <!-- Footer -->
+    <footer class="footer" aria-label="Stopka strony">
       <div class="container">
         <div class="footer__grid">
-          <!-- Brand -->
           <div class="footer__brand">
-            <a class="brand" href="/#hero" aria-label="Gastronomy home">
-              <img src="assets/img/logo/logo-dark-mode.svg" alt="KP_Code logo" class="brand__logo brand__logo--light" width="40" height="40" />
-              <img src="assets/img/logo/logo-light-mode.svg" alt="KP_Code logo" class="brand__logo brand__logo--dark" width="40" height="40" />
-              <span class="brand__text">KP_Code</span>
+            <a class="brand" href="/#hero" aria-label="Atelier No.02 — Strona główna">
+              <img src="assets/img/logo/logo-and-name/footer-logo-light.svg" alt="Logo Atelier No.02" class="footer__logo footer__logo--light" width="40" height="40" />
+              <img src="assets/img/logo/logo-and-name/footer-logo-dark.svg" alt="" class="footer__logo footer__logo--dark" width="40" height="40" />
             </a>
-            <p class="footer__tagline">Demo projektu przygotowane przez KP_Code. Jeśli chcesz podobną stronę dla swojej restauracji — skontaktuj się ze mną.</p>
+            <p class="footer__tagline">Autorska kuchnia oparta na sezonowości i jakości składników.</p>
           </div>
 
-          <!-- Nav -->
           <nav class="footer__nav" aria-label="Footer">
             <p class="footer__heading">Odkrywaj</p>
             <ul class="footer__list">
               <li><a href="/#about">O nas</a></li>
               <li><a href="/#menu">Menu</a></li>
               <li><a href="/#gallery">Galeria</a></li>
-              <li><a href="#testimonials">Opinie</a></li>
+              <li><a href="/#testimonials">Opinie</a></li>
               <li><a href="/#contact">Kontact</a></li>
             </ul>
           </nav>
@@ -884,7 +875,7 @@
               <li><a href="/cookies.html">Polityka cookies</a></li>
             </ul>
           </nav>
-          <!-- Contact -->
+
           <div class="footer__contact">
             <p class="footer__heading">Kontact</p>
             <address>
@@ -898,11 +889,11 @@
               </p>
               <p>
                 <img src="assets/icons/svg-icon/mail-icon.svg" alt="" aria-hidden="true" width="24" height="24" />
-                <a href="mailto:kp_code_@gmail.com">kp_code_@gmail.com</a>
+                <a href="mailto:kontakt@kp-code.pl">kontakt@kp-code.pl</a>
               </p>
             </address>
           </div>
-          <!-- Social Media -->
+
           <div class="footer__social">
             <p class="footer__heading">Social Media</p>
             <ul class="footer__list">
@@ -933,22 +924,23 @@
             </ul>
           </div>
         </div>
-        <!-- Legal -->
+
         <div class="footer__legal">
           <span>
             ©
             <span id="year"></span>
-            KP_Code. Wszelkie prawa zastrzeżone. Projekt i wdrożenie: KP_Code
+            Atelier No.02. Wszelkie prawa zastrzeżone. Projekt i wdrożenie: Atelier No.02
           </span>
         </div>
       </div>
     </footer>
-    <!-- NO SCRIPT -->
+
+    <!-- No script -->
     <noscript>
       <div class="nojs" role="status" aria-live="polite">JavaScript is disabled. Some interactive features may be limited.</div>
     </noscript>
-    <!-- SCRIPT -->
-    <script src="js/script.min.js" defer></script>
+    <!-- Script -->
+    <script src="js/script.js" defer></script>
     <script>
       if ("serviceWorker" in navigator) {
         window.addEventListener("load", () => {

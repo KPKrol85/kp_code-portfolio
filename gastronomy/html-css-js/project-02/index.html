@@ -1,161 +1,139 @@
 <!doctype html>
 <html lang="pl">
   <head>
-    <!-- NETLIFY DEPLOY -->
-    <!-- https://gastronomy-project-02.netlify.app/ -->
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Restauracja Fine Dining – Demo Strona Gastronomiczna | KP_Code</title>
+    <title>Atelier No.02 | Restauracja Fine Dining</title>
 
     <!-- SEO -->
-    <meta name="author" content="KP_Code" />
-    <meta
-      name="description"
-      content="Profesjonalna, responsywna strona internetowa dla branży gastronomicznej. Nowoczesny design, sezonowe menu, opinie gości i pełna optymalizacja SEO. Projekt demonstracyjny wykonany przez KP_Code." />
-    <meta name="keywords" content="strona dla restauracji, projekt gastronomiczny, KP_Code, fine dining, nowoczesna restauracja, menu online, responsywna strona gastronomiczna" />
+    <meta name="description" content="Atelier No.02 to restauracja fine dining oparta na sezonowości i kuchni autorskiej. Poznaj menu, zobacz galerię i zarezerwuj stolik." />
     <link rel="canonical" href="https://gastronomy-project-02.netlify.app/" />
+    <meta name="robots" content="index,follow" />
+    <meta name="author" content="KP_Code" />
 
-    <!-- PWA -->
+    <!-- PWA / UI -->
     <meta name="color-scheme" content="light dark" />
-    <meta name="application-name" content="Gastro Demo" />
-    <meta name="apple-mobile-web-app-title" content="Gastro Demo" />
+    <meta name="application-name" content="Atelier No.02" />
+    <meta name="apple-mobile-web-app-title" content="Atelier No.02" />
     <meta name="msapplication-TileColor" content="#f8f1e7" />
+    <meta name="theme-color" content="#ffffff" />
 
-    <!-- ✅ Favicons + manifest (spójne z /assets/icons/fav-icon/) -->
+    <!-- Favicons + manifest -->
     <link rel="icon" type="image/png" sizes="32x32" href="assets/icons/fav-icon/favicon-32x32.png" />
     <link rel="icon" type="image/png" sizes="16x16" href="assets/icons/fav-icon/favicon-16x16.png" />
     <link rel="apple-touch-icon" sizes="180x180" href="assets/icons/fav-icon/apple-touch-icon.png" />
     <link rel="mask-icon" href="assets/icons/fav-icon/safari-pinned-tab.svg" color="#000000" />
     <link rel="manifest" href="manifest.webmanifest" />
-    <meta name="theme-color" content="#ffffff" />
-    <!-- ✅ Koniec sekcji favicon -->
 
-    <!-- Open Graph (Facebook / LinkedIn) -->
-    <meta property="og:site_name" content="KP_Code" />
+    <!-- Open Graph -->
+    <meta property="og:site_name" content="Atelier No.02" />
     <meta property="og:type" content="website" />
-    <meta property="og:image:type" content="image/jpeg" />
-    <meta property="og:title" content="Profesjonalna Strona dla Gastronomii – Demo Projekt | KP_Code" />
-    <meta property="og:description" content="Szybka, responsywna i gotowa do wdrożenia strona dla branży gastronomicznej. Projekt demonstracyjny wykonany przez KP_Code." />
+    <meta property="og:title" content="Atelier No.02 | Restauracja Fine Dining" />
+    <meta property="og:description" content="Sezonowe menu, kuchnia autorska i eleganckie doświadczenie fine dining. Zobacz galerię i poznaj Atelier No.02." />
     <meta property="og:url" content="https://gastronomy-project-02.netlify.app/" />
     <meta property="og:image" content="https://gastronomy-project-02.netlify.app/assets/img/og-img/og-img-1200x630.jpg" />
+    <meta property="og:image:type" content="image/jpeg" />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
-    <meta property="og:image:alt" content="Profesjonalna Strona dla Gastronomii – projekt demonstracyjny KP_Code" />
+    <meta property="og:image:alt" content="Atelier No.02 — fine dining" />
     <meta property="og:locale" content="pl_PL" />
 
-    <!-- Twitter Card -->
+    <!-- Twitter -->
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="Profesjonalna Strona dla Gastronomii – Demo Projekt | KP_Code" />
-    <meta name="twitter:description" content="Szybka, responsywna i gotowa do wdrożenia strona gastronomiczna. Stworzona przez KP_Code w ramach portfolio front-endowego." />
+    <meta name="twitter:title" content="Atelier No.02 | Restauracja Fine Dining" />
+    <meta name="twitter:description" content="Sezonowe menu i kuchnia autorska w eleganckim wydaniu. Poznaj Atelier No.02." />
     <meta name="twitter:image" content="https://gastronomy-project-02.netlify.app/assets/img/og-img/og-img-1200x630.jpg" />
-    <meta name="twitter:image:alt" content="Profesjonalna Strona dla Gastronomii – projekt demonstracyjny KP_Code" />
+    <meta name="twitter:image:alt" content="Atelier No.02 — fine dining" />
     <meta name="twitter:site" content="@KP_Code_85" />
     <meta name="twitter:creator" content="@KP_Code_85" />
 
-    <!-- Preload lokalnych fontów (Montserrat + Lato) -->
+    <!-- Preload fonts -->
     <link rel="preload" href="assets/fonts/montserrat-400-latin.woff2" as="font" type="font/woff2" crossorigin />
     <link rel="preload" href="assets/fonts/montserrat-700-latin.woff2" as="font" type="font/woff2" crossorigin />
-    <link rel="preload" href="assets/fonts/lato-400-latin.woff2" as="font" type="font/woff2" crossorigin />
-    <link rel="preload" href="assets/fonts/lato-700-latin.woff2" as="font" type="font/woff2" crossorigin />
 
-    <!-- Preload LCP hero image (AVIF) -->
+    <!-- Preload hero -->
     <link
       rel="preload"
       as="image"
       href="assets/img/hero/hero-768x614.avif"
       imagesrcset="assets/img/hero/hero-640x512.avif 640w, assets/img/hero/hero-768x614.avif 768w, assets/img/hero/hero-960x768.avif 960w, assets/img/hero/hero-1200x960.avif 1200w"
-      fetchpriority="high"
-      imagesizes="(max-width: 768px) 100vw, 45vw" />
+      imagesizes="(max-width: 768px) 100vw, 45vw"
+      fetchpriority="high" />
 
-    <!-- Restaurant JSON-LD -->
-    <script type="application/ld+json">
-      {
-        "@context": "https://schema.org",
-        "@type": "Restaurant",
-        "@id": "https://gastronomy-project-02.netlify.app/#restaurant",
-        "name": "Gastronomy 02 – KP_Code",
-        "url": "https://gastronomy-project-02.netlify.app/",
-        "image": "https://gastronomy-project-02.netlify.app/assets/img/og-img/og-img-1200x630.jpg",
-        "servesCuisine": ["Fine dining", "Europejska"],
-        "address": {
-          "@type": "PostalAddress",
-          "addressLocality": "Tarnów",
-          "addressCountry": "PL"
-        },
-        "telephone": "+48 533 537 091",
-        "hasMenu": "https://gastronomy-project-02.netlify.app/menu.html"
-      }
-    </script>
-
-    <!-- Motyw jasny / ciemny (dynamiczne theme-color) -->
+    <!-- Theme preload  -->
     <script>
       (function () {
         var storageKey = "kp-theme";
         var root = document.documentElement;
         var theme = null;
+
         try {
           var stored = localStorage.getItem(storageKey);
           if (stored === "light" || stored === "dark") theme = stored;
         } catch (err) {}
+
         if (!theme) {
           var preset = root.getAttribute("data-theme");
           if (preset === "light" || preset === "dark") theme = preset;
         }
+
         if (!theme) {
           var prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
           theme = prefersDark ? "dark" : "light";
         }
+
         root.setAttribute("data-theme", theme);
+
         var meta = document.querySelector('meta[name="theme-color"]');
         if (meta) meta.setAttribute("content", theme === "dark" ? "#181210" : "#f8f1e7");
       })();
     </script>
 
-    <!-- JSON-LD Structured Data -->
+    <!-- JSON-LD -->
     <script type="application/ld+json">
       {
         "@context": "https://schema.org",
-        "@type": "Organization",
-        "@id": "https://gastronomy-project-02.netlify.app/#organization",
-        "name": "KP_Code",
-        "description": "Demo strony gastronomicznej w portfolio KP_Code – nowoczesny design, responsywność i optymalizacja SEO.",
-        "url": "https://gastronomy-project-02.netlify.app/",
-        "logo": "https://gastronomy-project-02.netlify.app/assets/img/logo/logo-light-mode.svg",
-        "image": [
+        "@graph": [
           {
-            "@type": "ImageObject",
-            "url": "https://gastronomy-project-02.netlify.app/assets/img/og-img/og-img-1200x630.jpg",
-            "width": 1200,
-            "height": 630,
-            "caption": "Profesjonalna Strona dla Gastronomii – projekt demonstracyjny KP_Code"
+            "@type": "Organization",
+            "@id": "https://gastronomy-project-02.netlify.app/#organization",
+            "name": "Atelier No.02",
+            "url": "https://gastronomy-project-02.netlify.app/",
+            "logo": "https://gastronomy-project-02.netlify.app/assets/img/logo/logo-light-mode.svg",
+            "email": "kontakt@kp-code.pl"
           },
           {
-            "@type": "ImageObject",
-            "url": "https://gastronomy-project-02.netlify.app/assets/img/og-img/og-img-1200x1200.jpg",
-            "width": 1200,
-            "height": 1200,
-            "caption": "Profesjonalna Strona dla Gastronomii – projekt demonstracyjny KP_Code"
+            "@type": "Restaurant",
+            "@id": "https://gastronomy-project-02.netlify.app/#restaurant",
+            "name": "Atelier No.02",
+            "url": "https://gastronomy-project-02.netlify.app/",
+            "image": "https://gastronomy-project-02.netlify.app/assets/img/og-img/og-img-1200x630.jpg",
+            "servesCuisine": ["Fine Dining", "Europejska"],
+            "address": {
+              "@type": "PostalAddress",
+              "addressLocality": "Tarnów",
+              "addressCountry": "PL"
+            },
+            "hasMenu": "https://gastronomy-project-02.netlify.app/menu.html"
           }
-        ],
-        "sameAs": ["https://github.com/KP-Code", "https://x.com/KP_Code_85"]
+        ]
       }
     </script>
 
-    <!-- Główne style -->
-    <link rel="stylesheet" href="css/style.min.css" />
+    <!-- Styles -->
+    <link rel="stylesheet" href="css/style.css" />
   </head>
 
-  <!-- BODY -->
-  <body>
-    <a class="skip-link" href="#main" id="skip-to-content">Skip to content</a>
+  <!-- Body -->
+  <body class="page page--home">
+    <a class="skip-link" href="#main" id="skip-to-content">Przejdź do treści</a>
 
-    <!-- HEADER -->
+    <!-- Header -->
     <header class="site-header" aria-label="Nagłówek strony z nawigacją">
       <div class="container header__inner">
-        <a class="brand" href="/#hero" aria-label="Demo dla strony gastronomicznej – Strona główna">
-          <img src="assets/img/logo/logo-light-mode.svg" alt="" class="brand__logo brand__logo--light" width="40" height="40" />
-          <img src="assets/img/logo/logo-dark-mode.svg" alt="" class="brand__logo brand__logo--dark" width="40" height="40" />
-          <span class="brand__text">KP_Code</span>
+        <a class="brand" href="/#hero" aria-label="Atelier No.02 — Strona główna">
+          <img src="assets/img/logo/logo-and-name/header-logo-light.svg" alt="" class="brand__logo brand__logo--light" width="40" height="30" />
+          <img src="assets/img/logo/logo-and-name/header-logo-dark.svg" alt="" class="brand__logo brand__logo--dark" width="40" height="30" />
         </a>
 
         <div class="header__actions">
@@ -184,9 +162,9 @@
       </div>
     </header>
 
-    <!-- MAIN -->
+    <!-- Main -->
     <main id="main" tabindex="-1">
-      <!-- HERO -->
+      <!-- Hero -->
       <section id="hero" class="hero" aria-label="Welcome hero">
         <div class="container hero__inner">
           <div class="hero__content" data-reveal>
@@ -200,20 +178,16 @@
 
           <figure class="hero__media" data-reveal>
             <picture>
-              <!-- AVIF -->
               <source
                 type="image/avif"
                 srcset="assets/img/hero/hero-640x512.avif 640w, assets/img/hero/hero-768x614.avif 768w, assets/img/hero/hero-960x768.avif 960w, assets/img/hero/hero-1200x960.avif 1200w"
                 sizes="(max-width: 768px) 100vw, 45vw" />
 
-              <!-- WebP -->
               <source
                 type="image/webp"
-                srcset="assets/img/hero/hero-640x512.webp 640w, assets/img/hero/hero-768x614.webp 768w, assets/img/
-                hero/hero-960x768.webp 960w, assets/img/hero/hero-1200x960.webp 1200w"
+                srcset="assets/img/hero/hero-640x512.webp 640w, assets/img/hero/hero-768x614.webp 768w, assets/img/hero/hero-960x768.webp 960w, assets/img/hero/hero-1200x960.webp 1200w"
                 sizes="(max-width: 768px) 100vw, 45vw" />
 
-              <!-- JPG fallback -->
               <img
                 src="assets/img/hero/hero-1200x960.jpg"
                 srcset="assets/img/hero/hero-640x512.jpg 640w, assets/img/hero/hero-768x614.jpg 768w, assets/img/hero/hero-960x768.jpg 960w, assets/img/hero/hero-1200x960.jpg 1200w"
@@ -229,24 +203,21 @@
         </div>
       </section>
 
-      <!-- ABOUT -->
+      <!-- About -->
       <section id="about" class="section about" aria-label="About Gastronomy">
         <div class="container grid grid--2">
           <div class="about__media" data-reveal>
             <picture>
-              <!-- AVIF -->
               <source
                 type="image/avif"
                 srcset="assets/img/about/about-320x240.avif 320w, assets/img/about/about-480x360.avif 480w, assets/img/about/about-640x480.avif 640w, assets/img/about/about-960x720.avif 960w"
                 sizes="(max-width: 768px) 100vw, 45vw" />
 
-              <!-- WebP -->
               <source
                 type="image/webp"
                 srcset="assets/img/about/about-320x240.webp 320w, assets/img/about/about-480x360.webp 480w, assets/img/about/about-640x480.webp 640w, assets/img/about/about-960x720.webp 960w"
                 sizes="(max-width: 768px) 100vw, 45vw" />
 
-              <!-- JPG fallback -->
               <img
                 src="assets/img/about/about-960x720.jpg"
                 srcset="assets/img/about/about-320x240.jpg 320w, assets/img/about/about-480x360.jpg 480w, assets/img/about/about-640x480.jpg 640w, assets/img/about/about-960x720.jpg 960w"
@@ -269,7 +240,7 @@
         </div>
       </section>
 
-      <!-- MENU -->
+      <!-- Meno -->
       <section id="menu" class="section menu" aria-label="Seasonal menu highlights">
         <div class="container">
           <h2>Sezonowe Menu</h2>
@@ -281,17 +252,16 @@
             <!-- Duck -->
             <li class="card" data-reveal>
               <picture>
-                <!-- AVIF -->
                 <source
                   type="image/avif"
                   srcset="assets/img/menu/duck-400x261.avif 400w, assets/img/menu/duck-800x534.avif 800w, assets/img/menu/duck-1200x801.avif 1200w"
                   sizes="(max-width: 768px) 100vw, (max-width: 1200px) 33vw, 400px" />
-                <!-- WebP -->
+
                 <source
                   type="image/webp"
                   srcset="assets/img/menu/duck-400x261.webp 400w, assets/img/menu/duck-800x534.webp 800w, assets/img/menu/duck-1200x801.webp 1200w"
                   sizes="(max-width: 768px) 100vw, (max-width: 1200px) 33vw, 400px" />
-                <!-- JPG fallback -->
+
                 <img
                   class="card__image"
                   src="assets/img/menu/duck-1200x801.jpg"
@@ -312,17 +282,16 @@
             <!-- Risotto -->
             <li class="card" data-reveal>
               <picture>
-                <!-- AVIF -->
                 <source
                   type="image/avif"
                   srcset="assets/img/menu/risotto-400x261.avif 400w, assets/img/menu/risotto-800x534.avif 800w, assets/img/menu/risotto-1200x801.avif 1200w"
                   sizes="(max-width: 768px) 100vw, (max-width: 1200px) 33vw, 400px" />
-                <!-- WebP -->
+
                 <source
                   type="image/webp"
                   srcset="assets/img/menu/risotto-400x261.webp 400w, assets/img/menu/risotto-800x534.webp 800w, assets/img/menu/risotto-1200x801.webp 1200w"
                   sizes="(max-width: 768px) 100vw, (max-width: 1200px) 33vw, 400px" />
-                <!-- JPG fallback -->
+
                 <img
                   class="card__image"
                   src="assets/img/menu/risotto-1200x801.jpg"
@@ -343,17 +312,16 @@
             <!-- Cake -->
             <li class="card" data-reveal>
               <picture>
-                <!-- AVIF -->
                 <source
                   type="image/avif"
                   srcset="assets/img/menu/cake-400x261.avif 400w, assets/img/menu/cake-800x534.avif 800w, assets/img/menu/cake-1200x801.avif 1200w"
                   sizes="(max-width: 768px) 100vw, (max-width: 1200px) 33vw, 400px" />
-                <!-- WebP -->
+
                 <source
                   type="image/webp"
                   srcset="assets/img/menu/cake-400x261.webp 400w, assets/img/menu/cake-800x534.webp 800w, assets/img/menu/cake-1200x801.webp 1200w"
                   sizes="(max-width: 768px) 100vw, (max-width: 1200px) 33vw, 400px" />
-                <!-- JPG fallback -->
+
                 <img
                   class="card__image"
                   src="assets/img/menu/cake-1200x801.jpg"
@@ -374,38 +342,36 @@
         </div>
       </section>
 
-      <!-- GALLERY -->
+      <!-- Gallery -->
       <section id="gallery" class="section gallery" aria-labelledby="gallery-title">
         <div class="container">
           <h2 id="gallery-title" class="gallery__title">Galeria</h2>
 
-          <!-- CTA BUTTON POD TYTUŁEM -->
+          <!-- CTA button -->
           <div class="gallery__cta" data-reveal>
             <a href="gallery.html" class="btn btn--primary" aria-label="Przejdź do pełnej galerii zdjęć">Przejdź do pełnej galerii</a>
           </div>
 
           <ul class="gallery__grid" data-reveal-group>
-            <!-- Item 1 -->
             <li class="gallery__item" data-reveal>
               <a
                 class="gallery__link"
                 href="assets/img/gallery/gal-01-1280x960.jpg"
                 data-lightbox="home-gallery"
                 data-lb-caption="Stylowa sala restauracyjna z kamiennymi ścianami, czerwonymi krzesłami i złotym światłem żyrandoli — idealne miejsce na wieczorną kolację."
-                aria-label="Otwórz podgląd zdjęcia">
+                aria-label="Otwórz zdjęcie: Elegancka sala restauracyjna w klasycznym stylu z kamiennymi ścianami i ciepłym oświetleniem">
                 <figure class="gallery__figure">
                   <picture>
-                    <!-- AVIF -->
                     <source
                       type="image/avif"
                       srcset="assets/img/gallery/gal-01-420x315.avif 420w, assets/img/gallery/gal-01-560x420.avif 560w, assets/img/gallery/gal-01-840x630.avif 840w"
                       sizes="(max-width: 768px) 100vw, (max-width: 1200px) 33vw, 400px" />
-                    <!-- WebP -->
+
                     <source
                       type="image/webp"
                       srcset="assets/img/gallery/gal-01-420x315.webp 420w, assets/img/gallery/gal-01-560x420.webp 560w, assets/img/gallery/gal-01-840x630.webp 840w"
                       sizes="(max-width: 768px) 100vw, (max-width: 1200px) 33vw, 400px" />
-                    <!-- Fallback JPG -->
+
                     <img
                       class="gallery__img"
                       src="assets/img/gallery/gal-01-560x420.jpg"
@@ -422,14 +388,13 @@
               </a>
             </li>
 
-            <!-- Item 2 -->
             <li class="gallery__item" data-reveal>
               <a
                 class="gallery__link"
                 href="assets/img/gallery/gal-02-1280x960.jpg"
                 data-lightbox="home-gallery"
                 data-lb-caption="Nowoczesna przestrzeń restauracyjna z przeszklonymi ścianami i roślinnością — połączenie natury i współczesnego designu."
-                aria-label="">
+                aria-label="Otwórz zdjęcie: Nowoczesne wnętrze restauracji z dużymi oknami i zielenią przy stołach">
                 <figure class="gallery__figure">
                   <picture>
                     <source
@@ -456,14 +421,13 @@
               </a>
             </li>
 
-            <!-- Item 3 -->
             <li class="gallery__item" data-reveal>
               <a
                 class="gallery__link"
                 href="assets/img/gallery/gal-03-1280x960.jpg"
                 data-lightbox="home-gallery"
                 data-lb-caption="Kameralne wnętrze z drewnianymi stołami, miękkim światłem i detalami w naturalnych barwach — miejsce sprzyjające spokojnym rozmowom."
-                aria-label="">
+                aria-label="Otwórz zdjęcie: Przytulna sala restauracyjna z drewnianymi stołami i roślinami przy oknie">
                 <figure class="gallery__figure">
                   <picture>
                     <source
@@ -497,7 +461,7 @@
                 href="assets/img/gallery/gal-04-1280x960.jpg"
                 data-lightbox="home-gallery"
                 data-lb-caption="Wykwintne danie serwowane w restauracji — biała zastawa, wino i kwiaty w tle tworzą subtelną, klasyczną oprawę."
-                aria-label="">
+                aria-label="Otwórz zdjęcie: Nakryty stół z eleganckim daniem i winem w restauracyjnym wnętrzu">
                 <figure class="gallery__figure">
                   <picture>
                     <source
@@ -531,7 +495,7 @@
                 href="assets/img/gallery/gal-05-1280x960.jpg"
                 data-lightbox="home-gallery"
                 data-lb-caption="Złociste krewetki w lekkiej panierce z dodatkiem limonki i sosu sojowego — połączenie świeżości i wyrafinowanego smaku."
-                aria-label="">
+                aria-label="Otwórz zdjęcie: Chrupiące krewetki w panierce z limonką na eleganckim talerzu">
                 <figure class="gallery__figure">
                   <picture>
                     <source
@@ -565,7 +529,7 @@
                 href="assets/img/gallery/gal-06-1280x960.jpg"
                 data-lightbox="home-gallery"
                 data-lb-caption="Soczyste żeberka w glazurze barbecue, serwowane z warzywami i frytkami — klasyka w nowoczesnej interpretacji."
-                aria-label="">
+                aria-label="Otwórz zdjęcie: Żeberka w glazurze barbecue z warzywami i frytkami na czarnym półmisku">
                 <figure class="gallery__figure">
                   <picture>
                     <source
@@ -591,12 +555,11 @@
                 </figure>
               </a>
             </li>
-            <!-- End Gallery Items -->
           </ul>
         </div>
       </section>
 
-      <!-- TESTIMONIALS -->
+      <!-- Testimonials -->
       <section id="testimonials" class="section testimonials" aria-label="Guest testimonials">
         <div class="container">
           <h2>Opinie Gości</h2>
@@ -617,7 +580,7 @@
         </div>
       </section>
 
-      <!-- CONTACT -->
+      <!-- Form -->
       <section id="contact" class="section contact" aria-label="Contact and reservations">
         <div class="container grid grid--2">
           <!-- Contact -->
@@ -635,7 +598,7 @@
               </li>
               <li>
                 <img src="assets/icons/svg-icon/mail-icon.svg" alt="" aria-hidden="true" width="24" height="24" />
-                <a href="mailto:kp_code_@gmail.com">kp_code_@gmail.com</a>
+                <a href="mailto:kontakt@kp-code.pl">kontakt@kp-code.pl</a>
               </li>
             </ul>
           </div>
@@ -662,21 +625,18 @@
       </section>
     </main>
 
-    <!-- FOOTER -->
-    <footer class="footer" aria-label="Site footer">
+    <!-- Footer -->
+    <footer class="footer" aria-label="Stopka strony">
       <div class="container">
         <div class="footer__grid">
-          <!-- Brand -->
           <div class="footer__brand">
-            <a class="brand" href="/#hero" aria-label="Gastronomy home">
-              <img src="assets/img/logo/logo-dark-mode.svg" alt="KP_Code logo" class="brand__logo brand__logo--light" width="40" height="40" />
-              <img src="assets/img/logo/logo-light-mode.svg" alt="KP_Code logo" class="brand__logo brand__logo--dark" width="40" height="40" />
-              <span class="brand__text">KP_Code</span>
+            <a class="brand" href="/#hero" aria-label="Atelier No.02 — Strona główna">
+              <img src="assets/img/logo/logo-and-name/footer-logo-light.svg" alt="Logo Atelier No.02" class="footer__logo footer__logo--light" width="40" height="40" />
+              <img src="assets/img/logo/logo-and-name/footer-logo-dark.svg" alt="" class="footer__logo footer__logo--dark" width="40" height="40" />
             </a>
-            <p class="footer__tagline">Demo projektu przygotowane przez KP_Code. Jeśli chcesz podobną stronę dla swojej restauracji — skontaktuj się ze mną.</p>
+            <p class="footer__tagline">Autorska kuchnia oparta na sezonowości i jakości składników.</p>
           </div>
 
-          <!-- Nav -->
           <nav class="footer__nav" aria-label="Footer">
             <p class="footer__heading">Odkrywaj</p>
             <ul class="footer__list">
@@ -694,7 +654,7 @@
               <li><a href="/cookies.html">Polityka cookies</a></li>
             </ul>
           </nav>
-          <!-- Contact -->
+
           <div class="footer__contact">
             <p class="footer__heading">Kontact</p>
             <address>
@@ -708,11 +668,11 @@
               </p>
               <p>
                 <img src="assets/icons/svg-icon/mail-icon.svg" alt="" aria-hidden="true" width="24" height="24" />
-                <a href="mailto:kp_code_@gmail.com">kp_code_@gmail.com</a>
+                <a href="mailto:kontakt@kp-code.pl">kontakt@kp-code.pl</a>
               </p>
             </address>
           </div>
-          <!-- Social Media -->
+
           <div class="footer__social">
             <p class="footer__heading">Social Media</p>
             <ul class="footer__list">
@@ -748,17 +708,18 @@
           <span>
             ©
             <span id="year"></span>
-            KP_Code. Wszelkie prawa zastrzeżone. Projekt i wdrożenie: KP_Code
+            Atelier No.02. Wszelkie prawa zastrzeżone. Projekt i wdrożenie: Atelier No.02
           </span>
         </div>
       </div>
     </footer>
-    <!-- NO SCRIPT -->
+
+    <!-- No script -->
     <noscript>
       <div class="nojs" role="status" aria-live="polite">JavaScript is disabled. Some interactive features may be limited.</div>
     </noscript>
-    <!-- SCRIPT -->
-    <script src="js/script.min.js" defer></script>
+    <!-- Script -->
+    <script src="js/script.js" defer></script>
     <script>
       if ("serviceWorker" in navigator) {
         window.addEventListener("load", () => {

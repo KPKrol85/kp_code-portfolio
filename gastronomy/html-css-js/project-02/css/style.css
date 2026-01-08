@@ -6,26 +6,26 @@
    = CSS Stylesheet
    = Structure Overview
    ============================================
-   = 00 - ROOT & RESETS
-   = 01 - TYPOGRAPHY
-   = 02 - LAYOUT
-   = 03 - HEADER
-   = 04 - HERO
-   = 05 - ABOUT
-   = 06 - MENU
-   = 07 - GALLERY
-   = 08 - TESTIMONIALS
-   = 09 - CONTACT
-   = 10 - FOOTER
-   = 11 - SUBPAGE MENU
-   = 12 - SUBPAGE GALLERY
-   = 13 - SUBPAGE ABOUT
-   = 12 - LIGHTBOX
-   = 13 - STATES + ANIMATIONS
-   = 99 - COMPONENTS & UTILITIES
+   = 00 - Root & Resets
+   = 01 - Typography
+   = 02 - Layout
+   = 03 - Header
+   = 04 - Hero
+   = 05 - About
+   = 06 - Menu
+   = 07 - Gallery
+   = 08 - Testimonials
+   = 09 - Contact
+   = 10 - Footer
+   = 11 - Subpage Menu
+   = 12 - Subpage Gallery
+   = 13 - Subpage Contact
+   = 12 - Lightbox
+   = 13 - States & Animations
+   = 99 - Component Library
   ============================================ */
 
-/* ===== 00 - ROOT & RESETS ===== */
+/* === 00 - Root & Resets === */
 
 @font-face {
   font-family: "Montserrat";
@@ -72,7 +72,7 @@
   --header-backdrop: rgba(248, 241, 231, 0.88);
   --header-border: rgba(0, 0, 0, 0.06);
   --header-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
-  --header-h: 64px;
+  --header-h: 100px;
   --header-offset: calc(var(--header-h) + env(safe-area-inset-top, 0px));
   --surface-overlay: rgba(255, 253, 248, 0.96);
   --c-surface-1: var(--surface-overlay);
@@ -84,12 +84,20 @@
   --input-border: rgba(0, 0, 0, 0.15);
   --footer-bg: #2e2a27;
   --footer-text: #fffdf8;
-  /* Tabs – active state (light) */
   --tab-active-bg: color-mix(in oklab, var(--burgundy) 10%, white);
   --tab-active-border: color-mix(in oklab, var(--burgundy) 55%, white);
   color-scheme: light;
-  /* LIGHTBOX a11y: ujednolicony kolor obrysu focus */
   --focus-ring: color-mix(in oklab, var(--burgundy) 65%, white);
+
+  --space-0: 0;
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-3: 0.75rem;
+  --space-4: 1rem;
+  --space-5: 1.5rem;
+  --space-6: 2rem;
+  --space-7: 3rem;
+  --space-8: 4rem;
 }
 
 [data-theme="dark"] {
@@ -193,7 +201,7 @@ select {
   z-index: 1000;
 }
 
-/* ===== 01 - TYPOGRAPHY ===== */
+/* === 01 - Typography === */
 
 body {
   font-family:
@@ -251,7 +259,7 @@ img {
   font-family: system-ui, sans-serif;
   font-weight: 400;
   color: CanvasText;
-  height: auto; /* <- dodaj tutaj, globalnie */
+  height: auto;
 }
 
 h1,
@@ -329,11 +337,16 @@ main {
   scroll-margin-top: calc(var(--header-offset) + 16px);
 }
 
+.brand {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+}
+
 :root {
   --container: 600px;
 }
 
-/* -- MQ - min-width: 480px -- */
 @media (min-width: 480px) {
   .section {
     padding: 3.75rem 0;
@@ -343,7 +356,6 @@ main {
   }
 }
 
-/* -- MQ - min-width: 768px -- */
 @media (min-width: 768px) {
   :root {
     --container: 720px;
@@ -372,7 +384,7 @@ main {
   }
 }
 
-/* ===== 03 - HEADER ===== */
+/* === 03 - Header === */
 
 .site-header {
   position: fixed;
@@ -395,7 +407,7 @@ main {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  min-height: 64px;
+  min-height: var(--header-h);
   gap: 1rem;
 }
 
@@ -405,19 +417,11 @@ main {
   gap: 0.75rem;
 }
 
-.brand {
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  font-weight: 700;
-  text-decoration: none;
-  color: var(--c-ink);
-}
-
 .brand__logo {
   display: block;
-  height: 40px;
-  width: 40px;
+  height: 80px;
+  width: 200px;
+  padding-block: 10px;
 }
 
 .brand__logo--dark {
@@ -430,29 +434,6 @@ main {
 
 [data-theme="dark"] .brand__logo--dark {
   display: inline-block;
-}
-
-.brand__text {
-  display: inline-block;
-  font-family: "Montserrat", sans-serif;
-  font-size: 1.25rem;
-  letter-spacing: 0.5px;
-  color: inherit;
-  text-decoration: none;
-}
-
-.site-header .brand,
-.site-header .brand:hover,
-.site-header .brand:focus,
-.site-header .brand:focus-visible {
-  text-decoration: none;
-}
-
-.brand {
-  font-family: "Montserrat";
-  font-weight: 700;
-  color: var(--burgundy);
-  letter-spacing: 0.5px;
 }
 
 .nav__list a {
@@ -1140,7 +1121,6 @@ main {
   text-decoration: underline;
 }
 
-/* -- 09.3 - Icon theme mapping -- */
 .contact__content {
   --contact-icon-filter: invert(0);
 }
@@ -1152,9 +1132,8 @@ body.dark .contact__content,
   --contact-icon-filter: invert(1);
 }
 
-/* ===== 10 - FOOTER ===== */
+/* === 10 - Footer === */
 
-/* -- 10.1 - Base -- */
 .footer {
   padding: 3rem 0 2rem;
   border-top: 1px solid var(--border-soft);
@@ -1178,7 +1157,6 @@ body.dark,
   color: var(--bone);
 }
 
-/* -- 10.2 - Layout / Grid -- */
 .footer__grid {
   display: grid;
   grid-template-columns: 1fr;
@@ -1234,7 +1212,6 @@ body.dark,
   text-align: center;
 }
 
-/* -- 10.3 - Elements -- */
 .footer a {
   color: inherit;
   text-decoration: none;
@@ -1242,42 +1219,37 @@ body.dark,
 }
 
 .footer__logo {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 0.5rem;
-  font-size: 1.25rem;
-  font-weight: 600;
-  margin-bottom: 0.5rem;
+  display: block;
+  width: 8.25rem;
+  height: auto;
+  margin: 0 auto;
 }
 
-.footer__logo img {
-  width: 1.75rem;
-  height: auto;
+.footer__logo--light,
+.footer__logo--dark {
+  display: none;
+}
+
+:root[data-theme="light"] .footer .footer__logo--dark {
   display: block;
-  flex-shrink: 0;
-  filter: var(--footer-icon-filter);
+}
+
+:root[data-theme="dark"] .footer .footer__logo--light {
+  display: block;
 }
 
 .footer__brand .brand {
   display: flex;
   align-items: center;
   justify-content: flex-start;
-  text-align: left;
-  gap: 0.5rem;
-  margin-bottom: 0.5rem;
-  text-decoration: none;
-}
-
-.brand,
-.brand:hover,
-.brand:focus,
-.brand__text {
-  text-decoration: none !important;
+  margin-bottom: var(--space-2);
 }
 
 .footer__tagline {
-  margin: 0;
+  text-align: center;
+  margin-top: var(--space-3);
+  padding-inline: var(--space-4);
+  max-width: 28ch;
   color: inherit;
   opacity: 0.8;
 }
@@ -1289,7 +1261,6 @@ body.dark,
   text-transform: uppercase;
 }
 
-/* -- 10.4 - footer link hover -- */
 .footer__list a {
   position: relative;
   color: inherit;
@@ -1326,12 +1297,11 @@ body.dark,
   );
 }
 
-/* -- 10.5 - Variants -- */
 .footer__brand,
 .footer__nav,
 .footer__contact,
 .footer__social {
-  padding: 1.25rem;
+  padding: var(--space-5);
   border: 1px solid var(--border-soft);
   border-radius: var(--radius);
   background-color: rgba(255, 255, 255, 0.02);
@@ -1403,7 +1373,6 @@ body.dark,
   transform: translateX(-50%);
 }
 
-/* -- 10.6 - States -- */
 .footer a:hover,
 .footer a:focus-visible {
   color: var(--white);
@@ -1415,7 +1384,6 @@ body.dark,
   text-decoration: none !important;
 }
 
-/* -- MQ - max-width: 767px -- */
 @media (max-width: 767px) {
   .footer__nav {
     text-align: center;
@@ -1425,26 +1393,23 @@ body.dark,
   }
   .footer__brand .brand {
     justify-content: center;
-    text-align: center;
     width: 100%;
   }
 }
 
-/* -- MQ - min-width: 768px / grid columns -- */
 @media (min-width: 768px) {
   .footer__grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 }
 
-/* -- MQ - min-width: 1024px / grid columns -- */
 @media (min-width: 1024px) {
   .footer__grid {
     grid-template-columns: repeat(4, minmax(0, 1fr));
   }
 }
 
-/* ===== 11 - SUBPAGE MENU ===== */
+/* === 11 - Subpage menu === */
 
 .page--menu .page-hero {
   position: relative;
@@ -2062,7 +2027,7 @@ html {
   border-bottom: 1px solid var(--surface-overlay-border);
   backdrop-filter: saturate(120%) blur(6px);
   -webkit-backdrop-filter: saturate(120%) blur(6px);
-  padding: 1.5rem 0; /* identycznie jak .page--menu .menu-navigation */
+  padding: 1.5rem 0;
 }
 
 .page.page-gallery .gallery-tabs__wrapper {
@@ -2070,9 +2035,9 @@ html {
   max-width: 960px;
   background: color-mix(in srgb, var(--surface-overlay) 80%, transparent);
   border: 1px solid var(--border-soft);
-  border-radius: var(--radius); /* takie samo zaokrąglenie */
-  padding: 0.75rem; /* takie samo wypełnienie */
-  box-shadow: var(--shadow); /* ten sam cień */
+  border-radius: var(--radius);
+  padding: 0.75rem;
+  box-shadow: var(--shadow);
   backdrop-filter: blur(8px);
 }
 
@@ -2473,22 +2438,19 @@ html {
   justify-content: center;
 }
 
-/* ----- MQ - min-width: 768px ----- */
 @media (min-width: 768px) {
   .page.page-about .chef-card {
     grid-template-columns: 1fr 1.1fr;
   }
 }
 
-/* ===== 14 - LIGHTBOX ===== */
+/* === 14 - Lightbox === */
 
-/* Consolidated Lightbox styles (single source of truth) */
 .lb-overlay {
   position: fixed;
   inset: 0;
   display: none;
   z-index: 9999;
-  /* unified visual */
   background: rgba(0, 0, 0, 0.6);
   backdrop-filter: saturate(120%) blur(6px);
 }
@@ -2497,7 +2459,7 @@ html {
   align-items: center;
   justify-content: center;
 }
-/* Prevent page scroll while lightbox is open */
+
 .lb-open,
 .lb-open body {
   overflow: hidden;
@@ -2638,12 +2600,11 @@ html {
   }
 }
 
-/* LIGHTBOX a11y: na urządzeniach dotykowych zapewnij min. 44x44 hit-area */
 @media (pointer: coarse) {
   .lb-btn {
     width: 44px;
     height: 44px;
-    padding: 0.5rem; /* większa strefa dotyku bez powiększania ikony */
+    padding: 0.5rem;
   }
   .lb-btn::before {
     width: 20px;
@@ -2651,21 +2612,17 @@ html {
   }
 }
 
-/* Dark mode accents */
 [data-theme="dark"] .lb-btn {
-  /* LIGHTBOX a11y: w dark mode wysoki kontrast ikony i tła */
-  color: var(--black); /* w dark theme to #fff */
+  color: var(--black);
   background: rgba(0, 0, 0, 0.6);
   border-color: rgba(255, 255, 255, 0.7);
 }
 [data-theme="dark"] .lb-counter {
-  /* LIGHTBOX a11y: solidne tło dla czytelności niezależnie od zdjęcia */
-  color: var(--black); /* jasny tekst */
+  color: var(--black);
   border: 1px solid rgba(255, 255, 255, 0.5);
-  /*border-color: color-mix(in oklab, var(--burgundy) 65%, white);*/
   background: #1c1815;
 }
-/* LIGHTBOX a11y: nie ukrywamy przycisku zamykania w fullscreen */
+
 .is-fullscreen .lb-close {
   display: inline-flex !important;
 }
