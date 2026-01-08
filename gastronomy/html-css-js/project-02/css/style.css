@@ -1393,6 +1393,11 @@ body.dark,
     opacity 0.2s ease;
 }
 
+.footer__social a:focus-visible {
+  outline: 2px solid var(--focus-ring);
+  outline-offset: 3px;
+}
+
 .footer__social img {
   width: 1.5rem;
   height: 1.5rem;
@@ -2931,6 +2936,45 @@ a.btn:focus {
   .btn--primary:hover,
   .btn--ghost:hover {
     transform: none;
+  }
+}
+
+@media (pointer: coarse) {
+  .nav__list a,
+  .footer__list a,
+  .btn,
+  .footer__social a {
+    position: relative;
+  }
+
+  .nav__list a::before,
+  .footer__list a::before,
+  .btn::before,
+  .footer__social a::before {
+    content: "";
+    position: absolute;
+  }
+
+  .nav__list a::before,
+  .footer__list a::before {
+    inset: -8px -6px;
+    border-radius: 6px;
+  }
+
+  .btn::before {
+    inset: -6px -10px;
+    border-radius: 999px;
+  }
+
+  .footer__social a::before {
+    inset: -8px;
+    border-radius: 999px;
+  }
+
+  .form input,
+  .form select,
+  .form textarea {
+    min-height: 44px;
   }
 }
 
