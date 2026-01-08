@@ -9,15 +9,41 @@
         "Wegetariańskie"
       ],
       "image": {
-        "avifSrcset": "assets/img/subpage-menu/przystawki/risotto-480x320.avif 480w,\n                        assets/img/subpage-menu/przystawki/risotto-720x480.avif 720w,\n                        assets/img/subpage-menu/przystawki/risotto-960x640.avif 960w",
-        "webpSrcset": "assets/img/subpage-menu/przystawki/risotto-480x320.webp 480w,\n                        assets/img/subpage-menu/przystawki/risotto-720x480.webp 720w,\n                        assets/img/subpage-menu/przystawki/risotto-960x640.webp 960w",
-        "jpgSrcset": "assets/img/subpage-menu/przystawki/risotto-480x320.jpg 480w,\n                        assets/img/subpage-menu/przystawki/risotto-720x480.jpg 720w,\n                        assets/img/subpage-menu/przystawki/risotto-960x640.jpg 960w",
-        "src": "assets/img/subpage-menu/przystawki/risotto-960x640.jpg",
-        "sizes": "(max-width: 768px) 100vw, (max-width: 1200px) 33vw, 400px",
+        "basePath": "assets/img/subpage-menu",
+        "category": "przystawki",
+        "slug": "risotto",
+        "variants": [
+          {
+            "width": 480,
+            "height": 320,
+            "formats": [
+              "avif",
+              "webp",
+              "jpg"
+            ]
+          },
+          {
+            "width": 720,
+            "height": 480,
+            "formats": [
+              "avif",
+              "webp",
+              "jpg"
+            ]
+          },
+          {
+            "width": 960,
+            "height": 640,
+            "formats": [
+              "avif",
+              "webp",
+              "jpg"
+            ]
+          }
+        ],
+        "sizes": "(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw",
         "alt": "Risotto z karmelizowaną gruszką i szałwią, podane z parmezanem i listkami świeżych ziół.",
-        "figcaption": "Risotto z gruszką i szałwią",
-        "width": "480",
-        "height": "320"
+        "figcaption": "Risotto z gruszką i szałwią"
       },
       "id": "przystawki-risotto-z-gruszką-i-szałwią"
     },
@@ -30,15 +56,41 @@
         "Bezglutenowe"
       ],
       "image": {
-        "avifSrcset": "assets/img/subpage-menu/przystawki/carpaccio-480x320.avif 480w,\n                        assets/img/subpage-menu/przystawki/carpaccio-720x480.avif 720w,\n                        assets/img/subpage-menu/przystawki/carpaccio-960x640.avif 960w",
-        "webpSrcset": "assets/img/subpage-menu/przystawki/carpaccio-480x320.webp 480w,\n                        assets/img/subpage-menu/przystawki/carpaccio-720x480.webp 720w,\n                        assets/img/subpage-menu/przystawki/carpaccio-960x640.webp 960w",
-        "jpgSrcset": "assets/img/subpage-menu/przystawki/carpaccio-480x320.jpg 480w,\n                        assets/img/subpage-menu/przystawki/carpaccio-720x480.jpg 720w,\n                        assets/img/subpage-menu/przystawki/carpaccio-960x640.jpg 960w",
-        "src": "assets/img/subpage-menu/przystawki/carpaccio-960x640.jpg",
-        "sizes": "(max-width: 768px) 100vw, (max-width: 1200px) 33vw, 400px",
+        "basePath": "assets/img/subpage-menu",
+        "category": "przystawki",
+        "slug": "carpaccio",
+        "variants": [
+          {
+            "width": 480,
+            "height": 320,
+            "formats": [
+              "avif",
+              "webp",
+              "jpg"
+            ]
+          },
+          {
+            "width": 720,
+            "height": 480,
+            "formats": [
+              "avif",
+              "webp",
+              "jpg"
+            ]
+          },
+          {
+            "width": 960,
+            "height": 640,
+            "formats": [
+              "avif",
+              "webp",
+              "jpg"
+            ]
+          }
+        ],
+        "sizes": "(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw",
         "alt": "Cienkie plastry wołowiny z rukolą, oliwą truflową i marynowanymi kaparami.",
-        "figcaption": "Carpaccio z polędwicy z rukolą",
-        "width": "480",
-        "height": "320"
+        "figcaption": "Carpaccio z polędwicy z rukolą"
       },
       "id": "przystawki-carpaccio-z-polędwicy"
     },
@@ -52,15 +104,41 @@
         "Sezonowe"
       ],
       "image": {
-        "avifSrcset": "assets/img/subpage-menu/przystawki/burrata-480x320.avif 480w,\n                        assets/img/subpage-menu/przystawki/burrata-720x480.avif 720w,\n                        assets/img/subpage-menu/przystawki/burrata-960x640.avif 960w",
-        "webpSrcset": "assets/img/subpage-menu/przystawki/burrata-480x320.webp 480w,\n                        assets/img/subpage-menu/przystawki/burrata-720x480.webp 720w,\n                        assets/img/subpage-menu/przystawki/burrata-960x640.webp 960w",
-        "jpgSrcset": "assets/img/subpage-menu/przystawki/burrata-480x320.jpg 480w,\n                        assets/img/subpage-menu/przystawki/burrata-720x480.jpg 720w,\n                        assets/img/subpage-menu/przystawki/burrata-960x640.jpg 960w",
-        "src": "assets/img/subpage-menu/przystawki/burrata-960x640.jpg",
-        "sizes": "(max-width: 768px) 100vw, (max-width: 1200px) 33vw, 400px",
+        "basePath": "assets/img/subpage-menu",
+        "category": "przystawki",
+        "slug": "burrata",
+        "variants": [
+          {
+            "width": 480,
+            "height": 320,
+            "formats": [
+              "avif",
+              "webp",
+              "jpg"
+            ]
+          },
+          {
+            "width": 720,
+            "height": 480,
+            "formats": [
+              "avif",
+              "webp",
+              "jpg"
+            ]
+          },
+          {
+            "width": 960,
+            "height": 640,
+            "formats": [
+              "avif",
+              "webp",
+              "jpg"
+            ]
+          }
+        ],
+        "sizes": "(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw",
         "alt": "Burrata z pesto bazyliowym, pieczonymi pomidorami i pistacjami, skropiona oliwą z pierwszego tłoczenia.",
-        "figcaption": "Burrata z pieczonymi pomidorami",
-        "width": "480",
-        "height": "320"
+        "figcaption": "Burrata z pieczonymi pomidorami"
       },
       "id": "przystawki-burrata-z-pesto-bazyliowym"
     },
@@ -73,15 +151,41 @@
         "Signature"
       ],
       "image": {
-        "avifSrcset": "",
-        "webpSrcset": "assets/img/subpage-menu/dania-glowne/kaczka-480x320.webp 480w,\n                        assets/img/subpage-menu/dania-glowne/kaczka-720x480.webp 720w,\n                        assets/img/subpage-menu/dania-glowne/kaczka-960x640.webp 960w",
-        "jpgSrcset": "assets/img/subpage-menu/dania-glowne/kaczka-480x320.jpg 480w,\n                        assets/img/subpage-menu/dania-glowne/kaczka-720x480.jpg 720w,\n                        assets/img/subpage-menu/dania-glowne/kaczka-960x640.jpg 960w",
-        "src": "assets/img/subpage-menu/dania-glowne/kaczka-960x640.jpg",
-        "sizes": "(max-width: 768px) 100vw, (max-width: 1200px) 33vw, 400px",
+        "basePath": "assets/img/subpage-menu",
+        "category": "dania-glowne",
+        "slug": "kaczka",
+        "variants": [
+          {
+            "width": 480,
+            "height": 320,
+            "formats": [
+              "avif",
+              "webp",
+              "jpg"
+            ]
+          },
+          {
+            "width": 720,
+            "height": 480,
+            "formats": [
+              "avif",
+              "webp",
+              "jpg"
+            ]
+          },
+          {
+            "width": 960,
+            "height": 640,
+            "formats": [
+              "avif",
+              "webp",
+              "jpg"
+            ]
+          }
+        ],
+        "sizes": "(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw",
         "alt": "Plastry piersi kaczki w burgundowej glazurze na zielonym purée, z cykorią, figą i płatkami kwiatów.",
-        "figcaption": "Kaczka w glazurze burgundowej",
-        "width": "480",
-        "height": "320"
+        "figcaption": "Kaczka w glazurze burgundowej"
       },
       "id": "dania-glowne-kaczka-w-glazurze-burgundowej"
     },
@@ -95,15 +199,41 @@
         "Light"
       ],
       "image": {
-        "avifSrcset": "assets/img/subpage-menu/dania-glowne/dorsz-480x320.avif 480w,\n                        assets/img/subpage-menu/dania-glowne/dorsz-720x480.avif 720w,\n                        assets/img/subpage-menu/dania-glowne/dorsz-960x640.avif 960w",
-        "webpSrcset": "assets/img/subpage-menu/dania-glowne/dorsz-480x320.webp 480w,\n                        assets/img/subpage-menu/dania-glowne/dorsz-720x480.webp 720w,\n                        assets/img/subpage-menu/dania-glowne/dorsz-960x640.webp 960w",
-        "jpgSrcset": "assets/img/subpage-menu/dania-glowne/dorsz-480x320.jpg 480w,\n                        assets/img/subpage-menu/dania-glowne/dorsz-720x480.jpg 720w,\n                        assets/img/subpage-menu/dania-glowne/dorsz-960x640.jpg 960w",
-        "src": "assets/img/subpage-menu/dania-glowne/dorsz-960x640.jpg",
-        "sizes": "(max-width: 768px) 100vw, (max-width: 1200px) 33vw, 400px",
+        "basePath": "assets/img/subpage-menu",
+        "category": "dania-glowne",
+        "slug": "dorsz",
+        "variants": [
+          {
+            "width": 480,
+            "height": 320,
+            "formats": [
+              "avif",
+              "webp",
+              "jpg"
+            ]
+          },
+          {
+            "width": 720,
+            "height": 480,
+            "formats": [
+              "avif",
+              "webp",
+              "jpg"
+            ]
+          },
+          {
+            "width": 960,
+            "height": 640,
+            "formats": [
+              "avif",
+              "webp",
+              "jpg"
+            ]
+          }
+        ],
+        "sizes": "(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw",
         "alt": "Filet dorsza pieczony z plastrami cytrusów, czerwoną cebulą i pomidorkami na papierze do pieczenia.",
-        "figcaption": "Dorsz z cytrusową pianką",
-        "width": "480",
-        "height": "320"
+        "figcaption": "Dorsz z cytrusową pianką"
       },
       "id": "dania-glowne-dorsz-atlantycki-z-cytrusami"
     },
@@ -117,15 +247,41 @@
         "Sezonowe"
       ],
       "image": {
-        "avifSrcset": "assets/img/subpage-menu/dania-glowne/ravioli-480x320.avif 480w,\n                        assets/img/subpage-menu/dania-glowne/ravioli-720x480.avif 720w,\n                        assets/img/subpage-menu/dania-glowne/ravioli-960x640.avif 960w",
-        "webpSrcset": "assets/img/subpage-menu/dania-glowne/ravioli-480x320.webp 480w,\n                        assets/img/subpage-menu/dania-glowne/ravioli-720x480.webp 720w,\n                        assets/img/subpage-menu/dania-glowne/ravioli-960x640.webp 960w",
-        "jpgSrcset": "assets/img/subpage-menu/dania-glowne/ravioli-480x320.jpg 480w,\n                        assets/img/subpage-menu/dania-glowne/ravioli-720x480.jpg 720w,\n                        assets/img/subpage-menu/dania-glowne/ravioli-960x640.jpg 960w",
-        "src": "assets/img/subpage-menu/dania-glowne/ravioli-960x640.jpg",
-        "sizes": "(max-width: 768px) 100vw, (max-width: 1200px) 33vw, 400px",
+        "basePath": "assets/img/subpage-menu",
+        "category": "dania-glowne",
+        "slug": "ravioli",
+        "variants": [
+          {
+            "width": 480,
+            "height": 320,
+            "formats": [
+              "avif",
+              "webp",
+              "jpg"
+            ]
+          },
+          {
+            "width": 720,
+            "height": 480,
+            "formats": [
+              "avif",
+              "webp",
+              "jpg"
+            ]
+          },
+          {
+            "width": 960,
+            "height": 640,
+            "formats": [
+              "avif",
+              "webp",
+              "jpg"
+            ]
+          }
+        ],
+        "sizes": "(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw",
         "alt": "Ravioli z pieczoną dynią w maślanym sosie z szałwią, posypane chipsami z parmezanu.",
-        "figcaption": "Ravioli z dynią i szałwią",
-        "width": "480",
-        "height": "320"
+        "figcaption": "Ravioli z dynią i szałwią"
       },
       "id": "dania-glowne-ravioli-z-pieczoną-dynią"
     },
@@ -138,15 +294,41 @@
         "Classic"
       ],
       "image": {
-        "avifSrcset": "assets/img/subpage-menu/zupy/bulion-480x320.avif 480w, assets/img/subpage-menu/zupy/bulion-720x480.avif 720w, assets/img/subpage-menu/zupy/bulion-960x640.avif 960w",
-        "webpSrcset": "assets/img/subpage-menu/zupy/bulion-480x320.webp 480w, assets/img/subpage-menu/zupy/bulion-720x480.webp 720w, assets/img/subpage-menu/zupy/bulion-960x640.webp 960w",
-        "jpgSrcset": "assets/img/subpage-menu/zupy/bulion-480x320.jpg 480w, assets/img/subpage-menu/zupy/bulion-720x480.jpg 720w, assets/img/subpage-menu/zupy/bulion-960x640.jpg 960w",
-        "src": "assets/img/subpage-menu/zupy/bulion-960x640.jpg",
-        "sizes": "(max-width: 768px) 100vw, (max-width: 1200px) 33vw, 400px",
+        "basePath": "assets/img/subpage-menu",
+        "category": "zupy",
+        "slug": "bulion",
+        "variants": [
+          {
+            "width": 480,
+            "height": 320,
+            "formats": [
+              "avif",
+              "webp",
+              "jpg"
+            ]
+          },
+          {
+            "width": 720,
+            "height": 480,
+            "formats": [
+              "avif",
+              "webp",
+              "jpg"
+            ]
+          },
+          {
+            "width": 960,
+            "height": 640,
+            "formats": [
+              "avif",
+              "webp",
+              "jpg"
+            ]
+          }
+        ],
+        "sizes": "(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw",
         "alt": "Miska klarownego bulionu z nitkami makaronu, plasterkami marchwi i listkiem pietruszki; obok łyżka.",
-        "figcaption": "Bulion z pieczonego drobiu",
-        "width": "480",
-        "height": "320"
+        "figcaption": "Bulion z pieczonego drobiu"
       },
       "id": "zupy-bulion-z-pieczonego-drobiu"
     },
@@ -160,15 +342,41 @@
         "Bezglutenowe"
       ],
       "image": {
-        "avifSrcset": "assets/img/subpage-menu/zupy/krem-kalafior-480x320.avif 480w,\n                        assets/img/subpage-menu/zupy/krem-kalafior-720x480.avif 720w,\n                        assets/img/subpage-menu/zupy/krem-kalafior-960x640.avif 960w",
-        "webpSrcset": "assets/img/subpage-menu/zupy/krem-kalafior-480x320.webp 480w,\n                        assets/img/subpage-menu/zupy/krem-kalafior-720x480.webp 720w,\n                        assets/img/subpage-menu/zupy/krem-kalafior-960x640.webp 960w",
-        "jpgSrcset": "assets/img/subpage-menu/zupy/krem-kalafior-480x320.jpg 480w,\n                        assets/img/subpage-menu/zupy/krem-kalafior-720x480.jpg 720w,\n                        assets/img/subpage-menu/zupy/krem-kalafior-960x640.jpg 960w",
-        "src": "assets/img/subpage-menu/zupy/krem-kalafior-960x640.jpg",
-        "sizes": "(max-width: 768px) 100vw, (max-width: 1200px) 33vw, 400px",
+        "basePath": "assets/img/subpage-menu",
+        "category": "zupy",
+        "slug": "krem-kalafior",
+        "variants": [
+          {
+            "width": 480,
+            "height": 320,
+            "formats": [
+              "avif",
+              "webp",
+              "jpg"
+            ]
+          },
+          {
+            "width": 720,
+            "height": 480,
+            "formats": [
+              "avif",
+              "webp",
+              "jpg"
+            ]
+          },
+          {
+            "width": 960,
+            "height": 640,
+            "formats": [
+              "avif",
+              "webp",
+              "jpg"
+            ]
+          }
+        ],
+        "sizes": "(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw",
         "alt": "Jasny krem z kalafiora w granatowej misce, posypany zieleniną i prażonymi ziarnami.",
-        "figcaption": "Krem z pieczonego kalafiora",
-        "width": "480",
-        "height": "320"
+        "figcaption": "Krem z pieczonego kalafiora"
       },
       "id": "zupy-krem-z-pieczonego-kalafiora"
     },
@@ -182,15 +390,41 @@
         "Wegańskie"
       ],
       "image": {
-        "avifSrcset": "assets/img/subpage-menu/zupy/krem-kokos-480x320.avif 480w,\n                        assets/img/subpage-menu/zupy/krem-kokos-720x480.avif 720w,\n                        assets/img/subpage-menu/zupy/krem-kokos-960x640.avif 960w",
-        "webpSrcset": "assets/img/subpage-menu/zupy/krem-kokos-480x320.webp 480w,\n                        assets/img/subpage-menu/zupy/krem-kokos-720x480.webp 720w,\n                        assets/img/subpage-menu/zupy/krem-kokos-960x640.webp 960w",
-        "jpgSrcset": "assets/img/subpage-menu/zupy/krem-kokos-480x320.jpg 480w,\n                        assets/img/subpage-menu/zupy/krem-kokos-720x480.jpg 720w,\n                        assets/img/subpage-menu/zupy/krem-kokos-960x640.jpg 960w",
-        "src": "assets/img/subpage-menu/zupy/krem-kokos-960x640.jpg",
-        "sizes": "(max-width: 768px) 100vw, (max-width: 1200px) 33vw, 400px",
+        "basePath": "assets/img/subpage-menu",
+        "category": "zupy",
+        "slug": "krem-kokos",
+        "variants": [
+          {
+            "width": 480,
+            "height": 320,
+            "formats": [
+              "avif",
+              "webp",
+              "jpg"
+            ]
+          },
+          {
+            "width": 720,
+            "height": 480,
+            "formats": [
+              "avif",
+              "webp",
+              "jpg"
+            ]
+          },
+          {
+            "width": 960,
+            "height": 640,
+            "formats": [
+              "avif",
+              "webp",
+              "jpg"
+            ]
+          }
+        ],
+        "sizes": "(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw",
         "alt": "Kremowa zupa kokosowa z trawą cytrynową, plasterkami czerwonego chili i ziołami w misce.",
-        "figcaption": "Krem kokosowo-cytrusowy",
-        "width": "480",
-        "height": "320"
+        "figcaption": "Krem kokosowo-cytrusowy"
       },
       "id": "zupy-krem-kokosowy-z-trawą-cytrynową"
     },
@@ -203,15 +437,41 @@
         "Limited"
       ],
       "image": {
-        "avifSrcset": "assets/img/subpage-menu/kuchnia-szefa/amuse-480x320.avif 480w,\n                        assets/img/subpage-menu/kuchnia-szefa/amuse-720x480.avif 720w,\n                        assets/img/subpage-menu/kuchnia-szefa/amuse-960x640.avif 960w",
-        "webpSrcset": "assets/img/subpage-menu/kuchnia-szefa/amuse-480x320.webp 480w,\n                        assets/img/subpage-menu/kuchnia-szefa/amuse-720x480.webp 720w,\n                        assets/img/subpage-menu/kuchnia-szefa/amuse-960x640.webp 960w",
-        "jpgSrcset": "assets/img/subpage-menu/kuchnia-szefa/amuse-480x320.jpg 480w,\n                        assets/img/subpage-menu/kuchnia-szefa/amuse-720x480.jpg 720w,\n                        assets/img/subpage-menu/kuchnia-szefa/amuse-960x640.jpg 960w",
-        "src": "assets/img/subpage-menu/kuchnia-szefa/amuse-960x640.jpg",
-        "sizes": "(max-width: 768px) 100vw, (max-width: 1200px) 33vw, 400px",
+        "basePath": "assets/img/subpage-menu",
+        "category": "kuchnia-szefa",
+        "slug": "amuse",
+        "variants": [
+          {
+            "width": 480,
+            "height": 320,
+            "formats": [
+              "avif",
+              "webp",
+              "jpg"
+            ]
+          },
+          {
+            "width": 720,
+            "height": 480,
+            "formats": [
+              "avif",
+              "webp",
+              "jpg"
+            ]
+          },
+          {
+            "width": 960,
+            "height": 640,
+            "formats": [
+              "avif",
+              "webp",
+              "jpg"
+            ]
+          }
+        ],
+        "sizes": "(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw",
         "alt": "Małe kluseczki w sosie pomidorowym, posypane parmezanem i listkami bazylii w czarnej misce.",
-        "figcaption": "Degustacyjne amuse-bouche",
-        "width": "480",
-        "height": "320"
+        "figcaption": "Degustacyjne amuse-bouche"
       },
       "id": "kuchnia-szefa-amuse-bouche-szefa"
     },
@@ -225,15 +485,41 @@
         "Premium"
       ],
       "image": {
-        "avifSrcset": "assets/img/subpage-menu/kuchnia-szefa/poledwica-480x320.avif 480w,\n                        assets/img/subpage-menu/kuchnia-szefa/poledwica-720x480.avif 720w,\n                        assets/img/subpage-menu/kuchnia-szefa/poledwica-960x640.avif 960w",
-        "webpSrcset": "assets/img/subpage-menu/kuchnia-szefa/poledwica-480x320.webp 480w,\n                        assets/img/subpage-menu/kuchnia-szefa/poledwica-720x480.webp 720w,\n                        assets/img/subpage-menu/kuchnia-szefa/poledwica-960x640.webp 960w",
-        "jpgSrcset": "assets/img/subpage-menu/kuchnia-szefa/poledwica-480x320.jpg 480w,\n                        assets/img/subpage-menu/kuchnia-szefa/poledwica-720x480.jpg 720w,\n                        assets/img/subpage-menu/kuchnia-szefa/poledwica-960x640.jpg 960w",
-        "src": "assets/img/subpage-menu/kuchnia-szefa/poledwica-960x640.jpg",
-        "sizes": "(max-width: 768px) 100vw, (max-width: 1200px) 33vw, 400px",
+        "basePath": "assets/img/subpage-menu",
+        "category": "kuchnia-szefa",
+        "slug": "poledwica",
+        "variants": [
+          {
+            "width": 480,
+            "height": 320,
+            "formats": [
+              "avif",
+              "webp",
+              "jpg"
+            ]
+          },
+          {
+            "width": 720,
+            "height": 480,
+            "formats": [
+              "avif",
+              "webp",
+              "jpg"
+            ]
+          },
+          {
+            "width": 960,
+            "height": 640,
+            "formats": [
+              "avif",
+              "webp",
+              "jpg"
+            ]
+          }
+        ],
+        "sizes": "(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw",
         "alt": "Plastry polędwicy wołowej na białym kwadratowym talerzu, z pieczonymi warzywami i ziołami.",
-        "figcaption": "Polędwica sous-vide z sezonowymi dodatkami",
-        "width": "480",
-        "height": "320"
+        "figcaption": "Polędwica sous-vide z sezonowymi dodatkami"
       },
       "id": "kuchnia-szefa-polędwica-sous-vide"
     },
@@ -247,15 +533,41 @@
         "Limited"
       ],
       "image": {
-        "avifSrcset": "assets/img/subpage-menu/kuchnia-szefa/sandacz-480x320.avif 480w,\n                        assets/img/subpage-menu/kuchnia-szefa/sandacz-720x480.avif 720w,\n                        assets/img/subpage-menu/kuchnia-szefa/sandacz-960x640.avif 960w",
-        "webpSrcset": "assets/img/subpage-menu/kuchnia-szefa/sandacz-480x320.webp 480w,\n                        assets/img/subpage-menu/kuchnia-szefa/sandacz-720x480.webp 720w,\n                        assets/img/subpage-menu/kuchnia-szefa/sandacz-960x640.webp 960w",
-        "jpgSrcset": "assets/img/subpage-menu/kuchnia-szefa/sandacz-480x320.jpg 480w,\n                        assets/img/subpage-menu/kuchnia-szefa/sandacz-720x480.jpg 720w,\n                        assets/img/subpage-menu/kuchnia-szefa/sandacz-960x640.jpg 960w",
-        "src": "assets/img/subpage-menu/kuchnia-szefa/sandacz-960x640.jpg",
-        "sizes": "(max-width: 768px) 100vw, (max-width: 1200px) 33vw, 400px",
+        "basePath": "assets/img/subpage-menu",
+        "category": "kuchnia-szefa",
+        "slug": "sandacz",
+        "variants": [
+          {
+            "width": 480,
+            "height": 320,
+            "formats": [
+              "avif",
+              "webp",
+              "jpg"
+            ]
+          },
+          {
+            "width": 720,
+            "height": 480,
+            "formats": [
+              "avif",
+              "webp",
+              "jpg"
+            ]
+          },
+          {
+            "width": 960,
+            "height": 640,
+            "formats": [
+              "avif",
+              "webp",
+              "jpg"
+            ]
+          }
+        ],
+        "sizes": "(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw",
         "alt": "Porcja sandacza z rumianą skórką na prostokątnym talerzu, z pomidorkami i cząstką cytryny.",
-        "figcaption": "Sandacz z emulsją szczypiorkową",
-        "width": "480",
-        "height": "320"
+        "figcaption": "Sandacz z emulsją szczypiorkową"
       },
       "id": "kuchnia-szefa-sandacz-z-emulsją-szczypiorkową"
     },
@@ -268,15 +580,32 @@
         "Signature"
       ],
       "image": {
-        "avifSrcset": "assets/img/subpage-menu/desery/cytrusowe-ciasto-480x320.avif 480w,\n                        assets/img/subpage-menu/desery/cytrusowe-ciasto-720x480.avif 720w,\n                        assets/img/subpage-menu/desery/cytrusowe-ciasto-960x640.avif 960w",
-        "webpSrcset": "assets/img/subpage-menu/desery/cytrusowe-ciasto-480x320.webp 480w,\n                        assets/img/subpage-menu/desery/cytrusowe-ciasto-720x480.webp 720w,\n                        assets/img/subpage-menu/desery/cytrusowe-ciasto-960x640.webp 960w",
-        "jpgSrcset": "assets/img/subpage-menu/desery/cytrusowe-ciasto-480x320.jpg 480w,\n                        assets/img/subpage-menu/desery/cytrusowe-ciasto-720x480.jpg 720w,\n                        assets/img/subpage-menu/desery/cytrusowe-ciasto-960x640.jpg 960w",
-        "src": "assets/img/subpage-menu/desery/cytrusowe-ciasto-960x640.jpg",
-        "sizes": "(max-width: 768px) 100vw, (max-width: 1200px) 33vw, 400px",
+        "basePath": "assets/img/subpage-menu",
+        "category": "desery",
+        "slug": "cytrusowe-ciasto",
+        "variants": [
+          {
+            "width": 480,
+            "height": 320,
+            "formats": [
+              "avif",
+              "webp",
+              "jpg"
+            ]
+          },
+          {
+            "width": 960,
+            "height": 640,
+            "formats": [
+              "avif",
+              "webp",
+              "jpg"
+            ]
+          }
+        ],
+        "sizes": "(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw",
         "alt": "Kawałek wilgotnego ciasta cytrusowego z kleksem kremu, płatkami migdałów i skórką pomarańczową na talerzu.",
-        "figcaption": "Cytrusowe ciasto na oliwie",
-        "width": "480",
-        "height": "320"
+        "figcaption": "Cytrusowe ciasto na oliwie"
       },
       "id": "desery-cytrusowe-ciasto-na-oliwie"
     },
@@ -290,15 +619,41 @@
         "Premium"
       ],
       "image": {
-        "avifSrcset": "assets/img/subpage-menu/desery/mus-czekoladowy-480x320.avif 480w,\n                        assets/img/subpage-menu/desery/mus-czekoladowy-720x480.avif 720w,\n                        assets/img/subpage-menu/desery/mus-czekoladowy-960x640.avif 960w",
-        "webpSrcset": "assets/img/subpage-menu/desery/mus-czekoladowy-480x320.webp 480w,\n                        assets/img/subpage-menu/desery/mus-czekoladowy-720x480.webp 720w,\n                        assets/img/subpage-menu/desery/mus-czekoladowy-960x640.webp 960w",
-        "jpgSrcset": "assets/img/subpage-menu/desery/mus-czekoladowy-480x320.jpg 480w,\n                        assets/img/subpage-menu/desery/mus-czekoladowy-720x480.jpg 720w,\n                        assets/img/subpage-menu/desery/mus-czekoladowy-960x640.jpg 960w",
-        "src": "assets/img/subpage-menu/desery/mus-czekoladowy-960x640.jpg",
-        "sizes": "(max-width: 768px) 100vw, (max-width: 1200px) 33vw, 400px",
+        "basePath": "assets/img/subpage-menu",
+        "category": "desery",
+        "slug": "mus-czekoladowy",
+        "variants": [
+          {
+            "width": 480,
+            "height": 320,
+            "formats": [
+              "avif",
+              "webp",
+              "jpg"
+            ]
+          },
+          {
+            "width": 720,
+            "height": 480,
+            "formats": [
+              "avif",
+              "webp",
+              "jpg"
+            ]
+          },
+          {
+            "width": 960,
+            "height": 640,
+            "formats": [
+              "avif",
+              "webp",
+              "jpg"
+            ]
+          }
+        ],
+        "sizes": "(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw",
         "alt": "Szklanka musu z gorzkiej czekolady z chrupiącą posypką; obok kostki czekolady, łyżka i lniana serwetka.",
-        "figcaption": "Mus z gorzkiej czekolady",
-        "width": "480",
-        "height": "320"
+        "figcaption": "Mus z gorzkiej czekolady"
       },
       "id": "desery-mus-z-gorzkiej-czekolady"
     },
@@ -311,15 +666,41 @@
         "Sezonowe"
       ],
       "image": {
-        "avifSrcset": "assets/img/subpage-menu/desery/semifreddo-480x320.avif 480w,\n                        assets/img/subpage-menu/desery/semifreddo-720x480.avif 720w,\n                        assets/img/subpage-menu/desery/semifreddo-960x640.avif 960w",
-        "webpSrcset": "assets/img/subpage-menu/desery/semifreddo-480x320.webp 480w,\n                        assets/img/subpage-menu/desery/semifreddo-720x480.webp 720w,\n                        assets/img/subpage-menu/desery/semifreddo-960x640.webp 960w",
-        "jpgSrcset": "assets/img/subpage-menu/desery/semifreddo-480x320.jpg 480w,\n                        assets/img/subpage-menu/desery/semifreddo-720x480.jpg 720w,\n                        assets/img/subpage-menu/desery/semifreddo-960x640.jpg 960w",
-        "src": "assets/img/subpage-menu/desery/semifreddo-960x640.jpg",
-        "sizes": "(max-width: 768px) 100vw, (max-width: 1200px) 33vw, 400px",
+        "basePath": "assets/img/subpage-menu",
+        "category": "desery",
+        "slug": "semifreddo",
+        "variants": [
+          {
+            "width": 480,
+            "height": 320,
+            "formats": [
+              "avif",
+              "webp",
+              "jpg"
+            ]
+          },
+          {
+            "width": 720,
+            "height": 480,
+            "formats": [
+              "avif",
+              "webp",
+              "jpg"
+            ]
+          },
+          {
+            "width": 960,
+            "height": 640,
+            "formats": [
+              "avif",
+              "webp",
+              "jpg"
+            ]
+          }
+        ],
+        "sizes": "(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw",
         "alt": "Plasterki semifreddo z mascarpone i owocami leśnymi na ciemnym łupku, z cząstkami melona, pomarańczowymi owocami i borówkami.",
-        "figcaption": "Semifreddo z owocami leśnymi",
-        "width": "480",
-        "height": "320"
+        "figcaption": "Semifreddo z owocami leśnymi"
       },
       "id": "desery-semifreddo-z-owocami-leśnymi"
     },
@@ -332,15 +713,41 @@
         "Signature"
       ],
       "image": {
-        "avifSrcset": "assets/img/subpage-menu/drinki/koktajl-480x320.avif 480w,\n                        assets/img/subpage-menu/drinki/koktajl-720x480.avif 720w,\n                        assets/img/subpage-menu/drinki/koktajl-960x640.avif 960w",
-        "webpSrcset": "assets/img/subpage-menu/drinki/koktajl-480x320.webp 480w,\n                        assets/img/subpage-menu/drinki/koktajl-720x480.webp 720w,\n                        assets/img/subpage-menu/drinki/koktajl-960x640.webp 960w",
-        "jpgSrcset": "assets/img/subpage-menu/drinki/koktajl-480x320.jpg 480w, assets/img/subpage-menu/drinki/koktajl-720x480.jpg 720w, assets/img/subpage-menu/drinki/koktajl-960x640.jpg 960w",
-        "src": "assets/img/subpage-menu/drinki/koktajl-960x640.jpg",
-        "sizes": "(max-width: 768px) 100vw, (max-width: 1200px) 33vw, 400px",
+        "basePath": "assets/img/subpage-menu",
+        "category": "drinki",
+        "slug": "koktajl",
+        "variants": [
+          {
+            "width": 480,
+            "height": 320,
+            "formats": [
+              "avif",
+              "webp",
+              "jpg"
+            ]
+          },
+          {
+            "width": 720,
+            "height": 480,
+            "formats": [
+              "avif",
+              "webp",
+              "jpg"
+            ]
+          },
+          {
+            "width": 960,
+            "height": 640,
+            "formats": [
+              "avif",
+              "webp",
+              "jpg"
+            ]
+          }
+        ],
+        "sizes": "(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw",
         "alt": "Trzy kieliszki z czerwonym koktajlem szampańskim, ozdobione rozmarynem i żurawiną na metalowej tacy.",
-        "figcaption": "Koktajl Szampański z malinami",
-        "width": "480",
-        "height": "320"
+        "figcaption": "Koktajl Szampański z malinami"
       },
       "id": "drinki-koktajl-szampański"
     },
@@ -353,15 +760,40 @@
         "Classic"
       ],
       "image": {
-        "avifSrcset": "assets/img/subpage-menu/drinki/old-fashioned-480x320.avif 480w,\n                        assets/img/subpage-menu/drinki/old-fashioned-720x480.avif 720w,\n                        assets/img/subpage-menu/drinki/old-fashioned-960x640.avif 960w",
-        "webpSrcset": "assets/img/subpage-menu/drinki/old-fashioned-480x320.webp 480w,\n                        assets/img/subpage-menu/drinki/old-fashioned-720x480.webp 720w,\n                        assets/img/subpage-menu/drinki/old-fashioned-960x640.webp 960w",
-        "jpgSrcset": "assets/img/subpage-menu/drinki/old-fashioned-480x320.jpg 480w,\n                        assets/img/subpage-menu/drinki/old-fashioned-720x480.jpg 720w,\n                        assets/img/subpage-menu/drinki/old-fashioned-960x640.jpg 960w",
-        "src": "assets/img/subpage-menu/drinki/old-fashioned-960x640.jpg",
-        "sizes": "(max-width: 768px) 100vw, (max-width: 1200px) 33vw, 400px",
+        "basePath": "assets/img/subpage-menu",
+        "category": "drinki",
+        "slug": "old-fashioned",
+        "variants": [
+          {
+            "width": 480,
+            "height": 320,
+            "formats": [
+              "avif",
+              "jpg"
+            ]
+          },
+          {
+            "width": 720,
+            "height": 480,
+            "formats": [
+              "avif",
+              "webp",
+              "jpg"
+            ]
+          },
+          {
+            "width": 960,
+            "height": 640,
+            "formats": [
+              "avif",
+              "webp",
+              "jpg"
+            ]
+          }
+        ],
+        "sizes": "(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw",
         "alt": "Szklanka old fashioned z lodem, skórką pomarańczy i wiśnią koktajlową na drewnianym stole.",
-        "figcaption": "Old Fashioned",
-        "width": "480",
-        "height": "320"
+        "figcaption": "Old Fashioned"
       },
       "id": "drinki-old-fashioned"
     },
@@ -375,15 +807,41 @@
         "Wegańskie"
       ],
       "image": {
-        "avifSrcset": "assets/img/subpage-menu/drinki/mocktail-480x320.avif 480w,\n                        assets/img/subpage-menu/drinki/mocktail-720x480.avif 720w,\n                        assets/img/subpage-menu/drinki/mocktail-960x640.avif 960w",
-        "webpSrcset": "assets/img/subpage-menu/drinki/mocktail-480x320.webp 480w,\n                        assets/img/subpage-menu/drinki/mocktail-720x480.webp 720w,\n                        assets/img/subpage-menu/drinki/mocktail-960x640.webp 960w",
-        "jpgSrcset": "assets/img/subpage-menu/drinki/mocktail-480x320.jpg 480w,\n                        assets/img/subpage-menu/drinki/mocktail-720x480.jpg 720w,\n                        assets/img/subpage-menu/drinki/mocktail-960x640.jpg 960w",
-        "src": "assets/img/subpage-menu/drinki/mocktail-960x640.jpg",
-        "sizes": "(max-width: 768px) 100vw, (max-width: 1200px) 33vw, 400px",
+        "basePath": "assets/img/subpage-menu",
+        "category": "drinki",
+        "slug": "mocktail",
+        "variants": [
+          {
+            "width": 480,
+            "height": 320,
+            "formats": [
+              "avif",
+              "webp",
+              "jpg"
+            ]
+          },
+          {
+            "width": 720,
+            "height": 480,
+            "formats": [
+              "avif",
+              "webp",
+              "jpg"
+            ]
+          },
+          {
+            "width": 960,
+            "height": 640,
+            "formats": [
+              "avif",
+              "webp",
+              "jpg"
+            ]
+          }
+        ],
+        "sizes": "(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw",
         "alt": "Szklanka kolorowego mocktailu z plasterkami cytrusów, listkami mięty i czerwonymi owocami na drewnianym stole.",
-        "figcaption": "Ogrodowy mocktail",
-        "width": "480",
-        "height": "320"
+        "figcaption": "Ogrodowy mocktail"
       },
       "id": "drinki-ogrodowy-mocktail"
     }

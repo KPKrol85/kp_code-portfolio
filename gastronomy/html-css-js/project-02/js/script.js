@@ -855,13 +855,128 @@ function fetchMenuDataOnce() {
   return menuDataPromise;
 }
 
+var MENU_CARD_SIZES = "(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw";
+
+function buildMenuPictureMarkup(img, options) {
+  if (!img) return "";
+  options = options || {};
+  var loading = options.loading || "lazy";
+  var fetchpriority = options.fetchpriority ? ' fetchpriority="high"' : "";
+  var sizes = img.sizes || MENU_CARD_SIZES;
+  var variants = Array.isArray(img.variants) ? img.variants : [];
+  var basePath = img.basePath || "";
+  var category = img.category || "";
+  var slug = img.slug || "";
+
+  if (!variants.length) {
+    return "";
+  }
+
+  var formatOrder = ["avif", "webp", "jpg", "png"];
+  var availableFormats = [];
+  variants.forEach(function (variant) {
+    (variant.formats || []).forEach(function (fmt) {
+      if (availableFormats.indexOf(fmt) === -1) availableFormats.push(fmt);
+    });
+  });
+  availableFormats.sort(function (a, b) {
+    return formatOrder.indexOf(a) - formatOrder.indexOf(b);
+  });
+
+  function buildSrcset(format) {
+    return variants
+      .filter(function (variant) {
+        return Array.isArray(variant.formats) && variant.formats.indexOf(format) !== -1;
+      })
+      .map(function (variant) {
+        return (
+          basePath +
+          "/" +
+          category +
+          "/" +
+          slug +
+          "-" +
+          variant.width +
+          "x" +
+          variant.height +
+          "." +
+          format +
+          " " +
+          variant.width +
+          "w"
+        );
+      })
+      .join(", ");
+  }
+
+  var fallbackFormat = "jpg";
+  if (availableFormats.indexOf(fallbackFormat) === -1) {
+    fallbackFormat = availableFormats[0] || "jpg";
+  }
+
+  var fallbackVariants = variants.filter(function (variant) {
+    return Array.isArray(variant.formats) && variant.formats.indexOf(fallbackFormat) !== -1;
+  });
+  var primaryVariant = (fallbackVariants.length ? fallbackVariants : variants).reduce(function (acc, variant) {
+    return !acc || variant.width > acc.width ? variant : acc;
+  }, null);
+
+  var imgSrc =
+    basePath +
+    "/" +
+    category +
+    "/" +
+    slug +
+    "-" +
+    primaryVariant.width +
+    "x" +
+    primaryVariant.height +
+    "." +
+    fallbackFormat;
+
+  var sourcesMarkup = availableFormats
+    .filter(function (format) {
+      return format !== fallbackFormat;
+    })
+    .map(function (format) {
+      var srcset = buildSrcset(format);
+      if (!srcset) return "";
+      return '<source type="image/' + format + '" srcset="' + srcset + '" sizes="' + sizes + '" />';
+    })
+    .join("");
+
+  var imgSrcset = buildSrcset(fallbackFormat);
+
+  return (
+    "<picture>" +
+    sourcesMarkup +
+    '<img class="card__image" src="' +
+    imgSrc +
+    '" srcset="' +
+    imgSrcset +
+    '" sizes="' +
+    sizes +
+    '" alt="' +
+    (img.alt || "") +
+    '" loading="' +
+    loading +
+    '"' +
+    fetchpriority +
+    ' decoding="async" width="' +
+    primaryVariant.width +
+    '" height="' +
+    primaryVariant.height +
+    '" />' +
+    "</picture>"
+  );
+}
+
 function buildMenuCardMarkup(item, options) {
   if (!item) return "";
   options = options || {};
   var loading = options.loading || "lazy";
-  var fetchpriority = options.fetchpriority ? ' fetchpriority="high"' : "";
+  var fetchpriority = options.fetchpriority;
   var img = item.image || {};
-  var sizes = img.sizes || "(max-width: 768px) 100vw, (max-width: 1200px) 33vw, 400px";
   var tags = Array.isArray(item.tags) && item.tags.length ? item.tags : [];
   var tagsMarkup = tags
     .map(function (tag) {
@@ -869,40 +984,13 @@ function buildMenuCardMarkup(item, options) {
     })
     .join("");
   var figcaption = img.figcaption ? '<figcaption class="visually-hidden">' + img.figcaption + "</figcaption>" : "";
+  var pictureMarkup = buildMenuPictureMarkup(img, { loading: loading, fetchpriority: fetchpriority });
 
   return (
     '<li class="card menu-card" data-reveal>' +
     "<article>" +
     '<figure class="menu-card__figure">' +
-    "<picture>" +
-    '<source type="image/avif" srcset="' +
-    img.avifSrcset +
-    '" sizes="' +
-    sizes +
-    '" />' +
-    '<source type="image/webp" srcset="' +
-    img.webpSrcset +
-    '" sizes="' +
-    sizes +
-    '" />' +
-    '<img class="card__image" src="' +
-    img.src +
-    '" srcset="' +
-    img.jpgSrcset +
-    '" sizes="' +
-    sizes +
-    '" alt="' +
-    img.alt +
-    '" loading="' +
-    loading +
-    '"' +
-    fetchpriority +
-    ' decoding="async" width="' +
-    img.width +
-    '" height="' +
-    img.height +
-    '" />' +
-    "</picture>" +
+    pictureMarkup +
     figcaption +
     "</figure>" +
     '<div class="card__body">' +
