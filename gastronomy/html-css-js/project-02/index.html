@@ -248,95 +248,156 @@
             <a href="menu.html" class="btn btn--primary" aria-label="Przejdź do pełnego menu restauracji">Przejdź do pełnego menu</a>
           </div>
 
-          <ul class="cards" data-reveal-group>
-            <!-- Duck -->
-            <li class="card" data-reveal>
-              <picture>
-                <source
-                  type="image/avif"
-                  srcset="assets/img/menu/duck-400x261.avif 400w, assets/img/menu/duck-800x534.avif 800w, assets/img/menu/duck-1200x801.avif 1200w"
-                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 33vw, 400px" />
-
-                <source
-                  type="image/webp"
-                  srcset="assets/img/menu/duck-400x261.webp 400w, assets/img/menu/duck-800x534.webp 800w, assets/img/menu/duck-1200x801.webp 1200w"
-                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 33vw, 400px" />
-
-                <img
-                  class="card__image"
-                  src="assets/img/menu/duck-1200x801.jpg"
-                  srcset="assets/img/menu/duck-400x261.jpg 400w, assets/img/menu/duck-800x534.jpg 800w, assets/img/menu/duck-1200x801.jpg 1200w"
-                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 33vw, 400px"
-                  alt="Plastry kaczki glazurowanej w sosie burgundowym, podane na sałatce z warzywami i figami."
-                  loading="lazy"
-                  decoding="async"
-                  width="1200"
-                  height="801" />
-              </picture>
-              <div class="card__body">
-                <h3 class="card__title">Kaczka w Glazurze Burgundowej</h3>
-                <p class="card__text">Pierś z kaczki pieczona, redukcja z fig i wina, grillowana cykoria.</p>
-              </div>
+          <ul class="cards menu-cards" data-reveal-group data-menu-featured="true">
+            <li class="card menu-card" data-reveal>
+              <article>
+                <figure class="menu-card__figure">
+                  <picture>
+                    <source
+                      type="image/avif"
+                      srcset="
+                        assets/img/subpage-menu/przystawki/risotto-480x320.avif 480w,
+                        assets/img/subpage-menu/przystawki/risotto-720x480.avif 720w,
+                        assets/img/subpage-menu/przystawki/risotto-960x640.avif 960w
+                      "
+                      sizes="(max-width: 768px) 100vw, (max-width: 1200px) 33vw, 400px" />
+                    <source
+                      type="image/webp"
+                      srcset="
+                        assets/img/subpage-menu/przystawki/risotto-480x320.webp 480w,
+                        assets/img/subpage-menu/przystawki/risotto-720x480.webp 720w,
+                        assets/img/subpage-menu/przystawki/risotto-960x640.webp 960w
+                      "
+                      sizes="(max-width: 768px) 100vw, (max-width: 1200px) 33vw, 400px" />
+                    <img
+                      class="card__image"
+                      src="assets/img/subpage-menu/przystawki/risotto-960x640.jpg"
+                      srcset="
+                        assets/img/subpage-menu/przystawki/risotto-480x320.jpg 480w,
+                        assets/img/subpage-menu/przystawki/risotto-720x480.jpg 720w,
+                        assets/img/subpage-menu/przystawki/risotto-960x640.jpg 960w
+                      "
+                      sizes="(max-width: 768px) 100vw, (max-width: 1200px) 33vw, 400px"
+                      alt="Risotto z karmelizowaną gruszką i szałwią, podane z parmezanem i listkami świeżych ziół."
+                      loading="eager"
+                      fetchpriority="high"
+                      decoding="async"
+                      width="480"
+                      height="320" />
+                  </picture>
+                  <figcaption class="visually-hidden">Risotto z gruszką i szałwią</figcaption>
+                </figure>
+                <div class="card__body">
+                  <div class="menu-card__heading">
+                    <h3 class="card__title">Risotto z Gruszką i Szałwią</h3>
+                    <span class="menu-card__price">39 zł</span>
+                  </div>
+                  <p class="card__text">Ryż Carnaroli, karmelizowana gruszka, masło szałwiowe, parmezan dojrzewający.</p>
+                  <ul class="menu-card__tags">
+                    <li class="menu-card__tag">Wegetariańskie</li>
+                  </ul>
+                </div>
+              </article>
             </li>
 
-            <!-- Risotto -->
-            <li class="card" data-reveal>
-              <picture>
-                <source
-                  type="image/avif"
-                  srcset="assets/img/menu/risotto-400x261.avif 400w, assets/img/menu/risotto-800x534.avif 800w, assets/img/menu/risotto-1200x801.avif 1200w"
-                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 33vw, 400px" />
-
-                <source
-                  type="image/webp"
-                  srcset="assets/img/menu/risotto-400x261.webp 400w, assets/img/menu/risotto-800x534.webp 800w, assets/img/menu/risotto-1200x801.webp 1200w"
-                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 33vw, 400px" />
-
-                <img
-                  class="card__image"
-                  src="assets/img/menu/risotto-1200x801.jpg"
-                  srcset="assets/img/menu/risotto-400x261.jpg 400w, assets/img/menu/risotto-800x534.jpg 800w, assets/img/menu/risotto-1200x801.jpg 1200w"
-                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 33vw, 400px"
-                  alt="Kremowe risotto z szafranem, udekorowane parmezanem i świeżymi ziołami."
-                  loading="lazy"
-                  decoding="async"
-                  width="1200"
-                  height="801" />
-              </picture>
-              <div class="card__body">
-                <h3 class="card__title">Risotto Szafranowe</h3>
-                <p class="card__text">Ryż Carnaroli, nitki szafranu, chrupiący parmezan.</p>
-              </div>
+            <li class="card menu-card" data-reveal>
+              <article>
+                <figure class="menu-card__figure">
+                  <picture>
+                    <source
+                      type="image/avif"
+                      srcset="
+                        assets/img/subpage-menu/dania-glowne/kaczka-480x320.avif 480w,
+                        assets/img/subpage-menu/dania-glowne/kaczka-720x480.avif 720w,
+                        assets/img/subpage-menu/dania-glowne/kaczka-960x640.avif 960w
+                      "
+                      sizes="(max-width: 768px) 100vw, (max-width: 1200px) 33vw, 400px" />
+                    <source
+                      type="image/webp"
+                      srcset="
+                        assets/img/subpage-menu/dania-glowne/kaczka-480x320.webp 480w,
+                        assets/img/subpage-menu/dania-glowne/kaczka-720x480.webp 720w,
+                        assets/img/subpage-menu/dania-glowne/kaczka-960x640.webp 960w
+                      "
+                      sizes="(max-width: 768px) 100vw, (max-width: 1200px) 33vw, 400px" />
+                    <img
+                      class="card__image"
+                      src="assets/img/subpage-menu/dania-glowne/kaczka-960x640.jpg"
+                      srcset="
+                        assets/img/subpage-menu/dania-glowne/kaczka-480x320.jpg 480w,
+                        assets/img/subpage-menu/dania-glowne/kaczka-720x480.jpg 720w,
+                        assets/img/subpage-menu/dania-glowne/kaczka-960x640.jpg 960w
+                      "
+                      sizes="(max-width: 768px) 100vw, (max-width: 1200px) 33vw, 400px"
+                      alt="Pierś kaczki w glazurze burgundowej z puree z topinamburu i grillowaną cykorią."
+                      loading="lazy"
+                      decoding="async"
+                      width="480"
+                      height="320" />
+                  </picture>
+                  <figcaption class="visually-hidden">Kaczka w glazurze burgundowej</figcaption>
+                </figure>
+                <div class="card__body">
+                  <div class="menu-card__heading">
+                    <h3 class="card__title">Kaczka w Glazurze Burgundowej</h3>
+                    <span class="menu-card__price">92 zł</span>
+                  </div>
+                  <p class="card__text">Pierś z kaczki wolno pieczona, redukcja z wina i fig, puree z topinamburu, grillowana cykoria.</p>
+                  <ul class="menu-card__tags">
+                    <li class="menu-card__tag">Signature</li>
+                  </ul>
+                </div>
+              </article>
             </li>
 
-            <!-- Cake -->
-            <li class="card" data-reveal>
-              <picture>
-                <source
-                  type="image/avif"
-                  srcset="assets/img/menu/cake-400x261.avif 400w, assets/img/menu/cake-800x534.avif 800w, assets/img/menu/cake-1200x801.avif 1200w"
-                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 33vw, 400px" />
-
-                <source
-                  type="image/webp"
-                  srcset="assets/img/menu/cake-400x261.webp 400w, assets/img/menu/cake-800x534.webp 800w, assets/img/menu/cake-1200x801.webp 1200w"
-                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 33vw, 400px" />
-
-                <img
-                  class="card__image"
-                  src="assets/img/menu/cake-1200x801.jpg"
-                  srcset="assets/img/menu/cake-400x261.jpg 400w, assets/img/menu/cake-800x534.jpg 800w, assets/img/menu/cake-1200x801.jpg 1200w"
-                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 33vw, 400px"
-                  alt="Cytrusowe ciasto na oliwie z kandyzowaną pomarańczą, bitą śmietaną i płatkami migdałów."
-                  loading="lazy"
-                  decoding="async"
-                  width="1200"
-                  height="801" />
-              </picture>
-              <div class="card__body">
-                <h3 class="card__title">Cytrusowe Ciasto na Oliwie</h3>
-                <p class="card__text">Kandyzowana pomarańcza, krem mascarpone, miód.</p>
-              </div>
+            <li class="card menu-card" data-reveal>
+              <article>
+                <figure class="menu-card__figure">
+                  <picture>
+                    <source
+                      type="image/avif"
+                      srcset="
+                        assets/img/subpage-menu/desery/cytrusowe-ciasto-480x320.avif 480w,
+                        assets/img/subpage-menu/desery/cytrusowe-ciasto-720x480.avif 720w,
+                        assets/img/subpage-menu/desery/cytrusowe-ciasto-960x640.avif 960w
+                      "
+                      sizes="(max-width: 768px) 100vw, (max-width: 1200px) 33vw, 400px" />
+                    <source
+                      type="image/webp"
+                      srcset="
+                        assets/img/subpage-menu/desery/cytrusowe-ciasto-480x320.webp 480w,
+                        assets/img/subpage-menu/desery/cytrusowe-ciasto-720x480.webp 720w,
+                        assets/img/subpage-menu/desery/cytrusowe-ciasto-960x640.webp 960w
+                      "
+                      sizes="(max-width: 768px) 100vw, (max-width: 1200px) 33vw, 400px" />
+                    <img
+                      class="card__image"
+                      src="assets/img/subpage-menu/desery/cytrusowe-ciasto-960x640.jpg"
+                      srcset="
+                        assets/img/subpage-menu/desery/cytrusowe-ciasto-480x320.jpg 480w,
+                        assets/img/subpage-menu/desery/cytrusowe-ciasto-720x480.jpg 720w,
+                        assets/img/subpage-menu/desery/cytrusowe-ciasto-960x640.jpg 960w
+                      "
+                      sizes="(max-width: 768px) 100vw, (max-width: 1200px) 33vw, 400px"
+                      alt="Cytrusowe ciasto na oliwie z kandyzowaną pomarańczą i kremem mascarpone."
+                      loading="lazy"
+                      decoding="async"
+                      width="480"
+                      height="320" />
+                  </picture>
+                  <figcaption class="visually-hidden">Cytrusowe ciasto na oliwie</figcaption>
+                </figure>
+                <div class="card__body">
+                  <div class="menu-card__heading">
+                    <h3 class="card__title">Cytrusowe Ciasto na Oliwie</h3>
+                    <span class="menu-card__price">34 zł</span>
+                  </div>
+                  <p class="card__text">Oliwa z pierwszego tłoczenia, kandyzowana pomarańcza, krem mascarpone z miodem lawendowym.</p>
+                  <ul class="menu-card__tags">
+                    <li class="menu-card__tag">Signature</li>
+                  </ul>
+                </div>
+              </article>
             </li>
           </ul>
         </div>
@@ -715,7 +776,7 @@
           <span>
             ©
             <span id="year"></span>
-            Atelier No.02. Wszelkie prawa zastrzeżone. Projekt i wdrożenie: Atelier No.02
+            KP_Code | Wszelkie prawa zastrzeżone
           </span>
         </div>
       </div>

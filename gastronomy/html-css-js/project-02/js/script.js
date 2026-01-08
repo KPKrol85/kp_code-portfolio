@@ -319,6 +319,11 @@
       updateHeader();
       window.addEventListener("scroll", onScroll, { passive: true });
     }
+    renderFeaturedMenu().then(function (rendered) {
+      if (rendered && typeof window.initReveal === "function") {
+        window.initReveal();
+      }
+    });
     initReveal();
     initThemeToggle();
   });
@@ -830,6 +835,146 @@ if (typeof window !== "undefined") {
   window.initReveal = initReveal;
 }
 
+/* ===== 06 - MENU DATA RENDER ===== */
+
+var menuDataPromise = null;
+
+function fetchMenuDataOnce() {
+  if (menuDataPromise) return menuDataPromise;
+  menuDataPromise = fetch("data/menu.json", { cache: "no-store" })
+    .then(function (res) {
+      if (!res.ok) throw new Error("menu.json load failed");
+      return res.json();
+    })
+    .then(function (data) {
+      return data && Array.isArray(data.items) ? data.items : [];
+    })
+    .catch(function () {
+      return [];
+    });
+  return menuDataPromise;
+}
+
+function buildMenuCardMarkup(item, options) {
+  if (!item) return "";
+  options = options || {};
+  var loading = options.loading || "lazy";
+  var fetchpriority = options.fetchpriority ? ' fetchpriority="high"' : "";
+  var img = item.image || {};
+  var sizes = img.sizes || "(max-width: 768px) 100vw, (max-width: 1200px) 33vw, 400px";
+  var tags = Array.isArray(item.tags) && item.tags.length ? item.tags : [];
+  var tagsMarkup = tags
+    .map(function (tag) {
+      return '<li class="menu-card__tag">' + tag + "</li>";
+    })
+    .join("");
+  var figcaption = img.figcaption ? '<figcaption class="visually-hidden">' + img.figcaption + "</figcaption>" : "";
+
+  return (
+    '<li class="card menu-card" data-reveal>' +
+    "<article>" +
+    '<figure class="menu-card__figure">' +
+    "<picture>" +
+    '<source type="image/avif" srcset="' +
+    img.avifSrcset +
+    '" sizes="' +
+    sizes +
+    '" />' +
+    '<source type="image/webp" srcset="' +
+    img.webpSrcset +
+    '" sizes="' +
+    sizes +
+    '" />' +
+    '<img class="card__image" src="' +
+    img.src +
+    '" srcset="' +
+    img.jpgSrcset +
+    '" sizes="' +
+    sizes +
+    '" alt="' +
+    img.alt +
+    '" loading="' +
+    loading +
+    '"' +
+    fetchpriority +
+    ' decoding="async" width="' +
+    img.width +
+    '" height="' +
+    img.height +
+    '" />' +
+    "</picture>" +
+    figcaption +
+    "</figure>" +
+    '<div class="card__body">' +
+    '<div class="menu-card__heading">' +
+    '<h3 class="card__title">' +
+    item.title +
+    "</h3>" +
+    '<span class="menu-card__price">' +
+    item.price +
+    "</span>" +
+    "</div>" +
+    '<p class="card__text">' +
+    item.description +
+    "</p>" +
+    (tagsMarkup ? '<ul class="menu-card__tags">' + tagsMarkup + "</ul>" : "") +
+    "</div>" +
+    "</article>" +
+    "</li>"
+  );
+}
+
+function renderFeaturedMenu() {
+  var list = document.querySelector('[data-menu-featured="true"]');
+  if (!list) return Promise.resolve(false);
+  return fetchMenuDataOnce().then(function (items) {
+    if (!items.length) return false;
+    var preferred = ["przystawki", "dania-glowne", "desery"];
+    var selection = [];
+    preferred.forEach(function (cat) {
+      var found = items.find(function (item) {
+        return item.category === cat;
+      });
+      if (found) selection.push(found);
+    });
+    if (selection.length < 3) selection = items.slice(0, 3);
+    var html = selection
+      .map(function (item, idx) {
+        return buildMenuCardMarkup(item, { loading: idx === 0 ? "eager" : "lazy", fetchpriority: idx === 0 });
+      })
+      .join("");
+    if (!html) return false;
+    list.innerHTML = html;
+    return true;
+  });
+}
+
+function renderMenuByCategory() {
+  var lists = Array.prototype.slice.call(document.querySelectorAll("[data-menu-category]"));
+  if (!lists.length) return Promise.resolve(false);
+  return fetchMenuDataOnce().then(function (items) {
+    if (!items.length) return false;
+    var firstImage = true;
+    lists.forEach(function (list) {
+      var category = list.getAttribute("data-menu-category");
+      if (!category) return;
+      var subset = items.filter(function (item) {
+        return item.category === category;
+      });
+      if (!subset.length) return;
+      var html = subset
+        .map(function (item, idx) {
+          var useEager = firstImage;
+          firstImage = false;
+          return buildMenuCardMarkup(item, { loading: useEager ? "eager" : "lazy", fetchpriority: useEager });
+        })
+        .join("");
+      if (html) list.innerHTML = html;
+    });
+    return true;
+  });
+}
+
 /* ===== 06 - MENU PAGE  ===== */
 
 (function () {
@@ -847,7 +992,7 @@ if (typeof window !== "undefined") {
       bottomPercentMobile: "-65%",
     });
 
-    (function initMenuFilters() {
+    function initMenuFilters() {
       var search = document.getElementById("menu-search");
       var buttonsWrap = document.querySelector(".menu-filters .filters");
       if (!search || !buttonsWrap) return;
@@ -929,9 +1074,9 @@ if (typeof window !== "undefined") {
       });
 
       apply();
-    })();
+    }
 
-    (function initPriceLabels() {
+    function initPriceLabels() {
       var prices = Array.prototype.slice.call(document.querySelectorAll(".menu-card__price"));
       prices.forEach(function (el) {
         var raw = (el.textContent || "").trim();
@@ -939,11 +1084,11 @@ if (typeof window !== "undefined") {
         var val = m ? m[0] : raw;
         el.setAttribute("aria-label", val + " złotych");
       });
-    })();
+    }
 
     /* ===== 06 - GALLERY PAGE ===== */
 
-    (function enhanceFigureAlts() {
+    function enhanceFigureAlts() {
       var cards = Array.prototype.slice.call(document.querySelectorAll(".menu-card"));
       cards.forEach(function (card) {
         var fig = card.querySelector("figure");
@@ -966,9 +1111,9 @@ if (typeof window !== "undefined") {
           fig.appendChild(newCap);
         }
       });
-    })();
+    }
 
-    (function initAnchors() {
+    function initAnchors() {
       function slugify(str) {
         return (str || "")
           .toString()
@@ -1018,6 +1163,16 @@ if (typeof window !== "undefined") {
       }
       document.querySelectorAll(".menu-section__header h2").forEach(addAnchor);
       document.querySelectorAll(".card__title").forEach(addAnchor);
-    })();
+    }
+
+    renderMenuByCategory().then(function (rendered) {
+      initMenuFilters();
+      initPriceLabels();
+      enhanceFigureAlts();
+      initAnchors();
+      if (rendered && typeof window.initReveal === "function") {
+        window.initReveal();
+      }
+    });
   });
 })();

@@ -1,4 +1,4 @@
-const CACHE_NAME = "atelierno02-v1.0.4";
+const CACHE_NAME = "atelierno02-v1.0.6";
 
 const FILES_TO_CACHE = [
   "/",
@@ -11,6 +11,7 @@ const FILES_TO_CACHE = [
   "/regulamin.html",
   "/css/style.min.css",
   "/js/script.min.js",
+  "/data/menu.json",
   "/manifest.webmanifest",
   "/assets/icons/fav-icon/web-app-manifest-192x192.png",
   "/assets/icons/fav-icon/web-app-manifest-512x512.png",
