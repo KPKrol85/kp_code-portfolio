@@ -11,6 +11,7 @@
 "use strict";
 (function () {
   var root = document.documentElement;
+  root.classList.add("js");
   var THEME_STORAGE_KEY = "kp-theme";
   var metaTheme = null;
   var systemPreference = typeof window !== "undefined" && window.matchMedia ? window.matchMedia("(prefers-color-scheme: dark)") : null;
@@ -169,6 +170,7 @@
     document.addEventListener("keyup", function (event) {
       event.key === "Escape" && navToggle && navToggle.getAttribute("aria-expanded") === "true" && s(navToggle, false);
     });
+    var reduceMotion = typeof window.matchMedia === "function" && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     document.querySelectorAll('a[href^="#"]').forEach(function (link) {
       link.addEventListener("click", function (event) {
         var targetId = link.getAttribute("href");
@@ -176,7 +178,7 @@
         var target = document.querySelector(targetId);
         if (!target) return;
         event.preventDefault();
-        target.scrollIntoView({ behavior: "smooth", block: "start" });
+        target.scrollIntoView({ behavior: reduceMotion ? "auto" : "smooth", block: "start" });
         target.setAttribute("tabindex", "-1");
         target.focus({ preventScroll: true });
       });
@@ -184,6 +186,7 @@
     var form = q(".form");
     var status = q("#form-status");
     if (form) {
+      form.setAttribute("novalidate", "");
       var progress = q("#form-progress");
       var nameInput = form.querySelector("#name");
       var emailInput = form.querySelector("#email");
@@ -443,6 +446,8 @@ function initScrollspy(config) {
 
 (function initUnifiedLightbox() {
   const html = document.documentElement;
+  const hasGalleryLinks = document.querySelector(".gallery__link");
+  if (!hasGalleryLinks) return;
 
   let overlay = document.querySelector(".lb-overlay");
   if (!overlay) {
