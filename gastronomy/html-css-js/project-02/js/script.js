@@ -1,12 +1,3 @@
-/* ============================================
-   = 00 - DOM HELPERS & NAV STATE
-   = 01 - THEME STATE MANAGEMENT
-   = 02 - THEME TOGGLE INITIALIZATION
-   = 03 - DOMCONTENTLOADED INTERACTIONS
-   = 04 - GALLERY PAGE
-   = 05 - REVEAL
-   = 06 - MENU PAGE
-   ============================================ */
 
 "use strict";
 (function () {
@@ -17,7 +8,7 @@
   var systemPreference = typeof window !== "undefined" && window.matchMedia ? window.matchMedia("(prefers-color-scheme: dark)") : null;
   var hasStoredPreference = false;
 
-  /* ===== 00 - DOM HELPERS & NAV STATE ===== */
+  /* === 00 - Dom helpers & nav state === */
 
   function q(selector) {
     return typeof selector === "string" ? document.querySelector(selector) : selector || null;
@@ -126,7 +117,7 @@
     }
   }
 
-  /* ===== 01 - THEME STATE MANAGEMENT ===== */
+  /* === 01 - Theme state === */
 
   function getStoredTheme() {
     try {
@@ -178,7 +169,7 @@
     }
   }
 
-  /* ===== 02 - THEME TOGGLE INITIALIZATION ===== */
+  /* === 02 - Theme toggle === */
 
   function initThemeToggle() {
     var toggle = q(".theme-toggle");
@@ -213,7 +204,7 @@
     window.initThemeToggle = initThemeToggle;
   }
 
-  /* ===== 03 - DOMCONTENTLOADED INTERACTIONS ===== */
+  /* === 03 - Domcontents loaded === */
 
   document.addEventListener("DOMContentLoaded", function () {
     var legalYear = document.getElementById("year");
@@ -407,7 +398,7 @@
   });
 })();
 
-/* ===== Shared: Scrollspy Helper ===== */
+/* === 03 - Scrollspy Helper === */
 
 function initScrollspy(config) {
   if (!config || !config.pageClass || !config.ids || !config.listSelector) return;
@@ -510,7 +501,7 @@ function initScrollspy(config) {
   setTimeout(computeActiveByPosition, 0);
 }
 
-/* ===== 04 - GALLERY PAGE ===== */
+/* === 04 - Gallery page === */
 
 (function () {
   document.addEventListener("DOMContentLoaded", function () {
@@ -525,7 +516,7 @@ function initScrollspy(config) {
   });
 })();
 
-/* ===== 04 - LIGHTBOX ===== */
+/* === 05 - Lightbox === */
 
 (function initUnifiedLightbox() {
   const html = document.documentElement;
@@ -597,7 +588,7 @@ function initScrollspy(config) {
       overlay.setAttribute("aria-describedby", "lb-caption");
       overlay.setAttribute("aria-keyshortcuts", "Esc ArrowLeft ArrowRight F");
     } catch (e) {
-      /* no-op */
+
     }
 
     const live = document.createElement("div");
@@ -841,7 +832,7 @@ function initScrollspy(config) {
   });
 })();
 
-/* ===== 05 - REVEAL ===== */
+/* === 06 - Reveal === */
 
 function initReveal() {
   var nodes = Array.prototype.slice.call(document.querySelectorAll("[data-reveal]"));
@@ -913,7 +904,7 @@ if (typeof window !== "undefined") {
   window.initReveal = initReveal;
 }
 
-/* ===== 06 - MENU DATA RENDER ===== */
+/* === 07 - Menu data render === */
 
 var FALLBACK_IMAGE =
   "data:image/svg+xml;charset=UTF-8," +
@@ -990,22 +981,7 @@ function buildMenuPictureMarkup(img, options) {
         return Array.isArray(variant.formats) && variant.formats.indexOf(format) !== -1;
       })
       .map(function (variant) {
-        return (
-          basePath +
-          "/" +
-          category +
-          "/" +
-          slug +
-          "-" +
-          variant.width +
-          "x" +
-          variant.height +
-          "." +
-          format +
-          " " +
-          variant.width +
-          "w"
-        );
+        return basePath + "/" + category + "/" + slug + "-" + variant.width + "x" + variant.height + "." + format + " " + variant.width + "w";
       })
       .join(", ");
   }
@@ -1022,18 +998,7 @@ function buildMenuPictureMarkup(img, options) {
     return !acc || variant.width > acc.width ? variant : acc;
   }, null);
 
-  var imgSrc =
-    basePath +
-    "/" +
-    category +
-    "/" +
-    slug +
-    "-" +
-    primaryVariant.width +
-    "x" +
-    primaryVariant.height +
-    "." +
-    fallbackFormat;
+  var imgSrc = basePath + "/" + category + "/" + slug + "-" + primaryVariant.width + "x" + primaryVariant.height + "." + fallbackFormat;
 
   var sourcesMarkup = availableFormats
     .filter(function (format) {
@@ -1166,7 +1131,7 @@ function renderMenuByCategory() {
   });
 }
 
-/* ===== 06 - MENU PAGE  ===== */
+/* === 08 - Menu page === */
 
 (function () {
   document.addEventListener("DOMContentLoaded", function () {
@@ -1277,7 +1242,7 @@ function renderMenuByCategory() {
       });
     }
 
-    /* ===== 06 - GALLERY PAGE ===== */
+    /* === 09 - Gallery page === */
 
     function enhanceFigureAlts() {
       var cards = Array.prototype.slice.call(document.querySelectorAll(".menu-card"));
