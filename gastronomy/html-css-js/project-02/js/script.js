@@ -174,6 +174,26 @@
           form.reset();
         }, 800);
       });
+    var header = q(".site-header");
+    if (header) {
+      var isTicking = false;
+      var lastState = null;
+      var updateHeader = function () {
+        var shouldShrink = window.scrollY > 8;
+        if (shouldShrink !== lastState) {
+          header.classList.toggle("is-scrolled", shouldShrink);
+          lastState = shouldShrink;
+        }
+        isTicking = false;
+      };
+      var onScroll = function () {
+        if (isTicking) return;
+        isTicking = true;
+        window.requestAnimationFrame(updateHeader);
+      };
+      updateHeader();
+      window.addEventListener("scroll", onScroll, { passive: true });
+    }
     initReveal();
     initThemeToggle();
   });

@@ -1,11 +1,4 @@
-/* ============================================
-   = Project: gastronomy-html-css-js-project-02
-   = Author: KP_Code
-   = Updated: 2025-11-03
-   ============================================
-   = CSS Stylesheet
-   = Structure Overview
-   ============================================
+/* ==========================
    = 00 - Root & Resets
    = 01 - Typography
    = 02 - Layout
@@ -23,7 +16,7 @@
    = 12 - Lightbox
    = 13 - States & Animations
    = 99 - Component Library
-  ============================================ */
+  ============================*/
 
 /* === 00 - Root & Resets === */
 
@@ -72,7 +65,11 @@
   --header-backdrop: rgba(248, 241, 231, 0.88);
   --header-border: rgba(0, 0, 0, 0.06);
   --header-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
-  --header-h: 100px;
+  --header-h: 80px;
+  --header-visual-h: var(--header-h);
+  --header-logo-h: 80px;
+  --header-logo-w: 200px;
+  --header-logo-pad: 10px;
   --header-offset: calc(var(--header-h) + env(safe-area-inset-top, 0px));
   --surface-overlay: rgba(255, 253, 248, 0.96);
   --c-surface-1: var(--surface-overlay);
@@ -125,7 +122,6 @@
   --input-border: rgba(255, 255, 255, 0.16);
   --footer-bg: #0f0908;
   --footer-text: #f5ece3;
-  /* Tabs – active state (dark) */
   --tab-active-bg: color-mix(in oklab, var(--burgundy) 55%, black);
   --tab-active-border: color-mix(in oklab, var(--burgundy) 92%, white);
 }
@@ -403,12 +399,20 @@ main {
   transition: none;
 }
 
+.site-header.is-scrolled {
+  --header-visual-h: 64px;
+  --header-logo-h: 64px;
+  --header-logo-w: 160px;
+  --header-logo-pad: 6px;
+}
+
 .header__inner {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  min-height: var(--header-h);
+  min-height: var(--header-visual-h);
   gap: 1rem;
+  transition: min-height 0.2s ease;
 }
 
 .header__actions {
@@ -419,9 +423,13 @@ main {
 
 .brand__logo {
   display: block;
-  height: 80px;
-  width: 200px;
-  padding-block: 10px;
+  height: var(--header-logo-h);
+  width: var(--header-logo-w);
+  padding-block: var(--header-logo-pad);
+  transition:
+    height 0.2s ease,
+    width 0.2s ease,
+    padding 0.2s ease;
 }
 
 .brand__logo--dark {
@@ -659,6 +667,12 @@ main {
   .site-header {
     transition: none;
   }
+  .header__inner {
+    transition: none;
+  }
+  .brand__logo {
+    transition: none;
+  }
   .nav {
     transition: none;
   }
@@ -842,7 +856,6 @@ main {
     opacity 0.4s ease;
 }
 
-/* -- MQ - min-width: 768px -- */
 @media (min-width: 768px) {
   .about .container {
     grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -859,7 +872,6 @@ main {
   }
 }
 
-/* -- MQ - min-width: 1024px -- */
 @media (min-width: 1024px) {
   .about .container {
     gap: clamp(2.5rem, 3vw, 4rem);
@@ -869,7 +881,7 @@ main {
   }
 }
 
-/* ===== 06 - MENU ===== */
+/* === 06 - Menu === */
 
 .cards {
   display: grid;
@@ -914,21 +926,19 @@ main {
   margin-inline: auto;
 }
 
-/* ----- MQ - min-width: 768px ----- */
 @media (min-width: 768px) {
   .cards {
     grid-template-columns: repeat(2, 1fr);
   }
 }
 
-/* ----- MQ - min-width: 1024px ----- */
 @media (min-width: 1024px) {
   .cards {
     grid-template-columns: repeat(3, 1fr);
   }
 }
 
-/* ===== 07 - GALLERY ===== */
+/* === 07 - Gallery === */
 
 .gallery {
   background: var(--c-surface-1);
@@ -994,21 +1004,19 @@ main {
   margin: 1rem 0 1.5rem;
 }
 
-/* -- MQ - min-width: 480px -- */
 @media (min-width: 768px) {
   .gallery__grid {
     grid-template-columns: repeat(2, 1fr);
   }
 }
 
-/* -- MQ - min-width: 768px -- */
 @media (min-width: 1024px) {
   .gallery__grid {
     grid-template-columns: repeat(3, 1fr);
   }
 }
 
-/* ===== 08 - TESTIMONIALS ===== */
+/* === 08 - Testimonials === */
 
 .quotes {
   display: grid;
@@ -2557,7 +2565,7 @@ html {
 .lb-close {
   right: 66px;
 }
-/* Hover-only close in normal mode; focus-visible accessible */
+
 .lb-close {
   opacity: 0;
   pointer-events: none;
@@ -2568,11 +2576,10 @@ html {
   opacity: 1;
   pointer-events: auto;
 }
-/* Side arrows */
+
 .lb-prev,
 .lb-next {
   position: fixed;
-  /* top is dynamically set from JS to image center */
   transform: translateY(-50%);
   font-size: 1.1rem;
 }
