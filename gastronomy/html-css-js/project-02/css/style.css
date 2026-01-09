@@ -114,6 +114,9 @@ html {
   padding: 0;
   overflow-x: clip;
 }
+html.nav-open {
+  overscroll-behavior: none;
+}
 html,
 body {
   margin: 0;
@@ -2294,6 +2297,10 @@ a.btn:focus {
   .nav {
     position: fixed;
     inset: var(--header-offset) 0 auto 0;
+    max-height: calc(100svh - var(--header-offset));
+    overflow-y: auto;
+    overflow-x: hidden;
+    overscroll-behavior: contain;
     background: var(--surface-overlay);
     border-bottom: 1px solid var(--surface-overlay-border);
     box-shadow: 0 20px 32px rgba(0, 0, 0, 0.12);
@@ -2319,17 +2326,22 @@ a.btn:focus {
     flex-direction: column;
     gap: 1rem;
     padding: 1rem;
+    text-align: center;
   }
   .nav__list > li {
-    display: flex;
+    display: grid;
+    grid-template-columns: 44px 1fr 44px;
     align-items: center;
+    justify-items: center;
   }
   .nav__list > li > a {
     display: flex;
     align-items: center;
-    flex: 1;
+    grid-column: 2;
     height: 44px;
     padding-inline: 0.5rem;
+    justify-content: center;
+    text-align: center;
   }
   .nav__dropdown-toggle {
     display: inline-flex;
@@ -2337,12 +2349,23 @@ a.btn:focus {
     width: 44px;
     height: 44px;
     padding: 0.4rem;
+    grid-column: 3;
+    justify-self: end;
+  }
+  .nav__list > li:not(.nav__item--dropdown)::after {
+    content: "";
+    grid-column: 3;
+    width: 44px;
+    height: 44px;
+    visibility: hidden;
   }
   .nav__dropdown {
     position: static;
     width: 100%;
+    max-width: 100%;
     padding: 0.4rem;
     margin-top: 0.35rem;
+    grid-column: 1 / -1;
     box-shadow: none;
     transform: translateY(0);
     display: none;
