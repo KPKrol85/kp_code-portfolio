@@ -125,6 +125,22 @@
       syncNavA11y(nav, expanded);
     }
   }
+  function updateHeaderOffset() {
+    updateHeaderOffset();
+    var header = q(".site-header");
+    if (!header) return;
+    var height = header.getBoundingClientRect().height;
+    if (!height) return;
+    root.style.setProperty("--header-offset", Math.round(height) + "px");
+  }
+  var headerOffsetRaf = null;
+  function scheduleHeaderOffsetUpdate() {
+    if (headerOffsetRaf) return;
+    headerOffsetRaf = window.requestAnimationFrame(function () {
+      headerOffsetRaf = null;
+      updateHeaderOffset();
+    });
+  }
 
   /* === 01 - Theme state === */
 
@@ -230,6 +246,7 @@
         var expanded = navToggle.getAttribute("aria-expanded") === "true";
         s(navToggle, !expanded);
         var nowExpanded = !expanded;
+        scheduleHeaderOffsetUpdate();
         navToggle.setAttribute("aria-label", nowExpanded ? "Zamknij menu" : "Otwórz menu");
         if (!nowExpanded) {
           closeNavDropdowns(nav);
@@ -266,6 +283,7 @@
         if (!isNavMobile()) {
           closeNavDropdowns(nav);
         }
+        scheduleHeaderOffsetUpdate();
       });
     }
     document.addEventListener("keyup", function (event) {
@@ -405,6 +423,7 @@
         }, 800);
       });
     }
+    updateHeaderOffset();
     var header = q(".site-header");
     if (header) {
       var isTicking = false;
@@ -415,6 +434,7 @@
           header.classList.toggle("is-scrolled", shouldShrink);
           lastState = shouldShrink;
         }
+        scheduleHeaderOffsetUpdate();
         isTicking = false;
       };
       var onScroll = function () {

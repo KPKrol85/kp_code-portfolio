@@ -2320,9 +2320,23 @@ a.btn:focus {
     gap: 1rem;
     padding: 1rem;
   }
+  .nav__list > li {
+    display: flex;
+    align-items: center;
+  }
+  .nav__list > li > a {
+    display: flex;
+    align-items: center;
+    flex: 1;
+    height: 44px;
+    padding-inline: 0.5rem;
+  }
   .nav__dropdown-toggle {
     display: inline-flex;
     margin-left: auto;
+    width: 44px;
+    height: 44px;
+    padding: 0.4rem;
   }
   .nav__dropdown {
     position: static;
@@ -2331,8 +2345,13 @@ a.btn:focus {
     margin-top: 0.35rem;
     box-shadow: none;
     transform: translateY(0);
+    display: none;
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
   }
   .nav__item--dropdown.is-open .nav__dropdown {
+    display: block;
     opacity: 1;
     visibility: visible;
     pointer-events: auto;
