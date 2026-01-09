@@ -145,9 +145,39 @@
 
           <nav class="nav" id="primary-nav" aria-label="Nawigacja główna">
             <ul class="nav__list">
-              <li><a href="/#about">O nas</a></li>
-              <li><a href="/#menu">Menu</a></li>
-              <li><a href="/#gallery">Galeria</a></li>
+              <li class="nav__item nav__item--dropdown">
+                <a class="nav__link" href="/#about">O nas</a>
+                <button class="nav__dropdown-toggle" type="button" aria-expanded="false" aria-controls="nav-dd-about" aria-label="Pokaż więcej: O nas">
+                  <svg class="nav__chevron" aria-hidden="true" viewBox="0 0 16 16" focusable="false">
+                    <path d="M3.25 5.75L8 10.5l4.75-4.75" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                  </svg>
+                </button>
+                <ul class="nav__dropdown" id="nav-dd-about" aria-label="Skróty: O nas">
+                  <li><a href="/about.html">Poznaj nas</a></li>
+                </ul>
+              </li>
+              <li class="nav__item nav__item--dropdown">
+                <a class="nav__link" href="/#menu">Menu</a>
+                <button class="nav__dropdown-toggle" type="button" aria-expanded="false" aria-controls="nav-dd-menu" aria-label="Pokaż więcej: Menu">
+                  <svg class="nav__chevron" aria-hidden="true" viewBox="0 0 16 16" focusable="false">
+                    <path d="M3.25 5.75L8 10.5l4.75-4.75" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                  </svg>
+                </button>
+                <ul class="nav__dropdown" id="nav-dd-menu" aria-label="Skróty: Menu">
+                  <li><a href="/menu.html">Pełne menu</a></li>
+                </ul>
+              </li>
+              <li class="nav__item nav__item--dropdown">
+                <a class="nav__link" href="/#gallery">Galeria</a>
+                <button class="nav__dropdown-toggle" type="button" aria-expanded="false" aria-controls="nav-dd-gallery" aria-label="Pokaż więcej: Galeria">
+                  <svg class="nav__chevron" aria-hidden="true" viewBox="0 0 16 16" focusable="false">
+                    <path d="M3.25 5.75L8 10.5l4.75-4.75" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                  </svg>
+                </button>
+                <ul class="nav__dropdown" id="nav-dd-gallery" aria-label="Skróty: Galeria">
+                  <li><a href="/gallery.html">Pełna galeria</a></li>
+                </ul>
+              </li>
               <li><a href="#testimonials">Opinie</a></li>
               <li><a href="/#contact">Kontakt</a></li>
             </ul>

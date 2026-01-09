@@ -108,6 +108,15 @@
       } catch (err) {}
     }
   }
+  function closeNavDropdowns(scope) {
+    var root = scope || document;
+    var openItems = root.querySelectorAll(".nav__item--dropdown.is-open");
+    openItems.forEach(function (item) {
+      item.classList.remove("is-open");
+      var toggle = item.querySelector(".nav__dropdown-toggle");
+      toggle && toggle.setAttribute("aria-expanded", "false");
+    });
+  }
   function s(button, expanded) {
     button.setAttribute("aria-expanded", String(expanded));
     var nav = q("#primary-nav");
@@ -215,29 +224,57 @@
     initImageFallbacks();
     var navToggle = q(".nav-toggle");
     var nav = q("#primary-nav");
+    var dropdownToggles = nav ? nav.querySelectorAll(".nav__dropdown-toggle") : [];
     navToggle &&
       navToggle.addEventListener("click", function () {
         var expanded = navToggle.getAttribute("aria-expanded") === "true";
         s(navToggle, !expanded);
         var nowExpanded = !expanded;
         navToggle.setAttribute("aria-label", nowExpanded ? "Zamknij menu" : "Otwórz menu");
+        if (!nowExpanded) {
+          closeNavDropdowns(nav);
+        }
       });
     if (nav) {
       syncNavA11y(nav, navToggle && navToggle.getAttribute("aria-expanded") === "true");
+      dropdownToggles.forEach(function (toggle) {
+        toggle.addEventListener("click", function (event) {
+          if (!isNavMobile()) return;
+          event.preventDefault();
+          event.stopPropagation();
+          var item = toggle.closest(".nav__item--dropdown");
+          if (!item) return;
+          var isOpen = item.classList.contains("is-open");
+          closeNavDropdowns(nav);
+          if (!isOpen) {
+            item.classList.add("is-open");
+            toggle.setAttribute("aria-expanded", "true");
+          }
+        });
+      });
       nav.addEventListener("click", function (event) {
         var link = event.target.closest("a");
         if (!link || !isNavMobile()) return;
         if (navToggle && navToggle.getAttribute("aria-expanded") === "true") {
           s(navToggle, false);
           navToggle.setAttribute("aria-label", "Otwórz menu");
+          closeNavDropdowns(nav);
         }
       });
       window.addEventListener("resize", function () {
         syncNavA11y(nav, navToggle && navToggle.getAttribute("aria-expanded") === "true");
+        if (!isNavMobile()) {
+          closeNavDropdowns(nav);
+        }
       });
     }
     document.addEventListener("keyup", function (event) {
-      event.key === "Escape" && navToggle && navToggle.getAttribute("aria-expanded") === "true" && s(navToggle, false);
+      if (event.key !== "Escape") return;
+      if (navToggle && navToggle.getAttribute("aria-expanded") === "true") {
+        s(navToggle, false);
+        navToggle.setAttribute("aria-label", "Otwórz menu");
+      }
+      closeNavDropdowns(nav);
     });
     var reduceMotion = typeof window.matchMedia === "function" && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     document.querySelectorAll('a[href^="#"]').forEach(function (link) {
