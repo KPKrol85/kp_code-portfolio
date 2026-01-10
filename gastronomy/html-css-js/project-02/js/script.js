@@ -31,7 +31,7 @@
       menuNote.textContent = "Jesteś offline — wyświetlamy ostatnio zapisane menu. Część zdjęć może być niedostępna.";
       menuHero.appendChild(menuNote);
     }
-    var galleryHero = document.querySelector(".page-gallery .page-hero__content");
+    var galleryHero = document.querySelector(".page--gallery .page-hero__content");
     if (galleryHero && !galleryHero.querySelector(".offline-note")) {
       var galleryNote = document.createElement("p");
       galleryNote.className = "offline-note";
@@ -689,7 +689,7 @@ function initScrollspy(config) {
 (function () {
   document.addEventListener("DOMContentLoaded", function () {
     initScrollspy({
-      pageClass: "page-gallery",
+      pageClass: "page--gallery",
       ids: ["wnetrza", "dania", "desery", "napoje"],
       listSelector: '.gallery-tabs__list a[href^="#"]',
       stickySelector: ".gallery-tabs",
@@ -1515,3 +1515,4 @@ function renderMenuByCategory() {
     });
   });
 })();
+
