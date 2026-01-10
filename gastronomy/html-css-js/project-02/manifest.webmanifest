@@ -28,14 +28,14 @@
 
   "screenshots": [
     {
-      "src": "assets/img/screenshots-img/screenshot-1280x720.jpg",
+      "src": "/assets/icons/screenshots/desktop.jpg",
       "sizes": "1280x720",
       "type": "image/jpeg",
       "form_factor": "wide",
       "label": "Atelier No.02 – widok strony na desktopie"
     },
     {
-      "src": "assets/img/screenshots-img/screenshot-720x1280.jpg",
+      "src": "/assets/icons/screenshots/mobile.jpg",
       "sizes": "720x1280",
       "type": "image/jpeg",
       "form_factor": "narrow",
@@ -51,7 +51,7 @@
       "url": "/menu.html",
       "icons": [
         {
-          "src": "assets/img/shortcuts-img/menu-96.png",
+          "src": "/assets/icons/shortcuts/menu-96.png",
           "sizes": "96x96",
           "type": "image/png"
         }
@@ -64,7 +64,20 @@
       "url": "/gallery.html",
       "icons": [
         {
-          "src": "assets/img/shortcuts-img/gallery-96.png",
+          "src": "/assets/icons/shortcuts/gallery-96.png",
+          "sizes": "96x96",
+          "type": "image/png"
+        }
+      ]
+    },
+    {
+      "name": "Kontakt",
+      "short_name": "Kontakt",
+      "description": "Rezerwacje i kontakt z restauracją",
+      "url": "/#contact",
+      "icons": [
+        {
+          "src": "/assets/icons/shortcuts/contact-96.png",
           "sizes": "96x96",
           "type": "image/png"
         }
