@@ -377,6 +377,31 @@
     if (legalYear) {
       legalYear.textContent = String(new Date().getFullYear());
     }
+    function setAriaCurrentPageLinks() {
+      if (typeof location === "undefined") return;
+      function normalizePath(path) {
+        if (!path || path === "/") return "/index.html";
+        return path;
+      }
+      var currentPath = normalizePath(location.pathname);
+      var links = document.querySelectorAll("nav a[href]");
+      links.forEach(function (link) {
+        var href = link.getAttribute("href");
+        if (!href) return;
+        var url = new URL(href, location.href);
+        if (url.hash) {
+          link.removeAttribute("aria-current");
+          return;
+        }
+        var linkPath = normalizePath(url.pathname);
+        if (linkPath === currentPath) {
+          link.setAttribute("aria-current", "page");
+        } else {
+          link.removeAttribute("aria-current");
+        }
+      });
+    }
+    setAriaCurrentPageLinks();
     initNetworkStatusBanner();
     initDemoLegalModal();
     initImageFallbacks();
@@ -1633,4 +1658,3 @@ function renderMenuByCategory() {
     });
   });
 })();
-

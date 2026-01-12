@@ -1268,6 +1268,12 @@ body.dark,
   color: inherit;
   opacity: 0.85;
 }
+.footer__demo {
+  display: block;
+  margin-top: var(--space-1);
+  font-size: 0.8rem;
+  opacity: 0.75;
+}
 .footer a:hover,
 .footer a:focus-visible {
   color: var(--white);
