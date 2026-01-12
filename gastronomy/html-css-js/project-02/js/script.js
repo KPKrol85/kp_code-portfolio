@@ -1,4 +1,3 @@
-
 "use strict";
 (function () {
   var root = document.documentElement;
@@ -232,13 +231,13 @@
       if (!isOpen) return;
       if (setAck) setStoredAck();
       isOpen = false;
+      modal.setAttribute("aria-hidden", "true");
       modal.classList.remove("is-open");
       unlockBodyScroll();
       document.removeEventListener("keydown", handleEscape);
       document.removeEventListener("keydown", trapFocus);
       window.setTimeout(function () {
         modal.hidden = true;
-        modal.setAttribute("aria-hidden", "true");
       }, 200);
       if (lastActive && lastActive.focus) {
         lastActive.focus();
@@ -419,11 +418,9 @@
     function getFocusableInNav() {
       if (!nav) return [];
       var selectors = 'a[href], button:not([disabled]), input:not([disabled]), select:not([disabled]), textarea:not([disabled]), [tabindex]:not([tabindex="-1"])';
-      return Array.prototype.slice
-        .call(nav.querySelectorAll(selectors))
-        .filter(function (el) {
-          return !!(el.offsetWidth || el.offsetHeight || el.getClientRects().length);
-        });
+      return Array.prototype.slice.call(nav.querySelectorAll(selectors)).filter(function (el) {
+        return !!(el.offsetWidth || el.offsetHeight || el.getClientRects().length);
+      });
     }
 
     function focusFirstInNav() {
@@ -913,9 +910,7 @@ function initScrollspy(config) {
       overlay.setAttribute("aria-label", "Podgląd zdjęcia");
       overlay.setAttribute("aria-describedby", "lb-caption");
       overlay.setAttribute("aria-keyshortcuts", "Esc ArrowLeft ArrowRight F");
-    } catch (e) {
-
-    }
+    } catch (e) {}
 
     const live = document.createElement("div");
     live.className = "visually-hidden";
