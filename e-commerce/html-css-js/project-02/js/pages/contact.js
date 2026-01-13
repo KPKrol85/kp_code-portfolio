@@ -1,0 +1,74 @@
+import { createElement, clearElement } from "../utils/dom.js";
+import { validators } from "../utils/validators.js";
+import { showToast } from "../components/toast.js";
+
+const company = {
+  brand: "KP_Code Digital Vault",
+  owner: "Kamil Król",
+  address: "ul. Marynarki Wojennej 12/31, 33-100 Tarnów, Polska",
+  phone: "+48 533 537 091",
+  email: "kontakt@kp-code.pl",
+};
+
+export const renderContact = () => {
+  const main = document.getElementById("main-content");
+  clearElement(main);
+
+  const container = createElement("section", { className: "container" });
+  container.appendChild(createElement("h1", { text: "Kontakt" }));
+
+  const info = createElement("div", { className: "card" }, [
+    createElement("h2", { text: company.brand }),
+    createElement("p", { text: company.owner }),
+    createElement("p", { text: company.address }),
+    createElement("p", { text: company.phone }),
+    createElement("p", { text: company.email }),
+  ]);
+
+  const form = createElement("form", { className: "card" });
+  form.appendChild(createElement("h2", { text: "Napisz do nas" }));
+  const nameField = createElement("input", { className: "input", attrs: { type: "text", placeholder: "Imię i nazwisko" } });
+  const emailField = createElement("input", { className: "input", attrs: { type: "email", placeholder: "E-mail" } });
+  const messageField = createElement("textarea", { className: "textarea", attrs: { rows: "4", placeholder: "Wiadomość" } });
+  const errorBox = createElement("div", { className: "form-error" });
+
+  form.appendChild(createElement("div", { className: "form-field" }, [
+    createElement("label", { text: "Imię i nazwisko" }),
+    nameField,
+  ]));
+  form.appendChild(createElement("div", { className: "form-field" }, [
+    createElement("label", { text: "E-mail" }),
+    emailField,
+  ]));
+  form.appendChild(createElement("div", { className: "form-field" }, [
+    createElement("label", { text: "Wiadomość" }),
+    messageField,
+  ]));
+  form.appendChild(errorBox);
+  form.appendChild(createElement("button", { className: "button block", text: "Wyślij (mock)", attrs: { type: "submit" } }));
+
+  form.addEventListener("submit", (event) => {
+    event.preventDefault();
+    errorBox.textContent = "";
+    const errors = [];
+    if (!validators.required(nameField.value)) {
+      errors.push("Uzupełnij imię i nazwisko.");
+    }
+    if (!validators.email(emailField.value)) {
+      errors.push("Podaj poprawny e-mail.");
+    }
+    if (!validators.required(messageField.value)) {
+      errors.push("Wpisz wiadomość.");
+    }
+    if (errors.length) {
+      errorBox.textContent = errors.join(" ");
+      return;
+    }
+    showToast("Wiadomość została wysłana (demo).");
+    form.reset();
+  });
+
+  const layout = createElement("div", { className: "grid grid-2 section" }, [info, form]);
+  container.appendChild(layout);
+  main.appendChild(container);
+};

@@ -1,0 +1,16 @@
+[
+  {
+    "type": "Personal",
+    "summary": "Dla indywidualnych twórców i freelancerów.",
+    "permissions": ["Użycie w 1 projekcie komercyjnym", "Modyfikacja plików", "Wersje testowe"],
+    "limitations": ["Brak sublicencjonowania", "Brak odsprzedaży"],
+    "support": "Standardowe wsparcie e-mail"
+  },
+  {
+    "type": "Commercial",
+    "summary": "Dla zespołów produktowych i agencji.",
+    "permissions": ["Użycie w wielu projektach", "Współdzielenie w zespole", "Budowa produktów klienta"],
+    "limitations": ["Brak sprzedaży jako samodzielny produkt", "Brak publicznej dystrybucji"],
+    "support": "Priorytetowe wsparcie + aktualizacje"
+  }
+]

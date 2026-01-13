@@ -1,0 +1,142 @@
+import { renderHeader } from "./components/header.js";
+import { renderFooter } from "./components/footer.js";
+import { renderHome } from "./pages/home.js";
+import { renderProducts } from "./pages/products.js";
+import { renderProductDetails } from "./pages/productDetails.js";
+import { renderCart } from "./pages/cart.js";
+import { renderCheckout, renderCheckoutSuccess } from "./pages/checkout.js";
+import { renderAuth } from "./pages/auth.js";
+import { renderAccount } from "./pages/account.js";
+import { renderLibrary } from "./pages/library.js";
+import { renderLicenses } from "./pages/licenses.js";
+import { renderLegal } from "./pages/legal.js";
+import { renderContact } from "./pages/contact.js";
+import { renderNotFound } from "./pages/notFound.js";
+import { addRoute, startRouter } from "./router/router.js";
+import { mockApi } from "./services/mockApi.js";
+import { cartService } from "./services/cart.js";
+import { authService } from "./services/auth.js";
+import { storage } from "./services/storage.js";
+import { store } from "./store/store.js";
+import { showToast } from "./components/toast.js";
+
+const THEME_KEY = "kp_theme";
+
+const applyTheme = (theme) => {
+  document.documentElement.setAttribute("data-theme", theme);
+  storage.set(THEME_KEY, theme);
+  store.setState({ ui: { theme } });
+};
+
+const detectTheme = () => {
+  const saved = storage.get(THEME_KEY, null);
+  if (saved) {
+    return saved;
+  }
+  return window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+};
+
+const initData = async () => {
+  try {
+    const [products, licenses] = await Promise.all([
+      mockApi.getProducts(),
+      mockApi.getLicenses(),
+    ]);
+    store.setState({ products, licenses });
+  } catch (error) {
+    showToast("Nie udało się pobrać danych.", "error");
+  }
+};
+
+const initStore = () => {
+  const cart = cartService.getCart();
+  const session = authService.getSession();
+  const user = authService.getCurrentUser();
+  store.setState({
+    cart,
+    session,
+    user,
+    ui: { theme: detectTheme() },
+  });
+  applyTheme(store.getState().ui.theme);
+};
+
+const initLayout = () => {
+  renderHeader(document.getElementById("app-header"), () => {
+    const currentTheme = store.getState().ui.theme;
+    applyTheme(currentTheme === "light" ? "dark" : "light");
+  });
+  renderFooter(document.getElementById("app-footer"));
+};
+
+const initRoutes = () => {
+  addRoute(/^\/$/, renderHome, {
+    title: "KP_Code Digital Vault — Start",
+    description: "Nowoczesny sklep z produktami cyfrowymi i biblioteką zakupów.",
+  });
+  addRoute(/^\/products$/, renderProducts, {
+    title: "Katalog produktów — KP_Code Digital Vault",
+    description: "Przeglądaj produkty cyfrowe, filtry i sortowanie.",
+  });
+  addRoute(/^\/products\/(?<id>[\w-]+)$/, renderProductDetails, {
+    title: "Szczegóły produktu — KP_Code Digital Vault",
+    description: "Poznaj szczegóły produktu cyfrowego i jego zawartość.",
+  });
+  addRoute(/^\/cart$/, renderCart, {
+    title: "Koszyk — KP_Code Digital Vault",
+    description: "Sprawdź produkty w koszyku i podsumowanie zamówienia.",
+  });
+  addRoute(/^\/checkout$/, renderCheckout, {
+    title: "Checkout — KP_Code Digital Vault",
+    description: "Złóż zamówienie na produkty cyfrowe.",
+  });
+  addRoute(/^\/checkout\/success$/, renderCheckoutSuccess, {
+    title: "Sukces zamówienia — KP_Code Digital Vault",
+    description: "Potwierdzenie złożenia zamówienia.",
+  });
+  addRoute(/^\/auth$/, renderAuth, {
+    title: "Logowanie — KP_Code Digital Vault",
+    description: "Zaloguj się lub utwórz konto użytkownika.",
+  });
+  addRoute(/^\/account$/, renderAccount, {
+    title: "Konto — KP_Code Digital Vault",
+    description: "Panel użytkownika i historia zamówień.",
+  });
+  addRoute(/^\/library$/, renderLibrary, {
+    title: "Biblioteka — KP_Code Digital Vault",
+    description: "Pobieraj zakupione produkty cyfrowe.",
+  });
+  addRoute(/^\/licenses$/, renderLicenses, {
+    title: "Licencje — KP_Code Digital Vault",
+    description: "Sprawdź typy licencji i pobierz pliki licencyjne.",
+  });
+  addRoute(/^\/legal$/, renderLegal, {
+    title: "Dokumenty prawne — KP_Code Digital Vault",
+    description: "Regulamin i polityka prywatności sklepu.",
+  });
+  addRoute(/^\/contact$/, renderContact, {
+    title: "Kontakt — KP_Code Digital Vault",
+    description: "Skontaktuj się z nami w sprawie produktów cyfrowych.",
+  });
+  addRoute(/^\/404$/, renderNotFound, {
+    title: "404 — KP_Code Digital Vault",
+    description: "Nie znaleziono strony.",
+  });
+
+  startRouter();
+};
+
+const focusMain = () => {
+  const main = document.getElementById("main-content");
+  if (main) {
+    main.focus();
+  }
+};
+
+window.addEventListener("hashchange", focusMain);
+
+initStore();
+initLayout();
+initData();
+initRoutes();
+focusMain();
