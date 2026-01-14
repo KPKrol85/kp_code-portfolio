@@ -315,6 +315,11 @@ footer {
   .mobile-menu-overlay {
     display: block;
   }
+
+  .mobile-menu .sun-and-moon {
+    width: 20px;
+    height: 20px;
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {

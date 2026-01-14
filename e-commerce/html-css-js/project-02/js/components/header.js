@@ -33,7 +33,10 @@ export const renderHeader = (container, onThemeToggle) => {
     return theme === "dark" ? "Switch to light theme" : "Switch to dark theme";
   };
 
+  let themeIconCount = 0;
   const createThemeIcon = () => {
+    themeIconCount += 1;
+    const maskId = `moon-mask-${themeIconCount}`;
     const ns = "http://www.w3.org/2000/svg";
     const svg = document.createElementNS(ns, "svg");
     svg.setAttribute("class", "sun-and-moon");
@@ -41,7 +44,7 @@ export const renderHeader = (container, onThemeToggle) => {
     svg.setAttribute("viewBox", "0 0 24 24");
 
     const mask = document.createElementNS(ns, "mask");
-    mask.setAttribute("id", "moon-mask");
+    mask.setAttribute("id", maskId);
     const maskRect = document.createElementNS(ns, "rect");
     maskRect.setAttribute("x", "0");
     maskRect.setAttribute("y", "0");
@@ -62,7 +65,7 @@ export const renderHeader = (container, onThemeToggle) => {
     sun.setAttribute("cx", "12");
     sun.setAttribute("cy", "12");
     sun.setAttribute("r", "6");
-    sun.setAttribute("mask", "url(#moon-mask)");
+    sun.setAttribute("mask", `url(#${maskId})`);
 
     const beams = document.createElementNS(ns, "g");
     beams.setAttribute("class", "sun-beams");
@@ -103,7 +106,7 @@ export const renderHeader = (container, onThemeToggle) => {
     return navList;
   };
 
-  const buildActions = (className) => {
+  const buildActions = (className, { withId = false } = {}) => {
     const actions = createElement("div", { className });
     const { cart, user } = store.getState();
     const cartCount = cart.reduce((sum, item) => sum + item.quantity, 0);
@@ -123,7 +126,7 @@ export const renderHeader = (container, onThemeToggle) => {
       {
         className: "theme-toggle",
         attrs: {
-          id: "theme-toggle",
+          id: withId ? "theme-toggle" : null,
           type: "button",
           "aria-label": getThemeLabel(),
           "aria-live": "polite",
@@ -228,7 +231,7 @@ export const renderHeader = (container, onThemeToggle) => {
     nav.appendChild(buildNavLinks("nav-links"));
 
     // --- ACTIONS ---
-    const actions = buildActions("nav-links header-actions");
+    const actions = buildActions("nav-links header-actions", { withId: true });
 
     // --- MOBILE TOGGLE ---
     const menuIcon = document.createElementNS("http://www.w3.org/2000/svg", "svg");
@@ -279,7 +282,10 @@ export const renderHeader = (container, onThemeToggle) => {
           "aria-hidden": menuOpen ? "false" : "true",
         },
       },
-      [buildNavLinks("nav-links mobile-nav-links"), buildActions("nav-links mobile-action-links")],
+      [
+        buildNavLinks("nav-links mobile-nav-links"),
+        buildActions("nav-links mobile-action-links"),
+      ],
     );
 
     const mobileOverlay = createElement("div", { className: "mobile-menu-overlay" });
