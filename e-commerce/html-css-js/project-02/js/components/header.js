@@ -19,10 +19,77 @@ export const renderHeader = (container, onThemeToggle) => {
   let menuDrawer = null;
   let menuOverlay = null;
   let scrollTicking = false;
+  let scrollLocked = false;
+  let lockedScrollY = 0;
+
+  const focusableSelector = "a[href], button:not([disabled]), [tabindex]:not([tabindex='-1'])";
 
   const getLogoSrc = () => {
     const theme = document.documentElement.dataset.theme;
     return theme === "dark" ? "assets/logo/logo-06-dark.svg" : "assets/logo/logo-06-light.svg";
+  };
+
+  const getThemeLabel = () => {
+    const theme = store.getState().ui?.theme;
+    return theme === "dark" ? "dark" : "light";
+  };
+
+  const createThemeIcon = () => {
+    const ns = "http://www.w3.org/2000/svg";
+    const svg = document.createElementNS(ns, "svg");
+    svg.setAttribute("class", "sun-and-moon");
+    svg.setAttribute("aria-hidden", "true");
+    svg.setAttribute("viewBox", "0 0 24 24");
+
+    const mask = document.createElementNS(ns, "mask");
+    mask.setAttribute("id", "moon-mask");
+    const maskRect = document.createElementNS(ns, "rect");
+    maskRect.setAttribute("x", "0");
+    maskRect.setAttribute("y", "0");
+    maskRect.setAttribute("width", "100%");
+    maskRect.setAttribute("height", "100%");
+    maskRect.setAttribute("fill", "white");
+    const maskCircle = document.createElementNS(ns, "circle");
+    maskCircle.setAttribute("class", "moon");
+    maskCircle.setAttribute("cx", "24");
+    maskCircle.setAttribute("cy", "10");
+    maskCircle.setAttribute("r", "6");
+    maskCircle.setAttribute("fill", "black");
+    mask.appendChild(maskRect);
+    mask.appendChild(maskCircle);
+
+    const sun = document.createElementNS(ns, "circle");
+    sun.setAttribute("class", "sun");
+    sun.setAttribute("cx", "12");
+    sun.setAttribute("cy", "12");
+    sun.setAttribute("r", "6");
+    sun.setAttribute("mask", "url(#moon-mask)");
+
+    const beams = document.createElementNS(ns, "g");
+    beams.setAttribute("class", "sun-beams");
+    const beamLines = [
+      ["12", "1", "12", "3"],
+      ["12", "21", "12", "23"],
+      ["4.22", "4.22", "5.64", "5.64"],
+      ["18.36", "18.36", "19.78", "19.78"],
+      ["1", "12", "3", "12"],
+      ["21", "12", "23", "12"],
+      ["4.22", "19.78", "5.64", "18.36"],
+      ["18.36", "5.64", "19.78", "4.22"],
+    ];
+    beamLines.forEach(([x1, y1, x2, y2]) => {
+      const line = document.createElementNS(ns, "line");
+      line.setAttribute("x1", x1);
+      line.setAttribute("y1", y1);
+      line.setAttribute("x2", x2);
+      line.setAttribute("y2", y2);
+      beams.appendChild(line);
+    });
+
+    svg.appendChild(mask);
+    svg.appendChild(sun);
+    svg.appendChild(beams);
+    return svg;
   };
 
   const buildNavLinks = (className) => {
@@ -52,11 +119,19 @@ export const renderHeader = (container, onThemeToggle) => {
       attrs: { href: user ? "#/account" : "#/auth" },
     });
 
-    const themeButton = createElement("button", {
-      className: "theme-toggle",
-      text: "Tryb",
-      attrs: { type: "button", "aria-label": "Zmien motyw" },
-    });
+    const themeButton = createElement(
+      "button",
+      {
+        className: "theme-toggle",
+        attrs: {
+          id: "theme-toggle",
+          type: "button",
+          "aria-label": getThemeLabel(),
+          "aria-live": "polite",
+        },
+      },
+      [createThemeIcon()],
+    );
 
     themeButton.addEventListener("click", onThemeToggle);
 
@@ -66,6 +141,35 @@ export const renderHeader = (container, onThemeToggle) => {
     return actions;
   };
 
+  const lockScroll = () => {
+    if (scrollLocked) {
+      return;
+    }
+    lockedScrollY = window.scrollY;
+    const scrollbarWidth = window.innerWidth - document.documentElement.clientWidth;
+    document.body.style.position = "fixed";
+    document.body.style.top = `-${lockedScrollY}px`;
+    document.body.style.width = "100%";
+    if (scrollbarWidth > 0) {
+      document.body.style.paddingRight = `${scrollbarWidth}px`;
+    }
+    document.body.classList.add("no-scroll");
+    scrollLocked = true;
+  };
+
+  const unlockScroll = () => {
+    if (!scrollLocked) {
+      return;
+    }
+    document.body.classList.remove("no-scroll");
+    document.body.style.position = "";
+    document.body.style.top = "";
+    document.body.style.width = "";
+    document.body.style.paddingRight = "";
+    window.scrollTo(0, lockedScrollY);
+    scrollLocked = false;
+  };
+
   const applyMenuState = ({ focusOnOpen = false, restoreFocus = false } = {}) => {
     if (!menuDrawer || !menuOverlay || !menuToggleButton) {
       return;
@@ -73,11 +177,18 @@ export const renderHeader = (container, onThemeToggle) => {
     menuDrawer.classList.toggle("is-open", menuOpen);
     menuOverlay.classList.toggle("is-open", menuOpen);
     menuDrawer.setAttribute("aria-hidden", menuOpen ? "false" : "true");
+    menuOverlay.setAttribute("aria-hidden", menuOpen ? "false" : "true");
     menuToggleButton.setAttribute("aria-expanded", menuOpen ? "true" : "false");
-    document.body.classList.toggle("no-scroll", menuOpen);
+    menuToggleButton.setAttribute("aria-label", menuOpen ? "Close menu" : "Open menu");
+
+    if (menuOpen) {
+      lockScroll();
+    } else {
+      unlockScroll();
+    }
 
     if (menuOpen && focusOnOpen) {
-      const firstFocusable = menuDrawer.querySelector("a, button");
+      const firstFocusable = menuDrawer.querySelector(focusableSelector);
       if (firstFocusable) {
         firstFocusable.focus();
       }
@@ -148,9 +259,9 @@ export const renderHeader = (container, onThemeToggle) => {
         className: "menu-toggle",
         attrs: {
           type: "button",
-          "aria-label": "Otworz menu",
+          "aria-label": "Open menu",
           "aria-expanded": menuOpen ? "true" : "false",
-          "aria-controls": "mobile-menu",
+          "aria-controls": "mobile-nav",
         },
       },
       [menuIcon],
@@ -159,13 +270,11 @@ export const renderHeader = (container, onThemeToggle) => {
 
     // --- MOBILE MENU ---
     const mobileMenu = createElement(
-      "div",
+      "nav",
       {
         className: "mobile-menu",
         attrs: {
-          id: "mobile-menu",
-          role: "dialog",
-          "aria-modal": "true",
+          id: "mobile-nav",
           "aria-label": "Menu",
           "aria-hidden": menuOpen ? "false" : "true",
         },
@@ -224,7 +333,7 @@ export const renderHeader = (container, onThemeToggle) => {
       return;
     }
     if (event.key === "Tab" && menuDrawer) {
-      const focusable = menuDrawer.querySelectorAll("a, button");
+      const focusable = menuDrawer.querySelectorAll(focusableSelector);
       if (!focusable.length) {
         return;
       }
@@ -264,3 +373,5 @@ export const updateActiveNav = (path) => {
     }
   });
 };
+
+// Zmiany: A11y/ARIA dla hamburgera, focus trap + ESC, scroll lock z przywroceniem pozycji, overlay + motion.

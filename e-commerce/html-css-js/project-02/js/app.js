@@ -22,18 +22,21 @@ import { showToast } from "./components/toast.js";
 
 const THEME_KEY = "kp_theme";
 
-const applyTheme = (theme) => {
+const applyTheme = (theme, { persist = true } = {}) => {
   document.documentElement.setAttribute("data-theme", theme);
-  storage.set(THEME_KEY, theme);
+  if (persist) {
+    storage.set(THEME_KEY, theme);
+  }
   store.setState({ ui: { theme } });
 };
 
 const detectTheme = () => {
   const saved = storage.get(THEME_KEY, null);
-  if (saved) {
-    return saved;
-  }
-  return window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+  const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+  return {
+    theme: saved ?? (prefersDark ? "dark" : "light"),
+    hasSaved: Boolean(saved),
+  };
 };
 
 const initData = async () => {
@@ -52,13 +55,22 @@ const initStore = () => {
   const cart = cartService.getCart();
   const session = authService.getSession();
   const user = authService.getCurrentUser();
+  const { theme, hasSaved } = detectTheme();
   store.setState({
     cart,
     session,
     user,
-    ui: { theme: detectTheme() },
+    ui: { theme },
   });
-  applyTheme(store.getState().ui.theme);
+  applyTheme(theme, { persist: hasSaved });
+
+  const mediaQuery = window.matchMedia("(prefers-color-scheme: dark)");
+  mediaQuery.addEventListener("change", (event) => {
+    if (storage.get(THEME_KEY, null)) {
+      return;
+    }
+    applyTheme(event.matches ? "dark" : "light", { persist: false });
+  });
 };
 
 const initLayout = () => {

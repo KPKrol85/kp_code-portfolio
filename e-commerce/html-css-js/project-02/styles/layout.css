@@ -103,6 +103,7 @@ header.is-shrink .brand img {
   background: rgba(15, 23, 42, 0.5);
   opacity: 0;
   pointer-events: none;
+  visibility: hidden;
   transition: opacity var(--transition-fast);
   z-index: 20;
   display: none;
@@ -111,6 +112,7 @@ header.is-shrink .brand img {
 .mobile-menu-overlay.is-open {
   opacity: 1;
   pointer-events: auto;
+  visibility: visible;
 }
 
 .mobile-menu {
@@ -124,7 +126,10 @@ header.is-shrink .brand img {
   border-left: 1px solid var(--color-border);
   box-shadow: var(--shadow-md);
   transform: translateX(100%);
-  transition: transform var(--transition-fast);
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transition: transform var(--transition-fast), opacity var(--transition-fast);
   z-index: 30;
   display: none;
   flex-direction: column;
@@ -134,6 +139,9 @@ header.is-shrink .brand img {
 
 .mobile-menu.is-open {
   transform: translateX(0);
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
 }
 
 .mobile-menu .nav-links {
@@ -239,5 +247,12 @@ footer {
 
   .mobile-menu-overlay {
     display: block;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .mobile-menu,
+  .mobile-menu-overlay {
+    transition: none;
   }
 }
