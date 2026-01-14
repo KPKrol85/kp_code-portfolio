@@ -13,6 +13,10 @@ export const renderProducts = () => {
     main._productsUnsubscribe = null;
   }
 
+  let isActive = true;
+  const cleanupHandlers = [];
+  const addCleanup = (handler) => cleanupHandlers.push(handler);
+
   const container = createElement("section", { className: "container" });
   container.appendChild(createElement("h1", { text: "Katalog produktów" }));
   container.appendChild(
@@ -63,6 +67,56 @@ export const renderProducts = () => {
 
   const grid = createElement("div", { className: "grid grid-3 section" });
   container.appendChild(grid);
+
+  const renderList = () => {
+    if (!isActive || store.getState().productsStatus !== "ready") {
+      return;
+    }
+    clearElement(grid);
+    const query = searchField.value.toLowerCase();
+    const category = categorySelect.value;
+    const sort = sortSelect.value;
+
+    let filtered = [...products];
+    if (query) {
+      filtered = filtered.filter((product) =>
+        product.name.toLowerCase().includes(query)
+      );
+    }
+    if (category !== "all") {
+      filtered = filtered.filter((product) => product.category === category);
+    }
+
+    if (sort === "price-asc") {
+      filtered.sort((a, b) => a.price - b.price);
+    }
+    if (sort === "price-desc") {
+      filtered.sort((a, b) => b.price - a.price);
+    }
+    if (sort === "latest") {
+      filtered.sort((a, b) => new Date(b.updatedAt) - new Date(a.updatedAt));
+    }
+
+    if (!filtered.length) {
+      grid.appendChild(
+        createElement("div", { className: "notice" }, [
+          createElement("h3", { text: "Brak wynik¢w" }),
+          createElement("p", { text: "Zmieä filtry lub usuä kryteria wyszukiwania." }),
+        ])
+      );
+      return;
+    }
+
+    filtered.forEach((product) => {
+      grid.appendChild(
+        createProductCard(product, (id) => {
+          cartService.addItem(id, 1);
+          store.setState({ cart: cartService.getCart() });
+          showToast("Dodano produkt do koszyka.");
+        })
+      );
+    });
+  };
 
   const renderGridState = (state) => {
     const { productsStatus, productsError, products } = state;
@@ -139,61 +193,25 @@ export const renderProducts = () => {
   const unsubscribe = store.subscribe(handleStoreUpdate);
   main._productsUnsubscribe = unsubscribe;
 
-  const renderList = () => {
-    if (store.getState().productsStatus !== "ready") {
-      return;
-    }
-    clearElement(grid);
-    const query = searchField.value.toLowerCase();
-    const category = categorySelect.value;
-    const sort = sortSelect.value;
-
-    let filtered = [...products];
-    if (query) {
-      filtered = filtered.filter((product) =>
-        product.name.toLowerCase().includes(query)
-      );
-    }
-    if (category !== "all") {
-      filtered = filtered.filter((product) => product.category === category);
-    }
-
-    if (sort === "price-asc") {
-      filtered.sort((a, b) => a.price - b.price);
-    }
-    if (sort === "price-desc") {
-      filtered.sort((a, b) => b.price - a.price);
-    }
-    if (sort === "latest") {
-      filtered.sort((a, b) => new Date(b.updatedAt) - new Date(a.updatedAt));
-    }
-
-    if (!filtered.length) {
-      grid.appendChild(
-        createElement("div", { className: "notice" }, [
-          createElement("h3", { text: "Brak wyników" }),
-          createElement("p", { text: "Zmień filtry lub usuń kryteria wyszukiwania." }),
-        ])
-      );
-      return;
-    }
-
-    filtered.forEach((product) => {
-      grid.appendChild(
-        createProductCard(product, (id) => {
-          cartService.addItem(id, 1);
-          store.setState({ cart: cartService.getCart() });
-          showToast("Dodano produkt do koszyka.");
-        })
-      );
-    });
+  const attachFieldListener = (field, eventName) => {
+    field.addEventListener(eventName, renderList);
+    addCleanup(() => field.removeEventListener(eventName, renderList));
   };
-
   [searchField, sortSelect, categorySelect].forEach((field) => {
-    field.addEventListener("input", renderList);
-    field.addEventListener("change", renderList);
+    attachFieldListener(field, "input");
+    attachFieldListener(field, "change");
   });
 
-
   main.appendChild(container);
+
+  return () => {
+    isActive = false;
+    cleanupHandlers.forEach((handler) => handler());
+    cleanupHandlers.length = 0;
+    if (main._productsUnsubscribe) {
+      main._productsUnsubscribe();
+      main._productsUnsubscribe = null;
+    }
+  };
 };
+
