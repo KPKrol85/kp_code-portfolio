@@ -224,6 +224,15 @@ footer {
   gap: var(--space-3);
 }
 
+.hero .button:not(.secondary):not(.ghost) {
+  background: var(--color-accent-strong);
+  color: #fff;
+}
+
+.hero .button:not(.secondary):not(.ghost):hover {
+  background: color-mix(in srgb, var(--color-accent-strong) 85%, #000);
+}
+
 .hero-visual {
   width: 100%;
   min-height: 220px;
