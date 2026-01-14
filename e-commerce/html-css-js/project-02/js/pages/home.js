@@ -14,11 +14,11 @@ export const renderHome = () => {
   heroContent.appendChild(createElement("h1", { text: "KP_Code Digital Vault" }));
   heroContent.appendChild(
     createElement("p", {
-      text: "Nowoczesny sklep z produktami cyfrowymi: szablony, UI kits i mini-narz©dzia dla zespoˆ¢w produktowych.",
+      text: "Nowoczesny sklep z produktami cyfrowymi: szablony, UI kits i mini-narzędzia dla zespołów produktowych.",
     })
   );
   const heroActions = createElement("div", { className: "nav-links hero-actions" }, [
-    createElement("a", { className: "button", text: "Przegl¥daj produkty", attrs: { href: "#/products" } }),
+    createElement("a", { className: "button", text: "Przeglądaj produkty", attrs: { href: "#/products" } }),
     createElement("a", { className: "button secondary", text: "Zobacz demo konta", attrs: { href: "#/account" } }),
   ]);
   heroContent.appendChild(heroActions);
