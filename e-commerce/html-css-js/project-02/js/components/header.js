@@ -4,7 +4,6 @@ import { store } from "../store/store.js";
 const navItems = [
   { label: "Start", path: "#/" },
   { label: "Produkty", path: "#/products" },
-  { label: "Koszyk", path: "#/cart" },
   { label: "Konto", path: "#/account" },
   { label: "Biblioteka", path: "#/library" },
   { label: "Licencje", path: "#/licenses" },
@@ -31,7 +30,7 @@ export const renderHeader = (container, onThemeToggle) => {
 
   const getThemeLabel = () => {
     const theme = store.getState().ui?.theme;
-    return theme === "dark" ? "dark" : "light";
+    return theme === "dark" ? "Switch to light theme" : "Switch to dark theme";
   };
 
   const createThemeIcon = () => {
@@ -128,6 +127,7 @@ export const renderHeader = (container, onThemeToggle) => {
           type: "button",
           "aria-label": getThemeLabel(),
           "aria-live": "polite",
+          title: "Toggle theme",
         },
       },
       [createThemeIcon()],
