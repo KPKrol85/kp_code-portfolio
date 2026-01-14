@@ -10,17 +10,23 @@ export const renderHome = () => {
   clearElement(main);
 
   const hero = createElement("section", { className: "container hero" });
-  hero.appendChild(createElement("h1", { text: "KP_Code Digital Vault" }));
-  hero.appendChild(
+  const heroContent = createElement("div", { className: "hero-content" });
+  heroContent.appendChild(createElement("h1", { text: "KP_Code Digital Vault" }));
+  heroContent.appendChild(
     createElement("p", {
-      text: "Nowoczesny sklep z produktami cyfrowymi: szablony, UI kits i mini-narzędzia dla zespołów produktowych.",
+      text: "Nowoczesny sklep z produktami cyfrowymi: szablony, UI kits i mini-narz©dzia dla zespoˆ¢w produktowych.",
     })
   );
-  const heroActions = createElement("div", { className: "nav-links" }, [
-    createElement("a", { className: "button", text: "Przeglądaj produkty", attrs: { href: "#/products" } }),
+  const heroActions = createElement("div", { className: "nav-links hero-actions" }, [
+    createElement("a", { className: "button", text: "Przegl¥daj produkty", attrs: { href: "#/products" } }),
     createElement("a", { className: "button secondary", text: "Zobacz demo konta", attrs: { href: "#/account" } }),
   ]);
-  hero.appendChild(heroActions);
+  heroContent.appendChild(heroActions);
+
+  const heroVisual = createElement("div", { className: "hero-visual" });
+
+  hero.appendChild(heroContent);
+  hero.appendChild(heroVisual);
 
   const stats = createElement("div", { className: "grid grid-3" }, [
     createElement("div", { className: "card" }, [
@@ -81,3 +87,7 @@ export const renderHome = () => {
   main.appendChild(section);
   main.appendChild(info);
 };
+
+
+
+
