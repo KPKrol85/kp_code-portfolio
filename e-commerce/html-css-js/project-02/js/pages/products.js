@@ -8,6 +8,11 @@ export const renderProducts = () => {
   const main = document.getElementById("main-content");
   clearElement(main);
 
+  if (main._productsUnsubscribe) {
+    main._productsUnsubscribe();
+    main._productsUnsubscribe = null;
+  }
+
   const container = createElement("section", { className: "container" });
   container.appendChild(createElement("h1", { text: "Katalog produktów" }));
   container.appendChild(
@@ -34,17 +39,22 @@ export const renderProducts = () => {
     );
   });
   const categorySelect = createElement("select", { className: "select" });
-  categorySelect.appendChild(
-    createElement("option", { text: "Wszystkie kategorie", attrs: { value: "all" } })
-  );
-
-  const { products } = store.getState();
-  const categories = Array.from(new Set(products.map((product) => product.category)));
-  categories.forEach((category) => {
+  let products = store.getState().products;
+  const updateCategories = (nextProducts) => {
+    clearElement(categorySelect);
     categorySelect.appendChild(
-      createElement("option", { text: category, attrs: { value: category } })
+      createElement("option", { text: "Wszystkie kategorie", attrs: { value: "all" } })
     );
-  });
+    const categories = Array.from(new Set(nextProducts.map((product) => product.category)));
+    categories.forEach((category) => {
+      categorySelect.appendChild(
+        createElement("option", { text: category, attrs: { value: category } })
+      );
+    });
+  };
+
+  updateCategories(products);
+
 
   filters.appendChild(searchField);
   filters.appendChild(sortSelect);
@@ -54,7 +64,85 @@ export const renderProducts = () => {
   const grid = createElement("div", { className: "grid grid-3 section" });
   container.appendChild(grid);
 
+  const renderGridState = (state) => {
+    const { productsStatus, productsError, products } = state;
+    clearElement(grid);
+
+    if (productsStatus === "loading") {
+      for (let i = 0; i < 6; i += 1) {
+        grid.appendChild(createElement("div", { className: "card" }, [
+          createElement("div", { className: "skeleton", attrs: { style: "height: 180px" } }),
+          createElement("div", { className: "skeleton", attrs: { style: "width: 70%; height: 18px" } }),
+          createElement("div", { className: "skeleton", attrs: { style: "width: 60%; height: 14px" } }),
+        ]));
+      }
+      return;
+    }
+
+    if (productsStatus === "error") {
+      grid.appendChild(
+        createElement("div", { className: "notice" }, [
+          createElement("h3", { text: "Nie udało się pobrać produktów" }),
+          createElement("p", { text: productsError || "Spróbuj ponownie później." }),
+        ])
+      );
+      return;
+    }
+
+    if (productsStatus === "ready" && !products.length) {
+      grid.appendChild(
+        createElement("div", { className: "notice" }, [
+          createElement("h3", { text: "Brak produktów" }),
+          createElement("p", { text: "Brak produktów do wyświetlenia." }),
+        ])
+      );
+      return;
+    }
+  };
+
+  let lastProducts = null;
+  let lastStatus = null;
+  let lastError = null;
+  const handleStoreUpdate = (state) => {
+    products = state.products;
+    if (
+      state.products === lastProducts &&
+      state.productsStatus === lastStatus &&
+      state.productsError === lastError
+    ) {
+      return;
+    }
+    lastProducts = state.products;
+    lastStatus = state.productsStatus;
+    lastError = state.productsError;
+    if (state.productsStatus === "ready") {
+      updateCategories(state.products);
+    }
+    renderGridState(state);
+    if (state.productsStatus === "ready" && state.products.length) {
+      renderList();
+    }
+  };
+
+  const initialState = store.getState();
+  products = initialState.products;
+  lastProducts = initialState.products;
+  lastStatus = initialState.productsStatus;
+  lastError = initialState.productsError;
+  if (initialState.productsStatus === "ready") {
+    updateCategories(initialState.products);
+  }
+  renderGridState(initialState);
+  if (initialState.productsStatus === "ready" && initialState.products.length) {
+    renderList();
+  }
+  const unsubscribe = store.subscribe(handleStoreUpdate);
+  main._productsUnsubscribe = unsubscribe;
+
   const renderList = () => {
+    if (store.getState().productsStatus !== "ready") {
+      return;
+    }
     clearElement(grid);
     const query = searchField.value.toLowerCase();
     const category = categorySelect.value;
@@ -106,17 +194,6 @@ export const renderProducts = () => {
     field.addEventListener("change", renderList);
   });
 
-  if (!products.length) {
-    for (let i = 0; i < 6; i += 1) {
-      grid.appendChild(createElement("div", { className: "card" }, [
-        createElement("div", { className: "skeleton", attrs: { style: "height: 180px" } }),
-        createElement("div", { className: "skeleton", attrs: { style: "width: 70%; height: 18px" } }),
-        createElement("div", { className: "skeleton", attrs: { style: "width: 60%; height: 14px" } }),
-      ]));
-    }
-  } else {
-    renderList();
-  }
 
   main.appendChild(container);
 };

@@ -52,9 +52,11 @@ export const renderHome = () => {
   section.appendChild(createElement("h2", { text: "Popularne produkty" }));
   const grid = createElement("div", { className: "grid grid-3" });
 
-  const renderProductsGrid = (products) => {
+  const renderProductsGrid = (state) => {
+    const { products, productsStatus, productsError } = state;
     clearElement(grid);
-    if (!products.length) {
+
+    if (productsStatus === "loading") {
       for (let i = 0; i < 3; i += 1) {
         grid.appendChild(createElement("div", { className: "card" }, [
           createElement("div", { className: "skeleton", attrs: { style: "height: 180px" } }),
@@ -62,6 +64,31 @@ export const renderHome = () => {
           createElement("div", { className: "skeleton", attrs: { style: "width: 80%; height: 14px" } }),
         ]));
       }
+      return;
+    }
+
+    if (productsStatus === "error") {
+      grid.appendChild(
+        createElement("div", { className: "notice" }, [
+          createElement("h3", { text: "Nie udało się pobrać produktów" }),
+          createElement("p", { text: productsError || "Spróbuj ponownie później." }),
+        ])
+      );
+      return;
+    }
+
+    if (productsStatus === "ready" && !products.length) {
+      grid.appendChild(
+        createElement("div", { className: "notice" }, [
+          createElement("h3", { text: "Brak produktów" }),
+          createElement("p", { text: "Brak produktów do wyświetlenia." }),
+          createElement("a", { className: "button", text: "Przeglądaj produkty", attrs: { href: "#/products" } }),
+        ])
+      );
+      return;
+    }
+
+    if (productsStatus !== "ready") {
       return;
     }
 
@@ -77,17 +104,27 @@ export const renderHome = () => {
   };
 
   let lastProducts = null;
+  let lastStatus = null;
+  let lastError = null;
   const handleStoreUpdate = (state) => {
-    if (state.products === lastProducts) {
+    if (
+      state.products === lastProducts &&
+      state.productsStatus === lastStatus &&
+      state.productsError === lastError
+    ) {
       return;
     }
     lastProducts = state.products;
-    renderProductsGrid(state.products);
+    lastStatus = state.productsStatus;
+    lastError = state.productsError;
+    renderProductsGrid(state);
   };
 
   const initialState = store.getState();
   lastProducts = initialState.products;
-  renderProductsGrid(initialState.products);
+  lastStatus = initialState.productsStatus;
+  lastError = initialState.productsError;
+  renderProductsGrid(initialState);
   const unsubscribe = store.subscribe(handleStoreUpdate);
   main._homeUnsubscribe = unsubscribe;
 

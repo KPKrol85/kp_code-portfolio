@@ -40,14 +40,20 @@ const detectTheme = () => {
 };
 
 const initData = async () => {
+  store.setState({ productsStatus: "loading", productsError: null });
   try {
     const [products, licenses] = await Promise.all([
       mockApi.getProducts(),
       mockApi.getLicenses(),
     ]);
-    store.setState({ products, licenses });
+    store.setState({ products, licenses, productsStatus: "ready", productsError: null });
   } catch (error) {
     showToast("Nie udało się pobrać danych.", "error");
+    store.setState({
+      products: [],
+      productsStatus: "error",
+      productsError: "Nie udało się pobrać produktów.",
+    });
   }
 };
 

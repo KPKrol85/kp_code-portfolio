@@ -2,6 +2,8 @@ const listeners = new Set();
 
 let state = {
   products: [],
+  productsStatus: "idle",
+  productsError: null,
   licenses: [],
   cart: [],
   user: null,
