@@ -9,6 +9,11 @@ export const renderHome = () => {
   const main = document.getElementById("main-content");
   clearElement(main);
 
+  if (main._homeUnsubscribe) {
+    main._homeUnsubscribe();
+    main._homeUnsubscribe = null;
+  }
+
   const hero = createElement("section", { className: "container hero" });
   const heroContent = createElement("div", { className: "hero-content" });
   heroContent.appendChild(createElement("h1", { text: "KP_Code Digital Vault" }));
@@ -28,16 +33,16 @@ export const renderHome = () => {
   hero.appendChild(heroContent);
   hero.appendChild(heroVisual);
 
-  const stats = createElement("div", { className: "grid grid-3" }, [
-    createElement("div", { className: "card" }, [
+  const stats = createElement("div", { className: "grid grid-3 stats-grid" }, [
+    createElement("div", { className: "card stat-card" }, [
       createElement("h3", { text: "6" }),
       createElement("p", { text: "Produktów dostępnych od ręki" }),
     ]),
-    createElement("div", { className: "card" }, [
+    createElement("div", { className: "card stat-card" }, [
       createElement("h3", { text: "98%" }),
       createElement("p", { text: "Zadowolonych klientów (mock)" }),
     ]),
-    createElement("div", { className: "card" }, [
+    createElement("div", { className: "card stat-card" }, [
       createElement("h3", { text: "24h" }),
       createElement("p", { text: "Średni czas wdrożenia" }),
     ]),
@@ -47,16 +52,19 @@ export const renderHome = () => {
   section.appendChild(createElement("h2", { text: "Popularne produkty" }));
   const grid = createElement("div", { className: "grid grid-3" });
 
-  const { products } = store.getState();
-  if (!products.length) {
-    for (let i = 0; i < 3; i += 1) {
-      grid.appendChild(createElement("div", { className: "card" }, [
-        createElement("div", { className: "skeleton", attrs: { style: "height: 180px" } }),
-        createElement("div", { className: "skeleton", attrs: { style: "width: 60%; height: 18px" } }),
-        createElement("div", { className: "skeleton", attrs: { style: "width: 80%; height: 14px" } }),
-      ]));
+  const renderProductsGrid = (products) => {
+    clearElement(grid);
+    if (!products.length) {
+      for (let i = 0; i < 3; i += 1) {
+        grid.appendChild(createElement("div", { className: "card" }, [
+          createElement("div", { className: "skeleton", attrs: { style: "height: 180px" } }),
+          createElement("div", { className: "skeleton", attrs: { style: "width: 60%; height: 18px" } }),
+          createElement("div", { className: "skeleton", attrs: { style: "width: 80%; height: 14px" } }),
+        ]));
+      }
+      return;
     }
-  } else {
+
     products.slice(0, 3).forEach((product) => {
       grid.appendChild(
         createProductCard(product, (id) => {
@@ -66,7 +74,22 @@ export const renderHome = () => {
         })
       );
     });
-  }
+  };
+
+  let lastProducts = null;
+  const handleStoreUpdate = (state) => {
+    if (state.products === lastProducts) {
+      return;
+    }
+    lastProducts = state.products;
+    renderProductsGrid(state.products);
+  };
+
+  const initialState = store.getState();
+  lastProducts = initialState.products;
+  renderProductsGrid(initialState.products);
+  const unsubscribe = store.subscribe(handleStoreUpdate);
+  main._homeUnsubscribe = unsubscribe;
 
   section.appendChild(grid);
 
