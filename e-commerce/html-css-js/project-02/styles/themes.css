@@ -38,8 +38,8 @@
 }
 
 .sun-and-moon {
-  width: calc(var(--space-5) + (var(--space-1) / 2));
-  height: calc(var(--space-5) + (var(--space-1) / 2));
+  width: calc(var(--space-4) + (var(--space-1) / 2));
+  height: calc(var(--space-4) + (var(--space-1) / 2));
 }
 
 .sun-and-moon .sun {
