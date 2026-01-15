@@ -1,0 +1,14 @@
+{
+  "name": "e-commerce-02-codex",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "scripts": {
+    "video:build": "node scripts/video-build.js",
+    "video:clean": "node scripts/video-clean.js"
+  },
+  "devDependencies": {
+    "ffmpeg-static": "^5.2.0",
+    "ffprobe-static": "^3.1.0"
+  }
+}

@@ -37,19 +37,19 @@ export const renderHome = () => {
       muted: "",
       playsinline: "",
       preload: "metadata",
-      poster: "assets/video/video-hero-poster.jpg",
+      poster: "assets/video/video-hero-960x540-poster.jpg",
     },
   });
   const webmSource = createElement("source", {
     attrs: {
       type: "video/webm",
-      "data-src": "assets/video/video-hero.webm",
+      "data-src": "assets/video/video-hero-960x540.webm",
     },
   });
   const mp4Source = createElement("source", {
     attrs: {
       type: "video/mp4",
-      "data-src": "assets/video/video-hero.mp4",
+      "data-src": "assets/video/video-hero-960x540.optimized.mp4",
     },
   });
   heroVideo.appendChild(webmSource);
@@ -58,6 +58,7 @@ export const renderHome = () => {
   heroVideo.autoplay = true;
   heroVideo.loop = true;
   heroVideo.playsInline = true;
+  heroVisual.appendChild(heroVideo);
 
   let heroVideoLoaded = false;
   const loadHeroVideo = () => {
@@ -77,7 +78,8 @@ export const renderHome = () => {
     });
   };
 
-  if ("IntersectionObserver" in window) {
+  const prefersReducedMotion = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  if (!prefersReducedMotion && "IntersectionObserver" in window) {
     const observer = new IntersectionObserver((entries) => {
       if (entries.some((entry) => entry.isIntersecting)) {
         loadHeroVideo();
@@ -85,10 +87,9 @@ export const renderHome = () => {
       }
     }, { rootMargin: "120px" });
     observer.observe(heroVisual);
-  } else {
+  } else if (!prefersReducedMotion) {
     loadHeroVideo();
   }
-  heroVisual.appendChild(heroVideo);
 
   hero.appendChild(heroContent);
   hero.appendChild(heroVisual);
