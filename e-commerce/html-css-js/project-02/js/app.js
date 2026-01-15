@@ -21,6 +21,8 @@ import { storage } from "./services/storage.js";
 import { store } from "./store/store.js";
 import { showToast } from "./components/toast.js";
 import { initErrorBoundary } from "./utils/error-boundary.js";
+import { initKeyboardShortcuts } from "./utils/keyboard-shortcuts.js";
+import { closeModal } from "./components/modal.js";
 
 const THEME_KEY = "kp_theme";
 
@@ -165,3 +167,25 @@ initLayout();
 initData();
 initRoutes();
 focusMain();
+
+initKeyboardShortcuts({
+  getSearchInput: () => document.querySelector('input[type="search"]'),
+  closeModal,
+  navigateToAuth: () => {
+    const { user } = store.getState();
+    const target = user ? "#/account" : "#/auth";
+    if (!target) {
+      return false;
+    }
+    if (window.location.hash !== target) {
+      window.location.hash = target;
+    } else {
+      try {
+        window.dispatchEvent(new HashChangeEvent("hashchange"));
+      } catch (error) {
+        window.location.hash = target;
+      }
+    }
+    return true;
+  },
+});
