@@ -3,8 +3,17 @@ import { simpleHash } from "../utils/hash.js";
 
 const USERS_KEY = "kp_users";
 const SESSION_KEY = "kp_session";
+const RETURN_TO_KEY = "kp_returnTo";
 
 const createToken = () => Math.random().toString(36).slice(2);
+
+const toPublicUser = (user) => ({
+  id: user.id,
+  name: user.name,
+  email: user.email,
+  role: user.role || "user",
+  createdAt: user.createdAt,
+});
 
 export const authService = {
   register({ name, email, password }) {
@@ -17,6 +26,7 @@ export const authService = {
       name,
       email,
       passwordHash: simpleHash(password),
+      role: "user",
       createdAt: new Date().toISOString(),
     };
     users.push(user);
@@ -31,11 +41,11 @@ export const authService = {
     }
     const session = {
       token: createToken(),
-      userId: user.id,
+      user: toPublicUser(user),
       expiresAt: Date.now() + 7 * 24 * 60 * 60 * 1000,
     };
     storage.set(SESSION_KEY, session);
-    return { user, session };
+    return { user: toPublicUser(user), session };
   },
   logout() {
     storage.remove(SESSION_KEY);
@@ -56,7 +66,17 @@ export const authService = {
     if (!session) {
       return null;
     }
-    const users = storage.get(USERS_KEY, []);
-    return users.find((user) => user.id === session.userId) || null;
+    return session.user || null;
+  },
+  setReturnTo(path) {
+    if (!path) {
+      return;
+    }
+    storage.set(RETURN_TO_KEY, path);
+  },
+  consumeReturnTo() {
+    const value = storage.get(RETURN_TO_KEY, null);
+    storage.remove(RETURN_TO_KEY);
+    return value;
   },
 };

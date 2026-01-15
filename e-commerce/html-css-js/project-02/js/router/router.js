@@ -1,5 +1,7 @@
 import { updateActiveNav } from "../components/header.js";
 import { setMeta } from "../utils/meta.js";
+import { authService } from "../services/auth.js";
+import { store } from "../store/store.js";
 
 const routes = [];
 let activeCleanup = null;
@@ -29,6 +31,14 @@ export const startRouter = () => {
       activeCleanup = null;
     }
     const path = location.hash.replace("#", "") || "/";
+    const isProtectedRoute = ["/account", "/library", "/licenses", "/checkout"].includes(path);
+    if (isProtectedRoute && !store.getState().user) {
+      authService.setReturnTo(`#${path}`);
+      if (path !== "/auth") {
+        location.hash = "#/auth";
+        return;
+      }
+    }
     const route = matchRoute(path);
     if (route) {
       if (route.meta) {
