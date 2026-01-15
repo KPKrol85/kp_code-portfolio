@@ -8,6 +8,7 @@ import { store } from "../store/store.js";
 import { renderNotice } from "../components/uiStates.js";
 import { setMeta } from "../utils/meta.js";
 import { setButtonLoading, clearButtonLoading } from "../utils/ui-state.js";
+import { renderEmptyState } from "../components/ui-state-helpers.js";
 
 export const renderCheckout = () => {
   const main = document.getElementById("main-content");
@@ -19,12 +20,12 @@ export const renderCheckout = () => {
   container.appendChild(createElement("h1", { text: "Checkout" }));
 
   if (!cart.length) {
-    renderNotice(container, {
-      title: "Koszyk jest pusty",
-      message: "Dodaj produkty do koszyka, aby kontynuowac.",
-      action: { label: "Wroc do katalogu", href: "#/products" },
-      headingTag: "h2",
-    });
+    container.appendChild(renderEmptyState({
+      title: "Your cart is empty.",
+      message: "Browse products to get started.",
+      ctaText: "Browse products",
+      ctaHref: "#/products",
+    }));
     main.appendChild(container);
     return;
   }

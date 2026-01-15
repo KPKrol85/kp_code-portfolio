@@ -5,6 +5,7 @@ import { showToast } from "../components/toast.js";
 import { store } from "../store/store.js";
 import { renderNotice } from "../components/uiStates.js";
 import { withButtonLoading } from "../utils/ui-state.js";
+import { renderEmptyState } from "../components/ui-state-helpers.js";
 
 export const renderCart = () => {
   const main = document.getElementById("main-content");
@@ -40,13 +41,12 @@ export const renderCart = () => {
   container.appendChild(createElement("h1", { text: "Twój koszyk" }));
 
   if (!cart.length) {
-    container.appendChild(
-      createElement("div", { className: "notice" }, [
-        createElement("h2", { text: "Koszyk jest pusty" }),
-        createElement("p", { text: "Dodaj produkty, aby rozpocząć zakup." }),
-        createElement("a", { className: "button", text: "Przeglądaj katalog", attrs: { href: "#/products" } }),
-      ])
-    );
+    container.appendChild(renderEmptyState({
+      title: "Your cart is empty.",
+      message: "Browse products to get started.",
+      ctaText: "Browse products",
+      ctaHref: "#/products",
+    }));
     main.appendChild(container);
     return;
   }
@@ -145,3 +145,7 @@ export const renderCart = () => {
   container.appendChild(layout);
   main.appendChild(container);
 };
+
+
+
+

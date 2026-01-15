@@ -3,9 +3,10 @@ import { createProductCard } from "../components/productCard.js";
 import { cartService } from "../services/cart.js";
 import { showToast } from "../components/toast.js";
 import { store } from "../store/store.js";
-import { renderDataState, renderNotice } from "../components/uiStates.js";
+import { renderDataState } from "../components/uiStates.js";
 import { getVisibleProducts } from "../utils/products.js";
 import { debounce } from "../utils/debounce.js";
+import { renderEmptyState } from "../components/ui-state-helpers.js";
 
 export const renderProducts = () => {
   const main = document.getElementById("main-content");
@@ -90,10 +91,17 @@ export const renderProducts = () => {
 
     const visible = getVisibleProducts(products, { query, category, sort });
     if (!visible.length) {
-      renderNotice(grid, {
-        title: "Brak wynikow",
-        message: "Zmien filtry lub usun kryteria wyszukiwania.",
-      });
+      grid.appendChild(renderEmptyState({
+        title: "No products found.",
+        message: "Try adjusting filters or search.",
+        ctaText: "Reset filters",
+        onCta: () => {
+          searchField.value = "";
+          sortSelect.value = "latest";
+          categorySelect.value = "all";
+          renderList();
+        },
+      }));
       return;
     }
 
