@@ -4,6 +4,7 @@ import { cartService } from "../services/cart.js";
 import { showToast } from "../components/toast.js";
 import { store } from "../store/store.js";
 import { renderDataState, renderNotice } from "../components/uiStates.js";
+import { getVisibleProducts } from "../utils/products.js";
 
 export const renderProducts = () => {
   const main = document.getElementById("main-content");
@@ -78,27 +79,8 @@ export const renderProducts = () => {
     const category = categorySelect.value;
     const sort = sortSelect.value;
 
-    let filtered = [...products];
-    if (query) {
-      filtered = filtered.filter((product) =>
-        product.name.toLowerCase().includes(query)
-      );
-    }
-    if (category !== "all") {
-      filtered = filtered.filter((product) => product.category === category);
-    }
-
-    if (sort === "price-asc") {
-      filtered.sort((a, b) => a.price - b.price);
-    }
-    if (sort === "price-desc") {
-      filtered.sort((a, b) => b.price - a.price);
-    }
-    if (sort === "latest") {
-      filtered.sort((a, b) => new Date(b.updatedAt) - new Date(a.updatedAt));
-    }
-
-    if (!filtered.length) {
+    const visible = getVisibleProducts(products, { query, category, sort });
+    if (!visible.length) {
       renderNotice(grid, {
         title: "Brak wynikow",
         message: "Zmien filtry lub usun kryteria wyszukiwania.",
@@ -106,7 +88,7 @@ export const renderProducts = () => {
       return;
     }
 
-    filtered.forEach((product) => {
+    visible.forEach((product) => {
       grid.appendChild(
         createProductCard(product, (id) => {
           cartService.addItem(id, 1);
