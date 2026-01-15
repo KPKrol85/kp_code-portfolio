@@ -30,6 +30,65 @@ export const renderHome = () => {
   heroContent.appendChild(heroActions);
 
   const heroVisual = createElement("div", { className: "hero-visual" });
+  const heroVideo = createElement("video", {
+    attrs: {
+      autoplay: "",
+      loop: "",
+      muted: "",
+      playsinline: "",
+      preload: "metadata",
+      poster: "assets/video/video-hero-poster.jpg",
+    },
+  });
+  const webmSource = createElement("source", {
+    attrs: {
+      type: "video/webm",
+      "data-src": "assets/video/video-hero.webm",
+    },
+  });
+  const mp4Source = createElement("source", {
+    attrs: {
+      type: "video/mp4",
+      "data-src": "assets/video/video-hero.mp4",
+    },
+  });
+  heroVideo.appendChild(webmSource);
+  heroVideo.appendChild(mp4Source);
+  heroVideo.muted = true;
+  heroVideo.autoplay = true;
+  heroVideo.loop = true;
+  heroVideo.playsInline = true;
+
+  let heroVideoLoaded = false;
+  const loadHeroVideo = () => {
+    if (heroVideoLoaded) {
+      return;
+    }
+    heroVideoLoaded = true;
+    heroVideo.querySelectorAll("source").forEach((source) => {
+      const dataSrc = source.getAttribute("data-src");
+      if (dataSrc) {
+        source.setAttribute("src", dataSrc);
+      }
+    });
+    heroVideo.load();
+    heroVideo.play().catch(() => {
+      // Autoplay can be blocked; keep the poster frame.
+    });
+  };
+
+  if ("IntersectionObserver" in window) {
+    const observer = new IntersectionObserver((entries) => {
+      if (entries.some((entry) => entry.isIntersecting)) {
+        loadHeroVideo();
+        observer.disconnect();
+      }
+    }, { rootMargin: "120px" });
+    observer.observe(heroVisual);
+  } else {
+    loadHeroVideo();
+  }
+  heroVisual.appendChild(heroVideo);
 
   hero.appendChild(heroContent);
   hero.appendChild(heroVisual);
