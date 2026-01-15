@@ -47,8 +47,12 @@ export const authService = {
     storage.set(SESSION_KEY, session);
     return { user: toPublicUser(user), session };
   },
-  logout() {
+  logout(store) {
     storage.remove(SESSION_KEY);
+    storage.remove(RETURN_TO_KEY);
+    if (store?.setState) {
+      store.setState({ user: null, session: null });
+    }
   },
   getSession() {
     const session = storage.get(SESSION_KEY, null);

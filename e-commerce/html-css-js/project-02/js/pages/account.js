@@ -61,10 +61,9 @@ export const renderAccount = () => {
     attrs: { type: "button" },
   });
   logoutButton.addEventListener("click", () => {
-    authService.logout();
-    store.setState({ user: null, session: null });
+    authService.logout(store);
     showToast("Wylogowano.");
-    location.hash = "#/";
+    location.hash = "#/auth";
   });
 
   const layout = createElement("div", { className: "grid grid-2 section" }, [profile, ordersCard]);
