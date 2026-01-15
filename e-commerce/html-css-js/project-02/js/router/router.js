@@ -2,6 +2,9 @@ import { updateActiveNav } from "../components/header.js";
 import { setMeta } from "../utils/meta.js";
 import { authService } from "../services/auth.js";
 import { store } from "../store/store.js";
+import { canAccessRoute } from "../utils/permissions.js";
+import { createElement, clearElement } from "../utils/dom.js";
+import { renderNotice } from "../components/uiStates.js";
 
 const routes = [];
 let activeCleanup = null;
@@ -31,11 +34,32 @@ export const startRouter = () => {
       activeCleanup = null;
     }
     const path = location.hash.replace("#", "") || "/";
-    const isProtectedRoute = ["/account", "/library", "/licenses", "/checkout"].includes(path);
-    if (isProtectedRoute && !store.getState().user) {
-      authService.setReturnTo(`#${path}`);
-      if (path !== "/auth") {
-        location.hash = "#/auth";
+    const access = canAccessRoute(path, store.getState().user);
+    if (!access.allowed) {
+      if (access.reason === "unauthenticated") {
+        authService.setReturnTo(`#${path}`);
+        if (path !== "/auth") {
+          location.hash = "#/auth";
+          return;
+        }
+      } else if (access.reason === "forbidden") {
+        setMeta({
+          title: "Brak uprawnien",
+          description: "Nie masz uprawnien do tej sekcji.",
+        });
+        const main = document.getElementById("main-content");
+        if (main) {
+          clearElement(main);
+          const container = createElement("section", { className: "container" });
+          renderNotice(container, {
+            title: "Brak uprawnien",
+            message: "Nie masz uprawnien do tej sekcji.",
+            action: { label: "Wroc na strone glowna", href: "#/" },
+            headingTag: "h2",
+          });
+          main.appendChild(container);
+        }
+        updateActiveNav("");
         return;
       }
     }

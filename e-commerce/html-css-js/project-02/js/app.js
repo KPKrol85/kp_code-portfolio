@@ -12,6 +12,7 @@ import { renderLicenses } from "./pages/licenses.js";
 import { renderLegal } from "./pages/legal.js";
 import { renderContact } from "./pages/contact.js";
 import { renderNotFound } from "./pages/notFound.js";
+import { renderAdmin } from "./pages/admin.js";
 import { addRoute, startRouter } from "./router/router.js";
 import { mockApi } from "./services/mockApi.js";
 import { cartService } from "./services/cart.js";
@@ -127,6 +128,10 @@ const initRoutes = () => {
   addRoute(/^\/licenses$/, renderLicenses, {
     title: "Licencje — KP_Code Digital Vault",
     description: "Sprawdź typy licencji i pobierz pliki licencyjne.",
+  });
+  addRoute(/^\/admin$/, renderAdmin, {
+    title: "Panel administratora - KP_Code Digital Vault",
+    description: "Strefa administracyjna sklepu (w budowie).",
   });
   addRoute(/^\/legal$/, renderLegal, {
     title: "Dokumenty prawne — KP_Code Digital Vault",

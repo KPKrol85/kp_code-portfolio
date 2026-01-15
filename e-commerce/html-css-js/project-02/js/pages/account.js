@@ -36,7 +36,7 @@ export const renderAccount = () => {
     ]),
   ]);
 
-  const orders = purchasesService.getOrders(user.id);
+  const orders = purchasesService.getOrders();
   const ordersCard = createElement("div", { className: "card" }, [
     createElement("h2", { text: "Historia zamówień" }),
   ]);
