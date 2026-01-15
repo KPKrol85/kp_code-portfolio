@@ -1,19 +1,25 @@
 {
   "name": "kp-code-digital-vault",
+  "description": "Frontend-only e-commerce app (Vanilla JS).",
   "private": true,
   "version": "0.1.0",
   "type": "module",
   "scripts": {
+    "min:css": "node scripts/minify-css.js",
+    "min:js": "node scripts/minify-js.js",
+    "build:min": "npm run min:css && npm run min:js",
     "video:build": "node scripts/video-build.js",
     "video:clean": "node scripts/video-clean.js",
     "img:build": "node scripts/img-build.js",
     "img:clean": "node scripts/img-clean.js"
   },
   "devDependencies": {
+    "clean-css-cli": "^5.6.3",
     "fast-glob": "^3.3.2",
     "ffmpeg-static": "^5.2.0",
     "ffprobe-static": "^3.1.0",
     "picocolors": "^1.0.0",
-    "sharp": "^0.33.2"
+    "sharp": "^0.33.2",
+    "terser": "^5.37.0"
   }
 }
