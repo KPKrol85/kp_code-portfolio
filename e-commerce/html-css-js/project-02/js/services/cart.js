@@ -12,20 +12,20 @@ export const cartService = {
   addItem(productId, quantity = 1) {
     const cart = this.getCart();
     const existing = cart.find((item) => item.productId === productId);
+    const safeQuantity = Number.isFinite(quantity) ? Math.max(1, Math.floor(quantity)) : 1;
     if (existing) {
-      existing.quantity += quantity;
+      existing.quantity += safeQuantity;
     } else {
-      cart.push({ productId, quantity });
+      cart.push({ productId, quantity: safeQuantity });
     }
     this.saveCart(cart);
     return cart;
   },
   updateItem(productId, quantity) {
-    let cart = this.getCart();
-    cart = cart.map((item) =>
-      item.productId === productId ? { ...item, quantity } : item
+    const safeQuantity = Number.isFinite(quantity) ? Math.max(1, Math.floor(quantity)) : 1;
+    const cart = this.getCart().map((item) =>
+      item.productId === productId ? { ...item, quantity: safeQuantity } : item
     );
-    cart = cart.filter((item) => item.quantity > 0);
     this.saveCart(cart);
     return cart;
   },

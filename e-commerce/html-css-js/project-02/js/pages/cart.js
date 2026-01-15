@@ -66,8 +66,10 @@ export const renderCart = () => {
       attrs: { type: "number", min: "1", value: String(item.quantity) },
     });
     quantityField.addEventListener("change", () => {
-      const value = Number(quantityField.value);
-      cartService.updateItem(product.id, value);
+      const rawValue = Number(quantityField.value);
+      const safeValue = Number.isFinite(rawValue) ? Math.max(1, Math.floor(rawValue)) : 1;
+      quantityField.value = String(safeValue);
+      cartService.updateItem(product.id, safeValue);
       store.setState({ cart: cartService.getCart() });
       renderCart();
     });
@@ -108,8 +110,19 @@ export const renderCart = () => {
   summary.appendChild(createElement("p", { text: `Suma: ${formatCurrency(subtotal)}` }));
   summary.appendChild(promoField);
   summary.appendChild(applyButton);
+  const clearButton = createElement("button", {
+    className: "button secondary",
+    text: "Wyczysc koszyk",
+    attrs: { type: "button" },
+  });
+  clearButton.addEventListener("click", () => {
+    cartService.clear();
+    store.setState({ cart: [] });
+    renderCart();
+  });
+  summary.appendChild(clearButton);
   summary.appendChild(
-    createElement("a", { className: "button block", text: "Przejdź do checkout", attrs: { href: "#/checkout" } })
+    createElement("a", { className: "button block", text: "Przejd« do checkout", attrs: { href: "#/checkout" } })
   );
 
   const layout = createElement("div", { className: "grid grid-2 section" }, [itemsWrapper, summary]);
