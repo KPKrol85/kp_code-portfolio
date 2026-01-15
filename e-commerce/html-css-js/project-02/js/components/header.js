@@ -12,7 +12,8 @@ const navItems = [
 
 export const renderHeader = (container, onThemeToggle) => {
   const MOBILE_BREAKPOINT = 960;
-  const SHRINK_THRESHOLD = 36;
+  const SHRINK_THRESHOLD = 80;
+  const EXPAND_THRESHOLD = 40;
   let menuOpen = false;
   let menuToggleButton = null;
   let menuDrawer = null;
@@ -20,6 +21,7 @@ export const renderHeader = (container, onThemeToggle) => {
   let scrollTicking = false;
   let scrollLocked = false;
   let lockedScrollY = 0;
+  let isShrunk = false;
 
   const focusableSelector = "a[href], button:not([disabled]), [tabindex]:not([tabindex='-1'])";
 
@@ -316,6 +318,14 @@ export const renderHeader = (container, onThemeToggle) => {
   store.subscribe(build);
 
   const headerRoot = container.closest("header");
+  const applyShrinkState = (nextShrunk) => {
+    if (!headerRoot || isShrunk === nextShrunk) {
+      return;
+    }
+    isShrunk = nextShrunk;
+    headerRoot.classList.toggle("is-shrink", isShrunk);
+  };
+
   const handleScroll = () => {
     if (!headerRoot) {
       return;
@@ -325,7 +335,14 @@ export const renderHeader = (container, onThemeToggle) => {
     }
     scrollTicking = true;
     window.requestAnimationFrame(() => {
-      headerRoot.classList.toggle("is-shrink", window.scrollY > SHRINK_THRESHOLD);
+      const scrollY = window.scrollY;
+      if (scrollY <= 0) {
+        applyShrinkState(false);
+      } else if (!isShrunk && scrollY > SHRINK_THRESHOLD) {
+        applyShrinkState(true);
+      } else if (isShrunk && scrollY < EXPAND_THRESHOLD) {
+        applyShrinkState(false);
+      }
       scrollTicking = false;
     });
   };
