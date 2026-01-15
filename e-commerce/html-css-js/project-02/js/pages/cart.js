@@ -4,6 +4,7 @@ import { cartService } from "../services/cart.js";
 import { showToast } from "../components/toast.js";
 import { store } from "../store/store.js";
 import { renderNotice } from "../components/uiStates.js";
+import { withButtonLoading } from "../utils/ui-state.js";
 
 export const renderCart = () => {
   const main = document.getElementById("main-content");
@@ -115,7 +116,9 @@ export const renderCart = () => {
     attrs: { type: "button" },
   });
   applyButton.addEventListener("click", () => {
-    showToast("Kod rabatowy zastosowany (demo).");
+    withButtonLoading(applyButton, async () => {
+      showToast("Kod rabatowy zastosowany (demo).");
+    }, { loadingText: "Przetwarzanie..." });
   });
 
   summary.appendChild(createElement("h2", { text: "Podsumowanie" }));

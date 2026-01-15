@@ -7,6 +7,7 @@ import { showToast } from "../components/toast.js";
 import { store } from "../store/store.js";
 import { renderNotice } from "../components/uiStates.js";
 import { setMeta } from "../utils/meta.js";
+import { setButtonLoading, clearButtonLoading } from "../utils/ui-state.js";
 
 export const renderCheckout = () => {
   const main = document.getElementById("main-content");
@@ -118,8 +119,12 @@ export const renderCheckout = () => {
 
   const updateProcessingState = (processing) => {
     isProcessing = processing;
+    if (processing) {
+      setButtonLoading(submitButton, { loadingText: "Przetwarzanie..." });
+    } else {
+      clearButtonLoading(submitButton);
+    }
     submitButton.disabled = processing || !validateForm();
-    submitButton.textContent = processing ? "Przetwarzanie..." : "Zloz zamowienie";
   };
 
   [nameField, emailField].forEach((field) => {

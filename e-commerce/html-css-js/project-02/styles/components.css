@@ -27,11 +27,6 @@
   transform: none;
 }
 
-.button:disabled:hover,
-.button[data-loading="true"]:hover {
-  background: var(--color-accent);
-}
-
 .button.secondary {
   background: transparent;
   color: var(--color-text);
