@@ -20,6 +20,7 @@ import { authService } from "./services/auth.js";
 import { storage } from "./services/storage.js";
 import { store } from "./store/store.js";
 import { showToast } from "./components/toast.js";
+import { initErrorBoundary } from "./utils/error-boundary.js";
 
 const THEME_KEY = "kp_theme";
 
@@ -158,6 +159,7 @@ const focusMain = () => {
 
 window.addEventListener("hashchange", focusMain);
 
+initErrorBoundary();
 initStore();
 initLayout();
 initData();
