@@ -18,7 +18,7 @@ export const renderProductDetails = ({ id }) => {
 
   const renderView = (state) => {
     clearElement(main);
-    const { products, productsStatus, productsError, user } = state;
+    const { products, productsStatus, productsError } = state;
 
     if (productsStatus === "loading" || productsStatus === "idle") {
       setMeta({
@@ -112,7 +112,9 @@ export const renderProductDetails = ({ id }) => {
       createElement("h2", { text: "Pliki do pobrania" }),
     ]);
     const downloadList = createElement("ul");
-    const hasAccess = user ? purchasesService.getLibrary(user.id).some((entry) => entry.productId === product.id) : false;
+    const hasAccess = purchasesService.getPurchases().some((purchase) =>
+      purchase.items.some((entry) => entry.productId === product.id)
+    );
 
     product.downloadables.forEach((item) => {
       const label = hasAccess ? `${item.name} (${item.size})` : `${item.name} (odblokuj po zakupie)`;

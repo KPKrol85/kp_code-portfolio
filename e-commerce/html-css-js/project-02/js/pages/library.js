@@ -8,11 +8,11 @@ export const renderLibrary = () => {
   const main = document.getElementById("main-content");
   clearElement(main);
 
-  const { user, products, productsStatus, productsError } = store.getState();
+  const { products, productsStatus, productsError } = store.getState();
+  const container = createElement("section", { className: "container" });
+  container.appendChild(createElement("h1", { text: "Twoja biblioteka" }));
 
   if (productsStatus === "loading" || productsStatus === "idle") {
-    const container = createElement("section", { className: "container" });
-    container.appendChild(createElement("h1", { text: "Twoja biblioteka" }));
     renderNotice(container, {
       title: "Ladowanie biblioteki",
       message: "Trwa pobieranie danych produktow.",
@@ -23,8 +23,6 @@ export const renderLibrary = () => {
   }
 
   if (productsStatus === "error") {
-    const container = createElement("section", { className: "container" });
-    container.appendChild(createElement("h1", { text: "Twoja biblioteka" }));
     renderNotice(container, {
       title: "Nie udalo sie pobrac produktow",
       message: productsError || "Sprobuj ponownie pozniej.",
@@ -34,35 +32,28 @@ export const renderLibrary = () => {
     return;
   }
 
-  const container = createElement("section", { className: "container" });
-  container.appendChild(createElement("h1", { text: "Twoja biblioteka" }));
-
-  if (!user) {
-    container.appendChild(
-      createElement("div", { className: "notice" }, [
-        createElement("p", { text: "Zaloguj się, aby zobaczyć zakupione pliki." }),
-        createElement("a", { className: "button", text: "Zaloguj się", attrs: { href: "#/auth" } }),
-      ])
-    );
+  const libraryItems = purchasesService.getLibraryItems();
+  if (!libraryItems.length) {
+    renderNotice(container, {
+      title: "Brak zakupow",
+      message: "Po zakupie produkty pojawia sie tutaj automatycznie.",
+      action: { label: "Przejdz do katalogu", href: "#/products" },
+      headingTag: "h2",
+    });
     main.appendChild(container);
     return;
   }
 
-  const library = purchasesService.getLibrary(user.id);
-  if (!library.length) {
-    container.appendChild(
-      createElement("div", { className: "notice" }, [
-        createElement("h2", { text: "Brak zakupów" }),
-        createElement("p", { text: "Po zakupie produkty pojawią się tutaj automatycznie." }),
-        createElement("a", { className: "button", text: "Przejdź do katalogu", attrs: { href: "#/products" } }),
-      ])
-    );
-    main.appendChild(container);
-    return;
-  }
+  const latestByProduct = new Map();
+  libraryItems.forEach((entry) => {
+    const existing = latestByProduct.get(entry.productId);
+    if (!existing || new Date(entry.purchasedAt) > new Date(existing.purchasedAt)) {
+      latestByProduct.set(entry.productId, entry);
+    }
+  });
 
   const grid = createElement("div", { className: "grid grid-2 section" });
-  library.forEach((entry) => {
+  Array.from(latestByProduct.values()).forEach((entry) => {
     const product = products.find((item) => item.id === entry.productId);
     if (!product) {
       return;

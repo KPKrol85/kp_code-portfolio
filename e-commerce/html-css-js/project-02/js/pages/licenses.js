@@ -5,25 +5,24 @@ import { purchasesService } from "../services/purchases.js";
 import { renderNotice } from "../components/uiStates.js";
 
 const createLicenseBlob = (details) => {
-  const content = [
-    "KP_Code Digital Vault - License",
-    `Produkt: ${details.productName}`,
-    `Licencja: ${details.license}`,
-    `Klient: ${details.userName}`,
-    `Data zakupu: ${details.date}`,
-  ].join("\n");
+  const content = ["KP_Code Digital Vault - License", `Produkt: ${details.productName}`, `Licencja: ${details.license}`, `Klient: ${details.userName}`, `Data zakupu: ${details.date}`].join("\n");
   return new Blob([content], { type: "text/plain" });
+};
+
+const buildLicenseKey = (purchaseId, productId) => {
+  const shortPurchase = String(purchaseId || "").replace(/-/g, "").slice(0, 8);
+  return `${shortPurchase}-${productId}`.toUpperCase();
 };
 
 export const renderLicenses = () => {
   const main = document.getElementById("main-content");
   clearElement(main);
 
-  const { user, licenses, products, productsStatus, productsError } = store.getState();
+  const { licenses, products, productsStatus, productsError } = store.getState();
+  const container = createElement("section", { className: "container" });
+  container.appendChild(createElement("h1", { text: "Licencje" }));
 
   if (productsStatus === "loading" || productsStatus === "idle") {
-    const container = createElement("section", { className: "container" });
-    container.appendChild(createElement("h1", { text: "Licencje" }));
     renderNotice(container, {
       title: "Ladowanie licencji",
       message: "Trwa pobieranie danych produktow.",
@@ -34,8 +33,6 @@ export const renderLicenses = () => {
   }
 
   if (productsStatus === "error") {
-    const container = createElement("section", { className: "container" });
-    container.appendChild(createElement("h1", { text: "Licencje" }));
     renderNotice(container, {
       title: "Nie udalo sie pobrac produktow",
       message: productsError || "Sprobuj ponownie pozniej.",
@@ -44,9 +41,6 @@ export const renderLicenses = () => {
     main.appendChild(container);
     return;
   }
-
-  const container = createElement("section", { className: "container" });
-  container.appendChild(createElement("h1", { text: "Licencje" }));
 
   const licenseGrid = createElement("div", { className: "grid grid-2" });
   if (!licenses.length) {
@@ -75,23 +69,22 @@ export const renderLicenses = () => {
     createElement("h2", { text: "Twoje licencje" }),
   ]);
 
-  if (!user) {
-    assignedSection.appendChild(createElement("p", { text: "Zaloguj się, aby zobaczyć przypisane licencje." }));
+  const purchases = purchasesService.getPurchases();
+  if (!purchases.length) {
+    assignedSection.appendChild(createElement("p", { text: "Brak przypisanych licencji." }));
   } else {
-    const library = purchasesService.getLibrary(user.id);
-    if (!library.length) {
-      assignedSection.appendChild(createElement("p", { text: "Brak przypisanych licencji." }));
-    } else {
-      const list = createElement("div", { className: "grid grid-2" });
-      library.forEach((entry) => {
-        const product = products.find((item) => item.id === entry.productId);
+    const list = createElement("div", { className: "grid grid-2" });
+    purchases.forEach((purchase) => {
+      purchase.items.forEach((item) => {
+        const product = products.find((entry) => entry.id === item.productId);
         if (!product) {
           return;
         }
+        const licenseKey = buildLicenseKey(purchase.id, product.id);
         const card = createElement("div", { className: "card" }, [
           createElement("h3", { text: product.name }),
-          createElement("p", { text: `Licencja: ${entry.license}` }),
-          createElement("p", { text: `Data zakupu: ${formatDate(entry.purchasedAt)}` }),
+          createElement("p", { text: `Klucz: ${licenseKey}` }),
+          createElement("p", { text: `Data zakupu: ${formatDate(purchase.createdAt)}` }),
         ]);
         const downloadButton = createElement("button", {
           className: "button secondary",
@@ -101,9 +94,9 @@ export const renderLicenses = () => {
         downloadButton.addEventListener("click", () => {
           const blob = createLicenseBlob({
             productName: product.name,
-            license: entry.license,
-            userName: user.name,
-            date: formatDate(entry.purchasedAt),
+            license: licenseKey,
+            userName: "Klient",
+            date: formatDate(purchase.createdAt),
           });
           const url = URL.createObjectURL(blob);
           const link = createElement("a", {
@@ -117,8 +110,8 @@ export const renderLicenses = () => {
         card.appendChild(downloadButton);
         list.appendChild(card);
       });
-      assignedSection.appendChild(list);
-    }
+    });
+    assignedSection.appendChild(list);
   }
 
   container.appendChild(assignedSection);

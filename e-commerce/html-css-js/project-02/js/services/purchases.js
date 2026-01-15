@@ -1,27 +1,29 @@
 import { storage } from "./storage.js";
 
-const LIBRARY_KEY = "kp_library";
-const ORDERS_KEY = "kp_orders";
+const PURCHASES_KEY = "kp_purchases";
 
 export const purchasesService = {
-  getLibrary(userId) {
-    const library = storage.get(LIBRARY_KEY, {});
-    return library[userId] || [];
+  getPurchases() {
+    const purchases = storage.get(PURCHASES_KEY, []);
+    return Array.isArray(purchases) ? purchases : [];
   },
-  addToLibrary(userId, items) {
-    const library = storage.get(LIBRARY_KEY, {});
-    const current = library[userId] || [];
-    library[userId] = [...current, ...items];
-    storage.set(LIBRARY_KEY, library);
+  addPurchase(purchase) {
+    const purchases = this.getPurchases();
+    const next = [purchase, ...purchases];
+    storage.set(PURCHASES_KEY, next);
+    return next;
   },
-  getOrders(userId) {
-    const orders = storage.get(ORDERS_KEY, {});
-    return orders[userId] || [];
+  getLibraryItems() {
+    const purchases = this.getPurchases();
+    return purchases.flatMap((purchase) =>
+      purchase.items.map((item) => ({
+        purchaseId: purchase.id,
+        purchasedAt: purchase.createdAt,
+        ...item,
+      }))
+    );
   },
-  addOrder(userId, order) {
-    const orders = storage.get(ORDERS_KEY, {});
-    const current = orders[userId] || [];
-    orders[userId] = [order, ...current];
-    storage.set(ORDERS_KEY, orders);
+  getOrders() {
+    return this.getPurchases();
   },
 };
