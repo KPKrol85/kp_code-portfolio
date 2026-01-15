@@ -1,4 +1,5 @@
 import { updateActiveNav } from "../components/header.js";
+import { setMeta } from "../utils/meta.js";
 
 const routes = [];
 let activeCleanup = null;
@@ -18,11 +19,7 @@ const matchRoute = (path) => {
 };
 
 export const updateMeta = (title, description) => {
-  document.title = title;
-  const metaDescription = document.getElementById("meta-description");
-  if (metaDescription) {
-    metaDescription.setAttribute("content", description);
-  }
+  setMeta({ title, description });
 };
 
 export const startRouter = () => {

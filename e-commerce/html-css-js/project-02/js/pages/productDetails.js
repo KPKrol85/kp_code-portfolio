@@ -5,6 +5,7 @@ import { showToast } from "../components/toast.js";
 import { store } from "../store/store.js";
 import { purchasesService } from "../services/purchases.js";
 import { renderNotice } from "../components/uiStates.js";
+import { setMeta } from "../utils/meta.js";
 
 export const renderProductDetails = ({ id }) => {
   const main = document.getElementById("main-content");
@@ -20,6 +21,10 @@ export const renderProductDetails = ({ id }) => {
     const { products, productsStatus, productsError, user } = state;
 
     if (productsStatus === "loading" || productsStatus === "idle") {
+      setMeta({
+        title: "Ladowanie produktu...",
+        description: "Trwa pobieranie danych produktu.",
+      });
       const container = createElement("div", { className: "container" });
       renderNotice(container, {
         title: "Ladowanie produktu",
@@ -30,6 +35,10 @@ export const renderProductDetails = ({ id }) => {
     }
 
     if (productsStatus === "error") {
+      setMeta({
+        title: "Nie udalo sie pobrac produktu",
+        description: productsError || "Sprobuj ponownie pozniej.",
+      });
       const container = createElement("div", { className: "container" });
       renderNotice(container, {
         title: "Nie udalo sie pobrac produktu",
@@ -41,6 +50,10 @@ export const renderProductDetails = ({ id }) => {
 
     const product = products.find((item) => item.id === id);
     if (!product) {
+      setMeta({
+        title: "Produkt nie zostal znaleziony",
+        description: "Sprawdz adres lub wroc do katalogu produktow.",
+      });
       const container = createElement("div", { className: "container" });
       renderNotice(container, {
         title: "Produkt nie zostal znaleziony",
@@ -50,6 +63,11 @@ export const renderProductDetails = ({ id }) => {
       main.appendChild(container);
       return;
     }
+
+    setMeta({
+      title: `${product.name} - KP_Code Digital Vault`,
+      description: product.shortDescription || product.description || "Szczegoly produktu cyfrowego.",
+    });
 
     const wrapper = createElement("section", { className: "container" });
     const layout = createElement("div", { className: "grid grid-2" });
