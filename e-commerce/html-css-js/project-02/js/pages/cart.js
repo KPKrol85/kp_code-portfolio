@@ -61,9 +61,15 @@ export const renderCart = () => {
     const card = createElement("div", { className: "card" });
     card.appendChild(createElement("h3", { text: product.name }));
     card.appendChild(createElement("p", { text: product.shortDescription }));
+    const quantityId = `cart-qty-${product.id}`;
+    const quantityLabel = createElement("label", {
+      className: "sr-only",
+      text: "Ilosc",
+      attrs: { for: quantityId },
+    });
     const quantityField = createElement("input", {
       className: "input",
-      attrs: { type: "number", min: "1", value: String(item.quantity) },
+      attrs: { id: quantityId, type: "number", min: "1", value: String(item.quantity) },
     });
     quantityField.addEventListener("change", () => {
       const rawValue = Number(quantityField.value);
@@ -87,15 +93,21 @@ export const renderCart = () => {
     });
 
     card.appendChild(createElement("p", { className: "price", text: formatCurrency(product.price) }));
+    card.appendChild(quantityLabel);
     card.appendChild(quantityField);
     card.appendChild(removeButton);
     itemsWrapper.appendChild(card);
   });
 
   const summary = createElement("div", { className: "card" });
+  const promoLabel = createElement("label", {
+    className: "sr-only",
+    text: "Kod rabatowy",
+    attrs: { for: "promo-code" },
+  });
   const promoField = createElement("input", {
     className: "input",
-    attrs: { type: "text", placeholder: "Kod rabatowy (mock)" },
+    attrs: { id: "promo-code", type: "text", placeholder: "Kod rabatowy (mock)" },
   });
   const applyButton = createElement("button", {
     className: "button secondary",
@@ -108,6 +120,7 @@ export const renderCart = () => {
 
   summary.appendChild(createElement("h2", { text: "Podsumowanie" }));
   summary.appendChild(createElement("p", { text: `Suma: ${formatCurrency(subtotal)}` }));
+  summary.appendChild(promoLabel);
   summary.appendChild(promoField);
   summary.appendChild(applyButton);
   const clearButton = createElement("button", {

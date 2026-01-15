@@ -33,19 +33,19 @@ export const renderCheckout = () => {
 
   const nameField = createElement("input", {
     className: "input",
-    attrs: { type: "text", name: "name", placeholder: "Imie i nazwisko" },
+    attrs: { id: "checkout-name", type: "text", name: "name", placeholder: "Imie i nazwisko" },
   });
   const emailField = createElement("input", {
     className: "input",
-    attrs: { type: "email", name: "email", placeholder: "E-mail" },
+    attrs: { id: "checkout-email", type: "email", name: "email", placeholder: "E-mail" },
   });
   const companyField = createElement("input", {
     className: "input",
-    attrs: { type: "text", name: "company", placeholder: "Firma (opcjonalnie)" },
+    attrs: { id: "checkout-company", type: "text", name: "company", placeholder: "Firma (opcjonalnie)" },
   });
   const taxIdField = createElement("input", {
     className: "input",
-    attrs: { type: "text", name: "taxId", placeholder: "NIP (opcjonalnie)" },
+    attrs: { id: "checkout-tax-id", type: "text", name: "taxId", placeholder: "NIP (opcjonalnie)" },
   });
 
   const nameError = createElement("div", { className: "form-error" });
@@ -53,21 +53,21 @@ export const renderCheckout = () => {
   const errorBox = createElement("div", { className: "form-error" });
 
   form.appendChild(createElement("div", { className: "form-field" }, [
-    createElement("label", { text: "Imie i nazwisko" }),
+    createElement("label", { text: "Imie i nazwisko", attrs: { for: "checkout-name" } }),
     nameField,
     nameError,
   ]));
   form.appendChild(createElement("div", { className: "form-field" }, [
-    createElement("label", { text: "E-mail" }),
+    createElement("label", { text: "E-mail", attrs: { for: "checkout-email" } }),
     emailField,
     emailError,
   ]));
   form.appendChild(createElement("div", { className: "form-field" }, [
-    createElement("label", { text: "Firma" }),
+    createElement("label", { text: "Firma", attrs: { for: "checkout-company" } }),
     companyField,
   ]));
   form.appendChild(createElement("div", { className: "form-field" }, [
-    createElement("label", { text: "NIP" }),
+    createElement("label", { text: "NIP", attrs: { for: "checkout-tax-id" } }),
     taxIdField,
   ]));
   form.appendChild(errorBox);

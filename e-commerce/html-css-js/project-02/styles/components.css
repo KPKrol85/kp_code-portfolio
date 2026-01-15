@@ -19,6 +19,19 @@
   transform: translateY(-1px);
 }
 
+.button:disabled,
+.button[data-loading="true"] {
+  opacity: 0.6;
+  cursor: not-allowed;
+  box-shadow: none;
+  transform: none;
+}
+
+.button:disabled:hover,
+.button[data-loading="true"]:hover {
+  background: var(--color-accent);
+}
+
 .button.secondary {
   background: transparent;
   color: var(--color-text);
