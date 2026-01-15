@@ -5,6 +5,7 @@ import { showToast } from "../components/toast.js";
 import { store } from "../store/store.js";
 import { renderDataState, renderNotice } from "../components/uiStates.js";
 import { getVisibleProducts } from "../utils/products.js";
+import { debounce } from "../utils/debounce.js";
 
 export const renderProducts = () => {
   const main = document.getElementById("main-content");
@@ -70,14 +71,22 @@ export const renderProducts = () => {
   const grid = createElement("div", { className: "grid grid-3 section" });
   container.appendChild(grid);
 
+  let lastRenderSignature = null;
+  let lastRenderProducts = null;
   const renderList = () => {
     if (!isActive || store.getState().productsStatus !== "ready") {
       return;
     }
-    clearElement(grid);
     const query = searchField.value.toLowerCase();
     const category = categorySelect.value;
     const sort = sortSelect.value;
+    const signature = `${query}|${category}|${sort}`;
+    if (signature === lastRenderSignature && products === lastRenderProducts) {
+      return;
+    }
+    lastRenderSignature = signature;
+    lastRenderProducts = products;
+    clearElement(grid);
 
     const visible = getVisibleProducts(products, { query, category, sort });
     if (!visible.length) {
@@ -163,14 +172,14 @@ export const renderProducts = () => {
   const unsubscribe = store.subscribe(handleStoreUpdate);
   main._productsUnsubscribe = unsubscribe;
 
-  const attachFieldListener = (field, eventName) => {
-    field.addEventListener(eventName, renderList);
-    addCleanup(() => field.removeEventListener(eventName, renderList));
+  const attachFieldListener = (field, eventName, handler) => {
+    field.addEventListener(eventName, handler);
+    addCleanup(() => field.removeEventListener(eventName, handler));
   };
-  [searchField, sortSelect, categorySelect].forEach((field) => {
-    attachFieldListener(field, "input");
-    attachFieldListener(field, "change");
-  });
+  const debouncedRenderList = debounce(renderList, 250);
+  attachFieldListener(searchField, "input", debouncedRenderList);
+  attachFieldListener(sortSelect, "change", renderList);
+  attachFieldListener(categorySelect, "change", renderList);
 
   main.appendChild(container);
 
