@@ -4,22 +4,44 @@ import { cartService } from "../services/cart.js";
 import { showToast } from "../components/toast.js";
 import { store } from "../store/store.js";
 import { purchasesService } from "../services/purchases.js";
+import { renderNotice } from "../components/uiStates.js";
 
 export const renderProductDetails = ({ id }) => {
   const main = document.getElementById("main-content");
   clearElement(main);
 
-  const { products, user } = store.getState();
+  const { products, productsStatus, productsError, user } = store.getState();
+
+  if (productsStatus === "loading" || productsStatus === "idle") {
+    const container = createElement("div", { className: "container" });
+    renderNotice(container, {
+      title: "Ladowanie produktu",
+      message: "Trwa pobieranie danych produktu.",
+    });
+    main.appendChild(container);
+    return;
+  }
+
+  if (productsStatus === "error") {
+    const container = createElement("div", { className: "container" });
+    renderNotice(container, {
+      title: "Nie udalo sie pobrac produktu",
+      message: productsError || "Sprobuj ponownie pozniej.",
+    });
+    main.appendChild(container);
+    return;
+  }
+
   const product = products.find((item) => item.id === id);
 
   if (!product) {
-    main.appendChild(
-      createElement("div", { className: "container" }, [
-        createElement("h1", { text: "Produkt nie został znaleziony" }),
-        createElement("p", { text: "Sprawdź adres lub wróć do katalogu." }),
-        createElement("a", { className: "button", text: "Wróć do katalogu", attrs: { href: "#/products" } }),
-      ])
-    );
+    const container = createElement("div", { className: "container" });
+    renderNotice(container, {
+      title: "Produkt nie zostal znaleziony",
+      message: "Sprawdz adres lub wroc do katalogu.",
+      action: { label: "Wroc do katalogu", href: "#/products" },
+    });
+    main.appendChild(container);
     return;
   }
 

@@ -2,12 +2,38 @@ import { createElement, clearElement } from "../utils/dom.js";
 import { formatDate } from "../utils/format.js";
 import { purchasesService } from "../services/purchases.js";
 import { store } from "../store/store.js";
+import { renderNotice } from "../components/uiStates.js";
 
 export const renderLibrary = () => {
   const main = document.getElementById("main-content");
   clearElement(main);
 
-  const { user, products } = store.getState();
+  const { user, products, productsStatus, productsError } = store.getState();
+
+  if (productsStatus === "loading" || productsStatus === "idle") {
+    const container = createElement("section", { className: "container" });
+    container.appendChild(createElement("h1", { text: "Twoja biblioteka" }));
+    renderNotice(container, {
+      title: "Ladowanie biblioteki",
+      message: "Trwa pobieranie danych produktow.",
+      headingTag: "h2",
+    });
+    main.appendChild(container);
+    return;
+  }
+
+  if (productsStatus === "error") {
+    const container = createElement("section", { className: "container" });
+    container.appendChild(createElement("h1", { text: "Twoja biblioteka" }));
+    renderNotice(container, {
+      title: "Nie udalo sie pobrac produktow",
+      message: productsError || "Sprobuj ponownie pozniej.",
+      headingTag: "h2",
+    });
+    main.appendChild(container);
+    return;
+  }
+
   const container = createElement("section", { className: "container" });
   container.appendChild(createElement("h1", { text: "Twoja biblioteka" }));
 

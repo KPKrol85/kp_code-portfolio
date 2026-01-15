@@ -3,6 +3,7 @@ import { createProductCard } from "../components/productCard.js";
 import { cartService } from "../services/cart.js";
 import { showToast } from "../components/toast.js";
 import { store } from "../store/store.js";
+import { renderDataState, renderNotice } from "../components/uiStates.js";
 
 export const renderProducts = () => {
   const main = document.getElementById("main-content");
@@ -98,12 +99,10 @@ export const renderProducts = () => {
     }
 
     if (!filtered.length) {
-      grid.appendChild(
-        createElement("div", { className: "notice" }, [
-          createElement("h3", { text: "Brak wynik¢w" }),
-          createElement("p", { text: "Zmieä filtry lub usuä kryteria wyszukiwania." }),
-        ])
-      );
+      renderNotice(grid, {
+        title: "Brak wynikow",
+        message: "Zmien filtry lub usun kryteria wyszukiwania.",
+      });
       return;
     }
 
@@ -120,36 +119,25 @@ export const renderProducts = () => {
 
   const renderGridState = (state) => {
     const { productsStatus, productsError, products } = state;
-    clearElement(grid);
-
-    if (productsStatus === "loading") {
-      for (let i = 0; i < 6; i += 1) {
-        grid.appendChild(createElement("div", { className: "card" }, [
-          createElement("div", { className: "skeleton", attrs: { style: "height: 180px" } }),
-          createElement("div", { className: "skeleton", attrs: { style: "width: 70%; height: 18px" } }),
-          createElement("div", { className: "skeleton", attrs: { style: "width: 60%; height: 14px" } }),
-        ]));
-      }
-      return;
-    }
-
-    if (productsStatus === "error") {
-      grid.appendChild(
-        createElement("div", { className: "notice" }, [
-          createElement("h3", { text: "Nie udało się pobrać produktów" }),
-          createElement("p", { text: productsError || "Spróbuj ponownie później." }),
-        ])
-      );
-      return;
-    }
-
-    if (productsStatus === "ready" && !products.length) {
-      grid.appendChild(
-        createElement("div", { className: "notice" }, [
-          createElement("h3", { text: "Brak produktów" }),
-          createElement("p", { text: "Brak produktów do wyświetlenia." }),
-        ])
-      );
+    if (renderDataState(grid, {
+      status: productsStatus,
+      items: products,
+      error: productsError,
+      loading: {
+        count: 6,
+        imageHeight: 180,
+        lineWidths: [70, 60],
+        lineHeights: [18, 14],
+      },
+      errorState: {
+        title: "Nie udalo sie pobrac produktow",
+        message: productsError || "Sprobuj ponownie pozniej.",
+      },
+      empty: {
+        title: "Brak produktow",
+        message: "Brak produktow do wyswietlenia.",
+      },
+    })) {
       return;
     }
   };

@@ -3,12 +3,37 @@ import { formatCurrency } from "../utils/format.js";
 import { cartService } from "../services/cart.js";
 import { showToast } from "../components/toast.js";
 import { store } from "../store/store.js";
+import { renderNotice } from "../components/uiStates.js";
 
 export const renderCart = () => {
   const main = document.getElementById("main-content");
   clearElement(main);
 
-  const { cart, products } = store.getState();
+  const { cart, products, productsStatus, productsError } = store.getState();
+
+  if (productsStatus === "loading" || productsStatus === "idle") {
+    const container = createElement("section", { className: "container" });
+    container.appendChild(createElement("h1", { text: "Twoj koszyk" }));
+    renderNotice(container, {
+      title: "Ladowanie koszyka",
+      message: "Trwa pobieranie danych produktow.",
+      headingTag: "h2",
+    });
+    main.appendChild(container);
+    return;
+  }
+
+  if (productsStatus === "error") {
+    const container = createElement("section", { className: "container" });
+    container.appendChild(createElement("h1", { text: "Twoj koszyk" }));
+    renderNotice(container, {
+      title: "Nie udalo sie pobrac produktow",
+      message: productsError || "Sprobuj ponownie pozniej.",
+      headingTag: "h2",
+    });
+    main.appendChild(container);
+    return;
+  }
 
   const container = createElement("section", { className: "container" });
   container.appendChild(createElement("h1", { text: "Twój koszyk" }));

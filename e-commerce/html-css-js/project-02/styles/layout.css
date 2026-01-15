@@ -42,9 +42,11 @@ header {
   display: inline-flex;
   align-items: center;
   gap: var(--space-2);
+  color: var(--color-accent);
 }
 
-.brand img {
+.brand img,
+.brand svg {
   height: var(--logo-height);
   width: auto;
   transition: height var(--transition-fast);
@@ -54,7 +56,8 @@ header.is-shrink .header-inner {
   padding: var(--header-padding-y-shrink) var(--space-4);
 }
 
-header.is-shrink .brand img {
+header.is-shrink .brand img,
+header.is-shrink .brand svg {
   height: var(--logo-height-shrink);
 }
 

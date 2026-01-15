@@ -4,6 +4,7 @@ import { createProductCard } from "../components/productCard.js";
 import { cartService } from "../services/cart.js";
 import { showToast } from "../components/toast.js";
 import { store } from "../store/store.js";
+import { renderDataState } from "../components/uiStates.js";
 
 export const renderHome = () => {
   const main = document.getElementById("main-content");
@@ -54,44 +55,28 @@ export const renderHome = () => {
 
   const renderProductsGrid = (state) => {
     const { products, productsStatus, productsError } = state;
-    clearElement(grid);
-
-    if (productsStatus === "loading") {
-      for (let i = 0; i < 3; i += 1) {
-        grid.appendChild(createElement("div", { className: "card" }, [
-          createElement("div", { className: "skeleton", attrs: { style: "height: 180px" } }),
-          createElement("div", { className: "skeleton", attrs: { style: "width: 60%; height: 18px" } }),
-          createElement("div", { className: "skeleton", attrs: { style: "width: 80%; height: 14px" } }),
-        ]));
-      }
+    if (renderDataState(grid, {
+      status: productsStatus,
+      items: products,
+      error: productsError,
+      loading: {
+        count: 3,
+        imageHeight: 180,
+        lineWidths: [60, 80],
+        lineHeights: [18, 14],
+      },
+      errorState: {
+        title: "Nie udalo sie pobrac produktow",
+        message: productsError || "Sprobuj ponownie pozniej.",
+      },
+      empty: {
+        title: "Brak produktow",
+        message: "Brak produktow do wyswietlenia.",
+        action: { label: "Przegladaj produkty", href: "#/products" },
+      },
+    })) {
       return;
     }
-
-    if (productsStatus === "error") {
-      grid.appendChild(
-        createElement("div", { className: "notice" }, [
-          createElement("h3", { text: "Nie udało się pobrać produktów" }),
-          createElement("p", { text: productsError || "Spróbuj ponownie później." }),
-        ])
-      );
-      return;
-    }
-
-    if (productsStatus === "ready" && !products.length) {
-      grid.appendChild(
-        createElement("div", { className: "notice" }, [
-          createElement("h3", { text: "Brak produktów" }),
-          createElement("p", { text: "Brak produktów do wyświetlenia." }),
-          createElement("a", { className: "button", text: "Przeglądaj produkty", attrs: { href: "#/products" } }),
-        ])
-      );
-      return;
-    }
-
-    if (productsStatus !== "ready") {
-      return;
-    }
-
     products.slice(0, 3).forEach((product) => {
       grid.appendChild(
         createProductCard(product, (id) => {
@@ -147,7 +132,6 @@ export const renderHome = () => {
   main.appendChild(section);
   main.appendChild(info);
 };
-
 
 
 

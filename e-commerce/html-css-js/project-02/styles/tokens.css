@@ -1,6 +1,5 @@
 :root {
-  --font-sans: "Space Grotesk", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto,
-    Arial, "Noto Sans", "Liberation Sans", sans-serif;
+  --font-sans: "Space Grotesk", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, Arial, "Noto Sans", "Liberation Sans", sans-serif;
   --font-mono: "JetBrains Mono", "SFMono-Regular", Menlo, monospace;
 
   --color-bg: #f5f7fb;
@@ -15,6 +14,9 @@
   --color-warning: #e4a100;
   --color-danger: #d03e45;
   --color-focus: #0f62fe;
+
+  --color-brand: var(--color-accent);
+  --color-brand-strong: var(--color-accent-strong);
 
   --radius-xs: 6px;
   --radius-sm: 10px;
