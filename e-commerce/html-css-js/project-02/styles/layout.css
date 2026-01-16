@@ -175,6 +175,10 @@ main {
   padding: var(--space-8) 0 var(--space-10);
 }
 
+#main-content {
+  scroll-margin-top: var(--header-offset, 0px);
+}
+
 .app-shell main .container {
   padding-left: var(--space-7);
   padding-right: var(--space-7);

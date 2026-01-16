@@ -1,4 +1,5 @@
 import { createElement, clearElement } from "../utils/dom.js";
+import { navigateHash } from "../utils/navigation.js";
 import { formatCurrency } from "../utils/format.js";
 import { validators } from "../utils/validators.js";
 import { cartService } from "../services/cart.js";
@@ -164,7 +165,7 @@ export const renderCheckout = () => {
         title: "Dziekujemy za zakup",
         description: "Zakup zakonczony. Pliki zostaly dodane do Twojej biblioteki.",
       });
-      location.hash = "#/library";
+      navigateHash("#/library");
     }, 700);
   });
 

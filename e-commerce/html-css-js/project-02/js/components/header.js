@@ -10,7 +10,7 @@ const navItems = [
   { label: "Kontakt", path: "#/contact" },
 ];
 
-export const renderHeader = (container, onThemeToggle) => {
+export const renderHeader = (container, onThemeToggle, { onHeightChange } = {}) => {
   const MOBILE_BREAKPOINT = 960;
   const SHRINK_THRESHOLD = 80;
   const EXPAND_THRESHOLD = 40;
@@ -238,6 +238,12 @@ export const renderHeader = (container, onThemeToggle) => {
     applyMenuState({ focusOnOpen: menuOpen, restoreFocus });
   };
 
+  const notifyHeight = () => {
+    if (typeof onHeightChange === "function") {
+      onHeightChange();
+    }
+  };
+
   const build = () => {
     clearElement(container);
 
@@ -338,8 +344,13 @@ export const renderHeader = (container, onThemeToggle) => {
     applyMenuState({ focusOnOpen: menuOpen });
   };
 
-  build();
-  store.subscribe(build);
+  const buildAndMeasure = () => {
+    build();
+    notifyHeight();
+  };
+
+  buildAndMeasure();
+  store.subscribe(buildAndMeasure);
 
   const headerRoot = container.closest("header");
   const applyShrinkState = (nextShrunk) => {
@@ -348,6 +359,7 @@ export const renderHeader = (container, onThemeToggle) => {
     }
     isShrunk = nextShrunk;
     headerRoot.classList.toggle("is-shrink", isShrunk);
+    notifyHeight();
   };
 
   const handleScroll = () => {
@@ -400,6 +412,7 @@ export const renderHeader = (container, onThemeToggle) => {
     if (window.innerWidth > MOBILE_BREAKPOINT && menuOpen) {
       setMenuOpen(false, { restoreFocus: false });
     }
+    notifyHeight();
   };
 
   if (headerRoot && headerRoot.dataset.shrinkReady !== "true") {

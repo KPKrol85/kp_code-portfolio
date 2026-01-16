@@ -23,6 +23,7 @@ import { showToast } from "./components/toast.js";
 import { initErrorBoundary } from "./utils/error-boundary.js";
 import { initKeyboardShortcuts } from "./utils/keyboard-shortcuts.js";
 import { closeModal } from "./components/modal.js";
+import { consumeProgrammaticNav, markProgrammaticNav, navigateHash } from "./utils/navigation.js";
 
 const THEME_KEY = "kp_theme";
 
@@ -84,10 +85,14 @@ const initStore = () => {
 };
 
 const initLayout = () => {
-  renderHeader(document.getElementById("app-header"), () => {
-    const currentTheme = store.getState().ui.theme;
-    applyTheme(currentTheme === "light" ? "dark" : "light");
-  });
+  renderHeader(
+    document.getElementById("app-header"),
+    () => {
+      const currentTheme = store.getState().ui.theme;
+      applyTheme(currentTheme === "light" ? "dark" : "light");
+    },
+    { onHeightChange: updateHeaderOffset },
+  );
   renderFooter(document.getElementById("app-footer"));
 };
 
@@ -152,21 +157,92 @@ const initRoutes = () => {
   startRouter();
 };
 
-const focusMain = () => {
+const focusMain = ({ preventScroll = false } = {}) => {
   const main = document.getElementById("main-content");
   if (main) {
+    if (preventScroll) {
+      const scrollX = window.scrollX;
+      const scrollY = window.scrollY;
+      try {
+        main.focus({ preventScroll: true });
+      } catch (error) {
+        main.focus();
+        window.scrollTo(scrollX, scrollY);
+      }
+      return;
+    }
     main.focus();
   }
 };
 
-window.addEventListener("hashchange", focusMain);
+const updateHeaderOffset = () => {
+  const header = document.querySelector("header");
+  if (!header) {
+    return;
+  }
+  const height = Math.round(header.getBoundingClientRect().height);
+  document.documentElement.style.setProperty("--header-offset", `${height}px`);
+};
+
+const initRouteScrollHandling = () => {
+  let isFirstRoute = true;
+  window.addEventListener("route:after", () => {
+    const shouldReset = consumeProgrammaticNav() || isFirstRoute;
+    requestAnimationFrame(() => {
+      if (shouldReset) {
+        window.scrollTo({ top: 0, behavior: "auto" });
+      }
+      requestAnimationFrame(() => {
+        updateHeaderOffset();
+        focusMain({ preventScroll: true });
+      });
+    });
+    isFirstRoute = false;
+  });
+};
+
+const initRouteClickTracking = () => {
+  document.addEventListener("click", (event) => {
+    if (
+      event.defaultPrevented ||
+      event.button !== 0 ||
+      event.metaKey ||
+      event.ctrlKey ||
+      event.shiftKey ||
+      event.altKey
+    ) {
+      return;
+    }
+    const link = event.target.closest('a[href^="#/"]');
+    if (link) {
+      markProgrammaticNav();
+    }
+  });
+};
+
+const initResizeHandling = () => {
+  let resizeRaf = null;
+  window.addEventListener("resize", () => {
+    if (resizeRaf) {
+      window.cancelAnimationFrame(resizeRaf);
+    }
+    resizeRaf = window.requestAnimationFrame(() => {
+      updateHeaderOffset();
+      resizeRaf = null;
+    });
+  });
+};
 
 initErrorBoundary();
 initStore();
 initLayout();
 initData();
 initRoutes();
-focusMain();
+initRouteScrollHandling();
+initRouteClickTracking();
+initResizeHandling();
+updateHeaderOffset();
+focusMain({ preventScroll: true });
 
 initKeyboardShortcuts({
   getSearchInput: () => document.querySelector('input[type="search"]'),
@@ -177,15 +253,7 @@ initKeyboardShortcuts({
     if (!target) {
       return false;
     }
-    if (window.location.hash !== target) {
-      window.location.hash = target;
-    } else {
-      try {
-        window.dispatchEvent(new HashChangeEvent("hashchange"));
-      } catch (error) {
-        window.location.hash = target;
-      }
-    }
+    navigateHash(target, { force: true });
     return true;
   },
 });

@@ -5,6 +5,7 @@ import { store } from "../store/store.js";
 import { canAccessRoute } from "../utils/permissions.js";
 import { createElement, clearElement } from "../utils/dom.js";
 import { renderNotice } from "../components/uiStates.js";
+import { navigateHash } from "../utils/navigation.js";
 
 const routes = [];
 let activeCleanup = null;
@@ -28,6 +29,14 @@ export const updateMeta = (title, description) => {
 };
 
 export const startRouter = () => {
+  const notifyRouteRendered = (path) => {
+    window.dispatchEvent(
+      new CustomEvent("route:after", {
+        detail: { path },
+      }),
+    );
+  };
+
   const handleRoute = () => {
     if (typeof activeCleanup === "function") {
       activeCleanup();
@@ -39,7 +48,7 @@ export const startRouter = () => {
       if (access.reason === "unauthenticated") {
         authService.setReturnTo(`#${path}`);
         if (path !== "/auth") {
-          location.hash = "#/auth";
+          navigateHash("#/auth");
           return;
         }
       } else if (access.reason === "forbidden") {
@@ -60,6 +69,7 @@ export const startRouter = () => {
           main.appendChild(container);
         }
         updateActiveNav("");
+        notifyRouteRendered(path);
         return;
       }
     }
@@ -73,6 +83,7 @@ export const startRouter = () => {
         activeCleanup = cleanup;
       }
       updateActiveNav(`#${path === "/" ? "/" : path}`);
+      notifyRouteRendered(path);
     } else {
       const fallback = routes.find((item) => item.pattern.source === "^/404$");
       if (fallback) {
@@ -82,6 +93,7 @@ export const startRouter = () => {
         }
         updateMeta(fallback.meta.title, fallback.meta.description);
         updateActiveNav("");
+        notifyRouteRendered("/404");
       }
     }
   };

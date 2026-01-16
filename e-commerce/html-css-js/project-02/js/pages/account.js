@@ -1,4 +1,5 @@
 import { createElement, clearElement } from "../utils/dom.js";
+import { navigateHash } from "../utils/navigation.js";
 import { formatDate, formatCurrency } from "../utils/format.js";
 import { authService } from "../services/auth.js";
 import { purchasesService } from "../services/purchases.js";
@@ -63,7 +64,7 @@ export const renderAccount = () => {
   logoutButton.addEventListener("click", () => {
     authService.logout(store);
     showToast("Wylogowano.");
-    location.hash = "#/auth";
+    navigateHash("#/auth");
   });
 
   const layout = createElement("div", { className: "grid grid-2 section" }, [profile, ordersCard]);

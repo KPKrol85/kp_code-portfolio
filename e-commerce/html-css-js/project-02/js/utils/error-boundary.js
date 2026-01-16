@@ -1,4 +1,5 @@
 import { createElement, clearElement } from "./dom.js";
+import { navigateHash } from "./navigation.js";
 
 let fallbackShown = false;
 let handling = false;
@@ -49,16 +50,7 @@ const showFallback = (error, source) => {
       attrs: { type: "button" },
     });
     homeButton.addEventListener("click", () => {
-      const targetHash = "#/";
-      if (window.location.hash !== targetHash) {
-        window.location.hash = targetHash;
-      } else {
-        try {
-          window.dispatchEvent(new HashChangeEvent("hashchange"));
-        } catch (dispatchError) {
-          window.location.hash = targetHash;
-        }
-      }
+      navigateHash("#/", { force: true });
     });
 
     actions.appendChild(reloadButton);

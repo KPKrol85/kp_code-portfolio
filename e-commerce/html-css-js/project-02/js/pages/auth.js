@@ -1,4 +1,5 @@
 import { createElement, clearElement } from "../utils/dom.js";
+import { navigateHash } from "../utils/navigation.js";
 import { validators } from "../utils/validators.js";
 import { authService } from "../services/auth.js";
 import { showToast } from "../components/toast.js";
@@ -87,7 +88,7 @@ export const renderAuth = () => {
           });
           store.setState({ user, session });
           showToast("Zalogowano pomy~lnie.");
-          location.hash = "#/account";
+          navigateHash("#/account");
         } catch (error) {
           errorBox.textContent = error.message;
         }
