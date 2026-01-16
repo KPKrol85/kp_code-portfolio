@@ -192,6 +192,93 @@ export const renderHome = () => {
     container.addEventListener("click", suppressClick, true);
   };
 
+  const debugIndicators =
+    typeof window !== "undefined" &&
+    (window.__DEBUG_SCROLL_INDICATORS__ ||
+      new URLSearchParams(window.location.search).has("debugScrollIndicators"));
+
+  const addScrollIndicators = (container, { shellClass = "", hint = false } = {}) => {
+    const shell = createElement("div", {
+      className: ["scroll-indicator-shell", shellClass, hint ? "has-hint" : ""]
+        .filter(Boolean)
+        .join(" "),
+    });
+    const overlay = createElement("div", {
+      className: "scroll-indicator-arrows",
+      attrs: { "aria-hidden": "true" },
+    });
+    const left = createElement("button", {
+      className: "scroll-indicator-arrow is-left",
+      attrs: { type: "button", "aria-hidden": "true", tabindex: "-1" },
+    });
+    const right = createElement("button", {
+      className: "scroll-indicator-arrow is-right",
+      attrs: { type: "button", "aria-hidden": "true", tabindex: "-1" },
+    });
+
+    overlay.appendChild(left);
+    overlay.appendChild(right);
+    shell.appendChild(container);
+    shell.appendChild(overlay);
+
+    let rafId = 0;
+    const update = () => {
+      const maxScroll = Math.max(container.scrollWidth - container.clientWidth, 0);
+      const scrollable = maxScroll > 2;
+      const scrollLeft = container.scrollLeft;
+      shell.classList.toggle("is-scrollable", scrollable);
+      shell.classList.toggle("can-scroll-left", scrollable && scrollLeft > 2);
+      shell.classList.toggle("can-scroll-right", scrollable && scrollLeft < maxScroll - 2);
+      if (debugIndicators) {
+        console.debug("[scroll-indicator]", {
+          container: container.className,
+          scrollWidth: container.scrollWidth,
+          clientWidth: container.clientWidth,
+          scrollLeft,
+          canLeft: scrollable && scrollLeft > 2,
+          canRight: scrollable && scrollLeft < maxScroll - 2,
+        });
+      }
+    };
+
+    const scheduleUpdate = () => {
+      if (rafId) {
+        return;
+      }
+      rafId = window.requestAnimationFrame(() => {
+        rafId = 0;
+        update();
+      });
+    };
+
+    const scrollByAmount = () => Math.max(container.clientWidth * 0.6, 180);
+    left.addEventListener("click", (event) => {
+      event.preventDefault();
+      container.scrollBy({ left: -scrollByAmount(), behavior: "smooth" });
+    });
+    right.addEventListener("click", (event) => {
+      event.preventDefault();
+      container.scrollBy({ left: scrollByAmount(), behavior: "smooth" });
+    });
+
+    container.addEventListener("scroll", scheduleUpdate, { passive: true });
+    window.addEventListener("resize", scheduleUpdate, { passive: true });
+
+    if ("ResizeObserver" in window) {
+      const observer = new ResizeObserver(scheduleUpdate);
+      observer.observe(container);
+    }
+
+    if (debugIndicators) {
+      console.debug("[scroll-indicator] mounted", {
+        container: container.className,
+        isConnected: container.isConnected,
+      });
+    }
+    scheduleUpdate();
+    return { shell, update: scheduleUpdate };
+  };
+
   const stats = createElement("div", { className: "stats-grid" }, [
     createElement("div", { className: "card stat-card" }, [
       createElement("h3", { text: "6" }),
@@ -212,10 +299,12 @@ export const renderHome = () => {
   ]);
 
   enableDragScroll(stats);
+  const statsIndicators = addScrollIndicators(stats, { shellClass: "stats-shell", hint: true });
 
   const section = createElement("section", { className: "container section" });
   section.appendChild(createElement("h2", { text: "Popularne produkty" }));
   const grid = createElement("div", { className: "products-slider" });
+  const productsIndicators = addScrollIndicators(grid, { shellClass: "products-shell", hint: true });
 
   const renderProductsGrid = (state) => {
     const { products, productsStatus, productsError } = state;
@@ -241,6 +330,7 @@ export const renderHome = () => {
         },
       })
     ) {
+      productsIndicators.update();
       return;
     }
     products.slice(0, 5).forEach((product) => {
@@ -252,6 +342,7 @@ export const renderHome = () => {
         })
       );
     });
+    productsIndicators.update();
   };
 
   let lastProducts = null;
@@ -279,7 +370,7 @@ export const renderHome = () => {
   const unsubscribe = store.subscribe(handleStoreUpdate);
   main._homeUnsubscribe = unsubscribe;
 
-  section.appendChild(grid);
+  section.appendChild(productsIndicators.shell);
   enableDragScroll(grid);
 
   const info = createElement("section", { className: "container section" }, [
@@ -297,7 +388,9 @@ export const renderHome = () => {
   ]);
 
   main.appendChild(hero);
-  main.appendChild(stats);
+  main.appendChild(statsIndicators.shell);
   main.appendChild(section);
+  statsIndicators.update();
+  productsIndicators.update();
   main.appendChild(info);
 };

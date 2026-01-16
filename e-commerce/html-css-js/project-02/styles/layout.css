@@ -259,6 +259,100 @@ footer {
   scroll-snap-align: start;
 }
 
+.scroll-indicator-shell {
+  position: relative;
+  width: 100%;
+  --scroll-indicator-inset: var(--space-3);
+  --scroll-indicator-outset: var(--space-6);
+  overflow: visible;
+}
+
+.scroll-indicator-shell.stats-shell {
+  max-width: calc(var(--max-width) - (var(--space-7) * 2));
+  margin: 0 auto;
+}
+
+.scroll-indicator-shell.stats-shell .stats-grid {
+  max-width: 100%;
+  margin-left: 0;
+  margin-right: 0;
+}
+
+.scroll-indicator-arrows {
+  position: absolute;
+  inset-block: 0;
+  inset-inline: 0;
+  padding-inline: var(--scroll-indicator-inset);
+  pointer-events: none;
+  z-index: 2;
+}
+
+.scroll-indicator-arrow {
+  position: absolute;
+  top: 50%;
+  width: 28px;
+  height: 28px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: 0;
+  padding: 0;
+  background: transparent;
+  color: var(--color-text-muted);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity var(--transition-fast);
+  margin-inline: var(--space-1);
+  transform: translateY(-50%);
+}
+
+.scroll-indicator-arrow::before {
+  content: "";
+  width: 10px;
+  height: 10px;
+  border-right: 2px solid currentColor;
+  border-bottom: 2px solid currentColor;
+  transform: rotate(-45deg);
+  display: block;
+}
+
+.scroll-indicator-arrow.is-left::before {
+  transform: rotate(135deg);
+}
+
+.scroll-indicator-arrow.is-left {
+  left: calc(-1 * var(--scroll-indicator-outset));
+}
+
+.scroll-indicator-arrow.is-right {
+  right: calc(-1 * var(--scroll-indicator-outset));
+}
+
+.scroll-indicator-shell.can-scroll-left .scroll-indicator-arrow.is-left {
+  opacity: 0.45;
+  pointer-events: auto;
+}
+
+.scroll-indicator-shell.can-scroll-right .scroll-indicator-arrow.is-right {
+  opacity: 0.45;
+  pointer-events: auto;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .scroll-indicator-shell.has-hint:not(.is-scrollable) .scroll-indicator-arrow {
+    opacity: 0.12;
+  }
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .scroll-indicator-shell.can-scroll-left .scroll-indicator-arrow.is-left:hover,
+  .scroll-indicator-shell.can-scroll-right .scroll-indicator-arrow.is-right:hover,
+  .scroll-indicator-shell.can-scroll-left .scroll-indicator-arrow.is-left:focus-visible,
+  .scroll-indicator-shell.can-scroll-right .scroll-indicator-arrow.is-right:focus-visible {
+    opacity: 0.7;
+  }
+}
+
 @media (hover: hover) and (pointer: fine) {
   .stats-grid {
     cursor: grab;
@@ -490,6 +584,16 @@ footer {
     padding: var(--space-6);
   }
 
+  .scroll-indicator-arrow {
+    width: 24px;
+    height: 24px;
+  }
+
+  .scroll-indicator-shell {
+    --scroll-indicator-inset: var(--space-2);
+    --scroll-indicator-outset: var(--space-1);
+  }
+
   .app-shell main .container {
     padding-left: var(--space-5);
     padding-right: var(--space-5);
@@ -559,6 +663,14 @@ footer {
   .grid {
     gap: var(--space-6);
   }
+
+  .scroll-indicator-shell.stats-shell {
+    max-width: calc(var(--max-width) - (var(--space-6) * 2));
+  }
+
+  .scroll-indicator-shell {
+    --scroll-indicator-outset: var(--space-6);
+  }
 }
 
 @media (max-width: 720px) {
@@ -578,6 +690,10 @@ footer {
   }
 
   .nav-links a {
+    transition: none;
+  }
+
+  .scroll-indicator-arrow {
     transition: none;
   }
 }
