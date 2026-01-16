@@ -32,8 +32,16 @@ export const renderAccount = () => {
     createElement("p", { text: `E-mail: ${user.email}` }),
     createElement("p", { text: `Data rejestracji: ${formatDate(user.createdAt)}` }),
     createElement("div", { className: "nav-links" }, [
-      createElement("a", { className: "button secondary", text: "Biblioteka", attrs: { href: "#/library" } }),
-      createElement("a", { className: "button secondary", text: "Licencje", attrs: { href: "#/licenses" } }),
+      createElement("a", {
+        className: "button secondary",
+        text: "Biblioteka",
+        attrs: { href: "#/library" },
+      }),
+      createElement("a", {
+        className: "button secondary",
+        text: "Licencje",
+        attrs: { href: "#/licenses" },
+      }),
     ]),
   ]);
 

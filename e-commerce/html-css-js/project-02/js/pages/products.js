@@ -63,7 +63,6 @@ export const renderProducts = () => {
 
   updateCategories(products);
 
-
   filters.appendChild(searchField);
   filters.appendChild(sortSelect);
   filters.appendChild(categorySelect);
@@ -91,17 +90,19 @@ export const renderProducts = () => {
 
     const visible = getVisibleProducts(products, { query, category, sort });
     if (!visible.length) {
-      grid.appendChild(renderEmptyState({
-        title: "No products found.",
-        message: "Try adjusting filters or search.",
-        ctaText: "Reset filters",
-        onCta: () => {
-          searchField.value = "";
-          sortSelect.value = "latest";
-          categorySelect.value = "all";
-          renderList();
-        },
-      }));
+      grid.appendChild(
+        renderEmptyState({
+          title: "No products found.",
+          message: "Try adjusting filters or search.",
+          ctaText: "Reset filters",
+          onCta: () => {
+            searchField.value = "";
+            sortSelect.value = "latest";
+            categorySelect.value = "all";
+            renderList();
+          },
+        })
+      );
       return;
     }
 
@@ -118,25 +119,27 @@ export const renderProducts = () => {
 
   const renderGridState = (state) => {
     const { productsStatus, productsError, products } = state;
-    if (renderDataState(grid, {
-      status: productsStatus,
-      items: products,
-      error: productsError,
-      loading: {
-        count: 6,
-        imageHeight: 180,
-        lineWidths: [70, 60],
-        lineHeights: [18, 14],
-      },
-      errorState: {
-        title: "Nie udalo sie pobrac produktow",
-        message: productsError || "Sprobuj ponownie pozniej.",
-      },
-      empty: {
-        title: "Brak produktow",
-        message: "Brak produktow do wyswietlenia.",
-      },
-    })) {
+    if (
+      renderDataState(grid, {
+        status: productsStatus,
+        items: products,
+        error: productsError,
+        loading: {
+          count: 6,
+          imageHeight: 180,
+          lineWidths: [70, 60],
+          lineHeights: [18, 14],
+        },
+        errorState: {
+          title: "Nie udalo sie pobrac produktow",
+          message: productsError || "Sprobuj ponownie pozniej.",
+        },
+        empty: {
+          title: "Brak produktow",
+          message: "Brak produktow do wyswietlenia.",
+        },
+      })
+    ) {
       return;
     }
   };
@@ -201,4 +204,3 @@ export const renderProducts = () => {
     }
   };
 };
-

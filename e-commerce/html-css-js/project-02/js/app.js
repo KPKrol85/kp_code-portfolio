@@ -47,10 +47,7 @@ const detectTheme = () => {
 const initData = async () => {
   store.setState({ productsStatus: "loading", productsError: null });
   try {
-    const [products, licenses] = await Promise.all([
-      mockApi.getProducts(),
-      mockApi.getLicenses(),
-    ]);
+    const [products, licenses] = await Promise.all([mockApi.getProducts(), mockApi.getLicenses()]);
     store.setState({ products, licenses, productsStatus: "ready", productsError: null });
   } catch (error) {
     showToast("Nie udało się pobrać danych.", "error");
@@ -91,7 +88,7 @@ const initLayout = () => {
       const currentTheme = store.getState().ui.theme;
       applyTheme(currentTheme === "light" ? "dark" : "light");
     },
-    { onHeightChange: updateHeaderOffset },
+    { onHeightChange: updateHeaderOffset }
   );
   renderFooter(document.getElementById("app-footer"));
 };

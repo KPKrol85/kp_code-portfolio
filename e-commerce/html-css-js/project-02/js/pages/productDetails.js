@@ -66,7 +66,8 @@ export const renderProductDetails = ({ id }) => {
 
     setMeta({
       title: `${product.name} - KP_Code Digital Vault`,
-      description: product.shortDescription || product.description || "Szczegoly produktu cyfrowego.",
+      description:
+        product.shortDescription || product.description || "Szczegoly produktu cyfrowego.",
     });
 
     const wrapper = createElement("section", { className: "container" });
@@ -76,10 +77,14 @@ export const renderProductDetails = ({ id }) => {
     const details = createElement("div", { className: "card" });
     details.appendChild(createElement("h1", { text: product.name }));
     details.appendChild(createElement("p", { text: product.description }));
-    details.appendChild(createElement("div", { className: "price", text: formatCurrency(product.price) }));
+    details.appendChild(
+      createElement("div", { className: "price", text: formatCurrency(product.price) })
+    );
 
     const tags = createElement("div", { className: "tag-list" });
-    product.tags.forEach((tag) => tags.appendChild(createElement("span", { className: "badge", text: tag })));
+    product.tags.forEach((tag) =>
+      tags.appendChild(createElement("span", { className: "badge", text: tag }))
+    );
     details.appendChild(tags);
 
     const metaList = createElement("div", { className: "surface-muted" }, [
@@ -91,14 +96,24 @@ export const renderProductDetails = ({ id }) => {
     details.appendChild(metaList);
 
     const actionRow = createElement("div", { className: "nav-links" });
-    const addButton = createElement("button", { className: "button", text: "Dodaj do koszyka", attrs: { type: "button" } });
+    const addButton = createElement("button", {
+      className: "button",
+      text: "Dodaj do koszyka",
+      attrs: { type: "button" },
+    });
     addButton.addEventListener("click", () => {
       cartService.addItem(product.id, 1);
       store.setState({ cart: cartService.getCart() });
       showToast("Produkt dodany do koszyka.");
     });
     actionRow.appendChild(addButton);
-    actionRow.appendChild(createElement("a", { className: "button secondary", text: "Przejd« do koszyka", attrs: { href: "#/cart" } }));
+    actionRow.appendChild(
+      createElement("a", {
+        className: "button secondary",
+        text: "Przejd« do koszyka",
+        attrs: { href: "#/cart" },
+      })
+    );
     details.appendChild(actionRow);
 
     const contents = createElement("div", { className: "card section" }, [
@@ -112,17 +127,21 @@ export const renderProductDetails = ({ id }) => {
       createElement("h2", { text: "Pliki do pobrania" }),
     ]);
     const downloadList = createElement("ul");
-    const hasAccess = purchasesService.getPurchases().some((purchase) =>
-      purchase.items.some((entry) => entry.productId === product.id)
-    );
+    const hasAccess = purchasesService
+      .getPurchases()
+      .some((purchase) => purchase.items.some((entry) => entry.productId === product.id));
 
     product.downloadables.forEach((item) => {
-      const label = hasAccess ? `${item.name} (${item.size})` : `${item.name} (odblokuj po zakupie)`;
+      const label = hasAccess
+        ? `${item.name} (${item.size})`
+        : `${item.name} (odblokuj po zakupie)`;
       downloadList.appendChild(createElement("li", { text: label }));
     });
     downloads.appendChild(downloadList);
     if (!hasAccess) {
-      downloads.appendChild(createElement("p", { text: "Pliki pojawi¥ si© w bibliotece po zakoäczeniu zam¢wienia." }));
+      downloads.appendChild(
+        createElement("p", { text: "Pliki pojawi¥ si© w bibliotece po zakoäczeniu zam¢wienia." })
+      );
     }
 
     layout.appendChild(image);
@@ -145,4 +164,3 @@ export const renderProductDetails = ({ id }) => {
     }
   };
 };
-

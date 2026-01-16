@@ -132,9 +132,7 @@ const renderVariant = async ({ inputPath, outputPath, width, format, stats }) =>
   if (format === "webp") {
     await pipeline.webp({ quality: WEBP_QUALITY, effort: WEBP_EFFORT }).toFile(outputPath);
   } else {
-    await pipeline
-      .avif({ quality: AVIF_QUALITY, effort: AVIF_EFFORT })
-      .toFile(outputPath);
+    await pipeline.avif({ quality: AVIF_QUALITY, effort: AVIF_EFFORT }).toFile(outputPath);
   }
 
   const outputStat = getStat(outputPath);

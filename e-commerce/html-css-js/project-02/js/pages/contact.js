@@ -42,18 +42,24 @@ export const renderContact = () => {
   });
   const errorBox = createElement("div", { className: "form-error" });
 
-  form.appendChild(createElement("div", { className: "form-field" }, [
-    createElement("label", { text: "Imic i nazwisko", attrs: { for: "contact-name" } }),
-    nameField,
-  ]));
-  form.appendChild(createElement("div", { className: "form-field" }, [
-    createElement("label", { text: "E-mail", attrs: { for: "contact-email" } }),
-    emailField,
-  ]));
-  form.appendChild(createElement("div", { className: "form-field" }, [
-    createElement("label", { text: "Wiadomo~?", attrs: { for: "contact-message" } }),
-    messageField,
-  ]));
+  form.appendChild(
+    createElement("div", { className: "form-field" }, [
+      createElement("label", { text: "Imic i nazwisko", attrs: { for: "contact-name" } }),
+      nameField,
+    ])
+  );
+  form.appendChild(
+    createElement("div", { className: "form-field" }, [
+      createElement("label", { text: "E-mail", attrs: { for: "contact-email" } }),
+      emailField,
+    ])
+  );
+  form.appendChild(
+    createElement("div", { className: "form-field" }, [
+      createElement("label", { text: "Wiadomo~?", attrs: { for: "contact-message" } }),
+      messageField,
+    ])
+  );
   form.appendChild(errorBox);
   const submitButton = createElement("button", {
     className: "button block",
@@ -64,25 +70,29 @@ export const renderContact = () => {
 
   form.addEventListener("submit", (event) => {
     event.preventDefault();
-    withButtonLoading(submitButton, async () => {
-      errorBox.textContent = "";
-      const errors = [];
-      if (!validators.required(nameField.value)) {
-        errors.push("Uzupe^nij imic i nazwisko.");
-      }
-      if (!validators.email(emailField.value)) {
-        errors.push("Podaj poprawny e-mail.");
-      }
-      if (!validators.required(messageField.value)) {
-        errors.push("Wpisz wiadomo~?.");
-      }
-      if (errors.length) {
-        errorBox.textContent = errors.join(" ");
-        return;
-      }
-      showToast("Wiadomo~? zosta^a wys^ana (demo).");
-      form.reset();
-    }, { loadingText: "Wysylanie..." });
+    withButtonLoading(
+      submitButton,
+      async () => {
+        errorBox.textContent = "";
+        const errors = [];
+        if (!validators.required(nameField.value)) {
+          errors.push("Uzupe^nij imic i nazwisko.");
+        }
+        if (!validators.email(emailField.value)) {
+          errors.push("Podaj poprawny e-mail.");
+        }
+        if (!validators.required(messageField.value)) {
+          errors.push("Wpisz wiadomo~?.");
+        }
+        if (errors.length) {
+          errorBox.textContent = errors.join(" ");
+          return;
+        }
+        showToast("Wiadomo~? zosta^a wys^ana (demo).");
+        form.reset();
+      },
+      { loadingText: "Wysylanie..." }
+    );
   });
 
   const layout = createElement("div", { className: "grid grid-2 section" }, [info, form]);

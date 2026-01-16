@@ -1,14 +1,17 @@
 # Images pipeline
 
 ## Source and generated folders
+
 - Put original images in `assets/img/_src/`.
 - Generated outputs are written to `assets/img/_gen/` (WebP + AVIF variants).
 
 ## Commands
+
 - `npm run img:build` - generate responsive WebP/AVIF variants and `manifest.json`.
 - `npm run img:clean` - remove generated assets in `_gen` (keeps `.gitkeep`).
 
 ## HTML usage example
+
 ```html
 <picture>
   <source

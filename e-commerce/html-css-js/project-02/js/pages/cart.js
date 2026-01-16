@@ -41,12 +41,14 @@ export const renderCart = () => {
   container.appendChild(createElement("h1", { text: "Twój koszyk" }));
 
   if (!cart.length) {
-    container.appendChild(renderEmptyState({
-      title: "Your cart is empty.",
-      message: "Browse products to get started.",
-      ctaText: "Browse products",
-      ctaHref: "#/products",
-    }));
+    container.appendChild(
+      renderEmptyState({
+        title: "Your cart is empty.",
+        message: "Browse products to get started.",
+        ctaText: "Browse products",
+        ctaHref: "#/products",
+      })
+    );
     main.appendChild(container);
     return;
   }
@@ -93,7 +95,9 @@ export const renderCart = () => {
       renderCart();
     });
 
-    card.appendChild(createElement("p", { className: "price", text: formatCurrency(product.price) }));
+    card.appendChild(
+      createElement("p", { className: "price", text: formatCurrency(product.price) })
+    );
     card.appendChild(quantityLabel);
     card.appendChild(quantityField);
     card.appendChild(removeButton);
@@ -116,9 +120,13 @@ export const renderCart = () => {
     attrs: { type: "button" },
   });
   applyButton.addEventListener("click", () => {
-    withButtonLoading(applyButton, async () => {
-      showToast("Kod rabatowy zastosowany (demo).");
-    }, { loadingText: "Przetwarzanie..." });
+    withButtonLoading(
+      applyButton,
+      async () => {
+        showToast("Kod rabatowy zastosowany (demo).");
+      },
+      { loadingText: "Przetwarzanie..." }
+    );
   });
 
   summary.appendChild(createElement("h2", { text: "Podsumowanie" }));
@@ -138,14 +146,17 @@ export const renderCart = () => {
   });
   summary.appendChild(clearButton);
   summary.appendChild(
-    createElement("a", { className: "button block", text: "Przejd« do checkout", attrs: { href: "#/checkout" } })
+    createElement("a", {
+      className: "button block",
+      text: "Przejd« do checkout",
+      attrs: { href: "#/checkout" },
+    })
   );
 
-  const layout = createElement("div", { className: "grid grid-2 section" }, [itemsWrapper, summary]);
+  const layout = createElement("div", { className: "grid grid-2 section" }, [
+    itemsWrapper,
+    summary,
+  ]);
   container.appendChild(layout);
   main.appendChild(container);
 };
-
-
-
-

@@ -17,16 +17,33 @@ export const renderHome = () => {
 
   const hero = createElement("section", { className: "container hero" });
   const heroContent = createElement("div", { className: "hero-content" });
-  heroContent.appendChild(createElement("h1", { text: "KP_Code Digital Vault" }));
+
+  const h1 = createElement("h1");
+  h1.append("KP_Code");
+  h1.appendChild(document.createElement("br"));
+  h1.append("Digital Vault");
+
+  heroContent.appendChild(h1);
+
   heroContent.appendChild(
     createElement("p", {
       text: "Nowoczesny sklep z produktami cyfrowymi: szablony, UI kits i mini-narzędzia dla zespołów produktowych.",
     })
   );
+
   const heroActions = createElement("div", { className: "nav-links hero-actions" }, [
-    createElement("a", { className: "button", text: "Przeglądaj produkty", attrs: { href: "#/products" } }),
-    createElement("a", { className: "button secondary", text: "Zobacz demo konta", attrs: { href: "#/account" } }),
+    createElement("a", {
+      className: "button",
+      text: "Przeglądaj produkty",
+      attrs: { href: "#/products" },
+    }),
+    createElement("a", {
+      className: "button secondary",
+      text: "Zobacz demo konta",
+      attrs: { href: "#/account" },
+    }),
   ]);
+
   heroContent.appendChild(heroActions);
 
   const heroVisual = createElement("div", { className: "hero-visual" });
@@ -78,14 +95,18 @@ export const renderHome = () => {
     });
   };
 
-  const prefersReducedMotion = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  const prefersReducedMotion =
+    window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
   if (!prefersReducedMotion && "IntersectionObserver" in window) {
-    const observer = new IntersectionObserver((entries) => {
-      if (entries.some((entry) => entry.isIntersecting)) {
-        loadHeroVideo();
-        observer.disconnect();
-      }
-    }, { rootMargin: "120px" });
+    const observer = new IntersectionObserver(
+      (entries) => {
+        if (entries.some((entry) => entry.isIntersecting)) {
+          loadHeroVideo();
+          observer.disconnect();
+        }
+      },
+      { rootMargin: "120px" }
+    );
     observer.observe(heroVisual);
   } else if (!prefersReducedMotion) {
     loadHeroVideo();
@@ -115,26 +136,28 @@ export const renderHome = () => {
 
   const renderProductsGrid = (state) => {
     const { products, productsStatus, productsError } = state;
-    if (renderDataState(grid, {
-      status: productsStatus,
-      items: products,
-      error: productsError,
-      loading: {
-        count: 3,
-        imageHeight: 180,
-        lineWidths: [60, 80],
-        lineHeights: [18, 14],
-      },
-      errorState: {
-        title: "Nie udalo sie pobrac produktow",
-        message: productsError || "Sprobuj ponownie pozniej.",
-      },
-      empty: {
-        title: "Brak produktow",
-        message: "Brak produktow do wyswietlenia.",
-        action: { label: "Przegladaj produkty", href: "#/products" },
-      },
-    })) {
+    if (
+      renderDataState(grid, {
+        status: productsStatus,
+        items: products,
+        error: productsError,
+        loading: {
+          count: 3,
+          imageHeight: 180,
+          lineWidths: [60, 80],
+          lineHeights: [18, 14],
+        },
+        errorState: {
+          title: "Nie udalo sie pobrac produktow",
+          message: productsError || "Sprobuj ponownie pozniej.",
+        },
+        empty: {
+          title: "Brak produktow",
+          message: "Brak produktow do wyswietlenia.",
+          action: { label: "Przegladaj produkty", href: "#/products" },
+        },
+      })
+    ) {
       return;
     }
     products.slice(0, 3).forEach((product) => {
@@ -178,7 +201,9 @@ export const renderHome = () => {
   const info = createElement("section", { className: "container section" }, [
     createElement("div", { className: "card" }, [
       createElement("h2", { text: "Dlaczego Digital Vault?" }),
-      createElement("p", { text: "Zbieramy i aktualizujemy najlepsze assety dla projektantów i zespołów product development." }),
+      createElement("p", {
+        text: "Zbieramy i aktualizujemy najlepsze assety dla projektantów i zespołów product development.",
+      }),
       createElement("div", { className: "tag-list" }, [
         createElement("span", { className: "badge", text: "Natychmiastowy dostęp" }),
         createElement("span", { className: "badge", text: "Aktualizacje w cenie" }),
@@ -192,6 +217,3 @@ export const renderHome = () => {
   main.appendChild(section);
   main.appendChild(info);
 };
-
-
-

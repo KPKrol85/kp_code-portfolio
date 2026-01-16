@@ -41,7 +41,12 @@ export const renderAuth = () => {
 
   const panel = createElement("div", {
     className: "card section",
-    attrs: { id: "auth-panel", role: "tabpanel", tabindex: "0", "aria-labelledby": "auth-tab-login" },
+    attrs: {
+      id: "auth-panel",
+      role: "tabpanel",
+      tabindex: "0",
+      "aria-labelledby": "auth-tab-login",
+    },
   });
 
   const renderLogin = () => {
@@ -59,40 +64,52 @@ export const renderAuth = () => {
     const errorBox = createElement("div", { className: "form-error" });
     const form = createElement("form");
 
-    form.appendChild(createElement("div", { className: "form-field" }, [
-      createElement("label", { text: "E-mail", attrs: { for: "auth-login-email" } }),
-      emailField,
-    ]));
-    form.appendChild(createElement("div", { className: "form-field" }, [
-      createElement("label", { text: "Has^o", attrs: { for: "auth-login-password" } }),
-      passwordField,
-    ]));
+    form.appendChild(
+      createElement("div", { className: "form-field" }, [
+        createElement("label", { text: "E-mail", attrs: { for: "auth-login-email" } }),
+        emailField,
+      ])
+    );
+    form.appendChild(
+      createElement("div", { className: "form-field" }, [
+        createElement("label", { text: "Has^o", attrs: { for: "auth-login-password" } }),
+        passwordField,
+      ])
+    );
     form.appendChild(errorBox);
-    const submitButton = createElement("button", { className: "button block", text: "Zaloguj", attrs: { type: "submit" } });
+    const submitButton = createElement("button", {
+      className: "button block",
+      text: "Zaloguj",
+      attrs: { type: "submit" },
+    });
     form.appendChild(submitButton);
 
     form.addEventListener("submit", (event) => {
       event.preventDefault();
-      withButtonLoading(submitButton, async () => {
-        errorBox.textContent = "";
-        try {
-          if (!validators.email(emailField.value)) {
-            throw new Error("Podaj poprawny e-mail.");
+      withButtonLoading(
+        submitButton,
+        async () => {
+          errorBox.textContent = "";
+          try {
+            if (!validators.email(emailField.value)) {
+              throw new Error("Podaj poprawny e-mail.");
+            }
+            if (!validators.minLength(6)(passwordField.value)) {
+              throw new Error("Has^o musi mie? minimum 6 znakcw.");
+            }
+            const { user, session } = authService.login({
+              email: emailField.value,
+              password: passwordField.value,
+            });
+            store.setState({ user, session });
+            showToast("Zalogowano pomy~lnie.");
+            navigateHash("#/account");
+          } catch (error) {
+            errorBox.textContent = error.message;
           }
-          if (!validators.minLength(6)(passwordField.value)) {
-            throw new Error("Has^o musi mie? minimum 6 znakcw.");
-          }
-          const { user, session } = authService.login({
-            email: emailField.value,
-            password: passwordField.value,
-          });
-          store.setState({ user, session });
-          showToast("Zalogowano pomy~lnie.");
-          navigateHash("#/account");
-        } catch (error) {
-          errorBox.textContent = error.message;
-        }
-      }, { loadingText: "Logowanie..." });
+        },
+        { loadingText: "Logowanie..." }
+      );
     });
 
     panel.appendChild(form);
@@ -117,47 +134,61 @@ export const renderAuth = () => {
     const errorBox = createElement("div", { className: "form-error" });
     const form = createElement("form");
 
-    form.appendChild(createElement("div", { className: "form-field" }, [
-      createElement("label", { text: "Imic i nazwisko", attrs: { for: "auth-register-name" } }),
-      nameField,
-    ]));
-    form.appendChild(createElement("div", { className: "form-field" }, [
-      createElement("label", { text: "E-mail", attrs: { for: "auth-register-email" } }),
-      emailField,
-    ]));
-    form.appendChild(createElement("div", { className: "form-field" }, [
-      createElement("label", { text: "Has^o", attrs: { for: "auth-register-password" } }),
-      passwordField,
-    ]));
+    form.appendChild(
+      createElement("div", { className: "form-field" }, [
+        createElement("label", { text: "Imic i nazwisko", attrs: { for: "auth-register-name" } }),
+        nameField,
+      ])
+    );
+    form.appendChild(
+      createElement("div", { className: "form-field" }, [
+        createElement("label", { text: "E-mail", attrs: { for: "auth-register-email" } }),
+        emailField,
+      ])
+    );
+    form.appendChild(
+      createElement("div", { className: "form-field" }, [
+        createElement("label", { text: "Has^o", attrs: { for: "auth-register-password" } }),
+        passwordField,
+      ])
+    );
     form.appendChild(errorBox);
-    const submitButton = createElement("button", { className: "button block", text: "Utwcrz konto", attrs: { type: "submit" } });
+    const submitButton = createElement("button", {
+      className: "button block",
+      text: "Utwcrz konto",
+      attrs: { type: "submit" },
+    });
     form.appendChild(submitButton);
 
     form.addEventListener("submit", (event) => {
       event.preventDefault();
-      withButtonLoading(submitButton, async () => {
-        errorBox.textContent = "";
-        try {
-          if (!validators.required(nameField.value)) {
-            throw new Error("Podaj imic i nazwisko.");
+      withButtonLoading(
+        submitButton,
+        async () => {
+          errorBox.textContent = "";
+          try {
+            if (!validators.required(nameField.value)) {
+              throw new Error("Podaj imic i nazwisko.");
+            }
+            if (!validators.email(emailField.value)) {
+              throw new Error("Podaj poprawny e-mail.");
+            }
+            if (!validators.minLength(6)(passwordField.value)) {
+              throw new Error("Has^o musi mie? minimum 6 znakcw.");
+            }
+            authService.register({
+              name: nameField.value,
+              email: emailField.value,
+              password: passwordField.value,
+            });
+            showToast("Konto utworzone, mo3esz sic zalogowa?.");
+            loginTab.click();
+          } catch (error) {
+            errorBox.textContent = error.message;
           }
-          if (!validators.email(emailField.value)) {
-            throw new Error("Podaj poprawny e-mail.");
-          }
-          if (!validators.minLength(6)(passwordField.value)) {
-            throw new Error("Has^o musi mie? minimum 6 znakcw.");
-          }
-          authService.register({
-            name: nameField.value,
-            email: emailField.value,
-            password: passwordField.value,
-          });
-          showToast("Konto utworzone, mo3esz sic zalogowa?.");
-          loginTab.click();
-        } catch (error) {
-          errorBox.textContent = error.message;
-        }
-      }, { loadingText: "Rejestracja..." });
+        },
+        { loadingText: "Rejestracja..." }
+      );
     });
 
     panel.appendChild(form);

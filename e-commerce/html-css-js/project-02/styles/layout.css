@@ -66,7 +66,9 @@ header.is-shrink .brand svg {
   border-radius: var(--radius-xs);
   color: var(--color-text-muted);
   font-weight: 500;
-  transition: background-color 180ms ease-out, color 180ms ease-out;
+  transition:
+    background-color 180ms ease-out,
+    color 180ms ease-out;
 }
 
 .nav-links a[aria-current="page"] {
@@ -104,7 +106,9 @@ header.is-shrink .brand svg {
 .menu-toggle-icon {
   width: 24px;
   height: 24px;
-  transition: transform var(--transition-fast), opacity var(--transition-fast);
+  transition:
+    transform var(--transition-fast),
+    opacity var(--transition-fast);
 }
 
 .menu-toggle:hover .menu-toggle-icon,
@@ -145,7 +149,9 @@ header.is-shrink .brand svg {
   opacity: 0;
   visibility: hidden;
   pointer-events: none;
-  transition: transform var(--transition-fast), opacity var(--transition-fast);
+  transition:
+    transform var(--transition-fast),
+    opacity var(--transition-fast);
   z-index: 30;
   display: none;
   flex-direction: column;
@@ -271,8 +277,19 @@ footer {
   border-radius: var(--radius-lg);
   background: color-mix(in srgb, var(--color-surface-muted) 70%, transparent);
   border: 1px solid var(--color-border);
-  box-shadow: var(--shadow-sm);
+  box-shadow: var(--shadow-hero);
   overflow: hidden;
+  position: relative;
+}
+
+.hero-visual::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  pointer-events: none;
+  box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.03) inset;
+  z-index: 1;
 }
 
 .hero-visual video {
@@ -280,6 +297,26 @@ footer {
   height: 100%;
   display: block;
   object-fit: cover;
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+}
+
+@supports (color: color-mix(in srgb, #fff 50%, transparent)) {
+  .hero-visual {
+    border-color: color-mix(in srgb, var(--color-border) 60%, transparent);
+    box-shadow:
+      var(--shadow-hero),
+      0 0 28px color-mix(in srgb, var(--color-accent) 10%, transparent);
+  }
+
+  .hero-visual::after {
+    box-shadow: 0 0 0 1px color-mix(in srgb, var(--color-surface) 35%, transparent) inset;
+  }
+}
+
+:root:not([data-theme="dark"]) .hero-visual video {
+  filter: brightness(1.03) contrast(1.02) saturate(1.02);
 }
 
 @media (min-width: 960px) {

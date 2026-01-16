@@ -7,10 +7,14 @@ export const showToast = (message, type = "info") => {
   if (!region) {
     return;
   }
-  const toast = createElement("div", {
-    className: "toast",
-    attrs: { role: "status", "data-type": type },
-  }, [createElement("strong", { text: message })]);
+  const toast = createElement(
+    "div",
+    {
+      className: "toast",
+      attrs: { role: "status", "data-type": type },
+    },
+    [createElement("strong", { text: message })]
+  );
 
   region.appendChild(toast);
   setTimeout(() => {

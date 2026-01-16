@@ -22,7 +22,11 @@ const createNotice = ({ title, message, action, headingTag = "h3" } = {}) => {
   return createElement("div", { className: "notice" }, children);
 };
 
-const createSkeletonCard = ({ imageHeight = 180, lineWidths = [60, 80], lineHeights = [18, 14] } = {}) => {
+const createSkeletonCard = ({
+  imageHeight = 180,
+  lineWidths = [60, 80],
+  lineHeights = [18, 14],
+} = {}) => {
   const card = createElement("div", { className: "card" });
   card.appendChild(
     createElement("div", { className: "skeleton", attrs: { style: `height: ${imageHeight}px` } })
@@ -52,7 +56,10 @@ export const renderSkeletonCards = (container, options = {}) => {
   }
 };
 
-export const renderDataState = (container, { status, items, error, loading, empty, errorState } = {}) => {
+export const renderDataState = (
+  container,
+  { status, items, error, loading, empty, errorState } = {}
+) => {
   clearElement(container);
 
   if (status === "loading" || status === "idle") {

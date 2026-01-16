@@ -33,7 +33,7 @@ export const startRouter = () => {
     window.dispatchEvent(
       new CustomEvent("route:after", {
         detail: { path },
-      }),
+      })
     );
   };
 

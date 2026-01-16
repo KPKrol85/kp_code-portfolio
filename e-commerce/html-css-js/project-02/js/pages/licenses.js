@@ -5,12 +5,20 @@ import { purchasesService } from "../services/purchases.js";
 import { renderNotice } from "../components/uiStates.js";
 
 const createLicenseBlob = (details) => {
-  const content = ["KP_Code Digital Vault - License", `Produkt: ${details.productName}`, `Licencja: ${details.license}`, `Klient: ${details.userName}`, `Data zakupu: ${details.date}`].join("\n");
+  const content = [
+    "KP_Code Digital Vault - License",
+    `Produkt: ${details.productName}`,
+    `Licencja: ${details.license}`,
+    `Klient: ${details.userName}`,
+    `Data zakupu: ${details.date}`,
+  ].join("\n");
   return new Blob([content], { type: "text/plain" });
 };
 
 const buildLicenseKey = (purchaseId, productId) => {
-  const shortPurchase = String(purchaseId || "").replace(/-/g, "").slice(0, 8);
+  const shortPurchase = String(purchaseId || "")
+    .replace(/-/g, "")
+    .slice(0, 8);
   return `${shortPurchase}-${productId}`.toUpperCase();
 };
 
@@ -54,9 +62,17 @@ export const renderLicenses = () => {
         createElement("h2", { text: license.type }),
         createElement("p", { text: license.summary }),
         createElement("h4", { text: "Uprawnienia" }),
-        createElement("ul", {}, license.permissions.map((item) => createElement("li", { text: item }))),
+        createElement(
+          "ul",
+          {},
+          license.permissions.map((item) => createElement("li", { text: item }))
+        ),
         createElement("h4", { text: "Ograniczenia" }),
-        createElement("ul", {}, license.limitations.map((item) => createElement("li", { text: item }))),
+        createElement(
+          "ul",
+          {},
+          license.limitations.map((item) => createElement("li", { text: item }))
+        ),
         createElement("p", { text: `Wsparcie: ${license.support}` }),
       ]);
       licenseGrid.appendChild(card);

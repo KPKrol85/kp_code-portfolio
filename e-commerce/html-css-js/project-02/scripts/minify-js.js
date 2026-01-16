@@ -11,11 +11,7 @@ for (const file of files) {
   const outFile = path.join("dist", file);
   await mkdir(path.dirname(outFile), { recursive: true });
 
-  const result = spawnSync(
-    terserBin,
-    [file, "-o", outFile, "-c", "-m"],
-    { stdio: "inherit" }
-  );
+  const result = spawnSync(terserBin, [file, "-o", outFile, "-c", "-m"], { stdio: "inherit" });
   if (result.status !== 0) {
     process.exit(result.status ?? 1);
   }

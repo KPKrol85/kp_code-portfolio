@@ -26,11 +26,4 @@ const toPosix = (value) => value.split("\\").join("/");
 
 const looksGenerated = (name) => /-w\d+$/.test(name);
 
-export {
-  IMG_SRC_DIR,
-  IMG_GEN_DIR,
-  ensureDir,
-  ensureGitkeep,
-  toPosix,
-  looksGenerated,
-};
+export { IMG_SRC_DIR, IMG_GEN_DIR, ensureDir, ensureGitkeep, toPosix, looksGenerated };

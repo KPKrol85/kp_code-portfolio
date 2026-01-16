@@ -1,4 +1,7 @@
-export const getVisibleProducts = (products, { query = "", category = "all", sort = "latest" } = {}) => {
+export const getVisibleProducts = (
+  products,
+  { query = "", category = "all", sort = "latest" } = {}
+) => {
   const normalizedQuery = query.trim().toLowerCase();
   let visible = products;
 

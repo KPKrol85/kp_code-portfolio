@@ -30,15 +30,19 @@ const run = (args, label) => {
 };
 
 const getDurationSeconds = (inputPath) => {
-  const result = spawnSync(ffprobe.path, [
-    "-v",
-    "error",
-    "-show_entries",
-    "format=duration",
-    "-of",
-    "default=noprint_wrappers=1:nokey=1",
-    inputPath,
-  ], { encoding: "utf-8" });
+  const result = spawnSync(
+    ffprobe.path,
+    [
+      "-v",
+      "error",
+      "-show_entries",
+      "format=duration",
+      "-of",
+      "default=noprint_wrappers=1:nokey=1",
+      inputPath,
+    ],
+    { encoding: "utf-8" }
+  );
   if (result.status !== 0) {
     throw new Error("ffprobe failed to read duration.");
   }
@@ -83,68 +87,77 @@ const buildOne = (inputPath) => {
   console.log(`  mp4 : ${basename(outputMp4)}`);
   console.log(`  poster: ${basename(outputPoster)}`);
 
-  run([
-    "-y",
-    "-i",
-    inputPath,
-    "-vf",
-    "scale=960:-2",
-    "-an",
-    "-c:v",
-    "libvpx-vp9",
-    "-b:v",
-    `${webmK}k`,
-    "-crf",
-    "32",
-    "-row-mt",
-    "1",
-    "-tile-columns",
-    "2",
-    "-threads",
-    "4",
-    "-deadline",
-    "good",
-    outputWebm,
-  ], "WebM");
+  run(
+    [
+      "-y",
+      "-i",
+      inputPath,
+      "-vf",
+      "scale=960:-2",
+      "-an",
+      "-c:v",
+      "libvpx-vp9",
+      "-b:v",
+      `${webmK}k`,
+      "-crf",
+      "32",
+      "-row-mt",
+      "1",
+      "-tile-columns",
+      "2",
+      "-threads",
+      "4",
+      "-deadline",
+      "good",
+      outputWebm,
+    ],
+    "WebM"
+  );
 
-  run([
-    "-y",
-    "-i",
-    inputPath,
-    "-vf",
-    "scale=960:-2",
-    "-an",
-    "-c:v",
-    "libx264",
-    "-preset",
-    "slow",
-    "-crf",
-    "27",
-    "-b:v",
-    `${mp4K}k`,
-    "-maxrate",
-    `${mp4K}k`,
-    "-bufsize",
-    `${mp4K}k`,
-    "-movflags",
-    "+faststart",
-    outputMp4,
-  ], "MP4");
+  run(
+    [
+      "-y",
+      "-i",
+      inputPath,
+      "-vf",
+      "scale=960:-2",
+      "-an",
+      "-c:v",
+      "libx264",
+      "-preset",
+      "slow",
+      "-crf",
+      "27",
+      "-b:v",
+      `${mp4K}k`,
+      "-maxrate",
+      `${mp4K}k`,
+      "-bufsize",
+      `${mp4K}k`,
+      "-movflags",
+      "+faststart",
+      outputMp4,
+    ],
+    "MP4"
+  );
 
-  run([
-    "-y",
-    "-ss",
-    "1",
-    "-i",
-    inputPath,
-    "-vf",
-    "scale=960:-2",
-    "-frames:v",
-    "1",
-    "-q:v",
-    "3",
-    outputPoster,
-  ], "Poster");
+  run(
+    [
+      "-y",
+      "-ss",
+      "1",
+      "-i",
+      inputPath,
+      "-vf",
+      "scale=960:-2",
+      "-frames:v",
+      "1",
+      "-q:v",
+      "3",
+      outputPoster,
+    ],
+    "Poster"
+  );
 
   const sizes = [
     [outputWebm, "webm"],

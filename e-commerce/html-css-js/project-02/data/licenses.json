@@ -9,7 +9,11 @@
   {
     "type": "Commercial",
     "summary": "Dla zespołów produktowych i agencji.",
-    "permissions": ["Użycie w wielu projektach", "Współdzielenie w zespole", "Budowa produktów klienta"],
+    "permissions": [
+      "Użycie w wielu projektach",
+      "Współdzielenie w zespole",
+      "Budowa produktów klienta"
+    ],
     "limitations": ["Brak sprzedaży jako samodzielny produkt", "Brak publicznej dystrybucji"],
     "support": "Priorytetowe wsparcie + aktualizacje"
   }

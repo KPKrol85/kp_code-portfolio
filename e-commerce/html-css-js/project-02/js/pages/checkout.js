@@ -21,12 +21,14 @@ export const renderCheckout = () => {
   container.appendChild(createElement("h1", { text: "Checkout" }));
 
   if (!cart.length) {
-    container.appendChild(renderEmptyState({
-      title: "Your cart is empty.",
-      message: "Browse products to get started.",
-      ctaText: "Browse products",
-      ctaHref: "#/products",
-    }));
+    container.appendChild(
+      renderEmptyState({
+        title: "Your cart is empty.",
+        message: "Browse products to get started.",
+        ctaText: "Browse products",
+        ctaHref: "#/products",
+      })
+    );
     main.appendChild(container);
     return;
   }
@@ -44,7 +46,12 @@ export const renderCheckout = () => {
   });
   const companyField = createElement("input", {
     className: "input",
-    attrs: { id: "checkout-company", type: "text", name: "company", placeholder: "Firma (opcjonalnie)" },
+    attrs: {
+      id: "checkout-company",
+      type: "text",
+      name: "company",
+      placeholder: "Firma (opcjonalnie)",
+    },
   });
   const taxIdField = createElement("input", {
     className: "input",
@@ -55,24 +62,32 @@ export const renderCheckout = () => {
   const emailError = createElement("div", { className: "form-error" });
   const errorBox = createElement("div", { className: "form-error" });
 
-  form.appendChild(createElement("div", { className: "form-field" }, [
-    createElement("label", { text: "Imie i nazwisko", attrs: { for: "checkout-name" } }),
-    nameField,
-    nameError,
-  ]));
-  form.appendChild(createElement("div", { className: "form-field" }, [
-    createElement("label", { text: "E-mail", attrs: { for: "checkout-email" } }),
-    emailField,
-    emailError,
-  ]));
-  form.appendChild(createElement("div", { className: "form-field" }, [
-    createElement("label", { text: "Firma", attrs: { for: "checkout-company" } }),
-    companyField,
-  ]));
-  form.appendChild(createElement("div", { className: "form-field" }, [
-    createElement("label", { text: "NIP", attrs: { for: "checkout-tax-id" } }),
-    taxIdField,
-  ]));
+  form.appendChild(
+    createElement("div", { className: "form-field" }, [
+      createElement("label", { text: "Imie i nazwisko", attrs: { for: "checkout-name" } }),
+      nameField,
+      nameError,
+    ])
+  );
+  form.appendChild(
+    createElement("div", { className: "form-field" }, [
+      createElement("label", { text: "E-mail", attrs: { for: "checkout-email" } }),
+      emailField,
+      emailError,
+    ])
+  );
+  form.appendChild(
+    createElement("div", { className: "form-field" }, [
+      createElement("label", { text: "Firma", attrs: { for: "checkout-company" } }),
+      companyField,
+    ])
+  );
+  form.appendChild(
+    createElement("div", { className: "form-field" }, [
+      createElement("label", { text: "NIP", attrs: { for: "checkout-tax-id" } }),
+      taxIdField,
+    ])
+  );
   form.appendChild(errorBox);
 
   const submitButton = createElement("button", {
@@ -94,7 +109,9 @@ export const renderCheckout = () => {
     const lineTotal = product.price * item.quantity;
     total += lineTotal;
     list.appendChild(
-      createElement("li", { text: `${product.name} x${item.quantity} - ${formatCurrency(lineTotal)}` })
+      createElement("li", {
+        text: `${product.name} x${item.quantity} - ${formatCurrency(lineTotal)}`,
+      })
     );
   });
   summary.appendChild(list);
@@ -106,7 +123,8 @@ export const renderCheckout = () => {
     emailError.textContent = "";
     errorBox.textContent = "";
 
-    const nameValid = validators.required(nameField.value) && validators.minLength(2)(nameField.value.trim());
+    const nameValid =
+      validators.required(nameField.value) && validators.minLength(2)(nameField.value.trim());
     const emailValid = validators.email(emailField.value);
 
     if (!nameValid) {
@@ -186,8 +204,16 @@ export const renderCheckoutSuccess = () => {
       createElement("h1", { text: "Dziekujemy za zakup!" }),
       createElement("p", { text: "Pliki zostaly dodane do Twojej biblioteki." }),
       createElement("div", { className: "nav-links" }, [
-        createElement("a", { className: "button", text: "Przejdz do biblioteki", attrs: { href: "#/library" } }),
-        createElement("a", { className: "button secondary", text: "Wroc do katalogu", attrs: { href: "#/products" } }),
+        createElement("a", {
+          className: "button",
+          text: "Przejdz do biblioteki",
+          attrs: { href: "#/library" },
+        }),
+        createElement("a", {
+          className: "button secondary",
+          text: "Wroc do katalogu",
+          attrs: { href: "#/products" },
+        }),
       ]),
     ]),
   ]);

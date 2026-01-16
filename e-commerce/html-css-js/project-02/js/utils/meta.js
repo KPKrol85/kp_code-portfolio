@@ -1,7 +1,9 @@
 const MAX_DESCRIPTION_LENGTH = 160;
 
 const normalizeText = (value) => {
-  return String(value || "").replace(/\s+/g, " ").trim();
+  return String(value || "")
+    .replace(/\s+/g, " ")
+    .trim();
 };
 
 const truncateText = (value, maxLength) => {

@@ -1,13 +1,14 @@
 import { createElement } from "../utils/dom.js";
 
 const renderLoadingState = ({ title = "Loading", message = "Please wait..." } = {}) => {
-  return createElement("div", {
-    className: "notice",
-    attrs: { role: "status", "aria-live": "polite" },
-  }, [
-    createElement("h2", { text: title }),
-    message ? createElement("p", { text: message }) : null,
-  ]);
+  return createElement(
+    "div",
+    {
+      className: "notice",
+      attrs: { role: "status", "aria-live": "polite" },
+    },
+    [createElement("h2", { text: title }), message ? createElement("p", { text: message }) : null]
+  );
 };
 
 const renderEmptyState = ({
@@ -20,9 +21,15 @@ const renderEmptyState = ({
   const actions = [];
   if (ctaText) {
     if (ctaHref) {
-      actions.push(createElement("a", { className: "button", text: ctaText, attrs: { href: ctaHref } }));
+      actions.push(
+        createElement("a", { className: "button", text: ctaText, attrs: { href: ctaHref } })
+      );
     } else if (onCta) {
-      const button = createElement("button", { className: "button", text: ctaText, attrs: { type: "button" } });
+      const button = createElement("button", {
+        className: "button",
+        text: ctaText,
+        attrs: { type: "button" },
+      });
       button.addEventListener("click", onCta);
       actions.push(button);
     }
@@ -45,22 +52,32 @@ const renderErrorState = ({
   const actions = [];
   if (ctaText) {
     if (ctaHref) {
-      actions.push(createElement("a", { className: "button", text: ctaText, attrs: { href: ctaHref } }));
+      actions.push(
+        createElement("a", { className: "button", text: ctaText, attrs: { href: ctaHref } })
+      );
     } else if (onCta) {
-      const button = createElement("button", { className: "button", text: ctaText, attrs: { type: "button" } });
+      const button = createElement("button", {
+        className: "button",
+        text: ctaText,
+        attrs: { type: "button" },
+      });
       button.addEventListener("click", onCta);
       actions.push(button);
     }
   }
 
-  return createElement("div", {
-    className: "notice",
-    attrs: { role: "alert" },
-  }, [
-    createElement("h2", { text: title }),
-    message ? createElement("p", { text: message }) : null,
-    actions.length ? createElement("div", { className: "nav-links" }, actions) : null,
-  ]);
+  return createElement(
+    "div",
+    {
+      className: "notice",
+      attrs: { role: "alert" },
+    },
+    [
+      createElement("h2", { text: title }),
+      message ? createElement("p", { text: message }) : null,
+      actions.length ? createElement("div", { className: "nav-links" }, actions) : null,
+    ]
+  );
 };
 
 export { renderLoadingState, renderEmptyState, renderErrorState };

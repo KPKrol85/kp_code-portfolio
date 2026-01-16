@@ -1,6 +1,8 @@
 {
   "extends": ["html-validate:recommended"],
   "rules": {
+    "doctype-style": "off",
+    "void-style": "off",
     "no-inline-script": "off",
     "no-inline-style": "off"
   }
