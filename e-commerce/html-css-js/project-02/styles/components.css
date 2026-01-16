@@ -94,6 +94,9 @@
 .card-product {
   display: grid;
   gap: var(--space-4);
+  --card-cta-fs: clamp(0.82rem, 0.78rem + 0.3vw, 0.95rem);
+  --card-cta-py: clamp(0.5rem, 0.45rem + 0.35vw, 0.7rem);
+  --card-cta-px: clamp(0.7rem, 0.55rem + 0.5vw, 1rem);
 }
 
 .card-product img {
@@ -103,6 +106,32 @@
 
 .card-product h3 {
   margin: 0;
+}
+
+.card-product .flex-between {
+  justify-content: flex-start;
+  gap: var(--space-3);
+  flex-wrap: nowrap;
+}
+
+.card-product .flex-between .button {
+  flex: 1 1 0;
+  min-width: 0;
+  font-size: var(--card-cta-fs);
+  padding: var(--card-cta-py) var(--card-cta-px);
+  white-space: nowrap;
+}
+
+.card-product .flex-between .button:not(.secondary):not(.ghost) {
+  flex: 1.15 1 0;
+}
+
+@media (max-width: 1200px) {
+  .card-product {
+    --card-cta-fs: clamp(0.8rem, 0.76rem + 0.28vw, 0.92rem);
+    --card-cta-py: clamp(0.48rem, 0.44rem + 0.32vw, 0.66rem);
+    --card-cta-px: clamp(0.66rem, 0.52rem + 0.45vw, 0.95rem);
+  }
 }
 
 .price {

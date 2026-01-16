@@ -235,7 +235,7 @@ footer {
 .products-slider {
   width: 100%;
   --product-gap: var(--space-6);
-  --product-card-min: 240px;
+  --product-card-min: 300px;
   --product-card-basis: calc((100% - (var(--product-gap) * 2)) / 3);
   display: flex;
   gap: var(--product-gap);
@@ -480,10 +480,10 @@ footer {
 
   .products-slider {
     --product-gap: var(--space-5);
-    --product-card-min: 220px;
-    --product-card-basis: 80%;
-    padding-inline: var(--space-2);
-    scroll-padding-inline: var(--space-2);
+    --product-card-min: 300px;
+    --product-card-basis: 90%;
+    padding-inline: var(--space-3);
+    scroll-padding-inline: var(--space-3);
   }
 
   .stat-card {
@@ -497,6 +497,12 @@ footer {
 
   .grid {
     gap: var(--space-5);
+  }
+}
+
+@media (max-width: 1200px) {
+  .products-slider {
+    --product-card-basis: 45%;
   }
 }
 
@@ -540,7 +546,7 @@ footer {
 
   .products-slider {
     --product-gap: var(--space-6);
-    --product-card-basis: 45%;
+    --product-card-basis: 60%;
     padding-inline: var(--space-2);
     scroll-padding-inline: var(--space-2);
   }
@@ -552,6 +558,16 @@ footer {
 
   .grid {
     gap: var(--space-6);
+  }
+}
+
+@media (max-width: 720px) {
+  .products-slider {
+    --product-gap: var(--space-5);
+    --product-card-min: 300px;
+    --product-card-basis: 90%;
+    padding-inline: var(--space-3);
+    scroll-padding-inline: var(--space-3);
   }
 }
 
