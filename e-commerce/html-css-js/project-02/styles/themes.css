@@ -7,6 +7,7 @@
   --color-text-muted: #b0b8c6;
   --color-accent: #6c8bff;
   --color-accent-strong: #5173ff;
+  --color-accent-muted: color-mix(in srgb, var(--color-accent) 24%, transparent);
   --color-success: #3ccb88;
   --color-warning: #f2b84b;
   --color-danger: #ff7a7f;

@@ -232,6 +232,21 @@ footer {
   display: none;
 }
 
+@media (hover: hover) and (pointer: fine) {
+  .stats-grid {
+    cursor: grab;
+    touch-action: pan-y;
+  }
+
+  .stats-grid.is-pointer-down {
+    user-select: none;
+  }
+
+  .stats-grid.is-dragging {
+    cursor: grabbing;
+  }
+}
+
 .stat-card {
   padding: var(--space-7);
   display: flex;
@@ -240,6 +255,13 @@ footer {
   flex: 0 0 var(--stats-card-basis);
   min-width: var(--stats-card-min);
   scroll-snap-align: start;
+  transition: border-color 170ms ease;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .stat-card:hover {
+    border-color: var(--color-accent-muted);
+  }
 }
 
 .hero {

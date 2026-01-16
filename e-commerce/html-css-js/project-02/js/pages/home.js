@@ -135,6 +135,77 @@ export const renderHome = () => {
     ]),
   ]);
 
+  const enableStatsDrag =
+    window.matchMedia && window.matchMedia("(hover: hover) and (pointer: fine)").matches;
+  if (enableStatsDrag) {
+    const dragState = {
+      isPointerDown: false,
+      isDragging: false,
+      wasDragged: false,
+      startX: 0,
+      startScrollLeft: 0,
+    };
+    const dragThreshold = 6;
+    const dragSpeed = 1.2;
+
+    const onPointerDown = (event) => {
+      if (event.pointerType !== "mouse") {
+        return;
+      }
+      dragState.isPointerDown = true;
+      dragState.isDragging = false;
+      dragState.startX = event.clientX;
+      dragState.startScrollLeft = stats.scrollLeft;
+      stats.classList.add("is-pointer-down");
+      stats.setPointerCapture(event.pointerId);
+    };
+
+    const onPointerMove = (event) => {
+      if (!dragState.isPointerDown) {
+        return;
+      }
+      const deltaX = event.clientX - dragState.startX;
+      if (!dragState.isDragging && Math.abs(deltaX) >= dragThreshold) {
+        dragState.isDragging = true;
+        dragState.wasDragged = true;
+        stats.classList.add("is-dragging");
+      }
+      if (dragState.isDragging) {
+        event.preventDefault();
+        stats.scrollLeft = dragState.startScrollLeft - deltaX * dragSpeed;
+      }
+    };
+
+    const endDrag = (event) => {
+      if (!dragState.isPointerDown) {
+        return;
+      }
+      dragState.isPointerDown = false;
+      dragState.isDragging = false;
+      stats.classList.remove("is-pointer-down");
+      stats.classList.remove("is-dragging");
+      if (event && stats.hasPointerCapture?.(event.pointerId)) {
+        try {
+          stats.releasePointerCapture(event.pointerId);
+        } catch {}
+      }
+    };
+
+    const suppressClick = (event) => {
+      if (dragState.wasDragged) {
+        event.preventDefault();
+        event.stopPropagation();
+      }
+      dragState.wasDragged = false;
+    };
+
+    stats.addEventListener("pointerdown", onPointerDown);
+    stats.addEventListener("pointermove", onPointerMove, { passive: false });
+    stats.addEventListener("pointerup", endDrag);
+    stats.addEventListener("pointercancel", endDrag);
+    stats.addEventListener("click", suppressClick, true);
+  }
+
   const section = createElement("section", { className: "container section" });
   section.appendChild(createElement("h2", { text: "Popularne produkty" }));
   const grid = createElement("div", { className: "grid grid-3" });
