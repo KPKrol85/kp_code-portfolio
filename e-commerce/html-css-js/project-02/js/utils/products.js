@@ -1,6 +1,6 @@
 export const getVisibleProducts = (
   products,
-  { query = "", category = "all", sort = "latest" } = {}
+  { query = "", category = "all", sort = "latest", limit = null } = {}
 ) => {
   const normalizedQuery = query.trim().toLowerCase();
   let visible = products;
@@ -26,6 +26,10 @@ export const getVisibleProducts = (
     sorted.sort((a, b) => b.price - a.price);
   } else {
     sorted.sort((a, b) => new Date(b.updatedAt) - new Date(a.updatedAt));
+  }
+
+  if (Number.isFinite(limit)) {
+    return sorted.slice(0, Math.max(0, limit));
   }
 
   return sorted;

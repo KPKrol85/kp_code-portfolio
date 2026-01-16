@@ -8,6 +8,10 @@ import { getVisibleProducts } from "../utils/products.js";
 import { debounce } from "../utils/debounce.js";
 import { renderEmptyState } from "../components/ui-state-helpers.js";
 
+const VISIBLE_ROWS = 5;
+const ROWS_STEP = 5;
+const PRODUCT_COLUMNS = 3;
+
 export const renderProducts = () => {
   const main = document.getElementById("main-content");
   clearElement(main);
@@ -68,12 +72,21 @@ export const renderProducts = () => {
   filters.appendChild(categorySelect);
   container.appendChild(filters);
 
-  const grid = createElement("div", { className: "grid grid-3 section" });
+  const grid = createElement("div", { className: "grid grid-3 section products-grid" });
   container.appendChild(grid);
+
+  const showMoreButton = createElement("button", {
+    className: "button secondary block products-show-more",
+    text: "Pokaż więcej",
+    attrs: { type: "button" },
+  });
+  showMoreButton.hidden = true;
+  container.appendChild(showMoreButton);
 
   let lastRenderSignature = null;
   let lastRenderProducts = null;
-  const renderList = () => {
+  let visibleRows = VISIBLE_ROWS;
+  const renderList = (force = false) => {
     if (!isActive || store.getState().productsStatus !== "ready") {
       return;
     }
@@ -81,15 +94,20 @@ export const renderProducts = () => {
     const category = categorySelect.value;
     const sort = sortSelect.value;
     const signature = `${query}|${category}|${sort}`;
-    if (signature === lastRenderSignature && products === lastRenderProducts) {
+    const signatureChanged = signature !== lastRenderSignature;
+    if (signatureChanged) {
+      visibleRows = VISIBLE_ROWS;
+    }
+    if (!signatureChanged && products === lastRenderProducts && !force) {
       return;
     }
     lastRenderSignature = signature;
     lastRenderProducts = products;
     clearElement(grid);
 
-    const visible = getVisibleProducts(products, { query, category, sort });
-    if (!visible.length) {
+    const filtered = getVisibleProducts(products, { query, category, sort });
+    if (!filtered.length) {
+      showMoreButton.hidden = true;
       grid.appendChild(
         renderEmptyState({
           title: "Nie znaleziono produktów.",
@@ -106,6 +124,8 @@ export const renderProducts = () => {
       return;
     }
 
+    const limit = visibleRows * PRODUCT_COLUMNS;
+    const visible = filtered.slice(0, limit);
     visible.forEach((product) => {
       grid.appendChild(
         createProductCard(product, (id) => {
@@ -115,6 +135,8 @@ export const renderProducts = () => {
         })
       );
     });
+
+    showMoreButton.hidden = visible.length >= filtered.length;
   };
 
   const renderGridState = (state) => {
@@ -140,6 +162,7 @@ export const renderProducts = () => {
         },
       })
     ) {
+      showMoreButton.hidden = true;
       return;
     }
   };
@@ -191,6 +214,10 @@ export const renderProducts = () => {
   attachFieldListener(searchField, "input", debouncedRenderList);
   attachFieldListener(sortSelect, "change", renderList);
   attachFieldListener(categorySelect, "change", renderList);
+  attachFieldListener(showMoreButton, "click", () => {
+    visibleRows += ROWS_STEP;
+    renderList(true);
+  });
 
   main.appendChild(container);
 

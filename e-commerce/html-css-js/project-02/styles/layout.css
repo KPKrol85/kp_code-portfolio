@@ -209,6 +209,14 @@ footer {
   grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
 }
 
+.products-grid {
+  grid-template-columns: repeat(3, 1fr);
+}
+
+.products-show-more {
+  margin-top: var(--space-7);
+}
+
 .stats-grid {
   width: 100%;
   max-width: 100%;
@@ -665,6 +673,10 @@ footer {
     gap: var(--space-6);
   }
 
+  .products-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
   .scroll-indicator-shell {
     --scroll-indicator-outset: var(--space-6);
   }
@@ -677,6 +689,10 @@ footer {
     --product-card-basis: 90%;
     padding-inline: var(--space-3);
     scroll-padding-inline: var(--space-3);
+  }
+
+  .products-grid {
+    grid-template-columns: 1fr;
   }
 }
 
