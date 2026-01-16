@@ -116,6 +116,82 @@ export const renderHome = () => {
   hero.appendChild(heroContent);
   hero.appendChild(heroVisual);
 
+  const enableDragScroll = (container) => {
+    const canDrag =
+      window.matchMedia && window.matchMedia("(hover: hover) and (pointer: fine)").matches;
+    if (!canDrag) {
+      return;
+    }
+
+    const dragState = {
+      isPointerDown: false,
+      isDragging: false,
+      wasDragged: false,
+      startX: 0,
+      startScrollLeft: 0,
+    };
+    const dragThreshold = 6;
+    const dragSpeed = 1.2;
+
+    const onPointerDown = (event) => {
+      if (event.pointerType !== "mouse") {
+        return;
+      }
+      dragState.isPointerDown = true;
+      dragState.isDragging = false;
+      dragState.wasDragged = false;
+      dragState.startX = event.clientX;
+      dragState.startScrollLeft = container.scrollLeft;
+      container.classList.add("is-pointer-down");
+      container.setPointerCapture(event.pointerId);
+    };
+
+    const onPointerMove = (event) => {
+      if (!dragState.isPointerDown) {
+        return;
+      }
+      const deltaX = event.clientX - dragState.startX;
+      if (!dragState.isDragging && Math.abs(deltaX) >= dragThreshold) {
+        dragState.isDragging = true;
+        dragState.wasDragged = true;
+        container.classList.add("is-dragging");
+      }
+      if (dragState.isDragging) {
+        event.preventDefault();
+        container.scrollLeft = dragState.startScrollLeft - deltaX * dragSpeed;
+      }
+    };
+
+    const endDrag = (event) => {
+      if (!dragState.isPointerDown) {
+        return;
+      }
+      dragState.isPointerDown = false;
+      dragState.isDragging = false;
+      container.classList.remove("is-pointer-down");
+      container.classList.remove("is-dragging");
+      if (event && container.hasPointerCapture?.(event.pointerId)) {
+        try {
+          container.releasePointerCapture(event.pointerId);
+        } catch {}
+      }
+    };
+
+    const suppressClick = (event) => {
+      if (dragState.wasDragged) {
+        event.preventDefault();
+        event.stopPropagation();
+      }
+      dragState.wasDragged = false;
+    };
+
+    container.addEventListener("pointerdown", onPointerDown);
+    container.addEventListener("pointermove", onPointerMove, { passive: false });
+    container.addEventListener("pointerup", endDrag);
+    container.addEventListener("pointercancel", endDrag);
+    container.addEventListener("click", suppressClick, true);
+  };
+
   const stats = createElement("div", { className: "stats-grid" }, [
     createElement("div", { className: "card stat-card" }, [
       createElement("h3", { text: "6" }),
@@ -135,80 +211,11 @@ export const renderHome = () => {
     ]),
   ]);
 
-  const enableStatsDrag =
-    window.matchMedia && window.matchMedia("(hover: hover) and (pointer: fine)").matches;
-  if (enableStatsDrag) {
-    const dragState = {
-      isPointerDown: false,
-      isDragging: false,
-      wasDragged: false,
-      startX: 0,
-      startScrollLeft: 0,
-    };
-    const dragThreshold = 6;
-    const dragSpeed = 1.2;
-
-    const onPointerDown = (event) => {
-      if (event.pointerType !== "mouse") {
-        return;
-      }
-      dragState.isPointerDown = true;
-      dragState.isDragging = false;
-      dragState.startX = event.clientX;
-      dragState.startScrollLeft = stats.scrollLeft;
-      stats.classList.add("is-pointer-down");
-      stats.setPointerCapture(event.pointerId);
-    };
-
-    const onPointerMove = (event) => {
-      if (!dragState.isPointerDown) {
-        return;
-      }
-      const deltaX = event.clientX - dragState.startX;
-      if (!dragState.isDragging && Math.abs(deltaX) >= dragThreshold) {
-        dragState.isDragging = true;
-        dragState.wasDragged = true;
-        stats.classList.add("is-dragging");
-      }
-      if (dragState.isDragging) {
-        event.preventDefault();
-        stats.scrollLeft = dragState.startScrollLeft - deltaX * dragSpeed;
-      }
-    };
-
-    const endDrag = (event) => {
-      if (!dragState.isPointerDown) {
-        return;
-      }
-      dragState.isPointerDown = false;
-      dragState.isDragging = false;
-      stats.classList.remove("is-pointer-down");
-      stats.classList.remove("is-dragging");
-      if (event && stats.hasPointerCapture?.(event.pointerId)) {
-        try {
-          stats.releasePointerCapture(event.pointerId);
-        } catch {}
-      }
-    };
-
-    const suppressClick = (event) => {
-      if (dragState.wasDragged) {
-        event.preventDefault();
-        event.stopPropagation();
-      }
-      dragState.wasDragged = false;
-    };
-
-    stats.addEventListener("pointerdown", onPointerDown);
-    stats.addEventListener("pointermove", onPointerMove, { passive: false });
-    stats.addEventListener("pointerup", endDrag);
-    stats.addEventListener("pointercancel", endDrag);
-    stats.addEventListener("click", suppressClick, true);
-  }
+  enableDragScroll(stats);
 
   const section = createElement("section", { className: "container section" });
   section.appendChild(createElement("h2", { text: "Popularne produkty" }));
-  const grid = createElement("div", { className: "grid grid-3" });
+  const grid = createElement("div", { className: "products-slider" });
 
   const renderProductsGrid = (state) => {
     const { products, productsStatus, productsError } = state;
@@ -218,7 +225,7 @@ export const renderHome = () => {
         items: products,
         error: productsError,
         loading: {
-          count: 3,
+          count: 5,
           imageHeight: 180,
           lineWidths: [60, 80],
           lineHeights: [18, 14],
@@ -236,7 +243,7 @@ export const renderHome = () => {
     ) {
       return;
     }
-    products.slice(0, 3).forEach((product) => {
+    products.slice(0, 5).forEach((product) => {
       grid.appendChild(
         createProductCard(product, (id) => {
           cartService.addItem(id, 1);
@@ -273,6 +280,7 @@ export const renderHome = () => {
   main._homeUnsubscribe = unsubscribe;
 
   section.appendChild(grid);
+  enableDragScroll(grid);
 
   const info = createElement("section", { className: "container section" }, [
     createElement("div", { className: "card" }, [
