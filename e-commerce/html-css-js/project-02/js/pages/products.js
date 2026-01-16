@@ -75,6 +75,10 @@ export const renderProducts = () => {
   const grid = createElement("div", { className: "grid grid-3 section products-grid" });
   container.appendChild(grid);
 
+  const resultsCount = createElement("p", { className: "products-count" });
+  resultsCount.hidden = true;
+  container.appendChild(resultsCount);
+
   const showMoreButton = createElement("button", {
     className: "button secondary block products-show-more",
     text: "Pokaż więcej",
@@ -107,6 +111,7 @@ export const renderProducts = () => {
 
     const filtered = getVisibleProducts(products, { query, category, sort });
     if (!filtered.length) {
+      resultsCount.hidden = true;
       showMoreButton.hidden = true;
       grid.appendChild(
         renderEmptyState({
@@ -126,6 +131,8 @@ export const renderProducts = () => {
 
     const limit = visibleRows * PRODUCT_COLUMNS;
     const visible = filtered.slice(0, limit);
+    resultsCount.textContent = `Pokazano ${visible.length} z ${filtered.length}`;
+    resultsCount.hidden = false;
     visible.forEach((product) => {
       grid.appendChild(
         createProductCard(product, (id) => {
@@ -162,6 +169,7 @@ export const renderProducts = () => {
         },
       })
     ) {
+      resultsCount.hidden = true;
       showMoreButton.hidden = true;
       return;
     }

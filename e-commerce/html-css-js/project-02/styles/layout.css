@@ -213,6 +213,12 @@ footer {
   grid-template-columns: repeat(3, 1fr);
 }
 
+.products-count {
+  margin-top: var(--space-6);
+  color: var(--color-text-muted);
+  font-weight: 500;
+}
+
 .products-show-more {
   margin-top: var(--space-7);
 }
