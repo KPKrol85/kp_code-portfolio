@@ -1,15 +1,9 @@
 :root {
-  /* =========================
-     Typography
-     ========================= */
   --font-sans:
     "Space Grotesk", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, Arial,
     "Noto Sans", "Liberation Sans", sans-serif;
   --font-mono: "JetBrains Mono", "SFMono-Regular", Menlo, monospace;
 
-  /* =========================
-     Colors
-     ========================= */
   --color-bg: #f5f7fb;
   --color-surface: #ffffff;
   --color-surface-muted: #eef1f7;
@@ -48,6 +42,16 @@
   --space-8: 2.5rem; /* 40px */
   --space-9: 3rem; /* 48px */
   --space-10: 4rem; /* 64px */
+
+  --fs-body: 1rem; /* 16px – bez clampa, stabilny */
+
+  --fs-h4: clamp(1.125rem, 1.2vw, 1.25rem); /* 18–20px */
+  --fs-h3: clamp(1.25rem, 1.6vw, 1.5rem); /* 20–24px */
+  --fs-h2: clamp(1.5rem, 2.2vw, 2rem); /* 24–32px */
+  --fs-h1: clamp(1.75rem, 3vw, 2.5rem); /* 28–40px */
+
+  /* Hero / display */
+  --fs-hero: clamp(2rem, 4vw, 3rem); /* 32–48px */
 
   --max-width: 1200px;
   --transition-fast: 160ms ease;

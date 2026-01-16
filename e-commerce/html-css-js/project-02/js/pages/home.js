@@ -32,7 +32,7 @@ export const renderHome = () => {
 
   heroContent.appendChild(p);
 
-  const heroActions = createElement("div", { className: "nav-links hero-actions" }, [
+  const heroActions = createElement("div", { className: "hero-actions" }, [
     createElement("a", {
       className: "button",
       text: "Przeglądaj produkty",

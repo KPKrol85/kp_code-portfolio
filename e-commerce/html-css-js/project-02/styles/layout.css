@@ -251,6 +251,7 @@ footer {
 
 .hero-title {
   max-width: 20ch;
+  font-size: var(--fs-hero); /* clamp */
   font-weight: 700;
   line-height: 1.05;
   letter-spacing: -0.02em;
@@ -258,11 +259,14 @@ footer {
 
 .hero-lead {
   max-width: 50ch;
+  font-size: var(--fs-body);
 }
 
 .hero-actions {
+  display: flex;
   flex-wrap: wrap;
   gap: var(--space-3);
+  align-items: center;
 }
 
 .hero .button:not(.secondary):not(.ghost) {
@@ -272,6 +276,10 @@ footer {
 
 .hero .button:not(.secondary):not(.ghost):hover {
   background: color-mix(in srgb, var(--color-accent-strong) 85%, #000);
+}
+
+:root[data-theme="dark"] .hero .button:not(.secondary):not(.ghost) {
+  color: #fff;
 }
 
 .hero-visual {
@@ -310,9 +318,8 @@ footer {
     border-color: color-mix(in srgb, var(--color-border) 60%, transparent);
     box-shadow:
       var(--shadow-hero),
-      0 0 28px color-mix(in srgb, var(--color-accent) 10%, transparent);
+      0 0 var(--space-8) color-mix(in srgb, var(--color-accent) 10%, transparent);
   }
-
   .hero-visual::after {
     box-shadow: 0 0 0 1px color-mix(in srgb, var(--color-surface) 35%, transparent) inset;
   }
@@ -322,14 +329,13 @@ footer {
   filter: brightness(1.03) contrast(1.02) saturate(1.02);
 }
 
-@media (min-width: 960px) {
+@media (min-width: 60rem) {
   .hero {
     grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr);
     align-items: center;
   }
-
   .hero-visual {
-    min-height: 300px;
+    min-height: 18.75rem;
   }
 }
 
