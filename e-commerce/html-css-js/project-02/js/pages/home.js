@@ -387,8 +387,12 @@ export const renderHome = () => {
     ]),
   ]);
 
+  const statsSection = createElement("section", { className: "container stats-section" }, [
+    statsIndicators.shell,
+  ]);
+
   main.appendChild(hero);
-  main.appendChild(statsIndicators.shell);
+  main.appendChild(statsSection);
   main.appendChild(section);
   statsIndicators.update();
   productsIndicators.update();

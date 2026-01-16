@@ -211,7 +211,7 @@ footer {
 
 .stats-grid {
   width: 100%;
-  max-width: calc(var(--max-width) - (var(--space-7) * 2));
+  max-width: 100%;
   margin: var(--space-8) auto 0;
   --stats-gap: var(--space-6);
   --stats-card-min: 240px;
@@ -262,14 +262,16 @@ footer {
 .scroll-indicator-shell {
   position: relative;
   width: 100%;
-  --scroll-indicator-inset: var(--space-3);
-  --scroll-indicator-outset: var(--space-6);
+  --scroll-indicator-inset: var(--space-1);
+  --scroll-indicator-outset: var(--space-4);
   overflow: visible;
 }
 
 .scroll-indicator-shell.stats-shell {
-  max-width: calc(var(--max-width) - (var(--space-7) * 2));
-  margin: 0 auto;
+  width: 100%;
+  max-width: 100%;
+  margin: 0;
+  padding-inline: 0;
 }
 
 .scroll-indicator-shell.stats-shell .stats-grid {
@@ -641,7 +643,6 @@ footer {
   }
 
   .stats-grid {
-    max-width: calc(var(--max-width) - (var(--space-6) * 2));
     padding-inline: var(--space-6);
     --stats-gap: var(--space-6);
     --stats-card-basis: 45%;
@@ -662,10 +663,6 @@ footer {
 
   .grid {
     gap: var(--space-6);
-  }
-
-  .scroll-indicator-shell.stats-shell {
-    max-width: calc(var(--max-width) - (var(--space-6) * 2));
   }
 
   .scroll-indicator-shell {
