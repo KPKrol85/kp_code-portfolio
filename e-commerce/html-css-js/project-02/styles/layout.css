@@ -213,9 +213,23 @@ footer {
   width: 100%;
   max-width: calc(var(--max-width) - (var(--space-7) * 2));
   margin: var(--space-8) auto 0;
+  --stats-gap: var(--space-6);
+  --stats-card-min: 240px;
+  --stats-card-basis: calc((100% - (var(--stats-gap) * 2)) / 3);
+  display: flex;
+  gap: var(--stats-gap);
   padding-inline: var(--space-6);
-  gap: var(--space-6);
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  overflow-x: auto;
+  overflow-y: hidden;
+  scroll-padding-inline: var(--space-6);
+  scroll-snap-type: x var(--stats-snap, proximity);
+  scroll-behavior: smooth;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+}
+
+.stats-grid::-webkit-scrollbar {
+  display: none;
 }
 
 .stat-card {
@@ -223,6 +237,9 @@ footer {
   display: flex;
   flex-direction: column;
   gap: var(--space-2);
+  flex: 0 0 var(--stats-card-basis);
+  min-width: var(--stats-card-min);
+  scroll-snap-align: start;
 }
 
 .hero {
@@ -393,7 +410,10 @@ footer {
   .stats-grid {
     margin-top: var(--space-7);
     padding-inline: var(--space-5);
-    gap: var(--space-5);
+    --stats-gap: var(--space-5);
+    --stats-card-min: 220px;
+    --stats-card-basis: 80%;
+    scroll-padding-inline: var(--space-5);
   }
 
   .stat-card {
@@ -443,7 +463,9 @@ footer {
   .stats-grid {
     max-width: calc(var(--max-width) - (var(--space-6) * 2));
     padding-inline: var(--space-6);
-    gap: var(--space-6);
+    --stats-gap: var(--space-6);
+    --stats-card-basis: 45%;
+    scroll-padding-inline: var(--space-6);
   }
 
   .app-shell main .container {

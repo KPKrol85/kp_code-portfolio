@@ -116,7 +116,7 @@ export const renderHome = () => {
   hero.appendChild(heroContent);
   hero.appendChild(heroVisual);
 
-  const stats = createElement("div", { className: "grid grid-3 stats-grid" }, [
+  const stats = createElement("div", { className: "stats-grid" }, [
     createElement("div", { className: "card stat-card" }, [
       createElement("h3", { text: "6" }),
       createElement("p", { text: "Produktów dostępnych od ręki" }),
@@ -128,6 +128,10 @@ export const renderHome = () => {
     createElement("div", { className: "card stat-card" }, [
       createElement("h3", { text: "24h" }),
       createElement("p", { text: "Średni czas wdrożenia" }),
+    ]),
+    createElement("div", { className: "card stat-card" }, [
+      createElement("h3", { text: "120+" }),
+      createElement("p", { text: "Nowe zasoby tygodniowo" }),
     ]),
   ]);
 
