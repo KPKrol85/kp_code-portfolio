@@ -1,17 +1,26 @@
 :root {
+  /* =========================
+     Typography
+     ========================= */
   --font-sans:
     "Space Grotesk", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, Arial,
     "Noto Sans", "Liberation Sans", sans-serif;
   --font-mono: "JetBrains Mono", "SFMono-Regular", Menlo, monospace;
 
+  /* =========================
+     Colors
+     ========================= */
   --color-bg: #f5f7fb;
   --color-surface: #ffffff;
   --color-surface-muted: #eef1f7;
   --color-border: #d8dce6;
+
   --color-text: #1b1f2a;
   --color-text-muted: #5c657a;
+
   --color-accent: #3f5efb;
   --color-accent-strong: #2b45d4;
+
   --color-success: #1f8a5b;
   --color-warning: #e4a100;
   --color-danger: #d03e45;
@@ -29,16 +38,16 @@
   --shadow-md: 0 20px 40px rgba(15, 23, 42, 0.12);
   --shadow-hero: 0 22px 56px rgba(15, 23, 42, 0.16), 0 6px 18px rgba(15, 23, 42, 0.1);
 
-  --space-1: 4px;
-  --space-2: 8px;
-  --space-3: 12px;
-  --space-4: 16px;
-  --space-5: 20px;
-  --space-6: 24px;
-  --space-7: 32px;
-  --space-8: 40px;
-  --space-9: 48px;
-  --space-10: 64px;
+  --space-1: 0.25rem; /* 4px */
+  --space-2: 0.5rem; /* 8px */
+  --space-3: 0.75rem; /* 12px */
+  --space-4: 1rem; /* 16px */
+  --space-5: 1.25rem; /* 20px */
+  --space-6: 1.5rem; /* 24px */
+  --space-7: 2rem; /* 32px */
+  --space-8: 2.5rem; /* 40px */
+  --space-9: 3rem; /* 48px */
+  --space-10: 4rem; /* 64px */
 
   --max-width: 1200px;
   --transition-fast: 160ms ease;

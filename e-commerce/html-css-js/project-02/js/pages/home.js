@@ -18,18 +18,19 @@ export const renderHome = () => {
   const hero = createElement("section", { className: "container hero" });
   const heroContent = createElement("div", { className: "hero-content" });
 
-  const h1 = createElement("h1");
+  const h1 = createElement("h1", { className: "hero-title" });
   h1.append("KP_Code");
   h1.appendChild(document.createElement("br"));
   h1.append("Digital Vault");
 
   heroContent.appendChild(h1);
 
-  heroContent.appendChild(
-    createElement("p", {
-      text: "Nowoczesny sklep z produktami cyfrowymi: szablony, UI kits i mini-narzędzia dla zespołów produktowych.",
-    })
-  );
+  const p = createElement("p", {
+    className: "hero-lead",
+    text: "Produkty cyfrowe dla twórców i firm: szablony stron, UI kits, komponenty i mini-narzędzia — gotowe do użycia w Twoich projektach.",
+  });
+
+  heroContent.appendChild(p);
 
   const heroActions = createElement("div", { className: "nav-links hero-actions" }, [
     createElement("a", {
