@@ -320,13 +320,13 @@ export const renderHome = () => {
           lineHeights: [18, 14],
         },
         errorState: {
-          title: "Nie udalo sie pobrac produktow",
-          message: productsError || "Sprobuj ponownie pozniej.",
+          title: "Nie udało się pobrać produktów",
+          message: productsError || "Spróbuj ponownie później.",
         },
         empty: {
-          title: "Brak produktow",
-          message: "Brak produktow do wyswietlenia.",
-          action: { label: "Przegladaj produkty", href: "#/products" },
+          title: "Brak produktów",
+          message: "Brak produktów do wyświetlenia.",
+          action: { label: "Przeglądaj produkty", href: "#/products" },
         },
       })
     ) {
@@ -394,3 +394,4 @@ export const renderHome = () => {
   productsIndicators.update();
   main.appendChild(info);
 };
+

@@ -14,8 +14,8 @@ export const renderLibrary = () => {
 
   if (productsStatus === "loading" || productsStatus === "idle") {
     renderNotice(container, {
-      title: "Ladowanie biblioteki",
-      message: "Trwa pobieranie danych produktow.",
+      title: "Ładowanie biblioteki",
+      message: "Trwa pobieranie danych produktów.",
       headingTag: "h2",
     });
     main.appendChild(container);
@@ -24,8 +24,8 @@ export const renderLibrary = () => {
 
   if (productsStatus === "error") {
     renderNotice(container, {
-      title: "Nie udalo sie pobrac produktow",
-      message: productsError || "Sprobuj ponownie pozniej.",
+      title: "Nie udało się pobrać produktów",
+      message: productsError || "Spróbuj ponownie później.",
       headingTag: "h2",
     });
     main.appendChild(container);
@@ -35,9 +35,9 @@ export const renderLibrary = () => {
   const libraryItems = purchasesService.getLibraryItems();
   if (!libraryItems.length) {
     renderNotice(container, {
-      title: "Brak zakupow",
-      message: "Po zakupie produkty pojawia sie tutaj automatycznie.",
-      action: { label: "Przejdz do katalogu", href: "#/products" },
+      title: "Brak zakupów",
+      message: "Po zakupie produkty pojawiają się tutaj automatycznie.",
+      action: { label: "Przejdź do katalogu", href: "#/products" },
       headingTag: "h2",
     });
     main.appendChild(container);
@@ -79,3 +79,4 @@ export const renderLibrary = () => {
   container.appendChild(grid);
   main.appendChild(container);
 };
+

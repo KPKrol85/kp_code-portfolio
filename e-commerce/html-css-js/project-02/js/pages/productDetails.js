@@ -22,12 +22,12 @@ export const renderProductDetails = ({ id }) => {
 
     if (productsStatus === "loading" || productsStatus === "idle") {
       setMeta({
-        title: "Ladowanie produktu...",
+        title: "Ładowanie produktu...",
         description: "Trwa pobieranie danych produktu.",
       });
       const container = createElement("div", { className: "container" });
       renderNotice(container, {
-        title: "Ladowanie produktu",
+        title: "Ładowanie produktu",
         message: "Trwa pobieranie danych produktu.",
       });
       main.appendChild(container);
@@ -36,13 +36,13 @@ export const renderProductDetails = ({ id }) => {
 
     if (productsStatus === "error") {
       setMeta({
-        title: "Nie udalo sie pobrac produktu",
-        description: productsError || "Sprobuj ponownie pozniej.",
+        title: "Nie udało się pobrać produktu",
+        description: productsError || "Spróbuj ponownie później.",
       });
       const container = createElement("div", { className: "container" });
       renderNotice(container, {
-        title: "Nie udalo sie pobrac produktu",
-        message: productsError || "Sprobuj ponownie pozniej.",
+        title: "Nie udało się pobrać produktu",
+        message: productsError || "Spróbuj ponownie później.",
       });
       main.appendChild(container);
       return;
@@ -51,14 +51,14 @@ export const renderProductDetails = ({ id }) => {
     const product = products.find((item) => item.id === id);
     if (!product) {
       setMeta({
-        title: "Produkt nie zostal znaleziony",
-        description: "Sprawdz adres lub wroc do katalogu produktow.",
+        title: "Produkt nie został znaleziony",
+        description: "Sprawdź adres lub wróć do katalogu produktów.",
       });
       const container = createElement("div", { className: "container" });
       renderNotice(container, {
-        title: "Produkt nie zostal znaleziony",
-        message: "Sprawdz adres lub wroc do katalogu.",
-        action: { label: "Wroc do katalogu", href: "#/products" },
+        title: "Produkt nie został znaleziony",
+        message: "Sprawdź adres lub wróć do katalogu.",
+        action: { label: "Wróć do katalogu", href: "#/products" },
       });
       main.appendChild(container);
       return;
@@ -67,7 +67,7 @@ export const renderProductDetails = ({ id }) => {
     setMeta({
       title: `${product.name} - KP_Code Digital Vault`,
       description:
-        product.shortDescription || product.description || "Szczegoly produktu cyfrowego.",
+        product.shortDescription || product.description || "Szczegóły produktu cyfrowego.",
     });
 
     const wrapper = createElement("section", { className: "container" });
@@ -164,3 +164,4 @@ export const renderProductDetails = ({ id }) => {
     }
   };
 };
+

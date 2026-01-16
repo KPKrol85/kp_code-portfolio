@@ -23,9 +23,9 @@ export const renderCheckout = () => {
   if (!cart.length) {
     container.appendChild(
       renderEmptyState({
-        title: "Your cart is empty.",
-        message: "Browse products to get started.",
-        ctaText: "Browse products",
+        title: "Twój koszyk jest pusty.",
+        message: "Przeglądaj produkty to get started.",
+        ctaText: "Przeglądaj produkty",
         ctaHref: "#/products",
       })
     );
@@ -34,11 +34,11 @@ export const renderCheckout = () => {
   }
 
   const form = createElement("form", { className: "card" });
-  form.appendChild(createElement("h2", { text: "Dane zamowienia" }));
+  form.appendChild(createElement("h2", { text: "Dane zamówienia" }));
 
   const nameField = createElement("input", {
     className: "input",
-    attrs: { id: "checkout-name", type: "text", name: "name", placeholder: "Imie i nazwisko" },
+    attrs: { id: "checkout-name", type: "text", name: "name", placeholder: "Imię i nazwisko" },
   });
   const emailField = createElement("input", {
     className: "input",
@@ -64,7 +64,7 @@ export const renderCheckout = () => {
 
   form.appendChild(
     createElement("div", { className: "form-field" }, [
-      createElement("label", { text: "Imie i nazwisko", attrs: { for: "checkout-name" } }),
+      createElement("label", { text: "Imię i nazwisko", attrs: { for: "checkout-name" } }),
       nameField,
       nameError,
     ])
@@ -92,7 +92,7 @@ export const renderCheckout = () => {
 
   const submitButton = createElement("button", {
     className: "button block",
-    text: "Zloz zamowienie",
+    text: "Złóż zamówienie",
     attrs: { type: "submit" },
   });
   form.appendChild(submitButton);
@@ -128,7 +128,7 @@ export const renderCheckout = () => {
     const emailValid = validators.email(emailField.value);
 
     if (!nameValid) {
-      nameError.textContent = "Podaj imie i nazwisko (min. 2 znaki).";
+      nameError.textContent = "Podaj imię i nazwisko (min. 2 znaki).";
     }
     if (!emailValid) {
       emailError.textContent = "Podaj poprawny e-mail.";
@@ -178,10 +178,10 @@ export const renderCheckout = () => {
       purchasesService.addPurchase(order);
       cartService.clear();
       store.setState({ cart: [] });
-      showToast("Zakup zakonczony sukcesem.");
+      showToast("Zakup zakończony sukcesem.");
       setMeta({
-        title: "Dziekujemy za zakup",
-        description: "Zakup zakonczony. Pliki zostaly dodane do Twojej biblioteki.",
+        title: "Dziękujemy za zakup",
+        description: "Zakup zakończony. Pliki zostały dodane do Twojej biblioteki.",
       });
       navigateHash("#/library");
     }, 700);
@@ -196,22 +196,22 @@ export const renderCheckoutSuccess = () => {
   const main = document.getElementById("main-content");
   clearElement(main);
   setMeta({
-    title: "Dziekujemy za zakup",
-    description: "Zakup zakonczony. Pliki zostaly dodane do Twojej biblioteki.",
+    title: "Dziękujemy za zakup",
+    description: "Zakup zakończony. Pliki zostały dodane do Twojej biblioteki.",
   });
   const container = createElement("section", { className: "container" }, [
     createElement("div", { className: "card" }, [
-      createElement("h1", { text: "Dziekujemy za zakup!" }),
-      createElement("p", { text: "Pliki zostaly dodane do Twojej biblioteki." }),
+      createElement("h1", { text: "Dziękujemy za zakup!" }),
+      createElement("p", { text: "Pliki zostały dodane do Twojej biblioteki." }),
       createElement("div", { className: "nav-links" }, [
         createElement("a", {
           className: "button",
-          text: "Przejdz do biblioteki",
+          text: "Przejdź do biblioteki",
           attrs: { href: "#/library" },
         }),
         createElement("a", {
           className: "button secondary",
-          text: "Wroc do katalogu",
+          text: "Wróć do katalogu",
           attrs: { href: "#/products" },
         }),
       ]),
@@ -219,3 +219,5 @@ export const renderCheckoutSuccess = () => {
   ]);
   main.appendChild(container);
 };
+
+

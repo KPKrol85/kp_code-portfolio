@@ -92,9 +92,9 @@ export const renderProducts = () => {
     if (!visible.length) {
       grid.appendChild(
         renderEmptyState({
-          title: "No products found.",
-          message: "Try adjusting filters or search.",
-          ctaText: "Reset filters",
+          title: "Nie znaleziono produktów.",
+          message: "Spróbuj zmienić filtry lub wyszukiwanie.",
+          ctaText: "Wyczyść filtry",
           onCta: () => {
             searchField.value = "";
             sortSelect.value = "latest";
@@ -131,12 +131,12 @@ export const renderProducts = () => {
           lineHeights: [18, 14],
         },
         errorState: {
-          title: "Nie udalo sie pobrac produktow",
-          message: productsError || "Sprobuj ponownie pozniej.",
+          title: "Nie udało się pobrać produktów",
+          message: productsError || "Spróbuj ponownie później.",
         },
         empty: {
-          title: "Brak produktow",
-          message: "Brak produktow do wyswietlenia.",
+          title: "Brak produktów",
+          message: "Brak produktów do wyświetlenia.",
         },
       })
     ) {
@@ -204,3 +204,5 @@ export const renderProducts = () => {
     }
   };
 };
+
+

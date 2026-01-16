@@ -53,17 +53,17 @@ export const startRouter = () => {
         }
       } else if (access.reason === "forbidden") {
         setMeta({
-          title: "Brak uprawnien",
-          description: "Nie masz uprawnien do tej sekcji.",
+          title: "Brak uprawnień",
+          description: "Nie masz uprawnień do tej sekcji.",
         });
         const main = document.getElementById("main-content");
         if (main) {
           clearElement(main);
           const container = createElement("section", { className: "container" });
           renderNotice(container, {
-            title: "Brak uprawnien",
-            message: "Nie masz uprawnien do tej sekcji.",
-            action: { label: "Wroc na strone glowna", href: "#/" },
+            title: "Brak uprawnień",
+            message: "Nie masz uprawnień do tej sekcji.",
+            action: { label: "Wróć na stronę główną", href: "#/" },
             headingTag: "h2",
           });
           main.appendChild(container);
@@ -101,3 +101,4 @@ export const startRouter = () => {
   window.addEventListener("hashchange", handleRoute);
   handleRoute();
 };
+

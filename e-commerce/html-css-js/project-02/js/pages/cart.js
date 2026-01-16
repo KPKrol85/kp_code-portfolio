@@ -15,10 +15,10 @@ export const renderCart = () => {
 
   if (productsStatus === "loading" || productsStatus === "idle") {
     const container = createElement("section", { className: "container" });
-    container.appendChild(createElement("h1", { text: "Twoj koszyk" }));
+    container.appendChild(createElement("h1", { text: "Twój koszyk" }));
     renderNotice(container, {
-      title: "Ladowanie koszyka",
-      message: "Trwa pobieranie danych produktow.",
+      title: "Ładowanie koszyka",
+      message: "Trwa pobieranie danych produktów.",
       headingTag: "h2",
     });
     main.appendChild(container);
@@ -27,10 +27,10 @@ export const renderCart = () => {
 
   if (productsStatus === "error") {
     const container = createElement("section", { className: "container" });
-    container.appendChild(createElement("h1", { text: "Twoj koszyk" }));
+    container.appendChild(createElement("h1", { text: "Twój koszyk" }));
     renderNotice(container, {
-      title: "Nie udalo sie pobrac produktow",
-      message: productsError || "Sprobuj ponownie pozniej.",
+      title: "Nie udało się pobrać produktów",
+      message: productsError || "Spróbuj ponownie później.",
       headingTag: "h2",
     });
     main.appendChild(container);
@@ -43,9 +43,9 @@ export const renderCart = () => {
   if (!cart.length) {
     container.appendChild(
       renderEmptyState({
-        title: "Your cart is empty.",
-        message: "Browse products to get started.",
-        ctaText: "Browse products",
+        title: "Twój koszyk jest pusty.",
+        message: "Przeglądaj produkty, aby zacząć.",
+        ctaText: "Przeglądaj produkty",
         ctaHref: "#/products",
       })
     );
@@ -67,7 +67,7 @@ export const renderCart = () => {
     const quantityId = `cart-qty-${product.id}`;
     const quantityLabel = createElement("label", {
       className: "sr-only",
-      text: "Ilosc",
+      text: "Ilość",
       attrs: { for: quantityId },
     });
     const quantityField = createElement("input", {
@@ -136,7 +136,7 @@ export const renderCart = () => {
   summary.appendChild(applyButton);
   const clearButton = createElement("button", {
     className: "button secondary",
-    text: "Wyczysc koszyk",
+    text: "Wyczyść koszyk",
     attrs: { type: "button" },
   });
   clearButton.addEventListener("click", () => {
@@ -160,3 +160,4 @@ export const renderCart = () => {
   container.appendChild(layout);
   main.appendChild(container);
 };
+

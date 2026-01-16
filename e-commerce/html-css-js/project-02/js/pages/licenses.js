@@ -32,8 +32,8 @@ export const renderLicenses = () => {
 
   if (productsStatus === "loading" || productsStatus === "idle") {
     renderNotice(container, {
-      title: "Ladowanie licencji",
-      message: "Trwa pobieranie danych produktow.",
+      title: "Ładowanie licencji",
+      message: "Trwa pobieranie danych produktów.",
       headingTag: "h2",
     });
     main.appendChild(container);
@@ -42,8 +42,8 @@ export const renderLicenses = () => {
 
   if (productsStatus === "error") {
     renderNotice(container, {
-      title: "Nie udalo sie pobrac produktow",
-      message: productsError || "Sprobuj ponownie pozniej.",
+      title: "Nie udało się pobrać produktów",
+      message: productsError || "Spróbuj ponownie później.",
       headingTag: "h2",
     });
     main.appendChild(container);
@@ -54,7 +54,7 @@ export const renderLicenses = () => {
   if (!licenses.length) {
     renderNotice(licenseGrid, {
       title: "Brak licencji",
-      message: "Brak licencji do wyswietlenia.",
+      message: "Brak licencji do wyświetlenia.",
     });
   } else {
     licenses.forEach((license) => {
@@ -133,3 +133,4 @@ export const renderLicenses = () => {
   container.appendChild(assignedSection);
   main.appendChild(container);
 };
+

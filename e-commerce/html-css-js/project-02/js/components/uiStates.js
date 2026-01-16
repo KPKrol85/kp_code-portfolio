@@ -74,7 +74,7 @@ export const renderDataState = (
   if (status === "error") {
     renderNotice(container, {
       ...errorState,
-      message: errorState?.message || error || "Sprobuj ponownie pozniej.",
+      message: errorState?.message || error || "Spróbuj ponownie później.",
     });
     return true;
   }
@@ -86,3 +86,4 @@ export const renderDataState = (
 
   return false;
 };
+
