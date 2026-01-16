@@ -137,6 +137,13 @@ export const renderHome = () => {
       if (event.pointerType !== "mouse") {
         return;
       }
+      if (
+        event.target.closest(
+          "a, button, input, select, textarea, [role='button'], [data-action]"
+        )
+      ) {
+        return;
+      }
       dragState.isPointerDown = true;
       dragState.isDragging = false;
       dragState.wasDragged = false;
