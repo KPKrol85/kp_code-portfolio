@@ -2,43 +2,43 @@ import { createElement, clearElement } from "../utils/dom.js";
 
 const footerNav = [
   {
-    title: "Product",
-    ariaLabel: "Product",
+    title: "Produkty",
+    ariaLabel: "Produkty",
     links: [
-      { label: "Browse products", href: "#/products" },
-      { label: "Pricing", href: "#" }, // TODO: add pricing route
-      { label: "Licenses", href: "#/licenses" },
-      { label: "Releases", href: "#" }, // TODO: add releases route
-      { label: "Roadmap", href: "#" }, // TODO: add roadmap route
+      { label: "Przeglądaj produkty", href: "#/products" },
+      { label: "Cennik", href: "#" }, // TODO: add pricing route
+      { label: "Licencje", href: "#/licenses" },
+      { label: "Aktualizacje", href: "#" }, // TODO: add releases route
+      { label: "Plan rozwoju", href: "#" }, // TODO: add roadmap route
     ],
   },
   {
-    title: "Resources",
-    ariaLabel: "Resources",
+    title: "Zasoby",
+    ariaLabel: "Zasoby",
     links: [
-      { label: "Docs", href: "#" }, // TODO: add docs route
+      { label: "Dokumentacja", href: "#" }, // TODO: add docs route
       { label: "FAQ", href: "#" }, // TODO: add FAQ route
-      { label: "Support", href: "#" }, // TODO: add support route
-      { label: "Contact", href: "#/contact" },
+      { label: "Wsparcie", href: "#" }, // TODO: add support route
+      { label: "Kontakt", href: "#/contact" },
     ],
   },
   {
-    title: "Company",
-    ariaLabel: "Company",
+    title: "Firma",
+    ariaLabel: "Firma",
     links: [
-      { label: "About", href: "#" }, // TODO: add about route
-      { label: "Terms", href: "#/legal" },
-      { label: "Privacy", href: "#/legal" },
+      { label: "O nas", href: "#" }, // TODO: add about route
+      { label: "Regulamin", href: "#/legal" },
+      { label: "Polityka prywatności", href: "#/legal" },
       { label: "Cookies", href: "#/legal" },
     ],
   },
   {
-    title: "Account",
-    ariaLabel: "Account",
+    title: "Konto",
+    ariaLabel: "Konto",
     links: [
-      { label: "Sign in", href: "#/auth" },
-      { label: "Create account", href: "#/auth" },
-      { label: "My library", href: "#/library" },
+      { label: "Zaloguj się", href: "#/auth" },
+      { label: "Utwórz konto", href: "#/auth" },
+      { label: "Moja biblioteka", href: "#/library" },
     ],
   },
 ];
@@ -142,7 +142,7 @@ const createSocialLink = ({ label, href }) => {
       href,
       target: "_blank",
       rel: "noopener noreferrer",
-      "aria-label": `KP_Code on ${label}`,
+      "aria-label": `KP_Code na ${label}`,
     },
   });
 
@@ -178,7 +178,7 @@ export const renderFooter = (container) => {
 
   const newsletterLabel = createElement("label", {
     className: "sr-only",
-    text: "Email address",
+    text: "Adres e-mail",
     attrs: { for: "footer-newsletter-email" },
   });
   const newsletterInput = createElement("input", {
@@ -187,14 +187,14 @@ export const renderFooter = (container) => {
       id: "footer-newsletter-email",
       type: "email",
       name: "email",
-      placeholder: "Email",
+      placeholder: "Adres e-mail",
       autocomplete: "email",
       required: true,
     },
   });
   const newsletterButton = createElement("button", {
     className: "button secondary",
-    text: "Subscribe",
+    text: "Subskrybuj",
     attrs: { type: "submit" },
   });
   const newsletterStatus = createElement("p", {
@@ -215,7 +215,7 @@ export const renderFooter = (container) => {
       newsletterInput.reportValidity();
       return;
     }
-    newsletterStatus.textContent = "Coming soon";
+    newsletterStatus.textContent = "Wkrótce";
     newsletterStatus.classList.add("is-visible");
   });
 
@@ -223,7 +223,7 @@ export const renderFooter = (container) => {
     createElement("h3", { className: "footer-heading", text: "Newsletter" }),
     createElement("p", {
       className: "footer-description",
-      text: "Minimalne aktualizacje o nowych wydaniach i produktach.",
+      text: "Powiadomienia o nowych wydaniach i produktach.",
     }),
     newsletterForm,
     newsletterStatus,
@@ -241,7 +241,7 @@ export const renderFooter = (container) => {
     ...socialLinks.map(createSocialLink),
   ]);
   const socialBlock = createElement("div", { className: "footer-social-block" }, [
-    createElement("h3", { className: "footer-heading", text: "Social" }),
+    createElement("h3", { className: "footer-heading", text: "Social media" }),
     socialList,
   ]);
 
@@ -252,22 +252,22 @@ export const renderFooter = (container) => {
   const legalLinks = createElement("div", { className: "footer-meta-links" }, [
     createElement("a", {
       className: "footer-link",
-      text: "Privacy Policy",
+      text: "Polityka prywatności",
       attrs: { href: "#/legal" },
     }),
-    createElement("a", { className: "footer-link", text: "Terms", attrs: { href: "#/legal" } }),
+    createElement("a", { className: "footer-link", text: "Regulamin", attrs: { href: "#/legal" } }),
     createElement("a", { className: "footer-link", text: "Cookies", attrs: { href: "#/legal" } }),
   ]);
 
   const metaInfo = createElement("div", { className: "footer-meta-info" }, [
-    createElement("span", { text: `© ${currentYear} KP_Code. All rights reserved.` }),
+    createElement("span", { text: `© ${currentYear} KP_Code. Wszelkie prawa zastrzeżone.` }),
     createElement("span", { className: "footer-meta-divider", text: "•" }),
-    createElement("span", { text: "Made in Poland" }),
+    createElement("span", { text: "Stworzone w Polsce" }),
   ]);
 
   const backToTop = createElement("button", {
     className: "footer-top-link",
-    text: "Back to top",
+    text: "Do góry",
     attrs: { type: "button" },
   });
 
