@@ -53,7 +53,7 @@ Następnie otwórz `http://localhost:8080`.
 
 ## Bezpieczeństwo / CSP
 
-- Brak inline `<script>`.
+- Wczesna inicjalizacja motywu w `js/theme-init.js` (zewnętrzny plik, bez inline `<script>`).
 - Brak `eval`.
 - Dane są renderowane przez `textContent` i `createElement`.
 - `sanitizeText` to prosty helper pokazujący, jak czyścić tekst (nie zastępuje biblioteki sanitization dla produkcji).

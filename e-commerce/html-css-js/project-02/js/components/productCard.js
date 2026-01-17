@@ -1,5 +1,6 @@
 import { createElement } from "../utils/dom.js";
 import { formatCurrency } from "../utils/format.js";
+import { navigateHash } from "../utils/navigation.js";
 
 export const createProductCard = (product, onAdd) => {
   const card = createElement("article", { className: "card card-product" });
@@ -30,7 +31,20 @@ export const createProductCard = (product, onAdd) => {
     }),
   ]);
 
-  actions.querySelector("button").addEventListener("click", () => onAdd(product.id));
+  const detailsLink = actions.querySelector("a");
+  const addButton = actions.querySelector("button");
+
+  detailsLink.addEventListener("click", (event) => {
+    event.preventDefault();
+    event.stopPropagation();
+    navigateHash(`#/products/${product.id}`);
+  });
+
+  addButton.addEventListener("click", (event) => {
+    event.preventDefault();
+    event.stopPropagation();
+    onAdd(product.id);
+  });
 
   card.appendChild(image);
   card.appendChild(title);

@@ -27,21 +27,8 @@
       type="font/woff2"
       crossorigin
     />
-    <script>
-      (() => {
-        try {
-          const stored = localStorage.getItem("kp_theme");
-          const theme = stored
-            ? JSON.parse(stored)
-            : window.matchMedia("(prefers-color-scheme: dark)").matches
-              ? "dark"
-              : "light";
-          document.documentElement.setAttribute("data-theme", theme);
-        } catch (error) {
-          // no-op
-        }
-      })();
-    </script>
+    <script src="js/utils/safe-storage.js"></script>
+    <script src="js/theme-init.js"></script>
     <link rel="icon" href="/assets/favicon/favicon.ico" sizes="any" />
     <link rel="icon" href="/assets/favicon/favicon-96x96.png" sizes="96x96" type="image/png" />
     <link rel="icon" href="/assets/favicon/favicon.svg" type="image/svg+xml" />

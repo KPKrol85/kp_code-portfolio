@@ -5,18 +5,19 @@ import { authService } from "../services/auth.js";
 import { showToast } from "../components/toast.js";
 import { store } from "../store/store.js";
 import { withButtonLoading } from "../utils/ui-state.js";
+import { content } from "../content/pl.js";
 
 export const renderAuth = () => {
   const main = document.getElementById("main-content");
   clearElement(main);
 
   const container = createElement("section", { className: "container" });
-  container.appendChild(createElement("h1", { text: "Konto u3ytkownika" }));
+  container.appendChild(createElement("h1", { text: content.auth.title }));
 
   const tabs = createElement("div", { className: "tabs", attrs: { role: "tablist" } });
   const loginTab = createElement("button", {
     className: "tab-button",
-    text: "Logowanie",
+    text: content.auth.tabs.login,
     attrs: {
       id: "auth-tab-login",
       type: "button",
@@ -27,7 +28,7 @@ export const renderAuth = () => {
   });
   const registerTab = createElement("button", {
     className: "tab-button",
-    text: "Rejestracja",
+    text: content.auth.tabs.register,
     attrs: {
       id: "auth-tab-register",
       type: "button",
@@ -52,34 +53,47 @@ export const renderAuth = () => {
   const renderLogin = () => {
     clearElement(panel);
     panel.setAttribute("aria-labelledby", "auth-tab-login");
-    panel.appendChild(createElement("h2", { text: "Zaloguj sic" }));
+    panel.appendChild(createElement("h2", { text: content.auth.login.title }));
     const emailField = createElement("input", {
       className: "input",
       attrs: { id: "auth-login-email", type: "email", placeholder: "E-mail" },
     });
     const passwordField = createElement("input", {
       className: "input",
-      attrs: { id: "auth-login-password", type: "password", placeholder: "Has^o" },
+      attrs: { id: "auth-login-password", type: "password", placeholder: "Hasło" },
     });
-    const errorBox = createElement("div", { className: "form-error" });
+    const errorBox = createElement("div", {
+      className: "form-error",
+      attrs: { "aria-live": "polite" },
+    });
+    const emailError = createElement("div", {
+      className: "form-error sr-only",
+      attrs: { id: "auth-login-email-error" },
+    });
+    const passwordError = createElement("div", {
+      className: "form-error sr-only",
+      attrs: { id: "auth-login-password-error" },
+    });
     const form = createElement("form");
 
     form.appendChild(
       createElement("div", { className: "form-field" }, [
         createElement("label", { text: "E-mail", attrs: { for: "auth-login-email" } }),
         emailField,
+        emailError,
       ])
     );
     form.appendChild(
       createElement("div", { className: "form-field" }, [
-        createElement("label", { text: "Has^o", attrs: { for: "auth-login-password" } }),
+        createElement("label", { text: "Hasło", attrs: { for: "auth-login-password" } }),
         passwordField,
+        passwordError,
       ])
     );
     form.appendChild(errorBox);
     const submitButton = createElement("button", {
       className: "button block",
-      text: "Zaloguj",
+      text: content.auth.login.submit,
       attrs: { type: "submit" },
     });
     form.appendChild(submitButton);
@@ -90,25 +104,43 @@ export const renderAuth = () => {
         submitButton,
         async () => {
           errorBox.textContent = "";
+          const emailMessage = validators.email(emailField.value) ? "" : "Podaj poprawny e-mail.";
+          const passwordMessage = validators.minLength(6)(passwordField.value)
+            ? ""
+            : "Hasło musi mieć minimum 6 znaków.";
+          emailError.textContent = emailMessage;
+          passwordError.textContent = passwordMessage;
+          if (emailMessage) {
+            emailField.setAttribute("aria-invalid", "true");
+            emailField.setAttribute("aria-describedby", "auth-login-email-error");
+          } else {
+            emailField.removeAttribute("aria-invalid");
+            emailField.removeAttribute("aria-describedby");
+          }
+          if (passwordMessage) {
+            passwordField.setAttribute("aria-invalid", "true");
+            passwordField.setAttribute("aria-describedby", "auth-login-password-error");
+          } else {
+            passwordField.removeAttribute("aria-invalid");
+            passwordField.removeAttribute("aria-describedby");
+          }
           try {
-            if (!validators.email(emailField.value)) {
-              throw new Error("Podaj poprawny e-mail.");
-            }
-            if (!validators.minLength(6)(passwordField.value)) {
-              throw new Error("Has^o musi mie? minimum 6 znakcw.");
+            if (emailMessage || passwordMessage) {
+              errorBox.textContent = emailMessage || passwordMessage;
+              return;
             }
             const { user, session } = authService.login({
               email: emailField.value,
               password: passwordField.value,
             });
             store.setState({ user, session });
-            showToast("Zalogowano pomy~lnie.");
+            showToast(content.toasts.loginSuccess);
             navigateHash("#/account");
           } catch (error) {
             errorBox.textContent = error.message;
           }
         },
-        { loadingText: "Logowanie..." }
+        { loadingText: content.auth.login.loading }
       );
     });
 
@@ -118,10 +150,10 @@ export const renderAuth = () => {
   const renderRegister = () => {
     clearElement(panel);
     panel.setAttribute("aria-labelledby", "auth-tab-register");
-    panel.appendChild(createElement("h2", { text: "Za^c3 konto" }));
+    panel.appendChild(createElement("h2", { text: content.auth.register.title }));
     const nameField = createElement("input", {
       className: "input",
-      attrs: { id: "auth-register-name", type: "text", placeholder: "Imic i nazwisko" },
+      attrs: { id: "auth-register-name", type: "text", placeholder: "Imię i nazwisko" },
     });
     const emailField = createElement("input", {
       className: "input",
@@ -129,33 +161,51 @@ export const renderAuth = () => {
     });
     const passwordField = createElement("input", {
       className: "input",
-      attrs: { id: "auth-register-password", type: "password", placeholder: "Has^o" },
+      attrs: { id: "auth-register-password", type: "password", placeholder: "Hasło" },
     });
-    const errorBox = createElement("div", { className: "form-error" });
+    const errorBox = createElement("div", {
+      className: "form-error",
+      attrs: { "aria-live": "polite" },
+    });
+    const nameError = createElement("div", {
+      className: "form-error sr-only",
+      attrs: { id: "auth-register-name-error" },
+    });
+    const emailError = createElement("div", {
+      className: "form-error sr-only",
+      attrs: { id: "auth-register-email-error" },
+    });
+    const passwordError = createElement("div", {
+      className: "form-error sr-only",
+      attrs: { id: "auth-register-password-error" },
+    });
     const form = createElement("form");
 
     form.appendChild(
       createElement("div", { className: "form-field" }, [
-        createElement("label", { text: "Imic i nazwisko", attrs: { for: "auth-register-name" } }),
+        createElement("label", { text: "Imię i nazwisko", attrs: { for: "auth-register-name" } }),
         nameField,
+        nameError,
       ])
     );
     form.appendChild(
       createElement("div", { className: "form-field" }, [
         createElement("label", { text: "E-mail", attrs: { for: "auth-register-email" } }),
         emailField,
+        emailError,
       ])
     );
     form.appendChild(
       createElement("div", { className: "form-field" }, [
-        createElement("label", { text: "Has^o", attrs: { for: "auth-register-password" } }),
+        createElement("label", { text: "Hasło", attrs: { for: "auth-register-password" } }),
         passwordField,
+        passwordError,
       ])
     );
     form.appendChild(errorBox);
     const submitButton = createElement("button", {
       className: "button block",
-      text: "Utwcrz konto",
+      text: content.auth.register.submit,
       attrs: { type: "submit" },
     });
     form.appendChild(submitButton);
@@ -166,28 +216,54 @@ export const renderAuth = () => {
         submitButton,
         async () => {
           errorBox.textContent = "";
+          const nameMessage = validators.required(nameField.value)
+            ? ""
+            : "Podaj imię i nazwisko.";
+          const emailMessage = validators.email(emailField.value) ? "" : "Podaj poprawny e-mail.";
+          const passwordMessage = validators.minLength(6)(passwordField.value)
+            ? ""
+            : "Hasło musi mieć minimum 6 znaków.";
+          nameError.textContent = nameMessage;
+          emailError.textContent = emailMessage;
+          passwordError.textContent = passwordMessage;
+          if (nameMessage) {
+            nameField.setAttribute("aria-invalid", "true");
+            nameField.setAttribute("aria-describedby", "auth-register-name-error");
+          } else {
+            nameField.removeAttribute("aria-invalid");
+            nameField.removeAttribute("aria-describedby");
+          }
+          if (emailMessage) {
+            emailField.setAttribute("aria-invalid", "true");
+            emailField.setAttribute("aria-describedby", "auth-register-email-error");
+          } else {
+            emailField.removeAttribute("aria-invalid");
+            emailField.removeAttribute("aria-describedby");
+          }
+          if (passwordMessage) {
+            passwordField.setAttribute("aria-invalid", "true");
+            passwordField.setAttribute("aria-describedby", "auth-register-password-error");
+          } else {
+            passwordField.removeAttribute("aria-invalid");
+            passwordField.removeAttribute("aria-describedby");
+          }
           try {
-            if (!validators.required(nameField.value)) {
-              throw new Error("Podaj imic i nazwisko.");
-            }
-            if (!validators.email(emailField.value)) {
-              throw new Error("Podaj poprawny e-mail.");
-            }
-            if (!validators.minLength(6)(passwordField.value)) {
-              throw new Error("Has^o musi mie? minimum 6 znakcw.");
+            if (nameMessage || emailMessage || passwordMessage) {
+              errorBox.textContent = nameMessage || emailMessage || passwordMessage;
+              return;
             }
             authService.register({
               name: nameField.value,
               email: emailField.value,
               password: passwordField.value,
             });
-            showToast("Konto utworzone, mo3esz sic zalogowa?.");
+            showToast(content.toasts.accountCreated);
             loginTab.click();
           } catch (error) {
             errorBox.textContent = error.message;
           }
         },
-        { loadingText: "Rejestracja..." }
+        { loadingText: content.auth.register.loading }
       );
     });
 

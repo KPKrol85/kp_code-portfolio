@@ -5,16 +5,32 @@
     "shortDescription": "Kompletny zestaw 120+ komponentów UI dla dashboardów.",
     "description": "Vault UI Kit Pro to kompleksowy zestaw komponentów i layoutów zoptymalizowanych pod aplikacje SaaS. Zawiera gotowe sekcje, tabele, panele danych i system ikon.",
     "price": 189,
-    "tags": ["UI", "Dashboard", "Figma"],
+    "tags": [
+      "UI",
+      "Dashboard",
+      "Figma"
+    ],
     "category": "UI Kits",
     "requirements": "Figma 2023+",
-    "bundleContents": ["120+ komponentów", "12 layoutów", "System ikon"],
+    "bundleContents": [
+      "120+ komponentów",
+      "12 layoutów",
+      "System ikon"
+    ],
     "version": "2.3",
     "updatedAt": "2024-08-04",
     "thumbnail": "assets/placeholder-product.svg",
     "downloadables": [
-      { "name": "Vault-UI-Kit.fig", "size": "48 MB" },
-      { "name": "Icon-System.svg", "size": "6 MB" }
+      {
+        "name": "Vault-UI-Kit.fig",
+        "size": "48 MB",
+        "file": "assets/downloads/vault-ui-kit/Vault-UI-Kit.fig"
+      },
+      {
+        "name": "Icon-System.svg",
+        "size": "6 MB",
+        "file": "assets/downloads/vault-ui-kit/Icon-System.svg"
+      }
     ]
   },
   {
@@ -23,16 +39,32 @@
     "shortDescription": "Biblioteka 65 ekranów e-commerce gotowych do prototypowania.",
     "description": "Zestaw wireframów zoptymalizowanych pod szybkie testowanie pomysłów. Sekcje checkoutu, koszyka, onboarding i konta klienta.",
     "price": 129,
-    "tags": ["Wireframes", "E-commerce", "Sketch"],
+    "tags": [
+      "Wireframes",
+      "E-commerce",
+      "Sketch"
+    ],
     "category": "Templates",
     "requirements": "Sketch 91+",
-    "bundleContents": ["65 ekranów", "Checklisty UX", "Styleguide"],
+    "bundleContents": [
+      "65 ekranów",
+      "Checklisty UX",
+      "Styleguide"
+    ],
     "version": "1.8",
     "updatedAt": "2024-07-15",
     "thumbnail": "assets/placeholder-product.svg",
     "downloadables": [
-      { "name": "Commerce-Wireframes.sketch", "size": "32 MB" },
-      { "name": "UX-Checklist.pdf", "size": "2 MB" }
+      {
+        "name": "Commerce-Wireframes.sketch",
+        "size": "32 MB",
+        "file": "assets/downloads/commerce-wireframes/Commerce-Wireframes.sketch"
+      },
+      {
+        "name": "UX-Checklist.pdf",
+        "size": "2 MB",
+        "file": "assets/downloads/commerce-wireframes/UX-Checklist.pdf"
+      }
     ]
   },
   {
@@ -41,16 +73,32 @@
     "shortDescription": "Zestaw landing pages + UI flow dla małych produktów SaaS.",
     "description": "Pakiet gotowych sekcji landing page, onboarding i panelu użytkownika. Zoptymalizowany pod szybkie wdrożenia MVP.",
     "price": 149,
-    "tags": ["SaaS", "Landing", "Notion"],
+    "tags": [
+      "SaaS",
+      "Landing",
+      "Notion"
+    ],
     "category": "Bundles",
     "requirements": "Notion / HTML",
-    "bundleContents": ["8 landing page", "Flow onboarding", "Checklisty launch"],
+    "bundleContents": [
+      "8 landing page",
+      "Flow onboarding",
+      "Checklisty launch"
+    ],
     "version": "3.1",
     "updatedAt": "2024-09-10",
     "thumbnail": "assets/placeholder-product.svg",
     "downloadables": [
-      { "name": "MicroSaaS-Kit.html", "size": "5 MB" },
-      { "name": "Launch-Checklist.pdf", "size": "1 MB" }
+      {
+        "name": "MicroSaaS-Kit.html",
+        "size": "5 MB",
+        "file": "assets/downloads/micro-saas-kit/MicroSaaS-Kit.html"
+      },
+      {
+        "name": "Launch-Checklist.pdf",
+        "size": "1 MB",
+        "file": "assets/downloads/micro-saas-kit/Launch-Checklist.pdf"
+      }
     ]
   },
   {
@@ -59,16 +107,32 @@
     "shortDescription": "80 animowanych ikon w formatach JSON i SVG.",
     "description": "Lekki zestaw ikon do mikro-interakcji. Świetne do onboardingów, pustych stanów i wprowadzeń.",
     "price": 89,
-    "tags": ["Icons", "Animation", "Lottie"],
+    "tags": [
+      "Icons",
+      "Animation",
+      "Lottie"
+    ],
     "category": "Assets",
     "requirements": "Lottie / After Effects",
-    "bundleContents": ["80 ikon", "2 style motion", "Preview GIF"],
+    "bundleContents": [
+      "80 ikon",
+      "2 style motion",
+      "Preview GIF"
+    ],
     "version": "1.4",
     "updatedAt": "2024-06-20",
     "thumbnail": "assets/placeholder-product.svg",
     "downloadables": [
-      { "name": "Motion-Icons.json", "size": "12 MB" },
-      { "name": "Motion-Icons.svg", "size": "4 MB" }
+      {
+        "name": "Motion-Icons.json",
+        "size": "12 MB",
+        "file": "assets/downloads/motion-icons/Motion-Icons.json"
+      },
+      {
+        "name": "Motion-Icons.svg",
+        "size": "4 MB",
+        "file": "assets/downloads/motion-icons/Motion-Icons.svg"
+      }
     ]
   },
   {
@@ -77,14 +141,28 @@
     "shortDescription": "Przewodnik po tonie i języku komunikacji dla produktów cyfrowych.",
     "description": "Gotowe szablony komunikatów, opis wartości marki i ćwiczenia dopasowania języka. Idealny dla zespołów marketingu i UX writingu.",
     "price": 59,
-    "tags": ["Copywriting", "Brand", "Docs"],
+    "tags": [
+      "Copywriting",
+      "Brand",
+      "Docs"
+    ],
     "category": "Guides",
     "requirements": "PDF Reader",
-    "bundleContents": ["34-stronicowy przewodnik", "Template tone-of-voice", "Checklisty"],
+    "bundleContents": [
+      "34-stronicowy przewodnik",
+      "Template tone-of-voice",
+      "Checklisty"
+    ],
     "version": "1.0",
     "updatedAt": "2024-05-02",
     "thumbnail": "assets/placeholder-product.svg",
-    "downloadables": [{ "name": "Brand-Voice-Guide.pdf", "size": "3 MB" }]
+    "downloadables": [
+      {
+        "name": "Brand-Voice-Guide.pdf",
+        "size": "3 MB",
+        "file": "assets/downloads/brand-voice-guide/Brand-Voice-Guide.pdf"
+      }
+    ]
   },
   {
     "id": "analytics-mini-tool",
@@ -92,16 +170,32 @@
     "shortDescription": "Prosty dashboard do monitoringu metryk produktu (HTML/CSS).",
     "description": "Zestaw gotowych widoków do monitoringu KPI. Zawiera karty statystyk, wykresy i sekcję alertów.",
     "price": 109,
-    "tags": ["Dashboard", "HTML", "CSS"],
+    "tags": [
+      "Dashboard",
+      "HTML",
+      "CSS"
+    ],
     "category": "Tools",
     "requirements": "Nowoczesna przeglądarka",
-    "bundleContents": ["8 widoków", "Styleguide", "Przykładowe dane"],
+    "bundleContents": [
+      "8 widoków",
+      "Styleguide",
+      "Przykładowe dane"
+    ],
     "version": "2.0",
     "updatedAt": "2024-09-01",
     "thumbnail": "assets/placeholder-product.svg",
     "downloadables": [
-      { "name": "Analytics-Dashboard.zip", "size": "14 MB" },
-      { "name": "Sample-Data.json", "size": "1 MB" }
+      {
+        "name": "Analytics-Dashboard.zip",
+        "size": "14 MB",
+        "file": "assets/downloads/analytics-mini-tool/Analytics-Dashboard.zip"
+      },
+      {
+        "name": "Sample-Data.json",
+        "size": "1 MB",
+        "file": "assets/downloads/analytics-mini-tool/Sample-Data.json"
+      }
     ]
   }
 ]

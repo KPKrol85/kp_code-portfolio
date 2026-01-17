@@ -1,6 +1,6 @@
 const debounce = (fn, wait = 250) => {
   let timeoutId;
-  return (...args) => {
+  const debounced = (...args) => {
     if (timeoutId) {
       clearTimeout(timeoutId);
     }
@@ -9,6 +9,13 @@ const debounce = (fn, wait = 250) => {
       fn(...args);
     }, wait);
   };
+  debounced.cancel = () => {
+    if (timeoutId) {
+      clearTimeout(timeoutId);
+      timeoutId = null;
+    }
+  };
+  return debounced;
 };
 
 export { debounce };

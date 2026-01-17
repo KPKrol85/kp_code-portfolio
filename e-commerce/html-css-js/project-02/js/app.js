@@ -24,6 +24,7 @@ import { initErrorBoundary } from "./utils/error-boundary.js";
 import { initKeyboardShortcuts } from "./utils/keyboard-shortcuts.js";
 import { closeModal } from "./components/modal.js";
 import { consumeProgrammaticNav, markProgrammaticNav, navigateHash } from "./utils/navigation.js";
+import { content } from "./content/pl.js";
 
 const THEME_KEY = "kp_theme";
 
@@ -50,11 +51,11 @@ const initData = async () => {
     const [products, licenses] = await Promise.all([mockApi.getProducts(), mockApi.getLicenses()]);
     store.setState({ products, licenses, productsStatus: "ready", productsError: null });
   } catch (error) {
-    showToast("Nie udało się pobrać danych.", "error");
+    showToast(content.toasts.dataFetchError, "error");
     store.setState({
       products: [],
       productsStatus: "error",
-      productsError: "Nie udało się pobrać produktów.",
+      productsError: content.states.products.error.title,
     });
   }
 };
@@ -98,7 +99,7 @@ const initRoutes = () => {
     title: "KP_Code Digital Vault — Start",
     description: "Nowoczesny sklep z produktami cyfrowymi i biblioteką zakupów.",
   });
-  addRoute(/^\/products$/, renderProducts, {
+  addRoute(/^\/products(?:\?.*)?$/, renderProducts, {
     title: "Katalog produktów — KP_Code Digital Vault",
     description: "Przeglądaj produkty cyfrowe, filtry i sortowanie.",
   });

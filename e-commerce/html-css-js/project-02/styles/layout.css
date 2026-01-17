@@ -277,7 +277,7 @@ footer {
   position: relative;
   width: 100%;
   --scroll-indicator-inset: var(--space-1);
-  --scroll-indicator-outset: var(--space-4);
+  --scroll-indicator-outset: var(--space-6);
   overflow: visible;
 }
 

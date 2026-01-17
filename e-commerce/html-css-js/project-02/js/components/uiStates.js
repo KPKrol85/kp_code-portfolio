@@ -1,4 +1,5 @@
 import { createElement, clearElement } from "../utils/dom.js";
+import { content } from "../content/pl.js";
 
 const createNotice = ({ title, message, action, headingTag = "h3" } = {}) => {
   const children = [];
@@ -74,7 +75,7 @@ export const renderDataState = (
   if (status === "error") {
     renderNotice(container, {
       ...errorState,
-      message: errorState?.message || error || "Spróbuj ponownie później.",
+      message: errorState?.message || error || content.states.errorFallbackMessage,
     });
     return true;
   }
@@ -86,4 +87,3 @@ export const renderDataState = (
 
   return false;
 };
-

@@ -6,6 +6,7 @@ import { store } from "../store/store.js";
 import { purchasesService } from "../services/purchases.js";
 import { renderNotice } from "../components/uiStates.js";
 import { setMeta } from "../utils/meta.js";
+import { content } from "../content/pl.js";
 
 export const renderProductDetails = ({ id }) => {
   const main = document.getElementById("main-content");
@@ -22,13 +23,13 @@ export const renderProductDetails = ({ id }) => {
 
     if (productsStatus === "loading" || productsStatus === "idle") {
       setMeta({
-        title: "Ładowanie produktu...",
-        description: "Trwa pobieranie danych produktu.",
+        title: content.states.productDetails.loading.metaTitle,
+        description: content.states.productDetails.loading.message,
       });
       const container = createElement("div", { className: "container" });
       renderNotice(container, {
-        title: "Ładowanie produktu",
-        message: "Trwa pobieranie danych produktu.",
+        title: content.states.productDetails.loading.title,
+        message: content.states.productDetails.loading.message,
       });
       main.appendChild(container);
       return;
@@ -36,13 +37,13 @@ export const renderProductDetails = ({ id }) => {
 
     if (productsStatus === "error") {
       setMeta({
-        title: "Nie udało się pobrać produktu",
-        description: productsError || "Spróbuj ponownie później.",
+        title: content.states.productDetails.error.metaTitle,
+        description: productsError || content.states.productDetails.error.message,
       });
       const container = createElement("div", { className: "container" });
       renderNotice(container, {
-        title: "Nie udało się pobrać produktu",
-        message: productsError || "Spróbuj ponownie później.",
+        title: content.states.productDetails.error.metaTitle,
+        message: productsError || content.states.productDetails.error.message,
       });
       main.appendChild(container);
       return;
@@ -51,14 +52,14 @@ export const renderProductDetails = ({ id }) => {
     const product = products.find((item) => item.id === id);
     if (!product) {
       setMeta({
-        title: "Produkt nie został znaleziony",
-        description: "Sprawdź adres lub wróć do katalogu produktów.",
+        title: content.states.productDetails.notFound.metaTitle,
+        description: content.states.productDetails.notFound.metaDescription,
       });
       const container = createElement("div", { className: "container" });
       renderNotice(container, {
-        title: "Produkt nie został znaleziony",
-        message: "Sprawdź adres lub wróć do katalogu.",
-        action: { label: "Wróć do katalogu", href: "#/products" },
+        title: content.states.productDetails.notFound.title,
+        message: content.states.productDetails.notFound.message,
+        action: { label: content.common.backToCatalog, href: "#/products" },
       });
       main.appendChild(container);
       return;
@@ -104,20 +105,20 @@ export const renderProductDetails = ({ id }) => {
     addButton.addEventListener("click", () => {
       cartService.addItem(product.id, 1);
       store.setState({ cart: cartService.getCart() });
-      showToast("Produkt dodany do koszyka.");
+      showToast(content.toasts.addedToCartDetails);
     });
     actionRow.appendChild(addButton);
     actionRow.appendChild(
       createElement("a", {
         className: "button secondary",
-        text: "Przejd« do koszyka",
+        text: "Przejdź do koszyka",
         attrs: { href: "#/cart" },
       })
     );
     details.appendChild(actionRow);
 
     const contents = createElement("div", { className: "card section" }, [
-      createElement("h2", { text: "Zawarto˜† paczki" }),
+      createElement("h2", { text: "Zawartość paczki" }),
     ]);
     const list = createElement("ul");
     product.bundleContents.forEach((item) => list.appendChild(createElement("li", { text: item })));
@@ -140,7 +141,7 @@ export const renderProductDetails = ({ id }) => {
     downloads.appendChild(downloadList);
     if (!hasAccess) {
       downloads.appendChild(
-        createElement("p", { text: "Pliki pojawi¥ si© w bibliotece po zakoäczeniu zam¢wienia." })
+        createElement("p", { text: content.states.productDetails.downloadsHint })
       );
     }
 
@@ -164,4 +165,3 @@ export const renderProductDetails = ({ id }) => {
     }
   };
 };
-

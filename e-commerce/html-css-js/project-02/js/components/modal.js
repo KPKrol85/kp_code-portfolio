@@ -1,23 +1,62 @@
 import { createElement } from "../utils/dom.js";
 
 let activeModal = null;
+let lastFocusedElement = null;
+
+const focusableSelector =
+  "button, [href], input, select, textarea, [tabindex]:not([tabindex='-1'])";
 
 const getFocusable = (container) =>
-  Array.from(
-    container.querySelectorAll(
-      "button, [href], input, select, textarea, [tabindex]:not([tabindex='-1'])"
-    )
-  );
+  Array.from(container.querySelectorAll(focusableSelector));
 
-export const closeModal = () => {
+const isHidden = (element) =>
+  element.hidden ||
+  element.getAttribute("aria-hidden") === "true" ||
+  element.getClientRects().length === 0;
+
+const isDisabled = (element) => "disabled" in element && element.disabled;
+
+const isFocusableElement = (element) =>
+  element instanceof HTMLElement &&
+  element.matches(focusableSelector) &&
+  !isHidden(element) &&
+  !isDisabled(element);
+
+const rememberFocus = () => {
+  const activeElement = document.activeElement;
+  lastFocusedElement = isFocusableElement(activeElement) ? activeElement : null;
+};
+
+const getFallbackFocusTarget = () =>
+  document.getElementById("main-content") || document.body;
+
+const restoreFocus = () => {
+  if (isFocusableElement(lastFocusedElement) && lastFocusedElement.isConnected) {
+    lastFocusedElement.focus();
+    lastFocusedElement = null;
+    return;
+  }
+
+  const fallback = getFallbackFocusTarget();
+  if (fallback instanceof HTMLElement && !isHidden(fallback) && !isDisabled(fallback)) {
+    fallback.focus();
+  }
+  lastFocusedElement = null;
+};
+
+export const closeModal = ({ restoreFocus: shouldRestoreFocus = true } = {}) => {
   if (activeModal) {
     activeModal.remove();
     activeModal = null;
+    if (shouldRestoreFocus) {
+      restoreFocus();
+    }
   }
 };
 
 export const showModal = ({ title, description, content }) => {
-  closeModal();
+  rememberFocus();
+  closeModal({ restoreFocus: false });
   const backdrop = createElement("div", { className: "modal-backdrop" });
   const modal = createElement("div", {
     className: "modal",

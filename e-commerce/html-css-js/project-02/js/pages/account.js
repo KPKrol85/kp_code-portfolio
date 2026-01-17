@@ -5,6 +5,7 @@ import { authService } from "../services/auth.js";
 import { purchasesService } from "../services/purchases.js";
 import { showToast } from "../components/toast.js";
 import { store } from "../store/store.js";
+import { content } from "../content/pl.js";
 
 export const renderAccount = () => {
   const main = document.getElementById("main-content");
@@ -71,7 +72,7 @@ export const renderAccount = () => {
   });
   logoutButton.addEventListener("click", () => {
     authService.logout(store);
-    showToast("Wylogowano.");
+    showToast(content.toasts.logout);
     navigateHash("#/auth");
   });
 

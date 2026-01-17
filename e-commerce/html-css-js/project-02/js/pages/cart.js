@@ -6,6 +6,7 @@ import { store } from "../store/store.js";
 import { renderNotice } from "../components/uiStates.js";
 import { withButtonLoading } from "../utils/ui-state.js";
 import { renderEmptyState } from "../components/ui-state-helpers.js";
+import { content } from "../content/pl.js";
 
 export const renderCart = () => {
   const main = document.getElementById("main-content");
@@ -15,10 +16,10 @@ export const renderCart = () => {
 
   if (productsStatus === "loading" || productsStatus === "idle") {
     const container = createElement("section", { className: "container" });
-    container.appendChild(createElement("h1", { text: "Twój koszyk" }));
+    container.appendChild(createElement("h1", { text: content.cart.title }));
     renderNotice(container, {
-      title: "Ładowanie koszyka",
-      message: "Trwa pobieranie danych produktów.",
+      title: content.states.cart.loading.title,
+      message: content.states.cart.loading.message,
       headingTag: "h2",
     });
     main.appendChild(container);
@@ -27,10 +28,10 @@ export const renderCart = () => {
 
   if (productsStatus === "error") {
     const container = createElement("section", { className: "container" });
-    container.appendChild(createElement("h1", { text: "Twój koszyk" }));
+    container.appendChild(createElement("h1", { text: content.cart.title }));
     renderNotice(container, {
-      title: "Nie udało się pobrać produktów",
-      message: productsError || "Spróbuj ponownie później.",
+      title: content.states.products.error.title,
+      message: productsError || content.states.products.error.message,
       headingTag: "h2",
     });
     main.appendChild(container);
@@ -38,14 +39,14 @@ export const renderCart = () => {
   }
 
   const container = createElement("section", { className: "container" });
-  container.appendChild(createElement("h1", { text: "Twój koszyk" }));
+  container.appendChild(createElement("h1", { text: content.cart.title }));
 
   if (!cart.length) {
     container.appendChild(
       renderEmptyState({
-        title: "Twój koszyk jest pusty.",
-        message: "Przeglądaj produkty, aby zacząć.",
-        ctaText: "Przeglądaj produkty",
+        title: content.states.cart.empty.title,
+        message: content.states.cart.empty.message,
+        ctaText: content.common.browseProducts,
         ctaHref: "#/products",
       })
     );
@@ -91,7 +92,7 @@ export const renderCart = () => {
     removeButton.addEventListener("click", () => {
       cartService.removeItem(product.id);
       store.setState({ cart: cartService.getCart() });
-      showToast("Usunięto z koszyka.");
+      showToast(content.toasts.removedFromCart);
       renderCart();
     });
 
@@ -123,13 +124,13 @@ export const renderCart = () => {
     withButtonLoading(
       applyButton,
       async () => {
-        showToast("Kod rabatowy zastosowany (demo).");
+        showToast(content.toasts.promoApplied);
       },
-      { loadingText: "Przetwarzanie..." }
+      { loadingText: content.common.processing }
     );
   });
 
-  summary.appendChild(createElement("h2", { text: "Podsumowanie" }));
+  summary.appendChild(createElement("h2", { text: content.common.summaryTitle }));
   summary.appendChild(createElement("p", { text: `Suma: ${formatCurrency(subtotal)}` }));
   summary.appendChild(promoLabel);
   summary.appendChild(promoField);
@@ -148,7 +149,7 @@ export const renderCart = () => {
   summary.appendChild(
     createElement("a", {
       className: "button block",
-      text: "Przejd« do checkout",
+      text: content.cart.checkoutCta,
       attrs: { href: "#/checkout" },
     })
   );
@@ -160,4 +161,3 @@ export const renderCart = () => {
   container.appendChild(layout);
   main.appendChild(container);
 };
-

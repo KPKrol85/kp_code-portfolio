@@ -3,6 +3,7 @@ import { formatDate } from "../utils/format.js";
 import { store } from "../store/store.js";
 import { purchasesService } from "../services/purchases.js";
 import { renderNotice } from "../components/uiStates.js";
+import { content } from "../content/pl.js";
 
 const createLicenseBlob = (details) => {
   const content = [
@@ -32,8 +33,8 @@ export const renderLicenses = () => {
 
   if (productsStatus === "loading" || productsStatus === "idle") {
     renderNotice(container, {
-      title: "Ładowanie licencji",
-      message: "Trwa pobieranie danych produktów.",
+      title: content.states.licenses.loading.title,
+      message: content.states.licenses.loading.message,
       headingTag: "h2",
     });
     main.appendChild(container);
@@ -42,8 +43,8 @@ export const renderLicenses = () => {
 
   if (productsStatus === "error") {
     renderNotice(container, {
-      title: "Nie udało się pobrać produktów",
-      message: productsError || "Spróbuj ponownie później.",
+      title: content.states.products.error.title,
+      message: productsError || content.states.products.error.message,
       headingTag: "h2",
     });
     main.appendChild(container);
@@ -53,8 +54,8 @@ export const renderLicenses = () => {
   const licenseGrid = createElement("div", { className: "grid grid-2" });
   if (!licenses.length) {
     renderNotice(licenseGrid, {
-      title: "Brak licencji",
-      message: "Brak licencji do wyświetlenia.",
+      title: content.states.licenses.empty.title,
+      message: content.states.licenses.empty.message,
     });
   } else {
     licenses.forEach((license) => {
@@ -133,4 +134,3 @@ export const renderLicenses = () => {
   container.appendChild(assignedSection);
   main.appendChild(container);
 };
-

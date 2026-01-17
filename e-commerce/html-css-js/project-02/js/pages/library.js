@@ -3,6 +3,7 @@ import { formatDate } from "../utils/format.js";
 import { purchasesService } from "../services/purchases.js";
 import { store } from "../store/store.js";
 import { renderNotice } from "../components/uiStates.js";
+import { content } from "../content/pl.js";
 
 export const renderLibrary = () => {
   const main = document.getElementById("main-content");
@@ -10,12 +11,12 @@ export const renderLibrary = () => {
 
   const { products, productsStatus, productsError } = store.getState();
   const container = createElement("section", { className: "container" });
-  container.appendChild(createElement("h1", { text: "Twoja biblioteka" }));
+  container.appendChild(createElement("h1", { text: content.library.title }));
 
   if (productsStatus === "loading" || productsStatus === "idle") {
     renderNotice(container, {
-      title: "Ładowanie biblioteki",
-      message: "Trwa pobieranie danych produktów.",
+      title: content.states.library.loading.title,
+      message: content.states.library.loading.message,
       headingTag: "h2",
     });
     main.appendChild(container);
@@ -24,8 +25,8 @@ export const renderLibrary = () => {
 
   if (productsStatus === "error") {
     renderNotice(container, {
-      title: "Nie udało się pobrać produktów",
-      message: productsError || "Spróbuj ponownie później.",
+      title: content.states.products.error.title,
+      message: productsError || content.states.products.error.message,
       headingTag: "h2",
     });
     main.appendChild(container);
@@ -35,9 +36,9 @@ export const renderLibrary = () => {
   const libraryItems = purchasesService.getLibraryItems();
   if (!libraryItems.length) {
     renderNotice(container, {
-      title: "Brak zakupów",
-      message: "Po zakupie produkty pojawiają się tutaj automatycznie.",
-      action: { label: "Przejdź do katalogu", href: "#/products" },
+      title: content.states.library.empty.title,
+      message: content.states.library.empty.message,
+      action: { label: content.library.emptyCta, href: "#/products" },
       headingTag: "h2",
     });
     main.appendChild(container);
@@ -67,7 +68,7 @@ export const renderLibrary = () => {
     product.downloadables.forEach((file) => {
       const link = createElement("a", {
         text: `${file.name} (${file.size})`,
-        attrs: { href: "assets/demo-download.txt", download: "" },
+        attrs: { href: file.file, download: file.name },
       });
       const item = createElement("li", {}, [link]);
       list.appendChild(item);
@@ -79,4 +80,3 @@ export const renderLibrary = () => {
   container.appendChild(grid);
   main.appendChild(container);
 };
-

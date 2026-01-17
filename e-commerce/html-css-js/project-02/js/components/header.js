@@ -62,8 +62,7 @@ export const renderHeader = (container, onThemeToggle, { onHeightChange } = {}) 
     return svg;
   };
 
-  const getThemeLabel = () => {
-    const theme = store.getState().ui?.theme;
+  const getThemeLabel = (theme) => {
     return theme === "dark" ? "Switch to light theme" : "Switch to dark theme";
   };
 
@@ -140,20 +139,15 @@ export const renderHeader = (container, onThemeToggle, { onHeightChange } = {}) 
     return navList;
   };
 
+  const getCartCount = (cart) => cart.reduce((sum, item) => sum + item.quantity, 0);
+
   const buildActions = (className, { withId = false } = {}) => {
     const actions = createElement("div", { className });
-    const { cart, user } = store.getState();
-    const cartCount = cart.reduce((sum, item) => sum + item.quantity, 0);
-
     const cartButton = createElement("a", {
-      text: `Koszyk (${cartCount})`,
       attrs: { href: "#/cart" },
     });
 
-    const authButton = createElement("a", {
-      text: user ? "Moje konto" : "Zaloguj",
-      attrs: { href: user ? "#/account" : "#/auth" },
-    });
+    const authButton = createElement("a");
 
     const themeButton = createElement(
       "button",
@@ -162,7 +156,7 @@ export const renderHeader = (container, onThemeToggle, { onHeightChange } = {}) 
         attrs: {
           id: withId ? "theme-toggle" : null,
           type: "button",
-          "aria-label": getThemeLabel(),
+          "aria-label": getThemeLabel(store.getState().ui?.theme),
           "aria-live": "polite",
           title: "Toggle theme",
         },
@@ -175,7 +169,15 @@ export const renderHeader = (container, onThemeToggle, { onHeightChange } = {}) 
     actions.appendChild(cartButton);
     actions.appendChild(authButton);
     actions.appendChild(themeButton);
-    return actions;
+    return {
+      element: actions,
+      update(nextState) {
+        cartButton.textContent = `Koszyk (${nextState.cartCount})`;
+        authButton.textContent = nextState.isAuthenticated ? "Moje konto" : "Zaloguj";
+        authButton.setAttribute("href", nextState.isAuthenticated ? "#/account" : "#/auth");
+        themeButton.setAttribute("aria-label", getThemeLabel(nextState.theme));
+      },
+    };
   };
 
   const lockScroll = () => {
@@ -308,6 +310,8 @@ export const renderHeader = (container, onThemeToggle, { onHeightChange } = {}) 
     menuButton.addEventListener("click", () => setMenuOpen(!menuOpen));
 
     // --- MOBILE MENU ---
+    const mobileActions = buildActions("nav-links mobile-action-links");
+
     const mobileMenu = createElement(
       "nav",
       {
@@ -318,7 +322,7 @@ export const renderHeader = (container, onThemeToggle, { onHeightChange } = {}) 
           "aria-hidden": menuOpen ? "false" : "true",
         },
       },
-      [buildNavLinks("nav-links mobile-nav-links"), buildActions("nav-links mobile-action-links")]
+      [buildNavLinks("nav-links mobile-nav-links"), mobileActions.element]
     );
 
     const mobileOverlay = createElement("div", { className: "mobile-menu-overlay" });
@@ -337,21 +341,42 @@ export const renderHeader = (container, onThemeToggle, { onHeightChange } = {}) 
     // --- MOUNT ---
     container.appendChild(brandLink);
     container.appendChild(nav);
-    container.appendChild(actions);
+    container.appendChild(actions.element);
     container.appendChild(menuButton);
     container.appendChild(mobileOverlay);
     container.appendChild(mobileMenu);
 
     applyMenuState({ focusOnOpen: menuOpen });
+
+    return { actions, mobileActions };
   };
 
-  const buildAndMeasure = () => {
-    build();
-    notifyHeight();
-  };
+  const selectHeaderState = (state) => ({
+    cartCount: getCartCount(state.cart),
+    isAuthenticated: Boolean(state.user),
+    theme: state.ui?.theme,
+  });
 
-  buildAndMeasure();
-  store.subscribe(buildAndMeasure);
+  const { actions, mobileActions } = build();
+  const updateActions = (nextState) => {
+    actions.update(nextState);
+    mobileActions.update(nextState);
+  };
+  let previousState = selectHeaderState(store.getState());
+  updateActions(previousState);
+  notifyHeight();
+  store.subscribe((state) => {
+    const nextState = selectHeaderState(state);
+    if (
+      nextState.cartCount === previousState.cartCount &&
+      nextState.isAuthenticated === previousState.isAuthenticated &&
+      nextState.theme === previousState.theme
+    ) {
+      return;
+    }
+    updateActions(nextState);
+    previousState = nextState;
+  });
 
   const headerRoot = container.closest("header");
   const applyShrinkState = (nextShrunk) => {
