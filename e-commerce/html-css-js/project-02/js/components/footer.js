@@ -27,9 +27,9 @@ const footerNav = [
     ariaLabel: "Firma",
     links: [
       { label: "O nas", href: "#" }, // TODO: add about route
-      { label: "Regulamin", href: "#/legal" },
-      { label: "Polityka prywatności", href: "#/legal" },
-      { label: "Cookies", href: "#/legal" },
+      { label: "Regulamin", href: "#/terms" },
+      { label: "Polityka prywatności", href: "#/privacy" },
+      { label: "Cookies", href: "#/cookies" },
     ],
   },
   {
@@ -253,10 +253,10 @@ export const renderFooter = (container) => {
     createElement("a", {
       className: "footer-link",
       text: "Polityka prywatności",
-      attrs: { href: "#/legal" },
+      attrs: { href: "#/privacy" },
     }),
-    createElement("a", { className: "footer-link", text: "Regulamin", attrs: { href: "#/legal" } }),
-    createElement("a", { className: "footer-link", text: "Cookies", attrs: { href: "#/legal" } }),
+    createElement("a", { className: "footer-link", text: "Regulamin", attrs: { href: "#/terms" } }),
+    createElement("a", { className: "footer-link", text: "Cookies", attrs: { href: "#/cookies" } }),
   ]);
 
   const metaInfo = createElement("div", { className: "footer-meta-info" }, [
