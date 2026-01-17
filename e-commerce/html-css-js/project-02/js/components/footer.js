@@ -76,6 +76,43 @@ const socialIcons = {
     "M13.5 8.5V6.6c0-.7.3-1.2 1.3-1.2h1.6V3h-2.2C12 3 11 4.4 11 6.3v2.2H9v2.6h2V21h2.5v-9.9h2.1l.4-2.6h-2.5z",
 };
 
+const LOGO_PATH =
+  "M 365.851562 149.308594 L 176.976562 338.183594 L 18.148438 179.359375 L 151.707031 45.804688 L 264.011719 158.109375 L 169.574219 252.546875 L 90.160156 173.136719 L 156.9375 106.355469 L 213.09375 162.511719 L 165.875 209.730469 L 126.167969 170.023438 L 159.554688 136.632812 L 187.632812 164.710938 L 164.023438 188.320312 L 144.167969 168.46875 L 160.863281 151.773438 L 174.902344 165.8125 L 163.097656 177.617188 L 153.171875 167.691406 L 161.519531 159.34375 L 168.539062 166.363281 L 162.636719 172.265625 L 157.671875 167.300781 L 161.84375 163.128906 L 165.355469 166.636719 L 162.402344 169.589844 L 159.921875 167.105469 L 162.007812 165.019531";
+
+const createLogo = () => {
+  const ns = "http://www.w3.org/2000/svg";
+  const svg = document.createElementNS(ns, "svg");
+  svg.setAttribute("viewBox", "0 0 384 383.999986");
+  svg.setAttribute("width", "140");
+  svg.setAttribute("height", "64");
+  svg.setAttribute("preserveAspectRatio", "xMidYMid meet");
+  svg.setAttribute("aria-hidden", "true");
+
+  const defs = document.createElementNS(ns, "defs");
+  const clipPath = document.createElementNS(ns, "clipPath");
+  clipPath.setAttribute("id", "footer-logo-clip");
+  const clipPathShape = document.createElementNS(ns, "path");
+  clipPathShape.setAttribute(
+    "d",
+    "M 18.128906 45.804688 L 366 45.804688 L 366 338.304688 L 18.128906 338.304688 Z M 18.128906 45.804688 "
+  );
+  clipPathShape.setAttribute("clip-rule", "nonzero");
+  clipPath.appendChild(clipPathShape);
+  defs.appendChild(clipPath);
+  svg.appendChild(defs);
+
+  const group = document.createElementNS(ns, "g");
+  group.setAttribute("clip-path", "url(#footer-logo-clip)");
+  const path = document.createElementNS(ns, "path");
+  path.setAttribute("d", LOGO_PATH);
+  path.setAttribute("fill", "currentColor");
+  path.setAttribute("fill-rule", "evenodd");
+  group.appendChild(path);
+  svg.appendChild(group);
+
+  return svg;
+};
+
 const createNavSection = ({ title, ariaLabel, links }) => {
   const list = createElement(
     "ul",
@@ -124,7 +161,14 @@ export const renderFooter = (container) => {
   const footer = createElement("div", { className: "site-footer" });
   const currentYear = new Date().getFullYear();
 
+  const brandLogo = createElement(
+    "a",
+    { className: "footer-logo", attrs: { href: "#/", "aria-label": "KP_Code Digital Vault" } },
+    [createLogo()]
+  );
+
   const brandBlock = createElement("div", { className: "footer-brand" }, [
+    brandLogo,
     createElement("h2", { className: "footer-brand-title", text: "KP_Code Digital Vault" }),
     createElement("p", {
       className: "footer-description",

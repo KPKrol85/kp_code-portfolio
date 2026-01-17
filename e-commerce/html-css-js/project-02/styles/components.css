@@ -245,10 +245,31 @@
   gap: var(--space-6);
 }
 
+.footer-brand {
+  display: grid;
+  gap: var(--space-3);
+  max-inline-size: 50%;
+}
+
+.footer-logo {
+  display: inline-flex;
+  align-items: center;
+  color: var(--color-accent);
+  text-decoration: none;
+   justify-self: start;
+  transform: translateX(60px);
+  padding: 10px 0;
+}
+
+.footer-logo svg {
+  width: 120px;
+  height: auto;
+}
+
 .footer-brand-title {
   font-size: var(--fs-h3);
   letter-spacing: -0.01em;
-  margin: 0 0 var(--space-3);
+  margin: 0;
 }
 
 .footer-description {
@@ -411,6 +432,10 @@
 @media (max-width: 720px) {
   .footer-middle-grid {
     grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  }
+
+  .footer-brand {
+    max-inline-size: 100%;
   }
 
   .footer-bottom {
