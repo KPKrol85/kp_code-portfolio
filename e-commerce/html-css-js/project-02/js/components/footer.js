@@ -44,10 +44,11 @@ const footerNav = [
 ];
 
 const socialLinks = [
-  { label: "GitHub", href: "#" }, // TODO: add GitHub URL
-  { label: "LinkedIn", href: "#" }, // TODO: add LinkedIn URL
-  { label: "X / Twitter", href: "#" }, // TODO: add X/Twitter URL
-  { label: "YouTube", href: "#" }, // TODO: add YouTube URL
+  { label: "GitHub", href: "https://github.com/KPKrol85" },
+  { label: "LinkedIn", href: "https://www.linkedin.com/in/kp-code" },
+  { label: "X / Twitter", href: "https://x.com/KP_Code_85" },
+  { label: "YouTube", href: "https://www.youtube.com/@kp_code" },
+  { label: "Facebook", href: "https://www.facebook.com/kpkrol85" },
 ];
 
 const createSvgIcon = (path, viewBox = "0 0 24 24") => {
@@ -71,6 +72,8 @@ const socialIcons = {
     "M4 4h4.2l3.04 4.37L15.5 4H20l-6.27 7.17L20.5 20H16.3l-3.32-4.73L8.06 20H3.5l6.7-7.66L4 4z",
   YouTube:
     "M21.8 8.42a2.77 2.77 0 0 0-1.96-1.96C18.1 6 12 6 12 6s-6.1 0-7.84.46a2.77 2.77 0 0 0-1.96 1.96A28.6 28.6 0 0 0 2 12a28.6 28.6 0 0 0 .2 3.58 2.77 2.77 0 0 0 1.96 1.96C5.9 18 12 18 12 18s6.1 0 7.84-.46a2.77 2.77 0 0 0 1.96-1.96A28.6 28.6 0 0 0 22 12a28.6 28.6 0 0 0-.2-3.58zM10 15.5V8.5l6 3.5-6 3.5z",
+  Facebook:
+    "M13.5 8.5V6.6c0-.7.3-1.2 1.3-1.2h1.6V3h-2.2C12 3 11 4.4 11 6.3v2.2H9v2.6h2V21h2.5v-9.9h2.1l.4-2.6h-2.5z",
 };
 
 const createNavSection = ({ title, ariaLabel, links }) => {
@@ -98,7 +101,12 @@ const createSocialLink = ({ label, href }) => {
   const iconPath = socialIcons[label];
   const link = createElement("a", {
     className: "footer-link footer-social-link",
-    attrs: { href },
+    attrs: {
+      href,
+      target: "_blank",
+      rel: "noopener noreferrer",
+      "aria-label": `KP_Code on ${label}`,
+    },
   });
 
   if (iconPath) {
@@ -106,8 +114,6 @@ const createSocialLink = ({ label, href }) => {
   }
 
   link.appendChild(createElement("span", { className: "footer-social-text", text: label }));
-  link.appendChild(createElement("span", { className: "sr-only", text: " profile" }));
-
   return createElement("li", {}, [link]);
 };
 
