@@ -257,8 +257,7 @@
   color: var(--color-accent);
   text-decoration: none;
    justify-self: start;
-  transform: translateX(60px);
-  padding: 10px 0;
+padding: var(--space-3)
 }
 
 .footer-logo svg {

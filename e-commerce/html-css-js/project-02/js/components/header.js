@@ -3,7 +3,16 @@ import { store } from "../store/store.js";
 
 const navItems = [
   { label: "Start", path: "#/" },
-  { label: "Produkty", path: "#/products" },
+  {
+    label: "Produkty",
+    dropdown: [
+      { label: "UI Kits & Components", path: "#/products/ui-kits" },
+      { label: "Templates & Dashboards", path: "#/products/templates" },
+      { label: "Assets & Graphics", path: "#/products/assets" },
+      { label: "Knowledge & Tools", path: "#/products/knowledge" },
+    ],
+  },
+  { label: "Usługi", path: "#/services" },
   { label: "Konto", path: "#/account" },
   { label: "Biblioteka", path: "#/library" },
   { label: "Licencje", path: "#/licenses" },
@@ -18,6 +27,7 @@ export const renderHeader = (container, onThemeToggle, { onHeightChange } = {}) 
   let menuToggleButton = null;
   let menuDrawer = null;
   let menuOverlay = null;
+  let openDropdown = null;
   let scrollTicking = false;
   let scrollLocked = false;
   let lockedScrollY = 0;
@@ -127,14 +137,56 @@ export const renderHeader = (container, onThemeToggle, { onHeightChange } = {}) 
     return svg;
   };
 
-  const buildNavLinks = (className) => {
+  const buildNavLinks = (className, { idPrefix = "nav" } = {}) => {
     const navList = createElement("div", { className });
-    navItems.forEach((item) => {
-      const link = createElement("a", {
-        text: item.label,
-        attrs: { href: item.path, "data-route": item.path },
-      });
-      navList.appendChild(link);
+    navItems.forEach((item, index) => {
+      const itemClassName = item.dropdown ? "nav-item nav-dropdown" : "nav-item";
+      const itemWrapper = createElement("div", { className: itemClassName });
+
+      if (item.dropdown) {
+        const menuId = `${idPrefix}-dropdown-${index}`;
+        const triggerButton = createElement("button", {
+          text: item.label,
+          className: "nav-link nav-dropdown__button",
+          attrs: {
+            type: "button",
+            "aria-expanded": "false",
+            "aria-controls": menuId,
+          },
+        });
+        const trigger = createElement("div", { className: "nav-dropdown__trigger" }, [
+          triggerButton,
+        ]);
+        const dropdownItems = [
+          { label: "Wszystkie produkty", path: "#/products" },
+          ...item.dropdown,
+        ];
+        const menu = createElement(
+          "div",
+          {
+            className: "nav-dropdown__menu",
+            attrs: { id: menuId, role: "menu", "aria-hidden": "true" },
+          },
+          dropdownItems.map((entry) =>
+            createElement("a", {
+              text: entry.label,
+              attrs: { href: entry.path, role: "menuitem" },
+            })
+          )
+        );
+        menu.setAttribute("hidden", "");
+        itemWrapper.appendChild(trigger);
+        itemWrapper.appendChild(menu);
+      } else {
+        const link = createElement("a", {
+          text: item.label,
+          className: "nav-link",
+          attrs: { href: item.path, "data-route": item.path },
+        });
+        itemWrapper.appendChild(link);
+      }
+
+      navList.appendChild(itemWrapper);
     });
     return navList;
   };
@@ -241,6 +293,20 @@ export const renderHeader = (container, onThemeToggle, { onHeightChange } = {}) 
       return;
     }
     menuOpen = next;
+    if (openDropdown) {
+      const dropdownToClose = openDropdown;
+      openDropdown = null;
+      dropdownToClose.classList.remove("is-open");
+      const toggle = dropdownToClose.querySelector(".nav-dropdown__button");
+      const menu = dropdownToClose.querySelector(".nav-dropdown__menu");
+      if (toggle) {
+        toggle.setAttribute("aria-expanded", "false");
+      }
+      if (menu) {
+        menu.setAttribute("aria-hidden", "true");
+        menu.setAttribute("hidden", "");
+      }
+    }
     applyMenuState({ focusOnOpen: menuOpen, restoreFocus });
   };
 
@@ -266,7 +332,7 @@ export const renderHeader = (container, onThemeToggle, { onHeightChange } = {}) 
       className: "primary-nav",
       attrs: { "aria-label": "Glowna" },
     });
-    nav.appendChild(buildNavLinks("nav-links"));
+    nav.appendChild(buildNavLinks("nav-links", { idPrefix: "primary" }));
 
     // --- ACTIONS ---
     const actions = buildActions("nav-links header-actions", { withId: true });
@@ -322,7 +388,7 @@ export const renderHeader = (container, onThemeToggle, { onHeightChange } = {}) 
           "aria-hidden": menuOpen ? "false" : "true",
         },
       },
-      [buildNavLinks("nav-links mobile-nav-links"), mobileActions.element]
+      [buildNavLinks("nav-links mobile-nav-links", { idPrefix: "mobile" }), mobileActions.element]
     );
 
     const mobileOverlay = createElement("div", { className: "mobile-menu-overlay" });
@@ -409,12 +475,90 @@ export const renderHeader = (container, onThemeToggle, { onHeightChange } = {}) 
     });
   };
 
-  const handleKeydown = (event) => {
-    if (!menuOpen) {
+  const setDropdownOpen = (dropdown, nextOpen, { focusToggle = false } = {}) => {
+    if (!dropdown) {
       return;
     }
+    const toggle = dropdown.querySelector(".nav-dropdown__button");
+    const menu = dropdown.querySelector(".nav-dropdown__menu");
+    if (!toggle || !menu) {
+      return;
+    }
+    dropdown.classList.toggle("is-open", nextOpen);
+    toggle.setAttribute("aria-expanded", nextOpen ? "true" : "false");
+    menu.setAttribute("aria-hidden", nextOpen ? "false" : "true");
+    if (nextOpen) {
+      menu.removeAttribute("hidden");
+      openDropdown = dropdown;
+    } else {
+      menu.setAttribute("hidden", "");
+      if (openDropdown === dropdown) {
+        openDropdown = null;
+      }
+      if (focusToggle) {
+        toggle.focus();
+      }
+    }
+  };
+
+  const toggleDropdown = (dropdown) => {
+    if (!dropdown) {
+      return;
+    }
+    const isOpen = dropdown.classList.contains("is-open");
+    if (isOpen) {
+      setDropdownOpen(dropdown, false, { focusToggle: true });
+      return;
+    }
+    if (openDropdown && openDropdown !== dropdown) {
+      setDropdownOpen(openDropdown, false);
+    }
+    setDropdownOpen(dropdown, true);
+  };
+
+  const handleDropdownClick = (event) => {
+    const toggle = event.target.closest(".nav-dropdown__button");
+    if (toggle) {
+      const dropdown = toggle.closest(".nav-dropdown");
+      if (dropdown) {
+        event.preventDefault();
+        event.stopPropagation();
+        toggleDropdown(dropdown);
+      }
+      return;
+    }
+    const menuLink = event.target.closest(".nav-dropdown__menu a");
+    if (menuLink) {
+      const dropdown = menuLink.closest(".nav-dropdown");
+      if (dropdown) {
+        setDropdownOpen(dropdown, false);
+      }
+    }
+  };
+
+  const handleDocumentClick = (event) => {
+    if (!openDropdown) {
+      return;
+    }
+    if (openDropdown.contains(event.target)) {
+      return;
+    }
+    setDropdownOpen(openDropdown, false);
+  };
+
+  const handleKeydown = (event) => {
     if (event.key === "Escape") {
-      setMenuOpen(false);
+      if (openDropdown) {
+        const dropdownToClose = openDropdown;
+        setDropdownOpen(dropdownToClose, false, { focusToggle: true });
+        return;
+      }
+      if (menuOpen) {
+        setMenuOpen(false);
+      }
+      return;
+    }
+    if (!menuOpen) {
       return;
     }
     if (event.key === "Tab" && menuDrawer) {
@@ -446,6 +590,8 @@ export const renderHeader = (container, onThemeToggle, { onHeightChange } = {}) 
     window.addEventListener("scroll", handleScroll, { passive: true });
     handleScroll();
   }
+  container.addEventListener("click", handleDropdownClick);
+  document.addEventListener("click", handleDocumentClick);
   document.addEventListener("keydown", handleKeydown);
   window.addEventListener("resize", handleResize);
 };
