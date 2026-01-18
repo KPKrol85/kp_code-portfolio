@@ -15,6 +15,7 @@ const navItems = [
   },
   {
     label: "Usługi",
+    dropdownRoot: { label: "Wszystkie usługi", path: "#/services" },
     dropdown: [
       { label: "Web Development", path: "#/services/web-development" },
       { label: "WordPress Solutions", path: "#/services/wordpress" },
