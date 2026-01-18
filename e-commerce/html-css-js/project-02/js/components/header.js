@@ -5,6 +5,7 @@ const navItems = [
   { label: "Start", path: "#/" },
   {
     label: "Produkty",
+    dropdownRoot: { label: "Wszystkie produkty", path: "#/products" },
     dropdown: [
       { label: "UI Kits & Components", path: "#/products/ui-kits" },
       { label: "Templates & Dashboards", path: "#/products/templates" },
@@ -12,7 +13,15 @@ const navItems = [
       { label: "Knowledge & Tools", path: "#/products/knowledge" },
     ],
   },
-  { label: "Usługi", path: "#/services" },
+  {
+    label: "Usługi",
+    dropdown: [
+      { label: "Web Development", path: "#/services/web-development" },
+      { label: "WordPress Solutions", path: "#/services/wordpress" },
+      { label: "UI / UX & Branding", path: "#/services/ui-ux-branding" },
+      { label: "Consulting & Support", path: "#/services/consulting-support" },
+    ],
+  },
   { label: "Konto", path: "#/account" },
   { label: "Biblioteka", path: "#/library" },
   { label: "Licencje", path: "#/licenses" },
@@ -157,10 +166,9 @@ export const renderHeader = (container, onThemeToggle, { onHeightChange } = {}) 
         const trigger = createElement("div", { className: "nav-dropdown__trigger" }, [
           triggerButton,
         ]);
-        const dropdownItems = [
-          { label: "Wszystkie produkty", path: "#/products" },
-          ...item.dropdown,
-        ];
+        const dropdownItems = item.dropdownRoot
+          ? [item.dropdownRoot, ...item.dropdown]
+          : item.dropdown;
         const menu = createElement(
           "div",
           {
