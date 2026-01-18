@@ -577,7 +577,7 @@ export const renderHeader = (container, onThemeToggle, { onHeightChange } = {}) 
       if (dropdown) {
         if (menuLink.dataset.action === "logout") {
           event.preventDefault();
-          authService.logout(store);
+          authService.signOut();
           showToast(content.toasts.logout);
           navigateHash("#/auth");
         }

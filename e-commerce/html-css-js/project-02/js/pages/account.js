@@ -71,7 +71,7 @@ export const renderAccount = () => {
     attrs: { type: "button" },
   });
   logoutButton.addEventListener("click", () => {
-    authService.logout(store);
+    authService.signOut();
     showToast(content.toasts.logout);
     navigateHash("#/auth");
   });

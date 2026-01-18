@@ -3,7 +3,6 @@ import { navigateHash } from "../utils/navigation.js";
 import { validators } from "../utils/validators.js";
 import { authService } from "../services/auth.js";
 import { showToast } from "../components/toast.js";
-import { store } from "../store/store.js";
 import { withButtonLoading } from "../utils/ui-state.js";
 import { content } from "../content/pl.js";
 
@@ -129,11 +128,10 @@ export const renderAuth = () => {
               errorBox.textContent = emailMessage || passwordMessage;
               return;
             }
-            const { user, session } = authService.login({
+            authService.signIn({
               email: emailField.value,
               password: passwordField.value,
             });
-            store.setState({ user, session });
             showToast(content.toasts.loginSuccess);
             navigateHash("#/account");
           } catch (error) {
