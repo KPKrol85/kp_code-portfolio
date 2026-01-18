@@ -1,5 +1,9 @@
 import { createElement, clearElement } from "../utils/dom.js";
 import { store } from "../store/store.js";
+import { authService } from "../services/auth.js";
+import { navigateHash } from "../utils/navigation.js";
+import { showToast } from "./toast.js";
+import { content } from "../content/pl.js";
 
 const navItems = [
   { label: "Start", path: "#/" },
@@ -23,9 +27,6 @@ const navItems = [
       { label: "Consulting & Support", path: "#/services/consulting-support" },
     ],
   },
-  { label: "Konto", path: "#/account" },
-  { label: "Biblioteka", path: "#/library" },
-  { label: "Licencje", path: "#/licenses" },
   { label: "Kontakt", path: "#/contact" },
 ];
 
@@ -147,60 +148,91 @@ export const renderHeader = (container, onThemeToggle, { onHeightChange } = {}) 
     return svg;
   };
 
+  const updateDropdownMenu = (menu, items) => {
+    clearElement(menu);
+    items.forEach((entry) => {
+      const link = createElement("a", {
+        text: entry.label,
+        attrs: {
+          href: entry.path,
+          role: "menuitem",
+          "data-action": entry.action || null,
+        },
+      });
+      menu.appendChild(link);
+    });
+  };
+
+  const buildDropdown = ({ label, menuId, items }) => {
+    const itemWrapper = createElement("div", { className: "nav-item nav-dropdown" });
+    const triggerButton = createElement("button", {
+      text: label,
+      className: "nav-link nav-dropdown__button",
+      attrs: {
+        type: "button",
+        "aria-expanded": "false",
+        "aria-controls": menuId,
+      },
+    });
+    const trigger = createElement("div", { className: "nav-dropdown__trigger" }, [triggerButton]);
+    const menu = createElement("div", {
+      className: "nav-dropdown__menu",
+      attrs: { id: menuId, role: "menu", "aria-hidden": "true" },
+    });
+    menu.setAttribute("hidden", "");
+    if (items?.length) {
+      updateDropdownMenu(menu, items);
+    }
+    itemWrapper.appendChild(trigger);
+    itemWrapper.appendChild(menu);
+    return { itemWrapper, menu, triggerButton };
+  };
+
   const buildNavLinks = (className, { idPrefix = "nav" } = {}) => {
     const navList = createElement("div", { className });
     navItems.forEach((item, index) => {
-      const itemClassName = item.dropdown ? "nav-item nav-dropdown" : "nav-item";
-      const itemWrapper = createElement("div", { className: itemClassName });
-
       if (item.dropdown) {
-        const menuId = `${idPrefix}-dropdown-${index}`;
-        const triggerButton = createElement("button", {
-          text: item.label,
-          className: "nav-link nav-dropdown__button",
-          attrs: {
-            type: "button",
-            "aria-expanded": "false",
-            "aria-controls": menuId,
-          },
-        });
-        const trigger = createElement("div", { className: "nav-dropdown__trigger" }, [
-          triggerButton,
-        ]);
         const dropdownItems = item.dropdownRoot
           ? [item.dropdownRoot, ...item.dropdown]
           : item.dropdown;
-        const menu = createElement(
-          "div",
-          {
-            className: "nav-dropdown__menu",
-            attrs: { id: menuId, role: "menu", "aria-hidden": "true" },
-          },
-          dropdownItems.map((entry) =>
-            createElement("a", {
-              text: entry.label,
-              attrs: { href: entry.path, role: "menuitem" },
-            })
-          )
-        );
-        menu.setAttribute("hidden", "");
-        itemWrapper.appendChild(trigger);
-        itemWrapper.appendChild(menu);
-      } else {
-        const link = createElement("a", {
-          text: item.label,
-          className: "nav-link",
-          attrs: { href: item.path, "data-route": item.path },
+        const { itemWrapper } = buildDropdown({
+          label: item.label,
+          menuId: `${idPrefix}-dropdown-${index}`,
+          items: dropdownItems,
         });
-        itemWrapper.appendChild(link);
+        navList.appendChild(itemWrapper);
+        return;
       }
 
+      const itemWrapper = createElement("div", { className: "nav-item" });
+      const link = createElement("a", {
+        text: item.label,
+        className: "nav-link",
+        attrs: { href: item.path, "data-route": item.path },
+      });
+      itemWrapper.appendChild(link);
       navList.appendChild(itemWrapper);
     });
     return navList;
   };
 
   const getCartCount = (cart) => cart.reduce((sum, item) => sum + item.quantity, 0);
+  const getAccountItems = (isAuthenticated) => {
+    if (!isAuthenticated) {
+      return [
+        { label: "Zaloguj", path: "#/auth" },
+        { label: "Rejestracja", path: "#/auth" },
+        { label: "Demo konta", path: "#/account" },
+      ];
+    }
+    return [
+      { label: "Panel konta", path: "#/account" },
+      { label: "Biblioteka", path: "#/library" },
+      { label: "Licencje", path: "#/licenses" },
+      { label: "Ustawienia", path: "#/settings" },
+      { label: "Wyloguj", path: "#/auth", action: "logout" },
+    ];
+  };
 
   const buildActions = (className, { withId = false } = {}) => {
     const actions = createElement("div", { className });
@@ -208,7 +240,11 @@ export const renderHeader = (container, onThemeToggle, { onHeightChange } = {}) 
       attrs: { href: "#/cart" },
     });
 
-    const authButton = createElement("a");
+    const accountDropdown = buildDropdown({
+      label: "Konto",
+      menuId: `${withId ? "header" : "mobile"}-account-dropdown`,
+      items: getAccountItems(Boolean(store.getState().user)),
+    });
 
     const themeButton = createElement(
       "button",
@@ -228,14 +264,13 @@ export const renderHeader = (container, onThemeToggle, { onHeightChange } = {}) 
     themeButton.addEventListener("click", onThemeToggle);
 
     actions.appendChild(cartButton);
-    actions.appendChild(authButton);
+    actions.appendChild(accountDropdown.itemWrapper);
     actions.appendChild(themeButton);
     return {
       element: actions,
       update(nextState) {
         cartButton.textContent = `Koszyk (${nextState.cartCount})`;
-        authButton.textContent = nextState.isAuthenticated ? "Moje konto" : "Zaloguj";
-        authButton.setAttribute("href", nextState.isAuthenticated ? "#/account" : "#/auth");
+        updateDropdownMenu(accountDropdown.menu, getAccountItems(nextState.isAuthenticated));
         themeButton.setAttribute("aria-label", getThemeLabel(nextState.theme));
       },
     };
@@ -540,7 +575,16 @@ export const renderHeader = (container, onThemeToggle, { onHeightChange } = {}) 
     if (menuLink) {
       const dropdown = menuLink.closest(".nav-dropdown");
       if (dropdown) {
+        if (menuLink.dataset.action === "logout") {
+          event.preventDefault();
+          authService.logout(store);
+          showToast(content.toasts.logout);
+          navigateHash("#/auth");
+        }
         setDropdownOpen(dropdown, false);
+        if (menuOpen) {
+          setMenuOpen(false, { restoreFocus: false });
+        }
       }
     }
   };
