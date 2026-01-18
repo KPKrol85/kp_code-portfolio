@@ -8,8 +8,8 @@
   Bump cache versions when app shell assets change (e.g. dv-static-v2).
 */
 
-const STATIC_CACHE = "dv-static-v1";
-const DATA_CACHE = "dv-data-v1";
+const STATIC_CACHE = "dv-static-v1.0.00";
+const DATA_CACHE = "dv-data-v1.0.00";
 
 const APP_SHELL_URLS = [
   "./",
@@ -24,7 +24,7 @@ const APP_SHELL_URLS = [
   "./js/theme-init.js",
   "./js/app.js",
   "./site.webmanifest",
-  "./assets/og/og-default.svg",
+  "./assets/og/og-dv-1200x630.png",
   "./assets/favicon/favicon.ico",
   "./assets/favicon/favicon-96x96.png",
   "./assets/favicon/favicon.svg",

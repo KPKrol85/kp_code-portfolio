@@ -1,6 +1,6 @@
 const MAX_DESCRIPTION_LENGTH = 160;
 const SITE_URL = window.location.origin;
-const DEFAULT_OG_IMAGE_PATH = "/assets/og/og-default.svg";
+const DEFAULT_OG_IMAGE_PATH = "/assets/og/og-dv-1200x630.png";
 // TODO: Replace with branded OG images per route.
 export const DEFAULT_OG_IMAGE_URL = `${SITE_URL}${DEFAULT_OG_IMAGE_PATH}`;
 
