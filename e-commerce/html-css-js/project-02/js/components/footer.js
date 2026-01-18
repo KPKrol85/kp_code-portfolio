@@ -1,24 +1,38 @@
 import { createElement, clearElement } from "../utils/dom.js";
+import { store } from "../store/store.js";
 
-const footerNav = [
+const getAccountLinks = (isAuthenticated) => {
+  if (!isAuthenticated) {
+    return [
+      { label: "Zaloguj się", href: "#/auth" },
+      { label: "Utwórz konto", href: "#/auth" },
+    ];
+  }
+  return [
+    { label: "Panel konta", href: "#/account" },
+    { label: "Moja biblioteka", href: "#/library" },
+    { label: "Licencje", href: "#/licenses" },
+  ];
+};
+
+const getFooterNav = (isAuthenticated) => [
   {
     title: "Produkty",
     ariaLabel: "Produkty",
     links: [
       { label: "Przeglądaj produkty", href: "#/products" },
-      { label: "Cennik", href: "#" }, // TODO: add pricing route
-      { label: "Licencje", href: "#/licenses" },
-      { label: "Aktualizacje", href: "#" }, // TODO: add releases route
-      { label: "Plan rozwoju", href: "#" }, // TODO: add roadmap route
+      { label: "Kategorie produktów", href: "#/products" },
+      { label: "Cennik", href: "#/pricing" },
+      { label: "Aktualizacje / Changelog", href: "#/updates" },
     ],
   },
   {
     title: "Zasoby",
     ariaLabel: "Zasoby",
     links: [
-      { label: "Dokumentacja", href: "#" }, // TODO: add docs route
-      { label: "FAQ", href: "#" }, // TODO: add FAQ route
-      { label: "Wsparcie", href: "#" }, // TODO: add support route
+      { label: "Dokumentacja", href: "#/docs" },
+      { label: "FAQ", href: "#/faq" },
+      { label: "Wsparcie", href: "#/support" },
       { label: "Kontakt", href: "#/contact" },
     ],
   },
@@ -26,20 +40,19 @@ const footerNav = [
     title: "Firma",
     ariaLabel: "Firma",
     links: [
-      { label: "O nas", href: "#" }, // TODO: add about route
+      { label: "O nas", href: "#/about" },
+      { label: "Plan rozwoju / Roadmap", href: "#/roadmap" },
       { label: "Regulamin", href: "#/terms" },
       { label: "Polityka prywatności", href: "#/privacy" },
       { label: "Cookies", href: "#/cookies" },
+      { label: "Kariera", href: "#/careers" },
     ],
   },
   {
     title: "Konto",
     ariaLabel: "Konto",
-    links: [
-      { label: "Zaloguj się", href: "#/auth" },
-      { label: "Utwórz konto", href: "#/auth" },
-      { label: "Moja biblioteka", href: "#/library" },
-    ],
+    key: "account",
+    links: getAccountLinks(isAuthenticated),
   },
 ];
 
@@ -128,10 +141,13 @@ const createNavSection = ({ title, ariaLabel, links }) => {
     )
   );
 
-  return createElement("nav", { className: "footer-nav", attrs: { "aria-label": ariaLabel } }, [
-    createElement("h3", { className: "footer-heading", text: title }),
-    list,
-  ]);
+  const section = createElement(
+    "nav",
+    { className: "footer-nav", attrs: { "aria-label": ariaLabel } },
+    [createElement("h3", { className: "footer-heading", text: title }), list]
+  );
+
+  return { section, list };
 };
 
 const createSocialLink = ({ label, href }) => {
@@ -157,6 +173,10 @@ const createSocialLink = ({ label, href }) => {
 export const renderFooter = (container) => {
   clearElement(container);
   container.classList.add("footer-container");
+  if (container._footerUnsubscribe) {
+    container._footerUnsubscribe();
+    container._footerUnsubscribe = null;
+  }
 
   const footer = createElement("div", { className: "site-footer" });
   const currentYear = new Date().getFullYear();
@@ -231,11 +251,17 @@ export const renderFooter = (container) => {
 
   const topSection = createElement("div", { className: "footer-top" }, [brandBlock, newsletterBlock]);
 
-  const middleGrid = createElement(
-    "div",
-    { className: "footer-middle-grid" },
-    footerNav.map(createNavSection)
-  );
+  const middleGrid = createElement("div", { className: "footer-middle-grid" });
+  const isAuthenticated = Boolean(store.getState().user);
+  const sections = getFooterNav(isAuthenticated);
+  let accountSection = null;
+  sections.forEach((section) => {
+    const created = createNavSection(section);
+    if (section.key === "account") {
+      accountSection = created;
+    }
+    middleGrid.appendChild(created.section);
+  });
 
   const socialList = createElement("ul", { className: "footer-links footer-social" }, [
     ...socialLinks.map(createSocialLink),
@@ -286,4 +312,27 @@ export const renderFooter = (container) => {
   footer.appendChild(bottomSection);
 
   container.appendChild(footer);
+
+  let previousAuth = isAuthenticated;
+  container._footerUnsubscribe = store.subscribe((state) => {
+    const nextAuth = Boolean(state.user);
+    if (nextAuth === previousAuth) {
+      return;
+    }
+    previousAuth = nextAuth;
+    if (accountSection && accountSection.list) {
+      clearElement(accountSection.list);
+      getAccountLinks(nextAuth).forEach((link) => {
+        accountSection.list.appendChild(
+          createElement("li", {}, [
+            createElement("a", {
+              className: "footer-link",
+              text: link.label,
+              attrs: { href: link.href },
+            }),
+          ])
+        );
+      });
+    }
+  });
 };
