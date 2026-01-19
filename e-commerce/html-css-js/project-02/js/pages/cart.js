@@ -43,6 +43,30 @@ export const renderCart = () => {
   const container = createElement("section", { className: "container" });
   container.appendChild(createElement("h1", { text: content.cart.title }));
 
+  const validItems = cart.filter((item) => products.some((entry) => entry.id === item.productId));
+  const missingItems = cart.filter((item) => !products.some((entry) => entry.id === item.productId));
+
+  if (!validItems.length && missingItems.length) {
+    container.appendChild(
+      renderEmptyState({
+        title: "Nie mozemy wyswietlic pozycji z koszyka.",
+        message: "Wszystkie pozycje sa niedostepne. Usun je, aby kontynuowac.",
+        ctaText: "Wyczysc niedostepne",
+        onCta: () => {
+          const nextCart = cart.filter(
+            (item) => !missingItems.some((missing) => missing.productId === item.productId)
+          );
+          cartService.saveCart(nextCart);
+          actions.cart.setCart(nextCart);
+          renderCart();
+        },
+      })
+    );
+    renderMissingSection(container, missingItems);
+    main.appendChild(container);
+    return;
+  }
+
   if (!cart.length) {
     container.appendChild(
       renderEmptyState({
@@ -56,9 +80,18 @@ export const renderCart = () => {
     return;
   }
 
+  if (missingItems.length) {
+    renderNotice(container, {
+      title: "Wykryto niedostepne pozycje w koszyku.",
+      message: "Usun brakujace pozycje, aby kontynuowac zakupy.",
+      headingTag: "h2",
+    });
+    renderMissingSection(container, missingItems);
+  }
+
   const itemsWrapper = createElement("div", { className: "grid" });
   let subtotal = 0;
-  cart.forEach((item) => {
+  validItems.forEach((item) => {
     const product = products.find((entry) => entry.id === item.productId);
     if (!product) {
       return;
@@ -162,4 +195,34 @@ export const renderCart = () => {
   ]);
   container.appendChild(layout);
   main.appendChild(container);
+};
+
+const renderMissingSection = (container, missingItems) => {
+  const section = createElement("div", { className: "section" });
+  section.appendChild(createElement("h2", { text: "Niedostepne pozycje" }));
+  const list = createElement("div", { className: "grid" });
+  missingItems.forEach((item) => {
+    const card = createElement("div", { className: "card" });
+    card.appendChild(createElement("h3", { text: "Produkt niedostepny" }));
+    card.appendChild(createElement("p", { text: `ID: ${item.productId}` }));
+    card.appendChild(
+      createElement("p", {
+        text: "Ten produkt nie jest juz dostepny w katalogu.",
+      })
+    );
+    const removeButton = createElement("button", {
+      className: "button secondary",
+      text: "Usun",
+      attrs: { type: "button" },
+    });
+    removeButton.addEventListener("click", () => {
+      cartService.removeItem(item.productId);
+      actions.cart.setCart(cartService.getCart());
+      renderCart();
+    });
+    card.appendChild(removeButton);
+    list.appendChild(card);
+  });
+  section.appendChild(list);
+  container.appendChild(section);
 };

@@ -22,6 +22,13 @@ export const actions = {
     clearCart() {
       patch({ cart: [] });
     },
+    removeItemById(cart, productId) {
+      patch({ cart: cart.filter((item) => item.productId !== productId) });
+    },
+    removeItemsById(cart, productIds) {
+      const removeSet = new Set(productIds);
+      patch({ cart: cart.filter((item) => !removeSet.has(item.productId)) });
+    },
   },
   data: {
     setProductsLoading() {
