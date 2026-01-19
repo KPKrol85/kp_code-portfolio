@@ -50,6 +50,14 @@ export const renderNotice = (container, options) => {
   return notice;
 };
 
+export const createRetryButton = (label = "Spróbuj ponownie") => {
+  return createElement("button", {
+    className: "button",
+    text: label,
+    attrs: { type: "button", "data-retry": "init-data" },
+  });
+};
+
 export const renderSkeletonCards = (container, options = {}) => {
   const { count = 3 } = options;
   for (let i = 0; i < count; i += 1) {

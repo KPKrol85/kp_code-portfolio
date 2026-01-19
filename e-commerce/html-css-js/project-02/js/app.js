@@ -33,7 +33,22 @@ const detectTheme = () => {
   };
 };
 
+const RETRY_BUTTON_SELECTOR = '[data-retry="init-data"]';
+let isDataRetrying = false;
+
+const updateRetryButtonsState = (isLoading) => {
+  document.querySelectorAll(RETRY_BUTTON_SELECTOR).forEach((button) => {
+    button.disabled = isLoading;
+    button.textContent = isLoading ? "Ładowanie..." : "Spróbuj ponownie";
+  });
+};
+
 const initData = async () => {
+  if (isDataRetrying) {
+    return;
+  }
+  isDataRetrying = true;
+  updateRetryButtonsState(true);
   store.setState({ productsStatus: "loading", productsError: null });
   try {
     const [products, licenses] = await Promise.all([mockApi.getProducts(), mockApi.getLicenses()]);
@@ -45,6 +60,9 @@ const initData = async () => {
       productsStatus: "error",
       productsError: content.states.products.error.title,
     });
+  } finally {
+    isDataRetrying = false;
+    updateRetryButtonsState(false);
   }
 };
 
@@ -84,6 +102,17 @@ const initLayout = () => {
     { onHeightChange: updateHeaderOffset }
   );
   renderFooter(document.getElementById("app-footer"));
+};
+
+const initDataRetryHandling = () => {
+  document.addEventListener("click", (event) => {
+    const target = event.target.closest(RETRY_BUTTON_SELECTOR);
+    if (!target) {
+      return;
+    }
+    event.preventDefault();
+    initData();
+  });
 };
 
 const getHandlerByName = (name) => (module) => module[name];
@@ -588,6 +617,7 @@ initErrorBoundary();
 initStore();
 initLayout();
 setMetaImages();
+initDataRetryHandling();
 initData();
 initRoutes();
 initRouteScrollHandling();

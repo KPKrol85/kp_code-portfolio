@@ -4,7 +4,7 @@ import { cartService } from "../services/cart.js";
 import { showToast } from "../components/toast.js";
 import { store } from "../store/store.js";
 import { purchasesService } from "../services/purchases.js";
-import { renderNotice } from "../components/uiStates.js";
+import { renderNotice, createRetryButton } from "../components/uiStates.js";
 import { setMeta } from "../utils/meta.js";
 import { content } from "../content/pl.js";
 
@@ -44,6 +44,7 @@ export const renderProductDetails = ({ id }) => {
       renderNotice(container, {
         title: content.states.productDetails.error.metaTitle,
         message: productsError || content.states.productDetails.error.message,
+        action: { element: createRetryButton() },
       });
       main.appendChild(container);
       return;

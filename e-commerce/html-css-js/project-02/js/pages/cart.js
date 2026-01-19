@@ -3,7 +3,7 @@ import { formatCurrency } from "../utils/format.js";
 import { cartService } from "../services/cart.js";
 import { showToast } from "../components/toast.js";
 import { store } from "../store/store.js";
-import { renderNotice } from "../components/uiStates.js";
+import { renderNotice, createRetryButton } from "../components/uiStates.js";
 import { withButtonLoading } from "../utils/ui-state.js";
 import { renderEmptyState } from "../components/ui-state-helpers.js";
 import { content } from "../content/pl.js";
@@ -32,6 +32,7 @@ export const renderCart = () => {
     renderNotice(container, {
       title: content.states.products.error.title,
       message: productsError || content.states.products.error.message,
+      action: { element: createRetryButton() },
       headingTag: "h2",
     });
     main.appendChild(container);

@@ -2,7 +2,7 @@ import { createElement, clearElement } from "../utils/dom.js";
 import { formatDate } from "../utils/format.js";
 import { store } from "../store/store.js";
 import { purchasesService } from "../services/purchases.js";
-import { renderNotice } from "../components/uiStates.js";
+import { renderNotice, createRetryButton } from "../components/uiStates.js";
 import { content } from "../content/pl.js";
 
 const createLicenseBlob = (details) => {
@@ -45,6 +45,7 @@ export const renderLicenses = () => {
     renderNotice(container, {
       title: content.states.products.error.title,
       message: productsError || content.states.products.error.message,
+      action: { element: createRetryButton() },
       headingTag: "h2",
     });
     main.appendChild(container);

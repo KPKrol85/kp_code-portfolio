@@ -4,7 +4,7 @@ import { createProductCard } from "../components/productCard.js";
 import { cartService } from "../services/cart.js";
 import { showToast } from "../components/toast.js";
 import { store } from "../store/store.js";
-import { renderDataState } from "../components/uiStates.js";
+import { renderDataState, createRetryButton } from "../components/uiStates.js";
 import { content } from "../content/pl.js";
 
 export const renderHome = () => {
@@ -330,6 +330,7 @@ export const renderHome = () => {
         errorState: {
           title: content.states.products.error.title,
           message: productsError || content.states.products.error.message,
+          action: { element: createRetryButton() },
         },
         empty: {
           title: content.states.products.empty.title,

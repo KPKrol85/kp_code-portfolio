@@ -2,7 +2,7 @@ import { createElement, clearElement } from "../utils/dom.js";
 import { formatDate } from "../utils/format.js";
 import { purchasesService } from "../services/purchases.js";
 import { store } from "../store/store.js";
-import { renderNotice } from "../components/uiStates.js";
+import { renderNotice, createRetryButton } from "../components/uiStates.js";
 import { content } from "../content/pl.js";
 
 export const renderLibrary = () => {
@@ -27,6 +27,7 @@ export const renderLibrary = () => {
     renderNotice(container, {
       title: content.states.products.error.title,
       message: productsError || content.states.products.error.message,
+      action: { element: createRetryButton() },
       headingTag: "h2",
     });
     main.appendChild(container);
