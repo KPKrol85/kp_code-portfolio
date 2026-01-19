@@ -29,6 +29,7 @@
 
 html {
   font-family: var(--font-sans);
+  font-size-adjust: 0.52;
   color: var(--color-text);
   background-color: var(--color-bg);
   scroll-behavior: smooth;

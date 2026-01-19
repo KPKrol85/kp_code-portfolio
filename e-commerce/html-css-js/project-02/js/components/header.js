@@ -30,6 +30,13 @@ const navItems = [
   { label: "Kontakt", path: "#/contact" },
 ];
 
+const LOGO_SOURCES = {
+  light: "/assets/logo/logo-light-mode.svg",
+  dark: "/assets/logo/logo-dark-mode.svg",
+};
+const LOGO_WIDTH = 140;
+const LOGO_HEIGHT = 64;
+
 export const renderHeader = (container, onThemeToggle, { onHeightChange } = {}) => {
   const MOBILE_BREAKPOINT = 960;
   const SHRINK_THRESHOLD = 80;
@@ -46,42 +53,17 @@ export const renderHeader = (container, onThemeToggle, { onHeightChange } = {}) 
 
   const focusableSelector = "a[href], button:not([disabled]), [tabindex]:not([tabindex='-1'])";
 
-  const LOGO_PATH =
-    "M 365.851562 149.308594 L 176.976562 338.183594 L 18.148438 179.359375 L 151.707031 45.804688 L 264.011719 158.109375 L 169.574219 252.546875 L 90.160156 173.136719 L 156.9375 106.355469 L 213.09375 162.511719 L 165.875 209.730469 L 126.167969 170.023438 L 159.554688 136.632812 L 187.632812 164.710938 L 164.023438 188.320312 L 144.167969 168.46875 L 160.863281 151.773438 L 174.902344 165.8125 L 163.097656 177.617188 L 153.171875 167.691406 L 161.519531 159.34375 L 168.539062 166.363281 L 162.636719 172.265625 L 157.671875 167.300781 L 161.84375 163.128906 L 165.355469 166.636719 L 162.402344 169.589844 L 159.921875 167.105469 L 162.007812 165.019531";
+  const getLogoSrc = (theme) => (theme === "dark" ? LOGO_SOURCES.dark : LOGO_SOURCES.light);
 
-  const createLogo = () => {
-    const ns = "http://www.w3.org/2000/svg";
-    const svg = document.createElementNS(ns, "svg");
-    svg.setAttribute("viewBox", "0 0 384 383.999986");
-    svg.setAttribute("width", "140");
-    svg.setAttribute("height", "64");
-    svg.setAttribute("preserveAspectRatio", "xMidYMid meet");
-    svg.setAttribute("aria-hidden", "true");
-
-    const defs = document.createElementNS(ns, "defs");
-    const clipPath = document.createElementNS(ns, "clipPath");
-    clipPath.setAttribute("id", "logo-clip");
-    const clipPathShape = document.createElementNS(ns, "path");
-    clipPathShape.setAttribute(
-      "d",
-      "M 18.128906 45.804688 L 366 45.804688 L 366 338.304688 L 18.128906 338.304688 Z M 18.128906 45.804688 "
-    );
-    clipPathShape.setAttribute("clip-rule", "nonzero");
-    clipPath.appendChild(clipPathShape);
-    defs.appendChild(clipPath);
-    svg.appendChild(defs);
-
-    const group = document.createElementNS(ns, "g");
-    group.setAttribute("clip-path", "url(#logo-clip)");
-    const path = document.createElementNS(ns, "path");
-    path.setAttribute("d", LOGO_PATH);
-    path.setAttribute("fill", "currentColor");
-    path.setAttribute("fill-rule", "evenodd");
-    group.appendChild(path);
-    svg.appendChild(group);
-
-    return svg;
-  };
+  const createLogoImage = (theme) =>
+    createElement("img", {
+      attrs: {
+        src: getLogoSrc(theme),
+        alt: "KP_Code Digital Vault",
+        width: String(LOGO_WIDTH),
+        height: String(LOGO_HEIGHT),
+      },
+    });
 
   const getThemeLabel = (theme) => {
     return theme === "dark" ? "Switch to light theme" : "Switch to dark theme";
@@ -236,6 +218,7 @@ export const renderHeader = (container, onThemeToggle, { onHeightChange } = {}) 
   const buildActions = (className, { withId = false } = {}) => {
     const actions = createElement("div", { className });
     const cartButton = createElement("a", {
+      text: `Koszyk (${getCartCount(store.getState().cart)})`,
       attrs: { href: "#/cart" },
     });
 
@@ -363,7 +346,7 @@ export const renderHeader = (container, onThemeToggle, { onHeightChange } = {}) 
     clearElement(container);
 
     // --- BRAND / LOGO ---
-    const logo = createLogo();
+    const logo = createLogoImage(store.getState().ui?.theme);
     const brandLink = createElement(
       "a",
       { attrs: { href: "#/", "aria-label": "KP_Code Digital Vault" }, className: "brand" },
@@ -457,7 +440,7 @@ export const renderHeader = (container, onThemeToggle, { onHeightChange } = {}) 
 
     applyMenuState({ focusOnOpen: menuOpen });
 
-    return { actions, mobileActions };
+    return { actions, mobileActions, logo };
   };
 
   const selectHeaderState = (state) => ({
@@ -466,10 +449,17 @@ export const renderHeader = (container, onThemeToggle, { onHeightChange } = {}) 
     theme: state.ui?.theme,
   });
 
-  const { actions, mobileActions } = build();
+  const { actions, mobileActions, logo } = build();
+  const updateLogo = (theme) => {
+    const nextSrc = getLogoSrc(theme);
+    if (logo && logo.getAttribute("src") !== nextSrc) {
+      logo.setAttribute("src", nextSrc);
+    }
+  };
   const updateActions = (nextState) => {
     actions.update(nextState);
     mobileActions.update(nextState);
+    updateLogo(nextState.theme);
   };
   let previousState = selectHeaderState(store.getState());
   updateActions(previousState);

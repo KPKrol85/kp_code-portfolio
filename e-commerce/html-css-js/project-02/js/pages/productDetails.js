@@ -75,7 +75,9 @@ export const renderProductDetails = ({ id }) => {
     const wrapper = createElement("section", { className: "container" });
     const layout = createElement("div", { className: "grid grid-2" });
 
-    const image = createElement("img", { attrs: { src: product.thumbnail, alt: product.name } });
+    const image = createElement("img", {
+      attrs: { src: product.thumbnail, alt: product.name, width: "320", height: "200" },
+    });
     const details = createElement("div", { className: "card" });
     details.appendChild(createElement("h1", { text: product.name }));
     details.appendChild(createElement("p", { text: product.description }));

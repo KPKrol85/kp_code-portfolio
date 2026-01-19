@@ -8,6 +8,8 @@ export const createProductCard = (product, onAdd) => {
     attrs: {
       src: product.thumbnail,
       alt: product.name,
+      width: "320",
+      height: "200",
       loading: "lazy",
     },
   });

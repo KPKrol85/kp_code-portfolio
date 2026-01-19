@@ -20,6 +20,11 @@ header {
   --header-padding-y-shrink: var(--space-2);
   --logo-height: var(--space-10);
   --logo-height-shrink: var(--space-9);
+  min-height: calc(var(--logo-height) + (var(--header-padding-y) * 2));
+}
+
+#app-header:empty {
+  min-height: var(--logo-height);
 }
 
 .header-inner {
@@ -118,6 +123,10 @@ header {
 
 header.is-shrink .header-inner {
   padding: var(--header-padding-y-shrink) var(--space-4);
+}
+
+header.is-shrink {
+  min-height: calc(var(--logo-height-shrink) + (var(--header-padding-y-shrink) * 2));
 }
 
 header.is-shrink .brand img,
@@ -280,6 +289,7 @@ footer {
   border-top: 1px solid var(--color-border);
   padding: var(--space-6) 0 var(--space-8);
 }
+
 
 .grid {
   display: grid;
@@ -659,6 +669,7 @@ footer {
     --logo-height-shrink: var(--space-8);
   }
 
+
   .header-inner {
     flex-direction: row;
     align-items: center;
@@ -718,6 +729,7 @@ footer {
     --logo-height: var(--space-9);
     --logo-height-shrink: var(--space-8);
   }
+
 
   .primary-nav,
   .header-actions {

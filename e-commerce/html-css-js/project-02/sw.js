@@ -8,8 +8,8 @@
   Bump cache versions when app shell assets change (e.g. dv-static-v2).
 */
 
-const STATIC_CACHE = "dv-static-v1.0.00";
-const DATA_CACHE = "dv-data-v1.0.00";
+const STATIC_CACHE = "dv-static-v1.0.01";
+const DATA_CACHE = "dv-data-v1.0.01";
 
 const APP_SHELL_URLS = [
   "./",
