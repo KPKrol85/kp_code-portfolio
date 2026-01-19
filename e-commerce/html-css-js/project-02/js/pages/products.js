@@ -48,7 +48,15 @@ export const renderProducts = () => {
   });
   const searchField = createElement("input", {
     className: "input",
-    attrs: { id: searchId, type: "search", placeholder: "Szukaj produktu" },
+    attrs: {
+      id: searchId,
+      type: "search",
+      placeholder: "Szukaj produktu",
+      autocomplete: "off",
+      inputmode: "search",
+      autocapitalize: "none",
+      spellcheck: "false",
+    },
   });
   const sortSelect = createElement("select", {
     className: "select",

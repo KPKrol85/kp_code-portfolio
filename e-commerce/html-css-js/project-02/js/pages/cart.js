@@ -108,7 +108,13 @@ export const renderCart = () => {
     });
     const quantityField = createElement("input", {
       className: "input",
-      attrs: { id: quantityId, type: "number", min: "1", value: String(item.quantity) },
+      attrs: {
+        id: quantityId,
+        type: "number",
+        min: "1",
+        value: String(item.quantity),
+        inputmode: "numeric",
+      },
     });
     quantityField.addEventListener("change", () => {
       const rawValue = Number(quantityField.value);
@@ -148,7 +154,15 @@ export const renderCart = () => {
   });
   const promoField = createElement("input", {
     className: "input",
-    attrs: { id: "promo-code", type: "text", placeholder: "Kod rabatowy (mock)" },
+    attrs: {
+      id: "promo-code",
+      type: "text",
+      placeholder: "Kod rabatowy (mock)",
+      autocomplete: "off",
+      inputmode: "text",
+      autocapitalize: "characters",
+      spellcheck: "false",
+    },
   });
   const applyButton = createElement("button", {
     className: "button secondary",

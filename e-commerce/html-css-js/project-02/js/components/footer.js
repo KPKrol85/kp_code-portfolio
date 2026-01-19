@@ -5,8 +5,8 @@ import { selectors } from "../store/selectors.js";
 const getAccountLinks = (isAuthenticated) => {
   if (!isAuthenticated) {
     return [
-      { label: "Zaloguj si©", href: "#/auth" },
-      { label: "Utw¢rz konto", href: "#/auth" },
+      { label: "Zaloguj się", href: "#/auth" },
+      { label: "Utwórz konto", href: "#/auth" },
     ];
   }
   return [
@@ -21,8 +21,8 @@ const getFooterNav = (isAuthenticated) => [
     title: "Produkty",
     ariaLabel: "Produkty",
     links: [
-      { label: "Przegl¥daj produkty", href: "#/products" },
-      { label: "Kategorie produkt¢w", href: "#/products" },
+      { label: "Przeglądaj produkty", href: "#/products" },
+      { label: "Kategorie produktów", href: "#/products" },
       { label: "Cennik", href: "#/pricing" },
       { label: "Aktualizacje / Changelog", href: "#/updates" },
     ],
@@ -44,7 +44,7 @@ const getFooterNav = (isAuthenticated) => [
       { label: "O nas", href: "#/about" },
       { label: "Plan rozwoju / Roadmap", href: "#/roadmap" },
       { label: "Regulamin", href: "#/terms" },
-      { label: "Polityka prywatno˜ci", href: "#/privacy" },
+      { label: "Polityka prywatności", href: "#/privacy" },
       { label: "Cookies", href: "#/cookies" },
       { label: "Kariera", href: "#/careers" },
     ],
@@ -176,7 +176,7 @@ export const renderFooter = (container) => {
     createElement("h2", { className: "footer-brand-title", text: "KP_Code Digital Vault" }),
     createElement("p", {
       className: "footer-description",
-      text: "Kompaktowa biblioteka produkt¢w cyfrowych dla tw¢rc¢w i zespoˆ¢w. Prosty zakup i szybki dost©p.",
+      text: "Kompaktowa biblioteka produktów cyfrowych dla twórców i zespołów. Prosty zakup i szybki dostęp.",
     }),
   ]);
 
@@ -192,7 +192,10 @@ export const renderFooter = (container) => {
       type: "email",
       name: "email",
       placeholder: "Adres e-mail",
+      inputmode: "email",
       autocomplete: "email",
+      autocapitalize: "none",
+      spellcheck: "false",
       required: true,
     },
   });
@@ -219,7 +222,7 @@ export const renderFooter = (container) => {
       newsletterInput.reportValidity();
       return;
     }
-    newsletterStatus.textContent = "Wkr¢tce";
+    newsletterStatus.textContent = "Wkrótce";
     newsletterStatus.classList.add("is-visible");
   });
 
@@ -262,7 +265,7 @@ export const renderFooter = (container) => {
   const legalLinks = createElement("div", { className: "footer-meta-links" }, [
     createElement("a", {
       className: "footer-link",
-      text: "Polityka prywatno˜ci",
+      text: "Polityka prywatności",
       attrs: { href: "#/privacy" },
     }),
     createElement("a", { className: "footer-link", text: "Regulamin", attrs: { href: "#/terms" } }),
@@ -270,14 +273,14 @@ export const renderFooter = (container) => {
   ]);
 
   const metaInfo = createElement("div", { className: "footer-meta-info" }, [
-    createElement("span", { text: `c ${currentYear} KP_Code. Wszelkie prawa zastrze¾one.` }),
-    createElement("span", { className: "footer-meta-divider", text: "" }),
+    createElement("span", { text: `© ${currentYear} KP_Code. Wszelkie prawa zastrzeżone.` }),
+    createElement("span", { className: "footer-meta-divider", text: "•" }),
     createElement("span", { text: "Stworzone w Polsce" }),
   ]);
 
   const backToTop = createElement("button", {
     className: "footer-top-link",
-    text: "Do g¢ry",
+    text: "Do góry",
     attrs: { type: "button" },
   });
 

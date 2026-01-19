@@ -31,15 +31,53 @@ export const renderContact = () => {
   form.appendChild(createElement("h2", { text: "Napisz do nas" }));
   const nameField = createElement("input", {
     className: "input",
-    attrs: { id: "contact-name", type: "text", placeholder: "Imię i nazwisko" },
+    attrs: {
+
+      id: "contact-name",
+
+      type: "text",
+
+      placeholder: "Imię i nazwisko",
+
+      autocomplete: "name",
+
+      inputmode: "text",
+
+      autocapitalize: "words",
+
+      spellcheck: "false",
+
+    },
   });
   const emailField = createElement("input", {
     className: "input",
-    attrs: { id: "contact-email", type: "email", placeholder: "E-mail" },
+    attrs: {
+      id: "contact-email",
+      type: "email",
+      placeholder: "E-mail",
+      autocomplete: "email",
+      inputmode: "email",
+      autocapitalize: "none",
+      spellcheck: "false",
+    },
   });
   const messageField = createElement("textarea", {
     className: "textarea",
-    attrs: { id: "contact-message", rows: "4", placeholder: "Wiadomość" },
+    attrs: {
+
+      id: "contact-message",
+
+      rows: "4",
+
+      placeholder: "Wiadomość",
+
+      autocomplete: "off",
+
+      autocapitalize: "sentences",
+
+      spellcheck: "true",
+
+    },
   });
   const errorBox = createElement("div", { className: "form-error" });
 

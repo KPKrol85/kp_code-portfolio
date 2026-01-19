@@ -72,11 +72,29 @@ export const renderCheckout = () => {
 
   const nameField = createElement("input", {
     className: "input",
-    attrs: { id: "checkout-name", type: "text", name: "name", placeholder: "Imię i nazwisko" },
+    attrs: {
+      id: "checkout-name",
+      type: "text",
+      name: "name",
+      placeholder: "Imię i nazwisko",
+      autocomplete: "name",
+      inputmode: "text",
+      autocapitalize: "words",
+      spellcheck: "false",
+    },
   });
   const emailField = createElement("input", {
     className: "input",
-    attrs: { id: "checkout-email", type: "email", name: "email", placeholder: "E-mail" },
+    attrs: {
+      id: "checkout-email",
+      type: "email",
+      name: "email",
+      placeholder: "E-mail",
+      autocomplete: "email",
+      inputmode: "email",
+      autocapitalize: "none",
+      spellcheck: "false",
+    },
   });
   const companyField = createElement("input", {
     className: "input",
@@ -85,11 +103,23 @@ export const renderCheckout = () => {
       type: "text",
       name: "company",
       placeholder: "Firma (opcjonalnie)",
+      autocomplete: "organization",
+      inputmode: "text",
+      autocapitalize: "words",
     },
   });
   const taxIdField = createElement("input", {
     className: "input",
-    attrs: { id: "checkout-tax-id", type: "text", name: "taxId", placeholder: "NIP (opcjonalnie)" },
+    attrs: {
+      id: "checkout-tax-id",
+      type: "text",
+      name: "taxId",
+      placeholder: "NIP (opcjonalnie)",
+      inputmode: "numeric",
+      autocomplete: "off",
+      autocapitalize: "none",
+      spellcheck: "false",
+    },
   });
 
   const nameErrorId = "checkout-name-error";

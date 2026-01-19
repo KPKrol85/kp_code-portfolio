@@ -55,11 +55,33 @@ export const renderAuth = () => {
     panel.appendChild(createElement("h2", { text: content.auth.login.title }));
     const emailField = createElement("input", {
       className: "input",
-      attrs: { id: "auth-login-email", type: "email", placeholder: "E-mail" },
+      attrs: {
+        id: "auth-login-email",
+        type: "email",
+        placeholder: "E-mail",
+        autocomplete: "email",
+        inputmode: "email",
+        autocapitalize: "none",
+        spellcheck: "false",
+      },
     });
     const passwordField = createElement("input", {
       className: "input",
-      attrs: { id: "auth-login-password", type: "password", placeholder: "Hasło" },
+      attrs: {
+
+        id: "auth-login-password",
+
+        type: "password",
+
+        placeholder: "Hasło",
+
+        autocomplete: "current-password",
+
+        autocapitalize: "none",
+
+        spellcheck: "false",
+
+      },
     });
     const errorBox = createElement("div", {
       className: "form-error",
@@ -151,15 +173,53 @@ export const renderAuth = () => {
     panel.appendChild(createElement("h2", { text: content.auth.register.title }));
     const nameField = createElement("input", {
       className: "input",
-      attrs: { id: "auth-register-name", type: "text", placeholder: "Imię i nazwisko" },
+      attrs: {
+
+        id: "auth-register-name",
+
+        type: "text",
+
+        placeholder: "Imię i nazwisko",
+
+        autocomplete: "name",
+
+        inputmode: "text",
+
+        autocapitalize: "words",
+
+        spellcheck: "false",
+
+      },
     });
     const emailField = createElement("input", {
       className: "input",
-      attrs: { id: "auth-register-email", type: "email", placeholder: "E-mail" },
+      attrs: {
+        id: "auth-register-email",
+        type: "email",
+        placeholder: "E-mail",
+        autocomplete: "email",
+        inputmode: "email",
+        autocapitalize: "none",
+        spellcheck: "false",
+      },
     });
     const passwordField = createElement("input", {
       className: "input",
-      attrs: { id: "auth-register-password", type: "password", placeholder: "Hasło" },
+      attrs: {
+
+        id: "auth-register-password",
+
+        type: "password",
+
+        placeholder: "Hasło",
+
+        autocomplete: "new-password",
+
+        autocapitalize: "none",
+
+        spellcheck: "false",
+
+      },
     });
     const errorBox = createElement("div", {
       className: "form-error",
