@@ -100,7 +100,7 @@ const staleWhileRevalidate = async (request) => {
       }
       return response;
     })
-    .catch(() => undefined);
+    .catch(() => new Response("", { status: 504 }));
 
   return cached || fetchPromise;
 };
@@ -118,7 +118,7 @@ const networkFirst = async (request) => {
     if (cached) {
       return cached;
     }
-    return cache.match(toAbsoluteUrl("./offline.html"));
+    return cache.match("./offline.html");
   }
 };
 

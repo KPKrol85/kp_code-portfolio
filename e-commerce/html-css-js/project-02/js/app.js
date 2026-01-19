@@ -1,20 +1,5 @@
 import { renderHeader } from "./components/header.js";
 import { renderFooter } from "./components/footer.js";
-import { renderHome } from "./pages/home.js";
-import { renderProducts } from "./pages/products.js";
-import { renderProductDetails } from "./pages/productDetails.js";
-import { renderCart } from "./pages/cart.js";
-import { renderCheckout, renderCheckoutSuccess } from "./pages/checkout.js";
-import { renderAuth } from "./pages/auth.js";
-import { renderAccount } from "./pages/account.js";
-import { renderLibrary } from "./pages/library.js";
-import { renderLicenses } from "./pages/licenses.js";
-import { renderLegal } from "./pages/legal.js";
-import { renderCookies, renderPrivacy, renderTerms } from "./pages/legalPages.js";
-import { renderContact } from "./pages/contact.js";
-import { renderNotFound } from "./pages/notFound.js";
-import { renderAdmin } from "./pages/admin.js";
-import { createPlaceholderHandler } from "./pages/placeholder.js";
 import { addRoute, startRouter } from "./router/router.js";
 import { mockApi } from "./services/mockApi.js";
 import { cartService } from "./services/cart.js";
@@ -101,7 +86,16 @@ const initLayout = () => {
   renderFooter(document.getElementById("app-footer"));
 };
 
+const getHandlerByName = (name) => (module) => module[name];
+
+const addLazyRoute = (pattern, loader, getHandler, meta) => {
+  addRoute(pattern, null, meta, { loader, getHandler });
+};
+
 const initRoutes = () => {
+  const placeholderLoader = () => import("./pages/placeholder.js");
+  const checkoutLoader = () => import("./pages/checkout.js");
+  const legalPagesLoader = () => import("./pages/legalPages.js");
   const placeholderBullets = {
     products: [
       "Przegląd kolekcji tematycznych i filtrów.",
@@ -373,78 +367,122 @@ const initRoutes = () => {
     },
   ];
 
-  addRoute(/^\/$/, renderHome, {
-    title: "KP_Code Digital Vault — Start",
-    description: "Nowoczesny sklep z produktami cyfrowymi i biblioteką zakupów.",
+  addLazyRoute(/^\/$/, () => import("./pages/home.js"), getHandlerByName("renderHome"), {
+    title: "KP_Code Digital Vault - Start",
+    description: "Nowoczesny sklep z produktami cyfrowymi i bibliotek¥ zakup¢w.",
   });
-  addRoute(/^\/products(?:\?.*)?$/, renderProducts, {
-    title: "Katalog produktów — KP_Code Digital Vault",
-    description: "Przeglądaj produkty cyfrowe, filtry i sortowanie.",
-  });
+  addLazyRoute(
+    /^\/products(?:\?.*)?$/,
+    () => import("./pages/products.js"),
+    getHandlerByName("renderProducts"),
+    {
+      title: "Katalog produkt¢w - KP_Code Digital Vault",
+      description: "Przegl¥daj produkty cyfrowe, filtry i sortowanie.",
+    }
+  );
   placeholderRoutes.forEach((route) => {
-    addRoute(route.pattern, createPlaceholderHandler(route.view), route.meta);
+    addLazyRoute(
+      route.pattern,
+      placeholderLoader,
+      (module) => module.createPlaceholderHandler(route.view),
+      route.meta
+    );
   });
-  addRoute(/^\/products\/(?<id>[\w-]+)$/, renderProductDetails, {
-    title: "Szczegóły produktu — KP_Code Digital Vault",
-    description: "Poznaj szczegóły produktu cyfrowego i jego zawartość.",
+  addLazyRoute(
+    /^\/products\/(?<id>[\w-]+)$/,
+    () => import("./pages/productDetails.js"),
+    getHandlerByName("renderProductDetails"),
+    {
+      title: "Szczeg¢ˆy produktu - KP_Code Digital Vault",
+      description: "Poznaj szczeg¢ˆy produktu cyfrowego i jego zawarto˜†.",
+    }
+  );
+  addLazyRoute(/^\/cart$/, () => import("./pages/cart.js"), getHandlerByName("renderCart"), {
+    title: "Koszyk - KP_Code Digital Vault",
+    description: "Sprawd« produkty w koszyku i podsumowanie zam¢wienia.",
   });
-  addRoute(/^\/cart$/, renderCart, {
-    title: "Koszyk — KP_Code Digital Vault",
-    description: "Sprawdź produkty w koszyku i podsumowanie zamówienia.",
+  addLazyRoute(/^\/checkout$/, checkoutLoader, getHandlerByName("renderCheckout"), {
+    title: "Checkout - KP_Code Digital Vault",
+    description: "Zˆ¢¾ zam¢wienie na produkty cyfrowe.",
   });
-  addRoute(/^\/checkout$/, renderCheckout, {
-    title: "Checkout — KP_Code Digital Vault",
-    description: "Złóż zamówienie na produkty cyfrowe.",
+  addLazyRoute(
+    /^\/checkout\/success$/,
+    checkoutLoader,
+    getHandlerByName("renderCheckoutSuccess"),
+    {
+      title: "Sukces zam¢wienia - KP_Code Digital Vault",
+      description: "Potwierdzenie zˆo¾enia zam¢wienia.",
+    }
+  );
+  addLazyRoute(/^\/auth$/, () => import("./pages/auth.js"), getHandlerByName("renderAuth"), {
+    title: "Logowanie - KP_Code Digital Vault",
+    description: "Zaloguj si© lub utw¢rz konto u¾ytkownika.",
   });
-  addRoute(/^\/checkout\/success$/, renderCheckoutSuccess, {
-    title: "Sukces zamówienia — KP_Code Digital Vault",
-    description: "Potwierdzenie złożenia zamówienia.",
-  });
-  addRoute(/^\/auth$/, renderAuth, {
-    title: "Logowanie — KP_Code Digital Vault",
-    description: "Zaloguj się lub utwórz konto użytkownika.",
-  });
-  addRoute(/^\/account$/, renderAccount, {
-    title: "Konto — KP_Code Digital Vault",
-    description: "Panel użytkownika i historia zamówień.",
-  });
-  addRoute(/^\/library$/, renderLibrary, {
-    title: "Biblioteka — KP_Code Digital Vault",
-    description: "Pobieraj zakupione produkty cyfrowe.",
-  });
-  addRoute(/^\/licenses$/, renderLicenses, {
-    title: "Licencje — KP_Code Digital Vault",
-    description: "Sprawdź typy licencji i pobierz pliki licencyjne.",
-  });
-  addRoute(/^\/privacy$/, renderPrivacy, {
+  addLazyRoute(
+    /^\/account$/,
+    () => import("./pages/account.js"),
+    getHandlerByName("renderAccount"),
+    {
+      title: "Konto - KP_Code Digital Vault",
+      description: "Panel u¾ytkownika i historia zam¢wieä.",
+    }
+  );
+  addLazyRoute(
+    /^\/library$/,
+    () => import("./pages/library.js"),
+    getHandlerByName("renderLibrary"),
+    {
+      title: "Biblioteka - KP_Code Digital Vault",
+      description: "Pobieraj zakupione produkty cyfrowe.",
+    }
+  );
+  addLazyRoute(
+    /^\/licenses$/,
+    () => import("./pages/licenses.js"),
+    getHandlerByName("renderLicenses"),
+    {
+      title: "Licencje - KP_Code Digital Vault",
+      description: "Sprawd« typy licencji i pobierz pliki licencyjne.",
+    }
+  );
+  addLazyRoute(/^\/privacy$/, legalPagesLoader, getHandlerByName("renderPrivacy"), {
     title: "Polityka prywatnosci - KP_Code Digital Vault",
     description: "Informacje o przetwarzaniu danych i prywatnosci w KP_Code Digital Vault.",
   });
-  addRoute(/^\/terms$/, renderTerms, {
+  addLazyRoute(/^\/terms$/, legalPagesLoader, getHandlerByName("renderTerms"), {
     title: "Regulamin - KP_Code Digital Vault",
     description: "Zasady korzystania z KP_Code Digital Vault i zakupu produktow cyfrowych.",
   });
-  addRoute(/^\/cookies$/, renderCookies, {
+  addLazyRoute(/^\/cookies$/, legalPagesLoader, getHandlerByName("renderCookies"), {
     title: "Cookies - KP_Code Digital Vault",
     description: "Informacje o cookies i localStorage w KP_Code Digital Vault.",
   });
-  addRoute(/^\/admin$/, renderAdmin, {
+  addLazyRoute(/^\/admin$/, () => import("./pages/admin.js"), getHandlerByName("renderAdmin"), {
     title: "Panel administratora - KP_Code Digital Vault",
     description: "Strefa administracyjna sklepu (w budowie).",
   });
-  addRoute(/^\/legal$/, renderLegal, {
-    title: "Dokumenty prawne — KP_Code Digital Vault",
-    description: "Regulamin i polityka prywatności sklepu.",
+  addLazyRoute(/^\/legal$/, () => import("./pages/legal.js"), getHandlerByName("renderLegal"), {
+    title: "Dokumenty prawne - KP_Code Digital Vault",
+    description: "Regulamin i polityka prywatno˜ci sklepu.",
   });
-  addRoute(/^\/contact$/, renderContact, {
-    title: "Kontakt — KP_Code Digital Vault",
-    description: "Skontaktuj się z nami w sprawie produktów cyfrowych.",
-  });
-  addRoute(/^\/404$/, renderNotFound, {
-    title: "404 — KP_Code Digital Vault",
-    description: "Nie znaleziono strony.",
-  });
-
+  addLazyRoute(
+    /^\/contact$/,
+    () => import("./pages/contact.js"),
+    getHandlerByName("renderContact"),
+    {
+      title: "Kontakt - KP_Code Digital Vault",
+      description: "Skontaktuj si© z nami w sprawie produkt¢w cyfrowych.",
+    }
+  );
+  addLazyRoute(
+    /^\/404$/,
+    () => import("./pages/notFound.js"),
+    getHandlerByName("renderNotFound"),
+    {
+      title: "404 - KP_Code Digital Vault",
+      description: "Nie znaleziono strony.",
+    }
+  );
   startRouter();
 };
 

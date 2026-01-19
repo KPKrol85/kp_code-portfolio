@@ -9,9 +9,62 @@ import { navigateHash } from "../utils/navigation.js";
 
 const routes = [];
 let activeCleanup = null;
+const routeModuleCache = new Map();
 
-export const addRoute = (pattern, handler, meta) => {
-  routes.push({ pattern, handler, meta });
+const loadRouteModule = async (route) => {
+  if (!route?.loader) {
+    return null;
+  }
+  if (routeModuleCache.has(route.loader)) {
+    return routeModuleCache.get(route.loader);
+  }
+  const loadPromise = route
+    .loader()
+    .then((module) => {
+      routeModuleCache.set(route.loader, module);
+      return module;
+    })
+    .catch((error) => {
+      routeModuleCache.delete(route.loader);
+      throw error;
+    });
+  routeModuleCache.set(route.loader, loadPromise);
+  return loadPromise;
+};
+
+const resolveRouteHandler = (route, module) => {
+  if (typeof route.getHandler === "function") {
+    return route.getHandler(module);
+  }
+  return route.handler;
+};
+
+const renderRouteLoading = (main) => {
+  if (!main) {
+    return;
+  }
+  clearElement(main);
+  const container = createElement("section", { className: "container" });
+  const loading = createElement("div", { text: "Ladowanie widoku..." });
+  container.appendChild(loading);
+  main.appendChild(container);
+};
+
+const renderRouteLoadError = (main) => {
+  if (!main) {
+    return;
+  }
+  clearElement(main);
+  const container = createElement("section", { className: "container" });
+  const notice = createElement("div", {
+    text: "Nie udalo sie zaladowac widoku. Odswiez strone.",
+  });
+  container.appendChild(notice);
+  main.appendChild(container);
+};
+
+export const addRoute = (pattern, handler, meta, options = {}) => {
+  routes.push({ pattern, handler, meta, ...options });
 };
 
 const matchRoute = (path) => {
@@ -37,7 +90,7 @@ export const startRouter = () => {
     );
   };
 
-  const handleRoute = () => {
+  const handleRoute = async () => {
     if (typeof activeCleanup === "function") {
       activeCleanup();
       activeCleanup = null;
@@ -78,18 +131,54 @@ export const startRouter = () => {
       if (route.meta) {
         updateMeta(route.meta.title, route.meta.description);
       }
-      const cleanup = route.handler(route.params);
-      if (typeof cleanup === "function") {
-        activeCleanup = cleanup;
+      const main = document.getElementById("main-content");
+      if (route.loader) {
+        renderRouteLoading(main);
+      }
+      let handler = route.handler;
+      if (route.loader) {
+        try {
+          const module = await loadRouteModule(route);
+          handler = resolveRouteHandler(route, module);
+        } catch (error) {
+          console.error("Failed to load route module:", error);
+          renderRouteLoadError(main);
+          updateActiveNav(`#${path === "/" ? "/" : path}`);
+          notifyRouteRendered(path);
+          return;
+        }
+      }
+      if (typeof handler === "function") {
+        const cleanup = handler(route.params);
+        if (typeof cleanup === "function") {
+          activeCleanup = cleanup;
+        }
       }
       updateActiveNav(`#${path === "/" ? "/" : path}`);
       notifyRouteRendered(path);
     } else {
       const fallback = routes.find((item) => item.pattern.source === "^/404$");
       if (fallback) {
-        const cleanup = fallback.handler({});
-        if (typeof cleanup === "function") {
-          activeCleanup = cleanup;
+        let handler = fallback.handler;
+        if (fallback.loader) {
+          const main = document.getElementById("main-content");
+          renderRouteLoading(main);
+          try {
+            const module = await loadRouteModule(fallback);
+            handler = resolveRouteHandler(fallback, module);
+          } catch (error) {
+            console.error("Failed to load route module:", error);
+            renderRouteLoadError(main);
+            updateActiveNav("");
+            notifyRouteRendered("/404");
+            return;
+          }
+        }
+        if (typeof handler === "function") {
+          const cleanup = handler({});
+          if (typeof cleanup === "function") {
+            activeCleanup = cleanup;
+          }
         }
         updateMeta(fallback.meta.title, fallback.meta.description);
         updateActiveNav("");
@@ -98,7 +187,12 @@ export const startRouter = () => {
     }
   };
 
-  window.addEventListener("hashchange", handleRoute);
-  handleRoute();
-};
+  const runHandleRoute = () => {
+    handleRoute().catch((error) => {
+      console.error("Route handler failed:", error);
+    });
+  };
 
+  window.addEventListener("hashchange", runHandleRoute);
+  runHandleRoute();
+};
