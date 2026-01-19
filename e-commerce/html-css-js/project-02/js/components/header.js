@@ -155,7 +155,6 @@ export const renderHeader = (container, onThemeToggle, { onHeightChange } = {}) 
         text: entry.label,
         attrs: {
           href: entry.path,
-          role: "menuitem",
           "data-action": entry.action || null,
         },
       });
@@ -177,7 +176,7 @@ export const renderHeader = (container, onThemeToggle, { onHeightChange } = {}) 
     const trigger = createElement("div", { className: "nav-dropdown__trigger" }, [triggerButton]);
     const menu = createElement("div", {
       className: "nav-dropdown__menu",
-      attrs: { id: menuId, role: "menu", "aria-hidden": "true" },
+      attrs: { id: menuId, "aria-hidden": "true" },
     });
     menu.setAttribute("hidden", "");
     if (items?.length) {
@@ -519,6 +518,31 @@ export const renderHeader = (container, onThemeToggle, { onHeightChange } = {}) 
     });
   };
 
+  const getFirstFocusableLink = (menu) => {
+    if (!menu) {
+      return null;
+    }
+    return menu.querySelector("a[href]");
+  };
+
+  const openDropdownMenu = (dropdown, { focusFirstLink = false } = {}) => {
+    if (!dropdown) {
+      return;
+    }
+    const menu = dropdown.querySelector(".nav-dropdown__menu");
+    setDropdownOpen(dropdown, true);
+    if (focusFirstLink && menu) {
+      const firstLink = getFirstFocusableLink(menu);
+      if (firstLink) {
+        firstLink.focus();
+      }
+    }
+  };
+
+  const closeDropdownMenu = (dropdown, { focusToggle = false } = {}) => {
+    setDropdownOpen(dropdown, false, { focusToggle });
+  };
+
   const setDropdownOpen = (dropdown, nextOpen, { focusToggle = false } = {}) => {
     if (!dropdown) {
       return;
@@ -551,18 +575,22 @@ export const renderHeader = (container, onThemeToggle, { onHeightChange } = {}) 
     }
     const isOpen = dropdown.classList.contains("is-open");
     if (isOpen) {
-      setDropdownOpen(dropdown, false, { focusToggle: true });
+      closeDropdownMenu(dropdown, { focusToggle: true });
       return;
     }
     if (openDropdown && openDropdown !== dropdown) {
-      setDropdownOpen(openDropdown, false);
+      closeDropdownMenu(openDropdown);
     }
-    setDropdownOpen(dropdown, true);
+    openDropdownMenu(dropdown);
   };
 
   const handleDropdownClick = (event) => {
     const toggle = event.target.closest(".nav-dropdown__button");
     if (toggle) {
+      if (toggle.dataset.ignoreClick === "true") {
+        delete toggle.dataset.ignoreClick;
+        return;
+      }
       const dropdown = toggle.closest(".nav-dropdown");
       if (dropdown) {
         event.preventDefault();
@@ -581,7 +609,7 @@ export const renderHeader = (container, onThemeToggle, { onHeightChange } = {}) 
           showToast(content.toasts.logout);
           navigateHash("#/auth");
         }
-        setDropdownOpen(dropdown, false);
+        closeDropdownMenu(dropdown);
         if (menuOpen) {
           setMenuOpen(false, { restoreFocus: false });
         }
@@ -596,14 +624,63 @@ export const renderHeader = (container, onThemeToggle, { onHeightChange } = {}) 
     if (openDropdown.contains(event.target)) {
       return;
     }
-    setDropdownOpen(openDropdown, false);
+    closeDropdownMenu(openDropdown);
+  };
+
+  const handleDropdownKeydown = (event) => {
+    const toggle = event.target.closest(".nav-dropdown__button");
+    if (toggle) {
+      const dropdown = toggle.closest(".nav-dropdown");
+      if (!dropdown) {
+        return;
+      }
+      if (event.key === "ArrowDown") {
+        event.preventDefault();
+        event.stopPropagation();
+        if (openDropdown && openDropdown !== dropdown) {
+          closeDropdownMenu(openDropdown);
+        }
+        openDropdownMenu(dropdown, { focusFirstLink: true });
+        return;
+      }
+      if (event.key === "Escape") {
+        if (dropdown.classList.contains("is-open")) {
+          event.preventDefault();
+          closeDropdownMenu(dropdown, { focusToggle: true });
+        }
+        return;
+      }
+      if (event.key === " " || event.key === "Enter") {
+        event.preventDefault();
+        event.stopPropagation();
+        toggle.dataset.ignoreClick = "true";
+        if (dropdown.classList.contains("is-open")) {
+          closeDropdownMenu(dropdown, { focusToggle: true });
+        } else {
+          if (openDropdown && openDropdown !== dropdown) {
+            closeDropdownMenu(openDropdown);
+          }
+          openDropdownMenu(dropdown, { focusFirstLink: true });
+        }
+      }
+      return;
+    }
+
+    const menuLink = event.target.closest(".nav-dropdown__menu a");
+    if (menuLink && event.key === "Escape") {
+      const dropdown = menuLink.closest(".nav-dropdown");
+      if (dropdown) {
+        event.preventDefault();
+        closeDropdownMenu(dropdown, { focusToggle: true });
+      }
+    }
   };
 
   const handleKeydown = (event) => {
     if (event.key === "Escape") {
       if (openDropdown) {
         const dropdownToClose = openDropdown;
-        setDropdownOpen(dropdownToClose, false, { focusToggle: true });
+        closeDropdownMenu(dropdownToClose, { focusToggle: true });
         return;
       }
       if (menuOpen) {
@@ -644,6 +721,7 @@ export const renderHeader = (container, onThemeToggle, { onHeightChange } = {}) 
     handleScroll();
   }
   container.addEventListener("click", handleDropdownClick);
+  container.addEventListener("keydown", handleDropdownKeydown);
   document.addEventListener("click", handleDocumentClick);
   document.addEventListener("keydown", handleKeydown);
   window.addEventListener("resize", handleResize);
