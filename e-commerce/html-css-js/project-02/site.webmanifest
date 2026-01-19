@@ -15,6 +15,50 @@
       "purpose": "any"
     }
   ],
+  "shortcuts": [
+    {
+      "name": "Produkty",
+      "short_name": "Produkty",
+      "description": "Przegladaj katalog produktow cyfrowych.",
+      "url": "/#/products",
+      "icons": [
+        {
+          "src": "/assets/shortcuts/products.png",
+          "sizes": "96x96",
+          "type": "image/png",
+          "purpose": "any"
+        }
+      ]
+    },
+    {
+      "name": "Konto",
+      "short_name": "Konto",
+      "description": "Zaloguj sie lub sprawdz konto.",
+      "url": "/#/auth",
+      "icons": [
+        {
+          "src": "/assets/shortcuts/account.png",
+          "sizes": "96x96",
+          "type": "image/png",
+          "purpose": "any"
+        }
+      ]
+    },
+    {
+      "name": "Kontakt",
+      "short_name": "Kontakt",
+      "description": "Skontaktuj sie z nami.",
+      "url": "/#/contact",
+      "icons": [
+        {
+          "src": "/assets/shortcuts/contact.png",
+          "sizes": "96x96",
+          "type": "image/png",
+          "purpose": "any"
+        }
+      ]
+    }
+  ],
   "theme_color": "#ffffff",
   "background_color": "#ffffff",
   "display": "standalone"
