@@ -219,7 +219,10 @@ export const renderProducts = () => {
   const grid = createElement("div", { className: "grid grid-3 section products-grid" });
   container.appendChild(grid);
 
-  const resultsCount = createElement("p", { className: "products-count" });
+  const resultsCount = createElement("p", {
+    className: "products-count",
+    attrs: { "aria-live": "polite", role: "status", "aria-atomic": "true" },
+  });
   resultsCount.hidden = true;
   container.appendChild(resultsCount);
 
