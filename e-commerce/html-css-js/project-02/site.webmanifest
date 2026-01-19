@@ -59,6 +59,22 @@
       ]
     }
   ],
+  "screenshots": [
+    {
+      "src": "/assets/screenshots/desktop.jpg",
+      "sizes": "1280x720",
+      "type": "image/jpeg",
+      "form_factor": "wide",
+      "label": "Home - desktop"
+    },
+    {
+      "src": "/assets/screenshots/mobile.jpg",
+      "sizes": "720x1280",
+      "type": "image/jpeg",
+      "form_factor": "narrow",
+      "label": "Home - mobile"
+    }
+  ],
   "theme_color": "#ffffff",
   "background_color": "#ffffff",
   "display": "standalone"
