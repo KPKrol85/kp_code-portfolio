@@ -3,6 +3,7 @@ import { formatCurrency } from "../utils/format.js";
 import { cartService } from "../services/cart.js";
 import { showToast } from "../components/toast.js";
 import { store } from "../store/store.js";
+import { actions } from "../store/actions.js";
 import { renderNotice, createRetryButton } from "../components/uiStates.js";
 import { withButtonLoading } from "../utils/ui-state.js";
 import { renderEmptyState } from "../components/ui-state-helpers.js";
@@ -81,7 +82,7 @@ export const renderCart = () => {
       const safeValue = Number.isFinite(rawValue) ? Math.max(1, Math.floor(rawValue)) : 1;
       quantityField.value = String(safeValue);
       cartService.updateItem(product.id, safeValue);
-      store.setState({ cart: cartService.getCart() });
+      actions.cart.setCart(cartService.getCart());
       renderCart();
     });
 
@@ -92,7 +93,7 @@ export const renderCart = () => {
     });
     removeButton.addEventListener("click", () => {
       cartService.removeItem(product.id);
-      store.setState({ cart: cartService.getCart() });
+      actions.cart.setCart(cartService.getCart());
       showToast(content.toasts.removedFromCart);
       renderCart();
     });
@@ -143,7 +144,7 @@ export const renderCart = () => {
   });
   clearButton.addEventListener("click", () => {
     cartService.clear();
-    store.setState({ cart: [] });
+    actions.cart.clearCart();
     renderCart();
   });
   summary.appendChild(clearButton);

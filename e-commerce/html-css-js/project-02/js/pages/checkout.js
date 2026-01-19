@@ -6,6 +6,7 @@ import { cartService } from "../services/cart.js";
 import { purchasesService } from "../services/purchases.js";
 import { showToast } from "../components/toast.js";
 import { store } from "../store/store.js";
+import { actions } from "../store/actions.js";
 import { setMeta } from "../utils/meta.js";
 import { setButtonLoading, clearButtonLoading } from "../utils/ui-state.js";
 import { renderEmptyState } from "../components/ui-state-helpers.js";
@@ -198,7 +199,7 @@ export const renderCheckout = () => {
     window.setTimeout(() => {
       purchasesService.addPurchase(order);
       cartService.clear();
-      store.setState({ cart: [] });
+      actions.cart.clearCart();
       showToast(content.toasts.checkoutSuccess);
       setMeta({
         title: content.checkout.success.metaTitle,

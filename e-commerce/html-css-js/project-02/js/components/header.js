@@ -4,6 +4,7 @@ import { authService } from "../services/auth.js";
 import { navigateHash } from "../utils/navigation.js";
 import { showToast } from "./toast.js";
 import { content } from "../content/pl.js";
+import { selectors } from "../store/selectors.js";
 
 const navItems = [
   { label: "Start", path: "#/" },
@@ -218,14 +219,14 @@ export const renderHeader = (container, onThemeToggle, { onHeightChange } = {}) 
   const buildActions = (className, { withId = false } = {}) => {
     const actions = createElement("div", { className });
     const cartButton = createElement("a", {
-      text: `Koszyk (${getCartCount(store.getState().cart)})`,
+      text: `Koszyk (${selectors.cartCount(store.getState())})`,
       attrs: { href: "#/cart" },
     });
 
     const accountDropdown = buildDropdown({
       label: "Konto",
       menuId: `${withId ? "header" : "mobile"}-account-dropdown`,
-      items: getAccountItems(Boolean(store.getState().user)),
+      items: getAccountItems(selectors.isAuthenticated(store.getState())),
     });
 
     const themeButton = createElement(
@@ -235,7 +236,7 @@ export const renderHeader = (container, onThemeToggle, { onHeightChange } = {}) 
         attrs: {
           id: withId ? "theme-toggle" : null,
           type: "button",
-          "aria-label": getThemeLabel(store.getState().ui?.theme),
+          "aria-label": getThemeLabel(selectors.theme(store.getState())),
           "aria-live": "polite",
           title: "Toggle theme",
         },
@@ -346,7 +347,7 @@ export const renderHeader = (container, onThemeToggle, { onHeightChange } = {}) 
     clearElement(container);
 
     // --- BRAND / LOGO ---
-    const logo = createLogoImage(store.getState().ui?.theme);
+    const logo = createLogoImage(selectors.theme(store.getState()));
     const brandLink = createElement(
       "a",
       { attrs: { href: "#/", "aria-label": "KP_Code Digital Vault" }, className: "brand" },
@@ -444,9 +445,9 @@ export const renderHeader = (container, onThemeToggle, { onHeightChange } = {}) 
   };
 
   const selectHeaderState = (state) => ({
-    cartCount: getCartCount(state.cart),
-    isAuthenticated: Boolean(state.user),
-    theme: state.ui?.theme,
+    cartCount: selectors.cartCount(state),
+    isAuthenticated: selectors.isAuthenticated(state),
+    theme: selectors.theme(state),
   });
 
   const { actions, mobileActions, logo } = build();

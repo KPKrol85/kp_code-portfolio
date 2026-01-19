@@ -6,6 +6,8 @@ import { cartService } from "./services/cart.js";
 import { authService } from "./services/auth.js";
 import { storage } from "./services/storage.js";
 import { store } from "./store/store.js";
+import { actions } from "./store/actions.js";
+import { selectors } from "./store/selectors.js";
 import { showToast } from "./components/toast.js";
 import { initErrorBoundary } from "./utils/error-boundary.js";
 import { initKeyboardShortcuts } from "./utils/keyboard-shortcuts.js";
@@ -21,7 +23,7 @@ const applyTheme = (theme, { persist = true } = {}) => {
   if (persist) {
     storage.set(THEME_KEY, theme);
   }
-  store.setState({ ui: { theme } });
+  actions.ui.setTheme(theme);
 };
 
 const detectTheme = () => {
@@ -49,17 +51,13 @@ const initData = async () => {
   }
   isDataRetrying = true;
   updateRetryButtonsState(true);
-  store.setState({ productsStatus: "loading", productsError: null });
+  actions.data.setProductsLoading();
   try {
     const [products, licenses] = await Promise.all([mockApi.getProducts(), mockApi.getLicenses()]);
-    store.setState({ products, licenses, productsStatus: "ready", productsError: null });
+    actions.data.setProductsReady({ products, licenses });
   } catch (error) {
     showToast(content.toasts.dataFetchError, "error");
-    store.setState({
-      products: [],
-      productsStatus: "error",
-      productsError: content.states.products.error.title,
-    });
+    actions.data.setProductsError(content.states.products.error.title);
   } finally {
     isDataRetrying = false;
     updateRetryButtonsState(false);
@@ -71,16 +69,13 @@ const initStore = () => {
   const session = authService.getSession();
   const user = authService.getUser();
   const { theme, hasSaved } = detectTheme();
-  store.setState({
-    cart,
-    session,
-    user,
-    ui: { theme },
-  });
+  actions.cart.setCart(cart);
+  actions.user.setSession(session, user);
+  actions.ui.setTheme(theme);
   applyTheme(theme, { persist: hasSaved });
 
   authService.onAuthChange(({ session: nextSession, user: nextUser }) => {
-    store.setState({ session: nextSession, user: nextUser });
+    actions.user.setSession(nextSession, nextUser);
   });
 
   const mediaQuery = window.matchMedia("(prefers-color-scheme: dark)");
@@ -96,7 +91,7 @@ const initLayout = () => {
   renderHeader(
     document.getElementById("app-header"),
     () => {
-      const currentTheme = store.getState().ui.theme;
+      const currentTheme = selectors.theme(store.getState());
       applyTheme(currentTheme === "light" ? "dark" : "light");
     },
     { onHeightChange: updateHeaderOffset }
@@ -631,7 +626,7 @@ initKeyboardShortcuts({
   getSearchInput: () => document.querySelector('input[type="search"]'),
   closeModal,
   navigateToAuth: () => {
-    const { user } = store.getState();
+    const user = selectors.user(store.getState());
     const target = user ? "#/account" : "#/auth";
     if (!target) {
       return false;

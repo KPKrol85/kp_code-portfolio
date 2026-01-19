@@ -6,6 +6,7 @@ import { showToast } from "../components/toast.js";
 import { store } from "../store/store.js";
 import { renderDataState, createRetryButton } from "../components/uiStates.js";
 import { content } from "../content/pl.js";
+import { actions } from "../store/actions.js";
 
 export const renderHome = () => {
   const main = document.getElementById("main-content");
@@ -346,7 +347,7 @@ export const renderHome = () => {
       grid.appendChild(
         createProductCard(product, (id) => {
           cartService.addItem(id, 1);
-          store.setState({ cart: cartService.getCart() });
+          actions.cart.setCart(cartService.getCart());
           showToast(content.toasts.addedToCart);
         })
       );

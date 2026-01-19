@@ -1,18 +1,12 @@
 import { createElement, clearElement } from "../utils/dom.js";
 import { store } from "../store/store.js";
-
-const LOGO_SOURCES = {
-  light: "/assets/logo/logo-light-mode.svg",
-  dark: "/assets/logo/logo-dark-mode.svg",
-};
-const LOGO_WIDTH = 140;
-const LOGO_HEIGHT = 64;
+import { selectors } from "../store/selectors.js";
 
 const getAccountLinks = (isAuthenticated) => {
   if (!isAuthenticated) {
     return [
-      { label: "Zaloguj się", href: "#/auth" },
-      { label: "Utwórz konto", href: "#/auth" },
+      { label: "Zaloguj si©", href: "#/auth" },
+      { label: "Utw¢rz konto", href: "#/auth" },
     ];
   }
   return [
@@ -27,8 +21,8 @@ const getFooterNav = (isAuthenticated) => [
     title: "Produkty",
     ariaLabel: "Produkty",
     links: [
-      { label: "Przeglądaj produkty", href: "#/products" },
-      { label: "Kategorie produktów", href: "#/products" },
+      { label: "Przegl¥daj produkty", href: "#/products" },
+      { label: "Kategorie produkt¢w", href: "#/products" },
       { label: "Cennik", href: "#/pricing" },
       { label: "Aktualizacje / Changelog", href: "#/updates" },
     ],
@@ -50,7 +44,7 @@ const getFooterNav = (isAuthenticated) => [
       { label: "O nas", href: "#/about" },
       { label: "Plan rozwoju / Roadmap", href: "#/roadmap" },
       { label: "Regulamin", href: "#/terms" },
-      { label: "Polityka prywatności", href: "#/privacy" },
+      { label: "Polityka prywatno˜ci", href: "#/privacy" },
       { label: "Cookies", href: "#/cookies" },
       { label: "Kariera", href: "#/careers" },
     ],
@@ -95,6 +89,13 @@ const socialIcons = {
   Facebook:
     "M13.5 8.5V6.6c0-.7.3-1.2 1.3-1.2h1.6V3h-2.2C12 3 11 4.4 11 6.3v2.2H9v2.6h2V21h2.5v-9.9h2.1l.4-2.6h-2.5z",
 };
+
+const LOGO_SOURCES = {
+  light: "/assets/logo/logo-light-mode.svg",
+  dark: "/assets/logo/logo-dark-mode.svg",
+};
+const LOGO_WIDTH = 140;
+const LOGO_HEIGHT = 64;
 
 const getLogoSrc = (theme) => (theme === "dark" ? LOGO_SOURCES.dark : LOGO_SOURCES.light);
 
@@ -153,22 +154,17 @@ const createSocialLink = ({ label, href }) => {
 };
 
 export const renderFooter = (container) => {
+  clearElement(container);
   container.classList.add("footer-container");
   if (container._footerUnsubscribe) {
     container._footerUnsubscribe();
     container._footerUnsubscribe = null;
   }
 
-  let footer = container.querySelector(".site-footer");
-  if (!footer) {
-    footer = createElement("div", { className: "site-footer" });
-    container.appendChild(footer);
-  }
-  footer.removeAttribute("data-footer-skeleton");
-  footer.removeAttribute("aria-hidden");
+  const footer = createElement("div", { className: "site-footer" });
   const currentYear = new Date().getFullYear();
 
-  const brandLogoImage = createLogoImage(store.getState().ui?.theme);
+  const brandLogoImage = createLogoImage(selectors.theme(store.getState()));
   const brandLogo = createElement(
     "a",
     { className: "footer-logo", attrs: { href: "#/", "aria-label": "KP_Code Digital Vault" } },
@@ -180,7 +176,7 @@ export const renderFooter = (container) => {
     createElement("h2", { className: "footer-brand-title", text: "KP_Code Digital Vault" }),
     createElement("p", {
       className: "footer-description",
-      text: "Kompaktowa biblioteka produktów cyfrowych dla twórców i zespołów. Prosty zakup i szybki dostęp.",
+      text: "Kompaktowa biblioteka produkt¢w cyfrowych dla tw¢rc¢w i zespoˆ¢w. Prosty zakup i szybki dost©p.",
     }),
   ]);
 
@@ -223,7 +219,7 @@ export const renderFooter = (container) => {
       newsletterInput.reportValidity();
       return;
     }
-    newsletterStatus.textContent = "Wkrótce";
+    newsletterStatus.textContent = "Wkr¢tce";
     newsletterStatus.classList.add("is-visible");
   });
 
@@ -237,20 +233,10 @@ export const renderFooter = (container) => {
     newsletterStatus,
   ]);
 
-  let topSection = footer.querySelector(".footer-top");
-  if (!topSection) {
-    topSection = createElement("div", { className: "footer-top" });
-    footer.appendChild(topSection);
-  }
-  topSection.replaceChildren(brandBlock, newsletterBlock);
+  const topSection = createElement("div", { className: "footer-top" }, [brandBlock, newsletterBlock]);
 
-  let middleSection = footer.querySelector(".footer-middle");
-  if (!middleSection) {
-    middleSection = createElement("div", { className: "footer-middle" });
-    footer.appendChild(middleSection);
-  }
   const middleGrid = createElement("div", { className: "footer-middle-grid" });
-  const isAuthenticated = Boolean(store.getState().user);
+  const isAuthenticated = selectors.isAuthenticated(store.getState());
   const sections = getFooterNav(isAuthenticated);
   let accountSection = null;
   sections.forEach((section) => {
@@ -271,12 +257,12 @@ export const renderFooter = (container) => {
 
   middleGrid.appendChild(socialBlock);
 
-  middleSection.replaceChildren(middleGrid);
+  const middleSection = createElement("div", { className: "footer-middle" }, [middleGrid]);
 
   const legalLinks = createElement("div", { className: "footer-meta-links" }, [
     createElement("a", {
       className: "footer-link",
-      text: "Polityka prywatności",
+      text: "Polityka prywatno˜ci",
       attrs: { href: "#/privacy" },
     }),
     createElement("a", { className: "footer-link", text: "Regulamin", attrs: { href: "#/terms" } }),
@@ -284,14 +270,14 @@ export const renderFooter = (container) => {
   ]);
 
   const metaInfo = createElement("div", { className: "footer-meta-info" }, [
-    createElement("span", { text: `© ${currentYear} KP_Code. Wszelkie prawa zastrzeżone.` }),
-    createElement("span", { className: "footer-meta-divider", text: "•" }),
+    createElement("span", { text: `c ${currentYear} KP_Code. Wszelkie prawa zastrze¾one.` }),
+    createElement("span", { className: "footer-meta-divider", text: "" }),
     createElement("span", { text: "Stworzone w Polsce" }),
   ]);
 
   const backToTop = createElement("button", {
     className: "footer-top-link",
-    text: "Do góry",
+    text: "Do g¢ry",
     attrs: { type: "button" },
   });
 
@@ -299,25 +285,20 @@ export const renderFooter = (container) => {
     window.scrollTo({ top: 0, behavior: "smooth" });
   });
 
-  let bottomSection = footer.querySelector(".footer-bottom");
-  if (!bottomSection) {
-    bottomSection = createElement("div", { className: "footer-bottom" });
-    footer.appendChild(bottomSection);
-  }
-  bottomSection.replaceChildren(metaInfo, legalLinks, backToTop);
+  const bottomSection = createElement("div", { className: "footer-bottom" }, [
+    metaInfo,
+    legalLinks,
+    backToTop,
+  ]);
 
-  if (!footer.contains(topSection)) {
-    footer.appendChild(topSection);
-  }
-  if (!footer.contains(middleSection)) {
-    footer.appendChild(middleSection);
-  }
-  if (!footer.contains(bottomSection)) {
-    footer.appendChild(bottomSection);
-  }
+  footer.appendChild(topSection);
+  footer.appendChild(middleSection);
+  footer.appendChild(bottomSection);
+
+  container.appendChild(footer);
 
   let previousAuth = isAuthenticated;
-  let previousTheme = store.getState().ui?.theme;
+  let previousTheme = selectors.theme(store.getState());
   container._footerUnsubscribe = store.subscribe((state) => {
     const nextAuth = Boolean(state.user);
     const nextTheme = state.ui?.theme;

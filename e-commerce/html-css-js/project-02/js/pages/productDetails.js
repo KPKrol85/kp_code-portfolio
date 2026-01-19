@@ -7,6 +7,7 @@ import { purchasesService } from "../services/purchases.js";
 import { renderNotice, createRetryButton } from "../components/uiStates.js";
 import { setMeta } from "../utils/meta.js";
 import { content } from "../content/pl.js";
+import { actions } from "../store/actions.js";
 
 export const renderProductDetails = ({ id }) => {
   const main = document.getElementById("main-content");
@@ -107,7 +108,7 @@ export const renderProductDetails = ({ id }) => {
     });
     addButton.addEventListener("click", () => {
       cartService.addItem(product.id, 1);
-      store.setState({ cart: cartService.getCart() });
+      actions.cart.setCart(cartService.getCart());
       showToast(content.toasts.addedToCartDetails);
     });
     actionRow.appendChild(addButton);

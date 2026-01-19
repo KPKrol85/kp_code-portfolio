@@ -8,6 +8,7 @@ import { getVisibleProducts } from "../utils/products.js";
 import { debounce } from "../utils/debounce.js";
 import { renderEmptyState } from "../components/ui-state-helpers.js";
 import { content } from "../content/pl.js";
+import { actions } from "../store/actions.js";
 
 const VISIBLE_ROWS = 5;
 const ROWS_STEP = 5;
@@ -267,7 +268,7 @@ export const renderProducts = () => {
       grid.appendChild(
         createProductCard(product, (id) => {
           cartService.addItem(id, 1);
-          store.setState({ cart: cartService.getCart() });
+          actions.cart.setCart(cartService.getCart());
           showToast(content.toasts.addedToCart);
         })
       );

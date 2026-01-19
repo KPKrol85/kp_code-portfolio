@@ -6,6 +6,7 @@ import { canAccessRoute } from "../utils/permissions.js";
 import { createElement, clearElement } from "../utils/dom.js";
 import { renderNotice } from "../components/uiStates.js";
 import { navigateHash } from "../utils/navigation.js";
+import { selectors } from "../store/selectors.js";
 
 const routes = [];
 let activeCleanup = null;
@@ -96,7 +97,7 @@ export const startRouter = () => {
       activeCleanup = null;
     }
     const path = location.hash.replace("#", "") || "/";
-    const access = canAccessRoute(path, store.getState().user);
+    const access = canAccessRoute(path, selectors.user(store.getState()));
     if (!access.allowed) {
       if (access.reason === "unauthenticated") {
         authService.setReturnTo(`#${path}`);
