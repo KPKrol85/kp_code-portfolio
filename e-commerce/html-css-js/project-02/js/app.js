@@ -98,7 +98,23 @@ const initLayout = () => {
     },
     { onHeightChange: updateHeaderOffset }
   );
-  renderFooter(document.getElementById("app-footer"));
+};
+
+const initFooter = () => {
+  const container = document.getElementById("app-footer");
+  if (!container || container._footerMounted) {
+    return;
+  }
+  container._footerMounted = true;
+  renderFooter(container);
+};
+
+const initFooterAfterFirstRoute = () => {
+  const handleFirstRoute = () => {
+    initFooter();
+    window.removeEventListener("route:after", handleFirstRoute);
+  };
+  window.addEventListener("route:after", handleFirstRoute);
 };
 
 const initDataRetryHandling = () => {
@@ -661,6 +677,7 @@ initLayout();
 setMetaImages();
 initDataRetryHandling();
 initData();
+initFooterAfterFirstRoute();
 initRoutes();
 initRouteScrollHandling();
 initRouteClickTracking();

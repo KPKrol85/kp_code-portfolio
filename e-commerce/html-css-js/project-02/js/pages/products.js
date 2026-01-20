@@ -356,9 +356,12 @@ export const renderProducts = () => {
         error: productsError,
         loading: {
           count: 6,
-          imageHeight: 180,
-          lineWidths: [70, 60],
+          variant: "product-card",
+          lineWidths: [70, 85],
           lineHeights: [18, 14],
+          tagCount: 3,
+          tagWidth: 56,
+          priceWidth: 32,
         },
         errorState: {
           title: content.states.products.error.title,

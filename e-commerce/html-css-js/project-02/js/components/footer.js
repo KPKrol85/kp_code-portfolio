@@ -7,6 +7,7 @@ const getAccountLinks = (isAuthenticated) => {
     return [
       { label: "Zaloguj się", href: "#/auth" },
       { label: "Utwórz konto", href: "#/auth" },
+    
     ];
   }
   return [
@@ -154,6 +155,10 @@ const createSocialLink = ({ label, href }) => {
 };
 
 export const renderFooter = (container) => {
+  const footerRoot = container?.closest("footer");
+  if (footerRoot) {
+    footerRoot.classList.add("is-mounted");
+  }
   clearElement(container);
   container.classList.add("footer-container");
   if (container._footerUnsubscribe) {

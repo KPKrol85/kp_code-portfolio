@@ -104,6 +104,25 @@
   aspect-ratio: 16 / 10;
   width: 100%;
   height: auto;
+  display: block;
+  object-fit: cover;
+}
+
+.card-product-media {
+  border-radius: var(--radius-sm);
+  width: 100%;
+  display: block;
+}
+
+.card-product.is-skeleton {
+  pointer-events: none;
+}
+
+.card-product .skeleton-button {
+  flex: 1 1 0;
+  min-width: 0;
+  height: calc(var(--card-cta-fs) * 1.4 + (var(--card-cta-py) * 2));
+  border-radius: var(--radius-sm);
 }
 
 .card-product h3 {

@@ -23,11 +23,63 @@ const createNotice = ({ title, message, action, headingTag = "h3" } = {}) => {
   return createElement("div", { className: "notice" }, children);
 };
 
+const createProductCardSkeleton = ({
+  lineWidths = [65, 85],
+  lineHeights = [18, 14],
+  tagCount = 3,
+  tagWidth = 60,
+  priceWidth = 35,
+  imageAspect = "16 / 10",
+} = {}) => {
+  const card = createElement("div", { className: "card card-product is-skeleton" });
+  const media = createElement("div", {
+    className: "skeleton card-product-media",
+    attrs: { style: `aspect-ratio: ${imageAspect};` },
+  });
+  const title = createElement("div", {
+    className: "skeleton",
+    attrs: { style: `width: ${lineWidths[0]}%; height: ${lineHeights[0]}px` },
+  });
+  const desc = createElement("div", {
+    className: "skeleton",
+    attrs: { style: `width: ${lineWidths[1]}%; height: ${lineHeights[1]}px` },
+  });
+  const tags = createElement("div", { className: "tag-list" });
+  for (let i = 0; i < tagCount; i += 1) {
+    tags.appendChild(
+      createElement("span", {
+        className: "badge skeleton",
+        attrs: { style: `width: ${tagWidth}px; height: 22px` },
+      })
+    );
+  }
+  const price = createElement("div", {
+    className: "skeleton",
+    attrs: { style: `width: ${priceWidth}%; height: ${lineHeights[0]}px` },
+  });
+  const actions = createElement("div", { className: "flex-between" }, [
+    createElement("div", { className: "skeleton skeleton-button" }),
+    createElement("div", { className: "skeleton skeleton-button" }),
+  ]);
+  card.appendChild(media);
+  card.appendChild(title);
+  card.appendChild(desc);
+  card.appendChild(tags);
+  card.appendChild(price);
+  card.appendChild(actions);
+  return card;
+};
+
 const createSkeletonCard = ({
   imageHeight = 180,
   lineWidths = [60, 80],
   lineHeights = [18, 14],
+  variant,
+  ...rest
 } = {}) => {
+  if (variant === "product-card") {
+    return createProductCardSkeleton({ lineWidths, lineHeights, ...rest });
+  }
   const card = createElement("div", { className: "card" });
   card.appendChild(
     createElement("div", { className: "skeleton", attrs: { style: `height: ${imageHeight}px` } })

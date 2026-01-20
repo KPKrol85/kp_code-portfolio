@@ -291,19 +291,19 @@ export const renderHome = () => {
   const stats = createElement("div", { className: "stats-grid" }, [
     createElement("div", { className: "card stat-card" }, [
       createElement("h3", { text: "6" }),
-      createElement("p", { text: "Produktów dostępnych od ręki" }),
+      createElement("p", { text: "Gotowych rozwiązań cyfrowych" }),
     ]),
     createElement("div", { className: "card stat-card" }, [
-      createElement("h3", { text: "98%" }),
-      createElement("p", { text: "Zadowolonych klientów (mock)" }),
+      createElement("h3", { text: "Senior-level" }),
+      createElement("p", { text: "Jakość kodu i architektury" }),
     ]),
     createElement("div", { className: "card stat-card" }, [
-      createElement("h3", { text: "24h" }),
-      createElement("p", { text: "Średni czas wdrożenia" }),
+      createElement("h3", { text: "< 24h" }),
+      createElement("p", { text: "Czas wdrożenia produktu" }),
     ]),
     createElement("div", { className: "card stat-card" }, [
-      createElement("h3", { text: "120+" }),
-      createElement("p", { text: "Nowe zasoby tygodniowo" }),
+      createElement("h3", { text: "Dożywotni dostęp" }),
+      createElement("p", { text: "Aktualizacje w cenie" }),
     ]),
   ]);
 
@@ -324,9 +324,12 @@ export const renderHome = () => {
         error: productsError,
         loading: {
           count: 5,
-          imageHeight: 180,
-          lineWidths: [60, 80],
+          variant: "product-card",
+          lineWidths: [70, 90],
           lineHeights: [18, 14],
+          tagCount: 3,
+          tagWidth: 52,
+          priceWidth: 30,
         },
         errorState: {
           title: content.states.products.error.title,

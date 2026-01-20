@@ -292,6 +292,10 @@ footer {
 }
 
 #app-footer {
+  min-height: 0;
+}
+
+footer.is-mounted #app-footer {
   min-height: var(--footer-min-height);
 }
 
