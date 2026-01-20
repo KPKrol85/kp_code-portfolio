@@ -323,7 +323,7 @@ export const renderHome = () => {
         items: products,
         error: productsError,
         loading: {
-          count: 5,
+          count: 4,
           variant: "product-card",
           lineWidths: [70, 90],
           lineHeights: [18, 14],

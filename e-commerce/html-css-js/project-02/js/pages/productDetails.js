@@ -77,9 +77,70 @@ export const renderProductDetails = ({ id }) => {
     const wrapper = createElement("section", { className: "container" });
     const layout = createElement("div", { className: "grid grid-2" });
 
-    const image = createElement("img", {
-      attrs: { src: product.thumbnail, alt: product.name, width: "320", height: "200" },
-    });
+    const buildMedia = (images) => {
+      const gallery = createElement("div", { className: "product-gallery" });
+      const main = createElement("div", { className: "product-gallery__main" });
+      const mainImage = createElement("img", {
+        className: "product-gallery__main-image",
+        attrs: {
+          src: images[0],
+          alt: product.name,
+          loading: "eager",
+          decoding: "async",
+        },
+      });
+      main.appendChild(mainImage);
+
+      const slider = createElement("div", { className: "product-gallery__thumbs" });
+      const thumbs = images.slice(1);
+      thumbs.forEach((src, index) => {
+        const isActive = index === 0;
+        const image = createElement("img", {
+          className: "product-gallery__thumb-image",
+          attrs: {
+            src,
+            alt: `${product.name} ${index + 2}`,
+            loading: "lazy",
+            decoding: "async",
+          },
+        });
+        const item = createElement(
+          "button",
+          {
+            className: `product-gallery__thumb${isActive ? " is-active" : ""}`,
+            attrs: {
+              type: "button",
+              "aria-label": `Zobacz zdjęcie ${index + 2}`,
+            },
+          },
+          [image]
+        );
+        item.addEventListener("click", () => {
+          if (mainImage.getAttribute("src") !== src) {
+            mainImage.setAttribute("src", src);
+          }
+          slider.querySelectorAll(".product-gallery__thumb").forEach((thumb) => {
+            thumb.classList.toggle("is-active", thumb === item);
+          });
+        });
+        slider.appendChild(item);
+      });
+
+      gallery.appendChild(main);
+      if (thumbs.length) {
+        gallery.appendChild(slider);
+      }
+      return gallery;
+    };
+
+    const buildThumbnail = () =>
+      createElement("img", {
+        className: "product-hero-image",
+        attrs: { src: product.thumbnail, alt: product.name, width: "320", height: "200" },
+      });
+
+    const images = Array.isArray(product.images) ? product.images.filter(Boolean) : [];
+    const media = images.length ? buildMedia(images) : buildThumbnail();
     const details = createElement("div", { className: "card" });
     details.appendChild(createElement("h1", { text: product.name }));
     details.appendChild(createElement("p", { text: product.description }));
@@ -158,7 +219,7 @@ export const renderProductDetails = ({ id }) => {
       );
     }
 
-    layout.appendChild(image);
+    layout.appendChild(media);
     layout.appendChild(details);
 
     wrapper.appendChild(layout);

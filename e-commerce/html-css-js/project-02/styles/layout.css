@@ -656,6 +656,7 @@ footer.is-mounted #app-footer {
   background: var(--color-surface-muted);
   border-radius: var(--radius-md);
   padding: var(--space-6);
+  margin: var(--space-3) 0;
 }
 
 .badge {
