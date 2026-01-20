@@ -6,6 +6,7 @@ import { store } from "../store/store.js";
 import { purchasesService } from "../services/purchases.js";
 import { renderNotice, createRetryButton } from "../components/uiStates.js";
 import { setMeta } from "../utils/meta.js";
+import { createResponsivePicture, updateResponsivePicture } from "../utils/images.js";
 import { content } from "../content/pl.js";
 import { actions } from "../store/actions.js";
 import { createDownloadLink, getDownloadLabel } from "../utils/downloads.js";
@@ -78,31 +79,33 @@ export const renderProductDetails = ({ id }) => {
     const layout = createElement("div", { className: "grid grid-2" });
 
     const buildMedia = (images) => {
+      const mainSizes = "(min-width: 960px) 480px, 100vw";
+      const thumbSizes = "120px";
       const gallery = createElement("div", { className: "product-gallery" });
       const main = createElement("div", { className: "product-gallery__main" });
-      const mainImage = createElement("img", {
-        className: "product-gallery__main-image",
-        attrs: {
-          src: images[0],
-          alt: product.name,
-          loading: "eager",
-          decoding: "async",
-        },
+      const mainPicture = createResponsivePicture({
+        imageBase: images[0],
+        imgClassName: "product-gallery__main-image",
+        alt: product.name,
+        loading: "eager",
+        decoding: "async",
+        fetchPriority: "high",
+        sizes: mainSizes,
       });
-      main.appendChild(mainImage);
+      let currentBase = images[0];
+      main.appendChild(mainPicture);
 
       const slider = createElement("div", { className: "product-gallery__thumbs" });
       const thumbs = images.slice(1);
-      thumbs.forEach((src, index) => {
+      thumbs.forEach((imageBase, index) => {
         const isActive = index === 0;
-        const image = createElement("img", {
-          className: "product-gallery__thumb-image",
-          attrs: {
-            src,
-            alt: `${product.name} ${index + 2}`,
-            loading: "lazy",
-            decoding: "async",
-          },
+        const image = createResponsivePicture({
+          imageBase,
+          imgClassName: "product-gallery__thumb-image",
+          alt: `${product.name} ${index + 2}`,
+          loading: "lazy",
+          decoding: "async",
+          sizes: thumbSizes,
         });
         const item = createElement(
           "button",
@@ -116,8 +119,9 @@ export const renderProductDetails = ({ id }) => {
           [image]
         );
         item.addEventListener("click", () => {
-          if (mainImage.getAttribute("src") !== src) {
-            mainImage.setAttribute("src", src);
+          if (currentBase !== imageBase) {
+            updateResponsivePicture(mainPicture, imageBase, { sizes: mainSizes });
+            currentBase = imageBase;
           }
           slider.querySelectorAll(".product-gallery__thumb").forEach((thumb) => {
             thumb.classList.toggle("is-active", thumb === item);
@@ -134,9 +138,15 @@ export const renderProductDetails = ({ id }) => {
     };
 
     const buildThumbnail = () =>
-      createElement("img", {
-        className: "product-hero-image",
-        attrs: { src: product.thumbnail, alt: product.name, width: "320", height: "200" },
+      createResponsivePicture({
+        imageBase: product.thumbnail,
+        imgClassName: "product-hero-image",
+        alt: product.name,
+        width: "320",
+        height: "200",
+        loading: "lazy",
+        decoding: "async",
+        sizes: "(min-width: 960px) 320px, 60vw",
       });
 
     const images = Array.isArray(product.images) ? product.images.filter(Boolean) : [];

@@ -1,15 +1,5 @@
-/*
-  Service Worker – PWA baseline
-  Strategies:
-  - App shell precache (install) -> cache-first for static assets.
-  - JSON/data -> stale-while-revalidate.
-  - Navigations -> network-first with offline fallback.
-
-  Bump cache versions when app shell assets change (e.g. dv-static-v2).
-*/
-
-const STATIC_CACHE = "dv-static-v1.0.02";
-const DATA_CACHE = "dv-data-v1.0.02";
+const STATIC_CACHE = "dv-static-v1.0.03";
+const DATA_CACHE = "dv-data-v1.0.03";
 
 const APP_SHELL_URLS = [
   "./",

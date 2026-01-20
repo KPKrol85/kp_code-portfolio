@@ -16,7 +16,7 @@ const TARGET_WIDTHS = [320, 480, 640, 768, 1024, 1280, 1600];
 const WEBP_QUALITY = 80;
 const WEBP_EFFORT = 4;
 const AVIF_QUALITY = 50;
-const AVIF_EFFORT = 5; // Balanced encode speed vs. compression for CI/dev machines.
+const AVIF_EFFORT = 5; 
 const CONCURRENCY = 4;
 const MANIFEST_PATH = join(IMG_GEN_DIR, "manifest.json");
 
