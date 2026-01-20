@@ -1,5 +1,5 @@
-const STATIC_CACHE = "dv-static-v1.0.03";
-const DATA_CACHE = "dv-data-v1.0.03";
+const STATIC_CACHE = "dv-static-v1.0.04";
+const DATA_CACHE = "dv-data-v1.0.04";
 
 const APP_SHELL_URLS = [
   "./",

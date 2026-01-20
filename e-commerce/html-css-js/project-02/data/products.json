@@ -26,7 +26,109 @@
       "products/ui-kits-components/core-ui-components-pack/03",
       "products/ui-kits-components/core-ui-components-pack/04",
       "products/ui-kits-components/core-ui-components-pack/05",
-      "products/ui-kits-components/core-ui-components-pack/06"
+      "products/ui-kits-components/core-ui-components-pack/06",
+      "products/ui-kits-components/core-ui-components-pack/07"
+    ],
+    "downloadables": []
+  },
+
+  {
+    "id": "saas-dashboard-template",
+    "name": "SaaS Dashboard Template",
+    "shortDescription": "Nowoczesny szablon panelu administracyjnego typu SaaS oparty o czysty HTML, CSS i Vanilla JS.",
+    "description": "SaaS Dashboard Template to gotowy frontendowy szkielet aplikacji typu SaaS, zaprojektowany jako solidna baza pod panele administracyjne, systemy statystyczne oraz aplikacje webowe. Produkt oparty jest o czysty HTML, CSS oraz Vanilla JavaScript i zawiera kompletną strukturę widoków, mockowe dane oraz spójny system stylów. Dashboard umożliwia szybkie rozpoczęcie pracy nad własną aplikacją bez użycia frameworków i backendu.",
+    "price": 149,
+    "tags": ["Dashboard", "SaaS", "Admin", "HTML", "CSS", "JavaScript"],
+    "category": "Templates & Dashboards",
+    "requirements": "Nowoczesna przeglądarka, podstawowa znajomość HTML, CSS i JavaScript",
+    "bundleContents": [
+      "Dashboard główny z kartami statystyk",
+      "Panel nawigacji (sidebar + topbar)",
+      "Widoki aplikacyjne (dashboard, users, settings)",
+      "Mockowe dane (JSON / localStorage)",
+      "Responsywny layout (desktop + mobile)",
+      "Light mode + Dark mode",
+      "Gotowa architektura plików frontendowych",
+      "Strona demo do uruchomienia lokalnie"
+    ],
+    "version": "1.0",
+    "updatedAt": "2026-01-20",
+    "thumbnail": "products/templates-dashboards/saas-dashboard-template/01",
+    "images": [
+      "products/templates-dashboards/saas-dashboard-template/01",
+      "products/templates-dashboards/saas-dashboard-template/02",
+      "products/templates-dashboards/saas-dashboard-template/03",
+      "products/templates-dashboards/saas-dashboard-template/04",
+      "products/templates-dashboards/saas-dashboard-template/05",
+      "products/templates-dashboards/saas-dashboard-template/06",
+      "products/templates-dashboards/saas-dashboard-template/07",
+      "products/templates-dashboards/saas-dashboard-template/08"
+    ],
+    "downloadables": []
+  },
+
+  {
+    "id": "ui-illustration-pack",
+    "name": "UI Illustration Pack",
+    "shortDescription": "Zestaw gotowych ilustracji UI do dashboardów, aplikacji SaaS i interfejsów webowych.",
+    "description": "UI Illustration Pack to zestaw 14 nowoczesnych ilustracji interfejsowych zaprojektowanych specjalnie do aplikacji webowych, paneli administracyjnych i produktów typu SaaS. Pakiet skupia się na realnych scenariuszach UI, takich jak dashboardy, analityka danych, widoki użytkowników, ustawienia aplikacji oraz stany empty state. Ilustracje są lekkie wizualnie, spójne stylistycznie i przygotowane z myślą o developerach — bez stockowego charakteru i bez zbędnych detali, które przeszkadzają w interfejsie.",
+    "price": 99,
+    "tags": ["UI", "Illustrations", "Assets", "SaaS", "Dashboard", "SVG"],
+    "category": "Assets & Graphics",
+    "requirements": "Nowoczesna przeglądarka, podstawowa znajomość HTML i CSS",
+    "bundleContents": [
+      "14 ilustracji UI zaprojektowanych pod aplikacje webowe i SaaS",
+      "Sceny: dashboard, analytics, users, settings, onboarding",
+      "4 ilustracje typu empty state (no data, no results, error, success)",
+      "Format SVG (w pełni skalowalne) + PNG",
+      "Ilustracje zoptymalizowane pod light i dark UI",
+      "Spójny styl dopasowany do interfejsów użytkownika",
+      "Możliwość użycia w projektach komercyjnych i prywatnych"
+    ],
+    "version": "1.0",
+    "updatedAt": "2026-01-20",
+    "thumbnail": "products/assets-graphics/ui-ilustration-pack/01",
+    "images": [
+      "products/assets-graphics/ui-ilustration-pack/01",
+      "products/assets-graphics/ui-ilustration-pack/02",
+      "products/assets-graphics/ui-ilustration-pack/03",
+      "products/assets-graphics/ui-ilustration-pack/04",
+      "products/assets-graphics/ui-ilustration-pack/05",
+      "products/assets-graphics/ui-ilustration-pack/06",
+      "products/assets-graphics/ui-ilustration-pack/07"
+    ],
+    "downloadables": []
+  },
+
+  {
+    "id": "logic-flashcards-for-kids",
+    "name": "Logic Flashcards for Kids",
+    "shortDescription": "Zestaw edukacyjnych fiszek rozwijających logiczne myślenie i podstawy algorytmiki u dzieci.",
+    "description": "Logic Flashcards for Kids to starannie zaprojektowany zestaw fiszek edukacyjnych przeznaczonych dla dzieci w wieku szkolnym, które rozwijają logiczne myślenie, umiejętność analizowania problemów oraz rozumienie sekwencji i zależności przyczynowo-skutkowych. Produkt nie uczy konkretnych języków programowania, lecz buduje solidne fundamenty myślenia algorytmicznego, które są kluczowe w nauce matematyki, informatyki i programowania. Fiszki zostały zaprojektowane w przystępnej, wizualnej formie, umożliwiającej naukę poprzez zabawę, samodzielną pracę oraz wspólne ćwiczenia z rodzicem lub nauczycielem.",
+    "price": 59,
+    "tags": ["Education", "Logic", "Flashcards", "Kids", "Thinking"],
+    "category": "Knowledge & Tools",
+    "requirements": "Brak – produkt edukacyjny w formie cyfrowej",
+    "bundleContents": [
+      "60 fiszek rozwijających logiczne myślenie",
+      "Zadania oparte na sekwencjach i schematach",
+      "Ćwiczenia typu: co dalej, co nie pasuje, znajdź regułę",
+      "Podstawy myślenia algorytmicznego bez kodu",
+      "Stopniowanie trudności (łatwe → średnie → trudniejsze)",
+      "Wersja do druku (PDF)",
+      "Wersja cyfrowa do nauki na ekranie"
+    ],
+    "version": "1.0",
+    "updatedAt": "2026-01-20",
+    "thumbnail": "products/knowledge-tools/logic-flashcards-for-kids/01",
+    "images": [
+      "products/knowledge-tools/logic-flashcards-for-kids/01",
+      "products/knowledge-tools/logic-flashcards-for-kids/02",
+      "products/knowledge-tools/logic-flashcards-for-kids/03",
+      "products/knowledge-tools/logic-flashcards-for-kids/04",
+      "products/knowledge-tools/logic-flashcards-for-kids/05",
+      "products/knowledge-tools/logic-flashcards-for-kids/06",
+      "products/knowledge-tools/logic-flashcards-for-kids/07"
     ],
     "downloadables": []
   }
