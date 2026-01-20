@@ -46,8 +46,13 @@ self.addEventListener("install", (event) => {
           APP_SHELL_URLS.map((url) => new Request(toAbsoluteUrl(url), { cache: "reload" }))
         )
       )
-      .then(() => self.skipWaiting())
   );
+});
+
+self.addEventListener("message", (event) => {
+  if (event.data?.type === "SKIP_WAITING") {
+    self.skipWaiting();
+  }
 });
 
 self.addEventListener("activate", (event) => {

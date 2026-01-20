@@ -1,5 +1,6 @@
 import { createElement, clearElement } from "../utils/dom.js";
 import { formatDate } from "../utils/format.js";
+import { createDownloadLink } from "../utils/downloads.js";
 import { purchasesService } from "../services/purchases.js";
 import { store } from "../store/store.js";
 import { renderNotice, createRetryButton } from "../components/uiStates.js";
@@ -66,11 +67,12 @@ export const renderLibrary = () => {
     card.appendChild(createElement("p", { text: `Zakupiono: ${formatDate(entry.purchasedAt)}` }));
 
     const list = createElement("ul");
-    product.downloadables.forEach((file) => {
-      const link = createElement("a", {
-        text: `${file.name} (${file.size})`,
-        attrs: { href: file.file, download: file.name },
-      });
+    const downloadables = Array.isArray(product.downloadables) ? product.downloadables : [];
+    downloadables.forEach((file) => {
+      const link = createDownloadLink(file);
+      if (!link) {
+        return;
+      }
       const item = createElement("li", {}, [link]);
       list.appendChild(item);
     });

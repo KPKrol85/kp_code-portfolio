@@ -8,6 +8,7 @@ import { renderNotice, createRetryButton } from "../components/uiStates.js";
 import { setMeta } from "../utils/meta.js";
 import { content } from "../content/pl.js";
 import { actions } from "../store/actions.js";
+import { createDownloadLink, getDownloadLabel } from "../utils/downloads.js";
 
 export const renderProductDetails = ({ id }) => {
   const main = document.getElementById("main-content");
@@ -136,11 +137,19 @@ export const renderProductDetails = ({ id }) => {
       .getPurchases()
       .some((purchase) => purchase.items.some((entry) => entry.productId === product.id));
 
-    product.downloadables.forEach((item) => {
-      const label = hasAccess
-        ? `${item.name} (${item.size})`
-        : `${item.name} (odblokuj po zakupie)`;
-      downloadList.appendChild(createElement("li", { text: label }));
+    const downloadables = Array.isArray(product.downloadables) ? product.downloadables : [];
+    downloadables.forEach((item) => {
+      if (hasAccess) {
+        const link = createDownloadLink(item);
+        if (!link) {
+          return;
+        }
+        downloadList.appendChild(createElement("li", {}, [link]));
+        return;
+      }
+      downloadList.appendChild(
+        createElement("li", { text: getDownloadLabel(item, { locked: true }) })
+      );
     });
     downloads.appendChild(downloadList);
     if (!hasAccess) {

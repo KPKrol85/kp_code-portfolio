@@ -4,7 +4,7 @@ import { simpleHash } from "../utils/hash.js";
 /**
  * DEMO / FRONTEND-ONLY:
  * Ten moduł zarządza sesją po stronie klienta (localStorage) wyłącznie do celów demonstracyjnych.
- * Role w frontend-only są wyłącznie demonstracyjne i nie stanowią zabezpieczenia.
+ * Tryb demo nie oferuje realnej weryfikacji ról/administracji — wszystko jest traktowane jako zwykły użytkownik.
  */
 const STORAGE_KEYS = {
   USERS: "kp_users",
@@ -21,7 +21,7 @@ const toPublicUser = (user) => ({
   id: user.id,
   name: user.name,
   email: user.email,
-  role: user.role || "user",
+  role: "user",
   createdAt: user.createdAt,
 });
 
@@ -33,7 +33,7 @@ const normalizeUser = (user) => {
     id: user.id,
     name: user.name || "Użytkownik",
     email: user.email,
-    role: user.role || "user",
+    role: "user",
     createdAt: user.createdAt || null,
   };
 };
@@ -137,10 +137,6 @@ export const authService = {
   },
   isAuthenticated() {
     return Boolean(this.getSession());
-  },
-  hasRole(role) {
-    const user = this.getUser();
-    return Boolean(user && user.role === role);
   },
   onAuthChange(callback) {
     if (typeof callback !== "function") {

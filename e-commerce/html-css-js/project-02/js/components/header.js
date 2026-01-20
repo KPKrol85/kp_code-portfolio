@@ -363,6 +363,10 @@ export const renderHeader = (container, onThemeToggle, { onHeightChange } = {}) 
 
     // --- ACTIONS ---
     const actions = buildActions("nav-links header-actions", { withId: true });
+    const demoBadge = createElement("span", {
+      className: "badge",
+      text: "Tryb demo: admin wymaga backendu",
+    });
 
     // --- MOBILE TOGGLE ---
     const menuIcon = document.createElementNS("http://www.w3.org/2000/svg", "svg");
@@ -434,6 +438,7 @@ export const renderHeader = (container, onThemeToggle, { onHeightChange } = {}) 
     // --- MOUNT ---
     container.appendChild(brandLink);
     container.appendChild(nav);
+    container.appendChild(demoBadge);
     container.appendChild(actions.element);
     container.appendChild(menuButton);
     container.appendChild(mobileOverlay);

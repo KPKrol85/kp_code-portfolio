@@ -1,5 +1,6 @@
 import { createElement, clearElement } from "./dom.js";
 import { navigateHash } from "./navigation.js";
+import { content } from "../content/pl.js";
 
 let fallbackShown = false;
 let handling = false;
@@ -29,16 +30,16 @@ const showFallback = (error, source) => {
 
     const container = createElement("section", { className: "container" });
     const card = createElement("div", { className: "card" }, [
-      createElement("h1", { text: "Something went wrong" }),
+      createElement("h1", { text: content.errors.unexpectedTitle }),
       createElement("p", {
-        text: "Try refreshing the page. If the problem persists, come back later.",
+        text: content.errors.unexpectedDescription,
       }),
     ]);
 
     const actions = createElement("div", { className: "nav-links" });
     const reloadButton = createElement("button", {
       className: "button",
-      text: "Reload",
+      text: content.errors.retryAction,
       attrs: { type: "button" },
     });
     reloadButton.addEventListener("click", () => {
@@ -46,7 +47,7 @@ const showFallback = (error, source) => {
     });
     const homeButton = createElement("button", {
       className: "button secondary",
-      text: "Go to Home",
+      text: content.errors.homeAction,
       attrs: { type: "button" },
     });
     homeButton.addEventListener("click", () => {

@@ -1,5 +1,3 @@
-const normalizeRole = (user) => (user?.role ? user.role : "user");
-
 export const canAccessRoute = (path, user) => {
   const protectedRoutes = new Set(["/account", "/library", "/licenses", "/checkout", "/admin"]);
   const adminRoutes = new Set(["/admin"]);
@@ -12,8 +10,8 @@ export const canAccessRoute = (path, user) => {
     return { allowed: false, reason: "unauthenticated" };
   }
 
-  if (adminRoutes.has(path) && normalizeRole(user) !== "admin") {
-    return { allowed: false, reason: "forbidden" };
+  if (adminRoutes.has(path)) {
+    return { allowed: false, reason: "admin-disabled" };
   }
 
   return { allowed: true };

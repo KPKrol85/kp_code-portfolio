@@ -15,6 +15,13 @@ export const renderAccount = () => {
 
   const container = createElement("section", { className: "container" });
   container.appendChild(createElement("h1", { text: "Panel konta" }));
+  container.appendChild(
+    createElement("div", { className: "notice" }, [
+      createElement("p", {
+        text: "Tryb demo: panel administracyjny wymaga weryfikacji po stronie backendu i jest niedostępny.",
+      }),
+    ])
+  );
 
   if (!user) {
     container.appendChild(

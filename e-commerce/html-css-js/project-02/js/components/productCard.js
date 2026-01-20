@@ -3,7 +3,10 @@ import { formatCurrency } from "../utils/format.js";
 import { navigateHash } from "../utils/navigation.js";
 
 export const createProductCard = (product, onAdd) => {
-  const card = createElement("article", { className: "card card-product" });
+  const card = createElement("article", {
+    className: "card card-product",
+    attrs: { "data-product-id": product.id },
+  });
   const image = createElement("img", {
     attrs: {
       src: product.thumbnail,

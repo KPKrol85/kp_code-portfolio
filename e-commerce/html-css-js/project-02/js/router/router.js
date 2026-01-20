@@ -5,7 +5,7 @@ import { store } from "../store/store.js";
 import { canAccessRoute } from "../utils/permissions.js";
 import { createElement, clearElement } from "../utils/dom.js";
 import { renderNotice } from "../components/uiStates.js";
-import { navigateHash } from "../utils/navigation.js";
+import { navigateHash, parseHash } from "../utils/navigation.js";
 import { selectors } from "../store/selectors.js";
 
 const routes = [];
@@ -96,38 +96,44 @@ export const startRouter = () => {
       activeCleanup();
       activeCleanup = null;
     }
-    const path = location.hash.replace("#", "") || "/";
-    const access = canAccessRoute(path, selectors.user(store.getState()));
+    const { pathname, queryString } = parseHash(location.hash);
+    const fullPath = queryString ? `${pathname}?${queryString}` : pathname;
+    const access = canAccessRoute(pathname, selectors.user(store.getState()));
     if (!access.allowed) {
       if (access.reason === "unauthenticated") {
-        authService.setReturnTo(`#${path}`);
-        if (path !== "/auth") {
+        authService.setReturnTo(window.location.hash || "#/");
+        if (pathname !== "/auth") {
           navigateHash("#/auth");
           return;
         }
-      } else if (access.reason === "forbidden") {
+      } else if (access.reason === "forbidden" || access.reason === "admin-disabled") {
+        const isAdminDisabled = access.reason === "admin-disabled";
+        const title = isAdminDisabled ? "Administracja niedostępna" : "Brak uprawnień";
+        const message = isAdminDisabled
+          ? "Panel administracyjny wymaga weryfikacji po stronie backendu. W trybie demo jest niedostępny."
+          : "Nie masz uprawnień do tej sekcji.";
         setMeta({
-          title: "Brak uprawnień",
-          description: "Nie masz uprawnień do tej sekcji.",
+          title,
+          description: message,
         });
         const main = document.getElementById("main-content");
         if (main) {
           clearElement(main);
           const container = createElement("section", { className: "container" });
           renderNotice(container, {
-            title: "Brak uprawnień",
-            message: "Nie masz uprawnień do tej sekcji.",
+            title,
+            message,
             action: { label: "Wróć na stronę główną", href: "#/" },
             headingTag: "h2",
           });
           main.appendChild(container);
         }
         updateActiveNav("");
-        notifyRouteRendered(path);
+        notifyRouteRendered(fullPath);
         return;
       }
     }
-    const route = matchRoute(path);
+    const route = matchRoute(pathname);
     if (route) {
       if (route.meta) {
         updateMeta(route.meta.title, route.meta.description);
@@ -144,8 +150,8 @@ export const startRouter = () => {
         } catch (error) {
           console.error("Failed to load route module:", error);
           renderRouteLoadError(main);
-          updateActiveNav(`#${path === "/" ? "/" : path}`);
-          notifyRouteRendered(path);
+          updateActiveNav(`#${pathname === "/" ? "/" : pathname}`);
+          notifyRouteRendered(fullPath);
           return;
         }
       }
@@ -155,8 +161,8 @@ export const startRouter = () => {
           activeCleanup = cleanup;
         }
       }
-      updateActiveNav(`#${path === "/" ? "/" : path}`);
-      notifyRouteRendered(path);
+      updateActiveNav(`#${pathname === "/" ? "/" : pathname}`);
+      notifyRouteRendered(fullPath);
     } else {
       const fallback = routes.find((item) => item.pattern.source === "^/404$");
       if (fallback) {

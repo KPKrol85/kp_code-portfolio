@@ -17,6 +17,8 @@ import { content } from "./content/pl.js";
 import { setMetaImages } from "./utils/meta.js";
 
 const THEME_KEY = "kp_theme";
+const SW_UPDATE_TOAST_KEY = "kp_sw_update_toast_shown";
+const SW_UPDATE_RELOAD_KEY = "kp_sw_update_reloaded";
 
 const applyTheme = (theme, { persist = true } = {}) => {
   document.documentElement.setAttribute("data-theme", theme);
@@ -65,17 +67,17 @@ const initData = async () => {
 };
 
 const initStore = () => {
-  const cart = cartService.getCart();
   const session = authService.getSession();
   const user = authService.getUser();
   const { theme, hasSaved } = detectTheme();
-  actions.cart.setCart(cart);
   actions.user.setSession(session, user);
+  actions.cart.setCart(cartService.getCart());
   actions.ui.setTheme(theme);
   applyTheme(theme, { persist: hasSaved });
 
   authService.onAuthChange(({ session: nextSession, user: nextUser }) => {
     actions.user.setSession(nextSession, nextUser);
+    actions.cart.setCart(cartService.getCart());
   });
 
   const mediaQuery = window.matchMedia("(prefers-color-scheme: dark)");
@@ -595,7 +597,52 @@ const registerServiceWorker = () => {
   window.addEventListener("load", () => {
     navigator.serviceWorker
       .register("/sw.js")
-      .then(() => {
+      .then((registration) => {
+        if (!registration) {
+          return;
+        }
+        let updateToastShown = false;
+        const showUpdateToast = () => {
+          if (updateToastShown || sessionStorage.getItem(SW_UPDATE_TOAST_KEY)) {
+            return;
+          }
+          const waitingWorker = registration.waiting;
+          if (!waitingWorker) {
+            return;
+          }
+          updateToastShown = true;
+          sessionStorage.setItem(SW_UPDATE_TOAST_KEY, "1");
+          showToast(content.toasts.updateAvailable, "info", {
+            actionLabel: content.toasts.updateCta,
+            duration: null,
+            onAction: () => {
+              if (sessionStorage.getItem(SW_UPDATE_RELOAD_KEY)) {
+                return;
+              }
+              sessionStorage.setItem(SW_UPDATE_RELOAD_KEY, "1");
+              const reloadOnce = () => {
+                navigator.serviceWorker.removeEventListener("controllerchange", reloadOnce);
+                window.location.reload();
+              };
+              navigator.serviceWorker.addEventListener("controllerchange", reloadOnce);
+              waitingWorker.postMessage({ type: "SKIP_WAITING" });
+            },
+          });
+        };
+        if (registration.waiting && navigator.serviceWorker.controller) {
+          showUpdateToast();
+        }
+        registration.addEventListener("updatefound", () => {
+          const installing = registration.installing;
+          if (!installing) {
+            return;
+          }
+          installing.addEventListener("statechange", () => {
+            if (installing.state === "installed" && navigator.serviceWorker.controller) {
+              showUpdateToast();
+            }
+          });
+        });
         if (["localhost", "127.0.0.1"].includes(window.location.hostname)) {
           console.info("Service Worker registered.");
         }

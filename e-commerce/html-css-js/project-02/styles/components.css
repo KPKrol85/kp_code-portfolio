@@ -167,6 +167,25 @@
   pointer-events: auto;
 }
 
+.toast-content {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+}
+
+.toast-message {
+  flex: 1;
+}
+
+.toast-actions {
+  flex-shrink: 0;
+}
+
+.toast-action {
+  padding: var(--space-2) var(--space-4);
+  font-size: 0.9rem;
+}
+
 .modal-backdrop {
   position: fixed;
   inset: 0;

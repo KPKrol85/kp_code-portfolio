@@ -237,6 +237,43 @@ export const renderProducts = () => {
   let lastRenderSignature = null;
   let lastRenderProducts = null;
   let visibleRows = VISIBLE_ROWS;
+  const parseGridColumns = (template) => {
+    if (!template || template === "none") {
+      return PRODUCT_COLUMNS;
+    }
+    const repeatMatch = template.match(/repeat\(\s*(\d+)\s*,/);
+    if (repeatMatch) {
+      return Number.parseInt(repeatMatch[1], 10) || PRODUCT_COLUMNS;
+    }
+    let columns = 0;
+    let depth = 0;
+    let token = "";
+    for (const char of template) {
+      if (char === "(") {
+        depth += 1;
+      } else if (char === ")") {
+        depth = Math.max(0, depth - 1);
+      }
+      if (char === " " && depth === 0) {
+        if (token.trim()) {
+          columns += 1;
+        }
+        token = "";
+      } else {
+        token += char;
+      }
+    }
+    if (token.trim()) {
+      columns += 1;
+    }
+    return columns || PRODUCT_COLUMNS;
+  };
+
+  const getGridColumns = () => {
+    const template = window.getComputedStyle(grid).gridTemplateColumns;
+    return parseGridColumns(template);
+  };
+
   const renderList = (force = false) => {
     if (!isActive || store.getState().productsStatus !== "ready") {
       return;
@@ -254,10 +291,10 @@ export const renderProducts = () => {
     }
     lastRenderSignature = signature;
     lastRenderProducts = products;
-    clearElement(grid);
 
     const filtered = getVisibleProducts(products, { query, category, sort });
     if (!filtered.length) {
+      clearElement(grid);
       resultsCount.hidden = true;
       showMoreButton.hidden = true;
       grid.appendChild(
@@ -271,19 +308,41 @@ export const renderProducts = () => {
       return;
     }
 
-    const limit = visibleRows * PRODUCT_COLUMNS;
+    const limit = visibleRows * getGridColumns();
     const visible = filtered.slice(0, limit);
+    const visibleIds = new Set(visible.map((product) => String(product.id)));
+    const existingNodes = new Map();
+    const hasNonCardChildren = Array.from(grid.children).some(
+      (child) => !child.dataset.productId
+    );
+    if (hasNonCardChildren) {
+      clearElement(grid);
+    }
+    grid.querySelectorAll("[data-product-id]").forEach((node) => {
+      existingNodes.set(node.dataset.productId, node);
+    });
+    existingNodes.forEach((node, id) => {
+      if (!visibleIds.has(id)) {
+        node.remove();
+        existingNodes.delete(id);
+      }
+    });
     resultsCount.textContent = `Pokazano ${visible.length} z ${filtered.length}`;
     resultsCount.hidden = false;
+    const fragment = document.createDocumentFragment();
     visible.forEach((product) => {
-      grid.appendChild(
-        createProductCard(product, (id) => {
-          cartService.addItem(id, 1);
+      const id = String(product.id);
+      let card = existingNodes.get(id);
+      if (!card) {
+        card = createProductCard(product, (productId) => {
+          cartService.addItem(productId, 1);
           actions.cart.setCart(cartService.getCart());
           showToast(content.toasts.addedToCart);
-        })
-      );
+        });
+      }
+      fragment.appendChild(card);
     });
+    grid.appendChild(fragment);
 
     showMoreButton.hidden = visible.length >= filtered.length;
   };
@@ -368,6 +427,7 @@ export const renderProducts = () => {
     addCleanup(() => field.removeEventListener(eventName, handler));
   };
   const debouncedFiltersUpdate = debounce(() => handleFiltersUpdate({ replace: true }), 250);
+  const debouncedResize = debounce(() => renderList(true), 150);
   attachFieldListener(searchField, "input", debouncedFiltersUpdate);
   attachFieldListener(sortSelect, "change", () => handleFiltersUpdate({ replace: false }));
   attachFieldListener(categorySelect, "change", () => handleFiltersUpdate({ replace: false }));
@@ -384,6 +444,9 @@ export const renderProducts = () => {
   window.addEventListener("popstate", handlePopState);
   addCleanup(() => window.removeEventListener("popstate", handlePopState));
   addCleanup(() => debouncedFiltersUpdate.cancel?.());
+  window.addEventListener("resize", debouncedResize);
+  addCleanup(() => window.removeEventListener("resize", debouncedResize));
+  addCleanup(() => debouncedResize.cancel?.());
 
   main.appendChild(container);
 

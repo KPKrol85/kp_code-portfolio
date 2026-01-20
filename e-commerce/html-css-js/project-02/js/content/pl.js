@@ -83,6 +83,12 @@ export const content = {
       downloadsHint: "Pliki pojawią się w bibliotece po zakończeniu zamówienia.",
     },
   },
+  errors: {
+    unexpectedTitle: "Coś poszło nie tak",
+    unexpectedDescription: "Odśwież stronę. Jeśli problem będzie się powtarzał, wróć później.",
+    retryAction: "Odśwież",
+    homeAction: "Przejdź na stronę główną",
+  },
   toasts: {
     dataFetchError: "Nie udało się pobrać danych.",
     addedToCart: "Dodano produkt do koszyka.",
@@ -94,6 +100,8 @@ export const content = {
     accountCreated: "Konto utworzone, możesz się zalogować.",
     logout: "Wylogowano.",
     contactSent: "Wiadomość została wysłana (demo).",
+    updateAvailable: "Dostępna jest nowa wersja. Odśwież, aby zaktualizować.",
+    updateCta: "Odśwież",
   },
   auth: {
     title: "Konto użytkownika",

@@ -6,6 +6,48 @@ import { showToast } from "../components/toast.js";
 import { withButtonLoading } from "../utils/ui-state.js";
 import { content } from "../content/pl.js";
 
+const AUTH_FALLBACK_HASH = "#/account";
+
+const isSafeReturnTo = (value) => {
+  if (typeof value !== "string") {
+    return false;
+  }
+  const trimmed = value.trim();
+  if (!trimmed) {
+    return false;
+  }
+  const lower = trimmed.toLowerCase();
+  if (
+    lower.startsWith("http:") ||
+    lower.startsWith("https:") ||
+    lower.startsWith("javascript:") ||
+    lower.startsWith("data:")
+  ) {
+    return false;
+  }
+  if (trimmed.startsWith("//") || trimmed.startsWith("#//")) {
+    return false;
+  }
+  return trimmed.startsWith("#/") || trimmed.startsWith("/");
+};
+
+const normalizeReturnTo = (value) => {
+  if (!isSafeReturnTo(value)) {
+    return null;
+  }
+  return value.startsWith("#") ? value : `#${value}`;
+};
+
+const navigateToReturnTo = (targetHash) => {
+  const onRouteAfter = (event) => {
+    if (event?.detail?.path === "/404") {
+      navigateHash(AUTH_FALLBACK_HASH, { force: true });
+    }
+  };
+  window.addEventListener("route:after", onRouteAfter, { once: true });
+  navigateHash(targetHash, { force: true });
+};
+
 export const renderAuth = () => {
   const main = document.getElementById("main-content");
   clearElement(main);
@@ -22,7 +64,8 @@ export const renderAuth = () => {
       type: "button",
       role: "tab",
       "aria-selected": "true",
-      "aria-controls": "auth-panel",
+      tabindex: "0",
+      "aria-controls": "auth-panel-login",
     },
   });
   const registerTab = createElement("button", {
@@ -33,26 +76,37 @@ export const renderAuth = () => {
       type: "button",
       role: "tab",
       "aria-selected": "false",
-      "aria-controls": "auth-panel",
+      tabindex: "-1",
+      "aria-controls": "auth-panel-register",
     },
   });
   tabs.appendChild(loginTab);
   tabs.appendChild(registerTab);
 
-  const panel = createElement("div", {
+  const loginPanel = createElement("div", {
     className: "card section",
     attrs: {
-      id: "auth-panel",
+      id: "auth-panel-login",
       role: "tabpanel",
       tabindex: "0",
       "aria-labelledby": "auth-tab-login",
     },
   });
+  const registerPanel = createElement("div", {
+    className: "card section",
+    attrs: {
+      id: "auth-panel-register",
+      role: "tabpanel",
+      tabindex: "0",
+      "aria-labelledby": "auth-tab-register",
+      hidden: "hidden",
+    },
+  });
 
   const renderLogin = () => {
-    clearElement(panel);
-    panel.setAttribute("aria-labelledby", "auth-tab-login");
-    panel.appendChild(createElement("h2", { text: content.auth.login.title }));
+    clearElement(loginPanel);
+    loginPanel.setAttribute("aria-labelledby", "auth-tab-login");
+    loginPanel.appendChild(createElement("h2", { text: content.auth.login.title }));
     const emailField = createElement("input", {
       className: "input",
       attrs: {
@@ -155,7 +209,12 @@ export const renderAuth = () => {
               password: passwordField.value,
             });
             showToast(content.toasts.loginSuccess);
-            navigateHash("#/account");
+            const returnTo = normalizeReturnTo(authService.consumeReturnTo());
+            if (returnTo) {
+              navigateToReturnTo(returnTo);
+              return;
+            }
+            navigateHash(AUTH_FALLBACK_HASH);
           } catch (error) {
             errorBox.textContent = error.message;
           }
@@ -164,13 +223,13 @@ export const renderAuth = () => {
       );
     });
 
-    panel.appendChild(form);
+    loginPanel.appendChild(form);
   };
 
   const renderRegister = () => {
-    clearElement(panel);
-    panel.setAttribute("aria-labelledby", "auth-tab-register");
-    panel.appendChild(createElement("h2", { text: content.auth.register.title }));
+    clearElement(registerPanel);
+    registerPanel.setAttribute("aria-labelledby", "auth-tab-register");
+    registerPanel.appendChild(createElement("h2", { text: content.auth.register.title }));
     const nameField = createElement("input", {
       className: "input",
       attrs: {
@@ -325,24 +384,68 @@ export const renderAuth = () => {
       );
     });
 
-    panel.appendChild(form);
+    registerPanel.appendChild(form);
+  };
+
+  const tabsList = [loginTab, registerTab];
+  const panels = new Map([
+    [loginTab, loginPanel],
+    [registerTab, registerPanel],
+  ]);
+
+  const setActiveTab = (nextTab, { focus = false } = {}) => {
+    tabsList.forEach((tab) => {
+      const isActive = tab === nextTab;
+      tab.setAttribute("aria-selected", isActive ? "true" : "false");
+      tab.setAttribute("tabindex", isActive ? "0" : "-1");
+      const panel = panels.get(tab);
+      if (panel) {
+        panel.hidden = !isActive;
+      }
+    });
+    if (nextTab === loginTab) {
+      renderLogin();
+    } else {
+      renderRegister();
+    }
+    if (focus) {
+      nextTab.focus();
+    }
   };
 
   loginTab.addEventListener("click", () => {
-    loginTab.setAttribute("aria-selected", "true");
-    registerTab.setAttribute("aria-selected", "false");
-    renderLogin();
+    setActiveTab(loginTab);
   });
 
   registerTab.addEventListener("click", () => {
-    registerTab.setAttribute("aria-selected", "true");
-    loginTab.setAttribute("aria-selected", "false");
-    renderRegister();
+    setActiveTab(registerTab);
   });
 
-  renderLogin();
+  tabs.addEventListener("keydown", (event) => {
+    const currentIndex = tabsList.indexOf(document.activeElement);
+    if (currentIndex === -1) {
+      return;
+    }
+    let nextIndex = currentIndex;
+    if (event.key === "ArrowRight") {
+      nextIndex = (currentIndex + 1) % tabsList.length;
+    } else if (event.key === "ArrowLeft") {
+      nextIndex = (currentIndex - 1 + tabsList.length) % tabsList.length;
+    } else if (event.key === "Home") {
+      nextIndex = 0;
+    } else if (event.key === "End") {
+      nextIndex = tabsList.length - 1;
+    } else {
+      return;
+    }
+    event.preventDefault();
+    setActiveTab(tabsList[nextIndex], { focus: true });
+  });
+
+  setActiveTab(loginTab);
 
   container.appendChild(tabs);
-  container.appendChild(panel);
+  container.appendChild(loginPanel);
+  container.appendChild(registerPanel);
   main.appendChild(container);
 };

@@ -9,7 +9,9 @@ export const renderAdmin = () => {
   const container = createElement("section", { className: "container" }, [
     createElement("div", { className: "card" }, [
       createElement("h1", { text: "Panel administratora" }),
-      createElement("p", { text: "Panel administratora (w budowie)." }),
+      createElement("p", {
+        text: "Panel administracyjny wymaga weryfikacji po stronie backendu. W trybie demo jest niedostępny.",
+      }),
     ]),
   ]);
   main.appendChild(container);

@@ -9,7 +9,7 @@ import { store } from "../store/store.js";
 import { actions } from "../store/actions.js";
 import { setMeta } from "../utils/meta.js";
 import { setButtonLoading, clearButtonLoading } from "../utils/ui-state.js";
-import { renderNotice } from "../components/uiStates.js";
+import { renderNotice, createRetryButton } from "../components/uiStates.js";
 import { renderEmptyState } from "../components/ui-state-helpers.js";
 import { content } from "../content/pl.js";
 
@@ -17,12 +17,39 @@ export const renderCheckout = () => {
   const main = document.getElementById("main-content");
   clearElement(main);
 
-  const { cart, products } = store.getState();
-  const validItems = cart.filter((item) => products.some((entry) => entry.id === item.productId));
-  const missingItems = cart.filter((item) => !products.some((entry) => entry.id === item.productId));
+  const { cart, products, productsStatus, productsError } = store.getState();
 
   const container = createElement("section", { className: "container" });
   container.appendChild(createElement("h1", { text: content.checkout.title }));
+
+  if (productsStatus === "loading" || productsStatus === "idle") {
+    renderNotice(container, {
+      title: content.states.cart.loading.title,
+      message: content.states.cart.loading.message,
+      headingTag: "h2",
+    });
+    main.appendChild(container);
+    return;
+  }
+
+  if (productsStatus === "error") {
+    renderNotice(container, {
+      title: content.states.products.error.title,
+      message: productsError || content.states.products.error.message,
+      action: { element: createRetryButton() },
+      headingTag: "h2",
+    });
+    main.appendChild(container);
+    return;
+  }
+
+  const safeProducts = Array.isArray(products) ? products : [];
+  const validItems = cart.filter((item) =>
+    safeProducts.some((entry) => entry.id === item.productId)
+  );
+  const missingItems = cart.filter(
+    (item) => !safeProducts.some((entry) => entry.id === item.productId)
+  );
 
   if (!cart.length) {
     container.appendChild(
@@ -177,7 +204,7 @@ export const renderCheckout = () => {
   let total = 0;
   const list = createElement("ul");
   validItems.forEach((item) => {
-    const product = products.find((entry) => entry.id === item.productId);
+    const product = safeProducts.find((entry) => entry.id === item.productId);
     if (!product) {
       return;
     }
@@ -249,7 +276,7 @@ export const renderCheckout = () => {
       id: crypto.randomUUID(),
       createdAt: new Date().toISOString(),
       items: cart.map((item) => {
-        const product = products.find((entry) => entry.id === item.productId);
+        const product = safeProducts.find((entry) => entry.id === item.productId);
         return {
           productId: item.productId,
           quantity: item.quantity,

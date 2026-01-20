@@ -9,6 +9,62 @@ import { withButtonLoading } from "../utils/ui-state.js";
 import { renderEmptyState } from "../components/ui-state-helpers.js";
 import { content } from "../content/pl.js";
 
+const QUANTITY_DEBOUNCE_MS = 120;
+
+const parseQuantityValue = (value) => {
+  if (typeof value !== "string") {
+    return null;
+  }
+  const trimmed = value.trim();
+  if (!trimmed) {
+    return null;
+  }
+  const parsed = Number(trimmed);
+  if (!Number.isFinite(parsed)) {
+    return null;
+  }
+  return Math.floor(parsed);
+};
+
+const normalizeQuantity = (value) => Math.max(1, value);
+
+const getDisplayQuantity = (input) => {
+  const parsed = parseQuantityValue(input.value);
+  if (parsed === null || parsed < 1) {
+    const lastValid = Number(input.dataset.lastValidQty);
+    if (Number.isFinite(lastValid) && lastValid > 0) {
+      return lastValid;
+    }
+    return 1;
+  }
+  return normalizeQuantity(parsed);
+};
+
+const updateLineSubtotal = (card, quantity, unitPrice) => {
+  const subtotalNode = card.querySelector("[data-cart-line-total]");
+  if (!subtotalNode) {
+    return;
+  }
+  subtotalNode.textContent = formatCurrency(unitPrice * quantity);
+};
+
+const updateCartTotal = (itemsWrapper, totalNode) => {
+  if (!itemsWrapper || !totalNode) {
+    return;
+  }
+  const inputs = itemsWrapper.querySelectorAll("[data-cart-quantity]");
+  let total = 0;
+  inputs.forEach((input) => {
+    const price = Number(input.dataset.unitPrice);
+    if (!Number.isFinite(price)) {
+      return;
+    }
+    const quantity = getDisplayQuantity(input);
+    total += price * quantity;
+  });
+  totalNode.textContent = formatCurrency(total);
+};
+
 export const renderCart = () => {
   const main = document.getElementById("main-content");
   clearElement(main);
@@ -90,14 +146,19 @@ export const renderCart = () => {
   }
 
   const itemsWrapper = createElement("div", { className: "grid" });
+  const pendingQuantityUpdates = new Map();
   let subtotal = 0;
   validItems.forEach((item) => {
     const product = products.find((entry) => entry.id === item.productId);
     if (!product) {
       return;
     }
-    subtotal += product.price * item.quantity;
-    const card = createElement("div", { className: "card" });
+    const lineTotal = product.price * item.quantity;
+    subtotal += lineTotal;
+    const card = createElement("div", {
+      className: "card",
+      attrs: { "data-product-id": product.id },
+    });
     card.appendChild(createElement("h3", { text: product.name }));
     card.appendChild(createElement("p", { text: product.shortDescription }));
     const quantityId = `cart-qty-${product.id}`;
@@ -114,15 +175,11 @@ export const renderCart = () => {
         min: "1",
         value: String(item.quantity),
         inputmode: "numeric",
+        "data-cart-quantity": "true",
+        "data-product-id": product.id,
+        "data-unit-price": String(product.price),
+        "data-last-valid-qty": String(item.quantity),
       },
-    });
-    quantityField.addEventListener("change", () => {
-      const rawValue = Number(quantityField.value);
-      const safeValue = Number.isFinite(rawValue) ? Math.max(1, Math.floor(rawValue)) : 1;
-      quantityField.value = String(safeValue);
-      cartService.updateItem(product.id, safeValue);
-      actions.cart.setCart(cartService.getCart());
-      renderCart();
     });
 
     const removeButton = createElement("button", {
@@ -138,7 +195,11 @@ export const renderCart = () => {
     });
 
     card.appendChild(
-      createElement("p", { className: "price", text: formatCurrency(product.price) })
+      createElement("p", {
+        className: "price",
+        text: formatCurrency(lineTotal),
+        attrs: { "data-cart-line-total": "true" },
+      })
     );
     card.appendChild(quantityLabel);
     card.appendChild(quantityField);
@@ -179,8 +240,17 @@ export const renderCart = () => {
     );
   });
 
+  const totalValue = createElement("strong", {
+    text: formatCurrency(subtotal),
+    attrs: { "data-cart-total": "true" },
+  });
   summary.appendChild(createElement("h2", { text: content.common.summaryTitle }));
-  summary.appendChild(createElement("p", { text: `Suma: ${formatCurrency(subtotal)}` }));
+  summary.appendChild(
+    createElement("p", { className: "cart-total" }, [
+      createElement("span", { text: "Suma: " }),
+      totalValue,
+    ])
+  );
   summary.appendChild(promoLabel);
   summary.appendChild(promoField);
   summary.appendChild(applyButton);
@@ -209,6 +279,85 @@ export const renderCart = () => {
   ]);
   container.appendChild(layout);
   main.appendChild(container);
+
+  const scheduleQuantityUpdate = (productId, quantity) => {
+    const existingTimer = pendingQuantityUpdates.get(productId);
+    if (existingTimer) {
+      clearTimeout(existingTimer);
+    }
+    const timer = window.setTimeout(() => {
+      pendingQuantityUpdates.delete(productId);
+      const nextCart = cartService.updateItem(productId, quantity);
+      actions.cart.setCart(nextCart);
+    }, QUANTITY_DEBOUNCE_MS);
+    pendingQuantityUpdates.set(productId, timer);
+  };
+
+  const commitQuantityUpdate = (productId, quantity) => {
+    const existingTimer = pendingQuantityUpdates.get(productId);
+    if (existingTimer) {
+      clearTimeout(existingTimer);
+      pendingQuantityUpdates.delete(productId);
+    }
+    const nextCart = cartService.updateItem(productId, quantity);
+    actions.cart.setCart(nextCart);
+  };
+
+  itemsWrapper.addEventListener("input", (event) => {
+    const target = event.target;
+    if (!(target instanceof HTMLInputElement)) {
+      return;
+    }
+    if (!target.matches("[data-cart-quantity]")) {
+      return;
+    }
+    const rawQuantity = parseQuantityValue(target.value);
+    if (rawQuantity === null || rawQuantity < 1) {
+      return;
+    }
+    const safeQuantity = normalizeQuantity(rawQuantity);
+    target.dataset.lastValidQty = String(safeQuantity);
+    const card = target.closest("[data-product-id]");
+    const unitPrice = Number(target.dataset.unitPrice);
+    if (card && Number.isFinite(unitPrice)) {
+      updateLineSubtotal(card, safeQuantity, unitPrice);
+    }
+    updateCartTotal(itemsWrapper, totalValue);
+    const productId = target.dataset.productId;
+    if (productId) {
+      scheduleQuantityUpdate(productId, safeQuantity);
+    }
+  });
+
+  itemsWrapper.addEventListener(
+    "blur",
+    (event) => {
+      const target = event.target;
+      if (!(target instanceof HTMLInputElement)) {
+        return;
+      }
+      if (!target.matches("[data-cart-quantity]")) {
+        return;
+      }
+      const parsed = parseQuantityValue(target.value);
+      const normalized = normalizeQuantity(
+        parsed !== null && parsed >= 1 ? parsed : 1
+      );
+      target.value = String(normalized);
+      target.dataset.lastValidQty = String(normalized);
+      const card = target.closest("[data-product-id]");
+      const unitPrice = Number(target.dataset.unitPrice);
+      if (card && Number.isFinite(unitPrice)) {
+        updateLineSubtotal(card, normalized, unitPrice);
+      }
+      updateCartTotal(itemsWrapper, totalValue);
+      const productId = target.dataset.productId;
+      if (productId) {
+        commitQuantityUpdate(productId, normalized);
+      }
+    },
+    true
+  );
 };
 
 const renderMissingSection = (container, missingItems) => {

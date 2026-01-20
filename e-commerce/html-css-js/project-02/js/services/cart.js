@@ -1,13 +1,69 @@
 import { storage } from "./storage.js";
+import { store } from "../store/store.js";
 
-const CART_KEY = "kp_cart";
+const LEGACY_CART_KEY = "kp_cart";
+const CART_KEY_PREFIX = "kp_cart_";
+const GUEST_CART_KEY = "kp_cart_guest";
+
+const getUserId = () => store.getState().user?.id ?? null;
+
+const getCartKey = (userId) => (userId ? `${CART_KEY_PREFIX}${userId}` : GUEST_CART_KEY);
+
+const normalizeCart = (value) => {
+  if (!Array.isArray(value)) {
+    return [];
+  }
+  return value
+    .map((item) => {
+      if (!item || typeof item.productId !== "string") {
+        return null;
+      }
+      const quantity = Number.isFinite(item.quantity) ? Math.max(1, Math.floor(item.quantity)) : 1;
+      return { productId: item.productId, quantity };
+    })
+    .filter(Boolean);
+};
+
+const mergeCarts = (primary, secondary) => {
+  const result = normalizeCart(primary);
+  const index = new Map(result.map((item) => [item.productId, item]));
+  normalizeCart(secondary).forEach((item) => {
+    const existing = index.get(item.productId);
+    if (existing) {
+      existing.quantity += item.quantity;
+    } else {
+      const entry = { ...item };
+      result.push(entry);
+      index.set(item.productId, entry);
+    }
+  });
+  return result;
+};
+
+const migrateLegacyCart = (userId) => {
+  const legacy = storage.get(LEGACY_CART_KEY, null);
+  if (!legacy) {
+    return;
+  }
+  if (!Array.isArray(legacy)) {
+    return;
+  }
+  const targetKey = getCartKey(userId);
+  const existing = storage.get(targetKey, []);
+  const next = Array.isArray(existing) && existing.length ? mergeCarts(existing, legacy) : legacy;
+  storage.set(targetKey, normalizeCart(next));
+  storage.remove(LEGACY_CART_KEY);
+};
 
 export const cartService = {
   getCart() {
-    return storage.get(CART_KEY, []);
+    const userId = getUserId();
+    migrateLegacyCart(userId);
+    return normalizeCart(storage.get(getCartKey(userId), []));
   },
   saveCart(cart) {
-    storage.set(CART_KEY, cart);
+    const userId = getUserId();
+    storage.set(getCartKey(userId), normalizeCart(cart));
   },
   addItem(productId, quantity = 1) {
     const cart = this.getCart();
@@ -35,6 +91,7 @@ export const cartService = {
     return cart;
   },
   clear() {
-    storage.remove(CART_KEY);
+    const userId = getUserId();
+    storage.remove(getCartKey(userId));
   },
 };
