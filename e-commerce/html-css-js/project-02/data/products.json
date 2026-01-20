@@ -99,6 +99,67 @@
     ],
     "downloadables": []
   },
+  {
+    "id": "minimal-ui-icons-core-pack",
+    "name": "Minimal UI Icons – Core Pack",
+    "shortDescription": "Spójny zestaw 50 minimalistycznych ikon SVG (outline) do dashboardów, aplikacji SaaS i interfejsów webowych.",
+    "description": "Minimal UI Icons – Core Pack to praktyczny, spójny stylistycznie zestaw 50 ikon SVG zaprojektowanych z myślą o nowoczesnych interfejsach webowych: dashboardach, panelach administracyjnych i produktach typu SaaS. Ikony utrzymane są w minimalistycznym stylu outline (stroke), dzięki czemu łatwo dopasować je do light i dark mode oraz stylować przez CSS. Zestaw obejmuje najczęściej wykorzystywane symbole UI (nawigacja, akcje, statusy, pliki, użytkownicy, dane), które realnie przyspieszają pracę nad projektami i zapewniają spójny wygląd interfejsu.",
+    "price": 79,
+    "tags": ["Icons", "SVG", "UI", "Assets", "SaaS", "Dashboard"],
+    "category": "Assets & Graphics",
+    "requirements": "Nowoczesna przeglądarka, podstawowa znajomość HTML/CSS (opcjonalnie do stylowania ikon)",
+    "bundleContents": [
+      "50 ikon SVG w spójnym stylu outline (stroke)",
+      "Standard: 24×24 (viewBox 0 0 24 24) – łatwe skalowanie",
+      "Ikony gotowe do stylowania CSS (kolor, rozmiar, grubość linii)",
+      "Zestaw kategorii: nawigacja, akcje, użytkownicy, statusy, pliki, dane",
+      "Nazewnictwo plików ułatwiające użycie w projektach (np. search.svg, settings.svg)",
+      "Wersja podglądowa: mini katalog (preview) ułatwiający wybór ikon"
+    ],
+    "version": "1.0",
+    "updatedAt": "2026-01-20",
+    "thumbnail": "products/assets-graphics/minimal-ui-icons-core-pack/01",
+    "images": [
+      "products/assets-graphics/minimal-ui-icons-core-pack/01",
+      "products/assets-graphics/minimal-ui-icons-core-pack/02",
+      "products/assets-graphics/minimal-ui-icons-core-pack/03",
+      "products/assets-graphics/minimal-ui-icons-core-pack/04",
+      "products/assets-graphics/minimal-ui-icons-core-pack/05",
+      "products/assets-graphics/minimal-ui-icons-core-pack/06"
+    ],
+    "downloadables": []
+  },
+  {
+    "id": "pwa-shortcuts-icons-pack",
+    "name": "PWA Shortcuts Icons Pack",
+    "shortDescription": "Zestaw 24 ikon dla PWA Shortcuts w spójnym stylu — gotowy do użycia w manifest.json w kilku wariantach.",
+    "description": "PWA Shortcuts Icons Pack to zestaw 24 ikon zaprojektowanych specjalnie pod skróty aplikacji (Shortcuts) w Progressive Web App. Ikony są spójne stylistycznie, czytelne w małych rozmiarach i przygotowane z myślą o bezpośrednim użyciu w pliku manifest.json. Pakiet zawiera najczęściej wykorzystywane typy skrótów aplikacyjnych (np. wyszukiwanie, koszyk, konto, ustawienia, biblioteka), dostępne w wariantach light i dark oraz w gotowych rozmiarach PWA. Produkt pozwala szybko wdrożyć profesjonalne skróty aplikacji bez ręcznego projektowania i dopasowywania ikon.",
+    "price": 69,
+    "tags": ["PWA", "Shortcuts", "Icons", "Assets", "Manifest", "PNG"],
+    "category": "Assets & Graphics",
+    "requirements": "Nowoczesna przeglądarka; do wdrożenia — podstawowa znajomość PWA i manifest.json",
+    "bundleContents": [
+      "24 ikony zaprojektowane pod PWA Shortcuts",
+      "Warianty kolorystyczne: light + dark",
+      "Gotowe rozmiary PWA (96×96, 128×128, 192×192)",
+      "Ikony zoptymalizowane pod czytelność w małych rozmiarach",
+      "Przykładowy snippet do manifest.json (gotowy do wklejenia)",
+      "Spójne nazewnictwo plików (np. shortcut-search-96.png)"
+    ],
+    "version": "1.0",
+    "updatedAt": "2026-01-20",
+    "thumbnail": "products/assets-graphics/pwa-shortcuts-icons-pack/01",
+    "images": [
+      "products/assets-graphics/pwa-shortcuts-icons-pack/01",
+      "products/assets-graphics/pwa-shortcuts-icons-pack/02",
+      "products/assets-graphics/pwa-shortcuts-icons-pack/03",
+      "products/assets-graphics/pwa-shortcuts-icons-pack/04",
+      "products/assets-graphics/pwa-shortcuts-icons-pack/05",
+      "products/assets-graphics/pwa-shortcuts-icons-pack/06",
+      "products/assets-graphics/pwa-shortcuts-icons-pack/07"
+    ],
+    "downloadables": []
+  },
 
   {
     "id": "logic-flashcards-for-kids",
@@ -129,6 +190,40 @@
       "products/knowledge-tools/logic-flashcards-for-kids/05",
       "products/knowledge-tools/logic-flashcards-for-kids/06",
       "products/knowledge-tools/logic-flashcards-for-kids/07"
+    ],
+    "downloadables": []
+  },
+  {
+    "id": "javascript-flashcards-core-concepts",
+    "name": "JavaScript Flashcards – Core Concepts",
+    "shortDescription": "Zestaw fiszek pomagających zrozumieć i utrwalić kluczowe pojęcia języka JavaScript.",
+    "description": "JavaScript Flashcards – Core Concepts to praktyczny zestaw fiszek edukacyjnych przeznaczonych dla osób uczących się JavaScriptu oraz junior developerów, którzy chcą uporządkować i utrwalić fundamenty języka. Produkt skupia się na zrozumieniu najważniejszych pojęć, mechanizmów i zależności w JavaScript — bez nadmiaru teorii i bez formy klasycznego kursu. Fiszki zostały zaprojektowane jako narzędzie do codziennej nauki, powtórek oraz szybkiego odświeżania wiedzy podczas pracy nad realnymi projektami.",
+    "price": 79,
+    "tags": ["JavaScript", "Flashcards", "Education", "Programming", "Frontend"],
+    "category": "Knowledge & Tools",
+    "requirements": "Podstawowa znajomość HTML i JavaScript",
+    "bundleContents": [
+      "75 fiszek obejmujących kluczowe pojęcia JavaScript",
+      "Zmienne, typy danych i operatory",
+      "Funkcje, scope i podstawy closure",
+      "Tablice, obiekty i najczęściej używane metody",
+      "Podstawy pracy z DOM",
+      "Wprowadzenie do asynchroniczności (Promise, async/await – koncepcje)",
+      "Krótkie przykłady kodu i zwięzłe wyjaśnienia",
+      "Wersja do druku (PDF)",
+      "Wersja cyfrowa do nauki na ekranie"
+    ],
+    "version": "1.0",
+    "updatedAt": "2026-01-20",
+    "thumbnail": "products/knowledge-tools/javascript-flashcards-core-concepts/01",
+    "images": [
+      "products/knowledge-tools/javascript-flashcards-core-concepts/01",
+      "products/knowledge-tools/javascript-flashcards-core-concepts/02",
+      "products/knowledge-tools/javascript-flashcards-core-concepts/03",
+      "products/knowledge-tools/javascript-flashcards-core-concepts/04",
+      "products/knowledge-tools/javascript-flashcards-core-concepts/05",
+      "products/knowledge-tools/javascript-flashcards-core-concepts/06",
+      "products/knowledge-tools/javascript-flashcards-core-concepts/07"
     ],
     "downloadables": []
   }
