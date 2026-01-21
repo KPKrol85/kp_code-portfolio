@@ -683,6 +683,7 @@ footer.is-mounted #app-footer {
 #main-content .card:has([data-cart-total]) {
   display: grid;
   gap: var(--space-4);
+  align-self: start;
 }
 
 #main-content .card:has([data-cart-total]) > .button.block {

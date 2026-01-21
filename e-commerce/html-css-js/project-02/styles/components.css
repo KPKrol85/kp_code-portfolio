@@ -325,6 +325,16 @@
   font-weight: 600;
 }
 
+:root[data-theme="dark"] #main-content:has(#auth-panel-login) .tab-button {
+  color: var(--color-text-muted);
+}
+
+:root[data-theme="dark"] #main-content:has(#auth-panel-login) .tab-button:hover,
+:root[data-theme="dark"] #main-content:has(#auth-panel-login) .tab-button:focus-visible,
+:root[data-theme="dark"] #main-content:has(#auth-panel-login) .tab-button[aria-selected="true"] {
+  color: var(--color-text);
+}
+
 .skeleton {
   background: linear-gradient(90deg, #e9edf5, #f5f7fb, #e9edf5);
   background-size: 200% 100%;
