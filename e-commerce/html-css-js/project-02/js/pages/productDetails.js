@@ -97,8 +97,27 @@ export const renderProductDetails = ({ id }) => {
 
       const slider = createElement("div", { className: "product-gallery__thumbs" });
       const thumbs = images.slice(1);
+      let currentIndex = 0;
+      const setActiveThumb = (nextIndex, { focus } = {}) => {
+        const normalizedIndex = Math.max(0, Math.min(thumbs.length - 1, nextIndex));
+        const nextBase = thumbs[normalizedIndex];
+        if (currentBase !== nextBase) {
+          updateResponsivePicture(mainPicture, nextBase, { sizes: mainSizes });
+          currentBase = nextBase;
+        }
+        slider.querySelectorAll(".product-gallery__thumb").forEach((thumb, thumbIndex) => {
+          const isActive = thumbIndex === normalizedIndex;
+          thumb.classList.toggle("is-active", isActive);
+          thumb.setAttribute("aria-pressed", isActive ? "true" : "false");
+          thumb.tabIndex = isActive ? 0 : -1;
+          if (isActive && focus) {
+            thumb.focus();
+          }
+        });
+        currentIndex = normalizedIndex;
+      };
       thumbs.forEach((imageBase, index) => {
-        const isActive = index === 0;
+        const isActive = index === currentIndex;
         const image = createResponsivePicture({
           imageBase,
           imgClassName: "product-gallery__thumb-image",
@@ -114,18 +133,30 @@ export const renderProductDetails = ({ id }) => {
             attrs: {
               type: "button",
               "aria-label": `Zobacz zdjęcie ${index + 2}`,
+              "aria-pressed": isActive ? "true" : "false",
+              tabindex: isActive ? "0" : "-1",
             },
           },
           [image]
         );
         item.addEventListener("click", () => {
-          if (currentBase !== imageBase) {
-            updateResponsivePicture(mainPicture, imageBase, { sizes: mainSizes });
-            currentBase = imageBase;
+          setActiveThumb(index);
+        });
+        item.addEventListener("keydown", (event) => {
+          const { key } = event;
+          if (key === "ArrowRight") {
+            event.preventDefault();
+            setActiveThumb(currentIndex + 1, { focus: true });
+          } else if (key === "ArrowLeft") {
+            event.preventDefault();
+            setActiveThumb(currentIndex - 1, { focus: true });
+          } else if (key === "Home") {
+            event.preventDefault();
+            setActiveThumb(0, { focus: true });
+          } else if (key === "End") {
+            event.preventDefault();
+            setActiveThumb(thumbs.length - 1, { focus: true });
           }
-          slider.querySelectorAll(".product-gallery__thumb").forEach((thumb) => {
-            thumb.classList.toggle("is-active", thumb === item);
-          });
         });
         slider.appendChild(item);
       });

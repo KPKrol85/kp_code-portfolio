@@ -436,6 +436,12 @@ footer.is-mounted #app-footer {
   display: block;
 }
 
+.scroll-indicator-arrow:focus-visible {
+  outline: 2px solid currentColor;
+  outline-offset: 2px;
+  opacity: 0.7;
+}
+
 .scroll-indicator-arrow.is-left::before {
   transform: rotate(135deg);
 }
@@ -652,6 +658,37 @@ footer.is-mounted #app-footer {
   box-shadow: var(--shadow-sm);
 }
 
+#main-content .card:has([data-cart-quantity]) {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: var(--space-4) var(--space-5);
+  align-items: start;
+}
+
+#main-content .card:has([data-cart-quantity]) > * {
+  grid-column: 1 / -1;
+}
+
+#main-content .card:has([data-cart-quantity]) > [data-cart-quantity] {
+  grid-column: 1 / 2;
+  align-self: center;
+}
+
+#main-content .card:has([data-cart-quantity]) > .button.secondary {
+  grid-column: 2 / 3;
+  justify-self: end;
+  align-self: center;
+}
+
+#main-content .card:has([data-cart-total]) {
+  display: grid;
+  gap: var(--space-4);
+}
+
+#main-content .card:has([data-cart-total]) > .button.block {
+  margin-top: var(--space-4);
+}
+
 .surface-muted {
   background: var(--color-surface-muted);
   border-radius: var(--radius-md);
@@ -723,6 +760,16 @@ footer.is-mounted #app-footer {
 
   .grid {
     gap: var(--space-5);
+  }
+
+  #main-content .card:has([data-cart-quantity]) {
+    grid-template-columns: 1fr;
+  }
+
+  #main-content .card:has([data-cart-quantity]) > [data-cart-quantity],
+  #main-content .card:has([data-cart-quantity]) > .button.secondary {
+    grid-column: 1 / -1;
+    justify-self: start;
   }
 
   footer {

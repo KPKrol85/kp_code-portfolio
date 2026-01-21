@@ -242,7 +242,12 @@ export const renderCart = () => {
 
   const totalValue = createElement("strong", {
     text: formatCurrency(subtotal),
-    attrs: { "data-cart-total": "true" },
+    attrs: {
+      "data-cart-total": "true",
+      role: "status",
+      "aria-live": "polite",
+      "aria-atomic": "true",
+    },
   });
   summary.appendChild(createElement("h2", { text: content.common.summaryTitle }));
   summary.appendChild(

@@ -333,6 +333,12 @@
   min-height: 16px;
 }
 
+@media (prefers-reduced-motion: reduce) {
+  .skeleton {
+    animation: none;
+  }
+}
+
 @keyframes shimmer {
   0% {
     background-position: 0% 50%;
@@ -512,6 +518,15 @@
   justify-content: space-between;
   font-size: 0.9rem;
   color: var(--color-text-muted);
+}
+
+.image-manifest-status {
+  margin: var(--space-4) auto 0;
+  max-width: var(--max-width);
+  padding: 0 var(--space-6) var(--space-4);
+  font-size: 0.85rem;
+  color: var(--color-text-muted);
+  text-align: center;
 }
 
 .footer-meta-info,

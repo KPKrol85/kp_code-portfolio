@@ -86,15 +86,43 @@ export const renderCheckout = () => {
   }
 
   if (missingItems.length) {
-    renderNotice(container, {
-      title: "Wykryto niedostepne pozycje w koszyku.",
-      message: "Usun brakujace pozycje, aby kontynuowac checkout.",
-      headingTag: "h2",
+    const missingNotice = createElement("div", { className: "card" });
+    missingNotice.appendChild(
+      createElement("h2", { text: "Wykryto niedostepne pozycje w koszyku." })
+    );
+    missingNotice.appendChild(
+      createElement("p", {
+        text: "Usun ponizsze pozycje, aby kontynuowac skladanie zamowienia.",
+      })
+    );
+    const missingList = createElement("ul");
+    missingItems.forEach((item) => {
+      missingList.appendChild(createElement("li", { text: `ID: ${item.productId}` }));
     });
+    missingNotice.appendChild(missingList);
+    const removeAllButton = createElement("button", {
+      className: "button secondary",
+      text: "Usun niedostepne produkty",
+      attrs: { type: "button" },
+    });
+    const removeMissingItems = () => {
+      const missingIds = new Set(missingItems.map((item) => item.productId));
+      const nextCart = cart.filter((item) => !missingIds.has(item.productId));
+      cartService.saveCart(nextCart);
+      actions.cart.setCart(nextCart);
+      renderCheckout();
+    };
+    removeAllButton.addEventListener("click", removeMissingItems);
+    missingNotice.appendChild(removeAllButton);
+    container.appendChild(missingNotice);
     renderMissingSection(container, missingItems);
   }
 
-  const form = createElement("form", { className: "card" });
+  const errorBoxId = "checkout-form-errors";
+  const form = createElement("form", {
+    className: "card",
+    attrs: { "aria-describedby": errorBoxId },
+  });
   form.appendChild(createElement("h2", { text: content.checkout.orderDetailsTitle }));
 
   const nameField = createElement("input", {
@@ -161,7 +189,7 @@ export const renderCheckout = () => {
   });
   const errorBox = createElement("div", {
     className: "form-error",
-    attrs: { "aria-live": "polite" },
+    attrs: { id: errorBoxId, role: "alert" },
   });
 
   form.appendChild(
@@ -220,7 +248,7 @@ export const renderCheckout = () => {
   summary.appendChild(createElement("p", { className: "price", text: formatCurrency(total) }));
 
   let isProcessing = false;
-  const validateForm = () => {
+  const applyValidation = () => {
     nameError.textContent = "";
     emailError.textContent = "";
     errorBox.textContent = "";
@@ -245,9 +273,11 @@ export const renderCheckout = () => {
       emailField.removeAttribute("aria-invalid");
       emailField.removeAttribute("aria-describedby");
     }
-    submitButton.disabled = !nameValid || !emailValid || isProcessing;
-    return nameValid && emailValid;
+    const isValid = nameValid && emailValid;
+    submitButton.disabled = !isValid || isProcessing;
+    return { nameValid, emailValid, isValid };
   };
+  const validateForm = () => applyValidation().isValid;
 
   const updateProcessingState = (processing) => {
     isProcessing = processing;
@@ -266,8 +296,23 @@ export const renderCheckout = () => {
 
   form.addEventListener("submit", (event) => {
     event.preventDefault();
-    if (!validateForm() || isProcessing) {
+
+    const { nameValid, emailValid, isValid } = applyValidation();
+
+    if (isProcessing) {
+      return;
+    }
+
+    if (missingItems.length) {
+      return;
+    }
+
+    if (!isValid) {
       errorBox.textContent = "Popraw zaznaczone pola.";
+      const firstInvalid = !nameValid ? nameField : !emailValid ? emailField : null;
+      if (firstInvalid) {
+        firstInvalid.focus();
+      }
       return;
     }
 
@@ -275,7 +320,7 @@ export const renderCheckout = () => {
     const order = {
       id: crypto.randomUUID(),
       createdAt: new Date().toISOString(),
-      items: cart.map((item) => {
+      items: validItems.map((item) => {
         const product = safeProducts.find((entry) => entry.id === item.productId);
         return {
           productId: item.productId,

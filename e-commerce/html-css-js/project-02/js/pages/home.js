@@ -50,69 +50,93 @@ export const renderHome = () => {
   heroContent.appendChild(heroActions);
 
   const heroVisual = createElement("div", { className: "hero-visual" });
-  const heroVideo = createElement("video", {
+  const heroPoster = createElement("img", {
     attrs: {
-      autoplay: "",
-      loop: "",
-      muted: "",
-      playsinline: "",
-      preload: "metadata",
-      poster: "assets/video/video-hero-960x540-poster.jpg",
+      src: "assets/video/video-hero-960x540-poster.jpg",
+      width: "960",
+      height: "540",
+      alt: "",
+      loading: "eager",
+      decoding: "async",
+      fetchpriority: "high",
+      style:
+        "position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block;z-index:0;",
     },
   });
-  const webmSource = createElement("source", {
-    attrs: {
-      type: "video/webm",
-      "data-src": "assets/video/video-hero-960x540.webm",
-    },
-  });
-  const mp4Source = createElement("source", {
-    attrs: {
-      type: "video/mp4",
-      "data-src": "assets/video/video-hero-960x540.optimized.mp4",
-    },
-  });
-  heroVideo.appendChild(webmSource);
-  heroVideo.appendChild(mp4Source);
-  heroVideo.muted = true;
-  heroVideo.autoplay = true;
-  heroVideo.loop = true;
-  heroVideo.playsInline = true;
-  heroVisual.appendChild(heroVideo);
-
-  let heroVideoLoaded = false;
-  const loadHeroVideo = () => {
-    if (heroVideoLoaded) {
-      return;
-    }
-    heroVideoLoaded = true;
-    heroVideo.querySelectorAll("source").forEach((source) => {
-      const dataSrc = source.getAttribute("data-src");
-      if (dataSrc) {
-        source.setAttribute("src", dataSrc);
-      }
-    });
-    heroVideo.load();
-    heroVideo.play().catch(() => {
-      // Autoplay can be blocked; keep the poster frame.
-    });
-  };
+  heroVisual.appendChild(heroPoster);
 
   const prefersReducedMotion =
     window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-  if (!prefersReducedMotion && "IntersectionObserver" in window) {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        if (entries.some((entry) => entry.isIntersecting)) {
-          loadHeroVideo();
-          observer.disconnect();
+  if (!prefersReducedMotion) {
+    let heroVideoLoaded = false;
+    let idleHandle = null;
+    const interactionEvents = ["pointerdown", "touchstart", "scroll", "keydown"];
+    const removeInteractionListeners = () => {
+      interactionEvents.forEach((eventName) => {
+        window.removeEventListener(eventName, upgradeToVideo);
+      });
+    };
+
+    const upgradeToVideo = () => {
+      if (heroVideoLoaded) {
+        return;
+      }
+      heroVideoLoaded = true;
+      removeInteractionListeners();
+      if (idleHandle !== null) {
+        if ("cancelIdleCallback" in window) {
+          window.cancelIdleCallback(idleHandle);
+        } else {
+          clearTimeout(idleHandle);
         }
-      },
-      { rootMargin: "120px" }
-    );
-    observer.observe(heroVisual);
-  } else if (!prefersReducedMotion) {
-    loadHeroVideo();
+      }
+
+      const heroVideo = createElement("video", {
+        attrs: {
+          autoplay: "",
+          loop: "",
+          muted: "",
+          playsinline: "",
+          preload: "metadata",
+          poster: "assets/video/video-hero-960x540-poster.jpg",
+        },
+      });
+      const webmSource = createElement("source", {
+        attrs: {
+          type: "video/webm",
+          src: "assets/video/video-hero-960x540.webm",
+        },
+      });
+      const mp4Source = createElement("source", {
+        attrs: {
+          type: "video/mp4",
+          src: "assets/video/video-hero-960x540.optimized.mp4",
+        },
+      });
+      heroVideo.appendChild(webmSource);
+      heroVideo.appendChild(mp4Source);
+      heroVideo.muted = true;
+      heroVideo.autoplay = true;
+      heroVideo.loop = true;
+      heroVideo.playsInline = true;
+      heroVisual.removeChild(heroPoster);
+      heroVisual.appendChild(heroVideo);
+      heroVideo.load();
+      heroVideo.play().catch(() => {
+        // Autoplay can be blocked; keep the poster frame.
+      });
+    };
+
+    interactionEvents.forEach((eventName) => {
+      const options = eventName === "keydown" ? { once: true } : { passive: true, once: true };
+      window.addEventListener(eventName, upgradeToVideo, options);
+    });
+
+    if ("requestIdleCallback" in window) {
+      idleHandle = window.requestIdleCallback(upgradeToVideo, { timeout: 2500 });
+    } else {
+      idleHandle = window.setTimeout(upgradeToVideo, 1800);
+    }
   }
 
   hero.appendChild(heroContent);
@@ -218,11 +242,11 @@ export const renderHome = () => {
     });
     const left = createElement("button", {
       className: "scroll-indicator-arrow is-left",
-      attrs: { type: "button", "aria-hidden": "true", tabindex: "-1" },
+      attrs: { type: "button", "aria-label": "Przewiń w lewo", tabindex: "0" },
     });
     const right = createElement("button", {
       className: "scroll-indicator-arrow is-right",
-      attrs: { type: "button", "aria-hidden": "true", tabindex: "-1" },
+      attrs: { type: "button", "aria-label": "Przewiń w prawo", tabindex: "0" },
     });
 
     overlay.appendChild(left);
@@ -261,21 +285,34 @@ export const renderHome = () => {
     };
 
     const scrollByAmount = () => Math.max(container.clientWidth * 0.6, 180);
-    left.addEventListener("click", (event) => {
+    const handleLeftClick = (event) => {
       event.preventDefault();
       container.scrollBy({ left: -scrollByAmount(), behavior: "smooth" });
-    });
-    right.addEventListener("click", (event) => {
+    };
+    const handleRightClick = (event) => {
       event.preventDefault();
       container.scrollBy({ left: scrollByAmount(), behavior: "smooth" });
-    });
+    };
+    const handleArrowKeydown = (handler) => (event) => {
+      if (event.key === "Enter" || event.key === " " || event.key === "Spacebar") {
+        event.preventDefault();
+        handler(event);
+      }
+    };
+    const handleLeftKeydown = handleArrowKeydown(handleLeftClick);
+    const handleRightKeydown = handleArrowKeydown(handleRightClick);
+    left.addEventListener("click", handleLeftClick);
+    right.addEventListener("click", handleRightClick);
+    left.addEventListener("keydown", handleLeftKeydown);
+    right.addEventListener("keydown", handleRightKeydown);
 
     container.addEventListener("scroll", scheduleUpdate, { passive: true });
     window.addEventListener("resize", scheduleUpdate, { passive: true });
 
+    let resizeObserver = null;
     if ("ResizeObserver" in window) {
-      const observer = new ResizeObserver(scheduleUpdate);
-      observer.observe(container);
+      resizeObserver = new ResizeObserver(scheduleUpdate);
+      resizeObserver.observe(container);
     }
 
     if (debugIndicators) {
@@ -285,7 +322,23 @@ export const renderHome = () => {
       });
     }
     scheduleUpdate();
-    return { shell, update: scheduleUpdate };
+    const cleanup = () => {
+      if (rafId) {
+        window.cancelAnimationFrame(rafId);
+        rafId = 0;
+      }
+      left.removeEventListener("click", handleLeftClick);
+      right.removeEventListener("click", handleRightClick);
+      left.removeEventListener("keydown", handleLeftKeydown);
+      right.removeEventListener("keydown", handleRightKeydown);
+      container.removeEventListener("scroll", scheduleUpdate);
+      window.removeEventListener("resize", scheduleUpdate);
+      if (resizeObserver) {
+        resizeObserver.disconnect();
+        resizeObserver = null;
+      }
+    };
+    return { shell, update: scheduleUpdate, cleanup };
   };
 
   const stats = createElement("div", { className: "stats-grid" }, [
@@ -410,4 +463,13 @@ export const renderHome = () => {
   statsIndicators.update();
   productsIndicators.update();
   main.appendChild(info);
+
+  return () => {
+    if (main._homeUnsubscribe) {
+      main._homeUnsubscribe();
+      main._homeUnsubscribe = null;
+    }
+    statsIndicators.cleanup();
+    productsIndicators.cleanup();
+  };
 };

@@ -10,22 +10,56 @@ const navItems = [
   { label: "Start", path: "#/" },
   {
     label: "Produkty",
-    dropdownRoot: { label: "Wszystkie produkty", path: "#/products" },
+    dropdownRoot: {
+      label: "Wszystkie produkty",
+      path: "#/products",
+      dataRoute: "#/products",
+      routeMatch: "prefix",
+    },
     dropdown: [
-      { label: "UI Kits & Components", path: "#/products/ui-kits" },
-      { label: "Templates & Dashboards", path: "#/products/templates" },
-      { label: "Assets & Graphics", path: "#/products/assets" },
-      { label: "Knowledge & Tools", path: "#/products/knowledge" },
+      { label: "UI Kits & Components", path: "#/products/ui-kits", dataRoute: "#/products/ui-kits" },
+      {
+        label: "Templates & Dashboards",
+        path: "#/products/templates",
+        dataRoute: "#/products/templates",
+      },
+      { label: "Assets & Graphics", path: "#/products/assets", dataRoute: "#/products/assets" },
+      {
+        label: "Knowledge & Tools",
+        path: "#/products/knowledge",
+        dataRoute: "#/products/knowledge",
+      },
     ],
   },
   {
     label: "Usługi",
-    dropdownRoot: { label: "Wszystkie usługi", path: "#/services" },
+    dropdownRoot: {
+      label: "Wszystkie usługi",
+      path: "#/services",
+      dataRoute: "#/services",
+      routeMatch: "prefix",
+    },
     dropdown: [
-      { label: "Web Development", path: "#/services/web-development" },
-      { label: "WordPress Solutions", path: "#/services/wordpress" },
-      { label: "UI / UX & Branding", path: "#/services/ui-ux-branding" },
-      { label: "Consulting & Support", path: "#/services/consulting-support" },
+      {
+        label: "Web Development",
+        path: "#/services/web-development",
+        dataRoute: "#/services/web-development",
+      },
+      {
+        label: "WordPress Solutions",
+        path: "#/services/wordpress",
+        dataRoute: "#/services/wordpress",
+      },
+      {
+        label: "UI / UX & Branding",
+        path: "#/services/ui-ux-branding",
+        dataRoute: "#/services/ui-ux-branding",
+      },
+      {
+        label: "Consulting & Support",
+        path: "#/services/consulting-support",
+        dataRoute: "#/services/consulting-support",
+      },
     ],
   },
   { label: "Kontakt", path: "#/contact" },
@@ -51,6 +85,9 @@ export const renderHeader = (container, onThemeToggle, { onHeightChange } = {}) 
   let scrollLocked = false;
   let lockedScrollY = 0;
   let isShrunk = false;
+  const mainContent = document.getElementById("main-content");
+  const footerContent = document.querySelector("footer");
+  const inertTargets = [mainContent, footerContent].filter(Boolean);
 
   const focusableSelector = "a[href], button:not([disabled]), [tabindex]:not([tabindex='-1'])";
 
@@ -138,6 +175,8 @@ export const renderHeader = (container, onThemeToggle, { onHeightChange } = {}) 
         text: entry.label,
         attrs: {
           href: entry.path,
+          "data-route": entry.dataRoute || entry.path,
+          "data-route-match": entry.routeMatch || null,
           "data-action": entry.action || null,
         },
       });
@@ -202,17 +241,17 @@ export const renderHeader = (container, onThemeToggle, { onHeightChange } = {}) 
   const getAccountItems = (isAuthenticated) => {
     if (!isAuthenticated) {
       return [
-        { label: "Zaloguj", path: "#/auth" },
-        { label: "Rejestracja", path: "#/auth" },
-        { label: "Demo konta", path: "#/account" },
+        { label: "Zaloguj", path: "#/auth", dataRoute: "#/auth" },
+        { label: "Rejestracja", path: "#/auth", dataRoute: "#/auth" },
+        { label: "Demo konta", path: "#/account", dataRoute: "#/account" },
       ];
     }
     return [
-      { label: "Panel konta", path: "#/account" },
-      { label: "Biblioteka", path: "#/library" },
-      { label: "Licencje", path: "#/licenses" },
-      { label: "Ustawienia", path: "#/settings" },
-      { label: "Wyloguj", path: "#/auth", action: "logout" },
+      { label: "Panel konta", path: "#/account", dataRoute: "#/account" },
+      { label: "Biblioteka", path: "#/library", dataRoute: "#/library" },
+      { label: "Licencje", path: "#/licenses", dataRoute: "#/licenses" },
+      { label: "Ustawienia", path: "#/settings", dataRoute: "#/settings" },
+      { label: "Wyloguj", path: "#/auth", dataRoute: "#/auth", action: "logout" },
     ];
   };
 
@@ -304,6 +343,14 @@ export const renderHeader = (container, onThemeToggle, { onHeightChange } = {}) 
     } else {
       unlockScroll();
     }
+
+    inertTargets.forEach((target) => {
+      if (menuOpen) {
+        target.setAttribute("inert", "");
+      } else {
+        target.removeAttribute("inert");
+      }
+    });
 
     if (menuOpen && focusOnOpen) {
       const firstFocusable = menuDrawer.querySelector(focusableSelector);
@@ -416,6 +463,8 @@ export const renderHeader = (container, onThemeToggle, { onHeightChange } = {}) 
         attrs: {
           id: "mobile-nav",
           "aria-label": "Menu",
+          role: "dialog",
+          "aria-modal": "true",
           "aria-hidden": menuOpen ? "false" : "true",
         },
       },
@@ -724,13 +773,50 @@ export const renderHeader = (container, onThemeToggle, { onHeightChange } = {}) 
 };
 
 export const updateActiveNav = (path) => {
-  document.querySelectorAll("[data-route]").forEach((link) => {
-    if (link.getAttribute("data-route") === path) {
-      link.setAttribute("aria-current", "page");
-    } else {
-      link.removeAttribute("aria-current");
+  const links = [...document.querySelectorAll("[data-route]")];
+  let bestMatch = null;
+
+  links.forEach((link) => {
+    const route = link.getAttribute("data-route");
+    if (!route) {
+      return;
+    }
+    const matchType = link.getAttribute("data-route-match");
+    let isExact = false;
+    let isMatch = false;
+    let matchLength = route.length;
+    let prefixRoute = route;
+
+    if (matchType === "prefix" || route.includes("*")) {
+      if (route.includes("*")) {
+        prefixRoute = route.split("*")[0];
+      }
+      if (path.startsWith(prefixRoute)) {
+        isMatch = true;
+        matchLength = prefixRoute.length;
+      }
+    } else if (route === path) {
+      isMatch = true;
+      isExact = true;
+    }
+
+    if (!isMatch) {
+      return;
+    }
+
+    if (
+      !bestMatch ||
+      (isExact && !bestMatch.isExact) ||
+      (isExact === bestMatch.isExact && matchLength > bestMatch.length)
+    ) {
+      bestMatch = { link, isExact, length: matchLength };
     }
   });
+
+  links.forEach((link) => link.removeAttribute("aria-current"));
+  if (bestMatch) {
+    bestMatch.link.setAttribute("aria-current", "page");
+  }
 };
 
 // Zmiany: A11y/ARIA dla hamburgera, focus trap + ESC, scroll lock z przywroceniem pozycji, overlay + motion.

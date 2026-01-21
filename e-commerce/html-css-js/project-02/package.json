@@ -8,9 +8,12 @@
     "format": "prettier . --write",
     "format:check": "prettier . --check",
     "lint:html": "html-validate \"**/*.html\"",
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix",
     "build": "node scripts/build-dist.js",
     "serve": "serve .",
     "serve:dist": "npx serve dist",
+    "test": "vitest run",
     "video:build": "node scripts/video-build.js",
     "video:clean": "node scripts/video-clean.js",
     "img:build": "node scripts/img-build.js",
@@ -23,10 +26,15 @@
     "ffmpeg-static": "^5.2.0",
     "ffprobe-static": "^3.1.0",
     "html-validate": "^8.24.0",
+    "eslint": "^9.21.0",
+    "@eslint/js": "^9.21.0",
+    "eslint-plugin-import": "^2.29.1",
+    "globals": "^15.14.0",
     "picocolors": "^1.0.0",
     "prettier": "^3.3.3",
     "serve": "^14.2.4",
     "sharp": "^0.33.2",
-    "terser": "^5.37.0"
+    "terser": "^5.37.0",
+    "vitest": "^2.1.4"
   }
 }

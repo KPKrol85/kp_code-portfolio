@@ -4,7 +4,7 @@ import { authService } from "../services/auth.js";
 import { store } from "../store/store.js";
 import { canAccessRoute } from "../utils/permissions.js";
 import { createElement, clearElement } from "../utils/dom.js";
-import { renderNotice } from "../components/uiStates.js";
+import { createRetryButton, renderNotice } from "../components/uiStates.js";
 import { navigateHash, parseHash } from "../utils/navigation.js";
 import { selectors } from "../store/selectors.js";
 
@@ -46,21 +46,38 @@ const renderRouteLoading = (main) => {
   }
   clearElement(main);
   const container = createElement("section", { className: "container" });
-  const loading = createElement("div", { text: "Ladowanie widoku..." });
-  container.appendChild(loading);
+  const notice = renderNotice(container, {
+    title: "Ładowanie",
+    message: "Ładowanie widoku...",
+  });
+  notice.setAttribute("role", "status");
+  notice.setAttribute("aria-live", "polite");
   main.appendChild(container);
 };
 
-const renderRouteLoadError = (main) => {
+const getRouteErrorMessage = (error) => {
+  if (error?.message) {
+    return `Nie udało się załadować widoku. Szczegóły: ${error.message}`;
+  }
+  return "Nie udało się załadować widoku. Spróbuj ponownie.";
+};
+
+const renderRouteLoadError = (main, { error, onRetry } = {}) => {
   if (!main) {
     return;
   }
   clearElement(main);
   const container = createElement("section", { className: "container" });
-  const notice = createElement("div", {
-    text: "Nie udalo sie zaladowac widoku. Odswiez strone.",
+  const retryButton = createRetryButton();
+  if (typeof onRetry === "function") {
+    retryButton.addEventListener("click", onRetry);
+  }
+  const notice = renderNotice(container, {
+    title: "Nie udało się załadować widoku",
+    message: getRouteErrorMessage(error),
+    action: { element: retryButton },
   });
-  container.appendChild(notice);
+  notice.setAttribute("role", "alert");
   main.appendChild(container);
 };
 
@@ -149,7 +166,13 @@ export const startRouter = () => {
           handler = resolveRouteHandler(route, module);
         } catch (error) {
           console.error("Failed to load route module:", error);
-          renderRouteLoadError(main);
+          renderRouteLoadError(main, {
+            error,
+            onRetry: () => {
+              renderRouteLoading(main);
+              runHandleRoute();
+            },
+          });
           updateActiveNav(`#${pathname === "/" ? "/" : pathname}`);
           notifyRouteRendered(fullPath);
           return;
@@ -175,7 +198,13 @@ export const startRouter = () => {
             handler = resolveRouteHandler(fallback, module);
           } catch (error) {
             console.error("Failed to load route module:", error);
-            renderRouteLoadError(main);
+            renderRouteLoadError(main, {
+              error,
+              onRetry: () => {
+                renderRouteLoading(main);
+                runHandleRoute();
+              },
+            });
             updateActiveNav("");
             notifyRouteRendered("/404");
             return;

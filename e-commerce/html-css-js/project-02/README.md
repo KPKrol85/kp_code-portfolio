@@ -1,73 +1,107 @@
 # KP_Code Digital Vault
 
-Profesjonalny frontend sklepu z produktami cyfrowymi (frontend-only) przygotowany jako portfolio‑level UI. Projekt wykorzystuje HTML, CSS oraz Vanilla JS (ES Modules) bez frameworków i backendu.
+Frontend‑only portfolio project presenting a digital products store UI built with Vanilla JS (ES Modules), HTML, and CSS.
 
-## Najważniejsze funkcje
+## Project Overview
 
-- Routing hash (`#/...`) z dynamicznymi meta tagami i obsługą 404.
-- Katalog produktów z filtrowaniem, wyszukiwaniem i sortowaniem.
-- Koszyk + checkout (mock) z walidacjami i ekranem sukcesu.
-- Konto użytkownika (rejestracja/logowanie) + biblioteka zakupów i licencje.
-- Dark/Light mode z zapisem preferencji.
-- A11y: skip link, focus management, aria-live dla toastów, semantyka.
+KP_Code Digital Vault is a static, frontend‑only demo of a digital marketplace. It showcases catalog browsing, a mock checkout flow, and a user library built entirely in the browser with mocked data and client‑side state.
 
-## Dlaczego routing hash?
+## Key features
 
-Aplikacja jest statyczna i działa bez backendu. Hash routing (`#/...`) pozwala na poprawne przełączanie widoków również po otwarciu `index.html` bez potrzeby konfiguracji serwera. Przy wdrożeniu z backendem można łatwo przejść na `history.pushState`.
+- Hash‑based routing with route‑level meta configuration and 404 handling.
+- Product catalog with filtering, search, and sorting.
+- Cart and mock checkout flow with form validation and success screen.
+- Account area with registration/login and purchase history.
+- User library with downloadable assets and license views.
+- Dark/light theme with persisted preference.
+- Accessibility: skip link, focus management, aria‑live toasts, and semantic markup.
+- Service Worker for offline shell caching and data caching.
 
-## Architektura
+## Tech stack / Architecture
 
+**Stack**
+- HTML, CSS (design tokens + component styles), Vanilla JS (ES Modules).
+- Static JSON data (`data/*.json`) and client‑side storage (localStorage).
+- Service Worker for offline support and caching.
+
+**Architecture**
 ```
 active-project/
-├── assets/           # grafiki i placeholdery
-├── data/             # mock API (products, licenses)
+├── assets/           # graphics, icons, fonts
+├── data/             # mock API data (products, licenses)
 ├── js/
 │   ├── components/   # UI components (toast, modal, header)
-│   ├── pages/        # strony/route’y
-│   ├── router/       # prosty router
-│   ├── services/     # mock API, auth, storage
+│   ├── pages/        # route views
+│   ├── router/       # hash router
+│   ├── services/     # mock API, auth, cart, storage
 │   ├── store/        # state management (pub/sub)
-│   └── utils/        # helpery (format, validators, sanitize)
-├── legal/            # demonstracyjne dokumenty prawne
-├── styles/           # tokeny i style komponentów
+│   └── utils/        # helpers (formatting, validators)
+├── legal/            # demo legal documents
+├── styles/           # tokens and component styles
 ├── index.html
 └── README.md
 ```
 
-## Uruchomienie
+## Strengths
 
-Aby uniknąć ograniczeń fetch w `file://`, uruchom prosty serwer statyczny:
+- Clear separation of concerns: routing, state, services, and UI components.
+- Production‑like UX in a static environment (toasts, modals, keyboard support).
+- Offline‑friendly app shell and cached JSON for resilience.
+- Consistent UI theming and reusable components.
+
+## Known limitations / Work in progress
+
+**Demo constraints (explicit):**
+- Authentication and permissions are **frontend‑only**.
+- Purchase/download gating is **based on localStorage**.
+- SEO is **limited by hash routing** (no server‑side rendering or real URLs).
+
+Additional limitations:
+- No real payments or backend validation (mock checkout only).
+- Demo data only (products, licenses, orders).
+
+## Next steps
+
+**P0 (critical)**
+- Replace frontend‑only auth with a real backend session/token flow.
+- Add secure server‑side purchase validation and gated downloads.
+
+**P1 (important)**
+- Migrate from hash routing to history API with server support for real URLs.
+- Add server‑driven product search, filtering, and pagination.
+
+**P2 (nice to have)**
+- Internationalization (PL/EN) and content management.
+- Analytics and error monitoring for production usage.
+
+## Local setup
+
+To avoid `file://` fetch limitations, run a static server:
 
 ```bash
 cd active-project
 python -m http.server 8080
 ```
 
-Następnie otwórz `http://localhost:8080`.
+Then open `http://localhost:8080`.
 
-## Dane i pseudo‑backend
+## Data & demo storage
 
-- Produkty i licencje są w `data/*.json`.
-- LocalStorage przechowuje: koszyk, użytkowników, sesję, zakupy, motyw.
-- Hasła są haszowane prostą funkcją `simpleHash` (tylko demonstracja, bez realnego bezpieczeństwa).
+- Product and license data live in `data/*.json`.
+- localStorage stores cart, users, session, purchases, and theme.
+- Passwords are hashed with a simple demo helper (not production‑grade security).
 
-## Bezpieczeństwo / CSP
+## Security / CSP notes
 
-- Wczesna inicjalizacja motywu w `js/theme-init.js` (zewnętrzny plik, bez inline `<script>`).
-- Brak `eval`.
-- Dane są renderowane przez `textContent` i `createElement`.
-- `sanitizeText` to prosty helper pokazujący, jak czyścić tekst (nie zastępuje biblioteki sanitization dla produkcji).
+- Early theme initialization via `js/theme-init.js` (no inline `<script>`).
+- No `eval` usage.
+- Data rendered via `textContent` and `createElement`.
+- `sanitizeText` is a minimal helper (not a replacement for production sanitizers).
 
-## Ograniczenia
-
-- Brak backendu i prawdziwych płatności (mock).
-- Hash routing zamiast history API.
-- Dane i „pobieranie” plików są demonstracyjne.
-
-## Dane firmy
+## Company data
 
 - Brand: KP_Code Digital Vault
-- Właściciel: Kamil Król
-- Adres: ul. Marynarki Wojennej 12/31, 33-100 Tarnów, Polska
-- Telefon: +48 533 537 091
+- Owner: Kamil Król
+- Address: ul. Marynarki Wojennej 12/31, 33-100 Tarnów, Poland
+- Phone: +48 533 537 091
 - Email: kontakt@kp-code.pl

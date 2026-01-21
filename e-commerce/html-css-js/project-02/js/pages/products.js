@@ -237,6 +237,7 @@ export const renderProducts = () => {
   let lastRenderSignature = null;
   let lastRenderProducts = null;
   let visibleRows = VISIBLE_ROWS;
+  let productsVersion = 0;
   const parseGridColumns = (template) => {
     if (!template || template === "none") {
       return PRODUCT_COLUMNS;
@@ -292,7 +293,12 @@ export const renderProducts = () => {
     lastRenderSignature = signature;
     lastRenderProducts = products;
 
-    const filtered = getVisibleProducts(products, { query, category, sort });
+    const filtered = getVisibleProducts(products, {
+      query,
+      category,
+      sort,
+      dataVersion: productsVersion,
+    });
     if (!filtered.length) {
       clearElement(grid);
       resultsCount.hidden = true;
@@ -309,7 +315,13 @@ export const renderProducts = () => {
     }
 
     const limit = visibleRows * getGridColumns();
-    const visible = filtered.slice(0, limit);
+    const visible = getVisibleProducts(products, {
+      query,
+      category,
+      sort,
+      limit,
+      dataVersion: productsVersion,
+    });
     const visibleIds = new Set(visible.map((product) => String(product.id)));
     const existingNodes = new Map();
     const hasNonCardChildren = Array.from(grid.children).some(
@@ -384,7 +396,6 @@ export const renderProducts = () => {
   let lastStatus = null;
   let lastError = null;
   const handleStoreUpdate = (state) => {
-    products = state.products;
     if (
       state.products === lastProducts &&
       state.productsStatus === lastStatus &&
@@ -392,6 +403,11 @@ export const renderProducts = () => {
     ) {
       return;
     }
+    const productsChanged = state.products !== lastProducts;
+    if (productsChanged) {
+      productsVersion += 1;
+    }
+    products = state.products;
     lastProducts = state.products;
     lastStatus = state.productsStatus;
     lastError = state.productsError;

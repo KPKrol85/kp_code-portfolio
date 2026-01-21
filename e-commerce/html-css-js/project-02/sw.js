@@ -74,14 +74,22 @@ const isNavigationRequest = (request) =>
   request.mode === "navigate" ||
   (request.headers.get("accept")?.includes("text/html") && request.method === "GET");
 
+const createOfflineJsonResponse = () =>
+  new Response(JSON.stringify({ error: "offline" }), {
+    status: 503,
+    headers: { "Content-Type": "application/json" },
+  });
+
 const cacheFirst = async (request) => {
   const cached = await caches.match(request);
   if (cached) {
     return cached;
   }
   const response = await fetch(request);
-  const cache = await caches.open(STATIC_CACHE);
-  cache.put(request, response.clone());
+  if (response && response.ok) {
+    const cache = await caches.open(STATIC_CACHE);
+    cache.put(request, response.clone());
+  }
   return response;
 };
 
@@ -92,10 +100,14 @@ const staleWhileRevalidate = async (request) => {
     .then((response) => {
       if (response && response.ok) {
         cache.put(request, response.clone());
+        return response;
       }
-      return response;
+      if (cached) {
+        return cached;
+      }
+      return createOfflineJsonResponse();
     })
-    .catch(() => new Response("", { status: 504 }));
+    .catch(() => cached || createOfflineJsonResponse());
 
   return cached || fetchPromise;
 };
