@@ -279,8 +279,6 @@ export const renderFooter = (container) => {
 
   const metaInfo = createElement("div", { className: "footer-meta-info" }, [
     createElement("span", { text: `© ${currentYear} KP_Code. Wszelkie prawa zastrzeżone.` }),
-    createElement("span", { className: "footer-meta-divider", text: "•" }),
-    createElement("span", { text: "Stworzone w Polsce" }),
   ]);
 
   const backToTop = createElement("button", {
