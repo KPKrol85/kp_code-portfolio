@@ -1,4 +1,5 @@
 import { createElement, clearElement } from "../utils/dom.js";
+import { parseHash } from "../utils/navigation.js";
 import { formatCurrency } from "../utils/format.js";
 import { cartService } from "../services/cart.js";
 import { showToast } from "../components/toast.js";
@@ -8,6 +9,8 @@ import { renderNotice, createRetryButton } from "../components/uiStates.js";
 import { withButtonLoading } from "../utils/ui-state.js";
 import { renderEmptyState } from "../components/ui-state-helpers.js";
 import { content } from "../content/pl.js";
+import { createBreadcrumbs } from "../components/breadcrumbs.js";
+import { buildBreadcrumbsForPath } from "../utils/breadcrumbs.js";
 
 const QUANTITY_DEBOUNCE_MS = 120;
 
@@ -69,10 +72,18 @@ export const renderCart = () => {
   const main = document.getElementById("main-content");
   clearElement(main);
 
+  const addBreadcrumbs = (container) => {
+    const breadcrumbs = createBreadcrumbs(buildBreadcrumbsForPath(parseHash().pathname));
+    if (breadcrumbs) {
+      container.appendChild(breadcrumbs);
+    }
+  };
+
   const { cart, products, productsStatus, productsError } = store.getState();
 
   if (productsStatus === "loading" || productsStatus === "idle") {
     const container = createElement("section", { className: "container" });
+    addBreadcrumbs(container);
     container.appendChild(createElement("h1", { text: content.cart.title }));
     renderNotice(container, {
       title: content.states.cart.loading.title,
@@ -85,6 +96,7 @@ export const renderCart = () => {
 
   if (productsStatus === "error") {
     const container = createElement("section", { className: "container" });
+    addBreadcrumbs(container);
     container.appendChild(createElement("h1", { text: content.cart.title }));
     renderNotice(container, {
       title: content.states.products.error.title,
@@ -97,6 +109,7 @@ export const renderCart = () => {
   }
 
   const container = createElement("section", { className: "container" });
+  addBreadcrumbs(container);
   container.appendChild(createElement("h1", { text: content.cart.title }));
 
   const validItems = cart.filter((item) => products.some((entry) => entry.id === item.productId));

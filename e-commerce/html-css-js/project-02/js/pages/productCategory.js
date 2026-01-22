@@ -8,6 +8,8 @@ import { content } from "../content/pl.js";
 import { actions } from "../store/actions.js";
 import { createProductsGrid } from "../components/productsGrid.js";
 import { getCategoryConfig } from "../utils/productCategories.js";
+import { createBreadcrumbs } from "../components/breadcrumbs.js";
+import { buildProductCategoryBreadcrumbs } from "../utils/breadcrumbs.js";
 
 const VALID_SORTS = new Set(["latest", "price-asc", "price-desc"]);
 
@@ -27,23 +29,13 @@ export const renderProductCategory = ({ category }) => {
   const labels = content.products?.categoryPage;
 
   const container = createElement("section", { className: "container" });
-  const breadcrumb = createElement("p", {
-    className: "badge",
-    text: `${labels?.breadcrumb ?? "Products"} / ${categoryConfig.title}`,
-  });
+  const breadcrumbs = createBreadcrumbs(buildProductCategoryBreadcrumbs(category));
   const heading = createElement("h1", {
     text: categoryConfig.title,
     attrs: { tabindex: "-1", "data-focus-heading": "true" },
   });
   const lead = createElement("p", { text: categoryConfig.description });
-  const header = createElement("div", {}, [breadcrumb, heading, lead]);
-  const backLink = createElement("a", {
-    className: "button secondary",
-    text: labels?.backToProducts ?? "Back to products",
-    attrs: { href: "#/products" },
-  });
-  const headerActions = createElement("div", { className: "nav-links" }, [backLink]);
-  header.appendChild(headerActions);
+  const header = createElement("div", {}, [breadcrumbs, heading, lead]);
   container.appendChild(header);
 
   const filters = createElement("div", { className: "grid grid-2" });

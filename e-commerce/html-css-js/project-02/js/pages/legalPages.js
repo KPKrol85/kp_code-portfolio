@@ -1,4 +1,7 @@
 import { createElement, clearElement } from "../utils/dom.js";
+import { parseHash } from "../utils/navigation.js";
+import { createBreadcrumbs } from "../components/breadcrumbs.js";
+import { buildBreadcrumbsForPath } from "../utils/breadcrumbs.js";
 
 const CONTACT_EMAIL = "kontakt@kp-code.pl";
 const UPDATED_AT = "2026-01-17";
@@ -30,6 +33,10 @@ const renderLegalPage = ({ title, intro, sections }) => {
   clearElement(main);
 
   const container = createElement("section", { className: "container" });
+  const breadcrumbs = createBreadcrumbs(buildBreadcrumbsForPath(parseHash().pathname));
+  if (breadcrumbs) {
+    container.appendChild(breadcrumbs);
+  }
   const page = createElement("div", { className: "legal-page" });
 
   page.appendChild(createElement("h1", { text: title }));

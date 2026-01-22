@@ -1,4 +1,7 @@
 import { createElement, clearElement } from "../utils/dom.js";
+import { parseHash } from "../utils/navigation.js";
+import { createBreadcrumbs } from "../components/breadcrumbs.js";
+import { buildBreadcrumbsForPath } from "../utils/breadcrumbs.js";
 
 const regulaminSections = [
   {
@@ -44,6 +47,10 @@ export const renderLegal = () => {
   clearElement(main);
 
   const container = createElement("section", { className: "container" });
+  const breadcrumbs = createBreadcrumbs(buildBreadcrumbsForPath(parseHash().pathname));
+  if (breadcrumbs) {
+    container.appendChild(breadcrumbs);
+  }
   container.appendChild(createElement("h1", { text: "Dokumenty prawne (demo)" }));
   container.appendChild(
     createElement("p", {

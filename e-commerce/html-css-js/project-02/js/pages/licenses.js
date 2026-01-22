@@ -1,9 +1,12 @@
 import { createElement, clearElement } from "../utils/dom.js";
+import { parseHash } from "../utils/navigation.js";
 import { formatDate } from "../utils/format.js";
 import { store } from "../store/store.js";
 import { purchasesService } from "../services/purchases.js";
 import { renderNotice, createRetryButton } from "../components/uiStates.js";
 import { content } from "../content/pl.js";
+import { createBreadcrumbs } from "../components/breadcrumbs.js";
+import { buildBreadcrumbsForPath } from "../utils/breadcrumbs.js";
 
 const createLicenseBlob = (details) => {
   const content = [
@@ -29,6 +32,10 @@ export const renderLicenses = () => {
 
   const { licenses, products, productsStatus, productsError } = store.getState();
   const container = createElement("section", { className: "container" });
+  const breadcrumbs = createBreadcrumbs(buildBreadcrumbsForPath(parseHash().pathname));
+  if (breadcrumbs) {
+    container.appendChild(breadcrumbs);
+  }
   container.appendChild(createElement("h1", { text: "Licencje" }));
 
   if (productsStatus === "loading" || productsStatus === "idle") {

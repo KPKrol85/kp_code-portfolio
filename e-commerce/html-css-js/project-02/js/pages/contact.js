@@ -1,8 +1,11 @@
 import { createElement, clearElement } from "../utils/dom.js";
+import { parseHash } from "../utils/navigation.js";
 import { validators } from "../utils/validators.js";
 import { showToast } from "../components/toast.js";
 import { withButtonLoading } from "../utils/ui-state.js";
 import { content } from "../content/pl.js";
+import { createBreadcrumbs } from "../components/breadcrumbs.js";
+import { buildBreadcrumbsForPath } from "../utils/breadcrumbs.js";
 
 const company = {
   brand: "KP_Code Digital Vault",
@@ -17,6 +20,10 @@ export const renderContact = () => {
   clearElement(main);
 
   const container = createElement("section", { className: "container" });
+  const breadcrumbs = createBreadcrumbs(buildBreadcrumbsForPath(parseHash().pathname));
+  if (breadcrumbs) {
+    container.appendChild(breadcrumbs);
+  }
   container.appendChild(createElement("h1", { text: "Kontakt" }));
 
   const info = createElement("div", { className: "card" }, [

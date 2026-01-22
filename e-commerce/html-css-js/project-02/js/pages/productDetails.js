@@ -11,6 +11,8 @@ import { content } from "../content/pl.js";
 import { actions } from "../store/actions.js";
 import { createDownloadLink, getDownloadLabel } from "../utils/downloads.js";
 import { getCategoryLabel } from "../utils/productCategories.js";
+import { createBreadcrumbs } from "../components/breadcrumbs.js";
+import { buildProductDetailsBreadcrumbs } from "../utils/breadcrumbs.js";
 
 export const renderProductDetails = ({ id }) => {
   const main = document.getElementById("main-content");
@@ -77,6 +79,10 @@ export const renderProductDetails = ({ id }) => {
     });
 
     const wrapper = createElement("section", { className: "container" });
+    const breadcrumbs = createBreadcrumbs(buildProductDetailsBreadcrumbs(product));
+    if (breadcrumbs) {
+      wrapper.appendChild(breadcrumbs);
+    }
     const layout = createElement("div", { className: "grid grid-2" });
 
     const buildMedia = (images) => {

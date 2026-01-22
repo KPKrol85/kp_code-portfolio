@@ -1,10 +1,12 @@
 import { createElement, clearElement } from "../utils/dom.js";
-import { navigateHash } from "../utils/navigation.js";
+import { navigateHash, parseHash } from "../utils/navigation.js";
 import { validators } from "../utils/validators.js";
 import { authService } from "../services/auth.js";
 import { showToast } from "../components/toast.js";
 import { withButtonLoading } from "../utils/ui-state.js";
 import { content } from "../content/pl.js";
+import { createBreadcrumbs } from "../components/breadcrumbs.js";
+import { buildBreadcrumbsForPath } from "../utils/breadcrumbs.js";
 
 const AUTH_FALLBACK_HASH = "#/account";
 
@@ -53,6 +55,10 @@ export const renderAuth = () => {
   clearElement(main);
 
   const container = createElement("section", { className: "container" });
+  const breadcrumbs = createBreadcrumbs(buildBreadcrumbsForPath(parseHash().pathname));
+  if (breadcrumbs) {
+    container.appendChild(breadcrumbs);
+  }
   container.appendChild(createElement("h1", { text: content.auth.title }));
 
   const tabs = createElement("div", { className: "tabs", attrs: { role: "tablist" } });

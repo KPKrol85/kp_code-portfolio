@@ -8,6 +8,8 @@ import { content } from "../content/pl.js";
 import { actions } from "../store/actions.js";
 import { createProductsGrid } from "../components/productsGrid.js";
 import { getCategoryLabel, productCategories } from "../utils/productCategories.js";
+import { createBreadcrumbs } from "../components/breadcrumbs.js";
+import { buildProductsBreadcrumbs } from "../utils/breadcrumbs.js";
 
 const FILTER_DEFAULTS = { query: "", category: "all", sort: "latest" };
 const VALID_SORTS = new Set(["latest", "price-asc", "price-desc"]);
@@ -26,6 +28,10 @@ export const renderProducts = () => {
   const addCleanup = (handler) => cleanupHandlers.push(handler);
 
   const container = createElement("section", { className: "container" });
+  const breadcrumbs = createBreadcrumbs(buildProductsBreadcrumbs());
+  if (breadcrumbs) {
+    container.appendChild(breadcrumbs);
+  }
   container.appendChild(createElement("h1", { text: "Katalog produktów" }));
   container.appendChild(
     createElement("p", {

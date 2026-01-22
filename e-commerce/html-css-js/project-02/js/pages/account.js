@@ -1,11 +1,13 @@
 import { createElement, clearElement } from "../utils/dom.js";
-import { navigateHash } from "../utils/navigation.js";
+import { navigateHash, parseHash } from "../utils/navigation.js";
 import { formatDate, formatCurrency } from "../utils/format.js";
 import { authService } from "../services/auth.js";
 import { purchasesService } from "../services/purchases.js";
 import { showToast } from "../components/toast.js";
 import { store } from "../store/store.js";
 import { content } from "../content/pl.js";
+import { createBreadcrumbs } from "../components/breadcrumbs.js";
+import { buildBreadcrumbsForPath } from "../utils/breadcrumbs.js";
 
 export const renderAccount = () => {
   const main = document.getElementById("main-content");
@@ -14,6 +16,10 @@ export const renderAccount = () => {
   const { user } = store.getState();
 
   const container = createElement("section", { className: "container" });
+  const breadcrumbs = createBreadcrumbs(buildBreadcrumbsForPath(parseHash().pathname));
+  if (breadcrumbs) {
+    container.appendChild(breadcrumbs);
+  }
   container.appendChild(createElement("h1", { text: "Panel konta" }));
   container.appendChild(
     createElement("div", { className: "notice" }, [

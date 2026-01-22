@@ -1,5 +1,5 @@
 import { createElement, clearElement } from "../utils/dom.js";
-import { navigateHash } from "../utils/navigation.js";
+import { navigateHash, parseHash } from "../utils/navigation.js";
 import { formatCurrency } from "../utils/format.js";
 import { validators } from "../utils/validators.js";
 import { cartService } from "../services/cart.js";
@@ -12,6 +12,8 @@ import { setButtonLoading, clearButtonLoading } from "../utils/ui-state.js";
 import { renderNotice, createRetryButton } from "../components/uiStates.js";
 import { renderEmptyState } from "../components/ui-state-helpers.js";
 import { content } from "../content/pl.js";
+import { createBreadcrumbs } from "../components/breadcrumbs.js";
+import { buildBreadcrumbsForPath } from "../utils/breadcrumbs.js";
 
 export const renderCheckout = () => {
   const main = document.getElementById("main-content");
@@ -20,6 +22,10 @@ export const renderCheckout = () => {
   const { cart, products, productsStatus, productsError } = store.getState();
 
   const container = createElement("section", { className: "container" });
+  const breadcrumbs = createBreadcrumbs(buildBreadcrumbsForPath(parseHash().pathname));
+  if (breadcrumbs) {
+    container.appendChild(breadcrumbs);
+  }
   container.appendChild(createElement("h1", { text: content.checkout.title }));
 
   if (productsStatus === "loading" || productsStatus === "idle") {
@@ -386,7 +392,12 @@ export const renderCheckoutSuccess = () => {
     title: content.checkout.success.metaTitle,
     description: content.checkout.success.metaDescription,
   });
-  const container = createElement("section", { className: "container" }, [
+  const container = createElement("section", { className: "container" });
+  const breadcrumbs = createBreadcrumbs(buildBreadcrumbsForPath(parseHash().pathname));
+  if (breadcrumbs) {
+    container.appendChild(breadcrumbs);
+  }
+  container.appendChild(
     createElement("div", { className: "card" }, [
       createElement("h1", { text: content.checkout.success.title }),
       createElement("p", { text: content.checkout.success.message }),
@@ -402,7 +413,7 @@ export const renderCheckoutSuccess = () => {
           attrs: { href: "#/products" },
         }),
       ]),
-    ]),
-  ]);
+    ])
+  );
   main.appendChild(container);
 };

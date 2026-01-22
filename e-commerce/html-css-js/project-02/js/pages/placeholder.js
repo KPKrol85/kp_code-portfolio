@@ -1,4 +1,7 @@
 import { createElement, clearElement } from "../utils/dom.js";
+import { parseHash } from "../utils/navigation.js";
+import { createBreadcrumbs } from "../components/breadcrumbs.js";
+import { buildBreadcrumbsForPath } from "../utils/breadcrumbs.js";
 
 const buildActions = (ctas) => {
   if (!ctas?.length) {
@@ -26,11 +29,14 @@ export const renderPlaceholder = ({ title, lead, bullets = [], ctas = [] }) => {
   clearElement(main);
 
   const container = createElement("section", { className: "container" });
+  const { pathname } = parseHash();
+  const breadcrumbs = createBreadcrumbs(buildBreadcrumbsForPath(pathname));
   const heading = createElement("h1", {
     text: title,
     attrs: { tabindex: "-1", "data-focus-heading": "true" },
   });
   const intro = createElement("div", { className: "section" }, [
+    breadcrumbs,
     heading,
     createElement("p", { text: lead ?? "W przygotowaniu." }),
   ]);
