@@ -7,6 +7,148 @@ export const content = {
     processing: "Przetwarzanie...",
     summaryTitle: "Podsumowanie",
   },
+  products: {
+    categories: [
+      {
+        slug: "ui-kits",
+        title: "UI Kits & Components",
+        description:
+          "Gotowe komponenty i zestawy UI do szybkiego budowania interfejsów: layouty, formularze, nawigacje i sekcje marketingowe.",
+        bullets: [
+          "Komponenty w spójnym stylu",
+          "Tokeny i warianty",
+          "Przykładowe layouty",
+          "Wskazówki wdrożeniowe",
+          "Pliki: Figma / HTML/CSS (w zależności od produktu)",
+        ],
+        faq: [
+          {
+            question: "Z jakimi narzędziami są kompatybilne UI kit-y?",
+            answer:
+              "Każdy produkt opisuje formaty w karcie — najczęściej Figma oraz gotowy HTML/CSS do wdrożenia.",
+          },
+          {
+            question: "Jak wdrożyć komponenty do istniejącego projektu?",
+            answer:
+              "Importuj style bazowe, a następnie kopiuj komponenty sekcja po sekcji, dopasowując tokeny kolorów.",
+          },
+          {
+            question: "Jaka licencja obejmuje zestawy UI?",
+            answer:
+              "Standardowo otrzymujesz licencję komercyjną na pojedynczy projekt — szczegóły znajdziesz w opisie.",
+          },
+        ],
+      },
+      {
+        slug: "templates",
+        title: "Templates & Dashboards",
+        description:
+          "Szablony stron i dashboardów pod SaaS, e-commerce i landing pages — do edycji i wdrożenia w kilka godzin.",
+        bullets: [
+          "Widoki: overview, analytics, settings",
+          "Struktura IA",
+          "Responsywne layouty",
+          "Checklisty jakości",
+          "Pliki: HTML/CSS/JS lub Figma",
+        ],
+        faq: [
+          {
+            question: "Jak szybko dostosuję szablon do brandu?",
+            answer:
+              "Zmienisz kolory, typografię i logo w jednym miejscu dzięki tokenom i dobrze opisanej strukturze.",
+          },
+          {
+            question: "Co dokładnie znajduje się w paczce?",
+            answer:
+              "Kompletne widoki, sekcje, komponenty oraz pliki źródłowe opisane w karcie produktu.",
+          },
+          {
+            question: "Jak działają aktualizacje szablonów?",
+            answer:
+              "W razie aktualizacji dostajesz powiadomienie i dostęp do nowej wersji w swojej bibliotece.",
+          },
+        ],
+      },
+      {
+        slug: "assets",
+        title: "Assets & Graphics",
+        description:
+          "Grafiki, ikony, tła, packi miniatur i zasoby marketingowe do prezentacji produktów i projektów.",
+        bullets: [
+          "Ikony (SVG/PNG)",
+          "Miniatury, mockupy",
+          "Zestawy OG/SEO",
+          "Spójne style",
+          "Gotowe warianty rozmiarów",
+        ],
+        faq: [
+          {
+            question: "Jakie formaty są dostępne?",
+            answer:
+              "W zależności od produktu otrzymujesz SVG, PNG lub pliki źródłowe — opisane w karcie produktu.",
+          },
+          {
+            question: "Czy mogę używać grafik w PWA i manifestach?",
+            answer:
+              "Tak, pliki są zoptymalizowane pod web i możesz je bezpiecznie dodać do manifestów.",
+          },
+          {
+            question: "Jak najlepiej zoptymalizować zasoby?",
+            answer:
+              "Skorzystaj z dostarczonych wariantów rozdzielczości i kompresji bezstratnej.",
+          },
+        ],
+      },
+      {
+        slug: "knowledge",
+        title: "Knowledge & Tools",
+        description:
+          "Checklisty, przewodniki i mini-narzędzia dla devów: procesy, standardy jakości, produktywność i automatyzacje.",
+        bullets: [
+          "Checklisty release",
+          "A11y/performance",
+          "Szablony dokumentów",
+          "Skrypty/utility",
+          "Materiały edukacyjne",
+        ],
+        faq: [
+          {
+            question: "Dla kogo są materiały Knowledge & Tools?",
+            answer:
+              "Dla devów, PM-ów i zespołów produktowych, które chcą uporządkować proces i jakość.",
+          },
+          {
+            question: "Jak korzystać z checklist i narzędzi?",
+            answer:
+              "Każdy plik ma instrukcję użycia i sugerowaną kolejność wdrożenia w projekcie.",
+          },
+          {
+            question: "Jak często są aktualizowane materiały?",
+            answer:
+              "Aktualizacje pojawiają się przy większych zmianach procesów lub nowych wersjach narzędzi.",
+          },
+        ],
+      },
+    ],
+    categoryPage: {
+      breadcrumb: "Produkty",
+      backToProducts: "Powrót do produktów",
+      searchLabel: "Szukaj w kategorii",
+      searchPlaceholder: "Szukaj w tej kategorii",
+      sortLabel: "Sortowanie",
+      sortOptions: {
+        latest: "Najnowsze",
+        priceAsc: "Cena: rosnąco",
+        priceDesc: "Cena: malejąco",
+      },
+      showMore: "Pokaż więcej",
+      aboutTitle: "O tej kategorii",
+      faqTitle: "FAQ / Instrukcje",
+      emptyTitle: "Wkrótce pojawią się pierwsze produkty",
+      emptyMessage: "Wkrótce dodamy pierwsze produkty...",
+      emptyCta: "Powrót do produktów",
+    },
+  },
   meta: {
     routes: {
       home: {
@@ -16,6 +158,24 @@ export const content = {
       products: {
         title: "Katalog produktów - KP_Code Digital Vault",
         description: "Przeglądaj produkty cyfrowe, filtry i sortowanie.",
+      },
+      productCategories: {
+        uiKits: {
+          title: "UI Kits & Components - KP_Code Digital Vault",
+          description: "Komponenty, layouty i zestawy UI do szybkiego wdrożenia.",
+        },
+        templates: {
+          title: "Templates & Dashboards - KP_Code Digital Vault",
+          description: "Szablony stron i dashboardów dla SaaS, e-commerce i landing pages.",
+        },
+        assets: {
+          title: "Assets & Graphics - KP_Code Digital Vault",
+          description: "Grafiki, ikony i zasoby marketingowe do prezentacji produktów.",
+        },
+        knowledge: {
+          title: "Knowledge & Tools - KP_Code Digital Vault",
+          description: "Checklisty, przewodniki i narzędzia wspierające pracę devów.",
+        },
       },
       productDetails: {
         title: "Szczegóły produktu - KP_Code Digital Vault",

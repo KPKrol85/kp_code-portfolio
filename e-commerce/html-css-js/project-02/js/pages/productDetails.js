@@ -10,6 +10,7 @@ import { createResponsivePicture, updateResponsivePicture } from "../utils/image
 import { content } from "../content/pl.js";
 import { actions } from "../store/actions.js";
 import { createDownloadLink, getDownloadLabel } from "../utils/downloads.js";
+import { getCategoryLabel } from "../utils/productCategories.js";
 
 export const renderProductDetails = ({ id }) => {
   const main = document.getElementById("main-content");
@@ -196,7 +197,7 @@ export const renderProductDetails = ({ id }) => {
     details.appendChild(tags);
 
     const metaList = createElement("div", { className: "surface-muted" }, [
-      createElement("p", { text: `Kategoria: ${product.category}` }),
+      createElement("p", { text: `Kategoria: ${getCategoryLabel(product.category)}` }),
       createElement("p", { text: `Wymagania: ${product.requirements}` }),
       createElement("p", { text: `Wersja: ${product.version}` }),
       createElement("p", { text: `Aktualizacja: ${formatDate(product.updatedAt)}` }),

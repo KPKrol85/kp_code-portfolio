@@ -1,18 +1,14 @@
 import { createElement, clearElement } from "../utils/dom.js";
-import { createProductCard } from "../components/productCard.js";
 import { cartService } from "../services/cart.js";
 import { showToast } from "../components/toast.js";
 import { store } from "../store/store.js";
-import { renderDataState, createRetryButton } from "../components/uiStates.js";
-import { getVisibleProducts } from "../utils/products.js";
+import { createRetryButton } from "../components/uiStates.js";
 import { debounce } from "../utils/debounce.js";
-import { renderEmptyState } from "../components/ui-state-helpers.js";
 import { content } from "../content/pl.js";
 import { actions } from "../store/actions.js";
+import { createProductsGrid } from "../components/productsGrid.js";
+import { getCategoryLabel, productCategories } from "../utils/productCategories.js";
 
-const VISIBLE_ROWS = 5;
-const ROWS_STEP = 5;
-const PRODUCT_COLUMNS = 3;
 const FILTER_DEFAULTS = { query: "", category: "all", sort: "latest" };
 const VALID_SORTS = new Set(["latest", "price-asc", "price-desc"]);
 
@@ -193,15 +189,28 @@ export const renderProducts = () => {
     updateUrlFromFilters(FILTER_DEFAULTS, { replace });
     renderList(true);
   };
+  const getOrderedCategories = (nextProducts) => {
+    const available = new Set(nextProducts.map((product) => product.category));
+    const ordered = productCategories
+      .map((category) => category.slug)
+      .filter((slug) => available.has(slug));
+    available.forEach((slug) => {
+      if (!ordered.includes(slug)) {
+        ordered.push(slug);
+      }
+    });
+    return ordered;
+  };
+
   const updateCategories = (nextProducts) => {
     clearElement(categorySelect);
     categorySelect.appendChild(
       createElement("option", { text: "Wszystkie kategorie", attrs: { value: "all" } })
     );
-    const categories = Array.from(new Set(nextProducts.map((product) => product.category)));
+    const categories = getOrderedCategories(nextProducts);
     categories.forEach((category) => {
       categorySelect.appendChild(
-        createElement("option", { text: category, attrs: { value: category } })
+        createElement("option", { text: getCategoryLabel(category), attrs: { value: category } })
       );
     });
   };
@@ -216,180 +225,64 @@ export const renderProducts = () => {
   filters.appendChild(categorySelect);
   container.appendChild(filters);
 
-  const grid = createElement("div", { className: "grid grid-3 section products-grid" });
+  const productsGrid = createProductsGrid({
+    onAddToCart: (productId) => {
+      cartService.addItem(productId, 1);
+      actions.cart.setCart(cartService.getCart());
+      showToast(content.toasts.addedToCart);
+    },
+    showMoreLabel: "Pokaż więcej",
+  });
+  const { grid, resultsCount, showMoreButton } = productsGrid;
   container.appendChild(grid);
-
-  const resultsCount = createElement("p", {
-    className: "products-count",
-    attrs: { "aria-live": "polite", role: "status", "aria-atomic": "true" },
-  });
-  resultsCount.hidden = true;
   container.appendChild(resultsCount);
-
-  const showMoreButton = createElement("button", {
-    className: "button secondary block products-show-more",
-    text: "Pokaż więcej",
-    attrs: { type: "button" },
-  });
-  showMoreButton.hidden = true;
   container.appendChild(showMoreButton);
 
-  let lastRenderSignature = null;
-  let lastRenderProducts = null;
-  let visibleRows = VISIBLE_ROWS;
   let productsVersion = 0;
-  const parseGridColumns = (template) => {
-    if (!template || template === "none") {
-      return PRODUCT_COLUMNS;
-    }
-    const repeatMatch = template.match(/repeat\(\s*(\d+)\s*,/);
-    if (repeatMatch) {
-      return Number.parseInt(repeatMatch[1], 10) || PRODUCT_COLUMNS;
-    }
-    let columns = 0;
-    let depth = 0;
-    let token = "";
-    for (const char of template) {
-      if (char === "(") {
-        depth += 1;
-      } else if (char === ")") {
-        depth = Math.max(0, depth - 1);
-      }
-      if (char === " " && depth === 0) {
-        if (token.trim()) {
-          columns += 1;
-        }
-        token = "";
-      } else {
-        token += char;
-      }
-    }
-    if (token.trim()) {
-      columns += 1;
-    }
-    return columns || PRODUCT_COLUMNS;
-  };
-
-  const getGridColumns = () => {
-    const template = window.getComputedStyle(grid).gridTemplateColumns;
-    return parseGridColumns(template);
-  };
 
   const renderList = (force = false) => {
     if (!isActive || store.getState().productsStatus !== "ready") {
       return;
     }
-    const query = searchField.value.toLowerCase();
-    const category = categorySelect.value;
-    const sort = sortSelect.value;
-    const signature = `${query}|${category}|${sort}`;
-    const signatureChanged = signature !== lastRenderSignature;
-    if (signatureChanged) {
-      visibleRows = VISIBLE_ROWS;
-    }
-    if (!signatureChanged && products === lastRenderProducts && !force) {
-      return;
-    }
-    lastRenderSignature = signature;
-    lastRenderProducts = products;
-
-    const filtered = getVisibleProducts(products, {
-      query,
-      category,
-      sort,
-      dataVersion: productsVersion,
+    const query = searchField.value.trim().toLowerCase();
+    productsGrid.renderList({
+      products,
+      filters: {
+        query,
+        category: categorySelect.value,
+        sort: sortSelect.value,
+      },
+      filteredEmptyState: {
+        title: content.states.products.filteredEmpty.title,
+        message: content.states.products.filteredEmpty.message,
+        ctaText: content.states.products.filteredEmpty.cta,
+        onCta: () => resetFilters({ replace: false }),
+      },
+      force,
     });
-    if (!filtered.length) {
-      clearElement(grid);
-      resultsCount.hidden = true;
-      showMoreButton.hidden = true;
-      grid.appendChild(
-        renderEmptyState({
-          title: content.states.products.filteredEmpty.title,
-          message: content.states.products.filteredEmpty.message,
-          ctaText: content.states.products.filteredEmpty.cta,
-          onCta: () => resetFilters({ replace: false }),
-        })
-      );
-      return;
-    }
-
-    const limit = visibleRows * getGridColumns();
-    const visible = getVisibleProducts(products, {
-      query,
-      category,
-      sort,
-      limit,
-      dataVersion: productsVersion,
-    });
-    const visibleIds = new Set(visible.map((product) => String(product.id)));
-    const existingNodes = new Map();
-    const hasNonCardChildren = Array.from(grid.children).some(
-      (child) => !child.dataset.productId
-    );
-    if (hasNonCardChildren) {
-      clearElement(grid);
-    }
-    grid.querySelectorAll("[data-product-id]").forEach((node) => {
-      existingNodes.set(node.dataset.productId, node);
-    });
-    existingNodes.forEach((node, id) => {
-      if (!visibleIds.has(id)) {
-        node.remove();
-        existingNodes.delete(id);
-      }
-    });
-    resultsCount.textContent = `Pokazano ${visible.length} z ${filtered.length}`;
-    resultsCount.hidden = false;
-    const fragment = document.createDocumentFragment();
-    visible.forEach((product) => {
-      const id = String(product.id);
-      let card = existingNodes.get(id);
-      if (!card) {
-        card = createProductCard(product, (productId) => {
-          cartService.addItem(productId, 1);
-          actions.cart.setCart(cartService.getCart());
-          showToast(content.toasts.addedToCart);
-        });
-      }
-      fragment.appendChild(card);
-    });
-    grid.appendChild(fragment);
-
-    showMoreButton.hidden = visible.length >= filtered.length;
   };
 
   const renderGridState = (state) => {
-    const { productsStatus, productsError, products } = state;
-    if (
-      renderDataState(grid, {
-        status: productsStatus,
-        items: products,
-        error: productsError,
-        loading: {
-          count: 6,
-          variant: "product-card",
-          lineWidths: [70, 85],
-          lineHeights: [18, 14],
-          tagCount: 3,
-          tagWidth: 56,
-          priceWidth: 32,
-        },
-        errorState: {
-          title: content.states.products.error.title,
-          message: productsError || content.states.products.error.message,
-          action: { element: createRetryButton() },
-        },
-        empty: {
-          title: content.states.products.empty.title,
-          message: content.states.products.empty.message,
-        },
-      })
-    ) {
-      resultsCount.hidden = true;
-      showMoreButton.hidden = true;
-      return;
-    }
+    productsGrid.renderState(state, {
+      loading: {
+        count: 6,
+        variant: "product-card",
+        lineWidths: [70, 85],
+        lineHeights: [18, 14],
+        tagCount: 3,
+        tagWidth: 56,
+        priceWidth: 32,
+      },
+      errorState: {
+        title: content.states.products.error.title,
+        message: state.productsError || content.states.products.error.message,
+        action: { element: createRetryButton() },
+      },
+      empty: {
+        title: content.states.products.empty.title,
+        message: content.states.products.empty.message,
+      },
+    });
   };
 
   let lastProducts = null;
@@ -406,6 +299,7 @@ export const renderProducts = () => {
     const productsChanged = state.products !== lastProducts;
     if (productsChanged) {
       productsVersion += 1;
+      productsGrid.updateProductsVersion(productsVersion);
     }
     products = state.products;
     lastProducts = state.products;
@@ -432,6 +326,7 @@ export const renderProducts = () => {
   lastError = initialState.productsError;
   if (initialState.productsStatus === "ready") {
     updateCategories(initialState.products);
+    productsGrid.updateProductsVersion(productsVersion);
   }
   renderGridState(initialState);
   if (initialState.productsStatus === "ready" && initialState.products.length) {
@@ -450,10 +345,6 @@ export const renderProducts = () => {
   attachFieldListener(searchField, "input", debouncedFiltersUpdate);
   attachFieldListener(sortSelect, "change", () => handleFiltersUpdate({ replace: false }));
   attachFieldListener(categorySelect, "change", () => handleFiltersUpdate({ replace: false }));
-  attachFieldListener(showMoreButton, "click", () => {
-    visibleRows += ROWS_STEP;
-    renderList(true);
-  });
   const handlePopState = () => {
     if (!isProductsListHash()) {
       return;

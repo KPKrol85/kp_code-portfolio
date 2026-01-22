@@ -45,54 +45,6 @@ export const registerRoutes = () => {
   ];
   const placeholderRoutes = [
     {
-      pattern: /^\/products\/ui-kits$/,
-      meta: {
-        ...metaRoutes.placeholders.uiKits,
-      },
-      view: {
-        title: "UI Kits & Components",
-        lead: "W przygotowaniu.",
-        bullets: placeholderBullets.products,
-        ctas: defaultCtas,
-      },
-    },
-    {
-      pattern: /^\/products\/templates$/,
-      meta: {
-        ...metaRoutes.placeholders.templates,
-      },
-      view: {
-        title: "Templates & Dashboards",
-        lead: "W przygotowaniu.",
-        bullets: placeholderBullets.products,
-        ctas: defaultCtas,
-      },
-    },
-    {
-      pattern: /^\/products\/assets$/,
-      meta: {
-        ...metaRoutes.placeholders.assets,
-      },
-      view: {
-        title: "Assets & Graphics",
-        lead: "W przygotowaniu.",
-        bullets: placeholderBullets.products,
-        ctas: defaultCtas,
-      },
-    },
-    {
-      pattern: /^\/products\/knowledge$/,
-      meta: {
-        ...metaRoutes.placeholders.knowledge,
-      },
-      view: {
-        title: "Knowledge & Tools",
-        lead: "W przygotowaniu.",
-        bullets: placeholderBullets.products,
-        ctas: defaultCtas,
-      },
-    },
-    {
       pattern: /^\/services$/,
       meta: {
         ...metaRoutes.placeholders.services,
@@ -277,6 +229,37 @@ export const registerRoutes = () => {
     getHandlerByName("renderProducts"),
     metaRoutes.products
   );
+  const categoryLoader = () => import("../pages/productCategory.js");
+  const categoryRoutes = [
+    {
+      pattern: /^\/products\/ui-kits$/,
+      meta: metaRoutes.productCategories.uiKits,
+      slug: "ui-kits",
+    },
+    {
+      pattern: /^\/products\/templates$/,
+      meta: metaRoutes.productCategories.templates,
+      slug: "templates",
+    },
+    {
+      pattern: /^\/products\/assets$/,
+      meta: metaRoutes.productCategories.assets,
+      slug: "assets",
+    },
+    {
+      pattern: /^\/products\/knowledge$/,
+      meta: metaRoutes.productCategories.knowledge,
+      slug: "knowledge",
+    },
+  ];
+  categoryRoutes.forEach((route) => {
+    addLazyRoute(
+      route.pattern,
+      categoryLoader,
+      (module) => () => module.renderProductCategory({ category: route.slug }),
+      route.meta
+    );
+  });
   placeholderRoutes.forEach((route) => {
     addLazyRoute(
       route.pattern,
