@@ -108,16 +108,26 @@ export const renderProductCategory = ({ category }) => {
   aboutSection.appendChild(aboutList);
   container.appendChild(aboutSection);
 
-  const faqSection = createElement("div", { className: "card section" }, [
-    createElement("h2", { text: labels?.faqTitle ?? "FAQ / Instructions" }),
-  ]);
-  categoryConfig.faq.forEach((item) => {
-    const entry = createElement("div", { className: "surface-muted" });
-    entry.appendChild(createElement("h3", { text: item.question }));
-    entry.appendChild(createElement("p", { text: item.answer }));
-    faqSection.appendChild(entry);
-  });
-  container.appendChild(faqSection);
+  const faqItems = Array.isArray(categoryConfig.faq) ? categoryConfig.faq : [];
+  if (faqItems.length) {
+    const faqSection = createElement("section", {
+      className: "section",
+      attrs: { "aria-label": labels?.faqTitle ?? "FAQ / Instructions" },
+    });
+    const faqHeader = createElement("div", { className: "section-header" }, [
+      createElement("h2", { text: labels?.faqTitle ?? "FAQ / Instructions" }),
+    ]);
+    faqSection.appendChild(faqHeader);
+    const faqList = createElement("div", { className: "faq-list" });
+    faqItems.forEach((item) => {
+      const details = createElement("details", { className: "faq-item" });
+      details.appendChild(createElement("summary", { text: item.question }));
+      details.appendChild(createElement("p", { text: item.answer }));
+      faqList.appendChild(details);
+    });
+    faqSection.appendChild(faqList);
+    container.appendChild(faqSection);
+  }
 
   let products = store.getState().products;
   let productsVersion = 0;

@@ -11,6 +11,7 @@ export const registerRoutes = () => {
   const placeholderLoader = () => import("../pages/placeholder.js");
   const checkoutLoader = () => import("../pages/checkout.js");
   const legalPagesLoader = () => import("../pages/legalPages.js");
+  const servicesLoader = () => import("../pages/services.js");
   const metaRoutes = content.meta.routes;
   const placeholderBullets = {
     products: [
@@ -44,66 +45,6 @@ export const registerRoutes = () => {
     { label: "Zaloguj się", href: "#/auth", variant: "secondary" },
   ];
   const placeholderRoutes = [
-    {
-      pattern: /^\/services$/,
-      meta: {
-        ...metaRoutes.placeholders.services,
-      },
-      view: {
-        title: "Usługi",
-        lead: "W przygotowaniu.",
-        bullets: placeholderBullets.services,
-        ctas: defaultCtas,
-      },
-    },
-    {
-      pattern: /^\/services\/web-development$/,
-      meta: {
-        ...metaRoutes.placeholders.webDevelopment,
-      },
-      view: {
-        title: "Web Development",
-        lead: "W przygotowaniu.",
-        bullets: placeholderBullets.services,
-        ctas: defaultCtas,
-      },
-    },
-    {
-      pattern: /^\/services\/wordpress$/,
-      meta: {
-        ...metaRoutes.placeholders.wordpress,
-      },
-      view: {
-        title: "WordPress Solutions",
-        lead: "W przygotowaniu.",
-        bullets: placeholderBullets.services,
-        ctas: defaultCtas,
-      },
-    },
-    {
-      pattern: /^\/services\/ui-ux-branding$/,
-      meta: {
-        ...metaRoutes.placeholders.uiUxBranding,
-      },
-      view: {
-        title: "UI / UX & Branding",
-        lead: "W przygotowaniu.",
-        bullets: placeholderBullets.services,
-        ctas: defaultCtas,
-      },
-    },
-    {
-      pattern: /^\/services\/consulting-support$/,
-      meta: {
-        ...metaRoutes.placeholders.consultingSupport,
-      },
-      view: {
-        title: "Consulting & Support",
-        lead: "W przygotowaniu.",
-        bullets: placeholderBullets.services,
-        ctas: defaultCtas,
-      },
-    },
     {
       pattern: /^\/pricing$/,
       meta: {
@@ -228,6 +169,18 @@ export const registerRoutes = () => {
     () => import("../pages/products.js"),
     getHandlerByName("renderProducts"),
     metaRoutes.products
+  );
+  addLazyRoute(
+    /^\/services$/,
+    servicesLoader,
+    getHandlerByName("renderServicesIndex"),
+    metaRoutes.services
+  );
+  addLazyRoute(
+    /^\/services\/(?<slug>[\w-]+)$/,
+    servicesLoader,
+    getHandlerByName("renderServiceDetail"),
+    metaRoutes.serviceDetails
   );
   const categoryLoader = () => import("../pages/productCategory.js");
   const categoryRoutes = [

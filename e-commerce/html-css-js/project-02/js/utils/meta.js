@@ -60,3 +60,21 @@ export const setMetaImages = (imageUrl = DEFAULT_OG_IMAGE_URL) => {
     twitterImage.setAttribute("content", imageUrl);
   }
 };
+
+export const setJsonLd = (id, data) => {
+  const scriptId = id || "json-ld-dynamic";
+  let script = document.getElementById(scriptId);
+  if (!data) {
+    if (script) {
+      script.remove();
+    }
+    return;
+  }
+  if (!script) {
+    script = document.createElement("script");
+    script.type = "application/ld+json";
+    script.id = scriptId;
+    document.head.appendChild(script);
+  }
+  script.textContent = JSON.stringify(data);
+};

@@ -244,6 +244,31 @@ export const renderProducts = () => {
   container.appendChild(resultsCount);
   container.appendChild(showMoreButton);
 
+  const faqItems = content.products?.faqGeneral ?? [];
+  if (faqItems.length) {
+    const faqSection = createElement("section", {
+      className: "section",
+      attrs: { "aria-label": "FAQ" },
+    });
+    const faqHeader = createElement("div", { className: "section-header" }, [
+      createElement("h2", { text: "FAQ" }),
+      createElement("p", {
+        className: "section-lead",
+        text: "Najczęstsze pytania o zakup, licencję i aktualizacje produktów cyfrowych.",
+      }),
+    ]);
+    faqSection.appendChild(faqHeader);
+    const faqList = createElement("div", { className: "faq-list" });
+    faqItems.forEach((item) => {
+      const details = createElement("details", { className: "faq-item" });
+      details.appendChild(createElement("summary", { text: item.question }));
+      details.appendChild(createElement("p", { text: item.answer }));
+      faqList.appendChild(details);
+    });
+    faqSection.appendChild(faqList);
+    container.appendChild(faqSection);
+  }
+
   let productsVersion = 0;
 
   const renderList = (force = false) => {

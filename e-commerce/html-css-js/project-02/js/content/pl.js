@@ -37,6 +37,16 @@ export const content = {
             answer:
               "Standardowo otrzymujesz licencję komercyjną na pojedynczy projekt — szczegóły znajdziesz w opisie.",
           },
+          {
+            question: "Czy mogę szybko dostosować tokeny i style?",
+            answer:
+              "Tak, projektujemy komponenty tak, aby zmiana kolorów i typografii była możliwa z poziomu tokenów.",
+          },
+          {
+            question: "Czy komponenty uwzględniają dostępność?",
+            answer:
+              "Dbamy o semantykę i podstawy a11y, ale pełny audyt zależy od wdrożenia po Twojej stronie.",
+          },
         ],
       },
       {
@@ -66,6 +76,16 @@ export const content = {
             question: "Jak działają aktualizacje szablonów?",
             answer:
               "W razie aktualizacji dostajesz powiadomienie i dostęp do nowej wersji w swojej bibliotece.",
+          },
+          {
+            question: "Czy mogę szybko podmienić treści?",
+            answer:
+              "Tak, szablony mają logiczną strukturę sekcji, dzięki czemu edycja treści jest szybka i bezpieczna.",
+          },
+          {
+            question: "Ile trwa wdrożenie szablonu?",
+            answer:
+              "Najczęściej to kilka godzin do 1-2 dni, w zależności od zakresu zmian.",
           },
         ],
       },
@@ -97,6 +117,16 @@ export const content = {
             answer:
               "Skorzystaj z dostarczonych wariantów rozdzielczości i kompresji bezstratnej.",
           },
+          {
+            question: "Czy mogę używać assetów w social media i reklamach?",
+            answer:
+              "Tak, zgodnie z licencją komercyjną opisaną w karcie produktu.",
+          },
+          {
+            question: "Czy dostaję różne rozmiary i eksporty?",
+            answer:
+              "Tak, często dodajemy kilka wariantów rozmiarów, aby przyspieszyć wdrożenie.",
+          },
         ],
       },
       {
@@ -127,6 +157,16 @@ export const content = {
             answer:
               "Aktualizacje pojawiają się przy większych zmianach procesów lub nowych wersjach narzędzi.",
           },
+          {
+            question: "Czy materiały są odpowiednie dla początkujących?",
+            answer:
+              "Tak, większość materiałów ma poziom podstawowy lub średni i jasno opisany start.",
+          },
+          {
+            question: "Czy mogę używać narzędzi w zespole?",
+            answer:
+              "Tak, licencja opisuje możliwość użycia wewnątrz zespołu i projektów.",
+          },
         ],
       },
     ],
@@ -146,6 +186,28 @@ export const content = {
       emptyMessage: "Wkrótce dodamy pierwsze produkty...",
       emptyCta: "Powrót do produktów",
     },
+    faqGeneral: [
+      {
+        question: "Jaka licencja obowiązuje przy produktach cyfrowych?",
+        answer:
+          "Standardowo otrzymujesz licencję komercyjną na jeden projekt. Dokładny zakres jest opisany w karcie produktu.",
+      },
+      {
+        question: "Jak otrzymuję aktualizacje produktów?",
+        answer:
+          "Nowe wersje pojawiają się w Twojej bibliotece po zakupie, a o większych zmianach informujemy komunikatem.",
+      },
+      {
+        question: "W jakich formatach dostarczacie pliki?",
+        answer:
+          "To zależy od produktu: najczęściej Figma, HTML/CSS, SVG/PNG lub dodatkowe pliki źródłowe.",
+      },
+      {
+        question: "Czy produkty cyfrowe podlegają zwrotom?",
+        answer:
+          "Produkty cyfrowe po pobraniu zwykle nie podlegają zwrotom, ale w razie problemów technicznych skontaktuj się z nami.",
+      },
+    ],
   },
   breadcrumbs: {
     sections: {
@@ -191,6 +253,14 @@ export const content = {
       products: {
         title: "Katalog produktów - KP_Code Digital Vault",
         description: "Przeglądaj produkty cyfrowe, filtry i sortowanie.",
+      },
+      services: {
+        title: "Usługi - KP_Code Digital Vault",
+        description: "Poznaj ofertę usług KP_Code: web development, WordPress, branding i consulting.",
+      },
+      serviceDetails: {
+        title: "Usługi - KP_Code Digital Vault",
+        description: "Szczegóły usługi oraz pakiety realizacji.",
       },
       productCategories: {
         uiKits: {

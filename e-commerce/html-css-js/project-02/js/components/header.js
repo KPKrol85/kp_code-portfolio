@@ -814,8 +814,18 @@ export const updateActiveNav = (path) => {
   });
 
   links.forEach((link) => link.removeAttribute("aria-current"));
+  document
+    .querySelectorAll(".nav-dropdown__button[aria-current]")
+    .forEach((button) => button.removeAttribute("aria-current"));
   if (bestMatch) {
     bestMatch.link.setAttribute("aria-current", "page");
+    const dropdown = bestMatch.link.closest(".nav-dropdown");
+    if (dropdown) {
+      const dropdownButton = dropdown.querySelector(".nav-dropdown__button");
+      if (dropdownButton) {
+        dropdownButton.setAttribute("aria-current", "page");
+      }
+    }
   }
 };
 
