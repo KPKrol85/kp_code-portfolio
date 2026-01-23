@@ -246,38 +246,44 @@ export const SERVICES = [
     ],
     galleryActions: [
       { label: "Demo (Netlify)", disabled: true },
-      { label: "Repo", disabled: true },
+      { label: "Szczegoly", type: "case-study" },
     ],
     galleryPlaceholders: [
       {
         title: "Landing dla SaaS",
         tags: ["SaaS", "Marketing"],
         description: "Lekki landing z animacjami i sekcjami konwersji.",
+        caseStudySlug: "landing-saas",
       },
       {
         title: "Dashboard analityczny",
         tags: ["UI", "Analytics"],
         description: "Interaktywny panel z kartami i wykresami.",
+        caseStudySlug: "analytics-dashboard",
       },
       {
         title: "Strona firmowa",
         tags: ["B2B", "Brand"],
         description: "Sekcje: oferta, case studies, CTA i FAQ.",
+        caseStudySlug: "company-website",
       },
       {
         title: "Microsite wydarzenia",
         tags: ["Event", "Promo"],
         description: "Strona promujaca wydarzenie z formularzem zapisu.",
+        caseStudySlug: "event-microsite",
       },
       {
         title: "Interaktywny konfigurator",
         tags: ["UI", "Logic"],
         description: "Kalkulator i generowanie podsumowania oferty.",
+        caseStudySlug: "interactive-configurator",
       },
       {
         title: "Mini aplikacja PWA",
         tags: ["PWA", "Offline"],
         description: "Prosta aplikacja z trybem offline i ikonami.",
+        caseStudySlug: "mini-pwa-app",
       },
     ],
     faq: [
@@ -452,36 +458,46 @@ export const SERVICES = [
         ],
       },
     ],
+    galleryActions: [
+      { label: "Demo", disabled: true },
+      { label: "Szczegoly", type: "case-study" },
+    ],
     galleryPlaceholders: [
       {
         title: "Strona firmowa",
         tags: ["Firma", "WordPress"],
         description: "Case study wkrotce. Layout z oferta i sekcja kontaktu.",
+        caseStudySlug: "strona-firmowa",
       },
       {
         title: "Blog ekspercki",
         tags: ["Content", "SEO"],
         description: "Case study wkrotce. Struktura wpisow i kategorie.",
+        caseStudySlug: "blog-ekspercki",
       },
       {
         title: "Landing kampanii",
         tags: ["Kampania", "Leady"],
         description: "Case study wkrotce. Sekcje sprzedazowe i formularz.",
+        caseStudySlug: "landing-kampanii",
       },
       {
         title: "Portfolio",
         tags: ["Portfolio", "Brand"],
         description: "Case study wkrotce. Galeria prac i opinie klientow.",
+        caseStudySlug: "portfolio",
       },
       {
         title: "Strona uslugowa",
         tags: ["Uslugi", "B2B"],
         description: "Case study wkrotce. Sekcje oferty i FAQ.",
+        caseStudySlug: "strona-uslugowa",
       },
       {
         title: "Strona lokalna",
         tags: ["Lokalnie", "Mapa"],
         description: "Case study wkrotce. SEO lokalne i dane kontaktowe.",
+        caseStudySlug: "strona-lokalna",
       },
     ],
     faq: [
@@ -660,36 +676,46 @@ export const SERVICES = [
         ],
       },
     ],
+    galleryActions: [
+      { label: "Demo", disabled: true },
+      { label: "Szczegoly", type: "case-study" },
+    ],
     galleryPlaceholders: [
       {
         title: "Brand kit dla startupu",
         tags: ["Brand", "Canva"],
         description: "Case study wkrotce. Logo, kolory i typografia.",
+        caseStudySlug: "brand-identity",
       },
       {
         title: "Szablony social media",
         tags: ["Social", "Templates"],
         description: "Case study wkrotce. Pack postow i stories.",
+        caseStudySlug: "social-media-pack",
       },
       {
         title: "Mini identyfikacja",
         tags: ["Branding", "Print"],
         description: "Case study wkrotce. Wizytowki i stopka mailowa.",
+        caseStudySlug: "marketing-graphics",
       },
       {
         title: "Grafiki kampanijne",
         tags: ["Ads", "Marketing"],
         description: "Case study wkrotce. Banery i grafiki reklamowe.",
+        caseStudySlug: "event-visuals",
       },
       {
         title: "Makiety UI",
         tags: ["UI", "Figma"],
         description: "Case study wkrotce. Landing i dashboard.",
+        caseStudySlug: "landing-ui-design",
       },
       {
         title: "Zestaw ikon",
         tags: ["Icons", "UI"],
         description: "Case study wkrotce. Spojne ikony i ilustracje.",
+        caseStudySlug: "ui-redesign",
       },
     ],
     faq: [

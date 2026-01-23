@@ -12,6 +12,7 @@ export const registerRoutes = () => {
   const checkoutLoader = () => import("../pages/checkout.js");
   const legalPagesLoader = () => import("../pages/legalPages.js");
   const servicesLoader = () => import("../pages/services.js");
+  const caseStudiesLoader = () => import("../pages/caseStudies.js");
   const metaRoutes = content.meta.routes;
   const placeholderBullets = {
     products: [
@@ -181,6 +182,18 @@ export const registerRoutes = () => {
     servicesLoader,
     getHandlerByName("renderServiceDetail"),
     metaRoutes.serviceDetails
+  );
+  addLazyRoute(
+    /^\/case-studies$/,
+    caseStudiesLoader,
+    getHandlerByName("renderCaseStudiesIndex"),
+    metaRoutes.caseStudies
+  );
+  addLazyRoute(
+    /^\/case-studies\/(?<slug>[\w-]+)$/,
+    caseStudiesLoader,
+    getHandlerByName("renderCaseStudyDetail"),
+    metaRoutes.caseStudyDetails
   );
   const categoryLoader = () => import("../pages/productCategory.js");
   const categoryRoutes = [

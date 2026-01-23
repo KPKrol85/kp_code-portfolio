@@ -336,6 +336,14 @@ export const content = {
         title: "Kontakt - KP_Code Digital Vault",
         description: "Skontaktuj się z nami w sprawie produktów cyfrowych.",
       },
+      caseStudies: {
+        title: "Case studies - KP_Code Digital Vault",
+        description: "Przeglad realizacji i case studies.",
+      },
+      caseStudyDetails: {
+        title: "Case study - KP_Code Digital Vault",
+        description: "Szczegoly case study i opis realizacji.",
+      },
       notFound: {
         title: "404 - KP_Code Digital Vault",
         description: "Nie znaleziono strony.",

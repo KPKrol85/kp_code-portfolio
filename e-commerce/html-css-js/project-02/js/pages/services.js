@@ -92,7 +92,17 @@ const createGalleryGrid = (service) => {
     card.appendChild(createElement("p", { text: item.description }));
     const actionsRow = createElement("div", { className: "hero-actions" });
     actions.forEach((action) => {
-      if (action.disabled) {
+      let isDisabled = Boolean(action.disabled);
+      let href = action.href;
+      if (action.type === "case-study") {
+        if (item.caseStudySlug) {
+          href = `#/case-studies/${item.caseStudySlug}`;
+          isDisabled = false;
+        } else {
+          isDisabled = true;
+        }
+      }
+      if (isDisabled) {
         actionsRow.appendChild(
           createElement("button", {
             className: "button secondary",
@@ -106,7 +116,7 @@ const createGalleryGrid = (service) => {
         createElement("a", {
           className: "button secondary",
           text: action.label,
-          attrs: { href: action.href || "#/contact" },
+          attrs: { href: href || "#/contact" },
         })
       );
     });
