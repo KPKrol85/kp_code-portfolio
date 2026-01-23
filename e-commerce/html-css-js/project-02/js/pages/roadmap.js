@@ -47,7 +47,7 @@ export const renderRoadmap = () => {
   heroContent.appendChild(
     createElement("p", {
       className: "hero-lead",
-      text: "KP_Code Digital Vault działa i rośnie. Roadmapa pokazuje kierunek skalowania oferty, sprzedaży i jakości doświadczenia — priorytety aktualizujemy w oparciu o dane i feedback użytkowników.",
+      text: "KP_Code Digital Vault jest działającą platformą sprzedaży produktów cyfrowych i usług. Roadmapa wyznacza kierunek skalowania oferty, monetyzacji, jakości doświadczenia oraz rozwoju ekosystemu KP_Code.",
     })
   );
   hero.appendChild(heroContent);
@@ -60,15 +60,15 @@ export const renderRoadmap = () => {
   whySection.appendChild(
     createSectionHeader(
       "Dlaczego roadmap?",
-      "Roadmapa porządkuje rozwój platformy i pokazuje, jak wzmacniamy wartość dla kupujących oraz partnerów."
+      "Dokument strategiczny, który porządkuje kierunki rozwoju platformy i biznesu."
     )
   );
   const whyCard = createElement("div", { className: "card" }, [
     createElement("p", {
-      text: "Skupiamy się na skalowaniu oferty, jakości katalogu i doświadczeniu zakupowym. Zależy nam na spójnym standardzie treści, jasnych licencjach i przewidywalnym procesie zakupowym.",
+      text: "Roadmapa dotyczy skalowania produktów, platformy i usług KP_Code. Priorytety wynikają z danych sprzedażowych, celów biznesowych oraz feedbacku użytkowników i partnerów.",
     }),
     createElement("p", {
-      text: "Roadmapę aktualizujemy cyklicznie, aby odzwierciedlała realne potrzeby rynku i użytkowników platformy.",
+      text: "Proces jest iteracyjny i oparty o mierzalne efekty: wzrost wartości oferty, poprawę konwersji, stabilność działania oraz rozwój ekosystemu.",
     }),
   ]);
   whySection.appendChild(whyCard);
@@ -275,15 +275,15 @@ export const renderRoadmap = () => {
   feedbackSection.appendChild(
     createSectionHeader(
       "Współpraca i feedback",
-      "Masz pomysł na rozwój platformy lub nowych produktów? Napisz — roadmapa jest tworzona z myślą o realnych potrzebach użytkowników."
+      "Roadmapa KP_Code Digital Vault jest aktualizowana na podstawie danych, współpracy i realnych potrzeb rynku. Jesteśmy otwarci na dialog z firmami, partnerami technologicznymi i instytucjami wspierającymi rozwój."
     )
   );
   const feedbackCard = createElement("div", { className: "card services-cta" });
   feedbackCard.appendChild(
     createElement("div", {}, [
-      createElement("h3", { text: "Zaproponuj kierunek" }),
+      createElement("h3", { text: "Zaproponuj kierunek współpracy" }),
       createElement("p", {
-        text: "Opisz potrzeby Twojego zespołu lub społeczności. Wrócimy z aktualizacją roadmapy lub propozycją współpracy.",
+        text: "Zapraszamy do rozmów o współpracy komercyjnej, partnerstwach produktowych, inicjatywach rozwojowych oraz projektach wspieranych programami finansowania i rozwoju. Priorytety ustalamy strategicznie, z naciskiem na wspólne budowanie wartości."
       }),
     ])
   );
