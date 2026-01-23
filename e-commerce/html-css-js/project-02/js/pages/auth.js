@@ -54,12 +54,11 @@ export const renderAuth = () => {
   const main = document.getElementById("main-content");
   clearElement(main);
 
-  const container = createElement("section", { className: "container" });
+  const container = createElement("section", { className: "container auth-page" });
   const breadcrumbs = createBreadcrumbs(buildBreadcrumbsForPath(parseHash().pathname));
   if (breadcrumbs) {
     container.appendChild(breadcrumbs);
   }
-  container.appendChild(createElement("h1", { text: content.auth.title }));
 
   const tabs = createElement("div", { className: "tabs", attrs: { role: "tablist" } });
   const loginTab = createElement("button", {
@@ -90,7 +89,7 @@ export const renderAuth = () => {
   tabs.appendChild(registerTab);
 
   const loginPanel = createElement("div", {
-    className: "card section",
+    className: "card section auth-panel",
     attrs: {
       id: "auth-panel-login",
       role: "tabpanel",
@@ -99,7 +98,7 @@ export const renderAuth = () => {
     },
   });
   const registerPanel = createElement("div", {
-    className: "card section",
+    className: "card section auth-panel",
     attrs: {
       id: "auth-panel-register",
       role: "tabpanel",
@@ -399,6 +398,16 @@ export const renderAuth = () => {
     [registerTab, registerPanel],
   ]);
 
+  const updateBreadcrumbLabel = (label) => {
+    if (!breadcrumbs) {
+      return;
+    }
+    const current = breadcrumbs.querySelector(".breadcrumbs__current");
+    if (current) {
+      current.textContent = label;
+    }
+  };
+
   const setActiveTab = (nextTab, { focus = false } = {}) => {
     tabsList.forEach((tab) => {
       const isActive = tab === nextTab;
@@ -411,8 +420,10 @@ export const renderAuth = () => {
     });
     if (nextTab === loginTab) {
       renderLogin();
+      updateBreadcrumbLabel(content.auth.tabs.login);
     } else {
       renderRegister();
+      updateBreadcrumbLabel(content.auth.tabs.register);
     }
     if (focus) {
       nextTab.focus();
@@ -450,8 +461,10 @@ export const renderAuth = () => {
 
   setActiveTab(loginTab);
 
-  container.appendChild(tabs);
-  container.appendChild(loginPanel);
-  container.appendChild(registerPanel);
+  const authShell = createElement("div", { className: "auth-shell" });
+  authShell.appendChild(tabs);
+  authShell.appendChild(loginPanel);
+  authShell.appendChild(registerPanel);
+  container.appendChild(authShell);
   main.appendChild(container);
 };

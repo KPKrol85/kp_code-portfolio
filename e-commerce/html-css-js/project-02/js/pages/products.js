@@ -29,17 +29,20 @@ export const renderProducts = () => {
 
   const container = createElement("section", { className: "container" });
   const breadcrumbs = createBreadcrumbs(buildProductsBreadcrumbs());
+  const hero = createElement("section", { className: "hero services-hero products-hero" });
+  const heroContent = createElement("div", { className: "hero-content" });
   if (breadcrumbs) {
     container.appendChild(breadcrumbs);
   }
-  container.appendChild(createElement("h1", { text: "Katalog produktów" }));
-  container.appendChild(
+  heroContent.appendChild(createElement("h1", { text: "Katalog produktów" }));
+  heroContent.appendChild(
     createElement("p", {
+      className: "hero-lead",
       text: "Filtruj, sortuj i wybieraj produkty cyfrowe dopasowane do Twojego workflow.",
     })
   );
 
-  const filters = createElement("div", { className: "grid grid-3" });
+  const filters = createElement("div", { className: "grid grid-3 products-filters section" });
   const searchId = "products-search";
   const sortId = "products-sort";
   const categoryId = "products-category";
@@ -229,6 +232,8 @@ export const renderProducts = () => {
   filters.appendChild(sortSelect);
   filters.appendChild(categoryLabel);
   filters.appendChild(categorySelect);
+  hero.appendChild(heroContent);
+  container.appendChild(hero);
   container.appendChild(filters);
 
   const productsGrid = createProductsGrid({

@@ -318,12 +318,9 @@ const createQuoteSection = ({ title, lead, defaultServiceSlug } = {}) => {
   };
 };
 
-const createHero = ({ title, lead, breadcrumbs, panel }) => {
+const createHero = ({ title, lead, panel }) => {
   const hero = createElement("section", { className: "hero services-hero" });
   const content = createElement("div", { className: "hero-content" });
-  if (breadcrumbs) {
-    content.appendChild(breadcrumbs);
-  }
   const heading = createElement("h1", {
     text: title,
     attrs: { tabindex: "-1", "data-focus-heading": "true" },
@@ -390,8 +387,10 @@ export const renderServicesIndex = () => {
   const hero = createHero({
     title: SERVICES_PAGE.hero.title,
     lead: SERVICES_PAGE.hero.lead,
-    breadcrumbs,
   });
+  if (breadcrumbs) {
+    container.appendChild(breadcrumbs);
+  }
   container.appendChild(hero);
 
   const cardsSection = createElement("section", {
@@ -526,9 +525,11 @@ export const renderServiceDetail = ({ slug } = {}) => {
   const hero = createHero({
     title: service.name,
     lead: service.heroLead,
-    breadcrumbs,
     panel,
   });
+  if (breadcrumbs) {
+    container.appendChild(breadcrumbs);
+  }
   container.appendChild(hero);
 
   const forWhoSection = createElement("section", {

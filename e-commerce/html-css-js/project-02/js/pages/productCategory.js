@@ -30,15 +30,24 @@ export const renderProductCategory = ({ category }) => {
 
   const container = createElement("section", { className: "container" });
   const breadcrumbs = createBreadcrumbs(buildProductCategoryBreadcrumbs(category));
-  const heading = createElement("h1", {
-    text: categoryConfig.title,
-    attrs: { tabindex: "-1", "data-focus-heading": "true" },
-  });
-  const lead = createElement("p", { text: categoryConfig.description });
-  const header = createElement("div", {}, [breadcrumbs, heading, lead]);
-  container.appendChild(header);
+  const hero = createElement("section", { className: "hero services-hero products-hero" });
+  const heroContent = createElement("div", { className: "hero-content" });
+  if (breadcrumbs) {
+    container.appendChild(breadcrumbs);
+  }
+  heroContent.appendChild(
+    createElement("h1", {
+      text: categoryConfig.title,
+      attrs: { tabindex: "-1", "data-focus-heading": "true" },
+    })
+  );
+  heroContent.appendChild(
+    createElement("p", { className: "hero-lead", text: categoryConfig.description })
+  );
+  hero.appendChild(heroContent);
+  container.appendChild(hero);
 
-  const filters = createElement("div", { className: "grid grid-2" });
+  const filters = createElement("div", { className: "grid grid-2 section" });
   const searchId = `products-${category}-search`;
   const sortId = `products-${category}-sort`;
   const searchLabel = createElement("label", {

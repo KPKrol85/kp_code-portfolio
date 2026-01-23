@@ -80,10 +80,26 @@ export const renderProductDetails = ({ id }) => {
 
     const wrapper = createElement("section", { className: "container" });
     const breadcrumbs = createBreadcrumbs(buildProductDetailsBreadcrumbs(product));
+    const hero = createElement("section", { className: "hero services-hero products-hero" });
+    const heroContent = createElement("div", { className: "hero-content" });
     if (breadcrumbs) {
       wrapper.appendChild(breadcrumbs);
     }
-    const layout = createElement("div", { className: "grid grid-2" });
+    heroContent.appendChild(
+      createElement("h1", {
+        text: product.name,
+        attrs: { tabindex: "-1", "data-focus-heading": "true" },
+      })
+    );
+    heroContent.appendChild(
+      createElement("p", {
+        className: "hero-lead",
+        text: product.shortDescription || product.description || "Szczegóły produktu cyfrowego.",
+      })
+    );
+    hero.appendChild(heroContent);
+    wrapper.appendChild(hero);
+    const layout = createElement("div", { className: "grid grid-2 section" });
 
     const buildMedia = (images) => {
       const mainSizes = "(min-width: 960px) 480px, 100vw";
@@ -190,7 +206,7 @@ export const renderProductDetails = ({ id }) => {
     const images = Array.isArray(product.images) ? product.images.filter(Boolean) : [];
     const media = images.length ? buildMedia(images) : buildThumbnail();
     const details = createElement("div", { className: "card" });
-    details.appendChild(createElement("h1", { text: product.name }));
+    details.appendChild(createElement("h2", { text: product.name }));
     details.appendChild(createElement("p", { text: product.description }));
     details.appendChild(
       createElement("div", { className: "price", text: formatCurrency(product.price) })

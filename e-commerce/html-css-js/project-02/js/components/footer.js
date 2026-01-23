@@ -44,9 +44,6 @@ const getFooterNav = (isAuthenticated) => [
     links: [
       { label: "O nas", href: "#/about" },
       { label: "Plan rozwoju / Roadmap", href: "#/roadmap" },
-      { label: "Regulamin", href: "#/terms" },
-      { label: "Polityka prywatności", href: "#/privacy" },
-      { label: "Cookies", href: "#/cookies" },
       { label: "Kariera", href: "#/careers" },
     ],
   },

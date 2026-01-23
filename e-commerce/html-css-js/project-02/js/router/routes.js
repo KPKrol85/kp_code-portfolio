@@ -13,6 +13,8 @@ export const registerRoutes = () => {
   const legalPagesLoader = () => import("../pages/legalPages.js");
   const servicesLoader = () => import("../pages/services.js");
   const caseStudiesLoader = () => import("../pages/caseStudies.js");
+  const roadmapLoader = () => import("../pages/roadmap.js");
+  const aboutLoader = () => import("../pages/about.js");
   const metaRoutes = content.meta.routes;
   const placeholderBullets = {
     products: [
@@ -107,30 +109,6 @@ export const registerRoutes = () => {
       },
     },
     {
-      pattern: /^\/about$/,
-      meta: {
-        ...metaRoutes.placeholders.about,
-      },
-      view: {
-        title: "O nas",
-        lead: "W przygotowaniu.",
-        bullets: placeholderBullets.company,
-        ctas: defaultCtas,
-      },
-    },
-    {
-      pattern: /^\/roadmap$/,
-      meta: {
-        ...metaRoutes.placeholders.roadmap,
-      },
-      view: {
-        title: "Plan rozwoju / Roadmap",
-        lead: "W przygotowaniu.",
-        bullets: placeholderBullets.company,
-        ctas: defaultCtas,
-      },
-    },
-    {
       pattern: /^\/careers$/,
       meta: {
         ...metaRoutes.placeholders.careers,
@@ -194,6 +172,18 @@ export const registerRoutes = () => {
     caseStudiesLoader,
     getHandlerByName("renderCaseStudyDetail"),
     metaRoutes.caseStudyDetails
+  );
+  addLazyRoute(
+    /^\/roadmap$/,
+    roadmapLoader,
+    getHandlerByName("renderRoadmap"),
+    metaRoutes.placeholders.roadmap
+  );
+  addLazyRoute(
+    /^\/about$/,
+    aboutLoader,
+    getHandlerByName("renderAbout"),
+    metaRoutes.placeholders.about
   );
   const categoryLoader = () => import("../pages/productCategory.js");
   const categoryRoutes = [
