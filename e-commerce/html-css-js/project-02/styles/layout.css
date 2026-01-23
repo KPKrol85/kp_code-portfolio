@@ -515,13 +515,6 @@ footer.is-mounted #app-footer {
   flex: 0 0 var(--stats-card-basis);
   min-width: var(--stats-card-min);
   scroll-snap-align: start;
-  transition: border-color 170ms ease;
-}
-
-@media (hover: hover) and (pointer: fine) {
-  .stat-card:hover {
-    border-color: var(--color-accent-muted);
-  }
 }
 
 .hero {
@@ -656,6 +649,44 @@ footer.is-mounted #app-footer {
   border: 1px solid var(--color-border);
   padding: var(--space-6);
   box-shadow: var(--shadow-sm);
+}
+
+/* Interactive card hover/focus parity with index. */
+.card--interactive {
+  transition: border-color 170ms ease;
+}
+
+.card--interactive:focus-visible,
+.card--interactive:focus-within {
+  border-color: var(--color-accent-muted);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .card--interactive:hover {
+    border-color: var(--color-accent-muted);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .card--interactive {
+    transition: none;
+  }
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .section[aria-label="Zakres uslugi"] .card {
+    transition: border-color 170ms ease;
+  }
+
+  .section[aria-label="Zakres uslugi"] .card:hover {
+    border-color: var(--color-accent-muted);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .section[aria-label="Zakres uslugi"] .card {
+    transition: none;
+  }
 }
 
 #main-content .card:has([data-cart-quantity]) {

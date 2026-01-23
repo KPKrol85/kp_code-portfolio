@@ -77,7 +77,7 @@ const createGalleryGrid = (service) => {
     { label: "Szczegoly", disabled: true },
   ];
   service.galleryPlaceholders.forEach((item) => {
-    const card = createElement("div", { className: "card" });
+    const card = createElement("div", { className: "card card--interactive" });
     card.appendChild(
       createElement("div", {
         className: "gallery-placeholder",
@@ -401,7 +401,7 @@ export const renderServicesIndex = () => {
   cardsSection.appendChild(createSectionHeader("Wszystkie uslugi", "Wybierz obszar, w ktorym potrzebujesz wsparcia."));
   const cardsGrid = createElement("div", { className: "grid grid-2" });
   SERVICES.forEach((service) => {
-    const card = createElement("div", { className: "card service-card" });
+    const card = createElement("div", { className: "card service-card card--interactive" });
     card.appendChild(createElement("h3", { text: service.name }));
     card.appendChild(createElement("p", { text: service.shortDescription }));
     card.appendChild(createList(service.summaryBullets, "service-list"));

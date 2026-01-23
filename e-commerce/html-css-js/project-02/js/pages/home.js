@@ -342,19 +342,19 @@ export const renderHome = () => {
   };
 
   const stats = createElement("div", { className: "stats-grid" }, [
-    createElement("div", { className: "card stat-card" }, [
+    createElement("div", { className: "card stat-card card--interactive" }, [
       createElement("h3", { text: "6" }),
       createElement("p", { text: "Gotowych rozwiązań cyfrowych" }),
     ]),
-    createElement("div", { className: "card stat-card" }, [
+    createElement("div", { className: "card stat-card card--interactive" }, [
       createElement("h3", { text: "Senior-level" }),
       createElement("p", { text: "Jakość kodu i architektury" }),
     ]),
-    createElement("div", { className: "card stat-card" }, [
+    createElement("div", { className: "card stat-card card--interactive" }, [
       createElement("h3", { text: "< 24h" }),
       createElement("p", { text: "Czas wdrożenia produktu" }),
     ]),
-    createElement("div", { className: "card stat-card" }, [
+    createElement("div", { className: "card stat-card card--interactive" }, [
       createElement("h3", { text: "Dożywotni dostęp" }),
       createElement("p", { text: "Aktualizacje w cenie" }),
     ]),
