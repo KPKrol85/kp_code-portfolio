@@ -274,6 +274,12 @@ export const registerRoutes = () => {
     metaRoutes.accountDownloads || metaRoutes.account
   );
   addLazyRoute(
+    /^\/account\/settings$/,
+    accountLoader,
+    getHandlerByName("renderAccountSettings"),
+    metaRoutes.accountSettings || metaRoutes.account
+  );
+  addLazyRoute(
     /^\/library$/,
     () => import("../pages/library.js"),
     getHandlerByName("renderLibrary"),

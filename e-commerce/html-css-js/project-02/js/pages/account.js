@@ -1,23 +1,34 @@
 import { createElement, clearElement } from "../utils/dom.js";
-import { parseHash } from "../utils/navigation.js";
+import { navigateHash, parseHash } from "../utils/navigation.js";
 import { formatCurrency, formatDate } from "../utils/format.js";
+import { authService } from "../services/auth.js";
 import { purchasesService } from "../services/purchases.js";
 import { showToast } from "../components/toast.js";
 import { store } from "../store/store.js";
+import { actions } from "../store/actions.js";
+import { storage } from "../services/storage.js";
 import { renderEmptyState } from "../components/ui-state-helpers.js";
 import { createBreadcrumbs } from "../components/breadcrumbs.js";
 import { buildBreadcrumbsForPath } from "../utils/breadcrumbs.js";
+import { content } from "../content/pl.js";
 
 const ACCOUNT_NAV_ITEMS = [
   { label: "Przegląd", href: "#/account", match: "/account" },
   { label: "Zamówienia", href: "#/account/orders", match: "/account/orders" },
   { label: "Pobrane pliki", href: "#/account/downloads", match: "/account/downloads" },
+  { label: "Ustawienia", href: "#/account/settings", match: "/account/settings" },
 ];
 
 const getActiveAccountPath = () => {
   const { pathname } = parseHash();
   const match = ACCOUNT_NAV_ITEMS.find((item) => item.match === pathname);
   return match?.match || "/account";
+};
+
+const createLogoutHandler = () => () => {
+  authService.signOut();
+  showToast(content.toasts.logout);
+  navigateHash("#/auth");
 };
 
 const createAccountNav = (activePath) => {
@@ -35,6 +46,13 @@ const createAccountNav = (activePath) => {
       })
     );
   });
+  const logoutButton = createElement("button", {
+    className: "button secondary account-nav__logout",
+    text: "Wyloguj",
+    attrs: { type: "button" },
+  });
+  logoutButton.addEventListener("click", createLogoutHandler());
+  nav.appendChild(logoutButton);
   return nav;
 };
 
@@ -68,9 +86,15 @@ const renderAccountShell = ({ title, content }) => {
 const renderOverviewContent = () => {
   const { user } = store.getState();
   const greetingName = user?.name ? `Witaj, ${user.name.split(" ")[0]}!` : "Witaj!";
+  const emailValue = user?.email || "—";
+  const accountType = user?.email === "demo@kpcode.dev" ? "Demo" : "Klient";
 
   const intro = createElement("div", { className: "account-intro" }, [
     createElement("p", { className: "account-greeting", text: greetingName }),
+    createElement("div", { className: "account-meta" }, [
+      createElement("p", { text: `E-mail: ${emailValue}` }),
+      createElement("p", { text: `Typ konta: ${accountType}` }),
+    ]),
     createElement("p", {
       className: "account-status",
       text: "Status konta: aktywne. Masz pelny dostep do zakupionych zasobow.",
@@ -109,7 +133,7 @@ const renderOrdersContent = () => {
   if (!orders.length) {
     return renderEmptyState({
       title: "Brak zamowien",
-      message: "Twoja historia zamowien jest pusta. Dodaj cos do koszyka i wroc tutaj.",
+      message: "Nie masz jeszcze zadnych zamowien. Gdy dokonasz zakupu, pojawia sie tutaj.",
       ctaText: "Przejdz do produktow",
       ctaHref: "#/products",
     });
@@ -150,8 +174,8 @@ const renderDownloadsContent = () => {
   if (!items.length) {
     return renderEmptyState({
       title: "Brak plikow do pobrania",
-      message: "Po zakupie produkty pojawia sie tutaj automatycznie.",
-      ctaText: "Przejdz do produktow",
+      message: "Gdy dokonasz zakupu, produkty do pobrania beda dostepne w tym miejscu.",
+      ctaText: "Zobacz produkty",
       ctaHref: "#/products",
     });
   }
@@ -181,6 +205,199 @@ const renderDownloadsContent = () => {
   return list;
 };
 
+const applyThemePreference = (theme) => {
+  document.documentElement.setAttribute("data-theme", theme);
+  storage.set("kp_theme", theme);
+  actions.ui.setTheme(theme);
+};
+
+const applyReducedMotionPreference = (enabled) => {
+  const value = Boolean(enabled);
+  if (value) {
+    document.documentElement.setAttribute("data-reduced-motion", "true");
+  } else {
+    document.documentElement.removeAttribute("data-reduced-motion");
+  }
+  storage.set("kp_reduced_motion", value);
+};
+
+const renderSettingsContent = () => {
+  const { user, ui } = store.getState();
+  const nameValue = user?.name || "Demo";
+  const emailValue = user?.email || "demo@kpcode.dev";
+  const reducedMotionStored = storage.get("kp_reduced_motion", false);
+  applyReducedMotionPreference(reducedMotionStored);
+  const description = createElement("p", {
+    className: "account-section-lead",
+    text: "Zarzadzaj danymi profilu, preferencjami i bezpieczenstwem.",
+  });
+
+  const profileCard = createElement("div", { className: "card" });
+  profileCard.appendChild(createElement("h3", { text: "Profil" }));
+  profileCard.appendChild(
+    createElement("p", {
+      className: "account-section-lead",
+      text: "Zaktualizuj nazwe profilu i sprawdz przypisany e-mail.",
+    })
+  );
+  const nameField = createElement("input", {
+    className: "input",
+    attrs: {
+      id: "account-name",
+      type: "text",
+      value: nameValue,
+      autocomplete: "name",
+      inputmode: "text",
+    },
+  });
+  const nameError = createElement("div", {
+    className: "form-error",
+    attrs: { id: "account-name-error" },
+  });
+  const emailField = createElement("input", {
+    className: "input",
+    attrs: {
+      id: "account-email",
+      type: "email",
+      value: emailValue,
+      readonly: "readonly",
+    },
+  });
+  const profileForm = createElement("form");
+  profileForm.appendChild(
+    createElement("div", { className: "form-field" }, [
+      createElement("label", { text: "Nazwa", attrs: { for: "account-name" } }),
+      nameField,
+      nameError,
+    ])
+  );
+  profileForm.appendChild(
+    createElement("div", { className: "form-field" }, [
+      createElement("label", { text: "E-mail", attrs: { for: "account-email" } }),
+      emailField,
+    ])
+  );
+  const profileButton = createElement("button", {
+    className: "button secondary",
+    text: "Zapisz zmiany",
+    attrs: { type: "submit" },
+  });
+  profileForm.appendChild(profileButton);
+  profileForm.addEventListener("submit", (event) => {
+    event.preventDefault();
+    const trimmed = nameField.value.trim();
+    if (trimmed.length < 2) {
+      nameError.textContent = "Nazwa musi miec co najmniej 2 znaki.";
+      nameField.setAttribute("aria-invalid", "true");
+      nameField.setAttribute("aria-describedby", "account-name-error");
+      return;
+    }
+    nameError.textContent = "";
+    nameField.removeAttribute("aria-invalid");
+    nameField.removeAttribute("aria-describedby");
+    authService.updateProfile({ name: trimmed });
+    showToast("Zapisano zmiany profilu.", "info");
+  });
+  profileCard.appendChild(profileForm);
+
+  const preferencesCard = createElement("div", { className: "card" });
+  preferencesCard.appendChild(createElement("h3", { text: "Preferencje" }));
+  preferencesCard.appendChild(
+    createElement("p", {
+      className: "account-section-lead",
+      text: "Dostosuj wyglad i animacje do swoich preferencji.",
+    })
+  );
+  const themeToggle = createElement("input", {
+    attrs: {
+      id: "account-theme-toggle",
+      type: "checkbox",
+      checked: ui.theme === "dark" ? "checked" : null,
+    },
+  });
+  const motionToggle = createElement("input", {
+    attrs: {
+      id: "account-motion-toggle",
+      type: "checkbox",
+      checked: reducedMotionStored ? "checked" : null,
+    },
+  });
+  const preferenceList = createElement("div", { className: "account-preferences" }, [
+    createElement("label", { className: "account-switch", attrs: { for: "account-theme-toggle" } }, [
+      createElement("span", { text: "Tryb ciemny" }),
+      themeToggle,
+    ]),
+    createElement("label", { className: "account-switch", attrs: { for: "account-motion-toggle" } }, [
+      createElement("span", { text: "Zredukowane animacje" }),
+      motionToggle,
+    ]),
+  ]);
+  preferencesCard.appendChild(preferenceList);
+  const preferencesButton = createElement("button", {
+    className: "button secondary",
+    text: "Zapisz preferencje",
+    attrs: { type: "button" },
+  });
+  preferencesButton.addEventListener("click", () => {
+    const nextTheme = themeToggle.checked ? "dark" : "light";
+    applyThemePreference(nextTheme);
+    applyReducedMotionPreference(motionToggle.checked);
+    showToast("Zapisano preferencje.", "info");
+  });
+  preferencesCard.appendChild(preferencesButton);
+
+  const securityCard = createElement("div", { className: "card" });
+  securityCard.appendChild(createElement("h3", { text: "Bezpieczenstwo" }));
+  securityCard.appendChild(
+    createElement("p", {
+      className: "account-section-lead",
+      text: "To srodowisko demo. Zmiana hasla bedzie dostepna po wdrozeniu backendu.",
+    })
+  );
+  securityCard.appendChild(
+    createElement("button", {
+      className: "button secondary",
+      text: "Zmien haslo",
+      attrs: { type: "button", disabled: "disabled" },
+    })
+  );
+
+  const dangerCard = createElement("div", { className: "card account-danger" });
+  dangerCard.appendChild(createElement("h3", { text: "Strefa zagrozenia" }));
+  dangerCard.appendChild(
+    createElement("p", {
+      className: "account-section-lead",
+      text: "Wyloguj sie z konta, jesli korzystasz z publicznego urzadzenia.",
+    })
+  );
+  const logoutAction = createElement("button", {
+    className: "button secondary",
+    text: "Wyloguj",
+    attrs: { type: "button" },
+  });
+  logoutAction.addEventListener("click", createLogoutHandler());
+  dangerCard.appendChild(logoutAction);
+
+  const mainColumn = createElement("div", { className: "account-settings__main" }, [
+    profileCard,
+    preferencesCard,
+    securityCard,
+    dangerCard,
+  ]);
+  const asideColumn = createElement("div", { className: "account-settings__aside" }, [
+    createElement("div", { className: "card" }, [
+      createElement("h3", { text: "Wskazowka" }),
+      createElement("p", {
+        className: "account-section-lead",
+        text: "Ustawienia sa zapisywane lokalnie i dzialaja w trybie demo.",
+      }),
+    ]),
+  ]);
+
+  const grid = createElement("div", { className: "account-settings" }, [mainColumn, asideColumn]);
+  return createElement("div", { className: "account-settings-wrapper" }, [description, grid]);
+};
+
 export const renderAccountOverview = () => {
   renderAccountShell({
     title: "Przeglad",
@@ -199,5 +416,12 @@ export const renderAccountDownloads = () => {
   renderAccountShell({
     title: "Pobrane pliki",
     content: renderDownloadsContent(),
+  });
+};
+
+export const renderAccountSettings = () => {
+  renderAccountShell({
+    title: "Ustawienia konta",
+    content: renderSettingsContent(),
   });
 };

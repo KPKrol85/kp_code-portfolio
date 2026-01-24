@@ -156,4 +156,28 @@ export const authService = {
     storage.remove(STORAGE_KEYS.RETURN_TO);
     return value;
   },
+  updateProfile({ name } = {}) {
+    const session = this.getSession();
+    if (!session) {
+      throw new Error("Brak aktywnej sesji.");
+    }
+    const nextName = typeof name === "string" ? name.trim() : "";
+    if (nextName && nextName.length < 2) {
+      throw new Error("Imie musi miec co najmniej 2 znaki.");
+    }
+    const updatedUser = {
+      ...session.user,
+      name: nextName || session.user.name,
+    };
+    const nextSession = { ...session, user: updatedUser };
+    storage.set(STORAGE_KEYS.SESSION, nextSession);
+    const users = storage.get(STORAGE_KEYS.USERS, []);
+    const index = users.findIndex((user) => user?.id === updatedUser.id);
+    if (index !== -1) {
+      users[index] = { ...users[index], name: updatedUser.name };
+      storage.set(STORAGE_KEYS.USERS, users);
+    }
+    notifyAuthChange(nextSession);
+    return updatedUser;
+  },
 };

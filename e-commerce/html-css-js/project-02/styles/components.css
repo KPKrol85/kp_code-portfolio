@@ -295,6 +295,11 @@
   box-shadow: 0 0 0 3px color-mix(in srgb, var(--color-focus) 25%, transparent);
 }
 
+.account-nav__logout {
+  margin-top: var(--space-3);
+  justify-content: center;
+}
+
 .account-content {
   display: grid;
   gap: var(--space-4);
@@ -309,6 +314,18 @@
 .account-status {
   color: var(--color-text-muted);
   margin-bottom: 0;
+}
+
+.account-meta {
+  display: grid;
+  gap: 4px;
+  color: var(--color-text-muted);
+  font-size: 0.9rem;
+  margin-bottom: var(--space-3);
+}
+
+.account-meta p {
+  margin: 0;
 }
 
 .account-overview {
@@ -333,6 +350,56 @@
   gap: var(--space-3);
 }
 
+.account-section-lead {
+  color: var(--color-text-muted);
+  margin-top: 0;
+}
+
+.account-settings-wrapper {
+  display: grid;
+  gap: var(--space-4);
+}
+
+.account-settings {
+  display: grid;
+  gap: var(--space-6);
+  grid-template-columns: minmax(0, 1fr) minmax(0, 280px);
+  align-items: start;
+}
+
+.account-settings__main,
+.account-settings__aside {
+  display: grid;
+  gap: var(--space-4);
+}
+
+.account-preferences {
+  display: grid;
+  gap: var(--space-2);
+  margin-bottom: var(--space-3);
+}
+
+.account-switch {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-4);
+  padding: 8px 0;
+}
+
+.account-settings .form-error {
+  min-height: 1.1em;
+}
+
+.account-shell .button {
+  padding: 8px 14px;
+  font-size: 0.9rem;
+}
+
+.account-shell .button.block {
+  padding-block: 8px;
+}
+
 @media (max-width: 900px) {
   .account-shell {
     grid-template-columns: 1fr;
@@ -346,6 +413,14 @@
   .account-nav__link {
     flex: 1 1 auto;
     text-align: center;
+  }
+
+  .account-nav__logout {
+    flex: 1 1 100%;
+  }
+
+  .account-settings {
+    grid-template-columns: 1fr;
   }
 }
 

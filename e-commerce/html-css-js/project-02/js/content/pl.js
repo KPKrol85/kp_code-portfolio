@@ -221,6 +221,7 @@ export const content = {
       account: "Konto",
       accountOrders: "Zamówienia",
       accountDownloads: "Pobrane pliki",
+      accountSettings: "Ustawienia konta",
       library: "Biblioteka",
       licenses: "Licencje",
       settings: "Ustawienia konta",
@@ -313,6 +314,10 @@ export const content = {
       accountDownloads: {
         title: "Pobrane pliki - KP_Code Digital Vault",
         description: "Pliki do pobrania po zakupie.",
+      },
+      accountSettings: {
+        title: "Ustawienia konta - KP_Code Digital Vault",
+        description: "Zarzadzaj danymi profilu i preferencjami.",
       },
       library: {
         title: "Biblioteka - KP_Code Digital Vault",
