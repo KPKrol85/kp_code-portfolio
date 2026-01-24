@@ -118,9 +118,10 @@ export const startRouter = () => {
     const access = canAccessRoute(pathname, selectors.user(store.getState()));
     if (!access.allowed) {
       if (access.reason === "unauthenticated") {
-        authService.setReturnTo(window.location.hash || "#/");
+        authService.setReturnTo(`#${fullPath}`);
         if (pathname !== "/auth") {
-          navigateHash("#/auth");
+          const nextParam = encodeURIComponent(fullPath);
+          navigateHash(`#/auth?next=${nextParam}`);
           return;
         }
       } else if (access.reason === "forbidden" || access.reason === "admin-disabled") {

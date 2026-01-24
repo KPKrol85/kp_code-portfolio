@@ -50,15 +50,22 @@ const navigateToReturnTo = (targetHash) => {
   navigateHash(targetHash, { force: true });
 };
 
+const generateId = () =>
+  (globalThis.crypto?.randomUUID?.() ??
+    `id_${Date.now()}_${Math.random().toString(16).slice(2)}`);
+
 export const renderAuth = () => {
   const main = document.getElementById("main-content");
   clearElement(main);
 
+  const { pathname, queryParams } = parseHash();
   const container = createElement("section", { className: "container auth-page" });
-  const breadcrumbs = createBreadcrumbs(buildBreadcrumbsForPath(parseHash().pathname));
+  const breadcrumbs = createBreadcrumbs(buildBreadcrumbsForPath(pathname));
   if (breadcrumbs) {
     container.appendChild(breadcrumbs);
   }
+  const rawNextParam = Array.isArray(queryParams.next) ? queryParams.next[0] : queryParams.next;
+  const nextParam = normalizeReturnTo(rawNextParam);
 
   const tabs = createElement("div", { className: "tabs", attrs: { role: "tablist" } });
   const loginTab = createElement("button", {
@@ -214,7 +221,7 @@ export const renderAuth = () => {
               password: passwordField.value,
             });
             showToast(content.toasts.loginSuccess);
-            const returnTo = normalizeReturnTo(authService.consumeReturnTo());
+            const returnTo = normalizeReturnTo(authService.consumeReturnTo()) || nextParam;
             if (returnTo) {
               navigateToReturnTo(returnTo);
               return;
@@ -229,6 +236,30 @@ export const renderAuth = () => {
     });
 
     loginPanel.appendChild(form);
+    const demoLoginButton = createElement("button", {
+      className: "button secondary block",
+      text: "Zaloguj (tryb demo)",
+      attrs: { type: "button" },
+    });
+    demoLoginButton.addEventListener("click", () => {
+      try {
+        authService.signIn({
+          id: generateId(),
+          name: "Demo Klient",
+          email: "demo@kpcode.dev",
+        });
+        showToast("Zalogowano w trybie demo.", "info");
+        const returnTo = normalizeReturnTo(authService.consumeReturnTo()) || nextParam;
+        if (returnTo) {
+          navigateToReturnTo(returnTo);
+          return;
+        }
+        navigateHash(AUTH_FALLBACK_HASH);
+      } catch (error) {
+        errorBox.textContent = error.message;
+      }
+    });
+    loginPanel.appendChild(demoLoginButton);
   };
 
   const renderRegister = () => {

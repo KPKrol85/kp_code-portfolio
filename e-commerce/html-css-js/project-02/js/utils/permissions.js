@@ -1,8 +1,11 @@
 export const canAccessRoute = (path, user) => {
-  const protectedRoutes = new Set(["/account", "/library", "/licenses", "/checkout", "/admin"]);
-  const adminRoutes = new Set(["/admin"]);
+  const protectedRoutes = ["/account", "/library", "/licenses", "/checkout", "/admin"];
+  const adminRoutes = ["/admin"];
+  const isProtected = protectedRoutes.some(
+    (route) => path === route || path.startsWith(`${route}/`)
+  );
 
-  if (!protectedRoutes.has(path)) {
+  if (!isProtected) {
     return { allowed: true };
   }
 
@@ -10,7 +13,7 @@ export const canAccessRoute = (path, user) => {
     return { allowed: false, reason: "unauthenticated" };
   }
 
-  if (adminRoutes.has(path)) {
+  if (adminRoutes.some((route) => path === route || path.startsWith(`${route}/`))) {
     return { allowed: false, reason: "admin-disabled" };
   }
 

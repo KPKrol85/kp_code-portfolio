@@ -219,6 +219,8 @@ export const content = {
       checkoutSuccess: "Sukces zamówienia",
       auth: "Logowanie",
       account: "Konto",
+      accountOrders: "Zamówienia",
+      accountDownloads: "Pobrane pliki",
       library: "Biblioteka",
       licenses: "Licencje",
       settings: "Ustawienia konta",
@@ -303,6 +305,14 @@ export const content = {
       account: {
         title: "Konto - KP_Code Digital Vault",
         description: "Panel użytkownika i historia zamówień.",
+      },
+      accountOrders: {
+        title: "Zamówienia - KP_Code Digital Vault",
+        description: "Historia zamówień w KP_Code Digital Vault.",
+      },
+      accountDownloads: {
+        title: "Pobrane pliki - KP_Code Digital Vault",
+        description: "Pliki do pobrania po zakupie.",
       },
       library: {
         title: "Biblioteka - KP_Code Digital Vault",

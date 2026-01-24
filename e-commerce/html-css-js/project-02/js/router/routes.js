@@ -15,6 +15,7 @@ export const registerRoutes = () => {
   const caseStudiesLoader = () => import("../pages/caseStudies.js");
   const roadmapLoader = () => import("../pages/roadmap.js");
   const aboutLoader = () => import("../pages/about.js");
+  const accountLoader = () => import("../pages/account.js");
   const metaRoutes = content.meta.routes;
   const placeholderBullets = {
     products: [
@@ -256,9 +257,21 @@ export const registerRoutes = () => {
   );
   addLazyRoute(
     /^\/account$/,
-    () => import("../pages/account.js"),
-    getHandlerByName("renderAccount"),
+    accountLoader,
+    getHandlerByName("renderAccountOverview"),
     metaRoutes.account
+  );
+  addLazyRoute(
+    /^\/account\/orders$/,
+    accountLoader,
+    getHandlerByName("renderAccountOrders"),
+    metaRoutes.accountOrders || metaRoutes.account
+  );
+  addLazyRoute(
+    /^\/account\/downloads$/,
+    accountLoader,
+    getHandlerByName("renderAccountDownloads"),
+    metaRoutes.accountDownloads || metaRoutes.account
   );
   addLazyRoute(
     /^\/library$/,
