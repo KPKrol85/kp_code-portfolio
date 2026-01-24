@@ -700,21 +700,68 @@ footer.is-mounted #app-footer {
   grid-column: 1 / -1;
 }
 
-#main-content .card:has([data-cart-quantity]) > [data-cart-quantity] {
-  grid-column: 1 / 2;
+#main-content .card:has([data-cart-quantity]) > .cart-item__actions {
+  grid-column: 1 / -1;
   align-self: center;
 }
 
-#main-content .card:has([data-cart-quantity]) > .button.secondary {
-  grid-column: 2 / 3;
-  justify-self: end;
-  align-self: center;
+.cart-item__actions {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-3);
+  flex-wrap: wrap;
+}
+
+.cart-quantity-stepper {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  max-width: 100%;
+  flex: 0 0 auto;
+  flex-wrap: nowrap;
+}
+
+.cart-quantity-stepper__btn {
+  width: 36px;
+  height: 36px;
+  padding: 0;
+  flex: 0 0 auto;
+}
+
+#main-content .cart-item__actions .cart-quantity-stepper__input {
+  width: auto;
+  inline-size: 72px;
+  max-inline-size: 96px;
+  min-inline-size: 64px;
+  height: 36px;
+  padding: 6px 10px;
+  text-align: center;
+  flex: 0 0 auto;
+}
+
+.cart-item__remove {
+  flex: 0 0 auto;
 }
 
 #main-content .card:has([data-cart-total]) {
   display: grid;
   gap: var(--space-4);
   align-self: start;
+}
+
+#main-content .cart-layout {
+  grid-template-columns: minmax(0, 1fr) minmax(320px, 420px);
+  align-items: start;
+}
+
+#main-content .cart-items {
+  inline-size: 100%;
+  max-inline-size: 820px;
+}
+
+#main-content .cart-items .card {
+  inline-size: 100%;
 }
 
 #main-content .card:has([data-cart-total]) > .button.block {
@@ -798,10 +845,17 @@ footer.is-mounted #app-footer {
     grid-template-columns: 1fr;
   }
 
-  #main-content .card:has([data-cart-quantity]) > [data-cart-quantity],
-  #main-content .card:has([data-cart-quantity]) > .button.secondary {
+  #main-content .card:has([data-cart-quantity]) > .cart-item__actions {
     grid-column: 1 / -1;
     justify-self: start;
+  }
+
+  .cart-item__actions {
+    width: 100%;
+  }
+
+  .cart-quantity-stepper__input {
+    max-inline-size: 96px;
   }
 
   footer {
@@ -816,6 +870,14 @@ footer.is-mounted #app-footer {
 }
 
 @media (max-width: 960px) {
+  #main-content .cart-layout {
+    grid-template-columns: 1fr;
+  }
+
+  #main-content .cart-items {
+    max-inline-size: none;
+  }
+
   header {
     --header-padding-y: var(--space-3);
     --header-padding-y-shrink: var(--space-2);

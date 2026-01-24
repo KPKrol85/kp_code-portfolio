@@ -26,6 +26,7 @@ const parseQuantityValue = (value) => {
   if (!Number.isFinite(parsed)) {
     return null;
   }
+  // Keep Math.floor for fractional input to align with cartService normalization.
   return Math.floor(parsed);
 };
 
@@ -66,6 +67,31 @@ const updateCartTotal = (itemsWrapper, totalNode) => {
     total += price * quantity;
   });
   totalNode.textContent = formatCurrency(total);
+};
+
+const updateStepperState = (card, quantity) => {
+  if (!card) {
+    return;
+  }
+  const decButton = card.querySelector("[data-action=\"dec\"]");
+  if (decButton instanceof HTMLButtonElement) {
+    decButton.disabled = quantity <= 1;
+  }
+};
+
+const updateQuantityUI = (input, quantity, itemsWrapper, totalNode, options = {}) => {
+  const { syncValue = true } = options;
+  if (syncValue) {
+    input.value = String(quantity);
+  }
+  input.dataset.lastValidQty = String(quantity);
+  const card = input.closest("[data-product-id]");
+  const unitPrice = Number(input.dataset.unitPrice);
+  if (card && Number.isFinite(unitPrice)) {
+    updateLineSubtotal(card, quantity, unitPrice);
+  }
+  updateCartTotal(itemsWrapper, totalNode);
+  updateStepperState(card, quantity);
 };
 
 export const renderCart = () => {
@@ -158,7 +184,10 @@ export const renderCart = () => {
     renderMissingSection(container, missingItems);
   }
 
-  const itemsWrapper = createElement("div", { className: "grid" });
+  const itemsWrapper = createElement("div", {
+    className: "grid cart-items",
+    attrs: { "data-cart-list": "true" },
+  });
   const pendingQuantityUpdates = new Map();
   let subtotal = 0;
   validItems.forEach((item) => {
@@ -170,7 +199,7 @@ export const renderCart = () => {
     subtotal += lineTotal;
     const card = createElement("div", {
       className: "card",
-      attrs: { "data-product-id": product.id },
+      attrs: { "data-product-id": product.id, "data-cart-item": "true" },
     });
     card.appendChild(createElement("h3", { text: product.name }));
     card.appendChild(createElement("p", { text: product.shortDescription }));
@@ -181,22 +210,50 @@ export const renderCart = () => {
       attrs: { for: quantityId },
     });
     const quantityField = createElement("input", {
-      className: "input",
+      className: "input cart-quantity-stepper__input",
       attrs: {
         id: quantityId,
         type: "number",
         min: "1",
+        step: "1",
         value: String(item.quantity),
         inputmode: "numeric",
+        "aria-label": "Ilość produktu",
         "data-cart-quantity": "true",
+        "data-role": "qty",
         "data-product-id": product.id,
         "data-unit-price": String(product.price),
         "data-last-valid-qty": String(item.quantity),
       },
     });
+    const quantityStepper = createElement("div", { className: "cart-quantity-stepper" });
+    const decrementButton = createElement("button", {
+      className: "button secondary cart-quantity-stepper__btn",
+      text: "-",
+      attrs: {
+        type: "button",
+        "data-action": "dec",
+        "data-product-id": product.id,
+        "aria-label": "Zmniejsz ilość",
+      },
+    });
+    decrementButton.disabled = item.quantity <= 1;
+    const incrementButton = createElement("button", {
+      className: "button secondary cart-quantity-stepper__btn",
+      text: "+",
+      attrs: {
+        type: "button",
+        "data-action": "inc",
+        "data-product-id": product.id,
+        "aria-label": "Zwiększ ilość",
+      },
+    });
+    quantityStepper.appendChild(decrementButton);
+    quantityStepper.appendChild(quantityField);
+    quantityStepper.appendChild(incrementButton);
 
     const removeButton = createElement("button", {
-      className: "button secondary",
+      className: "button secondary cart-item__remove",
       text: "Usuń",
       attrs: { type: "button" },
     });
@@ -215,8 +272,10 @@ export const renderCart = () => {
       })
     );
     card.appendChild(quantityLabel);
-    card.appendChild(quantityField);
-    card.appendChild(removeButton);
+    const actionsRow = createElement("div", { className: "cart-item__actions" });
+    actionsRow.appendChild(quantityStepper);
+    actionsRow.appendChild(removeButton);
+    card.appendChild(actionsRow);
     itemsWrapper.appendChild(card);
   });
 
@@ -291,7 +350,7 @@ export const renderCart = () => {
     })
   );
 
-  const layout = createElement("div", { className: "grid grid-2 section" }, [
+  const layout = createElement("div", { className: "grid grid-2 section cart-layout" }, [
     itemsWrapper,
     summary,
   ]);
@@ -321,6 +380,36 @@ export const renderCart = () => {
     actions.cart.setCart(nextCart);
   };
 
+  itemsWrapper.addEventListener("click", (event) => {
+    const target = event.target;
+    if (!(target instanceof Element)) {
+      return;
+    }
+    const button = target.closest("button[data-action]");
+    if (!(button instanceof HTMLButtonElement)) {
+      return;
+    }
+    const action = button.dataset.action;
+    if (action !== "inc" && action !== "dec") {
+      return;
+    }
+    const item = button.closest("[data-cart-item]");
+    if (!item) {
+      return;
+    }
+    const input = item.querySelector("[data-role=\"qty\"]");
+    if (!(input instanceof HTMLInputElement)) {
+      return;
+    }
+    const current = getDisplayQuantity(input);
+    const nextQuantity = normalizeQuantity(current + (action === "inc" ? 1 : -1));
+    updateQuantityUI(input, nextQuantity, itemsWrapper, totalValue);
+    const productId = item.dataset.productId || input.dataset.productId;
+    if (productId) {
+      commitQuantityUpdate(productId, nextQuantity);
+    }
+  });
+
   itemsWrapper.addEventListener("input", (event) => {
     const target = event.target;
     if (!(target instanceof HTMLInputElement)) {
@@ -334,48 +423,32 @@ export const renderCart = () => {
       return;
     }
     const safeQuantity = normalizeQuantity(rawQuantity);
-    target.dataset.lastValidQty = String(safeQuantity);
-    const card = target.closest("[data-product-id]");
-    const unitPrice = Number(target.dataset.unitPrice);
-    if (card && Number.isFinite(unitPrice)) {
-      updateLineSubtotal(card, safeQuantity, unitPrice);
-    }
-    updateCartTotal(itemsWrapper, totalValue);
+    updateQuantityUI(target, safeQuantity, itemsWrapper, totalValue, { syncValue: false });
     const productId = target.dataset.productId;
     if (productId) {
       scheduleQuantityUpdate(productId, safeQuantity);
     }
   });
 
-  itemsWrapper.addEventListener(
-    "blur",
-    (event) => {
-      const target = event.target;
-      if (!(target instanceof HTMLInputElement)) {
-        return;
-      }
-      if (!target.matches("[data-cart-quantity]")) {
-        return;
-      }
-      const parsed = parseQuantityValue(target.value);
-      const normalized = normalizeQuantity(
-        parsed !== null && parsed >= 1 ? parsed : 1
-      );
-      target.value = String(normalized);
-      target.dataset.lastValidQty = String(normalized);
-      const card = target.closest("[data-product-id]");
-      const unitPrice = Number(target.dataset.unitPrice);
-      if (card && Number.isFinite(unitPrice)) {
-        updateLineSubtotal(card, normalized, unitPrice);
-      }
-      updateCartTotal(itemsWrapper, totalValue);
-      const productId = target.dataset.productId;
-      if (productId) {
-        commitQuantityUpdate(productId, normalized);
-      }
-    },
-    true
-  );
+  const handleQuantityCommit = (event) => {
+    const target = event.target;
+    if (!(target instanceof HTMLInputElement)) {
+      return;
+    }
+    if (!target.matches("[data-cart-quantity]")) {
+      return;
+    }
+    const parsed = parseQuantityValue(target.value);
+    const normalized = normalizeQuantity(parsed !== null && parsed >= 1 ? parsed : 1);
+    updateQuantityUI(target, normalized, itemsWrapper, totalValue);
+    const productId = target.dataset.productId;
+    if (productId) {
+      commitQuantityUpdate(productId, normalized);
+    }
+  };
+
+  itemsWrapper.addEventListener("change", handleQuantityCommit);
+  itemsWrapper.addEventListener("blur", handleQuantityCommit, true);
 };
 
 const renderMissingSection = (container, missingItems) => {
