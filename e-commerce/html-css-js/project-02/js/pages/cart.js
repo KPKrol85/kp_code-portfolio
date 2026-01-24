@@ -49,7 +49,15 @@ const updateLineSubtotal = (card, quantity, unitPrice) => {
   if (!subtotalNode) {
     return;
   }
-  subtotalNode.textContent = formatCurrency(unitPrice * quantity);
+  if (quantity > 1) {
+    subtotalNode.textContent = `${quantity} x ${formatCurrency(unitPrice)} = ${formatCurrency(
+      unitPrice * quantity
+    )}`;
+    subtotalNode.hidden = false;
+  } else {
+    subtotalNode.textContent = "";
+    subtotalNode.hidden = true;
+  }
 };
 
 const updateCartTotal = (itemsWrapper, totalNode) => {
@@ -264,13 +272,32 @@ export const renderCart = () => {
       renderCart();
     });
 
-    card.appendChild(
-      createElement("p", {
-        className: "price",
-        text: formatCurrency(lineTotal),
-        attrs: { "data-cart-line-total": "true" },
+    const pricing = createElement("div", { className: "cart-item__pricing" });
+    const unitPrice = createElement("div", {
+      className: "price cart-item__unit-price",
+      text: formatCurrency(product.price),
+    });
+    unitPrice.appendChild(
+      createElement("span", {
+        className: "cart-item__unit-suffix",
+        text: " / szt.",
       })
     );
+    const lineTotalText =
+      item.quantity > 1
+        ? `${item.quantity} x ${formatCurrency(product.price)} = ${formatCurrency(lineTotal)}`
+        : "";
+    const lineTotalNode = createElement("div", {
+      className: "cart-item__line-total",
+      text: lineTotalText,
+      attrs: { "data-cart-line-total": "true" },
+    });
+    if (item.quantity <= 1) {
+      lineTotalNode.hidden = true;
+    }
+    pricing.appendChild(unitPrice);
+    pricing.appendChild(lineTotalNode);
+    card.appendChild(pricing);
     card.appendChild(quantityLabel);
     const actionsRow = createElement("div", { className: "cart-item__actions" });
     actionsRow.appendChild(quantityStepper);
@@ -407,6 +434,7 @@ export const renderCart = () => {
     const productId = item.dataset.productId || input.dataset.productId;
     if (productId) {
       commitQuantityUpdate(productId, nextQuantity);
+      renderCart();
     }
   });
 
@@ -444,6 +472,7 @@ export const renderCart = () => {
     const productId = target.dataset.productId;
     if (productId) {
       commitQuantityUpdate(productId, normalized);
+      renderCart();
     }
   };
 

@@ -243,6 +243,22 @@
   margin-bottom: var(--space-3);
 }
 
+.cart-item__pricing {
+  display: grid;
+  gap: 6px;
+}
+
+.cart-item__unit-suffix {
+  color: var(--color-text-muted);
+  font-weight: 500;
+  font-size: 0.85em;
+}
+
+.cart-item__line-total {
+  font-size: 0.85rem;
+  color: var(--color-text-muted);
+}
+
 .tag-list {
   display: flex;
   flex-wrap: wrap;
