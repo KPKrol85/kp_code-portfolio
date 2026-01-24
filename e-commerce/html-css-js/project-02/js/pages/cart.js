@@ -44,6 +44,15 @@ const getDisplayQuantity = (input) => {
   return normalizeQuantity(parsed);
 };
 
+const animatePrice = (element) => {
+  if (!element) {
+    return;
+  }
+  element.classList.remove("price-change");
+  void element.offsetWidth;
+  element.classList.add("price-change");
+};
+
 const updateLineSubtotal = (card, quantity, unitPrice) => {
   const subtotalNode = card.querySelector("[data-cart-line-total]");
   if (!subtotalNode) {
@@ -54,13 +63,14 @@ const updateLineSubtotal = (card, quantity, unitPrice) => {
       unitPrice * quantity
     )}`;
     subtotalNode.hidden = false;
+    animatePrice(subtotalNode);
   } else {
     subtotalNode.textContent = "";
     subtotalNode.hidden = true;
   }
 };
 
-const updateCartTotal = (itemsWrapper, totalNode) => {
+const updateCartTotal = (itemsWrapper, totalNode, liveNode) => {
   if (!itemsWrapper || !totalNode) {
     return;
   }
@@ -74,7 +84,14 @@ const updateCartTotal = (itemsWrapper, totalNode) => {
     const quantity = getDisplayQuantity(input);
     total += price * quantity;
   });
-  totalNode.textContent = formatCurrency(total);
+  const formattedTotal = formatCurrency(total);
+  if (totalNode.textContent !== formattedTotal) {
+    totalNode.textContent = formattedTotal;
+    animatePrice(totalNode);
+    if (liveNode) {
+      liveNode.textContent = `Zaktualizowano sume koszyka: ${formattedTotal}.`;
+    }
+  }
 };
 
 const updateStepperState = (card, quantity) => {
@@ -87,7 +104,7 @@ const updateStepperState = (card, quantity) => {
   }
 };
 
-const updateQuantityUI = (input, quantity, itemsWrapper, totalNode, options = {}) => {
+const updateQuantityUI = (input, quantity, itemsWrapper, totalNode, liveNode, options = {}) => {
   const { syncValue = true } = options;
   if (syncValue) {
     input.value = String(quantity);
@@ -98,7 +115,7 @@ const updateQuantityUI = (input, quantity, itemsWrapper, totalNode, options = {}
   if (card && Number.isFinite(unitPrice)) {
     updateLineSubtotal(card, quantity, unitPrice);
   }
-  updateCartTotal(itemsWrapper, totalNode);
+  updateCartTotal(itemsWrapper, totalNode, liveNode);
   updateStepperState(card, quantity);
 };
 
@@ -197,6 +214,7 @@ export const renderCart = () => {
     attrs: { "data-cart-list": "true" },
   });
   const pendingQuantityUpdates = new Map();
+  const pendingQuantities = new Map();
   let subtotal = 0;
   validItems.forEach((item) => {
     const product = products.find((entry) => entry.id === item.productId);
@@ -348,6 +366,14 @@ export const renderCart = () => {
       "aria-atomic": "true",
     },
   });
+  const totalLive = createElement("p", {
+    className: "sr-only",
+    attrs: {
+      "aria-live": "polite",
+      "aria-atomic": "true",
+      "data-cart-live": "true",
+    },
+  });
   summary.appendChild(createElement("h2", { text: content.common.summaryTitle }));
   summary.appendChild(
     createElement("p", { className: "cart-total" }, [
@@ -355,6 +381,7 @@ export const renderCart = () => {
       totalValue,
     ])
   );
+  summary.appendChild(totalLive);
   summary.appendChild(promoLabel);
   summary.appendChild(promoField);
   summary.appendChild(applyButton);
@@ -369,13 +396,12 @@ export const renderCart = () => {
     renderCart();
   });
   summary.appendChild(clearButton);
-  summary.appendChild(
-    createElement("a", {
-      className: "button block",
-      text: content.cart.checkoutCta,
-      attrs: { href: "#/checkout" },
-    })
-  );
+  const checkoutLink = createElement("a", {
+    className: "button block",
+    text: content.cart.checkoutCta,
+    attrs: { href: "#/checkout" },
+  });
+  summary.appendChild(checkoutLink);
 
   const layout = createElement("div", { className: "grid grid-2 section cart-layout" }, [
     itemsWrapper,
@@ -385,14 +411,21 @@ export const renderCart = () => {
   main.appendChild(container);
 
   const scheduleQuantityUpdate = (productId, quantity) => {
+    pendingQuantities.set(productId, quantity);
     const existingTimer = pendingQuantityUpdates.get(productId);
     if (existingTimer) {
       clearTimeout(existingTimer);
     }
     const timer = window.setTimeout(() => {
       pendingQuantityUpdates.delete(productId);
-      const nextCart = cartService.updateItem(productId, quantity);
+      const nextQuantity = pendingQuantities.get(productId);
+      pendingQuantities.delete(productId);
+      if (!Number.isFinite(nextQuantity)) {
+        return;
+      }
+      const nextCart = cartService.updateItem(productId, nextQuantity);
       actions.cart.setCart(nextCart);
+      renderCart();
     }, QUANTITY_DEBOUNCE_MS);
     pendingQuantityUpdates.set(productId, timer);
   };
@@ -403,8 +436,25 @@ export const renderCart = () => {
       clearTimeout(existingTimer);
       pendingQuantityUpdates.delete(productId);
     }
+    pendingQuantities.delete(productId);
     const nextCart = cartService.updateItem(productId, quantity);
     actions.cart.setCart(nextCart);
+    renderCart();
+  };
+
+  const flushPendingQuantities = () => {
+    let hasUpdates = false;
+    pendingQuantityUpdates.forEach((timer) => clearTimeout(timer));
+    pendingQuantityUpdates.clear();
+    pendingQuantities.forEach((quantity, productId) => {
+      const nextCart = cartService.updateItem(productId, quantity);
+      actions.cart.setCart(nextCart);
+      hasUpdates = true;
+    });
+    pendingQuantities.clear();
+    if (hasUpdates) {
+      renderCart();
+    }
   };
 
   itemsWrapper.addEventListener("click", (event) => {
@@ -430,11 +480,10 @@ export const renderCart = () => {
     }
     const current = getDisplayQuantity(input);
     const nextQuantity = normalizeQuantity(current + (action === "inc" ? 1 : -1));
-    updateQuantityUI(input, nextQuantity, itemsWrapper, totalValue);
+    updateQuantityUI(input, nextQuantity, itemsWrapper, totalValue, totalLive);
     const productId = item.dataset.productId || input.dataset.productId;
     if (productId) {
-      commitQuantityUpdate(productId, nextQuantity);
-      renderCart();
+      scheduleQuantityUpdate(productId, nextQuantity);
     }
   });
 
@@ -451,7 +500,7 @@ export const renderCart = () => {
       return;
     }
     const safeQuantity = normalizeQuantity(rawQuantity);
-    updateQuantityUI(target, safeQuantity, itemsWrapper, totalValue, { syncValue: false });
+    updateQuantityUI(target, safeQuantity, itemsWrapper, totalValue, totalLive, { syncValue: false });
     const productId = target.dataset.productId;
     if (productId) {
       scheduleQuantityUpdate(productId, safeQuantity);
@@ -468,16 +517,16 @@ export const renderCart = () => {
     }
     const parsed = parseQuantityValue(target.value);
     const normalized = normalizeQuantity(parsed !== null && parsed >= 1 ? parsed : 1);
-    updateQuantityUI(target, normalized, itemsWrapper, totalValue);
+    updateQuantityUI(target, normalized, itemsWrapper, totalValue, totalLive);
     const productId = target.dataset.productId;
     if (productId) {
       commitQuantityUpdate(productId, normalized);
-      renderCart();
     }
   };
 
   itemsWrapper.addEventListener("change", handleQuantityCommit);
   itemsWrapper.addEventListener("blur", handleQuantityCommit, true);
+  checkoutLink.addEventListener("click", flushPendingQuantities);
 };
 
 const renderMissingSection = (container, missingItems) => {

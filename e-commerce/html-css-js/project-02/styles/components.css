@@ -259,6 +259,27 @@
   color: var(--color-text-muted);
 }
 
+.price-change {
+  animation: pricePulse 150ms ease-out;
+}
+
+@keyframes pricePulse {
+  from {
+    opacity: 0.6;
+    transform: translateY(1px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .price-change {
+    animation: none;
+  }
+}
+
 .tag-list {
   display: flex;
   flex-wrap: wrap;
