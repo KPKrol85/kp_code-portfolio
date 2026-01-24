@@ -105,3 +105,11 @@ Then open `http://localhost:8080`.
 - Address: ul. Marynarki Wojennej 12/31, 33-100 Tarnów, Poland
 - Phone: +48 533 537 091
 - Email: kontakt@kp-code.pl
+
+## Regression tests (no deps)
+
+Run the zero-dependency regression suite directly with Node:
+
+```bash
+node tests/run-tests.mjs
+```

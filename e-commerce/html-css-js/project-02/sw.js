@@ -1,5 +1,5 @@
-const STATIC_CACHE = "dv-static-v1.0.05";
-const DATA_CACHE = "dv-data-v1.0.05";
+const STATIC_CACHE = "dv-static-v1.0.07";
+const DATA_CACHE = "dv-data-v1.0.07";
 
 const APP_SHELL_URLS = [
   "./",
@@ -12,6 +12,7 @@ const APP_SHELL_URLS = [
   "./styles/themes.css",
   "./js/utils/safe-storage.js",
   "./js/theme-init.js",
+  "./js/reduced-motion-init.js",
   "./js/app.js",
   "./site.webmanifest",
   "./assets/og/og-dv-1200x630.png",

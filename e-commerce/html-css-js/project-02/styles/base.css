@@ -113,3 +113,12 @@ textarea {
 /*
 .scroll-indicator-arrow { opacity: 1 !important; background: red !important; }
 */
+
+:root[data-reduced-motion] *,
+:root[data-reduced-motion] *::before,
+:root[data-reduced-motion] *::after {
+  animation-duration: 0.001ms !important;
+  animation-iteration-count: 1 !important;
+  transition-duration: 0.001ms !important;
+  scroll-behavior: auto !important;
+}

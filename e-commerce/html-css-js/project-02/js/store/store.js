@@ -1,6 +1,6 @@
 const listeners = new Set();
 
-let state = {
+const initialState = {
   products: [],
   productsStatus: "idle",
   productsError: null,
@@ -13,6 +13,15 @@ let state = {
   },
 };
 
+const cloneState = (value) => {
+  if (typeof structuredClone === "function") {
+    return structuredClone(value);
+  }
+  return JSON.parse(JSON.stringify(value));
+};
+
+let state = cloneState(initialState);
+
 export const store = {
   getState() {
     return state;
@@ -21,8 +30,13 @@ export const store = {
     state = { ...state, ...partial };
     listeners.forEach((listener) => listener(state));
   },
+  resetState(nextState = initialState) {
+    state = cloneState(nextState);
+  },
   subscribe(listener) {
     listeners.add(listener);
     return () => listeners.delete(listener);
   },
 };
+
+export const storeInitialState = initialState;

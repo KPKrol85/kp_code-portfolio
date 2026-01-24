@@ -1,5 +1,6 @@
 import { addRoute } from "./router.js";
 import { content } from "../content/pl.js";
+import { navigateHash } from "../utils/navigation.js";
 
 const getHandlerByName = (name) => (module) => module[name];
 
@@ -121,21 +122,6 @@ export const registerRoutes = () => {
         ctas: defaultCtas,
       },
     },
-    {
-      pattern: /^\/settings$/,
-      meta: {
-        ...metaRoutes.placeholders.settings,
-      },
-      view: {
-        title: "Ustawienia konta",
-        lead: "W przygotowaniu.",
-        bullets: placeholderBullets.account,
-        ctas: [
-          { label: "Powrót do produktów", href: "#/products" },
-          { label: "Przejdź do konta", href: "#/account", variant: "secondary" },
-        ],
-      },
-    },
   ];
 
   addLazyRoute(
@@ -225,6 +211,13 @@ export const registerRoutes = () => {
       route.meta
     );
   });
+  addRoute(
+    /^\/settings$/,
+    () => {
+      navigateHash("#/account/settings", { force: true });
+    },
+    metaRoutes.accountSettings || metaRoutes.account
+  );
   addLazyRoute(
     /^\/products\/(?<id>[\w-]+)$/,
     () => import("../pages/productDetails.js"),

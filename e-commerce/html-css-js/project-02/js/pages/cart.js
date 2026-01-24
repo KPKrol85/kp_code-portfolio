@@ -89,7 +89,10 @@ const updateCartTotal = (itemsWrapper, totalNode, liveNode) => {
     totalNode.textContent = formattedTotal;
     animatePrice(totalNode);
     if (liveNode) {
-      liveNode.textContent = `Zaktualizowano sume koszyka: ${formattedTotal}.`;
+      liveNode.textContent = content.states.cart.liveRegion.totalUpdated.replace(
+        "{total}",
+        formattedTotal
+      );
     }
   }
 };
@@ -169,9 +172,9 @@ export const renderCart = () => {
   if (!validItems.length && missingItems.length) {
     container.appendChild(
       renderEmptyState({
-        title: "Nie mozemy wyswietlic pozycji z koszyka.",
-        message: "Wszystkie pozycje sa niedostepne. Usun je, aby kontynuowac.",
-        ctaText: "Wyczysc niedostepne",
+        title: content.states.cart.missingOnly.title,
+        message: content.states.cart.missingOnly.message,
+        ctaText: content.states.cart.missingOnly.cta,
         onCta: () => {
           const nextCart = cart.filter(
             (item) => !missingItems.some((missing) => missing.productId === item.productId)
@@ -202,8 +205,8 @@ export const renderCart = () => {
 
   if (missingItems.length) {
     renderNotice(container, {
-      title: "Wykryto niedostepne pozycje w koszyku.",
-      message: "Usun brakujace pozycje, aby kontynuowac zakupy.",
+      title: content.states.cart.missingNotice.title,
+      message: content.states.cart.missingNotice.message,
       headingTag: "h2",
     });
     renderMissingSection(container, missingItems);
@@ -531,20 +534,22 @@ export const renderCart = () => {
 
 const renderMissingSection = (container, missingItems) => {
   const section = createElement("div", { className: "section" });
-  section.appendChild(createElement("h2", { text: "Niedostepne pozycje" }));
+  section.appendChild(createElement("h2", { text: content.states.cart.missingSection.title }));
   const list = createElement("div", { className: "grid" });
   missingItems.forEach((item) => {
     const card = createElement("div", { className: "card" });
-    card.appendChild(createElement("h3", { text: "Produkt niedostepny" }));
+    card.appendChild(
+      createElement("h3", { text: content.states.cart.missingSection.itemTitle })
+    );
     card.appendChild(createElement("p", { text: `ID: ${item.productId}` }));
     card.appendChild(
       createElement("p", {
-        text: "Ten produkt nie jest juz dostepny w katalogu.",
+        text: content.states.cart.missingSection.itemMessage,
       })
     );
     const removeButton = createElement("button", {
       className: "button secondary",
-      text: "Usun",
+      text: content.states.cart.missingSection.removeCta,
       attrs: { type: "button" },
     });
     removeButton.addEventListener("click", () => {

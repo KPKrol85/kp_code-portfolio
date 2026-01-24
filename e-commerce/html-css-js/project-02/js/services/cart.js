@@ -9,6 +9,8 @@ const getUserId = () => store.getState().user?.id ?? null;
 
 const getCartKey = (userId) => (userId ? `${CART_KEY_PREFIX}${userId}` : GUEST_CART_KEY);
 
+const getCartByKey = (key) => normalizeCart(storage.get(key, []));
+
 const normalizeCart = (value) => {
   if (!Array.isArray(value)) {
     return [];
@@ -56,10 +58,26 @@ const migrateLegacyCart = (userId) => {
 };
 
 export const cartService = {
+  mergeGuestCartIntoUserCart(userId) {
+    if (!userId) {
+      return this.getCart();
+    }
+    migrateLegacyCart(userId);
+    const guestCart = getCartByKey(GUEST_CART_KEY);
+    if (!guestCart.length) {
+      return getCartByKey(getCartKey(userId));
+    }
+    const userCartKey = getCartKey(userId);
+    const userCart = getCartByKey(userCartKey);
+    const mergedCart = mergeCarts(userCart, guestCart);
+    storage.set(userCartKey, mergedCart);
+    storage.remove(GUEST_CART_KEY);
+    return mergedCart;
+  },
   getCart() {
     const userId = getUserId();
     migrateLegacyCart(userId);
-    return normalizeCart(storage.get(getCartKey(userId), []));
+    return getCartByKey(getCartKey(userId));
   },
   saveCart(cart) {
     const userId = getUserId();
@@ -94,4 +112,9 @@ export const cartService = {
     const userId = getUserId();
     storage.remove(getCartKey(userId));
   },
+};
+
+export const __cartTestUtils = {
+  normalizeCart,
+  mergeCarts,
 };

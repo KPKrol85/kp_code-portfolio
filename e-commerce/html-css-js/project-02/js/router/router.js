@@ -5,8 +5,9 @@ import { store } from "../store/store.js";
 import { canAccessRoute } from "../utils/permissions.js";
 import { createElement, clearElement } from "../utils/dom.js";
 import { createRetryButton, renderNotice } from "../components/uiStates.js";
-import { navigateHash, parseHash } from "../utils/navigation.js";
+import { consumeNavigationSource, navigateHash, parseHash } from "../utils/navigation.js";
 import { selectors } from "../store/selectors.js";
+import { onRouteChange } from "./routeEffects.js";
 
 const routes = [];
 let activeCleanup = null;
@@ -100,12 +101,24 @@ export const updateMeta = (title, description) => {
 };
 
 export const startRouter = () => {
-  const notifyRouteRendered = (path) => {
+  let hasHandledRoute = false;
+
+  const resolveRouteSource = () => {
+    const source = consumeNavigationSource();
+    if (source !== "unknown") {
+      return source;
+    }
+    return hasHandledRoute ? "pop" : "unknown";
+  };
+
+  const notifyRouteRendered = ({ pathname, queryParams, path, source }) => {
+    onRouteChange({ pathname, queryParams, source });
     window.dispatchEvent(
       new CustomEvent("route:after", {
         detail: { path },
       })
     );
+    hasHandledRoute = true;
   };
 
   const handleRoute = async () => {
@@ -113,7 +126,8 @@ export const startRouter = () => {
       activeCleanup();
       activeCleanup = null;
     }
-    const { pathname, queryString } = parseHash(location.hash);
+    const { pathname, queryString, queryParams } = parseHash(location.hash);
+    const source = resolveRouteSource();
     const fullPath = queryString ? `${pathname}?${queryString}` : pathname;
     const access = canAccessRoute(pathname, selectors.user(store.getState()));
     if (!access.allowed) {
@@ -147,7 +161,7 @@ export const startRouter = () => {
           main.appendChild(container);
         }
         updateActiveNav("");
-        notifyRouteRendered(fullPath);
+        notifyRouteRendered({ pathname, queryParams, path: fullPath, source });
         return;
       }
     }
@@ -175,7 +189,7 @@ export const startRouter = () => {
             },
           });
           updateActiveNav(`#${pathname === "/" ? "/" : pathname}`);
-          notifyRouteRendered(fullPath);
+          notifyRouteRendered({ pathname, queryParams, path: fullPath, source });
           return;
         }
       }
@@ -186,10 +200,11 @@ export const startRouter = () => {
         }
       }
       updateActiveNav(`#${pathname === "/" ? "/" : pathname}`);
-      notifyRouteRendered(fullPath);
+      notifyRouteRendered({ pathname, queryParams, path: fullPath, source });
     } else {
       const fallback = routes.find((item) => item.pattern.source === "^/404$");
       if (fallback) {
+        const notFoundPath = "/404";
         let handler = fallback.handler;
         if (fallback.loader) {
           const main = document.getElementById("main-content");
@@ -207,7 +222,12 @@ export const startRouter = () => {
               },
             });
             updateActiveNav("");
-            notifyRouteRendered("/404");
+            notifyRouteRendered({
+              pathname: notFoundPath,
+              queryParams: {},
+              path: notFoundPath,
+              source,
+            });
             return;
           }
         }
@@ -219,7 +239,12 @@ export const startRouter = () => {
         }
         updateMeta(fallback.meta.title, fallback.meta.description);
         updateActiveNav("");
-        notifyRouteRendered("/404");
+        notifyRouteRendered({
+          pathname: notFoundPath,
+          queryParams: {},
+          path: notFoundPath,
+          source,
+        });
       }
     }
   };

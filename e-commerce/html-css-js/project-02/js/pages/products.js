@@ -34,11 +34,11 @@ export const renderProducts = () => {
   if (breadcrumbs) {
     container.appendChild(breadcrumbs);
   }
-  heroContent.appendChild(createElement("h1", { text: "Katalog produktów" }));
+  heroContent.appendChild(createElement("h1", { text: content.products.listPage.title }));
   heroContent.appendChild(
     createElement("p", {
       className: "hero-lead",
-      text: "Filtruj, sortuj i wybieraj produkty cyfrowe dopasowane do Twojego workflow.",
+      text: content.products.listPage.lead,
     })
   );
 
@@ -48,7 +48,7 @@ export const renderProducts = () => {
   const categoryId = "products-category";
   const searchLabel = createElement("label", {
     className: "sr-only",
-    text: "Szukaj produktu",
+    text: content.products.listPage.searchLabel,
     attrs: { for: searchId },
   });
   const searchField = createElement("input", {
@@ -56,7 +56,7 @@ export const renderProducts = () => {
     attrs: {
       id: searchId,
       type: "search",
-      placeholder: "Szukaj produktu",
+      placeholder: content.products.listPage.searchPlaceholder,
       autocomplete: "off",
       inputmode: "search",
       autocapitalize: "none",
@@ -69,13 +69,13 @@ export const renderProducts = () => {
   });
   const sortLabel = createElement("label", {
     className: "sr-only",
-    text: "Sortowanie",
+    text: content.products.listPage.sortLabel,
     attrs: { for: sortId },
   });
   [
-    { value: "latest", label: "Najnowsze" },
-    { value: "price-asc", label: "Cena: rosnąco" },
-    { value: "price-desc", label: "Cena: malejąco" },
+    { value: "latest", label: content.products.listPage.sortOptions.latest },
+    { value: "price-asc", label: content.products.listPage.sortOptions.priceAsc },
+    { value: "price-desc", label: content.products.listPage.sortOptions.priceDesc },
   ].forEach((option) => {
     sortSelect.appendChild(
       createElement("option", { text: option.label, attrs: { value: option.value } })
@@ -83,13 +83,15 @@ export const renderProducts = () => {
   });
   const categoryLabel = createElement("label", {
     className: "sr-only",
-    text: "Kategoria",
+    text: content.products.listPage.categoryLabel,
     attrs: { for: categoryId },
   });
   const categorySelect = createElement("select", { className: "select", attrs: { id: categoryId } });
   let products = store.getState().products;
   let shouldSyncFromUrl = true;
   let isApplyingFilters = false;
+  let isHydratingFromUrl = false;
+  let lastSyncedHash = "";
   const isProductsListHash = () => {
     const hash = window.location.hash || "";
     return hash === "#/products" || hash.startsWith("#/products?");
@@ -137,22 +139,21 @@ export const renderProducts = () => {
   };
 
   const updateUrlFromFilters = (filters, { replace = true } = {}) => {
-    if (!isProductsListHash()) {
-      return;
+    if (!isProductsListHash() || isHydratingFromUrl) {
+      return { didRender: false };
     }
     const nextHash = buildHashFromFilters(filters);
     if (window.location.hash === nextHash) {
-      return;
+      return { didRender: false };
     }
+    lastSyncedHash = nextHash;
     if (replace && window.history?.replaceState) {
       window.history.replaceState(null, "", nextHash);
-      return;
-    }
-    if (!replace && window.history?.pushState) {
-      window.history.pushState(null, "", nextHash);
-      return;
+      syncFiltersFromUrl({ replaceUrl: true });
+      return { didRender: true };
     }
     window.location.hash = nextHash;
+    return { didRender: false };
   };
 
   const applyFiltersToControls = (filters) => {
@@ -169,7 +170,9 @@ export const renderProducts = () => {
     }
     const rawFilters = readFiltersFromHash();
     const normalized = normalizeFilters(rawFilters, getAvailableCategories());
+    isHydratingFromUrl = true;
     applyFiltersToControls(normalized);
+    isHydratingFromUrl = false;
     if (replaceUrl) {
       updateUrlFromFilters(normalized, { replace: true });
     }
@@ -189,8 +192,10 @@ export const renderProducts = () => {
       return;
     }
     const filters = getFiltersFromControls();
-    updateUrlFromFilters(filters, { replace });
-    renderList();
+    const { didRender } = updateUrlFromFilters(filters, { replace });
+    if (!didRender) {
+      renderList();
+    }
   };
 
   const resetFilters = ({ replace = false } = {}) => {
@@ -214,7 +219,10 @@ export const renderProducts = () => {
   const updateCategories = (nextProducts) => {
     clearElement(categorySelect);
     categorySelect.appendChild(
-      createElement("option", { text: "Wszystkie kategorie", attrs: { value: "all" } })
+      createElement("option", {
+        text: content.products.listPage.categoryAll,
+        attrs: { value: "all" },
+      })
     );
     const categories = getOrderedCategories(nextProducts);
     categories.forEach((category) => {
@@ -381,14 +389,18 @@ export const renderProducts = () => {
   attachFieldListener(searchField, "input", debouncedFiltersUpdate);
   attachFieldListener(sortSelect, "change", () => handleFiltersUpdate({ replace: false }));
   attachFieldListener(categorySelect, "change", () => handleFiltersUpdate({ replace: false }));
-  const handlePopState = () => {
+  const handleHashChange = () => {
     if (!isProductsListHash()) {
+      return;
+    }
+    if (lastSyncedHash && window.location.hash === lastSyncedHash) {
+      lastSyncedHash = "";
       return;
     }
     syncFiltersFromUrl({ replaceUrl: true });
   };
-  window.addEventListener("popstate", handlePopState);
-  addCleanup(() => window.removeEventListener("popstate", handlePopState));
+  window.addEventListener("hashchange", handleHashChange);
+  addCleanup(() => window.removeEventListener("hashchange", handleHashChange));
   addCleanup(() => debouncedFiltersUpdate.cancel?.());
   window.addEventListener("resize", debouncedResize);
   addCleanup(() => window.removeEventListener("resize", debouncedResize));

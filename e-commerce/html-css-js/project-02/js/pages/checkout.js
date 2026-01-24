@@ -73,9 +73,9 @@ export const renderCheckout = () => {
   if (!validItems.length && missingItems.length) {
     container.appendChild(
       renderEmptyState({
-        title: "Nie mozemy wyswietlic pozycji z koszyka.",
-        message: "Wszystkie pozycje sa niedostepne. Usun je, aby kontynuowac.",
-        ctaText: "Wyczysc niedostepne",
+        title: content.states.checkout.missingOnly.title,
+        message: content.states.checkout.missingOnly.message,
+        ctaText: content.states.checkout.missingOnly.cta,
         onCta: () => {
           const nextCart = cart.filter(
             (item) => !missingItems.some((missing) => missing.productId === item.productId)
@@ -94,11 +94,11 @@ export const renderCheckout = () => {
   if (missingItems.length) {
     const missingNotice = createElement("div", { className: "card" });
     missingNotice.appendChild(
-      createElement("h2", { text: "Wykryto niedostepne pozycje w koszyku." })
+      createElement("h2", { text: content.states.checkout.missingNotice.title })
     );
     missingNotice.appendChild(
       createElement("p", {
-        text: "Usun ponizsze pozycje, aby kontynuowac skladanie zamowienia.",
+        text: content.states.checkout.missingNotice.message,
       })
     );
     const missingList = createElement("ul");
@@ -108,7 +108,7 @@ export const renderCheckout = () => {
     missingNotice.appendChild(missingList);
     const removeAllButton = createElement("button", {
       className: "button secondary",
-      text: "Usun niedostepne produkty",
+      text: content.states.checkout.missingNotice.removeAllCta,
       attrs: { type: "button" },
     });
     const removeMissingItems = () => {
@@ -137,7 +137,7 @@ export const renderCheckout = () => {
       id: "checkout-name",
       type: "text",
       name: "name",
-      placeholder: "Imię i nazwisko",
+      placeholder: content.common.fields.name,
       autocomplete: "name",
       inputmode: "text",
       autocapitalize: "words",
@@ -150,7 +150,7 @@ export const renderCheckout = () => {
       id: "checkout-email",
       type: "email",
       name: "email",
-      placeholder: "E-mail",
+      placeholder: content.common.fields.email,
       autocomplete: "email",
       inputmode: "email",
       autocapitalize: "none",
@@ -163,7 +163,7 @@ export const renderCheckout = () => {
       id: "checkout-company",
       type: "text",
       name: "company",
-      placeholder: "Firma (opcjonalnie)",
+      placeholder: content.common.fields.companyOptional,
       autocomplete: "organization",
       inputmode: "text",
       autocapitalize: "words",
@@ -175,7 +175,7 @@ export const renderCheckout = () => {
       id: "checkout-tax-id",
       type: "text",
       name: "taxId",
-      placeholder: "NIP (opcjonalnie)",
+      placeholder: content.common.fields.taxIdOptional,
       inputmode: "numeric",
       autocomplete: "off",
       autocapitalize: "none",
@@ -200,21 +200,30 @@ export const renderCheckout = () => {
 
   form.appendChild(
     createElement("div", { className: "form-field" }, [
-      createElement("label", { text: "Imię i nazwisko", attrs: { for: "checkout-name" } }),
+      createElement("label", {
+        text: content.checkout.fields.name,
+        attrs: { for: "checkout-name" },
+      }),
       nameField,
       nameError,
     ])
   );
   form.appendChild(
     createElement("div", { className: "form-field" }, [
-      createElement("label", { text: "E-mail", attrs: { for: "checkout-email" } }),
+      createElement("label", {
+        text: content.checkout.fields.email,
+        attrs: { for: "checkout-email" },
+      }),
       emailField,
       emailError,
     ])
   );
   form.appendChild(
     createElement("div", { className: "form-field" }, [
-      createElement("label", { text: "Firma", attrs: { for: "checkout-company" } }),
+      createElement("label", {
+        text: content.checkout.fields.company,
+        attrs: { for: "checkout-company" },
+      }),
       companyField,
     ])
   );
@@ -264,7 +273,7 @@ export const renderCheckout = () => {
     const emailValid = validators.email(emailField.value);
 
     if (!nameValid) {
-      nameError.textContent = "Podaj imię i nazwisko (min. 2 znaki).";
+      nameError.textContent = content.checkout.validation.nameInvalid;
       nameField.setAttribute("aria-invalid", "true");
       nameField.setAttribute("aria-describedby", nameErrorId);
     } else {
@@ -272,7 +281,7 @@ export const renderCheckout = () => {
       nameField.removeAttribute("aria-describedby");
     }
     if (!emailValid) {
-      emailError.textContent = "Podaj poprawny e-mail.";
+      emailError.textContent = content.common.validation.emailInvalid;
       emailField.setAttribute("aria-invalid", "true");
       emailField.setAttribute("aria-describedby", emailErrorId);
     } else {
@@ -314,7 +323,7 @@ export const renderCheckout = () => {
     }
 
     if (!isValid) {
-      errorBox.textContent = "Popraw zaznaczone pola.";
+      errorBox.textContent = content.checkout.validation.formInvalid;
       const firstInvalid = !nameValid ? nameField : !emailValid ? emailField : null;
       if (firstInvalid) {
         firstInvalid.focus();
@@ -357,20 +366,22 @@ export const renderCheckout = () => {
 
 const renderMissingSection = (container, missingItems) => {
   const section = createElement("div", { className: "section" });
-  section.appendChild(createElement("h2", { text: "Niedostepne pozycje" }));
+  section.appendChild(createElement("h2", { text: content.states.checkout.missingSection.title }));
   const list = createElement("div", { className: "grid" });
   missingItems.forEach((item) => {
     const card = createElement("div", { className: "card" });
-    card.appendChild(createElement("h3", { text: "Produkt niedostepny" }));
+    card.appendChild(
+      createElement("h3", { text: content.states.checkout.missingSection.itemTitle })
+    );
     card.appendChild(createElement("p", { text: `ID: ${item.productId}` }));
     card.appendChild(
       createElement("p", {
-        text: "Ten produkt nie jest juz dostepny w katalogu.",
+        text: content.states.checkout.missingSection.itemMessage,
       })
     );
     const removeButton = createElement("button", {
       className: "button secondary",
-      text: "Usun",
+      text: content.states.checkout.missingSection.removeCta,
       attrs: { type: "button" },
     });
     removeButton.addEventListener("click", () => {

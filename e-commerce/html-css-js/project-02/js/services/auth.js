@@ -1,5 +1,6 @@
 import { storage } from "./storage.js";
 import { simpleHash } from "../utils/hash.js";
+import { content } from "../content/pl.js";
 
 /**
  * DEMO / FRONTEND-ONLY:
@@ -65,7 +66,7 @@ export const authService = {
   register({ name, email, password }) {
     const users = storage.get(STORAGE_KEYS.USERS, []);
     if (users.find((user) => user.email === email)) {
-      throw new Error("Użytkownik z tym adresem e-mail już istnieje.");
+      throw new Error(content.auth.errors.emailExists);
     }
     const user = {
       id: crypto.randomUUID(),
@@ -90,7 +91,7 @@ export const authService = {
       const users = storage.get(STORAGE_KEYS.USERS, []);
       const user = users.find((item) => item.email === credentialsOrUser.email);
       if (!user || user.passwordHash !== simpleHash(credentialsOrUser.password)) {
-        throw new Error("Nieprawidłowy e-mail lub hasło.");
+        throw new Error(content.auth.errors.invalidCredentials);
       }
       const session = buildSession(user);
       storage.set(STORAGE_KEYS.SESSION, session);
@@ -105,7 +106,7 @@ export const authService = {
       return { user: session.user, session };
     }
 
-    throw new Error("Nieprawidłowe dane logowania.");
+    throw new Error(content.auth.errors.invalidData);
   },
   signOut() {
     storage.remove(STORAGE_KEYS.SESSION);
@@ -159,11 +160,11 @@ export const authService = {
   updateProfile({ name } = {}) {
     const session = this.getSession();
     if (!session) {
-      throw new Error("Brak aktywnej sesji.");
+      throw new Error(content.auth.errors.noSession);
     }
     const nextName = typeof name === "string" ? name.trim() : "";
     if (nextName && nextName.length < 2) {
-      throw new Error("Imie musi miec co najmniej 2 znaki.");
+      throw new Error(content.common.validation.nameMinLength);
     }
     const updatedUser = {
       ...session.user,

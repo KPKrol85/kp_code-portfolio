@@ -1,13 +1,19 @@
+import { normalizeProducts } from "../data/productNormalizers.js";
 import { store } from "./store.js";
 
 const patch = (partial) => {
   store.setState(partial);
 };
 
+const patchUi = (partialUi) => {
+  const prevUi = store.getState().ui || {};
+  patch({ ui: { ...prevUi, ...partialUi } });
+};
+
 export const actions = {
   ui: {
     setTheme(theme) {
-      patch({ ui: { theme } });
+      patchUi({ theme });
     },
   },
   user: {
@@ -35,7 +41,14 @@ export const actions = {
       patch({ productsStatus: "loading", productsError: null });
     },
     setProductsReady({ products, licenses }) {
-      patch({ products, licenses, productsStatus: "ready", productsError: null });
+      // Data boundary: normalize once before products enter the store.
+      const normalizedProducts = normalizeProducts(products);
+      patch({
+        products: normalizedProducts,
+        licenses,
+        productsStatus: "ready",
+        productsError: null,
+      });
     },
     setProductsError(error) {
       patch({ productsStatus: "error", productsError: error });

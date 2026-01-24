@@ -124,7 +124,7 @@ export const renderAuth = () => {
       attrs: {
         id: "auth-login-email",
         type: "email",
-        placeholder: "E-mail",
+        placeholder: content.common.fields.email,
         autocomplete: "email",
         inputmode: "email",
         autocapitalize: "none",
@@ -139,7 +139,7 @@ export const renderAuth = () => {
 
         type: "password",
 
-        placeholder: "Hasło",
+        placeholder: content.common.fields.password,
 
         autocomplete: "current-password",
 
@@ -165,14 +165,20 @@ export const renderAuth = () => {
 
     form.appendChild(
       createElement("div", { className: "form-field" }, [
-        createElement("label", { text: "E-mail", attrs: { for: "auth-login-email" } }),
+        createElement("label", {
+          text: content.common.fields.email,
+          attrs: { for: "auth-login-email" },
+        }),
         emailField,
         emailError,
       ])
     );
     form.appendChild(
       createElement("div", { className: "form-field" }, [
-        createElement("label", { text: "Hasło", attrs: { for: "auth-login-password" } }),
+        createElement("label", {
+          text: content.common.fields.password,
+          attrs: { for: "auth-login-password" },
+        }),
         passwordField,
         passwordError,
       ])
@@ -191,10 +197,12 @@ export const renderAuth = () => {
         submitButton,
         async () => {
           errorBox.textContent = "";
-          const emailMessage = validators.email(emailField.value) ? "" : "Podaj poprawny e-mail.";
+          const emailMessage = validators.email(emailField.value)
+            ? ""
+            : content.common.validation.emailInvalid;
           const passwordMessage = validators.minLength(6)(passwordField.value)
             ? ""
-            : "Hasło musi mieć minimum 6 znaków.";
+            : content.common.validation.passwordMinLength;
           emailError.textContent = emailMessage;
           passwordError.textContent = passwordMessage;
           if (emailMessage) {
@@ -238,7 +246,7 @@ export const renderAuth = () => {
     loginPanel.appendChild(form);
     const demoLoginButton = createElement("button", {
       className: "button secondary block",
-      text: "Zaloguj (tryb demo)",
+      text: content.common.demo.loginCta,
       attrs: { type: "button" },
     });
     demoLoginButton.addEventListener("click", () => {
@@ -248,7 +256,7 @@ export const renderAuth = () => {
           name: "Demo Klient",
           email: "demo@kpcode.dev",
         });
-        showToast("Zalogowano w trybie demo.", "info");
+        showToast(content.common.demo.loginSuccess, "info");
         const returnTo = normalizeReturnTo(authService.consumeReturnTo()) || nextParam;
         if (returnTo) {
           navigateToReturnTo(returnTo);
@@ -274,7 +282,7 @@ export const renderAuth = () => {
 
         type: "text",
 
-        placeholder: "Imię i nazwisko",
+        placeholder: content.common.fields.name,
 
         autocomplete: "name",
 
@@ -291,7 +299,7 @@ export const renderAuth = () => {
       attrs: {
         id: "auth-register-email",
         type: "email",
-        placeholder: "E-mail",
+        placeholder: content.common.fields.email,
         autocomplete: "email",
         inputmode: "email",
         autocapitalize: "none",
@@ -306,7 +314,7 @@ export const renderAuth = () => {
 
         type: "password",
 
-        placeholder: "Hasło",
+        placeholder: content.common.fields.password,
 
         autocomplete: "new-password",
 
@@ -336,21 +344,30 @@ export const renderAuth = () => {
 
     form.appendChild(
       createElement("div", { className: "form-field" }, [
-        createElement("label", { text: "Imię i nazwisko", attrs: { for: "auth-register-name" } }),
+        createElement("label", {
+          text: content.common.fields.name,
+          attrs: { for: "auth-register-name" },
+        }),
         nameField,
         nameError,
       ])
     );
     form.appendChild(
       createElement("div", { className: "form-field" }, [
-        createElement("label", { text: "E-mail", attrs: { for: "auth-register-email" } }),
+        createElement("label", {
+          text: content.common.fields.email,
+          attrs: { for: "auth-register-email" },
+        }),
         emailField,
         emailError,
       ])
     );
     form.appendChild(
       createElement("div", { className: "form-field" }, [
-        createElement("label", { text: "Hasło", attrs: { for: "auth-register-password" } }),
+        createElement("label", {
+          text: content.common.fields.password,
+          attrs: { for: "auth-register-password" },
+        }),
         passwordField,
         passwordError,
       ])
@@ -371,11 +388,13 @@ export const renderAuth = () => {
           errorBox.textContent = "";
           const nameMessage = validators.required(nameField.value)
             ? ""
-            : "Podaj imię i nazwisko.";
-          const emailMessage = validators.email(emailField.value) ? "" : "Podaj poprawny e-mail.";
+            : content.common.validation.nameRequired;
+          const emailMessage = validators.email(emailField.value)
+            ? ""
+            : content.common.validation.emailInvalid;
           const passwordMessage = validators.minLength(6)(passwordField.value)
             ? ""
-            : "Hasło musi mieć minimum 6 znaków.";
+            : content.common.validation.passwordMinLength;
           nameError.textContent = nameMessage;
           emailError.textContent = emailMessage;
           passwordError.textContent = passwordMessage;

@@ -11,12 +11,17 @@ import { renderEmptyState } from "../components/ui-state-helpers.js";
 import { createBreadcrumbs } from "../components/breadcrumbs.js";
 import { buildBreadcrumbsForPath } from "../utils/breadcrumbs.js";
 import { content } from "../content/pl.js";
+import { applyReducedMotion } from "../reduced-motion-init.js";
 
 const ACCOUNT_NAV_ITEMS = [
-  { label: "Przegląd", href: "#/account", match: "/account" },
-  { label: "Zamówienia", href: "#/account/orders", match: "/account/orders" },
-  { label: "Pobrane pliki", href: "#/account/downloads", match: "/account/downloads" },
-  { label: "Ustawienia", href: "#/account/settings", match: "/account/settings" },
+  { label: content.account.nav.overview, href: "#/account", match: "/account" },
+  { label: content.account.nav.orders, href: "#/account/orders", match: "/account/orders" },
+  {
+    label: content.account.nav.downloads,
+    href: "#/account/downloads",
+    match: "/account/downloads",
+  },
+  { label: content.account.nav.settings, href: "#/account/settings", match: "/account/settings" },
 ];
 
 const getActiveAccountPath = () => {
@@ -32,7 +37,10 @@ const createLogoutHandler = () => () => {
 };
 
 const createAccountNav = (activePath) => {
-  const nav = createElement("nav", { className: "account-nav", attrs: { "aria-label": "Konto" } });
+  const nav = createElement("nav", {
+    className: "account-nav",
+    attrs: { "aria-label": content.account.nav.ariaLabel },
+  });
   ACCOUNT_NAV_ITEMS.forEach((item) => {
     const isActive = item.match === activePath;
     nav.appendChild(
@@ -48,7 +56,7 @@ const createAccountNav = (activePath) => {
   });
   const logoutButton = createElement("button", {
     className: "button secondary account-nav__logout",
-    text: "Wyloguj",
+    text: content.account.nav.logout,
     attrs: { type: "button" },
   });
   logoutButton.addEventListener("click", createLogoutHandler());
@@ -56,7 +64,7 @@ const createAccountNav = (activePath) => {
   return nav;
 };
 
-const renderAccountShell = ({ title, content }) => {
+const renderAccountShell = ({ title, contentNode }) => {
   const main = document.getElementById("main-content");
   clearElement(main);
 
@@ -67,15 +75,15 @@ const renderAccountShell = ({ title, content }) => {
     container.appendChild(breadcrumbs);
   }
 
-  container.appendChild(createElement("h1", { text: "Twoje konto" }));
+  container.appendChild(createElement("h1", { text: content.account.title }));
 
   const shell = createElement("div", { className: "account-shell section" });
   shell.appendChild(createAccountNav(getActiveAccountPath()));
 
   const contentArea = createElement("div", { className: "account-content" });
   contentArea.appendChild(createElement("h2", { text: title }));
-  if (content) {
-    contentArea.appendChild(content);
+  if (contentNode) {
+    contentArea.appendChild(contentNode);
   }
   shell.appendChild(contentArea);
 
@@ -85,41 +93,49 @@ const renderAccountShell = ({ title, content }) => {
 
 const renderOverviewContent = () => {
   const { user } = store.getState();
-  const greetingName = user?.name ? `Witaj, ${user.name.split(" ")[0]}!` : "Witaj!";
+  const firstName = user?.name ? user.name.split(" ")[0] : "";
+  const greetingName = firstName
+    ? content.account.overview.greetingWithName.replace("{name}", firstName)
+    : content.account.overview.greeting;
   const emailValue = user?.email || "—";
-  const accountType = user?.email === "demo@kpcode.dev" ? "Demo" : "Klient";
+  const accountType =
+    user?.email === "demo@kpcode.dev"
+      ? content.account.overview.accountTypeDemo
+      : content.account.overview.accountTypeClient;
 
   const intro = createElement("div", { className: "account-intro" }, [
     createElement("p", { className: "account-greeting", text: greetingName }),
     createElement("div", { className: "account-meta" }, [
       createElement("p", { text: `E-mail: ${emailValue}` }),
-      createElement("p", { text: `Typ konta: ${accountType}` }),
+      createElement("p", {
+        text: `${content.account.overview.accountTypeLabel}: ${accountType}`,
+      }),
     ]),
     createElement("p", {
       className: "account-status",
-      text: "Status konta: aktywne. Masz pelny dostep do zakupionych zasobow.",
+      text: content.account.overview.status,
     }),
   ]);
 
   const tiles = createElement("div", { className: "grid grid-2" });
   tiles.appendChild(
     createElement("div", { className: "card account-tile" }, [
-      createElement("h3", { text: "Zamowienia" }),
-      createElement("p", { text: "Sprawdz historie zakupow i statusy platnosci." }),
+      createElement("h3", { text: content.account.overview.tiles.orders.title }),
+      createElement("p", { text: content.account.overview.tiles.orders.description }),
       createElement("a", {
         className: "button secondary",
-        text: "Zobacz zamowienia",
+        text: content.account.overview.tiles.orders.cta,
         attrs: { href: "#/account/orders" },
       }),
     ])
   );
   tiles.appendChild(
     createElement("div", { className: "card account-tile" }, [
-      createElement("h3", { text: "Pobrane pliki" }),
-      createElement("p", { text: "Szybki dostep do wszystkich zakupionych plikow." }),
+      createElement("h3", { text: content.account.overview.tiles.downloads.title }),
+      createElement("p", { text: content.account.overview.tiles.downloads.description }),
       createElement("a", {
         className: "button secondary",
-        text: "Przejdz do pobran",
+        text: content.account.overview.tiles.downloads.cta,
         attrs: { href: "#/account/downloads" },
       }),
     ])
@@ -132,9 +148,9 @@ const renderOrdersContent = () => {
   const orders = purchasesService.getOrders();
   if (!orders.length) {
     return renderEmptyState({
-      title: "Brak zamowien",
-      message: "Nie masz jeszcze zadnych zamowien. Gdy dokonasz zakupu, pojawia sie tutaj.",
-      ctaText: "Przejdz do produktow",
+      title: content.account.orders.empty.title,
+      message: content.account.orders.empty.message,
+      ctaText: content.account.orders.empty.cta,
       ctaHref: "#/products",
     });
   }
@@ -142,23 +158,29 @@ const renderOrdersContent = () => {
   const list = createElement("div", { className: "account-orders" });
   orders.forEach((order) => {
     const shortId = order?.id ? order.id.slice(0, 8) : "—";
-    const status = "Zrealizowane";
+    const status = content.account.orders.statusCompleted;
     const detailsButton = createElement("button", {
       className: "button secondary",
-      text: "Szczegoly",
+      text: content.account.orders.detailsCta,
       attrs: { type: "button" },
     });
     detailsButton.addEventListener("click", () => {
-      showToast("Szczegoly zamowienia sa w przygotowaniu.", "info");
+      showToast(content.account.orders.detailsToast, "info");
     });
     list.appendChild(
       createElement("div", { className: "card account-order" }, [
         createElement("div", { className: "account-order__header" }, [
-          createElement("h3", { text: `Zamowienie #${shortId}` }),
+          createElement("h3", {
+            text: content.account.orders.orderLabel.replace("{id}", shortId),
+          }),
           createElement("span", { className: "badge", text: status }),
         ]),
-        createElement("p", { text: `Data: ${formatDate(order.createdAt)}` }),
-        createElement("p", { text: `Suma: ${formatCurrency(order.total)}` }),
+        createElement("p", {
+          text: `${content.account.orders.dateLabel}: ${formatDate(order.createdAt)}`,
+        }),
+        createElement("p", {
+          text: `${content.account.orders.totalLabel}: ${formatCurrency(order.total)}`,
+        }),
         detailsButton,
       ])
     );
@@ -173,9 +195,9 @@ const renderDownloadsContent = () => {
 
   if (!items.length) {
     return renderEmptyState({
-      title: "Brak plikow do pobrania",
-      message: "Gdy dokonasz zakupu, produkty do pobrania beda dostepne w tym miejscu.",
-      ctaText: "Zobacz produkty",
+      title: content.account.downloads.empty.title,
+      message: content.account.downloads.empty.message,
+      ctaText: content.account.downloads.empty.cta,
       ctaHref: "#/products",
     });
   }
@@ -183,21 +205,25 @@ const renderDownloadsContent = () => {
   const list = createElement("div", { className: "account-downloads" });
   items.forEach((item) => {
     const product = productMap.get(item.productId);
-    const name = product?.name || "Produkt cyfrowy";
+    const name = product?.name || content.account.downloads.fallbackProduct;
     const purchasedAt = item?.purchasedAt ? formatDate(item.purchasedAt) : "—";
     const downloadButton = createElement("button", {
       className: "button secondary",
-      text: "Pobierz",
+      text: content.account.downloads.downloadCta,
       attrs: { type: "button" },
     });
     downloadButton.addEventListener("click", () => {
-      showToast("Pobieranie pliku jest w przygotowaniu.", "info");
+      showToast(content.account.downloads.downloadToast, "info");
     });
     list.appendChild(
       createElement("div", { className: "card account-download" }, [
         createElement("h3", { text: name }),
-        createElement("p", { text: `Zakupiono: ${purchasedAt}` }),
-        createElement("p", { text: `Ilosc: ${item.quantity}` }),
+        createElement("p", {
+          text: `${content.account.downloads.purchasedAtLabel}: ${purchasedAt}`,
+        }),
+        createElement("p", {
+          text: `${content.account.downloads.quantityLabel}: ${item.quantity}`,
+        }),
         downloadButton,
       ])
     );
@@ -213,11 +239,7 @@ const applyThemePreference = (theme) => {
 
 const applyReducedMotionPreference = (enabled) => {
   const value = Boolean(enabled);
-  if (value) {
-    document.documentElement.setAttribute("data-reduced-motion", "true");
-  } else {
-    document.documentElement.removeAttribute("data-reduced-motion");
-  }
+  applyReducedMotion(value);
   storage.set("kp_reduced_motion", value);
 };
 
@@ -229,15 +251,15 @@ const renderSettingsContent = () => {
   applyReducedMotionPreference(reducedMotionStored);
   const description = createElement("p", {
     className: "account-section-lead",
-    text: "Zarzadzaj danymi profilu, preferencjami i bezpieczenstwem.",
+    text: content.account.settings.lead,
   });
 
   const profileCard = createElement("div", { className: "card" });
-  profileCard.appendChild(createElement("h3", { text: "Profil" }));
+  profileCard.appendChild(createElement("h3", { text: content.account.settings.profile.title }));
   profileCard.appendChild(
     createElement("p", {
       className: "account-section-lead",
-      text: "Zaktualizuj nazwe profilu i sprawdz przypisany e-mail.",
+      text: content.account.settings.profile.lead,
     })
   );
   const nameField = createElement("input", {
@@ -266,20 +288,26 @@ const renderSettingsContent = () => {
   const profileForm = createElement("form");
   profileForm.appendChild(
     createElement("div", { className: "form-field" }, [
-      createElement("label", { text: "Nazwa", attrs: { for: "account-name" } }),
+      createElement("label", {
+        text: content.account.settings.profile.nameLabel,
+        attrs: { for: "account-name" },
+      }),
       nameField,
       nameError,
     ])
   );
   profileForm.appendChild(
     createElement("div", { className: "form-field" }, [
-      createElement("label", { text: "E-mail", attrs: { for: "account-email" } }),
+      createElement("label", {
+        text: content.common.fields.email,
+        attrs: { for: "account-email" },
+      }),
       emailField,
     ])
   );
   const profileButton = createElement("button", {
     className: "button secondary",
-    text: "Zapisz zmiany",
+    text: content.account.settings.profile.saveCta,
     attrs: { type: "submit" },
   });
   profileForm.appendChild(profileButton);
@@ -287,7 +315,7 @@ const renderSettingsContent = () => {
     event.preventDefault();
     const trimmed = nameField.value.trim();
     if (trimmed.length < 2) {
-      nameError.textContent = "Nazwa musi miec co najmniej 2 znaki.";
+      nameError.textContent = content.common.validation.profileNameMinLength;
       nameField.setAttribute("aria-invalid", "true");
       nameField.setAttribute("aria-describedby", "account-name-error");
       return;
@@ -296,16 +324,18 @@ const renderSettingsContent = () => {
     nameField.removeAttribute("aria-invalid");
     nameField.removeAttribute("aria-describedby");
     authService.updateProfile({ name: trimmed });
-    showToast("Zapisano zmiany profilu.", "info");
+    showToast(content.account.settings.profile.savedToast, "info");
   });
   profileCard.appendChild(profileForm);
 
   const preferencesCard = createElement("div", { className: "card" });
-  preferencesCard.appendChild(createElement("h3", { text: "Preferencje" }));
+  preferencesCard.appendChild(
+    createElement("h3", { text: content.account.settings.preferences.title })
+  );
   preferencesCard.appendChild(
     createElement("p", {
       className: "account-section-lead",
-      text: "Dostosuj wyglad i animacje do swoich preferencji.",
+      text: content.account.settings.preferences.lead,
     })
   );
   const themeToggle = createElement("input", {
@@ -324,55 +354,55 @@ const renderSettingsContent = () => {
   });
   const preferenceList = createElement("div", { className: "account-preferences" }, [
     createElement("label", { className: "account-switch", attrs: { for: "account-theme-toggle" } }, [
-      createElement("span", { text: "Tryb ciemny" }),
+      createElement("span", { text: content.account.settings.preferences.darkMode }),
       themeToggle,
     ]),
     createElement("label", { className: "account-switch", attrs: { for: "account-motion-toggle" } }, [
-      createElement("span", { text: "Zredukowane animacje" }),
+      createElement("span", { text: content.account.settings.preferences.reducedMotion }),
       motionToggle,
     ]),
   ]);
   preferencesCard.appendChild(preferenceList);
   const preferencesButton = createElement("button", {
     className: "button secondary",
-    text: "Zapisz preferencje",
+    text: content.account.settings.preferences.saveCta,
     attrs: { type: "button" },
   });
   preferencesButton.addEventListener("click", () => {
     const nextTheme = themeToggle.checked ? "dark" : "light";
     applyThemePreference(nextTheme);
     applyReducedMotionPreference(motionToggle.checked);
-    showToast("Zapisano preferencje.", "info");
+    showToast(content.account.settings.preferences.savedToast, "info");
   });
   preferencesCard.appendChild(preferencesButton);
 
   const securityCard = createElement("div", { className: "card" });
-  securityCard.appendChild(createElement("h3", { text: "Bezpieczenstwo" }));
+  securityCard.appendChild(createElement("h3", { text: content.account.settings.security.title }));
   securityCard.appendChild(
     createElement("p", {
       className: "account-section-lead",
-      text: "To srodowisko demo. Zmiana hasla bedzie dostepna po wdrozeniu backendu.",
+      text: content.account.settings.security.lead,
     })
   );
   securityCard.appendChild(
     createElement("button", {
       className: "button secondary",
-      text: "Zmien haslo",
+      text: content.account.settings.security.changePasswordCta,
       attrs: { type: "button", disabled: "disabled" },
     })
   );
 
   const dangerCard = createElement("div", { className: "card account-danger" });
-  dangerCard.appendChild(createElement("h3", { text: "Strefa zagrozenia" }));
+  dangerCard.appendChild(createElement("h3", { text: content.account.settings.danger.title }));
   dangerCard.appendChild(
     createElement("p", {
       className: "account-section-lead",
-      text: "Wyloguj sie z konta, jesli korzystasz z publicznego urzadzenia.",
+      text: content.account.settings.danger.lead,
     })
   );
   const logoutAction = createElement("button", {
     className: "button secondary",
-    text: "Wyloguj",
+    text: content.account.settings.danger.logoutCta,
     attrs: { type: "button" },
   });
   logoutAction.addEventListener("click", createLogoutHandler());
@@ -386,10 +416,10 @@ const renderSettingsContent = () => {
   ]);
   const asideColumn = createElement("div", { className: "account-settings__aside" }, [
     createElement("div", { className: "card" }, [
-      createElement("h3", { text: "Wskazowka" }),
+      createElement("h3", { text: content.account.settings.hint.title }),
       createElement("p", {
         className: "account-section-lead",
-        text: "Ustawienia sa zapisywane lokalnie i dzialaja w trybie demo.",
+        text: content.account.settings.hint.message,
       }),
     ]),
   ]);
@@ -400,28 +430,28 @@ const renderSettingsContent = () => {
 
 export const renderAccountOverview = () => {
   renderAccountShell({
-    title: "Przeglad",
-    content: renderOverviewContent(),
+    title: content.account.overviewSectionTitle,
+    contentNode: renderOverviewContent(),
   });
 };
 
 export const renderAccountOrders = () => {
   renderAccountShell({
-    title: "Zamowienia",
-    content: renderOrdersContent(),
+    title: content.account.orders.title,
+    contentNode: renderOrdersContent(),
   });
 };
 
 export const renderAccountDownloads = () => {
   renderAccountShell({
-    title: "Pobrane pliki",
-    content: renderDownloadsContent(),
+    title: content.account.downloads.title,
+    contentNode: renderDownloadsContent(),
   });
 };
 
 export const renderAccountSettings = () => {
   renderAccountShell({
-    title: "Ustawienia konta",
-    content: renderSettingsContent(),
+    title: content.account.settings.title,
+    contentNode: renderSettingsContent(),
   });
 };

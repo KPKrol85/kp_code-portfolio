@@ -1,11 +1,18 @@
 import { afterEach, describe, expect, it, vi } from "vitest";
 
+import { actions } from "../js/store/actions.js";
 import { store } from "../js/store/store.js";
 
-const initialState = { ...store.getState() };
+const initialState = (() => {
+  const snapshot = store.getState();
+  return {
+    ...snapshot,
+    ui: { ...(snapshot.ui || {}) },
+  };
+})();
 
 afterEach(() => {
-  store.setState(initialState);
+  store.setState({ ...initialState, ui: { ...initialState.ui } });
 });
 
 describe("store", () => {
@@ -31,5 +38,13 @@ describe("store", () => {
     store.setState({ cart: [] });
 
     expect(listener).not.toHaveBeenCalled();
+  });
+
+  it("preserves existing ui fields when updating theme", () => {
+    store.setState({ ui: { theme: "light", density: "compact" } });
+
+    actions.ui.setTheme("dark");
+
+    expect(store.getState().ui).toMatchObject({ theme: "dark", density: "compact" });
   });
 });

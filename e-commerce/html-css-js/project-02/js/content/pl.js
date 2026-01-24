@@ -1,3 +1,4 @@
+// Zasada: teksty UI dodajemy wyłącznie przez content/.
 export const content = {
   common: {
     browseProducts: "Przeglądaj produkty",
@@ -6,6 +7,25 @@ export const content = {
     goToCheckout: "Przejdź do checkout",
     processing: "Przetwarzanie...",
     summaryTitle: "Podsumowanie",
+    fields: {
+      name: "Imię i nazwisko",
+      email: "E-mail",
+      company: "Firma",
+      companyOptional: "Firma (opcjonalnie)",
+      taxIdOptional: "NIP (opcjonalnie)",
+      password: "Hasło",
+    },
+    validation: {
+      emailInvalid: "Podaj poprawny e-mail.",
+      passwordMinLength: "Hasło musi mieć minimum 6 znaków.",
+      nameRequired: "Podaj imię i nazwisko.",
+      nameMinLength: "Imię musi mieć co najmniej 2 znaki.",
+      profileNameMinLength: "Nazwa musi mieć co najmniej 2 znaki.",
+    },
+    demo: {
+      loginCta: "Zaloguj (tryb demo)",
+      loginSuccess: "Zalogowano w trybie demo.",
+    },
   },
   products: {
     categories: [
@@ -186,6 +206,20 @@ export const content = {
       emptyMessage: "Wkrótce dodamy pierwsze produkty...",
       emptyCta: "Powrót do produktów",
     },
+    listPage: {
+      title: "Katalog produktów",
+      lead: "Filtruj, sortuj i wybieraj produkty cyfrowe dopasowane do Twojego sposobu pracy.",
+      searchLabel: "Szukaj produktu",
+      searchPlaceholder: "Szukaj produktu",
+      sortLabel: "Sortowanie",
+      sortOptions: {
+        latest: "Najnowsze",
+        priceAsc: "Cena: rosnąco",
+        priceDesc: "Cena: malejąco",
+      },
+      categoryLabel: "Kategoria",
+      categoryAll: "Wszystkie kategorie",
+    },
     faqGeneral: [
       {
         question: "Jaka licencja obowiązuje przy produktach cyfrowych?",
@@ -317,7 +351,7 @@ export const content = {
       },
       accountSettings: {
         title: "Ustawienia konta - KP_Code Digital Vault",
-        description: "Zarzadzaj danymi profilu i preferencjami.",
+        description: "Zarządzaj danymi profilu i preferencjami.",
       },
       library: {
         title: "Biblioteka - KP_Code Digital Vault",
@@ -353,11 +387,11 @@ export const content = {
       },
       caseStudies: {
         title: "Case studies - KP_Code Digital Vault",
-        description: "Przeglad realizacji i case studies.",
+        description: "Przegląd realizacji i case studies.",
       },
       caseStudyDetails: {
         title: "Case study - KP_Code Digital Vault",
-        description: "Szczegoly case study i opis realizacji.",
+        description: "Szczegóły case study i opis realizacji.",
       },
       notFound: {
         title: "404 - KP_Code Digital Vault",
@@ -469,11 +503,45 @@ export const content = {
         title: "Twój koszyk jest pusty.",
         message: "Przeglądaj produkty, aby zacząć.",
       },
+      missingOnly: {
+        title: "Nie możemy wyświetlić pozycji z koszyka.",
+        message: "Wszystkie pozycje są niedostępne. Usuń je, aby kontynuować.",
+        cta: "Wyczyść niedostępne",
+      },
+      missingNotice: {
+        title: "Wykryto niedostępne pozycje w koszyku.",
+        message: "Usuń brakujące pozycje, aby kontynuować zakupy.",
+      },
+      missingSection: {
+        title: "Niedostępne pozycje",
+        itemTitle: "Produkt niedostępny",
+        itemMessage: "Ten produkt nie jest już dostępny w katalogu.",
+        removeCta: "Usuń",
+      },
+      liveRegion: {
+        totalUpdated: "Zaktualizowano sumę koszyka: {total}.",
+      },
     },
     checkout: {
       empty: {
         title: "Twój koszyk jest pusty.",
-        message: "Przeglądaj produkty to get started.",
+        message: "Przeglądaj produkty, aby zacząć.",
+      },
+      missingOnly: {
+        title: "Nie możemy wyświetlić pozycji z koszyka.",
+        message: "Wszystkie pozycje są niedostępne. Usuń je, aby kontynuować.",
+        cta: "Wyczyść niedostępne",
+      },
+      missingNotice: {
+        title: "Wykryto niedostępne pozycje w koszyku.",
+        message: "Usuń poniższe pozycje, aby kontynuować składanie zamówienia.",
+        removeAllCta: "Usuń niedostępne produkty",
+      },
+      missingSection: {
+        title: "Niedostępne pozycje",
+        itemTitle: "Produkt niedostępny",
+        itemMessage: "Ten produkt nie jest już dostępny w katalogu.",
+        removeCta: "Usuń",
       },
     },
     library: {
@@ -551,6 +619,12 @@ export const content = {
       submit: "Utwórz konto",
       loading: "Rejestracja...",
     },
+    errors: {
+      emailExists: "Użytkownik z tym adresem e-mail już istnieje.",
+      invalidCredentials: "Nieprawidłowy e-mail lub hasło.",
+      invalidData: "Nieprawidłowe dane logowania.",
+      noSession: "Brak aktywnej sesji.",
+    },
   },
   cart: {
     title: "Twój koszyk",
@@ -560,6 +634,15 @@ export const content = {
     title: "Checkout",
     orderDetailsTitle: "Dane zamówienia",
     submit: "Złóż zamówienie",
+    fields: {
+      name: "Imię i nazwisko",
+      email: "E-mail",
+      company: "Firma",
+    },
+    validation: {
+      nameInvalid: "Podaj imię i nazwisko (min. 2 znaki).",
+      formInvalid: "Popraw zaznaczone pola.",
+    },
     success: {
       metaTitle: "Dziękujemy za zakup",
       metaDescription: "Zakup zakończony. Pliki zostały dodane do Twojej biblioteki.",
@@ -572,5 +655,99 @@ export const content = {
   library: {
     title: "Twoja biblioteka",
     emptyCta: "Przejdź do katalogu",
+  },
+  account: {
+    title: "Twoje konto",
+    nav: {
+      ariaLabel: "Konto",
+      overview: "Przegląd",
+      orders: "Zamówienia",
+      downloads: "Pobrane pliki",
+      settings: "Ustawienia",
+      logout: "Wyloguj",
+    },
+    overview: {
+      greeting: "Witaj!",
+      greetingWithName: "Witaj, {name}!",
+      accountTypeLabel: "Typ konta",
+      accountTypeDemo: "Demo",
+      accountTypeClient: "Klient",
+      status: "Status konta: aktywne. Masz pełny dostęp do zakupionych zasobów.",
+      tiles: {
+        orders: {
+          title: "Zamówienia",
+          description: "Sprawdź historię zakupów i statusy płatności.",
+          cta: "Zobacz zamówienia",
+        },
+        downloads: {
+          title: "Pobrane pliki",
+          description: "Szybki dostęp do wszystkich zakupionych plików.",
+          cta: "Przejdź do pobrań",
+        },
+      },
+    },
+    orders: {
+      title: "Zamówienia",
+      empty: {
+        title: "Brak zamówień",
+        message:
+          "Nie masz jeszcze żadnych zamówień. Gdy dokonasz zakupu, pojawią się tutaj.",
+        cta: "Przejdź do produktów",
+      },
+      orderLabel: "Zamówienie #{id}",
+      statusCompleted: "Zrealizowane",
+      detailsCta: "Szczegóły",
+      detailsToast: "Szczegóły zamówienia są w przygotowaniu.",
+      dateLabel: "Data",
+      totalLabel: "Suma",
+    },
+    downloads: {
+      title: "Pobrane pliki",
+      empty: {
+        title: "Brak plików do pobrania",
+        message:
+          "Gdy dokonasz zakupu, produkty do pobrania będą dostępne w tym miejscu.",
+        cta: "Zobacz produkty",
+      },
+      fallbackProduct: "Produkt cyfrowy",
+      purchasedAtLabel: "Zakupiono",
+      quantityLabel: "Ilość",
+      downloadCta: "Pobierz",
+      downloadToast: "Pobieranie pliku jest w przygotowaniu.",
+    },
+    settings: {
+      title: "Ustawienia konta",
+      lead: "Zarządzaj danymi profilu, preferencjami i bezpieczeństwem.",
+      profile: {
+        title: "Profil",
+        lead: "Zaktualizuj nazwę profilu i sprawdź przypisany e-mail.",
+        saveCta: "Zapisz zmiany",
+        savedToast: "Zapisano zmiany profilu.",
+        nameLabel: "Nazwa",
+      },
+      preferences: {
+        title: "Preferencje",
+        lead: "Dostosuj wygląd i animacje do swoich preferencji.",
+        darkMode: "Tryb ciemny",
+        reducedMotion: "Zredukowane animacje",
+        saveCta: "Zapisz preferencje",
+        savedToast: "Zapisano preferencje.",
+      },
+      security: {
+        title: "Bezpieczeństwo",
+        lead: "To środowisko demo. Zmiana hasła będzie dostępna po wdrożeniu backendu.",
+        changePasswordCta: "Zmień hasło",
+      },
+      danger: {
+        title: "Strefa zagrożenia",
+        lead: "Wyloguj się z konta, jeśli korzystasz z publicznego urządzenia.",
+        logoutCta: "Wyloguj",
+      },
+      hint: {
+        title: "Wskazówka",
+        message: "Ustawienia są zapisywane lokalnie i działają w trybie demo.",
+      },
+    },
+    overviewSectionTitle: "Przegląd",
   },
 };

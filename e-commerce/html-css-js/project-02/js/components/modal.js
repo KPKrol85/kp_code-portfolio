@@ -7,7 +7,7 @@ const focusableSelector =
   "button, [href], input, select, textarea, [tabindex]:not([tabindex='-1'])";
 
 const getFocusable = (container) =>
-  Array.from(container.querySelectorAll(focusableSelector));
+  Array.from(container.querySelectorAll(focusableSelector)).filter((element) => element !== container);
 
 const isHidden = (element) =>
   element.hidden ||
@@ -65,6 +65,7 @@ export const showModal = ({ title, description, content }) => {
       "aria-modal": "true",
       "aria-labelledby": "modal-title",
       "aria-describedby": "modal-desc",
+      tabindex: "-1",
     },
   });
 
@@ -117,8 +118,9 @@ export const showModal = ({ title, description, content }) => {
 
   document.getElementById("modal-root").appendChild(backdrop);
   activeModal = backdrop;
+  modal.focus({ preventScroll: true });
   const focusable = getFocusable(modal);
   if (focusable.length > 0) {
-    focusable[0].focus();
+    focusable[0].focus({ preventScroll: true });
   }
 };
