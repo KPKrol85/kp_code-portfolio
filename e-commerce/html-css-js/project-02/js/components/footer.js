@@ -89,8 +89,8 @@ const socialIcons = {
 };
 
 const LOGO_SOURCES = {
-  light: "/assets/logo/logo-light-mode.svg",
-  dark: "/assets/logo/logo-dark-mode.svg",
+  light: "assets/logo/logo-light-mode.svg",
+  dark: "assets/logo/logo-dark-mode.svg",
 };
 const LOGO_WIDTH = 140;
 const LOGO_HEIGHT = 64;

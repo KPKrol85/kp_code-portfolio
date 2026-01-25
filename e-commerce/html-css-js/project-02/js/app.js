@@ -5,7 +5,6 @@ import { registerRoutes } from "./router/routes.js";
 import { mockApi } from "./services/mockApi.js";
 import { cartService } from "./services/cart.js";
 import { authService } from "./services/auth.js";
-import { storage } from "./services/storage.js";
 import { store } from "./store/store.js";
 import { actions } from "./store/actions.js";
 import { selectors } from "./store/selectors.js";
@@ -19,27 +18,11 @@ import { setMetaImages } from "./utils/meta.js";
 import { initReducedMotionPreference } from "./reduced-motion-init.js";
 import { updateHeaderOffset } from "./utils/layout.js";
 import { focusMain } from "./utils/focusMain.js";
+import { demoPurchasesService } from "./services/demo-purchases.js";
+import { applyTheme, initTheme, toggleTheme } from "./theme.js";
 
-const THEME_KEY = "kp_theme";
 const SW_UPDATE_TOAST_KEY = "kp_sw_update_toast_shown";
 const SW_UPDATE_RELOAD_KEY = "kp_sw_update_reloaded";
-
-const applyTheme = (theme, { persist = true } = {}) => {
-  document.documentElement.setAttribute("data-theme", theme);
-  if (persist) {
-    storage.set(THEME_KEY, theme);
-  }
-  actions.ui.setTheme(theme);
-};
-
-const detectTheme = () => {
-  const saved = storage.get(THEME_KEY, null);
-  const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
-  return {
-    theme: saved ?? (prefersDark ? "dark" : "light"),
-    hasSaved: Boolean(saved),
-  };
-};
 
 const RETRY_BUTTON_SELECTOR = '[data-retry="init-data"]';
 let isDataRetrying = false;
@@ -73,11 +56,9 @@ const initData = async () => {
 const initStore = () => {
   const session = authService.getSession();
   const user = authService.getUser();
-  const { theme, hasSaved } = detectTheme();
   actions.user.setSession(session, user);
   actions.cart.setCart(cartService.getCart());
-  actions.ui.setTheme(theme);
-  applyTheme(theme, { persist: hasSaved });
+  initTheme({ onChange: actions.ui.setTheme });
 
   authService.onAuthChange(({ session: nextSession, user: nextUser }) => {
     actions.user.setSession(nextSession, nextUser);
@@ -87,13 +68,6 @@ const initStore = () => {
     actions.cart.setCart(cart);
   });
 
-  const mediaQuery = window.matchMedia("(prefers-color-scheme: dark)");
-  mediaQuery.addEventListener("change", (event) => {
-    if (storage.get(THEME_KEY, null)) {
-      return;
-    }
-    applyTheme(event.matches ? "dark" : "light", { persist: false });
-  });
 };
 
 const initLayout = () => {
@@ -101,7 +75,7 @@ const initLayout = () => {
     document.getElementById("app-header"),
     () => {
       const currentTheme = selectors.theme(store.getState());
-      applyTheme(currentTheme === "light" ? "dark" : "light");
+      applyTheme(toggleTheme(currentTheme), { onChange: actions.ui.setTheme });
     },
     { onHeightChange: updateHeaderOffset }
   );
@@ -259,6 +233,7 @@ const registerServiceWorker = () => {
 };
 
 initErrorBoundary();
+demoPurchasesService.seedPurchaseFromQuery();
 initStore();
 initMotionPreference();
 initLayout();

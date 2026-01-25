@@ -1,0 +1,304 @@
+<!doctype html>
+<html lang="pl">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Components Pack 01 - Universal</title>
+    <link rel="stylesheet" href="./css/tokens.css" />
+    <link rel="stylesheet" href="./css/base.css" />
+    <link rel="stylesheet" href="./css/layout.css" />
+    <link rel="stylesheet" href="./css/components/button.css" />
+    <link rel="stylesheet" href="./css/components/form.css" />
+    <link rel="stylesheet" href="./css/components/card.css" />
+    <link rel="stylesheet" href="./css/components/badge.css" />
+  </head>
+  <body>
+    <div class="page">
+      <header class="page__header">
+        <h1>Components Pack 01</h1>
+        <p>Gotowe do kopiowania HTML i CSS dla spojnego UI dashboardu.</p>
+        <p>
+          Tryb ciemny: ustaw <code>data-theme="dark"</code> na <code>&lt;html&gt;</code>,
+          aby wymusic tryb ciemny.
+        </p>
+      </header>
+      <main class="demo-grid">
+        <section class="docs-section" id="buttons">
+          <header class="docs-section__header">
+            <h2>Przyciski</h2>
+            <p class="docs-section__desc">
+              Glowne akcje i kontrolki w spojnych rozmiarach i wariantach.
+            </p>
+          </header>
+          <div class="docs-block">
+            <h3 class="docs-block__title">Przyklady</h3>
+            <p class="docs-label">Domyslny</p>
+            <div class="demo-row">
+              <button class="c-button c-button--primary c-button--md">Glowny</button>
+              <button class="c-button c-button--secondary c-button--md">Poboczny</button>
+              <button class="c-button c-button--ghost c-button--md">Ghost</button>
+              <button class="c-button c-button--danger c-button--md">Niebezpieczny</button>
+            </div>
+            <p class="docs-label">Rozmiary</p>
+            <div class="demo-row">
+              <button class="c-button c-button--primary c-button--sm">Maly</button>
+              <button class="c-button c-button--primary c-button--md">Sredni</button>
+              <button class="c-button c-button--primary c-button--lg">Duzy</button>
+            </div>
+            <p class="docs-label">Ikona</p>
+            <div class="demo-row">
+              <button class="c-button c-button--primary c-button--md">
+                <span class="c-button__icon" aria-hidden="true">-&gt;</span>
+                Kontynuuj
+              </button>
+              <button class="c-button c-button--secondary c-button--icon c-button--md">
+                <span class="c-button__icon" aria-hidden="true">*</span>
+              </button>
+            </div>
+          </div>
+          <div class="docs-block">
+            <h3 class="docs-block__title">Stany</h3>
+            <p class="docs-label">Wylaczony</p>
+            <div class="demo-row">
+              <button class="c-button c-button--primary c-button--md" disabled>
+                Glowny wylaczony
+              </button>
+              <a class="c-button c-button--secondary c-button--md" href="#" role="button" aria-disabled="true">
+                Poboczny wylaczony
+              </a>
+            </div>
+            <p class="docs-label">Focus</p>
+            <p class="docs-section__desc">Uzyj klawisza Tab, aby zobaczyc focus ring.</p>
+          </div>
+        </section>
+        <section class="docs-section" id="forms">
+          <header class="docs-section__header">
+            <h2>Formularze</h2>
+            <p class="docs-section__desc">
+              Standardowe pola, selecty i przelaczniki z czytelnymi stanami.
+            </p>
+          </header>
+          <div class="docs-block">
+            <h3 class="docs-block__title">Przyklady</h3>
+            <p class="docs-label">Domyslny</p>
+            <div class="demo-stack">
+              <div class="c-field">
+                <label class="c-field__label" for="demo-input">Input</label>
+                <input class="c-input" id="demo-input" type="text" placeholder="Wpisz tekst" />
+                <p class="c-field__helper">Tekst pomocniczy dla tego pola.</p>
+              </div>
+              <div class="c-field">
+                <label class="c-field__label" for="demo-textarea">Textarea</label>
+                <textarea class="c-textarea" id="demo-textarea" placeholder="Zostaw wiadomosc"></textarea>
+              </div>
+              <div class="c-field">
+                <label class="c-field__label" for="demo-select">Select</label>
+                <select class="c-select" id="demo-select">
+                  <option value="">Wybierz opcje</option>
+                  <option value="one">Opcja 1</option>
+                  <option value="two">Opcja 2</option>
+                  <option value="three">Opcja 3</option>
+                </select>
+              </div>
+              <div class="demo-stack">
+                <label class="c-check">
+                  <input class="c-check__input" type="checkbox" checked />
+                  <span class="c-check__label">Zaznaczony checkbox</span>
+                </label>
+                <label class="c-check">
+                  <input class="c-check__input" type="checkbox" />
+                  <span class="c-check__label">Niezaznaczony checkbox</span>
+                </label>
+              </div>
+              <div class="demo-stack">
+                <label class="c-toggle">
+                  <input class="c-toggle__input" type="checkbox" checked />
+                  <span class="c-toggle__track">
+                    <span class="c-toggle__thumb"></span>
+                  </span>
+                  <span class="c-toggle__label">Przelacznik wlaczony</span>
+                </label>
+                <label class="c-toggle">
+                  <input class="c-toggle__input" type="checkbox" />
+                  <span class="c-toggle__track">
+                    <span class="c-toggle__thumb"></span>
+                  </span>
+                  <span class="c-toggle__label">Przelacznik wylaczony</span>
+                </label>
+              </div>
+            </div>
+          </div>
+          <div class="docs-block">
+            <h3 class="docs-block__title">Stany</h3>
+            <p class="docs-label">Blad</p>
+            <div class="demo-stack">
+              <div class="c-field is-error">
+                <label class="c-field__label" for="demo-input-error">Blad pola</label>
+                <input
+                  class="c-input"
+                  id="demo-input-error"
+                  type="text"
+                  aria-invalid="true"
+                  placeholder="Nieprawidlowa wartosc"
+                />
+                <p class="c-field__error" role="alert">To pole jest wymagane.</p>
+              </div>
+            </div>
+            <p class="docs-label">Wylaczony</p>
+            <div class="demo-grid-2">
+              <div class="c-field">
+                <label class="c-field__label" for="demo-input-disabled">Input</label>
+                <input
+                  class="c-input"
+                  id="demo-input-disabled"
+                  type="text"
+                  placeholder="Wylaczone"
+                  disabled
+                />
+              </div>
+              <div class="c-field">
+                <label class="c-field__label" for="demo-select-disabled">Select</label>
+                <select class="c-select" id="demo-select-disabled" disabled>
+                  <option value="">Wylaczona lista</option>
+                </select>
+              </div>
+              <div class="c-field">
+                <label class="c-field__label" for="demo-textarea-disabled">Textarea</label>
+                <textarea
+                  class="c-textarea"
+                  id="demo-textarea-disabled"
+                  placeholder="Wylaczone"
+                  disabled
+                ></textarea>
+              </div>
+              <div class="demo-stack">
+                <label class="c-check">
+                  <input class="c-check__input" type="checkbox" disabled />
+                  <span class="c-check__label">Wylaczony checkbox</span>
+                </label>
+                <label class="c-toggle">
+                  <input class="c-toggle__input" type="checkbox" disabled />
+                  <span class="c-toggle__track">
+                    <span class="c-toggle__thumb"></span>
+                  </span>
+                  <span class="c-toggle__label">Przelacznik niedostepny</span>
+                </label>
+              </div>
+            </div>
+          </div>
+        </section>
+        <section class="docs-section" id="cards">
+          <header class="docs-section__header">
+            <h2>Karty</h2>
+            <p class="docs-section__desc">
+              Elastyczne powierzchnie na metryki, tresc i CTA.
+            </p>
+          </header>
+          <div class="docs-block">
+            <h3 class="docs-block__title">Przyklady</h3>
+            <p class="docs-label">Warianty</p>
+            <div class="demo-stack">
+              <article class="c-card c-card--stat" data-interactive="true">
+                <div class="c-card__header">
+                  <h3 class="c-card__title">Przychod</h3>
+                  <span class="c-card__meta">Ten tydzien</span>
+                </div>
+                <div class="c-card__body">
+                  <div class="c-stat__value">12 450 zl</div>
+                  <div class="c-stat__delta">+8% vs zeszly tydzien</div>
+                </div>
+              </article>
+              <article class="c-card c-card--content">
+                <div class="c-card__header">
+                  <h3 class="c-card__title">Notatki</h3>
+                  <span class="c-card__meta">Szkic</span>
+                </div>
+                <div class="c-card__body">
+                  <p>
+                    Zachowaj tresc krotka i konkretna. Krotkie akapity pomagaja w podsumowaniu.
+                  </p>
+                  <p>Nastepna aktualizacja planowana na piatek rano.</p>
+                </div>
+              </article>
+              <article class="c-card c-card--empty">
+                <div class="c-card__header">
+                  <h3 class="c-card__title">Brak danych</h3>
+                </div>
+                <div class="c-card__body">
+                  <p>Podlacz zrodlo, aby zaczac.</p>
+                </div>
+              </article>
+              <article class="c-card c-card--action">
+                <div class="c-card__header">
+                  <h3 class="c-card__title">Ulepsz</h3>
+                  <span class="c-card__meta">Plan startowy</span>
+                </div>
+                <div class="c-card__body">
+                  <p>Odblokuj zaawansowane komponenty i uklady.</p>
+                </div>
+                <div class="c-card__footer">
+                  <a class="c-button c-button--primary c-button--md" href="#">Ulepsz</a>
+                  <a href="#">Dowiedz sie wiecej</a>
+                </div>
+              </article>
+            </div>
+          </div>
+          <div class="docs-block">
+            <h3 class="docs-block__title">Stany</h3>
+            <p class="docs-label">Interaktywne</p>
+            <p class="docs-section__desc">
+              Dodaj data-interactive="true", aby wlaczyc delikatny hover.
+            </p>
+          </div>
+        </section>
+        <section class="docs-section" id="badges">
+          <header class="docs-section__header">
+            <h2>Etykiety</h2>
+            <p class="docs-section__desc">
+              Kompaktowe etykiety dla metadanych i statusow.
+            </p>
+          </header>
+          <div class="docs-block">
+            <h3 class="docs-block__title">Przyklady</h3>
+            <p class="docs-label">Domyslny</p>
+            <div class="demo-row">
+              <span class="c-badge c-badge--neutral">Neutralny</span>
+              <span class="c-badge c-badge--status c-badge--dot">
+                <span class="c-badge__dot" aria-hidden="true"></span>
+                Status
+              </span>
+              <span class="c-badge c-badge--info c-badge--dot">
+                <span class="c-badge__dot" aria-hidden="true"></span>
+                Info
+              </span>
+              <span class="c-badge c-badge--warning c-badge--dot">
+                <span class="c-badge__dot" aria-hidden="true"></span>
+                Uwaga
+              </span>
+            </div>
+            <p class="docs-label">Rozmiary</p>
+            <div class="demo-row">
+              <span class="c-badge c-badge--neutral c-badge--sm">Maly</span>
+              <span class="c-badge c-badge--neutral c-badge--md">Sredni</span>
+            </div>
+            <p class="docs-label">Inline</p>
+            <p>
+              Status:
+              <span class="c-badge c-badge--status c-badge--dot">
+                <span class="c-badge__dot" aria-hidden="true"></span>
+                Aktywny
+              </span>
+            </p>
+          </div>
+          <div class="docs-block">
+            <h3 class="docs-block__title">Stany</h3>
+            <p class="docs-label">Ton</p>
+            <p class="docs-section__desc">
+              Uzyj wariantow status/info/warning dla semantycznego wyroznienia.
+            </p>
+          </div>
+        </section>
+      </main>
+    </div>
+  </body>
+</html>
