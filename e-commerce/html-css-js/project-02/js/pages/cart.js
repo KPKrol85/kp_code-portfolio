@@ -1,16 +1,16 @@
-import { createElement, clearElement } from "../utils/dom.js";
-import { parseHash } from "../utils/navigation.js";
-import { formatCurrency } from "../utils/format.js";
-import { cartService } from "../services/cart.js";
-import { showToast } from "../components/toast.js";
-import { store } from "../store/store.js";
-import { actions } from "../store/actions.js";
-import { renderNotice, createRetryButton } from "../components/uiStates.js";
-import { withButtonLoading } from "../utils/ui-state.js";
-import { renderEmptyState } from "../components/ui-state-helpers.js";
-import { content } from "../content/pl.js";
 import { createBreadcrumbs } from "../components/breadcrumbs.js";
+import { showToast } from "../components/toast.js";
+import { renderEmptyState } from "../components/ui-state-helpers.js";
+import { renderNotice, createRetryButton } from "../components/uiStates.js";
+import { content } from "../content/pl.js";
+import { cartService } from "../services/cart.js";
+import { actions } from "../store/actions.js";
+import { store } from "../store/store.js";
 import { buildBreadcrumbsForPath } from "../utils/breadcrumbs.js";
+import { createElement, clearElement } from "../utils/dom.js";
+import { formatCurrency } from "../utils/format.js";
+import { parseHash } from "../utils/navigation.js";
+import { withButtonLoading } from "../utils/ui-state.js";
 
 const QUANTITY_DEBOUNCE_MS = 120;
 const pendingQuantityUpdates = new Map();
@@ -131,7 +131,7 @@ const updateStepperState = (card, quantity) => {
   if (!card) {
     return;
   }
-  const decButton = card.querySelector("[data-action=\"dec\"]");
+  const decButton = card.querySelector('[data-action="dec"]');
   if (decButton instanceof HTMLButtonElement) {
     decButton.disabled = quantity <= 1;
   }
@@ -152,7 +152,7 @@ const updateQuantityUI = (input, quantity, itemsWrapper, totalNode, liveNode, op
   updateStepperState(card, quantity);
 };
 
-const performRenderCart = (reason = "route") => {
+const performRenderCart = (_reason = "route") => {
   renderInProgress = true;
   const main = document.getElementById("main-content");
   try {
@@ -199,7 +199,9 @@ const performRenderCart = (reason = "route") => {
     container.appendChild(createElement("h1", { text: content.cart.title }));
 
     const validItems = cart.filter((item) => products.some((entry) => entry.id === item.productId));
-    const missingItems = cart.filter((item) => !products.some((entry) => entry.id === item.productId));
+    const missingItems = cart.filter(
+      (item) => !products.some((entry) => entry.id === item.productId)
+    );
 
     if (!validItems.length && missingItems.length) {
       container.appendChild(
@@ -507,7 +509,7 @@ const performRenderCart = (reason = "route") => {
       if (!item) {
         return;
       }
-      const input = item.querySelector("[data-role=\"qty\"]");
+      const input = item.querySelector('[data-role="qty"]');
       if (!(input instanceof HTMLInputElement)) {
         return;
       }
@@ -583,9 +585,7 @@ const renderMissingSection = (container, missingItems) => {
   const list = createElement("div", { className: "grid" });
   missingItems.forEach((item) => {
     const card = createElement("div", { className: "card" });
-    card.appendChild(
-      createElement("h3", { text: content.states.cart.missingSection.itemTitle })
-    );
+    card.appendChild(createElement("h3", { text: content.states.cart.missingSection.itemTitle }));
     card.appendChild(createElement("p", { text: `ID: ${item.productId}` }));
     card.appendChild(
       createElement("p", {

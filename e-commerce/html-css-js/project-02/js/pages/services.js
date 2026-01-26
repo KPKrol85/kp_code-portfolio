@@ -1,10 +1,11 @@
-import { createElement, clearElement } from "../utils/dom.js";
+
 import { createBreadcrumbs } from "../components/breadcrumbs.js";
-import { buildBreadcrumbsForPath } from "../utils/breadcrumbs.js";
-import { parseHash, navigateHash } from "../utils/navigation.js";
-import { setMeta, setJsonLd } from "../utils/meta.js";
 import { showToast } from "../components/toast.js";
 import { SERVICES, SERVICES_PAGE, getServiceBySlug } from "../data/services.catalog.js";
+import { buildBreadcrumbsForPath } from "../utils/breadcrumbs.js";
+import { createElement, clearElement } from "../utils/dom.js";
+import { setMeta, setJsonLd } from "../utils/meta.js";
+import { parseHash, navigateHash } from "../utils/navigation.js";
 
 const JSON_LD_ID = "services-jsonld";
 const PROVIDER_NAME = "KP_Code";
@@ -401,8 +402,12 @@ export const renderServicesIndex = () => {
   const cardsGrid = createElement("div", { className: "grid grid-2" });
   SERVICES.forEach((service) => {
     const card = createElement("div", { className: "card service-card card--interactive" });
-    card.appendChild(createElement("h3", { text: service.name }));
-    card.appendChild(createElement("p", { text: service.shortDescription }));
+    const header = createElement("div", { className: "service-card__header" });
+
+    header.appendChild(createElement("h3", { className: "service-card__title",  text: service.name }));
+
+    header.appendChild(createElement("p", { text: service.shortDescription }));
+    card.appendChild(header);
     card.appendChild(createList(service.summaryBullets, "service-list"));
     card.appendChild(
       createElement("a", {
