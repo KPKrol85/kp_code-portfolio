@@ -39,8 +39,7 @@ const DEMO_LIBRARY_ITEMS = [
     title: "Core UI Components Pack",
     version: "1.0",
     description: "Tokenowy UI kit do dashboardów: komponenty, layouty, stany i motywy.",
-    previewUrl: "./products/core-ui-components-pack/preview/panel.html",
-    packageUrl: "./products/core-ui-components-pack/package/",
+    previewUrl: "#/product/core-ui-components-pack",
   },
 ];
 

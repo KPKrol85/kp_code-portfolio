@@ -136,6 +136,19 @@ export const registerRoutes = () => {
     getHandlerByName("renderProducts"),
     metaRoutes.products
   );
+  addRoute(
+    /^\/products\/core-ui-components-pack\/panel$/,
+    () => {
+      navigateHash("#/product/core-ui-components-pack", { force: true });
+    },
+    metaRoutes.library
+  );
+  addLazyRoute(
+    /^\/product\/core-ui-components-pack$/,
+    () => import("../pages/productPanels.js"),
+    getHandlerByName("renderCoreUiPanel"),
+    metaRoutes.library
+  );
   addLazyRoute(
     /^\/services$/,
     servicesLoader,
