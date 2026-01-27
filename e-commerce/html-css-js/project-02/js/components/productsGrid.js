@@ -1,6 +1,7 @@
 import { createElement, clearElement } from "../utils/dom.js";
-import { createProductCard } from "./productCard.js";
 import { getVisibleProducts } from "../utils/products.js";
+
+import { createProductCard } from "./productCard.js";
 import { renderEmptyState } from "./ui-state-helpers.js";
 import { renderDataState } from "./uiStates.js";
 

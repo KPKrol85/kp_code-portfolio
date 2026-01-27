@@ -1,7 +1,7 @@
-import { createElement, clearElement } from "../utils/dom.js";
-import { parseHash } from "../utils/navigation.js";
 import { createBreadcrumbs } from "../components/breadcrumbs.js";
 import { buildBreadcrumbsForPath } from "../utils/breadcrumbs.js";
+import { createElement, clearElement } from "../utils/dom.js";
+import { parseHash } from "../utils/navigation.js";
 
 const regulaminSections = [
   {

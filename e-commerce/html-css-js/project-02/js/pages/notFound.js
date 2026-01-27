@@ -1,6 +1,6 @@
-import { createElement, clearElement } from "../utils/dom.js";
 import { createBreadcrumbs } from "../components/breadcrumbs.js";
 import { buildBreadcrumbsForPath } from "../utils/breadcrumbs.js";
+import { createElement, clearElement } from "../utils/dom.js";
 
 export const renderNotFound = () => {
   const main = document.getElementById("main-content");

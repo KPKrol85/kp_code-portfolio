@@ -1,0 +1,241 @@
+/* === Button Pack 01 === */
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* === Button Pack 02 === */
+
+/* === Button Pack 02 === */
+
+
+
+
+:root {
+  /* Surfaces */
+  --ui-bg: #f6f7fb;
+  --ui-surface: #ffffff;
+  --ui-surface-border: #e6e8ef;
+
+  /* Text */
+  --ui-text: #0f172a;
+  --ui-text-muted: #6b7280;
+}
+
+/* Light (default) */
+:root {
+  /* Button base */
+  --btn-bg: #f1f3f9;
+  --btn-text: #0f172a;
+  --btn-border: #d7dbea;
+
+  /* Brand */
+  --color-primary: #2563eb;
+  --color-primary-strong: #1d4ed8;
+
+  /* States */
+  --color-success: #16a34a;
+  --color-danger: #dc2626;
+
+  /* Effects */
+  --radius: 14px;
+  --radius-btn: 10px;
+  --shadow-sm: 0 4px 12px rgba(15, 23, 42, 0.08);
+  --shadow-md: 0 8px 22px rgba(15, 23, 42, 0.12);
+}
+
+/* Dark */
+[data-theme="dark"] {
+  --ui-bg: #0b1220;
+  --ui-surface: #1c2230;
+  --ui-surface-border: #242b3a;
+
+  --ui-text: #eef1f7;
+  --ui-text-muted: #8b93a7;
+
+  --btn-bg: #2a3142;
+  --btn-text: #eef1f7;
+  --btn-border: #3a4560;
+
+  --color-primary: #4f8cff;
+  --color-primary-strong: #3b6fe6;
+
+  --color-success: #22c55e;
+  --color-danger: #ef4444;
+
+  --shadow-sm: 0 6px 18px rgba(0, 0, 0, 0.35);
+  --shadow-md: 0 10px 26px rgba(0, 0, 0, 0.45);
+}
+
+/* ---------- LAYOUT ---------- */
+
+.ui-buttons {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 24px;
+}
+
+@media (max-width: 900px) {
+  .ui-buttons {
+    grid-template-columns: 1fr;
+  }
+}
+
+.ui-section {
+  background: var(--ui-surface);
+  border: 1px solid var(--ui-surface-border);
+  border-radius: var(--radius);
+  padding: 20px 22px;
+}
+
+.ui-section-title {
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--ui-text-muted);
+  margin-bottom: 14px;
+}
+
+/* ---------- GROUPS ---------- */
+
+.btn-group {
+  display: grid;
+  gap: 12px;
+}
+
+.btn-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+/* ---------- BUTTON BASE ---------- */
+
+.btn {
+  appearance: none;
+  border-radius: var(--radius-btn);
+  padding: 8px 14px;
+  font-size: 13px;
+  font-weight: 500;
+  border: 1px solid var(--btn-border);
+  background: var(--btn-bg);
+  color: var(--btn-text);
+  cursor: pointer;
+  transition:
+    background 0.15s ease,
+    border-color 0.15s ease,
+    box-shadow 0.15s ease,
+    transform 0.08s ease;
+}
+
+.btn:hover {
+  transform: translateY(-1px);
+}
+
+.btn:active {
+  transform: translateY(0);
+}
+
+/* ---------- SIZES ---------- */
+/* ---------- SIZES (real sizes, not padding hacks) ---------- */
+
+.btn {
+  min-height: 36px; /* md default */
+  line-height: 1;
+}
+
+/* Small */
+.btn.sm {
+  min-height: 30px;
+  font-size: 12px;
+  padding-inline: 12px;
+}
+
+/* Medium (default) */
+.btn.md {
+  min-height: 36px;
+  font-size: 13px;
+  padding-inline: 16px;
+}
+
+/* Large (CTA / primary action) */
+.btn.lg {
+  min-height: 44px;
+  font-size: 15px;
+  font-weight: 600;
+  padding-inline: 22px;
+}
+
+/* ---------- VARIANTS ---------- */
+
+.btn-primary {
+  background: linear-gradient(180deg, var(--color-primary), var(--color-primary-strong));
+  border-color: transparent;
+  color: #ffffff;
+  box-shadow: var(--shadow-sm);
+}
+
+.btn-primary:hover {
+  box-shadow: var(--shadow-md);
+}
+
+.btn-secondary {
+  background: var(--btn-bg);
+  border-color: var(--btn-border);
+}
+
+.btn-ghost {
+  background: transparent;
+  border-color: var(--btn-border);
+  color: var(--ui-text);
+}
+
+.btn-outline {
+  background: transparent;
+  border-color: var(--color-primary);
+  color: var(--color-primary);
+}
+
+.btn-success {
+  background: linear-gradient(180deg, var(--color-success), #149a43);
+  border-color: transparent;
+  color: #ffffff;
+  box-shadow: var(--shadow-sm);
+}
+
+.btn-danger {
+  background: linear-gradient(180deg, var(--color-danger), #b91c1c);
+  border-color: transparent;
+  color: #ffffff;
+  box-shadow: var(--shadow-sm);
+}
+
+/* ---------- DISABLED ---------- */
+
+.btn.disabled,
+.btn:disabled {
+  background: var(--btn-bg);
+  color: var(--ui-text-muted);
+  border-color: var(--ui-surface-border);
+  box-shadow: none;
+  cursor: not-allowed;
+  opacity: 0.7;
+}
+
+/* ---------- MOBILE CTA ---------- */
+
+.btn-mobile {
+  width: 100%;
+  padding: 14px 20px;
+  font-size: 14px;
+}

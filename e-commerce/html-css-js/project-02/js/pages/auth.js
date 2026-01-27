@@ -1,12 +1,12 @@
+import { createBreadcrumbs } from "../components/breadcrumbs.js";
+import { showToast } from "../components/toast.js";
+import { content } from "../content/pl.js";
+import { authService } from "../services/auth.js";
+import { buildBreadcrumbsForPath } from "../utils/breadcrumbs.js";
 import { createElement, clearElement } from "../utils/dom.js";
 import { navigateHash, parseHash } from "../utils/navigation.js";
-import { validators } from "../utils/validators.js";
-import { authService } from "../services/auth.js";
-import { showToast } from "../components/toast.js";
 import { withButtonLoading } from "../utils/ui-state.js";
-import { content } from "../content/pl.js";
-import { createBreadcrumbs } from "../components/breadcrumbs.js";
-import { buildBreadcrumbsForPath } from "../utils/breadcrumbs.js";
+import { validators } from "../utils/validators.js";
 
 const AUTH_FALLBACK_HASH = "#/account";
 
@@ -51,8 +51,7 @@ const navigateToReturnTo = (targetHash) => {
 };
 
 const generateId = () =>
-  (globalThis.crypto?.randomUUID?.() ??
-    `id_${Date.now()}_${Math.random().toString(16).slice(2)}`);
+  globalThis.crypto?.randomUUID?.() ?? `id_${Date.now()}_${Math.random().toString(16).slice(2)}`;
 
 export const renderAuth = () => {
   const main = document.getElementById("main-content");
@@ -134,7 +133,6 @@ export const renderAuth = () => {
     const passwordField = createElement("input", {
       className: "input",
       attrs: {
-
         id: "auth-login-password",
 
         type: "password",
@@ -146,7 +144,6 @@ export const renderAuth = () => {
         autocapitalize: "none",
 
         spellcheck: "false",
-
       },
     });
     const errorBox = createElement("div", {
@@ -277,7 +274,6 @@ export const renderAuth = () => {
     const nameField = createElement("input", {
       className: "input",
       attrs: {
-
         id: "auth-register-name",
 
         type: "text",
@@ -291,7 +287,6 @@ export const renderAuth = () => {
         autocapitalize: "words",
 
         spellcheck: "false",
-
       },
     });
     const emailField = createElement("input", {
@@ -309,7 +304,6 @@ export const renderAuth = () => {
     const passwordField = createElement("input", {
       className: "input",
       attrs: {
-
         id: "auth-register-password",
 
         type: "password",
@@ -321,7 +315,6 @@ export const renderAuth = () => {
         autocapitalize: "none",
 
         spellcheck: "false",
-
       },
     });
     const errorBox = createElement("div", {

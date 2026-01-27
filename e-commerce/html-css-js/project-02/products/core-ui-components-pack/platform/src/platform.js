@@ -1,4 +1,3 @@
-
 import { navItems } from "./config/nav.js";
 import { clear } from "./ui/dom.js";
 import { renderLayout } from "./ui/layout.js";
@@ -9,7 +8,6 @@ import { renderForms } from "./views/forms.js";
 import { renderInputs } from "./views/inputs.js";
 import { renderOverview } from "./views/overview.js";
 
-// Route table for ready views.
 const routes = {
   overview: renderOverview,
   buttons: renderButtons,
@@ -21,14 +19,12 @@ const routes = {
 const root = document.getElementById("app");
 const { navLinks, viewTitle, viewDesc, main } = renderLayout(root, navItems);
 
-// Highlight the active nav item.
 const setActiveLink = (route) => {
   navLinks.forEach((link) => {
     link.classList.toggle("active", link.dataset.route === route);
   });
 };
 
-// Hash-based router with fallback to overview.
 const renderRoute = () => {
   const raw = window.location.hash.replace("#/", "").trim();
   const route = raw || "overview";
@@ -50,5 +46,17 @@ if (!window.location.hash) {
   window.location.hash = "#/overview";
 }
 
+const savedTheme = localStorage.getItem("theme") || "dark";
+document.documentElement.setAttribute("data-theme", savedTheme);
+
 window.addEventListener("hashchange", renderRoute);
 renderRoute();
+
+window.toggleTheme = () => {
+  const root = document.documentElement;
+  const current = root.getAttribute("data-theme");
+  const next = current === "dark" ? "light" : "dark";
+
+  root.setAttribute("data-theme", next);
+  localStorage.setItem("theme", next);
+};

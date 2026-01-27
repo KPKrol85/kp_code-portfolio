@@ -1,12 +1,12 @@
-import { createElement, clearElement } from "../utils/dom.js";
-import { parseHash } from "../utils/navigation.js";
-import { formatDate } from "../utils/format.js";
-import { store } from "../store/store.js";
-import { purchasesService } from "../services/purchases.js";
+import { createBreadcrumbs } from "../components/breadcrumbs.js";
 import { renderNotice, createRetryButton } from "../components/uiStates.js";
 import { content } from "../content/pl.js";
-import { createBreadcrumbs } from "../components/breadcrumbs.js";
+import { purchasesService } from "../services/purchases.js";
+import { store } from "../store/store.js";
 import { buildBreadcrumbsForPath } from "../utils/breadcrumbs.js";
+import { createElement, clearElement } from "../utils/dom.js";
+import { formatDate } from "../utils/format.js";
+import { parseHash } from "../utils/navigation.js";
 
 const createLicenseBlob = (details) => {
   const content = [

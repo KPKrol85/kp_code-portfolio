@@ -1,9 +1,9 @@
-import { createElement, clearElement } from "../utils/dom.js";
+import { createBreadcrumbs } from "../components/breadcrumbs.js";
 import { renderNotice } from "../components/uiStates.js";
 import { demoPurchasesService } from "../services/demo-purchases.js";
 import { purchasesService } from "../services/purchases.js";
-import { createBreadcrumbs } from "../components/breadcrumbs.js";
 import { buildBreadcrumbsForPath } from "../utils/breadcrumbs.js";
+import { createElement, clearElement } from "../utils/dom.js";
 
 const PRODUCT_ID = "core-ui-components-pack";
 const getSeedHref = () => `./index.html?seedPurchase=${PRODUCT_ID}#/product/${PRODUCT_ID}`;

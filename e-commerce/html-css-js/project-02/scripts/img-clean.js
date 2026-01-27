@@ -1,6 +1,8 @@
-import pc from "picocolors";
 import { existsSync, readdirSync, rmSync } from "node:fs";
 import { join, relative } from "node:path";
+
+import pc from "picocolors";
+
 import { IMG_GEN_DIR, ensureDir, ensureGitkeep, toPosix } from "./lib/img-utils.js";
 
 const clean = () => {

@@ -1,15 +1,15 @@
-import { createElement, clearElement } from "../utils/dom.js";
-import { cartService } from "../services/cart.js";
-import { showToast } from "../components/toast.js";
-import { store } from "../store/store.js";
-import { createRetryButton } from "../components/uiStates.js";
-import { debounce } from "../utils/debounce.js";
-import { content } from "../content/pl.js";
-import { actions } from "../store/actions.js";
-import { createProductsGrid } from "../components/productsGrid.js";
-import { getCategoryConfig } from "../utils/productCategories.js";
 import { createBreadcrumbs } from "../components/breadcrumbs.js";
+import { createProductsGrid } from "../components/productsGrid.js";
+import { showToast } from "../components/toast.js";
+import { createRetryButton } from "../components/uiStates.js";
+import { content } from "../content/pl.js";
+import { cartService } from "../services/cart.js";
+import { actions } from "../store/actions.js";
+import { store } from "../store/store.js";
 import { buildProductCategoryBreadcrumbs } from "../utils/breadcrumbs.js";
+import { debounce } from "../utils/debounce.js";
+import { createElement, clearElement } from "../utils/dom.js";
+import { getCategoryConfig } from "../utils/productCategories.js";
 
 const VALID_SORTS = new Set(["latest", "price-asc", "price-desc"]);
 
@@ -113,7 +113,9 @@ export const renderProductCategory = ({ category }) => {
     createElement("h2", { text: labels?.aboutTitle ?? "About this category" }),
   ]);
   const aboutList = createElement("ul");
-  categoryConfig.bullets.forEach((item) => aboutList.appendChild(createElement("li", { text: item })));
+  categoryConfig.bullets.forEach((item) =>
+    aboutList.appendChild(createElement("li", { text: item }))
+  );
   aboutSection.appendChild(aboutList);
   container.appendChild(aboutSection);
 

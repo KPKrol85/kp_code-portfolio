@@ -2,7 +2,7 @@ const fallbackStorage = {
   safeGet(key) {
     try {
       return window.localStorage.getItem(key);
-    } catch (error) {
+    } catch {
       return null;
     }
   },
@@ -10,7 +10,7 @@ const fallbackStorage = {
     try {
       window.localStorage.setItem(key, value);
       return true;
-    } catch (error) {
+    } catch {
       return false;
     }
   },
@@ -18,7 +18,7 @@ const fallbackStorage = {
     try {
       window.localStorage.removeItem(key);
       return true;
-    } catch (error) {
+    } catch {
       return false;
     }
   },
@@ -29,14 +29,14 @@ const fallbackStorage = {
     }
     try {
       return JSON.parse(raw);
-    } catch (error) {
+    } catch {
       return fallback;
     }
   },
   safeSetJSON(key, data) {
     try {
       return this.safeSet(key, JSON.stringify(data));
-    } catch (error) {
+    } catch {
       return false;
     }
   },

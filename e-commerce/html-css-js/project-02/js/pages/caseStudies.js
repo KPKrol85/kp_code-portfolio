@@ -1,10 +1,10 @@
-import { createElement, clearElement } from "../utils/dom.js";
 import { createBreadcrumbs } from "../components/breadcrumbs.js";
-import { buildBreadcrumbsForPath } from "../utils/breadcrumbs.js";
-import { navigateHash, parseHash } from "../utils/navigation.js";
-import { setMeta, setJsonLd } from "../utils/meta.js";
 import { content } from "../content/pl.js";
-import { CASE_STUDIES, getCaseStudyBySlug } from "../data/caseStudies.catalog.js";
+import { getCaseStudyBySlug } from "../data/caseStudies.catalog.js";
+import { buildBreadcrumbsForPath } from "../utils/breadcrumbs.js";
+import { createElement, clearElement } from "../utils/dom.js";
+import { setMeta, setJsonLd } from "../utils/meta.js";
+import { navigateHash, parseHash } from "../utils/navigation.js";
 
 const JSON_LD_ID = "case-study-jsonld";
 

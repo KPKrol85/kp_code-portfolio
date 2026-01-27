@@ -1,6 +1,7 @@
 import { spawnSync } from "node:child_process";
-import path from "node:path";
 import { mkdir } from "node:fs/promises";
+import path from "node:path";
+
 import fg from "fast-glob";
 
 const binExt = process.platform === "win32" ? ".cmd" : "";

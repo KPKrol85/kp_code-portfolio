@@ -1,14 +1,14 @@
-import { createElement, clearElement } from "../utils/dom.js";
-import { parseHash } from "../utils/navigation.js";
-import { formatDate } from "../utils/format.js";
-import { createDownloadLink } from "../utils/downloads.js";
-import { purchasesService } from "../services/purchases.js";
-import { store } from "../store/store.js";
+import { createBreadcrumbs } from "../components/breadcrumbs.js";
 import { renderNotice, createRetryButton } from "../components/uiStates.js";
 import { content } from "../content/pl.js";
-import { createBreadcrumbs } from "../components/breadcrumbs.js";
-import { buildBreadcrumbsForPath } from "../utils/breadcrumbs.js";
 import { demoPurchasesService } from "../services/demo-purchases.js";
+import { purchasesService } from "../services/purchases.js";
+import { store } from "../store/store.js";
+import { buildBreadcrumbsForPath } from "../utils/breadcrumbs.js";
+import { createElement, clearElement } from "../utils/dom.js";
+import { createDownloadLink } from "../utils/downloads.js";
+import { formatDate } from "../utils/format.js";
+import { parseHash } from "../utils/navigation.js";
 
 const PURCHASES_KEY = "kp_dv_purchases";
 
@@ -42,7 +42,7 @@ const getPurchases = () => {
   }
   try {
     return normalizePurchaseIds(JSON.parse(raw));
-  } catch (error) {
+  } catch {
     return [];
   }
 };
@@ -53,13 +53,6 @@ const addPurchase = (id) => {
     return [];
   }
   const next = Array.from(new Set([trimmed, ...getPurchases()]));
-  localStorage.setItem(PURCHASES_KEY, JSON.stringify(next));
-  return next;
-};
-
-const removePurchase = (id) => {
-  const trimmed = typeof id === "string" ? id.trim() : "";
-  const next = getPurchases().filter((item) => item !== trimmed);
   localStorage.setItem(PURCHASES_KEY, JSON.stringify(next));
   return next;
 };

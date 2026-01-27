@@ -1,8 +1,8 @@
-import { createElement, clearElement } from "../utils/dom.js";
 import { createBreadcrumbs } from "../components/breadcrumbs.js";
 import { buildBreadcrumbsForPath } from "../utils/breadcrumbs.js";
-import { parseHash } from "../utils/navigation.js";
+import { createElement, clearElement } from "../utils/dom.js";
 import { setMeta } from "../utils/meta.js";
+import { parseHash } from "../utils/navigation.js";
 
 const createSectionHeader = (title, lead) => {
   const header = createElement("div", { className: "section-header" });
@@ -283,7 +283,7 @@ export const renderRoadmap = () => {
     createElement("div", {}, [
       createElement("h3", { text: "Zaproponuj kierunek współpracy" }),
       createElement("p", {
-        text: "Zapraszamy do rozmów o współpracy komercyjnej, partnerstwach produktowych, inicjatywach rozwojowych oraz projektach wspieranych programami finansowania i rozwoju. Priorytety ustalamy strategicznie, z naciskiem na wspólne budowanie wartości."
+        text: "Zapraszamy do rozmów o współpracy komercyjnej, partnerstwach produktowych, inicjatywach rozwojowych oraz projektach wspieranych programami finansowania i rozwoju. Priorytety ustalamy strategicznie, z naciskiem na wspólne budowanie wartości.",
       }),
     ])
   );

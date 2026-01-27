@@ -1,25 +1,25 @@
-import { renderHeader } from "./components/header.js";
 import { renderFooter } from "./components/footer.js";
+import { renderHeader } from "./components/header.js";
+import { closeModal } from "./components/modal.js";
+import { showToast } from "./components/toast.js";
+import { content } from "./content/pl.js";
+import { initReducedMotionPreference } from "./reduced-motion-init.js";
 import { startRouter } from "./router/router.js";
 import { registerRoutes } from "./router/routes.js";
-import { mockApi } from "./services/mockApi.js";
-import { cartService } from "./services/cart.js";
 import { authService } from "./services/auth.js";
-import { store } from "./store/store.js";
+import { cartService } from "./services/cart.js";
+import { demoPurchasesService } from "./services/demo-purchases.js";
+import { mockApi } from "./services/mockApi.js";
 import { actions } from "./store/actions.js";
 import { selectors } from "./store/selectors.js";
-import { showToast } from "./components/toast.js";
-import { initErrorBoundary } from "./utils/error-boundary.js";
-import { initKeyboardShortcuts } from "./utils/keyboard-shortcuts.js";
-import { closeModal } from "./components/modal.js";
-import { markProgrammaticNav, navigateHash } from "./utils/navigation.js";
-import { content } from "./content/pl.js";
-import { setMetaImages } from "./utils/meta.js";
-import { initReducedMotionPreference } from "./reduced-motion-init.js";
-import { updateHeaderOffset } from "./utils/layout.js";
-import { focusMain } from "./utils/focusMain.js";
-import { demoPurchasesService } from "./services/demo-purchases.js";
+import { store } from "./store/store.js";
 import { applyTheme, initTheme, toggleTheme } from "./theme.js";
+import { initErrorBoundary } from "./utils/error-boundary.js";
+import { focusMain } from "./utils/focusMain.js";
+import { initKeyboardShortcuts } from "./utils/keyboard-shortcuts.js";
+import { updateHeaderOffset } from "./utils/layout.js";
+import { setMetaImages } from "./utils/meta.js";
+import { markProgrammaticNav, navigateHash } from "./utils/navigation.js";
 
 const SW_UPDATE_TOAST_KEY = "kp_sw_update_toast_shown";
 const SW_UPDATE_RELOAD_KEY = "kp_sw_update_reloaded";
@@ -44,7 +44,7 @@ const initData = async () => {
   try {
     const [products, licenses] = await Promise.all([mockApi.getProducts(), mockApi.getLicenses()]);
     actions.data.setProductsReady({ products, licenses });
-  } catch (error) {
+  } catch {
     showToast(content.toasts.dataFetchError, "error");
     actions.data.setProductsError(content.states.products.error.title);
   } finally {

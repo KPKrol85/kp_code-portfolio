@@ -1,12 +1,12 @@
-import { createElement, clearElement } from "../utils/dom.js";
-import { formatCurrency } from "../utils/format.js";
 import { createProductCard } from "../components/productCard.js";
-import { cartService } from "../services/cart.js";
 import { showToast } from "../components/toast.js";
-import { store } from "../store/store.js";
 import { renderDataState, createRetryButton } from "../components/uiStates.js";
 import { content } from "../content/pl.js";
+import { cartService } from "../services/cart.js";
 import { actions } from "../store/actions.js";
+import { store } from "../store/store.js";
+import { createElement, clearElement } from "../utils/dom.js";
+import { formatCurrency } from "../utils/format.js";
 
 export const renderHome = () => {
   const main = document.getElementById("main-content");
@@ -206,7 +206,10 @@ export const renderHome = () => {
       if (event && container.hasPointerCapture?.(event.pointerId)) {
         try {
           container.releasePointerCapture(event.pointerId);
-        } catch {}
+        } catch {
+          // Pointer capture might already be released or unavailable
+        }
+
       }
     };
 

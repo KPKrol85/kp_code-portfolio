@@ -1,4 +1,5 @@
 import { normalizeProducts } from "../data/productNormalizers.js";
+
 import { store } from "./store.js";
 
 const patch = (partial) => {

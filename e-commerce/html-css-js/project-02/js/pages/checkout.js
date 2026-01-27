@@ -1,19 +1,19 @@
-import { createElement, clearElement } from "../utils/dom.js";
-import { navigateHash, parseHash } from "../utils/navigation.js";
-import { formatCurrency } from "../utils/format.js";
-import { validators } from "../utils/validators.js";
+import { createBreadcrumbs } from "../components/breadcrumbs.js";
+import { showToast } from "../components/toast.js";
+import { renderEmptyState } from "../components/ui-state-helpers.js";
+import { renderNotice, createRetryButton } from "../components/uiStates.js";
+import { content } from "../content/pl.js";
 import { cartService } from "../services/cart.js";
 import { purchasesService } from "../services/purchases.js";
-import { showToast } from "../components/toast.js";
-import { store } from "../store/store.js";
 import { actions } from "../store/actions.js";
-import { setMeta } from "../utils/meta.js";
-import { setButtonLoading, clearButtonLoading } from "../utils/ui-state.js";
-import { renderNotice, createRetryButton } from "../components/uiStates.js";
-import { renderEmptyState } from "../components/ui-state-helpers.js";
-import { content } from "../content/pl.js";
-import { createBreadcrumbs } from "../components/breadcrumbs.js";
+import { store } from "../store/store.js";
 import { buildBreadcrumbsForPath } from "../utils/breadcrumbs.js";
+import { createElement, clearElement } from "../utils/dom.js";
+import { formatCurrency } from "../utils/format.js";
+import { setMeta } from "../utils/meta.js";
+import { navigateHash, parseHash } from "../utils/navigation.js";
+import { setButtonLoading, clearButtonLoading } from "../utils/ui-state.js";
+import { validators } from "../utils/validators.js";
 
 export const renderCheckout = () => {
   const main = document.getElementById("main-content");

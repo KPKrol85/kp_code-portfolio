@@ -13,7 +13,7 @@ const focusMain = ({ preventScroll = false } = {}) => {
   const scrollY = window.scrollY;
   try {
     target.focus({ preventScroll: true });
-  } catch (error) {
+  } catch {
     target.focus();
     window.scrollTo(scrollX, scrollY);
   }

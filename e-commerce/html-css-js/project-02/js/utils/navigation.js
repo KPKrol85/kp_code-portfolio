@@ -76,7 +76,7 @@ const navigateHash = (hash, { force = false } = {}) => {
   if (force) {
     try {
       window.dispatchEvent(new HashChangeEvent("hashchange"));
-    } catch (error) {
+    } catch {
       window.location.hash = target;
     }
   }

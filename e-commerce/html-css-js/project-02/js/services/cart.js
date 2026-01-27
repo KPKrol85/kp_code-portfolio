@@ -1,5 +1,6 @@
-import { storage } from "./storage.js";
 import { store } from "../store/store.js";
+
+import { storage } from "./storage.js";
 
 const LEGACY_CART_KEY = "kp_cart";
 const CART_KEY_PREFIX = "kp_cart_";

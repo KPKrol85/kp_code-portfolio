@@ -1,4 +1,5 @@
 import { applyTheme, initTheme, toggleTheme } from "../theme.js";
+
 import { createThemeToggleButton } from "./theme-toggle.js";
 
 const slots = document.querySelectorAll("[data-theme-toggle-slot]");

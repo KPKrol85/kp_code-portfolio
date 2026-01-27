@@ -1,6 +1,7 @@
-import { storage } from "./storage.js";
-import { simpleHash } from "../utils/hash.js";
 import { content } from "../content/pl.js";
+import { simpleHash } from "../utils/hash.js";
+
+import { storage } from "./storage.js";
 
 /**
  * DEMO / FRONTEND-ONLY:
@@ -16,7 +17,8 @@ const STORAGE_KEYS = {
 const listeners = new Set();
 const createToken = () => Math.random().toString(36).slice(2);
 
-const isPlainObject = (value) => Boolean(value) && typeof value === "object" && !Array.isArray(value);
+const isPlainObject = (value) =>
+  Boolean(value) && typeof value === "object" && !Array.isArray(value);
 
 const toPublicUser = (user) => ({
   id: user.id,

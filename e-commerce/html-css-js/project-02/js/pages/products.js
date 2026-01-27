@@ -1,15 +1,15 @@
-import { createElement, clearElement } from "../utils/dom.js";
-import { cartService } from "../services/cart.js";
-import { showToast } from "../components/toast.js";
-import { store } from "../store/store.js";
-import { createRetryButton } from "../components/uiStates.js";
-import { debounce } from "../utils/debounce.js";
-import { content } from "../content/pl.js";
-import { actions } from "../store/actions.js";
-import { createProductsGrid } from "../components/productsGrid.js";
-import { getCategoryLabel, productCategories } from "../utils/productCategories.js";
 import { createBreadcrumbs } from "../components/breadcrumbs.js";
+import { createProductsGrid } from "../components/productsGrid.js";
+import { showToast } from "../components/toast.js";
+import { createRetryButton } from "../components/uiStates.js";
+import { content } from "../content/pl.js";
+import { cartService } from "../services/cart.js";
+import { actions } from "../store/actions.js";
+import { store } from "../store/store.js";
 import { buildProductsBreadcrumbs } from "../utils/breadcrumbs.js";
+import { debounce } from "../utils/debounce.js";
+import { createElement, clearElement } from "../utils/dom.js";
+import { getCategoryLabel, productCategories } from "../utils/productCategories.js";
 
 const FILTER_DEFAULTS = { query: "", category: "all", sort: "latest" };
 const VALID_SORTS = new Set(["latest", "price-asc", "price-desc"]);
@@ -86,7 +86,10 @@ export const renderProducts = () => {
     text: content.products.listPage.categoryLabel,
     attrs: { for: categoryId },
   });
-  const categorySelect = createElement("select", { className: "select", attrs: { id: categoryId } });
+  const categorySelect = createElement("select", {
+    className: "select",
+    attrs: { id: categoryId },
+  });
   let products = store.getState().products;
   let shouldSyncFromUrl = true;
   let isApplyingFilters = false;

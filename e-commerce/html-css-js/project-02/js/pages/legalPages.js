@@ -1,7 +1,7 @@
-import { createElement, clearElement } from "../utils/dom.js";
-import { parseHash } from "../utils/navigation.js";
 import { createBreadcrumbs } from "../components/breadcrumbs.js";
 import { buildBreadcrumbsForPath } from "../utils/breadcrumbs.js";
+import { createElement, clearElement } from "../utils/dom.js";
+import { parseHash } from "../utils/navigation.js";
 
 const CONTACT_EMAIL = "kontakt@kp-code.pl";
 const UPDATED_AT = "2026-01-17";

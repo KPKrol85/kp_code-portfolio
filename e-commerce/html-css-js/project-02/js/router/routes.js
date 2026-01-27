@@ -1,6 +1,7 @@
-import { addRoute } from "./router.js";
 import { content } from "../content/pl.js";
 import { navigateHash } from "../utils/navigation.js";
+
+import { addRoute } from "./router.js";
 
 const getHandlerByName = (name) => (module) => module[name];
 
@@ -303,12 +304,7 @@ export const registerRoutes = () => {
     getHandlerByName("renderPrivacy"),
     metaRoutes.privacy
   );
-  addLazyRoute(
-    /^\/terms$/,
-    legalPagesLoader,
-    getHandlerByName("renderTerms"),
-    metaRoutes.terms
-  );
+  addLazyRoute(/^\/terms$/, legalPagesLoader, getHandlerByName("renderTerms"), metaRoutes.terms);
   addLazyRoute(
     /^\/cookies$/,
     legalPagesLoader,

@@ -1,11 +1,12 @@
-import { createElement, clearElement } from "../utils/dom.js";
-import { store } from "../store/store.js";
-import { authService } from "../services/auth.js";
-import { navigateHash } from "../utils/navigation.js";
-import { showToast } from "./toast.js";
 import { content } from "../content/pl.js";
+import { authService } from "../services/auth.js";
 import { selectors } from "../store/selectors.js";
+import { store } from "../store/store.js";
+import { createElement, clearElement } from "../utils/dom.js";
+import { navigateHash } from "../utils/navigation.js";
+
 import { createThemeToggleButton } from "./theme-toggle.js";
+import { showToast } from "./toast.js";
 
 const navItems = [
   { label: "Start", path: "#/" },
@@ -18,7 +19,11 @@ const navItems = [
       routeMatch: "prefix",
     },
     dropdown: [
-      { label: "UI Kits & Components", path: "#/products/ui-kits", dataRoute: "#/products/ui-kits" },
+      {
+        label: "UI Kits & Components",
+        path: "#/products/ui-kits",
+        dataRoute: "#/products/ui-kits",
+      },
       {
         label: "Templates & Dashboards",
         path: "#/products/templates",
@@ -104,7 +109,6 @@ export const renderHeader = (container, onThemeToggle, { onHeightChange } = {}) 
       },
     });
 
-
   const updateDropdownMenu = (menu, items) => {
     clearElement(menu);
     items.forEach((entry) => {
@@ -174,7 +178,6 @@ export const renderHeader = (container, onThemeToggle, { onHeightChange } = {}) 
     return navList;
   };
 
-  const getCartCount = (cart) => cart.reduce((sum, item) => sum + item.quantity, 0);
   const getAccountItems = (isAuthenticated) => {
     if (!isAuthenticated) {
       return [

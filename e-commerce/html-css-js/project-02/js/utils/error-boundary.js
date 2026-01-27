@@ -1,6 +1,7 @@
+import { content } from "../content/pl.js";
+
 import { createElement, clearElement } from "./dom.js";
 import { navigateHash } from "./navigation.js";
-import { content } from "../content/pl.js";
 
 let fallbackShown = false;
 let handling = false;

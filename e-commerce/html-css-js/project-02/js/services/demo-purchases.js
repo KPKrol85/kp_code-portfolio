@@ -10,7 +10,7 @@ const readIds = () => {
   }
   try {
     return normalizeIds(JSON.parse(raw));
-  } catch (error) {
+  } catch {
     return [];
   }
 };

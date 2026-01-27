@@ -1,13 +1,13 @@
-import { createElement, clearElement } from "../utils/dom.js";
-import { store } from "../store/store.js";
 import { selectors } from "../store/selectors.js";
+import { store } from "../store/store.js";
+import { createElement, clearElement } from "../utils/dom.js";
 
 const getAccountLinks = (isAuthenticated) => {
   if (!isAuthenticated) {
     return [
       { label: "Zaloguj się", href: "#/auth" },
       { label: "Utwórz konto", href: "#/auth" },
-    
+
     ];
   }
   return [

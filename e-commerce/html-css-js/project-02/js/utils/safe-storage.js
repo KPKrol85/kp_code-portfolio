@@ -2,7 +2,7 @@
   const safeGet = (key) => {
     try {
       return window.localStorage.getItem(key);
-    } catch (error) {
+    } catch {
       return null;
     }
   };
@@ -11,7 +11,7 @@
     try {
       window.localStorage.setItem(key, value);
       return true;
-    } catch (error) {
+    } catch {
       return false;
     }
   };
@@ -20,7 +20,7 @@
     try {
       window.localStorage.removeItem(key);
       return true;
-    } catch (error) {
+    } catch {
       return false;
     }
   };
@@ -32,7 +32,7 @@
     }
     try {
       return JSON.parse(raw);
-    } catch (error) {
+    } catch {
       return fallback;
     }
   };
@@ -40,7 +40,7 @@
   const safeSetJSON = (key, data) => {
     try {
       return safeSet(key, JSON.stringify(data));
-    } catch (error) {
+    } catch {
       return false;
     }
   };

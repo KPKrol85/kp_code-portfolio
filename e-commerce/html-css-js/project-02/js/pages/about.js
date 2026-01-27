@@ -1,8 +1,8 @@
-import { createElement, clearElement } from "../utils/dom.js";
 import { createBreadcrumbs } from "../components/breadcrumbs.js";
 import { buildBreadcrumbsForPath } from "../utils/breadcrumbs.js";
-import { parseHash } from "../utils/navigation.js";
+import { createElement, clearElement } from "../utils/dom.js";
 import { setMeta } from "../utils/meta.js";
+import { parseHash } from "../utils/navigation.js";
 
 const createSectionHeader = (title, lead) => {
   const header = createElement("div", { className: "section-header" });
@@ -200,21 +200,33 @@ export const renderAbout = () => {
     createElement("p", {
       text: "Wspólne projektowanie i wdrażanie produktów cyfrowych: pakietów UI, szablonów, komponentów oraz narzędzi wspierających realne use-case’y rynkowe. Skupiamy się na jakości, spójności i wartości dla użytkownika końcowego.",
     }),
-    createElement("a", { className: "button secondary", text: "Napisz do nas", attrs: { href: "#/contact" } }),
+    createElement("a", {
+      className: "button secondary",
+      text: "Napisz do nas",
+      attrs: { href: "#/contact" },
+    }),
   ]);
   const brandingCard = createElement("div", { className: "card" }, [
     createElement("h3", { text: "Partnerstwa brandowe" }),
     createElement("p", {
       text: "Partnerstwa z markami i zespołami, które chcą rozwijać widoczność produktów poprzez wspólne premiery, integracje oraz działania oparte na wartości, a nie jednorazowej promocji.",
     }),
-    createElement("a", { className: "button secondary", text: "Porozmawiajmy", attrs: { href: "#/contact" } }),
+    createElement("a", {
+      className: "button secondary",
+      text: "Porozmawiajmy",
+      attrs: { href: "#/contact" },
+    }),
   ]);
   const affiliationCard = createElement("div", { className: "card" }, [
     createElement("h3", { text: "Program afiliacyjny" }),
     createElement("p", {
       text: "Program dla twórców, społeczności i partnerów, którzy chcą współtworzyć dystrybucję produktów KP_Code Digital Vault w przejrzystym i długofalowym modelu współpracy.",
     }),
-    createElement("a", { className: "button secondary", text: "Dołącz do programu", attrs: { href: "#/contact" } }),
+    createElement("a", {
+      className: "button secondary",
+      text: "Dołącz do programu",
+      attrs: { href: "#/contact" },
+    }),
   ]);
   const careersCard = createElement("div", { className: "card" }, [
     createElement("h3", { text: "Rekrutacje" }),
@@ -222,9 +234,15 @@ export const renderAbout = () => {
       text: "Aktualnie nie prowadzimy otwartych rekrutacji. Jeśli jesteś zainteresowany współpracą w przyszłości, zostaw kontakt — wrócimy do rozmowy, gdy pojawi się odpowiedni moment.",
     }),
     createElement("div", { className: "notice" }, [
-      createElement("p", { text: "Zgłoszenia traktujemy jako pulę kontaktów do dalszego rozwoju projektu." }),
+      createElement("p", {
+        text: "Zgłoszenia traktujemy jako pulę kontaktów do dalszego rozwoju projektu.",
+      }),
     ]),
-    createElement("a", { className: "button", text: "Skontaktuj się", attrs: { href: "#/contact" } }),
+    createElement("a", {
+      className: "button",
+      text: "Skontaktuj się",
+      attrs: { href: "#/contact" },
+    }),
   ]);
 
   collabGrid.appendChild(partnershipsCard);

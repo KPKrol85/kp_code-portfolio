@@ -1,18 +1,18 @@
-import { createElement, clearElement } from "../utils/dom.js";
-import { formatCurrency, formatDate } from "../utils/format.js";
-import { cartService } from "../services/cart.js";
-import { showToast } from "../components/toast.js";
-import { store } from "../store/store.js";
-import { purchasesService } from "../services/purchases.js";
-import { renderNotice, createRetryButton } from "../components/uiStates.js";
-import { setMeta } from "../utils/meta.js";
-import { createResponsivePicture, updateResponsivePicture } from "../utils/images.js";
-import { content } from "../content/pl.js";
-import { actions } from "../store/actions.js";
-import { createDownloadLink, getDownloadLabel } from "../utils/downloads.js";
-import { getCategoryLabel } from "../utils/productCategories.js";
 import { createBreadcrumbs } from "../components/breadcrumbs.js";
+import { showToast } from "../components/toast.js";
+import { renderNotice, createRetryButton } from "../components/uiStates.js";
+import { content } from "../content/pl.js";
+import { cartService } from "../services/cart.js";
+import { purchasesService } from "../services/purchases.js";
+import { actions } from "../store/actions.js";
+import { store } from "../store/store.js";
 import { buildProductDetailsBreadcrumbs } from "../utils/breadcrumbs.js";
+import { createElement, clearElement } from "../utils/dom.js";
+import { createDownloadLink, getDownloadLabel } from "../utils/downloads.js";
+import { formatCurrency, formatDate } from "../utils/format.js";
+import { createResponsivePicture, updateResponsivePicture } from "../utils/images.js";
+import { setMeta } from "../utils/meta.js";
+import { getCategoryLabel } from "../utils/productCategories.js";
 
 export const renderProductDetails = ({ id }) => {
   const main = document.getElementById("main-content");

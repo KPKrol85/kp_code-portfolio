@@ -1,4 +1,5 @@
 import { content } from "../content/pl.js";
+
 import { getCategoryConfig } from "./productCategories.js";
 
 const sections = content.breadcrumbs?.sections ?? {};
@@ -68,10 +69,7 @@ export const buildBreadcrumbsForPath = (pathname) => {
   if (parentPath) {
     const parentLabel = routeLabels.get(parentPath);
     if (parentLabel) {
-      return [
-        { label: parentLabel, href: toHash(parentPath) },
-        { label },
-      ];
+      return [{ label: parentLabel, href: toHash(parentPath) }, { label }];
     }
   }
   return [{ label }];

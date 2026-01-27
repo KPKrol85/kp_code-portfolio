@@ -1,5 +1,5 @@
-import { createElement, clearElement } from "../utils/dom.js";
 import { content } from "../content/pl.js";
+import { createElement, clearElement } from "../utils/dom.js";
 
 const createNotice = ({ title, message, action, headingTag = "h3" } = {}) => {
   const children = [];

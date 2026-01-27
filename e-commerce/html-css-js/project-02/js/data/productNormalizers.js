@@ -1,4 +1,5 @@
-const toStringSafe = (value) => (typeof value === "string" ? value : value == null ? "" : String(value));
+const toStringSafe = (value) =>
+  typeof value === "string" ? value : value == null ? "" : String(value);
 
 const toNumberSafe = (value) => {
   if (typeof value === "number" && Number.isFinite(value)) {
@@ -52,7 +53,7 @@ export const runProductNormalizationSmokeCheck = (product) => {
   // Dev-only smoke check: callable from the console to verify safe defaults.
   // Example: window.__kpDebug.normalizeProduct(store.getState().products[0])
   // This check intentionally lives at the data boundary.
-  // eslint-disable-next-line no-console
+
   console.info("[products] normalization smoke check", {
     arraysReady,
     normalized,

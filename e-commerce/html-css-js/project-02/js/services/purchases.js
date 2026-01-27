@@ -1,5 +1,6 @@
-import { storage } from "./storage.js";
 import { store } from "../store/store.js";
+
+import { storage } from "./storage.js";
 
 const LEGACY_PURCHASES_KEY = "kp_purchases";
 const PURCHASES_KEY_PREFIX = "kp_purchases_";

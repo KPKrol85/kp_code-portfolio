@@ -1,17 +1,17 @@
-import { createElement, clearElement } from "../utils/dom.js";
-import { navigateHash, parseHash } from "../utils/navigation.js";
-import { formatCurrency, formatDate } from "../utils/format.js";
-import { authService } from "../services/auth.js";
-import { purchasesService } from "../services/purchases.js";
-import { showToast } from "../components/toast.js";
-import { store } from "../store/store.js";
-import { actions } from "../store/actions.js";
-import { storage } from "../services/storage.js";
-import { renderEmptyState } from "../components/ui-state-helpers.js";
 import { createBreadcrumbs } from "../components/breadcrumbs.js";
-import { buildBreadcrumbsForPath } from "../utils/breadcrumbs.js";
+import { showToast } from "../components/toast.js";
+import { renderEmptyState } from "../components/ui-state-helpers.js";
 import { content } from "../content/pl.js";
 import { applyReducedMotion } from "../reduced-motion-init.js";
+import { authService } from "../services/auth.js";
+import { purchasesService } from "../services/purchases.js";
+import { storage } from "../services/storage.js";
+import { actions } from "../store/actions.js";
+import { store } from "../store/store.js";
+import { buildBreadcrumbsForPath } from "../utils/breadcrumbs.js";
+import { createElement, clearElement } from "../utils/dom.js";
+import { formatCurrency, formatDate } from "../utils/format.js";
+import { navigateHash, parseHash } from "../utils/navigation.js";
 
 const ACCOUNT_NAV_ITEMS = [
   { label: content.account.nav.overview, href: "#/account", match: "/account" },
@@ -353,14 +353,19 @@ const renderSettingsContent = () => {
     },
   });
   const preferenceList = createElement("div", { className: "account-preferences" }, [
-    createElement("label", { className: "account-switch", attrs: { for: "account-theme-toggle" } }, [
-      createElement("span", { text: content.account.settings.preferences.darkMode }),
-      themeToggle,
-    ]),
-    createElement("label", { className: "account-switch", attrs: { for: "account-motion-toggle" } }, [
-      createElement("span", { text: content.account.settings.preferences.reducedMotion }),
-      motionToggle,
-    ]),
+    createElement(
+      "label",
+      { className: "account-switch", attrs: { for: "account-theme-toggle" } },
+      [createElement("span", { text: content.account.settings.preferences.darkMode }), themeToggle]
+    ),
+    createElement(
+      "label",
+      { className: "account-switch", attrs: { for: "account-motion-toggle" } },
+      [
+        createElement("span", { text: content.account.settings.preferences.reducedMotion }),
+        motionToggle,
+      ]
+    ),
   ]);
   preferencesCard.appendChild(preferenceList);
   const preferencesButton = createElement("button", {

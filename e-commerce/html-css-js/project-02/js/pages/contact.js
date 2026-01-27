@@ -1,11 +1,11 @@
+import { createBreadcrumbs } from "../components/breadcrumbs.js";
+import { showToast } from "../components/toast.js";
+import { content } from "../content/pl.js";
+import { buildBreadcrumbsForPath } from "../utils/breadcrumbs.js";
 import { createElement, clearElement } from "../utils/dom.js";
 import { parseHash } from "../utils/navigation.js";
-import { validators } from "../utils/validators.js";
-import { showToast } from "../components/toast.js";
 import { withButtonLoading } from "../utils/ui-state.js";
-import { content } from "../content/pl.js";
-import { createBreadcrumbs } from "../components/breadcrumbs.js";
-import { buildBreadcrumbsForPath } from "../utils/breadcrumbs.js";
+import { validators } from "../utils/validators.js";
 
 const company = {
   brand: "KP_Code Digital Vault",

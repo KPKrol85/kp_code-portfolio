@@ -1,7 +1,8 @@
 import fs from "node:fs/promises";
 import path from "node:path";
-import fg from "fast-glob";
+
 import * as csso from "csso";
+import fg from "fast-glob";
 import { minify as terserMinify } from "terser";
 
 const ROOT = process.cwd();
@@ -34,7 +35,7 @@ const exists = async (targetPath) => {
   try {
     await fs.access(targetPath);
     return true;
-  } catch (error) {
+  } catch {
     return false;
   }
 };
