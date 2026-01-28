@@ -344,44 +344,98 @@
 
 .account-shell {
   display: grid;
-  gap: var(--space-6);
-  grid-template-columns: minmax(0, 220px) minmax(0, 1fr);
+  gap: var(--space-8);
+  grid-template-columns: minmax(0, 180px) minmax(0, 1fr);
   align-items: start;
 }
 
 .account-nav {
   display: grid;
-  gap: var(--space-2);
+  gap: var(--space-1);
+  padding: var(--space-1);
 }
 
 .account-nav__link {
-  padding: 10px 12px;
+  position: relative;
+  display: flex;
+  align-items: center;
+
+  padding: var(--space-2) var(--space-3);
   border-radius: var(--radius-sm);
+
   color: var(--color-text-muted);
-  border: 1px solid transparent;
   text-decoration: none;
+  font-weight: 500;
+  line-height: 1.2;
+
+  border: 1px solid transparent;
+  background: transparent;
+
   transition:
-    background-color 160ms ease-out,
-    color 160ms ease-out,
-    border-color 160ms ease-out;
+    background-color var(--transition-fast),
+    color var(--transition-fast);
+}
+
+.account-nav__link:hover {
+  background: color-mix(
+    in srgb,
+    var(--color-surface-muted) 55%,
+    transparent
+  );
+  color: var(--color-text);
 }
 
 .account-nav__link.is-active {
   color: var(--color-text);
-  background: var(--color-surface-muted);
-  border-color: var(--color-border);
+  background: color-mix(
+    in srgb,
+    var(--color-surface-muted) 80%,
+    transparent
+  );
   font-weight: 600;
+}
+
+.account-nav__link.is-active::before {
+  content: "";
+  position: absolute;
+  left: calc(var(--space-1) * -1);
+  top: var(--space-2);
+  bottom: var(--space-2);
+  width: 2px;
+  border-radius: 2px;
+  background: var(--color-text);
 }
 
 .account-nav__link:focus-visible {
   outline: none;
-  box-shadow: 0 0 0 3px color-mix(in srgb, var(--color-focus) 25%, transparent);
+  box-shadow: 0 0 0 3px
+    color-mix(in srgb, var(--color-focus) 25%, transparent);
 }
 
 .account-nav__logout {
   margin-top: var(--space-3);
   justify-content: center;
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 .account-content {
   display: grid;
@@ -482,6 +536,62 @@
 .account-shell .button.block {
   padding-block: 8px;
 }
+
+
+
+
+
+
+
+/* Logout button styled like nav item (Stripe-like) */
+.account-nav__logout.button {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+
+  padding: var(--space-2) var(--space-3);
+  margin-top: var(--space-2);
+
+  font-size: var(--fs-ui);
+  font-weight: 500;
+  line-height: 1.2;
+
+  color: var(--color-text-muted);
+  background: transparent;
+  border: 1px solid transparent;
+  border-radius: var(--radius-sm);
+
+  box-shadow: none;
+  cursor: pointer;
+
+  transition:
+    background-color var(--transition-fast),
+    color var(--transition-fast);
+}
+
+.account-nav__logout.button:hover {
+  background: color-mix(
+    in srgb,
+    var(--color-surface-muted) 55%,
+    transparent
+  );
+  color: var(--color-text);
+}
+
+.account-nav__logout.button:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 3px
+    color-mix(in srgb, var(--color-focus) 25%, transparent);
+}
+
+
+
+
+
+
+
+
+
 
 @media (max-width: 900px) {
   .account-shell {
