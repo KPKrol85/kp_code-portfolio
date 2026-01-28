@@ -558,6 +558,7 @@ footer.is-mounted #app-footer {
   flex-wrap: wrap;
   gap: var(--space-3);
   align-items: center;
+  margin-bottom: var(--space-3);
 }
 
 .hero .button:not(.secondary):not(.ghost) {

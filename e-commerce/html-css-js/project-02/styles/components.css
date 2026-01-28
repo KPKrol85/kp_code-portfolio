@@ -377,21 +377,13 @@
 }
 
 .account-nav__link:hover {
-  background: color-mix(
-    in srgb,
-    var(--color-surface-muted) 55%,
-    transparent
-  );
+  background: color-mix(in srgb, var(--color-surface-muted) 55%, transparent);
   color: var(--color-text);
 }
 
 .account-nav__link.is-active {
   color: var(--color-text);
-  background: color-mix(
-    in srgb,
-    var(--color-surface-muted) 80%,
-    transparent
-  );
+  background: color-mix(in srgb, var(--color-surface-muted) 80%, transparent);
   font-weight: 600;
 }
 
@@ -408,34 +400,13 @@
 
 .account-nav__link:focus-visible {
   outline: none;
-  box-shadow: 0 0 0 3px
-    color-mix(in srgb, var(--color-focus) 25%, transparent);
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--color-focus) 25%, transparent);
 }
 
 .account-nav__logout {
   margin-top: var(--space-3);
   justify-content: center;
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 .account-content {
   display: grid;
@@ -537,13 +508,6 @@
   padding-block: 8px;
 }
 
-
-
-
-
-
-
-/* Logout button styled like nav item (Stripe-like) */
 .account-nav__logout.button {
   display: flex;
   align-items: center;
@@ -570,28 +534,14 @@
 }
 
 .account-nav__logout.button:hover {
-  background: color-mix(
-    in srgb,
-    var(--color-surface-muted) 55%,
-    transparent
-  );
+  background: color-mix(in srgb, var(--color-surface-muted) 55%, transparent);
   color: var(--color-text);
 }
 
 .account-nav__logout.button:focus-visible {
   outline: none;
-  box-shadow: 0 0 0 3px
-    color-mix(in srgb, var(--color-focus) 25%, transparent);
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--color-focus) 25%, transparent);
 }
-
-
-
-
-
-
-
-
-
 
 @media (max-width: 900px) {
   .account-shell {
@@ -913,7 +863,6 @@
 */
 
 .footer-newsletter-status {
-
   font-size: var(--fs-ui-xs);
   color: var(--color-text-muted);
   min-height: 1.2em;
@@ -1191,10 +1140,6 @@
   margin-bottom: var(--space-6);
 }
 
-
-
-
-
 .roadmap-item:last-child {
   margin-bottom: 0;
 }
@@ -1257,12 +1202,20 @@
 }
 
 .about-mission h3 {
-  margin-bottom: var(--space-3);
+  margin-bottom: var(--space-5);
 }
 
 .about-mission p {
-  margin-bottom: var(--space-3);
+  margin-bottom: var(--space-4);
+   line-height: 1.65;
 }
+
+
+.about-mission p:first-of-type {
+  font-weight: 500;
+    color: var(--text);
+}
+
 
 .about-mission p:last-child {
   margin-bottom: 0;

@@ -111,12 +111,33 @@ export const renderButtons = () => {
     createEl("button", { className: "btn btn-primary btn-mobile", text: "Main CTA" }),
   ]);
 
+
+    const p1_icons = section("Icon buttons", createEl("div", { className: "btn-group" }));
+    setChildren(p1_icons.lastChild, [
+      buttonRow([
+        { label: "Add +", variant: "secondary md" },
+        { label: "Upload ↑", variant: "ghost md" },
+        { label: "Only icon", variant: "outline md" },
+      ]),
+    ]);
+
+    const p1_loading = section("Loading & feedback", createEl("div", { className: "btn-group" }));
+    setChildren(p1_loading.lastChild, [
+      buttonRow([
+        { label: "Saving…", variant: "secondary md" },
+        { label: "Success", variant: "success md" },
+        { label: "Retry", variant: "danger md" },
+      ]),
+    ]);
   const pack01 = pack({
     title: "Buttons Pack 01",
     description: "Primary button styles, sizes, states and mobile usage.",
-    sections: [p1_sizes, p1_labels, p1_states, p1_mobile],
+    sections: [p1_sizes, p1_labels, p1_states, p1_icons, p1_loading, p1_mobile],
+
     packId: "Buttons Pack 01",
   });
+
+
 
   /* Buttons Pack 02 */
   const p2_variants = section("Variants", createEl("div", { className: "btn-group" }));
