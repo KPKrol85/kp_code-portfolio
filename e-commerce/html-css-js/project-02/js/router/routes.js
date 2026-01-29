@@ -18,6 +18,7 @@ export const registerRoutes = () => {
   const roadmapLoader = () => import("../pages/roadmap.js");
   const aboutLoader = () => import("../pages/about.js");
   const accountLoader = () => import("../pages/account.js");
+  const faqLoader = () => import("../pages/faq.js");
   const pricingLoader = () => import("../pages/pricing.js");
   const metaRoutes = content.meta.routes;
   const placeholderBullets = {
@@ -77,18 +78,6 @@ export const registerRoutes = () => {
       },
     },
     {
-      pattern: /^\/faq$/,
-      meta: {
-        ...metaRoutes.placeholders.faq,
-      },
-      view: {
-        title: "FAQ",
-        lead: "W przygotowaniu.",
-        bullets: placeholderBullets.resources,
-        ctas: defaultCtas,
-      },
-    },
-    {
       pattern: /^\/support$/,
       meta: {
         ...metaRoutes.placeholders.support,
@@ -131,6 +120,12 @@ export const registerRoutes = () => {
     pricingLoader,
     getHandlerByName("renderPricing"),
     metaRoutes.pricing
+  );
+  addLazyRoute(
+    /^\/faq$/,
+    faqLoader,
+    getHandlerByName("renderFaq"),
+    metaRoutes.faq
   );
   addRoute(
     /^\/products\/core-ui-components-pack\/panel$/,

@@ -711,15 +711,16 @@
 }
 
 .tab-button {
-  padding: 8px 14px;
-  border-radius: var(--radius-xs);
-  border: 1px solid var(--color-border);
   background: transparent;
-  cursor: pointer;
+  color: var(--color-text-muted);
+  border-color: var(--color-border);
+  box-shadow: none;
 }
 
 .tab-button[aria-selected="true"] {
   background: var(--color-surface-muted);
+  color: var(--color-text);
+  border-color: color-mix(in srgb, var(--color-text) 20%, var(--color-border));
   font-weight: 600;
 }
 
@@ -1552,6 +1553,41 @@
   outline: none;
   border-radius: var(--radius-sm);
   box-shadow: 0 0 0 3px color-mix(in srgb, var(--color-focus) 25%, transparent);
+}
+
+.faq-toolbar {
+  display: grid;
+  gap: var(--space-4);
+}
+
+.faq-tabs {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.faq-search label {
+  font-size: var(--fs-ui-xs);
+  color: var(--color-text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+}
+
+.faq-results {
+  margin-top: var(--space-5);
+  display: grid;
+  gap: var(--space-4);
+}
+
+.faq-empty {
+  align-items: flex-start;
+  gap: var(--space-2);
+}
+
+@media (min-width: 960px) {
+  .faq-toolbar {
+    grid-template-columns: minmax(0, 1fr) minmax(240px, 320px);
+    align-items: end;
+  }
 }
 
 .quote-form {
