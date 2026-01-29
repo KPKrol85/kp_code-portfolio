@@ -570,6 +570,10 @@ export const content = {
         title: "Wsparcie - KP_Code Digital Vault",
         description: "Pomoc techniczna, FAQ i informacje o wsparciu platformy.",
       },
+      updates: {
+        title: "Aktualizacje - KP_Code Digital Vault",
+        description: "Zmiany w platformie i aktualizacje produktów.",
+      },
       faq: {
         title: "FAQ - KP_Code Digital Vault",
         description: "Najczęściej zadawane pytania o produkty, licencje i zakupy.",
