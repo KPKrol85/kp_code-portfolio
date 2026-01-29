@@ -1,31 +1,35 @@
+import { t } from "../i18n.js";
 import { createEl, setChildren } from "../ui/dom.js";
 
 export const renderOverview = () => {
   const cardOne = createEl("div", { className: "card" });
   setChildren(cardOne, [
-    createEl("h3", { text: "Purpose" }),
-    createEl("p", { text: "Centralize UI component rules and layouts for fast product builds." }),
+    createEl("h3", { text: t("overview.purposeTitle") }),
+    createEl("p", { text: t("overview.purposeText") }),
   ]);
 
   const cardTwo = createEl("div", { className: "card" });
   const list = createEl("ul", { className: "list" });
-  ["Base layout patterns", "Component placeholders", "Downloadable CSS pack"].forEach((item) => {
+
+  const insideItems = t("overview.insideBullets");
+  (Array.isArray(insideItems) ? insideItems : []).forEach((item) => {
     list.appendChild(createEl("li", { text: item }));
   });
-  setChildren(cardTwo, [createEl("h3", { text: "What's inside" }), list]);
+
+  setChildren(cardTwo, [createEl("h3", { text: t("overview.insideTitle") }), list]);
 
   const cardThree = createEl("div", { className: "card" });
   setChildren(cardThree, [
-    createEl("h3", { text: "Next up" }),
-    createEl("p", { text: "Finalize tokens, then lock in component-level styles." }),
+    createEl("h3", { text: t("overview.nextTitle") }),
+    createEl("p", { text: t("overview.nextText") }),
   ]);
 
   const body = createEl("div", { className: "main" });
   setChildren(body, [cardOne, cardTwo, cardThree]);
 
   return {
-    title: "Overview",
-    description: "Snapshot of the Core UI Components Pack status.",
+    title: t("overview.title"),
+    description: t("overview.description"),
     body,
   };
 };

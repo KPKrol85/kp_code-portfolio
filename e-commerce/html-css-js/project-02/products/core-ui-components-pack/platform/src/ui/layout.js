@@ -39,7 +39,6 @@ const updateThemeIcon = (btn) => {
 
 const updateBrandMarkTheme = (imgEl) => {
   const theme = document.documentElement.getAttribute("data-theme") || "light";
-
   imgEl.src =
     theme === "dark" ? "/assets/logo/logo-light-mode.svg" : "/assets/logo/logo-dark-mode.svg";
 };
@@ -56,7 +55,6 @@ export const renderLayout = (root, navItems) => {
   updateBrandMarkTheme(brandMark);
 
   const title = createEl("h1", { text: "Core UI Components Pack" });
-
   setChildren(brand, [brandMark, title]);
 
   const nav = createEl("nav");
@@ -103,7 +101,7 @@ export const renderLayout = (root, navItems) => {
 
   const themeButton = createEl("button", {
     className: "theme-toggle",
-    attrs: { type: "button", "aria-label": "Toggle theme", title: "Toggle theme" },
+    attrs: { type: "button", "aria-label": "Toggle theme" },
   });
 
   themeButton.addEventListener("click", () => {
@@ -114,8 +112,25 @@ export const renderLayout = (root, navItems) => {
 
   updateThemeIcon(themeButton);
 
+  // =============================
+  // [LANG] PRZYCISK ZMIANY JĘZYKA
+  // =============================
+
+  const langButton = createEl("button", {
+    className: "lang-toggle", // [LANG] osobna klasa UI
+    text: localStorage.getItem("coreui_lang") || "en", // [LANG] aktualny język
+    attrs: { type: "button", title: "Change language" }, // [LANG]
+  });
+
+  langButton.addEventListener("click", () => {
+    const next = langButton.textContent === "en" ? "pl" : "en"; // [LANG]
+    localStorage.setItem("coreui_lang", next); // [LANG]
+    window.__renderRoute(); // [LANG] rerender aktualnego widoku
+    langButton.textContent = next; // [LANG] aktualizacja etykiety
+  });
+
   const actions = createEl("div", { className: "topbar-actions" });
-  setChildren(actions, [themeButton]);
+  setChildren(actions, [langButton, themeButton]); // [LANG] dodany obok theme
 
   setChildren(topbar, [titleBlock, actions]);
 

@@ -42,6 +42,9 @@ const renderRoute = () => {
   setActiveLink(navItem.route);
 };
 
+// udostępniamy render aktualnego widoku (potrzebne do ponownego renderu po zmianie języka)
+window.__renderRoute = renderRoute;
+
 if (!window.location.hash) {
   window.location.hash = "#/overview";
 }
