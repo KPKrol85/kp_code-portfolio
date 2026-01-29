@@ -251,22 +251,70 @@ export const renderRoadmap = () => {
   });
   roadmapSection.appendChild(roadmapGrid);
 
-  const visualCard = createElement("div", { className: "card roadmap-visual" }, [
-    createElement("div", {
-      className: "roadmap-visual-placeholder",
-      attrs: { role: "img", "aria-label": "Miniatura roadmapy — placeholder" },
+const visualCard = createElement("div", { className: "card roadmap-visual" }, [
+  createElement("picture", { className: "roadmap-visual-media" }, [
+    createElement("source", {
+      attrs: {
+        type: "image/avif",
+        srcset: `
+          assets/img/_gen/roadmap/roadmap-12m-w320.avif 320w,
+          assets/img/_gen/roadmap/roadmap-12m-w480.avif 480w,
+          assets/img/_gen/roadmap/roadmap-12m-w640.avif 640w,
+          assets/img/_gen/roadmap/roadmap-12m-w768.avif 768w,
+          assets/img/_gen/roadmap/roadmap-12m-w1024.avif 1024w,
+          assets/img/_gen/roadmap/roadmap-12m-w1280.avif 1280w,
+          assets/img/_gen/roadmap/roadmap-12m-w1600.avif 1600w,
+          assets/img/_gen/roadmap/roadmap-12m-w1920.avif 1920w
+        `,
+        sizes: "(max-width: 768px) 100vw, 1000px",
+      },
     }),
-    createElement("p", {
-      text: "Miniatura planu rozwoju — miejsce na skrótowe podsumowanie lub wizualizację.",
+    createElement("source", {
+      attrs: {
+        type: "image/webp",
+        srcset: `
+          assets/img/_gen/roadmap/roadmap-12m-w320.webp 320w,
+          assets/img/_gen/roadmap/roadmap-12m-w480.webp 480w,
+          assets/img/_gen/roadmap/roadmap-12m-w640.webp 640w,
+          assets/img/_gen/roadmap/roadmap-12m-w768.webp 768w,
+          assets/img/_gen/roadmap/roadmap-12m-w1024.webp 1024w,
+          assets/img/_gen/roadmap/roadmap-12m-w1280.webp 1280w,
+          assets/img/_gen/roadmap/roadmap-12m-w1600.webp 1600w,
+          assets/img/_gen/roadmap/roadmap-12m-w1920.webp 1920w
+        `,
+        sizes: "(max-width: 768px) 100vw, 1000px",
+      },
     }),
-    createElement("a", {
-      className: "button secondary",
-      text: "Zobacz changelog",
-      attrs: { href: "#/updates" },
+    createElement("img", {
+      attrs: {
+        src: "assets/img/_gen/roadmap/roadmap-12m-w1024.webp",
+        alt: "Roadmap rozwoju KP_Code Digital Vault – plan 12 miesięcy",
+        loading: "lazy",
+        decoding: "async",
+      },
     }),
-  ]);
-  roadmapSection.appendChild(visualCard);
-  container.appendChild(roadmapSection);
+  ]),
+
+  createElement("p", {
+    text: "Przegląd kluczowych etapów rozwoju KP_Code Digital Vault w perspektywie 12 miesięcy.",
+  }),
+
+  createElement("a", {
+    className: "button secondary",
+    text: "Zobacz changelog",
+    attrs: { href: "#/updates" },
+  }),
+]);
+
+roadmapSection.appendChild(visualCard);
+container.appendChild(roadmapSection);
+
+
+
+
+
+
+
 
   const feedbackSection = createElement("section", {
     className: "section",
