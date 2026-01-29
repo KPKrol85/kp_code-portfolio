@@ -22,6 +22,7 @@ export const registerRoutes = () => {
   const pricingLoader = () => import("../pages/pricing.js");
   const supportLoader = () => import("../pages/support.js");
   const updatesLoader = () => import("../pages/updates.js");
+  const docsLoader = () => import("../pages/docs.js");
   const metaRoutes = content.meta.routes;
   const placeholderBullets = {
     products: [
@@ -55,18 +56,6 @@ export const registerRoutes = () => {
     { label: "Zaloguj się", href: "#/auth", variant: "secondary" },
   ];
   const placeholderRoutes = [
-    {
-      pattern: /^\/docs$/,
-      meta: {
-        ...metaRoutes.placeholders.docs,
-      },
-      view: {
-        title: "Dokumentacja",
-        lead: "W przygotowaniu.",
-        bullets: placeholderBullets.resources,
-        ctas: defaultCtas,
-      },
-    },
     {
       pattern: /^\/careers$/,
       meta: {
@@ -116,6 +105,12 @@ export const registerRoutes = () => {
     updatesLoader,
     getHandlerByName("renderUpdates"),
     metaRoutes.updates
+  );
+  addLazyRoute(
+    /^\/docs$/,
+    docsLoader,
+    getHandlerByName("renderDocs"),
+    metaRoutes.docs
   );
   addRoute(
     /^\/products\/core-ui-components-pack\/panel$/,

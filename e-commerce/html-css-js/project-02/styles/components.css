@@ -1676,6 +1676,48 @@
   gap: var(--space-2);
 }
 
+.docs-grid {
+  align-items: stretch;
+}
+
+.docs-card {
+  gap: var(--space-3);
+}
+
+.docs-search label {
+  font-size: var(--fs-ui-xs);
+  color: var(--color-text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+}
+
+.docs-list {
+  margin-top: var(--space-5);
+  display: grid;
+  gap: var(--space-4);
+}
+
+.docs-empty {
+  align-items: flex-start;
+  gap: var(--space-2);
+}
+
+.docs-link {
+  color: var(--color-text);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.docs-link:hover {
+  color: var(--color-accent-strong);
+}
+
+.docs-link:focus-visible {
+  outline: none;
+  border-radius: var(--radius-xs);
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--color-focus) 25%, transparent);
+}
+
 @media (min-width: 960px) {
   .faq-toolbar {
     grid-template-columns: minmax(0, 1fr) minmax(240px, 320px);
