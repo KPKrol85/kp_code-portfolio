@@ -1,3 +1,4 @@
+/* === Fonts === */
 @font-face {
   font-family: "Space Grotesk";
   src:
@@ -8,6 +9,7 @@
   font-display: swap;
 }
 
+/* === Tokens === */
 :root {
   color-scheme: light;
 
@@ -46,6 +48,7 @@
   --tr: 150ms ease;
 }
 
+/* === Theme: Light === */
 :root[data-theme="light"] {
   color-scheme: light;
 
@@ -76,6 +79,7 @@
   --section-border: rgba(15, 23, 42, 0.05);
 }
 
+/* === Theme: Dark === */
 :root[data-theme="dark"] {
   color-scheme: dark;
 
@@ -106,12 +110,14 @@
   --section-border: rgba(148, 163, 184, 0.14);
 }
 
+/* === Reset === */
 * {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
 }
 
+/* === Base === */
 html,
 body {
   height: 100%;
@@ -133,6 +139,7 @@ h4 {
   color: var(--text);
   margin: 0;
 }
+
 h1 {
   font-size: var(--fs-24);
   letter-spacing: -0.01em;
@@ -158,6 +165,7 @@ a {
   text-decoration: none;
 }
 
+/* === App layout === */
 .app {
   min-height: 100vh;
 }
@@ -172,6 +180,7 @@ a {
   padding: var(--space-28) var(--space-32) var(--space-48);
 }
 
+/* === Sidebar === */
 .sidebar {
   background: var(--sidebar-bg);
   color: var(--sidebar-text);
@@ -213,6 +222,7 @@ a {
   color: var(--sidebar-text);
 }
 
+/* === Topbar === */
 .topbar {
   display: flex;
   align-items: center;
@@ -249,29 +259,7 @@ a {
   gap: var(--space-10);
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-/*
+/* === Theme toggle === */
 .theme-toggle {
   display: inline-flex;
   align-items: center;
@@ -347,116 +335,7 @@ a {
   transform: translateY(-0.5px);
 }
 
-.button {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: var(--space-8);
-  padding: var(--space-8) var(--space-14);
-  border-radius: var(--radius-8);
-  border: 1px solid var(--border-2);
-  background: var(--surface);
-  font-size: 13px;
-  cursor: pointer;
-  transition:
-    background var(--tr),
-    border-color var(--tr),
-    transform var(--tr);
-}
-
-.button:active {
-  transform: translateY(1px);
-}
-*/
-
-
-
-
-
-/* ========================= */
-/* Theme toggle (theme-toggle) */
-/* ========================= */
-
-.theme-toggle {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-
-  inline-size: 36px;
-  block-size: 36px;
-
-  padding: 0;
-  border: 0;
-  border-radius: var(--radius-10);
-
-  background: transparent;
-  color: var(--text);
-  cursor: pointer;
-
-  box-shadow: 0 0 0 rgba(0, 0, 0, 0);
-
-  transition:
-    background var(--tr),
-    box-shadow var(--tr),
-    transform var(--tr),
-    opacity var(--tr);
-}
-
-.theme-toggle:hover {
-  background: color-mix(in srgb, var(--surface) 70%, transparent);
-  box-shadow:
-    0 10px 24px rgba(0, 0, 0, 0.08),
-    0 2px 8px rgba(0, 0, 0, 0.06);
-}
-
-:root[data-theme="dark"] .theme-toggle:hover {
-  box-shadow:
-    0 10px 26px rgba(0, 0, 0, 0.38),
-    0 2px 10px rgba(0, 0, 0, 0.28);
-}
-
-.theme-toggle:active {
-  transform: translateY(1px) scale(0.98);
-  opacity: 0.92;
-  box-shadow:
-    0 6px 14px rgba(0, 0, 0, 0.1),
-    0 1px 6px rgba(0, 0, 0, 0.08);
-}
-
-:root[data-theme="dark"] .theme-toggle:active {
-  box-shadow:
-    0 8px 18px rgba(0, 0, 0, 0.42),
-    0 1px 8px rgba(0, 0, 0, 0.3);
-}
-
-.theme-toggle:focus-visible {
-  outline: none;
-  box-shadow:
-    0 0 0 3px color-mix(in srgb, var(--text) 18%, transparent),
-    0 10px 24px rgba(0, 0, 0, 0.08),
-    0 2px 8px rgba(0, 0, 0, 0.06);
-}
-
-.theme-toggle svg {
-  inline-size: 18px;
-  block-size: 18px;
-  display: block;
-  opacity: 0.92;
-  transition:
-    opacity var(--tr),
-    transform var(--tr);
-}
-
-.theme-toggle:hover svg {
-  opacity: 1;
-  transform: translateY(-0.5px);
-}
-
-
-/* ========================= */
-/* Language toggle (lang-toggle) */
-/* ========================= */
-
+/* === Language toggle === */
 .lang-toggle {
   display: inline-flex;
   align-items: center;
@@ -532,28 +411,7 @@ a {
   transform: translateY(-0.5px);
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+/* === Main / cards === */
 .main {
   display: grid;
   gap: var(--space-18);
@@ -590,6 +448,7 @@ a {
   color: var(--muted);
 }
 
+/* === Code === */
 .code-block {
   background: var(--code-bg);
   color: var(--code-text);
@@ -599,6 +458,7 @@ a {
   overflow-x: auto;
 }
 
+/* === UI pack === */
 .ui-pack {
   background: var(--pack-bg);
   border: 1px solid var(--pack-border);
@@ -638,6 +498,7 @@ a {
   border: 1px solid var(--section-border);
 }
 
+/* === Pack download === */
 .pack-download {
   display: inline-flex;
   align-items: center;
@@ -711,6 +572,13 @@ a {
   transform: translateY(-0.5px);
 }
 
+/* === Media === */
+@media (max-width: 1024px) {
+  .ui-pack-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
 @media (max-width: 960px) {
   .shell {
     grid-template-columns: 1fr;
@@ -732,16 +600,44 @@ a {
     flex-direction: column;
     align-items: flex-start;
   }
-}
 
-@media (max-width: 1024px) {
-  .ui-pack-grid {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
-}
-
-@media (max-width: 640px) {
   .ui-pack-grid {
     grid-template-columns: 1fr;
   }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

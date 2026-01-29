@@ -1,3 +1,4 @@
+import { t } from "../i18n.js";
 import { createEl, setChildren } from "../ui/dom.js";
 
 /* === PACK DOWNLOAD ICON (SVG) === */
@@ -15,21 +16,19 @@ const ICON_PACK_DOWNLOAD = `
 </svg>
 `;
 
-/* === PACK DOWNLOAD BUTTON (demo) === */
 const createPackDownloadButton = (packId) => {
   const btn = createEl("button", {
     className: "pack-download",
     attrs: {
       type: "button",
-      "aria-label": `Download ${packId}`,
-      title: `Download ${packId}`,
+      "aria-label": `${t("common.downloadCss")} ${packId}`,
+      title: `${t("common.downloadCss")} ${packId}`,
     },
   });
 
   btn.innerHTML = ICON_PACK_DOWNLOAD;
 
   btn.addEventListener("click", () => {
-    // DEMO: później podepniesz realny plik CSS dla packa
     console.log(`Download clicked: ${packId}`);
   });
 
@@ -56,7 +55,6 @@ const buttonRow = (buttons) => {
   return row;
 };
 
-// builder dla całego packa (wrapper + header + grid)
 const pack = ({ title, description, sections, packId }) => {
   const wrap = createEl("section", { className: "ui-pack" });
 
@@ -65,7 +63,6 @@ const pack = ({ title, description, sections, packId }) => {
   const meta = createEl("div", { className: "ui-pack-meta" });
   setChildren(meta, [createEl("h2", { text: title }), createEl("p", { text: description })]);
 
-  // pack download (prawy górny róg packa)
   const downloadBtn = createPackDownloadButton(packId);
 
   setChildren(header, [meta, downloadBtn]);
@@ -79,108 +76,141 @@ const pack = ({ title, description, sections, packId }) => {
 
 export const renderButtons = () => {
   /* Buttons Pack 01 */
-  const p1_sizes = section("Button size", createEl("div", { className: "btn-group" }));
+  const p1_sizes = section(
+    t("buttons.sectionButtonSize"),
+    createEl("div", { className: "btn-group" })
+  );
   setChildren(p1_sizes.lastChild, [
     buttonRow([
-      { label: "Small", variant: "primary sm" },
-      { label: "Medium", variant: "primary md" },
-      { label: "Large", variant: "primary lg" },
+      { label: t("buttons.labels.small"), variant: "primary sm" },
+      { label: t("buttons.labels.medium"), variant: "primary md" },
+      { label: t("buttons.labels.large"), variant: "primary lg" },
     ]),
   ]);
 
-  const p1_labels = section("Button label style", createEl("div", { className: "btn-group" }));
+  const p1_labels = section(
+    t("buttons.sectionButtonLabelStyle"),
+    createEl("div", { className: "btn-group" })
+  );
   setChildren(p1_labels.lastChild, [
     buttonRow([
-      { label: "Button", variant: "primary" },
-      { label: "Create", variant: "secondary" },
-      { label: "Download", variant: "ghost" },
+      { label: t("buttons.labels.button"), variant: "primary" },
+      { label: t("buttons.labels.create"), variant: "secondary" },
+      { label: t("buttons.labels.download"), variant: "ghost" },
     ]),
   ]);
 
-  const p1_states = section("States", createEl("div", { className: "btn-group" }));
+  const p1_states = section(
+    t("buttons.sectionStates"),
+    createEl("div", { className: "btn-group" })
+  );
   setChildren(p1_states.lastChild, [
     buttonRow([
-      { label: "Apply", variant: "success" },
-      { label: "Delete", variant: "danger" },
-      { label: "Disabled", variant: "disabled" },
+      { label: t("buttons.labels.apply"), variant: "success" },
+      { label: t("buttons.labels.delete"), variant: "danger" },
+      { label: t("buttons.labels.disabled"), variant: "disabled" },
     ]),
   ]);
 
-  const p1_mobile = section("Mobile size example", createEl("div", { className: "btn-group" }));
+  const p1_mobile = section(
+    t("buttons.sectionMobileSizeExample"),
+    createEl("div", { className: "btn-group" })
+  );
   setChildren(p1_mobile.lastChild, [
-    createEl("button", { className: "btn btn-primary btn-mobile", text: "Main CTA" }),
+    createEl("button", {
+      className: "btn btn-primary btn-mobile",
+      text: t("buttons.labels.mainCta"),
+    }),
   ]);
 
+  const p1_icons = section(
+    t("buttons.sectionIconButtons"),
+    createEl("div", { className: "btn-group" })
+  );
+  setChildren(p1_icons.lastChild, [
+    buttonRow([
+      { label: t("buttons.labels.add"), variant: "secondary md" },
+      { label: t("buttons.labels.upload"), variant: "ghost md" },
+      { label: t("buttons.labels.onlyIcon"), variant: "outline md" },
+    ]),
+  ]);
 
-    const p1_icons = section("Icon buttons", createEl("div", { className: "btn-group" }));
-    setChildren(p1_icons.lastChild, [
-      buttonRow([
-        { label: "Add +", variant: "secondary md" },
-        { label: "Upload ↑", variant: "ghost md" },
-        { label: "Only icon", variant: "outline md" },
-      ]),
-    ]);
+  const p1_loading = section(
+    t("buttons.sectionLoadingFeedback"),
+    createEl("div", { className: "btn-group" })
+  );
+  setChildren(p1_loading.lastChild, [
+    buttonRow([
+      { label: t("buttons.labels.saving"), variant: "secondary md" },
+      { label: t("buttons.labels.success"), variant: "success md" },
+      { label: t("buttons.labels.retry"), variant: "danger md" },
+    ]),
+  ]);
 
-    const p1_loading = section("Loading & feedback", createEl("div", { className: "btn-group" }));
-    setChildren(p1_loading.lastChild, [
-      buttonRow([
-        { label: "Saving…", variant: "secondary md" },
-        { label: "Success", variant: "success md" },
-        { label: "Retry", variant: "danger md" },
-      ]),
-    ]);
   const pack01 = pack({
-    title: "Buttons Pack 01",
-    description: "Primary button styles, sizes, states and mobile usage.",
+    title: t("buttons.pack01Title"),
+    description: t("buttons.pack01Description"),
     sections: [p1_sizes, p1_labels, p1_states, p1_icons, p1_loading, p1_mobile],
-
     packId: "Buttons Pack 01",
   });
 
-
-
   /* Buttons Pack 02 */
-  const p2_variants = section("Variants", createEl("div", { className: "btn-group" }));
+  const p2_variants = section(
+    t("buttons.sectionVariants"),
+    createEl("div", { className: "btn-group" })
+  );
   setChildren(p2_variants.lastChild, [
     buttonRow([
-      { label: "Primary", variant: "primary md" },
-      { label: "Outline", variant: "outline md" },
-      { label: "Ghost", variant: "ghost md" },
+      { label: t("buttons.labels.primary"), variant: "primary md" },
+      { label: t("buttons.labels.outline"), variant: "outline md" },
+      { label: t("buttons.labels.ghost"), variant: "ghost md" },
     ]),
   ]);
 
-  const p2_iconLike = section("Label patterns", createEl("div", { className: "btn-group" }));
+  const p2_iconLike = section(
+    t("buttons.sectionLabelPatterns"),
+    createEl("div", { className: "btn-group" })
+  );
   setChildren(p2_iconLike.lastChild, [
     buttonRow([
-      { label: "Save", variant: "secondary md" },
-      { label: "Export", variant: "secondary md" },
-      { label: "Share", variant: "secondary md" },
+      { label: t("buttons.labels.save"), variant: "secondary md" },
+      { label: t("buttons.labels.export"), variant: "secondary md" },
+      { label: t("buttons.labels.share"), variant: "secondary md" },
     ]),
   ]);
 
-  const p2_states = section("States", createEl("div", { className: "btn-group" }));
+  const p2_states = section(
+    t("buttons.sectionStates"),
+    createEl("div", { className: "btn-group" })
+  );
   setChildren(p2_states.lastChild, [
     buttonRow([
-      { label: "Confirm", variant: "success md" },
-      { label: "Remove", variant: "danger md" },
-      { label: "Disabled", variant: "disabled md" },
+      { label: t("buttons.labels.confirm"), variant: "success md" },
+      { label: t("buttons.labels.remove"), variant: "danger md" },
+      { label: t("buttons.labels.disabled"), variant: "disabled md" },
     ]),
   ]);
 
-  const p2_mobile = section("Mobile CTA", createEl("div", { className: "btn-group" }));
+  const p2_mobile = section(
+    t("buttons.sectionMobile"),
+    createEl("div", { className: "btn-group" })
+  );
   setChildren(p2_mobile.lastChild, [
-    createEl("button", { className: "btn btn-primary btn-mobile", text: "Continue" }),
+    createEl("button", {
+      className: "btn btn-primary btn-mobile",
+      text: t("buttons.labels.continue"),
+    }),
   ]);
 
   const pack02 = pack({
-    title: "Buttons Pack 02",
-    description: "Alternate variants and label patterns (work in progress).",
+    title: t("buttons.pack02Title"),
+    description: t("buttons.pack02Description"),
     sections: [p2_variants, p2_iconLike, p2_states, p2_mobile],
     packId: "Buttons Pack 02",
   });
 
   /* Buttons Pack 03 */
-  const p3_sizes = section("Sizes", createEl("div", { className: "btn-group" }));
+  const p3_sizes = section(t("buttons.sectionSizes"), createEl("div", { className: "btn-group" }));
   setChildren(p3_sizes.lastChild, [
     buttonRow([
       { label: "S", variant: "ghost sm" },
@@ -189,32 +219,44 @@ export const renderButtons = () => {
     ]),
   ]);
 
-  const p3_actions = section("Progressive actions", createEl("div", { className: "btn-group" }));
+  const p3_actions = section(
+    t("buttons.sectionProgressiveActions"),
+    createEl("div", { className: "btn-group" })
+  );
   setChildren(p3_actions.lastChild, [
     buttonRow([
-      { label: "Loading", variant: "secondary md" },
-      { label: "Next", variant: "primary md" },
-      { label: "Finish", variant: "success md" },
+      { label: t("buttons.labels.loading"), variant: "secondary md" },
+      { label: t("buttons.labels.next"), variant: "primary md" },
+      { label: t("buttons.labels.finish"), variant: "success md" },
     ]),
   ]);
 
-  const p3_destructive = section("Destructive", createEl("div", { className: "btn-group" }));
+  const p3_destructive = section(
+    t("buttons.sectionDestructive"),
+    createEl("div", { className: "btn-group" })
+  );
   setChildren(p3_destructive.lastChild, [
     buttonRow([
-      { label: "Archive", variant: "danger md" },
-      { label: "Delete", variant: "danger md" },
-      { label: "Disabled", variant: "disabled md" },
+      { label: t("buttons.labels.archive"), variant: "danger md" },
+      { label: t("buttons.labels.delete"), variant: "danger md" },
+      { label: t("buttons.labels.disabled"), variant: "disabled md" },
     ]),
   ]);
 
-  const p3_mobile = section("Mobile", createEl("div", { className: "btn-group" }));
+  const p3_mobile = section(
+    t("buttons.sectionMobile"),
+    createEl("div", { className: "btn-group" })
+  );
   setChildren(p3_mobile.lastChild, [
-    createEl("button", { className: "btn btn-primary btn-mobile", text: "Start" }),
+    createEl("button", {
+      className: "btn btn-primary btn-mobile",
+      text: t("buttons.labels.start"),
+    }),
   ]);
 
   const pack03 = pack({
-    title: "Buttons Pack 03",
-    description: "Progressive + destructive patterns (work in progress).",
+    title: t("buttons.pack03Title"),
+    description: t("buttons.pack03Description"),
     sections: [p3_sizes, p3_actions, p3_destructive, p3_mobile],
     packId: "Buttons Pack 03",
   });
@@ -224,8 +266,8 @@ export const renderButtons = () => {
   setChildren(body, [pack01, pack02, pack03]);
 
   return {
-    title: "Buttons",
-    description: "Button system packs and usage examples.",
+    title: t("buttons.title"),
+    description: t("buttons.description"),
     body,
   };
 };

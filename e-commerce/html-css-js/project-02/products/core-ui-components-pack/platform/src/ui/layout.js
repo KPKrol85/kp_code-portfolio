@@ -112,25 +112,21 @@ export const renderLayout = (root, navItems) => {
 
   updateThemeIcon(themeButton);
 
-  // =============================
-  // [LANG] PRZYCISK ZMIANY JĘZYKA
-  // =============================
-
   const langButton = createEl("button", {
-    className: "lang-toggle", // [LANG] osobna klasa UI
-    text: localStorage.getItem("coreui_lang") || "en", // [LANG] aktualny język
-    attrs: { type: "button", title: "Change language" }, // [LANG]
+    className: "lang-toggle",
+    text: localStorage.getItem("coreui_lang") || "en",
+    attrs: { type: "button", title: "Change language" },
   });
 
   langButton.addEventListener("click", () => {
-    const next = langButton.textContent === "en" ? "pl" : "en"; // [LANG]
-    localStorage.setItem("coreui_lang", next); // [LANG]
-    window.__renderRoute(); // [LANG] rerender aktualnego widoku
-    langButton.textContent = next; // [LANG] aktualizacja etykiety
+    const next = langButton.textContent === "en" ? "pl" : "en";
+    localStorage.setItem("coreui_lang", next);
+    window.__renderRoute();
+    langButton.textContent = next;
   });
 
   const actions = createEl("div", { className: "topbar-actions" });
-  setChildren(actions, [langButton, themeButton]); // [LANG] dodany obok theme
+  setChildren(actions, [langButton, themeButton]);
 
   setChildren(topbar, [titleBlock, actions]);
 
