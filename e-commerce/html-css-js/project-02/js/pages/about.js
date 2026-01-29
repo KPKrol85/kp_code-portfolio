@@ -32,7 +32,7 @@ export const renderAbout = () => {
   heroContent.appendChild(
     createElement("p", {
       className: "hero-lead",
-      text: "KP_Code Digital Vault to biblioteka produktów cyfrowych dla twórców i zespołów, które chcą budować szybciej i w przewidywalnym standardzie.",
+      text: "KP_Code Digital Vault to biblioteka profesjonalnych produktów cyfrowych, zaprojektowanych do realnego użycia w projektach komercyjnych.",
     })
   );
   hero.appendChild(heroContent);
@@ -45,37 +45,89 @@ export const renderAbout = () => {
   missionSection.appendChild(
     createSectionHeader(
       "Zespół i misja",
-      "Stawiamy na jakość wykonania, dostępność i performance — bez kompromisów w doświadczeniu użytkownika."
+      "Naszą misją jest tworzenie produktów cyfrowych, które są gotowe do użycia w projektach komercyjnych — nie jako demo, lecz jako standard."
     )
   );
 
   const founderCard = createElement("div", { className: "card about-founder" });
+
   const avatar = createElement("div", {
     className: "about-avatar",
-    attrs: { role: "img", "aria-label": "Zdjęcie założyciela — placeholder" },
+    attrs: { "aria-label": "Zdjęcie założyciela — Kamil Król" },
   });
+
+  const avatarPicture = createElement("picture", { className: "about-avatar-media" });
+
+  const sourceAvif = createElement("source", {
+    attrs: {
+      type: "image/avif",
+      srcset: [
+        "/assets/img/_gen/about/kamil-krol-founder-w320.avif 320w",
+        "/assets/img/_gen/about/kamil-krol-founder-w480.avif 480w",
+        "/assets/img/_gen/about/kamil-krol-founder-w640.avif 640w",
+        "/assets/img/_gen/about/kamil-krol-founder-w768.avif 768w",
+        "/assets/img/_gen/about/kamil-krol-founder-w1024.avif 1024w",
+      ].join(", "),
+      sizes: "(max-width: 640px) 96px, 128px",
+    },
+  });
+
+  const sourceWebp = createElement("source", {
+    attrs: {
+      type: "image/webp",
+      srcset: [
+        "/assets/img/_gen/about/kamil-krol-founder-w320.webp 320w",
+        "/assets/img/_gen/about/kamil-krol-founder-w480.webp 480w",
+        "/assets/img/_gen/about/kamil-krol-founder-w640.webp 640w",
+        "/assets/img/_gen/about/kamil-krol-founder-w768.webp 768w",
+        "/assets/img/_gen/about/kamil-krol-founder-w1024.webp 1024w",
+      ].join(", "),
+      sizes: "(max-width: 640px) 96px, 128px",
+    },
+  });
+
+  const avatarImg = createElement("img", {
+    attrs: {
+      src: "/assets/img/_gen/about/kamil-krol-founder-w640.webp",
+      alt: "Kamil Król – Founder KP_Code",
+      loading: "lazy",
+      decoding: "async",
+      width: "120",
+      height: "160",
+    },
+  });
+
+  avatarPicture.appendChild(sourceAvif);
+  avatarPicture.appendChild(sourceWebp);
+  avatarPicture.appendChild(avatarImg);
+  avatar.appendChild(avatarPicture);
+
   const founderMeta = createElement("div", { className: "about-founder-meta" }, [
     createElement("h3", { text: "Kamil Król" }),
     createElement("p", { className: "service-meta", text: "Founder · KP_Code" }),
   ]);
+
   const founderBio = createElement("p", {
     text: "Projektuje i rozwija produkty cyfrowe w oparciu o realne potrzeby biznesowe. Łączy design systemy z inżynierią front-endu, koncentrując się na stabilności, dostępności i przewidywalnym rozwoju platformy.",
   });
+
   const valuesList = createElement("ul", { className: "about-values" }, [
     createElement("li", { text: "Jakość i konsekwencja w UX" }),
     createElement("li", { text: "Dostępność od pierwszego wdrożenia" }),
     createElement("li", { text: "Performance jako standard, nie dodatek" }),
     createElement("li", { text: "Prostota i klarowność rozwiązań" }),
   ]);
+
   const founderCta = createElement("a", {
-    className: "button secondary",
-    text: "Skontaktuj się",
+    className: "about-cta",
+    text: "Kontakt",
     attrs: { href: "#/contact" },
   });
+
   founderCard.appendChild(avatar);
   founderCard.appendChild(founderMeta);
   founderCard.appendChild(founderBio);
-  founderCard.appendChild(createElement("h4", { text: "Wartości" }));
+  founderCard.appendChild(createElement("hr", { className: "about-separator" }));
   founderCard.appendChild(valuesList);
   founderCard.appendChild(founderCta);
 
@@ -85,13 +137,10 @@ export const renderAbout = () => {
       text: "KP_Code Digital Vault powstał jako odpowiedź na potrzebę uporządkowanych, wysokiej jakości produktów cyfrowych, które realnie skracają czas wdrożeń i podnoszą standard pracy zespołów produktowych.",
     }),
     createElement("p", {
-      text: "Tworzymy bibliotekę narzędzi, komponentów i zasobów projektowych, które są projektowane z myślą o rzeczywistym użyciu w projektach komercyjnych — nie jako demonstracje, lecz jako gotowe, skalowalne rozwiązania.",
+      text: "Tworzymy bibliotekę narzędzi, komponentów i zasobów projektowych, zaprojektowanych do rzeczywistego użycia w projektach komercyjnych — nie jako demonstracje, lecz jako gotowe, skalowalne rozwiązania.",
     }),
     createElement("p", {
-      text: "Platformę rozwijamy iteracyjnie, podejmując decyzje w oparciu o dane, feedback użytkowników oraz jakość architektury. Skupiamy się na długofalowej wartości: stabilności, dostępności, performance i spójności całego ekosystemu.",
-    }),
-    createElement("p", {
-      text: "KP_Code Digital Vault to nie jednorazowy zestaw produktów, ale rosnąca platforma, która ma wspierać twórców i zespoły w budowaniu lepszych, bardziej przewidywalnych produktów cyfrowych.",
+      text: "KP_Code Digital Vault to rosnąca platforma rozwijana iteracyjnie, z naciskiem na stabilność, dostępność, performance i spójność całego ekosystemu.",
     }),
   ]);
 
@@ -150,7 +199,7 @@ export const renderAbout = () => {
   roadmapCard.appendChild(createElement("h3", { text: "Roadmap (żywa)" }));
   roadmapCard.appendChild(
     createElement("p", {
-      text: "Roadmapę aktualizujemy cyklicznie. Opisuje ona kluczowe kierunki rozwoju platformy, które mogą ewoluować wraz z rozwojem produktu, wynikami sprzedaży oraz potrzebami użytkowników i partnerów.",
+      text: "Roadmapa opisuje kluczowe kierunki rozwoju platformy i jest aktualizowana cyklicznie na podstawie danych, sprzedaży oraz feedbacku użytkowników.",
     })
   );
   const roadmapList = createElement("ul", { className: "about-card-list" }, [

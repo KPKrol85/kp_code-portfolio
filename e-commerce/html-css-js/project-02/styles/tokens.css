@@ -1,9 +1,11 @@
 :root {
+  /* Typography */
   --font-sans:
     "Space Grotesk", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, Arial,
     "Noto Sans", "Liberation Sans", sans-serif;
   --font-mono: "JetBrains Mono", "SFMono-Regular", Menlo, monospace;
 
+  /* Colors (Light) */
   --color-bg: #f5f7fb;
   --color-surface: #ffffff;
   --color-surface-muted: #eef1f7;
@@ -24,15 +26,18 @@
   --color-brand: var(--color-accent);
   --color-brand-strong: var(--color-accent-strong);
 
+  /* Radius */
   --radius-xs: 6px;
   --radius-sm: 10px;
   --radius-md: 16px;
   --radius-lg: 24px;
 
+  /* Shadows */
   --shadow-sm: 0 8px 24px rgba(15, 23, 42, 0.08);
   --shadow-md: 0 20px 40px rgba(15, 23, 42, 0.12);
   --shadow-hero: 0 22px 56px rgba(15, 23, 42, 0.16), 0 6px 18px rgba(15, 23, 42, 0.1);
 
+  /* Spacing */
   --space-1: 0.25rem; /* 4px */
   --space-2: 0.5rem; /* 8px */
   --space-3: 0.75rem; /* 12px */
@@ -44,25 +49,52 @@
   --space-9: 3rem; /* 48px */
   --space-10: 4rem; /* 64px */
 
-  --fs-body: 1rem; /* 16px – bez clampa, stabilny */
+  /* Font sizes */
+  --fs-body: 1rem; /* 16px */
   --fs-h4: clamp(1.125rem, 1.2vw, 1.25rem); /* 18–20px */
   --fs-h3: clamp(1.25rem, 1.6vw, 1.5rem); /* 20–24px */
   --fs-h2: clamp(1.5rem, 2.2vw, 2rem); /* 24–32px */
   --fs-h1: clamp(1.75rem, 3vw, 2.5rem); /* 28–40px */
   --fs-hero: clamp(2rem, 4vw, 3rem); /* 32–48px */
 
-  /* UI text (smaller than body) */
   --fs-ui: 0.9375rem; /* 15px */
   --fs-ui-sm: 0.875rem; /* 14px */
   --fs-ui-xs: 0.8125rem; /* 13px */
   --fs-ui-2xs: 0.75rem; /* 12px */
 
-  /* Controls */
+  /* UI */
   --fs-button: var(--fs-ui-sm);
   --fs-label: var(--fs-ui-sm);
   --fs-meta: var(--fs-ui-xs);
   --fs-price: clamp(1.125rem, 1.4vw, 1.375rem);
 
+  /* Layout + Motion */
   --max-width: 1200px;
   --transition-fast: 160ms ease;
+}
+
+:root[data-theme="dark"] {
+  /* Colors (Dark) */
+  --color-bg: #0f141c;
+  --color-surface: #161c27;
+  --color-surface-muted: #1c2331;
+  --color-border: #2a3242;
+
+  --color-text: #f5f7fb;
+  --color-text-muted: #b0b8c6;
+
+  --color-accent: #6c8bff;
+  --color-accent-strong: #5173ff;
+  --color-accent-muted: color-mix(in srgb, var(--color-accent) 24%, transparent);
+
+  --color-success: #3ccb88;
+  --color-warning: #f2b84b;
+  --color-danger: #ff7a7f;
+  --color-focus: #8db5ff;
+
+  --color-brand: var(--color-accent);
+  --color-brand-strong: var(--color-accent-strong);
+
+  /* Shadows */
+  --shadow-hero: 0 26px 60px rgba(0, 0, 0, 0.45), 0 8px 22px rgba(0, 0, 0, 0.3);
 }

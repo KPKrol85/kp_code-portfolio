@@ -1,24 +1,4 @@
-:root[data-theme="dark"] {
-  --color-bg: #0f141c;
-  --color-surface: #161c27;
-  --color-surface-muted: #1c2331;
-  --color-border: #2a3242;
-  --color-text: #f5f7fb;
-  --color-text-muted: #b0b8c6;
-  --color-accent: #6c8bff;
-  --color-accent-strong: #5173ff;
-  --color-accent-muted: color-mix(in srgb, var(--color-accent) 24%, transparent);
-  --color-success: #3ccb88;
-  --color-warning: #f2b84b;
-  --color-danger: #ff7a7f;
-  --color-focus: #8db5ff;
-
-  --color-brand: var(--color-accent);
-  --color-brand-strong: var(--color-accent-strong);
-  --shadow-hero: 0 26px 60px rgba(0, 0, 0, 0.45), 0 8px 22px rgba(0, 0, 0, 0.3);
-}
-
-
+/* Theme Toggle (button) */
 .theme-toggle {
   display: inline-flex;
   align-items: center;
@@ -79,38 +59,10 @@
     0 2px 8px rgba(0, 0, 0, 0.06);
 }
 
-
-
-
-
-/*
-.theme-toggle {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: calc(var(--space-8) - (var(--space-1) / 2));
-  height: calc(var(--space-8) - (var(--space-1) / 2));
-  padding: 0;
-  border-radius: var(--radius-sm);
-  border: 1px solid var(--color-border);
-  background: var(--color-surface);
-  cursor: pointer;
-  color: var(--color-text-muted);
-  transition:
-    color var(--transition-fast),
-    background var(--transition-fast),
-    border-color var(--transition-fast);
-}
-
-.theme-toggle:hover,
-.theme-toggle:focus-visible {
-  color: var(--color-text);
-  background: var(--color-surface-muted);
-}
-*/
+/* Theme Toggle Icon (sun & moon SVG) */
 .sun-and-moon {
-  width: calc(var(--space-4) + (var(--space-1) / 2));
-  height: calc(var(--space-4) + (var(--space-1) / 2));
+  inline-size: calc(var(--space-4) + (var(--space-1) / 2));
+  block-size: calc(var(--space-4) + (var(--space-1) / 2));
 }
 
 .sun-and-moon .sun {
@@ -146,11 +98,12 @@
   transform: translateX(-7px);
 }
 
+/* Accessibility */
 @media (prefers-reduced-motion: reduce) {
+  .theme-toggle,
   .sun-and-moon .sun,
   .sun-and-moon .sun-beams,
-  .sun-and-moon .moon,
-  .theme-toggle {
+  .sun-and-moon .moon {
     transition: none;
   }
 }
