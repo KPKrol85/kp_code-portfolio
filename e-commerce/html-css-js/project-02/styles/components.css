@@ -1583,6 +1583,31 @@
   gap: var(--space-2);
 }
 
+.support-grid {
+  align-items: stretch;
+}
+
+.support-card {
+  gap: var(--space-3);
+}
+
+.support-card__icon {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--color-surface-muted);
+  color: var(--color-text);
+  border: 1px solid var(--color-border);
+  font-weight: 600;
+}
+
+.support-response {
+  gap: var(--space-2);
+}
+
 @media (min-width: 960px) {
   .faq-toolbar {
     grid-template-columns: minmax(0, 1fr) minmax(240px, 320px);

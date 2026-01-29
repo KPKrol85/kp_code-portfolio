@@ -566,6 +566,10 @@ export const content = {
         title: "Licencje - KP_Code Digital Vault",
         description: "Sprawdź typy licencji i pobierz pliki licencyjne.",
       },
+      support: {
+        title: "Wsparcie - KP_Code Digital Vault",
+        description: "Pomoc techniczna, FAQ i informacje o wsparciu platformy.",
+      },
       faq: {
         title: "FAQ - KP_Code Digital Vault",
         description: "Najczęściej zadawane pytania o produkty, licencje i zakupy.",
