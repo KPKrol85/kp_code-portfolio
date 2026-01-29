@@ -243,6 +243,211 @@ export const content = {
       },
     ],
   },
+  pricing: {
+    seo: {
+      title: "Cennik — KP_Code Digital Vault",
+      description: "Przejrzysty model cenowy produktów cyfrowych i usług KP_Code Digital Vault.",
+    },
+    hero: {
+      eyebrow: "Cennik",
+      title: "Cennik",
+      lead:
+        "Przejrzyste ceny produktów cyfrowych i usług. Płacisz raz i otrzymujesz dostęp do panelu oraz plików zgodnie z licencją.",
+      ctas: [
+        { label: "Zobacz produkty", href: "#/products" },
+        { label: "Kontakt", href: "#/contact", variant: "secondary" },
+      ],
+    },
+    explanation: {
+      title: "Jak działa zakup produktów",
+      lead: "Krótko i konkretnie: co dostajesz po zakupie i jak wygląda dostęp.",
+      items: [
+        {
+          title: "Dostęp i pliki",
+          description:
+            "Po zakupie zyskujesz dostęp do panelu klienta oraz plików do pobrania lub paczek produktowych.",
+        },
+        {
+          title: "Licencje",
+          description:
+            "Dostępne warianty: Personal / Commercial. Wybór zależy od skali projektu.",
+          linkLabel: "Zobacz licencje",
+          linkHref: "#/licenses",
+        },
+        {
+          title: "Aktualizacje",
+          description:
+            "Aktualizacje są dostępne w ramach wykupionego dostępu; szczegóły opisujemy w licencjach.",
+          linkLabel: "Szczegóły aktualizacji",
+          linkHref: "#/licenses",
+        },
+        {
+          title: "Zwroty i zasady",
+          description:
+            "Produkty cyfrowe po pobraniu zwykle nie podlegają zwrotom, ale pomagamy w razie problemów technicznych.",
+          linkLabel: "Regulamin",
+          linkHref: "#/terms",
+        },
+      ],
+    },
+    products: {
+      title: "Produkty cyfrowe",
+      lead: "Pakiety dopasowane do różnych potrzeb — od pojedynczych zestawów po kolekcje.",
+      items: [
+        {
+          name: "Starter Packs",
+          price: "od ...",
+          description: "Szybki start z kluczowymi komponentami i sekcjami.",
+          features: [
+            "Zestawy UI lub template'y na start",
+            "Spójne tokeny i warianty",
+            "Szybkie wdrożenie w krótkim czasie",
+            "Licencja Personal lub Commercial",
+          ],
+          ctaLabel: "Zobacz produkty",
+          ctaHref: "#/products",
+        },
+        {
+          name: "Pro Packs",
+          price: "od ...",
+          description: "Rozszerzone pakiety dla większych projektów i zespołów.",
+          features: [
+            "Więcej widoków i wariantów",
+            "Rozbudowane layouty i komponenty",
+            "Checklisty wdrożeniowe i dokumentacja",
+            "Aktualizacje zgodnie z licencją",
+          ],
+          ctaLabel: "Zobacz produkty",
+          ctaHref: "#/products",
+        },
+        {
+          name: "Bundles / Collections",
+          price: "od ...",
+          description: "Tematyczne kolekcje spójnych zasobów.",
+          features: [
+            "Łączone paczki w jednym stylu",
+            "Spójność wizualna w większych projektach",
+            "Oszczędność czasu przy wdrożeniu",
+            "Licencja Commercial",
+          ],
+          ctaLabel: "Zobacz produkty",
+          ctaHref: "#/products",
+        },
+        {
+          name: "All-Access / Vault Pass",
+          price: "od ...",
+          description: "Dostęp do pełnej biblioteki w jednym pakiecie.",
+          features: [
+            "Pełny dostęp do katalogu",
+            "Nowe wydania w trakcie dostępu",
+            "Idealne dla zespołów i agencji",
+            "Priorytetowy dostęp do aktualizacji",
+          ],
+          ctaLabel: "Zobacz produkty",
+          ctaHref: "#/products",
+        },
+      ],
+    },
+    services: {
+      title: "Usługi",
+      lead: "Pakiety usług dla zespołów, marek i startupów, które potrzebują wsparcia.",
+      items: [
+        {
+          name: "Landing Page",
+          price: "od ...",
+          description: "Szybkie wdrożenie strony sprzedażowej.",
+          features: [
+            "Hero, sekcje benefitów i social proof",
+            "Dopracowane CTA i struktura treści",
+            "Responsywność i optymalizacja web",
+          ],
+          ctaLabel: "Zobacz usługi",
+          ctaHref: "#/services",
+        },
+        {
+          name: "Website / Portfolio",
+          price: "od ...",
+          description: "Kompletny serwis pod markę lub ofertę.",
+          features: [
+            "Struktura informacji i plan treści",
+            "Design + wdrożenie w jednym procesie",
+            "Integracje i przygotowanie pod CMS",
+          ],
+          ctaLabel: "Zobacz usługi",
+          ctaHref: "#/services",
+        },
+        {
+          name: "UI / Frontend Implementation",
+          price: "od ...",
+          description: "Implementacja komponentów i design systemu.",
+          features: [
+            "Komponenty, tokeny i layouty",
+            "Spójny UI zgodny z brandem",
+            "Dostępność i baseline performance",
+          ],
+          ctaLabel: "Zobacz usługi",
+          ctaHref: "#/services",
+        },
+        {
+          name: "Consulting / Audit",
+          price: "od ...",
+          description: "Audyt i rekomendacje dla Twojego produktu.",
+          features: [
+            "Analiza UX/UI i front-end",
+            "Rekomendacje i szybkie usprawnienia",
+            "Roadmapa wdrożeń i priorytety",
+          ],
+          ctaLabel: "Kontakt",
+          ctaHref: "#/contact",
+        },
+      ],
+    },
+    faq: {
+      title: "FAQ",
+      lead: "Najczęściej zadawane pytania o ceny, licencje i realizację usług.",
+      items: [
+        {
+          question: "Dlaczego ceny są \"od ...\"?",
+          answer:
+            "Finalna cena zależy od zakresu pakietu, liczby widoków oraz licencji. Dzięki temu dopasowujemy ofertę do skali projektu.",
+        },
+        {
+          question: "Czy wystawiana jest faktura?",
+          answer:
+            "Tak, po zakupie otrzymujesz fakturę. W przypadku usług wystawiamy fakturę zgodnie z ustaleniami.",
+        },
+        {
+          question: "Jak działa licencja?",
+          answer:
+            "Licencja określa zakres użycia produktu (Personal lub Commercial). Szczegóły są dostępne w sekcji Licencje.",
+        },
+        {
+          question: "Czy są aktualizacje?",
+          answer:
+            "Tak, udostępniamy aktualizacje zgodnie z zakupionym dostępem i zapisami licencyjnymi.",
+        },
+        {
+          question: "Ile trwa realizacja usług?",
+          answer:
+            "Standardowo od 1 do kilku tygodni, zależnie od zakresu i priorytetów projektu.",
+        },
+        {
+          question: "Czy mogę zamówić coś custom?",
+          answer:
+            "Tak, realizujemy projekty niestandardowe. Skontaktuj się, aby omówić zakres i wycenę.",
+        },
+      ],
+    },
+    cta: {
+      title: "Masz pytania? Skontaktuj się",
+      description:
+        "Opisz potrzeby, a przygotujemy dopasowaną wycenę lub wskażemy najlepszy pakiet.",
+      primaryLabel: "Kontakt",
+      primaryHref: "#/contact",
+      secondaryLabel: "Zobacz produkty",
+      secondaryHref: "#/products",
+    },
+  },
   breadcrumbs: {
     sections: {
       products: "Produkty",
@@ -360,6 +565,10 @@ export const content = {
       licenses: {
         title: "Licencje - KP_Code Digital Vault",
         description: "Sprawdź typy licencji i pobierz pliki licencyjne.",
+      },
+      pricing: {
+        title: "Cennik - KP_Code Digital Vault",
+        description: "Przejrzysty model cenowy produktów cyfrowych i usług.",
       },
       privacy: {
         title: "Polityka prywatności - KP_Code Digital Vault",

@@ -18,6 +18,7 @@ export const registerRoutes = () => {
   const roadmapLoader = () => import("../pages/roadmap.js");
   const aboutLoader = () => import("../pages/about.js");
   const accountLoader = () => import("../pages/account.js");
+  const pricingLoader = () => import("../pages/pricing.js");
   const metaRoutes = content.meta.routes;
   const placeholderBullets = {
     products: [
@@ -51,18 +52,6 @@ export const registerRoutes = () => {
     { label: "Zaloguj się", href: "#/auth", variant: "secondary" },
   ];
   const placeholderRoutes = [
-    {
-      pattern: /^\/pricing$/,
-      meta: {
-        ...metaRoutes.placeholders.pricing,
-      },
-      view: {
-        title: "Cennik",
-        lead: "W przygotowaniu.",
-        bullets: placeholderBullets.resources,
-        ctas: defaultCtas,
-      },
-    },
     {
       pattern: /^\/updates$/,
       meta: {
@@ -136,6 +125,12 @@ export const registerRoutes = () => {
     () => import("../pages/products.js"),
     getHandlerByName("renderProducts"),
     metaRoutes.products
+  );
+  addLazyRoute(
+    /^\/pricing$/,
+    pricingLoader,
+    getHandlerByName("renderPricing"),
+    metaRoutes.pricing
   );
   addRoute(
     /^\/products\/core-ui-components-pack\/panel$/,
