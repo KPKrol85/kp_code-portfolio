@@ -9,6 +9,8 @@
 
 .hero__title {
   font-size: var(--font-size-xxl);
+  letter-spacing: -0.02em;
+  line-height: var(--line-height-tight);
 }
 
 .hero__lead {
