@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="pl">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Contact — KP_Code Digital Studio</title>
+  <meta name="description" content="Skontaktuj się z KP_Code Digital Studio. Darmowa wycena projektu webowego." />
+  <link rel="canonical" href="https://www.kp-code.pl/contact.html" />
+  <meta property="og:title" content="Contact — KP_Code Digital Studio" />
+  <meta property="og:description" content="Napisz do Kamila Króla i omów projekt strony lub SEO." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://www.kp-code.pl/contact.html" />
+  <meta property="og:image" content="./og/og-default.svg" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:image" content="./og/og-default.svg" />
+  <link rel="icon" href="./assets/icons/favicon.svg" type="image/svg+xml" />
+  <link rel="manifest" href="./seo/manifest.webmanifest" />
+  <link rel="stylesheet" href="./css/tokens.css" />
+  <link rel="stylesheet" href="./css/base.css" />
+  <link rel="stylesheet" href="./css/components.css" />
+  <link rel="stylesheet" href="./css/sections.css" />
+</head>
+<body>
+  <a class="skip-link" href="#main">Przejdź do treści</a>
+  <header class="header">
+    <div class="container nav">
+      <a class="nav__brand" href="./index.html" aria-label="KP_Code Digital Studio, strona główna">
+        <span class="nav__logo">KP</span>
+        <span>KP_Code Digital Studio</span>
+      </a>
+      <nav class="nav__links" id="primary-navigation" aria-label="Główna nawigacja">
+        <a class="nav__link" href="./index.html">Home</a>
+        <a class="nav__link" href="./projects.html">Projects</a>
+        <a class="nav__link" href="./contact.html" aria-current="page">Contact</a>
+      </nav>
+      <div class="nav__actions">
+        <button class="theme-toggle" type="button" data-theme-toggle aria-label="Zmień motyw" aria-pressed="false">🌓</button>
+        <button class="nav__toggle" type="button" data-nav-toggle aria-label="Otwórz menu" aria-expanded="false" aria-controls="primary-navigation">☰</button>
+      </div>
+    </div>
+  </header>
+
+  <main id="main">
+    <section class="section" data-reveal>
+      <div class="container contact-grid">
+        <div>
+          <p class="section__eyebrow">Contact</p>
+          <h1 class="section__title">Umów bezpłatną konsultację.</h1>
+          <p class="section__subtitle">Opowiedz o celach projektu, a wrócę z rekomendacją i wyceną.</p>
+          <div class="card" style="margin-top: var(--space-lg);">
+            <h2 class="card__title">Dane kontaktowe</h2>
+            <p class="card__meta">kontakt@kp-code.pl</p>
+            <p class="card__meta">+48 000 000 000</p>
+            <div class="pill-grid">
+              <span class="tag">LinkedIn</span>
+              <span class="tag">Behance</span>
+              <span class="tag">Dribbble</span>
+            </div>
+          </div>
+        </div>
+        <div>
+          <form class="form" data-contact-form novalidate>
+            <div class="form__field">
+              <label for="name">Imię i nazwisko</label>
+              <input class="form__input" id="name" name="name" type="text" autocomplete="name" required />
+            </div>
+            <div class="form__field">
+              <label for="email">E-mail</label>
+              <input class="form__input" id="email" name="email" type="email" autocomplete="email" required />
+            </div>
+            <div class="form__field">
+              <label for="message">Wiadomość</label>
+              <textarea class="form__textarea" id="message" name="message" rows="5" required></textarea>
+            </div>
+            <button class="button button--primary" type="submit">Wyślij wiadomość</button>
+            <p class="form__message" data-form-message aria-live="polite"></p>
+          </form>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer__grid">
+      <div>
+        <strong>KP_Code Digital Studio</strong>
+        <p class="card__meta">Kontakt i konsultacje projektowe.</p>
+      </div>
+      <nav class="footer__nav" aria-label="Stopka">
+        <a href="./index.html">Home</a>
+        <a href="./projects.html">Projects</a>
+        <a href="./contact.html">Contact</a>
+      </nav>
+      <div>
+        <p class="card__meta">© 2024 Kamil Król.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="./js/main.js"></script>
+</body>
+</html>

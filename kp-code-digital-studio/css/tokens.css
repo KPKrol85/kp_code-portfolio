@@ -1,0 +1,69 @@
+:root {
+  color-scheme: light dark;
+  --color-bg: #f6f7fb;
+  --color-surface: #ffffff;
+  --color-surface-alt: #eef1f7;
+  --color-text: #1a1d26;
+  --color-text-muted: #5a6170;
+  --color-primary: #1d4ed8;
+  --color-primary-soft: #dbe7ff;
+  --color-border: #d8dce6;
+  --color-accent: #0f172a;
+  --color-success: #0f766e;
+  --color-warning: #b45309;
+
+  --font-family-base: system-ui, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  --font-family-display: "SF Pro Display", "SF Pro Text", var(--font-family-base);
+
+  --font-size-xs: clamp(0.72rem, 0.68rem + 0.2vw, 0.8rem);
+  --font-size-sm: clamp(0.82rem, 0.76rem + 0.3vw, 0.95rem);
+  --font-size-md: clamp(1rem, 0.94rem + 0.35vw, 1.15rem);
+  --font-size-lg: clamp(1.25rem, 1.1rem + 0.6vw, 1.6rem);
+  --font-size-xl: clamp(1.6rem, 1.3rem + 1vw, 2.2rem);
+  --font-size-xxl: clamp(2.2rem, 1.6rem + 2vw, 3.4rem);
+
+  --line-height-tight: 1.15;
+  --line-height-base: 1.6;
+
+  --space-2xs: 0.25rem;
+  --space-xs: 0.5rem;
+  --space-sm: 0.75rem;
+  --space-md: 1rem;
+  --space-lg: 1.5rem;
+  --space-xl: 2rem;
+  --space-2xl: 3rem;
+  --space-3xl: 4rem;
+
+  --radius-sm: 0.5rem;
+  --radius-md: 0.9rem;
+  --radius-lg: 1.25rem;
+
+  --shadow-sm: 0 8px 24px rgba(15, 23, 42, 0.08);
+  --shadow-md: 0 18px 40px rgba(15, 23, 42, 0.12);
+
+  --transition-fast: 150ms ease;
+  --transition-base: 220ms ease;
+
+  --container: 1120px;
+}
+
+[data-theme="dark"] {
+  --color-bg: #0b0f17;
+  --color-surface: #121826;
+  --color-surface-alt: #182033;
+  --color-text: #eef2ff;
+  --color-text-muted: #a4acc4;
+  --color-primary: #7aa2ff;
+  --color-primary-soft: #1b2a4d;
+  --color-border: #25304b;
+  --color-accent: #f8fafc;
+  --color-success: #2dd4bf;
+  --color-warning: #fbbf24;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    --transition-fast: 0ms;
+    --transition-base: 0ms;
+  }
+}
