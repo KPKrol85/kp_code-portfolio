@@ -19,17 +19,23 @@
 
 :root {
   color-scheme: light dark;
+
   --color-bg: #f6f7fb;
   --color-surface: #ffffff;
   --color-surface-alt: #eef1f7;
+
   --color-text: #1a1d26;
   --color-text-muted: #5a6170;
+
   --color-primary: #1d4ed8;
   --color-primary-soft: #dbe7ff;
+
   --color-border: #d8dce6;
   --color-accent: #0f172a;
+
   --color-success: #0f766e;
   --color-warning: #b45309;
+
   --icon-fill: var(--color-text-muted);
   --icon-fill-hover: var(--color-text);
 
@@ -48,24 +54,54 @@
   --line-height-tight: 1.15;
   --line-height-base: 1.6;
 
-  --space-2xs: 0.25rem;
-  --space-xs: 0.5rem;
-  --space-sm: 0.75rem;
-  --space-md: 1rem;
-  --space-lg: 1.5rem;
-  --space-xl: 2rem;
-  --space-2xl: 3rem;
-  --space-3xl: 4rem;
+  --space-unit: 0.25rem;
 
-  --radius-sm: 0.5rem;
-  --radius-md: 0.9rem;
-  --radius-lg: 1.25rem;
+  --space-2xs: calc(var(--space-unit) * 1); /* 0.25rem */
+  --space-xs: calc(var(--space-unit) * 2); /* 0.5rem  */
+  --space-sm: calc(var(--space-unit) * 3); /* 0.75rem */
+  --space-md: calc(var(--space-unit) * 4); /* 1rem    */
+  --space-lg: calc(var(--space-unit) * 6); /* 1.5rem  */
+  --space-xl: calc(var(--space-unit) * 8); /* 2rem    */
+  --space-2xl: calc(var(--space-unit) * 12); /* 3rem    */
+  --space-3xl: calc(var(--space-unit) * 16); /* 4rem    */
+  --space-4xl: 6rem;
+
+  --space-inline: var(--space-xs);
+  --space-stack: var(--space-md);
+  --space-card: var(--space-lg);
+  --space-section: var(--space-3xl);
+
+  --header-py: var(--space-md);
+  --header-py-shrink: var(--space-sm);
+  --header-links-offset: 72px;
+  --header-links-offset-shrink: 64px;
+
+  --radius-0: 0rem;
+  --radius-4: 0.25rem;
+  --radius-8: 0.5rem;
+  --radius-12: 0.75rem;
+  --radius-16: 1rem;
+  --radius-20: 1.25rem;
+  --radius-24: 1.5rem;
+
+  /* Semantic usage */
+  --radius-xs: var(--radius-4);
+  --radius-sm: var(--radius-8);
+  --radius-md: var(--radius-12);
+  --radius-lg: var(--radius-16);
+  --radius-xl: var(--radius-20);
+  --radius-2xl: var(--radius-24);
+
+  /* Special */
+  --radius-pill: 999px;
+  --radius-circle: 50%;
 
   --shadow-sm: 0 8px 24px rgba(15, 23, 42, 0.08);
   --shadow-md: 0 18px 40px rgba(15, 23, 42, 0.12);
 
   --transition-fast: 150ms ease;
   --transition-base: 220ms ease;
+
   --ease-3: cubic-bezier(0.25, 0, 0.3, 1);
   --ease-out-5: cubic-bezier(0, 0, 0, 1);
   --ease-elastic-3: cubic-bezier(0.5, 1.25, 0.75, 1.25);

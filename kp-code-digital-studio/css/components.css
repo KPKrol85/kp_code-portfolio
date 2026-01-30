@@ -2,16 +2,43 @@
   position: sticky;
   top: 0;
   z-index: 100;
-  background: color-mix(in srgb, var(--color-bg) 92%, transparent);
+  --header-py-current: var(--header-py);
+  --header-links-offset-current: var(--header-links-offset);
+  --header-scale: 1;
+  --header-translate-y: 0px;
+  background-color: color-mix(in srgb, var(--color-bg) 92%, transparent);
   backdrop-filter: blur(14px);
   border-bottom: 1px solid var(--color-border);
+  transition:
+    background-color var(--transition-base),
+    box-shadow var(--transition-base),
+    border-color var(--transition-base),
+    backdrop-filter var(--transition-base);
+  will-change: background-color, backdrop-filter, border-color, box-shadow;
+}
+
+.header.is-shrink {
+  --header-py-current: var(--header-py-shrink);
+  --header-links-offset-current: var(--header-links-offset-shrink);
+  --header-scale: 0.98;
+  --header-translate-y: -2px;
+  background-color: color-mix(in srgb, var(--color-bg) 96%, transparent);
+  backdrop-filter: blur(18px);
+  border-color: color-mix(in srgb, var(--color-border) 70%, transparent);
+  box-shadow: var(--shadow-sm);
 }
 
 .nav {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: var(--space-md) 0;
+  padding: var(--header-py-current) 0;
+  transform: translateY(var(--header-translate-y)) scale(var(--header-scale));
+  transform-origin: top center;
+  transition:
+    padding var(--transition-base),
+    transform var(--transition-base);
+  will-change: padding, transform;
 }
 
 .nav__brand {
@@ -45,7 +72,7 @@
 
 .nav__links {
   position: fixed;
-  inset: 72px 0 auto 0;
+  inset: var(--header-links-offset-current) 0 auto 0;
   background: var(--color-bg);
   padding: var(--space-xl) var(--space-lg);
   display: grid;
@@ -173,6 +200,19 @@
   }
 }
 
+@media (prefers-reduced-motion: reduce) {
+  .header,
+  .nav,
+  .nav__links {
+    transition: none;
+  }
+}
+
+
+
+
+
+/*
 .button {
   display: inline-flex;
   align-items: center;
@@ -207,6 +247,106 @@
 .button--ghost:hover {
   border-color: var(--color-primary);
 }
+*/
+.button {
+  appearance: none;
+  border: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-xs);
+
+
+
+  padding: calc(var(--space-sm) + 1px) var(--space-lg);
+  border-radius: var(--radius-pill);
+
+  font-family: inherit;
+  font-size: var(--font-size-sm);
+  font-weight: 500;
+  line-height: 1;
+
+  cursor: pointer;
+  white-space: nowrap;
+  user-select: none;
+  text-decoration: none;
+
+  transition:
+    background-color var(--transition-base),
+    color var(--transition-base),
+    box-shadow var(--transition-base),
+    border-color var(--transition-base),
+    filter var(--transition-base);
+}
+
+.button:focus-visible {
+  outline: none;
+  box-shadow:
+    0 0 0 3px color-mix(in srgb, var(--color-primary) 35%, transparent);
+}
+
+/* PRIMARY */
+
+.button--primary {
+  background: var(--color-primary);
+  color: #fff;
+  box-shadow: 0 6px 18px rgba(29, 78, 216, 0.25);
+}
+
+.button--primary:hover {
+  filter: brightness(1.05);
+}
+
+.button--primary:active {
+  filter: brightness(0.95);
+  box-shadow: 0 4px 12px rgba(29, 78, 216, 0.22);
+}
+
+/* GHOST */
+
+.button--ghost {
+  background: transparent;
+  color: var(--color-text);
+  border: 1px solid var(--color-border);
+}
+
+.button--ghost:hover {
+  background: var(--color-surface-alt);
+  border-color: var(--color-border);
+}
+
+.button--ghost:active {
+  background: color-mix(in srgb, var(--color-surface-alt) 85%, transparent);
+}
+
+/* DISABLED */
+
+.button:disabled,
+.button[aria-disabled="true"] {
+  opacity: 0.5;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+/* REDUCED MOTION */
+
+@media (prefers-reduced-motion: reduce) {
+  .button {
+    transition: none;
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
+
 
 .card {
   background: var(--color-surface);

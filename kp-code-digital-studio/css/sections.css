@@ -24,6 +24,7 @@
   flex-wrap: wrap;
   gap: var(--space-md);
   align-items: center;
+  margin-top: var(--space-xl);
 }
 
 .hero__meta {
