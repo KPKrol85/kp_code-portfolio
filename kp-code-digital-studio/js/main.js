@@ -1,31 +1,23 @@
 const navToggle = document.querySelector('[data-nav-toggle]');
 const nav = document.querySelector('.nav');
-const themeToggle = document.querySelector('[data-theme-toggle]');
-const prefersDark = window.matchMedia('(prefers-color-scheme: dark)');
-
-const setTheme = (theme) => {
-  document.documentElement.setAttribute('data-theme', theme);
-  localStorage.setItem('theme', theme);
-  if (themeToggle) {
-    themeToggle.setAttribute('aria-pressed', theme === 'dark');
-  }
-};
-
-const initTheme = () => {
-  const saved = localStorage.getItem('theme');
-  if (saved) {
-    setTheme(saved);
-    return;
-  }
-  setTheme(prefersDark.matches ? 'dark' : 'light');
-};
-
-if (themeToggle) {
-  themeToggle.addEventListener('click', () => {
-    const current = document.documentElement.getAttribute('data-theme');
-    setTheme(current === 'dark' ? 'light' : 'dark');
-  });
+const storageKey = 'theme-preference'
+const onClick = () => { theme.value = theme.value === 'light' ? 'dark' : 'light'; setPreference() }
+const getColorPreference = () => { if (localStorage.getItem(storageKey)) return localStorage.getItem(storageKey); else return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light' }
+const setPreference = () => { localStorage.setItem(storageKey, theme.value); reflectPreference() }
+const reflectPreference = () => {
+  document.firstElementChild.setAttribute('data-theme', theme.value)
+  document.querySelector('#theme-toggle')?.setAttribute('aria-label', theme.value)
 }
+const theme = { value: getColorPreference() }
+reflectPreference()
+window.onload = () => {
+  reflectPreference()
+  document.querySelector('#theme-toggle')?.addEventListener('click', onClick)
+}
+window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', ({matches:isDark}) => {
+  theme.value = isDark ? 'dark' : 'light'
+  setPreference()
+})
 
 if (navToggle && nav) {
   navToggle.addEventListener('click', () => {
@@ -124,5 +116,3 @@ if (filterButtons.length && projectGrid) {
     });
   });
 }
-
-initTheme();

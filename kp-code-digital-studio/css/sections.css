@@ -12,8 +12,9 @@
 }
 
 .hero__lead {
-  font-size: var(--font-size-lg);
+  font-size: var(--font-size-md);
   color: var(--color-text-muted);
+  margin: var(--space-sm) 0;
 }
 
 .hero__cta {

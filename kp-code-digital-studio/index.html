@@ -17,17 +17,30 @@
   <meta name="twitter:image" content="./og/og-default.svg" />
   <link rel="icon" href="./assets/icons/favicon.svg" type="image/svg+xml" />
   <link rel="manifest" href="./seo/manifest.webmanifest" />
+  <script>
+    (() => {
+      const storageKey = 'theme-preference';
+      const stored = localStorage.getItem(storageKey);
+      const preference = stored ? stored : (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+      document.documentElement.setAttribute('data-theme', preference);
+    })();
+  </script>
   <link rel="stylesheet" href="./css/tokens.css" />
   <link rel="stylesheet" href="./css/base.css" />
   <link rel="stylesheet" href="./css/components.css" />
   <link rel="stylesheet" href="./css/sections.css" />
 </head>
+
+<!-- body -->
 <body>
   <a class="skip-link" href="#main">Przejdź do treści</a>
   <header class="header">
     <div class="container nav">
       <a class="nav__brand" href="./index.html" aria-label="KP_Code Digital Studio, strona główna">
-        <span class="nav__logo">KP</span>
+        <picture class="brand__logo">
+          <source srcset="./assets/img/logo/logo-dark-mode.svg" media="(prefers-color-scheme: dark)">
+          <img src="./assets/img/logo/logo-light-mode.svg" alt="KP_Code Digital Studio" />
+        </picture>
         <span>KP_Code Digital Studio</span>
       </a>
       <nav class="nav__links" id="primary-navigation" aria-label="Główna nawigacja">
@@ -36,7 +49,25 @@
         <a class="nav__link" href="./contact.html">Contact</a>
       </nav>
       <div class="nav__actions">
-        <button class="theme-toggle" type="button" data-theme-toggle aria-label="Zmień motyw" aria-pressed="false">🌓</button>
+        <button class="theme-toggle" id="theme-toggle" title="Toggles light & dark" aria-label="auto" aria-live="polite">
+          <svg class="sun-and-moon" aria-hidden="true" width="20" height="20" viewBox="0 0 24 24">
+            <mask class="moon" id="moon-mask">
+              <rect x="0" y="0" width="100%" height="100%" fill="white" />
+              <circle cx="24" cy="10" r="6" fill="black" />
+            </mask>
+            <circle class="sun" cx="12" cy="12" r="6" mask="url(#moon-mask)" fill="currentColor" />
+            <g class="sun-beams" stroke="currentColor">
+              <line x1="12" y1="1" x2="12" y2="3" />
+              <line x1="12" y1="21" x2="12" y2="23" />
+              <line x1="4.22" y1="4.22" x2="5.64" y2="5.64" />
+              <line x1="18.36" y1="18.36" x2="19.78" y2="19.78" />
+              <line x1="1" y1="12" x2="3" y2="12" />
+              <line x1="21" y1="12" x2="23" y2="12" />
+              <line x1="4.22" y1="19.78" x2="5.64" y2="18.36" />
+              <line x1="18.36" y1="5.64" x2="19.78" y2="4.22" />
+             </g>
+          </svg>
+        </button>
         <button class="nav__toggle" type="button" data-nav-toggle aria-label="Otwórz menu" aria-expanded="false" aria-controls="primary-navigation">☰</button>
       </div>
     </div>
