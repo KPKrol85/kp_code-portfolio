@@ -1,4 +1,5 @@
 import { createBreadcrumbs } from "../components/breadcrumbs.js";
+import { renderEmptyState } from "../components/ui-state-helpers.js";
 import { renderNotice, createRetryButton } from "../components/uiStates.js";
 import { content } from "../content/pl.js";
 import { purchasesService } from "../services/purchases.js";
@@ -8,35 +9,142 @@ import { createElement, clearElement } from "../utils/dom.js";
 import { formatDate } from "../utils/format.js";
 import { parseHash } from "../utils/navigation.js";
 
-const createLicenseBlob = (details) => {
-  const content = [
-    "KP_Code Digital Vault - License",
-    `Produkt: ${details.productName}`,
-    `Licencja: ${details.license}`,
-    `Klient: ${details.userName}`,
-    `Data zakupu: ${details.date}`,
-  ].join("\n");
-  return new Blob([content], { type: "text/plain" });
+const SECTION_IDS = {
+  your: "your-licenses",
+  types: "license-types",
 };
 
-const buildLicenseKey = (purchaseId, productId) => {
-  const shortPurchase = String(purchaseId || "")
-    .replace(/-/g, "")
-    .slice(0, 8);
-  return `${shortPurchase}-${productId}`.toUpperCase();
+const getSectionFromQuery = () => {
+  const { queryParams } = parseHash();
+  const section = typeof queryParams.section === "string" ? queryParams.section : "";
+  if (section === SECTION_IDS.your || section === SECTION_IDS.types) {
+    return section;
+  }
+  return null;
+};
+
+const scrollToSection = (sectionId) => {
+  if (!sectionId) {
+    return;
+  }
+  const target = document.getElementById(sectionId);
+  if (!target) {
+    return;
+  }
+  const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  requestAnimationFrame(() => {
+    target.scrollIntoView({ behavior: prefersReducedMotion ? "auto" : "smooth", block: "start" });
+  });
+};
+
+const LicenseCard = ({ license, status, assignedAt, issuer, products, libraryHref }) => {
+  const metaItems = [];
+  if (assignedAt) {
+    metaItems.push({
+      label: content.licensesPage.your.assignedAtLabel,
+      value: formatDate(assignedAt),
+    });
+  }
+  metaItems.push({ label: content.licensesPage.your.issuerLabel, value: issuer });
+
+  const productList = createElement(
+    "ul",
+    { className: "license-card__products" },
+    products.map((product) =>
+      createElement("li", {}, [
+        createElement("span", { text: product.name }),
+        libraryHref
+          ? createElement("a", {
+              className: "license-card__library-link",
+              text: content.licensesPage.your.libraryLink,
+              attrs: { href: libraryHref },
+            })
+          : null,
+      ])
+    )
+  );
+
+  return createElement("article", { className: "card license-card" }, [
+    createElement("div", { className: "license-card__header" }, [
+      createElement("h3", { text: license }),
+      createElement("span", { className: "badge", text: status }),
+    ]),
+    metaItems.length
+      ? createElement(
+          "dl",
+          { className: "license-card__meta" },
+          metaItems.flatMap((item) => [
+            createElement("dt", { text: item.label }),
+            createElement("dd", { text: item.value }),
+          ])
+        )
+      : null,
+    createElement("div", { className: "license-card__section" }, [
+      createElement("h4", { text: content.licensesPage.your.productsLabel }),
+      productList,
+    ]),
+  ]);
+};
+
+const buildUserLicenses = ({ purchases, products, licenseTypes }) => {
+  const productMap = new Map(products.map((product) => [product.id, product]));
+  const fallbackType = licenseTypes[1]?.type || licenseTypes[0]?.type || "Commercial";
+
+  return purchases
+    .map((purchase, index) => {
+      const productItems = Array.isArray(purchase?.items) ? purchase.items : [];
+      const coveredProducts = productItems
+        .map((item) => {
+          const product = productMap.get(item.productId);
+          return {
+            id: item.productId,
+            name: product?.name || "Produkt cyfrowy",
+          };
+        })
+        .filter((item) => item.id);
+      if (!coveredProducts.length) {
+        return null;
+      }
+      return {
+        id: purchase?.id || `license-${index}`,
+        license: purchase?.licenseType || fallbackType,
+        status: content.licensesPage.your.statusActive,
+        assignedAt: purchase?.createdAt || null,
+        issuer: "KP_Code",
+        products: coveredProducts,
+      };
+    })
+    .filter(Boolean);
 };
 
 export const renderLicenses = () => {
   const main = document.getElementById("main-content");
   clearElement(main);
 
-  const { licenses, products, productsStatus, productsError } = store.getState();
+  const { licenses, products, productsStatus, productsError, user } = store.getState();
   const container = createElement("section", { className: "container" });
   const breadcrumbs = createBreadcrumbs(buildBreadcrumbsForPath(parseHash().pathname));
   if (breadcrumbs) {
     container.appendChild(breadcrumbs);
   }
-  container.appendChild(createElement("h1", { text: "Licencje" }));
+  container.appendChild(createElement("h1", { text: content.licensesPage.title }));
+  container.appendChild(
+    createElement("p", { className: "section-lead", text: content.licensesPage.lead })
+  );
+  container.appendChild(
+    createElement("nav", { className: "nav-links license-nav", attrs: { "aria-label": "Sekcje" } }, [
+      createElement("a", {
+        className: "nav-link",
+        text: content.licensesPage.nav.your,
+        attrs: { href: `#/licenses?section=${SECTION_IDS.your}` },
+      }),
+      createElement("a", {
+        className: "nav-link",
+        text: content.licensesPage.nav.types,
+        attrs: { href: `#/licenses?section=${SECTION_IDS.types}` },
+      }),
+    ])
+  );
 
   if (productsStatus === "loading" || productsStatus === "idle") {
     renderNotice(container, {
@@ -59,6 +167,54 @@ export const renderLicenses = () => {
     return;
   }
 
+  const yourSection = createElement("section", {
+    className: "section license-section",
+    attrs: { id: SECTION_IDS.your },
+  });
+  yourSection.appendChild(createElement("h2", { text: content.licensesPage.your.title }));
+  yourSection.appendChild(
+    createElement("p", { className: "section-lead", text: content.licensesPage.your.lead })
+  );
+  if (user?.email === "demo@kpcode.dev") {
+    yourSection.appendChild(
+      createElement("p", { className: "license-demo", text: content.licensesPage.your.demoNote })
+    );
+  }
+
+  const purchases = purchasesService.getPurchases();
+  const userLicenses = buildUserLicenses({ purchases, products, licenseTypes: licenses });
+  if (!userLicenses.length) {
+    const emptyState = renderEmptyState({
+      title: content.licensesPage.your.emptyTitle,
+      message: content.licensesPage.your.emptyMessage,
+      ctaText: content.licensesPage.your.emptyCta,
+      ctaHref: "#/products",
+    });
+    yourSection.appendChild(emptyState);
+  } else {
+    const list = createElement("div", { className: "grid grid-2" });
+    userLicenses.forEach((license) => {
+      list.appendChild(
+        LicenseCard({
+          ...license,
+          libraryHref: content.meta?.routes?.library ? "#/library" : null,
+        })
+      );
+    });
+    yourSection.appendChild(list);
+  }
+
+  container.appendChild(yourSection);
+
+  const typesSection = createElement("section", {
+    className: "section license-section",
+    attrs: { id: SECTION_IDS.types },
+  });
+  typesSection.appendChild(createElement("h2", { text: content.licensesPage.types.title }));
+  typesSection.appendChild(
+    createElement("p", { className: "section-lead", text: content.licensesPage.types.lead })
+  );
+
   const licenseGrid = createElement("div", { className: "grid grid-2" });
   if (!licenses.length) {
     renderNotice(licenseGrid, {
@@ -68,77 +224,59 @@ export const renderLicenses = () => {
   } else {
     licenses.forEach((license) => {
       const card = createElement("div", { className: "card" }, [
-        createElement("h2", { text: license.type }),
-        createElement("p", { text: license.summary }),
-        createElement("h4", { text: "Uprawnienia" }),
+        createElement("h3", { text: license.type }),
+        createElement("p", {
+          text: `${content.licensesPage.types.audienceLabel}: ${license.summary}`,
+        }),
+        createElement("h4", { text: content.licensesPage.types.permissionsLabel }),
         createElement(
           "ul",
           {},
           license.permissions.map((item) => createElement("li", { text: item }))
         ),
-        createElement("h4", { text: "Ograniczenia" }),
+        createElement("h4", { text: content.licensesPage.types.limitationsLabel }),
         createElement(
           "ul",
           {},
           license.limitations.map((item) => createElement("li", { text: item }))
         ),
-        createElement("p", { text: `Wsparcie: ${license.support}` }),
+        createElement("p", {
+          text: `${content.licensesPage.types.supportLabel}: ${license.support}`,
+        }),
       ]);
       licenseGrid.appendChild(card);
     });
   }
 
-  container.appendChild(licenseGrid);
+  typesSection.appendChild(licenseGrid);
 
-  const assignedSection = createElement("div", { className: "section" }, [
-    createElement("h2", { text: "Twoje licencje" }),
-  ]);
-
-  const purchases = purchasesService.getPurchases();
-  if (!purchases.length) {
-    assignedSection.appendChild(createElement("p", { text: "Brak przypisanych licencji." }));
-  } else {
-    const list = createElement("div", { className: "grid grid-2" });
-    purchases.forEach((purchase) => {
-      purchase.items.forEach((item) => {
-        const product = products.find((entry) => entry.id === item.productId);
-        if (!product) {
-          return;
-        }
-        const licenseKey = buildLicenseKey(purchase.id, product.id);
-        const card = createElement("div", { className: "card" }, [
-          createElement("h3", { text: product.name }),
-          createElement("p", { text: `Klucz: ${licenseKey}` }),
-          createElement("p", { text: `Data zakupu: ${formatDate(purchase.createdAt)}` }),
-        ]);
-        const downloadButton = createElement("button", {
-          className: "button secondary",
-          text: "Pobierz license.txt",
-          attrs: { type: "button" },
-        });
-        downloadButton.addEventListener("click", () => {
-          const blob = createLicenseBlob({
-            productName: product.name,
-            license: licenseKey,
-            userName: "Klient",
-            date: formatDate(purchase.createdAt),
-          });
-          const url = URL.createObjectURL(blob);
-          const link = createElement("a", {
-            attrs: { href: url, download: `${product.id}-license.txt` },
-          });
-          document.body.appendChild(link);
-          link.click();
-          link.remove();
-          URL.revokeObjectURL(url);
-        });
-        card.appendChild(downloadButton);
-        list.appendChild(card);
-      });
-    });
-    assignedSection.appendChild(list);
+  const links = [];
+  if (content.meta?.routes?.terms) {
+    links.push(
+      createElement("a", {
+        className: "nav-link",
+        text: content.licensesPage.types.legalLinkLabel,
+        attrs: { href: "#/terms" },
+      })
+    );
+  }
+  if (content.meta?.routes?.docs) {
+    links.push(
+      createElement("a", {
+        className: "nav-link",
+        text: content.licensesPage.types.docsLinkLabel,
+        attrs: { href: "#/docs" },
+      })
+    );
+  }
+  if (links.length) {
+    typesSection.appendChild(
+      createElement("div", { className: "nav-links license-links" }, links)
+    );
   }
 
-  container.appendChild(assignedSection);
+  container.appendChild(typesSection);
   main.appendChild(container);
+
+  scrollToSection(getSectionFromQuery());
 };

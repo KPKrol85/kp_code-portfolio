@@ -21,6 +21,11 @@ const ACCOUNT_NAV_ITEMS = [
     href: "#/account/downloads",
     match: "/account/downloads",
   },
+  {
+    label: content.account.nav.licenses,
+    href: "#/licenses?section=your-licenses",
+    match: "/licenses",
+  },
   { label: content.account.nav.settings, href: "#/account/settings", match: "/account/settings" },
 ];
 

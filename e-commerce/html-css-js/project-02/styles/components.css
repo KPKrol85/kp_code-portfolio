@@ -543,6 +543,80 @@
   box-shadow: 0 0 0 3px color-mix(in srgb, var(--color-focus) 25%, transparent);
 }
 
+.license-nav {
+  margin-bottom: var(--space-6);
+}
+
+.license-section {
+  display: grid;
+  gap: var(--space-4);
+}
+
+.license-demo {
+  color: var(--color-text-muted);
+  font-size: 0.9rem;
+  margin: 0;
+}
+
+.license-card__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-3);
+}
+
+.license-card__meta {
+  display: grid;
+  grid-template-columns: minmax(0, 160px) minmax(0, 1fr);
+  gap: var(--space-2) var(--space-4);
+  margin: 0 0 var(--space-3);
+}
+
+.license-card__meta dt {
+  color: var(--color-text-muted);
+  font-weight: 500;
+}
+
+.license-card__meta dd {
+  margin: 0;
+}
+
+.license-card__section h4 {
+  margin-bottom: var(--space-2);
+}
+
+.license-card__products {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  gap: var(--space-2);
+}
+
+.license-card__products li {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-3);
+}
+
+.license-card__library-link {
+  font-size: 0.85rem;
+  color: var(--color-text-muted);
+  text-decoration: none;
+}
+
+.license-card__library-link:hover,
+.license-card__library-link:focus-visible {
+  color: var(--color-text);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.license-links {
+  margin-top: var(--space-3);
+}
+
 @media (max-width: 900px) {
   .account-shell {
     grid-template-columns: 1fr;
@@ -564,6 +638,17 @@
 
   .account-settings {
     grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 640px) {
+  .license-card__meta {
+    grid-template-columns: 1fr;
+  }
+
+  .license-card__products li {
+    flex-direction: column;
+    align-items: flex-start;
   }
 }
 
