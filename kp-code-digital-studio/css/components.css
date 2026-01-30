@@ -211,43 +211,6 @@
 
 
 
-
-/*
-.button {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: var(--space-xs);
-  padding: var(--space-xs) var(--space-md);
-  border-radius: 999px;
-  font-weight: 500;
-  transition:
-    transform var(--transition-fast),
-    box-shadow var(--transition-fast),
-    background var(--transition-fast);
-}
-
-.button--primary {
-  background: var(--color-primary);
-  color: #fff;
-  box-shadow: var(--shadow-sm);
-  font-size: var(--font-size-sm);
-}
-
-.button--primary:hover {
-  transform: translateY(-1px);
-  box-shadow: var(--shadow-md);
-}
-
-.button--ghost {
-  border: 1px solid var(--color-border);
-  color: var(--color-text);
-}
-
-.button--ghost:hover {
-  border-color: var(--color-primary);
-}
-*/
 .button {
   appearance: none;
   border: none;
@@ -335,7 +298,6 @@
     transition: none;
   }
 }
-
 
 
 

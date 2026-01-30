@@ -27,15 +27,21 @@
   margin-top: var(--space-xl);
 }
 
-.hero__meta {
+.hero__meta.hero__visual {
   display: grid;
-  gap: var(--space-sm);
-  padding: var(--space-lg);
-  border-radius: var(--radius-lg);
-  background: var(--color-surface);
-  border: 1px solid var(--color-border);
-  box-shadow: var(--shadow-sm);
+  place-items: center;
 }
+
+.hero__logo {
+  max-width: 300px;
+  width: 100%;
+  opacity: 0.7;
+}
+[data-theme="dark"] .hero__logo {
+  opacity: 0.22;
+  filter: invert(1);
+}
+
 
 .hero__meta strong {
   font-size: var(--font-size-lg);
@@ -124,7 +130,9 @@
   border: 1px solid var(--color-border);
   background: var(--color-surface);
   font-size: var(--font-size-sm);
-  transition: border-color var(--transition-fast), color var(--transition-fast);
+  transition:
+    border-color var(--transition-fast),
+    color var(--transition-fast);
 }
 
 .filter-button.is-active {
