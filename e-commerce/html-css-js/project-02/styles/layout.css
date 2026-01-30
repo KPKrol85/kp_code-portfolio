@@ -542,7 +542,7 @@ footer.is-mounted #app-footer {
 
 .hero-title {
   max-width: 20ch;
-  font-size: var(--fs-hero); /* clamp */
+  font-size: var(--fs-hero);
   font-weight: 700;
   line-height: 1.05;
   letter-spacing: -0.02em;
@@ -656,6 +656,11 @@ footer.is-mounted #app-footer {
 .card .button {
   margin-top: auto;
 }
+
+.account-settings_main .card .button {
+  align-self: flex-start;
+}
+
 
 
 .card--interactive {

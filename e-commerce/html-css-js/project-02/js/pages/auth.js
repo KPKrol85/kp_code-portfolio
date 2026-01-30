@@ -459,6 +459,8 @@ export const renderAuth = () => {
       const panel = panels.get(tab);
       if (panel) {
         panel.hidden = !isActive;
+        panel.setAttribute("aria-hidden", isActive ? "false" : "true");
+        panel.setAttribute("tabindex", isActive ? "0" : "-1");
       }
     });
     if (nextTab === loginTab) {
@@ -502,7 +504,12 @@ export const renderAuth = () => {
     setActiveTab(tabsList[nextIndex], { focus: true });
   });
 
-  setActiveTab(loginTab);
+  const rawTabParam = Array.isArray(queryParams.tab) ? queryParams.tab[0] : queryParams.tab;
+  const initialTab =
+    typeof rawTabParam === "string" && rawTabParam.toLowerCase() === "register"
+      ? registerTab
+      : loginTab;
+  setActiveTab(initialTab);
 
   const authShell = createElement("div", { className: "auth-shell" });
   authShell.appendChild(tabs);

@@ -230,7 +230,7 @@
 }
 
 .card-product .flex-between .button {
-  flex: 1 1 0;
+  flex: 0 0 auto;
   min-width: 0;
   font-size: var(--fs-button);
   font-weight: 500;
@@ -241,7 +241,7 @@
 }
 
 .card-product .flex-between .button:not(.secondary):not(.ghost) {
-  flex: 1.15 1 0;
+  flex: 0 0 auto;
 }
 
 .product-hero-image {
@@ -502,6 +502,7 @@
 .account-shell .button {
   padding: 8px 14px;
   font-size: 0.9rem;
+   align-self: flex-start;
 }
 
 .account-shell .button.block {
@@ -795,18 +796,40 @@
   flex-wrap: wrap;
 }
 
-.tab-button {
+:root #main-content .auth-shell .tab-button {
+  appearance: none;
+  -webkit-appearance: none;
   background: transparent;
   color: var(--color-text-muted);
-  border-color: var(--color-border);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  padding: 8px 14px;
+  font-size: var(--fs-ui);
+  font-weight: 600;
+  line-height: 1.2;
+  cursor: pointer;
   box-shadow: none;
+  transition:
+    background-color var(--transition-fast),
+    color var(--transition-fast),
+    border-color var(--transition-fast);
 }
 
-.tab-button[aria-selected="true"] {
+:root #main-content .auth-shell .tab-button:hover,
+:root #main-content .auth-shell .tab-button:focus-visible {
+  color: var(--color-text);
+  background: color-mix(in srgb, var(--color-surface-muted) 60%, transparent);
+}
+
+:root #main-content .auth-shell .tab-button:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--color-focus) 25%, transparent);
+}
+
+:root #main-content .auth-shell .tab-button[aria-selected="true"] {
   background: var(--color-surface-muted);
   color: var(--color-text);
   border-color: color-mix(in srgb, var(--color-text) 20%, var(--color-border));
-  font-weight: 600;
 }
 
 :root #main-content .auth-page {
@@ -826,6 +849,10 @@
   width: 100%;
 }
 
+:root #main-content .auth-panel[hidden] {
+  display: none !important;
+}
+
 :root #main-content .auth-panel form {
   display: grid;
   gap: var(--space-4);
@@ -836,13 +863,16 @@
   gap: var(--space-2);
 }
 
-:root[data-theme="dark"] #main-content:has(#auth-panel-login) .tab-button {
+:root[data-theme="dark"] #main-content:has(#auth-panel-login) .auth-shell .tab-button {
   color: var(--color-text-muted);
 }
 
-:root[data-theme="dark"] #main-content:has(#auth-panel-login) .tab-button:hover,
-:root[data-theme="dark"] #main-content:has(#auth-panel-login) .tab-button:focus-visible,
-:root[data-theme="dark"] #main-content:has(#auth-panel-login) .tab-button[aria-selected="true"] {
+:root[data-theme="dark"] #main-content:has(#auth-panel-login) .auth-shell .tab-button:hover,
+:root[data-theme="dark"] #main-content:has(#auth-panel-login) .auth-shell .tab-button:focus-visible,
+:root[data-theme="dark"]
+  #main-content:has(#auth-panel-login)
+  .auth-shell
+  .tab-button[aria-selected="true"] {
   color: var(--color-text);
 }
 
