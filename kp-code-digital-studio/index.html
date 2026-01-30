@@ -48,6 +48,7 @@
           <a class="nav__link" href="./projects.html">Projects</a>
           <a class="nav__link" href="./contact.html">Contact</a>
         </nav>
+        <div class="nav__backdrop" data-nav-backdrop aria-hidden="true"></div>
         <div class="nav__actions">
           <button class="theme-toggle" id="theme-toggle" title="Toggles light & dark" aria-label="auto" aria-live="polite">
             <svg class="sun-and-moon" aria-hidden="true" width="20" height="20" viewBox="0 0 24 24">
@@ -68,7 +69,9 @@
               </g>
             </svg>
           </button>
-          <button class="nav__toggle" type="button" data-nav-toggle aria-label="Otwórz menu" aria-expanded="false" aria-controls="primary-navigation">☰</button>
+          <button class="nav__toggle" type="button" data-nav-toggle aria-label="Otwórz menu" aria-expanded="false" aria-controls="primary-navigation">
+            <span class="nav__toggle-icon" aria-hidden="true"></span>
+          </button>
         </div>
       </div>
     </header>

@@ -8,15 +8,20 @@
 }
 
 .hero__title {
+  font-weight: 650;
   font-size: var(--font-size-xxl);
-  letter-spacing: -0.02em;
+  margin-bottom: var(--space-md);
+
+  letter-spacing: -0.03em;
   line-height: var(--line-height-tight);
+  max-width: 18ch;
 }
 
 .hero__lead {
   font-size: var(--font-size-md);
-  color: var(--color-text-muted);
-  margin: var(--space-sm) 0;
+  margin-bottom: var(--space-lg);
+  color: color-mix(in srgb, var(--color-text) 75%, var(--color-text-muted));
+  max-width: 52ch;
 }
 
 .hero__cta {
@@ -41,7 +46,6 @@
   opacity: 0.22;
   filter: invert(1);
 }
-
 
 .hero__meta strong {
   font-size: var(--font-size-lg);
@@ -148,5 +152,13 @@
 
   .contact-grid {
     grid-template-columns: 1.1fr 0.9fr;
+  }
+}
+
+@media (max-width: 899px) {
+  .hero__title {
+    font-size: 2.125rem;
+    line-height: 1.1;
+    letter-spacing: -0.02em;
   }
 }

@@ -112,16 +112,6 @@ main {
   margin-bottom: var(--space-xl);
 }
 
-.section__eyebrow {
-  font-size: var(--font-size-sm);
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-
-  color: var(--color-text-muted);
-
-margin-bottom: var(--space-sm);
-}
-
 .section__title {
   font-size: var(--font-size-xl);
 }

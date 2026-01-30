@@ -44,6 +44,7 @@
   --font-family-base: var(--font-sans);
   --font-family-display: var(--font-sans);
 
+  --font-size-2xs: clamp(0.6875rem, 0.66rem + 0.1vw, 0.75rem);
   --font-size-xs: clamp(0.75rem, 0.72rem + 0.15vw, 0.8125rem);
   --font-size-sm: clamp(0.875rem, 0.84rem + 0.2vw, 0.9375rem);
   --font-size-md: clamp(1rem, 0.96rem + 0.25vw, 1.125rem);
