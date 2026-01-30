@@ -853,6 +853,10 @@
   display: none !important;
 }
 
+:root #main-content .auth-panel[aria-hidden="false"] {
+  animation: authPanelFade 160ms ease-out;
+}
+
 :root #main-content .auth-panel form {
   display: grid;
   gap: var(--space-4);
@@ -888,6 +892,10 @@
   .skeleton {
     animation: none;
   }
+
+  :root #main-content .auth-panel[aria-hidden="false"] {
+    animation: none;
+  }
 }
 
 @keyframes shimmer {
@@ -896,6 +904,15 @@
   }
   100% {
     background-position: 100% 50%;
+  }
+}
+
+@keyframes authPanelFade {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
   }
 }
 
@@ -1678,6 +1695,33 @@
 .faq-tabs {
   display: flex;
   flex-wrap: wrap;
+}
+
+:root[data-theme="dark"] #main-content .faq-tabs .tab-button {
+  background: var(--color-surface);
+  color: var(--color-text-muted);
+  border-color: color-mix(in srgb, var(--color-border) 75%, transparent);
+  box-shadow: none;
+  transform: none;
+}
+
+:root[data-theme="dark"] #main-content .faq-tabs .tab-button:hover {
+  background: color-mix(in srgb, var(--color-surface-muted) 60%, transparent);
+  color: var(--color-text);
+  box-shadow: none;
+  transform: none;
+}
+
+:root[data-theme="dark"] #main-content .faq-tabs .tab-button:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--color-focus) 20%, transparent);
+}
+
+:root[data-theme="dark"] #main-content .faq-tabs .tab-button[aria-selected="true"] {
+  background: color-mix(in srgb, var(--color-surface-muted) 75%, transparent);
+  color: var(--color-text);
+  border-color: color-mix(in srgb, var(--color-text) 14%, var(--color-border));
+  box-shadow: none;
 }
 
 .faq-search label {
