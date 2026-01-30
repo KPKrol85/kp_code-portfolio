@@ -1,6 +1,6 @@
 import { createBreadcrumbs } from "../components/breadcrumbs.js";
 import { showToast } from "../components/toast.js";
-import { content } from "../content/pl.js";
+import { getContent } from "../content/index.js";
 import { authService } from "../services/auth.js";
 import { buildBreadcrumbsForPath } from "../utils/breadcrumbs.js";
 import { createElement, clearElement } from "../utils/dom.js";
@@ -54,6 +54,7 @@ const generateId = () =>
   globalThis.crypto?.randomUUID?.() ?? `id_${Date.now()}_${Math.random().toString(16).slice(2)}`;
 
 export const renderAuth = () => {
+  const content = getContent();
   const main = document.getElementById("main-content");
   clearElement(main);
 

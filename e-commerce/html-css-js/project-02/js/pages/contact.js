@@ -1,6 +1,6 @@
 import { createBreadcrumbs } from "../components/breadcrumbs.js";
 import { showToast } from "../components/toast.js";
-import { content } from "../content/pl.js";
+import { getContent } from "../content/index.js";
 import { buildBreadcrumbsForPath } from "../utils/breadcrumbs.js";
 import { createElement, clearElement } from "../utils/dom.js";
 import { parseHash } from "../utils/navigation.js";
@@ -16,6 +16,7 @@ const company = {
 };
 
 export const renderContact = () => {
+  const content = getContent();
   const main = document.getElementById("main-content");
   clearElement(main);
 

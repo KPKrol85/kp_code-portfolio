@@ -1,13 +1,9 @@
 import { createBreadcrumbs } from "../components/breadcrumbs.js";
+import { getContent } from "../content/index.js";
 import { buildBreadcrumbsForPath } from "../utils/breadcrumbs.js";
 import { createElement, clearElement } from "../utils/dom.js";
 import { setMeta } from "../utils/meta.js";
 import { parseHash } from "../utils/navigation.js";
-
-const SUPPORT_META = {
-  title: "Wsparcie — KP_Code Digital Vault",
-  description: "Pomoc techniczna, FAQ, aktualizacje i informacje o wsparciu.",
-};
 
 const createSectionHeader = (title, lead) => {
   const header = createElement("div", { className: "section-header" });
@@ -62,6 +58,8 @@ const createSupportCards = (cards = []) => {
 };
 
 export const renderSupport = () => {
+  const content = getContent();
+  const support = content.support;
   const main = document.getElementById("main-content");
   if (!main) {
     return;
@@ -78,14 +76,17 @@ export const renderSupport = () => {
 
   const hero = createElement("section", { className: "hero support-hero" });
   const heroContent = createElement("div", { className: "hero-content" });
-  heroContent.appendChild(createElement("span", { className: "eyebrow", text: "Wsparcie" }));
+  heroContent.appendChild(createElement("span", { className: "eyebrow", text: support.hero.eyebrow }));
   heroContent.appendChild(
-    createElement("h1", { text: "Wsparcie", attrs: { tabindex: "-1", "data-focus-heading": "true" } })
+    createElement("h1", {
+      text: support.hero.title,
+      attrs: { tabindex: "-1", "data-focus-heading": "true" },
+    })
   );
   heroContent.appendChild(
     createElement("p", {
       className: "hero-lead",
-      text: "Znajdź pomoc, dokumentację lub informacje dotyczące wsparcia technicznego.",
+      text: support.hero.lead,
     })
   );
   hero.appendChild(heroContent);
@@ -93,82 +94,41 @@ export const renderSupport = () => {
 
   const helpSection = createElement("section", {
     className: "section",
-    attrs: { "aria-label": "Jak możemy pomóc" },
+    attrs: { "aria-label": support.help.ariaLabel },
   });
   helpSection.appendChild(
     createSectionHeader(
-      "Jak możemy pomóc?",
-      "Wybierz najwłaściwszą ścieżkę, aby szybko znaleźć odpowiedź."
+      support.help.title,
+      support.help.lead
     )
   );
   helpSection.appendChild(
     createSupportCards([
-      {
-        icon: "?",
-        title: "FAQ / Dokumentacja",
-        description: "Odpowiedzi na najczęstsze pytania o produkty, licencje i dostęp.",
-        ctaLabel: "Przejdź do FAQ",
-        ctaHref: "#/faq",
-      },
-      {
-        icon: "⟳",
-        title: "Aktualizacje / Changelog",
-        description: "Sprawdź nowe wydania, poprawki i zmiany w produktach.",
-        ctaLabel: "Zobacz aktualizacje",
-        ctaHref: "#/updates",
-      },
-      {
-        icon: "!",
-        title: "Problemy techniczne",
-        description: "Zgłoś błąd lub problem z działaniem produktu w uporządkowany sposób.",
-        ctaLabel: "Jak zgłosić problem",
-        ctaTarget: "issue-reporting",
-        type: "scroll",
-      },
-      {
-        icon: "•",
-        title: "Konto i dostęp",
-        description: "Zakupy, biblioteka, licencje oraz zarządzanie kontem użytkownika.",
-        ctaLabel: "Panel konta",
-        ctaHref: "#/account",
-      },
+      ...support.help.cards,
     ])
   );
   container.appendChild(helpSection);
 
   const issueSection = createElement("section", {
     className: "section",
-    attrs: { "aria-label": "Jak zgłosić problem techniczny" },
+    attrs: { "aria-label": support.issue.ariaLabel },
   });
   issueSection.setAttribute("id", "issue-reporting");
   issueSection.appendChild(
     createSectionHeader(
-      "Jak zgłosić problem techniczny",
-      "Zanim napiszesz, przygotuj podstawowe informacje — dzięki temu szybciej pomożemy."
+      support.issue.title,
+      support.issue.lead
     )
   );
   const issueSteps = createElement("ol", { className: "process-steps" });
-  [
-    {
-      title: "Sprawdź FAQ",
-      description: "Wiele odpowiedzi jest dostępnych od ręki w sekcji FAQ.",
-    },
-    {
-      title: "Sprawdź Aktualizacje / Changelog",
-      description: "Upewnij się, że problem nie został już rozwiązany w ostatniej wersji.",
-    },
-    {
-      title: "Przygotuj informacje",
-      description:
-        "Nazwa produktu, wersja, przeglądarka/system oraz krótki opis problemu.",
-    },
-    {
-      title: "Skontaktuj się z nami",
-      description: "Przejdź do strony Kontakt i prześlij zgłoszenie.",
-    },
-  ].forEach((step, index) => {
+  support.issue.steps.forEach((step, index) => {
     const item = createElement("li", { className: "process-step" });
-    item.appendChild(createElement("span", { className: "service-meta", text: `Krok ${index + 1}` }));
+    item.appendChild(
+      createElement("span", {
+        className: "service-meta",
+        text: support.issue.stepLabel.replace("{index}", index + 1),
+      })
+    );
     item.appendChild(createElement("h3", { text: step.title }));
     item.appendChild(createElement("p", { text: step.description }));
     issueSteps.appendChild(item);
@@ -178,12 +138,12 @@ export const renderSupport = () => {
     createElement("div", { className: "hero-actions" }, [
       createElement("a", {
         className: "button secondary",
-        text: "Przejdź do FAQ",
+        text: support.issue.ctaPrimaryLabel,
         attrs: { href: "#/faq" },
       }),
       createElement("a", {
         className: "button",
-        text: "Kontakt",
+        text: support.issue.ctaSecondaryLabel,
         attrs: { href: "#/contact" },
       }),
     ])
@@ -192,35 +152,25 @@ export const renderSupport = () => {
 
   const scopeSection = createElement("section", {
     className: "section",
-    attrs: { "aria-label": "Zakres wsparcia" },
+    attrs: { "aria-label": support.scope.ariaLabel },
   });
   scopeSection.appendChild(
-    createSectionHeader("Zakres wsparcia", "Jasne zasady pomagają szybciej rozwiązać problem.")
+    createSectionHeader(support.scope.title, support.scope.lead)
   );
   const scopeGrid = createElement("div", { className: "grid grid-2" });
   const includedCard = createElement("div", { className: "card support-scope" });
-  includedCard.appendChild(createElement("h3", { text: "Wsparcie obejmuje" }));
+  includedCard.appendChild(createElement("h3", { text: support.scope.includedTitle }));
   includedCard.appendChild(
     createList(
-      [
-        "Wyjaśnienia dotyczące zawartości produktów i licencji.",
-        "Pomoc przy pobieraniu plików i dostępie do biblioteki.",
-        "Weryfikację problemów technicznych związanych z produktem.",
-        "Informacje o aktualizacjach i rekomendacjach wdrożeniowych.",
-      ],
+      support.scope.included,
       "service-list"
     )
   );
   const excludedCard = createElement("div", { className: "card support-scope" });
-  excludedCard.appendChild(createElement("h3", { text: "Wsparcie nie obejmuje" }));
+  excludedCard.appendChild(createElement("h3", { text: support.scope.excludedTitle }));
   excludedCard.appendChild(
     createList(
-      [
-        "Pełnych wdrożeń po stronie klienta bez zamówionej usługi.",
-        "Modyfikacji produktów wykraczających poza opis licencji.",
-        "Audytów bezpieczeństwa i infrastruktury hostingowej.",
-        "Wdrożeń funkcji spoza zakupionego zakresu.",
-      ],
+      support.scope.excluded,
       "service-list"
     )
   );
@@ -231,41 +181,36 @@ export const renderSupport = () => {
 
   const responseSection = createElement("section", {
     className: "section",
-    attrs: { "aria-label": "Czas odpowiedzi" },
+    attrs: { "aria-label": support.response.ariaLabel },
   });
   responseSection.appendChild(
     createSectionHeader(
-      "Czas odpowiedzi",
-      "Wsparcie realizujemy asynchronicznie — odpowiadamy możliwie szybko w dni robocze."
+      support.response.title,
+      support.response.lead
     )
   );
   const responseCard = createElement("div", { className: "card support-response" }, [
-    createElement("p", {
-      text: "Orientacyjny czas odpowiedzi: 24–48 godzin roboczych.",
-    }),
-    createElement("p", {
-      className: "service-meta",
-      text: "W pilnych przypadkach opisz priorytet i kontekst biznesowy w zgłoszeniu.",
-    }),
+    createElement("p", { text: support.response.primary }),
+    createElement("p", { className: "service-meta", text: support.response.secondary }),
   ]);
   responseSection.appendChild(responseCard);
   container.appendChild(responseSection);
 
   const ctaSection = createElement("section", {
     className: "section",
-    attrs: { "aria-label": "Kontakt" },
+    attrs: { "aria-label": support.cta.ariaLabel },
   });
   const ctaCard = createElement("div", { className: "card services-cta" });
   ctaCard.appendChild(
     createElement("div", {}, [
-      createElement("h2", { text: "Nie znalazłeś odpowiedzi?" }),
-      createElement("p", { text: "Jeśli potrzebujesz wsparcia, skontaktuj się z nami." }),
+      createElement("h2", { text: support.cta.title }),
+      createElement("p", { text: support.cta.lead }),
     ])
   );
   ctaCard.appendChild(
     createElement("a", {
       className: "button",
-      text: "Kontakt",
+      text: support.cta.primaryLabel,
       attrs: { href: "#/contact" },
     })
   );
@@ -287,7 +232,7 @@ export const renderSupport = () => {
   };
   scrollButtons.forEach((button) => button.addEventListener("click", handleScroll));
 
-  setMeta(SUPPORT_META);
+  setMeta(content.meta.routes.support);
 
   return () => {
     scrollButtons.forEach((button) => button.removeEventListener("click", handleScroll));

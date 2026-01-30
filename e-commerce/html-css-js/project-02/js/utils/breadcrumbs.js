@@ -1,45 +1,47 @@
-import { content } from "../content/pl.js";
+import { getContent } from "../content/index.js";
 
 import { getCategoryConfig } from "./productCategories.js";
 
-const sections = content.breadcrumbs?.sections ?? {};
-const services = content.breadcrumbs?.services ?? {};
-
 const toHash = (path) => `#${path.startsWith("/") ? path : `/${path}`}`;
 
-const routeLabels = new Map([
-  ["/products", sections.products],
-  ["/services", sections.services],
-  ["/services/web-development", services.webDevelopment],
-  ["/services/wordpress", services.wordpress],
-  ["/services/ui-ux-branding", services.uiUxBranding],
-  ["/services/consulting-support", services.consultingSupport],
-  ["/pricing", sections.pricing],
-  ["/updates", sections.updates],
-  ["/docs", sections.docs],
-  ["/faq", sections.faq],
-  ["/support", sections.support],
-  ["/about", sections.about],
-  ["/roadmap", sections.roadmap],
-  ["/careers", sections.careers],
-  ["/contact", sections.contact],
-  ["/cart", sections.cart],
-  ["/checkout", sections.checkout],
-  ["/checkout/success", sections.checkoutSuccess],
-  ["/auth", sections.auth],
-  ["/account", sections.account],
-  ["/account/orders", sections.accountOrders],
-  ["/account/downloads", sections.accountDownloads],
-  ["/account/settings", sections.accountSettings],
-  ["/library", sections.library],
-  ["/licenses", sections.licenses],
-  ["/legal", sections.legal],
-  ["/privacy", sections.privacy],
-  ["/terms", sections.terms],
-  ["/cookies", sections.cookies],
-  ["/admin", sections.admin],
-  ["/404", sections.notFound],
-]);
+const buildRouteLabels = () => {
+  const { breadcrumbs } = getContent();
+  const sections = breadcrumbs?.sections ?? {};
+  const services = breadcrumbs?.services ?? {};
+  return new Map([
+    ["/products", sections.products],
+    ["/services", sections.services],
+    ["/services/web-development", services.webDevelopment],
+    ["/services/wordpress", services.wordpress],
+    ["/services/ui-ux-branding", services.uiUxBranding],
+    ["/services/consulting-support", services.consultingSupport],
+    ["/pricing", sections.pricing],
+    ["/updates", sections.updates],
+    ["/docs", sections.docs],
+    ["/faq", sections.faq],
+    ["/support", sections.support],
+    ["/about", sections.about],
+    ["/roadmap", sections.roadmap],
+    ["/careers", sections.careers],
+    ["/contact", sections.contact],
+    ["/cart", sections.cart],
+    ["/checkout", sections.checkout],
+    ["/checkout/success", sections.checkoutSuccess],
+    ["/auth", sections.auth],
+    ["/account", sections.account],
+    ["/account/orders", sections.accountOrders],
+    ["/account/downloads", sections.accountDownloads],
+    ["/account/settings", sections.accountSettings],
+    ["/library", sections.library],
+    ["/licenses", sections.licenses],
+    ["/legal", sections.legal],
+    ["/privacy", sections.privacy],
+    ["/terms", sections.terms],
+    ["/cookies", sections.cookies],
+    ["/admin", sections.admin],
+    ["/404", sections.notFound],
+  ]);
+};
 
 const parentRoutes = new Map([
   ["/services/web-development", "/services"],
@@ -61,6 +63,7 @@ export const buildBreadcrumbsForPath = (pathname) => {
   if (!pathname || pathname === "/") {
     return [];
   }
+  const routeLabels = buildRouteLabels();
   const label = routeLabels.get(pathname);
   if (!label) {
     return [];
@@ -76,6 +79,7 @@ export const buildBreadcrumbsForPath = (pathname) => {
 };
 
 export const buildProductsBreadcrumbs = () => {
+  const sections = getContent().breadcrumbs?.sections ?? {};
   if (!sections.products) {
     return [];
   }
@@ -83,6 +87,7 @@ export const buildProductsBreadcrumbs = () => {
 };
 
 export const buildProductCategoryBreadcrumbs = (slug) => {
+  const sections = getContent().breadcrumbs?.sections ?? {};
   if (!sections.products) {
     return [];
   }
@@ -94,6 +99,7 @@ export const buildProductCategoryBreadcrumbs = (slug) => {
 };
 
 export const buildProductDetailsBreadcrumbs = (product) => {
+  const sections = getContent().breadcrumbs?.sections ?? {};
   if (!product?.name || !sections.products) {
     return [];
   }

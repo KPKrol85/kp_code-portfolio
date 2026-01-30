@@ -1,6 +1,6 @@
 import { createBreadcrumbs } from "../components/breadcrumbs.js";
 import { renderNotice, createRetryButton } from "../components/uiStates.js";
-import { content } from "../content/pl.js";
+import { getContent, t } from "../content/index.js";
 import { demoPurchasesService } from "../services/demo-purchases.js";
 import { purchasesService } from "../services/purchases.js";
 import { store } from "../store/store.js";
@@ -62,17 +62,18 @@ const clearPurchases = () => {
 };
 
 const createDemoTools = () => {
+  const content = getContent();
   const demoTools = createElement("div", { className: "card section" });
-  demoTools.appendChild(createElement("h3", { text: "Demo tools" }));
+  demoTools.appendChild(createElement("h3", { text: content.library.ui.demoToolsTitle }));
   demoTools.appendChild(
     createElement("p", {
-      text: "Symuluj zakup produktu bez backendu. Dane są zapisywane w localStorage.",
+      text: content.library.ui.demoToolsLead,
     })
   );
   const actions = createElement("div", { className: "flex-between" });
   const addButton = createElement("button", {
     className: "button",
-    text: "Symuluj zakup",
+    text: content.library.ui.demoToolsAdd,
     attrs: { type: "button" },
   });
   addButton.addEventListener("click", () => {
@@ -81,7 +82,7 @@ const createDemoTools = () => {
   });
   const clearButton = createElement("button", {
     className: "button secondary",
-    text: "Wyczyść zakupy",
+    text: content.library.ui.demoToolsClear,
     attrs: { type: "button" },
   });
   clearButton.addEventListener("click", () => {
@@ -95,6 +96,7 @@ const createDemoTools = () => {
 };
 
 export const renderLibrary = () => {
+  const content = getContent();
   const main = document.getElementById("main-content");
   clearElement(main);
 
@@ -109,7 +111,7 @@ export const renderLibrary = () => {
   const purchasedIds = getPurchases();
   const purchasedItems = MOCK_PRODUCTS.filter((product) => purchasedIds.includes(product.id));
   if (purchasedItems.length) {
-    container.appendChild(createElement("h2", { text: "Twoje produkty" }));
+    container.appendChild(createElement("h2", { text: content.library.ui.purchasedTitle }));
     const grid = createElement("div", { className: "grid grid-2 section" });
     purchasedItems.forEach((item) => {
       const card = createElement("div", { className: "card card-product" });
@@ -122,7 +124,7 @@ export const renderLibrary = () => {
       const actions = createElement("div", { className: "flex-between" }, [
         createElement("a", {
           className: "button",
-          text: "Otwórz panel",
+          text: content.library.ui.openPanel,
           attrs: {
             href: withBase(item.panelUrl),
             target: "_blank",
@@ -133,7 +135,7 @@ export const renderLibrary = () => {
       actions.appendChild(
         createElement("a", {
           className: "button secondary",
-          text: "Pobierz paczkę",
+          text: content.library.ui.downloadPackage,
           attrs: {
             href: withBase(item.downloadUrl),
             target: "_blank",
@@ -163,7 +165,7 @@ export const renderLibrary = () => {
       const actions = createElement("div", { className: "flex-between" }, [
         createElement("a", {
           className: "button",
-          text: "Otwórz panel",
+          text: content.library.ui.openPanel,
           attrs: item.previewUrl?.startsWith("#/")
             ? { href: item.previewUrl }
             : { href: item.previewUrl, target: "_blank", rel: "noopener noreferrer" },
@@ -173,7 +175,7 @@ export const renderLibrary = () => {
         actions.appendChild(
           createElement("a", {
             className: "button secondary",
-            text: "Pobierz paczkę",
+            text: content.library.ui.downloadPackage,
             attrs: {
               href: item.packageUrl,
               target: "_blank",
@@ -217,7 +219,7 @@ export const renderLibrary = () => {
   if (!purchasedItems.length && !demoItems.length && !libraryItems.length) {
     renderNotice(container, {
       title: content.states.library.empty.title,
-      message: "Brak zakupionych produktów. Po zakupie pojawią się tutaj pliki i panel.",
+      message: content.library.ui.emptyMessage,
       action: { label: content.library.emptyCta, href: "#/products" },
       headingTag: "h2",
     });
@@ -243,7 +245,11 @@ export const renderLibrary = () => {
     const card = createElement("div", { className: "card" });
     card.appendChild(createElement("h3", { text: product.name }));
     card.appendChild(createElement("p", { text: product.shortDescription }));
-    card.appendChild(createElement("p", { text: `Zakupiono: ${formatDate(entry.purchasedAt)}` }));
+    card.appendChild(
+      createElement("p", {
+        text: t("library.ui.purchasedAtLabel", { date: formatDate(entry.purchasedAt) }),
+      })
+    );
 
     const list = createElement("ul");
     const downloadables = Array.isArray(product.downloadables) ? product.downloadables : [];

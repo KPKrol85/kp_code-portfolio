@@ -2,7 +2,7 @@ import { createBreadcrumbs } from "../components/breadcrumbs.js";
 import { showToast } from "../components/toast.js";
 import { renderEmptyState } from "../components/ui-state-helpers.js";
 import { renderNotice, createRetryButton } from "../components/uiStates.js";
-import { content } from "../content/pl.js";
+import { getContent } from "../content/index.js";
 import { cartService } from "../services/cart.js";
 import { actions } from "../store/actions.js";
 import { store } from "../store/store.js";
@@ -104,6 +104,7 @@ const updateCartTotal = (itemsWrapper, totalNode, liveNode) => {
   if (!itemsWrapper || !totalNode) {
     return;
   }
+  const content = getContent();
   const inputs = itemsWrapper.querySelectorAll("[data-cart-quantity]");
   let total = 0;
   inputs.forEach((input) => {
@@ -154,6 +155,7 @@ const updateQuantityUI = (input, quantity, itemsWrapper, totalNode, liveNode, op
 
 const performRenderCart = (_reason = "route") => {
   renderInProgress = true;
+  const content = getContent();
   const main = document.getElementById("main-content");
   try {
     clearElement(main);
@@ -580,6 +582,7 @@ export const renderCart = () => {
 };
 
 const renderMissingSection = (container, missingItems) => {
+  const content = getContent();
   const section = createElement("div", { className: "section" });
   section.appendChild(createElement("h2", { text: content.states.cart.missingSection.title }));
   const list = createElement("div", { className: "grid" });

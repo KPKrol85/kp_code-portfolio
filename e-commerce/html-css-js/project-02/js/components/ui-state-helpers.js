@@ -1,23 +1,26 @@
+import { getContent } from "../content/index.js";
 import { createElement } from "../utils/dom.js";
 
-const renderLoadingState = ({ title = "Loading", message = "Please wait..." } = {}) => {
+const renderLoadingState = ({ title, message } = {}) => {
+  const content = getContent();
+  const resolvedTitle = title || content.states.route.loading.title;
+  const resolvedMessage = message || content.states.route.loading.message;
   return createElement(
     "div",
     {
       className: "notice",
       attrs: { role: "status", "aria-live": "polite" },
     },
-    [createElement("h2", { text: title }), message ? createElement("p", { text: message }) : null]
+    [
+      createElement("h2", { text: resolvedTitle }),
+      resolvedMessage ? createElement("p", { text: resolvedMessage }) : null,
+    ]
   );
 };
 
-const renderEmptyState = ({
-  title = "Nothing here yet.",
-  message = "",
-  ctaText,
-  ctaHref,
-  onCta,
-} = {}) => {
+const renderEmptyState = ({ title, message = "", ctaText, ctaHref, onCta } = {}) => {
+  const content = getContent();
+  const resolvedTitle = title || content.states.emptyFallbackTitle;
   const actions = [];
   if (ctaText) {
     if (ctaHref) {
@@ -36,19 +39,16 @@ const renderEmptyState = ({
   }
 
   return createElement("div", { className: "notice" }, [
-    createElement("h2", { text: title }),
+    createElement("h2", { text: resolvedTitle }),
     message ? createElement("p", { text: message }) : null,
     actions.length ? createElement("div", { className: "nav-links" }, actions) : null,
   ]);
 };
 
-const renderErrorState = ({
-  title = "Something went wrong.",
-  message = "Please try again later.",
-  ctaText,
-  ctaHref,
-  onCta,
-} = {}) => {
+const renderErrorState = ({ title, message, ctaText, ctaHref, onCta } = {}) => {
+  const content = getContent();
+  const resolvedTitle = title || content.errors.unexpectedTitle;
+  const resolvedMessage = message || content.errors.unexpectedDescription;
   const actions = [];
   if (ctaText) {
     if (ctaHref) {
@@ -73,8 +73,8 @@ const renderErrorState = ({
       attrs: { role: "alert" },
     },
     [
-      createElement("h2", { text: title }),
-      message ? createElement("p", { text: message }) : null,
+      createElement("h2", { text: resolvedTitle }),
+      resolvedMessage ? createElement("p", { text: resolvedMessage }) : null,
       actions.length ? createElement("div", { className: "nav-links" }, actions) : null,
     ]
   );

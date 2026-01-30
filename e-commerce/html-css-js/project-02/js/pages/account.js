@@ -1,7 +1,7 @@
 import { createBreadcrumbs } from "../components/breadcrumbs.js";
 import { showToast } from "../components/toast.js";
 import { renderEmptyState } from "../components/ui-state-helpers.js";
-import { content } from "../content/pl.js";
+import { getContent } from "../content/index.js";
 import { applyReducedMotion } from "../reduced-motion-init.js";
 import { authService } from "../services/auth.js";
 import { purchasesService } from "../services/purchases.js";
@@ -13,7 +13,7 @@ import { createElement, clearElement } from "../utils/dom.js";
 import { formatCurrency, formatDate } from "../utils/format.js";
 import { navigateHash, parseHash } from "../utils/navigation.js";
 
-const ACCOUNT_NAV_ITEMS = [
+const buildAccountNavItems = (content) => [
   { label: content.account.nav.overview, href: "#/account", match: "/account" },
   { label: content.account.nav.orders, href: "#/account/orders", match: "/account/orders" },
   {
@@ -31,22 +31,23 @@ const ACCOUNT_NAV_ITEMS = [
 
 const getActiveAccountPath = () => {
   const { pathname } = parseHash();
-  const match = ACCOUNT_NAV_ITEMS.find((item) => item.match === pathname);
+  const match = buildAccountNavItems(getContent()).find((item) => item.match === pathname);
   return match?.match || "/account";
 };
 
 const createLogoutHandler = () => () => {
   authService.signOut();
-  showToast(content.toasts.logout);
+  showToast(getContent().toasts.logout);
   navigateHash("#/auth");
 };
 
 const createAccountNav = (activePath) => {
+  const content = getContent();
   const nav = createElement("nav", {
     className: "account-nav",
     attrs: { "aria-label": content.account.nav.ariaLabel },
   });
-  ACCOUNT_NAV_ITEMS.forEach((item) => {
+  buildAccountNavItems(content).forEach((item) => {
     const isActive = item.match === activePath;
     nav.appendChild(
       createElement("a", {
@@ -70,6 +71,7 @@ const createAccountNav = (activePath) => {
 };
 
 const renderAccountShell = ({ title, contentNode }) => {
+  const content = getContent();
   const main = document.getElementById("main-content");
   clearElement(main);
 
@@ -97,6 +99,7 @@ const renderAccountShell = ({ title, contentNode }) => {
 };
 
 const renderOverviewContent = () => {
+  const content = getContent();
   const { user } = store.getState();
   const firstName = user?.name ? user.name.split(" ")[0] : "";
   const greetingName = firstName
@@ -150,6 +153,7 @@ const renderOverviewContent = () => {
 };
 
 const renderOrdersContent = () => {
+  const content = getContent();
   const orders = purchasesService.getOrders();
   if (!orders.length) {
     return renderEmptyState({
@@ -194,6 +198,7 @@ const renderOrdersContent = () => {
 };
 
 const renderDownloadsContent = () => {
+  const content = getContent();
   const { products } = store.getState();
   const items = purchasesService.getLibraryItems();
   const productMap = new Map(products.map((product) => [product.id, product]));
@@ -249,6 +254,7 @@ const applyReducedMotionPreference = (enabled) => {
 };
 
 const renderSettingsContent = () => {
+  const content = getContent();
   const { user, ui } = store.getState();
   const nameValue = user?.name || "Demo";
   const emailValue = user?.email || "demo@kpcode.dev";
@@ -439,6 +445,7 @@ const renderSettingsContent = () => {
 };
 
 export const renderAccountOverview = () => {
+  const content = getContent();
   renderAccountShell({
     title: content.account.overviewSectionTitle,
     contentNode: renderOverviewContent(),
@@ -446,6 +453,7 @@ export const renderAccountOverview = () => {
 };
 
 export const renderAccountOrders = () => {
+  const content = getContent();
   renderAccountShell({
     title: content.account.orders.title,
     contentNode: renderOrdersContent(),
@@ -453,6 +461,7 @@ export const renderAccountOrders = () => {
 };
 
 export const renderAccountDownloads = () => {
+  const content = getContent();
   renderAccountShell({
     title: content.account.downloads.title,
     contentNode: renderDownloadsContent(),
@@ -460,6 +469,7 @@ export const renderAccountDownloads = () => {
 };
 
 export const renderAccountSettings = () => {
+  const content = getContent();
   renderAccountShell({
     title: content.account.settings.title,
     contentNode: renderSettingsContent(),

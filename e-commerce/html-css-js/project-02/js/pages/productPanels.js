@@ -1,4 +1,5 @@
 import { createBreadcrumbs } from "../components/breadcrumbs.js";
+import { getContent } from "../content/index.js";
 import { renderNotice } from "../components/uiStates.js";
 import { demoPurchasesService } from "../services/demo-purchases.js";
 import { purchasesService } from "../services/purchases.js";
@@ -18,15 +19,17 @@ const hasAccess = () => {
 };
 
 const renderAccessNotice = (container) => {
+  const content = getContent();
   renderNotice(container, {
-    title: "Brak dostepu do panelu",
-    message: "Aktywuj dostep demo, aby zobaczyc panel produktu.",
-    action: { label: "Aktywuj dostep (demo)", href: getSeedHref() },
+    title: content.productPanels.coreUi.accessDenied.title,
+    message: content.productPanels.coreUi.accessDenied.message,
+    action: { label: content.productPanels.coreUi.accessDenied.action, href: getSeedHref() },
     headingTag: "h2",
   });
 };
 
 export const renderCoreUiPanel = () => {
+  const content = getContent();
   const main = document.getElementById("main-content");
   clearElement(main);
 
@@ -46,33 +49,33 @@ export const renderCoreUiPanel = () => {
   const heroContent = createElement("div", { className: "hero-content" });
   heroContent.appendChild(
     createElement("div", { className: "tag-list" }, [
-      createElement("span", { className: "badge", text: "v1.0" }),
+      createElement("span", { className: "badge", text: content.productPanels.coreUi.versionBadge }),
     ])
   );
   heroContent.appendChild(
     createElement("h1", {
       className: "hero-title",
-      text: "Core UI Components Pack",
+      text: content.productPanels.coreUi.hero.title,
       attrs: { tabindex: "-1", "data-focus-heading": "true" },
     })
   );
   heroContent.appendChild(
     createElement("p", {
       className: "hero-lead",
-      text: "Production-ready system UI dla prawdziwych dashboardow.",
+      text: content.productPanels.coreUi.hero.lead,
     })
   );
   heroContent.appendChild(
     createElement("p", {
       className: "section-lead",
-      text: "Tokeny, tryby light/dark i gotowe komponenty do wdrozenia.",
+      text: content.productPanels.coreUi.hero.sublead,
     })
   );
 
   const heroVisual = createElement("div", { className: "hero-visual" }, [
     createElement("div", {
       className: "gallery-placeholder",
-      text: "Panel dostepu do Twojej paczki.",
+      text: content.productPanels.coreUi.heroPlaceholder,
     }),
   ]);
   hero.appendChild(heroContent);
@@ -81,33 +84,34 @@ export const renderCoreUiPanel = () => {
   const featuresSection = createElement("section", { className: "section" });
   featuresSection.appendChild(
     createElement("div", { className: "section-header" }, [
-      createElement("h2", { text: "Kluczowe cechy" }),
+      createElement("h2", { text: content.productPanels.coreUi.features.title }),
       createElement("p", {
         className: "section-lead",
-        text: "Tokeny, tryby light/dark i gotowe komponenty do wdrozenia.",
+        text: content.productPanels.coreUi.features.lead,
       }),
     ])
   );
+  const featureItems = content.productPanels.coreUi.features.items || [];
   const featuresGrid = createElement("div", { className: "grid grid-3" }, [
     createElement("article", { className: "card" }, [
-      createElement("h3", { text: "Tokenowe motywy" }),
+      createElement("h3", { text: featureItems[0]?.title || "" }),
       createElement("p", {
         className: "section-lead",
-        text: "Semantyczne tokeny utrzymuja spojny light i dark mode.",
+        text: featureItems[0]?.lead || "",
       }),
     ]),
     createElement("article", { className: "card" }, [
-      createElement("h3", { text: "Bez zaleznosci" }),
+      createElement("h3", { text: featureItems[1]?.title || "" }),
       createElement("p", {
         className: "section-lead",
-        text: "Tylko HTML i CSS, bez narzedzi build.",
+        text: featureItems[1]?.lead || "",
       }),
     ]),
     createElement("article", { className: "card" }, [
-      createElement("h3", { text: "Gotowe wzorce" }),
+      createElement("h3", { text: featureItems[2]?.title || "" }),
       createElement("p", {
         className: "section-lead",
-        text: "Najczestsze wzorce UI gotowe do produkcji.",
+        text: featureItems[2]?.lead || "",
       }),
     ]),
   ]);

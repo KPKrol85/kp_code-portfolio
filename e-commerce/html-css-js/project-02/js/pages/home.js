@@ -1,7 +1,7 @@
 import { createProductCard } from "../components/productCard.js";
 import { showToast } from "../components/toast.js";
 import { renderDataState, createRetryButton } from "../components/uiStates.js";
-import { content } from "../content/pl.js";
+import { getContent } from "../content/index.js";
 import { cartService } from "../services/cart.js";
 import { actions } from "../store/actions.js";
 import { store } from "../store/store.js";
@@ -9,6 +9,8 @@ import { createElement, clearElement } from "../utils/dom.js";
 import { formatCurrency } from "../utils/format.js";
 
 export const renderHome = () => {
+  const content = getContent();
+  const homeContent = content.home;
   const main = document.getElementById("main-content");
   clearElement(main);
 
@@ -29,7 +31,7 @@ export const renderHome = () => {
 
   const p = createElement("p", {
     className: "hero-lead",
-    text: "Produkty cyfrowe dla twórców i firm: szablony stron, UI kits, komponenty i mini-narzędzia — gotowe do użycia w Twoich projektach.",
+    text: homeContent.hero.lead,
   });
 
   heroContent.appendChild(p);
@@ -37,13 +39,13 @@ export const renderHome = () => {
   const heroActions = createElement("div", { className: "hero-actions" }, [
     createElement("a", {
       className: "button",
-      text: "Przeglądaj produkty",
-      attrs: { href: "#/products" },
+      text: homeContent.hero.ctas.primaryLabel,
+      attrs: { href: homeContent.hero.ctas.primaryHref },
     }),
     createElement("a", {
       className: "button secondary",
-      text: "Zobacz demo konta",
-      attrs: { href: "#/account" },
+      text: homeContent.hero.ctas.secondaryLabel,
+      attrs: { href: homeContent.hero.ctas.secondaryHref },
     }),
   ]);
 
@@ -245,11 +247,11 @@ export const renderHome = () => {
     });
     const left = createElement("button", {
       className: "scroll-indicator-arrow is-left",
-      attrs: { type: "button", "aria-label": "Przewiń w lewo", tabindex: "0" },
+      attrs: { type: "button", "aria-label": homeContent.scrollIndicators.leftAria, tabindex: "0" },
     });
     const right = createElement("button", {
       className: "scroll-indicator-arrow is-right",
-      attrs: { type: "button", "aria-label": "Przewiń w prawo", tabindex: "0" },
+      attrs: { type: "button", "aria-label": homeContent.scrollIndicators.rightAria, tabindex: "0" },
     });
 
     overlay.appendChild(left);
@@ -344,30 +346,22 @@ export const renderHome = () => {
     return { shell, update: scheduleUpdate, cleanup };
   };
 
-  const stats = createElement("div", { className: "stats-grid" }, [
-    createElement("div", { className: "card stat-card card--interactive" }, [
-      createElement("h3", { text: "6" }),
-      createElement("p", { text: "Gotowych rozwiązań cyfrowych" }),
-    ]),
-    createElement("div", { className: "card stat-card card--interactive" }, [
-      createElement("h3", { text: "Senior-level" }),
-      createElement("p", { text: "Jakość kodu i architektury" }),
-    ]),
-    createElement("div", { className: "card stat-card card--interactive" }, [
-      createElement("h3", { text: "< 24h" }),
-      createElement("p", { text: "Czas wdrożenia produktu" }),
-    ]),
-    createElement("div", { className: "card stat-card card--interactive" }, [
-      createElement("h3", { text: "Dożywotni dostęp" }),
-      createElement("p", { text: "Aktualizacje w cenie" }),
-    ]),
-  ]);
+  const stats = createElement(
+    "div",
+    { className: "stats-grid" },
+    homeContent.stats.items.map((item) =>
+      createElement("div", { className: "card stat-card card--interactive" }, [
+        createElement("h3", { text: item.value }),
+        createElement("p", { text: item.label }),
+      ])
+    )
+  );
 
   enableDragScroll(stats);
   const statsIndicators = addScrollIndicators(stats, { shellClass: "stats-shell", hint: true });
 
   const section = createElement("section", { className: "container section" });
-  section.appendChild(createElement("h2", { text: "Popularne produkty" }));
+  section.appendChild(createElement("h2", { text: homeContent.popular.title }));
   const grid = createElement("div", { className: "products-slider" });
   const productsIndicators = addScrollIndicators(grid, { shellClass: "products-shell", hint: true });
 
@@ -444,14 +438,17 @@ export const renderHome = () => {
 
   const info = createElement("section", { className: "container section" }, [
     createElement("div", { className: "card" }, [
-      createElement("h2", { text: "Dlaczego Digital Vault?" }),
+      createElement("h2", { text: homeContent.info.title }),
       createElement("p", {
-        text: "Digital Vault to starannie wyselekcjonowane produkty cyfrowe, które pomagają szybciej tworzyć, uczyć się i rozwijać projekty. Dla twóców, zespołów oraz osób, które po prostu chcą dobrych narzędzi bez chaosu.",
+        text: homeContent.info.lead,
       }),
       createElement("div", { className: "tag-list" }, [
-        createElement("span", { className: "badge", text: "Natychmiastowy dostęp" }),
-        createElement("span", { className: "badge", text: "Aktualizacje w cenie" }),
-        createElement("span", { className: "badge", text: `Ceny od ${formatCurrency(59)}` }),
+        createElement("span", { className: "badge", text: homeContent.info.badges[0] }),
+        createElement("span", { className: "badge", text: homeContent.info.badges[1] }),
+        createElement("span", {
+          className: "badge",
+          text: homeContent.info.badges[2].replace("{price}", formatCurrency(59)),
+        }),
       ]),
     ]),
   ]);

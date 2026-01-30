@@ -1,4 +1,4 @@
-import { content } from "../content/pl.js";
+import { getContent } from "../content/index.js";
 import { simpleHash } from "../utils/hash.js";
 
 import { storage } from "./storage.js";
@@ -68,7 +68,7 @@ export const authService = {
   register({ name, email, password }) {
     const users = storage.get(STORAGE_KEYS.USERS, []);
     if (users.find((user) => user.email === email)) {
-      throw new Error(content.auth.errors.emailExists);
+      throw new Error(getContent().auth.errors.emailExists);
     }
     const user = {
       id: crypto.randomUUID(),
@@ -93,7 +93,7 @@ export const authService = {
       const users = storage.get(STORAGE_KEYS.USERS, []);
       const user = users.find((item) => item.email === credentialsOrUser.email);
       if (!user || user.passwordHash !== simpleHash(credentialsOrUser.password)) {
-        throw new Error(content.auth.errors.invalidCredentials);
+        throw new Error(getContent().auth.errors.invalidCredentials);
       }
       const session = buildSession(user);
       storage.set(STORAGE_KEYS.SESSION, session);
@@ -108,7 +108,7 @@ export const authService = {
       return { user: session.user, session };
     }
 
-    throw new Error(content.auth.errors.invalidData);
+    throw new Error(getContent().auth.errors.invalidData);
   },
   signOut() {
     storage.remove(STORAGE_KEYS.SESSION);
@@ -162,11 +162,11 @@ export const authService = {
   updateProfile({ name } = {}) {
     const session = this.getSession();
     if (!session) {
-      throw new Error(content.auth.errors.noSession);
+      throw new Error(getContent().auth.errors.noSession);
     }
     const nextName = typeof name === "string" ? name.trim() : "";
     if (nextName && nextName.length < 2) {
-      throw new Error(content.common.validation.nameMinLength);
+      throw new Error(getContent().common.validation.nameMinLength);
     }
     const updatedUser = {
       ...session.user,

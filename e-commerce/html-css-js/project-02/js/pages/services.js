@@ -1,7 +1,8 @@
 
 import { createBreadcrumbs } from "../components/breadcrumbs.js";
 import { showToast } from "../components/toast.js";
-import { SERVICES, SERVICES_PAGE, getServiceBySlug } from "../data/services.catalog.js";
+import { getContent } from "../content/index.js";
+import { getServices, getServicesPage, getServiceBySlug } from "../data/services.catalog.js";
 import { buildBreadcrumbsForPath } from "../utils/breadcrumbs.js";
 import { createElement, clearElement } from "../utils/dom.js";
 import { setMeta, setJsonLd } from "../utils/meta.js";
@@ -59,11 +60,13 @@ const createPricingGrid = (pricing = []) => {
   return grid;
 };
 
-const createProcessSteps = (steps = []) => {
+const createProcessSteps = (steps = [], stepLabel) => {
   const list = createElement("ol", { className: "process-steps" });
   steps.forEach((step, index) => {
     const item = createElement("li", { className: "process-step" });
-    item.appendChild(createElement("span", { className: "service-meta", text: `Krok ${index + 1}` }));
+    item.appendChild(
+      createElement("span", { className: "service-meta", text: stepLabel(index + 1) })
+    );
     item.appendChild(createElement("h3", { text: step.title }));
     item.appendChild(createElement("p", { text: step.description }));
     list.appendChild(item);
@@ -71,18 +74,15 @@ const createProcessSteps = (steps = []) => {
   return list;
 };
 
-const createGalleryGrid = (service) => {
+const createGalleryGrid = (service, content) => {
   const grid = createElement("div", { className: "grid grid-3 gallery-grid" });
-  const actions = service.galleryActions || [
-    { label: "Demo", disabled: true },
-    { label: "Szczegoly", disabled: true },
-  ];
+  const actions = service.galleryActions || content.servicesUi.galleryActions;
   service.galleryPlaceholders.forEach((item) => {
     const card = createElement("div", { className: "card card--interactive" });
     card.appendChild(
       createElement("div", {
         className: "gallery-placeholder",
-        text: "Screenshot wkrotce",
+        text: content.common.screenshotSoon,
       })
     );
     const tags = createTagList(item.tags);
@@ -140,10 +140,10 @@ const createFaqList = (items = []) => {
   return list;
 };
 
-const createQuoteSection = ({ title, lead, defaultServiceSlug } = {}) => {
+const createQuoteSection = ({ title, lead, defaultServiceSlug, content } = {}) => {
   const section = createElement("section", {
     className: "section",
-    attrs: { "aria-label": title || "Szybka wycena" },
+    attrs: { "aria-label": title || content.servicesUi.quote.ariaLabel },
   });
   section.appendChild(createSectionHeader(title, lead));
 
@@ -173,8 +173,10 @@ const createQuoteSection = ({ title, lead, defaultServiceSlug } = {}) => {
     className: "select",
     attrs: { name: "service", required: "" },
   });
-  serviceSelect.appendChild(createElement("option", { text: "Wybierz usluge", attrs: { value: "" } }));
-  SERVICES.forEach((service) => {
+  serviceSelect.appendChild(
+    createElement("option", { text: content.servicesUi.quote.servicePlaceholder, attrs: { value: "" } })
+  );
+  getServices().forEach((service) => {
     serviceSelect.appendChild(
       createElement("option", { text: service.name, attrs: { value: service.slug } })
     );
@@ -186,7 +188,7 @@ const createQuoteSection = ({ title, lead, defaultServiceSlug } = {}) => {
       name: "budget",
       type: "number",
       min: "500",
-      placeholder: "np. 6000",
+      placeholder: content.servicesUi.quote.budgetPlaceholder,
       required: "",
     },
   });
@@ -196,7 +198,7 @@ const createQuoteSection = ({ title, lead, defaultServiceSlug } = {}) => {
     attrs: {
       name: "timeline",
       type: "text",
-      placeholder: "np. 4 tygodnie / 15.06",
+      placeholder: content.servicesUi.quote.timelinePlaceholder,
       required: "",
     },
   });
@@ -206,35 +208,35 @@ const createQuoteSection = ({ title, lead, defaultServiceSlug } = {}) => {
     attrs: {
       name: "email",
       type: "email",
-      placeholder: "twoj@email.com",
+      placeholder: content.servicesUi.quote.emailPlaceholder,
       autocomplete: "email",
       required: "",
     },
   });
 
   const serviceField = createField({
-    label: "Typ uslugi",
+    label: content.servicesUi.quote.serviceLabel,
     id: `${fieldPrefix}-service`,
     input: serviceSelect,
-    errorMessage: "Wybierz usluge z listy.",
+    errorMessage: content.servicesUi.quote.errors.serviceRequired,
   });
   const budgetField = createField({
-    label: "Budzet (PLN)",
+    label: content.servicesUi.quote.budgetLabel,
     id: `${fieldPrefix}-budget`,
     input: budgetInput,
-    errorMessage: "Podaj szacowany budzet.",
+    errorMessage: content.servicesUi.quote.errors.budgetRequired,
   });
   const timelineField = createField({
-    label: "Termin",
+    label: content.servicesUi.quote.timelineLabel,
     id: `${fieldPrefix}-timeline`,
     input: timelineInput,
-    errorMessage: "Podaj preferowany termin realizacji.",
+    errorMessage: content.servicesUi.quote.errors.timelineRequired,
   });
   const emailField = createField({
-    label: "E-mail",
+    label: content.servicesUi.quote.emailLabel,
     id: `${fieldPrefix}-email`,
     input: emailInput,
-    errorMessage: "Podaj poprawny adres e-mail.",
+    errorMessage: content.servicesUi.quote.errors.emailInvalid,
   });
 
   formGrid.appendChild(serviceField.field);
@@ -288,20 +290,20 @@ const createQuoteSection = ({ title, lead, defaultServiceSlug } = {}) => {
     event.preventDefault();
     clearErrors();
     if (!validate()) {
-      showToast("Uzupelnij wymagane pola.", "error");
-      status.textContent = "Sprawdz wymagane pola i sprobuj ponownie.";
+      showToast(content.servicesUi.quote.errors.required, "error");
+      status.textContent = content.servicesUi.quote.errors.status;
       return;
     }
 
     const selectedService = getServiceBySlug(serviceSelect.value);
-    const message = `Dziekujemy! Otrzymasz odpowiedz w ciagu 24-48h. (Demo)`;
-    showToast("Dziekujemy! Odpowiemy w ciagu 24-48h.");
+    const message = content.servicesUi.quote.success.message;
+    showToast(content.servicesUi.quote.success.toast);
     clearElement(status);
     status.appendChild(createElement("span", { text: message }));
     status.appendChild(
       createElement("a", {
         className: "button ghost",
-        text: "Przejdz do kontaktu",
+        text: content.servicesUi.quote.success.ctaLabel,
         attrs: { href: "#/contact" },
       })
     );
@@ -337,11 +339,11 @@ const createHero = ({ title, lead, panel }) => {
   return hero;
 };
 
-const buildItemListSchema = () => ({
+const buildItemListSchema = (content) => ({
   "@context": "https://schema.org",
   "@type": "ItemList",
-  name: "Uslugi KP_Code",
-  itemListElement: SERVICES.map((service, index) => ({
+  name: content.servicesUi.schema.itemListName,
+  itemListElement: getServices().map((service, index) => ({
     "@type": "ListItem",
     position: index + 1,
     name: service.name,
@@ -375,6 +377,8 @@ const buildServiceSchema = (service) => ({
 });
 
 export const renderServicesIndex = () => {
+  const content = getContent();
+  const servicesPage = getServicesPage();
   const main = document.getElementById("main-content");
   if (!main) {
     return;
@@ -386,8 +390,8 @@ export const renderServicesIndex = () => {
   const breadcrumbs = createBreadcrumbs(buildBreadcrumbsForPath(pathname));
 
   const hero = createHero({
-    title: SERVICES_PAGE.hero.title,
-    lead: SERVICES_PAGE.hero.lead,
+    title: servicesPage.hero.title,
+    lead: servicesPage.hero.lead,
   });
   if (breadcrumbs) {
     container.appendChild(breadcrumbs);
@@ -396,11 +400,16 @@ export const renderServicesIndex = () => {
 
   const cardsSection = createElement("section", {
     className: "section",
-    attrs: { "aria-label": "Wszystkie uslugi" },
+    attrs: { "aria-label": content.servicesUi.index.sections.cards.title },
   });
-  cardsSection.appendChild(createSectionHeader("Wszystkie uslugi", "Wybierz obszar, w ktorym potrzebujesz wsparcia."));
+  cardsSection.appendChild(
+    createSectionHeader(
+      content.servicesUi.index.sections.cards.title,
+      content.servicesUi.index.sections.cards.lead
+    )
+  );
   const cardsGrid = createElement("div", { className: "grid grid-2" });
-  SERVICES.forEach((service) => {
+  getServices().forEach((service) => {
     const card = createElement("div", { className: "card service-card card--interactive" });
     const header = createElement("div", { className: "service-card__header" });
 
@@ -412,7 +421,7 @@ export const renderServicesIndex = () => {
     card.appendChild(
       createElement("a", {
         className: "button secondary",
-        text: "Zobacz szczegoly",
+        text: content.servicesUi.index.sections.cards.ctaLabel,
         attrs: { href: `#/services/${service.slug}` },
       })
     );
@@ -423,58 +432,77 @@ export const renderServicesIndex = () => {
 
   const collaborationSection = createElement("section", {
     className: "section",
-    attrs: { "aria-label": "Jak wyglada wspolpraca" },
+    attrs: { "aria-label": content.servicesUi.index.sections.collaboration.title },
   });
   collaborationSection.appendChild(
-    createSectionHeader("Jak wyglada wspolpraca?", "Wszystkie projekty realizujemy w przewidywalnych etapach.")
+    createSectionHeader(
+      content.servicesUi.index.sections.collaboration.title,
+      content.servicesUi.index.sections.collaboration.lead
+    )
   );
-  collaborationSection.appendChild(createProcessSteps(SERVICES_PAGE.collaborationSteps));
+  collaborationSection.appendChild(
+    createProcessSteps(
+      servicesPage.collaborationSteps,
+      (index) => content.servicesUi.stepLabel.replace("{index}", index)
+    )
+  );
   container.appendChild(collaborationSection);
 
   const pricingSection = createElement("section", {
     className: "section",
-    attrs: { "aria-label": "Pakiety i ceny" },
+    attrs: { "aria-label": content.servicesUi.index.sections.pricing.title },
   });
-  pricingSection.appendChild(createSectionHeader("Pakiety i ceny", "Przykladowe pakiety, ktore dopasujemy do Twoich potrzeb."));
-  pricingSection.appendChild(createPricingGrid(SERVICES_PAGE.pricing));
+  pricingSection.appendChild(
+    createSectionHeader(
+      content.servicesUi.index.sections.pricing.title,
+      content.servicesUi.index.sections.pricing.lead
+    )
+  );
+  pricingSection.appendChild(createPricingGrid(servicesPage.pricing));
   container.appendChild(pricingSection);
 
   const quoteSection = createQuoteSection({
-    title: SERVICES_PAGE.quote.title,
-    lead: SERVICES_PAGE.quote.lead,
+    title: servicesPage.quote.title,
+    lead: servicesPage.quote.lead,
+    content,
   });
   container.appendChild(quoteSection.element);
   cleanupHandlers.push(quoteSection.cleanup);
 
   const faqSection = createElement("section", {
     className: "section",
-    attrs: { "aria-label": "FAQ" },
+    attrs: { "aria-label": content.servicesUi.index.sections.faq.title },
   });
-  faqSection.appendChild(createSectionHeader("FAQ", "Odpowiadamy na najczestsze pytania o wspolprace."));
-  faqSection.appendChild(createFaqList(SERVICES_PAGE.faq));
+  faqSection.appendChild(
+    createSectionHeader(
+      content.servicesUi.index.sections.faq.title,
+      content.servicesUi.index.sections.faq.lead
+    )
+  );
+  faqSection.appendChild(createFaqList(servicesPage.faq));
   container.appendChild(faqSection);
 
   const ctaSection = createElement("section", {
     className: "section",
-    attrs: { "aria-label": "Kontakt" },
+    attrs: { "aria-label": content.servicesUi.index.sections.cta.title },
   });
   const ctaCard = createElement("div", { className: "card services-cta" });
   ctaCard.appendChild(createElement("div", {}, [
-    createElement("h2", { text: SERVICES_PAGE.cta.title }),
-    createElement("p", { text: SERVICES_PAGE.cta.description }),
+    createElement("h2", { text: servicesPage.cta.title }),
+    createElement("p", { text: servicesPage.cta.description }),
   ]));
   ctaCard.appendChild(
     createElement("a", {
       className: "button",
-      text: SERVICES_PAGE.cta.primaryLabel,
-      attrs: { href: SERVICES_PAGE.cta.primaryHref },
+      text: servicesPage.cta.primaryLabel,
+      attrs: { href: servicesPage.cta.primaryHref },
     })
   );
   ctaSection.appendChild(ctaCard);
   container.appendChild(ctaSection);
 
-  setMeta(SERVICES_PAGE.seo);
-  setJsonLd(JSON_LD_ID, buildItemListSchema());
+  setMeta(servicesPage.seo);
+  setJsonLd(JSON_LD_ID, buildItemListSchema(content));
 
   main.appendChild(container);
 
@@ -485,6 +513,7 @@ export const renderServicesIndex = () => {
 };
 
 export const renderServiceDetail = ({ slug } = {}) => {
+  const content = getContent();
   const service = getServiceBySlug(slug);
   if (!service) {
     navigateHash("#/services", { force: true });
@@ -503,7 +532,7 @@ export const renderServiceDetail = ({ slug } = {}) => {
 
   const scrollToQuoteButton = createElement("button", {
     className: "button",
-    text: "Szybka wycena",
+    text: content.servicesUi.quote.scrollToQuoteLabel,
     attrs: { type: "button" },
   });
   const handleScrollToQuote = () => {
@@ -516,13 +545,13 @@ export const renderServiceDetail = ({ slug } = {}) => {
   cleanupHandlers.push(() => scrollToQuoteButton.removeEventListener("click", handleScrollToQuote));
 
   const panel = createElement("div", { className: "services-hero-panel" });
-  panel.appendChild(createElement("h3", { text: "Co dostajesz" }));
+  panel.appendChild(createElement("h3", { text: content.servicesUi.detail.panelTitle }));
   panel.appendChild(createList(service.deliverables, "service-list"));
   panel.appendChild(createElement("div", { className: "hero-actions" }, [
     scrollToQuoteButton,
     createElement("a", {
       className: "button secondary",
-      text: "Kontakt",
+      text: content.servicesUi.detail.contactLabel,
       attrs: { href: "#/contact" },
     }),
   ]));
@@ -567,7 +596,12 @@ export const renderServiceDetail = ({ slug } = {}) => {
     attrs: { "aria-label": service.sections.process.title },
   });
   processSection.appendChild(createSectionHeader(service.sections.process.title, service.sections.process.lead));
-  processSection.appendChild(createProcessSteps(service.process));
+  processSection.appendChild(
+    createProcessSteps(
+      service.process,
+      (index) => content.servicesUi.stepLabel.replace("{index}", index)
+    )
+  );
   container.appendChild(processSection);
 
   const pricingSection = createElement("section", {
@@ -583,13 +617,14 @@ export const renderServiceDetail = ({ slug } = {}) => {
     attrs: { "aria-label": service.sections.gallery.title },
   });
   gallerySection.appendChild(createSectionHeader(service.sections.gallery.title, service.sections.gallery.lead));
-  gallerySection.appendChild(createGalleryGrid(service));
+  gallerySection.appendChild(createGalleryGrid(service, content));
   container.appendChild(gallerySection);
 
   const quoteSection = createQuoteSection({
     title: service.sections.quote.title,
     lead: service.sections.quote.lead,
     defaultServiceSlug: service.slug,
+    content,
   });
   quoteSection.element.setAttribute("id", "quote");
   container.appendChild(quoteSection.element);
@@ -605,7 +640,7 @@ export const renderServiceDetail = ({ slug } = {}) => {
 
   const ctaSection = createElement("section", {
     className: "section",
-    attrs: { "aria-label": "CTA" },
+    attrs: { "aria-label": content.servicesUi.detail.ctaLabel },
   });
   const ctaCard = createElement("div", { className: "card services-cta" });
   ctaCard.appendChild(createElement("div", {}, [

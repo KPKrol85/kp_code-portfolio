@@ -1,4 +1,4 @@
-import { content } from "../content/pl.js";
+import { getContent } from "../content/index.js";
 import { navigateHash } from "../utils/navigation.js";
 
 import { addRoute } from "./router.js";
@@ -10,6 +10,8 @@ const addLazyRoute = (pattern, loader, getHandler, meta) => {
 };
 
 export const registerRoutes = () => {
+  const getMetaRoutes = () => getContent().meta.routes;
+  const getPlaceholders = () => getContent().placeholders;
   const placeholderLoader = () => import("../pages/placeholder.js");
   const checkoutLoader = () => import("../pages/checkout.js");
   const legalPagesLoader = () => import("../pages/legalPages.js");
@@ -23,50 +25,18 @@ export const registerRoutes = () => {
   const supportLoader = () => import("../pages/support.js");
   const updatesLoader = () => import("../pages/updates.js");
   const docsLoader = () => import("../pages/docs.js");
-  const metaRoutes = content.meta.routes;
-  const placeholderBullets = {
-    products: [
-      "Przegląd kolekcji tematycznych i filtrów.",
-      "Przykładowe podglądy i checklisty kompatybilności.",
-      "Szybkie porównanie licencji i formatów plików.",
-    ],
-    services: [
-      "Zakres i pakiety usług wraz z orientacyjnymi terminami.",
-      "Case studies i przykładowe realizacje.",
-      "Krótki formularz do szybkiej wyceny.",
-    ],
-    resources: [
-      "Aktualne materiały i przewodniki dla klientów.",
-      "Sekcja pytań i odpowiedzi oraz baza wiedzy.",
-      "Kanały kontaktu i wsparcia technicznego.",
-    ],
-    company: [
-      "Informacje o zespole i misji marki.",
-      "Kamienie milowe oraz plan rozwoju produktu.",
-      "Oferty współpracy i aktualne rekrutacje.",
-    ],
-    account: [
-      "Ustawienia profilu i bezpieczeństwa konta.",
-      "Powiadomienia oraz preferencje komunikacji.",
-      "Zarządzanie danymi rozliczeniowymi.",
-    ],
-  };
-  const defaultCtas = [
-    { label: "Powrót do produktów", href: "#/products" },
-    { label: "Zaloguj się", href: "#/auth", variant: "secondary" },
-  ];
+  const getPlaceholderBullets = () => getPlaceholders().bullets;
+  const getDefaultCtas = () => getPlaceholders().defaultCtas;
   const placeholderRoutes = [
     {
       pattern: /^\/careers$/,
-      meta: {
-        ...metaRoutes.placeholders.careers,
-      },
-      view: {
-        title: "Kariera",
-        lead: "W przygotowaniu.",
-        bullets: placeholderBullets.company,
-        ctas: defaultCtas,
-      },
+      meta: () => getMetaRoutes().placeholders.careers,
+      view: () => ({
+        title: getPlaceholders().views.careers.title,
+        lead: getPlaceholders().views.careers.lead,
+        bullets: getPlaceholderBullets().company,
+        ctas: getDefaultCtas(),
+      }),
     },
   ];
 
@@ -74,113 +44,113 @@ export const registerRoutes = () => {
     /^\/$/,
     () => import("../pages/home.js"),
     getHandlerByName("renderHome"),
-    metaRoutes.home
+    () => getMetaRoutes().home
   );
   addLazyRoute(
     /^\/products(?:\?.*)?$/,
     () => import("../pages/products.js"),
     getHandlerByName("renderProducts"),
-    metaRoutes.products
+    () => getMetaRoutes().products
   );
   addLazyRoute(
     /^\/pricing$/,
     pricingLoader,
     getHandlerByName("renderPricing"),
-    metaRoutes.pricing
+    () => getMetaRoutes().pricing
   );
   addLazyRoute(
     /^\/faq$/,
     faqLoader,
     getHandlerByName("renderFaq"),
-    metaRoutes.faq
+    () => getMetaRoutes().faq
   );
   addLazyRoute(
     /^\/support$/,
     supportLoader,
     getHandlerByName("renderSupport"),
-    metaRoutes.support
+    () => getMetaRoutes().support
   );
   addLazyRoute(
     /^\/updates$/,
     updatesLoader,
     getHandlerByName("renderUpdates"),
-    metaRoutes.updates
+    () => getMetaRoutes().updates
   );
   addLazyRoute(
     /^\/docs$/,
     docsLoader,
     getHandlerByName("renderDocs"),
-    metaRoutes.docs
+    () => getMetaRoutes().docs
   );
   addRoute(
     /^\/products\/core-ui-components-pack\/panel$/,
     () => {
       navigateHash("#/product/core-ui-components-pack", { force: true });
     },
-    metaRoutes.library
+    () => getMetaRoutes().library
   );
   addLazyRoute(
     /^\/product\/core-ui-components-pack$/,
     () => import("../pages/productPanels.js"),
     getHandlerByName("renderCoreUiPanel"),
-    metaRoutes.library
+    () => getMetaRoutes().library
   );
   addLazyRoute(
     /^\/services$/,
     servicesLoader,
     getHandlerByName("renderServicesIndex"),
-    metaRoutes.services
+    () => getMetaRoutes().services
   );
   addLazyRoute(
     /^\/services\/(?<slug>[\w-]+)$/,
     servicesLoader,
     getHandlerByName("renderServiceDetail"),
-    metaRoutes.serviceDetails
+    () => getMetaRoutes().serviceDetails
   );
   addLazyRoute(
     /^\/case-studies$/,
     caseStudiesLoader,
     getHandlerByName("renderCaseStudiesIndex"),
-    metaRoutes.caseStudies
+    () => getMetaRoutes().caseStudies
   );
   addLazyRoute(
     /^\/case-studies\/(?<slug>[\w-]+)$/,
     caseStudiesLoader,
     getHandlerByName("renderCaseStudyDetail"),
-    metaRoutes.caseStudyDetails
+    () => getMetaRoutes().caseStudyDetails
   );
   addLazyRoute(
     /^\/roadmap$/,
     roadmapLoader,
     getHandlerByName("renderRoadmap"),
-    metaRoutes.placeholders.roadmap
+    () => getMetaRoutes().placeholders.roadmap
   );
   addLazyRoute(
     /^\/about$/,
     aboutLoader,
     getHandlerByName("renderAbout"),
-    metaRoutes.placeholders.about
+    () => getMetaRoutes().placeholders.about
   );
   const categoryLoader = () => import("../pages/productCategory.js");
   const categoryRoutes = [
     {
       pattern: /^\/products\/ui-kits$/,
-      meta: metaRoutes.productCategories.uiKits,
+      meta: () => getMetaRoutes().productCategories.uiKits,
       slug: "ui-kits",
     },
     {
       pattern: /^\/products\/templates$/,
-      meta: metaRoutes.productCategories.templates,
+      meta: () => getMetaRoutes().productCategories.templates,
       slug: "templates",
     },
     {
       pattern: /^\/products\/assets$/,
-      meta: metaRoutes.productCategories.assets,
+      meta: () => getMetaRoutes().productCategories.assets,
       slug: "assets",
     },
     {
       pattern: /^\/products\/knowledge$/,
-      meta: metaRoutes.productCategories.knowledge,
+      meta: () => getMetaRoutes().productCategories.knowledge,
       slug: "knowledge",
     },
   ];
@@ -205,109 +175,114 @@ export const registerRoutes = () => {
     () => {
       navigateHash("#/account/settings", { force: true });
     },
-    metaRoutes.accountSettings || metaRoutes.account
+    () => getMetaRoutes().accountSettings || getMetaRoutes().account
   );
   addLazyRoute(
     /^\/products\/(?<id>[\w-]+)$/,
     () => import("../pages/productDetails.js"),
     getHandlerByName("renderProductDetails"),
-    metaRoutes.productDetails
+    () => getMetaRoutes().productDetails
   );
   addLazyRoute(
     /^\/cart$/,
     () => import("../pages/cart.js"),
     getHandlerByName("renderCart"),
-    metaRoutes.cart
+    () => getMetaRoutes().cart
   );
   addLazyRoute(
     /^\/checkout$/,
     checkoutLoader,
     getHandlerByName("renderCheckout"),
-    metaRoutes.checkout
+    () => getMetaRoutes().checkout
   );
   addLazyRoute(
     /^\/checkout\/success$/,
     checkoutLoader,
     getHandlerByName("renderCheckoutSuccess"),
-    metaRoutes.checkoutSuccess
+    () => getMetaRoutes().checkoutSuccess
   );
   addLazyRoute(
     /^\/auth$/,
     () => import("../pages/auth.js"),
     getHandlerByName("renderAuth"),
-    metaRoutes.auth
+    () => getMetaRoutes().auth
   );
   addLazyRoute(
     /^\/account$/,
     accountLoader,
     getHandlerByName("renderAccountOverview"),
-    metaRoutes.account
+    () => getMetaRoutes().account
   );
   addLazyRoute(
     /^\/account\/orders$/,
     accountLoader,
     getHandlerByName("renderAccountOrders"),
-    metaRoutes.accountOrders || metaRoutes.account
+    () => getMetaRoutes().accountOrders || getMetaRoutes().account
   );
   addLazyRoute(
     /^\/account\/downloads$/,
     accountLoader,
     getHandlerByName("renderAccountDownloads"),
-    metaRoutes.accountDownloads || metaRoutes.account
+    () => getMetaRoutes().accountDownloads || getMetaRoutes().account
   );
   addLazyRoute(
     /^\/account\/settings$/,
     accountLoader,
     getHandlerByName("renderAccountSettings"),
-    metaRoutes.accountSettings || metaRoutes.account
+    () => getMetaRoutes().accountSettings || getMetaRoutes().account
   );
   addLazyRoute(
     /^\/library$/,
     () => import("../pages/library.js"),
     getHandlerByName("renderLibrary"),
-    metaRoutes.library
+    () => getMetaRoutes().library
   );
   addLazyRoute(
     /^\/licenses$/,
     () => import("../pages/licenses.js"),
     getHandlerByName("renderLicenses"),
-    metaRoutes.licenses
+    () => getMetaRoutes().licenses
   );
   addLazyRoute(
     /^\/privacy$/,
     legalPagesLoader,
     getHandlerByName("renderPrivacy"),
-    metaRoutes.privacy
+    () => getMetaRoutes().privacy
   );
-  addLazyRoute(/^\/terms$/, legalPagesLoader, getHandlerByName("renderTerms"), metaRoutes.terms);
+  addLazyRoute(
+    /^\/terms$/,
+    legalPagesLoader,
+    getHandlerByName("renderTerms"),
+    () => getMetaRoutes().terms
+  );
   addLazyRoute(
     /^\/cookies$/,
     legalPagesLoader,
     getHandlerByName("renderCookies"),
-    metaRoutes.cookies
+    () => getMetaRoutes().cookies
   );
   addLazyRoute(
     /^\/admin$/,
     () => import("../pages/admin.js"),
     getHandlerByName("renderAdmin"),
-    metaRoutes.admin
+    () => getMetaRoutes().admin
   );
   addLazyRoute(
     /^\/legal$/,
     () => import("../pages/legal.js"),
     getHandlerByName("renderLegal"),
-    metaRoutes.legal
+    () => getMetaRoutes().legal
   );
   addLazyRoute(
     /^\/contact$/,
     () => import("../pages/contact.js"),
     getHandlerByName("renderContact"),
-    metaRoutes.contact
+    () => getMetaRoutes().contact
   );
   addLazyRoute(
     /^\/404$/,
     () => import("../pages/notFound.js"),
     getHandlerByName("renderNotFound"),
-    metaRoutes.notFound
+    () => getMetaRoutes().notFound
   );
 };

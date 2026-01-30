@@ -1,4 +1,4 @@
-import { content } from "../content/pl.js";
+import { getContent } from "../content/index.js";
 
 import { createElement, clearElement } from "./dom.js";
 import { navigateHash } from "./navigation.js";
@@ -28,6 +28,7 @@ const showFallback = (error, source) => {
       return;
     }
     clearElement(main);
+    const content = getContent();
 
     const container = createElement("section", { className: "container" });
     const card = createElement("div", { className: "card" }, [

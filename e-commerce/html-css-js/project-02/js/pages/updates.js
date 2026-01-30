@@ -1,97 +1,9 @@
 import { createBreadcrumbs } from "../components/breadcrumbs.js";
+import { getContent } from "../content/index.js";
 import { buildBreadcrumbsForPath } from "../utils/breadcrumbs.js";
 import { createElement, clearElement } from "../utils/dom.js";
 import { setMeta } from "../utils/meta.js";
 import { parseHash } from "../utils/navigation.js";
-
-const UPDATES_META = {
-  title: "Aktualizacje / Changelog — KP_Code Digital Vault",
-  description: "Zmiany w platformie i produktach KP_Code Digital Vault.",
-};
-
-const FILTERS = [
-  { id: "all", label: "Wszystko" },
-  { id: "platform", label: "Platforma" },
-  { id: "products", label: "Produkty" },
-  { id: "fixes", label: "Naprawy" },
-  { id: "security", label: "Bezpieczeństwo" },
-];
-
-const CHANGELOG_ENTRIES = [
-  {
-    id: "update-2026-02-10",
-    date: "2026-02-10",
-    version: "2026.02.1",
-    type: "Improved",
-    scope: "platform",
-    title: "Usprawniony panel biblioteki",
-    summary: "Szybsze ładowanie i czytelniejsze stany pobrań.",
-    details: [
-      "Zoptymalizowane ładowanie listy zakupów.",
-      "Lepsze komunikaty o dostępności plików.",
-      "Usprawniony układ kart w bibliotece.",
-    ],
-    links: [{ label: "Biblioteka", href: "#/library" }],
-  },
-  {
-    id: "update-2026-01-28",
-    date: "2026-01-28",
-    version: "2026.01.4",
-    type: "New",
-    scope: "products",
-    title: "Nowe starter packs dla UI Kits",
-    summary: "Dodaliśmy zestawy startowe z naciskiem na szybkie wdrożenie.",
-    details: [
-      "Nowe sekcje hero, pricing i FAQ.",
-      "Zunifikowane tokeny kolorów i typografii.",
-      "Gotowe warianty responsywne.",
-    ],
-    links: [{ label: "Produkty UI Kits", href: "#/products/ui-kits" }],
-  },
-  {
-    id: "update-2026-01-20",
-    date: "2026-01-20",
-    version: "2026.01.3",
-    type: "Fixed",
-    scope: "fixes",
-    title: "Naprawy w koszyku i checkout",
-    summary: "Poprawiono stabilność i komunikaty w procesie zakupu.",
-    details: [
-      "Lepsze komunikaty o brakujących produktach.",
-      "Doprecyzowane stany ładowania.",
-      "Naprawa wyświetlania sumy w koszyku.",
-    ],
-  },
-  {
-    id: "update-2026-01-12",
-    date: "2026-01-12",
-    version: "2026.01.2",
-    type: "Security",
-    scope: "security",
-    title: "Wzmocnione zabezpieczenia dostępu",
-    summary: "Dodatkowe walidacje i lepsze logowanie zdarzeń.",
-    details: [
-      "Lepsza walidacja danych wejściowych.",
-      "Usprawnione logowanie zdarzeń konta.",
-      "Dodatkowe kontrole w warstwie routingowej.",
-    ],
-  },
-  {
-    id: "update-2026-01-05",
-    date: "2026-01-05",
-    version: "2026.01.1",
-    type: "Improved",
-    scope: "products",
-    title: "Lepsze opisy produktów",
-    summary: "Ujednolicone opisy i listy zawartości w kartach produktów.",
-    details: [
-      "Spójny układ sekcji produktu.",
-      "Dodane informacje o formatach plików.",
-      "Wyrównane style list i CTA.",
-    ],
-    links: [{ label: "Katalog produktów", href: "#/products" }],
-  },
-];
 
 const createSectionHeader = (title, lead) => {
   const header = createElement("div", { className: "section-header" });
@@ -162,6 +74,8 @@ const matchesQuery = (entry, query) => {
 };
 
 export const renderUpdates = () => {
+  const content = getContent();
+  const updates = content.updates;
   const main = document.getElementById("main-content");
   if (!main) {
     return;
@@ -178,17 +92,19 @@ export const renderUpdates = () => {
 
   const hero = createElement("section", { className: "hero updates-hero" });
   const heroContent = createElement("div", { className: "hero-content" });
-  heroContent.appendChild(createElement("span", { className: "eyebrow", text: "Aktualizacje" }));
+  heroContent.appendChild(
+    createElement("span", { className: "eyebrow", text: updates.hero.eyebrow })
+  );
   heroContent.appendChild(
     createElement("h1", {
-      text: "Aktualizacje / Changelog",
+      text: updates.hero.title,
       attrs: { tabindex: "-1", "data-focus-heading": "true" },
     })
   );
   heroContent.appendChild(
     createElement("p", {
       className: "hero-lead",
-      text: "Publikujemy tu zmiany platformy oraz aktualizacje produktów.",
+      text: updates.hero.lead,
     })
   );
   hero.appendChild(heroContent);
@@ -196,12 +112,12 @@ export const renderUpdates = () => {
 
   const controlsSection = createElement("section", {
     className: "section",
-    attrs: { "aria-label": "Filtry aktualizacji" },
+    attrs: { "aria-label": updates.controls.ariaLabel },
   });
   controlsSection.appendChild(
     createSectionHeader(
-      "Przegląd aktualizacji",
-      "Filtruj wpisy lub wyszukuj konkretne zmiany."
+      updates.controls.title,
+      updates.controls.lead
     )
   );
 
@@ -211,7 +127,7 @@ export const renderUpdates = () => {
   });
   let activeFilter = "all";
 
-  FILTERS.forEach((filter) => {
+  updates.filters.forEach((filter) => {
     const button = createElement("button", {
       className: "button tab-button",
       text: filter.label,
@@ -232,7 +148,7 @@ export const renderUpdates = () => {
 
   const searchField = createElement("div", { className: "form-field updates-search" });
   const searchLabel = createElement("label", {
-    text: "Szukaj aktualizacji",
+    text: updates.search.label,
     attrs: { for: "updates-search" },
   });
   const searchInput = createElement("input", {
@@ -240,7 +156,7 @@ export const renderUpdates = () => {
     attrs: {
       id: "updates-search",
       type: "search",
-      placeholder: "Szukaj aktualizacji…",
+      placeholder: updates.search.placeholder,
       autocomplete: "off",
     },
   });
@@ -266,7 +182,7 @@ export const renderUpdates = () => {
   const renderEntries = () => {
     clearElement(listWrapper);
     const query = searchInput.value.trim();
-    const entries = [...CHANGELOG_ENTRIES]
+    const entries = [...updates.entries]
       .sort((a, b) => b.date.localeCompare(a.date))
       .filter((entry) => (activeFilter === "all" ? true : entry.scope === activeFilter))
       .filter((entry) => matchesQuery(entry, query));
@@ -274,10 +190,8 @@ export const renderUpdates = () => {
     if (!entries.length) {
       listWrapper.appendChild(
         createElement("div", { className: "card updates-empty" }, [
-          createElement("h3", { text: "Brak wpisów" }),
-          createElement("p", {
-            text: "Pierwsze aktualizacje pojawią się wraz z premierą nowych paczek.",
-          }),
+          createElement("h3", { text: updates.empty.title }),
+          createElement("p", { text: updates.empty.lead }),
         ])
       );
       return;
@@ -292,5 +206,5 @@ export const renderUpdates = () => {
 
   updateTabs();
   renderEntries();
-  setMeta(UPDATES_META);
+  setMeta(content.meta.routes.updates);
 };

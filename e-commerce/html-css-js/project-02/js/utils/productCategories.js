@@ -1,20 +1,22 @@
-import { content } from "../content/pl.js";
+import { getContent } from "../content/index.js";
 
-const CATEGORY_FALLBACK = {
+const getCategoryFallback = () => ({
   slug: "unknown",
-  title: "Kategoria",
+  title: getContent().products?.categoryFallbackLabel || "Category",
   description: "",
   bullets: [],
   faq: [],
-};
+});
 
-export const productCategories = content.products?.categories ?? [];
+const getCategories = () => getContent().products?.categories ?? [];
 
 export const getCategoryConfig = (slug) => {
   if (!slug) {
-    return CATEGORY_FALLBACK;
+    return getCategoryFallback();
   }
-  return productCategories.find((category) => category.slug === slug) || CATEGORY_FALLBACK;
+  return getCategories().find((category) => category.slug === slug) || getCategoryFallback();
 };
 
 export const getCategoryLabel = (slug) => getCategoryConfig(slug).title || slug;
+
+export const getProductCategories = () => getCategories();

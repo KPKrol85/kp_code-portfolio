@@ -1,4 +1,5 @@
 import { createBreadcrumbs } from "../components/breadcrumbs.js";
+import { getContent } from "../content/index.js";
 import { buildBreadcrumbsForPath } from "../utils/breadcrumbs.js";
 import { createElement, clearElement } from "../utils/dom.js";
 import { parseHash } from "../utils/navigation.js";
@@ -22,6 +23,7 @@ const buildActions = (ctas) => {
 };
 
 export const renderPlaceholder = ({ title, lead, bullets = [], ctas = [] }) => {
+  const content = getContent();
   const main = document.getElementById("main-content");
   if (!main) {
     return;
@@ -38,7 +40,7 @@ export const renderPlaceholder = ({ title, lead, bullets = [], ctas = [] }) => {
   const intro = createElement("div", { className: "section" }, [
     breadcrumbs,
     heading,
-    createElement("p", { text: lead ?? "W przygotowaniu." }),
+    createElement("p", { text: lead ?? content.placeholders.fallbackLead }),
   ]);
   const actions = buildActions(ctas);
   if (actions) {
@@ -46,7 +48,7 @@ export const renderPlaceholder = ({ title, lead, bullets = [], ctas = [] }) => {
   }
 
   const details = createElement("div", { className: "card" }, [
-    createElement("h2", { text: "Co będzie tutaj?" }),
+    createElement("h2", { text: content.placeholders.detailsTitle }),
   ]);
   if (bullets.length) {
     const list = createElement(
@@ -57,7 +59,7 @@ export const renderPlaceholder = ({ title, lead, bullets = [], ctas = [] }) => {
     details.appendChild(list);
   } else {
     details.appendChild(
-      createElement("p", { text: "Dodamy szczegóły funkcji i treści tej sekcji." })
+      createElement("p", { text: content.placeholders.detailsFallback })
     );
   }
 
@@ -66,4 +68,7 @@ export const renderPlaceholder = ({ title, lead, bullets = [], ctas = [] }) => {
   main.appendChild(container);
 };
 
-export const createPlaceholderHandler = (config) => () => renderPlaceholder(config);
+export const createPlaceholderHandler = (config) => () => {
+  const resolved = typeof config === "function" ? config() : config;
+  return renderPlaceholder(resolved);
+};

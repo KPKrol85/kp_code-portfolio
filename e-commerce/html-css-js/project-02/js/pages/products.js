@@ -2,19 +2,20 @@ import { createBreadcrumbs } from "../components/breadcrumbs.js";
 import { createProductsGrid } from "../components/productsGrid.js";
 import { showToast } from "../components/toast.js";
 import { createRetryButton } from "../components/uiStates.js";
-import { content } from "../content/pl.js";
+import { getContent } from "../content/index.js";
 import { cartService } from "../services/cart.js";
 import { actions } from "../store/actions.js";
 import { store } from "../store/store.js";
 import { buildProductsBreadcrumbs } from "../utils/breadcrumbs.js";
 import { debounce } from "../utils/debounce.js";
 import { createElement, clearElement } from "../utils/dom.js";
-import { getCategoryLabel, productCategories } from "../utils/productCategories.js";
+import { getCategoryLabel, getProductCategories } from "../utils/productCategories.js";
 
 const FILTER_DEFAULTS = { query: "", category: "all", sort: "latest" };
 const VALID_SORTS = new Set(["latest", "price-asc", "price-desc"]);
 
 export const renderProducts = () => {
+  const content = getContent();
   const main = document.getElementById("main-content");
   clearElement(main);
 
@@ -208,7 +209,7 @@ export const renderProducts = () => {
   };
   const getOrderedCategories = (nextProducts) => {
     const available = new Set(nextProducts.map((product) => product.category));
-    const ordered = productCategories
+    const ordered = getProductCategories()
       .map((category) => category.slug)
       .filter((slug) => available.has(slug));
     available.forEach((slug) => {
@@ -253,7 +254,7 @@ export const renderProducts = () => {
       actions.cart.setCart(cartService.getCart());
       showToast(content.toasts.addedToCart);
     },
-    showMoreLabel: "Pokaż więcej",
+    showMoreLabel: content.products.listPage.showMore,
   });
   const { grid, resultsCount, showMoreButton } = productsGrid;
   container.appendChild(grid);
@@ -264,13 +265,13 @@ export const renderProducts = () => {
   if (faqItems.length) {
     const faqSection = createElement("section", {
       className: "section",
-      attrs: { "aria-label": "FAQ" },
+      attrs: { "aria-label": content.products.listPage.faq.ariaLabel },
     });
     const faqHeader = createElement("div", { className: "section-header" }, [
-      createElement("h2", { text: "FAQ" }),
+      createElement("h2", { text: content.products.listPage.faq.title }),
       createElement("p", {
         className: "section-lead",
-        text: "Najczęstsze pytania o zakup, licencję i aktualizacje produktów cyfrowych.",
+        text: content.products.listPage.faq.lead,
       }),
     ]);
     faqSection.appendChild(faqHeader);

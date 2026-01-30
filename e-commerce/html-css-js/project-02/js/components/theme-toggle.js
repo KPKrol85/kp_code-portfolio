@@ -1,5 +1,9 @@
-export const getThemeLabel = (theme) =>
-  theme === "dark" ? "Switch to light theme" : "Switch to dark theme";
+import { getContent } from "../content/index.js";
+
+export const getThemeLabel = (theme) => {
+  const content = getContent();
+  return theme === "dark" ? content.themeToggle.toLight : content.themeToggle.toDark;
+};
 
 let themeIconCount = 0;
 export const createThemeIcon = () => {
@@ -63,12 +67,13 @@ export const createThemeIcon = () => {
 };
 
 export const createThemeToggleButton = ({ theme, onToggle, withId = false } = {}) => {
+  const content = getContent();
   const button = document.createElement("button");
   button.className = "theme-toggle";
   button.type = "button";
   button.setAttribute("aria-label", getThemeLabel(theme));
   button.setAttribute("aria-live", "polite");
-  button.setAttribute("title", "Toggle theme");
+  button.setAttribute("title", content.themeToggle.title);
   if (withId) {
     button.id = "theme-toggle";
   }
@@ -78,6 +83,7 @@ export const createThemeToggleButton = ({ theme, onToggle, withId = false } = {}
   }
   const updateLabel = (nextTheme) => {
     button.setAttribute("aria-label", getThemeLabel(nextTheme));
+    button.setAttribute("title", getContent().themeToggle.title);
   };
   return { button, updateLabel };
 };

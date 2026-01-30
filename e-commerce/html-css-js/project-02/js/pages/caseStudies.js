@@ -1,5 +1,5 @@
 import { createBreadcrumbs } from "../components/breadcrumbs.js";
-import { content } from "../content/pl.js";
+import { getContent, t } from "../content/index.js";
 import { getCaseStudyBySlug } from "../data/caseStudies.catalog.js";
 import { buildBreadcrumbsForPath } from "../utils/breadcrumbs.js";
 import { createElement, clearElement } from "../utils/dom.js";
@@ -34,14 +34,14 @@ const createList = (items = [], className) => {
   return list;
 };
 
-const createGalleryGrid = (items = []) => {
+const createGalleryGrid = (items = [], placeholderLabel) => {
   const grid = createElement("div", { className: "case-gallery-grid" });
   items.forEach((label) => {
     const card = createElement("div", { className: "card" });
     card.appendChild(
       createElement("div", {
         className: "gallery-placeholder",
-        text: "Screenshot wkrotce",
+        text: placeholderLabel,
       })
     );
     card.appendChild(createElement("p", { className: "service-meta", text: label }));
@@ -61,6 +61,7 @@ const buildCaseStudySchema = (caseStudy) => ({
 });
 
 const getServiceLabel = (serviceSlug) => {
+  const content = getContent();
   const serviceLabels = content.breadcrumbs?.services ?? {};
   if (serviceSlug === "wordpress") {
     return serviceLabels.wordpress || "WordPress Solutions";
@@ -74,13 +75,14 @@ const getServiceLabel = (serviceSlug) => {
   if (serviceSlug === "consulting-support") {
     return serviceLabels.consultingSupport || "Consulting & Support";
   }
-  return "Uslugi";
+  return content.breadcrumbs?.sections?.services || "Services";
 };
 
 const buildCaseBreadcrumbs = (caseStudy) => {
+  const content = getContent();
   return [
-    { label: "Start", href: "#/" },
-    { label: "Uslugi", href: "#/services" },
+    { label: content.header.nav.home, href: "#/" },
+    { label: content.breadcrumbs?.sections?.services || content.header.nav.services, href: "#/services" },
     {
       label: getServiceLabel(caseStudy.serviceSlug),
       href: `#/services/${caseStudy.serviceSlug}`,
@@ -90,6 +92,7 @@ const buildCaseBreadcrumbs = (caseStudy) => {
 };
 
 export const renderCaseStudiesIndex = () => {
+  const content = getContent();
   const main = document.getElementById("main-content");
   if (!main) {
     return;
@@ -101,19 +104,15 @@ export const renderCaseStudiesIndex = () => {
   const breadcrumbs = createBreadcrumbs(buildBreadcrumbsForPath(pathname));
   const header = createElement("div", { className: "section" }, [
     breadcrumbs,
-    createElement("h1", { text: "Case studies" }),
+    createElement("h1", { text: content.caseStudies.index.title }),
     createElement("p", {
-      text: "Sekcja case studies jest w przygotowaniu. Wkrotce dodamy liste realizacji.",
+      text: content.caseStudies.index.lead,
     }),
   ]);
 
   const card = createElement("div", { className: "card" }, [
-    createElement("h2", { text: "Co sie pojawi" }),
-    createList([
-      "Lista realizacji powiazanych z uslugami",
-      "Filtry po typie uslugi",
-      "Szczegolowe opisy procesow",
-    ]),
+    createElement("h2", { text: content.caseStudies.index.cardTitle }),
+    createList(content.caseStudies.index.cardBullets),
   ]);
 
   container.appendChild(header);
@@ -124,6 +123,7 @@ export const renderCaseStudiesIndex = () => {
 };
 
 export const renderCaseStudyDetail = ({ slug } = {}) => {
+  const content = getContent();
   const caseStudy = getCaseStudyBySlug(slug);
   if (!caseStudy) {
     navigateHash("#/404", { force: true });
@@ -155,12 +155,16 @@ export const renderCaseStudyDetail = ({ slug } = {}) => {
   }
 
   const metaCard = createElement("div", { className: "card case-meta" });
-  metaCard.appendChild(createElement("h3", { text: "Kontekst projektu" }));
+  metaCard.appendChild(createElement("h3", { text: content.caseStudies.detail.metaTitle }));
   const metaList = createElement("ul", { className: "case-meta-list" });
   metaList.appendChild(
-    createElement("li", { text: `Usluga: ${getServiceLabel(caseStudy.serviceSlug)}` })
+    createElement("li", {
+      text: `${content.caseStudies.detail.serviceLabel}: ${getServiceLabel(caseStudy.serviceSlug)}`,
+    })
   );
-  metaList.appendChild(createElement("li", { text: `Kategoria: ${caseStudy.category}` }));
+  metaList.appendChild(
+    createElement("li", { text: `${content.caseStudies.detail.categoryLabel}: ${caseStudy.category}` })
+  );
   metaCard.appendChild(metaList);
 
   hero.appendChild(heroContent);
@@ -169,9 +173,14 @@ export const renderCaseStudyDetail = ({ slug } = {}) => {
 
   const goalSection = createElement("section", {
     className: "section",
-    attrs: { "aria-label": "Cel" },
+    attrs: { "aria-label": content.caseStudies.detail.sections.goal.title },
   });
-  goalSection.appendChild(createSectionHeader("Cel", "Gorny poziom celu klienta."));
+  goalSection.appendChild(
+    createSectionHeader(
+      content.caseStudies.detail.sections.goal.title,
+      content.caseStudies.detail.sections.goal.lead
+    )
+  );
   goalSection.appendChild(createElement("div", { className: "card" }, [
     createElement("p", { text: caseStudy.sections.goal }),
   ]));
@@ -179,9 +188,14 @@ export const renderCaseStudyDetail = ({ slug } = {}) => {
 
   const scopeSection = createElement("section", {
     className: "section",
-    attrs: { "aria-label": "Zakres prac" },
+    attrs: { "aria-label": content.caseStudies.detail.sections.scope.title },
   });
-  scopeSection.appendChild(createSectionHeader("Zakres prac", "Zakres dostarczonych elementow."));
+  scopeSection.appendChild(
+    createSectionHeader(
+      content.caseStudies.detail.sections.scope.title,
+      content.caseStudies.detail.sections.scope.lead
+    )
+  );
   scopeSection.appendChild(createElement("div", { className: "card" }, [
     createList(caseStudy.sections.scope, "service-list"),
   ]));
@@ -189,9 +203,14 @@ export const renderCaseStudyDetail = ({ slug } = {}) => {
 
   const stackSection = createElement("section", {
     className: "section",
-    attrs: { "aria-label": "Stack" },
+    attrs: { "aria-label": content.caseStudies.detail.sections.stack.title },
   });
-  stackSection.appendChild(createSectionHeader("Stack", "Uzyte narzedzia i komponenty."));
+  stackSection.appendChild(
+    createSectionHeader(
+      content.caseStudies.detail.sections.stack.title,
+      content.caseStudies.detail.sections.stack.lead
+    )
+  );
   const stackCard = createElement("div", { className: "card" });
   const stackTags = createTagList(caseStudy.sections.stack);
   if (stackTags) {
@@ -202,13 +221,23 @@ export const renderCaseStudyDetail = ({ slug } = {}) => {
 
   const processSection = createElement("section", {
     className: "section",
-    attrs: { "aria-label": "Proces" },
+    attrs: { "aria-label": content.caseStudies.detail.sections.process.title },
   });
-  processSection.appendChild(createSectionHeader("Proces", "Etapy wspolpracy krok po kroku."));
+  processSection.appendChild(
+    createSectionHeader(
+      content.caseStudies.detail.sections.process.title,
+      content.caseStudies.detail.sections.process.lead
+    )
+  );
   const processList = createElement("ol", { className: "process-steps" });
   caseStudy.sections.process.forEach((step, index) => {
     const item = createElement("li", { className: "process-step" });
-    item.appendChild(createElement("span", { className: "service-meta", text: `Krok ${index + 1}` }));
+    item.appendChild(
+      createElement("span", {
+        className: "service-meta",
+        text: content.caseStudies.detail.stepLabel.replace("{index}", index + 1),
+      })
+    );
     item.appendChild(createElement("p", { text: step }));
     processList.appendChild(item);
   });
@@ -218,9 +247,14 @@ export const renderCaseStudyDetail = ({ slug } = {}) => {
   if (caseStudy.sections.standards) {
     const standardsSection = createElement("section", {
       className: "section",
-      attrs: { "aria-label": "Standardy" },
+      attrs: { "aria-label": content.caseStudies.detail.sections.standards.title },
     });
-    standardsSection.appendChild(createSectionHeader("Standardy", "Zakres jakosci i standardow."));
+    standardsSection.appendChild(
+      createSectionHeader(
+        content.caseStudies.detail.sections.standards.title,
+        content.caseStudies.detail.sections.standards.lead
+      )
+    );
     standardsSection.appendChild(createElement("div", { className: "card" }, [
       createElement("p", { text: caseStudy.sections.standards }),
     ]));
@@ -230,9 +264,14 @@ export const renderCaseStudyDetail = ({ slug } = {}) => {
   if (caseStudy.sections.security) {
     const securitySection = createElement("section", {
       className: "section",
-      attrs: { "aria-label": "Bezpieczenstwo" },
+      attrs: { "aria-label": content.caseStudies.detail.sections.security.title },
     });
-    securitySection.appendChild(createSectionHeader("Bezpieczenstwo", "Podstawowe podejscie do ochrony projektu."));
+    securitySection.appendChild(
+      createSectionHeader(
+        content.caseStudies.detail.sections.security.title,
+        content.caseStudies.detail.sections.security.lead
+      )
+    );
     securitySection.appendChild(createElement("div", { className: "card" }, [
       createElement("p", { text: caseStudy.sections.security }),
     ]));
@@ -241,9 +280,14 @@ export const renderCaseStudyDetail = ({ slug } = {}) => {
 
   const outcomeSection = createElement("section", {
     className: "section",
-    attrs: { "aria-label": "Rezultat" },
+    attrs: { "aria-label": content.caseStudies.detail.sections.outcome.title },
   });
-  outcomeSection.appendChild(createSectionHeader("Rezultat", "Efekt wdrozenia."));
+  outcomeSection.appendChild(
+    createSectionHeader(
+      content.caseStudies.detail.sections.outcome.title,
+      content.caseStudies.detail.sections.outcome.lead
+    )
+  );
   outcomeSection.appendChild(createElement("div", { className: "card" }, [
     createElement("p", { text: caseStudy.sections.outcome }),
   ]));
@@ -251,15 +295,20 @@ export const renderCaseStudyDetail = ({ slug } = {}) => {
 
   const gallerySection = createElement("section", {
     className: "section",
-    attrs: { "aria-label": "Galeria" },
+    attrs: { "aria-label": content.caseStudies.detail.sections.gallery.title },
   });
-  gallerySection.appendChild(createSectionHeader("Galeria", "Podglady sekcji i widokow."));
-  gallerySection.appendChild(createGalleryGrid(caseStudy.gallery));
+  gallerySection.appendChild(
+    createSectionHeader(
+      content.caseStudies.detail.sections.gallery.title,
+      content.caseStudies.detail.sections.gallery.lead
+    )
+  );
+  gallerySection.appendChild(createGalleryGrid(caseStudy.gallery, content.common.screenshotSoon));
   container.appendChild(gallerySection);
 
   const ctaSection = createElement("section", {
     className: "section",
-    attrs: { "aria-label": "CTA" },
+    attrs: { "aria-label": content.caseStudies.detail.sections.cta.title },
   });
   const ctaCard = createElement("div", { className: "card services-cta" });
   ctaCard.appendChild(createElement("div", {}, [
@@ -270,14 +319,14 @@ export const renderCaseStudyDetail = ({ slug } = {}) => {
   ctaActions.appendChild(
     createElement("a", {
       className: "button",
-      text: caseStudy.cta.primaryLabel || "Popros o wycene",
+      text: caseStudy.cta.primaryLabel || content.caseStudies.detail.ctaPrimaryFallback,
       attrs: { href: caseStudy.cta.primaryHref || `#/services/${caseStudy.serviceSlug}#quote` },
     })
   );
   ctaActions.appendChild(
     createElement("a", {
       className: "button secondary",
-      text: caseStudy.cta.secondaryLabel || "Kontakt",
+      text: caseStudy.cta.secondaryLabel || content.caseStudies.detail.ctaSecondaryFallback,
       attrs: { href: caseStudy.cta.secondaryHref || "#/contact" },
     })
   );
@@ -286,7 +335,7 @@ export const renderCaseStudyDetail = ({ slug } = {}) => {
   container.appendChild(ctaSection);
 
   setMeta({
-    title: `${caseStudy.title} — Case study | KP_Code Digital Vault`,
+    title: t("caseStudies.meta.detailTitle", { title: caseStudy.title }),
     description: caseStudy.excerpt,
   });
   setJsonLd(JSON_LD_ID, buildCaseStudySchema(caseStudy));

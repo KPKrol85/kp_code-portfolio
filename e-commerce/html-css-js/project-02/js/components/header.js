@@ -1,4 +1,4 @@
-import { content } from "../content/pl.js";
+import { getContent, getLang, setLang } from "../content/index.js";
 import { authService } from "../services/auth.js";
 import { selectors } from "../store/selectors.js";
 import { store } from "../store/store.js";
@@ -8,67 +8,71 @@ import { navigateHash } from "../utils/navigation.js";
 import { createThemeToggleButton } from "./theme-toggle.js";
 import { showToast } from "./toast.js";
 
-const navItems = [
-  { label: "Start", path: "#/" },
+const buildNavItems = (content) => [
+  { label: content.header.nav.home, path: "#/" },
   {
-    label: "Produkty",
+    label: content.header.nav.products,
     dropdownRoot: {
-      label: "Wszystkie produkty",
+      label: content.header.nav.productsRoot,
       path: "#/products",
       dataRoute: "#/products",
       routeMatch: "prefix",
     },
     dropdown: [
       {
-        label: "UI Kits & Components",
+        label: content.header.nav.productsDropdown.uiKits,
         path: "#/products/ui-kits",
         dataRoute: "#/products/ui-kits",
       },
       {
-        label: "Templates & Dashboards",
+        label: content.header.nav.productsDropdown.templates,
         path: "#/products/templates",
         dataRoute: "#/products/templates",
       },
-      { label: "Assets & Graphics", path: "#/products/assets", dataRoute: "#/products/assets" },
       {
-        label: "Knowledge & Tools",
+        label: content.header.nav.productsDropdown.assets,
+        path: "#/products/assets",
+        dataRoute: "#/products/assets",
+      },
+      {
+        label: content.header.nav.productsDropdown.knowledge,
         path: "#/products/knowledge",
         dataRoute: "#/products/knowledge",
       },
     ],
   },
   {
-    label: "Usługi",
+    label: content.header.nav.services,
     dropdownRoot: {
-      label: "Wszystkie usługi",
+      label: content.header.nav.servicesRoot,
       path: "#/services",
       dataRoute: "#/services",
       routeMatch: "prefix",
     },
     dropdown: [
       {
-        label: "Web Development",
+        label: content.header.nav.servicesDropdown.webDevelopment,
         path: "#/services/web-development",
         dataRoute: "#/services/web-development",
       },
       {
-        label: "WordPress Solutions",
+        label: content.header.nav.servicesDropdown.wordpress,
         path: "#/services/wordpress",
         dataRoute: "#/services/wordpress",
       },
       {
-        label: "UI / UX & Branding",
+        label: content.header.nav.servicesDropdown.uiUxBranding,
         path: "#/services/ui-ux-branding",
         dataRoute: "#/services/ui-ux-branding",
       },
       {
-        label: "Consulting & Support",
+        label: content.header.nav.servicesDropdown.consultingSupport,
         path: "#/services/consulting-support",
         dataRoute: "#/services/consulting-support",
       },
     ],
   },
-  { label: "Kontakt", path: "#/contact" },
+  { label: content.header.nav.contact, path: "#/contact" },
 ];
 
 const LOGO_SOURCES = {
@@ -79,6 +83,7 @@ const LOGO_WIDTH = 140;
 const LOGO_HEIGHT = 64;
 
 export const renderHeader = (container, onThemeToggle, { onHeightChange } = {}) => {
+  const content = getContent();
   const MOBILE_BREAKPOINT = 960;
   const SHRINK_THRESHOLD = 80;
   const EXPAND_THRESHOLD = 40;
@@ -152,7 +157,7 @@ export const renderHeader = (container, onThemeToggle, { onHeightChange } = {}) 
 
   const buildNavLinks = (className, { idPrefix = "nav" } = {}) => {
     const navList = createElement("div", { className });
-    navItems.forEach((item, index) => {
+    buildNavItems(content).forEach((item, index) => {
       if (item.dropdown) {
         const dropdownItems = item.dropdownRoot
           ? [item.dropdownRoot, ...item.dropdown]
@@ -181,29 +186,41 @@ export const renderHeader = (container, onThemeToggle, { onHeightChange } = {}) 
   const getAccountItems = (isAuthenticated) => {
     if (!isAuthenticated) {
       return [
-        { label: "Zaloguj", path: "#/auth", dataRoute: "#/auth" },
-        { label: "Rejestracja", path: "#/auth", dataRoute: "#/auth" },
-        { label: "Demo konta", path: "#/account", dataRoute: "#/account" },
+        { label: content.header.accountMenu.login, path: "#/auth", dataRoute: "#/auth" },
+        { label: content.header.accountMenu.register, path: "#/auth", dataRoute: "#/auth" },
+        { label: content.header.accountMenu.demo, path: "#/account", dataRoute: "#/account" },
       ];
     }
     return [
-      { label: "Panel konta", path: "#/account", dataRoute: "#/account" },
-      { label: "Biblioteka", path: "#/library", dataRoute: "#/library" },
-      { label: "Licencje", path: "#/licenses", dataRoute: "#/licenses" },
-      { label: "Ustawienia", path: "#/account/settings", dataRoute: "#/account/settings" },
-      { label: "Wyloguj", path: "#/auth", dataRoute: "#/auth", action: "logout" },
+      { label: content.header.accountMenu.account, path: "#/account", dataRoute: "#/account" },
+      { label: content.header.accountMenu.library, path: "#/library", dataRoute: "#/library" },
+      { label: content.header.accountMenu.licenses, path: "#/licenses", dataRoute: "#/licenses" },
+      {
+        label: content.header.accountMenu.settings,
+        path: "#/account/settings",
+        dataRoute: "#/account/settings",
+      },
+      {
+        label: content.header.accountMenu.logout,
+        path: "#/auth",
+        dataRoute: "#/auth",
+        action: "logout",
+      },
     ];
   };
 
   const buildActions = (className, { withId = false } = {}) => {
     const actions = createElement("div", { className });
     const cartButton = createElement("a", {
-      text: `Koszyk (${selectors.cartCount(store.getState())})`,
+      text: content.header.cartLabel.replace(
+        "{count}",
+        String(selectors.cartCount(store.getState()))
+      ),
       attrs: { href: "#/cart" },
     });
 
     const accountDropdown = buildDropdown({
-      label: "Konto",
+      label: content.header.accountLabel,
       menuId: `${withId ? "header" : "mobile"}-account-dropdown`,
       items: getAccountItems(selectors.isAuthenticated(store.getState())),
     });
@@ -214,13 +231,35 @@ export const renderHeader = (container, onThemeToggle, { onHeightChange } = {}) 
       withId,
     });
 
+    const langButton = createElement("button", {
+      className: "lang-toggle",
+      text: getLang(),
+      attrs: {
+        type: "button",
+        title: content.header.langToggleTitle,
+        "aria-label": content.header.langToggleAria,
+      },
+    });
+
+    langButton.addEventListener("click", () => {
+      const current = getLang();
+      const next = current === "en" ? "pl" : "en";
+      setLang(next);
+      langButton.textContent = next;
+    });
+
     actions.appendChild(cartButton);
     actions.appendChild(accountDropdown.itemWrapper);
+    actions.appendChild(langButton);
     actions.appendChild(themeButton);
     return {
       element: actions,
       update(nextState) {
-        cartButton.textContent = `Koszyk (${nextState.cartCount})`;
+        const currentContent = getContent();
+        cartButton.textContent = currentContent.header.cartLabel.replace(
+          "{count}",
+          String(nextState.cartCount)
+        );
         updateDropdownMenu(accountDropdown.menu, getAccountItems(nextState.isAuthenticated));
         updateThemeLabel(nextState.theme);
       },
@@ -265,7 +304,10 @@ export const renderHeader = (container, onThemeToggle, { onHeightChange } = {}) 
     menuDrawer.setAttribute("aria-hidden", menuOpen ? "false" : "true");
     menuOverlay.setAttribute("aria-hidden", menuOpen ? "false" : "true");
     menuToggleButton.setAttribute("aria-expanded", menuOpen ? "true" : "false");
-    menuToggleButton.setAttribute("aria-label", menuOpen ? "Close menu" : "Open menu");
+    menuToggleButton.setAttribute(
+      "aria-label",
+      menuOpen ? content.header.menuCloseLabel : content.header.menuOpenLabel
+    );
 
     if (menuOpen) {
       lockScroll();
@@ -327,14 +369,17 @@ export const renderHeader = (container, onThemeToggle, { onHeightChange } = {}) 
     const logo = createLogoImage(selectors.theme(store.getState()));
     const brandLink = createElement(
       "a",
-      { attrs: { href: "#/", "aria-label": "KP_Code Digital Vault" }, className: "brand" },
+      {
+        attrs: { href: "#/", "aria-label": content.header.brandAriaLabel },
+        className: "brand",
+      },
       [logo]
     );
 
     // --- NAV ---
     const nav = createElement("nav", {
       className: "primary-nav",
-      attrs: { "aria-label": "Glowna" },
+      attrs: { "aria-label": content.header.navAriaLabel },
     });
     nav.appendChild(buildNavLinks("nav-links", { idPrefix: "primary" }));
 
@@ -342,7 +387,7 @@ export const renderHeader = (container, onThemeToggle, { onHeightChange } = {}) 
     const actions = buildActions("nav-links header-actions", { withId: true });
     const demoBadge = createElement("span", {
       className: "badge",
-      text: "Tryb demo: admin wymaga backendu",
+      text: content.header.demoBadge,
     });
 
     // --- MOBILE TOGGLE ---
@@ -374,7 +419,7 @@ export const renderHeader = (container, onThemeToggle, { onHeightChange } = {}) 
         className: "menu-toggle",
         attrs: {
           type: "button",
-          "aria-label": "Open menu",
+          "aria-label": content.header.menuOpenLabel,
           "aria-expanded": menuOpen ? "true" : "false",
           "aria-controls": "mobile-nav",
         },
@@ -392,7 +437,7 @@ export const renderHeader = (container, onThemeToggle, { onHeightChange } = {}) 
         className: "mobile-menu",
         attrs: {
           id: "mobile-nav",
-          "aria-label": "Menu",
+          "aria-label": content.header.menuLabel,
           role: "dialog",
           "aria-modal": "true",
           "aria-hidden": menuOpen ? "false" : "true",
@@ -582,7 +627,7 @@ export const renderHeader = (container, onThemeToggle, { onHeightChange } = {}) 
         if (menuLink.dataset.action === "logout") {
           event.preventDefault();
           authService.signOut();
-          showToast(content.toasts.logout);
+          showToast(getContent().toasts.logout);
           navigateHash("#/auth");
         }
         closeDropdownMenu(dropdown);

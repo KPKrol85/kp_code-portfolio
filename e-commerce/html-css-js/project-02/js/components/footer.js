@@ -1,57 +1,58 @@
+import { getContent } from "../content/index.js";
 import { selectors } from "../store/selectors.js";
 import { store } from "../store/store.js";
 import { createElement, clearElement } from "../utils/dom.js";
 
-const getAccountLinks = (isAuthenticated) => {
+const getAccountLinks = (content, isAuthenticated) => {
   if (!isAuthenticated) {
     return [
-      { label: "Zaloguj się", href: "#/auth" },
-      { label: "Utwórz konto", href: "#/auth" },
+      { label: content.footer.accountLinks.login, href: "#/auth" },
+      { label: content.footer.accountLinks.register, href: "#/auth" },
 
     ];
   }
   return [
-    { label: "Panel konta", href: "#/account" },
-    { label: "Moja biblioteka", href: "#/library" },
-    { label: "Licencje", href: "#/licenses" },
+    { label: content.footer.accountLinks.account, href: "#/account" },
+    { label: content.footer.accountLinks.library, href: "#/library" },
+    { label: content.footer.accountLinks.licenses, href: "#/licenses" },
   ];
 };
 
-const getFooterNav = (isAuthenticated) => [
+const getFooterNav = (content, isAuthenticated) => [
   {
-    title: "Produkty",
-    ariaLabel: "Produkty",
+    title: content.footer.nav.products.title,
+    ariaLabel: content.footer.nav.products.ariaLabel,
     links: [
-      { label: "Przeglądaj produkty", href: "#/products" },
-      { label: "Kategorie produktów", href: "#/products" },
-      { label: "Cennik", href: "#/pricing" },
-      { label: "Aktualizacje / Changelog", href: "#/updates" },
+      { label: content.footer.nav.products.links.browse, href: "#/products" },
+      { label: content.footer.nav.products.links.categories, href: "#/products" },
+      { label: content.footer.nav.products.links.pricing, href: "#/pricing" },
+      { label: content.footer.nav.products.links.updates, href: "#/updates" },
     ],
   },
   {
-    title: "Zasoby",
-    ariaLabel: "Zasoby",
+    title: content.footer.nav.resources.title,
+    ariaLabel: content.footer.nav.resources.ariaLabel,
     links: [
-      { label: "Dokumentacja", href: "#/docs" },
-      { label: "FAQ", href: "#/faq" },
-      { label: "Wsparcie", href: "#/support" },
-      { label: "Kontakt", href: "#/contact" },
+      { label: content.footer.nav.resources.links.docs, href: "#/docs" },
+      { label: content.footer.nav.resources.links.faq, href: "#/faq" },
+      { label: content.footer.nav.resources.links.support, href: "#/support" },
+      { label: content.footer.nav.resources.links.contact, href: "#/contact" },
     ],
   },
   {
-    title: "Firma",
-    ariaLabel: "Firma",
+    title: content.footer.nav.company.title,
+    ariaLabel: content.footer.nav.company.ariaLabel,
     links: [
-      { label: "O nas", href: "#/about" },
-      { label: "Plan rozwoju / Roadmap", href: "#/roadmap" },
-      { label: "Kariera", href: "#/careers" },
+      { label: content.footer.nav.company.links.about, href: "#/about" },
+      { label: content.footer.nav.company.links.roadmap, href: "#/roadmap" },
+      { label: content.footer.nav.company.links.careers, href: "#/careers" },
     ],
   },
   {
-    title: "Konto",
-    ariaLabel: "Konto",
+    title: content.footer.nav.account.title,
+    ariaLabel: content.footer.nav.account.ariaLabel,
     key: "account",
-    links: getAccountLinks(isAuthenticated),
+    links: getAccountLinks(content, isAuthenticated),
   },
 ];
 
@@ -131,7 +132,7 @@ const createNavSection = ({ title, ariaLabel, links }) => {
   return { section, list };
 };
 
-const createSocialLink = ({ label, href }) => {
+const createSocialLink = (content, { label, href }) => {
   const iconPath = socialIcons[label];
   const link = createElement("a", {
     className: "footer-link footer-social-link",
@@ -139,7 +140,7 @@ const createSocialLink = ({ label, href }) => {
       href,
       target: "_blank",
       rel: "noopener noreferrer",
-      "aria-label": `KP_Code na ${label}`,
+      "aria-label": content.footer.socialAria.replace("{label}", label),
     },
   });
 
@@ -152,6 +153,7 @@ const createSocialLink = ({ label, href }) => {
 };
 
 export const renderFooter = (container) => {
+  const content = getContent();
   const footerRoot = container?.closest("footer");
   if (footerRoot) {
     footerRoot.classList.add("is-mounted");
@@ -169,22 +171,25 @@ export const renderFooter = (container) => {
   const brandLogoImage = createLogoImage(selectors.theme(store.getState()));
   const brandLogo = createElement(
     "a",
-    { className: "footer-logo", attrs: { href: "#/", "aria-label": "KP_Code Digital Vault" } },
+    {
+      className: "footer-logo",
+      attrs: { href: "#/", "aria-label": content.footer.brandAriaLabel },
+    },
     [brandLogoImage]
   );
 
   const brandBlock = createElement("div", { className: "footer-brand" }, [
     brandLogo,
-    createElement("h2", { className: "footer-brand-title", text: "KP_Code Digital Vault" }),
+    createElement("h2", { className: "footer-brand-title", text: content.footer.brandTitle }),
     createElement("p", {
       className: "footer-description",
-      text: "Kompaktowa biblioteka produktów cyfrowych dla twórców i zespołów. Prosty zakup i szybki dostęp.",
+      text: content.footer.brandDescription,
     }),
   ]);
 
   const newsletterLabel = createElement("label", {
     className: "sr-only",
-    text: "Adres e-mail",
+    text: content.footer.newsletter.emailLabel,
     attrs: { for: "footer-newsletter-email" },
   });
   const newsletterInput = createElement("input", {
@@ -193,7 +198,7 @@ export const renderFooter = (container) => {
       id: "footer-newsletter-email",
       type: "email",
       name: "email",
-      placeholder: "Adres e-mail",
+      placeholder: content.footer.newsletter.emailPlaceholder,
       inputmode: "email",
       autocomplete: "email",
       autocapitalize: "none",
@@ -203,7 +208,7 @@ export const renderFooter = (container) => {
   });
   const newsletterButton = createElement("button", {
     className: "button secondary",
-    text: "Subskrybuj",
+    text: content.footer.newsletter.submitLabel,
     attrs: { type: "submit" },
   });
   const newsletterStatus = createElement("p", {
@@ -224,15 +229,15 @@ export const renderFooter = (container) => {
       newsletterInput.reportValidity();
       return;
     }
-    newsletterStatus.textContent = "Wkrótce";
+    newsletterStatus.textContent = getContent().footer.newsletter.soonLabel;
     newsletterStatus.classList.add("is-visible");
   });
 
   const newsletterBlock = createElement("div", { className: "footer-newsletter" }, [
-    createElement("h3", { className: "footer-heading", text: "Newsletter" }),
+    createElement("h3", { className: "footer-heading", text: content.footer.newsletter.title }),
     createElement("p", {
       className: "footer-description",
-      text: "Powiadomienia o nowych wydaniach i produktach.",
+      text: content.footer.newsletter.description,
     }),
     newsletterForm,
     newsletterStatus,
@@ -242,7 +247,7 @@ export const renderFooter = (container) => {
 
   const middleGrid = createElement("div", { className: "footer-middle-grid" });
   const isAuthenticated = selectors.isAuthenticated(store.getState());
-  const sections = getFooterNav(isAuthenticated);
+  const sections = getFooterNav(content, isAuthenticated);
   let accountSection = null;
   sections.forEach((section) => {
     const created = createNavSection(section);
@@ -253,10 +258,10 @@ export const renderFooter = (container) => {
   });
 
   const socialList = createElement("ul", { className: "footer-links footer-social" }, [
-    ...socialLinks.map(createSocialLink),
+    ...socialLinks.map((link) => createSocialLink(content, link)),
   ]);
   const socialBlock = createElement("div", { className: "footer-social-block" }, [
-    createElement("h3", { className: "footer-heading", text: "Social media" }),
+    createElement("h3", { className: "footer-heading", text: content.footer.socialTitle }),
     socialList,
   ]);
 
@@ -267,20 +272,30 @@ export const renderFooter = (container) => {
   const legalLinks = createElement("div", { className: "footer-meta-links" }, [
     createElement("a", {
       className: "footer-link",
-      text: "Polityka prywatności",
+      text: content.footer.legal.privacy,
       attrs: { href: "#/privacy" },
     }),
-    createElement("a", { className: "footer-link", text: "Regulamin", attrs: { href: "#/terms" } }),
-    createElement("a", { className: "footer-link", text: "Cookies", attrs: { href: "#/cookies" } }),
+    createElement("a", {
+      className: "footer-link",
+      text: content.footer.legal.terms,
+      attrs: { href: "#/terms" },
+    }),
+    createElement("a", {
+      className: "footer-link",
+      text: content.footer.legal.cookies,
+      attrs: { href: "#/cookies" },
+    }),
   ]);
 
   const metaInfo = createElement("div", { className: "footer-meta-info" }, [
-    createElement("span", { text: `© ${currentYear} KP_Code. Wszelkie prawa zastrzeżone.` }),
+    createElement("span", {
+      text: content.footer.copyright.replace("{year}", String(currentYear)),
+    }),
   ]);
 
   const backToTop = createElement("button", {
     className: "footer-top-link",
-    text: "Do góry",
+    text: content.footer.backToTop,
     attrs: { type: "button" },
   });
 
@@ -313,7 +328,7 @@ export const renderFooter = (container) => {
       previousAuth = nextAuth;
       if (accountSection && accountSection.list) {
         clearElement(accountSection.list);
-        getAccountLinks(nextAuth).forEach((link) => {
+        getAccountLinks(getContent(), nextAuth).forEach((link) => {
           accountSection.list.appendChild(
             createElement("li", {}, [
               createElement("a", {

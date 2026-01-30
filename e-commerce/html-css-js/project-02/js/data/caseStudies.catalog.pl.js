@@ -1,0 +1,808 @@
+export const CASE_STUDIES = [
+  {
+    slug: "strona-firmowa",
+    title: "Strona firmowa",
+    category: "WordPress",
+    serviceSlug: "wordpress",
+    excerpt:
+      "Nowa strona firmowa z jasnym podzialem oferty, sekcja FAQ i formularz kontaktu.",
+    tags: ["WordPress", "Strona firmowa", "B2B"],
+    coverPlaceholder: "Cover placeholder",
+    sections: {
+      goal: "Uporzadkowanie komunikacji oferty i odswiezenie wizerunku marki.",
+      scope: [
+        "Struktura informacji i nawigacja",
+        "Konfiguracja motywu i sekcji",
+        "Podstawowe SEO i optymalizacja",
+        "Szkolenie z edycji tresci",
+      ],
+      stack: ["WordPress", "Motyw blokowy", "Podstawowe wtyczki"],
+      process: [
+        "Brief i analiza tresci",
+        "Makieta struktury strony",
+        "Wdrozenie i konfiguracja",
+        "Testy oraz przekazanie",
+      ],
+      outcome:
+        "Strona jest czytelna, latwa w aktualizacji i gotowa do dalszego rozwoju tresci.",
+    },
+    gallery: [
+      "Widok hero",
+      "Sekcja oferta",
+      "Karty z uslugami",
+      "FAQ",
+      "Kontakt",
+      "Stopka",
+    ],
+    cta: {
+      title: "Popros o wycene",
+      description: "Opisz zakres strony firmowej, a przygotujemy propozycje pakietu.",
+    },
+  },
+  {
+    slug: "blog-ekspercki",
+    title: "Blog ekspercki",
+    category: "WordPress",
+    serviceSlug: "wordpress",
+    excerpt:
+      "Blog firmowy z uporzadkowana kategoryzacja wpisow, filtrowaniem i sekcja o autorze.",
+    tags: ["WordPress", "Content", "SEO"],
+    coverPlaceholder: "Cover placeholder",
+    sections: {
+      goal: "Stworzenie bazy wiedzy i wsparcie pozycjonowania tresci.",
+      scope: [
+        "Struktura kategorii i tagow",
+        "Szablony wpisow i archiwum",
+        "Optymalizacja czytelnosci",
+        "Konfiguracja share i SEO",
+      ],
+      stack: ["WordPress", "Motyw klasyczny", "Wtyczki SEO"],
+      process: [
+        "Audyt tresci i strategia",
+        "Makiety listy i wpisu",
+        "Wdrozenie i migracja",
+        "Testy i szkolenie",
+      ],
+      outcome:
+        "Blog jest przygotowany pod regularne publikacje i wygodne zarzadzanie trescia.",
+    },
+    gallery: [
+      "Lista wpisow",
+      "Widok wpisu",
+      "Sidebar",
+      "Sekcja autor",
+      "Kategorie",
+      "CTA newsletter",
+    ],
+    cta: {
+      title: "Popros o wycene",
+      description: "Powiedz, ile tresci i jaka struktura jest potrzebna.",
+    },
+  },
+  {
+    slug: "landing-kampanii",
+    title: "Landing kampanii",
+    category: "WordPress",
+    serviceSlug: "wordpress",
+    excerpt:
+      "Landing pod kampanie z jasna oferta, sekcja korzysci i formularz pozyskania leadow.",
+    tags: ["WordPress", "Kampania", "Leady"],
+    coverPlaceholder: "Cover placeholder",
+    sections: {
+      goal: "Wsparcie kampanii marketingowej i zbieranie leadow.",
+      scope: [
+        "Projekt sekcji sprzedazowych",
+        "Wdrozenie formularza",
+        "Integracja z narzedziami",
+        "Optymalizacja pod mobile",
+      ],
+      stack: ["WordPress", "Builder sekcji", "Formularze"],
+      process: [
+        "Brief kampanii",
+        "Makieta i copy",
+        "Wdrozenie",
+        "Testy i publikacja",
+      ],
+      outcome:
+        "Landing jest gotowy do szybkiego uruchomienia kampanii i dalszej optymalizacji.",
+    },
+    gallery: [
+      "Sekcja hero",
+      "Korzyci",
+      "Social proof",
+      "Formularz",
+      "FAQ",
+      "CTA",
+    ],
+    cta: {
+      title: "Popros o wycene",
+      description: "Opisz kampanie i oczekiwany termin startu.",
+    },
+  },
+  {
+    slug: "portfolio",
+    title: "Portfolio",
+    category: "WordPress",
+    serviceSlug: "wordpress",
+    excerpt:
+      "Portfolio z galeria realizacji, filtrowaniem i sekcja opinii klientow.",
+    tags: ["WordPress", "Portfolio", "Brand"],
+    coverPlaceholder: "Cover placeholder",
+    sections: {
+      goal: "Pokazanie realizacji w uporzadkowany i atrakcyjny sposob.",
+      scope: [
+        "Struktura galerii",
+        "Karty realizacji",
+        "Sekcje testimonial",
+        "Optymalizacja obrazow",
+      ],
+      stack: ["WordPress", "Galerie", "Cache"],
+      process: [
+        "Zebranie materialow",
+        "Makieta galerii",
+        "Wdrozenie",
+        "Optymalizacja",
+      ],
+      outcome:
+        "Portfolio prezentuje realizacje w spojny sposob i jest latwe w aktualizacji.",
+    },
+    gallery: [
+      "Lista realizacji",
+      "Karta projektu",
+      "Widok szczegolow",
+      "Filtry",
+      "Opinie",
+      "Stopka",
+    ],
+    cta: {
+      title: "Popros o wycene",
+      description: "Powiedz, ile realizacji chcesz pokazac.",
+    },
+  },
+  {
+    slug: "strona-uslugowa",
+    title: "Strona uslugowa",
+    category: "WordPress",
+    serviceSlug: "wordpress",
+    excerpt:
+      "Serwis z opisem uslug, sekcja zespolu i prosty cennik.",
+    tags: ["WordPress", "Uslugi", "B2B"],
+    coverPlaceholder: "Cover placeholder",
+    sections: {
+      goal: "Ulatwienie klientom zrozumienia oferty i kontaktu.",
+      scope: [
+        "Strony uslug i podstrony",
+        "Karty zespolu",
+        "Sekcja cennika",
+        "FAQ i kontakt",
+      ],
+      stack: ["WordPress", "Motyw blokowy", "Formularz"],
+      process: [
+        "Analiza oferty",
+        "Makieta informacji",
+        "Wdrozenie",
+        "Weryfikacja tresci",
+      ],
+      outcome:
+        "Oferta jest czytelna, a strona prowadzi uzytkownika do kontaktu.",
+    },
+    gallery: [
+      "Widok uslug",
+      "Karty zespolu",
+      "Cennik",
+      "FAQ",
+      "Kontakt",
+      "CTA",
+    ],
+    cta: {
+      title: "Popros o wycene",
+      description: "Opisz liczbe podstron i potrzebny zakres.",
+    },
+  },
+  {
+    slug: "strona-lokalna",
+    title: "Strona lokalna",
+    category: "WordPress",
+    serviceSlug: "wordpress",
+    excerpt:
+      "Strona lokalnego biznesu z mapa, godzinami otwarcia i opiniami klientow.",
+    tags: ["WordPress", "Lokalnie", "SEO"],
+    coverPlaceholder: "Cover placeholder",
+    sections: {
+      goal: "Wsparcie lokalnego SEO i szybkie znalezienie kluczowych informacji.",
+      scope: [
+        "Sekcje lokalne i dane kontaktowe",
+        "Mapa i godziny otwarcia",
+        "Optymalizacja mobilna",
+        "Podstawowe SEO lokalne",
+      ],
+      stack: ["WordPress", "Mapy", "Optymalizacja"],
+      process: [
+        "Brief lokalny",
+        "Makieta strony",
+        "Wdrozenie",
+        "Testy mobilne",
+      ],
+      outcome:
+        "Strona wspiera widocznosc lokalna i latwy kontakt z klientem.",
+    },
+    gallery: [
+      "Hero lokalny",
+      "Mapa",
+      "Opinie",
+      "Godziny",
+      "Kontakt",
+      "CTA",
+    ],
+    cta: {
+      title: "Popros o wycene",
+      description: "Podaj lokalizacje i zakres uslug.",
+    },
+  },
+  {
+    slug: "landing-saas",
+    title: "Landing dla SaaS",
+    category: "Web Development",
+    serviceSlug: "web-development",
+    excerpt:
+      "Nowoczesny landing z klarowna oferta, mocnym CTA i sekcjami wspierajacymi konwersje.",
+    tags: ["Web Development", "SaaS", "Marketing"],
+    coverPlaceholder: "Cover placeholder",
+    sections: {
+      goal: "Zbudowanie strony startowej, ktora komunikuje wartosc produktu i zbiera leady.",
+      scope: [
+        "Struktura i tresci sekcji",
+        "Komponenty hero, korzysci, FAQ",
+        "Podstawowe SEO i RWD",
+        "Implementacja animacji i interakcji",
+      ],
+      stack: ["HTML", "CSS", "JavaScript", "Tailwind (na zyczenie)"],
+      process: [
+        "Brief i analiza rynku",
+        "Makieta sekcji i copy",
+        "Wdrozenie front-end",
+        "Testy i korekty",
+      ],
+      standards: "Responsywnosc, czytelna struktura, podstawy a11y i wydajnosci.",
+      security: "Bezpieczne wdrozenie statyczne i kontrola zasobow zewnetrznych.",
+      outcome:
+        "Landing jest gotowy do kampanii i dalszego rozwoju marketingowego.",
+    },
+    gallery: [
+      "Hero i CTA",
+      "Sekcja korzysci",
+      "Social proof",
+      "FAQ",
+      "Sekcja integracji",
+      "Footer",
+    ],
+    cta: {
+      title: "Popros o wycene",
+      description: "Opisz potrzeby landing page, a przygotujemy propozycje zakresu.",
+      primaryLabel: "Popros o wycene",
+      primaryHref: "#/services/web-development#quote",
+      secondaryLabel: "Kontakt",
+      secondaryHref: "#/contact",
+    },
+  },
+  {
+    slug: "analytics-dashboard",
+    title: "Dashboard analityczny",
+    category: "Web Development",
+    serviceSlug: "web-development",
+    excerpt:
+      "Interaktywny panel front-end do prezentacji metryk, filtrów i podsumowan.",
+    tags: ["Web Development", "UI", "Analytics"],
+    coverPlaceholder: "Cover placeholder",
+    sections: {
+      goal: "Stworzenie czytelnego dashboardu do pracy z danymi na co dzien.",
+      scope: [
+        "Layout panelu i system kart",
+        "Filtry i stany UI",
+        "Komponenty wykresow (front-only)",
+        "Przygotowanie pod rozwoj",
+      ],
+      stack: ["HTML", "CSS", "JavaScript", "React (na zyczenie)"],
+      process: [
+        "Ustalenie kluczowych metryk",
+        "Makieta informacji",
+        "Implementacja UI",
+        "Testy i optymalizacja",
+      ],
+      standards: "RWD, uporzadkowana hierarchia, podstawy a11y i performance.",
+      security: "Bezpieczne obchodzenie sie z danymi front-end (bez ekspozycji tokenow).",
+      outcome:
+        "Dashboard prezentuje dane w spojny sposob i jest gotowy do integracji z API.",
+    },
+    gallery: [
+      "Overview KPI",
+      "Filtry i segmenty",
+      "Wykresy trendow",
+      "Tabela danych",
+      "Modaly i detale",
+      "Tryb mobilny",
+    ],
+    cta: {
+      title: "Popros o wycene",
+      description: "Powiedz, jakie metryki i widoki sa najwazniejsze.",
+      primaryLabel: "Popros o wycene",
+      primaryHref: "#/services/web-development#quote",
+      secondaryLabel: "Kontakt",
+      secondaryHref: "#/contact",
+    },
+  },
+  {
+    slug: "company-website",
+    title: "Strona firmowa",
+    category: "Web Development",
+    serviceSlug: "web-development",
+    excerpt:
+      "Rozbudowana strona firmowa z segmentem oferty, referencjami i formularzem kontaktu.",
+    tags: ["Web Development", "B2B", "Corporate"],
+    coverPlaceholder: "Cover placeholder",
+    sections: {
+      goal: "Przedstawienie oferty firmy i wzmocnienie wiarygodnosci marki.",
+      scope: [
+        "Strona glowna i podstrony oferty",
+        "Sekcja case studies i referencje",
+        "Formularz kontaktu",
+        "Optymalizacja pod SEO i mobile",
+      ],
+      stack: ["HTML", "CSS", "JavaScript"],
+      process: [
+        "Analiza tresci i struktury",
+        "Makieta informacji",
+        "Wdrozenie front-end",
+        "Testy i wdrozenie",
+      ],
+      standards: "RWD, semantyka HTML, podstawy a11y i performance.",
+      security: "Konfiguracja CSP i kontrola zewnetrznych zasobow (opcjonalnie).",
+      outcome:
+        "Strona jest czytelna, profesjonalna i wspiera dzialania sprzedazowe.",
+    },
+    gallery: [
+      "Hero i oferta",
+      "Sekcja usług",
+      "Referencje",
+      "FAQ",
+      "Kontakt",
+      "Stopka",
+    ],
+    cta: {
+      title: "Popros o wycene",
+      description: "Opisz zakres strony firmowej, a dobierzemy najlepszy pakiet.",
+      primaryLabel: "Popros o wycene",
+      primaryHref: "#/services/web-development#quote",
+      secondaryLabel: "Kontakt",
+      secondaryHref: "#/contact",
+    },
+  },
+  {
+    slug: "event-microsite",
+    title: "Microsite wydarzenia",
+    category: "Web Development",
+    serviceSlug: "web-development",
+    excerpt:
+      "Lekki microsite promujacy wydarzenie z agenda, prelegentami i zapisem.",
+    tags: ["Web Development", "Event", "Promo"],
+    coverPlaceholder: "Cover placeholder",
+    sections: {
+      goal: "Szybkie wdrozenie strony promocyjnej dla wydarzenia.",
+      scope: [
+        "Layout sekcji agenda i prelegenci",
+        "Formularz zapisu lub link do rejestracji",
+        "Sekcja lokalizacji i mapy",
+        "Optymalizacja pod mobile",
+      ],
+      stack: ["HTML", "CSS", "JavaScript"],
+      process: [
+        "Brief wydarzenia",
+        "Makieta i copy",
+        "Wdrozenie",
+        "Testy i publikacja",
+      ],
+      standards: "RWD, szybkie ladowanie, jasne CTA.",
+      security: "Minimalizacja zewnetrznych skryptow i walidacja formularzy.",
+      outcome:
+        "Microsite wspiera komunikacje wydarzenia i jest gotowy do kampanii.",
+    },
+    gallery: [
+      "Hero wydarzenia",
+      "Agenda",
+      "Prelegenci",
+      "Mapa",
+      "CTA zapisu",
+      "Footer",
+    ],
+    cta: {
+      title: "Popros o wycene",
+      description: "Podaj termin wydarzenia i kluczowe sekcje microsite.",
+      primaryLabel: "Popros o wycene",
+      primaryHref: "#/services/web-development#quote",
+      secondaryLabel: "Kontakt",
+      secondaryHref: "#/contact",
+    },
+  },
+  {
+    slug: "interactive-configurator",
+    title: "Interaktywny konfigurator",
+    category: "Web Development",
+    serviceSlug: "web-development",
+    excerpt:
+      "Konfigurator produktu z logika wyboru, podsumowaniem i generowaniem oferty.",
+    tags: ["Web Development", "UI", "Logic"],
+    coverPlaceholder: "Cover placeholder",
+    sections: {
+      goal: "Ulatwienie klientom doboru wariantow i zebranie zapytan.",
+      scope: [
+        "Projekt scenariuszy wyboru",
+        "Komponenty formularzy i podsumowan",
+        "Walidacja i stany bledow",
+        "Integracja z mailto lub CRM (opcjonalnie)",
+      ],
+      stack: ["HTML", "CSS", "JavaScript"],
+      process: [
+        "Analiza logiki konfiguratora",
+        "Makieta krokow",
+        "Wdrozenie interakcji",
+        "Testy scenariuszy",
+      ],
+      standards: "RWD, dostepnosc formularzy, czytelne komunikaty.",
+      security: "Walidacja danych i ograniczenie przesylanych informacji.",
+      outcome:
+        "Konfigurator skraca czas obslugi zapytan i porzadkuje proces wyboru.",
+    },
+    gallery: [
+      "Krok wyboru",
+      "Panel podsumowania",
+      "Walidacja",
+      "Podglad oferty",
+      "CTA kontakt",
+      "Widok mobile",
+    ],
+    cta: {
+      title: "Popros o wycene",
+      description: "Opisz logike konfiguratora i potrzebne warianty.",
+      primaryLabel: "Popros o wycene",
+      primaryHref: "#/services/web-development#quote",
+      secondaryLabel: "Kontakt",
+      secondaryHref: "#/contact",
+    },
+  },
+  {
+    slug: "mini-pwa-app",
+    title: "Mini aplikacja PWA",
+    category: "Web Development",
+    serviceSlug: "web-development",
+    excerpt:
+      "Prosta aplikacja webowa z instalacja PWA, offline fallback i szybkim UI.",
+    tags: ["Web Development", "PWA", "Offline"],
+    coverPlaceholder: "Cover placeholder",
+    sections: {
+      goal: "Zapewnienie dostepu do kluczowych funkcji w trybie mobilnym.",
+      scope: [
+        "Struktura widokow PWA",
+        "Manifest i ikony",
+        "Offline fallback",
+        "Optymalizacja wydajnosci",
+      ],
+      stack: ["HTML", "CSS", "JavaScript"],
+      process: [
+        "Plan funkcji MVP",
+        "Makieta widokow",
+        "Implementacja PWA",
+        "Testy offline",
+      ],
+      standards: "RWD, szybkie ladowanie, podstawy a11y.",
+      security: "Bezpieczne cacheowanie i ograniczenie danych offline.",
+      outcome:
+        "Aplikacja dziala szybko i moze byc instalowana na urzadzeniach mobilnych.",
+    },
+    gallery: [
+      "Ekran startowy",
+      "Widok offline",
+      "Menu mobilne",
+      "Lista danych",
+      "Tryb instalacji",
+      "Powiadomienia",
+    ],
+    cta: {
+      title: "Popros o wycene",
+      description: "Powiedz, jakie funkcje PWA sa kluczowe w Twoim MVP.",
+      primaryLabel: "Popros o wycene",
+      primaryHref: "#/services/web-development#quote",
+      secondaryLabel: "Kontakt",
+      secondaryHref: "#/contact",
+    },
+  },
+  {
+    slug: "brand-identity",
+    title: "Identyfikacja wizualna marki",
+    category: "UI / UX & Branding",
+    serviceSlug: "ui-ux-branding",
+    excerpt:
+      "Komplet podstaw brandu: logo, paleta kolorow i zasady uzycia w materialach.",
+    tags: ["Branding", "Logo", "Canva"],
+    coverPlaceholder: "Cover placeholder",
+    sections: {
+      goal: "Stworzenie spojnej identyfikacji wizualnej dla nowej marki.",
+      scope: [
+        "Logo i warianty",
+        "Paleta kolorow i typografia",
+        "Mini brand guide",
+        "Eksporty do web i druku",
+      ],
+      stack: ["Canva", "Figma (planowane)"],
+      process: [
+        "Wywiad i kierunek wizualny",
+        "Propozycje logo",
+        "Dopracowanie brand kit",
+        "Dostarczenie plikow",
+      ],
+      standards: "Spojnosc, czytelnosc, przygotowanie do roznych kanalow.",
+      security: "Pliki przekazywane w bezpiecznym kanale i na uzgodnionych zasadach.",
+      outcome:
+        "Marka zyskuje spojny wizerunek i zestaw materialow startowych.",
+    },
+    gallery: [
+      "Logo primary",
+      "Wariant monochromatyczny",
+      "Paleta kolorow",
+      "Typografia",
+      "Mockup wizytowki",
+      "Social preview",
+    ],
+    cta: {
+      title: "Popros o wycene",
+      description: "Opisz zakres identyfikacji, a przygotujemy propozycje pakietu.",
+      primaryLabel: "Popros o wycene",
+      primaryHref: "#/services/ui-ux-branding#quote",
+      secondaryLabel: "Kontakt",
+      secondaryHref: "#/contact",
+    },
+  },
+  {
+    slug: "landing-ui-design",
+    title: "Projekt UI landing page",
+    category: "UI / UX & Branding",
+    serviceSlug: "ui-ux-branding",
+    excerpt:
+      "Projekt layoutu landing page z wyrazna hierarchia i sekcjami konwersji.",
+    tags: ["UI", "Landing", "Figma"],
+    coverPlaceholder: "Cover placeholder",
+    sections: {
+      goal: "Przygotowanie nowoczesnego layoutu do wdrozenia przez dev team.",
+      scope: [
+        "Makiety sekcji landing page",
+        "Komponenty CTA",
+        "System naglowkow i siatka",
+        "Specyfikacja dla wdrozenia",
+      ],
+      stack: ["Canva", "Figma (opcjonalnie)"],
+      process: [
+        "Analiza komunikacji",
+        "Szkice i wireframe",
+        "Projekt UI",
+        "Przekazanie plikow",
+      ],
+      standards: "Czytelna hierarchia, RWD w zalozeniach, spojnosc brandu.",
+      security: "Przekazanie plikow w uzgodnionym repozytorium lub chmurze.",
+      outcome:
+        "Zespol ma gotowy layout z opisem elementow do wdrozenia.",
+    },
+    gallery: [
+      "Hero sekcja",
+      "Sekcja korzysci",
+      "Social proof",
+      "FAQ",
+      "CTA",
+      "Stopka",
+    ],
+    cta: {
+      title: "Popros o wycene",
+      description: "Powiedz, jakie sekcje i cele ma spelnic landing page.",
+      primaryLabel: "Popros o wycene",
+      primaryHref: "#/services/ui-ux-branding#quote",
+      secondaryLabel: "Kontakt",
+      secondaryHref: "#/contact",
+    },
+  },
+  {
+    slug: "marketing-graphics",
+    title: "Grafiki marketingowe",
+    category: "UI / UX & Branding",
+    serviceSlug: "ui-ux-branding",
+    excerpt:
+      "Zestaw grafik do kampanii i newsletterow w spojnej estetyce brandu.",
+    tags: ["Marketing", "Canva", "Ads"],
+    coverPlaceholder: "Cover placeholder",
+    sections: {
+      goal: "Dostarczenie pakietu gotowych kreacji do dzialan marketingowych.",
+      scope: [
+        "Banery do kampanii",
+        "Kreacje do newslettera",
+        "Warianty rozmiarow",
+        "Eksporty i pliki zrodlowe",
+      ],
+      stack: ["Canva", "Figma (planowane)"],
+      process: [
+        "Brief kampanii",
+        "Kierunek wizualny",
+        "Projektowanie kreacji",
+        "Eksporty i przekazanie",
+      ],
+      standards: "Czytelnosc, spojnosc brandu, skalowalnosc formatow.",
+      security: "Przekazanie plikow z zachowaniem praw do wykorzystania.",
+      outcome:
+        "Zespol marketingu otrzymuje spojny zestaw gotowych grafik.",
+    },
+    gallery: [
+      "Baner kampanii",
+      "Kreacja newslettera",
+      "Formaty social",
+      "Warianty kolorystyczne",
+      "Mockup reklamy",
+      "CTA pack",
+    ],
+    cta: {
+      title: "Popros o wycene",
+      description: "Opisz kampanie i potrzebne formaty kreacji.",
+      primaryLabel: "Popros o wycene",
+      primaryHref: "#/services/ui-ux-branding#quote",
+      secondaryLabel: "Kontakt",
+      secondaryHref: "#/contact",
+    },
+  },
+  {
+    slug: "social-media-pack",
+    title: "Pakiet grafik social media",
+    category: "UI / UX & Branding",
+    serviceSlug: "ui-ux-branding",
+    excerpt:
+      "Szablony postow i stories dopasowane do estetyki marki i kilku formatow.",
+    tags: ["Social", "Templates", "Canva"],
+    coverPlaceholder: "Cover placeholder",
+    sections: {
+      goal: "Uspojnienie komunikacji w social media poprzez gotowe szablony.",
+      scope: [
+        "Szablony postow i stories",
+        "Warianty formatow",
+        "Instrukcja edycji",
+        "Eksporty do publikacji",
+      ],
+      stack: ["Canva", "Figma (opcjonalnie)"],
+      process: [
+        "Analiza komunikacji",
+        "Kierunek wizualny",
+        "Projektowanie szablonow",
+        "Przekazanie paczki",
+      ],
+      standards: "Spojnosc brandu, latwa edycja, czytelne CTA.",
+      security: "Przekazanie plikow z kontrola dostepu zespolu.",
+      outcome:
+        "Zespol otrzymuje zestaw szablonow gotowych do szybkiej publikacji.",
+    },
+    gallery: [
+      "Post informacyjny",
+      "Story promocyjne",
+      "Karuzela",
+      "Format pionowy",
+      "Warianty kolorow",
+      "Mini guideline",
+    ],
+    cta: {
+      title: "Popros o wycene",
+      description: "Powiedz, jakie formaty i liczba postow sa potrzebne.",
+      primaryLabel: "Popros o wycene",
+      primaryHref: "#/services/ui-ux-branding#quote",
+      secondaryLabel: "Kontakt",
+      secondaryHref: "#/contact",
+    },
+  },
+  {
+    slug: "event-visuals",
+    title: "Materialy wizualne wydarzenia",
+    category: "UI / UX & Branding",
+    serviceSlug: "ui-ux-branding",
+    excerpt:
+      "Zestaw grafik do promocji wydarzenia: banery, agenda i grafiki prelegentow.",
+    tags: ["Event", "Branding", "Canva"],
+    coverPlaceholder: "Cover placeholder",
+    sections: {
+      goal: "Zapewnienie spojnego zestawu materialow do promocji wydarzenia.",
+      scope: [
+        "Banery promocyjne",
+        "Agenda i grafiki prelegentow",
+        "Warianty formatow",
+        "Eksporty do social i www",
+      ],
+      stack: ["Canva", "Figma (planowane)"],
+      process: [
+        "Brief wydarzenia",
+        "Kierunek wizualny",
+        "Projektowanie grafik",
+        "Eksporty i przekazanie",
+      ],
+      standards: "Spojnosc, czytelnosc i dopasowanie do wielu formatow.",
+      security: "Przekazanie plikow zgodnie z uzgodnieniami licencyjnymi.",
+      outcome:
+        "Wydarzenie zyskuje spojna komunikacje wizualna we wszystkich kanalach.",
+    },
+    gallery: [
+      "Baner glownego wydarzenia",
+      "Agenda",
+      "Prelegenci",
+      "Social pack",
+      "Landing visuals",
+      "Stopka mailowa",
+    ],
+    cta: {
+      title: "Popros o wycene",
+      description: "Podaj skale wydarzenia i typy materialow.",
+      primaryLabel: "Popros o wycene",
+      primaryHref: "#/services/ui-ux-branding#quote",
+      secondaryLabel: "Kontakt",
+      secondaryHref: "#/contact",
+    },
+  },
+  {
+    slug: "ui-redesign",
+    title: "Redesign interfejsu UI",
+    category: "UI / UX & Branding",
+    serviceSlug: "ui-ux-branding",
+    excerpt:
+      "Odswiezenie interfejsu produktu z naciskiem na czytelnosc i spojnosc wizualna.",
+    tags: ["UI", "Redesign", "Figma"],
+    coverPlaceholder: "Cover placeholder",
+    sections: {
+      goal: "Poprawa czytelnosci UI i odswiezenie estetyki bez zmiany logiki produktu.",
+      scope: [
+        "Audyt istniejacego UI",
+        "Nowy system typografii i kolorow",
+        "Kluczowe ekrany i komponenty",
+        "Specyfikacja do wdrozenia",
+      ],
+      stack: ["Canva", "Figma (opcjonalnie)"],
+      process: [
+        "Analiza potrzeb i pain points",
+        "Projekt koncepcji",
+        "Dopracowanie komponentow",
+        "Przekazanie plikow",
+      ],
+      standards: "Spojnosc komponentow, czytelna hierarchia, RWD w zalozeniach.",
+      security: "Przekazanie plikow i dokumentacji w bezpiecznym kanale.",
+      outcome:
+        "Interfejs jest nowoczesny i gotowy do wdrozenia przez zespol dev.",
+    },
+    gallery: [
+      "Ekran glownego widoku",
+      "Karty i listy",
+      "Formularze",
+      "Nawigacja",
+      "Widok mobilny",
+      "Style guide",
+    ],
+    cta: {
+      title: "Popros o wycene",
+      description: "Opisz zakres redesignu i kluczowe widoki produktu.",
+      primaryLabel: "Popros o wycene",
+      primaryHref: "#/services/ui-ux-branding#quote",
+      secondaryLabel: "Kontakt",
+      secondaryHref: "#/contact",
+    },
+  },
+];
+
+export const getCaseStudyBySlug = (slug) => {
+  if (!slug) {
+    return null;
+  }
+  return CASE_STUDIES.find((item) => item.slug === slug) || null;
+};
+
+export const getCaseStudiesByService = (serviceSlug) => {
+  if (!serviceSlug) {
+    return [];
+  }
+  return CASE_STUDIES.filter((item) => item.serviceSlug === serviceSlug);
+};

@@ -1,7 +1,7 @@
 import { createBreadcrumbs } from "../components/breadcrumbs.js";
 import { renderEmptyState } from "../components/ui-state-helpers.js";
 import { renderNotice, createRetryButton } from "../components/uiStates.js";
-import { content } from "../content/pl.js";
+import { getContent } from "../content/index.js";
 import { purchasesService } from "../services/purchases.js";
 import { store } from "../store/store.js";
 import { buildBreadcrumbsForPath } from "../utils/breadcrumbs.js";
@@ -38,6 +38,7 @@ const scrollToSection = (sectionId) => {
 };
 
 const LicenseCard = ({ license, status, assignedAt, issuer, products, libraryHref }) => {
+  const content = getContent();
   const metaItems = [];
   if (assignedAt) {
     metaItems.push({
@@ -118,6 +119,7 @@ const buildUserLicenses = ({ purchases, products, licenseTypes }) => {
 };
 
 export const renderLicenses = () => {
+  const content = getContent();
   const main = document.getElementById("main-content");
   clearElement(main);
 

@@ -2,10 +2,11 @@ import { renderFooter } from "./components/footer.js";
 import { renderHeader } from "./components/header.js";
 import { closeModal } from "./components/modal.js";
 import { showToast } from "./components/toast.js";
-import { content } from "./content/pl.js";
+import { getContent, initLang } from "./content/index.js";
 import { initReducedMotionPreference } from "./reduced-motion-init.js";
 import { startRouter } from "./router/router.js";
 import { registerRoutes } from "./router/routes.js";
+import { rerenderCurrentRoute } from "./router/router.js";
 import { authService } from "./services/auth.js";
 import { cartService } from "./services/cart.js";
 import { demoPurchasesService } from "./services/demo-purchases.js";
@@ -28,10 +29,21 @@ const RETRY_BUTTON_SELECTOR = '[data-retry="init-data"]';
 let isDataRetrying = false;
 
 const updateRetryButtonsState = (isLoading) => {
+  const content = getContent();
   document.querySelectorAll(RETRY_BUTTON_SELECTOR).forEach((button) => {
     button.disabled = isLoading;
-    button.textContent = isLoading ? "Ładowanie..." : "Spróbuj ponownie";
+    button.textContent = isLoading
+      ? content.common.processing
+      : content.common.retry;
   });
+};
+
+const updateSkipLinkText = () => {
+  const skipLink = document.querySelector(".skip-link");
+  if (!skipLink) {
+    return;
+  }
+  skipLink.textContent = getContent().common.skipLink;
 };
 
 const initData = async () => {
@@ -45,6 +57,7 @@ const initData = async () => {
     const [products, licenses] = await Promise.all([mockApi.getProducts(), mockApi.getLicenses()]);
     actions.data.setProductsReady({ products, licenses });
   } catch {
+    const content = getContent();
     showToast(content.toasts.dataFetchError, "error");
     actions.data.setProductsError(content.states.products.error.title);
   } finally {
@@ -157,10 +170,11 @@ const initConnectivityFeedback = () => {
       return;
     }
     lastOnlineState = isOnline;
+    const content = getContent();
     if (isOnline) {
-      showToast("Połączenie przywrócone.", "info");
+      showToast(content.toasts.connectionRestored, "info");
     } else {
-      showToast("Jesteś offline — część danych może być nieaktualna.", "warning");
+      showToast(content.toasts.offline, "warning");
     }
   };
   window.addEventListener("online", () => handleStateChange(true));
@@ -234,6 +248,8 @@ const registerServiceWorker = () => {
 
 initErrorBoundary();
 demoPurchasesService.seedPurchaseFromQuery();
+initLang();
+updateSkipLinkText();
 initStore();
 initMotionPreference();
 initLayout();
@@ -248,6 +264,13 @@ initConnectivityFeedback();
 updateHeaderOffset();
 focusMain({ preventScroll: true });
 registerServiceWorker();
+
+window.addEventListener("langchange", () => {
+  updateSkipLinkText();
+  initLayout();
+  initFooter();
+  rerenderCurrentRoute();
+});
 
 initKeyboardShortcuts({
   getSearchInput: () => document.querySelector('input[type="search"]'),

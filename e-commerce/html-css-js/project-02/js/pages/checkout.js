@@ -2,7 +2,7 @@ import { createBreadcrumbs } from "../components/breadcrumbs.js";
 import { showToast } from "../components/toast.js";
 import { renderEmptyState } from "../components/ui-state-helpers.js";
 import { renderNotice, createRetryButton } from "../components/uiStates.js";
-import { content } from "../content/pl.js";
+import { getContent } from "../content/index.js";
 import { cartService } from "../services/cart.js";
 import { purchasesService } from "../services/purchases.js";
 import { actions } from "../store/actions.js";
@@ -16,6 +16,7 @@ import { setButtonLoading, clearButtonLoading } from "../utils/ui-state.js";
 import { validators } from "../utils/validators.js";
 
 export const renderCheckout = () => {
+  const content = getContent();
   const main = document.getElementById("main-content");
   clearElement(main);
 
@@ -365,6 +366,7 @@ export const renderCheckout = () => {
 };
 
 const renderMissingSection = (container, missingItems) => {
+  const content = getContent();
   const section = createElement("div", { className: "section" });
   section.appendChild(createElement("h2", { text: content.states.checkout.missingSection.title }));
   const list = createElement("div", { className: "grid" });
@@ -397,6 +399,7 @@ const renderMissingSection = (container, missingItems) => {
 };
 
 export const renderCheckoutSuccess = () => {
+  const content = getContent();
   const main = document.getElementById("main-content");
   clearElement(main);
   setMeta({

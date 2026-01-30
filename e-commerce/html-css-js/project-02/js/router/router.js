@@ -1,5 +1,6 @@
 import { updateActiveNav } from "../components/header.js";
 import { createRetryButton, renderNotice } from "../components/uiStates.js";
+import { getContent } from "../content/index.js";
 import { authService } from "../services/auth.js";
 import { selectors } from "../store/selectors.js";
 import { store } from "../store/store.js";
@@ -13,6 +14,7 @@ import { onRouteChange } from "./routeEffects.js";
 const routes = [];
 let activeCleanup = null;
 const routeModuleCache = new Map();
+let rerenderHandler = null;
 
 const loadRouteModule = async (route) => {
   if (!route?.loader) {
@@ -46,11 +48,12 @@ const renderRouteLoading = (main) => {
   if (!main) {
     return;
   }
+  const content = getContent();
   clearElement(main);
   const container = createElement("section", { className: "container" });
   const notice = renderNotice(container, {
-    title: "Ładowanie",
-    message: "Ładowanie widoku...",
+    title: content.states.route.loading.title,
+    message: content.states.route.loading.message,
   });
   notice.setAttribute("role", "status");
   notice.setAttribute("aria-live", "polite");
@@ -58,16 +61,18 @@ const renderRouteLoading = (main) => {
 };
 
 const getRouteErrorMessage = (error) => {
+  const content = getContent();
   if (error?.message) {
-    return `Nie udało się załadować widoku. Szczegóły: ${error.message}`;
+    return content.states.route.error.messageWithDetails.replace("{details}", error.message);
   }
-  return "Nie udało się załadować widoku. Spróbuj ponownie.";
+  return content.states.route.error.message;
 };
 
 const renderRouteLoadError = (main, { error, onRetry } = {}) => {
   if (!main) {
     return;
   }
+  const content = getContent();
   clearElement(main);
   const container = createElement("section", { className: "container" });
   const retryButton = createRetryButton();
@@ -75,7 +80,7 @@ const renderRouteLoadError = (main, { error, onRetry } = {}) => {
     retryButton.addEventListener("click", onRetry);
   }
   const notice = renderNotice(container, {
-    title: "Nie udało się załadować widoku",
+    title: content.states.route.error.title,
     message: getRouteErrorMessage(error),
     action: { element: retryButton },
   });
@@ -99,6 +104,13 @@ const matchRoute = (path) => {
 
 export const updateMeta = (title, description) => {
   setMeta({ title, description });
+};
+
+const resolveMeta = (meta) => {
+  if (typeof meta === "function") {
+    return meta();
+  }
+  return meta;
 };
 
 export const startRouter = () => {
@@ -132,6 +144,7 @@ export const startRouter = () => {
     const fullPath = queryString ? `${pathname}?${queryString}` : pathname;
     const access = canAccessRoute(pathname, selectors.user(store.getState()));
     if (!access.allowed) {
+      const content = getContent();
       if (access.reason === "unauthenticated") {
         authService.setReturnTo(`#${fullPath}`);
         if (pathname !== "/auth") {
@@ -141,10 +154,12 @@ export const startRouter = () => {
         }
       } else if (access.reason === "forbidden" || access.reason === "admin-disabled") {
         const isAdminDisabled = access.reason === "admin-disabled";
-        const title = isAdminDisabled ? "Administracja niedostępna" : "Brak uprawnień";
+        const title = isAdminDisabled
+          ? content.access.adminDisabled.title
+          : content.access.forbidden.title;
         const message = isAdminDisabled
-          ? "Panel administracyjny wymaga weryfikacji po stronie backendu. W trybie demo jest niedostępny."
-          : "Nie masz uprawnień do tej sekcji.";
+          ? content.access.adminDisabled.message
+          : content.access.forbidden.message;
         setMeta({
           title,
           description: message,
@@ -156,7 +171,7 @@ export const startRouter = () => {
           renderNotice(container, {
             title,
             message,
-            action: { label: "Wróć na stronę główną", href: "#/" },
+            action: { label: content.access.backHomeCta, href: "#/" },
             headingTag: "h2",
           });
           main.appendChild(container);
@@ -168,8 +183,9 @@ export const startRouter = () => {
     }
     const route = matchRoute(pathname);
     if (route) {
-      if (route.meta) {
-        updateMeta(route.meta.title, route.meta.description);
+      const meta = resolveMeta(route.meta);
+      if (meta) {
+        updateMeta(meta.title, meta.description);
       }
       const main = document.getElementById("main-content");
       if (route.loader) {
@@ -238,7 +254,10 @@ export const startRouter = () => {
             activeCleanup = cleanup;
           }
         }
-        updateMeta(fallback.meta.title, fallback.meta.description);
+        const meta = resolveMeta(fallback.meta);
+        if (meta) {
+          updateMeta(meta.title, meta.description);
+        }
         updateActiveNav("");
         notifyRouteRendered({
           pathname: notFoundPath,
@@ -257,5 +276,12 @@ export const startRouter = () => {
   };
 
   window.addEventListener("hashchange", runHandleRoute);
+  rerenderHandler = runHandleRoute;
   runHandleRoute();
+};
+
+export const rerenderCurrentRoute = () => {
+  if (typeof rerenderHandler === "function") {
+    rerenderHandler();
+  }
 };

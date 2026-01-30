@@ -1,5 +1,5 @@
 import { createBreadcrumbs } from "../components/breadcrumbs.js";
-import { content } from "../content/pl.js";
+import { getContent } from "../content/index.js";
 import { buildBreadcrumbsForPath } from "../utils/breadcrumbs.js";
 import { createElement, clearElement } from "../utils/dom.js";
 import { setMeta } from "../utils/meta.js";
@@ -82,6 +82,7 @@ const buildPricingGrid = (items = []) => {
 };
 
 export const renderPricing = () => {
+  const content = getContent();
   const main = document.getElementById("main-content");
   if (!main) {
     return;

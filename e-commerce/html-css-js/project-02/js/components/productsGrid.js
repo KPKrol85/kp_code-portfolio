@@ -1,3 +1,4 @@
+import { t } from "../content/index.js";
 import { createElement, clearElement } from "../utils/dom.js";
 import { getVisibleProducts } from "../utils/products.js";
 
@@ -41,16 +42,17 @@ const parseGridColumns = (template) => {
   return columns || PRODUCT_COLUMNS;
 };
 
-export const createProductsGrid = ({ onAddToCart, showMoreLabel = "Show more" } = {}) => {
+export const createProductsGrid = ({ onAddToCart, showMoreLabel } = {}) => {
   const grid = createElement("div", { className: "grid grid-3 section products-grid" });
   const resultsCount = createElement("p", {
     className: "products-count",
     attrs: { "aria-live": "polite", role: "status", "aria-atomic": "true" },
   });
   resultsCount.hidden = true;
+  const resolvedShowMoreLabel = showMoreLabel || t("products.grid.showMore");
   const showMoreButton = createElement("button", {
     className: "button secondary block products-show-more",
-    text: showMoreLabel,
+    text: resolvedShowMoreLabel,
     attrs: { type: "button" },
   });
   showMoreButton.hidden = true;
@@ -128,7 +130,10 @@ export const createProductsGrid = ({ onAddToCart, showMoreLabel = "Show more" } 
         existingNodes.delete(id);
       }
     });
-    resultsCount.textContent = `Pokazano ${visible.length} z ${filtered.length}`;
+    resultsCount.textContent = t("products.count", {
+      shown: visible.length,
+      total: filtered.length,
+    });
     resultsCount.hidden = false;
     const fragment = document.createDocumentFragment();
     visible.forEach((product) => {

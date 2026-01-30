@@ -1,7 +1,7 @@
 import { createBreadcrumbs } from "../components/breadcrumbs.js";
 import { showToast } from "../components/toast.js";
 import { renderNotice, createRetryButton } from "../components/uiStates.js";
-import { content } from "../content/pl.js";
+import { getContent, t } from "../content/index.js";
 import { cartService } from "../services/cart.js";
 import { purchasesService } from "../services/purchases.js";
 import { actions } from "../store/actions.js";
@@ -15,6 +15,7 @@ import { setMeta } from "../utils/meta.js";
 import { getCategoryLabel } from "../utils/productCategories.js";
 
 export const renderProductDetails = ({ id }) => {
+  const content = getContent();
   const main = document.getElementById("main-content");
   clearElement(main);
 
@@ -72,10 +73,11 @@ export const renderProductDetails = ({ id }) => {
       return;
     }
 
+    const fallbackDescription = t("productDetails.meta.fallbackDescription");
     setMeta({
-      title: `${product.name} - KP_Code Digital Vault`,
+      title: t("productDetails.meta.title", { name: product.name }),
       description:
-        product.shortDescription || product.description || "Szczegóły produktu cyfrowego.",
+        product.shortDescription || product.description || fallbackDescription,
     });
 
     const wrapper = createElement("section", { className: "container" });
@@ -94,7 +96,7 @@ export const renderProductDetails = ({ id }) => {
     heroContent.appendChild(
       createElement("p", {
         className: "hero-lead",
-        text: product.shortDescription || product.description || "Szczegóły produktu cyfrowego.",
+        text: product.shortDescription || product.description || fallbackDescription,
       })
     );
     hero.appendChild(heroContent);
@@ -155,7 +157,7 @@ export const renderProductDetails = ({ id }) => {
             className: `product-gallery__thumb${isActive ? " is-active" : ""}`,
             attrs: {
               type: "button",
-              "aria-label": `Zobacz zdjęcie ${index + 2}`,
+              "aria-label": t("productDetails.aria.galleryThumb", { index: index + 2 }),
               "aria-pressed": isActive ? "true" : "false",
               tabindex: isActive ? "0" : "-1",
             },
@@ -219,17 +221,27 @@ export const renderProductDetails = ({ id }) => {
     details.appendChild(tags);
 
     const metaList = createElement("div", { className: "surface-muted" }, [
-      createElement("p", { text: `Kategoria: ${getCategoryLabel(product.category)}` }),
-      createElement("p", { text: `Wymagania: ${product.requirements}` }),
-      createElement("p", { text: `Wersja: ${product.version}` }),
-      createElement("p", { text: `Aktualizacja: ${formatDate(product.updatedAt)}` }),
+      createElement("p", {
+        text: t("productDetails.labels.category", {
+          value: getCategoryLabel(product.category),
+        }),
+      }),
+      createElement("p", {
+        text: t("productDetails.labels.requirements", { value: product.requirements }),
+      }),
+      createElement("p", {
+        text: t("productDetails.labels.version", { value: product.version }),
+      }),
+      createElement("p", {
+        text: t("productDetails.labels.updated", { value: formatDate(product.updatedAt) }),
+      }),
     ]);
     details.appendChild(metaList);
 
     const actionRow = createElement("div", { className: "nav-links" });
     const addButton = createElement("button", {
       className: "button",
-      text: "Dodaj do koszyka",
+      text: t("productDetails.cta.addToCart"),
       attrs: { type: "button" },
     });
     addButton.addEventListener("click", () => {
@@ -241,21 +253,21 @@ export const renderProductDetails = ({ id }) => {
     actionRow.appendChild(
       createElement("a", {
         className: "button secondary",
-        text: "Przejdź do koszyka",
+        text: t("productDetails.cta.goToCart"),
         attrs: { href: "#/cart" },
       })
     );
     details.appendChild(actionRow);
 
     const contents = createElement("div", { className: "card section" }, [
-      createElement("h2", { text: "Zawartość paczki" }),
+      createElement("h2", { text: t("productDetails.sections.contents") }),
     ]);
     const list = createElement("ul");
     product.bundleContents.forEach((item) => list.appendChild(createElement("li", { text: item })));
     contents.appendChild(list);
 
     const downloads = createElement("div", { className: "card section" }, [
-      createElement("h2", { text: "Pliki do pobrania" }),
+      createElement("h2", { text: t("productDetails.sections.downloads") }),
     ]);
     const downloadList = createElement("ul");
     const hasAccess = purchasesService

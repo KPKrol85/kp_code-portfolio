@@ -1,4 +1,4 @@
-import { content } from "../content/pl.js";
+import { getContent } from "../content/index.js";
 import { createElement, clearElement } from "../utils/dom.js";
 
 const createNotice = ({ title, message, action, headingTag = "h3" } = {}) => {
@@ -102,10 +102,11 @@ export const renderNotice = (container, options) => {
   return notice;
 };
 
-export const createRetryButton = (label = "Spróbuj ponownie") => {
+export const createRetryButton = (label) => {
+  const content = getContent();
   return createElement("button", {
     className: "button",
-    text: label,
+    text: label || content.common.retry,
     attrs: { type: "button", "data-retry": "init-data" },
   });
 };
@@ -133,6 +134,7 @@ export const renderDataState = (
   }
 
   if (status === "error") {
+    const content = getContent();
     renderNotice(container, {
       ...errorState,
       message: errorState?.message || error || content.states.errorFallbackMessage,

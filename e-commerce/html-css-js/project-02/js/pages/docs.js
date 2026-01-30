@@ -1,60 +1,9 @@
 import { createBreadcrumbs } from "../components/breadcrumbs.js";
+import { getContent } from "../content/index.js";
 import { buildBreadcrumbsForPath } from "../utils/breadcrumbs.js";
 import { createElement, clearElement } from "../utils/dom.js";
 import { setMeta } from "../utils/meta.js";
 import { parseHash } from "../utils/navigation.js";
-
-const DOCS_META = {
-  title: "Dokumentacja — KP_Code Digital Vault",
-  description: "Przewodniki i informacje dotyczące korzystania z produktów oraz platformy.",
-};
-
-const DOCS_SECTIONS = [
-  {
-    id: "products",
-    title: "Produkty",
-    description:
-      "Pobieranie produktów, struktura paczek, wersjonowanie oraz aktualizacje zawartości.",
-    ctaLabel: "Dokumentacja produktów",
-    ctaHref: "#/docs/products",
-  },
-  {
-    id: "ui-kits",
-    title: "UI Kits & Components",
-    description:
-      "Jak używać komponentów, integrować HTML/CSS i bezpiecznie modyfikować zestawy.",
-    ctaLabel: "Integracja komponentów",
-    ctaHref: "#/docs/components",
-  },
-  {
-    id: "licenses-practical",
-    title: "Licencje (praktycznie)",
-    description:
-      "Różnice między licencją personal i commercial, przykłady użycia oraz zasady w praktyce.",
-    ctaLabel: "Szczegóły licencji",
-    ctaHref: "#/licenses",
-    note: {
-      text: "Szczegóły prawne znajdują się w Regulaminie.",
-      href: "#/terms",
-    },
-  },
-  {
-    id: "account-library",
-    title: "Konto i biblioteka",
-    description:
-      "Jak działa konto użytkownika, gdzie znajdują się zakupy i jak pobierać aktualizacje.",
-    ctaLabel: "Zarządzanie kontem",
-    ctaHref: "#/account",
-  },
-  {
-    id: "platform",
-    title: "Platforma KP_Code Digital Vault",
-    description:
-      "Opis platformy jako całości: panel, biblioteka, dostęp oraz tryb demo i ograniczenia.",
-    ctaLabel: "Poznaj platformę",
-    ctaHref: "#/about",
-  },
-];
 
 const createSectionHeader = (title, lead) => {
   const header = createElement("div", { className: "section-header" });
@@ -65,7 +14,7 @@ const createSectionHeader = (title, lead) => {
   return header;
 };
 
-const renderDocsCards = (sections = []) => {
+const renderDocsCards = (sections = [], noteLinkLabel) => {
   const grid = createElement("div", { className: "grid grid-2 docs-grid" });
   sections.forEach((section) => {
     const card = createElement("div", { className: "card docs-card card--interactive" });
@@ -77,7 +26,7 @@ const renderDocsCards = (sections = []) => {
           createElement("span", { text: section.note.text + " " }),
           createElement("a", {
             className: "docs-link",
-            text: "Regulamin",
+            text: section.note.linkLabel || noteLinkLabel,
             attrs: { href: section.note.href },
           }),
         ])
@@ -104,6 +53,8 @@ const matchesQuery = (section, query) => {
 };
 
 export const renderDocs = () => {
+  const content = getContent();
+  const docs = content.docs;
   const main = document.getElementById("main-content");
   if (!main) {
     return;
@@ -120,17 +71,19 @@ export const renderDocs = () => {
 
   const hero = createElement("section", { className: "hero docs-hero" });
   const heroContent = createElement("div", { className: "hero-content" });
-  heroContent.appendChild(createElement("span", { className: "eyebrow", text: "Dokumentacja" }));
+  heroContent.appendChild(
+    createElement("span", { className: "eyebrow", text: docs.hero.eyebrow })
+  );
   heroContent.appendChild(
     createElement("h1", {
-      text: "Dokumentacja",
+      text: docs.hero.title,
       attrs: { tabindex: "-1", "data-focus-heading": "true" },
     })
   );
   heroContent.appendChild(
     createElement("p", {
       className: "hero-lead",
-      text: "Przewodniki i informacje dotyczące korzystania z produktów oraz platformy KP_Code Digital Vault.",
+      text: docs.hero.lead,
     })
   );
   hero.appendChild(heroContent);
@@ -138,18 +91,18 @@ export const renderDocs = () => {
 
   const docsSection = createElement("section", {
     className: "section",
-    attrs: { "aria-label": "Dokumentacja" },
+    attrs: { "aria-label": docs.hub.title },
   });
   docsSection.appendChild(
     createSectionHeader(
-      "Dokumentacja jako hub",
-      "Wybierz obszar, który najlepiej pasuje do Twojego pytania."
+      docs.hub.title,
+      docs.hub.lead
     )
   );
 
   const searchField = createElement("div", { className: "form-field docs-search" });
   const searchLabel = createElement("label", {
-    text: "Szukaj w dokumentacji",
+    text: docs.search.label,
     attrs: { for: "docs-search" },
   });
   const searchInput = createElement("input", {
@@ -157,7 +110,7 @@ export const renderDocs = () => {
     attrs: {
       id: "docs-search",
       type: "search",
-      placeholder: "Szukaj w dokumentacji…",
+      placeholder: docs.search.placeholder,
       autocomplete: "off",
     },
   });
@@ -171,31 +124,23 @@ export const renderDocs = () => {
 
   const crossSection = createElement("section", {
     className: "section",
-    attrs: { "aria-label": "Dalsza pomoc" },
+    attrs: { "aria-label": docs.cross.title },
   });
   crossSection.appendChild(
     createSectionHeader(
-      "Dalsza pomoc",
-      "Dokumentacja prowadzi dalej — skorzystaj z dedykowanych kanałów."
+      docs.cross.title,
+      docs.cross.lead
     )
   );
   const crossGrid = createElement("div", { className: "grid grid-3" });
-  [
-    { title: "Masz pytania?", description: "Przejdź do FAQ z odpowiedziami.", href: "#/faq" },
-    { title: "Problem techniczny?", description: "Zobacz centrum wsparcia.", href: "#/support" },
-    {
-      title: "Zmiany i nowe wersje?",
-      description: "Sprawdź aktualizacje i changelog.",
-      href: "#/updates",
-    },
-  ].forEach((item) => {
+  docs.cross.items.forEach((item) => {
     const card = createElement("div", { className: "card" });
     card.appendChild(createElement("h3", { text: item.title }));
     card.appendChild(createElement("p", { text: item.description }));
     card.appendChild(
       createElement("a", {
         className: "button secondary",
-        text: "Przejdź",
+        text: docs.cross.ctaLabel,
         attrs: { href: item.href },
       })
     );
@@ -209,25 +154,23 @@ export const renderDocs = () => {
   const renderCards = () => {
     clearElement(cardsWrapper);
     const query = searchInput.value.trim();
-    const filtered = DOCS_SECTIONS.filter((section) => matchesQuery(section, query));
+    const filtered = docs.sections.filter((section) => matchesQuery(section, query));
 
     if (!filtered.length) {
       cardsWrapper.appendChild(
         createElement("div", { className: "card docs-empty" }, [
-          createElement("h3", { text: "Brak wyników" }),
-          createElement("p", {
-            text: "Spróbuj innego zapytania lub przejrzyj wszystkie sekcje dokumentacji.",
-          }),
+          createElement("h3", { text: docs.empty.title }),
+          createElement("p", { text: docs.empty.lead }),
         ])
       );
       return;
     }
 
-    cardsWrapper.appendChild(renderDocsCards(filtered));
+    cardsWrapper.appendChild(renderDocsCards(filtered, docs.noteLinkLabel));
   };
 
   searchInput.addEventListener("input", renderCards);
 
   renderCards();
-  setMeta(DOCS_META);
+  setMeta(content.meta.routes.docs);
 };

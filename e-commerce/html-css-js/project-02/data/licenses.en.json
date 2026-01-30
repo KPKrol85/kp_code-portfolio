@@ -1,0 +1,20 @@
+[
+  {
+    "type": "Personal",
+    "summary": "For individual creators and freelancers.",
+    "permissions": ["Use in 1 commercial project", "Modify files", "Test versions"],
+    "limitations": ["No sublicensing", "No resale"],
+    "support": "Standard email support"
+  },
+  {
+    "type": "Commercial",
+    "summary": "For product teams and agencies.",
+    "permissions": [
+      "Use in multiple projects",
+      "Share within a team",
+      "Build client products"
+    ],
+    "limitations": ["No sale as a standalone product", "No public distribution"],
+    "support": "Priority support + updates"
+  }
+]

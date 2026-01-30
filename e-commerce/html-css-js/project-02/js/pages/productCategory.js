@@ -2,7 +2,7 @@ import { createBreadcrumbs } from "../components/breadcrumbs.js";
 import { createProductsGrid } from "../components/productsGrid.js";
 import { showToast } from "../components/toast.js";
 import { createRetryButton } from "../components/uiStates.js";
-import { content } from "../content/pl.js";
+import { getContent } from "../content/index.js";
 import { cartService } from "../services/cart.js";
 import { actions } from "../store/actions.js";
 import { store } from "../store/store.js";
@@ -14,6 +14,7 @@ import { getCategoryConfig } from "../utils/productCategories.js";
 const VALID_SORTS = new Set(["latest", "price-asc", "price-desc"]);
 
 export const renderProductCategory = ({ category }) => {
+  const content = getContent();
   const main = document.getElementById("main-content");
   clearElement(main);
 
