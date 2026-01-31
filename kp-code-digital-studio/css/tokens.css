@@ -80,11 +80,21 @@
   --header-links-offset-shrink: 64px;
 
 
-  /* Radius */
+  /* RADIUS */
+  --radius-soft: 12px;
   --radius-pill: 999px;
   --radius-slant-ui: 16px 22px 16px 22px / 60% 40% 60% 40%;
   --radius-btn: var(--radius-lg);
   --radius-btn-cta: 14px 18px 14px 18px / 58% 42% 58% 42%;
+
+
+
+
+
+
+
+
+
 
   --shadow-sm: 0 8px 24px rgba(15, 23, 42, 0.08);
   --shadow-md: 0 18px 40px rgba(15, 23, 42, 0.12);
