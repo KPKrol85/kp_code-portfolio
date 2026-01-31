@@ -114,11 +114,14 @@ main {
 
 .section__title {
   font-size: var(--font-size-xl);
+  line-height: var(--line-height-tight);
+  letter-spacing: -0.01em;
 }
 
 .section__subtitle {
   color: var(--color-text-muted);
   max-width: 56ch;
+  margin-top: calc(var(--space-md) * -0.25);
 }
 
 .grid {

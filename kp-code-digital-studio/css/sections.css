@@ -4,14 +4,13 @@
 
 .hero__grid {
   display: grid;
-  gap: var(--space-2xl);
+  gap: var(--space-lg);
 }
 
 .hero__title {
   font-weight: 650;
   font-size: var(--font-size-xxl);
   margin-bottom: var(--space-md);
-
   letter-spacing: -0.03em;
   line-height: var(--line-height-tight);
   max-width: 18ch;
@@ -49,18 +48,6 @@
 
 .hero__meta strong {
   font-size: var(--font-size-lg);
-}
-
-.service-card__head {
-  display: flex;
-  align-items: center;
-  gap: var(--space-sm);
-}
-
-.work-card__image {
-  border-radius: var(--radius-sm);
-  background: var(--color-surface-alt);
-  padding: var(--space-md);
 }
 
 .pill-grid {
@@ -128,37 +115,50 @@
   gap: var(--space-sm);
 }
 
-.filter-button {
-  padding: 0.4rem 0.9rem;
-  border-radius: 999px;
-  border: 1px solid var(--color-border);
-  background: var(--color-surface);
-  font-size: var(--font-size-sm);
-  transition:
-    border-color var(--transition-fast),
-    color var(--transition-fast);
-}
-
-.filter-button.is-active {
-  border-color: var(--color-primary);
-  color: var(--color-primary);
-}
-
 @media (min-width: 900px) {
   .hero__grid {
     grid-template-columns: 1.2fr 0.8fr;
     align-items: center;
   }
-
   .contact-grid {
     grid-template-columns: 1.1fr 0.9fr;
   }
 }
 
 @media (max-width: 899px) {
+  .hero {
+    padding-bottom: var(--space-lg);
+  }
+  .hero__title {
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+  }
+  .hero__lead {
+    font-size: var(--font-size-sm);
+    margin-bottom: var(--space-2xl);
+    max-width: 52ch;
+  }
+}
+
+@media (max-width: 479px) {
+  .hero__grid {
+    grid-template-columns: 1fr;
+  }
   .hero__title {
     font-size: 2.125rem;
     line-height: 1.1;
     letter-spacing: -0.02em;
+  }
+  .hero__lead {
+    font-size: 1rem;
+    line-height: 1.65;
+    max-width: 36ch;
+  }
+  .hero__cta {
+    display: grid;
+    gap: var(--space-sm);
+  }
+  .hero__cta .button {
+    width: 100%;
   }
 }
