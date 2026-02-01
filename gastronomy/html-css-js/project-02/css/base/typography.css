@@ -1,0 +1,120 @@
+@font-face {
+  font-family: "Montserrat";
+  src: url("../assets/fonts/montserrat-400-latin.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Montserrat";
+  src: url("../assets/fonts/montserrat-700-latin.woff2") format("woff2");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Lato";
+  src: url("../assets/fonts/lato-400-latin.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Lato";
+  src: url("../assets/fonts/lato-700-latin.woff2") format("woff2");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+body {
+  font-family:
+    "Lato",
+    system-ui,
+    -apple-system,
+    Segoe UI,
+    Roboto,
+    Helvetica,
+    Arial,
+    sans-serif;
+  color: var(--ink);
+  line-height: 1.6;
+}
+h1,
+h2,
+h3 {
+  font-family: "Montserrat", system-ui, Roboto, Helvetica, Arial, sans-serif;
+  color: var(--charcoal);
+  line-height: 1.2;
+  margin: 0 0 var(--space-2);
+}
+h1 {
+  font-size: clamp(1.5rem, 4vw, 2.25rem);
+  font-weight: 700;
+}
+h2 {
+  font-size: clamp(1.5rem, 2.5vw, 2.25rem);
+  font-weight: 700;
+}
+h3 {
+  font-size: 1.25rem;
+  font-weight: 700;
+}
+.section h2 {
+  text-align: center;
+  margin-bottom: 1.5rem;
+}
+p {
+  margin: 0 0 var(--space-4);
+}
+a {
+  color: var(--burgundy);
+  text-decoration: none;
+}
+a:not(.brand):hover,
+a:not(.brand):focus {
+  text-decoration: underline;
+}
+img {
+  font-family: system-ui, sans-serif;
+  font-weight: 400;
+  color: CanvasText;
+  height: auto;
+}
+h1,
+h2,
+h3,
+p {
+  scroll-margin-top: calc(var(--header-offset) + 16px);
+}
+.breadcrumbs {
+  padding: var(--space-2) 0;
+  background: transparent;
+}
+.breadcrumbs ol {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+  list-style: none;
+  margin: 0;
+  padding: 0 var(--space-4);
+  color: var(--text-subtle);
+  font-size: 0.95rem;
+  text-wrap: balance;
+}
+.breadcrumbs li + li::before {
+  content: "/";
+  color: color-mix(in oklab, var(--c-ink) 55%, transparent);
+  margin: 0 var(--space-1) 0 var(--space-1);
+}
+.breadcrumbs a {
+  color: inherit;
+  text-decoration: none;
+}
+.breadcrumbs a:hover,
+.breadcrumbs a:focus-visible {
+  text-decoration: underline;
+}

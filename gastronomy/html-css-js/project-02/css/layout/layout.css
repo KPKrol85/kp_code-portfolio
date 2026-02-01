@@ -1,0 +1,33 @@
+body {
+  display: flex;
+  flex-direction: column;
+  background: var(--cream);
+  min-height: 100svh;
+  min-height: 100dvh;
+}
+
+main {
+  flex: 1 0 auto;
+  padding-top: var(--header-offset);
+}
+
+.container {
+  max-width: var(--container);
+  padding-inline: 16px;
+  margin-inline: auto;
+}
+
+.section {
+  padding: var(--space-8) 0;
+}
+
+.hero,
+.section {
+  scroll-margin-top: calc(var(--header-offset) + 16px);
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+}

@@ -1,4 +1,4 @@
 
 module.exports = {
-  plugins: [require("cssnano")({ preset: "default" })],
+  plugins: [require("postcss-import"), require("cssnano")({ preset: "default" })],
 };

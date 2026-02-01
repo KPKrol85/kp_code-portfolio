@@ -1,0 +1,82 @@
+:root {
+  --cream: #f8f1e7;
+  --gold: #c9a227;
+  --burgundy: #6b1e2f;
+  --charcoal: #2e2a27;
+  --ink: #1b1715;
+  --c-ink: #1b1715;
+  --bone: #fffdf8;
+  --white: #ffffff;
+  --black: #000000;
+
+  --radius-xs: 4px;
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 16px;
+  --radius-xl: 24px;
+  --radius-pill: 999px;
+
+  --shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+  --container: 1120px;
+  --header-backdrop: rgba(248, 241, 231, 0.88);
+  --header-border: rgba(0, 0, 0, 0.06);
+  --header-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+  --header-h: 80px;
+  --header-visual-h: var(--header-h);
+  --header-logo-h: 80px;
+  --header-logo-w: 200px;
+  --header-logo-pad: 10px;
+  --header-offset: calc(var(--header-h) + env(safe-area-inset-top, 0px));
+  --surface-overlay: rgba(255, 253, 248, 0.96);
+  --c-surface-1: var(--surface-overlay);
+  --surface-overlay-border: rgba(0, 0, 0, 0.07);
+  --text-muted: rgba(27, 23, 21, 0.86);
+  --text-subtle: rgba(27, 23, 21, 0.78);
+  --border-soft: rgba(0, 0, 0, 0.06);
+  --input-bg: #ffffff;
+  --input-border: rgba(0, 0, 0, 0.15);
+  --footer-bg: #2e2a27;
+  --footer-text: #fffdf8;
+  --tab-active-bg: color-mix(in oklab, var(--burgundy) 10%, white);
+  --tab-active-border: color-mix(in oklab, var(--burgundy) 55%, white);
+  color-scheme: light;
+  --focus-ring: color-mix(in oklab, var(--burgundy) 65%, white);
+  --space-0: 0;
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-3: 0.75rem;
+  --space-4: 1rem;
+  --space-5: 1.5rem;
+  --space-6: 2rem;
+  --space-7: 3rem;
+  --space-8: 4rem;
+}
+
+[data-theme="dark"] {
+  color-scheme: dark;
+  --cream: #181210;
+  --gold: #dcb869;
+  --burgundy: #f0b3c0;
+  --charcoal: #f3ece6;
+  --ink: #f5ece3;
+  --c-ink: #f5ece3;
+  --bone: #221815;
+  --white: #181210;
+  --black: #ffffff;
+  --shadow: 0 14px 36px rgba(0, 0, 0, 0.45);
+  --header-backdrop: rgba(24, 18, 16, 0.82);
+  --header-border: rgba(255, 255, 255, 0.08);
+  --header-shadow: 0 16px 36px rgba(0, 0, 0, 0.55);
+  --surface-overlay: rgba(24, 18, 16, 0.92);
+  --c-surface-1: var(--surface-overlay);
+  --surface-overlay-border: rgba(255, 255, 255, 0.08);
+  --text-muted: rgba(242, 231, 220, 0.82);
+  --text-subtle: rgba(242, 231, 220, 0.76);
+  --border-soft: rgba(255, 255, 255, 0.08);
+  --input-bg: #271c19;
+  --input-border: rgba(255, 255, 255, 0.16);
+  --footer-bg: #0f0908;
+  --footer-text: #f5ece3;
+  --tab-active-bg: color-mix(in oklab, var(--burgundy) 55%, black);
+  --tab-active-border: color-mix(in oklab, var(--burgundy) 92%, white);
+}
