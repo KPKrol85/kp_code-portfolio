@@ -25,7 +25,8 @@
     "build:css": "postcss css/style.css -o css/style.min.css --no-map",
     "build:js": "esbuild js/script.js --bundle --minify --outfile=js/script.min.js --target=es2018",
     "build": "npm run build:css && npm run build:js",
-    "images:build": "node scripts/images/build-images.js"
+    "images:build": "node scripts/images/build-images.js",
+    "dev:server": "http-server -p 5173 -c-1"
   },
   "devDependencies": {
     "postcss": "^8.4.47",
@@ -34,6 +35,7 @@
     "cssnano": "^6.1.2",
     "esbuild": "^0.24.0",
     "fast-glob": "^3.3.2",
-    "sharp": "^0.33.5"
+    "sharp": "^0.33.5",
+    "http-server": "^14.1.1"
   }
 }
