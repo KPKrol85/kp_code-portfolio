@@ -1,5 +1,4 @@
-/* PWA Service Worker */
-const CACHE_VERSION = "v1.4.2";
+const CACHE_VERSION = "v1.0";
 
 const APP_SHELL_CACHE = `app-shell-${CACHE_VERSION}`;
 const RUNTIME_IMG_CACHE = `runtime-img-${CACHE_VERSION}`;
@@ -36,7 +35,7 @@ self.addEventListener("install", (event) => {
     (async () => {
       const cache = await caches.open(APP_SHELL_CACHE);
       await cache.addAll(PRECACHE);
-    })()
+    })(),
   );
   self.skipWaiting();
 });
@@ -52,7 +51,7 @@ self.addEventListener("activate", (event) => {
       const keep = new Set([APP_SHELL_CACHE, RUNTIME_IMG_CACHE]);
       const keys = await caches.keys();
       await Promise.all(keys.filter((key) => !keep.has(key)).map((key) => caches.delete(key)));
-    })()
+    })(),
   );
   self.clients.claim();
 });
@@ -86,7 +85,7 @@ self.addEventListener("fetch", (event) => {
           const cached = await caches.match(req);
           return cached || caches.match(OFFLINE_PAGE);
         }
-      })()
+      })(),
     );
     return;
   }
@@ -110,7 +109,7 @@ self.addEventListener("fetch", (event) => {
         }
 
         return fetchPromise || Response.error();
-      })()
+      })(),
     );
     return;
   }
@@ -129,7 +128,7 @@ self.addEventListener("fetch", (event) => {
         } catch {
           return caches.match(OFFLINE_IMAGE);
         }
-      })()
+      })(),
     );
   }
 });
