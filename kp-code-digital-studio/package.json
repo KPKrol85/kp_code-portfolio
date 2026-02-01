@@ -1,0 +1,12 @@
+{
+  "name": "kp-code-digital-studio-codex",
+  "private": true,
+  "scripts": {
+    "img:build": "node ./scripts/images/build-images.mjs",
+    "img:clean": "node ./scripts/images/clean-images.mjs"
+  },
+  "dependencies": {
+    "fast-glob": "^3.3.2",
+    "sharp": "^0.33.5"
+  }
+}

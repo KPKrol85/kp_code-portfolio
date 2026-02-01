@@ -39,12 +39,11 @@
   --icon-fill: var(--color-text-muted);
   --icon-fill-hover: var(--color-text);
 
+  /* FONTS */
   --font-sans: "Space Grotesk", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, Arial, "Noto Sans", "Liberation Sans", sans-serif;
-
   --font-family-base: var(--font-sans);
   --font-family-display: var(--font-sans);
-
-
+  /* FONT SIZES */
   --font-size-3xs: clamp(0.6rem, 0.6rem + 0.05vw, 0.6875rem);
   --font-size-2xs: clamp(0.6875rem, 0.66rem + 0.1vw, 0.75rem);
   --font-size-xs: clamp(0.75rem, 0.72rem + 0.15vw, 0.8125rem);
@@ -58,8 +57,8 @@
   --line-height-tight: 1.15;
   --line-height-base: 1.6;
 
+  /* SPACING */
   --space-unit: 0.25rem;
-
   --space-2xs: calc(var(--space-unit) * 1); /* 0.25rem */
   --space-xs: calc(var(--space-unit) * 2); /* 0.5rem  */
   --space-sm: calc(var(--space-unit) * 3); /* 0.75rem */
@@ -80,34 +79,24 @@
   --header-links-offset: 72px;
   --header-links-offset-shrink: 64px;
 
-
   /* RADIUS */
   --radius-soft: 12px;
   --radius-pill: 999px;
   --radius-slant-ui: 16px 22px 16px 22px / 60% 40% 60% 40%;
   --radius-btn: var(--radius-lg);
   --radius-btn-cta: 14px 18px 14px 18px / 58% 42% 58% 42%;
-
-
-
-
-
-
-
-
-
-
+  /* SHADOWS */
   --shadow-sm: 0 8px 24px rgba(15, 23, 42, 0.08);
   --shadow-md: 0 18px 40px rgba(15, 23, 42, 0.12);
-
+  /* TRANSITIONS */
   --transition-fast: 150ms ease;
   --transition-base: 220ms ease;
-
+  /* EASING */
   --ease-3: cubic-bezier(0.25, 0, 0.3, 1);
   --ease-out-5: cubic-bezier(0, 0, 0, 1);
   --ease-elastic-3: cubic-bezier(0.5, 1.25, 0.75, 1.25);
   --ease-elastic-4: cubic-bezier(0.5, 1.5, 0.75, 1.25);
-
+  /* CONTAINER */
   --container: 1120px;
 }
 

@@ -1,0 +1,19 @@
+{
+  "inputDir": "assets/img/img_src",
+  "outputDir": "assets/img/img_optimized",
+  "widths": [480, 768, 1024, 1440],
+  "formats": ["avif", "webp", "jpg"],
+  "quality": {
+    "jpg": 82,
+    "webp": 80,
+    "avif": 50
+  },
+  "png": {
+    "compressionLevel": 9,
+    "adaptiveFiltering": true
+  },
+  "keepMetadata": false,
+  "keepOriginal": false,
+  "skipIfSmallerThan": 320,
+  "avoidUpscale": true
+}
