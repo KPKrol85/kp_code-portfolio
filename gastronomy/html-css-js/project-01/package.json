@@ -6,10 +6,11 @@
   "author": "Kamil Król | KP_Code_",
   "license": "MIT",
   "scripts": {
-    "minify:css": "postcss css/style.css -o css/style.min.css --no-map -u cssnano",
+    "minify:css": "postcss css/style.css -o css/style.min.css --no-map",
+    "build:css": "postcss css/style.css -o css/style.min.css --no-map && node -e \"const fs=require('fs');const css=fs.readFileSync('css/style.min.css','utf8');if(/@import/i.test(css)){console.error('Found @import in css/style.min.css');process.exit(1);}console.log('CSS bundle OK');\"",
     "minify:js": "terser js/script.js -o js/script.min.js -c -m",
-    "build": "npm run minify:css && npm run minify:js",
-    "watch:css": "postcss css/style.css -o css/style.min.css --watch --no-map -u cssnano",
+    "build": "npm run build:css && npm run minify:js",
+    "watch:css": "postcss css/style.css -o css/style.min.css --watch --no-map",
     "img:opt": "node scripts/optimize-images.mjs",
     "img:webp": "node scripts/optimize-images.mjs --webp",
     "img:avif": "node scripts/optimize-images.mjs --avif",
@@ -22,11 +23,13 @@
     "qa:css": "stylelint --max-warnings 0 \"css/**/*.css\""
   },
   "devDependencies": {
+    "autoprefixer": "^10.4.24",
     "cssnano": "^7.1.1",
     "eslint": "^8.57.0",
     "html-validate": "^10.5.0",
     "postcss": "^8.5.6",
     "postcss-cli": "^11.0.1",
+    "postcss-import": "^16.1.1",
     "sharp": "^0.33.5",
     "stylelint": "^16.7.0",
     "stylelint-config-recommended": "^14.0.0",

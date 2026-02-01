@@ -1,4 +1,3 @@
-/* === 02 - Header === */
 
 .site-header {
   position: sticky;
@@ -34,7 +33,7 @@
 }
 
 .phone-text {
-  
+
   font-weight: 500;
   color: var(--c-ink);
 }
@@ -90,13 +89,11 @@ html[data-theme="light"] .logo-light {
   transform: scale(0.97);
 }
 
-/* Desktop nav base (pokazywany tylko >= 939px) */
 .site-nav {
   flex: 1 1 auto;
   min-width: 0;
 }
 
-/* Desktop list look */
 .site-nav ul {
   display: flex;
   justify-content: center;
@@ -148,7 +145,6 @@ html[data-theme="light"] .logo-light {
   transform: scaleX(1);
 }
 
-/* Submenu (desktop hover) */
 .nav-submenu {
   position: absolute;
   top: calc(100% + 8px);
@@ -188,7 +184,6 @@ html[data-theme="light"] .logo-light {
   transform: translateY(0);
 }
 
-/* Overlay + Drawer (mobile) */
 .nav-overlay {
   position: fixed;
   inset: 0;
@@ -381,24 +376,20 @@ html[data-theme="dark"] .site-header {
     transform: translateY(-1px);
     box-shadow: 0 8px 22px rgba(0, 0, 0, 0.1);
   }
-
   .site-nav a:hover::after {
     transform: scaleX(1);
   }
-
   .site-nav a:hover {
     background: var(--nav-hover-bg);
   }
 }
 
-/* Mobile/tablet <= 938px: chowamy desktop nav, używamy drawer */
 @media (max-width: 938px) {
   .site-header {
     backdrop-filter: saturate(1.2) blur(calc(var(--glass-blur) + 4px));
     -webkit-backdrop-filter: saturate(1.2) blur(calc(var(--glass-blur) + 4px));
     background: color-mix(in oklab, var(--c-bg), transparent calc(var(--glass-alpha) + 40%));
   }
-
   .site-nav > ul {
     display: none;
   }
@@ -410,12 +401,10 @@ html[data-theme="dark"] .site-header {
   }
 }
 
-/* Desktop nav od 939px wzwyż */
 @media (min-width: 939px) {
   .nav-toggle {
     display: none;
   }
-
   .site-nav {
     display: block;
     position: static;
@@ -423,13 +412,10 @@ html[data-theme="dark"] .site-header {
     border: none;
     box-shadow: none;
   }
-
   .site-nav ul {
     flex-direction: row;
     align-items: center;
   }
-
-  /* Na desktop drawer i overlay niepotrzebne */
   .nav-overlay,
   .nav-drawer {
     display: none;
@@ -461,7 +447,6 @@ html[data-theme="dark"] .site-header {
   .drawer-accordion-trigger::after {
     transition: none !important;
   }
-
   body.is-scrolled .site-header {
     transition: none !important;
   }

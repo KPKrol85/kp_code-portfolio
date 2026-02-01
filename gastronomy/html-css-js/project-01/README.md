@@ -41,6 +41,9 @@ and a clean front-end architecture suitable for real-world projects.
 - Vanilla JavaScript (ES6)
 - Netlify (hosting & deployment)
 
+Build: `npm run build` generates `css/style.min.css` and `js/script.min.js`.
+HTML serves minified assets in production.
+
 ---
 
 ## Project Status
@@ -116,6 +119,9 @@ oraz czystej struktury front-endowej odpowiedniej dla realnych projektów.
 - CSS3 (custom properties, architektura modularna)
 - JavaScript (ES6, vanilla)
 - Netlify (hosting i deployment)
+
+Build: `npm run build` generuje `css/style.min.css` i `js/script.min.js`.
+HTML serwuje zminifikowane assety w produkcji.
 
 ---
 
