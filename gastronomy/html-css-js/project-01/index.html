@@ -856,23 +856,25 @@
     <script src="js/sw-register.js" defer></script>
     <script src="js/pwa-install.js" defer></script>
     <script src="js/script.js" type="module"></script>
-    <!-- Demo Banner -->
-    <div id="demo-banner" class="demo-banner" role="dialog" aria-modal="true" aria-labelledby="demo-banner-title" aria-describedby="demo-banner-desc" aria-hidden="true" hidden>
-      <div class="demo-banner__panel" role="document" tabindex="-1">
-        <span class="demo-badge">Projekt DEMO / Portfolio</span>
-        <h2 id="demo-banner-title">Projekt DEMO / Portfolio</h2>
-        <p id="demo-banner-desc">Ta strona jest projektem demonstracyjnym w portfolio KP_Code_. Nie przedstawia rzeczywistej oferty gastronomicznej. Wszystkie tresci, dane i opinie sa przykladowe.</p>
-        <p class="demo-legal">Przed korzystaniem z serwisu zapoznaj sie z Regulaminem.</p>
-        <div class="demo-actions">
-          <button type="button" class="btn btn-primary" data-demo-accept>Akceptuje i przechodze</button>
-          <a class="btn btn-ghost" href="/regulamin.html">Przeczytaj regulamin</a>
-        </div>
-        <div class="demo-links">
-          <a href="/polityka-prywatnosci.html">Polityka prywatnosci</a>
-          <span aria-hidden="true">•</span>
-          <a href="/cookies.html">Cookies</a>
+    <!-- Demo Notice -->
+    <div id="demo-banner" class="demo-banner" role="region" aria-label="Informacja o projekcie demo" aria-hidden="true" hidden>
+      <div class="demo-banner__inner container">
+        <div class="demo-banner__panel">
+          <div class="demo-banner__content">
+            <p class="demo-banner__text">To jest projekt demo/portfolio. Tresci i dane sa przykladowe.</p>
+            <div class="demo-links">
+              <a href="/polityka-prywatnosci.html">Polityka prywatnosci</a>
+              <a href="/regulamin.html">Regulamin</a>
+              <a href="/cookies.html">Cookies</a>
+            </div>
+          </div>
+          <div class="demo-actions">
+            <button type="button" class="btn btn-primary" data-demo-accept>Akceptuj</button>
+            <button type="button" class="btn btn-ghost" data-demo-dismiss>Odrzuc</button>
+          </div>
         </div>
       </div>
+    </div>
     </div>
   </body>
 </html>

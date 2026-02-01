@@ -1,77 +1,65 @@
-import { getFocusable, log } from "./utils.js";
+import { log } from "./utils.js";
 
 export function initDemoBanner() {
   const banner = document.getElementById("demo-banner");
   if (!banner) return;
 
-  const panel = banner.querySelector(".demo-banner__panel");
   const acceptBtn = banner.querySelector("[data-demo-accept]");
-  const storageKey = "gastronomy_demo_accepted";
+  const dismissBtn = banner.querySelector("[data-demo-dismiss]");
+  const acceptedKey = "demoNoticeAccepted";
+  const dismissedKey = "demoNoticeDismissed";
 
-  if (localStorage.getItem(storageKey) === "true") {
+  const isStored =
+    localStorage.getItem(acceptedKey) === "true" ||
+    localStorage.getItem(dismissedKey) === "true";
+
+  if (isStored) {
     banner.setAttribute("aria-hidden", "true");
     banner.setAttribute("hidden", "");
-    document.body?.classList.remove("demo-banner-open");
     return;
   }
 
-  let lastFocused = null;
+  const prefersReducedMotion = () =>
+    window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
-  const open = () => {
-    lastFocused = document.activeElement;
-    document.body?.classList.add("demo-banner-open");
-
+  const show = () => {
     banner.removeAttribute("hidden");
     banner.setAttribute("aria-hidden", "false");
 
-    const focusables = getFocusable(panel || banner);
-    const first = focusables[0] || panel || banner;
-    if (first && typeof first.focus === "function") first.focus();
+    requestAnimationFrame(() => {
+      banner.classList.add("is-visible");
+    });
   };
 
-  const close = () => {
-    localStorage.setItem(storageKey, "true");
+  const hide = (storageKey) => {
+    if (storageKey) localStorage.setItem(storageKey, "true");
     banner.setAttribute("aria-hidden", "true");
-    banner.setAttribute("hidden", "");
-    document.body?.classList.remove("demo-banner-open");
+    banner.classList.remove("is-visible");
+    banner.classList.add("is-hiding");
 
-    if (lastFocused && typeof lastFocused.focus === "function") {
-      lastFocused.focus();
-    }
-  };
+    const done = () => {
+      banner.setAttribute("hidden", "");
+      banner.classList.remove("is-hiding");
+    };
 
-  const trapFocus = (event) => {
-    if (event.key !== "Tab") return;
-    const focusables = getFocusable(panel || banner);
-    if (!focusables.length) return;
-
-    const first = focusables[0];
-    const last = focusables[focusables.length - 1];
-
-    if (event.shiftKey && document.activeElement === first) {
-      event.preventDefault();
-      last.focus();
+    if (prefersReducedMotion()) {
+      done();
       return;
     }
 
-    if (!event.shiftKey && document.activeElement === last) {
-      event.preventDefault();
-      first.focus();
-    }
+    const onEnd = (event) => {
+      if (event.target !== banner) return;
+      banner.removeEventListener("transitionend", onEnd);
+      done();
+    };
+
+    banner.addEventListener("transitionend", onEnd);
   };
 
-  open();
+  show();
 
-  acceptBtn?.addEventListener("click", () => close());
-
-  banner.addEventListener("keydown", (event) => {
-    if (event.key === "Escape") return;
-    trapFocus(event);
-  });
-
-  banner.addEventListener("click", (event) => {
-    if (event.target === banner) event.preventDefault();
-  });
+  acceptBtn?.addEventListener("click", () => hide(acceptedKey));
+  dismissBtn?.addEventListener("click", () => hide(dismissedKey));
 
   log();
 }

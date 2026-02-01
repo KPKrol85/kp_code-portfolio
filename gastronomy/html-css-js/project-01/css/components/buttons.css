@@ -1,4 +1,3 @@
-/* === 16 - Global buttons === */
 
 .btn {
   display: inline-flex;
@@ -325,7 +324,7 @@ html[data-theme="dark"] .btn-ring:hover {
   padding: 0.3rem 0.8rem;
   border-width: 1.5px;
   font-size: 0.95rem;
-  gap: 0.5rem;
+  gap: 0.1rem;
   align-self: center;
 }
 
