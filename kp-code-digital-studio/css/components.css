@@ -429,6 +429,9 @@
     border-color 220ms ease,
     background 220ms ease;
   will-change: transform;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
 }
 .work-card::before {
   content: "";
@@ -502,7 +505,7 @@
   display: flex;
   flex-wrap: wrap;
   gap: var(--space-sm);
-  margin-top: var(--space-xs);
+  margin-top: auto;
 }
 .work-shot {
   display: block;
