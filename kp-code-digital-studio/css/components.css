@@ -1,3 +1,4 @@
+/* HEADER */
 .header {
   position: sticky;
   top: 0;
@@ -16,7 +17,6 @@
     backdrop-filter var(--transition-base);
   will-change: background-color, backdrop-filter, border-color, box-shadow;
 }
-
 .header.is-shrink {
   --header-py-current: var(--header-py-shrink);
   --header-links-offset-current: var(--header-links-offset-shrink);
@@ -28,6 +28,7 @@
   box-shadow: var(--shadow-sm);
 }
 
+/* NAVIGATION */
 .nav {
   display: flex;
   align-items: center;
@@ -40,36 +41,30 @@
     transform var(--transition-base);
   will-change: padding, transform;
 }
-
 .nav__brand {
   display: flex;
   align-items: center;
   gap: var(--space-sm);
   font-weight: 600;
 }
-
 .brand__logo {
   display: block;
   width: 52px;
   height: 52px;
   flex: 0 0 auto;
 }
-
 .brand__logo img {
   display: block;
   width: 100%;
   height: 100%;
   object-fit: contain;
 }
-
 [data-theme="dark"] .brand__logo img {
   content: url("../assets/img/logo/logo-dark-mode.svg");
 }
-
 [data-theme="light"] .brand__logo img {
   content: url("../assets/img/logo/logo-light-mode.svg");
 }
-
 .nav__links {
   position: fixed;
   inset: var(--header-links-offset-current) 0 auto 0;
@@ -93,14 +88,12 @@
     opacity var(--transition-base),
     visibility var(--transition-base);
 }
-
 .nav--open .nav__links {
   transform: translateY(0);
   opacity: 1;
   pointer-events: auto;
   visibility: visible;
 }
-
 .nav__link {
   font-weight: 500;
   font-size: var(--font-size-lg);
@@ -108,26 +101,21 @@
   color: var(--color-text);
   transition: color var(--transition-fast);
 }
-
 .nav__link:hover,
 .nav__link:focus-visible {
   color: var(--color-text);
 }
-
 .nav__link[aria-current="page"] {
   color: var(--color-text);
 }
-
 .nav__actions {
   display: flex;
   align-items: center;
   gap: var(--space-sm);
 }
-
 .nav-open {
   overflow: hidden;
 }
-
 .nav__toggle,
 .theme-toggle {
   width: 40px;
@@ -140,16 +128,13 @@
     transform var(--transition-fast),
     border-color var(--transition-fast);
 }
-
 .nav__toggle:hover,
 .theme-toggle:hover {
   transform: translateY(-1px);
 }
-
 .nav__toggle {
   color: var(--color-text);
 }
-
 .nav__toggle-icon {
   position: relative;
   width: 18px;
@@ -159,7 +144,6 @@
   display: block;
   transition: background var(--transition-fast);
 }
-
 .nav__toggle-icon::before,
 .nav__toggle-icon::after {
   content: "";
@@ -174,29 +158,23 @@
     top var(--transition-fast),
     opacity var(--transition-fast);
 }
-
 .nav__toggle-icon::before {
   top: -6px;
 }
-
 .nav__toggle-icon::after {
   top: 6px;
 }
-
 .nav--open .nav__toggle-icon {
   background: transparent;
 }
-
 .nav--open .nav__toggle-icon::before {
   top: 0;
   transform: rotate(45deg);
 }
-
 .nav--open .nav__toggle-icon::after {
   top: 0;
   transform: rotate(-45deg);
 }
-
 .nav__backdrop {
   position: fixed;
   inset: 0;
@@ -206,12 +184,10 @@
   pointer-events: none;
   transition: opacity var(--transition-base);
 }
-
 .nav--open .nav__backdrop {
   opacity: 1;
   pointer-events: auto;
 }
-
 .sun-and-moon > :is(.moon, .sun, .sun-beams) {
   transform-origin: center;
 }
@@ -238,6 +214,7 @@
   transform: translateX(-7px);
 }
 
+/* EYEBRON */
 .section__eyebrow {
   display: inline-block;
   padding: var(--space-2xs) var(--space-sm);
@@ -281,8 +258,6 @@
   outline: none;
   box-shadow: 0 0 0 3px color-mix(in srgb, var(--color-primary) 35%, transparent);
 }
-
-/* BUTTON PRIMARY */
 .button--primary {
   background: var(--color-primary);
   color: #fff;
@@ -296,8 +271,6 @@
   filter: brightness(0.95);
   box-shadow: 0 4px 12px rgba(29, 78, 216, 0.22);
 }
-
-/* BUTTON GHOST */
 .button--ghost {
   background: transparent;
   color: var(--color-text);
@@ -311,8 +284,6 @@
 .button--ghost:active {
   background: color-mix(in srgb, var(--color-surface-alt) 85%, transparent);
 }
-
-/* DISABLED */
 .button:disabled,
 .button[aria-disabled="true"] {
   opacity: 0.5;
@@ -583,16 +554,15 @@
   gap: var(--space-md);
 }
 
+/* FORM */
 .form {
   display: grid;
   gap: var(--space-md);
 }
-
 .form__field {
   display: grid;
   gap: var(--space-xs);
 }
-
 .form__input,
 .form__textarea {
   width: 100%;
@@ -605,18 +575,15 @@
     border-color var(--transition-fast),
     box-shadow var(--transition-fast);
 }
-
 .form__input:focus,
 .form__textarea:focus {
   border-color: var(--color-primary);
   box-shadow: 0 0 0 3px color-mix(in srgb, var(--color-primary) 25%, transparent);
 }
-
 .form__field--error .form__input,
 .form__field--error .form__textarea {
   border-color: var(--color-warning);
 }
-
 .form__message {
   font-size: var(--font-size-sm);
   color: var(--color-text-muted);
