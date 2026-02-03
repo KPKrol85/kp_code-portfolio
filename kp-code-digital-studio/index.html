@@ -876,9 +876,16 @@
       <div class="container">
         <div class="footer__grid">
           <div class="footer__col footer__brand">
-            <a class="footer__brand-name" href="./index.html">KP_Code Digital Studio</a>
-            <p class="footer__lead">Tworzę minimalistyczne strony premium, które budują zaufanie i prowadzą do sprzedaży.</p>
-            <p class="footer__meta">Nowoczesne strony, SEO i branding dla ambitnych marek.</p>
+            <picture class="footer__logo">
+              <source srcset="./assets/img/logo/logo-dark-mode.svg" media="(prefers-color-scheme: dark)" />
+              <img src="./assets/img/logo/logo-light-mode.svg" alt="KP_Code Digital Studio" loading="lazy" />
+            </picture>
+
+            <h4 class="footer__brand-title">
+              <a href="./index.html">KP_Code Digital Studio</a>
+            </h4>
+            <p class="footer__lead">Studio front-endowe specjalizujące się w nowoczesnych stronach internetowych.</p>
+            <p class="footer__meta">Projektowanie, development, SEO i branding.</p>
           </div>
 
           <nav class="footer__col footer__nav" aria-label="Nawigacja">
@@ -894,7 +901,6 @@
 
           <nav class="footer__col footer__nav" aria-label="Usługi">
             <h3 class="footer__title">Usługi</h3>
-            <!-- TODO: Linki do usług są placeholderami do docelowych podstron. -->
             <ul class="footer__links" role="list">
               <li><a class="footer__link" href="./services/websites.html">Websites (HTML/CSS/JS)</a></li>
               <li><a class="footer__link" href="./services/wordpress.html">WordPress</a></li>
@@ -905,45 +911,71 @@
 
           <div class="footer__col footer__contact">
             <h3 class="footer__title">Kontakt</h3>
-            <ul class="footer__links" role="list">
-              <li><a class="footer__link" href="mailto:kontakt@kp-code.pl">kontakt@kp-code.pl</a></li>
-              <li><span class="footer__meta">Polska / zdalnie</span></li>
-              <li><span class="footer__meta">Dostępność: szybka odpowiedź w 24h</span></li>
-            </ul>
-            <a class="footer__cta" href="./contact.html">Umów krótką rozmowę</a>
+            <address class="footer__contact-list">
+              <a class="footer__link" href="tel:+48533537091">+48 533 537 091</a>
+              <a class="footer__link" href="mailto:kontakt@kp-code.pl">kontakt@kp-code.pl</a>
+              <span class="footer__meta">
+                KP_Code Digital Studio
+                <br />
+                ul. Marynarki Wojennej 12
+                <br />
+                33-100 Tarnów, Polska
+              </span>
+              <span class="footer__meta">Praca zdalna • odpowiedź do 24h</span>
+            </address>
+            <a class="button button--ghost footer__cta" href="./contact.html">Skontaktuj się</a>
           </div>
         </div>
 
         <div class="footer__social" aria-label="Social media">
-          <!-- TODO: Podmień # na realne profile social. -->
-          <div class="footer__social-links">
-            <a class="footer__social-link" href="#" aria-label="GitHub">
-              <svg aria-hidden="true" viewBox="0 0 24 24">
-                <path
-                  d="M12 2c-5.52 0-10 4.58-10 10.24 0 4.53 2.87 8.38 6.84 9.74.5.1.68-.22.68-.49 0-.24-.01-.89-.01-1.75-2.78.62-3.37-1.38-3.37-1.38-.45-1.18-1.1-1.5-1.1-1.5-.9-.64.07-.63.07-.63 1 .07 1.53 1.05 1.53 1.05.89 1.56 2.34 1.11 2.91.85.09-.66.35-1.11.63-1.37-2.22-.26-4.56-1.15-4.56-5.1 0-1.13.39-2.05 1.03-2.77-.1-.26-.45-1.31.1-2.72 0 0 .85-.28 2.79 1.06.8-.23 1.66-.34 2.52-.34s1.72.12 2.52.34c1.94-1.34 2.79-1.06 2.79-1.06.55 1.41.2 2.46.1 2.72.64.72 1.03 1.64 1.03 2.77 0 3.96-2.34 4.84-4.57 5.09.36.32.68.95.68 1.92 0 1.38-.01 2.49-.01 2.83 0 .27.18.6.69.49C19.14 20.62 22 16.77 22 12.24 22 6.58 17.52 2 12 2z" />
-              </svg>
-              <span>GitHub</span>
-            </a>
-            <a class="footer__social-link" href="#" aria-label="LinkedIn">
-              <svg aria-hidden="true" viewBox="0 0 24 24">
-                <path
-                  d="M4.98 3.5C3.33 3.5 2 4.86 2 6.53c0 1.64 1.3 3 2.92 3h.03c1.68 0 2.99-1.36 2.99-3C7.94 4.86 6.65 3.5 4.98 3.5zM2.4 20.5h5.2V9.79H2.4V20.5zM9.6 9.79V20.5h5.2v-5.67c0-1.48.28-2.91 2.1-2.91 1.79 0 1.82 1.67 1.82 3v5.58H24V13.8c0-3.71-1.98-5.44-4.62-5.44-2.13 0-3.08 1.18-3.6 2.02h-.07V9.79H9.6z" />
-              </svg>
-              <span>LinkedIn</span>
-            </a>
-            <a class="footer__social-link" href="#" aria-label="X">
-              <svg aria-hidden="true" viewBox="0 0 24 24">
-                <path d="M17.55 3h3.01l-6.57 7.51L21 21h-5.52l-4.33-5.62L6.1 21H3.07l7.02-8.02L3 3h5.66l3.92 5.13L17.55 3zm-1.06 16.2h1.67L7.58 4.74H5.8l10.69 14.46z" />
-              </svg>
-              <span>X</span>
-            </a>
-          </div>
+          <ul class="footer__social-links" role="list">
+            <li>
+              <a class="footer__social-link" href="https://github.com/" aria-label="GitHub" target="_blank" rel="noopener noreferrer">
+                <svg class="footer__social-icon" aria-hidden="true" viewBox="0 0 24 24" fill="currentColor">
+                  <path
+                    d="M12 2c-5.52 0-10 4.58-10 10.24 0 4.53 2.87 8.38 6.84 9.74.5.1.68-.22.68-.49 0-.24-.01-.89-.01-1.75-2.78.62-3.37-1.38-3.37-1.38-.45-1.18-1.1-1.5-1.1-1.5-.9-.64.07-.63.07-.63 1 .07 1.53 1.05 1.53 1.05.89 1.56 2.34 1.11 2.91.85.09-.66.35-1.11.63-1.37-2.22-.26-4.56-1.15-4.56-5.1 0-1.13.39-2.05 1.03-2.77-.1-.26-.45-1.31.1-2.72 0 0 .85-.28 2.79 1.06.8-.23 1.66-.34 2.52-.34s1.72.12 2.52.34c1.94-1.34 2.79-1.06 2.79-1.06.55 1.41.2 2.46.1 2.72.64.72 1.03 1.64 1.03 2.77 0 3.96-2.34 4.84-4.57 5.09.36.32.68.95.68 1.92 0 1.38-.01 2.49-.01 2.83 0 .27.18.6.69.49C19.14 20.62 22 16.77 22 12.24 22 6.58 17.52 2 12 2z" />
+                </svg>
+              </a>
+            </li>
+            <li>
+              <a class="footer__social-link" href="https://facebook.com/" aria-label="Facebook" target="_blank" rel="noopener noreferrer">
+                <svg class="footer__social-icon" aria-hidden="true" viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M13.5 9H16l-.5 3H13.5v8h-3v-8H9V9h1.5V7.5C10.5 5.57 11.57 4 14 4h2.5v3H15c-.55 0-1 .45-1 1V9z" />
+                </svg>
+              </a>
+            </li>
+            <li>
+              <a class="footer__social-link" href="https://instagram.com/" aria-label="Instagram" target="_blank" rel="noopener noreferrer">
+                <svg class="footer__social-icon" aria-hidden="true" viewBox="0 0 24 24" fill="currentColor">
+                  <path
+                    fill-rule="evenodd"
+                    clip-rule="evenodd"
+                    d="M7 3h10a4 4 0 0 1 4 4v10a4 4 0 0 1-4 4H7a4 4 0 0 1-4-4V7a4 4 0 0 1 4-4zm10 2H7a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2zm-5 3.5A4.5 4.5 0 1 1 7.5 13 4.5 4.5 0 0 1 12 8.5zm0 2A2.5 2.5 0 1 0 14.5 13 2.5 2.5 0 0 0 12 10.5zm4.8-3.3a1.2 1.2 0 1 1-2.4 0 1.2 1.2 0 0 1 2.4 0z" />
+                </svg>
+              </a>
+            </li>
+            <li>
+              <a class="footer__social-link" href="https://x.com/" aria-label="X" target="_blank" rel="noopener noreferrer">
+                <svg class="footer__social-icon" aria-hidden="true" viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M17.55 3h3.01l-6.57 7.51L21 21h-5.52l-4.33-5.62L6.1 21H3.07l7.02-8.02L3 3h5.66l3.92 5.13L17.55 3zm-1.06 16.2h1.67L7.58 4.74H5.8l10.69 14.46z" />
+                </svg>
+              </a>
+            </li>
+            <li>
+              <a class="footer__social-link" href="https://linkedin.com/" aria-label="LinkedIn" target="_blank" rel="noopener noreferrer">
+                <svg class="footer__social-icon" aria-hidden="true" viewBox="0 0 24 24" fill="currentColor">
+                  <path
+                    d="M4.98 3.5C3.33 3.5 2 4.86 2 6.53c0 1.64 1.3 3 2.92 3h.03c1.68 0 2.99-1.36 2.99-3C7.94 4.86 6.65 3.5 4.98 3.5zM2.4 20.5h5.2V9.79H2.4V20.5zM9.6 9.79V20.5h5.2v-5.67c0-1.48.28-2.91 2.1-2.91 1.79 0 1.82 1.67 1.82 3v5.58H24V13.8c0-3.71-1.98-5.44-4.62-5.44-2.13 0-3.08 1.18-3.6 2.02h-.07V9.79H9.6z" />
+                </svg>
+              </a>
+            </li>
+          </ul>
         </div>
 
         <div class="footer__bottom">
-          <p class="footer__legal">© 2024–2026 Kamil Król. Wszelkie prawa zastrzeżone.</p>
+          <p class="footer__legal">© 2026 Kamil Król. Wszelkie prawa zastrzeżone.</p>
           <div class="footer__legal-links">
-            <!-- TODO: Uzupełnij docelowe adresy polityk. -->
+            <a class="footer__link" href="#">Regulamin</a>
             <a class="footer__link" href="#">Polityka prywatności</a>
             <a class="footer__link" href="#">Cookies</a>
           </div>
