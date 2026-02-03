@@ -31,9 +31,11 @@
     <link rel="stylesheet" href="./css/sections.css" />
   </head>
 
-  <!-- body -->
+  <!-- BODY -->
   <body>
     <a class="skip-link" href="#main">Przejdź do treści</a>
+
+    <!-- HEADER -->
     <header class="header">
       <div class="container nav">
         <a class="nav__brand" href="./index.html" aria-label="KP_Code Digital Studio, strona główna">
@@ -44,9 +46,11 @@
           <span>KP_Code Digital Studio</span>
         </a>
         <nav class="nav__links" id="primary-navigation" aria-label="Główna nawigacja">
-          <a class="nav__link" href="./index.html" aria-current="page">Home</a>
-          <a class="nav__link" href="./projects.html">Projects</a>
-          <a class="nav__link" href="./contact.html">Contact</a>
+          <a class="nav__link" href="./index.html" aria-current="page">Start</a>
+          <a class="nav__link" href="./about.html">O mnie</a>
+          <a class="nav__link" href="./services.html">Usługi</a>
+          <a class="nav__link" href="./projects.html">Projekty</a>
+          <a class="nav__link" href="./contact.html">Kontakt</a>
         </nav>
         <div class="nav__backdrop" data-nav-backdrop aria-hidden="true"></div>
         <div class="nav__actions">
@@ -788,12 +792,7 @@
                 <span class="about__text">Checklisty, priorytety i transparentne kroki — wiesz, co robimy i po co.</span>
               </li>
             </ul>
-            <div class="about__actions">
-              <a class="button button--primary" href="#contact">Napisz do mnie</a>
-              <a class="button button--ghost" href="#projects">Zobacz realizacje</a>
-            </div>
           </div>
-
           <aside class="card about__card">
             <div class="about__profile">
               <div class="about__avatar" aria-hidden="true">
@@ -850,17 +849,21 @@
               </li>
             </ol>
           </aside>
+          <div class="about__actions">
+            <a class="button button--primary" href="#contact">Napisz do mnie</a>
+            <a class="button button--ghost" href="#projects">Zobacz realizacje</a>
+          </div>
         </div>
       </section>
 
-      <!-- contact cta -->
+      <!-- CTA -->
       <section class="section section--tight" data-reveal>
-        <div class="container callout">
-          <div>
+        <div class="container cta">
+          <div class="cta__content">
             <h2>Zacznijmy współpracę</h2>
             <p>Powiedz mi o swoim projekcie, a przygotuję spersonalizowaną wycenę.</p>
           </div>
-          <div class="callout__actions">
+          <div class="cta__actions">
             <a class="button button--primary" href="./contact.html">Przejdź do kontaktu</a>
             <a class="button button--ghost" href="./projects.html">Przeglądaj realizacje</a>
           </div>
@@ -868,6 +871,7 @@
       </section>
     </main>
 
+    <!-- FOOTER -->
     <footer class="footer">
       <div class="container footer__grid">
         <div>
@@ -886,6 +890,7 @@
       </div>
     </footer>
 
+    <!-- JSON-LD structured data -->
     <script type="application/ld+json">
       {
         "@context": "https://schema.org",
@@ -920,6 +925,8 @@
         ]
       }
     </script>
+
+    <!-- SCRIPTS -->
     <script src="./js/main.js"></script>
   </body>
 </html>

@@ -241,10 +241,31 @@
 .case-study p + p {
   margin-top: var(--space-md);
 }
+/* CASE STUDY MQ */
+@media (max-width: 699px) {
+  .case-study::after {
+    top: var(--space-lg);
+    right: var(--space-lg);
+    width: 84px;
+    height: 84px;
+    opacity: 0.03;
+  }
+  [data-theme="dark"] .case-study::after {
+    opacity: 0.06;
+  }
+  [data-theme="light"] .case-study::after {
+    opacity: 0.025;
+  }
+}
 
 /* ABOUT */
 .about__grid {
   align-items: start;
+}
+.about__content {
+  display: flex;
+  flex-direction: column;
+  min-height: 100%;
 }
 .about__content .section__title {
   max-width: 22ch;
@@ -259,7 +280,8 @@
   list-style: none;
   padding: var(--space-md) var(--space-md);
   border-radius: var(--radius-md);
-  margin: var(--space-md) 0 0;
+  margin-top: auto;
+  margin-bottom: 0;
   display: grid;
   gap: var(--space-sm);
   background: color-mix(in srgb, var(--color-surface) 55%, transparent);
@@ -267,7 +289,7 @@
 }
 .about__highlight {
   display: grid;
-  gap: 0.25rem;
+  gap: var(--space-xs);
   padding: var(--space-sm);
   border-radius: var(--radius-md);
   background: color-mix(in srgb, var(--color-surface) 70%, transparent);
@@ -287,8 +309,9 @@
   margin-top: var(--space-md);
   display: flex;
   flex-wrap: wrap;
-  gap: var(--space-sm);
+  gap: var(--space-xs);
   align-items: center;
+  grid-column: 1 / -1;
 }
 .about__card {
   position: relative;
@@ -335,7 +358,7 @@
   display: flex;
   align-items: center;
   gap: var(--space-sm);
-  margin-bottom: var(--space-lg);
+  margin-bottom: var(--space-md);
   padding-bottom: var(--space-sm);
   border-bottom: 1px solid color-mix(in srgb, var(--color-border) 55%, transparent);
 }
@@ -371,15 +394,6 @@
   display: grid;
   gap: 0.15rem;
   min-width: 0;
-}
-.about__profile-name {
-  margin: 0;
-  font-weight: 650;
-  letter-spacing: -0.01em;
-  color: var(--color-text);
-  line-height: var(--line-height-tight);
-}
-.about__profile-meta {
   position: relative;
   padding-left: var(--space-md);
 }
@@ -392,6 +406,13 @@
   width: 1px;
   height: 70%;
   background: color-mix(in srgb, var(--color-border) 55%, transparent);
+}
+.about__profile-name {
+  margin: 0;
+  font-weight: 650;
+  letter-spacing: -0.01em;
+  color: var(--color-text);
+  line-height: var(--line-height-tight);
 }
 .about__profile-role {
   margin: 0;
@@ -434,6 +455,39 @@
   }
   .about__card {
     margin-top: clamp(var(--space-sm), 1.2vw, var(--space-lg));
+  }
+}
+
+/* CTA */
+.cta {
+  background: var(--color-surface);
+  border-radius: var(--radius-lg);
+  padding: var(--space-2xl);
+  border: 1px solid color-mix(in srgb, var(--color-border) 80%, transparent);
+  box-shadow: var(--shadow-md);
+  display: grid;
+  gap: var(--space-xl);
+}
+.cta__content h2 {
+  margin-bottom: var(--space-xs);
+}
+.cta__content p {
+  max-width: 48ch;
+  color: color-mix(in srgb, var(--color-text) 85%, var(--color-text-muted));
+}
+.cta__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-md);
+  align-items: center;
+}
+/* CTA MQ */
+@media (max-width: 699px) {
+  .cta {
+    padding: var(--space-xl);
+  }
+  .cta__actions {
+    gap: var(--space-sm);
   }
 }
 

@@ -213,6 +213,89 @@
 [data-theme="dark"] .sun-and-moon > .moon > circle {
   transform: translateX(-7px);
 }
+/* NAVIGATION MQ */
+@media (min-width: 1024px) {
+  .nav__toggle {
+    display: none;
+  }
+  .nav__links {
+    position: static;
+    inset: auto;
+    background: transparent;
+    padding: 0;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: var(--space-lg);
+    transform: none;
+    opacity: 1;
+    pointer-events: auto;
+    visibility: visible;
+    backdrop-filter: none;
+    border: none;
+    max-height: none;
+  }
+  .nav__link {
+    font-size: var(--font-size-sm);
+    color: var(--color-text-muted);
+  }
+  .nav__backdrop {
+    display: none;
+  }
+}
+@media (max-width: 1023px) {
+  .nav__toggle svg,
+  .theme-toggle svg {
+    width: 18px;
+    height: 18px;
+  }
+}
+@media (prefers-reduced-motion: no-preference) {
+  .sun-and-moon > .sun {
+    transition: transform 0.5s var(--ease-elastic-3);
+  }
+  .sun-and-moon > .sun-beams {
+    transition:
+      transform 0.5s var(--ease-elastic-4),
+      opacity 0.5s var(--ease-3);
+  }
+  .sun-and-moon .moon > circle {
+    transition: transform 0.25s var(--ease-out-5);
+  }
+  @supports (cx: 1) {
+    .sun-and-moon .moon > circle {
+      transition: cx 0.25s var(--ease-out-5);
+    }
+  }
+  [data-theme="dark"] .sun-and-moon > .sun {
+    transition-timing-function: var(--ease-3);
+    transition-duration: 0.25s;
+    transform: scale(1.75);
+  }
+  [data-theme="dark"] .sun-and-moon > .sun-beams {
+    transition-duration: 0.15s;
+    transform: rotateZ(-25deg);
+  }
+  [data-theme="dark"] .sun-and-moon > .moon > circle {
+    transition-duration: 0.5s;
+    transition-delay: 0.25s;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .header,
+  .nav,
+  .nav__links,
+  .nav__toggle,
+  .nav__backdrop {
+    transition: none;
+  }
+}
+@supports (cx: 1) {
+  [data-theme="dark"] .sun-and-moon > .moon > circle {
+    cx: 17;
+    transform: translateX(0);
+  }
+}
 
 /* EYEBRON */
 .section__eyebrow {
@@ -227,6 +310,15 @@
   color: var(--color-text-muted);
   border-radius: var(--radius-slant-ui);
   width: fit-content;
+}
+/* EYEBROW MQ */
+@media (max-width: 479px) {
+  .section__eyebrow {
+    font-size: var(--font-size-3xs);
+    letter-spacing: 0.12em;
+    margin-bottom: var(--space-md);
+    font-weight: 600;
+  }
 }
 
 /* BUTTON */
@@ -290,6 +382,26 @@
   cursor: not-allowed;
   pointer-events: none;
 }
+.filter-button {
+  padding: 0.4rem 0.9rem;
+  border-radius: 999px;
+  border: 1px solid var(--color-border);
+  background: var(--color-surface);
+  font-size: var(--font-size-sm);
+  transition:
+    border-color var(--transition-fast),
+    color var(--transition-fast);
+}
+.filter-button.is-active {
+  border-color: var(--color-primary);
+  color: var(--color-primary);
+}
+/* BUTTON MQ */
+@media (prefers-reduced-motion: reduce) {
+  .button {
+    transition: none;
+  }
+}
 
 /* CARD */
 .card {
@@ -344,6 +456,11 @@
     background 220ms ease;
   will-change: transform;
 }
+.service-card__head {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+}
 .service-card::before {
   content: "";
   position: absolute;
@@ -385,6 +502,16 @@
   inline-size: 100%;
   block-size: 100%;
   display: block;
+}
+/* SERVICE CARD MQ */
+@media (prefers-reduced-motion: reduce) {
+  .service-card,
+  .service-card::before {
+    transition: none;
+  }
+  .service-card:hover {
+    transform: none;
+  }
 }
 
 /* WORK CARD */
@@ -588,7 +715,6 @@
   font-size: var(--font-size-sm);
   color: var(--color-text-muted);
 }
-
 .alert {
   padding: var(--space-md);
   border-radius: var(--radius-sm);
@@ -597,6 +723,7 @@
   font-size: var(--font-size-sm);
 }
 
+/* REVEAL */
 .reveal {
   opacity: 0;
   transform: translateY(18px);
@@ -604,136 +731,7 @@
     opacity var(--transition-base),
     transform var(--transition-base);
 }
-
 .reveal.is-visible {
   opacity: 1;
   transform: translateY(0);
-}
-
-.filter-button {
-  padding: 0.4rem 0.9rem;
-  border-radius: 999px;
-  border: 1px solid var(--color-border);
-  background: var(--color-surface);
-  font-size: var(--font-size-sm);
-  transition:
-    border-color var(--transition-fast),
-    color var(--transition-fast);
-}
-
-.filter-button.is-active {
-  border-color: var(--color-primary);
-  color: var(--color-primary);
-}
-
-.service-card__head {
-  display: flex;
-  align-items: center;
-  gap: var(--space-sm);
-}
-
-@media (min-width: 1024px) {
-  .nav__toggle {
-    display: none;
-  }
-  .nav__links {
-    position: static;
-    inset: auto;
-    background: transparent;
-    padding: 0;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    gap: var(--space-lg);
-    transform: none;
-    opacity: 1;
-    pointer-events: auto;
-    visibility: visible;
-    backdrop-filter: none;
-    border: none;
-    max-height: none;
-  }
-  .nav__link {
-    font-size: var(--font-size-sm);
-    color: var(--color-text-muted);
-  }
-  .nav__backdrop {
-    display: none;
-  }
-}
-
-@media (max-width: 1023px) {
-  .nav__toggle svg,
-  .theme-toggle svg {
-    width: 18px;
-    height: 18px;
-  }
-}
-
-@media (max-width: 479px) {
-  .section__eyebrow {
-    font-size: var(--font-size-3xs);
-    letter-spacing: 0.12em;
-    margin-bottom: var(--space-md);
-    font-weight: 600;
-  }
-}
-
-@supports (cx: 1) {
-  [data-theme="dark"] .sun-and-moon > .moon > circle {
-    cx: 17;
-    transform: translateX(0);
-  }
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .sun-and-moon > .sun {
-    transition: transform 0.5s var(--ease-elastic-3);
-  }
-  .sun-and-moon > .sun-beams {
-    transition:
-      transform 0.5s var(--ease-elastic-4),
-      opacity 0.5s var(--ease-3);
-  }
-  .sun-and-moon .moon > circle {
-    transition: transform 0.25s var(--ease-out-5);
-  }
-  @supports (cx: 1) {
-    .sun-and-moon .moon > circle {
-      transition: cx 0.25s var(--ease-out-5);
-    }
-  }
-  [data-theme="dark"] .sun-and-moon > .sun {
-    transition-timing-function: var(--ease-3);
-    transition-duration: 0.25s;
-    transform: scale(1.75);
-  }
-  [data-theme="dark"] .sun-and-moon > .sun-beams {
-    transition-duration: 0.15s;
-    transform: rotateZ(-25deg);
-  }
-  [data-theme="dark"] .sun-and-moon > .moon > circle {
-    transition-duration: 0.5s;
-    transition-delay: 0.25s;
-  }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .header,
-  .nav,
-  .nav__links,
-  .nav__toggle,
-  .nav__backdrop {
-    transition: none;
-  }
-  .button {
-    transition: none;
-  }
-  .service-card,
-  .service-card::before {
-    transition: none;
-  }
-  .service-card:hover {
-    transform: none;
-  }
 }
