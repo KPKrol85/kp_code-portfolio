@@ -50,6 +50,7 @@
   --line-height-base: 1.6;
   /* SPACING */
   --space-unit: 0.25rem;
+  --space-3xs: calc(var(--space-unit) * 0.5); /* 0.125rem */
   --space-2xs: calc(var(--space-unit) * 1); /* 0.25rem */
   --space-xs: calc(var(--space-unit) * 2); /* 0.5rem  */
   --space-sm: calc(var(--space-unit) * 3); /* 0.75rem */
@@ -78,6 +79,12 @@
   --logo-2xl: clamp(168px, 18vw, 220px);
   --logo-3xl: clamp(220px, 22vw, 300px);
   --logo-4xl: clamp(300px, 26vw, 420px);
+  /* AVATAR SIZE */
+  --avatar-xs: clamp(56px, 18vw, 80px);
+  --avatar-sm: clamp(72px, 16vw, 104px);
+  --avatar-md: clamp(96px, 14vw, 136px);
+  --avatar-lg: clamp(120px, 12vw, 168px);
+  --avatar-xl: clamp(144px, 10vw, 200px);
   /* RADIUS */
   --radius-soft: 12px;
   --radius-pill: 999px;

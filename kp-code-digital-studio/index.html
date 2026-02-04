@@ -770,93 +770,98 @@
 
       <!-- ABOUT -->
       <section class="section about" id="about" data-reveal>
-        <div class="container grid grid--2 about__grid">
-          <div class="about__content">
-            <p class="section__eyebrow">About</p>
-            <h2 class="section__title">Kamil Król — Founder & Web Developer</h2>
-            <p class="section__subtitle">Web developer z obsesją na punkcie jakości i prostoty. Łączę technologię z biznesem, żeby strona była narzędziem — nie “ładnym plikiem”.</p>
-            <p class="about__lead">
-              Pracuję end-to-end: od koncepcji i treści, przez UI/UX, po wdrożenie i dopracowanie detali. Stawiam na przewidywalny proces, wysoką czytelność kodu i rozwiązania, które łatwo rozwijać w
-              przyszłości.
-            </p>
-            <ul class="about__highlights">
-              <li class="about__highlight">
-                <span class="about__kicker">Jakość wykonania</span>
-                <span class="about__text">Czysty front-end, spójne komponenty, dopracowane mikro-interakcje.</span>
-              </li>
-              <li class="about__highlight">
-                <span class="about__kicker">Myślenie biznesowe</span>
-                <span class="about__text">Konwersja, jasna oferta, SEO-ready struktura i sensowna hierarchia treści.</span>
-              </li>
-              <li class="about__highlight">
-                <span class="about__kicker">Bez chaosu</span>
-                <span class="about__text">Checklisty, priorytety i transparentne kroki — wiesz, co robimy i po co.</span>
-              </li>
-            </ul>
+        <div class="container">
+          <div class="section__header about__header">
+            <div class="section__header-text">
+              <p class="section__eyebrow">About</p>
+
+              <h2 class="section__title">
+                Kamil Król
+                <br />
+                <span class="title__sub">Founder &amp; Web Developer</span>
+              </h2>
+            </div>
+            <div class="about__avatar" aria-hidden="true">
+              <picture>
+                <source
+                  type="image/avif"
+                  srcset="./assets/img/img_optimized/about/ceo-480.avif 480w, ./assets/img/img_optimized/about/ceo-768.avif 768w, ./assets/img/img_optimized/about/ceo-1024.avif 1024w"
+                  sizes="72px" />
+                <source
+                  type="image/webp"
+                  srcset="./assets/img/img_optimized/about/ceo-480.webp 480w, ./assets/img/img_optimized/about/ceo-768.webp 768w, ./assets/img/img_optimized/about/ceo-1024.webp 1024w"
+                  sizes="72px" />
+                <img
+                  class="about__avatar-img"
+                  src="./assets/img/img_optimized/about/ceo-480.webp"
+                  alt="Kamil Król — Founder &amp; Web Developer"
+                  width="72"
+                  height="72"
+                  loading="lazy"
+                  decoding="async" />
+              </picture>
+            </div>
           </div>
-          <aside class="card about__card">
-            <div class="about__profile">
-              <div class="about__avatar" aria-hidden="true">
-                <picture>
-                  <source
-                    type="image/avif"
-                    srcset="./assets/img/img_optimized/about/ceo-480.avif 480w, ./assets/img/img_optimized/about/ceo-768.avif 768w, ./assets/img/img_optimized/about/ceo-1024.avif 1024w"
-                    sizes="64px" />
-                  <source
-                    type="image/webp"
-                    srcset="./assets/img/img_optimized/about/ceo-480.webp 480w, ./assets/img/img_optimized/about/ceo-768.webp 768w, ./assets/img/img_optimized/about/ceo-1024.webp 1024w"
-                    sizes="64px" />
-                  <img
-                    class="about__avatar-img"
-                    src="./assets/img/img_optimized/about/ceo-480.webp"
-                    alt="Kamil Król — Founder & Web Developer"
-                    width="64"
-                    height="64"
-                    loading="lazy"
-                    decoding="async" />
-                </picture>
-              </div>
-              <div class="about__profile-meta">
-                <p class="about__profile-name">Kamil Król</p>
-                <p class="about__profile-role">Founder &amp; Web Developer</p>
-                <p class="about__profile-bio">Buduję strony premium, które są proste w utrzymaniu i realnie wspierają sprzedaż.</p>
-              </div>
+          <div class="grid grid--2 about__grid">
+            <div class="about__content">
+              <p class="section__subtitle">Web developer z obsesją na punkcie jakości i prostoty. Łączę technologię z biznesem, żeby strona była narzędziem — nie „ładnym plikiem”.</p>
+              <p class="about__lead">
+                Pracuję end-to-end: od koncepcji i treści, przez UI/UX, po wdrożenie i dopracowanie detali. Stawiam na przewidywalny proces, wysoką czytelność kodu i rozwiązania, które łatwo rozwijać
+                w przyszłości.
+              </p>
+              <ul class="about__highlights">
+                <li class="about__highlight">
+                  <span class="about__kicker">Jakość wykonania</span>
+                  <span class="about__text">Czysty front-end, spójne komponenty, dopracowane mikro-interakcje.</span>
+                </li>
+                <li class="about__highlight">
+                  <span class="about__kicker">Myślenie biznesowe</span>
+                  <span class="about__text">Konwersja, jasna oferta, SEO-ready struktura i sensowna hierarchia treści.</span>
+                </li>
+                <li class="about__highlight">
+                  <span class="about__kicker">Bez chaosu</span>
+                  <span class="about__text">Checklisty, priorytety i transparentne kroki — wiesz, co robimy i po co.</span>
+                </li>
+              </ul>
             </div>
 
-            <h3 class="card__title">Stack &amp; narzędzia</h3>
-            <div class="pill-grid about__pill-grid" aria-label="Technologie i narzędzia">
-              <span class="tag">HTML</span>
-              <span class="tag">CSS</span>
-              <span class="tag">JavaScript</span>
-              <span class="tag">WordPress</span>
-              <span class="tag">SEO</span>
-              <span class="tag">Canva</span>
+            <aside class="card about__card">
+              <h3 class="card__title">Stack &amp; narzędzia</h3>
+              <div class="pill-grid about__pill-grid" aria-label="Technologie i narzędzia">
+                <span class="tag">HTML</span>
+                <span class="tag">CSS</span>
+                <span class="tag">JavaScript</span>
+                <span class="tag">WordPress</span>
+                <span class="tag">SEO</span>
+                <span class="tag">Canva</span>
+                <span class="tag">Git</span>
+                <span class="tag">Performance</span>
+              </div>
+              <p class="card__meta">Dobieram stack do celu: szybkość, dostępność, skalowalność i proste utrzymanie — bez przerostu formy.</p>
+              <div class="about__divider" role="separator" aria-hidden="true"></div>
+              <h4 class="about__mini-title">Jak pracuję</h4>
+              <ol class="about__steps">
+                <li class="about__step">
+                  <span class="about__step-title">Kierunek &amp; zakres</span>
+                  <span class="about__step-text">Cel, grupa docelowa, priorytety i struktura treści.</span>
+                </li>
+                <li class="about__step">
+                  <span class="about__step-title">Projekt &amp; UI</span>
+                  <span class="about__step-text">Komponenty, układ, czytelna hierarchia i spójny styl.</span>
+                </li>
+                <li class="about__step">
+                  <span class="about__step-title">Wdrożenie &amp; polish</span>
+                  <span class="about__step-text">Wydajność, responsywność, SEO i finalne szlify.</span>
+                </li>
+              </ol>
+            </aside>
+            <div class="about__actions">
+              <a class="button button--primary" href="#contact">Napisz do mnie</a>
+              <a class="button button--ghost" href="#projects">Zobacz realizacje</a>
             </div>
-            <p class="card__meta">Dobieram stack do celu: szybkość, dostępność, skalowalność i proste utrzymanie — bez przerostu formy.</p>
-            <div class="about__divider" role="separator" aria-hidden="true"></div>
-            <h4 class="about__mini-title">Jak pracuję</h4>
-            <ol class="about__steps">
-              <li class="about__step">
-                <span class="about__step-title">Kierunek &amp; zakres</span>
-                <span class="about__step-text">Cel, grupa docelowa, priorytety i struktura treści.</span>
-              </li>
-              <li class="about__step">
-                <span class="about__step-title">Projekt &amp; UI</span>
-                <span class="about__step-text">Komponenty, układ, czytelna hierarchia i spójny styl.</span>
-              </li>
-              <li class="about__step">
-                <span class="about__step-title">Wdrożenie &amp; polish</span>
-                <span class="about__step-text">Wydajność, responsywność, SEO i finalne szlify.</span>
-              </li>
-            </ol>
-          </aside>
-          <div class="about__actions">
-            <a class="button button--primary" href="#contact">Napisz do mnie</a>
-            <a class="button button--ghost" href="#projects">Zobacz realizacje</a>
           </div>
         </div>
       </section>
-
       <!-- CTA -->
       <section class="section section--tight" data-reveal>
         <div class="container cta">
