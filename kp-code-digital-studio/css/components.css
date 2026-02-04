@@ -405,7 +405,6 @@
 .card {
   background: var(--color-surface);
   border: 1px solid var(--color-border);
-  border-radius: var(--radius-md);
   padding: var(--space-lg);
   box-shadow: var(--shadow-sm);
   display: grid;
@@ -436,7 +435,7 @@
   flex-wrap: wrap;
 }
 .card__actions .button {
-  flex: 0 0 120px;
+  flex: 0 0 126px;
   min-height: 42px;
 }
 
@@ -602,6 +601,10 @@
   flex-wrap: wrap;
   gap: var(--space-sm);
   margin-top: auto;
+}
+.work-card .button {
+  flex: 0 0 146px;
+  min-height: 42px;
 }
 .work-shot {
   display: block;
