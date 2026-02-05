@@ -1,0 +1,23 @@
+{
+  "name": "flowdesk",
+  "version": "1.0.0",
+  "description": "FlowDesk — demo SPA dla zarządzania usługami",
+  "type": "module",
+  "scripts": {
+    "dev": "npx serve .",
+    "build:css": "postcss css/style.css -o css/style.min.css",
+    "build:js": "terser js/main.js -o js/main.min.js --module",
+    "images": "imagemin assets/images/* --out-dir=assets/images/optimized --plugin=webp --plugin=avif"
+  },
+  "devDependencies": {
+    "cssnano": "^6.1.2",
+    "imagemin-cli": "^7.0.0",
+    "imagemin-avif": "^9.0.0",
+    "imagemin-webp": "^8.0.0",
+    "postcss": "^8.4.47",
+    "postcss-cli": "^11.0.0",
+    "postcss-import": "^16.1.0",
+    "serve": "^14.2.1",
+    "terser": "^5.36.0"
+  }
+}
