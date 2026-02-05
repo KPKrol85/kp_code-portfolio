@@ -1,0 +1,19 @@
+self.__PRECACHE_URLS = [
+  "/performance-coach/",
+  "/performance-coach/404.html",
+  "/performance-coach/assets/icons/icon.svg",
+  "/performance-coach/css/style.min.css",
+  "/performance-coach/index.html",
+  "/performance-coach/js/main.js",
+  "/performance-coach/js/modules/contact-form.js",
+  "/performance-coach/js/modules/counters.js",
+  "/performance-coach/js/modules/header-shrink.js",
+  "/performance-coach/js/modules/mobile-nav.js",
+  "/performance-coach/js/modules/prefers-reduced-motion.js",
+  "/performance-coach/js/modules/reveal.js",
+  "/performance-coach/js/modules/scroll-type.js",
+  "/performance-coach/js/modules/scrollspy.js",
+  "/performance-coach/manifest.webmanifest",
+  "/performance-coach/offline.html",
+  "/performance-coach/privacy.html"
+];

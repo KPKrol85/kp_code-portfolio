@@ -11,15 +11,29 @@ export const initScrollSpy = () => {
     }
   });
 
+  const setActiveLink = (activeLink) => {
+    navLinks.forEach((nav) => {
+      const isActive = nav === activeLink;
+      nav.classList.toggle("scrollspy-active", isActive);
+      if (isActive) {
+        // "location" najlepiej opisuje aktywny punkt nawigacji w obrębie jednej strony.
+        nav.setAttribute("aria-current", "location");
+      } else {
+        nav.removeAttribute("aria-current");
+      }
+    });
+  };
+
+  const observableSections = Array.from(sections).filter((section) =>
+    section.id && linkMap.has(section.id)
+  );
+
   const observer = new IntersectionObserver(
     (entries) => {
       entries.forEach((entry) => {
         const link = linkMap.get(entry.target.id);
-        if (link) {
-          if (entry.isIntersecting) {
-            navLinks.forEach((nav) => nav.classList.remove("scrollspy-active"));
-            link.classList.add("scrollspy-active");
-          }
+        if (link && entry.isIntersecting) {
+          setActiveLink(link);
         }
       });
     },
@@ -28,5 +42,14 @@ export const initScrollSpy = () => {
     }
   );
 
-  sections.forEach((section) => observer.observe(section));
+  observableSections.forEach((section) => observer.observe(section));
+
+  const initialActiveSection = observableSections.find((section) => {
+    const rect = section.getBoundingClientRect();
+    return rect.top <= window.innerHeight * 0.5 && rect.bottom >= window.innerHeight * 0.5;
+  });
+
+  const fallbackSection = observableSections.find((section) => section.getBoundingClientRect().bottom > 0);
+
+  setActiveLink(linkMap.get((initialActiveSection || fallbackSection)?.id));
 };

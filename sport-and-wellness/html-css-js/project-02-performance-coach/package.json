@@ -7,7 +7,9 @@
     "dev": "python -m http.server 5173",
     "build:css": "postcss css/style.css -o css/style.min.css",
     "build:js": "terser js/main.js -o js/main.min.js --module",
-    "images": "node scripts/convert-images.js"
+    "images": "node scripts/convert-images.js",
+    "build:sw-assets": "node scripts/generate-precache.mjs",
+    "build": "npm run build:css && npm run build:sw-assets"
   },
   "devDependencies": {
     "cssnano": "^6.1.2",

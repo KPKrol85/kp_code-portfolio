@@ -24,6 +24,7 @@ Portfolio online zaprojektowane w estetyce editorial / brutal minimal / sport sc
   /js
     /modules
     main.js
+    precache-manifest.js
   /scripts
 ```
 
@@ -35,11 +36,25 @@ Portfolio online zaprojektowane w estetyce editorial / brutal minimal / sport sc
 ## PWA / SEO
 - `manifest.webmanifest`, `service-worker.js`, `offline.html`, `404.html`.
 - `robots.txt`, `sitemap.xml`, `_redirects`.
+- Lista pre-cache jest generowana automatycznie przez `scripts/generate-precache.mjs` (HTML + JS graph + CSS + kluczowe assety PWA).
 
 ## Build
 ```bash
 npm install
-npm run build:css
+npm run build
 npm run build:js
 npm run images
 ```
+
+`npm run build` wykonuje:
+1. minifikację `css/style.css` → `css/style.min.css`,
+2. generację `js/precache-manifest.js` dla Service Workera.
+
+Przed deployem uruchom `npm run build`, żeby SW miał aktualną listę assetów offline.
+
+## Test offline (DevTools)
+1. Otwórz **Application → Service Workers** i opcjonalnie zaznacz **Update on reload**.
+2. Przejdź do **Network** i ustaw tryb **Offline**.
+3. Odśwież `index.html`, `privacy.html` i `404.html`.
+4. Przejdź po sekcjach strony i sprawdź konsolę — importy ES modules (`js/modules/*.js`) powinny ładować się z cache bez błędów.
+5. Wejdź na niecache’owany URL (np. `/performance-coach/some-missing-page`) i potwierdź fallback do `offline.html`.
