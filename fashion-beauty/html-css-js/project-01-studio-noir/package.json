@@ -1,0 +1,19 @@
+{
+  "name": "studio-noir",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "build:css": "postcss css/style.css -o css/style.min.css",
+    "build:js": "terser js/main.js -c -m -o js/main.min.js",
+    "images": "imagemin assets/img/* --out-dir=assets/img",
+    "dev": "python -m http.server 5173"
+  },
+  "devDependencies": {
+    "cssnano": "^6.0.0",
+    "imagemin-cli": "^7.0.0",
+    "postcss": "^8.4.38",
+    "postcss-cli": "^11.0.0",
+    "postcss-import": "^16.1.0",
+    "terser": "^5.31.0"
+  }
+}
