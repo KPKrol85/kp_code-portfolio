@@ -4,6 +4,7 @@ import { initNav } from "./nav.js";
 import { initLightbox } from "./lightbox.js";
 import { initBooking } from "./booking.js";
 import { initTheme } from "./theme.js";
+import { initMobileCta } from "./mobile-cta.js";
 
 const init = () => {
   initHeader();
@@ -12,6 +13,7 @@ const init = () => {
   initLightbox();
   initBooking();
   initTheme();
+  initMobileCta();
 };
 
 if (document.readyState === "loading") {

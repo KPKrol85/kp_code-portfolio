@@ -21,12 +21,54 @@ const ASSETS = [
   "/studio-noir/assets/icons/favicon.svg"
 ];
 
+const OFFLINE_PAGE = "/studio-noir/offline.html";
+
+function isDocumentRequest(request) {
+  return request.mode === "navigate" || request.destination === "document";
+}
+
+async function handleDocumentRequest(request) {
+  try {
+    const response = await fetch(request);
+
+    if (response && response.ok) {
+      const cache = await caches.open(CACHE_NAME);
+      cache.put(request, response.clone());
+    }
+
+    return response;
+  } catch (error) {
+    const offlinePage = await caches.match(OFFLINE_PAGE);
+    if (offlinePage) return offlinePage;
+
+    return Response.error();
+  }
+}
+
+async function handleAssetRequest(request) {
+  const cached = await caches.match(request);
+  if (cached) return cached;
+
+  try {
+    const response = await fetch(request);
+
+    if (response && response.ok) {
+      const cache = await caches.open(CACHE_NAME);
+      cache.put(request, response.clone());
+    }
+
+    return response;
+  } catch (error) {
+    return Response.error();
+  }
+}
+
 self.addEventListener("install", (event) => {
   event.waitUntil(
     caches
       .open(CACHE_NAME)
       .then((cache) => cache.addAll(ASSETS))
-      .then(self.skipWaiting())
+      .then(() => self.skipWaiting())
   );
 });
 
@@ -44,18 +86,14 @@ self.addEventListener("activate", (event) => {
 });
 
 self.addEventListener("fetch", (event) => {
-  if (event.request.method !== "GET") return;
+  const { request } = event;
 
-  event.respondWith(
-    caches.match(event.request).then((cached) => {
-      if (cached) return cached;
-      return fetch(event.request)
-        .then((response) => {
-          const cloned = response.clone();
-          caches.open(CACHE_NAME).then((cache) => cache.put(event.request, cloned));
-          return response;
-        })
-        .catch(() => caches.match("/studio-noir/offline.html"));
-    })
-  );
+  if (request.method !== "GET") return;
+
+  if (isDocumentRequest(request)) {
+    event.respondWith(handleDocumentRequest(request));
+    return;
+  }
+
+  event.respondWith(handleAssetRequest(request));
 });

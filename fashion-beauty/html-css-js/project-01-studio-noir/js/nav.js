@@ -8,27 +8,42 @@ const getFocusableElements = (container) =>
 export const initNav = () => {
   const toggle = document.querySelector("[data-nav-toggle]");
   const panel = document.querySelector("[data-nav-panel]");
+  const pageContent = document.querySelector("[data-page-content]");
   if (!toggle || !panel) return;
 
   let isOpen = false;
 
+  const isMobileViewport = () => window.innerWidth < 900;
+
+  const setPageInert = (nextOpenState) => {
+    if (!pageContent || !isMobileViewport() || !("inert" in pageContent)) return;
+    pageContent.inert = nextOpenState;
+  };
+
+  const setMenuState = (nextOpenState) => {
+    isOpen = nextOpenState;
+    panel.classList.toggle("is-open", isOpen);
+    toggle.setAttribute("aria-expanded", String(isOpen));
+
+    if (isOpen) {
+      panel.removeAttribute("aria-hidden");
+    } else {
+      panel.setAttribute("aria-hidden", "true");
+    }
+
+    document.body.style.overflow = isOpen && isMobileViewport() ? "hidden" : "";
+    setPageInert(isOpen);
+  };
+
   const openMenu = () => {
-    panel.classList.add("is-open");
-    toggle.setAttribute("aria-expanded", "true");
-    panel.setAttribute("aria-hidden", "false");
-    isOpen = true;
+    setMenuState(true);
     const focusables = getFocusableElements(panel);
     focusables[0]?.focus();
-    document.body.style.overflow = "hidden";
   };
 
   const closeMenu = () => {
-    panel.classList.remove("is-open");
-    toggle.setAttribute("aria-expanded", "false");
-    panel.setAttribute("aria-hidden", "true");
-    isOpen = false;
+    setMenuState(false);
     toggle.focus();
-    document.body.style.overflow = "";
   };
 
   toggle.addEventListener("click", () => {
@@ -49,6 +64,7 @@ export const initNav = () => {
     if (!isOpen) return;
     if (event.key === "Escape") {
       closeMenu();
+      return;
     }
 
     if (event.key === "Tab") {
@@ -68,8 +84,15 @@ export const initNav = () => {
   });
 
   window.addEventListener("resize", () => {
-    if (window.innerWidth >= 900 && isOpen) {
-      closeMenu();
+    if (!isMobileViewport()) {
+      setMenuState(false);
+      return;
+    }
+
+    if (isOpen) {
+      setMenuState(true);
     }
   });
+
+  setMenuState(false);
 };
