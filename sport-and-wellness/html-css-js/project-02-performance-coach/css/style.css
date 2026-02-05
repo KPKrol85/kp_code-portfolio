@@ -1,0 +1,38 @@
+@import url("./fonts.css");
+@import url("./tokens.css");
+@import url("./base.css");
+@import url("./layout.css");
+@import url("./components.css");
+@import url("./sections.css");
+
+.reveal {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.4s ease, transform 0.4s ease;
+}
+
+.reveal--visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.scrollspy-active {
+  color: var(--color-accent);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  .reveal,
+  .reveal--visible {
+    transition: none;
+    transform: none;
+  }
+}
+
+
+
+
+/** { outline: 1px solid rgba(255,0,0,.25); }*/

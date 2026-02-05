@@ -1,0 +1,20 @@
+{
+  "name": "performance-coach-portfolio",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "python -m http.server 5173",
+    "build:css": "postcss css/style.css -o css/style.min.css",
+    "build:js": "terser js/main.js -o js/main.min.js --module",
+    "images": "node scripts/convert-images.js"
+  },
+  "devDependencies": {
+    "cssnano": "^6.1.2",
+    "postcss": "^8.4.38",
+    "postcss-cli": "^11.0.0",
+    "postcss-import": "^16.1.0",
+    "sharp": "^0.33.2",
+    "terser": "^5.30.0"
+  }
+}
