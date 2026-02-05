@@ -1,0 +1,16 @@
+<svg width="1200" height="800" viewBox="0 0 1200 800" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Spa i basen z delikatnym gradientem">
+  <rect width="1200" height="800" fill="#0F172A"/>
+  <rect x="120" y="140" width="960" height="520" rx="48" fill="#111827" stroke="#1F2937"/>
+  <circle cx="360" cy="400" r="180" fill="url(#paint0_radial)"/>
+  <circle cx="780" cy="380" r="220" fill="url(#paint1_radial)"/>
+  <defs>
+    <radialGradient id="paint0_radial" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(360 400) rotate(90) scale(180)">
+      <stop stop-color="#7CFFE1" stop-opacity="0.8"/>
+      <stop offset="1" stop-color="#0F172A" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="paint1_radial" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(780 380) rotate(90) scale(220)">
+      <stop stop-color="#60A5FA" stop-opacity="0.75"/>
+      <stop offset="1" stop-color="#0F172A" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+</svg>

@@ -1,0 +1,20 @@
+{
+  "name": "active-life",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "npx serve .",
+    "build:css": "postcss css/style.css -o css/style.min.css",
+    "build:js": "terser js/main.js js/modules/*.js -o js/bundle.min.js --compress --mangle",
+    "images": "imagemin assets/img/* --out-dir=assets/img"
+  },
+  "devDependencies": {
+    "cssnano": "^6.0.2",
+    "imagemin-cli": "^7.0.0",
+    "postcss": "^8.4.38",
+    "postcss-cli": "^10.1.0",
+    "postcss-import": "^16.1.0",
+    "terser": "^5.31.0"
+  }
+}
