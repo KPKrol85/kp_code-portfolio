@@ -1,0 +1,27 @@
+{
+  "name": "clean-english",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "serve .",
+    "build:css": "postcss css/style.css -o css/style.min.css",
+    "build:js": "terser js/main.js -o js/main.min.js --module --compress --mangle",
+    "images": "imagemin assets/img/* --out-dir=assets/img --plugin=webp --plugin=avif",
+    "lint:js": "eslint js --ext .js",
+    "format": "prettier --write \"**/*.{html,css,js,md,json,webmanifest,xml}\""
+  },
+  "devDependencies": {
+    "cssnano": "^6.1.2",
+    "eslint": "^9.18.0",
+    "imagemin-cli": "^8.0.0",
+    "imagemin-avif": "^0.1.6",
+    "imagemin-webp": "^8.0.0",
+    "postcss": "^8.4.38",
+    "postcss-cli": "^11.0.0",
+    "postcss-import": "^16.1.0",
+    "prettier": "^3.2.5",
+    "serve": "^14.2.3",
+    "terser": "^5.31.0"
+  }
+}

@@ -1,0 +1,516 @@
+<!doctype html>
+<html lang="pl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Lauren – Clean English | Korepetycje i materiały premium</title>
+    <meta
+      name="description"
+      content="Lauren – Clean English: korepetycje 1:1, konwersacje, przygotowanie do egzaminów i biznesowy angielski. Spokojny styl pracy, plan nauki i mierzalny progres."
+    />
+    <link rel="canonical" href="https://lauren-clean-english.example" />
+    <meta property="og:title" content="Lauren – Clean English" />
+    <meta
+      property="og:description"
+      content="Profesjonalne lekcje angielskiego i materiały cyfrowe. Plan, feedback i realny progres."
+    />
+    <meta property="og:type" content="website" />
+    <meta property="og:image" content="assets/img/hero-illustration.svg" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="theme-color" content="#1b7f6c" />
+    <link rel="manifest" href="manifest.webmanifest" />
+    <link rel="stylesheet" href="css/style.min.css" />
+    <link rel="icon" href="assets/icons/icon-192.svg" type="image/svg+xml" />
+  </head>
+  <body class="page">
+    <a class="skip-link" href="#main">Przejdź do treści</a>
+    <header class="header" id="top">
+      <div class="container header__inner">
+        <a class="header__logo" href="#top" aria-label="Lauren – Clean English">
+          <span class="header__logo-mark">LC</span>
+          <span class="header__logo-text">Lauren – Clean English</span>
+        </a>
+        <nav class="nav" aria-label="Główna nawigacja">
+          <button
+            class="nav__toggle"
+            type="button"
+            aria-expanded="false"
+            aria-controls="nav-drawer"
+          >
+            <span class="nav__toggle-line"></span>
+            <span class="nav__toggle-line"></span>
+            <span class="nav__toggle-line"></span>
+            <span class="sr-only">Otwórz menu</span>
+          </button>
+          <div class="nav__drawer" id="nav-drawer" data-drawer aria-hidden="true">
+            <div class="nav__drawer-header">
+              <span class="nav__drawer-title">Menu</span>
+              <button class="nav__close" type="button" data-drawer-close>
+                <span aria-hidden="true">×</span>
+                <span class="sr-only">Zamknij menu</span>
+              </button>
+            </div>
+            <ul class="nav__list" role="list">
+              <li class="nav__item"><a class="nav__link" href="#how">Metodyka</a></li>
+              <li class="nav__item"><a class="nav__link" href="#services">Usługi</a></li>
+              <li class="nav__item"><a class="nav__link" href="#pricing">Pakiety</a></li>
+              <li class="nav__item"><a class="nav__link" href="#resources">Materiały</a></li>
+              <li class="nav__item"><a class="nav__link" href="#testimonials">Opinie</a></li>
+              <li class="nav__item"><a class="nav__link" href="#about">O Lauren</a></li>
+              <li class="nav__item"><a class="nav__link" href="#faq">FAQ</a></li>
+              <li class="nav__item"><a class="nav__link" href="#contact">Kontakt</a></li>
+            </ul>
+            <a class="button button--primary nav__cta" href="#contact">Umów lekcję</a>
+          </div>
+        </nav>
+        <div class="header__actions">
+          <button class="button button--ghost" type="button" data-lang-toggle>
+            <span class="button__icon" aria-hidden="true">🌐</span>
+            <span data-lang-label>PL</span>
+          </button>
+          <button class="button button--ghost" type="button" data-theme-toggle>
+            <span class="button__icon" aria-hidden="true">🌓</span>
+            Motyw
+          </button>
+          <a class="button button--primary header__cta" href="#contact" data-i18n="header.cta">Umów lekcję</a>
+        </div>
+      </div>
+    </header>
+
+    <main id="main">
+      <section class="section hero" id="hero">
+        <div class="container hero__grid">
+          <div class="hero__content" data-reveal>
+            <p class="hero__eyebrow" data-i18n="hero.eyebrow">Nauka, która daje spokój i wynik</p>
+            <h1 class="hero__title" data-i18n="hero.title">
+              Lauren – Clean English. Klarowny plan, mierzalny progres.
+            </h1>
+            <p class="hero__subtitle" data-i18n="hero.subtitle">
+              Indywidualne lekcje, konwersacje i egzaminacyjny focus. Łączę analityczne podejście z empatią,
+              abyś uczył/a się szybciej i pewniej.
+            </p>
+            <div class="hero__actions">
+              <a class="button button--primary" href="#contact" data-i18n="hero.primary">Zapisz się na konsultację</a>
+              <a class="button button--secondary" href="#resources" data-i18n="hero.secondary">Zobacz materiały</a>
+            </div>
+            <div class="hero__meta">
+              <div class="pill">✓ Plan nauki</div>
+              <div class="pill">✓ Feedback po każdej lekcji</div>
+              <div class="pill">✓ Spokojne tempo</div>
+            </div>
+          </div>
+          <div class="hero__visual" data-reveal>
+            <img
+              src="assets/img/hero-illustration.svg"
+              alt="Ilustracja przedstawiająca naukę języka angielskiego"
+              loading="lazy"
+              width="520"
+              height="420"
+            />
+            <div class="hero__card">
+              <h3 class="hero__card-title">Progress tracker demo</h3>
+              <p class="hero__card-text">Zobacz, jak monitorujemy cele w trakcie kursu.</p>
+              <ul class="progress" role="list" data-progress>
+                <li class="progress__item" data-progress-item>
+                  <button class="progress__toggle" type="button" aria-pressed="true">
+                    <span class="progress__icon">✓</span>
+                    <span class="progress__label">Powtórka czasu Present Perfect</span>
+                  </button>
+                </li>
+                <li class="progress__item" data-progress-item>
+                  <button class="progress__toggle" type="button" aria-pressed="false">
+                    <span class="progress__icon">○</span>
+                    <span class="progress__label">Konwersacja: small talk w pracy</span>
+                  </button>
+                </li>
+                <li class="progress__item" data-progress-item>
+                  <button class="progress__toggle" type="button" aria-pressed="false">
+                    <span class="progress__icon">○</span>
+                    <span class="progress__label">Mini test słówek</span>
+                  </button>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section how" id="how">
+        <div class="container">
+          <div class="section__header" data-reveal>
+            <h2 class="section__title">Jak uczę</h2>
+            <p class="section__subtitle">
+              Łączę analityczne myślenie z praktyką. Masz plan, jasne cele i spokojny rytm.
+            </p>
+          </div>
+          <div class="how__grid">
+            <div class="card card--soft" data-reveal>
+              <h3 class="card__title">Metodyka</h3>
+              <ul class="list" role="list">
+                <li>Diagnoza poziomu i stylu uczenia się.</li>
+                <li>Plan oparty o cele zawodowe i życiowe.</li>
+                <li>Krótkie sprinty z feedbackiem.</li>
+              </ul>
+            </div>
+            <div class="card card--soft" data-reveal>
+              <h3 class="card__title">Wartości</h3>
+              <ul class="list" role="list">
+                <li>Spokojny rytm i bezpieczeństwo językowe.</li>
+                <li>Mierzalny progres, bez chaosu.</li>
+                <li>Transparentna komunikacja.</li>
+              </ul>
+            </div>
+            <div class="timeline" data-reveal>
+              <h3 class="timeline__title">Proces współpracy</h3>
+              <ol class="timeline__list">
+                <li class="timeline__item"><span>Onboarding</span><small>diagnoza + cele</small></li>
+                <li class="timeline__item"><span>Plan</span><small>plan i materiały</small></li>
+                <li class="timeline__item"><span>Practice</span><small>lekcje + mikro-zadania</small></li>
+                <li class="timeline__item"><span>Progress</span><small>pomiar i korekta</small></li>
+              </ol>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section services" id="services">
+        <div class="container">
+          <div class="section__header" data-reveal>
+            <h2 class="section__title">Usługi</h2>
+            <p class="section__subtitle">Wybierz format dopasowany do Twoich potrzeb.</p>
+          </div>
+          <div class="grid grid--cards">
+            <article class="card card--service" data-reveal>
+              <h3 class="card__title">Korepetycje 1:1</h3>
+              <p class="card__text">Indywidualny plan, dokładny feedback i stały monitoring postępów.</p>
+              <span class="badge">Najczęściej wybierane</span>
+            </article>
+            <article class="card card--service" data-reveal>
+              <h3 class="card__title">Konwersacje</h3>
+              <p class="card__text">Płynność i pewność w mówieniu, tematy dopasowane do Ciebie.</p>
+              <span class="badge">Fluency</span>
+            </article>
+            <article class="card card--service" data-reveal>
+              <h3 class="card__title">Egzaminy</h3>
+              <p class="card__text">Strategie, struktura wypowiedzi i praktyka z arkuszami.</p>
+              <span class="badge">Matura • IELTS • FCE</span>
+            </article>
+            <article class="card card--service" data-reveal>
+              <h3 class="card__title">Business English</h3>
+              <p class="card__text">Spotkania, maile, prezentacje i język profesjonalny.</p>
+              <span class="badge">Biznes</span>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="section pricing" id="pricing">
+        <div class="container">
+          <div class="section__header" data-reveal>
+            <h2 class="section__title">Pakiety i ceny</h2>
+            <p class="section__subtitle">Przejrzyste plany – bez ukrytych kosztów.</p>
+          </div>
+          <div class="grid grid--pricing">
+            <article class="card card--pricing" data-reveal>
+              <h3 class="card__title">Start</h3>
+              <p class="card__price">od 190 zł</p>
+              <ul class="list" role="list">
+                <li>4 lekcje / miesiąc</li>
+                <li>Plan nauki</li>
+                <li>Feedback po lekcji</li>
+              </ul>
+              <a class="button button--secondary" href="#contact">Wybierz Start</a>
+            </article>
+            <article class="card card--pricing card--highlight" data-reveal>
+              <p class="card__eyebrow">Najlepsza wartość</p>
+              <h3 class="card__title">Regular</h3>
+              <p class="card__price">od 360 zł</p>
+              <ul class="list" role="list">
+                <li>8 lekcji / miesiąc</li>
+                <li>Materiały premium</li>
+                <li>Mini testy progresu</li>
+              </ul>
+              <a class="button button--primary" href="#contact">Wybierz Regular</a>
+            </article>
+            <article class="card card--pricing" data-reveal>
+              <h3 class="card__title">Pro</h3>
+              <p class="card__price">od 520 zł</p>
+              <ul class="list" role="list">
+                <li>12 lekcji / miesiąc</li>
+                <li>Wsparcie między lekcjami</li>
+                <li>Priorytetowe terminy</li>
+              </ul>
+              <a class="button button--secondary" href="#contact">Wybierz Pro</a>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="section resources" id="resources">
+        <div class="container">
+          <div class="section__header" data-reveal>
+            <h2 class="section__title">Materiały i sklepik</h2>
+            <p class="section__subtitle">Ebooki, zestawy ćwiczeń i mini-kursy do samodzielnej pracy.</p>
+          </div>
+          <div class="filters" role="tablist" aria-label="Filtr kategorii" data-reveal>
+            <button class="pill pill--filter is-active" type="button" data-filter="all" role="tab" aria-selected="true">
+              Wszystko
+            </button>
+            <button class="pill pill--filter" type="button" data-filter="grammar" role="tab" aria-selected="false">
+              Grammar
+            </button>
+            <button class="pill pill--filter" type="button" data-filter="vocabulary" role="tab" aria-selected="false">
+              Vocabulary
+            </button>
+            <button class="pill pill--filter" type="button" data-filter="exam" role="tab" aria-selected="false">
+              Exam
+            </button>
+            <button class="pill pill--filter" type="button" data-filter="business" role="tab" aria-selected="false">
+              Business
+            </button>
+          </div>
+          <div class="grid grid--resources" data-resources>
+            <article class="card card--resource" data-category="grammar" data-reveal>
+              <h3 class="card__title">Grammar Detox</h3>
+              <p class="card__text">45 stron klarownych zasad + ćwiczenia na czasy.</p>
+              <div class="card__tags">
+                <span class="badge">PDF</span>
+                <span class="badge">Grammar</span>
+              </div>
+              <button class="button button--ghost">Zobacz</button>
+            </article>
+            <article class="card card--resource" data-category="vocabulary" data-reveal>
+              <h3 class="card__title">Vocabulary Sprint</h3>
+              <p class="card__text">Tematyczne listy + mini dialogi do codziennej praktyki.</p>
+              <div class="card__tags">
+                <span class="badge">Ebook</span>
+                <span class="badge">Vocabulary</span>
+              </div>
+              <button class="button button--ghost">Zobacz</button>
+            </article>
+            <article class="card card--resource" data-category="exam" data-reveal>
+              <h3 class="card__title">Exam Ready Pack</h3>
+              <p class="card__text">Strategie, timeboxing i przykładowe arkusze.</p>
+              <div class="card__tags">
+                <span class="badge">PDF</span>
+                <span class="badge">Exam</span>
+              </div>
+              <button class="button button--ghost">Zobacz</button>
+            </article>
+            <article class="card card--resource" data-category="business" data-reveal>
+              <h3 class="card__title">Business English Notes</h3>
+              <p class="card__text">Słownictwo i zwroty do spotkań oraz maili.</p>
+              <div class="card__tags">
+                <span class="badge">PDF</span>
+                <span class="badge">Business</span>
+              </div>
+              <button class="button button--ghost">Zobacz</button>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="section testimonials" id="testimonials">
+        <div class="container">
+          <div class="section__header" data-reveal>
+            <h2 class="section__title">Opinie</h2>
+            <p class="section__subtitle">Realne efekty, realne historie.</p>
+          </div>
+          <div class="grid grid--testimonials">
+            <article class="card card--testimonial" data-reveal>
+              <p class="card__text">
+                „Po 6 tygodniach czuję, że mówię swobodniej. Plan i feedback są świetne.”
+              </p>
+              <p class="card__meta">Kasia, marketing</p>
+              <div class="rating" aria-label="5 na 5">★★★★★</div>
+            </article>
+            <article class="card card--testimonial" data-reveal>
+              <p class="card__text">
+                „Lauren uporządkowała mój angielski biznesowy. Konkretne ćwiczenia i dużo praktyki.”
+              </p>
+              <p class="card__meta">Michał, PM</p>
+              <div class="rating" aria-label="5 na 5">★★★★★</div>
+            </article>
+            <article class="card card--testimonial" data-reveal>
+              <p class="card__text">
+                „Świetne przygotowanie do egzaminu, zero chaosu, wszystko jasne.”
+              </p>
+              <p class="card__meta">Ola, studentka</p>
+              <div class="rating" aria-label="5 na 5">★★★★★</div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="section about" id="about">
+        <div class="container about__grid">
+          <div class="about__content" data-reveal>
+            <h2 class="section__title">O Lauren</h2>
+            <p class="section__subtitle">
+              Nauczycielka języka angielskiego z analitycznym tłem. Uczę spokojnie, z logiką i empatią.
+            </p>
+            <p class="about__text">
+              Specjalizuję się w korepetycjach 1:1, konwersacjach, przygotowaniu do egzaminów oraz
+              biznesowym angielskim. Tworzę własne materiały i mini-kursy, aby proces był spójny
+              i przewidywalny.
+            </p>
+            <ul class="list list--inline" role="list">
+              <li>Plan nauki + cele</li>
+              <li>Feedback po każdej lekcji</li>
+              <li>Spokojny styl pracy</li>
+            </ul>
+            <div class="about__badges">
+              <span class="badge">TESOL Certified</span>
+              <span class="badge">Business English</span>
+              <span class="badge">Exam Coach</span>
+            </div>
+          </div>
+          <div class="about__visual" data-reveal>
+            <img
+              src="assets/img/about-portrait.svg"
+              alt="Portret Lauren"
+              loading="lazy"
+              width="420"
+              height="480"
+            />
+            <div class="card card--soft about__card">
+              <h3 class="card__title">Kompetencje</h3>
+              <ul class="list" role="list">
+                <li>Analiza potrzeb i poziomu</li>
+                <li>Praca z celami SMART</li>
+                <li>Nowoczesne materiały</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section faq" id="faq">
+        <div class="container">
+          <div class="section__header" data-reveal>
+            <h2 class="section__title">FAQ</h2>
+            <p class="section__subtitle">Najczęstsze pytania przed startem.</p>
+          </div>
+          <div class="accordion" data-accordion>
+            <div class="accordion__item" data-accordion-item>
+              <h3 class="accordion__title">
+                <button class="accordion__trigger" type="button" aria-expanded="false" aria-controls="faq-1">
+                  Jak wygląda pierwsza lekcja?
+                </button>
+              </h3>
+              <div class="accordion__panel" id="faq-1" role="region" aria-hidden="true">
+                <p>Rozmawiamy o celach, sprawdzamy poziom i ustalamy plan na kolejne spotkania.</p>
+              </div>
+            </div>
+            <div class="accordion__item" data-accordion-item>
+              <h3 class="accordion__title">
+                <button class="accordion__trigger" type="button" aria-expanded="false" aria-controls="faq-2">
+                  Czy dostanę materiały?
+                </button>
+              </h3>
+              <div class="accordion__panel" id="faq-2" role="region" aria-hidden="true">
+                <p>Tak, przygotowuję materiały premium i zadania domowe w formie PDF.</p>
+              </div>
+            </div>
+            <div class="accordion__item" data-accordion-item>
+              <h3 class="accordion__title">
+                <button class="accordion__trigger" type="button" aria-expanded="false" aria-controls="faq-3">
+                  Jak mierzymy progres?
+                </button>
+              </h3>
+              <div class="accordion__panel" id="faq-3" role="region" aria-hidden="true">
+                <p>Co miesiąc robimy krótki test i wspólnie aktualizujemy plan.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section contact" id="contact">
+        <div class="container contact__grid">
+          <div class="contact__content" data-reveal>
+            <h2 class="section__title">Kontakt i zapisy</h2>
+            <p class="section__subtitle">Napisz, a przygotuję plan dopasowany do Twoich celów.</p>
+            <div class="contact__details">
+              <p><strong>Email:</strong> lauren@cleanenglish.pl</p>
+              <p><strong>Telefon:</strong> +48 600 000 123</p>
+              <p><strong>Godziny:</strong> pn–pt 9:00–18:00</p>
+            </div>
+            <div class="card card--soft">
+              <h3 class="card__title">Szybkie terminy</h3>
+              <p class="card__text">Najbliższe wolne sloty: wt/śr po 17:00.</p>
+            </div>
+          </div>
+          <form class="form" data-reveal>
+            <div class="form__field">
+              <label class="form__label" for="name">Imię i nazwisko</label>
+              <input class="form__input" id="name" name="name" type="text" autocomplete="name" required aria-describedby="name-hint" />
+              <p class="form__hint" id="name-hint">Podaj imię i nazwisko.</p>
+            </div>
+            <div class="form__field">
+              <label class="form__label" for="email">Email</label>
+              <input class="form__input" id="email" name="email" type="email" autocomplete="email" required aria-describedby="email-hint" />
+              <p class="form__hint" id="email-hint">Użyj aktywnego adresu.</p>
+            </div>
+            <div class="form__field">
+              <label class="form__label" for="goal">Cel nauki</label>
+              <select class="form__input" id="goal" name="goal" required>
+                <option value="">Wybierz cel</option>
+                <option>Egzamin</option>
+                <option>Konwersacje</option>
+                <option>Business English</option>
+                <option>Plan ogólny</option>
+              </select>
+            </div>
+            <div class="form__field">
+              <label class="form__label" for="message">Wiadomość</label>
+              <textarea class="form__input" id="message" name="message" rows="4" required></textarea>
+            </div>
+            <button class="button button--primary" type="submit">Wyślij zgłoszenie</button>
+            <p class="form__disclaimer">Formularz jest demonstracyjny i nie wysyła danych.</p>
+          </form>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <div class="container footer__grid">
+        <div>
+          <a class="header__logo" href="#top">
+            <span class="header__logo-mark">LC</span>
+            <span class="header__logo-text">Lauren – Clean English</span>
+          </a>
+          <p class="footer__text">Profesjonalny angielski w spokojnym rytmie.</p>
+        </div>
+        <div>
+          <h3 class="footer__title">Linki</h3>
+          <ul class="footer__list" role="list">
+            <li><a href="#services">Usługi</a></li>
+            <li><a href="#pricing">Pakiety</a></li>
+            <li><a href="#resources">Materiały</a></li>
+          </ul>
+        </div>
+        <div>
+          <h3 class="footer__title">Social</h3>
+          <ul class="footer__list" role="list">
+            <li><a href="https://www.linkedin.com" rel="noreferrer">LinkedIn</a></li>
+            <li><a href="https://www.instagram.com" rel="noreferrer">Instagram</a></li>
+            <li><a href="https://www.youtube.com" rel="noreferrer">YouTube</a></li>
+          </ul>
+        </div>
+        <div>
+          <h3 class="footer__title">Legal</h3>
+          <ul class="footer__list" role="list">
+            <li><a href="offline.html">Polityka prywatności</a></li>
+            <li><a href="offline.html">Regulamin</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer__bottom">
+        <p>© 2026 Lauren – Clean English. Wszystkie prawa zastrzeżone.</p>
+      </div>
+    </footer>
+
+    <script type="module" src="js/main.js"></script>
+  </body>
+</html>
