@@ -1,10 +1,39 @@
+const revealNoop = () => {};
+let isRevealInitialized = false;
+let destroyReveal = revealNoop;
+
+function revealAllImmediately(elements) {
+  elements.forEach((el) => {
+    el.classList.add("is-revealed");
+    el.dataset.revealReady = "true";
+  });
+}
+
 export function initReveal() {
-  const prefersReduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  if (isRevealInitialized) {
+    return destroyReveal;
+  }
+
+  const root = document.documentElement;
+  root.classList.add("js");
+
   const elements = document.querySelectorAll("[data-reveal]");
 
-  if (prefersReduced) {
-    elements.forEach((el) => el.classList.add("is-revealed"));
-    return;
+  if (!elements.length) {
+    destroyReveal = revealNoop;
+    return destroyReveal;
+  }
+
+  const prefersReduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  if (prefersReduced || !("IntersectionObserver" in window)) {
+    revealAllImmediately(elements);
+    isRevealInitialized = true;
+    destroyReveal = () => {
+      isRevealInitialized = false;
+      destroyReveal = revealNoop;
+    };
+    return destroyReveal;
   }
 
   const observer = new IntersectionObserver(
@@ -12,6 +41,7 @@ export function initReveal() {
       entries.forEach((entry) => {
         if (entry.isIntersecting) {
           entry.target.classList.add("is-revealed");
+          entry.target.dataset.revealReady = "true";
           obs.unobserve(entry.target);
         }
       });
@@ -19,5 +49,21 @@ export function initReveal() {
     { threshold: 0.2 }
   );
 
-  elements.forEach((el) => observer.observe(el));
+  elements.forEach((el) => {
+    if (el.dataset.revealReady === "true") {
+      return;
+    }
+
+    observer.observe(el);
+    el.dataset.revealReady = "true";
+  });
+
+  isRevealInitialized = true;
+  destroyReveal = () => {
+    observer.disconnect();
+    isRevealInitialized = false;
+    destroyReveal = revealNoop;
+  };
+
+  return destroyReveal;
 }

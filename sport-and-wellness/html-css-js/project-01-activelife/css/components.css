@@ -360,7 +360,7 @@
   max-width: 460px;
 }
 
-@media (min-width: 700px) {
+@media (--bp-md) {
   .nav {
     display: block;
   }

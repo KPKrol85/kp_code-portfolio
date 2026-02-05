@@ -4,17 +4,33 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "dev": "npx serve .",
+    "dev": "python3 -m http.server 3000",
+    "clean": "rm -f css/style.min.css js/app.min.js js/.app.bundle.js",
     "build:css": "postcss css/style.css -o css/style.min.css",
-    "build:js": "terser js/main.js js/modules/*.js -o js/bundle.min.js --compress --mangle",
-    "images": "imagemin assets/img/* --out-dir=assets/img"
+    "build:js": "cat js/modules/reveal.js js/modules/headerShrink.js js/modules/mobileNav.js js/modules/scheduleFilter.js js/modules/themeToggle.js js/main.js | sed '/^import /d; s/^export //' > js/.app.bundle.js && terser js/.app.bundle.js -o js/app.min.js --compress --mangle && rm js/.app.bundle.js",
+    "images": "imagemin assets/img/* --out-dir=assets/img",
+    "build": "npm run clean && npm run build:css && npm run build:js",
+    "preview": "npm run build && python3 -m http.server 4173",
+    "lint": "npm run lint:js && npm run lint:css",
+    "lint:js": "ESLINT_USE_FLAT_CONFIG=false eslint .",
+    "lint:css": "stylelint \"css/**/*.css\"",
+    "format": "prettier --write \"**/*.{js,css,html,json,md}\"",
+    "format:check": "prettier --check \"**/*.{js,css,html,json,md}\"",
+    "test:smoke": "playwright test",
+    "test": "npm run test:smoke",
+    "ci": "npm run lint && npm run test:smoke"
   },
   "devDependencies": {
+    "@playwright/test": "^1.49.1",
     "cssnano": "^6.0.2",
+    "eslint": "^9.17.0",
     "imagemin-cli": "^7.0.0",
     "postcss": "^8.4.38",
     "postcss-cli": "^10.1.0",
     "postcss-import": "^16.1.0",
+    "prettier": "^3.4.2",
+    "stylelint": "^16.11.0",
+    "stylelint-config-standard": "^36.0.1",
     "terser": "^5.31.0"
   }
 }

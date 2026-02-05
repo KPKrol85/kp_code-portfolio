@@ -6,24 +6,80 @@
   <title>ActiveLife – Luxury Sports &amp; Wellness Resort</title>
   <meta name="description" content="ActiveLife to luksusowy ośrodek sportowo-wellness: klub fitness, treningi personalne, basen, SPA, korty tenisowe i restauracja premium w jednym miejscu." />
   <meta name="theme-color" content="#0F172A" />
-  <link rel="canonical" href="https://activelife.example.com/" />
+  <link rel="canonical" href="https://activelife.pl/" />
   <meta property="og:title" content="ActiveLife – Luxury Sports & Wellness Resort" />
   <meta property="og:description" content="Nowoczesny klub fitness, treningi personalne, basen, SPA, korty tenisowe i restauracja premium. Zarezerwuj swoje doświadczenie." />
   <meta property="og:type" content="website" />
-  <meta property="og:url" content="https://activelife.example.com/" />
-  <meta property="og:image" content="https://activelife.example.com/assets/img/hero-gradient.svg" />
+  <meta property="og:url" content="https://activelife.pl/" />
+  <meta property="og:image" content="https://activelife.pl/assets/img/hero-gradient.svg" />
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="ActiveLife – Luxury Sports & Wellness Resort" />
   <meta name="twitter:description" content="Premium sport i regeneracja w jednym, perfekcyjnie zaprojektowanym miejscu." />
-  <meta name="twitter:image" content="https://activelife.example.com/assets/img/hero-gradient.svg" />
+  <meta name="twitter:image" content="https://activelife.pl/assets/img/hero-gradient.svg" />
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "Organization",
+        "name": "ActiveLife",
+        "url": "https://activelife.pl/",
+        "sameAs": [
+          "https://instagram.com",
+          "https://linkedin.com",
+          "https://facebook.com"
+        ]
+      },
+      {
+        "@type": "WebSite",
+        "name": "ActiveLife",
+        "url": "https://activelife.pl/"
+      },
+      {
+        "@type": "FAQPage",
+        "url": "https://activelife.pl/",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "Jak wygląda pierwsza wizyta?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Po krótkim wywiadzie zdrowotnym otrzymasz plan dnia oraz onboarding w strefach treningu i SPA."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Czy mogę zaprosić gościa?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Tak, każdy plan zawiera pakiet wejść gościnnych, a członkowie Elite mogą rezerwować prywatne sesje."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Jak działa aplikacja ActiveLife?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Aplikacja umożliwia rezerwacje, personalizuje treningi i daje dostęp do concierge oraz menu restauracji."
+            }
+          }
+        ]
+      }
+    ]
+  }
+  </script>
 
   <link rel="manifest" href="manifest.webmanifest" />
   <link rel="icon" href="assets/icons/icon-192.svg" type="image/svg+xml" />
   <link rel="apple-touch-icon" href="assets/icons/icon-192.svg" />
   <link rel="preload" as="font" type="font/woff2" crossorigin href="assets/fonts/manrope-400-latin.woff2" />
-  <link rel="preload" as="font" type="font/woff2" crossorigin href="assets/fonts/manrope-600-latin.woff2" />
   <link rel="preload" as="font" type="font/woff2" crossorigin href="assets/fonts/fraunces-700-latin.woff2" />
-  <link rel="stylesheet" href="css/style.css" />
+  <link rel="preload" as="image" href="assets/img/hero-gradient.svg" />
+  <script>document.documentElement.classList.add("js");</script>
+  <!-- Production entry: always load built/minified assets -->
+  <link rel="stylesheet" href="css/style.min.css" />
+  <noscript><style>[data-reveal]{opacity:1 !important;transform:none !important;}</style></noscript>
 </head>
 <body>
   <a class="skip-link" href="#main">Przejdź do treści głównej</a>
@@ -60,8 +116,9 @@
       </div>
     </div>
 
-    <div class="mobile-nav" id="mobile-menu" data-mobile-nav hidden>
-      <div class="mobile-nav__panel" role="dialog" aria-modal="true" aria-label="Menu mobilne">
+    <div class="mobile-nav" id="mobile-menu" data-mobile-nav role="dialog" aria-modal="true" aria-labelledby="mobile-menu-title" tabindex="-1" hidden>
+      <div class="mobile-nav__panel" tabindex="-1">
+        <h2 id="mobile-menu-title" style="position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0;">Menu mobilne</h2>
         <button class="mobile-nav__close" type="button" data-nav-close>✕ Zamknij</button>
         <ul class="mobile-nav__list" role="list">
           <li><a class="mobile-nav__link" href="#offer">Oferta</a></li>
@@ -104,7 +161,7 @@
           </div>
         </div>
         <div class="hero__media" data-reveal>
-          <img src="assets/img/hero-gradient.svg" alt="Subtelny gradient inspirowany światłem w strefie wellness" loading="lazy" />
+          <img src="assets/img/hero-gradient.svg" alt="Subtelny gradient inspirowany światłem w strefie wellness" loading="eager" fetchpriority="high" decoding="async" width="1600" height="900" />
           <div class="hero__glass" role="presentation">
             <p class="hero__glass-title">Evening Spa Ritual</p>
             <p class="hero__glass-text">90-minutowa ceremonia regeneracji z aromaterapią i światłem LED.</p>
@@ -169,15 +226,18 @@
           <p class="section__lead">Filtrowanie zajęć pomaga znaleźć idealny blok na dziś.</p>
         </div>
 
-        <div class="schedule__filters" role="group" aria-label="Filtr zajęć" data-reveal>
-          <button class="button button--filter is-active" type="button" data-filter="all">Wszystko</button>
-          <button class="button button--filter" type="button" data-filter="yoga">Yoga</button>
-          <button class="button button--filter" type="button" data-filter="aerobik">Aerobik</button>
-          <button class="button button--filter" type="button" data-filter="trening">Trening</button>
-          <button class="button button--filter" type="button" data-filter="spa">SPA</button>
+        <div class="schedule__filters" role="group" aria-label="Filtr harmonogramu" data-reveal>
+          <button class="button button--filter is-active" type="button" data-filter="all" aria-pressed="true" aria-controls="schedule-results">Wszystko</button>
+          <button class="button button--filter" type="button" data-filter="yoga" aria-pressed="false" aria-controls="schedule-results">Yoga</button>
+          <button class="button button--filter" type="button" data-filter="aerobik" aria-pressed="false" aria-controls="schedule-results">Aerobik</button>
+          <button class="button button--filter" type="button" data-filter="trening" aria-pressed="false" aria-controls="schedule-results">Trening</button>
+          <button class="button button--filter" type="button" data-filter="spa" aria-pressed="false" aria-controls="schedule-results">SPA</button>
         </div>
 
-        <div class="grid grid--schedule" data-reveal>
+        <p id="schedule-results-count" data-reveal>Wyniki: 6</p>
+        <p id="schedule-status" aria-live="polite" role="status" data-reveal>Pokazywanie 6 wyników dla filtra Wszystko.</p>
+
+        <div class="grid grid--schedule" id="schedule-results" data-reveal>
           <article class="schedule-card" data-category="yoga">
             <div>
               <h3 class="schedule-card__title">Morning Flow</h3>
@@ -281,7 +341,7 @@
         </div>
         <div class="zone" data-reveal>
           <div class="zone__media">
-            <img src="assets/img/spa-zone.svg" alt="Strefa basenu i SPA z miękkim światłem" loading="lazy" />
+            <img src="assets/img/spa-zone.svg" alt="Strefa basenu i SPA z miękkim światłem" loading="lazy" width="1200" height="800" />
           </div>
           <div class="zone__content">
             <h3>Pool &amp; SPA</h3>
@@ -294,7 +354,7 @@
         </div>
         <div class="zone zone--reverse" data-reveal>
           <div class="zone__media">
-            <img src="assets/img/tennis-zone.svg" alt="Kort tenisowy z nowoczesnym oświetleniem" loading="lazy" />
+            <img src="assets/img/tennis-zone.svg" alt="Kort tenisowy z nowoczesnym oświetleniem" loading="lazy" width="1200" height="800" />
           </div>
           <div class="zone__content">
             <h3>Tennis Club</h3>
@@ -307,7 +367,7 @@
         </div>
         <div class="zone" data-reveal>
           <div class="zone__media">
-            <img src="assets/img/hero-gradient.svg" alt="Restauracja premium z nastrojowym światłem" loading="lazy" />
+            <img src="assets/img/hero-gradient.svg" alt="Restauracja premium z nastrojowym światłem" loading="lazy" width="1600" height="900" />
           </div>
           <div class="zone__content">
             <h3>Restaurant &amp; Lounge</h3>
@@ -473,8 +533,8 @@
       <div>
         <p class="footer__title">Legal</p>
         <ul class="footer__list" role="list">
-          <li><a href="/privacy">Polityka prywatności</a></li>
-          <li><a href="/terms">Regulamin</a></li>
+          <li><a href="/privacy.html">Polityka prywatności</a></li>
+          <li><a href="/terms.html">Regulamin</a></li>
         </ul>
       </div>
     </div>
@@ -483,6 +543,6 @@
     </div>
   </footer>
 
-  <script type="module" src="js/main.js"></script>
+  <script src="js/app.min.js" defer></script>
 </body>
 </html>
