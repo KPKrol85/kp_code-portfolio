@@ -1,4 +1,3 @@
-// nav.js – hamburger menu + focus trap + Esc + poprawione ARIA
 export function initNav() {
   const toggle = document.getElementById("nav-toggle");
   const nav = document.getElementById("site-nav");
@@ -46,7 +45,6 @@ export function initNav() {
     }
   }
 
-  // Upewniamy się, że stan ARIA na starcie jest spójny z DOM
   toggle.setAttribute("aria-expanded", "false");
   toggle.setAttribute("aria-label", CLOSED_LABEL);
 
@@ -66,7 +64,6 @@ export function initNav() {
     isOpen() ? close() : open();
   });
 
-  // Zamknięcie menu po kliknięciu w link
   nav.addEventListener("click", (e) => {
     const t = e.target;
     if (t instanceof Element && t.matches("a")) {
@@ -74,7 +71,6 @@ export function initNav() {
     }
   });
 
-  // Esc + focus trap
   document.addEventListener("keydown", (e) => {
     if (!isOpen()) return;
 

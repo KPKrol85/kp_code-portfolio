@@ -1,5 +1,3 @@
-// js/features/gallery-filters.js
-// Filtrowanie kategorii w galerii zdjęć
 
 export function initGalleryFilters() {
   const filters = document.querySelectorAll("#gallery-filters .gallery-cats__link");

@@ -1,5 +1,3 @@
-// js/features/lightbox.js
-// Accessible lightbox z delegacją zdarzeń i wsparciem klawiatury
 export function initLightbox() {
   const lightbox = document.querySelector(".lightbox");
   if (!lightbox) return;
@@ -11,10 +9,8 @@ export function initLightbox() {
   const nextBtn = lightbox.querySelector("[data-lightbox-next]");
   const dialogEl = lightbox.querySelector(".lightbox__dialog");
 
-  // helper: element faktycznie widoczny (nie display:none)
   const isVisible = (el) => !!(el.offsetParent || el.getClientRects().length);
 
-  // Zbieramy elementy TYLKO z aktywnej kategorii (albo wszystkie, gdy 'all')
   const items = () => {
     const activeCat = document.body.dataset.galleryFilter || "all";
     const all = Array.from(document.querySelectorAll(".gallery-grid [data-lightbox-item]"));
@@ -27,7 +23,7 @@ export function initLightbox() {
 
   let index = 0;
   let lastFocused = null;
-  let lastTapTime = 0; // do double-tap na mobile
+  let lastTapTime = 0;
 
   function renderFromAnchor(a) {
     const fullSrc = a.getAttribute("href");
@@ -64,7 +60,7 @@ export function initLightbox() {
     renderFromAnchor(list[index]);
     lastFocused = focusOrigin || document.activeElement;
 
-    setFullscreen(false); // zawsze start bez fullscreen
+    setFullscreen(false);
     lightbox.hidden = false;
     lightbox.setAttribute("aria-hidden", "false");
     (dialogEl || prevBtn || nextBtn || closeBtns[0])?.focus();
@@ -86,36 +82,32 @@ export function initLightbox() {
     renderFromAnchor(list[index]);
   }
 
-  // DELEGACJA: klik w jakikolwiek [data-lightbox-item] w obrębie .gallery-grid
   document.addEventListener("click", (e) => {
     const a = e.target.closest("[data-lightbox-item]");
     if (!a) return;
     if (!a.closest(".gallery-grid")) return;
 
-    e.preventDefault(); // nie przechodzimy do JPG
+    e.preventDefault();
     const list = items();
     const i = list.indexOf(a);
     if (i === -1) return;
     open(i, a);
   });
 
-  // Gdy filtr kategorii się zmieni (set w body), resetuj indeks jeśli trzeba
   const observer = new MutationObserver(() => {
     const list = items();
-    if (lightbox.hidden) return; // tylko gdy otwarty
+    if (lightbox.hidden) return;
     if (!list.length) return close();
     if (index >= list.length) index = 0;
     renderFromAnchor(list[index]);
   });
   observer.observe(document.body, { attributes: true, attributeFilter: ["data-gallery-filter"] });
 
-  // Przyciski
   closeBtns.forEach((btn) => btn.addEventListener("click", close));
   lightbox.querySelector(".lightbox__backdrop")?.addEventListener("click", close);
   prevBtn?.addEventListener("click", () => show(-1));
   nextBtn?.addEventListener("click", () => show(1));
 
-  // Klawiatura
   document.addEventListener("keydown", (e) => {
     if (lightbox.hidden) return;
     if (e.key === "Escape") close();
@@ -136,28 +128,23 @@ export function initLightbox() {
     }
   });
 
-  // --- Fullscreen tylko na zdjęciu ---
-
-  // desktop: double-click
   if (img) {
     img.addEventListener("dblclick", (e) => {
       if (lightbox.hidden) return;
-      e.stopPropagation(); // nie idzie do rodziców (dialog, body itd.)
+      e.stopPropagation();
       e.preventDefault();
       toggleFullscreen();
     });
   }
 
-  // mobile: double-tap (pointer events)
   function handlePointerDown(e) {
     if (lightbox.hidden) return;
     if (e.pointerType !== "touch") return;
 
     const now = Date.now();
     if (now - lastTapTime < 300) {
-      // drugi tap w krótkim odstępie -> fullscreen toggle
       e.preventDefault();
-      e.stopPropagation(); // również nie bąbelkuje wyżej
+      e.stopPropagation();
       toggleFullscreen();
     }
     lastTapTime = now;

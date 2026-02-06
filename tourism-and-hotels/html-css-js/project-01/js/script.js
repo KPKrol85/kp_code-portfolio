@@ -1,7 +1,5 @@
-// Progressive enhancement: mark JS availability as early as possible
 document.documentElement.classList.add('js');
 
-// Entry: initializes all features on DOMContentLoaded
 import { initNav } from "./features/nav.js";
 import { initTheme } from "./features/theme.js";
 import { initReveal } from "./features/reveal.js";
@@ -10,7 +8,7 @@ import { initForm } from "./features/form.js";
 import { initTabs } from "./features/tabs.js";
 import { initCompactHeader } from "./features/compact-header.js";
 import { initGalleryFilters } from "./features/gallery-filters.js";
-import { setAriaCurrent } from "./features/aria-current.js"; // ⬅️ było initAriaCurrent
+import { setAriaCurrent } from "./features/aria-current.js";
 import { initJsonLd } from "./features/seo-jsonld.js";
 
 function setYear() {
@@ -29,7 +27,7 @@ function registerSW() {
 
 function boot() {
   setYear();
-  setAriaCurrent(); // ⬅️ było initAriaCurrent()
+  setAriaCurrent();
   initTheme();
   initNav();
   initCompactHeader();

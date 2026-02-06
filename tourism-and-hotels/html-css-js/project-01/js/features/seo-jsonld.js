@@ -24,7 +24,6 @@ export function initJsonLd() {
         injectJsonLd(data);
       }
     } catch {
-      // intentionally silent: JSON-LD is non-critical
     }
   })();
 }

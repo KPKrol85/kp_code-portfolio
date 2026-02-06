@@ -1,4 +1,4 @@
-// js/features/aria-current.js
+
 export function setAriaCurrent() {
   const current = (location.pathname.split("/").pop() || "index.html").toLowerCase();
 
