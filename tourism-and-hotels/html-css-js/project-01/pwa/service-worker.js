@@ -13,7 +13,6 @@ const STATIC_ASSETS = [
   "polityka-prywatnosci.html",
   "cookies.html",
   "offline.html",
-  "css/style.min.css",
   "css/style.css",
   "js/script.js",
   "js/features/nav.js",
@@ -74,3 +73,4 @@ self.addEventListener("fetch", (event) => {
     })
   );
 });
+

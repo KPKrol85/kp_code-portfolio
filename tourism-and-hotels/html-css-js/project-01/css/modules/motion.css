@@ -1,8 +1,25 @@
 /* Motion: animation and reduced-motion behavior */
 
-@media (prefers-reduced-motion: reduce) {   .benefit {     transition: none;     transform: none;     box-shadow: var(--elev);   } } 
+@media (prefers-reduced-motion: reduce) {
+  .benefit {
+    transition: none;
+    transform: none;
+    box-shadow: var(--elev);
+  }
+}
 
-@media (prefers-reduced-motion: reduce) {   .offer-card {     transition: none;   }   .offer-card:hover {     transform: none;   } } 
+@media (prefers-reduced-motion: reduce) {
+  .offer-card {
+    transition: none;
+  }
+  .offer-card:hover {
+    transform: none;
+  }
+}
 
-@media (prefers-reduced-motion: reduce) {   * {     animation: none !important;     transition: none !important;   } }
-
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation: none !important;
+    transition: none !important;
+  }
+}
