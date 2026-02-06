@@ -3,8 +3,9 @@
   "version": "1.0.0",
   "description": "Profesjonalna, dostępna i responsywna wersja projektu „Vista — Hotels & Travel” w czystym HTML/CSS/JS. Projekt zawiera tryby Light/Dark/Auto, PWA, lekkie animacje, modularny JS oraz konfigurację Netlify z nagłówkami bezpieczeństwa.",
   "scripts": {
-    "build:css": "postcss css/style.css -o css/style.min.css",
-    "build": "npm run build:css",
+    "css:build": "postcss ./css/style.css -o ./css/style.min.css",
+    "css:watch": "postcss ./css/style.css -o ./css/style.min.css -w",
+    "build": "npm run css:build && npm run img:opt",
     "img:opt": "node scripts/optimize-images.mjs",
     "img:clean": "node scripts/optimize-images.mjs --clean",
     "img:watch": "node scripts/optimize-images.mjs --watch",
@@ -19,13 +20,15 @@
     "tourism",
     "portfolio"
   ],
-  "author": "Vista",
+  "author": "Kamil Król",
   "license": "ISC",
   "devDependencies": {
     "autoprefixer": "^10.4.22",
     "chokidar": "^4.0.3",
     "cssnano": "^7.1.2",
+    "postcss": "^8.5.6",
     "postcss-cli": "^11.0.1",
+    "postcss-import": "^16.1.1",
     "sharp": "^0.34.4"
   }
 }

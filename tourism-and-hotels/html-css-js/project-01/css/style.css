@@ -1,3 +1,13 @@
+@import "./modules/tokens.css";
+@import "./modules/base.css";
+@import "./modules/layout.css";
+@import "./modules/components.css";
+@import "./modules/sections.css";
+@import "./modules/utilities.css";
+@import "./modules/themes.css";
+@import "./modules/motion.css";
+@import "./modules/print.css";
+
 /* ====== 00 - GLOBAL VARIABLES & THEMING ===== */
 
 /* -- Fonts -- */
@@ -114,7 +124,6 @@ html[data-theme="dark"] {
     radial-gradient(35vw 35vw at 6% 94%, color-mix(in oklab, #34d1b2 10%, transparent) 0%, transparent 70%);
 }
 
-/* -- MQ: prefer color scheme: dark -- */
 @media (prefers-color-scheme: dark) {
   html:not([data-theme]),
   html[data-theme="auto"] {
@@ -129,7 +138,6 @@ html[data-theme="dark"] {
   }
 }
 
-/* -- MQ: prefer color scheme: light -- */
 @media (prefers-color-scheme: light) {
   html:not([data-theme]),
   html[data-theme="auto"] {
@@ -311,7 +319,7 @@ picture {
 .site-nav__list {
   list-style: none;
   display: flex;
-  gap: 0.75rem;
+  gap: 0.5rem;
   padding: 0;
   margin: 0;
 }
@@ -321,7 +329,7 @@ picture {
   color: var(--text);
   font-size: var(--nav-fs);
   border-radius: var(--radius-pill, 999px);
-  padding: 0.5rem 0.9rem;
+  padding: 0.4rem 0.6rem;
   transition: background 0.2s ease, box-shadow 0.2s ease;
 }
 
@@ -1099,7 +1107,7 @@ picture {
   margin-top: 0.25rem;
 }
 
-/* -- MQ max-width: 900px -- */
+
 @media (max-width: 900px) {
   .section--cta .cta-panel {
     padding: 1rem;
@@ -1109,7 +1117,6 @@ picture {
   }
 }
 
-/* ===== 13 - GLOBAL SECTIONS & LAYOUT PATTERNS ===== */
 
 .section {
   padding-block: clamp(2rem, 4vw, 5rem);
@@ -1133,7 +1140,6 @@ picture {
   margin-bottom: 1rem;
 }
 
-/* -- Breadcrumbs -- */
 .breadcrumb {
   border-bottom: 1px solid var(--border);
   padding: 0;
@@ -1182,7 +1188,7 @@ picture {
   font-weight: 500;
   opacity: 0.85;
 }
-/* -- END of Breadcrumbs -- */
+
 
 .grid-2 {
   display: grid;
@@ -1190,16 +1196,14 @@ picture {
   gap: 1rem;
 }
 
-/* -- MQ max-width: 900px -- */
+
 @media (max-width: 900px) {
   .grid-2 {
     grid-template-columns: 1fr;
   }
 }
 
-/* ===== 14 - FOOTER ===== */
 
-/* ===== 14 - FOOTER ===== */
 
 .site-footer {
   padding-block: clamp(2rem, 4vw, 3rem);
@@ -1825,16 +1829,12 @@ fieldset.form__field legend {
   opacity: 0.25;
 }
 
-/* -- MQ max-width: 900px -- */
 @media (max-width: 900px) {
   .contact-info::after {
     display: none;
   }
 }
 
-/* ===== 17 - OVERLAYS & MEDIA (Lightbox) ===== */
-
-/* --- Lightbox --- */
 .lightbox[hidden] {
   display: none !important;
 }
@@ -2030,7 +2030,6 @@ fieldset.form__field legend {
   margin-right: 0.75rem;
 }
 
-/* -- MQ max-height: 420px -- */
 @media (max-height: 420px) {
   .lightbox__dialog {
     max-height: 100dvh;
@@ -2038,7 +2037,6 @@ fieldset.form__field legend {
   }
 }
 
-/* -- MQ max-width: 900px -- */
 @media (max-width: 900px) {
   .lightbox__nav {
     padding: 0 0.5rem;
@@ -2051,7 +2049,6 @@ fieldset.form__field legend {
   }
 }
 
-/* --- Mobile portrait: delikatnie mniejsze marginesy boczne strzałek --- */
 @media (orientation: portrait) and (max-width: 900px) {
   .lightbox__nav button:first-child {
     margin-left: 0.5rem;
@@ -2061,9 +2058,6 @@ fieldset.form__field legend {
   }
 }
 
-/* ===== 18 - JS BEHAVIORS (Tabs & Reveal) ===== */
-
-/* -- Tabs (rooms) -- */
 .tabs {
   display: flex;
   gap: 0.5rem;
@@ -2085,7 +2079,6 @@ fieldset.form__field legend {
   border-color: transparent;
 }
 
-/* -- Reveal (animations) -- */
 [data-reveal] {
   opacity: 0;
   transform: translateY(10px);
@@ -2097,7 +2090,6 @@ fieldset.form__field legend {
   transform: translateY(0);
 }
 
-/* -- MQ prefers-reduced-motion: reduce -- */
 @media (prefers-reduced-motion: reduce) {
   * {
     animation: none !important;
@@ -2105,9 +2097,6 @@ fieldset.form__field legend {
   }
 }
 
-/* ===== 99 - PRINT STYLES ===== */
-
-/* -- Print Styles -- */
 @media print {
   .site-header,
   .site-footer,
