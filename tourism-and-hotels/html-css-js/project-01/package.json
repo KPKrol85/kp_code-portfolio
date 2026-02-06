@@ -1,7 +1,7 @@
 {
-  "name": "kp-code-demo-turystyka-hotele"
+  "name": "tourism-and-hotels-01",
   "version": "1.0.0",
-  "description": "Profesjonalna, dostępna i responsywna wersja projektu „Tourism & Hotels – 01” w czystym HTML/CSS/JS. Projekt zawiera tryby Light/Dark/Auto, PWA, lekkie animacje, modularny JS oraz konfigurację Netlify z nagłówkami bezpieczeństwa.",
+  "description": "Profesjonalna, dostępna i responsywna wersja projektu „Vista — Hotels & Travel” w czystym HTML/CSS/JS. Projekt zawiera tryby Light/Dark/Auto, PWA, lekkie animacje, modularny JS oraz konfigurację Netlify z nagłówkami bezpieczeństwa.",
   "scripts": {
     "build:css": "postcss css/style.css -o css/style.min.css",
     "build": "npm run build:css",
@@ -16,7 +16,7 @@
     "tourism",
     "portfolio"
   ],
-  "author": "Kamil Krol KP_Code_",
+  "author": "Vista",
   "license": "ISC",
   "devDependencies": {
     "autoprefixer": "^10.4.22",

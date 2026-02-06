@@ -4,8 +4,8 @@
     <!-- Required -->
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Regulamin serwisu — Turystyka &amp; Hotele 01 | KP_Code_</title>
-    <meta name="description" content="Regulamin korzystania z serwisu Tourism &amp; Hotels 01 — zasady rezerwacji, odpowiedzialność oraz prawa użytkowników." />
+    <title>Vista | Regulamin serwisu — Hotels &amp; Travel</title>
+    <meta name="description" content="Regulamin korzystania z serwisu Vista — Hotels &amp; Travel — zasady rezerwacji, odpowiedzialność oraz prawa użytkowników." />
     <meta name="color-scheme" content="light dark" />
 
     <!-- Theme color for Light/Dark -->
@@ -16,28 +16,29 @@
     <meta name="robots" content="noindex,follow" />
     <meta name="referrer" content="strict-origin-when-cross-origin" />
     <meta name="format-detection" content="telephone=no" />
+    <meta name="ld-json" content="assets/seo/ld-regulamin.json" />
 
     <!-- Canonical -->
-    <link rel="canonical" href="https://tourism-project-01.netlify.app/regulamin.html" />
+    <link rel="canonical" href="https://hospitality-pr-01-vista.netlify.app/regulamin.html" />
 
     <!-- Open Graph -->
     <meta property="og:type" content="website" />
-    <meta property="og:site_name" content="KP_Code_ | Turystyka &amp; Hotele Demo" />
-    <meta property="og:title" content="Regulamin serwisu — Turystyka &amp; Hotele 01" />
-    <meta property="og:description" content="Zasady korzystania z serwisu Tourism &amp; Hotels 01, w tym rezerwacje, odpowiedzialność i tryb składania reklamacji." />
-    <meta property="og:url" content="https://tourism-project-01.netlify.app/regulamin.html" />
+    <meta property="og:site_name" content="Vista" />
+    <meta property="og:title" content="Vista | Regulamin serwisu — Hotels &amp; Travel" />
+    <meta property="og:description" content="Zasady korzystania z serwisu Vista — Hotels &amp; Travel, w tym rezerwacje, odpowiedzialność i tryb składania reklamacji." />
+    <meta property="og:url" content="https://hospitality-pr-01-vista.netlify.app/regulamin.html" />
     <meta property="og:locale" content="pl_PL" />
-    <meta property="og:image" content="https://tourism-project-01.netlify.app/assets/img/og/og-1200x630.jpg" />
+    <meta property="og:image" content="https://hospitality-pr-01-vista.netlify.app/assets/img/og/og-1200x630.jpg" />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
     <meta property="og:image:type" content="image/jpeg" />
-    <meta property="og:image:alt" content="Regulamin serwisu hotelowego — projekt demo KP_Code_" />
+    <meta property="og:image:alt" content="Regulamin serwisu hotelowego — Vista — Hotels &amp; Travel" />
 
     <!-- Twitter -->
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="Regulamin serwisu — Turystyka &amp; Hotele 01" />
-    <meta name="twitter:description" content="Reguły korzystania z serwisu Tourism &amp; Hotels 01 obejmujące rezerwacje, płatności oraz reklamacje." />
-    <meta name="twitter:image" content="https://tourism-project-01.netlify.app/assets/img/og/og-1200x1200.jpg" />
+    <meta name="twitter:title" content="Vista | Regulamin serwisu — Hotels &amp; Travel" />
+    <meta name="twitter:description" content="Reguły korzystania z serwisu Vista — Hotels &amp; Travel obejmujące rezerwacje, płatności oraz reklamacje." />
+    <meta name="twitter:image" content="https://hospitality-pr-01-vista.netlify.app/assets/img/og/og-1200x1200.jpg" />
 
     <!-- PWA -->
     <link rel="manifest" href="site.webmanifest" />
@@ -62,8 +63,8 @@
     <header class="site-header" id="top">
       <div class="container site-header__inner">
         <a class="site-header__brand" href="index.html" aria-label="Strona główna">
-          <img src="assets/img/logo/logo-128x128.svg" alt="Logo KP_Code_" class="brand-logo" width="36" height="36" />
-          <span>KP_Code_</span>
+          <img src="assets/img/logo/logo-128x128.svg" alt="Logo Vista" class="brand-logo" width="36" height="36" />
+          <span>Vista<br /><small>Hotels &amp; Travel</small></span>
         </a>
 
         <button class="site-header__nav-toggle" id="nav-toggle" aria-controls="site-nav" aria-expanded="false" aria-label="Otwórz menu">
@@ -72,13 +73,13 @@
             <path d="M3 6h18M3 12h18M3 18h18" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
           </svg>
         </button>
+        <div id="theme-toggle" class="theme-toggle" role="group" aria-label="Motyw strony">
+          <button class="theme-toggle__btn" type="button" data-theme="auto" aria-pressed="false">Auto</button>
+          <button class="theme-toggle__btn" type="button" data-theme="light" aria-pressed="false">Light</button>
+          <button class="theme-toggle__btn" type="button" data-theme="dark" aria-pressed="false">Dark</button>
+        </div>
 
-        <button id="theme-toggle" class="theme-toggle" type="button" aria-label="Przełącz motyw">
-          <img src="assets/img/icons/sun-40x40.svg" alt="" class="theme-icon theme-icon--sun" />
-          <img src="assets/img/icons/moon-40x40.svg" alt="" class="theme-icon theme-icon--moon" />
-        </button>
-
-        <nav class="site-nav" id="site-nav" aria-label="Główne" hidden>
+        <nav class="site-nav" id="site-nav" aria-label="Główne">
           <ul class="site-nav__list">
             <li><a href="index.html" data-nav>Strona główna</a></li>
             <li><a href="rooms.html" data-nav>Pokoje &amp; Apartamenty</a></li>
@@ -109,10 +110,10 @@
         <div class="container">
           <article class="legal-card" aria-labelledby="terms-heading">
             <h1 id="terms-heading" class="section-title">Regulamin serwisu</h1>
-            <p class="legal-intro">Regulamin określa zasady korzystania z serwisu Tourism &amp; Hotels 01, w tym procedury rezerwacji, odpowiedzialność stron oraz tryb składania reklamacji.</p>
+            <p class="legal-intro">Regulamin określa zasady korzystania z serwisu Vista — Hotels &amp; Travel, w tym procedury rezerwacji, odpowiedzialność stron oraz tryb składania reklamacji.</p>
 
             <h2>1. Postanowienia ogólne</h2>
-            <p>Serwis ma charakter demonstracyjny i prezentuje funkcjonalności hotelowego front-endu przygotowanego przez KP_Code_. Korzystanie z witryny oznacza akceptację niniejszych zasad.</p>
+            <p>Serwis ma charakter demonstracyjny i prezentuje funkcjonalności hotelowego front-endu przygotowanego przez Vista. Korzystanie z witryny oznacza akceptację niniejszych zasad.</p>
             <p>Regulamin obowiązuje wszystkich użytkowników odwiedzających stronę internetową, niezależnie od sposobu korzystania z treści.</p>
 
             <h2>2. Korzystanie z serwisu</h2>
@@ -134,14 +135,14 @@
 
             <h2>5. Prawa własności intelektualnej</h2>
             <p>
-              Wszelkie materiały tekstowe, graficzne i multimedialne udostępnione w serwisie stanowią własność KP_Code_ lub zostały wykorzystane zgodnie z licencją. Kopiowanie i rozpowszechnianie
+              Wszelkie materiały tekstowe, graficzne i multimedialne udostępnione w serwisie stanowią własność Vista lub zostały wykorzystane zgodnie z licencją. Kopiowanie i rozpowszechnianie
               treści bez zgody nie jest dozwolone.
             </p>
 
             <h2>6. Reklamacje i kontakt</h2>
             <p>
               Uwagi dotyczące działania serwisu można kierować na adres
-              <a href="mailto:kp_code_@gmail.com">kp_code_@gmail.com</a>
+              <a href="mailto:kontakt@vista.pl">kontakt@vista.pl</a>
               . Reklamacje będą rozpatrywane w możliwie najkrótszym terminie, nie dłuższym niż 14 dni roboczych.
             </p>
 
@@ -162,10 +163,10 @@
             <section class="footer__col footer__brand" aria-labelledby="footer-brand">
               <img class="footer__brand-img" src="assets/img/logo/logo-160x160.svg" alt="" width="160" height="160" decoding="async" loading="lazy" aria-hidden="true" />
               <h3 id="footer-brand" class="footer__heading">
-                <a href="index.html" class="footer__brand-link" aria-label="KP_Code_ – strona główna">KP_Code_</a>
+                <a href="index.html" class="footer__brand-link" aria-label="Vista — Hotels &amp; Travel — strona główna">Vista<br /><small>Hotels &amp; Travel</small></a>
               </h3>
-              <p class="footer__text">Projekt demonstracyjny prezentujący nowoczesny front-end dla sektora turystyki i hoteli.</p>
-              <a href="#" class="footer__brand-author" aria-label="Strona autora — KP_Code_">Strona autora</a>
+              <p class="footer__text">Projekt demonstracyjny Vista — Hotels &amp; Travel prezentujący nowoczesny front-end dla sektora turystyki i hoteli.</p>
+              <a href="marka.html" class="footer__brand-author" aria-label="Strona marki — Vista">Strona marki</a>
             </section>
 
             <nav class="footer__col footer__nav" aria-labelledby="footer-nav">
@@ -192,7 +193,9 @@
               <h3 id="footer-contact" class="footer__heading">KONTAKT</h3>
 
               <address class="footer__text" translate="no">
-                KP_Code_
+                Vista
+                <br />
+                Hotels &amp; Travel
                 <br />
                 Hotel Demo Sp. z o.o.
                 <br />
@@ -202,9 +205,9 @@
               </address>
 
               <p class="footer__text">
-                <a href="mailto:kp_code_@gmail.com">
+                <a href="mailto:kontakt@vista.pl">
                   <img src="assets/img/icons/email-40x40.svg" alt="" class="footer__icon-img icon--mono" width="24" height="24" decoding="async" loading="lazy" aria-hidden="true" />
-                  kp_code_@gmail.com
+                  kontakt@vista.pl
                 </a>
                 <br />
                 <a href="tel:+48533537091">
@@ -215,16 +218,16 @@
 
               <h3 id="footer-social" class="footer__heading">SOCIAL MEDIA</h3>
               <div class="footer__social" aria-labelledby="footer-social" aria-label="Media społecznościowe">
-                <a href="#" aria-label="Facebook — KP_Code_" rel="me noopener noreferrer">
+                <a href="social.html#facebook" aria-label="Facebook — Vista" rel="me noopener noreferrer">
                   <img src="assets/img/icons/facebook.svg" alt="" class="footer__icon-img" width="24" height="24" decoding="async" loading="lazy" aria-hidden="true" />
                 </a>
-                <a href="#" aria-label="YouTube — KP_Code_" rel="me noopener noreferrer">
+                <a href="social.html#youtube" aria-label="YouTube — Vista" rel="me noopener noreferrer">
                   <img src="assets/img/icons/youtube.svg" alt="" class="footer__icon-img" width="24" height="24" decoding="async" loading="lazy" aria-hidden="true" />
                 </a>
-                <a href="#" aria-label="GitHub — KP_Code_" rel="me noopener noreferrer">
+                <a href="social.html#github" aria-label="GitHub — Vista" rel="me noopener noreferrer">
                   <img src="assets/img/icons/github.svg" alt="" class="footer__icon-img icon--mono" width="24" height="24" decoding="async" loading="lazy" aria-hidden="true" />
                 </a>
-                <a href="#" aria-label="X — KP_Code_" rel="me noopener noreferrer">
+                <a href="social.html#x" aria-label="X — Vista" rel="me noopener noreferrer">
                   <img src="assets/img/icons/x.svg" alt="" class="footer__icon-img icon--mono" width="24" height="24" decoding="async" loading="lazy" aria-hidden="true" />
                 </a>
               </div>
@@ -235,41 +238,13 @@
             <p>
               ©
               <span data-year></span>
-              KP_Code. Wszelkie prawa zastrzeżone. Projekt i wdrożenie: KP_Code
+              Vista. Wszelkie prawa zastrzeżone. Projekt i wdrożenie: Vista
             </p>
             <p>Made for demo</p>
           </div>
         </div>
       </div>
     </footer>
-
-    <!-- JSON-LD -->
-    <script type="application/ld+json">
-      {
-        "@context": "https://schema.org",
-        "@type": "Hotel",
-        "name": "Tourism & Hotels",
-        "url": "index.html",
-        "address": {
-          "@type": "PostalAddress",
-          "streetAddress": "ul. Przykładowa 1",
-          "addressLocality": "Miasto",
-          "postalCode": "00-000",
-          "addressCountry": "PL"
-        },
-        "telephone": "+48 000 000 000",
-        "image": "assets/img/hero/hero-01-1280.jpg"
-      }
-    </script>
-    <script type="application/ld+json">
-      {
-        "@context": "https://schema.org",
-        "@type": "Organization",
-        "name": "Tourism & Hotels",
-        "url": "index.html",
-        "logo": "assets/img/ui/icon-192.png"
-      }
-    </script>
 
     <!-- SCRIPTS -->
     <script type="module" defer src="js/script.js"></script>

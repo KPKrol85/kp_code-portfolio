@@ -1,60 +1,41 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="pl" data-theme="auto">
   <head>
-    <!-- Required -->
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Turystyka & Hotele 01 — Strona demo | KP_Code_</title>
-    <meta name="description" content="Nowoczesny projekt front-end HTML / CSS / JS — strona demo dla branży turystyczno-hotelarskiej. Autor: KP_Code_." />
+    <title>Vista — Hotels &amp; Travel</title>
+    <meta name="description" content="Vista — Hotels &amp; Travel. Nowoczesny projekt front-end HTML / CSS / JS dla branży turystyczno-hotelarskiej z eleganckim, lekkim motywem." />
     <meta name="color-scheme" content="light dark" />
-
-    <!-- Theme color for Light/Dark -->
     <meta name="theme-color" media="(prefers-color-scheme: light)" content="#f7f6f3" />
     <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#0d0f14" />
-
-    <!-- Indexing / privacy -->
     <meta name="robots" content="index,follow" />
     <meta name="referrer" content="strict-origin-when-cross-origin" />
     <meta name="format-detection" content="telephone=no" />
-
-    <!-- Canonical (po wdrożeniu podmień na finalny adres produkcyjny) -->
-    <link rel="canonical" href="https://tourism-project-01.netlify.app/" />
-
-    <!-- Open Graph -->
+    <meta name="ld-json" content="assets/seo/ld-index.json" />
+    <link rel="canonical" href="https://hospitality-pr-01-vista.netlify.app/" />
     <meta property="og:type" content="website" />
-    <meta property="og:site_name" content="KP_Code_ | Turystyka & Hotele Demo" />
-    <meta property="og:title" content="Turystyka & Hotele 01 — Strona demo" />
-    <meta property="og:description" content="Nowoczesny projekt front-end HTML / CSS / JS — stworzony przez KP_Code_." />
-    <meta property="og:url" content="https://tourism-project-01.netlify.app/" />
+    <meta property="og:site_name" content="Vista" />
+    <meta property="og:title" content="Vista — Hotels &amp; Travel" />
+    <meta property="og:description" content="Vista — Hotels &amp; Travel. Nowoczesny projekt front-end HTML / CSS / JS dla branży turystyczno-hotelarskiej." />
+    <meta property="og:url" content="https://hospitality-pr-01-vista.netlify.app/" />
     <meta property="og:locale" content="pl_PL" />
-    <meta property="og:image" content="assets/img/og/og-1200x630.jpg" />
+    <meta property="og:image" content="https://hospitality-pr-01-vista.netlify.app/assets/img/og/og-1200x630.jpg" />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
     <meta property="og:image:type" content="image/jpeg" />
-    <meta property="og:image:alt" content="Nowoczesny hotel z widokiem na morze — projekt demo KP_Code_" />
-
-    <!-- Twitter -->
+    <meta property="og:image:alt" content="Nowoczesny hotel z widokiem na morze — Vista — Hotels &amp; Travel" />
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="Turystyka & Hotele 01 — Strona demo" />
-    <meta name="twitter:description" content="Nowoczesny projekt front-end HTML / CSS / JS — stworzony przez KP_Code_." />
-    <meta name="twitter:image" content="assets/img/og/og-1200x1200.jpg" />
-
-    <!-- PWA -->
+    <meta name="twitter:title" content="Vista — Hotels &amp; Travel" />
+    <meta name="twitter:description" content="Vista — Hotels &amp; Travel. Nowoczesny projekt front-end HTML / CSS / JS dla branży turystyczno-hotelarskiej." />
+    <meta name="twitter:image" content="https://hospitality-pr-01-vista.netlify.app/assets/img/og/og-1200x1200.jpg" />
     <link rel="manifest" href="site.webmanifest" />
-
-    <!-- Icons -->
     <link rel="icon" href="assets/img/ui/favicon.svg" type="image/svg+xml" />
     <link rel="icon" href="assets/img/ui/favicon-32x32.png" sizes="32x32" />
     <link rel="icon" href="assets/img/ui/favicon-16x16.png" sizes="16x16" />
     <link rel="apple-touch-icon" href="assets/img/ui/apple-touch-icon.png" sizes="180x180" />
     <link rel="mask-icon" href="assets/img/ui/safari-pinned-tab.svg" color="#0d0f14" />
-    <meta name="theme-color" content="#2dc7a6" />
     <meta name="msapplication-TileColor" content="#2dc7a6" />
-
-    <!-- Styles -->
     <link rel="stylesheet" href="css/style.min.css" />
-
-    <!-- Preload LCP image -->
     <link
       rel="preload"
       as="image"
@@ -65,11 +46,6 @@
         assets/img/hero/hero-01-1200x675.jpg 1200w,
         assets/img/hero/hero-01-1600x900.jpg 1600w"
       imagesizes="(max-width: 900px) calc(100vw - 2rem), 628px" />
-
-    <!-- (Opcjonalnie) preconnect pod zewnętrzne fonty/CDN
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    -->
   </head>
 
   <!-- BODY -->
@@ -79,28 +55,26 @@
     <!-- HEADER -->
     <header class="site-header" id="top">
       <div class="container site-header__inner">
-        <!-- Logo + Brand -->
         <a class="site-header__brand" href="index.html" aria-label="Strona główna">
-          <img src="assets/img/logo/logo-128x128.svg" alt="Logo KP_Code_" class="brand-logo" width="36" height="36" />
-          <span>KP_Code_</span>
+          <img src="assets/img/logo/logo-128x128.svg" alt="Logo Vista" class="brand-logo" width="36" height="36" />
+          <span>
+            Vista
+            <br />
+            <small>Hotels &amp; Travel</small>
+          </span>
         </a>
-
-        <!-- Nav toggle -->
         <button class="site-header__nav-toggle" id="nav-toggle" aria-controls="site-nav" aria-expanded="false" aria-label="Otwórz menu">
           <span class="visually-hidden">Menu</span>
           <svg class="icon" viewBox="0 0 24 24" aria-hidden="true">
             <path d="M3 6h18M3 12h18M3 18h18" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
           </svg>
         </button>
-
-        <!-- Theme toggle (teraz w pasku obok hamburgera) -->
-        <button id="theme-toggle" class="theme-toggle" type="button" aria-label="Przełącz motyw">
-          <img src="assets/img/icons/sun-40x40.svg" alt="" class="theme-icon theme-icon--sun" />
-          <img src="assets/img/icons/moon-40x40.svg" alt="" class="theme-icon theme-icon--moon" />
-        </button>
-
-        <!-- Nav -->
-        <nav class="site-nav" id="site-nav" aria-label="Główne" hidden>
+        <div id="theme-toggle" class="theme-toggle" role="group" aria-label="Motyw strony">
+          <button class="theme-toggle__btn" type="button" data-theme="auto" aria-pressed="false">Auto</button>
+          <button class="theme-toggle__btn" type="button" data-theme="light" aria-pressed="false">Light</button>
+          <button class="theme-toggle__btn" type="button" data-theme="dark" aria-pressed="false">Dark</button>
+        </div>
+        <nav class="site-nav" id="site-nav" aria-label="Główne">
           <ul class="site-nav__list">
             <li><a href="index.html" data-nav>Strona główna</a></li>
             <li><a href="rooms.html" data-nav>Pokoje &amp; Apartamenty</a></li>
@@ -108,7 +82,6 @@
             <li><a href="gallery.html" data-nav>Galeria</a></li>
             <li><a href="contact.html" data-nav>Kontakt</a></li>
           </ul>
-
           <div class="site-nav__extras">
             <a class="btn btn--primary" href="#book">Rezerwuj</a>
           </div>
@@ -119,33 +92,18 @@
     <!-- MAIN CONTENT -->
     <main id="main">
       <!-- HERO SECTION -->
-      <section class="hero" aria-label="Demo strony turystyczno-hotelowej KP_Code_">
+      <section class="hero" aria-label="Demo strony Vista — Hotels &amp; Travel">
         <div class="container hero__inner">
           <div class="hero__media" data-reveal>
             <picture>
-              <!-- AVIF -->
               <source
                 type="image/avif"
-                srcset="
-                  assets/img/hero/hero-01-640x360.avif   640w,
-                  assets/img/hero/hero-01-960x540.avif   960w,
-                  assets/img/hero/hero-01-1200x675.avif 1200w,
-                  assets/img/hero/hero-01-1600x900.avif 1600w
-                "
+                srcset="assets/img/hero/hero-01-640x360.avif 640w, assets/img/hero/hero-01-960x540.avif 960w, assets/img/hero/hero-01-1200x675.avif 1200w, assets/img/hero/hero-01-1600x900.avif 1600w"
                 sizes="(max-width: 900px) calc(100vw - 2rem), 628px" />
-
-              <!-- WebP -->
               <source
                 type="image/webp"
-                srcset="
-                  assets/img/hero/hero-01-640x360.webp   640w,
-                  assets/img/hero/hero-01-960x540.webp   960w,
-                  assets/img/hero/hero-01-1200x675.webp 1200w,
-                  assets/img/hero/hero-01-1600x900.webp 1600w
-                "
+                srcset="assets/img/hero/hero-01-640x360.webp 640w, assets/img/hero/hero-01-960x540.webp 960w, assets/img/hero/hero-01-1200x675.webp 1200w, assets/img/hero/hero-01-1600x900.webp 1600w"
                 sizes="(max-width: 900px) calc(100vw - 2rem), 628px" />
-
-              <!-- JPG fallback -->
               <img
                 src="assets/img/hero/hero-01-1200x675.jpg"
                 srcset="
@@ -162,13 +120,12 @@
                 decoding="async" />
             </picture>
           </div>
-
           <div class="hero__content" data-reveal>
             <h1 class="hero__title">Nowoczesne strony dla turystyki i hoteli</h1>
             <p class="hero__subtitle">
               Demonstracyjny projekt
-              <strong>KP_Code_</strong>
-              prezentujący elegancki i lekki motyw stworzony dla branży
+              <strong>Vista</strong>
+              — Hotels &amp; Travel prezentujący elegancki i lekki motyw stworzony dla branży
               <em>turystycznej, hotelarskiej i wypoczynkowej</em>
               . Minimalizm, przejrzystość i morska świeżość w jednym.
             </p>
@@ -184,7 +141,6 @@
       <section class="section" aria-labelledby="benefits">
         <div class="container">
           <h2 id="benefits" class="section-title" data-reveal>Dlaczego my</h2>
-
           <div class="benefits" data-reveal>
             <!-- Lokalizacja -->
             <article class="benefit" data-reveal data-reveal-delay="100">
@@ -197,7 +153,6 @@
               </h3>
               <p class="benefit__text">W samym sercu miasta, kilka kroków od kultowych miejsc.</p>
             </article>
-
             <!-- Komfort -->
             <article class="benefit" data-reveal data-reveal-delay="200">
               <h3 class="benefit__title">
@@ -209,7 +164,6 @@
               </h3>
               <p class="benefit__text">Materace premium, blackout, selekcja poduszek i ciche wnętrza.</p>
             </article>
-
             <!-- Smaki -->
             <article class="benefit" data-reveal data-reveal-delay="300">
               <h3 class="benefit__title">
@@ -235,7 +189,6 @@
             <!-- Classic -->
             <article class="room-card" data-reveal data-reveal-delay="100">
               <picture>
-                <!-- AVIF -->
                 <source
                   type="image/avif"
                   srcset="
@@ -245,7 +198,7 @@
                     assets/img/rooms/classic-1600x1067.avif 1600w
                   "
                   sizes="(max-width: 900px) calc(100vw - 2rem), 400px" />
-                <!-- WebP -->
+
                 <source
                   type="image/webp"
                   srcset="
@@ -255,7 +208,7 @@
                     assets/img/rooms/classic-1600x1067.webp 1600w
                   "
                   sizes="(max-width: 900px) calc(100vw - 2rem), 400px" />
-                <!-- JPG -->
+
                 <img
                   class="room-card__img"
                   src="assets/img/rooms/classic-1280x853.jpg"
@@ -282,7 +235,6 @@
             <!-- Deluxe -->
             <article class="room-card" data-reveal data-reveal-delay="200">
               <picture>
-                <!-- AVIF -->
                 <source
                   type="image/avif"
                   srcset="
@@ -292,7 +244,7 @@
                     assets/img/rooms/deluxe-1600x1067.avif 1600w
                   "
                   sizes="(max-width: 900px) calc(100vw - 2rem), 400px" />
-                <!-- WebP -->
+
                 <source
                   type="image/webp"
                   srcset="
@@ -302,16 +254,11 @@
                     assets/img/rooms/deluxe-1600x1067.webp 1600w
                   "
                   sizes="(max-width: 900px) calc(100vw - 2rem), 400px" />
-                <!-- JPG -->
+
                 <img
                   class="room-card__img"
                   src="assets/img/rooms/deluxe-1280x853.jpg"
-                  srcset="
-                    assets/img/rooms/deluxe-640x427.jpg    640w,
-                    assets/img/rooms/deluxe-960x640.jpg    960w,
-                    assets/img/rooms/deluxe-1280x853.jpg  1280w,
-                    assets/img/rooms/deluxe-1600x1067.jpg 1600w
-                  "
+                  srcset="assets/img/rooms/deluxe-640x427.jpg 640w, assets/img/rooms/deluxe-960x640.jpg 960w, assets/img/rooms/deluxe-1280x853.jpg 1280w, assets/img/rooms/deluxe-1600x1067.jpg 1600w"
                   sizes="(max-width: 900px) calc(100vw - 2rem), 400px"
                   alt="Pokój Deluxe – elegancki, nowoczesny pokój z dwoma łóżkami, nastrojowym oświetleniem i telewizorem na ścianie"
                   width="1600"
@@ -329,7 +276,6 @@
             <!-- Luxury Suite -->
             <article class="room-card" data-reveal data-reveal-delay="300">
               <picture>
-                <!-- AVIF -->
                 <source
                   type="image/avif"
                   srcset="
@@ -339,7 +285,7 @@
                     assets/img/rooms/luxury-suite-1600x1067.avif 1600w
                   "
                   sizes="(max-width: 900px) calc(100vw - 2rem), 400px" />
-                <!-- WebP -->
+
                 <source
                   type="image/webp"
                   srcset="
@@ -349,7 +295,7 @@
                     assets/img/rooms/luxury-suite-1600x1067.webp 1600w
                   "
                   sizes="(max-width: 900px) calc(100vw - 2rem), 400px" />
-                <!-- JPG -->
+
                 <img
                   class="room-card__img"
                   src="assets/img/rooms/luxury-suite-1280x853.jpg"
@@ -383,7 +329,6 @@
           <div class="highlight" data-reveal>
             <div class="highlight__media">
               <picture>
-                <!-- AVIF -->
                 <source
                   type="image/avif"
                   srcset="
@@ -393,7 +338,7 @@
                     ./assets/img/rooms/luxury-room-1600x900.avif 1600w
                   "
                   sizes="(max-width: 900px) calc(100vw - 2rem), 720px" />
-                <!-- WebP -->
+
                 <source
                   type="image/webp"
                   srcset="
@@ -403,7 +348,7 @@
                     ./assets/img/rooms/luxury-room-1600x900.webp 1600w
                   "
                   sizes="(max-width: 900px) calc(100vw - 2rem), 720px" />
-                <!-- JPG -->
+
                 <img
                   src="assets/img/rooms/luxury-room-1280x720.jpg"
                   srcset="
@@ -462,18 +407,15 @@
       <section class="section" aria-labelledby="testimonials">
         <div class="container">
           <h2 id="testimonials" class="section-title" data-reveal>Opinie gości</h2>
-
           <div class="testimonials" data-reveal>
             <figure class="testimonial" data-reveal data-reveal-delay="100">
               <blockquote class="testimonial__quote">„Najlepszy sen i najpyszniejsze śniadanie w mieście.”</blockquote>
               <figcaption class="testimonial__author">— Marta, maj 2025</figcaption>
             </figure>
-
             <figure class="testimonial" data-reveal data-reveal-delay="200">
               <blockquote class="testimonial__quote">„Dopracowane detale, świetna obsługa. Wracamy!”</blockquote>
               <figcaption class="testimonial__author">— Kamil, kwiecień 2025</figcaption>
             </figure>
-
             <figure class="testimonial" data-reveal data-reveal-delay="300">
               <blockquote class="testimonial__quote">„Cicho, czysto i bardzo wygodnie. Perfekcyjna lokalizacja.”</blockquote>
               <figcaption class="testimonial__author">— Agnieszka, luty 2025</figcaption>
@@ -492,31 +434,30 @@
 
           <div class="gallery-grid" data-reveal>
             <!-- 1 -->
-            <a class="gallery-grid__item" href="./assets/img/gallery/gallery-01-1600x1067.jpg"
- data-lightbox-item>
+            <a class="gallery-grid__item" href="./assets/img/gallery/gallery-01-1600x1067.jpg" data-lightbox-item>
               <picture>
                 <source
                   type="image/avif"
                   srcset="
-                    ./assets/img/gallery/gallery-01-640x427.avif 320w,
-                    ./assets/img/gallery/gallery-01-960x640.avif 480w,
-                    ./assets/img/gallery/gallery-01-1280x853.avif 640w,
+                    ./assets/img/gallery/gallery-01-640x427.avif   320w,
+                    ./assets/img/gallery/gallery-01-960x640.avif   480w,
+                    ./assets/img/gallery/gallery-01-1280x853.avif  640w,
                     ./assets/img/gallery/gallery-01-1600x1067.avif 800w
                   " />
                 <source
                   type="image/webp"
                   srcset="
-                    ./assets/img/gallery/gallery-01-640x427.webp 320w,
-                    ./assets/img/gallery/gallery-01-960x640.webp 480w,
-                    ./assets/img/gallery/gallery-01-1280x853.webp 640w,
+                    ./assets/img/gallery/gallery-01-640x427.webp   320w,
+                    ./assets/img/gallery/gallery-01-960x640.webp   480w,
+                    ./assets/img/gallery/gallery-01-1280x853.webp  640w,
                     ./assets/img/gallery/gallery-01-1600x1067.webp 800w
                   " />
                 <img
                   src="./assets/img/gallery/gallery-01-1280x853.jpg"
                   srcset="
-                    ./assets/img/gallery/gallery-01-640x427.jpg 320w,
-                    ./assets/img/gallery/gallery-01-960x640.jpg 480w,
-                    ./assets/img/gallery/gallery-01-1280x853.jpg 640w,
+                    ./assets/img/gallery/gallery-01-640x427.jpg   320w,
+                    ./assets/img/gallery/gallery-01-960x640.jpg   480w,
+                    ./assets/img/gallery/gallery-01-1280x853.jpg  640w,
                     ./assets/img/gallery/gallery-01-1600x1067.jpg 800w
                   "
                   sizes="(max-width: 900px) calc(100vw - 2rem), (max-width: 1200px) 45vw, 360px"
@@ -534,25 +475,25 @@
                 <source
                   type="image/avif"
                   srcset="
-                    ./assets/img/gallery/gallery-02-640x427.avif 320w,
-                    ./assets/img/gallery/gallery-02-960x640.avif 480w,
-                    ./assets/img/gallery/gallery-02-1280x853.avif 640w,
+                    ./assets/img/gallery/gallery-02-640x427.avif   320w,
+                    ./assets/img/gallery/gallery-02-960x640.avif   480w,
+                    ./assets/img/gallery/gallery-02-1280x853.avif  640w,
                     ./assets/img/gallery/gallery-02-1600x1067.avif 800w
                   " />
                 <source
                   type="image/webp"
                   srcset="
-                    ./assets/img/gallery/gallery-02-640x427.webp 320w,
-                    ./assets/img/gallery/gallery-02-960x640.webp 480w,
-                    ./assets/img/gallery/gallery-02-1280x853.webp 640w,
+                    ./assets/img/gallery/gallery-02-640x427.webp   320w,
+                    ./assets/img/gallery/gallery-02-960x640.webp   480w,
+                    ./assets/img/gallery/gallery-02-1280x853.webp  640w,
                     ./assets/img/gallery/gallery-02-1600x1067.webp 800w
                   " />
                 <img
                   src="./assets/img/gallery/gallery-02-1280x853.jpg"
                   srcset="
-                    ./assets/img/gallery/gallery-02-640x427.jpg 320w,
-                    ./assets/img/gallery/gallery-02-960x640.jpg 480w,
-                    ./assets/img/gallery/gallery-02-1280x853.jpg 640w,
+                    ./assets/img/gallery/gallery-02-640x427.jpg   320w,
+                    ./assets/img/gallery/gallery-02-960x640.jpg   480w,
+                    ./assets/img/gallery/gallery-02-1280x853.jpg  640w,
                     ./assets/img/gallery/gallery-02-1600x1067.jpg 800w
                   "
                   sizes="(max-width: 900px) calc(100vw - 2rem), (max-width: 1200px) 45vw, 360px"
@@ -570,25 +511,25 @@
                 <source
                   type="image/avif"
                   srcset="
-                    ./assets/img/gallery/gallery-03-640x427.avif 320w,
-                    ./assets/img/gallery/gallery-03-960x640.avif 480w,
-                    ./assets/img/gallery/gallery-03-1280x853.avif 640w,
+                    ./assets/img/gallery/gallery-03-640x427.avif   320w,
+                    ./assets/img/gallery/gallery-03-960x640.avif   480w,
+                    ./assets/img/gallery/gallery-03-1280x853.avif  640w,
                     ./assets/img/gallery/gallery-03-1600x1067.avif 800w
                   " />
                 <source
                   type="image/webp"
                   srcset="
-                    ./assets/img/gallery/gallery-03-640x427.webp 320w,
-                    ./assets/img/gallery/gallery-03-960x640.webp 480w,
-                    ./assets/img/gallery/gallery-03-1280x853.webp 640w,
+                    ./assets/img/gallery/gallery-03-640x427.webp   320w,
+                    ./assets/img/gallery/gallery-03-960x640.webp   480w,
+                    ./assets/img/gallery/gallery-03-1280x853.webp  640w,
                     ./assets/img/gallery/gallery-03-1600x1067.webp 800w
                   " />
                 <img
                   src="./assets/img/gallery/gallery-03-1280x853.jpg"
                   srcset="
-                    ./assets/img/gallery/gallery-03-640x427.jpg 320w,
-                    ./assets/img/gallery/gallery-03-960x640.jpg 480w,
-                    ./assets/img/gallery/gallery-03-1280x853.jpg 640w,
+                    ./assets/img/gallery/gallery-03-640x427.jpg   320w,
+                    ./assets/img/gallery/gallery-03-960x640.jpg   480w,
+                    ./assets/img/gallery/gallery-03-1280x853.jpg  640w,
                     ./assets/img/gallery/gallery-03-1600x1067.jpg 800w
                   "
                   sizes="(max-width: 900px) calc(100vw - 2rem), (max-width: 1200px) 45vw, 360px"
@@ -606,25 +547,25 @@
                 <source
                   type="image/avif"
                   srcset="
-                    ./assets/img/gallery/gallery-04-640x427.avif 320w,
-                    ./assets/img/gallery/gallery-04-960x640.avif 480w,
-                    ./assets/img/gallery/gallery-04-1280x853.avif 640w,
+                    ./assets/img/gallery/gallery-04-640x427.avif   320w,
+                    ./assets/img/gallery/gallery-04-960x640.avif   480w,
+                    ./assets/img/gallery/gallery-04-1280x853.avif  640w,
                     ./assets/img/gallery/gallery-04-1600x1067.avif 800w
                   " />
                 <source
                   type="image/webp"
                   srcset="
-                    ./assets/img/gallery/gallery-04-640x427.webp 320w,
-                    ./assets/img/gallery/gallery-04-960x640.webp 480w,
-                    ./assets/img/gallery/gallery-04-1280x853.webp 640w,
+                    ./assets/img/gallery/gallery-04-640x427.webp   320w,
+                    ./assets/img/gallery/gallery-04-960x640.webp   480w,
+                    ./assets/img/gallery/gallery-04-1280x853.webp  640w,
                     ./assets/img/gallery/gallery-04-1600x1067.webp 800w
                   " />
                 <img
                   src="./assets/img/gallery/gallery-04-1280x853.jpg"
                   srcset="
-                    ./assets/img/gallery/gallery-04-640x427.jpg 320w,
-                    ./assets/img/gallery/gallery-04-960x640.jpg 480w,
-                    ./assets/img/gallery/gallery-04-1280x853.jpg 640w,
+                    ./assets/img/gallery/gallery-04-640x427.jpg   320w,
+                    ./assets/img/gallery/gallery-04-960x640.jpg   480w,
+                    ./assets/img/gallery/gallery-04-1280x853.jpg  640w,
                     ./assets/img/gallery/gallery-04-1600x1067.jpg 800w
                   "
                   sizes="(max-width: 900px) calc(100vw - 2rem), (max-width: 1200px) 45vw, 360px"
@@ -642,25 +583,25 @@
                 <source
                   type="image/avif"
                   srcset="
-                    ./assets/img/gallery/gallery-05-640x427.avif 320w,
-                    ./assets/img/gallery/gallery-05-960x640.avif 480w,
-                    ./assets/img/gallery/gallery-05-1280x853.avif 640w,
+                    ./assets/img/gallery/gallery-05-640x427.avif   320w,
+                    ./assets/img/gallery/gallery-05-960x640.avif   480w,
+                    ./assets/img/gallery/gallery-05-1280x853.avif  640w,
                     ./assets/img/gallery/gallery-05-1600x1067.avif 800w
                   " />
                 <source
                   type="image/webp"
                   srcset="
-                    ./assets/img/gallery/gallery-05-640x427.webp 320w,
-                    ./assets/img/gallery/gallery-05-960x640.webp 480w,
-                    ./assets/img/gallery/gallery-05-1280x853.webp 640w,
+                    ./assets/img/gallery/gallery-05-640x427.webp   320w,
+                    ./assets/img/gallery/gallery-05-960x640.webp   480w,
+                    ./assets/img/gallery/gallery-05-1280x853.webp  640w,
                     ./assets/img/gallery/gallery-05-1600x1067.webp 800w
                   " />
                 <img
                   src="./assets/img/gallery/gallery-05-1280x853.jpg"
                   srcset="
-                    ./assets/img/gallery/gallery-05-640x427.jpg 320w,
-                    ./assets/img/gallery/gallery-05-960x640.jpg 480w,
-                    ./assets/img/gallery/gallery-05-1280x853.jpg 640w,
+                    ./assets/img/gallery/gallery-05-640x427.jpg   320w,
+                    ./assets/img/gallery/gallery-05-960x640.jpg   480w,
+                    ./assets/img/gallery/gallery-05-1280x853.jpg  640w,
                     ./assets/img/gallery/gallery-05-1600x1067.jpg 800w
                   "
                   sizes="(max-width: 900px) calc(100vw - 2rem), (max-width: 1200px) 45vw, 360px"
@@ -678,25 +619,25 @@
                 <source
                   type="image/avif"
                   srcset="
-                    ./assets/img/gallery/gallery-06-640x427.avif 320w,
-                    ./assets/img/gallery/gallery-06-960x640.avif 480w,
-                    ./assets/img/gallery/gallery-06-1280x853.avif 640w,
+                    ./assets/img/gallery/gallery-06-640x427.avif   320w,
+                    ./assets/img/gallery/gallery-06-960x640.avif   480w,
+                    ./assets/img/gallery/gallery-06-1280x853.avif  640w,
                     ./assets/img/gallery/gallery-06-1600x1067.avif 800w
                   " />
                 <source
                   type="image/webp"
                   srcset="
-                    ./assets/img/gallery/gallery-06-640x427.webp 320w,
-                    ./assets/img/gallery/gallery-06-960x640.webp 480w,
-                    ./assets/img/gallery/gallery-06-1280x853.webp 640w,
+                    ./assets/img/gallery/gallery-06-640x427.webp   320w,
+                    ./assets/img/gallery/gallery-06-960x640.webp   480w,
+                    ./assets/img/gallery/gallery-06-1280x853.webp  640w,
                     ./assets/img/gallery/gallery-06-1600x1067.webp 800w
                   " />
                 <img
                   src="./assets/img/gallery/gallery-06-1280x853.jpg"
                   srcset="
-                    ./assets/img/gallery/gallery-06-640x427.jpg 320w,
-                    ./assets/img/gallery/gallery-06-960x640.jpg 480w,
-                    ./assets/img/gallery/gallery-06-1280x853.jpg 640w,
+                    ./assets/img/gallery/gallery-06-640x427.jpg   320w,
+                    ./assets/img/gallery/gallery-06-960x640.jpg   480w,
+                    ./assets/img/gallery/gallery-06-1280x853.jpg  640w,
                     ./assets/img/gallery/gallery-06-1600x1067.jpg 800w
                   "
                   sizes="(max-width: 900px) calc(100vw - 2rem), (max-width: 1200px) 45vw, 360px"
@@ -723,166 +664,121 @@
       </section>
     </main>
 
-<!-- FOOTER -->
-<footer class="site-footer" role="contentinfo" aria-labelledby="footer-heading">
-  <h2 id="footer-heading" class="sr-only">Stopka serwisu</h2>
-  <div class="container">
-    <div class="footer__inner">
-      <div class="footer__grid">
-        <!-- Kolumna 1 — Brand/Intro -->
-        <section class="footer__col footer__brand" aria-labelledby="footer-brand">
-          <img
-            class="footer__brand-img"
-            src="assets/img/logo/logo-160x160.svg"
-            alt=""
-            width="160"
-            height="160"
-            decoding="async"
-            loading="lazy"
-            aria-hidden="true"
-          />
-          <h3 id="footer-brand" class="footer__heading">
-            <a href="index.html" class="footer__brand-link" aria-label="KP_Code_ – strona główna">KP_Code_</a>
-          </h3>
-          <p class="footer__text">Projekt demonstracyjny prezentujący nowoczesny front-end dla sektora turystyki i hoteli.</p>
-          <a href="#" class="footer__brand-author" aria-label="Strona autora — KP_Code_">Strona autora</a>
-        </section>
+    <!-- FOOTER -->
+    <footer class="site-footer" role="contentinfo" aria-labelledby="footer-heading">
+      <h2 id="footer-heading" class="sr-only">Stopka serwisu</h2>
+      <div class="container">
+        <div class="footer__inner">
+          <div class="footer__grid">
 
-        <!-- Kolumna 2 — Nawigacja -->
-        <nav class="footer__col footer__nav" aria-labelledby="footer-nav">
-          <h3 id="footer-nav" class="footer__heading">NAWIGACJA</h3>
-          <ul class="footer__list">
-            <li><a href="index.html" data-nav>Strona główna</a></li>
-            <li><a href="rooms.html" data-nav>Pokoje</a></li>
-            <li><a href="offers.html" data-nav>Oferty</a></li>
-            <li><a href="gallery.html" data-nav>Galeria</a></li>
-            <li><a href="contact.html" data-nav>Kontakt</a></li>
-          </ul>
-        </nav>
+            <section class="footer__col footer__brand" aria-labelledby="footer-brand">
+              <img class="footer__brand-img" src="assets/img/logo/logo-160x160.svg" alt="" width="160" height="160" decoding="async" loading="lazy" aria-hidden="true" />
+              <h3 id="footer-brand" class="footer__heading">
+                <a href="index.html" class="footer__brand-link" aria-label="Vista — Hotels &amp; Travel — strona główna">
+                  Vista
+                  <br />
+                  <small>Hotels &amp; Travel</small>
+                </a>
+              </h3>
+              <p class="footer__text">Projekt demonstracyjny Vista — Hotels &amp; Travel prezentujący nowoczesny front-end dla sektora turystyki i hoteli.</p>
+              <a href="marka.html" class="footer__brand-author" aria-label="Strona marki — Vista">Strona marki</a>
+            </section>
 
-        <!-- Kolumna 3 — Informacje prawne -->
-        <nav class="footer__col footer__legal" aria-labelledby="footer-legal">
-          <h3 id="footer-legal" class="footer__heading">INFORMACJE PRAWNE</h3>
-          <ul class="footer__list">
-            <li><a href="polityka-prywatnosci.html">Polityka prywatności</a></li>
-            <li><a href="regulamin.html">Regulamin serwisu</a></li>
-            <li><a href="cookies.html">Pliki cookies</a></li>
-          </ul>
-        </nav>
+            <nav class="footer__col footer__nav" aria-labelledby="footer-nav">
+              <h3 id="footer-nav" class="footer__heading">NAWIGACJA</h3>
+              <ul class="footer__list">
+                <li><a href="index.html" data-nav>Strona główna</a></li>
+                <li><a href="rooms.html" data-nav>Pokoje</a></li>
+                <li><a href="offers.html" data-nav>Oferty</a></li>
+                <li><a href="gallery.html" data-nav>Galeria</a></li>
+                <li><a href="contact.html" data-nav>Kontakt</a></li>
+              </ul>
+            </nav>
 
-        <!-- Kolumna 4 — Kontakt + Social -->
-        <section class="footer__col footer__contact" aria-labelledby="footer-contact">
-          <h3 id="footer-contact" class="footer__heading">KONTAKT</h3>
+            <nav class="footer__col footer__legal" aria-labelledby="footer-legal">
+              <h3 id="footer-legal" class="footer__heading">INFORMACJE PRAWNE</h3>
+              <ul class="footer__list">
+                <li><a href="polityka-prywatnosci.html">Polityka prywatności</a></li>
+                <li><a href="regulamin.html">Regulamin serwisu</a></li>
+                <li><a href="cookies.html">Pliki cookies</a></li>
+              </ul>
+            </nav>
 
-          <address class="footer__text" translate="no">
-            KP_Code_<br />
-            Hotel Demo Sp. z o.o.<br />
-            ul. Marynarki Wojennej 12/31<br />
-            33-100 Tarnów, Polska
-          </address>
+            <section class="footer__col footer__contact" aria-labelledby="footer-contact">
+              <h3 id="footer-contact" class="footer__heading">KONTAKT</h3>
+              <address class="footer__text" translate="no">
+                Vista
+                <br />
+                Hotels &amp; Travel
+                <br />
+                Hotel Demo Sp. z o.o.
+                <br />
+                ul. Marynarki Wojennej 12/31
+                <br />
+                33-100 Tarnów, Polska
+              </address>
+              <p class="footer__text">
+                <a href="mailto:kontakt@vista.pl">
+                  <img src="assets/img/icons/email-40x40.svg" alt="" class="footer__icon-img icon--mono" width="24" height="24" decoding="async" loading="lazy" aria-hidden="true" />
+                  kontakt@vista.pl
+                </a>
+                <br />
+                <a href="tel:+48533537091">
+                  <img src="assets/img/icons/tel-40x40.svg" alt="" class="footer__icon-img icon--mono" width="24" height="24" decoding="async" loading="lazy" aria-hidden="true" />
+                  +48 533 537 091
+                </a>
+              </p>
 
-          <p class="footer__text">
-
-            <a href="mailto:kp_code_@gmail.com"><img src="assets/img/icons/email-40x40.svg" alt="" class="footer__icon-img icon--mono" width="24" height="24" decoding="async" loading="lazy" aria-hidden="true" />kp_code_@gmail.com</a><br />
-
-            <a href="tel:+48533537091"><img src="assets/img/icons/tel-40x40.svg" alt="" class="footer__icon-img icon--mono" width="24" height="24" decoding="async" loading="lazy" aria-hidden="true" />+48 533 537 091</a>
-          </p>
-
-          <!-- Media społecznościowe -->
-          <h3 id="footer-social" class="footer__heading">SOCIAL MEDIA</h3>
-          <div class="footer__social" aria-labelledby="footer-social" aria-label="Media społecznościowe">
-
-            <a href="#" aria-label="Facebook — KP_Code_" rel="me noopener noreferrer">
-              <img src="assets/img/icons/facebook.svg" alt="" class="footer__icon-img" width="24" height="24" decoding="async" loading="lazy" aria-hidden="true" />
-            </a>
-
-            <a href="#" aria-label="YouTube — KP_Code_" rel="me noopener noreferrer">
-              <img src="assets/img/icons/youtube.svg" alt="" class="footer__icon-img" width="24" height="24" decoding="async" loading="lazy" aria-hidden="true" />
-            </a>
-
-            <a href="#" aria-label="GitHub — KP_Code_" rel="me noopener noreferrer">
-              <img src="assets/img/icons/github.svg" alt="" class="footer__icon-img icon--mono" width="24" height="24" decoding="async" loading="lazy" aria-hidden="true" />
-            </a>
-
-            <a href="#" aria-label="X — KP_Code_" rel="me noopener noreferrer">
-              <img src="assets/img/icons/x.svg" alt="" class="footer__icon-img icon--mono" width="24" height="24" decoding="async" loading="lazy" aria-hidden="true" />
-            </a>
-
+              <h3 id="footer-social" class="footer__heading">SOCIAL MEDIA</h3>
+              <div class="footer__social" aria-labelledby="footer-social" aria-label="Media społecznościowe">
+                <a href="social.html#facebook" aria-label="Facebook — Vista" rel="me noopener noreferrer">
+                  <img src="assets/img/icons/facebook.svg" alt="" class="footer__icon-img" width="24" height="24" decoding="async" loading="lazy" aria-hidden="true" />
+                </a>
+                <a href="social.html#youtube" aria-label="YouTube — Vista" rel="me noopener noreferrer">
+                  <img src="assets/img/icons/youtube.svg" alt="" class="footer__icon-img" width="24" height="24" decoding="async" loading="lazy" aria-hidden="true" />
+                </a>
+                <a href="social.html#github" aria-label="GitHub — Vista" rel="me noopener noreferrer">
+                  <img src="assets/img/icons/github.svg" alt="" class="footer__icon-img icon--mono" width="24" height="24" decoding="async" loading="lazy" aria-hidden="true" />
+                </a>
+                <a href="social.html#x" aria-label="X — Vista" rel="me noopener noreferrer">
+                  <img src="assets/img/icons/x.svg" alt="" class="footer__icon-img icon--mono" width="24" height="24" decoding="async" loading="lazy" aria-hidden="true" />
+                </a>
+              </div>
+            </section>
           </div>
-        </section>
-      </div>
 
-      <!-- Bottom bar -->
-      <div class="footer__bottom">
-        <p>
-          © <span data-year></span> KP_Code. Wszelkie prawa zastrzeżone. Projekt i wdrożenie: KP_Code
-        </p>
-        <p>Made for demo</p>
+          <div class="footer__bottom">
+            <p>
+              ©
+              <span data-year></span>
+              Vista. Wszelkie prawa zastrzeżone. Projekt i wdrożenie: Vista
+            </p>
+            <p>Made for demo</p>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <!-- LIGHTBOX -->
+    <div class="lightbox" hidden aria-hidden="true" role="dialog" aria-modal="true">
+      <div class="lightbox__backdrop" data-lightbox-close></div>
+
+      <div class="lightbox__dialog">
+        <button class="lightbox__close" type="button" aria-label="Zamknij podgląd" data-lightbox-close>×</button>
+
+        <figure class="lightbox__figure">
+          <img class="lightbox__img" src="" alt="" />
+          <figcaption class="lightbox__caption"></figcaption>
+        </figure>
+
+        <div class="lightbox__nav">
+          <button type="button" aria-label="Poprzednie zdjęcie" data-lightbox-prev>‹</button>
+          <button type="button" aria-label="Następne zdjęcie" data-lightbox-next>›</button>
+        </div>
       </div>
     </div>
-  </div>
-</footer>
 
-<!-- JSON-LD -->
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "Hotel",
-  "name": "Tourism & Hotels",
-  "url": "index.html",
-  "address": {
-    "@type": "PostalAddress",
-    "streetAddress": "ul. Marynarki Wojennej 12/31",
-    "addressLocality": "Tarnów",
-    "postalCode": "33-100",
-    "addressCountry": "PL"
-  },
-  "telephone": "+48 533 537 091",
-  "image": "assets/img/hero/hero-01-1280.jpg",
-  "sameAs": [
-    "#", "#", "#", "#"
-  ]
-}
-</script>
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "Organization",
-  "name": "Tourism & Hotels",
-  "url": "index.html",
-  "logo": "assets/img/ui/icon-192.png"
-}
-</script>
-
-<!-- LIGHTBOX -->
-<div class="lightbox" hidden aria-hidden="true" role="dialog" aria-modal="true">
-  <div class="lightbox__backdrop" data-lightbox-close></div>
-
-  <div class="lightbox__dialog">
-    <button
-      class="lightbox__close"
-      type="button"
-      aria-label="Zamknij podgląd"
-      data-lightbox-close
-    >
-      ×
-    </button>
-
-    <figure class="lightbox__figure">
-      <img class="lightbox__img" src="" alt="" />
-      <figcaption class="lightbox__caption"></figcaption>
-    </figure>
-
-    <div class="lightbox__nav">
-      <button type="button" aria-label="Poprzednie zdjęcie" data-lightbox-prev>‹</button>
-      <button type="button" aria-label="Następne zdjęcie" data-lightbox-next>›</button>
-    </div>
-  </div>
-</div>
-
-
-<!-- SCRIPTS -->
-<script type="module" defer src="js/script.js"></script>
-
+    <!-- SCRIPTS -->
+    <script type="module" defer src="js/script.js"></script>
   </body>
 </html>

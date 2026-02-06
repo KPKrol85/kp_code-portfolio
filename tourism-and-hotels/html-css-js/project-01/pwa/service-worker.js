@@ -1,11 +1,19 @@
-/* Service Worker – KP_Code_ Website Demo for Tourism & Hotels */
+/* Service Worker – Vista Website Demo for Hotels & Travel */
 
-const VERSION = "kp_code_v1.0.3";
-const STATIC_CACHE = `th-static-${VERSION}`;
-const HTML_CACHE = `th-html-${VERSION}`;
+const CACHE_VERSION = "v1.1.0";
+const STATIC_CACHE = `th-static-${CACHE_VERSION}`;
+const HTML_CACHE = `th-html-${CACHE_VERSION}`;
 const STATIC_ASSETS = [
   "index.html",
+  "rooms.html",
+  "offers.html",
   "gallery.html",
+  "contact.html",
+  "regulamin.html",
+  "polityka-prywatnosci.html",
+  "cookies.html",
+  "offline.html",
+  "css/style.min.css",
   "css/style.css",
   "js/script.js",
   "js/features/nav.js",
@@ -15,9 +23,10 @@ const STATIC_ASSETS = [
   "js/features/lightbox.js",
   "js/features/form.js",
   "js/features/tabs.js",
+  "js/features/compact-header.js",
   "js/features/aria-current.js",
+  "js/features/seo-jsonld.js",
   "site.webmanifest",
-  "offline.html",
 ];
 
 self.addEventListener("install", (event) => {

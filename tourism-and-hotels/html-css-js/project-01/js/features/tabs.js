@@ -1,48 +1,90 @@
-// tabs.js – roving tabindex + filtering
-export function initTabs() {
-  const list = document.querySelector('.tabs[role="tablist"]');
-  const panel = document.querySelector('[data-tabs-panel]');
-  if (!list || !panel) return;
+// tabs.js – roving tabindex + manual activation (ARIA tabs)
+export function initTabs(root = document) {
+  const tabLists = [...root.querySelectorAll('[role="tablist"]')];
+  if (!tabLists.length) return;
 
-  const tabs = [...list.querySelectorAll('[role="tab"]')];
-  let current = tabs.findIndex(t => t.classList.contains('is-active'));
-  if (current < 0) current = 0;
+  tabLists.forEach((tabList) => {
+    const tabs = [...tabList.querySelectorAll('[role="tab"]')];
+    if (!tabs.length) return;
 
-  function updateActive(i) {
-    tabs.forEach((t, idx) => {
-      const active = idx === i;
-      t.classList.toggle('is-active', active);
-      t.setAttribute('aria-selected', String(active));
-      t.tabIndex = active ? 0 : -1;
+    const panels = tabs.map((tab) => {
+      const panelId = tab.getAttribute('aria-controls');
+      return panelId ? document.getElementById(panelId) : null;
     });
-  }
 
-  function applyFilter(value) {
-    panel.setAttribute('data-active', value);
-    const items = panel.querySelectorAll('[data-room-type]');
-    items.forEach(el => {
-      const show = value === 'all' || el.getAttribute('data-room-type') === value;
-      el.style.display = show ? '' : 'none';
-    });
-  }
+    let activeIndex = tabs.findIndex((tab) => tab.getAttribute('aria-selected') === 'true');
+    if (activeIndex < 0) {
+      activeIndex = tabs.findIndex((tab) => tab.classList.contains('is-active'));
+    }
+    if (activeIndex < 0) activeIndex = 0;
 
-  tabs.forEach((tab, idx) => {
-    tab.addEventListener('click', () => {
-      current = idx; updateActive(current);
-      applyFilter(tab.getAttribute('data-tab-target') || 'all');
+    const setActiveTab = (index, { focus = false } = {}) => {
+      tabs.forEach((tab, idx) => {
+        const active = idx === index;
+        tab.classList.toggle('is-active', active);
+        tab.setAttribute('aria-selected', String(active));
+        tab.tabIndex = active ? 0 : -1;
+      });
+
+      panels.forEach((panel, idx) => {
+        if (!panel) return;
+        const active = idx === index;
+        panel.hidden = !active;
+      });
+
+      if (focus) {
+        tabs[index]?.focus();
+      }
+    };
+
+    const focusTab = (index) => {
+      tabs.forEach((tab, idx) => {
+        tab.tabIndex = idx === index ? 0 : -1;
+      });
+      tabs[index]?.focus();
+    };
+
+    tabs.forEach((tab, idx) => {
+      tab.addEventListener('click', () => {
+        activeIndex = idx;
+        setActiveTab(activeIndex, { focus: true });
+      });
+
+      tab.addEventListener('keydown', (event) => {
+        // Manual activation: arrows move focus, Enter/Space activates the focused tab.
+        const currentIndex = tabs.indexOf(event.currentTarget);
+        const lastIndex = tabs.length - 1;
+
+        if (event.key === 'ArrowRight' || event.key === 'ArrowDown') {
+          event.preventDefault();
+          const nextIndex = currentIndex === lastIndex ? 0 : currentIndex + 1;
+          focusTab(nextIndex);
+        }
+
+        if (event.key === 'ArrowLeft' || event.key === 'ArrowUp') {
+          event.preventDefault();
+          const prevIndex = currentIndex === 0 ? lastIndex : currentIndex - 1;
+          focusTab(prevIndex);
+        }
+
+        if (event.key === 'Home') {
+          event.preventDefault();
+          focusTab(0);
+        }
+
+        if (event.key === 'End') {
+          event.preventDefault();
+          focusTab(lastIndex);
+        }
+
+        if (event.key === 'Enter' || event.key === ' ') {
+          event.preventDefault();
+          activeIndex = currentIndex;
+          setActiveTab(activeIndex);
+        }
+      });
     });
-    tab.addEventListener('keydown', (e) => {
-      const len = tabs.length;
-      if (e.key === 'ArrowRight') { e.preventDefault(); current = (current + 1) % len; tabs[current].focus(); }
-      if (e.key === 'ArrowLeft') { e.preventDefault(); current = (current - 1 + len) % len; tabs[current].focus(); }
-      if (e.key === 'Home') { e.preventDefault(); current = 0; tabs[current].focus(); }
-      if (e.key === 'End') { e.preventDefault(); current = len - 1; tabs[current].focus(); }
-      if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); tabs[current].click(); }
-    });
+
+    setActiveTab(activeIndex);
   });
-
-  // initial
-  updateActive(current);
-  applyFilter(tabs[current].getAttribute('data-tab-target') || 'all');
 }
-

@@ -1,6 +1,6 @@
 /* ====================================================
    = Project: tourism-and-hotels-html-css-js-project-01
-   = Author: KP_Code
+   = Author: Vista
    = Updated: 2025-10-22
    ====================================================
    = CSS Stylesheet
@@ -346,26 +346,44 @@ picture {
 }
 
 .theme-toggle {
-  width: var(--toggle-size);
-  height: var(--toggle-size);
   display: inline-flex;
   align-items: center;
-  justify-content: center;
-  padding: 0;
-  line-height: 0;
-  border-radius: 50%;
+  gap: 0.2rem;
+  padding: 0.2rem;
+  border-radius: 999px;
   border: 1px solid color-mix(in oklab, var(--border) 55%, transparent);
   background: color-mix(in oklab, var(--bg-elev) 85%, var(--bg) 15%);
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.12);
   transition: background 0.25s, transform 0.2s, box-shadow 0.25s;
-  color: var(--text);
-  cursor: pointer;
 }
 
 .theme-toggle:hover {
   transform: translateY(-1px);
   box-shadow: 0 3px 8px rgba(0, 0, 0, 0.16);
   filter: brightness(1.1);
+}
+
+.theme-toggle__btn {
+  border: none;
+  background: transparent;
+  color: var(--text);
+  cursor: pointer;
+  font-size: 0.72rem;
+  font-weight: 600;
+  padding: 0.35rem 0.75rem;
+  border-radius: 999px;
+  transition: background 0.2s ease, color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.theme-toggle__btn:hover {
+  transform: translateY(-1px);
+}
+
+.theme-toggle__btn.is-active {
+  background: var(--primary);
+  color: var(--primary-contrast);
+  box-shadow: var(--elev);
+  transform: none;
 }
 
 .theme-icon {
@@ -443,16 +461,9 @@ html[data-theme="dark"] .theme-toggle {
   }
   #theme-toggle {
     order: 2;
-    width: 34px;
-    height: 34px;
-    background: transparent;
-    border: none;
-    box-shadow: none;
-    padding: 0;
-    line-height: 0;
     margin-left: 0;
   }
-  .site-nav {
+  .js .site-nav {
     position: fixed;
     inset: var(--header-h) 0 auto 0;
     background: var(--bg);
@@ -465,7 +476,7 @@ html[data-theme="dark"] .theme-toggle {
     padding: 1rem;
     border-bottom: 1px solid var(--border);
   }
-  .site-nav.is-open {
+  .js .site-nav.is-open {
     transform: translateY(0);
     opacity: 1;
     pointer-events: auto;
@@ -995,6 +1006,16 @@ html[data-theme="dark"] .theme-toggle {
 .page-gallery .gallery-grid {
   grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 1.25rem;
+}
+
+.page-gallery .gallery-section + .gallery-section {
+  margin-top: 2.5rem;
+}
+
+.page-gallery .gallery-section__title {
+  font-size: var(--fs-500);
+  margin: 0 0 1rem;
+  text-align: left;
 }
 
 .page-gallery .gallery-grid__item img {

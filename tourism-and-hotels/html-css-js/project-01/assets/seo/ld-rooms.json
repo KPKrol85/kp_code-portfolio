@@ -1,0 +1,31 @@
+{
+  "@context": "https://schema.org",
+  "@type": "Hotel",
+  "name": "Vista",
+  "url": "https://hospitality-pr-01-vista.netlify.app/rooms.html",
+  "image": "https://hospitality-pr-01-vista.netlify.app/assets/img/og/og-1200x630.jpg",
+  "logo": "https://hospitality-pr-01-vista.netlify.app/assets/img/ui/icon-192.png",
+  "telephone": "+48 533 537 091",
+  "email": "kontakt@vista.pl",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "Marynarki Wojennej 12/31",
+    "postalCode": "33-100",
+    "addressLocality": "Tarnów",
+    "addressCountry": "PL"
+  },
+  "contactPoint": [
+    {
+      "@type": "ContactPoint",
+      "telephone": "+48 533 537 091",
+      "email": "kontakt@vista.pl",
+      "contactType": "customer service",
+      "areaServed": "PL",
+      "availableLanguage": [
+        "pl"
+      ]
+    }
+  ],
+  "alternateName": "Vista — Hotels & Travel",
+  "description": "Vista — Hotels & Travel."
+}

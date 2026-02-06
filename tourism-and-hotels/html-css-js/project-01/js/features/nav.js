@@ -4,6 +4,7 @@ export function initNav() {
   const nav = document.getElementById("site-nav");
   if (!toggle || !nav) return;
 
+  const mobileMq = window.matchMedia("(max-width: 900px)");
   let lastFocused = null;
 
   const CLOSED_LABEL = "Otwórz menu";
@@ -48,6 +49,18 @@ export function initNav() {
   // Upewniamy się, że stan ARIA na starcie jest spójny z DOM
   toggle.setAttribute("aria-expanded", "false");
   toggle.setAttribute("aria-label", CLOSED_LABEL);
+
+  const syncVisibility = () => {
+    if (mobileMq.matches) {
+      nav.hidden = !isOpen();
+      return;
+    }
+
+    nav.hidden = false;
+  };
+
+  syncVisibility();
+  mobileMq.addEventListener("change", syncVisibility);
 
   toggle.addEventListener("click", () => {
     isOpen() ? close() : open();

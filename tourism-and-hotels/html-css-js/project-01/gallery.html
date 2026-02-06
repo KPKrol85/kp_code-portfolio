@@ -4,8 +4,8 @@
     <!-- Required -->
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Galeria — Turystyka & Hotele 01 | KP_Code_</title>
-    <meta name="description" content="Galeria zdjęć hotelu Tourism & Hotels — zobacz wnętrza pokoi, lobby, restaurację oraz strefę relaksu. Projekt front-end HTML / CSS / JS autorstwa KP_Code_." />
+    <title>Vista | Galeria — Hotels &amp; Travel</title>
+    <meta name="description" content="Galeria zdjęć Vista — Hotels &amp; Travel — zobacz wnętrza pokoi, lobby, restaurację oraz strefę relaksu." />
     <meta name="color-scheme" content="light dark" />
 
     <!-- Theme color for Light/Dark -->
@@ -16,28 +16,29 @@
     <meta name="robots" content="index,follow" />
     <meta name="referrer" content="strict-origin-when-cross-origin" />
     <meta name="format-detection" content="telephone=no" />
+    <meta name="ld-json" content="assets/seo/ld-gallery.json" />
 
     <!-- Canonical -->
-    <link rel="canonical" href="https://tourism-project-01.netlify.app/gallery.html" />
+    <link rel="canonical" href="https://hospitality-pr-01-vista.netlify.app/gallery.html" />
 
     <!-- Open Graph -->
     <meta property="og:type" content="website" />
-    <meta property="og:site_name" content="KP_Code_ | Turystyka & Hotele Demo" />
-    <meta property="og:title" content="Galeria — Turystyka & Hotele 01" />
-    <meta property="og:description" content="Zobacz galerię hotelu Tourism & Hotels: eleganckie pokoje, restauracja i widok na morze. Projekt KP_Code_." />
-    <meta property="og:url" content="https://tourism-project-01.netlify.app/gallery.html" />
+    <meta property="og:site_name" content="Vista" />
+    <meta property="og:title" content="Vista | Galeria — Hotels &amp; Travel" />
+    <meta property="og:description" content="Zobacz galerię Vista — Hotels &amp; Travel: eleganckie pokoje, restauracja i widok na morze." />
+    <meta property="og:url" content="https://hospitality-pr-01-vista.netlify.app/gallery.html" />
     <meta property="og:locale" content="pl_PL" />
-    <meta property="og:image" content="https://tourism-project-01.netlify.app/assets/img/og/og-1200x630.jpg" />
+    <meta property="og:image" content="https://hospitality-pr-01-vista.netlify.app/assets/img/og/og-1200x630.jpg" />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
     <meta property="og:image:type" content="image/jpeg" />
-    <meta property="og:image:alt" content="Galeria wnętrz hotelowych i widoków — projekt demo KP_Code_" />
+    <meta property="og:image:alt" content="Galeria wnętrz hotelowych i widoków — Vista — Hotels &amp; Travel" />
 
     <!-- Twitter -->
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="Galeria — Turystyka & Hotele 01" />
-    <meta name="twitter:description" content="Galeria zdjęć hotelu Tourism & Hotels — projekt HTML / CSS / JS autorstwa KP_Code_." />
-    <meta name="twitter:image" content="https://tourism-project-01.netlify.app/assets/img/og/og-1200x1200.jpg" />
+    <meta name="twitter:title" content="Vista | Galeria — Hotels &amp; Travel" />
+    <meta name="twitter:description" content="Galeria zdjęć Vista — Hotels &amp; Travel." />
+    <meta name="twitter:image" content="https://hospitality-pr-01-vista.netlify.app/assets/img/og/og-1200x1200.jpg" />
 
     <!-- PWA -->
     <link rel="manifest" href="site.webmanifest" />
@@ -63,8 +64,8 @@
     <header class="site-header" id="top">
       <div class="container site-header__inner">
         <a class="site-header__brand" href="index.html" aria-label="Strona główna">
-          <img src="assets/img/logo/logo-128x128.svg" alt="Logo KP_Code_" class="brand-logo" width="36" height="36" />
-          <span>KP_Code_</span>
+          <img src="assets/img/logo/logo-128x128.svg" alt="Logo Vista" class="brand-logo" width="36" height="36" />
+          <span>Vista<br /><small>Hotels &amp; Travel</small></span>
         </a>
 
         <button class="site-header__nav-toggle" id="nav-toggle" aria-controls="site-nav" aria-expanded="false" aria-label="Otwórz menu">
@@ -73,13 +74,13 @@
             <path d="M3 6h18M3 12h18M3 18h18" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
           </svg>
         </button>
+        <div id="theme-toggle" class="theme-toggle" role="group" aria-label="Motyw strony">
+          <button class="theme-toggle__btn" type="button" data-theme="auto" aria-pressed="false">Auto</button>
+          <button class="theme-toggle__btn" type="button" data-theme="light" aria-pressed="false">Light</button>
+          <button class="theme-toggle__btn" type="button" data-theme="dark" aria-pressed="false">Dark</button>
+        </div>
 
-        <button id="theme-toggle" class="theme-toggle" type="button" aria-label="Przełącz motyw">
-          <img src="assets/img/icons/sun-40x40.svg" alt="" class="theme-icon theme-icon--sun" />
-          <img src="assets/img/icons/moon-40x40.svg" alt="" class="theme-icon theme-icon--moon" />
-        </button>
-
-        <nav class="site-nav" id="site-nav" aria-label="Główne" hidden>
+        <nav class="site-nav" id="site-nav" aria-label="Główne">
           <ul class="site-nav__list">
             <li><a href="index.html" data-nav>Strona główna</a></li>
             <li><a href="rooms.html" data-nav>Pokoje &amp; Apartamenty</a></li>
@@ -108,7 +109,7 @@
       </nav>
 
       <!-- GALERIA -->
-      <section class="section page-gallery" aria-labelledby="gallery-heading">
+      <section class="section page-gallery" id="wszystkie" aria-labelledby="gallery-heading">
         <div class="container">
           <h1 id="gallery-heading" class="section-title">Galeria</h1>
 
@@ -124,144 +125,150 @@
             </ul>
           </nav>
 
-          <!-- Jedna wspólna siatka dla wszystkich zdjęć -->
-          <h2 id="pokoje" class="sr-only">Pokoje</h2>
-          <div class="gallery-grid">
-            <!-- POKOJE -->
-            <!-- Pokój 01 -->
-            <a
-              href="assets/img/subpage-gallery/pokoje/pokoj-01-1600x1067.jpg"
-              class="gallery-grid__item"
-              data-reveal
-              data-lightbox-item
-              data-cat-item="pokoje"
-              data-caption="Pokój dwuosobowy — przestronny i komfortowy">
-              <picture>
-                <source
-                  type="image/avif"
-                  srcset="
-                    assets/img/subpage-gallery/pokoje/pokoj-01-640x427.avif    640w,
-                    assets/img/subpage-gallery/pokoje/pokoj-01-960x640.avif    960w,
-                    assets/img/subpage-gallery/pokoje/pokoj-01-1280x853.avif  1280w,
-                    assets/img/subpage-gallery/pokoje/pokoj-01-1600x1067.avif 1600w
-                  "
-                  sizes="(max-width:700px)100vw,(max-width:1100px)48vw,32vw" />
-                <source
-                  type="image/webp"
-                  srcset="
-                    assets/img/subpage-gallery/pokoje/pokoj-01-640x427.webp    640w,
-                    assets/img/subpage-gallery/pokoje/pokoj-01-960x640.webp    960w,
-                    assets/img/subpage-gallery/pokoje/pokoj-01-1280x853.webp  1280w,
-                    assets/img/subpage-gallery/pokoje/pokoj-01-1600x1067.webp 1600w
-                  "
-                  sizes="(max-width:700px)100vw,(max-width:1100px)48vw,32vw" />
-                <img
-                  src="assets/img/subpage-gallery/pokoje/pokoj-01-1280x853.jpg"
-                  srcset="
-                    assets/img/subpage-gallery/pokoje/pokoj-01-640x427.jpg    640w,
-                    assets/img/subpage-gallery/pokoje/pokoj-01-960x640.jpg    960w,
-                    assets/img/subpage-gallery/pokoje/pokoj-01-1280x853.jpg  1280w,
-                    assets/img/subpage-gallery/pokoje/pokoj-01-1600x1067.jpg 1600w
-                  "
-                  sizes="(max-width:700px)100vw,(max-width:1100px)48vw,32vw"
-                  alt="Pokój hotelowy z dwoma łóżkami, jasną podłogą i dużym oknem z zasłonami"
-                  width="1600"
-                  height="1067"
-                  loading="lazy"
-                  decoding="async" />
-              </picture>
-            </a>
+          <!-- Sekcje galerii -->
+          <section id="pokoje" class="gallery-section" aria-labelledby="pokoje-heading">
+            <h2 id="pokoje-heading" class="gallery-section__title">Pokoje</h2>
+            <div class="gallery-grid">
+              <!-- POKOJE -->
+              <!-- Pokój 01 -->
+              <a
+                href="assets/img/subpage-gallery/pokoje/pokoj-01-1600x1067.jpg"
+                class="gallery-grid__item"
+                data-reveal
+                data-lightbox-item
+                data-cat-item="pokoje"
+                data-caption="Pokój dwuosobowy — przestronny i komfortowy">
+                <picture>
+                  <source
+                    type="image/avif"
+                    srcset="
+                      assets/img/subpage-gallery/pokoje/pokoj-01-640x427.avif    640w,
+                      assets/img/subpage-gallery/pokoje/pokoj-01-960x640.avif    960w,
+                      assets/img/subpage-gallery/pokoje/pokoj-01-1280x853.avif  1280w,
+                      assets/img/subpage-gallery/pokoje/pokoj-01-1600x1067.avif 1600w
+                    "
+                    sizes="(max-width:700px)100vw,(max-width:1100px)48vw,32vw" />
+                  <source
+                    type="image/webp"
+                    srcset="
+                      assets/img/subpage-gallery/pokoje/pokoj-01-640x427.webp    640w,
+                      assets/img/subpage-gallery/pokoje/pokoj-01-960x640.webp    960w,
+                      assets/img/subpage-gallery/pokoje/pokoj-01-1280x853.webp  1280w,
+                      assets/img/subpage-gallery/pokoje/pokoj-01-1600x1067.webp 1600w
+                    "
+                    sizes="(max-width:700px)100vw,(max-width:1100px)48vw,32vw" />
+                  <img
+                    src="assets/img/subpage-gallery/pokoje/pokoj-01-1280x853.jpg"
+                    srcset="
+                      assets/img/subpage-gallery/pokoje/pokoj-01-640x427.jpg    640w,
+                      assets/img/subpage-gallery/pokoje/pokoj-01-960x640.jpg    960w,
+                      assets/img/subpage-gallery/pokoje/pokoj-01-1280x853.jpg  1280w,
+                      assets/img/subpage-gallery/pokoje/pokoj-01-1600x1067.jpg 1600w
+                    "
+                    sizes="(max-width:700px)100vw,(max-width:1100px)48vw,32vw"
+                    alt="Pokój hotelowy z dwoma łóżkami, jasną podłogą i dużym oknem z zasłonami"
+                    width="1600"
+                    height="1067"
+                    loading="lazy"
+                    decoding="async" />
+                </picture>
+              </a>
 
-            <!-- Pokój 02 -->
-            <a
-              href="assets/img/subpage-gallery/pokoje/pokoj-02-1600x1067.jpg"
-              class="gallery-grid__item"
-              data-reveal
-              data-lightbox-item
-              data-cat-item="pokoje"
-              data-caption="Pokój z widokiem na morze — elegancki i nowoczesny">
-              <picture>
-                <source
-                  type="image/avif"
-                  srcset="
-                    assets/img/subpage-gallery/pokoje/pokoj-02-640x427.avif    640w,
-                    assets/img/subpage-gallery/pokoje/pokoj-02-960x640.avif    960w,
-                    assets/img/subpage-gallery/pokoje/pokoj-02-1280x853.avif  1280w,
-                    assets/img/subpage-gallery/pokoje/pokoj-02-1600x1067.avif 1600w
-                  "
-                  sizes="(max-width:700px)100vw,(max-width:1100px)48vw,32vw" />
-                <source
-                  type="image/webp"
-                  srcset="
-                    assets/img/subpage-gallery/pokoje/pokoj-02-640x427.webp    640w,
-                    assets/img/subpage-gallery/pokoje/pokoj-02-960x640.webp    960w,
-                    assets/img/subpage-gallery/pokoje/pokoj-02-1280x853.webp  1280w,
-                    assets/img/subpage-gallery/pokoje/pokoj-02-1600x1067.webp 1600w
-                  "
-                  sizes="(max-width:700px)100vw,(max-width:1100px)48vw,32vw" />
-                <img
-                  src="assets/img/subpage-gallery/pokoje/pokoj-02-1280x853.jpg"
-                  srcset="
-                    assets/img/subpage-gallery/pokoje/pokoj-02-640x427.jpg    640w,
-                    assets/img/subpage-gallery/pokoje/pokoj-02-960x640.jpg    960w,
-                    assets/img/subpage-gallery/pokoje/pokoj-02-1280x853.jpg  1280w,
-                    assets/img/subpage-gallery/pokoje/pokoj-02-1600x1067.jpg 1600w
-                  "
-                  sizes="(max-width:700px)100vw,(max-width:1100px)48vw,32vw"
-                  alt="Nowoczesny pokój hotelowy z łóżkiem typu king-size i panoramicznym widokiem na morze"
-                  width="1600"
-                  height="1067"
-                  loading="lazy"
-                  decoding="async" />
-              </picture>
-            </a>
+              <!-- Pokój 02 -->
+              <a
+                href="assets/img/subpage-gallery/pokoje/pokoj-02-1600x1067.jpg"
+                class="gallery-grid__item"
+                data-reveal
+                data-lightbox-item
+                data-cat-item="pokoje"
+                data-caption="Pokój z widokiem na morze — elegancki i nowoczesny">
+                <picture>
+                  <source
+                    type="image/avif"
+                    srcset="
+                      assets/img/subpage-gallery/pokoje/pokoj-02-640x427.avif    640w,
+                      assets/img/subpage-gallery/pokoje/pokoj-02-960x640.avif    960w,
+                      assets/img/subpage-gallery/pokoje/pokoj-02-1280x853.avif  1280w,
+                      assets/img/subpage-gallery/pokoje/pokoj-02-1600x1067.avif 1600w
+                    "
+                    sizes="(max-width:700px)100vw,(max-width:1100px)48vw,32vw" />
+                  <source
+                    type="image/webp"
+                    srcset="
+                      assets/img/subpage-gallery/pokoje/pokoj-02-640x427.webp    640w,
+                      assets/img/subpage-gallery/pokoje/pokoj-02-960x640.webp    960w,
+                      assets/img/subpage-gallery/pokoje/pokoj-02-1280x853.webp  1280w,
+                      assets/img/subpage-gallery/pokoje/pokoj-02-1600x1067.webp 1600w
+                    "
+                    sizes="(max-width:700px)100vw,(max-width:1100px)48vw,32vw" />
+                  <img
+                    src="assets/img/subpage-gallery/pokoje/pokoj-02-1280x853.jpg"
+                    srcset="
+                      assets/img/subpage-gallery/pokoje/pokoj-02-640x427.jpg    640w,
+                      assets/img/subpage-gallery/pokoje/pokoj-02-960x640.jpg    960w,
+                      assets/img/subpage-gallery/pokoje/pokoj-02-1280x853.jpg  1280w,
+                      assets/img/subpage-gallery/pokoje/pokoj-02-1600x1067.jpg 1600w
+                    "
+                    sizes="(max-width:700px)100vw,(max-width:1100px)48vw,32vw"
+                    alt="Nowoczesny pokój hotelowy z łóżkiem typu king-size i panoramicznym widokiem na morze"
+                    width="1600"
+                    height="1067"
+                    loading="lazy"
+                    decoding="async" />
+                </picture>
+              </a>
 
-            <!-- Pokój 03 -->
-            <a
-              href="assets/img/subpage-gallery/pokoje/pokoj-03-1600x1067.jpg"
-              class="gallery-grid__item"
-              data-reveal
-              data-lightbox-item
-              data-cat-item="pokoje"
-              data-caption="Apartament biznesowy — relaks i praca w jednym">
-              <picture>
-                <source
-                  type="image/avif"
-                  srcset="
-                    assets/img/subpage-gallery/pokoje/pokoj-03-640x427.avif    640w,
-                    assets/img/subpage-gallery/pokoje/pokoj-03-960x640.avif    960w,
-                    assets/img/subpage-gallery/pokoje/pokoj-03-1280x853.avif  1280w,
-                    assets/img/subpage-gallery/pokoje/pokoj-03-1600x1067.avif 1600w
-                  "
-                  sizes="(max-width:700px)100vw,(max-width:1100px)48vw,32vw" />
-                <source
-                  type="image/webp"
-                  srcset="
-                    assets/img/subpage-gallery/pokoje/pokoj-03-640x427.webp    640w,
-                    assets/img/subpage-gallery/pokoje/pokoj-03-960x640.webp    960w,
-                    assets/img/subpage-gallery/pokoje/pokoj-03-1280x853.webp  1280w,
-                    assets/img/subpage-gallery/pokoje/pokoj-03-1600x1067.webp 1600w
-                  "
-                  sizes="(max-width:700px)100vw,(max-width:1100px)48vw,32vw" />
-                <img
-                  src="assets/img/subpage-gallery/pokoje/pokoj-03-1280x853.jpg"
-                  srcset="
-                    assets/img/subpage-gallery/pokoje/pokoj-03-640x427.jpg    640w,
-                    assets/img/subpage-gallery/pokoje/pokoj-03-960x640.jpg    960w,
-                    assets/img/subpage-gallery/pokoje/pokoj-03-1280x853.jpg  1280w,
-                    assets/img/subpage-gallery/pokoje/pokoj-03-1600x1067.jpg 1600w
-                  "
-                  sizes="(max-width:700px)100vw,(max-width:1100px)48vw,32vw"
-                  alt="Pokój hotelowy z biurkiem, laptopem i strefą wypoczynkową w ciepłym oświetleniu"
-                  width="1600"
-                  height="1067"
-                  loading="lazy"
-                  decoding="async" />
-              </picture>
-            </a>
+              <!-- Pokój 03 -->
+              <a
+                href="assets/img/subpage-gallery/pokoje/pokoj-03-1600x1067.jpg"
+                class="gallery-grid__item"
+                data-reveal
+                data-lightbox-item
+                data-cat-item="pokoje"
+                data-caption="Apartament biznesowy — relaks i praca w jednym">
+                <picture>
+                  <source
+                    type="image/avif"
+                    srcset="
+                      assets/img/subpage-gallery/pokoje/pokoj-03-640x427.avif    640w,
+                      assets/img/subpage-gallery/pokoje/pokoj-03-960x640.avif    960w,
+                      assets/img/subpage-gallery/pokoje/pokoj-03-1280x853.avif  1280w,
+                      assets/img/subpage-gallery/pokoje/pokoj-03-1600x1067.avif 1600w
+                    "
+                    sizes="(max-width:700px)100vw,(max-width:1100px)48vw,32vw" />
+                  <source
+                    type="image/webp"
+                    srcset="
+                      assets/img/subpage-gallery/pokoje/pokoj-03-640x427.webp    640w,
+                      assets/img/subpage-gallery/pokoje/pokoj-03-960x640.webp    960w,
+                      assets/img/subpage-gallery/pokoje/pokoj-03-1280x853.webp  1280w,
+                      assets/img/subpage-gallery/pokoje/pokoj-03-1600x1067.webp 1600w
+                    "
+                    sizes="(max-width:700px)100vw,(max-width:1100px)48vw,32vw" />
+                  <img
+                    src="assets/img/subpage-gallery/pokoje/pokoj-03-1280x853.jpg"
+                    srcset="
+                      assets/img/subpage-gallery/pokoje/pokoj-03-640x427.jpg    640w,
+                      assets/img/subpage-gallery/pokoje/pokoj-03-960x640.jpg    960w,
+                      assets/img/subpage-gallery/pokoje/pokoj-03-1280x853.jpg  1280w,
+                      assets/img/subpage-gallery/pokoje/pokoj-03-1600x1067.jpg 1600w
+                    "
+                    sizes="(max-width:700px)100vw,(max-width:1100px)48vw,32vw"
+                    alt="Pokój hotelowy z biurkiem, laptopem i strefą wypoczynkową w ciepłym oświetleniu"
+                    width="1600"
+                    height="1067"
+                    loading="lazy"
+                    decoding="async" />
+                </picture>
+              </a>
+            </div>
+          </section>
 
-            <!-- LOBBY -->
-            <!-- Lobby 01 -->
+          <section id="lobby" class="gallery-section" aria-labelledby="lobby-heading">
+            <h2 id="lobby-heading" class="gallery-section__title">Lobby</h2>
+            <div class="gallery-grid">
+              <!-- LOBBY -->
+              <!-- Lobby 01 -->
             <a
               href="assets/img/subpage-gallery/lobby/lobby-01-1600x1067.jpg"
               class="gallery-grid__item"
@@ -349,7 +356,7 @@
               </picture>
             </a>
 
-            <!-- Lobby 03 -->
+              <!-- Lobby 03 -->
             <a
               href="assets/img/subpage-gallery/lobby/lobby-03-1600x1067.jpg"
               class="gallery-grid__item"
@@ -393,8 +400,14 @@
               </picture>
             </a>
 
-            <!-- RESTAURACJA -->
-            <!-- 01 -->
+            </div>
+          </section>
+
+          <section id="restauracja" class="gallery-section" aria-labelledby="restauracja-heading">
+            <h2 id="restauracja-heading" class="gallery-section__title">Restauracja</h2>
+            <div class="gallery-grid">
+              <!-- RESTAURACJA -->
+              <!-- 01 -->
             <a
               href="assets/img/subpage-gallery/restauracja/restauracja-01-1600x1067.jpg"
               class="gallery-grid__item"
@@ -482,7 +495,7 @@
               </picture>
             </a>
 
-            <!-- 03 -->
+              <!-- 03 -->
             <a
               href="assets/img/subpage-gallery/restauracja/restauracja-03-1600x1067.jpg"
               class="gallery-grid__item"
@@ -526,8 +539,14 @@
               </picture>
             </a>
 
-            <!-- WELLNESS -->
-            <!-- 01 -->
+            </div>
+          </section>
+
+          <section id="wellness" class="gallery-section" aria-labelledby="wellness-heading">
+            <h2 id="wellness-heading" class="gallery-section__title">Wellness</h2>
+            <div class="gallery-grid">
+              <!-- WELLNESS -->
+              <!-- 01 -->
             <a
               href="assets/img/subpage-gallery/wellness/wellness-01-1600x1067.jpg"
               class="gallery-grid__item"
@@ -615,7 +634,7 @@
               </picture>
             </a>
 
-            <!-- 03 -->
+              <!-- 03 -->
             <a
               href="assets/img/subpage-gallery/wellness/wellness-03-1600x1067.jpg"
               class="gallery-grid__item"
@@ -659,8 +678,14 @@
               </picture>
             </a>
 
-            <!-- OKOLICA -->
-            <!-- 01 -->
+            </div>
+          </section>
+
+          <section id="okolica" class="gallery-section" aria-labelledby="okolica-heading">
+            <h2 id="okolica-heading" class="gallery-section__title">Okolica</h2>
+            <div class="gallery-grid">
+              <!-- OKOLICA -->
+              <!-- 01 -->
             <a
               href="assets/img/subpage-gallery/okolica/okolica-01-1600x1067.jpg"
               class="gallery-grid__item"
@@ -748,7 +773,7 @@
               </picture>
             </a>
 
-            <!-- 03 -->
+              <!-- 03 -->
             <a
               href="assets/img/subpage-gallery/okolica/okolica-03-1600x1067.jpg"
               class="gallery-grid__item"
@@ -791,7 +816,8 @@
                   decoding="async" />
               </picture>
             </a>
-          </div>
+            </div>
+          </section>
         </div>
       </section>
     </main>
@@ -806,10 +832,10 @@
             <section class="footer__col footer__brand" aria-labelledby="footer-brand">
               <img class="footer__brand-img" src="assets/img/logo/logo-160x160.svg" alt="" width="160" height="160" decoding="async" loading="lazy" aria-hidden="true" />
               <h3 id="footer-brand" class="footer__heading">
-                <a href="index.html" class="footer__brand-link" aria-label="KP_Code_ – strona główna">KP_Code_</a>
+                <a href="index.html" class="footer__brand-link" aria-label="Vista — Hotels &amp; Travel — strona główna">Vista<br /><small>Hotels &amp; Travel</small></a>
               </h3>
-              <p class="footer__text">Projekt demonstracyjny prezentujący nowoczesny front-end dla sektora turystyki i hoteli.</p>
-              <a href="#" class="footer__brand-author" aria-label="Strona autora — KP_Code_">Strona autora</a>
+              <p class="footer__text">Projekt demonstracyjny Vista — Hotels &amp; Travel prezentujący nowoczesny front-end dla sektora turystyki i hoteli.</p>
+              <a href="marka.html" class="footer__brand-author" aria-label="Strona marki — Vista">Strona marki</a>
             </section>
 
             <!-- Kolumna 2 — Nawigacja -->
@@ -839,7 +865,9 @@
               <h3 id="footer-contact" class="footer__heading">KONTAKT</h3>
 
               <address class="footer__text" translate="no">
-                KP_Code_
+                Vista
+                <br />
+                Hotels &amp; Travel
                 <br />
                 Hotel Demo Sp. z o.o.
                 <br />
@@ -849,9 +877,9 @@
               </address>
 
               <p class="footer__text">
-                <a href="mailto:kp_code_@gmail.com">
+                <a href="mailto:kontakt@vista.pl">
                   <img src="assets/img/icons/email-40x40.svg" alt="" class="footer__icon-img icon--mono" width="24" height="24" decoding="async" loading="lazy" aria-hidden="true" />
-                  kp_code_@gmail.com
+                  kontakt@vista.pl
                 </a>
                 <br />
 
@@ -864,19 +892,19 @@
               <!-- Media społecznościowe -->
               <h3 id="footer-social" class="footer__heading">SOCIAL MEDIA</h3>
               <div class="footer__social" aria-labelledby="footer-social" aria-label="Media społecznościowe">
-                <a href="#" aria-label="Facebook — KP_Code_" rel="me noopener noreferrer">
+                <a href="social.html#facebook" aria-label="Facebook — Vista" rel="me noopener noreferrer">
                   <img src="assets/img/icons/facebook.svg" alt="" class="footer__icon-img" width="24" height="24" decoding="async" loading="lazy" aria-hidden="true" />
                 </a>
 
-                <a href="#" aria-label="YouTube — KP_Code_" rel="me noopener noreferrer">
+                <a href="social.html#youtube" aria-label="YouTube — Vista" rel="me noopener noreferrer">
                   <img src="assets/img/icons/youtube.svg" alt="" class="footer__icon-img" width="24" height="24" decoding="async" loading="lazy" aria-hidden="true" />
                 </a>
 
-                <a href="#" aria-label="GitHub — KP_Code_" rel="me noopener noreferrer">
+                <a href="social.html#github" aria-label="GitHub — Vista" rel="me noopener noreferrer">
                   <img src="assets/img/icons/github.svg" alt="" class="footer__icon-img icon--mono" width="24" height="24" decoding="async" loading="lazy" aria-hidden="true" />
                 </a>
 
-                <a href="#" aria-label="X — KP_Code_" rel="me noopener noreferrer">
+                <a href="social.html#x" aria-label="X — Vista" rel="me noopener noreferrer">
                   <img src="assets/img/icons/x.svg" alt="" class="footer__icon-img icon--mono" width="24" height="24" decoding="async" loading="lazy" aria-hidden="true" />
                 </a>
               </div>
@@ -888,7 +916,7 @@
             <p>
               ©
               <span data-year></span>
-              KP_Code. Wszelkie prawa zastrzeżone. Projekt i wdrożenie: KP_Code
+              Vista. Wszelkie prawa zastrzeżone. Projekt i wdrożenie: Vista
             </p>
             <p>Made for demo</p>
           </div>
@@ -896,27 +924,6 @@
       </div>
     </footer>
 
-    <!-- JSON-LD -->
-    <script type="application/ld+json">
-      {
-        "@context": "https://schema.org",
-        "@type": "Hotel",
-        "name": "Tourism & Hotels",
-        "url": "index.html",
-        "address": { "@type": "PostalAddress", "streetAddress": "ul. Przykładowa 1", "addressLocality": "Miasto", "postalCode": "00-000", "addressCountry": "PL" },
-        "telephone": "+48 000 000 000",
-        "image": "assets/img/hero/hero-01-1280.jpg"
-      }
-    </script>
-    <script type="application/ld+json">
-      {
-        "@context": "https://schema.org",
-        "@type": "Organization",
-        "name": "Tourism & Hotels",
-        "url": "index.html",
-        "logo": "assets/img/ui/icon-192.png"
-      }
-    </script>
     <!-- SCRIPTS -->
     <script type="module" defer src="js/script.js"></script>
 

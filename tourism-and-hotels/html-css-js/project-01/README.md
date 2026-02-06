@@ -1,6 +1,6 @@
-# Tourism & Hotels – 01 (Clean Rebuild)
+# Vista — Hotels & Travel (Clean Rebuild)
 
-Profesjonalna, dostępna i responsywna wersja projektu „Tourism & Hotels – 01” w czystym HTML/CSS/JS. Projekt zawiera tryby Light/Dark/Auto, progresywne ulepszenia (PWA), lekkie animacje oraz konfigurację Netlify (nagłówki bezpieczeństwa, przekierowania).
+Profesjonalna, dostępna i responsywna wersja projektu „Vista — Hotels & Travel” w czystym HTML/CSS/JS. Projekt zawiera tryby Light/Dark/Auto, progresywne ulepszenia (PWA), lekkie animacje oraz konfigurację Netlify (nagłówki bezpieczeństwa, przekierowania).
 
 ## Struktura
 

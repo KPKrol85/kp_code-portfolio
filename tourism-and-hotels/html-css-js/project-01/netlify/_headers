@@ -1,27 +1,20 @@
 # Global security headers
-/*
-  Uwaga: ten blok to tylko dokumentacja, możesz go usunąć,
-  jeśli Netlify robi problemy z komentarzami typu /* ... */.
-*/
+# Uwaga: ten blok to tylko dokumentacja, możesz go usunąć,
+# jeśli Netlify robi problemy z komentarzami typu /* ... */.
 
 # Główne nagłówki bezpieczeństwa dla całej strony
-/*
-  Jeśli chcesz mieć 100% pewności, usuń ten komentarz blokowy
-  i zostaw tylko komentarze zaczynające się od #.
-*/
+# Jeśli chcesz mieć 100% pewności, usuń ten komentarz blokowy
+# i zostaw tylko komentarze zaczynające się od #.
 
 # Global headers
+# Path: /*
 /*
-  Path: /*
-*/
- /*
   X-Content-Type-Options: nosniff
   Referrer-Policy: strict-origin-when-cross-origin
   Permissions-Policy: geolocation=(), microphone=(), camera=(), payment=(), usb=()
   X-Frame-Options: DENY
   X-XSS-Protection: 0
-  Content-Security-Policy: default-src 'self'; script-src 'self'; worker-src 'self'; style-src 'self'; img-src 'self' data:; font-src 'self' data:; connect-src 'self'; manifest-src 'self'; object-src 'none'; base-uri 'self'; frame-ancestors 'none'; form-action 'self'; upgrade-insecure-requests
-*/
+  Content-Security-Policy: default-src 'self'; script-src 'self'; worker-src 'self'; style-src 'self'; img-src 'self' data:; font-src 'self' data:; connect-src 'self'; manifest-src 'self'; object-src 'none'; base-uri 'self'; frame-src 'self' https://www.google.com https://maps.google.com; frame-ancestors 'none'; form-action 'self'; upgrade-insecure-requests
 
 # site.webmanifest
 /site.webmanifest
