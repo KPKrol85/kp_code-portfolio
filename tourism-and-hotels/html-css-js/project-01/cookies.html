@@ -73,11 +73,9 @@
             <path d="M3 6h18M3 12h18M3 18h18" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
           </svg>
         </button>
-        <div id="theme-toggle" class="theme-toggle" role="group" aria-label="Motyw strony">
-          <button class="theme-toggle__btn" type="button" data-theme="auto" aria-pressed="false">Auto</button>
-          <button class="theme-toggle__btn" type="button" data-theme="light" aria-pressed="false">Light</button>
-          <button class="theme-toggle__btn" type="button" data-theme="dark" aria-pressed="false">Dark</button>
-        </div>
+        <button type="button" id="theme-toggle" class="theme-toggle" aria-label="Toggle color theme" data-theme-toggle>
+          <img class="theme-toggle__icon" src="assets/img/icons/sun-40x40.svg" alt="" aria-hidden="true" width="20" height="20" decoding="async" />
+        </button>
 
         <nav class="site-nav" id="site-nav" aria-label="Główne">
           <ul class="site-nav__list">
@@ -249,3 +247,4 @@
     <script type="module" defer src="js/script.js"></script>
   </body>
 </html>
+

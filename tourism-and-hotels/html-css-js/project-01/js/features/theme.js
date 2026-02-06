@@ -1,54 +1,79 @@
-const STORAGE_KEY = "theme-pref"; // 'light' | 'dark' | 'auto'
-const PREFS = ["auto", "light", "dark"];
+const STORAGE_KEY = "theme-pref";
+const PREFS = new Set(["auto", "light", "dark"]);
+const ICONS = {
+  light: "assets/img/icons/sun-40x40.svg",
+  dark: "assets/img/icons/moon-40x40.svg",
+};
 
-function applyTheme(pref) {
-  const html = document.documentElement;
-  const next = PREFS.includes(pref) ? pref : "auto";
-  html.setAttribute("data-theme", next);
-}
-
-function getStored() {
+function getStoredPref() {
   const stored = localStorage.getItem(STORAGE_KEY);
-  return PREFS.includes(stored) ? stored : "auto";
+  return PREFS.has(stored) ? stored : "auto";
 }
 
-function store(pref) {
+function savePref(pref) {
+  if (pref === "auto") {
+    localStorage.removeItem(STORAGE_KEY);
+    return;
+  }
   localStorage.setItem(STORAGE_KEY, pref);
 }
 
-function syncButtons(buttons, pref) {
-  buttons.forEach((btn) => {
-    const isActive = btn.dataset.theme === pref;
-    btn.classList.toggle("is-active", isActive);
-    btn.setAttribute("aria-pressed", String(isActive));
-  });
+function applyTheme(pref) {
+  const next = PREFS.has(pref) ? pref : "auto";
+  document.documentElement.setAttribute("data-theme", next);
+}
+
+function getActiveTheme(pref, media) {
+  if (pref === "auto") {
+    return media.matches ? "dark" : "light";
+  }
+  return pref;
+}
+
+function updateToggleIcon(iconEl, activeTheme) {
+  if (!iconEl) return;
+  iconEl.src = ICONS[activeTheme] || ICONS.light;
 }
 
 export function initTheme() {
-  let current = getStored();
-  applyTheme(current);
-
   const media = matchMedia("(prefers-color-scheme: dark)");
-  media.addEventListener?.("change", () => {
-    if (current === "auto") {
-      applyTheme("auto");
-    }
-  });
+  const toggle = document.querySelector("[data-theme-toggle]");
+  const icon = toggle?.querySelector(".theme-toggle__icon");
+  let pref = getStoredPref();
 
-  const toggle = document.getElementById("theme-toggle");
-  const buttons = toggle ? [...toggle.querySelectorAll("button[data-theme]")] : [];
-  if (buttons.length) {
-    syncButtons(buttons, current);
+  const sync = () => {
+    applyTheme(pref);
+    const activeTheme = getActiveTheme(pref, media);
+    updateToggleIcon(icon, activeTheme);
+  };
 
+  if (toggle) {
     toggle.addEventListener("click", (event) => {
-      const target = event.target.closest("button[data-theme]");
-      if (!target) return;
-      const next = target.dataset.theme;
-      if (!PREFS.includes(next)) return;
-      current = next;
-      applyTheme(current);
-      store(current);
-      syncButtons(buttons, current);
+      if (event.shiftKey) {
+        pref = "auto";
+        savePref(pref);
+        sync();
+        return;
+      }
+
+      const activeTheme = getActiveTheme(pref, media);
+      pref = activeTheme === "light" ? "dark" : "light";
+      savePref(pref);
+      sync();
     });
   }
+
+  const onSystemThemeChange = () => {
+    if (pref === "auto") {
+      sync();
+    }
+  };
+
+  if (typeof media.addEventListener === "function") {
+    media.addEventListener("change", onSystemThemeChange);
+  } else if (typeof media.addListener === "function") {
+    media.addListener(onSystemThemeChange);
+  }
+
+  sync();
 }
