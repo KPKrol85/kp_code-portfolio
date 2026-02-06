@@ -331,8 +331,8 @@
 }
 .about__avatar {
   flex: 0 0 auto;
-  inline-size: var(--avatar-xl);
-  block-size: var(--avatar-xl);
+  inline-size: var(--avatar-md);
+  block-size: var(--avatar-md);
   border-radius: 999px;
   margin-top: var(--space-lg);
   overflow: hidden;
@@ -538,10 +538,16 @@
   color: color-mix(in srgb, var(--color-text) 85%, var(--color-text-muted));
 }
 .cta__actions {
+  /*
   display: flex;
   flex-wrap: wrap;
   gap: var(--space-md);
   align-items: center;
+*/
+  display: grid;
+  gap: var(--space-sm);
+  margin-top: var(--space-xl);
+  padding: 0 var(--space-sm);
 }
 /* CTA MQ */
 @media (max-width: 699px) {

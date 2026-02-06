@@ -193,6 +193,11 @@ document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
 
 const revealElements = document.querySelectorAll('[data-reveal]');
 if (revealElements.length) {
+  const isMobileReveal = window.matchMedia('(max-width: 767px)').matches;
+  const revealOptions = {
+    rootMargin: isMobileReveal ? '0px 0px 30% 0px' : '0px 0px 15% 0px',
+    threshold: isMobileReveal ? 0.08 : 0.15
+  };
   const observer = new IntersectionObserver(
     (entries) => {
       entries.forEach((entry) => {
@@ -202,7 +207,7 @@ if (revealElements.length) {
         }
       });
     },
-    { threshold: 0.2 }
+    revealOptions
   );
   revealElements.forEach((el) => {
     el.classList.add('reveal');
