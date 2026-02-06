@@ -202,7 +202,6 @@
 /* CASE STUDY */
 .case-study {
   background: var(--color-surface);
-  border-radius: var(--radius-lg);
   padding: var(--space-lg);
   border: 1px solid color-mix(in srgb, var(--color-border) 80%, transparent);
   box-shadow: var(--shadow-md);
@@ -524,7 +523,6 @@
 /* CTA */
 .cta {
   background: var(--color-surface);
-  border-radius: var(--radius-lg);
   padding: var(--space-2xl);
   border: 1px solid color-mix(in srgb, var(--color-border) 80%, transparent);
   box-shadow: var(--shadow-md);
@@ -558,6 +556,10 @@
 .contact-grid {
   display: grid;
   gap: var(--space-xl);
+}
+
+.contact__card {
+  margin-top: var(--space-lg);
 }
 /* CONTACT MQ */
 @media (min-width: 900px) {

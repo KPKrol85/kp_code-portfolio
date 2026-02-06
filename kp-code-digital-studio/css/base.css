@@ -89,7 +89,6 @@ main {
   background: var(--color-primary);
   color: #fff;
   padding: var(--space-xs) var(--space-md);
-  border-radius: var(--radius-sm);
   z-index: 999;
 }
 .skip-link:focus {
