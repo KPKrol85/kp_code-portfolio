@@ -119,7 +119,7 @@
 .process__step {
   inline-size: 2rem;
   block-size: 2rem;
-  border-radius: 999px;
+  border-radius: var(--radius-pill);
   display: grid;
   place-items: center;
   font-size: var(--font-size-xs);
@@ -299,7 +299,7 @@
   align-items: center;
   justify-content: space-between;
   gap: var(--space-md);
-  padding-right: var(--space-md);
+  padding-right: var(--space-lg);
 }
 .about__header .section__header-text {
   display: flex;
@@ -333,7 +333,7 @@
   flex: 0 0 auto;
   inline-size: var(--avatar-md);
   block-size: var(--avatar-md);
-  border-radius: 999px;
+  border-radius: var(--radius-pill);
   margin-top: var(--space-lg);
   overflow: hidden;
   background: color-mix(in srgb, var(--color-surface-alt) 75%, transparent);
@@ -387,13 +387,9 @@
   position: relative;
   padding: var(--space-md);
   margin-top: var(--space-lg);
-  border: 1px solid color-mix(in srgb, var(--color-border) 55%, transparent);
-  background: linear-gradient(180deg, color-mix(in srgb, var(--color-surface) 92%, transparent), color-mix(in srgb, var(--color-surface-alt) 65%, transparent));
-  box-shadow:
-    0 24px 60px color-mix(in srgb, #000 10%, transparent),
-    0 1px 0 color-mix(in srgb, #fff 35%, transparent) inset;
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid color-mix(in srgb, var(--color-border) 70%, transparent);
+  background: linear-gradient(180deg, color-mix(in srgb, var(--color-surface) 98%, transparent), color-mix(in srgb, var(--color-surface-alt) 85%, transparent));
+  box-shadow: 0 12px 36px color-mix(in srgb, #000 8%, transparent);
   display: grid;
   gap: var(--space-md);
 }
@@ -407,7 +403,7 @@
   opacity: 0.9;
 }
 .about__card .card__title {
-  margin: 0;
+  margin: var(--space-xs) 0;
   letter-spacing: -0.01em;
 }
 .about__card .card__meta {
@@ -422,13 +418,14 @@
   gap: var(--space-2xs);
 }
 .about__pill-grid .tag {
-  border-radius: 999px;
-  padding: 0.38rem 0.62rem;
-  font-size: var(--font-size-xs);
-  letter-spacing: 0.02em;
-  background: color-mix(in srgb, var(--color-surface) 70%, transparent);
-  border: 1px solid color-mix(in srgb, var(--color-border) 55%, transparent);
-  box-shadow: 0 1px 0 color-mix(in srgb, #fff 30%, transparent) inset;
+  background: transparent;
+  color: var(--color-text);
+  border: 1px solid var(--color-border);
+  font-weight: 500;
+  padding: 0.35rem var(--space-sm);
+}
+[data-theme="dark"] .about__pill-grid .tag {
+  border-color: color-mix(in srgb, var(--color-border) 70%, transparent);
 }
 .about__divider {
   height: 1px;
@@ -464,7 +461,7 @@
   top: 0.38rem;
   inline-size: 0.55rem;
   block-size: 0.55rem;
-  border-radius: 999px;
+  border-radius: var(--radius-pill);
   background: color-mix(in srgb, var(--color-primary) 55%, transparent);
   box-shadow:
     0 0 0 4px color-mix(in srgb, var(--color-primary) 12%, transparent),
@@ -524,7 +521,7 @@
 /* CTA */
 .cta {
   background: var(--color-surface);
-  padding: var(--space-2xl);
+  padding: var(--space-md);
   border: 1px solid color-mix(in srgb, var(--color-border) 80%, transparent);
   box-shadow: var(--shadow-md);
   display: grid;
@@ -538,24 +535,32 @@
   color: color-mix(in srgb, var(--color-text) 85%, var(--color-text-muted));
 }
 .cta__actions {
-  /*
-  display: flex;
-  flex-wrap: wrap;
-  gap: var(--space-md);
-  align-items: center;
-*/
   display: grid;
   gap: var(--space-sm);
   margin-top: var(--space-xl);
   padding: 0 var(--space-sm);
 }
 /* CTA MQ */
-@media (max-width: 699px) {
+@media (min-width: 480px) {
   .cta {
-    padding: var(--space-xl);
+    padding: var(--space-2xl);
   }
+
   .cta__actions {
-    gap: var(--space-sm);
+    padding: 0;
+  }
+}
+@media (min-width: 768px) {
+  .cta__actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-md);
+    align-items: center;
+  }
+}
+@media (min-width: 1024px) {
+  .cta {
+    padding: var(--space-3xl);
   }
 }
 
