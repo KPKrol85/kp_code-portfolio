@@ -36,13 +36,14 @@
 }
 .hero__meta.hero__visual {
   display: grid;
-  place-items: center;
+  place-items: start center;
 }
 .hero__logo {
-  max-width: 300px;
+  max-width: min(240px, 70vw);
+  max-height: 240px;
   width: 100%;
   opacity: 0.7;
-  margin-top: var(--space-md);
+  margin-top: 0;
 }
 [data-theme="dark"] .hero__logo {
   opacity: 0.22;
