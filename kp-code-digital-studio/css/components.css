@@ -72,6 +72,10 @@
   background: color-mix(in srgb, var(--color-bg) 94%, transparent);
   padding: var(--space-xl) var(--space-lg) var(--space-2xl);
   backdrop-filter: blur(22px);
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: var(--space-sm);
   overflow-y: auto;
   -webkit-overflow-scrolling: touch;
   max-height: calc(100dvh - var(--header-links-offset-current));
@@ -117,6 +121,12 @@ html:not(.js) .nav__toggle {
   letter-spacing: -0.01em;
   color: var(--color-text);
   transition: color var(--transition-fast);
+}
+.js .nav__links .nav__link {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  min-height: 44px;
 }
 .nav__link:hover,
 .nav__link:focus-visible {
@@ -261,6 +271,10 @@ html:not(.js) .nav__toggle {
   .nav__link {
     font-size: var(--font-size-sm);
     color: var(--color-text-muted);
+  }
+  .js .nav__links .nav__link {
+    width: auto;
+    min-height: auto;
   }
   .nav__backdrop {
     display: none;
