@@ -216,7 +216,6 @@ picture {
   border-radius: 8px;
 }
 
-/* ===== 02 - HEADER & NAV ===== */
 
 .site-header {
   position: sticky;
@@ -385,7 +384,6 @@ picture {
   color: var(--text);
 }
 
-/* -- MQ min-width: 901px -- */
 
 @media (min-width: 901px) {
   .site-header__brand {
@@ -404,7 +402,7 @@ picture {
   }
 }
 
-/* -- MQ max-width: 900px -- */
+
 @media (max-width: 900px) {
   .site-header {
     --logo-size: 28px;

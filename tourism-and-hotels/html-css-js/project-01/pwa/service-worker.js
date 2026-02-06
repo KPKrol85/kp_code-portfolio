@@ -1,4 +1,4 @@
-/* Service Worker – Vista Website Demo for Hotels & Travel */
+
 
 const CACHE_VERSION = "v1.1.0";
 const STATIC_CACHE = `th-static-${CACHE_VERSION}`;
@@ -39,11 +39,9 @@ self.addEventListener("activate", (event) => {
   self.clients.claim();
 });
 
-// Network-first for HTML; Cache-first for static assets
 self.addEventListener("fetch", (event) => {
   const req = event.request;
 
-  // HTML pages
   if (req.mode === "navigate" || (req.method === "GET" && req.headers.get("accept")?.includes("text/html"))) {
     event.respondWith(
       fetch(req)
@@ -60,7 +58,6 @@ self.addEventListener("fetch", (event) => {
     return;
   }
 
-  // Static assets
   event.respondWith(
     caches.match(req).then((cached) => {
       if (cached) return cached;

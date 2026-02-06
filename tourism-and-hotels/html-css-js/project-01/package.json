@@ -5,6 +5,9 @@
   "scripts": {
     "build:css": "postcss css/style.css -o css/style.min.css",
     "build": "npm run build:css",
+    "img:opt": "node scripts/optimize-images.mjs",
+    "img:clean": "node scripts/optimize-images.mjs --clean",
+    "img:watch": "node scripts/optimize-images.mjs --watch",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [
@@ -20,7 +23,9 @@
   "license": "ISC",
   "devDependencies": {
     "autoprefixer": "^10.4.22",
+    "chokidar": "^4.0.3",
     "cssnano": "^7.1.2",
-    "postcss-cli": "^11.0.1"
+    "postcss-cli": "^11.0.1",
+    "sharp": "^0.34.4"
   }
 }

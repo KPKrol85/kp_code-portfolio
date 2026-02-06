@@ -1,4 +1,4 @@
-// tabs.js – roving tabindex + manual activation (ARIA tabs)
+
 export function initTabs(root = document) {
   const tabLists = [...root.querySelectorAll('[role="tablist"]')];
   if (!tabLists.length) return;
@@ -51,7 +51,7 @@ export function initTabs(root = document) {
       });
 
       tab.addEventListener('keydown', (event) => {
-        // Manual activation: arrows move focus, Enter/Space activates the focused tab.
+   
         const currentIndex = tabs.indexOf(event.currentTarget);
         const lastIndex = tabs.length - 1;
 

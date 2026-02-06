@@ -1,4 +1,4 @@
-// reveal.js – IntersectionObserver to reveal elements
+
 export function initReveal() {
   const els = document.querySelectorAll('[data-reveal]');
   if (!('IntersectionObserver' in window) || els.length === 0) {
@@ -15,4 +15,3 @@ export function initReveal() {
   }, { rootMargin: '0px 0px -10% 0px', threshold: 0.1 });
   els.forEach(el => io.observe(el));
 }
-
