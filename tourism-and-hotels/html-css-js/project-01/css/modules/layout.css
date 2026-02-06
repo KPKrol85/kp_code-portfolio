@@ -24,14 +24,14 @@
 .site-header__inner {
   display: flex;
   align-items: center;
-  gap: 1rem;
+  gap: var(--space-md);
   min-height: var(--header-h);
   transition: min-height 0.2s ease-out;
 }
 .site-header__brand {
   display: inline-flex;
   align-items: center;
-  gap: 0.55rem;
+  gap: var(--space-xs);
   font-size: 1rem;
   font-weight: 500;
   text-decoration: none;
@@ -46,7 +46,7 @@
 .brand-lockup {
   display: grid;
   align-content: center;
-  row-gap: 0.08rem;
+  row-gap: var(--space-2xs);
   line-height: 1;
 }
 .brand-lockup__name {
@@ -70,7 +70,7 @@
   background: transparent;
   border: none;
   box-shadow: none;
-  padding: 0.4rem;
+  padding: var(--space-2xs);
   color: var(--text);
   cursor: pointer;
   line-height: 0;
@@ -85,12 +85,12 @@
 .site-nav {
   display: flex;
   align-items: center;
-  gap: 0.75rem;
+  gap: var(--space-sm);
 }
 .site-nav__list {
   list-style: none;
   display: flex;
-  gap: 0.5rem;
+  gap: var(--space-xs);
   padding: 0;
   margin: 0;
 }
@@ -99,7 +99,7 @@
   color: var(--text);
   font-size: var(--nav-fs);
   border-radius: var(--radius-pill, 999px);
-  padding: 0.4rem 0.6rem;
+  padding: var(--space-2xs) var(--space-xs);
   transition:
     background 0.2s ease,
     box-shadow 0.2s ease;
@@ -112,7 +112,7 @@
 .site-nav__extras {
   display: flex;
   align-items: center;
-  gap: 0.6rem;
+  gap: var(--space-xs);
   font-size: 0.9rem;
 }
 
@@ -138,7 +138,7 @@
   }
   .site-nav {
     order: 2;
-    margin-left: 1rem;
+    margin-left: var(--space-md);
   }
   #theme-toggle {
     order: 3;
@@ -153,7 +153,7 @@
     --logo-size: 28px;
   }
   .brand-lockup {
-    row-gap: 0.06rem;
+    row-gap: var(--space-2xs);
   }
   .brand-lockup__name {
     font-size: clamp(1rem, 0.8vw + 0.85rem, 1.2rem);
@@ -179,8 +179,8 @@
     pointer-events: none;
     flex-direction: column;
     align-items: stretch;
-    gap: 1rem;
-    padding: 1rem;
+    gap: var(--space-md);
+    padding: var(--space-md);
     border-bottom: 1px solid var(--border);
   }
   .js .site-nav.is-open {

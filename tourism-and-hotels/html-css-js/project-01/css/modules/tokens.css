@@ -35,24 +35,34 @@
 }
 
 :root {
+  /* Colors light */
   --bg: #faf8f3;
   --bg-elev: #ffffff;
   --text: #1f2430;
   --muted: #55585e;
+  --border: #e0e3e8;
   --primary: #2dc7a6;
   --primary-alt: #2d9bf0;
   --primary-contrast: #ffffff;
-  --border: #e0e3e8;
-  --shadow: 0 10px 30px rgba(0, 0, 0, 0.06);
+  /* Colors alert */
+  --danger: #ef4444;
+  --success: #0f766e;
+  --focus: #2dc7a6;
+  /* Colors */
   --bg-dark: #0a0d11;
   --bg-elev-dark: #141a24;
   --text-dark: #e7eaf1;
   --muted-dark: #a6b3c6;
-  --primary-dark: #34d1b2;
   --border-dark: #1b2433;
+  --primary-dark: #34d1b2;
+  /* Decorations */
+  --shadow: 0 10px 30px rgba(0, 0, 0, 0.06);
+  --elev: var(--shadow);
   --bg-gradients: none;
+  /* Fonts */
   --font-sans: "Inter", system-ui, sans-serif;
   --font-heading: "Manrope", system-ui, sans-serif;
+  /* Typography */
   --fs-100: clamp(0.8rem, 0.15vw + 0.78rem, 0.9rem);
   --fs-200: clamp(0.88rem, 0.18vw + 0.84rem, 0.95rem);
   --fs-300: clamp(0.9rem, 0.22vw + 0.85rem, 1rem);
@@ -60,22 +70,33 @@
   --fs-500: clamp(1.2rem, 0.8vw + 1rem, 1.5rem);
   --fs-600: clamp(1.4rem, 1.3vw + 1rem, 1.9rem);
   --fs-700: clamp(1.8rem, 2.2vw + 1.2rem, 2.6rem);
-  --space-1: 4px;
-  --space-2: 8px;
-  --space-3: 12px;
-  --space-4: 16px;
-  --space-5: 24px;
-  --space-6: 32px;
-  --space-7: 48px;
-  --space-8: 64px;
-  --radius-sm: 12px;
-  --radius: 18px;
-  --radius-lg: 24px;
-  --elev: var(--shadow);
+  /* Buttons */
+  --fs-btn-sm: 0.4rem;
+  --fs-btn: 0.85rem;
+  --fs-btn-lg: 1.05rem;
+  /* Spacing */
+  --space-2xs: clamp(0.25rem, 0.2vw, 0.375rem); /* ~4–6px */
+  --space-xs: clamp(0.5rem, 0.4vw, 0.75rem); /* ~8–12px */
+  --space-sm: clamp(0.75rem, 0.6vw, 1rem); /* ~12–16px */
+  --space-md: clamp(1rem, 1vw, 1.5rem); /* ~16–24px */
+  --space-lg: clamp(1.5rem, 1.5vw, 2rem); /* ~24–32px */
+  --space-xl: clamp(2rem, 2.5vw, 3rem); /* ~32–48px */
+  --space-2xl: clamp(3rem, 4vw, 4rem); /* ~48–64px */
+  --space-3xl: clamp(4rem, 5vw, 6rem); /* ~64–96px */
+  --space-4xl: clamp(6rem, 7vw, 8rem); /* ~96–128px */
+  /* Radius */
+  --radius-xs: 6px; /* badges, inputs */
+  --radius-sm: 10px; /* buttons, small cards */
+  --radius-md: 16px; /* cards, panels */
+  --radius-lg: 24px; /* hero blocks, modals */
+  --radius-full: 999px; /* pills, avatars */
+  /* Layout */
   --container: 1200px;
   --header-h: 68px;
   --z-header: 50;
   --z-overlay: 100;
+
+  --footer-icon-filter: none;
 }
 html[data-theme="light"] {
   --bg: #faf8f3;
@@ -126,20 +147,4 @@ html[data-theme="dark"] {
       radial-gradient(60vw 60vw at 10% 6%, color-mix(in oklab, #ffd37a 35%, transparent) 0%, transparent 60%),
       radial-gradient(40vw 40vw at 88% 90%, color-mix(in oklab, #2dc7a6 10%, transparent) 0%, transparent 70%);
   }
-}
-
-:root {
-  --footer-icon-filter: none;
-}
-
-:root {
-  --fs-btn-sm: 0.4rem;
-  --fs-btn: 0.85rem;
-  --fs-btn-lg: 1.05rem;
-}
-
-:root {
-  --danger: #ef4444;
-  --success: #0f766e;
-  --focus: #2dc7a6;
 }

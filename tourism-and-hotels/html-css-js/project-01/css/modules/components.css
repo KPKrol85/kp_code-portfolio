@@ -35,9 +35,9 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: 0.5rem;
-  padding-block: 0.7rem;
-  padding-inline: 1.35rem;
+  gap: var(--space-xs);
+  padding-block: var(--space-sm);
+  padding-inline: var(--space-md);
   font-family: var(--font-sans);
   font-size: var(--fs-btn);
   line-height: 1;
@@ -89,7 +89,7 @@
 .btn--link {
   background: transparent;
   border-color: transparent;
-  padding: 0.25rem 0.5rem;
+  padding: var(--space-2xs) var(--space-xs);
   color: #2dc7a6;
   font-weight: 500;
 } /* -- Forms -- */
@@ -100,15 +100,15 @@
 }
 .form {
   display: grid;
-  gap: 1rem;
+  gap: var(--space-md);
 }
 .form__field {
   display: grid;
-  gap: 0.4rem;
+  gap: var(--space-2xs);
 }
 .form__field :is(input, textarea, select) {
   width: 100%;
-  padding: 0.7rem 0.9rem;
+  padding: var(--space-sm) var(--space-sm);
   border-radius: var(--radius, 12px);
   border: 1px solid var(--border);
   background: var(--bg-elev);
@@ -155,9 +155,9 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 0.75rem;
+  gap: var(--space-sm);
   flex-wrap: wrap;
-  margin-top: 0.5rem;
+  margin-top: var(--space-xs);
 }
 .form__field :is(input, textarea, select):disabled {
   opacity: 0.7;
@@ -175,20 +175,20 @@
   display: grid;
   grid-template-columns: 20px 1fr;
   align-items: start;
-  gap: 0.6rem;
+  gap: var(--space-xs);
 }
 .form__field--checkbox input[type="checkbox"] {
   inline-size: 18px;
   block-size: 18px;
-  margin-top: 0.2rem;
+  margin-top: var(--space-2xs);
 }
 fieldset.form__field {
   border: 1px solid var(--border);
   border-radius: var(--radius, 12px);
-  padding: 0.8rem;
+  padding: var(--space-sm);
 }
 fieldset.form__field legend {
-  padding: 0 0.4rem;
+  padding: 0 var(--space-2xs);
   font-size: 0.95em;
   color: var(--muted);
 }
@@ -208,7 +208,7 @@ fieldset.form__field legend {
   box-shadow: var(--elev);
 }
 .map figcaption {
-  margin: 0.5rem 0 0 0;
+  margin: var(--space-xs) 0 0 0;
 }
 
 .grid-2 a[href^="tel"],
@@ -225,8 +225,8 @@ fieldset.form__field legend {
 .grid-2 p {
   display: flex;
   align-items: center;
-  gap: 0.5rem;
-  margin: 0.4rem 0;
+  gap: var(--space-xs);
+  margin: var(--space-2xs) 0;
 }
 .grid-2 .footer__icon-img {
   width: 20px;
@@ -237,13 +237,13 @@ fieldset.form__field legend {
 
 .contact-address {
   display: grid;
-  gap: 0.55rem;
-  margin: 0.5rem 0 1rem;
+  gap: var(--space-xs);
+  margin: var(--space-xs) 0 var(--space-md);
 }
 .contact-address .contact-row {
   display: inline-flex;
   align-items: center;
-  gap: 0.5rem;
+  gap: var(--space-xs);
   margin: 0;
 }
 .contact-info {
@@ -277,7 +277,7 @@ fieldset.form__field legend {
   z-index: var(--z-overlay);
   display: grid;
   place-items: center;
-  padding: 0.75rem;
+  padding: var(--space-sm);
 }
 .lightbox__backdrop {
   position: absolute;
@@ -292,10 +292,10 @@ fieldset.form__field legend {
   box-shadow: var(--elev);
   width: min(96vw, 980px);
   max-height: min(100dvh - 1rem, 720px);
-  padding: 1rem;
+  padding: var(--space-md);
   display: grid;
   grid-template-rows: auto 1fr auto;
-  gap: 0.75rem;
+  gap: var(--space-sm);
   overflow: hidden;
 }
 .lightbox__figure {
@@ -303,7 +303,7 @@ fieldset.form__field legend {
   min-height: 0;
   display: grid;
   grid-template-rows: 1fr auto;
-  gap: 0.25rem;
+  gap: var(--space-2xs);
 }
 .lightbox__img {
   width: 100%;
@@ -345,10 +345,10 @@ fieldset.form__field legend {
   transform: scale(0.92);
 }
 .lightbox__nav button:first-child {
-  margin-left: 0.75rem;
+  margin-left: var(--space-sm);
 }
 .lightbox__nav button:last-child {
-  margin-right: 0.75rem;
+  margin-right: var(--space-sm);
 }
 .lightbox__close {
   position: absolute;
@@ -359,7 +359,7 @@ fieldset.form__field legend {
   color: var(--muted);
   font-size: 1.4rem;
   line-height: 1;
-  padding: 0.25rem;
+  padding: var(--space-2xs);
   transition: color 0.2s ease;
 }
 .lightbox__close:hover,
@@ -374,7 +374,7 @@ fieldset.form__field legend {
   font-size: 0.85rem;
   color: var(--muted);
   text-align: center;
-  margin-top: 0.25rem;
+  margin-top: var(--space-2xs);
   max-width: 90%;
   margin-inline: auto;
 }
@@ -412,7 +412,7 @@ fieldset.form__field legend {
   bottom: 0.4rem;
   margin: 0;
   max-width: none;
-  padding: 0.35rem 0.75rem;
+  padding: var(--space-2xs) var(--space-sm);
   background: linear-gradient(to top, rgba(0, 0, 0, 0.55), rgba(0, 0, 0, 0.2), transparent);
   color: #fff;
   font-size: 0.8rem;
@@ -434,10 +434,10 @@ fieldset.form__field legend {
   pointer-events: all;
 }
 .lightbox.lightbox--fullscreen .lightbox__nav button:first-child {
-  margin-left: 0.75rem;
+  margin-left: var(--space-sm);
 }
 .lightbox.lightbox--fullscreen .lightbox__nav button:last-child {
-  margin-right: 0.75rem;
+  margin-right: var(--space-sm);
 }
 @media (max-height: 420px) {
   .lightbox__dialog {
@@ -447,31 +447,31 @@ fieldset.form__field legend {
 }
 @media (max-width: 900px) {
   .lightbox__nav {
-    padding: 0 0.5rem;
+    padding: 0 var(--space-xs);
   }
   .lightbox__nav button:first-child {
-    margin-left: 0.25rem;
+    margin-left: var(--space-2xs);
   }
   .lightbox__nav button:last-child {
-    margin-right: 0.25rem;
+    margin-right: var(--space-2xs);
   }
 }
 @media (orientation: portrait) and (max-width: 900px) {
   .lightbox__nav button:first-child {
-    margin-left: 0.5rem;
+    margin-left: var(--space-xs);
   }
   .lightbox__nav button:last-child {
-    margin-right: 0.5rem;
+    margin-right: var(--space-xs);
   }
 }
 .tabs {
   display: flex;
-  gap: 0.5rem;
-  margin: 0.5rem 0 1rem;
+  gap: var(--space-xs);
+  margin: var(--space-xs) 0 var(--space-md);
   flex-wrap: wrap;
 }
 .tabs__tab {
-  padding: 0.5rem 0.9rem;
+  padding: var(--space-xs) var(--space-sm);
   border: 1px solid var(--border);
   border-radius: 999px;
   background: var(--bg-elev);
