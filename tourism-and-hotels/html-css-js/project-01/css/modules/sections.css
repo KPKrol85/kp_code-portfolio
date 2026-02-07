@@ -674,7 +674,7 @@
   }
 }
 
-/* Footer  */
+/* Footer */
 .site-footer {
   padding-block: clamp(var(--space-xl), 4vw, var(--space-2xl));
   border-top: 1px solid var(--border);
@@ -695,27 +695,6 @@
 .footer__col {
   text-align: center;
 }
-.footer__brand {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-.footer__brand-link {
-  color: inherit;
-  text-decoration: none;
-}
-.footer__brand-link:hover {
-  color: var(--primary);
-}
-.footer__brand-img {
-  width: clamp(100px, 12vw, 140px);
-  height: auto;
-  display: block;
-  margin: var(--space-xs) auto;
-}
-.footer__brand .footer__heading {
-  text-align: center;
-}
 .footer__heading {
   margin: 0 0 var(--space-xs);
   font-size: var(--fs-400);
@@ -723,11 +702,49 @@
   line-height: 1.2;
   letter-spacing: 0.2px;
 }
+.footer__list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  gap: var(--space-2xs);
+}
+.footer__list a {
+  color: inherit;
+  text-decoration: none;
+}
+.footer__list a:hover {
+  color: var(--primary);
+}
+.footer__brand {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+}
+.footer__brand::after {
+  content: "";
+  display: block;
+  width: min(36ch, 100%);
+  height: 1px;
+  margin: var(--space-lg) auto 0;
+  background: color-mix(in oklab, var(--border) 70%, transparent);
+}
+.footer__brand-img {
+  width: clamp(100px, 12vw, 140px);
+  height: auto;
+  display: block;
+  margin: var(--space-xs) auto;
+}
 .footer__brand-link {
   display: inline-block;
   text-align: center;
+  text-decoration: none;
   color: var(--text);
   font-size: var(--fs-800);
+}
+.footer__brand-link:hover {
+  color: var(--primary);
 }
 .footer__brand-link small {
   display: block;
@@ -745,52 +762,49 @@
   margin-top: var(--space-xs);
   padding-inline: var(--space-xl);
 }
-.footer__list {
-  list-style: none;
-  padding: 0;
+.footer__legal {
+  position: relative;
+}
+.footer__legal::after {
+  content: "";
+  display: block;
+  width: min(36ch, 100%);
+  height: 1px;
+  margin: var(--space-lg) auto 0;
+  background: color-mix(in oklab, var(--border) 70%, transparent);
+}
+.footer__contact address.footer__text {
+  font-style: normal;
+  line-height: 1.6;
   margin: 0;
-  display: grid;
-  gap: var(--space-2xs);
+  opacity: 0.95;
 }
-.footer__list a {
+.footer__contact .footer__text + .footer__text {
+  margin-top: var(--space-sm);
+}
+.footer__contact .footer__text a {
   color: inherit;
   text-decoration: none;
 }
-.footer__list a:hover {
+.footer__contact .footer__text a:hover {
   color: var(--primary);
 }
-.footer__contact a {
-  color: inherit;
-  text-decoration: none;
+.footer__contact .footer__text a[href^="mailto"],
+.footer__contact .footer__text a[href^="tel"] {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.35rem 0.6rem;
+  border-radius: 999px;
+  gap: var(--space-xs);
+  background: color-mix(in oklab, var(--text) 6%, transparent);
 }
-.footer__contact a:hover {
-  color: var(--primary);
+.footer__contact .footer__text a[href^="mailto"]:hover,
+.footer__contact .footer__text a[href^="tel"]:hover {
+  background: color-mix(in oklab, var(--text) 10%, transparent);
 }
-.footer__contact-list {
-  list-style: none;
-  padding: 0;
-  margin: 0 0 var(--space-md);
-  display: grid;
-  gap: var(--space-sm);
-}
-.footer__contact-item {
-  display: grid;
-  grid-template-columns: 28px 1fr;
-  column-gap: var(--space-xs);
-  align-items: start;
-}
-.footer__contact-item .footer__icon-img {
-  width: 28px;
-  height: 28px;
-  flex-shrink: 0;
-  align-self: start;
-  margin-top: calc(var(--space-2xs) / 2);
-  filter: var(--footer-icon-filter, none);
-  opacity: 0.9;
-  transition: opacity 0.2s ease;
-}
-.footer__contact-item:hover .footer__icon-img {
-  opacity: 1;
+.footer__contact #footer-social.footer__heading {
+  margin-top: var(--space-md);
 }
 .footer__social {
   display: flex;
@@ -807,6 +821,7 @@
   border-radius: 999px;
   color: var(--text);
   text-decoration: none;
+  background: color-mix(in oklab, var(--text) 6%, transparent);
   transition:
     background-color 0.2s ease,
     color 0.2s ease,
@@ -818,14 +833,16 @@
 .footer__social svg {
   width: 24px;
   height: 24px;
+  transform: translateY(0.5px);
+  opacity: 0.92;
 }
 .site-footer a:focus-visible {
-  outline: 2px solid #2dc7a6;
+  outline: 2px solid var(--accent, #2dc7a6);
   outline-offset: 2px;
   border-radius: 6px;
 }
 .footer__social a:focus-visible {
-  outline: 2px solid var(--focus, currentColor);
+  outline: 2px solid var(--accent, #2dc7a6);
   outline-offset: 2px;
   border-radius: 999px;
   background: color-mix(in oklab, var(--text) 12%, transparent);
@@ -833,7 +850,7 @@
 .footer__bottom {
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
+  align-items: center;
   gap: var(--space-sm);
   margin-top: var(--space-md);
   padding-top: var(--space-md);
@@ -841,12 +858,8 @@
   color: var(--footer-text);
 }
 .footer__bottom p {
-  font-size: 0.85em;
-  line-height: 1.4;
-}
-.footer__contact a[href^="tel"] {
-  display: inline-block;
-  margin-top: var(--space-2xs);
+  font-size: var(--fs-300);
+  line-height: 1.1;
 }
 .footer__nav .footer__list a[aria-current="page"],
 .footer__legal .footer__list a[aria-current="page"] {
@@ -859,35 +872,22 @@
   outline: 2px solid var(--accent, #2dc7a6);
   outline-offset: 2px;
 }
-.footer__text a[href^="mailto"],
-.footer__text a[href^="tel"] {
-  display: inline-flex;
-  align-items: center;
-  gap: var(--space-xs);
-  color: inherit;
-  text-decoration: none;
-  line-height: 1.6;
-}
-.footer__text a[href^="mailto"]:hover,
-.footer__text a[href^="tel"]:hover {
-  color: var(--primary);
-}
-.footer__text a .footer__icon-img {
-  width: 20px;
-  height: 20px;
-  flex: 0 0 20px;
-  vertical-align: middle;
-  filter: none;
-  opacity: 1;
-}
+
+/* Breakpoints */
 @media (min-width: 480px) {
   /* still 1 column */
 }
+
 @media (min-width: 760px) {
   .footer__grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
+  .footer__brand::after,
+  .footer__legal::after {
+    display: none;
+  }
 }
+
 @media (min-width: 1024px) {
   .footer__grid {
     grid-template-columns: repeat(4, minmax(0, 1fr));
