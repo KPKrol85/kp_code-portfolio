@@ -1,0 +1,38 @@
+.card {
+  background: var(--color-surface);
+  border-radius: var(--radius-md);
+  padding: var(--space-lg);
+  box-shadow: var(--shadow-sm);
+  border: 1px solid transparent;
+}
+
+.card--soft {
+  background: var(--color-surface-soft);
+}
+
+.card--highlight {
+  border-color: var(--color-primary);
+  box-shadow: var(--shadow-md);
+}
+
+.card__title {
+  margin: 0 0 var(--space-sm);
+  font-size: var(--text-lg);
+}
+
+.card__text {
+  margin: 0 0 var(--space-md);
+  color: var(--color-text-muted);
+}
+
+.card__price {
+  font-size: var(--text-xl);
+  font-weight: 700;
+  margin: 0 0 var(--space-md);
+}
+
+.card__eyebrow {
+  color: var(--color-primary);
+  font-weight: 600;
+  margin-bottom: var(--space-xs);
+}

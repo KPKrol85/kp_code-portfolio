@@ -1,4 +1,4 @@
-const BUILD_VERSION = '1.0.1';
+const BUILD_VERSION = '__BUILD_VERSION__';
 const CACHE_NAME = `clean-english-v${BUILD_VERSION}`;
 const OFFLINE_URL = '/offline.html';
 const PRECACHE_ASSETS = [

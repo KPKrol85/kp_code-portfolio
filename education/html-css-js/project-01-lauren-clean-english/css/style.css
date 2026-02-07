@@ -1,5 +1,29 @@
-@import url("tokens.css");
-@import url("base.css");
-@import url("layout.css");
-@import url("components.css");
-@import url("sections.css");
+@import "tokens/tokens.css";
+
+@import "base/base.css";
+@import "base/typography.css";
+
+@import "utilities/utilities.css";
+
+@import "components/buttons.css";
+@import "components/navigation.css";
+@import "components/cards.css";
+@import "components/badges.css";
+@import "components/lists.css";
+@import "components/accordion.css";
+@import "components/forms.css";
+@import "components/tabs.css";
+
+@import "sections/hero.css";
+@import "sections/how.css";
+@import "sections/services.css";
+@import "sections/pricing.css";
+@import "sections/resources.css";
+@import "sections/testimonials.css";
+@import "sections/about.css";
+@import "sections/contact.css";
+@import "sections/footer.css";
+@import "sections/offline.css";
+@import "sections/reveal.css";
+
+@import "pages/pages.css";

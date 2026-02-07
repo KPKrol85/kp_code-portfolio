@@ -1,0 +1,238 @@
+<!doctype html>
+<html lang="pl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Postępy (demo) | Lauren – Clean English</title>
+    <meta
+      name="description"
+      content="Demo panelu ucznia do śledzenia postępów w nauce angielskiego. Cele tygodnia, check-iny i statystyki zapisane lokalnie."
+    />
+    <link
+      rel="canonical"
+      href="https://education-pr-01-lauren-english.netlify.app/postepy.html"
+    />
+    <meta property="og:title" content="Postępy (demo) | Lauren – Clean English" />
+    <meta
+      property="og:description"
+      content="Sprawdź, jak wygląda demo trackera postępów: cele tygodnia, check-iny i statystyki bez logowania."
+    />
+    <meta property="og:type" content="website" />
+    <meta
+      property="og:url"
+      content="https://education-pr-01-lauren-english.netlify.app/postepy.html"
+    />
+    <meta
+      property="og:image"
+      content="https://education-pr-01-lauren-english.netlify.app/assets/og/og-default.svg"
+    />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="theme-color" content="#1b7f6c" />
+    <link rel="manifest" href="manifest.webmanifest" />
+    <link rel="stylesheet" href="/assets/build/style.min.css" />
+    <link rel="icon" href="assets/icons/icon-192.svg" type="image/svg+xml" />
+  </head>
+  <body class="page">
+    <a class="skip-link" href="#main">Przejdź do treści</a>
+    <header class="header" id="top">
+      <div class="container header__inner">
+        <a class="header__logo" href="index.html" aria-label="Lauren – Clean English">
+          <span class="header__logo-mark">LC</span>
+          <span class="header__logo-text">Lauren – Clean English</span>
+        </a>
+        <nav class="nav" aria-label="Główna nawigacja">
+          <button
+            class="nav__toggle"
+            type="button"
+            aria-expanded="false"
+            aria-controls="nav-drawer"
+          >
+            <span class="nav__toggle-line"></span>
+            <span class="nav__toggle-line"></span>
+            <span class="nav__toggle-line"></span>
+            <span class="sr-only">Otwórz menu</span>
+          </button>
+          <div class="nav__drawer" id="nav-drawer" data-drawer aria-hidden="true">
+            <div class="nav__drawer-header">
+              <span class="nav__drawer-title">Menu</span>
+              <button class="nav__close" type="button" data-drawer-close>
+                <span aria-hidden="true">×</span>
+                <span class="sr-only">Zamknij menu</span>
+              </button>
+            </div>
+            <ul class="nav__list" role="list">
+              <li class="nav__item"><a class="nav__link" href="uslugi.html">Usługi</a></li>
+              <li class="nav__item"><a class="nav__link" href="pakiety.html#pakiety">Pakiety</a></li>
+              <li class="nav__item"><a class="nav__link" href="materialy.html">Materiały</a></li>
+              <li class="nav__item"><a class="nav__link" href="postepy.html">Postępy (demo)</a></li>
+              <li class="nav__item"><a class="nav__link" href="index.html#how">Metodyka</a></li>
+              <li class="nav__item"><a class="nav__link" href="index.html#testimonials">Opinie</a></li>
+              <li class="nav__item"><a class="nav__link" href="index.html#about">O Lauren</a></li>
+              <li class="nav__item"><a class="nav__link" href="index.html#faq">FAQ</a></li>
+              <li class="nav__item"><a class="nav__link" href="index.html#contact">Kontakt</a></li>
+            </ul>
+            <a class="button button--primary nav__cta" href="index.html#contact">Umów lekcję</a>
+          </div>
+        </nav>
+        <div class="header__actions">
+          <button class="button button--ghost" type="button" data-theme-toggle>
+            <span class="button__icon" aria-hidden="true">🌓</span>
+            Motyw
+          </button>
+          <a class="button button--primary header__cta" href="index.html#contact">Umów lekcję</a>
+        </div>
+      </div>
+    </header>
+
+    <main id="main">
+      <section class="section hero progress-hero">
+        <div class="container hero__grid">
+          <div class="hero__content" data-reveal>
+            <p class="hero__eyebrow">Demo panelu ucznia</p>
+            <h1 class="hero__title">Postępy, które widać i da się zaplanować.</h1>
+            <p class="hero__subtitle">
+              To przykładowy tracker postępów – działa w 100% offline, bez kont i logowania.
+              Wszystkie dane są zapisywane wyłącznie w Twojej przeglądarce.
+            </p>
+            <div class="hero__actions">
+              <a class="button button--primary" href="#cele">Zobacz cele tygodnia</a>
+              <a class="button button--secondary" href="#statystyki">Statystyki i streak</a>
+            </div>
+            <div class="hero__meta">
+              <div class="pill">✓ Dane lokalne</div>
+              <div class="pill">✓ Kontrola nad celem</div>
+              <div class="pill">✓ Szybki check-in</div>
+            </div>
+          </div>
+          <div class="hero__visual" data-reveal>
+            <div class="hero__card">
+              <h3 class="hero__card-title">Co otrzymujesz w demo?</h3>
+              <ul class="progress" role="list">
+                <li class="progress__item">
+                  <button class="progress__toggle" type="button" aria-pressed="true">
+                    <span class="progress__icon">✓</span>
+                    <span class="progress__label">Cele tygodnia na 3 kluczowe tracki</span>
+                  </button>
+                </li>
+                <li class="progress__item">
+                  <button class="progress__toggle" type="button" aria-pressed="true">
+                    <span class="progress__icon">✓</span>
+                    <span class="progress__label">Tydzień w skrócie z check-inami</span>
+                  </button>
+                </li>
+                <li class="progress__item">
+                  <button class="progress__toggle" type="button" aria-pressed="true">
+                    <span class="progress__icon">✓</span>
+                    <span class="progress__label">Statystyki realizacji i streak</span>
+                  </button>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <div id="progress-root">
+        <p class="sr-only" role="status" aria-live="polite" data-progress-status></p>
+
+        <section class="section" id="cele">
+          <div class="container">
+            <div class="section__header" data-reveal>
+              <h2 class="section__title">Cele tygodnia</h2>
+              <p class="section__subtitle">
+                Ustaw liczbę sesji na tydzień i zaznacz dzisiejszą aktywność. Wszystkie dane zapisują
+                się lokalnie w przeglądarce.
+              </p>
+            </div>
+            <div class="grid grid--cards progress-grid" data-progress-tracks></div>
+          </div>
+        </section>
+
+        <section class="section progress-week-section" id="tydzien">
+          <div class="container">
+            <div class="section__header" data-reveal>
+              <h2 class="section__title">Tydzień w skrócie</h2>
+              <p class="section__subtitle">
+                Zobacz, jak wygląda bieżący tydzień w podziale na trzy główne tracki.
+              </p>
+            </div>
+            <div data-progress-week></div>
+          </div>
+        </section>
+
+        <section class="section" id="statystyki">
+          <div class="container">
+            <div class="section__header" data-reveal>
+              <h2 class="section__title">Statystyki</h2>
+              <p class="section__subtitle">
+                Proste liczby, które pomagają utrzymać rytm nauki bez presji.
+              </p>
+            </div>
+            <div data-progress-stats></div>
+          </div>
+        </section>
+
+        <section class="section progress-tools">
+          <div class="container progress-tools__inner">
+            <div>
+              <h2 class="section__title">Narzędzia demo</h2>
+              <p class="section__subtitle">
+                Reset usuwa dane z localStorage. Eksport pobiera JSON na Twoje urządzenie.
+              </p>
+            </div>
+            <div class="progress-tools__actions">
+              <button class="button button--ghost" type="button" data-progress-action="reset">
+                Wyczyść dane
+              </button>
+              <button class="button button--primary" type="button" data-progress-action="export">
+                Eksportuj JSON
+              </button>
+            </div>
+          </div>
+        </section>
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="container footer__grid">
+        <div>
+          <a class="header__logo" href="#top">
+            <span class="header__logo-mark">LC</span>
+            <span class="header__logo-text">Lauren – Clean English</span>
+          </a>
+          <p class="footer__text">Profesjonalny angielski w spokojnym rytmie.</p>
+        </div>
+        <div>
+          <h3 class="footer__title">Linki</h3>
+          <ul class="footer__list" role="list">
+            <li><a href="uslugi.html">Usługi</a></li>
+            <li><a href="pakiety.html#pakiety">Pakiety</a></li>
+            <li><a href="materialy.html">Materiały</a></li>
+            <li><a href="postepy.html">Postępy (demo)</a></li>
+            <li><a href="index.html#contact">Kontakt</a></li>
+          </ul>
+        </div>
+        <div>
+          <h3 class="footer__title">Social</h3>
+          <ul class="footer__list" role="list">
+            <li><a href="https://www.linkedin.com" rel="noreferrer">LinkedIn</a></li>
+            <li><a href="https://www.instagram.com" rel="noreferrer">Instagram</a></li>
+            <li><a href="https://www.youtube.com" rel="noreferrer">YouTube</a></li>
+          </ul>
+        </div>
+        <div>
+          <h3 class="footer__title">Legal</h3>
+          <ul class="footer__list" role="list">
+            <li><a href="offline.html">Polityka prywatności</a></li>
+            <li><a href="offline.html">Regulamin</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer__bottom">
+        <p>© 2026 Lauren – Clean English. Wszystkie prawa zastrzeżone.</p>
+      </div>
+    </footer>
+
+    <script src="/assets/build/main.min.js" defer></script>
+  </body>
+</html>

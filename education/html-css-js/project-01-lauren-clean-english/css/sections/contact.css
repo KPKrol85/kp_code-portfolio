@@ -1,0 +1,14 @@
+.contact__grid {
+  display: grid;
+  gap: var(--space-xl);
+}
+
+.contact__details {
+  margin-bottom: var(--space-lg);
+}
+
+@media (min-width: 780px) {
+  .contact__grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}

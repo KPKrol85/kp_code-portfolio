@@ -5,7 +5,10 @@ import { initScrollSpy } from './modules/scrollSpy.js';
 import { initAccordion } from './modules/accordion.js';
 import { initResourcesFilter } from './modules/resourcesFilter.js';
 import { initProgressTracker } from './modules/progressTracker.js';
-import { initLangToggle } from './modules/langToggle.js';
+import { initContactForm } from './modules/contactForm.js';
+import { initMaterialsCatalog } from './modules/materialsCatalog.js';
+import { initAnchorFocus } from './modules/anchorFocus.js';
+import { initProgressPage } from './pages/progress-page.js';
 
 const initThemeToggle = () => {
   const toggle = document.querySelector('[data-theme-toggle]');
@@ -36,6 +39,9 @@ initScrollSpy();
 initAccordion();
 initResourcesFilter();
 initProgressTracker();
-initLangToggle();
+initMaterialsCatalog();
+initAnchorFocus();
 initThemeToggle();
+initContactForm();
+initProgressPage();
 registerServiceWorker();

@@ -1,0 +1,10 @@
+.how__grid {
+  display: grid;
+  gap: var(--space-lg);
+}
+
+@media (min-width: 780px) {
+  .how__grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}

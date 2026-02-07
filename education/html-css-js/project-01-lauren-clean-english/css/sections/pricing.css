@@ -1,0 +1,4 @@
+.pricing .card--pricing {
+  display: grid;
+  gap: var(--space-sm);
+}

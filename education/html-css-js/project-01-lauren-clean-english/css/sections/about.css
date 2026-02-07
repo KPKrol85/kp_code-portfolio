@@ -1,0 +1,23 @@
+.about__grid {
+  display: grid;
+  gap: var(--space-xl);
+  align-items: center;
+}
+
+.about__badges {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-xs);
+  margin-top: var(--space-md);
+}
+
+.about__visual {
+  display: grid;
+  gap: var(--space-md);
+}
+
+@media (min-width: 780px) {
+  .about__grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
