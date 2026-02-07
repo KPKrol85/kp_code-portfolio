@@ -1,32 +1,62 @@
-/* Sections: page-specific blocks and section-level styling */
-
-/* ===== 03 - HERO ===== */
+/* -- Hero -- */
 .hero {
-  padding-block: clamp(var(--space-xl), 4vw, var(--space-3xl));
+  padding-block: var(--space-3xl);
 }
 .hero__inner {
   display: grid;
-  align-items: center;
-  gap: var(--space-xl);
-  grid-template-columns: 1.1fr 1fr;
+  grid-template-columns: 1fr;
+  gap: var(--space-2xl);
 }
-.hero__title {
-  font-size: var(--fs-700);
-  margin: 0 0 var(--space-xs);
+.hero__title  {
+  font-size: calc(var(--fs-900) * 1.08);
+  line-height: 1.05;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  margin: 0 0 var(--space-sm);
+  text-align: center;
+}
+.hero__title-main {
+  display: block;
+}
+.hero__title-accent {
+  display: block;
+  font-size: var(--fs-200);
+  font-weight: 400;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: color-mix(in oklab, var(--muted) 82%, var(--text) 18%);
+  margin-top: var(--space-xs);
 }
 .hero__subtitle {
+  font-size: var(--fs-300);
+  line-height: 1.65;
+  max-width: 42ch;
+  margin: var(--space-md) auto var(--space-xl);
   color: var(--muted);
-  margin: 0 0 var(--space-md);
-  max-width: 60ch;
+  text-align: center;
 }
-.hero__media picture,
-.hero__media img {
-  border-radius: var(--radius-lg);
-  box-shadow: var(--elev);
+.hero__subtitle::after {
+  content: "";
+  display: block;
+  width: 44px;
+  height: 1px;
+  margin: var(--space-md) auto 0;
+  background: linear-gradient(
+    to right,
+    transparent,
+    color-mix(in oklab, var(--primary) 35%, transparent),
+    transparent
+  );
 }
 .hero__cta {
-  display: flex;
-  gap: var(--space-sm);
+  display: grid;
+  gap: var(--space-md);
+   padding-top: calc(var(--space-lg) + var(--space-xs));
+  justify-items: center;
+}
+.hero__cta .btn {
+  width: 100%;
+  max-width: 80%;
 }
 .hero__media {
   overflow: hidden;
@@ -37,17 +67,26 @@
   display: block;
   width: 100%;
   height: auto;
-  transition: transform 0.8s ease;
-  transform-origin: center center;
 }
-.hero__media:hover img {
-  transform: scale(1.05);
-} /* -- MQ max-width: 900px -- */
-@media (max-width: 900px) {
-  .hero__inner {
-    grid-template-columns: 1fr;
+/* Media Queries */
+@media (min-width: 760px) {
+  .hero {
+    padding-block: clamp(var(--space-3xl), 6vw, var(--space-4xl));
   }
-} /* ===== 04 - SECTION BENEFITS ===== */
+  .hero__title {
+    font-size: clamp(3rem, 4vw, 3.6rem);
+  }
+  .hero__subtitle {
+    font-size: var(--fs-500);
+  }
+}
+@media (min-width: 1024px) {
+  .hero__inner {
+    grid-template-columns: 1.1fr 1fr;
+  }
+}
+
+/* -- Benefits -- */
 .benefits {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
@@ -840,7 +879,8 @@
     flex-direction: column;
     align-items: flex-start;
   }
-} /* ===== 15 - LEGAL PAGES ===== */
+}
+
 .legal {
   padding-block: clamp(var(--space-xl), 5vw, var(--space-2xl));
 }

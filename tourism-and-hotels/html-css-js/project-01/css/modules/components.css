@@ -1,5 +1,4 @@
-/* Components: reusable UI elements (toggle, buttons, forms, lightbox, tabs) */
-
+/* Theme toggle */
 .theme-toggle {
   display: inline-grid;
   place-items: center;
@@ -27,11 +26,11 @@
   height: 20px;
   pointer-events: none;
 }
-
-
+/* Button */
 .btn {
   --btn-bg: var(--bg-elev);
   --btn-color: var(--text);
+  --btn-border: var(--border);
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -44,12 +43,18 @@
   font-weight: 500;
   letter-spacing: 0.2px;
   border-radius: 999px;
-  border: 1px solid var(--border);
+  border: 1px solid var(--btn-border);
   color: var(--btn-color);
   background: var(--btn-bg);
   text-decoration: none;
   cursor: pointer;
-  transition: all 0.25s ease;
+  transition:
+    transform 0.25s ease,
+    filter 0.25s ease,
+    background 0.25s ease,
+    border-color 0.25s ease,
+    box-shadow 0.25s ease,
+    color 0.25s ease;
 }
 .btn:hover {
   transform: translateY(-1px);
@@ -57,42 +62,73 @@
 }
 .btn:active {
   transform: translateY(0);
-} /* Btn - Primary */
+}
+.btn:focus-visible {
+  outline: 3px solid color-mix(in oklab, var(--focus) 55%, transparent);
+  outline-offset: 3px;
+}
 .btn--primary {
-  --btn-bg: linear-gradient(135deg, #2dc7a6 0%, #2d9bf0 100%);
-  --btn-color: #ffffff;
-  border: none;
-  box-shadow: 0 4px 12px rgba(45, 155, 240, 0.25);
+  --btn-bg: linear-gradient(135deg, var(--primary) 0%, var(--primary-alt) 100%);
+  --btn-color: var(--primary-contrast);
+  --btn-border: transparent;
+
+  border-color: var(--btn-border);
+  box-shadow: 0 4px 12px color-mix(in oklab, var(--primary-alt) 35%, transparent);
 }
 .btn--primary:hover {
   filter: brightness(1.1);
-  box-shadow: 0 6px 16px rgba(45, 200, 180, 0.35);
+  box-shadow: 0 6px 16px color-mix(in oklab, var(--primary) 30%, transparent);
 }
 .btn--primary:active {
   filter: brightness(0.95);
   box-shadow: none;
-} /* Btn - Secondary */
+}
 .btn--secondary {
-  --btn-bg: color-mix(in oklab, var(--bg-elev) 90%, #2dc7a6 5%);
-  color: var(--text);
-  border: 1px solid color-mix(in oklab, #2dc7a6 35%, var(--border));
-} /* Btn - Ghost */
+  --btn-bg: color-mix(in oklab, var(--bg-elev) 94%, var(--primary) 6%);
+  --btn-border: color-mix(in oklab, var(--border) 60%, var(--primary) 40%);
+  --btn-color: var(--text);
+}
+.btn--secondary:hover {
+  --btn-bg: color-mix(in oklab, var(--bg-elev) 90%, var(--primary) 10%);
+  filter: none;
+}
+.btn--secondary:active {
+  --btn-bg: color-mix(in oklab, var(--bg-elev) 88%, var(--primary) 12%);
+  filter: none;
+}
 .btn--ghost {
-  background: transparent;
-  border: 1px solid color-mix(in oklab, #2dc7a6 40%, var(--border));
-  color: #2dc7a6;
-  transition: background 0.25s ease;
+  --ghost-accent: var(--primary);
+
+  --btn-bg: transparent;
+  --btn-color: var(--ghost-accent);
+  --btn-border: color-mix(in oklab, var(--ghost-accent) 40%, var(--border));
 }
 .btn--ghost:hover {
-  background: color-mix(in oklab, #2dc7a6 10%, transparent);
-} /* Btn - Link */
+  --btn-bg: color-mix(in oklab, var(--ghost-accent) 10%, transparent);
+  --btn-border: color-mix(in oklab, var(--ghost-accent) 55%, var(--border));
+  filter: none;
+}
+.btn--ghost:active {
+  --btn-bg: color-mix(in oklab, var(--ghost-accent) 14%, transparent);
+  filter: none;
+}
+html[data-theme="dark"] .btn--ghost {
+  --btn-border: color-mix(in oklab, var(--primary) 45%, var(--text) 15%, transparent);
+   --btn-border: transparent;
+}
 .btn--link {
-  background: transparent;
-  border-color: transparent;
+  --btn-bg: transparent;
+  --btn-border: transparent;
+  --btn-color: var(--primary);
   padding: var(--space-2xs) var(--space-xs);
-  color: #2dc7a6;
   font-weight: 500;
-} /* -- Forms -- */
+  filter: none;
+}
+.btn--link:hover {
+  text-decoration: underline;
+  transform: none;
+}
+/* Form */
 :root {
   --danger: #ef4444;
   --success: #0f766e;
