@@ -67,7 +67,6 @@
   height: auto;
   object-fit: unset;
 }
-/* 480+ */
 @media (min-width: 480px) {
   .hero__media {
     max-width: 80%;
@@ -188,6 +187,7 @@
     transform: scale(1.03);
   }
 }
+
 /* -- Benefits -- */
 .benefits {
   display: grid;
@@ -202,7 +202,10 @@
   border-radius: var(--radius-lg);
   padding: var(--space-md);
   box-shadow: var(--elev);
-  transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.2s ease;
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease,
+    border-color 0.2s ease;
   will-change: transform;
 }
 .benefit:hover {
@@ -255,36 +258,46 @@
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 }
-/* -- Rooms card -- */
+
+/* -- Card grid -- */
 .card-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  grid-template-columns: 1fr;
   gap: var(--space-md);
 }
+@media (min-width: 480px) {
+  .card-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+@media (min-width: 1024px) {
+  .card-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+/* -- Room card -- */
 .room-card {
   background: var(--bg-elev);
   border: 1px solid var(--border);
-  border-radius: var(--radius);
+  border-radius: var(--radius-md);
   box-shadow: var(--elev);
   overflow: hidden;
   display: grid;
-  transition:
-    transform 0.3s ease,
-    box-shadow 0.3s ease,
-    border-color 0.2s ease;
+  transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.2s ease;
   will-change: transform;
 }
 .room-card:hover {
   transform: translateY(-4px);
   box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
-  border-color: color-mix(in oklab, var(--border) 60%, #2dc7a6 40%);
+  border-color: color-mix(in oklab, var(--border) 60%, var(--accent, #2dc7a6) 40%);
 }
 .room-card:focus-within {
-  outline: 2px solid #2dc7a6;
+  outline: 2px solid var(--accent, #2dc7a6);
   outline-offset: 4px;
 }
 .btn:focus-visible {
-  outline: 2px solid #2dc7a6;
+  outline: 2px solid var(--accent, #2dc7a6);
   outline-offset: 2px;
 }
 .room-card__img {
@@ -292,12 +305,15 @@
   aspect-ratio: 3 / 2;
   object-fit: cover;
   display: block;
+  border-radius: var(--radius-md);
 }
 .room-card__body {
   padding: var(--space-md);
   display: grid;
   gap: var(--space-2xs);
   grid-auto-rows: min-content;
+  text-align: center;
+  justify-items: center;
 }
 .room-card__title {
   margin: 0;
@@ -306,21 +322,26 @@
   color: var(--text);
 }
 .room-card__meta {
-  color: var(--muted);
   margin: 0;
+  color: var(--muted);
   font-size: 0.95rem;
 }
 .room-card .btn {
   margin-top: var(--space-xs);
-  align-self: start;
+  width: 100%;
+  max-width: 240px;
 }
-@media (max-width: 900px) {
-  .card-grid {
-    gap: var(--space-md);
+@media (min-width: 760px) {
+  .room-card__body {
+    text-align: left;
+    justify-items: start;
+  }
+  .room-card .btn {
+    max-width: none;
+    width: auto;
+    justify-self: start;
   }
 }
-
-
 
 /* -- Rooms subpage -- */
 .subpage-rooms .card-grid {
@@ -428,7 +449,6 @@
   }
 }
 
-
 /* -- Highlight -- */
 .highlight {
   display: grid;
@@ -458,7 +478,6 @@
     justify-self: stretch;
   }
 }
-
 
 /* -- Offer card -- */
 .offer-card {
@@ -676,7 +695,14 @@
   .page-gallery .gallery-grid {
     grid-template-columns: 1fr;
   }
-} /* ===== 12 - SECTION CTA ===== */
+}
+
+
+
+
+
+
+/* --  CTA -- */
 .section--cta {
   text-align: center;
 }
@@ -716,28 +742,47 @@
 
 
 
-
-/* Sections */
+/* -- Sections -- */
 .section {
-  padding-block: var(--space-3xl)
+  padding-block: var(--space-3xl);
 }
 .section--highlight {
-  background: linear-gradient(180deg, color-mix(in oklab, var(--bg) 92%, transparent), transparent);
+  position: relative;
+  background: transparent; 
 }
 .section-title {
   font-size: var(--fs-600);
-  margin: 0 0 var(--space-md);
+  margin: 0 0 var(--space-sm);
   text-align: center;
 }
 .section-header {
   display: flex;
-  align-items: baseline;
-  justify-content: space-between;
-  gap: var(--space-md);
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: var(--space-xs);
   margin-bottom: var(--space-md);
 }
+.section-header a {
+  margin-bottom: var(--space-sm);
+}
+@media (min-width: 760px) {
+  .section-title {
+    margin: 0 0 var(--space-md);
+  }
+  .section-header {
+    flex-direction: row;
+    align-items: baseline;
+    justify-content: space-between;
+    text-align: left;
+    gap: var(--space-md);
+  }
+  .section-header a {
+    margin-bottom: 0;
+  }
+}
 
-/* Breadcrumb */
+/* -- Breadcrumb -- */
 .breadcrumb {
   border-bottom: 1px solid var(--border);
   padding: 0;
@@ -781,7 +826,6 @@
   opacity: 0.85;
 }
 
-
 /* Grid */
 .grid-2 {
   display: grid;
@@ -794,13 +838,12 @@
   }
 }
 
-
 /* Footer */
 .site-footer {
   padding-block: clamp(var(--space-xl), 4vw, var(--space-2xl));
   border-top: 1px solid var(--border);
   background: color-mix(in oklab, var(--bg) 96%, transparent);
-  font-size: var(--fs-300); /* mocniejszy, ale nadal stonowany kolor tekstu w stopce */
+  font-size: var(--fs-300);
   --footer-text: color-mix(in oklab, var(--text) 75%, var(--muted) 25%);
 }
 .footer__inner {
