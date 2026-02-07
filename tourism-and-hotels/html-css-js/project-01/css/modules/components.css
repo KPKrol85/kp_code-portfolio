@@ -247,6 +247,9 @@ fieldset.form__field legend {
   margin: var(--space-xs) 0 0 0;
 }
 
+
+
+
 .grid-2 a[href^="tel"],
 .grid-2 a[href^="mailto"] {
   color: var(--text);
@@ -304,6 +307,7 @@ fieldset.form__field legend {
   }
 }
 
+/* Lightbox */
 .lightbox[hidden] {
   display: none !important;
 }
@@ -500,6 +504,7 @@ fieldset.form__field legend {
     margin-right: var(--space-xs);
   }
 }
+/* Tabs */
 .tabs {
   display: flex;
   gap: var(--space-xs);

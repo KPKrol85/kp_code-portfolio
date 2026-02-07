@@ -1,4 +1,3 @@
-/* Utilities: lightweight helper classes */
 
 .sr-only {
   position: absolute;
@@ -10,7 +9,6 @@
   clip: rect(0, 0, 0, 0);
   border: 0;
 }
-
 [data-reveal] {
   opacity: 0;
   transform: translateY(10px);
