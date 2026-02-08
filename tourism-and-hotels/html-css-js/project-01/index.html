@@ -88,7 +88,7 @@
         </button>
         <nav class="site-nav" id="site-nav" aria-label="Główne">
           <ul class="site-nav__list">
-            <li><a href="index.html" data-nav>Strona główna</a></li>
+            <li><a href="index.html" data-nav aria-current="page">Strona główna</a></li>
             <li><a href="rooms.html" data-nav>Pokoje &amp; Apartamenty</a></li>
             <li><a href="offers.html" data-nav>Oferty specjalne</a></li>
             <li><a href="gallery.html" data-nav>Galeria</a></li>
@@ -702,7 +702,7 @@
             <nav class="footer__col footer__nav" aria-labelledby="footer-nav">
               <h3 id="footer-nav" class="footer__heading">NAWIGACJA</h3>
               <ul class="footer__list">
-                <li><a href="index.html" data-nav>Strona główna</a></li>
+                <li><a href="index.html" data-nav aria-current="page">Strona główna</a></li>
                 <li><a href="rooms.html" data-nav>Pokoje</a></li>
                 <li><a href="offers.html" data-nav>Oferty</a></li>
                 <li><a href="gallery.html" data-nav>Galeria</a></li>
@@ -735,8 +735,12 @@
                 <br />
                 <a href="tel:+48533537091">+48 533 537 091</a>
               </p>
+
+            </section>
+
+            <section class="footer__col footer__social" aria-labelledby="footer-social">
               <h3 id="footer-social" class="footer__heading">SOCIAL MEDIA</h3>
-              <div class="footer__social" aria-labelledby="footer-social" aria-label="Media społecznościowe">
+              <div class="footer__social-links">
                 <a href="https://www.facebook.com/kpkrol85" target="_blank" rel="me noopener noreferrer" aria-label="Facebook — Vista">
                   <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" class="icon icon-tabler icons-tabler-filled icon-tabler-brand-facebook">
                     <path stroke="none" d="M0 0h24v24H0z" fill="none" />
@@ -774,6 +778,7 @@
                 </a>
               </div>
             </section>
+
           </div>
 
           <div class="footer__bottom">
