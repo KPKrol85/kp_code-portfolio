@@ -50,11 +50,14 @@
   --c-surface: var(--card);
   --c-border: var(--line);
 
+  --c-border-strong: #c5cbd8;
   --c-border-strong: color-mix(in oklab, var(--c-border), black 16%);
   --line-strong: var(--c-border-strong);
 
   --brand-grad: linear-gradient(135deg, var(--brand), var(--brand-2));
+  --brand-weak: #fef1dd;
   --brand-weak: color-mix(in oklab, var(--brand) 14%, var(--bg));
+  --ring: #9e742c;
   --ring: color-mix(in oklab, var(--brand) 55%, #334155);
 
   --radius: 16px;
@@ -153,6 +156,7 @@
     --shadow-md: 0 6px 18px rgba(0, 0, 0, 0.36);
     --shadow-lg: 0 10px 30px rgba(0, 0, 0, 0.44);
     --shadow: var(--shadow-lg);
+    --ring: rgba(245, 158, 11, 0.65);
     --ring: color-mix(in oklab, var(--brand) 65%, transparent);
     --hero-img-brightness: 0.92;
     --hero-overlay-a: 0.42;
@@ -178,11 +182,6 @@ html {
   scrollbar-gutter: stable;
 }
 
-html,
-body {
-  overflow-x: hidden;
-}
-
 body {
   margin: 0;
   padding-top: var(--header-h);
@@ -199,6 +198,18 @@ body {
   color: var(--fg);
   background: var(--bg);
   text-wrap: pretty;
+}
+
+html.preload-theme *,
+html.preload-theme *::before,
+html.preload-theme *::after {
+  transition: none !important;
+}
+
+.top-anchor {
+  position: relative;
+  inset: 0;
+  height: 0;
 }
 
 button,
@@ -1947,6 +1958,12 @@ h2 + .lead {
   margin-top: 4px;
 }
 
+.form .form-error {
+  display: block;
+  font-size: 0.9rem;
+  color: #dc2626;
+}
+
 section#kontakt .form-note {
   min-height: 1.6em;
 }
@@ -2374,6 +2391,30 @@ section#kontakt .form-note {
   max-width: 240px;
 }
 
+.ft-map .map-placeholder {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.6rem;
+  padding: 1rem;
+  text-align: center;
+  color: var(--ft-muted);
+  background: transparent;
+}
+
+.ft-map .map-placeholder__text {
+  margin: 0;
+  font-size: 0.92rem;
+  line-height: 1.4;
+}
+
+.ft-map .map-load-btn {
+  min-width: 140px;
+}
+
 .ft-map iframe {
   width: 100% !important;
   height: 100% !important;
@@ -2615,6 +2656,23 @@ section#kontakt .form-note {
   gap: var(--space-4);
   flex-wrap: wrap;
   margin-top: var(--space-4);
+}
+
+.page-404 .error-container {
+  text-align: center;
+  padding: 6rem 1rem;
+}
+
+.page-404 .error-title {
+  font-size: clamp(2.5rem, 6vw, 4rem);
+  margin-bottom: 1rem;
+  color: var(--c-accent);
+}
+
+.page-404 .error-text {
+  font-size: 1.25rem;
+  color: var(--c-muted);
+  margin-bottom: 2rem;
 }
 
 .page-sub .cards {
@@ -3629,6 +3687,7 @@ body.lb-no-scroll {
   --shadow-md: 0 6px 18px rgba(2, 8, 23, 0.06);
   --shadow-lg: 0 10px 30px rgba(2, 8, 23, 0.08);
   --shadow: var(--shadow-lg);
+  --ring: rgba(245, 158, 11, 0.45);
   --ring: color-mix(in oklab, var(--brand) 45%, transparent);
   --hero-img-brightness: 1.1;
   --hero-overlay-a: 0.12;
@@ -3645,6 +3704,7 @@ body.lb-no-scroll {
   --shadow-md: 0 6px 18px rgba(0, 0, 0, 0.36);
   --shadow-lg: 0 10px 30px rgba(0, 0, 0, 0.44);
   --shadow: var(--shadow-lg);
+  --ring: rgba(245, 158, 11, 0.55);
   --ring: color-mix(in oklab, var(--brand) 55%, transparent);
   --hero-img-brightness: 0.95;
   --hero-overlay-a: 0.35;

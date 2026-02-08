@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="pl">
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, viewport-fit=cover"
+    />
+    <title>SolidCraft — offline</title>
+    <meta
+      name="description"
+      content="Jesteś offline. Sprawdź połączenie i wróć na stronę główną SolidCraft."
+    />
+    <meta name="author" content="KP_Code_" />
+    <meta name="robots" content="noindex, nofollow" />
+    <meta
+      name="theme-color"
+      content="#0ea5e9"
+      media="(prefers-color-scheme: light)"
+    />
+    <meta
+      name="theme-color"
+      content="#0b1220"
+      media="(prefers-color-scheme: dark)"
+    />
+    <meta name="color-scheme" content="light dark" />
+    <script src="js/theme-init.min.js"></script>
+
+    <link
+      rel="preload"
+      as="font"
+      type="font/woff2"
+      href="assets/fonts/poppins-v24-latin-regular.woff2"
+      crossorigin
+    />
+    <link
+      rel="preload"
+      as="font"
+      type="font/woff2"
+      href="assets/fonts/montserrat-v31-latin-700.woff2"
+      crossorigin
+    />
+
+    <link rel="stylesheet" href="css/style.min.css" />
+
+    <link rel="manifest" href="/manifest.webmanifest" />
+    <link
+      rel="icon"
+      type="image/svg+xml"
+      href="assets/img/favicon/favicon.svg"
+    />
+    <link rel="icon" href="assets/img/favicon/favicon.ico" sizes="any" />
+  </head>
+  <body class="page page-offline">
+    <main class="section" id="main" tabindex="-1" aria-labelledby="offline-title">
+      <div class="container error-container">
+        <h1 id="offline-title" class="error-title">Jesteś offline</h1>
+        <p class="error-text">
+          Wygląda na to, że nie masz teraz połączenia z internetem. Sprawdź
+          sieć i spróbuj ponownie.
+        </p>
+        <a href="/" class="btn btn--primary" aria-label="Przejdź do strony głównej">
+          Wróć na stronę główną
+        </a>
+      </div>
+    </main>
+  </body>
+</html>

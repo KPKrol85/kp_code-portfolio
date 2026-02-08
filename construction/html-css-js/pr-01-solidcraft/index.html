@@ -13,7 +13,7 @@
     />
     <meta name="author" content="KP_Code_" />
     <meta name="robots" content="index, follow" />
-    <link rel="canonical" href="https://construction-project-01.netlify.app/" />
+    <link rel="canonical" href="https://construction-pr-01-solidcraft.netlify.app/" />
     <meta
       name="theme-color"
       content="#0ea5e9"
@@ -25,37 +25,7 @@
       media="(prefers-color-scheme: dark)"
     />
     <meta name="color-scheme" content="light dark" />
-
-    <script>
-      try {
-        const root = document.documentElement;
-        const stored = localStorage.getItem("theme");
-
-        const theme =
-          stored === "light" || stored === "dark"
-            ? stored
-            : window.matchMedia("(prefers-color-scheme: dark)").matches
-              ? "dark"
-              : "light";
-
-        root.dataset.theme = theme;
-        root.classList.add("preload-theme");
-      } catch {}
-    </script>
-    <style>
-      html.preload-theme *,
-      html.preload-theme *::before,
-      html.preload-theme *::after {
-        transition: none !important;
-      }
-    </style>
-    <script>
-      window.addEventListener("DOMContentLoaded", () => {
-        requestAnimationFrame(() =>
-          document.documentElement.classList.remove("preload-theme"),
-        );
-      });
-    </script>
+    <script src="js/theme-init.min.js"></script>
 
     <link
       rel="preload"
@@ -79,16 +49,15 @@
     />
     <meta
       property="og:url"
-      content="https://construction-project-01.netlify.app/"
+      content="https://construction-pr-01-solidcraft.netlify.app/"
     />
-    <meta property="og:image" content="assets/img/og/og-1200x630.png" />
+    <meta property="og:image" content="https://construction-pr-01-solidcraft.netlify.app/assets/img/og/og-1200x630.png" />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
     <meta
       property="og:image:alt"
       content="SolidCraft — firma remontowo-budowlana"
     />
-    <meta property="og:updated_time" content="2025-10-28T12:00:00+02:00" />
     <meta name="twitter:card" content="summary_large_image" />
     <meta
       name="twitter:title"
@@ -98,131 +67,18 @@
       name="twitter:description"
       content="Oferta, realizacje, opinie, FAQ oraz formularz wyceny. SolidCraft — solidne wykończenia i remonty."
     />
-    <meta name="twitter:image" content="assets/img/og/og-1200x630.png" />
+    <meta name="twitter:image" content="https://construction-pr-01-solidcraft.netlify.app/assets/img/og/og-1200x630.png" />
     <meta
       name="twitter:url"
-      content="https://construction-project-01.netlify.app/"
+      content="https://construction-pr-01-solidcraft.netlify.app/"
     />
     <meta
       name="twitter:image:alt"
       content="SolidCraft — firma remontowo-budowlana"
     />
 
-    <script type="application/ld+json">
-      {
-        "@context": "https://schema.org",
-        "@type": "GeneralContractor",
-        "name": "SolidCraft",
-        "telephone": "+48 533 537 091",
-        "email": "kontakt@kp-code.pl",
-        "address": {
-          "@type": "PostalAddress",
-          "streetAddress": "ul. Marynarki Wojennej 12/31",
-          "postalCode": "33-100",
-          "addressLocality": "Tarnów",
-          "addressCountry": "PL"
-        },
-        "areaServed": "PL",
-        "openingHours": "Mo-Fr 08:00-18:00",
-        "url": "https://construction-project-01.netlify.app/",
-        "sameAs": ["https://facebook.com", "https://instagram.com"]
-      }
-    </script>
-    <script type="application/ld+json">
-      {
-        "@context": "https://schema.org",
-        "@graph": [
-          {
-            "@type": "WebSite",
-            "@id": "https://construction-project-01.netlify.app/#website",
-            "url": "https://construction-project-01.netlify.app/",
-            "name": "SolidCraft",
-            "description": "SolidCraft — firma remontowo-budowlana. Oferta, realizacje, opinie, FAQ oraz formularz wyceny.",
-            "inLanguage": "pl-PL",
-            "publisher": { "@type": "Organization", "name": "SolidCraft" },
-            "image": "https://construction-project-01.netlify.app/assets/img/og/og-1200x630.png"
-          },
-          {
-            "@type": "CollectionPage",
-            "@id": "https://construction-project-01.netlify.app/#page",
-            "url": "https://construction-project-01.netlify.app/",
-            "name": "SolidCraft — firma remontowo-budowlana",
-            "isPartOf": {
-              "@id": "https://construction-project-01.netlify.app/#website"
-            },
-            "inLanguage": "pl-PL",
-            "datePublished": "2025-09-19",
-            "dateModified": "2025-10-19",
-            "primaryImageOfPage": {
-              "@type": "ImageObject",
-              "url": "https://construction-project-01.netlify.app/assets/img/og/og-1200x630.png",
-              "width": 1200,
-              "height": 630
-            },
-            "about": {
-              "@type": "ItemList",
-              "name": "Zakres usług",
-              "itemListElement": [
-                {
-                  "@type": "ListItem",
-                  "position": 1,
-                  "name": "Wykończenia i remonty łazienek",
-                  "url": "https://construction-project-01.netlify.app/#oferta-lazienki"
-                },
-                {
-                  "@type": "ListItem",
-                  "position": 2,
-                  "name": "Malowanie i gładzie",
-                  "url": "https://construction-project-01.netlify.app/#oferta-malowanie"
-                },
-                {
-                  "@type": "ListItem",
-                  "position": 3,
-                  "name": "Kafelkowanie",
-                  "url": "https://construction-project-01.netlify.app/#oferta-kafelkowanie"
-                },
-                {
-                  "@type": "ListItem",
-                  "position": 4,
-                  "name": "Elektryka i hydraulika",
-                  "url": "https://construction-project-01.netlify.app/#oferta-elektryka"
-                }
-              ]
-            }
-          },
-          {
-            "@type": "FAQPage",
-            "@id": "https://construction-project-01.netlify.app/#faq",
-            "mainEntity": [
-              {
-                "@type": "Question",
-                "name": "Ile trwa przygotowanie wyceny?",
-                "acceptedAnswer": {
-                  "@type": "Answer",
-                  "text": "Standardowo do 24 godzin od przesłania szczegółów zlecenia lub zdjęć."
-                }
-              },
-              {
-                "@type": "Question",
-                "name": "Czy dojeżdżacie do klienta i wykonujecie oględziny?",
-                "acceptedAnswer": {
-                  "@type": "Answer",
-                  "text": "Tak. Dojazd w obrębie miasta i okolic jest możliwy po ustaleniu terminu."
-                }
-              },
-              {
-                "@type": "Question",
-                "name": "Czy wystawiacie fakturę i udzielacie gwarancji?",
-                "acceptedAnswer": {
-                  "@type": "Answer",
-                  "text": "Tak, wystawiamy faktury oraz udzielamy gwarancji na wykonywane prace."
-                }
-              }
-            ]
-          }
-        ]
-      }
-    </script>
+    <script type="application/ld+json" src="assets/jsonld/organization.json"></script>
+    <script type="application/ld+json" src="assets/jsonld/page-index.json"></script>
 
     <link
       rel="preload"
@@ -303,8 +159,7 @@
     <a class="skip" href="#main">Pomiń do treści</a>
     <div
       id="top"
-      aria-hidden="true"
-      style="position: relative; inset: 0; height: 0"
+      aria-hidden="true" class="top-anchor"
     ></div>
 
     <!-- Header -->
@@ -496,7 +351,7 @@
           >
           <a
             class="btn"
-            href="tel:+48600700800"
+            href="tel:+48533537091"
             data-reveal="up"
             data-reveal-delay="240"
             >Wyceń inwestycję</a
@@ -1239,18 +1094,22 @@
           <form
             class="form"
             method="post"
-            action="#"
+            action="/thank-you/"
+            name="contact"
+            netlify
+            netlify-honeypot="bot-field"
             role="form"
             aria-labelledby="kontakt-heading"
             aria-describedby="privacy-note"
             data-reveal="right"
             data-reveal-delay="200"
           >
+            <input type="hidden" name="form-name" value="contact" />
             <div class="visually-hidden" aria-hidden="true">
-              <label for="hp-website">Nie wypełniaj tego pola</label>
+              <label for="hp-bot-field">Nie wypełniaj tego pola</label>
               <input
-                id="hp-website"
-                name="website"
+                id="hp-bot-field"
+                name="bot-field"
                 type="text"
                 tabindex="-1"
                 autocomplete="off"
@@ -1267,8 +1126,14 @@
                 autocapitalize="words"
                 minlength="2"
                 required
+                aria-describedby="f-name-error"
                 placeholder="Jan Kowalski"
               />
+              <span
+                id="f-name-error"
+                class="form-error visually-hidden"
+                aria-live="polite"
+              ></span>
             </div>
             <div class="form-row" data-reveal="up" data-reveal-delay="280">
               <label for="f-phone">Telefon</label>
@@ -1279,8 +1144,14 @@
                 inputmode="tel"
                 autocomplete="tel-national"
                 required
-                placeholder="600 700 800 lub +48 600 700 800"
+                aria-describedby="f-phone-error"
+                placeholder="533 537 091 lub +48 533 537 091"
               />
+              <span
+                id="f-phone-error"
+                class="form-error visually-hidden"
+                aria-live="polite"
+              ></span>
             </div>
             <div class="form-row" data-reveal="up" data-reveal-delay="320">
               <label for="f-msg">Opis prac</label>
@@ -1290,8 +1161,14 @@
                 rows="4"
                 required
                 maxlength="1000"
+                aria-describedby="f-msg-error"
                 placeholder="Krótko opisz zakres prac..."
               ></textarea>
+              <span
+                id="f-msg-error"
+                class="form-error visually-hidden"
+                aria-live="polite"
+              ></span>
             </div>
             <div class="form-row" data-reveal="up" data-reveal-delay="360">
               <label class="checkbox" for="f-consent">
@@ -1301,11 +1178,17 @@
                   name="consent"
                   value="yes"
                   required
+                  aria-describedby="f-consent-error"
                 />
                 <span
                   >Wyrażam zgodę na kontakt w celu przygotowania wyceny.</span
                 >
               </label>
+              <span
+                id="f-consent-error"
+                class="form-error visually-hidden"
+                aria-live="polite"
+              ></span>
             </div>
             <button
               class="btn"
@@ -1400,17 +1283,19 @@
           </nav>
           <div class="ft-col" data-reveal="up" data-reveal-delay="260">
             <h3 class="ft-h">Znajdziesz nas tutaj:</h3>
-            <div class="ft-map">
-              <iframe
-                title="Mapa dojazdu — przykładowa lokalizacja Tarnów"
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2574.257971268006!2d20.98753431589256!3d50.01209397941913!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x473d8583ed4e4d6f%3A0x8b8e09e3b3f5e0da!2sTarn%C3%B3w!5e0!3m2!1spl!2spl!4v1700000000000!5m2!1spl!2spl"
-                width="100%"
-                height="160"
-                style="border: 0"
-                loading="lazy"
-                allowfullscreen
-                referrerpolicy="no-referrer-when-downgrade"
-              ></iframe>
+            <div
+              class="ft-map"
+              data-map-src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2574.257971268006!2d20.98753431589256!3d50.01209397941913!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x473d8583ed4e4d6f%3A0x8b8e09e3b3f5e0da!2sTarn%C3%B3w!5e0!3m2!1spl!2spl!4v1700000000000!5m2!1spl!2spl"
+            >
+              <div class="map-placeholder" role="group" aria-live="polite">
+                <p class="map-placeholder__text">
+                  Mapa Google Maps jest treścią zewnętrzną. Kliknij, aby ją
+                  załadować.
+                </p>
+                <button type="button" class="btn btn--ghost map-load-btn">
+                  Załaduj mapę
+                </button>
+              </div>
               <noscript
                 ><p>
                   Mapa wymaga JavaScript. Adres: ul. Marynarki Wojennej 12/31,
@@ -1573,12 +1458,14 @@
       id="cookie-banner"
       class="cc-banner"
       role="dialog"
+      aria-modal="true"
       aria-live="polite"
       aria-label="Informacja o plikach cookies"
+      aria-describedby="cookie-banner-desc"
       hidden
     >
       <div class="cc-inner">
-        <p class="cc-text">
+        <p class="cc-text" id="cookie-banner-desc">
           <span aria-hidden="true">🍪</span>
           Ta strona wykorzystuje pliki cookies w celach funkcjonalnych i
           statystycznych. Szczegóły w

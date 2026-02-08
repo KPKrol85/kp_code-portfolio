@@ -1,0 +1,91 @@
+{
+        "@context": "https://schema.org",
+        "@graph": [
+          {
+            "@type": "WebSite",
+            "@id": "https://construction-pr-01-solidcraft.netlify.app/#website",
+            "url": "https://construction-pr-01-solidcraft.netlify.app/",
+            "name": "SolidCraft",
+            "description": "SolidCraft — firma remontowo-budowlana. Oferta, realizacje, opinie, FAQ oraz formularz wyceny.",
+            "inLanguage": "pl-PL",
+            "publisher": { "@type": "Organization", "name": "SolidCraft" },
+            "image": "https://construction-pr-01-solidcraft.netlify.app/assets/img/og/og-1200x630.png"
+          },
+          {
+            "@type": "CollectionPage",
+            "@id": "https://construction-pr-01-solidcraft.netlify.app/#page",
+            "url": "https://construction-pr-01-solidcraft.netlify.app/oferta/kafelkowanie.html",
+            "name": "SolidCraft — Kafelkowanie",
+            "isPartOf": {
+              "@id": "https://construction-pr-01-solidcraft.netlify.app/#website"
+            },
+            "inLanguage": "pl-PL",
+            "primaryImageOfPage": {
+              "@type": "ImageObject",
+              "url": "https://construction-pr-01-solidcraft.netlify.app/assets/img/og/og-1200x630.png",
+              "width": 1200,
+              "height": 630
+            },
+            "about": {
+              "@type": "ItemList",
+              "name": "Zakres usług",
+              "itemListElement": [
+                {
+                  "@type": "ListItem",
+                  "position": 1,
+                  "name": "Wykończenia i remonty łazienek",
+                  "url": "https://construction-pr-01-solidcraft.netlify.app/#oferta-lazienki"
+                },
+                {
+                  "@type": "ListItem",
+                  "position": 2,
+                  "name": "Malowanie i gładzie",
+                  "url": "https://construction-pr-01-solidcraft.netlify.app/#oferta-malowanie"
+                },
+                {
+                  "@type": "ListItem",
+                  "position": 3,
+                  "name": "Kafelkowanie",
+                  "url": "https://construction-pr-01-solidcraft.netlify.app/#oferta-kafelkowanie"
+                },
+                {
+                  "@type": "ListItem",
+                  "position": 4,
+                  "name": "Elektryka i hydraulika",
+                  "url": "https://construction-pr-01-solidcraft.netlify.app/#oferta-elektryka"
+                }
+              ]
+            }
+          },
+          {
+            "@type": "FAQPage",
+            "@id": "https://construction-pr-01-solidcraft.netlify.app/#faq",
+            "mainEntity": [
+              {
+                "@type": "Question",
+                "name": "Ile trwa przygotowanie wyceny?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "Standardowo do 24 godzin od przesłania szczegółów zlecenia lub zdjęć."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "Czy dojeżdżacie do klienta i wykonujecie oględziny?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "Tak. Dojazd w obrębie miasta i okolic jest możliwy po ustaleniu terminu."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "Czy wystawiacie fakturę i udzielacie gwarancji?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "Tak, wystawiamy faktury oraz udzielamy gwarancji na wykonywane prace."
+                }
+              }
+            ]
+          }
+        ]
+      }

@@ -5,7 +5,7 @@
 Responsive demo website for a construction and renovation company, created as a portfolio project.
 The focus is on clean UI, accessibility, performance, and modern front-end best practices.
 
-🔗 **Live demo:** https://construction-project-01.netlify.app
+🔗 **Live demo:** https://construction-pr-01-solidcraft.netlify.app
 
 ---
 
@@ -36,6 +36,21 @@ and production-ready front-end structure.
 - CSS3 (custom properties, responsive layout)
 - Vanilla JavaScript (ES6)
 - Netlify (hosting & deployment)
+
+---
+
+## Contact form (Netlify Forms)
+
+The contact form uses Netlify Forms with progressive enhancement, so it works
+without JavaScript and submits to a dedicated thank-you page. With JavaScript
+enabled, the form submits via `fetch` (URL-encoded) and shows inline
+loading/success/error feedback, plus a honeypot field for basic anti-spam.
+
+Manual test:
+
+1. Run the site locally and open the contact section.
+2. Submit the form and verify the POST request in DevTools → Network.
+3. Deploy to Netlify and confirm the submission appears in **Netlify → Forms**.
 
 ---
 
@@ -93,7 +108,7 @@ stworzona jako projekt portfolio.
 Projekt koncentruje się na czytelnym interfejsie, dostępności, wydajności
 oraz nowoczesnych standardach front-end.
 
-🔗 **Demo online:** https://construction-project-01.netlify.app
+🔗 **Demo online:** https://construction-pr-01-solidcraft.netlify.app
 
 ---
 
@@ -124,6 +139,22 @@ Celem projektu jest zaprezentowanie architektury layoutu,
 - CSS3 (custom properties, layout responsywny)
 - JavaScript (ES6, vanilla)
 - Netlify (hosting i deployment)
+
+---
+
+## Formularz kontaktowy (Netlify Forms)
+
+Formularz korzysta z Netlify Forms i działa również bez JavaScript (progressive
+enhancement) — wysyłka prowadzi na stronę podziękowania. Przy włączonym JS
+formularz wysyła dane przez `fetch` (URL-encoded) i pokazuje stany
+loading/success/error, a dodatkowo zawiera honeypot jako podstawową ochronę
+anty-spamową.
+
+Test manualny:
+
+1. Uruchom stronę lokalnie i przejdź do sekcji kontaktu.
+2. Wyślij formularz i sprawdź request POST w DevTools → Network.
+3. Po wdrożeniu na Netlify potwierdź zgłoszenie w **Netlify → Forms**.
 
 ---
 

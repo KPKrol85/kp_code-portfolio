@@ -9,27 +9,26 @@
 
 
 
-# Zezwól wszystkim wyszukiwarkom na indeksowanie strony
+# Zablokuj wszystkim wyszukiwarkom indeksowanie strony (projekt demo)
 
 User-agent: *
 
-Disallow:
+Disallow: /
 
 
 
 # Lokalizacja mapy strony (dla Google i Bing)
 
-Sitemap: https://construction-project-01.netlify.app/sitemap.xml
+Sitemap: https://construction-pr-01-solidcraft.netlify.app/sitemap.xml
 
 
 
 # Netlify hostuje stronę przez HTTPS — preferowany adres kanoniczny
 
-# Host: https://construction-project-01.netlify.app
+# Host: https://construction-pr-01-solidcraft.netlify.app
 
 
 
 # Dodatkowe informacje (opcjonalnie)
 
 # Crawl-delay: 10  # jeśli chcesz ograniczyć tempo skanowania (rzadko używane)
-

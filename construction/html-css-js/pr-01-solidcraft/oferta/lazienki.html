@@ -15,7 +15,7 @@
     <meta name="robots" content="index, follow" />
     <link
       rel="canonical"
-      href="https://construction-project-01.netlify.app/oferta/lazienki.html"
+      href="https://construction-pr-01-solidcraft.netlify.app/oferta/lazienki.html"
     />
     <meta
       name="theme-color"
@@ -28,37 +28,7 @@
       media="(prefers-color-scheme: dark)"
     />
     <meta name="color-scheme" content="light dark" />
-
-    <script>
-      try {
-        const root = document.documentElement;
-        const stored = localStorage.getItem("theme");
-
-        const theme =
-          stored === "light" || stored === "dark"
-            ? stored
-            : window.matchMedia("(prefers-color-scheme: dark)").matches
-              ? "dark"
-              : "light";
-
-        root.dataset.theme = theme;
-        root.classList.add("preload-theme");
-      } catch {}
-    </script>
-    <style>
-      html.preload-theme *,
-      html.preload-theme *::before,
-      html.preload-theme *::after {
-        transition: none !important;
-      }
-    </style>
-    <script>
-      window.addEventListener("DOMContentLoaded", () => {
-        requestAnimationFrame(() =>
-          document.documentElement.classList.remove("preload-theme"),
-        );
-      });
-    </script>
+    <script src="../js/theme-init.min.js"></script>
 
     <meta property="og:type" content="website" />
     <meta property="og:site_name" content="SolidCraft" />
@@ -70,141 +40,27 @@
     />
     <meta
       property="og:url"
-      content="https://construction-project-01.netlify.app/oferta/lazienki.html"
+      content="https://construction-pr-01-solidcraft.netlify.app/oferta/lazienki.html"
     />
-    <meta property="og:image" content="assets/img/og/og-1200x630.png" />
+    <meta property="og:image" content="https://construction-pr-01-solidcraft.netlify.app/assets/img/og/og-1200x630.png" />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
     <meta property="og:image:alt" content="SolidCraft — Remonty łazienek" />
-    <meta property="og:updated_time" content="2025-10-28T12:00:00+02:00" />
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content="SolidCraft — Remonty łazienek" />
     <meta
       name="twitter:description"
       content="SolidCraft — kompleksowe remonty łazienek: płytki, hydraulika, armatura i wykończenie. Projektowanie zakresu i szybka wycena."
     />
-    <meta name="twitter:image" content="assets/img/og/og-1200x630.png" />
+    <meta name="twitter:image" content="https://construction-pr-01-solidcraft.netlify.app/assets/img/og/og-1200x630.png" />
     <meta
       name="twitter:url"
-      content="https://construction-project-01.netlify.app/oferta/lazienki.html"
+      content="https://construction-pr-01-solidcraft.netlify.app/oferta/lazienki.html"
     />
     <meta name="twitter:image:alt" content="SolidCraft — Remonty łazienek" />
 
-    <script type="application/ld+json">
-      {
-        "@context": "https://schema.org",
-        "@type": "GeneralContractor",
-        "name": "SolidCraft",
-        "telephone": "+48 533 537 091",
-        "email": "kontakt@kp-code.pl",
-        "address": {
-          "@type": "PostalAddress",
-          "streetAddress": "ul. Marynarki Wojennej 12/31",
-          "postalCode": "33-100",
-          "addressLocality": "Tarnów",
-          "addressCountry": "PL"
-        },
-        "areaServed": "PL",
-        "openingHours": "Mo-Fr 08:00-18:00",
-        "url": "https://construction-project-01.netlify.app/",
-        "sameAs": ["https://facebook.com", "https://instagram.com"]
-      }
-    </script>
-    <script type="application/ld+json">
-      {
-        "@context": "https://schema.org",
-        "@graph": [
-          {
-            "@type": "WebSite",
-            "@id": "https://construction-project-01.netlify.app/#website",
-            "url": "https://construction-project-01.netlify.app/",
-            "name": "SolidCraft",
-            "description": "SolidCraft — firma remontowo-budowlana. Oferta, realizacje, opinie, FAQ oraz formularz wyceny.",
-            "inLanguage": "pl-PL",
-            "publisher": { "@type": "Organization", "name": "SolidCraft" },
-            "image": "https://construction-project-01.netlify.app/assets/img/og/og-1200x630.png"
-          },
-          {
-            "@type": "CollectionPage",
-            "@id": "https://construction-project-01.netlify.app/#page",
-            "url": "https://construction-project-01.netlify.app/oferta/lazienki.html",
-            "name": "SolidCraft — Remonty łazienek",
-            "isPartOf": {
-              "@id": "https://construction-project-01.netlify.app/#website"
-            },
-            "inLanguage": "pl-PL",
-            "datePublished": "2025-09-19",
-            "dateModified": "2025-10-19",
-            "primaryImageOfPage": {
-              "@type": "ImageObject",
-              "url": "https://construction-project-01.netlify.app/assets/img/og/og-1200x630.png",
-              "width": 1200,
-              "height": 630
-            },
-            "about": {
-              "@type": "ItemList",
-              "name": "Zakres usług",
-              "itemListElement": [
-                {
-                  "@type": "ListItem",
-                  "position": 1,
-                  "name": "Wykończenia i remonty łazienek",
-                  "url": "https://construction-project-01.netlify.app/#oferta-lazienki"
-                },
-                {
-                  "@type": "ListItem",
-                  "position": 2,
-                  "name": "Malowanie i gładzie",
-                  "url": "https://construction-project-01.netlify.app/#oferta-malowanie"
-                },
-                {
-                  "@type": "ListItem",
-                  "position": 3,
-                  "name": "Kafelkowanie",
-                  "url": "https://construction-project-01.netlify.app/#oferta-kafelkowanie"
-                },
-                {
-                  "@type": "ListItem",
-                  "position": 4,
-                  "name": "Elektryka i hydraulika",
-                  "url": "https://construction-project-01.netlify.app/#oferta-elektryka"
-                }
-              ]
-            }
-          },
-          {
-            "@type": "FAQPage",
-            "@id": "https://construction-project-01.netlify.app/#faq",
-            "mainEntity": [
-              {
-                "@type": "Question",
-                "name": "Ile trwa przygotowanie wyceny?",
-                "acceptedAnswer": {
-                  "@type": "Answer",
-                  "text": "Standardowo do 24 godzin od przesłania szczegółów zlecenia lub zdjęć."
-                }
-              },
-              {
-                "@type": "Question",
-                "name": "Czy dojeżdżacie do klienta i wykonujecie oględziny?",
-                "acceptedAnswer": {
-                  "@type": "Answer",
-                  "text": "Tak. Dojazd w obrębie miasta i okolic jest możliwy po ustaleniu terminu."
-                }
-              },
-              {
-                "@type": "Question",
-                "name": "Czy wystawiacie fakturę i udzielacie gwarancji?",
-                "acceptedAnswer": {
-                  "@type": "Answer",
-                  "text": "Tak, wystawiamy faktury oraz udzielamy gwarancji na wykonywane prace."
-                }
-              }
-            ]
-          }
-        ]
-      }
-    </script>
+    <script type="application/ld+json" src="../assets/jsonld/organization.json"></script>
+    <script type="application/ld+json" src="../assets/jsonld/page-oferta-lazienki.json"></script>
 
     <link
       rel="preload"
@@ -285,8 +141,7 @@
     <a class="skip" href="#main">Pomiń do treści</a>
     <div
       id="top"
-      aria-hidden="true"
-      style="position: relative; inset: 0; height: 0"
+      aria-hidden="true" class="top-anchor"
     ></div>
 
     <!-- Header -->
@@ -1019,17 +874,19 @@
           <!-- Column 4 -->
           <div class="ft-col" data-reveal="up" data-reveal-delay="260">
             <h3 class="ft-h">Znajdziesz nas tutaj:</h3>
-            <div class="ft-map">
-              <iframe
-                title="Mapa dojazdu — przykładowa lokalizacja Tarnów"
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2574.257971268006!2d20.98753431589256!3d50.01209397941913!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x473d8583ed4e4d6f%3A0x8b8e09e3b3f5e0da!2sTarn%C3%B3w!5e0!3m2!1spl!2spl!4v1700000000000!5m2!1spl!2spl"
-                width="100%"
-                height="160"
-                style="border: 0"
-                loading="lazy"
-                allowfullscreen
-                referrerpolicy="no-referrer-when-downgrade"
-              ></iframe>
+            <div
+              class="ft-map"
+              data-map-src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2574.257971268006!2d20.98753431589256!3d50.01209397941913!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x473d8583ed4e4d6f%3A0x8b8e09e3b3f5e0da!2sTarn%C3%B3w!5e0!3m2!1spl!2spl!4v1700000000000!5m2!1spl!2spl"
+            >
+              <div class="map-placeholder" role="group" aria-live="polite">
+                <p class="map-placeholder__text">
+                  Mapa Google Maps jest treścią zewnętrzną. Kliknij, aby ją
+                  załadować.
+                </p>
+                <button type="button" class="btn btn--ghost map-load-btn">
+                  Załaduj mapę
+                </button>
+              </div>
               <noscript
                 ><p>
                   Mapa wymaga JavaScript. Adres: ul. Marynarki Wojennej 12/31,

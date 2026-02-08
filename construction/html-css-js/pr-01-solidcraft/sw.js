@@ -1,10 +1,24 @@
 /* ===== Service Worker — SolidCraft ===== */
 
-const CACHE_NAME = "solidcraft-v1.5.2";
+const CACHE_PREFIX = "solidcraft-";
+const CACHE_NAME = `${CACHE_PREFIX}v1.5.4`;
 
 const ASSETS = [
   "/",
   "/index.html",
+  "/offline.html",
+  "/404.html",
+  "/doc/cookies.html",
+  "/doc/polityka-prywatnosci.html",
+  "/doc/regulamin.html",
+  "/oferta/elektryka.html",
+  "/oferta/hydraulika.html",
+  "/oferta/kafelkowanie.html",
+  "/oferta/lazienki.html",
+  "/oferta/malowanie.html",
+  "/oferta/remonty.html",
+  "/thank-you/",
+  "/thank-you/index.html",
   "/manifest.webmanifest",
   "/css/style.min.css",
   "/js/script.min.js",
@@ -22,22 +36,34 @@ self.addEventListener("install", (event) => {
 });
 
 self.addEventListener("activate", (event) => {
-  event.waitUntil(caches.keys().then((keys) => Promise.all(keys.filter((k) => k.startsWith("construction-01-") && k !== CACHE_NAME).map((k) => caches.delete(k)))));
+  event.waitUntil(
+    caches.keys().then((keys) =>
+      Promise.all(
+        keys
+          .filter((k) => k.startsWith(CACHE_PREFIX) && k !== CACHE_NAME)
+          .map((k) => caches.delete(k))
+      )
+    )
+  );
   self.clients.claim();
 });
 
 self.addEventListener("fetch", (event) => {
   const req = event.request;
-  const isHTML = req.headers.get("accept")?.includes("text/html");
+  const isHTML =
+    req.mode === "navigate" || req.headers.get("accept")?.includes("text/html");
 
   if (isHTML) {
     event.respondWith(
-      fetch(req)
-        .then((res) => {
-          caches.open(CACHE_NAME).then((c) => c.put(req, res.clone()));
-          return res;
-        })
-        .catch(() => caches.match(req).then((res) => res || caches.match("/index.html")))
+      caches.match(req, { ignoreSearch: true }).then((cached) => {
+        if (cached) return cached;
+        return fetch(req)
+          .then((res) => {
+            caches.open(CACHE_NAME).then((c) => c.put(req, res.clone()));
+            return res;
+          })
+          .catch(() => caches.match("/offline.html"));
+      })
     );
     return;
   }

@@ -544,6 +544,35 @@ function initSmoothTop() {
     "(prefers-reduced-motion: reduce)",
   ).matches;
   const behavior = prefersNoAnim ? "auto" : "smooth";
+  const isVisible = (el) =>
+    !!(el && (el.offsetWidth || el.offsetHeight || el.getClientRects().length));
+  const getFocusTarget = () => {
+    const main =
+      document.querySelector("#main") ||
+      document.querySelector("main") ||
+      document.querySelector(".main");
+    if (main && main.getAttribute("aria-hidden") !== "true" && isVisible(main))
+      return main;
+    const heading = Array.from(document.querySelectorAll("h1")).find(
+      (el) => el.getAttribute("aria-hidden") !== "true" && isVisible(el),
+    );
+    if (heading) return heading;
+    const container =
+      document.querySelector('[role="main"]') ||
+      document.querySelector("[data-page]");
+    if (container && container.getAttribute("aria-hidden") !== "true") {
+      return container;
+    }
+    return document.body;
+  };
+  const focusTarget = () => {
+    const target = getFocusTarget();
+    if (!target || typeof target.focus !== "function") return;
+    const hadTabindex = target.hasAttribute("tabindex");
+    if (!hadTabindex) target.setAttribute("tabindex", "-1");
+    target.focus({ preventScroll: true });
+    if (!hadTabindex) target.removeAttribute("tabindex");
+  };
   const isPrimaryClick = (e) =>
     e.button === 0 &&
     !e.defaultPrevented &&
@@ -566,13 +595,7 @@ function initSmoothTop() {
         return;
       e.preventDefault();
       window.scrollTo({ top: 0, behavior });
-      const topAnchor = document.getElementById("top");
-      if (topAnchor && typeof topAnchor.focus === "function") {
-        const hadTabindex = topAnchor.hasAttribute("tabindex");
-        if (!hadTabindex) topAnchor.setAttribute("tabindex", "-1");
-        topAnchor.focus({ preventScroll: true });
-        if (!hadTabindex) topAnchor.removeAttribute("tabindex");
-      }
+      focusTarget();
       if (history.pushState) history.pushState(null, "", "#top");
       else location.hash = "#top";
     },
@@ -643,11 +666,12 @@ function initContactForm() {
   if (!form) return;
   const note = form.querySelector(".form-note");
   const btnSubmit = form.querySelector('button[type="submit"]');
-  const hpInput = form.querySelector('input[name="website"]');
+  const hpInput = form.querySelector('input[name="bot-field"]');
   const nameInput = form.querySelector("#f-name");
   const phoneInput = form.querySelector("#f-phone");
   const msgInput = form.querySelector("#f-msg");
   const consentInput = form.querySelector("#f-consent");
+  const isDev = ["localhost", "127.0.0.1"].includes(window.location.hostname);
   if (note) {
     note.setAttribute("role", "status");
     note.setAttribute("aria-atomic", "true");
@@ -687,6 +711,9 @@ function initContactForm() {
     note.classList.toggle("is-ok", !!ok);
     note.classList.toggle("is-err", !ok && !!msg);
   };
+
+  const encodeForm = (formEl) =>
+    new URLSearchParams(new FormData(formEl)).toString();
 
   const errSpan = (el) => {
     const ids = (el.getAttribute("aria-describedby") || "").split(/\s+/);
@@ -796,7 +823,7 @@ function initContactForm() {
   let submitting = false;
   form.addEventListener(
     "submit",
-    (e) => {
+    async (e) => {
       e.preventDefault();
       if (submitting) return;
 
@@ -845,7 +872,7 @@ function initContactForm() {
         if (!isValidPLPhone(raw)) {
           setFieldError(
             phoneInput,
-            "Podaj poprawny numer (np. 600 700 800 lub +48 600 700 800).",
+            "Podaj poprawny numer (np. 533 537 091 lub +48 533 537 091).",
           );
           form.reportValidity();
           phoneInput.focus({ preventScroll: true });
@@ -859,16 +886,43 @@ function initContactForm() {
       setBusy(true);
       showNote("Wysyłanie…", true);
 
-      setTimeout(() => {
-        setBusy(false);
-        submitting = false;
+      const submitUrl = form.getAttribute("action") || "/";
+      const timeoutMs = 10000;
+      const fetchController = new AbortController();
+      const timeoutId = window.setTimeout(
+        () => fetchController.abort(),
+        timeoutMs,
+      );
+
+      try {
+        const response = await fetch(submitUrl, {
+          method: "POST",
+          headers: { "Content-Type": "application/x-www-form-urlencoded" },
+          body: encodeForm(form),
+          signal: fetchController.signal,
+        });
+
+        if (!response.ok) {
+          throw new Error(`Form submit failed: ${response.status}`);
+        }
+
         form
           .querySelectorAll('[aria-invalid="true"]')
           .forEach((el) => el.removeAttribute("aria-invalid"));
         form.reset();
         showNote("Dziękujemy! Skontaktujemy się wkrótce.", true);
         note?.focus?.();
-      }, 900);
+      } catch (err) {
+        if (isDev) console.error(err);
+        const message = fetchController.signal.aborted
+          ? "Przekroczono limit czasu. Spróbuj ponownie."
+          : "Nie udało się wysłać formularza. Spróbuj ponownie.";
+        showNote(message, false);
+      } finally {
+        window.clearTimeout(timeoutId);
+        setBusy(false);
+        submitting = false;
+      }
     },
     { signal },
   );
@@ -1691,13 +1745,33 @@ function initHomeHelpers() {
     return;
   }
 
-  const focusTopEl = (topEl) => {
-    if (!topEl || typeof topEl.focus !== "function") return;
-
-    topEl.setAttribute("tabindex", "-1");
-    topEl.focus({ preventScroll: true });
-
-    setTimeout(() => topEl.removeAttribute("tabindex"), 800);
+  const isVisible = (el) =>
+    !!(el && (el.offsetWidth || el.offsetHeight || el.getClientRects().length));
+  const getFocusTarget = () => {
+    const main =
+      document.querySelector("#main") ||
+      document.querySelector("main") ||
+      document.querySelector(".main");
+    if (main && main.getAttribute("aria-hidden") !== "true" && isVisible(main))
+      return main;
+    const heading = Array.from(document.querySelectorAll("h1")).find(
+      (el) => el.getAttribute("aria-hidden") !== "true" && isVisible(el),
+    );
+    if (heading) return heading;
+    const container =
+      document.querySelector('[role="main"]') ||
+      document.querySelector("[data-page]");
+    if (container && container.getAttribute("aria-hidden") !== "true") {
+      return container;
+    }
+    return document.body;
+  };
+  const focusTarget = () => {
+    const target = getFocusTarget();
+    if (!target || typeof target.focus !== "function") return;
+    target.setAttribute("tabindex", "-1");
+    target.focus({ preventScroll: true });
+    setTimeout(() => target.removeAttribute("tabindex"), 800);
   };
 
   const getScrollBehavior = () => {
@@ -1721,12 +1795,12 @@ function initHomeHelpers() {
 
     if (topEl?.scrollIntoView) {
       topEl.scrollIntoView({ behavior });
-      focusTopEl(topEl);
+      focusTarget();
       return;
     }
 
     window.scrollTo({ top: 0, behavior });
-    focusTopEl(topEl);
+    focusTarget();
   };
 
   document.addEventListener(
@@ -1739,7 +1813,7 @@ function initHomeHelpers() {
         e.preventDefault();
         scrollToTop();
       } else {
-        focusTopEl(document.getElementById("top"));
+        focusTarget();
       }
 
       cleanUrlKeepQuery();
@@ -1771,7 +1845,46 @@ function initHomeHelpers() {
   window.addEventListener("pagehide", () => ac.abort(), { once: true, signal });
 }
 
-/* === 14 - Cookie Banner === */
+/* === 14 - Map consent === */
+
+function initMapConsent() {
+  const mapContainer = document.querySelector("[data-map-src]");
+  if (!mapContainer) return;
+
+  const mapSrc = mapContainer.dataset.mapSrc;
+  const placeholder = mapContainer.querySelector(".map-placeholder");
+  const loadBtn = mapContainer.querySelector(".map-load-btn");
+  const storageKey = "consent.maps";
+
+  const loadMap = () => {
+    if (!mapSrc || mapContainer.querySelector("iframe")) return;
+
+    const iframe = document.createElement("iframe");
+    iframe.title = "Mapa dojazdu — przykładowa lokalizacja Tarnów";
+    iframe.setAttribute("loading", "lazy");
+    iframe.setAttribute("referrerpolicy", "no-referrer-when-downgrade");
+    iframe.setAttribute("allowfullscreen", "");
+    iframe.src = mapSrc;
+
+    if (placeholder) placeholder.remove();
+    mapContainer.appendChild(iframe);
+  };
+
+  try {
+    if (localStorage.getItem(storageKey) === "true") loadMap();
+  } catch {}
+
+  if (loadBtn) {
+    loadBtn.addEventListener("click", () => {
+      try {
+        localStorage.setItem(storageKey, "true");
+      } catch {}
+      loadMap();
+    });
+  }
+}
+
+/* === 15 - Cookie Banner === */
 
 function initCookieBanner() {
   try {
@@ -1791,6 +1904,12 @@ function initCookieBanner() {
     } catch {}
 
     const acceptBtn = document.getElementById("cc-accept");
+    const getFocusable = () =>
+      Array.from(
+        banner.querySelectorAll(
+          'a[href], button:not([disabled]), textarea, input, select, [tabindex]:not([tabindex="-1"])',
+        ),
+      ).filter((el) => el.offsetParent !== null);
 
     if (acceptBtn) {
       acceptBtn.addEventListener("click", () => {
@@ -1808,6 +1927,25 @@ function initCookieBanner() {
     }
 
     banner.addEventListener("keydown", (e) => {
+      if (e.key === "Tab") {
+        const focusable = getFocusable();
+        if (focusable.length === 0) return;
+        const first = focusable[0];
+        const last = focusable[focusable.length - 1];
+        const active = document.activeElement;
+
+        if (e.shiftKey) {
+          if (active === first || !banner.contains(active)) {
+            e.preventDefault();
+            last.focus({ preventScroll: true });
+          }
+        } else if (active === last || !banner.contains(active)) {
+          e.preventDefault();
+          first.focus({ preventScroll: true });
+        }
+        return;
+      }
+
       if (e.key !== "Escape") return;
 
       localStorage.setItem(KEY, "accepted");
@@ -1846,6 +1984,7 @@ function initCookieBanner() {
     if (typeof initOfferPrefetch === "function") initOfferPrefetch();
 
     if (typeof initHomeHelpers === "function") initHomeHelpers();
+    if (typeof initMapConsent === "function") initMapConsent();
     if (typeof initContactForm === "function") initContactForm();
     if (typeof initCookieBanner === "function") initCookieBanner();
   };
