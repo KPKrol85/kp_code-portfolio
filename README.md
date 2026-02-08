@@ -43,7 +43,7 @@ Completed and actively developed frontend projects are deployed on **Netlify** a
 - [Gastronomy — Pr01 — Ambre](https://gastronomy-pr-01-ambre.netlify.app/)
 - [Gastronomy — Pr02 — Atelier No.02](https://gastronomy-pr-02-atelier.netlify.app/)
 - [Hospitality — Pr01 — Vista](https://hospitality-pr-01-vista.netlify.app/)
-- [Hospitality — Pr02 — Aurora Travel](https://tourism-project-02.netlify.app/)
+- [Hospitality — Pr02 — Aurora](https://hospitality-pr-02-aurora.netlify.app/)
 - [Transport — Pr01](https://transport-project-01.netlify.app/)
 - [Transport — Pr02](https://transport-project-02.netlify.app/)
 - [E-commerce — Pr01](https://kpcode-ecommerce-01.netlify.app/)
