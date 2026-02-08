@@ -1,0 +1,340 @@
+/* ==================================
+   = Project: transport-02
+   = Name: FleetOps
+   = Technology: html/css/js
+   = Author: Kamil Król - kp_code_
+   = Last Update: 2025-12-21
+   = Version: 1.00
+   ==================================
+   = CSS Stylesheet base.css
+   = Structure overview
+   ==================================
+   = 00 - Design Tokens
+   = 01 - Global Reset & Selection
+   = 02 - Document Base
+   = 03 - Links & Media
+   = 04 - Form Elements & Focus Styles
+   = 05 - App Root
+   = 06 - Accessibility
+   = 07 - Layout Utilities
+   = 08 - Typography Base
+   = 09 - Lists & Content Defaults
+   = 10 - UI Primitives
+   = 11 - Tables / Overflow Helpers
+   = 12 - Responsive
+   ================================== */
+
+/* === 00 - Design Tokens === */
+
+@font-face {
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 400 700;
+  font-display: swap;
+  src: url("../assets/fonts/inter-latin.woff2") format("woff2");
+}
+
+:root {
+  /* font */
+  --font-sans: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+  /* backgrounds */
+  --bg: #0b0d10;
+  --bg-elevated: #11141a;
+  --bg-muted: #171b22;
+  /* surfaces */
+  --surface: #10141a;
+  --surface-2: #161b23;
+  /* text */
+  --text: #e9edf5;
+  --text-muted: #9ba7b9;
+  /* borders */
+  --border: #1f2633;
+  /* accents */
+  --accent: #7dd3fc;
+  --accent-strong: #22d3ee;
+  --accent-ghost: rgba(34, 211, 238, 0.12);
+  /* states */
+  --success: #34d399;
+  --warning: #fcd34d;
+  --danger: #f87171;
+  /* shadows */
+  --shadow: 0 10px 40px rgba(0, 0, 0, 0.35);
+  --shadow-elev-1: 0 10px 22px rgba(0, 0, 0, 0.24);
+  --shadow-elev-2: 0 20px 45px rgba(0, 0, 0, 0.32);
+  --shadow-elev-3: 0 30px 70px rgba(0, 0, 0, 0.38);
+  /* radius */
+  --radius-sm: 8px;
+  --radius: 12px;
+  --radius-md: 14px;
+  --radius-lg: 18px;
+  --radius-xl: 22px;
+  /* spacing */
+  --space-0: 4px;
+  --space-1: 6px;
+  --space-2: 10px;
+  --space-3: 16px;
+  --space-4: 22px;
+  --space-5: 32px;
+  --space-6: 48px;
+  --space-7: 64px;
+  --space-8: 80px;
+  --space-section: 48px;
+  --space-section-lg: 56px;
+  /* hero visuals */
+  --hero-mark-size-sm: 160px;
+  --hero-mark-size-md: 200px;
+  --hero-mark-size-lg: 240px;
+
+  color-scheme: dark;
+}
+
+[data-theme="light"] {
+  /* backgrounds */
+  --bg: #f7f8fb;
+  --bg-elevated: #ffffff;
+  --bg-muted: #eef1f6;
+  /* surfaces */
+  --surface: #ffffff;
+  --surface-2: #f2f5fb;
+  /* text */
+  --text: #0f172a;
+  --text-muted: #4b5563;
+  /* borders */
+  --border: #e4e7ed;
+  /* accents */
+  --accent: #2563eb;
+  --accent-strong: #1d4ed8;
+  --accent-ghost: rgba(37, 99, 235, 0.1);
+  /* shadows */
+  --shadow: 0 10px 30px rgba(15, 23, 42, 0.08);
+  --shadow-elev-1: 0 12px 26px rgba(15, 23, 42, 0.12);
+  --shadow-elev-2: 0 24px 48px rgba(15, 23, 42, 0.16);
+  --shadow-elev-3: 0 36px 70px rgba(15, 23, 42, 0.2);
+
+  color-scheme: light;
+  /* 🔒 UI LOCK === shadow: 0 12px 40px rgba(15, 23, 42, 0.08); */
+}
+
+/* === 01 - Global Reset & Selection === */
+
+* {
+  box-sizing: border-box;
+}
+
+*::selection {
+  background: var(--accent-ghost);
+  color: var(--text);
+}
+
+/* === 02 - Document Base === */
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  min-height: 100%;
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font-sans);
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: clip;
+}
+
+/* === 03 - Links & Media === */
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+a:hover {
+  color: var(--accent);
+}
+
+img {
+  display: block;
+  max-width: 100%;
+}
+
+/* === 04 - Form Elements & Focus Styles === */
+
+button,
+input,
+select,
+textarea {
+  font-family: inherit;
+  color: inherit;
+  background: none;
+  border: none;
+}
+
+/* Focus */
+button:focus,
+input:focus,
+select:focus,
+textarea:focus,
+a:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+  border-radius: 6px;
+}
+
+/* === 05 - App Root === */
+
+body > #app {
+  min-height: 100vh;
+}
+
+/* === 06 - Accessibility === */
+
+.skip-link {
+  position: absolute;
+  top: 0;
+  left: -999px;
+  z-index: 999;
+  padding: 10px 14px;
+  border-radius: var(--radius-sm);
+  background: var(--accent);
+  color: #0b0d10;
+}
+
+.skip-link:focus {
+  left: 16px;
+}
+
+/* === 07 - Layout Utilities === */
+
+.container {
+  width: min(1120px, 92vw);
+  margin: 0 auto;
+}
+
+.section {
+  padding: var(--space-6) 0;
+}
+
+.grid {
+  display: grid;
+  gap: var(--space-3);
+}
+
+.flex {
+  display: flex;
+}
+
+.flex-between {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.muted {
+  color: var(--text-muted);
+}
+
+/* === 08 - Typography Base === */
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin: 0;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+
+p {
+  margin: 0;
+  line-height: 1.6;
+  color: var(--text-muted);
+}
+
+/* === 09 - Lists & Content Defaults === */
+
+ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+main {
+  min-height: 60vh;
+}
+
+/* === 10 - UI Primitives === */
+
+.tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 10px;
+  margin-bottom: var(--space-2);
+  border-radius: 999px;
+  font-size: 12px;
+  background: var(--accent-ghost);
+  color: var(--accent);
+}
+
+.badge {
+  padding: 4px 8px;
+  border-radius: 10px;
+  font-size: 12px;
+  border: 1px solid var(--border);
+  background: var(--surface-2);
+  color: var(--text);
+}
+
+/* Text helpers */
+.small {
+  font-size: 14px;
+}
+
+/* Separators */
+hr {
+  border: 0;
+  height: 1px;
+  background: var(--border);
+  margin: var(--space-3) 0;
+}
+
+/* Surfaces */
+.card {
+  padding: var(--space-3);
+  border-radius: var(--radius);
+  background: var(--surface);
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow);
+}
+
+/* === 11 - Tables / Overflow Helpers === */
+
+.table-responsive,
+.table-wrap,
+.scroll-x {
+  width: 100%;
+  max-width: 100%;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+/* === 12 - Responsive === */
+
+@media (max-width: 1024px) {
+  .section {
+    padding: var(--space-6) 0;
+    text-align: center;
+  }
+}
+
+@media (max-width: 768px) {
+  .section {
+    padding: var(--space-5) 0;
+  }
+
+  .container {
+    width: 92vw;
+  }
+}
