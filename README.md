@@ -38,11 +38,11 @@ Each project belongs to a **specific industry**, ensuring realistic business con
 
 Completed and actively developed frontend projects are deployed on **Netlify** and publicly available:
 
-- [Construction — Project 01](https://construction-project-01.netlify.app/)
-- [Construction — Project 02](https://construction-project-02.netlify.app/)
-- [Gastronomy — Project 01](https://gastronomy-project-01.netlify.app/)
-- [Gastronomy — Project 02](https://gastronomy-project-02.netlify.app/)
-- [Tourism — Project 01](https://tourism-project-01.netlify.app/)
+- [Construction — Project 01](https://construction-pr-01-solidcraft.netlify.app/)
+- [Construction — Project 02](https://construction-pr-02-axiom.netlify.app/)
+- [Gastronomy — Project 01](https://gastronomy-pr-01-ambre.netlify.app/)
+- [Gastronomy — Project 02](https://gastronomy-pr-02-atelier.netlify.app/)
+- [Tourism — Project 01](https://hospitality-pr-01-vista.netlify.app/)
 - [Tourism — Project 02](https://tourism-project-02.netlify.app/)
 - [Transport — Project 01](https://transport-project-01.netlify.app/)
 - [Transport — Project 02](https://transport-project-02.netlify.app/)
