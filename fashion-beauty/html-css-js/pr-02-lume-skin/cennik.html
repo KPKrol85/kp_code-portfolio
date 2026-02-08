@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="pl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Cennik | Lumé Skin</title>
+    <link rel="stylesheet" href="css/main.css" />
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Przejdź do treści</a>
+    <header class="header">
+      <div class="container header__inner">
+        <a class="header__brand" href="index.html" aria-label="Lumé Skin">
+          <span class="header__logo" aria-hidden="true">
+            <svg width="24" height="24" viewBox="0 0 24 24" role="img">
+              <circle cx="12" cy="12" r="10" fill="none" stroke="currentColor" stroke-width="1.5" />
+              <path d="M12 5.5c2.6 3.8 3.5 6.2 3.5 8.5 0 2-1.6 3.5-3.5 3.5s-3.5-1.5-3.5-3.5c0-2.3.9-4.7 3.5-8.5Z" fill="currentColor" />
+            </svg>
+          </span>
+          <span>Lumé Skin</span>
+        </a>
+        <nav class="header__nav header__nav--desktop" aria-label="Główna">
+          <ul class="nav__list">
+            <li><a class="nav__link" href="index.html">Strona główna</a></li>
+            <li>
+              <details class="nav__dropdown">
+                <summary class="nav__summary">Usługi</summary>
+                <div class="nav__menu" role="group">
+                  <a href="uslugi.html#skin-care">Skin Care</a>
+                  <a href="uslugi.html#paznokcie">Paznokcie</a>
+                  <a href="uslugi.html#masaz">Masaż</a>
+                </div>
+              </details>
+            </li>
+            <li><a class="nav__link" href="cennik.html">Cennik</a></li>
+            <li><a class="nav__link" href="o-nas.html">O nas</a></li>
+            <li><a class="nav__link" href="rezerwacja.html">Rezerwacja</a></li>
+            <li><a class="nav__link" href="faq.html">FAQ</a></li>
+            <li><a class="nav__link" href="kontakt.html">Kontakt</a></li>
+          </ul>
+        </nav>
+        <div class="header__utility">
+          <a class="button button--ghost" href="tel:+48123456789">Zadzwoń</a>
+          <button class="button button--ghost" type="button" data-theme-toggle aria-pressed="false">
+            <span aria-hidden="true">☾</span>
+            <span class="sr-only" data-theme-label>Tryb jasny</span>
+          </button>
+          <a class="button button--primary" href="rezerwacja.html">Umów wizytę</a>
+          <button class="header__toggle" type="button" aria-controls="mobile-menu" aria-expanded="false">
+            Menu
+          </button>
+        </div>
+      </div>
+      <div class="header__overlay" tabindex="-1" aria-hidden="true"></div>
+      <nav class="header__nav header__nav--mobile" id="mobile-menu" aria-label="Nawigacja mobilna">
+        <ul class="nav__list">
+          <li><a class="nav__link" href="index.html">Strona główna</a></li>
+          <li>
+            <details class="nav__dropdown">
+              <summary class="nav__summary">Usługi</summary>
+              <div class="nav__menu" role="group">
+                <a href="uslugi.html#skin-care">Skin Care</a>
+                <a href="uslugi.html#paznokcie">Paznokcie</a>
+                <a href="uslugi.html#masaz">Masaż</a>
+              </div>
+            </details>
+          </li>
+          <li><a class="nav__link" href="cennik.html">Cennik</a></li>
+          <li><a class="nav__link" href="o-nas.html">O nas</a></li>
+          <li><a class="nav__link" href="rezerwacja.html">Rezerwacja</a></li>
+          <li><a class="nav__link" href="faq.html">FAQ</a></li>
+          <li><a class="nav__link" href="kontakt.html">Kontakt</a></li>
+        </ul>
+        <a class="button button--primary" href="rezerwacja.html">Umów wizytę</a>
+      </nav>
+    </header>
+
+    <main id="main">
+      <section class="section">
+        <div class="container stack-lg" data-reveal>
+          <h1>Cennik usług</h1>
+          <p class="text-muted">Podane ceny są orientacyjne i zależą od konsultacji oraz zakresu zabiegu.</p>
+          <div class="grid grid--3">
+            <article class="card">
+              <h2>Skin Care</h2>
+              <p class="text-muted">180 - 420 zł</p>
+              <ul class="flow">
+                <li>Oczyszczanie i peeling</li>
+                <li>Rytuał nawilżający</li>
+                <li>Terapia anti-aging</li>
+              </ul>
+            </article>
+            <article class="card">
+              <h2>Paznokcie</h2>
+              <p class="text-muted">120 - 260 zł</p>
+              <ul class="flow">
+                <li>Manicure klasyczny</li>
+                <li>Pedicure SPA</li>
+                <li>Stylizacja żelowa</li>
+              </ul>
+            </article>
+            <article class="card">
+              <h2>Masaż</h2>
+              <p class="text-muted">150 - 320 zł</p>
+              <ul class="flow">
+                <li>Masaż relaksacyjny</li>
+                <li>Masaż pleców i karku</li>
+                <li>Masaż twarzy</li>
+              </ul>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="section section--compact">
+        <div class="container stack-lg" data-reveal>
+          <h2>Pakiety rytuałów</h2>
+          <table class="table">
+            <thead>
+              <tr>
+                <th>Pakiet</th>
+                <th>Zakres</th>
+                <th>Cena</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Glow Reset</td>
+                <td>Skin Care + masaż twarzy</td>
+                <td>490 zł</td>
+              </tr>
+              <tr>
+                <td>Weekend Care</td>
+                <td>Manicure + pedicure SPA</td>
+                <td>380 zł</td>
+              </tr>
+              <tr>
+                <td>Deep Relax</td>
+                <td>Masaż relaksacyjny + rytuał nawilżający</td>
+                <td>540 zł</td>
+              </tr>
+            </tbody>
+          </table>
+          <div class="notice">
+            Ostateczna cena zależy od potrzeb skóry oraz indywidualnie dobranych koncentratów i kosmetyków.
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <div class="container">
+        <div class="footer__top">
+          <div class="flow">
+            <h3>Lumé Skin</h3>
+            <p class="text-muted">Studio pielęgnacji skóry, paznokci i masażu w sercu miasta.</p>
+            <div class="badge">Pon-Sob 9:00-20:00</div>
+          </div>
+          <div class="flow">
+            <h4>Kontakt</h4>
+            <p>ul. Świetlista 12, Warszawa</p>
+            <p><a href="tel:+48123456789">+48 123 456 789</a></p>
+            <p><a href="mailto:hello@lumeskin.pl">hello@lumeskin.pl</a></p>
+          </div>
+          <div class="flow">
+            <h4>Na skróty</h4>
+            <a href="uslugi.html">Usługi</a>
+            <a href="cennik.html">Cennik</a>
+            <a href="rezerwacja.html">Rezerwacja</a>
+          </div>
+        </div>
+        <div class="footer__bottom">
+          <p class="text-muted">© 2024 Lumé Skin. Wszelkie prawa zastrzeżone.</p>
+          <a class="button button--link" href="standardy-higieny.html">Standardy higieny</a>
+        </div>
+      </div>
+    </footer>
+
+    <button class="button button--ghost back-to-top" type="button" data-back-to-top onclick="window.scrollTo({ top: 0, behavior: 'smooth' })">
+      Wróć na górę
+    </button>
+
+    <script src="js/main.js"></script>
+  </body>
+</html>

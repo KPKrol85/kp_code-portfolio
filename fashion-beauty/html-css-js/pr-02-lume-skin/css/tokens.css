@@ -1,0 +1,84 @@
+:root {
+  color-scheme: light dark;
+  --font-sans: "Inter", "Segoe UI", system-ui, -apple-system, sans-serif;
+  --font-serif: "IvyPresto", "Playfair Display", "Times New Roman", serif;
+  --font-weight-regular: 400;
+  --font-weight-medium: 500;
+  --font-weight-semibold: 600;
+  --font-weight-bold: 700;
+  --line-height-base: 1.6;
+  --line-height-tight: 1.2;
+
+  --radius-xs: 6px;
+  --radius-sm: 10px;
+  --radius-md: 16px;
+  --radius-lg: 24px;
+  --radius-pill: 999px;
+
+  --shadow-sm: 0 8px 20px rgba(23, 18, 15, 0.08);
+  --shadow-md: 0 20px 60px rgba(23, 18, 15, 0.14);
+  --shadow-lg: 0 40px 80px rgba(23, 18, 15, 0.18);
+
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 20px;
+  --space-6: 24px;
+  --space-7: 32px;
+  --space-8: 40px;
+  --space-9: 48px;
+  --space-10: 64px;
+  --space-11: 80px;
+  --space-12: 96px;
+
+  --z-header: 1000;
+  --z-overlay: 900;
+  --z-backtotop: 800;
+
+  --motion-fast: 150ms;
+  --motion-medium: 260ms;
+  --motion-slow: 420ms;
+  --motion-ease: cubic-bezier(0.2, 0.7, 0.2, 1);
+
+  --color-bg: #fdf8f4;
+  --color-surface: #ffffff;
+  --color-surface-alt: #f7efe9;
+  --color-card: #ffffff;
+  --color-text: #1f1a17;
+  --color-text-muted: #6a5f57;
+  --color-border: #e7d9cf;
+  --color-accent: #c7a27a;
+  --color-accent-strong: #b3824f;
+  --color-accent-soft: #efe0d3;
+  --color-focus: #a9784f;
+  --color-success: #2f7d58;
+  --color-danger: #b64337;
+}
+
+[data-theme="dark"] {
+  --color-bg: #151210;
+  --color-surface: #1d1916;
+  --color-surface-alt: #25211e;
+  --color-card: #231f1c;
+  --color-text: #f7efe8;
+  --color-text-muted: #b9ada4;
+  --color-border: #3a332e;
+  --color-accent: #d2b48c;
+  --color-accent-strong: #e3c29a;
+  --color-accent-soft: #2e2722;
+  --color-focus: #f0c99b;
+  --color-success: #6fc59d;
+  --color-danger: #e0948a;
+  --shadow-sm: 0 10px 28px rgba(0, 0, 0, 0.45);
+  --shadow-md: 0 24px 60px rgba(0, 0, 0, 0.55);
+  --shadow-lg: 0 40px 90px rgba(0, 0, 0, 0.6);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    --motion-fast: 0ms;
+    --motion-medium: 0ms;
+    --motion-slow: 0ms;
+  }
+}

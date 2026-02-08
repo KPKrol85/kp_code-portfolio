@@ -1,0 +1,24 @@
+{
+  "name": "lume-skin",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "css:build": "postcss css/main.css -o dist/assets/main.min.css",
+    "css:watch": "postcss css/main.css -o dist/assets/main.min.css -w",
+    "js:build": "terser js/main.js -o dist/assets/main.min.js -c -m",
+    "images:convert": "node scripts/convert-images.js"
+  },
+  "devDependencies": {
+    "cssnano": "^6.1.2",
+    "postcss": "^8.4.38",
+    "postcss-cli": "^11.0.0",
+    "postcss-import": "^16.1.0",
+    "sharp": "^0.33.3",
+    "terser": "^5.30.4",
+    "vite": "^5.3.3"
+  }
+}

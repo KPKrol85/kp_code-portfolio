@@ -1,0 +1,19 @@
+.services__intro {
+  max-width: 720px;
+}
+
+.service-grid {
+  display: grid;
+  gap: var(--space-5);
+}
+
+.service-grid__card {
+  display: grid;
+  gap: var(--space-3);
+}
+
+@media (min-width: 760px) {
+  .service-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}

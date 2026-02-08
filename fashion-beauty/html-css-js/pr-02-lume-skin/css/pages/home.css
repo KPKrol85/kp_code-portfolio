@@ -1,0 +1,46 @@
+.hero__eyebrow {
+  font-size: 0.95rem;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  color: var(--color-text-muted);
+}
+
+.hero__title {
+  font-size: clamp(2.2rem, 4vw, 3.2rem);
+  font-family: var(--font-serif);
+}
+
+.hero__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-3);
+}
+
+.highlight-list {
+  display: grid;
+  gap: var(--space-4);
+}
+
+.trust-badges {
+  display: grid;
+  gap: var(--space-3);
+}
+
+.testimonials {
+  display: grid;
+  gap: var(--space-4);
+}
+
+@media (min-width: 760px) {
+  .highlight-list {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .trust-badges {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .testimonials {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
