@@ -1,0 +1,16 @@
+export const routes = [
+  { path: "/dashboard", page: "dashboard" },
+  { path: "/classes", page: "classes" },
+  { path: "/classes/:classId", page: "classDetail" },
+  { path: "/groups", page: "groups" },
+  { path: "/groups/:groupId", page: "groupDetail" },
+  { path: "/chat", page: "chat" },
+  { path: "/chat/:threadId", page: "chat" },
+  { path: "/materials", page: "materials" },
+  { path: "/materials/:materialId", page: "materialDetail" },
+  { path: "/assignments", page: "assignments" },
+  { path: "/assignments/:assignmentId", page: "assignmentDetail" },
+  { path: "/notes", page: "notes" },
+  { path: "/admin", page: "admin" },
+  { path: "/settings", page: "settings" },
+];
