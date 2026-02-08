@@ -793,17 +793,14 @@
 }
 .footer__contact .footer__text a[href^="mailto"],
 .footer__contact .footer__text a[href^="tel"] {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  padding: 0.35rem 0.6rem;
-  border-radius: 999px;
-  gap: var(--space-xs);
-  background: color-mix(in oklab, var(--text) 6%, transparent);
+  color: var(--footer-text);
+  text-decoration: none;
 }
 .footer__contact .footer__text a[href^="mailto"]:hover,
 .footer__contact .footer__text a[href^="tel"]:hover {
-  background: color-mix(in oklab, var(--text) 10%, transparent);
+  color: var(--accent, #2dc7a6);
+  text-decoration: underline;
+  text-underline-offset: 0.14em;
 }
 .footer__contact #footer-social.footer__heading {
   margin-top: var(--space-md);
