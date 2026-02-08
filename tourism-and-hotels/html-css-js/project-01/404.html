@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="pl" data-theme="auto">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>404 — Nie znaleziono strony | Vista — Hotels &amp; Travel</title>
+    <meta name="description" content="Strona, której szukasz, nie istnieje lub została przeniesiona." />
+    <meta name="robots" content="noindex,follow" />
+    <meta name="color-scheme" content="light dark" />
+    <meta name="theme-color" media="(prefers-color-scheme: light)" content="#f7f6f3" />
+    <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#0d0f14" />
+    <script>
+      (() => {
+        const KEY = "theme-pref";
+        let pref = "auto";
+
+        try {
+          const stored = localStorage.getItem(KEY);
+          if (stored === "light" || stored === "dark" || stored === "auto") pref = stored;
+        } catch {}
+
+        const resolved = pref === "auto"
+          ? (window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light")
+          : pref;
+
+        document.documentElement.setAttribute("data-theme", resolved);
+      })();
+    </script>
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Przejdź do treści</a>
+
+    <header class="site-header" id="top">
+      <div class="container site-header__inner">
+        <a class="site-header__brand" href="index.html" aria-label="Strona główna">
+          <img src="assets/img/logo/logo-128x128.svg" alt="Logo Vista" class="brand-logo" width="36" height="36" />
+          <span class="brand-lockup">
+            <span class="brand-lockup__name">Vista</span>
+            <span class="brand-lockup__tagline">Hotels &amp; Travel</span>
+          </span>
+        </a>
+        <button class="site-header__nav-toggle" id="nav-toggle" aria-controls="site-nav" aria-expanded="false" aria-label="Otwórz menu">
+          <span class="visually-hidden">Menu</span>
+          <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 6h18M3 12h18M3 18h18" stroke="currentColor" stroke-width="2" stroke-linecap="round" /></svg>
+        </button>
+        <button type="button" id="theme-toggle" class="theme-toggle" aria-label="Toggle color theme" data-theme-toggle>
+          <img class="theme-toggle__icon" src="assets/img/icons/sun-40x40.svg" alt="" aria-hidden="true" width="20" height="20" decoding="async" />
+        </button>
+        <nav class="site-nav" id="site-nav" aria-label="Główne">
+          <ul class="site-nav__list">
+            <li><a href="index.html" data-nav>Strona główna</a></li>
+            <li><a href="rooms.html" data-nav>Pokoje &amp; Apartamenty</a></li>
+            <li><a href="offers.html" data-nav>Oferty specjalne</a></li>
+            <li><a href="gallery.html" data-nav>Galeria</a></li>
+            <li><a href="contact.html" data-nav>Kontakt</a></li>
+          </ul>
+        </nav>
+      </div>
+    </header>
+
+    <main id="main">
+      <section class="section" aria-labelledby="not-found-heading">
+        <div class="container content">
+          <h1 id="not-found-heading" class="section-title">404 — Nie znaleziono strony</h1>
+          <p>Adres, który wpisano, nie istnieje lub został przeniesiony.</p>
+          <p>
+            <a class="btn btn--primary" href="index.html">Wróć na stronę główną</a>
+            <a class="btn btn--ghost" href="contact.html">Skontaktuj się z nami</a>
+          </p>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer" role="contentinfo" aria-labelledby="footer-heading">
+      <h2 id="footer-heading" class="sr-only">Stopka serwisu</h2>
+      <div class="container">
+        <div class="footer__inner">
+          <div class="footer__grid">
+            <section class="footer__col footer__brand" aria-labelledby="footer-brand">
+              <img class="footer__brand-img" src="assets/img/logo/logo-160x160.svg" alt="" width="160" height="160" decoding="async" loading="lazy" aria-hidden="true" />
+              <h3 id="footer-brand" class="footer__heading">
+                <a href="index.html" class="footer__brand-link" aria-label="Vista — Hotels &amp; Travel — strona główna">Vista<br /><small>Hotels &amp; Travel</small></a>
+              </h3>
+              <p class="footer__text">Vista — Hotels &amp; Travel.</p>
+            </section>
+          </div>
+          <div class="footer__bottom">
+            <p>
+              ©
+              <span data-year></span>
+              Vista. Wszelkie prawa zastrzeżone.
+            </p>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <script type="module" defer src="js/script.js"></script>
+  </body>
+</html>

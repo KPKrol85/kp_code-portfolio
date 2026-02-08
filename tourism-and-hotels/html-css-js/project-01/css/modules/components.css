@@ -243,6 +243,9 @@ fieldset.form__field legend {
   border: 1px solid var(--border);
   box-shadow: var(--elev);
 }
+.map iframe {
+  border: 0;
+}
 .map figcaption {
   margin: var(--space-xs) 0 0 0;
 }
