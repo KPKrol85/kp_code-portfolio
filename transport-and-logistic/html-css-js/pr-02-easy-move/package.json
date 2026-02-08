@@ -1,0 +1,26 @@
+{
+  "name": "easy-move-site",
+  "version": "1.0.0",
+  "description": "Premium multi-page website for Easy Move moving company.",
+  "type": "module",
+  "scripts": {
+    "dev": "vite --host",
+    "build": "node scripts/build.mjs",
+    "preview": "vite preview --host",
+    "css:build": "postcss css/main.css -o dist/css/main.css",
+    "css:watch": "postcss css/main.css -o dist/css/main.css --watch",
+    "js:build": "terser js/main.js -o dist/js/main.js --compress --mangle",
+    "images:convert": "node scripts/convert-images.mjs"
+  },
+  "devDependencies": {
+    "cssnano": "^6.1.2",
+    "postcss": "^8.4.38",
+    "postcss-cli": "^11.0.0",
+    "postcss-import": "^16.1.0",
+    "terser": "^5.30.3",
+    "vite": "^5.2.0"
+  },
+  "dependencies": {
+    "sharp": "^0.33.3"
+  }
+}

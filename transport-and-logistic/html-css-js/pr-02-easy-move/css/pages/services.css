@@ -1,0 +1,12 @@
+.services-hero {
+  background: var(--color-surface-alt);
+  border-radius: var(--radius-lg);
+  padding: var(--space-8);
+  display: grid;
+  gap: var(--space-4);
+}
+
+.services-list {
+  display: grid;
+  gap: var(--space-6);
+}
