@@ -6,20 +6,29 @@ const ICONS = {
 };
 
 function getStoredPref() {
-  const stored = localStorage.getItem(STORAGE_KEY);
-  return PREFS.has(stored) ? stored : "auto";
+  try {
+    const stored = localStorage.getItem(STORAGE_KEY);
+    return PREFS.has(stored) ? stored : "auto";
+  } catch {
+    return "auto";
+  }
 }
 
 function savePref(pref) {
-  if (pref === "auto") {
-    localStorage.removeItem(STORAGE_KEY);
-    return;
+  try {
+    if (pref === "auto") {
+      localStorage.removeItem(STORAGE_KEY);
+      return;
+    }
+    localStorage.setItem(STORAGE_KEY, pref);
+  } catch {
+    // Ignore storage errors (private mode / blocked storage).
   }
-  localStorage.setItem(STORAGE_KEY, pref);
 }
 
-function applyTheme(pref) {
-  const next = PREFS.has(pref) ? pref : "auto";
+function applyTheme(pref, media) {
+  const nextPref = PREFS.has(pref) ? pref : "auto";
+  const next = nextPref === "auto" ? (media.matches ? "dark" : "light") : nextPref;
   document.documentElement.setAttribute("data-theme", next);
 }
 
@@ -42,7 +51,7 @@ export function initTheme() {
   let pref = getStoredPref();
 
   const sync = () => {
-    applyTheme(pref);
+    applyTheme(pref, media);
     const activeTheme = getActiveTheme(pref, media);
     updateToggleIcon(icon, activeTheme);
   };
