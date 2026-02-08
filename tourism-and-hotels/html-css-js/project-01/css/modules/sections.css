@@ -755,7 +755,7 @@
 .footer__brand-link small {
   display: block;
   margin-top: 4px;
-  font-size: var(--fs-100);
+  font-size: calc(var(--fs-100) * 0.9);
   font-weight: 400;
   letter-spacing: 0.12em;
   text-transform: uppercase;
@@ -763,7 +763,7 @@
 }
 .footer__brand .footer__text {
   text-align: center;
-  font-size: var(--fs-300);
+  font-size: var(--fs-200);
   line-height: 1.5;
   margin-top: var(--space-xs);
   padding-inline: var(--space-2xl);
@@ -805,7 +805,9 @@
   font-weight: 500;
   color: var(--footer-text);
   text-decoration: none;
-  transition: color 0.2s ease, text-decoration-color 0.2s ease;
+  transition:
+    color 0.2s ease,
+    text-decoration-color 0.2s ease;
 }
 .footer__contact .footer__text a[href^="mailto"]:hover,
 .footer__contact .footer__text a[href^="tel"]:hover {
@@ -835,7 +837,9 @@
   color: var(--footer-text);
   text-decoration: none;
   padding: var(--space-2xs);
-  transition: color 0.2s ease, outline-color 0.2s ease;
+  transition:
+    color 0.2s ease,
+    outline-color 0.2s ease;
 }
 .footer__social-links a:hover {
   color: var(--accent, #2dc7a6);
@@ -942,7 +946,6 @@
   .footer__bottom p {
     line-height: 1.3;
   }
- 
 }
 @media (min-width: 1024px) {
   .site-footer {
@@ -1000,64 +1003,66 @@
   }
   .footer__bottom p {
     line-height: 1.3;
+    font-size: calc(var(--fs-100)*0.9);
   }
 }
 
 /* Subpage Gallery */
-.page-gallery .gallery-grid {
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: var(--space-md);
-}
 .page-gallery .gallery-section + .gallery-section {
   margin-top: var(--space-xl);
 }
 .page-gallery .gallery-section__title {
-  font-size: var(--fs-500);
   margin: 0 0 var(--space-md);
-  text-align: left;
+  font-size: var(--fs-300);
+  text-align: center;
 }
-.page-gallery .gallery-grid__item img {
-  aspect-ratio: 3 / 2;
-  object-fit: cover;
+.page-gallery .gallery-section__title {
+  position: relative;
 }
-.page-gallery .gallery-grid__item {
-  border-radius: var(--radius-lg);
-  transition:
-    transform 0.25s ease,
-    box-shadow 0.25s ease,
-    border-color 0.2s ease;
+
+.page-gallery .gallery-section__title::after {
+  content: "";
+  display: block;
+  inline-size: 52px;
+  block-size: 2px;
+  margin: var(--space-2xs) auto 0;
+  border-radius: var(--radius-full);
+  background: var(--primary);
+  box-shadow: 0 0 0 1px color-mix(in oklab, var(--primary) 35%, transparent);
+  opacity: 0.35;
 }
-.page-gallery .gallery-grid__item:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
-  border-color: color-mix(in oklab, var(--border) 60%, #2dc7a6 40%);
-}
-.gallery-cats--panel {
-  background: color-mix(in oklab, var(--bg-elev) 92%, transparent);
+
+
+
+.page-gallery .gallery-cats--panel {
+  margin: var(--space-2xs) 0 var(--space-md);
+  padding: var(--space-xs);
   border: 1px solid var(--border);
   border-radius: var(--radius-lg);
+  background: color-mix(in oklab, var(--bg-elev) 92%, transparent);
   box-shadow: var(--elev);
-  padding: var(--space-sm);
-  margin: var(--space-2xs) 0 var(--space-md);
 }
-.gallery-cats__list {
+.page-gallery .gallery-cats__list {
   list-style: none;
   margin: 0;
   padding: 0;
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  grid-template-rows: repeat(3, minmax(0, 1fr));
   gap: var(--space-xs);
 }
-.gallery-cats__link {
+.page-gallery .gallery-cats__link {
   display: flex;
   align-items: center;
   justify-content: center;
+  inline-size: 100%;
+  block-size: 100%;
   padding: var(--space-xs) var(--space-sm);
   border: 1px solid var(--border);
-  border-radius: 12px;
+  border-radius: var(--radius-lg);
   background: color-mix(in oklab, var(--bg-elev) 88%, transparent);
-  text-decoration: none;
   color: inherit;
+  text-decoration: none;
   font-size: var(--fs-100);
   transition:
     transform 0.2s ease,
@@ -1065,35 +1070,66 @@
     border-color 0.2s ease,
     background 0.2s ease;
 }
-.gallery-cats__link:hover {
+.page-gallery .gallery-cats__link:hover {
   transform: translateY(-1px);
   box-shadow: 0 6px 14px rgba(0, 0, 0, 0.12);
   border-color: color-mix(in oklab, #2dc7a6 35%, var(--border));
   background: color-mix(in oklab, var(--bg-elev) 95%, #2dc7a6 3%);
 }
-.gallery-cats__link:focus-visible {
+.page-gallery .gallery-cats__link:focus-visible {
   outline: 2px solid var(--primary);
   outline-offset: 2px;
 }
-.gallery-cats__link:active {
+.page-gallery .gallery-cats__link:active {
   transform: translateY(0);
   filter: brightness(0.98);
 }
-.gallery-cats__link[aria-current="true"] {
+.page-gallery .gallery-cats__link[aria-current="true"] {
   border-color: color-mix(in oklab, #2dc7a6 35%, var(--border));
   background: color-mix(in oklab, var(--bg-elev) 95%, #2dc7a6 3%);
   color: var(--accent);
   box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.05);
   transform: none;
 }
-@media (max-width: 1099px) {
+.page-gallery .gallery-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-md);
+}
+.page-gallery .gallery-grid__item {
+  overflow: hidden;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  background: var(--bg-elev);
+  transition:
+    transform 0.25s ease,
+    box-shadow 0.25s ease,
+    border-color 0.2s ease;
+}
+.page-gallery .gallery-grid__item img {
+  display: block;
+  inline-size: 100%;
+  block-size: auto;
+  aspect-ratio: 3 / 2;
+  object-fit: cover;
+}
+.page-gallery .gallery-grid__item:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+  border-color: color-mix(in oklab, var(--border) 60%, #2dc7a6 40%);
+}
+.page-gallery .gallery-grid__item:focus-within {
+  border-color: color-mix(in oklab, var(--border) 60%, var(--primary) 40%);
+  box-shadow: 0 0 0 2px color-mix(in oklab, var(--primary) 35%, transparent);
+}
+@media (min-width: 760px) {
   .page-gallery .gallery-grid {
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 }
-@media (max-width: 700px) {
+@media (min-width: 1024px) {
   .page-gallery .gallery-grid {
-    grid-template-columns: 1fr;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
   }
 }
 

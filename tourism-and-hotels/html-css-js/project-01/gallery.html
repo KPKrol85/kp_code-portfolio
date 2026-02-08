@@ -1,27 +1,18 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="pl" data-theme="auto">
   <head>
-    <!-- Required -->
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Vista | Galeria — Hotels &amp; Travel</title>
     <meta name="description" content="Galeria zdjęć Vista — Hotels &amp; Travel — zobacz wnętrza pokoi, lobby, restaurację oraz strefę relaksu." />
     <meta name="color-scheme" content="light dark" />
-
-    <!-- Theme color for Light/Dark -->
     <meta name="theme-color" media="(prefers-color-scheme: light)" content="#f7f6f3" />
     <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#0d0f14" />
-
-    <!-- Indexing / privacy -->
     <meta name="robots" content="index,follow" />
     <meta name="referrer" content="strict-origin-when-cross-origin" />
     <meta name="format-detection" content="telephone=no" />
     <meta name="ld-json" content="assets/seo/ld-gallery.json" />
-
-    <!-- Canonical -->
     <link rel="canonical" href="https://hospitality-pr-01-vista.netlify.app/gallery.html" />
-
-    <!-- Open Graph -->
     <meta property="og:type" content="website" />
     <meta property="og:site_name" content="Vista" />
     <meta property="og:title" content="Vista | Galeria — Hotels &amp; Travel" />
@@ -33,17 +24,11 @@
     <meta property="og:image:height" content="630" />
     <meta property="og:image:type" content="image/jpeg" />
     <meta property="og:image:alt" content="Galeria wnętrz hotelowych i widoków — Vista — Hotels &amp; Travel" />
-
-    <!-- Twitter -->
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content="Vista | Galeria — Hotels &amp; Travel" />
     <meta name="twitter:description" content="Galeria zdjęć Vista — Hotels &amp; Travel." />
     <meta name="twitter:image" content="https://hospitality-pr-01-vista.netlify.app/assets/img/og/og-1200x1200.jpg" />
-
-    <!-- PWA -->
     <link rel="manifest" href="site.webmanifest" />
-
-    <!-- Icons -->
     <link rel="icon" href="assets/img/ui/favicon.svg" type="image/svg+xml" />
     <link rel="icon" href="assets/img/ui/favicon-32x32.png" sizes="32x32" />
     <link rel="icon" href="assets/img/ui/favicon-16x16.png" sizes="16x16" />
@@ -51,8 +36,6 @@
     <link rel="mask-icon" href="assets/img/ui/safari-pinned-tab.svg" color="#0d0f14" />
     <meta name="theme-color" content="#2dc7a6" />
     <meta name="msapplication-TileColor" content="#2dc7a6" />
-
-    <!-- Styles -->
     <script>
       (() => {
         const KEY = "theme-pref";
@@ -63,9 +46,7 @@
           if (stored === "light" || stored === "dark" || stored === "auto") pref = stored;
         } catch {}
 
-        const resolved = pref === "auto"
-          ? (window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light")
-          : pref;
+        const resolved = pref === "auto" ? (window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light") : pref;
 
         document.documentElement.setAttribute("data-theme", resolved);
       })();
@@ -113,7 +94,6 @@
 
     <!-- MAIN -->
     <main id="main">
-      <!-- Breadcrumb -->
       <nav class="breadcrumb" aria-label="Okruszki">
         <div class="container">
           <ol>
@@ -284,137 +264,136 @@
             <div class="gallery-grid">
               <!-- LOBBY -->
               <!-- Lobby 01 -->
-            <a
-              href="assets/img/subpage-gallery/lobby/lobby-01-1600x1067.jpg"
-              class="gallery-grid__item"
-              data-reveal
-              data-lightbox-item
-              data-cat-item="lobby"
-              data-caption="Lobby hotelowe — jasne wnętrze z nowoczesnym oświetleniem">
-              <picture>
-                <source
-                  type="image/avif"
-                  srcset="
-                    assets/img/subpage-gallery/lobby/lobby-01-640x427.avif    640w,
-                    assets/img/subpage-gallery/lobby/lobby-01-960x640.avif    960w,
-                    assets/img/subpage-gallery/lobby/lobby-01-1280x853.avif  1280w,
-                    assets/img/subpage-gallery/lobby/lobby-01-1600x1067.avif 1600w
-                  "
-                  sizes="(max-width:700px)100vw,(max-width:1100px)48vw,32vw" />
-                <source
-                  type="image/webp"
-                  srcset="
-                    assets/img/subpage-gallery/lobby/lobby-01-640x427.webp    640w,
-                    assets/img/subpage-gallery/lobby/lobby-01-960x640.webp    960w,
-                    assets/img/subpage-gallery/lobby/lobby-01-1280x853.webp  1280w,
-                    assets/img/subpage-gallery/lobby/lobby-01-1600x1067.webp 1600w
-                  "
-                  sizes="(max-width:700px)100vw,(max-width:1100px)48vw,32vw" />
-                <img
-                  src="assets/img/subpage-gallery/lobby/lobby-01-1280x853.jpg"
-                  srcset="
-                    assets/img/subpage-gallery/lobby/lobby-01-640x427.jpg    640w,
-                    assets/img/subpage-gallery/lobby/lobby-01-960x640.jpg    960w,
-                    assets/img/subpage-gallery/lobby/lobby-01-1280x853.jpg  1280w,
-                    assets/img/subpage-gallery/lobby/lobby-01-1600x1067.jpg 1600w
-                  "
-                  sizes="(max-width:700px)100vw,(max-width:1100px)48vw,32vw"
-                  alt="Przestronne lobby hotelowe w jasnych barwach z nowoczesnymi sofami i oświetleniem"
-                  width="1600"
-                  height="1067"
-                  loading="lazy"
-                  decoding="async" />
-              </picture>
-            </a>
+              <a
+                href="assets/img/subpage-gallery/lobby/lobby-01-1600x1067.jpg"
+                class="gallery-grid__item"
+                data-reveal
+                data-lightbox-item
+                data-cat-item="lobby"
+                data-caption="Lobby hotelowe — jasne wnętrze z nowoczesnym oświetleniem">
+                <picture>
+                  <source
+                    type="image/avif"
+                    srcset="
+                      assets/img/subpage-gallery/lobby/lobby-01-640x427.avif    640w,
+                      assets/img/subpage-gallery/lobby/lobby-01-960x640.avif    960w,
+                      assets/img/subpage-gallery/lobby/lobby-01-1280x853.avif  1280w,
+                      assets/img/subpage-gallery/lobby/lobby-01-1600x1067.avif 1600w
+                    "
+                    sizes="(max-width:700px)100vw,(max-width:1100px)48vw,32vw" />
+                  <source
+                    type="image/webp"
+                    srcset="
+                      assets/img/subpage-gallery/lobby/lobby-01-640x427.webp    640w,
+                      assets/img/subpage-gallery/lobby/lobby-01-960x640.webp    960w,
+                      assets/img/subpage-gallery/lobby/lobby-01-1280x853.webp  1280w,
+                      assets/img/subpage-gallery/lobby/lobby-01-1600x1067.webp 1600w
+                    "
+                    sizes="(max-width:700px)100vw,(max-width:1100px)48vw,32vw" />
+                  <img
+                    src="assets/img/subpage-gallery/lobby/lobby-01-1280x853.jpg"
+                    srcset="
+                      assets/img/subpage-gallery/lobby/lobby-01-640x427.jpg    640w,
+                      assets/img/subpage-gallery/lobby/lobby-01-960x640.jpg    960w,
+                      assets/img/subpage-gallery/lobby/lobby-01-1280x853.jpg  1280w,
+                      assets/img/subpage-gallery/lobby/lobby-01-1600x1067.jpg 1600w
+                    "
+                    sizes="(max-width:700px)100vw,(max-width:1100px)48vw,32vw"
+                    alt="Przestronne lobby hotelowe w jasnych barwach z nowoczesnymi sofami i oświetleniem"
+                    width="1600"
+                    height="1067"
+                    loading="lazy"
+                    decoding="async" />
+                </picture>
+              </a>
 
-            <!-- Lobby 02 -->
-            <a
-              href="assets/img/subpage-gallery/lobby/lobby-02-1600x1067.jpg"
-              class="gallery-grid__item"
-              data-reveal
-              data-lightbox-item
-              data-cat-item="lobby"
-              data-caption="Recepcja i strefa relaksu — połączenie natury z elegancją">
-              <picture>
-                <source
-                  type="image/avif"
-                  srcset="
-                    assets/img/subpage-gallery/lobby/lobby-02-640x427.avif    640w,
-                    assets/img/subpage-gallery/lobby/lobby-02-960x640.avif    960w,
-                    assets/img/subpage-gallery/lobby/lobby-02-1280x853.avif  1280w,
-                    assets/img/subpage-gallery/lobby/lobby-02-1600x1067.avif 1600w
-                  "
-                  sizes="(max-width:700px)100vw,(max-width:1100px)48vw,32vw" />
-                <source
-                  type="image/webp"
-                  srcset="
-                    assets/img/subpage-gallery/lobby/lobby-02-640x427.webp    640w,
-                    assets/img/subpage-gallery/lobby/lobby-02-960x640.webp    960w,
-                    assets/img/subpage-gallery/lobby/lobby-02-1280x853.webp  1280w,
-                    assets/img/subpage-gallery/lobby/lobby-02-1600x1067.webp 1600w
-                  "
-                  sizes="(max-width:700px)100vw,(max-width:1100px)48vw,32vw" />
-                <img
-                  src="assets/img/subpage-gallery/lobby/lobby-02-1280x853.jpg"
-                  srcset="
-                    assets/img/subpage-gallery/lobby/lobby-02-640x427.jpg    640w,
-                    assets/img/subpage-gallery/lobby/lobby-02-960x640.jpg    960w,
-                    assets/img/subpage-gallery/lobby/lobby-02-1280x853.jpg  1280w,
-                    assets/img/subpage-gallery/lobby/lobby-02-1600x1067.jpg 1600w
-                  "
-                  sizes="(max-width:700px)100vw,(max-width:1100px)48vw,32vw"
-                  alt="Hotelowa recepcja z zielenią i drewnianymi akcentami, otwarta przestrzeń ze stolikami"
-                  width="1600"
-                  height="1067"
-                  loading="lazy"
-                  decoding="async" />
-              </picture>
-            </a>
+              <!-- Lobby 02 -->
+              <a
+                href="assets/img/subpage-gallery/lobby/lobby-02-1600x1067.jpg"
+                class="gallery-grid__item"
+                data-reveal
+                data-lightbox-item
+                data-cat-item="lobby"
+                data-caption="Recepcja i strefa relaksu — połączenie natury z elegancją">
+                <picture>
+                  <source
+                    type="image/avif"
+                    srcset="
+                      assets/img/subpage-gallery/lobby/lobby-02-640x427.avif    640w,
+                      assets/img/subpage-gallery/lobby/lobby-02-960x640.avif    960w,
+                      assets/img/subpage-gallery/lobby/lobby-02-1280x853.avif  1280w,
+                      assets/img/subpage-gallery/lobby/lobby-02-1600x1067.avif 1600w
+                    "
+                    sizes="(max-width:700px)100vw,(max-width:1100px)48vw,32vw" />
+                  <source
+                    type="image/webp"
+                    srcset="
+                      assets/img/subpage-gallery/lobby/lobby-02-640x427.webp    640w,
+                      assets/img/subpage-gallery/lobby/lobby-02-960x640.webp    960w,
+                      assets/img/subpage-gallery/lobby/lobby-02-1280x853.webp  1280w,
+                      assets/img/subpage-gallery/lobby/lobby-02-1600x1067.webp 1600w
+                    "
+                    sizes="(max-width:700px)100vw,(max-width:1100px)48vw,32vw" />
+                  <img
+                    src="assets/img/subpage-gallery/lobby/lobby-02-1280x853.jpg"
+                    srcset="
+                      assets/img/subpage-gallery/lobby/lobby-02-640x427.jpg    640w,
+                      assets/img/subpage-gallery/lobby/lobby-02-960x640.jpg    960w,
+                      assets/img/subpage-gallery/lobby/lobby-02-1280x853.jpg  1280w,
+                      assets/img/subpage-gallery/lobby/lobby-02-1600x1067.jpg 1600w
+                    "
+                    sizes="(max-width:700px)100vw,(max-width:1100px)48vw,32vw"
+                    alt="Hotelowa recepcja z zielenią i drewnianymi akcentami, otwarta przestrzeń ze stolikami"
+                    width="1600"
+                    height="1067"
+                    loading="lazy"
+                    decoding="async" />
+                </picture>
+              </a>
 
               <!-- Lobby 03 -->
-            <a
-              href="assets/img/subpage-gallery/lobby/lobby-03-1600x1067.jpg"
-              class="gallery-grid__item"
-              data-reveal
-              data-lightbox-item
-              data-cat-item="lobby"
-              data-caption="Wejście główne hotelu — klasyczne i eleganckie lobby">
-              <picture>
-                <source
-                  type="image/avif"
-                  srcset="
-                    assets/img/subpage-gallery/lobby/lobby-03-640x427.avif    640w,
-                    assets/img/subpage-gallery/lobby/lobby-03-960x640.avif    960w,
-                    assets/img/subpage-gallery/lobby/lobby-03-1280x853.avif  1280w,
-                    assets/img/subpage-gallery/lobby/lobby-03-1600x1067.avif 1600w
-                  "
-                  sizes="(max-width:700px)100vw,(max-width:1100px)48vw,32vw" />
-                <source
-                  type="image/webp"
-                  srcset="
-                    assets/img/subpage-gallery/lobby/lobby-03-640x427.webp    640w,
-                    assets/img/subpage-gallery/lobby/lobby-03-960x640.webp    960w,
-                    assets/img/subpage-gallery/lobby/lobby-03-1280x853.webp  1280w,
-                    assets/img/subpage-gallery/lobby/lobby-03-1600x1067.webp 1600w
-                  "
-                  sizes="(max-width:700px)100vw,(max-width:1100px)48vw,32vw" />
-                <img
-                  src="assets/img/subpage-gallery/lobby/lobby-03-1280x853.jpg"
-                  srcset="
-                    assets/img/subpage-gallery/lobby/lobby-03-640x427.jpg    640w,
-                    assets/img/subpage-gallery/lobby/lobby-03-960x640.jpg    960w,
-                    assets/img/subpage-gallery/lobby/lobby-03-1280x853.jpg  1280w,
-                    assets/img/subpage-gallery/lobby/lobby-03-1600x1067.jpg 1600w
-                  "
-                  sizes="(max-width:700px)100vw,(max-width:1100px)48vw,32vw"
-                  alt="Główne lobby hotelu z marmurową podłogą i łukowymi wejściami w klasycznym stylu"
-                  width="1600"
-                  height="1067"
-                  loading="lazy"
-                  decoding="async" />
-              </picture>
-            </a>
-
+              <a
+                href="assets/img/subpage-gallery/lobby/lobby-03-1600x1067.jpg"
+                class="gallery-grid__item"
+                data-reveal
+                data-lightbox-item
+                data-cat-item="lobby"
+                data-caption="Wejście główne hotelu — klasyczne i eleganckie lobby">
+                <picture>
+                  <source
+                    type="image/avif"
+                    srcset="
+                      assets/img/subpage-gallery/lobby/lobby-03-640x427.avif    640w,
+                      assets/img/subpage-gallery/lobby/lobby-03-960x640.avif    960w,
+                      assets/img/subpage-gallery/lobby/lobby-03-1280x853.avif  1280w,
+                      assets/img/subpage-gallery/lobby/lobby-03-1600x1067.avif 1600w
+                    "
+                    sizes="(max-width:700px)100vw,(max-width:1100px)48vw,32vw" />
+                  <source
+                    type="image/webp"
+                    srcset="
+                      assets/img/subpage-gallery/lobby/lobby-03-640x427.webp    640w,
+                      assets/img/subpage-gallery/lobby/lobby-03-960x640.webp    960w,
+                      assets/img/subpage-gallery/lobby/lobby-03-1280x853.webp  1280w,
+                      assets/img/subpage-gallery/lobby/lobby-03-1600x1067.webp 1600w
+                    "
+                    sizes="(max-width:700px)100vw,(max-width:1100px)48vw,32vw" />
+                  <img
+                    src="assets/img/subpage-gallery/lobby/lobby-03-1280x853.jpg"
+                    srcset="
+                      assets/img/subpage-gallery/lobby/lobby-03-640x427.jpg    640w,
+                      assets/img/subpage-gallery/lobby/lobby-03-960x640.jpg    960w,
+                      assets/img/subpage-gallery/lobby/lobby-03-1280x853.jpg  1280w,
+                      assets/img/subpage-gallery/lobby/lobby-03-1600x1067.jpg 1600w
+                    "
+                    sizes="(max-width:700px)100vw,(max-width:1100px)48vw,32vw"
+                    alt="Główne lobby hotelu z marmurową podłogą i łukowymi wejściami w klasycznym stylu"
+                    width="1600"
+                    height="1067"
+                    loading="lazy"
+                    decoding="async" />
+                </picture>
+              </a>
             </div>
           </section>
 
@@ -423,137 +402,136 @@
             <div class="gallery-grid">
               <!-- RESTAURACJA -->
               <!-- 01 -->
-            <a
-              href="assets/img/subpage-gallery/restauracja/restauracja-01-1600x1067.jpg"
-              class="gallery-grid__item"
-              data-reveal
-              data-lightbox-item
-              data-cat-item="restauracja"
-              data-caption="Restauracja hotelowa — stylowe wnętrze w złotych odcieniach">
-              <picture>
-                <source
-                  type="image/avif"
-                  srcset="
-                    assets/img/subpage-gallery/restauracja/restauracja-01-640x427.avif    640w,
-                    assets/img/subpage-gallery/restauracja/restauracja-01-960x640.avif    960w,
-                    assets/img/subpage-gallery/restauracja/restauracja-01-1280x853.avif  1280w,
-                    assets/img/subpage-gallery/restauracja/restauracja-01-1600x1067.avif 1600w
-                  "
-                  sizes="(max-width:700px)100vw,(max-width:1100px)48vw,32vw" />
-                <source
-                  type="image/webp"
-                  srcset="
-                    assets/img/subpage-gallery/restauracja/restauracja-01-640x427.webp    640w,
-                    assets/img/subpage-gallery/restauracja/restauracja-01-960x640.webp    960w,
-                    assets/img/subpage-gallery/restauracja/restauracja-01-1280x853.webp  1280w,
-                    assets/img/subpage-gallery/restauracja/restauracja-01-1600x1067.webp 1600w
-                  "
-                  sizes="(max-width:700px)100vw,(max-width:1100px)48vw,32vw" />
-                <img
-                  src="assets/img/subpage-gallery/restauracja/restauracja-01-1280x853.jpg"
-                  srcset="
-                    assets/img/subpage-gallery/restauracja/restauracja-01-640x427.jpg    640w,
-                    assets/img/subpage-gallery/restauracja/restauracja-01-960x640.jpg    960w,
-                    assets/img/subpage-gallery/restauracja/restauracja-01-1280x853.jpg  1280w,
-                    assets/img/subpage-gallery/restauracja/restauracja-01-1600x1067.jpg 1600w
-                  "
-                  sizes="(max-width:700px)100vw,(max-width:1100px)48vw,32vw"
-                  alt="Elegancka restauracja hotelowa z miękkim oświetleniem i złotymi zasłonami na suficie"
-                  width="1600"
-                  height="1067"
-                  loading="lazy"
-                  decoding="async" />
-              </picture>
-            </a>
+              <a
+                href="assets/img/subpage-gallery/restauracja/restauracja-01-1600x1067.jpg"
+                class="gallery-grid__item"
+                data-reveal
+                data-lightbox-item
+                data-cat-item="restauracja"
+                data-caption="Restauracja hotelowa — stylowe wnętrze w złotych odcieniach">
+                <picture>
+                  <source
+                    type="image/avif"
+                    srcset="
+                      assets/img/subpage-gallery/restauracja/restauracja-01-640x427.avif    640w,
+                      assets/img/subpage-gallery/restauracja/restauracja-01-960x640.avif    960w,
+                      assets/img/subpage-gallery/restauracja/restauracja-01-1280x853.avif  1280w,
+                      assets/img/subpage-gallery/restauracja/restauracja-01-1600x1067.avif 1600w
+                    "
+                    sizes="(max-width:700px)100vw,(max-width:1100px)48vw,32vw" />
+                  <source
+                    type="image/webp"
+                    srcset="
+                      assets/img/subpage-gallery/restauracja/restauracja-01-640x427.webp    640w,
+                      assets/img/subpage-gallery/restauracja/restauracja-01-960x640.webp    960w,
+                      assets/img/subpage-gallery/restauracja/restauracja-01-1280x853.webp  1280w,
+                      assets/img/subpage-gallery/restauracja/restauracja-01-1600x1067.webp 1600w
+                    "
+                    sizes="(max-width:700px)100vw,(max-width:1100px)48vw,32vw" />
+                  <img
+                    src="assets/img/subpage-gallery/restauracja/restauracja-01-1280x853.jpg"
+                    srcset="
+                      assets/img/subpage-gallery/restauracja/restauracja-01-640x427.jpg    640w,
+                      assets/img/subpage-gallery/restauracja/restauracja-01-960x640.jpg    960w,
+                      assets/img/subpage-gallery/restauracja/restauracja-01-1280x853.jpg  1280w,
+                      assets/img/subpage-gallery/restauracja/restauracja-01-1600x1067.jpg 1600w
+                    "
+                    sizes="(max-width:700px)100vw,(max-width:1100px)48vw,32vw"
+                    alt="Elegancka restauracja hotelowa z miękkim oświetleniem i złotymi zasłonami na suficie"
+                    width="1600"
+                    height="1067"
+                    loading="lazy"
+                    decoding="async" />
+                </picture>
+              </a>
 
-            <!-- 02 -->
-            <a
-              href="assets/img/subpage-gallery/restauracja/restauracja-02-1600x1067.jpg"
-              class="gallery-grid__item"
-              data-reveal
-              data-lightbox-item
-              data-cat-item="restauracja"
-              data-caption="Kolacja z widokiem — restauracja nad morzem">
-              <picture>
-                <source
-                  type="image/avif"
-                  srcset="
-                    assets/img/subpage-gallery/restauracja/restauracja-02-640x427.avif    640w,
-                    assets/img/subpage-gallery/restauracja/restauracja-02-960x640.avif    960w,
-                    assets/img/subpage-gallery/restauracja/restauracja-02-1280x853.avif  1280w,
-                    assets/img/subpage-gallery/restauracja/restauracja-02-1600x1067.avif 1600w
-                  "
-                  sizes="(max-width:700px)100vw,(max-width:1100px)48vw,32vw" />
-                <source
-                  type="image/webp"
-                  srcset="
-                    assets/img/subpage-gallery/restauracja/restauracja-02-640x427.webp    640w,
-                    assets/img/subpage-gallery/restauracja/restauracja-02-960x640.webp    960w,
-                    assets/img/subpage-gallery/restauracja/restauracja-02-1280x853.webp  1280w,
-                    assets/img/subpage-gallery/restauracja/restauracja-02-1600x1067.webp 1600w
-                  "
-                  sizes="(max-width:700px)100vw,(max-width:1100px)48vw,32vw" />
-                <img
-                  src="assets/img/subpage-gallery/restauracja/restauracja-02-1280x853.jpg"
-                  srcset="
-                    assets/img/subpage-gallery/restauracja/restauracja-02-640x427.jpg    640w,
-                    assets/img/subpage-gallery/restauracja/restauracja-02-960x640.jpg    960w,
-                    assets/img/subpage-gallery/restauracja/restauracja-02-1280x853.jpg  1280w,
-                    assets/img/subpage-gallery/restauracja/restauracja-02-1600x1067.jpg 1600w
-                  "
-                  sizes="(max-width:700px)100vw,(max-width:1100px)48vw,32vw"
-                  alt="Restauracja z tarasem i widokiem na morze, ustawione stoliki przy zachodzie słońca"
-                  width="1600"
-                  height="1067"
-                  loading="lazy"
-                  decoding="async" />
-              </picture>
-            </a>
+              <!-- 02 -->
+              <a
+                href="assets/img/subpage-gallery/restauracja/restauracja-02-1600x1067.jpg"
+                class="gallery-grid__item"
+                data-reveal
+                data-lightbox-item
+                data-cat-item="restauracja"
+                data-caption="Kolacja z widokiem — restauracja nad morzem">
+                <picture>
+                  <source
+                    type="image/avif"
+                    srcset="
+                      assets/img/subpage-gallery/restauracja/restauracja-02-640x427.avif    640w,
+                      assets/img/subpage-gallery/restauracja/restauracja-02-960x640.avif    960w,
+                      assets/img/subpage-gallery/restauracja/restauracja-02-1280x853.avif  1280w,
+                      assets/img/subpage-gallery/restauracja/restauracja-02-1600x1067.avif 1600w
+                    "
+                    sizes="(max-width:700px)100vw,(max-width:1100px)48vw,32vw" />
+                  <source
+                    type="image/webp"
+                    srcset="
+                      assets/img/subpage-gallery/restauracja/restauracja-02-640x427.webp    640w,
+                      assets/img/subpage-gallery/restauracja/restauracja-02-960x640.webp    960w,
+                      assets/img/subpage-gallery/restauracja/restauracja-02-1280x853.webp  1280w,
+                      assets/img/subpage-gallery/restauracja/restauracja-02-1600x1067.webp 1600w
+                    "
+                    sizes="(max-width:700px)100vw,(max-width:1100px)48vw,32vw" />
+                  <img
+                    src="assets/img/subpage-gallery/restauracja/restauracja-02-1280x853.jpg"
+                    srcset="
+                      assets/img/subpage-gallery/restauracja/restauracja-02-640x427.jpg    640w,
+                      assets/img/subpage-gallery/restauracja/restauracja-02-960x640.jpg    960w,
+                      assets/img/subpage-gallery/restauracja/restauracja-02-1280x853.jpg  1280w,
+                      assets/img/subpage-gallery/restauracja/restauracja-02-1600x1067.jpg 1600w
+                    "
+                    sizes="(max-width:700px)100vw,(max-width:1100px)48vw,32vw"
+                    alt="Restauracja z tarasem i widokiem na morze, ustawione stoliki przy zachodzie słońca"
+                    width="1600"
+                    height="1067"
+                    loading="lazy"
+                    decoding="async" />
+                </picture>
+              </a>
 
               <!-- 03 -->
-            <a
-              href="assets/img/subpage-gallery/restauracja/restauracja-03-1600x1067.jpg"
-              class="gallery-grid__item"
-              data-reveal
-              data-lightbox-item
-              data-cat-item="restauracja"
-              data-caption="Nowoczesna restauracja — przestrzeń pełna światła i zieleni">
-              <picture>
-                <source
-                  type="image/avif"
-                  srcset="
-                    assets/img/subpage-gallery/restauracja/restauracja-03-640x427.avif    640w,
-                    assets/img/subpage-gallery/restauracja/restauracja-03-960x640.avif    960w,
-                    assets/img/subpage-gallery/restauracja/restauracja-03-1280x853.avif  1280w,
-                    assets/img/subpage-gallery/restauracja/restauracja-03-1600x1067.avif 1600w
-                  "
-                  sizes="(max-width:700px)100vw,(max-width:1100px)48vw,32vw" />
-                <source
-                  type="image/webp"
-                  srcset="
-                    assets/img/subpage-gallery/restauracja/restauracja-03-640x427.webp    640w,
-                    assets/img/subpage-gallery/restauracja/restauracja-03-960x640.webp    960w,
-                    assets/img/subpage-gallery/restauracja/restauracja-03-1280x853.webp  1280w,
-                    assets/img/subpage-gallery/restauracja/restauracja-03-1600x1067.webp 1600w
-                  "
-                  sizes="(max-width:700px)100vw,(max-width:1100px)48vw,32vw" />
-                <img
-                  src="assets/img/subpage-gallery/restauracja/restauracja-03-1280x853.jpg"
-                  srcset="
-                    assets/img/subpage-gallery/restauracja/restauracja-03-640x427.jpg    640w,
-                    assets/img/subpage-gallery/restauracja/restauracja-03-960x640.jpg    960w,
-                    assets/img/subpage-gallery/restauracja/restauracja-03-1280x853.jpg  1280w,
-                    assets/img/subpage-gallery/restauracja/restauracja-03-1600x1067.jpg 1600w
-                  "
-                  sizes="(max-width:700px)100vw,(max-width:1100px)48vw,32vw"
-                  alt="Jasna restauracja hotelowa z roślinami i nowoczesnym wystrojem w ciepłych barwach drewna"
-                  width="1600"
-                  height="1067"
-                  loading="lazy"
-                  decoding="async" />
-              </picture>
-            </a>
-
+              <a
+                href="assets/img/subpage-gallery/restauracja/restauracja-03-1600x1067.jpg"
+                class="gallery-grid__item"
+                data-reveal
+                data-lightbox-item
+                data-cat-item="restauracja"
+                data-caption="Nowoczesna restauracja — przestrzeń pełna światła i zieleni">
+                <picture>
+                  <source
+                    type="image/avif"
+                    srcset="
+                      assets/img/subpage-gallery/restauracja/restauracja-03-640x427.avif    640w,
+                      assets/img/subpage-gallery/restauracja/restauracja-03-960x640.avif    960w,
+                      assets/img/subpage-gallery/restauracja/restauracja-03-1280x853.avif  1280w,
+                      assets/img/subpage-gallery/restauracja/restauracja-03-1600x1067.avif 1600w
+                    "
+                    sizes="(max-width:700px)100vw,(max-width:1100px)48vw,32vw" />
+                  <source
+                    type="image/webp"
+                    srcset="
+                      assets/img/subpage-gallery/restauracja/restauracja-03-640x427.webp    640w,
+                      assets/img/subpage-gallery/restauracja/restauracja-03-960x640.webp    960w,
+                      assets/img/subpage-gallery/restauracja/restauracja-03-1280x853.webp  1280w,
+                      assets/img/subpage-gallery/restauracja/restauracja-03-1600x1067.webp 1600w
+                    "
+                    sizes="(max-width:700px)100vw,(max-width:1100px)48vw,32vw" />
+                  <img
+                    src="assets/img/subpage-gallery/restauracja/restauracja-03-1280x853.jpg"
+                    srcset="
+                      assets/img/subpage-gallery/restauracja/restauracja-03-640x427.jpg    640w,
+                      assets/img/subpage-gallery/restauracja/restauracja-03-960x640.jpg    960w,
+                      assets/img/subpage-gallery/restauracja/restauracja-03-1280x853.jpg  1280w,
+                      assets/img/subpage-gallery/restauracja/restauracja-03-1600x1067.jpg 1600w
+                    "
+                    sizes="(max-width:700px)100vw,(max-width:1100px)48vw,32vw"
+                    alt="Jasna restauracja hotelowa z roślinami i nowoczesnym wystrojem w ciepłych barwach drewna"
+                    width="1600"
+                    height="1067"
+                    loading="lazy"
+                    decoding="async" />
+                </picture>
+              </a>
             </div>
           </section>
 
@@ -562,137 +540,136 @@
             <div class="gallery-grid">
               <!-- WELLNESS -->
               <!-- 01 -->
-            <a
-              href="assets/img/subpage-gallery/wellness/wellness-01-1600x1067.jpg"
-              class="gallery-grid__item"
-              data-reveal
-              data-lightbox-item
-              data-cat-item="wellness"
-              data-caption="Łaźnia parowa — relaks i ciepło w eleganckim wnętrzu">
-              <picture>
-                <source
-                  type="image/avif"
-                  srcset="
-                    assets/img/subpage-gallery/wellness/wellness-01-640x427.avif    640w,
-                    assets/img/subpage-gallery/wellness/wellness-01-960x640.avif    960w,
-                    assets/img/subpage-gallery/wellness/wellness-01-1280x853.avif  1280w,
-                    assets/img/subpage-gallery/wellness/wellness-01-1600x1067.avif 1600w
-                  "
-                  sizes="(max-width:700px)100vw,(max-width:1100px)48vw,32vw" />
-                <source
-                  type="image/webp"
-                  srcset="
-                    assets/img/subpage-gallery/wellness/wellness-01-640x427.webp    640w,
-                    assets/img/subpage-gallery/wellness/wellness-01-960x640.webp    960w,
-                    assets/img/subpage-gallery/wellness/wellness-01-1280x853.webp  1280w,
-                    assets/img/subpage-gallery/wellness/wellness-01-1600x1067.webp 1600w
-                  "
-                  sizes="(max-width:700px)100vw,(max-width:1100px)48vw,32vw" />
-                <img
-                  src="assets/img/subpage-gallery/wellness/wellness-01-1280x853.jpg"
-                  srcset="
-                    assets/img/subpage-gallery/wellness/wellness-01-640x427.jpg    640w,
-                    assets/img/subpage-gallery/wellness/wellness-01-960x640.jpg    960w,
-                    assets/img/subpage-gallery/wellness/wellness-01-1280x853.jpg  1280w,
-                    assets/img/subpage-gallery/wellness/wellness-01-1600x1067.jpg 1600w
-                  "
-                  sizes="(max-width:700px)100vw,(max-width:1100px)48vw,32vw"
-                  alt="Łaźnia parowa z kamiennymi ścianami i ciepłym oświetleniem LED"
-                  width="1600"
-                  height="1067"
-                  loading="lazy"
-                  decoding="async" />
-              </picture>
-            </a>
+              <a
+                href="assets/img/subpage-gallery/wellness/wellness-01-1600x1067.jpg"
+                class="gallery-grid__item"
+                data-reveal
+                data-lightbox-item
+                data-cat-item="wellness"
+                data-caption="Łaźnia parowa — relaks i ciepło w eleganckim wnętrzu">
+                <picture>
+                  <source
+                    type="image/avif"
+                    srcset="
+                      assets/img/subpage-gallery/wellness/wellness-01-640x427.avif    640w,
+                      assets/img/subpage-gallery/wellness/wellness-01-960x640.avif    960w,
+                      assets/img/subpage-gallery/wellness/wellness-01-1280x853.avif  1280w,
+                      assets/img/subpage-gallery/wellness/wellness-01-1600x1067.avif 1600w
+                    "
+                    sizes="(max-width:700px)100vw,(max-width:1100px)48vw,32vw" />
+                  <source
+                    type="image/webp"
+                    srcset="
+                      assets/img/subpage-gallery/wellness/wellness-01-640x427.webp    640w,
+                      assets/img/subpage-gallery/wellness/wellness-01-960x640.webp    960w,
+                      assets/img/subpage-gallery/wellness/wellness-01-1280x853.webp  1280w,
+                      assets/img/subpage-gallery/wellness/wellness-01-1600x1067.webp 1600w
+                    "
+                    sizes="(max-width:700px)100vw,(max-width:1100px)48vw,32vw" />
+                  <img
+                    src="assets/img/subpage-gallery/wellness/wellness-01-1280x853.jpg"
+                    srcset="
+                      assets/img/subpage-gallery/wellness/wellness-01-640x427.jpg    640w,
+                      assets/img/subpage-gallery/wellness/wellness-01-960x640.jpg    960w,
+                      assets/img/subpage-gallery/wellness/wellness-01-1280x853.jpg  1280w,
+                      assets/img/subpage-gallery/wellness/wellness-01-1600x1067.jpg 1600w
+                    "
+                    sizes="(max-width:700px)100vw,(max-width:1100px)48vw,32vw"
+                    alt="Łaźnia parowa z kamiennymi ścianami i ciepłym oświetleniem LED"
+                    width="1600"
+                    height="1067"
+                    loading="lazy"
+                    decoding="async" />
+                </picture>
+              </a>
 
-            <!-- 02 -->
-            <a
-              href="assets/img/subpage-gallery/wellness/wellness-02-1600x1067.jpg"
-              class="gallery-grid__item"
-              data-reveal
-              data-lightbox-item
-              data-cat-item="wellness"
-              data-caption="Strefa spa — miejsce relaksu i odprężenia">
-              <picture>
-                <source
-                  type="image/avif"
-                  srcset="
-                    assets/img/subpage-gallery/wellness/wellness-02-640x427.avif    640w,
-                    assets/img/subpage-gallery/wellness/wellness-02-960x640.avif    960w,
-                    assets/img/subpage-gallery/wellness/wellness-02-1280x853.avif  1280w,
-                    assets/img/subpage-gallery/wellness/wellness-02-1600x1067.avif 1600w
-                  "
-                  sizes="(max-width:700px)100vw,(max-width:1100px)48vw,32vw" />
-                <source
-                  type="image/webp"
-                  srcset="
-                    assets/img/subpage-gallery/wellness/wellness-02-640x427.webp    640w,
-                    assets/img/subpage-gallery/wellness/wellness-02-960x640.webp    960w,
-                    assets/img/subpage-gallery/wellness/wellness-02-1280x853.webp  1280w,
-                    assets/img/subpage-gallery/wellness/wellness-02-1600x1067.webp 1600w
-                  "
-                  sizes="(max-width:700px)100vw,(max-width:1100px)48vw,32vw" />
-                <img
-                  src="assets/img/subpage-gallery/wellness/wellness-02-1280x853.jpg"
-                  srcset="
-                    assets/img/subpage-gallery/wellness/wellness-02-640x427.jpg    640w,
-                    assets/img/subpage-gallery/wellness/wellness-02-960x640.jpg    960w,
-                    assets/img/subpage-gallery/wellness/wellness-02-1280x853.jpg  1280w,
-                    assets/img/subpage-gallery/wellness/wellness-02-1600x1067.jpg 1600w
-                  "
-                  sizes="(max-width:700px)100vw,(max-width:1100px)48vw,32vw"
-                  alt="Luksusowa strefa spa z jacuzzi i podświetlanymi łukami w kamiennej aranżacji"
-                  width="1600"
-                  height="1067"
-                  loading="lazy"
-                  decoding="async" />
-              </picture>
-            </a>
+              <!-- 02 -->
+              <a
+                href="assets/img/subpage-gallery/wellness/wellness-02-1600x1067.jpg"
+                class="gallery-grid__item"
+                data-reveal
+                data-lightbox-item
+                data-cat-item="wellness"
+                data-caption="Strefa spa — miejsce relaksu i odprężenia">
+                <picture>
+                  <source
+                    type="image/avif"
+                    srcset="
+                      assets/img/subpage-gallery/wellness/wellness-02-640x427.avif    640w,
+                      assets/img/subpage-gallery/wellness/wellness-02-960x640.avif    960w,
+                      assets/img/subpage-gallery/wellness/wellness-02-1280x853.avif  1280w,
+                      assets/img/subpage-gallery/wellness/wellness-02-1600x1067.avif 1600w
+                    "
+                    sizes="(max-width:700px)100vw,(max-width:1100px)48vw,32vw" />
+                  <source
+                    type="image/webp"
+                    srcset="
+                      assets/img/subpage-gallery/wellness/wellness-02-640x427.webp    640w,
+                      assets/img/subpage-gallery/wellness/wellness-02-960x640.webp    960w,
+                      assets/img/subpage-gallery/wellness/wellness-02-1280x853.webp  1280w,
+                      assets/img/subpage-gallery/wellness/wellness-02-1600x1067.webp 1600w
+                    "
+                    sizes="(max-width:700px)100vw,(max-width:1100px)48vw,32vw" />
+                  <img
+                    src="assets/img/subpage-gallery/wellness/wellness-02-1280x853.jpg"
+                    srcset="
+                      assets/img/subpage-gallery/wellness/wellness-02-640x427.jpg    640w,
+                      assets/img/subpage-gallery/wellness/wellness-02-960x640.jpg    960w,
+                      assets/img/subpage-gallery/wellness/wellness-02-1280x853.jpg  1280w,
+                      assets/img/subpage-gallery/wellness/wellness-02-1600x1067.jpg 1600w
+                    "
+                    sizes="(max-width:700px)100vw,(max-width:1100px)48vw,32vw"
+                    alt="Luksusowa strefa spa z jacuzzi i podświetlanymi łukami w kamiennej aranżacji"
+                    width="1600"
+                    height="1067"
+                    loading="lazy"
+                    decoding="async" />
+                </picture>
+              </a>
 
               <!-- 03 -->
-            <a
-              href="assets/img/subpage-gallery/wellness/wellness-03-1600x1067.jpg"
-              class="gallery-grid__item"
-              data-reveal
-              data-lightbox-item
-              data-cat-item="wellness"
-              data-caption="Basen hotelowy — przestrzeń do relaksu i pływania">
-              <picture>
-                <source
-                  type="image/avif"
-                  srcset="
-                    assets/img/subpage-gallery/wellness/wellness-03-640x427.avif    640w,
-                    assets/img/subpage-gallery/wellness/wellness-03-960x640.avif    960w,
-                    assets/img/subpage-gallery/wellness/wellness-03-1280x853.avif  1280w,
-                    assets/img/subpage-gallery/wellness/wellness-03-1600x1067.avif 1600w
-                  "
-                  sizes="(max-width:700px)100vw,(max-width:1100px)48vw,32vw" />
-                <source
-                  type="image/webp"
-                  srcset="
-                    assets/img/subpage-gallery/wellness/wellness-03-640x427.webp    640w,
-                    assets/img/subpage-gallery/wellness/wellness-03-960x640.webp    960w,
-                    assets/img/subpage-gallery/wellness/wellness-03-1280x853.webp  1280w,
-                    assets/img/subpage-gallery/wellness/wellness-03-1600x1067.webp 1600w
-                  "
-                  sizes="(max-width:700px)100vw,(max-width:1100px)48vw,32vw" />
-                <img
-                  src="assets/img/subpage-gallery/wellness/wellness-03-1280x853.jpg"
-                  srcset="
-                    assets/img/subpage-gallery/wellness/wellness-03-640x427.jpg    640w,
-                    assets/img/subpage-gallery/wellness/wellness-03-960x640.jpg    960w,
-                    assets/img/subpage-gallery/wellness/wellness-03-1280x853.jpg  1280w,
-                    assets/img/subpage-gallery/wellness/wellness-03-1600x1067.jpg 1600w
-                  "
-                  sizes="(max-width:700px)100vw,(max-width:1100px)48vw,32vw"
-                  alt="Nowoczesny kryty basen z leżakami i subtelnym oświetleniem sufitu"
-                  width="1600"
-                  height="1067"
-                  loading="lazy"
-                  decoding="async" />
-              </picture>
-            </a>
-
+              <a
+                href="assets/img/subpage-gallery/wellness/wellness-03-1600x1067.jpg"
+                class="gallery-grid__item"
+                data-reveal
+                data-lightbox-item
+                data-cat-item="wellness"
+                data-caption="Basen hotelowy — przestrzeń do relaksu i pływania">
+                <picture>
+                  <source
+                    type="image/avif"
+                    srcset="
+                      assets/img/subpage-gallery/wellness/wellness-03-640x427.avif    640w,
+                      assets/img/subpage-gallery/wellness/wellness-03-960x640.avif    960w,
+                      assets/img/subpage-gallery/wellness/wellness-03-1280x853.avif  1280w,
+                      assets/img/subpage-gallery/wellness/wellness-03-1600x1067.avif 1600w
+                    "
+                    sizes="(max-width:700px)100vw,(max-width:1100px)48vw,32vw" />
+                  <source
+                    type="image/webp"
+                    srcset="
+                      assets/img/subpage-gallery/wellness/wellness-03-640x427.webp    640w,
+                      assets/img/subpage-gallery/wellness/wellness-03-960x640.webp    960w,
+                      assets/img/subpage-gallery/wellness/wellness-03-1280x853.webp  1280w,
+                      assets/img/subpage-gallery/wellness/wellness-03-1600x1067.webp 1600w
+                    "
+                    sizes="(max-width:700px)100vw,(max-width:1100px)48vw,32vw" />
+                  <img
+                    src="assets/img/subpage-gallery/wellness/wellness-03-1280x853.jpg"
+                    srcset="
+                      assets/img/subpage-gallery/wellness/wellness-03-640x427.jpg    640w,
+                      assets/img/subpage-gallery/wellness/wellness-03-960x640.jpg    960w,
+                      assets/img/subpage-gallery/wellness/wellness-03-1280x853.jpg  1280w,
+                      assets/img/subpage-gallery/wellness/wellness-03-1600x1067.jpg 1600w
+                    "
+                    sizes="(max-width:700px)100vw,(max-width:1100px)48vw,32vw"
+                    alt="Nowoczesny kryty basen z leżakami i subtelnym oświetleniem sufitu"
+                    width="1600"
+                    height="1067"
+                    loading="lazy"
+                    decoding="async" />
+                </picture>
+              </a>
             </div>
           </section>
 
@@ -701,136 +678,136 @@
             <div class="gallery-grid">
               <!-- OKOLICA -->
               <!-- 01 -->
-            <a
-              href="assets/img/subpage-gallery/okolica/okolica-01-1600x1067.jpg"
-              class="gallery-grid__item"
-              data-reveal
-              data-lightbox-item
-              data-cat-item="okolica"
-              data-caption="Basen z widokiem na palmy — relaks w tropikalnym otoczeniu">
-              <picture>
-                <source
-                  type="image/avif"
-                  srcset="
-                    assets/img/subpage-gallery/okolica/okolica-01-640x427.avif    640w,
-                    assets/img/subpage-gallery/okolica/okolica-01-960x640.avif    960w,
-                    assets/img/subpage-gallery/okolica/okolica-01-1280x853.avif  1280w,
-                    assets/img/subpage-gallery/okolica/okolica-01-1600x1067.avif 1600w
-                  "
-                  sizes="(max-width:700px)100vw,(max-width:1100px)48vw,32vw" />
-                <source
-                  type="image/webp"
-                  srcset="
-                    assets/img/subpage-gallery/okolica/okolica-01-640x427.webp    640w,
-                    assets/img/subpage-gallery/okolica/okolica-01-960x640.webp    960w,
-                    assets/img/subpage-gallery/okolica/okolica-01-1280x853.webp  1280w,
-                    assets/img/subpage-gallery/okolica/okolica-01-1600x1067.webp 1600w
-                  "
-                  sizes="(max-width:700px)100vw,(max-width:1100px)48vw,32vw" />
-                <img
-                  src="assets/img/subpage-gallery/okolica/okolica-01-1280x853.jpg"
-                  srcset="
-                    assets/img/subpage-gallery/okolica/okolica-01-640x427.jpg    640w,
-                    assets/img/subpage-gallery/okolica/okolica-01-960x640.jpg    960w,
-                    assets/img/subpage-gallery/okolica/okolica-01-1280x853.jpg  1280w,
-                    assets/img/subpage-gallery/okolica/okolica-01-1600x1067.jpg 1600w
-                  "
-                  sizes="(max-width:700px)100vw,(max-width:1100px)48vw,32vw"
-                  alt="Hotelowy basen z widokiem na palmy i błękitne niebo w tropikalnej okolicy"
-                  width="1600"
-                  height="1067"
-                  loading="lazy"
-                  decoding="async" />
-              </picture>
-            </a>
+              <a
+                href="assets/img/subpage-gallery/okolica/okolica-01-1600x1067.jpg"
+                class="gallery-grid__item"
+                data-reveal
+                data-lightbox-item
+                data-cat-item="okolica"
+                data-caption="Basen z widokiem na palmy — relaks w tropikalnym otoczeniu">
+                <picture>
+                  <source
+                    type="image/avif"
+                    srcset="
+                      assets/img/subpage-gallery/okolica/okolica-01-640x427.avif    640w,
+                      assets/img/subpage-gallery/okolica/okolica-01-960x640.avif    960w,
+                      assets/img/subpage-gallery/okolica/okolica-01-1280x853.avif  1280w,
+                      assets/img/subpage-gallery/okolica/okolica-01-1600x1067.avif 1600w
+                    "
+                    sizes="(max-width:700px)100vw,(max-width:1100px)48vw,32vw" />
+                  <source
+                    type="image/webp"
+                    srcset="
+                      assets/img/subpage-gallery/okolica/okolica-01-640x427.webp    640w,
+                      assets/img/subpage-gallery/okolica/okolica-01-960x640.webp    960w,
+                      assets/img/subpage-gallery/okolica/okolica-01-1280x853.webp  1280w,
+                      assets/img/subpage-gallery/okolica/okolica-01-1600x1067.webp 1600w
+                    "
+                    sizes="(max-width:700px)100vw,(max-width:1100px)48vw,32vw" />
+                  <img
+                    src="assets/img/subpage-gallery/okolica/okolica-01-1280x853.jpg"
+                    srcset="
+                      assets/img/subpage-gallery/okolica/okolica-01-640x427.jpg    640w,
+                      assets/img/subpage-gallery/okolica/okolica-01-960x640.jpg    960w,
+                      assets/img/subpage-gallery/okolica/okolica-01-1280x853.jpg  1280w,
+                      assets/img/subpage-gallery/okolica/okolica-01-1600x1067.jpg 1600w
+                    "
+                    sizes="(max-width:700px)100vw,(max-width:1100px)48vw,32vw"
+                    alt="Hotelowy basen z widokiem na palmy i błękitne niebo w tropikalnej okolicy"
+                    width="1600"
+                    height="1067"
+                    loading="lazy"
+                    decoding="async" />
+                </picture>
+              </a>
 
-            <!-- 02 -->
-            <a
-              href="assets/img/subpage-gallery/okolica/okolica-02-1600x1067.jpg"
-              class="gallery-grid__item"
-              data-reveal
-              data-lightbox-item
-              data-cat-item="okolica"
-              data-caption="Ogród hotelowy — egzotyczne rośliny i spokojna atmosfera">
-              <picture>
-                <source
-                  type="image/avif"
-                  srcset="
-                    assets/img/subpage-gallery/okolica/okolica-02-640x427.avif    640w,
-                    assets/img/subpage-gallery/okolica/okolica-02-960x640.avif    960w,
-                    assets/img/subpage-gallery/okolica/okolica-02-1280x853.avif  1280w,
-                    assets/img/subpage-gallery/okolica/okolica-02-1600x1067.avif 1600w
-                  "
-                  sizes="(max-width:700px)100vw,(max-width:1100px)48vw,32vw" />
-                <source
-                  type="image/webp"
-                  srcset="
-                    assets/img/subpage-gallery/okolica/okolica-02-640x427.webp    640w,
-                    assets/img/subpage-gallery/okolica/okolica-02-960x640.webp    960w,
-                    assets/img/subpage-gallery/okolica/okolica-02-1280x853.webp  1280w,
-                    assets/img/subpage-gallery/okolica/okolica-02-1600x1067.webp 1600w
-                  "
-                  sizes="(max-width:700px)100vw,(max-width:1100px)48vw,32vw" />
-                <img
-                  src="assets/img/subpage-gallery/okolica/okolica-02-1280x853.jpg"
-                  srcset="
-                    assets/img/subpage-gallery/okolica/okolica-02-640x427.jpg    640w,
-                    assets/img/subpage-gallery/okolica/okolica-02-960x640.jpg    960w,
-                    assets/img/subpage-gallery/okolica/okolica-02-1280x853.jpg  1280w,
-                    assets/img/subpage-gallery/okolica/okolica-02-1600x1067.jpg 1600w
-                  "
-                  sizes="(max-width:700px)100vw,(max-width:1100px)48vw,32vw"
-                  alt="Tropikalny ogród z palmami i alejkami wzdłuż hotelowych budynków"
-                  width="1600"
-                  height="1067"
-                  loading="lazy"
-                  decoding="async" />
-              </picture>
-            </a>
+              <!-- 02 -->
+              <a
+                href="assets/img/subpage-gallery/okolica/okolica-02-1600x1067.jpg"
+                class="gallery-grid__item"
+                data-reveal
+                data-lightbox-item
+                data-cat-item="okolica"
+                data-caption="Ogród hotelowy — egzotyczne rośliny i spokojna atmosfera">
+                <picture>
+                  <source
+                    type="image/avif"
+                    srcset="
+                      assets/img/subpage-gallery/okolica/okolica-02-640x427.avif    640w,
+                      assets/img/subpage-gallery/okolica/okolica-02-960x640.avif    960w,
+                      assets/img/subpage-gallery/okolica/okolica-02-1280x853.avif  1280w,
+                      assets/img/subpage-gallery/okolica/okolica-02-1600x1067.avif 1600w
+                    "
+                    sizes="(max-width:700px)100vw,(max-width:1100px)48vw,32vw" />
+                  <source
+                    type="image/webp"
+                    srcset="
+                      assets/img/subpage-gallery/okolica/okolica-02-640x427.webp    640w,
+                      assets/img/subpage-gallery/okolica/okolica-02-960x640.webp    960w,
+                      assets/img/subpage-gallery/okolica/okolica-02-1280x853.webp  1280w,
+                      assets/img/subpage-gallery/okolica/okolica-02-1600x1067.webp 1600w
+                    "
+                    sizes="(max-width:700px)100vw,(max-width:1100px)48vw,32vw" />
+                  <img
+                    src="assets/img/subpage-gallery/okolica/okolica-02-1280x853.jpg"
+                    srcset="
+                      assets/img/subpage-gallery/okolica/okolica-02-640x427.jpg    640w,
+                      assets/img/subpage-gallery/okolica/okolica-02-960x640.jpg    960w,
+                      assets/img/subpage-gallery/okolica/okolica-02-1280x853.jpg  1280w,
+                      assets/img/subpage-gallery/okolica/okolica-02-1600x1067.jpg 1600w
+                    "
+                    sizes="(max-width:700px)100vw,(max-width:1100px)48vw,32vw"
+                    alt="Tropikalny ogród z palmami i alejkami wzdłuż hotelowych budynków"
+                    width="1600"
+                    height="1067"
+                    loading="lazy"
+                    decoding="async" />
+                </picture>
+              </a>
 
               <!-- 03 -->
-            <a
-              href="assets/img/subpage-gallery/okolica/okolica-03-1600x1067.jpg"
-              class="gallery-grid__item"
-              data-reveal
-              data-lightbox-item
-              data-cat-item="okolica"
-              data-caption="Bungalowy nad wodą — widok na krystalicznie czyste morze">
-              <picture>
-                <source
-                  type="image/avif"
-                  srcset="
-                    assets/img/subpage-gallery/okolica/okolica-03-640x427.avif    640w,
-                    assets/img/subpage-gallery/okolica/okolica-03-960x640.avif    960w,
-                    assets/img/subpage-gallery/okolica/okolica-03-1280x853.avif  1280w,
-                    assets/img/subpage-gallery/okolica/okolica-03-1600x1067.avif 1600w
-                  "
-                  sizes="(max-width:700px)100vw,(max-width:1100px)48vw,32vw" />
-                <source
-                  type="image/webp"
-                  srcset="
-                    assets/img/subpage-gallery/okolica/okolica-03-640x427.webp    640w,
-                    assets/img/subpage-gallery/okolica/okolica-03-960x640.webp    960w,
-                    assets/img/subpage-gallery/okolica/okolica-03-1280x853.webp  1280w,
-                    assets/img/subpage-gallery/okolica/okolica-03-1600x1067.webp 1600w
-                  "
-                  sizes="(max-width:700px)100vw,(max-width:1100px)48vw,32vw" />
-                <img
-                  src="assets/img/subpage-gallery/okolica/okolica-03-1280x853.jpg"
-                  srcset="
-                    assets/img/subpage-gallery/okolica/okolica-03-640x427.jpg    640w,
-                    assets/img/subpage-gallery/okolica/okolica-03-960x640.jpg    960w,
-                    assets/img/subpage-gallery/okolica/okolica-03-1280x853.jpg  1280w,
-                    assets/img/subpage-gallery/okolica/okolica-03-1600x1067.jpg 1600w
-                  "
-                  sizes="(max-width:700px)100vw,(max-width:1100px)48vw,32vw"
-                  alt="Drewniane domki na palach nad turkusową wodą w egzotycznej okolicy"
-                  width="1600"
-                  height="1067"
-                  loading="lazy"
-                  decoding="async" />
-              </picture>
-            </a>
+              <a
+                href="assets/img/subpage-gallery/okolica/okolica-03-1600x1067.jpg"
+                class="gallery-grid__item"
+                data-reveal
+                data-lightbox-item
+                data-cat-item="okolica"
+                data-caption="Bungalowy nad wodą — widok na krystalicznie czyste morze">
+                <picture>
+                  <source
+                    type="image/avif"
+                    srcset="
+                      assets/img/subpage-gallery/okolica/okolica-03-640x427.avif    640w,
+                      assets/img/subpage-gallery/okolica/okolica-03-960x640.avif    960w,
+                      assets/img/subpage-gallery/okolica/okolica-03-1280x853.avif  1280w,
+                      assets/img/subpage-gallery/okolica/okolica-03-1600x1067.avif 1600w
+                    "
+                    sizes="(max-width:700px)100vw,(max-width:1100px)48vw,32vw" />
+                  <source
+                    type="image/webp"
+                    srcset="
+                      assets/img/subpage-gallery/okolica/okolica-03-640x427.webp    640w,
+                      assets/img/subpage-gallery/okolica/okolica-03-960x640.webp    960w,
+                      assets/img/subpage-gallery/okolica/okolica-03-1280x853.webp  1280w,
+                      assets/img/subpage-gallery/okolica/okolica-03-1600x1067.webp 1600w
+                    "
+                    sizes="(max-width:700px)100vw,(max-width:1100px)48vw,32vw" />
+                  <img
+                    src="assets/img/subpage-gallery/okolica/okolica-03-1280x853.jpg"
+                    srcset="
+                      assets/img/subpage-gallery/okolica/okolica-03-640x427.jpg    640w,
+                      assets/img/subpage-gallery/okolica/okolica-03-960x640.jpg    960w,
+                      assets/img/subpage-gallery/okolica/okolica-03-1280x853.jpg  1280w,
+                      assets/img/subpage-gallery/okolica/okolica-03-1600x1067.jpg 1600w
+                    "
+                    sizes="(max-width:700px)100vw,(max-width:1100px)48vw,32vw"
+                    alt="Drewniane domki na palach nad turkusową wodą w egzotycznej okolicy"
+                    width="1600"
+                    height="1067"
+                    loading="lazy"
+                    decoding="async" />
+                </picture>
+              </a>
             </div>
           </section>
         </div>
@@ -890,7 +867,6 @@
                 <br />
                 <a href="tel:+48533537091">+48 533 537 091</a>
               </p>
-
             </section>
 
             <section class="footer__col footer__social" aria-labelledby="footer-social">
@@ -933,7 +909,6 @@
                 </a>
               </div>
             </section>
-
           </div>
 
           <div class="footer__bottom">
@@ -972,7 +947,3 @@
     </div>
   </body>
 </html>
-
-
-
-
