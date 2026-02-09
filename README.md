@@ -43,6 +43,7 @@ Completed and actively developed frontend projects are deployed on **Netlify** a
 - [Construction — Pr01 — Solid Craft](https://construction-pr01-solidcraft.netlify.app/)
 - [Construction — Pr02 — Axiom](https://construction-pr02-axiom.netlify.app/)
 - [E-commerce — Pr01 — Volt Garage](https://e-commerce-pr01-voltgarage.netlify.app/)
+- [E-commerce — Pr02 — Outland Gear](https://e-commerce-pr02-outlandgear.netlify.app/)
 - [Education — Pr01 — Lauren English](https://education-pr01-laurenenglish.netlify.app/)
 - [Fasion & Beauty — Pr01 — Studio Noir](https://fashion-pr01-studionoir.netlify.app/)
 - [Fasion & Beauty — Pr02 — Lume Skin](https://fashion-pr02-lumeskin.netlify.app/)
