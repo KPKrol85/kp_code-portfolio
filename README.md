@@ -46,6 +46,8 @@ Completed and actively developed frontend projects are deployed on **Netlify** a
 - [Hospitality — Pr02 — Aurora](https://hospitality-pr02-aurora.netlify.app/)
 - [Transport — Pr01 — TransLogix](https://transport-pr01-trans-logix.netlify.app/)
 - [Transport — Pr02 — Easy Move](https://transport-pr02-easymove.netlify.app/)
+- [Education — Pr01 — Lauren English](https://education-pr01-laurenenglish.netlify.app/)
+- [Education — Pr02 — Digital Class](https://education-pr02-digitalclass.netlify.app/)
 - [E-commerce — Pr01 — Volt Garage](https://e-commerce-pr01-voltgarage.netlify.app/)
 - [Ceremonial Services — Pr01 — Eternal Rest](https://ceremonial-pr01-eternalrest.netlify.app/)
 
