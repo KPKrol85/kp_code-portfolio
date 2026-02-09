@@ -1,0 +1,117 @@
+.card {
+  background: var(--color-surface);
+  border-radius: var(--radius-md);
+  padding: var(--space-5);
+  border: 1px solid var(--color-border);
+  box-shadow: var(--shadow-sm);
+  display: grid;
+  gap: var(--space-3);
+}
+
+.card--borderless {
+  box-shadow: none;
+}
+
+.card__title {
+  margin: 0;
+  font-size: var(--font-size-lg);
+}
+
+.card__meta {
+  color: var(--color-ink-600);
+  font-size: var(--font-size-sm);
+}
+
+.card__icon {
+  width: 44px;
+  height: 44px;
+  border-radius: 14px;
+  background: var(--color-primary-100);
+  display: grid;
+  place-items: center;
+  color: var(--color-primary-700);
+  font-weight: 700;
+}
+
+.card__tag {
+  display: inline-flex;
+  align-items: center;
+  padding: var(--space-1) var(--space-2);
+  border-radius: 999px;
+  background: var(--color-primary-100);
+  color: var(--color-primary-700);
+  font-size: var(--font-size-xs);
+  font-weight: 600;
+}
+
+.card__footer {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-3);
+  align-items: center;
+}
+
+.profile-card {
+  display: grid;
+  gap: var(--space-3);
+  padding: var(--space-4);
+  background: var(--color-surface);
+  border-radius: var(--radius-md);
+  border: 1px solid var(--color-border);
+  box-shadow: var(--shadow-sm);
+}
+
+.profile-card__image {
+  width: 72px;
+  height: 72px;
+  border-radius: 50%;
+  background: var(--color-primary-100);
+  display: grid;
+  place-items: center;
+  font-weight: 700;
+  color: var(--color-primary-700);
+}
+
+.profile-card__name {
+  margin: 0;
+  font-size: var(--font-size-lg);
+}
+
+.profile-card__role {
+  margin: 0;
+  color: var(--color-ink-600);
+  font-size: var(--font-size-sm);
+}
+
+.testimonial {
+  background: #fff;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--color-border);
+  padding: var(--space-5);
+  display: grid;
+  gap: var(--space-3);
+}
+
+.testimonial__quote {
+  margin: 0;
+  font-size: var(--font-size-lg);
+}
+
+.testimonial__name {
+  font-weight: 700;
+}
+
+.stat {
+  background: var(--color-surface);
+  border-radius: var(--radius-md);
+  border: 1px solid var(--color-border);
+  padding: var(--space-4);
+  display: grid;
+  gap: var(--space-2);
+}
+
+.stat__value {
+  font-size: var(--font-size-2xl);
+  font-weight: 700;
+  color: var(--color-primary-700);
+}

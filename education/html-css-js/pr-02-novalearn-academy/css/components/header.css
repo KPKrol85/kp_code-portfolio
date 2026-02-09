@@ -1,0 +1,116 @@
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: var(--z-header);
+  background: rgba(255, 255, 255, 0.92);
+  backdrop-filter: blur(16px);
+  border-bottom: 1px solid var(--color-border);
+}
+
+.site-header__inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-4);
+  padding: var(--space-3) 0;
+}
+
+.site-logo {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  color: var(--color-ink-900);
+  text-decoration: none;
+  font-weight: 700;
+  font-size: var(--font-size-lg);
+}
+
+.site-logo__mark {
+  width: 36px;
+  height: 36px;
+  border-radius: 12px;
+  background: linear-gradient(135deg, var(--color-primary-600), var(--color-accent-500));
+  display: grid;
+  place-items: center;
+  color: #fff;
+  font-weight: 700;
+}
+
+.nav {
+  display: flex;
+  align-items: center;
+  gap: var(--space-4);
+}
+
+.nav__list {
+  list-style: none;
+  display: flex;
+  align-items: center;
+  gap: var(--space-4);
+  margin: 0;
+  padding: 0;
+}
+
+.nav__link {
+  text-decoration: none;
+  color: var(--color-ink-700);
+  font-weight: 600;
+}
+
+.nav__link--active {
+  color: var(--color-primary-700);
+}
+
+.nav__toggle {
+  display: none;
+  border: 1px solid var(--color-border);
+  background: #fff;
+  padding: var(--space-2) var(--space-3);
+  border-radius: var(--radius-sm);
+}
+
+@media (max-width: 960px) {
+  .nav {
+    align-items: stretch;
+  }
+
+  .nav__toggle {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-2);
+  }
+
+  .nav__list {
+    position: absolute;
+    right: var(--space-4);
+    top: 72px;
+    background: #fff;
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md);
+    padding: var(--space-4);
+    box-shadow: var(--shadow-md);
+    flex-direction: column;
+    align-items: flex-start;
+    min-width: 240px;
+    display: flex;
+  }
+
+  .js .nav__list {
+    display: none;
+  }
+
+  .js .nav__list.is-open {
+    display: flex;
+  }
+
+  .no-js .nav__toggle {
+    display: none;
+  }
+
+  .no-js .nav__list {
+    position: static;
+    border: 0;
+    box-shadow: none;
+    padding: 0;
+  }
+}
