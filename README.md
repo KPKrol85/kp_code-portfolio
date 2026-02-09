@@ -38,15 +38,15 @@ Each project belongs to a **specific industry**, ensuring realistic business con
 
 Completed and actively developed frontend projects are deployed on **Netlify** and publicly available:
 
-- [Construction — Project 01 — Solid Craft](https://construction-pr-01-solidcraft.netlify.app/)
-- [Construction — Project 02 — Axiom](https://construction-pr-02-axiom.netlify.app/)
-- [Gastronomy — Project 01 — Ambre](https://gastronomy-pr-01-ambre.netlify.app/)
-- [Gastronomy — Project 02 — Atelier No.02](https://gastronomy-pr-02-atelier.netlify.app/)
-- [Tourism — Project 01](https://hospitality-pr-01-vista.netlify.app/)
-- [Tourism — Project 02](https://tourism-project-02.netlify.app/)
-- [Transport — Project 01](https://transport-project-01.netlify.app/)
-- [Transport — Project 02](https://transport-project-02.netlify.app/)
-- [E-commerce — Project 01](https://kpcode-ecommerce-01.netlify.app/)
+- [Construction — Pr01 — Solid Craft](https://construction-pr01-solidcraft.netlify.app/)
+- [Construction — Pr02 — Axiom](https://construction-pr02-axiom.netlify.app/)
+- [Gastronomy — Pr01 — Ambre](https://gastronomy-pr01-ambre.netlify.app/)
+- [Gastronomy — Pr02 — Atelier No.02](https://gastronomy-pr02-atelier.netlify.app/)
+- [Hospitality — Pr01 — Vista](https://hospitality-pr01-vista.netlify.app/)
+- [Hospitality — Pr02 — Aurora](https://hospitality-pr02-aurora.netlify.app/)
+- [Transport — Pr01 — TransLogix](https://transport-pr01-trans-logix.netlify.app/)
+- [Transport — Pr02](https://transport-project-02.netlify.app/)
+- [E-commerce — Pr01](https://kpcode-ecommerce-01.netlify.app/)
 
 *(More projects are added continuously.)*
 
