@@ -53,7 +53,7 @@ Completed and actively developed frontend projects are deployed on **Netlify** a
 - [Hospitality — Pr01 — Vista](https://hospitality-pr01-vista.netlify.app/)
 - [Hospitality — Pr02 — Aurora](https://hospitality-pr02-aurora.netlify.app/)
 - [IT Software — Pr01 — Vertex Digital](https://it-pr01-vertexdigital.netlify.app/)
-- [Medicie — Pr01 — Vireon Clinic](https://medicine-pr01-vireonclinic.netlify.app/)
+- [Medicine — Pr01 — Vireon Clinic](https://medicine-pr01-vireonclinic.netlify.app/)
 - [SaaS Dashboards — Pr01 — Flowdesk](https://saas-pr01-flowdesk.netlify.app/)
 - [SaaS Dashboards — Pr02 — FleetOps](https://saas-pr02-fleetops.netlify.app/)
 - [SaaS Dashboards — Pr03 — Digital Class](https://saas-pr03-digitalclass.netlify.app/)
