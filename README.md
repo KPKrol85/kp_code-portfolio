@@ -46,7 +46,7 @@ Completed and actively developed frontend projects are deployed on **Netlify** a
 - [Hospitality — Pr02 — Aurora](https://hospitality-pr02-aurora.netlify.app/)
 - [Transport — Pr01 — TransLogix](https://transport-pr01-trans-logix.netlify.app/)
 - [Transport — Pr02](https://transport-project-02.netlify.app/)
-- [E-commerce — Pr01](https://kpcode-ecommerce-01.netlify.app/)
+- [E-commerce — Pr01 — Volt Garage](https://e-commerce-pr01-voltgarage.netlify.app/)
 
 *(More projects are added continuously.)*
 
