@@ -1,0 +1,26 @@
+.card {
+  padding: var(--space-xl);
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-sm);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+}
+
+.card__title {
+  font-size: var(--fs-lg);
+  font-weight: var(--fw-semibold);
+  margin: 0;
+}
+
+.card__meta {
+  font-size: var(--fs-sm);
+  color: var(--muted);
+}
+
+.card--highlight {
+  border-color: var(--brand);
+  box-shadow: var(--shadow-md);
+}

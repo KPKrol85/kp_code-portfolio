@@ -1,0 +1,189 @@
+<!doctype html>
+<html lang="pl">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Kontakt — Vertex Digital</title>
+    <meta
+      name="description"
+      content="Skontaktuj się z Vertex Digital. Formularz kontaktowy, dane firmy oraz czas reakcji w 24h."
+    />
+    <link rel="canonical" href="https://vertexdigital.pl/kontakt.html" />
+    <link rel="icon" href="./assets/favicon.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="./css/main.css" />
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Organization",
+        "name": "Vertex Digital",
+        "url": "https://vertexdigital.pl",
+        "logo": "https://vertexdigital.pl/assets/favicon.svg",
+        "sameAs": []
+      }
+    </script>
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "WebSite",
+        "name": "Vertex Digital",
+        "url": "https://vertexdigital.pl"
+      }
+    </script>
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Przejdź do treści</a>
+    <header class="header">
+      <div class="container header__inner">
+        <a class="brand" href="./index.html">Vertex Digital</a>
+        <nav class="nav" aria-label="Główna nawigacja">
+          <button
+            class="nav__toggle"
+            type="button"
+            aria-label="Otwórz menu"
+            aria-expanded="false"
+            aria-controls="nav-list"
+            data-nav-toggle
+          >
+            ☰
+          </button>
+          <ul class="nav__list" id="nav-list" data-nav-list>
+            <li><a class="nav__link" href="./index.html" data-nav-link>Home</a></li>
+            <li><a class="nav__link" href="./uslugi.html" data-nav-link>Usługi</a></li>
+            <li><a class="nav__link" href="./realizacje.html" data-nav-link>Realizacje</a></li>
+            <li><a class="nav__link" href="./proces.html" data-nav-link>Proces</a></li>
+            <li><a class="nav__link" href="./o-nas.html" data-nav-link>O nas</a></li>
+            <li><a class="nav__link" href="./kontakt.html" aria-current="page" data-nav-link>Kontakt</a></li>
+          </ul>
+        </nav>
+        <div class="nav__actions">
+          <button class="btn btn--ghost btn--icon" type="button" aria-pressed="false" data-theme-toggle>
+            🌙
+          </button>
+          <a class="btn btn--primary" href="./kontakt.html">Umów konsultację</a>
+        </div>
+      </div>
+    </header>
+
+    <main id="main">
+      <section class="section" aria-labelledby="contact-title">
+        <div class="container grid grid--2">
+          <div class="stack">
+            <div class="stack stack--sm">
+              <p class="u-text-uppercase u-text-muted">Kontakt</p>
+              <h1 id="contact-title">Porozmawiajmy o Twoim projekcie</h1>
+              <p class="u-text-muted">
+                Odpowiadamy w 24 godziny. Wycena i konsultacja są bezpłatne.
+              </p>
+            </div>
+            <div class="card">
+              <p class="card__title">Dane kontaktowe</p>
+              <p class="u-text-muted">Email: hello@vertexdigital.pl</p>
+              <p class="u-text-muted">Miasto: Warszawa (remote-friendly)</p>
+              <p class="u-text-muted">Godziny: 9:00–17:00 CET</p>
+              <p class="badge">Odpowiadamy w 24h</p>
+            </div>
+          </div>
+          <div>
+            <form class="form" id="formularz" data-contact-form>
+              <div class="form__field">
+                <label class="form__label" for="name">Imię i nazwisko</label>
+                <input
+                  class="form__input"
+                  type="text"
+                  id="name"
+                  name="name"
+                  required
+                  autocomplete="name"
+                  aria-describedby="name-error"
+                />
+                <span class="form__error" id="name-error"></span>
+              </div>
+              <div class="form__field">
+                <label class="form__label" for="email">Email</label>
+                <input
+                  class="form__input"
+                  type="email"
+                  id="email"
+                  name="email"
+                  required
+                  autocomplete="email"
+                  aria-describedby="email-error"
+                />
+                <span class="form__error" id="email-error"></span>
+              </div>
+              <div class="form__field">
+                <label class="form__label" for="topic">Temat</label>
+                <select
+                  class="form__select"
+                  id="topic"
+                  name="topic"
+                  required
+                  aria-describedby="topic-hint topic-error"
+                >
+                  <option value="">Wybierz temat</option>
+                  <option value="mvp">Nowy MVP</option>
+                  <option value="app">Aplikacja webowa</option>
+                  <option value="audit">Audyt performance</option>
+                  <option value="maintenance">Utrzymanie</option>
+                </select>
+                <span class="form__hint" id="topic-hint">Dopasujemy zespół do Twoich potrzeb.</span>
+                <span class="form__error" id="topic-error"></span>
+              </div>
+              <div class="form__field">
+                <label class="form__label" for="message">Wiadomość</label>
+                <textarea
+                  class="form__textarea"
+                  id="message"
+                  name="message"
+                  required
+                  aria-describedby="message-error"
+                ></textarea>
+                <span class="form__error" id="message-error"></span>
+              </div>
+              <div class="form__actions">
+                <button class="btn btn--primary" type="submit">Wyślij wiadomość</button>
+                <p class="form__status" data-form-status aria-live="polite"></p>
+              </div>
+            </form>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <div class="container footer__grid">
+        <div>
+          <p class="brand">Vertex Digital</p>
+          <p class="u-text-muted">Nowoczesny software house dla ambitnych produktów webowych.</p>
+        </div>
+        <div>
+          <p class="footer__title">Oferta</p>
+          <ul class="stack stack--sm list-reset">
+            <li><a class="footer__link" href="./uslugi.html">Usługi</a></li>
+            <li><a class="footer__link" href="./proces.html">Proces</a></li>
+            <li><a class="footer__link" href="./realizacje.html">Realizacje</a></li>
+          </ul>
+        </div>
+        <div>
+          <p class="footer__title">Firma</p>
+          <ul class="stack stack--sm list-reset">
+            <li><a class="footer__link" href="./o-nas.html">O nas</a></li>
+            <li><a class="footer__link" href="./kontakt.html">Kontakt</a></li>
+            <li><a class="footer__link" href="./kontakt.html#formularz">Formularz</a></li>
+          </ul>
+        </div>
+        <div>
+          <p class="footer__title">Kontakt</p>
+          <p class="u-text-muted">hello@vertexdigital.pl</p>
+          <p class="u-text-muted">Warszawa, Polska</p>
+        </div>
+      </div>
+      <div class="container footer__bottom">
+        <span>© 2025 Vertex Digital. Wszelkie prawa zastrzeżone.</span>
+        <span>Odpowiadamy w 24h.</span>
+      </div>
+    </footer>
+
+    <script type="module" src="./js/app.js"></script>
+  </body>
+</html>
