@@ -38,24 +38,26 @@ Each project belongs to a **specific industry**, ensuring realistic business con
 
 Completed and actively developed frontend projects are deployed on **Netlify** and publicly available:
 
+- [Ceremonial Services — Pr01 — Eternal Rest](https://ceremonial-pr01-eternalrest.netlify.app/)
 - [Construction — Pr01 — Solid Craft](https://construction-pr01-solidcraft.netlify.app/)
 - [Construction — Pr02 — Axiom](https://construction-pr02-axiom.netlify.app/)
+- [E-commerce — Pr01 — Volt Garage](https://e-commerce-pr01-voltgarage.netlify.app/)
+- [Education — Pr01 — Lauren English](https://education-pr01-laurenenglish.netlify.app/)
+- [Education — Pr02 — Digital Class](https://education-pr02-digitalclass.netlify.app/)
+- [Fasion & Beauty — Pr01 — Studio Noir](https://fashion-pr01-studionoir.netlify.app/)
+- [Fasion & Beauty — Pr02 — Lume Skin](https://fashion-pr02-lumeskin.netlify.app/)
 - [Gastronomy — Pr01 — Ambre](https://gastronomy-pr01-ambre.netlify.app/)
 - [Gastronomy — Pr02 — Atelier No.02](https://gastronomy-pr02-atelier.netlify.app/)
 - [Hospitality — Pr01 — Vista](https://hospitality-pr01-vista.netlify.app/)
 - [Hospitality — Pr02 — Aurora](https://hospitality-pr02-aurora.netlify.app/)
-- [Transport — Pr01 — TransLogix](https://transport-pr01-trans-logix.netlify.app/)
-- [Transport — Pr02 — Easy Move](https://transport-pr02-easymove.netlify.app/)
-- [Education — Pr01 — Lauren English](https://education-pr01-laurenenglish.netlify.app/)
-- [Education — Pr02 — Digital Class](https://education-pr02-digitalclass.netlify.app/)
-- [Fasion&Beauty — Pr01 — Studio Noir](https://fashion-pr01-studionoir.netlify.app/)
-- [Fasion&Beauty — Pr02 — Lume Skin](https://fashion-pr02-lumeskin.netlify.app/)
-- [E-commerce — Pr01 — Volt Garage](https://e-commerce-pr01-voltgarage.netlify.app/)
-- [Ceremonial Services — Pr01 — Eternal Rest](https://ceremonial-pr01-eternalrest.netlify.app/)
 - [SaaS Dashboards — Pr01 — Flowdesk](https://saas-pr01-flowdesk.netlify.app/)
 - [SaaS Dashboards — Pr02 — FleetOps](https://saas-pr02-fleetops.netlify.app/)
 - [SaaS Dashboards — Pr03 — Digital Class](https://saas-pr03-digitalclass.netlify.app/)
-
+- [Sports & Wellness — Pr01 — Active Life](https://sports-pr01-activelife.netlify.app/)
+- [Sports & Wellness — Pr02 — Performance Coach](https://sports-pr02-performancecoach.netlify.app/)
+- [Transport — Pr01 — TransLogix](https://transport-pr01-trans-logix.netlify.app/)
+- [Transport — Pr02 — Easy Move](https://transport-pr02-easymove.netlify.app/)
+  
 *(More projects are added continuously.)*
 
 ---
