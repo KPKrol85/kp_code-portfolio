@@ -7,12 +7,11 @@
     "dev": "npx serve .",
     "build:css": "postcss css/style.css -o css/style.min.css",
     "build:js": "terser js/main.js -o js/main.min.js --module",
-    "images": "imagemin assets/images/* --out-dir=assets/images/optimized --plugin=webp --plugin=avif"
+    "images": "imagemin assets/images/* --out-dir=assets/images/optimized --plugin=webp"
   },
   "devDependencies": {
     "cssnano": "^6.1.2",
     "imagemin-cli": "^7.0.0",
-    "imagemin-avif": "^9.0.0",
     "imagemin-webp": "^8.0.0",
     "postcss": "^8.4.47",
     "postcss-cli": "^11.0.0",
