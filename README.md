@@ -39,6 +39,7 @@ Each project belongs to a **specific industry**, ensuring realistic business con
 Completed and actively developed frontend projects are deployed on **Netlify** and publicly available:
 
 - [Ceremonial Services — Pr01 — Eternal Rest](https://ceremonial-pr01-eternalrest.netlify.app/)
+- [Ceremonial Services — Pr02 — EverAfter Ring](https://ceremonial-pr02-everafterring.netlify.app/)
 - [Construction — Pr01 — Solid Craft](https://construction-pr01-solidcraft.netlify.app/)
 - [Construction — Pr02 — Axiom](https://construction-pr02-axiom.netlify.app/)
 - [E-commerce — Pr01 — Volt Garage](https://e-commerce-pr01-voltgarage.netlify.app/)
