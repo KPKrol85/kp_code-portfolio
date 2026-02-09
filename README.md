@@ -52,6 +52,9 @@ Completed and actively developed frontend projects are deployed on **Netlify** a
 - [Fasion&Beauty — Pr02 — Lume Skin](https://fashion-pr02-lumeskin.netlify.app/)
 - [E-commerce — Pr01 — Volt Garage](https://e-commerce-pr01-voltgarage.netlify.app/)
 - [Ceremonial Services — Pr01 — Eternal Rest](https://ceremonial-pr01-eternalrest.netlify.app/)
+- [SaaS Dashboards — Pr01 — Flowdesk](https://saas-pr01-flowdesk.netlify.app/)
+- [SaaS Dashboards — Pr02 — FleetOps](https://saas-pr02-fleetops.netlify.app/)
+- [SaaS Dashboards — Pr03 — Digital Class](https://saas-pr03-digitalclass.netlify.app/)
 
 *(More projects are added continuously.)*
 
