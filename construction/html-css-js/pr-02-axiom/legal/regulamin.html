@@ -42,64 +42,16 @@
     <link rel="preload" href="../assets/fonts/lato-v25-latin/lato-v25-latin-regular.woff2" as="font" type="font/woff2" crossorigin />
     <link rel="preload" href="../assets/fonts/montserrat-v31-latin/montserrat-v31-latin-600.woff2" as="font" type="font/woff2" crossorigin />
 
-    <script>
-      (function () {
-        try {
-          var t = localStorage.getItem("theme");
-          if (t) document.documentElement.classList.toggle("dark-mode", t === "dark");
-          else if (window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches) {
-            document.documentElement.classList.add("dark-mode");
-          }
-        } catch (e) {}
-      })();
-    </script>
 
-    <link rel="preload" as="style" href="../css/style.min.css" />
-    <link rel="stylesheet" href="../css/style.min.css" />
+    <link rel="preload" as="style" href="../dist/style.min.css" />
+    <link rel="stylesheet" href="../dist/style.min.css" />
 
-    <script type="application/ld+json">
-      {
-        "@context": "https://schema.org",
-        "@type": "WebPage",
-        "@id": "https://construction-project-02.netlify.app/legal/regulamin.html#webpage",
-        "name": "Regulamin serwisu - Axiom Construction",
-        "description": "Regulamin serwisu Axiom Construction, w tym zasady korzystania z wersji demo, odpowiedzialność oraz kontakt w sprawach formalnych.",
-        "url": "https://construction-project-02.netlify.app/legal/regulamin.html",
-        "inLanguage": "pl-PL",
-        "isPartOf": {
-          "@type": "WebSite",
-          "@id": "https://construction-project-02.netlify.app/#website"
-        },
-        "breadcrumb": {
-          "@id": "https://construction-project-02.netlify.app/legal/regulamin.html#breadcrumbs"
-        }
-      }
-    </script>
-    <script type="application/ld+json">
-      {
-        "@context": "https://schema.org",
-        "@type": "BreadcrumbList",
-        "@id": "https://construction-project-02.netlify.app/legal/regulamin.html#breadcrumbs",
-        "itemListElement": [
-          {
-            "@type": "ListItem",
-            "position": 1,
-            "name": "Strona główna",
-            "item": "https://construction-project-02.netlify.app/"
-          },
-          {
-            "@type": "ListItem",
-            "position": 2,
-            "name": "Regulamin serwisu",
-            "item": "https://construction-project-02.netlify.app/legal/regulamin.html"
-          }
-        ]
-      }
-    </script>
+    <script type="application/ld+json" src="../js/structured-data/legal-regulamin.json"></script>
   </head>
 
   <!-- Body -->
   <body class="page-legal" data-current="info" data-legal="regulamin">
+    <script src="../js/theme-init.js"></script>
     <div id="top" tabindex="-1"></div>
     <a class="skip-link" href="#main">Pomiń nawigację – przejdź do treści</a>
 
@@ -428,6 +380,6 @@
     </footer>
 
     <!-- Skript -->
-    <script src="../js/script.min.js" defer></script>
+    <script src="../dist/script.min.js" defer></script>
   </body>
 </html>

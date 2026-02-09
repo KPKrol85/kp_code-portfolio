@@ -15,8 +15,12 @@
     "kp_code"
   ],
   "devDependencies": {
+    "@lhci/cli": "^0.15.1",
     "cssnano": "^7.1.1",
     "cssnano-cli": "^1.0.5",
+    "http-server": "^14.1.1",
+    "lighthouse": "^12.2.1",
+    "pa11y": "^8.0.0",
     "sharp": "^0.33.5",
     "terser": "^5.44.0",
     "ttf2woff2": "^8.0.0"
@@ -24,8 +28,13 @@
   "scripts": {
     "img:build": "node tools/images/build-images.mjs",
     "img:clean": "node tools/images/build-images.mjs --clean",
-    "min:css": "cssnano css/style.css css/style.min.css",
-    "min:js": "terser js/script.js -o js/script.min.js -c -m --source-map",
-    "build": "npm run min:css && npm run min:js"
+    "build:css": "node tools/css/build-css.mjs",
+    "min:css": "npm run build:css",
+    "build:js": "node tools/js/build-js.mjs",
+    "build": "npm run build:css && npm run build:js",
+    "serve": "http-server -c-1 -p 8080",
+    "qa:lighthouse": "mkdir -p reports/lighthouse && lhci collect --url=http://localhost:8080/ --url=http://localhost:8080/services/budowa-domow.html --url=http://localhost:8080/legal/regulamin.html --outputDir=reports/lighthouse",
+    "qa:a11y": "mkdir -p reports/pa11y && pa11y http://localhost:8080/ --reporter json --output reports/pa11y/index.json && pa11y http://localhost:8080/services/budowa-domow.html --reporter json --output reports/pa11y/budowa-domow.json && pa11y http://localhost:8080/legal/regulamin.html --reporter json --output reports/pa11y/regulamin.json",
+    "qa": "npm run qa:lighthouse && npm run qa:a11y"
   }
 }

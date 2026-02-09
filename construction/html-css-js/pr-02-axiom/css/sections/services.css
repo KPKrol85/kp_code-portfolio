@@ -1,0 +1,100 @@
+
+.services-section {
+  background: var(--surface-1);
+  border-top: 1px solid color-mix(in srgb, var(--text-dark) 10%, transparent);
+  text-align: center;
+}
+body.dark-mode .services-section {
+  background: var(--surface-3);
+  border-top: 1px solid color-mix(in srgb, var(--text-light) 10%, transparent);
+}
+.services-section .section-title {
+  display: inline-block;
+  margin-bottom: 3rem;
+  font-size: 2rem;
+  color: var(--primary);
+}
+body.dark-mode .services-section .section-title {
+  color: var(--accent);
+}
+.services {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+.service {
+  background: var(--text-light);
+  padding: 1.5rem;
+  border-radius: 10px;
+  text-align: center;
+  box-shadow: 0 4px 10px color-mix(in srgb, black 12%, transparent);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+body.dark-mode .service {
+  background: color-mix(in srgb, var(--bg-dark) 85%, white 15%);
+  box-shadow: 0 4px 10px color-mix(in srgb, var(--text-light) 6%, transparent);
+}
+.service:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 22px color-mix(in srgb, black 18%, transparent);
+  cursor: pointer;
+}
+.service picture {
+  display: block;
+  width: 100%;
+  overflow: hidden;
+  border-radius: 10px;
+}
+.service img {
+  display: block;
+  width: 100%;
+  height: auto;
+  max-width: 100%;
+  border-radius: 10px;
+  transition: transform 0.4s ease, opacity 0.4s ease;
+}
+.service:hover img {
+  transform: scale(1.03);
+  opacity: 0.97;
+}
+.service h3 {
+  margin-top: var(--space-2);
+  color: var(--text-dark);
+  transition: color 0.3s ease;
+}
+body.dark-mode .service h3 {
+  color: var(--text-light);
+  transition: color 0.3s ease;
+}
+.service p {
+  margin-top: var(--space-1);
+  color: var(--text-dark);
+}
+body.dark-mode .service p {
+  color: var(--text-light);
+  opacity: 0.9;
+}
+.service a {
+  display: block;
+  color: inherit;
+  text-decoration: none;
+}
+.service a:hover h3,
+.service a:focus h3 {
+  color: var(--primary-400);
+}
+body.dark-mode .service a:hover h3,
+body.dark-mode .service a:focus h3 {
+  color: var(--accent-400);
+}
+
+@media (max-width: 768px) {
+  .services {
+    gap: 1.25rem;
+  }
+  .service {
+    padding: 1.25rem;
+  }
+}

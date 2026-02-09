@@ -42,66 +42,12 @@
     <link rel="preload" href="../assets/fonts/lato-v25-latin/lato-v25-latin-regular.woff2" as="font" type="font/woff2" crossorigin />
     <link rel="preload" href="../assets/fonts/montserrat-v31-latin/montserrat-v31-latin-600.woff2" as="font" type="font/woff2" crossorigin />
 
-    <script>
-      (function () {
-        try {
-          var t = localStorage.getItem("theme");
-          if (t) document.documentElement.classList.toggle("dark-mode", t === "dark");
-          else if (window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches) {
-            document.documentElement.classList.add("dark-mode");
-          }
-        } catch (e) {}
-      })();
-    </script>
+    <script src="../js/theme-init.js"></script>
 
-    <link rel="preload" as="style" href="../css/style.min.css" />
-    <link rel="stylesheet" href="../css/style.min.css" />
+    <link rel="preload" as="style" href="../dist/style.min.css" />
+    <link rel="stylesheet" href="../dist/style.min.css" />
 
-    <script type="application/ld+json">
-      {
-        "@context": "https://schema.org",
-        "@type": "WebPage",
-        "@id": "https://construction-project-02.netlify.app/services/budowa-domow.html#webpage",
-        "name": "Budowa domów - Axiom Construction",
-        "description": "Budowa domów jednorodzinnych z Axiom Construction: stan surowy, deweloperski lub pod klucz, harmonogram i gwarancja. Darmowa wycena.",
-        "url": "https://construction-project-02.netlify.app/services/budowa-domow.html",
-        "inLanguage": "pl-PL",
-        "isPartOf": {
-          "@type": "WebSite",
-          "@id": "https://construction-project-02.netlify.app/#website"
-        },
-        "breadcrumb": {
-          "@id": "https://construction-project-02.netlify.app/services/budowa-domow.html#breadcrumbs"
-        }
-      }
-    </script>
-    <script type="application/ld+json">
-      {
-        "@context": "https://schema.org",
-        "@type": "BreadcrumbList",
-        "@id": "https://construction-project-02.netlify.app/services/budowa-domow.html#breadcrumbs",
-        "itemListElement": [
-          {
-            "@type": "ListItem",
-            "position": 1,
-            "name": "Strona główna",
-            "item": "https://construction-project-02.netlify.app/"
-          },
-          {
-            "@type": "ListItem",
-            "position": 2,
-            "name": "Usługi",
-            "item": "https://construction-project-02.netlify.app/#uslugi"
-          },
-          {
-            "@type": "ListItem",
-            "position": 3,
-            "name": "Budowa domów",
-            "item": "https://construction-project-02.netlify.app/services/budowa-domow.html"
-          }
-        ]
-      }
-    </script>
+    <script type="application/ld+json" src="../js/structured-data/service-budowa-domow.json"></script>
   </head>
 
   <!-- Body -->
@@ -625,6 +571,6 @@
     </div>
 
     <!-- Script -->
-    <script src="../js/script.min.js" defer></script>
+    <script src="../dist/script.min.js" defer></script>
   </body>
 </html>

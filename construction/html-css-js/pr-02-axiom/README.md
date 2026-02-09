@@ -1,147 +1,247 @@
-## 🇬🇧 English version
+# Axiom Construction — landing page firmy budowlanej (PWA)
 
-# Axiom Construction — Construction Company Website (Demo)
+Profesjonalny landing page dla fikcyjnej firmy budowlanej, przygotowany jako projekt portfolio z naciskiem na wydajność, dostępność i produkcyjną jakość front-endu.
 
-Responsive demo website for a modern construction company, created as a professional portfolio project.
-The project focuses on clean UI, strong brand presentation, accessibility,
-performance optimization, and production-ready front-end structure.
+## Najważniejsze funkcje / highlights
 
-🔗 **Live demo:** [https://construction-project-02.netlify.app]
+- Responsywny layout i sekcje usług dopasowane do oferty firmy.
+- Modularny CSS i JS z osobnymi entrypointami dla DEV i PROD.
+- PWA z Service Workerem: precache zasobów, runtime caching HTML, offline fallback.
+- Security headers i CSP bez `unsafe-inline`.
+- SEO: semantyka, sitemap, robots, oraz structured data (LocalBusiness + FAQPage; bez Review).
+- Automatyczne QA (Lighthouse + Pa11y) z raportami w `reports/`.
 
----
-
-## Project Purpose
-
-This project was created as part of an advanced front-end portfolio.
-It presents a more refined and brand-oriented construction company website,
-built with semantic HTML, modern CSS architecture, and vanilla JavaScript — without frameworks.
-
-The goal of the project is to demonstrate real-world layout structure,
-design consistency, accessibility awareness, and scalable front-end patterns.
-
----
-
-## Key Characteristics
-
-- Fully responsive, mobile-first layout
-- Strong visual identity and brand consistency
-- Accessible navigation and semantic HTML
-- Light / dark theme support
-- Optimized performance and SEO fundamentals
-- Clean, modular, and scalable project structure
-
----
-
-## Tech Stack
+## Tech stack
 
 - HTML5
-- CSS3 (custom properties, modular architecture)
-- Vanilla JavaScript (ES6)
-- Netlify (hosting & deployment)
+- CSS3 (modularna architektura, CSS custom properties, build przez cssnano)
+- JavaScript (ES6, vanilla, build przez terser)
+- PWA (manifest + Service Worker)
+- Narzędzia QA: Lighthouse (LHCI), Pa11y
+- Netlify (deploy + headers)
 
----
+## Lokalny start (install + serve)
 
-## Project Status
+1. Instalacja zależności:
+   ```bash
+   npm install
+   ```
+2. Uruchomienie lokalnego serwera (port 8080):
+   ```bash
+   npm run serve
+   ```
+3. Otwórz w przeglądarce:
+   ```
+   http://localhost:8080
+   ```
 
-✔ Completed (v1)
+## Development vs Production
 
-Future improvements planned:
+**DEV entrypoints** (praca lokalna / edycja źródeł):
+- `css/main.css`
+- `js/main.js`
 
-- UI refinements and visual polish
-- SVG and asset optimization
-- Further accessibility enhancements
-- Minor code refactors
+**PROD assets** (wczytywane przez HTML):
+- `dist/style.min.css`
+- `dist/script.min.js`
 
----
+**Build komendy:**
+```bash
+npm run build:css
+npm run build:js
+npm run build
+```
 
-## Disclaimer
+## PWA / Service Worker
 
-This website is a fictional demo project created for portfolio purposes only.
-All company names, addresses, branding, and content are used as examples
-and do not represent a real business.
+- **Precache**: kluczowe zasoby i shell aplikacji (CSS/JS, favicon, offline.html).
+- **Runtime caching HTML**: żądania dokumentów HTML są cachowane po udanym fetchu.
+- **Fallback offline**: w przypadku błędu sieci zwracany jest `offline.html`.
+- **Cache-first** dla CSS/JS oraz obrazów z aktualizacją w tle.
 
----
+Service Worker: `sw.js`.
 
-## Author
+## SEO / Structured data
 
-Kamil Król
-**KP*Code***
-Front-End Developer
-Portfolio project — 2025
+- Dane strukturalne w `js/structured-data/`.
+- Typy: **LocalBusiness (HomeAndConstructionBusiness)** oraz **FAQPage**.
+- Brak danych typu **Review** (świadomie pominięte).
 
----
+## QA (Lighthouse / Pa11y)
 
-## 🇵🇱 Wersja polska
+1. Uruchom lokalny serwer:
+   ```bash
+   npm run serve
+   ```
+2. Odpal QA:
+   ```bash
+   npm run qa
+   ```
 
-# Axiom Construction — strona firmy budowlanej (demo)
+Dostępne komendy:
+```bash
+npm run qa:lighthouse
+npm run qa:a11y
+```
 
-Responsywna demonstracyjna strona internetowa dla nowoczesnej firmy budowlanej,
-stworzona jako projekt portfolio.
-Projekt skupia się na spójnym brandingu, czytelnym interfejsie,
-dostępności, wydajności oraz strukturze gotowej do wdrożenia produkcyjnego.
+Raporty zapisują się w:
+- `reports/lighthouse/`
+- `reports/pa11y/`
 
-🔗 **Demo online:** [https://construction-project-02.netlify.app](https://construction-project-02.netlify.app)
+## Deploy (Netlify)
 
----
+1. Build projektu:
+   ```bash
+   npm run build
+   ```
+2. Publish directory: repozytorium projektu (root).
+3. Netlify wykorzystuje pliki `_headers` i `_redirects` do konfiguracji nagłówków oraz routingu.
 
-## Cel projektu
+## Struktura katalogów
 
-Projekt został stworzony jako element rozbudowanego portfolio front-end.
-Prezentuje bardziej dopracowaną i świadomie zaprojektowaną stronę firmy budowlanej,
-opartą o czysty HTML, nowoczesny CSS oraz JavaScript — bez użycia frameworków.
-
-Celem projektu jest pokazanie realistycznej architektury layoutu,
-spójności wizualnej, dostępności oraz skalowalnych wzorców front-endowych.
-
----
-
-## Główne cechy
-
-- W pełni responsywny layout (mobile-first)
-- Spójna identyfikacja wizualna i branding
-- Dostępna nawigacja i semantyczny HTML
-- Obsługa trybu jasnego i ciemnego
-- Optymalizacja wydajności i podstaw SEO
-- Modularna i skalowalna struktura projektu
-
----
-
-## Stack technologiczny
-
-- HTML5
-- CSS3 (custom properties, architektura modularna)
-- JavaScript (ES6, vanilla)
-- Netlify (hosting i deployment)
-
----
-
-## Status projektu
-
-✔ Zakończony (v1)
-
-Planowane usprawnienia:
-
-- dopracowanie interfejsu i detali wizualnych
-- optymalizacja SVG i assetów
-- dalsze usprawnienia dostępności
-- drobna refaktoryzacja kodu
-
----
-
-## Informacja prawna
-
-Strona jest fikcyjnym projektem demonstracyjnym stworzonym wyłącznie
-w celach portfolio.
-Wszystkie nazwy firm, branding, adresy i treści mają charakter przykładowy
-i nie odnoszą się do rzeczywistej działalności.
-
----
+```
+pr-02-axiom/
+├── assets/               # obrazy, fonty, ikony
+├── css/                  # modularny CSS (DEV entry)
+├── dist/                 # zminifikowane zasoby (PROD)
+├── js/                   # modularny JS (DEV entry)
+├── legal/                # podstrony prawne
+├── services/             # podstrony usług
+├── tools/                # skrypty build/opt
+├── reports/              # raporty QA (generowane)
+├── _headers              # security headers + CSP
+├── _redirects            # reguły routingu
+├── sw.js                 # Service Worker
+├── manifest.webmanifest  # PWA manifest
+├── offline.html          # offline fallback
+└── index.html            # strona główna
+```
 
 ## Autor
 
-Kamil Król
-**KP*Code***
-Front-End Developer
-Projekt portfolio — 2025
+Kamil Król — **KP_Code**
 
 ---
+
+# Axiom Construction — construction company landing page (PWA)
+
+A professional landing page for a fictional construction company, built as a portfolio project with a focus on performance, accessibility, and production-ready front-end quality.
+
+## Key features / highlights
+
+- Responsive layout and service sections tailored to the company offer.
+- Modular CSS and JS with dedicated DEV and PROD entrypoints.
+- PWA with Service Worker: asset precache, runtime HTML caching, offline fallback.
+- Security headers and CSP without `unsafe-inline`.
+- SEO: semantic structure, sitemap, robots, and structured data (LocalBusiness + FAQPage; no Review).
+- Automated QA (Lighthouse + Pa11y) with reports in `reports/`.
+
+## Tech stack
+
+- HTML5
+- CSS3 (modular architecture, CSS custom properties, built with cssnano)
+- JavaScript (ES6, vanilla, built with terser)
+- PWA (manifest + Service Worker)
+- QA tooling: Lighthouse (LHCI), Pa11y
+- Netlify (deploy + headers)
+
+## Local start (install + serve)
+
+1. Install dependencies:
+   ```bash
+   npm install
+   ```
+2. Start local server (port 8080):
+   ```bash
+   npm run serve
+   ```
+3. Open in browser:
+   ```
+   http://localhost:8080
+   ```
+
+## Development vs Production
+
+**DEV entrypoints** (local work / source editing):
+- `css/main.css`
+- `js/main.js`
+
+**PROD assets** (loaded by HTML):
+- `dist/style.min.css`
+- `dist/script.min.js`
+
+**Build commands:**
+```bash
+npm run build:css
+npm run build:js
+npm run build
+```
+
+## PWA / Service Worker
+
+- **Precache**: core assets and app shell (CSS/JS, favicon, offline.html).
+- **Runtime HTML caching**: HTML documents are cached after a successful fetch.
+- **Offline fallback**: `offline.html` is served on network errors.
+- **Cache-first** for CSS/JS and images with background update.
+
+Service Worker: `sw.js`.
+
+## SEO / Structured data
+
+- Structured data lives in `js/structured-data/`.
+- Types: **LocalBusiness (HomeAndConstructionBusiness)** and **FAQPage**.
+- **No Review** schema is included (intentionally omitted).
+
+## QA (Lighthouse / Pa11y)
+
+1. Start a local server:
+   ```bash
+   npm run serve
+   ```
+2. Run QA:
+   ```bash
+   npm run qa
+   ```
+
+Available commands:
+```bash
+npm run qa:lighthouse
+npm run qa:a11y
+```
+
+Reports are stored in:
+- `reports/lighthouse/`
+- `reports/pa11y/`
+
+## Deploy (Netlify)
+
+1. Build the project:
+   ```bash
+   npm run build
+   ```
+2. Publish directory: project root.
+3. Netlify uses `_headers` and `_redirects` to configure headers and routing.
+
+## Directory structure
+
+```
+pr-02-axiom/
+├── assets/               # images, fonts, icons
+├── css/                  # modular CSS (DEV entry)
+├── dist/                 # minified assets (PROD)
+├── js/                   # modular JS (DEV entry)
+├── legal/                # legal subpages
+├── services/             # service subpages
+├── tools/                # build/opt scripts
+├── reports/              # QA reports (generated)
+├── _headers              # security headers + CSP
+├── _redirects            # routing rules
+├── sw.js                 # Service Worker
+├── manifest.webmanifest  # PWA manifest
+├── offline.html          # offline fallback
+└── index.html            # home page
+```
+
+## Author
+
+Kamil Król — **KP_Code**

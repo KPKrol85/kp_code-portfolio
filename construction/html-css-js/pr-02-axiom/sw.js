@@ -1,7 +1,7 @@
-/* Service worker - Axiom_Construction */
 
 const CACHE_NAME = "axiom-construction-v1.0.0";
-const ASSETS = ["./", "./index.html", "./offline.html", "./css/style.min.css", "./js/script.min.js", "./assets/img/favicon/favicon-96x96.png", "./assets/img/og/og-1200x630.jpg"];
+const HTML_CACHE = "html-pages-v1";
+const ASSETS = ["./", "./index.html", "./offline.html", "./dist/style.min.css", "./dist/script.min.js", "./assets/img/favicon/favicon-96x96.png", "./assets/img/og/og-1200x630.jpg"];
 
 self.addEventListener("install", (event) => {
   event.waitUntil(caches.open(CACHE_NAME).then((cache) => cache.addAll(ASSETS)));
@@ -16,12 +16,14 @@ self.addEventListener("activate", (event) => {
 self.addEventListener("fetch", (event) => {
   const req = event.request;
   const dest = req.destination;
-  if (req.mode === "navigate") {
+  if (dest === "document" && req.method === "GET" && new URL(req.url).origin === self.location.origin) {
     event.respondWith(
       fetch(req)
         .then((res) => {
-          const copy = res.clone();
-          caches.open(CACHE_NAME).then((c) => c.put(req, copy));
+          if (res && res.status === 200) {
+            const copy = res.clone();
+            caches.open(HTML_CACHE).then((c) => c.put(req, copy));
+          }
           return res;
         })
         .catch(async () => (await caches.match(req)) || (await caches.match("./offline.html")) || (await caches.match("./index.html")))
