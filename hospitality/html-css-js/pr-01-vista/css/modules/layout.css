@@ -14,7 +14,7 @@
   transition:
     background 0.25s ease,
     border-color 0.25s ease;
-  --logo-size: 28px;
+  --logo-size: 30px;
   --toggle-size: 38px;
   --nav-fs: 0.8rem;
   --nav-pad-y: 0.4rem;
@@ -108,8 +108,8 @@
   text-decoration: none;
   color: var(--text);
   font-size: var(--nav-fs);
-  border-radius: var(--radius-pill, 999px);
-  padding: var(--space-2xs) var(--space-xs);
+  border-radius: var(--radius-full);
+  padding: var(--space-xs) var(--space-sm);
   transition:
     background 0.2s ease,
     box-shadow 0.2s ease;
@@ -225,7 +225,7 @@ body.is-nav-open {
   body.is-nav-open {
     overflow: auto;
   }
-    .js .site-nav {
+  .js .site-nav {
     position: static;
     inset: auto;
     background: transparent;
@@ -239,9 +239,14 @@ body.is-nav-open {
     border-bottom: 0;
   }
 }
-/* 1024+ */
 @media (min-width: 1024px) {
   .site-nav {
     gap: var(--space-md);
+  }
+  .site-header {
+    --logo-size: 40px;
+  }
+  .site-header.is-compact {
+    --logo-size: 32px;
   }
 }

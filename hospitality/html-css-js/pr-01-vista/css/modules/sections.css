@@ -699,7 +699,7 @@
   text-align: center;
 }
 .footer__heading {
-  margin: 0 0 var(--space-xs);
+  margin: 0 0 var(--space-sm);
   font-size: var(--fs-300);
   font-weight: 600;
   line-height: 1.2;
@@ -967,8 +967,8 @@
     grid-area: brand;
     justify-self: stretch;
     max-inline-size: none;
-    align-items: flex-start;
-    text-align: left;
+    /*align-items: flex-start;
+    text-align: left;*/
   }
   .footer__nav {
     grid-area: nav;
@@ -983,12 +983,12 @@
     grid-area: social;
   }
   .footer__brand .footer__text {
-    text-align: left;
-    margin-inline: 0;
+    /*text-align: left;*/
+    margin-inline: var(--space-3xl);
     padding-inline: 0;
   }
   .footer__brand-link {
-    text-align: left;
+    /*text-align: left;*/
     font-size: clamp(var(--fs-400), 1.1vw, var(--fs-600));
     line-height: 1.08;
   }
