@@ -1,0 +1,62 @@
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-xs);
+  padding: 0.65rem 1.1rem;
+  border-radius: 999px;
+  border: 1px solid transparent;
+  background: var(--color-forest);
+  color: var(--color-white);
+  font-weight: 600;
+  transition: background var(--transition-fast), border var(--transition-fast), transform var(--transition-fast);
+  cursor: pointer;
+}
+
+.btn:hover {
+  background: var(--color-forest-dark);
+}
+
+.btn--ghost {
+  background: transparent;
+  border-color: var(--color-border);
+  color: var(--color-ink);
+}
+
+.btn--ghost:hover {
+  background: var(--color-sky);
+}
+
+.btn--outline {
+  background: var(--color-white);
+  border-color: var(--color-forest);
+  color: var(--color-forest);
+}
+
+.btn--outline:hover {
+  background: var(--color-forest);
+  color: var(--color-white);
+}
+
+.btn--link {
+  background: none;
+  border: none;
+  color: var(--color-forest);
+  padding: 0;
+}
+
+.btn--small {
+  padding: 0.45rem 0.85rem;
+  font-size: 0.9rem;
+}
+
+.btn__icon {
+  width: 1rem;
+  height: 1rem;
+}
+
+.button-group {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-sm);
+}

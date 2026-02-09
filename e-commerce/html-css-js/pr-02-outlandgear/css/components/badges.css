@@ -1,0 +1,19 @@
+.badge--bestseller {
+  background: rgba(217, 164, 65, 0.2);
+  color: #8a5a00;
+}
+
+.badge--eco {
+  background: rgba(42, 122, 92, 0.15);
+  color: var(--color-success);
+}
+
+.badge--new {
+  background: rgba(93, 131, 166, 0.18);
+  color: #2f5e80;
+}
+
+.badge--limited {
+  background: rgba(200, 67, 58, 0.15);
+  color: var(--color-alert);
+}

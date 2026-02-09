@@ -1,0 +1,227 @@
+<!doctype html>
+<html lang="pl">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Checkout — Outland Gear</title>
+    <meta name="description" content="Checkout demo Outland Gear: dane dostawy i podsumowanie zamówienia." />
+    <link rel="canonical" href="https://outlandgear.example.com/checkout.html" />
+    <link rel="icon" href="assets/svg/favicon.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="css/main.css" />
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Organization",
+        "name": "Outland Gear",
+        "url": "https://outlandgear.example.com"
+      }
+    </script>
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Przejdź do treści</a>
+    <header class="site-header">
+      <div class="container">
+        <div class="site-header__top">
+          <a class="logo" href="index.html" aria-label="Outland Gear">
+            <img class="logo__mark" src="assets/svg/logo.svg" alt="" width="32" height="32" />
+            Outland Gear
+          </a>
+          <form class="search" data-search-form role="search">
+            <label class="visually-hidden" for="search-input">Szukaj produktów</label>
+            <input
+              id="search-input"
+              type="search"
+              data-search-input
+              placeholder="Szukaj plecaków, kuchenek, termiki..."
+              autocomplete="off"
+            />
+            <button type="submit">Szukaj</button>
+          </form>
+          <button class="nav-toggle" data-nav-toggle aria-expanded="false" aria-controls="mobile-drawer">
+            <span class="visually-hidden">Otwórz menu</span>
+            ☰
+          </button>
+          <nav class="site-nav" aria-label="Główna">
+            <div class="dropdown">
+              <button
+                class="dropdown__toggle"
+                type="button"
+                aria-expanded="false"
+                aria-controls="nav-categories"
+                data-dropdown-toggle
+              >
+                Kategorie
+              </button>
+              <div class="dropdown__menu" id="nav-categories" aria-hidden="true" role="menu">
+                <a class="dropdown__link" href="kategoria.html" role="menuitem">Plecaki i torby</a>
+                <a class="dropdown__link" href="kategoria.html" role="menuitem">Termika i napoje</a>
+                <a class="dropdown__link" href="kategoria.html" role="menuitem">Kemping</a>
+                <a class="dropdown__link" href="kategoria.html" role="menuitem">Elektronika outdoor</a>
+                <a class="dropdown__link" href="kategoria.html" role="menuitem">Akcesoria</a>
+              </div>
+            </div>
+            <a class="site-nav__link" href="kategoria.html">Nowości</a>
+            <a class="site-nav__link" href="o-nas.html">O nas</a>
+            <a class="site-nav__link" href="kontakt.html">Kontakt</a>
+          </nav>
+          <div class="site-nav__actions">
+            <a class="btn btn--ghost btn--small" href="koszyk.html">
+              Koszyk (<span data-cart-count>0</span>)
+            </a>
+          </div>
+        </div>
+      </div>
+      <div class="nav-drawer" id="mobile-drawer" data-nav-drawer aria-hidden="true">
+        <div class="nav-drawer__panel" data-nav-panel tabindex="-1">
+          <div class="row row--between">
+            <strong>Menu</strong>
+            <button class="btn btn--ghost btn--small" type="button" data-nav-close>Zamknij</button>
+          </div>
+          <div class="nav-drawer__links">
+            <a class="site-nav__link" href="kategoria.html">Kategorie</a>
+            <a class="site-nav__link" href="kategoria.html">Nowości</a>
+            <a class="site-nav__link" href="o-nas.html">O nas</a>
+            <a class="site-nav__link" href="kontakt.html">Kontakt</a>
+            <a class="site-nav__link" href="koszyk.html">Koszyk</a>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <main id="main" class="section">
+      <div class="container">
+        <div class="section-header">
+          <div>
+            <p class="kicker">Checkout demo</p>
+            <h1>Finalizacja zamówienia</h1>
+          </div>
+          <a class="btn btn--ghost" href="koszyk.html">Wróć do koszyka</a>
+        </div>
+        <div class="checkout-layout">
+          <form class="form" data-checkout-form novalidate>
+            <div aria-live="polite" data-checkout-status class="form__hint"></div>
+            <div class="form__row">
+              <div class="form__group">
+                <label class="form__label" for="firstName">Imię</label>
+                <input class="form__input" id="firstName" name="firstName" type="text" autocomplete="given-name" required />
+                <span class="form__error" data-error-for="firstName"></span>
+              </div>
+              <div class="form__group">
+                <label class="form__label" for="lastName">Nazwisko</label>
+                <input class="form__input" id="lastName" name="lastName" type="text" autocomplete="family-name" required />
+                <span class="form__error" data-error-for="lastName"></span>
+              </div>
+            </div>
+            <div class="form__row">
+              <div class="form__group">
+                <label class="form__label" for="email">Email</label>
+                <input class="form__input" id="email" name="email" type="email" autocomplete="email" required />
+                <span class="form__error" data-error-for="email"></span>
+              </div>
+              <div class="form__group">
+                <label class="form__label" for="phone">Telefon</label>
+                <input class="form__input" id="phone" name="phone" type="tel" autocomplete="tel" required />
+                <span class="form__error" data-error-for="phone"></span>
+              </div>
+            </div>
+            <div class="form__group">
+              <label class="form__label" for="address">Adres</label>
+              <input class="form__input" id="address" name="address" type="text" autocomplete="street-address" required />
+              <span class="form__error" data-error-for="address"></span>
+            </div>
+            <div class="form__row">
+              <div class="form__group">
+                <label class="form__label" for="city">Miasto</label>
+                <input class="form__input" id="city" name="city" type="text" autocomplete="address-level2" required />
+                <span class="form__error" data-error-for="city"></span>
+              </div>
+              <div class="form__group">
+                <label class="form__label" for="zip">Kod pocztowy</label>
+                <input class="form__input" id="zip" name="zip" type="text" autocomplete="postal-code" required pattern="\d{2}-\d{3}" />
+                <span class="form__error" data-error-for="zip"></span>
+                <span class="form__hint">Format: 00-000</span>
+              </div>
+            </div>
+            <div class="form__group">
+              <label class="form__label" for="delivery">Metoda dostawy</label>
+              <select class="form__select" id="delivery" name="delivery" required>
+                <option value="">Wybierz metodę</option>
+                <option value="courier">Kurier 24h</option>
+                <option value="parcel">Paczkomat</option>
+                <option value="pickup">Odbiór osobisty</option>
+              </select>
+              <span class="form__error" data-error-for="delivery"></span>
+            </div>
+            <div class="form__group">
+              <label class="form__label" for="notes">Uwagi do zamówienia</label>
+              <textarea class="form__textarea" id="notes" name="notes" rows="3"></textarea>
+              <span class="form__error" data-error-for="notes"></span>
+            </div>
+            <div class="form__group">
+              <label class="checkbox">
+                <input type="checkbox" name="terms" required />
+                <span>Akceptuję regulamin i politykę prywatności.</span>
+              </label>
+              <span class="form__error" data-error-for="terms"></span>
+            </div>
+            <button class="btn" type="submit">Złóż zamówienie (demo)</button>
+          </form>
+          <aside class="order-summary">
+            <h2>Podsumowanie</h2>
+            <p class="subtle">Po złożeniu zamówienia otrzymasz ekran potwierdzenia (demo).</p>
+            <div class="notice">
+              <p><strong>Dostawa:</strong> Kurier 24h / Paczkomat</p>
+              <p><strong>Zwroty:</strong> 30 dni na test sprzętu.</p>
+            </div>
+            <a class="btn btn--outline" href="kategoria.html">Wróć do katalogu</a>
+          </aside>
+        </div>
+        <div class="success-panel" data-checkout-success hidden>
+          <h2>Zamówienie przyjęte (demo)</h2>
+          <p>Dziękujemy! W prawdziwej wersji otrzymasz maila z potwierdzeniem.</p>
+          <a class="btn" href="index.html">Wróć na stronę główną</a>
+        </div>
+      </div>
+    </main>
+
+    <footer class="site-footer">
+      <div class="container">
+        <div class="site-footer__grid">
+          <div>
+            <h3>Outland Gear</h3>
+            <p>Nowoczesny outdoor & travel marketplace dla aktywnych.</p>
+          </div>
+          <div>
+            <h4>Zakupy</h4>
+            <ul class="stack">
+              <li><a href="kategoria.html">Kategorie</a></li>
+              <li><a href="kategoria.html">Nowości</a></li>
+              <li><a href="koszyk.html">Koszyk</a></li>
+            </ul>
+          </div>
+          <div>
+            <h4>Informacje</h4>
+            <ul class="stack">
+              <li><a href="o-nas.html">O nas</a></li>
+              <li><a href="o-nas.html">Dostawa i zwroty</a></li>
+              <li><a href="kontakt.html">Kontakt</a></li>
+            </ul>
+          </div>
+          <div>
+            <h4>Pomoc</h4>
+            <ul class="stack">
+              <li><a href="kontakt.html">Obsługa klienta</a></li>
+              <li><a href="kontakt.html">Regulamin</a></li>
+              <li><a href="kontakt.html">FAQ</a></li>
+            </ul>
+          </div>
+        </div>
+        <div class="site-footer__bottom">© 2024 Outland Gear. Demo front-end.</div>
+      </div>
+    </footer>
+
+    <div class="toast" data-toast role="status" aria-live="polite"></div>
+
+    <script type="module" src="js/app.js"></script>
+  </body>
+</html>
