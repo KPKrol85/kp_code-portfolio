@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Request an Appointment | Vireon Clinic</title>
+  <meta name="description" content="Request an appointment at Vireon Clinic. Share your goals and preferred times for a personalized consultation.">
+  <link rel="canonical" href="https://vireonclinic.com/booking.html">
+  <meta property="og:title" content="Request an Appointment | Vireon Clinic">
+  <meta property="og:description" content="Request a consultation with Vireon Clinic's specialists.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://vireonclinic.com/booking.html">
+  <meta property="og:image" content="assets/img/hero-suite.svg">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="stylesheet" href="css/style.css">
+  <script type="module" src="js/main.js" defer></script>
+</head>
+<body>
+  <a class="skip-link" href="#main-content">Skip to content</a>
+  <header class="site-header">
+    <div class="container site-header__inner">
+      <a class="brand" href="index.html">
+        <span class="brand__mark" aria-hidden="true"></span>
+        <span>Vireon Clinic</span>
+      </a>
+      <button class="nav__toggle" type="button" aria-expanded="false" aria-controls="primary-nav" data-nav-toggle>
+        <span class="nav__toggle-icon" aria-hidden="true"></span>
+        Menu
+      </button>
+      <nav class="nav" id="primary-nav" data-nav data-open="true">
+        <ul class="nav__list">
+          <li><a class="nav__link" href="treatments.html">Treatments</a></li>
+          <li><a class="nav__link" href="doctors.html">Doctors</a></li>
+          <li><a class="nav__link" href="before-after.html">Before &amp; After</a></li>
+          <li><a class="nav__link" href="pricing.html">Pricing</a></li>
+          <li><a class="nav__link" href="faq.html">FAQ</a></li>
+          <li><a class="nav__link" href="contact.html">Contact</a></li>
+        </ul>
+        <a class="btn btn--primary" aria-current="page" href="booking.html">Book a consultation</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main-content">
+    <section class="page-header">
+      <div class="container stack">
+        <span class="section__eyebrow">Appointments</span>
+        <h1 class="page-header__title">Request your consultation.</h1>
+        <p>Share your goals and availability. A care coordinator will confirm your visit within one business day.</p>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container grid grid--2">
+        <form class="form" data-form-validate>
+          <div class="form__row">
+            <label class="form__group">
+              <span class="label">First name</span>
+              <input class="input" type="text" name="first-name" autocomplete="given-name" data-required>
+            </label>
+            <label class="form__group">
+              <span class="label">Last name</span>
+              <input class="input" type="text" name="last-name" autocomplete="family-name" data-required>
+            </label>
+          </div>
+          <div class="form__row">
+            <label class="form__group">
+              <span class="label">Email</span>
+              <input class="input" type="email" name="email" autocomplete="email" data-required>
+            </label>
+            <label class="form__group">
+              <span class="label">Phone</span>
+              <input class="input" type="tel" name="phone" autocomplete="tel" data-required>
+            </label>
+          </div>
+          <label class="form__group">
+            <span class="label">Interested in</span>
+            <select class="select" name="interest" data-required>
+              <option value="">Select a specialty</option>
+              <option value="aesthetic">Aesthetic medicine</option>
+              <option value="plastic">Plastic surgery</option>
+              <option value="dermatology">Dermatology</option>
+            </select>
+          </label>
+          <label class="form__group">
+            <span class="label">Preferred appointment window</span>
+            <input class="input" type="text" name="appointment-window" placeholder="Weekday mornings, next 2 weeks" data-required>
+            <span class="form__hint">We will confirm the exact time after reviewing availability.</span>
+          </label>
+          <label class="form__group">
+            <span class="label">Tell us about your goals</span>
+            <textarea class="textarea" name="goals" rows="4" data-required></textarea>
+          </label>
+          <label class="form__group">
+            <span class="label">How should we contact you?</span>
+            <select class="select" name="contact-preference">
+              <option>Email</option>
+              <option>Phone</option>
+              <option>Text</option>
+            </select>
+          </label>
+          <div class="form__status" role="status" aria-live="polite" data-form-status>
+            We will respond within one business day.
+          </div>
+          <button class="btn btn--primary" type="submit">Submit request</button>
+          <p class="form__hint">Submitting this form does not confirm your appointment. We will contact you to finalize details.</p>
+        </form>
+
+        <div class="stack">
+          <div class="card">
+            <h2 class="card__title">What happens next?</h2>
+            <p class="card__meta">A coordinator will review your request and confirm with the appropriate specialist.</p>
+            <ul class="stack">
+              <li>Review of your intake details.</li>
+              <li>Consultation confirmation within 1 business day.</li>
+              <li>Secure medical intake form prior to visit.</li>
+            </ul>
+          </div>
+          <div class="card card--outline">
+            <h3 class="card__title">Need immediate assistance?</h3>
+            <p class="card__meta">Call our front desk for same-week availability.</p>
+            <a class="btn btn--ghost" href="tel:+12125550175">Call the clinic</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer__top">
+      <div class="footer__brand">
+        <h2 class="footer__title">Vireon Clinic</h2>
+        <p>Private aesthetic medicine, plastic surgery, and dermatology with elevated clinical standards.</p>
+        <div class="footer__badge">Accredited outpatient facility</div>
+      </div>
+      <div>
+        <h3>Explore</h3>
+        <ul class="footer__list">
+          <li><a href="treatments.html">Treatments</a></li>
+          <li><a href="doctors.html">Doctors</a></li>
+          <li><a href="before-after.html">Before &amp; After</a></li>
+          <li><a href="pricing.html">Pricing</a></li>
+          <li><a href="faq.html">FAQ</a></li>
+        </ul>
+      </div>
+      <div>
+        <h3>Visit</h3>
+        <ul class="footer__list">
+          <li>1100 Park Avenue, Suite 6B</li>
+          <li>New York, NY 10028</li>
+          <li>Mon–Fri: 8:30–18:30</li>
+          <li>Sat: 9:00–14:00</li>
+        </ul>
+      </div>
+      <div>
+        <h3>Contact</h3>
+        <ul class="footer__list">
+          <li><a href="tel:+12125550175">+1 (212) 555-0175</a></li>
+          <li><a href="mailto:care@vireonclinic.com">care@vireonclinic.com</a></li>
+          <li><a href="booking.html">Request an appointment</a></li>
+        </ul>
+        <div class="footer__socials">
+          <span class="footer__badge">Instagram</span>
+          <span class="footer__badge">LinkedIn</span>
+        </div>
+      </div>
+    </div>
+    <div class="container footer__meta">
+      <span>© 2025 Vireon Clinic. All rights reserved.</span>
+      <div class="footer__socials">
+        <a href="privacy.html">Privacy</a>
+        <a href="terms.html">Terms</a>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>

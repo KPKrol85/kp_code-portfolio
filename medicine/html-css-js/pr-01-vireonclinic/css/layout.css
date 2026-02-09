@@ -1,0 +1,124 @@
+.container {
+  width: min(1200px, 90vw);
+  margin: 0 auto;
+}
+
+.section {
+  padding: var(--space-3xl) 0;
+}
+
+.section--soft {
+  background: var(--color-surface-50);
+}
+
+.section__header {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+  margin-bottom: var(--space-2xl);
+}
+
+.section__eyebrow {
+  text-transform: uppercase;
+  letter-spacing: 0.16em;
+  font-size: 0.75rem;
+  color: var(--color-accent-600);
+  font-weight: 600;
+}
+
+.grid {
+  display: grid;
+  gap: var(--space-lg);
+}
+
+.grid--2 {
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+}
+
+.grid--3 {
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+}
+
+.grid--4 {
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+}
+
+.hero {
+  padding: calc(var(--space-3xl) + 2rem) 0 var(--space-3xl);
+  background: linear-gradient(120deg, #f6f9fb 0%, #eef5f8 60%, #e6f1f3 100%);
+}
+
+.hero__content {
+  display: grid;
+  gap: var(--space-2xl);
+  align-items: center;
+}
+
+.hero__headline {
+  font-family: var(--font-serif);
+  font-size: clamp(2.4rem, 4vw, 3.5rem);
+}
+
+.hero__highlight {
+  color: var(--color-accent-600);
+}
+
+.hero__copy {
+  font-size: 1.1rem;
+}
+
+.hero__media {
+  background: var(--color-surface-50);
+  border-radius: var(--radius-lg);
+  padding: var(--space-lg);
+  box-shadow: var(--shadow-sm);
+}
+
+.hero__media img {
+  border-radius: var(--radius-md);
+}
+
+@media (min-width: 900px) {
+  .hero__content {
+    grid-template-columns: 1.1fr 0.9fr;
+  }
+}
+
+.page-header {
+  padding: calc(var(--space-2xl) + 1rem) 0 var(--space-xl);
+}
+
+.page-header__title {
+  font-size: clamp(2rem, 3vw, 2.8rem);
+}
+
+.stack {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+}
+
+.stack--lg {
+  gap: var(--space-lg);
+}
+
+.divider {
+  height: 1px;
+  background: var(--color-border);
+  margin: var(--space-2xl) 0;
+}
+
+.taglist {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-xs);
+}
+
+.tag {
+  padding: 0.3rem 0.7rem;
+  border-radius: var(--radius-pill);
+  background: var(--color-accent-100);
+  color: var(--color-accent-600);
+  font-size: 0.85rem;
+  font-weight: 600;
+}

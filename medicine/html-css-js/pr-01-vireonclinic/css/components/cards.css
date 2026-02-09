@@ -1,0 +1,65 @@
+.card {
+  background: var(--color-surface-50);
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--color-border);
+  padding: var(--space-lg);
+  box-shadow: var(--shadow-sm);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+}
+
+.card__title {
+  font-size: 1.2rem;
+}
+
+.card__meta {
+  color: var(--color-ink-500);
+  font-size: 0.95rem;
+}
+
+.card__icon {
+  width: 44px;
+  height: 44px;
+  border-radius: var(--radius-md);
+  background: var(--color-accent-100);
+  display: grid;
+  place-items: center;
+  color: var(--color-accent-600);
+  font-weight: 700;
+}
+
+.card__footer {
+  margin-top: auto;
+}
+
+.card--outline {
+  background: transparent;
+  border-style: dashed;
+}
+
+.card--profile img {
+  border-radius: var(--radius-md);
+}
+
+.testimonial {
+  padding: var(--space-lg);
+  border-radius: var(--radius-lg);
+  background: #fff;
+  border: 1px solid var(--color-border);
+}
+
+.testimonial__quote {
+  font-style: italic;
+}
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.2rem 0.6rem;
+  border-radius: var(--radius-pill);
+  background: var(--color-accent-100);
+  color: var(--color-accent-600);
+  font-size: 0.8rem;
+  font-weight: 600;
+}
