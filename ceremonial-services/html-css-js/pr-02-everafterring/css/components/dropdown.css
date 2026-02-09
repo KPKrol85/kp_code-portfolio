@@ -1,0 +1,9 @@
+.dropdown__icon {
+  width: 12px;
+  height: 12px;
+  transition: transform var(--transition-fast);
+}
+
+.nav__dropdown-toggle[aria-expanded="true"] .dropdown__icon {
+  transform: rotate(180deg);
+}

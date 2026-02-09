@@ -1,0 +1,214 @@
+<!doctype html>
+<html lang="pl">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Kontakt – EverAfter Ring</title>
+    <meta name="description" content="Skontaktuj się z EverAfter Ring. Umów konsultację i opowiedz o swoim ślubie – odpowiadamy w 24 godziny." />
+    <link rel="canonical" href="https://www.everafterring.pl/kontakt.html" />
+    <link rel="icon" href="assets/favicon.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="css/tokens.css" />
+    <link rel="stylesheet" href="css/base.css" />
+    <link rel="stylesheet" href="css/layout.css" />
+    <link rel="stylesheet" href="css/components/buttons.css" />
+    <link rel="stylesheet" href="css/components/cards.css" />
+    <link rel="stylesheet" href="css/components/nav.css" />
+    <link rel="stylesheet" href="css/components/footer.css" />
+    <link rel="stylesheet" href="css/components/forms.css" />
+    <link rel="stylesheet" href="css/components/badges.css" />
+    <link rel="stylesheet" href="css/components/dropdown.css" />
+    <link rel="stylesheet" href="css/main.css" />
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "LocalBusiness",
+        "name": "EverAfter Ring",
+        "url": "https://www.everafterring.pl/",
+        "description": "Butikowa agencja wedding planning & coordination.",
+        "areaServed": "Polska",
+        "telephone": "+48 000 000 000",
+        "email": "kontakt@everafterring.pl"
+      }
+    </script>
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "WebSite",
+        "name": "EverAfter Ring",
+        "url": "https://www.everafterring.pl/"
+      }
+    </script>
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Przejdź do treści</a>
+    <header class="site-header">
+      <div class="container header__inner">
+        <a class="brand" href="index.html">EverAfter Ring</a>
+        <button class="nav__toggle" type="button" data-nav-toggle aria-expanded="false" aria-controls="site-menu">
+          Menu
+        </button>
+        <div class="nav__panel" id="site-menu" data-nav-panel>
+          <nav class="site-nav" aria-label="Główna">
+            <ul class="nav__list" id="primary-navigation">
+              <li><a class="nav__link" href="index.html">Home</a></li>
+              <li><a class="nav__link" href="oferta.html">Oferta</a></li>
+              <li class="nav__item nav__item--has-dropdown">
+                <button class="nav__dropdown-toggle" type="button" data-dropdown-toggle aria-expanded="false" aria-controls="services-menu">
+                  Usługi
+                  <svg class="dropdown__icon" viewBox="0 0 12 12" aria-hidden="true">
+                    <path d="M2 4 L6 8 L10 4" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" />
+                  </svg>
+                </button>
+                <ul class="nav__dropdown" id="services-menu" data-dropdown-menu data-open="false">
+                  <li><a href="uslugi.html">Przegląd usług</a></li>
+                  <li><a href="uslugi.html#sale">Sale i lokalizacje</a></li>
+                  <li><a href="uslugi.html#wystroj">Wystrój i dekoracje</a></li>
+                  <li><a href="uslugi.html#transport">Samochody i transport</a></li>
+                  <li><a href="uslugi.html#koordynacja">Koordynacja dnia ślubu</a></li>
+                  <li><a href="uslugi.html#dostawcy">Dostawcy</a></li>
+                </ul>
+              </li>
+              <li><a class="nav__link" href="realizacje.html">Realizacje</a></li>
+              <li><a class="nav__link" href="o-nas.html">O nas</a></li>
+              <li><a class="nav__link" href="kontakt.html" aria-current="page">Kontakt</a></li>
+            </ul>
+          </nav>
+          <a class="button button--primary" href="kontakt.html">Zapytaj o termin</a>
+        </div>
+      </div>
+    </header>
+
+    <main id="main">
+      <section class="hero">
+        <div class="container hero__layout">
+          <div>
+            <span class="badge">Kontakt</span>
+            <h1 class="hero__title">Opowiedz nam o swoim ślubie – przygotujemy spersonalizowaną ofertę.</h1>
+            <p class="hero__tagline">Wypełnij formularz, a wrócimy do Ciebie w ciągu 24 godzin z propozycją spotkania.</p>
+          </div>
+          <div class="hero__media">
+            <img src="assets/hero.svg" width="640" height="480" alt="Kontakt z konsultantem ślubnym" />
+          </div>
+        </div>
+      </section>
+
+      <section class="section section--muted">
+        <div class="container grid grid--2">
+          <div>
+            <h2>Formularz kontaktowy</h2>
+            <p class="section__meta">Im więcej szczegółów, tym lepiej dopasujemy zakres usług.</p>
+            <form class="form" data-contact-form novalidate>
+              <div class="form__grid form__grid--2">
+                <div class="form__field">
+                  <label class="form__label" for="name">Imię i nazwisko</label>
+                  <input class="form__input" id="name" name="name" type="text" required data-validate aria-describedby="name-error" />
+                  <span class="form__error" id="name-error"></span>
+                </div>
+                <div class="form__field">
+                  <label class="form__label" for="email">Email</label>
+                  <input class="form__input" id="email" name="email" type="email" required data-validate aria-describedby="email-error" />
+                  <span class="form__error" id="email-error"></span>
+                </div>
+              </div>
+              <div class="form__grid form__grid--2">
+                <div class="form__field">
+                  <label class="form__label" for="phone">Telefon (opcjonalnie)</label>
+                  <input class="form__input" id="phone" name="phone" type="tel" inputmode="tel" aria-describedby="phone-error" />
+                  <span class="form__error" id="phone-error"></span>
+                </div>
+                <div class="form__field">
+                  <label class="form__label" for="date">Data wydarzenia</label>
+                  <input class="form__input" id="date" name="date" type="date" required data-validate aria-describedby="date-error" />
+                  <span class="form__error" id="date-error"></span>
+                </div>
+              </div>
+              <div class="form__grid form__grid--2">
+                <div class="form__field">
+                  <label class="form__label" for="city">Miasto / region</label>
+                  <input class="form__input" id="city" name="city" type="text" required data-validate aria-describedby="city-error" />
+                  <span class="form__error" id="city-error"></span>
+                </div>
+                <div class="form__field">
+                  <label class="form__label" for="budget">Budżet</label>
+                  <select class="form__select" id="budget" name="budget" required data-validate aria-describedby="budget-error">
+                    <option value="">Wybierz zakres</option>
+                    <option>30 000 – 50 000 zł</option>
+                    <option>50 000 – 80 000 zł</option>
+                    <option>80 000 – 120 000 zł</option>
+                    <option>120 000 zł +</option>
+                  </select>
+                  <span class="form__error" id="budget-error"></span>
+                </div>
+              </div>
+              <div class="form__grid form__grid--2">
+                <div class="form__field">
+                  <label class="form__label" for="package">Preferowany pakiet</label>
+                  <select class="form__select" id="package" name="package" required data-validate aria-describedby="package-error">
+                    <option value="">Wybierz pakiet</option>
+                    <option>Essential</option>
+                    <option>Signature</option>
+                    <option>Full Service</option>
+                  </select>
+                  <span class="form__error" id="package-error"></span>
+                </div>
+                <div class="form__field">
+                  <label class="form__label" for="guests">Liczba gości</label>
+                  <input class="form__input" id="guests" name="guests" type="number" min="10" max="400" required data-validate aria-describedby="guests-error" />
+                  <span class="form__error" id="guests-error"></span>
+                </div>
+              </div>
+              <div class="form__field">
+                <label class="form__label" for="message">Wiadomość</label>
+                <textarea class="form__textarea" id="message" name="message" required data-validate aria-describedby="message-error"></textarea>
+                <span class="form__error" id="message-error"></span>
+              </div>
+              <p class="form__hint">Wysyłając formularz, potwierdzasz zapoznanie się z informacją o przetwarzaniu danych.</p>
+              <button class="button button--primary button--block" type="submit">Wyślij zapytanie</button>
+              <div class="form__status" data-form-status aria-live="polite"></div>
+            </form>
+          </div>
+          <aside class="card card--outline">
+            <h2>Kontakt bezpośredni</h2>
+            <p>Napisz do nas lub zadzwoń – chętnie doradzimy w sprawie terminu i dostępności.</p>
+            <ul class="list">
+              <li><strong>Email:</strong> kontakt@everafterring.pl</li>
+              <li><strong>Telefon:</strong> +48 000 000 000</li>
+              <li><strong>Godziny:</strong> pon.–pt. 9:00–18:00</li>
+              <li><strong>Odpowiedź:</strong> w ciągu 24h</li>
+            </ul>
+            <p class="section__meta">Na pierwszej konsultacji omawiamy wizję i budżet, a następnie przedstawiamy plan działania.</p>
+          </aside>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="container footer__grid">
+        <div>
+          <p class="footer__title">EverAfter Ring</p>
+          <p>Butikowa agencja wedding planning &amp; coordination. Tworzymy śluby premium z pełną troską o detale.</p>
+        </div>
+        <div>
+          <p class="footer__title">Kontakt</p>
+          <ul class="footer__list">
+            <li><a href="mailto:kontakt@everafterring.pl">kontakt@everafterring.pl</a></li>
+            <li><a href="tel:+48000000000">+48 000 000 000</a></li>
+            <li>Odpowiadamy w 24h</li>
+          </ul>
+        </div>
+        <div>
+          <p class="footer__title">Nawigacja</p>
+          <ul class="footer__list">
+            <li><a href="oferta.html">Oferta</a></li>
+            <li><a href="uslugi.html">Usługi</a></li>
+            <li><a href="realizacje.html">Realizacje</a></li>
+            <li><a href="o-nas.html">O nas</a></li>
+            <li><a href="kontakt.html">Kontakt</a></li>
+          </ul>
+        </div>
+      </div>
+    </footer>
+
+    <script type="module" src="js/app.js"></script>
+  </body>
+</html>

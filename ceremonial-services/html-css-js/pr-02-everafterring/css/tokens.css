@@ -1,0 +1,50 @@
+:root {
+  --color-ivory: #faf7f2;
+  --color-champagne: #f2e7da;
+  --color-blush: #f5e1e6;
+  --color-sand: #e8ded2;
+  --color-rosewood: #6c4a4a;
+  --color-ink: #2a2422;
+  --color-gold: #c6a77a;
+  --color-white: #ffffff;
+  --color-muted: #6f6864;
+  --color-border: #e5dbcf;
+  --color-success: #2f6b4f;
+  --color-error: #8f3c3c;
+
+  --font-serif: "Playfair Display", "Times New Roman", serif;
+  --font-sans: "Manrope", "Segoe UI", sans-serif;
+
+  --font-size-xs: 0.85rem;
+  --font-size-sm: 0.95rem;
+  --font-size-base: 1rem;
+  --font-size-md: 1.1rem;
+  --font-size-lg: 1.4rem;
+  --font-size-xl: 2rem;
+  --font-size-xxl: 2.8rem;
+
+  --line-height-base: 1.6;
+  --line-height-tight: 1.2;
+
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-3: 0.75rem;
+  --space-4: 1rem;
+  --space-5: 1.5rem;
+  --space-6: 2rem;
+  --space-7: 3rem;
+  --space-8: 4rem;
+
+  --radius-sm: 8px;
+  --radius-md: 16px;
+  --radius-lg: 28px;
+
+  --shadow-soft: 0 20px 40px rgba(42, 36, 34, 0.08);
+  --shadow-card: 0 12px 24px rgba(42, 36, 34, 0.1);
+
+  --transition-fast: 150ms ease;
+  --transition-base: 240ms ease;
+
+  --container-width: 1100px;
+  --focus-ring: 0 0 0 3px rgba(198, 167, 122, 0.5);
+}

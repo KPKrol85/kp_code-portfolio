@@ -1,0 +1,36 @@
+.button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2);
+  padding: 0.75rem 1.5rem;
+  border-radius: 999px;
+  border: 1px solid transparent;
+  transition: var(--transition-base);
+  font-weight: 600;
+  font-size: var(--font-size-sm);
+}
+
+.button--primary {
+  background: var(--color-rosewood);
+  color: var(--color-white);
+}
+
+.button--primary:hover {
+  background: #583b3b;
+}
+
+.button--ghost {
+  background: transparent;
+  color: var(--color-rosewood);
+  border-color: var(--color-rosewood);
+}
+
+.button--light {
+  background: var(--color-white);
+  color: var(--color-rosewood);
+}
+
+.button--block {
+  width: 100%;
+}
