@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="pl">
   <head>
     <meta charset="utf-8" />
@@ -33,15 +33,12 @@
       (function () {
         var key = "kp-travel-theme";
         var stored = null;
-
         try {
           stored = localStorage.getItem(key);
         } catch (e) {
           stored = null;
         }
-
         var theme;
-
         if (stored === "light" || stored === "dark") {
           theme = stored;
         } else if (window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches) {
@@ -49,16 +46,13 @@
         } else {
           theme = "light";
         }
-
         var background = theme === "dark" ? "#05060a" : "#f8f7f2";
         document.documentElement.setAttribute("data-theme", theme);
         document.documentElement.style.backgroundColor = background;
         document.documentElement.style.colorScheme = theme;
       })();
     </script>
-
     <link rel="stylesheet" href="css/style.min.css" />
-    <!-- JSON-LD -->
     <script type="application/ld+json">
       {
         "@context": "https://schema.org",
@@ -82,7 +76,7 @@
             "logo": "https://hospitality-pr02-aurora.netlify.app/assets/img/logo/logo.svg",
             "description": "Butikowe biuro podróży projektujące spersonalizowane wyjazdy z concierge 24/7.",
             "telephone": "+48 533 537 091",
-            "email": "kp_code_@gmail.com",
+            "email": "kontakt@kp-code.pl",
             "address": {
               "@type": "PostalAddress",
               "streetAddress": "ul. Marynarki Wojennej 12/31",
@@ -97,11 +91,11 @@
     </script>
   </head>
 
-  <!-- BODY -->
+  <!-- Body -->
   <body data-page="index">
     <a class="skip-link" href="#main-content">Przejdź do treści</a>
 
-    <!-- HEADER -->
+    <!-- Header -->
     <header class="site-header" data-header>
       <div class="container site-header__inner">
         <a class="logo" href="index.html" aria-label="Aurora Travel">
@@ -127,9 +121,9 @@
       </div>
     </header>
 
-    <!-- MAIN CONTENT -->
+    <!-- Main -->
     <main id="main-content">
-      <!-- HERO -->
+      <!-- Hero -->
       <section class="hero">
         <div class="container hero__grid">
           <div class="hero__content">
@@ -164,7 +158,7 @@
         </div>
       </section>
 
-      <!-- WHY -->
+      <!-- Why -->
       <section class="section" aria-labelledby="why-heading">
         <div class="container">
           <div class="section__header">
@@ -196,16 +190,14 @@
         </div>
       </section>
 
-      <!-- TOURS -->
+      <!-- Tours -->
       <section class="section" aria-labelledby="tours-heading">
         <div class="container">
           <div class="section__header">
             <p class="eyebrow">Wyróżnione wycieczki</p>
             <h2 id="tours-heading">Najczęściej wybierane kierunki</h2>
           </div>
-
           <div class="cards-grid">
-            <!-- TOKYO -->
             <article class="tour-card">
               <picture>
                 <source
@@ -243,8 +235,6 @@
                 <a class="btn btn--text" href="tours.html#tokio">Poznaj szczegóły</a>
               </div>
             </article>
-
-            <!-- MALEDIWY -->
             <article class="tour-card">
               <picture>
                 <source
@@ -282,8 +272,6 @@
                 <a class="btn btn--text" href="tours.html#malediwy">Poznaj szczegóły</a>
               </div>
             </article>
-
-            <!-- MANHATTAN -->
             <article class="tour-card">
               <picture>
                 <source
@@ -325,7 +313,7 @@
         </div>
       </section>
 
-      <!-- TESTIMONIALS -->
+      <!-- Testimonials -->
       <section class="section section--muted" aria-labelledby="testimonials-heading">
         <div class="container">
           <div class="section__header">
@@ -366,7 +354,7 @@
       </section>
     </main>
 
-    <!-- FOOTER -->
+    <!-- Footer -->
     <footer class="site-footer">
       <div class="container site-footer__grid">
         <div>
@@ -379,7 +367,6 @@
           </p>
           <p>ul. Marynarki Wojennej 12/31, 33-100 Tarnów</p>
         </div>
-
         <div>
           <h3>Nawigacja</h3>
           <ul>
@@ -398,33 +385,26 @@
             <li><a href="cookies.html">Cookies</a></li>
           </ul>
         </div>
-
         <div>
           <h3>Kontakt</h3>
-
           <p class="contact-item">
             <img src="assets/img/svg-icons/tel.svg" alt="" class="contact-icon" />
             <a href="tel:+48533537091">+48 533 537 091</a>
           </p>
-
           <p class="contact-item">
             <img src="assets/img/svg-icons/email.svg" alt="" class="contact-icon" />
-            <a href="mailto:kp_code_@gmail.com">kp_code_@gmail.com</a>
+            <a href="mailto:kontakt@kp-code.pl">kontakt@kp-code.pl</a>
           </p>
-
           <div class="socials">
             <a href="https://www.facebook.com/ktravel" aria-label="Facebook">
               <img src="assets/img/svg-icons/fb.svg" alt="" class="socials__icon" />
             </a>
-
             <a href="https://github.com/kp-code" aria-label="GitHub">
               <img src="assets/img/svg-icons/github.svg" alt="" class="socials__icon" />
             </a>
-
             <a href="https://twitter.com/kp_code_" aria-label="X (Twitter)">
               <img src="assets/img/svg-icons/x.svg" alt="" class="socials__icon" />
             </a>
-
             <a href="https://www.youtube.com/@kp_code_" aria-label="YouTube">
               <img src="assets/img/svg-icons/youtube.svg" alt="" class="socials__icon" />
             </a>
@@ -433,12 +413,12 @@
       </div>
       <p class="site-footer__copy">
         &copy;
-        <span id="current-year">2024</span>
-        KP_Code_ &amp; Demo Aurora Travel – wszelkie prawa zastrzeżone.
+        <span id="current-year">2026</span>
+        KP_Code Digital Studio – Wszelkie prawa zastrzeżone
       </p>
     </footer>
 
-    <!-- JS -->
+    <!-- Script -->
     <script type="module" src="js/script.js"></script>
   </body>
 </html>
