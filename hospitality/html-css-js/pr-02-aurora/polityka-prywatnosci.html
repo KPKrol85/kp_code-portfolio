@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="pl">
   <head>
     <meta charset="utf-8" />
@@ -20,7 +20,6 @@
     <meta property="og:site_name" content="Aurora Travel" />
     <meta property="og:title" content="Polityka prywatności – Aurora Travel" />
     <meta property="og:description" content="Polityka prywatności fikcyjnego serwisu Aurora Travel – przykładowy dokument w projekcie demo KP_Code_." />
-
     <meta property="og:url" content="https://hospitality-pr02-aurora.netlify.app/polityka-prywatnosci.html" />
     <meta property="og:image" content="https://hospitality-pr02-aurora.netlify.app/assets/img/og-cover.svg" />
     <meta property="og:locale" content="pl_PL" />
@@ -28,21 +27,16 @@
     <meta name="twitter:title" content="Polityka prywatności – Aurora Travel" />
     <meta name="twitter:description" content="Przykładowa polityka prywatności przygotowana na potrzeby demonstracyjnego projektu Aurora Travel (portfolio KP_Code_)." />
     <meta name="twitter:image" content="https://hospitality-pr02-aurora.netlify.app/assets/img/og-cover.svg" />
-    <!-- CSS -->
-
     <script>
       (function () {
         var key = "kp-travel-theme";
         var stored = null;
-
         try {
           stored = localStorage.getItem(key);
         } catch (e) {
           stored = null;
         }
-
         var theme;
-
         if (stored === "light" || stored === "dark") {
           theme = stored;
         } else if (window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches) {
@@ -50,16 +44,13 @@
         } else {
           theme = "light";
         }
-
         var background = theme === "dark" ? "#05060a" : "#f8f7f2";
         document.documentElement.setAttribute("data-theme", theme);
         document.documentElement.style.backgroundColor = background;
         document.documentElement.style.colorScheme = theme;
       })();
     </script>
-
     <link rel="stylesheet" href="css/style.min.css" />
-    <!-- JSON-LD -->
     <script type="application/ld+json">
       {
         "@context": "https://schema.org",
@@ -76,11 +67,11 @@
     </script>
   </head>
 
-  <!-- BODY -->
+  <!-- Body -->
   <body data-page="privacy">
     <a class="skip-link" href="#main-content">Przejdź do treści</a>
 
-    <!-- HEADER -->
+    <!-- Header -->
     <header class="site-header" data-header>
       <div class="container site-header__inner">
         <a class="logo" href="index.html" aria-label="Aurora Travel">
@@ -106,7 +97,7 @@
       </div>
     </header>
 
-    <!-- MAIN CONTENT -->
+    <!-- Main -->
     <main id="main-content">
       <div class="page-hero">
         <div class="container">
@@ -130,14 +121,12 @@
             <strong>KP_Code_</strong>
             . Serwis nie prowadzi rzeczywistego przetwarzania danych osobowych użytkowników.
           </p>
-
           <h2>2. Administrator danych</h2>
           <p>
             Ponieważ serwis ma charakter demonstracyjny, nie występuje rzeczywisty administrator danych w rozumieniu RODO. Dane przesyłane przez formularze kontaktowe nie są zapisywane, przetwarzane
             ani przekazywane osobom trzecim.
           </p>
           <p>W przypadku realnego wdrożenia funkcji kontaktowych administratorem danych byłby operator serwisu wskazany w regulaminie.</p>
-
           <h2>3. Zakres i cele przetwarzania</h2>
           <p>Strona Aurora Travel pełni funkcję demonstracyjną, dlatego wszelkie opisy procesów przetwarzania mają charakter poglądowy. W ramach projektu:</p>
           <ul>
@@ -145,34 +134,28 @@
             <li>formularze kontaktowe mają charakter wizualny i edukacyjny,</li>
             <li>przedstawione cele przetwarzania są przykładem dla realnego wdrożenia.</li>
           </ul>
-
           <h2>4. Podstawy prawne</h2>
           <p>
             W środowisku demonstracyjnym nie obowiązują podstawy prawne RODO, ponieważ nie dochodzi do faktycznego przetwarzania danych osobowych. Opisy podstaw prawnych mają charakter edukacyjny.
           </p>
-
           <h2>5. Odbiorcy danych</h2>
           <p>
             Projekt nie gromadzi i nie przekazuje żadnych informacji użytkowników. W sytuacji rzeczywistego działania serwisu odbiorcami danych mogliby być partnerzy świadczący usługi turystyczne,
             zgodnie z odrębną umową.
           </p>
-
           <h2>6. Prawa użytkownika</h2>
           <p>
             Ponieważ strona nie przetwarza danych osobowych, prawa wynikające z RODO (dostęp, sprostowanie, usunięcie, ograniczenie, przenoszenie) nie znajdują realnego zastosowania. Zostały
             przedstawione jedynie w celach informacyjnych.
           </p>
-
           <h2>7. Okres przechowywania</h2>
           <p>Serwis nie przechowuje żadnych danych przesyłanych przez użytkowników. W rzeczywistym systemie okres przechowywania zależałby od charakteru usługi.</p>
-
           <h2>8. Pliki cookie</h2>
           <p>
             Informacje o stosowanych plikach cookie w wersji demonstracyjnej serwisu znajdują się w dokumencie:
             <a href="cookies.html">Informacja o cookies</a>
             .
           </p>
-
           <h2>9. Kontakt w sprawach demonstracyjnych</h2>
           <p>
             W przypadku pytań dotyczących projektu portfolio można kontaktować się z jego autorem:
@@ -183,7 +166,7 @@
       </section>
     </main>
 
-    <!-- FOOTER -->
+    <!-- Footer -->
     <footer class="site-footer">
       <div class="container site-footer__grid">
         <div>
@@ -194,9 +177,7 @@
             Projekt demo stworzony przez
             <strong>KP_Code_</strong>
           </p>
-          <p>ul. Marynarki Wojennej 12/31, 33-100 Tarnów</p>
         </div>
-
         <div>
           <h3>Nawigacja</h3>
           <ul>
@@ -215,47 +196,49 @@
             <li><a href="cookies.html">Cookies</a></li>
           </ul>
         </div>
-
         <div>
           <h3>Kontakt</h3>
-
+          <address class="contact-address">
+            <p class="contact-address__item">
+              ul. Marynarki Wojennej 12
+              <br />
+              33-100 Tarnów
+              <br />
+              Polska
+            </p>
+          </address>
           <p class="contact-item">
             <img src="assets/img/svg-icons/tel.svg" alt="" class="contact-icon" />
             <a href="tel:+48533537091">+48 533 537 091</a>
           </p>
-
           <p class="contact-item">
             <img src="assets/img/svg-icons/email.svg" alt="" class="contact-icon" />
             <a href="mailto:kontakt@kp-code.pl">kontakt@kp-code.pl</a>
           </p>
-
           <div class="socials">
             <a href="https://www.facebook.com/ktravel" aria-label="Facebook">
               <img src="assets/img/svg-icons/fb.svg" alt="" class="socials__icon" />
             </a>
-
             <a href="https://github.com/kp-code" aria-label="GitHub">
               <img src="assets/img/svg-icons/github.svg" alt="" class="socials__icon" />
             </a>
-
             <a href="https://twitter.com/kp_code_" aria-label="X (Twitter)">
               <img src="assets/img/svg-icons/x.svg" alt="" class="socials__icon" />
             </a>
-
             <a href="https://www.youtube.com/@kp_code_" aria-label="YouTube">
               <img src="assets/img/svg-icons/youtube.svg" alt="" class="socials__icon" />
             </a>
           </div>
         </div>
       </div>
-<p class="site-footer__copy">
-  &copy;
-  <span id="current-year">2026</span>
-  KP_Code Digital Studio – Wszelkie prawa zastrzeżone
-</p>
+      <p class="site-footer__copy">
+        &copy;
+        <span id="current-year">2026</span>
+        KP_Code Digital Studio – Wszelkie prawa zastrzeżone
+      </p>
     </footer>
 
-    <!-- JS -->
+    <!-- Script -->
     <script type="module" src="js/script.js"></script>
   </body>
 </html>

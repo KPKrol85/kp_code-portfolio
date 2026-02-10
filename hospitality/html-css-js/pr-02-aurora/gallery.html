@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="pl">
   <head>
     <meta charset="utf-8" />
@@ -27,7 +27,6 @@
     <meta name="twitter:title" content="Aurora Travel - Galeria" />
     <meta name="twitter:description" content="Zobacz galerię zdjęć z ekskluzywnych podróży Aurora Travel." />
     <meta name="twitter:image" content="https://hospitality-pr02-aurora.netlify.app/assets/img/og-cover.svg" />
-    <!-- JSON-LD -->
     <script type="application/ld+json">
       {
         "@context": "https://schema.org",
@@ -64,21 +63,16 @@
         ]
       }
     </script>
-    <!-- CSS -->
-
     <script>
       (function () {
         var key = "kp-travel-theme";
         var stored = null;
-
         try {
           stored = localStorage.getItem(key);
         } catch (e) {
           stored = null;
         }
-
         var theme;
-
         if (stored === "light" || stored === "dark") {
           theme = stored;
         } else if (window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches) {
@@ -86,18 +80,16 @@
         } else {
           theme = "light";
         }
-
         var background = theme === "dark" ? "#05060a" : "#f8f7f2";
         document.documentElement.setAttribute("data-theme", theme);
         document.documentElement.style.backgroundColor = background;
         document.documentElement.style.colorScheme = theme;
       })();
     </script>
-
     <link rel="stylesheet" href="css/style.min.css" />
   </head>
 
-  <!--BODY-->
+  <!--Body-->
   <body data-page="gallery">
     <a class="skip-link" href="#main-content">Przejdź do treści</a>
 
@@ -1215,7 +1207,6 @@
             </picture>
             <figcaption>Cliffs of Patagonia</figcaption>
           </figure>
-          <!-- TOKIO (6 zdjęć) -->
           <figure data-country="tokio">
             <picture class="gallery-item">
               <source
@@ -1250,7 +1241,6 @@
             </picture>
             <figcaption>Tokyo Night Skyline</figcaption>
           </figure>
-
           <figure data-country="tokio">
             <picture class="gallery-item">
               <source
@@ -1285,7 +1275,6 @@
             </picture>
             <figcaption>Shibuya Crossing</figcaption>
           </figure>
-
           <figure data-country="tokio">
             <picture class="gallery-item">
               <source
@@ -1320,7 +1309,6 @@
             </picture>
             <figcaption>Senso-ji Temple</figcaption>
           </figure>
-
           <figure data-country="tokio">
             <picture class="gallery-item">
               <source
@@ -1355,7 +1343,6 @@
             </picture>
             <figcaption>Tokyo Tower at Night</figcaption>
           </figure>
-
           <figure data-country="tokio">
             <picture class="gallery-item">
               <source
@@ -1390,7 +1377,6 @@
             </picture>
             <figcaption>Japanese Tea House</figcaption>
           </figure>
-
           <figure data-country="tokio">
             <picture class="gallery-item">
               <source
@@ -1428,7 +1414,7 @@
         </div>
       </section>
 
-      <!-- LIGHTBOX -->
+      <!-- Lightbox -->
       <div class="lightbox" data-lightbox hidden>
         <button class="lightbox__close" data-lightbox-close aria-label="Zamknij"></button>
         <button class="lightbox__nav lightbox__prev" data-lightbox-prev aria-label="Poprzednie zdjęcie"></button>
@@ -1440,7 +1426,7 @@
       </div>
     </main>
 
-    <!-- FOOTER -->
+    <!-- Footer -->
     <footer class="site-footer">
       <div class="container site-footer__grid">
         <div>
@@ -1451,9 +1437,16 @@
             Projekt demo stworzony przez
             <strong>KP_Code_</strong>
           </p>
-          <p>ul. Marynarki Wojennej 12/31, 33-100 Tarnów</p>
+          <address class="contact-address">
+            <p class="contact-address__item">
+              ul. Marynarki Wojennej 12
+              <br />
+              33-100 Tarnów
+              <br />
+              Polska
+            </p>
+          </address>
         </div>
-
         <div>
           <h3>Nawigacja</h3>
           <ul>
@@ -1472,47 +1465,49 @@
             <li><a href="cookies.html">Cookies</a></li>
           </ul>
         </div>
-
         <div>
           <h3>Kontakt</h3>
-
+          <address class="contact-address">
+            <p class="contact-address__item">
+              ul. Marynarki Wojennej 12
+              <br />
+              33-100 Tarnów
+              <br />
+              Polska
+            </p>
+          </address>
           <p class="contact-item">
             <img src="assets/img/svg-icons/tel.svg" alt="" class="contact-icon" />
             <a href="tel:+48533537091">+48 533 537 091</a>
           </p>
-
           <p class="contact-item">
             <img src="assets/img/svg-icons/email.svg" alt="" class="contact-icon" />
             <a href="mailto:kontakt@kp-code.pl">kontakt@kp-code.pl</a>
           </p>
-
           <div class="socials">
             <a href="https://www.facebook.com/ktravel" aria-label="Facebook">
               <img src="assets/img/svg-icons/fb.svg" alt="" class="socials__icon" />
             </a>
-
             <a href="https://github.com/kp-code" aria-label="GitHub">
               <img src="assets/img/svg-icons/github.svg" alt="" class="socials__icon" />
             </a>
-
             <a href="https://twitter.com/kp_code_" aria-label="X (Twitter)">
               <img src="assets/img/svg-icons/x.svg" alt="" class="socials__icon" />
             </a>
-
             <a href="https://www.youtube.com/@kp_code_" aria-label="YouTube">
               <img src="assets/img/svg-icons/youtube.svg" alt="" class="socials__icon" />
             </a>
           </div>
         </div>
       </div>
-<p class="site-footer__copy">
-  &copy;
-  <span id="current-year">2026</span>
-  KP_Code Digital Studio – Wszelkie prawa zastrzeżone
-</p>
+      <p class="site-footer__copy">
+        &copy;
+        <span id="current-year">2026</span>
+        KP_Code Digital Studio – Wszelkie prawa zastrzeżone
+      </p>
     </footer>
 
-    <!-- JS -->
+    <!-- Script -->
     <script type="module" src="js/script.js"></script>
   </body>
 </html>

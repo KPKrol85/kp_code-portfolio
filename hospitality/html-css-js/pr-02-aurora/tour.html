@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Aurora Travel – Szczegóły oferty | KP_Code_ Demo</title>
+    <title>Aurora Travel – Szczegóły oferty</title>
     <meta name="description" content="Poznaj szczegóły wybranej oferty Aurora Travel – butikowego biura podróży specjalizującego się w personalizowanych wyjazdach. Projekt demo KP_Code_." />
     <meta name="robots" content="index,follow" />
     <meta name="color-scheme" content="light dark" />
@@ -27,21 +27,16 @@
     <meta name="twitter:title" content="Szczegóły oferty – Aurora Travel" />
     <meta name="twitter:description" content="Ekskluzywne podróże szyte na miarę – Aurora Travel." />
     <meta name="twitter:image" content="https://hospitality-pr02-aurora.netlify.app/assets/img/og-cover.svg" />
-    <!-- CSS -->
-
     <script>
       (function () {
         var key = "kp-travel-theme";
         var stored = null;
-
         try {
           stored = localStorage.getItem(key);
         } catch (e) {
           stored = null;
         }
-
         var theme;
-
         if (stored === "light" || stored === "dark") {
           theme = stored;
         } else if (window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches) {
@@ -49,16 +44,13 @@
         } else {
           theme = "light";
         }
-
         var background = theme === "dark" ? "#05060a" : "#f8f7f2";
         document.documentElement.setAttribute("data-theme", theme);
         document.documentElement.style.backgroundColor = background;
         document.documentElement.style.colorScheme = theme;
       })();
     </script>
-
     <link rel="stylesheet" href="css/style.min.css" />
-    <!-- JSON-LD -->
     <script type="application/ld+json">
       {
         "@context": "https://schema.org",
@@ -75,10 +67,11 @@
     </script>
   </head>
 
+  <!-- Body -->
   <body data-page="tour-detail">
     <a class="skip-link" href="#main-content">Przejdź do treści</a>
 
-    <!-- HEADER -->
+    <!-- Header -->
     <header class="site-header" data-header>
       <div class="container site-header__inner">
         <a class="logo" href="index.html" aria-label="Aurora Travel">
@@ -104,10 +97,9 @@
       </div>
     </header>
 
-    <!-- MAIN CONTENT -->
+    <!-- Main -->
     <main id="main-content" class="page-tour-detail">
       <div class="page-hero reveal is-visible"></div>
-
       <div class="container">
         <nav class="breadcrumb">
           <ol>
@@ -116,7 +108,6 @@
             <li><span data-tour-breadcrumb-current>Brak wybranej oferty</span></li>
           </ol>
         </nav>
-
         <article class="tour-detail" data-tour-container>
           <header class="tour-detail__header">
             <p class="tour-detail__label" data-tour-region>Oferta Aurora Travel</p>
@@ -127,7 +118,6 @@
               <span data-tour-price><a href="tours.html">Powrót do strony wycieczek</a></span>
             </p>
           </header>
-
           <section class="tour-detail__hero">
             <picture class="tour-detail__image" data-tour-main-image></picture>
             <div class="tour-detail__summary" data-tour-summary>
@@ -135,11 +125,9 @@
               <p><a href="tours.html">Przejdź do listy dostępnych wycieczek</a></p>
             </div>
           </section>
-
           <section class="tour-detail__content" data-tour-content>
             <p>Sprawdź aktualne propozycje na stronie z ofertami i wybierz wycieczkę, aby zobaczyć pełny opis.</p>
           </section>
-
           <section class="tour-detail__gallery">
             <h2>Galeria z wyjazdu</h2>
             <div class="tour-gallery" data-tour-gallery data-gallery></div>
@@ -148,7 +136,7 @@
       </div>
     </main>
 
-    <!-- FOOTER -->
+    <!-- Footer -->
     <footer class="site-footer">
       <div class="container site-footer__grid">
         <div>
@@ -159,9 +147,7 @@
             Projekt demo stworzony przez
             <strong>KP_Code_</strong>
           </p>
-          <p>ul. Marynarki Wojennej 12/31, 33-100 Tarnów</p>
         </div>
-
         <div>
           <h3>Nawigacja</h3>
           <ul>
@@ -172,7 +158,6 @@
             <li><a href="contact.html">Kontakt</a></li>
           </ul>
         </div>
-
         <div>
           <h3>Regulaminy</h3>
           <ul>
@@ -181,9 +166,17 @@
             <li><a href="cookies.html">Cookies</a></li>
           </ul>
         </div>
-
         <div>
           <h3>Kontakt</h3>
+          <address class="contact-address">
+            <p class="contact-address__item">
+              ul. Marynarki Wojennej 12
+              <br />
+              33-100 Tarnów
+              <br />
+              Polska
+            </p>
+          </address>
           <p class="contact-item">
             <img src="assets/img/svg-icons/tel.svg" alt="" class="contact-icon" />
             <a href="tel:+48533537091">+48 533 537 091</a>
@@ -192,36 +185,32 @@
             <img src="assets/img/svg-icons/email.svg" alt="" class="contact-icon" />
             <a href="mailto:kontakt@kp-code.pl">kontakt@kp-code.pl</a>
           </p>
-
           <div class="socials">
             <a href="https://www.facebook.com/ktravel" aria-label="Facebook">
               <img src="assets/img/svg-icons/fb.svg" alt="" class="socials__icon" />
             </a>
-
             <a href="https://github.com/kp-code" aria-label="GitHub">
               <img src="assets/img/svg-icons/github.svg" alt="" class="socials__icon" />
             </a>
-
             <a href="https://twitter.com/kp_code_" aria-label="X (Twitter)">
               <img src="assets/img/svg-icons/x.svg" alt="" class="socials__icon" />
             </a>
-
             <a href="https://www.youtube.com/@kp_code_" aria-label="YouTube">
               <img src="assets/img/svg-icons/youtube.svg" alt="" class="socials__icon" />
             </a>
           </div>
         </div>
       </div>
-
       <p class="site-footer__copy">
         &copy;
         <span id="current-year">2026</span>
         KP_Code Digital Studio – Wszelkie prawa zastrzeżone
       </p>
     </footer>
-
+    <!-- Script -->
     <script type="module" src="js/script.js"></script>
 
+    <!-- Lightbox -->
     <div class="lightbox" data-lightbox hidden>
       <button class="lightbox__close" data-lightbox-close aria-label="Zamknij"></button>
       <button class="lightbox__nav lightbox__prev" data-lightbox-prev aria-label="Poprzednie zdjęcie"></button>

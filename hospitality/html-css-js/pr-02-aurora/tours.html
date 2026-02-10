@@ -1,33 +1,21 @@
 <!doctype html>
 <html lang="pl">
   <head>
-    <!-- PODSTAWOWE META -->
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-
-    <title>Aurora Travel - Wycieczki | KP_Code_ Demo</title>
-
+    <title>Aurora Travel - Wycieczki</title>
     <meta name="description" content="Przeglądaj ekskluzywne wyprawy, city breaki i egzotyczne podróże przygotowane przez Aurora Travel – butikowe biuro podróży." />
-
     <meta name="robots" content="index,follow" />
     <meta name="color-scheme" content="light dark" />
     <meta name="theme-color" media="(prefers-color-scheme: light)" content="#f8f7f2" />
     <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#05060a" />
-
-    <!-- KANONICZNY ADRES -->
     <link rel="canonical" href="https://hospitality-pr02-aurora.netlify.app/tours.html" />
-
-    <!-- PWA -->
     <link rel="manifest" href="site.webmanifest" />
-
-    <!-- FAVICONY -->
     <link rel="icon" type="image/svg+xml" href="assets/img/icons/favicon.svg" />
     <link rel="icon" type="image/png" sizes="32x32" href="assets/img/icons/favicon-32x32.png" />
     <link rel="icon" type="image/png" sizes="16x16" href="assets/img/icons/favicon-16x16.png" />
     <link rel="apple-touch-icon" href="assets/img/icons/apple-touch-icon.png" />
     <link rel="mask-icon" href="assets/img/icons/safari-pinned-tab.svg" color="#0c2d48" />
-
-    <!-- OPEN GRAPH -->
     <meta property="og:type" content="website" />
     <meta property="og:site_name" content="Aurora Travel" />
     <meta property="og:title" content="Aurora Travel - Wycieczki" />
@@ -35,14 +23,10 @@
     <meta property="og:url" content="https://hospitality-pr02-aurora.netlify.app/tours.html" />
     <meta property="og:image" content="https://hospitality-pr02-aurora.netlify.app/assets/img/og-cover.svg" />
     <meta property="og:locale" content="pl_PL" />
-
-    <!-- TWITTER -->
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content="Aurora Travel - Wycieczki" />
     <meta name="twitter:description" content="Odkryj premiowe oferty podróży i wyprawy szyte na miarę." />
     <meta name="twitter:image" content="https://hospitality-pr02-aurora.netlify.app/assets/img/og-cover.svg" />
-
-    <!-- JSON-LD -->
     <script type="application/ld+json">
       {
         "@context": "https://schema.org",
@@ -100,20 +84,16 @@
         ]
       }
     </script>
-
     <script>
       (function () {
         var key = "kp-travel-theme";
         var stored = null;
-
         try {
           stored = localStorage.getItem(key);
         } catch (e) {
           stored = null;
         }
-
         var theme;
-
         if (stored === "light" || stored === "dark") {
           theme = stored;
         } else if (window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches) {
@@ -121,35 +101,30 @@
         } else {
           theme = "light";
         }
-
         var background = theme === "dark" ? "#05060a" : "#f8f7f2";
         document.documentElement.setAttribute("data-theme", theme);
         document.documentElement.style.backgroundColor = background;
         document.documentElement.style.colorScheme = theme;
       })();
     </script>
-
     <link rel="stylesheet" href="css/style.min.css" />
   </head>
 
-  <!-- BODY -->
+  <!-- Body -->
   <body data-page="tours">
     <a class="skip-link" href="#main-content">Przejdź do treści</a>
 
-    <!-- HEADER -->
+    <!-- Header -->
     <header class="site-header" data-header>
       <div class="container site-header__inner">
-        <!-- LOGO + NAZWA FIRMY -->
         <a class="logo" href="index.html" aria-label="Aurora Travel">
           <img src="assets/img/logo/logo.svg" alt="" class="logo__icon" />
           <span class="logo__text">Aurora Travel</span>
         </a>
-        <!-- HAMBURGER -->
         <button class="nav__toggle" type="button" data-nav-toggle aria-expanded="false" aria-controls="primary-navigation">
           <img src="assets/img/svg-icons/hamburger.svg" alt="" class="nav__toggle-icon" aria-hidden="true" />
           <span class="visually-hidden">Otwórz menu</span>
         </button>
-        <!-- NAV -->
         <nav class="nav" id="primary-navigation" aria-label="Główne menu" data-nav>
           <ul>
             <li><a href="index.html">Strona główna</a></li>
@@ -158,7 +133,6 @@
             <li><a href="gallery.html">Galeria</a></li>
             <li><a href="contact.html">Kontakt</a></li>
           </ul>
-          <!-- THEME TOGGLE -->
           <button class="theme-toggle" type="button" data-theme-toggle aria-label="Przełącz motyw">
             <span class="theme-toggle__icon" aria-hidden="true"></span>
           </button>
@@ -166,9 +140,9 @@
       </div>
     </header>
 
-    <!-- MAIN CONTENT -->
+    <!-- Main -->
     <main id="main-content">
-      <!-- HERO -->
+      <!-- Hero -->
       <div class="page-hero page-hero--tours">
         <div class="container">
           <nav class="breadcrumb" aria-label="Ścieżka nawigacyjna">
@@ -181,8 +155,6 @@
           <p>Filtruj propozycje według typu podróży, regionu i ceny, aby znaleźć idealną wyprawę.</p>
         </div>
       </div>
-
-      <!-- FILTERS -->
       <section class="section section--filters" aria-label="Filtry ofert">
         <div class="container">
           <form class="filters" data-filters>
@@ -223,11 +195,8 @@
           </form>
         </div>
       </section>
-
-      <!-- TOURS -->
       <section class="section" aria-label="Lista wycieczek">
         <div class="container tour-list" data-tours-list>
-          <!-- TOKIO -->
           <article class="tour-card tour-card--detailed" id="tokio" data-type="city" data-region="azja" data-days="12" data-price="24000">
             <picture class="tour-card__media">
               <source
@@ -238,7 +207,6 @@
                   assets/img/tours/tokio/tokio-01-1600x1040.avif 1600w
                 "
                 type="image/avif" />
-
               <source
                 srcset="
                   assets/img/tours/tokio/tokio-01-400x260.webp    400w,
@@ -247,7 +215,6 @@
                   assets/img/tours/tokio/tokio-01-1600x1040.webp 1600w
                 "
                 type="image/webp" />
-
               <img
                 src="assets/img/tours/tokio/tokio-01-800x520.jpg"
                 srcset="
@@ -260,7 +227,6 @@
                 alt="Świątynia w Kioto otoczona zielenią"
                 loading="lazy" />
             </picture>
-
             <div>
               <h2>Tokio &amp; Kyoto Private Edition</h2>
               <p>Zanurz się w futurystycznym Tokio i klasycznym Kioto z prywatnym przewodnikiem, ceremonią herbaty i noclegami w ryokanach.</p>
@@ -274,8 +240,6 @@
               </div>
             </div>
           </article>
-
-          <!-- MALEDIWY -->
           <article class="tour-card tour-card--detailed" id="malediwy" data-type="egzotyczne" data-region="ocean" data-days="7" data-price="32000">
             <picture class="tour-card__media">
               <source
@@ -286,7 +250,6 @@
                   assets/img/tours/malediwy/malediwy-01-1600x1040.avif 1600w
                 "
                 type="image/avif" />
-
               <source
                 srcset="
                   assets/img/tours/malediwy/malediwy-01-400x260.webp    400w,
@@ -295,7 +258,6 @@
                   assets/img/tours/malediwy/malediwy-01-1600x1040.webp 1600w
                 "
                 type="image/webp" />
-
               <img
                 src="assets/img/tours/malediwy/malediwy-01-800x520.jpg"
                 srcset="
@@ -308,7 +270,6 @@
                 alt="Laguna z krystaliczną wodą na Malediwach"
                 loading="lazy" />
             </picture>
-
             <div>
               <h2>Malediwy Lagoon Escape</h2>
               <p>Willowe apartamenty na wodzie, prywatne rejsy o zachodzie słońca i indywidualne sesje spa.</p>
@@ -322,8 +283,6 @@
               </div>
             </div>
           </article>
-
-          <!-- PATAGONIA -->
           <article class="tour-card tour-card--detailed" id="patagonia" data-type="objazdowe" data-region="ameryka" data-days="14" data-price="28000">
             <picture class="tour-card__media">
               <source
@@ -334,7 +293,6 @@
                   assets/img/tours/patagonia/patagonia-01-1600x1040.avif 1600w
                 "
                 type="image/avif" />
-
               <source
                 srcset="
                   assets/img/tours/patagonia/patagonia-01-400x260.webp    400w,
@@ -343,7 +301,6 @@
                   assets/img/tours/patagonia/patagonia-01-1600x1040.webp 1600w
                 "
                 type="image/webp" />
-
               <img
                 src="assets/img/tours/patagonia/patagonia-01-800x520.jpg"
                 srcset="
@@ -356,7 +313,6 @@
                 alt="Lodowiec Perito Moreno w Patagonii"
                 loading="lazy" />
             </picture>
-
             <div>
               <h2>Patagonia Signature Expedition</h2>
               <p>Wyprawa łącząca trekking, winnice i helikopter nad lodowcami.</p>
@@ -370,8 +326,6 @@
               </div>
             </div>
           </article>
-
-          <!-- NOWY JORK -->
           <article class="tour-card tour-card--detailed" id="nyc" data-type="city" data-region="ameryka" data-days="5" data-price="15000">
             <picture class="tour-card__media">
               <source
@@ -382,7 +336,6 @@
                   assets/img/tours/new-york/new-york-01-1600x1040.avif 1600w
                 "
                 type="image/avif" />
-
               <source
                 srcset="
                   assets/img/tours/new-york/new-york-01-400x260.webp    400w,
@@ -391,7 +344,6 @@
                   assets/img/tours/new-york/new-york-01-1600x1040.webp 1600w
                 "
                 type="image/webp" />
-
               <img
                 src="assets/img/tours/new-york/new-york-01-800x520.jpg"
                 srcset="
@@ -404,7 +356,6 @@
                 alt="Most Brookliński o świcie"
                 loading="lazy" />
             </picture>
-
             <div>
               <h2>New York City Break Platinum</h2>
               <p>Apartament przy Central Parku, bilety na Broadway i kulisy muzeów po godzinach.</p>
@@ -418,8 +369,6 @@
               </div>
             </div>
           </article>
-
-          <!-- MAROKO -->
           <article class="tour-card tour-card--detailed" id="maroko" data-type="rodzinne" data-region="afryka" data-days="8" data-price="11000">
             <picture class="tour-card__media">
               <source
@@ -430,7 +379,6 @@
                   assets/img/tours/maroko/maroko-01-1600x1040.avif 1600w
                 "
                 type="image/avif" />
-
               <source
                 srcset="
                   assets/img/tours/maroko/maroko-01-400x260.webp    400w,
@@ -439,7 +387,6 @@
                   assets/img/tours/maroko/maroko-01-1600x1040.webp 1600w
                 "
                 type="image/webp" />
-
               <img
                 src="assets/img/tours/maroko/maroko-01-800x520.jpg"
                 srcset="
@@ -452,7 +399,6 @@
                 alt="Panorama wybrzeża Agadiru z szeroką plażą i zabudową miasta przy spokojnym oceanie"
                 loading="lazy" />
             </picture>
-
             <div>
               <h2>Maroko Family Discovery</h2>
               <p>Bezpieczna trasa dla rodzin z dziećmi – Marrakesz, Atlas i noc pod gwiazdami na pustyni.</p>
@@ -466,8 +412,6 @@
               </div>
             </div>
           </article>
-
-          <!-- ISLANDIA -->
           <article class="tour-card tour-card--detailed" id="islandia" data-type="objazdowe" data-region="europa" data-days="9" data-price="19000">
             <picture class="tour-card__media">
               <source
@@ -478,7 +422,6 @@
                   assets/img/tours/islandia/islandia-01-1600x1040.avif 1600w
                 "
                 type="image/avif" />
-
               <source
                 srcset="
                   assets/img/tours/islandia/islandia-01-400x260.webp    400w,
@@ -487,7 +430,6 @@
                   assets/img/tours/islandia/islandia-01-1600x1040.webp 1600w
                 "
                 type="image/webp" />
-
               <img
                 src="assets/img/tours/islandia/islandia-01-800x520.jpg"
                 srcset="
@@ -500,7 +442,6 @@
                 alt="Zorza polarna nad wodospadem w Islandii"
                 loading="lazy" />
             </picture>
-
             <div>
               <h2>Islandia Fjord Moments</h2>
               <p>Road trip po Islandii z prywatnymi przewodnikami, super jeepami i sesją w geotermalnych spa.</p>
@@ -514,13 +455,11 @@
               </div>
             </div>
           </article>
-
-          <!-- END TOURS -->
         </div>
       </section>
     </main>
 
-    <!-- FOOTER -->
+    <!-- Footer -->
     <footer class="site-footer">
       <div class="container site-footer__grid">
         <div>
@@ -531,9 +470,16 @@
             Projekt demo stworzony przez
             <strong>KP_Code_</strong>
           </p>
-          <p>ul. Marynarki Wojennej 12/31, 33-100 Tarnów</p>
+          <address class="contact-address">
+            <p class="contact-address__item">
+              ul. Marynarki Wojennej 12
+              <br />
+              33-100 Tarnów
+              <br />
+              Polska
+            </p>
+          </address>
         </div>
-
         <div>
           <h3>Nawigacja</h3>
           <ul>
@@ -544,7 +490,6 @@
             <li><a href="contact.html">Kontakt</a></li>
           </ul>
         </div>
-
         <div>
           <h3>Regulaminy</h3>
           <ul>
@@ -553,40 +498,41 @@
             <li><a href="cookies.html">Cookies</a></li>
           </ul>
         </div>
-
         <div>
           <h3>Kontakt</h3>
-
+          <address class="contact-address">
+            <p class="contact-address__item">
+              ul. Marynarki Wojennej 12
+              <br />
+              33-100 Tarnów
+              <br />
+              Polska
+            </p>
+          </address>
           <p class="contact-item">
             <img src="assets/img/svg-icons/tel.svg" alt="" class="contact-icon" />
             <a href="tel:+48533537091">+48 533 537 091</a>
           </p>
-
           <p class="contact-item">
             <img src="assets/img/svg-icons/email.svg" alt="" class="contact-icon" />
             <a href="mailto:kontakt@kp-code.pl">kontakt@kp-code.pl</a>
           </p>
-
           <div class="socials">
             <a href="https://www.facebook.com/ktravel" aria-label="Facebook">
               <img src="assets/img/svg-icons/fb.svg" alt="" class="socials__icon" />
             </a>
-
             <a href="https://github.com/kp-code" aria-label="GitHub">
               <img src="assets/img/svg-icons/github.svg" alt="" class="socials__icon" />
             </a>
-
             <a href="https://twitter.com/kp_code_" aria-label="X (Twitter)">
               <img src="assets/img/svg-icons/x.svg" alt="" class="socials__icon" />
             </a>
-
             <a href="https://www.youtube.com/@kp_code_" aria-label="YouTube">
               <img src="assets/img/svg-icons/youtube.svg" alt="" class="socials__icon" />
             </a>
           </div>
         </div>
       </div>
-
       <p class="site-footer__copy">
         &copy;
         <span id="current-year">2026</span>
@@ -594,6 +540,7 @@
       </p>
     </footer>
 
+    <!-- Script -->
     <script type="module" src="js/script.js"></script>
   </body>
 </html>
