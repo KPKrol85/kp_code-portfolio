@@ -1,19 +1,16 @@
-const VERSION = "kp_code_v1.00.32";
+const VERSION = "aurora-01.00.00";
 
 const STATIC_CACHE = `${VERSION}_static`;
 const HTML_CACHE = `${VERSION}_html`;
 
 const OFFLINE_URL = "/offline.html";
 
-// Production-critical assets that must match HTML references exactly (avoid style.css/style.min.css drift).
 const STATIC_ASSETS = ["/", "/index.html", "/css/style.min.css", "/js/script.js", "/site.webmanifest", OFFLINE_URL];
 
-// INSTALL
 self.addEventListener("install", (event) => {
   event.waitUntil(caches.open(STATIC_CACHE).then((cache) => cache.addAll(STATIC_ASSETS)));
 });
 
-// ACTIVATE
 self.addEventListener("activate", (event) => {
   event.waitUntil(
     caches.keys().then((keys) =>
@@ -22,9 +19,9 @@ self.addEventListener("activate", (event) => {
           if (![STATIC_CACHE, HTML_CACHE].includes(key)) {
             return caches.delete(key);
           }
-        })
-      )
-    )
+        }),
+      ),
+    ),
   );
   self.clients.claim();
 });
@@ -35,7 +32,6 @@ self.addEventListener("message", (event) => {
   }
 });
 
-// FETCH
 self.addEventListener("fetch", (event) => {
   const { request } = event;
 
@@ -74,8 +70,7 @@ async function networkFirst(request) {
   try {
     const response = await fetch(request);
     const contentType = response.headers.get("content-type") || "";
-    const isCacheableHtmlResponse =
-      response.ok && response.status >= 200 && response.status < 300 && contentType.includes("text/html");
+    const isCacheableHtmlResponse = response.ok && response.status >= 200 && response.status < 300 && contentType.includes("text/html");
 
     if (isCacheableHtmlResponse) {
       cache.put(request, response.clone());
