@@ -1,13 +1,19 @@
 export function initTourDetail() {
   const params = new URLSearchParams(window.location.search);
-  const tourId = params.get("id");
-  if (!tourId) return;
+  const rawTourId = params.get("id");
+  const tourId = rawTourId ? rawTourId.trim() : "";
+
+  if (!tourId) {
+    return;
+  }
 
   fetch("assets/data/tours.json")
     .then((res) => res.json())
     .then((tours) => {
       const tour = tours.find((t) => t.id === tourId);
-      if (!tour) return;
+      if (!tour) {
+        return;
+      }
 
       fillTourContent(tour);
     })
@@ -22,19 +28,49 @@ function fillTourContent(tour) {
   document.querySelector("[data-tour-breadcrumb-current]").textContent = tour.name;
   document.querySelector("[data-tour-days]").textContent = `${tour.days} dni`;
   document.querySelector("[data-tour-price]").textContent = tour.priceFrom;
-  document.querySelector("[data-tour-summary]").innerHTML = tour.shortSummary;
-  document.querySelector("[data-tour-content]").innerHTML = tour.longDescription;
+  // shortSummary intentionally supports markup from JSON, so we sanitize before using innerHTML.
+  document.querySelector("[data-tour-summary]").innerHTML = sanitizeTourHtml(tour.shortSummary);
+  // longDescription intentionally supports markup from JSON, so we sanitize before using innerHTML.
+  document.querySelector("[data-tour-content]").innerHTML = sanitizeTourHtml(tour.longDescription);
 
   const mainImage = tour.images[0];
   const mainImageContainer = document.querySelector("[data-tour-main-image]");
   if (mainImage && mainImageContainer) {
     mainImageContainer.innerHTML = createPictureMarkup(mainImage.base, mainImage.alt);
   }
-  
+
   const galleryEl = document.querySelector("[data-tour-gallery]");
   if (galleryEl && tour.images.length > 0) {
     galleryEl.innerHTML = tour.images.map((img) => createPictureMarkup(img.base, img.alt)).join("");
   }
+}
+
+function sanitizeTourHtml(html) {
+  const allowedTags = new Set(["P", "STRONG", "UL", "LI", "H3", "EM", "BR"]);
+  const allowedAttrsByTag = {
+    UL: new Set(["class"]),
+  };
+
+  const template = document.createElement("template");
+  template.innerHTML = html;
+
+  const elements = Array.from(template.content.querySelectorAll("*"));
+  elements.forEach((el) => {
+    if (!allowedTags.has(el.tagName)) {
+      el.replaceWith(document.createTextNode(el.textContent || ""));
+      return;
+    }
+
+    Array.from(el.attributes).forEach((attr) => {
+      const allowedAttrs = allowedAttrsByTag[el.tagName];
+      const isAllowedAttr = allowedAttrs ? allowedAttrs.has(attr.name) : false;
+      if (!isAllowedAttr) {
+        el.removeAttribute(attr.name);
+      }
+    });
+  });
+
+  return template.innerHTML;
 }
 
 function createPictureMarkup(base, alt) {

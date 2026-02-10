@@ -1,16 +1,16 @@
-const VERSION = "kp_code_v1.00.31";
+const VERSION = "kp_code_v1.00.32";
 
 const STATIC_CACHE = `${VERSION}_static`;
 const HTML_CACHE = `${VERSION}_html`;
 
 const OFFLINE_URL = "/offline.html";
 
-const STATIC_ASSETS = ["/", "/index.html", "/css/style.css", "/js/script.js", "/site.webmanifest", OFFLINE_URL];
+// Production-critical assets that must match HTML references exactly (avoid style.css/style.min.css drift).
+const STATIC_ASSETS = ["/", "/index.html", "/css/style.min.css", "/js/script.js", "/site.webmanifest", OFFLINE_URL];
 
 // INSTALL
 self.addEventListener("install", (event) => {
   event.waitUntil(caches.open(STATIC_CACHE).then((cache) => cache.addAll(STATIC_ASSETS)));
-  self.skipWaiting();
 });
 
 // ACTIVATE
@@ -27,6 +27,12 @@ self.addEventListener("activate", (event) => {
     )
   );
   self.clients.claim();
+});
+
+self.addEventListener("message", (event) => {
+  if (event.data?.type === "SKIP_WAITING") {
+    self.skipWaiting();
+  }
 });
 
 // FETCH
@@ -56,7 +62,10 @@ async function cacheFirst(request) {
   if (cached) return cached;
 
   const response = await fetch(request);
-  cache.put(request, response.clone());
+  const isCacheableResponse = response.ok && response.status >= 200 && response.status < 300 && response.type !== "opaque";
+  if (isCacheableResponse) {
+    cache.put(request, response.clone());
+  }
   return response;
 }
 
@@ -64,7 +73,14 @@ async function networkFirst(request) {
   const cache = await caches.open(HTML_CACHE);
   try {
     const response = await fetch(request);
-    cache.put(request, response.clone());
+    const contentType = response.headers.get("content-type") || "";
+    const isCacheableHtmlResponse =
+      response.ok && response.status >= 200 && response.status < 300 && contentType.includes("text/html");
+
+    if (isCacheableHtmlResponse) {
+      cache.put(request, response.clone());
+    }
+
     return response;
   } catch (error) {
     const cached = await cache.match(request);

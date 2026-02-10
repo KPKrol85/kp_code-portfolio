@@ -4,7 +4,10 @@
   "main": "service-worker.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build:css": "postcss css/style.css -o css/style.min.css"
+    "build:css": "postcss css/style.css -o css/style.min.css",
+    "check:css-assets": "node scripts/check-css-assets.js",
+    "build": "npm run build:css && npm run check:css-assets && npm run check:assets",
+    "check:assets": "node scripts/check-asset-integrity.js"
   },
   "keywords": [],
   "author": "",

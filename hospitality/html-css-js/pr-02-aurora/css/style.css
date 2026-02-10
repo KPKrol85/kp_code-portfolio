@@ -127,6 +127,25 @@
   outline-offset: 2px;
 }
 
+@media (prefers-reduced-motion: reduce) {
+  html:focus-within {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation: none !important;
+    transition: none !important;
+  }
+
+  .reveal,
+  .gallery-grid figure.reveal {
+    opacity: 1;
+    transform: none;
+  }
+}
+
 /* ===== 01 - LAYOUT ===== */
 
 * {
@@ -1156,9 +1175,6 @@ body[data-page="tours"] .tour-card a:hover {
   z-index: 30;
 }
 
-.dropdown select {
-  display: none;
-}
 
 .dropdown__button {
   display: flex;

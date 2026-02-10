@@ -9,24 +9,24 @@
     <meta name="color-scheme" content="light dark" />
     <meta name="theme-color" media="(prefers-color-scheme: light)" content="#f8f7f2" />
     <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#05060a" />
-    <link rel="canonical" href="https://travel-project-02.netlify.app/tour.html" />
+    <link rel="canonical" href="https://hospitality-pr02-aurora.netlify.app/tour.html" />
     <link rel="manifest" href="site.webmanifest" />
-    <link rel="icon" type="image/svg+xml" href="assets/img/favicon.svg" />
-    <link rel="icon" type="image/png" sizes="32x32" href="assets/img/favicon-32.png" />
-    <link rel="icon" type="image/png" sizes="16x16" href="assets/img/favicon-16.png" />
-    <link rel="apple-touch-icon" href="assets/img/apple-touch-icon.png" />
-    <link rel="mask-icon" href="assets/img/safari-pinned-tab.svg" color="#0c2d48" />
+    <link rel="icon" type="image/svg+xml" href="assets/img/icons/favicon.svg" />
+    <link rel="icon" type="image/png" sizes="32x32" href="assets/img/icons/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="assets/img/icons/favicon-16x16.png" />
+    <link rel="apple-touch-icon" href="assets/img/icons/apple-touch-icon.png" />
+    <link rel="mask-icon" href="assets/img/icons/safari-pinned-tab.svg" color="#0c2d48" />
     <meta property="og:type" content="article" />
     <meta property="og:site_name" content="Aurora Travel" />
     <meta property="og:title" content="Szczegóły oferty – Aurora Travel" />
     <meta property="og:description" content="Poznaj szczegóły wybranej wycieczki i spersonalizowanych usług Aurora Travel." />
-    <meta property="og:url" content="https://travel-project-02.netlify.app/tour.html" />
-    <meta property="og:image" content="https://travel-project-02.netlify.app/assets/img/og-cover.jpg" />
+    <meta property="og:url" content="https://hospitality-pr02-aurora.netlify.app/tour.html" />
+    <meta property="og:image" content="https://hospitality-pr02-aurora.netlify.app/assets/img/og-cover.svg" />
     <meta property="og:locale" content="pl_PL" />
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content="Szczegóły oferty – Aurora Travel" />
     <meta name="twitter:description" content="Ekskluzywne podróże szyte na miarę – Aurora Travel." />
-    <meta name="twitter:image" content="https://travel-project-02.netlify.app/assets/img/og-cover.jpg" />
+    <meta name="twitter:image" content="https://hospitality-pr02-aurora.netlify.app/assets/img/og-cover.svg" />
     <!-- CSS -->
 
     <script>
@@ -63,13 +63,13 @@
       {
         "@context": "https://schema.org",
         "@type": "WebPage",
-        "@id": "https://travel-project-02.netlify.app/tour.html",
-        "url": "https://travel-project-02.netlify.app/tour.html",
+        "@id": "https://hospitality-pr02-aurora.netlify.app/tour.html",
+        "url": "https://hospitality-pr02-aurora.netlify.app/tour.html",
         "name": "Szczegóły oferty – Aurora Travel | KP_Code_ Demo",
         "description": "Podstrona szczegółów pojedynczej oferty Aurora Travel – butikowego biura podróży.",
         "inLanguage": "pl-PL",
         "isPartOf": {
-          "@id": "https://travel-project-02.netlify.app/"
+          "@id": "https://hospitality-pr02-aurora.netlify.app/"
         }
       }
     </script>
@@ -89,7 +89,7 @@
           <img src="assets/img/svg-icons/hamburger.svg" alt="" class="nav__toggle-icon" aria-hidden="true" />
           <span class="visually-hidden">Otwórz menu</span>
         </button>
-        <nav class="nav" id="primary-navigation" aria-label="Główne menu" hidden data-nav>
+        <nav class="nav" id="primary-navigation" aria-label="Główne menu" data-nav>
           <ul>
             <li><a href="index.html">Strona główna</a></li>
             <li><a href="tours.html">Wycieczki</a></li>
@@ -113,27 +113,32 @@
           <ol>
             <li><a href="index.html">Strona główna</a></li>
             <li><a href="tours.html">Wycieczki i oferty</a></li>
-            <li><span data-tour-breadcrumb-current></span></li>
+            <li><span data-tour-breadcrumb-current>Brak wybranej oferty</span></li>
           </ol>
         </nav>
 
         <article class="tour-detail" data-tour-container>
           <header class="tour-detail__header">
-            <p class="tour-detail__label" data-tour-region></p>
-            <h1 class="tour-detail__title" data-tour-title></h1>
+            <p class="tour-detail__label" data-tour-region>Oferta Aurora Travel</p>
+            <h1 class="tour-detail__title" data-tour-title>Nie znaleziono lub nie wybrano oferty</h1>
             <p class="tour-detail__meta">
-              <span data-tour-days></span>
+              <span data-tour-days>Wybierz wycieczkę z listy ofert</span>
               •
-              <span data-tour-price></span>
+              <span data-tour-price><a href="tours.html">Powrót do strony wycieczek</a></span>
             </p>
           </header>
 
           <section class="tour-detail__hero">
             <picture class="tour-detail__image" data-tour-main-image></picture>
-            <div class="tour-detail__summary" data-tour-summary></div>
+            <div class="tour-detail__summary" data-tour-summary>
+              <p>Nie udało się wyświetlić szczegółów oferty. Mogła nie zostać wybrana lub już nie istnieje.</p>
+              <p><a href="tours.html">Przejdź do listy dostępnych wycieczek</a></p>
+            </div>
           </section>
 
-          <section class="tour-detail__content" data-tour-content></section>
+          <section class="tour-detail__content" data-tour-content>
+            <p>Sprawdź aktualne propozycje na stronie z ofertami i wybierz wycieczkę, aby zobaczyć pełny opis.</p>
+          </section>
 
           <section class="tour-detail__gallery">
             <h2>Galeria z wyjazdu</h2>

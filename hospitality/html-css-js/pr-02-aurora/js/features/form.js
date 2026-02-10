@@ -4,6 +4,8 @@ export function initForm() {
   const form = document.querySelector(SELECTOR);
   if (!form) return;
 
+  form.setAttribute('novalidate', '');
+
   const successMessage = form.querySelector('.form__success');
   const tourSelect = form.querySelector('select[name="tour"]');
   const dateStart = form.querySelector('#date-start');
