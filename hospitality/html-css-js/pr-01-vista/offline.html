@@ -10,21 +10,17 @@
       (() => {
         const KEY = "theme-pref";
         let pref = "auto";
-
         try {
           const stored = localStorage.getItem(KEY);
           if (stored === "light" || stored === "dark" || stored === "auto") pref = stored;
         } catch {}
-
-        const resolved = pref === "auto"
-          ? (window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light")
-          : pref;
-
+        const resolved = pref === "auto" ? (window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light") : pref;
         document.documentElement.setAttribute("data-theme", resolved);
       })();
     </script>
     <link rel="stylesheet" href="css/style.css" />
   </head>
+
   <!-- Body -->
   <body>
     <a class="skip-link" href="#main">Przejdź do treści</a>
@@ -54,6 +50,7 @@
             <li><a href="rooms.html" data-nav>Pokoje &amp; Apartamenty</a></li>
             <li><a href="offers.html" data-nav>Oferty specjalne</a></li>
             <li><a href="gallery.html" data-nav>Galeria</a></li>
+            <li><a href="onas.html" data-nav>O nas</a></li>
             <li><a href="contact.html" data-nav>Kontakt</a></li>
           </ul>
           <div class="site-nav__extras">
@@ -71,6 +68,7 @@
         <p><a class="btn btn--primary" href="index.html">Wróć na stronę główną</a></p>
       </div>
     </main>
+
     <!-- Footer-->
     <footer class="site-footer" role="contentinfo" aria-labelledby="footer-heading">
       <h2 id="footer-heading" class="sr-only">Stopka serwisu</h2>
@@ -95,6 +93,7 @@
                 <li><a href="rooms.html" data-nav>Pokoje</a></li>
                 <li><a href="offers.html" data-nav>Oferty</a></li>
                 <li><a href="gallery.html" data-nav>Galeria</a></li>
+            <li><a href="onas.html" data-nav>O nas</a></li>
                 <li><a href="contact.html" data-nav>Kontakt</a></li>
               </ul>
             </nav>
@@ -124,9 +123,7 @@
                 <br />
                 <a href="tel:+48533537091">+48 533537091</a>
               </p>
-
             </section>
-
             <section class="footer__col footer__social" aria-labelledby="footer-social">
               <h3 id="footer-social" class="footer__heading">SOCIAL MEDIA</h3>
               <div class="footer__social-links">
@@ -167,9 +164,7 @@
                 </a>
               </div>
             </section>
-
           </div>
-
           <div class="footer__bottom">
             <p>
               ©
@@ -180,7 +175,7 @@
         </div>
       </div>
     </footer>
+    <!-- Script -->
     <script type="module" defer src="js/script.js"></script>
   </body>
 </html>
-

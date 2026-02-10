@@ -39,7 +39,6 @@
       (() => {
         const KEY = "theme-pref";
         let pref = "auto";
-
         try {
           const stored = localStorage.getItem(KEY);
           if (stored === "light" || stored === "dark" || stored === "auto") pref = stored;
@@ -53,10 +52,11 @@
     <link rel="stylesheet" href="css/style.css" />
   </head>
 
-  <!-- BODY  -->
+  <!-- Body  -->
   <body>
     <a class="skip-link" href="#main">Przejdź do treści</a>
-    <!-- HEADER -->
+
+    <!-- Header -->
     <header class="site-header" id="top">
       <div class="container site-header__inner">
         <a class="site-header__brand" href="index.html" aria-label="Strona główna">
@@ -81,6 +81,7 @@
             <li><a href="rooms.html" data-nav aria-current="page">Pokoje &amp; Apartamenty</a></li>
             <li><a href="offers.html" data-nav>Oferty specjalne</a></li>
             <li><a href="gallery.html" data-nav>Galeria</a></li>
+            <li><a href="onas.html" data-nav>O nas</a></li>
             <li><a href="contact.html" data-nav>Kontakt</a></li>
           </ul>
           <div class="site-nav__extras">
@@ -90,7 +91,7 @@
       </div>
     </header>
 
-    <!-- MAIN -->
+    <!-- Maim -->
     <main id="main">
       <nav class="breadcrumb" aria-label="Okruszki">
         <div class="container">
@@ -100,11 +101,9 @@
           </ol>
         </div>
       </nav>
-
       <section class="section subpage-rooms" aria-labelledby="rooms-heading">
         <div class="container">
           <h1 id="rooms-heading" class="section-title">Pokoje &amp; Apartamenty</h1>
-
           <nav class="tabs gallery-cats gallery-cats--panel rooms-filters" aria-label="Filtruj typ pokoi">
             <ul class="gallery-cats__list" role="tablist">
               <li class="gallery-cats__item">
@@ -121,7 +120,6 @@
               </li>
             </ul>
           </nav>
-
           <div class="tabs__panels">
             <div class="tabs__panel" id="rooms-panel-all" role="tabpanel" aria-labelledby="rooms-tab-all">
               <div class="card-grid">
@@ -139,7 +137,6 @@
                       sizes="(min-width: 1200px) 1100px,
        (min-width: 900px) 800px,
        calc(100vw - 2rem)" />
-
                     <source
                       type="image/webp"
                       srcset="
@@ -152,7 +149,6 @@
                       sizes="(min-width: 1200px) 1100px,
        (min-width: 900px) 800px,
        calc(100vw - 2rem)" />
-
                     <img
                       class="room-card__img"
                       src="assets/img/rooms/classic-1280x853.jpg"
@@ -178,7 +174,6 @@
                     <p class="room-card__text">Zaprojektowany dla komfortu krótkich pobytów.</p>
                   </div>
                 </article>
-
                 <article class="room-card">
                   <picture>
                     <source
@@ -193,7 +188,6 @@
                       sizes="(min-width: 1200px) 1100px,
        (min-width: 900px) 800px,
        calc(100vw - 2rem)" />
-
                     <source
                       type="image/webp"
                       srcset="
@@ -206,7 +200,6 @@
                       sizes="(min-width: 1200px) 1100px,
        (min-width: 900px) 800px,
        calc(100vw - 2rem)" />
-
                     <img
                       class="room-card__img"
                       src="assets/img/rooms/deluxe-1280x853.jpg"
@@ -258,7 +251,6 @@
                       sizes="(min-width: 1200px) 1100px,
        (min-width: 900px) 800px,
        calc(100vw - 2rem)" />
-
                     <img
                       class="room-card__img"
                       src="assets/img/rooms/luxury-suite-1280x853.jpg"
@@ -286,12 +278,10 @@
                 </article>
               </div>
             </div>
-
             <div class="tabs__panel" id="rooms-panel-classic" role="tabpanel" aria-labelledby="rooms-tab-classic" hidden>
               <div class="card-grid">
                 <article class="room-card">
                   <picture>
-
                     <source
                       type="image/avif"
                       srcset="
@@ -304,7 +294,6 @@
                       sizes="(min-width: 1200px) 1100px,
            (min-width: 900px) 800px,
            calc(100vw - 2rem)" />
-
                     <source
                       type="image/webp"
                       srcset="
@@ -317,7 +306,6 @@
                       sizes="(min-width: 1200px) 1100px,
            (min-width: 900px) 800px,
            calc(100vw - 2rem)" />
-
                     <img
                       class="room-card__img"
                       src="assets/img/rooms/classic-1280x853.jpg"
@@ -345,12 +333,10 @@
                 </article>
               </div>
             </div>
-
             <div class="tabs__panel" id="rooms-panel-deluxe" role="tabpanel" aria-labelledby="rooms-tab-deluxe" hidden>
               <div class="card-grid">
                 <article class="room-card">
                   <picture>
-
                     <source
                       type="image/avif"
                       srcset="
@@ -363,7 +349,6 @@
                       sizes="(min-width: 1200px) 1100px,
            (min-width: 900px) 800px,
            calc(100vw - 2rem)" />
-
                     <source
                       type="image/webp"
                       srcset="
@@ -376,7 +361,6 @@
                       sizes="(min-width: 1200px) 1100px,
            (min-width: 900px) 800px,
            calc(100vw - 2rem)" />
-              
                     <img
                       class="room-card__img"
                       src="assets/img/rooms/deluxe-1280x853.jpg"
@@ -404,12 +388,10 @@
                 </article>
               </div>
             </div>
-
             <div class="tabs__panel" id="rooms-panel-luxury" role="tabpanel" aria-labelledby="rooms-tab-luxury" hidden>
               <div class="card-grid">
                 <article class="room-card">
                   <picture>
-
                     <source
                       type="image/avif"
                       srcset="
@@ -422,7 +404,6 @@
                       sizes="(min-width: 1200px) 1100px,
            (min-width: 900px) 800px,
            calc(100vw - 2rem)" />
-
                     <source
                       type="image/webp"
                       srcset="
@@ -435,7 +416,6 @@
                       sizes="(min-width: 1200px) 1100px,
            (min-width: 900px) 800px,
            calc(100vw - 2rem)" />
-
                     <img
                       class="room-card__img"
                       src="assets/img/rooms/luxury-suite-1280x853.jpg"
@@ -492,6 +472,7 @@
                 <li><a href="rooms.html" data-nav aria-current="page">Pokoje</a></li>
                 <li><a href="offers.html" data-nav>Oferty</a></li>
                 <li><a href="gallery.html" data-nav>Galeria</a></li>
+            <li><a href="onas.html" data-nav>O nas</a></li>
                 <li><a href="contact.html" data-nav>Kontakt</a></li>
               </ul>
             </nav>
@@ -522,7 +503,6 @@
                 <a href="tel:+48533537091">+48 533537091</a>
               </p>
             </section>
-
             <section class="footer__col footer__social" aria-labelledby="footer-social">
               <h3 id="footer-social" class="footer__heading">SOCIAL MEDIA</h3>
               <div class="footer__social-links">
@@ -564,7 +544,6 @@
               </div>
             </section>
           </div>
-
           <div class="footer__bottom">
             <p>
               ©
@@ -575,7 +554,8 @@
         </div>
       </div>
     </footer>
-
+    
+    <!-- Script -->
     <script type="module" defer src="js/script.js"></script>
   </body>
 </html>

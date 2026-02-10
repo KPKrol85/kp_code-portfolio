@@ -39,14 +39,11 @@
       (() => {
         const KEY = "theme-pref";
         let pref = "auto";
-
         try {
           const stored = localStorage.getItem(KEY);
           if (stored === "light" || stored === "dark" || stored === "auto") pref = stored;
         } catch {}
-
         const resolved = pref === "auto" ? (window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light") : pref;
-
         document.documentElement.setAttribute("data-theme", resolved);
       })();
     </script>
@@ -92,6 +89,7 @@
             <li><a href="rooms.html" data-nav>Pokoje &amp; Apartamenty</a></li>
             <li><a href="offers.html" data-nav>Oferty specjalne</a></li>
             <li><a href="gallery.html" data-nav>Galeria</a></li>
+            <li><a href="onas.html" data-nav>O nas</a></li>
             <li><a href="contact.html" data-nav>Kontakt</a></li>
           </ul>
           <div class="site-nav__extras">
@@ -132,15 +130,12 @@
                 decoding="async" />
             </picture>
           </div>
-
           <div class="hero__content" data-reveal>
             <h1 class="hero__title">
               <span class="hero__title-main">Vista</span>
               <span class="hero__title-accent">Hotels &amp; Travel</span>
             </h1>
-
             <p class="hero__subtitle">Starannie wyselekcjonowane hotele i miejsca wypoczynku, stworzone z myślą o komforcie, spokoju i wysokiej jakości doświadczeń.</p>
-
             <div class="hero__cta">
               <a class="btn btn--primary" href="#book">Zarezerwuj pobyt</a>
               <a class="btn btn--ghost" href="rooms.html">Zobacz ofertę</a>
@@ -154,7 +149,6 @@
         <div class="container">
           <h2 id="benefits" class="section-title" data-reveal>Dlaczego my</h2>
           <div class="benefits" data-reveal>
-            <!-- Lokalizacja -->
             <article class="benefit" data-reveal data-reveal-delay="100">
               <h3 class="benefit__title">
                 <svg class="benefit__icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -165,7 +159,6 @@
               </h3>
               <p class="benefit__text">W samym sercu miasta, kilka kroków od kultowych miejsc.</p>
             </article>
-            <!-- Komfort -->
             <article class="benefit" data-reveal data-reveal-delay="200">
               <h3 class="benefit__title">
                 <svg class="benefit__icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -176,7 +169,6 @@
               </h3>
               <p class="benefit__text">Materace premium, blackout, selekcja poduszek i ciche wnętrza.</p>
             </article>
-            <!-- Smaki -->
             <article class="benefit" data-reveal data-reveal-delay="300">
               <h3 class="benefit__title">
                 <svg class="benefit__icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -186,7 +178,6 @@
               </h3>
               <p class="benefit__text">Śniadania a la carte, autorska kawa, lokalne składniki.</p>
             </article>
-            <!-- Obsługa -->
             <article class="benefit" data-reveal data-reveal-delay="400">
               <h3 class="benefit__title">
                 <svg class="benefit__icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -209,7 +200,6 @@
             <a class="btn btn--link" href="rooms.html">Wszystkie pokoje</a>
           </div>
           <div class="card-grid" data-reveal>
-            <!-- Classic -->
             <article class="room-card" data-reveal data-reveal-delay="100">
               <picture>
                 <source
@@ -221,7 +211,6 @@
                     assets/img/rooms/classic-1600x1067.avif 1600w
                   "
                   sizes="(max-width: 900px) calc(100vw - 2rem), 400px" />
-
                 <source
                   type="image/webp"
                   srcset="
@@ -253,8 +242,6 @@
                 <a class="btn btn--secondary" href="rooms.html#classic" aria-label="Szczegóły — pokój Classic">Szczegóły</a>
               </div>
             </article>
-
-            <!-- Deluxe -->
             <article class="room-card" data-reveal data-reveal-delay="200">
               <picture>
                 <source
@@ -292,8 +279,6 @@
                 <a class="btn btn--secondary" href="rooms.html#deluxe" aria-label="Szczegóły — pokój Deluxe">Szczegóły</a>
               </div>
             </article>
-
-            <!-- Luxury Suite -->
             <article class="room-card" data-reveal data-reveal-delay="300">
               <picture>
                 <source
@@ -339,8 +324,6 @@
           </div>
         </div>
       </section>
-
-      <!-- Highlights -->
       <section class="section section--highlight" aria-labelledby="luxury">
         <div class="container">
           <h2 id="luxury" class="section-title" data-reveal>Luxury Room</h2>
@@ -356,7 +339,6 @@
                     ./assets/img/rooms/luxury-room-1600x900.avif 1600w
                   "
                   sizes="(max-width: 900px) calc(100vw - 2rem), 720px" />
-
                 <source
                   type="image/webp"
                   srcset="
@@ -366,7 +348,6 @@
                     ./assets/img/rooms/luxury-room-1600x900.webp 1600w
                   "
                   sizes="(max-width: 900px) calc(100vw - 2rem), 720px" />
-
                 <img
                   src="assets/img/rooms/luxury-room-1280x720.jpg"
                   srcset="
@@ -383,7 +364,6 @@
                   decoding="async" />
               </picture>
             </div>
-
             <div class="highlight__body">
               <p>Przestronny układ, strefa dzienna i panoramiczne okna. Łazienka z prysznicem deszczowym i selekcją kosmetyków aromaterapeutycznych.</p>
               <ul class="list">
@@ -449,9 +429,7 @@
             <h2 id="gallery" class="section-title" data-reveal>Galeria</h2>
             <a class="btn btn--link" href="gallery.html">Więcej zdjęć</a>
           </div>
-
           <div class="gallery-grid" data-reveal>
-            <!-- 1 -->
             <a class="gallery-grid__item" href="./assets/img/gallery/gallery-01-1600x1067.jpg" data-lightbox-item>
               <picture>
                 <source
@@ -486,8 +464,6 @@
                   decoding="async" />
               </picture>
             </a>
-
-            <!-- 2 -->
             <a class="gallery-grid__item" href="./assets/img/gallery/gallery-02-1600x1067.jpg" data-lightbox-item>
               <picture>
                 <source
@@ -522,8 +498,6 @@
                   decoding="async" />
               </picture>
             </a>
-
-            <!-- 3 -->
             <a class="gallery-grid__item" href="./assets/img/gallery/gallery-03-1600x1067.jpg" data-lightbox-item>
               <picture>
                 <source
@@ -558,8 +532,6 @@
                   decoding="async" />
               </picture>
             </a>
-
-            <!-- 4 -->
             <a class="gallery-grid__item" href="./assets/img/gallery/gallery-04-1600x1067.jpg" data-lightbox-item>
               <picture>
                 <source
@@ -594,8 +566,6 @@
                   decoding="async" />
               </picture>
             </a>
-
-            <!-- 5 -->
             <a class="gallery-grid__item" href="./assets/img/gallery/gallery-05-1600x1067.jpg" data-lightbox-item>
               <picture>
                 <source
@@ -630,8 +600,6 @@
                   decoding="async" />
               </picture>
             </a>
-
-            <!-- 6 -->
             <a class="gallery-grid__item" href="./assets/img/gallery/gallery-06-1600x1067.jpg" data-lightbox-item>
               <picture>
                 <source
@@ -706,6 +674,7 @@
                 <li><a href="rooms.html" data-nav>Pokoje</a></li>
                 <li><a href="offers.html" data-nav>Oferty</a></li>
                 <li><a href="gallery.html" data-nav>Galeria</a></li>
+            <li><a href="onas.html" data-nav>O nas</a></li>
                 <li><a href="contact.html" data-nav>Kontakt</a></li>
               </ul>
             </nav>
@@ -736,7 +705,6 @@
                 <a href="tel:+48533537091">+48 533537091</a>
               </p>
             </section>
-
             <section class="footer__col footer__social" aria-labelledby="footer-social">
               <h3 id="footer-social" class="footer__heading">SOCIAL MEDIA</h3>
               <div class="footer__social-links">
@@ -778,7 +746,6 @@
               </div>
             </section>
           </div>
-
           <div class="footer__bottom">
             <p>
               ©

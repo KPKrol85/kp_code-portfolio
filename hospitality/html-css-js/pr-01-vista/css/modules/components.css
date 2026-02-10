@@ -557,6 +557,7 @@ fieldset.form__field legend {
     margin-right: var(--space-xs);
   }
 }
+
 /* Tabs */
 .tabs {
   display: flex;
@@ -575,4 +576,31 @@ fieldset.form__field legend {
   background: var(--primary);
   color: var(--primary-contrast);
   border-color: transparent;
+}
+
+/* 404 */
+.not-found__text {
+  margin: 0;
+  margin-top: var(--space-xs);
+  font-size: var(--fs-200);
+  color: var(--muted);
+  text-align: center;
+}
+.not-found__actions {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+  margin-top: var(--space-md);
+  align-items: center;
+}
+@media (min-width: 480px) {
+  .not-found__actions {
+    flex-direction: row;
+    justify-content: center;
+  }
+}
+@media (min-width: 760px) {
+  .not-found__text {
+    font-size: var(--fs-100);
+  }
 }

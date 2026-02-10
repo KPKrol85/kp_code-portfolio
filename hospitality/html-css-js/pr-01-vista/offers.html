@@ -40,16 +40,11 @@
       (() => {
         const KEY = "theme-pref";
         let pref = "auto";
-
         try {
           const stored = localStorage.getItem(KEY);
           if (stored === "light" || stored === "dark" || stored === "auto") pref = stored;
         } catch {}
-
-        const resolved = pref === "auto"
-          ? (window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light")
-          : pref;
-
+        const resolved = pref === "auto" ? (window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light") : pref;
         document.documentElement.setAttribute("data-theme", resolved);
       })();
     </script>
@@ -85,6 +80,7 @@
             <li><a href="rooms.html" data-nav>Pokoje &amp; Apartamenty</a></li>
             <li><a href="offers.html" data-nav aria-current="page">Oferty specjalne</a></li>
             <li><a href="gallery.html" data-nav>Galeria</a></li>
+            <li><a href="onas.html" data-nav>O nas</a></li>
             <li><a href="contact.html" data-nav>Kontakt</a></li>
           </ul>
           <div class="site-nav__extras">
@@ -156,6 +152,7 @@
                 <li><a href="rooms.html" data-nav>Pokoje</a></li>
                 <li><a href="offers.html" data-nav aria-current="page">Oferty</a></li>
                 <li><a href="gallery.html" data-nav>Galeria</a></li>
+            <li><a href="onas.html" data-nav>O nas</a></li>
                 <li><a href="contact.html" data-nav>Kontakt</a></li>
               </ul>
             </nav>
@@ -185,9 +182,7 @@
                 <br />
                 <a href="tel:+48533537091">+48 533537091</a>
               </p>
-
             </section>
-
             <section class="footer__col footer__social" aria-labelledby="footer-social">
               <h3 id="footer-social" class="footer__heading">SOCIAL MEDIA</h3>
               <div class="footer__social-links">
@@ -228,9 +223,7 @@
                 </a>
               </div>
             </section>
-
           </div>
-
           <div class="footer__bottom">
             <p>
               ©
@@ -242,8 +235,7 @@
       </div>
     </footer>
 
-    <!-- Scripts -->
+    <!-- Script -->
     <script type="module" defer src="js/script.js"></script>
   </body>
 </html>
-

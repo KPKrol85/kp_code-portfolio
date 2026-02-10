@@ -40,25 +40,22 @@
       (() => {
         const KEY = "theme-pref";
         let pref = "auto";
-
         try {
           const stored = localStorage.getItem(KEY);
           if (stored === "light" || stored === "dark" || stored === "auto") pref = stored;
         } catch {}
-
         const resolved = pref === "auto" ? (window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light") : pref;
-
         document.documentElement.setAttribute("data-theme", resolved);
       })();
     </script>
     <link rel="stylesheet" href="css/style.css" />
   </head>
 
-  <!-- BODY -->
+  <!-- Body -->
   <body>
     <a class="skip-link" href="#main">Przejdź do treści</a>
 
-    <!-- HEADER -->
+    <!-- Header -->
     <header class="site-header" id="top">
       <div class="container site-header__inner">
         <a class="site-header__brand" href="index.html" aria-label="Strona główna">
@@ -83,6 +80,7 @@
             <li><a href="rooms.html" data-nav>Pokoje &amp; Apartamenty</a></li>
             <li><a href="offers.html" data-nav>Oferty specjalne</a></li>
             <li><a href="gallery.html" data-nav aria-current="page">Galeria</a></li>
+            <li><a href="onas.html" data-nav>O nas</a></li>
             <li><a href="contact.html" data-nav>Kontakt</a></li>
           </ul>
           <div class="site-nav__extras">
@@ -92,7 +90,7 @@
       </div>
     </header>
 
-    <!-- MAIN -->
+    <!-- Main -->
     <main id="main">
       <nav class="breadcrumb" aria-label="Okruszki">
         <div class="container">
@@ -103,7 +101,7 @@
         </div>
       </nav>
 
-      <!-- GALERIA -->
+      <!-- Gallery -->
       <section class="section page-gallery" id="wszystkie" aria-labelledby="gallery-heading">
         <div class="container">
           <h1 id="gallery-heading" class="section-title">Galeria</h1>
@@ -379,7 +377,6 @@
               </a>
             </div>
           </section>
-
           <section id="restauracja" class="gallery-section" aria-labelledby="restauracja-heading">
             <h2 id="restauracja-heading" class="gallery-section__title">Restauracja</h2>
             <div class="gallery-grid">
@@ -777,7 +774,7 @@
       </section>
     </main>
 
-    <!-- FOOTER -->
+    <!-- Footer -->
     <footer class="site-footer" role="contentinfo" aria-labelledby="footer-heading">
       <h2 id="footer-heading" class="sr-only">Stopka serwisu</h2>
       <div class="container">
@@ -801,6 +798,7 @@
                 <li><a href="rooms.html" data-nav>Pokoje</a></li>
                 <li><a href="offers.html" data-nav>Oferty</a></li>
                 <li><a href="gallery.html" data-nav aria-current="page">Galeria</a></li>
+                <li><a href="onas.html" data-nav>O nas</a></li>
                 <li><a href="contact.html" data-nav>Kontakt</a></li>
               </ul>
             </nav>
@@ -883,10 +881,10 @@
       </div>
     </footer>
 
-    <!-- SCRIPTS -->
+    <!-- Script -->
     <script type="module" defer src="js/script.js"></script>
 
-    <!-- LIGHTBOX -->
+    <!-- Lightbox -->
     <div class="lightbox" role="dialog" aria-modal="true" aria-label="Podgląd zdjęcia" hidden>
       <div class="lightbox__backdrop" data-lightbox-close></div>
       <div class="lightbox__dialog" role="document" tabindex="-1">

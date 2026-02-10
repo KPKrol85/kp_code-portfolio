@@ -1051,7 +1051,6 @@
   grid-template-rows: repeat(2, minmax(0, 1fr));
   gap: var(--space-xs);
 }
-
 .page-gallery .gallery-cats__link,
 .subpage-rooms .gallery-cats__link {
   display: flex;
@@ -1313,4 +1312,61 @@
 .legal-intro {
   margin-bottom: var(--space-md);
   color: var(--muted);
+}
+
+/* --- Brand (onas.html) --- */
+.section--brand .container {
+  max-inline-size: 60rem;
+  text-align: center;
+}
+.brand__lead {
+  max-inline-size: 52rem;
+  margin: var(--space-sm) auto var(--space-lg);
+  font-size: var(--fs-300);
+  line-height: 1.7;
+  color: var(--muted);
+}
+.brand__grid {
+  margin-top: var(--space-lg);
+}
+.brand__item {
+  padding: var(--space-md);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  background: color-mix(in oklab, var(--bg-elev) 92%, transparent);
+  box-shadow: var(--elev);
+}
+.brand__subtitle {
+  margin: 0 0 var(--space-xs);
+  font-size: var(--fs-400);
+  line-height: 1.2;
+}
+.brand__text {
+  margin: 0;
+  font-size: var(--fs-200);
+  line-height: 1.7;
+  color: var(--muted);
+}
+.brand__footer {
+  max-inline-size: 42rem;
+  margin: var(--space-lg) auto 0;
+  font-size: var(--fs-100);
+  line-height: 1.7;
+  color: var(--muted);
+}
+.brand__footer a {
+  color: var(--primary);
+  text-decoration: none;
+  text-underline-offset: 0.2em;
+}
+.brand__footer a:hover {
+  text-decoration: underline;
+}
+@media (min-width: 760px) {
+  .brand__lead {
+    max-inline-size: 42rem;
+  }
+  .brand__item {
+    padding: var(--space-lg);
+  }
 }

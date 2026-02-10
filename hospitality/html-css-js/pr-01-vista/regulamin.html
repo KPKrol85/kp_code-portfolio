@@ -1,27 +1,18 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="pl" data-theme="auto">
   <head>
-    <!-- Required -->
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Vista | Regulamin serwisu — Hotels &amp; Travel</title>
     <meta name="description" content="Regulamin korzystania z serwisu Vista — Hotels &amp; Travel — zasady rezerwacji, odpowiedzialność oraz prawa użytkowników." />
     <meta name="color-scheme" content="light dark" />
-
-    <!-- Theme color for Light/Dark -->
     <meta name="theme-color" media="(prefers-color-scheme: light)" content="#f7f6f3" />
     <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#0d0f14" />
-
-    <!-- Indexing / privacy -->
     <meta name="robots" content="noindex,follow" />
     <meta name="referrer" content="strict-origin-when-cross-origin" />
     <meta name="format-detection" content="telephone=no" />
     <meta name="ld-json" content="assets/seo/ld-regulamin.json" />
-
-    <!-- Canonical -->
     <link rel="canonical" href="https://hospitality-pr-01-vista.netlify.app/regulamin.html" />
-
-    <!-- Open Graph -->
     <meta property="og:type" content="website" />
     <meta property="og:site_name" content="Vista" />
     <meta property="og:title" content="Vista | Regulamin serwisu — Hotels &amp; Travel" />
@@ -33,17 +24,11 @@
     <meta property="og:image:height" content="630" />
     <meta property="og:image:type" content="image/jpeg" />
     <meta property="og:image:alt" content="Regulamin serwisu hotelowego — Vista — Hotels &amp; Travel" />
-
-    <!-- Twitter -->
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content="Vista | Regulamin serwisu — Hotels &amp; Travel" />
     <meta name="twitter:description" content="Reguły korzystania z serwisu Vista — Hotels &amp; Travel obejmujące rezerwacje, płatności oraz reklamacje." />
     <meta name="twitter:image" content="https://hospitality-pr-01-vista.netlify.app/assets/img/og/og-1200x1200.jpg" />
-
-    <!-- PWA -->
     <link rel="manifest" href="site.webmanifest" />
-
-    <!-- Icons -->
     <link rel="icon" href="assets/img/ui/favicon.svg" type="image/svg+xml" />
     <link rel="icon" href="assets/img/ui/favicon-32x32.png" sizes="32x32" />
     <link rel="icon" href="assets/img/ui/favicon-16x16.png" sizes="16x16" />
@@ -51,21 +36,15 @@
     <link rel="mask-icon" href="assets/img/ui/safari-pinned-tab.svg" color="#0d0f14" />
     <meta name="theme-color" content="#2dc7a6" />
     <meta name="msapplication-TileColor" content="#2dc7a6" />
-
-    <!-- Styles -->
     <script>
       (() => {
         const KEY = "theme-pref";
         let pref = "auto";
-
         try {
           const stored = localStorage.getItem(KEY);
           if (stored === "light" || stored === "dark" || stored === "auto") pref = stored;
         } catch {}
-
-        const resolved = pref === "auto"
-          ? (window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light")
-          : pref;
+        const resolved = pref === "auto" ? (window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light") : pref;
 
         document.documentElement.setAttribute("data-theme", resolved);
       })();
@@ -73,10 +52,11 @@
     <link rel="stylesheet" href="css/style.css" />
   </head>
 
+  <!-- Body -->
   <body>
     <a class="skip-link" href="#main">Przejdź do treści</a>
 
-    <!-- HEADER -->
+    <!-- Header -->
     <header class="site-header" id="top">
       <div class="container site-header__inner">
         <a class="site-header__brand" href="index.html" aria-label="Strona główna">
@@ -101,6 +81,7 @@
             <li><a href="rooms.html" data-nav>Pokoje &amp; Apartamenty</a></li>
             <li><a href="offers.html" data-nav>Oferty specjalne</a></li>
             <li><a href="gallery.html" data-nav>Galeria</a></li>
+            <li><a href="onas.html" data-nav>O nas</a></li>
             <li><a href="contact.html" data-nav>Kontakt</a></li>
           </ul>
           <div class="site-nav__extras">
@@ -110,7 +91,7 @@
       </div>
     </header>
 
-    <!-- MAIN -->
+    <!-- Main -->
     <main id="main">
       <nav class="breadcrumb" aria-label="Okruszki">
         <div class="container">
@@ -120,47 +101,39 @@
           </ol>
         </div>
       </nav>
-<!-- LEGAL -->
       <section class="section legal">
         <div class="container">
           <article class="legal-card" aria-labelledby="terms-heading">
             <h1 id="terms-heading" class="section-title">Regulamin serwisu</h1>
             <p class="legal-intro">Regulamin określa zasady korzystania z serwisu Vista — Hotels &amp; Travel, w tym procedury rezerwacji, odpowiedzialność stron oraz tryb składania reklamacji.</p>
-
             <h2>1. Postanowienia ogólne</h2>
             <p>Serwis ma charakter demonstracyjny i prezentuje funkcjonalności hotelowego front-endu przygotowanego przez Vista. Korzystanie z witryny oznacza akceptację niniejszych zasad.</p>
             <p>Regulamin obowiązuje wszystkich użytkowników odwiedzających stronę internetową, niezależnie od sposobu korzystania z treści.</p>
-
             <h2>2. Korzystanie z serwisu</h2>
             <p>
               Użytkownik zobowiązuje się do korzystania z serwisu zgodnie z prawem, dobrymi obyczajami oraz postanowieniami regulaminu. Zabronione jest dostarczanie treści o charakterze bezprawnym.
             </p>
             <p>W przypadku naruszenia zasad administrator może ograniczyć dostęp do określonych funkcji lub całego serwisu.</p>
-
             <h2>3. Rezerwacje i komunikacja</h2>
             <p>
               Formularze zaprezentowane w serwisie mają charakter przykładowy. W realnym wdrożeniu dane przekazywane są administratorowi w celu obsługi zapytań, a użytkownik powinien podawać
               informacje zgodne ze stanem faktycznym.
             </p>
             <p>Wszelkie ceny i oferty mają charakter orientacyjny; ostateczne warunki rezerwacji ustalane są indywidualnie z hotelem.</p>
-
             <h2>4. Odpowiedzialność</h2>
             <p>Administrator dokłada starań, aby treści były aktualne i wolne od błędów, jednak nie ponosi odpowiedzialności za szkody wynikłe z korzystania z serwisu demonstracyjnego.</p>
             <p>Użytkownik ponosi odpowiedzialność za sposób wykorzystania informacji oraz za działania sprzeczne z regulaminem lub przepisami prawa.</p>
-
             <h2>5. Prawa własności intelektualnej</h2>
             <p>
-              Wszelkie materiały tekstowe, graficzne i multimedialne udostępnione w serwisie stanowią własność Vista lub zostały wykorzystane zgodnie z licencją. Kopiowanie i rozpowszechnianie
-              treści bez zgody nie jest dozwolone.
+              Wszelkie materiały tekstowe, graficzne i multimedialne udostępnione w serwisie stanowią własność Vista lub zostały wykorzystane zgodnie z licencją. Kopiowanie i rozpowszechnianie treści
+              bez zgody nie jest dozwolone.
             </p>
-
             <h2>6. Reklamacje i kontakt</h2>
             <p>
               Uwagi dotyczące działania serwisu można kierować na adres
               <a href="mailto:kontakt@kp-code.pl">kontakt@kp-code.pl</a>
               . Reklamacje będą rozpatrywane w możliwie najkrótszym terminie, nie dłuższym niż 14 dni roboczych.
             </p>
-
             <h2>7. Postanowienia końcowe</h2>
             <p>Administrator zastrzega sobie prawo do wprowadzania zmian w regulaminie. Zaktualizowana wersja zostanie opublikowana na niniejszej stronie wraz z datą obowiązywania.</p>
             <p>W sprawach nieuregulowanych zastosowanie mają odpowiednie przepisy prawa polskiego.</p>
@@ -169,7 +142,7 @@
       </section>
     </main>
 
-    <!-- FOOTER -->
+    <!-- Footer -->
     <footer class="site-footer" role="contentinfo" aria-labelledby="footer-heading">
       <h2 id="footer-heading" class="sr-only">Stopka serwisu</h2>
       <div class="container">
@@ -193,6 +166,7 @@
                 <li><a href="rooms.html" data-nav>Pokoje</a></li>
                 <li><a href="offers.html" data-nav>Oferty</a></li>
                 <li><a href="gallery.html" data-nav>Galeria</a></li>
+            <li><a href="onas.html" data-nav>O nas</a></li>
                 <li><a href="contact.html" data-nav>Kontakt</a></li>
               </ul>
             </nav>
@@ -222,9 +196,7 @@
                 <br />
                 <a href="tel:+48533537091">+48 533537091</a>
               </p>
-
             </section>
-
             <section class="footer__col footer__social" aria-labelledby="footer-social">
               <h3 id="footer-social" class="footer__heading">SOCIAL MEDIA</h3>
               <div class="footer__social-links">
@@ -265,9 +237,7 @@
                 </a>
               </div>
             </section>
-
           </div>
-
           <div class="footer__bottom">
             <p>
               ©
@@ -279,10 +249,7 @@
       </div>
     </footer>
 
-    <!-- SCRIPTS -->
+    <!-- Script -->
     <script type="module" defer src="js/script.js"></script>
   </body>
 </html>
-
-
-

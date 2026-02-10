@@ -13,24 +13,20 @@
       (() => {
         const KEY = "theme-pref";
         let pref = "auto";
-
         try {
           const stored = localStorage.getItem(KEY);
           if (stored === "light" || stored === "dark" || stored === "auto") pref = stored;
         } catch {}
-
-        const resolved = pref === "auto"
-          ? (window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light")
-          : pref;
-
+        const resolved = pref === "auto" ? (window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light") : pref;
         document.documentElement.setAttribute("data-theme", resolved);
       })();
     </script>
     <link rel="stylesheet" href="css/style.css" />
   </head>
+  <!-- Body-->
   <body>
     <a class="skip-link" href="#main">Przejdź do treści</a>
-
+    <!-- Header-->
     <header class="site-header" id="top">
       <div class="container site-header__inner">
         <a class="site-header__brand" href="index.html" aria-label="Strona główna">
@@ -55,6 +51,7 @@
             <li><a href="rooms.html" data-nav>Pokoje &amp; Apartamenty</a></li>
             <li><a href="offers.html" data-nav>Oferty specjalne</a></li>
             <li><a href="gallery.html" data-nav>Galeria</a></li>
+            <li><a href="onas.html" data-nav>O nas</a></li>
             <li><a href="contact.html" data-nav>Kontakt</a></li>
           </ul>
           <div class="site-nav__extras">
@@ -63,20 +60,20 @@
         </nav>
       </div>
     </header>
-
+    <!-- Main-->
     <main id="main">
       <section class="section" aria-labelledby="not-found-heading">
         <div class="container content">
           <h1 id="not-found-heading" class="section-title">404 — Nie znaleziono strony</h1>
-          <p>Adres, który wpisano, nie istnieje lub został przeniesiony.</p>
-          <p>
+          <p class="not-found__text">Adres, który wpisano, nie istnieje lub został przeniesiony.</p>
+          <div class="not-found__actions">
             <a class="btn btn--primary" href="index.html">Wróć na stronę główną</a>
             <a class="btn btn--ghost" href="contact.html">Skontaktuj się z nami</a>
-          </p>
+          </div>
         </div>
       </section>
     </main>
-
+    <!-- Footer-->
     <footer class="site-footer" role="contentinfo" aria-labelledby="footer-heading">
       <h2 id="footer-heading" class="sr-only">Stopka serwisu</h2>
       <div class="container">
@@ -100,6 +97,7 @@
                 <li><a href="rooms.html" data-nav>Pokoje</a></li>
                 <li><a href="offers.html" data-nav>Oferty</a></li>
                 <li><a href="gallery.html" data-nav>Galeria</a></li>
+            <li><a href="onas.html" data-nav>O nas</a></li>
                 <li><a href="contact.html" data-nav>Kontakt</a></li>
               </ul>
             </nav>
@@ -129,9 +127,7 @@
                 <br />
                 <a href="tel:+48533537091">+48 533537091</a>
               </p>
-
             </section>
-
             <section class="footer__col footer__social" aria-labelledby="footer-social">
               <h3 id="footer-social" class="footer__heading">SOCIAL MEDIA</h3>
               <div class="footer__social-links">
@@ -172,9 +168,7 @@
                 </a>
               </div>
             </section>
-
           </div>
-
           <div class="footer__bottom">
             <p>
               ©
@@ -185,7 +179,6 @@
         </div>
       </div>
     </footer>
-
     <script type="module" defer src="js/script.js"></script>
   </body>
 </html>
