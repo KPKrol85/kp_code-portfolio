@@ -9,18 +9,7 @@
     <meta name="color-scheme" content="light dark" />
     <meta name="theme-color" media="(prefers-color-scheme: light)" content="#f7f6f3" />
     <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#0d0f14" />
-    <script>
-      (() => {
-        const KEY = "theme-pref";
-        let pref = "auto";
-        try {
-          const stored = localStorage.getItem(KEY);
-          if (stored === "light" || stored === "dark" || stored === "auto") pref = stored;
-        } catch {}
-        const resolved = pref === "auto" ? (window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light") : pref;
-        document.documentElement.setAttribute("data-theme", resolved);
-      })();
-    </script>
+    <script src="js/theme-init.js"></script>
     <link rel="stylesheet" href="css/style.css" />
   </head>
   <!-- Body-->
