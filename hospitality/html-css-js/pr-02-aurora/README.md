@@ -3,7 +3,7 @@
 ## PL
 
 ### 1. Przegląd projektu
-Aurora to statyczna, wielostronicowa strona front-endowa biura podróży (projekt demonstracyjny). Aplikacja działa bez frameworka i bez etapu bundlowania JavaScript.
+Aurora to statyczna, wielostronicowa strona front-endowa biura podróży. Aplikacja działa bez frameworka i bez etapu bundlowania JavaScript.
 
 **Stos technologiczny (aktualny):**
 - HTML5 (wielostronicowy serwis)
@@ -146,7 +146,7 @@ Przed publikacją:
 ## EN
 
 ### 1. Project overview
-Aurora is a static multi-page frontend website for a travel agency (demo project). It runs without a framework and without a JavaScript bundling step.
+Aurora is a static multi-page frontend website for a travel agency. It runs without a framework and without a JavaScript bundling step.
 
 **Current tech stack:**
 - HTML5 (multi-page website)

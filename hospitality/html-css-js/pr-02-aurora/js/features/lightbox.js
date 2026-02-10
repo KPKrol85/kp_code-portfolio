@@ -1,4 +1,3 @@
-// assets/js/features/lightbox.js
 
 export function initLightbox() {
   const overlay = document.querySelector("[data-lightbox]");
@@ -83,7 +82,6 @@ export function initLightbox() {
     }
   }
 
-  // 🔹 otwieranie po kliknięciu w miniaturę
   document.addEventListener("click", (event) => {
     const picture = event.target.closest("picture.tour-gallery__item, picture.gallery-item");
     if (!picture) return;
@@ -98,7 +96,6 @@ export function initLightbox() {
     open(idx);
   });
 
-  // 🔹 Enter / spacja na miniaturze
   document.addEventListener("keydown", (event) => {
     if (event.key !== "Enter" && event.key !== " ") return;
     const img = document.activeElement;
@@ -113,7 +110,6 @@ export function initLightbox() {
     open(idx);
   });
 
-  // 🔹 sterowanie w overlay
   closeBtn.addEventListener("click", close);
   prevBtn.addEventListener("click", () => navigate(-1));
   nextBtn.addEventListener("click", () => navigate(1));
@@ -132,22 +128,19 @@ export function initLightbox() {
     }
   });
 
-  // === FULLSCREEN – wspólna funkcja dla desktop + mobile ===
   function toggleFullscreen() {
-    // brak wsparcia
+
     if (!preview.requestFullscreen && !preview.webkitRequestFullscreen) return;
 
     const isFs = document.fullscreenElement || document.webkitFullscreenElement;
 
     if (!isFs) {
-      // wejście w fullscreen
       if (preview.requestFullscreen) {
         preview.requestFullscreen().catch(() => {});
       } else if (preview.webkitRequestFullscreen) {
         preview.webkitRequestFullscreen();
       }
     } else {
-      // wyjście z fullscreen
       if (document.exitFullscreen) {
         document.exitFullscreen().catch(() => {});
       } else if (document.webkitExitFullscreen) {
@@ -156,12 +149,10 @@ export function initLightbox() {
     }
   }
 
-  // 🔹 Desktop – podwójny klik
   preview.addEventListener("dblclick", () => {
     toggleFullscreen();
   });
 
-  // === SWIPE + DOUBLE TAP NA MOBILE ===
   let touchStartX = 0;
   let lastTapTime = 0;
 
@@ -176,17 +167,15 @@ export function initLightbox() {
 
     const now = Date.now();
 
-    // 1) SWIPE (lewo/prawo)
     if (Math.abs(diff) > threshold) {
       if (diff < 0) {
-        navigate(1); // lewo → następne
+        navigate(1);
       } else {
-        navigate(-1); // prawo → poprzednie
+        navigate(-1);
       }
       return;
     }
 
-    // 2) DOUBLE TAP (bez dużego przesunięcia)
     if (now - lastTapTime < 300) {
       e.preventDefault();
       toggleFullscreen();

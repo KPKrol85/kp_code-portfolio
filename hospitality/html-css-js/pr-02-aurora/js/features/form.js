@@ -14,7 +14,6 @@ export function initForm() {
 
   prefillFromQuery(tourSelect);
 
-  // Enforce today as the earliest start date and mirror it to the end date.
   if (dateStart instanceof HTMLInputElement) {
     dateStart.min = today;
   }

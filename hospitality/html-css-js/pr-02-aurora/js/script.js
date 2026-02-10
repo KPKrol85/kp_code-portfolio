@@ -112,7 +112,7 @@ if ("serviceWorker" in navigator) {
         window.location.reload();
       });
     } catch {
-      // silent fail for demo
+ 
     }
   });
 }

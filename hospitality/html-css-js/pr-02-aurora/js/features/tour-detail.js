@@ -28,9 +28,7 @@ function fillTourContent(tour) {
   document.querySelector("[data-tour-breadcrumb-current]").textContent = tour.name;
   document.querySelector("[data-tour-days]").textContent = `${tour.days} dni`;
   document.querySelector("[data-tour-price]").textContent = tour.priceFrom;
-  // shortSummary intentionally supports markup from JSON, so we sanitize before using innerHTML.
   document.querySelector("[data-tour-summary]").innerHTML = sanitizeTourHtml(tour.shortSummary);
-  // longDescription intentionally supports markup from JSON, so we sanitize before using innerHTML.
   document.querySelector("[data-tour-content]").innerHTML = sanitizeTourHtml(tour.longDescription);
 
   const mainImage = tour.images[0];

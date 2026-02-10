@@ -24,7 +24,6 @@ export function initGalleryFilters() {
       if (isVisible) hasVisible = true;
     });
 
-    // jeśli filtr nic nie pokazuje → wróć do "all"
     if (!hasVisible && filter !== "all") {
       const allButton = buttons.find((btn) => btn.dataset.galleryFilter === "all");
       if (allButton) {
@@ -40,7 +39,6 @@ export function initGalleryFilters() {
     applyFilter(filter);
   };
 
-  // stan początkowy – aktywny "Wszystkie"
   const initialBtn = buttons.find((btn) => btn.dataset.galleryFilter === "all") || buttons[0];
   if (initialBtn) {
     setActiveButton(initialBtn);

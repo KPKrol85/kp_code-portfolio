@@ -1,4 +1,3 @@
-/* initToursFilters */
 export function initToursFilters() {
   const form = document.querySelector("[data-filters]");
   const list = document.querySelector("[data-tours-list]");
@@ -40,7 +39,6 @@ export function initToursFilters() {
   update();
 }
 
-/* sortCards */
 function sortCards(cards, sortValue) {
   const sorted = [...cards];
   const [key, order] = sortValue.split("-");
@@ -52,7 +50,4 @@ function sortCards(cards, sortValue) {
   return sorted;
 }
 
-export function initFiltersDropdowns() {
-  // Native <select> controls are intentionally preserved for full keyboard
-  // and screen-reader support.
-}
+export function initFiltersDropdowns() {}
