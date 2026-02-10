@@ -1295,12 +1295,12 @@
   }
 }
 
-/* -- Legal -- */
+/* Legal */
 .legal {
   padding-block: clamp(var(--space-xl), 5vw, var(--space-2xl));
 }
 .legal-card {
-  max-width: 900px;
+  max-inline-size: 900px;
   margin: 0 auto;
   padding: clamp(var(--space-lg), 3vw, var(--space-xl));
   border-radius: var(--radius-md, 16px);
@@ -1314,29 +1314,55 @@
 .legal-card h2 {
   margin-top: var(--space-lg);
   margin-bottom: var(--space-xs);
-  font-size: clamp(1.1rem, 2.2vw, 1.25rem);
+  font-size: calc(var(--fs-500) * 0.95);
+  line-height: 1.25;
 }
 .legal-card h3 {
   margin-top: var(--space-md);
   margin-bottom: var(--space-2xs);
   font-size: clamp(1rem, 2vw, 1.1rem);
+  line-height: 1.25;
 }
 .legal-card p,
 .legal-card ul,
 .legal-card ol {
   margin: var(--space-2xs) 0;
   line-height: 1.65;
+  font-size: var(--fs-200);
+  font-weight: 400;
 }
 .legal-card ul,
 .legal-card ol {
   padding-left: var(--space-md);
 }
+.legal-card li + li {
+  margin-top: var(--space-2xs);
+}
 .legal-intro {
   margin-bottom: var(--space-md);
   color: var(--muted);
+  font-size: var(--fs-300);
+  line-height: 1.65;
+}
+.legal-card a {
+  color: var(--primary);
+  text-underline-offset: 0.15em;
+}
+.legal-card a:hover {
+  text-decoration-thickness: 2px;
+}
+@media (min-width: 760px) {
+  .legal-card h2 {
+    font-size: var(--fs-400);
+  }
+  .legal-card p,
+  .legal-card ul,
+  .legal-card ol {
+    font-size: calc(var(--fs-200) * 0.9);
+  }
 }
 
-/* --- Brand (onas.html) --- */
+/* O nas */
 .section--brand .container {
   max-inline-size: 60rem;
   text-align: center;

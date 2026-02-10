@@ -316,7 +316,7 @@ fieldset.form__field legend {
 }
 .contact-info::after {
   content: "";
-  display: none;
+  /*display: none;*/
   position: absolute;
   left: 130px;
   top: 520px;
