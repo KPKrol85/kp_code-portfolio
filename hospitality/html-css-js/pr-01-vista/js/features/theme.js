@@ -43,6 +43,12 @@ function updateToggleIcon(iconEl, activeTheme) {
   iconEl.src = ICONS[activeTheme] || ICONS.light;
 }
 
+function updateToggleState(toggleEl, activeTheme) {
+  if (!toggleEl) return;
+  toggleEl.setAttribute("aria-label", "Zmień motyw kolorystyczny");
+  toggleEl.setAttribute("aria-pressed", activeTheme === "dark" ? "true" : "false");
+}
+
 export function initTheme() {
   const media = matchMedia("(prefers-color-scheme: dark)");
   const toggle = document.querySelector("[data-theme-toggle]");
@@ -53,6 +59,7 @@ export function initTheme() {
     applyTheme(pref, media);
     const activeTheme = getActiveTheme(pref, media);
     updateToggleIcon(icon, activeTheme);
+    updateToggleState(toggle, activeTheme);
   };
 
   if (toggle) {

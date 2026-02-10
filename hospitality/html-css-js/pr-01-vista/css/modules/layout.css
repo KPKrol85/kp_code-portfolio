@@ -141,6 +141,19 @@
   box-shadow: var(--elev);
   color: var(--text);
 }
+.no-js .site-header__nav-toggle {
+  display: none;
+}
+.no-js .site-nav {
+  position: static;
+  inset: auto;
+  transform: none;
+  opacity: 1;
+  pointer-events: auto;
+}
+.js .site-header__nav-toggle {
+  display: inline-flex;
+}
 .js .site-nav {
   position: fixed;
   inset: var(--header-h) 0 auto 0;

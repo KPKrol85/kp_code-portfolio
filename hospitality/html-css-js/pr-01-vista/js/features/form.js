@@ -48,6 +48,13 @@ export function initForm() {
     setError(guests, "err-guests", !(n >= 1 && n <= 6));
   });
 
+  phone?.addEventListener("input", () => {
+    const value = (phone.value || "").trim();
+    const rePL = /^(\+?\d{1,3})?[\s-]?\d{3}[\s-]?\d{3}[\s-]?\d{3}$/;
+    const isValid = value === "" || rePL.test(value);
+    setError(phone, "err-phone", !isValid);
+  });
+
   form.addEventListener("submit", (e) => {
     e.preventDefault();
 
@@ -65,9 +72,11 @@ export function initForm() {
       setError(email, "err-email", !v);
       ok = ok && v;
     }
-    if (phone && (phone.value || "").trim() !== "") {
+    if (phone) {
+      const value = (phone.value || "").trim();
       const rePL = /^(\+?\d{1,3})?[\s-]?\d{3}[\s-]?\d{3}[\s-]?\d{3}$/;
-      const v = rePL.test(phone.value.trim());
+      const v = value === "" || rePL.test(value);
+      setError(phone, "err-phone", !v);
       ok = ok && v;
     }
 
