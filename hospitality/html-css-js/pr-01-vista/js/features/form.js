@@ -19,20 +19,38 @@ export function initForm() {
     if (msg) msg.hidden = !show;
   }
 
-  const todayISO = new Date().toISOString().slice(0, 10);
+  function formatLocalISO(date) {
+    const y = date.getFullYear();
+    const m = String(date.getMonth() + 1).padStart(2, "0");
+    const d = String(date.getDate()).padStart(2, "0");
+    return `${y}-${m}-${d}`;
+  }
+
+  function parseLocalISO(iso) {
+    const m = /^(\d{4})-(\d{2})-(\d{2})$/.exec(iso || "");
+    if (!m) return null;
+    const d = new Date(Number(m[1]), Number(m[2]) - 1, Number(m[3]));
+    return Number.isNaN(d.getTime()) ? null : d;
+  }
+
+  const today = new Date();
+  const tomorrow = new Date(today);
+  tomorrow.setDate(today.getDate() + 1);
+  const todayISO = formatLocalISO(today);
+  const nextDayISO = formatLocalISO(tomorrow);
   if (checkin) checkin.min = todayISO;
 
   function nextDay(iso) {
-    const d = new Date(iso);
-    if (Number.isNaN(d)) return "";
+    const d = parseLocalISO(iso);
+    if (!d) return "";
     d.setDate(d.getDate() + 1);
-    return d.toISOString().slice(0, 10);
+    return formatLocalISO(d);
   }
 
   function syncCheckoutMin() {
     if (!checkout) return;
     if (checkin?.value) {
-      const minOut = nextDay(checkin.value);
+      const minOut = nextDay(checkin.value) || nextDayISO;
       checkout.min = minOut;
       if (checkout.value && checkout.value < minOut) checkout.value = minOut;
     } else {
