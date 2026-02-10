@@ -1,35 +1,22 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="pl" data-theme="auto">
   <head>
-    <!-- Required -->
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Vista | Pokoje &amp; Apartamenty — Hotels &amp; Travel</title>
-    <meta
-      name="description"
-      content="Poznaj ofertę pokoi i apartamentów Vista — Hotels &amp; Travel: Classic, Deluxe oraz Luxury Suite. Komfort, elegancja i relaks w nowoczesnym stylu." />
+    <meta name="description" content="Poznaj ofertę pokoi i apartamentów Vista — Hotels &amp; Travel: Classic, Deluxe oraz Luxury Suite. Komfort, elegancja i relaks w nowoczesnym stylu." />
     <meta name="color-scheme" content="light dark" />
-
-    <!-- Theme color for Light/Dark -->
     <meta name="theme-color" media="(prefers-color-scheme: light)" content="#f7f6f3" />
     <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#0d0f14" />
-
-    <!-- Indexing / privacy -->
     <meta name="robots" content="index,follow" />
     <meta name="referrer" content="strict-origin-when-cross-origin" />
     <meta name="format-detection" content="telephone=no" />
     <meta name="ld-json" content="assets/seo/ld-rooms.json" />
-
-    <!-- Canonical -->
     <link rel="canonical" href="https://hospitality-pr-01-vista.netlify.app/rooms.html" />
-
-    <!-- Open Graph -->
     <meta property="og:type" content="website" />
     <meta property="og:site_name" content="Vista" />
     <meta property="og:title" content="Vista | Pokoje &amp; Apartamenty — Hotels &amp; Travel" />
-    <meta
-      property="og:description"
-      content="Oferta pokoi i apartamentów Vista — Hotels &amp; Travel: Classic, Deluxe, Luxury. Komfort i elegancja w nadmorskim klimacie." />
+    <meta property="og:description" content="Oferta pokoi i apartamentów Vista — Hotels &amp; Travel: Classic, Deluxe, Luxury. Komfort i elegancja w nadmorskim klimacie." />
     <meta property="og:url" content="https://hospitality-pr-01-vista.netlify.app/rooms.html" />
     <meta property="og:locale" content="pl_PL" />
     <meta property="og:image" content="https://hospitality-pr-01-vista.netlify.app/assets/img/og/og-1200x630.jpg" />
@@ -37,25 +24,17 @@
     <meta property="og:image:height" content="630" />
     <meta property="og:image:type" content="image/jpeg" />
     <meta property="og:image:alt" content="Elegancki apartament hotelowy z widokiem na morze — Vista — Hotels &amp; Travel" />
-
-    <!-- Twitter -->
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content="Vista | Pokoje &amp; Apartamenty — Hotels &amp; Travel" />
     <meta name="twitter:description" content="Poznaj ofertę pokoi Classic, Deluxe i Luxury w Vista — Hotels &amp; Travel." />
     <meta name="twitter:image" content="https://hospitality-pr-01-vista.netlify.app/assets/img/og/og-1200x1200.jpg" />
-
-    <!-- PWA -->
     <link rel="manifest" href="site.webmanifest" />
-
-    <!-- Icons -->
     <link rel="icon" href="assets/img/ui/favicon.svg" type="image/svg+xml" />
     <link rel="icon" href="assets/img/ui/favicon-32x32.png" sizes="32x32" />
     <link rel="icon" href="assets/img/ui/favicon-16x16.png" sizes="16x16" />
     <link rel="apple-touch-icon" href="assets/img/ui/apple-touch-icon.png" sizes="180x180" />
     <link rel="mask-icon" href="assets/img/ui/safari-pinned-tab.svg" color="#0d0f14" />
     <meta name="msapplication-TileColor" content="#2dc7a6" />
-
-    <!-- Styles -->
     <script>
       (() => {
         const KEY = "theme-pref";
@@ -66,9 +45,7 @@
           if (stored === "light" || stored === "dark" || stored === "auto") pref = stored;
         } catch {}
 
-        const resolved = pref === "auto"
-          ? (window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light")
-          : pref;
+        const resolved = pref === "auto" ? (window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light") : pref;
 
         document.documentElement.setAttribute("data-theme", resolved);
       })();
@@ -115,7 +92,6 @@
 
     <!-- MAIN -->
     <main id="main">
-      <!-- Breadcrumb -->
       <nav class="breadcrumb" aria-label="Okruszki">
         <div class="container">
           <ol>
@@ -132,52 +108,16 @@
           <nav class="tabs gallery-cats gallery-cats--panel rooms-filters" aria-label="Filtruj typ pokoi">
             <ul class="gallery-cats__list" role="tablist">
               <li class="gallery-cats__item">
-                <button
-                  class="gallery-cats__link tabs__tab is-active"
-                  type="button"
-                  role="tab"
-                  id="rooms-tab-all"
-                  aria-selected="true"
-                  aria-controls="rooms-panel-all"
-                  tabindex="0">
-                  Wszystkie
-                </button>
+                <button class="gallery-cats__link tabs__tab is-active" type="button" role="tab" id="rooms-tab-all" aria-selected="true" aria-controls="rooms-panel-all" tabindex="0">Wszystkie</button>
               </li>
               <li class="gallery-cats__item">
-                <button
-                  class="gallery-cats__link tabs__tab"
-                  type="button"
-                  role="tab"
-                  id="rooms-tab-classic"
-                  aria-selected="false"
-                  aria-controls="rooms-panel-classic"
-                  tabindex="-1">
-                  Classic
-                </button>
+                <button class="gallery-cats__link tabs__tab" type="button" role="tab" id="rooms-tab-classic" aria-selected="false" aria-controls="rooms-panel-classic" tabindex="-1">Classic</button>
               </li>
               <li class="gallery-cats__item">
-                <button
-                  class="gallery-cats__link tabs__tab"
-                  type="button"
-                  role="tab"
-                  id="rooms-tab-deluxe"
-                  aria-selected="false"
-                  aria-controls="rooms-panel-deluxe"
-                  tabindex="-1">
-                  Deluxe
-                </button>
+                <button class="gallery-cats__link tabs__tab" type="button" role="tab" id="rooms-tab-deluxe" aria-selected="false" aria-controls="rooms-panel-deluxe" tabindex="-1">Deluxe</button>
               </li>
               <li class="gallery-cats__item">
-                <button
-                  class="gallery-cats__link tabs__tab"
-                  type="button"
-                  role="tab"
-                  id="rooms-tab-luxury"
-                  aria-selected="false"
-                  aria-controls="rooms-panel-luxury"
-                  tabindex="-1">
-                  Luxury
-                </button>
+                <button class="gallery-cats__link tabs__tab" type="button" role="tab" id="rooms-tab-luxury" aria-selected="false" aria-controls="rooms-panel-luxury" tabindex="-1">Luxury</button>
               </li>
             </ul>
           </nav>
@@ -185,173 +125,165 @@
           <div class="tabs__panels">
             <div class="tabs__panel" id="rooms-panel-all" role="tabpanel" aria-labelledby="rooms-tab-all">
               <div class="card-grid">
-                <!-- Classic -->
                 <article class="room-card">
-              <picture>
-                <!-- AVIF -->
-                <source
-                  type="image/avif"
-                  srcset="
-                    assets/img/rooms/classic-640x427.avif    640w,
-                    assets/img/rooms/classic-960x640.avif    960w,
-                    assets/img/rooms/classic-1280x853.avif  1280w,
-                    assets/img/rooms/classic-1600x1067.avif 1600w,
-                    assets/img/rooms/classic-1920x1280.avif 1920w
-                  "
-                  sizes="(min-width: 1200px) 1100px,
+                  <picture>
+                    <source
+                      type="image/avif"
+                      srcset="
+                        assets/img/rooms/classic-640x427.avif    640w,
+                        assets/img/rooms/classic-960x640.avif    960w,
+                        assets/img/rooms/classic-1280x853.avif  1280w,
+                        assets/img/rooms/classic-1600x1067.avif 1600w,
+                        assets/img/rooms/classic-1920x1280.avif 1920w
+                      "
+                      sizes="(min-width: 1200px) 1100px,
        (min-width: 900px) 800px,
        calc(100vw - 2rem)" />
-                <!-- WebP -->
-                <source
-                  type="image/webp"
-                  srcset="
-                    assets/img/rooms/classic-640x427.webp    640w,
-                    assets/img/rooms/classic-960x640.webp    960w,
-                    assets/img/rooms/classic-1280x853.webp  1280w,
-                    assets/img/rooms/classic-1600x1067.webp 1600w,
-                    assets/img/rooms/classic-1920x1280.webp 1920w
-                  "
-                  sizes="(min-width: 1200px) 1100px,
-       (min-width: 900px) 800px,
-       calc(100vw - 2rem)" />
-                <!-- JPG fallback -->
-                <img
-                  class="room-card__img"
-                  src="assets/img/rooms/classic-1280x853.jpg"
-                  srcset="
-                    assets/img/rooms/classic-640x427.jpg    640w,
-                    assets/img/rooms/classic-960x640.jpg    960w,
-                    assets/img/rooms/classic-1280x853.jpg  1280w,
-                    assets/img/rooms/classic-1600x1067.jpg 1600w,
-                    assets/img/rooms/classic-1920x1280.jpg 1920w
-                  "
-                  sizes="(min-width: 1200px) 1100px,
-       (min-width: 900px) 800px,
-       calc(100vw - 2rem)"
-                  alt="Pokój Classic — jasny pokój dwuosobowy"
-                  width="1600"
-                  height="1067"
-                  loading="lazy"
-                  decoding="async" />
-              </picture>
-              <div class="room-card__body">
-                <h2 class="room-card__title">Classic</h2>
-                <p class="room-card__meta">18 m² • 1–2 os.</p>
-                <p class="room-card__text">Zaprojektowany dla komfortu krótkich pobytów.</p>
-              </div>
-            </article>
 
-                <!-- Deluxe -->
-                <article class="room-card">
-              <picture>
-                <!-- AVIF -->
-                <source
-                  type="image/avif"
-                  srcset="
-                    assets/img/rooms/deluxe-640x427.avif    640w,
-                    assets/img/rooms/deluxe-960x640.avif    960w,
-                    assets/img/rooms/deluxe-1280x853.avif  1280w,
-                    assets/img/rooms/deluxe-1600x1067.avif 1600w,
-                    assets/img/rooms/deluxe-1920x1280.avif 1920w
-                  "
-                  sizes="(min-width: 1200px) 1100px,
+                    <source
+                      type="image/webp"
+                      srcset="
+                        assets/img/rooms/classic-640x427.webp    640w,
+                        assets/img/rooms/classic-960x640.webp    960w,
+                        assets/img/rooms/classic-1280x853.webp  1280w,
+                        assets/img/rooms/classic-1600x1067.webp 1600w,
+                        assets/img/rooms/classic-1920x1280.webp 1920w
+                      "
+                      sizes="(min-width: 1200px) 1100px,
        (min-width: 900px) 800px,
        calc(100vw - 2rem)" />
-                <!-- WebP -->
-                <source
-                  type="image/webp"
-                  srcset="
-                    assets/img/rooms/deluxe-640x427.webp    640w,
-                    assets/img/rooms/deluxe-960x640.webp    960w,
-                    assets/img/rooms/deluxe-1280x853.webp  1280w,
-                    assets/img/rooms/deluxe-1600x1067.webp 1600w,
-                    assets/img/rooms/deluxe-1920x1280.webp 1920w
-                  "
-                  sizes="(min-width: 1200px) 1100px,
-       (min-width: 900px) 800px,
-       calc(100vw - 2rem)" />
-                <!-- JPG fallback -->
-                <img
-                  class="room-card__img"
-                  src="assets/img/rooms/deluxe-1280x853.jpg"
-                  srcset="
-                    assets/img/rooms/deluxe-640x427.jpg    640w,
-                    assets/img/rooms/deluxe-960x640.jpg    960w,
-                    assets/img/rooms/deluxe-1280x853.jpg  1280w,
-                    assets/img/rooms/deluxe-1600x1067.jpg 1600w,
-                    assets/img/rooms/deluxe-1920x1280.jpg 1920w
-                  "
-                  sizes="(min-width: 1200px) 1100px,
-       (min-width: 900px) 800px,
-       calc(100vw - 2rem)"
-                  alt="Pokój Deluxe — większa przestrzeń i lepszy widok"
-                  width="1600"
-                  height="1067"
-                  loading="lazy"
-                  decoding="async" />
-              </picture>
-              <div class="room-card__body">
-                <h2 class="room-card__title">Deluxe</h2>
-                <p class="room-card__meta">24 m² • 2 os.</p>
-                <p class="room-card__text">Więcej przestrzeni i lepszy widok.</p>
-              </div>
-            </article>
 
-                <!-- Luxury -->
-                <article class="room-card">
-              <picture>
-                <!-- AVIF -->
-                <source
-                  type="image/avif"
-                  srcset="
-                    assets/img/rooms/luxury-suite-640x427.avif    640w,
-                    assets/img/rooms/luxury-suite-960x640.avif    960w,
-                    assets/img/rooms/luxury-suite-1280x853.avif  1280w,
-                    assets/img/rooms/luxury-suite-1600x1067.avif 1600w,
-                    assets/img/rooms/luxury-suite-1920x1280.avif 1920w
-                  "
-                  sizes="(min-width: 1200px) 1100px,
-       (min-width: 900px) 800px,
-       calc(100vw - 2rem)" />
-                <!-- WebP -->
-                <source
-                  type="image/webp"
-                  srcset="
-                    assets/img/rooms/luxury-suite-640x427.webp    640w,
-                    assets/img/rooms/luxury-suite-960x640.webp    960w,
-                    assets/img/rooms/luxury-suite-1280x853.webp  1280w,
-                    assets/img/rooms/luxury-suite-1600x1067.webp 1600w,
-                    assets/img/rooms/luxury-suite-1920x1280.webp 1920w
-                  "
-                  sizes="(min-width: 1200px) 1100px,
-       (min-width: 900px) 800px,
-       calc(100vw - 2rem)" />
-                <!-- JPG fallback -->
-                <img
-                  class="room-card__img"
-                  src="assets/img/rooms/luxury-suite-1280x853.jpg"
-                  srcset="
-                    assets/img/rooms/luxury-suite-640x427.jpg    640w,
-                    assets/img/rooms/luxury-suite-960x640.jpg    960w,
-                    assets/img/rooms/luxury-suite-1280x853.jpg  1280w,
-                    assets/img/rooms/luxury-suite-1600x1067.jpg 1600w,
-                    assets/img/rooms/luxury-suite-1920x1280.jpg 1920w
-                  "
-                  sizes="(min-width: 1200px) 1100px,
+                    <img
+                      class="room-card__img"
+                      src="assets/img/rooms/classic-1280x853.jpg"
+                      srcset="
+                        assets/img/rooms/classic-640x427.jpg    640w,
+                        assets/img/rooms/classic-960x640.jpg    960w,
+                        assets/img/rooms/classic-1280x853.jpg  1280w,
+                        assets/img/rooms/classic-1600x1067.jpg 1600w,
+                        assets/img/rooms/classic-1920x1280.jpg 1920w
+                      "
+                      sizes="(min-width: 1200px) 1100px,
        (min-width: 900px) 800px,
        calc(100vw - 2rem)"
-                  alt="Luxury Suite — przestronny salon, doskonałe wyciszenie"
-                  width="1600"
-                  height="1067"
-                  loading="lazy"
-                  decoding="async" />
-              </picture>
-              <div class="room-card__body">
-                <h2 class="room-card__title">Luxury Suite</h2>
-                <p class="room-card__meta">42 m² • 2–3 os.</p>
-                <p class="room-card__text">Ekskluzywna strefa dzienna, doskonałe wyciszenie.</p>
-              </div>
-            </article>
+                      alt="Pokój Classic — jasny pokój dwuosobowy"
+                      width="1600"
+                      height="1067"
+                      loading="lazy"
+                      decoding="async" />
+                  </picture>
+                  <div class="room-card__body">
+                    <h2 class="room-card__title">Classic</h2>
+                    <p class="room-card__meta">18 m² • 1–2 os.</p>
+                    <p class="room-card__text">Zaprojektowany dla komfortu krótkich pobytów.</p>
+                  </div>
+                </article>
+
+                <article class="room-card">
+                  <picture>
+                    <source
+                      type="image/avif"
+                      srcset="
+                        assets/img/rooms/deluxe-640x427.avif    640w,
+                        assets/img/rooms/deluxe-960x640.avif    960w,
+                        assets/img/rooms/deluxe-1280x853.avif  1280w,
+                        assets/img/rooms/deluxe-1600x1067.avif 1600w,
+                        assets/img/rooms/deluxe-1920x1280.avif 1920w
+                      "
+                      sizes="(min-width: 1200px) 1100px,
+       (min-width: 900px) 800px,
+       calc(100vw - 2rem)" />
+
+                    <source
+                      type="image/webp"
+                      srcset="
+                        assets/img/rooms/deluxe-640x427.webp    640w,
+                        assets/img/rooms/deluxe-960x640.webp    960w,
+                        assets/img/rooms/deluxe-1280x853.webp  1280w,
+                        assets/img/rooms/deluxe-1600x1067.webp 1600w,
+                        assets/img/rooms/deluxe-1920x1280.webp 1920w
+                      "
+                      sizes="(min-width: 1200px) 1100px,
+       (min-width: 900px) 800px,
+       calc(100vw - 2rem)" />
+
+                    <img
+                      class="room-card__img"
+                      src="assets/img/rooms/deluxe-1280x853.jpg"
+                      srcset="
+                        assets/img/rooms/deluxe-640x427.jpg    640w,
+                        assets/img/rooms/deluxe-960x640.jpg    960w,
+                        assets/img/rooms/deluxe-1280x853.jpg  1280w,
+                        assets/img/rooms/deluxe-1600x1067.jpg 1600w,
+                        assets/img/rooms/deluxe-1920x1280.jpg 1920w
+                      "
+                      sizes="(min-width: 1200px) 1100px,
+       (min-width: 900px) 800px,
+       calc(100vw - 2rem)"
+                      alt="Pokój Deluxe — większa przestrzeń i lepszy widok"
+                      width="1600"
+                      height="1067"
+                      loading="lazy"
+                      decoding="async" />
+                  </picture>
+                  <div class="room-card__body">
+                    <h2 class="room-card__title">Deluxe</h2>
+                    <p class="room-card__meta">24 m² • 2 os.</p>
+                    <p class="room-card__text">Więcej przestrzeni i lepszy widok.</p>
+                  </div>
+                </article>
+                <article class="room-card">
+                  <picture>
+                    <source
+                      type="image/avif"
+                      srcset="
+                        assets/img/rooms/luxury-suite-640x427.avif    640w,
+                        assets/img/rooms/luxury-suite-960x640.avif    960w,
+                        assets/img/rooms/luxury-suite-1280x853.avif  1280w,
+                        assets/img/rooms/luxury-suite-1600x1067.avif 1600w,
+                        assets/img/rooms/luxury-suite-1920x1280.avif 1920w
+                      "
+                      sizes="(min-width: 1200px) 1100px,
+       (min-width: 900px) 800px,
+       calc(100vw - 2rem)" />
+                    <source
+                      type="image/webp"
+                      srcset="
+                        assets/img/rooms/luxury-suite-640x427.webp    640w,
+                        assets/img/rooms/luxury-suite-960x640.webp    960w,
+                        assets/img/rooms/luxury-suite-1280x853.webp  1280w,
+                        assets/img/rooms/luxury-suite-1600x1067.webp 1600w,
+                        assets/img/rooms/luxury-suite-1920x1280.webp 1920w
+                      "
+                      sizes="(min-width: 1200px) 1100px,
+       (min-width: 900px) 800px,
+       calc(100vw - 2rem)" />
+
+                    <img
+                      class="room-card__img"
+                      src="assets/img/rooms/luxury-suite-1280x853.jpg"
+                      srcset="
+                        assets/img/rooms/luxury-suite-640x427.jpg    640w,
+                        assets/img/rooms/luxury-suite-960x640.jpg    960w,
+                        assets/img/rooms/luxury-suite-1280x853.jpg  1280w,
+                        assets/img/rooms/luxury-suite-1600x1067.jpg 1600w,
+                        assets/img/rooms/luxury-suite-1920x1280.jpg 1920w
+                      "
+                      sizes="(min-width: 1200px) 1100px,
+       (min-width: 900px) 800px,
+       calc(100vw - 2rem)"
+                      alt="Luxury Suite — przestronny salon, doskonałe wyciszenie"
+                      width="1600"
+                      height="1067"
+                      loading="lazy"
+                      decoding="async" />
+                  </picture>
+                  <div class="room-card__body">
+                    <h2 class="room-card__title">Luxury Suite</h2>
+                    <p class="room-card__meta">42 m² • 2–3 os.</p>
+                    <p class="room-card__text">Ekskluzywna strefa dzienna, doskonałe wyciszenie.</p>
+                  </div>
+                </article>
               </div>
             </div>
 
@@ -359,7 +291,7 @@
               <div class="card-grid">
                 <article class="room-card">
                   <picture>
-                    <!-- AVIF -->
+
                     <source
                       type="image/avif"
                       srcset="
@@ -372,7 +304,7 @@
                       sizes="(min-width: 1200px) 1100px,
            (min-width: 900px) 800px,
            calc(100vw - 2rem)" />
-                    <!-- WebP -->
+
                     <source
                       type="image/webp"
                       srcset="
@@ -385,7 +317,7 @@
                       sizes="(min-width: 1200px) 1100px,
            (min-width: 900px) 800px,
            calc(100vw - 2rem)" />
-                    <!-- JPG fallback -->
+
                     <img
                       class="room-card__img"
                       src="assets/img/rooms/classic-1280x853.jpg"
@@ -418,7 +350,7 @@
               <div class="card-grid">
                 <article class="room-card">
                   <picture>
-                    <!-- AVIF -->
+
                     <source
                       type="image/avif"
                       srcset="
@@ -431,7 +363,7 @@
                       sizes="(min-width: 1200px) 1100px,
            (min-width: 900px) 800px,
            calc(100vw - 2rem)" />
-                    <!-- WebP -->
+
                     <source
                       type="image/webp"
                       srcset="
@@ -444,7 +376,7 @@
                       sizes="(min-width: 1200px) 1100px,
            (min-width: 900px) 800px,
            calc(100vw - 2rem)" />
-                    <!-- JPG fallback -->
+              
                     <img
                       class="room-card__img"
                       src="assets/img/rooms/deluxe-1280x853.jpg"
@@ -477,7 +409,7 @@
               <div class="card-grid">
                 <article class="room-card">
                   <picture>
-                    <!-- AVIF -->
+
                     <source
                       type="image/avif"
                       srcset="
@@ -490,7 +422,7 @@
                       sizes="(min-width: 1200px) 1100px,
            (min-width: 900px) 800px,
            calc(100vw - 2rem)" />
-                    <!-- WebP -->
+
                     <source
                       type="image/webp"
                       srcset="
@@ -503,7 +435,7 @@
                       sizes="(min-width: 1200px) 1100px,
            (min-width: 900px) 800px,
            calc(100vw - 2rem)" />
-                    <!-- JPG fallback -->
+
                     <img
                       class="room-card__img"
                       src="assets/img/rooms/luxury-suite-1280x853.jpg"
@@ -589,7 +521,6 @@
                 <br />
                 <a href="tel:+48533537091">+48 533 537 091</a>
               </p>
-
             </section>
 
             <section class="footer__col footer__social" aria-labelledby="footer-social">
@@ -632,7 +563,6 @@
                 </a>
               </div>
             </section>
-
           </div>
 
           <div class="footer__bottom">
@@ -649,7 +579,3 @@
     <script type="module" defer src="js/script.js"></script>
   </body>
 </html>
-
-
-
-

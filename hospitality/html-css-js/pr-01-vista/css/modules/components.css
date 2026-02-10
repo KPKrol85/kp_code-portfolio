@@ -26,6 +26,7 @@
   height: 20px;
   pointer-events: none;
 }
+
 /* Button */
 .btn {
   --btn-bg: var(--bg-elev);
@@ -114,7 +115,7 @@
 }
 html[data-theme="dark"] .btn--ghost {
   --btn-border: color-mix(in oklab, var(--primary) 45%, var(--text) 15%, transparent);
-   --btn-border: transparent;
+  --btn-border: transparent;
 }
 .btn--link {
   --btn-bg: transparent;
@@ -128,15 +129,16 @@ html[data-theme="dark"] .btn--ghost {
   text-decoration: underline;
   transform: none;
 }
+
 /* Form */
-:root {
-  --danger: #ef4444;
-  --success: #0f766e;
-  --focus: #2dc7a6;
-}
 .form {
   display: grid;
   gap: var(--space-md);
+}
+.contact-info__title {
+  font-size: var(--fs-500);
+  margin-block: var(--space-md);
+  text-align: center;
 }
 .form__field {
   display: grid;
@@ -145,15 +147,14 @@ html[data-theme="dark"] .btn--ghost {
 .form__field :is(input, textarea, select) {
   width: 100%;
   padding: var(--space-sm) var(--space-sm);
-  border-radius: var(--radius, 12px);
+  border-radius: var(--radius-md);
   border: 1px solid var(--border);
   background: var(--bg-elev);
-  color: var(--text);
-  font: inherit;
+  color: var(--muted);
+  font-size: var(--fs-100);
   line-height: 1.3;
   transition:
     border-color 120ms ease,
-    box-shadow 120ms ease,
     outline-color 120ms ease;
 }
 .form__field :is(input, textarea, select):focus-visible {
@@ -184,8 +185,11 @@ html[data-theme="dark"] .btn--ghost {
 .form__hint,
 .form__note {
   margin: 0;
-  font-size: 0.9em;
+  font-size: var(--fs-200);
   color: var(--muted);
+}
+.form__hint {
+  font-size: var(--fs-100);
 }
 .form__actions {
   display: flex;
@@ -194,6 +198,15 @@ html[data-theme="dark"] .btn--ghost {
   gap: var(--space-sm);
   flex-wrap: wrap;
   margin-top: var(--space-xs);
+}
+.form__actions .btn--primary {
+  min-block-size: 44px;
+  min-inline-size: clamp(160px, 40vw, 200px);
+}
+.form__field > label {
+  font-size: var(--fs-200);
+  color: color-mix(in oklab, var(--text) 75%, transparent);
+  font-weight: 500;
 }
 .form__field :is(input, textarea, select):disabled {
   opacity: 0.7;
@@ -206,6 +219,11 @@ html[data-theme="dark"] .btn--ghost {
   -webkit-text-fill-color: var(--text);
   box-shadow: 0 0 0 1000px var(--bg-elev) inset;
   transition: background-color 9999s;
+}
+.form__field input[type="number"] {
+  color: color-mix(in oklab, var(--text) 70%, transparent);
+  font-weight: 500;
+  font-size: calc(var(--fs-100) * 0.9);
 }
 .form__field--checkbox .checkbox {
   display: grid;
@@ -220,39 +238,43 @@ html[data-theme="dark"] .btn--ghost {
 }
 fieldset.form__field {
   border: 1px solid var(--border);
-  border-radius: var(--radius, 12px);
+  border-radius: var(--radius-md);
   padding: var(--space-sm);
+  background: color-mix(in oklab, var(--bg-elev) 90%, transparent);
+}
+.form__field .grid-2 label {
+  font-size: var(--fs-200);
+  font-weight: 500;
+  color: var(--muted);
 }
 fieldset.form__field legend {
   padding: 0 var(--space-2xs);
-  font-size: 0.95em;
+  font-size: var(--fs-300);
+  font-weight: 500;
   color: var(--muted);
 }
 .map {
   aspect-ratio: 16 / 9;
-  margin: 0;
+  margin: 0 auto;
   inline-size: 100%;
-  max-width: 420px;
+  max-width: calc(100% - var(--space-md) * 2);
 }
 .map :is(img, iframe) {
   display: block;
   inline-size: 100%;
   block-size: 100%;
   object-fit: cover;
-  border-radius: var(--radius);
+  border-radius: var(--radius-md);
   border: 1px solid var(--border);
   box-shadow: var(--elev);
 }
 .map iframe {
   border: 0;
+  border-radius: var(--radius-md);
 }
 .map figcaption {
   margin: var(--space-xs) 0 0 0;
 }
-
-
-
-
 .grid-2 a[href^="tel"],
 .grid-2 a[href^="mailto"] {
   color: var(--text);
@@ -264,23 +286,24 @@ fieldset.form__field legend {
 .grid-2 a[href^="mailto"]:hover {
   color: var(--primary);
 }
-.grid-2 p {
-  display: flex;
-  align-items: center;
-  gap: var(--space-xs);
-  margin: var(--space-2xs) 0;
-}
 .grid-2 .footer__icon-img {
   width: 20px;
   height: 20px;
   flex-shrink: 0;
   opacity: 0.9;
 }
-
+#form {
+  max-inline-size: 34rem;
+  margin-inline: auto;
+}
 .contact-address {
   display: grid;
-  gap: var(--space-xs);
-  margin: var(--space-xs) 0 var(--space-md);
+  gap: var(--space-2xs);
+  margin: var(--space-xs) 0 var(--space-xl);
+  padding-inline: var(--space-md);
+  font-size: var(--fs-300);
+  text-align: center;
+  justify-items: center;
 }
 .contact-address .contact-row {
   display: inline-flex;
@@ -293,6 +316,7 @@ fieldset.form__field legend {
 }
 .contact-info::after {
   content: "";
+  display: none;
   position: absolute;
   left: 130px;
   top: 520px;
@@ -303,10 +327,36 @@ fieldset.form__field legend {
   pointer-events: none;
   z-index: 0;
 }
-
-@media (max-width: 900px) {
+@media (min-width: 760px) {
+  .contact-info__title {
+    font-size: var(--fs-400);
+  }
+  .contact-address {
+    font-size: var(--fs-200);
+    max-inline-size: 32rem;
+    margin-inline: auto;
+  }
+  .form__hint,
+  .form__note {
+    font-size: calc(var(--fs-100) * 0.9);
+  }
+  .map {
+    max-inline-size: 36rem;
+    margin-inline: auto;
+  }
+  .form__field > label {
+    font-size: calc(var(--fs-100) * 0.9);
+  }
+  fieldset.form__field legend {
+    font-size: var(--fs-200);
+  }
+  .form__field .grid-2 label {
+    font-size: var(--fs-100);
+  }
+}
+@media (min-width: 1024px) {
   .contact-info::after {
-    display: none;
+    display: block;
   }
 }
 
@@ -331,7 +381,7 @@ fieldset.form__field legend {
   position: relative;
   background: var(--bg-elev);
   color: var(--text);
-  border-radius: var(--radius-lg);
+  border-radius: var(--radius-md);
   box-shadow: var(--elev);
   width: min(96vw, 980px);
   max-height: min(100dvh - 1rem, 720px);
@@ -353,7 +403,7 @@ fieldset.form__field legend {
   height: auto;
   max-height: 100%;
   object-fit: contain;
-  border-radius: var(--radius);
+  border-radius: var(--radius-md);
   display: block;
   margin-inline: auto;
 }

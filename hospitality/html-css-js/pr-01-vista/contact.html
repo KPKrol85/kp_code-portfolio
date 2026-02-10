@@ -1,12 +1,10 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="pl" data-theme="auto">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Vista | Kontakt i rezerwacje — Hotels &amp; Travel</title>
-    <meta
-      name="description"
-      content="Skontaktuj się z nami, aby uzyskać informacje o rezerwacjach, dostępności pokoi oraz ofertach specjalnych w Vista — Hotels &amp; Travel." />
+    <meta name="description" content="Skontaktuj się z nami, aby uzyskać informacje o rezerwacjach, dostępności pokoi oraz ofertach specjalnych w Vista — Hotels &amp; Travel." />
     <meta name="color-scheme" content="light dark" />
     <meta name="theme-color" media="(prefers-color-scheme: light)" content="#f7f6f3" />
     <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#0d0f14" />
@@ -18,9 +16,7 @@
     <meta property="og:type" content="website" />
     <meta property="og:site_name" content="Vista" />
     <meta property="og:title" content="Vista | Kontakt i rezerwacje — Hotels &amp; Travel" />
-    <meta
-      property="og:description"
-      content="Skontaktuj się z nami, aby uzyskać informacje o rezerwacjach i ofertach specjalnych Vista — Hotels &amp; Travel." />
+    <meta property="og:description" content="Skontaktuj się z nami, aby uzyskać informacje o rezerwacjach i ofertach specjalnych Vista — Hotels &amp; Travel." />
     <meta property="og:url" content="https://hospitality-pr-01-vista.netlify.app/contact.html" />
     <meta property="og:locale" content="pl_PL" />
     <meta property="og:image" content="https://hospitality-pr-01-vista.netlify.app/assets/img/og/og-1200x630.jpg" />
@@ -43,16 +39,11 @@
       (() => {
         const KEY = "theme-pref";
         let pref = "auto";
-
         try {
           const stored = localStorage.getItem(KEY);
           if (stored === "light" || stored === "dark" || stored === "auto") pref = stored;
         } catch {}
-
-        const resolved = pref === "auto"
-          ? (window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light")
-          : pref;
-
+        const resolved = pref === "auto" ? (window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light") : pref;
         document.documentElement.setAttribute("data-theme", resolved);
       })();
     </script>
@@ -98,7 +89,6 @@
 
     <!-- MAIN -->
     <main id="main">
-      <!-- Breadcrumb -->
       <nav class="breadcrumb" aria-label="Okruszki">
         <div class="container">
           <ol>
@@ -114,7 +104,7 @@
           <h1 id="contact-heading" class="section-title">Kontakt i rezerwacje</h1>
           <div class="grid-2">
             <article class="contact-info">
-              <h2>Dane kontaktowe</h2>
+              <h2 class="contact-info__title">Dane kontaktowe</h2>
               <address class="contact-address" translate="no">
                 ul. Marynarki Wojennej 12/31, 33-100 Tarnów
                 <br />
@@ -122,7 +112,6 @@
                   <img src="assets/img/icons/tel-40x40.svg" alt="" class="footer__icon-img icon--mono" width="20" height="20" decoding="async" loading="lazy" aria-hidden="true" />
                   <a href="tel:+48533537091">+48 533 537 091</a>
                 </span>
-
                 <span class="contact-row">
                   <img src="assets/img/icons/email-40x40.svg" alt="" class="footer__icon-img icon--mono" width="20" height="20" decoding="async" loading="lazy" aria-hidden="true" />
                   <a href="mailto:kontakt@vista.pl">kontakt@vista.pl</a>
@@ -140,8 +129,9 @@
                   aria-label="Mapa lokalizacji hotelu w Tarnowie"></iframe>
               </figure>
             </article>
+
             <article id="form">
-              <h2>Zapytanie o rezerwację</h2>
+              <h2 class="contact-info__title">Zapytanie o rezerwację</h2>
               <form class="form" name="booking" method="POST" data-netlify="true" netlify-honeypot="website" novalidate data-form aria-describedby="form-note">
                 <input type="hidden" name="form-name" value="booking" />
                 <input type="text" name="website" class="visually-hidden" tabindex="-1" autocomplete="off" />
@@ -268,7 +258,6 @@
                 <br />
                 <a href="tel:+48533537091">+48 533 537 091</a>
               </p>
-
             </section>
 
             <section class="footer__col footer__social" aria-labelledby="footer-social">
@@ -311,7 +300,6 @@
                 </a>
               </div>
             </section>
-
           </div>
 
           <div class="footer__bottom">
@@ -328,4 +316,3 @@
     <script type="module" defer src="js/script.js"></script>
   </body>
 </html>
-

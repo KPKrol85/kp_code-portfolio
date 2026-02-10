@@ -1,4 +1,4 @@
-/* CSS entrypoint: module imports only. Do not place style rules here. */
+
 @import "./modules/tokens.css";
 @import "./modules/base.css";
 @import "./modules/layout.css";
@@ -8,4 +8,3 @@
 @import "./modules/themes.css";
 @import "./modules/motion.css";
 @import "./modules/print.css";
-

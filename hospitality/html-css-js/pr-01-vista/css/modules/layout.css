@@ -168,7 +168,6 @@ body.is-nav-open {
 .site-header.is-compact .site-nav {
   top: calc(var(--header-h) - 10px);
 }
-/* Media queries */
 @media (min-width: 480px) {
   .site-header {
     --logo-size: 30px;
