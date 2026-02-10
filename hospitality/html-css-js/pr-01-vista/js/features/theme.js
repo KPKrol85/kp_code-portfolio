@@ -22,7 +22,6 @@ function savePref(pref) {
     }
     localStorage.setItem(STORAGE_KEY, pref);
   } catch {
-    // Ignore storage errors (private mode / blocked storage).
   }
 }
 
