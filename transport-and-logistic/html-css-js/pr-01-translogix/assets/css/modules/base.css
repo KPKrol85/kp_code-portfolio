@@ -52,7 +52,6 @@ textarea {
   z-index: 999;
   transition: left var(--transition);
 }
-
 .skip-link:focus {
   left: var(--space-2);
 }
@@ -120,6 +119,6 @@ p {
 }
 
 .lead {
-  font-size: var(--fs-md); 
+  font-size: var(--fs-md);
   color: var(--color-muted);
 }
