@@ -56,8 +56,6 @@ textarea {
   left: var(--space-2);
 }
 
-/* ===== 01 – TYPOGRAPHY ===== */
-
 @font-face {
   font-family: "Manrope";
   src: local("Manrope Regular"), local("Manrope-Regular"), url("../fonts/manrope/Manrope-Regular.woff2") format("woff2");
@@ -65,7 +63,6 @@ textarea {
   font-style: normal;
   font-display: swap;
 }
-
 @font-face {
   font-family: "Manrope";
   src: local("Manrope Medium"), local("Manrope-Medium"), url("../fonts/manrope/Manrope-Medium.woff2") format("woff2");
@@ -73,7 +70,6 @@ textarea {
   font-style: normal;
   font-display: swap;
 }
-
 @font-face {
   font-family: "Manrope";
   src: local("Manrope SemiBold"), local("Manrope-SemiBold"), url("../fonts/manrope/Manrope-SemiBold.woff2") format("woff2");
@@ -81,7 +77,6 @@ textarea {
   font-style: normal;
   font-display: swap;
 }
-
 @font-face {
   font-family: "Space Grotesk";
   src: local("Space Grotesk SemiBold"), local("SpaceGrotesk-SemiBold"), url("../fonts/space-grotesk/SpaceGrotesk-SemiBold.woff2") format("woff2");
@@ -89,7 +84,6 @@ textarea {
   font-style: normal;
   font-display: swap;
 }
-
 @font-face {
   font-family: "Space Grotesk";
   src: local("Space Grotesk Bold"), local("SpaceGrotesk-Bold"), url("../fonts/space-grotesk/SpaceGrotesk-Bold.woff2") format("woff2");

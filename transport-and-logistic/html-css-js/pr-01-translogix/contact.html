@@ -1,12 +1,10 @@
 <!DOCTYPE html>
 <html lang="pl" class="theme-light">
   <head>
-    <!-- Podstawowe metadane -->
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
-
     <script src="assets/js/boot.js" defer></script>
-    <title>Kontakt i szybka wycena | TransLogix – KP_Code_ Demo</title>
+    <title>Kontakt i szybka wycena | TransLogix</title>
     <meta name="description" content="Skontaktuj się z TransLogix: formularz kontaktowy, szybka wycena transportu i wsparcie B2B. Odpowiadamy 24/7, obsługujemy klientów w całej UE." />
     <meta name="author" content="KP_Code_" />
     <meta name="robots" content="index,follow" />
@@ -14,11 +12,7 @@
     <meta name="theme-color" content="#020617" />
     <meta name="theme-color" media="(prefers-color-scheme: light)" content="#ffffff" />
     <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#020617" />
-
-    <!-- Canonical -->
     <link rel="canonical" href="https://transport-project-01.netlify.app/contact.html" />
-
-    <!-- Ikony i manifest -->
     <link rel="icon" type="image/png" href="/assets/icons/favicon-96x96.png" sizes="96x96" />
     <link rel="icon" type="image/svg+xml" href="/assets/icons/favicon.svg" />
     <link rel="shortcut icon" href="/assets/icons/favicon.ico" />
@@ -26,12 +20,8 @@
     <meta name="apple-mobile-web-app-title" content="TransLogix" />
     <meta name="apple-mobile-web-app-capable" content="yes" />
     <link rel="manifest" href="/assets/icons/site.webmanifest" />
-
-    <!-- Preload + CSS -->
     <link rel="preload" href="/assets/css/style.min.css" as="style" />
     <link rel="stylesheet" href="/assets/css/style.css" />
-
-    <!-- Open Graph -->
     <meta property="og:type" content="website" />
     <meta property="og:title" content="Kontakt i szybka wycena transportu | TransLogix" />
     <meta property="og:description" content="Napisz do TransLogix lub zamów szybką wycenę transportu. Działamy 24/7, obsługujemy klientów w Polsce i UE." />
@@ -42,22 +32,18 @@
     <meta property="og:image:alt" content="TransLogix – transport and logistics B2B" />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
-
-    <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content="Kontakt i szybka wycena transportu | TransLogix" />
     <meta name="twitter:description" content="Skontaktuj się z zespołem TransLogix – szybkie odpowiedzi, wsparcie techniczne, wyceny 24/7." />
     <meta name="twitter:image" content="https://transport-project-01.netlify.app/assets/img/og-img/og-1200x630.jpg" />
-
-    <!-- JSON-LD – ContactPage -->
     <script type="application/ld+json" src="assets/data/jsonld/contact.json"></script>
   </head>
 
-  <!-- BODY -->
+  <!-- Body -->
   <body>
     <a class="skip-link" href="#main">Przejdź do treści głównej</a>
 
-    <!-- HEADER -->
+    <!-- Header -->
     <header>
       <div class="header-inner">
         <a href="index.html" class="brand">
@@ -90,10 +76,9 @@
       </div>
     </header>
 
-    <!-- MAIN CONTENT -->
+    <!-- Main -->
     <main id="main">
 
-      <!-- CONTACT SECTION -->
       <section class="section">
         <div class="container reveal">
           <p class="eyebrow">Kontakt</p>
@@ -136,19 +121,15 @@
                 <label for="name">Imię i nazwisko</label>
                 <input type="text" id="name" name="name" required aria-describedby="name-error" />
                 <div class="form__error" id="name-error"></div>
-
                 <label for="company">Firma</label>
                 <input type="text" id="company" name="company" aria-describedby="company-error" />
                 <div class="form__error" id="company-error"></div>
-
                 <label for="email">Email</label>
                 <input type="email" id="email" name="email" required aria-describedby="email-error" />
                 <div class="form__error" id="email-error"></div>
-
                 <label for="phone">Telefon</label>
                 <input type="tel" id="phone" name="phone" inputmode="tel" autocomplete="tel" required aria-describedby="phone-error" />
                 <div class="form__error" id="phone-error"></div>
-
                 <label for="serviceType">Typ usługi</label>
                 <select id="serviceType" name="serviceType" required aria-describedby="serviceType-error">
                   <option value="">Wybierz</option>
@@ -158,7 +139,6 @@
                   <option value="chlodnia">Chłodnia</option>
                 </select>
                 <div class="form__error" id="serviceType-error"></div>
-
                 <label for="route">Trasa (miejsce załadunku → dostawy)</label>
                 <input type="text" id="route" name="route" required aria-describedby="route-error" />
                 <div class="form__error" id="route-error"></div>
@@ -166,13 +146,11 @@
                 <label for="message">Opis ładunku</label>
                 <textarea id="message" name="message" rows="4" aria-describedby="message-error"></textarea>
                 <div class="form__error" id="message-error"></div>
-
                 <label>
                   <input type="checkbox" id="rodo" name="rodo" required aria-describedby="rodo-error" />
                   Zgadzam się na przetwarzanie danych w celu przygotowania oferty.
                 </label>
                 <div class="form__error" id="rodo-error"></div>
-
                 <button type="submit" class="cta cta--primary">Wyślij zapytanie</button>
                 <div class="form__success" id="contact-success" aria-live="polite" role="status" hidden>Twoje zgłoszenie zostało przyjęte. Wracamy do Ciebie w 15 minut.</div>
               </form>
@@ -181,7 +159,7 @@
         </div>
       </section>
 
-      <!-- FAQ SECTION -->
+      <!-- FAQ -->
       <section class="section">
         <div class="container reveal">
           <div class="section__header">
@@ -258,7 +236,7 @@
           </div>
     </main>
 
-    <!-- FOOTER -->
+    <!-- Footer -->
     <footer class="footer section">
       <div class="container footer__inner">
         <section class="footer__stats" aria-label="Kluczowe liczby TransLogix">
@@ -277,7 +255,6 @@
             </li>
           </ul>
         </section>
-
         <nav class="footer__nav" aria-label="Nawigacja w stopce">
           <div class="footer__grid">
             <div class="footer__column footer__brand">
@@ -289,7 +266,6 @@
                 TransLogix dostarcza nowoczesne rozwiązania transportowe 24/7 — real-time monitoring floty, przewozy krajowe i międzynarodowe oraz pełną transparentność operacyjną.
               </p>
             </div>
-
             <div class="footer__column">
               <h2 class="footer__title">Oferta</h2>
               <ul class="footer__list">
@@ -299,7 +275,6 @@
                 <li><a href="pricing.html">Cennik</a></li>
               </ul>
             </div>
-
             <div class="footer__column">
               <h2 class="footer__title">Wsparcie</h2>
               <ul class="footer__list">
@@ -308,7 +283,6 @@
                 <li><a href="contact.html#faq">FAQ</a></li>
               </ul>
             </div>
-
             <div class="footer__column">
               <h2 class="footer__title">Dane firmy</h2>
               <ul class="footer__list footer__list--meta">
@@ -320,31 +294,25 @@
             </div>
           </div>
         </nav>
-
         <div class="footer__social">
           <h2 class="footer__title">Social Media</h2>
-
           <nav class="footer__social-row" aria-label="Social media">
             <a href="#" class="social-link" aria-label="Facebook" target="_blank" rel="noopener noreferrer">
               <img src="assets/img/svg/fb.svg" alt="" />
             </a>
-
             <a href="#" class="social-link" aria-label="Instagram" target="_blank" rel="noopener noreferrer">
               <img src="assets/img/svg/insta.svg" alt="" />
             </a>
-
             <a href="#" class="social-link" aria-label="LinkedIn" target="_blank" rel="noopener noreferrer">
               <img src="assets/img/svg/linktin.svg" alt="" />
             </a>
-
             <a href="#" class="social-link" aria-label="GitHub" target="_blank" rel="noopener noreferrer">
               <img src="assets/img/svg/github.svg" alt="" />
             </a>
           </nav>
         </div>
-
         <div class="footer__bottom">
-          <p class="footer__bottom-text">© 2025 TransLogix – KP_Code_ Demo. Wszystkie prawa zastrzeżone.</p>
+          <p class="footer__bottom-text">© 2025 TransLogix. Wszystkie prawa zastrzeżone.</p>
           <ul class="footer__bottom-links">
             <li><a href="privacy.html">Polityka prywatności</a></li>
             <li><a href="terms.html">Regulamin serwisu</a></li>
@@ -354,6 +322,7 @@
       </div>
     </footer>
 
+    <!--Script-->
     <script type="module" src="assets/js/main.js"></script>
   </body>
 </html>

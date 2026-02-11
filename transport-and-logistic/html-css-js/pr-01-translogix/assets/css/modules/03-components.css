@@ -1,4 +1,3 @@
-/* ===== 03 – HEADER & NAV ===== */
 
 header {
   position: sticky;
@@ -14,7 +13,6 @@ html.theme-dark header {
   background: linear-gradient(to bottom, rgba(15, 23, 42, 0.94) 0%, rgba(15, 23, 42, 0.88) 50%, rgba(15, 23, 42, 0.82) 100%);
   backdrop-filter: blur(12px);
 }
-
 .header-inner {
   display: flex;
   align-items: center;
@@ -27,14 +25,12 @@ html.theme-dark header {
 header.header--compact .header-inner {
   padding: 0.5rem 5vw;
 }
-
 .brand {
   display: inline-flex;
   align-items: center;
   gap: 0.75rem;
   text-decoration: none;
 }
-
 .brand__logo {
   width: 40px;
   height: 40px;
@@ -50,7 +46,6 @@ html.theme-dark .brand__logo--light {
 html.theme-dark .brand__logo--dark {
   display: block;
 }
-
 .brand__text {
   line-height: 1;
   font-weight: 700;
@@ -95,7 +90,6 @@ html.theme-dark .nav__links a[aria-current="page"] {
   color: var(--color-accent);
   box-shadow: 0 2px 4px rgba(34, 211, 238, 0.1);
 }
-
 .nav__toggle {
   display: none;
   align-items: center;
@@ -128,7 +122,6 @@ html.theme-dark .nav__links a[aria-current="page"] {
 .nav__toggle span::after {
   top: 6px;
 }
-
 .nav__panel {
   position: absolute;
   left: 0;
@@ -172,13 +165,11 @@ html.theme-dark .nav__links a[aria-current="page"] {
 header.header--compact .nav__panel a {
   font-size: var(--fs-base);
 }
-
 .header-actions {
   display: flex;
   align-items: center;
   gap: var(--space-1);
 }
-
 .theme-toggle {
   display: inline-flex;
   align-items: center;
@@ -217,7 +208,6 @@ html.theme-dark .icon-sun {
 html.theme-dark .icon-moon {
   display: block;
 }
-
 .header-actions .btn {
   font-weight: 600;
   padding: 0.55rem 1.1rem;
@@ -242,11 +232,9 @@ html.theme-dark .header-actions .btn:hover {
   color: var(--color-accent);
   box-shadow: 0 2px 6px rgba(34, 211, 238, 0.18);
 }
-
 .header--compact {
   box-shadow: var(--color-shadow);
 }
-
 @media (min-width: 900px) {
   .nav__toggle,
   .js .nav__toggle {
@@ -283,7 +271,6 @@ html.theme-dark .header-actions .btn:hover {
     min-width: 90px;
   }
 }
-
 @media (max-width: 899px) {
   .header-inner {
     flex-wrap: nowrap;
@@ -367,8 +354,7 @@ html.theme-dark .header-actions .btn:hover {
   }
 }
 
-/* ===== 04 – HERO ===== */
-
+/* Hero */
 .hero {
   position: relative;
   min-height: 90vh;
@@ -389,14 +375,12 @@ html.theme-dark .header-actions .btn:hover {
   background-repeat: no-repeat;
   filter: brightness(0.96) contrast(1.05) saturate(1.1);
 }
-
 .hero__content {
   position: relative;
   padding: var(--space-5) 5vw;
   z-index: 1;
   max-width: 720px;
 }
-
 .hero__content .pill {
   margin-bottom: var(--space-1);
 }
@@ -412,11 +396,9 @@ html.theme-dark .pill {
   border: 1px solid rgba(255, 255, 255, 0.25);
   backdrop-filter: blur(4px);
 }
-
 .hero__content h1 {
   margin-bottom: var(--space-2);
 }
-
 .hero .lead {
   color: rgba(255, 255, 255, 0.92);
   max-width: 48rem;
@@ -424,14 +406,12 @@ html.theme-dark .pill {
   font-size: 1.15rem;
   line-height: 1.7;
 }
-
 .hero__actions {
   display: flex;
   flex-wrap: wrap;
   gap: var(--space-2);
   margin-top: var(--space-2);
 }
-
 .cta {
   padding: 0.85rem 1.4rem;
   border-radius: var(--radius-md);
@@ -453,7 +433,6 @@ html.theme-dark .pill {
 .cta:hover {
   transform: translateY(-2px);
 }
-
 .hero__actions .cta {
   font-size: 1rem;
   min-width: 11rem;
@@ -497,7 +476,6 @@ html.theme-dark .pill {
 .hero__actions .cta--ghost:hover {
   background-color: rgba(15, 23, 42, 0.32);
 }
-
 @media (min-width: 1600px) {
   .hero::before {
     background-image: linear-gradient(120deg, rgba(14, 165, 233, 0.55), rgba(15, 23, 42, 0.88)),
@@ -526,8 +504,7 @@ html.theme-dark .pill {
   }
 }
 
-/* ===== 05 – SECTIONS ===== */
-
+/* Section */
 .section__header {
   display: flex;
   flex-direction: column;
@@ -535,6 +512,7 @@ html.theme-dark .pill {
   margin-bottom: var(--space-3);
 }
 
+/* Eyebrow */
 .eyebrow {
   display: inline-block;
   margin-bottom: var(--space-1);
@@ -546,6 +524,7 @@ html.theme-dark .pill {
   color: var(--color-accent-strong);
 }
 
+/* Card */
 .card {
   background: var(--color-surface);
   border: 1px solid var(--color-border);
@@ -575,9 +554,6 @@ html.theme-dark .card:focus-within {
   outline-offset: 4px;
   box-shadow: 0 12px 36px rgba(0, 0, 0, 0.18), 0 0 0 6px rgba(14, 165, 233, 0.15);
 }
-
-/* ===== 06 - SECTION WHY US ===== */
-
 .card__icon {
   width: 42px;
   height: 42px;
@@ -594,36 +570,30 @@ html.theme-dark #why .card__icon {
   background: rgba(255, 255, 255, 0.8);
 }
 
-/* ===== 07 - SECTION TOP SERVICES ===== */
-
+/* Top services */
 #top-services .btn-inline {
   margin-top: var(--space-2);
   justify-content: center;
 }
 
-/* ===== 08 – SECTION FLEET ===== */
-
+/* Fleet */
 .fleet-grid {
   display: grid;
   gap: var(--space-2);
   grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
 }
-
 .card.fleet-card {
   display: flex;
   flex-direction: column;
   gap: var(--space-1);
   padding: var(--space-2);
 }
-
 .card.fleet-card h3 {
   padding-top: var(--space-1);
 }
-
 html.theme-dark .card.fleet-card {
   background: var(--color-surface-elevated, rgba(15, 23, 42, 0.96));
 }
-
 .fleet-card__icon {
   margin-bottom: var(--space-1);
   padding: var(--space-1);
@@ -634,23 +604,19 @@ html.theme-dark .card.fleet-card {
   justify-content: center;
   min-height: 96px;
 }
-
 html.theme-dark .fleet-card__icon {
   background: linear-gradient(to bottom, rgba(255, 255, 255, 0.85), rgba(255, 255, 255, 0.75));
 }
-
 .fleet-card__icon img {
   max-width: 100%;
   height: auto;
   display: block;
 }
 
-/* ===== 09 - SECTION QUTES ===== */
-
+/* Calculator */
 .calculator {
   margin-top: var(--space-3);
   padding: var(--space-3);
-
   border-radius: var(--radius-lg);
   background: var(--color-surface);
   border: 1px solid var(--color-border);
@@ -663,7 +629,6 @@ html.theme-dark .fleet-card__icon {
 html.theme-dark .calculator {
   background: var(--color-surface-elevated, rgba(15, 23, 42, 0.98));
 }
-
 #quote .summary {
   border-radius: var(--radius-lg);
   background: linear-gradient(to bottom right, rgba(255, 255, 255, 0.03), rgba(14, 165, 233, 0.03));
@@ -681,12 +646,10 @@ html.theme-dark #quote .summary {
   letter-spacing: -0.2px;
   margin-bottom: var(--space-1);
 }
-
 #quick-quote {
   display: grid;
   gap: var(--space-2);
 }
-
 #quick-quote fieldset {
   border: 1px solid var(--color-border);
   border-radius: var(--radius-lg);
@@ -712,7 +675,6 @@ html.theme-dark #quick-quote fieldset {
   width: 18px;
   height: 18px;
 }
-
 .quote-history {
   margin-top: var(--space-2);
   border-top: 1px solid rgba(148, 163, 184, 0.25);
@@ -748,8 +710,7 @@ html.theme-dark #quick-quote fieldset {
   white-space: nowrap;
 }
 
-/* ===== 10 – FOOTER ===== */
-
+/* Footer */
 .footer {
   background: color-mix(in srgb, var(--color-surface) 78%, var(--color-bg));
   border-top: 1px solid var(--color-border);
@@ -794,7 +755,6 @@ html.theme-dark #quick-quote fieldset {
   font-weight: 700;
   margin-bottom: 0.25rem;
 }
-
 .footer__nav {
   border-top: 1px solid var(--color-border);
   padding-top: var(--space-3);
@@ -809,7 +769,6 @@ html.theme-dark #quick-quote fieldset {
   flex-direction: column;
   gap: 0.5rem;
 }
-
 .footer__brand {
   display: flex;
   flex-direction: column;
@@ -836,7 +795,6 @@ html.theme-dark #quick-quote fieldset {
   letter-spacing: 0.16em;
   color: var(--color-muted);
 }
-
 .footer__grid > .footer__column:nth-child(2) {
   padding-left: 2rem;
 }
@@ -846,7 +804,6 @@ html.theme-dark #quick-quote fieldset {
 .footer__grid > .footer__column:nth-child(4) {
   padding-left: 0.5rem;
 }
-
 .footer__list {
   list-style: none;
   margin: 0;
@@ -905,7 +862,6 @@ html.theme-dark #quick-quote fieldset {
   transform: none;
   text-decoration: none;
 }
-
 .footer__social {
   margin-top: var(--space-2);
   padding-top: var(--space-3);
@@ -929,7 +885,6 @@ html.theme-dark #quick-quote fieldset {
   opacity: 1;
   transform: translateY(-2px);
 }
-
 .footer__bottom {
   margin-top: var(--space-3);
   padding-top: var(--space-2);
@@ -952,7 +907,6 @@ html.theme-dark #quick-quote fieldset {
   margin: 0;
   padding: 0;
 }
-
 @media (max-width: 600px) {
   .footer__inner {
     align-items: center;
@@ -1014,7 +968,6 @@ html.theme-dark #quick-quote fieldset {
     justify-content: center;
   }
 }
-
 @media (min-width: 601px) {
   .brand--footer .brand__logo {
     max-height: none;

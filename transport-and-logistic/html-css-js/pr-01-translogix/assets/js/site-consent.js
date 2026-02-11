@@ -1,9 +1,9 @@
-const CONSENT_KEY = "kpc_demo_terms_accepted_v1";
+const CONSENT_KEY = "kpc_site_terms_accepted_v1";
 const focusableSelector = 'a[href], button:not([disabled]), [tabindex]:not([tabindex="-1"])';
 
 const canUseLocalStorage = () => {
   try {
-    const probeKey = "__demo_consent_probe__";
+    const probeKey = "__site_consent_probe__";
     localStorage.setItem(probeKey, "1");
     localStorage.removeItem(probeKey);
     return true;
@@ -14,22 +14,22 @@ const canUseLocalStorage = () => {
 
 const buildConsentMarkup = () => {
   const overlay = document.createElement("div");
-  overlay.className = "demo-consent";
+  overlay.className = "site-consent";
   overlay.setAttribute("data-consent-overlay", "true");
 
   overlay.innerHTML = `
-    <div class="demo-consent__dialog" role="dialog" aria-modal="true" aria-labelledby="demo-consent-title" aria-describedby="demo-consent-desc" tabindex="-1">
-      <div class="demo-consent__badge">Projekt DEMO / Portfolio</div>
-      <h2 class="demo-consent__title" id="demo-consent-title">Projekt DEMO / Portfolio</h2>
-      <p class="demo-consent__text" id="demo-consent-desc">
-        Ta strona to demonstracyjny projekt portfolio KP_Code_. Nie świadczy rzeczywistych usług transportowych. Treści i dane są przykładowe.
+    <div class="site-consent__dialog" role="dialog" aria-modal="true" aria-labelledby="site-consent-title" aria-describedby="site-consent-desc" tabindex="-1">
+      <div class="site-consent__badge">Warunki korzystania z serwisu</div>
+      <h2 class="site-consent__title" id="site-consent-title">Warunki korzystania z serwisu</h2>
+      <p class="site-consent__text" id="site-consent-desc">
+        Przed rozpoczęciem korzystania z serwisu zapoznaj się z regulaminem, polityką prywatności oraz polityką cookies.
       </p>
-      <p class="demo-consent__note">Przed korzystaniem z serwisu zaakceptuj Regulamin.</p>
-      <div class="demo-consent__actions">
-        <button class="btn demo-consent__primary" type="button" data-consent-accept>Akceptuję i przechodzę</button>
-        <a class="btn demo-consent__secondary" href="terms.html">Przeczytaj regulamin</a>
+      <p class="site-consent__note">Przed korzystaniem z serwisu zaakceptuj Regulamin.</p>
+      <div class="site-consent__actions">
+        <button class="btn site-consent__primary" type="button" data-consent-accept>Akceptuję i przechodzę</button>
+        <a class="btn site-consent__secondary" href="terms.html">Przeczytaj regulamin</a>
       </div>
-      <div class="demo-consent__links" aria-label="Dokumenty dodatkowe">
+      <div class="site-consent__links" aria-label="Dokumenty dodatkowe">
         <a href="privacy.html">Polityka prywatności</a>
         <span aria-hidden="true">•</span>
         <a href="cookies.html">Cookies</a>
@@ -40,7 +40,7 @@ const buildConsentMarkup = () => {
   return overlay;
 };
 
-export function initDemoConsent() {
+export function initSiteConsent() {
   if (!document.body) return;
 
   const storageAvailable = canUseLocalStorage();
@@ -48,7 +48,7 @@ export function initDemoConsent() {
   if (hasConsent) return;
 
   const overlay = buildConsentMarkup();
-  const dialog = overlay.querySelector(".demo-consent__dialog");
+  const dialog = overlay.querySelector(".site-consent__dialog");
   const acceptButton = overlay.querySelector("[data-consent-accept]");
   if (!dialog || !acceptButton) return;
   const focusableItems = Array.from(dialog.querySelectorAll(focusableSelector));
