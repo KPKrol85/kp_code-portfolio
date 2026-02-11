@@ -10,6 +10,7 @@ body {
   background: var(--color-bg);
   color: var(--color-text);
   line-height: 1.6;
+  text-rendering: optimizeLegibility;
   overflow-x: hidden;
 }
 
@@ -32,8 +33,8 @@ textarea {
 }
 
 :focus-visible {
-  outline: 3px solid var(--color-accent);
-  outline-offset: 3px;
+  outline: none;
+  box-shadow: var(--ring);
 }
 
 .no-scroll {
@@ -119,6 +120,6 @@ p {
 }
 
 .lead {
-  font-size: 1.1rem;
+  font-size: var(--fs-md); 
   color: var(--color-muted);
 }
