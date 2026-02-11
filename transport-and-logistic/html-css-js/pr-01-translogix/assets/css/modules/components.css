@@ -257,6 +257,12 @@ html.theme-dark .header-actions .btn:hover {
     align-items: center;
     gap: var(--space-2);
   }
+  .js .nav__panel {
+    max-height: none;
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+  }
   .nav__links {
     flex-direction: row;
     align-items: center;
@@ -368,8 +374,13 @@ html.theme-dark .header-actions .btn:hover {
   position: absolute;
   inset: 0;
   z-index: 0;
-  background-image: linear-gradient(120deg, rgba(14, 165, 233, 0.55), rgba(15, 23, 42, 0.88)),
-    image-set(url("../img/hero/hero-01-1920x1080.avif") type("image/avif"), url("../img/hero/hero-01-1920x1080.webp") type("image/webp"), url("../img/hero/hero-01-1920x1080.jpg") type("image/jpeg"));
+  background-image:
+    linear-gradient(120deg, rgba(14, 165, 233, 0.55), rgba(15, 23, 42, 0.88)),
+    image-set(
+      url("../../img/hero/hero-01-1920x1080.avif") type("image/avif"),
+      url("../../img/hero/hero-01-1920x1080.webp") type("image/webp"),
+      url("../../img/hero/hero-01-1920x1080.jpg") type("image/jpeg")
+    );
   background-size: cover;
   background-position: center bottom;
   background-repeat: no-repeat;
@@ -479,13 +490,13 @@ html.theme-dark .pill {
 @media (min-width: 1600px) {
   .hero::before {
     background-image: linear-gradient(120deg, rgba(14, 165, 233, 0.55), rgba(15, 23, 42, 0.88)),
-      image-set(url("../img/hero/hero-01-2560x1440.avif") type("image/avif"), url("../img/hero/hero-01-2560x1440.webp") type("image/webp"), url("../img/hero/hero-01-2560x1440.jpg") type("image/jpeg"));
+      image-set(url("../../img/hero/hero-01-2560x1440.avif") type("image/avif"), url("../../img/hero/hero-01-2560x1440.webp") type("image/webp"), url("../../img/hero/hero-01-2560x1440.jpg") type("image/jpeg"));
   }
 }
 @media (min-width: 2200px) {
   .hero::before {
     background-image: linear-gradient(120deg, rgba(14, 165, 233, 0.55), rgba(15, 23, 42, 0.88)),
-      image-set(url("../img/hero/hero-01-3840x1600.avif") type("image/avif"), url("../img/hero/hero-01-3840x1600.webp") type("image/webp"), url("../img/hero/hero-01-3840x1600.jpg") type("image/jpeg"));
+      image-set(url("../../img/hero/hero-01-3840x1600.avif") type("image/avif"), url("../../img/hero/hero-01-3840x1600.webp") type("image/webp"), url("../../img/hero/hero-01-3840x1600.jpg") type("image/jpeg"));
   }
 }
 @media (max-width: 768px) {
@@ -494,7 +505,7 @@ html.theme-dark .pill {
   }
   .hero::before {
     background-image: linear-gradient(150deg, rgba(15, 23, 42, 0.92), rgba(14, 165, 233, 0.7)),
-      image-set(url("../img/hero/hero-01-1080x1500.avif") type("image/avif"), url("../img/hero/hero-01-1080x1500.webp") type("image/webp"), url("../img/hero/hero-01-1080x1500.jpg") type("image/jpeg"));
+      image-set(url("../../img/hero/hero-01-1080x1500.avif") type("image/avif"), url("../../img/hero/hero-01-1080x1500.webp") type("image/webp"), url("../../img/hero/hero-01-1080x1500.jpg") type("image/jpeg"));
     background-size: cover;
     background-position: center top;
     filter: brightness(0.9) contrast(1.08) saturate(1.05);
