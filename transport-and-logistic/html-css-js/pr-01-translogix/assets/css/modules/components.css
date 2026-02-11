@@ -190,10 +190,10 @@ header.header--compact .nav__panel a {
   height: 28px;
   pointer-events: none;
 }
-html.theme-light .theme-toggle {
+html:not(.theme-dark) .theme-toggle {
   opacity: 0.7;
 }
-html.theme-light .theme-toggle:hover {
+html:not(.theme-dark) .theme-toggle:hover {
   opacity: 0.9;
   transform: scale(1.06);
 }
@@ -400,7 +400,7 @@ html.theme-dark .header-actions .btn:hover {
 .hero__content .pill {
   margin-bottom: var(--space-1);
 }
-html.theme-light .pill {
+html:not(.theme-dark) .pill {
   background: rgba(255, 255, 255, 0.12);
   backdrop-filter: blur(4px);
   border: 1px solid rgba(255, 255, 255, 0.25);

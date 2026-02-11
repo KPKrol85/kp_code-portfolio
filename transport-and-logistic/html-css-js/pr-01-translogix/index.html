@@ -1,9 +1,9 @@
 <!doctype html>
-<html lang="pl" class="theme-light">
+<html lang="pl" class="no-js">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
-    <script src="assets/js/boot.js"></script>
+
     <title>TransLogix | Transport i logistyka</title>
     <meta
       name="description"
@@ -22,6 +22,16 @@
     <meta name="apple-mobile-web-app-title" content="TransLogix" />
     <meta name="apple-mobile-web-app-capable" content="yes" />
     <link rel="manifest" href="/assets/icons/site.webmanifest" />
+<script>
+      (function () {
+        try {
+          if (localStorage.getItem("translogix-theme") === "dark") {
+            document.documentElement.classList.add("theme-dark");
+          }
+        } catch (e) {}
+      })();
+    </script>
+    <script src="assets/js/boot.js"></script>
     <link rel="preload" href="/assets/css/style.min.css" as="style" />
     <link rel="stylesheet" href="/assets/css/style.css" />
     <meta property="og:type" content="website" />

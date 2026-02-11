@@ -1,15 +1,26 @@
 const STORAGE_KEY = "translogix-theme";
 
+function getStoredTheme() {
+  try {
+    const stored = localStorage.getItem(STORAGE_KEY);
+    return stored === "dark" || stored === "light" ? stored : null;
+  } catch (error) {
+    return null;
+  }
+}
+
 function getPreferredTheme() {
-  const stored = localStorage.getItem(STORAGE_KEY);
+  const stored = getStoredTheme();
   if (stored) return stored;
   return window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
 }
 
 function applyTheme(theme) {
   const root = document.documentElement;
-  root.classList.toggle("theme-dark", theme === "dark");
-  root.classList.toggle("theme-light", theme === "light");
+  const shouldBeDark = theme === "dark";
+  const isDark = root.classList.contains("theme-dark");
+  if (isDark === shouldBeDark) return;
+  root.classList.toggle("theme-dark", shouldBeDark);
 }
 
 function updateToggleA11y(toggle, theme) {
@@ -30,7 +41,9 @@ export function initThemeToggle() {
   toggle.addEventListener("click", () => {
     current = current === "dark" ? "light" : "dark";
     applyTheme(current);
-    localStorage.setItem(STORAGE_KEY, current);
+    try {
+      localStorage.setItem(STORAGE_KEY, current);
+    } catch (error) {}
 
     updateToggleA11y(toggle, current);
   });
