@@ -13,7 +13,6 @@ import { initServicesFilters } from "./services-filters.js";
 import { initServiceDetail } from "./service-detail.js";
 import { initFooterStats } from "./stats.js";
 
-// Bootstraps all modules depending on available DOM hooks
 initNav();
 initCompactHeader();
 initThemeToggle();
@@ -30,13 +29,8 @@ initServiceDetail();
 
 initFooterStats();
 
-if (
-  "serviceWorker" in navigator &&
-  (location.protocol === "https:" || location.hostname === "localhost")
-) {
+if ("serviceWorker" in navigator && (location.protocol === "https:" || location.hostname === "localhost")) {
   window.addEventListener("load", () => {
-    navigator.serviceWorker.register("/sw.js").catch(() => {
-      // Ignore registration errors to avoid impacting page load.
-    });
+    navigator.serviceWorker.register("/sw.js").catch(() => {});
   });
 }

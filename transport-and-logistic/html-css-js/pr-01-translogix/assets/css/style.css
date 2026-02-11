@@ -1,7 +1,7 @@
-/* CSS entrypoint: module imports only */
-@import "./modules/00-settings.css";
-@import "./modules/01-base.css";
-@import "./modules/02-layout.css";
-@import "./modules/03-components.css";
-@import "./modules/04-utilities.css";
-@import "./modules/05-pages.css";
+
+@import "./modules/settings.css";
+@import "./modules/base.css";
+@import "./modules/layout.css";
+@import "./modules/components.css";
+@import "./modules/utilities.css";
+@import "./modules/pages.css";

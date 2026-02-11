@@ -1,9 +1,7 @@
-
 export function initFooterStats() {
   const statHeaders = document.querySelectorAll(".footer__stats .stat h3");
   if (!statHeaders.length) return;
-const prefersReducedMotion = !!(window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches);
-
+  const prefersReducedMotion = !!(window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches);
 
   let deliveriesEl = null;
   let vehiclesEl = null;
@@ -16,7 +14,6 @@ const prefersReducedMotion = !!(window.matchMedia && window.matchMedia("(prefers
     if (type === "countries") countriesEl = el;
   });
 
-  // 1) UDAŃE DOSTAWY / MIESIĄC – SZTYWNE
   if (deliveriesEl) {
     const raw = deliveriesEl.dataset.value || deliveriesEl.textContent.trim().replace(/[^\d]/g, "");
     const deliveriesValue = parseInt(raw, 10);
@@ -25,7 +22,6 @@ const prefersReducedMotion = !!(window.matchMedia && window.matchMedia("(prefers
     }
   }
 
-  // 2) KRAJE UE – STAŁE
   if (countriesEl) {
     const raw = countriesEl.dataset.value || countriesEl.textContent.trim().replace(/[^\d]/g, "");
     const countriesValue = parseInt(raw, 10);
@@ -34,7 +30,6 @@ const prefersReducedMotion = !!(window.matchMedia && window.matchMedia("(prefers
   }
   if (prefersReducedMotion) return;
 
-  // 3) POJAZDY W RUCHU – DYNAMICZNE
   if (!vehiclesEl) return;
 
   const rawVehicles = vehiclesEl.dataset.value || vehiclesEl.textContent.trim().replace(/[^\d]/g, "");

@@ -1,4 +1,4 @@
-// Accessible accordion for FAQ section
+
 export function initAccordion() {
   const accordions = document.querySelectorAll(".accordion__item");
   if (!accordions.length) return;
@@ -12,7 +12,7 @@ export function initAccordion() {
     btn.setAttribute("aria-expanded", "false");
     item.classList.remove("is-open");
     panel.style.maxHeight = `${panel.scrollHeight}px`;
-    panel.offsetHeight; // force reflow
+    panel.offsetHeight;
     panel.style.maxHeight = "0px";
 
     const onCloseEnd = () => {
@@ -39,7 +39,7 @@ export function initAccordion() {
     item.classList.add("is-open");
     panel.removeAttribute("hidden");
     panel.style.maxHeight = "0px";
-    panel.offsetHeight; // force reflow
+    panel.offsetHeight; 
     panel.style.maxHeight = `${panel.scrollHeight}px`;
 
     const onOpenEnd = () => {

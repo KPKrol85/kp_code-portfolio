@@ -1,4 +1,3 @@
-// Handles mobile navigation interactions and focus management
 export function initNav() {
   const nav = document.querySelector(".nav");
   const toggle = nav?.querySelector(".nav__toggle");
@@ -19,7 +18,6 @@ export function initNav() {
   panel.setAttribute("aria-label", panel.getAttribute("aria-label") || "Główne menu");
   panel.setAttribute("aria-hidden", "true");
 
-  // Close dropdown and reset a11y state
   const closeMenu = () => {
     toggle.setAttribute("aria-expanded", "false");
     toggle.setAttribute("aria-label", "Otwórz menu");
@@ -30,7 +28,6 @@ export function initNav() {
     }
   };
 
-  // Open dropdown and lock body scroll on mobile
   const openMenu = () => {
     panel.classList.add("nav__panel--open", "is-open");
     toggle.setAttribute("aria-expanded", "true");
@@ -46,16 +43,14 @@ export function initNav() {
     isOpen ? closeMenu() : openMenu();
   });
 
-  // Close menu when selecting a link on mobile
   closeTriggers.forEach((link) =>
     link.addEventListener("click", () => {
       if (toggle.getAttribute("aria-expanded") === "true") {
         closeMenu();
       }
-    })
+    }),
   );
 
-  // Close when clicking outside of the nav area
   document.addEventListener("click", (event) => {
     const isOpen = toggle.getAttribute("aria-expanded") === "true";
     if (!isOpen) return;
@@ -72,7 +67,6 @@ export function initNav() {
     }
   });
 
-  // Sync state when resizing across the breakpoint
   const handleBreakpointChange = () => {
     if (mq.matches) {
       panel.classList.remove("nav__panel--open", "is-open");

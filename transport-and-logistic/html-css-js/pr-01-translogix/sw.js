@@ -9,17 +9,14 @@ const PRECACHE_URLS = [
   "/contact.html",
   "/404.html",
 
-  // JS
   "/assets/js/main.js",
 
-  // Icons / PWA
   "/assets/icons/favicon.ico",
   "/assets/icons/favicon-96x96.png",
   "/assets/icons/favicon.svg",
   "/assets/icons/apple-touch-icon.png",
   "/assets/icons/site.webmanifest",
 
-  // root misc (safe to cache lightly)
   "/robots.txt",
   "/sitemap.xml",
 ];
@@ -57,7 +54,7 @@ self.addEventListener("install", (event) => {
       } catch (error) {
         console.error("Service worker install failed", error);
       }
-    })()
+    })(),
   );
 });
 
@@ -71,10 +68,10 @@ self.addEventListener("activate", (event) => {
             return caches.delete(cacheName);
           }
           return undefined;
-        })
+        }),
       );
       await self.clients.claim();
-    })()
+    })(),
   );
 });
 
@@ -83,7 +80,6 @@ self.addEventListener("fetch", (event) => {
 
   if (request.method !== "GET") return;
 
-  // HTML navigation: keep fresh, fallback to cached shell
   if (request.mode === "navigate") {
     event.respondWith(networkFirst(request));
     return;
@@ -91,13 +87,11 @@ self.addEventListener("fetch", (event) => {
 
   const url = new URL(request.url);
 
-  // Static assets: SWR
   if (url.pathname.startsWith("/assets/")) {
     event.respondWith(staleWhileRevalidate(request));
     return;
   }
 
-  // Root small files (robots/sitemap/manifest/404): SWR
   if (url.pathname === "/robots.txt" || url.pathname === "/sitemap.xml" || url.pathname === "/site.webmanifest" || url.pathname === "/404.html") {
     event.respondWith(staleWhileRevalidate(request));
     return;
@@ -118,7 +112,6 @@ async function networkFirst(request) {
 
     if (cachedResponse) return cachedResponse;
 
-    // last resort: show 404 page if available
     const notFound = await cache.match("/404.html");
     if (notFound) return notFound;
 

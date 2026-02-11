@@ -1,4 +1,4 @@
-// Filters fleet cards based on data attributes
+
 export function initGalleryFilters() {
   const chips = document.querySelectorAll("[data-filter]");
   const items = document.querySelectorAll("#fleet-grid [data-type]");

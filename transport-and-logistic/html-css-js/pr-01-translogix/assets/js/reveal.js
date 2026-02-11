@@ -1,4 +1,4 @@
-// Fades sections in on scroll with IntersectionObserver
+
 export function initReveal() {
   const elements = document.querySelectorAll(".reveal");
   if (!elements.length || window.matchMedia("(prefers-reduced-motion: reduce)").matches) {

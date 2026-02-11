@@ -1,12 +1,12 @@
-const fs = require('fs');
-const fsp = require('fs/promises');
-const path = require('path');
+const fs = require("fs");
+const fsp = require("fs/promises");
+const path = require("path");
 let sharp;
 
-const projectRoot = path.resolve(__dirname, '..');
-const sourceDir = path.join(projectRoot, 'src_img');
-const outputDir = path.join(projectRoot, 'opt_img');
-const supportedExtensions = new Set(['.jpg', '.jpeg', '.png']);
+const projectRoot = path.resolve(__dirname, "..");
+const sourceDir = path.join(projectRoot, "assets/img/src_img");
+const outputDir = path.join(projectRoot, "assets/img/opt_img");
+const supportedExtensions = new Set([".jpg", ".jpeg", ".png"]);
 
 const WEBP_OPTIONS = {
   quality: 80,
@@ -18,14 +18,13 @@ const AVIF_OPTIONS = {
   effort: 5,
 };
 
-
 function getSharp() {
   if (sharp) return sharp;
 
   try {
     // Lazy-load so the script can show a clear message when dependency is missing.
     // eslint-disable-next-line global-require
-    sharp = require('sharp');
+    sharp = require("sharp");
     return sharp;
   } catch (error) {
     console.error('Missing dependency: sharp. Run "npm install" before "npm run img:opt".');
@@ -34,7 +33,7 @@ function getSharp() {
 }
 
 function toPosixPath(filePath) {
-  return filePath.split(path.sep).join('/');
+  return filePath.split(path.sep).join("/");
 }
 
 async function collectImageFiles(dir) {
@@ -83,7 +82,7 @@ async function optimizeImages() {
   let skipped = 0;
 
   if (!fs.existsSync(sourceDir)) {
-    console.log('No src_img directory found. Nothing to optimize.');
+    console.log("No src_img directory found. Nothing to optimize.");
     process.exit(0);
   }
 
@@ -92,11 +91,11 @@ async function optimizeImages() {
 
   for (const sourceFile of sourceFiles) {
     const relativePath = path.relative(sourceDir, sourceFile);
-    const outputBasePath = path.join(outputDir, relativePath).replace(/\.[^.]+$/, '');
+    const outputBasePath = path.join(outputDir, relativePath).replace(/\.[^.]+$/, "");
 
     const targets = [
-      { format: 'webp', options: WEBP_OPTIONS, outputFile: `${outputBasePath}.webp` },
-      { format: 'avif', options: AVIF_OPTIONS, outputFile: `${outputBasePath}.avif` },
+      { format: "webp", options: WEBP_OPTIONS, outputFile: `${outputBasePath}.webp` },
+      { format: "avif", options: AVIF_OPTIONS, outputFile: `${outputBasePath}.avif` },
     ];
 
     for (const target of targets) {

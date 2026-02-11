@@ -1,4 +1,4 @@
-// Accessible tabs component with keyboard navigation
+
 export function initTabs() {
   const tablists = document.querySelectorAll("[role='tablist']");
   tablists.forEach((tablist) => {
@@ -34,7 +34,6 @@ export function initTabs() {
       });
     });
 
-    // Activate first tab by default
     const initial = Array.from(tabs).find((tab) => tab.getAttribute("aria-selected") === "true") || tabs[0];
     activateTab(initial);
   });

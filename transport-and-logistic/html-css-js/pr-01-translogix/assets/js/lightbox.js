@@ -1,4 +1,3 @@
-// Lightbox: prev/next przełącza KATEGORIE (4 ikony), grid 2x3 pokazuje miniatury dla aktywnej kategorii
 export function initLightbox() {
   const triggers = Array.from(document.querySelectorAll(".lightbox-trigger[data-gallery]"));
   const lightbox = document.querySelector(".lightbox");
@@ -194,7 +193,7 @@ export function initLightbox() {
     (e) => {
       if (!lightbox.hidden && !zoomOpen) e.preventDefault();
     },
-    { passive: false }
+    { passive: false },
   );
 
   const getThumbImg = (target) => {

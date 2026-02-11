@@ -1,5 +1,3 @@
-// Enhances static service detail fallback with data from JSON based on URL params
-
 async function fetchJson(url) {
   const response = await fetch(url);
   if (!response.ok) {
@@ -17,7 +15,7 @@ export async function initServiceDetail() {
   const wrapper = document.getElementById("service-detail");
   if (!wrapper) return;
 
-  const titleEl = document.querySelector("[data-role=\"service-title\"]") || document.getElementById("service-title");
+  const titleEl = document.querySelector('[data-role="service-title"]') || document.getElementById("service-title");
   const breadcrumbCurrentEl = document.getElementById("service-breadcrumb-current");
   const descriptionEl = document.getElementById("service-description");
   const routeEl = document.getElementById("service-route");

@@ -1,4 +1,3 @@
-// Form validation and simple calculators for quick quote and pricing pages
 const validators = {
   required: (value) => value.trim().length > 0,
   email: (value) => /\S+@\S+\.\S+/.test(value),
@@ -53,31 +52,26 @@ function validateField(input) {
   const required = input.hasAttribute("required");
   const value = input.value;
 
-  // 1. Puste required (dla wszystkich typów)
   if (required && !validators.required(value)) {
     showError(input, "To pole jest wymagane.");
     return false;
   }
 
-  // 2. Email
   if (type === "email" && value && !validators.email(value)) {
     showError(input, "Podaj prawidłowy adres email.");
     return false;
   }
 
-  // 3. Telefon
   if (type === "tel" && value && !validators.tel(value)) {
     showError(input, "Use international format, e.g. +48123456789");
     return false;
   }
 
-  // 4. Liczby (distance, weight itd.)
   if (type === "number" && required && !validators.number(value)) {
     showError(input, "Wpisz wartość większą od zera.");
     return false;
   }
 
-  // 5. Select – tylko sprawdzamy, czy coś wybrane (wartość != "")
   if (input.tagName === "SELECT" && required && !validators.required(value)) {
     showError(input, "Wybierz opcję z listy.");
     return false;

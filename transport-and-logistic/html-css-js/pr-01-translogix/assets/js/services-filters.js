@@ -1,4 +1,3 @@
-// Loads services from JSON, renders list and applies filters/sorting
 const STORAGE_KEY = "translogix-services-filters";
 
 function loadState() {
@@ -119,9 +118,7 @@ export async function initServicesFilters() {
     const filtered = filterServices(allServices, state);
     renderServices(filtered, container);
     if (countEl) {
-      countEl.textContent = filtered.length
-        ? `Wyswietlono ${filtered.length}/${allServices.length}`
-        : "Brak wynikow dla wybranych filtrow.";
+      countEl.textContent = filtered.length ? `Wyswietlono ${filtered.length}/${allServices.length}` : "Brak wynikow dla wybranych filtrow.";
     }
     if (state.filter && state.filter !== "all") {
       params.set("filter", state.filter);

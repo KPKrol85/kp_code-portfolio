@@ -25,7 +25,6 @@ export function initThemeToggle() {
   let current = getPreferredTheme();
   applyTheme(current);
 
-  // Ustawiamy ARIA po załadowaniu
   updateToggleA11y(toggle, current);
 
   toggle.addEventListener("click", () => {
@@ -33,7 +32,6 @@ export function initThemeToggle() {
     applyTheme(current);
     localStorage.setItem(STORAGE_KEY, current);
 
-    // Ustawiamy ARIA po zmianie trybu
     updateToggleA11y(toggle, current);
   });
 }
