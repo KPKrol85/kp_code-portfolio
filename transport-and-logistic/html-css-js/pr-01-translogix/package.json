@@ -6,13 +6,18 @@
   "author": "KP_Code_",
   "license": "UNLICENSED",
   "scripts": {
-    "css:min": "postcss assets/css/style.css -o assets/css/style.min.css",
-    "css:watch": "postcss assets/css/style.css -o assets/css/style.min.css --watch",
-    "build": "npm run css:min"
+    "dev:css": "npm run build:css",
+    "build:css": "postcss assets/css/style.src.css -o assets/css/style.min.css",
+    "deploy:css": "npm run build:css && cp assets/css/style.min.css assets/css/style.css",
+    "verify:assets": "node scripts/verify-assets.js",
+    "img:opt": "node scripts/optimize-images.js"
   },
   "devDependencies": {
     "cssnano": "^7.1.2",
     "postcss": "^8.5.6",
-    "postcss-cli": "^11.0.1"
+    "postcss-cli": "^11.0.1",
+    "autoprefixer": "^10.4.21",
+    "postcss-import": "^16.1.1",
+    "sharp": "^0.33.5"
   }
 }

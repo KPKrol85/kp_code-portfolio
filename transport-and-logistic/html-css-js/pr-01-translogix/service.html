@@ -4,6 +4,8 @@
     <!-- Podstawowe metadane -->
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+
+    <script src="assets/js/boot.js" defer></script>
     <title>Szczegóły usługi transportowej | TransLogix – KP_Code_ Demo</title>
     <meta name="description" content="Szczegółowe informacje o usłudze transportowej TransLogix. Zakres realizacji, parametry przewozu, czas dostawy, dostępne opcje i szybka wycena online." />
     <meta name="author" content="KP_Code_" />
@@ -25,7 +27,7 @@
 
     <!-- Preload + CSS -->
     <link rel="preload" href="assets/css/style.min.css" as="style" />
-    <link rel="stylesheet" href="assets/css/style.min.css" />
+    <link rel="stylesheet" href="assets/css/style.css" />
 
     <!-- Open Graph -->
     <meta property="og:type" content="website" />
@@ -46,26 +48,7 @@
     <meta name="twitter:image" content="https://transport-project-01.netlify.app/assets/img/og-img/og-1200x630.jpg" />
 
     <!-- JSON-LD – ServicePage -->
-    <script type="application/ld+json">
-      {
-        "@context": "https://schema.org",
-        "@type": "Service",
-        "name": "Usługa transportowa – TransLogix",
-        "description": "Strona szczegółów usługi transportowej TransLogix: zakres, opcje realizacji i parametry przewozu.",
-        "provider": {
-          "@type": "Organization",
-          "name": "TransLogix",
-          "url": "https://transport-project-01.netlify.app/",
-          "logo": "https://transport-project-01.netlify.app/assets/img/brand/logo-translogix.svg"
-        },
-        "areaServed": "EU",
-        "availableChannel": {
-          "@type": "ServiceChannel",
-          "servicePhone": "+48-500-000-000",
-          "serviceUrl": "https://transport-project-01.netlify.app/contact.html"
-        }
-      }
-    </script>
+    <script type="application/ld+json" src="assets/data/jsonld/service.json"></script>
   </head>
 
   <!-- BODY -->
@@ -84,7 +67,7 @@
           <button class="nav__toggle" aria-expanded="false" aria-controls="mobile-nav" aria-label="Otwórz menu">
             <span aria-hidden="true"></span>
           </button>
-          <div id="mobile-nav" class="nav__panel" hidden>
+          <div id="mobile-nav" class="nav__panel">
             <div class="nav__links">
               <a href="index.html">Start</a>
               <a href="services.html">Usługi</a>
@@ -109,15 +92,55 @@
     <main id="main">
       <section class="section">
         <div class="container reveal">
-          <header class="section__header">
-            <p class="eyebrow">Usługi</p>
-            <h1>Szczegóły usługi transportowej</h1>
-            <p class="text-muted">Poznaj parametry, trasę, czas realizacji i opcje dodatkowe dla wybranej usługi TransLogix.</p>
-          </header>
-
           <article id="service-detail" class="service-detail" aria-live="polite">
-            <p class="text-muted">Ładowanie szczegółów usługi...</p>
+            <header class="section__header">
+              <p class="eyebrow">Usługi</p>
+              <nav aria-label="Okruszki">
+                <a href="services.html">Usługi</a> &gt; <span id="service-breadcrumb-current" aria-current="page">Transport dedykowany krajowy</span>
+              </nav>
+              <h1 id="service-title" data-role="service-title">Transport dedykowany krajowy</h1>
+              <p id="service-description" class="text-muted">Elastyczna usługa dla firm, które potrzebują pewnych terminów, bieżącego monitoringu i pełnej transparentności przewozu na trasach krajowych.</p>
+            </header>
+
+            <div class="grid grid-2">
+              <section class="card" aria-labelledby="service-scope-heading">
+                <h2 id="service-scope-heading">Zakres usługi</h2>
+                <p><strong>Trasa:</strong> <span id="service-route">Polska — trasy krajowe door-to-door</span></p>
+                <p><strong>Limit:</strong> <span id="service-weight-limit">do 24 t (w zależności od zestawu)</span></p>
+                <p><strong>Czas realizacji:</strong> <span id="service-eta">zgodnie z ustalonym oknem czasowym</span></p>
+                <p><strong>Cena orientacyjna:</strong> <span id="service-price">wycena indywidualna</span></p>
+                <p><strong>Ładunki:</strong> <span id="service-load-types">Palety, LTL/FTL, ładunki regularne i sezonowe</span></p>
+                <p><strong>Bezpieczeństwo:</strong> <span id="service-security">Monitoring GPS, check-call i potwierdzenia statusów</span></p>
+                <p><strong>Dokumenty:</strong> <span id="service-documents">List przewozowy, potwierdzenie dostawy, raport statusów</span></p>
+                <p><strong>Opcje:</strong> <span id="service-extras">Obsługa stałych tras, dostawy poranne, opcje express</span></p>
+                <div id="service-tags" class="filters" aria-label="Tagi usługi">
+                  <span class="tag">krajowy</span>
+                  <span class="tag">dedykowany</span>
+                  <span class="tag">monitoring GPS</span>
+                </div>
+              </section>
+
+              <section class="card" aria-labelledby="service-benefits-heading">
+                <h2 id="service-benefits-heading">Najważniejsze korzyści</h2>
+                <ul id="service-audience" class="service-details">
+                  <li>Terminowe dostawy dla produkcji, retail i e-commerce.</li>
+                  <li>Pełna widoczność trasy i statusów w czasie rzeczywistym.</li>
+                  <li>Szybka wycena oraz opiekun operacyjny dla stałych zleceń.</li>
+                </ul>
+                <h3>Co dalej?</h3>
+                <p id="service-cta-text">Wypełnij formularz, a dyspozytor wróci z potwierdzeniem szczegółów realizacji.</p>
+                <div>
+                  <a class="btn" href="contact.html#quote">Zapytaj o termin</a>
+                  <a class="btn" href="pricing.html#calculator">Sprawdź stawkę</a>
+                </div>
+              </section>
+            </div>
           </article>
+
+          <noscript>
+            <p class="text-muted">Dynamiczne filtrowanie usługi wymaga JavaScript. Możesz wrócić do pełnej listy usług.</p>
+            <p><a href="services.html">Wróć do services.html</a></p>
+          </noscript>
         </div>
       </section>
     </main>

@@ -1,54 +1,93 @@
-// Renders single service detail from JSON based on URL param
+// Enhances static service detail fallback with data from JSON based on URL params
+
+async function fetchJson(url) {
+  const response = await fetch(url);
+  if (!response.ok) {
+    throw new Error(`HTTP ${response.status}`);
+  }
+
+  try {
+    return await response.json();
+  } catch {
+    throw new Error("Invalid JSON");
+  }
+}
+
 export async function initServiceDetail() {
   const wrapper = document.getElementById("service-detail");
   if (!wrapper) return;
 
+  const titleEl = document.querySelector("[data-role=\"service-title\"]") || document.getElementById("service-title");
+  const breadcrumbCurrentEl = document.getElementById("service-breadcrumb-current");
+  const descriptionEl = document.getElementById("service-description");
+  const routeEl = document.getElementById("service-route");
+  const weightLimitEl = document.getElementById("service-weight-limit");
+  const etaEl = document.getElementById("service-eta");
+  const priceEl = document.getElementById("service-price");
+  const loadTypesEl = document.getElementById("service-load-types");
+  const securityEl = document.getElementById("service-security");
+  const documentsEl = document.getElementById("service-documents");
+  const extrasEl = document.getElementById("service-extras");
+  const tagsEl = document.getElementById("service-tags");
+  const audienceEl = document.getElementById("service-audience");
+
   const params = new URLSearchParams(window.location.search);
   const slugParam = params.get("service");
-  const idParam = Number(params.get("id"));
+  const idParamRaw = params.get("id");
+  const idParam = idParamRaw ? Number(idParamRaw) : null;
 
-  const response = await fetch("assets/data/services.json");
-  const services = await response.json();
-  const service = services.find((s) => (slugParam && s.slug === slugParam) || (!slugParam && s.id === idParam));
-  if (!service) {
-    wrapper.innerHTML = `<p>Nie znaleziono usługi. <a href="services.html">Wróć do listy usług</a>.</p>`;
-    return;
+  if (!slugParam && !idParamRaw) return;
+
+  try {
+    const services = await fetchJson("assets/data/services.json");
+    const service = services.find((item) => {
+      if (slugParam) return item.slug === slugParam;
+      return Number.isFinite(idParam) && item.id === idParam;
+    });
+
+    if (!service) return;
+
+    document.title = `${service.name} | TransLogix`;
+
+    if (titleEl) titleEl.textContent = service.name;
+    if (breadcrumbCurrentEl) breadcrumbCurrentEl.textContent = service.name;
+    if (descriptionEl) descriptionEl.textContent = service.description;
+    if (routeEl) routeEl.textContent = service.route;
+    if (weightLimitEl) weightLimitEl.textContent = service.weightLimit || "na zapytanie";
+    if (etaEl) etaEl.textContent = service.eta || `${service.time} h`;
+    if (priceEl) priceEl.textContent = `od ${service.price} zł netto`;
+    if (loadTypesEl) loadTypesEl.textContent = service.loadTypes || "Palety, LTL/FTL";
+    if (securityEl) securityEl.textContent = service.security || "Monitoring GPS, plomby, check-call";
+    if (documentsEl) documentsEl.textContent = service.documents || "CMR, potwierdzenie dostawy";
+    if (extrasEl) extrasEl.textContent = service.extras || "Express, ubezpieczenie, ADR/chłodnia";
+
+    if (tagsEl && Array.isArray(service.tags)) {
+      tagsEl.replaceChildren();
+      service.tags.forEach((tag) => {
+        const tagEl = document.createElement("span");
+        tagEl.className = "tag";
+        tagEl.textContent = tag;
+        tagsEl.appendChild(tagEl);
+      });
+    }
+
+    if (audienceEl && Array.isArray(service.audience) && service.audience.length) {
+      audienceEl.replaceChildren();
+      service.audience.forEach((item) => {
+        const li = document.createElement("li");
+        li.textContent = item;
+        audienceEl.appendChild(li);
+      });
+    }
+  } catch (error) {
+    console.error("Failed to enhance service detail.", error);
+
+    if (!wrapper.querySelector("[data-service-error]")) {
+      const errorEl = document.createElement("p");
+      errorEl.className = "text-muted";
+      errorEl.dataset.serviceError = "true";
+      errorEl.textContent = "Unable to load service details. Showing fallback content.";
+      wrapper.appendChild(errorEl);
+    }
   }
-
-  document.title = `${service.name} | TransLogix`;
-  const iconSrc = service.icon || service.image;
-
-  wrapper.innerHTML = `
-    <nav aria-label="Okruszki">
-      <a href="services.html">Usługi</a> > <span aria-current="page">${service.name}</span>
-    </nav>
-    <h1>${service.name}</h1>
-    <p class="lead">${service.description}</p>
-    <div class="grid grid-2">
-      <div class="card">
-        <img src="${iconSrc}" alt="${service.name} - ikona usługi">
-        <p><strong>Trasa:</strong> ${service.route}</p>
-        <p><strong>Limit:</strong> ${service.weightLimit || "na zapytanie"}</p>
-        <p><strong>Czas realizacji:</strong> ${service.eta || `${service.time} h`}</p>
-        <p><strong>Cena orientacyjna:</strong> od ${service.price} zł netto</p>
-        <p><strong>Ładunki:</strong> ${service.loadTypes || "Palety, LTL/FTL"}</p>
-        <p><strong>Bezpieczeństwo:</strong> ${service.security || "Monitoring GPS, plomby, check-call"}</p>
-        <p><strong>Dokumenty:</strong> ${service.documents || "CMR, potwierdzenie dostawy"}</p>
-        <p><strong>Opcje:</strong> ${service.extras || "Express, ubezpieczenie, ADR/chłodnia"}</p>
-        <div class="filters">
-          ${service.tags.map((tag) => `<span class="tag">${tag}</span>`).join("")}
-        </div>
-      </div>
-      <div class="card">
-        <h2>Najważniejsze korzyści</h2>
-        <ul class="service-details">
-          ${Array.isArray(service.audience) ? service.audience.map((item) => `<li>${item}</li>`).join("") : ""}
-        </ul>
-        <h3>Co dalej?</h3>
-        <p>Wypełnij formularz, a dyspozytor wróci w 15 minut z potwierdzeniem.</p>
-        <a class="btn" href="contact.html#quote">Zapytaj o termin</a>
-        <a class="btn" href="pricing.html#calculator">Sprawdź stawkę</a>
-      </div>
-    </div>
-  `;
 }

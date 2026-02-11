@@ -1,0 +1,51 @@
+/* ===== 00 - RESET & GLOBAL ===== */
+
+:root {
+  --font-base: "Manrope", system-ui, -apple-system, sans-serif;
+  --font-heading: "Space Grotesk", system-ui, -apple-system, sans-serif;
+  --color-bg: #f7f7f9;
+  --color-surface: #ffffff;
+  --color-text: #0f172a;
+  --color-muted: #4b5563;
+  --color-accent: #0ea5e9;
+  --color-accent-strong: #0284c7;
+  --color-accent-soft: #e0f2fe;
+  --color-border: #e5e7eb;
+  --color-shadow: 0 10px 30px rgba(15, 23, 42, 0.08);
+  --logo-blue: #60a5fa;
+  --logo-dark: #1e2a57;
+  --logo-light: #f1f5f9;
+  --radius-sm: 10px;
+  --radius-md: 16px;
+  --radius-lg: 22px;
+  --space-1: 0.5rem;
+  --space-2: 1rem;
+  --space-3: 1.5rem;
+  --space-4: 2rem;
+  --space-5: 3rem;
+  --transition: 200ms ease;
+  --fs-xs: 0.75rem; /* 12px */
+  --fs-sm: 0.875rem; /* 14px */
+  --fs-base: 1rem; /* 16px */
+  --fs-md: 1.125rem; /* 18px */
+  --fs-lg: 1.25rem; /* 20px */
+  --fs-xl: 1.5rem; /* 24px */
+  --fs-2xl: 2rem; /* 32px */
+  --social-icon-filter: brightness(0);
+}
+
+:root.theme-dark {
+  --color-bg: #0b1020;
+  --color-surface: #0f172a;
+  --color-text: #e5e7eb;
+  --color-muted: #cbd5e1;
+  --color-accent: #22d3ee;
+  --color-accent-strong: #0ea5e9;
+  --color-accent-soft: rgba(34, 211, 238, 0.1);
+  --color-border: #1f2937;
+  --color-shadow: 0 12px 36px rgba(0, 0, 0, 0.4);
+  --logo-blue: #7bb7ff;
+  --logo-dark: #1e2a57;
+  --logo-light: #f1f5f9;
+  --social-icon-filter: none;
+}

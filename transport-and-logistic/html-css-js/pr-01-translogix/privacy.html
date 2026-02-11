@@ -5,6 +5,8 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
 
+    <script src="assets/js/boot.js" defer></script>
+
     <title>Polityka prywatności | TransLogix - KP_Code_ Demo</title>
     <meta name="description" content="Polityka prywatności TransLogix: zasady przetwarzania danych klientów B2B, cele, podstawy prawne i prawa osób, które powierzają nam dane." />
     <meta name="author" content="KP_Code_" />
@@ -29,7 +31,7 @@
 
     <!-- Preload + CSS -->
     <link rel="preload" href="/assets/css/style.min.css" as="style" />
-    <link rel="stylesheet" href="/assets/css/style.min.css" />
+    <link rel="stylesheet" href="/assets/css/style.css" />
 
     <!-- Open Graph -->
     <meta property="og:type" content="website" />
@@ -50,22 +52,7 @@
     <meta name="twitter:image" content="https://transport-project-01.netlify.app/assets/img/og-img/og-1200x630.jpg" />
 
     <!-- JSON-LD -->
-    <script type="application/ld+json">
-      {
-        "@context": "https://schema.org",
-        "@type": "PrivacyPolicy",
-        "name": "Polityka prywatności - TransLogix",
-        "url": "https://transport-project-01.netlify.app/privacy.html",
-        "publisher": {
-          "@type": "Organization",
-          "name": "TransLogix",
-          "url": "https://transport-project-01.netlify.app/",
-          "logo": "https://transport-project-01.netlify.app/assets/img/brand/logo-translogix.svg"
-        },
-        "inLanguage": "pl-PL",
-        "description": "Zasady przetwarzania danych osobowych klientów i partnerów TransLogix."
-      }
-    </script>
+    <script type="application/ld+json" src="assets/data/jsonld/privacy.json"></script>
   </head>
 
   <!-- BODY -->
@@ -84,7 +71,7 @@
           <button class="nav__toggle" aria-expanded="false" aria-controls="mobile-nav" aria-label="Otwórz menu">
             <span aria-hidden="true"></span>
           </button>
-          <div id="mobile-nav" class="nav__panel" hidden>
+          <div id="mobile-nav" class="nav__panel">
             <div class="nav__links">
               <a href="index.html">Start</a>
               <a href="services.html">Usługi</a>

@@ -9,10 +9,6 @@ const PRECACHE_URLS = [
   "/contact.html",
   "/404.html",
 
-  // CSS (prefer min)
-  "/assets/css/style.min.css",
-  "/assets/css/style.css",
-
   // JS
   "/assets/js/main.js",
 
@@ -34,7 +30,30 @@ self.addEventListener("install", (event) => {
     (async () => {
       try {
         const cache = await caches.open(CACHE_NAME);
-        await cache.addAll(PRECACHE_URLS);
+
+        for (const url of PRECACHE_URLS) {
+          try {
+            const response = await fetch(url);
+            if (response && response.ok) {
+              await cache.put(url, response.clone());
+            }
+          } catch (assetError) {
+            console.warn("Skipping precache asset", url, assetError);
+          }
+        }
+
+        const cssCandidates = ["/assets/css/style.min.css", "/assets/css/style.css"];
+        for (const cssUrl of cssCandidates) {
+          try {
+            const cssResponse = await fetch(cssUrl);
+            if (cssResponse && cssResponse.ok) {
+              await cache.put(cssUrl, cssResponse.clone());
+              break;
+            }
+          } catch (cssError) {
+            console.warn("CSS precache fallback failed for", cssUrl, cssError);
+          }
+        }
       } catch (error) {
         console.error("Service worker install failed", error);
       }

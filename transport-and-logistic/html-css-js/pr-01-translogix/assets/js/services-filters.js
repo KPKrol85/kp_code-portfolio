@@ -13,8 +13,21 @@ function saveState(state) {
   sessionStorage.setItem(STORAGE_KEY, JSON.stringify(state));
 }
 
+async function fetchJson(url) {
+  const response = await fetch(url);
+  if (!response.ok) {
+    throw new Error(`HTTP ${response.status}`);
+  }
+
+  try {
+    return await response.json();
+  } catch {
+    throw new Error("Invalid JSON");
+  }
+}
+
 function renderServices(services, container) {
-  container.innerHTML = "";
+  container.replaceChildren();
   services.forEach((service) => {
     const article = document.createElement("article");
     article.className = "card service-card";
@@ -25,18 +38,40 @@ function renderServices(services, container) {
     const icon = service.icon || service.image;
     const linkTarget = service.slug ? `service.html?service=${service.slug}` : `service.html?id=${service.id}`;
 
-    article.innerHTML = `
-      <img src="${icon}" alt="${service.name} - ikona usługi">
-      <div class="service-card__header">
-        <h3>${service.name}</h3>
-        <p class="text-muted">${route}</p>
-      </div>
-      <p>${short}</p>
-      <div class="filters">
-        ${service.tags.map((tag) => `<span class="tag">${tag}</span>`).join("")}
-      </div>
-      <a class="btn" href="${linkTarget}">Szczegóły</a>
-    `;
+    const image = document.createElement("img");
+    image.src = icon;
+    image.alt = `${service.name} - ikona usługi`;
+
+    const header = document.createElement("div");
+    header.className = "service-card__header";
+
+    const title = document.createElement("h3");
+    title.textContent = service.name;
+
+    const routeText = document.createElement("p");
+    routeText.className = "text-muted";
+    routeText.textContent = route;
+
+    header.append(title, routeText);
+
+    const shortDescription = document.createElement("p");
+    shortDescription.textContent = short;
+
+    const tags = document.createElement("div");
+    tags.className = "filters";
+    service.tags.forEach((tag) => {
+      const tagEl = document.createElement("span");
+      tagEl.className = "tag";
+      tagEl.textContent = tag;
+      tags.appendChild(tagEl);
+    });
+
+    const detailsLink = document.createElement("a");
+    detailsLink.className = "btn";
+    detailsLink.href = linkTarget;
+    detailsLink.textContent = "Szczegóły";
+
+    article.append(image, header, shortDescription, tags, detailsLink);
     container.appendChild(article);
   });
 }
@@ -63,8 +98,18 @@ export async function initServicesFilters() {
   const countEl = document.getElementById("results-count");
   if (!container || !chips.length) return;
 
-  const response = await fetch("assets/data/services.json");
-  const allServices = await response.json();
+  let allServices = [];
+  try {
+    allServices = await fetchJson("assets/data/services.json");
+  } catch (error) {
+    console.error("Failed to load services list.", error);
+    const errorEl = document.createElement("p");
+    errorEl.className = "text-muted";
+    errorEl.textContent = "Unable to load services. Please try again.";
+    container.replaceChildren(errorEl);
+    if (countEl) countEl.textContent = "Unable to load services.";
+    return;
+  }
   const params = new URLSearchParams(window.location.search);
   const urlFilter = params.get("filter");
   let state = { filter: "all", price: Number(priceRange?.value) || 10000, sort: "none", ...loadState() };

@@ -1,0 +1,18 @@
+{
+        "@context": "https://schema.org",
+        "@type": "Service",
+        "name": "Usługa transportowa – TransLogix",
+        "description": "Strona szczegółów usługi transportowej TransLogix: zakres, opcje realizacji i parametry przewozu.",
+        "provider": {
+          "@type": "Organization",
+          "name": "TransLogix",
+          "url": "https://transport-project-01.netlify.app/",
+          "logo": "https://transport-project-01.netlify.app/assets/img/logo/logo-translogix-light.svg"
+        },
+        "areaServed": "EU",
+        "availableChannel": {
+          "@type": "ServiceChannel",
+          "servicePhone": "+48-500-000-000",
+          "serviceUrl": "https://transport-project-01.netlify.app/contact.html"
+        }
+      }

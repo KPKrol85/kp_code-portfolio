@@ -1,0 +1,23 @@
+{
+        "@context": "https://schema.org",
+        "@type": "Organization",
+        "name": "TransLogix",
+        "url": "https://transport-project-01.netlify.app/",
+        "logo": "https://transport-project-01.netlify.app/assets/img/logo/logo-translogix-light.svg",
+        "description": "TransLogix to demo serwisu transportowo-logistycznego B2B, łączącego przewozy drogowe, monitoring floty i raportowanie dostaw.",
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "ul. Przemysłowa 10",
+          "addressLocality": "Warszawa",
+          "postalCode": "00-000",
+          "addressCountry": "PL"
+        },
+        "contactPoint": {
+          "@type": "ContactPoint",
+          "telephone": "+48-500-000-000",
+          "email": "kontakt@kp-code.pl",
+          "contactType": "customer service",
+          "areaServed": "EU",
+          "availableLanguage": ["pl", "en"]
+        }
+      }

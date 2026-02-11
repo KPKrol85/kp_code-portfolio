@@ -4,6 +4,8 @@
     <!-- Podstawowe metadane -->
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+
+    <script src="assets/js/boot.js" defer></script>
     <title>404 | TransLogix</title>
     <meta name="description" content="Strona, której szukasz, nie istnieje lub została przeniesiona. Wróć do strony głównej TransLogix lub przejdź do oferty usług." />
     <meta name="robots" content="noindex,follow" />
@@ -24,7 +26,7 @@
 
     <!-- Preload + CSS -->
     <link rel="preload" href="/assets/css/style.min.css" as="style" />
-    <link rel="stylesheet" href="/assets/css/style.min.css" />
+    <link rel="stylesheet" href="/assets/css/style.css" />
   </head>
 
   <!-- BODY -->
@@ -43,7 +45,7 @@
           <button class="nav__toggle" aria-expanded="false" aria-controls="mobile-nav" aria-label="Otwórz menu">
             <span aria-hidden="true"></span>
           </button>
-          <div id="mobile-nav" class="nav__panel" hidden>
+          <div id="mobile-nav" class="nav__panel">
             <div class="nav__links">
               <a href="index.html">Start</a>
               <a href="services.html">Usługi</a>

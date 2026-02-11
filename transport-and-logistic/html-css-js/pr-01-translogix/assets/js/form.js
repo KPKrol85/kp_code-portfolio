@@ -2,24 +2,50 @@
 const validators = {
   required: (value) => value.trim().length > 0,
   email: (value) => /\S+@\S+\.\S+/.test(value),
-  tel: (value) => /^[\\d+()\\s-]{6,}$/.test(value),
+  tel: (value) => /^\+[1-9]\d{1,14}$/.test(normalizePhone(value)),
   number: (value) => !Number.isNaN(Number(value)) && Number(value) > 0,
 };
+
+function normalizePhone(value) {
+  return value
+    .trim()
+    .replace(/[\s().-]/g, "")
+    .replace(/(?!^)\+/g, "")
+    .replace(/[^\d+]/g, "");
+}
 
 const quoteHistory = [];
 
 function showError(input, message) {
-  const errorId = input.getAttribute("aria-describedby");
-  const errorEl = errorId ? document.getElementById(errorId) : null;
+  const errorEl = getErrorElement(input);
   if (errorEl) errorEl.textContent = message;
+  input.setAttribute("aria-invalid", "true");
   input.classList.add("invalid");
 }
 
 function clearError(input) {
-  const errorId = input.getAttribute("aria-describedby");
-  const errorEl = errorId ? document.getElementById(errorId) : null;
+  const errorEl = getErrorElement(input);
   if (errorEl) errorEl.textContent = "";
+  input.removeAttribute("aria-invalid");
   input.classList.remove("invalid");
+}
+
+function getErrorElement(input) {
+  const describedBy = input.getAttribute("aria-describedby");
+  let errorId = describedBy && describedBy.trim();
+
+  if (!errorId) {
+    const baseId = input.id || input.name;
+    if (!baseId) return null;
+    errorId = `${baseId}-error`;
+    input.setAttribute("aria-describedby", errorId);
+  }
+
+  const errorEl = document.getElementById(errorId);
+  if (errorEl) {
+    errorEl.setAttribute("aria-live", "polite");
+  }
+  return errorEl;
 }
 
 function validateField(input) {
@@ -41,7 +67,7 @@ function validateField(input) {
 
   // 3. Telefon
   if (type === "tel" && value && !validators.tel(value)) {
-    showError(input, "Podaj prawidłowy numer telefonu.");
+    showError(input, "Use international format, e.g. +48123456789");
     return false;
   }
 
@@ -70,20 +96,25 @@ function attachValidation(form, { onValid, resetOnValid = true, allowNativeSubmi
   form.addEventListener("submit", (e) => {
     e.preventDefault();
     let valid = true;
+    let firstInvalidInput = null;
     inputs.forEach((input) => {
-      if (!validateField(input)) valid = false;
+      if (!validateField(input)) {
+        valid = false;
+        if (!firstInvalidInput) firstInvalidInput = input;
+      }
     });
 
     const requiredCheckbox = form.querySelector("input[type='checkbox'][required]");
     if (requiredCheckbox && !requiredCheckbox.checked) {
       showError(requiredCheckbox, "Zgoda jest wymagana.");
       valid = false;
+      if (!firstInvalidInput) firstInvalidInput = requiredCheckbox;
     } else if (requiredCheckbox) {
       clearError(requiredCheckbox);
     }
 
     if (!valid) {
-      inputs[0]?.focus();
+      firstInvalidInput?.focus();
       return;
     }
 

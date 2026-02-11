@@ -4,6 +4,8 @@
     <!-- Podstawowe metadane -->
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+
+    <script src="assets/js/boot.js" defer></script>
     <title>Kontakt i szybka wycena | TransLogix – KP_Code_ Demo</title>
     <meta name="description" content="Skontaktuj się z TransLogix: formularz kontaktowy, szybka wycena transportu i wsparcie B2B. Odpowiadamy 24/7, obsługujemy klientów w całej UE." />
     <meta name="author" content="KP_Code_" />
@@ -27,7 +29,7 @@
 
     <!-- Preload + CSS -->
     <link rel="preload" href="/assets/css/style.min.css" as="style" />
-    <link rel="stylesheet" href="/assets/css/style.min.css" />
+    <link rel="stylesheet" href="/assets/css/style.css" />
 
     <!-- Open Graph -->
     <meta property="og:type" content="website" />
@@ -48,28 +50,7 @@
     <meta name="twitter:image" content="https://transport-project-01.netlify.app/assets/img/og-img/og-1200x630.jpg" />
 
     <!-- JSON-LD – ContactPage -->
-    <script type="application/ld+json">
-      {
-        "@context": "https://schema.org",
-        "@type": "ContactPage",
-        "name": "Kontakt – TransLogix",
-        "url": "https://transport-project-01.netlify.app/contact.html",
-        "description": "Skontaktuj się z TransLogix – formularz kontaktowy i szybka wycena transportu.",
-        "publisher": {
-          "@type": "Organization",
-          "name": "TransLogix",
-          "url": "https://transport-project-01.netlify.app/",
-          "logo": "https://transport-project-01.netlify.app/assets/img/brand/logo-translogix.svg",
-          "contactPoint": {
-            "@type": "ContactPoint",
-            "telephone": "+48-500-000-000",
-            "email": "kontakt@kp-code.pl",
-            "contactType": "customer service",
-            "availableLanguage": ["pl", "en"]
-          }
-        }
-      }
-    </script>
+    <script type="application/ld+json" src="assets/data/jsonld/contact.json"></script>
   </head>
 
   <!-- BODY -->
@@ -88,7 +69,7 @@
           <button class="nav__toggle" aria-expanded="false" aria-controls="mobile-nav" aria-label="Otwórz menu">
             <span aria-hidden="true"></span>
           </button>
-          <div id="mobile-nav" class="nav__panel" hidden>
+          <div id="mobile-nav" class="nav__panel">
             <div class="nav__links">
               <a href="index.html">Start</a>
               <a href="services.html">Usługi</a>
@@ -165,7 +146,7 @@
                 <div class="form__error" id="email-error"></div>
 
                 <label for="phone">Telefon</label>
-                <input type="tel" id="phone" name="phone" required aria-describedby="phone-error" />
+                <input type="tel" id="phone" name="phone" inputmode="tel" autocomplete="tel" required aria-describedby="phone-error" />
                 <div class="form__error" id="phone-error"></div>
 
                 <label for="serviceType">Typ usługi</label>
