@@ -108,9 +108,21 @@
   gap: var(--space-6);
 }
 .site-footer__grid h3 {
+  position: relative;
   margin-bottom: var(--space-3);
   color: #ffffff;
   font-weight: 600;
+  padding-bottom: var(--space-2);
+}
+.site-footer__grid h3::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: 0;
+  transform: translateX(-50%);
+  width: 40%;
+  height: 1px;
+  background: rgba(255, 255, 255, 0.14);
 }
 .site-footer__grid ul {
   list-style: none;
@@ -129,20 +141,23 @@
   color: var(--primary-alt);
   text-shadow: 0 0 8px rgba(111, 209, 255, 0.15);
 }
-.footer-logo {
+.site-footer__logo {
   width: 84px;
   height: auto;
   display: block;
   margin-bottom: var(--space-3);
 }
-.site-footer .footer-logo-link {
+.site-footer__brand-link {
   text-decoration: none;
   font-weight: 700;
   color: inherit;
   transition: color 0.25s ease;
 }
-.site-footer .footer-logo-link:hover {
+.site-footer__brand-link:hover {
   color: #0cc0df;
+}
+.site-footer__description {
+  margin: 0;
 }
 .site-footer__row--cols > *:nth-child(2) a.is-active,
 .site-footer__row--cols > *:nth-child(3) a.is-active {
@@ -150,7 +165,11 @@
   font-weight: 600;
   text-shadow: 0 0 8px rgba(111, 209, 255, 0.25);
 }
-.site-footer__contact {
+.site-footer__col--contact > h3 {
+  justify-self: stretch;
+  text-align: center;
+}
+.site-footer__col--contact {
   display: grid;
   gap: var(--space-3);
   justify-items: center;
@@ -158,6 +177,9 @@
 .site-footer__address {
   font-style: normal;
   opacity: 0.85;
+}
+.site-footer__address-text {
+  margin: 0;
 }
 .site-footer__contact-item {
   margin: 0;
