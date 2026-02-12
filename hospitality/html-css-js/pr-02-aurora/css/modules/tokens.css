@@ -1,8 +1,32 @@
 
 :root {
   color-scheme: light dark;
+
+  /* Fonts */
   --font-base: "Inter", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
   --font-heading: "Manrope", "Inter", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+
+  /* Font weights */
+  --fw-regular: 400;
+  --fw-medium: 500;
+  --fw-semibold: 600;
+  --fw-bold: 700;
+
+  /* Line heights */
+  --lh-tight: 1.15;
+  --lh-snug: 1.3;
+  --lh-normal: 1.5;
+  --lh-relaxed: 1.7;
+
+  /* Font sizes (fluid, 6-step) */
+  --fs-1: clamp(0.875rem, 0.84rem + 0.15vw, 0.95rem);  /* small */
+  --fs-2: clamp(1rem, 0.95rem + 0.25vw, 1.125rem);     /* base */
+  --fs-3: clamp(1.125rem, 1.05rem + 0.35vw, 1.25rem);  /* lead */
+  --fs-4: clamp(1.35rem, 1.2rem + 0.7vw, 1.75rem);     /* h3 */
+  --fs-5: clamp(1.7rem, 1.4rem + 1.2vw, 2.25rem);      /* h2 */
+  --fs-6: clamp(2.1rem, 1.6rem + 2vw, 3rem);           /* h1 */
+
+  /* Colors */
   --bg: #f8f7f2;
   --bg-elev: #ffffff;
   --text: #0c1b33;
@@ -10,21 +34,50 @@
   --primary: #0f6d8c;
   --primary-alt: #6fd1ff;
   --border: rgba(15, 109, 140, 0.15);
-  --radius-sm: 0.4rem;
-  --radius: 0.8rem;
-  --radius-lg: 2.4rem;
-  --shadow: 0 25px 60px rgba(6, 17, 35, 0.12);
-  --container: min(1200px, 100% - clamp(2rem, 5vw, 6rem));
-  --space-1: 0.4rem;
-  --space-2: 0.8rem;
-  --space-3: 1.2rem;
-  --space-4: 1.6rem;
-  --space-5: 2.4rem;
-  --space-6: 3.2rem;
-  --space-7: 4.8rem;
-  --space-8: 6.4rem;
-  --space-9: 9.6rem;
-  --space-10: 12.8rem;
+
+  /* Shadows */
+  --shadow-sm: 0 10px 25px rgba(6, 17, 35, 0.10);
+  --shadow-md: 0 18px 40px rgba(6, 17, 35, 0.12);
+  --shadow-lg: 0 25px 60px rgba(6, 17, 35, 0.12);
+
+  /* Radius (KP_Code scale) */
+  --radius-min: 0.25rem;  /* ~4px */
+  --radius-sm: 0.5rem;    /* ~8px */
+  --radius-md: 0.8rem;    /* ~12-13px (twoje obecne radius) */
+  --radius-lg: 1.25rem;   /* ~20px */
+  --radius-xl: 2rem;      /* ~32px */
+  --radius-pill: 999px;
+
+  /* Spacing (rem scale, pro + consistent) */
+  --space-1: 0.25rem;  /* 4px */
+  --space-2: 0.5rem;   /* 8px */
+  --space-3: 0.75rem;  /* 12px */
+  --space-4: 1rem;     /* 16px */
+  --space-5: 1.5rem;   /* 24px */
+  --space-6: 2rem;     /* 32px */
+  --space-7: 3rem;     /* 48px */
+  --space-8: 4rem;     /* 64px */
+  --space-9: 6rem;     /* 96px */
+  --space-10: 8rem;    /* 128px */
+
+  /* Container */
+  --container-max: 1200px;
+  --container-pad: clamp(1rem, 4vw, 3rem);
+  --container: min(var(--container-max), 100% - (var(--container-pad) * 2));
+
+  /* Focus ring */
+  --focus-ring: 2px solid rgba(111, 209, 255, 0.55);
+  --focus-offset: 2px;
+
+  /* Motion */
+  --ease: cubic-bezier(0.2, 0.8, 0.2, 1);
+  --dur-1: 150ms;
+  --dur-2: 250ms;
+
+  /* Layering */
+  --z-header: 50;
+  --z-overlay: 80;
+  --z-modal: 100;
 }
 
 [data-theme="dark"] {
@@ -35,7 +88,10 @@
   --primary: #6fd1ff;
   --primary-alt: #0f6d8c;
   --border: rgba(111, 209, 255, 0.25);
-  --shadow: 0 25px 60px rgba(0, 0, 0, 0.4);
+
+  --shadow-sm: 0 10px 25px rgba(0, 0, 0, 0.35);
+  --shadow-md: 0 18px 40px rgba(0, 0, 0, 0.40);
+  --shadow-lg: 0 25px 60px rgba(0, 0, 0, 0.45);
 }
 
 @media (prefers-color-scheme: dark) {
@@ -47,6 +103,9 @@
     --primary: #6fd1ff;
     --primary-alt: #0f6d8c;
     --border: rgba(111, 209, 255, 0.25);
-    --shadow: 0 25px 60px rgba(0, 0, 0, 0.4);
+
+    --shadow-sm: 0 10px 25px rgba(0, 0, 0, 0.35);
+    --shadow-md: 0 18px 40px rgba(0, 0, 0, 0.40);
+    --shadow-lg: 0 25px 60px rgba(0, 0, 0, 0.45);
   }
 }
