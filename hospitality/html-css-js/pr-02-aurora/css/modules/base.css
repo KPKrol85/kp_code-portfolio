@@ -1,10 +1,5 @@
 
 /* Base */
-.socials {
-  display: flex;
-  gap: var(--space-3);
-  flex-wrap: wrap;
-}
 
 .offline__wrapper {
   min-height: 100vh;
