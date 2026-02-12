@@ -17,16 +17,16 @@
   --lh-normal: 1.5;
   --lh-relaxed: 1.7;
 
-  /* Eyebrow font size */
+  /* Font size */
   --fs-eyebrow: clamp(0.75rem, 0.73rem + 0.06vw, 0.8rem);
-  /* Font sizes (fluid, 7-step) */
   --fs-0: clamp(0.75rem, 0.72rem + 0.1vw, 0.85rem); /* x-small */
   --fs-1: clamp(0.875rem, 0.84rem + 0.15vw, 0.95rem); /* small */
   --fs-2: clamp(1rem, 0.95rem + 0.25vw, 1.125rem); /* base */
   --fs-3: clamp(1.125rem, 1.05rem + 0.35vw, 1.25rem); /* lead */
-  --fs-4: clamp(1.35rem, 1.2rem + 0.7vw, 1.75rem); /* h3 */
-  --fs-5: clamp(1.7rem, 1.4rem + 1.2vw, 2.25rem); /* h2 */
-  --fs-6: clamp(2.1rem, 1.6rem + 2vw, 3rem); /* h1 */
+  --fs-4: clamp(1.35rem, 1.2rem + 0.7vw, 1.75rem); /* h4 */
+  --fs-5: clamp(1.7rem, 1.4rem + 1.2vw, 2.25rem); /* h3 */
+  --fs-6: clamp(2.1rem, 1.6rem + 2vw, 3rem); /* h2 */
+  --fs-7: clamp(2.3rem, 1.7rem + 2.6vw, 3.6rem); /* h1 */
 
   /* Colors */
   --bg: #f8f7f2;

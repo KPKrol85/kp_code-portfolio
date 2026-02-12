@@ -503,7 +503,7 @@ html[data-theme="dark"] .dropdown__icon {
     color: var(--muted);
     max-width: 60ch;
   }
-
+}
   .btn {
     display: inline-flex;
     align-items: center;
@@ -725,4 +725,3 @@ html[data-theme="dark"] .dropdown__icon {
   .test-autoprefix {
     user-select: none;
   }
-}
