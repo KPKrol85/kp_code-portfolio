@@ -63,7 +63,7 @@ function validateField(input) {
   }
 
   if (type === "tel" && value && !validators.tel(value)) {
-    showError(input, "Use international format, e.g. +48123456789");
+    showError(input, "Podaj numer w formacie międzynarodowym, np. +48123456789.");
     return false;
   }
 

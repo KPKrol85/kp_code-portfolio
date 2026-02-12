@@ -84,7 +84,7 @@ export async function initServiceDetail() {
       const errorEl = document.createElement("p");
       errorEl.className = "text-muted";
       errorEl.dataset.serviceError = "true";
-      errorEl.textContent = "Unable to load service details. Showing fallback content.";
+      errorEl.textContent = "Nie udało się wczytać szczegółów usługi. Wyświetlamy treść zastępczą.";
       wrapper.appendChild(errorEl);
     }
   }

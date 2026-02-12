@@ -2,22 +2,40 @@
   "name": "translogix",
   "version": "1.0.0",
   "private": true,
-  "description": "TransLogix – B2B transport & logistics website (HTML, CSS, JS)",
+  "description": "TransLogix \u2013 B2B transport & logistics website (HTML, CSS, JS)",
   "author": "KP_Code_",
   "license": "UNLICENSED",
   "scripts": {
     "dev:css": "npm run build:css",
-    "build:css": "postcss assets/css/style.src.css -o assets/css/style.min.css",
+    "build:css": "postcss assets/css/style.css -o assets/css/style.min.css",
+    "build:html": "node scripts/build-html-partials.mjs",
+    "build": "npm run build:css && npm run build:html",
+    "preview": "npm run build && npm run serve",
     "deploy:css": "npm run build:css && cp assets/css/style.min.css assets/css/style.css",
     "verify:assets": "node scripts/verify-assets.js",
-    "img:opt": "node scripts/optimize-images.js"
+    "img:opt": "node scripts/optimize-images.js",
+    "serve": "http-server dist -p 8080",
+    "check:html": "html-validate \"**/*.html\"",
+    "check:links": "npm run verify:assets",
+    "check:a11y": "start-server-and-test serve http://127.0.0.1:8080 \"pa11y-ci --config .pa11yci.json\"",
+    "check": "npm run check:html && npm run check:a11y",
+    "test:e2e": "playwright test",
+    "test:e2e:ui": "playwright test --ui",
+    "test:e2e:report": "playwright show-report",
+    "lhci": "npx --yes @lhci/cli@0.14.0 autorun --config=./lighthouserc.json",
+    "check:budget": "node scripts/check-budgets.js"
   },
   "devDependencies": {
+    "@playwright/test": "^1.54.2",
+    "autoprefixer": "^10.4.21",
     "cssnano": "^7.1.2",
+    "html-validate": "^9.7.1",
+    "http-server": "^14.1.1",
+    "pa11y-ci": "^3.1.0",
     "postcss": "^8.5.6",
     "postcss-cli": "^11.0.1",
-    "autoprefixer": "^10.4.21",
     "postcss-import": "^16.1.1",
-    "sharp": "^0.33.5"
+    "sharp": "^0.33.5",
+    "start-server-and-test": "^2.0.8"
   }
 }

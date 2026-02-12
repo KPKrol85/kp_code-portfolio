@@ -104,9 +104,9 @@ export async function initServicesFilters() {
     console.error("Failed to load services list.", error);
     const errorEl = document.createElement("p");
     errorEl.className = "text-muted";
-    errorEl.textContent = "Unable to load services. Please try again.";
+    errorEl.textContent = "Nie udało się wczytać usług. Spróbuj ponownie.";
     container.replaceChildren(errorEl);
-    if (countEl) countEl.textContent = "Unable to load services.";
+    if (countEl) countEl.textContent = "Nie udało się wczytać usług.";
     return;
   }
   const params = new URLSearchParams(window.location.search);

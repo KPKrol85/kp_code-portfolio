@@ -3,15 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
-    <script>
-      (function () {
-        try {
-          if (localStorage.getItem("translogix-theme") === "dark") {
-            document.documentElement.classList.add("theme-dark");
-          }
-        } catch (e) {}
-      })();
-    </script>
+    <script src="assets/js/theme-init.js"></script>
     <script src="assets/js/boot.js"></script>
     <title>404 | TransLogix</title>
     <meta name="description" content="Strona, której szukasz, nie istnieje lub została przeniesiona. Wróć do strony głównej TransLogix lub przejdź do oferty usług." />
@@ -28,6 +20,22 @@
     <meta name="apple-mobile-web-app-capable" content="yes" />
     <link rel="manifest" href="/assets/icons/site.webmanifest" />
 <link rel="stylesheet" href="/assets/css/style.css" />
+    <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  "name": "404 | TransLogix",
+  "url": "https://transport-pr01-translogix.netlify.app/404.html",
+  "description": "Strona błędu 404 dla serwisu TransLogix.",
+  "publisher": {
+    "@type": "Organization",
+    "name": "TransLogix",
+    "url": "https://transport-pr01-translogix.netlify.app/",
+    "logo": "https://transport-pr01-translogix.netlify.app/assets/img/logo/logo-translogix-light.svg"
+  },
+  "inLanguage": "pl-PL"
+}
+    </script>
   </head>
 
   <!-- Body -->
@@ -35,38 +43,9 @@
     <a class="skip-link" href="#main">Przejdź do treści głównej</a>
 
     <!-- Header -->
-    <header>
-      <div class="header-inner">
-        <a href="index.html" class="brand">
-          <img src="assets/img/logo/logo-translogix-light.svg" alt="" class="brand__logo brand__logo--light" />
-          <img src="assets/img/logo/logo-translogix-dark.svg" alt="" class="brand__logo brand__logo--dark" />
-          <span class="brand__text">TransLogix</span>
-        </a>
-        <nav class="nav" aria-label="Główna nawigacja">
-          <button class="nav__toggle" aria-expanded="false" aria-controls="mobile-nav" aria-label="Otwórz menu">
-            <span aria-hidden="true"></span>
-          </button>
-          <div id="mobile-nav" class="nav__panel">
-            <div class="nav__links">
-              <a href="index.html">Start</a>
-              <a href="services.html">Usługi</a>
-              <a href="fleet.html">Flota</a>
-              <a href="pricing.html">Cennik</a>
-              <a href="contact.html">Kontakt</a>
-            </div>
-          </div>
-        </nav>
-        <div class="header-actions">
-          <button class="theme-toggle" aria-pressed="false" aria-label="Przełącz tryb kolorów">
-            <img src="assets/img/svg/sun.svg" alt="" class="icon-sun" aria-hidden="true" />
-            <img src="assets/img/svg/moon.svg" alt="" class="icon-moon" aria-hidden="true" />
-          </button>
-          <a class="btn nav__cta" href="contact.html#quote">Zamów</a>
-        </div>
-      </div>
-    </header>
+    <!-- PARTIAL:HEADER -->
 
-    <!-- Main -->
+<!-- Main -->
     <main id="main">
       <section class="section">
         <div class="container stack reveal">

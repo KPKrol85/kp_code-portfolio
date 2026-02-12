@@ -3,15 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
-    <script>
-      (function () {
-        try {
-          if (localStorage.getItem("translogix-theme") === "dark") {
-            document.documentElement.classList.add("theme-dark");
-          }
-        } catch (e) {}
-      })();
-    </script>
+    <script src="assets/js/theme-init.js"></script>
     <script src="assets/js/boot.js"></script>
     <title>Flota pojazdów | TransLogix</title>
     <meta
@@ -44,7 +36,26 @@
     <meta name="twitter:title" content="Flota pojazdów | TransLogix" />
     <meta name="twitter:description" content="Zobacz flotę TransLogix – pojazdy przygotowane do transportu krajowego i międzynarodowego, monitorowane 24/7." />
     <meta name="twitter:image" content="https://transport-pr01-translogix.netlify.app/assets/img/og/translogix-og.jpg" />
-    <script type="application/ld+json" src="assets/data/jsonld/fleet.json"></script>
+    <script type="application/ld+json">
+{
+        "@context": "https://schema.org",
+        "@type": "CollectionPage",
+        "name": "Flota pojazdów – TransLogix",
+        "url": "https://transport-pr01-translogix.netlify.app/fleet.html",
+        "description": "Strona prezentująca flotę pojazdów TransLogix: ciągniki siodłowe, naczepy oraz pojazdy specjalistyczne.",
+        "isPartOf": {
+          "@type": "WebSite",
+          "name": "TransLogix",
+          "url": "https://transport-pr01-translogix.netlify.app/"
+        },
+        "publisher": {
+          "@type": "Organization",
+          "name": "TransLogix",
+          "url": "https://transport-pr01-translogix.netlify.app/",
+          "logo": "https://transport-pr01-translogix.netlify.app/assets/img/logo/logo-translogix-light.svg"
+        }
+      }
+    </script>
   </head>
 
   <!-- Body -->
@@ -52,38 +63,9 @@
     <a class="skip-link" href="#main">Przejdź do treści głównej</a>
 
     <!-- Header -->
-    <header>
-      <div class="header-inner">
-        <a href="index.html" class="brand">
-          <img src="assets/img//logo/logo-translogix-light.svg" alt="" class="brand__logo brand__logo--light" />
-          <img src="assets/img/logo/logo-translogix-dark.svg" alt="" class="brand__logo brand__logo--dark" />
-          <span class="brand__text">TransLogix</span>
-        </a>
-        <nav class="nav" aria-label="Główna nawigacja">
-          <button class="nav__toggle" aria-expanded="false" aria-controls="mobile-nav" aria-label="Otwórz menu">
-            <span aria-hidden="true"></span>
-          </button>
-          <div id="mobile-nav" class="nav__panel">
-            <div class="nav__links">
-              <a href="index.html">Start</a>
-              <a href="services.html">Usługi</a>
-              <a href="fleet.html">Flota</a>
-              <a href="pricing.html">Cennik</a>
-              <a href="contact.html">Kontakt</a>
-            </div>
-          </div>
-        </nav>
-        <div class="header-actions">
-          <button class="theme-toggle" aria-pressed="false" aria-label="Przełącz tryb kolorów">
-            <img src="assets/img/svg/sun.svg" alt="" class="icon-sun" aria-hidden="true" />
-            <img src="assets/img/svg/moon.svg" alt="" class="icon-moon" aria-hidden="true" />
-          </button>
-          <a class="btn nav__cta" href="contact.html#quote">Zamów</a>
-        </div>
-      </div>
-    </header>
+    <!-- PARTIAL:HEADER -->
 
-    <!-- Main -->
+<!-- Main -->
     <main id="main">
       <section class="section">
         <div class="container stack reveal">
@@ -101,11 +83,13 @@
             <article class="card fleet-card" data-type="solo" data-load="6" data-purpose="uniwersalny">
               <div class="fleet-card__media">
                 <div class="fleet-card__icon">
-                  <img class="lightbox-trigger" data-gallery="solo" data-title="Bus dostawczy" src="assets/img/svg/fleet-solo.svg" alt="Bus dostawczy – otwórz galerię" loading="lazy" />
+                  <button type="button" class="lightbox-trigger" data-gallery="solo" data-title="Bus dostawczy">
+                    <img src="assets/img/svg/fleet-solo.svg" alt="Bus dostawczy – otwórz galerię" loading="lazy"  width="240" height="120" />
+                  </button>
                 </div>
                 <div class="fleet-card__brand" aria-hidden="true">
-                  <img class="logo logo--light" src="assets/img/logo/logo-translogix-light.svg" alt="" loading="lazy" />
-                  <img class="logo logo--dark" src="assets/img/logo/logo-translogix-dark.svg" alt="" loading="lazy" />
+                  <img class="logo logo--light" src="assets/img/logo/logo-translogix-light.svg" alt="" loading="lazy"  width="128" height="128" />
+                  <img class="logo logo--dark" src="assets/img/logo/logo-translogix-dark.svg" alt="" loading="lazy"  width="128" height="128" />
                   <p class="fleet-card__brand-text">
                     Transport krajowy i międzynarodowy
                     <br />
@@ -170,11 +154,13 @@
             <article class="card fleet-card" data-type="truck" data-load="1.2" data-purpose="express">
               <div class="fleet-card__media">
                 <div class="fleet-card__icon">
-                  <img class="lightbox-trigger" data-gallery="truck" data-title="Ciężarówka plandeka" src="assets/img/svg/fleet-boxtruck-tarpaulin.svg" alt="Ciężarówka plandeka" loading="lazy" />
+                  <button type="button" class="lightbox-trigger" data-gallery="truck" data-title="Ciężarówka plandeka">
+                    <img src="assets/img/svg/fleet-boxtruck-tarpaulin.svg" alt="Ciężarówka plandeka" loading="lazy"  width="240" height="120" />
+                  </button>
                 </div>
                 <div class="fleet-card__brand" aria-hidden="true">
-                  <img class="logo logo--light" src="assets/img/logo/logo-translogix-light.svg" alt="" loading="lazy" />
-                  <img class="logo logo--dark" src="assets/img/logo/logo-translogix-dark.svg" alt="" loading="lazy" />
+                  <img class="logo logo--light" src="assets/img/logo/logo-translogix-light.svg" alt="" loading="lazy"  width="128" height="128" />
+                  <img class="logo logo--dark" src="assets/img/logo/logo-translogix-dark.svg" alt="" loading="lazy"  width="128" height="128" />
                   <p class="fleet-card__brand-text">
                     Transport krajowy i międzynarodowy
                     <br />
@@ -240,11 +226,13 @@
             <article class="card fleet-card" data-type="chlodnia" data-load="10" data-purpose="chlodnia">
               <div class="fleet-card__media">
                 <div class="fleet-card__icon">
-                  <img class="lightbox-trigger" data-gallery="chlodnia" data-title="Ciężarówka chłodnia" src="assets/img/svg/fleet-refrigerated.svg" alt="Ciężarówka chłodnia" loading="lazy" />
+                  <button type="button" class="lightbox-trigger" data-gallery="chlodnia" data-title="Ciężarówka chłodnia">
+                    <img src="assets/img/svg/fleet-refrigerated.svg" alt="Ciężarówka chłodnia" loading="lazy"  width="240" height="120" />
+                  </button>
                 </div>
                 <div class="fleet-card__brand" aria-hidden="true">
-                  <img class="logo logo--light" src="assets/img/logo/logo-translogix-light.svg" alt="" loading="lazy" />
-                  <img class="logo logo--dark" src="assets/img/logo/logo-translogix-dark.svg" alt="" loading="lazy" />
+                  <img class="logo logo--light" src="assets/img/logo/logo-translogix-light.svg" alt="" loading="lazy"  width="128" height="128" />
+                  <img class="logo logo--dark" src="assets/img/logo/logo-translogix-dark.svg" alt="" loading="lazy"  width="128" height="128" />
                   <p class="fleet-card__brand-text">
                     Transport krajowy i międzynarodowy
                     <br />
@@ -318,11 +306,13 @@
             <article class="card fleet-card" data-type="set" data-load="24" data-purpose="dalsze">
               <div class="fleet-card__media">
                 <div class="fleet-card__icon">
-                  <img class="lightbox-trigger" data-gallery="set" data-title="Zestaw Mega" src="assets/img/svg/fleet-mega-set.svg" alt="Zestaw Mega" loading="lazy" />
+                  <button type="button" class="lightbox-trigger" data-gallery="set" data-title="Zestaw Mega">
+                    <img src="assets/img/svg/fleet-mega-set.svg" alt="Zestaw Mega" loading="lazy"  width="240" height="120" />
+                  </button>
                 </div>
                 <div class="fleet-card__brand" aria-hidden="true">
-                  <img class="logo logo--light" src="assets/img/logo/logo-translogix-light.svg" alt="" loading="lazy" />
-                  <img class="logo logo--dark" src="assets/img/logo/logo-translogix-dark.svg" alt="" loading="lazy" />
+                  <img class="logo logo--light" src="assets/img/logo/logo-translogix-light.svg" alt="" loading="lazy"  width="128" height="128" />
+                  <img class="logo logo--dark" src="assets/img/logo/logo-translogix-dark.svg" alt="" loading="lazy"  width="128" height="128" />
                   <p class="fleet-card__brand-text">
                     Transport krajowy i międzynarodowy
                     <br />
@@ -396,7 +386,7 @@
         <h3 class="lightbox__title" id="lightbox-title">Galeria pojazdu</h3>
         <button class="btn lightbox__close" type="button" data-lightbox-close aria-label="Zamknij"></button>
         <div class="lightbox__hero-frame" aria-hidden="true">
-          <img class="lightbox__hero" alt="" src="" />
+          <img class="lightbox__hero" alt="" src=""  style="aspect-ratio: 4 / 3;" />
         </div>
         <div class="lightbox__grid" role="list"></div>
         <div class="lightbox__controls">
@@ -405,98 +395,15 @@
         </div>
         <div class="lightbox__zoom" aria-hidden="true" hidden>
           <button class="lightbox__zoom-close" type="button" aria-label="Zamknij podgląd"></button>
-          <img class="lightbox__zoom-img" alt="" src="" />
+          <img class="lightbox__zoom-img" alt="" src=""  style="aspect-ratio: 4 / 3;" />
         </div>
       </div>
     </div>
 
     <!-- Footer -->
-    <footer class="footer section">
-      <div class="container footer__inner">
-        <section class="footer__stats" aria-label="Kluczowe liczby TransLogix">
-          <ul class="stats">
-            <li class="stat">
-              <h3 data-stat="deliveries" data-value="550">612+</h3>
-              <p class="text-muted">Udanych dostaw miesięcznie</p>
-            </li>
-            <li class="stat">
-              <h3 data-stat="vehicles" data-value="45">45</h3>
-              <p class="text-muted">Pojazdów w ruchu</p>
-            </li>
-            <li class="stat">
-              <h3 data-stat="countries" data-value="27">27</h3>
-              <p class="text-muted">Obsługiwanych krajów UE</p>
-            </li>
-          </ul>
-        </section>
-        <nav class="footer__nav" aria-label="Nawigacja w stopce">
-          <div class="footer__grid">
-            <div class="footer__column footer__brand">
-              <a href="index.html" class="brand brand--footer" aria-label="Strona główna TransLogix">
-                <img src="assets/img/logo/logo-translogix-light.svg" alt="" class="brand__logo brand__logo--light" />
-                <img src="assets/img/logo/logo-translogix-dark.svg" alt="" class="brand__logo brand__logo--dark" />
-              </a>
-              <p class="footer__brand-text">
-                TransLogix dostarcza nowoczesne rozwiązania transportowe 24/7 — real-time monitoring floty, przewozy krajowe i międzynarodowe oraz pełną transparentność operacyjną.
-              </p>
-            </div>
-            <div class="footer__column">
-              <h2 class="footer__title">Oferta</h2>
-              <ul class="footer__list">
-                <li><a href="index.html">Start</a></li>
-                <li><a href="services.html">Usługi</a></li>
-                <li><a href="fleet.html">Flota</a></li>
-                <li><a href="pricing.html">Cennik</a></li>
-              </ul>
-            </div>
-            <div class="footer__column">
-              <h2 class="footer__title">Wsparcie</h2>
-              <ul class="footer__list">
-                <li><a href="contact.html">Kontakt</a></li>
-                <li><a href="contact.html#quote">Szybka wycena</a></li>
-                <li><a href="contact.html#faq">FAQ</a></li>
-              </ul>
-            </div>
-            <div class="footer__column">
-              <h2 class="footer__title">Dane firmy</h2>
-              <ul class="footer__list footer__list--meta">
-                <li>TransLogix Sp. z o.o.</li>
-                <li>ul. Marynarki Wojennej 12, 33-100 Tarnów</li>
-                <li><a href="mailto:kontakt@kp-code.pl">kontakt@kp-code.pl</a></li>
-                <li><a href="tel:+48533537091">+48 533 537 091</a></li>
-              </ul>
-            </div>
-          </div>
-        </nav>
-        <div class="footer__social">
-          <h2 class="footer__title">Social Media</h2>
-          <nav class="footer__social-row" aria-label="Social media">
-            <a href="#" class="social-link" aria-label="Facebook" target="_blank" rel="noopener noreferrer">
-              <img src="assets/img/svg/fb.svg" alt="" />
-            </a>
-            <a href="#" class="social-link" aria-label="Instagram" target="_blank" rel="noopener noreferrer">
-              <img src="assets/img/svg/insta.svg" alt="" />
-            </a>
-            <a href="#" class="social-link" aria-label="LinkedIn" target="_blank" rel="noopener noreferrer">
-              <img src="assets/img/svg/linktin.svg" alt="" />
-            </a>
-            <a href="#" class="social-link" aria-label="GitHub" target="_blank" rel="noopener noreferrer">
-              <img src="assets/img/svg/github.svg" alt="" />
-            </a>
-          </nav>
-        </div>
-        <div class="footer__bottom">
-          <p class="footer__bottom-text">© 2026 KP_Code Digital Studio. Wszelkie prawa zastrzeżone.</p>
-          <ul class="footer__bottom-links">
-            <li><a href="privacy.html">Polityka prywatności</a></li>
-            <li><a href="terms.html">Regulamin serwisu</a></li>
-            <li><a href="cookies.html">Cookies</a></li>
-          </ul>
-        </div>
-      </div>
-    </footer>
+    <!-- PARTIAL:FOOTER -->
 
-    <!-- script -->
+<!-- script -->
     <script type="module" src="assets/js/main.js"></script>
   </body>
 </html>

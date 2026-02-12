@@ -37,7 +37,8 @@ textarea {
 }
 
 :focus-visible {
-  outline: none;
+  outline: 2px solid var(--color-accent-strong);
+  outline-offset: 2px;
   box-shadow: var(--ring);
 }
 

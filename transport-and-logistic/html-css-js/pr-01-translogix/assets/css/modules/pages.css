@@ -213,6 +213,13 @@ html.theme-dark .fleet-card__brand .logo--dark {
   border-color: var(--color-accent);
   color: var(--color-accent-strong);
 }
+
+.filter-chip:focus-visible {
+  outline: 2px solid var(--color-accent-strong);
+  outline-offset: 2px;
+  box-shadow: 0 0 0 4px color-mix(in srgb, var(--color-accent) 20%, transparent);
+}
+
 .service-card {
   display: grid;
   gap: var(--space-1);
@@ -682,6 +689,8 @@ html.theme-dark .lightbox__hero-frame {
   border: 1px solid var(--color-border);
   background: rgba(255, 255, 255, 0.02);
   cursor: zoom-in;
+  appearance: none;
+  padding: 0;
 }
 .lightbox__thumb img {
   width: 100%;

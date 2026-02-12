@@ -1,4 +1,4 @@
-const root = document.documentElement;
+const docRoot = document.documentElement;
 
-root.classList.remove("no-js");
-root.classList.add("js");
+docRoot.classList.remove("no-js");
+docRoot.classList.add("js");

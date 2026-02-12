@@ -1,4 +1,4 @@
-const CACHE_NAME = "translogix-v1.02";
+const CACHE_NAME = "translogix-static-v2";
 
 const PRECACHE_URLS = [
   "/",
@@ -8,6 +8,7 @@ const PRECACHE_URLS = [
   "/pricing.html",
   "/contact.html",
   "/404.html",
+  "/offline.html",
 
   "/assets/js/main.js",
 
@@ -108,9 +109,12 @@ async function networkFirst(request) {
     return networkResponse;
   } catch (error) {
     const cache = await caches.open(CACHE_NAME);
-    const cachedResponse = (await cache.match(request)) || (await cache.match("/index.html")) || (await cache.match("/"));
+    const cachedResponse = await cache.match(request);
 
     if (cachedResponse) return cachedResponse;
+
+    const offlinePage = await cache.match("/offline.html");
+    if (offlinePage) return offlinePage;
 
     const notFound = await cache.match("/404.html");
     if (notFound) return notFound;

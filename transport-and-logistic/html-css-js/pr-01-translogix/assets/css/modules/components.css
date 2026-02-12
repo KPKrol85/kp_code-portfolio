@@ -103,6 +103,16 @@ html.theme-dark .nav__links a[aria-current="page"] {
   background: var(--color-surface);
   cursor: pointer;
 }
+
+.nav__toggle:focus-visible,
+.nav__links a:focus-visible,
+.theme-toggle:focus-visible,
+.header-actions .btn:focus-visible,
+.fleet-card__icon .lightbox-trigger:focus-visible {
+  outline: 2px solid var(--color-accent-strong);
+  outline-offset: 3px;
+}
+
 .nav__toggle span {
   width: 20px;
   height: 2px;
@@ -627,6 +637,14 @@ html.theme-dark .fleet-card__icon {
   max-width: 100%;
   height: auto;
   display: block;
+}
+.fleet-card__icon .lightbox-trigger {
+  appearance: none;
+  border: 0;
+  background: transparent;
+  padding: 0;
+  cursor: pointer;
+  border-radius: var(--radius-md);
 }
 
 /* Calculator */

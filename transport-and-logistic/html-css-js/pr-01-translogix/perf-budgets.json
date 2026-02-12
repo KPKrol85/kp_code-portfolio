@@ -1,0 +1,10 @@
+{
+  "budgets": {
+    "assets/css/style.css": {
+      "max_gzip_bytes": 1200
+    },
+    "assets/js/main.js": {
+      "max_gzip_bytes": 1500
+    }
+  }
+}
