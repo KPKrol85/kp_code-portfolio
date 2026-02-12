@@ -27,7 +27,6 @@
   gap: var(--space-3);
   position: relative;
 }
-
 .logo {
   display: flex;
   align-items: center;
@@ -52,12 +51,12 @@
 .logo__text {
   color: inherit;
   transition: color 0.45s cubic-bezier(0.25, 0.1, 0.25, 1);
+  font-size: var(--fs-2);
 }
 .logo:hover .logo__text,
 .logo:focus-visible .logo__text {
   color: #0cc0df;
 }
-
 .nav__toggle {
   border: none;
   background: transparent;
