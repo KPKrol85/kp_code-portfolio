@@ -301,7 +301,7 @@
   content: "";
   position: absolute;
   inset: 0;
-  background-image: url("../assets/img/about/mapa.svg");
+  background-image: url("../../assets/img/about/mapa.svg");
   background-repeat: no-repeat;
   background-position: center center;
   background-size: clamp(220px, 26vw, 420px);
@@ -504,7 +504,7 @@
   content: "";
   position: absolute;
   inset: 0;
-  background-image: url("../assets/img/about/mapa.svg");
+  background-image: url("../../assets/img/about/mapa.svg");
   background-repeat: no-repeat;
   background-position: center center;
 
@@ -624,7 +624,7 @@
   content: "";
   position: absolute;
   inset: 0;
-  background-image: url("../assets/img/about/mapa.svg");
+  background-image: url("../../assets/img/about/mapa.svg");
   background-repeat: no-repeat;
   background-position: center center;
 
@@ -764,7 +764,7 @@
   transform: translateX(-50%);
   width: clamp(170px, 80vw, 240px);
   aspect-ratio: 1;
-  background-image: url("../assets/img/gallery/camera.svg");
+  background-image: url("../../assets/img/gallery/camera.svg");
   background-repeat: no-repeat;
   background-size: contain;
   opacity: 0.45;
