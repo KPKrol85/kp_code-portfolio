@@ -35,6 +35,8 @@
   --primary-alt: #6fd1ff;
   --border: rgba(15, 109, 140, 0.15);
 
+  --primary-alt-active: color-mix(in srgb, var(--primary-alt) 85%, white);
+
   /* Shadows */
   --shadow-sm: 0 10px 25px rgba(6, 17, 35, 0.10);
   --shadow-md: 0 18px 40px rgba(6, 17, 35, 0.12);
