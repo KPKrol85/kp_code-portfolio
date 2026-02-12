@@ -1,4 +1,3 @@
-
 :root {
   color-scheme: light dark;
 
@@ -18,13 +17,16 @@
   --lh-normal: 1.5;
   --lh-relaxed: 1.7;
 
-  /* Font sizes (fluid, 6-step) */
-  --fs-1: clamp(0.875rem, 0.84rem + 0.15vw, 0.95rem);  /* small */
-  --fs-2: clamp(1rem, 0.95rem + 0.25vw, 1.125rem);     /* base */
-  --fs-3: clamp(1.125rem, 1.05rem + 0.35vw, 1.25rem);  /* lead */
-  --fs-4: clamp(1.35rem, 1.2rem + 0.7vw, 1.75rem);     /* h3 */
-  --fs-5: clamp(1.7rem, 1.4rem + 1.2vw, 2.25rem);      /* h2 */
-  --fs-6: clamp(2.1rem, 1.6rem + 2vw, 3rem);           /* h1 */
+  /* Eyebrow font size */
+  --fs-eyebrow: clamp(0.75rem, 0.73rem + 0.06vw, 0.8rem);
+  /* Font sizes (fluid, 7-step) */
+  --fs-0: clamp(0.75rem, 0.72rem + 0.1vw, 0.85rem); /* x-small */
+  --fs-1: clamp(0.875rem, 0.84rem + 0.15vw, 0.95rem); /* small */
+  --fs-2: clamp(1rem, 0.95rem + 0.25vw, 1.125rem); /* base */
+  --fs-3: clamp(1.125rem, 1.05rem + 0.35vw, 1.25rem); /* lead */
+  --fs-4: clamp(1.35rem, 1.2rem + 0.7vw, 1.75rem); /* h3 */
+  --fs-5: clamp(1.7rem, 1.4rem + 1.2vw, 2.25rem); /* h2 */
+  --fs-6: clamp(2.1rem, 1.6rem + 2vw, 3rem); /* h1 */
 
   /* Colors */
   --bg: #f8f7f2;
@@ -38,29 +40,29 @@
   --primary-alt-active: color-mix(in srgb, var(--primary-alt) 85%, white);
 
   /* Shadows */
-  --shadow-sm: 0 10px 25px rgba(6, 17, 35, 0.10);
+  --shadow-sm: 0 10px 25px rgba(6, 17, 35, 0.1);
   --shadow-md: 0 18px 40px rgba(6, 17, 35, 0.12);
   --shadow-lg: 0 25px 60px rgba(6, 17, 35, 0.12);
 
   /* Radius (KP_Code scale) */
-  --radius-min: 0.25rem;  /* ~4px */
-  --radius-sm: 0.5rem;    /* ~8px */
-  --radius-md: 0.8rem;    /* ~12-13px (twoje obecne radius) */
-  --radius-lg: 1.25rem;   /* ~20px */
-  --radius-xl: 2rem;      /* ~32px */
+  --radius-min: 0.25rem; /* ~4px */
+  --radius-sm: 0.5rem; /* ~8px */
+  --radius-md: 0.8rem; /* ~12-13px (twoje obecne radius) */
+  --radius-lg: 1.25rem; /* ~20px */
+  --radius-xl: 2rem; /* ~32px */
   --radius-pill: 999px;
 
   /* Spacing (rem scale, pro + consistent) */
-  --space-1: 0.25rem;  /* 4px */
-  --space-2: 0.5rem;   /* 8px */
-  --space-3: 0.75rem;  /* 12px */
-  --space-4: 1rem;     /* 16px */
-  --space-5: 1.5rem;   /* 24px */
-  --space-6: 2rem;     /* 32px */
-  --space-7: 3rem;     /* 48px */
-  --space-8: 4rem;     /* 64px */
-  --space-9: 6rem;     /* 96px */
-  --space-10: 8rem;    /* 128px */
+  --space-1: 0.25rem; /* 4px */
+  --space-2: 0.5rem; /* 8px */
+  --space-3: 0.75rem; /* 12px */
+  --space-4: 1rem; /* 16px */
+  --space-5: 1.5rem; /* 24px */
+  --space-6: 2rem; /* 32px */
+  --space-7: 3rem; /* 48px */
+  --space-8: 4rem; /* 64px */
+  --space-9: 6rem; /* 96px */
+  --space-10: 8rem; /* 128px */
 
   /* Container */
   --container-max: 1200px;
@@ -92,7 +94,7 @@
   --border: rgba(111, 209, 255, 0.25);
 
   --shadow-sm: 0 10px 25px rgba(0, 0, 0, 0.35);
-  --shadow-md: 0 18px 40px rgba(0, 0, 0, 0.40);
+  --shadow-md: 0 18px 40px rgba(0, 0, 0, 0.4);
   --shadow-lg: 0 25px 60px rgba(0, 0, 0, 0.45);
 }
 
@@ -107,7 +109,7 @@
     --border: rgba(111, 209, 255, 0.25);
 
     --shadow-sm: 0 10px 25px rgba(0, 0, 0, 0.35);
-    --shadow-md: 0 18px 40px rgba(0, 0, 0, 0.40);
+    --shadow-md: 0 18px 40px rgba(0, 0, 0, 0.4);
     --shadow-lg: 0 25px 60px rgba(0, 0, 0, 0.45);
   }
 }
