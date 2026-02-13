@@ -30,6 +30,7 @@
 
   /* Colors */
   --bg: #f8f7f2;
+  --bg-rgb: 255, 255, 255;
   --bg-elev: #ffffff;
   --text: #0c1b33;
   --muted: #5b6070;
@@ -86,6 +87,7 @@
 
 [data-theme="dark"] {
   --bg: #05060a;
+  --bg-dark-rgb: 17, 28, 47;
   --bg-elev: #0e121b;
   --text: #f2f4f8;
   --muted: #a3aec2;
