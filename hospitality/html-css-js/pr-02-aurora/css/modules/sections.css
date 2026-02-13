@@ -498,7 +498,7 @@
   }
 }
 
-/* Page-tour-detail */
+/* Subpage Tour */
 .page-tour-detail .breadcrumb {
   margin-bottom: var(--space-4);
 }
@@ -619,6 +619,7 @@
   }
 }
 
+/* Subpage Contact */
 .page-hero--contact {
   position: relative;
   overflow: hidden;
@@ -721,6 +722,7 @@
   }
 }
 
+/* Subpage About */
 .page-hero--about {
   position: relative;
   overflow: hidden;
@@ -839,6 +841,7 @@
   }
 }
 
+/* Subpage Gallery */
 .page-hero--gallery {
   position: relative;
   padding-bottom: 15rem;
@@ -1000,7 +1003,7 @@
   }
 }
 
-/* Legal */
+/* Subpage Legal */
 .legal {
   background: radial-gradient(circle at 30% 20%, rgba(255, 255, 255, 0.85), rgba(255, 255, 255, 0.7)), var(--bg-elev);
   border-radius: var(--radius-lg);
