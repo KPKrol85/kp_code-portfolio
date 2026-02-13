@@ -480,28 +480,6 @@
   gap: var(--space-4);
   min-height: 300px;
 }
-.tour-card {
-  opacity: 1;
-  transform: none;
-}
-.tour-card__media {
-  border-radius: var(--radius-lg);
-  overflow: hidden;
-  aspect-ratio: 4 / 3;
-}
-.tour-card__media img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  display: block;
-}
-.tour-card__actions {
-  display: flex;
-  gap: var(--space-4);
-  flex-wrap: wrap;
-  justify-content: center;
-  margin-top: var(--space-5);
-}
 @media (min-width: 760px) {
   .tours-grid,
   .offers-grid {
