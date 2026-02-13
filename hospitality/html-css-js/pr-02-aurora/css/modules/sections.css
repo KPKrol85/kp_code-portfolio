@@ -1,6 +1,6 @@
 /* Hero */
 .hero {
-  padding: var(--space-6) 0;
+  padding: var(--space-6) 0 var(--space-7);
 }
 .hero__grid {
   display: grid;
@@ -100,7 +100,6 @@
   .hero__media img {
     aspect-ratio: 4 / 3;
   }
-
 }
 @media (min-width: 1024px) {
   .hero {
