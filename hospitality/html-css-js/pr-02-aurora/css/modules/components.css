@@ -58,7 +58,7 @@
 /* Tour Card */
 .tour-card {
   display: grid;
-  gap: var(--space-4);
+  gap: var(--space-6);
   border: 1px solid var(--border);
   background: var(--bg-elev);
   border-radius: var(--radius-md);
@@ -156,14 +156,24 @@
 .tour-card .btn--text:hover::before {
   transform: translateX(3px);
 }
+.tour-card--detailed > div {
+  display: flex;
+  flex-direction: column;
+}
+.tour-card--detailed .tour-card__actions {
+  margin-top: auto;
+}
 @media (min-width: 760px) {
   .tour-card--detailed {
     grid-template-columns: 280px 1fr;
     align-items: stretch;
   }
+  .tour-card__title {
+    margin: var(--space-4) 0;
+    font-size: var(--fs-3);
+  }
   .tour-card__actions {
     justify-content: flex-start;
-    margin-top: var(--space-4);
   }
 }
 @media (min-width: 1024px) {
