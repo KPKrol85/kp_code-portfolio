@@ -73,33 +73,41 @@
   margin-left: auto;
   border-radius: 999px;
   cursor: pointer;
+  color: var(--text-muted);
+  appearance: none;
+  -webkit-appearance: none;
   transition:
-    background 0.18s ease,
-    box-shadow 0.18s ease,
-    transform 0.12s ease;
+    color 200ms ease,
+    background-color 200ms ease,
+    transform 0.12s ease,
+    box-shadow 0.18s ease;
 }
-.nav__toggle:hover {
-  background: rgba(0, 0, 0, 0.04);
-  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.08);
-}
-.nav__toggle:focus-visible {
-  outline: 2px solid var(--primary);
-  outline-offset: 2px;
+@media (hover: hover) and (pointer: fine) {
+  .nav__toggle:hover {
+    color: var(--text);
+    background-color: color-mix(in srgb, var(--text) 8%, transparent);
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.08);
+  }
 }
 .nav__toggle:active {
   transform: scale(0.97);
+}
+.nav__toggle:focus {
+  outline: none;
+}
+.nav__toggle:focus-visible {
+  box-shadow: 0 0 0 2px var(--primary);
 }
 .nav__toggle-icon {
   width: 24px;
   height: 24px;
   display: block;
-  transition: filter 0.25s ease;
 }
-[data-theme="light"] .nav__toggle-icon {
-  filter: none;
+[data-theme="light"] .nav__toggle {
+  color: #0c1b33;
 }
-[data-theme="dark"] .nav__toggle-icon {
-  filter: invert(1) brightness(1.2) contrast(1.05);
+[data-theme="dark"] .nav__toggle {
+  color: #ffffff;
 }
 .nav {
   position: absolute;
@@ -193,12 +201,7 @@
   width: 20px;
   height: 20px;
   position: absolute;
-  transition:
-    opacity 200ms ease,
-    transform 300ms ease;
   transform-origin: 50% 50%;
-}
-.theme-toggle__icon {
   transition:
     opacity 140ms ease,
     transform 320ms cubic-bezier(0.2, 0.8, 0.2, 1);
@@ -239,7 +242,6 @@
   background: rgba(255, 255, 255, 0.1);
   border-color: rgba(255, 255, 255, 0.18);
 }
-
 @media (min-width: 1004px) {
   [data-theme] .nav {
     background: transparent;
