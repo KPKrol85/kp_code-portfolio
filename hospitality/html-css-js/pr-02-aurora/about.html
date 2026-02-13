@@ -63,21 +63,16 @@
         ]
       }
     </script>
-    <!-- CSS -->
-
     <script>
       (function () {
         var key = "kp-travel-theme";
         var stored = null;
-
         try {
           stored = localStorage.getItem(key);
         } catch (e) {
           stored = null;
         }
-
         var theme;
-
         if (stored === "light" || stored === "dark") {
           theme = stored;
         } else if (window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches) {
@@ -85,22 +80,19 @@
         } else {
           theme = "light";
         }
-
         var background = theme === "dark" ? "#05060a" : "#f8f7f2";
         document.documentElement.setAttribute("data-theme", theme);
         document.documentElement.style.backgroundColor = background;
         document.documentElement.style.colorScheme = theme;
       })();
     </script>
-
     <link rel="stylesheet" href="css/style.css" />
   </head>
 
-  <!-- BODY -->
+  <!-- Body -->
   <body data-page="about">
     <a class="skip-link" href="#main-content">Przejdź do treści</a>
-
-    <!-- HEADER -->
+    <!-- Header -->
     <header class="site-header" data-header>
       <div class="container site-header__inner">
         <a class="logo" href="index.html" aria-label="Aurora Travel">
@@ -139,9 +131,9 @@
       </div>
     </header>
 
-    <!-- MAIN CONTENT -->
+    <!-- Main -->
     <main id="main-content" tabindex="-1">
-      <!-- HERO -->
+      <!-- Hero -->
       <div class="page-hero page-hero--about">
         <div class="container">
           <nav class="breadcrumb" aria-label="Ścieżka nawigacyjna">
@@ -150,16 +142,15 @@
               <li aria-current="page">O nas</li>
             </ol>
           </nav>
-          <h1>Tworzymy podróże z charakterem</h1>
-          <p>Od 2010 roku realizujemy marzenia osób, które oczekują perfekcji i osobistego podejścia w planowaniu wypraw.</p>
+          <h1 class="page-hero__title">Tworzymy podróże z charakterem</h1>
+          <p class="page-hero__lead">Od 2010 roku realizujemy marzenia osób, które oczekują perfekcji i osobistego podejścia w planowaniu wypraw.</p>
         </div>
       </div>
-
-      <!-- ABOUT -->
+      <!-- About -->
       <section class="section" aria-labelledby="story-heading">
         <div class="container about-grid">
           <article>
-            <h2 id="story-heading">Historia i wartości</h2>
+            <h2 id="story-heading" class="about__heading">Historia i wartości</h2>
             <p>
               Aurora Travel powstało z potrzeby tworzenia podróży, które nie kończą się na katalogu. Nasz zespół ekspertów mieszkał w największych metropoliach, prowadził wyprawy w Himalajach i
               negocjował kontrakty z hotelami w Europie. Dzięki temu znamy ludzi i miejsca, którym możemy zaufać.
@@ -183,6 +174,7 @@
               </li>
             </ul>
           </article>
+
           <aside class="about-highlight" aria-labelledby="numbers-heading">
             <picture>
               <source
