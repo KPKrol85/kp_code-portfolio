@@ -439,10 +439,20 @@
   content: "";
 }
 
-/* Page-hero */
+/* Subpage: Page hero */
 .page-hero {
-  padding: var(--space-6) 0 var(--space-4);
+  padding: var(--space-6) 0;
 }
+.page-hero__title {
+  margin: var(--space-5) 0 var(--space-3);
+}
+.page-hero__lead {
+  margin-top: var(--space-2);
+  color: var(--muted);
+  line-height: 1.7;
+}
+
+/* Subpage: Tours */
 .page-hero--tours {
   position: relative;
   overflow: hidden;
@@ -462,6 +472,18 @@
   position: relative;
   z-index: 1;
 }
+.tours-grid,
+.tour-list,
+.offers-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-4);
+  min-height: 300px;
+}
+.tour-card {
+  opacity: 1;
+  transform: none;
+}
 .tour-card__media {
   border-radius: var(--radius-lg);
   overflow: hidden;
@@ -477,28 +499,27 @@
   display: flex;
   gap: var(--space-4);
   flex-wrap: wrap;
-  margin-top: var(--space-4);
+  justify-content: center;
+  margin-top: var(--space-5);
 }
-@media (max-width: 600px) {
+@media (min-width: 760px) {
   .tours-grid,
-  .tour-list,
   .offers-grid {
-    display: grid !important;
-    grid-template-columns: 1fr !important;
-    gap: var(--space-4) !important;
-    min-height: 300px !important;
-  }
-  .tour-card {
-    opacity: 1 !important;
-    transform: none !important;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
   .tour-card__actions {
-    justify-content: center;
-    margin-top: var(--space-5);
+    justify-content: flex-start;
+    margin-top: var(--space-4);
+  }
+}
+@media (min-width: 1024px) {
+  .tours-grid,
+  .offers-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
   }
 }
 
-/* Subpage Tour */
+/* Subpage: Tour */
 .page-tour-detail .breadcrumb {
   margin-bottom: var(--space-4);
 }
@@ -1003,11 +1024,11 @@
   }
 }
 
-/* Subpage Legal */
+/* Subpage: Legal */
 .legal {
   background: radial-gradient(circle at 30% 20%, rgba(255, 255, 255, 0.85), rgba(255, 255, 255, 0.7)), var(--bg-elev);
-  border-radius: var(--radius-lg);
-  padding: var(--space-6);
+  border-radius: var(--radius);
+  padding: var(--space-4);
   max-width: 960px;
   margin-inline: auto;
   box-shadow: 0 16px 40px rgba(0, 0, 0, 0.06);
@@ -1061,30 +1082,14 @@
 .legal ol li {
   padding-left: 0.2rem;
 }
-.page-hero {
-  padding: var(--space-6) 0 var(--space-5);
-}
-.page-hero h1,
-.page-hero p {
-  text-align: center;
-  margin-left: auto;
-  margin-right: auto;
-  max-width: 60ch;
-}
-.page-hero h1 {
-  margin-top: var(--space-3);
-  margin-bottom: var(--space-2);
-}
-.page-hero p {
-  margin-top: var(--space-2);
-  color: var(--muted);
-}
-@media (max-width: 600px) {
+@media (min-width: 760px) {
   .legal {
-    padding: var(--space-4);
-    border-radius: var(--radius);
+    padding: var(--space-6);
+    border-radius: var(--radius-lg);
   }
 }
+
+
 
 /* Print */
 @media print {

@@ -240,24 +240,25 @@
   gap: var(--space-4);
   overflow: visible;
 }
-.filters label {
+.filters__field {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
+  font-size: var(--fs-1);
   font-weight: 600;
   gap: var(--space-2);
   width: 100%;
 }
-.filters select {
+.filters__select {
   width: 100%;
   margin-top: 0;
-  border-radius: var(--radius-lg);
+  border-radius: var(--radius-md);
   border: 1px solid var(--border);
   padding: var(--space-3) var(--space-4);
   background: var(--bg-elev);
   color: var(--text);
   box-shadow: 0 4px 14px rgba(15, 109, 140, 0.06);
-  font-size: 1rem;
+  font-size: var(--fs-1);
   appearance: none;
   background-image: url("data:image/svg+xml,%3Csvg width='14' height='14' xmlns='http://www.w3.org/2000/svg' fill='%230c1b33'%3E%3Cpath d='M4 5l3 3 3-3' stroke='%230c1b33' stroke-width='2' fill='none'/%3E%3C/svg%3E");
   background-repeat: no-repeat;
@@ -268,47 +269,38 @@
     box-shadow 0.25s ease,
     background 0.25s ease;
 }
-.filters .dropdown__button {
-  width: 100%;
-  margin-top: 0;
-  border-radius: var(--radius-lg);
-  border: 1px solid var(--border);
-  padding: var(--space-3) var(--space-4);
-  background: var(--bg-elev);
-  color: var(--text);
-  box-shadow: 0 4px 14px rgba(15, 109, 140, 0.06);
-  font-size: 1rem;
-  background-image: none;
-  background-repeat: no-repeat;
-  background-position: right 1rem center;
-  background-size: 14px;
-  transition:
-    border-color 0.25s ease,
-    box-shadow 0.25s ease,
-    background 0.25s ease;
-}
-html[data-theme="dark"] .filters select {
-  background-image: url("data:image/svg+xml,%3Csvg width='14' height='14' xmlns='http://www.w3.org/2000/svg' fill='%23ffffff'%3E%3Cpath d='M4 5l3 3 3-3' stroke='%23ffffff' stroke-width='2' fill='none'/%3E%3C/svg%3E");
-}
-html[data-theme="dark"] .filters .dropdown__button {
-  background-image: none;
-}
-.filters select:hover,
-.filters .dropdown__button:hover {
+.filters__select:hover {
   border-color: var(--primary);
   box-shadow: 0 6px 18px rgba(15, 109, 140, 0.1);
 }
-.filters select:focus,
-.filters .dropdown__button:focus {
+.filters__select:focus {
   outline: none;
   border-color: var(--primary);
   box-shadow:
     0 0 0 3px rgba(15, 109, 140, 0.25),
     0 6px 18px rgba(15, 109, 140, 0.1);
 }
-.filters__count {
-  font-weight: 600;
+html[data-theme="dark"] .filters__select {
+  background-image: url("data:image/svg+xml,%3Csvg width='14' height='14' xmlns='http://www.w3.org/2000/svg' fill='%23ffffff'%3E%3Cpath d='M4 5l3 3 3-3' stroke='%23ffffff' stroke-width='2' fill='none'/%3E%3C/svg%3E");
 }
+.filters__count {
+  font-size: var(--fs-1);
+  font-weight: 400;
+  margin: var(--space-2) 0;
+}
+.filters__count-value {
+  font-size: var(--fs-2);
+  font-weight: 700;
+  margin-left: var(--space-1);
+  color: var(--primary);
+}
+
+
+
+
+
+
+
 
 body[data-page="tours"] .tour-card a:hover {
   text-decoration: none;

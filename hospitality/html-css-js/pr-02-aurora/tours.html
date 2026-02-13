@@ -164,16 +164,16 @@
               <li aria-current="page">Wycieczki</li>
             </ol>
           </nav>
-          <h1>Wycieczki i oferty</h1>
-          <p>Filtruj propozycje według typu podróży, regionu i ceny, aby znaleźć idealną wyprawę.</p>
+          <h1 class="page-hero__title">Wycieczki i oferty</h1>
+          <p class="page-hero__lead">Filtruj propozycje według typu podróży, regionu i ceny, aby znaleźć idealną wyprawę.</p>
         </div>
       </div>
       <section class="section section--filters" aria-label="Filtry ofert">
         <div class="container">
           <form class="filters" data-filters>
-            <label>
+            <label class="filters__field">
               Typ podróży
-              <select name="type" data-filter-type>
+              <select class="filters__select" name="type" data-filter-type>
                 <option value="all">Wszystkie</option>
                 <option value="city">City break</option>
                 <option value="egzotyczne">Egzotyczne</option>
@@ -181,9 +181,9 @@
                 <option value="objazdowe">Objazdowe</option>
               </select>
             </label>
-            <label>
+            <label class="filters__field">
               Region
-              <select name="region" data-filter-region>
+              <select class="filters__select" name="region" data-filter-region>
                 <option value="all">Dowolny</option>
                 <option value="europa">Europa</option>
                 <option value="azja">Azja</option>
@@ -192,9 +192,9 @@
                 <option value="ocean">Oceania</option>
               </select>
             </label>
-            <label>
+            <label class="filters__field">
               Sortowanie
-              <select name="sort" data-sort>
+              <select class="filters__select" name="sort" data-sort>
                 <option value="price-asc">Cena rosnąco</option>
                 <option value="price-desc">Cena malejąco</option>
                 <option value="days-asc">Długość rosnąco</option>
@@ -203,7 +203,7 @@
             </label>
             <p class="filters__count" role="status" aria-live="polite">
               Dopasowane oferty:
-              <span data-results-count>0</span>
+              <span class="filters__count-value" data-results-count>0</span>
             </p>
           </form>
         </div>

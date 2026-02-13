@@ -8,7 +8,7 @@ export function initNav() {
   let isOpen = false;
   let focusable = [];
   let lastFocused = null;
-  const mq = window.matchMedia("(min-width: 1004px)");
+  const mq = window.matchMedia("(min-width: 900px)");
 
   const syncNavVisibility = () => {
     if (mq.matches) {
