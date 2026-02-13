@@ -29,10 +29,14 @@
   flex-direction: column;
   gap: var(--space-3);
   margin-top: var(--space-2);
+  align-items: center;
 }
+
 .hero__actions .btn {
   width: 100%;
+  max-width: 32ch;
 }
+
 .hero__media {
   margin-top: var(--space-2);
   border-radius: var(--radius-lg);
@@ -71,10 +75,17 @@
   .hero__grid {
     gap: var(--space-7);
   }
+  .hero__actions {
+    flex-direction: row;
+  }
+  .hero__actions .btn {
+    max-width: 22ch;
+  }
 }
 @media (min-width: 760px) {
   .hero__grid {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
+    
+    grid-template-columns: 0.95fr 1.05fr;
     align-items: center;
     gap: var(--space-6);
   }
@@ -87,7 +98,7 @@
 }
 @media (min-width: 1024px) {
   .hero__grid {
-    grid-template-columns: 1.25fr 1fr;
+    grid-template-columns: 1fr 1.25fr;
     gap: var(--space-7);
   }
 
