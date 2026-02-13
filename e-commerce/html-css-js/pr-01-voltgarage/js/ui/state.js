@@ -11,5 +11,7 @@ export const renderState = (container, state, message) => {
   if (!container) return;
   const template = templates[state];
   if (!template) return;
+  container.setAttribute('aria-busy', 'false');
+  container.classList.remove('products--loading');
   container.innerHTML = template(message);
 };

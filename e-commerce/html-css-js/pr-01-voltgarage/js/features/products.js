@@ -88,14 +88,40 @@ const renderSaleCard = (product) => {
 `;
 };
 
+const renderSkeletonCard = () => `
+  <article class="card card--skeleton" aria-hidden="true">
+    <div class="card-skeleton__media"></div>
+    <div class="card-skeleton__badge"></div>
+    <div class="card-skeleton__title"></div>
+    <div class="card-skeleton__text"></div>
+    <div class="card-skeleton__meta"></div>
+    <div class="card-skeleton__actions"></div>
+  </article>
+`;
+
+const setGridBusyState = (container, isBusy) => {
+  container.setAttribute('aria-busy', isBusy ? 'true' : 'false');
+  container.classList.toggle('products--loading', isBusy);
+};
+
+export const renderProductsLoading = (container, message = 'Ładowanie produktów...') => {
+  if (!container) return;
+  const loadingLabel = `<p class="visually-hidden" role="status" aria-live="polite">${message}</p>`;
+  const placeholders = Array.from({ length: 6 }, renderSkeletonCard).join('');
+  setGridBusyState(container, true);
+  container.innerHTML = `${loadingLabel}${placeholders}`;
+};
+
 export const renderGrid = (container, products) => {
   if (!container) return;
+  setGridBusyState(container, false);
   container.innerHTML = products.map(renderCard).join('');
   initReveal();
 };
 
 const renderSaleGrid = (container, products) => {
   if (!container) return;
+  setGridBusyState(container, false);
   container.innerHTML = products.map(renderSaleCard).join('');
   initReveal();
 };
@@ -103,7 +129,7 @@ const renderSaleGrid = (container, products) => {
 export const initFeaturedProducts = async () => {
   const container = document.querySelector('[data-products="featured"]');
   if (!container) return;
-  renderState(container, 'loading', 'Ładowanie polecanych...');
+  renderProductsLoading(container, 'Ładowanie polecanych...');
   try {
     const products = await fetchProducts();
     if (!products.length) {
@@ -120,7 +146,7 @@ export const initFeaturedProducts = async () => {
 export const initShopProducts = async () => {
   const container = document.querySelector('[data-products="shop"]');
   if (!container) return;
-  renderState(container, 'loading', 'Ładowanie produktów...');
+  renderProductsLoading(container, 'Ładowanie produktów...');
   try {
     const products = await fetchProducts();
     if (!products.length) {
@@ -137,7 +163,7 @@ export const initShopProducts = async () => {
 export const initRelatedProducts = async () => {
   const container = document.querySelector('[data-products="related"]');
   if (!container) return;
-  renderState(container, 'loading', 'Ładowanie powiązanych...');
+  renderProductsLoading(container, 'Ładowanie powiązanych...');
   try {
     const products = await fetchProducts();
     const related = products.slice(2, 5);
@@ -156,7 +182,7 @@ export const initNewArrivalsProducts = async () => {
   const container = document.querySelector('[data-products="new"]');
   if (!container) return;
   const resultCount = document.querySelector('[data-result-count="new"]');
-  renderState(container, 'loading', 'Ładowanie nowości...');
+  renderProductsLoading(container, 'Ładowanie nowości...');
   try {
     const products = await fetchProducts();
     const filtered = products.filter(isNewProduct);
@@ -178,7 +204,7 @@ export const initSaleProducts = async () => {
   const container = document.querySelector('[data-products="sale"]');
   if (!container) return;
   const resultCount = document.querySelector('[data-result-count="sale"]');
-  renderState(container, 'loading', 'Ładowanie promocji...');
+  renderProductsLoading(container, 'Ładowanie promocji...');
   try {
     const products = await fetchProducts();
     const filtered = products.filter((product) => product.onSale);

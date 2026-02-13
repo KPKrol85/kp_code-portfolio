@@ -33,6 +33,7 @@
     "qa:js": "eslint --max-warnings 0 \"js/**/*.js\" \"tools/**/*.mjs\"",
     "qa:css": "stylelint --max-warnings 0 \"css/**/*.css\"",
     "format": "prettier . --write",
-    "format:check": "prettier . --check"
+    "format:check": "prettier . --check",
+    "validate:jsonld": "node scripts/validate-jsonld.js"
   }
 }

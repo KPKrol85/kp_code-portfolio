@@ -1,32 +1,8 @@
-/* ==================================
-   = Project: e-commerce-01
-   = Name: Volt Garage
-   = Technology: html/css/js
-   = Author: Kamil Król - kp_code_
-   = Last Update: 2025-12-30
-   = Version: 1.00
-   ==================================
-   = CSS Stylesheet
-   = File: base.css
-   = Structure overview
-   ==================================
-   = 01 - Reset & box model
-   = 02 - Document & media defaults
-   = 03 - Typography
-   = 04 - Links & form controls
-   = 05 - Accessibility
-   = 06 - Motion & reveal
-   ================================== */
-
-/* === 01 - Reset & box model === */
-
 *,
 *::before,
 *::after {
   box-sizing: border-box;
 }
-
-/* === 02 - Document & media defaults === */
 
 html {
   scroll-behavior: smooth;
@@ -51,24 +27,13 @@ main {
   display: block;
 }
 
-section {
-  padding: 72px 0;
-}
-
-/* === 03 - Typography === */
-
 h1,
 h2,
 h3,
 h4 {
   font-family: var(--font-display);
   line-height: 1.1;
-  margin: 0 0 var(--space-3);
-}
-
-p {
-  margin: 0 0 var(--space-4);
-  color: var(--color-ink-muted);
+  margin: 0 0 var(--space-03);
 }
 
 ul {
@@ -76,8 +41,6 @@ ul {
   padding: 0;
   list-style: none;
 }
-
-/* === 04 - Links & form controls === */
 
 a {
   color: inherit;
@@ -96,8 +59,6 @@ button {
   cursor: pointer;
 }
 
-/* === 05 - Accessibility === */
-
 :focus-visible {
   outline: 2px solid var(--color-accent);
   outline-offset: 3px;
@@ -109,8 +70,8 @@ button {
   left: 24px;
   background: var(--color-accent);
   color: #10131a;
-  padding: 10px var(--space-4);
-  border-radius: var(--radius-xs);
+  padding: 10px var(--space-04);
+  border-radius: var(--radius-sm);
   z-index: 1000;
   transition: transform var(--transition-fast);
 }
@@ -118,8 +79,6 @@ button {
 .skip-link:focus {
   transform: translateY(64px);
 }
-
-/* === 06 - Motion & reveal === */
 
 [data-reveal] {
   opacity: 1;
@@ -142,6 +101,23 @@ html.reveal-ready [data-reveal].is-visible {
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
+  }
+  :where(
+    button,
+    [type='button'],
+    [type='submit'],
+    [type='reset'],
+    .btn,
+    .cart-link,
+    .category-pill,
+    .theme-toggle,
+    .search-option,
+    .search-clear,
+    a
+  ) {
+    animation-duration: 0.01ms;
+    animation-iteration-count: 1;
+    transition-duration: 0.01ms;
   }
   [data-reveal] {
     transition: none;

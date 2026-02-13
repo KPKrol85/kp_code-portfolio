@@ -28,7 +28,7 @@
     <meta property="og:title" content="404 | VOLT GARAGE" />
     <meta property="og:description" content="Błąd 404 - VOLT GARAGE (demo)." />
     <meta property="og:url" content="https://kpcode-ecommerce-01.netlify.app/" />
-    <meta
+        <meta
       property="og:image"
       content="https://kpcode-ecommerce-01.netlify.app/assets/images/og/og-1200x630.jpg"
     />
@@ -37,10 +37,7 @@
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content="404 | VOLT GARAGE" />
     <meta name="twitter:description" content="Błąd 404 - VOLT GARAGE (demo)." />
-    <meta
-      name="twitter:image"
-      content="https://kpcode-ecommerce-01.netlify.app/assets/images/og/og-1200x630.jpg"
-    />
+    <meta name="twitter:image" content="https://kpcode-ecommerce-01.netlify.app/assets/images/og/og-1200x630.jpg" />
     <link rel="icon" href="/assets/icons/favicon/favicon.ico" />
     <link rel="icon" type="image/svg+xml" href="/assets/icons/favicon/favicon.svg" />
     <link rel="apple-touch-icon" href="/assets/icons/favicon/apple-touch-icon.png" />
@@ -65,17 +62,11 @@
         "url": "https://kpcode-ecommerce-01.netlify.app/",
         "logo": "https://kpcode-ecommerce-01.netlify.app/assets/images/logo/logo-512.png",
         "sameAs": [
-
-          "https://www.facebook.com/kpkrol85"
-
-          "https://x.com/KP_Code_85"
-
-          "https://github.com/KPKrol85"
-
-          "https://www.instagram.com/kpkrol85/"
-
+          "https://www.facebook.com/kpkrol85",
+          "https://x.com/KP_Code_85",
+          "https://github.com/KPKrol85",
+          "https://www.instagram.com/kpkrol85/",
           "https://www.linkedin.com/in/kamil-krol-256522279/"
-
         ]
       }
     </script>
@@ -96,20 +87,15 @@
   <body>
     <div class="demo-modal" data-demo-modal hidden>
       <div class="demo-modal__backdrop" aria-hidden="true"></div>
-      <div
-        class="demo-modal__panel"
-        role="dialog"
-        aria-modal="true"
-        aria-labelledby="demo-modal-title"
-      >
+      <div class="demo-modal__panel" role="dialog" aria-modal="true" aria-labelledby="demo-modal-title">
         <span class="demo-modal__badge">DEMO</span>
         <h2 id="demo-modal-title">Projekt demonstracyjny</h2>
-        <p>To jest wersja DEMO — brak realnej sprzedaży i płatności.</p>
+        <p>
+          To jest wersja DEMO — brak realnej sprzedaży i płatności.
+        </p>
         <p>Przed korzystaniem z serwisu zaakceptuj Regulamin.</p>
         <div class="demo-modal__actions">
-          <button class="btn btn-accent" type="button" data-demo-accept>
-            Akceptuję i przechodzę
-          </button>
+          <button class="btn btn-accent" type="button" data-demo-accept>Akceptuję i przechodzę</button>
           <a class="btn btn-outline" data-demo-regulamin href="#">Przeczytaj regulamin</a>
         </div>
         <div class="demo-modal__links">
@@ -126,58 +112,60 @@
           <img class="brand-logo" src="assets/images/logo/logo.svg" alt="" aria-hidden="true" />
           <span class="brand-text">VOLT GARAGE</span>
         </a>
-        <nav class="nav" id="primary-nav" role="navigation" aria-label="Główne">
-          <a href="index.html">Strona główna</a>
-          <div class="nav-item" data-dropdown>
-            <button
-              class="nav-button"
-              type="button"
-              aria-haspopup="menu"
-              aria-expanded="false"
-              data-dropdown-toggle
-            >
-              Sklep
-            </button>
-            <div class="dropdown-menu" role="menu" data-dropdown-menu>
-              <a role="menuitem" href="pages/shop.html">Wszystkie produkty</a>
-              <a role="menuitem" href="pages/nowosci.html">Nowości</a>
-              <a role="menuitem" href="pages/product.html">Produkt</a>
-              <a role="menuitem" href="pages/kolekcje.html">Kolekcje / Kategorie</a>
-              <a role="menuitem" href="pages/promocje.html">Promocje</a>
-            </div>
-          </div>
-          <div class="nav-item" data-dropdown>
-            <button
-              class="nav-button"
-              type="button"
-              aria-haspopup="menu"
-              aria-expanded="false"
-              data-dropdown-toggle
-            >
-              Kontakt
-            </button>
-            <div class="dropdown-menu" role="menu" data-dropdown-menu>
-              <a role="menuitem" href="pages/contact.html">Formularz</a>
-              <a role="menuitem" href="pages/checkout.html">Dostawa</a>
-              <a role="menuitem" href="pages/cart.html">Zwroty</a>
-            </div>
-          </div>
-          <div class="nav-item" data-dropdown>
-            <button
-              class="nav-button"
-              type="button"
-              aria-haspopup="menu"
-              aria-expanded="false"
-              data-dropdown-toggle
-            >
-              Informacje
-            </button>
-            <div class="dropdown-menu" role="menu" data-dropdown-menu>
-              <a role="menuitem" href="pages/polityka-prywatnosci.html">Polityka prywatności</a>
-              <a role="menuitem" href="pages/cookies.html">Cookies</a>
-              <a role="menuitem" href="pages/regulamin.html">Regulamin</a>
-            </div>
-          </div>
+        <nav aria-label="Główne">
+          <ul class="nav" id="primary-nav">
+            <li class="nav-item"><a href="index.html">Strona główna</a></li>
+            <li class="nav-item" data-dropdown>
+              <button
+                class="nav-button"
+                type="button"
+                aria-haspopup="true"
+                aria-expanded="false"
+                data-dropdown-toggle
+              >
+                Sklep
+              </button>
+              <ul class="dropdown-menu" data-dropdown-menu>
+                <li><a class="dropdown-subitem" href="pages/shop.html">Wszystkie produkty</a></li>
+                <li><a class="dropdown-subitem" href="pages/nowosci.html">Nowości</a></li>
+                <li><a class="dropdown-subitem" href="pages/product.html">Produkt</a></li>
+                <li><a class="dropdown-subitem" href="pages/kolekcje.html">Kolekcje / Kategorie</a></li>
+                <li><a class="dropdown-subitem" href="pages/promocje.html">Promocje</a></li>
+              </ul>
+            </li>
+            <li class="nav-item" data-dropdown>
+              <button
+                class="nav-button"
+                type="button"
+                aria-haspopup="true"
+                aria-expanded="false"
+                data-dropdown-toggle
+              >
+                Kontakt
+              </button>
+              <ul class="dropdown-menu" data-dropdown-menu>
+                <li><a class="dropdown-subitem" href="pages/contact.html">Formularz</a></li>
+                <li><a class="dropdown-subitem" href="pages/checkout.html">Dostawa</a></li>
+                <li><a class="dropdown-subitem" href="pages/cart.html">Zwroty</a></li>
+              </ul>
+            </li>
+            <li class="nav-item" data-dropdown>
+              <button
+                class="nav-button"
+                type="button"
+                aria-haspopup="true"
+                aria-expanded="false"
+                data-dropdown-toggle
+              >
+                Informacje
+              </button>
+              <ul class="dropdown-menu" data-dropdown-menu>
+                <li><a class="dropdown-subitem" href="pages/polityka-prywatnosci.html">Polityka prywatności</a></li>
+                <li><a class="dropdown-subitem" href="pages/cookies.html">Cookies</a></li>
+                <li><a class="dropdown-subitem" href="pages/regulamin.html">Regulamin</a></li>
+              </ul>
+            </li>
+          </ul>
         </nav>
         <div class="header-actions">
           <button
@@ -246,8 +234,8 @@
           <article class="card" data-reveal>
             <h2>Wygląda na to, że ten adres nie istnieje</h2>
             <p>
-              Sprawdź, czy adres jest poprawny lub skorzystaj z poniższego przycisku, aby wrócić do
-              strony głównej projektu demo.
+              Sprawdź, czy adres jest poprawny lub skorzystaj z poniższego przycisku, aby wrócić
+              do strony głównej projektu demo.
             </p>
             <a class="btn btn-outline" href="index.html">Wróć na stronę główną</a>
           </article>
@@ -268,7 +256,6 @@
           </p>
         </div>
         <div>
-          <h3 class="visually-hidden">Sekcje stopki</h3>
           <h4>Sklep</h4>
           <ul class="stacked">
             <li><a href="pages/shop.html">Wszystkie produkty</a></li>
@@ -312,8 +299,7 @@
             <a
               class="footer-social-link"
               href="https://www.facebook.com/kpkrol85"
-              aria-label="Facebook"
-              title="Facebook"
+              aria-label="Facebook" title="Facebook"
               rel="noopener noreferrer"
               target="_blank"
             >
@@ -329,8 +315,7 @@
             <a
               class="footer-social-link"
               href="https://x.com/KP_Code_85"
-              aria-label="X"
-              title="X"
+              aria-label="X" title="X"
               rel="noopener noreferrer"
               target="_blank"
             >
@@ -346,8 +331,7 @@
             <a
               class="footer-social-link"
               href="https://github.com/KPKrol85"
-              aria-label="GitHub"
-              title="GitHub"
+              aria-label="GitHub" title="GitHub"
               rel="noopener noreferrer"
               target="_blank"
             >
@@ -363,8 +347,7 @@
             <a
               class="footer-social-link"
               href="https://www.instagram.com/kpkrol85/"
-              aria-label="Instagram"
-              title="Instagram"
+              aria-label="Instagram" title="Instagram"
               rel="noopener noreferrer"
               target="_blank"
             >
@@ -380,8 +363,7 @@
             <a
               class="footer-social-link"
               href="https://www.linkedin.com/in/kamil-krol-256522279/"
-              aria-label="LinkedIn"
-              title="LinkedIn"
+              aria-label="LinkedIn" title="LinkedIn"
               rel="noopener noreferrer"
               target="_blank"
             >
@@ -396,9 +378,7 @@
         </ul>
       </nav>
       <div class="container footer-bottom">
-        <small
-          >&copy; <span data-current-year>2026</span> KP_Code | Wszelkie prawa zastrzeżone</small
-        >
+        <small>&copy; <span data-current-year>2026</span> KP_Code | Wszelkie prawa zastrzeżone</small>
       </div>
     </footer>
 

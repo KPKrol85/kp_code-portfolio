@@ -12,11 +12,7 @@ const createElement = (tag, className, attrs = {}) => {
 const renderToast = (message, actions = []) => {
   let toast = document.querySelector('[data-toast]');
   if (!toast) {
-    toast = createElement('div', 'toast', {
-      'data-toast': 'true',
-      role: 'status',
-      'aria-live': 'polite',
-    });
+    toast = createElement('div', 'toast', { 'data-toast': 'true', role: 'status', 'aria-live': 'polite' });
     const text = createElement('span', 'toast__message', { 'data-toast-message': 'true' });
     const actionsEl = createElement('div', 'toast__actions', { 'data-toast-actions': 'true' });
     toast.append(text, actionsEl);
@@ -43,11 +39,7 @@ const hideToast = () => {
 const renderInstallCta = (onInstall, onDismiss) => {
   let cta = document.querySelector('[data-install-cta]');
   if (!cta) {
-    cta = createElement('div', 'install-cta', {
-      'data-install-cta': 'true',
-      role: 'status',
-      'aria-live': 'polite',
-    });
+    cta = createElement('div', 'install-cta', { 'data-install-cta': 'true', role: 'status', 'aria-live': 'polite' });
     const text = createElement('p', 'install-cta__text');
     text.textContent = 'Zainstaluj aplikację VOLT GARAGE na swoim urządzeniu.';
     const actions = createElement('div', 'install-cta__actions');
@@ -80,22 +72,19 @@ export const initPwaPrompts = (registrationPromise) => {
     event.preventDefault();
     if (safeStorage.get(INSTALL_DISMISSED_KEY) === '1') return;
     deferredPrompt = event;
-    renderInstallCta(
-      async () => {
-        hideInstallCta();
-        if (!deferredPrompt) return;
-        deferredPrompt.prompt();
-        const { outcome } = await deferredPrompt.userChoice;
-        if (outcome === 'accepted') {
-          safeStorage.set(INSTALL_DISMISSED_KEY, '1');
-        }
-        deferredPrompt = null;
-      },
-      () => {
+    renderInstallCta(async () => {
+      hideInstallCta();
+      if (!deferredPrompt) return;
+      deferredPrompt.prompt();
+      const { outcome } = await deferredPrompt.userChoice;
+      if (outcome === 'accepted') {
         safeStorage.set(INSTALL_DISMISSED_KEY, '1');
-        hideInstallCta();
       }
-    );
+      deferredPrompt = null;
+    }, () => {
+      safeStorage.set(INSTALL_DISMISSED_KEY, '1');
+      hideInstallCta();
+    });
   });
 
   window.addEventListener('appinstalled', () => {

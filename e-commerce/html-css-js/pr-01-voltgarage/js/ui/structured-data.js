@@ -11,9 +11,7 @@ export const injectBreadcrumbJsonLd = (selector = '.breadcrumbs') => {
       '@type': 'ListItem',
       position: index + 1,
       name: link ? link.textContent.trim() : item.textContent.trim(),
-      ...(link && !isLast
-        ? { item: toAbsolute(link.getAttribute('href')) }
-        : { item: window.location.href }),
+      ...(link && !isLast ? { item: toAbsolute(link.getAttribute('href')) } : { item: window.location.href }),
     };
   });
 
