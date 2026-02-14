@@ -1,0 +1,4 @@
+.table-wrap { overflow-x: auto; }
+.table { width: 100%; border-collapse: collapse; background: var(--surface); }
+.table th, .table td { padding: var(--space-sm); border: 1px solid var(--border); text-align: left; vertical-align: top; }
+.table th { background: var(--surface-2); }

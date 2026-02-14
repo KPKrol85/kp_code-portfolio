@@ -1,0 +1,10 @@
+.card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: var(--space-05);
+  box-shadow: var(--shadow-sm);
+}
+.card__title { font-size: var(--fs-04); margin-bottom: var(--space-03); }
+.card__list { margin-top: var(--space-03); color: var(--muted); }
+.card__tags { display:flex; flex-wrap:wrap; gap: var(--space-02); margin-top: var(--space-03); }

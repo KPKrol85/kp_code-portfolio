@@ -1,0 +1,8 @@
+.accordion { display:grid; gap: var(--space-03); }
+.accordion__item { border: 1px solid var(--border); border-radius: var(--radius-md); background: var(--surface); }
+.accordion__trigger {
+  width: 100%; text-align: left; border: none; background: transparent; color: var(--text);
+  padding: var(--space-04); font-weight: 600;
+}
+.accordion__panel { padding: 0 var(--space-04) var(--space-04); }
+.accordion__panel[hidden] { display: none; }

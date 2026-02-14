@@ -1,0 +1,5 @@
+.hero { padding-block: var(--space-09); }
+.hero__title { font-size: var(--fs-08); }
+.hero__actions { display: flex; gap: var(--space-03); flex-wrap: wrap; }
+.trust-strip { display: grid; gap: var(--space-03); }
+@media (min-width: 760px) {.trust-strip { grid-template-columns: repeat(3,minmax(0,1fr)); }}

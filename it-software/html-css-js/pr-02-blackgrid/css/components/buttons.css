@@ -1,0 +1,18 @@
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-xs);
+  border: 1px solid transparent;
+  padding: var(--space-sm) var(--space-lg);
+  border-radius: var(--radius-md);
+  font-weight: var(--fw-semibold);
+  cursor: pointer;
+  transition: background .2s ease, border-color .2s ease, transform .2s ease;
+}
+.btn:hover { transform: translateY(-1px); text-decoration: none; }
+.btn--primary { background: var(--brand); color: #fff; }
+.btn--primary:hover { background: color-mix(in srgb, var(--brand), #000 10%); }
+.btn--secondary { background: var(--surface); color: var(--text); border-color: var(--border); }
+.btn--ghost { background: transparent; border-color: var(--border); color: var(--text); }
+.btn--danger { background: var(--danger); color: #fff; }

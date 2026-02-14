@@ -1,0 +1,18 @@
+.form { display: grid; gap: var(--space-md); }
+.form__grid { display: grid; gap: var(--space-md); grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); }
+.form__field { display: grid; gap: var(--space-xs); }
+label { font-weight: var(--fw-medium); color: var(--text); }
+input, select, textarea {
+  width: 100%;
+  border: 1px solid var(--border);
+  background: var(--surface);
+  color: var(--text);
+  border-radius: var(--radius-md);
+  padding: var(--space-sm) var(--space-md);
+  font: inherit;
+}
+textarea { min-height: 160px; resize: vertical; }
+.field-error { color: var(--danger); font-size: var(--fs-sm); }
+.form-status { min-height: 1.5rem; font-weight: var(--fw-medium); }
+.form-status.is-success { color: var(--success); }
+.form-status.is-error { color: var(--danger); }

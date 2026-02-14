@@ -1,0 +1,71 @@
+:root {
+  --bg: #f5f8fc;
+  --surface: #ffffff;
+  --surface-2: #eef3fa;
+  --text: #101828;
+  --muted: #475467;
+  --border: #d0d9e6;
+  --brand: #0b5fff;
+  --brand-weak: #dce7ff;
+  --danger: #d92d20;
+  --success: #039855;
+  --warning: #f79009;
+
+  --font-sans: Inter, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  --fs-xs: 0.75rem;
+  --fs-sm: 0.875rem;
+  --fs-md: 1rem;
+  --fs-lg: 1.125rem;
+  --fs-xl: 1.35rem;
+  --fs-2xl: 1.8rem;
+  --fs-3xl: 2.4rem;
+  --fs-4xl: 3rem;
+
+  --lh-tight: 1.2;
+  --lh-base: 1.6;
+  --fw-regular: 400;
+  --fw-medium: 500;
+  --fw-semibold: 600;
+  --fw-bold: 700;
+
+  --space-2xs: 0.25rem;
+  --space-xs: 0.5rem;
+  --space-sm: 0.75rem;
+  --space-md: 1rem;
+  --space-lg: 1.5rem;
+  --space-xl: 2rem;
+  --space-2xl: 3rem;
+  --space-3xl: 4rem;
+  --space-4xl: 6rem;
+
+  --radius-sm: 0.35rem;
+  --radius-md: 0.65rem;
+  --radius-lg: 1rem;
+  --radius-xl: 1.5rem;
+
+  --shadow-sm: 0 2px 6px rgba(16, 24, 40, 0.06);
+  --shadow-md: 0 12px 28px rgba(16, 24, 40, 0.1);
+  --shadow-lg: 0 16px 34px rgba(16, 24, 40, 0.16);
+
+  --z-nav: 100;
+  --z-overlay: 110;
+  --z-modal: 120;
+
+  --ring: 0 0 0 3px rgba(11, 95, 255, 0.4);
+  --ring-offset: 0 0 0 6px rgba(255, 255, 255, 0.9);
+}
+
+[data-theme="dark"] {
+  --bg: #070b14;
+  --surface: #0f172a;
+  --surface-2: #1e293b;
+  --text: #e5e7eb;
+  --muted: #94a3b8;
+  --border: #334155;
+  --brand: #70a2ff;
+  --brand-weak: #1f3768;
+  --danger: #f97066;
+  --success: #32d583;
+  --warning: #fdb022;
+  --ring-offset: 0 0 0 6px rgba(7, 11, 20, 0.9);
+}

@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="pl">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Kontakt | VitaFlex Rehabilitacja</title>
+    <meta name="description" content="Skontaktuj się z VitaFlex Rehabilitacja i umów wizytę. Formularz kontaktowy i dane placówki." />
+    <link rel="canonical" href="https://example.com/kontakt" />
+    <link rel="icon" href="assets/icons/favicon.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="css/main.css" />
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@graph": [
+          { "@type": "Organization", "name": "VitaFlex Rehabilitacja", "url": "https://example.com" },
+          { "@type": "WebSite", "name": "VitaFlex Rehabilitacja", "url": "https://example.com" }
+        ]
+      }
+    </script>
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Przejdź do treści</a>
+    <header class="site-header">
+      <div class="container nav">
+        <a class="nav__brand" href="index.html">VitaFlex</a>
+        <button class="nav__toggle" data-nav-toggle aria-expanded="false" aria-controls="site-menu">Menu</button>
+        <nav id="site-menu" class="nav__menu" data-nav-menu>
+          <a class="nav__link" href="index.html">Start</a>
+          <a class="nav__link" href="uslugi.html">Usługi</a>
+          <a class="nav__link" href="zespol.html">Zespół</a>
+          <a class="nav__link" href="cennik.html">Cennik</a>
+          <a class="nav__link" href="nfz.html">NFZ</a>
+          <a class="nav__link" href="faq.html">FAQ</a>
+          <a class="nav__link" href="kontakt.html" aria-current="page">Kontakt</a>
+        </nav>
+      </div>
+    </header>
+    <main id="main" class="section">
+      <div class="container grid grid--2">
+        <section>
+          <h1>Kontakt</h1>
+          <p>Wypełnij formularz. Odpowiadamy do 24 godzin.</p>
+          <form class="form" data-contact-form novalidate>
+            <div class="form__row">
+              <div class="form__field">
+                <label class="form__label" for="name">Imię i nazwisko</label>
+                <input class="form__input" data-validate id="name" name="name" required aria-describedby="name-error" />
+                <div class="form__error" id="name-error" aria-live="polite"></div>
+              </div>
+              <div class="form__field">
+                <label class="form__label" for="email">E-mail</label>
+                <input class="form__input" data-validate id="email" type="email" name="email" required aria-describedby="email-error" />
+                <div class="form__error" id="email-error" aria-live="polite"></div>
+              </div>
+            </div>
+            <div class="form__row">
+              <div class="form__field">
+                <label class="form__label" for="phone">Telefon</label>
+                <input class="form__input" data-validate id="phone" name="phone" aria-describedby="phone-error" />
+                <div class="form__error" id="phone-error" aria-live="polite"></div>
+              </div>
+              <div class="form__field">
+                <label class="form__label" for="subject">Temat</label>
+                <select class="form__select" data-validate id="subject" name="subject" required aria-describedby="subject-error">
+                  <option value="">Wybierz temat</option>
+                  <option>Konsultacja prywatna</option>
+                  <option>Wizyta NFZ</option>
+                  <option>Kontynuacja terapii</option>
+                </select>
+                <div class="form__error" id="subject-error" aria-live="polite"></div>
+              </div>
+            </div>
+            <div class="form__field">
+              <label class="form__label" for="message">Wiadomość</label>
+              <textarea class="form__textarea" data-validate id="message" name="message" rows="5" required aria-describedby="message-error"></textarea>
+              <div class="form__error" id="message-error" aria-live="polite"></div>
+            </div>
+            <div class="form__checkbox">
+              <input data-validate id="gdpr" type="checkbox" aria-describedby="gdpr-error" />
+              <label for="gdpr">Wyrażam zgodę na przetwarzanie danych osobowych w celu kontaktu.</label>
+            </div>
+            <div class="form__error" id="gdpr-error" aria-live="polite"></div>
+            <button class="btn btn--primary" type="submit">Wyślij</button>
+            <p class="form__status" data-form-status aria-live="polite"></p>
+          </form>
+        </section>
+        <aside class="card">
+          <h2 class="card__title">Dane placówki</h2>
+          <p>
+            ul. Zdrowa 12, 80-100 Gdańsk
+            <br />
+            +48 58 777 11 22
+            <br />
+            rejestracja@vitaflex.pl
+          </p>
+          <p>Pon.–Pt. 7:00–20:00</p>
+        </aside>
+      </div>
+    </main>
+    <footer class="site-footer">
+      <div class="container site-footer__inner"><p>© VitaFlex Rehabilitacja</p></div>
+    </footer>
+    <script type="module" src="js/app.js"></script>
+  </body>
+</html>

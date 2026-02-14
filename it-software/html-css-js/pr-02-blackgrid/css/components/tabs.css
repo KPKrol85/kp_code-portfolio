@@ -1,0 +1,5 @@
+.tabs { display: grid; gap: var(--space-md); }
+.tabs__list { display: flex; flex-wrap: wrap; gap: var(--space-xs); }
+.tabs__tab { border: 1px solid var(--border); background: var(--surface); color: var(--text); padding: var(--space-xs) var(--space-md); border-radius: var(--radius-md); }
+.tabs__tab[aria-selected="true"] { border-color: var(--brand); background: var(--brand-weak); }
+.tabs__panel[hidden] { display: none; }

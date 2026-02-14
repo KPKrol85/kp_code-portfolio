@@ -1,0 +1,14 @@
+.accordion { display: grid; gap: var(--space-sm); }
+.accordion__item { border: 1px solid var(--border); border-radius: var(--radius-md); background: var(--surface); }
+.accordion__trigger {
+  width: 100%;
+  text-align: left;
+  border: 0;
+  background: none;
+  color: var(--text);
+  font: inherit;
+  font-weight: var(--fw-semibold);
+  padding: var(--space-md);
+  cursor: pointer;
+}
+.accordion__panel { padding: 0 var(--space-md) var(--space-md); }

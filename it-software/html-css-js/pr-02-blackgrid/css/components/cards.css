@@ -1,0 +1,12 @@
+.card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-sm);
+  padding: var(--space-lg);
+}
+.card__title { margin-bottom: var(--space-xs); }
+.card__meta { font-size: var(--fs-sm); color: var(--muted); }
+.card--featured { border-color: var(--brand); box-shadow: var(--shadow-md); }
+.pricing-card { display: flex; flex-direction: column; gap: var(--space-md); }
+.pricing-card__price { font-size: var(--fs-2xl); font-weight: var(--fw-bold); color: var(--text); }

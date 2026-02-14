@@ -1,0 +1,16 @@
+.form { display: grid; gap: var(--space-04); }
+.form__row { display: grid; gap: var(--space-04); }
+@media (min-width: 700px) {.form__row { grid-template-columns: repeat(2, minmax(0, 1fr)); }}
+.form__field { display: grid; gap: var(--space-02); }
+.form__label { font-weight: 600; }
+.form__input, .form__select, .form__textarea {
+  width: 100%;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  background: var(--surface);
+  color: var(--text);
+  padding: 0.7rem 0.8rem;
+}
+.form__error { font-size: var(--fs-01); color: var(--danger); min-height: 1.2em; }
+.form__status { font-size: var(--fs-02); color: var(--success); min-height: 1.5em; }
+.form__checkbox { display: flex; gap: var(--space-02); align-items: flex-start; }

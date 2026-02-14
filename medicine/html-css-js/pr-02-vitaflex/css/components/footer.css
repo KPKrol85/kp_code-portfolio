@@ -1,0 +1,10 @@
+.site-footer {
+  background: var(--surface);
+  border-top: 1px solid var(--border);
+  margin-top: var(--space-09);
+}
+.site-footer__inner { padding: var(--space-07) 0; }
+.site-footer__cols { display:grid; gap: var(--space-05); }
+@media (min-width: 760px) {
+  .site-footer__cols { grid-template-columns: 2fr 1fr 1fr; }
+}

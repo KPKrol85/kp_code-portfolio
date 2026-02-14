@@ -1,0 +1,15 @@
+.hero__lead { font-size: var(--fs-lg); max-width: 60ch; }
+.logo-row { display: grid; gap: var(--space-md); grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); }
+.timeline { list-style: none; padding: 0; display: grid; gap: var(--space-md); }
+.timeline li { position: relative; padding-left: var(--space-xl); }
+.timeline li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.45rem;
+  width: 10px;
+  height: 10px;
+  background: var(--brand);
+  border-radius: 50%;
+}
+.cta-band { background: linear-gradient(135deg, var(--brand-weak), var(--surface)); border: 1px solid var(--border); border-radius: var(--radius-xl); padding: var(--space-xl); }

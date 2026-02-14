@@ -1,0 +1,14 @@
+.badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.15rem 0.55rem;
+  border-radius: 999px;
+  font-size: var(--fs-xs);
+  font-weight: var(--fw-semibold);
+  background: var(--surface-2);
+  color: var(--text);
+}
+.badge--critical { background: color-mix(in srgb, var(--danger), transparent 75%); color: var(--danger); }
+.badge--high { background: color-mix(in srgb, var(--warning), transparent 75%); color: var(--warning); }
+.badge--medium { background: var(--brand-weak); color: var(--brand); }
+.badge--low { background: color-mix(in srgb, var(--success), transparent 78%); color: var(--success); }

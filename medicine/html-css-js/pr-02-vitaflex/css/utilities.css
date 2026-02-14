@@ -1,0 +1,22 @@
+.text-center { text-align: center; }
+.surface {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-sm);
+}
+.badge {
+  display: inline-flex;
+  align-items: center;
+  padding: var(--space-01) var(--space-03);
+  border-radius: 999px;
+  font-size: var(--fs-01);
+  background: var(--brand-weak);
+  color: var(--brand);
+}
+.reveal {
+  opacity: 0;
+  transform: translateY(14px);
+  transition: opacity 0.35s ease, transform 0.35s ease;
+}
+.reveal.is-visible { opacity: 1; transform: none; }

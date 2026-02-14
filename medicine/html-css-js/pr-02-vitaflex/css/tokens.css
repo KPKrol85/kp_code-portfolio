@@ -1,0 +1,70 @@
+:root {
+  --bg: #f5f8fc;
+  --surface: #ffffff;
+  --text: #11223b;
+  --muted: #5a6980;
+  --border: #d6deeb;
+  --brand: #1366d9;
+  --brand-weak: #e8f1ff;
+  --danger: #b42318;
+  --success: #067647;
+
+  --fs-01: clamp(0.78rem, 0.74rem + 0.2vw, 0.88rem);
+  --fs-02: clamp(0.88rem, 0.82rem + 0.3vw, 1rem);
+  --fs-03: clamp(1rem, 0.95rem + 0.45vw, 1.13rem);
+  --fs-04: clamp(1.13rem, 1.05rem + 0.7vw, 1.38rem);
+  --fs-05: clamp(1.3rem, 1.1rem + 1.1vw, 1.75rem);
+  --fs-06: clamp(1.55rem, 1.25rem + 1.5vw, 2.1rem);
+  --fs-07: clamp(1.95rem, 1.5rem + 2.2vw, 2.8rem);
+  --fs-08: clamp(2.2rem, 1.8rem + 2.8vw, 3.4rem);
+
+  --space-01: 0.25rem;
+  --space-02: 0.5rem;
+  --space-03: 0.75rem;
+  --space-04: 1rem;
+  --space-05: 1.5rem;
+  --space-06: 2rem;
+  --space-07: 3rem;
+  --space-08: 4rem;
+  --space-09: 5rem;
+  --space-10: 7rem;
+
+  --radius-sm: 0.5rem;
+  --radius-md: 0.8rem;
+  --radius-lg: 1.2rem;
+  --radius-xl: 1.6rem;
+
+  --shadow-sm: 0 2px 8px rgb(17 34 59 / 8%);
+  --shadow-md: 0 8px 24px rgb(17 34 59 / 10%);
+
+  --z-base: 1;
+  --z-sticky: 50;
+  --z-nav: 100;
+  --z-overlay: 120;
+
+  --focus-ring: 0 0 0 3px rgb(19 102 217 / 32%);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #0b1320;
+    --surface: #111d31;
+    --text: #e9f0ff;
+    --muted: #bbcadf;
+    --border: #2f405a;
+    --brand: #6ba8ff;
+    --brand-weak: #112746;
+    --danger: #fda29b;
+    --success: #6ce9a6;
+  }
+}
+
+[data-theme="dark"] {
+  --bg: #0b1320;
+  --surface: #111d31;
+  --text: #e9f0ff;
+  --muted: #bbcadf;
+  --border: #2f405a;
+  --brand: #6ba8ff;
+  --brand-weak: #112746;
+}
