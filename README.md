@@ -55,6 +55,7 @@ Completed and actively developed frontend projects are deployed on **Netlify** a
 - [IT Software — Pr01 — Vertex Digital](https://it-pr01-vertexdigital.netlify.app/)
 - [IT Softare — Pr02 — BlackGrid Security](hrrps://it-pr02-blackgrid.netlify.app/)
 - [Medicine — Pr01 — Vireon Clinic](https://medicine-pr01-vireonclinic.netlify.app/)
+- [Medicine — Pr02 — VitaFlex](https://medicine-pr02-vitaflex.netlify.app/)
 - [SaaS Dashboards — Pr01 — Flowdesk](https://saas-pr01-flowdesk.netlify.app/)
 - [SaaS Dashboards — Pr02 — FleetOps](https://saas-pr02-fleetops.netlify.app/)
 - [SaaS Dashboards — Pr03 — Digital Class](https://saas-pr03-digitalclass.netlify.app/)
