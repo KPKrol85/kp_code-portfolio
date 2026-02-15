@@ -1,100 +1,135 @@
-
-const fs = require('fs/promises');
-const path = require('path');
+const fs = require("fs/promises");
+const path = require("path");
 
 const rootDir = process.cwd();
-const distDir = path.join(rootDir, 'dist');
+const distDir = path.join(rootDir, "dist");
 
-const EXCLUDED_PATHS = new Set(['.git', 'node_modules', 'dist']);
+const EXCLUDED_TOP_LEVEL_DIRS = new Set([".git", "node_modules", "dist"]);
 
-async function copyProjectToDist() {
-  await fs.rm(distDir, { recursive: true, force: true });
+const REQUIRED_FILES = ["css/style.min.css", "js/script.min.js", "js/theme-init.min.js"];
+const OPTIONAL_FILES = [
+  "_headers",
+  "_redirects",
+  "netlify.toml",
+  "robots.txt",
+  "sitemap.xml",
+  "manifest.webmanifest",
+  "sw.js",
+  "js/sw-register.js",
+];
+const OPTIONAL_DIRS = ["assets"];
 
-  async function copyDir(src, dest) {
-    await fs.mkdir(dest, { recursive: true });
-    const entries = await fs.readdir(src, { withFileTypes: true });
+async function pathExists(absPath) {
+  try {
+    await fs.access(absPath);
+    return true;
+  } catch {
+    return false;
+  }
+}
 
-    for (const entry of entries) {
-      const srcPath = path.join(src, entry.name);
-      const relPath = path.relative(rootDir, srcPath);
-      const topLevel = relPath.split(path.sep)[0];
+async function ensureRequiredFilesExist() {
+  for (const relPath of REQUIRED_FILES) {
+    const absPath = path.join(rootDir, relPath);
+    if (!(await pathExists(absPath))) {
+      throw new Error(`Missing required production asset: ${relPath}. Run "npm run build" first.`);
+    }
+  }
+}
 
-      if (EXCLUDED_PATHS.has(topLevel)) {
-        continue;
-      }
+async function copyFileByRelativePath(relPath) {
+  const src = path.join(rootDir, relPath);
+  const dest = path.join(distDir, relPath);
+  await fs.mkdir(path.dirname(dest), { recursive: true });
+  await fs.copyFile(src, dest);
+}
 
-      const destPath = path.join(dest, entry.name);
+async function listHtmlFilesRecursively(dir) {
+  const entries = await fs.readdir(dir, { withFileTypes: true });
+  entries.sort((a, b) => a.name.localeCompare(b.name));
 
-      if (entry.isDirectory()) {
-        await copyDir(srcPath, destPath);
-        continue;
-      }
+  const results = [];
+  for (const entry of entries) {
+    const absPath = path.join(dir, entry.name);
+    const relPath = path.relative(rootDir, absPath);
+    const topLevel = relPath.split(path.sep)[0];
 
-      if (entry.isFile()) {
-        await fs.copyFile(srcPath, destPath);
-      }
+    if (entry.isDirectory()) {
+      if (EXCLUDED_TOP_LEVEL_DIRS.has(topLevel)) continue;
+      const nested = await listHtmlFilesRecursively(absPath);
+      results.push(...nested);
+      continue;
+    }
+
+    if (entry.isFile() && path.extname(entry.name).toLowerCase() === ".html") {
+      results.push(relPath);
     }
   }
 
-  await copyDir(rootDir, distDir);
+  return results;
 }
 
-async function minifyAssets() {
-  try {
-    const postcss = require('postcss');
-    const cssnano = require('cssnano');
-    const { minify } = require('terser');
+async function copyDirRecursive(srcDir, destDir, { skipRelDirNames = new Set() } = {}) {
+  const entries = await fs.readdir(srcDir, { withFileTypes: true });
+  entries.sort((a, b) => a.name.localeCompare(b.name));
 
-    const cssInputPath = path.join(rootDir, 'css', 'style.css');
-    const cssOutputPath = path.join(distDir, 'css', 'style.min.css');
-    const cssInput = await fs.readFile(cssInputPath, 'utf8');
-    const cssResult = await postcss([cssnano({ preset: 'default' })]).process(cssInput, {
-      from: cssInputPath,
-      to: cssOutputPath,
-      map: false,
-    });
-    await fs.mkdir(path.dirname(cssOutputPath), { recursive: true });
-    await fs.writeFile(cssOutputPath, cssResult.css, 'utf8');
+  for (const entry of entries) {
+    const srcPath = path.join(srcDir, entry.name);
+    const destPath = path.join(destDir, entry.name);
+    const relPath = path.relative(rootDir, srcPath);
 
-    const jsFiles = [
-      { input: path.join(rootDir, 'js', 'script.js'), output: path.join(distDir, 'js', 'script.min.js') },
-      {
-        input: path.join(rootDir, 'js', 'theme-init.js'),
-        output: path.join(distDir, 'js', 'theme-init.min.js'),
-      },
-    ];
+    if (entry.isDirectory()) {
+      const relNorm = relPath.split(path.sep).join("/");
+      const dirName = path.basename(srcPath);
+      if (skipRelDirNames.has(relNorm) || skipRelDirNames.has(dirName)) continue;
 
-    for (const file of jsFiles) {
-      const inputCode = await fs.readFile(file.input, 'utf8');
-      const minified = await minify(inputCode, { compress: true, mangle: true });
-
-      if (!minified.code) {
-        throw new Error(`Minification failed for ${file.input}`);
-      }
-
-      await fs.mkdir(path.dirname(file.output), { recursive: true });
-      await fs.writeFile(file.output, minified.code, 'utf8');
-    }
-  } catch (error) {
-    if (error.code !== 'MODULE_NOT_FOUND') {
-      throw error;
+      await fs.mkdir(destPath, { recursive: true });
+      await copyDirRecursive(srcPath, destPath, { skipRelDirNames });
+      continue;
     }
 
-    const fallbackFiles = [
-      { src: path.join(rootDir, 'css', 'style.min.css'), dest: path.join(distDir, 'css', 'style.min.css') },
-      { src: path.join(rootDir, 'js', 'script.min.js'), dest: path.join(distDir, 'js', 'script.min.js') },
-      { src: path.join(rootDir, 'js', 'theme-init.min.js'), dest: path.join(distDir, 'js', 'theme-init.min.js') },
-    ];
-
-    for (const file of fallbackFiles) {
-      await fs.mkdir(path.dirname(file.dest), { recursive: true });
-      await fs.copyFile(file.src, file.dest);
+    if (entry.isFile()) {
+      await fs.mkdir(path.dirname(destPath), { recursive: true });
+      await fs.copyFile(srcPath, destPath);
     }
+  }
+}
+
+async function copyRuntimeFilesToDist() {
+  await fs.rm(distDir, { recursive: true, force: true });
+  await fs.mkdir(distDir, { recursive: true });
+
+  await ensureRequiredFilesExist();
+
+  const htmlFiles = await listHtmlFilesRecursively(rootDir);
+  for (const relPath of htmlFiles) {
+    await copyFileByRelativePath(relPath);
+  }
+
+  for (const relPath of REQUIRED_FILES) {
+    await copyFileByRelativePath(relPath);
+  }
+
+  for (const relPath of OPTIONAL_FILES) {
+    const absPath = path.join(rootDir, relPath);
+    if (await pathExists(absPath)) {
+      await copyFileByRelativePath(relPath);
+    }
+  }
+
+  for (const relDir of OPTIONAL_DIRS) {
+    const srcDir = path.join(rootDir, relDir);
+    if (!(await pathExists(srcDir))) continue;
+
+    const destDir = path.join(distDir, relDir);
+    await fs.mkdir(destDir, { recursive: true });
+    await copyDirRecursive(srcDir, destDir, { skipRelDirNames: new Set(["img-src"]) });
   }
 }
 
 async function rewriteHtmlReferencesInDist(dir) {
   const entries = await fs.readdir(dir, { withFileTypes: true });
+  entries.sort((a, b) => a.name.localeCompare(b.name));
 
   for (const entry of entries) {
     const fullPath = path.join(dir, entry.name);
@@ -104,25 +139,24 @@ async function rewriteHtmlReferencesInDist(dir) {
       continue;
     }
 
-    if (!entry.isFile() || path.extname(entry.name) !== '.html') {
+    if (!entry.isFile() || path.extname(entry.name).toLowerCase() !== ".html") {
       continue;
     }
 
-    const html = await fs.readFile(fullPath, 'utf8');
+    const html = await fs.readFile(fullPath, "utf8");
     const updatedHtml = html
-      .replaceAll('css/style.css', 'css/style.min.css')
-      .replaceAll('js/script.js', 'js/script.min.js')
-      .replaceAll('js/theme-init.js', 'js/theme-init.min.js');
+      .replaceAll("css/style.css", "css/style.min.css")
+      .replaceAll("js/script.js", "js/script.min.js")
+      .replaceAll("js/theme-init.js", "js/theme-init.min.js");
 
     if (updatedHtml !== html) {
-      await fs.writeFile(fullPath, updatedHtml, 'utf8');
+      await fs.writeFile(fullPath, updatedHtml, "utf8");
     }
   }
 }
 
 async function build() {
-  await copyProjectToDist();
-  await minifyAssets();
+  await copyRuntimeFilesToDist();
   await rewriteHtmlReferencesInDist(distDir);
 }
 
