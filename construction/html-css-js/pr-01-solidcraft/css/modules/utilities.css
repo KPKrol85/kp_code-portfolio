@@ -1,10 +1,4 @@
 
-:root {
-  --sr-duration: 600ms;
-  --sr-ease: cubic-bezier(0.2, 0.7, 0.2, 1);
-  --sr-distance: 18px;
-}
-
 .hover-card {
   transition:
     transform 0.25s ease,
@@ -14,17 +8,14 @@
   will-change: transform;
   border-radius: 14px;
 }
-
 .hover-card:hover,
 .hover-card:focus-within {
   transform: translateY(-4px);
   box-shadow: 0 8px 28px rgba(0, 0, 0, 0.18);
 }
-
 .hover-card:active {
   transform: translateY(-1px);
 }
-
 .hover-card:focus-within {
   outline: 3px solid var(--ring);
   outline-offset: 2px;
@@ -48,57 +39,44 @@
   opacity: 1;
   transform: none;
 }
-
 [data-reveal="up"] {
   transform: translate3d(0, var(--sr-distance), 0);
 }
-
 [data-reveal="down"] {
   transform: translate3d(0, calc(var(--sr-distance) * -1), 0);
 }
-
 [data-reveal="left"] {
   transform: translate3d(var(--sr-distance), 0, 0);
 }
-
 [data-reveal="right"] {
   transform: translate3d(calc(var(--sr-distance) * -1), 0, 0);
 }
-
 [data-reveal="scale"] {
   transform: scale(0.96);
 }
-
 [data-reveal].delay-1 {
   transition-delay: 80ms;
 }
-
 [data-reveal].delay-2 {
   transition-delay: 160ms;
 }
-
 [data-reveal].delay-3 {
   transition-delay: 240ms;
 }
-
 .card.hover-card[data-reveal] {
   transition:
     opacity var(--sr-duration) var(--sr-ease),
     transform var(--sr-duration) var(--sr-ease);
 }
-
 .card.hover-card[data-reveal]:not(.is-revealed) {
   opacity: 0;
 }
-
 .card.hover-card[data-reveal="up"]:not(.is-revealed) {
   transform: translate3d(0, var(--sr-distance), 0);
 }
-
 .card.hover-card[data-reveal="scale"]:not(.is-revealed) {
   transform: scale(0.94);
 }
-
 .card.hover-card[data-reveal].is-revealed {
   opacity: 1;
   transform: none;
@@ -121,7 +99,6 @@
     opacity: 0;
   }
 }
-
 @keyframes spin {
   to {
     transform: rotate(360deg);
@@ -136,7 +113,6 @@
   place-items: center;
   padding: 0 var(--space-3);
 }
-
 .cc-inner {
   width: min(920px, calc(100% - var(--space-4)));
   background: color-mix(in oklab, var(--c-surface), white 6%);
@@ -150,27 +126,22 @@
   gap: var(--space-3);
   padding: var(--space-3) var(--space-4);
 }
-
 [data-theme="dark"] .cc-inner {
   background: color-mix(in oklab, var(--c-surface), black 4%);
 }
-
 .cc-text {
   margin: 0;
   flex: 1 1 520px;
 }
-
 .cc-text a {
   text-decoration: underline;
   text-underline-offset: 0.15em;
 }
-
 .cc-actions {
   display: inline-flex;
   gap: var(--space-2);
   align-items: center;
 }
-
 .cc-banner .btn {
   display: inline-flex;
   align-items: center;
@@ -182,33 +153,27 @@
   font-weight: 700;
   text-decoration: none;
 }
-
 .cc-banner .btn-accept {
   background: var(--c-accent);
   color: var(--btn-contrast, #0f172a);
 }
-
 .cc-banner .btn-more {
   background: transparent;
   color: inherit;
   border-color: var(--c-border);
 }
-
 .cc-banner .btn:focus-visible {
   outline: 3px solid var(--ring);
   outline-offset: 3px;
 }
-
 .cc-banner[hidden] {
   display: none !important;
 }
-
 @media (hover: hover) {
   .cc-banner .btn:hover {
     filter: contrast(1.05);
   }
 }
-
 @media (prefers-reduced-motion: reduce) {
   [data-reveal] {
     opacity: 1 !important;
@@ -224,7 +189,6 @@
     transform: none;
   }
 }
-
 @media (prefers-reduced-motion: no-preference) {
   .card[data-reveal],
   .hover-card[data-reveal] {
@@ -648,4 +612,3 @@ body.lb-no-scroll {
     padding-top: calc(var(--sep-buffer) - 6px);
   }
 }
-
