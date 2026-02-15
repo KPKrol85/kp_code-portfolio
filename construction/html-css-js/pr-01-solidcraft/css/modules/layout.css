@@ -1,0 +1,116 @@
+.container {
+  max-width: 1140px;
+  margin-inline: auto;
+  padding-inline: 24px;
+}
+
+#strona-glowna {
+  --hero-overlay-a: 0.25;
+  --hero-img-brightness: 0.95;
+}
+
+#strona-glowna .container {
+  max-width: 1040px;
+}
+
+.muted {
+  color: var(--muted);
+}
+
+.center {
+  display: flex;
+  justify-content: center;
+}
+
+.block {
+  overflow: visible;
+}
+
+.block.alt {
+  background: var(--card);
+  border-block: 1px solid var(--line);
+  overflow: visible;
+}
+
+.visually-hidden,
+.vh,
+.sr-only {
+  position: absolute !important;
+  width: 1px !important;
+  height: 1px !important;
+  padding: 0 !important;
+  margin: -1px !important;
+  overflow: hidden !important;
+  clip: rect(0 0 0 0) !important;
+  clip-path: inset(50%) !important;
+  white-space: nowrap !important;
+  border: 0 !important;
+}
+
+.skip {
+  position: fixed;
+  inset: 8px auto auto 8px;
+  z-index: 1000;
+  transform: translateY(-150%);
+  background: var(--brand);
+  color: #fff;
+  padding: 10px 14px;
+  border-radius: 10px;
+  box-shadow: var(--shadow);
+}
+
+.skip:focus {
+  transform: translateY(0);
+}
+
+.logos,
+#opinie,
+#faq,
+#kontakt,
+#oferta {
+  padding-block: var(--sec-py);
+}
+
+.block-head {
+  margin-bottom: var(--sec-head-mb);
+  text-align: center;
+}
+
+@media (max-width: 640px) {
+  .logos,
+  #opinie,
+  #faq,
+  #kontakt,
+  #oferta {
+    padding-block: var(--sec-py-sm);
+  }
+}
+
+@media (max-width: 420px) {
+  .container {
+    padding-left: 14px;
+    padding-right: 14px;
+  }
+}
+
+@media (max-width: 360px) {
+  .container {
+    padding-left: 12px;
+    padding-right: 12px;
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  html:focus-within {
+    scroll-behavior: smooth;
+  }
+}
+
+@supports (text-wrap: balance) {
+  h1,
+  h2,
+  h3 {
+    text-wrap: balance;
+  }
+}
+

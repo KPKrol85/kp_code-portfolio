@@ -1,0 +1,187 @@
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  --header-h: 74px;
+  scroll-padding-top: var(--header-h);
+  text-size-adjust: 100%;
+  -webkit-text-size-adjust: 100%;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  scrollbar-gutter: stable;
+}
+
+body {
+  margin: 0;
+  padding-top: var(--header-h);
+  font-family:
+    "Poppins",
+    system-ui,
+    -apple-system,
+    "Segoe UI",
+    Roboto,
+    Arial,
+    sans-serif;
+  font-weight: 400;
+  line-height: 1.6;
+  color: var(--fg);
+  background: var(--bg);
+  text-wrap: pretty;
+}
+
+html.preload-theme *,
+html.preload-theme *::before,
+html.preload-theme *::after {
+  transition: none !important;
+}
+
+.top-anchor {
+  position: relative;
+  inset: 0;
+  height: 0;
+}
+
+button,
+input,
+select,
+textarea {
+  font: inherit;
+  color: inherit;
+}
+
+:disabled {
+  cursor: not-allowed;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+  text-underline-offset: 3px;
+}
+
+a:hover {
+  text-decoration: none;
+}
+
+:focus-visible {
+  outline: 2px solid var(--ring);
+  outline-offset: 2px;
+}
+
+a:focus-visible {
+  border-radius: 6px;
+}
+
+:where(a, button, [role="button"], .dropdown-trigger):not(.btn):focus-visible {
+  outline: 3px solid var(--ring);
+  outline-offset: 3px;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+  height: auto;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin: 0 0 0.6em;
+  font-family: "Montserrat", sans-serif;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  line-height: 1.3;
+}
+
+h1 {
+  font-size: var(--fs-h1);
+  line-height: 1.22;
+}
+
+h2 {
+  font-size: var(--fs-h2);
+  line-height: var(--lh-h2);
+  letter-spacing: -0.01em;
+}
+
+h3 {
+  font-size: var(--fs-h3);
+  line-height: var(--lh-h3);
+  letter-spacing: -0.005em;
+}
+
+:is(h1, h2, h3) strong,
+:is(h1, h2, h3) b {
+  font-weight: 800;
+}
+
+p {
+  margin: 0 0 1em;
+  line-height: 1.7;
+  letter-spacing: 0.2px;
+}
+
+small {
+  font-size: 0.875em;
+}
+
+.lead {
+  margin-block: 0.5rem 0;
+  max-width: 65ch;
+  font-weight: 400;
+  font-size: var(--fs-lead);
+  line-height: var(--lh-lead);
+  color: var(--muted);
+}
+
+h1 + .lead,
+h2 + .lead {
+  margin-top: -0.2em;
+}
+
+:root[data-theme="dark"] .lead {
+  color: color-mix(in srgb, var(--fg) 92%, #fff);
+}
+
+.icon svg {
+  display: block;
+}
+
+.icon,
+.i {
+  width: 20px;
+  height: 20px;
+  flex: 0 0 auto;
+  opacity: 0.9;
+}
+
+.brand {
+  display: inline-block;
+  line-height: 0;
+}
+
+.brand picture,
+.brand img {
+  display: block;
+}
+
+.thumb--1x1 {
+  aspect-ratio: 1 / 1;
+}
+
+.thumb--4x3 {
+  aspect-ratio: 4 / 3;
+}
+
+.thumb--16x9 {
+  aspect-ratio: 16 / 9;
+}
+

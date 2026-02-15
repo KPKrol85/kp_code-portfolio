@@ -1,0 +1,127 @@
+:root {
+  --bg: #ffffff;
+  --fg: #0b1220;
+  --muted: #5e6673;
+  --brand: #f59e0b;
+  --brand-2: #c2410c;
+  --card: #f7f8fb;
+  --line: #e6eaf1;
+
+  color-scheme: light dark;
+  --c-bg: var(--bg);
+  --c-ink: var(--fg);
+  --c-muted: var(--muted);
+  --c-accent: var(--brand);
+  --c-surface: var(--card);
+  --c-border: var(--line);
+  --c-border-strong: #c5cbd8;
+  --c-border-strong: color-mix(in oklab, var(--c-border), black 16%);
+  --line-strong: var(--c-border-strong);
+  --brand-grad: linear-gradient(135deg, var(--brand), var(--brand-2));
+  --brand-weak: #fef1dd;
+  --brand-weak: color-mix(in oklab, var(--brand) 14%, var(--bg));
+  --ring: #9e742c;
+  --ring: color-mix(in oklab, var(--brand) 55%, #334155);
+
+  --radius: 16px;
+
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-3-5: 14px;
+  --space-4: 16px;
+  --space-4-5: 18px;
+  --space-5: 20px;
+  --space-6: 24px;
+  --space-7: 28px;
+  --space-8: 32px;
+  --space-10: 40px;
+  --space-12: 48px;
+
+  --space-section-sm: clamp(32px, 4vw, 56px);
+  --space-section-md: clamp(48px, 6vw, 84px);
+  --space-section-lg: clamp(64px, 8vw, 112px);
+
+  --shadow-sm: 0 2px 10px rgba(11, 18, 32, 0.05);
+  --shadow-md: 0 6px 18px rgba(11, 18, 32, 0.08);
+  --shadow-lg: 0 10px 30px rgba(11, 18, 32, 0.1);
+  --shadow: var(--shadow-lg);
+
+  --fs-h1: clamp(2.2rem, 1.1rem + 3.6vw, 3.5rem);
+  --fs-h2: clamp(1.7rem, 1.05rem + 2.1vw, 2.5rem);
+  --fs-h3: clamp(1.1rem, 0.95rem + 0.65vw, 1.35rem);
+  --lh-h2: 1.15;
+  --lh-h3: 1.22;
+  --fs-lead: clamp(1.06rem, 1rem + 0.7vw, 1.28rem);
+  --lh-lead: 1.6;
+
+  --sec-py: clamp(48px, 8vw, 96px);
+  --sec-py-sm: clamp(36px, 6vw, 72px);
+  --sec-head-mb: clamp(16px, 2.6vw, 28px);
+
+  --sep-h: 14px;
+  --sep-buffer: var(--space-section-sm);
+
+  --hero-img-brightness: 1.02;
+  --hero-overlay-a: 0.18;
+}
+
+@font-face {
+  font-display: swap;
+  font-family: "Montserrat";
+  font-style: normal;
+  font-weight: 400;
+  src: url("../assets/fonts/montserrat-v31-latin-regular.woff2") format("woff2");
+}
+@font-face {
+  font-display: swap;
+  font-family: "Montserrat";
+  font-style: normal;
+  font-weight: 600;
+  src: url("../assets/fonts/montserrat-v31-latin-600.woff2") format("woff2");
+}
+@font-face {
+  font-display: swap;
+  font-family: "Montserrat";
+  font-style: normal;
+  font-weight: 700;
+  src: url("../assets/fonts/montserrat-v31-latin-700.woff2") format("woff2");
+}
+@font-face {
+  font-display: swap;
+  font-family: "Poppins";
+  font-style: normal;
+  font-weight: 400;
+  src: url("../assets/fonts/poppins-v24-latin-regular.woff2") format("woff2");
+}
+@font-face {
+  font-display: swap;
+  font-family: "Poppins";
+  font-style: normal;
+  font-weight: 500;
+  src: url("../assets/fonts/poppins-v24-latin-500.woff2") format("woff2");
+}
+@font-face {
+  font-display: swap;
+  font-family: "Poppins";
+  font-style: normal;
+  font-weight: 600;
+  src: url("../assets/fonts/poppins-v24-latin-600.woff2") format("woff2");
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme]) {
+    --bg: #0b1220;
+    --fg: #e6e9ee;
+    --muted: #a7b0bd;
+    --card: #0f172a;
+    --line: #1e2836;
+    --shadow-sm: 0 2px 10px rgba(0, 0, 0, 0.28);
+    --shadow-md: 0 6px 18px rgba(0, 0, 0, 0.36);
+    --shadow-lg: 0 10px 30px rgba(0, 0, 0, 0.44);
+    --shadow: var(--shadow-lg);
+    --ring: rgba(245, 158, 11, 0.65);
+    --ring: color-mix(in oklab, var(--brand) 65%, transparent);
+    --hero-img-brightness: 0.92;
+    --hero-overlay-a: 0.42;
+  }
+}

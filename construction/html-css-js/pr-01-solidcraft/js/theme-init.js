@@ -1,6 +1,9 @@
 (() => {
+  const root = document.documentElement;
+  root.classList.remove("no-js");
+  root.classList.add("js");
+
   try {
-    const root = document.documentElement;
     const stored = localStorage.getItem("theme");
 
     const theme =
@@ -13,7 +16,7 @@
     root.dataset.theme = theme;
     root.classList.add("preload-theme");
   } catch {
-    // ignore unavailable storage or access restrictions
+
   }
 
   window.addEventListener("DOMContentLoaded", () => {

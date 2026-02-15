@@ -9,11 +9,11 @@
 
 
 
-# Zablokuj wszystkim wyszukiwarkom indeksowanie strony (projekt demo)
+## Zezwól wszystkim wyszukiwarkom na indeksowanie strony
 
 User-agent: *
 
-Disallow: /
+Allow: /
 
 
 

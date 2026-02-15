@@ -1,30 +1,4 @@
-/* ================================
-   = Project: construction-01
-   = Name: SolidCraft
-   = Technology: html/css/js
-   = Author: Kamil Król - kp_code_
-   = Last Update: 2026-01-01
-   = Version: 1.00
-   ================================
-   = CSS Stylesheet
-   = Structure overview
-   ================================
-   = 00 - Header height
-   = 01 - Navigation dropdown
-   = 02 - Scroll spy
-   = 03 - Footer year
-   = 04 - Scroll to top
-   = 05 - Scroll reveal
-   = 06 - Contact form
-   = 07 - Header shrink
-   = 08 - Theme toggle
-   = 09 - CTA ripple
-   = 10 - Hero blur
-   = 11 - Lightbox
-   = 12 - Prefetch
-   = 13 - Home helpers
-   = 14 - Cookies banner
-   ================================= */
+
 
 /* === 00 - Header height === */
 
