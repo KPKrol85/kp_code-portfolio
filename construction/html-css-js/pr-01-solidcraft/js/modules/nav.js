@@ -1,5 +1,6 @@
-(function (SC) {
-  "use strict";
+"use strict";
+
+import { utils } from "./utils.js";
 
   /* Navigation dropdown */
 
@@ -229,7 +230,7 @@
     if (!sections.length) return;
 
     const getHeaderLive = () => (headerEl ? Math.round(headerEl.getBoundingClientRect().height) : 0);
-    const getOffset = () => (typeof utils?.getHeaderH === "function" ? SC.utils?.getHeaderH?.() : getHeaderLive()) + PEEK;
+    const getOffset = () => (typeof utils?.getHeaderH === "function" ? utils.getHeaderH() : getHeaderLive()) + PEEK;
     const isMenuOpen = () => {
       return (
         (navMenu && navMenu.classList.contains("open")) ||
@@ -403,7 +404,8 @@
     const syncVar = () => {
       const h = measureHeader();
       document.documentElement.style.setProperty("--header-h", `${h}px`);
-      if (window.utils?.refreshHeaderH) window.utils.refreshHeaderH();
+      if (typeof utils?.refreshHeaderH === "function") utils.refreshHeaderH();
+      else if (window.utils?.refreshHeaderH) window.utils.refreshHeaderH();
       window.dispatchEvent(new CustomEvent("header:sync", { detail: { height: h } }));
       return h;
     };
@@ -466,9 +468,4 @@
     onScroll();
   }
 
-  SC.nav = {
-    init: initNav,
-    initScrollSpy,
-    initHeaderShrink,
-  };
-})((window.SC = window.SC || {}));
+export { initNav, initScrollSpy, initHeaderShrink };

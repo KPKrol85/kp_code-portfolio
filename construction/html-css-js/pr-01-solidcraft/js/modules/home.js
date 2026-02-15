@@ -1,5 +1,4 @@
-(function (SC) {
-  "use strict";
+"use strict";
 
 /* === 13 - Home helpers === */
 
@@ -124,6 +123,4 @@ function initHomeHelpers() {
   window.addEventListener("pagehide", () => ac.abort(), { once: true, signal });
 }
 
-SC.home = { init: initHomeHelpers };
-
-})(window.SC = window.SC || {});
+export { initHomeHelpers };

@@ -1,5 +1,4 @@
-(function (SC) {
-  "use strict";
+"use strict";
 
   function initCookieBanner() {
     try {
@@ -65,5 +64,4 @@
     } catch {}
   }
 
-  SC.cookieBanner = { init: initCookieBanner };
-})((window.SC = window.SC || {}));
+export { initCookieBanner };

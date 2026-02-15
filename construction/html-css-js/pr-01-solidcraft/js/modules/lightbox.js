@@ -1,5 +1,4 @@
-(function (SC) {
-  "use strict";
+"use strict";
 
 function initOfertaLightbox() {
   if (initOfertaLightbox._abort) initOfertaLightbox._abort.abort();
@@ -359,6 +358,4 @@ function initOfertaLightbox() {
   window.addEventListener("pagehide", () => ac.abort(), { once: true, signal });
 }
 
-SC.lightbox = { init: initOfertaLightbox };
-
-})(window.SC = window.SC || {});
+export { initOfertaLightbox };

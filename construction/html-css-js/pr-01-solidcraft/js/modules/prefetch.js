@@ -1,5 +1,4 @@
-(function (SC) {
-  "use strict";
+"use strict";
 
 function initOfferPrefetch() {
   if (initOfferPrefetch._abort) initOfferPrefetch._abort.abort();
@@ -77,6 +76,4 @@ function initOfferPrefetch() {
   window.addEventListener("pagehide", () => ac.abort(), { once: true, signal });
 }
 
-SC.prefetch = { init: initOfferPrefetch };
-
-})(window.SC = window.SC || {});
+export { initOfferPrefetch };

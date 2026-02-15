@@ -1,5 +1,4 @@
-(function (SC) {
-  "use strict";
+"use strict";
 
   const utils = (() => {
     const docEl = document.documentElement;
@@ -61,6 +60,4 @@
     return Object.freeze({ getHeaderH, refreshHeaderH, syncHeaderCssVar });
   })();
 
-  SC.utils = utils;
-  window.utils = window.utils || utils;
-})((window.SC = window.SC || {}));
+export { utils };

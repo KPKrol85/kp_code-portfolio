@@ -1,93 +1,68 @@
-(function (win, doc) {
-  "use strict";
+import { utils } from "./modules/utils.js";
+import { initNav, initHeaderShrink, initScrollSpy } from "./modules/nav.js";
+import {
+  initFooterYear,
+  initSmoothTop,
+  initScrollReveal,
+  initThemeToggle,
+  initRipple,
+  initHeroBlurSync,
+} from "./modules/ui-core.js";
+import { initContactForm } from "./modules/forms.js";
+import { initOfertaLightbox } from "./modules/lightbox.js";
+import { initOfferPrefetch } from "./modules/prefetch.js";
+import { initHomeHelpers } from "./modules/home.js";
+import { initMapConsent } from "./modules/map-consent.js";
+import { initCookieBanner } from "./modules/cookie-banner.js";
 
-  win.SC = win.SC || {};
+window.SC = window.SC || {};
+window.SC.utils = utils;
+window.SC.nav = {
+  init: initNav,
+  initHeaderShrink,
+  initScrollSpy,
+};
+window.SC.ui = {
+  initFooterYear,
+  initSmoothTop,
+  initScrollReveal,
+  initThemeToggle,
+  initRipple,
+  initHeroBlurSync,
+};
+window.SC.forms = { init: initContactForm };
+window.SC.lightbox = { init: initOfertaLightbox };
+window.SC.prefetch = { init: initOfferPrefetch };
+window.SC.home = { init: initHomeHelpers };
+window.SC.mapConsent = { init: initMapConsent };
+window.SC.cookieBanner = { init: initCookieBanner };
+window.utils = window.utils || utils;
 
-  const modules = [
-    "modules/utils.js",
-    "modules/nav.js",
-    "modules/ui-core.js",
-    "modules/forms.js",
-    "modules/lightbox.js",
-    "modules/prefetch.js",
-    "modules/home.js",
-    "modules/map-consent.js",
-    "modules/cookie-banner.js",
-  ];
+const runInit = () => {
+  utils.syncHeaderCssVar?.();
 
-  const getScriptBase = () => {
-    const current =
-      doc.currentScript ||
-      Array.from(doc.scripts).find((s) =>
-        /\/script(?:\.min)?\.js(?:$|\?)/.test(s.src),
-      );
+  initNav?.();
+  initHeaderShrink?.();
+  initScrollSpy?.();
 
-    if (current && current.src) {
-      return current.src.replace(/[^/]+$/, "");
-    }
+  initFooterYear?.();
+  initSmoothTop?.();
+  initScrollReveal?.();
+  initThemeToggle?.();
+  initRipple?.();
+  initHeroBlurSync?.();
 
-    return `${location.origin}/js/`;
-  };
+  initOfertaLightbox?.();
+  initOfferPrefetch?.();
+  initHomeHelpers?.();
 
-  const loadModulesSequentially = (baseUrl) =>
-    modules.reduce(
-      (p, relPath) =>
-        p.then(
-          () =>
-            new Promise((resolve, reject) => {
-              const s = doc.createElement("script");
-              s.src = baseUrl + relPath;
-              s.async = false;
-              s.defer = false;
-              s.onload = () => resolve();
-              s.onerror = () =>
-                reject(new Error(`Module load failed: ${relPath}`));
-              doc.head.appendChild(s);
-            }),
-        ),
-      Promise.resolve(),
-    );
+  initMapConsent?.();
+  initContactForm?.();
+  initCookieBanner?.();
+};
 
-  const runInit = () => {
-    const SC = win.SC || {};
-
-    SC.utils?.syncHeaderCssVar?.();
-
-    SC.nav?.init?.();
-    SC.nav?.initHeaderShrink?.();
-    SC.nav?.initScrollSpy?.();
-
-    SC.ui?.initFooterYear?.();
-    SC.ui?.initSmoothTop?.();
-    SC.ui?.initScrollReveal?.();
-    SC.ui?.initThemeToggle?.();
-    SC.ui?.initRipple?.();
-    SC.ui?.initHeroBlurSync?.();
-
-    SC.lightbox?.init?.();
-    SC.prefetch?.init?.();
-    SC.home?.init?.();
-
-    SC.mapConsent?.init?.();
-    SC.forms?.init?.();
-    SC.cookieBanner?.init?.();
-  };
-
-  const start = () => {
-    const baseUrl = getScriptBase();
-
-    loadModulesSequentially(baseUrl)
-      .then(() => {
-        if (doc.readyState === "loading") {
-          doc.addEventListener("DOMContentLoaded", runInit, { once: true });
-        } else {
-          runInit();
-        }
-      })
-      .catch((err) => {
-        console.error(err);
-      });
-  };
-
-  start();
-})(window, document);
+if (document.readyState === "loading") {
+  document.addEventListener("DOMContentLoaded", runInit, { once: true });
+} else {
+  runInit();
+}

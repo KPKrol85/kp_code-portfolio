@@ -1,5 +1,4 @@
-(function (SC) {
-  "use strict";
+"use strict";
 
   function initContactForm() {
     if (initContactForm._abort) initContactForm._abort.abort();
@@ -243,5 +242,4 @@
     );
   }
 
-  SC.forms = { init: initContactForm };
-})((window.SC = window.SC || {}));
+export { initContactForm };

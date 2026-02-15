@@ -1,5 +1,4 @@
-(function (SC) {
-  "use strict";
+"use strict";
 
   /* Footer Year  */
   function initFooterYear() {
@@ -358,12 +357,11 @@
     syncNextFrame();
   }
 
-  SC.ui = {
-    initFooterYear,
-    initSmoothTop,
-    initScrollReveal,
-    initThemeToggle,
-    initRipple,
-    initHeroBlurSync,
-  };
-})((window.SC = window.SC || {}));
+export {
+  initFooterYear,
+  initSmoothTop,
+  initScrollReveal,
+  initThemeToggle,
+  initRipple,
+  initHeroBlurSync,
+};

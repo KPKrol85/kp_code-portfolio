@@ -1,5 +1,4 @@
-(function (SC) {
-  "use strict";
+"use strict";
 
 
 function initMapConsent() {
@@ -39,6 +38,4 @@ function initMapConsent() {
   }
 }
 
-SC.mapConsent = { init: initMapConsent };
-
-})(window.SC = window.SC || {});
+export { initMapConsent };
