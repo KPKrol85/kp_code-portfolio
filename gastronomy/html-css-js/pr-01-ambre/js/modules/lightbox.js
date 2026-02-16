@@ -353,6 +353,7 @@ export function initLightbox() {
   (function enableSwipe() {
     if (!img) return;
     const supportsPointer = "PointerEvent" in window;
+    const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     let startX = 0;
     let startY = 0;
     let deltaX = 0;
@@ -361,6 +362,12 @@ export function initLightbox() {
     let horizontal = false;
 
     const reset = () => {
+      if (prefersReducedMotion) {
+        img.style.transition = "none";
+        img.style.transform = "translate3d(0,0,0)";
+        img.style.willChange = "";
+        return;
+      }
       img.style.transition = "transform .18s ease";
       img.style.transform = "translate3d(0,0,0)";
       img.addEventListener(
@@ -402,6 +409,13 @@ export function initLightbox() {
 
       if (horizontal && Math.abs(deltaX) > 60 && items.length) {
         const direction = deltaX < 0 ? 1 : -1;
+        if (prefersReducedMotion) {
+          showAt(index === -1 ? 0 : index + direction);
+          preload(1);
+          preload(-1);
+          reset();
+          return;
+        }
         img.style.transition = "transform .12s ease";
         img.style.transform = `translate3d(${Math.sign(deltaX) * window.innerWidth * 0.25}px,0,0)`;
         setTimeout(() => {
