@@ -1,4 +1,4 @@
-const CACHE_VERSION = "v1.0";
+const CACHE_VERSION = "v1.2";
 
 const APP_SHELL_CACHE = `app-shell-${CACHE_VERSION}`;
 const RUNTIME_IMG_CACHE = `runtime-img-${CACHE_VERSION}`;
@@ -93,22 +93,17 @@ self.addEventListener("fetch", (event) => {
   if (req.destination === "style" || req.destination === "script" || req.destination === "worker") {
     event.respondWith(
       (async () => {
-        const cached = await caches.match(req);
-        const fetchPromise = fetch(req)
-          .then((res) => {
-            if (res && res.ok) {
-              return putSafe(APP_SHELL_CACHE, req, res);
-            }
-            return res;
-          })
-          .catch(() => null);
-
-        if (cached) {
-          event.waitUntil(fetchPromise);
-          return cached;
+        try {
+          const res = await fetch(req);
+          if (res && res.ok) {
+            return putSafe(APP_SHELL_CACHE, req, res);
+          }
+          return res;
+        } catch {
+          const cached = await caches.match(req);
+          if (cached) return cached;
+          return Response.error();
         }
-
-        return fetchPromise || Response.error();
       })(),
     );
     return;

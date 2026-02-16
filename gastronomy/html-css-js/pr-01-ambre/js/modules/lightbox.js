@@ -42,6 +42,16 @@ export function initLightbox() {
       .replace(/\.(avif|webp|jpe?g|png)$/i, "");
   };
 
+  const toOptimizedBase = (base = "") => {
+    if (!base) return base;
+    const deduped = base.replace(/(\/assets\/img\/)(?:_optimized\/)+/g, "$1_optimized/");
+    if (/(^|\/)assets\/img\/_optimized\//.test(deduped)) return deduped;
+    return deduped
+      .replace("/assets/img/", "/assets/img/_optimized/")
+      .replace("assets/img/", "assets/img/_optimized/")
+      .replace(/(\/assets\/img\/)(?:_optimized\/)+/g, "$1_optimized/");
+  };
+
   const getFull = (node) => {
     if (!node) return "";
     try {
@@ -64,8 +74,10 @@ export function initLightbox() {
     const base = basePath(value);
     if (!base) return;
 
-    if (sourceAvif) sourceAvif.srcset = `${base}.avif`;
-    if (sourceWebp) sourceWebp.srcset = `${base}.webp`;
+    const optimizedBase = toOptimizedBase(base);
+
+    if (sourceAvif) sourceAvif.srcset = `${optimizedBase}.avif`;
+    if (sourceWebp) sourceWebp.srcset = `${optimizedBase}.webp`;
     if (img) {
       img.src = `${base}.jpg`;
       img.alt = alt || "";
@@ -216,7 +228,9 @@ export function initLightbox() {
     const base = basePath(src);
     if (!base) return;
 
-    [`${base}.webp`, `${base}.avif`, `${base}.jpg`].forEach((value) => {
+    const optimizedBase = toOptimizedBase(base);
+
+    [`${optimizedBase}.webp`, `${optimizedBase}.avif`, `${base}.jpg`].forEach((value) => {
       const image = new Image();
       image.src = value;
     });

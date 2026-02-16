@@ -26,8 +26,6 @@ export function initMobileNav() {
       }
     });
   }
-  if (overlay) overlay.hidden = false;
-  if (drawer) drawer.hidden = false;
 
   const mq = window.matchMedia("(min-width: 939px)");
   const getFocusable = () =>
@@ -67,6 +65,10 @@ export function initMobileNav() {
   const setOpen = (open) => {
     const wasOpen = document.body.classList.contains("nav-open");
     if (open && !wasOpen) previouslyFocused = document.activeElement;
+    if (open) {
+      if (overlay) overlay.hidden = false;
+      if (drawer) drawer.hidden = false;
+    }
     document.body.classList.toggle("nav-open", open);
     toggle.setAttribute("aria-expanded", String(open));
     if (drawer) drawer.setAttribute("aria-hidden", String(!open));
@@ -76,6 +78,8 @@ export function initMobileNav() {
       document.addEventListener("keydown", trapFocus);
     } else {
       document.removeEventListener("keydown", trapFocus);
+      if (overlay) overlay.hidden = true;
+      if (drawer) drawer.hidden = true;
       if (wasOpen) {
         const target = previouslyFocused && typeof previouslyFocused.focus === "function" ? previouslyFocused : toggle;
         if (target && typeof target.focus === "function") target.focus();

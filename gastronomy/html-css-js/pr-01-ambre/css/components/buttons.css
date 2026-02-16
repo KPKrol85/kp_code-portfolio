@@ -343,7 +343,7 @@ html[data-theme="dark"] .btn-ring:hover {
   display: grid;
   place-items: center;
   color: var(--ft-ink);
-  border: 1px solid color-mix(in oklab, #ffffff, transparent 88%);
+  border: none;
   background: color-mix(in oklab, #ffffff, transparent 94%);
   transition:
     transform 0.18s ease,
