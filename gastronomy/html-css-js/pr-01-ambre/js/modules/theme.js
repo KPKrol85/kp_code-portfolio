@@ -10,8 +10,6 @@ export function initThemeSwitcher() {
   const prefersDark = media.matches;
   const stored = localStorage.getItem(storageKey);
 
-  if (!toggle.hasAttribute("role")) toggle.setAttribute("role", "button");
-
   const icon = $(".theme-icon", toggle);
   const glyph = (mode) => (mode === "dark" ? "☾" : "☀");
 
