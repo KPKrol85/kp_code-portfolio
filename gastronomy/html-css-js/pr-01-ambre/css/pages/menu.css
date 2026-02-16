@@ -1,4 +1,5 @@
 
+/* Page Menu */
 .page-menu {
   --menu-col-max: 680px;
   --menu-thumb: 140px;
@@ -13,7 +14,6 @@
   padding-top: 0;
   padding-bottom: clamp(28px, 5vw, 72px);
 }
-
 .page-menu > .container {
   max-width: min(960px, 92vw);
   margin-inline: auto;
@@ -24,66 +24,58 @@
   padding: clamp(24px, 4vw, 48px);
   margin-top: clamp(18px, 2vw, 28px);
   margin-bottom: clamp(36px, 4vw, 64px);
-  transition: background-color 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+  transition:
+    background-color 0.3s ease,
+    box-shadow 0.3s ease,
+    border-color 0.3s ease;
 }
-
 :root[data-theme="dark"] .page-menu > .container {
   background: color-mix(in oklab, var(--c-surface), black 10%);
   border-color: color-mix(in oklab, var(--c-border), transparent 50%);
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.25);
 }
-
 .page-menu .section-head {
   text-align: center;
   margin-top: 0.6rem;
   padding-bottom: 0;
 }
-
 .page-menu .section-head .title-divider {
   display: l-section;
   line-height: 0;
   margin: clamp(8px, 1.8vw, 16px) auto 0;
 }
-
 .page-menu .section-head .title-divider img {
   display: l-section;
   margin-inline: auto;
   height: auto;
 }
-
 .page-menu .section-head .u-lead {
   max-width: 65ch;
   margin: 0.6rem auto 0;
   text-align: center;
 }
-
 .page-menu .section-head.l-section {
   margin-top: clamp(8px, 1vw, 16px);
   padding-top: clamp(8px, 1vw, 16px);
   padding-bottom: 0;
 }
-
 .page-menu #menu {
   padding-top: clamp(10px, 2vw, 20px);
 }
-
 .page-menu #menu .tabs,
 .page-menu #menu .menu-grid {
   max-width: var(--menu-col-max);
   margin-inline: auto;
 }
-
 .page-menu #menu .tabs {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
   gap: 0.5rem;
 }
-
 .page-menu #menu .menu-grid > * {
   grid-column: 1 / -1;
 }
-
 .page-menu .dish {
   display: grid;
   grid-template-columns: minmax(0, 1fr) auto var(--menu-thumb);
@@ -91,11 +83,9 @@
   column-gap: var(--thumb-gap-r);
   align-items: start;
 }
-
 .page-menu .dish-head {
   display: contents;
 }
-
 .page-menu .dish h3 {
   grid-column: 1;
   grid-row: 1;
@@ -105,7 +95,6 @@
   text-overflow: ellipsis;
   white-space: nowrap;
 }
-
 .page-menu .dish .price {
   grid-column: 2;
   grid-row: 1;
@@ -114,7 +103,6 @@
   white-space: nowrap;
   font-weight: 700;
 }
-
 .page-menu .dish .desc {
   grid-column: 1 / span 2;
   grid-row: 2;
@@ -124,14 +112,12 @@
   line-height: 1.6;
   opacity: 0.95;
 }
-
 .page-menu .dish-more {
   grid-column: 1 / span 2;
   grid-row: 3;
   margin: 0.55rem 0 0;
   justify-self: start;
 }
-
 .page-menu .dish-thumb {
   grid-column: 3;
   grid-row: 1 / span 3;
@@ -139,12 +125,10 @@
   block-size: var(--menu-thumb);
   border-radius: var(--menu-thumb-radius);
 }
-
 .page-menu .dish-thumb:focus-visible {
   outline: 3px solid var(--c-accent);
   outline-offset: 3px;
 }
-
 .page-menu .dish-more > summary {
   font-size: 0.85rem;
   padding: 0.32rem 0.55rem;
@@ -154,27 +138,26 @@
   background: transparent;
   color: color-mix(in oklab, var(--c-ink), transparent 35%);
   box-shadow: none;
-  transition: background-color 0.25s ease, color 0.25s ease, border-color 0.25s ease;
+  transition:
+    background-color 0.25s ease,
+    color 0.25s ease,
+    border-color 0.25s ease;
 }
-
 .page-menu .dish-more > summary:hover,
 .page-menu .dish-more > summary:focus-visible {
   background: color-mix(in oklab, var(--c-surface), var(--c-ink) 4%);
   color: var(--c-ink);
   border-color: color-mix(in oklab, var(--c-border), transparent 40%);
 }
-
 .page-menu .dish-more > summary::-webkit-details-marker {
   display: none;
 }
-
 .page-menu .dish-more > summary::after {
   inline-size: 14px;
   block-size: 14px;
   opacity: 0.8;
   transition: transform 0.16s ease;
 }
-
 #menu-title {
   scroll-margin-top: var(--header-h, 64px);
 }
@@ -197,7 +180,9 @@
     opacity: 0;
     visibility: hidden;
     pointer-events: none;
-    transition: opacity 0.22s ease, visibility 0.22s ease;
+    transition:
+      opacity 0.22s ease,
+      visibility 0.22s ease;
     z-index: 5;
     padding: 1rem 1.1rem;
     border: 1px solid var(--panel-border);
@@ -280,8 +265,7 @@
   }
 }
 
-/* === 09 - Page menu / Page gallery  === */
-
+/* Breadcrumbs */
 nav.breadcrumbs {
   font-size: 0.9375rem;
   color: var(--c-muted);
@@ -292,7 +276,6 @@ nav.breadcrumbs {
   line-height: 1.6;
   font-weight: 400;
 }
-
 nav.breadcrumbs > .container {
   max-width: none;
   margin: 0 auto;
@@ -303,7 +286,6 @@ nav.breadcrumbs > .container {
   box-shadow: none;
   border-radius: 0;
 }
-
 nav.breadcrumbs ol {
   display: inline-flex;
   flex-wrap: wrap;
@@ -313,31 +295,26 @@ nav.breadcrumbs ol {
   margin: 0;
   padding: 0;
 }
-
 nav.breadcrumbs li {
   display: flex;
   align-items: center;
   gap: 0.5rem;
 }
-
 nav.breadcrumbs li + li::before {
   content: "›";
   color: var(--c-border);
 }
-
 nav.breadcrumbs a {
   color: var(--c-link);
   text-decoration: none;
   text-underline-offset: 2px;
   transition: color 0.15s;
 }
-
 nav.breadcrumbs a:hover,
 nav.breadcrumbs a:focus-visible {
   color: var(--c-accent);
   text-decoration: underline;
 }
-
 nav.breadcrumbs [aria-current="page"] {
   color: var(--c-ink);
   font-weight: 500;

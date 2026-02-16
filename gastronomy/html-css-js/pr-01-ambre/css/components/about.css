@@ -1,18 +1,14 @@
-/* === 04 - About === */
-
 .about-photo {
   border-radius: var(--radius);
   overflow: hidden;
   box-shadow: var(--shadow);
 }
-
 .about-photo img {
   width: 100%;
   height: auto;
   border-radius: var(--radius);
   object-fit: cover;
 }
-
 .about .bullets {
   display: grid;
   gap: 0.5rem;
@@ -20,18 +16,15 @@
   margin: 1rem 0 0;
   padding: 0;
 }
-
 .about .bullets li {
   display: flex;
   align-items: center;
   gap: 0.6rem;
 }
-
 .about .bullets a,
 .about .bullets time {
   white-space: nowrap;
 }
-
 .about .icon-dual {
   display: inline-grid;
   place-items: center;
@@ -39,29 +32,23 @@
   height: 20px;
   flex: 0 0 20px;
 }
-
 .about .icon-dual img {
   display: l-section;
   width: 100%;
   height: auto;
 }
-
 .about .icon-dual .icon-light {
   display: l-section;
 }
-
 .about .icon-dual .icon-dark {
   display: none;
 }
-
 html[data-theme="dark"] .about .icon-dual .icon-light {
   display: none;
 }
-
 html[data-theme="dark"] .about .icon-dual .icon-dark {
   display: l-section;
 }
-
 .about .bullets a {
   color: var(--c-ink);
   font-weight: 600;
@@ -72,11 +59,9 @@ html[data-theme="dark"] .about .icon-dual .icon-dark {
 .about .bullets a:focus-visible {
   color: var(--c-accent);
 }
-
 .about .bullets a:visited {
   color: var(--c-ink);
 }
-
 #onas #about-title {
   text-align: center;
   margin-bottom: 0.5rem;
@@ -91,21 +76,17 @@ html[data-theme="dark"] .about .icon-dual .icon-dark {
   #onas .grid-2 > div {
     text-align: center;
   }
-
   #onas .bullets li {
     justify-content: center;
   }
-}
-
-@media (max-width: 899px) {
   #onas .u-lead {
     margin-inline: auto;
     text-align: center;
     padding: 0 1.8rem;
   }
-}
-
-@media (max-width: 899px) {
+  #onas #about-title {
+    text-align: center;
+  }
   #onas #about-title {
     text-align: center;
   }
