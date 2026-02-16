@@ -9,6 +9,12 @@ html {
   scroll-behavior: smooth;
 }
 
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+}
+
 :root {
   --c-bg: #ffffff;
   --c-ink: #1b1b1f;
