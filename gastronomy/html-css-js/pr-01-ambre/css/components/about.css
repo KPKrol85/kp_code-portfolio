@@ -1,3 +1,4 @@
+/* About */
 .about-photo {
   border-radius: var(--radius);
   overflow: hidden;
@@ -72,6 +73,7 @@ html[data-theme="dark"] .about .icon-dual .icon-dark {
     text-align: left;
   }
 }
+
 @media (max-width: 899px) {
   #onas .grid-2 > div {
     text-align: center;

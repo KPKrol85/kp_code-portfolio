@@ -287,12 +287,18 @@ export function initLightbox() {
 
   document.addEventListener("keydown", (event) => {
     if (event.key === "ArrowLeft") {
+      const isOpen = isDialog ? box.open : box.classList.contains("open");
+      const activeInside = box.contains(document.activeElement);
+      if (!isOpen || !activeInside) return;
       event.preventDefault();
       if (items.length) showAt(index === -1 ? 0 : index - 1);
       return;
     }
 
     if (event.key === "ArrowRight") {
+      const isOpen = isDialog ? box.open : box.classList.contains("open");
+      const activeInside = box.contains(document.activeElement);
+      if (!isOpen || !activeInside) return;
       event.preventDefault();
       if (items.length) showAt(index === -1 ? 0 : index + 1);
       return;

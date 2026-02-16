@@ -67,7 +67,6 @@ a {
   text-decoration: underline;
   text-underline-offset: 2px;
 }
-
 a:hover {
   text-decoration-thickness: 2px;
 }
@@ -86,7 +85,6 @@ h6 {
   font-variant-ligatures: contextual;
   text-wrap: balance;
 }
-
 h1 {
   font-size: clamp(1.9rem, 1.3rem + 3.6vw, 3.5rem);
   font-weight: 700;
