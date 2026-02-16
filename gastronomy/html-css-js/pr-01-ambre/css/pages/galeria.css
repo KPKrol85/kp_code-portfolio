@@ -13,19 +13,19 @@
 }
 
 .page-gallery .section-head .title-divider {
-  display: block;
+  display: l-section;
   line-height: 0;
   margin: clamp(8px, 1.8vw, 16px) auto 0;
 }
 
 .page-gallery .section-head .title-divider img {
-  display: block;
+  display: l-section;
   margin-inline: auto;
   height: auto;
   max-width: 100%;
 }
 
-.page-gallery .section-head .lead {
+.page-gallery .section-head .u-lead {
   max-width: 65ch;
   margin: 0.6rem auto 0;
   text-align: center;

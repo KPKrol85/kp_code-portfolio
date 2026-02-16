@@ -53,7 +53,7 @@
     <link rel="preload" href="assets/fonts/source-sans-3-v19-latin-regular.woff2" as="font" type="font/woff2" crossorigin />
     <link rel="preload" href="assets/fonts/source-sans-3-v19-latin-500.woff2" as="font" type="font/woff2" crossorigin />
 
-    <link rel="stylesheet" href="/css/style.min.css" />
+    <link rel="stylesheet" href="/css/style.css" />
 
     <script type="application/ld+json">
       {
@@ -75,8 +75,8 @@
             "name": "Ambre",
             "url": "https://gastronomy-project-01.netlify.app/",
             "image": ["https://gastronomy-project-01.netlify.app/assets/img/og-img/og-1200x630.jpg"],
-            "telephone": "+48 533 537 091",
-            "email": "kontakt-kp-code.pl",
+            "telephone": "+48533537091",
+            "email": "kontakt@kp-code.pl",
             "address": {
               "@type": "PostalAddress",
               "streetAddress": "ul. Marynarki Wojennej 12",
@@ -188,7 +188,7 @@
           <img src="assets/img/logo-img/logo-name-dark.svg" class="hero-brand-logo" alt="" aria-hidden="true" decoding="async" />
         </div>
         <h1>Sezonowe menu degustacyjne</h1>
-        <p class="lead">Autorskie dania tworzone z najlepszych składników, starannie dobrane wina i kameralna atmosfera sprzyjająca spokojnemu celebrowaniu smaku.</p>
+        <p class="u-lead">Autorskie dania tworzone z najlepszych składników, starannie dobrane wina i kameralna atmosfera sprzyjająca spokojnemu celebrowaniu smaku.</p>
         <div class="hero-cta btn-group">
           <button type="button" class="btn btn-primary" data-target="#rezerwacja" aria-label="Przejdź do formularza rezerwacji stolika">Zarezerwuj stolik</button>
           <button type="button" class="btn btn-ghost" data-target="#menu">Zobacz menu</button>
@@ -199,11 +199,11 @@
     <!-- Main -->
     <main id="main">
       <!-- About -->
-      <section id="onas" class="block about" aria-labelledby="about-title">
+      <section id="onas" class="l-section about" aria-labelledby="about-title">
         <div class="container grid-2">
           <div>
             <h2 id="about-title">O nas</h2>
-            <p class="lead">Łączymy lokalne składniki z finezyjnymi technikami. Krótkie, sezonowe karty pozwalają wybrzmieć każdemu produktowi.</p>
+            <p class="u-lead">Łączymy lokalne składniki z finezyjnymi technikami. Krótkie, sezonowe karty pozwalają wybrzmieć każdemu produktowi.</p>
 
             <ul class="bullets">
               <li>
@@ -253,11 +253,11 @@
       </section>
 
       <!-- Menu -->
-      <section id="menu" class="block menu" aria-labelledby="menu-title">
+      <section id="menu" class="l-section menu" aria-labelledby="menu-title">
         <div class="container">
           <div class="section-head">
             <h2 id="menu-title">Menu</h2>
-            <p class="muted">Wybierz kategorię, aby przefiltrować dania.</p>
+            <p class="u-muted">Wybierz kategorię, aby przefiltrować dania.</p>
           </div>
 
           <div class="tabs" role="tablist" data-testid="menu-tabs" aria-label="Kategorie menu">
@@ -390,11 +390,11 @@
       </section>
 
       <!-- Gallery -->
-      <section id="galeria" class="block gallery" aria-labelledby="gallery-title">
+      <section id="galeria" class="l-section gallery" aria-labelledby="gallery-title">
         <div class="container">
           <div class="section-head">
             <h2 id="gallery-title">Galeria</h2>
-            <p class="muted">Wybrane kompozycje i produkty premium.</p>
+            <p class="u-muted">Wybrane kompozycje i produkty premium.</p>
           </div>
 
           <div class="gallery-grid">
@@ -470,11 +470,11 @@
       </section>
 
       <!-- Testimonials -->
-      <section id="opinie" aria-labelledby="opinie-title" class="block testimonials" data-testid="opinie">
+      <section id="opinie" aria-labelledby="opinie-title" class="l-section testimonials" data-testid="opinie">
         <div class="container">
           <div class="section-head">
             <h2 id="opinie-title">Opinie</h2>
-            <p class="muted">Co mówią nasi goście</p>
+            <p class="u-muted">Co mówią nasi goście</p>
 
             <div class="rating-badge big" role="group" aria-label="Średnia ocena 4.8 na podstawie 327 opinii w Google">
               <img src="assets/icons/icons-svg/google.svg" alt="" aria-hidden="true" width="28" height="28" loading="lazy" decoding="async" />
@@ -559,13 +559,14 @@
       </section>
 
       <!-- Form -->
-      <section id="rezerwacja" class="block booking" aria-labelledby="booking-title">
+      <section id="rezerwacja" class="l-section booking" aria-labelledby="booking-title">
         <div class="container grid-2">
           <div>
             <h2 id="booking-title">Rezerwacja</h2>
-            <p class="muted">Wypełnij formularz. Oddzwonimy z potwierdzeniem.</p>
+            <p class="u-muted">Wypełnij formularz. Oddzwonimy z potwierdzeniem.</p>
 
-            <form id="booking-form" class="form" data-testid="booking-form" novalidate>
+            <form id="booking-form" class="form" data-testid="booking-form" name="reservation" method="POST" data-netlify="true" novalidate>
+              <input type="hidden" name="form-name" value="reservation" />
               <input type="text" name="company" class="hp" aria-hidden="true" tabindex="-1" autocomplete="off" />
 
               <div class="f-row">
@@ -612,7 +613,7 @@
                   <input id="consent" name="consent" type="checkbox" required aria-describedby="consent-error form-msg" />
                   <span>
                     Wyrazam zgode na przetwarzanie moich danych osobowych zgodnie z
-                    <a href="/polityka-prywatnosci.html" target="_blank" rel="noopener">Polityka prywatnosci</a>
+                    <a href="/polityka-prywatnosci.html" target="_blank" rel="noopener noreferrer">Polityka prywatnosci</a>
                     .
                   </span>
                 </label>
@@ -648,10 +649,10 @@
       </section>
 
       <!-- CTA -->
-      <section id="kontakt" class="cta block" aria-labelledby="cta-title">
+      <section id="kontakt" class="cta l-section" aria-labelledby="cta-title">
         <div class="container cta-box">
           <h2 id="cta-title">Zarezerwuj wyjątkowy wieczór</h2>
-          <p class="lead">
+          <p class="u-lead">
             Zadzwoń do nas pod numer&nbsp;
             <a href="tel:+48533537091" aria-label="Zadzwoń do restauracji KP_Code">+48&nbsp;533&nbsp;537&nbsp;091</a>
             &nbsp;lub skorzystaj z formularza powyżej.
@@ -660,11 +661,11 @@
       </section>
 
       <!-- FAQ -->
-      <section id="faq" class="block" aria-labelledby="faq-title">
+      <section id="faq" class="l-section" aria-labelledby="faq-title">
         <div class="container">
           <div class="section-head">
             <h2 id="faq-title">FAQ</h2>
-            <p class="muted">Najczęstsze pytania o rezerwacje i menu.</p>
+            <p class="u-muted">Najczęstsze pytania o rezerwacje i menu.</p>
           </div>
 
           <div class="grid-2">
@@ -672,7 +673,7 @@
               <summary>Jak anulować lub zmienić rezerwację?</summary>
               <div class="content">
                 Prosimy o kontakt telefoniczny pod
-                <a href="tel:+48533 537 091" aria-label="Zadzwoń: +48 533 537 091">+48&nbsp;533&nbsp;537&nbsp;091</a>
+                <a href="tel:+48533537091" aria-label="Zadzwoń: +48 533 537 091">+48&nbsp;533&nbsp;537&nbsp;091</a>
                 co najmniej 3 godziny przed wizytą.
               </div>
             </details>
@@ -707,7 +708,7 @@
           <img class="logo logo-light" src="assets/img/logo-img/brand-name-light.svg" alt="Ambre – logo restauracji" width="140" height="140" decoding="async" />
           <img class="logo logo-dark" src="assets/img/logo-img/brand-name-dark.svg" alt="" aria-hidden="true" width="140" height="140" decoding="async" />
 
-          <p class="brand-desc muted">
+          <p class="brand-desc u-muted">
             <strong>Ambre</strong>
             — elegancka restauracja oferująca autorską kuchnię opartą na świeżych, lokalnych składnikach. Rezerwacje online, przyjazna atmosfera i dbałość o detale.
           </p>
@@ -730,9 +731,9 @@
 
           <address class="ft-address">
             <div class="address-row">
-              <p class="muted">ul. Marynarki Wojennej 12/31, 33-100 Tarnów</p>
+              <p class="u-muted">ul. Marynarki Wojennej 12/31, 33-100 Tarnów</p>
             </div>
-            <p class="muted">NIP 000-000-00-00</p>
+            <p class="u-muted">NIP 000-000-00-00</p>
           </address>
 
           <div class="map-wrap">
@@ -772,32 +773,32 @@
                 <img class="icon-light" src="assets/icons/icons-svg/mail-light-mode-40x40.svg" alt="" width="20" height="20" decoding="async" loading="lazy" />
                 <img class="icon-dark" src="assets/icons/icons-svg/mail-dark-mode-40x40.svg" alt="" width="20" height="20" decoding="async" loading="lazy" aria-hidden="true" />
               </span>
-              <a href="mailto:kontakt-kp-code.pl">kontakt-kp-code.pl</a>
+              <a href="mailto:kontakt@kp-code.pl">kontakt@kp-code.pl</a>
             </li>
           </ul>
 
           <h3 class="ft-title ft-title--sub">Social Media</h3>
           <ul class="ft-social ft-social--bare" aria-label="Linki społecznościowe">
             <li>
-              <a class="btn-social" href="https://www.facebook.com/kpkrol85" aria-label="Facebook" rel="me external noopener" target="_blank">
+              <a class="btn-social" href="https://www.facebook.com/kpkrol85" aria-label="Facebook" rel="me external noopener noreferrer" target="_blank">
                 <img class="icon-light" src="assets/icons/icons-svg/facebook-light-mode-40x40.svg" alt="Facebook" width="24" height="24" decoding="async" />
                 <img class="icon-dark" src="assets/icons/icons-svg/facebook-dark-mode-40x40.svg" alt="" width="24" height="24" decoding="async" aria-hidden="true" />
               </a>
             </li>
             <li>
-              <a class="btn-social" href="https://github.com/KPKrol85" aria-label="Github" rel="me external noopener" target="_blank">
+              <a class="btn-social" href="https://github.com/KPKrol85" aria-label="Github" rel="me external noopener noreferrer" target="_blank">
                 <img class="icon-light" src="assets/icons/icons-svg/github-light-mode-40x40.svg" alt="Github" width="24" height="24" decoding="async" />
                 <img class="icon-dark" src="assets/icons/icons-svg/github-dark-mode-40x40.svg" alt="" width="24" height="24" decoding="async" aria-hidden="true" />
               </a>
             </li>
             <li>
-              <a class="btn-social" href="https://instagram.com" aria-label="Instagram" rel="me external noopener" target="_blank">
+              <a class="btn-social" href="https://instagram.com" aria-label="Instagram" rel="me external noopener noreferrer" target="_blank">
                 <img class="icon-light" src="assets/icons/icons-svg/instagram-light-mode-40x40.svg" alt="Instagram" width="24" height="24" decoding="async" />
                 <img class="icon-dark" src="assets/icons/icons-svg/instagram-dark-mode-40x40.svg" alt="" width="24" height="24" decoding="async" aria-hidden="true" />
               </a>
             </li>
             <li>
-              <a class="btn-social" href="https://x.com" aria-label="X" rel="me external noopener" target="_blank">
+              <a class="btn-social" href="https://x.com" aria-label="X" rel="me external noopener noreferrer" target="_blank">
                 <img class="icon-light" src="assets/icons/icons-svg/x-light-mode-40x40.svg" alt="X" width="24" height="24" decoding="async" />
                 <img class="icon-dark" src="assets/icons/icons-svg/x-dark-mode-40x40.svg" alt="" width="24" height="24" decoding="async" aria-hidden="true" />
               </a>
@@ -819,7 +820,7 @@
 
       <!-- Copyright -->
       <div class="container ft-bottom">
-        <p class="copy">
+        <p class="site-footer__copy">
           ©
           <span id="year"></span>
           KP_Code | Wszelkie prawa zastrzeżone
@@ -855,7 +856,7 @@
     <!-- JS scripts -->
     <script src="/js/sw-register.js" defer></script>
     <script src="/js/pwa-install.js" defer></script>
-    <script defer src="/js/script.min.js"></script>
+    <script type="module" src="/js/script.js"></script>
     <!-- Demo Notice -->
     <div id="demo-banner" class="demo-banner" role="region" aria-label="Informacja o projekcie demo" aria-hidden="true" hidden>
       <div class="demo-banner__inner container">

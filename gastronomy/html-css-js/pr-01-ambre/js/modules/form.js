@@ -85,11 +85,13 @@ export function initReservationForm() {
   });
 
   form.addEventListener("submit", (event) => {
-    event.preventDefault();
-
-    if (submitBtn && submitBtn.classList.contains("is-loading")) return;
+    if (submitBtn && submitBtn.classList.contains("is-loading")) {
+      event.preventDefault();
+      return;
+    }
 
     if (form.company && form.company.value.trim() !== "") {
+      event.preventDefault();
       formMsg.textContent = "Wykryto bota - zgłoszenie odrzucone.";
       return;
     }
@@ -119,25 +121,35 @@ export function initReservationForm() {
     if (!form.checkValidity()) valid = false;
 
     if (!valid) {
+      event.preventDefault();
       form.reportValidity?.();
       formMsg.textContent = "Uzupełnij wymagane pola.";
       return;
     }
 
-    setLoading(true);
-    formMsg.textContent = "";
+    if (window.fetch && window.FormData) {
+      event.preventDefault();
+      setLoading(true);
+      formMsg.textContent = "";
 
-    const delay = 1000 + 200 * Math.random();
-    setTimeout(() => {
-      try {
-        formMsg.textContent = "Dziękujemy! Oddzwonimy, aby potwierdzić rezerwację.";
-        form.reset();
-        if (phoneInput) phoneInput.value = "";
-      } finally {
-        setLoading(false);
-        clearErrors();
-      }
-    }, delay);
+      fetch("/", {
+        method: "POST",
+        headers: { "Content-Type": "application/x-www-form-urlencoded" },
+        body: new URLSearchParams(new FormData(form)).toString()
+      })
+        .then(() => {
+          formMsg.textContent = "Dziękujemy! Oddzwonimy, aby potwierdzić rezerwację.";
+          form.reset();
+          if (phoneInput) phoneInput.value = "";
+          clearErrors();
+        })
+        .catch(() => {
+          form.submit();
+        })
+        .finally(() => {
+          setLoading(false);
+        });
+    }
   });
 
   log();

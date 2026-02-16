@@ -47,7 +47,7 @@ body {
 img {
   max-width: 100%;
   height: auto;
-  display: block;
+  display: l-section;
 }
 
 button,
@@ -100,7 +100,7 @@ h3 {
   font-weight: 700;
 }
 
-.lead {
+.u-lead {
   font-size: clamp(1.125rem, 0.98rem + 0.9vw, 1.5rem);
   line-height: 1.5;
   font-weight: 400;
@@ -117,11 +117,11 @@ h3 {
   font-family: var(--font-sans);
 }
 
-.muted {
+.u-muted {
   color: var(--c-muted);
 }
 
-.block {
+.l-section {
   padding-block: var(--block-y);
 }
 

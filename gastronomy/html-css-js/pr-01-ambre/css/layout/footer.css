@@ -113,7 +113,7 @@ html[data-theme="light"] .site-footer {
   width: 100%;
 }
 
-.site-footer p.muted {
+.site-footer p.u-muted {
   margin: 0.35em 0;
 }
 
@@ -200,7 +200,7 @@ html[data-theme="light"] .ft-bottom {
   border-top-color: color-mix(in oklab, #000000, transparent 90%);
 }
 
-.copy {
+.site-footer__copy {
   margin: 0;
   font-size: 0.8rem;
   color: var(--ft-ink-muted);
@@ -275,7 +275,7 @@ html[data-theme="dark"] .ft-bottom .ft-legal a:hover {
   .site-footer {
     padding-bottom: 40px;
   }
-  .copy {
+  .site-footer__copy {
     text-align: center;
     width: 100%;
   }

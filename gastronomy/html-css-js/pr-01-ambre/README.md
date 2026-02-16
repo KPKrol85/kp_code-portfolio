@@ -1,155 +1,129 @@
-## 🇬🇧 English version
-
-# Gastronomy 01 Ambre — Restaurant Website (Demo)
-
-Responsive demo website for a modern restaurant, created as a professional portfolio project.
-The project focuses on clean UI, clear brand presentation, accessibility awareness,
-performance optimization, and a production-ready front-end structure.
-
-🔗 **Live demo:** [https://gastronomy-project-01.netlify.app/]
-
----
-
-## Project Purpose
-
-This project was created as part of an advanced front-end portfolio.
-It presents a modern restaurant website built with semantic HTML,
-modular CSS architecture, and vanilla JavaScript — without frameworks.
-
-The goal of the project is to demonstrate practical layout structure,
-visual consistency, accessibility-conscious development,
-and a clean front-end architecture suitable for real-world projects.
-
----
-
-## Key Characteristics
-
-- Fully responsive, mobile-first layout
-- Consistent visual identity and modern UI
-- Semantic HTML and accessibility-aware components
-- Light / dark theme support
-- Performance-focused front-end approach
-- SEO-ready structure and metadata
-- Clean, modular, and maintainable codebase
-
----
-
-## Tech Stack
-
-- HTML5
-- CSS3 (custom properties, modular architecture)
-- Vanilla JavaScript (ES6)
-- Netlify (hosting & deployment)
-
-Build: `npm run build` generates `css/style.min.css` and `js/script.min.js`.
-HTML serves minified assets in production.
-
----
-
-## Project Status
-
-✔ Completed (v1)
-
-Future improvements planned:
-
-- UI refinements and visual polish
-- Asset and SVG optimization
-- Additional accessibility enhancements
-- Minor code refactors and cleanup
-
----
-
-## Disclaimer
-
-This website is a fictional demo project created for portfolio purposes only.
-All company names, branding, addresses, and content are used as examples
-and do not represent a real business.
-
----
-
-## Author
-
-Kamil Król
-**KP*Code***
-Front-End Developer
-Portfolio project — 2026
-
----
+# Ambre — Audytowany projekt portfolio front-end
 
 ## 🇵🇱 Wersja polska
 
-# Gastronomy 01 — strona restauracji (demo)
+## Przegląd projektu
+Ambre to wielostronicowy serwis internetowy dla restauracji (HTML + modularny CSS + Vanilla JS) z wdrożonymi elementami PWA (manifest, Service Worker, strona offline) oraz konfiguracją pod wdrożenie na Netlify.
 
-Responsywna demonstracyjna strona internetowa nowoczesnej restauracji,
-stworzona jako profesjonalny projekt portfolio.
-Projekt skupia się na czytelnym interfejsie, spójnej prezentacji marki,
-świadomej dostępności, wydajności oraz strukturze gotowej do wdrożenia produkcyjnego.
+## Kluczowe funkcje (wyłącznie wykryte w kodzie)
+- Wielostronicowa struktura: `index.html`, `menu.html`, `galeria.html`, strony prawne i `404.html`.
+- Nawigacja desktop/mobile z menu hamburgerowym i `aria-expanded`.
+- Przełącznik motywu jasny/ciemny (`data-theme`, `localStorage`).
+- Filtrowanie menu i galerii, lightbox, sekcje FAQ typu accordion.
+- Formularz rezerwacji z walidacją po stronie klienta i polem honeypot.
+- PWA: `manifest.webmanifest`, `sw.js`, `offline.html`, rejestracja SW.
+- Build i QA oparte o npm scripts (PostCSS, esbuild, link checker, linting).
 
-🔗 **Demo online:** [https://gastronomy-project-01.netlify.app/]
-
----
-
-## Cel projektu
-
-Projekt został stworzony jako element zaawansowanego portfolio front-end.
-Prezentuje nowoczesną stronę restauracji zbudowaną w oparciu o semantyczny HTML,
-modularną architekturę CSS oraz czysty JavaScript — bez użycia frameworków.
-
-Celem projektu jest pokazanie praktycznej architektury layoutu,
-spójności wizualnej, świadomego podejścia do dostępności
-oraz czystej struktury front-endowej odpowiedniej dla realnych projektów.
-
----
-
-## Główne cechy
-
-- W pełni responsywny layout (mobile-first)
-- Spójna identyfikacja wizualna i nowoczesny interfejs
-- Semantyczny HTML i komponenty tworzone z myślą o dostępności
-- Obsługa trybu jasnego i ciemnego
-- Front-end zorientowany na wydajność
-- Struktura przygotowana pod SEO
-- Czysty, modularny i łatwy w utrzymaniu kod
-
----
-
-## Stack technologiczny
-
+## Tech stack
 - HTML5
-- CSS3 (custom properties, architektura modularna)
-- JavaScript (ES6, vanilla)
-- Netlify (hosting i deployment)
+- CSS3 (modularna architektura: `base/`, `layout/`, `components/`, `pages/`)
+- JavaScript ES Modules (Vanilla JS)
+- Node.js tooling: PostCSS, cssnano, esbuild, ESLint, Stylelint, html-validate
+- Netlify (`_headers`, `_redirects`)
 
-Build: `npm run build` generuje `css/style.min.css` i `js/script.min.js`.
-HTML serwuje zminifikowane assety w produkcji.
+## Struktura projektu
+- `css/base/` — tokeny i typografia.
+- `css/layout/` — warstwa layoutu (header/footer).
+- `css/components/` — komponenty UI.
+- `css/pages/` — style stron specyficznych.
+- `js/modules/` — moduły funkcjonalne.
+- `scripts/` — automatyzacja QA i optymalizacji obrazów.
+
+## Uruchomienie lokalne
+```bash
+npm install
+npm run build
+```
+
+Dostępne są też skrypty watch (`watch:css`, `watch:js`) oraz pakiet kontroli jakości (`npm run qa`).
+
+## Build i deployment
+- Produkcyjnie HTML ładuje bundlowane pliki: `/css/style.min.css`, `/js/script.min.js`.
+- `_headers` definiuje polityki bezpieczeństwa (m.in. CSP, HSTS, Permissions-Policy).
+- `_redirects` mapuje krótkie ścieżki (`/menu`, `/galeria`, itp.) i fallback `/* -> /404.html`.
+
+## Dostępność (stan obecny)
+- Obecne: skip link, focus-visible, semantyczne nagłówki, `aria-current`/`aria-expanded`, fallback `.no-js`.
+- Ograniczenia: formularz rezerwacji nie ma akcji serwerowej i przy wyłączonym JS nie realizuje submitu.
+
+## SEO (stan obecny)
+- Obecne: canonical, `og:*`, Twitter Card, `robots.txt`, `sitemap.xml`, JSON-LD na stronach głównych.
+- Ograniczenia: pole `email` w JSON-LD i linki `mailto:` używają nieprawidłowego formatu adresu.
+
+## Wydajność (stan obecny)
+- Obecne: obrazy AVIF/WebP + JPEG fallback, `loading="lazy"`, preload fontów, minifikacja CSS/JS.
+- Ograniczenia: wykryty 1 błąd ścieżki zasobu w `404.html` (`href=/css/style.min.css"`).
+
+## Roadmap
+- Naprawa krytycznych błędów ścieżek i danych kontaktowych.
+- Fallback serwerowy dla formularza (progressive enhancement).
+- Uporządkowanie pozostałości debugowych JS.
+- Dalsza standaryzacja architektury BEM.
+
+## Licencja
+MIT (zgodnie z `package.json`).
 
 ---
 
-## Status projektu
+## 🇬🇧 English version
 
-✔ Zakończony (v1)
+## Project overview
+Ambre is a multi-page website for a restaurant (HTML + modular CSS + Vanilla JS) enhanced with PWA features (manifest, Service Worker, offline page) and configured for Netlify deployment.
 
-Planowane usprawnienia:
+## Key features (only detected in code)
+- Multi-page structure: `index.html`, `menu.html`, `galeria.html`, legal pages, and `404.html`.
+- Desktop/mobile navigation with hamburger toggle and `aria-expanded`.
+- Light/dark theme switcher (`data-theme`, `localStorage`).
+- Menu and gallery filtering, lightbox, accordion-based FAQ.
+- Reservation form with client-side validation and honeypot field.
+- PWA: `manifest.webmanifest`, `sw.js`, `offline.html`, SW registration.
+- Build and QA via npm scripts (PostCSS, esbuild, link checker, linting).
 
-- dopracowanie interfejsu i detali wizualnych
-- optymalizacja assetów i SVG
-- dalsze usprawnienia dostępności
-- drobna refaktoryzacja kodu
+## Tech stack
+- HTML5
+- CSS3 (modular architecture: `base/`, `layout/`, `components/`, `pages/`)
+- JavaScript ES Modules (Vanilla JS)
+- Node.js tooling: PostCSS, cssnano, esbuild, ESLint, Stylelint, html-validate
+- Netlify (`_headers`, `_redirects`)
 
----
+## Project structure
+- `css/base/` — tokens and typography.
+- `css/layout/` — layout layer (header/footer).
+- `css/components/` — UI components.
+- `css/pages/` — page-specific styles.
+- `js/modules/` — feature modules.
+- `scripts/` — QA and image optimization automation.
 
-## Informacja prawna
+## Setup and run
+```bash
+npm install
+npm run build
+```
 
-Strona jest fikcyjnym projektem demonstracyjnym stworzonym wyłącznie
-w celach portfolio.
-Wszystkie nazwy, branding, adresy i treści mają charakter przykładowy
-i nie odnoszą się do rzeczywistej działalności.
+Watch scripts (`watch:css`, `watch:js`) and QA command (`npm run qa`) are available.
 
----
+## Build and deployment notes
+- Production HTML loads bundled assets: `/css/style.min.css`, `/js/script.min.js`.
+- `_headers` defines security policies (including CSP, HSTS, Permissions-Policy).
+- `_redirects` maps short paths (`/menu`, `/galeria`, etc.) and fallback `/* -> /404.html`.
 
-## Autor
+## Accessibility notes (current state)
+- Present: skip link, focus-visible, semantic headings, `aria-current`/`aria-expanded`, `.no-js` baseline.
+- Limitation: reservation form has no server action and does not submit when JavaScript is disabled.
 
-Kamil Król
-**KP*Code***
-Front-End Developer
-Projekt portfolio — 2026
+## SEO notes (current state)
+- Present: canonical, `og:*`, Twitter Card, `robots.txt`, `sitemap.xml`, JSON-LD on key pages.
+- Limitation: JSON-LD `email` and `mailto:` links use an invalid address format.
+
+## Performance notes (current state)
+- Present: AVIF/WebP + JPEG fallback, `loading="lazy"`, font preloads, minified CSS/JS.
+- Limitation: one broken asset path detected in `404.html` (`href=/css/style.min.css"`).
+
+## Roadmap
+- Fix critical path and contact data issues.
+- Add server fallback for form submission (progressive enhancement).
+- Remove JS debug leftovers.
+- Continue BEM consistency standardization.
+
+## License
+MIT (as declared in `package.json`).

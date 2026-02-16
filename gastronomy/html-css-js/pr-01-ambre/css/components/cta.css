@@ -1,5 +1,5 @@
 
-.cta.block {
+.cta.l-section {
   padding-block: clamp(60px, 8vw, 120px);
 }
 
@@ -44,7 +44,7 @@
   margin-bottom: clamp(0.75rem, 2vw, 1.25rem);
 }
 
-.cta-box .lead {
+.cta-box .u-lead {
   font-size: clamp(1.1rem, 2vw, 1.25rem);
   line-height: 1.5;
   color: color-mix(in oklab, var(--c-ink) 70%, transparent);
@@ -52,15 +52,15 @@
   margin-inline: auto;
 }
 
-.cta-box .lead a {
+.cta-box .u-lead a {
   color: var(--c-accent);
   font-weight: 600;
   text-decoration: none;
   transition: color 0.2s ease;
 }
 
-.cta-box .lead a:hover,
-.cta-box .lead a:focus-visible {
+.cta-box .u-lead a:hover,
+.cta-box .u-lead a:focus-visible {
   color: color-mix(in oklab, var(--c-accent), #000 20%);
 }
 

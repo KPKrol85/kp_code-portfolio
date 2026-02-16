@@ -35,7 +35,7 @@
   margin: 0 0 0.4rem;
 }
 
-.page-legal .muted {
+.page-legal .u-muted {
   color: var(--c-muted);
   margin: 0 0 1.2rem;
 }
@@ -49,7 +49,7 @@
 
 .page-legal h2::after {
   content: "";
-  display: block;
+  display: l-section;
   width: 48px;
   height: 2px;
   margin: 0.45rem 0 0;
@@ -240,7 +240,7 @@
 
 .page-legal .doc-content small {
   color: var(--c-muted);
-  display: block;
+  display: l-section;
   margin-bottom: 1rem;
 }
 

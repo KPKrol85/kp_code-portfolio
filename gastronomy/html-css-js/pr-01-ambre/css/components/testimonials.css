@@ -1,5 +1,5 @@
 
-.testimonials.block {
+.testimonials.l-section {
   padding-block: clamp(60px, 7vw, 110px);
   text-align: center;
 }
@@ -52,7 +52,7 @@
   width: 100%;
   height: 100%;
   object-fit: cover;
-  display: block;
+  display: l-section;
   border-radius: 50%;
   box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.06);
 }
@@ -79,7 +79,7 @@
 
 .testimonial figcaption::before {
   content: "";
-  display: block;
+  display: l-section;
   width: 36px;
   height: 2px;
   margin: 0 auto 0.4rem;
@@ -114,7 +114,7 @@
 }
 
 .rating-badge img {
-  display: block;
+  display: l-section;
   height: auto;
 }
 
@@ -143,7 +143,7 @@
 }
 
 .rating-badge.big small {
-  display: block;
+  display: l-section;
   font-size: 0.85rem;
   color: var(--c-muted);
 }

@@ -538,6 +538,5 @@ export function initLightbox() {
   window.openLB = (src, alt, startIndex) => open(src, alt, startIndex);
   window.closeLB = close;
 
-  console.log("lightbox ready ✨", isDialog ? "<dialog>" : "<div>");
   log();
 }

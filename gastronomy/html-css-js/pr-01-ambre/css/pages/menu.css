@@ -40,24 +40,24 @@
 }
 
 .page-menu .section-head .title-divider {
-  display: block;
+  display: l-section;
   line-height: 0;
   margin: clamp(8px, 1.8vw, 16px) auto 0;
 }
 
 .page-menu .section-head .title-divider img {
-  display: block;
+  display: l-section;
   margin-inline: auto;
   height: auto;
 }
 
-.page-menu .section-head .lead {
+.page-menu .section-head .u-lead {
   max-width: 65ch;
   margin: 0.6rem auto 0;
   text-align: center;
 }
 
-.page-menu .section-head.block {
+.page-menu .section-head.l-section {
   margin-top: clamp(8px, 1vw, 16px);
   padding-top: clamp(8px, 1vw, 16px);
   padding-bottom: 0;

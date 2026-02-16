@@ -69,10 +69,14 @@ export function initScrollTargets() {
   const triggers = document.querySelectorAll("[data-target]");
   if (!triggers.length) return;
 
+  const behavior = window.matchMedia("(prefers-reduced-motion: reduce)").matches
+    ? "auto"
+    : "smooth";
+
   triggers.forEach((trigger) => {
     trigger.addEventListener("click", () => {
       const target = document.querySelector(trigger.dataset.target);
-      target?.scrollIntoView({ behavior: "smooth" });
+      target?.scrollIntoView({ behavior });
     });
   });
 
