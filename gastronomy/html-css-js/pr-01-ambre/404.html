@@ -66,6 +66,18 @@
       <a href="index.html#top" class="btn" aria-label="Powrót na stronę główną">Powrót na stronę główną</a>
     </main>
 
-    <footer>© 2024 KP_Code — Demo strony gastronomicznej</footer>
+    <footer>
+      <div class="container ft-bottom">
+        <p class="site-footer__copy">
+          ©
+          <span id="year"></span>
+          KP_Code Digital Studio | Wszelkie prawa zastrzeżone.
+        </p>
+      </div>
+    </footer>
+    <script>
+      const yearEl = document.getElementById("year");
+      if (yearEl) yearEl.textContent = new Date().getFullYear();
+    </script>
   </body>
 </html>
