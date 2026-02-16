@@ -41,7 +41,7 @@
 }
 
 .tab:focus-visible {
-  outline: 3px solid var(--c-accent);
+  outline: 3px solid var(--c-accent-contrast);
   outline-offset: 3px;
 }
 
@@ -117,7 +117,7 @@
 }
 
 .dish-thumb:focus-visible {
-  outline: 3px solid var(--c-accent);
+  outline: 3px solid var(--c-accent-contrast);
   outline-offset: 3px;
 }
 
@@ -146,7 +146,7 @@
   .dish:hover {
     transform: translateY(-2px);
     box-shadow: 0 12px 28px rgba(0, 0, 0, 0.1);
-    border-color: color-mix(in oklab, var(--c-border), var(--c-accent) 30%);
+    border-color: color-mix(in oklab, var(--c-border), var(--c-accent-contrast) 30%);
   }
 }
 

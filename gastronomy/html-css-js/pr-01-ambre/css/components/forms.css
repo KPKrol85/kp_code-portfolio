@@ -73,10 +73,10 @@
 }
 
 .form :is(input, select, textarea):focus-visible {
-  outline: 2px solid var(--c-accent);
+  outline: 2px solid var(--c-accent-contrast);
   outline-offset: 2px;
-  border-color: color-mix(in oklab, var(--c-border), var(--c-accent) 40%);
-  box-shadow: 0 0 0 3px color-mix(in oklab, var(--c-accent) 20%, transparent);
+  border-color: color-mix(in oklab, var(--c-border), var(--c-accent-contrast) 40%);
+  box-shadow: 0 0 0 3px color-mix(in oklab, var(--c-accent-contrast) 20%, transparent);
 }
 
 .form .f-row:has(:where(input, select, textarea)[required]:invalid),
@@ -131,7 +131,7 @@
 }
 
 .form .consent-row a {
-  color: var(--c-accent);
+  color: var(--c-accent-contrast);
   text-decoration: underline;
   text-underline-offset: 2px;
 }

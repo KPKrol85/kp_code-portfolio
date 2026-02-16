@@ -69,7 +69,7 @@
 
 .lightbox-close:focus-visible,
 .lb-close:focus-visible {
-  outline: 2px solid var(--c-accent);
+  outline: 2px solid var(--c-accent-contrast);
   outline-offset: 2px;
 }
 
@@ -126,7 +126,7 @@
 
 .lb-prev:focus-visible,
 .lb-next:focus-visible {
-  outline: 2px solid var(--c-accent);
+  outline: 2px solid var(--c-accent-contrast);
   outline-offset: 2px;
 }
 

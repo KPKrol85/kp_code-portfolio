@@ -126,7 +126,7 @@
   border-radius: var(--menu-thumb-radius);
 }
 .page-menu .dish-thumb:focus-visible {
-  outline: 3px solid var(--c-accent);
+  outline: 3px solid var(--c-accent-contrast);
   outline-offset: 3px;
 }
 .page-menu .dish-more > summary {
@@ -312,7 +312,7 @@ nav.breadcrumbs a {
 }
 nav.breadcrumbs a:hover,
 nav.breadcrumbs a:focus-visible {
-  color: var(--c-accent);
+  color: var(--c-accent-contrast);
   text-decoration: underline;
 }
 nav.breadcrumbs [aria-current="page"] {

@@ -76,7 +76,7 @@
   margin-top: 0.35rem;
 }
 .page-legal ul > li::marker {
-  color: var(--c-accent);
+  color: var(--c-accent-contrast);
 }
 .page-legal :where(ul, ol) :where(ul, ol) {
   margin-top: 0.25rem;
@@ -91,7 +91,7 @@
   text-decoration-thickness: 2px;
 }
 :root[data-theme="light"] {
-  --legal-link-hover: color-mix(in oklab, var(--c-accent), black 10%);
+  --legal-link-hover: color-mix(in oklab, var(--c-accent-contrast), black 10%);
 }
 :root[data-theme="dark"] {
   --legal-link-hover: color-mix(in oklab, var(--c-accent), white 18%);
@@ -128,7 +128,7 @@
   gap: 0.45rem;
   padding: 0.55rem 0.9rem;
   border-radius: 999px;
-  border: 1px solid color-mix(in oklab, var(--c-accent), transparent 50%);
+  border: 1px solid color-mix(in oklab, var(--c-accent-contrast), transparent 50%);
   background: transparent;
   color: var(--c-ink);
   transition:
@@ -141,13 +141,13 @@
 .page-legal .btn-ghost:hover,
 .page-legal .btn-ghost:focus-visible {
   background: color-mix(in oklab, var(--c-accent), #fff 92%);
-  border-color: var(--c-accent);
+  border-color: var(--c-accent-contrast);
   transform: translateY(-1px);
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
   color: var(--legal-link-hover);
 }
 .page-legal .btn-ghost:focus-visible {
-  outline: 2px solid var(--c-accent);
+  outline: 2px solid var(--c-accent-contrast);
   outline-offset: 2px;
 }
 .page-legal .legal-actions {
@@ -224,7 +224,7 @@
 }
 @media (prefers-color-scheme: light) {
   :root:not([data-theme]) {
-    --legal-link-hover: color-mix(in oklab, var(--c-accent), black 10%);
+    --legal-link-hover: color-mix(in oklab, var(--c-accent-contrast), black 10%);
   }
 }
 @media print {

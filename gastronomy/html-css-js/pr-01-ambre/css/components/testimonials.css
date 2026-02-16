@@ -89,7 +89,7 @@
 }
 
 .testimonial:focus-within {
-  outline: 2px solid var(--c-accent);
+  outline: 2px solid var(--c-accent-contrast);
   outline-offset: 2px;
 }
 
@@ -133,7 +133,7 @@
 
 .rating-badge.big strong {
   font-size: 1.4rem;
-  color: var(--c-accent);
+  color: var(--c-accent-contrast);
 }
 
 .rating-badge.big .stars {
@@ -167,7 +167,7 @@
 @media (hover: hover) {
   .testimonial:hover {
     transform: translateY(-2px);
-    border-color: color-mix(in oklab, var(--c-border), var(--c-accent) 28%);
+    border-color: color-mix(in oklab, var(--c-border), var(--c-accent-contrast) 28%);
     box-shadow: 0 4px 14px rgba(0, 0, 0, 0.05);
     background-color: color-mix(in oklab, var(--c-surface), white 10%);
   }

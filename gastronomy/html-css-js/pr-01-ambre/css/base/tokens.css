@@ -16,6 +16,7 @@ html {
   --c-surface: #f7f2f4;
   --c-border: #e6e2e6;
   --c-accent: #fab204;
+  --c-accent-contrast: #8a4f00;
   --c-accent-2: #a0183f;
   --c-link: #6f4800;
   --nav-hover-bg: rgba(0, 0, 0, 0.06);
@@ -59,6 +60,7 @@ html[data-theme="dark"] {
   --c-surface: #12121a;
   --c-border: #2b2d34;
   --c-link: #fab204;
+  --c-accent-contrast: #fab204;
   --nav-hover-bg: rgba(255, 255, 255, 0.1);
 }
 
@@ -99,6 +101,7 @@ html[data-theme="dark"] {
     --c-surface: #12121a;
     --c-border: #2b2d34;
     --c-link: #fab204;
+    --c-accent-contrast: #fab204;
     --nav-hover-bg: rgba(255, 255, 255, 0.1);
   }
 }

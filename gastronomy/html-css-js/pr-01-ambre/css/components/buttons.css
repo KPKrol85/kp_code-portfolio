@@ -25,14 +25,14 @@
 }
 .btn:hover {
   background: color-mix(in oklab, #fff, var(--c-ink) 4%);
-  border-color: color-mix(in oklab, var(--c-border), var(--c-accent) 18%);
+  border-color: color-mix(in oklab, var(--c-border), var(--c-accent-contrast) 18%);
   box-shadow: 0 4px 14px rgba(0, 0, 0, 0.08);
 }
 .btn:active {
   transform: translateY(1px);
 }
 .btn:focus-visible {
-  outline: 2px solid var(--c-accent);
+  outline: 2px solid var(--c-accent-contrast);
   outline-offset: 3px;
 }
 .btn[disabled],
@@ -59,14 +59,14 @@
   transform: translateY(0);
 }
 .btn-primary:focus-visible {
-  outline: 2px solid color-mix(in oklab, var(--c-accent) 70%, white);
+  outline: 2px solid var(--c-accent-contrast);
   outline-offset: 3px;
 }
 
 /* Ghost */
 .btn-ghost {
   background: color-mix(in oklab, var(--c-accent) 14%, #fff 86%);
-  border: 1px solid color-mix(in oklab, var(--c-border), var(--c-accent) 20%);
+  border: 1px solid color-mix(in oklab, var(--c-border), var(--c-accent-contrast) 20%);
   color: #1b1b1f;
   border-radius: 999px;
   font-weight: 600;
@@ -83,7 +83,7 @@
   transform: translateY(-1px);
 }
 .btn-ghost:focus-visible {
-  outline: 2px solid var(--c-accent);
+  outline: 2px solid var(--c-accent-contrast);
   outline-offset: 3px;
 }
 .btn-ghost:active {
@@ -104,7 +104,7 @@
 }
 .btn.btn-tab:hover {
   background: color-mix(in oklab, var(--c-accent) 8%, #fff 92%);
-  border-color: color-mix(in oklab, var(--c-accent), transparent 35%);
+  border-color: color-mix(in oklab, var(--c-accent-contrast), transparent 35%);
   box-shadow: 0 3px 10px rgba(0, 0, 0, 0.08);
 }
 .btn.btn-tab.is-active,
@@ -116,7 +116,7 @@
   box-shadow: 0 4px 12px rgba(250, 178, 4, 0.25);
 }
 .btn.btn-tab:focus-visible {
-  outline: 2px solid var(--c-accent);
+  outline: 2px solid var(--c-accent-contrast);
   outline-offset: 2px;
 }
 html[data-theme="dark"] .btn.btn-tab {
@@ -158,11 +158,11 @@ html[data-theme="dark"] .btn.btn-tab.is-active {
 }
 .btn-link:hover {
   background: color-mix(in oklab, var(--c-surface), white 12%);
-  border-color: color-mix(in oklab, var(--c-border), var(--c-accent) 18%);
+  border-color: color-mix(in oklab, var(--c-border), var(--c-accent-contrast) 18%);
   box-shadow: 0 3px 10px rgba(0, 0, 0, 0.06);
 }
 .btn-link:focus-visible {
-  outline: 2px solid var(--c-accent);
+  outline: 2px solid var(--c-accent-contrast);
   outline-offset: 2px;
 }
 .btn-link img,
@@ -219,7 +219,7 @@ html[data-theme="dark"] .btn-link:hover {
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
 }
 .btn-form:focus-visible {
-  outline: 2px solid var(--c-accent);
+  outline: 2px solid var(--c-accent-contrast);
   outline-offset: 3px;
 }
 html[data-theme="dark"] .btn-form {
@@ -261,8 +261,8 @@ html[data-theme="dark"] .btn-form:hover {
   border-radius: 999px;
   font-weight: 600;
   line-height: 1;
-  border: 2px solid var(--c-accent);
-  color: var(--c-accent);
+  border: 2px solid var(--c-accent-contrast);
+  color: var(--c-accent-contrast);
   background: transparent;
   transition:
     background-color 0.25s ease,
@@ -289,13 +289,13 @@ html[data-theme="dark"] .btn-form:hover {
   box-shadow: 0 3px 8px rgba(0, 0, 0, 0.08);
 }
 .btn-ring:focus-visible {
-  outline: 2px solid var(--c-accent);
+  outline: 2px solid var(--c-accent-contrast);
   outline-offset: 3px;
-  box-shadow: 0 0 0 3px color-mix(in oklab, var(--c-accent) 20%, transparent);
+  box-shadow: 0 0 0 3px color-mix(in oklab, var(--c-accent-contrast) 20%, transparent);
 }
 html[data-theme="dark"] .btn-ring {
-  border-color: color-mix(in oklab, var(--c-accent), #000 25%);
-  color: var(--c-accent);
+  border-color: color-mix(in oklab, var(--c-accent-contrast), #000 25%);
+  color: var(--c-accent-contrast);
 }
 html[data-theme="dark"] .btn-ring:hover {
   background: color-mix(in oklab, var(--c-accent), #000 15%);

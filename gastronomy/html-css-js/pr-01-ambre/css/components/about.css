@@ -58,7 +58,7 @@ html[data-theme="dark"] .about .icon-dual .icon-dark {
 }
 .about .bullets a:hover,
 .about .bullets a:focus-visible {
-  color: var(--c-accent);
+  color: var(--c-accent-contrast);
 }
 .about .bullets a:visited {
   color: var(--c-ink);
