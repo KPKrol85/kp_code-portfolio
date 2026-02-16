@@ -1,4 +1,5 @@
-import { execFileSync } from "node:child_process";
+
+import { execSync } from "node:child_process";
 import { readFile, writeFile, mkdir, unlink } from "node:fs/promises";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
@@ -8,7 +9,7 @@ const mainFile = path.join(rootDir, "css", "main.css");
 const distDir = path.join(rootDir, "dist");
 const tempFile = path.join(distDir, "style.css");
 const outputFile = path.join(distDir, "style.min.css");
-const cssnanoBin = path.join(rootDir, "node_modules", ".bin", "cssnano");
+const cssnanoBin = path.join(rootDir, "node_modules", ".bin", "cssnano.cmd");
 
 const importRegex = /^\s*@import\s+(?:url\()?['"]([^'"]+)['"]\)?\s*;/;
 
@@ -38,7 +39,7 @@ async function build() {
   await mkdir(distDir, { recursive: true });
   const combined = await inlineImports(mainFile);
   await writeFile(tempFile, combined.trim() + "\n");
-  execFileSync(cssnanoBin, [tempFile, outputFile], { stdio: "inherit" });
+execSync(`"${cssnanoBin}" "${tempFile}" "${outputFile}"`, { stdio: "inherit" });
   await unlink(tempFile);
 }
 

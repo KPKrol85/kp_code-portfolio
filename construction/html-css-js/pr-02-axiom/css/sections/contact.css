@@ -1,5 +1,5 @@
 
-.contact-form-section {
+.contact-form__section {
   padding: 2rem 2rem;
   background: var(--surface-1);
   border-top: 1px solid color-mix(in srgb, var(--text-dark) 10%, transparent);
@@ -7,19 +7,19 @@
   content-visibility: auto;
   contain-intrinsic-size: 900px;
 }
-body.dark-mode .contact-form-section {
+body.dark-mode .contact-form__section {
   background: var(--surface-3);
   border-top: 1px solid color-mix(in srgb, var(--text-light) 12%, transparent);
 }
-.contact-form-section h2 {
+.contact-form__section h2 {
   margin-bottom: 2rem;
   font-size: 2rem;
   color: var(--primary);
 }
-body.dark-mode .contact-form-section h2 {
+body.dark-mode .contact-form__section h2 {
   color: var(--accent);
 }
-.contact-form-container {
+.contact-form__container {
   max-width: 500px;
   margin: 0 auto;
   padding: 1.5rem;
@@ -28,11 +28,11 @@ body.dark-mode .contact-form-section h2 {
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
   text-align: left;
 }
-body.dark-mode .contact-form-container {
+body.dark-mode .contact-form__container {
   background: #2c2c2c;
   box-shadow: 0 4px 10px rgba(255, 255, 255, 0.05);
 }
-.contact-form .form-group {
+.contact-form .form__group {
   margin-bottom: 1rem;
 }
 .contact-form label {
@@ -104,23 +104,23 @@ body.dark-mode .contact-form :is(input, textarea, select):-webkit-autofill {
   -webkit-text-fill-color: var(--text-light);
   box-shadow: 0 0 0 1000px #3a3a3a inset;
 }
-.form-note {
+.form__note {
   margin: 0.25rem 0 0.5rem;
   font-size: 0.9rem;
   opacity: 0.75;
 }
-.form-status {
+.form__status {
   margin: 0.25rem 0 0.75rem;
   font-size: 0.95rem;
   min-height: 1.2em;
 }
-.form-status.ok {
+.form__status.ok {
   color: #17803d;
 }
-.form-status.err {
+.form__status.err {
   color: #b00020;
 }
-.form-status.ok::before {
+.form__status.ok::before {
   content: "";
   display: inline-block;
   width: 1em;
@@ -131,54 +131,54 @@ body.dark-mode .contact-form :is(input, textarea, select):-webkit-autofill {
   background-repeat: no-repeat;
   background-size: 1em 1em;
 }
-.contact-form .form-consent .consent-label {
+.contact-form .form__consent .form__consent-label {
   display: grid;
   grid-template-columns: auto 1fr;
   gap: 0.6rem;
   align-items: start;
   font-size: 0.9rem;
 }
-.contact-form .form-consent input[type="checkbox"] {
+.contact-form .form__consent input[type="checkbox"] {
   width: 1.1rem;
   height: 1.1rem;
   accent-color: var(--primary);
   transform: translateY(0.15rem);
 }
-.contact-form .form-consent a {
+.contact-form .form__consent a {
   color: var(--primary);
   text-decoration: underline;
   text-underline-offset: 2px;
 }
-body.dark-mode .contact-form .form-consent a {
+body.dark-mode .contact-form .form__consent a {
   color: var(--accent-600);
 }
-.contact-form .form-consent input[type="checkbox"].is-invalid {
+.contact-form .form__consent input[type="checkbox"].is-invalid {
   outline: 2px solid #b00020;
   outline-offset: 2px;
 }
-.char-counter {
+.form__char-counter {
   width: 90%;
   margin: 0.35rem auto 0;
   text-align: right;
   font-size: 0.85rem;
   opacity: 0.75;
 }
-.char-counter.warn {
+.form__char-counter.warn {
   color: var(--accent-600, #b98c45);
   opacity: 1;
 }
-.char-counter.limit {
+.form__char-counter.limit {
   color: #b00020;
   opacity: 1;
 }
-.hp-field {
+.form__hp-field {
   position: absolute;
   left: -9999px;
   width: 1px;
   height: 1px;
   overflow: hidden;
 }
-.captcha-wrap {
+.form__captcha-wrap {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -188,14 +188,14 @@ body.dark-mode .contact-form .form-consent a {
   padding: 0;
   text-align: center;
 }
-.captcha-wrap > div[data-netlify-recaptcha],
-.captcha-wrap .g-recaptcha,
-.captcha-wrap iframe {
+.form__captcha-wrap > div[data-netlify-recaptcha],
+.form__captcha-wrap .g-recaptcha,
+.form__captcha-wrap iframe {
   display: inline-block;
   margin: 0 auto;
   transform-origin: center center;
 }
-fieldset.form-group.captcha-wrap {
+fieldset.form__group.form__captcha-wrap {
   border: 0;
   padding: 0;
   margin: 1rem 0 1.25rem;
@@ -217,7 +217,7 @@ fieldset.form-group.captcha-wrap {
 }
 
 @media (max-width: 420px) {
-  .captcha-wrap {
+  .form__captcha-wrap {
     transform: scale(0.88);
     transform-origin: center center;
   }

@@ -31,10 +31,13 @@
     "build:css": "node tools/css/build-css.mjs",
     "min:css": "npm run build:css",
     "build:js": "node tools/js/build-js.mjs",
-    "build": "npm run build:css && npm run build:js",
+    "build:sw": "node tools/sw/build-sw.mjs",
+    "build": "npm run build:head && npm run build:css && npm run build:js && npm run build:sw",
     "serve": "http-server -c-1 -p 8080",
     "qa:lighthouse": "mkdir -p reports/lighthouse && lhci collect --url=http://localhost:8080/ --url=http://localhost:8080/services/budowa-domow.html --url=http://localhost:8080/legal/regulamin.html --outputDir=reports/lighthouse",
     "qa:a11y": "mkdir -p reports/pa11y && pa11y http://localhost:8080/ --reporter json --output reports/pa11y/index.json && pa11y http://localhost:8080/services/budowa-domow.html --reporter json --output reports/pa11y/budowa-domow.json && pa11y http://localhost:8080/legal/regulamin.html --reporter json --output reports/pa11y/regulamin.json",
-    "qa": "npm run qa:lighthouse && npm run qa:a11y"
+    "qa": "npm run qa:lighthouse && npm run qa:a11y",
+    "build:head": "node tools/html/build-head.mjs",
+    "qa:links": "node ../../../scripts/check-links-local.mjs --root \"construction/html-css-js/pr-02-axiom\""
   }
 }

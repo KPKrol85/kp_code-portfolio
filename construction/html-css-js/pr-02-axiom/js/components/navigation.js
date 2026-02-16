@@ -2,7 +2,7 @@ import { SELECTORS } from "../core/config.js";
 import { qs } from "../utils/dom.js";
 
 export const initNavigation = () => {
-  const btn = qs(SELECTORS.hamburger);
+  const btn = qs(SELECTORS.navToggle);
   const nav = qs(SELECTORS.primaryNav);
   if (!btn || !nav) return;
   const mql = window.matchMedia("(max-width: 768px)");

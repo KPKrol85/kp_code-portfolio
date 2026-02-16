@@ -1,5 +1,5 @@
 
-.testimonials-section {
+.testimonials {
   padding: 4rem 2rem;
   text-align: center;
   background: var(--surface-2);
@@ -7,88 +7,88 @@
   content-visibility: auto;
   contain-intrinsic-size: 800px;
 }
-body.dark-mode .testimonials-section {
+body.dark-mode .testimonials {
   background: var(--surface-2);
   border-top: 1px solid color-mix(in srgb, var(--text-light) 12%, transparent);
 }
-.testimonials-inner {
+.testimonials__inner {
   max-width: 1200px;
   margin: 0 auto;
   padding: 0 2rem;
 }
-.testimonials-section .section-title {
+.testimonials .section__title {
   display: inline-block;
   margin-bottom: 3rem;
   font-size: 2rem;
   color: var(--primary);
 }
-body.dark-mode .testimonials-section .section-title {
+body.dark-mode .testimonials .section__title {
   color: var(--accent);
 }
-.testimonials-container {
+.testimonials__container {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   gap: 2rem;
 }
-.testimonial-card {
+.testimonials__card {
   background: var(--text-light);
   padding: 2rem;
   border-radius: 10px;
   box-shadow: 0 4px 10px color-mix(in srgb, black 12%, transparent);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
-.testimonial-card:hover {
+.testimonials__card:hover {
   transform: translateY(-5px);
   box-shadow: 0 8px 18px color-mix(in srgb, black 18%, transparent);
 }
-body.dark-mode .testimonial-card {
+body.dark-mode .testimonials__card {
   background: color-mix(in srgb, var(--bg-dark) 85%, white 15%);
   box-shadow: 0 4px 10px color-mix(in srgb, var(--text-light) 6%, transparent);
 }
-.testimonial-card p {
+.testimonials__card p {
   font-style: italic;
   color: color-mix(in srgb, var(--text-dark) 95%, white 5%);
   line-height: 1.6;
 }
-body.dark-mode .testimonial-card p {
+body.dark-mode .testimonials__card p {
   color: color-mix(in srgb, var(--text-light) 95%, black 5%);
 }
-.client-info {
+.form__client-info {
   margin-top: 1.5rem;
   border-top: 1px solid color-mix(in srgb, var(--text-dark) 12%, transparent);
   padding-top: 1rem;
 }
-body.dark-mode .client-info {
+body.dark-mode .form__client-info {
   border-color: color-mix(in srgb, var(--text-light) 24%, transparent);
 }
-.client-info h4 {
+.form__client-info h4 {
   margin: 0;
   font-size: 1.1rem;
   color: var(--primary);
 }
-body.dark-mode .client-info h4 {
+body.dark-mode .form__client-info h4 {
   color: var(--accent-400);
 }
 
 @media (max-width: 768px) {
-  .testimonials-section {
+  .testimonials {
     padding: 3rem 1rem;
   }
-  .testimonials-container {
+  .testimonials__container {
     grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
     gap: 1.25rem;
   }
-  .testimonials-section .section-title {
+  .testimonials .section__title {
     font-size: 1.75rem;
     margin-bottom: 2rem;
   }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .testimonial-card {
+  .testimonials__card {
     transition: none;
   }
-  .testimonial-card:hover {
+  .testimonials__card:hover {
     transform: none;
     box-shadow: 0 4px 10px color-mix(in srgb, black 12%, transparent);
   }

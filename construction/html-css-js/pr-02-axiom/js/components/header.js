@@ -23,7 +23,7 @@ export const initCompactHeader = () => {
   window.addEventListener("scroll", onScroll, { passive: true });
   window.addEventListener("resize", onScroll);
   window.addEventListener("pageshow", update, { once: true });
-  const btn = qs(SELECTORS.hamburger);
+  const btn = qs(SELECTORS.navToggle);
   if (btn) {
     btn.addEventListener("click", () => {
       setTimeout(update, 0);

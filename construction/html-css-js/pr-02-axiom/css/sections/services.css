@@ -1,20 +1,20 @@
 
-.services-section {
+.services__section {
   background: var(--surface-1);
   border-top: 1px solid color-mix(in srgb, var(--text-dark) 10%, transparent);
   text-align: center;
 }
-body.dark-mode .services-section {
+body.dark-mode .services__section {
   background: var(--surface-3);
   border-top: 1px solid color-mix(in srgb, var(--text-light) 10%, transparent);
 }
-.services-section .section-title {
+.services__section .section__title {
   display: inline-block;
   margin-bottom: 3rem;
   font-size: 2rem;
   color: var(--primary);
 }
-body.dark-mode .services-section .section-title {
+body.dark-mode .services__section .section__title {
   color: var(--accent);
 }
 .services {

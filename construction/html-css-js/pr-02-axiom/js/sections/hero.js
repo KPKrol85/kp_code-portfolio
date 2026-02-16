@@ -5,18 +5,18 @@ export const initHeroReveal = () => {
   const hiddenElements = qsa(SELECTORS.hidden);
   if (!hiddenElements.length) return;
   if (!("IntersectionObserver" in window)) {
-    hiddenElements.forEach((el) => el.classList.add("show"));
+    hiddenElements.forEach((el) => el.classList.add("u-show"));
     return;
   }
   const observer = new IntersectionObserver(
     (entries) => {
       entries.forEach((entry) => {
         if (entry.isIntersecting && entry.intersectionRatio >= INTERSECTION.enterRatio) {
-          requestAnimationFrame(() => entry.target.classList.add("show"));
+          requestAnimationFrame(() => entry.target.classList.add("u-show"));
           return;
         }
         if (entry.intersectionRatio === 0) {
-          entry.target.classList.remove("show");
+          entry.target.classList.remove("u-show");
         }
       });
     },
@@ -38,7 +38,7 @@ export const initHeroReveal = () => {
   };
   const initialReveal = () => {
     hiddenElements.forEach((el) => {
-      if (isInViewport(el)) el.classList.add("show");
+      if (isInViewport(el)) el.classList.add("u-show");
     });
   };
   requestAnimationFrame(() => requestAnimationFrame(initialReveal));

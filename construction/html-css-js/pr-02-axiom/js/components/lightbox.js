@@ -3,6 +3,7 @@ import { qs } from "../utils/dom.js";
 import { getFocusableElements, handleFocusTrap } from "../utils/a11y.js";
 
 export const initLightbox = () => {
+  const DEFAULT_ASPECT_RATIO = "16 / 9";
   const lb = qs(SELECTORS.lightbox);
   if (!lb) return;
   const imgEl = lb.querySelector(".lb__img");
@@ -19,7 +20,30 @@ export const initLightbox = () => {
   let fsBtn = null;
   let lastActive = null;
   let focusables = [];
+  const imageMeta = new Map();
   const isTouchLike = window.matchMedia ? window.matchMedia("(hover: none) and (pointer: coarse)").matches : "ontouchstart" in window;
+  const resetMediaSizing = () => {
+    if (figureEl) {
+      figureEl.style.setProperty("--lb-aspect-ratio", DEFAULT_ASPECT_RATIO);
+    }
+    if (imgEl) {
+      imgEl.removeAttribute("width");
+      imgEl.removeAttribute("height");
+    }
+  };
+  const applyMediaSizing = (w, h) => {
+    if (!w || !h) return;
+    imgEl.setAttribute("width", String(w));
+    imgEl.setAttribute("height", String(h));
+    if (figureEl) {
+      figureEl.style.setProperty("--lb-aspect-ratio", `${w} / ${h}`);
+    }
+  };
+  resetMediaSizing();
+  if (imgEl) {
+    imgEl.decoding = "async";
+    imgEl.loading = "eager";
+  }
   const trapInit = () => {
     focusables = getFocusableElements(lb);
   };
@@ -28,6 +52,7 @@ export const initLightbox = () => {
   };
   const open = (src, alt) => {
     lastActive = document.activeElement;
+    resetMediaSizing();
     if (!items.length) {
       imgEl.src = src;
       imgEl.alt = alt || "";
@@ -51,6 +76,7 @@ export const initLightbox = () => {
     lb.setAttribute("aria-hidden", "true");
     document.body.classList.remove("lb-open");
     imgEl.removeAttribute("src");
+    resetMediaSizing();
     captionEl.textContent = "";
     captionEl.hidden = true;
     trapRelease();
@@ -80,14 +106,14 @@ export const initLightbox = () => {
     return Promise.resolve();
   };
   document.addEventListener("click", (e) => {
-    const link = e.target.closest(".gallery-link");
-    if (!link || !link.closest(".gallery-container")) return;
+    const link = e.target.closest(".gallery__link");
+    if (!link || !link.closest(".gallery__container")) return;
     e.preventDefault();
     const href = link.getAttribute("href");
     const thumbImg = link.querySelector("img");
     const alt = thumbImg ? thumbImg.alt : "";
-    currentContainer = link.closest(".gallery-container");
-    const links = currentContainer ? Array.from(currentContainer.querySelectorAll(".gallery-link")) : [link];
+    currentContainer = link.closest(".gallery__container");
+    const links = currentContainer ? Array.from(currentContainer.querySelectorAll(".gallery__link")) : [link];
     items = links
       .map((a) => {
         const timg = a.querySelector("img");
@@ -186,8 +212,16 @@ export const initLightbox = () => {
     const next = items[(i + 1) % n];
     [prev, next].forEach((it) => {
       if (it && it.href) {
+        if (imageMeta.has(it.href)) return;
         const pre = new Image();
         pre.decoding = "async";
+        pre.loading = "eager";
+        pre.addEventListener("load", () => {
+          imageMeta.set(it.href, {
+            width: pre.naturalWidth,
+            height: pre.naturalHeight,
+          });
+        });
         pre.src = it.href;
       }
     });
@@ -198,7 +232,15 @@ export const initLightbox = () => {
     const it = items[i];
     if (!it) return;
     imgEl.classList.add("is-fading");
+    const meta = imageMeta.get(it.href);
+    if (meta) {
+      applyMediaSizing(meta.width, meta.height);
+    }
     const onLoad = () => {
+      const width = imgEl.naturalWidth;
+      const height = imgEl.naturalHeight;
+      imageMeta.set(it.href, { width, height });
+      applyMediaSizing(width, height);
       imgEl.classList.remove("is-fading");
       imgEl.removeEventListener("load", onLoad);
     };
@@ -317,8 +359,8 @@ export const initLightbox = () => {
       (e) => {
         const el = e.target;
         if (!el || el.nodeType !== 1 || typeof el.closest !== "function") return;
-        const link = el.closest(".gallery-link");
-        if (!link || !link.closest(".gallery-container")) return;
+        const link = el.closest(".gallery__link");
+        if (!link || !link.closest(".gallery__container")) return;
         const href = link.getAttribute("href");
         if (!href) return;
         const pre = new Image();

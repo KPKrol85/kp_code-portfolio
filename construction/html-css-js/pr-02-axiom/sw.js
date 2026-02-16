@@ -1,7 +1,9 @@
-
-const CACHE_NAME = "axiom-construction-v1.0.0";
-const HTML_CACHE = "html-pages-v1";
-const ASSETS = ["./", "./index.html", "./offline.html", "./dist/style.min.css", "./dist/script.min.js", "./assets/img/favicon/favicon-96x96.png", "./assets/img/og/og-1200x630.jpg"];
+const REVISION = "71ef6644ebe941e7";
+const CACHE_PREFIX = "axiom-static-";
+const CACHE_NAME = `${CACHE_PREFIX}${REVISION}`;
+const HTML_CACHE_PREFIX = "html-pages-";
+const HTML_CACHE_NAME = `${HTML_CACHE_PREFIX}${REVISION}`;
+const ASSETS = ["/","/offline.html","/dist/style.min.css","/dist/script.min.js","/manifest.webmanifest","/assets/img/favicon/favicon.svg","/assets/img/favicon/favicon-96x96.png","/assets/img/favicon/web-app-manifest-192x192.png","/assets/img/favicon/web-app-manifest-512x512.png","/assets/img/favicon/web-app-manifest-1024x1024.png","/assets/img/favicon/apple-touch-icon.png"];
 
 self.addEventListener("install", (event) => {
   event.waitUntil(caches.open(CACHE_NAME).then((cache) => cache.addAll(ASSETS)));
@@ -9,7 +11,16 @@ self.addEventListener("install", (event) => {
 });
 
 self.addEventListener("activate", (event) => {
-  event.waitUntil(caches.keys().then((keys) => Promise.all(keys.filter((k) => k !== CACHE_NAME).map((k) => caches.delete(k)))));
+  event.waitUntil(
+    caches.keys().then((keys) =>
+      Promise.all(
+        keys
+          .filter((key) => key.startsWith(CACHE_PREFIX) && key !== CACHE_NAME)
+          .concat(keys.filter((key) => key.startsWith(HTML_CACHE_PREFIX) && key !== HTML_CACHE_NAME))
+          .map((key) => caches.delete(key))
+      )
+    )
+  );
   self.clients.claim();
 });
 
@@ -22,7 +33,7 @@ self.addEventListener("fetch", (event) => {
         .then((res) => {
           if (res && res.status === 200) {
             const copy = res.clone();
-            caches.open(HTML_CACHE).then((c) => c.put(req, copy));
+            caches.open(HTML_CACHE_NAME).then((c) => c.put(req, copy));
           }
           return res;
         })

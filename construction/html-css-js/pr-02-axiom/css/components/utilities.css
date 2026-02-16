@@ -43,14 +43,14 @@ a:not([aria-current="page"]):focus-visible {
   opacity: 0.9;
   text-decoration: none;
 }
-footer .footer-section a[aria-current="page"],
-footer .footer-section li[aria-current="page"] {
+footer .footer__section a[aria-current="page"],
+footer .footer__section li[aria-current="page"] {
   color: var(--accent);
   font-weight: 400;
   position: relative;
 }
-footer .footer-section a[aria-current="page"]::after,
-footer .footer-section li[aria-current="page"]::after {
+footer .footer__section a[aria-current="page"]::after,
+footer .footer__section li[aria-current="page"]::after {
   content: "";
   position: absolute;
   left: 0;
@@ -60,39 +60,39 @@ footer .footer-section li[aria-current="page"]::after {
   background: currentColor;
   opacity: 0.5;
 }
-footer .footer-section li[aria-current="page"] {
+footer .footer__section li[aria-current="page"] {
   display: inline-block;
 }
-.breadcrumbs {
+.breadcrumb {
   color: color-mix(in srgb, var(--text-dark) 75%, transparent);
 }
-body.dark-mode .breadcrumbs {
+body.dark-mode .breadcrumb {
   color: color-mix(in srgb, var(--text-light) 85%, transparent);
 }
-body:not(.dark-mode) .breadcrumbs a {
+body:not(.dark-mode) .breadcrumb a {
   color: var(--primary);
 }
-body.dark-mode .breadcrumbs a {
+body.dark-mode .breadcrumb a {
   color: var(--accent);
 }
-.breadcrumbs a {
+.breadcrumb a {
   text-decoration: none;
   border-bottom: 1px solid transparent;
   transition: border-color 0.2s ease, opacity 0.2s ease;
 }
-.breadcrumbs a:hover,
-.breadcrumbs a:focus-visible {
+.breadcrumb a:hover,
+.breadcrumb a:focus-visible {
   border-bottom-color: currentColor;
   opacity: 0.9;
 }
-.breadcrumbs li[aria-current="page"],
-.breadcrumbs [aria-current="page"] {
+.breadcrumb li[aria-current="page"],
+.breadcrumb [aria-current="page"] {
   color: currentColor;
   font-weight: 400;
   text-decoration: none;
   border-bottom: none;
 }
-.breadcrumbs li + li::before {
+.breadcrumb li + li::before {
   content: "/";
   margin: 0 0.5rem;
   color: currentColor;
@@ -101,7 +101,7 @@ body.dark-mode .breadcrumbs a {
 body.menu-open {
   overflow: hidden;
 }
-.skip-link {
+.skip__link {
   position: fixed;
   left: -9999px;
   top: auto;
@@ -109,7 +109,7 @@ body.menu-open {
   height: 1px;
   overflow: hidden;
 }
-.skip-link:focus-visible {
+.skip__link:focus-visible {
   left: 1rem;
   top: 1rem;
   z-index: 9999;
@@ -127,11 +127,13 @@ body.menu-open {
 #main {
   scroll-margin-top: 80px;
 }
+.u-hidden,
 .hidden {
   opacity: 0;
   transform: translateY(50px);
   transition: all 0.6s ease;
 }
+.u-show,
 .show {
   opacity: 1;
   transform: translateY(0);
@@ -186,12 +188,12 @@ body.menu-open #powrot-na-gore {
   pointer-events: none;
 }
 .service,
-.testimonial-card,
-.gallery-item {
+.testimonials__card,
+.gallery__item {
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
 }
 .service:hover,
-.testimonial-card:hover {
+.testimonials__card:hover {
   transform: translateY(-5px);
   box-shadow: 0 8px 18px rgba(0, 0, 0, 0.16);
 }
@@ -205,7 +207,7 @@ body.menu-open #powrot-na-gore {
 #kontakt {
   scroll-margin-top: var(--header-h);
 }
-:where(.feature, .about-highlights > li, .interactive-card):not(.no-interaction) {
+:where(.features__item, .about__highlights > li, .interactive-card):not(.no-interaction) {
   -webkit-tap-highlight-color: transparent;
   touch-action: manipulation;
   cursor: pointer;
@@ -213,35 +215,35 @@ body.menu-open #powrot-na-gore {
   will-change: transform;
   pointer-events: auto;
 }
-:where(.feature, .about-highlights > li, .interactive-card):not(.no-interaction) :is(a, button):focus-visible {
+:where(.features__item, .about__highlights > li, .interactive-card):not(.no-interaction) :is(a, button):focus-visible {
   outline: 3px solid var(--accent-400);
   outline-offset: 3px;
   border-radius: 8px;
 }
-:where(.feature, .about-highlights > li, .interactive-card):not(.no-interaction):hover {
+:where(.features__item, .about__highlights > li, .interactive-card):not(.no-interaction):hover {
   transform: translateY(-2px);
   border-color: color-mix(in srgb, var(--feature-accent) 45%, transparent);
   box-shadow: 0 8px 22px var(--feature-shadow);
   background: var(--feature-hover-bg);
 }
-:where(.feature, .about-highlights > li, .interactive-card):not(.no-interaction):hover :is(h3, strong) {
+:where(.features__item, .about__highlights > li, .interactive-card):not(.no-interaction):hover :is(h3, strong) {
   color: var(--feature-accent);
 }
 
 @media (hover: hover) and (pointer: fine) {
-  :where(.feature, .about-highlights > li, .interactive-card):not(.no-interaction):hover {
+  :where(.features__item, .about__highlights > li, .interactive-card):not(.no-interaction):hover {
     transform: translateY(-2px);
     border-color: color-mix(in srgb, var(--feature-accent) 45%, transparent);
     box-shadow: 0 8px 22px var(--feature-shadow);
     background: var(--feature-hover-bg);
   }
-  :where(.feature, .about-highlights > li, .interactive-card):not(.no-interaction):hover :is(h3, strong) {
+  :where(.features__item, .about__highlights > li, .interactive-card):not(.no-interaction):hover :is(h3, strong) {
     color: var(--feature-accent);
   }
 }
 
 @media (hover: none) and (pointer: coarse) {
-  :where(.feature, .about-highlights > li, .interactive-card):not(.no-interaction):active {
+  :where(.features__item, .about__highlights > li, .interactive-card):not(.no-interaction):active {
     transform: translateY(-1px);
     border-color: color-mix(in srgb, var(--feature-accent) 35%, transparent);
     background: var(--feature-hover-bg);
@@ -250,7 +252,7 @@ body.menu-open #powrot-na-gore {
 }
 
 @media (prefers-reduced-motion: reduce) {
-  :where(.feature, .about-highlights > li, .interactive-card):not(.no-interaction) {
+  :where(.features__item, .about__highlights > li, .interactive-card):not(.no-interaction) {
     transition: border-color 0.2s, background 0.2s, box-shadow 0.2s;
   }
 }

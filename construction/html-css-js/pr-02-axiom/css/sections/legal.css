@@ -1,14 +1,14 @@
 
-.page-legal .legal-simple {
+.page--legal .legal {
   background: var(--surface-1);
   border-top: 1px solid color-mix(in srgb, var(--text-dark) 10%, transparent);
   padding: var(--section-py) var(--section-px);
 }
-body.dark-mode.page-legal .legal-simple {
+body.dark-mode.page--legal .legal {
   background: var(--surface-3);
   border-top: 1px solid color-mix(in srgb, var(--text-light) 12%, transparent);
 }
-.page-legal .legal-container {
+.page--legal .legal__container {
   max-width: 900px;
   margin: 0 auto;
   padding: clamp(1rem, 2.5vw, 1.5rem);
@@ -18,7 +18,7 @@ body.dark-mode.page-legal .legal-simple {
   box-shadow: 0 2px 8px var(--feature-shadow);
   transition: box-shadow 0.22s ease, border-color 0.22s ease, background 0.22s ease;
 }
-.page-legal .legal-title {
+.page--legal .legal__title {
   margin: 0 0 0.4em;
   font-family: "Montserrat", system-ui, sans-serif;
   font-size: clamp(1.8rem, 1.2rem + 2.6vw, 2.6rem);
@@ -30,10 +30,10 @@ body.dark-mode.page-legal .legal-simple {
   margin-inline: auto;
   padding-bottom: 0.35rem;
 }
-body.dark-mode.page-legal .legal-title {
+body.dark-mode.page--legal .legal__title {
   color: var(--accent);
 }
-.page-legal .legal-title::after {
+.page--legal .legal__title::after {
   content: "";
   position: absolute;
   left: 50%;
@@ -46,7 +46,7 @@ body.dark-mode.page-legal .legal-title {
   transform: translateX(-50%) scaleX(1);
   transform-origin: center;
 }
-.page-legal .legal-lead {
+.page--legal .legal__lead {
   max-width: 62ch;
   margin: 0.4rem auto 1.25rem;
   font-size: clamp(1.02rem, 0.96rem + 0.5vw, 1.18rem);
@@ -56,105 +56,105 @@ body.dark-mode.page-legal .legal-title {
   text-wrap: pretty;
   text-align: center;
 }
-body.dark-mode.page-legal .legal-lead {
+body.dark-mode.page--legal .legal__lead {
   color: var(--text-light);
   opacity: 0.9;
 }
-.page-legal .legal-content {
+.page--legal .legal__content {
   color: color-mix(in srgb, var(--text-dark) 96%, white 4%);
 }
-body.dark-mode.page-legal .legal-content {
+body.dark-mode.page--legal .legal__content {
   color: color-mix(in srgb, var(--text-light) 96%, black 4%);
 }
-.page-legal .legal-content > * + * {
+.page--legal .legal__content > * + * {
   margin-top: 1rem;
 }
-.page-legal .legal-content h2 {
+.page--legal .legal__content h2 {
   margin: 1.5rem 0 0.5rem;
   font-family: "Montserrat", system-ui, sans-serif;
   font-size: clamp(1.25rem, 0.9rem + 1.4vw, 1.6rem);
   line-height: 1.3;
   color: var(--primary);
 }
-body.dark-mode.page-legal .legal-content h2 {
+body.dark-mode.page--legal .legal__content h2 {
   color: var(--accent);
 }
-.page-legal .legal-content p {
+.page--legal .legal__content p {
   margin: 0.35rem 0 0.25rem;
   max-width: 72ch;
 }
-.page-legal .legal-content ul {
+.page--legal .legal__content ul {
   margin: 0.25rem 0 0.75rem;
   padding-left: 1.15rem;
   list-style: disc;
 }
-.page-legal .legal-content li + li {
+.page--legal .legal__content li + li {
   margin-top: 0.35rem;
 }
-.page-legal .legal-content a {
+.page--legal .legal__content a {
   color: var(--primary);
   text-decoration: none;
   border-bottom: 1px solid currentColor;
   transition: border-color 0.2s ease, opacity 0.2s ease;
 }
-body.dark-mode.page-legal .legal-content a {
+body.dark-mode.page--legal .legal__content a {
   color: var(--accent);
 }
-.page-legal .legal-content a:hover {
+.page--legal .legal__content a:hover {
   opacity: 0.9;
   border-bottom-color: transparent;
 }
-.page-legal .legal-content a:focus-visible {
+.page--legal .legal__content a:focus-visible {
   outline: 3px solid var(--accent-400);
   outline-offset: 2px;
   border-bottom-color: transparent;
 }
-.page-legal time {
+.page--legal time {
   white-space: nowrap;
 }
-.page-legal .legal-content :is(h2, h3) {
+.page--legal .legal__content :is(h2, h3) {
   scroll-margin-top: var(--header-h);
 }
-.page-legal .doc-toc a {
+.page--legal .legal__toc a {
   color: var(--text-dark);
   font-weight: bold;
   text-decoration: none;
   border-bottom: none;
   transition: color 0.2s ease;
 }
-.page-legal .doc-toc a:hover,
-.page-legal .doc-toc a:focus-visible {
+.page--legal .legal__toc a:hover,
+.page--legal .legal__toc a:focus-visible {
   color: var(--primary-400);
   border-bottom: none;
 }
-body.dark-mode.page-legal .doc-toc a {
+body.dark-mode.page--legal .legal__toc a {
   color: var(--text-light);
 }
-body.dark-mode.page-legal .doc-toc a:hover,
-body.dark-mode.page-legal .doc-toc a:focus-visible {
+body.dark-mode.page--legal .legal__toc a:hover,
+body.dark-mode.page--legal .legal__toc a:focus-visible {
   color: var(--accent);
 }
-.career-form {
+.career__form {
   display: flex;
   flex-direction: column;
   gap: 1rem;
   max-width: 600px;
   margin: 0 auto;
 }
-.career-form .form-group {
+.career__form .form__group {
   display: flex;
   flex-direction: column;
   gap: 0.35rem;
 }
-.career-form label {
+.career__form label {
   font-weight: 600;
   color: var(--text-dark);
 }
-body.dark-mode .career-form label {
+body.dark-mode .career__form label {
   color: var(--text-light);
 }
-.career-form input,
-.career-form textarea {
+.career__form input,
+.career__form textarea {
   background: var(--surface-1);
   color: var(--text-dark);
   border: 1px solid color-mix(in srgb, var(--text-dark) 15%, transparent);
@@ -164,49 +164,49 @@ body.dark-mode .career-form label {
   line-height: 1.4;
   transition: border-color 0.2s ease, box-shadow 0.2s ease;
 }
-body.dark-mode .career-form input,
-body.dark-mode .career-form textarea {
+body.dark-mode .career__form input,
+body.dark-mode .career__form textarea {
   background: var(--surface-3);
   color: var(--text-light);
   border: 1px solid color-mix(in srgb, var(--text-light) 15%, transparent);
 }
-.career-form input:focus-visible,
-.career-form textarea:focus-visible {
+.career__form input:focus-visible,
+.career__form textarea:focus-visible {
   border-color: var(--accent);
   box-shadow: 0 0 0 2px color-mix(in srgb, var(--accent) 45%, transparent);
   outline: none;
 }
-.career-form .checkbox {
+.career__form .checkbox {
   flex-direction: row;
   align-items: flex-start;
   gap: 0.5rem;
   font-size: 0.9rem;
   line-height: 1.4;
 }
-.career-form .checkbox a {
+.career__form .checkbox a {
   color: var(--primary);
   text-decoration: underline;
 }
 
 @media (max-width: 768px) {
-  .page-legal .legal-container {
+  .page--legal .legal__container {
     padding: clamp(0.75rem, 3.5vw, 1rem);
   }
-  .page-legal .legal-lead {
+  .page--legal .legal__lead {
     text-align: left;
     margin: 0.35rem 0 1rem;
   }
 }
 
 @media (hover: hover) and (pointer: fine) {
-  .page-legal .legal-container:hover {
+  .page--legal .legal__container:hover {
     border-color: color-mix(in srgb, var(--feature-accent) 45%, transparent);
     box-shadow: 0 8px 22px var(--feature-shadow);
   }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .page-legal .legal-container {
+  .page--legal .legal__container {
     transition: none;
   }
 }

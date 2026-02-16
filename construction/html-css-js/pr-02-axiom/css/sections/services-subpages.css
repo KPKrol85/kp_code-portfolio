@@ -1,14 +1,14 @@
 
-header + main .breadcrumbs {
+header + main .breadcrumb {
   padding-top: clamp(0.5rem, 1.5vw, 1.25rem);
 }
-.breadcrumbs {
+.breadcrumb {
   max-width: var(--max-w, 1200px);
   margin: 0 auto var(--space-3, 1rem);
   padding: 0 var(--edge-pad, 1rem);
   font-size: 0.9rem;
 }
-.breadcrumbs ol {
+.breadcrumb ol {
   list-style: none;
   display: flex;
   gap: 0.5rem;
@@ -16,53 +16,53 @@ header + main .breadcrumbs {
   padding: 0;
   margin: 0;
 }
-body.page-service :is(.service-intro, .service-details, .gallery-section, .cta-section) {
+body.page--service :is(.service-intro, .service-details, .gallery, .cta) {
   padding: var(--section-py, 3rem) var(--section-px, 1rem);
   background: transparent;
 }
-body.page-service .section--divider {
+body.page--service .section--divider {
   border-top: 1px solid color-mix(in srgb, var(--text-dark) 10%, transparent);
 }
-body.dark-mode.page-service .section--divider {
+body.dark-mode.page--service .section--divider {
   border-top: 1px solid color-mix(in srgb, var(--text-light) 12%, transparent);
 }
-body.page-service .service-intro {
+body.page--service .service-intro {
   background: var(--surface-1);
 }
-body.page-service :is(.service-details, .cta-section) {
+body.page--service :is(.service-details, .cta) {
   background: var(--surface-2);
 }
-body.page-service .gallery-section {
+body.page--service .gallery {
   background: var(--surface-3);
 }
-body.dark-mode.page-service .service-intro {
+body.dark-mode.page--service .service-intro {
   background: var(--surface-3);
 }
-body.dark-mode.page-service .service-details {
+body.dark-mode.page--service .service-details {
   background: var(--surface-2);
 }
-body.dark-mode.page-service .gallery-section {
+body.dark-mode.page--service .gallery {
   background: var(--surface-1);
 }
-body.dark-mode.page-service .cta-section {
+body.dark-mode.page--service .cta {
   background: var(--surface-2);
 }
 .service-intro__inner,
 .service-details__inner,
-.gallery-inner {
+.gallery__inner {
   max-width: var(--max-w, 1200px);
   margin: 0 auto;
   padding: 0;
   background: transparent !important;
 }
-.service-intro__inner .section-title,
-.service-details__inner .section-title,
-body.page-service .cta-section .section-title {
+.service-intro__inner .section__title,
+.service-details__inner .section__title,
+body.page--service .cta .section__title {
   color: var(--primary);
 }
-body.dark-mode .service-intro__inner .section-title,
-body.dark-mode .service-details__inner .section-title,
-body.dark-mode.page-service .cta-section .section-title {
+body.dark-mode .service-intro__inner .section__title,
+body.dark-mode .service-details__inner .section__title,
+body.dark-mode.page--service .cta .section__title {
   color: var(--accent);
 }
 .service-intro__inner {
@@ -70,17 +70,17 @@ body.dark-mode.page-service .cta-section .section-title {
   grid-template-columns: 1fr;
   gap: 1.5rem;
 }
-.service-intro__inner .section-title {
+.service-intro__inner .section__title {
   grid-column: 1 / -1;
   margin: 0 0 0.5rem;
 }
-.page-service .section-title {
+.page--service .section__title {
   display: block;
   width: fit-content;
   margin-inline: auto;
   text-align: center;
 }
-.page-service .section-title::after {
+.page--service .section__title::after {
   margin-inline: auto;
 }
 .service-intro__media {
@@ -125,36 +125,36 @@ body.dark-mode .service-intro__media {
 body.dark-mode .service-details__inner h2 {
   color: var(--accent);
 }
-.features {
+.features__list {
   display: grid;
   grid-template-columns: 1fr;
   gap: 1rem;
 }
-.feature {
+.features__item {
   position: relative;
   padding: 1rem;
   border-radius: var(--radius-xl, 16px);
   background: var(--feature-surface);
   border: 1px solid var(--feature-border);
 }
-.feature h3 {
+.features__item h3 {
   transition: color 0.22s ease;
 }
-body.page-service .features .feature {
+body.page--service .features__list .features__item {
   box-shadow: 0 2px 8px var(--feature-shadow);
 }
-body.page-service .service-details .features {
+body.page--service .service-details .features__list {
   list-style: none;
   margin: 0;
   padding: 0;
 }
-body.page-service .service-details .features > li::marker {
+body.page--service .service-details .features__list > li::marker {
   content: "";
 }
-body.page-service .cta-section {
+body.page--service .cta {
   text-align: center;
 }
-body.page-service .cta-row {
+body.page--service .cta__row {
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
@@ -173,13 +173,13 @@ body.page-service .cta-row {
     align-items: center;
     gap: 2rem;
   }
-  .service-intro__inner .section-title {
+  .service-intro__inner .section__title {
     grid-column: 1 / -1;
   }
 }
 
 @media (min-width: 800px) {
-  .features {
+  .features__list {
     grid-template-columns: repeat(2, 1fr);
     gap: 1.25rem;
   }
@@ -200,7 +200,7 @@ body.page-service .cta-row {
 }
 
 @media (max-width: 768px) {
-  header + main .breadcrumbs {
+  header + main .breadcrumb {
     padding-top: clamp(0.75rem, 2.5vw, 1.5rem);
   }
   .service-intro {
@@ -221,11 +221,11 @@ body.page-service .cta-row {
     margin: 0 auto;
     display: block;
   }
-  .page-service .service-intro__copy .checklist {
+  .page--service .service-intro__copy .checklist {
     text-align: left;
     margin-top: 0.5rem;
   }
-  .page-service .service-intro__copy .lead {
+  .page--service .service-intro__copy .lead {
     text-align: left;
     margin: 0 auto 1rem;
     max-width: 50ch;
@@ -245,7 +245,7 @@ body.page-service .cta-row {
     margin: 0.5rem 0;
     line-height: 1.55;
   }
-  .service-intro__copy .cta-row {
+  .service-intro__copy .cta__row {
     justify-content: center;
     gap: 0.75rem;
     margin-top: 1rem;

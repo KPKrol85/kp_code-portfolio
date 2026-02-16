@@ -124,7 +124,7 @@ a.btn-ghost:hover {
   color: var(--text-dark);
 }
 
-.icon-btn:not(.hamburger) {
+.icon-button:not(.nav-toggle) {
   display: inline-grid;
   place-items: center;
   width: 40px;
@@ -135,28 +135,28 @@ a.btn-ghost:hover {
   color: var(--primary);
   transition: background 0.2s ease, transform 0.15s ease, box-shadow 0.15s ease, border-color 0.2s ease, color 0.2s ease;
 }
-.icon-btn:not(.hamburger) svg {
+.icon-button:not(.nav-toggle) svg {
   width: 1.1em;
   height: 1.1em;
 }
-.icon-btn:not(.hamburger):hover {
+.icon-button:not(.nav-toggle):hover {
   background: color-mix(in srgb, var(--primary) 12%, transparent);
   transform: translateY(-1px);
 }
-.icon-btn:not(.hamburger):focus-visible {
+.icon-button:not(.nav-toggle):focus-visible {
   outline: 3px solid var(--accent-400);
   outline-offset: 3px;
   box-shadow: 0 0 0 3px color-mix(in srgb, var(--accent) 30%, transparent);
 }
-body.dark-mode .icon-btn:not(.hamburger) {
+body.dark-mode .icon-button:not(.nav-toggle) {
   color: var(--accent);
   border-color: color-mix(in srgb, var(--accent) 60%, transparent);
 }
-body.dark-mode .icon-btn:not(.hamburger):hover {
+body.dark-mode .icon-button:not(.nav-toggle):hover {
   background: color-mix(in srgb, var(--accent) 15%, transparent);
 }
 
-.hamburger.icon-btn {
+.nav-toggle.icon-button {
   all: unset;
   display: none;
   place-items: center;
@@ -170,7 +170,7 @@ body.dark-mode .icon-btn:not(.hamburger):hover {
   position: relative;
   z-index: 5;
 }
-.hamburger .icon-svg {
+.nav-toggle .icon-button__svg {
   position: absolute;
   inset: 0;
   margin: auto;
@@ -182,31 +182,31 @@ body.dark-mode .icon-btn:not(.hamburger):hover {
 #hamburgerIcon {
   transform: translate(var(--icon-nudge-x, 0), var(--icon-nudge-y, 0));
 }
-.hamburger .icon-menu {
+.nav-toggle .icon-button__icon--menu {
   opacity: 1;
   transform: translate(var(--icon-nudge-x, 0), var(--icon-nudge-y, 0)) scale(1);
 }
-.hamburger .icon-close {
+.nav-toggle .icon-button__icon--close {
   opacity: 0;
   transform: translate(var(--icon-nudge-x, 0), var(--icon-nudge-y, 0)) scale(0.9);
 }
-.hamburger.active .icon-menu {
+.nav-toggle.active .icon-button__icon--menu {
   opacity: 0;
   transform: translate(var(--icon-nudge-x, 0), var(--icon-nudge-y, 0)) scale(0.9) rotate(90deg);
 }
-.hamburger.active .icon-close {
+.nav-toggle.active .icon-button__icon--close {
   opacity: 1;
   transform: translate(var(--icon-nudge-x, 0), var(--icon-nudge-y, 0)) scale(1);
 }
 
 @media (min-width: 769px) {
-  .hamburger.icon-btn {
+  .nav-toggle.icon-button {
     display: none;
   }
 }
 
 @media (max-width: 768px) {
-  .hamburger.icon-btn {
+  .nav-toggle.icon-button {
     display: inline-grid;
   }
 }

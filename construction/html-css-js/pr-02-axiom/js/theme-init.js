@@ -1,4 +1,5 @@
 (function () {
+  document.documentElement.classList.add("js");
   try {
     var applyTheme = function (isDark) {
       if (!document.body) return;

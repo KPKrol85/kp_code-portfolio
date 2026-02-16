@@ -1,6 +1,7 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="pl" dir="ltr">
   <head>
+    
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
     <title>Kariera — Axiom Construction</title>
@@ -41,25 +42,46 @@
     <meta name="format-detection" content="telephone=no" />
     <link rel="preload" href="../assets/fonts/lato-v25-latin/lato-v25-latin-regular.woff2" as="font" type="font/woff2" crossorigin />
     <link rel="preload" href="../assets/fonts/montserrat-v31-latin/montserrat-v31-latin-600.woff2" as="font" type="font/woff2" crossorigin />
-
-
     <link rel="preload" as="style" href="../dist/style.min.css" />
     <link rel="stylesheet" href="../dist/style.min.css" />
 
-    <script type="application/ld+json" src="../js/structured-data/legal-kariera.json"></script>
+    <script type="application/ld+json">
+                  [
+                    {
+                      "@context": "https://schema.org",
+                      "@type": "WebPage",
+                      "@id": "https://construction-project-02.netlify.app/legal/kariera.html#webpage",
+                      "name": "Kariera - Axiom Construction",
+                      "description": "Kariera w Axiom Construction: aktualne rekrutacje, wymagania, benefity i ścieżki rozwoju w zespołach budowlanych i technicznych.",
+                      "url": "https://construction-project-02.netlify.app/legal/kariera.html",
+                      "inLanguage": "pl-PL",
+                      "isPartOf": { "@type": "WebSite", "@id": "https://construction-project-02.netlify.app/#website" },
+                      "breadcrumb": { "@id": "https://construction-project-02.netlify.app/legal/kariera.html#breadcrumb" }
+                    },
+                    {
+                      "@context": "https://schema.org",
+                      "@type": "BreadcrumbList",
+                      "@id": "https://construction-project-02.netlify.app/legal/kariera.html#breadcrumb",
+                      "itemListElement": [
+                        { "@type": "ListItem", "position": 1, "name": "Strona główna", "item": "https://construction-project-02.netlify.app/" },
+                        { "@type": "ListItem", "position": 2, "name": "Kariera", "item": "https://construction-project-02.netlify.app/legal/kariera.html" }
+                      ]
+                    }
+                  ]
+                </script>
   </head>
 
   <!-- Body -->
-  <body class="page-legal" data-current="info" data-legal="kariera">
+  <body class="page--legal" data-current="info" data-legal="kariera">
     <script src="../js/theme-init.js"></script>
     <div id="top" tabindex="-1"></div>
-    <a class="skip-link" href="#main">Pomiń nawigację – przejdź do treści</a>
+    <a class="skip__link" href="#main">Pomiń nawigację – przejdź do treści</a>
 
     <!-- Header -->
     <header>
       <a href="../index.html#top" class="logo">
         <img
-          class="logo-img"
+          class="logo__img"
           src="../assets/img/logo/logo-light.svg"
           data-light="../assets/img/logo/logo-light.svg"
           data-dark="../assets/img/logo/logo-dark.svg"
@@ -68,7 +90,7 @@
           height="200"
           decoding="async"
           fetchpriority="low" />
-        <span class="logo-text">Axiom Construction</span>
+        <span class="logo__text">Axiom Construction</span>
       </a>
       <nav id="primaryNav" aria-label="Nawigacja główna">
         <ul class="nav">
@@ -80,21 +102,21 @@
           <li><a href="../index.html#kontakt">Kontakt</a></li>
         </ul>
       </nav>
-      <button id="themeToggleDesktop" class="theme-toggle theme-toggle--desktop" aria-label="Przełącz motyw" aria-pressed="false" title="Przełącz motyw (Jasny/Ciemny)">
-        <svg class="icon-sun" viewBox="0 0 24 24" aria-hidden="true">
+      <button id="themeToggleDesktop" class="theme-toggle" aria-label="Przełącz motyw" aria-pressed="false" title="Przełącz motyw (Jasny/Ciemny)">
+        <svg class="theme-toggle__icon--sun" viewBox="0 0 24 24" aria-hidden="true">
           <g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round">
             <circle cx="12" cy="12" r="3.5" fill="currentColor" stroke="none"></circle>
             <path d="M12 2.5v2.5M12 19v2.5M4.5 12H2M22 12h-2.5M5.4 5.4l1.8 1.8M16.8 16.8l1.8 1.8M18.6 5.4l-1.8 1.8M7.2 16.8l-1.8 1.8"></path>
           </g>
         </svg>
-        <svg class="icon-moon" viewBox="0 0 24 24" aria-hidden="true">
+        <svg class="theme-toggle__icon--moon" viewBox="0 0 24 24" aria-hidden="true">
           <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79Z"></path>
         </svg>
       </button>
-      <button id="hamburger" type="button" class="icon-btn hamburger" aria-label="Otwórz menu" aria-controls="primaryNav" aria-haspopup="true" aria-expanded="false">
+      <button id="nav-toggle" type="button" class="icon-button nav-toggle" aria-label="Otwórz menu" aria-controls="primaryNav" aria-haspopup="true" aria-expanded="false">
         <img
           id="hamburgerIcon"
-          class="icon-svg icon-menu"
+          class="icon-button__svg icon-button__icon--menu"
           src="../assets/img/icon/hamburger-02-light-mode-40.svg"
           data-light="../assets/img/icon/hamburger-02-light-mode-40.svg"
           data-dark="../assets/img/icon/hamburger-02-dark-mode-40.svg"
@@ -104,7 +126,7 @@
           height="40"
           decoding="async"
           fetchpriority="low" />
-        <svg class="icon-svg icon-close" viewBox="0 0 24 24" aria-hidden="true">
+        <svg class="icon-button__svg icon-button__icon--close" viewBox="0 0 24 24" aria-hidden="true">
           <g stroke="currentColor" stroke-linecap="round" stroke-width="2" fill="none">
             <line x1="5" y1="5" x2="19" y2="19" />
             <line x1="19" y1="5" x2="5" y2="19" />
@@ -115,53 +137,51 @@
 
     <!-- Main -->
     <main id="main">
-      <nav class="breadcrumbs" aria-label="Okruszki">
+      <nav class="breadcrumb" aria-label="Okruszki">
         <ol>
           <li><a href="../index.html">Strona Główna</a></li>
           <li aria-current="page">Kariera</li>
         </ol>
       </nav>
-
-      <!-- Carreer -->
-      <section class="legal-simple" aria-labelledby="career-title">
-        <div class="legal-container">
-          <h1 id="career-title" class="legal-title">Kariera</h1>
-          <p class="legal-lead">
+      <section class="legal" aria-labelledby="career-title">
+        <div class="legal__container">
+          <h1 id="career-title" class="legal__title">Kariera</h1>
+          <p class="legal__lead">
             Dołącz do naszego zespołu! Wypełnij formularz, aby zgłosić swoją kandydaturę. Poszukujemy osób ambitnych, odpowiedzialnych i gotowych do współpracy przy realizacji projektów budowlanych.
           </p>
-          <div class="legal-content">
-            <form id="career-form" class="career-form" action="#" method="post" aria-labelledby="career-title" novalidate>
-              <div class="form-group">
+          <div class="legal__content">
+            <form id="career__form" class="career__form" action="#" method="post" aria-labelledby="career-title" novalidate>
+              <div class="form__group">
                 <label for="fullname">
                   Imię i nazwisko
                   <span aria-hidden="true">*</span>
                 </label>
                 <input type="text" id="fullname" name="fullname" required placeholder="Wpisz swoje imię i nazwisko" />
               </div>
-              <div class="form-group">
+              <div class="form__group">
                 <label for="email">
                   Adres e-mail
                   <span aria-hidden="true">*</span>
                 </label>
                 <input type="email" id="email" name="email" required placeholder="Twój adres e-mail" />
               </div>
-              <div class="form-group">
+              <div class="form__group">
                 <label for="phone">Telefon kontaktowy</label>
                 <input type="tel" id="phone" name="phone" placeholder="np. +48 600 123 456" />
               </div>
-              <div class="form-group">
+              <div class="form__group">
                 <label for="position">Stanowisko / specjalizacja</label>
                 <input type="text" id="position" name="position" placeholder="Np. murarz, elektryk, kierownik budowy..." />
               </div>
-              <div class="form-group">
+              <div class="form__group">
                 <label for="message">Krótki opis doświadczenia</label>
                 <textarea id="message" name="message" rows="5" placeholder="Opisz swoje doświadczenie lub powiedz, dlaczego chcesz z nami pracować"></textarea>
               </div>
-              <div class="form-group">
+              <div class="form__group">
                 <label for="cv">Załącz CV (PDF, max 5MB)</label>
                 <input type="file" id="cv" name="cv" accept=".pdf" />
               </div>
-              <div class="form-group checkbox">
+              <div class="form__group checkbox">
                 <input type="checkbox" id="consent" name="consent" required />
                 <label for="consent">
                   Wyrażam zgodę na przetwarzanie moich danych osobowych na potrzeby procesu rekrutacji zgodnie z
@@ -177,12 +197,12 @@
     </main>
 
     <!-- Footer -->
-    <footer role="contentinfo" aria-labelledby="footer-heading">
-      <h2 id="footer-heading" class="visually-hidden">Stopka serwisu</h2>
-      <div class="footer-content">
-        <div class="footer-section footer-brand">
+    <footer role="contentinfo" aria-labelledby="footer__heading">
+      <h2 id="footer__heading" class="visually-hidden">Stopka serwisu</h2>
+      <div class="footer__content">
+        <div class="footer__section footer__brand">
           <img
-            class="logo-img"
+            class="logo__img"
             src="../assets/img/logo/logo-light.svg"
             data-light="../assets/img/logo/logo-light.svg"
             data-dark="../assets/img/logo/logo-dark.svg"
@@ -192,7 +212,7 @@
             loading="lazy"
             decoding="async"
             fetchpriority="low" />
-          <h3 class="footer-heading">
+          <h3>
             Axiom Construction
             <br />
             Budownictwo • Remonty • Wykończenia wnętrz
@@ -201,22 +221,22 @@
             Nowoczesna firma budowlana specjalizująca się w budowie domów, kompleksowych remontach oraz wykończeniach wnętrz. Stawiamy na jakość wykonania, terminowość i przejrzystą komunikację na
             każdym etapie realizacji.
           </p>
-          <div class="social-icons">
-            <a href="https://github.com/KPKrol85" class="social-icon" aria-label="GitHub — KP_Code" target="_blank" rel="me noopener noreferrer">
+          <div class="social__icons">
+            <a href="https://github.com/KPKrol85" class="social__icon" aria-label="GitHub — KP_Code" target="_blank" rel="me noopener noreferrer">
               <img src="../assets/img/icon/github.svg" alt="" width="24" height="24" loading="lazy" decoding="async" />
             </a>
-            <a href="https://www.facebook.com/kpkrol85" class="social-icon" aria-label="Facebook — KP_Code" target="_blank" rel="me noopener noreferrer">
+            <a href="https://www.facebook.com/kpkrol85" class="social__icon" aria-label="Facebook — KP_Code" target="_blank" rel="me noopener noreferrer">
               <img src="../assets/img/icon/facebook.svg" alt="" width="24" height="24" loading="lazy" decoding="async" />
             </a>
-            <a href="https://x.com/KP_Code_85" class="social-icon" aria-label="X (Twitter) — KP_Code" target="_blank" rel="me noopener noreferrer">
+            <a href="https://x.com/KP_Code_85" class="social__icon" aria-label="X (Twitter) — KP_Code" target="_blank" rel="me noopener noreferrer">
               <img src="../assets/img/icon/x.svg" alt="" width="24" height="24" loading="lazy" decoding="async" />
             </a>
-            <a href="https://www.reddit.com/user/Known-Necessary6868" class="social-icon" aria-label="Reddit — KP_Code" target="_blank" rel="me noopener noreferrer">
+            <a href="https://www.reddit.com/user/Known-Necessary6868" class="social__icon" aria-label="Reddit — KP_Code" target="_blank" rel="me noopener noreferrer">
               <img src="../assets/img/icon/reddit.svg" alt="" width="24" height="24" loading="lazy" decoding="async" />
             </a>
           </div>
           <a
-            class="gmaps-ico"
+            class="contact__map-icon"
             href="https://www.google.com/maps/d/viewer?mid=1BjaF_JmJ_MRVz2naiDRgDnJT4a_A_40&ehbc=2E312F&noprof=1"
             target="_blank"
             rel="noopener noreferrer"
@@ -224,7 +244,7 @@
             <img src="../assets/img/icon/location-dot-solid-full.svg" alt="location" width="24" height="24" loading="lazy" decoding="async" />
           </a>
         </div>
-        <div class="footer-section" aria-labelledby="footer-services">
+        <div class="footer__section" aria-labelledby="footer-services">
           <h3 id="footer-services">Nasze Usługi</h3>
           <ul>
             <li><a href="../services/budowa-domow.html">Budowa domów</a></li>
@@ -235,9 +255,9 @@
             <li><a href="../services/instalacje-elektryczne.html">Instalacje elektryczne</a></li>
           </ul>
         </div>
-        <div class="footer-section" aria-labelledby="footer-contact">
+        <div class="footer__section" aria-labelledby="footer-contact">
           <h3 id="footer-contact">Kontakt</h3>
-          <address class="contact-info">
+          <address class="contact__info">
             <p>
               <strong>Adres:</strong>
               <br />
@@ -264,7 +284,7 @@
             </p>
           </address>
         </div>
-        <div class="footer-section" aria-labelledby="footer-info">
+        <div class="footer__section" aria-labelledby="footer-info">
           <h3 id="footer-info">Informacje</h3>
           <ul>
             <li><a href="polityka-prywatnosci.html">Polityka prywatności</a></li>
@@ -278,8 +298,8 @@
       <button id="powrot-na-gore" type="button" aria-label="Powrót na górę" title="Powrót na górę">
         <img src="../assets/img/icon/arrow-up-solid-full.svg" alt="" width="20" height="20" decoding="async" />
       </button>
-      <div class="footer-bottom">
-        <p>&copy; 2025 KP_Code | Wszystkie prawa zastrzeżone</p>
+      <div class="footer__bottom">
+        <p>&copy; 2026 KP_Code Digital Studio | Wszystkie prawa zastrzeżone.</p>
       </div>
     </footer>
 
@@ -287,3 +307,4 @@
     <script src="../dist/script.min.js" defer></script>
   </body>
 </html>
+

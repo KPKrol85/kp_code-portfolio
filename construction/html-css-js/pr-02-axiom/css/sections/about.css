@@ -1,41 +1,41 @@
 
-.about-section {
+.about {
   text-align: center;
   background: var(--surface-2);
 }
-.about-inner {
+.about__inner {
   max-width: var(--max-w, 1200px);
   margin: 0 auto;
   padding: 0 var(--section-px, 1rem);
 }
-.about-section .section-title {
+.about .section__title {
   color: var(--primary);
 }
-body.dark-mode .about-section .section-title {
+body.dark-mode .about .section__title {
   color: var(--accent);
 }
-.about-grid {
+.about__grid {
   display: grid;
   grid-template-columns: minmax(320px, 1fr) minmax(300px, 0.9fr);
   gap: clamp(1rem, 3vw, 2rem);
   align-items: center;
   margin-top: 0.25rem;
 }
-.about-copy {
+.about__copy {
   text-align: left;
 }
-.about-lead {
+.about__lead {
   max-width: 62ch;
   margin: 0.25rem auto 1.25rem;
   text-wrap: pretty;
   text-align: center;
 }
-.about-copy .about-lead {
+.about__copy .about__lead {
   max-width: 60ch;
   margin: 0.25rem 0 1.1rem;
   text-align: left;
 }
-.about-cta {
+.about__cta {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -44,7 +44,7 @@ body.dark-mode .about-section .section-title {
   margin-top: 0.5rem;
   margin-inline: auto;
 }
-.about-highlights {
+.about__highlights {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
   gap: 0.9rem;
@@ -52,8 +52,8 @@ body.dark-mode .about-section .section-title {
   padding: 0;
   margin: 0 0 1.1rem;
 }
-.about-highlights > li,
-.about-highlights .feature {
+.about__highlights > li,
+.about__highlights .features__item {
   position: relative;
   display: grid;
   row-gap: 0.25rem;
@@ -63,22 +63,22 @@ body.dark-mode .about-section .section-title {
   border: 1px solid var(--feature-border);
   box-shadow: 0 2px 8px var(--feature-shadow);
 }
-.about-highlights .feature strong,
-.about-highlights > li > strong {
+.about__highlights .features__item strong,
+.about__highlights > li > strong {
   display: block;
   font-size: 1rem;
   font-weight: 700;
   letter-spacing: 0.01em;
   margin-bottom: 0.25rem;
 }
-.about-highlights .feature span,
-.about-highlights > li > span {
+.about__highlights .features__item span,
+.about__highlights > li > span {
   display: block;
   font-size: 0.95rem;
   line-height: 1.5;
   opacity: 0.9;
 }
-.about-media .frame {
+.about__media .frame {
   position: relative;
   aspect-ratio: 4 / 3;
   border-radius: 18px;
@@ -88,31 +88,31 @@ body.dark-mode .about-section .section-title {
   box-shadow: 0 6px 24px rgba(0, 0, 0, 0.15);
   transition: transform 0.4s ease, box-shadow 0.4s ease;
 }
-.about-media img {
+.about__media img {
   width: 100%;
   height: 100%;
   display: block;
   object-fit: cover;
   transition: transform 0.6s ease-out, filter 0.6s ease-out;
 }
-.about-media .frame:hover img {
+.about__media .frame:hover img {
   transform: scale(1.02);
   filter: brightness(1.05);
 }
-body.dark-mode .about-media .frame {
+body.dark-mode .about__media .frame {
   background: var(--surface-2);
   border-color: color-mix(in srgb, var(--text-light) 14%, transparent);
   box-shadow: 0 6px 20px rgba(0, 0, 0, 0.35);
 }
-.about-highlights.features {
+.about__highlights.features__list {
   gap: 1rem;
 }
 
 @media (max-width: 900px) {
-  .about-grid {
+  .about__grid {
     grid-template-columns: 1fr;
   }
-  .about-copy .about-lead {
+  .about__copy .about__lead {
     margin: 0.25rem auto 1rem;
     text-align: center;
   }

@@ -8,7 +8,7 @@ export const initThemeToggle = () => {
   const hamburgerIcon = qs(SELECTORS.hamburgerIcon);
   const mq = window.matchMedia ? window.matchMedia("(prefers-color-scheme: dark)") : null;
   const setLogo = (isDark) => {
-    qsa(".logo-img[data-light][data-dark]").forEach((img) => {
+    qsa(".logo__img[data-light][data-dark]").forEach((img) => {
       const next = isDark ? img.dataset.dark : img.dataset.light;
       if (!next) return;
       const absNext = new URL(next, document.baseURI).href;

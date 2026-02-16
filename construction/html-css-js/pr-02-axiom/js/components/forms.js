@@ -7,7 +7,9 @@ export const initContactForm = () => {
   if (!form) return;
   const IS_LOCAL = /localhost|127\.0\.0\.1/.test(location.hostname);
   const statusBox = form.querySelector(SELECTORS.contactStatus);
-  const submitBtn = form.querySelector(".submit-btn");
+  const submitBtn = form.querySelector('button[type="submit"], .btn[type="submit"], .btn-primary[type="submit"]');
+  const supportsNativeValidation = typeof form.reportValidity === "function";
+  let useNativeFallback = false;
   const originalBtnText = submitBtn ? submitBtn.textContent : "Wyślij wiadomość";
   const msg = form.querySelector(SELECTORS.contactMessage);
   const counter = qs(SELECTORS.contactCounter);
@@ -78,8 +80,15 @@ export const initContactForm = () => {
   });
 
   form.addEventListener("submit", async (e) => {
-    e.preventDefault();
-    if (form.getAttribute("aria-busy") === "true") return;
+    if (useNativeFallback) {
+      useNativeFallback = false;
+      return;
+    }
+
+    if (form.getAttribute("aria-busy") === "true") {
+      e.preventDefault();
+      return;
+    }
     showStatus("", false);
     let valid = true;
     CONTACT_FORM.requiredFields.forEach((id) => {
@@ -111,20 +120,13 @@ export const initContactForm = () => {
       valid = false;
       showStatus("Zaznacz zgodę na przetwarzanie danych.", false);
     }
-    const recaptchaWrap = form.querySelector("[data-recaptcha]");
-    if (recaptchaWrap && !IS_LOCAL) {
-      const tokenField = form.querySelector('[name="g-recaptcha-response"]');
-      if (!tokenField || !tokenField.value) {
-        valid = false;
-        showStatus("Potwierdź, że nie jesteś robotem (reCAPTCHA).", false);
-      }
-    }
     if (msg && msg.value.length > CONTACT_FORM.maxMessageLength) {
       setInvalid(msg);
       valid = false;
       showStatus(`Wiadomość może mieć maks. ${CONTACT_FORM.maxMessageLength} znaków.`, false);
     }
     if (!valid) {
+      e.preventDefault();
       const invalids = qsa(".is-invalid", form);
       if (a11ySummary) {
         const labels = invalids.map((el) => {
@@ -142,6 +144,12 @@ export const initContactForm = () => {
       if (statusBox && !statusBox.textContent) showStatus("Uzupełnij wymagane pola.", false);
       return;
     }
+    if (supportsNativeValidation && !form.reportValidity()) {
+      e.preventDefault();
+      return;
+    }
+
+    e.preventDefault();
     form.setAttribute("aria-busy", "true");
     if (submitBtn) {
       submitBtn.disabled = true;
@@ -197,8 +205,11 @@ export const initContactForm = () => {
         submitBtn.classList.remove("sending");
         submitBtn.textContent = originalBtnText;
       }
-      showStatus("Ups! Nie udało się wysłać. Spróbuj ponownie za chwilę.", false);
+      showStatus("Nie udało się wysłać przez ulepszony tryb. Wysyłamy formularz standardowo…", false);
       console.error(err);
+      form.removeAttribute("aria-busy");
+      useNativeFallback = true;
+      form.requestSubmit();
     }
   });
 };

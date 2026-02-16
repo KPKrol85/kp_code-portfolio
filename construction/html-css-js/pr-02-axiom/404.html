@@ -1,6 +1,7 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="pl">
   <head>
+    
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
     <title>Strona nie znaleziona (404) — Axiom Construction</title>
@@ -41,16 +42,39 @@
     <meta name="format-detection" content="telephone=no" />
     <link rel="preload" href="assets/fonts/lato-v25-latin/lato-v25-latin-regular.woff2" as="font" type="font/woff2" crossorigin />
     <link rel="preload" href="assets/fonts/montserrat-v31-latin/montserrat-v31-latin-600.woff2" as="font" type="font/woff2" crossorigin />
-
-
     <link rel="preload" as="style" href="dist/style.min.css" />
     <link rel="stylesheet" href="dist/style.min.css" />
 
-    <script type="application/ld+json" src="js/structured-data/404.json"></script>
+    <script type="application/ld+json">
+                  [
+                    {
+                      "@context": "https://schema.org",
+                      "@type": "WebPage",
+                      "@id": "https://construction-project-02.netlify.app/404.html#webpage",
+                      "name": "Strona nie znaleziona (404) - Axiom Construction",
+                      "description": "Strona, której szukasz, nie istnieje. Wróć na stronę główną Axiom Construction lub wybierz właściwą usługę z menu i kontynuuj.",
+                      "url": "https://construction-project-02.netlify.app/404.html",
+                      "inLanguage": "pl-PL",
+                      "isPartOf": { "@type": "WebSite", "@id": "https://construction-project-02.netlify.app/#website" },
+                      "breadcrumb": { "@id": "https://construction-project-02.netlify.app/404.html#breadcrumb" }
+                    },
+                    {
+                      "@context": "https://schema.org",
+                      "@type": "BreadcrumbList",
+                      "@id": "https://construction-project-02.netlify.app/404.html#breadcrumb",
+                      "itemListElement": [
+                        { "@type": "ListItem", "position": 1, "name": "Strona główna", "item": "https://construction-project-02.netlify.app/" },
+                        { "@type": "ListItem", "position": 2, "name": "Strona 404", "item": "https://construction-project-02.netlify.app/404.html" }
+                      ]
+                    }
+                  ]
+                </script>
   </head>
-  <body class="error-page">
+
+  <!-- Body -->
+  <body class="error__page">
     <script src="js/theme-init.js"></script>
-    <main class="not-found">
+    <main class="error__not-found">
       <section class="not-found__section">
         <h1 class="not-found__title">404 — Strona nie istnieje</h1>
         <p class="not-found__text">
@@ -58,10 +82,9 @@
           <br />
           Wróć na stronę główną, aby kontynuować przeglądanie.
         </p>
-        <a href="/" class="btn-primary not-found__button">
-          Wróć na stronę główną
-        </a>
+        <a href="/" class="btn-primary not-found__button">Wróć na stronę główną</a>
       </section>
     </main>
   </body>
 </html>
+
