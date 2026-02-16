@@ -30,10 +30,58 @@ export function initMobileNav() {
   if (drawer) drawer.hidden = false;
 
   const mq = window.matchMedia("(min-width: 939px)");
+  const getFocusable = () =>
+    drawer
+      ? Array.from(
+          drawer.querySelectorAll(
+            "a[href],button:not([disabled]),input:not([disabled]),select:not([disabled]),textarea:not([disabled]),[tabindex]:not([tabindex='-1'])"
+          )
+        ).filter((el) => !el.hasAttribute("hidden") && el.getAttribute("aria-hidden") !== "true")
+      : [];
+  let previouslyFocused = null;
+  const trapFocus = (event) => {
+    if (event.key !== "Tab" || !document.body.classList.contains("nav-open")) return;
+    const focusable = getFocusable();
+    if (!focusable.length) return;
+    const first = focusable[0];
+    const last = focusable[focusable.length - 1];
+    const active = document.activeElement;
+
+    if (drawer && !drawer.contains(active)) {
+      event.preventDefault();
+      first.focus();
+      return;
+    }
+
+    if (event.shiftKey && active === first) {
+      event.preventDefault();
+      last.focus();
+      return;
+    }
+
+    if (!event.shiftKey && active === last) {
+      event.preventDefault();
+      first.focus();
+    }
+  };
   const setOpen = (open) => {
+    const wasOpen = document.body.classList.contains("nav-open");
+    if (open && !wasOpen) previouslyFocused = document.activeElement;
     document.body.classList.toggle("nav-open", open);
     toggle.setAttribute("aria-expanded", String(open));
     if (drawer) drawer.setAttribute("aria-hidden", String(!open));
+    if (open) {
+      const focusable = getFocusable();
+      if (focusable.length) focusable[0].focus();
+      document.addEventListener("keydown", trapFocus);
+    } else {
+      document.removeEventListener("keydown", trapFocus);
+      if (wasOpen) {
+        const target = previouslyFocused && typeof previouslyFocused.focus === "function" ? previouslyFocused : toggle;
+        if (target && typeof target.focus === "function") target.focus();
+      }
+      previouslyFocused = null;
+    }
   };
 
   if (!toggle.hasAttribute("aria-controls")) {
