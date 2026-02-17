@@ -12,6 +12,60 @@
 
   <!-- Body -->
   <body class="offline-page">
+    <header id="top" class="site-header" data-sticky>
+      <div class="container header-row">
+        <a class="brand" href="index.html#top" aria-label="Strona główna restauracji Ambre">
+          <img class="logo logo-light" src="assets/img/logo-img/logo-name-light.svg" alt="Ambre – restauracja fine dining" width="140" height="140" decoding="async" />
+          <img class="logo logo-dark" src="assets/img/logo-img/logo-name-dark.svg" alt="" aria-hidden="true" width="140" height="140" decoding="async" />
+        </a>
+        <nav id="site-nav" class="site-nav" data-testid="site-nav" aria-label="Główna nawigacja">
+          <ul>
+            <li><a href="index.html#onas">O nas</a></li>
+            <li class="has-submenu">
+              <a href="index.html#menu">Menu</a>
+              <ul class="nav-submenu" aria-label="Podmenu Menu">
+                <li><a href="menu.html">Pełne menu</a></li>
+              </ul>
+            </li>
+            <li class="has-submenu">
+              <a href="index.html#galeria">Galeria</a>
+              <ul class="nav-submenu" aria-label="Podmenu Galeria">
+                <li><a href="galeria.html">Pełna galeria</a></li>
+              </ul>
+            </li>
+            <li><a href="index.html#opinie">Opinie</a></li>
+            <li><a href="index.html#rezerwacja">Rezerwacja</a></li>
+            <li><a href="index.html#faq">FAQ</a></li>
+          </ul>
+        </nav>
+        <div class="header-actions">
+          <a href="tel:+48533537091" class="btn btn-ring" aria-label="Zadzwoń do restauracji KP_Code">
+            <span aria-hidden="true">
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="currentColor">
+                <path
+                  fill-rule="evenodd"
+                  d="M2 3.5A1.5 1.5 0 0 1 3.5 2h1.148a1.5 1.5 0 0 1 1.465 1.175l.716 3.223a1.5 1.5 0 0 1-1.052 1.767l-.933.267c-.41.117-.643.555-.48.95a11.542 11.542 0 0 0 6.254 6.254c.395.163.833-.07.95-.48l.267-.933a1.5 1.5 0 0 1 1.767-1.052l3.223.716A1.5 1.5 0 0 1 18 15.352V16.5a1.5 1.5 0 0 1-1.5 1.5H15c-1.149 0-2.263-.15-3.326-.43A13.022 13.022 0 0 1 2.43 8.326 13.019 13.019 0 0 1 2 5V3.5Z"
+                  clip-rule="evenodd" />
+              </svg>
+            </span>
+            <span class="phone-text">+48&nbsp;533&nbsp;537&nbsp;091</span>
+          </a>
+          <button class="theme-toggle" data-testid="theme-toggle" type="button" aria-label="Przełącz motyw" aria-pressed="false" title="Motyw">
+            <span aria-hidden="true">
+              <img src="assets/icons/icons-svg/sun-outline.svg" alt="" width="20" height="20" decoding="async" />
+            </span>
+          </button>
+          <button class="nav-toggle" data-testid="nav-toggle" type="button" aria-controls="site-nav" aria-expanded="false" aria-label="Menu">
+            <span aria-hidden="true">
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
+              </svg>
+            </span>
+            <span class="sr-only">Menu</span>
+          </button>
+        </div>
+      </div>
+    </header>
     <main class="offline-card">
       <h1>Jestes offline</h1>
       <p>Brak polaczenia z internetem. Ta strona jest niedostepna offline.</p>
