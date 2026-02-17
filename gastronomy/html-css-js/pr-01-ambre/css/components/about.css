@@ -1,67 +1,67 @@
 /* About */
-.about-photo {
+.about__photo {
   border-radius: var(--radius-xs);
   overflow: hidden;
   box-shadow: var(--shadow-xs);
 }
-.about-photo img {
+.about__photo img {
   width: 100%;
   height: auto;
   border-radius: var(--radius-xs);
   object-fit: cover;
 }
-.about .bullets {
+.about__bullets {
   display: grid;
   gap: var(--space-02);
   list-style: none;
   margin: var(--space-04) 0 0;
   padding: 0;
 }
-.about .bullets li {
+.about__bullet {
   display: flex;
   align-items: center;
   gap: var(--space-02);
 }
-.about .bullets a,
-.about .bullets time {
+.about__bullets a,
+.about__bullets time {
   white-space: nowrap;
 }
-.about .bullets a {
+.about__bullets a {
   color: var(--c-ink);
   font-weight: 600;
   text-decoration: none;
   transition: color 0.2s ease;
 }
-.about .bullets a:hover,
-.about .bullets a:focus-visible {
+.about__bullets a:hover,
+.about__bullets a:focus-visible {
   color: var(--c-accent-contrast);
 }
-.about .bullets a:visited {
+.about__bullets a:visited {
   color: var(--c-ink);
 }
-#onas #about-title {
+.about__title {
   text-align: center;
   margin-bottom: var(--space-03);
 }
-.bullets__icon {
+.about__bullet-icon {
   display: inline-flex;
   align-items: center;
   justify-content: center;
   flex: 0 0 auto;
   color: var(--c-ink);
 }
-.bullets__icon svg {
+.about__bullet-icon svg {
   width: 20px;
   height: 20px;
   display: block;
 }
-#onas .grid-2 > div {
+.about .grid-2 > div {
   text-align: center;
 }
-#onas .bullets li {
+.about__bullet {
   justify-content: center;
 }
-#onas .u-lead {
+.about .u-lead {
   margin-inline: auto;
   text-align: center;
   line-height: var(--lh-relaxed);
@@ -69,16 +69,16 @@
 }
 
 @media (min-width: 1024px) {
-  #onas .grid-2 > div {
+  .about .grid-2 > div {
     text-align: left;
   }
-  #onas #about-title {
+  .about__title {
     text-align: left;
-}
-  #onas .bullets li {
+  }
+  .about__bullet {
     justify-content: flex-start;
   }
-  #onas .u-lead {
+  .about .u-lead {
     margin-inline: 0;
     text-align: left;
     padding: 0;
