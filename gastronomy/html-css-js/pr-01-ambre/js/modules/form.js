@@ -31,7 +31,7 @@ export function initReservationForm() {
   const formMsg = $("#form-msg");
   if (!form || !formMsg) return;
 
-  const submitBtn = form.querySelector(".btn-form");
+  const submitBtn = form.querySelector(".btn--form");
   const phoneInput = form.querySelector("#phone");
   const phoneError = form.querySelector("#phone-error");
   const consentInput = form.querySelector("#consent");
@@ -45,14 +45,14 @@ export function initReservationForm() {
     if (loading) {
       if (!submitBtn.dataset.label) submitBtn.dataset.label = submitBtn.textContent.trim();
       submitBtn.textContent = "Wysyłanie…";
-      submitBtn.classList.add("is-loading");
+      submitBtn.classList.add("btn--loading");
       submitBtn.setAttribute("aria-busy", "true");
       submitBtn.disabled = true;
       return;
     }
 
     submitBtn.textContent = submitBtn.dataset.label || "Wyślij rezerwację";
-    submitBtn.classList.remove("is-loading");
+    submitBtn.classList.remove("btn--loading");
     submitBtn.removeAttribute("aria-busy");
     submitBtn.disabled = false;
   };
@@ -85,7 +85,7 @@ export function initReservationForm() {
   });
 
   form.addEventListener("submit", (event) => {
-    if (submitBtn && submitBtn.classList.contains("is-loading")) {
+    if (submitBtn && submitBtn.classList.contains("btn--loading")) {
       event.preventDefault();
       return;
     }

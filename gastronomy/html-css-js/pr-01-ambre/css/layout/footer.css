@@ -194,7 +194,7 @@ html[data-theme="light"] .ft-bottom .ft-legal a:hover {
 html[data-theme="dark"] .ft-bottom .ft-legal a:hover {
   color: #ffffff;
 }
-:where(.btn-social, .ft-nav a, .ft-contact a, .ft-legal a):focus-visible {
+:where(.btn--social, .ft-nav a, .ft-contact a, .ft-legal a):focus-visible {
   outline: 2px solid var(--c-accent-contrast);
   outline-offset: 2px;
   text-decoration: none;
