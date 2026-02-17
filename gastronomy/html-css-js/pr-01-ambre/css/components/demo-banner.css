@@ -20,12 +20,12 @@
 .demo-banner[hidden] {
   display: none;
 }
-.demo-banner.is-visible {
+.demo-banner--visible {
   opacity: 1;
   transform: translateY(0);
   pointer-events: auto;
 }
-.demo-banner.is-hiding {
+.demo-banner--hiding {
   opacity: 0;
   transform: translateY(12px);
 }
@@ -58,20 +58,20 @@
   line-height: 1.45;
   margin: 0;
 }
-.demo-actions {
+.demo-banner__actions {
   display: flex;
   flex-wrap: wrap;
   gap: 10px;
   justify-content: flex-end;
 }
-.demo-links {
+.demo-banner__links {
   display: flex;
   gap: 14px;
   flex-wrap: wrap;
   font-size: var(--fs-xs);
   color: var(--c-muted);
 }
-.demo-links a {
+.demo-banner__links a {
   color: var(--c-link);
 }
 
@@ -79,7 +79,7 @@
   .demo-banner__panel {
     align-items: flex-start;
   }
-  .demo-actions {
+  .demo-banner__actions {
     width: 100%;
     justify-content: flex-start;
   }

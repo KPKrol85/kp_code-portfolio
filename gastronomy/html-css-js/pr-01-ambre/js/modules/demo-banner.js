@@ -27,19 +27,19 @@ export function initDemoBanner() {
     banner.setAttribute("aria-hidden", "false");
 
     requestAnimationFrame(() => {
-      banner.classList.add("is-visible");
+      banner.classList.add("demo-banner--visible");
     });
   };
 
   const hide = (storageKey) => {
     if (storageKey) localStorage.setItem(storageKey, "true");
     banner.setAttribute("aria-hidden", "true");
-    banner.classList.remove("is-visible");
-    banner.classList.add("is-hiding");
+    banner.classList.remove("demo-banner--visible");
+    banner.classList.add("demo-banner--hiding");
 
     const done = () => {
       banner.setAttribute("hidden", "");
-      banner.classList.remove("is-hiding");
+      banner.classList.remove("demo-banner--hiding");
     };
 
     if (prefersReducedMotion()) {
