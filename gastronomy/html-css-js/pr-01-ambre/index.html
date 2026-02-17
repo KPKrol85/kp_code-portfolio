@@ -377,7 +377,7 @@
           <a href="menu.html" class="btn btn--ghost" aria-label="Przejdź do pełnego menu restauracji">Zobacz pełne menu</a>
         </div>
       </section>
-      
+
       <!-- Gallery -->
       <section id="galeria" class="l-section gallery" aria-labelledby="gallery-title">
         <div class="container">
@@ -532,32 +532,32 @@
         </div>
       </section>
       <section id="rezerwacja" class="l-section booking" aria-labelledby="booking-title">
-        <div class="container grid-2">
+        <div class="container grid-2 booking__layout">
           <div>
-            <h2 id="booking-title">Rezerwacja</h2>
-            <p class="u-muted">Wypełnij formularz. Oddzwonimy z potwierdzeniem.</p>
+            <h2 id="booking-title" class="booking__title">Rezerwacja</h2>
+            <p class="booking__lead u-muted">Wypełnij formularz. Oddzwonimy z potwierdzeniem.</p>
 
-            <form id="booking-form" class="form" data-testid="booking-form" name="reservation" method="POST" data-netlify="true" novalidate>
+            <form id="booking-form" class="booking-form" data-testid="booking-form" name="reservation" method="POST" data-netlify="true" novalidate>
               <input type="hidden" name="form-name" value="reservation" />
-              <input type="text" name="company" class="hp" aria-hidden="true" tabindex="-1" autocomplete="off" />
-              <div class="f-row">
+              <input type="text" name="company" class="booking-form__hp" aria-hidden="true" tabindex="-1" autocomplete="off" />
+              <div class="booking-form__row">
                 <label for="name">Imię i nazwisko</label>
                 <input id="name" name="name" type="text" required autocomplete="name" placeholder="Jan Kowalski" aria-describedby="form-msg" />
               </div>
-              <div class="f-row">
+              <div class="booking-form__row">
                 <label for="phone">Telefon</label>
                 <input id="phone" name="phone" autocomplete="tel" type="tel" required inputmode="tel" placeholder="+48 123 456 789" aria-describedby="form-msg phone-error" />
-                <p id="phone-error" class="form-msg" aria-live="polite"></p>
+                <p id="phone-error" class="booking-form__message" aria-live="polite"></p>
               </div>
-              <div class="f-row">
+              <div class="booking-form__row">
                 <label for="date">Data</label>
                 <input id="date" name="date" type="date" required aria-describedby="form-msg" />
               </div>
-              <div class="f-row">
+              <div class="booking-form__row">
                 <label for="time">Godzina</label>
                 <input id="time" name="time" type="time" required min="14:00" max="22:00" step="900" aria-describedby="form-msg" />
               </div>
-              <div class="f-row">
+              <div class="booking-form__row">
                 <label for="guests">Liczba gości</label>
                 <select id="guests" name="guests" required>
                   <option value="" disabled selected hidden>Wybierz…</option>
@@ -569,12 +569,12 @@
                   <option>6+</option>
                 </select>
               </div>
-              <div class="f-row">
+              <div class="booking-form__row">
                 <label for="notes">Uwagi (opcjonalnie)</label>
                 <textarea id="notes" name="notes" rows="3" placeholder="Preferencje stolika, alergie…"></textarea>
               </div>
-              <div class="f-row consent-row">
-                <label class="consent" for="consent">
+              <div class="booking-form__row booking-form__consent-row">
+                <label class="booking-form__consent" for="consent">
                   <input id="consent" name="consent" type="checkbox" required aria-describedby="consent-error form-msg" />
                   <span>
                     Wyrazam zgode na przetwarzanie moich danych osobowych zgodnie z
@@ -582,15 +582,15 @@
                     .
                   </span>
                 </label>
-                <p id="consent-error" class="form-msg" aria-live="polite"></p>
+                <p id="consent-error" class="booking-form__message" aria-live="polite"></p>
               </div>
-              <div class="f-actions">
+              <div class="booking-form__actions">
                 <button class="btn btn--form" type="submit">Wyślij rezerwację</button>
-                <p id="form-msg" class="form-msg" role="status" aria-live="polite"></p>
+                <p id="form-msg" class="booking-form__message booking-form__message--status" role="status" aria-live="polite"></p>
               </div>
             </form>
           </div>
-          <aside class="booking-aside">
+          <aside class="booking__aside">
             <h3>Informacje</h3>
             <ul class="bullets">
               <li>
@@ -602,7 +602,7 @@
               <li>Dress code: smart casual</li>
               <li>Menu degustacyjne: 7 dań (opcje vege)</li>
             </ul>
-            <a href="/#top" class="booking-logo" aria-label="Strona główna Ambre">
+            <a href="/#top" class="booking__logo" aria-label="Strona główna Ambre">
               <img class="logo logo-light" src="assets/img/logo-img/logo-light.svg" alt="Ambre – logo restauracji" width="140" height="140" decoding="async" />
               <img class="logo logo-dark" src="assets/img/logo-img/logo-dark.svg" alt="" aria-hidden="true" width="140" height="140" decoding="async" />
             </a>
@@ -807,7 +807,9 @@
 
     <!-- Scroll to top -->
     <button class="scroll-btn scroll-up" data-testid="scroll-up" type="button" aria-label="Przewiń na górę" title="Na górę" aria-hidden="true" tabindex="-1" hidden>
-      <img src="assets/icons/icons-svg/chevron-up-black.svg" alt="" width="16" height="16" decoding="async" />
+      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 10.5 12 3m0 0 7.5 7.5M12 3v18" />
+      </svg>
     </button>
 
     <!-- Mobile drawer -->
@@ -842,19 +844,3 @@
     </div>
   </body>
 </html>
-
-<!--
-
-svg inline:
-
-sun:
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="size-6">
-  <path d="M12 2.25a.75.75 0 0 1 .75.75v2.25a.75.75 0 0 1-1.5 0V3a.75.75 0 0 1 .75-.75ZM7.5 12a4.5 4.5 0 1 1 9 0 4.5 4.5 0 0 1-9 0ZM18.894 6.166a.75.75 0 0 0-1.06-1.06l-1.591 1.59a.75.75 0 1 0 1.06 1.061l1.591-1.59ZM21.75 12a.75.75 0 0 1-.75.75h-2.25a.75.75 0 0 1 0-1.5H21a.75.75 0 0 1 .75.75ZM17.834 18.894a.75.75 0 0 0 1.06-1.06l-1.59-1.591a.75.75 0 1 0-1.061 1.06l1.59 1.591ZM12 18a.75.75 0 0 1 .75.75V21a.75.75 0 0 1-1.5 0v-2.25A.75.75 0 0 1 12 18ZM7.758 17.303a.75.75 0 0 0-1.061-1.06l-1.591 1.59a.75.75 0 0 0 1.06 1.061l1.591-1.59ZM6 12a.75.75 0 0 1-.75.75H3a.75.75 0 0 1 0-1.5h2.25A.75.75 0 0 1 6 12ZM6.697 7.757a.75.75 0 0 0 1.06-1.06l-1.59-1.591a.75.75 0 0 0-1.061 1.06l1.59 1.591Z" />
-</svg>
-
-moon:
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="size-6">
-  <path fill-rule="evenodd" d="M9.528 1.718a.75.75 0 0 1 .162.819A8.97 8.97 0 0 0 9 6a9 9 0 0 0 9 9 8.97 8.97 0 0 0 3.463-.69.75.75 0 0 1 .981.98 10.503 10.503 0 0 1-9.694 6.46c-5.799 0-10.5-4.7-10.5-10.5 0-4.368 2.667-8.112 6.46-9.694a.75.75 0 0 1 .818.162Z" clip-rule="evenodd" />
-</svg>
-
--->

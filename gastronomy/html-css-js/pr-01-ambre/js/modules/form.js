@@ -27,8 +27,8 @@ const formatPhone = (value) => {
 const isValidPhone = (value) => normalizePhone(value).length === 9;
 
 export function initReservationForm() {
-  const form = byTestId("booking-form") || $("#booking-form");
-  const formMsg = $("#form-msg");
+  const form = byTestId("booking-form") || $(".booking-form") || $("#booking-form");
+  const formMsg = $("#form-msg") || form?.querySelector(".booking-form__message--status");
   if (!form || !formMsg) return;
 
   const submitBtn = form.querySelector(".btn--form");

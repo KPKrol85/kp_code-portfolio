@@ -15,10 +15,10 @@ html {
 }
 
 :root {
-  --container-sm: 640px; /* NEW */
-  --container-md: 960px; /* NEW */
-  --container-lg: 1140px; /* NEW */
-  --container-xl: 1280px; /* NEW */
+  --container-sm: 640px;
+  --container-md: 960px;
+  --container-lg: 1140px;
+  --container-xl: 1280px;
 
   --max: 1140px;
   --g: 24px;
@@ -48,51 +48,51 @@ html {
   --fs-xl: clamp(1.75rem, 1.4rem + 1.2vw, 2.5rem);
   --fs-xxl: clamp(2.5rem, 2rem + 2vw, 4rem);
 
-  --lh-tight: 1.1; /* NEW */
-  --lh-normal: 1.5; /* NEW */
-  --lh-relaxed: 1.7; /* NEW */
+  --lh-tight: 1.1;
+  --lh-normal: 1.5;
+  --lh-relaxed: 1.7;
 
-  --space-01: clamp(0.25rem, 0.22rem + 0.08vw, 0.375rem); /* 4px → 6px (≈5px) */
-  --space-02: clamp(0.5rem, 0.45rem + 0.14vw, 0.75rem); /* 8px → 12px (≈10px) */
-  --space-03: clamp(0.75rem, 0.68rem + 0.2vw, 1rem); /* 12px → 16px (≈14px) */
-  --space-04: clamp(1rem, 0.9rem + 0.3vw, 1.5rem); /* 16px → 24px (≈20px) */
-  --space-05: clamp(1.5rem, 1.35rem + 0.45vw, 2rem); /* 24px → 32px (≈28px) */
-  --space-06: clamp(2rem, 1.8rem + 0.65vw, 3rem); /* 32px → 48px (≈40px) */
-  --space-07: clamp(2.5rem, 2.2rem + 0.9vw, 4rem); /* 40px → 64px (≈52–56px) */
-  --space-08: clamp(3rem, 2.6rem + 1.2vw, 5rem); /* 48px → 80px (≈64–70px) */
+  --space-01: clamp(0.25rem, 0.22rem + 0.08vw, 0.375rem);
+  --space-02: clamp(0.5rem, 0.45rem + 0.14vw, 0.75rem);
+  --space-03: clamp(0.75rem, 0.68rem + 0.2vw, 1rem);
+  --space-04: clamp(1rem, 0.9rem + 0.3vw, 1.5rem);
+  --space-05: clamp(1.5rem, 1.35rem + 0.45vw, 2rem);
+  --space-06: clamp(2rem, 1.8rem + 0.65vw, 3rem);
+  --space-07: clamp(2.5rem, 2.2rem + 0.9vw, 4rem);
+  --space-08: clamp(3rem, 2.6rem + 1.2vw, 5rem); 
 
-  --radius-xs: 6px; /* NEW */
-  --radius-sm: 10px; /* NEW */
-  --radius-md: 14px; /* NEW */
-  --radius-lg: 20px; /* NEW */
-  --radius-xl: 32px; /* NEW */
-  --radius-full: 999px; /* NEW */
+  --radius-xs: 6px;
+  --radius-sm: 10px;
+  --radius-md: 14px;
+  --radius-lg: 20px;
+  --radius-xl: 32px;
+  --radius-full: 999px;
 
-  --border-thin: 1px; /* NEW */
-  --border-medium: 2px; /* NEW */
-  --border-thick: 3px; /* NEW */
+  --border-thin: 1px;
+  --border-medium: 2px;
+  --border-thick: 3px;
 
-  --outline-focus: 2px solid var(--c-accent); /* NEW */
+  --outline-focus: 2px solid var(--c-accent);
 
-  --shadow-xs: 0 2px 6px rgba(0, 0, 0, 0.05); /* NEW */
-  --shadow-sm: 0 6px 18px rgba(0, 0, 0, 0.08); /* NEW */
-  --shadow-md: 0 10px 30px rgba(0, 0, 0, 0.12); /* NEW */
-  --shadow-lg: 0 20px 60px rgba(0, 0, 0, 0.18); /* NEW */
+  --shadow-xs: 0 2px 6px rgba(0, 0, 0, 0.05);
+  --shadow-sm: 0 6px 18px rgba(0, 0, 0, 0.08);
+  --shadow-md: 0 10px 30px rgba(0, 0, 0, 0.12);
+  --shadow-lg: 0 20px 60px rgba(0, 0, 0, 0.18);
   --text-shadow-hero: 0 2px 12px rgba(0, 0, 0, 0.6);
 
-  --ease-standard: cubic-bezier(0.4, 0, 0.2, 1); /* NEW */
-  --ease-decelerate: cubic-bezier(0, 0, 0.2, 1); /* NEW */
-  --ease-accelerate: cubic-bezier(0.4, 0, 1, 1); /* NEW */
+  --ease-standard: cubic-bezier(0.4, 0, 0.2, 1);
+  --ease-decelerate: cubic-bezier(0, 0, 0.2, 1);
+  --ease-accelerate: cubic-bezier(0.4, 0, 1, 1);
 
-  --dur-fast: 120ms; /* NEW */
-  --dur-normal: 240ms; /* NEW */
-  --dur-slow: 400ms; /* NEW */
+  --dur-fast: 120ms;
+  --dur-normal: 240ms;
+  --dur-slow: 400ms;
 
   --glass-blur: 14px;
   --glass-alpha: 48%;
   --glass-border-alpha: 65%;
-  --glass-bg: rgba(255, 255, 255, 0.08); /* NEW */
-  --glass-border: rgba(255, 255, 255, 0.15); /* NEW */
+  --glass-bg: rgba(255, 255, 255, 0.08);
+  --glass-border: rgba(255, 255, 255, 0.15);
 
   --logo-sm: clamp(36px, 4vw, 56px);
   --logo-md: clamp(48px, 6vw, 88px);
