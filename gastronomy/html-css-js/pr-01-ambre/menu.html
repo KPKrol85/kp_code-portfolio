@@ -177,7 +177,7 @@
           </span>
           <p class="u-lead">Kompletne menu z podziałem na kategorie i aktualnymi cenami.</p>
         </section>
-        <!-- Menu -->
+
         <section id="menu" class="l-section">
           <h2 class="sr-only">Pozycje menu</h2>
           <div class="tabs" role="tablist" aria-label="Kategorie menu">
@@ -186,19 +186,24 @@
             <button class="btn btn-tab tabs__tab" role="tab" aria-selected="false" data-filter="dania-glowne">Dania główne</button>
             <button class="btn btn-tab tabs__tab" role="tab" aria-selected="false" data-filter="desery">Desery</button>
           </div>
-          <div class="menu-grid" role="region" aria-live="polite">
-            <article class="dish dish--has-thumb" data-cat="przystawki">
-              <button
-                class="dish__thumb"
-                type="button"
-                aria-haspopup="dialog"
-                aria-controls="lb"
-                data-full="assets/img/dishes/ostrygi-z-granita-1200"
-                aria-label="Powiększ zdjęcie: Ostrygi z granitą">
-                <img src="assets/img/dishes/ostrygi-z-granita-200.jpg" alt="Ostrygi z granitą" width="64" height="64" loading="lazy" decoding="async" />
+          <div class="menu__grid" role="region" aria-live="polite">
+            <article class="dish dish--has-thumb" aria-labelledby="dish-ostrygi" data-cat="przystawki">
+              <button class="dish__thumb" type="button" aria-haspopup="dialog" aria-controls="lb" data-full="assets/img/dishes/ostrygi-z-granita-1200" aria-label="Powiększ zdjęcie: Ostrygi z granitą">
+                <picture>
+                  <source type="image/avif" srcset="assets/img/_optimized/dishes/ostrygi-z-granita-600.avif 2x, assets/img/_optimized/dishes/ostrygi-z-granita-200.avif 1x" />
+                  <source type="image/webp" srcset="assets/img/_optimized/dishes/ostrygi-z-granita-600.webp 2x, assets/img/_optimized/dishes/ostrygi-z-granita-200.webp 1x" />
+                  <img
+                    src="assets/img/dishes/ostrygi-z-granita-200.jpg"
+                    srcset="assets/img/dishes/ostrygi-z-granita-600.jpg 2x, assets/img/dishes/ostrygi-z-granita-200.jpg 1x"
+                    alt="Ostrygi z granita z ogorka i yuzu"
+                    width="64"
+                    height="64"
+                    decoding="async"
+                    loading="lazy" />
+                </picture>
               </button>
               <header class="dish__head">
-                <h3 class="dish__title">Ostrygi z granitą</h3>
+                <h3 id="dish-ostrygi" class="dish__title">Ostrygi z granitą</h3>
                 <span class="dish__price">58 zł</span>
               </header>
               <p class="dish__desc">Świeże ostrygi, granita z ogórka i yuzu, mikro zioła.</p>
@@ -212,12 +217,30 @@
                 </div>
               </details>
             </article>
-            <article class="dish dish--has-thumb" data-cat="dania-glowne">
-              <button class="dish__thumb" type="button" aria-haspopup="dialog" aria-controls="lb" data-full="assets/img/dishes/polik-wolowy-1200" aria-label="Powiększ zdjęcie: Polik wołowy">
-                <img src="assets/img/dishes/polik-wolowy-200.jpg" alt="Polik wołowy" width="64" height="64" loading="lazy" decoding="async" />
+
+            <article class="dish dish--has-thumb" aria-labelledby="dish-polik" data-cat="dania-glowne">
+              <button
+                class="dish__thumb"
+                type="button"
+                aria-haspopup="dialog"
+                aria-controls="lb"
+                data-full="assets/img/dishes/polik-wolowy-1200"
+                aria-label="Powiększ zdjęcie: Polik wołowy / seler / porto">
+                <picture>
+                  <source type="image/avif" srcset="assets/img/_optimized/dishes/polik-wolowy-600.avif 2x, assets/img/_optimized/dishes/polik-wolowy-200.avif 1x" />
+                  <source type="image/webp" srcset="assets/img/_optimized/dishes/polik-wolowy-600.webp 2x, assets/img/_optimized/dishes/polik-wolowy-200.webp 1x" />
+                  <img
+                    src="assets/img/dishes/polik-wolowy-200.jpg"
+                    srcset="assets/img/dishes/polik-wolowy-600.jpg 2x, assets/img/dishes/polik-wolowy-200.jpg 1x"
+                    alt="Polik wolowy z kremem z selera i sosem porto"
+                    width="64"
+                    height="64"
+                    decoding="async"
+                    loading="lazy" />
+                </picture>
               </button>
               <header class="dish__head">
-                <h3 class="dish__title">Polik wołowy</h3>
+                <h3 id="dish-polik" class="dish__title">Polik wołowy</h3>
                 <span class="dish__price">92 zł</span>
               </header>
               <p class="dish__desc">Długoduszony polik, krem z selera, sos na porto.</p>
@@ -231,7 +254,8 @@
                 </div>
               </details>
             </article>
-            <article class="dish dish--has-thumb" data-cat="desery">
+
+            <article class="dish dish--has-thumb" aria-labelledby="dish-creme" data-cat="desery">
               <button
                 class="dish__thumb"
                 type="button"
@@ -239,10 +263,21 @@
                 aria-controls="lb"
                 data-full="assets/img/dishes/creme-z-brulee-z-tonka-1200"
                 aria-label="Powiększ zdjęcie: Crème brûlée z tonką">
-                <img src="assets/img/dishes/creme-z-brulee-z-tonka-200.jpg" alt="Crème brûlée z tonką" width="64" height="64" loading="lazy" decoding="async" />
+                <picture>
+                  <source type="image/avif" srcset="assets/img/_optimized/dishes/creme-z-brulee-z-tonka-600.avif 2x, assets/img/_optimized/dishes/creme-z-brulee-z-tonka-200.avif 1x" />
+                  <source type="image/webp" srcset="assets/img/_optimized/dishes/creme-z-brulee-z-tonka-600.webp 2x, assets/img/_optimized/dishes/creme-z-brulee-z-tonka-200.webp 1x" />
+                  <img
+                    src="assets/img/dishes/creme-z-brulee-z-tonka-200.jpg"
+                    srcset="assets/img/dishes/creme-z-brulee-z-tonka-600.jpg 2x, assets/img/dishes/creme-z-brulee-z-tonka-200.jpg 1x"
+                    alt="Creme brulee z tonka i karmelem"
+                    width="64"
+                    height="64"
+                    decoding="async"
+                    loading="lazy" />
+                </picture>
               </button>
               <header class="dish__head">
-                <h3 class="dish__title">Crème brûlée z tonką</h3>
+                <h3 id="dish-creme" class="dish__title">Crème brûlée z tonką</h3>
                 <span class="dish__price">36 zł</span>
               </header>
               <p class="dish__desc">Wanilia, fasola tonka, chrupiący karmel.</p>
@@ -256,12 +291,24 @@
                 </div>
               </details>
             </article>
-            <article class="dish dish--has-thumb" data-cat="dania-glowne">
-              <button class="dish__thumb" type="button" aria-haspopup="dialog" aria-controls="lb" data-full="assets/img/dishes/sandacz-1200" aria-label="Powiększ zdjęcie: Sandacz">
-                <img src="assets/img/dishes/sandacz-200.jpg" alt="Sandacz" width="64" height="64" loading="lazy" decoding="async" />
+
+            <article class="dish dish--has-thumb" aria-labelledby="dish-sandacz" data-cat="dania-glowne">
+              <button class="dish__thumb" type="button" aria-haspopup="dialog" aria-controls="lb" data-full="assets/img/dishes/sandacz-1200" aria-label="Powiększ zdjęcie: Sandacz / szafran / fenkuł">
+                <picture>
+                  <source type="image/avif" srcset="assets/img/_optimized/dishes/sandacz-600.avif 2x, assets/img/_optimized/dishes/sandacz-200.avif 1x" />
+                  <source type="image/webp" srcset="assets/img/_optimized/dishes/sandacz-600.webp 2x, assets/img/_optimized/dishes/sandacz-200.webp 1x" />
+                  <img
+                    src="assets/img/dishes/sandacz-200.jpg"
+                    srcset="assets/img/dishes/sandacz-600.jpg 2x, assets/img/dishes/sandacz-200.jpg 1x"
+                    alt="Sandacz z risotto szafranowym i fenkulem"
+                    width="64"
+                    height="64"
+                    decoding="async"
+                    loading="lazy" />
+                </picture>
               </button>
               <header class="dish__head">
-                <h3 class="dish__title">Sandacz</h3>
+                <h3 id="dish-sandacz" class="dish__title">Sandacz</h3>
                 <span class="dish__price">88 zł</span>
               </header>
               <p class="dish__desc">Sandacz sauté, risotto szafranowe, fenkuł.</p>

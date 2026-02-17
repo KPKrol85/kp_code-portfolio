@@ -33,7 +33,8 @@
   grid-template-columns: 1fr;
   gap: var(--space-04);
   text-align: left;
-  justify-items: stretch;
+  justify-items: center;
+
 }
 .dish {
   border: 1px solid var(--c-border);
@@ -48,8 +49,6 @@
   cursor: pointer;
   background: color-mix(in oklab, var(--c-surface), white 6%);
   inline-size: 100%;
-  max-inline-size: 540px;
-  justify-self: center;
 }
 .menu__grid .dish[hidden] {
   display: none;
@@ -132,6 +131,7 @@
       "thumb desc";
     column-gap: var(--space-04);
     align-items: stretch;
+    max-width: 720px;
   }
   .dish--has-thumb .dish__thumb {
     grid-area: thumb;
@@ -150,13 +150,11 @@
   .dish--has-thumb .dish__desc { grid-area: desc; }
 }
 
-
 @media (min-width: 1024px) {
   body:not(.page-menu) .menu__grid {
     grid-template-columns: repeat(2, 1fr);
   }
 }
-
 @media (hover: hover) {
   .dish:hover .dish__thumb img {
     transform: scale(1.05);
@@ -168,7 +166,6 @@
     border-color: color-mix(in oklab, var(--c-border), var(--c-accent-contrast) 30%);
   }
 }
-
 @media (prefers-reduced-motion: reduce) {
   .dish {
     transition: none;

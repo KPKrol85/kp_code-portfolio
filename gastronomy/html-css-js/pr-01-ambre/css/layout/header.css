@@ -143,8 +143,8 @@ html[data-theme="light"] .logo-light {
   padding: 8px;
   background: var(--c-surface);
   border: 1px solid var(--c-border);
-  border-radius: var(--radius);
-  box-shadow: var(--shadow);
+  border-radius: var(--radius-xs);
+  box-shadow: var(--shadow-md);
   opacity: 0;
   visibility: hidden;
   transform: translateY(6px);
