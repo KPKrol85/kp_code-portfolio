@@ -109,8 +109,8 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: 0.6rem;
-  padding: 0.8rem 1rem;
+  gap: var(--space-02);
+  padding: var(--space-03) var(--space-04);
   border: 1px solid var(--c-border);
   border-radius: var(--radius-xs);
   background: color-mix(in oklab, var(--c-surface), white 6%);
@@ -118,17 +118,17 @@
   margin-inline: auto;
 }
 .testimonials__rating--big strong {
-  font-size: 1.4rem;
+  font-size: var(--fs-md);
   color: var(--c-accent-contrast);
 }
 .testimonials__rating--big .testimonials__stars {
   color: #f8d580;
-  font-size: 1.2rem;
+  font-size: var(--fs-md);
   margin-left: 0.2rem;
 }
 .testimonials__rating--big small {
   display: block;
-  font-size: 0.85rem;
+  font-size: var(--fs-sm);
   color: var(--c-muted);
 }
 

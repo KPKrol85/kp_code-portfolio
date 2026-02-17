@@ -16,9 +16,9 @@
 }
 #faq details {
   border: 1px solid var(--c-border);
-  border-radius: var(--radius);
+  border-radius: var(--radius-xs);
   background: color-mix(in oklab, var(--c-surface), white 4%);
-  margin: clamp(8px, 1.2vw, 10px) 0;
+  margin: var(--space-03);
   overflow: hidden;
   transition:
     border-color 0.18s ease,
@@ -28,16 +28,16 @@
 #faq details[open] {
   background: color-mix(in oklab, var(--c-surface), white 8%);
   border-color: color-mix(in oklab, var(--c-border), var(--c-accent-contrast) 28%);
-  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.06);
+  box-shadow: var(--shadow-md);
 }
 #faq summary {
   list-style: none;
   display: flex;
   align-items: center;
-  gap: 12px;
+  gap: var(--space-03);
   cursor: pointer;
   min-height: 56px;
-  padding: 14px 18px;
+  padding: var(--space-03) var(--space-04);
   font-weight: 600;
   position: relative;
   outline: none;
@@ -51,7 +51,7 @@
 #faq summary:focus-visible {
   outline: 2px solid var(--c-accent-contrast);
   outline-offset: 2px;
-  border-radius: calc(var(--radius) - 2px);
+  border-radius: var(--radius-xs);
 }
 #faq summary::after {
   content: "";
@@ -73,15 +73,15 @@
   opacity: 1;
 }
 #faq .content {
-  padding: 12px 22px 18px 22px;
+  padding: var(--space-03) var(--space-04) var(--space-04);
   color: var(--c-ink);
-  line-height: 1.6;
+  line-height: var(--lh-normal);
 }
 #faq .content > * + * {
-  margin-top: 0.6rem;
+  margin-top: var(--space-02);
 }
 #faq details + details {
-  margin-top: clamp(8px, 1.2vw, 10px);
+  margin-top: var(--space-03);
 }
 
 @media (hover: hover) {
