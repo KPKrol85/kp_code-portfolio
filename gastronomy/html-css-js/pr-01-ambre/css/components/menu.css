@@ -1,12 +1,12 @@
 /* Menu */
-#menu {
+.menu {
   scroll-margin-top: 90px;
   text-align: center;
 }
-#menu .section-head {
+.menu__head {
   margin-bottom: var(--space-05);
 }
-#menu .section-head h2 {
+.menu__head h2 {
   margin-bottom: var(--space-01);
 }
 .tabs {
@@ -151,7 +151,7 @@
 }
 
 @media (min-width: 1024px) {
-  body:not(.page-menu) .menu__grid {
+  .menu--home .menu__grid {
     grid-template-columns: repeat(2, 1fr);
   }
 }

@@ -49,10 +49,10 @@
   padding-top: clamp(8px, 1vw, 16px);
   padding-bottom: 0;
 }
-.page-menu #menu {
+.page-menu .menu {
   padding-top: clamp(10px, 2vw, 20px);
 }
-.page-menu #menu .tabs {
+.page-menu .menu .menu__tabs {
   max-width: var(--menu-col-max);
   margin-inline: auto;
   display: flex;
@@ -60,7 +60,7 @@
   justify-content: center;
   gap: 0.5rem;
 }
-.page-menu #menu .menu__grid {
+.page-menu .menu .menu__grid {
   max-width: 720px;
   margin-inline: auto;
 }
@@ -112,12 +112,12 @@
   }
 }
 @media (min-width: 1024px) {
-  .page-menu #menu .menu__grid {
+  .page-menu .menu .menu__grid {
     grid-template-columns: 1fr;
   }
 }
 
-#menu-title {
+.menu__title {
   scroll-margin-top: var(--header-h, 64px);
 }
 

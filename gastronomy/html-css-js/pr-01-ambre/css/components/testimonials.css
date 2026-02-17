@@ -29,7 +29,7 @@
   min-height: 180px;
   max-width: 100%;
   border: 1px solid var(--c-border);
-  border-radius: var(--radius);
+  border-radius: var(--radius-xs);
   background: color-mix(in oklab, var(--c-surface), white 6%);
   transition:
     transform 0.18s ease,
@@ -41,7 +41,7 @@
 .testimonials__avatar {
   width: 56px;
   height: 56px;
-  border-radius: 50%;
+  border-radius: var(--radius-xs);
   overflow: hidden;
   margin: 0 auto;
 }
@@ -50,7 +50,7 @@
   height: 100%;
   object-fit: cover;
   display: block;
-  border-radius: 50%;
+  border-radius: var(--radius-xs);
   box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.06);
 }
 .testimonials__card blockquote {
@@ -78,7 +78,7 @@
   margin: 0 auto 0.4rem;
   background: linear-gradient(90deg, var(--c-accent) 0%, #f8d580 100%);
   opacity: 0.7;
-  border-radius: 2px;
+  border-radius: var(--radius-xs);
 }
 .testimonials__card:focus-within {
   outline: 2px solid var(--c-accent-contrast);
@@ -112,7 +112,7 @@
   gap: 0.6rem;
   padding: 0.8rem 1rem;
   border: 1px solid var(--c-border);
-  border-radius: var(--radius);
+  border-radius: var(--radius-xs);
   background: color-mix(in oklab, var(--c-surface), white 6%);
   width: fit-content;
   margin-inline: auto;
