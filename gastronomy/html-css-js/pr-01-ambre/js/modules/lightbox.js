@@ -95,7 +95,7 @@ export function initLightbox() {
 
   const getGalleryItems = (root) =>
     root
-      ? Array.from(root.querySelectorAll(".g-item")).filter(
+      ? Array.from(root.querySelectorAll(".gallery__item")).filter(
           (item) => !item.hidden && item.offsetParent !== null
         )
       : [];
@@ -125,7 +125,7 @@ export function initLightbox() {
     lastActive = document.activeElement;
     items = Array.isArray(scopeItems) && scopeItems.length
       ? scopeItems
-      : getGalleryItems(document.querySelector(".gallery-grid"));
+      : getGalleryItems(document.querySelector(".gallery__grid"));
 
     if (!items.length) items = getDishItems();
 
@@ -249,20 +249,20 @@ export function initLightbox() {
       return;
     }
 
-    const item = event.target.closest(".g-item");
+    const item = event.target.closest(".gallery__item");
     if (item) {
       const src = getFull(item);
       const alt =
         item.querySelector("img")?.alt || item.getAttribute("aria-label") || "";
       if (event.target.closest("a")) event.preventDefault();
-      const grid = item.closest(".gallery-grid");
+      const grid = item.closest(".gallery__grid");
       const gridItems = getGalleryItems(grid);
       const gridIndex = gridItems.indexOf(item);
       open(src, alt, gridIndex >= 0 ? gridIndex : -1, gridItems);
     }
   });
 
-  const gallery = document.getElementById("galeria-grid") || document.querySelector("#galeria-grid");
+  const gallery = document.querySelector(".gallery__section");
   if (gallery) {
     gallery.addEventListener(
       "click",

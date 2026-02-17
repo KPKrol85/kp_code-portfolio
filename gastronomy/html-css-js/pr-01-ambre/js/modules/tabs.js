@@ -89,11 +89,11 @@ export function initGalleryFilter() {
   const page = document.querySelector("main.page-gallery");
   if (!page) return;
 
-  const tabsRoot = page.querySelector(".tabs");
+  const tabsRoot = page.querySelector(".gallery__tabs");
   if (!tabsRoot) return;
 
   const tabs = Array.from(tabsRoot.querySelectorAll(".tabs__tab"));
-  const items = Array.from(page.querySelectorAll("#galeria-grid .g-item"));
+  const items = Array.from(page.querySelectorAll(".gallery__section .gallery__item"));
 
   const normalize = (value) =>
     (value || "")

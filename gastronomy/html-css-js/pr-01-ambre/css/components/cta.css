@@ -17,23 +17,15 @@
 .cta__box:hover {
   transform: translateY(-2px);
   border-color: color-mix(in oklab, var(--c-border), var(--c-accent-contrast) 25%);
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+  box-shadow: var(--shadow-md);
 }
 .cta__actions {
-  display: flex;
   justify-content: center;
-  margin-top: var(--cta-mt, clamp(16px, 3vw, 28px));
+  margin-top: var(--space-05);
 }
 .cta__actions .btn {
   width: 100%;
   max-width: 420px;
-
-}
-#menu .cta__actions {
-  --cta-mt: clamp(12px, 2.5vw, 24px);
-}
-#galeria .cta__actions {
-  --cta-mt: clamp(16px, 3vw, 28px);
 }
 .cta__box h2 {
   font-size: clamp(1.8rem, 4vw, 2.4rem);

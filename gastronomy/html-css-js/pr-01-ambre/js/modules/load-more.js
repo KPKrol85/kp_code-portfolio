@@ -67,10 +67,10 @@ export function initLoadMoreMenu() {
 }
 
 export function initLoadMoreGallery() {
-  const grid = document.querySelector(".gallery-grid");
+  const grid = document.querySelector(".gallery__grid");
   if (!grid) return;
 
-  const items = Array.from(grid.querySelectorAll(".g-item"));
+  const items = Array.from(grid.querySelectorAll(".gallery__item"));
   if (!items.length) return;
 
   const container = grid.closest("section") || grid.parentElement || document;

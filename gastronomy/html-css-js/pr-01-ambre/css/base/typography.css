@@ -123,13 +123,13 @@ h3 {
 
 .grid-2 {
   display: grid;
-  gap: var(--g);
+  gap: var(--space-04);
   grid-template-columns: 1fr;
   align-items: center;
 }
 
 .section-head {
-  margin: 0 0 1.2rem;
+  margin: 0 0 var(--space-04);
 }
 
 @media (min-width: 760px) {
