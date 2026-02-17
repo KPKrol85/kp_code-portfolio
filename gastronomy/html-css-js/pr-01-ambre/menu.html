@@ -132,22 +132,19 @@
         </nav>
         <div class="header-actions">
           <a href="tel:+48533537091" class="btn btn-ring" aria-label="Zadzwoń do restauracji KP_Code">
-            <span class="icon-dual" aria-hidden="true">
-              <img class="icon-light" src="assets/icons/icons-svg/phone-light-40x40.svg" alt="" width="20" height="20" decoding="async" loading="lazy" />
-              <img class="icon-dark" src="assets/icons/icons-svg/phone-dark-40x40.svg" alt="" width="20" height="20" decoding="async" loading="lazy" />
+            <span aria-hidden="true">
+              <img src="assets/icons/icons-svg/phone-light-40x40.svg" alt="" width="20" height="20" decoding="async" loading="lazy" />
             </span>
             <span class="phone-text">+48&nbsp;533&nbsp;537&nbsp;091</span>
           </a>
           <button class="theme-toggle" data-testid="theme-toggle" type="button" aria-label="Przełącz motyw" aria-pressed="false" title="Motyw">
-            <span class="icon-dual" aria-hidden="true">
-              <img class="icon-light" src="assets/icons/icons-svg/sun-outline.svg" alt="Tryb jasny" width="20" height="20" decoding="async" loading="lazy" />
-              <img class="icon-dark" src="assets/icons/icons-svg/moon-outline.svg" alt="Tryb ciemny" width="20" height="20" decoding="async" loading="lazy" />
+            <span aria-hidden="true">
+              <img src="assets/icons/icons-svg/sun-outline.svg" alt="Tryb jasny" width="20" height="20" decoding="async" loading="lazy" />
             </span>
           </button>
           <button class="nav-toggle" data-testid="nav-toggle" type="button" aria-controls="site-nav" aria-expanded="false" aria-label="Menu">
-            <span class="icon-dual" aria-hidden="true">
-              <img class="icon-light" src="assets/icons/icons-svg/hamburger-black.svg" alt="" width="20" height="20" decoding="async" loading="lazy" />
-              <img class="icon-dark" src="assets/icons/icons-svg/hamburger-white.svg" alt="" width="20" height="20" decoding="async" loading="lazy" />
+            <span aria-hidden="true">
+              <img src="assets/icons/icons-svg/hamburger-black.svg" alt="" width="20" height="20" decoding="async" loading="lazy" />
             </span>
             <span class="sr-only">Menu</span>
           </button>
@@ -173,30 +170,31 @@
           </span>
           <p class="u-lead">Kompletne menu z podziałem na kategorie i aktualnymi cenami.</p>
         </section>
+        <!-- Menu -->
         <section id="menu" class="l-section">
           <h2 class="sr-only">Pozycje menu</h2>
           <div class="tabs" role="tablist" aria-label="Kategorie menu">
-            <button class="btn btn-tab tab is-active" role="tab" aria-selected="true" data-filter="all">Wszystko</button>
-            <button class="btn btn-tab tab" role="tab" aria-selected="false" data-filter="przystawki">Przystawki</button>
-            <button class="btn btn-tab tab" role="tab" aria-selected="false" data-filter="dania-glowne">Dania główne</button>
-            <button class="btn btn-tab tab" role="tab" aria-selected="false" data-filter="desery">Desery</button>
+            <button class="btn btn-tab tabs__tab tabs__tab--active" role="tab" aria-selected="true" data-filter="all">Wszystko</button>
+            <button class="btn btn-tab tabs__tab" role="tab" aria-selected="false" data-filter="przystawki">Przystawki</button>
+            <button class="btn btn-tab tabs__tab" role="tab" aria-selected="false" data-filter="dania-glowne">Dania główne</button>
+            <button class="btn btn-tab tabs__tab" role="tab" aria-selected="false" data-filter="desery">Desery</button>
           </div>
           <div class="menu-grid" role="region" aria-live="polite">
-            <article class="dish has-thumb" data-cat="przystawki">
-              <header class="dish-head">
-                <h3>Ostrygi z granitą</h3>
-                <span class="price">58 zł</span>
-                <button
-                  class="dish-thumb"
-                  type="button"
-                  aria-haspopup="dialog"
-                  aria-controls="lb"
-                  data-full="assets/img/dishes/ostrygi-z-granita-1200"
-                  aria-label="Powiększ zdjęcie: Ostrygi z granitą">
-                  <img src="assets/img/dishes/ostrygi-z-granita-200.jpg" alt="Ostrygi z granitą" width="64" height="64" loading="lazy" decoding="async" />
-                </button>
+            <article class="dish dish--has-thumb" data-cat="przystawki">
+              <button
+                class="dish__thumb"
+                type="button"
+                aria-haspopup="dialog"
+                aria-controls="lb"
+                data-full="assets/img/dishes/ostrygi-z-granita-1200"
+                aria-label="Powiększ zdjęcie: Ostrygi z granitą">
+                <img src="assets/img/dishes/ostrygi-z-granita-200.jpg" alt="Ostrygi z granitą" width="64" height="64" loading="lazy" decoding="async" />
+              </button>
+              <header class="dish__head">
+                <h3 class="dish__title">Ostrygi z granitą</h3>
+                <span class="dish__price">58 zł</span>
               </header>
-              <p class="desc">Świeże ostrygi, granita z ogórka i yuzu, mikro zioła.</p>
+              <p class="dish__desc">Świeże ostrygi, granita z ogórka i yuzu, mikro zioła.</p>
               <details class="dish-more">
                 <summary>Więcej o daniu</summary>
                 <div class="content">
@@ -207,15 +205,15 @@
                 </div>
               </details>
             </article>
-            <article class="dish has-thumb" data-cat="dania-glowne">
-              <header class="dish-head">
-                <h3>Polik wołowy</h3>
-                <span class="price">92 zł</span>
-                <button class="dish-thumb" type="button" aria-haspopup="dialog" aria-controls="lb" data-full="assets/img/dishes/polik-wolowy-1200" aria-label="Powiększ zdjęcie: Polik wołowy">
-                  <img src="assets/img/dishes/polik-wolowy-200.jpg" alt="Polik wołowy" width="64" height="64" loading="lazy" decoding="async" />
-                </button>
+            <article class="dish dish--has-thumb" data-cat="dania-glowne">
+              <button class="dish__thumb" type="button" aria-haspopup="dialog" aria-controls="lb" data-full="assets/img/dishes/polik-wolowy-1200" aria-label="Powiększ zdjęcie: Polik wołowy">
+                <img src="assets/img/dishes/polik-wolowy-200.jpg" alt="Polik wołowy" width="64" height="64" loading="lazy" decoding="async" />
+              </button>
+              <header class="dish__head">
+                <h3 class="dish__title">Polik wołowy</h3>
+                <span class="dish__price">92 zł</span>
               </header>
-              <p class="desc">Długoduszony polik, krem z selera, sos na porto.</p>
+              <p class="dish__desc">Długoduszony polik, krem z selera, sos na porto.</p>
               <details class="dish-more">
                 <summary>Więcej o daniu</summary>
                 <div class="content">
@@ -226,21 +224,21 @@
                 </div>
               </details>
             </article>
-            <article class="dish has-thumb" data-cat="desery">
-              <header class="dish-head">
-                <h3>Crème brûlée z tonką</h3>
-                <span class="price">36 zł</span>
-                <button
-                  class="dish-thumb"
-                  type="button"
-                  aria-haspopup="dialog"
-                  aria-controls="lb"
-                  data-full="assets/img/dishes/creme-z-brulee-z-tonka-1200"
-                  aria-label="Powiększ zdjęcie: Crème brûlée z tonką">
-                  <img src="assets/img/dishes/creme-z-brulee-z-tonka-200.jpg" alt="Crème brûlée z tonką" width="64" height="64" loading="lazy" decoding="async" />
-                </button>
+            <article class="dish dish--has-thumb" data-cat="desery">
+              <button
+                class="dish__thumb"
+                type="button"
+                aria-haspopup="dialog"
+                aria-controls="lb"
+                data-full="assets/img/dishes/creme-z-brulee-z-tonka-1200"
+                aria-label="Powiększ zdjęcie: Crème brûlée z tonką">
+                <img src="assets/img/dishes/creme-z-brulee-z-tonka-200.jpg" alt="Crème brûlée z tonką" width="64" height="64" loading="lazy" decoding="async" />
+              </button>
+              <header class="dish__head">
+                <h3 class="dish__title">Crème brûlée z tonką</h3>
+                <span class="dish__price">36 zł</span>
               </header>
-              <p class="desc">Wanilia, fasola tonka, chrupiący karmel.</p>
+              <p class="dish__desc">Wanilia, fasola tonka, chrupiący karmel.</p>
               <details class="dish-more">
                 <summary>Więcej o daniu</summary>
                 <div class="content">
@@ -251,15 +249,15 @@
                 </div>
               </details>
             </article>
-            <article class="dish has-thumb" data-cat="dania-glowne">
-              <header class="dish-head">
-                <h3>Sandacz</h3>
-                <span class="price">88 zł</span>
-                <button class="dish-thumb" type="button" aria-haspopup="dialog" aria-controls="lb" data-full="assets/img/dishes/sandacz-1200" aria-label="Powiększ zdjęcie: Sandacz">
-                  <img src="assets/img/dishes/sandacz-200.jpg" alt="Sandacz" width="64" height="64" loading="lazy" decoding="async" />
-                </button>
+            <article class="dish dish--has-thumb" data-cat="dania-glowne">
+              <button class="dish__thumb" type="button" aria-haspopup="dialog" aria-controls="lb" data-full="assets/img/dishes/sandacz-1200" aria-label="Powiększ zdjęcie: Sandacz">
+                <img src="assets/img/dishes/sandacz-200.jpg" alt="Sandacz" width="64" height="64" loading="lazy" decoding="async" />
+              </button>
+              <header class="dish__head">
+                <h3 class="dish__title">Sandacz</h3>
+                <span class="dish__price">88 zł</span>
               </header>
-              <p class="desc">Sandacz sauté, risotto szafranowe, fenkuł.</p>
+              <p class="dish__desc">Sandacz sauté, risotto szafranowe, fenkuł.</p>
               <details class="dish-more">
                 <summary>Więcej o daniu</summary>
                 <div class="content">
@@ -329,23 +327,20 @@
           <h3 id="ft-contact" class="ft-title">Kontakt</h3>
           <ul class="ft-contact" aria-label="Dane kontaktowe">
             <li>
-              <span class="icon-dual">
-                <img class="icon-light" src="assets/icons/icons-svg/time-light-mode-40x40.svg" alt="" width="20" height="20" decoding="async" loading="lazy" />
-                <img class="icon-dark" src="assets/icons/icons-svg/time-dark-mode-40x40.svg" alt="" width="20" height="20" decoding="async" loading="lazy" aria-hidden="true" />
+              <span>
+                <img src="assets/icons/icons-svg/time-light-mode-40x40.svg" alt="" width="20" height="20" decoding="async" loading="lazy" />
               </span>
               wt–nd: 17:00 — 23:00
             </li>
             <li>
-              <span class="icon-dual">
-                <img class="icon-light" src="assets/icons/icons-svg/phone-light-40x40.svg" alt="" width="20" height="20" decoding="async" loading="lazy" />
-                <img class="icon-dark" src="assets/icons/icons-svg/phone-dark-40x40.svg" alt="" width="20" height="20" decoding="async" loading="lazy" aria-hidden="true" />
+              <span>
+                <img src="assets/icons/icons-svg/phone-light-40x40.svg" alt="" width="20" height="20" decoding="async" loading="lazy" />
               </span>
               <a href="tel:+48533537091" aria-label="Zadzwoń: +48 533 537 091">+48 533 537 091</a>
             </li>
             <li>
-              <span class="icon-dual">
-                <img class="icon-light" src="assets/icons/icons-svg/mail-light-mode-40x40.svg" alt="" width="20" height="20" decoding="async" loading="lazy" />
-                <img class="icon-dark" src="assets/icons/icons-svg/mail-dark-mode-40x40.svg" alt="" width="20" height="20" decoding="async" loading="lazy" aria-hidden="true" />
+              <span>
+                <img src="assets/icons/icons-svg/mail-light-mode-40x40.svg" alt="" width="20" height="20" decoding="async" loading="lazy" />
               </span>
               <a href="mailto:kontakt@kp-code.pl">kontakt@kp-code.pl</a>
             </li>
@@ -354,26 +349,22 @@
           <ul class="ft-social ft-social--bare" aria-label="Linki społecznościowe">
             <li>
               <a class="btn-social" href="https://www.facebook.com/kpkrol85" aria-label="Facebook" rel="me external noopener noreferrer" target="_blank">
-                <img class="icon-light" src="assets/icons/icons-svg/facebook-light-mode-40x40.svg" alt="Facebook" width="24" height="24" decoding="async" loading="lazy" />
-                <img class="icon-dark" src="assets/icons/icons-svg/facebook-dark-mode-40x40.svg" alt="" width="24" height="24" decoding="async" aria-hidden="true" loading="lazy" />
+                <img src="assets/icons/icons-svg/facebook-light-mode-40x40.svg" alt="Facebook" width="24" height="24" decoding="async" loading="lazy" />
               </a>
             </li>
             <li>
               <a class="btn-social" href="https://github.com/KPKrol85" aria-label="Github" rel="me external noopener noreferrer" target="_blank">
-                <img class="icon-light" src="assets/icons/icons-svg/github-light-mode-40x40.svg" alt="Github" width="24" height="24" decoding="async" loading="lazy" />
-                <img class="icon-dark" src="assets/icons/icons-svg/github-dark-mode-40x40.svg" alt="" width="24" height="24" decoding="async" aria-hidden="true" loading="lazy" />
+                <img src="assets/icons/icons-svg/github-light-mode-40x40.svg" alt="Github" width="24" height="24" decoding="async" loading="lazy" />
               </a>
             </li>
             <li>
               <a class="btn-social" href="https://instagram.com" aria-label="Instagram" rel="me external noopener noreferrer" target="_blank">
-                <img class="icon-light" src="assets/icons/icons-svg/instagram-light-mode-40x40.svg" alt="Instagram" width="24" height="24" decoding="async" loading="lazy" />
-                <img class="icon-dark" src="assets/icons/icons-svg/instagram-dark-mode-40x40.svg" alt="" width="24" height="24" decoding="async" aria-hidden="true" loading="lazy" />
+                <img src="assets/icons/icons-svg/instagram-light-mode-40x40.svg" alt="Instagram" width="24" height="24" decoding="async" loading="lazy" />
               </a>
             </li>
             <li>
               <a class="btn-social" href="https://x.com" aria-label="X" rel="me external noopener noreferrer" target="_blank">
-                <img class="icon-light" src="assets/icons/icons-svg/x-light-mode-40x40.svg" alt="X" width="24" height="24" decoding="async" loading="lazy" />
-                <img class="icon-dark" src="assets/icons/icons-svg/x-dark-mode-40x40.svg" alt="" width="24" height="24" decoding="async" aria-hidden="true" loading="lazy" />
+                <img src="assets/icons/icons-svg/x-light-mode-40x40.svg" alt="X" width="24" height="24" decoding="async" loading="lazy" />
               </a>
             </li>
           </ul>
@@ -409,8 +400,7 @@
 
     <!-- Scroll to top -->
     <button class="scroll-btn scroll-up" data-testid="scroll-up" type="button" aria-label="Przewiń na górę" title="Na górę" aria-hidden="true" tabindex="-1" hidden>
-      <img class="icon-light" src="assets/icons/icons-svg/chevron-up-black.svg" alt="" width="16" height="16" decoding="async" loading="lazy" />
-      <img class="icon-dark" src="assets/icons/icons-svg/chevron-up-white.svg" alt="" width="16" height="16" decoding="async" loading="lazy" />
+      <img src="assets/icons/icons-svg/chevron-up-black.svg" alt="" width="16" height="16" decoding="async" loading="lazy" />
     </button>
 
     <!-- Mobile drawer -->

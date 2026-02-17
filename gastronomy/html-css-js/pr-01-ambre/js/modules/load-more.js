@@ -19,7 +19,7 @@ const ensureButton = (button) => {
 };
 
 export function initLoadMoreMenu() {
-  const grid = document.querySelector(".menu-grid");
+  const grid = document.querySelector(".menu__grid, .menu-grid");
   if (!grid) return;
 
   const items = Array.from(grid.querySelectorAll(".dish"));
@@ -33,8 +33,8 @@ export function initLoadMoreMenu() {
   let visibleCount = Math.min(DEFAULT_STEP, items.length);
 
   const getActiveFilter = () => {
-    const active = container.querySelector(".tab.is-active") ||
-      container.querySelector(".tab[aria-selected='true']");
+    const active = container.querySelector(".tabs__tab.tabs__tab--active") ||
+      container.querySelector(".tabs__tab[aria-selected='true']");
     return active?.dataset.filter || "all";
   };
 
@@ -81,8 +81,8 @@ export function initLoadMoreGallery() {
   let visibleCount = Math.min(DEFAULT_STEP, items.length);
 
   const getActiveFilter = () => {
-    const active = container.querySelector(".tab.is-active") ||
-      container.querySelector(".tab[aria-selected='true']");
+    const active = container.querySelector(".tabs__tab.tabs__tab--active") ||
+      container.querySelector(".tabs__tab[aria-selected='true']");
     return active?.dataset.filter || "all";
   };
 

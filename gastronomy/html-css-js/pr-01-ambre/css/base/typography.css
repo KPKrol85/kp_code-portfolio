@@ -1,11 +1,10 @@
-
 body {
   margin: 0;
   font-family: var(--font-sans);
   font-weight: 400;
   color: var(--c-ink);
   background-color: var(--c-bg);
-  line-height: 1.6;
+  line-height: var(--lh-normal);
 }
 
 .skip-link {
@@ -47,7 +46,6 @@ body {
 img {
   max-width: 100%;
   height: auto;
-  display: l-section;
 }
 
 button,
@@ -59,7 +57,7 @@ button,
 .container {
   max-width: var(--max);
   margin-inline: auto;
-  padding: 0 20px;
+  padding: 0 var(--space-05);
 }
 
 a {
@@ -79,28 +77,28 @@ h5,
 h6 {
   font-family: var(--font-display);
   font-weight: 600;
-  line-height: 1.2;
-  margin: 0 0 0.55em;
+  line-height: var(--lh-tight);
+  margin: 0 0 var(--space-02);
   font-kerning: normal;
   font-variant-ligatures: contextual;
   text-wrap: balance;
 }
 h1 {
-  font-size: clamp(1.9rem, 1.3rem + 3.6vw, 3.5rem);
+  font-size: var(--fs-xxl);
   font-weight: 700;
 }
 h2 {
-  font-size: clamp(1.5rem, 1.1rem + 2vw, 2.5rem);
+  font-size: var(--fs-xl);
   font-weight: 700;
 }
 h3 {
-  font-size: clamp(1.2rem, 1rem + 0.9vw, 1.6rem);
+  font-size: var(--fs-lg);
   font-weight: 700;
 }
 
 .u-lead {
-  font-size: clamp(1.125rem, 0.98rem + 0.9vw, 1.5rem);
-  line-height: 1.5;
+  font-size: var(--fs-md);
+  line-height: var(--lh-normal);
   font-weight: 400;
   color: var(--c-muted);
   max-width: 65ch;
@@ -134,7 +132,7 @@ h3 {
   margin: 0 0 1.2rem;
 }
 
-@media (min-width: 900px) {
+@media (min-width: 760px) {
   .grid-2 {
     grid-template-columns: 1.05fr 0.95fr;
   }

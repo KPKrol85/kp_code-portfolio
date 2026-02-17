@@ -3,7 +3,7 @@
   position: relative;
   display: grid;
   place-items: center;
-  min-height: clamp(78vh, 86vh, 96vh);
+  min-height: 88vh;
   border-bottom: 1px solid var(--c-border);
   width: 100%;
   --ov-top: rgba(0, 0, 0, 0.58);
@@ -52,24 +52,24 @@
 .hero-brand {
   display: inline-flex;
   align-items: center;
-  gap: 0.75rem;
-  margin-bottom: 0.75rem;
+  gap: var(--space-03);
+  margin-bottom: var(--space-03);
   filter: drop-shadow(0 2px 6px rgba(0, 0, 0, 0.15));
 }
 .hero-brand-logo {
-  height: 104px;
+  height: var(--logo-md);
   width: auto;
   opacity: 0.95;
+}
+.hero .u-lead {
+  text-align: center;
+  line-height: var(--lh-normal);
 }
 .hero h1,
 .hero .u-lead {
   color: #fff;
-  text-shadow: 0 2px 12px rgba(0, 0, 0, 0.6);
-}
-.hero .u-lead {
-  margin-left: auto;
-  margin-right: auto;
-  text-align: center;
+  text-shadow: var(--text-shadow-hero);
+  margin: 0 auto var(--space-03);
 }
 .hero .eyebrow {
   color: rgba(255, 255, 255, 0.9);
@@ -79,8 +79,8 @@
   flex-wrap: wrap;
   justify-content: center;
   align-items: center;
-  gap: 0.75rem;
-  margin-top: 1.5rem;
+  gap: var(--space-03);
+  margin-top: var(--spcae-05);
 }
 .hero[data-contrast="low"] {
   --ov-top: rgba(0, 0, 0, 0.4);
@@ -109,13 +109,14 @@
   background: linear-gradient(to bottom, rgba(0, 0, 0, 0.35), rgba(0, 0, 0, 0.18));
 }
 
-@media (max-width: 600px) {
-  .hero-brand-logo {
-    height: 52px;
-  }
-}
-@media (max-width: 480px) {
+@media (min-width: 480px) {
   .hero {
-    min-height: 88vh;
+    min-height: clamp(78vh, 86vh, 96vh);
   }
 }
+@media (min-width: 760px) {
+  .hero-brand-logo {
+    height: var(--logo-lg);
+  }
+}
+

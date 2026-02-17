@@ -25,6 +25,8 @@
   margin-top: var(--cta-mt, clamp(16px, 3vw, 28px));
 }
 .section-cta .btn {
+  width: 100%;
+  max-width: 420px;
   min-width: var(--cta-btn-min, 12rem);
 }
 #menu .section-cta {
@@ -64,10 +66,10 @@ html[data-theme="dark"] .cta-box {
   border-color: color-mix(in oklab, var(--c-border), #fff 10%);
 }
 
-@media (max-width: 560px) {
+@media (min-width: 480px) {
   .section-cta .btn {
-    width: 100%;
-    max-width: 420px;
+    width: auto;
+    max-width: none;
   }
 }
 

@@ -1,14 +1,23 @@
 import { $, $$, byTestId, log } from "./utils.js";
 
 export function initTabs() {
-  const grid = document.querySelector(".menu-grid");
+  const grid = document.querySelector(".menu__grid, .menu-grid");
   if (!grid) return;
 
   const root = byTestId("menu-tabs") || grid.closest("section") || document;
-  const tabs = $$(".tab", root);
+  const tabs = $$(".tabs__tab", root);
   if (!tabs.length) return;
 
   const dishes = $$(".dish", grid);
+  if (!dishes.length) return;
+
+  const normalize = (value) =>
+    (value || "")
+      .toString()
+      .normalize("NFD")
+      .replace(/[\u0300-\u036f]/g, "")
+      .toLowerCase()
+      .trim();
 
   if (root !== document && !root.hasAttribute("role")) {
     root.setAttribute("role", "tablist");
@@ -21,32 +30,35 @@ export function initTabs() {
   const apply = (tab) => {
     tabs.forEach((btn) => {
       const isActive = btn === tab;
-      btn.classList.toggle("is-active", isActive);
+      btn.classList.toggle("tabs__tab--active", isActive);
       btn.setAttribute("aria-selected", isActive ? "true" : "false");
       btn.tabIndex = isActive ? 0 : -1;
     });
 
-    const filter = tab.dataset.filter;
+    const filter = normalize(tab?.dataset?.filter || "");
+    const showAll = filter === "" || filter === "all";
     dishes.forEach((dish) => {
-      const matches = filter === "all" || dish.dataset.cat === filter;
+      const raw = dish.dataset.cat || dish.dataset.filter || "";
+      const normalized = normalize(raw).split(/[\s,]+/).filter(Boolean);
+      const matches = showAll || normalized.includes(filter);
       const loadVisible = dish.dataset.loadHidden !== "true";
       dish.hidden = !(matches && loadVisible);
     });
   };
 
-  apply($(".tab.is-active", root) || tabs[0]);
+  apply($(".tabs__tab.tabs__tab--active", root) || tabs[0]);
 
   root.addEventListener(
     "click",
     (event) => {
-      const tab = event.target.closest(".tab");
+      const tab = event.target.closest(".tabs__tab");
       if (tab && tabs.includes(tab)) apply(tab);
     },
     { passive: true }
   );
 
   root.addEventListener("keydown", (event) => {
-    const tab = event.target.closest(".tab");
+    const tab = event.target.closest(".tabs__tab");
     if (!tab || !tabs.includes(tab)) return;
 
     const index = tabs.indexOf(tab);
@@ -80,7 +92,7 @@ export function initGalleryFilter() {
   const tabsRoot = page.querySelector(".tabs");
   if (!tabsRoot) return;
 
-  const tabs = Array.from(tabsRoot.querySelectorAll(".tab"));
+  const tabs = Array.from(tabsRoot.querySelectorAll(".tabs__tab"));
   const items = Array.from(page.querySelectorAll("#galeria-grid .g-item"));
 
   const normalize = (value) =>
@@ -95,7 +107,7 @@ export function initGalleryFilter() {
     tabs.forEach((btn) => {
       const isActive = btn === tab;
       btn.setAttribute("aria-selected", String(isActive));
-      btn.classList.toggle("is-active", isActive);
+      btn.classList.toggle("tabs__tab--active", isActive);
     });
 
     tabs.forEach((btn) => {

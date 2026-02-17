@@ -101,7 +101,7 @@ export function initLightbox() {
       : [];
 
   const getDishItems = () =>
-    Array.from(document.querySelectorAll(".dish-thumb")).filter(
+    Array.from(document.querySelectorAll(".dish__thumb")).filter(
       (item) => !item.hidden && item.offsetParent !== null
     );
 
@@ -237,7 +237,7 @@ export function initLightbox() {
   };
 
   document.addEventListener("click", (event) => {
-    const dish = event.target.closest(".dish-thumb");
+    const dish = event.target.closest(".dish__thumb");
     if (dish) {
       const src = getFull(dish);
       const alt =
