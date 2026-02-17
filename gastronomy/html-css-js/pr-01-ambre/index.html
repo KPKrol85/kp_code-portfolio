@@ -192,39 +192,39 @@
     <!-- Main -->
     <main id="main">
       <!-- About -->
-        <section id="onas" class="l-section about" aria-labelledby="about-title">
-          <div class="container grid-2">
-            <div>
-              <h2 id="about-title" class="about__title">O nas</h2>
-              <p class="u-lead">Łączymy lokalne składniki z finezyjnymi technikami. Krótkie, sezonowe karty pozwalają wybrzmieć każdemu produktowi.</p>
-              <ul class="about__bullets">
-                <li class="about__bullet">
-                  <span class="about__bullet-icon" aria-hidden="true">
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" width="20" height="20">
-                      <path fill-rule="evenodd" d="M10 18a8 8 0 1 0 0-16 8 8 0 0 0 0 16Zm.75-13a.75.75 0 0 0-1.5 0v5c0 .414.336.75.75.75h4a.75.75 0 0 0 0-1.5h-3.25V5Z" clip-rule="evenodd" />
-                    </svg>
-                  </span>
+      <section id="onas" class="l-section about" aria-labelledby="about-title">
+        <div class="container grid-2">
+          <div>
+            <h2 id="about-title" class="about__title">O nas</h2>
+            <p class="u-lead">Łączymy lokalne składniki z finezyjnymi technikami. Krótkie, sezonowe karty pozwalają wybrzmieć każdemu produktowi.</p>
+            <ul class="about__bullets">
+              <li class="about__bullet">
+                <span class="about__bullet-icon" aria-hidden="true">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" width="20" height="20">
+                    <path fill-rule="evenodd" d="M10 18a8 8 0 1 0 0-16 8 8 0 0 0 0 16Zm.75-13a.75.75 0 0 0-1.5 0v5c0 .414.336.75.75.75h4a.75.75 0 0 0 0-1.5h-3.25V5Z" clip-rule="evenodd" />
+                  </svg>
+                </span>
                 Godziny:
                 <time datetime="17:00">17:00</time>
                 –
                 <time datetime="23:00">23:00</time>
                 (wt–nd)
               </li>
-                <li class="about__bullet">
-                  <span class="about__bullet-icon" aria-hidden="true">
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" width="20" height="20">
-                      <path
-                        fill-rule="evenodd"
+              <li class="about__bullet">
+                <span class="about__bullet-icon" aria-hidden="true">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" width="20" height="20">
+                    <path
+                      fill-rule="evenodd"
                       d="M2 3.5A1.5 1.5 0 0 1 3.5 2h1.148a1.5 1.5 0 0 1 1.465 1.175l.716 3.223a1.5 1.5 0 0 1-1.052 1.767l-.933.267c-.41.117-.643.555-.48.95a11.542 11.542 0 0 0 6.254 6.254c.395.163.833-.07.95-.48l.267-.933a1.5 1.5 0 0 1 1.767-1.052l3.223.716A1.5 1.5 0 0 1 18 15.352V16.5a1.5 1.5 0 0 1-1.5 1.5H15c-1.149 0-2.263-.15-3.326-.43A13.022 13.022 0 0 1 2.43 8.326 13.019 13.019 0 0 1 2 5V3.5Z"
                       clip-rule="evenodd" />
                   </svg>
                 </span>
                 Rezerwacje:
                 <a href="tel:+48533537091" aria-label="Zadzwoń: +48 533 537 091">+48 533 537 091</a>
-                </li>
-              </ul>
-            </div>
-            <figure class="about__photo">
+              </li>
+            </ul>
+          </div>
+          <figure class="about__photo">
             <picture>
               <source
                 type="image/avif"
@@ -447,21 +447,21 @@
           <div class="section-head">
             <h2 id="opinie-title">Opinie</h2>
             <p class="u-muted">Co mówią nasi goście</p>
-            <div class="rating-badge big" role="group" aria-label="Średnia ocena 4.8 na podstawie 327 opinii w Google">
+            <div class="testimonials__rating testimonials__rating--big" role="group" aria-label="Średnia ocena 4.8 na podstawie 327 opinii w Google">
               <img src="assets/icons/icons-svg/google.svg" alt="" aria-hidden="true" width="28" height="28" loading="lazy" decoding="async" />
               <div class="rating-text">
                 <strong>
                   4.8
                   <span class="sr-only">na 5</span>
                 </strong>
-                <span class="stars" aria-hidden="true">★★★★★</span>
+                <span class="testimonials__stars" aria-hidden="true">★★★★★</span>
                 <small aria-hidden="true">na podstawie 327 opinii Google</small>
               </div>
             </div>
           </div>
-          <div class="testimonials-grid">
-            <figure class="testimonial">
-              <picture class="avatar">
+          <div class="testimonials__grid">
+            <figure class="testimonials__card">
+              <picture class="testimonials__avatar">
                 <source type="image/avif" srcset="assets/img/_optimized/avatars/customer-01-128.avif 2x, assets/img/_optimized/avatars/customer-01-64.avif 1x" />
                 <source type="image/webp" srcset="assets/img/_optimized/avatars/customer-01-128.webp 2x, assets/img/_optimized/avatars/customer-01-64.webp 1x" />
                 <img
@@ -476,8 +476,8 @@
               <blockquote><p>„Obsługa na najwyższym poziomie, a menu degustacyjne to poezja.”</p></blockquote>
               <figcaption>— Anna K., recenzja z Google</figcaption>
             </figure>
-            <figure class="testimonial">
-              <picture class="avatar">
+            <figure class="testimonials__card">
+              <picture class="testimonials__avatar">
                 <source type="image/avif" srcset="assets/img/_optimized/avatars/customer-02-128.avif 2x, assets/img/_optimized/avatars/customer-02-64.avif 1x" />
                 <source type="image/webp" srcset="assets/img/_optimized/avatars/customer-02-128.webp 2x, assets/img/_optimized/avatars/customer-02-64.webp 1x" />
                 <img
@@ -492,8 +492,8 @@
               <blockquote><p>„Perfekcyjna obsługa. Idealne miejsce na ważny wieczór.”</p></blockquote>
               <figcaption>— Marek S., recenzja z Google</figcaption>
             </figure>
-            <figure class="testimonial">
-              <picture class="avatar">
+            <figure class="testimonials__card">
+              <picture class="testimonials__avatar">
                 <source type="image/avif" srcset="assets/img/_optimized/avatars/customer-03-128.avif 2x, assets/img/_optimized/avatars/customer-03-64.avif 1x" />
                 <source type="image/webp" srcset="assets/img/_optimized/avatars/customer-03-128.webp 2x, assets/img/_optimized/avatars/customer-03-64.webp 1x" />
                 <img
@@ -509,7 +509,7 @@
               <figcaption>— Julia P., recenzja z Google</figcaption>
             </figure>
           </div>
-          <div class="reviews-cta">
+          <div class="testimonials__actions">
             <a class="btn btn--link" href="#" target="_blank" rel="noopener noreferrer">
               <img src="assets/icons/icons-svg/google.svg" alt="" aria-hidden="true" width="18" height="18" />
               Opinie Google (327)
@@ -692,19 +692,29 @@
           <ul class="ft-contact" aria-label="Dane kontaktowe">
             <li>
               <span>
-                <img src="assets/icons/icons-svg/time-light-mode-40x40.svg" alt="" width="20" height="20" decoding="async" loading="lazy" />
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" width="20" height="20">
+                  <path fill-rule="evenodd" d="M10 18a8 8 0 1 0 0-16 8 8 0 0 0 0 16Zm.75-13a.75.75 0 0 0-1.5 0v5c0 .414.336.75.75.75h4a.75.75 0 0 0 0-1.5h-3.25V5Z" clip-rule="evenodd" />
+                </svg>
               </span>
               wt–nd: 17:00 — 23:00
             </li>
             <li>
               <span>
-                <img src="assets/icons/icons-svg/phone-light-40x40.svg" alt="" width="20" height="20" decoding="async" loading="lazy" />
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" width="20" height="20">
+                  <path
+                    fill-rule="evenodd"
+                    d="M2 3.5A1.5 1.5 0 0 1 3.5 2h1.148a1.5 1.5 0 0 1 1.465 1.175l.716 3.223a1.5 1.5 0 0 1-1.052 1.767l-.933.267c-.41.117-.643.555-.48.95a11.542 11.542 0 0 0 6.254 6.254c.395.163.833-.07.95-.48l.267-.933a1.5 1.5 0 0 1 1.767-1.052l3.223.716A1.5 1.5 0 0 1 18 15.352V16.5a1.5 1.5 0 0 1-1.5 1.5H15c-1.149 0-2.263-.15-3.326-.43A13.022 13.022 0 0 1 2.43 8.326 13.019 13.019 0 0 1 2 5V3.5Z"
+                    clip-rule="evenodd" />
+                </svg>
               </span>
               <a href="tel:+48533537091" aria-label="Zadzwoń: +48 533 537 091">+48 533 537 091</a>
             </li>
             <li>
               <span>
-                <img src="assets/icons/icons-svg/mail-light-mode-40x40.svg" alt="" width="20" height="20" decoding="async" loading="lazy" />
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                  <path d="M3 4a2 2 0 0 0-2 2v1.161l8.441 4.221a1.25 1.25 0 0 0 1.118 0L19 7.162V6a2 2 0 0 0-2-2H3Z" />
+                  <path d="m19 8.839-7.77 3.885a2.75 2.75 0 0 1-2.46 0L1 8.839V14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V8.839Z" />
+                </svg>
               </span>
               <a href="mailto:kontakt@kp-code.pl">kontakt@kp-code.pl</a>
             </li>
@@ -802,3 +812,41 @@
     </div>
   </body>
 </html>
+
+<!--
+svg inline:
+
+
+facebook:
+<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" class="icon icon-tabler icons-tabler-filled icon-tabler-brand-facebook"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M18 2a1 1 0 0 1 .993 .883l.007 .117v4a1 1 0 0 1 -.883 .993l-.117 .007h-3v1h3a1 1 0 0 1 .991 1.131l-.02 .112l-1 4a1 1 0 0 1 -.858 .75l-.113 .007h-2v6a1 1 0 0 1 -.883 .993l-.117 .007h-4a1 1 0 0 1 -.993 -.883l-.007 -.117v-6h-2a1 1 0 0 1 -.993 -.883l-.007 -.117v-4a1 1 0 0 1 .883 -.993l.117 -.007h2v-1a6 6 0 0 1 5.775 -5.996l.225 -.004h3z" /></svg>
+
+github:
+<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" class="icon icon-tabler icons-tabler-filled icon-tabler-brand-github"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M5.315 2.1c.791 -.113 1.9 .145 3.333 .966l.272 .161l.16 .1l.397 -.083a13.3 13.3 0 0 1 4.59 -.08l.456 .08l.396 .083l.161 -.1c1.385 -.84 2.487 -1.17 3.322 -1.148l.164 .008l.147 .017l.076 .014l.05 .011l.144 .047a1 1 0 0 1 .53 .514a5.2 5.2 0 0 1 .397 2.91l-.047 .267l-.046 .196l.123 .163c.574 .795 .93 1.728 1.03 2.707l.023 .295l.007 .272c0 3.855 -1.659 5.883 -4.644 6.68l-.245 .061l-.132 .029l.014 .161l.008 .157l.004 .365l-.002 .213l-.003 3.834a1 1 0 0 1 -.883 .993l-.117 .007h-6a1 1 0 0 1 -.993 -.883l-.007 -.117v-.734c-1.818 .26 -3.03 -.424 -4.11 -1.878l-.535 -.766c-.28 -.396 -.455 -.579 -.589 -.644l-.048 -.019a1 1 0 0 1 .564 -1.918c.642 .188 1.074 .568 1.57 1.239l.538 .769c.76 1.079 1.36 1.459 2.609 1.191l.001 -.678l-.018 -.168a5.03 5.03 0 0 1 -.021 -.824l.017 -.185l.019 -.12l-.108 -.024c-2.976 -.71 -4.703 -2.573 -4.875 -6.139l-.01 -.31l-.004 -.292a5.6 5.6 0 0 1 .908 -3.051l.152 -.222l.122 -.163l-.045 -.196a5.2 5.2 0 0 1 .145 -2.642l.1 -.282l.106 -.253a1 1 0 0 1 .529 -.514l.144 -.047l.154 -.03z" /></svg>
+
+X:
+<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" class="icon icon-tabler icons-tabler-filled icon-tabler-brand-x"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M8.267 3a1 1 0 0 1 .73 .317l.076 .092l4.274 5.828l5.946 -5.944a1 1 0 0 1 1.497 1.32l-.083 .094l-6.163 6.162l6.262 8.54a1 1 0 0 1 -.697 1.585l-.109 .006h-4.267a1 1 0 0 1 -.73 -.317l-.076 -.092l-4.276 -5.829l-5.944 5.945a1 1 0 0 1 -1.497 -1.32l.083 -.094l6.161 -6.163l-6.26 -8.539a1 1 0 0 1 .697 -1.585l.109 -.006h4.267z" /></svg>
+
+linktein:
+<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" class="icon icon-tabler icons-tabler-filled icon-tabler-brand-linkedin"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M17 2a5 5 0 0 1 5 5v10a5 5 0 0 1 -5 5h-10a5 5 0 0 1 -5 -5v-10a5 5 0 0 1 5 -5zm-9 8a1 1 0 0 0 -1 1v5a1 1 0 0 0 2 0v-5a1 1 0 0 0 -1 -1m6 0a3 3 0 0 0 -1.168 .236l-.125 .057a1 1 0 0 0 -1.707 .707v5a1 1 0 0 0 2 0v-3a1 1 0 0 1 2 0v3a1 1 0 0 0 2 0v-3a3 3 0 0 0 -3 -3m-6 -3a1 1 0 0 0 -.993 .883l-.007 .127a1 1 0 0 0 1.993 .117l.007 -.127a1 1 0 0 0 -1 -1" /></svg>
+
+sun:
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="size-6">
+  <path d="M12 2.25a.75.75 0 0 1 .75.75v2.25a.75.75 0 0 1-1.5 0V3a.75.75 0 0 1 .75-.75ZM7.5 12a4.5 4.5 0 1 1 9 0 4.5 4.5 0 0 1-9 0ZM18.894 6.166a.75.75 0 0 0-1.06-1.06l-1.591 1.59a.75.75 0 1 0 1.06 1.061l1.591-1.59ZM21.75 12a.75.75 0 0 1-.75.75h-2.25a.75.75 0 0 1 0-1.5H21a.75.75 0 0 1 .75.75ZM17.834 18.894a.75.75 0 0 0 1.06-1.06l-1.59-1.591a.75.75 0 1 0-1.061 1.06l1.59 1.591ZM12 18a.75.75 0 0 1 .75.75V21a.75.75 0 0 1-1.5 0v-2.25A.75.75 0 0 1 12 18ZM7.758 17.303a.75.75 0 0 0-1.061-1.06l-1.591 1.59a.75.75 0 0 0 1.06 1.061l1.591-1.59ZM6 12a.75.75 0 0 1-.75.75H3a.75.75 0 0 1 0-1.5h2.25A.75.75 0 0 1 6 12ZM6.697 7.757a.75.75 0 0 0 1.06-1.06l-1.59-1.591a.75.75 0 0 0-1.061 1.06l1.59 1.591Z" />
+</svg>
+
+moon:
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="size-6">
+  <path fill-rule="evenodd" d="M9.528 1.718a.75.75 0 0 1 .162.819A8.97 8.97 0 0 0 9 6a9 9 0 0 0 9 9 8.97 8.97 0 0 0 3.463-.69.75.75 0 0 1 .981.98 10.503 10.503 0 0 1-9.694 6.46c-5.799 0-10.5-4.7-10.5-10.5 0-4.368 2.667-8.112 6.46-9.694a.75.75 0 0 1 .818.162Z" clip-rule="evenodd" />
+</svg>
+
+
+
+
+
+
+
+
+
+
+
+-->
