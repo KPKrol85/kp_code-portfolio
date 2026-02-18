@@ -97,17 +97,6 @@
 .testimonials {
   scroll-margin-top: calc((var(--header-h, 70px)) + (var(--nav-drop-gap, 8px)) + 12px);
 }
-.testimonials__rating {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: var(--space-02);
-  font-family: var(--font-sans);
-}
-.testimonials__rating img {
-  display: block;
-  height: auto;
-}
 .testimonials__rating--big {
   display: inline-flex;
   align-items: center;
@@ -119,6 +108,12 @@
   background: color-mix(in oklab, var(--c-surface), white 6%);
   width: fit-content;
   margin-inline: auto;
+}
+.testimonials__rating--big > svg {
+  width: 24px;
+  height: 24px;
+  flex: 0 0 auto;
+  display: block;
 }
 .testimonials__rating--big strong {
   font-size: var(--fs-md);
@@ -134,12 +129,18 @@
   font-size: var(--fs-sm);
   color: var(--c-muted);
 }
-
+.testimonials__actions .btn--link > svg {
+  width: 20px;
+  height: 20px;
+  flex: 0 0 auto;
+  display: block;
+}
 @media (prefers-reduced-motion: reduce) {
   .testimonials__card {
     transition: none;
   }
 }
+
 @media (hover: hover) {
   .testimonials__card:hover {
     transform: translateY(-2px);
