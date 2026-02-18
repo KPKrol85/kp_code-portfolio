@@ -1,36 +1,34 @@
 /* Rezerwacja */
+.booking {
+  padding-inline: clamp(var(--space-04), 5vw, var(--space-06));
+}
 .booking .booking__layout {
+  width: 100%;
+  max-width: var(--container-sm);
+  margin-inline: auto;
   border: 1px solid var(--c-border);
   border-radius: var(--radius-xs);
   background: var(--c-surface);
   box-shadow: var(--shadow-md);
-  padding: var(--space-04);
+  padding: var(--space-06) var(--space-04);
   overflow: hidden;
   align-items: start;
   gap: var(--space-06);
-  margin-inline: var(--space-02);
 }
 .booking .booking__layout > * {
   min-width: 0;
 }
-.booking .booking__title {
-  text-align: center;
-  margin: var(--space-02);
-}
 .booking .booking__lead {
-  text-align: center;
-  margin-inline: auto;
-  max-width: 60ch;
-  margin-bottom: var(--space-04);
+  font-size: var(--fs-sm);
 }
 
 /* Form */
 .booking-form {
-  --g: var(--space-03);
   display: grid;
   grid-template-columns: 1fr;
-  gap: var(--space-04);
+  gap: var(--space-03);
   justify-items: center;
+  margin-top: var(--space-04);
 }
 .booking-form .booking-form__row {
   display: flex;
@@ -38,12 +36,13 @@
   gap: var(--space-02);
   min-width: 0;
   width: 100%;
-  max-width: 320px;
+  max-width: 340px;
   margin-inline: auto;
 }
 .booking-form .booking-form__row--full {
   grid-column: 1 / -1;
 }
+
 .booking-form label {
   font-weight: 450;
 }
@@ -121,9 +120,7 @@
   margin-top: var(--space-01);
 }
 .booking-form .booking-form__consent-row a {
-  color: var(--c-accent-contrast);
-  text-decoration: underline;
-  text-underline-offset: 2px;
+  text-decoration: none;
 }
 .booking-form .booking-form__consent-row a:hover,
 .booking-form .booking-form__consent-row a:focus-visible {
@@ -185,7 +182,7 @@ html[data-theme="dark"] .booking-form input[type="time"]::-webkit-calendar-picke
   margin: var(--space-05);
 }
 .booking__aside .booking__logo .logo {
-  inline-size: var(--logo-xl);
+  inline-size: var(--logo-lg);
   block-size: auto;
   max-inline-size: none;
 }
@@ -201,37 +198,22 @@ html[data-theme="dark"] .booking-form input[type="time"]::-webkit-calendar-picke
 
 @media (min-width: 480px) {
   .booking .booking__layout {
-    padding: var(--space-04);
-    margin-inline: var(--space-06);
-  }
-  .booking .booking-form > .booking-form__actions {
-    gap: var(--space-01);
-  }
-  .booking .booking-form > .booking-form__actions .btn {
-    width: auto;
+    padding: var(--space-06) var(--space-05);
   }
 }
 
 @media (min-width: 760px) {
   .booking .booking__layout {
-    padding: var(--space-06);
+    padding: var(--space-08) var(--space-06);
     grid-template-columns: 1fr;
-    margin-inline: var(--space-08);
-  }
-  .booking .booking-form > .booking-form__actions {
-    flex-direction: row;
-    align-items: center;
-  }
-  .booking-form .booking-form__row {
-    max-width: 420px;
   }
 }
 
 @media (min-width: 1024px) {
   .booking .booking__layout {
-    padding: var(--space-07);
-    row-gap: var(--space-03);
-    column-gap: var(--space-07);
+    max-width: var(--container-md);
+    padding: var(--space-06);
+    column-gap: var(--space-02);
     grid-template-columns: 1.1fr 0.9fr;
   }
   .booking__aside {
@@ -245,5 +227,11 @@ html[data-theme="dark"] .booking-form input[type="time"]::-webkit-calendar-picke
 @media (prefers-reduced-motion: reduce) {
   .booking-form :is(input, select, textarea) {
     transition: none;
+  }
+  .booking__aside {
+    align-self: center;
+  }
+  .booking__aside .booking__logo {
+    margin: var(--space-08) 0;
   }
 }

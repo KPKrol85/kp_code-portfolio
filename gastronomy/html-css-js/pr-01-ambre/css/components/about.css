@@ -1,4 +1,12 @@
 /* About */
+.about .grid-2 > div {
+  text-align: center;
+}
+.about__lead {
+  margin-inline: auto;
+
+  max-width: 36ch;
+}
 .about__photo {
   border-radius: var(--radius-xs);
   overflow: hidden;
@@ -6,7 +14,6 @@
 }
 .about__photo img {
   width: 100%;
-  height: auto;
   border-radius: var(--radius-xs);
   object-fit: cover;
 }
@@ -14,20 +21,21 @@
   display: grid;
   gap: var(--space-02);
   list-style: none;
-  margin: var(--space-04) 0 0;
+  margin: var(--space-06) 0 0;
   padding: 0;
 }
 .about__bullet {
   display: flex;
   align-items: center;
   gap: var(--space-02);
+  justify-content: center;
 }
 .about__bullets a,
 .about__bullets time {
   white-space: nowrap;
 }
 .about__bullets a {
-  color: var(--c-ink);
+  letter-spacing: var(--ls-normal);
   font-weight: 600;
   text-decoration: none;
   transition: color 0.2s ease;
@@ -39,10 +47,7 @@
 .about__bullets a:visited {
   color: var(--c-ink);
 }
-.about__title {
-  text-align: center;
-  margin-bottom: var(--space-03);
-}
+
 .about__bullet-icon {
   display: inline-flex;
   align-items: center;
@@ -55,25 +60,20 @@
   height: 20px;
   display: block;
 }
-.about .grid-2 > div {
-  text-align: center;
-}
-.about__bullet {
-  justify-content: center;
-}
-.about .u-lead {
-  margin-inline: auto;
-  text-align: center;
-  line-height: var(--lh-relaxed);
-  padding: 0 var(--space-06);
-}
 
 @media (min-width: 1024px) {
   .about .grid-2 > div {
     text-align: left;
   }
-  .about__title {
+  .about__content {
     text-align: left;
+  }
+  .about__content .about__title {
+    text-align: left;
+  }
+  .about__content .about__title::after {
+    left: 0;
+    transform: none;
   }
   .about__bullet {
     justify-content: flex-start;

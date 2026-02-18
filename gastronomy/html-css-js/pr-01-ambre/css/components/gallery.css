@@ -1,17 +1,10 @@
 /* Gallery */
-.gallery .gallery__head {
-  text-align: center;
-}
-.gallery .gallery__head .gallery__lead {
-  max-width: 65ch;
-  margin: var(--space-06) auto 0;
-  text-align: center;
-}
 .gallery__grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
   gap: var(--space-04);
   justify-items: center;
+  margin-top: var(--space-06);
 }
 .gallery__item[hidden] {
   display: none !important;

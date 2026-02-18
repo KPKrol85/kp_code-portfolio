@@ -45,7 +45,7 @@
 }
 .page-legal h2::after {
   content: "";
-  display: l-section;
+  display: block;
   width: 48px;
   height: 2px;
   margin: 0.45rem 0 0;
@@ -97,14 +97,11 @@
   --legal-link-hover: color-mix(in oklab, var(--c-accent), white 18%);
 }
 .page-legal a[href^="mailto"],
-.page-legal a[href^="tel"],
-.page-legal .btn--ghost {
+.page-legal a[href^="tel"] {
   text-decoration: none;
 }
 .page-legal a[href^="mailto"]:hover,
-.page-legal a[href^="tel"]:hover,
-.page-legal .btn--ghost:hover,
-.page-legal .btn--ghost:focus-visible {
+.page-legal a[href^="tel"]:hover {
   text-decoration: none;
   color: var(--legal-link-hover);
 }
@@ -131,6 +128,7 @@
   border: 1px solid color-mix(in oklab, var(--c-accent-contrast), transparent 50%);
   background: transparent;
   color: var(--c-ink);
+  text-decoration: none;
   transition:
     background-color 0.18s,
     border-color 0.18s,
@@ -198,7 +196,7 @@
 }
 .page-legal .doc-content small {
   color: var(--c-muted);
-  display: l-section;
+  display: block;
   margin-bottom: 1rem;
 }
 

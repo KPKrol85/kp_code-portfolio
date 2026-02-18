@@ -125,6 +125,15 @@ html[data-theme="light"] .site-footer {
   text-align: center;
   max-width: 32ch;
 }
+.map-wrap {
+  position: relative;
+  aspect-ratio: 16 / 10;
+  border-radius: var(--radius);
+  overflow: hidden;
+  inline-size: 100%;
+  max-inline-size: 420px;
+  margin-inline: auto;
+}
 .site-footer .map-wrap {
   margin-top: 1.6em;
 }
@@ -140,15 +149,6 @@ html[data-theme="light"] .site-footer {
   grid-template-columns: 1fr;
   column-gap: 0.6rem;
   align-items: center;
-}
-.map-wrap {
-  position: relative;
-  aspect-ratio: 16 / 10;
-  border-radius: var(--radius);
-  overflow: hidden;
-  inline-size: 100%;
-  max-inline-size: 420px;
-  margin-inline: auto;
 }
 .map-wrap iframe {
   position: absolute;
@@ -176,6 +176,21 @@ html[data-theme="light"] .ft-bottom {
   color: var(--ft-ink-muted);
   opacity: 0.75;
 }
+.ft-legal {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 24px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.ft-legal a {
+  color: inherit;
+  text-decoration: none;
+  opacity: 0.85;
+  font-size: 0.875rem;
+}
 .ft-bottom .ft-legal {
   list-style: none;
   margin: 0;
@@ -199,15 +214,6 @@ html[data-theme="dark"] .ft-bottom .ft-legal a:hover {
   outline-offset: 2px;
   text-decoration: none;
 }
-.ft-legal {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 24px;
-  margin: 0;
-  padding: 0;
-  list-style: none;
-}
 .ft-legalbar {
   position: relative;
   margin-top: 34px;
@@ -222,13 +228,6 @@ html[data-theme="dark"] .ft-bottom .ft-legal a:hover {
   height: 1px;
   background: color-mix(in oklab, var(--c-ink), transparent 88%);
 }
-.ft-legal a {
-  color: inherit;
-  text-decoration: none;
-  opacity: 0.85;
-  font-size: 0.875rem;
-}
-
 @media (max-width: 719px) {
   .ft-grid {
     gap: 40px;

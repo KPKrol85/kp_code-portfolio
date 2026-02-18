@@ -1,18 +1,8 @@
 /* Menu */
-.menu {
-  scroll-margin-top: 90px;
-  text-align: center;
-}
-.menu__head {
-  margin-bottom: var(--space-05);
-}
-.menu__head h2 {
-  margin-bottom: var(--space-01);
-}
 .tabs {
   display: flex;
   gap: var(--space-02);
-  margin: var(--space-04) 0 var(--space-05);
+  margin: var(--space-06);
   flex-wrap: wrap;
   justify-content: center;
 }
@@ -34,7 +24,6 @@
   gap: var(--space-04);
   text-align: left;
   justify-items: center;
-
 }
 .dish {
   border: 1px solid var(--c-border);
@@ -58,37 +47,33 @@
   grid-template-columns: 1fr auto;
   align-items: center;
   gap: var(--space-04);
-  margin-top: var(--space-03);
+  margin: var(--space-02) 0;
 }
 .dish__title {
   position: relative;
-  padding-bottom: var(--space-03);
+  padding: var(--space-03) 0;
 }
 .dish__title::after {
   content: "";
   position: absolute;
   left: 0;
   bottom: 0;
-  width: 80%;
+  width: var(--space-06);
+  border-radius: var(--radius-xs);
   height: 1px;
   background: color-mix(in oklab, var(--c-ink), transparent 80%);
   pointer-events: none;
 }
-.dish__title,
-.dish .dish__price {
-  color: var(--c-ink);
-  margin: 0;
-}
-.dish .dish__price {
+.dish__price {
   font-weight: 700;
   white-space: nowrap;
-  font-size: var(--fs-md);
+  font-size: var(--fs-lg);
   padding-right: var(--space-02);
 }
 .dish__desc {
-  margin: var(--space-04) 0 0;
-  font-size: var(--fs-sm);
-  line-height: var(--lh-relaxed);
+  margin: var(--space-02) 0;
+  font-size: var(--fs-md);
+  line-height: var(--lh-normal);
   color: color-mix(in oklab, var(--c-ink), black 10%);
   opacity: 0.9;
   text-wrap: pretty;
@@ -139,15 +124,19 @@
     block-size: 100%;
     align-self: stretch;
     justify-self: stretch;
-     min-block-size: 160px;
+    min-block-size: 160px;
   }
   .dish--has-thumb .dish__thumb picture,
   .dish--has-thumb .dish__thumb img {
     inline-size: 100%;
     block-size: 100%;
   }
-  .dish--has-thumb .dish__head { grid-area: head; }
-  .dish--has-thumb .dish__desc { grid-area: desc; }
+  .dish--has-thumb .dish__head {
+    grid-area: head;
+  }
+  .dish--has-thumb .dish__desc {
+    grid-area: desc;
+  }
 }
 
 @media (min-width: 1024px) {

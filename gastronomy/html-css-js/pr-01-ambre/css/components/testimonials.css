@@ -3,14 +3,8 @@
   padding-block: clamp(60px, 7vw, 110px);
   text-align: center;
 }
-.testimonials .section-head {
+.testimonials__head {
   margin-bottom: var(--space-04);
-}
-.testimonials .section-head p {
-  margin-top: var(--space-03);
-}
-.testimonials .testimonials__rating--big {
-  margin: var(--space-02) auto 0;
 }
 .testimonials__grid {
   display: grid;
@@ -94,9 +88,7 @@
   gap: var(--space-03);
   margin-top: var(--space-06);
 }
-.testimonials {
-  scroll-margin-top: calc((var(--header-h, 70px)) + (var(--nav-drop-gap, 8px)) + 12px);
-}
+
 .testimonials__rating--big {
   display: inline-flex;
   align-items: center;
@@ -108,6 +100,9 @@
   background: color-mix(in oklab, var(--c-surface), white 6%);
   width: fit-content;
   margin-inline: auto;
+}
+.testimonials .testimonials__rating--big {
+  margin: var(--space-02) auto 0;
 }
 .testimonials__rating--big > svg {
   width: 24px;

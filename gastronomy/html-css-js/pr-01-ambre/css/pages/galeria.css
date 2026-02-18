@@ -12,12 +12,12 @@
   padding-bottom: 0;
 }
 .page-gallery .gallery__head .title-divider {
-  display: l-section;
+  display: block;
   line-height: 0;
   margin: clamp(8px, 1.8vw, 16px) auto 0;
 }
 .page-gallery .gallery__head .title-divider img {
-  display: l-section;
+  display: block;
   margin-inline: auto;
   height: auto;
   max-width: 100%;
