@@ -19,11 +19,11 @@
   list-style: none;
   display: flex;
   align-items: center;
-  gap: var(--space-03);
+  gap: var(--space-02);
   cursor: pointer;
   min-height: 56px;
-  padding: var(--space-03) var(--space-04);
-  font-weight: 600;
+  padding: var(--space-02) var(--space-04);
+  font-weight: 550;
   position: relative;
   outline: none;
 }
@@ -65,7 +65,7 @@
 }
 .faq__content {
   background: color-mix(in oklab, var(--c-surface), white 4%);
-  padding: var(--space-03) var(--space-04) var(--space-04);
+  padding: var(--space-02) var(--space-04);
   color: var(--c-ink);
   line-height: var(--lh-normal);
 }

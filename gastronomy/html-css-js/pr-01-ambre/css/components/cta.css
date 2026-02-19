@@ -20,23 +20,23 @@
   border-color: color-mix(in oklab, var(--c-border), var(--c-accent-contrast) 25%);
   box-shadow: var(--shadow-md);
 }
-.cta__actions {
-  justify-content: center;
-  margin-top: var(--space-05);
-}
-.cta__actions .btn {
-  width: 100%;
-  max-width: 420px;
-}
-.cta__box .u-lead a {
+.cta__lead a {
   font-weight: 600;
   text-decoration: none;
   transition: color 0.2s ease;
   letter-spacing: var(--ls-normal);
 }
-.cta__box .u-lead a:hover,
-.cta__box .u-lead a:focus-visible {
+.cta__lead a:hover,
+.cta__lead a:focus-visible {
   color: color-mix(in oklab, var(--c-accent-contrast), #000 20%);
+}
+.cta__actions {
+  justify-content: center;
+  margin: var(--space-06) 0;
+}
+.cta__actions .btn {
+  width: 100%;
+  max-width: 420px;
 }
 .cta__box + .cta__actions {
   margin-top: var(--space-04);

@@ -2,7 +2,7 @@
 .booking {
   padding-inline: clamp(var(--space-04), 5vw, var(--space-06));
 }
-.booking .booking__layout {
+.booking__layout {
   width: 100%;
   max-width: var(--container-sm);
   margin-inline: auto;
@@ -15,10 +15,10 @@
   align-items: start;
   gap: var(--space-06);
 }
-.booking .booking__layout > * {
+.booking__layout > * {
   min-width: 0;
 }
-.booking .booking__lead {
+.booking__lead {
   font-size: var(--fs-sm);
 }
 
@@ -30,51 +30,53 @@
   justify-items: center;
   margin-top: var(--space-04);
 }
-.booking-form .booking-form__row {
+.booking-form__row {
   display: flex;
   flex-direction: column;
   gap: var(--space-02);
   min-width: 0;
   width: 100%;
-  max-width: 340px;
+  max-width: 360px;
   margin-inline: auto;
 }
 .booking-form .booking-form__row--full {
   grid-column: 1 / -1;
 }
-
 .booking-form label {
   font-weight: 450;
+  font-size: var(--fs-sm);
 }
-.booking-form :is(input, select, textarea) {
+.booking-form__field {
   width: 100%;
   box-sizing: border-box;
-  padding: var(--space-01) var(--space-03);
+  padding: var(--space-01) var(--space-02);
   border: 1px solid var(--c-border);
   border-radius: var(--radius-xs);
   background: var(--c-bg);
-  color: var(--c-muted);
-  min-height: 44px;
+  color: var(--c-ink);
+  min-height: 48px;
   caret-color: var(--c-ink);
-  -webkit-text-fill-color: var(--c-ink);
   color-scheme: light dark;
   transition:
     border-color 0.18s ease,
     box-shadow 0.18s ease,
     background-color 0.18s ease;
 }
-.booking-form textarea {
-  resize: vertical;
-}
-.booking-form :is(input, textarea)::placeholder {
+.booking-form__field::placeholder {
   color: color-mix(in oklab, var(--c-ink) 55%, transparent);
   opacity: 0.95;
 }
-.booking-form :is(input, select, textarea):focus-visible {
+
+.booking-form textarea {
+  resize: vertical;
+  font-size: var(--fs-sm);
+  padding: var(--space-02);
+}
+.booking-form__field:focus-visible {
   outline: 2px solid var(--c-accent-contrast);
   outline-offset: 2px;
   border-color: color-mix(in oklab, var(--c-border), var(--c-accent-contrast) 40%);
-  box-shadow: 0 0 0 3px color-mix(in oklab, var(--c-accent-contrast) 20%, transparent);
+  box-shadow: var(--shadow-md);
 }
 .booking-form .booking-form__row:has(:where(input, select, textarea)[aria-invalid="true"]),
 .booking-form .booking-form__row:has(:where(input, select, textarea)[required]:invalid),
@@ -146,7 +148,6 @@ html[data-theme="dark"] .booking-form :is(input, select, textarea):-webkit-autof
 }
 html[data-theme="dark"] .booking-form :is(input, select, textarea) {
   background: #0f0f14;
-  padding: var(--space-01) var(--space-02);
 }
 .booking-form input[type="date"]::-webkit-calendar-picker-indicator,
 .booking-form input[type="time"]::-webkit-calendar-picker-indicator {
@@ -163,7 +164,7 @@ html[data-theme="dark"] .booking-form input[type="time"]::-webkit-calendar-picke
   align-items: stretch;
   justify-content: center;
   gap: var(--space-03);
-  margin-top: var(--space-04);
+  margin: var(--space-04);
 }
 .booking .booking-form > .booking-form__actions .btn {
   margin: 0;
@@ -196,12 +197,6 @@ html[data-theme="dark"] .booking-form input[type="time"]::-webkit-calendar-picke
   margin-inline: auto;
 }
 
-@media (min-width: 480px) {
-  .booking .booking__layout {
-    padding: var(--space-06) var(--space-05);
-  }
-}
-
 @media (min-width: 760px) {
   .booking .booking__layout {
     padding: var(--space-08) var(--space-06);
@@ -212,7 +207,7 @@ html[data-theme="dark"] .booking-form input[type="time"]::-webkit-calendar-picke
 @media (min-width: 1024px) {
   .booking .booking__layout {
     max-width: var(--container-md);
-    padding: var(--space-06);
+
     column-gap: var(--space-02);
     grid-template-columns: 1.1fr 0.9fr;
   }

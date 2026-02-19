@@ -1,18 +1,50 @@
 /* Testimonials */
-.testimonials.l-section {
-  padding-block: clamp(60px, 7vw, 110px);
+
+.testimonials {
   text-align: center;
 }
 .testimonials__head {
-  margin-bottom: var(--space-04);
+  margin: var(--space-04) 0;
 }
 .testimonials__grid {
   display: grid;
   gap: var(--space-06);
   margin-top: var(--space-07);
-  grid-template-columns: repeat(auto-fit, 300px);
+  grid-template-columns: repeat(auto-fit, 260px);
   justify-content: center;
   padding-inline: var(--space-06);
+}
+.testimonials__rating {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-02);
+  padding: var(--space-02) var(--space-04);
+  border: 1px solid var(--c-border);
+  border-radius: var(--radius-xs);
+  background: color-mix(in oklab, var(--c-surface), white 6%);
+  width: fit-content;
+  margin-inline: auto;
+}
+.testimonials__rating > svg {
+  width: 24px;
+  height: 24px;
+  flex: 0 0 auto;
+  display: block;
+}
+.testimonials__rating strong {
+  font-size: var(--fs-md);
+  color: var(--c-accent-contrast);
+}
+.testimonials__rating .testimonials__stars {
+  color: #f8d580;
+  font-size: var(--fs-md);
+  margin-left: var(--space-01);
+}
+.testimonials__rating small {
+  display: block;
+  font-size: var(--fs-sm);
+  color: var(--c-muted);
 }
 .testimonials__card {
   display: grid;
@@ -21,10 +53,8 @@
   gap: var(--space-02);
   padding: var(--space-03);
   justify-items: stretch;
-  min-height: 180px;
-  width: 300px;
-  max-width: 300px;
   margin: 0;
+  min-height: 240px;
   border: 1px solid var(--c-border);
   border-radius: var(--radius-xs);
   background: color-mix(in oklab, var(--c-surface), white 6%);
@@ -33,7 +63,6 @@
     border-color 0.18s ease,
     box-shadow 0.18s ease,
     background-color 0.18s ease;
-  text-align: center;
 }
 .testimonials__avatar {
   width: 72px;
@@ -50,15 +79,15 @@
   border-radius: var(--radius-xs);
   box-shadow: var(--shadow-xs);
 }
-.testimonials__card blockquote {
+.testimonials__quote {
   margin: 0;
 }
-.testimonials__card blockquote p {
-  margin: 0;
+.testimonials__text {
   font-size: var(--fs-md);
   line-height: var(--lh-normal);
+  margin: 0;
 }
-.testimonials__card figcaption {
+.testimonials__author {
   font-size: var(--fs-sm);
   color: var(--c-muted);
   margin-top: var(--space-03);
@@ -67,7 +96,7 @@
   overflow: hidden;
   text-overflow: ellipsis;
 }
-.testimonials__card figcaption::before {
+.testimonials__author::before {
   content: "";
   display: block;
   width: 36px;
@@ -86,43 +115,7 @@
   flex-wrap: wrap;
   justify-content: center;
   gap: var(--space-03);
-  margin-top: var(--space-06);
-}
-
-.testimonials__rating--big {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: var(--space-02);
-  padding: var(--space-02) var(--space-04);
-  border: 1px solid var(--c-border);
-  border-radius: var(--radius-xs);
-  background: color-mix(in oklab, var(--c-surface), white 6%);
-  width: fit-content;
-  margin-inline: auto;
-}
-.testimonials .testimonials__rating--big {
-  margin: var(--space-02) auto 0;
-}
-.testimonials__rating--big > svg {
-  width: 24px;
-  height: 24px;
-  flex: 0 0 auto;
-  display: block;
-}
-.testimonials__rating--big strong {
-  font-size: var(--fs-md);
-  color: var(--c-accent-contrast);
-}
-.testimonials__rating--big .testimonials__stars {
-  color: #f8d580;
-  font-size: var(--fs-md);
-  margin-left: var(--space-01);
-}
-.testimonials__rating--big small {
-  display: block;
-  font-size: var(--fs-sm);
-  color: var(--c-muted);
+  margin: var(--space-06) 0;
 }
 .testimonials__actions .btn--link > svg {
   width: 20px;
@@ -130,12 +123,12 @@
   flex: 0 0 auto;
   display: block;
 }
+
 @media (prefers-reduced-motion: reduce) {
   .testimonials__card {
     transition: none;
   }
 }
-
 @media (hover: hover) {
   .testimonials__card:hover {
     transform: translateY(-2px);

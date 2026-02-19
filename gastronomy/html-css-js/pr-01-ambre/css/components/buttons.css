@@ -196,18 +196,10 @@ html[data-theme="dark"] .btn--link:hover {
 
 /* Form */
 .btn--form {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  padding: 0.6rem 1.4rem;
-  border-radius: 999px;
-  font-weight: 600;
   font-family: inherit;
   border: 1px solid color-mix(in oklab, var(--c-accent), #000 15%);
   background: var(--c-accent);
-  color: #1b1b1f;
-  cursor: pointer;
-  box-shadow: 0 3px 12px rgba(0, 0, 0, 0.08);
+  box-shadow: var(--shadow-sm);
   transition:
     background-color 0.2s ease,
     transform 0.15s ease,
@@ -228,7 +220,7 @@ html[data-theme="dark"] .btn--link:hover {
 }
 html[data-theme="dark"] .btn--form {
   background: color-mix(in oklab, var(--c-accent), #000 10%);
-  color: #111;
+  color: #1b1b1f;
   border-color: color-mix(in oklab, var(--c-accent), #000 25%);
 }
 html[data-theme="dark"] .btn--form:hover {

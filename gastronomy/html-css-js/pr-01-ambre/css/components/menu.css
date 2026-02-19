@@ -110,13 +110,13 @@
 @media (min-width: 480px) {
   .dish--has-thumb {
     display: grid;
-    grid-template-columns: 40% 1fr;
+    grid-template-columns: 30% 1fr;
     grid-template-areas:
       "thumb head"
       "thumb desc";
     column-gap: var(--space-04);
     align-items: stretch;
-    max-width: 720px;
+    max-width: 620px;
   }
   .dish--has-thumb .dish__thumb {
     grid-area: thumb;

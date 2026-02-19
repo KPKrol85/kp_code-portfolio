@@ -381,7 +381,7 @@
       <!-- Gallery -->
       <section id="galeria" class="l-section gallery gallery--home" aria-labelledby="gallery-title">
         <div class="container">
-          <div class="section-head gallery__head ">
+          <div class="section-head gallery__head">
             <h2 id="gallery-title" class="gallery__title">Galeria</h2>
             <p class="u-lead gallery__lead">Wybrane kompozycje i produkty premium.</p>
           </div>
@@ -401,6 +401,7 @@
                   height="600" />
               </picture>
             </a>
+
             <a class="gallery__item" href="assets/img/gallery/wine-01-1600.jpg" data-full="assets/img/gallery/wine-01-1600" aria-haspopup="dialog" aria-controls="lb">
               <picture>
                 <source type="image/avif" srcset="assets/img/_optimized/gallery/wine-01-1200.avif 2x, assets/img/_optimized/gallery/wine-01-600.avif 1x" />
@@ -416,6 +417,7 @@
                   height="600" />
               </picture>
             </a>
+
             <a class="gallery__item" href="assets/img/gallery/dessert-01-1600.jpg" data-full="assets/img/gallery/dessert-01-1600" aria-haspopup="dialog" aria-controls="lb">
               <picture>
                 <source type="image/avif" srcset="assets/img/_optimized/gallery/dessert-01-1200.avif 2x, assets/img/_optimized/gallery/dessert-01-600.avif 1x" />
@@ -431,6 +433,7 @@
                   height="600" />
               </picture>
             </a>
+
             <a class="gallery__item" href="assets/img/gallery/interior-01-1600.jpg" data-full="assets/img/gallery/interior-01-1600" aria-haspopup="dialog" aria-controls="lb">
               <picture>
                 <source type="image/avif" srcset="assets/img/_optimized/gallery/interior-01-1200.avif 2x, assets/img/_optimized/gallery/interior-01-600.avif 1x" />
@@ -448,6 +451,7 @@
             </a>
           </div>
         </div>
+
         <div class="cta__actions btn-group">
           <a class="btn btn--ghost" href="galeria.html">Pełna galeria</a>
         </div>
@@ -459,7 +463,7 @@
           <div class="section-head testimonials__head">
             <h2 id="opinie-title" class="testimonials__title">Opinie</h2>
             <p class="u-lead testimonials__lead">Co mówią nasi goście</p>
-            <div class="testimonials__rating testimonials__rating--big" role="group" aria-label="Średnia ocena 4.8 na podstawie 327 opinii w Google">
+            <div class="testimonials__rating" role="group" aria-label="Średnia ocena 4.8 na podstawie 327 opinii w Google">
               <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
                 <path stroke="none" d="M0 0h24v24H0z" fill="none" />
                 <path
@@ -475,6 +479,7 @@
               </div>
             </div>
           </div>
+
           <div class="testimonials__grid">
             <figure class="testimonials__card">
               <picture class="testimonials__avatar">
@@ -489,9 +494,10 @@
                   decoding="async"
                   alt="" />
               </picture>
-              <blockquote><p>„Obsługa na najwyższym poziomie, a menu degustacyjne to poezja.”</p></blockquote>
-              <figcaption>— Anna K., recenzja z Google</figcaption>
+              <blockquote class="testimonials__quote"><p class="testimonials__text">„Obsługa na najwyższym poziomie, a menu degustacyjne to poezja.”</p></blockquote>
+              <figcaption class="testimonials__author">— Anna K., recenzja z Google</figcaption>
             </figure>
+
             <figure class="testimonials__card">
               <picture class="testimonials__avatar">
                 <source type="image/avif" srcset="assets/img/_optimized/avatars/customer-02-128.avif 2x, assets/img/_optimized/avatars/customer-02-64.avif 1x" />
@@ -505,9 +511,10 @@
                   decoding="async"
                   alt="" />
               </picture>
-              <blockquote><p>„Perfekcyjna obsługa. Idealne miejsce na ważny wieczór.”</p></blockquote>
-              <figcaption>— Marek S., recenzja z Google</figcaption>
+              <blockquote class="testimonials__quote"><p class="testimonials__text">„Perfekcyjna obsługa. Idealne miejsce na ważny wieczór.”</p></blockquote>
+              <figcaption class="testimonials__author">— Marek S., recenzja z Google</figcaption>
             </figure>
+
             <figure class="testimonials__card">
               <picture class="testimonials__avatar">
                 <source type="image/avif" srcset="assets/img/_optimized/avatars/customer-03-128.avif 2x, assets/img/_optimized/avatars/customer-03-64.avif 1x" />
@@ -521,10 +528,11 @@
                   decoding="async"
                   alt="" />
               </picture>
-              <blockquote><p>„Piękne wnętrze i świetne kompozycje smaków. Na pewno wrócimy!”</p></blockquote>
-              <figcaption>— Julia P., recenzja z Google</figcaption>
+              <blockquote class="testimonials__quote"><p class="testimonials__text">„Piękne wnętrze i świetne kompozycje smaków. Na pewno wrócimy!”</p></blockquote>
+              <figcaption class="testimonials__author">— Julia P., recenzja z Google</figcaption>
             </figure>
           </div>
+
           <div class="testimonials__actions">
             <a class="btn btn--link" href="#" target="_blank" rel="noopener noreferrer">
               <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
@@ -566,13 +574,17 @@
           <div>
             <h2 id="booking-title" class="booking__title">Rezerwacja</h2>
             <p class="u-lead booking__lead">Wypełnij formularz. Oddzwonimy z potwierdzeniem.</p>
+
             <form id="booking-form" class="booking-form" data-testid="booking-form" name="reservation" method="POST" data-netlify="true" novalidate>
               <input type="hidden" name="form-name" value="reservation" class="booking-form__field" />
+
               <input type="text" name="company" class="booking-form__hp booking-form__field" aria-hidden="true" tabindex="-1" autocomplete="off" />
+
               <div class="booking-form__row">
                 <label class="booking-form__label" for="name">Imię i nazwisko</label>
                 <input class="booking-form__field" id="name" name="name" type="text" required autocomplete="name" placeholder="Jan Kowalski" aria-describedby="form-msg" />
               </div>
+
               <div class="booking-form__row">
                 <label class="booking-form__label" for="phone">Telefon</label>
                 <input
@@ -587,14 +599,17 @@
                   aria-describedby="form-msg phone-error" />
                 <p id="phone-error" class="booking-form__message" aria-live="polite"></p>
               </div>
+
               <div class="booking-form__row">
                 <label class="booking-form__label" for="date">Data</label>
                 <input class="booking-form__field" id="date" name="date" type="date" required aria-describedby="form-msg" />
               </div>
+
               <div class="booking-form__row">
                 <label class="booking-form__label" for="time">Godzina</label>
                 <input class="booking-form__field" id="time" name="time" type="time" required min="14:00" max="22:00" step="900" aria-describedby="form-msg" />
               </div>
+
               <div class="booking-form__row">
                 <label class="booking-form__label" for="guests">Liczba gości</label>
                 <select class="booking-form__field" id="guests" name="guests" required>
@@ -607,10 +622,12 @@
                   <option>6+</option>
                 </select>
               </div>
+
               <div class="booking-form__row">
                 <label class="booking-form__label" for="notes">Uwagi (opcjonalnie)</label>
                 <textarea class="booking-form__field booking-form__field--textarea" id="notes" name="notes" rows="3" placeholder="Preferencje stolika, alergie…"></textarea>
               </div>
+
               <div class="booking-form__row booking-form__consent-row">
                 <label class="booking-form__consent booking-form__label" for="consent">
                   <input class="booking-form__field" id="consent" name="consent" type="checkbox" required aria-describedby="consent-error form-msg" />
@@ -622,12 +639,14 @@
                 </label>
                 <p id="consent-error" class="booking-form__message" aria-live="polite"></p>
               </div>
+
               <div class="booking-form__actions">
                 <button class="btn btn--form" type="submit">Wyślij rezerwację</button>
                 <p id="form-msg" class="booking-form__message booking-form__message--status" role="status" aria-live="polite"></p>
               </div>
             </form>
           </div>
+
           <aside class="booking__aside">
             <h3 class="booking__aside-title">Informacje</h3>
             <ul class="bullets booking__info-list">
@@ -652,7 +671,7 @@
       <section id="kontakt" class="cta l-section" aria-labelledby="cta-title">
         <div class="container cta__box">
           <h2 id="cta-title" class="cta__title">Zarezerwuj wyjątkowy wieczór</h2>
-          <p class="u-lead cta__lead ">
+          <p class="u-lead cta__lead">
             Zadzwoń do nas pod numer&nbsp;
             <a href="tel:+48533537091" aria-label="Zadzwoń do restauracji KP_Code">+48&nbsp;533&nbsp;537&nbsp;091</a>
             &nbsp;lub skorzystaj z formularza powyżej.
@@ -668,7 +687,6 @@
             <p class="u-lead faq__lead">Najczęstsze pytania o rezerwacje i menu.</p>
           </div>
           <div class="grid-2">
-
             <details class="faq__details">
               <summary class="faq__summary">Jak anulować lub zmienić rezerwację?</summary>
               <div class="faq__content">
@@ -692,16 +710,17 @@
               <summary class="faq__summary">Czy akceptujecie vouchery podarunkowe?</summary>
               <div class="faq__content">Tak, vouchery realizujemy od wtorku do czwartku. Zabierz ze sobą kod vouchera.</div>
             </details>
-
           </div>
         </div>
       </section>
     </main>
 
     <!-- Footer -->
-    <footer id="footer" class="site-footer" role="contentinfo">
+    <footer id="footer" class="l-section site-footer" role="contentinfo">
       <h2 class="sr-only">Stopka</h2>
+
       <div class="container ft-grid">
+        
         <div class="ft-col">
           <a href="/#top" class="brand-footer" aria-label="Strona główna Ambre">
             <img class="logo logo-light" src="assets/img/logo-img/logo-light.svg" alt="Ambre – logo restauracji" width="140" height="140" decoding="async" />
