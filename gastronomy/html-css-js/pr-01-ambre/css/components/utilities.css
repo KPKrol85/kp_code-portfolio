@@ -1,14 +1,14 @@
 
-.no-js .nav-toggle {
+.no-js .site-header__nav-toggle {
   display: none;
 }
-.no-js .site-nav {
+.no-js .site-header__nav {
   display: block;
   position: static;
   border: none;
   box-shadow: none;
 }
-.no-js .site-nav ul {
+.no-js .site-header__nav ul {
   flex-direction: row;
   align-items: center;
 }
@@ -45,7 +45,7 @@
   border-radius: 4px;
 }
 
-body.nav-open {
+body.site-header-nav-open {
   overflow: hidden;
   touch-action: none;
 }

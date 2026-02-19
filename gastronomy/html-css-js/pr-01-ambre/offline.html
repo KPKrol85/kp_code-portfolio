@@ -13,23 +13,23 @@
   <!-- Body -->
   <body class="offline-page">
     <header id="top" class="site-header" data-sticky>
-      <div class="container header-row">
-        <a class="brand" href="index.html#top" aria-label="Strona główna restauracji Ambre">
+      <div class="container site-header__row">
+        <a class="site-header__brand" href="index.html#top" aria-label="Strona główna restauracji Ambre">
           <img class="logo logo-light" src="assets/img/logo-img/logo-name-light.svg" alt="Ambre – restauracja fine dining" width="140" height="140" decoding="async" />
           <img class="logo logo-dark" src="assets/img/logo-img/logo-name-dark.svg" alt="" aria-hidden="true" width="140" height="140" decoding="async" />
         </a>
-        <nav id="site-nav" class="site-nav" data-testid="site-nav" aria-label="Główna nawigacja">
+        <nav id="site-header-nav" class="site-header__nav" data-testid="site-header-nav" aria-label="Główna nawigacja">
           <ul>
             <li><a href="index.html#onas">O nas</a></li>
-            <li class="has-submenu">
+            <li class="site-header__item--has-submenu">
               <a href="index.html#menu">Menu</a>
-              <ul class="nav-submenu" aria-label="Podmenu Menu">
+              <ul class="site-header__submenu" aria-label="Podmenu Menu">
                 <li><a href="menu.html">Pełne menu</a></li>
               </ul>
             </li>
-            <li class="has-submenu">
+            <li class="site-header__item--has-submenu">
               <a href="index.html#galeria">Galeria</a>
-              <ul class="nav-submenu" aria-label="Podmenu Galeria">
+              <ul class="site-header__submenu" aria-label="Podmenu Galeria">
                 <li><a href="galeria.html">Pełna galeria</a></li>
               </ul>
             </li>
@@ -38,7 +38,7 @@
             <li><a href="index.html#faq">FAQ</a></li>
           </ul>
         </nav>
-        <div class="header-actions">
+        <div class="site-header__actions">
           <a href="tel:+48533537091" class="btn btn--ring" aria-label="Zadzwoń do restauracji KP_Code">
             <span aria-hidden="true">
               <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="currentColor">
@@ -48,9 +48,9 @@
                   clip-rule="evenodd" />
               </svg>
             </span>
-            <span class="phone-text">+48&nbsp;533&nbsp;537&nbsp;091</span>
+            <span class="site-header__phone">+48&nbsp;533&nbsp;537&nbsp;091</span>
           </a>
-                    <button class="theme-toggle" data-testid="theme-toggle" type="button" aria-label="Przełącz motyw" aria-pressed="false" title="Motyw">
+                    <button class="site-header__theme-toggle" data-testid="site-header__theme-toggle" type="button" aria-label="Przełącz motyw" aria-pressed="false" title="Motyw">
             <span aria-hidden="true">
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="icon icon--sun" aria-hidden="true">
                 <path d="M12 2.25a.75.75 0 0 1 .75.75v2.25a.75.75 0 0 1-1.5 0V3a.75.75 0 0 1 .75-.75ZM7.5 12a4.5 4.5 0 1 1 9 0 4.5 4.5 0 0 1-9 0ZM18.894 6.166a.75.75 0 0 0-1.06-1.06l-1.591 1.59a.75.75 0 1 0 1.06 1.061l1.591-1.59ZM21.75 12a.75.75 0 0 1-.75.75h-2.25a.75.75 0 0 1 0-1.5H21a.75.75 0 0 1 .75.75ZM17.834 18.894a.75.75 0 0 0 1.06-1.06l-1.59-1.591a.75.75 0 1 0-1.061 1.06l1.59 1.591ZM12 18a.75.75 0 0 1 .75.75V21a.75.75 0 0 1-1.5 0v-2.25A.75.75 0 0 1 12 18ZM7.758 17.303a.75.75 0 0 0-1.061-1.06l-1.591 1.59a.75.75 0 0 0 1.06 1.061l1.591-1.59ZM6 12a.75.75 0 0 1-.75.75H3a.75.75 0 0 1 0-1.5h2.25A.75.75 0 0 1 6 12ZM6.697 7.757a.75.75 0 0 0 1.06-1.06l-1.59-1.591a.75.75 0 0 0-1.061 1.06l1.59 1.591Z"/>
@@ -60,7 +60,7 @@
               </svg>
             </span>
           </button>
-          <button class="nav-toggle" data-testid="nav-toggle" type="button" aria-controls="site-nav" aria-expanded="false" aria-label="Menu">
+          <button class="site-header__nav-toggle" data-testid="site-header__nav-toggle" type="button" aria-controls="site-header-nav" aria-expanded="false" aria-label="Menu">
             <span aria-hidden="true">
               <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
                 <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />

@@ -1,7 +1,7 @@
 import { $, byTestId, log } from "./utils.js";
 
 export function initThemeSwitcher() {
-  const toggle = byTestId("theme-toggle") || $(".theme-toggle");
+  const toggle = byTestId("site-header__theme-toggle") || $(".site-header__theme-toggle");
   if (!toggle) return;
 
   const storageKey = "theme";

@@ -283,7 +283,7 @@ html[data-theme="dark"] .btn--form:hover {
   outline-offset: 3px;
   box-shadow: 0 0 0 3px color-mix(in oklab, var(--c-accent-contrast) 20%, transparent);
 }
-.header-actions .btn--ring {
+.site-header__actions .btn--ring {
   height: 40px;
   padding: var(--space-02) var(--space-04);
   border-width: 1.5px;
@@ -291,7 +291,7 @@ html[data-theme="dark"] .btn--form:hover {
   gap: 0.1rem;
   align-self: center;
 }
-.header-actions .btn--ring :is(img, svg) {
+.site-header__actions .btn--ring :is(img, svg) {
   width: 16px;
   height: 16px;
 }
@@ -305,16 +305,16 @@ html[data-theme="dark"] .btn--ring:hover {
 }
 
 @media (max-width: 720px) {
-  .header-actions .btn--ring {
+  .site-header__actions .btn--ring {
     display: none;
   }
 }
 @media (pointer: coarse) {
-  .header-actions .btn--ring {
+  .site-header__actions .btn--ring {
     height: 44px;
     padding: 0.45rem 1rem;
   }
-  .header-actions .btn--ring :is(img, svg) {
+  .site-header__actions .btn--ring :is(img, svg) {
     width: 18px;
     height: 18px;
   }

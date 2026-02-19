@@ -51,7 +51,7 @@ export function initScrollButtons() {
 export function initScrollToTop() {
   const prefersReduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
   document.addEventListener("click", (event) => {
-    const link = event.target.closest("a.brand");
+    const link = event.target.closest("a.site-header__brand");
     if (!link) return;
     const href = link.getAttribute("href") || "";
     if (!href.startsWith("#")) return;
