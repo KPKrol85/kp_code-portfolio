@@ -26,7 +26,7 @@ h3 {
 }
 
 .eyebrow {
-  letter-spacing: 0.14em;
+  letter-spacing: var(--ls-very-wide);
   text-transform: uppercase;
   opacity: 0.9;
   font-weight: 600;
@@ -42,4 +42,3 @@ h3 {
   margin: var(--space-02) auto;
   text-align: center;
 }
-
