@@ -34,7 +34,7 @@
   justify-content: center;
   margin: var(--space-06) 0;
 }
-.cta__actions .btn {
+.cta__actions .site-button {
   width: 100%;
   max-width: 420px;
 }
@@ -47,7 +47,7 @@ html[data-theme="dark"] .cta__box {
 }
 
 @media (min-width: 480px) {
-  .cta__actions .btn {
+  .cta__actions .site-button {
     width: auto;
     max-width: none;
   }
@@ -58,3 +58,4 @@ html[data-theme="dark"] .cta__box {
     transition: none;
   }
 }
+

@@ -119,7 +119,7 @@
 .page-legal .defs dd {
   margin: 0;
 }
-.page-legal .btn--ghost {
+.page-legal .site-button--ghost {
   display: inline-flex;
   align-items: center;
   gap: 0.45rem;
@@ -136,15 +136,15 @@
     box-shadow 0.16s,
     color 0.16s;
 }
-.page-legal .btn--ghost:hover,
-.page-legal .btn--ghost:focus-visible {
+.page-legal .site-button--ghost:hover,
+.page-legal .site-button--ghost:focus-visible {
   background: color-mix(in oklab, var(--c-accent), #fff 92%);
   border-color: var(--c-accent-contrast);
   transform: translateY(-1px);
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
   color: var(--legal-link-hover);
 }
-.page-legal .btn--ghost:focus-visible {
+.page-legal .site-button--ghost:focus-visible {
   outline: 2px solid var(--c-accent-contrast);
   outline-offset: 2px;
 }
@@ -211,7 +211,7 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .page-legal .btn--ghost {
+  .page-legal .site-button--ghost {
     transition: none;
   }
 }
@@ -243,3 +243,4 @@
     font-size: 0.85em;
   }
 }
+

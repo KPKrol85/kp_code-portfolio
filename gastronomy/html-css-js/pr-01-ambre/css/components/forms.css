@@ -166,7 +166,7 @@ html[data-theme="dark"] .booking-form input[type="time"]::-webkit-calendar-picke
   gap: var(--space-03);
   margin: var(--space-04);
 }
-.booking .booking-form > .booking-form__actions .btn {
+.booking .booking-form > .booking-form__actions .site-button {
   margin: 0;
   width: 100%;
 }
@@ -230,3 +230,4 @@ html[data-theme="dark"] .booking-form input[type="time"]::-webkit-calendar-picke
     margin: var(--space-08) 0;
   }
 }
+

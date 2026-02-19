@@ -117,7 +117,7 @@
   gap: var(--space-03);
   margin: var(--space-06) 0;
 }
-.testimonials__actions .btn--link > svg {
+.testimonials__actions .site-button--link > svg {
   width: 20px;
   height: 20px;
   flex: 0 0 auto;
@@ -137,3 +137,4 @@
     background-color: color-mix(in oklab, var(--c-surface), white 10%);
   }
 }
+
