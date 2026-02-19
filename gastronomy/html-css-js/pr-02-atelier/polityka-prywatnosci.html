@@ -479,11 +479,21 @@
     <script src="js/script.min.js" defer></script>
     <script>
       if ("serviceWorker" in navigator) {
+        const isLocalhost = ["localhost", "127.0.0.1"].includes(window.location.hostname);
+
         window.addEventListener("load", () => {
           navigator.serviceWorker
             .register("/sw.js")
-            .then((reg) => console.log("✅ Service Worker zarejestrowany:", reg.scope))
-            .catch((err) => console.warn("❌ Błąd rejestracji Service Workera:", err));
+            .then((reg) => {
+              if (isLocalhost) {
+                console.log("✅ Service Worker zarejestrowany:", reg.scope);
+              }
+            })
+            .catch((err) => {
+              if (isLocalhost) {
+                console.warn("❌ Błąd rejestracji Service Workera:", err);
+              }
+            });
         });
       }
     </script>

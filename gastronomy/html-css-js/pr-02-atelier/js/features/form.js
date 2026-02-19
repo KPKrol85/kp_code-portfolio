@@ -4,8 +4,6 @@ export function initForm() {
   var form = q(".form");
   var status = q("#form-status");
   if (!form) return;
-
-  form.setAttribute("novalidate", "");
   var progress = q("#form-progress");
   var nameInput = form.querySelector("#name");
   var emailInput = form.querySelector("#email");
@@ -98,23 +96,14 @@ export function initForm() {
   updateProgress();
 
   form.addEventListener("submit", function (event) {
-    event.preventDefault();
     if (!fields.length) return;
     var result = validateAll(true);
     if (!result.valid) {
+      event.preventDefault();
       status && (status.classList.remove("visually-hidden"), (status.textContent = "Uzupełnij poprawnie wyróżnione pola."));
       result.firstInvalid && result.firstInvalid.focus();
       return;
     }
     status && (status.classList.remove("visually-hidden"), (status.textContent = "Wysyłanie…"));
-    setTimeout(function () {
-      status && (status.textContent = "Dziękujemy! Wiadomość została wysłana.");
-      form.reset();
-      fields.forEach(function (field) {
-        field.dataset.touched = "";
-        setFieldState(field, "");
-      });
-      updateProgress();
-    }, 800);
   });
 }
