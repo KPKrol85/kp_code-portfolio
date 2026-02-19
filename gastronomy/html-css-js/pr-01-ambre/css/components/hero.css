@@ -5,10 +5,11 @@
   place-items: center;
   min-height: 88vh;
   border-bottom: 1px solid var(--c-border);
+  filter: saturate(0.95) brightness(1.05);
   width: 100%;
   --ov-top: rgba(0, 0, 0, 0.58);
-  --ov-mid: rgba(0, 0, 0, 0.38);
-  --ov-bot: rgba(0, 0, 0, 0.28);
+  --ov-mid: rgba(0, 0, 0, 0.55);
+--ov-bot: rgba(0, 0, 0, 0.45);
 }
 .site-hero::before {
   content: "";
@@ -63,7 +64,6 @@
 }
 .site-hero__lead {
   text-align: center;
-  line-height: var(--lh-normal);
 }
 .site-hero__title,
 .site-hero__lead {

@@ -8,7 +8,6 @@
   color: var(--ft-ink);
   padding-block: var(--block-y-lg);
 }
-
 html[data-theme="light"] .site-footer {
   --ft-ink: #000000;
   --ft-ink-muted: color-mix(in oklab, var(--ft-ink), #5f6672 42%);
@@ -17,6 +16,17 @@ html[data-theme="light"] .site-footer {
     radial-gradient(circle at top right, color-mix(in oklab, var(--c-accent), transparent 96%) 0%, transparent 44%),
     linear-gradient(180deg, color-mix(in oklab, var(--c-surface), white 55%) 0%, color-mix(in oklab, var(--c-bg), white 0%) 100%);
 }
+.site-footer__grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 40px;
+  align-items: start;
+  justify-items: center;
+}
+
+
+
+
 
 .site-footer a {
   color: inherit;
@@ -38,13 +48,6 @@ html[data-theme="light"] .site-footer {
   opacity: 0.95;
 }
 
-.site-footer__grid {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 40px;
-  align-items: start;
-  justify-items: center;
-}
 
 .site-footer__column {
   display: flex;

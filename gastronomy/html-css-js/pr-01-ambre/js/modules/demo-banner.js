@@ -1,7 +1,7 @@
 import { log } from "./utils.js";
 
 export function initDemoBanner() {
-  const banner = document.getElementById("demo-banner");
+  const banner = document.getElementById("site-demo-banner");
   if (!banner) return;
 
   const acceptBtn = banner.querySelector("[data-demo-accept]");
@@ -27,19 +27,19 @@ export function initDemoBanner() {
     banner.setAttribute("aria-hidden", "false");
 
     requestAnimationFrame(() => {
-      banner.classList.add("demo-banner--visible");
+      banner.classList.add("site-demo-banner--visible");
     });
   };
 
   const hide = (storageKey) => {
     if (storageKey) localStorage.setItem(storageKey, "true");
     banner.setAttribute("aria-hidden", "true");
-    banner.classList.remove("demo-banner--visible");
-    banner.classList.add("demo-banner--hiding");
+    banner.classList.remove("site-demo-banner--visible");
+    banner.classList.add("site-demo-banner--hiding");
 
     const done = () => {
       banner.setAttribute("hidden", "");
-      banner.classList.remove("demo-banner--hiding");
+      banner.classList.remove("site-demo-banner--hiding");
     };
 
     if (prefersReducedMotion()) {
