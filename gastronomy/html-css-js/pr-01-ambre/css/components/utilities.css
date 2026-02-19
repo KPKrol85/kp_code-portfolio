@@ -26,7 +26,7 @@
   top: 10px;
   width: auto;
   height: auto;
-  padding: 0.5rem 0.75rem;
+  padding: var(--space-02) var(--space-03);
   background: var(--c-accent-dark, #111);
   color: #fff;
   border-radius: 10px;
