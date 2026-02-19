@@ -1,21 +1,21 @@
 import { log } from "./utils.js";
 
 export function initLightbox() {
-  const box = document.getElementById("lb") || document.querySelector(".lightbox");
+  const box = document.querySelector(".site-lightbox") || document.getElementById("lb");
   if (!box) return;
 
   const isDialog = box.nodeName === "DIALOG" && typeof box.showModal === "function";
   const picture = box.querySelector("picture") || box;
   const sourceAvif = picture?.querySelector('source[type="image/avif"]') || document.getElementById("lb-avif");
   const sourceWebp = picture?.querySelector('source[type="image/webp"]') || document.getElementById("lb-webp");
-  const img = picture?.querySelector("img") || document.getElementById("lb-img");
-  const closeBtn = box.querySelector(".lb-close") || box.querySelector("[data-close]");
-  const overlay = box.querySelector(".lb-overlay");
+  const img = picture?.querySelector(".site-lightbox__image") || document.getElementById("lb-img");
+  const closeBtn = box.querySelector(".site-lightbox__close") || box.querySelector("[data-close]");
+  const overlay = box.querySelector(".site-lightbox__overlay");
 
-  let counter = box.querySelector(".lb-counter");
+  let counter = box.querySelector(".site-lightbox__counter");
   if (!counter) {
     counter = document.createElement("output");
-    counter.className = "lb-counter";
+    counter.className = "site-lightbox__counter";
     counter.setAttribute("aria-live", "polite");
     counter.setAttribute("aria-atomic", "true");
     box.appendChild(counter);
@@ -166,7 +166,7 @@ export function initLightbox() {
     } else {
       box.removeAttribute("hidden");
       box.setAttribute("aria-hidden", "false");
-      box.classList.add("open");
+      box.classList.add("site-lightbox--open");
     }
 
     if (closeBtn && typeof closeBtn.focus === "function") closeBtn.focus();
@@ -179,7 +179,7 @@ export function initLightbox() {
     if (isDialog) {
       if (box.open) box.close();
     } else {
-      box.classList.remove("open");
+      box.classList.remove("site-lightbox--open");
       box.setAttribute("aria-hidden", "true");
       box.setAttribute("hidden", "");
       setTimeout(() => {
@@ -279,7 +279,7 @@ export function initLightbox() {
   window.addEventListener(
     "hashchange",
     () => {
-      const isOpen = isDialog ? box.open : box.classList.contains("open");
+      const isOpen = isDialog ? box.open : box.classList.contains("site-lightbox--open");
       if (isOpen) {
         history.replaceState(null, "", location.pathname + location.search);
         window.scrollTo(0, scrollY);
@@ -301,7 +301,7 @@ export function initLightbox() {
 
   document.addEventListener("keydown", (event) => {
     if (event.key === "ArrowLeft") {
-      const isOpen = isDialog ? box.open : box.classList.contains("open");
+      const isOpen = isDialog ? box.open : box.classList.contains("site-lightbox--open");
       const activeInside = box.contains(document.activeElement);
       if (!isOpen || !activeInside) return;
       event.preventDefault();
@@ -310,7 +310,7 @@ export function initLightbox() {
     }
 
     if (event.key === "ArrowRight") {
-      const isOpen = isDialog ? box.open : box.classList.contains("open");
+      const isOpen = isDialog ? box.open : box.classList.contains("site-lightbox--open");
       const activeInside = box.contains(document.activeElement);
       if (!isOpen || !activeInside) return;
       event.preventDefault();
@@ -319,17 +319,17 @@ export function initLightbox() {
     }
 
     if (event.key === "Escape") {
-      const isOpen = isDialog ? box.open : box.classList.contains("open");
+      const isOpen = isDialog ? box.open : box.classList.contains("site-lightbox--open");
       if (isOpen) close();
     }
   });
 
-  let prevButton = box.querySelector(".lb-prev");
-  let nextButton = box.querySelector(".lb-next");
+  let prevButton = box.querySelector(".site-lightbox__nav-button--prev");
+  let nextButton = box.querySelector(".site-lightbox__nav-button--next");
 
-  const buildButton = (className, label, icon) => {
+  const buildButton = (classNames, label, icon) => {
     const button = document.createElement("button");
-    button.className = className;
+    button.className = classNames.join(" ");
     button.type = "button";
     button.setAttribute("aria-label", label);
     button.innerHTML = icon;
@@ -338,18 +338,18 @@ export function initLightbox() {
 
   if (!prevButton) {
     prevButton = buildButton(
-      "lb-prev",
+      ["site-lightbox__nav-button", "site-lightbox__nav-button--prev"],
       "Poprzednie zdjęcie",
-      '<svg class="chev" viewBox="0 0 24 24" aria-hidden="true"><path d="M15 19L8 12l7-7" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>'
+      '<svg class="site-lightbox__chevron" viewBox="0 0 24 24" aria-hidden="true"><path d="M15 19L8 12l7-7" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>'
     );
     box.appendChild(prevButton);
   }
 
   if (!nextButton) {
     nextButton = buildButton(
-      "lb-next",
+      ["site-lightbox__nav-button", "site-lightbox__nav-button--next"],
       "Następne zdjęcie",
-      '<svg class="chev" viewBox="0 0 24 24" aria-hidden="true"><path d="M9 5l7 7-7 7" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>'
+      '<svg class="site-lightbox__chevron" viewBox="0 0 24 24" aria-hidden="true"><path d="M9 5l7 7-7 7" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>'
     );
     box.appendChild(nextButton);
   }
@@ -501,9 +501,9 @@ export function initLightbox() {
       document.msFullscreenElement
     );
 
-  const zoomIn = () => box.classList.add("is-zoomed");
-  const zoomOut = () => box.classList.remove("is-zoomed");
-  const setFullscreenClass = (value) => box.classList.toggle("is-fs", !!value);
+  const zoomIn = () => box.classList.add("site-lightbox--zoomed");
+  const zoomOut = () => box.classList.remove("site-lightbox--zoomed");
+  const setFullscreenClass = (value) => box.classList.toggle("site-lightbox--fullscreen", !!value);
 
   const toggleFullscreen = async () => {
     if (canFullscreen) {
@@ -525,7 +525,7 @@ export function initLightbox() {
           setFullscreenClass(true);
         }
       }
-    } else if (box.classList.contains("is-zoomed")) {
+    } else if (box.classList.contains("site-lightbox--zoomed")) {
       zoomOut();
       setFullscreenClass(false);
     } else {

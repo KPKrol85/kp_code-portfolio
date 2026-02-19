@@ -467,12 +467,12 @@
     </footer>
 
     <!-- Lightbox -->
-    <div id="lb" role="dialog" aria-modal="true" aria-label="Podglad dania">
-      <button class="lb-close" aria-label="Zamknij">×</button>
-      <picture class="lb-media">
+    <div id="lb" class="site-lightbox" role="dialog" aria-modal="true" aria-label="Podglad dania">
+      <button class="site-lightbox__close" aria-label="Zamknij">×</button>
+      <picture class="site-lightbox__media">
         <source type="image/avif" id="lb-avif" />
         <source type="image/webp" id="lb-webp" />
-        <img id="lb-img" alt="" width="1200" height="1200" decoding="async" />
+        <img id="lb-img" class="site-lightbox__image" alt="" width="1200" height="1200" decoding="async" />
       </picture>
     </div>
 
@@ -513,6 +513,7 @@
     </div>
   </body>
 </html>
+
 
 
 

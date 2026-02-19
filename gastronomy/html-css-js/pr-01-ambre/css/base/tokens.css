@@ -22,6 +22,7 @@ html {
   --max: var(--container-xl);
 
   --g: 24px;
+  --block-y-sm: clamp(32px, 4vw, 80px);
   --block-y: clamp(40px, 5vw, 96px);
   --block-y-lg: clamp(60px, 8vw, 120px);
   --header-h: 64px;

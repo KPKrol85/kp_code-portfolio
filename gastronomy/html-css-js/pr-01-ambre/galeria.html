@@ -507,16 +507,16 @@
     </footer>
 
     <!-- Dialog -->
-    <dialog id="lb" aria-modal="true" aria-labelledby="lb-title" aria-describedby="lb-help lb-counter">
+    <dialog id="lb" class="site-lightbox" aria-modal="true" aria-labelledby="lb-title" aria-describedby="lb-help lb-counter">
       <h2 id="lb-title" class="sr-only">Podgląd zdjęcia dania</h2>
-      <button class="lb-close" type="button" aria-label="Zamknij">×</button>
-      <picture class="lb-media">
+      <button class="site-lightbox__close" type="button" aria-label="Zamknij">×</button>
+      <picture class="site-lightbox__media">
         <source type="image/avif" id="lb-avif" />
         <source type="image/webp" id="lb-webp" />
-        <img id="lb-img" alt="" width="1200" height="1200" decoding="async" loading="lazy" />
+        <img id="lb-img" class="site-lightbox__image" alt="" width="1200" height="1200" decoding="async" loading="lazy" />
       </picture>
       <p id="lb-help" class="sr-only">Naciśnij Esc, aby zamknąć.</p>
-      <output id="lb-counter" class="lb-counter" data-testid="lb-counter" aria-live="polite" aria-atomic="true"></output>
+      <output id="lb-counter" class="site-lightbox__counter" data-testid="lb-counter" aria-live="polite" aria-atomic="true"></output>
     </dialog>
 
     <!-- Scroll to top -->
@@ -556,3 +556,4 @@
     </div>
   </body>
 </html>
+

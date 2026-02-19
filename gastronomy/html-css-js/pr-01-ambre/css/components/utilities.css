@@ -108,8 +108,7 @@ body.site-header-nav-open {
 }
 
 @supports (height: 100dvh) {
-  .lightbox img,
-  #lb img {
+  .site-lightbox__image {
     max-width: calc(100dvw - 24px);
     max-height: calc(100dvh - 24px);
   }
