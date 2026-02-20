@@ -327,8 +327,8 @@ html[data-theme="dark"] .site-button--ring:hover {
 
 /* Social */
 .site-button--social {
-  inline-size: 44px;
-  block-size: 44px;
+  inline-size: 36px;
+  block-size: 36px;
   border-radius: var(--radius-sm);
   display: grid;
   place-items: center;
@@ -340,15 +340,15 @@ html[data-theme="dark"] .site-button--ring:hover {
     background-color 0.18s ease,
     border-color 0.18s ease;
 }
-.site-button--social img {
+.site-button--social svg {
   display: block;
-  width: 24px;
-  height: 24px;
+  width: 20px;
+  height: 20px;
   transition:
     transform 0.2s ease,
     opacity 0.2s ease;
 }
-.site-button--social:hover img {
+.site-button--social:hover svg {
   transform: translateY(-2px);
   opacity: 0.9;
 }
@@ -419,5 +419,3 @@ html[data-theme="dark"] .site-button.site-button--load-more[aria-disabled="true"
     transform: translateY(-50%) rotate(360deg);
   }
 }
-
-

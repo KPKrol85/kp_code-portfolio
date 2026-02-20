@@ -22,9 +22,13 @@ html {
   --max: var(--container-xl);
 
   --g: 24px;
+
+  --block-y-xxs: clamp(8px, 1vw, 32px);
+  --block-y-xs: clamp(16px, 2vw, 48px);
   --block-y-sm: clamp(32px, 4vw, 80px);
   --block-y: clamp(40px, 5vw, 96px);
   --block-y-lg: clamp(60px, 8vw, 120px);
+  
   --header-h: 64px;
 
   --c-bg: #ffffff;
@@ -65,6 +69,8 @@ html {
   --space-06: clamp(2rem, 1.8rem + 0.65vw, 3rem);
   --space-07: clamp(2.5rem, 2.2rem + 0.9vw, 4rem);
   --space-08: clamp(3rem, 2.6rem + 1.2vw, 5rem);
+  --space-09: clamp(3.5rem, 3rem + 1.6vw, 6rem);
+  --space-10: clamp(4rem, 3.4rem + 2vw, 7.5rem);
 
   --radius-xs: 6px;
   --radius-sm: 10px;

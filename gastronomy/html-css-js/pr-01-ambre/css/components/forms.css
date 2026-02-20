@@ -187,11 +187,7 @@ html[data-theme="dark"] .booking-form input[type="time"]::-webkit-calendar-picke
   block-size: auto;
   max-inline-size: none;
 }
-.map-embed {
-  border: 0;
-  border-radius: var(--radius-xs);
-  box-shadow: var(--shadow);
-}
+
 .booking__aside ul {
   max-width: 360px;
   margin-inline: auto;
@@ -230,4 +226,3 @@ html[data-theme="dark"] .booking-form input[type="time"]::-webkit-calendar-picke
     margin: var(--space-08) 0;
   }
 }
-
