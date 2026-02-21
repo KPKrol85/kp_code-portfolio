@@ -191,7 +191,8 @@
         </div>
         <h1 class="site-hero__title">Sezonowe menu degustacyjne</h1>
         <p class="u-lead site-hero__lead">Autorskie dania tworzone z najlepszych składników, starannie dobrane wina i kameralna atmosfera sprzyjająca spokojnemu celebrowaniu smaku.</p>
-        <div class="site-hero__actions site-button-group">
+
+        <div class="site-hero__actions">
           <button type="button" class="site-button site-button--primary" data-target="#rezerwacja" aria-label="Przejdź do formularza rezerwacji stolika">Zarezerwuj stolik</button>
           <button type="button" class="site-button site-button--ghost" data-target="#menu">Zobacz menu</button>
         </div>
@@ -204,7 +205,7 @@
       <section id="onas" class="l-section about" aria-labelledby="about-title">
         <div class="container grid-2">
           <div class="about__content">
-            <h2 id="about-title" class="about__title">O nas</h2>
+            <h2 id="about-title" class="section-title about__title">O nas</h2>
             <p class="u-lead about__lead">Łączymy lokalne składniki z finezyjnymi technikami. Krótkie, sezonowe karty pozwalają wybrzmieć każdemu produktowi.</p>
             <ul class="about__bullets">
               <li class="about__bullet">
@@ -260,12 +261,12 @@
       <section id="menu" class="l-section menu menu--home" aria-labelledby="menu-title">
         <div class="container">
           <div class="section-head menu__head">
-            <h2 id="menu-title" class="menu__title">Menu</h2>
+            <h2 id="menu-title" class="section-title menu__title">Menu</h2>
             <p class="u-lead menu__lead">Wybierz kategorię, aby przefiltrować dania.</p>
           </div>
 
           <div class="tabs menu__tabs" role="tablist" data-testid="menu-tabs" aria-label="Kategorie menu">
-            <button class="site-button site-button--tab tabs__tab tabs__tab--active" data-testid="tab-all" role="tab" aria-selected="true" aria-controls="menu" data-filter="all">Wszystko</button>
+            <button class="site-button site-button--tab tabs__tab" data-testid="tab-all" role="tab" aria-selected="true" aria-controls="menu" data-filter="all">Wszystko</button>
             <button class="site-button site-button--tab tabs__tab" data-testid="tab-przystawki" role="tab" aria-selected="false" data-filter="przystawki">Przystawki</button>
             <button class="site-button site-button--tab tabs__tab" data-testid="tab-dania-glowne" role="tab" aria-selected="false" data-filter="dania-glowne">Dania główne</button>
             <button class="site-button site-button--tab tabs__tab" data-testid="tab-desery" role="tab" aria-selected="false" data-filter="desery">Desery</button>
@@ -373,8 +374,17 @@
             </article>
           </div>
         </div>
-        <div class="cta__actions site-button-group">
-          <a href="menu.html" class="site-button site-button--ghost" aria-label="Przejdź do pełnego menu restauracji">Zobacz pełne menu</a>
+
+        <div class="menu__actions">
+          <a href="menu.html" class="site-button site-button--link" aria-label="Przejdź do pełnego menu restauracji">
+            Pełna karta dań →
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+              <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+              <path d="M19 19.002v1.998a1 1 0 0 1 -.883 .993l-.117 .007h-12a1 1 0 0 1 -1 -1v-1.994a1 1 0 0 1 1 -1l12 -.004a1 1 0 0 1 1 1" />
+              <path
+                d="M12 2a5 5 0 0 1 4.533 2.888l.06 .137l.136 -.009a5 5 0 0 1 4.99 3.477l.063 .213a5 5 0 0 1 -2.696 5.831l-.087 .037v1.428a1 1 0 0 1 -1 1l-12 .004a1 1 0 0 1 -.993 -.883l-.007 -.117v-1.433l-.123 -.055a5 5 0 0 1 -2.6 -3.001l-.064 -.223a5 5 0 0 1 5.193 -6.27l.066 -.142a5 5 0 0 1 4.302 -2.877z" />
+            </svg>
+          </a>
         </div>
       </section>
 
@@ -382,7 +392,7 @@
       <section id="galeria" class="l-section gallery gallery--home" aria-labelledby="gallery-title">
         <div class="container">
           <div class="section-head gallery__head">
-            <h2 id="gallery-title" class="gallery__title">Galeria</h2>
+            <h2 id="gallery-title" class="section-title gallery__title">Galeria</h2>
             <p class="u-lead gallery__lead">Wybrane kompozycje i produkty premium.</p>
           </div>
           <div class="gallery__grid">
@@ -452,8 +462,18 @@
           </div>
         </div>
 
-        <div class="cta__actions site-button-group">
-          <a class="site-button site-button--ghost" href="galeria.html">Pełna galeria</a>
+        <div class="gallery__actions">
+          <a href="galeria.html" class="site-button site-button--link" aria-label="Przejdź do galerii restauracji">
+            Zobacz całą galerię →
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+              <path d="M7 5.667a2.667 2.667 0 0 1 2.667 -2.667h8.666a2.667 2.667 0 0 1 2.667 2.667v8.666a2.667 2.667 0 0 1 -2.667 2.667h-8.666a2.667 2.667 0 0 1 -2.667 -2.667l0 -8.666" />
+              <path d="M4.012 7.26a2.005 2.005 0 0 0 -1.012 1.737v10c0 1.1 .9 2 2 2h10c.75 0 1.158 -.385 1.5 -1" />
+              <path d="M17 7h.01" />
+              <path d="M7 13l3.644 -3.644a1.21 1.21 0 0 1 1.712 0l3.644 3.644" />
+              <path d="M15 12l1.644 -1.644a1.21 1.21 0 0 1 1.712 0l2.644 2.644" />
+            </svg>
+          </a>
         </div>
       </section>
 
@@ -461,7 +481,7 @@
       <section id="opinie" aria-labelledby="opinie-title" class="l-section testimonials" data-testid="opinie">
         <div class="container">
           <div class="section-head testimonials__head">
-            <h2 id="opinie-title" class="testimonials__title">Opinie</h2>
+            <h2 id="opinie-title" class="section-title testimonials__title">Opinie</h2>
             <p class="u-lead testimonials__lead">Co mówią nasi goście</p>
             <div class="testimonials__rating" role="group" aria-label="Średnia ocena 4.8 na podstawie 327 opinii w Google">
               <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
@@ -572,7 +592,7 @@
       <section id="rezerwacja" class="l-section booking" aria-labelledby="booking-title">
         <div class="container grid-2 booking__layout">
           <div>
-            <h2 id="booking-title" class="booking__title">Rezerwacja</h2>
+            <h2 id="booking-title" class="section-title booking__title">Rezerwacja</h2>
             <p class="u-lead booking__lead">Wypełnij formularz. Oddzwonimy z potwierdzeniem.</p>
 
             <form id="booking-form" class="booking-form" data-testid="booking-form" name="reservation" method="POST" data-netlify="true" novalidate>
@@ -670,7 +690,7 @@
       <!-- CTA -->
       <section id="kontakt" class="cta l-section" aria-labelledby="cta-title">
         <div class="container cta__box">
-          <h2 id="cta-title" class="cta__title">Zarezerwuj wyjątkowy wieczór</h2>
+          <h2 id="cta-title" class="section-title cta__title">Zarezerwuj wyjątkowy wieczór</h2>
           <p class="u-lead cta__lead">
             Zadzwoń do nas pod numer&nbsp;
             <a href="tel:+48533537091" aria-label="Zadzwoń do restauracji KP_Code">+48&nbsp;533&nbsp;537&nbsp;091</a>
@@ -683,7 +703,7 @@
       <section id="faq" class="l-section faq" aria-labelledby="faq-title">
         <div class="container">
           <div class="section-head faq__head">
-            <h2 id="faq-title" class="faq__title">FAQ</h2>
+            <h2 id="faq-title" class="section-title faq__title">FAQ</h2>
             <p class="u-lead faq__lead">Najczęstsze pytania o rezerwacje i menu.</p>
           </div>
           <div class="grid-2">
@@ -729,7 +749,7 @@
             <img class="brand-name logo-dark" src="assets/img/logo-img/brand-name-dark.svg" alt="" aria-hidden="true" decoding="async" />
           </a>
 
-          <p class="u-lead site-footer__description ">
+          <p class="u-lead site-footer__description">
             <strong>Ambre</strong>
             — elegancka restauracja oferująca autorską kuchnię opartą na świeżych, lokalnych składnikach...
           </p>
@@ -752,7 +772,13 @@
 
           <address class="site-footer__address">
             <div class="site-footer__address-row">
-              <p>ul. Marynarki Wojennej 12/31,<br> 33-100 Tarnów<br>Polska</p>
+              <p>
+                ul. Marynarki Wojennej 12/31,
+                <br />
+                33-100 Tarnów
+                <br />
+                Polska
+              </p>
             </div>
             <p>NIP 000-000-00-00</p>
           </address>

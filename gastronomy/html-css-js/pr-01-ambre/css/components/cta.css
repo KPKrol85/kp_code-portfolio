@@ -38,7 +38,7 @@
   width: 100%;
   max-width: 420px;
 }
-.cta__box + .cta__actions {
+.cta__box {
   margin-top: var(--space-04);
 }
 html[data-theme="dark"] .cta__box {
@@ -58,4 +58,3 @@ html[data-theme="dark"] .cta__box {
     transition: none;
   }
 }
-

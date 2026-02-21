@@ -1,60 +1,54 @@
-/* Page Menu */
+/* Tokens Page Menu*/
+.page-menu {
+  --menu-shell-bg: color-mix(in oklab, var(--c-bg), white 6%);
+  --menu-shell-border: color-mix(in oklab, var(--c-ink), transparent 88%);
+  --menu-shell-shadow: 0 10px 30px rgba(0, 0, 0, 0.22);
+}
+:root[data-theme="light"] .page-menu {
+  --menu-shell-bg: color-mix(in oklab, var(--c-bg), var(--c-surface) 10%);
+  --menu-shell-border: color-mix(in oklab, var(--c-ink), transparent 86%);
+  --menu-shell-shadow: 0 8px 22px rgba(0, 0, 0, 0.08);
+}
+
+/* Styles Page Menu */
 .page-menu {
   --menu-col-max: 680px;
   padding-top: 0;
-  padding-bottom: clamp(28px, 5vw, 72px);
+  padding-bottom: var(--block-y-lg);
 }
-.page-menu > .container {
+.page-menu > .page-shell {
   max-width: min(960px, 92vw);
+  margin: var(--space-08) 0;
   margin-inline: auto;
-  background: color-mix(in oklab, var(--c-surface), white 40%);
-  border: 1px solid color-mix(in oklab, var(--c-border), transparent 30%);
-  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.04);
-  border-radius: 12px;
-  padding: clamp(24px, 4vw, 48px);
-  margin-top: clamp(18px, 2vw, 28px);
-  margin-bottom: clamp(36px, 4vw, 64px);
+  background: var(--menu-shell-bg);
+  border: 1px solid var(--menu-shell-border);
+  box-shadow: var(--menu-shell-shadow);
+  border-radius: var(--radius-xs);
+  padding: var(--space-08) var(--space-02);
   transition:
     background-color 0.3s ease,
     box-shadow 0.3s ease,
     border-color 0.3s ease;
 }
+
+
+
+
 .page-menu .section-head {
+  margin: var(--space-02);
   text-align: center;
-  margin-top: 0.6rem;
-  padding-bottom: 0;
-}
-.page-menu .section-head .title-divider {
-  display: block;
-  line-height: 0;
-  margin: clamp(8px, 1.8vw, 16px) auto 0;
-}
-.page-menu .section-head .title-divider img {
-  display: block;
-  margin-inline: auto;
-  height: auto;
-}
-.page-menu .section-head .u-lead {
-  max-width: 65ch;
-  margin: 0.6rem auto 0;
-  text-align: center;
-}
-.page-menu .section-head.l-section {
-  margin-top: clamp(8px, 1vw, 16px);
-  padding-top: clamp(8px, 1vw, 16px);
-  padding-bottom: 0;
 }
 .page-menu .menu {
-  padding-top: clamp(10px, 2vw, 20px);
+  padding: var(--space-04) 0;
 }
-.page-menu .menu .menu__tabs {
-  max-width: var(--menu-col-max);
-  margin-inline: auto;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 0.5rem;
-}
+
+
+
+
+
+
+
+
 .page-menu .menu .menu__grid {
   max-width: 720px;
   margin-inline: auto;

@@ -35,7 +35,11 @@
   outline: 3px solid var(--c-accent-contrast);
   outline-offset: 3px;
 }
-
+.gallery__actions {
+  display: flex;
+  justify-content: center;
+  margin-top: var(--space-06);
+}
 @media (hover: hover) {
   .gallery__item:hover {
     transform: translateY(-4px);

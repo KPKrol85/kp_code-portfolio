@@ -81,26 +81,14 @@ button,
   align-items: center;
 }
 
-.menu__title,
-.gallery__title,
-.testimonials__title,
-.cta__title,
-.faq__title,
-.about__title,
-.booking__title {
+.section-title {
   position: relative;
   display: block;
   color: var(--c-ink);
   margin-bottom: var(--space-05);
   text-align: center;
 }
-.menu__title::after,
-.gallery__title::after,
-.testimonials__title::after,
-.cta__title::after,
-.faq__title::after,
-.about__title::after,
-.booking__title::after {
+.section-title::after {
   content: "";
   position: absolute;
   left: 50%;

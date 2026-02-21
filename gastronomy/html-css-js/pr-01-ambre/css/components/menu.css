@@ -1,22 +1,18 @@
 /* Menu */
+.menu__tabs {
+  max-width: var(--menu-col-max);
+  margin-inline: auto;
+}
+.tabs__tab:focus-visible {
+  outline: 3px solid var(--c-accent-contrast);
+  outline-offset: 3px;
+}
 .tabs {
   display: flex;
   gap: var(--space-02);
   margin: var(--space-06);
   flex-wrap: wrap;
   justify-content: center;
-}
-.tabs__tab {
-  min-width: 110px;
-}
-.tabs__tab.tabs__tab--active {
-  background: var(--c-accent);
-  color: #1b1b1f;
-  border-color: transparent;
-}
-.tabs__tab:focus-visible {
-  outline: 3px solid var(--c-accent-contrast);
-  outline-offset: 3px;
 }
 .menu__grid {
   display: grid;
@@ -106,7 +102,11 @@
   outline: 3px solid var(--c-accent-contrast);
   outline-offset: 3px;
 }
-
+.menu__actions {
+  display: flex;
+  justify-content: center;
+  margin-top: var(--space-06);
+}
 @media (min-width: 480px) {
   .dish--has-thumb {
     display: grid;
