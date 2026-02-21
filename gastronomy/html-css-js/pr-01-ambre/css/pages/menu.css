@@ -1,3 +1,4 @@
+/* Page Menu */
 .page-menu {
   --menu-shell-bg: color-mix(in oklab, var(--c-bg), white 6%);
   --menu-shell-border: color-mix(in oklab, var(--c-ink), transparent 88%);
@@ -8,7 +9,6 @@
   --menu-shell-border: color-mix(in oklab, var(--c-ink), transparent 86%);
   --menu-shell-shadow: 0 8px 22px rgba(0, 0, 0, 0.08);
 }
-
 .page-menu {
   --menu-col-max: 680px;
   padding-top: 0;
@@ -74,7 +74,7 @@
   }
   .page-menu .dish--has-thumb .dish-more {
     grid-area: more;
-     justify-self: start;
+    justify-self: start;
   }
 }
 @media (min-width: 1024px) {

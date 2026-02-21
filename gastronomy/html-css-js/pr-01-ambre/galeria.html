@@ -171,22 +171,21 @@
     <!-- Main -->
     <main id="main" class="page-gallery">
       <nav class="breadcrumbs" aria-label="Okruszki nawigacyjne">
-        <div class="container">
-          <ol>
-            <li><a href="index.html">Strona główna</a></li>
-            <li aria-current="page">Galeria</li>
+        <div class="breadcrumbs__inner">
+          <ol class="breadcrumbs__list">
+            <li class="breadcrumbs__item">
+              <a class="breadcrumbs__link" href="index.html">Strona główna</a>
+            </li>
+            <li class="breadcrumbs__item" aria-current="page">Galeria</li>
           </ol>
         </div>
       </nav>
-      <div class="container page-shell gallery">
-        <section class="section-head gallery__head l-section" aria-labelledby="gallery-title">
-          <h1 id="gallery-title">Galeria</h1>
-          <span class="title-divider" aria-hidden="true">
-            <img src="assets/icons/icons-svg/linia-ozdobna.svg" alt="" width="300" height="40" loading="lazy" decoding="async" />
-          </span>
-          <p class="gallery__lead u-lead">Pełna galeria, miejsce na Twoją treść.</p>
+      <div class="container page-shell">
+        <section class="section-head">
+          <h1 id="gallery-title" class="section-title page-gallery__title">Galeria</h1>
+          <p class="u-lead">Sezonowe propozycje szefa kuchni, starannie dobrane składniki i aktualne ceny.</p>
         </section>
-        <section class="gallery__section l-section">
+        <section class="gallery__section">
           <div class="tabs gallery__tabs" role="tablist" aria-label="Kategorie galerii">
             <button type="button" class="site-button site-button--tab tabs__tab tabs__tab--active" aria-selected="true" data-filter="all">Wszystko</button>
             <button type="button" class="site-button site-button--tab tabs__tab" aria-selected="false" data-filter="wnetrza">Wnętrza</button>
@@ -360,7 +359,6 @@
               </picture>
             </a>
           </div>
-
           <div class="site-button-load-more-wrap">
             <p class="sr-only menu-load-status" aria-live="polite" data-load-status></p>
           </div>
@@ -372,7 +370,6 @@
     <footer id="footer" class="site-footer" role="contentinfo">
       <h2 class="sr-only">Stopka</h2>
       <div class="container site-footer__grid">
-
         <div class="site-footer__column site-footer__column--brand">
           <a href="/#top" class="site-footer__brand" aria-label="Strona główna Ambre">
             <img class="logo logo-light" src="assets/img/logo-img/logo-light.svg" alt="Ambre – logo restauracji" width="140" height="140" decoding="async" />
@@ -418,7 +415,7 @@
               class="map-embed"></iframe>
           </div>
         </div>
-      
+
         <div class="site-footer__column" aria-labelledby="site-footer__contact">
           <h3 id="site-footer__contact" class="site-footer__title">Kontakt</h3>
           <ul class="site-footer__contact" aria-label="Dane kontaktowe">

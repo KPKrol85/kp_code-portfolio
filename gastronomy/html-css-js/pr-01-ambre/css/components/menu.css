@@ -7,13 +7,6 @@
   outline: 3px solid var(--c-accent-contrast);
   outline-offset: 3px;
 }
-.tabs {
-  display: flex;
-  gap: var(--space-02);
-  margin: var(--space-06) auto;
-  flex-wrap: wrap;
-  justify-content: center;
-}
 .menu__grid {
   display: grid;
   grid-template-columns: 1fr;
