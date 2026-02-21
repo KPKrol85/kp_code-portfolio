@@ -1,21 +1,36 @@
 import { log } from "./utils.js";
 
 const DEFAULT_STEP = 12;
+const DONE_STATUS_TEXT = "Wszystko załadowane";
+const DONE_STATUS_ICON = `<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="menu-status__icon" aria-hidden="true" focusable="false">><path stroke="none" d="M0 0h24v24H0z" fill="none"></path><path d="M3 12a9 9 0 1 0 18 0a9 9 0 1 0 -18 0"></path><path d="M9 12l2 2l4 -4"></path></svg>`;
 
 const updateStatus = (status, visible, total) => {
   if (!status) return;
+  if (status.dataset.state === "done") return;
   status.textContent = `Załadowano ${visible} z ${total}`;
 };
 
-const finalizeButton = (button) => {
-  if (!button) return;
-  button.disabled = true;
-  button.textContent = "Wszystko załadowane";
+const finalizeLoadMore = (button, status) => {
+  if (button) {
+    button.disabled = true;
+    button.hidden = true;
+  }
+
+  if (!status) return;
+  status.dataset.state = "done";
+  status.classList.remove("sr-only");
+  status.innerHTML = `${DONE_STATUS_ICON}<span>${DONE_STATUS_TEXT}</span>`;
 };
 
-const ensureButton = (button) => {
-  if (!button) return;
-  button.disabled = false;
+const ensureLoadMore = (button, status) => {
+  if (button) {
+    button.disabled = false;
+    button.hidden = false;
+  }
+
+  if (!status) return;
+  status.dataset.state = "progress";
+  status.classList.add("sr-only");
 };
 
 export function initLoadMoreMenu() {
@@ -28,9 +43,8 @@ export function initLoadMoreMenu() {
   const container = grid.closest("section") || grid.parentElement || document;
   const button = container.querySelector("[data-load-more]");
   const status = container.querySelector("[data-load-status]");
-  if (!button) return;
-
-  let visibleCount = Math.min(DEFAULT_STEP, items.length);
+  const hasButton = Boolean(button);
+  let visibleCount = hasButton ? Math.min(DEFAULT_STEP, items.length) : items.length;
 
   const getActiveFilter = () => {
     const active = container.querySelector(".tabs__tab.tabs__tab--active") ||
@@ -50,18 +64,20 @@ export function initLoadMoreMenu() {
     updateStatus(status, Math.min(visibleCount, items.length), items.length);
 
     if (visibleCount >= items.length) {
-      finalizeButton(button);
+      finalizeLoadMore(button, status);
     } else {
-      ensureButton(button);
+      ensureLoadMore(button, status);
     }
   };
 
   apply();
 
-  button.addEventListener("click", () => {
-    visibleCount = Math.min(visibleCount + DEFAULT_STEP, items.length);
-    apply();
-  });
+  if (button) {
+    button.addEventListener("click", () => {
+      visibleCount = Math.min(visibleCount + DEFAULT_STEP, items.length);
+      apply();
+    });
+  }
 
   log(items.length);
 }
@@ -76,9 +92,8 @@ export function initLoadMoreGallery() {
   const container = grid.closest("section") || grid.parentElement || document;
   const button = container.querySelector("[data-load-more]");
   const status = container.querySelector("[data-load-status]");
-  if (!button) return;
-
-  let visibleCount = Math.min(DEFAULT_STEP, items.length);
+  const hasButton = Boolean(button);
+  let visibleCount = hasButton ? Math.min(DEFAULT_STEP, items.length) : items.length;
 
   const getActiveFilter = () => {
     const active = container.querySelector(".tabs__tab.tabs__tab--active") ||
@@ -112,18 +127,20 @@ export function initLoadMoreGallery() {
     updateStatus(status, Math.min(visibleCount, items.length), items.length);
 
     if (visibleCount >= items.length) {
-      finalizeButton(button);
+      finalizeLoadMore(button, status);
     } else {
-      ensureButton(button);
+      ensureLoadMore(button, status);
     }
   };
 
   apply();
 
-  button.addEventListener("click", () => {
-    visibleCount = Math.min(visibleCount + DEFAULT_STEP, items.length);
-    apply();
-  });
+  if (button) {
+    button.addEventListener("click", () => {
+      visibleCount = Math.min(visibleCount + DEFAULT_STEP, items.length);
+      apply();
+    });
+  }
 
   log(items.length);
 }

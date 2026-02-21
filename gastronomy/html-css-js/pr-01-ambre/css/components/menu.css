@@ -10,7 +10,7 @@
 .tabs {
   display: flex;
   gap: var(--space-02);
-  margin: var(--space-06);
+  margin: var(--space-06) auto;
   flex-wrap: wrap;
   justify-content: center;
 }
@@ -110,7 +110,7 @@
 @media (min-width: 480px) {
   .dish--has-thumb {
     display: grid;
-    grid-template-columns: 30% 1fr;
+    grid-template-columns: 40% 1fr;
     grid-template-areas:
       "thumb head"
       "thumb desc";
@@ -138,7 +138,6 @@
     grid-area: desc;
   }
 }
-
 @media (min-width: 1024px) {
   .menu--home .menu__grid {
     grid-template-columns: repeat(2, 1fr);

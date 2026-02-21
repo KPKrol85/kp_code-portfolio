@@ -218,15 +218,18 @@
                 <span class="dish__price">58 zł</span>
               </header>
               <p class="dish__desc">Świeże ostrygi, granita z ogórka i yuzu, mikro zioła.</p>
+
+
               <details class="dish-more">
-                <summary>Więcej o daniu</summary>
-                <div class="content">
+                <summary class="dish-more__summary">Więcej o daniu</summary>
+                <div class="dish-more__content">
                   Ostrygi Fine de Claire, granita z ogórka i yuzu, limonka. Idealne jako lekka przystawka do wytrawnego białego wina.
                   <br />
                   <strong>Alergeny:</strong>
                   mięczaki.
                 </div>
               </details>
+
             </article>
 
             <article class="dish dish--has-thumb" aria-labelledby="dish-polik" data-cat="dania-glowne">
@@ -250,14 +253,17 @@
                     loading="lazy" />
                 </picture>
               </button>
+
               <header class="dish__head">
                 <h3 id="dish-polik" class="dish__title">Polik wołowy</h3>
                 <span class="dish__price">92 zł</span>
               </header>
+
               <p class="dish__desc">Długoduszony polik, krem z selera, sos na porto.</p>
+
               <details class="dish-more">
-                <summary>Więcej o daniu</summary>
-                <div class="content">
+                <summary class="dish-more__summary">Więcej o daniu</summary>
+                <div class="dish-more__content">
                   Polik z polskiej wołowiny, purée z selera, redukcja porto i aromatyczne demi-glace. Konfekcja z pieczonej szalotki.
                   <br />
                   <strong>Alergeny:</strong>
@@ -293,8 +299,8 @@
               </header>
               <p class="dish__desc">Wanilia, fasola tonka, chrupiący karmel.</p>
               <details class="dish-more">
-                <summary>Więcej o daniu</summary>
-                <div class="content">
+                <summary class="dish-more__summary">Więcej o daniu</summary>
+                <div class="dish-more__content">
                   Klasyczny francuski deser o kremowej konsystencji i wyraźnej nucie tonki. Cukier karmelizowany tuż przed podaniem.
                   <br />
                   <strong>Alergeny:</strong>
@@ -324,8 +330,8 @@
               </header>
               <p class="dish__desc">Sandacz sauté, risotto szafranowe, fenkuł.</p>
               <details class="dish-more">
-                <summary>Więcej o daniu</summary>
-                <div class="content">
+                <summary class="dish-more__summary">Więcej o daniu</summary>
+                <div class="dish-more__content">
                   Filet z sandacza smażony na skórze, risotto al dente z szafranem, glazurowany fenkuł, cytrusowa redukcja.
                   <br />
                   <strong>Alergeny:</strong>
@@ -336,10 +342,8 @@
           </div>
 
           <div class="site-button-load-more-wrap">
-            <button type="button" class="site-button site-button--load-more" data-load-more>Zaladuj wiecej</button>
-            <p class="sr-only" aria-live="polite" data-load-status></p>
+            <p class="sr-only menu-load-status" aria-live="polite" data-load-status></p>
           </div>
-
         </section>
       </div>
     </main>

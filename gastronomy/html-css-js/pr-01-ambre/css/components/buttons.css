@@ -148,9 +148,6 @@ html[data-theme="dark"] .site-button--ghost:active {
   min-width: 120px;
 }
 html[data-theme="dark"] .site-button--tab {
-  background: color-mix(in oklab, var(--c-bg), #fff 6%);
-  color: color-mix(in oklab, #ccc 85%, var(--c-ink) 15%);
-  border-color: color-mix(in oklab, var(--c-border), #fff 10%);
   backdrop-filter: saturate(1.2) blur(6px);
   -webkit-backdrop-filter: saturate(1.2) blur(6px);
   opacity: 0.95;
@@ -392,21 +389,18 @@ html[data-theme="dark"] .site-button--ring:hover {
 .site-button-load-more-wrap {
   display: flex;
   justify-content: center;
-  margin-top: 1.5rem;
+  margin-top: var(--space-06);
 }
-html[data-theme="dark"] .site-button.site-button--load-more {
-  background: color-mix(in oklab, var(--c-bg), #fff 10%);
-  border-color: color-mix(in oklab, var(--c-border), #fff 14%);
-  color: color-mix(in oklab, #fff 78%, var(--c-ink) 22%);
+.menu-load-status:not(.sr-only) {
+  align-items: center;
+  color: var(--c-muted);
+  display: inline-flex;
+  font-size: var(--fs-sm);
+  gap: var(--space-02);
+  line-height: var(--lh-normal);
+  margin: 0;
 }
-html[data-theme="dark"] .site-button.site-button--load-more[disabled],
-html[data-theme="dark"] .site-button.site-button--load-more[aria-disabled="true"] {
-  opacity: 0.85;
-  box-shadow: inset 0 0 0 1px color-mix(in oklab, #fff 6%, transparent);
+.menu-status__icon {
+  flex-shrink: 0;
 }
 
-@keyframes btnspin {
-  to {
-    transform: translateY(-50%) rotate(360deg);
-  }
-}
