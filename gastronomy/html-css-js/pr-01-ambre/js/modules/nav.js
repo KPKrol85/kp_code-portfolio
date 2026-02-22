@@ -245,11 +245,34 @@ export function initAriaCurrent() {
 }
 
 export function initStickyShadow() {
-  const update = () => {
-    document.body.classList.toggle("site-header-is-scrolled", window.scrollY > 10);
+  const header = document.querySelector(".site-header");
+  if (!header) return;
+
+  const threshold = 12;
+  let lastY = window.scrollY || window.pageYOffset || 0;
+  let ticking = false;
+
+  const apply = () => {
+    const scrolled = lastY > threshold;
+    document.body.classList.toggle("site-header-is-scrolled", scrolled);
+    document.body.classList.toggle("site-header-is-shrunk", scrolled);
+    ticking = false;
   };
 
-  update();
-  window.addEventListener("scroll", update, { passive: true });
+  const schedule = () => {
+    if (ticking) return;
+    ticking = true;
+    window.requestAnimationFrame(apply);
+  };
+
+  const onScrollLike = () => {
+    lastY = window.scrollY || window.pageYOffset || 0;
+    schedule();
+  };
+
+  onScrollLike();
+  window.addEventListener("scroll", onScrollLike, { passive: true });
+  window.addEventListener("resize", onScrollLike, { passive: true });
+  window.addEventListener("pageshow", onScrollLike);
   log();
 }

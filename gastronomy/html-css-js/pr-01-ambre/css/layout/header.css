@@ -1,20 +1,38 @@
 /* Header */
+body {
+  --header-current-h: var(--header-h);
+  --header-logo-h: 52px;
+  --header-action-size: 38px;
+  padding-top: var(--header-h);
+}
+body.site-header-is-shrunk {
+  --header-current-h: var(--header-h-shrink, var(--header-h));
+  --header-logo-h: 46px;
+  --header-action-size: 34px;
+}
 .site-header {
-  position: sticky;
+  position: fixed;
   top: 0;
-  z-index: 50;
+  left: 0;
+  right: 0;
+  z-index: 800;
   background: color-mix(in oklab, var(--c-bg), transparent calc(var(--glass-alpha) + 40%));
   backdrop-filter: saturate(1.2) blur(calc(var(--glass-blur) + 4px));
   -webkit-backdrop-filter: saturate(1.2) blur(calc(var(--glass-blur) + 4px));
   border-bottom: 1px solid color-mix(in oklab, var(--c-border), transparent var(--glass-border-alpha));
+  transition:
+    box-shadow var(--dur-normal, 240ms) var(--ease-standard, ease),
+    background-color var(--dur-normal, 240ms) var(--ease-standard, ease),
+    border-color var(--dur-normal, 240ms) var(--ease-standard, ease);
 }
 .site-header__row {
   position: relative;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  min-height: var(--header-h);
+  min-height: var(--header-current-h);
   gap: var(--space-03);
+  transition: min-height var(--dur-normal, 240ms) var(--ease-standard, ease);
 }
 .site-header__actions {
   margin-left: auto;
@@ -34,8 +52,9 @@
 }
 .site-header__brand .logo {
   display: block;
-  height: 52px;
+  height: var(--header-logo-h);
   width: auto;
+  transition: height var(--dur-normal, 240ms) var(--ease-standard, ease);
 }
 .logo-dark {
   display: none;
@@ -55,8 +74,8 @@ html[data-theme="light"] .logo-light {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 38px;
-  height: 38px;
+  width: var(--header-action-size);
+  height: var(--header-action-size);
   border-radius: 999px;
   line-height: 1;
   touch-action: manipulation;
@@ -180,9 +199,9 @@ html[data-theme="light"] .site-header__theme-toggle .icon--moon {
 }
 .site-header__drawer {
   position: fixed;
-  top: var(--header-h);
+  top: var(--header-current-h);
   right: 0;
-  height: calc(100dvh - var(--header-h));
+  height: calc(100dvh - var(--header-current-h));
   width: min(86vw, 360px);
   padding: 22px 16px 18px;
   color: var(--c-ink);
@@ -321,7 +340,6 @@ body.site-header-nav-open .site-header__drawer {
 }
 body.site-header-is-scrolled .site-header {
   box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
-  transition: box-shadow 0.25s ease;
 }
 html[data-theme="dark"] .site-header {
   border-bottom: 1px solid color-mix(in oklab, var(--c-border), transparent calc(var(--glass-border-alpha) + 6%));
@@ -391,6 +409,10 @@ html[data-theme="dark"] .site-header {
     transition: none !important;
   }
   body.site-header-is-scrolled .site-header {
+    transition: none !important;
+  }
+  .site-header__row,
+  .site-header__brand .logo {
     transition: none !important;
   }
 }
