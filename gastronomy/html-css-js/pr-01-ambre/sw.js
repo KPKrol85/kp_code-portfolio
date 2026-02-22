@@ -1,4 +1,4 @@
-const CACHE_VERSION = "v1.3";
+const CACHE_VERSION = "v1.4";
 
 const APP_SHELL_CACHE = `app-shell-${CACHE_VERSION}`;
 const RUNTIME_IMG_CACHE = `runtime-img-${CACHE_VERSION}`;
