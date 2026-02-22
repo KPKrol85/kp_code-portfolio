@@ -142,13 +142,17 @@
             </span>
             <span class="site-header__phone">+48&nbsp;533&nbsp;537&nbsp;091</span>
           </a>
-                    <button class="site-header__theme-toggle" data-testid="site-header__theme-toggle" type="button" aria-label="Przełącz motyw" aria-pressed="false" title="Motyw">
+          <button class="site-header__theme-toggle" data-testid="site-header__theme-toggle" type="button" aria-label="Przełącz motyw" aria-pressed="false" title="Motyw">
             <span aria-hidden="true">
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="icon icon--sun" aria-hidden="true">
-                <path d="M12 2.25a.75.75 0 0 1 .75.75v2.25a.75.75 0 0 1-1.5 0V3a.75.75 0 0 1 .75-.75ZM7.5 12a4.5 4.5 0 1 1 9 0 4.5 4.5 0 0 1-9 0ZM18.894 6.166a.75.75 0 0 0-1.06-1.06l-1.591 1.59a.75.75 0 1 0 1.06 1.061l1.591-1.59ZM21.75 12a.75.75 0 0 1-.75.75h-2.25a.75.75 0 0 1 0-1.5H21a.75.75 0 0 1 .75.75ZM17.834 18.894a.75.75 0 0 0 1.06-1.06l-1.59-1.591a.75.75 0 1 0-1.061 1.06l1.59 1.591ZM12 18a.75.75 0 0 1 .75.75V21a.75.75 0 0 1-1.5 0v-2.25A.75.75 0 0 1 12 18ZM7.758 17.303a.75.75 0 0 0-1.061-1.06l-1.591 1.59a.75.75 0 0 0 1.06 1.061l1.591-1.59ZM6 12a.75.75 0 0 1-.75.75H3a.75.75 0 0 1 0-1.5h2.25A.75.75 0 0 1 6 12ZM6.697 7.757a.75.75 0 0 0 1.06-1.06l-1.59-1.591a.75.75 0 0 0-1.061 1.06l1.59 1.591Z"/>
+                <path
+                  d="M12 2.25a.75.75 0 0 1 .75.75v2.25a.75.75 0 0 1-1.5 0V3a.75.75 0 0 1 .75-.75ZM7.5 12a4.5 4.5 0 1 1 9 0 4.5 4.5 0 0 1-9 0ZM18.894 6.166a.75.75 0 0 0-1.06-1.06l-1.591 1.59a.75.75 0 1 0 1.06 1.061l1.591-1.59ZM21.75 12a.75.75 0 0 1-.75.75h-2.25a.75.75 0 0 1 0-1.5H21a.75.75 0 0 1 .75.75ZM17.834 18.894a.75.75 0 0 0 1.06-1.06l-1.59-1.591a.75.75 0 1 0-1.061 1.06l1.59 1.591ZM12 18a.75.75 0 0 1 .75.75V21a.75.75 0 0 1-1.5 0v-2.25A.75.75 0 0 1 12 18ZM7.758 17.303a.75.75 0 0 0-1.061-1.06l-1.591 1.59a.75.75 0 0 0 1.06 1.061l1.591-1.59ZM6 12a.75.75 0 0 1-.75.75H3a.75.75 0 0 1 0-1.5h2.25A.75.75 0 0 1 6 12ZM6.697 7.757a.75.75 0 0 0 1.06-1.06l-1.59-1.591a.75.75 0 0 0-1.061 1.06l1.59 1.591Z" />
               </svg>
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="icon icon--moon" aria-hidden="true">
-                <path fill-rule="evenodd" d="M9.528 1.718a.75.75 0 0 1 .162.819A8.97 8.97 0 0 0 9 6a9 9 0 0 0 9 9 8.97 8.97 0 0 0 3.463-.69.75.75 0 0 1 .981.98 10.503 10.503 0 0 1-9.694 6.46c-5.799 0-10.5-4.7-10.5-10.5 0-4.368 2.667-8.112 6.46-9.694a.75.75 0 0 1 .818.162Z" clip-rule="evenodd"/>
+                <path
+                  fill-rule="evenodd"
+                  d="M9.528 1.718a.75.75 0 0 1 .162.819A8.97 8.97 0 0 0 9 6a9 9 0 0 0 9 9 8.97 8.97 0 0 0 3.463-.69.75.75 0 0 1 .981.98 10.503 10.503 0 0 1-9.694 6.46c-5.799 0-10.5-4.7-10.5-10.5 0-4.368 2.667-8.112 6.46-9.694a.75.75 0 0 1 .818.162Z"
+                  clip-rule="evenodd" />
               </svg>
             </span>
           </button>
@@ -165,154 +169,189 @@
     </header>
 
     <!-- Main -->
-    <nav class="breadcrumbs" aria-label="Okruszki nawigacyjne">
-      <div class="container">
-        <ol>
-          <li><a href="index.html">Strona główna</a></li>
-          <li aria-current="page">Regulamin</li>
-        </ol>
-      </div>
-    </nav>
-
     <main id="main" class="page-legal">
-      <section class="container legal-simple" aria-labelledby="terms-title">
-        <div class="legal-container">
-          <p class="eyebrow">Informacje prawne</p>
-          <h1 id="terms-title" class="legal-title">Regulamin serwisu (projekt demo)</h1>
-          <p class="legal-lead">
-            Niniejszy dokument okresla zasady korzystania z demonstracyjnej strony internetowej restauracji
-            <strong>Ambre</strong>
-            oraz warunki korzystania z udostepnionych funkcjonalnosci.
+      <nav class="breadcrumbs" aria-label="Okruszki nawigacyjne">
+        <div class="breadcrumbs__inner">
+          <ol class="breadcrumbs__list">
+            <li class="breadcrumbs__item">
+              <a class="breadcrumbs__link" href="index.html">Strona główna</a>
+            </li>
+            <li class="breadcrumbs__item" aria-current="page">Regulamin</li>
+          </ol>
+        </div>
+      </nav>
+      <!-- Regulamin -->
+      <section class="container legal" aria-labelledby="legal-title">
+        <div class="legal__inner">
+          <p class="legal__eyebrow">Informacje prawne</p>
+          <h1 id="legal-title" class="legal__title">Regulamin serwisu</h1>
+          <p class="legal__lead">
+            Niniejszy dokument określa zasady korzystania z demonstracyjnej wersji projektu strony internetowej dla branży gastronomicznej „Ambre”, opracowanej przez
+            <a href="https://kp-code.pl" class="legal__link">KP_Code Digital Studio</a>
+            . Serwis ma charakter marketingowy i prezentacyjny.
           </p>
-          <nav class="doc-toc" aria-label="Spis tresci">
-            <ul>
-              <li><a href="#tos-1">1. Definicje</a></li>
-              <li><a href="#tos-2">2. Postanowienia ogolne</a></li>
-              <li><a href="#tos-3">3. Charakter projektu</a></li>
-              <li><a href="#tos-4">4. Funkcjonalnosci demonstracyjne</a></li>
-              <li><a href="#tos-5">5. Wlasnosc intelektualna</a></li>
-              <li><a href="#tos-6">6. Formularz kontaktowy</a></li>
-              <li><a href="#tos-7">7. Odpowiedzialnosc</a></li>
-              <li><a href="#tos-8">8. Linki zewnetrzne</a></li>
-              <li><a href="#tos-9">9. Zgloszenia i kontakt</a></li>
-              <li><a href="#tos-10">10. Bezpieczenstwo</a></li>
-              <li><a href="#tos-11">11. Zmiany Regulaminu</a></li>
-              <li><a href="#tos-12">12. Postanowienia koncowe</a></li>
-            </ul>
+
+          <nav class="legal__toc" aria-label="Spis tresci">
+            <ol class="legal__toc-list">
+              <li class="legal__toc-item"><a class="legal__toc-link" href="#tos-1">Definicje</a></li>
+              <li class="legal__toc-item"><a class="legal__toc-link" href="#tos-2">Postanowienia ogolne</a></li>
+              <li class="legal__toc-item"><a class="legal__toc-link" href="#tos-3">Charakter projektu</a></li>
+              <li class="legal__toc-item"><a class="legal__toc-link" href="#tos-4">Funkcjonalnosci demonstracyjne</a></li>
+              <li class="legal__toc-item"><a class="legal__toc-link" href="#tos-5">Wlasnosc intelektualna</a></li>
+              <li class="legal__toc-item"><a class="legal__toc-link" href="#tos-6">Formularz kontaktowy</a></li>
+              <li class="legal__toc-item"><a class="legal__toc-link" href="#tos-7">Odpowiedzialnosc</a></li>
+              <li class="legal__toc-item"><a class="legal__toc-link" href="#tos-8">Linki zewnetrzne</a></li>
+              <li class="legal__toc-item"><a class="legal__toc-link" href="#tos-9">Zgloszenia i kontakt</a></li>
+              <li class="legal__toc-item"><a class="legal__toc-link" href="#tos-10">Bezpieczenstwo</a></li>
+              <li class="legal__toc-item"><a class="legal__toc-link" href="#tos-11">Zmiany Regulaminu</a></li>
+              <li class="legal__toc-item"><a class="legal__toc-link" href="#tos-12">Postanowienia koncowe</a></li>
+            </ol>
           </nav>
-          <article class="doc-content legal-doc legal-content">
-            <p>
-              <small>
-                <strong>Uwaga:</strong>
-                Serwis stanowi
-                <strong>projekt demonstracyjny / portfolio</strong>
-                . Dokument ma charakter przykladowy i nie stanowi porady prawnej ani oferty handlowej.
-              </small>
-            </p>
+
+          <article class="legal__doc">
+            <!-- 1 Definicje -->
             <h2 id="tos-1">1. Definicje</h2>
-            <p>Na potrzeby niniejszego Regulaminu:</p>
+            <p>Na potrzeby niniejszego Regulaminu przyjmuje się następujące znaczenie pojęć:</p>
             <ul>
               <li>
                 <strong>Serwis</strong>
-                - demonstracyjna strona internetowa dostepna pod adresem
-                <em>gastronomy-project-01.netlify.app</em>
-                .
-              </li>
-              <li>
-                <strong>Uzytkownik</strong>
-                - kazda osoba odwiedzajaca Serwis i korzystajaca z jego tresci.
+                – demonstracyjna strona internetowa projektu gastronomicznego „Ambre”, udostępniona publicznie w celach marketingowych i prezentacyjnych.
               </li>
               <li>
                 <strong>Projekt</strong>
-                - fikcyjny serwis gastronomiczny "Ambre", przygotowany w celach edukacyjnych i prezentacyjnych.
-              </li>
-              <li>
-                <strong>Funkcjonalnosci</strong>
-                - elementy interfejsu i tresci (np. menu, rezerwacja, galeria, opinie, formularz), ktore maja charakter demonstracyjny.
+                – koncepcja strony internetowej dla branży gastronomicznej, opracowana jako przykład realizacji komercyjnej przez
+                <a href="https://kp-code.pl" class="legal__link">KP_Code Digital Studio</a>
+                .
               </li>
               <li>
                 <strong>Operator</strong>
-                - wlasciciel i autor projektu portfolio
-                <strong>Kamil Król (KP_Code_)</strong>
-                (kontakt:
-                <a href="mailto:kontakt@kp-code.pl">kontakt@kp-code.pl</a>
+                – autor oraz właściciel praw do Projektu, działający pod marką
+                <a href="https://kp-code.pl" class="legal__link">KP_Code Digital Studio</a>
+                , tj. Kamil Król, odpowiedzialny za opracowanie koncepcji, projektu graficznego oraz kodu źródłowego Serwisu (kontakt:
+                <a class="legal__link" href="mailto:kontakt@kp-code.pl">kontakt@kp-code.pl</a>
                 ).
               </li>
+              <li>
+                <strong>Użytkownik</strong>
+                – każda osoba odwiedzająca Serwis i korzystająca z jego treści.
+              </li>
+              <li>
+                <strong>Funkcjonalności</strong>
+                – elementy interfejsu i rozwiązania techniczne prezentowane w ramach Projektu (np. menu, galeria, formularze, sekcje informacyjne), mające charakter demonstracyjny.
+              </li>
             </ul>
-            <h2 id="tos-2">2. Postanowienia ogolne</h2>
+            <!-- 2 Postanowienia ogolne -->
+            <h2 id="tos-2">2. Postanowienia ogólne</h2>
             <p>
-              Regulamin okresla zasady korzystania z Serwisu udostepnionego publicznie w celach prezentacyjnych. Korzystanie z Serwisu oznacza akceptacje niniejszego Regulaminu i zobowiazanie do jego
-              przestrzegania.
+              Niniejszy Regulamin określa zasady korzystania z demonstracyjnego Serwisu opracowanego przez
+              <a href="https://kp-code.pl" class="legal__link">KP_Code Digital Studio</a>
+              w celach marketingowych oraz prezentacyjnych. Serwis stanowi przykład realizacji projektu strony internetowej dla branży gastronomicznej.
             </p>
+            <p>Korzystanie z Serwisu oznacza akceptację niniejszego Regulaminu oraz zobowiązanie do korzystania z niego zgodnie z jego przeznaczeniem i obowiązującymi przepisami prawa.</p>
+
+            <!-- 3 Charakter projektu -->
             <h2 id="tos-3">3. Charakter projektu</h2>
             <p>
-              <strong>Ambre</strong>
-              jest fikcyjna marka wykorzystana wylacznie na potrzeby projektu demo. Serwis nie reprezentuje realnego podmiotu gospodarczego i nie prowadzi rzeczywistej dzialalnosci gastronomicznej.
+              „Ambre” stanowi fikcyjną markę stworzoną wyłącznie na potrzeby demonstracyjnego projektu strony internetowej opracowanego przez <a href="https://kp-code.pl" class="legal__link">KP_Code Digital Studio</a>. Serwis nie reprezentuje
+              rzeczywistego podmiotu gospodarczego ani realnie działającej restauracji.
             </p>
             <ul>
-              <li>Wszelkie nazwy, opisy, dane i procesy maja charakter przykladowy.</li>
-              <li>Tresci nie stanowia oferty w rozumieniu Kodeksu cywilnego.</li>
-              <li>Serwis nie umozliwia zawierania umow ani skladania zamowien.</li>
+              <li>Wszelkie nazwy, opisy, treści, ceny, dane kontaktowe oraz procesy przedstawione w Serwisie mają charakter przykładowy.</li>
+              <li>Prezentowane treści nie stanowią oferty w rozumieniu przepisów Kodeksu cywilnego.</li>
+              <li>Serwis nie umożliwia zawierania umów ani składania rzeczywistych zamówień czy rezerwacji.</li>
             </ul>
-            <h2 id="tos-4">4. Funkcjonalnosci demonstracyjne</h2>
-            <p>Serwis moze zawierac elementy takie jak: menu, galeria, opinie, sekcje FAQ, przyciski CTA oraz formularz rezerwacji.</p>
-            <ul>
-              <li>Elementy te sluza wylacznie prezentacji UI/UX i interakcji front-end.</li>
-              <li>Dane wprowadzane przez Uzytkownika maja charakter testowy.</li>
-              <li>Wyslanie formularza nie oznacza zawarcia umowy ani przyjecia rezerwacji.</li>
-            </ul>
-            <h2 id="tos-5">5. Wlasnosc intelektualna</h2>
+
+            <!-- 4 Funkcjonalnosci demonstracyjne -->
+            <h2 id="tos-4">4. Funkcjonalności demonstracyjne</h2>
             <p>
-              Uklad strony, elementy graficzne, kod zrodlowy oraz tresci stanowia utwor w rozumieniu prawa autorskiego i naleza do autora projektu
-              <strong>Kamil Król (KP_Code_)</strong>
+              Serwis może zawierać elementy funkcjonalne charakterystyczne dla stron internetowych branży gastronomicznej, takie jak menu, galeria, sekcje informacyjne, przyciski CTA, formularz
+              kontaktowy lub rezerwacyjny.
+            </p>
+            <ul>
+              <li>Wskazane elementy służą wyłącznie prezentacji rozwiązań projektowych, interfejsu użytkownika (UI) oraz implementacji front-end.</li>
+              <li>Dane wprowadzane przez Użytkownika w formularzach mają charakter testowy i demonstracyjny.</li>
+              <li>Wysłanie formularza nie skutkuje zawarciem umowy, dokonaniem rezerwacji ani powstaniem jakiegokolwiek zobowiązania po stronie Operatora.</li>
+            </ul>
+
+            <!-- 5 Wlasnosc intelektualna -->
+            <h2 id="tos-5">5. Własność intelektualna</h2>
+            <p>
+              Układ graficzny, struktura Serwisu, elementy wizualne, treści, koncepcja projektu oraz kod źródłowy stanowią utwór w rozumieniu przepisów prawa autorskiego i podlegają ochronie prawnej.
+              Prawa autorskie do Projektu przysługują jego autorowi – Kamilowi Królowi, działającemu pod marką
+              <a href="https://kp-code.pl" class="legal__link">KP_Code Digital Studio</a>
               , o ile nie wskazano inaczej.
             </p>
             <ul>
-              <li>Zakazane jest kopiowanie projektu w calosci w celach komercyjnych bez zgody autora.</li>
-              <li>Dopuszczalne jest przegladanie Serwisu w celach edukacyjnych i oceny portfolio.</li>
+              <li>Zabronione jest kopiowanie, rozpowszechnianie, modyfikowanie lub wykorzystywanie Projektu w całości lub w części w celach komercyjnych bez uprzedniej zgody autora.</li>
+              <li>Dopuszczalne jest przeglądanie Serwisu w celach informacyjnych i zapoznania się z prezentowanymi rozwiązaniami.</li>
             </ul>
+
+            <!-- 6 Formularz kontaktowy -->
             <h2 id="tos-6">6. Formularz kontaktowy</h2>
             <ol>
-              <li>Serwis moze udostepniac formularz kontaktowy w celu symulacji zapytania o rezerwacje.</li>
-              <li>Podanie danych jest dobrowolne, ale moze byc niezbedne do udzielenia odpowiedzi (w kontekscie demo).</li>
+              <li>Serwis może udostępniać formularz kontaktowy lub rezerwacyjny w celu demonstracji funkcjonalności interfejsu oraz symulacji procesu zapytania.</li>
+              <li>Podanie danych przez Użytkownika jest dobrowolne i ma charakter testowy w ramach działania projektu demonstracyjnego.</li>
               <li>
-                Zasady przetwarzania danych opisuje dokument
-                <a href="polityka-prywatnosci.html">Polityka prywatnosci</a>
+                Zasady przetwarzania danych zostały opisane w dokumentach
+                <a href="polityka-prywatnosci.html" class="legal__link">Polityka prywatności</a>
                 oraz
-                <a href="cookies.html">Cookies</a>
+                <a href="cookies.html" class="legal__link">Cookies</a>
                 .
               </li>
             </ol>
-            <h2 id="tos-7">7. Odpowiedzialnosc</h2>
+
+            <!-- 7 Odpowiedzialnosc -->
+            <h2 id="tos-7">7. Odpowiedzialność</h2>
             <ul>
-              <li>Operator doklada staran, aby Serwis dzialal prawidlowo, jednak Serwis udostepniany jest w stanie "as is".</li>
-              <li>Operator nie ponosi odpowiedzialnosci za decyzje podjete na podstawie tresci prezentowanych w ramach projektu demo.</li>
-              <li>Operator nie odpowiada za przerwy w dzialaniu wynikajace z przyczyn niezaleznych (np. awarie, prace techniczne, sila wyzsza).</li>
+              <li>Operator dokłada należytej staranności, aby Serwis działał prawidłowo, jednak udostępniany jest on w aktualnym stanie technicznym („as is”).</li>
+              <li>Operator nie ponosi odpowiedzialności za decyzje podejmowane na podstawie treści prezentowanych w ramach projektu demonstracyjnego.</li>
+              <li>Operator nie odpowiada za czasowe przerwy w działaniu Serwisu wynikające z przyczyn technicznych, konserwacyjnych lub innych okoliczności niezależnych od Operatora.</li>
             </ul>
-            <h2 id="tos-8">8. Linki zewnetrzne</h2>
-            <p>Serwis moze zawierac odnosniki do stron zewnetrznych (np. social media, mapy). Operator nie ponosi odpowiedzialnosci za ich tresc ani za polityke prywatnosci tych serwisow.</p>
-            <h2 id="tos-9">9. Zgloszenia i kontakt</h2>
+
+            <!-- 8 Linki zewnetrzne -->
+            <h2 id="tos-8">8. Linki zewnętrzne</h2>
+            <p>Serwis może zawierać odnośniki do zewnętrznych stron internetowych, w tym serwisów społecznościowych, map, narzędzi analitycznych lub innych usług podmiotów trzecich.</p>
             <p>
-              Uwagi dotyczace dzialania Serwisu lub pytania zwiazane z projektem portfolio mozna zglaszac na adres:
-              <a href="mailto:kontakt@kp-code.pl">kontakt@kp-code.pl</a>
-              . Odpowiedz zostanie udzielona w rozsadnym terminie, w miare dostepnosci Operatora.
+              Operator nie ponosi odpowiedzialności za treść, dostępność ani zasady przetwarzania danych obowiązujące w tych serwisach. Korzystanie z zewnętrznych stron odbywa się na zasadach
+              określonych przez ich administratorów.
             </p>
-            <h2 id="tos-10">10. Bezpieczenstwo</h2>
+
+            <!-- 9 Zgloszenia i kontakt -->
+            <h2 id="tos-9">9. Zgłoszenia i kontakt</h2>
+            <p>
+              Uwagi dotyczące działania Serwisu, pytania związane z Projektem lub współpracą można kierować na adres:
+              <a href="mailto:kontakt@kp-code.pl" class="legal__link">kontakt@kp-code.pl</a>
+              .
+            </p>
+            <p>Odpowiedź zostanie udzielona w rozsądnym terminie, z uwzględnieniem dostępności Operatora.</p>
+            <!-- 10 Bezpieczenstwo -->
+            <h2 id="tos-10">10. Bezpieczeństwo</h2>
             <ul>
-              <li>Operator stosuje podstawowe srodki techniczne majace na celu ochrone Serwisu i przesylanych danych.</li>
-              <li>Uzytkownik powinien korzystac z aktualnej przegladarki oraz dbac o bezpieczenstwo swojego urzadzenia.</li>
-              <li>Zakazane sa dzialania zmierzajace do naruszenia bezpieczenstwa Serwisu (np. proby obejscia zabezpieczen, naduzycia formularza).</li>
+              <li>Operator stosuje odpowiednie środki techniczne i organizacyjne mające na celu zapewnienie bezpieczeństwa Serwisu oraz ochrony przetwarzanych danych.</li>
+              <li>Użytkownik powinien korzystać z aktualnej przeglądarki internetowej oraz dbać o bezpieczeństwo swojego urządzenia i połączenia sieciowego.</li>
+              <li>
+                Zabronione są działania zmierzające do naruszenia bezpieczeństwa Serwisu, w szczególności próby obejścia zabezpieczeń, nieuprawniony dostęp do zasobów lub nadużycia funkcjonalności
+                formularzy.
+              </li>
             </ul>
+
+            <!-- 11 Zmiany Regulaminu -->
             <h2 id="tos-11">11. Zmiany Regulaminu</h2>
             <ol>
-              <li>Operator zastrzega sobie prawo do zmiany Regulaminu z waznych powodow (np. zmiany techniczne, zmiany tresci projektu, bezpieczenstwo).</li>
-              <li>Zmiany obowiazuja od dnia publikacji w Serwisie, chyba ze wskazano inny termin.</li>
+              <li>
+                Operator zastrzega sobie prawo do wprowadzania zmian w niniejszym Regulaminie z ważnych przyczyn, w szczególności w przypadku zmian technicznych, aktualizacji treści Projektu lub
+                względów związanych z bezpieczeństwem.
+              </li>
+              <li>Zmiany wchodzą w życie z dniem ich publikacji w Serwisie, o ile nie wskazano innego terminu obowiązywania.</li>
             </ol>
-            <h2 id="tos-12">12. Postanowienia koncowe</h2>
+
+            <!-- 12 Postanowienia koncowe -->
+            <h2 id="tos-12">12. Postanowienia końcowe</h2>
             <ul>
-              <li>W sprawach nieuregulowanych Regulaminem zastosowanie maja wlasciwe przepisy prawa.</li>
-              <li>Niniejszy dokument dotyczy wylacznie projektu demonstracyjnego i ma charakter informacyjny.</li>
+              <li>W sprawach nieuregulowanych niniejszym Regulaminem zastosowanie mają odpowiednie przepisy prawa.</li>
+              <li>Niniejszy Regulamin dotyczy wyłącznie demonstracyjnego charakteru Serwisu i ma charakter informacyjny.</li>
             </ul>
+
             <p>
               <small>
                 Data ostatniej aktualizacji:
@@ -328,7 +367,6 @@
     <footer id="footer" class="site-footer" role="contentinfo">
       <h2 class="sr-only">Stopka</h2>
       <div class="container site-footer__grid">
-        <!-- site-header__brand footer -->
         <div class="site-footer__column site-footer__column--brand">
           <a href="/#top" class="site-footer__brand" aria-label="Strona główna Ambre">
             <img class="logo logo-light" src="assets/img/logo-img/logo-light.svg" alt="Ambre – logo restauracji" width="140" height="140" decoding="async" />
@@ -341,7 +379,7 @@
             — elegancka restauracja oferująca autorską kuchnię opartą na świeżych, lokalnych składnikach. Rezerwacje online, przyjazna atmosfera i dbałość o detale.
           </p>
         </div>
-        <!-- nav footer -->
+
         <nav class="site-footer__column" aria-label="Nawigacja w stopce">
           <h3 class="site-footer__title">Nawigacja</h3>
           <ul class="site-footer__nav">
@@ -353,7 +391,7 @@
             <li><a href="/#faq">FAQ</a></li>
           </ul>
         </nav>
-        <!-- address footer -->
+
         <div class="site-footer__column" aria-labelledby="ft-findus">
           <h3 id="ft-findus" class="site-footer__title">Tu nas znajdziesz</h3>
           <address class="site-footer__address">
@@ -374,7 +412,7 @@
               class="map-embed"></iframe>
           </div>
         </div>
-        <!-- contact footer -->
+
         <div class="site-footer__column" aria-labelledby="site-footer__contact">
           <h3 id="site-footer__contact" class="site-footer__title">Kontakt</h3>
           <ul class="site-footer__contact" aria-label="Dane kontaktowe">
@@ -513,9 +551,3 @@
     </div>
   </body>
 </html>
-
-
-
-
-
-

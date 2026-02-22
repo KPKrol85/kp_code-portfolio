@@ -51,6 +51,7 @@ html {
   --fs-xxs: clamp(0.625rem, 0.6rem + 0.1vw, 0.75rem);
   --fs-xs: clamp(0.75rem, 0.7rem + 0.2vw, 0.875rem);
   --fs-sm: clamp(0.875rem, 0.8rem + 0.3vw, 1rem);
+  --fs-smd: clamp(0.95rem, 0.875rem + 0.35vw, 1.1rem);
   --fs-md: clamp(1rem, 0.95rem + 0.4vw, 1.125rem);
   --fs-lg: clamp(1.25rem, 1.1rem + 0.6vw, 1.5rem);
   --fs-xl: clamp(1.75rem, 1.4rem + 1.2vw, 2.5rem);
@@ -122,6 +123,7 @@ html[data-theme="light"] {
   --c-surface: #f7f2f4;
   --c-border: #e6e2e6;
   --c-link: #6f4800;
+  --c-link-hover: #9e5a00;
   --nav-hover-bg: rgba(0, 0, 0, 0.06);
 }
 html[data-theme="dark"] {
@@ -132,8 +134,14 @@ html[data-theme="dark"] {
   --c-surface: #12121a;
   --c-border: #2b2d34;
   --c-link: #fab204;
+  --c-link-hover: #ffd76a;
   --c-accent-contrast: #fab204;
   --nav-hover-bg: rgba(255, 255, 255, 0.1);
+
+  --shadow-xs: 0 2px 10px rgba(0, 0, 0, 0.25);
+  --shadow-sm: 0 8px 22px rgba(0, 0, 0, 0.35);
+  --shadow-md: 0 14px 40px rgba(0, 0, 0, 0.45);
+  --shadow-lg: 0 28px 80px rgba(0, 0, 0, 0.55);
 }
 
 @font-face {

@@ -208,16 +208,12 @@ html[data-theme="dark"] .site-button--link:hover {
     transition: none;
   }
 }
+
 /* Form */
 .site-button--form {
-  font-family: inherit;
-  border: 1px solid color-mix(in oklab, var(--c-accent), #000 15%);
+  border-color: color-mix(in oklab, var(--c-accent), #000 15%);
   background: var(--c-accent);
   box-shadow: var(--shadow-sm);
-  transition:
-    background-color 0.2s ease,
-    transform 0.15s ease,
-    box-shadow 0.2s ease;
 }
 .site-button--form:hover {
   background: color-mix(in srgb, var(--c-accent) 88%, white);
@@ -227,10 +223,6 @@ html[data-theme="dark"] .site-button--link:hover {
 .site-button--form:active {
   transform: translateY(0);
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
-}
-.site-button--form:focus-visible {
-  outline: 2px solid var(--c-accent-contrast);
-  outline-offset: 3px;
 }
 html[data-theme="dark"] .site-button--form {
   background: color-mix(in oklab, var(--c-accent), #000 10%);
@@ -403,4 +395,3 @@ html[data-theme="dark"] .site-button--ring:hover {
 .menu-status__icon {
   flex-shrink: 0;
 }
-
