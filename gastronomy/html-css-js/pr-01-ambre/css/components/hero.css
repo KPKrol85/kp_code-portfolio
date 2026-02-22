@@ -9,7 +9,7 @@
   width: 100%;
   --ov-top: rgba(0, 0, 0, 0.58);
   --ov-mid: rgba(0, 0, 0, 0.55);
---ov-bot: rgba(0, 0, 0, 0.45);
+  --ov-bot: rgba(0, 0, 0, 0.45);
 }
 .site-hero::before {
   content: "";
@@ -83,7 +83,7 @@
 }
 .site-hero__actions .site-button {
   width: 100%;
-  max-width: 220px; /
+  max-width: 220px;
 }
 .site-hero--contrast-low {
   --ov-top: rgba(0, 0, 0, 0.4);

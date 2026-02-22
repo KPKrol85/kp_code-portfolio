@@ -1,5 +1,37 @@
 import { $, $$, byTestId, log } from "./utils.js";
 
+const normalizePathname = (pathname) => {
+  const withLeading = pathname.startsWith("/") ? pathname : `/${pathname}`;
+  const trimmed = withLeading.replace(/\/+$/, "");
+  if (!trimmed || trimmed === "/") return "/index.html";
+  return trimmed;
+};
+
+const extractHashTarget = (href, { samePageOnly = false } = {}) => {
+  if (!href || href === "#") return "";
+  let url;
+  try {
+    url = new URL(href, window.location.href);
+  } catch {
+    return "";
+  }
+
+  const rawHash = url.hash ? url.hash.slice(1) : "";
+  if (!rawHash) return "";
+
+  if (samePageOnly) {
+    const currentPath = normalizePathname(window.location.pathname);
+    const targetPath = normalizePathname(url.pathname);
+    if (currentPath !== targetPath) return "";
+  }
+
+  try {
+    return decodeURIComponent(rawHash);
+  } catch {
+    return rawHash;
+  }
+};
+
 export function initMobileNav() {
   const toggle = byTestId("site-header__nav-toggle") || $(".site-header__nav-toggle");
   const nav = byTestId("site-header-nav") || $("#site-header-nav");
@@ -149,17 +181,31 @@ export function initMobileNav() {
 }
 
 export function initScrollspy() {
-  const links = $$("#site-header-nav a[href^='#']");
-  if (!links.length) return;
+  const navRoot = document.getElementById("site-header-nav");
+  if (!navRoot) return;
 
-  const map = new Map(links.map((link) => [link.getAttribute("href").slice(1), link]));
+  const parsed = $$("#site-header-nav a[href]").map((link) => ({
+    link,
+    id: extractHashTarget(link.getAttribute("href"), { samePageOnly: true }),
+  }));
+  const samePageLinks = parsed.filter((item) => item.id);
+  if (!samePageLinks.length) return;
+
+  const map = new Map();
+  samePageLinks.forEach(({ id, link }) => {
+    if (!map.has(id)) map.set(id, link);
+  });
+  const links = Array.from(map.values());
+
   const setCurrent = (id) => {
     if (!id || !map.has(id)) return;
     links.forEach((link) => link.removeAttribute("aria-current"));
     map.get(id)?.setAttribute("aria-current", "true");
   };
 
-  const sections = [...document.querySelectorAll("section[id]")].filter((section) => map.has(section.id));
+  const sections = Array.from(map.keys())
+    .map((id) => document.getElementById(id))
+    .filter(Boolean);
   if (!sections.length) return;
 
   const observer = new IntersectionObserver(
@@ -173,17 +219,22 @@ export function initScrollspy() {
 
   sections.forEach((section) => observer.observe(section));
 
-  (document.getElementById("site-header-nav") || document).addEventListener(
+  navRoot.addEventListener(
     "click",
     (event) => {
-      const link = event.target.closest("a[href^='#']");
-      if (!link || !links.includes(link)) return;
-      setCurrent(link.getAttribute("href").slice(1));
+      const link = event.target.closest("a[href]");
+      if (!link) return;
+      const id = extractHashTarget(link.getAttribute("href"), { samePageOnly: true });
+      if (!id) return;
+      setCurrent(id);
     },
     { passive: true }
   );
 
-  if (location.hash) setCurrent(location.hash.slice(1));
+  if (location.hash) {
+    const currentId = extractHashTarget(location.hash, { samePageOnly: true });
+    if (currentId) setCurrent(currentId);
+  }
   log(links.length);
 }
 
@@ -192,15 +243,16 @@ export function initSmartNav() {
   if (/(?:^|\/)(index\.html)?$/.test(path) || path.endsWith("/")) return;
 
   const map = {
-    "#menu": "menu.html",
-    "#galeria": "galeria.html",
+    menu: "menu.html",
+    galeria: "galeria.html",
   };
 
-  const links = document.querySelectorAll(".site-header__nav a[href^='#']");
+  const links = document.querySelectorAll(".site-header__nav a[href]");
   if (!links.length) return;
 
   links.forEach((link) => {
-    const replacement = map[link.getAttribute("href") || ""];
+    const targetId = extractHashTarget(link.getAttribute("href"));
+    const replacement = targetId ? map[targetId] : "";
     if (replacement) link.setAttribute("href", replacement);
   });
 
