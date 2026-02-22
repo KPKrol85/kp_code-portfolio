@@ -80,11 +80,6 @@
   font-size: var(--fs-lg);
   margin-top: var(--space-06);
   margin-bottom: var(--space-02);
-}
-.legal__doc h2 {
-  font-size: var(--fs-lg);
-  margin-top: var(--space-06);
-  margin-bottom: var(--space-02);
   position: relative;
   padding-bottom: var(--space-02);
 }
@@ -118,5 +113,5 @@
   .legal {
     padding: var(--space-06) var(--space-08);
   }
- 
+
 }
