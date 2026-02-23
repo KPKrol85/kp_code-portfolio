@@ -1,4 +1,6 @@
 :root {
+  color-scheme: light;
+  /* Color palette */
   --cream: #f8f1e7;
   --gold: #c9a227;
   --burgundy: #6b1e2f;
@@ -8,39 +10,47 @@
   --bone: #fffdf8;
   --white: #ffffff;
   --black: #000000;
-
+  /* Radius */
   --radius-xs: 4px;
   --radius-sm: 8px;
   --radius-md: 12px;
   --radius-lg: 16px;
   --radius-xl: 24px;
   --radius-pill: 999px;
-
+  /* Shados */
   --shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+  /* Layout */
   --container: 1120px;
-  --header-backdrop: rgba(248, 241, 231, 0.88);
-  --header-border: rgba(0, 0, 0, 0.06);
-  --header-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+  /* Header sys */
   --header-h: 80px;
   --header-visual-h: var(--header-h);
   --header-logo-h: 80px;
   --header-logo-w: 200px;
   --header-logo-pad: 10px;
+  --header-backdrop: rgba(248, 241, 231, 0.88);
+  --header-border: rgba(0, 0, 0, 0.06);
+  --header-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
   --header-offset: calc(var(--header-h) + env(safe-area-inset-top, 0px));
+  /* Surface */
   --surface-overlay: rgba(255, 253, 248, 0.96);
   --c-surface-1: var(--surface-overlay);
   --surface-overlay-border: rgba(0, 0, 0, 0.07);
+  /* Typography */
   --text-muted: rgba(27, 23, 21, 0.86);
   --text-subtle: rgba(27, 23, 21, 0.78);
+  /* Border */
   --border-soft: rgba(0, 0, 0, 0.06);
   --input-bg: #ffffff;
   --input-border: rgba(0, 0, 0, 0.15);
+  /* Footer */
   --footer-bg: #2e2a27;
   --footer-text: #fffdf8;
+  /* Tabs */
   --tab-active-bg: color-mix(in oklab, var(--burgundy) 10%, white);
   --tab-active-border: color-mix(in oklab, var(--burgundy) 55%, white);
-  color-scheme: light;
+  /* Accessibility */
   --focus-ring: color-mix(in oklab, var(--burgundy) 65%, white);
+  /* Spacing */
   --space-0: 0;
   --space-1: 0.25rem;
   --space-2: 0.5rem;
@@ -50,10 +60,21 @@
   --space-6: 2rem;
   --space-7: 3rem;
   --space-8: 4rem;
+  /* Font Size Scale (fluid) */
+  --fs-xxs: clamp(0.75rem, 0.72rem + 0.15vw, 0.8rem);
+  --fs-xs: clamp(0.8125rem, 0.78rem + 0.2vw, 0.9rem);
+  --fs-sm: clamp(0.9rem, 0.85rem + 0.25vw, 1rem);
+  --fs-md: clamp(1rem, 0.95rem + 0.3vw, 1.125rem);
+  --fs-lg: clamp(1.125rem, 1.05rem + 0.45vw, 1.35rem);
+  --fs-xl: clamp(1.35rem, 1.2rem + 0.7vw, 1.75rem);
+  --fs-2xl: clamp(1.75rem, 1.5rem + 1vw, 2.25rem);
+  --fs-3xl: clamp(2.25rem, 1.9rem + 1.6vw, 3rem); 
 }
 
+/* Dark Theme */
 [data-theme="dark"] {
   color-scheme: dark;
+  /* Color palette */
   --cream: #181210;
   --gold: #dcb869;
   --burgundy: #f0b3c0;
@@ -63,20 +84,27 @@
   --bone: #221815;
   --white: #181210;
   --black: #ffffff;
+  /* Shadows */
   --shadow: 0 14px 36px rgba(0, 0, 0, 0.45);
+  /* Header */
   --header-backdrop: rgba(24, 18, 16, 0.82);
   --header-border: rgba(255, 255, 255, 0.08);
   --header-shadow: 0 16px 36px rgba(0, 0, 0, 0.55);
+  /* Surface */
   --surface-overlay: rgba(24, 18, 16, 0.92);
   --c-surface-1: var(--surface-overlay);
   --surface-overlay-border: rgba(255, 255, 255, 0.08);
+  /* Typography */
   --text-muted: rgba(242, 231, 220, 0.82);
   --text-subtle: rgba(242, 231, 220, 0.76);
+  /* Forms */
   --border-soft: rgba(255, 255, 255, 0.08);
   --input-bg: #271c19;
   --input-border: rgba(255, 255, 255, 0.16);
+  /* Footer */
   --footer-bg: #0f0908;
   --footer-text: #f5ece3;
+  /* Tabs */
   --tab-active-bg: color-mix(in oklab, var(--burgundy) 55%, black);
   --tab-active-border: color-mix(in oklab, var(--burgundy) 92%, white);
 }

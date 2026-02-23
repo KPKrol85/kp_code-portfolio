@@ -5,9 +5,7 @@
   right: 0;
   z-index: 1000;
   background-color: var(--header-backdrop);
-  background-color: color-mix(in srgb, var(--c-surface-1) 85%, transparent);
   border-bottom: 1px solid var(--header-border);
-  border-bottom: 1px solid color-mix(in srgb, var(--c-ink) 10%, transparent);
   box-shadow: var(--header-shadow);
   padding-top: env(safe-area-inset-top, 0px);
   -webkit-backdrop-filter: saturate(150%) blur(10px);
