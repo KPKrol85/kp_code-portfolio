@@ -4,28 +4,20 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Polityka prywatności | Atelier No.02</title>
-
-    <!-- SEO -->
     <meta name="description" content="Polityka prywatności serwisu demo Atelier No.02: administrator, zakres danych, cele, podstawy prawne, prawa użytkownika i kontakt." />
     <link rel="canonical" href="https://gastronomy-project-02.netlify.app/polityka-prywatnosci.html" />
     <meta name="robots" content="index,follow" />
     <meta name="author" content="KP_Code" />
-
-    <!-- PWA / UI -->
     <meta name="color-scheme" content="light dark" />
     <meta name="application-name" content="Atelier No.02" />
     <meta name="apple-mobile-web-app-title" content="Atelier No.02" />
     <meta name="msapplication-TileColor" content="#f8f1e7" />
     <meta name="theme-color" content="#ffffff" />
-
-    <!-- Favicons + manifest -->
     <link rel="icon" type="image/png" sizes="32x32" href="assets/icons/fav-icon/favicon-32x32.png" />
     <link rel="icon" type="image/png" sizes="16x16" href="assets/icons/fav-icon/favicon-16x16.png" />
     <link rel="apple-touch-icon" sizes="180x180" href="assets/icons/fav-icon/apple-touch-icon.png" />
     <link rel="mask-icon" href="assets/icons/fav-icon/safari-pinned-tab.svg" color="#000000" />
     <link rel="manifest" href="manifest.webmanifest" />
-
-    <!-- Open Graph -->
     <meta property="og:site_name" content="Atelier No.02" />
     <meta property="og:type" content="website" />
     <meta property="og:title" content="Polityka prywatności | Atelier No.02" />
@@ -37,8 +29,6 @@
     <meta property="og:image:height" content="630" />
     <meta property="og:image:alt" content="Atelier No.02 — fine dining" />
     <meta property="og:locale" content="pl_PL" />
-
-    <!-- Twitter -->
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content="Polityka prywatności | Atelier No.02" />
     <meta name="twitter:description" content="Polityka prywatności serwisu demo Atelier No.02: administrator, zakres danych, cele, podstawy prawne, prawa użytkownika i kontakt." />
@@ -46,14 +36,9 @@
     <meta name="twitter:image:alt" content="Atelier No.02 — fine dining" />
     <meta name="twitter:site" content="@KP_Code_85" />
     <meta name="twitter:creator" content="@KP_Code_85" />
-
-    <!-- Preload fonts -->
     <link rel="preload" href="assets/fonts/montserrat-400-latin.woff2" as="font" type="font/woff2" crossorigin />
     <link rel="preload" href="assets/fonts/montserrat-700-latin.woff2" as="font" type="font/woff2" crossorigin />
-    <!-- Theme preload -->
     <script src="js/bootstrap.js"></script>
-
-    <!-- JSON-LD -->
     <script type="application/ld+json">
       {
         "@context": "https://schema.org",
@@ -100,46 +85,44 @@
           <img src="assets/img-optimized/logo/logo-and-name/header-logo-light.svg" alt="" class="brand__logo brand__logo--light" width="40" height="30" />
           <img src="assets/img-optimized/logo/logo-and-name/header-logo-dark.svg" alt="" class="brand__logo brand__logo--dark" width="40" height="30" />
         </a>
-
         <div class="header__actions">
           <button class="nav-toggle" aria-label="Otwórz menu" aria-controls="primary-nav" aria-expanded="false">
             <span class="nav-toggle__bar" aria-hidden="true"></span>
             <span class="nav-toggle__bar" aria-hidden="true"></span>
             <span class="nav-toggle__bar" aria-hidden="true"></span>
           </button>
-
           <nav class="nav" id="primary-nav" aria-label="Nawigacja główna">
             <ul class="nav__list">
               <li class="nav__item nav__item--dropdown">
                 <a class="nav__link" href="/#about">O nas</a>
-                <button class="nav__dropdown-toggle" type="button" aria-expanded="false" aria-controls="nav-dd-about" aria-label="Pokaż więcej: O nas">
+                <button class="nav__dropdown-toggle" id="nav-dd-about-trigger" type="button" aria-expanded="false" aria-controls="nav-dd-about" aria-label="Pokaż więcej: O nas">
                   <svg class="nav__chevron" aria-hidden="true" viewBox="0 0 16 16" focusable="false">
                     <path d="M3.25 5.75L8 10.5l4.75-4.75" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
                   </svg>
                 </button>
-                <ul class="nav__dropdown" id="nav-dd-about" aria-label="Skróty: O nas">
+                <ul class="nav__dropdown" id="nav-dd-about" aria-labelledby="nav-dd-about-trigger">
                   <li><a href="/about.html">Poznaj nas</a></li>
                 </ul>
               </li>
               <li class="nav__item nav__item--dropdown">
                 <a class="nav__link" href="/#menu">Menu</a>
-                <button class="nav__dropdown-toggle" type="button" aria-expanded="false" aria-controls="nav-dd-menu" aria-label="Pokaż więcej: Menu">
+                <button class="nav__dropdown-toggle" id="nav-dd-menu-trigger" type="button" aria-expanded="false" aria-controls="nav-dd-menu" aria-label="Pokaż więcej: Menu">
                   <svg class="nav__chevron" aria-hidden="true" viewBox="0 0 16 16" focusable="false">
                     <path d="M3.25 5.75L8 10.5l4.75-4.75" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
                   </svg>
                 </button>
-                <ul class="nav__dropdown" id="nav-dd-menu" aria-label="Skróty: Menu">
+                <ul class="nav__dropdown" id="nav-dd-menu" aria-labelledby="nav-dd-menu-trigger">
                   <li><a href="/menu.html">Pełne menu</a></li>
                 </ul>
               </li>
               <li class="nav__item nav__item--dropdown">
                 <a class="nav__link" href="/#gallery">Galeria</a>
-                <button class="nav__dropdown-toggle" type="button" aria-expanded="false" aria-controls="nav-dd-gallery" aria-label="Pokaż więcej: Galeria">
+                <button class="nav__dropdown-toggle" id="nav-dd-gallery-trigger" type="button" aria-expanded="false" aria-controls="nav-dd-gallery" aria-label="Pokaż więcej: Galeria">
                   <svg class="nav__chevron" aria-hidden="true" viewBox="0 0 16 16" focusable="false">
                     <path d="M3.25 5.75L8 10.5l4.75-4.75" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
                   </svg>
                 </button>
-                <ul class="nav__dropdown" id="nav-dd-gallery" aria-label="Skróty: Galeria">
+                <ul class="nav__dropdown" id="nav-dd-gallery" aria-labelledby="nav-dd-gallery-trigger">
                   <li><a href="/gallery.html">Pełna galeria</a></li>
                 </ul>
               </li>
@@ -147,7 +130,6 @@
               <li><a href="/#contact">Kontakt</a></li>
             </ul>
           </nav>
-
           <button class="theme-toggle" type="button" aria-pressed="false" aria-label="Przełącz tryb ciemny">
             <span class="theme-toggle__icon theme-toggle__icon--sun" aria-hidden="true"><img src="assets/icons/svg-icon/icon-sun.svg" alt="" width="24" height="24" /></span>
             <span class="theme-toggle__icon theme-toggle__icon--moon" aria-hidden="true"><img src="assets/icons/svg-icon/icon-moon.svg" alt="" width="24" height="24" /></span>
@@ -172,10 +154,11 @@
             <span class="page-hero__eyebrow">Informacje prawne</span>
             <h1 id="privacy-title">Polityka prywatności</h1>
             <p class="page-hero__lead">
-              Niniejsza polityka opisuje zasady przetwarzania danych w serwisie demonstracyjnym Atelier No.02. Treści i funkcjonalności mają charakter przykładowy, a kopiowanie projektu lub jego
-              elementów jest zabronione.
+              Niniejsza Polityka prywatności określa zasady przetwarzania danych osobowych w ramach demonstracyjnego projektu strony internetowej „Ambre”, opracowanego przez
+            <a href="https://kp-code.pl">KP_Code Digital Studio</a>
+            . Dokument ma charakter informacyjny i dotyczy sposobu działania funkcjonalności prezentowanych w Serwisie.
             </p>
-            <p class="meta" style="margin-top: 0.5rem">Ostatnia aktualizacja: 10 stycznia 2026</p>
+            <p class="meta" style="margin-top: 0.5rem">Ostatnia aktualizacja: 22 stycznia 2026</p>
           </div>
         </div>
       </section>
@@ -354,7 +337,6 @@
             </a>
             <p class="footer__tagline">Autorska kuchnia oparta na sezonowości i jakości składników.</p>
           </div>
-
           <nav class="footer__nav" aria-label="Nawigacja w stopce">
             <p class="footer__heading">Odkrywaj</p>
             <ul class="footer__list">
@@ -373,7 +355,6 @@
               <li><a href="/regulamin.html">Regulamin</a></li>
             </ul>
           </nav>
-
           <div class="footer__contact">
             <p class="footer__heading">Kontakt</p>
             <address>
@@ -390,7 +371,6 @@
               </p>
             </address>
           </div>
-
           <div class="footer__social">
             <p class="footer__heading">Media społecznościowe</p>
             <ul class="footer__list">
@@ -437,7 +417,6 @@
             </ul>
           </div>
         </div>
-        <!-- Legal -->
         <div class="footer__legal">
           <span>
             ©
@@ -456,6 +435,7 @@
     <!-- Script -->
     <script type="module" src="js/core.js" defer></script>
 
+    <!-- Demo legal modal -->
     <div class="demo-legal-modal" id="demo-legal-modal" aria-hidden="true" hidden>
       <div class="demo-legal-modal__backdrop" data-demo-legal-close></div>
       <div class="demo-legal-modal__panel" role="dialog" aria-modal="true" aria-labelledby="demo-legal-title" aria-describedby="demo-legal-desc" tabindex="-1">
@@ -475,3 +455,4 @@
     </div>
 </body>
 </html>
+

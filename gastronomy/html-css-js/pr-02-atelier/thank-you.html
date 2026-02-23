@@ -15,23 +15,23 @@
     <script src="js/bootstrap.js"></script>
   </head>
 
+  <!-- Body -->
   <body class="page page--thank-you" data-page="thank-you">
     <a class="skip-link" href="#main" id="skip-to-content">Przejdź do treści</a>
 
+    <!-- Header -->
     <header class="site-header" aria-label="Nagłówek strony z nawigacją">
       <div class="container header__inner">
         <a class="brand" href="/" aria-label="Atelier No.02 — Strona główna">
           <img src="assets/img-optimized/logo/logo-and-name/header-logo-light.svg" alt="" class="brand__logo brand__logo--light" width="40" height="30" />
           <img src="assets/img-optimized/logo/logo-and-name/header-logo-dark.svg" alt="" class="brand__logo brand__logo--dark" width="40" height="30" />
         </a>
-
         <div class="header__actions">
           <button class="nav-toggle" aria-label="Otwórz menu" aria-controls="primary-nav" aria-expanded="false">
             <span class="nav-toggle__bar" aria-hidden="true"></span>
             <span class="nav-toggle__bar" aria-hidden="true"></span>
             <span class="nav-toggle__bar" aria-hidden="true"></span>
           </button>
-
           <nav class="nav" id="primary-nav" aria-label="Nawigacja główna">
             <ul class="nav__list">
               <li><a href="/about.html">O nas</a></li>
@@ -41,7 +41,6 @@
               <li><a href="/#contact">Kontakt</a></li>
             </ul>
           </nav>
-
           <button class="theme-toggle" type="button" aria-pressed="false" aria-label="Przełącz tryb ciemny">
             <span class="theme-toggle__icon theme-toggle__icon--sun" aria-hidden="true"><img src="assets/icons/svg-icon/icon-sun.svg" alt="" width="24" height="24" /></span>
             <span class="theme-toggle__icon theme-toggle__icon--moon" aria-hidden="true"><img src="assets/icons/svg-icon/icon-moon.svg" alt="" width="24" height="24" /></span>
@@ -51,6 +50,7 @@
       </div>
     </header>
 
+    <!-- Main -->
     <main id="main" tabindex="-1">
       <section class="section" aria-labelledby="thank-you-title">
         <div class="container">
@@ -58,7 +58,13 @@
             <div class="card__body">
               <h1 id="thank-you-title" class="card__title">Dziękujemy za wiadomość</h1>
               <p class="card__text">Twoje zgłoszenie zostało wysłane. Skontaktujemy się z Tobą najszybciej, jak to możliwe.</p>
-              <p class="card__text">W pilnych sprawach zadzwoń: <a href="tel:+48533537091">+48 533 537 091</a> lub napisz: <a href="mailto:kontakt@kp-code.pl">kontakt@kp-code.pl</a>.</p>
+              <p class="card__text">
+                W pilnych sprawach zadzwoń:
+                <a href="tel:+48533537091">+48 533 537 091</a>
+                lub napisz:
+                <a href="mailto:kontakt@kp-code.pl">kontakt@kp-code.pl</a>
+                .
+              </p>
               <a class="btn btn--primary" href="/index.html#contact">Wróć do formularza</a>
             </div>
           </div>
@@ -66,6 +72,7 @@
       </section>
     </main>
 
+    <!-- Footer -->
     <footer class="footer" aria-label="Stopka strony">
       <div class="container">
         <div class="footer__grid">
@@ -76,7 +83,6 @@
             </a>
             <p class="footer__tagline">Autorska kuchnia oparta na sezonowości i jakości składników.</p>
           </div>
-
           <nav class="footer__nav" aria-label="Nawigacja w stopce">
             <p class="footer__heading">Odkrywaj</p>
             <ul class="footer__list">
@@ -95,7 +101,6 @@
               <li><a href="/regulamin.html">Regulamin</a></li>
             </ul>
           </nav>
-
           <div class="footer__contact">
             <p class="footer__heading">Kontakt</p>
             <address>
@@ -113,22 +118,22 @@
             </address>
           </div>
         </div>
-
         <div class="footer__legal">
           <span>
             ©
             <span id="year"></span>
-            <small class="footer__demo">Demo project – portfolio presentation.</small>
-            KP_Code | Wszelkie prawa zastrzeżone
+            KP_Code Digital Studio | Wszelkie prawa zastrzeżone.
           </span>
         </div>
       </div>
     </footer>
 
+    <!-- No script -->
     <noscript>
       <div class="nojs" role="status" aria-live="polite">JavaScript is disabled. Some interactive features may be limited.</div>
     </noscript>
 
+    <!-- Script -->
     <script type="module" src="js/script.js" defer></script>
   </body>
 </html>
