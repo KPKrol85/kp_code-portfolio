@@ -4,27 +4,23 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Atelier No.02 | Restauracja Fine Dining</title>
-
     <!-- SEO -->
     <meta name="description" content="Atelier No.02 to restauracja fine dining oparta na sezonowości i kuchni autorskiej. Poznaj menu, zobacz galerię i zarezerwuj stolik." />
     <link rel="canonical" href="https://gastronomy-project-02.netlify.app/" />
     <meta name="robots" content="index,follow" />
     <meta name="author" content="KP_Code" />
-
     <!-- PWA / UI -->
     <meta name="color-scheme" content="light dark" />
     <meta name="application-name" content="Atelier No.02" />
     <meta name="apple-mobile-web-app-title" content="Atelier No.02" />
     <meta name="msapplication-TileColor" content="#f8f1e7" />
     <meta name="theme-color" content="#ffffff" />
-
     <!-- Favicons + manifest -->
     <link rel="icon" type="image/png" sizes="32x32" href="assets/icons/fav-icon/favicon-32x32.png" />
     <link rel="icon" type="image/png" sizes="16x16" href="assets/icons/fav-icon/favicon-16x16.png" />
     <link rel="apple-touch-icon" sizes="180x180" href="assets/icons/fav-icon/apple-touch-icon.png" />
     <link rel="mask-icon" href="assets/icons/fav-icon/safari-pinned-tab.svg" color="#000000" />
     <link rel="manifest" href="manifest.webmanifest" />
-
     <!-- Open Graph -->
     <meta property="og:site_name" content="Atelier No.02" />
     <meta property="og:type" content="website" />
@@ -37,7 +33,6 @@
     <meta property="og:image:height" content="630" />
     <meta property="og:image:alt" content="Atelier No.02 — fine dining" />
     <meta property="og:locale" content="pl_PL" />
-
     <!-- Twitter -->
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content="Atelier No.02 | Restauracja Fine Dining" />
@@ -46,11 +41,9 @@
     <meta name="twitter:image:alt" content="Atelier No.02 — fine dining" />
     <meta name="twitter:site" content="@KP_Code_85" />
     <meta name="twitter:creator" content="@KP_Code_85" />
-
     <!-- Preload fonts -->
     <link rel="preload" href="assets/fonts/montserrat-400-latin.woff2" as="font" type="font/woff2" crossorigin />
     <link rel="preload" href="assets/fonts/montserrat-700-latin.woff2" as="font" type="font/woff2" crossorigin />
-
     <!-- Preload hero -->
     <link
       rel="preload"
@@ -61,7 +54,6 @@
       fetchpriority="high" />
     <!-- Theme preload -->
     <script src="js/bootstrap.js"></script>
-
     <!-- JSON-LD -->
     <script type="application/ld+json">
       {
@@ -92,7 +84,6 @@
         ]
       }
     </script>
-
     <!-- Styles -->
     <link rel="stylesheet" href="css/style.css" />
   </head>
@@ -108,14 +99,12 @@
           <img src="assets/img-optimized/logo/logo-and-name/header-logo-light.svg" alt="" class="brand__logo brand__logo--light" width="40" height="30" />
           <img src="assets/img-optimized/logo/logo-and-name/header-logo-dark.svg" alt="" class="brand__logo brand__logo--dark" width="40" height="30" />
         </a>
-
         <div class="header__actions">
           <button class="nav-toggle" aria-label="Otwórz menu" aria-controls="primary-nav" aria-expanded="false">
             <span class="nav-toggle__bar" aria-hidden="true"></span>
             <span class="nav-toggle__bar" aria-hidden="true"></span>
             <span class="nav-toggle__bar" aria-hidden="true"></span>
           </button>
-
           <nav class="nav" id="primary-nav" aria-label="Nawigacja główna">
             <ul class="nav__list">
               <li class="nav__item nav__item--dropdown">
@@ -155,7 +144,6 @@
               <li><a href="/#contact">Kontakt</a></li>
             </ul>
           </nav>
-
           <button class="theme-toggle" type="button" aria-pressed="false" aria-label="Przełącz tryb ciemny">
             <span class="theme-toggle__icon theme-toggle__icon--sun" aria-hidden="true"><img src="assets/icons/svg-icon/icon-sun.svg" alt="" width="24" height="24" /></span>
             <span class="theme-toggle__icon theme-toggle__icon--moon" aria-hidden="true"><img src="assets/icons/svg-icon/icon-moon.svg" alt="" width="24" height="24" /></span>
@@ -173,7 +161,6 @@
           <div class="hero__content" data-reveal>
             <img src="assets/img-optimized/logo/logo/logo-light-mode.svg" alt="" class="hero__logo brand__logo--light" width="40" height="30" />
             <img src="assets/img-optimized/logo/logo/logo-dark-mode.svg" alt="" class="hero__logo brand__logo--dark" width="40" height="30" />
-
             <h1 class="hero__title">Atelier No.02 — Fine Dining</h1>
             <p class="hero__subtitle">Autorska kuchnia oparta na sezonowości i kunszcie zespołu.</p>
             <div class="hero__actions">
@@ -181,22 +168,34 @@
               <a class="btn btn--ghost" href="/#contact" aria-label="Zarezerwuj stolik">Rezerwacja</a>
             </div>
           </div>
-
           <figure class="hero__media" data-reveal>
             <picture>
               <source
                 type="image/avif"
-                srcset="assets/img-optimized/hero/hero-640x512.avif 640w, assets/img-optimized/hero/hero-768x614.avif 768w, assets/img-optimized/hero/hero-960x768.avif 960w, assets/img-optimized/hero/hero-1200x960.avif 1200w"
+                srcset="
+                  assets/img-optimized/hero/hero-640x512.avif   640w,
+                  assets/img-optimized/hero/hero-768x614.avif   768w,
+                  assets/img-optimized/hero/hero-960x768.avif   960w,
+                  assets/img-optimized/hero/hero-1200x960.avif 1200w
+                "
                 sizes="(max-width: 768px) 100vw, 45vw" />
-
               <source
                 type="image/webp"
-                srcset="assets/img-optimized/hero/hero-640x512.webp 640w, assets/img-optimized/hero/hero-768x614.webp 768w, assets/img-optimized/hero/hero-960x768.webp 960w, assets/img-optimized/hero/hero-1200x960.webp 1200w"
+                srcset="
+                  assets/img-optimized/hero/hero-640x512.webp   640w,
+                  assets/img-optimized/hero/hero-768x614.webp   768w,
+                  assets/img-optimized/hero/hero-960x768.webp   960w,
+                  assets/img-optimized/hero/hero-1200x960.webp 1200w
+                "
                 sizes="(max-width: 768px) 100vw, 45vw" />
-
               <img
                 src="assets/img-optimized/hero/hero-1200x960.jpg"
-                srcset="assets/img-optimized/hero/hero-640x512.jpg 640w, assets/img-optimized/hero/hero-768x614.jpg 768w, assets/img-optimized/hero/hero-960x768.jpg 960w, assets/img-optimized/hero/hero-1200x960.jpg 1200w"
+                srcset="
+                  assets/img-optimized/hero/hero-640x512.jpg   640w,
+                  assets/img-optimized/hero/hero-768x614.jpg   768w,
+                  assets/img-optimized/hero/hero-960x768.jpg   960w,
+                  assets/img-optimized/hero/hero-1200x960.jpg 1200w
+                "
                 sizes="(max-width: 768px) 100vw, 45vw"
                 alt='Markiza restauracji z napisem "restaurant" w ciepłym świetle popołudnia, zapraszająca do eleganckiego miejsca spotkań.'
                 width="1200"
@@ -216,17 +215,30 @@
             <picture>
               <source
                 type="image/avif"
-                srcset="assets/img-optimized/about/about-320x240.avif 320w, assets/img-optimized/about/about-480x360.avif 480w, assets/img-optimized/about/about-640x480.avif 640w, assets/img-optimized/about/about-960x720.avif 960w"
+                srcset="
+                  assets/img-optimized/about/about-320x240.avif 320w,
+                  assets/img-optimized/about/about-480x360.avif 480w,
+                  assets/img-optimized/about/about-640x480.avif 640w,
+                  assets/img-optimized/about/about-960x720.avif 960w
+                "
                 sizes="(max-width: 768px) 100vw, 45vw" />
-
               <source
                 type="image/webp"
-                srcset="assets/img-optimized/about/about-320x240.webp 320w, assets/img-optimized/about/about-480x360.webp 480w, assets/img-optimized/about/about-640x480.webp 640w, assets/img-optimized/about/about-960x720.webp 960w"
+                srcset="
+                  assets/img-optimized/about/about-320x240.webp 320w,
+                  assets/img-optimized/about/about-480x360.webp 480w,
+                  assets/img-optimized/about/about-640x480.webp 640w,
+                  assets/img-optimized/about/about-960x720.webp 960w
+                "
                 sizes="(max-width: 768px) 100vw, 45vw" />
-
               <img
                 src="assets/img-optimized/about/about-960x720.jpg"
-                srcset="assets/img-optimized/about/about-320x240.jpg 320w, assets/img-optimized/about/about-480x360.jpg 480w, assets/img-optimized/about/about-640x480.jpg 640w, assets/img-optimized/about/about-960x720.jpg 960w"
+                srcset="
+                  assets/img-optimized/about/about-320x240.jpg 320w,
+                  assets/img-optimized/about/about-480x360.jpg 480w,
+                  assets/img-optimized/about/about-640x480.jpg 640w,
+                  assets/img-optimized/about/about-960x720.jpg 960w
+                "
                 sizes="(max-width: 768px) 100vw, 45vw"
                 alt="Szef kuchni delikatnie dekoruje dania na drewnianych deskach, z unoszącą się parą i aromatycznymi dodatkami."
                 width="960"
@@ -234,7 +246,6 @@
                 decoding="async" />
             </picture>
           </div>
-
           <div class="about__content" data-reveal>
             <h2>O Nas</h2>
             <p>Celebrujemy sztukę kuchni, łącząc elegancję tradycji z odrobiną nowoczesności. Nasz zespół wybiera wyłącznie najlepsze lokalne składniki, tworząc niezapomniane doznania smakowe.</p>
@@ -253,7 +264,6 @@
           <div class="menu__cta" data-reveal>
             <a href="menu.html" class="btn btn--primary" aria-label="Przejdź do pełnego menu restauracji">Przejdź do pełnego menu</a>
           </div>
-
           <ul class="cards menu-cards" data-reveal-group data-menu-featured="true">
             <li class="card menu-card" data-reveal>
               <article>
@@ -305,7 +315,6 @@
                 </div>
               </article>
             </li>
-
             <li class="card menu-card" data-reveal>
               <article>
                 <figure class="menu-card__figure">
@@ -355,7 +364,6 @@
                 </div>
               </article>
             </li>
-
             <li class="card menu-card" data-reveal>
               <article>
                 <figure class="menu-card__figure">
@@ -413,12 +421,9 @@
       <section id="gallery" class="section gallery" aria-labelledby="gallery-title">
         <div class="container">
           <h2 id="gallery-title" class="gallery__title">Galeria</h2>
-
-          <!-- CTA button -->
           <div class="gallery__cta" data-reveal>
             <a href="gallery.html" class="btn btn--primary" aria-label="Przejdź do pełnej galerii zdjęć">Przejdź do pełnej galerii</a>
           </div>
-
           <ul class="gallery__grid" data-reveal-group>
             <li class="gallery__item" data-reveal>
               <a
@@ -454,7 +459,6 @@
                 </figure>
               </a>
             </li>
-
             <li class="gallery__item" data-reveal>
               <a
                 class="gallery__link"
@@ -487,7 +491,6 @@
                 </figure>
               </a>
             </li>
-
             <li class="gallery__item" data-reveal>
               <a
                 class="gallery__link"
@@ -520,8 +523,6 @@
                 </figure>
               </a>
             </li>
-
-            <!-- Item 4 -->
             <li class="gallery__item" data-reveal>
               <a
                 class="gallery__link"
@@ -554,8 +555,6 @@
                 </figure>
               </a>
             </li>
-
-            <!-- Item 5 -->
             <li class="gallery__item" data-reveal>
               <a
                 class="gallery__link"
@@ -588,8 +587,6 @@
                 </figure>
               </a>
             </li>
-
-            <!-- Item 6 -->
             <li class="gallery__item" data-reveal>
               <a
                 class="gallery__link"
@@ -650,7 +647,6 @@
       <!-- Form -->
       <section id="contact" class="section contact" aria-label="Kontakt i rezerwacje">
         <div class="container grid grid--2">
-          <!-- Contact -->
           <div class="contact__content" data-reveal data-reveal-dir="left">
             <h2>Kontakt</h2>
             <p>Z przyjemnością ugościmy Cię w naszej restauracji. Zarezerwuj stolik lub wyślij nam wiadomość.</p>
@@ -669,12 +665,22 @@
               </li>
             </ul>
           </div>
-
-          <!-- Reservation form -->
-          <form class="form" name="contact" method="POST" action="/thank-you.html" data-netlify="true" netlify-honeypot="bot-field" aria-label="Formularz rezerwacji" data-reveal data-reveal-dir="right">
+          <form
+            class="form"
+            name="contact"
+            method="POST"
+            action="/thank-you.html"
+            data-netlify="true"
+            netlify-honeypot="bot-field"
+            aria-label="Formularz rezerwacji"
+            data-reveal
+            data-reveal-dir="right">
             <input type="hidden" name="form-name" value="contact" />
             <p class="visually-hidden">
-              <label>Don’t fill this out if you’re human: <input name="bot-field" /></label>
+              <label>
+                Don’t fill this out if you’re human:
+                <input name="bot-field" />
+              </label>
             </p>
             <div class="form__row">
               <label for="name">Imię i nazwisko</label>
@@ -695,7 +701,13 @@
               <button class="btn btn--primary" type="submit">Wyślij</button>
             </div>
             <noscript>
-              <p class="form__fallback-note" role="note">Jeśli formularz nie działa, skontaktuj się bezpośrednio: <a href="mailto:kontakt@kp-code.pl">kontakt@kp-code.pl</a> lub <a href="tel:+48533537091">+48 533 537 091</a>.</p>
+              <p class="form__fallback-note" role="note">
+                Jeśli formularz nie działa, skontaktuj się bezpośrednio:
+                <a href="mailto:kontakt@kp-code.pl">kontakt@kp-code.pl</a>
+                lub
+                <a href="tel:+48533537091">+48 533 537 091</a>
+                .
+              </p>
             </noscript>
             <div class="form__row">
               <p id="form-host-fallback" class="form__fallback-note" role="status" aria-live="polite" hidden>
@@ -726,7 +738,6 @@
             </a>
             <p class="footer__tagline">Autorska kuchnia oparta na sezonowości i jakości składników.</p>
           </div>
-
           <nav class="footer__nav" aria-label="Nawigacja w stopce">
             <p class="footer__heading">Odkrywaj</p>
             <ul class="footer__list">
@@ -745,7 +756,6 @@
               <li><a href="/regulamin.html">Regulamin</a></li>
             </ul>
           </nav>
-
           <div class="footer__contact">
             <p class="footer__heading">Kontakt</p>
             <address>
@@ -762,7 +772,6 @@
               </p>
             </address>
           </div>
-
           <div class="footer__social">
             <p class="footer__heading">Media społecznościowe</p>
             <ul class="footer__list">
@@ -793,13 +802,11 @@
             </ul>
           </div>
         </div>
-        <!-- Legal -->
         <div class="footer__legal">
           <span>
             ©
             <span id="year"></span>
-          <small class="footer__demo">Demo project – portfolio presentation.</small>
-            KP_Code | Wszelkie prawa zastrzeżone
+            KP_Code Digital Studio | Wszelkie prawa zastrzeżone.
           </span>
         </div>
       </div>
@@ -812,6 +819,7 @@
     <!-- Script -->
     <script type="module" src="js/script.js" defer></script>
 
+    <!-- Demo legal modal -->
     <div class="demo-legal-modal" id="demo-legal-modal" aria-hidden="true" hidden inert>
       <div class="demo-legal-modal__backdrop" data-demo-legal-close></div>
       <div class="demo-legal-modal__panel" role="dialog" aria-modal="true" aria-labelledby="demo-legal-title" aria-describedby="demo-legal-desc" tabindex="-1">
@@ -832,4 +840,3 @@
     </div>
   </body>
 </html>
-
