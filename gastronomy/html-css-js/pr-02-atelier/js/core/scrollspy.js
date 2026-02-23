@@ -17,7 +17,7 @@ export function initScrollspy(config) {
       var match = (a.getAttribute("href") || "").replace(/^#/, "") === id;
       if (match) {
         a.classList.add("is-active");
-        a.setAttribute("aria-current", "true");
+        a.setAttribute("aria-current", "location");
       } else {
         a.classList.remove("is-active");
         a.removeAttribute("aria-current");

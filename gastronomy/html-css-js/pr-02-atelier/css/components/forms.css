@@ -60,3 +60,18 @@
   color: var(--text-muted);
   font-size: 0.95rem;
 }
+
+
+.form__fallback-note {
+  padding: var(--space-3) var(--space-3);
+  border-radius: var(--radius-md);
+  border: 1px solid color-mix(in oklab, var(--gold) 35%, var(--surface-overlay-border));
+  background: color-mix(in oklab, var(--gold) 10%, var(--surface-overlay));
+  color: var(--text-muted);
+  font-size: 0.95rem;
+  margin: 0;
+}
+
+.form__fallback-note a {
+  color: color-mix(in oklab, var(--burgundy) 82%, black);
+}

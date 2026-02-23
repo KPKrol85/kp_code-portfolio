@@ -9,25 +9,49 @@ import { initLightbox } from "../features/lightbox.js";
 import { initForm } from "../features/form.js";
 import { initMisc } from "../features/misc.js";
 
+var COMMON_INITIALIZERS = [initMisc, initNetworkStatusBanner, initDemoLegalModal, initNav, initReveal, initThemeToggle];
+
+var PAGE_INITIALIZERS = {
+  home: [initImageFallbacks, initForm, renderHomeFeaturedMenu],
+  menu: [initImageFallbacks, initMenuPage],
+  gallery: [initImageFallbacks, initGalleryPage, initLightbox],
+};
+
+function runInitializers(initializers) {
+  initializers.forEach(function (initializer) {
+    if (typeof initializer === "function") {
+      initializer();
+    }
+  });
+}
+
+function renderHomeFeaturedMenu() {
+  renderFeaturedMenu().then(function (rendered) {
+    if (rendered && typeof window.initReveal === "function") {
+      window.initReveal();
+    }
+  });
+}
+
+function getCurrentPage() {
+  if (!document.body || !document.body.dataset) return "";
+  return document.body.dataset.page || document.body.dataset.template || "";
+}
+
+export function initCommon() {
+  runInitializers(COMMON_INITIALIZERS);
+}
+
+export function initByPage(page) {
+  var initializers = PAGE_INITIALIZERS[page];
+  if (!Array.isArray(initializers)) return;
+  runInitializers(initializers);
+}
+
 export function initApp() {
   document.addEventListener("DOMContentLoaded", function () {
-    initMisc();
-    initNetworkStatusBanner();
-    initDemoLegalModal();
-    initImageFallbacks();
-    initNav();
-    initForm();
-    initMenuPage();
-    initGalleryPage();
-    initLightbox();
-
-    renderFeaturedMenu().then(function (rendered) {
-      if (rendered && typeof window.initReveal === "function") {
-        window.initReveal();
-      }
-    });
-
-    initReveal();
-    initThemeToggle();
+    var page = getCurrentPage();
+    initCommon();
+    initByPage(page);
   });
 }

@@ -26,7 +26,13 @@
     "build:js": "esbuild js/script.js --bundle --minify --outfile=js/script.min.js --target=es2018",
     "build": "npm run build:css && npm run build:js",
     "images:build": "node scripts/images/build-images.js",
-    "dev:server": "http-server -p 5173 -c-1"
+    "dev:server": "http-server -p 5173 -c-1",
+    "lint": "eslint \"js/**/*.js\"",
+    "validate:html": "html-validate \"*.html\"",
+    "check:links": "linkinator http://127.0.0.1:5173 http://127.0.0.1:5173/about.html http://127.0.0.1:5173/menu.html http://127.0.0.1:5173/gallery.html http://127.0.0.1:5173/cookies.html http://127.0.0.1:5173/polityka-prywatnosci.html http://127.0.0.1:5173/regulamin.html http://127.0.0.1:5173/offline.html http://127.0.0.1:5173/thank-you.html http://127.0.0.1:5173/404.html --recurse --check-fragments --silent --concurrency 4 --timeout 10000 --retry 1 --skip '^https?://(?!127\\.0\\.0\\.1:5173)'",
+    "check:a11y": "pa11y-ci",
+    "check:server": "WAIT_ON_TIMEOUT=60000 WAIT_ON_INTERVAL=250 start-server-and-test dev:server http-get://127.0.0.1:5173 \"npm run check:links && npm run check:a11y\"",
+    "check": "npm run lint && npm run validate:html && npm run check:server"
   },
   "devDependencies": {
     "postcss": "^8.4.47",
@@ -36,6 +42,11 @@
     "esbuild": "^0.24.0",
     "fast-glob": "^3.3.2",
     "sharp": "^0.33.5",
-    "http-server": "^14.1.1"
+    "http-server": "^14.1.1",
+    "eslint": "^8.57.1",
+    "html-validate": "^9.3.0",
+    "linkinator": "^6.1.2",
+    "pa11y-ci": "^3.1.0",
+    "start-server-and-test": "^2.0.5"
   }
 }

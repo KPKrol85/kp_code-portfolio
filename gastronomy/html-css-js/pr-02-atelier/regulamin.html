@@ -50,30 +50,8 @@
     <!-- Preload fonts -->
     <link rel="preload" href="assets/fonts/montserrat-400-latin.woff2" as="font" type="font/woff2" crossorigin />
     <link rel="preload" href="assets/fonts/montserrat-700-latin.woff2" as="font" type="font/woff2" crossorigin />
-
     <!-- Theme preload -->
-    <script>
-      (function () {
-        var storageKey = "kp-theme";
-        var root = document.documentElement;
-        var theme = null;
-        try {
-          var stored = localStorage.getItem(storageKey);
-          if (stored === "light" || stored === "dark") theme = stored;
-        } catch (err) {}
-        if (!theme) {
-          var preset = root.getAttribute("data-theme");
-          if (preset === "light" || preset === "dark") theme = preset;
-        }
-        if (!theme) {
-          var prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
-          theme = prefersDark ? "dark" : "light";
-        }
-        root.setAttribute("data-theme", theme);
-        var meta = document.querySelector('meta[name="theme-color"]');
-        if (meta) meta.setAttribute("content", theme === "dark" ? "#181210" : "#f8f1e7");
-      })();
-    </script>
+    <script src="js/bootstrap.js"></script>
 
     <!-- JSON-LD -->
     <script type="application/ld+json">
@@ -108,11 +86,11 @@
       }
     </script>
 
-    <link rel="stylesheet" href="css/style.min.css" />
+    <link rel="stylesheet" href="css/style.css" />
   </head>
 
   <!-- Body -->
-  <body class="page page--legal">
+  <body class="page page--legal" data-page="legal">
     <a class="skip-link" href="#main" id="skip-to-content">Przejdź do treści</a>
 
     <!-- Header -->
@@ -504,27 +482,7 @@
       <div class="nojs" role="status" aria-live="polite">JavaScript is disabled. Some interactive features may be limited.</div>
     </noscript>
     <!-- Script -->
-    <script src="js/script.min.js" defer></script>
-    <script>
-      if ("serviceWorker" in navigator) {
-        const isLocalhost = ["localhost", "127.0.0.1"].includes(window.location.hostname);
-
-        window.addEventListener("load", () => {
-          navigator.serviceWorker
-            .register("/sw.js")
-            .then((reg) => {
-              if (isLocalhost) {
-                console.log("✅ Service Worker zarejestrowany:", reg.scope);
-              }
-            })
-            .catch((err) => {
-              if (isLocalhost) {
-                console.warn("⚠️ Błąd rejestracji Service Workera:", err);
-              }
-            });
-        });
-      }
-    </script>
+    <script type="module" src="js/core.js" defer></script>
 
     <div class="demo-legal-modal" id="demo-legal-modal" aria-hidden="true" hidden>
       <div class="demo-legal-modal__backdrop" data-demo-legal-close></div>

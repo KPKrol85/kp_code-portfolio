@@ -5,13 +5,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="description" content="Strona nie została znaleziona — wróć do menu głównego restauracji Atelier No.02." />
     <meta name="robots" content="noindex,follow" />
-    <link rel="canonical" href="/" />
     <title>Atelier No.02 | Strona nie została znaleziona</title>
     <link rel="icon" type="image/png" sizes="32x32" href="assets/icons/fav-icon/favicon-32x32.png" />
     <link rel="icon" type="image/png" sizes="16x16" href="assets/icons/fav-icon/favicon-16x16.png" />
     <link rel="apple-touch-icon" sizes="180x180" href="assets/icons/fav-icon/apple-touch-icon.png" />
     <link rel="manifest" href="manifest.webmanifest" />
-    <link rel="stylesheet" href="css/style.min.css" />
+    <link rel="stylesheet" href="css/style.css" />
     <style>
       :root {
         color-scheme: light;
@@ -162,10 +161,11 @@
         }
       }
     </style>
+    <script src="js/bootstrap.js"></script>
   </head>
 
   <!-- Body -->
-  <body>
+  <body data-page="404">
     <a class="skip-link" href="#main" id="skip-to-content">Przejdź do treści</a>
 
     <!-- Header -->
@@ -324,27 +324,7 @@
       <div class="nojs" role="status" aria-live="polite">JavaScript is disabled. Some interactive features may be limited.</div>
     </noscript>
     <!-- Script -->
-    <script src="js/script.min.js" defer></script>
-    <script>
-      if ("serviceWorker" in navigator) {
-        const isLocalhost = ["localhost", "127.0.0.1"].includes(window.location.hostname);
-
-        window.addEventListener("load", () => {
-          navigator.serviceWorker
-            .register("/sw.js")
-            .then((reg) => {
-              if (isLocalhost) {
-                console.log("✅ Service Worker zarejestrowany:", reg.scope);
-              }
-            })
-            .catch((err) => {
-              if (isLocalhost) {
-                console.warn("❌ Błąd rejestracji Service Workera:", err);
-              }
-            });
-        });
-      }
-    </script>
+    <script type="module" src="js/core.js" defer></script>
   
     <div class="demo-legal-modal" id="demo-legal-modal" aria-hidden="true" hidden>
       <div class="demo-legal-modal__backdrop" data-demo-legal-close></div>

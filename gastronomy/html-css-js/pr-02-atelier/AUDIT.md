@@ -1,73 +1,78 @@
-# Front-End Audit — Atelier No.02
+# AUDIT.md — Atelier No.02
 
 ## 1. Executive summary
-Projekt jest dojrzały architektonicznie: modularny CSS, tokeny, spójne BEM, poprawna separacja warstw (`base/layout/components/pages/utilities`) oraz solidna implementacja dostępności i SEO. Największe ryzyko produkcyjne dotyczy jednego krytycznego CTA z nieprodukcyjnym adresem mapy (`maps.example.com`) na stronie „O nas”, co bezpośrednio obniża skuteczność ścieżki kontaktowej.
+Projekt jest dobrze zorganizowany architektonicznie: modułowy CSS (base/layout/components/pages/utilities), tokeny design systemu i podział JS na moduły funkcjonalne. Implementacja dostępności i SEO jest szeroka jak na portfolio statyczne. W tym przeglądzie nie wykryto ryzyk klasy P0.
 
-## 2. P0 — Critical risks
-
-### P0.1 — Nieprodukcyjny link lokalizacji w kluczowym CTA
-- **Impact:** Użytkownik nie przechodzi do faktycznej mapy lokalu; kluczowa ścieżka „Pokaż na mapie” może kończyć się błędem lub stroną testową, co wpływa na konwersję i wiarygodność produktu.
-- **Evidence:** `about.html` zawiera `href="https://maps.example.com"` w przycisku lokalizacji.
-- **Fix:** Zastąpić URL realnym adresem (np. Google Maps / OpenStreetMap z docelową lokalizacją) i zweryfikować odpowiedź HTTP 200 oraz poprawność otwarcia na mobile.
-- **Effort:** **S**
+## 2. P0 — Critical risks (real issues only)
+Nie wykryto krytycznych ryzyk P0 w analizowanych plikach.
 
 ## 3. Strengths
-- Architektura CSS jest czytelna i skalowalna (podział na warstwy + centralne tokeny).
-- BEM jest stosowany konsekwentnie w komponentach i sekcjach.
-- Dostępność: skip link, `aria-*` w nawigacji, focus states, `prefers-reduced-motion`, focus trap w menu mobilnym.
-- Performance: preloading fontów i hero, nowoczesne formaty obrazów, responsive `picture/srcset/sizes`.
-- SEO: canonical + OG + robots + JSON-LD + sitemap + robots.txt na całym serwisie.
-- Deploy hygiene: `_headers`, `_redirects`, manifest i SW są obecne.
+- Spójna architektura CSS z centralnymi tokenami i czytelną separacją warstw (`style.css` + importy modułów).
+- Implementacja nawigacji mobilnej zawiera kontrolę ARIA, `inert`, focus trap i obsługę klawisza ESC.
+- Obsługa preferencji ruchu (`prefers-reduced-motion`) jest zaadresowana po stronie JS i CSS.
+- Warstwa obrazów jest zoptymalizowana: `picture` + AVIF/WebP/JPG fallback, `loading="lazy"`, `width`/`height`.
+- Warstwa SEO jest kompletna na głównych podstronach (canonical, OG, Twitter, JSON-LD).
+- Wdrożone artefakty deploy/PWA: `_headers`, `_redirects`, `robots.txt`, `sitemap.xml`, `manifest.webmanifest`, `sw.js`.
 
 ## 4. P1 — 5 improvements worth doing next
 
-### P1.1 — Ujednolicić canonical na stronie 404 do pełnego URL
-- **Reason:** `404.html` ma canonical względny (`/`), co jest mniej jednoznaczne dla crawlerów i raportowania SEO.
-- **Suggested improvement:** Ustawić absolutny canonical URL do strony głównej lub rozważyć usunięcie canonical dla 404 przy zachowaniu `noindex`.
+### 1) Niespójność entrypointów runtime vs cache SW
+- **Reason:** HTML ładuje niezminifikowane pliki (`css/style.css`, `js/script.js`), a pre-cache SW opiera się na `style.min.css` i `script.min.js`.
+- **Suggested improvement:** Albo przełączyć HTML na pliki `.min`, albo zmienić listę pre-cache na rzeczywiście używane entrypointy.
 
-### P1.2 — Ograniczyć diagnostyczne logowanie SW do kanału debug-build
-- **Reason:** W kodzie pozostają `console.log`/`console.warn` (choć ograniczone do localhost); warto utrzymać czystą politykę produkcyjną.
-- **Suggested improvement:** Przenieść logowanie do warunku środowiskowego build-time (np. flaga debug) albo usunąć całkowicie.
+### 2) Zależność od ścieżek absolutnych ogranicza deploy poza root domeny
+- **Reason:** W kodzie są liczne odwołania absolutne (`/about.html`, `/#contact`, rejestracja `/sw.js`, `start_url: "/"`), co utrudnia hostowanie pod subpath.
+- **Suggested improvement:** Ujednolicić routing/assety do ścieżek relatywnych lub jawnie dodać konfigurację base path.
 
-### P1.3 — Dodać automatyczną walidację linków zewnętrznych w CI
-- **Reason:** Obecny problem z `maps.example.com` pokazuje ryzyko regresji przy ręcznych zmianach treści.
-- **Suggested improvement:** Dodać prosty job walidujący statusy HTTP dla linków zewnętrznych i kompletność anchorów wewnętrznych.
+### 3) Canonical w 404 nie jest kanonicznym adresem absolutnym
+- **Reason:** `404.html` używa `href="/"`, co wskazuje stronę główną zamiast URL strony błędu i utrudnia jednoznaczną interpretację sygnału kanonicznego.
+- **Suggested improvement:** Dla 404 zostawić `noindex` i ustawić absolutny canonical do `/404.html` lub usunąć canonical z 404.
 
-### P1.4 — Rozdzielić artefakty źródłowe i produkcyjne obrazów poza drzewo deploy
-- **Reason:** Równoległe katalogi (`assets/img-src`, `assets/img`, `assets/img-optimized`) zwiększają ryzyko przypadkowego publikowania zbędnych zasobów.
-- **Suggested improvement:** Przenieść źródła robocze poza root deploy lub wykluczyć je regułami publikacji.
+### 4) Globalny bootstrap JS inicjuje wszystkie feature moduły na każdej stronie
+- **Reason:** `initApp()` uruchamia pełną listę inicjalizatorów niezależnie od typu podstrony; moduły same się wyłączają po braku targetów.
+- **Suggested improvement:** Wprowadzić selektywne ładowanie/entry per template (home/menu/gallery/legal), żeby uprościć utrzymanie i ograniczyć koszt runtime.
 
-### P1.5 — Doprecyzować politykę prywatności pod konkretne integracje
-- **Reason:** Strony prawne są poprawnie obecne, ale część treści ma charakter demonstracyjny; warto związać zapisy z realnym stackiem analitycznym/cookies.
-- **Suggested improvement:** Uzupełnić dokumenty o rzeczywiste narzędzia, okresy retencji i podstawy prawne zgodne z docelową konfiguracją.
+### 5) Brak skryptów jakościowych (lint/test/link-check) w npm scripts
+- **Reason:** `package.json` definiuje tylko build/dev/image pipeline; brak skryptów automatycznej walidacji jakości.
+- **Suggested improvement:** Dodać skrypty `lint`, `check:links`, `check:a11y`, `validate:html` i spiąć je z CI.
 
 ## 5. Future enhancements — 5 realistic ideas
-1. Dodać automatyczne testy dostępności (axe-core) dla głównych podstron.
-2. Wdrożyć budowanie krytycznego CSS per-page dla dalszego skrócenia czasu renderu.
-3. Rozszerzyć JSON-LD o `BreadcrumbList` na wszystkich podstronach contentowych.
-4. Dodać monitoring Core Web Vitals (np. `web-vitals` + endpoint telemetryczny).
-5. Dodać automatyczny smoke-test offline/PWA (instalacja SW, fallback, cache update).
+1. Dodać fingerprinting assetów (`style.[hash].css`, `script.[hash].js`) i dostosować politykę cache.
+2. Dodać automatyczny crawl linków i anchorów jako krok CI.
+3. Rozszerzyć testy dostępności o automatyczne audyty axe/pa11y.
+4. Wdrożyć monitoring Core Web Vitals dla produkcji (LCP/CLS/INP).
+5. Wydzielić policy/legal bundle jako osobny, lżejszy entry JS.
 
 ## 6. Compliance checklist (pass / fail)
-- **headings valid:** **PASS**
-- **no broken links:** **FAIL** (wykryty link `https://maps.example.com` w CTA lokalizacji)
-- **no console.log:** **FAIL** (logi diagnostyczne w inline rejestracji SW)
-- **aria attributes valid:** **PASS**
-- **images have width/height:** **PASS**
-- **no-JS baseline usable:** **PASS**
-- **sitemap present (if expected):** **PASS**
-- **robots present:** **PASS**
-- **OG image exists:** **PASS**
-- **JSON-LD valid:** **PASS** (nie wykryto konfliktów/duplikacji krytycznych)
+- **headings valid:** pass
+- **no broken links:** pass
+- **no console.log:** pass
+- **aria attributes valid:** pass
+- **images have width/height:** pass
+- **no-JS baseline usable:** pass
+- **sitemap present (if expected):** pass
+- **robots present:** pass
+- **OG image exists:** pass
+- **JSON-LD valid:** pass
 
 ## 7. Architecture Score (0–10)
-- **BEM consistency:** 9.5/10
-- **token usage:** 9.0/10
-- **accessibility:** 8.8/10
+- **BEM consistency:** 8.8/10
+- **token usage:** 9.2/10
+- **accessibility:** 8.9/10
 - **performance:** 8.6/10
-- **maintainability:** 8.7/10
+- **maintainability:** 8.4/10
 
-**Final Architecture Score:** **8.9/10**
+**Overall Architecture Score:** **8.8/10**
 
 ## 8. Senior rating (1–10)
-**8.8/10** — Projekt ma poziom portfolio produkcyjnego: dobra struktura, solidna jakość frontendowa i pełen zestaw elementów deploy/SEO/a11y. Ocena obniżona głównie przez pojedynczy krytyczny link CTA oraz drobne kwestie higieny operacyjnej.
+**8.7/10** — Projekt ma poziom portfolio produkcyjnego, z dobrą jakością struktury i dostępności. Największy potencjał poprawy to spójność strategii build/runtime oraz gotowość do automatycznych kontroli jakości.
+
+---
+
+## Evidence map (file references)
+- Runtime assets: `index.html` (`css/style.css`, `js/script.js`) oraz analogicznie podstrony. (`index.html`: linie 97, 814)
+- SW pre-cache minified assets: `sw.js` linie 12–13.
+- Ścieżki absolutne: `index.html` linie 180–181, `404.html` linie 189–193, `js/bootstrap.js` linia 30, `manifest.webmanifest` linie 7–8.
+- Canonical 404: `404.html` linia 8.
+- Globalna inicjalizacja feature modułów: `js/app/init.js` linie 14–31.
+- Brak skryptów jakościowych: `package.json` linie 24–30.

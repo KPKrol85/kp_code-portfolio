@@ -5,6 +5,18 @@ export function initForm() {
   var status = q("#form-status");
   if (!form) return;
   var progress = q("#form-progress");
+
+  var hostFallback = q("#form-host-fallback");
+
+  function shouldShowHostFallback(hostname) {
+    if (!hostname) return true;
+    if (hostname === "localhost" || hostname === "127.0.0.1" || hostname === "::1") return true;
+    return hostname !== "gastronomy-project-02.netlify.app";
+  }
+
+  if (hostFallback && shouldShowHostFallback(window.location.hostname)) {
+    hostFallback.hidden = false;
+  }
   var nameInput = form.querySelector("#name");
   var emailInput = form.querySelector("#email");
   var messageInput = form.querySelector("#message");

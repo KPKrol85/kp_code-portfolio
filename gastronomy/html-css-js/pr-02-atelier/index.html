@@ -59,35 +59,8 @@
       imagesrcset="assets/img-optimized/hero/hero-640x512.avif 640w, assets/img-optimized/hero/hero-768x614.avif 768w, assets/img-optimized/hero/hero-960x768.avif 960w, assets/img-optimized/hero/hero-1200x960.avif 1200w"
       imagesizes="(max-width: 768px) 100vw, 45vw"
       fetchpriority="high" />
-
-    <!-- Theme preload  -->
-    <script>
-      (function () {
-        var storageKey = "kp-theme";
-        var root = document.documentElement;
-        var theme = null;
-
-        try {
-          var stored = localStorage.getItem(storageKey);
-          if (stored === "light" || stored === "dark") theme = stored;
-        } catch (err) {}
-
-        if (!theme) {
-          var preset = root.getAttribute("data-theme");
-          if (preset === "light" || preset === "dark") theme = preset;
-        }
-
-        if (!theme) {
-          var prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
-          theme = prefersDark ? "dark" : "light";
-        }
-
-        root.setAttribute("data-theme", theme);
-
-        var meta = document.querySelector('meta[name="theme-color"]');
-        if (meta) meta.setAttribute("content", theme === "dark" ? "#181210" : "#f8f1e7");
-      })();
-    </script>
+    <!-- Theme preload -->
+    <script src="js/bootstrap.js"></script>
 
     <!-- JSON-LD -->
     <script type="application/ld+json">
@@ -121,11 +94,11 @@
     </script>
 
     <!-- Styles -->
-    <link rel="stylesheet" href="css/style.min.css" />
+    <link rel="stylesheet" href="css/style.css" />
   </head>
 
   <!-- Body -->
-  <body class="page page--home">
+  <body class="page page--home" data-page="home">
     <a class="skip-link" href="#main" id="skip-to-content">Przejdź do treści</a>
 
     <!-- Header -->
@@ -698,7 +671,7 @@
           </div>
 
           <!-- Reservation form -->
-          <form class="form" name="contact" method="POST" data-netlify="true" netlify-honeypot="bot-field" aria-label="Formularz rezerwacji" data-reveal data-reveal-dir="right">
+          <form class="form" name="contact" method="POST" action="/thank-you.html" data-netlify="true" netlify-honeypot="bot-field" aria-label="Formularz rezerwacji" data-reveal data-reveal-dir="right">
             <input type="hidden" name="form-name" value="contact" />
             <p class="visually-hidden">
               <label>Don’t fill this out if you’re human: <input name="bot-field" /></label>
@@ -720,6 +693,18 @@
             </div>
             <div class="form__row form__actions">
               <button class="btn btn--primary" type="submit">Wyślij</button>
+            </div>
+            <noscript>
+              <p class="form__fallback-note" role="note">Jeśli formularz nie działa, skontaktuj się bezpośrednio: <a href="mailto:kontakt@kp-code.pl">kontakt@kp-code.pl</a> lub <a href="tel:+48533537091">+48 533 537 091</a>.</p>
+            </noscript>
+            <div class="form__row">
+              <p id="form-host-fallback" class="form__fallback-note" role="status" aria-live="polite" hidden>
+                Formularz działa najlepiej na naszej wersji produkcyjnej Netlify. Jeśli po wysłaniu nie otrzymasz odpowiedzi, napisz na
+                <a href="mailto:kontakt@kp-code.pl">kontakt@kp-code.pl</a>
+                lub zadzwoń:
+                <a href="tel:+48533537091">+48 533 537 091</a>
+                .
+              </p>
             </div>
             <div class="form__row">
               <p id="form-progress" class="form__progress" role="status" aria-live="polite">Uzupełnij 3 pola, aby wysłać.</p>
@@ -825,27 +810,7 @@
       <div class="nojs" role="status" aria-live="polite">JavaScript is disabled. Some interactive features may be limited.</div>
     </noscript>
     <!-- Script -->
-    <script src="js/script.min.js" defer></script>
-    <script>
-      if ("serviceWorker" in navigator) {
-        const isLocalhost = ["localhost", "127.0.0.1"].includes(window.location.hostname);
-
-        window.addEventListener("load", () => {
-          navigator.serviceWorker
-            .register("/sw.js")
-            .then((reg) => {
-              if (isLocalhost) {
-                console.log("✅ Service Worker zarejestrowany:", reg.scope);
-              }
-            })
-            .catch((err) => {
-              if (isLocalhost) {
-                console.warn("❌ Błąd rejestracji Service Workera:", err);
-              }
-            });
-        });
-      }
-    </script>
+    <script type="module" src="js/script.js" defer></script>
 
     <div class="demo-legal-modal" id="demo-legal-modal" aria-hidden="true" hidden inert>
       <div class="demo-legal-modal__backdrop" data-demo-legal-close></div>
