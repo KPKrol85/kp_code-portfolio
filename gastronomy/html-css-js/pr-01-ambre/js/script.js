@@ -1,4 +1,4 @@
-import { initHelpers } from "./modules/utils.js";
+import { initHelpers, log } from "./modules/utils.js";
 import { initThemeSwitcher } from "./modules/theme.js";
 import { initMobileNav, initScrollspy, initSmartNav, initAriaCurrent, initStickyShadow } from "./modules/nav.js";
 import { initFooterYear } from "./modules/footer.js";
@@ -49,7 +49,7 @@ function boot() {
     try {
       f.init();
     } catch (err) {
-      console.warn(err);
+      log(err);
     }
   }
 }

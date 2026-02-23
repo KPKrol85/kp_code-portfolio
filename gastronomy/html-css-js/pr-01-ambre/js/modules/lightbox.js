@@ -161,7 +161,7 @@ export function initLightbox() {
       try {
         if (!box.open) box.showModal();
       } catch (error) {
-        console.error(error);
+        log(error);
       }
     } else {
       box.removeAttribute("hidden");

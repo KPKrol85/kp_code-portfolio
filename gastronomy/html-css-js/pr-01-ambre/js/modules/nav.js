@@ -200,7 +200,7 @@ export function initScrollspy() {
   const setCurrent = (id) => {
     if (!id || !map.has(id)) return;
     links.forEach((link) => link.removeAttribute("aria-current"));
-    map.get(id)?.setAttribute("aria-current", "true");
+    map.get(id)?.setAttribute("aria-current", "location");
   };
 
   const sections = Array.from(map.keys())

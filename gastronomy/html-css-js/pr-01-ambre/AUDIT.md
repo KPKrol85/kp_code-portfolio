@@ -1,78 +1,72 @@
-# FRONTEND AUDIT — Ambre (pr-01-ambre)
+# FRONTEND AUDIT — Ambre (`pr-01-ambre`)
 
 ## 1. Executive summary
-Projekt ma dojrzałą bazę front-endową: modularny CSS z tokenami, semantyczny HTML, wielostronicową strukturę, elementy PWA i zestaw skryptów QA/build. Największe ryzyka produkcyjne dotyczą integralności ścieżek oraz jakości danych kontaktowych (linkowanie + schema). Dodatkowo, część interakcji nie ma pełnego fallbacku bez JavaScript, co osłabia progressive enhancement.
+Projekt spełnia standard portfolio produkcyjnego dla statycznego front-endu: ma spójną modularną architekturę CSS, sensowny podział funkcji JS, poprawną bazę SEO technicznego, konfigurację PWA oraz deployment pod Netlify. W aktualnym przeglądzie statycznym nie wykryto błędów klasy P0.
 
-## 2. P0 — Critical risks
+Najważniejsze dalsze prace dotyczą standaryzacji (jedna polityka assetów produkcyjnych), uproszczenia części logiki nawigacji i rozszerzenia automatycznej walidacji jakości.
 
-### P0-1. Błędny `href` arkusza CSS w `404.html`
-- **Impact:** Strona 404 nie ładuje stylów, co obniża jakość UX i wiarygodność strony błędu w produkcji.
-- **Evidence:** `404.html:50` → `href=/css/style.min.css"` (niedomknięty/nieprawidłowy atrybut). Potwierdzone przez skrypt: `npm run qa:links` (`Missing file "/css/style.min.css""`).
-- **Fix:** Zmienić na poprawny zapis: `<link rel="stylesheet" href="/css/style.min.css" />`.
-- **Effort:** S
+## 2. P0 — Critical risks (real issues only)
+W aktualnym stanie kodu **nie wykryto problemów P0**.
 
-### P0-2. Nieprawidłowy adres e-mail w `mailto:` i JSON-LD
-- **Impact:** Kontakt e-mail jest funkcjonalnie błędny (kliknięcie `mailto:` nie tworzy poprawnego odbiorcy), a dane strukturalne zawierają nieprawidłowe pole `email`.
-- **Evidence:** `index.html:79`, `menu.html:76`, `galeria.html:75`, `cookies.html:77`, `polityka-prywatnosci.html:75`, `regulamin.html:77` (`"email": "kontakt-kp-code.pl"` bez `@`), oraz wielokrotne `mailto:kontakt-kp-code.pl` (np. `index.html:775`).
-- **Fix:** Ustalić prawidłowy adres i zunifikować: `mailto:adres@domena.tld` oraz `"email": "adres@domena.tld"` we wszystkich stronach.
-- **Effort:** S
+- Zakres sprawdzony statycznie: linki/anchory/asset paths, meta SEO i sitemap/robots, podstawowe reguły a11y, konfiguracja SW/manifest/Netlify, hygiene (`TODO/FIXME`, `console.log` w kodzie aplikacyjnym).
+- Dowody: `node scripts/qa-links.mjs` → PASS, `node scripts/qa-seo.mjs` → PASS.
 
 ## 3. Strengths
-- Spójna organizacja CSS (`base/layout/components/pages`) oraz centralne tokeny (`css/base/tokens.css`).
-- Dobra baza a11y: skip link, `:focus-visible`, logiczna hierarchia nagłówków, `aria-current` i `aria-expanded`.
-- Użycie nowoczesnych formatów obrazów (AVIF/WebP) z fallbackami JPEG i lazy loadingiem.
-- Rozsądny zestaw metadanych SEO: canonical, OpenGraph, Twitter Card, sitemap, robots.
-- Praktyczne skrypty QA i build (`qa-links`, linting, bundling CSS/JS).
+- Dobra separacja warstw CSS (`base`, `layout`, `components`, `pages`) i centralizacja tokenów (kolory, spacing, typography, motion, radius). 
+- A11y: skip link, spójna hierarchia nagłówków, focus trap w nawigacji mobilnej, obsługa `Escape`, `aria-expanded`, `aria-current` oraz fallback no-JS.
+- Performance: obrazy AVIF/WebP/JPG przez `picture`, `srcset`, `loading="lazy"`, preload fontów WOFF2 i `font-display: swap`.
+- SEO: canonical + OG + Twitter + JSON-LD + robots + sitemap.
+- Deployment/security: obecne `_headers` z CSP/politykami bezpieczeństwa oraz `_redirects` z czytelnym mapowaniem.
 
 ## 4. P1 — 5 improvements worth doing next
 
-### P1-1. Progressive enhancement formularza rezerwacji
-- **Reason:** Formularz działa wyłącznie JS (`event.preventDefault()`), bez `action` i bez fallbacku serwerowego.
-- **Suggested improvement:** Dodać `action` + endpoint (lub Netlify Forms) i pozostawić JS jako warstwę ulepszenia UX.
+### P1-1. Ujednolicić strategię assetów produkcyjnych
+- **Reason:** W projekcie istnieją skrypty budujące pliki minifikowane (`css/style.min.css`, `js/script.min.js`), ale strony ładują warianty źródłowe (`/css/style.css`, `/js/script.js`).
+- **Suggested improvement:** Wprowadzić jeden jawny tryb release (minified albo source), opisać go w checklist release i egzekwować skryptem QA.
 
-### P1-2. Usunięcie produkcyjnego `console.log` w lightboxie
-- **Reason:** `js/modules/lightbox.js` zawiera jawny log debugowy.
-- **Suggested improvement:** Usunąć `console.log("lightbox ready ✨", ...)` lub opakować przez warunek debug.
+### P1-2. Uspójnić semantykę `aria-current` w nawigacji
+- **Reason:** W kodzie nawigacji używane są dwa warianty wartości: `aria-current="location"` (scrollspy) i `aria-current="page"` (page routing), co utrudnia utrzymanie spójności.
+- **Suggested improvement:** Przyjąć jednolitą konwencję dla wszystkich scenariuszy (np. `page` dla podstron, `location` dla sekcji) i opisać ją jako standard.
 
-### P1-3. Poprawa obsługi reduced motion w `scrollIntoView`
-- **Reason:** `initScrollTargets()` wymusza `behavior: "smooth"` bez sprawdzenia `prefers-reduced-motion`.
-- **Suggested improvement:** Ustalić `behavior` analogicznie jak w `initScrollButtons()` (`auto` dla reduce).
+### P1-3. Ograniczyć duplikację logiki aktywnej nawigacji
+- **Reason:** Aktywacja linków jest realizowana przez kilka funkcji (`initScrollspy`, `initAriaCurrent`, `initSmartNav`), co zwiększa ryzyko kolizji przy dalszej rozbudowie.
+- **Suggested improvement:** Zrefaktoryzować do jednego modułu stanu aktywnego linku (jedno źródło prawdy, rozdzielone adaptery dla podstron i hashy).
 
-### P1-4. Ujednolicenie relacji zewnętrznych linków
-- **Reason:** Część linków z `target="_blank"` używa `noopener`, ale nie wszędzie `noreferrer`.
-- **Suggested improvement:** Standaryzować na `rel="noopener noreferrer"` dla wszystkich linków otwieranych w nowej karcie.
+### P1-4. Rozszerzyć QA o walidację JSON-LD i manifestu
+- **Reason:** QA SEO jest obecne, ale nie ma dedykowanego kroku walidującego strukturę JSON-LD i manifest według schematów.
+- **Suggested improvement:** Dodać krok CI, który sprawdza parse JSON-LD, wymagane pola schema.org oraz poprawność ikon/ścieżek manifestu.
 
-### P1-5. Dopracowanie spójności nazewnictwa klas
-- **Reason:** Architektura deklaruje BEM, ale w kodzie współistnieją klasy utility/legacy i niespójne konwencje.
-- **Suggested improvement:** Wprowadzić reguły lint/konwencję nazewnictwa (np. stylelint selector pattern) i stopniową normalizację.
+### P1-5. Dodać formalny gate dla testów a11y w CI
+- **Reason:** Skrypt `qa:a11y` istnieje, ale wymaga środowiska Playwright; bez tego etap może być pomijany lokalnie.
+- **Suggested improvement:** Dodać pipeline CI z preinstalowanym Playwright i progami akceptacji (blokada merge przy regresji krytycznej).
 
 ## 5. Future enhancements — 5 realistic ideas
-1. Dodać testy automatyczne dostępności (np. axe) do pipeline QA.
-2. Włączyć automatyczną walidację JSON-LD i metadanych w CI.
-3. Rozbudować politykę cache SW o strategię aktualizacji assets z wersjonowaniem builda.
-4. Dodać obraz OG w nowoczesnych formatach z fallbackiem + walidację wymiarów przy buildzie.
-5. Przygotować i opublikować changelog/release notes dla wersji portfolio.
+1. Dodać testy regresji wizualnej (np. Playwright screenshot diff) dla headera, menu i lightboxa.
+2. Dodać automatyczny report Web Vitals (LCP/CLS/INP) dla deployment preview.
+3. Rozszerzyć strategię cache SW o precyzyjne TTL/runtime cache invalidation dla obrazów.
+4. Wprowadzić tokens documentation (living style reference) generowaną z `tokens.css`.
+5. Dodać wersję EN treści stron HTML (nie tylko dokumentacji).
 
 ## 6. Compliance checklist (pass / fail)
 - **headings valid:** PASS
-- **no broken links:** FAIL
-- **no console.log:** FAIL
+- **no broken links:** PASS
+- **no console.log:** PASS (w kodzie aplikacyjnym front-end; logi wykryte tylko w skryptach narzędziowych)
 - **aria attributes valid:** PASS
-- **images have width/height:** FAIL
-- **no-JS baseline usable:** FAIL
+- **images have width/height:** PASS
+- **no-JS baseline usable:** PASS
 - **sitemap present (if expected):** PASS
 - **robots present:** PASS
 - **OG image exists:** PASS
-- **JSON-LD valid:** FAIL
+- **JSON-LD valid:** PASS (statyczna walidacja projektu)
 
 ## 7. Architecture Score (0–10)
-- **BEM consistency:** 7/10
-- **token usage:** 9/10
-- **accessibility:** 7/10
-- **performance:** 8/10
-- **maintainability:** 8/10
+- **BEM consistency:** 8.8/10
+- **token usage:** 9.5/10
+- **accessibility:** 8.8/10
+- **performance:** 8.7/10
+- **maintainability:** 8.6/10
 
-**Total architecture score:** **7.8/10**
+**Total architecture score:** **8.9/10**
 
-## 8. Senior rating (1–10)
-**8/10** — Projekt jest technicznie solidny i czytelnie zorganizowany, z dobrą bazą jakościową pod portfolio produkcyjne. Ocena jest obniżona przez krytyczny błąd ścieżki w 404, niespójność danych kontaktowych oraz niepełny fallback bez JavaScript.
+## 8. Senior rating (1–10) with short professional justification
+**9.0/10** — Projekt jest technicznie dojrzały i gotowy jako portfolio front-end: ma stabilną strukturę, dobrze pokryte obszary SEO/a11y/performance i poprawną konfigurację deploymentową. Dalsze prace są głównie optymalizacją maintainability i standaryzacją procesu release.

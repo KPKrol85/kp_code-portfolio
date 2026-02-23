@@ -24,5 +24,19 @@ module.exports = {
   rules: {
     "no-undef": "error",
     "no-unused-vars": "off"
-  }
+  },
+  overrides: [
+    {
+      files: ["js/**/*.js"],
+      rules: {
+        "no-console": "error"
+      }
+    },
+    {
+      files: ["scripts/**/*.mjs"],
+      rules: {
+        "no-console": "off"
+      }
+    }
+  ]
 };

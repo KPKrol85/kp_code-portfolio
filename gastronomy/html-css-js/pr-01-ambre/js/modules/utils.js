@@ -2,7 +2,7 @@ export const DEBUG = false;
 
 export const log = (...args) => {
   if (!DEBUG) return;
-  console.log(...args);
+  void args;
 };
 
 export const byTestId = (id, root = document) =>

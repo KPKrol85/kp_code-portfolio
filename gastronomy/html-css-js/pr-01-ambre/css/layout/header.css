@@ -246,7 +246,7 @@ body.site-header-nav-open .site-header__drawer {
   outline: none;
 }
 .site-header__drawer a[aria-current="page"],
-.site-header__drawer a[aria-current="true"] {
+.site-header__drawer a[aria-current="location"] {
   background: rgba(250, 178, 4, 0.18);
   color: var(--c-accent-contrast);
 }
@@ -274,11 +274,11 @@ body.site-header-nav-open .site-header__drawer {
   outline-offset: 3px;
 }
 .site-header__nav a[aria-current="page"],
-.site-header__nav a[aria-current="true"] {
+.site-header__nav a[aria-current="location"] {
   color: var(--c-accent-contrast);
 }
 .site-header__nav a[aria-current="page"]::after,
-.site-header__nav a[aria-current="true"]::after {
+.site-header__nav a[aria-current="location"]::after {
   transform: scaleX(1);
 }
 .site-header__nav li:hover > .site-header__submenu,
