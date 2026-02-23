@@ -1,73 +1,91 @@
 # AUDIT.md
 
 ## 1. Executive summary
-Projekt ma dobrą bazę architektoniczną: modularny CSS (`base/layout/components/pages/utilities`), tokeny design systemu i podział JS na moduły funkcjonalne. Dostępność, SEO i performance są wdrożone szeroko, ale audyt wykazał błędy jakościowe w HTML oraz niespójności w pipeline quality/build.
+Audit wykonano na realnych plikach projektu `C:\Users\KPKro\MY FILES\active-work\pr-02-atelier` (stan na 23.02.2026). Architektura CSS jest modularna i czytelna (base/layout/components/pages/utilities, tokeny design systemu, konsekwentne nazewnictwo BEM), ale aktualny stan quality gate nie przechodzi. Krytyczne ryzyka dotyczą realnie niedostępnych zasobów obrazów oraz niezaliczonego audytu dostępności kontrastu na większości stron.
 
 ## 2. P0 — Critical risks (real issues only)
-Brak wykrytych pozycji P0.
+
+### 1) Brakujące warianty obrazów powodują broken links w crawl QA
+- Impact: `check:links` kończy się błędem; użytkownik może trafić na brakujące media (404) w sekcjach menu na stronie głównej i podstronie menu.
+- Evidence:
+  - `index.html:375`
+  - `index.html:383`
+  - `index.html:392`
+  - `menu.html:1157`
+  - `menu.html:1165`
+  - `menu.html:1174`
+  - wynik: `ERROR: Detected 6 broken links. Scanned 496 links in 0.656 seconds.`
+- Fix: Dodać brakujące pliki `cytrusowe-ciasto-720x480.avif/.webp/.jpg` do `assets/img-optimized/subpage-menu/desery/` albo zmienić `srcset` na istniejące warianty.
+- Effort: S
+
+### 2) Krytyczny fail a11y (kontrast) w stopce na większości stron
+- Impact: `check:a11y` nie przechodzi (`1/10 URLs passed`), co wskazuje na niezgodność WCAG AA i ryzyko produkcyjne dla dostępności.
+- Evidence:
+  - `css/components/footer.css:1`
+  - `css/components/footer.css:192`
+  - `index.html:808` (`#year`, analogicznie na pozostałych stronach)
+  - wynik: `pa11y-ci` raportuje wielokrotnie insufficient contrast dla tekstu stopki i `#year`.
+- Fix: Podnieść kontrast tekstu stopki względem tła (token koloru lub tło sekcji) do min. 4.5:1 i ponownie uruchomić `npm run check:a11y`.
+- Effort: S
 
 ## 3. Strengths
-- Spójna architektura CSS i tokeny (`css/style.css`, `css/base/tokens.css`).
-- BEM jest stosowany konsekwentnie w warstwie komponentów (`css/components/*.css`, `index.html`).
-- Dostępność: skip links, focus-visible, obsługa klawiatury, `prefers-reduced-motion`, modal/lightbox focus trap.
-- Form handling: Netlify form + honeypot + walidacja klienta (`index.html`, `js/features/form.js`).
-- SEO: canonical + OG + Twitter + JSON-LD + robots + sitemap (`*.html`, `robots.txt`, `sitemap.xml`).
-- Obrazy: AVIF/WebP/JPG fallback, `loading="lazy"`, `width`/`height`.
+- Modularna architektura CSS: `css/style.css` importuje warstwy `base/layout/components/pages/utilities`.
+- Design tokens są centralnie utrzymywane (`css/base/tokens.css`).
+- BEM jest stosowany konsekwentnie w HTML i CSS komponentów.
+- Komponenty interaktywne są podzielone na moduły funkcjonalne (`js/features/*`) i inicjalizowane warunkowo (`js/app/init.js`).
+- Formularz kontaktowy ma zabezpieczenie honeypot (`index.html`, `netlify-honeypot="bot-field"`).
+- PWA/deploy baseline jest obecny: `manifest.webmanifest`, `sw.js`, `_headers`, `_redirects`.
+- `serviceWorker` ma guard dla środowisk lokalnych (`js/bootstrap.js:28`).
 
-## 4. P1 — 5 improvements worth doing next
+## 4. P1 — 5 improvements worth doing next (exactly five)
 
-### 1) Niepoprawny tag `sourcew` w menu
-- Reason: Literówka w elemencie obrazu powoduje niepoprawny HTML i pomija część pipeline responsywnych źródeł.
-- Suggested improvement: Zamienić `sourcew` na `source` i ponownie uruchomić `npm run validate:html`.
-- Evidence: `menu.html:675`
+### 1) HTML validation baseline cleanup
+- Reason: `npm run validate:html` zwraca 72 błędy (m.in. `doctype-style`, brak `type` na `button/input`, `tel-non-breaking`).
+- Suggested improvement: Naprawić błędy systemowo na wszystkich szablonach i utrzymywać zero-error baseline w CI.
 
-### 2) Niespójność runtime vs pre-cache Service Workera
-- Reason: Runtime ładuje `css/style.css` i `js/script.js`, ale pre-cache SW zawiera `css/style.min.css` i `js/script.min.js`.
-- Suggested improvement: Ujednolicić entrypointy (albo HTML na `.min`, albo SW na aktualnie używane pliki).
-- Evidence: `index.html:97`, `index.html:813`, `sw.js:12`, `sw.js:13`
+### 2) ARIA misuse na legendzie menu
+- Reason: `menu.html:468` używa `aria-label` na `div`, co validator oznacza jako `aria-label-misuse`.
+- Suggested improvement: Przenieść etykietowanie na semantyczny nagłówek/`aria-labelledby` albo usunąć nieprawidłowy atrybut.
 
-### 3) Walidacja ARIA nie przechodzi dla dropdown list
-- Reason: `aria-label` na `ul.nav__dropdown` jest raportowane jako `aria-label-misuse` przez `html-validate`.
-- Suggested improvement: Usunąć `aria-label` z `ul` i zastosować semantyczny nagłówek/`aria-labelledby` na kontenerze nawigacji.
-- Evidence: `index.html:128`, `menu.html:381`, `about.html:166` (+ analogiczne podstrony)
+### 3) Niespójne entrypointy JS między stronami
+- Reason: Część stron ładuje `js/script.js`, część `js/core.js` (`cookies.html:460`, `polityka-prywatnosci.html:496`, `regulamin.html:496`, `404.html:341`).
+- Suggested improvement: Ujednolicić entrypoint runtime lub jasno rozdzielić warianty z dokumentacją odpowiedzialności modułów.
 
-### 4) Skrypt quality `check:server` jest nieprzenośny (Windows)
-- Reason: Składnia `WAIT_ON_TIMEOUT=...` działa w shellach UNIX, ale nie działa w PowerShell/CMD.
-- Suggested improvement: Dodać `cross-env` lub wersję skryptu platform-agnostic.
-- Evidence: `package.json:34`; uruchomienie lokalne kończy się błędem `WAIT_ON_TIMEOUT is not recognized`.
+### 4) Placeholder URL w sekcji mapy
+- Reason: `about.html:793` zawiera link `https://maps.example.com`.
+- Suggested improvement: Zastąpić placeholder produkcyjnym adresem mapy lub usunąć CTA do czasu gotowości danych.
 
-### 5) Skrypt `check:links` jest niestabilny w środowisku Windows z tą konfiguracją
-- Reason: `linkinator` zwraca błąd mieszania ścieżek HTTP i filesystem przy aktualnym wywołaniu.
-- Suggested improvement: Uruchamiać crawl z pojedynczego URL startowego + `--recurse` albo uprościć listę argumentów przez plik konfiguracyjny.
-- Evidence: `package.json:32`; błąd runtime `Paths cannot be mixed between HTTP and local filesystem paths`.
+### 5) Nierówność metadanych SEO na stronach technicznych
+- Reason: `404.html` i `thank-you.html` nie mają pełnego zestawu `og:*`/canonical jak strony główne.
+- Suggested improvement: Ujednolicić minimalny profil meta SEO (title + description + canonical + og:url + og:image tam, gdzie zasadne).
 
-## 5. Future enhancements — 5 realistic ideas
-1. Dodać fingerprinting assetów (`[hash]`) i wersjonowanie cache dla stabilniejszych deployów.
-2. Rozdzielić bundle JS per template (home/menu/gallery/legal), aby zmniejszyć payload.
-3. Rozszerzyć CI o automatyczne uruchamianie `validate:html`, `check:links`, `check:a11y` na PR.
-4. Dodać testy regresji a11y dla kluczowych interakcji (menu mobilne, lightbox, formularz).
-5. Zmniejszyć dług techniczny przez usunięcie nieużywanych/starszych entrypointów JS (`js/core.js`).
+## 5. Future enhancements — 5 realistic ideas (exactly five)
+1. Dodać automatyczny test sprawdzający istnienie wszystkich plików ze `src/srcset` (pre-commit/CI).
+2. Wprowadzić wizualne testy regresji dla komponentów nawigacji i stopki.
+3. Rozszerzyć `pa11y-ci` o profile testowe dla motywu jasnego i ciemnego osobno.
+4. Dodać etap walidacji JSON-LD (schema lint) do pipeline quality.
+5. Spiąć build assetów obrazów (`images:build`) z kontrolą brakujących wariantów wymaganych przez HTML.
 
 ## 6. Compliance checklist (pass / fail)
-- headings valid: pass
-- no broken links: pass
-- no console.log: pass
-- aria attributes valid: fail
-- images have width/height: pass
-- no-JS baseline usable: pass
-- sitemap present (if expected): pass
-- robots present: pass
-- OG image exists: pass
-- JSON-LD valid: pass
+- headings valid: **pass**
+- no broken links: **fail**
+- no console.log: **pass**
+- aria attributes valid: **fail**
+- images have width/height: **pass**
+- no-JS baseline usable: **pass**
+- sitemap present (if expected): **pass**
+- robots present: **pass**
+- OG image exists: **fail**
+- JSON-LD valid: **pass**
 
 ## 7. Architecture Score (0–10) with breakdown
-- BEM consistency: 8.7/10
-- token usage: 9.2/10
-- accessibility: 8.3/10
-- performance: 8.1/10
-- maintainability: 7.9/10
+- BEM consistency: **8.8/10**
+- token usage: **9.1/10**
+- accessibility: **6.5/10**
+- performance: **7.2/10**
+- maintainability: **8.0/10**
 
-Architecture Score: **8.4/10**
+Architecture Score: **7.9/10**
 
-## 8. Senior rating (1–10)
-**8.2/10** — Projekt jest portfolio-ready pod kątem struktury i UX, ale wymaga korekt walidacyjnych i ujednolicenia pipeline quality/build, aby spełniał pełny standard production-grade.
+## 8. Senior rating (1–10) with short professional justification
+**7.8/10** — Fundament architektoniczny jest mocny i portfolio-ready na poziomie struktury, ale projekt wymaga domknięcia jakości wykonawczej (broken assets, fail a11y, błędy walidacji HTML), aby spełnić pełny standard produkcyjny.
