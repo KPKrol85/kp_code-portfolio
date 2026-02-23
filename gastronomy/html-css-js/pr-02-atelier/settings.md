@@ -67,3 +67,39 @@
 - command: `npm run lint && npm run validate:html && npm run check:server`
 - what it does: Uruchamia kompletną bramkę jakości projektu.
 - when to use it: Przed merge, release i deploy.
+
+## JS entrypoints policy (core vs script)
+
+### Runtime responsibilities
+- `js/core.js`
+- command/entrypoint: `type="module" src="js/core.js" defer`
+- what it initializes: `initMisc()`, `initNav()`, `initThemeToggle()` on `DOMContentLoaded`.
+- intended scope: lekki baseline runtime dla stron prostych/informacyjnych.
+
+- `js/script.js`
+- command/entrypoint: `type="module" src="js/script.js" defer`
+- what it initializes: `initApp()` z `js/app/init.js`.
+- common runtime: `initMisc`, `initNetworkStatusBanner`, `initDemoLegalModal`, `initNav`, `initReveal`, `initThemeToggle`.
+- page runtime (`data-page`): `home` (`initImageFallbacks`, `initForm`, `renderFeaturedMenu`), `menu` (`initImageFallbacks`, `initMenuPage`), `gallery` (`initImageFallbacks`, `initGalleryPage`, `initLightbox`).
+- intended scope: pełny runtime dla stron z modułami feature i logiką per-page.
+
+### Current page -> entrypoint mapping
+| Page | Entrypoint tag |
+| --- | --- |
+| `index.html` | `<script type="module" src="js/script.js" defer></script>` |
+| `about.html` | `<script type="module" src="js/script.js" defer></script>` |
+| `menu.html` | `<script type="module" src="js/script.js" defer></script>` |
+| `gallery.html` | `<script type="module" src="js/script.js" defer></script>` |
+| `thank-you.html` | `<script type="module" src="js/script.js" defer></script>` |
+| `cookies.html` | `<script type="module" src="js/core.js" defer></script>` |
+| `polityka-prywatnosci.html` | `<script type="module" src="js/core.js" defer></script>` |
+| `regulamin.html` | `<script type="module" src="js/core.js" defer></script>` |
+| `404.html` | `<script type="module" src="js/core.js" defer></script>` |
+| `offline.html` | `<script src="/js/script.min.js" defer></script>` (deploy fallback, poza polityką `core.js`/`script.js`) |
+
+### Selection rules for new pages
+- Use `js/core.js` for legal/utility pages that only need baseline behavior (theme toggle, header navigation, misc helpers).
+- Use `js/script.js` for pages with dynamic modules, reveal effects, network/legal modal, form logic, menu/gallery runtime, or any `data-page` initializer.
+- Keep `js/core.js` lightweight: no feature-heavy imports, no per-page module bootstrap.
+- Keep `js/script.js` defensive: feature modules must stay guarded by DOM existence checks and `data-page`.
+- Keep `js/bootstrap.js` as separate non-module boot script for theme boot + SW registration guard; do not merge it into entrypoint policy.

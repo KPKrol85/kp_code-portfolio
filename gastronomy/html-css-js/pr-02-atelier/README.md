@@ -38,6 +38,12 @@ Atelier No.02 to wielostronicowy serwis portfolio (HTML + modularny CSS + ES Mod
 3. `npm run dev:server`
 4. `npm run check` (pełny pakiet jakości)
 
+### Polityka entrypointów JS
+- `js/core.js` (lekki runtime): `initMisc`, `initNav`, `initThemeToggle`; używany na stronach prostych/informacyjnych (`404.html`, `cookies.html`, `polityka-prywatnosci.html`, `regulamin.html`).
+- `js/script.js` (pełny runtime): `initApp` + inicjalizatory common/per-page; używany na stronach feature (`index.html`, `about.html`, `menu.html`, `gallery.html`, `thank-you.html`).
+- `offline.html` jest wyjątkiem deploy i ładuje `js/script.min.js` bezpośrednio.
+- Szczegółowa mapa stron i reguły wyboru: `settings.md` → `JS entrypoints policy (core vs script)`.
+
 ### Build i wdrożenie
 - Konfiguracja pod hosting statyczny: `_headers`, `_redirects`.
 - Manifest i service worker są osadzone dla deployu root (`/`).
@@ -114,6 +120,12 @@ Atelier No.02 is a multi-page portfolio site (HTML + modular CSS + ES Modules JS
 2. `npm run build`
 3. `npm run dev:server`
 4. `npm run check` (full quality gate)
+
+### JS Entrypoints Policy
+- `js/core.js` (light runtime): `initMisc`, `initNav`, `initThemeToggle`; used on simple/informational pages (`404.html`, `cookies.html`, `polityka-prywatnosci.html`, `regulamin.html`).
+- `js/script.js` (full runtime): `initApp` + common/per-page initializers; used on feature pages (`index.html`, `about.html`, `menu.html`, `gallery.html`, `thank-you.html`).
+- `offline.html` is a deliberate deploy exception and loads `js/script.min.js` directly.
+- Full page mapping and selection rules: `settings.md` → `JS entrypoints policy (core vs script)`.
 
 ### Build & deployment notes
 - Static-host deployment files are present: `_headers`, `_redirects`.
