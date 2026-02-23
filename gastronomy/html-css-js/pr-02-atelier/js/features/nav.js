@@ -265,6 +265,19 @@ export function initNav() {
       isTicking = true;
       window.requestAnimationFrame(updateHeader);
     };
+
+    if (typeof window.ResizeObserver === "function") {
+      new window.ResizeObserver(function () {
+        scheduleHeaderOffsetUpdate();
+      }).observe(header);
+    } else {
+      header.addEventListener("transitionend", function (event) {
+        if (!event || !event.target) return;
+        if (!(event.target === header || header.contains(event.target))) return;
+        scheduleHeaderOffsetUpdate();
+      });
+    }
+
     updateHeader();
     window.addEventListener("scroll", onScroll, { passive: true });
   }
