@@ -24,15 +24,16 @@
   if (meta) meta.setAttribute("content", theme === "dark" ? "#181210" : "#f8f1e7");
 
   if ("serviceWorker" in navigator) {
-    var isLocalhost = ["localhost", "127.0.0.1"].includes(window.location.hostname);
+    var hostname = window.location.hostname;
+    var isLocalhost = hostname === "localhost" || hostname === "127.0.0.1" || hostname === "::1";
 
-    window.addEventListener("load", function () {
-      navigator.serviceWorker.register("/sw.js").then(function (reg) {
-      }).catch(function (err) {
-        if (isLocalhost) {
+    if (!isLocalhost) {
+      window.addEventListener("load", function () {
+        navigator.serviceWorker.register("/sw.js").then(function () {
+        }).catch(function (err) {
           console.warn("❌ Błąd rejestracji Service Workera:", err);
-        }
+        });
       });
-    });
+    }
   }
 })();
