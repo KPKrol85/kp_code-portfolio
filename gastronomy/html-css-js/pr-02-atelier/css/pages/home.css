@@ -125,17 +125,15 @@
   gap: var(--space-2);
   padding: var(--space-2) var(--space-4);
   font-weight: 500;
-  background-color: color-mix(in oklab, var(--burgundy), transparent 96%);;
+  background-color: color-mix(in oklab, var(--burgundy), transparent 96%);
   border-radius: var(--radius-md);
   transition: color 0.18s ease;
-
 }
 .menu__cta-link:hover,
 .menu__cta-link:focus-visible,
 .gallery__cta-link:hover,
 .gallery__cta-link:focus-visible {
   background-color: color-mix(in oklab, var(--burgundy), transparent 94%);
-
 }
 .menu__cta-link svg,
 .gallery__cta-link svg {
@@ -246,73 +244,62 @@
 }
 
 /* Contact */
-.contact__details {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-  display: grid;
-  gap: var(--space-3);
-}
-
-.contact__details li {
-  display: flex;
-  align-items: center;
-  gap: var(--space-2);
-}
-
-.contact__details img {
-  width: 1.25rem;
-  height: 1.25rem;
-  display: block;
-  flex-shrink: 0;
-  filter: var(--contact-icon-filter);
-  transition: filter 0.3s ease;
-}
-
-.contact__details a {
-  color: var(--burgundy);
-  text-decoration: none;
-  transition:
-    color 0.2s ease,
-    text-decoration-color 0.2s ease;
-}
-
-.contact__details a:hover,
-.contact__details a:focus-visible {
-  color: color-mix(in oklab, var(--burgundy) 90%, white);
-  text-decoration: underline;
-}
-
-.contact__content {
-  --contact-icon-filter: invert(0);
-}
-
-body.dark-mode .contact__content,
-body.dark .contact__content,
-.dark .contact__content,
-.theme-dark .contact__content,
-[data-theme="dark"] .contact__content {
-  --contact-icon-filter: invert(1);
-}
-
-.contact__content p {
-  margin-bottom: var(--space-6);
-  text-align: center;
-}
-
 .home-contact-cta__card {
   max-width: 720px;
   margin-inline: auto;
 }
-
 .home-contact-cta__content {
   align-items: center;
   gap: var(--space-4);
   text-align: center;
 }
-
-.home-contact-cta__content p {
+.contact__title {
+  margin: var(--space-3) 0;
+}
+.contact__lead {
+  margin: 0 0 var(--space-4);
+  max-width: 28ch;
+  margin-inline: auto;
+}
+.contact__details {
+  list-style: none;
   margin: 0;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: var(--space-4);
+  row-gap: var(--space-3);
+}
+.contact__details li {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2);
+}
+.contact__details a {
+  color: var(--burgundy);
+  font-weight: 550;
+  letter-spacing: var(--ls-wide-plus);
+  text-decoration: none;
+  transition:
+    color 0.2s ease,
+    text-decoration-color 0.2s ease;
+}
+.contact__details a:hover,
+.contact__details a:focus-visible {
+  color: color-mix(in oklab, var(--burgundy) 90%, white);
+  text-decoration: underline;
+}
+.contact__icon {
+  width: 1.25rem;
+  height: 1.25rem;
+  display: block;
+  flex-shrink: 0;
+  color: var(--c-accent);
+}
+.home-contact-cta__btn {
+  margin-block: var(--space-4);
 }
 
 @media (min-width: 760px) {
@@ -324,11 +311,9 @@ body.dark .contact__content,
     align-items: flex-start;
     text-align: left;
   }
-
   .about .container {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
-
   .gallery__grid {
     grid-template-columns: repeat(2, 1fr);
   }
