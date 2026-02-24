@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="pl">
   <head>
     <meta charset="utf-8" />
@@ -141,7 +141,7 @@
                 </ul>
               </li>
               <li><a href="/#testimonials">Opinie</a></li>
-              <li><a href="/#contact">Kontakt</a></li>
+              <li><a href="/contact.html">Kontakt</a></li>
             </ul>
           </nav>
           <button class="theme-toggle" type="button" aria-pressed="false" aria-label="Przełącz tryb ciemny">
@@ -165,7 +165,7 @@
             <p class="hero__subtitle">Autorska kuchnia oparta na sezonowości i kunszcie zespołu.</p>
             <div class="hero__actions">
               <a class="btn btn--primary" href="/#menu" aria-label="Zobacz nasze sezonowe menu">Zobacz Menu</a>
-              <a class="btn btn--ghost" href="/#contact" aria-label="Zarezerwuj stolik">Rezerwacja</a>
+              <a class="btn btn--ghost" href="/contact.html" aria-label="Zarezerwuj stolik">Rezerwacja</a>
             </div>
           </div>
           <figure class="hero__media" data-reveal>
@@ -644,85 +644,35 @@
         </div>
       </section>
 
-      <!-- Form -->
-      <section id="contact" class="section contact" aria-label="Kontakt i rezerwacje">
-        <div class="container grid grid--2">
-          <div class="contact__content" data-reveal data-reveal-dir="left">
-            <h2>Kontakt</h2>
-            <p>Z przyjemnością ugościmy Cię w naszej restauracji. Zarezerwuj stolik lub wyślij nam wiadomość.</p>
-            <ul class="contact__details">
-              <li>
-                <img src="assets/icons/svg-icon/phone-icon.svg" alt="" aria-hidden="true" width="24" height="24" />
-                <a href="tel:+48533537091">+48&nbsp;533&nbsp;537&nbsp;091</a>
-              </li>
-              <li>
-                <img src="assets/icons/svg-icon/mail-icon.svg" alt="" aria-hidden="true" width="24" height="24" />
-                <a href="mailto:kontakt@kp-code.pl">kontakt@kp-code.pl</a>
-              </li>
-              <li>
-                <img src="assets/icons/svg-icon/home-icon.svg" alt="" aria-hidden="true" width="24" height="24" />
-                <span>ul. Marynarki Wojennej 12/31 33-100 Tarnów</span>
-              </li>
-            </ul>
-          </div>
-          <form
-            class="form"
-            name="contact"
-            method="POST"
-            action="/thank-you.html"
-            data-netlify="true"
-            netlify-honeypot="bot-field"
-            aria-label="Formularz rezerwacji"
-            data-reveal
-            data-reveal-dir="right">
-            <input type="hidden" name="form-name" value="contact" />
-            <p class="visually-hidden">
-              <label>
-                Don’t fill this out if you’re human:
-                <input type="text" name="bot-field" />
-              </label>
-            </p>
-            <div class="form__row">
-              <label for="name">Imię i nazwisko</label>
-              <input id="name" name="name" type="text" autocomplete="name" required aria-required="true" aria-describedby="error-name" />
-              <span class="form__error" id="error-name" aria-live="polite"></span>
+      <!-- Contact CTA -->
+      <section class="section home-contact-cta" aria-label="Kontakt i rezerwacje">
+        <div class="container">
+          <article class="card home-contact-cta__card" data-reveal>
+            <div class="card__body home-contact-cta__content">
+              <h2>Kontakt</h2>
+              <p>Zarezerwuj stolik lub skontaktuj się z nami bezpośrednio.</p>
+              <ul class="contact__details">
+                <li>
+                  <svg class="contact__icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+
+                    <path
+                      fill-rule="evenodd"
+                      d="M1.5 4.5a3 3 0 0 1 3-3h1.372c.86 0 1.61.586 1.819 1.42l1.105 4.423a1.875 1.875 0 0 1-.694 1.955l-1.293.97c-.135.101-.164.249-.126.352a11.285 11.285 0 0 0 6.697 6.697c.103.038.25.009.352-.126l.97-1.293a1.875 1.875 0 0 1 1.955-.694l4.423 1.105c.834.209 1.42.959 1.42 1.82V19.5a3 3 0 0 1-3 3h-2.25C8.552 22.5 1.5 15.448 1.5 6.75V4.5Z"
+                      clip-rule="evenodd" />
+                  </svg>
+                  <a href="tel:+48533537091">+48&nbsp;533&nbsp;537&nbsp;091</a>
+                </li>
+                <li>
+                  <svg class="contact__icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M1.5 8.67v8.58a3 3 0 0 0 3 3h15a3 3 0 0 0 3-3V8.67l-8.928 5.493a3 3 0 0 1-3.144 0L1.5 8.67Z" />
+                    <path d="M22.5 6.908V6.75a3 3 0 0 0-3-3h-15a3 3 0 0 0-3 3v.158l9.714 5.978a1.5 1.5 0 0 0 1.572 0L22.5 6.908Z" />
+                  </svg>
+                  <a href="mailto:kontakt@kp-code.pl">kontakt@kp-code.pl</a>
+                </li>
+              </ul>
+              <a class="btn btn--primary" href="/contact.html">Przejdź do kontaktu</a>
             </div>
-            <div class="form__row">
-              <label for="email">Adres e-mail</label>
-              <input id="email" name="email" type="email" autocomplete="email" required aria-required="true" aria-describedby="error-email" />
-              <span class="form__error" id="error-email" aria-live="polite"></span>
-            </div>
-            <div class="form__row">
-              <label for="message">Wiadomość</label>
-              <textarea id="message" name="message" rows="4" required aria-required="true" aria-describedby="error-message"></textarea>
-              <span class="form__error" id="error-message" aria-live="polite"></span>
-            </div>
-            <div class="form__row form__actions">
-              <button class="btn btn--primary" type="submit">Wyślij</button>
-            </div>
-            <noscript>
-              <p class="form__fallback-note" role="note">
-                Jeśli formularz nie działa, skontaktuj się bezpośrednio:
-                <a href="mailto:kontakt@kp-code.pl">kontakt@kp-code.pl</a>
-                lub
-                <a href="tel:+48533537091">+48&nbsp;533&nbsp;537&nbsp;091</a>
-                .
-              </p>
-            </noscript>
-            <div class="form__row">
-              <p id="form-host-fallback" class="form__fallback-note" role="status" aria-live="polite" hidden>
-                Formularz działa najlepiej na naszej wersji produkcyjnej Netlify. Jeśli po wysłaniu nie otrzymasz odpowiedzi, napisz na
-                <a href="mailto:kontakt@kp-code.pl">kontakt@kp-code.pl</a>
-                lub zadzwoń:
-                <a href="tel:+48533537091">+48&nbsp;533&nbsp;537&nbsp;091</a>
-                .
-              </p>
-            </div>
-            <div class="form__row">
-              <p id="form-progress" class="form__progress" role="status" aria-live="polite">Uzupełnij 3 pola, aby wysłać.</p>
-            </div>
-            <p id="form-status" class="visually-hidden" role="status" aria-live="polite"></p>
-          </form>
+          </article>
         </div>
       </section>
     </main>
@@ -745,7 +695,7 @@
               <li><a href="/#menu">Menu</a></li>
               <li><a href="/#gallery">Galeria</a></li>
               <li><a href="/#testimonials">Opinie</a></li>
-              <li><a href="/#contact">Kontakt</a></li>
+              <li><a href="/contact.html">Kontakt</a></li>
             </ul>
           </nav>
           <nav class="footer__nav" aria-label="Informacje prawne">
@@ -756,22 +706,32 @@
               <li><a href="/regulamin.html">Regulamin</a></li>
             </ul>
           </nav>
+          <!-- Contact -->
           <div class="footer__contact">
             <p class="footer__heading">Kontakt</p>
             <address>
               <p>
-                <img src="assets/icons/svg-icon/phone-icon.svg" alt="" aria-hidden="true" width="24" height="24" />
+                <svg class="contact__icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                  <path
+                    fill-rule="evenodd"
+                    d="M1.5 4.5a3 3 0 0 1 3-3h1.372c.86 0 1.61.586 1.819 1.42l1.105 4.423a1.875 1.875 0 0 1-.694 1.955l-1.293.97c-.135.101-.164.249-.126.352a11.285 11.285 0 0 0 6.697 6.697c.103.038.25.009.352-.126l.97-1.293a1.875 1.875 0 0 1 1.955-.694l4.423 1.105c.834.209 1.42.959 1.42 1.82V19.5a3 3 0 0 1-3 3h-2.25C8.552 22.5 1.5 15.448 1.5 6.75V4.5Z"
+                    clip-rule="evenodd" />
+                </svg>
                 <a href="tel:+48533537091">+48&nbsp;533&nbsp;537&nbsp;091</a>
               </p>
               <p>
-                <img src="assets/icons/svg-icon/mail-icon.svg" alt="" aria-hidden="true" width="24" height="24" />
+                <svg class="contact__icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M1.5 8.67v8.58a3 3 0 0 0 3 3h15a3 3 0 0 0 3-3V8.67l-8.928 5.493a3 3 0 0 1-3.144 0L1.5 8.67Z" />
+                  <path d="M22.5 6.908V6.75a3 3 0 0 0-3-3h-15a3 3 0 0 0-3 3v.158l9.714 5.978a1.5 1.5 0 0 0 1.572 0L22.5 6.908Z" />
+                </svg>
                 <a href="mailto:kontakt@kp-code.pl">kontakt@kp-code.pl</a>
               </p>
               <p>
-                <a href="https://www.google.com/maps?q=ul.+Marynarki+Wojennej+12%2F31+33-100+Tarn%C3%B3w" aria-label="Otwórz adres w Mapach Google">ul. Marynarki Wojennej 12/31 33-100 Tarnów</a>
+                <a href="https://www.google.com/maps?q=ul.+Marynarki+Wojennej+12%2F31+33-100+Tarn%C3%B3w" aria-label="Otwórz adres w Mapach Google">ul. Marynarki Wojennej 12 33-100 Tarnów</a>
               </p>
             </address>
           </div>
+          <!-- Social media -->
           <div class="footer__social">
             <p class="footer__heading">Media społecznościowe</p>
             <ul class="footer__list">

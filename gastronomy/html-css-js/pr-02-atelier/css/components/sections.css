@@ -158,7 +158,7 @@
   }
   .about .container {
     grid-template-columns: 1fr;
-    gap: clamp(1.5rem, 4vw, 3rem);
+    gap: var(--space-6);
   }
   .about__media,
   .about__content {

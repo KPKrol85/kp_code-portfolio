@@ -7,25 +7,13 @@ Audit wykonano na realnych plikach projektu `C:\Users\KPKro\MY FILES\active-work
 
 
 
-### 1) HTML validation baseline cleanup
-- Reason: `npm run validate:html` zwraca 72 błędy (m.in. `doctype-style`, brak `type` na `button/input`, `tel-non-breaking`).
-- Suggested improvement: Naprawić błędy systemowo na wszystkich szablonach i utrzymywać zero-error baseline w CI.
-
-
-
-
-
-### 2) ARIA misuse na legendzie menu
-- Reason: `menu.html:468` używa `aria-label` na `div`, co validator oznacza jako `aria-label-misuse`.
-- Suggested improvement: Przenieść etykietowanie na semantyczny nagłówek/`aria-labelledby` albo usunąć nieprawidłowy atrybut.
-
-### 3) Niespójne entrypointy JS między stronami
-- Reason: Część stron ładuje `js/script.js`, część `js/core.js` (`cookies.html:460`, `polityka-prywatnosci.html:496`, `regulamin.html:496`, `404.html:341`).
-- Suggested improvement: Ujednolicić entrypoint runtime lub jasno rozdzielić warianty z dokumentacją odpowiedzialności modułów.
 
 ### 4) Placeholder URL w sekcji mapy
 - Reason: `about.html:793` zawiera link `https://maps.example.com`.
 - Suggested improvement: Zastąpić placeholder produkcyjnym adresem mapy lub usunąć CTA do czasu gotowości danych.
+
+
+
 
 ### 5) Nierówność metadanych SEO na stronach technicznych
 - Reason: `404.html` i `thank-you.html` nie mają pełnego zestawu `og:*`/canonical jak strony główne.

@@ -213,3 +213,9 @@ body.dark,
   color: inherit !important;
   text-decoration: none !important;
 }
+
+.footer__contact .contact__icon {
+  width: 20px;
+  height: 20px;
+  color: var(--c-muted);
+}

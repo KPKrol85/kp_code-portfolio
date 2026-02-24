@@ -13,6 +13,7 @@ var COMMON_INITIALIZERS = [initMisc, initNetworkStatusBanner, initDemoLegalModal
 
 var PAGE_INITIALIZERS = {
   home: [initImageFallbacks, initForm, renderHomeFeaturedMenu],
+  contact: [initForm],
   menu: [initImageFallbacks, initMenuPage],
   gallery: [initImageFallbacks, initGalleryPage, initLightbox],
 };

@@ -1,24 +1,82 @@
 <!DOCTYPE html>
 <html lang="pl">
   <head>
-    <meta charset="UTF-8" />
+    <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Offline | Atelier No.02</title>
+    <title>Kontakt | Atelier No.02</title>
     <!-- SEO -->
-    <meta name="description" content="Jesteś offline. Sprawdź, co możesz zrobić bez internetu i wróć do pełnej wersji strony, gdy połączenie zostanie przywrócone." />
-    <link rel="canonical" href="https://gastronomy-project-02.netlify.app/offline.html" />
-    <meta name="robots" content="noindex, nofollow" />
+    <meta
+      name="description"
+      content="Skontaktuj się z Atelier No.02. Zarezerwuj stolik przez formularz, zadzwoń lub sprawdź dojazd na mapie." />
+    <link rel="canonical" href="https://gastronomy-project-02.netlify.app/contact.html" />
+    <meta name="robots" content="index,follow" />
+    <meta name="author" content="KP_Code" />
+    <!-- PWA / UI -->
+    <meta name="color-scheme" content="light dark" />
+    <meta name="application-name" content="Atelier No.02" />
+    <meta name="apple-mobile-web-app-title" content="Atelier No.02" />
+    <meta name="msapplication-TileColor" content="#f8f1e7" />
+    <meta name="theme-color" content="#ffffff" />
+    <!-- Favicons + manifest -->
+    <link rel="icon" type="image/png" sizes="32x32" href="assets/icons/fav-icon/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="assets/icons/fav-icon/favicon-16x16.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="assets/icons/fav-icon/apple-touch-icon.png" />
+    <link rel="mask-icon" href="assets/icons/fav-icon/safari-pinned-tab.svg" color="#000000" />
+    <link rel="manifest" href="manifest.webmanifest" />
     <!-- Open Graph -->
-    <meta property="og:title" content="Offline | Atelier No.02" />
-    <meta property="og:description" content="Jesteś offline. Sprawdź, co możesz zrobić bez internetu i wróć do pełnej wersji strony, gdy połączenie zostanie przywrócone." />
+    <meta property="og:site_name" content="Atelier No.02" />
     <meta property="og:type" content="website" />
-    <meta property="og:url" content="https://gastronomy-project-02.netlify.app/offline.html" />
+    <meta property="og:title" content="Kontakt | Atelier No.02" />
+    <meta property="og:description" content="Skontaktuj się z Atelier No.02: formularz rezerwacji, dane kontaktowe i mapa dojazdu." />
+    <meta property="og:url" content="https://gastronomy-project-02.netlify.app/contact.html" />
+    <meta property="og:image" content="https://gastronomy-project-02.netlify.app/assets/img-optimized/og-img/og-img-1200x630.jpg" />
+    <meta property="og:image:type" content="image/jpeg" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="Atelier No.02 — fine dining" />
+    <meta property="og:locale" content="pl_PL" />
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Kontakt | Atelier No.02" />
+    <meta name="twitter:description" content="Zarezerwuj stolik w Atelier No.02 i sprawdź lokalizację restauracji na mapie." />
+    <meta name="twitter:image" content="https://gastronomy-project-02.netlify.app/assets/img-optimized/og-img/og-img-1200x630.jpg" />
+    <meta name="twitter:image:alt" content="Atelier No.02 — fine dining" />
+    <meta name="twitter:site" content="@KP_Code_85" />
+    <meta name="twitter:creator" content="@KP_Code_85" />
+    <!-- Preload fonts -->
+    <link rel="preload" href="assets/fonts/montserrat-400-latin.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href="assets/fonts/montserrat-700-latin.woff2" as="font" type="font/woff2" crossorigin />
+    <!-- Theme preload -->
+    <script src="js/bootstrap.js"></script>
+    <!-- JSON-LD -->
+        <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@graph": [
+          {
+            "@type": "BreadcrumbList",
+            "itemListElement": [
+              { "@type": "ListItem", "position": 1, "name": "Strona główna", "item": "https://gastronomy-project-02.netlify.app/" },
+              { "@type": "ListItem", "position": 2, "name": "Kontakt", "item": "https://gastronomy-project-02.netlify.app/contact.html" }
+            ]
+          },
+          {
+            "@type": "Organization",
+            "@id": "https://gastronomy-project-02.netlify.app/#organization",
+            "name": "Atelier No.02",
+            "url": "https://gastronomy-project-02.netlify.app/",
+            "logo": "https://gastronomy-project-02.netlify.app/assets/img-optimized/logo/logo/logo-light-mode.svg",
+            "email": "kontakt@kp-code.pl"
+          }
+        ]
+      }
+    </script>
     <!-- Styles -->
-    <link rel="stylesheet" href="/css/style.min.css" />
+    <link rel="stylesheet" href="css/style.css" />
   </head>
 
   <!-- Body -->
-  <body class="page page--offline" data-page="offline">
+  <body class="page page--contact" data-page="contact">
     <a class="skip-link" href="#main" id="skip-to-content">Przejdź do treści</a>
 
     <!-- Header -->
@@ -83,51 +141,119 @@
     </header>
 
     <!-- Main -->
-    <main id="main" tabindex="-1">
-      <section class="section page-hero" aria-labelledby="offline-title">
+        <main id="main" tabindex="-1">
+      <nav class="breadcrumbs" aria-label="Okruchy nawigacji">
+        <ol>
+          <li><a href="index.html">Strona główna</a></li>
+          <li aria-current="page">Kontakt</li>
+        </ol>
+      </nav>
+
+      <section id="intro" class="section page-hero" aria-labelledby="contact-page-title">
         <div class="container page-hero__inner">
-          <div class="page-hero__content">
-            <span class="page-hero__eyebrow">Tryb offline</span>
-            <h1 id="offline-title">Jesteś offline</h1>
-            <p class="page-hero__lead">Nie mamy teraz połączenia z internetem. Część treści może być dostępna z pamięci urządzenia.</p>
-            <p class="offline-note">Co działa offline: ostatnio odwiedzone strony, podstawowe style i część obrazów.</p>
+          <div class="page-hero__content" data-reveal>
+            <span class="page-hero__eyebrow">Kontakt i rezerwacje</span>
+            <h1 id="contact-page-title">Kontakt</h1>
+            <p class="page-hero__lead">Zarezerwuj stolik przez formularz lub skontaktuj się z nami telefonicznie i mailowo. Poniżej znajdziesz też mapę dojazdu.</p>
           </div>
         </div>
       </section>
-      <section class="section" aria-label="Dostępne działania offline">
-        <div class="container">
-          <div class="menu__cta">
-            <button class="btn btn--primary" type="button" id="retry-connection">Spróbuj ponownie</button>
-            <a class="btn btn--ghost" href="/index.html">Strona główna</a>
-          </div>
 
-          <div class="section__header">
-            <h2>Co możesz zrobić teraz</h2>
-            <p>Jeśli odwiedzałeś te sekcje wcześniej, mogą być dostępne offline.</p>
+      <section id="contact" class="section contact" aria-label="Kontakt i rezerwacje">
+        <div class="container grid grid--2">
+          <div class="contact__content" data-reveal data-reveal-dir="left">
+            <h2>Kontakt</h2>
+            <p>Z przyjemnością ugościmy Cię w naszej restauracji. Zarezerwuj stolik lub wyślij nam wiadomość.</p>
+            <ul class="contact__details">
+              <li>
+                <img src="assets/icons/svg-icon/phone-icon.svg" alt="" aria-hidden="true" width="24" height="24" />
+                <a href="tel:+48533537091">+48&nbsp;533&nbsp;537&nbsp;091</a>
+              </li>
+              <li>
+                <img src="assets/icons/svg-icon/mail-icon.svg" alt="" aria-hidden="true" width="24" height="24" />
+                <a href="mailto:kontakt@kp-code.pl">kontakt@kp-code.pl</a>
+              </li>
+              <li>
+                <img src="assets/icons/svg-icon/home-icon.svg" alt="" aria-hidden="true" width="24" height="24" />
+                <span>ul. Marynarki Wojennej 12 33-100 Tarnów</span>
+              </li>
+            </ul>
           </div>
-          <ul class="cards">
-            <li class="card">
-              <div class="card__body">
-                <h3 class="card__title">Zobacz menu</h3>
-                <p class="card__text">Sprawdź ostatnio zapisane pozycje i ceny.</p>
-                <a class="btn btn--ghost" href="/menu.html">Przejdź do menu</a>
-              </div>
-            </li>
-            <li class="card">
-              <div class="card__body">
-                <h3 class="card__title">Otwórz galerię</h3>
-                <p class="card__text">Zobacz zapisane zdjęcia wnętrz i dań.</p>
-                <a class="btn btn--ghost" href="/gallery.html">Przejdź do galerii</a>
-              </div>
-            </li>
-            <li class="card">
-              <div class="card__body">
-                <h3 class="card__title">Wróć później</h3>
-                <p class="card__text">Gdy połączenie wróci, odśwież stronę.</p>
-                <a class="btn btn--ghost" href="/contact.html">Kontakt</a>
-              </div>
-            </li>
-          </ul>
+          <form
+            class="form"
+            name="contact"
+            method="POST"
+            action="/thank-you.html"
+            data-netlify="true"
+            netlify-honeypot="bot-field"
+            aria-label="Formularz rezerwacji"
+            data-reveal
+            data-reveal-dir="right">
+            <input type="hidden" name="form-name" value="contact" />
+            <p class="visually-hidden">
+              <label>
+                Don’t fill this out if you’re human:
+                <input type="text" name="bot-field" />
+              </label>
+            </p>
+            <div class="form__row">
+              <label for="name">Imię i nazwisko</label>
+              <input id="name" name="name" type="text" autocomplete="name" required aria-required="true" aria-describedby="error-name" />
+              <span class="form__error" id="error-name" aria-live="polite"></span>
+            </div>
+            <div class="form__row">
+              <label for="email">Adres e-mail</label>
+              <input id="email" name="email" type="email" autocomplete="email" required aria-required="true" aria-describedby="error-email" />
+              <span class="form__error" id="error-email" aria-live="polite"></span>
+            </div>
+            <div class="form__row">
+              <label for="message">Wiadomość</label>
+              <textarea id="message" name="message" rows="4" required aria-required="true" aria-describedby="error-message"></textarea>
+              <span class="form__error" id="error-message" aria-live="polite"></span>
+            </div>
+            <div class="form__row form__actions">
+              <button class="btn btn--primary" type="submit">Wyślij</button>
+            </div>
+            <noscript>
+              <p class="form__fallback-note" role="note">
+                Jeśli formularz nie działa, skontaktuj się bezpośrednio:
+                <a href="mailto:kontakt@kp-code.pl">kontakt@kp-code.pl</a>
+                lub
+                <a href="tel:+48533537091">+48&nbsp;533&nbsp;537&nbsp;091</a>
+                .
+              </p>
+            </noscript>
+            <div class="form__row">
+              <p id="form-host-fallback" class="form__fallback-note" role="status" aria-live="polite" hidden>
+                Formularz działa najlepiej na naszej wersji produkcyjnej Netlify. Jeśli po wysłaniu nie otrzymasz odpowiedzi, napisz na
+                <a href="mailto:kontakt@kp-code.pl">kontakt@kp-code.pl</a>
+                lub zadzwoń:
+                <a href="tel:+48533537091">+48&nbsp;533&nbsp;537&nbsp;091</a>
+                .
+              </p>
+            </div>
+            <div class="form__row">
+              <p id="form-progress" class="form__progress" role="status" aria-live="polite">Uzupełnij 3 pola, aby wysłać.</p>
+            </div>
+            <p id="form-status" class="visually-hidden" role="status" aria-live="polite"></p>
+          </form>
+        </div>
+      </section>
+
+      <section id="map" class="section contact-map" aria-labelledby="map-title">
+        <div class="container">
+          <div class="section__header" data-reveal>
+            <h2 id="map-title">Mapa dojazdu</h2>
+            <p class="section__lead">Znajdziesz nas przy ul. Marynarki Wojennej 12 w Tarnowie.</p>
+          </div>
+          <div class="contact-map__embed" data-reveal>
+            <iframe
+              src="https://www.google.com/maps?q=ul.+Marynarki+Wojennej+12,+33-100+Tarn%C3%B3w&output=embed"
+              title="Mapa dojazdu do restauracji Atelier No.02 w Tarnowie"
+              loading="lazy"
+              referrerpolicy="no-referrer-when-downgrade"
+              allowfullscreen></iframe>
+          </div>
         </div>
       </section>
     </main>
@@ -219,20 +345,10 @@
 
     <!-- No script -->
     <noscript>
-      <div class="nojs" role="status" aria-live="polite">JavaScript jest wyłączony. Niektóre funkcje mogą być ograniczone.</div>
+      <div class="nojs" role="status" aria-live="polite">JavaScript is disabled. Some interactive features may be limited.</div>
     </noscript>
-    <script>
-      (function () {
-        var retry = document.getElementById("retry-connection");
-        if (!retry) return;
-        retry.addEventListener("click", function () {
-          window.location.reload();
-        });
-      })();
-    </script>
-
     <!-- Script -->
-    <script src="/js/script.min.js" defer></script>
+    <script type="module" src="js/script.js" defer></script>
 
     <!-- Demo legal modal -->
     <div class="demo-legal-modal" id="demo-legal-modal" aria-hidden="true" hidden>
