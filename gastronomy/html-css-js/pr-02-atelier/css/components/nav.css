@@ -324,7 +324,6 @@ html:not(.js) .nav-toggle {
     grid-column: auto;
     height: auto;
     padding-inline: 0;
-    text-align: left;
   }
   .nav__dropdown-toggle {
     display: none;
@@ -336,6 +335,7 @@ html:not(.js) .nav-toggle {
     position: absolute;
     left: 0;
     top: calc(100% + 0.2rem);
+    text-align: center;
     width: auto;
     max-width: none;
     min-width: 12rem;

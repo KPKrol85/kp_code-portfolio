@@ -278,8 +278,7 @@
       <!-- Menu -->
       <section id="menu" class="section menu" aria-label="Sezonowe propozycje menu">
         <div class="container">
-          <h2 class="section__title menu__title">Sezonowe Menu</h2>
-
+          <h2 id="menu-title" class="section__title menu__title">Sezonowe Menu</h2>
           <!-- Cards-->
           <ul class="cards menu-cards" data-reveal-group data-menu-featured="true">
             <!-- Card 1-->
@@ -433,10 +432,10 @@
                 </div>
               </article>
             </li>
-            <!-- --- -->
           </ul>
+          <!-- --- -->
           <div class="menu__cta" data-reveal>
-            <a class="menu__link" href="menu.html">
+            <a class="menu__cta-link" href="menu.html">
               <span>Zobacz całe menu</span>
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                 <path d="M9 6l6 6-6 6" />
@@ -449,11 +448,10 @@
       <!-- Gallery -->
       <section id="gallery" class="section gallery" aria-labelledby="gallery-title">
         <div class="container">
-          <h2 id="gallery-title" class="gallery__title">Galeria</h2>
-          <div class="gallery__cta" data-reveal>
-            <a href="gallery.html" class="btn btn--primary" aria-label="Przejdź do pełnej galerii zdjęć">Przejdź do pełnej galerii</a>
-          </div>
+          <h2 id="gallery-title" class="section__title gallery__title">Galeria</h2>
+          <!-- Galeria -->
           <ul class="gallery__grid" data-reveal-group>
+            <!-- item 1 -->
             <li class="gallery__item" data-reveal>
               <a
                 class="gallery__link"
@@ -467,12 +465,10 @@
                       type="image/avif"
                       srcset="assets/img-optimized/gallery/gal-01-420x315.avif 420w, assets/img-optimized/gallery/gal-01-560x420.avif 560w, assets/img-optimized/gallery/gal-01-840x630.avif 840w"
                       sizes="(max-width: 768px) 100vw, (max-width: 1200px) 33vw, 400px" />
-
                     <source
                       type="image/webp"
                       srcset="assets/img-optimized/gallery/gal-01-420x315.webp 420w, assets/img-optimized/gallery/gal-01-560x420.webp 560w, assets/img-optimized/gallery/gal-01-840x630.webp 840w"
                       sizes="(max-width: 768px) 100vw, (max-width: 1200px) 33vw, 400px" />
-
                     <img
                       class="gallery__img"
                       src="assets/img-optimized/gallery/gal-01-560x420.jpg"
@@ -488,6 +484,7 @@
                 </figure>
               </a>
             </li>
+            <!-- item 2 -->
             <li class="gallery__item" data-reveal>
               <a
                 class="gallery__link"
@@ -520,6 +517,7 @@
                 </figure>
               </a>
             </li>
+            <!-- item 3 -->
             <li class="gallery__item" data-reveal>
               <a
                 class="gallery__link"
@@ -552,6 +550,7 @@
                 </figure>
               </a>
             </li>
+            <!-- item 4 -->
             <li class="gallery__item" data-reveal>
               <a
                 class="gallery__link"
@@ -584,6 +583,7 @@
                 </figure>
               </a>
             </li>
+            <!-- item 5 -->
             <li class="gallery__item" data-reveal>
               <a
                 class="gallery__link"
@@ -616,6 +616,7 @@
                 </figure>
               </a>
             </li>
+            <!-- item 6 -->
             <li class="gallery__item" data-reveal>
               <a
                 class="gallery__link"
@@ -649,13 +650,22 @@
               </a>
             </li>
           </ul>
+          <!-- --- -->
+          <div class="gallery__cta" data-reveal>
+            <a class="gallery__cta-link" href="gallery.html">
+              <span>Zobacz całą galerię</span>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M9 6l6 6-6 6" />
+              </svg>
+            </a>
+          </div>
         </div>
       </section>
 
       <!-- Testimonials -->
-      <section id="testimonials" class="section testimonials" aria-label="Opinie gości">
+      <section id="testimonials" class="section testimonials" aria-label="quote-title">
         <div class="container">
-          <h2>Opinie Gości</h2>
+          <h2 id="quote-title" class="section__title quote__title">Opinie Gości</h2>
           <ul class="quotes" data-reveal-group>
             <li class="quote" data-reveal>
               <blockquote>

@@ -112,11 +112,13 @@
 }
 
 /* Menu CTA */
-.menu__cta {
+.menu__cta,
+.gallery__cta {
   text-align: center;
   margin-block: var(--space-2);
 }
-.menu__link {
+.menu__cta-link,
+.gallery__cta-link {
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -128,21 +130,27 @@
   transition: color 0.18s ease;
 
 }
-.menu__link:hover,
-.menu__link:focus-visible {
+.menu__cta-link:hover,
+.menu__cta-link:focus-visible,
+.gallery__cta-link:hover,
+.gallery__cta-link:focus-visible {
   background-color: color-mix(in oklab, var(--burgundy), transparent 94%);
 
 }
-.menu__link svg {
+.menu__cta-link svg,
+.gallery__cta-link svg {
   width: 18px;
   height: 18px;
   transition: transform 0.18s ease;
 }
-.menu__link:hover svg,
-.menu__link:focus-visible svg {
+.menu__cta-link:hover svg,
+.menu__cta-link:focus-visible svg,
+.gallery__cta-link:hover svg,
+.gallery__cta-link:focus-visible svg {
   transform: translateX(4px);
 }
-.menu__link:focus-visible {
+.menu__cta-link:focus-visible,
+.gallery__cta-link:focus-visible {
   outline: 2px solid var(--c-accent);
   outline-offset: 4px;
 }
@@ -167,15 +175,11 @@
   border-top: 1px solid var(--surface-overlay-border);
   border-bottom: 1px solid var(--surface-overlay-border);
 }
-.gallery__title {
-  text-align: center;
-  margin: 0 0 var(--space-5);
-}
 .gallery__grid {
   display: grid;
   grid-template-columns: 1fr;
   gap: var(--space-4);
-  margin: 0;
+  margin: var(--space-6) 0;
   padding: 0;
   list-style: none;
 }
@@ -196,6 +200,7 @@
   aspect-ratio: 4 / 3;
   object-fit: cover;
   display: block;
+  transition: transform 0.28s ease;
 }
 .gallery__link {
   display: block;
@@ -208,15 +213,8 @@
 .gallery__item:focus-within .gallery__img {
   transform: scale(1.02);
 }
-.gallery__img {
-  transition: transform 0.28s ease;
-}
-.gallery__cta {
-  display: flex;
-  justify-content: center;
-  margin: var(--space-4) 0 var(--space-5);
-}
 
+/* Testimonials */
 .quotes {
   display: grid;
   grid-template-columns: 1fr;
@@ -241,6 +239,7 @@
   font-style: normal;
 }
 
+/* Contact */
 .contact__details {
   list-style: none;
   margin: 0;
