@@ -99,14 +99,20 @@
           <img src="assets/img-optimized/logo/logo-and-name/header-logo-light.svg" alt="" class="brand__logo brand__logo--light" width="40" height="30" />
           <img src="assets/img-optimized/logo/logo-and-name/header-logo-dark.svg" alt="" class="brand__logo brand__logo--dark" width="40" height="30" />
         </a>
+
         <div class="header__actions">
+          <!-- hamburger menu -->
           <button type="button" class="nav-toggle" aria-label="Otwórz menu" aria-controls="primary-nav" aria-expanded="false">
-            <span class="nav-toggle__bar" aria-hidden="true"></span>
-            <span class="nav-toggle__bar" aria-hidden="true"></span>
-            <span class="nav-toggle__bar" aria-hidden="true"></span>
+            <svg class="nav-toggle__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path class="line line--top" d="M3.75 6.75h16.5" />
+              <path class="line line--middle" d="M3.75 12h16.5" />
+              <path class="line line--bottom" d="M3.75 17.25h16.5" />
+            </svg>
           </button>
+          <!-- Nav -->
           <nav class="nav" id="primary-nav" aria-label="Nawigacja główna">
             <ul class="nav__list">
+              <!-- o nas-->
               <li class="nav__item nav__item--dropdown">
                 <a class="nav__link" href="/#about">O nas</a>
                 <button class="nav__dropdown-toggle" id="nav-dd-about-trigger" type="button" aria-expanded="false" aria-controls="nav-dd-about" aria-label="Pokaż więcej: O nas">
@@ -118,6 +124,7 @@
                   <li><a href="/about.html">Poznaj nas</a></li>
                 </ul>
               </li>
+              <!-- menu-->
               <li class="nav__item nav__item--dropdown">
                 <a class="nav__link" href="/#menu">Menu</a>
                 <button class="nav__dropdown-toggle" id="nav-dd-menu-trigger" type="button" aria-expanded="false" aria-controls="nav-dd-menu" aria-label="Pokaż więcej: Menu">
@@ -129,6 +136,7 @@
                   <li><a href="/menu.html">Pełne menu</a></li>
                 </ul>
               </li>
+              <!-- galeria-->
               <li class="nav__item nav__item--dropdown">
                 <a class="nav__link" href="/#gallery">Galeria</a>
                 <button class="nav__dropdown-toggle" id="nav-dd-gallery-trigger" type="button" aria-expanded="false" aria-controls="nav-dd-gallery" aria-label="Pokaż więcej: Galeria">
@@ -140,10 +148,13 @@
                   <li><a href="/gallery.html">Pełna galeria</a></li>
                 </ul>
               </li>
+              <!-- opinie-->
               <li><a href="/#testimonials">Opinie</a></li>
+              <!-- kontakt-->
               <li><a href="/contact.html">Kontakt</a></li>
             </ul>
           </nav>
+          <!-- Theme toggle -->
           <button class="theme-toggle" type="button" aria-pressed="false" aria-label="Przełącz tryb ciemny">
             <span class="theme-toggle__icon theme-toggle__icon--sun" aria-hidden="true"><img src="assets/icons/svg-icon/icon-sun.svg" alt="" width="24" height="24" /></span>
             <span class="theme-toggle__icon theme-toggle__icon--moon" aria-hidden="true"><img src="assets/icons/svg-icon/icon-moon.svg" alt="" width="24" height="24" /></span>
@@ -158,16 +169,19 @@
       <!-- Hero -->
       <section id="hero" class="hero" aria-label="Sekcja powitalna">
         <div class="container hero__inner">
+          <!-- content-->
           <div class="hero__content" data-reveal>
             <img src="assets/img-optimized/logo/logo/logo-light-mode.svg" alt="" class="hero__logo brand__logo--light" width="40" height="30" />
             <img src="assets/img-optimized/logo/logo/logo-dark-mode.svg" alt="" class="hero__logo brand__logo--dark" width="40" height="30" />
             <h1 class="hero__title">Atelier No.02 — Fine Dining</h1>
             <p class="hero__subtitle">Autorska kuchnia oparta na sezonowości i kunszcie zespołu.</p>
+
             <div class="hero__actions">
               <a class="btn btn--primary" href="/#menu" aria-label="Zobacz nasze sezonowe menu">Zobacz Menu</a>
               <a class="btn btn--ghost" href="/contact.html" aria-label="Zarezerwuj stolik">Rezerwacja</a>
             </div>
           </div>
+          <!-- img -->
           <figure class="hero__media" data-reveal>
             <picture>
               <source
@@ -211,6 +225,7 @@
       <!-- About -->
       <section id="about" class="section about" aria-label="O Gastronomy">
         <div class="container grid grid--2">
+          <!-- img -->
           <div class="about__media" data-reveal>
             <picture>
               <source
@@ -246,10 +261,13 @@
                 decoding="async" />
             </picture>
           </div>
+          <!-- content -->
           <div class="about__content" data-reveal>
-            <h2>O Nas</h2>
-            <p>Celebrujemy sztukę kuchni, łącząc elegancję tradycji z odrobiną nowoczesności. Nasz zespół wybiera wyłącznie najlepsze lokalne składniki, tworząc niezapomniane doznania smakowe.</p>
-            <p>Zapraszamy na wieczór, podczas którego każda potrawa opowiada własną historię — w towarzystwie wyselekcjonowanych win i ciepłej, gościnnej atmosfery.</p>
+            <h2 class="section__title about__title">O Nas</h2>
+            <p class="about__text">
+              Celebrujemy sztukę kuchni, łącząc elegancję tradycji z odrobiną nowoczesności. Nasz zespół wybiera wyłącznie najlepsze lokalne składniki, tworząc niezapomniane doznania smakowe.
+            </p>
+            <p class="about__text">Zapraszamy na wieczór, podczas którego każda potrawa opowiada własną historię — w towarzystwie wyselekcjonowanych win i ciepłej, gościnnej atmosfery.</p>
             <div class="about__cta" data-reveal>
               <a href="about.html" class="btn btn--primary" aria-label="Przejdź do podstrony O nas i poznaj nasz zespół bliżej">Poznaj nas bliżej</a>
             </div>
@@ -260,11 +278,11 @@
       <!-- Menu -->
       <section id="menu" class="section menu" aria-label="Sezonowe propozycje menu">
         <div class="container">
-          <h2>Sezonowe Menu</h2>
-          <div class="menu__cta" data-reveal>
-            <a href="menu.html" class="btn btn--primary" aria-label="Przejdź do pełnego menu restauracji">Przejdź do pełnego menu</a>
-          </div>
+          <h2 class="section__title menu__title">Sezonowe Menu</h2>
+
+          <!-- Cards-->
           <ul class="cards menu-cards" data-reveal-group data-menu-featured="true">
+            <!-- Card 1-->
             <li class="card menu-card" data-reveal>
               <article>
                 <figure class="menu-card__figure">
@@ -315,6 +333,7 @@
                 </div>
               </article>
             </li>
+            <!-- Card 2 -->
             <li class="card menu-card" data-reveal>
               <article>
                 <figure class="menu-card__figure">
@@ -364,6 +383,7 @@
                 </div>
               </article>
             </li>
+            <!-- Card 3 -->
             <li class="card menu-card" data-reveal>
               <article>
                 <figure class="menu-card__figure">
@@ -413,7 +433,16 @@
                 </div>
               </article>
             </li>
+            <!-- --- -->
           </ul>
+          <div class="menu__cta" data-reveal>
+            <a class="menu__link" href="menu.html">
+              <span>Zobacz całe menu</span>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M9 6l6 6-6 6" />
+              </svg>
+            </a>
+          </div>
         </div>
       </section>
 
@@ -654,7 +683,6 @@
               <ul class="contact__details">
                 <li>
                   <svg class="contact__icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
-
                     <path
                       fill-rule="evenodd"
                       d="M1.5 4.5a3 3 0 0 1 3-3h1.372c.86 0 1.61.586 1.819 1.42l1.105 4.423a1.875 1.875 0 0 1-.694 1.955l-1.293.97c-.135.101-.164.249-.126.352a11.285 11.285 0 0 0 6.697 6.697c.103.038.25.009.352-.126l.97-1.293a1.875 1.875 0 0 1 1.955-.694l4.423 1.105c.834.209 1.42.959 1.42 1.82V19.5a3 3 0 0 1-3 3h-2.25C8.552 22.5 1.5 15.448 1.5 6.75V4.5Z"

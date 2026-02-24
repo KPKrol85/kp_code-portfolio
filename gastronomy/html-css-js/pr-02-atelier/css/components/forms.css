@@ -75,3 +75,9 @@
 .form__fallback-note a {
   color: color-mix(in oklab, var(--burgundy) 82%, black);
 }
+
+.form input,
+.form select,
+.form textarea {
+  min-height: 44px;
+}

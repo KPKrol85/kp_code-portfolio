@@ -1,0 +1,35 @@
+.page .page-hero {
+  position: relative;
+  background: linear-gradient(135deg, color-mix(in srgb, var(--cream) 85%, white), color-mix(in srgb, var(--burgundy) 15%, var(--cream)));
+  isolation: isolate;
+}
+.page .page-hero::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at 25% 20%, rgba(201, 162, 39, 0.08), transparent 55%);
+  pointer-events: none;
+  z-index: -1;
+}
+.page .page-hero__inner {
+  display: flex;
+  justify-content: center;
+}
+.page .page-hero__content {
+  max-width: 640px;
+  text-align: center;
+  display: grid;
+  gap: var(--space-4);
+}
+.page .page-hero__eyebrow {
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  font-size: 0.85rem;
+  color: var(--burgundy);
+}
+.page .page-hero__lead {
+  margin: 0 auto;
+  max-width: 56ch;
+  color: var(--text-muted);
+  line-height: 1.7;
+}

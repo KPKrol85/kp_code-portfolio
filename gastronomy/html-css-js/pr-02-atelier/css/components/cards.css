@@ -1,8 +1,9 @@
+/* Cards */
 .cards {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: 1fr;
   gap: var(--space-5);
-  margin: var(--space-5) 0 0;
+  margin: var(--space-6) 0;
   padding: 0;
   list-style: none;
 }
@@ -52,15 +53,11 @@
 }
 .card__text {
   margin: 0;
-  color: var(--text-muted);
+  color: var(--charcoal);
+  font-size: var(--fs-sm);
 }
-.menu__cta {
-  text-align: center;
-  margin-top: var(--space-4);
-}
-.menu__cta .btn {
-  margin-inline: auto;
-}
+
+/* Page Cards */
 .page .menu-card article {
   display: flex;
   flex-direction: column;
@@ -82,22 +79,23 @@
 }
 .page .menu-card__heading {
   display: flex;
+  flex-direction: column;
   align-items: flex-start;
   gap: var(--space-4);
   margin-bottom: var(--space-2);
 }
+
 .page .menu-card__price {
-  margin-left: auto;
+  margin-left: 0;
   font-weight: 600;
   color: color-mix(in oklab, var(--burgundy) 90%, black);
   white-space: nowrap;
 }
+
 [data-theme="dark"] .page .menu-card__price {
   color: color-mix(in oklab, var(--burgundy) 86%, white);
 }
-.page .menu-card .card__text {
-  color: var(--charcoal);
-}
+
 [data-theme="dark"] .page .menu-card .card__text {
   color: var(--ink);
 }
@@ -113,18 +111,35 @@
 .page .menu-card__tag {
   padding: var(--space-1) var(--space-3);
   border-radius: var(--radius-md);
-  font-size: 0.75rem;
+  font-size: var(--fs-xxs);
   font-weight: 600;
-  letter-spacing: 0.04em;
+  letter-spacing: var(--ls-wider);
   text-transform: uppercase;
   background: color-mix(in srgb, var(--gold) 30%, var(--cream));
   color: var(--ink);
 }
 [data-theme="dark"] .page .menu-card__tag {
   background: color-mix(in srgb, var(--gold) 45%, var(--bone));
-  color: var(--ink);
 }
 .page .menu-card a:focus-visible {
   outline: 2px solid var(--accent, #6b1e2f);
   outline-offset: 2px;
+}
+
+@media (min-width: 760px) {
+  .cards {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .page .menu-card__heading {
+    flex-direction: row;
+  }
+  .page .menu-card__price {
+    margin-left: auto;
+  }
+}
+
+@media (min-width: 1024px) {
+  .cards {
+    grid-template-columns: repeat(3, 1fr);
+  }
 }

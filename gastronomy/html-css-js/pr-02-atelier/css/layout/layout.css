@@ -6,6 +6,10 @@ body {
   min-height: 100dvh;
 }
 
+:root {
+  --container: 600px;
+}
+
 main {
   flex: 1 0 auto;
   padding-top: var(--header-offset);
@@ -13,12 +17,12 @@ main {
 
 .container {
   max-width: var(--container);
-  padding-inline: 16px;
+  padding-inline: var(--space-4);
   margin-inline: auto;
 }
 
 .section {
-  padding: var(--space-8) 0;
+  padding: var(--section-y-md) 0;
 }
 
 .hero,
@@ -30,4 +34,17 @@ main {
   display: flex;
   align-items: center;
   text-decoration: none;
+}
+
+@media (min-width: 760px) {
+  :root {
+    --container: 720px;
+  }
+ 
+}
+
+@media (min-width: 1024px) {
+  :root {
+    --container: 1120px;
+  }
 }
