@@ -1,3 +1,22 @@
+/contact.html
+X-Frame-Options: SAMEORIGIN
+X-Content-Type-Options: nosniff
+X-XSS-Protection: 1; mode=block
+Referrer-Policy: strict-origin-when-cross-origin
+Permissions-Policy: camera=(), microphone=(), geolocation=(), payment=()
+Cross-Origin-Opener-Policy: same-origin
+Cross-Origin-Resource-Policy: same-origin
+Cross-Origin-Embedder-Policy: unsafe-none
+
+Cache-Control: no-cache, no-store, must-revalidate
+ETag: "kp_code_gastro_02"
+
+Link: </manifest.webmanifest>; rel="manifest"
+Link: </assets/img-optimized/og-img/og-img-1200x630.jpg>; rel="preload"; as="image"
+Link: </assets/img-optimized/og-img/og-img-1200x1200.jpg>; rel="preload"; as="image"
+
+Vary: Accept-Encoding
+
 /*
 X-Frame-Options: SAMEORIGIN
 X-Content-Type-Options: nosniff

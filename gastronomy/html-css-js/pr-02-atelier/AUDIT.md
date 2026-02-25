@@ -33,6 +33,7 @@
 - Reason: Global `Cross-Origin-Embedder-Policy: require-corp` can block cross-origin embeds such as Google Maps iframe in production.
 - Evidence: `_headers:9`, `contact.html:250-251`.
 - Suggested improvement: Narrow COEP to selected routes/assets that require it, or relax policy on pages that intentionally embed external iframes.
+- Status (2026-02-25): scoped in `_headers` with explicit `/contact.html` override using `Cross-Origin-Embedder-Policy: unsafe-none`.
 
 2. Title: Align Service Worker precache list with runtime asset strategy
 - Reason: SW install list pre-caches `.min` assets while pages load non-min runtime assets (`style.css`, `script.js`), creating maintenance drift.
