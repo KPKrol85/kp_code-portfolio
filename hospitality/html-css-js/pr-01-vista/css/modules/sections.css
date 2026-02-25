@@ -27,7 +27,7 @@
   font-weight: 500;
   text-transform: uppercase;
   letter-spacing: 0.08em;
-  color: color-mix(in oklab, var(--muted) 82%, var(--text) 18%);
+  color: color-mix(in oklab, var(--text) 80%, var(--muted) 20%);
 }
 .hero__subtitle {
   font-family: var(--font-sans);
@@ -231,7 +231,7 @@
   width: 22px;
   height: 22px;
   flex-shrink: 0;
-  color: var(--accent, #2dc7a6);
+  color: var(--primary);
 }
 .benefit__text {
   margin: 0;
@@ -672,7 +672,7 @@
   display: flex;
   align-items: center;
   gap: var(--space-2xs);
-  color: color-mix(in oklab, var(--muted) 90%, var(--text) 10%);
+  color: color-mix(in oklab, var(--text) 85%, var(--muted) 15%);
 }
 .breadcrumb li {
   display: inline-flex;
@@ -692,7 +692,7 @@
   text-decoration: underline;
 }
 .breadcrumb [aria-current="page"] {
-  color: color-mix(in oklab, var(--muted) 82%, var(--text) 18%);
+  color: color-mix(in oklab, var(--text) 80%, var(--muted) 20%);
   font-weight: 400;
   opacity: 0.9;
 }
@@ -732,7 +732,7 @@
   font-weight: 600;
   line-height: 1.2;
   letter-spacing: 0.2px;
-  color: color-mix(in oklab, var(--text) 20%, var(--muted));
+  color: color-mix(in oklab, var(--text) 72%, var(--muted) 28%);
 }
 .footer__list {
   list-style: none;
@@ -839,7 +839,7 @@
 }
 .footer__contact .footer__text a[href^="mailto"]:hover,
 .footer__contact .footer__text a[href^="tel"]:hover {
-  color: var(--accent, #2dc7a6);
+  color: var(--primary);
   text-decoration: underline;
   text-underline-offset: 0.18em;
 }
@@ -870,7 +870,7 @@
     outline-color 0.2s ease;
 }
 .footer__social-links a:hover {
-  color: var(--accent, #2dc7a6);
+  color: var(--primary);
 }
 .footer__social-links svg {
   width: 22px;
@@ -904,7 +904,7 @@
 }
 .footer__nav .footer__list a[aria-current="page"],
 .footer__legal .footer__list a[aria-current="page"] {
-  color: var(--accent, #2dc7a6);
+  color: var(--primary);
   font-weight: 400;
   text-decoration: none;
 }
@@ -1115,7 +1115,7 @@
 .subpage-rooms .tabs__tab.is-active {
   border-color: color-mix(in oklab, #2dc7a6 35%, var(--border));
   background: color-mix(in oklab, var(--bg-elev) 95%, #2dc7a6 3%);
-  color: var(--accent);
+  color: var(--text);
   box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.05);
   transform: none;
 }
@@ -1265,7 +1265,7 @@
 .subpage-rooms .tabs__tab.is-active {
   border-color: color-mix(in oklab, #2dc7a6 35%, var(--border));
   background: color-mix(in oklab, var(--bg-elev) 95%, #2dc7a6 3%);
-  color: var(--accent);
+  color: var(--text);
   box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.05);
   transform: none;
 }

@@ -10,6 +10,8 @@ import { initCompactHeader } from "./features/compact-header.js";
 import { initGalleryFilters } from "./features/gallery-filters.js";
 import { setAriaCurrent } from "./features/aria-current.js";
 import { initJsonLd } from "./features/seo-jsonld.js";
+import { initMapEmbed } from "./features/map-embed.js";
+import * as logger from "./features/logger.js";
 
 function setYear() {
   const el = document.querySelector("[data-year]");
@@ -18,19 +20,13 @@ function setYear() {
 
 function registerSW() {
   if ("serviceWorker" in navigator) {
-    const isDevMode = ["localhost", "127.0.0.1"].includes(window.location.hostname);
-
     navigator.serviceWorker
       .register("pwa/service-worker.js")
       .then((reg) => {
-        if (isDevMode) {
-          console.log("[PWA] Service Worker zarejestrowany", reg.scope);
-        }
+        logger.info("[PWA] Service Worker zarejestrowany", reg.scope);
       })
       .catch((err) => {
-        if (isDevMode) {
-          console.error("[PWA] Błąd rejestracji Service Workera", err);
-        }
+        logger.error("[PWA] Błąd rejestracji Service Workera", err);
       });
   }
 }
@@ -46,6 +42,7 @@ function boot() {
   initForm();
   initTabs();
   initJsonLd();
+  initMapEmbed();
 
   if (document.getElementById("gallery-filters")) {
     initGalleryFilters();

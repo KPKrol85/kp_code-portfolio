@@ -140,16 +140,28 @@
                   <a href="mailto:kontakt@kp-code.pl">kontakt@kp-code.pl</a>
                 </span>
               </address>
-              <figure class="map" aria-label="Mapa dojazdu">
-                <iframe
-                  title="Mapa dojazdu — ul. Marynarki Wojennej 12/31, Tarnów"
-                  src="https://www.google.com/maps?q=ul.+Marynarki+Wojennej+12,+33-100+Tarnów,+Polska&hl=pl&z=16&output=embed"
-                  width="800"
-                  height="450"
-                  allowfullscreen
-                  loading="lazy"
-                  referrerpolicy="no-referrer-when-cross-origin"
-                  aria-label="Mapa lokalizacji hotelu w Tarnowie"></iframe>
+              <figure class="map map--embed" aria-label="Mapa dojazdu" data-map-embed>
+                <div class="map__frame">
+                  <div class="map__fallback" data-map-fallback>
+                    <img src="assets/img/src/contact/map-fallback.svg" alt="Statyczna mapa lokalizacji hotelu Vista przy ulicy Marynarki Wojennej 12/31 w Tarnowie" loading="lazy" decoding="async" width="1280" height="720" />
+                  </div>
+                  <iframe
+                    title="Mapa dojazdu — ul. Marynarki Wojennej 12/31, Tarnów"
+                    src="https://www.google.com/maps?q=ul.+Marynarki+Wojennej+12,+33-100+Tarnów,+Polska&hl=pl&z=16&output=embed"
+                    width="800"
+                    height="450"
+                    allowfullscreen
+                    loading="lazy"
+                    referrerpolicy="no-referrer-when-cross-origin"
+                    aria-label="Mapa lokalizacji hotelu w Tarnowie"
+                    data-map-iframe
+                    hidden
+                    aria-hidden="true"></iframe>
+                </div>
+                <figcaption class="map__caption">
+                  Interaktywna mapa może być zablokowana przez ustawienia prywatności przeglądarki.
+                  <a href="https://www.google.com/maps?q=ul.+Marynarki+Wojennej+12,+33-100+Tarnów,+Polska" target="_blank" rel="noopener noreferrer" aria-label="Otwórz lokalizację hotelu Vista w Google Maps (otwiera się w nowej karcie)">Otwórz w Google Maps</a>.
+                </figcaption>
               </figure>
             </article>
 

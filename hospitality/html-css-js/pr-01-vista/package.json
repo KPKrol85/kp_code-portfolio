@@ -9,7 +9,9 @@
     "img:opt": "node scripts/optimize-images.mjs",
     "img:clean": "node scripts/optimize-images.mjs --clean",
     "img:watch": "node scripts/optimize-images.mjs --watch",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "check:links": "node scripts/check-link-integrity.mjs",
+    "test:a11y": "npm exec --yes --package=playwright@1.54.2 --package=axe-core@4.10.3 node scripts/a11y-axe.mjs"
   },
   "keywords": [
     "frontend",
@@ -21,7 +23,7 @@
     "portfolio"
   ],
   "author": "Kamil Król",
-  "license": "ISC",
+  "license": "MIT",
   "devDependencies": {
     "autoprefixer": "^10.4.22",
     "chokidar": "^4.0.3",

@@ -259,6 +259,11 @@ fieldset.form__field legend {
   inline-size: 100%;
   max-width: calc(100% - var(--space-md) * 2);
 }
+.map__frame {
+  position: relative;
+  inline-size: 100%;
+  block-size: 100%;
+}
 .map :is(img, iframe) {
   display: block;
   inline-size: 100%;
@@ -271,6 +276,20 @@ fieldset.form__field legend {
 .map iframe {
   border: 0;
   border-radius: var(--radius-md);
+}
+.map__fallback[hidden] {
+  display: none;
+}
+.map--embed iframe[hidden] {
+  display: none;
+}
+.map__caption {
+  margin: var(--space-xs) 0 0;
+  font-size: var(--fs-200);
+  color: var(--muted);
+}
+.map__caption a {
+  font-weight: 500;
 }
 .map figcaption {
   margin: var(--space-xs) 0 0 0;
@@ -449,7 +468,7 @@ fieldset.form__field legend {
   right: 1.4rem;
   border: none;
   background: transparent;
-  color: var(--muted);
+  color: var(--text);
   font-size: 1.4rem;
   line-height: 1;
   padding: var(--space-2xs);
@@ -465,7 +484,7 @@ fieldset.form__field legend {
 }
 .lightbox__caption {
   font-size: 0.85rem;
-  color: var(--muted);
+  color: color-mix(in oklab, var(--text) 80%, var(--muted) 20%);
   text-align: center;
   margin-top: var(--space-2xs);
   max-width: 90%;
@@ -583,7 +602,7 @@ fieldset.form__field legend {
   margin: 0;
   margin-top: var(--space-xs);
   font-size: var(--fs-200);
-  color: var(--muted);
+  color: color-mix(in oklab, var(--text) 80%, var(--muted) 20%);
   text-align: center;
 }
 .not-found__actions {

@@ -39,8 +39,8 @@
   --text: #1f2430;
   --muted: #55585e;
   --border: #e0e3e8;
-  --primary: #2dc7a6;
-  --primary-alt: #2d9bf0;
+  --primary: #0f6fbf;
+  --primary-alt: #0a5ca0;
   --primary-contrast: #ffffff;
   /* Colors alert */
   --danger: #ef4444;
@@ -105,7 +105,7 @@ html[data-theme="light"] {
   --bg-elev: #ffffff;
   --text: #1f2430;
   --muted: #55585e;
-  --primary: #2d9bf0;
+  --primary: #0f6fbf;
   --border: #e0e3e8;
   --bg-gradients:
     radial-gradient(60vw 60vw at 10% 6%, color-mix(in oklab, #ffd37a 35%, transparent) 0%, transparent 60%),
@@ -143,7 +143,7 @@ html[data-theme="dark"] {
     --bg-elev: #ffffff;
     --text: #1f2430;
     --muted: #55585e;
-    --primary: #2d9bf0;
+    --primary: #0f6fbf;
     --border: #e0e3e8;
     --bg-gradients:
       radial-gradient(60vw 60vw at 10% 6%, color-mix(in oklab, #ffd37a 35%, transparent) 0%, transparent 60%),

@@ -1,96 +1,157 @@
-# Vista — Hotels & Travel (Clean Rebuild)
+# Vista — Hotels & Travel
 
-Profesjonalna, dostępna i responsywna wersja projektu „Vista — Hotels & Travel” w czystym HTML/CSS/JS. Projekt zawiera tryby Light/Dark/Auto, progresywne ulepszenia (PWA), lekkie animacje oraz konfigurację Netlify (nagłówki bezpieczeństwa, przekierowania).
+## PL
 
-## Struktura
+### Przegląd projektu
+Profesjonalny projekt portfolio front-end dla branży hospitality, zrealizowany jako strona wielopodstronowa w czystym HTML, CSS i JavaScript. Projekt obejmuje stronę główną, podstrony ofertowe, galerię, kontakt oraz strony prawne.
 
-tourism-and-hotels/
-- index.html
-- rooms.html
-- offers.html
-- gallery.html
-- contact.html
-- legal.html
-- offline.html
-- site.webmanifest
-- sitemap.xml
- - robots.txt
- - /css/style.css
- - /js/script.js
- - /js/features/{nav.js,theme.js,reveal.js,lightbox.js,form.js,tabs.js}
- - /assets/
-   - /img/
-    - /hero/ (placeholdery do podmiany)
-    - /rooms/ (placeholdery do podmiany)
-    - /offers/ (placeholdery do podmiany)
-    - /gallery/ (placeholdery do podmiany)
-    - /ui/ (ikony, favicons – docelowo PNG/SVG)
-    - placeholders.txt
-- /pwa/service-worker.js
-- /netlify/_headers
-- /netlify/_redirects
+### Kluczowe funkcje
+- Wielostronicowa architektura: `index.html`, `rooms.html`, `offers.html`, `gallery.html`, `contact.html`, `onas.html`, strony prawne oraz `404.html` i `offline.html`.
+- Modularny CSS oparty o tokeny (`css/modules/tokens.css`) i podział na warstwy: base/layout/components/sections/utilities/themes/motion/print.
+- Stylowanie i nazewnictwo komponentów w konwencji BEM (np. `site-header__inner`, `room-card__img`, `gallery-cats__link`).
+- Modułowy JavaScript (`js/features/*`) dla nawigacji, motywu, tabów, lightboxa, filtrów galerii, formularza i dynamicznego JSON-LD.
+- PWA: `site.webmanifest`, rejestracja Service Workera i fallback offline (`offline.html`).
+- Konfiguracja wdrożeniowa Netlify (`netlify/_headers`, `netlify/_redirects`).
 
-## Rozwój
+### Tech stack
+- HTML5
+- CSS3 + design tokens + PostCSS (`postcss-import`, `cssnano`)
+- Vanilla JavaScript (ES modules)
+- Node.js tooling (`sharp`, `chokidar`)
+- Netlify (nagłówki bezpieczeństwa i przekierowania)
 
-- Pliki statyczne – czysty HTML/CSS/JS, brak bundlera.
-- Skrypty ładują się jako `type="module"` + `defer`.
-- Jedyny plik CSS: `css/style.css`.
-- Entry JS: `js/script.js` (importuje moduły z `js/features`).
+### Struktura projektu (skrót)
+- `css/` — entry CSS + moduły
+- `js/` — entry JS + moduły feature
+- `assets/img/` — obrazy źródłowe i zoptymalizowane + favicon/OG/logo
+- `assets/seo/` — JSON-LD per podstrona
+- `pwa/` — service worker
+- `netlify/` — konfiguracja hostingu
 
-## Obrazy (placeholdery → podmiana)
+### Setup i uruchomienie
+1. Zainstaluj zależności:
+   ```bash
+   npm install
+   ```
+2. Zbuduj CSS i obrazy:
+   ```bash
+   npm run build
+   ```
+3. W środowisku lokalnym uruchom serwer statyczny (dowolny), np.:
+   ```bash
+   npx serve .
+   ```
 
-W projekcie użyte są placeholdery (data URI lub puste foldery). Aby podmienić obrazy na produkcyjne, dodaj pliki do folderów i uaktualnij ścieżki/sources w `<picture>`:
+### Build i wdrożenie
+- `npm run css:build` generuje `css/style.min.css`.
+- `npm run img:opt` generuje WebP/AVIF do `assets/img/optimized`.
+- Netlify wykorzystuje:
+  - `netlify/_headers` (CSP, HSTS, Referrer-Policy, itp.)
+  - `netlify/_redirects` (redirect `/index.html` → `/` oraz fallback 404).
 
-Zalecane nazewnictwo i rozmiary (przykłady; dopasuj do realnych kadrów):
+### Dostępność (A11y)
+- Skip link (`.skip-link`) obecny na podstronach.
+- Semantyczne sekcje (`header`, `nav`, `main`, `section`, `article`, `footer`).
+- Widoczne style focus (`:focus-visible`) i obsługa klawiatury dla nawigacji, tabów i lightboxa.
+- Obsługa `prefers-reduced-motion` w module `motion.css`.
+- Formularz kontaktowy ma walidację atrybutową + walidację JS i komunikaty błędów `aria-live`.
 
-- Hero: `assets/img/hero/hero-01-{480,720,960,1280,1600,2000}.{avif,webp,jpg}`
-- Rooms: `assets/img/rooms/room-0{1..8}-{480,720,960,1280}.{avif,webp,jpg}`
-- Offers: `assets/img/offers/offer-0{1..6}-{480,720,960}.{avif,webp,jpg}`
-- Gallery: `assets/img/gallery/gallery-0{1..12}-{480,720,960,1280}.{avif,webp,jpg}`
-- UI/Ikony: `assets/img/ui/icon-192.png`, `assets/img/ui/icon-512.png`, favicons (PNG/SVG).
+### SEO
+- Każda podstrona ma `title`, `meta description`, `canonical`, `og:*`, `twitter:*`, `robots`.
+- JSON-LD jest dostarczane jako fallback inline + aktualizacja z plików `assets/seo/*.json`.
+- Dostępne: `robots.txt` i `sitemap.xml`.
 
-W HTML zadbaj o:
+### Wydajność
+- Obrazy realizowane przez `<picture>` z AVIF/WebP + JPEG fallback.
+- Atrybuty `loading="lazy"` i `decoding="async"` na większości obrazów niekrytycznych.
+- Preload obrazu hero na stronie głównej.
+- Fonty lokalne (`woff2`) ładowane przez `@font-face` z `font-display: swap`.
 
-- LCP (hero) – `<picture>` z AVIF/WebP/JPG, `fetchpriority="high"`, jawne `width`/`height`.
-- Pozostałe obrazy – `loading="lazy"`, `decoding="async"`, jawne wymiary i sensowne opisy `alt`.
+### Roadmap
+- Zastąpienie konsolowych logów SW wzorcem telemetrycznym bez `console.*` w bundle runtime.
+- Opcjonalne cache busting assetów (hashing nazw plików) przy wdrożeniu.
+- Rozszerzenie automatycznych testów statycznych (link check + a11y lint).
+- Dalsze dopracowanie krytycznej ścieżki renderowania (critical CSS).
+- Wzmocnienie strategii cache PWA dla obrazów o wysokiej wadze.
 
-## Tryb kolorów (Light/Dark/Auto)
+### Licencja
+MIT
 
-- Przycisk w nagłówku przełącza cykl: Jasny → Ciemny → Auto.
-- Preferencja zapisywana w `localStorage` (`th_pref`).
-- `Auto` synchronizuje się z `prefers-color-scheme`.
+---
 
-## Dostępność (A11y)
+## EN
 
-- Skip link, poprawne role/aria, widoczny focus, kontrasty AA.
-- Semantyka: header/nav/main/section/article/figure/figcaption/footer.
-- Nawigacja mobilna z aria-controls/expanded i trapowaniem fokusu.
-- Galeria zawiera dostępny lightbox (`role="dialog"`, obsługa klawiatury, Esc, overlay).
+### Project overview
+Production-oriented front-end portfolio project for the hospitality domain, implemented as a multi-page website in plain HTML, CSS, and JavaScript. It includes a homepage, offer pages, gallery, contact page, and legal pages.
 
-## PWA
+### Key features
+- Multi-page architecture: `index.html`, `rooms.html`, `offers.html`, `gallery.html`, `contact.html`, `onas.html`, legal pages, plus `404.html` and `offline.html`.
+- Modular CSS built around design tokens (`css/modules/tokens.css`) and layer separation: base/layout/components/sections/utilities/themes/motion/print.
+- BEM-oriented component naming (e.g. `site-header__inner`, `room-card__img`, `gallery-cats__link`).
+- Modular JavaScript (`js/features/*`) for navigation, theme switching, tabs, lightbox, gallery filters, forms, and dynamic JSON-LD.
+- PWA setup: `site.webmanifest`, Service Worker registration, and offline fallback (`offline.html`).
+- Netlify deployment configuration (`netlify/_headers`, `netlify/_redirects`).
 
-- `site.webmanifest` (tymczasowe ikony jako data URI – zalecana podmiana na PNG 192/512).
-- `pwa/service-worker.js`:
-  - cache-first dla statyków (CSS/JS/manifest)
-  - network-first dla HTML
-  - fallback `offline.html`
+### Tech stack
+- HTML5
+- CSS3 + design tokens + PostCSS (`postcss-import`, `cssnano`)
+- Vanilla JavaScript (ES modules)
+- Node.js tooling (`sharp`, `chokidar`)
+- Netlify (security headers and redirects)
 
-## Netlify
+### Structure overview (short)
+- `css/` — CSS entry + modules
+- `js/` — JS entry + feature modules
+- `assets/img/` — source and optimized images + favicon/OG/logo
+- `assets/seo/` — JSON-LD per page
+- `pwa/` — service worker
+- `netlify/` — hosting configuration
 
-- `_headers` – nagłówki bezpieczeństwa (CSP, nosniff, referrer-policy, permissions-policy).
-- `_redirects` – uproszczenie ścieżek do `index.html` (200 SPA fallback).
+### Setup & run
+1. Install dependencies:
+   ```bash
+   npm install
+   ```
+2. Build CSS and images:
+   ```bash
+   npm run build
+   ```
+3. Run any static local server, e.g.:
+   ```bash
+   npx serve .
+   ```
 
-## Uruchomienie lokalne
+### Build & deployment notes
+- `npm run css:build` builds `css/style.min.css`.
+- `npm run img:opt` generates WebP/AVIF into `assets/img/optimized`.
+- Netlify uses:
+  - `netlify/_headers` (CSP, HSTS, Referrer-Policy, etc.)
+  - `netlify/_redirects` (`/index.html` → `/` and 404 fallback).
 
-To statyczny projekt – wystarczy dowolny serwer plików (np. `npx http-server .`).
+### Accessibility notes
+- Skip link (`.skip-link`) is present across pages.
+- Semantic landmarks are used (`header`, `nav`, `main`, `section`, `article`, `footer`).
+- Visible focus styles (`:focus-visible`) and keyboard support for nav, tabs, and lightbox.
+- `prefers-reduced-motion` handling is included in `motion.css`.
+- Contact form includes native attributes + JS validation with `aria-live` error feedback.
 
-## Kryteria odbioru – stan
+### SEO notes
+- Each page includes `title`, `meta description`, `canonical`, `og:*`, `twitter:*`, and `robots`.
+- JSON-LD is delivered via inline fallback + runtime updates from `assets/seo/*.json`.
+- `robots.txt` and `sitemap.xml` are included.
 
-- [x] Struktura katalogów i plików utworzona.
-- [x] CSS/JS w jednym entry, moduły JS w `/features`.
-- [x] Podstrony ukończone i spięte.
-- [x] Tryb Light/Dark/Auto z pamięcią pref.
-- [x] LCP hero; reszta lazy; minimalny CLS (wymiary mediów).
-- [x] A11y i RWD (320–1440+).
-- [x] PWA (SW + offline fallback). Ikony – podmień na PNG.
-- [x] Netlify + SEO pliki (`sitemap.xml`, `robots.txt`).
+### Performance notes
+- Images use `<picture>` with AVIF/WebP and JPEG fallback.
+- `loading="lazy"` and `decoding="async"` are used for most non-critical images.
+- Hero image preload is defined on the homepage.
+- Local `woff2` fonts are loaded via `@font-face` with `font-display: swap`.
+
+### Roadmap
+- Replace runtime SW console logging with non-console diagnostics.
+- Add optional cache-busting strategy (hashed assets) for deployment.
+- Extend automated static checks (link checking + accessibility linting).
+- Continue refining critical render path (critical CSS strategy).
+- Improve PWA caching strategy for heavy visual assets.
+
+### License
+MIT

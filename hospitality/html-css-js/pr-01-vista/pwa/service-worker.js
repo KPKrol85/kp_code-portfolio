@@ -1,6 +1,6 @@
 
 
-const CACHE_VERSION = "v1.1.0";
+const CACHE_VERSION = "v1.2.0";
 const STATIC_CACHE = `th-static-${CACHE_VERSION}`;
 const HTML_CACHE = `th-html-${CACHE_VERSION}`;
 const STATIC_ASSETS = [
@@ -9,11 +9,14 @@ const STATIC_ASSETS = [
   "offers.html",
   "gallery.html",
   "contact.html",
+  "onas.html",
   "regulamin.html",
   "polityka-prywatnosci.html",
   "cookies.html",
+  "404.html",
   "offline.html",
   "css/style.css",
+  "js/theme-init.js",
   "js/script.js",
   "js/features/nav.js",
   "js/features/theme.js",
@@ -25,6 +28,7 @@ const STATIC_ASSETS = [
   "js/features/compact-header.js",
   "js/features/aria-current.js",
   "js/features/seo-jsonld.js",
+  "js/features/logger.js",
   "site.webmanifest",
 ];
 
@@ -73,4 +77,3 @@ self.addEventListener("fetch", (event) => {
     })
   );
 });
-
