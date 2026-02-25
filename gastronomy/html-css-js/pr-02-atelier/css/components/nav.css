@@ -15,9 +15,8 @@
 .nav__list a,
 .nav__list a:hover,
 .nav__list a:focus-visible {
-  text-decoration: none !important;
+  text-decoration: none;
 }
-
 .nav-toggle {
   display: inline-flex;
   flex-direction: column;
