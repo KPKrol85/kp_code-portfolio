@@ -91,6 +91,10 @@ export function initLightbox() {
   const pageSections = Array.prototype.slice.call(document.querySelectorAll("header, main, footer"));
 
   function setPageInert(isInert) {
+    /*
+     Hide and inactivate background landmarks while dialog is open.
+     This keeps assistive tech and keyboard focus inside the lightbox context.
+    */
     pageSections.forEach(function (el) {
       if (!el) return;
       if (isInert) {
@@ -112,6 +116,7 @@ export function initLightbox() {
 
   function getCaptionFromLink(link) {
     if (!link) return "";
+    /* Caption source priority keeps content authoring flexible across gallery cards. */
     const dataCap = link.getAttribute("data-lb-caption");
     if (dataCap) return dataCap.trim();
     const fc = link.querySelector("figcaption");
@@ -139,6 +144,7 @@ export function initLightbox() {
     if (liveEl) liveEl.textContent = "Obraz " + (index + 1) + " z " + group.length;
   }
   function prefetch(i) {
+    /* Preload neighboring slides for smoother next/previous navigation. */
     const n = group[i + 1];
     const p = group[i - 1];
     [n, p].forEach((a) => {
@@ -163,6 +169,10 @@ export function initLightbox() {
     requestAnimationFrame(placeArrows);
   }
   function openFromLink(a) {
+    /*
+     Build a logical group from data-lightbox and remember trigger
+     so focus can be restored to the invoking element on close.
+    */
     lastTrigger = a;
     const gName = a.getAttribute("data-lightbox") || "gallery";
     group = Array.prototype.slice.call(document.querySelectorAll(".gallery__link" + (gName ? '[data-lightbox="' + gName + '"]' : "")));
@@ -196,6 +206,7 @@ export function initLightbox() {
 
   document.addEventListener("keydown", (e) => {
     if (!html.classList.contains("lb-open")) return;
+    /* Global keyboard shortcuts active only while the dialog is open. */
     if (e.key === "Escape") return void closeLightbox();
     if (e.key === "ArrowRight" || e.key === "PageDown") return void next();
     if (e.key === "ArrowLeft" || e.key === "PageUp") return void prev();
@@ -242,6 +253,7 @@ export function initLightbox() {
       const dx = t.clientX - touchStartX;
       const dy = t.clientY - touchStartY;
       const dt = Date.now() - touchStartTime;
+      /* Horizontal swipe with distance/time threshold to avoid accidental triggers. */
       if (Math.abs(dx) > 40 && Math.abs(dx) > Math.abs(dy) && dt < 600) {
         if (dx < 0) {
           next();
@@ -259,6 +271,7 @@ export function initLightbox() {
 
   (function initTopZoneHover() {
     let raf = null;
+    /* Top-zone hover is suppressed in fullscreen to avoid redundant UI toggles. */
     function updateTopZone(y) {
       if (document.fullscreenElement) return;
       const threshold = 96;
@@ -276,6 +289,7 @@ export function initLightbox() {
 
   overlay.addEventListener("keydown", (e) => {
     if (e.key !== "Tab") return;
+    /* Trap Tab navigation inside dialog controls. */
     const focusables = overlay.querySelectorAll('button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])');
     if (!focusables.length) return;
     const first = focusables[0];
@@ -301,6 +315,7 @@ export function initLightbox() {
   });
 
   document.addEventListener("click", (e) => {
+    /* Delegated opener supports dynamically rendered gallery links. */
     const a = e.target.closest(".gallery__link");
     if (!a) return;
     const href = a.getAttribute("href");

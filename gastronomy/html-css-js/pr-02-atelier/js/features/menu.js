@@ -270,6 +270,10 @@ export function initMenuPage() {
     var term = "";
 
     function apply() {
+      /*
+       Filtering is computed client-side from normalized text + semantic tags.
+       Both criteria are combined to keep search and category filters in sync.
+      */
       var visibleCount = 0;
       var nTerm = normalize(term);
       cards.forEach(function (card) {
@@ -293,6 +297,7 @@ export function initMenuPage() {
 
     var debounceTimer = null;
     function debounced(fn, delay) {
+      /* Shared debounce for input-driven filtering to reduce reflow on rapid typing. */
       return function () {
         var args = arguments;
         clearTimeout(debounceTimer);
@@ -384,6 +389,7 @@ export function initMenuPage() {
       a.setAttribute("aria-label", "Kopiuj link do tego elementu");
       a.addEventListener("click", function (e) {
         e.preventDefault();
+        /* Prefer Clipboard API, then fall back to execCommand for older environments. */
         var url = location.origin + location.pathname + "#" + id;
         if (navigator.clipboard && navigator.clipboard.writeText) {
           navigator.clipboard.writeText(url).then(function () {

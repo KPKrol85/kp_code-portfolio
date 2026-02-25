@@ -11,6 +11,10 @@ function isNavMobile() {
 
 function syncNavA11y(nav, expanded) {
   if (!nav) return;
+  /*
+   On desktop the nav stays in the normal tab order.
+   On mobile, aria-hidden/inert tracks drawer state to prevent focus leakage.
+  */
   if (!isNavMobile()) {
     nav.removeAttribute("aria-hidden");
     nav.removeAttribute("inert");
@@ -39,6 +43,10 @@ function closeNavDropdowns(scope) {
 function lockScroll() {
   if (scrollLockActive) return;
   scrollLockActive = true;
+  /*
+   Lock body scroll without visual jump by preserving current Y offset.
+   Scrollbar compensation avoids horizontal layout shift when the drawer opens.
+  */
   scrollLockY = window.scrollY || window.pageYOffset || 0;
   var scrollbarGap = window.innerWidth - document.documentElement.clientWidth;
   document.body.style.position = "fixed";
@@ -117,6 +125,10 @@ export function initNav() {
 
   function attachOutsideListener() {
     if (outsideHandler) return;
+    /*
+     Capture pointerdown early so outside taps close the drawer consistently
+     before nested handlers can stop propagation.
+    */
     outsideHandler = function (event) {
       if (!getMenuOpen()) return;
       var target = event.target;
@@ -136,6 +148,10 @@ export function initNav() {
 
   function attachFocusTrap() {
     if (trapHandler) return;
+    /*
+     Keep keyboard focus inside the mobile drawer while it is open.
+     This preserves a predictable tab sequence for keyboard/screen-reader users.
+    */
     trapHandler = function (event) {
       if (!getMenuOpen()) return;
       if (event.key !== "Tab") return;
@@ -162,6 +178,10 @@ export function initNav() {
 
   function setMenuState(open, options) {
     if (!navToggle || !nav) return;
+    /*
+     Single state transition point for drawer lifecycle:
+     ARIA flags, scroll lock, focus trap, outside click, and focus restore.
+    */
     if (!isNavMobile()) {
       setMenuAria(navToggle, false);
       isMenuOpen = false;
@@ -202,6 +222,7 @@ export function initNav() {
     dropdownToggles.forEach(function (toggle) {
       toggle.addEventListener("click", function (event) {
         if (!isNavMobile()) return;
+        /* Mobile dropdowns behave like an accordion: one expanded item at a time. */
         event.preventDefault();
         event.stopPropagation();
         var item = toggle.closest(".nav__item--dropdown");
@@ -222,6 +243,10 @@ export function initNav() {
       }
     });
     window.addEventListener("resize", function () {
+      /*
+       Resize can move across mobile/desktop breakpoints.
+       Normalize nav state so hidden mobile-only state does not persist on desktop.
+      */
       syncNavA11y(nav, navToggle && navToggle.getAttribute("aria-expanded") === "true");
       if (!isNavMobile()) {
         closeNavDropdowns(nav);
@@ -239,6 +264,10 @@ export function initNav() {
 
   document.addEventListener("keyup", function (event) {
     if (event.key !== "Escape") return;
+    /*
+     Escape closes the highest-priority nav surface first:
+     drawer if open, otherwise any expanded dropdown.
+    */
     if (getMenuOpen()) {
       setMenuState(false);
       return;
@@ -251,6 +280,10 @@ export function initNav() {
   if (header) {
     var isTicking = false;
     var lastState = null;
+    /*
+     Scroll-driven header state is rAF-throttled to avoid layout thrash,
+     and header offset is recomputed when size/transition changes.
+    */
     var updateHeader = function () {
       var shouldShrink = window.scrollY > 8;
       if (shouldShrink !== lastState) {
