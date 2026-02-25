@@ -34,6 +34,7 @@ Atelier No.02 to wielostronicowa strona front-end restauracji fine dining przygo
 2. `npm run dev:server`
 3. `npm run build`
 4. `npm run check`
+5. QA release: `npm run check:server:prod` (po build, bez ignorowania `.min.css/.min.js`).
 
 ### Build i deployment
 - Konfiguracja deploymentu: `_headers`, `_redirects`, `manifest.webmanifest`.
@@ -100,6 +101,7 @@ Atelier No.02 is a multi-page fine-dining restaurant front-end website built as 
 2. `npm run dev:server`
 3. `npm run build`
 4. `npm run check`
+5. Release QA: `npm run check:server:prod` (after build, without ignoring `.min.css/.min.js`).
 
 ### Build & Deployment Notes
 - Deployment config includes `_headers`, `_redirects`, and `manifest.webmanifest`.

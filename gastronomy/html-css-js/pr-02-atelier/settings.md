@@ -42,9 +42,19 @@ Strategia projektu:
 - when to use: po zmianach markup i przed release.
 
 ### `check:links`
+- command: `npm run check:links:dev`
+- what it does: alias na developerski wariant link-checka ignorujący referencje do `.min.css/.min.js`.
+- when to use: dla kompatybilności ze starszymi workflow lub ręcznie, gdy potrzebny jest szybki skrót.
+
+### `check:links:dev`
+- command: `linkinator http://127.0.0.1:5173/ http://127.0.0.1:5173/about.html http://127.0.0.1:5173/menu.html http://127.0.0.1:5173/gallery.html http://127.0.0.1:5173/cookies.html http://127.0.0.1:5173/polityka-prywatnosci.html http://127.0.0.1:5173/regulamin.html http://127.0.0.1:5173/offline.html http://127.0.0.1:5173/thank-you.html http://127.0.0.1:5173/404.html --recurse --check-fragments --silent --concurrency 4 --timeout 10000 --retry --skip "^https://|\\.min\\.(css|js)(\\?.*)?$"`
+- what it does: sprawdza linki i fragmenty na lokalnym serwerze oraz pomija wyłącznie referencje do assetów `.min` (strategia dev).
+- when to use: codziennie w development, gdy projekt działa na nie-minifikowanych plikach.
+
+### `check:links:prod`
 - command: `linkinator http://127.0.0.1:5173/ http://127.0.0.1:5173/about.html http://127.0.0.1:5173/menu.html http://127.0.0.1:5173/gallery.html http://127.0.0.1:5173/cookies.html http://127.0.0.1:5173/polityka-prywatnosci.html http://127.0.0.1:5173/regulamin.html http://127.0.0.1:5173/offline.html http://127.0.0.1:5173/thank-you.html http://127.0.0.1:5173/404.html --recurse --check-fragments --silent --concurrency 4 --timeout 10000 --retry --skip "^https://"`
-- what it does: sprawdza linki i fragmenty na lokalnym serwerze.
-- when to use: po zmianach nawigacji, ścieżek i anchorów (najlepiej w wariancie odpowiadającym aktualnej strategii assetów).
+- what it does: sprawdza linki i fragmenty bez ignorowania `.min.css/.min.js`.
+- when to use: przed release/na CI po wygenerowaniu artefaktów build (`npm run build`).
 
 ### `check:a11y`
 - command: `pa11y-ci`
@@ -52,9 +62,14 @@ Strategia projektu:
 - when to use: po zmianach UI/CSS/HTML oraz przed publikacją.
 
 ### `check:server`
-- command: `cross-env WAIT_ON_TIMEOUT=60000 WAIT_ON_INTERVAL=250 start-server-and-test dev:server http-get://127.0.0.1:5173 "npm run check:links && npm run check:a11y"`
-- what it does: uruchamia serwer i wykonuje sekwencję testów linków oraz dostępności.
-- when to use: jako lokalny preflight quality gate.
+- command: `cross-env WAIT_ON_TIMEOUT=60000 WAIT_ON_INTERVAL=250 start-server-and-test dev:server http-get://127.0.0.1:5173 "npm run check:links:dev && npm run check:a11y"`
+- what it does: uruchamia serwer i wykonuje sekwencję testów linków (wariant dev-safe) oraz dostępności.
+- when to use: jako lokalny preflight quality gate w codziennej pracy.
+
+### `check:server:prod`
+- command: `cross-env WAIT_ON_TIMEOUT=60000 WAIT_ON_INTERVAL=250 start-server-and-test "npm run build && npm run dev:server" http-get://127.0.0.1:5173 "npm run check:links:prod"`
+- what it does: buduje assety produkcyjne, uruchamia serwer i wykonuje ścisły link-check wariantu produkcyjnego.
+- when to use: przed wdrożeniem lub w pipeline release, gdy trzeba zweryfikować linki razem z `.min` assetami.
 
 ### `check`
 - command: `npm run lint && npm run validate:html && npm run check:server`
