@@ -1,101 +1,118 @@
-# Front-End Audit - Atelier No.02
+# AUDIT.md
 
 ## 1. Executive summary
-Projekt ma dojrzałą strukturę front-endową (modułowe CSS, podział JS na feature modules, spójna semantyka stron), ale obecnie nie przechodzi wymagań WCAG AA z powodu powtarzalnych błędów kontrastu. Strategia assetów minifikowanych (`.min.css`, `.min.js`) została potraktowana jako świadoma decyzja build/deploy i nie została zaklasyfikowana jako błąd krytyczny w środowisku deweloperskim.
+- Zakres: pełny przegląd projektu `C:\Users\KPKro\MY FILES\active-work\pr-02-atelier` (HTML/CSS/JS, assets, config, deploy files, package scripts).
+- Wynik kontroli automatycznych:
+- `npm run lint` - pass.
+- `npm run validate:html` - pass.
+- `npm run check:links:dev` - pass (`Successfully scanned 492 links`).
+- `npm run check:a11y` - pass (`10/10 URLs passed`, WCAG2AA runner `htmlcs`).
+- Architektura CSS jest modularna i spójna z podziałem `base/layout/components/pages` oraz tokenami w `css/base/tokens.css`.
+- Nie stwierdzono krytycznych runtime blockerów w lokalnym środowisku deweloperskim.
+- `netlify.toml` not detected in project.
+- `vercel.json` not detected in project.
+- `.github` not detected in project.
 
-## 2. P0 - Critical risks
-
-### P0.1 - Niezgodność kontrastu WCAG AA na kluczowych podstronach
-- Impact:
-  - realna bariera dostępności (WCAG2AA fail),
-  - ryzyko odrzutu audytów accessibility,
-  - pogorszona czytelność treści stopki i elementów dekoracyjnych.
-- Evidence:
-  - `npm run check:a11y` (pa11y-ci) -> fail na 8/10 URL: `/`, `/about.html`, `/menu.html`, `/gallery.html`, `/cookies.html`, `/polityka-prywatnosci.html`, `/regulamin.html`, `/thank-you.html`.
-  - `css/base/tokens.css:134` -> `--footer-text: #000000;` (dark theme)
-  - `css/layout/footer.css:4` -> `color: var(--footer-text);`
-  - dodatkowo niskokontrastowe ikony gwiazdek w sekcji awards (`about.html`, raport pa11y).
-- Fix:
-  - podnieść kontrast tokenów tekstu dla dark theme (np. jasny `--footer-text`),
-  - skorygować kolor elementów `awards__icon` i zweryfikować wszystkie kombinacje tekst/tło,
-  - utrzymać pa11y jako quality gate przed publikacją.
-- Effort: `M`
+## 2. P0 — Critical risks
+- Not detected in project for audited local runtime.
 
 ## 3. Strengths
-- Czytelna architektura CSS: `base/`, `layout/`, `components/`, `pages/`.
-- Design tokens są centralnie utrzymywane w `css/base/tokens.css`.
-- JS ma modularny podział (`js/app`, `js/features`, `js/core`) i inicjalizację per-page (`js/app/init.js`).
-- Formularz kontaktowy ma poprawną strukturę (label/controls), walidację klienta, honeypot i fallback no-JS.
-- SEO baseline jest wdrożony konsekwentnie: canonical, OG, robots meta, JSON-LD (tam gdzie użyte), `robots.txt`, `sitemap.xml`.
-- Link/anchor scan lokalny: brak uszkodzonych relatywnych ścieżek i anchorów po wyłączeniu intencjonalnych referencji `.min`.
+- Modular CSS architecture and tokenization are implemented and consistently imported from a single entry point.
+- Evidence: `css/style.css:1-25`, `css/base/tokens.css:1-152`.
+- Accessibility baseline is solid: skip link, keyboard navigation, focus-visible handling, aria state synchronization, no-JS fallback.
+- Evidence: `contact.html:80`, `js/features/nav.js:73-77`, `js/features/nav.js:266-273`, `css/base/base.css:3-12`, `css/components/states.css:37-48`.
+- Automated quality gates are present and operational.
+- Evidence: `package.json:30-38`, `.pa11yci`, `.htmlvalidate.json`.
+- Form implementation includes Netlify handling and honeypot anti-spam.
+- Evidence: `contact.html:187-188`, `contact.html:192`, `contact.html:217-225`.
+- Asset delivery strategy covers responsive images (AVIF/WEBP/JPG) and explicit intrinsic dimensions.
+- Evidence: image scan over all HTML files returned `missing width/height=0`.
 
-## 4. P1 - 5 improvements worth doing next
+## 4. P1 — 5 improvements worth doing next
+1. Title: Scope COEP policy to avoid third-party embed breakage
+- Reason: Global `Cross-Origin-Embedder-Policy: require-corp` can block cross-origin embeds such as Google Maps iframe in production.
+- Evidence: `_headers:9`, `contact.html:250-251`.
+- Suggested improvement: Narrow COEP to selected routes/assets that require it, or relax policy on pages that intentionally embed external iframes.
 
-### 1. Dostosować walidację HTML do przyjętego standardu DOCTYPE
-- Reason:
-  - `html-validate` failuje na `index.html:1` (`DOCTYPE should be uppercase`).
-- Suggested improvement:
-  - zmienić `<!doctype html>` na `<!DOCTYPE html>` albo świadomie skorygować regułę `doctype-style` w konfiguracji walidatora.
+2. Title: Align Service Worker precache list with runtime asset strategy
+- Reason: SW install list pre-caches `.min` assets while pages load non-min runtime assets (`style.css`, `script.js`), creating maintenance drift.
+- Evidence: `sw.js:12-13`, `index.html:88`, `index.html:833`.
+- Suggested improvement: Keep precache list synchronized with actually referenced production assets, generated during build.
 
-### 2. Uzupełnić `sitemap.xml` o indeksowalne strony
-- Reason:
-  - `contact.html` jest indexable (`contact.html:12` -> `index,follow`), ale nie występuje w `sitemap.xml`.
-- Suggested improvement:
-  - dodać `https://gastronomy-project-02.netlify.app/contact.html` do mapy witryny i utrzymywać sitemapę automatycznie w release process.
+3. Title: Remove remaining `!important` from nav link decoration
+- Reason: `!important` increases selector coupling and complicates future component overrides.
+- Evidence: `css/components/nav.css:18`.
+- Suggested improvement: replace with explicit scope/order strategy in nav component styles.
 
-### 3. Naprawić niespójność tokenów kolorów (`--c-accent`, `--c-muted`)
-- Reason:
-  - użycie niezdefiniowanych tokenów obniża przewidywalność stylów i utrudnia utrzymanie.
-  - dowody: `css/pages/home.css:152`, `css/pages/home.css:299`, `css/layout/footer.css:225`.
-- Suggested improvement:
-  - zdefiniować tokeny w `tokens.css` albo zastąpić je istniejącymi zmiennymi (`--burgundy`, `--text-muted`, `--c-ink`).
+4. Title: Add `contact.html` explicitly to link-check seed URLs
+- Reason: Link checks currently rely on crawl reachability for `contact.html`; explicit seeding gives deterministic coverage.
+- Evidence: `package.json:33-34` (seed list includes many pages but not direct `contact.html`).
+- Suggested improvement: append `http://127.0.0.1:5173/contact.html` to `check:links:dev` and `check:links:prod` seeds.
 
-### 4. Usunąć duplikację stylów animacji reveal
-- Reason:
-  - reguły `.reveal` są obecne jednocześnie w `css/components/animations.css` i `css/pages/home.css`, co zwiększa ryzyko regresji.
-- Suggested improvement:
-  - pozostawić jeden canonical source (komponentowy), a duplikat w `home.css` usunąć.
+5. Title: Unify SEO metadata policy for utility pages
+- Reason: Utility pages use inconsistent SEO/OpenGraph structure (e.g., 404 has no canonical/OG; thank-you has canonical but no OG URL).
+- Evidence: `404.html:1-19`, `thank-you.html:7-17`.
+- Suggested improvement: define a clear policy for utility pages (minimal noindex metadata set) and apply consistently.
 
-### 5. Urealnić skrypt link check pod strategię non-min dev
-- Reason:
-  - obecny `check:links` raportuje false-positive w dev przez referencje `.min`, mimo że strategia zakłada ich deploy-stage obecność.
-- Suggested improvement:
-  - dodać osobny wariant link-check dla dev (ignorujący `.min`) i produkcyjny wariant uruchamiany po `npm run build`.
+## 5. P2 — Minor refinements
+- `X-XSS-Protection` header is legacy/deprecated in modern browsers.
+- Evidence: `_headers:4`.
+- Optional refinement: remove legacy header and rely on CSP + modern browser protections.
 
-## 5. P2 - Minor refinements
-- Ujednolicić język komunikatów no-JS (część stron ma komunikat po polsku, `contact.html` używa komunikatu po angielsku).
-- Dodać krótkie komentarze techniczne przy bardziej złożonych blokach JS (np. focus trap w `nav.js`) dla szybszego onboardingu.
-- Rozważyć uporządkowanie drobnych redundancji deklaracji stylów linków w `nav.css`/`footer.css`.
+- Service worker registration logs warning with emoji-formatted message in production console.
+- Evidence: `js/bootstrap.js:34`.
+- Optional refinement: standardize logging format for production observability.
 
-## 6. Future enhancements - 5 realistic ideas
-1. Dodać CI workflow (GitHub Actions) uruchamiający `npm run check` na PR.
-2. Włączyć automatyczny audyt Lighthouse CI z budżetami wydajności.
-3. Dodać e2e testy klawiaturowe (menu mobilne, lightbox, modal legalny) w Playwright.
-4. Wygenerować sitemapę i robots z jednego źródła danych przy buildzie.
-5. Rozszerzyć monitorowanie jakości o snapshoty wizualne (light/dark + breakpoints).
+- `manifest.webmanifest` includes duplicated icon sources (same file for `any` and `maskable`).
+- Evidence: `manifest.webmanifest:16-37`.
+- Optional refinement: keep this only if intentional; otherwise reduce duplication in manifest maintenance.
 
-## 7. Compliance checklist (pass/fail)
-- headings valid: **PASS**
-- no broken links (excluding intentional .min strategy): **PASS**
-- no console.log: **PASS**
-- aria attributes valid: **PASS**
-- images have width/height: **PASS**
-- no-JS baseline usable: **PASS**
-- sitemap present (if expected): **PASS**
-- robots present: **PASS**
-- OG image exists: **PASS**
-- JSON-LD valid: **PASS**
+## 6. Future enhancements — 5 realistic ideas
+1. Add CI workflow (GitHub Actions or equivalent) running `npm run check` and `npm run check:server:prod` on pull requests.
+2. Add automated screenshot/visual regression checks for light/dark themes and mobile/desktop breakpoints.
+3. Generate sitemap and JSON-LD validation reports in CI to prevent metadata drift.
+4. Introduce build-time generation of SW precache manifest to avoid manual cache list maintenance.
+5. Add performance budget checks (Lighthouse CI or equivalent) for LCP/CLS/INP on core pages.
 
-## 8. Architecture Score (0-10)
-- BEM consistency: `8.2/10`
-- token usage: `7.2/10`
-- accessibility: `5.4/10`
-- performance: `7.4/10`
-- maintainability: `7.8/10`
+## 7. Compliance checklist (pass / fail)
+- headings valid: PASS
+- Evidence: heading-flow scan for all HTML files -> no level jumps; every page has one `h1`.
 
-**Overall Architecture Score: `7.2/10`**
+- no broken links (excluding intentional .min strategy): PASS
+- Evidence: `npm run check:links:dev` -> `Successfully scanned 492 links`.
 
-## 9. Senior rating (1-10)
-**Senior rating: `7.3/10`**
+- no console.log: PASS
+- Evidence: static search `console.log` -> not detected in project source.
 
-Architektura i implementacja są na poziomie solidnego projektu portfolio produkcyjnego, ale aktualnie końcową ocenę obniża krytyczny obszar dostępności (kontrast WCAG AA) oraz kilka istotnych niespójności utrzymaniowych.
+- aria attributes valid: PASS
+- Evidence: `npm run check:a11y` -> 10/10 URLs passed; nav and dropdown state sync in `js/features/nav.js`.
+
+- images have width/height: PASS
+- Evidence: HTML scan -> `missing width/height=0` for all pages.
+
+- no-JS baseline usable: PASS
+- Evidence: no-JS fallback present on all pages; JS-enhanced nav degrades to visible nav when JS is absent (`html:not(.js) .nav-toggle`).
+
+- sitemap present (if expected): PASS
+- Evidence: `sitemap.xml` present and includes indexable core pages including `contact.html`.
+
+- robots present: PASS
+- Evidence: `robots.txt` present; page-level robots meta present across audited HTML.
+
+- OG image exists: PASS
+- Evidence: OG image path configured on indexable content pages and file exists in assets.
+
+- JSON-LD valid: PASS
+- Evidence: JSON-LD parse check passed on pages where JSON-LD is present; utility pages without JSON-LD are not detected as schema pages.
+
+## 8. Architecture Score (0–10)
+- BEM consistency: 8.6/10
+- Token usage: 8.8/10
+- Accessibility: 9.1/10
+- Performance: 8.4/10
+- Maintainability: 8.2/10
+- Total Architecture Score: 8.6/10
+
+## 9. Senior rating (1–10)
+- Senior rating: 8.6/10
+- Justification: Projekt jest spójny architektonicznie, ma działające quality gates i bardzo dobry poziom dostępności technicznej. Główne obszary do domknięcia dotyczą polityk deploy/security headerów oraz kilku punktów utrzymaniowych (precache alignment, metadata consistency, redukcja `!important`).
