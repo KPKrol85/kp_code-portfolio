@@ -18,6 +18,8 @@
   --black: #000000;
   --text-muted: rgba(27, 23, 21, 0.86);
   --text-subtle: rgba(27, 23, 21, 0.78);
+  --c-accent: var(--burgundy);
+  --c-muted: var(--text-muted);
   /* Surface */
   --surface-overlay: rgba(255, 253, 248, 0.96);
   --c-surface-1: var(--surface-overlay);
