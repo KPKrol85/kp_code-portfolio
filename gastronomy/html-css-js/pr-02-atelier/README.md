@@ -3,64 +3,63 @@
 ## Wersja Polska
 
 ### Przegląd projektu
-Atelier No.02 to wielostronicowa strona front-end restauracji fine dining, przygotowana jako projekt portfolio. Projekt działa jako statyczny serwis HTML/CSS/JS z konfiguracją pod hosting typu Netlify.
+Atelier No.02 to wielostronicowa strona front-end restauracji fine dining przygotowana jako projekt portfolio. Implementacja opiera się na HTML/CSS/JS z modularną architekturą i konfiguracją pod statyczny deployment.
 
 ### Kluczowe funkcje (na podstawie kodu)
-- Wielostronicowy serwis: `index.html`, `about.html`, `menu.html`, `gallery.html`, `contact.html` oraz strony prawne i techniczne (`offline.html`, `404.html`, `thank-you.html`).
+- Wielostronicowy serwis: `index.html`, `about.html`, `menu.html`, `gallery.html`, `contact.html`, strony prawne oraz techniczne (`offline.html`, `404.html`, `thank-you.html`).
 - Responsywna nawigacja z menu mobilnym, dropdownami i obsługą klawiatury.
-- Przełącznik motywu jasny/ciemny z zapisem preferencji w `localStorage`.
-- Sekcja menu oparta o `data/menu.json` (render dynamiczny + filtrowanie + wyszukiwarka).
-- Galeria z lightboxem (nawigacja klawiaturą, fullscreen, swipe).
-- Formularz kontaktowy Netlify (`data-netlify="true"`, honeypot `bot-field`) z walidacją klienta.
-- PWA: `manifest.webmanifest` + `sw.js` + strona `offline.html`.
+- Przełącznik motywu jasny/ciemny z zapisem preferencji użytkownika.
+- Dynamiczne renderowanie sekcji menu z `data/menu.json` + filtrowanie i wyszukiwarka.
+- Galeria z lightboxem (klawiatura, fullscreen, swipe).
+- Formularz kontaktowy z integracją Netlify (`data-netlify="true"`, honeypot) i walidacją po stronie klienta.
+- PWA baseline: `manifest.webmanifest`, `sw.js`, ekran `offline.html`.
 
 ### Tech stack
 - HTML5
-- CSS (modułowa architektura: `base/`, `layout/`, `components/`, `pages/`)
+- CSS (modułowy podział `base/layout/components/pages`)
 - JavaScript (moduły ES)
-- Node.js tooling: PostCSS, esbuild, ESLint, html-validate, linkinator, pa11y-ci
+- Tooling: PostCSS, esbuild, ESLint, html-validate, linkinator, pa11y-ci
 
 ### Struktura projektu
 - `css/base` - tokeny, reset, baza, typografia
-- `css/layout` - layout globalny (header/footer/grid)
+- `css/layout` - layout globalny
 - `css/components` - komponenty i stany
-- `css/pages` - style specyficzne dla podstron
-- `js/app`, `js/features`, `js/core` - bootstrap, inicjalizacja i funkcje domenowe
+- `css/pages` - style podstron
+- `js/app`, `js/features`, `js/core` - inicjalizacja i logika funkcjonalna
 - `assets` - obrazy, fonty, ikony
 - `data/menu.json` - dane menu
 
 ### Setup i uruchomienie
 1. `npm install`
-2. Dev server: `npm run dev:server`
-3. Build assets: `npm run build`
-4. Pełna weryfikacja: `npm run check`
+2. `npm run dev:server`
+3. `npm run build`
+4. `npm run check`
 
 ### Build i deployment
-- Konfiguracja deploymentu zawiera `_headers` i `_redirects`.
-- Redirect `/* /404.html 404` jest skonfigurowany.
-- Manifest jest podpięty przez `<link rel="manifest" href="manifest.webmanifest">`.
-- Rejestracja Service Workera jest wykonywana poza localhost (`js/bootstrap.js`).
+- Konfiguracja deploymentu: `_headers`, `_redirects`, `manifest.webmanifest`.
+- Rejestracja Service Workera jest ograniczona do środowisk innych niż localhost (`js/bootstrap.js`).
+- Strategia assetów: pliki `.min.css/.min.js` są build-stage assets i nie są wymagane jako warunek działania środowiska deweloperskiego.
 
 ### Dostępność
-- Skip links są obecne na stronach.
-- Nawigacja mobilna ma `aria-expanded`, `aria-controls` i focus trap.
-- Występują błędy kontrastu WCAG2AA wykryte przez `pa11y-ci` (szczegóły w `AUDIT.md`).
+- Skip links, focus styles, `aria-expanded`, `aria-current` i obsługa klawiatury są zaimplementowane.
+- `prefers-reduced-motion` jest obsłużone w JS/CSS.
+- W audycie WCAG2AA wykryto realne błędy kontrastu (szczegóły: `AUDIT.md`).
 
 ### SEO
-- Strony mają `meta description`, `canonical`, OpenGraph oraz `twitter:*`.
-- JSON-LD występuje na stronach głównych i prawnych; nie występuje na `404.html`, `offline.html`, `thank-you.html`.
+- Strony mają `meta description`, canonical, OpenGraph i `robots` meta.
+- JSON-LD występuje na stronach głównych/prawnych.
 - `robots.txt` i `sitemap.xml` są obecne.
 
 ### Wydajność
-- Obrazy używają wariantów AVIF/WEBP/JPG i lazy loading w sekcjach treści.
-- Fonty są preloadowane i ustawione z `font-display: swap`.
-- W projekcie występuje niespójność assetów minifikowanych (`style.min.css`) względem referencji SW/offline (opis w `AUDIT.md`).
+- Obrazy wykorzystują warianty AVIF/WEBP/JPG, lazy loading i deklaracje `width`/`height`.
+- Fonty są preloadowane, a `@font-face` używa `font-display: swap`.
+- Kod zawiera podstawowe mechanizmy progressive enhancement i degradacji bez JS.
 
 ### Roadmap
-- Naprawa spójności ścieżek build/runtime dla offline i SW.
-- Korekta kontrastu stopki i elementów dekoracyjnych (WCAG AA).
-- Ujednolicenie źródeł stylów animacji (`animations.css` vs `home.css`).
-- Rozszerzenie `sitemap.xml` o indeksowalne strony (np. `contact.html`).
+- Domknięcie kontrastu WCAG AA.
+- Ujednolicenie tokenów kolorystycznych i usunięcie niespójności zmiennych.
+- Redukcja duplikacji reguł stylów animacji.
+- Rozszerzenie `sitemap.xml` o wszystkie indeksowalne podstrony.
 
 ### Licencja
 MIT (zgodnie z `package.json`).
@@ -70,64 +69,63 @@ MIT (zgodnie z `package.json`).
 ## English Version
 
 ### Project Overview
-Atelier No.02 is a multi-page front-end fine-dining restaurant website built as a portfolio project. It runs as a static HTML/CSS/JS site with deployment-oriented configuration for Netlify-like hosting.
+Atelier No.02 is a multi-page fine-dining restaurant front-end website built as a portfolio project. The implementation is based on HTML/CSS/JS with modular architecture and static deployment configuration.
 
 ### Key Features (from implemented code)
-- Multi-page site: `index.html`, `about.html`, `menu.html`, `gallery.html`, `contact.html`, plus legal/technical pages (`offline.html`, `404.html`, `thank-you.html`).
+- Multi-page site: `index.html`, `about.html`, `menu.html`, `gallery.html`, `contact.html`, plus legal and technical pages (`offline.html`, `404.html`, `thank-you.html`).
 - Responsive navigation with mobile menu, dropdowns, and keyboard handling.
-- Light/dark theme toggle with persisted preference in `localStorage`.
-- Menu section powered by `data/menu.json` (dynamic rendering + filtering + search).
-- Gallery lightbox (keyboard navigation, fullscreen, swipe).
-- Netlify contact form (`data-netlify="true"`, honeypot `bot-field`) with client-side validation.
-- PWA setup: `manifest.webmanifest` + `sw.js` + `offline.html`.
+- Light/dark theme toggle with persisted user preference.
+- Dynamic menu rendering from `data/menu.json` with filtering and search.
+- Gallery lightbox (keyboard, fullscreen, swipe).
+- Netlify-integrated contact form (`data-netlify="true"`, honeypot) with client-side validation.
+- PWA baseline: `manifest.webmanifest`, `sw.js`, `offline.html`.
 
 ### Tech Stack
 - HTML5
-- CSS (modular architecture: `base/`, `layout/`, `components/`, `pages/`)
+- CSS (modular split across `base/layout/components/pages`)
 - JavaScript (ES modules)
-- Node.js tooling: PostCSS, esbuild, ESLint, html-validate, linkinator, pa11y-ci
+- Tooling: PostCSS, esbuild, ESLint, html-validate, linkinator, pa11y-ci
 
 ### Structure Overview
 - `css/base` - tokens, reset, base, typography
-- `css/layout` - global layout (header/footer/grid)
+- `css/layout` - global layout
 - `css/components` - components and states
 - `css/pages` - page-specific styles
-- `js/app`, `js/features`, `js/core` - bootstrap, initialization, feature modules
+- `js/app`, `js/features`, `js/core` - initialization and feature logic
 - `assets` - images, fonts, icons
-- `data/menu.json` - menu data
+- `data/menu.json` - menu dataset
 
 ### Setup & Run
 1. `npm install`
-2. Dev server: `npm run dev:server`
-3. Build assets: `npm run build`
-4. Full validation: `npm run check`
+2. `npm run dev:server`
+3. `npm run build`
+4. `npm run check`
 
 ### Build & Deployment Notes
-- Deployment config includes `_headers` and `_redirects`.
-- Redirect `/* /404.html 404` is configured.
-- Manifest is linked via `<link rel="manifest" href="manifest.webmanifest">`.
-- Service Worker registration runs outside localhost (`js/bootstrap.js`).
+- Deployment config includes `_headers`, `_redirects`, and `manifest.webmanifest`.
+- Service Worker registration is restricted outside localhost (`js/bootstrap.js`).
+- Asset strategy: `.min.css/.min.js` are build-stage assets and are not required for local non-min development runtime.
 
 ### Accessibility Notes
-- Skip links are implemented across pages.
-- Mobile navigation includes `aria-expanded`, `aria-controls`, and focus trapping.
-- WCAG2AA contrast failures were detected by `pa11y-ci` (see `AUDIT.md`).
+- Skip links, focus styling, `aria-expanded`, `aria-current`, and keyboard support are implemented.
+- `prefers-reduced-motion` is handled in JS/CSS.
+- Real WCAG2AA contrast issues were detected (details in `AUDIT.md`).
 
 ### SEO Notes
-- Pages include `meta description`, `canonical`, OpenGraph, and `twitter:*` metadata.
-- JSON-LD is present on main/legal pages; not detected on `404.html`, `offline.html`, `thank-you.html`.
+- Pages include `meta description`, canonical, OpenGraph, and `robots` meta tags.
+- JSON-LD is present on main/legal pages.
 - `robots.txt` and `sitemap.xml` are present.
 
 ### Performance Notes
-- Images use AVIF/WEBP/JPG variants and lazy loading in content sections.
-- Fonts are preloaded and use `font-display: swap`.
-- There is a minified asset path inconsistency (`style.min.css`) in SW/offline references (documented in `AUDIT.md`).
+- Images use AVIF/WEBP/JPG variants, lazy loading, and explicit `width`/`height`.
+- Fonts are preloaded and `@font-face` uses `font-display: swap`.
+- Progressive enhancement and no-JS fallback behavior are implemented.
 
 ### Roadmap
-- Fix build/runtime path consistency for offline and SW assets.
-- Correct footer/decorative contrast issues for WCAG AA.
-- Consolidate reveal animation styles (`animations.css` vs `home.css`).
-- Extend `sitemap.xml` to include indexable pages (e.g. `contact.html`).
+- Resolve WCAG AA contrast failures.
+- Align color token usage and remove undefined variable usage.
+- Remove duplicated reveal animation rules.
+- Extend `sitemap.xml` with all indexable pages.
 
 ### License
-MIT (as defined in `package.json`).
+MIT (as declared in `package.json`).
