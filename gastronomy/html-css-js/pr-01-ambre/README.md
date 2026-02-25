@@ -1,147 +1,133 @@
-# Ambre — front-end portfolio project
+# Atelier No.02
 
-## 🇵🇱 Wersja polska
+## Wersja Polska
 
 ### Przegląd projektu
-Ambre to wielostronicowa strona portfolio restauracji fine dining. Projekt działa w oparciu o statyczne HTML + modularny CSS + Vanilla JS (ES Modules), z dodatkowymi elementami PWA (`manifest.webmanifest`, `sw.js`, `offline.html`) i konfiguracją pod deployment na Netlify (`_headers`, `_redirects`).
+Atelier No.02 to wielostronicowa strona front-end restauracji fine dining, przygotowana jako projekt portfolio. Projekt działa jako statyczny serwis HTML/CSS/JS z konfiguracją pod hosting typu Netlify.
 
-### Kluczowe funkcje
-- Wielostronicowa struktura: `index.html`, `menu.html`, `galeria.html`, strony prawne (`cookies.html`, `polityka-prywatnosci.html`, `regulamin.html`), `404.html`, `offline.html`.
-- Responsywna nawigacja z drawerem mobilnym, trapem focusu, obsługą `Escape` i synchronizacją `aria-expanded`.
-- Dynamiczne `aria-current` dla nawigacji oraz scrollspy dla sekcji na stronie głównej.
-- Przełącznik motywu light/dark (z `localStorage` i fallbackiem do `prefers-color-scheme`).
-- Interaktywne moduły: sekcje FAQ, filtrowanie galerii, „load more”, lightbox, przewijanie do sekcji i przycisk powrotu do góry.
-- Formularz rezerwacji z walidacją, honeypotem (`company`), komunikatami ARIA i wysyłką zgodną z Netlify Forms.
-- PWA: manifest, Service Worker z cache app-shell i fallbackiem offline.
+### Kluczowe funkcje (na podstawie kodu)
+- Wielostronicowy serwis: `index.html`, `about.html`, `menu.html`, `gallery.html`, `contact.html` oraz strony prawne i techniczne (`offline.html`, `404.html`, `thank-you.html`).
+- Responsywna nawigacja z menu mobilnym, dropdownami i obsługą klawiatury.
+- Przełącznik motywu jasny/ciemny z zapisem preferencji w `localStorage`.
+- Sekcja menu oparta o `data/menu.json` (render dynamiczny + filtrowanie + wyszukiwarka).
+- Galeria z lightboxem (nawigacja klawiaturą, fullscreen, swipe).
+- Formularz kontaktowy Netlify (`data-netlify="true"`, honeypot `bot-field`) z walidacją klienta.
+- PWA: `manifest.webmanifest` + `sw.js` + strona `offline.html`.
 
 ### Tech stack
 - HTML5
-- CSS3 (architektura: `base/`, `layout/`, `components/`, `pages/`)
-- JavaScript ES Modules (Vanilla JS)
-- Narzędzia: PostCSS, esbuild, ESLint, Stylelint, html-validate, Lighthouse CI
-- Deployment: Netlify
+- CSS (modułowa architektura: `base/`, `layout/`, `components/`, `pages/`)
+- JavaScript (moduły ES)
+- Node.js tooling: PostCSS, esbuild, ESLint, html-validate, linkinator, pa11y-ci
 
 ### Struktura projektu
-- `css/base/` — tokeny, bazowe reguły, typografia
-- `css/layout/` — layout header/footer
-- `css/components/` — komponenty i utilities
-- `css/pages/` — style specyficzne dla podstron
-- `js/modules/` — moduły funkcjonalne UI/UX
-- `scripts/` — skrypty QA (linki, SEO, a11y, obrazy)
+- `css/base` - tokeny, reset, baza, typografia
+- `css/layout` - layout globalny (header/footer/grid)
+- `css/components` - komponenty i stany
+- `css/pages` - style specyficzne dla podstron
+- `js/app`, `js/features`, `js/core` - bootstrap, inicjalizacja i funkcje domenowe
+- `assets` - obrazy, fonty, ikony
+- `data/menu.json` - dane menu
 
 ### Setup i uruchomienie
-```bash
-npm install
-npm run build
-```
-
-Dodatkowo:
-- tryb obserwacji: `npm run watch:css`, `npm run watch:js`
-- pełny pakiet QA: `npm run qa`
+1. `npm install`
+2. Dev server: `npm run dev:server`
+3. Build assets: `npm run build`
+4. Pełna weryfikacja: `npm run check`
 
 ### Build i deployment
-- Build assetów: `npm run build:css`, `npm run build:js`, `npm run build`.
-- Netlify:
-  - `_headers`: security headers + CSP.
-  - `_redirects`: mapowanie krótkich URL i fallback `404.html`.
-- Service Worker rejestrowany tylko poza środowiskami lokalnymi (`localhost`, LAN), co ogranicza problemy developerskie przy cache.
+- Konfiguracja deploymentu zawiera `_headers` i `_redirects`.
+- Redirect `/* /404.html 404` jest skonfigurowany.
+- Manifest jest podpięty przez `<link rel="manifest" href="manifest.webmanifest">`.
+- Rejestracja Service Workera jest wykonywana poza localhost (`js/bootstrap.js`).
 
 ### Dostępność
-- Obecne: skip link, semantyczna struktura nagłówków, landmarks (`header/main/footer`), fokus przez `:focus-visible`.
-- Nawigacja mobilna: trap focusu, zamykanie klawiszem `Escape`, kontrola `aria-expanded`.
-- `prefers-reduced-motion` obsłużone w CSS i części interakcji JS.
-- Bazowa używalność bez JS jest utrzymana (struktura HTML + fallback formularza).
+- Skip links są obecne na stronach.
+- Nawigacja mobilna ma `aria-expanded`, `aria-controls` i focus trap.
+- Występują błędy kontrastu WCAG2AA wykryte przez `pa11y-ci` (szczegóły w `AUDIT.md`).
 
 ### SEO
-- Meta SEO: `title`, `description`, `canonical`, OpenGraph, Twitter Cards.
-- `robots.txt` i `sitemap.xml` obecne i spójne domenowo.
-- JSON-LD obecny na stronach (m.in. `WebSite`, `Restaurant`, `WebPage`).
+- Strony mają `meta description`, `canonical`, OpenGraph oraz `twitter:*`.
+- JSON-LD występuje na stronach głównych i prawnych; nie występuje na `404.html`, `offline.html`, `thank-you.html`.
+- `robots.txt` i `sitemap.xml` są obecne.
 
 ### Wydajność
-- Obrazy: `picture` z AVIF/WebP + fallback JPG.
-- Atrybuty stabilizujące layout: `width`/`height` dla obrazów.
-- Lazy-loading i `decoding="async"` dla zasobów poza LCP.
-- Fonty WOFF2 z preloadem i `font-display: swap`.
+- Obrazy używają wariantów AVIF/WEBP/JPG i lazy loading w sekcjach treści.
+- Fonty są preloadowane i ustawione z `font-display: swap`.
+- W projekcie występuje niespójność assetów minifikowanych (`style.min.css`) względem referencji SW/offline (opis w `AUDIT.md`).
 
 ### Roadmap
-- Dodać automatyczną walidację JSON-LD do pipeline QA.
-- Uzupełnić automatyczne testy a11y (Playwright + axe) w CI z progami błędów.
-- Ustalić jedną politykę użycia artefaktów minifikowanych (`style.min.css` / `script.min.js`) na produkcji.
-- Dodać testy regresji wizualnej dla kluczowych komponentów (header, menu, lightbox).
+- Naprawa spójności ścieżek build/runtime dla offline i SW.
+- Korekta kontrastu stopki i elementów dekoracyjnych (WCAG AA).
+- Ujednolicenie źródeł stylów animacji (`animations.css` vs `home.css`).
+- Rozszerzenie `sitemap.xml` o indeksowalne strony (np. `contact.html`).
 
 ### Licencja
-MIT (na podstawie `package.json`).
+MIT (zgodnie z `package.json`).
 
 ---
 
-## 🇬🇧 English version
+## English Version
 
-### Project overview
-Ambre is a multi-page fine-dining restaurant portfolio website built with static HTML, modular CSS, and Vanilla JS (ES Modules). The project includes PWA elements (`manifest.webmanifest`, `sw.js`, `offline.html`) and Netlify deployment configuration (`_headers`, `_redirects`).
+### Project Overview
+Atelier No.02 is a multi-page front-end fine-dining restaurant website built as a portfolio project. It runs as a static HTML/CSS/JS site with deployment-oriented configuration for Netlify-like hosting.
 
-### Key features
-- Multi-page structure: `index.html`, `menu.html`, `galeria.html`, legal pages (`cookies.html`, `polityka-prywatnosci.html`, `regulamin.html`), `404.html`, `offline.html`.
-- Responsive navigation with mobile drawer, focus trap, `Escape` handling, and synchronized `aria-expanded`.
-- Dynamic `aria-current` handling and scrollspy for homepage sections.
-- Light/dark theme switcher (`localStorage` with `prefers-color-scheme` fallback).
-- Interactive modules: FAQ, gallery filtering, “load more”, lightbox, scroll-to-section, and back-to-top.
-- Reservation form with validation, honeypot (`company`), ARIA feedback, and Netlify-compatible submission.
-- PWA layer: manifest, Service Worker app-shell caching, and offline fallback.
+### Key Features (from implemented code)
+- Multi-page site: `index.html`, `about.html`, `menu.html`, `gallery.html`, `contact.html`, plus legal/technical pages (`offline.html`, `404.html`, `thank-you.html`).
+- Responsive navigation with mobile menu, dropdowns, and keyboard handling.
+- Light/dark theme toggle with persisted preference in `localStorage`.
+- Menu section powered by `data/menu.json` (dynamic rendering + filtering + search).
+- Gallery lightbox (keyboard navigation, fullscreen, swipe).
+- Netlify contact form (`data-netlify="true"`, honeypot `bot-field`) with client-side validation.
+- PWA setup: `manifest.webmanifest` + `sw.js` + `offline.html`.
 
-### Tech stack
+### Tech Stack
 - HTML5
-- CSS3 (architecture: `base/`, `layout/`, `components/`, `pages/`)
-- JavaScript ES Modules (Vanilla JS)
-- Tooling: PostCSS, esbuild, ESLint, Stylelint, html-validate, Lighthouse CI
-- Deployment: Netlify
+- CSS (modular architecture: `base/`, `layout/`, `components/`, `pages/`)
+- JavaScript (ES modules)
+- Node.js tooling: PostCSS, esbuild, ESLint, html-validate, linkinator, pa11y-ci
 
-### Structure overview
-- `css/base/` — tokens, base rules, typography
-- `css/layout/` — header/footer layout
-- `css/components/` — UI components and utilities
-- `css/pages/` — page-specific styles
-- `js/modules/` — feature modules
-- `scripts/` — QA scripts (links, SEO, a11y, images)
+### Structure Overview
+- `css/base` - tokens, reset, base, typography
+- `css/layout` - global layout (header/footer/grid)
+- `css/components` - components and states
+- `css/pages` - page-specific styles
+- `js/app`, `js/features`, `js/core` - bootstrap, initialization, feature modules
+- `assets` - images, fonts, icons
+- `data/menu.json` - menu data
 
-### Setup & run
-```bash
-npm install
-npm run build
-```
+### Setup & Run
+1. `npm install`
+2. Dev server: `npm run dev:server`
+3. Build assets: `npm run build`
+4. Full validation: `npm run check`
 
-Additionally:
-- watch mode: `npm run watch:css`, `npm run watch:js`
-- full QA suite: `npm run qa`
+### Build & Deployment Notes
+- Deployment config includes `_headers` and `_redirects`.
+- Redirect `/* /404.html 404` is configured.
+- Manifest is linked via `<link rel="manifest" href="manifest.webmanifest">`.
+- Service Worker registration runs outside localhost (`js/bootstrap.js`).
 
-### Build & deployment notes
-- Asset build: `npm run build:css`, `npm run build:js`, `npm run build`.
-- Netlify:
-  - `_headers`: security headers + CSP.
-  - `_redirects`: short URL mapping and `404.html` fallback.
-- Service Worker is only registered outside local environments (`localhost`, LAN), reducing dev-cache issues.
+### Accessibility Notes
+- Skip links are implemented across pages.
+- Mobile navigation includes `aria-expanded`, `aria-controls`, and focus trapping.
+- WCAG2AA contrast failures were detected by `pa11y-ci` (see `AUDIT.md`).
 
-### Accessibility notes
-- Implemented: skip link, semantic heading hierarchy, landmarks (`header/main/footer`), and visible focus states.
-- Mobile navigation supports focus trap, `Escape` closing, and `aria-expanded` control.
-- `prefers-reduced-motion` is handled in CSS and selected JS interactions.
-- No-JS baseline remains usable (HTML-first structure + form fallback).
+### SEO Notes
+- Pages include `meta description`, `canonical`, OpenGraph, and `twitter:*` metadata.
+- JSON-LD is present on main/legal pages; not detected on `404.html`, `offline.html`, `thank-you.html`.
+- `robots.txt` and `sitemap.xml` are present.
 
-### SEO notes
-- SEO metadata implemented: `title`, `description`, `canonical`, OpenGraph, Twitter Cards.
-- `robots.txt` and `sitemap.xml` are present and domain-aligned.
-- JSON-LD is present across pages (including `WebSite`, `Restaurant`, `WebPage`).
-
-### Performance notes
-- Images use `picture` with AVIF/WebP and JPG fallback.
-- `width`/`height` attributes are set for layout stability.
-- Lazy loading and `decoding="async"` are used for non-LCP assets.
-- WOFF2 fonts are preloaded and use `font-display: swap`.
+### Performance Notes
+- Images use AVIF/WEBP/JPG variants and lazy loading in content sections.
+- Fonts are preloaded and use `font-display: swap`.
+- There is a minified asset path inconsistency (`style.min.css`) in SW/offline references (documented in `AUDIT.md`).
 
 ### Roadmap
-- Add JSON-LD validation to QA pipeline.
-- Add automated accessibility checks in CI (Playwright + axe) with fail thresholds.
-- Standardize production use of minified bundles (`style.min.css` / `script.min.js`).
-- Add visual regression checks for core components (header, menu, lightbox).
+- Fix build/runtime path consistency for offline and SW assets.
+- Correct footer/decorative contrast issues for WCAG AA.
+- Consolidate reveal animation styles (`animations.css` vs `home.css`).
+- Extend `sitemap.xml` to include indexable pages (e.g. `contact.html`).
 
 ### License
-MIT (as declared in `package.json`).
+MIT (as defined in `package.json`).
