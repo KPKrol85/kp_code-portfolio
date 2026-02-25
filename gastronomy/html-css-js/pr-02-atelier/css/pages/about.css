@@ -141,7 +141,7 @@
   color: var(--charcoal);
 }
 .page--about .awards__icon {
-  color: var(--gold);
+  color: currentColor;
   font-size: 1.1rem;
 }
 .page--about .location__grid {
