@@ -1,165 +1,133 @@
 # Atelier No.02
 
-## Wersja polska
+## Wersja Polska
 
 ### Przegląd projektu
-Atelier No.02 to wielostronicowy serwis portfolio (HTML + modularny CSS + ES Modules JS) prezentujący demonstracyjny projekt dla branży gastronomicznej. Repozytorium zawiera stronę główną, podstrony ofertowe, podstrony prawne oraz strony techniczne (`404.html`, `offline.html`, `thank-you.html`).
+Atelier No.02 to wielostronicowa strona front-end restauracji fine dining, przygotowana jako projekt portfolio. Projekt działa jako statyczny serwis HTML/CSS/JS z konfiguracją pod hosting typu Netlify.
 
-### Kluczowe funkcje
-- Wielostronicowa nawigacja z rozwijanymi sekcjami i wariantem mobilnym.
-- Przełącznik motywu z persystencją preferencji użytkownika.
-- Sekcje treści oparte o modularny system komponentów CSS.
-- Dynamiczne renderowanie danych menu z `data/menu.json`.
-- Galeria z modułem lightbox i obsługą klawiatury.
-- Formularz kontaktowy Netlify (`data-netlify`, `netlify-honeypot`).
-- PWA baseline: `manifest.webmanifest`, `sw.js`, `offline.html`.
-- Quality gate uruchamiany przez skrypty npm (`lint`, `validate:html`, `check:links`, `check:a11y`).
+### Kluczowe funkcje (na podstawie kodu)
+- Wielostronicowy serwis: `index.html`, `about.html`, `menu.html`, `gallery.html`, `contact.html` oraz strony prawne i techniczne (`offline.html`, `404.html`, `thank-you.html`).
+- Responsywna nawigacja z menu mobilnym, dropdownami i obsługą klawiatury.
+- Przełącznik motywu jasny/ciemny z zapisem preferencji w `localStorage`.
+- Sekcja menu oparta o `data/menu.json` (render dynamiczny + filtrowanie + wyszukiwarka).
+- Galeria z lightboxem (nawigacja klawiaturą, fullscreen, swipe).
+- Formularz kontaktowy Netlify (`data-netlify="true"`, honeypot `bot-field`) z walidacją klienta.
+- PWA: `manifest.webmanifest` + `sw.js` + strona `offline.html`.
 
-### Stack technologiczny
-- HTML5 (strony statyczne)
-- CSS (architektura modułowa + tokeny)
-- JavaScript ES Modules
-- Node.js tooling: PostCSS, esbuild, ESLint, html-validate, linkinator, pa11y-ci, sharp
+### Tech stack
+- HTML5
+- CSS (modułowa architektura: `base/`, `layout/`, `components/`, `pages/`)
+- JavaScript (moduły ES)
+- Node.js tooling: PostCSS, esbuild, ESLint, html-validate, linkinator, pa11y-ci
 
 ### Struktura projektu
-- `css/base/` - reset, tokeny, typografia, fundamenty
-- `css/layout/` - układy sekcji i siatki
-- `css/components/` - komponenty UI
-- `css/pages/` - style per podstrona
-- `css/utilities/` - klasy pomocnicze
-- `js/app/`, `js/features/`, `js/core/` - logika inicjalizacji i moduły funkcjonalne
-- `assets/` - fonty, obrazy, ikony
-- `data/` - dane wejściowe dla sekcji menu
-- `_headers`, `_redirects`, `manifest.webmanifest`, `robots.txt`, `sitemap.xml`, `sw.js` - pliki deploy/SEO/PWA
+- `css/base` - tokeny, reset, baza, typografia
+- `css/layout` - layout globalny (header/footer/grid)
+- `css/components` - komponenty i stany
+- `css/pages` - style specyficzne dla podstron
+- `js/app`, `js/features`, `js/core` - bootstrap, inicjalizacja i funkcje domenowe
+- `assets` - obrazy, fonty, ikony
+- `data/menu.json` - dane menu
 
 ### Setup i uruchomienie
 1. `npm install`
-2. `npm run build`
-3. `npm run dev:server`
-4. `npm run check` (pełny pakiet jakości)
+2. Dev server: `npm run dev:server`
+3. Build assets: `npm run build`
+4. Pełna weryfikacja: `npm run check`
 
-### Polityka entrypointów JS
-- `js/core.js` (lekki runtime): `initMisc`, `initNav`, `initThemeToggle`; używany na stronach prostych/informacyjnych (`404.html`, `cookies.html`, `polityka-prywatnosci.html`, `regulamin.html`).
-- `js/script.js` (pełny runtime): `initApp` + inicjalizatory common/per-page; używany na stronach feature (`index.html`, `about.html`, `menu.html`, `gallery.html`, `thank-you.html`).
-- `offline.html` jest wyjątkiem deploy i ładuje `js/script.min.js` bezpośrednio.
-- Szczegółowa mapa stron i reguły wyboru: `settings.md` → `JS entrypoints policy (core vs script)`.
-
-### Build i wdrożenie
-- Konfiguracja pod hosting statyczny: `_headers`, `_redirects`.
-- Manifest i service worker są osadzone dla deployu root (`/`).
-- `netlify.toml`: not detected in project.
-- `vercel.json`: not detected in project.
-- Konfiguracja bundlera typu Vite/Webpack: not detected in project.
+### Build i deployment
+- Konfiguracja deploymentu zawiera `_headers` i `_redirects`.
+- Redirect `/* /404.html 404` jest skonfigurowany.
+- Manifest jest podpięty przez `<link rel="manifest" href="manifest.webmanifest">`.
+- Rejestracja Service Workera jest wykonywana poza localhost (`js/bootstrap.js`).
 
 ### Dostępność
-- Występują skip linki i fallback `noscript` na stronach.
-- Hierarchia nagłówków H1-H2-H3 jest spójna na sprawdzonych podstronach.
-- Istnieją regresje wykryte automatycznie:
-  - `aria-label-misuse` w `menu.html:468`.
-  - Niewystarczający kontrast stopki w testach `pa11y-ci` (1/10 URL pass).
+- Skip links są obecne na stronach.
+- Nawigacja mobilna ma `aria-expanded`, `aria-controls` i focus trap.
+- Występują błędy kontrastu WCAG2AA wykryte przez `pa11y-ci` (szczegóły w `AUDIT.md`).
 
 ### SEO
-- Występują: `title`, `meta description`, canonical, Open Graph, Twitter card (na większości stron).
+- Strony mają `meta description`, `canonical`, OpenGraph oraz `twitter:*`.
+- JSON-LD występuje na stronach głównych i prawnych; nie występuje na `404.html`, `offline.html`, `thank-you.html`.
 - `robots.txt` i `sitemap.xml` są obecne.
-- JSON-LD występuje na głównych podstronach (m.in. `index.html`, `about.html`, `menu.html`, `gallery.html`, strony prawne).
-- `og:url` i canonical nie są kompletne na wszystkich stronach technicznych (`404.html`, `thank-you.html`).
 
 ### Wydajność
-- Obrazy wykorzystują `picture` + AVIF/WebP/JPG fallback.
-- Występuje `loading="lazy"` i jawne wymiary obrazów.
-- Preload zasobów krytycznych jest wdrożony.
-- Service worker ma guard lokalnego środowiska (`localhost`, `127.0.0.1`, `::1`) w `js/bootstrap.js`.
-- Aktualnie quality gate wykrywa brakujące pliki obrazów (`cytrusowe-ciasto-720x480.*`) używane w `index.html` i `menu.html`.
+- Obrazy używają wariantów AVIF/WEBP/JPG i lazy loading w sekcjach treści.
+- Fonty są preloadowane i ustawione z `font-display: swap`.
+- W projekcie występuje niespójność assetów minifikowanych (`style.min.css`) względem referencji SW/offline (opis w `AUDIT.md`).
 
 ### Roadmap
-- Usunąć brakujące referencje obrazów lub dogenerować brakujące warianty `720x480`.
-- Zamknąć błędy `html-validate` (DOCTYPE style, `type` dla `button/input`, `aria-label-misuse`).
-- Podnieść kontrast tekstu stopki, aby przejść automatyczny audyt WCAG.
-- Ujednolicić metadane OG/canonical na stronach technicznych.
-- Ograniczyć placeholdery produkcyjne (np. link mapy w `about.html`).
+- Naprawa spójności ścieżek build/runtime dla offline i SW.
+- Korekta kontrastu stopki i elementów dekoracyjnych (WCAG AA).
+- Ujednolicenie źródeł stylów animacji (`animations.css` vs `home.css`).
+- Rozszerzenie `sitemap.xml` o indeksowalne strony (np. `contact.html`).
 
 ### Licencja
 MIT (zgodnie z `package.json`).
 
 ---
 
-## English version
+## English Version
 
-### Project overview
-Atelier No.02 is a multi-page portfolio site (HTML + modular CSS + ES Modules JS) presenting a demo project for the hospitality domain. The repository includes the homepage, feature subpages, legal pages, and technical pages (`404.html`, `offline.html`, `thank-you.html`).
+### Project Overview
+Atelier No.02 is a multi-page front-end fine-dining restaurant website built as a portfolio project. It runs as a static HTML/CSS/JS site with deployment-oriented configuration for Netlify-like hosting.
 
-### Key features
-- Multi-page navigation with dropdown sections and mobile variant.
-- Theme switcher with persisted user preference.
-- Content sections based on a modular CSS component system.
-- Dynamic menu data rendering from `data/menu.json`.
-- Gallery with lightbox module and keyboard support.
-- Netlify contact form (`data-netlify`, `netlify-honeypot`).
-- PWA baseline: `manifest.webmanifest`, `sw.js`, `offline.html`.
-- npm-based quality gate (`lint`, `validate:html`, `check:links`, `check:a11y`).
+### Key Features (from implemented code)
+- Multi-page site: `index.html`, `about.html`, `menu.html`, `gallery.html`, `contact.html`, plus legal/technical pages (`offline.html`, `404.html`, `thank-you.html`).
+- Responsive navigation with mobile menu, dropdowns, and keyboard handling.
+- Light/dark theme toggle with persisted preference in `localStorage`.
+- Menu section powered by `data/menu.json` (dynamic rendering + filtering + search).
+- Gallery lightbox (keyboard navigation, fullscreen, swipe).
+- Netlify contact form (`data-netlify="true"`, honeypot `bot-field`) with client-side validation.
+- PWA setup: `manifest.webmanifest` + `sw.js` + `offline.html`.
 
-### Tech stack
-- HTML5 (static pages)
-- CSS (modular architecture + tokens)
-- JavaScript ES Modules
-- Node.js tooling: PostCSS, esbuild, ESLint, html-validate, linkinator, pa11y-ci, sharp
+### Tech Stack
+- HTML5
+- CSS (modular architecture: `base/`, `layout/`, `components/`, `pages/`)
+- JavaScript (ES modules)
+- Node.js tooling: PostCSS, esbuild, ESLint, html-validate, linkinator, pa11y-ci
 
-### Structure overview
-- `css/base/` - reset, tokens, typography, fundamentals
-- `css/layout/` - layouts and grids
-- `css/components/` - UI components
-- `css/pages/` - page-level styles
-- `css/utilities/` - utility classes
-- `js/app/`, `js/features/`, `js/core/` - initialization and feature modules
-- `assets/` - fonts, images, icons
-- `data/` - menu data source
-- `_headers`, `_redirects`, `manifest.webmanifest`, `robots.txt`, `sitemap.xml`, `sw.js` - deploy/SEO/PWA files
+### Structure Overview
+- `css/base` - tokens, reset, base, typography
+- `css/layout` - global layout (header/footer/grid)
+- `css/components` - components and states
+- `css/pages` - page-specific styles
+- `js/app`, `js/features`, `js/core` - bootstrap, initialization, feature modules
+- `assets` - images, fonts, icons
+- `data/menu.json` - menu data
 
-### Setup & run
+### Setup & Run
 1. `npm install`
-2. `npm run build`
-3. `npm run dev:server`
-4. `npm run check` (full quality gate)
+2. Dev server: `npm run dev:server`
+3. Build assets: `npm run build`
+4. Full validation: `npm run check`
 
-### JS Entrypoints Policy
-- `js/core.js` (light runtime): `initMisc`, `initNav`, `initThemeToggle`; used on simple/informational pages (`404.html`, `cookies.html`, `polityka-prywatnosci.html`, `regulamin.html`).
-- `js/script.js` (full runtime): `initApp` + common/per-page initializers; used on feature pages (`index.html`, `about.html`, `menu.html`, `gallery.html`, `thank-you.html`).
-- `offline.html` is a deliberate deploy exception and loads `js/script.min.js` directly.
-- Full page mapping and selection rules: `settings.md` → `JS entrypoints policy (core vs script)`.
+### Build & Deployment Notes
+- Deployment config includes `_headers` and `_redirects`.
+- Redirect `/* /404.html 404` is configured.
+- Manifest is linked via `<link rel="manifest" href="manifest.webmanifest">`.
+- Service Worker registration runs outside localhost (`js/bootstrap.js`).
 
-### Build & deployment notes
-- Static-host deployment files are present: `_headers`, `_redirects`.
-- Manifest and service worker are configured for root deployment (`/`).
-- `netlify.toml`: not detected in project.
-- `vercel.json`: not detected in project.
-- Vite/Webpack-style build config: not detected in project.
+### Accessibility Notes
+- Skip links are implemented across pages.
+- Mobile navigation includes `aria-expanded`, `aria-controls`, and focus trapping.
+- WCAG2AA contrast failures were detected by `pa11y-ci` (see `AUDIT.md`).
 
-### Accessibility notes
-- Skip links and `noscript` fallbacks are present.
-- H1-H2-H3 heading hierarchy is consistent on reviewed pages.
-- Known automated regressions:
-  - `aria-label-misuse` in `menu.html:468`.
-  - Footer contrast failures in `pa11y-ci` output (1/10 URL pass).
-
-### SEO notes
-- `title`, `meta description`, canonical, Open Graph, and Twitter tags are present on most pages.
+### SEO Notes
+- Pages include `meta description`, `canonical`, OpenGraph, and `twitter:*` metadata.
+- JSON-LD is present on main/legal pages; not detected on `404.html`, `offline.html`, `thank-you.html`.
 - `robots.txt` and `sitemap.xml` are present.
-- JSON-LD is present on core pages (including `index.html`, `about.html`, `menu.html`, `gallery.html`, legal pages).
-- `og:url` and canonical are not complete on all technical pages (`404.html`, `thank-you.html`).
 
-### Performance notes
-- Images use `picture` with AVIF/WebP/JPG fallback.
-- `loading="lazy"` and explicit image dimensions are implemented.
-- Critical resource preloads are implemented.
-- Service worker local-environment guard exists in `js/bootstrap.js` (`localhost`, `127.0.0.1`, `::1`).
-- Current quality gate reports missing image variants (`cytrusowe-ciasto-720x480.*`) referenced in `index.html` and `menu.html`.
+### Performance Notes
+- Images use AVIF/WEBP/JPG variants and lazy loading in content sections.
+- Fonts are preloaded and use `font-display: swap`.
+- There is a minified asset path inconsistency (`style.min.css`) in SW/offline references (documented in `AUDIT.md`).
 
 ### Roadmap
-- Remove broken image references or generate missing `720x480` variants.
-- Resolve `html-validate` errors (DOCTYPE style, `type` on `button/input`, `aria-label-misuse`).
-- Increase footer text contrast to pass automated WCAG checks.
-- Standardize OG/canonical metadata on technical pages.
-- Remove production placeholder links (for example map URL in `about.html`).
+- Fix build/runtime path consistency for offline and SW assets.
+- Correct footer/decorative contrast issues for WCAG AA.
+- Consolidate reveal animation styles (`animations.css` vs `home.css`).
+- Extend `sitemap.xml` to include indexable pages (e.g. `contact.html`).
 
 ### License
-MIT (as declared in `package.json`).
+MIT (as defined in `package.json`).
