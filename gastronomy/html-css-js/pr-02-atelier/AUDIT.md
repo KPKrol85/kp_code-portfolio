@@ -39,6 +39,7 @@
 - Reason: SW install list pre-caches `.min` assets while pages load non-min runtime assets (`style.css`, `script.js`), creating maintenance drift.
 - Evidence: `sw.js:12-13`, `index.html:88`, `index.html:833`.
 - Suggested improvement: Keep precache list synchronized with actually referenced production assets, generated during build.
+- Status (2026-02-25): `sw.js` precache includes both runtime non-min and build-stage `.min` variants to remove filename drift.
 
 3. Title: Remove remaining `!important` from nav link decoration
 - Reason: `!important` increases selector coupling and complicates future component overrides.
