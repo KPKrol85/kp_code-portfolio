@@ -1,3 +1,4 @@
+
 import fs from "fs";
 import http from "http";
 import path from "path";
@@ -85,15 +86,17 @@ const run = async () => {
   const server = await createStaticServer();
 
   let browser;
+  let context;
   const allViolations = [];
 
   try {
     console.log(`QA A11Y: scanning ${pages.length} page(s) at http://${host}:${port}`);
     browser = await chromium.launch({ headless: true });
+    context = await browser.newContext({ bypassCSP: true });
 
     for (const pagePath of pages) {
       const pageUrl = `http://${host}:${port}${pagePath}`;
-      const page = await browser.newPage();
+      const page = await context.newPage();
 
       try {
         await page.goto(pageUrl, { waitUntil: "domcontentloaded", timeout: 15000 });
@@ -130,6 +133,10 @@ const run = async () => {
 
     console.log("QA A11Y: PASS");
   } finally {
+    if (context) {
+      await context.close();
+    }
+
     if (browser) {
       await browser.close();
     }
