@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="pl">
   <head>
     <meta charset="utf-8" />
@@ -355,6 +355,7 @@
           <img src="assets/img-optimized/logo/logo-and-name/header-logo-dark.svg" alt="" class="brand__logo brand__logo--dark" width="40" height="30" />
         </a>
         <div class="header__actions">
+          <!-- hamburger menu -->
           <button type="button" class="nav-toggle" aria-label="Otwórz menu" aria-controls="primary-nav" aria-expanded="false">
             <svg class="nav-toggle__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
               <path class="line line--top" d="M3.75 6.75h16.5" />
@@ -413,17 +414,20 @@
     <!-- Main -->
     <main id="main" tabindex="-1">
       <nav class="breadcrumbs" aria-label="Okruchy nawigacji">
-        <ol>
-          <li><a href="index.html">Strona główna</a></li>
-          <li aria-current="page">Menu</li>
-        </ol>
+        <div class="container">
+          <ol>
+            <li><a href="index.html">Strona główna</a></li>
+            <li aria-current="page">Menu</li>
+          </ol>
+        </div>
       </nav>
 
+      <!-- Hero -->
       <section class="section page-hero" aria-labelledby="menu-page-title">
         <div class="container page-hero__inner">
           <div class="page-hero__content" data-reveal>
             <span class="page-hero__eyebrow">Karta dań</span>
-            <h1 id="menu-page-title">Menu</h1>
+            <h1 id="menu-page-title" class="page-hero__title">Menu</h1>
             <p class="page-hero__lead">
               Zapraszamy do odkrycia pełnej kompozycji smaków Atelier No.02 – od lekkich przystawek, przez sycące dania główne, aż po autorskie koktajle i słodkie zakończenie kolacji.
             </p>
@@ -431,23 +435,27 @@
         </div>
       </section>
 
+      <!-- Menu navigation -->
       <section class="section menu-navigation" aria-label="Nawigacja po kategoriach menu">
-        <div class="container" data-reveal>
-          <span id="menu-tabs-start" tabindex="-1" aria-hidden="true"></span>
-
-          <nav class="menu-tabs" aria-label="Kategorie menu">
-            <ul class="menu-tabs__list">
-              <li><a class="btn btn--ghost" href="#przystawki">Przystawki</a></li>
-              <li><a class="btn btn--ghost" href="#dania-glowne">Dania główne</a></li>
-              <li><a class="btn btn--ghost" href="#zupy">Zupy</a></li>
-              <li><a class="btn btn--ghost" href="#kuchnia-szefa">Kuchnia szefa</a></li>
-              <li><a class="btn btn--ghost" href="#desery">Desery</a></li>
-              <li><a class="btn btn--ghost" href="#drinki">Drinki</a></li>
-            </ul>
-          </nav>
+        <div class="container">
+          <div class="menu-navigation__inner" data-reveal>
+            <span id="menu-tabs-start" tabindex="-1" aria-hidden="true"></span>
+            <nav class="menu-tabs" aria-label="Kategorie menu">
+              <ul class="menu-tabs__list">
+                <li><a class="btn btn--ghost" href="#przystawki">Przystawki</a></li>
+                <li><a class="btn btn--ghost" href="#dania-glowne">Dania główne</a></li>
+                <li><a class="btn btn--ghost" href="#zupy">Zupy</a></li>
+                <li><a class="btn btn--ghost" href="#kuchnia-szefa">Kuchnia szefa</a></li>
+                <li><a class="btn btn--ghost" href="#desery">Desery</a></li>
+                <li><a class="btn btn--ghost" href="#drinki">Drinki</a></li>
+              </ul>
+            </nav>
+          </div>
         </div>
       </section>
 
+ 
+      <!-- Menu filters -->
       <section class="section menu-filters" aria-label="Filtruj i szukaj w menu">
         <div class="container">
           <div class="filters__row">

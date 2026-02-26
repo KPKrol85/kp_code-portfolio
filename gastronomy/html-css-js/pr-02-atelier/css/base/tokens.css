@@ -30,6 +30,7 @@
   --input-border: rgba(0, 0, 0, 0.15);
   /* Shados */
   --shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+  --shodow-box: 0 4px 14px rgba(0, 0, 0, 0.1);
   /* Tabs */
   --tab-active-bg: color-mix(in oklab, var(--burgundy) 10%, white);
   --tab-active-border: color-mix(in oklab, var(--burgundy) 55%, white);
@@ -89,6 +90,7 @@
   --space-12: 6rem;
   /* Font Size */
   --fs-micro: clamp(0.5rem, 0.45rem + 0.15vw, 0.6rem);
+  --fs-xxxs: clamp(0.625rem, 0.58rem + 0.15vw, 0.7rem);
   --fs-xxs: clamp(0.75rem, 0.72rem + 0.15vw, 0.8rem);
   --fs-xs: clamp(0.8125rem, 0.78rem + 0.2vw, 0.9rem);
   --fs-sm: clamp(0.9rem, 0.85rem + 0.25vw, 1rem);
