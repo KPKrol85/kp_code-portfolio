@@ -240,13 +240,13 @@ export function initMenuPage() {
   });
 
   function initMenuFilters() {
-    var search = document.getElementById("menu-search");
-    var buttonsWrap = document.querySelector(".menu-filters .filters");
+    var search = document.querySelector(".menu-filters__input");
+    var buttonsWrap = document.querySelector(".menu-filters__group");
     if (!search || !buttonsWrap) return;
 
-    var buttons = Array.prototype.slice.call(buttonsWrap.querySelectorAll("button[data-filter]"));
+    var buttons = Array.prototype.slice.call(buttonsWrap.querySelectorAll(".menu-filters__btn[data-filter]"));
     var cards = Array.prototype.slice.call(document.querySelectorAll(".menu-card"));
-    var emptyInfo = document.querySelector(".filters__empty");
+    var emptyInfo = document.querySelector(".menu-filters__empty");
 
     function normalize(str) {
       return (str || "")
@@ -316,7 +316,7 @@ export function initMenuPage() {
     );
 
     buttonsWrap.addEventListener("click", function (e) {
-      var btn = e.target.closest("button[data-filter]");
+      var btn = e.target.closest(".menu-filters__btn[data-filter]");
       if (!btn) return;
       buttons.forEach(function (b) {
         b.classList.toggle("is-active", b === btn);

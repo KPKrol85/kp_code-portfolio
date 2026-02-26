@@ -454,27 +454,28 @@
         </div>
       </section>
 
- 
+
       <!-- Menu filters -->
       <section class="section menu-filters" aria-label="Filtruj i szukaj w menu">
         <div class="container">
-          <div class="filters__row">
+          <div class="menu-filters__row">
             <label for="menu-search" class="visually-hidden">Szukaj w menu</label>
-            <input id="menu-search" class="input input--search" type="search" placeholder="Szukaj w menu (np. kaczka, burrata…)" inputmode="search" />
-            <div class="filters" role="group" aria-label="Filtry tagów">
-              <button type="button" class="btn btn--ghost is-active" data-filter="*">Wszystko</button>
-              <button type="button" class="btn btn--ghost" data-filter="Wegetariańskie">Wegetariańskie</button>
-              <button type="button" class="btn btn--ghost" data-filter="Wegańskie">Wegańskie</button>
-              <button type="button" class="btn btn--ghost" data-filter="Bezglutenowe">Bezglutenowe</button>
-              <button type="button" class="btn btn--ghost" data-filter="Signature">Signature</button>
-              <button type="button" class="btn btn--ghost" data-filter="Spicy">Spicy</button>
-              <button type="button" class="btn btn--ghost" data-filter="Bezalkoholowe">Bezalkoholowe</button>
+            <input id="menu-search" class="input input--search menu-filters__input" type="search" placeholder="Szukaj w menu (np. kaczka, burrata…)" inputmode="search" />
+            <div class="menu-filters__group" role="group" aria-label="Filtry tagów">
+              <button type="button" class="btn btn--ghost menu-filters__btn is-active" data-filter="*">Wszystko</button>
+              <button type="button" class="btn btn--ghost menu-filters__btn" data-filter="Wegetariańskie">Wegetariańskie</button>
+              <button type="button" class="btn btn--ghost menu-filters__btn" data-filter="Wegańskie">Wegańskie</button>
+              <button type="button" class="btn btn--ghost menu-filters__btn" data-filter="Bezglutenowe">Bezglutenowe</button>
+              <button type="button" class="btn btn--ghost menu-filters__btn" data-filter="Signature">Signature</button>
+              <button type="button" class="btn btn--ghost menu-filters__btn" data-filter="Spicy">Spicy</button>
+              <button type="button" class="btn btn--ghost menu-filters__btn" data-filter="Bezalkoholowe">Bezalkoholowe</button>
             </div>
           </div>
-          <p class="filters__empty" hidden>Brak pozycji spełniających kryteria.</p>
+          <p class="menu-filters__empty" hidden>Brak pozycji spełniających kryteria.</p>
         </div>
       </section>
 
+      <!-- Menu legend -->
       <div class="menu-legend">
         <div class="container">
           <ul class="legend__list">
