@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="pl">
   <head>
     <meta charset="utf-8" />
@@ -196,16 +196,19 @@
     <!-- Main -->
     <main id="main" tabindex="-1">
       <nav class="breadcrumbs" aria-label="Okruchy nawigacji">
-        <ol>
-          <li><a href="index.html">Strona główna</a></li>
-          <li aria-current="page">O nas</li>
-        </ol>
+        <div class="container">
+          <ol>
+            <li><a href="index.html">Strona główna</a></li>
+            <li aria-current="page">O nas</li>
+          </ol>
+        </div>
       </nav>
+      <!-- Hero -->
       <section id="intro" class="section page-hero" aria-labelledby="about-page-title">
         <div class="container page-hero__inner">
           <div class="page-hero__content" data-reveal>
             <span class="page-hero__eyebrow">Misja Atelier No.02</span>
-            <h1 id="about-page-title">O nas</h1>
+            <h1 id="about-page-title" class="page-hero__title">O nas</h1>
             <p class="page-hero__lead">
               Atelier No.02 to autorska restauracja fine dining, w której technika spotyka się z emocjami. Tworzymy wielozmysłowe doświadczenia, oparte na sezonowych produktach i kunszcie zespołu
               Atelier No.02.
@@ -213,12 +216,14 @@
           </div>
         </div>
       </section>
+      <!-- Timeline -->
       <section id="timeline" class="section timeline" aria-labelledby="timeline-title">
         <div class="container">
           <div class="section__header" data-reveal>
-            <h2 id="timeline-title">Nasza historia</h2>
+            <h2 id="timeline-title" class="section__title">Nasza historia</h2>
             <p class="section__lead">Od pop-upu w kameralnym lofcie do pełnowymiarowej restauracji, która inspiruje miasto i przyciąga gości z całej Polski.</p>
           </div>
+          <!-- Cards -->
           <ul class="cards timeline__cards" data-reveal-group>
             <li class="card timeline__item" data-reveal>
               <article class="timeline__entry">
@@ -282,9 +287,10 @@
       <section id="team" class="section team" aria-labelledby="team-title">
         <div class="container">
           <div class="section__header" data-reveal>
-            <h2 id="team-title">Poznaj zespół</h2>
+            <h2 id="team-title" class="section__title">Poznaj zespół</h2>
             <p class="section__lead">Każde danie i każdy serwis to efekt harmonijnej współpracy ludzi, którzy wybrali gastronomię z pasji do rzemiosła.</p>
           </div>
+          <!-- Cards -->
           <ul class="cards team__grid" data-reveal-group>
             <li class="card team-card" data-reveal>
               <article class="team-card__entry" aria-labelledby="team-lena-name" aria-label="Dowiedz się więcej o: Lena Wysocka">
@@ -386,7 +392,7 @@
                         assets/img-optimized/podstrona-about/team/nadia-g-720x540.avif 750w,
                         assets/img-optimized/podstrona-about/team/nadia-g-960x720.avif 960w
                       "
-                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 33vw, 360px" />
+                      sizes="(max-width: 768px) 100vw, (max-width: 1200px) 33vw, 360px" />
                     <source
                       type="image/webp"
                       srcset="
@@ -447,7 +453,7 @@
                         assets/img-optimized/podstrona-about/team/filip-l-720x540.jpg 720w,
                         assets/img-optimized/podstrona-about/team/filip-l-960x720.jpg 960w
                       "
-                     sizes="(max-width: 768px) 100vw, (max-width: 1200px) 33vw, 360px"
+                      sizes="(max-width: 768px) 100vw, (max-width: 1200px) 33vw, 360px"
                       alt="Head sommelier Filip Laskowski prezentuje kieliszek wina przy półce z butelkami w eleganckim wnętrzu restauracji."
                       loading="lazy"
                       decoding="async"
@@ -474,7 +480,7 @@
                         assets/img-optimized/podstrona-about/team/amelia-r-720x540.avif 720w,
                         assets/img-optimized/podstrona-about/team/amelia-r-960x720.avif 960w
                       "
-                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 33vw, 360px" />
+                      sizes="(max-width: 768px) 100vw, (max-width: 1200px) 33vw, 360px" />
                     <source
                       type="image/webp"
                       srcset="
@@ -554,45 +560,51 @@
           </ul>
         </div>
       </section>
-     <section id="philosophy" class="section philosophy" aria-labelledby="philosophy-title">
+
+      <!-- Philosophy -->
+      <section id="philosophy" class="section philosophy" aria-labelledby="philosophy-title">
         <div class="container">
           <div class="section__header" data-reveal>
-            <h2 id="philosophy-title">Filozofia kuchni</h2>
+            <h2 id="philosophy-title" class="section__title">Filozofia kuchni</h2>
             <p class="section__lead">Nasza kuchnia wyrasta z szacunku do natury, pracy rzemieślników i gości, którzy powierzają nam swoje wieczory.</p>
           </div>
+          <!-- Cards -->
           <ul class="cards philosophy__cards" data-reveal-group>
             <li class="card philosophy-card" data-reveal>
               <article class="philosophy-card__entry" aria-labelledby="philosophy-seasonality">
                 <div class="card__body">
-                  <h3 id="philosophy-seasonality">Sezonowość</h3>
-                  <p>Zmiany kart odpowiadają rytmowi upraw i morza. Plan sezonowy pozwala nam reagować na pogodę i jakość zbiorów.</p>
+                  <h3 id="philosophy-seasonality" class="philosophy-card__title">Sezonowość</h3>
+                  <p class="philosophy-card__text">Zmiany kart odpowiadają rytmowi upraw i morza. Plan sezonowy pozwala nam reagować na pogodę i jakość zbiorów.</p>
                 </div>
               </article>
             </li>
-     <li class="card philosophy-card" data-reveal>
+            <li class="card philosophy-card" data-reveal>
               <article class="philosophy-card__entry" aria-labelledby="philosophy-craft">
                 <div class="card__body">
-                  <h3 id="philosophy-craft">Rzemiosło</h3>
-                  <p>Każdą bazę przygotowujemy od podstaw: buliony redukujemy godzinami, pieczywo wypiekamy na zakwasie z własnego zboża.</p>
+                  <h3 id="philosophy-craft" class="philosophy-card__title">Rzemiosło</h3>
+                  <p class="philosophy-card__text">Każdą bazę przygotowujemy od podstaw: buliony redukujemy godzinami, pieczywo wypiekamy na zakwasie z własnego zboża.</p>
                 </div>
               </article>
             </li>
             <li class="card philosophy-card" data-reveal>
               <article class="philosophy-card__entry" aria-labelledby="philosophy-local">
                 <div class="card__body">
-                  <h3 id="philosophy-local">Lokalni dostawcy</h3>
-                  <p>Współpracujemy z rolnikami i rybakami z Małopolski oraz Podkarpacia, by wspierać krótkie łańcuchy dostaw i świeżość produktów.</p>
+                  <h3 id="philosophy-local" class="philosophy-card__title">Lokalni dostawcy</h3>
+                  <p class="philosophy-card__text">Współpracujemy z rolnikami i rybakami z Małopolski oraz Podkarpacia, by wspierać krótkie łańcuchy dostaw i świeżość produktów.</p>
                 </div>
               </article>
             </li>
           </ul>
         </div>
       </section>
+
+      <!-- Chef -->
       <section id="chef" class="section chef" aria-labelledby="chef-title">
         <div class="container">
+          <!-- Cards -->
           <article class="card chef-card" data-reveal>
             <figure class="chef-card__media">
-              <picture>
+              <picture class="chef-card__picture">
                 <source
                   type="image/avif"
                   srcset="
@@ -610,6 +622,7 @@
                   "
                   sizes="(max-width: 768px) 100vw, 45vw" />
                 <img
+                  class="chef-card__img"
                   src="assets/img-optimized/podstrona-about/group-team/about-01-1280x960.jpg"
                   srcset="
                     assets/img-optimized/podstrona-about/group-team/about-01-640x480.jpg   640w,
@@ -626,7 +639,7 @@
               <figcaption class="visually-hidden">Portret szefowej kuchni podczas pracy.</figcaption>
             </figure>
             <div class="card__body chef-card__body">
-             <h2 id="chef-title">Spotlight: Lena Wysocka</h2>
+              <h2 id="chef-title" class="section__title chef-card__title">Spotlight: Lena Wysocka</h2>
               <blockquote class="chef-card__quote">
                 „Struktura dania musi wibrować — być odważna, a jednocześnie czytelna. Inspiruję się muzyką i architekturą, by budować napięcie na talerzu.”
               </blockquote>
@@ -640,159 +653,172 @@
           </article>
         </div>
       </section>
+
+      <!-- Suppliers -->
       <section id="suppliers" class="section suppliers" aria-labelledby="suppliers-title">
         <div class="container">
           <div class="section__header" data-reveal>
-            <h2 id="suppliers-title">Składniki i dostawcy</h2>
+            <h2 id="suppliers-title" class="section__title">Składniki i dostawcy</h2>
             <p class="section__lead">Budujemy sieć współpracy z producentami, których wartości odzwierciedlają nasze ambicje — transparentność, etyka, konsekwencja.</p>
           </div>
+          <!-- Cards -->
           <ul class="cards suppliers__cards" data-reveal-group>
             <li class="card suppliers-card" data-reveal>
               <article>
                 <div class="card__body">
-                  <span class="suppliers__tag">Warzywa</span>
-                  <h3>Ekofarmę Podzamcze</h3>
-                  <p>Rodzinna farma biodynamiczna dostarczająca nam marchew, topinambur i sezonowe mikroliście zbierane na kilka godzin przed serwisem.</p>
+                  <span class="suppliers-card__tag">Warzywa</span>
+                  <h3 class="suppliers-card__title">Ekofarmę Podzamcze</h3>
+                  <p class="suppliers-card__text">Rodzinna farma biodynamiczna dostarczająca nam marchew, topinambur i sezonowe mikroliście zbierane na kilka godzin przed serwisem.</p>
                 </div>
               </article>
             </li>
             <li class="card suppliers-card" data-reveal>
               <article>
                 <div class="card__body">
-                  <span class="suppliers__tag">Ryby</span>
-                  <h3>Stawy Rymanów</h3>
-                  <p>Niewielkie gospodarstwo rybne z Podkarpacia, które prowadzi zrównoważoną hodowlę pstrąga źródlanego w wodach o kontrolowanym przepływie.</p>
+                  <span class="suppliers-card__tag">Ryby</span>
+                  <h3 class="suppliers-card__title">Stawy Rymanów</h3>
+                  <p class="suppliers-card__text">Niewielkie gospodarstwo rybne z Podkarpacia, które prowadzi zrównoważoną hodowlę pstrąga źródlanego w wodach o kontrolowanym przepływie.</p>
                 </div>
               </article>
             </li>
             <li class="card suppliers-card" data-reveal>
               <article>
                 <div class="card__body">
-                  <span class="suppliers__tag">Pieczywo</span>
-                  <h3>Pracownia Młyn</h3>
-                  <p>Mistrzowie wypieku na zakwasie z regionalnych zbóż. Specjalnie dla nas tworzą chleby z dodatkiem kaszy gryczanej i prażonych pestek.</p>
+                  <span class="suppliers-card__tag">Pieczywo</span>
+                  <h3 class="suppliers-card__title">Pracownia Młyn</h3>
+                  <p class="suppliers-card__text">Mistrzowie wypieku na zakwasie z regionalnych zbóż. Specjalnie dla nas tworzą chleby z dodatkiem kaszy gryczanej i prażonych pestek.</p>
                 </div>
               </article>
             </li>
             <li class="card suppliers-card" data-reveal>
               <article>
                 <div class="card__body">
-                  <span class="suppliers__tag">Napoje</span>
-                  <h3>Palarnia Kraftowa</h3>
-                  <p>Selekcjonowane single origin palone w krótkich seriach. Espresso i cold brew towarzyszą naszym deserom i pairingom bezalkoholowym.</p>
+                  <span class="suppliers-card__tag">Napoje</span>
+                  <h3 class="suppliers-card__title">Palarnia Kraftowa</h3>
+                  <p class="suppliers-card__text">Selekcjonowane single origin palone w krótkich seriach. Espresso i cold brew towarzyszą naszym deserom i pairingom bezalkoholowym.</p>
                 </div>
               </article>
             </li>
             <li class="card suppliers-card" data-reveal>
               <article>
                 <div class="card__body">
-                  <span class="suppliers__tag">Napoje</span>
-                  <h3>Atelier Ferment</h3>
-                  <p>Laboratorium naturalnych napojów gazowanych i kombuch, które współtworzy nasze pairingi z menu degustacyjnym bez alkoholu.</p>
+                  <span class="suppliers-card__tag">Napoje</span>
+                  <h3 class="suppliers-card__title">Atelier Ferment</h3>
+                  <p class="suppliers-card__text">Laboratorium naturalnych napojów gazowanych i kombuch, które współtworzy nasze pairingi z menu degustacyjnym bez alkoholu.</p>
                 </div>
               </article>
-          </li>
+            </li>
             <li class="card suppliers-card" data-reveal>
               <article>
                 <div class="card__body">
-                  <span class="suppliers__tag">Owoce</span>
-                  <h3>Sad Brzozowy</h3>
-                  <p>Rodzinny sad z Małopolski, w którym dojrzewają stare odmiany jabłek, grusz i śliwek. Ich naturalne przeciery i konfitury wykorzystujemy w naszych deserach oraz sosach do mięs.</p>
+                  <span class="suppliers-card__tag">Owoce</span>
+                  <h3 class="suppliers-card__title">Sad Brzozowy</h3>
+                  <p class="suppliers-card__text">
+                    Rodzinny sad z Małopolski, w którym dojrzewają stare odmiany jabłek, grusz i śliwek. Ich naturalne przeciery i konfitury wykorzystujemy w naszych deserach oraz sosach do mięs.
+                  </p>
                 </div>
               </article>
             </li>
           </ul>
         </div>
       </section>
-     <section id="awards" class="section awards" aria-labelledby="awards-title">
+
+      <!-- Awards -->
+      <section id="awards" class="section awards" aria-labelledby="awards-title">
         <div class="container">
           <div class="section__header" data-reveal>
-            <h2 id="awards-title">Nagrody i wyróżnienia</h2>
+            <h2 id="awards-title" class="section__title">Nagrody i wyróżnienia</h2>
             <p class="section__lead">Docenienie przez branżę motywuje nas do dalszych eksperymentów i rozwoju doświadczenia gości.</p>
           </div>
-        <ul class="cards awards__cards" data-reveal-group>
+          <!-- Cards -->
+          <ul class="cards awards__cards" data-reveal-group>
             <li class="card awards__card" data-reveal>
               <article>
                 <div class="card__body">
-                  <h3 class="awards__badge">
-                    <span class="awards__icon" aria-hidden="true">★</span>
+                  <h3 class="awards-card__title">
+                    <span class="awards-card__icon" aria-hidden="true">★</span>
                     Top 10 Fine Dining w Krakowie 2024
                   </h3>
-                  <p class="timeline__text">Ranking „Smaki Miasta” wyróżnił nasze menu degustacyjne i obsługę sali.</p>
+                  <p class="awards-card__text">Ranking „Smaki Miasta” wyróżnił nasze menu degustacyjne i obsługę sali.</p>
                 </div>
               </article>
             </li>
             <li class="card awards__card" data-reveal>
               <article>
                 <div class="card__body">
-                  <h3 class="awards__badge">
-                    <span class="awards__icon" aria-hidden="true">★</span>
+                  <h3 class="awards-card__title">
+                    <span class="awards-card__icon" aria-hidden="true">★</span>
                     Laureat „Golden Spoon”
                   </h3>
-                  <p class="timeline__text">Statuetka przyznana za konsekwencję w pracy z lokalnymi dostawcami i transparentność kuchni.</p>
+                  <p class="awards-card__text">Statuetka przyznana za konsekwencję w pracy z lokalnymi dostawcami i transparentność kuchni.</p>
                 </div>
               </article>
             </li>
             <li class="card awards__card" data-reveal>
               <article>
                 <div class="card__body">
-                  <h3 class="awards__badge">
-                    <span class="awards__icon" aria-hidden="true">★</span>
+                  <h3 class="awards-card__title">
+                    <span class="awards-card__icon" aria-hidden="true">★</span>
                     Wyróżnienie Guide Selection
                   </h3>
-                  <p class="timeline__text">Międzynarodowy przewodnik docenił oryginalną parę degustacyjną deserów i naparów.</p>
+                  <p class="awards-card__text">Międzynarodowy przewodnik docenił oryginalną parę degustacyjną deserów i naparów.</p>
                 </div>
               </article>
             </li>
           </ul>
         </div>
       </section>
+
+      <!-- Location -->
       <section id="location" class="section location" aria-labelledby="location-title">
         <div class="container">
           <div class="section__header" data-reveal>
-            <h2 id="location-title">Godziny otwarcia i lokalizacja</h2>
+            <h2 id="location-title" class="section__title">Godziny otwarcia i lokalizacja</h2>
             <p class="section__lead">Rezerwacje przyjmujemy telefonicznie, mailowo lub przez formularz na stronie. Dla grup przygotowujemy spersonalizowane scenariusze kolacji.</p>
           </div>
+          <!-- Cards -->
           <div class="grid grid--2 location__grid" data-reveal-group>
+            <!-- Hours -->
             <article class="card location-card" data-reveal>
               <div class="card__body">
-                <h3>Godziny otwarcia</h3>
-                <table class="hours__table">
+                <h3 class="location-card__title">Godziny otwarcia</h3>
+                <table class="location-card__table">
                   <caption class="visually-hidden">Godziny pracy restauracji Atelier No.02</caption>
                   <tbody>
-                    <tr>
-                      <th scope="row">Poniedziałek</th>
-                      <td>Zamknięte</td>
+                    <tr class="location-card__row">
+                      <th scope="row" class="location-card__day">Poniedziałek</th>
+                      <td class="location-card__hours">Zamknięte</td>
                     </tr>
-                    <tr>
-                      <th scope="row">Wtorek – Czwartek</th>
-                      <td>17:00 – 22:30</td>
+                    <tr class="location-card__row">
+                      <th scope="row" class="location-card__day">Wtorek – Czwartek</th>
+                      <td class="location-card__hours">17:00 – 22:30</td>
                     </tr>
-                    <tr>
-                      <th scope="row">Piątek – Sobota</th>
-                      <td>17:00 – 23:30</td>
+                    <tr class="location-card__row">
+                      <th scope="row" class="location-card__day">Piątek – Sobota</th>
+                      <td class="location-card__hours">17:00 – 23:30</td>
                     </tr>
-                    <tr>
-                      <th scope="row">Niedziela</th>
-                      <td>17:00 – 21:30</td>
+                    <tr class="location-card__row">
+                      <th scope="row" class="location-card__day">Niedziela</th>
+                      <td class="location-card__hours">17:00 – 21:30</td>
                     </tr>
                   </tbody>
                 </table>
-                <p class="timeline__text">Prosimy o przybycie 10 minut przed rezerwacją, by w komfortowych warunkach rozpocząć wieczór.</p>
+                <p class="location-card__note">Prosimy o przybycie 10 minut przed rezerwacją, by w komfortowych warunkach rozpocząć wieczór.</p>
               </div>
             </article>
+            <!-- Address -->
             <article class="card location-card" data-reveal>
               <div class="card__body">
-                <h3>Adres</h3>
-                <address>
+                <h3 class="location-card__title">Adres</h3>
+                <address class="location-card__address">
                   ul. Marynarki Wojennej 12/31
                   <br />
                   33-100 Tarnów
+                  <br />
+                  Polska
                 </address>
-                <p class="timeline__text">Parking miejski znajduje się 120 m od wejścia, a przystanek tramwajowy „Zakątek” tuż przy restauracji.</p>
-                <a class="btn btn--ghost" href="/contact.html#map" aria-label="Przejdź do mapy dojazdu na stronie kontaktowej">
-                  Pokaż na mapie
-                </a>
+                <p class="location-card__note">Parking miejski znajduje się 120 m od wejścia, a przystanek tramwajowy „Zakątek” tuż przy restauracji.</p>
+                <a class="btn btn--ghost location-card__cta" href="/contact.html#map" aria-label="Przejdź do mapy dojazdu na stronie kontaktowej">Pokaż na mapie</a>
               </div>
             </article>
           </div>
@@ -803,9 +829,10 @@
       <section id="faq" class="section faq" aria-labelledby="faq-title">
         <div class="container">
           <div class="section__header" data-reveal>
-            <h2 id="faq-title">Najczęstsze pytania</h2>
+            <h2 id="faq-title" class="section__title">Najczęstsze pytania</h2>
             <p class="section__lead">Krótkie odpowiedzi, które pomogą przygotować się do wizyty w Atelier No.02.</p>
           </div>
+          <!-- Questions cards -->
           <ul class="cards faq__cards" data-reveal-group>
             <li class="card faq__item" data-reveal>
               <article>
@@ -830,7 +857,7 @@
                   <p class="faq__answer">Dwa razy w sezonie aktualizujemy menu degustacyjne, a karta à la carte rotuje w rytmie tygodniowych dostaw.</p>
                 </div>
               </article>
-          </li>
+            </li>
             <li class="card faq__item" data-reveal>
               <article>
                 <div class="card__body">
@@ -863,16 +890,37 @@
       <section id="cta" class="section cta" aria-labelledby="cta-title">
         <div class="container">
           <div class="cta__wrap" data-reveal>
-            <h2 id="cta-title">Spotkajmy się przy stole</h2>
-            <p>Zapraszamy na wieczór, który opowiemy wspólnie — my poprzez smaki, Państwo poprzez emocje i rozmowy przy naszym stole.</p>
+            <h2 id="cta-title" class="section__title cta__title">Spotkajmy się przy stole</h2>
+
+            <span class="cta__icon" aria-hidden="true">
+              <svg
+                class="cta__svg"
+                xmlns="http://www.w3.org/2000/svg"
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                focusable="false">
+                <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                <path d="M12 3c1.918 0 3.52 1.35 3.91 3.151a4 4 0 0 1 2.09 7.723l0 7.126h-12v-7.126a4 4 0 1 1 2.092 -7.723a4 4 0 0 1 3.908 -3.151" />
+                <path d="M6.161 17.009l11.839 -.009" />
+              </svg>
+            </span>
+
+            <p class="cta__text">Zapraszamy na wieczór, który opowiemy wspólnie — my poprzez smaki, Państwo poprzez emocje i rozmowy przy naszym stole.</p>
             <div class="cta__actions">
-              <a class="btn btn--primary" href="/contact.html">Zarezerwuj stolik</a>
-              <a class="btn btn--ghost" href="menu.html">Zobacz pełne menu</a>
-              <a class="btn btn--ghost" href="gallery.html">Zobacz galerię</a>
+              <a class="btn btn--primary cta__btn" href="/contact.html">Zarezerwuj stolik</a>
+              <a class="btn btn--ghost cta__btn" href="menu.html">Zobacz pełne menu</a>
+              <a class="btn btn--ghost cta__btn" href="gallery.html">Zobacz galerię</a>
             </div>
           </div>
         </div>
       </section>
+      <!-- --- -->
     </main>
 
     <!-- Footer -->

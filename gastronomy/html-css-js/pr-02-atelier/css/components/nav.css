@@ -251,7 +251,6 @@ html:not(.js) .nav-toggle {
 }
 .nav__list a:hover,
 .nav__list a:focus-visible {
-  text-decoration: underline;
   text-underline-offset: 0.35em;
 }
 
