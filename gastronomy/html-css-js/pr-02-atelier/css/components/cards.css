@@ -1,5 +1,5 @@
 /* Cards */
-.cards {
+.page .cards {
   display: grid;
   grid-template-columns: 1fr;
   gap: var(--space-5);
@@ -7,7 +7,7 @@
   padding: 0;
   list-style: none;
 }
-.card {
+.page .card {
   background: var(--bone);
   border: 1px solid var(--border-soft);
   border-radius: var(--radius-md);
@@ -16,27 +16,27 @@
   display: flex;
   flex-direction: column;
 }
-.card__image {
+.page .card__image {
   aspect-ratio: 3/2;
   object-fit: cover;
 }
-.card__image.img-fallback,
-.gallery__img.img-fallback {
+.page .card__image.img-fallback,
+.page .gallery__img.img-fallback {
   background: color-mix(in oklab, var(--surface-overlay) 60%, var(--bone));
   object-fit: contain;
 }
-.card__body {
+.page .card__body {
   padding: var(--space-4);
   display: flex;
   flex-direction: column;
   flex: 1;
 }
-.card__title {
+.page .card__title {
   text-align: center;
   margin: var(--space-1) auto;
   position: relative;
 }
-.card__title::after {
+.page .card__title::after {
   content: "";
   display: block;
   height: 1px;
@@ -51,13 +51,11 @@
   );
   opacity: 0.9;
 }
-.card__text {
+.page .card__text {
   margin: 0;
   color: var(--charcoal);
   font-size: var(--fs-sm);
 }
-
-/* Page Cards */
 .page .menu-card article {
   display: flex;
   flex-direction: column;
@@ -84,14 +82,12 @@
   gap: var(--space-4);
   margin-bottom: var(--space-2);
 }
-
 .page .menu-card__price {
   margin-left: 0;
   font-weight: 600;
   color: color-mix(in oklab, var(--burgundy) 90%, black);
   white-space: nowrap;
 }
-
 [data-theme="dark"] .page .menu-card__price {
   color: color-mix(in oklab, var(--burgundy) 86%, white);
 }
@@ -127,19 +123,12 @@
 }
 
 @media (min-width: 760px) {
-  .cards {
-    grid-template-columns: repeat(2, 1fr);
-  }
-  .page .menu-card__heading {
-    flex-direction: row;
-  }
-  .page .menu-card__price {
-    margin-left: auto;
-  }
+  .page .cards { grid-template-columns: repeat(2, 1fr); }
+  .page .menu-card__heading { flex-direction: row; }
+  .page .menu-card__price { margin-left: auto; }
 }
 
 @media (min-width: 1024px) {
-  .cards {
-    grid-template-columns: repeat(3, 1fr);
-  }
+  .page .cards { grid-template-columns: repeat(3, 1fr); }
 }
+

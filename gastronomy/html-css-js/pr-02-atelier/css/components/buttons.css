@@ -17,6 +17,7 @@
     border-color 0.18s ease,
     box-shadow 0.18s ease,
     transform 0.06s ease;
+  -webkit-tap-highlight-color: transparent;
 }
 a.btn {
   text-decoration: none;

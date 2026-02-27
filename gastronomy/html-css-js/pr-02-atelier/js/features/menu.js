@@ -412,8 +412,8 @@ export function initMenuPage() {
       });
       el.appendChild(a);
     }
-    document.querySelectorAll(".menu-section__header h2").forEach(addAnchor);
-    document.querySelectorAll(".card__title").forEach(addAnchor);
+    document.querySelectorAll(".page--menu .menu-section__header h2").forEach(addAnchor);
+    document.querySelectorAll(".page--menu .card__title").forEach(addAnchor);
   }
 
   renderMenuByCategory().then(function (rendered) {
