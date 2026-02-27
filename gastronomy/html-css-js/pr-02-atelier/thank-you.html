@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="pl">
   <head>
     <meta charset="utf-8" />
@@ -30,6 +30,7 @@
           <img src="assets/img-optimized/logo/logo-and-name/header-logo-light.svg" alt="" class="brand__logo brand__logo--light" width="40" height="30" />
           <img src="assets/img-optimized/logo/logo-and-name/header-logo-dark.svg" alt="" class="brand__logo brand__logo--dark" width="40" height="30" />
         </a>
+         <!-- hamburger menu -->
         <div class="header__actions">
           <button type="button" class="nav-toggle" aria-label="Otwórz menu" aria-controls="primary-nav" aria-expanded="false">
             <svg class="nav-toggle__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
@@ -38,6 +39,7 @@
               <path class="line line--bottom" d="M3.75 17.25h16.5" />
             </svg>
           </button>
+            <!-- Nav -->
           <nav class="nav" id="primary-nav" aria-label="Nawigacja główna">
             <ul class="nav__list">
               <li class="nav__item nav__item--dropdown">
@@ -86,27 +88,29 @@
       </div>
     </header>
 
-    <!-- Main -->
-    <main id="main" tabindex="-1">
-      <section class="section" aria-labelledby="thank-you-title">
-        <div class="container">
-          <div class="card">
-            <div class="card__body">
-              <h1 id="thank-you-title" class="card__title">Dziękujemy za wiadomość</h1>
-              <p class="card__text">Twoje zgłoszenie zostało wysłane. Skontaktujemy się z Tobą najszybciej, jak to możliwe.</p>
-              <p class="card__text">
-                W pilnych sprawach zadzwoń:
-                <a href="tel:+48533537091">+48&nbsp;533&nbsp;537&nbsp;091</a>
-                lub napisz:
-                <a href="mailto:kontakt@kp-code.pl">kontakt@kp-code.pl</a>
-                .
-              </p>
-              <a class="btn btn--primary" href="/contact.html">Wróć do formularza</a>
-            </div>
-          </div>
+ <!-- Main -->
+<main id="main" tabindex="-1">
+  <!-- Hero -->
+  <section class="section page-hero" aria-labelledby="thank-you-title">
+    <div class="container page-hero__inner">
+      <div class="page-hero__content">
+        <span class="page-hero__eyebrow">Dziękujemy</span>
+        <h1 id="thank-you-title" class="page-hero__title">Wiadomość wysłana</h1>
+
+        <div class="page-hero__note">
+          <p class="page-hero__note-intro">Co dalej:</p>
+          <ul class="page-hero__note-list">
+            <li>otrzymaliśmy Twoje zgłoszenie i wrócimy z odpowiedzią najszybciej, jak to możliwe</li>
+            <li>w pilnych sprawach zadzwoń: <a href="tel:+48533537091">+48&nbsp;533&nbsp;537&nbsp;091</a></li>
+            <li>możesz też napisać: <a href="mailto:kontakt@kp-code.pl">kontakt@kp-code.pl</a></li>
+          </ul>
         </div>
-      </section>
-    </main>
+
+        <a class="btn btn--primary" href="/contact.html">Wróć do formularza</a>
+      </div>
+    </div>
+  </section>
+</main>
 
     <!-- Footer -->
     <footer class="footer" aria-label="Stopka strony">

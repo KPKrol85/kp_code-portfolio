@@ -1,4 +1,4 @@
-/* Offline */
+/* offline.html */
 .page-hero__note {
   margin-top: var(--space-3);
   padding: var(--space-4);
@@ -37,7 +37,7 @@
   position: absolute;
   left: 0;
   color: var(--text-muted);
-    top: 0.2em;
+  top: 0.2em;
 }
 .page--offline .menu__cta {
   display: flex;
@@ -50,8 +50,8 @@
   display: inline-block;
   width: fit-content;
   flex: 0 0 auto;
- min-width: min(200px, 100%);
- white-space: nowrap;
+  min-width: min(200px, 100%);
+  white-space: nowrap;
 }
 .page--offline .card__body {
   padding: var(--space-5);
@@ -65,5 +65,13 @@
   width: fit-content;
   min-width: min(200px, 100%);
   max-width: 100%;
+  margin-inline: auto;
+}
+
+/* thank-you.html */
+.page--thank-you .btn {
+  width: 100%;
+  max-width: 360px;
+  margin-top: var(--space-6);
   margin-inline: auto;
 }
