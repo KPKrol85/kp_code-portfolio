@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="pl">
   <head>
     <meta charset="UTF-8" />
@@ -14,7 +14,7 @@
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://gastronomy-project-02.netlify.app/offline.html" />
     <!-- Styles -->
-    <link rel="stylesheet" href="/css/style.min.css" />
+    <link rel="stylesheet" href="/css/style.css" />
   </head>
 
   <!-- Body -->
@@ -86,27 +86,39 @@
 
     <!-- Main -->
     <main id="main" tabindex="-1">
+      <!-- Hero -->
       <section class="section page-hero" aria-labelledby="offline-title">
         <div class="container page-hero__inner">
           <div class="page-hero__content">
             <span class="page-hero__eyebrow">Tryb offline</span>
-            <h1 id="offline-title">Jesteś offline</h1>
+            <h1 id="offline-title" class="page-hero__title">Jesteś offline</h1>
             <p class="page-hero__lead">Nie mamy teraz połączenia z internetem. Część treści może być dostępna z pamięci urządzenia.</p>
-            <p class="offline-note">Co działa offline: ostatnio odwiedzone strony, podstawowe style i część obrazów.</p>
+            <div class="page-hero__note">
+              <p class="page-hero__note-intro">Co działa offline:</p>
+              <ul class="page-hero__note-list">
+                <li>ostatnio odwiedzone strony</li>
+                <li>podstawowe style</li>
+                <li>część obrazów</li>
+              </ul>
+            </div>
           </div>
         </div>
       </section>
+
+      <!-- Content -->
       <section class="section" aria-label="Dostępne działania offline">
         <div class="container">
           <div class="menu__cta">
             <button class="btn btn--primary" type="button" id="retry-connection">Spróbuj ponownie</button>
             <a class="btn btn--ghost" href="/index.html">Strona główna</a>
           </div>
-
+          <!-- Section header -->
           <div class="section__header">
-            <h2>Co możesz zrobić teraz</h2>
-            <p>Jeśli odwiedzałeś te sekcje wcześniej, mogą być dostępne offline.</p>
+            <h2 class="section__title">Co możesz zrobić teraz</h2>
+            <p class="section__lead">Jeśli odwiedzałeś te sekcje wcześniej, mogą być dostępne offline.</p>
           </div>
+
+          <!-- Cards -->
           <ul class="cards">
             <li class="card">
               <div class="card__body">
@@ -276,7 +288,7 @@
     </script>
 
     <!-- Script -->
-    <script src="/js/script.min.js" defer></script>
+    <script type="module" src="js/script.js"></script>
 
     <!-- Demo legal modal -->
     <div class="demo-legal-modal" id="demo-legal-modal" aria-hidden="true" hidden>

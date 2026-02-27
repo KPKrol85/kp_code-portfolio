@@ -25,15 +25,18 @@
   background: color-mix(in oklab, var(--gold) 12%, var(--surface-overlay));
   border-color: color-mix(in oklab, var(--gold) 35%, var(--surface-overlay-border));
 }
-.offline-note {
-  margin-top: 0.75rem;
-  padding: var(--space-3) var(--space-4);
-  border-radius: var(--radius-md);
-  background: var(--surface-overlay);
-  border: 1px solid var(--surface-overlay-border);
-  color: var(--text-muted);
-  font-size: 0.95rem;
-}
+
+
+
+
+
+
+
+
+
+
+
+
 .nojs {
   position: fixed;
   bottom: 1rem;
