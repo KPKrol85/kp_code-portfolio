@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="pl">
   <head>
     <meta charset="utf-8" />
@@ -99,9 +99,8 @@
           <img src="assets/img-optimized/logo/logo-and-name/header-logo-light.svg" alt="" class="brand__logo brand__logo--light" width="40" height="30" />
           <img src="assets/img-optimized/logo/logo-and-name/header-logo-dark.svg" alt="" class="brand__logo brand__logo--dark" width="40" height="30" />
         </a>
-
         <div class="header__actions">
-          <!-- hamburger menu -->
+          <!-- hamburger -->
           <button type="button" class="nav-toggle" aria-label="Otwórz menu" aria-controls="primary-nav" aria-expanded="false">
             <svg class="nav-toggle__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
               <path class="line line--top" d="M3.75 6.75h16.5" />
@@ -112,7 +111,6 @@
           <!-- Nav -->
           <nav class="nav" id="primary-nav" aria-label="Nawigacja główna">
             <ul class="nav__list">
-              <!-- o nas-->
               <li class="nav__item nav__item--dropdown">
                 <a class="nav__link" href="/#about">O nas</a>
                 <button class="nav__dropdown-toggle" id="nav-dd-about-trigger" type="button" aria-expanded="false" aria-controls="nav-dd-about" aria-label="Pokaż więcej: O nas">
@@ -124,7 +122,6 @@
                   <li><a href="/about.html">Poznaj nas</a></li>
                 </ul>
               </li>
-              <!-- menu-->
               <li class="nav__item nav__item--dropdown">
                 <a class="nav__link" href="/#menu">Menu</a>
                 <button class="nav__dropdown-toggle" id="nav-dd-menu-trigger" type="button" aria-expanded="false" aria-controls="nav-dd-menu" aria-label="Pokaż więcej: Menu">
@@ -136,7 +133,6 @@
                   <li><a href="/menu.html">Pełne menu</a></li>
                 </ul>
               </li>
-              <!-- galeria-->
               <li class="nav__item nav__item--dropdown">
                 <a class="nav__link" href="/#gallery">Galeria</a>
                 <button class="nav__dropdown-toggle" id="nav-dd-gallery-trigger" type="button" aria-expanded="false" aria-controls="nav-dd-gallery" aria-label="Pokaż więcej: Galeria">
@@ -148,9 +144,7 @@
                   <li><a href="/gallery.html">Pełna galeria</a></li>
                 </ul>
               </li>
-              <!-- opinie-->
               <li><a href="/#testimonials">Opinie</a></li>
-              <!-- kontakt-->
               <li><a href="/contact.html">Kontakt</a></li>
             </ul>
           </nav>
@@ -762,7 +756,6 @@
           <!-- Contact -->
           <div class="footer__contact">
             <h3 class="footer__heading">Kontakt</h3>
-
             <address class="footer__address">
               <p class="footer__contact-item">
                 <svg class="footer__contact-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
@@ -773,7 +766,6 @@
                 </svg>
                 <a href="tel:+48533537091">+48&nbsp;533&nbsp;537&nbsp;091</a>
               </p>
-
               <p class="footer__contact-item">
                 <svg class="footer__contact-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
                   <path d="M1.5 8.67v8.58a3 3 0 0 0 3 3h15a3 3 0 0 0 3-3V8.67l-8.928 5.493a3 3 0 0 1-3.144 0L1.5 8.67Z" />
@@ -865,9 +857,11 @@
     <div class="demo-legal-modal" id="demo-legal-modal" aria-hidden="true" hidden inert>
       <div class="demo-legal-modal__backdrop" data-demo-legal-close></div>
       <div class="demo-legal-modal__panel" role="dialog" aria-modal="true" aria-labelledby="demo-legal-title" aria-describedby="demo-legal-desc" tabindex="-1">
-        <h2 class="demo-legal-modal__title" id="demo-legal-title">Projekt demonstracyjny</h2>
+        <h2 class="demo-legal-modal__title" id="demo-legal-title">Informacja o projekcie</h2>
         <p class="demo-legal-modal__text" id="demo-legal-desc">
-          Serwis Atelier No.02 jest projektem demo. Właścicielem jest Kamil Król (KP_Code). Korzystając z serwisu akceptujesz
+          Serwis „Atelier No.02” ma charakter demonstracyjny i został przygotowany przez
+          <a href="https://www.kp-code.pl" rel="noopener">KP_Code Digital Studio</a>
+          jako przykładoa strona internetowa dla branży gastronomicznej. Korzystając z serwisu, akceptujesz
           <a href="regulamin.html">Regulamin</a>
           .
         </p>

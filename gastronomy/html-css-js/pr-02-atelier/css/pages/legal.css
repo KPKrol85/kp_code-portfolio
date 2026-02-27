@@ -150,6 +150,15 @@
 .page--legal section[id] {
   scroll-margin-top: clamp(72px, 10vh, 120px);
 }
+.page--legal .menu-tabs__list .btn--ghost {
+  border-color: transparent;
+}
+
+.page--legal .menu-tabs__list .btn--ghost:hover,
+.page--legal .menu-tabs__list .btn--ghost:focus-visible {
+  background: color-mix(in oklab, var(--burgundy) 14%, transparent);
+}
+
 
 @media (min-width: 760px) {
   .page--legal .menu-tabs__list .btn {

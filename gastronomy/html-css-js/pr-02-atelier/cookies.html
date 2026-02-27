@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="pl">
   <head>
     <meta charset="utf-8" />
@@ -101,6 +101,7 @@
               <path class="line line--bottom" d="M3.75 17.25h16.5" />
             </svg>
           </button>
+          <!-- Nav -->
           <nav class="nav" id="primary-nav" aria-label="Nawigacja główna">
             <ul class="nav__list">
               <li class="nav__item nav__item--dropdown">
@@ -140,6 +141,7 @@
               <li><a href="/contact.html">Kontakt</a></li>
             </ul>
           </nav>
+          <!-- Theme toggle -->
           <button class="theme-toggle" type="button" aria-pressed="false" aria-label="Przełącz tryb ciemny">
             <span class="theme-toggle__icon theme-toggle__icon--sun" aria-hidden="true"><img src="assets/icons/svg-icon/icon-sun.svg" alt="" width="24" height="24" /></span>
             <span class="theme-toggle__icon theme-toggle__icon--moon" aria-hidden="true"><img src="assets/icons/svg-icon/icon-moon.svg" alt="" width="24" height="24" /></span>
@@ -152,11 +154,15 @@
     <!-- Main -->
     <main id="main" tabindex="-1">
       <nav class="breadcrumbs" aria-label="Okruchy nawigacji">
-        <ol>
-          <li><a href="index.html">Strona główna</a></li>
-          <li aria-current="page">Cookies</li>
-        </ol>
+        <div class="container">
+          <ol>
+            <li><a href="index.html">Strona główna</a></li>
+            <li aria-current="page">Cookies</li>
+          </ol>
+        </div>
       </nav>
+
+      <!-- Hero -->
       <section class="section page-hero" aria-labelledby="cookies-title">
         <div class="container page-hero__inner">
           <div class="page-hero__content" data-reveal>
@@ -164,13 +170,16 @@
             <h1 id="cookies-title">Polityka cookies</h1>
             <p class="page-hero__lead">
               Niniejsza Polityka cookies określa zasady wykorzystywania plików cookies oraz podobnych technologii w ramach demonstracyjnego projektu strony internetowej „Atelier No.02”, opracowanego
-              przez KP_Code Digital Studio. Dokument ma charakter informacyjny i wyjaśnia sposób działania mechanizmów technicznych związanych z funkcjonowaniem Serwisu.
+              przez
+              <a href="https://www.kp-code.pl" rel="noopener">KP_Code Digital Studio</a>
+              . Dokument ma charakter informacyjny i wyjaśnia sposób działania mechanizmów technicznych związanych z funkcjonowaniem Serwisu.
             </p>
             <p class="meta" style="margin-top: 0.5rem">Ostatnia aktualizacja: 22.02.2026</p>
           </div>
         </div>
       </section>
 
+      <!-- Spis treści -->
       <section class="section" aria-labelledby="toc-title">
         <div class="container">
           <h2 id="toc-title" class="visually-hidden">Spis treści</h2>
@@ -189,7 +198,7 @@
           </nav>
         </div>
       </section>
-
+      <!-- Postanowienia ogólne -->
       <section id="postanowienia" class="section" aria-labelledby="postanowienia-title">
         <div class="container">
           <div class="section__header" data-reveal>
@@ -209,7 +218,7 @@
           </div>
         </div>
       </section>
-
+      <!-- Czym są pliki cookies i podobne technologie -->
       <section id="czym-sa" class="section" aria-labelledby="czym-sa-title">
         <div class="container">
           <div class="section__header" data-reveal>
@@ -231,7 +240,7 @@
           </div>
         </div>
       </section>
-
+      <!-- Rodzaje plików cookies -->
       <section id="rodzaje" class="section" aria-labelledby="rodzaje-title">
         <div class="container">
           <div class="section__header" data-reveal>
@@ -252,7 +261,7 @@
           </div>
         </div>
       </section>
-
+      <!-- Cele wykorzystywania plików cookies -->
       <section id="cele" class="section" aria-labelledby="cele-title">
         <div class="container">
           <div class="section__header" data-reveal>
@@ -271,7 +280,7 @@
           </div>
         </div>
       </section>
-
+      <!-- Podstawy prawne stosowania plików cookies -->
       <section id="podstawy-prawne" class="section" aria-labelledby="podstawy-prawne-title">
         <div class="container">
           <div class="section__header" data-reveal>
@@ -291,7 +300,7 @@
           </div>
         </div>
       </section>
-
+      <!-- Zarządzanie zgodą -->
       <section id="zarzadzanie" class="section" aria-labelledby="zarzadzanie-title">
         <div class="container">
           <div class="section__header" data-reveal>
@@ -312,7 +321,7 @@
           </div>
         </div>
       </section>
-
+      <!-- Pliki cookies podmiotów trzecich -->
       <section id="podmioty-trzecie" class="section" aria-labelledby="podmioty-trzecie-title">
         <div class="container">
           <div class="section__header" data-reveal>
@@ -335,7 +344,7 @@
           </div>
         </div>
       </section>
-
+      <!-- Zmiany w polityce cookies -->
       <section id="zmiany" class="section" aria-labelledby="zmiany-title">
         <div class="container">
           <div class="section__header" data-reveal>
@@ -350,7 +359,7 @@
           </div>
         </div>
       </section>
-
+      <!-- Kontakt -->
       <section id="kontakt" class="section" aria-labelledby="kontakt-title">
         <div class="container">
           <div class="section__header" data-reveal>

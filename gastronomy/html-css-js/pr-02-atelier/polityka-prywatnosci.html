@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="pl">
   <head>
     <meta charset="utf-8" />
@@ -101,6 +101,7 @@
               <path class="line line--bottom" d="M3.75 17.25h16.5" />
             </svg>
           </button>
+          <!-- Nav -->
           <nav class="nav" id="primary-nav" aria-label="Nawigacja główna">
             <ul class="nav__list">
               <li class="nav__item nav__item--dropdown">
@@ -140,6 +141,7 @@
               <li><a href="/contact.html">Kontakt</a></li>
             </ul>
           </nav>
+          <!-- Theme toggle -->
           <button class="theme-toggle" type="button" aria-pressed="false" aria-label="Przełącz tryb ciemny">
             <span class="theme-toggle__icon theme-toggle__icon--sun" aria-hidden="true"><img src="assets/icons/svg-icon/icon-sun.svg" alt="" width="24" height="24" /></span>
             <span class="theme-toggle__icon theme-toggle__icon--moon" aria-hidden="true"><img src="assets/icons/svg-icon/icon-moon.svg" alt="" width="24" height="24" /></span>
@@ -152,26 +154,30 @@
     <!-- Main -->
     <main id="main" tabindex="-1">
       <nav class="breadcrumbs" aria-label="Okruchy nawigacji">
-        <ol>
-          <li><a href="index.html">Strona główna</a></li>
-          <li aria-current="page">Polityka prywatności</li>
-        </ol>
+        <div class="container">
+          <ol>
+            <li><a href="index.html">Strona główna</a></li>
+            <li aria-current="page">Polityka prywatności</li>
+          </ol>
+        </div>
       </nav>
-
+      <!-- Hero -->
       <section class="section page-hero" aria-labelledby="privacy-title">
         <div class="container page-hero__inner">
           <div class="page-hero__content" data-reveal>
             <span class="page-hero__eyebrow">Informacje prawne</span>
             <h1 id="privacy-title">Polityka prywatności</h1>
             <p class="page-hero__lead">
-              Niniejsza Polityka prywatności określa zasady przetwarzania danych osobowych w ramach demonstracyjnego projektu strony internetowej „Atelier No.02”, opracowanego przez KP_Code Digital
-              Studio . Dokument ma charakter informacyjny i dotyczy sposobu działania funkcjonalności prezentowanych w Serwisie.
+              Niniejsza Polityka prywatności określa zasady przetwarzania danych osobowych w ramach demonstracyjnego projektu strony internetowej „Atelier No.02”, opracowanego przez
+              <a href="https://www.kp-code.pl" rel="noopener">KP_Code Digital Studio</a>
+              . Dokument ma charakter informacyjny i dotyczy sposobu działania funkcjonalności prezentowanych w Serwisie.
             </p>
             <p class="meta" style="margin-top: 0.5rem">Ostatnia aktualizacja: 19.12.2025</p>
           </div>
         </div>
       </section>
 
+      <!-- Spis treści -->
       <section class="section" aria-labelledby="toc-title">
         <div class="container">
           <h2 id="toc-title" class="visually-hidden">Spis treści</h2>
@@ -192,7 +198,7 @@
           </nav>
         </div>
       </section>
-
+      <!-- Administrator danych -->
       <section id="admin" class="section" aria-labelledby="admin-title">
         <div class="container">
           <div class="section__header" data-reveal>
@@ -208,7 +214,7 @@
           </div>
         </div>
       </section>
-
+      <!-- Charakter Serwisu -->
       <section id="zakres" class="section" aria-labelledby="zakres-title">
         <div class="container">
           <div class="section__header" data-reveal>
@@ -223,7 +229,7 @@
           </div>
         </div>
       </section>
-
+      <!-- Zakres i charakter przetwarzania danych -->
       <section id="cele" class="section" aria-labelledby="cele-title">
         <div class="container">
           <div class="section__header" data-reveal>
@@ -247,7 +253,7 @@
           </div>
         </div>
       </section>
-
+      <!-- Podstawy prawne przetwarzania -->
       <section id="odbiorcy" class="section" aria-labelledby="odbiorcy-title">
         <div class="container">
           <div class="section__header" data-reveal>
@@ -266,7 +272,7 @@
           </div>
         </div>
       </section>
-
+      <!-- Odbiorcy danych -->
       <section id="poza-eog" class="section" aria-labelledby="poza-eog-title">
         <div class="container">
           <div class="section__header" data-reveal>
@@ -287,7 +293,7 @@
           </div>
         </div>
       </section>
-
+      <!-- Retencja danych -->
       <section id="retencja" class="section" aria-labelledby="retencja-title">
         <div class="container">
           <div class="section__header" data-reveal>
@@ -305,7 +311,7 @@
           </div>
         </div>
       </section>
-
+      <!-- Prawa Użytkownika -->
       <section id="prawa" class="section" aria-labelledby="prawa-title">
         <div class="container">
           <div class="section__header" data-reveal>
@@ -331,7 +337,7 @@
           </div>
         </div>
       </section>
-
+      <!-- Bezpieczeństwo danych -->
       <section id="profilowanie" class="section" aria-labelledby="profilowanie-title">
         <div class="container">
           <div class="section__header" data-reveal>
@@ -351,7 +357,7 @@
           </div>
         </div>
       </section>
-
+      <!-- Pliki cookies -->
       <section id="bezpieczenstwo" class="section" aria-labelledby="bezpieczenstwo-title">
         <div class="container">
           <div class="section__header" data-reveal>
@@ -371,7 +377,7 @@
           </div>
         </div>
       </section>
-
+      <!-- Kontakt -->
       <section id="kontakt" class="section" aria-labelledby="kontakt-title">
         <div class="container">
           <div class="section__header" data-reveal>
@@ -387,7 +393,7 @@
           </div>
         </div>
       </section>
-
+      <!-- Zmiany -->
       <section id="zmiany" class="section" aria-labelledby="zmiany-title">
         <div class="container">
           <div class="section__header" data-reveal>
@@ -440,7 +446,6 @@
           <!-- Contact -->
           <div class="footer__contact">
             <h3 class="footer__heading">Kontakt</h3>
-
             <address class="footer__address">
               <p class="footer__contact-item">
                 <svg class="footer__contact-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
@@ -451,7 +456,6 @@
                 </svg>
                 <a href="tel:+48533537091">+48&nbsp;533&nbsp;537&nbsp;091</a>
               </p>
-
               <p class="footer__contact-item">
                 <svg class="footer__contact-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
                   <path d="M1.5 8.67v8.58a3 3 0 0 0 3 3h15a3 3 0 0 0 3-3V8.67l-8.928 5.493a3 3 0 0 1-3.144 0L1.5 8.67Z" />
