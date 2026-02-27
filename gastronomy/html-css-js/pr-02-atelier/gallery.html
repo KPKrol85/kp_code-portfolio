@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="pl">
   <head>
     <meta charset="utf-8" />
@@ -147,6 +147,7 @@
               <path class="line line--bottom" d="M3.75 17.25h16.5" />
             </svg>
           </button>
+          <!-- Nav -->
           <nav class="nav" id="primary-nav" aria-label="Nawigacja główna">
             <ul class="nav__list">
               <li class="nav__item nav__item--dropdown">
@@ -186,6 +187,7 @@
               <li><a href="/contact.html">Kontakt</a></li>
             </ul>
           </nav>
+          <!-- Theme toggle -->
           <button class="theme-toggle" type="button" aria-pressed="false" aria-label="Przełącz tryb ciemny">
             <span class="theme-toggle__icon theme-toggle__icon--sun" aria-hidden="true"><img src="assets/icons/svg-icon/icon-sun.svg" alt="" width="24" height="24" /></span>
             <span class="theme-toggle__icon theme-toggle__icon--moon" aria-hidden="true"><img src="assets/icons/svg-icon/icon-moon.svg" alt="" width="24" height="24" /></span>
@@ -198,29 +200,32 @@
     <!-- Main -->
     <main id="main" tabindex="-1">
       <nav class="breadcrumbs" aria-label="Okruchy nawigacji">
-        <ol>
-          <li><a href="index.html">Strona główna</a></li>
-          <li aria-current="page">Galeria</li>
-        </ol>
+        <div class="container">
+          <ol>
+            <li><a href="index.html">Strona główna</a></li>
+            <li aria-current="page">Galeria</li>
+          </ol>
+        </div>
       </nav>
 
+      <!-- Hero -->
       <section class="section page-hero" aria-labelledby="gallery-page-title">
         <div class="container page-hero__inner">
           <div class="page-hero__content" data-reveal>
             <span class="page-hero__eyebrow">Wizualna opowieść</span>
-            <h1 id="gallery-page-title">Galeria</h1>
-            <p class="page-hero__lead">Przejrzyj ujęcia, które oddają charakter Atelier No.02: od eleganckich wnętrz i dopracowanych talerzy, po autorskie kompozycje deserów i koktajli.</p>
+            <h1 id="gallery-page-title" class="page-hero__title">Galeria</h1>
+            <p class="page-hero__lead">Przejrzyj ujęcia oddające charakter Atelier No.02 – od eleganckich wnętrz i dopracowanych talerzy po autorskie kompozycje deserów i koktajli.</p>
           </div>
         </div>
       </section>
 
-      <!-- Gallery -->
-      <section class="section gallery-tabs" aria-labelledby="gallery-tabs-title">
-        <h2 id="gallery-tabs-title" class="visually-hidden">Kategorie galerii</h2>
-        <div class="container" data-reveal>
-          <div class="gallery-tabs__wrapper">
-            <nav class="gallery-tabs__nav" aria-label="Nawigacja po sekcjach galerii">
-              <ul class="gallery-tabs__list">
+      <!-- Gallery navigation -->
+      <section class="section tabs-nav gallery-navigation" aria-label="Nawigacja po kategoriach galerii">
+        <div class="container">
+          <div class="tabs-nav__inner gallery-navigation__inner" data-reveal>
+            <span id="gallery-tabs-start" tabindex="-1" aria-hidden="true"></span>
+            <nav class="tabs-nav__tabs gallery-tabs" aria-label="Kategorie galerii">
+              <ul class="tabs-nav__list gallery-tabs__list">
                 <li><a class="btn btn--ghost" href="#wnetrza">Wnętrza</a></li>
                 <li><a class="btn btn--ghost" href="#dania">Dania</a></li>
                 <li><a class="btn btn--ghost" href="#desery">Desery</a></li>
@@ -239,6 +244,7 @@
             <p class="gallery-section__intro">Kliknij zdjęcie, aby powiększyć.</p>
           </header>
           <ul class="gallery__grid" data-reveal-group>
+            <!-- item 1 -->
             <li class="gallery__item" data-reveal>
               <a
                 class="gallery__link"
@@ -992,9 +998,11 @@
     <div class="demo-legal-modal" id="demo-legal-modal" aria-hidden="true" hidden>
       <div class="demo-legal-modal__backdrop" data-demo-legal-close></div>
       <div class="demo-legal-modal__panel" role="dialog" aria-modal="true" aria-labelledby="demo-legal-title" aria-describedby="demo-legal-desc" tabindex="-1">
-        <h2 class="demo-legal-modal__title" id="demo-legal-title">Projekt demonstracyjny</h2>
+        <h2 class="demo-legal-modal__title" id="demo-legal-title">Informacja o projekcie</h2>
         <p class="demo-legal-modal__text" id="demo-legal-desc">
-          Serwis Atelier No.02 jest projektem demo. Właścicielem jest Kamil Król (KP_Code). Korzystając z serwisu akceptujesz
+          Serwis „Atelier No.02” ma charakter demonstracyjny i został przygotowany przez
+          <a href="https://www.kp-code.pl" rel="noopener">KP_Code Digital Studio</a>
+          jako przykładoa strona internetowa dla branży gastronomicznej. Korzystając z serwisu, akceptujesz
           <a href="regulamin.html">Regulamin</a>
           .
         </p>
