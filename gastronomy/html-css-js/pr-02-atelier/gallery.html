@@ -139,6 +139,7 @@
           <img src="assets/img-optimized/logo/logo-and-name/header-logo-light.svg" alt="" class="brand__logo brand__logo--light" width="40" height="30" />
           <img src="assets/img-optimized/logo/logo-and-name/header-logo-dark.svg" alt="" class="brand__logo brand__logo--dark" width="40" height="30" />
         </a>
+        <!-- hamburger -->
         <div class="header__actions">
           <button type="button" class="nav-toggle" aria-label="Otwórz menu" aria-controls="primary-nav" aria-expanded="false">
             <svg class="nav-toggle__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
@@ -147,7 +148,7 @@
               <path class="line line--bottom" d="M3.75 17.25h16.5" />
             </svg>
           </button>
-          <!-- Nav -->
+          <!-- nav -->
           <nav class="nav" id="primary-nav" aria-label="Nawigacja główna">
             <ul class="nav__list">
               <li class="nav__item nav__item--dropdown">
@@ -187,7 +188,7 @@
               <li><a href="/contact.html">Kontakt</a></li>
             </ul>
           </nav>
-          <!-- Theme toggle -->
+          <!-- theme toggle -->
           <button class="theme-toggle" type="button" aria-pressed="false" aria-label="Przełącz tryb ciemny">
             <span class="theme-toggle__icon theme-toggle__icon--sun" aria-hidden="true"><img src="assets/icons/svg-icon/icon-sun.svg" alt="" width="24" height="24" /></span>
             <span class="theme-toggle__icon theme-toggle__icon--moon" aria-hidden="true"><img src="assets/icons/svg-icon/icon-moon.svg" alt="" width="24" height="24" /></span>
@@ -219,7 +220,7 @@
         </div>
       </section>
 
-      <!-- Gallery navigation -->
+      <!-- Gallery nav -->
       <section class="section tabs-nav gallery-navigation" aria-label="Nawigacja po kategoriach galerii">
         <div class="container">
           <div class="tabs-nav__inner gallery-navigation__inner" data-reveal>
@@ -239,9 +240,9 @@
       <!-- Wnętrza -->
       <section id="wnetrza" class="section gallery" aria-labelledby="wnetrza-title">
         <div class="container">
-          <header class="gallery-section__header">
-            <h2 id="wnetrza-title" class="gallery-section__title">Wnętrza</h2>
-            <p class="gallery-section__intro">Kliknij zdjęcie, aby powiększyć.</p>
+          <header class="section__header">
+            <h2 id="wnetrza-title" class="section__title">Wnętrza</h2>
+            <p class="section__lead">Naturalne materiały, miękkie światło i atmosfera sprzyjająca celebracji wieczoru.</p>
           </header>
           <ul class="gallery__grid" data-reveal-group>
             <!-- item 1 -->
@@ -262,7 +263,6 @@
                         assets/img-optimized/podstrona-galeria/wnetrze/wnetrze-01-1600x1200.avif 1600w
                       "
                       sizes="(min-width: 1280px) 25vw, (min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw" />
-
                     <source
                       type="image/webp"
                       srcset="
@@ -272,7 +272,6 @@
                         assets/img-optimized/podstrona-galeria/wnetrze/wnetrze-01-1600x1200.webp 1600w
                       "
                       sizes="(min-width: 1280px) 25vw, (min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw" />
-
                     <img
                       class="gallery__img"
                       src="assets/img-optimized/podstrona-galeria/wnetrze/wnetrze-01-800x600.jpg"
@@ -293,7 +292,7 @@
                 </figure>
               </a>
             </li>
-
+            <!-- item 2 -->
             <li class="gallery__item" data-reveal>
               <a
                 class="gallery__link"
@@ -311,7 +310,6 @@
                         assets/img-optimized/podstrona-galeria/wnetrze/wnetrze-02-1600x1200.avif 1600w
                       "
                       sizes="(min-width: 1280px) 25vw, (min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw" />
-
                     <source
                       type="image/webp"
                       srcset="
@@ -321,7 +319,6 @@
                         assets/img-optimized/podstrona-galeria/wnetrze/wnetrze-02-1600x1200.webp 1600w
                       "
                       sizes="(min-width: 1280px) 25vw, (min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw" />
-
                     <img
                       class="gallery__img"
                       src="assets/img-optimized/podstrona-galeria/wnetrze/wnetrze-02-800x600.jpg"
@@ -342,7 +339,7 @@
                 </figure>
               </a>
             </li>
-
+            <!-- item 3 -->
             <li class="gallery__item" data-reveal>
               <a
                 class="gallery__link"
@@ -360,7 +357,6 @@
                         assets/img-optimized/podstrona-galeria/wnetrze/wnetrze-03-1600x1200.avif 1600w
                       "
                       sizes="(min-width: 1280px) 25vw, (min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw" />
-
                     <source
                       type="image/webp"
                       srcset="
@@ -370,7 +366,6 @@
                         assets/img-optimized/podstrona-galeria/wnetrze/wnetrze-03-1600x1200.webp 1600w
                       "
                       sizes="(min-width: 1280px) 25vw, (min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw" />
-
                     <img
                       class="gallery__img"
                       src="assets/img-optimized/podstrona-galeria/wnetrze/wnetrze-03-800x600.jpg"
@@ -397,11 +392,12 @@
       <!-- Dania -->
       <section id="dania" class="section gallery" aria-labelledby="dania-title">
         <div class="container">
-          <header class="gallery-section__header">
-            <h2 id="dania-title" class="gallery-section__title">Dania</h2>
-            <p class="gallery-section__intro">Kliknij zdjęcie, aby powiększyć.</p>
+          <header class="section__header">
+            <h2 id="dania-title" class="section__title">Dania</h2>
+            <p class="section__lead">Kompozycje smaków oparte na sezonowych składnikach i precyzji wykonania.</p>
           </header>
           <ul class="gallery__grid" data-reveal-group>
+            <!-- item 1 -->
             <li class="gallery__item" data-reveal>
               <a
                 class="gallery__link"
@@ -419,7 +415,6 @@
                         assets/img-optimized/podstrona-galeria/dania/danie-01-1600x1200.avif 1600w
                       "
                       sizes="(min-width: 1280px) 25vw, (min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw" />
-
                     <source
                       type="image/webp"
                       srcset="
@@ -429,7 +424,6 @@
                         assets/img-optimized/podstrona-galeria/dania/danie-01-1600x1200.webp 1600w
                       "
                       sizes="(min-width: 1280px) 25vw, (min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw" />
-
                     <img
                       class="gallery__img"
                       src="assets/img-optimized/podstrona-galeria/dania/danie-01-800x600.jpg"
@@ -449,7 +443,7 @@
                 </figure>
               </a>
             </li>
-
+            <!-- item 2 -->
             <li class="gallery__item" data-reveal>
               <a
                 class="gallery__link"
@@ -467,7 +461,6 @@
                         assets/img-optimized/podstrona-galeria/dania/danie-02-1600x1200.avif 1600w
                       "
                       sizes="(min-width: 1280px) 25vw, (min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw" />
-
                     <source
                       type="image/webp"
                       srcset="
@@ -477,7 +470,6 @@
                         assets/img-optimized/podstrona-galeria/dania/danie-02-1600x1200.webp 1600w
                       "
                       sizes="(min-width: 1280px) 25vw, (min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw" />
-
                     <img
                       class="gallery__img"
                       src="assets/img-optimized/podstrona-galeria/dania/danie-02-800x600.jpg"
@@ -497,7 +489,7 @@
                 </figure>
               </a>
             </li>
-
+            <!-- item 3 -->
             <li class="gallery__item" data-reveal>
               <a
                 class="gallery__link"
@@ -515,7 +507,6 @@
                         assets/img-optimized/podstrona-galeria/dania/danie-03-1600x1200.avif 1600w
                       "
                       sizes="(min-width: 1280px) 25vw, (min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw" />
-
                     <source
                       type="image/webp"
                       srcset="
@@ -525,7 +516,6 @@
                         assets/img-optimized/podstrona-galeria/dania/danie-03-1600x1200.webp 1600w
                       "
                       sizes="(min-width: 1280px) 25vw, (min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw" />
-
                     <img
                       class="gallery__img"
                       src="assets/img-optimized/podstrona-galeria/dania/danie-03-800x600.jpg"
@@ -552,11 +542,12 @@
       <!-- Desery -->
       <section id="desery" class="section gallery" aria-labelledby="desery-title">
         <div class="container">
-          <header class="gallery-section__header">
-            <h2 id="desery-title" class="gallery-section__title">Desery</h2>
-            <p class="gallery-section__intro">Kliknij zdjęcie, aby powiększyć.</p>
+          <header class="section__header">
+            <h2 id="desery-title" class="section__title">Desery</h2>
+            <p class="section__lead">Desery łączące delikatność tekstur z wyważoną słodyczą i sezonowymi akcentami.</p>
           </header>
           <ul class="gallery__grid" data-reveal-group>
+            <!-- item 1 -->
             <li class="gallery__item" data-reveal>
               <a
                 class="gallery__link"
@@ -574,7 +565,6 @@
                         assets/img-optimized/podstrona-galeria/desery/deser-01-1600x1200.avif 1600w
                       "
                       sizes="(min-width: 1280px) 25vw, (min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw" />
-
                     <source
                       type="image/webp"
                       srcset="
@@ -584,7 +574,6 @@
                         assets/img-optimized/podstrona-galeria/desery/deser-01-1600x1200.webp 1600w
                       "
                       sizes="(min-width: 1280px) 25vw, (min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw" />
-
                     <img
                       class="gallery__img"
                       src="assets/img-optimized/podstrona-galeria/desery/deser-01-800x600.jpg"
@@ -604,7 +593,7 @@
                 </figure>
               </a>
             </li>
-
+            <!-- item 2 -->
             <li class="gallery__item" data-reveal>
               <a
                 class="gallery__link"
@@ -622,7 +611,6 @@
                         assets/img-optimized/podstrona-galeria/desery/deser-02-1600x1200.avif 1600w
                       "
                       sizes="(min-width: 1280px) 25vw, (min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw" />
-
                     <source
                       type="image/webp"
                       srcset="
@@ -632,7 +620,6 @@
                         assets/img-optimized/podstrona-galeria/desery/deser-02-1600x1200.webp 1600w
                       "
                       sizes="(min-width: 1280px) 25vw, (min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw" />
-
                     <img
                       class="gallery__img"
                       src="assets/img-optimized/podstrona-galeria/desery/deser-02-800x600.jpg"
@@ -652,7 +639,7 @@
                 </figure>
               </a>
             </li>
-
+            <!-- item 3 -->
             <li class="gallery__item" data-reveal>
               <a
                 class="gallery__link"
@@ -670,7 +657,6 @@
                         assets/img-optimized/podstrona-galeria/desery/deser-03-1600x1200.avif 1600w
                       "
                       sizes="(min-width: 1280px) 25vw, (min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw" />
-
                     <source
                       type="image/webp"
                       srcset="
@@ -680,7 +666,6 @@
                         assets/img-optimized/podstrona-galeria/desery/deser-03-1600x1200.webp 1600w
                       "
                       sizes="(min-width: 1280px) 25vw, (min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw" />
-
                     <img
                       class="gallery__img"
                       src="assets/img-optimized/podstrona-galeria/desery/deser-03-800x600.jpg"
@@ -707,11 +692,12 @@
       <!-- Napoje -->
       <section id="napoje" class="section gallery" aria-labelledby="napoje-title">
         <div class="container">
-          <header class="gallery-section__header">
-            <h2 id="napoje-title" class="gallery-section__title">Napoje</h2>
-            <p class="gallery-section__intro">Kliknij zdjęcie, aby powiększyć.</p>
+          <header class="section__header">
+            <h2 id="napoje-title" class="section__title">Napoje</h2>
+            <p class="section__lead">Selekcja win i napojów dobranych z myślą o harmonii smaku.</p>
           </header>
           <ul class="gallery__grid" data-reveal-group>
+            <!-- item 1 -->
             <li class="gallery__item" data-reveal>
               <a
                 class="gallery__link"
@@ -729,7 +715,6 @@
                         assets/img-optimized/podstrona-galeria/napoje/napoje-01-1600x1200.avif 1600w
                       "
                       sizes="(min-width: 1280px) 25vw, (min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw" />
-
                     <source
                       type="image/webp"
                       srcset="
@@ -739,7 +724,6 @@
                         assets/img-optimized/podstrona-galeria/napoje/napoje-01-1600x1200.webp 1600w
                       "
                       sizes="(min-width: 1280px) 25vw, (min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw" />
-
                     <img
                       class="gallery__img"
                       src="assets/img-optimized/podstrona-galeria/napoje/napoje-01-800x600.jpg"
@@ -759,7 +743,7 @@
                 </figure>
               </a>
             </li>
-
+            <!-- item 2 -->
             <li class="gallery__item" data-reveal>
               <a
                 class="gallery__link"
@@ -777,7 +761,6 @@
                         assets/img-optimized/podstrona-galeria/napoje/napoje-02-1600x1200.avif 1600w
                       "
                       sizes="(min-width: 1280px) 25vw, (min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw" />
-
                     <source
                       type="image/webp"
                       srcset="
@@ -787,7 +770,6 @@
                         assets/img-optimized/podstrona-galeria/napoje/napoje-02-1600x1200.webp 1600w
                       "
                       sizes="(min-width: 1280px) 25vw, (min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw" />
-
                     <img
                       class="gallery__img"
                       src="assets/img-optimized/podstrona-galeria/napoje/napoje-02-800x600.jpg"
@@ -807,7 +789,7 @@
                 </figure>
               </a>
             </li>
-
+            <!-- item 3 -->
             <li class="gallery__item" data-reveal>
               <a
                 class="gallery__link"
@@ -825,7 +807,6 @@
                         assets/img-optimized/podstrona-galeria/napoje/napoje-03-1600x1200.avif 1600w
                       "
                       sizes="(min-width: 1280px) 25vw, (min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw" />
-
                     <source
                       type="image/webp"
                       srcset="
@@ -835,7 +816,6 @@
                         assets/img-optimized/podstrona-galeria/napoje/napoje-03-1600x1200.webp 1600w
                       "
                       sizes="(min-width: 1280px) 25vw, (min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw" />
-
                     <img
                       class="gallery__img"
                       src="assets/img-optimized/podstrona-galeria/napoje/napoje-03-800x600.jpg"

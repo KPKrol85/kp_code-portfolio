@@ -55,6 +55,9 @@
   --header-border: rgba(0, 0, 0, 0.06);
   --header-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
   --header-offset: calc(var(--header-h) + env(safe-area-inset-top, 0px));
+  /* Gallery */
+  --gallery-gap: var(--space-4);
+  --gallery-slide-basis: 100%;
   /* Line height */
   --lh-tight: 1.15;
   --lh-snug: 1.3;
