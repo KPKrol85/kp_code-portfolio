@@ -12,7 +12,7 @@ import { initMisc } from "../features/misc.js";
 var COMMON_INITIALIZERS = [initMisc, initNetworkStatusBanner, initDemoLegalModal, initNav, initReveal, initThemeToggle];
 
 var PAGE_INITIALIZERS = {
-  home: [initImageFallbacks, initForm, renderHomeFeaturedMenu],
+  home: [initImageFallbacks, initForm, renderHomeFeaturedMenu, initLightbox],
   contact: [initForm],
   menu: [initImageFallbacks, initMenuPage],
   gallery: [initImageFallbacks, initGalleryPage, initLightbox],
