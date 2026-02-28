@@ -1,4 +1,4 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="pl">
   <head>
     <meta charset="utf-8" />
@@ -42,8 +42,8 @@
     <meta name="twitter:site" content="@KP_Code_85" />
     <meta name="twitter:creator" content="@KP_Code_85" />
     <!-- Preload fonts -->
-    <link rel="preload" href="assets/fonts/montserrat-400-latin.woff2" as="font" type="font/woff2" crossorigin />
-    <link rel="preload" href="assets/fonts/montserrat-700-latin.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href="assets/fonts/montserrat-vari-latin.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href="assets/fonts/playfair-display-vari-latin.woff2" as="font" type="font/woff2" crossorigin />
     <!-- Theme preload -->
     <script src="js/bootstrap.js"></script>
     <!-- JSON-LD -->
@@ -79,7 +79,7 @@
       }
     </script>
     <!-- Styles -->
-    <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="css/style.min.css" />
   </head>
 
   <!-- Body -->
@@ -94,6 +94,7 @@
           <img src="assets/img-optimized/logo/logo-and-name/header-logo-dark.svg" alt="" class="brand__logo brand__logo--dark" width="40" height="30" />
         </a>
         <div class="header__actions">
+          <!-- hamburger -->
           <button type="button" class="nav-toggle" aria-label="Otwórz menu" aria-controls="primary-nav" aria-expanded="false">
             <svg class="nav-toggle__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
               <path class="line line--top" d="M3.75 6.75h16.5" />
@@ -101,7 +102,7 @@
               <path class="line line--bottom" d="M3.75 17.25h16.5" />
             </svg>
           </button>
-          <!-- Nav -->
+          <!-- nav -->
           <nav class="nav" id="primary-nav" aria-label="Nawigacja główna">
             <ul class="nav__list">
               <li class="nav__item nav__item--dropdown">
@@ -141,7 +142,7 @@
               <li><a href="/contact.html">Kontakt</a></li>
             </ul>
           </nav>
-          <!-- Theme toggle -->
+          <!-- theme toggle -->
           <button class="theme-toggle" type="button" aria-pressed="false" aria-label="Przełącz tryb ciemny">
             <span class="theme-toggle__icon theme-toggle__icon--sun" aria-hidden="true"><img src="assets/icons/svg-icon/icon-sun.svg" alt="" width="24" height="24" /></span>
             <span class="theme-toggle__icon theme-toggle__icon--moon" aria-hidden="true"><img src="assets/icons/svg-icon/icon-moon.svg" alt="" width="24" height="24" /></span>
@@ -161,18 +162,19 @@
           </ol>
         </div>
       </nav>
+
       <!-- Hero -->
       <section class="section page-hero" aria-labelledby="privacy-title">
         <div class="container page-hero__inner">
           <div class="page-hero__content" data-reveal>
             <span class="page-hero__eyebrow">Informacje prawne</span>
-            <h1 id="privacy-title">Polityka prywatności</h1>
+            <h1 id="privacy-title" class="page-hero__title">Polityka prywatności</h1>
             <p class="page-hero__lead">
               Niniejsza Polityka prywatności określa zasady przetwarzania danych osobowych w ramach demonstracyjnego projektu strony internetowej „Atelier No.02”, opracowanego przez
               <a href="https://www.kp-code.pl" rel="noopener">KP_Code Digital Studio</a>
               . Dokument ma charakter informacyjny i dotyczy sposobu działania funkcjonalności prezentowanych w Serwisie.
             </p>
-            <p class="meta" style="margin-top: 0.5rem">Ostatnia aktualizacja: 19.12.2025</p>
+            <p class="page-hero__meta">Ostatnia aktualizacja: 28.02.2026</p>
           </div>
         </div>
       </section>
@@ -181,232 +183,266 @@
       <section class="section" aria-labelledby="toc-title">
         <div class="container">
           <h2 id="toc-title" class="visually-hidden">Spis treści</h2>
-          <nav class="menu-tabs" aria-label="Spis treści">
-            <ul class="menu-tabs__list">
-              <li><a class="btn btn--ghost" href="#admin">Administrator danych</a></li>
-              <li><a class="btn btn--ghost" href="#zakres">Charakter Serwisu</a></li>
-              <li><a class="btn btn--ghost" href="#cele">Zakres i charakter przetwarzania danych</a></li>
-              <li><a class="btn btn--ghost" href="#odbiorcy">Podstawy prawne przetwarzania</a></li>
-              <li><a class="btn btn--ghost" href="#poza-eog">Odbiorcy danych</a></li>
-              <li><a class="btn btn--ghost" href="#retencja">Okres przechowywania danych</a></li>
-              <li><a class="btn btn--ghost" href="#prawa">Prawa Użytkownika</a></li>
-              <li><a class="btn btn--ghost" href="#profilowanie">Bezpieczeństwo danych</a></li>
-              <li><a class="btn btn--ghost" href="#bezpieczenstwo">Pliki cookies</a></li>
-              <li><a class="btn btn--ghost" href="#kontakt">Kontakt</a></li>
-              <li><a class="btn btn--ghost" href="#zmiany">Zmiany w Polityce prywatności</a></li>
+          <nav class="toc" aria-labelledby="toc-title">
+            <ul class="toc__list">
+              <li class="toc__item"><a class="toc__link btn btn--ghost" href="#admin">Administrator danych</a></li>
+              <li class="toc__item"><a class="toc__link btn btn--ghost" href="#zakres">Charakter Serwisu</a></li>
+              <li class="toc__item"><a class="toc__link btn btn--ghost" href="#cele">Zakres i charakter przetwarzania danych</a></li>
+              <li class="toc__item"><a class="toc__link btn btn--ghost" href="#odbiorcy">Podstawy prawne przetwarzania</a></li>
+              <li class="toc__item"><a class="toc__link btn btn--ghost" href="#poza-eog">Odbiorcy danych</a></li>
+              <li class="toc__item"><a class="toc__link btn btn--ghost" href="#retencja">Okres przechowywania danych</a></li>
+              <li class="toc__item"><a class="toc__link btn btn--ghost" href="#prawa">Prawa Użytkownika</a></li>
+              <li class="toc__item"><a class="toc__link btn btn--ghost" href="#profilowanie">Bezpieczeństwo danych</a></li>
+              <li class="toc__item"><a class="toc__link btn btn--ghost" href="#bezpieczenstwo">Pliki cookies</a></li>
+              <li class="toc__item"><a class="toc__link btn btn--ghost" href="#kontakt">Kontakt</a></li>
+              <li class="toc__item"><a class="toc__link btn btn--ghost" href="#zmiany">Zmiany w Polityce prywatności</a></li>
             </ul>
           </nav>
         </div>
       </section>
+
       <!-- Administrator danych -->
       <section id="admin" class="section" aria-labelledby="admin-title">
         <div class="container">
-          <div class="section__header" data-reveal>
-            <h2 id="admin-title">Administrator danych</h2>
-          </div>
-          <div class="card__body" data-reveal>
-            <p>Administratorem danych osobowych jest KP_Code Digital Studio (dalej: „Administrator”).</p>
-            <p>
-              W sprawach związanych z przetwarzaniem danych osobowych można skontaktować się z Administratorem za pośrednictwem adresu e-mail:
-              <a href="mailto:kontakt@kp-code.pl">kontakt@kp-code.pl</a>
-              .
-            </p>
-          </div>
+          <div class="section__header" data-reveal></div>
+          <article class="card" data-reveal>
+            <div class="card__body">
+              <p>
+                Administratorem danych osobowych jest
+                <a href="https://www.kp-code.pl" rel="noopener">KP_Code Digital Studio</a>
+                (dalej: „Administrator”).
+              </p>
+              <p>
+                W sprawach związanych z przetwarzaniem danych osobowych można skontaktować się z Administratorem za pośrednictwem adresu e-mail:
+                <a href="mailto:kontakt@kp-code.pl">kontakt@kp-code.pl</a>
+                .
+              </p>
+            </div>
+          </article>
         </div>
       </section>
+
       <!-- Charakter Serwisu -->
       <section id="zakres" class="section" aria-labelledby="zakres-title">
         <div class="container">
           <div class="section__header" data-reveal>
-            <h2 id="zakres-title">Charakter Serwisu</h2>
+            <h2 id="zakres-title" class="section__title">Charakter Serwisu</h2>
           </div>
-          <div class="card__body" data-reveal>
-            <p>
-              Serwis „Atelier No.02” ma charakter demonstracyjny i służy prezentacji rozwiązań projektowych oraz implementacji front-end. Serwis nie prowadzi rzeczywistej działalności gospodarczej ani
-              sprzedaży i nie umożliwia składania wiążących zamówień, rezerwacji ani dokonywania płatności.
-            </p>
-            <p>Dane wprowadzane w formularzach mają charakter testowy. Użytkownik nie powinien podawać danych wrażliwych ani informacji poufnych.</p>
-          </div>
+          <article class="card" data-reveal>
+            <div class="card__body">
+              <p>
+                Serwis „Atelier No.02” ma charakter demonstracyjny i służy prezentacji rozwiązań projektowych oraz implementacji front-end. Serwis nie prowadzi rzeczywistej działalności gospodarczej
+                ani sprzedaży i nie umożliwia składania wiążących zamówień, rezerwacji ani dokonywania płatności.
+              </p>
+              <p>Dane wprowadzane w formularzach mają charakter testowy. Użytkownik nie powinien podawać danych wrażliwych ani informacji poufnych.</p>
+            </div>
+          </article>
         </div>
       </section>
+
       <!-- Zakres i charakter przetwarzania danych -->
       <section id="cele" class="section" aria-labelledby="cele-title">
         <div class="container">
           <div class="section__header" data-reveal>
-            <h2 id="cele-title">Zakres i charakter przetwarzania danych</h2>
+            <h2 id="cele-title" class="section__title">Zakres i charakter przetwarzania danych</h2>
           </div>
-          <div class="card__body" data-reveal>
-            <p>Administrator przetwarza dane osobowe wyłącznie w zakresie niezbędnym do:</p>
-            <ul>
-              <li>zapewnienia prawidłowego funkcjonowania Serwisu,</li>
-              <li>obsługi zapytań kierowanych za pośrednictwem formularza kontaktowego,</li>
-              <li>zapewnienia bezpieczeństwa infrastruktury IT.</li>
-            </ul>
-            <p>Dane mogą obejmować w szczególności:</p>
-            <ul>
-              <li>imię,</li>
-              <li>adres e-mail,</li>
-              <li>inne informacje dobrowolnie podane przez Użytkownika w treści wiadomości,</li>
-              <li>dane techniczne związane z korzystaniem z Serwisu, takie jak adres IP, dane przeglądarki, system operacyjny lub identyfikatory plików cookies.</li>
-            </ul>
-            <p>Dane nie są wykorzystywane do zautomatyzowanego podejmowania decyzji ani profilowania.</p>
-          </div>
+          <article class="card" data-reveal>
+            <div class="card__body">
+              <p>Administrator przetwarza dane osobowe wyłącznie w zakresie niezbędnym do:</p>
+              <ul>
+                <li>zapewnienia prawidłowego funkcjonowania Serwisu,</li>
+                <li>obsługi zapytań kierowanych za pośrednictwem formularza kontaktowego,</li>
+                <li>zapewnienia bezpieczeństwa infrastruktury IT.</li>
+              </ul>
+              <p>Dane mogą obejmować w szczególności:</p>
+              <ul>
+                <li>imię,</li>
+                <li>adres e-mail,</li>
+                <li>inne informacje dobrowolnie podane przez Użytkownika w treści wiadomości,</li>
+                <li>dane techniczne związane z korzystaniem z Serwisu, takie jak adres IP, dane przeglądarki, system operacyjny lub identyfikatory plików cookies.</li>
+              </ul>
+              <p>Dane nie są wykorzystywane do zautomatyzowanego podejmowania decyzji ani profilowania.</p>
+            </div>
+          </article>
         </div>
       </section>
+
       <!-- Podstawy prawne przetwarzania -->
       <section id="odbiorcy" class="section" aria-labelledby="odbiorcy-title">
         <div class="container">
           <div class="section__header" data-reveal>
-            <h2 id="odbiorcy-title">Podstawy prawne przetwarzania</h2>
+            <h2 id="odbiorcy-title" class="section__title">Podstawy prawne przetwarzania</h2>
           </div>
-          <div class="card__body" data-reveal>
-            <p>Dane osobowe przetwarzane są zgodnie z obowiązującymi przepisami prawa, w szczególności z Rozporządzeniem Parlamentu Europejskiego i Rady (UE) 2016/679 (RODO).</p>
-            <p>Podstawą przetwarzania danych może być:</p>
-            <ul>
-              <li>zgoda Użytkownika (art. 6 ust. 1 lit. a RODO) – w przypadku dobrowolnego przesłania danych za pośrednictwem formularza,</li>
-              <li>
-                prawnie uzasadniony interes Administratora (art. 6 ust. 1 lit. f RODO) – w zakresie zapewnienia bezpieczeństwa Serwisu, obsługi zapytań oraz analizy technicznej działania strony,
-              </li>
-              <li>obowiązek prawny ciążący na Administratorze (art. 6 ust. 1 lit. c RODO) – jeżeli wynika on z przepisów prawa.</li>
-            </ul>
-          </div>
+          <article class="card" data-reveal>
+            <div class="card__body">
+              <p>Dane osobowe przetwarzane są zgodnie z obowiązującymi przepisami prawa, w szczególności z Rozporządzeniem Parlamentu Europejskiego i Rady (UE) 2016/679 (RODO).</p>
+              <p>Podstawą przetwarzania danych może być:</p>
+              <ul>
+                <li>zgoda Użytkownika (art. 6 ust. 1 lit. a RODO) – w przypadku dobrowolnego przesłania danych za pośrednictwem formularza,</li>
+                <li>
+                  prawnie uzasadniony interes Administratora (art. 6 ust. 1 lit. f RODO) – w zakresie zapewnienia bezpieczeństwa Serwisu, obsługi zapytań oraz analizy technicznej działania strony,
+                </li>
+                <li>obowiązek prawny ciążący na Administratorze (art. 6 ust. 1 lit. c RODO) – jeżeli wynika on z przepisów prawa.</li>
+              </ul>
+            </div>
+          </article>
         </div>
       </section>
+
       <!-- Odbiorcy danych -->
       <section id="poza-eog" class="section" aria-labelledby="poza-eog-title">
         <div class="container">
           <div class="section__header" data-reveal>
-            <h2 id="poza-eog-title">Odbiorcy danych</h2>
+            <h2 id="poza-eog-title" class="section__title">Odbiorcy danych</h2>
           </div>
-          <div class="card__body" data-reveal>
-            <p>
-              Dane osobowe mogą być przekazywane podmiotom współpracującym z Administratorem wyłącznie w zakresie niezbędnym do prawidłowego funkcjonowania Serwisu oraz realizacji wskazanych celów
-              przetwarzania, w szczególności:
-            </p>
-            <ul>
-              <li>dostawcom usług hostingowych,</li>
-              <li>podmiotom zapewniającym infrastrukturę IT,</li>
-              <li>dostawcom narzędzi technicznych wykorzystywanych do obsługi formularzy lub komunikacji e-mail,</li>
-              <li>podmiotom uprawnionym do otrzymania danych na podstawie przepisów prawa.</li>
-            </ul>
-            <p>Dane nie są sprzedawane ani udostępniane podmiotom trzecim w celach marketingowych.</p>
-          </div>
+          <article class="card" data-reveal>
+            <div class="card__body">
+              <p>
+                Dane osobowe mogą być przekazywane podmiotom współpracującym z Administratorem wyłącznie w zakresie niezbędnym do prawidłowego funkcjonowania Serwisu oraz realizacji wskazanych celów
+                przetwarzania, w szczególności:
+              </p>
+              <ul>
+                <li>dostawcom usług hostingowych,</li>
+                <li>podmiotom zapewniającym infrastrukturę IT,</li>
+                <li>dostawcom narzędzi technicznych wykorzystywanych do obsługi formularzy lub komunikacji e-mail,</li>
+                <li>podmiotom uprawnionym do otrzymania danych na podstawie przepisów prawa.</li>
+              </ul>
+              <p>Dane nie są sprzedawane ani udostępniane podmiotom trzecim w celach marketingowych.</p>
+            </div>
+          </article>
         </div>
       </section>
+
       <!-- Retencja danych -->
       <section id="retencja" class="section" aria-labelledby="retencja-title">
         <div class="container">
           <div class="section__header" data-reveal>
-            <h2 id="retencja-title">Okres przechowywania danych</h2>
+            <h2 id="retencja-title" class="section__title">Okres przechowywania danych</h2>
           </div>
-          <div class="card__body" data-reveal>
-            <p>Dane osobowe przechowywane są przez okres niezbędny do realizacji celów, dla których zostały zebrane, z uwzględnieniem obowiązujących przepisów prawa.</p>
-            <p>W szczególności:</p>
-            <ul>
-              <li>dane przekazane za pośrednictwem formularza kontaktowego – przez czas niezbędny do udzielenia odpowiedzi oraz ewentualnej dalszej korespondencji,</li>
-              <li>dane techniczne związane z bezpieczeństwem – przez okres wymagany do zapewnienia ochrony infrastruktury IT,</li>
-              <li>dane przetwarzane na podstawie obowiązku prawnego – przez okres wynikający z przepisów prawa.</li>
-            </ul>
-            <p>Po upływie wskazanych okresów dane są usuwane lub poddawane anonimizacji.</p>
-          </div>
+          <article class="card" data-reveal>
+            <div class="card__body">
+              <p>Dane osobowe przechowywane są przez okres niezbędny do realizacji celów, dla których zostały zebrane, z uwzględnieniem obowiązujących przepisów prawa.</p>
+              <p>W szczególności:</p>
+              <ul>
+                <li>dane przekazane za pośrednictwem formularza kontaktowego – przez czas niezbędny do udzielenia odpowiedzi oraz ewentualnej dalszej korespondencji,</li>
+                <li>dane techniczne związane z bezpieczeństwem – przez okres wymagany do zapewnienia ochrony infrastruktury IT,</li>
+                <li>dane przetwarzane na podstawie obowiązku prawnego – przez okres wynikający z przepisów prawa.</li>
+              </ul>
+              <p>Po upływie wskazanych okresów dane są usuwane lub poddawane anonimizacji.</p>
+            </div>
+          </article>
         </div>
       </section>
+
       <!-- Prawa Użytkownika -->
       <section id="prawa" class="section" aria-labelledby="prawa-title">
         <div class="container">
           <div class="section__header" data-reveal>
-            <h2 id="prawa-title">Prawa Użytkownika</h2>
+            <h2 id="prawa-title" class="section__title">Prawa Użytkownika</h2>
           </div>
-          <div class="card__body" data-reveal>
-            <p>Użytkownikowi przysługują prawa wynikające z przepisów RODO, w szczególności:</p>
-            <ul>
-              <li>prawo dostępu do danych i uzyskania ich kopii,</li>
-              <li>prawo do sprostowania danych,</li>
-              <li>prawo do usunięcia danych,</li>
-              <li>prawo do ograniczenia przetwarzania,</li>
-              <li>prawo do przenoszenia danych,</li>
-              <li>prawo do wniesienia sprzeciwu wobec przetwarzania,</li>
-              <li>prawo do cofnięcia zgody w dowolnym momencie (jeżeli przetwarzanie odbywa się na podstawie zgody),</li>
-              <li>prawo wniesienia skargi do Prezesa Urzędu Ochrony Danych Osobowych.</li>
-            </ul>
-            <p>
-              W celu realizacji swoich praw Użytkownik może skontaktować się z Administratorem pod adresem:
-              <a href="mailto:kontakt@kp-code.pl">kontakt@kp-code.pl</a>
-              .
-            </p>
-          </div>
+          <article class="card" data-reveal>
+            <div class="card__body">
+              <p>Użytkownikowi przysługują prawa wynikające z przepisów RODO, w szczególności:</p>
+              <ul>
+                <li>prawo dostępu do danych i uzyskania ich kopii,</li>
+                <li>prawo do sprostowania danych,</li>
+                <li>prawo do usunięcia danych,</li>
+                <li>prawo do ograniczenia przetwarzania,</li>
+                <li>prawo do przenoszenia danych,</li>
+                <li>prawo do wniesienia sprzeciwu wobec przetwarzania,</li>
+                <li>prawo do cofnięcia zgody w dowolnym momencie (jeżeli przetwarzanie odbywa się na podstawie zgody),</li>
+                <li>prawo wniesienia skargi do Prezesa Urzędu Ochrony Danych Osobowych.</li>
+              </ul>
+              <p>
+                W celu realizacji swoich praw Użytkownik może skontaktować się z Administratorem pod adresem:
+                <a href="mailto:kontakt@kp-code.pl">kontakt@kp-code.pl</a>
+                .
+              </p>
+            </div>
+          </article>
         </div>
       </section>
+
       <!-- Bezpieczeństwo danych -->
       <section id="profilowanie" class="section" aria-labelledby="profilowanie-title">
         <div class="container">
           <div class="section__header" data-reveal>
-            <h2 id="profilowanie-title">Bezpieczeństwo danych</h2>
+            <h2 id="profilowanie-title" class="section__title">Bezpieczeństwo danych</h2>
           </div>
-          <div class="card__body" data-reveal>
-            <p>
-              Administrator stosuje odpowiednie środki techniczne i organizacyjne mające na celu ochronę przetwarzanych danych osobowych, adekwatne do charakteru, zakresu oraz ryzyka związanego z
-              przetwarzaniem.
-            </p>
-            <p>Środki te obejmują w szczególności:</p>
-            <ul>
-              <li>zabezpieczenia infrastruktury serwerowej i systemów informatycznych,</li>
-              <li>ograniczenie dostępu do danych wyłącznie do osób upoważnionych,</li>
-              <li>monitorowanie działania Serwisu w celu wykrywania potencjalnych zagrożeń.</li>
-            </ul>
-          </div>
+          <article class="card" data-reveal>
+            <div class="card__body">
+              <p>
+                Administrator stosuje odpowiednie środki techniczne i organizacyjne mające na celu ochronę przetwarzanych danych osobowych, adekwatne do charakteru, zakresu oraz ryzyka związanego z
+                przetwarzaniem.
+              </p>
+              <p>Środki te obejmują w szczególności:</p>
+              <ul>
+                <li>zabezpieczenia infrastruktury serwerowej i systemów informatycznych,</li>
+                <li>ograniczenie dostępu do danych wyłącznie do osób upoważnionych,</li>
+                <li>monitorowanie działania Serwisu w celu wykrywania potencjalnych zagrożeń.</li>
+              </ul>
+            </div>
+          </article>
         </div>
       </section>
+
       <!-- Pliki cookies -->
       <section id="bezpieczenstwo" class="section" aria-labelledby="bezpieczenstwo-title">
         <div class="container">
           <div class="section__header" data-reveal>
-            <h2 id="bezpieczenstwo-title">Pliki cookies</h2>
+            <h2 id="bezpieczenstwo-title" class="section__title">Pliki cookies</h2>
           </div>
-          <div class="card__body" data-reveal>
-            <p>Serwis może wykorzystywać pliki cookies w celu zapewnienia prawidłowego działania strony oraz poprawy jakości świadczonych usług.</p>
-            <p>Cookies mogą obejmować:</p>
-            <ul>
-              <li>cookies techniczne – niezbędne do funkcjonowania Serwisu,</li>
-              <li>cookies analityczne – umożliwiające analizę sposobu korzystania z Serwisu,</li>
-              <li>cookies funkcjonalne – zapamiętujące wybrane ustawienia Użytkownika.</li>
-            </ul>
-            <p>
-              Użytkownik może w każdej chwili zmienić ustawienia dotyczące plików cookies w swojej przeglądarce internetowej. Ograniczenie stosowania cookies może wpłynąć na funkcjonalność Serwisu.
-            </p>
-          </div>
+          <article class="card" data-reveal>
+            <div class="card__body">
+              <p>Serwis może wykorzystywać pliki cookies w celu zapewnienia prawidłowego działania strony oraz poprawy jakości świadczonych usług.</p>
+              <p>Cookies mogą obejmować:</p>
+              <ul>
+                <li>cookies techniczne – niezbędne do funkcjonowania Serwisu,</li>
+                <li>cookies analityczne – umożliwiające analizę sposobu korzystania z Serwisu,</li>
+                <li>cookies funkcjonalne – zapamiętujące wybrane ustawienia Użytkownika.</li>
+              </ul>
+              <p>
+                Użytkownik może w każdej chwili zmienić ustawienia dotyczące plików cookies w swojej przeglądarce internetowej. Ograniczenie stosowania cookies może wpłynąć na funkcjonalność Serwisu.
+              </p>
+            </div>
+          </article>
         </div>
       </section>
+
       <!-- Kontakt -->
       <section id="kontakt" class="section" aria-labelledby="kontakt-title">
         <div class="container">
           <div class="section__header" data-reveal>
-            <h2 id="kontakt-title">Kontakt</h2>
+            <h2 id="kontakt-title" class="section__title">Kontakt</h2>
           </div>
-          <div class="card__body" data-reveal>
-            <p>
-              W sprawach związanych z przetwarzaniem danych osobowych można skontaktować się z Administratorem pod adresem:
-              <a href="mailto:kontakt@kp-code.pl">kontakt@kp-code.pl</a>
-              .
-            </p>
-            <p>Administrator udziela odpowiedzi w możliwie najkrótszym terminie, z uwzględnieniem charakteru zgłoszenia oraz obowiązujących przepisów prawa.</p>
-          </div>
+          <article class="card" data-reveal>
+            <div class="card__body">
+              <p>
+                W sprawach związanych z przetwarzaniem danych osobowych można skontaktować się z Administratorem pod adresem:
+                <a href="mailto:kontakt@kp-code.pl">kontakt@kp-code.pl</a>
+                .
+              </p>
+              <p>Administrator udziela odpowiedzi w możliwie najkrótszym terminie, z uwzględnieniem charakteru zgłoszenia oraz obowiązujących przepisów prawa.</p>
+            </div>
+          </article>
         </div>
       </section>
+
       <!-- Zmiany -->
       <section id="zmiany" class="section" aria-labelledby="zmiany-title">
         <div class="container">
           <div class="section__header" data-reveal>
-            <h2 id="zmiany-title">Zmiany w Polityce prywatności</h2>
+            <h2 id="zmiany-title" class="section__title">Zmiany w Polityce prywatności</h2>
           </div>
-          <div class="card__body" data-reveal>
-            <p>
-              Administrator zastrzega sobie prawo do wprowadzania zmian w niniejszej Polityce prywatności w szczególności w przypadku zmian przepisów prawa, aktualizacji funkcjonalności Serwisu lub
-              zmiany sposobu przetwarzania danych.
-            </p>
-            <p>Aktualna wersja Polityki prywatności publikowana jest w Serwisie i wchodzi w życie z dniem jej opublikowania.</p>
-            <p>Data ostatniej aktualizacji: 19.12.2025.</p>
-          </div>
+          <article class="card" data-reveal>
+            <div class="card__body">
+              <p>
+                Administrator zastrzega sobie prawo do wprowadzania zmian w niniejszej Polityce prywatności w szczególności w przypadku zmian przepisów prawa, aktualizacji funkcjonalności Serwisu lub
+                zmiany sposobu przetwarzania danych.
+              </p>
+              <p>Aktualna wersja Polityki prywatności publikowana jest w Serwisie i wchodzi w życie z dniem jej opublikowania.</p>
+            </div>
+          </article>
         </div>
       </section>
     </main>
@@ -544,12 +580,14 @@
     <script type="module" src="js/core.js" defer></script>
 
     <!-- Demo legal modal -->
-    <div class="demo-legal-modal" id="demo-legal-modal" aria-hidden="true" hidden>
+    <div class="demo-legal-modal" id="demo-legal-modal" aria-hidden="true" hidden inert>
       <div class="demo-legal-modal__backdrop" data-demo-legal-close></div>
       <div class="demo-legal-modal__panel" role="dialog" aria-modal="true" aria-labelledby="demo-legal-title" aria-describedby="demo-legal-desc" tabindex="-1">
-        <h2 class="demo-legal-modal__title" id="demo-legal-title">Projekt demonstracyjny</h2>
+        <h2 class="demo-legal-modal__title" id="demo-legal-title">Informacja o projekcie</h2>
         <p class="demo-legal-modal__text" id="demo-legal-desc">
-          Serwis Atelier No.02 jest projektem demo. Właścicielem jest Kamil Król (KP_Code). Korzystając z serwisu akceptujesz
+          Serwis „Atelier No.02” ma charakter demonstracyjny i został przygotowany przez
+          <a href="https://www.kp-code.pl" rel="noopener">KP_Code Digital Studio</a>
+          jako przykładoa strona internetowa dla branży gastronomicznej. Korzystając z serwisu, akceptujesz
           <a href="regulamin.html">Regulamin</a>
           .
         </p>

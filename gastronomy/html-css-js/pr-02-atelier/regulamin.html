@@ -1,4 +1,4 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="pl">
   <head>
     <meta charset="utf-8" />
@@ -42,8 +42,8 @@
     <meta name="twitter:site" content="@KP_Code_85" />
     <meta name="twitter:creator" content="@KP_Code_85" />
     <!-- Preload fonts -->
-    <link rel="preload" href="assets/fonts/montserrat-400-latin.woff2" as="font" type="font/woff2" crossorigin />
-    <link rel="preload" href="assets/fonts/montserrat-700-latin.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href="assets/fonts/montserrat-vari-latin.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href="assets/fonts/playfair-display-vari-latin.woff2" as="font" type="font/woff2" crossorigin />
     <!-- Theme preload -->
     <script src="js/bootstrap.js"></script>
     <!-- JSON-LD -->
@@ -79,7 +79,7 @@
       }
     </script>
     <!-- Styles -->
-    <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="css/style.min.css" />
   </head>
 
   <!-- Body -->
@@ -94,6 +94,7 @@
           <img src="assets/img-optimized/logo/logo-and-name/header-logo-dark.svg" alt="" class="brand__logo brand__logo--dark" width="40" height="30" />
         </a>
         <div class="header__actions">
+          <!-- hamburger -->
           <button type="button" class="nav-toggle" aria-label="Otwórz menu" aria-controls="primary-nav" aria-expanded="false">
             <svg class="nav-toggle__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
               <path class="line line--top" d="M3.75 6.75h16.5" />
@@ -101,7 +102,7 @@
               <path class="line line--bottom" d="M3.75 17.25h16.5" />
             </svg>
           </button>
-          <!-- Nav -->
+          <!-- nav -->
           <nav class="nav" id="primary-nav" aria-label="Nawigacja główna">
             <ul class="nav__list">
               <li class="nav__item nav__item--dropdown">
@@ -141,7 +142,7 @@
               <li><a href="/contact.html">Kontakt</a></li>
             </ul>
           </nav>
-          <!-- Theme toggle -->
+          <!-- theme toggle -->
           <button class="theme-toggle" type="button" aria-pressed="false" aria-label="Przełącz tryb ciemny">
             <span class="theme-toggle__icon theme-toggle__icon--sun" aria-hidden="true"><img src="assets/icons/svg-icon/icon-sun.svg" alt="" width="24" height="24" /></span>
             <span class="theme-toggle__icon theme-toggle__icon--moon" aria-hidden="true"><img src="assets/icons/svg-icon/icon-moon.svg" alt="" width="24" height="24" /></span>
@@ -161,174 +162,194 @@
           </ol>
         </div>
       </nav>
+
       <!-- Hero -->
       <section class="section page-hero" aria-labelledby="rules-title">
         <div class="container page-hero__inner">
           <div class="page-hero__content" data-reveal>
             <span class="page-hero__eyebrow">Informacje prawne</span>
-            <h1 id="rules-title">Regulamin serwisu</h1>
+            <h1 id="rules-title" class="page-hero__title">Regulamin serwisu</h1>
             <p class="page-hero__lead">
               Niniejszy dokument określa zasady korzystania z demonstracyjnej wersji projektu strony internetowej dla branży gastronomicznej „Atelier No.02”, opracowanej przez
               <a href="https://www.kp-code.pl" rel="noopener">KP_Code Digital Studio</a>
               . Serwis ma charakter marketingowy i prezentacyjny.
             </p>
-            <p class="meta" style="margin-top: 0.5rem">Ostatnia aktualizacja: 23.02.2026</p>
+            <p class="page-hero__meta">Ostatnia aktualizacja: 28.02.2026</p>
           </div>
         </div>
       </section>
+
       <!-- Spis treści -->
       <section class="section" aria-labelledby="toc-title">
         <div class="container">
           <h2 id="toc-title" class="visually-hidden">Spis treści</h2>
-          <nav class="menu-tabs" aria-label="Spis treści">
-            <ul class="menu-tabs__list">
-              <li><a class="btn btn--ghost" href="#definicje">Definicje</a></li>
-              <li><a class="btn btn--ghost" href="#postanowienia">Postanowienia ogólne</a></li>
-              <li><a class="btn btn--ghost" href="#charakter-projektu">Charakter projektu</a></li>
-              <li><a class="btn btn--ghost" href="#funkcjonalnosci">Funkcjonalności demonstracyjne</a></li>
-              <li><a class="btn btn--ghost" href="#wlasnosc">Własność intelektualna</a></li>
-              <li><a class="btn btn--ghost" href="#formularz">Formularz kontaktowy</a></li>
-              <li><a class="btn btn--ghost" href="#odpowiedzialnosc">Odpowiedzialność</a></li>
-              <li><a class="btn btn--ghost" href="#linki-zewnetrzne">Linki zewnętrzne</a></li>
-              <li><a class="btn btn--ghost" href="#zgloszenia">Zgłoszenia i kontakt</a></li>
-              <li><a class="btn btn--ghost" href="#bezpieczenstwo">Bezpieczeństwo</a></li>
-              <li><a class="btn btn--ghost" href="#zmiany">Zmiany regulaminu</a></li>
-              <li><a class="btn btn--ghost" href="#postanowienia-koncowe">Postanowienia końcowe</a></li>
+          <nav class="toc" aria-labelledby="toc-title">
+            <ul class="toc__list">
+              <li class="toc__item"><a class="toc__link btn btn--ghost" href="#definicje">Definicje</a></li>
+              <li class="toc__item"><a class="toc__link btn btn--ghost" href="#postanowienia">Postanowienia ogólne</a></li>
+              <li class="toc__item"><a class="toc__link btn btn--ghost" href="#charakter-projektu">Charakter projektu</a></li>
+              <li class="toc__item"><a class="toc__link btn btn--ghost" href="#funkcjonalnosci">Funkcjonalności demonstracyjne</a></li>
+              <li class="toc__item"><a class="toc__link btn btn--ghost" href="#wlasnosc">Własność intelektualna</a></li>
+              <li class="toc__item"><a class="toc__link btn btn--ghost" href="#formularz">Formularz kontaktowy</a></li>
+              <li class="toc__item"><a class="toc__link btn btn--ghost" href="#odpowiedzialnosc">Odpowiedzialność</a></li>
+              <li class="toc__item"><a class="toc__link btn btn--ghost" href="#linki-zewnetrzne">Linki zewnętrzne</a></li>
+              <li class="toc__item"><a class="toc__link btn btn--ghost" href="#zgloszenia">Zgłoszenia i kontakt</a></li>
+              <li class="toc__item"><a class="toc__link btn btn--ghost" href="#bezpieczenstwo">Bezpieczeństwo</a></li>
+              <li class="toc__item"><a class="toc__link btn btn--ghost" href="#zmiany">Zmiany regulaminu</a></li>
+              <li class="toc__item"><a class="toc__link btn btn--ghost" href="#postanowienia-koncowe">Postanowienia końcowe</a></li>
             </ul>
           </nav>
         </div>
       </section>
+
       <!-- Definicje -->
       <section id="definicje" class="section" aria-labelledby="definicje-title">
         <div class="container">
           <div class="section__header" data-reveal>
-            <h2 id="definicje-title">Definicje</h2>
+            <h2 id="definicje-title" class="section__title">Definicje</h2>
           </div>
-          <div class="card__body" data-reveal>
-            <p>Na potrzeby niniejszego Regulaminu przyjmuje się następujące znaczenie pojęć:</p>
-            <ul>
-              <li>
-                <strong>Serwis</strong>
-                – demonstracyjna strona internetowa projektu gastronomicznego „Atelier No.02”, udostępniona publicznie w celach marketingowych i prezentacyjnych.
-              </li>
-              <li>
-                <strong>Projekt</strong>
-                – koncepcja strony internetowej dla branży gastronomicznej, opracowana jako przykład realizacji komercyjnej przez KP_Code Digital Studio.
-              </li>
-              <li>
-                <strong>Operator</strong>
-                – autor oraz właściciel praw do Projektu, działający pod marką
-                <a href="https://www.kp-code.pl" rel="noopener">KP_Code Digital Studio</a>
-                , tj. Kamil Król, odpowiedzialny za opracowanie koncepcji, projektu graficznego oraz kodu źródłowego Serwisu (
-                <a href="mailto:kontakt@kp-code.pl">kontakt@kp-code.pl</a>
-                ).
-              </li>
-              <li>
-                <strong>Użytkownik</strong>
-                – każda osoba odwiedzająca Serwis i korzystająca z jego treści.
-              </li>
-              <li>
-                <strong>Funkcjonalności</strong>
-                – elementy interfejsu i rozwiązania techniczne prezentowane w ramach Projektu (np. menu, galeria, formularze, sekcje informacyjne), mające charakter demonstracyjny.
-              </li>
-            </ul>
-          </div>
+          <article class="card" data-reveal>
+            <div class="card__body">
+              <p>Na potrzeby niniejszego Regulaminu przyjmuje się następujące znaczenie pojęć:</p>
+              <ul>
+                <li>
+                  <strong>Serwis</strong>
+                  – demonstracyjna strona internetowa projektu gastronomicznego „Atelier No.02”, udostępniona publicznie w celach marketingowych i prezentacyjnych.
+                </li>
+                <li>
+                  <strong>Projekt</strong>
+                  – koncepcja strony internetowej dla branży gastronomicznej, opracowana jako przykład realizacji komercyjnej przez KP_Code Digital Studio.
+                </li>
+                <li>
+                  <strong>Operator</strong>
+                  – autor oraz właściciel praw do Projektu, działający pod marką
+                  <a href="https://www.kp-code.pl" rel="noopener">KP_Code Digital Studio</a>
+                  , tj. Kamil Król, odpowiedzialny za opracowanie koncepcji, projektu graficznego oraz kodu źródłowego Serwisu (
+                  <a href="mailto:kontakt@kp-code.pl">kontakt@kp-code.pl</a>
+                  ).
+                </li>
+                <li>
+                  <strong>Użytkownik</strong>
+                  – każda osoba odwiedzająca Serwis i korzystająca z jego treści.
+                </li>
+                <li>
+                  <strong>Funkcjonalności</strong>
+                  – elementy interfejsu i rozwiązania techniczne prezentowane w ramach Projektu (np. menu, galeria, formularze, sekcje informacyjne), mające charakter demonstracyjny.
+                </li>
+              </ul>
+            </div>
+          </article>
         </div>
       </section>
+
       <!-- Postanowienia ogólne -->
       <section id="postanowienia" class="section" aria-labelledby="postanowienia-title">
         <div class="container">
           <div class="section__header" data-reveal>
-            <h2 id="postanowienia-title">Postanowienia ogólne</h2>
+            <h2 id="postanowienia-title" class="section__title">Postanowienia ogólne</h2>
           </div>
-          <div class="card__body" data-reveal>
-            <p>
-              Niniejszy Regulamin określa zasady korzystania z demonstracyjnego Serwisu opracowanego przez
-              <a href="https://www.kp-code.pl" rel="noopener">KP_Code Digital Studio</a>
-              w celach marketingowych oraz prezentacyjnych. Serwis stanowi przykład realizacji projektu strony internetowej dla branży gastronomicznej.
-            </p>
-            <p>Korzystanie z Serwisu oznacza akceptację niniejszego Regulaminu oraz zobowiązanie do korzystania z niego zgodnie z jego przeznaczeniem i obowiązującymi przepisami prawa.</p>
-          </div>
+          <article class="card" data-reveal>
+            <div class="card__body">
+              <p>
+                Niniejszy Regulamin określa zasady korzystania z demonstracyjnego Serwisu opracowanego przez
+                <a href="https://www.kp-code.pl" rel="noopener">KP_Code Digital Studio</a>
+                w celach marketingowych oraz prezentacyjnych. Serwis stanowi przykład realizacji projektu strony internetowej dla branży gastronomicznej.
+              </p>
+              <p>Korzystanie z Serwisu oznacza akceptację niniejszego Regulaminu oraz zobowiązanie do korzystania z niego zgodnie z jego przeznaczeniem i obowiązującymi przepisami prawa.</p>
+            </div>
+          </article>
         </div>
       </section>
+
       <!-- Charakter projektu -->
       <section id="charakter-projektu" class="section" aria-labelledby="charakter-projektu-title">
         <div class="container">
           <div class="section__header" data-reveal>
-            <h2 id="charakter-projektu-title">Charakter projektu</h2>
+            <h2 id="charakter-projektu-title" class="section__title">Charakter projektu</h2>
           </div>
-          <div class="card__body" data-reveal>
-            <p>
-              „Atelier No.02” stanowi fikcyjną markę stworzoną wyłącznie na potrzeby demonstracyjnego projektu strony internetowej opracowanego przez
-              <a href="https://www.kp-code.pl" rel="noopener">KP_Code Digital Studio</a>
-              . Serwis nie reprezentuje rzeczywistego podmiotu gospodarczego ani realnie działającej restauracji.
-            </p>
-            <ul>
-              <li>Wszelkie nazwy, opisy, treści, ceny, dane kontaktowe oraz procesy przedstawione w Serwisie mają charakter przykładowy.</li>
-              <li>Prezentowane treści nie stanowią oferty w rozumieniu przepisów Kodeksu cywilnego.</li>
-              <li>Serwis nie umożliwia zawierania umów ani składania rzeczywistych zamówień czy rezerwacji.</li>
-            </ul>
-          </div>
+          <article class="card" data-reveal>
+            <div class="card__body">
+              <p>
+                „Atelier No.02” stanowi fikcyjną markę stworzoną wyłącznie na potrzeby demonstracyjnego projektu strony internetowej opracowanego przez
+                <a href="https://www.kp-code.pl" rel="noopener">KP_Code Digital Studio</a>
+                . Serwis nie reprezentuje rzeczywistego podmiotu gospodarczego ani realnie działającej restauracji.
+              </p>
+              <ul>
+                <li>Wszelkie nazwy, opisy, treści, ceny, dane kontaktowe oraz procesy przedstawione w Serwisie mają charakter przykładowy.</li>
+                <li>Prezentowane treści nie stanowią oferty w rozumieniu przepisów Kodeksu cywilnego.</li>
+                <li>Serwis nie umożliwia zawierania umów ani składania rzeczywistych zamówień czy rezerwacji.</li>
+              </ul>
+            </div>
+          </article>
         </div>
       </section>
+
       <!-- Funkcjonalności demonstracyjne -->
       <section id="funkcjonalnosci" class="section" aria-labelledby="funkcjonalnosci-title">
         <div class="container">
           <div class="section__header" data-reveal>
-            <h2 id="funkcjonalnosci-title">Funkcjonalności demonstracyjne</h2>
+            <h2 id="funkcjonalnosci-title" class="section__title">Funkcjonalności demonstracyjne</h2>
           </div>
-          <div class="card__body" data-reveal>
-            <p>
-              Serwis może zawierać elementy funkcjonalne charakterystyczne dla stron internetowych branży gastronomicznej, takie jak menu, galeria, sekcje informacyjne, przyciski CTA, formularz
-              kontaktowy lub rezerwacyjny.
-            </p>
-            <ul>
-              <li>Wskazane elementy służą wyłącznie prezentacji rozwiązań projektowych, interfejsu użytkownika (UI) oraz implementacji front-end.</li>
-              <li>Dane wprowadzane przez Użytkownika w formularzach mają charakter testowy i demonstracyjny.</li>
-              <li>Wysłanie formularza nie skutkuje zawarciem umowy, dokonaniem rezerwacji ani powstaniem jakiegokolwiek zobowiązania po stronie Operatora.</li>
-            </ul>
-          </div>
+          <article class="card" data-reveal>
+            <div class="card__body">
+              <p>
+                Serwis może zawierać elementy funkcjonalne charakterystyczne dla stron internetowych branży gastronomicznej, takie jak menu, galeria, sekcje informacyjne, przyciski CTA, formularz
+                kontaktowy lub rezerwacyjny.
+              </p>
+              <ul>
+                <li>Wskazane elementy służą wyłącznie prezentacji rozwiązań projektowych, interfejsu użytkownika (UI) oraz implementacji front-end.</li>
+                <li>Dane wprowadzane przez Użytkownika w formularzach mają charakter testowy i demonstracyjny.</li>
+                <li>Wysłanie formularza nie skutkuje zawarciem umowy, dokonaniem rezerwacji ani powstaniem jakiegokolwiek zobowiązania po stronie Operatora.</li>
+              </ul>
+            </div>
+          </article>
         </div>
       </section>
+
       <!-- Wlasnosc intelektualna -->
       <section id="wlasnosc" class="section" aria-labelledby="wlasnosc-title">
         <div class="container">
           <div class="section__header" data-reveal>
-            <h2 id="wlasnosc-title">Własność intelektualna</h2>
+            <h2 id="wlasnosc-title" class="section__title">Własność intelektualna</h2>
           </div>
-          <div class="card__body" data-reveal>
-            <p>
-              Układ graficzny, struktura Serwisu, elementy wizualne, treści, koncepcja projektu oraz kod źródłowy stanowią utwór w rozumieniu przepisów prawa autorskiego i podlegają ochronie prawnej.
-              Prawa autorskie do Projektu przysługują jego autorowi – Kamilowi Królowi, działającemu pod marką
-              <a href="https://www.kp-code.pl" rel="noopener">KP_Code Digital Studio</a>
-              , o ile nie wskazano inaczej.
-            </p>
-            <ul>
-              <li>Zabronione jest kopiowanie, rozpowszechnianie, modyfikowanie lub wykorzystywanie Projektu w całości lub w części w celach komercyjnych bez uprzedniej zgody autora.</li>
-              <li>Dopuszczalne jest przeglądanie Serwisu w celach informacyjnych i zapoznania się z prezentowanymi rozwiązaniami.</li>
-            </ul>
-          </div>
+          <article class="card" data-reveal>
+            <div class="card__body">
+              <p>
+                Układ graficzny, struktura Serwisu, elementy wizualne, treści, koncepcja projektu oraz kod źródłowy stanowią utwór w rozumieniu przepisów prawa autorskiego i podlegają ochronie
+                prawnej. Prawa autorskie do Projektu przysługują jego autorowi – Kamilowi Królowi, działającemu pod marką
+                <a href="https://www.kp-code.pl" rel="noopener">KP_Code Digital Studio</a>
+                , o ile nie wskazano inaczej.
+              </p>
+              <ul>
+                <li>Zabronione jest kopiowanie, rozpowszechnianie, modyfikowanie lub wykorzystywanie Projektu w całości lub w części w celach komercyjnych bez uprzedniej zgody autora.</li>
+                <li>Dopuszczalne jest przeglądanie Serwisu w celach informacyjnych i zapoznania się z prezentowanymi rozwiązaniami.</li>
+              </ul>
+            </div>
+          </article>
         </div>
       </section>
+
       <!-- Formularz kontaktowy -->
       <section id="formularz" class="section" aria-labelledby="formularz-title">
         <div class="container">
           <div class="section__header" data-reveal>
-            <h2 id="formularz-title">Formularz kontaktowy</h2>
+            <h2 id="formularz-title" class="section__title">Formularz kontaktowy</h2>
           </div>
-          <div class="card__body" data-reveal>
-            <ol>
-              <li>Serwis może udostępniać formularz kontaktowy lub rezerwacyjny w celu demonstracji funkcjonalności interfejsu oraz symulacji procesu zapytania.</li>
-              <li>Podanie danych przez Użytkownika jest dobrowolne i ma charakter testowy w ramach działania projektu demonstracyjnego.</li>
-              <li>
-                Zasady przetwarzania danych zostały opisane w dokumentach:
-                <a href="polityka-prywatnosci.html">Polityka prywatności</a>
-                oraz
-                <a href="cookies.html">Cookies</a>
-                .
-              </li>
-            </ol>
-          </div>
+          <article class="card" data-reveal>
+            <div class="card__body">
+              <ol>
+                <li>Serwis może udostępniać formularz kontaktowy lub rezerwacyjny w celu demonstracji funkcjonalności interfejsu oraz symulacji procesu zapytania.</li>
+                <li>Podanie danych przez Użytkownika jest dobrowolne i ma charakter testowy w ramach działania projektu demonstracyjnego.</li>
+                <li>
+                  Zasady przetwarzania danych zostały opisane w dokumentach:
+                  <a href="polityka-prywatnosci.html">Polityka prywatności</a>
+                  oraz
+                  <a href="cookies.html">Cookies</a>
+                  .
+                </li>
+              </ol>
+            </div>
+          </article>
         </div>
       </section>
       <section id="odpowiedzialnosc" class="section" aria-labelledby="odpowiedzialnosc-title">
@@ -336,94 +357,110 @@
           <div class="section__header" data-reveal>
             <h2 id="odpowiedzialnosc-title">Odpowiedzialność</h2>
           </div>
-          <div class="card__body" data-reveal>
-            <ul>
-              <li>Operator dokłada należytej staranności, aby Serwis działał prawidłowo, jednak udostępniany jest on w aktualnym stanie technicznym („as is”).</li>
-              <li>Operator nie ponosi odpowiedzialności za decyzje podejmowane na podstawie treści prezentowanych w ramach projektu demonstracyjnego.</li>
-              <li>Operator nie odpowiada za czasowe przerwy w działaniu Serwisu wynikające z przyczyn technicznych, konserwacyjnych lub innych okoliczności niezależnych od Operatora.</li>
-            </ul>
-          </div>
+          <article class="card" data-reveal>
+            <div class="card__body">
+              <ul>
+                <li>Operator dokłada należytej staranności, aby Serwis działał prawidłowo, jednak udostępniany jest on w aktualnym stanie technicznym („as is”).</li>
+                <li>Operator nie ponosi odpowiedzialności za decyzje podejmowane na podstawie treści prezentowanych w ramach projektu demonstracyjnego.</li>
+                <li>Operator nie odpowiada za czasowe przerwy w działaniu Serwisu wynikające z przyczyn technicznych, konserwacyjnych lub innych okoliczności niezależnych od Operatora.</li>
+              </ul>
+            </div>
+          </article>
         </div>
       </section>
+
       <!-- Linki zewnętrzne -->
       <section id="linki-zewnetrzne" class="section" aria-labelledby="linki-zewnetrzne-title">
         <div class="container">
-          <div class="section__header" data-reveal>
-            <h2 id="linki-zewnetrzne-title">Linki zewnętrzne</h2>
+          <div class="section__header">
+            <h2 id="linki-zewnetrzne-title" class="section__title">Linki zewnętrzne</h2>
           </div>
-          <div class="card__body" data-reveal>
-            <p>Serwis może zawierać odnośniki do zewnętrznych stron internetowych, w tym serwisów społecznościowych, map, narzędzi analitycznych lub innych usług podmiotów trzecich.</p>
-            <p>
-              Operator nie ponosi odpowiedzialności za treść, dostępność ani zasady przetwarzania danych obowiązujące w tych serwisach. Korzystanie z zewnętrznych stron odbywa się na zasadach
-              określonych przez ich administratorów.
-            </p>
-          </div>
+          <article class="card" data-reveal>
+            <div class="card__body">
+              <p>Serwis może zawierać odnośniki do zewnętrznych stron internetowych, w tym serwisów społecznościowych, map, narzędzi analitycznych lub innych usług podmiotów trzecich.</p>
+              <p>
+                Operator nie ponosi odpowiedzialności za treść, dostępność ani zasady przetwarzania danych obowiązujące w tych serwisach. Korzystanie z zewnętrznych stron odbywa się na zasadach
+                określonych przez ich administratorów.
+              </p>
+            </div>
+          </article>
         </div>
       </section>
+
       <!-- Zgłoszenia i kontakt -->
       <section id="zgloszenia" class="section" aria-labelledby="zgloszenia-title">
         <div class="container">
           <div class="section__header" data-reveal>
-            <h2 id="zgloszenia-title">Zgłoszenia i kontakt</h2>
+            <h2 id="zgloszenia-title" class="section__title">Zgłoszenia i kontakt</h2>
           </div>
-          <div class="card__body" data-reveal>
-            <p>
-              Uwagi dotyczące działania Serwisu, pytania związane z Projektem lub współpracą można kierować na adres:
-              <a href="mailto:kontakt@kp-code.pl">kontakt@kp-code.pl</a>
-              .
-            </p>
-            <p>Odpowiedź zostanie udzielona w rozsądnym terminie, z uwzględnieniem dostępności Operatora.</p>
-          </div>
+          <article class="card" data-reveal>
+            <div class="card__body">
+              <p>
+                Uwagi dotyczące działania Serwisu, pytania związane z Projektem lub współpracą można kierować na adres:
+                <a href="mailto:kontakt@kp-code.pl">kontakt@kp-code.pl</a>
+                .
+              </p>
+              <p>Odpowiedź zostanie udzielona w rozsądnym terminie, z uwzględnieniem dostępności Operatora.</p>
+            </div>
+          </article>
         </div>
       </section>
+
       <!-- Bezpieczeństwo -->
       <section id="bezpieczenstwo" class="section" aria-labelledby="bezpieczenstwo-title">
         <div class="container">
           <div class="section__header" data-reveal>
-            <h2 id="bezpieczenstwo-title">Bezpieczeństwo</h2>
+            <h2 id="bezpieczenstwo-title" class="section__title">Bezpieczeństwo</h2>
           </div>
-          <div class="card__body" data-reveal>
-            <ul>
-              <li>Operator stosuje odpowiednie środki techniczne i organizacyjne mające na celu zapewnienie bezpieczeństwa Serwisu oraz ochrony przetwarzanych danych.</li>
-              <li>Użytkownik powinien korzystać z aktualnej przeglądarki internetowej oraz dbać o bezpieczeństwo swojego urządzenia i połączenia sieciowego.</li>
-              <li>
-                Zabronione są działania zmierzające do naruszenia bezpieczeństwa Serwisu, w szczególności próby obejścia zabezpieczeń, nieuprawniony dostęp do zasobów lub nadużycia funkcjonalności
-                formularzy.
-              </li>
-            </ul>
-          </div>
+          <article class="card" data-reveal>
+            <div class="card__body">
+              <ul>
+                <li>Operator stosuje odpowiednie środki techniczne i organizacyjne mające na celu zapewnienie bezpieczeństwa Serwisu oraz ochrony przetwarzanych danych.</li>
+                <li>Użytkownik powinien korzystać z aktualnej przeglądarki internetowej oraz dbać o bezpieczeństwo swojego urządzenia i połączenia sieciowego.</li>
+                <li>
+                  Zabronione są działania zmierzające do naruszenia bezpieczeństwa Serwisu, w szczególności próby obejścia zabezpieczeń, nieuprawniony dostęp do zasobów lub nadużycia funkcjonalności
+                  formularzy.
+                </li>
+              </ul>
+            </div>
+          </article>
         </div>
       </section>
+
       <!-- Zmiany -->
       <section id="zmiany" class="section" aria-labelledby="zmiany-title">
         <div class="container">
           <div class="section__header" data-reveal>
-            <h2 id="zmiany-title">Zmiany regulaminu</h2>
+            <h2 id="zmiany-title" class="section__title">Zmiany regulaminu</h2>
           </div>
-          <div class="card__body" data-reveal>
-            <ol>
-              <li>
-                Operator zastrzega sobie prawo do wprowadzania zmian w niniejszym Regulaminie z ważnych przyczyn, w szczególności w przypadku zmian technicznych, aktualizacji treści Projektu lub
-                względów związanych z bezpieczeństwem.
-              </li>
-              <li>Zmiany wchodzą w życie z dniem ich publikacji w Serwisie, o ile nie wskazano innego terminu obowiązywania.</li>
-            </ol>
-          </div>
+          <article class="card" data-reveal>
+            <div class="card__body">
+              <ol>
+                <li>
+                  Operator zastrzega sobie prawo do wprowadzania zmian w niniejszym Regulaminie z ważnych przyczyn, w szczególności w przypadku zmian technicznych, aktualizacji treści Projektu lub
+                  względów związanych z bezpieczeństwem.
+                </li>
+                <li>Zmiany wchodzą w życie z dniem ich publikacji w Serwisie, o ile nie wskazano innego terminu obowiązywania.</li>
+              </ol>
+            </div>
+          </article>
         </div>
       </section>
+
       <!-- Postanowienia koncowe -->
       <section id="postanowienia-koncowe" class="section" aria-labelledby="postanowienia-koncowe-title">
         <div class="container">
           <div class="section__header" data-reveal>
-            <h2 id="postanowienia-koncowe-title">Postanowienia końcowe</h2>
+            <h2 id="postanowienia-koncowe-title" class="section__title">Postanowienia końcowe</h2>
           </div>
-          <div class="card__body" data-reveal>
-            <ul>
-              <li>W sprawach nieuregulowanych niniejszym Regulaminem zastosowanie mają odpowiednie przepisy prawa.</li>
-              <li>Niniejszy Regulamin dotyczy wyłącznie demonstracyjnego charakteru Serwisu i ma charakter informacyjny.</li>
-            </ul>
-            <p>Data ostatniej aktualizacji: 23.02.2026.</p>
-          </div>
+          <article class="card" data-reveal>
+            <div class="card__body">
+              <ul>
+                <li>W sprawach nieuregulowanych niniejszym Regulaminem zastosowanie mają odpowiednie przepisy prawa.</li>
+                <li>Niniejszy Regulamin dotyczy wyłącznie demonstracyjnego charakteru Serwisu i ma charakter informacyjny.</li>
+              </ul>
+            </div>
+          </article>
         </div>
       </section>
     </main>
@@ -432,7 +469,7 @@
     <footer class="footer" aria-label="Stopka strony">
       <div class="container">
         <div class="footer__grid">
-          <!-- Brand -->
+          <!-- brand -->
           <div class="footer__brand">
             <a class="brand" href="/#hero" aria-label="Atelier No.02 — Strona główna">
               <img src="assets/img-optimized/logo/logo-and-name/footer-logo-light.svg" alt="Logo Atelier No.02" class="footer__logo footer__logo--light" width="40" height="40" />
@@ -440,7 +477,7 @@
             </a>
             <p class="footer__tagline">Autorska kuchnia sezonowa oparta na jakości składników.</p>
           </div>
-          <!-- Nav -->
+          <!-- nav -->
           <nav class="footer__nav" aria-label="Nawigacja w stopce">
             <h3 class="footer__heading">Odkrywaj</h3>
             <ul class="footer__list">
@@ -451,7 +488,7 @@
               <li><a href="/contact.html">Kontakt</a></li>
             </ul>
           </nav>
-          <!-- Info -->
+          <!-- info -->
           <nav class="footer__nav" aria-label="Informacje prawne">
             <h3 class="footer__heading">Informacje</h3>
             <ul class="footer__list">
@@ -460,10 +497,9 @@
               <li><a href="/regulamin.html">Regulamin</a></li>
             </ul>
           </nav>
-          <!-- Contact -->
+          <!-- contact -->
           <div class="footer__contact">
             <h3 class="footer__heading">Kontakt</h3>
-
             <address class="footer__address">
               <p class="footer__contact-item">
                 <svg class="footer__contact-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
@@ -474,7 +510,6 @@
                 </svg>
                 <a href="tel:+48533537091">+48&nbsp;533&nbsp;537&nbsp;091</a>
               </p>
-
               <p class="footer__contact-item">
                 <svg class="footer__contact-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
                   <path d="M1.5 8.67v8.58a3 3 0 0 0 3 3h15a3 3 0 0 0 3-3V8.67l-8.928 5.493a3 3 0 0 1-3.144 0L1.5 8.67Z" />
@@ -487,7 +522,7 @@
               </p>
             </address>
           </div>
-          <!-- Social media -->
+          <!-- social media -->
           <div class="footer__social">
             <h3 class="footer__heading">Media społecznościowe</h3>
             <ul class="footer__list">
@@ -544,7 +579,7 @@
             </ul>
           </div>
         </div>
-        <!-- Footer legal -->
+        <!-- legal -->
         <div class="footer__legal">
           <span>
             ©
@@ -563,12 +598,14 @@
     <script type="module" src="js/core.js" defer></script>
 
     <!-- Demo legal modal -->
-    <div class="demo-legal-modal" id="demo-legal-modal" aria-hidden="true" hidden>
+    <div class="demo-legal-modal" id="demo-legal-modal" aria-hidden="true" hidden inert>
       <div class="demo-legal-modal__backdrop" data-demo-legal-close></div>
       <div class="demo-legal-modal__panel" role="dialog" aria-modal="true" aria-labelledby="demo-legal-title" aria-describedby="demo-legal-desc" tabindex="-1">
-        <h2 class="demo-legal-modal__title" id="demo-legal-title">Projekt demonstracyjny</h2>
+        <h2 class="demo-legal-modal__title" id="demo-legal-title">Informacja o projekcie</h2>
         <p class="demo-legal-modal__text" id="demo-legal-desc">
-          Serwis Atelier No.02 jest projektem demo. Właścicielem jest Kamil Król (KP_Code). Korzystając z serwisu akceptujesz
+          Serwis „Atelier No.02” ma charakter demonstracyjny i został przygotowany przez
+          <a href="https://www.kp-code.pl" rel="noopener">KP_Code Digital Studio</a>
+          jako przykładoa strona internetowa dla branży gastronomicznej. Korzystając z serwisu, akceptujesz
           <a href="regulamin.html">Regulamin</a>
           .
         </p>
