@@ -264,8 +264,8 @@
   gap: var(--space-2);
 }
 .contact__details a {
-  color: var(--burgundy);
-  font-weight: 550;
+  color: var(--ink);
+  font-weight: 600;
   letter-spacing: var(--ls-wide-plus);
   text-decoration: none;
   transition:
@@ -327,8 +327,5 @@
   }
   .quotes {
     grid-template-columns: repeat(2, 1fr);
-  }
-  .contact__content p {
-    text-align: left;
   }
 }

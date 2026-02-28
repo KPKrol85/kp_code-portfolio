@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="pl">
   <head>
     <meta charset="utf-8" />
@@ -140,6 +140,7 @@
           <img src="assets/img-optimized/logo/logo-and-name/header-logo-dark.svg" alt="" class="brand__logo brand__logo--dark" width="40" height="30" />
         </a>
         <div class="header__actions">
+          <!-- hamburger -->
           <button type="button" class="nav-toggle" aria-label="Otwórz menu" aria-controls="primary-nav" aria-expanded="false">
             <svg class="nav-toggle__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
               <path class="line line--top" d="M3.75 6.75h16.5" />
@@ -147,6 +148,7 @@
               <path class="line line--bottom" d="M3.75 17.25h16.5" />
             </svg>
           </button>
+          <!-- nav -->
           <nav class="nav" id="primary-nav" aria-label="Nawigacja główna">
             <ul class="nav__list">
               <li class="nav__item nav__item--dropdown">
@@ -186,7 +188,7 @@
               <li><a href="/contact.html">Kontakt</a></li>
             </ul>
           </nav>
-          <!-- Theme toggle -->
+          <!-- theme toggle -->
           <button class="theme-toggle" type="button" aria-pressed="false" aria-label="Przełącz tryb ciemny">
             <span class="theme-toggle__icon theme-toggle__icon--sun" aria-hidden="true"><img src="assets/icons/svg-icon/icon-sun.svg" alt="" width="24" height="24" /></span>
             <span class="theme-toggle__icon theme-toggle__icon--moon" aria-hidden="true"><img src="assets/icons/svg-icon/icon-moon.svg" alt="" width="24" height="24" /></span>
@@ -228,7 +230,6 @@
             <h2 id="timeline-title" class="section__title">Nasza historia</h2>
             <p class="section__lead">Od pop-upu w kameralnym lofcie do pełnowymiarowej restauracji, która inspiruje miasto i przyciąga gości z całej Polski.</p>
           </div>
-          <!-- Cards -->
           <ul class="cards timeline__cards" data-reveal-group>
             <li class="card timeline__item" data-reveal>
               <article class="timeline__entry">
@@ -295,8 +296,8 @@
             <h2 id="team-title" class="section__title">Poznaj zespół</h2>
             <p class="section__lead">Każde danie i każdy serwis to efekt harmonijnej współpracy ludzi, którzy wybrali gastronomię z pasji do rzemiosła.</p>
           </div>
-          <!-- Cards -->
           <ul class="cards team__grid" data-reveal-group>
+            <!-- item 1 -->
             <li class="card team-card" data-reveal>
               <article class="team-card__entry" aria-labelledby="team-lena-name" aria-label="Dowiedz się więcej o: Lena Wysocka">
                 <figure class="team-card__media">
@@ -342,6 +343,7 @@
                 </div>
               </article>
             </li>
+            <!-- item 2 -->
             <li class="card team-card" data-reveal>
               <article class="team-card__entry" aria-labelledby="team-maks-name" aria-label="Dowiedz się więcej o: Maks Wroński">
                 <figure class="team-card__media">
@@ -386,6 +388,7 @@
                 </div>
               </article>
             </li>
+            <!-- item 3 -->
             <li class="card team-card" data-reveal>
               <article class="team-card__entry" aria-labelledby="team-nadia-name" aria-label="Dowiedz się więcej o: Nadia Górska">
                 <figure class="team-card__media">
@@ -430,6 +433,7 @@
                 </div>
               </article>
             </li>
+            <!-- item 4 -->
             <li class="card team-card" data-reveal>
               <article class="team-card__entry" aria-labelledby="team-filip-name" aria-label="Dowiedz się więcej o: Filip Laskowski">
                 <figure class="team-card__media">
@@ -474,6 +478,7 @@
                 </div>
               </article>
             </li>
+            <!-- item 5 -->
             <li class="card team-card" data-reveal>
               <article class="team-card__entry" aria-labelledby="team-amelia-name" aria-label="Dowiedz się więcej o: Amelia Ryś">
                 <figure class="team-card__media">
@@ -518,6 +523,7 @@
                 </div>
               </article>
             </li>
+            <!-- item 6 -->
             <li class="card team-card" data-reveal>
               <article class="team-card__entry" aria-labelledby="team-olga-name" aria-label="Dowiedz się więcej o: Olga Ryś">
                 <figure class="team-card__media">
@@ -573,7 +579,6 @@
             <h2 id="philosophy-title" class="section__title">Filozofia kuchni</h2>
             <p class="section__lead">Nasza kuchnia wyrasta z szacunku do natury, pracy rzemieślników i gości, którzy powierzają nam swoje wieczory.</p>
           </div>
-          <!-- Cards -->
           <ul class="cards philosophy__cards" data-reveal-group>
             <li class="card philosophy-card" data-reveal>
               <article class="philosophy-card__entry" aria-labelledby="philosophy-seasonality">
@@ -606,7 +611,6 @@
       <!-- Chef -->
       <section id="chef" class="section chef" aria-labelledby="chef-title">
         <div class="container">
-          <!-- Cards -->
           <article class="card chef-card" data-reveal>
             <figure class="chef-card__media">
               <picture class="chef-card__picture">
@@ -666,7 +670,6 @@
             <h2 id="suppliers-title" class="section__title">Składniki i dostawcy</h2>
             <p class="section__lead">Budujemy sieć współpracy z producentami, których wartości odzwierciedlają nasze ambicje — transparentność, etyka, konsekwencja.</p>
           </div>
-          <!-- Cards -->
           <ul class="cards suppliers__cards" data-reveal-group>
             <li class="card suppliers-card" data-reveal>
               <article>
@@ -735,7 +738,6 @@
             <h2 id="awards-title" class="section__title">Nagrody i wyróżnienia</h2>
             <p class="section__lead">Docenienie przez branżę motywuje nas do dalszych eksperymentów i rozwoju doświadczenia gości.</p>
           </div>
-          <!-- Cards -->
           <ul class="cards awards__cards" data-reveal-group>
             <li class="card awards__card" data-reveal>
               <article>
@@ -781,9 +783,8 @@
             <h2 id="location-title" class="section__title">Godziny otwarcia i lokalizacja</h2>
             <p class="section__lead">Rezerwacje przyjmujemy telefonicznie, mailowo lub przez formularz na stronie. Dla grup przygotowujemy spersonalizowane scenariusze kolacji.</p>
           </div>
-          <!-- Cards -->
           <div class="grid grid--2 location__grid" data-reveal-group>
-            <!-- Hours -->
+            <!-- hours -->
             <article class="card location-card" data-reveal>
               <div class="card__body">
                 <h3 class="location-card__title">Godziny otwarcia</h3>
@@ -811,7 +812,7 @@
                 <p class="location-card__note">Prosimy o przybycie 10 minut przed rezerwacją, by w komfortowych warunkach rozpocząć wieczór.</p>
               </div>
             </article>
-            <!-- Address -->
+            <!-- address -->
             <article class="card location-card" data-reveal>
               <div class="card__body">
                 <h3 class="location-card__title">Adres</h3>
@@ -837,7 +838,7 @@
             <h2 id="faq-title" class="section__title">Najczęstsze pytania</h2>
             <p class="section__lead">Krótkie odpowiedzi, które pomogą przygotować się do wizyty w Atelier No.02.</p>
           </div>
-          <!-- Questions cards -->
+          <!-- q&a -->
           <ul class="cards faq__cards" data-reveal-group>
             <li class="card faq__item" data-reveal>
               <article>
@@ -930,7 +931,7 @@
     <footer class="footer" aria-label="Stopka strony">
       <div class="container">
         <div class="footer__grid">
-          <!-- Brand -->
+          <!-- brand -->
           <div class="footer__brand">
             <a class="brand" href="/#hero" aria-label="Atelier No.02 — Strona główna">
               <img src="assets/img-optimized/logo/logo-and-name/footer-logo-light.svg" alt="Logo Atelier No.02" class="footer__logo footer__logo--light" width="40" height="40" />
@@ -938,7 +939,7 @@
             </a>
             <p class="footer__tagline">Autorska kuchnia sezonowa oparta na jakości składników.</p>
           </div>
-          <!-- Nav -->
+          <!-- nav -->
           <nav class="footer__nav" aria-label="Nawigacja w stopce">
             <h3 class="footer__heading">Odkrywaj</h3>
             <ul class="footer__list">
@@ -949,7 +950,7 @@
               <li><a href="/contact.html">Kontakt</a></li>
             </ul>
           </nav>
-          <!-- Info -->
+          <!-- info -->
           <nav class="footer__nav" aria-label="Informacje prawne">
             <h3 class="footer__heading">Informacje</h3>
             <ul class="footer__list">
@@ -958,7 +959,7 @@
               <li><a href="/regulamin.html">Regulamin</a></li>
             </ul>
           </nav>
-          <!-- Contact -->
+          <!-- kontakt -->
           <div class="footer__contact">
             <h3 class="footer__heading">Kontakt</h3>
             <address class="footer__address">
@@ -983,7 +984,7 @@
               </p>
             </address>
           </div>
-          <!-- Social media -->
+          <!-- social media -->
           <div class="footer__social">
             <h3 class="footer__heading">Media społecznościowe</h3>
             <ul class="footer__list">
@@ -1040,7 +1041,7 @@
             </ul>
           </div>
         </div>
-        <!-- Footer legal -->
+        <!-- legal -->
         <div class="footer__legal">
           <span>
             ©
@@ -1059,12 +1060,14 @@
     <script type="module" src="js/script.js" defer></script>
 
     <!-- Demo legal modal -->
-    <div class="demo-legal-modal" id="demo-legal-modal" aria-hidden="true" hidden>
+    <div class="demo-legal-modal" id="demo-legal-modal" aria-hidden="true" hidden inert>
       <div class="demo-legal-modal__backdrop" data-demo-legal-close></div>
       <div class="demo-legal-modal__panel" role="dialog" aria-modal="true" aria-labelledby="demo-legal-title" aria-describedby="demo-legal-desc" tabindex="-1">
-        <h2 class="demo-legal-modal__title" id="demo-legal-title">Projekt demonstracyjny</h2>
+        <h2 class="demo-legal-modal__title" id="demo-legal-title">Informacja o projekcie</h2>
         <p class="demo-legal-modal__text" id="demo-legal-desc">
-          Serwis Atelier No.02 jest projektem demo. Właścicielem jest Kamil Król (KP_Code). Korzystając z serwisu akceptujesz
+          Serwis „Atelier No.02” ma charakter demonstracyjny i został przygotowany przez
+          <a href="https://www.kp-code.pl" rel="noopener">KP_Code Digital Studio</a>
+          jako przykładoa strona internetowa dla branży gastronomicznej. Korzystając z serwisu, akceptujesz
           <a href="regulamin.html">Regulamin</a>
           .
         </p>

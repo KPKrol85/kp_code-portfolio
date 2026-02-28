@@ -29,6 +29,7 @@
           <img src="assets/img-optimized/logo/logo-and-name/header-logo-dark.svg" alt="" class="brand__logo brand__logo--dark" width="40" height="30" />
         </a>
         <div class="header__actions">
+          <!-- hamburger -->
           <button type="button" class="nav-toggle" aria-label="Otwórz menu" aria-controls="primary-nav" aria-expanded="false">
             <svg class="nav-toggle__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
               <path class="line line--top" d="M3.75 6.75h16.5" />
@@ -36,6 +37,7 @@
               <path class="line line--bottom" d="M3.75 17.25h16.5" />
             </svg>
           </button>
+          <!-- nav -->
           <nav class="nav" id="primary-nav" aria-label="Nawigacja główna">
             <ul class="nav__list">
               <li class="nav__item nav__item--dropdown">
@@ -75,6 +77,7 @@
               <li><a href="/contact.html">Kontakt</a></li>
             </ul>
           </nav>
+          <!-- theme toggle -->
           <button class="theme-toggle" type="button" aria-pressed="false" aria-label="Przełącz tryb ciemny">
             <span class="theme-toggle__icon theme-toggle__icon--sun" aria-hidden="true"><img src="assets/icons/svg-icon/icon-sun.svg" alt="" width="24" height="24" /></span>
             <span class="theme-toggle__icon theme-toggle__icon--moon" aria-hidden="true"><img src="assets/icons/svg-icon/icon-moon.svg" alt="" width="24" height="24" /></span>
@@ -112,13 +115,10 @@
             <button class="btn btn--primary" type="button" id="retry-connection">Spróbuj ponownie</button>
             <a class="btn btn--ghost" href="/index.html">Strona główna</a>
           </div>
-          <!-- Section header -->
           <div class="section__header">
             <h2 class="section__title">Co możesz zrobić teraz</h2>
             <p class="section__lead">Jeśli odwiedzałeś te sekcje wcześniej, mogą być dostępne offline.</p>
           </div>
-
-          <!-- Cards -->
           <ul class="cards">
             <li class="card">
               <div class="card__body">
@@ -150,7 +150,7 @@
     <footer class="footer" aria-label="Stopka strony">
       <div class="container">
         <div class="footer__grid">
-          <!-- Brand -->
+          <!-- brand -->
           <div class="footer__brand">
             <a class="brand" href="/#hero" aria-label="Atelier No.02 — Strona główna">
               <img src="assets/img-optimized/logo/logo-and-name/footer-logo-light.svg" alt="Logo Atelier No.02" class="footer__logo footer__logo--light" width="40" height="40" />
@@ -158,7 +158,7 @@
             </a>
             <p class="footer__tagline">Autorska kuchnia sezonowa oparta na jakości składników.</p>
           </div>
-          <!-- Nav -->
+          <!-- nav -->
           <nav class="footer__nav" aria-label="Nawigacja w stopce">
             <h3 class="footer__heading">Odkrywaj</h3>
             <ul class="footer__list">
@@ -169,7 +169,7 @@
               <li><a href="/contact.html">Kontakt</a></li>
             </ul>
           </nav>
-          <!-- Info -->
+          <!-- info -->
           <nav class="footer__nav" aria-label="Informacje prawne">
             <h3 class="footer__heading">Informacje</h3>
             <ul class="footer__list">
@@ -178,10 +178,9 @@
               <li><a href="/regulamin.html">Regulamin</a></li>
             </ul>
           </nav>
-          <!-- Contact -->
+          <!-- kontakt -->
           <div class="footer__contact">
             <h3 class="footer__heading">Kontakt</h3>
-
             <address class="footer__address">
               <p class="footer__contact-item">
                 <svg class="footer__contact-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
@@ -192,7 +191,6 @@
                 </svg>
                 <a href="tel:+48533537091">+48&nbsp;533&nbsp;537&nbsp;091</a>
               </p>
-
               <p class="footer__contact-item">
                 <svg class="footer__contact-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
                   <path d="M1.5 8.67v8.58a3 3 0 0 0 3 3h15a3 3 0 0 0 3-3V8.67l-8.928 5.493a3 3 0 0 1-3.144 0L1.5 8.67Z" />
@@ -205,7 +203,7 @@
               </p>
             </address>
           </div>
-          <!-- Social media -->
+          <!-- social media -->
           <div class="footer__social">
             <h3 class="footer__heading">Media społecznościowe</h3>
             <ul class="footer__list">
@@ -262,7 +260,7 @@
             </ul>
           </div>
         </div>
-        <!-- Footer legal -->
+        <!-- legal -->
         <div class="footer__legal">
           <span>
             ©
@@ -291,12 +289,14 @@
     <script type="module" src="js/script.js"></script>
 
     <!-- Demo legal modal -->
-    <div class="demo-legal-modal" id="demo-legal-modal" aria-hidden="true" hidden>
+    <div class="demo-legal-modal" id="demo-legal-modal" aria-hidden="true" hidden inert>
       <div class="demo-legal-modal__backdrop" data-demo-legal-close></div>
       <div class="demo-legal-modal__panel" role="dialog" aria-modal="true" aria-labelledby="demo-legal-title" aria-describedby="demo-legal-desc" tabindex="-1">
-        <h2 class="demo-legal-modal__title" id="demo-legal-title">Projekt demonstracyjny</h2>
+        <h2 class="demo-legal-modal__title" id="demo-legal-title">Informacja o projekcie</h2>
         <p class="demo-legal-modal__text" id="demo-legal-desc">
-          Serwis Atelier No.02 jest projektem demo. Właścicielem jest Kamil Król (KP_Code). Korzystając z serwisu akceptujesz
+          Serwis „Atelier No.02” ma charakter demonstracyjny i został przygotowany przez
+          <a href="https://www.kp-code.pl" rel="noopener">KP_Code Digital Studio</a>
+          jako przykładoa strona internetowa dla branży gastronomicznej. Korzystając z serwisu, akceptujesz
           <a href="regulamin.html">Regulamin</a>
           .
         </p>

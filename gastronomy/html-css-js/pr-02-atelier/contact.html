@@ -1,13 +1,11 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="pl">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Kontakt | Atelier No.02</title>
     <!-- SEO -->
-    <meta
-      name="description"
-      content="Skontaktuj się z Atelier No.02. Zarezerwuj stolik przez formularz, zadzwoń lub sprawdź dojazd na mapie." />
+    <meta name="description" content="Skontaktuj się z Atelier No.02. Zarezerwuj stolik przez formularz, zadzwoń lub sprawdź dojazd na mapie." />
     <link rel="canonical" href="https://gastronomy-project-02.netlify.app/contact.html" />
     <meta name="robots" content="index,follow" />
     <meta name="author" content="KP_Code" />
@@ -49,7 +47,7 @@
     <!-- Theme preload -->
     <script src="js/bootstrap.js"></script>
     <!-- JSON-LD -->
-        <script type="application/ld+json">
+    <script type="application/ld+json">
       {
         "@context": "https://schema.org",
         "@graph": [
@@ -87,6 +85,7 @@
           <img src="assets/img-optimized/logo/logo-and-name/header-logo-dark.svg" alt="" class="brand__logo brand__logo--dark" width="40" height="30" />
         </a>
         <div class="header__actions">
+          <!-- hamburger -->
           <button type="button" class="nav-toggle" aria-label="Otwórz menu" aria-controls="primary-nav" aria-expanded="false">
             <svg class="nav-toggle__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
               <path class="line line--top" d="M3.75 6.75h16.5" />
@@ -94,6 +93,7 @@
               <path class="line line--bottom" d="M3.75 17.25h16.5" />
             </svg>
           </button>
+          <!-- nav -->
           <nav class="nav" id="primary-nav" aria-label="Nawigacja główna">
             <ul class="nav__list">
               <li class="nav__item nav__item--dropdown">
@@ -133,6 +133,7 @@
               <li><a href="/contact.html">Kontakt</a></li>
             </ul>
           </nav>
+          <!-- theme toggle -->
           <button class="theme-toggle" type="button" aria-pressed="false" aria-label="Przełącz tryb ciemny">
             <span class="theme-toggle__icon theme-toggle__icon--sun" aria-hidden="true"><img src="assets/icons/svg-icon/icon-sun.svg" alt="" width="24" height="24" /></span>
             <span class="theme-toggle__icon theme-toggle__icon--moon" aria-hidden="true"><img src="assets/icons/svg-icon/icon-moon.svg" alt="" width="24" height="24" /></span>
@@ -143,44 +144,63 @@
     </header>
 
     <!-- Main -->
-        <main id="main" tabindex="-1">
+    <main id="main" tabindex="-1">
       <nav class="breadcrumbs" aria-label="Okruchy nawigacji">
-        <ol>
-          <li><a href="index.html">Strona główna</a></li>
-          <li aria-current="page">Kontakt</li>
-        </ol>
+        <div class="container">
+          <ol>
+            <li><a href="index.html">Strona główna</a></li>
+            <li aria-current="page">Kontakt</li>
+          </ol>
+        </div>
       </nav>
 
-      <section id="intro" class="section page-hero" aria-labelledby="contact-page-title">
+      <!-- Hero -->
+      <section class="section page-hero" aria-labelledby="contact-page-title">
         <div class="container page-hero__inner">
           <div class="page-hero__content" data-reveal>
             <span class="page-hero__eyebrow">Kontakt i rezerwacje</span>
-            <h1 id="contact-page-title">Kontakt</h1>
+            <h1 id="contact-page-title" class="page-hero__title">Kontakt</h1>
             <p class="page-hero__lead">Zarezerwuj stolik przez formularz lub skontaktuj się z nami telefonicznie i mailowo. Poniżej znajdziesz też mapę dojazdu.</p>
           </div>
         </div>
       </section>
 
-      <section id="contact" class="section contact" aria-label="Kontakt i rezerwacje">
+      <!-- Kontent -->
+      <section id="contact" class="section contact" aria-labelledby="contact-title">
         <div class="container grid grid--2">
+          <!-- kontakt-->
           <div class="contact__content" data-reveal data-reveal-dir="left">
-            <h2>Kontakt</h2>
-            <p>Z przyjemnością ugościmy Cię w naszej restauracji. Zarezerwuj stolik lub wyślij nam wiadomość.</p>
+            <div class="section__header">
+              <h2 id="contact-title" class="section__title">Formularz kontaktowy</h2>
+              <p class="section__lead">Z przyjemnością ugościmy Cię w naszej restauracji. Zarezerwuj stolik lub wyślij nam wiadomość.</p>
+            </div>
             <ul class="contact__details">
-              <li>
-                <img src="assets/icons/svg-icon/phone-icon.svg" alt="" aria-hidden="true" width="24" height="24" />
-                <a href="tel:+48533537091">+48&nbsp;533&nbsp;537&nbsp;091</a>
+              <li class="contact__detail">
+                <svg class="contact__icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                  <path
+                    fill-rule="evenodd"
+                    d="M1.5 4.5a3 3 0 0 1 3-3h1.372c.86 0 1.61.586 1.819 1.42l1.105 4.423a1.875 1.875 0 0 1-.694 1.955l-1.293.97c-.135.101-.164.249-.126.352a11.285 11.285 0 0 0 6.697 6.697c.103.038.25.009.352-.126l.97-1.293a1.875 1.875 0 0 1 1.955-.694l4.423 1.105c.834.209 1.42.959 1.42 1.82V19.5a3 3 0 0 1-3 3h-2.25C8.552 22.5 1.5 15.448 1.5 6.75V4.5Z"
+                    clip-rule="evenodd" />
+                </svg>
+                <a class="contact__link" href="tel:+48533537091">+48&nbsp;533&nbsp;537&nbsp;091</a>
               </li>
-              <li>
-                <img src="assets/icons/svg-icon/mail-icon.svg" alt="" aria-hidden="true" width="24" height="24" />
-                <a href="mailto:kontakt@kp-code.pl">kontakt@kp-code.pl</a>
+              <li class="contact__detail">
+                <svg class="contact__icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M1.5 8.67v8.58a3 3 0 0 0 3 3h15a3 3 0 0 0 3-3V8.67l-8.928 5.493a3 3 0 0 1-3.144 0L1.5 8.67Z" />
+                  <path d="M22.5 6.908V6.75a3 3 0 0 0-3-3h-15a3 3 0 0 0-3 3v.158l9.714 5.978a1.5 1.5 0 0 0 1.572 0L22.5 6.908Z" />
+                </svg>
+                <a class="contact__link" href="mailto:kontakt@kp-code.pl">kontakt@kp-code.pl</a>
               </li>
-              <li>
-                <img src="assets/icons/svg-icon/home-icon.svg" alt="" aria-hidden="true" width="24" height="24" />
-                <span>ul. Marynarki Wojennej 12 33-100 Tarnów</span>
+              <li class="contact__detail">
+                <address class="contact__text">
+                  ul. Marynarki Wojennej 12
+                  <br />
+                  33-100 Tarnów
+                </address>
               </li>
             </ul>
           </div>
+          <!-- form -->
           <form
             class="form"
             name="contact"
@@ -242,11 +262,11 @@
         </div>
       </section>
 
+      <!-- map -->
       <section id="map" class="section contact-map" aria-labelledby="map-title">
         <div class="container">
           <div class="section__header" data-reveal>
-            <h2 id="map-title">Mapa dojazdu</h2>
-            <p class="section__lead">Znajdziesz nas przy ul. Marynarki Wojennej 12 w Tarnowie.</p>
+            <h2 id="map-title" class="section__title">Mapa dojazdu</h2>
           </div>
           <div class="contact-map__embed" data-reveal>
             <iframe
@@ -256,6 +276,11 @@
               referrerpolicy="no-referrer-when-downgrade"
               allowfullscreen></iframe>
           </div>
+          <p class="contact-map__note" data-reveal>
+            Znajdziesz nas przy ul. Marynarki Wojennej 12
+            <br />
+            w Tarnowie.
+          </p>
         </div>
       </section>
     </main>
