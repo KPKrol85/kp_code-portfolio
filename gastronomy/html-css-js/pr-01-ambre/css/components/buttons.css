@@ -157,14 +157,14 @@ html[data-theme="dark"] .site-button--tab:hover {
   color: #ffffff;
   opacity: 1;
 }
-.site-button--tab[aria-selected="true"] {
+.site-button--tab[aria-pressed="true"] {
   background: var(--c-accent);
   color: #1b1b1f;
   border-color: transparent;
   font-weight: 550;
   box-shadow: var(--shadow-xs);
 }
-html[data-theme="dark"] .site-button--tab[aria-selected="true"] {
+html[data-theme="dark"] .site-button--tab[aria-pressed="true"] {
   background: color-mix(in oklab, var(--c-accent) 72%, #fff 28%);
   color: #0b0b0d;
   border-color: transparent;

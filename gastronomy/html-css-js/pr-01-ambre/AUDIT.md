@@ -1,75 +1,80 @@
-# AUDIT — Ambre (pr-01-ambre)
+# AUDYT ARCHITEKTURY FRONT-END — `pr-01-ambre`
 
-## 1. Executive summary
-Projekt jest technicznie dojrzały jak na portfolio front-end: ma modularną architekturę CSS, spójne SEO, poprawnie podpięte dane strukturalne, PWA baseline oraz dobre fundamenty a11y (skip link, focus states, aria dla nawigacji i formularza). Największe realne ryzyko dotyczy powtarzalności środowiska QA/build (`npm ci` nie działa z powodu niespójnego lockfile), co utrudnia wiarygodne uruchamianie pełnego audytu automatycznego.
+## 1. Executive Summary
+Projekt ma dojrzałą strukturę dla statycznego front-endu: wielostronicowy układ HTML, modularny CSS (`base/components/layout/pages`), modularny JavaScript inicjalizowany przez wspólny bootstrap oraz komplet plików wdrożeniowych (`_headers`, `_redirects`, `manifest.webmanifest`, `sw.js`, `robots.txt`, `sitemap.xml`).
 
-## 2. P0 — Critical risks (real issues only)
-Brak wykrytych krytycznych ryzyk runtime (P0) w implementacji front-end podczas przeglądu statycznego i uruchomionych kontroli lokalnych (`qa:links`, `qa:seo`).
+Architektura jest spójna i utrzymywalna, ale w obecnej formie ma kilka punktów poprawy związanych głównie z długoterminową utrzymywalnością (duplikacja metadanych/JSON-LD między stronami, ręczne utrzymanie listy precache i ładowanie jednego dużego entrypointu JS na wszystkie podstrony).
+
+## 2. P0 — Critical Risks
+No P0 issues detected.
 
 ## 3. Strengths
-- Dobra organizacja CSS (`base/layout/components/pages`) oraz konsekwentna warstwa tokenów.
-- Poprawna implementacja dostępności w obszarze nawigacji mobilnej (focus trap, `aria-expanded`, `Esc`, przywracanie focusu).
-- Formularz rezerwacji ma walidację po stronie klienta, komunikaty statusowe ARIA i honeypot antyspam.
-- Spójne canonical/OG/Twitter + JSON-LD na podstronach.
-- Obecne pliki wdrożeniowe: `_headers`, `_redirects`, `manifest.webmanifest`, `sw.js`, `robots.txt`, `sitemap.xml`.
+- Jasny podział warstw stylów (`css/base`, `css/components`, `css/layout`, `css/pages`) i agregacja przez `css/style.css`.
+- Konsekwentna semantyka dokumentów: `header`, `main`, `footer`, sekcje z nagłówkami oraz link „skip to content”.
+- Dobra baza dostępności: widoczne `:focus-visible`, obsługa `prefers-reduced-motion`, atrybuty ARIA w komponentach interaktywnych oraz fallback no-JS.
+- Dobre praktyki SEO: canonical, OpenGraph, Twitter Card, JSON-LD, `robots.txt`, `sitemap.xml`.
+- Dojrzała warstwa deployment/PWA: polityki bezpieczeństwa w `_headers`, mapowanie tras w `_redirects`, service worker z offline fallback.
+- W repo istnieją skrypty QA dla linków, SEO, a11y, HTML, CSS i JS, co wspiera kontrolę jakości.
 
-## 4. P1 — 5 improvements worth doing next
+## 4. P1 — Exactly 5 Improvements Worth Doing Next
 
-### 1) Niespójny lockfile blokuje reproducible QA
-**Reason:** `npm ci` kończy się błędem synchronizacji `package.json` ↔ `package-lock.json`, więc pipeline nie jest deterministyczny.
-**Suggested improvement:** Zsynchronizować lockfile (`npm install`, commit lockfile), uruchomić pełne `qa` i zablokować PR bez zielonego `npm ci`.
-**DONE**
+### 1) Duplikacja metadanych i JSON-LD między stronami
+**Reason:** Każdy dokument HTML zawiera rozbudowane i bardzo podobne bloki SEO/OG/JSON-LD. To zwiększa koszt zmian i ryzyko niespójności przy kolejnych aktualizacjach.
 
-### 2) Brak gwarancji uruchomienia pełnego audytu a11y w świeżym środowisku
-**Reason:** `qa:a11y` wymaga Playwright/axe; bez poprawnego lockfile i instalacji zależności nie uruchamia się w clean env.
-**Suggested improvement:** Po naprawie lockfile dodać CI job dla `npm run qa:a11y` oraz cache przeglądarek Playwright.
-**DONE**
+**Suggested improvement:** Wprowadzić generowanie `head` z jednego źródła (np. prosty build step/template partial), aby tytuły/opisy/canonical/OG/Schema były zarządzane centralnie.
 
-### 3) Ręcznie utrzymywane hashe CSP są podatne na dryf
-**Reason:** `_headers` zawiera wiele statycznych hashy `script-src-elem`; każda zmiana inline scriptów wymaga ręcznej aktualizacji.
-**Suggested improvement:** Zautomatyzować generowanie hashy podczas build/deploy lub ograniczyć inline skrypty.
-**DONE**
+### 2) Jeden wspólny entrypoint JS dla wszystkich podstron
+**Reason:** Wszystkie strony ładują `js/script.js`, który importuje komplet modułów (nawet gdy część funkcji nie jest potrzebna na danej stronie). To zwiększa koszt parsowania i utrudnia skalowanie projektu.
 
-### 4) W repo są równolegle źródła i artefakt bundle JS
-**Reason:** `js/script.js` (source) i `js/script.min.js` (bundle) współistnieją; istnieje ryzyko rozjazdu przy review i debugowaniu.
-**Suggested improvement:** Ustalić politykę: albo build artifacts poza repo, albo obowiązkowa reguła CI sprawdzająca zgodność buildu z commitem.
-**DONE**
+**Suggested improvement:** Podzielić skrypty na per-page entrypointy (`home`, `menu`, `gallery`, `legal`) i pozostawić wspólny tylko lekki core.
 
-### 5) Brak automatycznej walidacji kontrastu WCAG AA
-**Reason:** Wymóg audytowy kontrastu nie jest obecnie potwierdzany dedykowanym testem z realnym obliczaniem kontrastu.
-**Suggested improvement:** Dodać test kontrastu (np. axe + dodatkowa walidacja tokenów kolorystycznych) do `qa`.
+### 3) Ręcznie utrzymywana lista `PRECACHE` w service worker
+**Reason:** `sw.js` zawiera statyczną listę zasobów. Przy rozwoju projektu grozi to rozjazdem między realnymi assetami a cache (pominięcia po dodaniu nowych stron/zasobów).
 
-## 5. P2 — Minor refinements
-- Ujednolicić diakrytyki/ortografię w treściach demo (np. "prywatnosci", "Wyrazam zgode") dla pełnej jakości językowej.
-- Dodać krótką sekcję „Known limitations” dla mapy Google iframe (zależność od zewnętrznego źródła).
-- Rozważyć skrócenie preloadów fontów do najważniejszych wag na wejściu (critical path tuning).
+**Suggested improvement:** Generować manifest precache automatycznie podczas builda (np. przez skrypt node), a w `sw.js` konsumować wygenerowaną listę.
 
-## 6. Future enhancements — 5 realistic ideas
-1. Dodać testy E2E kluczowych ścieżek (nawigacja, formularz, lightbox, tryb offline).
-2. Rozszerzyć structured data o `FAQPage` dla sekcji FAQ (jeśli treści są utrzymywane stabilnie).
-3. Wprowadzić automatyczny budżet wydajności (Lighthouse CI budgets + fail thresholds).
-4. Dodać monitoring błędów JS po wdrożeniu (lekki runtime reporting).
-5. Rozważyć wariant i18n (PL/EN) z osobnymi canonical/hreflang, jeśli projekt ma obsługiwać dwa rynki.
+### 4) Brak pełnej uruchamialności lokalnego testu a11y bez zależności runtime
+**Reason:** Skrypt `qa:a11y` nie uruchomił się w aktualnym środowisku z powodu braku pakietu `playwright`, co utrudnia powtarzalne audyty dostępności.
 
-## 7. Compliance checklist (pass / fail)
-- headings valid: **PASS**
-- no broken links (excluding intentional .min strategy): **PASS**
-- no console.log: **PASS**
-- aria attributes valid: **PASS** (kontrola statyczna + implementacja modułów)
-- images have width/height: **PASS**
-- no-JS baseline usable: **PASS**
-- sitemap present (if expected): **PASS**
-- robots present: **PASS**
-- OG image exists: **PASS**
-- JSON-LD valid: **PASS** (lokalny skrypt `qa:seo`)
+**Suggested improvement:** Ustabilizować pipeline testowy: doprecyzować bootstrap środowiska QA (np. `npm ci` + instalacja browser binaries) i dodać krok CI blokujący merge przy błędach a11y.
 
-## 8. Architecture Score (0–10)
-**8.6 / 10**
-- BEM consistency: **8.8/10**
-- token usage: **9.0/10**
-- accessibility: **8.4/10**
-- performance: **8.5/10**
-- maintainability: **8.3/10**
+### 5) Linki social zawierają adresy ogólne zamiast profili docelowych
+**Reason:** W stopce występują ogólne URL-e (`https://x.com`, `https://linkedin.com`) zamiast konkretnych profili marki, co osłabia spójność produkcyjną i użyteczność.
 
-## 9. Senior rating (1–10)
-**8.5 / 10** — projekt ma profesjonalne fundamenty architektury front-end i wysoką jakość implementacji komponentowej; główny obszar do domknięcia to przewidywalność środowiska QA/build i automatyzacja walidacji jakości (a11y/kontrast/CI).
+**Suggested improvement:** Podmienić URL-e na rzeczywiste profile projektu lub tymczasowo usunąć niedokończone pozycje z UI.
+
+## 5. P2 — Minor Refinements (optional)
+- Rozważyć ograniczenie powtarzalnych fragmentów nawigacji/stopki między plikami HTML przez prosty generator statyczny.
+- Dodać raport wydajności budowany cyklicznie (np. Lighthouse CI jako etap obowiązkowy, nie tylko skrypt lokalny).
+- Ujednolicić politykę nazw dla elementów testowych (`data-testid`) i opisać ją w krótkim standardzie repo.
+
+## 6. Future Enhancements — Exactly 5 Ideas
+1. Wdrożenie lekkiego SSG/templatingu (np. Eleventy/Vite static) bez zmiany obecnej architektury komponentowej CSS/JS.
+2. Dodanie preconnect/dns-prefetch dla zewnętrznych źródeł krytycznych (jeśli pojawią się zewnętrzne fonty/API/mapy).
+3. Rozszerzenie strategii cache SW o stale-while-revalidate dla wybranych obrazów galerii.
+4. Dodanie monitoringu Web Vitals (RUM) dla produkcji i kwartalnych progów jakości.
+5. Wydzielenie współdzielonego słownika treści SEO (title/description/og) do jednego pliku konfiguracyjnego.
+
+## 7. Compliance Checklist (pass / fail)
+- headings structure valid — **pass**
+- no broken links (excluding .min strategy) — **pass**
+- no console.log — **pass** (w kodzie runtime `js/`)
+- aria attributes valid — **pass** (walidacja statyczna struktury + brak oczywistych konfliktów)
+- images have width/height — **pass**
+- no-JS baseline usable — **pass**
+- robots.txt present (if expected) — **pass**
+- sitemap.xml present (if expected) — **pass**
+- OpenGraph image present — **pass**
+- JSON-LD valid (if present) — **pass** (strukturę wykryto; formalna walidacja zewnętrzna not detected in project)
+
+## 8. Architecture Score (1–10)
+- structural consistency: **8.5/10**
+- accessibility maturity: **8/10**
+- performance discipline: **7.5/10**
+- SEO correctness: **8.5/10**
+- maintainability: **7.5/10**
+
+## 9. Senior Rating (1–10)
+**8/10**
+
+Projekt jest technicznie solidny i gotowy do dalszego rozwoju produkcyjnego. Największy potencjał poprawy leży w ograniczeniu duplikacji między stronami oraz w dojrzalszym podziale bundli JS i automatyzacji cache SW. Po tych zmianach architektura będzie wyraźnie bardziej skalowalna przy rosnącej liczbie podstron i funkcji.

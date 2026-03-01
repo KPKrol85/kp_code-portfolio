@@ -1,4 +1,4 @@
-import { initHelpers, log } from "./modules/utils.js";
+import { initHelpers, reportError } from "./modules/utils.js";
 import { initThemeSwitcher } from "./modules/theme.js";
 import { initMobileNav, initScrollspy, initSmartNav, initAriaCurrent, initStickyShadow } from "./modules/nav.js";
 import { initFooterYear } from "./modules/footer.js";
@@ -10,7 +10,7 @@ import { initPageMenuPanel } from "./modules/page-menu.js";
 import { initReservationForm } from "./modules/form.js";
 import { initLightbox } from "./modules/lightbox.js";
 import { initFaqAria } from "./modules/faq.js";
-import { initDemoBanner } from "./modules/demo-banner.js";
+import { initDemoLegalModal } from "./modules/demo-legal.js";
 
 const FEATURES = [
   { name: "HELPERS", init: initHelpers },
@@ -31,7 +31,7 @@ const FEATURES = [
 
   { name: "CTA", init: initCtaPulse },
 
-  { name: "DEMO BANNER", init: initDemoBanner },
+  { name: "DEMO LEGAL MODAL", init: initDemoLegalModal },
   { name: "LOAD MORE MENU", init: initLoadMoreMenu },
   { name: "TABS", init: initTabs },
   { name: "PAGE MENU", init: initPageMenuPanel },
@@ -49,7 +49,7 @@ function boot() {
     try {
       f.init();
     } catch (err) {
-      log(err);
+      reportError(err, f.name);
     }
   }
 }

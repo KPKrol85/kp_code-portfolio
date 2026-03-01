@@ -1,4 +1,4 @@
-const CACHE_VERSION = "v1.5";
+const CACHE_VERSION = "v1.6";
 
 const APP_SHELL_CACHE = `app-shell-${CACHE_VERSION}`;
 const RUNTIME_IMG_CACHE = `runtime-img-${CACHE_VERSION}`;
@@ -13,6 +13,8 @@ const PRECACHE = [
   "/galeria.html",
   "/cookies.html",
   "/polityka-prywatnosci.html",
+  "/regulamin.html",
+  "/404.html",
   "/manifest.webmanifest",
   "/css/style.css",
   "/js/script.js",

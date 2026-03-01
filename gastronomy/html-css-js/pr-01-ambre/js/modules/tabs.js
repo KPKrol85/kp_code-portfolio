@@ -19,20 +19,11 @@ export function initTabs() {
       .toLowerCase()
       .trim();
 
-  if (root !== document && !root.hasAttribute("role")) {
-    root.setAttribute("role", "tablist");
-  }
-
-  tabs.forEach((tab) => {
-    if (!tab.hasAttribute("role")) tab.setAttribute("role", "tab");
-  });
-
   const apply = (tab) => {
     tabs.forEach((btn) => {
       const isActive = btn === tab;
       btn.classList.toggle("tabs__tab--active", isActive);
-      btn.setAttribute("aria-selected", isActive ? "true" : "false");
-      btn.tabIndex = isActive ? 0 : -1;
+      btn.setAttribute("aria-pressed", isActive ? "true" : "false");
     });
 
     const filter = normalize(tab?.dataset?.filter || "");
@@ -46,7 +37,11 @@ export function initTabs() {
     });
   };
 
-  apply($(".tabs__tab.tabs__tab--active", root) || tabs[0]);
+  apply(
+    $(".tabs__tab.tabs__tab--active", root) ||
+      tabs.find((tab) => tab.getAttribute("aria-pressed") === "true") ||
+      tabs[0]
+  );
 
   root.addEventListener(
     "click",
@@ -56,31 +51,6 @@ export function initTabs() {
     },
     { passive: true }
   );
-
-  root.addEventListener("keydown", (event) => {
-    const tab = event.target.closest(".tabs__tab");
-    if (!tab || !tabs.includes(tab)) return;
-
-    const index = tabs.indexOf(tab);
-    const focusTab = (nextIndex) => tabs[(nextIndex + tabs.length) % tabs.length].focus();
-
-    if (event.key === "ArrowRight") {
-      event.preventDefault();
-      focusTab(index + 1);
-    } else if (event.key === "ArrowLeft") {
-      event.preventDefault();
-      focusTab(index - 1);
-    } else if (event.key === "Home") {
-      event.preventDefault();
-      tabs[0].focus();
-    } else if (event.key === "End") {
-      event.preventDefault();
-      tabs[tabs.length - 1].focus();
-    } else if (event.key === "Enter" || event.key === " ") {
-      event.preventDefault();
-      apply(tab);
-    }
-  });
 
   log(byTestId("menu-tabs"), tabs.length);
 }
@@ -106,12 +76,8 @@ export function initGalleryFilter() {
   const apply = (tab) => {
     tabs.forEach((btn) => {
       const isActive = btn === tab;
-      btn.setAttribute("aria-selected", String(isActive));
+      btn.setAttribute("aria-pressed", String(isActive));
       btn.classList.toggle("tabs__tab--active", isActive);
-    });
-
-    tabs.forEach((btn) => {
-      btn.setAttribute("tabindex", btn === tab ? "0" : "-1");
     });
 
     const filter = normalize(tab.dataset.filter || "");
@@ -124,59 +90,17 @@ export function initGalleryFilter() {
       const loadVisible = item.dataset.loadHidden !== "true";
       item.hidden = !(loadVisible && matches);
     });
-
-    tab.focus();
   };
-
-  const focusTab = (index) => {
-    const nextIndex = (index + tabs.length) % tabs.length;
-    tabs[nextIndex].focus();
-  };
-
-  tabsRoot.addEventListener("keydown", (event) => {
-    const key = event.key;
-    const active = document.activeElement;
-    const index = tabs.indexOf(active);
-    if (index === -1) return;
-
-    if (key === "ArrowRight" || key === "ArrowLeft") {
-      event.preventDefault();
-      focusTab(key === "ArrowRight" ? index + 1 : index - 1);
-      return;
-    }
-
-    if (key === "Home") {
-      event.preventDefault();
-      focusTab(0);
-      return;
-    }
-
-    if (key === "End") {
-      event.preventDefault();
-      focusTab(tabs.length - 1);
-      return;
-    }
-
-    if (key === "Enter" || key === " " || key === "Spacebar") {
-      event.preventDefault();
-      apply(active);
-      return;
-    }
-
-    if (key === "Escape") active.blur();
-  });
 
   tabs.forEach((tab) => tab.addEventListener("click", () => apply(tab)));
 
   tabs.forEach((tab, index) => {
-    tab.setAttribute("role", "tab");
-    const selected = tab.getAttribute("aria-selected");
-    const isActive = selected ? selected === "true" : index === 0;
-    tab.setAttribute("aria-selected", String(isActive));
-    tab.setAttribute("tabindex", isActive ? "0" : "-1");
+    const pressed = tab.getAttribute("aria-pressed");
+    const isActive = pressed ? pressed === "true" : index === 0;
+    tab.setAttribute("aria-pressed", String(isActive));
   });
 
-  const activeTab = tabs.find((tab) => tab.getAttribute("aria-selected") === "true") || tabs[0];
+  const activeTab = tabs.find((tab) => tab.getAttribute("aria-pressed") === "true") || tabs[0];
   if (activeTab) apply(activeTab);
 
   log(tabs.length, items.length);

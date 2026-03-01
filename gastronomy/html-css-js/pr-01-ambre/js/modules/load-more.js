@@ -48,7 +48,7 @@ export function initLoadMoreMenu() {
 
   const getActiveFilter = () => {
     const active = container.querySelector(".tabs__tab.tabs__tab--active") ||
-      container.querySelector(".tabs__tab[aria-selected='true']");
+      container.querySelector(".tabs__tab[aria-pressed='true']");
     return active?.dataset.filter || "all";
   };
 
@@ -97,7 +97,7 @@ export function initLoadMoreGallery() {
 
   const getActiveFilter = () => {
     const active = container.querySelector(".tabs__tab.tabs__tab--active") ||
-      container.querySelector(".tabs__tab[aria-selected='true']");
+      container.querySelector(".tabs__tab[aria-pressed='true']");
     return active?.dataset.filter || "all";
   };
 

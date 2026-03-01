@@ -5,6 +5,10 @@ export const log = (...args) => {
   void args;
 };
 
+export const reportError = (error, context = "UNKNOWN") => {
+  console.error(`[AMBRE_INIT_ERROR] ${context}`, error);
+};
+
 export const byTestId = (id, root = document) =>
   root.querySelector(`[data-testid="${id}"]`);
 

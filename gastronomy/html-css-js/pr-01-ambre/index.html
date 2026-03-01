@@ -1,9 +1,9 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="pl">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="robots" content="index,follow" />
+    <meta name="robots" content="index, follow" />
     <meta name="format-detection" content="telephone=no" />
     <title>Ambre – Restauracja Fine Dining | Menu degustacyjne i selekcja win</title>
     <meta
@@ -39,10 +39,8 @@
     <meta name="application-name" content="Ambre" />
     <meta name="apple-mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-title" content="Ambre" />
-    <link rel="preload" href="/assets/fonts/poppins-v24-latin-regular.woff2" as="font" type="font/woff2" crossorigin />
     <link rel="preload" href="/assets/fonts/poppins-v24-latin-600.woff2" as="font" type="font/woff2" crossorigin />
     <link rel="preload" href="/assets/fonts/source-sans-3-v19-latin-regular.woff2" as="font" type="font/woff2" crossorigin />
-    <link rel="preload" href="/assets/fonts/source-sans-3-v19-latin-500.woff2" as="font" type="font/woff2" crossorigin />
     <link rel="stylesheet" href="/css/style.css" />
     <script type="application/ld+json">
       {
@@ -264,15 +262,21 @@
             <h2 id="menu-title" class="section-title menu__title">Menu</h2>
             <p class="u-lead menu__lead">Wybierz kategorię, aby przefiltrować dania.</p>
           </div>
-          <div class="tabs menu__tabs" role="tablist" data-testid="menu-tabs" aria-label="Kategorie menu">
-            <button class="site-button site-button--tab tabs__tab" data-testid="tab-all" role="tab" aria-selected="true" aria-controls="menu" data-filter="all">Wszystko</button>
-            <button class="site-button site-button--tab tabs__tab" data-testid="tab-przystawki" role="tab" aria-selected="false" data-filter="przystawki">Przystawki</button>
-            <button class="site-button site-button--tab tabs__tab" data-testid="tab-dania-glowne" role="tab" aria-selected="false" data-filter="dania-glowne">Dania główne</button>
-            <button class="site-button site-button--tab tabs__tab" data-testid="tab-desery" role="tab" aria-selected="false" data-filter="desery">Desery</button>
+          <div class="tabs menu__tabs" data-testid="menu-tabs" aria-label="Kategorie menu">
+            <button class="site-button site-button--tab tabs__tab" data-testid="tab-all" aria-pressed="true" data-filter="all">Wszystko</button>
+            <button class="site-button site-button--tab tabs__tab" data-testid="tab-przystawki" aria-pressed="false" data-filter="przystawki">Przystawki</button>
+            <button class="site-button site-button--tab tabs__tab" data-testid="tab-dania-glowne" aria-pressed="false" data-filter="dania-glowne">Dania główne</button>
+            <button class="site-button site-button--tab tabs__tab" data-testid="tab-desery" aria-pressed="false" data-filter="desery">Desery</button>
           </div>
           <div class="menu__grid" role="region" aria-live="polite" aria-label="Wyniki filtrowania – lista dań">
             <article class="dish dish--has-thumb" aria-labelledby="dish-ostrygi" data-cat="przystawki">
-              <button class="dish__thumb" type="button" aria-haspopup="dialog" aria-controls="lb" data-full="/assets/img/dishes/ostrygi-z-granita-1200" aria-label="Powiększ zdjęcie: Ostrygi z granitą">
+              <button
+                class="dish__thumb"
+                type="button"
+                aria-haspopup="dialog"
+                aria-controls="lb"
+                data-full="/assets/img/dishes/ostrygi-z-granita-1200"
+                aria-label="Powiększ zdjęcie: Ostrygi z granitą">
                 <picture>
                   <source type="image/avif" srcset="/assets/img/_optimized/dishes/ostrygi-z-granita-600.avif 2x, /assets/img/_optimized/dishes/ostrygi-z-granita-200.avif 1x" />
                   <source type="image/webp" srcset="/assets/img/_optimized/dishes/ostrygi-z-granita-600.webp 2x, /assets/img/_optimized/dishes/ostrygi-z-granita-200.webp 1x" />
@@ -643,7 +647,7 @@
                   <input class="booking-form__field" id="consent" name="consent" type="checkbox" required aria-describedby="consent-error form-msg" />
                   <span>
                     Wyrazam zgode na przetwarzanie moich danych osobowych zgodnie z
-                    <a href="/polityka-prywatnosci.html" target="_blank" rel="noopener noreferrer">Polityka prywatnosci</a>
+                    <a href="/polityka-prywatnosci.html" target="_blank" rel="noopener noreferrer">Polityka prywatności</a>
                     .
                   </span>
                 </label>
@@ -818,7 +822,7 @@
               </a>
             </li>
             <li>
-              <a class="site-button site-button--social" href="https://github.com/KPKrol85" aria-label="Github" rel="me external noopener noreferrer" target="_blank">
+              <a class="site-button site-button--social" href="https://github.com/KPKrol85" aria-label="GitHub" rel="me external noopener noreferrer" target="_blank">
                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
                   <path stroke="none" d="M0 0h24v24H0z" fill="none" />
                   <path
@@ -836,7 +840,7 @@
               </a>
             </li>
             <li>
-              <a class="site-button site-button--social" href="https://linkedin.com" aria-label="Linkedin" rel="me external noopener noreferrer" target="_blank">
+              <a class="site-button site-button--social" href="https://linkedin.com" aria-label="LinkedIn" rel="me external noopener noreferrer" target="_blank">
                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
                   <path stroke="none" d="M0 0h24v24H0z" fill="none" />
                   <path
@@ -895,23 +899,25 @@
     <script src="/js/sw-register.js" defer></script>
     <script src="/js/pwa-install.js" defer></script>
     <script type="module" src="/js/script.js"></script>
-
-    <!-- Demo Banner -->
-    <div id="site-demo-banner" class="site-demo-banner" role="region" aria-label="Informacja o projekcie demo" aria-hidden="true" hidden>
-      <div class="site-demo-banner__inner container">
-        <div class="site-demo-banner__panel">
-          <div class="site-demo-banner__content">
-            <p class="site-demo-banner__text">To jest projekt demo/portfolio. Tresci i dane sa przykladowe.</p>
-            <div class="site-demo-banner__links">
-              <a href="/polityka-prywatnosci.html">Polityka prywatnosci</a>
-              <a href="/regulamin.html">Regulamin</a>
-              <a href="/cookies.html">Cookies</a>
-            </div>
-          </div>
-          <div class="site-demo-banner__actions">
-            <button type="button" class="site-button site-button--primary" data-demo-accept>Akceptuj</button>
-            <button type="button" class="site-button site-button--ghost" data-demo-dismiss>Odrzuc</button>
-          </div>
+    
+    <!-- Demo Legal Modal -->
+    <div class="demo-legal-modal" id="demo-legal-modal" aria-hidden="true" hidden inert>
+      <div class="demo-legal-modal__backdrop" data-demo-legal-close></div>
+      <div class="demo-legal-modal__panel" role="dialog" aria-modal="true" aria-labelledby="demo-legal-title" aria-describedby="demo-legal-desc" tabindex="-1">
+        <h2 class="demo-legal-modal__title" id="demo-legal-title">Informacja o projekcie</h2>
+        <p class="demo-legal-modal__text" id="demo-legal-desc">
+          Serwis „Ambre” ma charakter demonstracyjny i został przygotowany przez
+          <a href="https://www.kp-code.pl" rel="noopener">KP_Code Digital Studio</a>
+          jako przykładowa strona internetowa restauracji fine dining. Treści i dane mają charakter poglądowy. Korzystając z serwisu, akceptujesz
+          <a href="/regulamin.html">Regulamin</a>
+          .
+        </p>
+        <div class="demo-legal-modal__links">
+          <a href="/polityka-prywatnosci.html">Polityka prywatności</a>
+          <a href="/cookies.html">Cookies</a>
+        </div>
+        <div class="demo-legal-modal__actions">
+          <button class="site-button site-button--primary" type="button" data-demo-legal-accept>Akceptuję</button>
         </div>
       </div>
     </div>

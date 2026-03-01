@@ -1,157 +1,247 @@
-# Ambre — projekt portfolio front-end
+# Ambre
 
 ## PL
 
-### Przegląd projektu
-Ambre to wielostronicowa strona internetowa restauracji fine dining, zbudowana w oparciu o HTML, modularny CSS i Vanilla JavaScript. Projekt zawiera stronę główną, podstronę menu, podstronę galerii, strony prawne, stronę offline oraz obsługę błędu 404.
+### 1. Project Overview
+Ambre to statyczny, wielostronicowy projekt front-end dla restauracji fine dining. Repozytorium zawiera stronę główną, podstrony menu/galerii/treści prawnych, moduły interakcji w Vanilla JavaScript oraz elementy Progressive Web App (manifest, service worker, strona offline).
 
-### Kluczowe funkcje
-- Wielostronicowa architektura: `index.html`, `menu.html`, `galeria.html`, strony prawne, `offline.html`, `404.html`.
-- Modularny CSS (`base`, `layout`, `components`, `pages`) z tokenami projektowymi i konwencją BEM.
-- Nawigacja desktop/mobile (drawer + overlay), wsparcie `aria-current`, `aria-expanded`, focus trap i zamykanie `Esc`.
-- Formularz rezerwacji z walidacją, honeypotem (`company`) i obsługą POST (`data-netlify="true"`).
-- PWA: `manifest.webmanifest`, rejestracja service workera, strona offline, cache app-shell i cache runtime dla obrazów.
-- SEO i dane strukturalne (meta, OpenGraph, Twitter, JSON-LD, `robots.txt`, `sitemap.xml`).
+### 2. Key Features
+- Architektura multi-page oparta o pliki HTML: `index.html`, `menu.html`, `galeria.html`, `cookies.html`, `polityka-prywatnosci.html`, `regulamin.html`, `offline.html`, `404.html`.
+- Responsywna nawigacja z mobilnym drawerem, overlayem, focus trapem, obsługą `Escape`, `aria-current` i scrollspy.
+- Komponenty interaktywne: przełącznik motywu (localStorage + `prefers-color-scheme`), przewijanie do sekcji (`data-target`), przycisk przewijania góra/dół, CTA pulse oraz baner demo zapisywany w localStorage.
+- Sekcje menu i galerii z filtrowaniem tabami oraz mechaniką „load more” z komunikatami statusu.
+- Lightbox dla zdjęć dań i galerii z obsługą klawiatury, licznikiem pozycji, preloadem sąsiednich obrazów i zarządzaniem `aria-hidden`.
+- Formularz rezerwacji z walidacją po stronie klienta (telefon, zgoda, pola wymagane), honeypotem antybotowym, komunikatami `aria-live` i wysyłką przez `fetch` z fallbackiem `form.submit()`.
+- FAQ oparte o `details/summary` z automatycznym uzupełnianiem atrybutów ARIA.
+- PWA: rejestracja service workera, cache app shell, cache runtime obrazów, fallback offline (`offline.html`) oraz obsługa promptu instalacji aplikacji.
 
-### Stack technologiczny
-- HTML5
-- CSS3 (PostCSS, CSS custom properties/tokens)
-- Vanilla JavaScript (ES modules)
-- Narzędzia QA/build: ESLint, Stylelint, html-validate, Lighthouse CI, Playwright + axe, esbuild
+### 3. Tech Stack
+- HTML5.
+- CSS (modułowa struktura katalogów `base`, `layout`, `components`, `pages`; wejście: `css/style.css`).
+- Vanilla JavaScript (ES Modules, bundling przez esbuild).
+- PostCSS (`postcss-import`, `autoprefixer`, `cssnano`).
+- Narzędzia jakości: ESLint, Stylelint, html-validate.
+- Narzędzia QA/audytu: Playwright, `@axe-core/playwright`, Lighthouse CI.
+- Pipeline obrazów: Sharp.
 
-### Struktura projektu
-- `css/` — style bazowe, layout, komponenty i style stron
-- `js/` — entrypointy i moduły funkcjonalne
-- `assets/` — fonty, ikony i obrazy (w tym warianty `_optimized`)
-- `scripts/` — skrypty QA i optymalizacji obrazów
-- `_headers`, `_redirects` — konfiguracja deploy
+### 4. Project Structure
+- `index.html`, `menu.html`, `galeria.html` — główne widoki użytkowe.
+- `cookies.html`, `polityka-prywatnosci.html`, `regulamin.html`, `offline.html`, `404.html` — podstrony pomocnicze i prawne.
+- `css/`
+  - `base/` — tokeny, reset/baza, typografia.
+  - `layout/` — style układu nagłówka i stopki.
+  - `components/` — style komponentów UI.
+  - `pages/` — style specyficzne dla podstron.
+  - `style.css` — główny punkt wejścia CSS (importy).
+- `js/`
+  - `script.js` — centralna orkiestracja inicjalizacji modułów.
+  - `modules/*.js` — logika komponentów (nav, form, tabs, load-more, lightbox, faq, theme, scroll).
+  - `sw-register.js`, `pwa-install.js` — logika PWA po stronie klienta.
+- `sw.js`, `manifest.webmanifest` — warstwa PWA.
+- `assets/` — fonty i zasoby graficzne.
+- `scripts/*.mjs` — automatyzacje QA, SEO, a11y, linków, obrazów i CSP.
+- `_headers`, `_redirects` — konfiguracja hostingu statycznego.
+- `robots.txt`, `sitemap.xml` — pliki SEO.
 
-### Uruchomienie lokalne
-1. Zainstaluj zależności: `npm install`
-2. Uruchamiaj wybrane skrypty QA lub build:
-   - `npm run build`
-   - `npm run qa:links`
-   - `npm run qa:seo`
-  
-### Strategia assetów (development vs production)
+### 5. Setup and Installation
+Repozytorium zawiera `package.json`.
 
-W trybie developerskim projekt korzysta z nieminizowanych plików źródłowych:
--/css/style.css
--/js/script.js
-- Pliki minifikowane (style.min.css, script.min.js) są traktowane wyłącznie jako artefakty buildu i nie są używane podczas pracy developerskiej.
-- Minifikacja wykonywana jest ręcznie przed wdrożeniem (np. npm run build) i służy wyłącznie do przygotowania wersji produkcyjnej (np. deploy na Netlify).
-Zasada projektu:
-- development → pliki źródłowe (czytelność, debugowanie, review)
-- production → build + minifikacja
+```bash
+npm install
+```
 
-### Build i wdrożenie
-- W development używane są nieminizowane assety (`/css/style.css`, `/js/script.js`).
-- Pliki `.min.*` są generowane skryptami build i mogą być decyzją etapu deploymentu.
-- Konfiguracje deploy są przygotowane pod hosting statyczny (np. Netlify): `_headers`, `_redirects`, `manifest.webmanifest`, `sw.js`.
+### 6. Local Development
+Dostępne komendy developerskie:
 
-### Dostępność (a11y)
-- Skip-link (`.skip-link`) i logiczna hierarchia nagłówków na stronach.
-- Widoczny focus (`:focus-visible`) dla kluczowych interakcji.
-- Obsługa `prefers-reduced-motion` w CSS i modułach JS (scroll/lightbox/banner).
-- Rozszerzone wsparcie aria dla nawigacji, FAQ i statusów formularza.
+```bash
+npm run watch:css
+npm run watch:js
+npm run build
+npm run lint
+npm run qa
+npm run check
+npm run check:server:prod
+```
 
-### SEO
-- Spójne metadane title/description, canonical i OpenGraph.
-- `og:url` zgodne z canonical na podstronach.
-- JSON-LD (`WebSite`, `Restaurant`, `WebPage`) na stronach.
-- `robots.txt` i `sitemap.xml` obecne.
+### 7. Production Build
+Build produkcyjny:
 
-### Wydajność
-- Obrazy responsywne (`picture`, `avif/webp/jpg`) i lazy loading.
-- Deklaracje `width`/`height` dla obrazów.
-- Fonty `woff2` z `font-display: swap` i preloadem.
-- Service worker dla cache app-shell i fallbacku offline.
+```bash
+npm run build
+```
 
-### Roadmap
-- Uzupełnić automatyczne testy kontrastu WCAG AA w pipeline QA.
-- Dodać CI uruchamiające pełny zestaw `qa:*` na każdym PR.
-- Rozważyć automatyczne generowanie i walidację CSP hashy.
-- Dodać monitorowanie Web Vitals po wdrożeniu.
-- Rozbudować testy regresji a11y i keyboard-flow na podstronach.
+Szczegóły:
+- `npm run build:css` — generuje `css/style.min.css` z `css/style.css` i sprawdza brak `@import` w wynikowym bundlu.
+- `npm run build:js` — bundluje/minifikuje `js/script.js` do `js/script.min.js` i sprawdza brak importów modułowych w artefakcie.
 
-### Licencja
-MIT.
+### 8. Deployment
+W repozytorium znajduje się konfiguracja wdrożeniowa dla statycznego hostingu:
+- `_redirects` — przekierowania czytelnych ścieżek do plików `.html` oraz trasa `404`.
+- `_headers` — nagłówki bezpieczeństwa (m.in. CSP, HSTS, Referrer-Policy, Permissions-Policy, X-Frame-Options).
+- `scripts/check-server-prod.mjs` — lokalna weryfikacja odpowiedzi serwera statycznego.
+
+### 9. Accessibility
+Zaimplementowane elementy dostępności:
+- Skip link do głównej treści.
+- Rozbudowane atrybuty ARIA w komponentach interaktywnych (nawigacja mobilna, taby, lightbox, formularz, FAQ).
+- Obsługa klawiatury (m.in. `Escape`, focus trap, sterowanie lightboxem).
+- Komunikaty statusowe w regionach `aria-live`.
+- Uwzględnienie `prefers-reduced-motion` w interakcjach JS.
+
+### 10. SEO
+Wdrożone elementy SEO:
+- Meta tagi (`description`, `robots`), canonical, Open Graph, Twitter Cards.
+- Dane strukturalne JSON-LD (`WebSite`, `Restaurant`, `WebPage`) na stronie głównej.
+- `robots.txt` i `sitemap.xml`.
+- Dedykowane metadane na podstronach, w tym `404.html` i `offline.html`.
+
+### 11. Performance
+Zaimplementowane optymalizacje wydajności:
+- Responsywne obrazy (`<picture>`, `srcset`, AVIF/WebP/JPG).
+- Atrybuty optymalizujące ładowanie (`loading="lazy"`, `decoding="async"`, `fetchpriority="high"`).
+- Preload fontów `woff2`.
+- Bundling i minifikacja CSS/JS.
+- Service worker z cache app shell i cache runtime obrazów.
+- Skrypty optymalizacji i weryfikacji obrazów (`img:opt`, `img:webp`, `img:avif`, `img:verify`).
+
+### 12. Project Maintenance
+Główne miejsca utrzymaniowe:
+- `js/script.js` — punkt inicjalizacji wszystkich funkcji UI.
+- `js/modules/*.js` — implementacje logiki komponentów.
+- `css/` — podział stylów na warstwy i komponenty.
+- `scripts/*.mjs` — automatyzacje jakości i walidacji.
+- Konfiguracje narzędzi: `postcss.config.cjs`, `.eslintrc.cjs`, `stylelint.config.cjs`, `.htmlvalidate.json`, `lighthouserc.json`.
+
+### 13. Roadmap
+- Dodać skrypt `dev` uruchamiający równolegle watchery CSS/JS i serwer statyczny.
+- Rozszerzyć `check:server:prod` o walidację nagłówków bezpieczeństwa z `_headers`.
+- Dodać automatyczny test regresji lightboxa i filtrów tabów w Playwright.
+- Rozszerzyć QA o automatyczną walidację spójności tras z `_redirects`.
+- Włączyć stałe uruchamianie `qa` i `check` w CI (workflow per push/PR).
+
+### 14. License
+MIT (zgodnie z `package.json`).
 
 ---
 
 ## EN
 
-### Project overview
-Ambre is a multi-page fine dining restaurant website built using HTML, modular CSS, and Vanilla JavaScript.
-The project includes a homepage, menu page, gallery page, legal pages, an offline page, and a custom 404 error page.
+### 1. Project Overview
+Ambre is a static multi-page front-end project for a fine dining restaurant. The repository includes a homepage, menu/gallery/legal subpages, Vanilla JavaScript interaction modules, and Progressive Web App elements (manifest, service worker, offline page).
 
-### Key features
-- Multi-page setup: `index.html`, `menu.html`, `galeria.html`, legal pages, `offline.html`, `404.html`.
-- Modular CSS architecture (`base`, `layout`, `components`, `pages`) with design tokens and BEM naming.
-- Desktop/mobile navigation (drawer + overlay), `aria-current`, `aria-expanded`, focus trap, and `Esc` close handling.
-- Reservation form with validation, honeypot (`company`), and POST handling (`data-netlify="true"`).
-- PWA support: `manifest.webmanifest`, service worker registration, offline page, app-shell and image runtime caching.
-- SEO and structured data (meta tags, OpenGraph, Twitter, JSON-LD, `robots.txt`, `sitemap.xml`).
+### 2. Key Features
+- Multi-page HTML architecture: `index.html`, `menu.html`, `galeria.html`, `cookies.html`, `polityka-prywatnosci.html`, `regulamin.html`, `offline.html`, `404.html`.
+- Responsive navigation with mobile drawer, overlay, focus trap, `Escape` handling, `aria-current`, and scrollspy.
+- Interactive components: theme switcher (localStorage + `prefers-color-scheme`), section scrolling via `data-target`, scroll up/down controls, CTA pulse, and demo banner persisted in localStorage.
+- Menu and gallery sections with tab filtering and “load more” mechanics with status messaging.
+- Lightbox for dish/gallery media with keyboard support, item counter, adjacent image preload, and `aria-hidden` state handling.
+- Reservation form with client-side validation (phone, consent, required fields), anti-bot honeypot, `aria-live` status feedback, and `fetch` submission with `form.submit()` fallback.
+- FAQ built on `details/summary` with automatic ARIA wiring.
+- PWA support: service worker registration, app shell cache, runtime image cache, offline fallback (`offline.html`), and app install prompt handling.
 
-### Tech stack
-- HTML5
-- CSS3 (PostCSS, CSS custom properties/tokens)
-- Vanilla JavaScript (ES modules)
-- QA/build tooling: ESLint, Stylelint, html-validate, Lighthouse CI, Playwright + axe, esbuild
+### 3. Tech Stack
+- HTML5.
+- CSS (modular directory structure: `base`, `layout`, `components`, `pages`; entrypoint: `css/style.css`).
+- Vanilla JavaScript (ES Modules, bundled with esbuild).
+- PostCSS (`postcss-import`, `autoprefixer`, `cssnano`).
+- Quality tools: ESLint, Stylelint, html-validate.
+- QA/audit tooling: Playwright, `@axe-core/playwright`, Lighthouse CI.
+- Image pipeline: Sharp.
 
-### Structure overview
-- `css/` — base, layout, components, and page styles
-- `js/` — entry scripts and feature modules
-- `assets/` — fonts, icons, and images (including `_optimized` variants)
-- `scripts/` — QA and image optimization scripts
-- `_headers`, `_redirects` — deployment configuration
+### 4. Project Structure
+- `index.html`, `menu.html`, `galeria.html` — primary user-facing pages.
+- `cookies.html`, `polityka-prywatnosci.html`, `regulamin.html`, `offline.html`, `404.html` — legal and utility pages.
+- `css/`
+  - `base/` — tokens, reset/base styles, typography.
+  - `layout/` — header/footer layout styles.
+  - `components/` — UI component styles.
+  - `pages/` — page-specific styles.
+  - `style.css` — main CSS entrypoint (imports).
+- `js/`
+  - `script.js` — central module initialization orchestrator.
+  - `modules/*.js` — component logic (nav, form, tabs, load-more, lightbox, faq, theme, scroll).
+  - `sw-register.js`, `pwa-install.js` — client-side PWA logic.
+- `sw.js`, `manifest.webmanifest` — PWA layer.
+- `assets/` — fonts and image assets.
+- `scripts/*.mjs` — QA, SEO, a11y, links, image, and CSP automation scripts.
+- `_headers`, `_redirects` — static hosting configuration.
+- `robots.txt`, `sitemap.xml` — SEO files.
 
-### Setup & run
-1. Install dependencies: `npm install`
-2. Run selected QA/build scripts:
-   - `npm run build`
-   - `npm run qa:links`
-   - `npm run qa:seo`
-  
-### Asset Strategy (development vs production)
-During development, the project uses non-minified source files:
-- /css/style.css
-- /js/script.js
-- Minified files (style.min.css, script.min.js) are treated strictly as build artifacts and are not used during development.
-- Minification is performed manually before deployment (e.g. npm run build) and is intended solely for preparing the production version (e.g. deployment to Netlify).
-Project policy:
-- development → source files (readability, debugging, code review)
-- production → build + minification
+### 5. Setup and Installation
+`package.json` is present.
 
-### Build & deployment notes
-- Development uses non-minified runtime assets (`/css/style.css`, `/js/script.js`).
-- `.min.*` files are build outputs and can remain deployment-stage decisions.
-- Deployment config targets static hosting (e.g., Netlify): `_headers`, `_redirects`, `manifest.webmanifest`, `sw.js`.
+```bash
+npm install
+```
 
-### Accessibility notes
-- Skip link (`.skip-link`) and consistent heading hierarchy.
-- Visible keyboard focus (`:focus-visible`) across interactive controls.
-- `prefers-reduced-motion` support in CSS and JS modules (scroll/lightbox/banner).
-- Extended ARIA handling for navigation, FAQ, and form status messaging.
+### 6. Local Development
+Available development commands:
 
-### SEO notes
-- Consistent title/description, canonical, and OpenGraph metadata.
-- `og:url` aligned with canonical URLs.
-- JSON-LD graph (`WebSite`, `Restaurant`, `WebPage`) on pages.
-- `robots.txt` and `sitemap.xml` included.
+```bash
+npm run watch:css
+npm run watch:js
+npm run build
+npm run lint
+npm run qa
+npm run check
+npm run check:server:prod
+```
 
-### Performance notes
-- Responsive images (`picture`, `avif/webp/jpg`) with lazy loading.
-- `width`/`height` attributes on images.
-- `woff2` fonts with `font-display: swap` and preload hints.
-- Service worker app-shell caching and offline fallback.
+### 7. Production Build
+Production build:
 
-### Roadmap
-- Add automated WCAG AA contrast verification to QA pipeline.
-- Add CI jobs running full `qa:*` suite on each PR.
-- Consider automatic CSP hash generation/validation.
-- Add post-deploy Web Vitals monitoring.
-- Expand regression tests for a11y and keyboard flows.
+```bash
+npm run build
+```
 
-### License
-MIT.
+Details:
+- `npm run build:css` — generates `css/style.min.css` from `css/style.css` and verifies no `@import` remains.
+- `npm run build:js` — bundles/minifies `js/script.js` into `js/script.min.js` and verifies no module import syntax remains.
+
+### 8. Deployment
+The repository includes deployment configuration for static hosting:
+- `_redirects` — clean-path redirects to `.html` files and `404` route handling.
+- `_headers` — security headers (including CSP, HSTS, Referrer-Policy, Permissions-Policy, X-Frame-Options).
+- `scripts/check-server-prod.mjs` — local verification of static server responses.
+
+### 9. Accessibility
+Implemented accessibility elements:
+- Skip link to main content.
+- ARIA attributes across interactive components (mobile navigation, tabs, lightbox, form, FAQ).
+- Keyboard interaction support (including `Escape`, focus trap, lightbox controls).
+- Status messaging in `aria-live` regions.
+- `prefers-reduced-motion` support in JS interactions.
+
+### 10. SEO
+Implemented SEO elements:
+- Meta tags (`description`, `robots`), canonical, Open Graph, Twitter Cards.
+- JSON-LD structured data (`WebSite`, `Restaurant`, `WebPage`) on the homepage.
+- `robots.txt` and `sitemap.xml`.
+- Dedicated metadata on subpages, including `404.html` and `offline.html`.
+
+### 11. Performance
+Implemented performance optimizations:
+- Responsive images (`<picture>`, `srcset`, AVIF/WebP/JPG).
+- Loading attributes (`loading="lazy"`, `decoding="async"`, `fetchpriority="high"`).
+- `woff2` font preloads.
+- CSS/JS bundling and minification.
+- Service worker with app shell caching and runtime image caching.
+- Image optimization and verification scripts (`img:opt`, `img:webp`, `img:avif`, `img:verify`).
+
+### 12. Project Maintenance
+Primary maintenance locations:
+- `js/script.js` — UI feature initialization entrypoint.
+- `js/modules/*.js` — component behavior implementations.
+- `css/` — layered styling architecture.
+- `scripts/*.mjs` — quality and validation automation.
+- Tooling configs: `postcss.config.cjs`, `.eslintrc.cjs`, `stylelint.config.cjs`, `.htmlvalidate.json`, `lighthouserc.json`.
+
+### 13. Roadmap
+- Add a `dev` script to run CSS/JS watchers and a static server in parallel.
+- Extend `check:server:prod` with security-header validation based on `_headers`.
+- Add Playwright regression checks for lightbox and tab filtering.
+- Extend QA with automated route-consistency checks against `_redirects`.
+- Enforce recurring `qa` and `check` runs in CI (per push/PR).
+
+### 14. License
+MIT (as defined in `package.json`).

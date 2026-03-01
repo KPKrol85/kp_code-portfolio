@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="robots" content="index,follow" />
+    <meta name="robots" content="index, follow" />
     <meta name="format-detection" content="telephone=no" />
     <title>Polityka cookies – Ambre</title>
     <meta name="description" content="Sprawdź politykę cookies restauracji Ambre: informacje o plikach cookies, celach ich użycia oraz możliwościach zarządzania ustawieniami w przeglądarce." />
@@ -39,10 +39,8 @@
     <meta name="application-name" content="Ambre" />
     <meta name="apple-mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-title" content="Ambre" />
-    <link rel="preload" href="/assets/fonts/poppins-v24-latin-regular.woff2" as="font" type="font/woff2" crossorigin />
     <link rel="preload" href="/assets/fonts/poppins-v24-latin-600.woff2" as="font" type="font/woff2" crossorigin />
     <link rel="preload" href="/assets/fonts/source-sans-3-v19-latin-regular.woff2" as="font" type="font/woff2" crossorigin />
-    <link rel="preload" href="/assets/fonts/source-sans-3-v19-latin-500.woff2" as="font" type="font/woff2" crossorigin />
     <link rel="stylesheet" href="/css/style.css" />
     <script type="application/ld+json">
       {
@@ -193,8 +191,8 @@
             <a href="https://kp-code.pl" class="legal__link">KP_Code Digital Studio</a>
             . Dokument ma charakter informacyjny i wyjaśnia sposób działania mechanizmów technicznych związanych z funkcjonowaniem Serwisu.
           </p>
-          <!-- Spis tresci -->
-          <nav class="legal__toc" aria-label="Spis tresci">
+          <!-- Spis treści -->
+          <nav class="legal__toc" aria-label="Spis treści">
             <ol class="legal__toc-list">
               <li class="legal__toc-item"><a class="legal__toc-link" href="#cookies-1">Postanowienia ogólne</a></li>
               <li class="legal__toc-item"><a class="legal__toc-link" href="#cookies-2">Czym są pliki cookies</a></li>
@@ -448,7 +446,7 @@
               </a>
             </li>
             <li>
-              <a class="site-button site-button--social" href="https://github.com/KPKrol85" aria-label="Github" rel="me external noopener noreferrer" target="_blank">
+              <a class="site-button site-button--social" href="https://github.com/KPKrol85" aria-label="GitHub" rel="me external noopener noreferrer" target="_blank">
                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
                   <path stroke="none" d="M0 0h24v24H0z" fill="none" />
                   <path
@@ -466,7 +464,7 @@
               </a>
             </li>
             <li>
-              <a class="site-button site-button--social" href="https://linkedin.com" aria-label="Linkedin" rel="me external noopener noreferrer" target="_blank">
+              <a class="site-button site-button--social" href="https://linkedin.com" aria-label="LinkedIn" rel="me external noopener noreferrer" target="_blank">
                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
                   <path stroke="none" d="M0 0h24v24H0z" fill="none" />
                   <path
@@ -520,23 +518,29 @@
     <script src="/js/sw-register.js" defer></script>
     <script src="/js/pwa-install.js" defer></script>
     <script type="module" src="/js/script.js"></script>
-
-    <!-- Demo Banner -->
-    <div id="site-demo-banner" class="site-demo-banner" role="region" aria-label="Informacja o projekcie demo" aria-hidden="true" hidden>
-      <div class="site-demo-banner__inner container">
-        <div class="site-demo-banner__panel">
-          <div class="site-demo-banner__content">
-            <p class="site-demo-banner__text">To jest projekt demo/portfolio. Tresci i dane sa przykladowe.</p>
-            <div class="site-demo-banner__links">
-              <a href="/polityka-prywatnosci.html">Polityka prywatnosci</a>
-              <a href="/regulamin.html">Regulamin</a>
-              <a href="/cookies.html">Cookies</a>
-            </div>
-          </div>
-          <div class="site-demo-banner__actions">
-            <button type="button" class="site-button site-button--primary" data-demo-accept>Akceptuj</button>
-            <button type="button" class="site-button site-button--ghost" data-demo-dismiss>Odrzuc</button>
-          </div>
+    <!-- Demo Legal Modal -->
+    <div class="demo-legal-modal" id="demo-legal-modal" aria-hidden="true" hidden inert>
+      <button type="button" class="demo-legal-modal__backdrop" data-demo-legal-close aria-label="Zamknij okno informacji o projekcie"></button>
+      <div
+        class="demo-legal-modal__panel"
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="demo-legal-modal-title"
+        aria-describedby="demo-legal-modal-description"
+        tabindex="-1"
+      >
+        <h2 class="demo-legal-modal__title" id="demo-legal-modal-title">Informacja o projekcie</h2>
+        <p class="demo-legal-modal__text" id="demo-legal-modal-description">
+          To jest projekt demo/portfolio. Tresci i dane sa przykladowe. Wdrozenie i realizacja: <a href="https://kpcode.studio" target="_blank" rel="noopener noreferrer">KP_Code Digital Studio</a>.
+          Korzystanie z serwisu oznacza akceptacje zasad opisanych na stronie
+          <a href="/regulamin.html">Regulamin</a>.
+        </p>
+        <div class="demo-legal-modal__links">
+          <a href="/polityka-prywatnosci.html">Polityka prywatnosci</a>
+          <a href="/cookies.html">Cookies</a>
+        </div>
+        <div class="demo-legal-modal__actions">
+          <button type="button" class="site-button site-button--primary" data-demo-legal-accept>Akceptuj</button>
         </div>
       </div>
     </div>

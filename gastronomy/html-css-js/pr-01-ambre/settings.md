@@ -6,11 +6,13 @@
 - **Command:** `postcss css/style.css -o css/style.min.css --no-map && node -e "..."`
 - **What it does:** Bundle’uje CSS do `css/style.min.css` i sprawdza, czy w wynikowym pliku nie został `@import`.
 - **When to use:** Przed publikacją artefaktów CSS lub przed testem środowiska produkcyjnego.
+- **Technical note:** Każdy build nadpisuje `css/style.min.css`; ręczne zmiany w tym pliku zostaną utracone.
 
 ### `build:js`
 - **Command:** `esbuild js/script.js --bundle --minify --target=es2018 --outfile=js/script.min.js --log-level=warning && node -e "..."`
 - **What it does:** Bundle’uje i minifikuje JS do `js/script.min.js`, następnie waliduje brak składni `import` w bundle.
 - **When to use:** Przed deployem i przy weryfikacji kompatybilności bundle dla runtime bez modułów.
+- **Technical note:** Każdy build nadpisuje `js/script.min.js`; ręczne zmiany w tym pliku zostaną utracone.
 
 ### `build`
 - **Command:** `npm run build:css && npm run build:js`
