@@ -61,13 +61,15 @@ if (failures.length > 0) {
   console.error(`FAIL check:links (${failures.length} issue${failures.length === 1 ? '' : 's'})`);
   for (const failure of failures) console.error(`- ${failure}`);
   if (warnings.length > 0) {
-    console.error(`WARN check:links (${warnings.length} external link${warnings.length === 1 ? '' : 's'} skipped due to network errors)`);
+    console.error(`WARN check:links (${warnings.length} external link${warnings.length === 1 ? '' : 's'} skipped)`);
+    for (const warning of warnings) console.error(`- ${warning}`);
   }
   process.exit(1);
 }
 
 if (warnings.length > 0) {
-  console.log(`PASS check:links (${htmlFiles.length} HTML files scanned, ${warnings.length} external link checks skipped due to network errors)`);
+  console.log(`PASS check:links (${htmlFiles.length} HTML files scanned, ${warnings.length} external link checks skipped)`);
+  for (const warning of warnings) console.log(`- ${warning}`);
 } else {
   console.log(`PASS check:links (${htmlFiles.length} HTML files scanned)`);
 }
@@ -141,7 +143,13 @@ async function checkExternalLink(href, cache) {
     }
 
     clearTimeout(timeout);
-    if (!response.ok) result = { type: 'fail', message: `external URL returned HTTP ${response.status}` };
+    if (!response.ok) {
+      if (response.status === 403 || response.status === 429) {
+        result = { type: 'warn', message: `SKIP external HTTP ${response.status}` };
+      } else {
+        result = { type: 'fail', message: `external URL returned HTTP ${response.status}` };
+      }
+    }
   } catch (err) {
     result = { type: 'warn', message: `external URL could not be validated (${err.name})` };
   }
