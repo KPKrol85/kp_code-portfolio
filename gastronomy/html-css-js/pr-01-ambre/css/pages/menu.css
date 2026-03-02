@@ -3,16 +3,15 @@
   --menu-shell-bg: color-mix(in oklab, var(--c-bg), white 6%);
   --menu-shell-border: color-mix(in oklab, var(--c-ink), transparent 88%);
   --menu-shell-shadow: 0 10px 30px rgba(0, 0, 0, 0.22);
+  --menu-col-max: 680px;
+  padding-top: 0;
+  padding-bottom: var(--block-y-lg);
 }
+
 :root[data-theme="light"] .page-menu {
   --menu-shell-bg: color-mix(in oklab, var(--c-bg), var(--c-surface) 10%);
   --menu-shell-border: color-mix(in oklab, var(--c-ink), transparent 86%);
   --menu-shell-shadow: 0 8px 22px rgba(0, 0, 0, 0.08);
-}
-.page-menu {
-  --menu-col-max: 680px;
-  padding-top: 0;
-  padding-bottom: var(--block-y-lg);
 }
 .page-menu .page-shell {
   max-width: min(960px, 92vw);

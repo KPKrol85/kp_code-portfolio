@@ -39,7 +39,8 @@
   color: var(--c-accent-contrast);
   text-decoration: underline;
 }
-.breadcrumbs__item[aria-current="page"] {
-  color: var(--c-accent);
+.breadcrumbs__item[aria-current="page"],
+.breadcrumbs li[aria-current="page"] {
+  color: var(--c-accent-contrast);
   font-weight: 500;
 }

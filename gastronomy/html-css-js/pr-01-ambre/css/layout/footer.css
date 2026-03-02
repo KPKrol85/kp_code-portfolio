@@ -68,14 +68,6 @@ html[data-theme="light"] .site-footer {
   letter-spacing: 0.04em;
   text-transform: uppercase;
 }
-.site-footer :where(.site-footer__nav a, .site-footer__contact a, .site-footer__legal a):hover::after {
-  left: 0;
-  right: auto;
-  width: 100%;
-}
-.site-footer :where(.site-footer__nav a, .site-footer__contact a, .site-footer__legal a) {
-  position: relative;
-}
 .site-footer :where(.site-footer__nav a, .site-footer__contact a, .site-footer__legal a)::after {
   content: "";
   position: absolute;
@@ -86,6 +78,15 @@ html[data-theme="light"] .site-footer {
   background: color-mix(in oklab, var(--c-accent), transparent 45%);
   transition: width 0.28s ease;
 }
+.site-footer :where(.site-footer__nav a, .site-footer__contact a, .site-footer__legal a):hover::after {
+  left: 0;
+  right: auto;
+  width: 100%;
+}
+.site-footer :where(.site-footer__nav a, .site-footer__contact a, .site-footer__legal a) {
+  position: relative;
+}
+
 .site-footer :where(.site-button--social, .site-footer__nav a, .site-footer__contact a, .site-footer__legal a):focus-visible {
   outline: 2px solid var(--c-accent-contrast);
   outline-offset: 2px;

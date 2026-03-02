@@ -113,7 +113,7 @@ const run = async () => {
     });
 
     await runStep("navigate through header link", async () => {
-      await page.getByRole("link", { name: "Rezerwacja" }).click();
+      await page.getByTestId("site-header-nav").getByRole("link", { name: "Rezerwacja" }).click();
       await page.waitForURL("**/index.html#rezerwacja", { timeout: 10000 });
       await page.getByRole("heading", { level: 2, name: "Rezerwacja" }).waitFor();
     });

@@ -122,7 +122,10 @@
   margin-top: var(--space-01);
 }
 .booking-form .booking-form__consent-row a {
-  text-decoration: none;
+  text-decoration-line: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.14em;
+  text-decoration-skip-ink: auto;
 }
 .booking-form .booking-form__consent-row a:hover,
 .booking-form .booking-form__consent-row a:focus-visible {

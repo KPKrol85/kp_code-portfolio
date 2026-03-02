@@ -2,7 +2,9 @@
 <html lang="pl">
   <head>
     <meta charset="utf-8" />
+    <!-- PWA / UI -->
     <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <!-- SEO -->
     <meta name="robots" content="index, follow" />
     <meta name="format-detection" content="telephone=no" />
     <title>Galeria – Ambre | Wnętrze, dania i atmosfera</title>
@@ -13,6 +15,7 @@
     <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)" />
     <meta name="theme-color" content="#0f0f0f" media="(prefers-color-scheme: dark)" />
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <!-- Open Graph -->
     <meta property="og:locale" content="pl_PL" />
     <meta property="og:type" content="website" />
     <meta property="og:site_name" content="Ambre – Restauracja Fine Dining" />
@@ -24,11 +27,13 @@
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
     <meta property="og:image:alt" content="Ambre – logo restauracji i hasła: autorska kuchnia, sezonowe menu, kameralna atmosfera" />
+    <!-- Twitter -->
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content="Galeria – Ambre | Wnętrze, dania i atmosfera" />
     <meta name="twitter:description" content="Zobacz galerię Ambre: wnętrze restauracji, kompozycje dań i klimat wieczoru. Kadry, które oddają smak, światło i detale." />
     <meta name="twitter:image" content="https://gastronomy-project-01.netlify.app/assets/img/og-img/og-1200x630.jpg" />
     <meta name="twitter:image:alt" content="Ambre – logo restauracji i hasła: autorska kuchnia, sezonowe menu, kameralna atmosfera" />
+    <!-- Favicons + manifest -->
     <link rel="icon" href="/assets/icons/favicons/favicon-32x32.png" sizes="32x32" type="image/png" />
     <link rel="icon" href="/assets/icons/favicons/favicon-16x16.png" sizes="16x16" type="image/png" />
     <link rel="apple-touch-icon" href="/assets/icons/favicons/apple-touch-icon.png" sizes="180x180" />
@@ -37,9 +42,12 @@
     <meta name="application-name" content="Ambre" />
     <meta name="apple-mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-title" content="Ambre" />
+    <!-- Preload fonts -->
     <link rel="preload" href="/assets/fonts/poppins-v24-latin-600.woff2" as="font" type="font/woff2" crossorigin />
     <link rel="preload" href="/assets/fonts/source-sans-3-v19-latin-regular.woff2" as="font" type="font/woff2" crossorigin />
+    <!-- Styles -->
     <link rel="stylesheet" href="/css/style.css" />
+    <!-- JSON-LD -->
     <script type="application/ld+json">
       {
         "@context": "https://schema.org",
@@ -537,29 +545,26 @@
     <script src="/js/sw-register.js" defer></script>
     <script src="/js/pwa-install.js" defer></script>
     <script type="module" src="/js/script.js"></script>
+
+
     <!-- Demo Legal Modal -->
     <div class="demo-legal-modal" id="demo-legal-modal" aria-hidden="true" hidden inert>
-      <button type="button" class="demo-legal-modal__backdrop" data-demo-legal-close aria-label="Zamknij okno informacji o projekcie"></button>
-      <div
-        class="demo-legal-modal__panel"
-        role="dialog"
-        aria-modal="true"
-        aria-labelledby="demo-legal-modal-title"
-        aria-describedby="demo-legal-modal-description"
-        tabindex="-1"
-      >
-        <h2 class="demo-legal-modal__title" id="demo-legal-modal-title">Informacja o projekcie</h2>
-        <p class="demo-legal-modal__text" id="demo-legal-modal-description">
-          To jest projekt demo/portfolio. Tresci i dane sa przykladowe. Wdrozenie i realizacja: <a href="https://kpcode.studio" target="_blank" rel="noopener noreferrer">KP_Code Digital Studio</a>.
-          Korzystanie z serwisu oznacza akceptacje zasad opisanych na stronie
-          <a href="/regulamin.html">Regulamin</a>.
+      <div class="demo-legal-modal__backdrop" data-demo-legal-close></div>
+      <div class="demo-legal-modal__panel" role="dialog" aria-modal="true" aria-labelledby="demo-legal-title" aria-describedby="demo-legal-desc" tabindex="-1">
+        <h2 class="demo-legal-modal__title" id="demo-legal-title">Informacja o projekcie</h2>
+        <p class="demo-legal-modal__text" id="demo-legal-desc">
+          Serwis „Ambre” ma charakter demonstracyjny i został przygotowany przez
+          <a href="https://www.kp-code.pl" rel="noopener">KP_Code Digital Studio</a>
+          jako przykładowa strona internetowa restauracji fine dining. Treści i dane mają charakter poglądowy. Korzystając z serwisu, akceptujesz
+          <a href="/regulamin.html">Regulamin</a>
+          .
         </p>
         <div class="demo-legal-modal__links">
-          <a href="/polityka-prywatnosci.html">Polityka prywatnosci</a>
+          <a href="/polityka-prywatnosci.html">Polityka prywatności</a>
           <a href="/cookies.html">Cookies</a>
         </div>
         <div class="demo-legal-modal__actions">
-          <button type="button" class="site-button site-button--primary" data-demo-legal-accept>Akceptuj</button>
+          <button class="site-button site-button--primary" type="button" data-demo-legal-accept>Akceptuję</button>
         </div>
       </div>
     </div>

@@ -1,8 +1,10 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="pl">
   <head>
     <meta charset="utf-8" />
+    <!-- PWA / UI -->
     <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <!-- SEO -->
     <meta name="robots" content="index, follow" />
     <meta name="format-detection" content="telephone=no" />
     <title>Ambre – Restauracja Fine Dining | Menu degustacyjne i selekcja win</title>
@@ -15,6 +17,7 @@
     <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)" />
     <meta name="theme-color" content="#0f0f0f" media="(prefers-color-scheme: dark)" />
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <!-- Open Graph -->
     <meta property="og:locale" content="pl_PL" />
     <meta property="og:type" content="website" />
     <meta property="og:site_name" content="Ambre – Restauracja Fine Dining" />
@@ -26,11 +29,13 @@
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
     <meta property="og:image:alt" content="Ambre – logo restauracji i hasła: autorska kuchnia, sezonowe menu, kameralna atmosfera" />
+    <!-- Twitter -->
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content="Ambre – Restauracja Fine Dining | Menu degustacyjne i selekcja win" />
     <meta name="twitter:description" content="Ambre – autorska kuchnia, sezonowe menu i kameralna atmosfera. Rezerwacje online, menu i galeria w jednym miejscu." />
     <meta name="twitter:image" content="https://gastronomy-project-01.netlify.app/assets/img/og-img/og-1200x630.jpg" />
     <meta name="twitter:image:alt" content="Ambre – logo restauracji i hasła: autorska kuchnia, sezonowe menu, kameralna atmosfera" />
+    <!-- Favicons + manifest -->
     <link rel="icon" href="/assets/icons/favicons/favicon-32x32.png" sizes="32x32" type="image/png" />
     <link rel="icon" href="/assets/icons/favicons/favicon-16x16.png" sizes="16x16" type="image/png" />
     <link rel="apple-touch-icon" href="/assets/icons/favicons/apple-touch-icon.png" sizes="180x180" />
@@ -39,9 +44,12 @@
     <meta name="application-name" content="Ambre" />
     <meta name="apple-mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-title" content="Ambre" />
+    <!-- Preload fonts -->
     <link rel="preload" href="/assets/fonts/poppins-v24-latin-600.woff2" as="font" type="font/woff2" crossorigin />
     <link rel="preload" href="/assets/fonts/source-sans-3-v19-latin-regular.woff2" as="font" type="font/woff2" crossorigin />
+    <!-- Styles -->
     <link rel="stylesheet" href="/css/style.css" />
+    <!-- JSON-LD -->
     <script type="application/ld+json">
       {
         "@context": "https://schema.org",
@@ -592,7 +600,7 @@
       </section>
 
       <!-- Form -->
-      <section id="rezerwacja" class="l-section booking" aria-labelledby="booking-title">
+      <div id="rezerwacja" class="l-section booking">
         <div class="container grid-2 booking__layout">
           <div>
             <h2 id="booking-title" class="section-title booking__title">Rezerwacja</h2>
@@ -677,7 +685,7 @@
             </a>
           </aside>
         </div>
-      </section>
+      </div>
 
       <!-- CTA -->
       <section id="kontakt" class="cta l-section" aria-labelledby="cta-title">
@@ -899,7 +907,7 @@
     <script src="/js/sw-register.js" defer></script>
     <script src="/js/pwa-install.js" defer></script>
     <script type="module" src="/js/script.js"></script>
-    
+
     <!-- Demo Legal Modal -->
     <div class="demo-legal-modal" id="demo-legal-modal" aria-hidden="true" hidden inert>
       <div class="demo-legal-modal__backdrop" data-demo-legal-close></div>

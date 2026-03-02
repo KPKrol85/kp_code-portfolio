@@ -43,20 +43,17 @@ body {
   min-height: 100vh;
   display: flex;
   flex-direction: column;
-}
-
-main {
-  flex: 1;
-  scroll-margin-top: calc(var(--header-h, 64px) + 12px);
-}
-
-body {
   margin: 0;
   font-family: var(--font-sans);
   font-weight: 400;
   color: var(--c-ink);
   background-color: var(--c-bg);
   line-height: var(--lh-normal);
+}
+
+main {
+  flex: 1;
+  scroll-margin-top: calc(var(--header-h, 64px) + 12px);
 }
 
 img {

@@ -3,7 +3,9 @@
   padding-block: var(--block-y-lg);
   padding-inline: var(--space-06);
 }
+
 .cta__box {
+  margin-top: var(--space-04);
   border: 1px solid var(--c-border);
   border-radius: var(--radius-xs);
   padding: var(--space-06);
@@ -38,9 +40,7 @@
   width: 100%;
   max-width: 420px;
 }
-.cta__box {
-  margin-top: var(--space-04);
-}
+
 html[data-theme="dark"] .cta__box {
   background: color-mix(in oklab, var(--c-surface), #000 10%);
   border-color: color-mix(in oklab, var(--c-border), #fff 10%);
