@@ -62,7 +62,7 @@ This file is the canonical source of truth for the Solidcraft build/development 
 - Deployment artifact is `dist/`, produced by `npm run build:dist`.
 - Sitemap generation is part of deploy build (`npm run build:dist`) via `npm run build:sitemap`.
 - `build:sitemap` requires `SITE_URL` (for example: `SITE_URL=https://example.com npm run build:sitemap`) and exits non-zero if missing.
-- `build:sitemap` includes real `.html` pages discovered from source and excludes non-indexable pages by default: `404.html`, `offline.html`, `thank-you/**`.
+- `build:sitemap` includes real `.html` pages discovered from source and excludes non-indexable pages by default: `404.html`, `offline.html`, `thank-you.html`.
 - `build:dist` copies all HTML files plus required runtime assets and selected optional files (`_headers`, `_redirects`, `netlify.toml`, `robots.txt`, `sitemap.xml`, `manifest.webmanifest`, `sw.js`, `js/sw-register.js`, `assets/`).
 - During `dist` build, HTML references are rewritten from source assets to minified assets.
 

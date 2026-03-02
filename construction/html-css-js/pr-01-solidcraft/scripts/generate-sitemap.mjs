@@ -5,8 +5,8 @@ const rootDir = process.cwd();
 const publishDir = path.join(rootDir, "dist");
 
 const EXCLUDED_DIRS = new Set([".git", "node_modules", "dist", "build"]);
-const EXCLUDED_FILES = new Set(["404.html", "offline.html"]);
-const EXCLUDED_PREFIXES = ["thank-you/"];
+const EXCLUDED_FILES = new Set(["404.html", "offline.html", "thank-you.html"]);
+const EXCLUDED_PREFIXES = [];
 
 function normalizeSlashes(value) {
   return value.split(path.sep).join("/");

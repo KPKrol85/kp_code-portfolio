@@ -33,7 +33,7 @@ SolidCraft to statyczny serwis WWW firmy remontowo-budowlanej. Projekt obejmuje 
 - `index.html` — strona główna.
 - `oferta/*.html` — podstrony usług.
 - `doc/*.html` — strony dokumentów.
-- `thank-you/index.html`, `404.html`, `offline.html` — strony pomocnicze/systemowe.
+- `thank-you.html`, `404.html`, `offline.html` — strony pomocnicze/systemowe.
 - `css/style.css` + `css/modules/*` — źródła stylów.
 - `js/script.js` + `js/modules/*` — logika UI i funkcje interaktywne.
 - `js/theme-init.js`, `js/sw-register.js`, `sw.js` — inicjalizacja motywu i PWA.
@@ -151,7 +151,7 @@ SolidCraft is a static website for a construction and renovation company. The pr
 - `index.html` — homepage.
 - `oferta/*.html` — service pages.
 - `doc/*.html` — legal pages.
-- `thank-you/index.html`, `404.html`, `offline.html` — auxiliary/system pages.
+- `thank-you.html`, `404.html`, `offline.html` — auxiliary/system pages.
 - `css/style.css` + `css/modules/*` — style sources.
 - `js/script.js` + `js/modules/*` — UI logic and interactive features.
 - `js/theme-init.js`, `js/sw-register.js`, `sw.js` — theme bootstrap and PWA.
