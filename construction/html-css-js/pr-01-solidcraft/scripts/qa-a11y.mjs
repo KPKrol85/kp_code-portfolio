@@ -19,7 +19,8 @@ const basePages = [
 const optionalPages = ["/offline.html"];
 
 const { chromium } = await loadDependency("playwright");
-const axeCore = await loadDependency("axe-core");
+const axeCoreModule = await loadDependency("axe-core");
+const axeCore = axeCoreModule.default ?? axeCoreModule;
 
 const pages = await resolvePages();
 const server = await startStaticServer();
@@ -81,7 +82,7 @@ console.log(
 async function resolvePages() {
   const existing = [];
   for (const pageRoute of basePages) {
-    const target = path.join(projectRoot, pageRoute);
+    const target = path.join(projectRoot, pageRoute.replace(/^\//, ""));
     if (!(await pathExists(target))) {
       throw new Error(`Required page not found: ${pageRoute}`);
     }
@@ -89,7 +90,7 @@ async function resolvePages() {
   }
 
   for (const pageRoute of optionalPages) {
-    const target = path.join(projectRoot, pageRoute);
+    const target = path.join(projectRoot, pageRoute.replace(/^\//, ""));
     if (await pathExists(target)) existing.push(pageRoute);
   }
 
