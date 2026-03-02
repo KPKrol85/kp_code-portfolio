@@ -1,82 +1,90 @@
-# AUDIT — SolidCraft (Senior Front-End Review)
+# 1. Executive Summary
 
-## 1) Executive summary
-Projekt ma solidną bazę produkcyjną: spójne meta SEO, konsekwentny układ stron, rozbudowane dane strukturalne, poprawne formaty obrazów i modularny CSS oparty na tokenach. Architektura jest czytelna i utrzymywalna.
+Projekt ma architekturę statycznego serwisu wielostronicowego z modularnym CSS (`css/style.css` + `css/modules/*`), modułowym JS (`js/script.js` + `js/modules/*`) oraz konfiguracją pod Netlify i PWA (`netlify.toml`, `_headers`, `manifest.webmanifest`, `sw.js`). Implementacja pokazuje dobrą dyscyplinę semantyki, a11y i SEO w warstwie HTML, ale zawiera jeden krytyczny problem wdrożeniowy: konfiguracja Netlify wskazuje katalog publikacji `dist`, którego standardowy pipeline deploy (`npm run build`) nie tworzy.
 
-Wykryto jednak dwa ryzyka krytyczne:
-1. rejestracja Service Workera zależna od bieżącej ścieżki (nie działa poprawnie na podstronach),
-2. brak baseline no-JS dla mobilnej nawigacji (menu pozostaje ukryte).
+# 2. P0 — Critical Risks
 
-## 2) P0 — Critical risks (real issues only)
+## P0.1 — Niespójny pipeline deploy na Netlify (brak generowania katalogu `dist`)
 
-### P0.1 — Service Worker registration fails on nested routes
-- **Impact:** Funkcje PWA/offline działają niestabilnie zależnie od punktu wejścia. Użytkownik otwierający serwis od podstrony (`/oferta/...`, `/doc/...`) może nie mieć aktywnego SW.
-- **Evidence:** `js/sw-register.js` rejestruje `navigator.serviceWorker.register("sw.js")` (ścieżka względna). Podstrony ładują ten sam plik przez `../js/sw-register.js`, więc przeglądarka próbuje rejestracji pod `/oferta/sw.js` lub `/doc/sw.js`.
-- **Fix:** Zmienić rejestrację na ścieżkę absolutną: `navigator.serviceWorker.register('/sw.js', { scope: '/' })`.
+- **Impact:** realne ryzyko nieudanych lub pustych wdrożeń produkcyjnych (Netlify publikuje z `dist`, ale komenda build go nie tworzy).
+- **Evidence:** `netlify.toml` ustawia `publish = "dist"` i `command = "npm run build"`, podczas gdy w `package.json` skrypt `build` uruchamia tylko `build:css` i `build:js`; dopiero osobny skrypt `build:dist` tworzy `dist`.
+- **Fix:** ujednolicić pipeline deploy: np. zmienić `netlify.toml` na `command = "npm run build && npm run build:dist"` (lub zmienić `build` tak, aby obejmował `build:dist`).
 - **Effort:** S
 
-### P0.2 — Mobile navigation is inaccessible without JavaScript
-- **Impact:** Przy wyłączonym JS na mobile (≤1024px) użytkownik traci dostęp do głównej nawigacji, co pogarsza dostępność i baseline progressive enhancement.
-- **Evidence:** `css/style.css` ustawia `.nav-menu { display: none; }` w `@media (max-width: 1024px)` i pokazuje menu wyłącznie klasą `.nav-menu.open`. Klasa `open` jest dodawana tylko przez JS (`js/script.js`, `initNav`).
-- **Fix:** Wprowadzić fallback no-JS (np. klasa `no-js` na `<html>` usuwana przez JS; dla `no-js` ustawić `.nav-menu{display:flex}` i ukryć `.nav-toggle`).
-- **Effort:** M
+# 3. Strengths
 
-## 3) Strengths
-- Spójna struktura dokumentów: canonical, OpenGraph, Twitter Cards i metadata na stronach publicznych.
-- Inline JSON-LD jest składniowo poprawny (22 bloki, bez błędów parsowania).
-- Obrazy mają poprawne ścieżki i zadeklarowane `width`/`height` dla `<img>`.
-- Formularz kontaktowy ma etykiety, `required`, `aria-live`, honeypot i dedykowaną stronę potwierdzenia.
-- Architektura CSS wykorzystuje tokeny (`:root`), sekcje i nomenklaturę komponentową z czytelnym podziałem odpowiedzialności.
+- Spójna warstwa SEO: canonical, OpenGraph, Twitter Card i JSON-LD na stronie głównej oraz podstronach oferty.
+- Dobra baza a11y: skip link, semantyczne sekcje, etykietowanie formularza i stany fokusowe w CSS.
+- Responsywna strategia obrazów (`picture`, AVIF/WEBP/JPG, `srcset`, `sizes`, `loading="lazy"`, wymiary obrazów) ogranicza koszt transferu.
+- Rozsądna separacja odpowiedzialności w JS: podział na moduły (`nav`, `forms`, `map-consent`, `cookie-banner`, `lightbox`) oraz warunkowa inicjalizacja.
+- Obecne zabezpieczenia i konfiguracja platformowa (`_headers`, `_redirects`, `robots.txt`, `sitemap.xml`, SW + manifest) świadczą o myśleniu produkcyjnym.
 
-## 4) P1 — 5 improvements worth doing next (exactly five)
+# 4. P1 — Exactly 5 Improvements Worth Doing Next
 
-### P1.1 — Add `noindex` for utility pages (404/offline/thank-you)
-- **Reason:** Strony narzędziowe nie powinny konkurować z docelowymi URL-ami w indeksie.
-- **Suggested improvement:** Ustawić `meta robots="noindex, follow"` dla `404.html`, `offline.html`, `thank-you/index.html`.
+## P1.1 — Ujednolicić ścieżkę assetów runtime vs service worker
 
-### P1.2 — Remove stale comments and typos in source headers
-- **Reason:** Nagłówki plików zawierają literówki (`Aanimations`, `sytyles`) i mylące opisy (`CSS Stylesheet` w `js/script.js`).
-- **Suggested improvement:** Ujednolicić komentarze nagłówkowe oraz metadata plików źródłowych.
+- **Reason:** HTML ładuje runtime `css/style.css` i `js/script.js`, natomiast pre-cache SW zawiera `css/style.min.css` i `js/script.min.js`; to utrudnia przewidywalność cache/offline.
+- **Suggested improvement:** dopasować listę `ASSETS` w `sw.js` do faktycznie używanych zasobów runtime albo wdrożyć jednolitą politykę „dist-only” dla produkcji.
 
-### P1.3 — Tighten CSP for long-term hardening
-- **Reason:** Aktualna polityka CSP jest poprawna bazowo, ale można doprecyzować ją pod konkretne źródła i typy zasobów.
-- **Suggested improvement:** Rozważyć nonce/hash policy dla skryptów oraz doprecyzowanie `connect-src`/`img-src` wg realnego użycia.
+## P1.2 — Ograniczyć duplikację head/header/footer między podstronami
 
-### P1.4 — Move repetitive per-page SEO/JSON-LD into generation step
-- **Reason:** Duplikacja bloków SEO i JSON-LD na wielu stronach zwiększa koszt utrzymania.
-- **Suggested improvement:** Wprowadzić generator/templating na etapie build (np. skrypt Node) dla wspólnych sekcji head.
+- **Reason:** znaczne powielanie bloków SEO, nawigacji i stopki w `index.html`, `oferta/*.html`, `doc/*.html`, `404.html` zwiększa koszt utrzymania i ryzyko dryfu treści.
+- **Suggested improvement:** wprowadzić generowanie z partiali (np. etap build z szablonami) lub centralny generator stron statycznych.
 
-### P1.5 — Remove non-essential `console.log` from project tooling output
-- **Reason:** Wymóg higieny statycznej (`no console.log`) formalnie nie jest spełniony (`scripts/images.js`).
-- **Suggested improvement:** Zastąpić logi opcjonalnym verbose mode (`--verbose`) albo `console.info` pod flagą środowiskową.
+## P1.3 — Doprecyzować SEO social identity (placeholderowe profile social)
 
-## 5) Future enhancements — 5 realistic ideas (exactly five)
-1. Dodać automatyczny link checker (href/src/srcset + anchors) uruchamiany w CI.
-2. Dodać automatyczną walidację JSON-LD i raport schematów podczas build.
-3. Wprowadzić Lighthouse CI z progami dla Performance/Accessibility/SEO.
-4. Rozszerzyć strategię SW o pre-cache krytycznych obrazów hero dla szybszego LCP.
-5. Dodać mechanizm `lastmod` do `sitemap.xml` generowany z git metadata.
+- **Reason:** w JSON-LD i linkach społecznościowych używane są adresy generyczne (`facebook.com`, `instagram.com`, `x.com`, `canva.com`), co osłabia sygnał encji marki.
+- **Suggested improvement:** podmienić na rzeczywiste profile marki albo usunąć z danych strukturalnych, jeśli profile nie istnieją.
 
-## 6) Compliance checklist (pass / fail)
-- **headings valid:** **PASS**
-- **no broken links:** **PASS**
-- **no console.log:** **FAIL**
-- **aria attributes valid:** **PASS**
-- **images have width/height:** **PASS**
-- **no-JS baseline usable:** **FAIL**
-- **sitemap present (if expected):** **PASS**
-- **robots present:** **PASS**
-- **OG image exists:** **PASS**
-- **JSON-LD valid:** **PASS**
+## P1.4 — Urealnić walidację a11y w CI/CD (obecnie zależna od lokalnych zależności)
 
-## 7) Architecture Score (0–10)
-- **BEM consistency:** 8.0/10
-- **token usage:** 8.5/10
-- **accessibility:** 7.2/10
-- **performance:** 8.0/10
-- **maintainability:** 7.8/10
+- **Reason:** skrypt `qa:a11y` istnieje, ale bez lokalnego Playwright kończy się błędem, więc kontrola jakości a11y nie jest gwarantowana.
+- **Suggested improvement:** dołączyć instalację zależności QA do pipeline CI i traktować `npm run check:predeploy` jako bramkę przed publikacją.
 
-**Overall architecture score:** **7.9/10**
+## P1.5 — Zmniejszyć ryzyko dryfu między `sitemap.xml` a realnym drzewem stron
 
-## 8) Senior rating (1–10)
-**7.8/10** — Projekt jest dojrzały wizualnie i architektonicznie, z poprawną bazą SEO/performance, ale wymaga usunięcia krytycznych luk w progressive enhancement i stabilności rejestracji SW, aby spełnić standard production-grade portfolio.
+- **Reason:** sitemap jest obecny, ale utrzymanie ręczne i zmiany stron mogą prowadzić do rozjazdu (w repo jest skrypt generatora, lecz nie jest spięty z głównym `build`).
+- **Suggested improvement:** włączyć `build:sitemap` do domyślnego procesu build/deploy i egzekwować to w CI.
+
+# 5. P2 — Minor Refinements (optional)
+
+- Dodać krótką dokumentację „single source of truth” dla trybu dev vs produkcja (które pliki są runtime, które build artifacts).
+- Rozważyć ograniczenie części preloadów do krytycznych zasobów dla pierwszego widoku po pomiarze Web Vitals.
+- Ujednolicić daty `lastmod` przez automatyzację (np. z git log) zamiast wartości statycznych.
+
+# 6. Future Enhancements — Exactly 5 Ideas
+
+1. Dodać automatyczne testy regresji wizualnej kluczowych widoków (home + 6 podstron oferty).
+2. Wprowadzić lekki system komponentów statycznych (partials/layouts) dla head/header/footer.
+3. Rozszerzyć strategię SW o jawne versioning/hash i politykę aktualizacji cache po deploy.
+4. Uruchomić cykliczny audyt Lighthouse CI (a11y/perf/SEO/best-practices) jako quality gate.
+5. Dodać test integracyjny walidujący kompletność metadanych SEO (canonical, OG, JSON-LD, robots, sitemap).
+
+# 7. Compliance Checklist (pass / fail)
+
+- headings structure valid — **pass**
+- no broken links (excluding .min strategy) — **pass**
+- no console.log — **fail**
+- aria attributes valid — **pass**
+- images have width/height — **pass**
+- no-JS baseline usable — **pass**
+- robots.txt present (if expected) — **pass**
+- sitemap.xml present (if expected) — **pass**
+- OpenGraph image present — **pass**
+- JSON-LD valid (if present) — **pass**
+
+# 8. Architecture Score (1–10)
+
+- structural consistency — **7/10**
+- accessibility maturity — **8/10**
+- performance discipline — **8/10**
+- SEO correctness — **8/10**
+- maintainability — **6/10**
+
+**Wynik łączny: 7.4/10**
+
+# 9. Senior Rating (1–10)
+
+**7/10**
+
+Projekt jest technicznie dojrzały jak na statyczny front-end i ma mocną bazę jakościową (SEO, a11y, modularny CSS/JS). Największy problem jest operacyjny: obecny kontrakt build/deploy nie gwarantuje poprawnego publikowania z `dist`. Po ujednoliceniu pipeline’u i redukcji duplikacji HTML architektura będzie wyraźnie łatwiejsza w utrzymaniu i skalowaniu.

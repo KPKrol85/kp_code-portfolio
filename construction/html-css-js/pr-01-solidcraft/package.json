@@ -4,7 +4,7 @@
   "private": true,
   "description": "SolidCraft — static front-end implementation of a construction company website (HTML, CSS, JavaScript, PostCSS).",
   "author": {
-    "name": "Kamil Król (KP_Code)",
+    "name": "Kamil Król | KP_Code Digital Studio",
     "email": "kontakt@kp-code.pl"
   },
   "homepage": "https://construction-pr-01-solidcraft.netlify.app/",
@@ -17,11 +17,17 @@
     "build": "npm run build:css && npm run build:js",
     "watch:css": "postcss css/style.css --watch --no-map -o css/style.min.css",
     "watch:js": "esbuild js/script.js --bundle --minify --target=es2018 --format=iife --outfile=js/script.min.js --watch=forever",
-    "build:dist": "node scripts/build-dist.js",
+    "build:dist": "node scripts/build-dist.js && npm run build:sitemap",
     "format": "prettier -w \"**/*.{html,css,js,json,md}\"",
     "format:check": "prettier -c \"**/*.{html,css,js,json,md}\"",
     "images:build": "node scripts/images.js build",
-    "images:clean": "node scripts/images.js clean"
+    "images:clean": "node scripts/images.js clean",
+    "check:links": "node scripts/check-links.mjs",
+    "check:assets": "node scripts/check-html-assets.mjs",
+    "check:html": "npm run check:links && npm run check:assets",
+    "check:predeploy": "npm run check:html && npm run qa:a11y",
+    "qa:a11y": "node scripts/qa-a11y.mjs",
+    "build:sitemap": "node scripts/generate-sitemap.mjs"
   },
   "devDependencies": {
     "autoprefixer": "^10.4.21",
@@ -34,7 +40,9 @@
     "postcss-preset-env": "^10.4.0",
     "prettier": "3.3.3",
     "sharp": "^0.34.5",
-    "terser": "^5.31.0"
+    "terser": "^5.31.0",
+    "axe-core": "^4.10.3",
+    "playwright": "^1.54.2"
   },
   "engines": {
     "node": ">=18"

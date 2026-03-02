@@ -1,4 +1,3 @@
-
 .hover-card {
   transition:
     transform 0.25s ease,
@@ -449,7 +448,13 @@ body.lb-no-scroll {
   left: -40%;
   width: 40%;
   transform: translateX(-120%) rotate(20deg);
-  background: linear-gradient(120deg, transparent 0%, rgba(255, 255, 255, 0.18) 45%, rgba(255, 255, 255, 0.35) 55%, transparent 100%);
+  background: linear-gradient(
+    120deg,
+    transparent 0%,
+    rgba(255, 255, 255, 0.18) 45%,
+    rgba(255, 255, 255, 0.35) 55%,
+    transparent 100%
+  );
   transition: transform 0.55s ease;
   pointer-events: none;
 }

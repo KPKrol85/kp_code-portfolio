@@ -1,63 +1,77 @@
-# settings.md
+# Pipeline & Tooling Settings
 
-## npm scripts (`package.json`)
+## Purpose
 
-### `start`
-- **Command:** `npm run dev`
-- **What it does:** Runs the local dev server (alias for `dev`)
-- **When to use it:** Default local entrypoint
+This file is the canonical source of truth for the Solidcraft build/development pipeline and tooling behavior.
 
-### `dev`
-- **Command:** `live-server --port=15500 --open=index.html --quiet`
-- **What it does:** Starts a static dev server on port `15500` and opens `index.html`
-- **When to use it:** Local development for HTML/CSS/JS
+## Tooling Overview
 
-### `build:css`
-- **Command:** `postcss css/style.css --no-map -o css/style.min.css && node scripts/verify-css-build.js`
-- **What it does:** Builds `css/style.min.css` via PostCSS (no sourcemaps) and fails if `@import` remains in the output
-- **When to use it:** CSS production build verification
+- Runtime baseline: Node.js `>=18`.
+- Local dev server: `live-server`.
+- CSS pipeline: PostCSS (`postcss-import`, `postcss-preset-env`, `autoprefixer`, `cssnano`) via `postcss-cli`.
+- JS pipeline: `esbuild` (bundle + minify, target `es2018`, format `iife`).
+- Image pipeline: `sharp` via `scripts/images.js`.
+- Formatting: `prettier`.
 
-### `build:js`
-- **Command:** `esbuild js/script.js --bundle --minify --target=es2018 --format=iife --outfile=js/script.min.js && node scripts/verify-js-build.js`
-- **What it does:** Bundles + minifies JS to `js/script.min.js` (ES2018, IIFE) and fails if `import`/`export` remains in the output
-- **When to use it:** JS production build verification
+## Scripts
 
-### `build`
-- **Command:** `npm run build:css && npm run build:js`
-- **What it does:** Runs the baseline KP_Code pipeline (CSS + JS) with post-build verification
-- **When to use it:** Standard production build before deployment
+- `start`: alias for `dev`.
+- `dev`: serves project locally on port `15500`, opens `index.html`.
+- `build:css`: builds `css/style.min.css` and verifies no `@import` remains.
+- `build:js`: builds `js/script.min.js` and verifies no `import`/`export` remains.
+- `build`: runs `build:css` and `build:js`.
+- `build:sitemap`: scans real HTML pages and generates `dist/sitemap.xml`.
+- `watch:css`: watches `css/style.css` and rebuilds `css/style.min.css`.
+- `watch:js`: watches `js/script.js` and rebuilds `js/script.min.js`.
+- `build:dist`: creates `dist/`, copies runtime files, rewrites HTML references to minified assets, then runs `build:sitemap` to generate `dist/sitemap.xml`.
+- `images:build`: generates production images from `assets/img-src` into `assets/img`.
+- `images:clean`: removes generated image outputs.
+- `check:links`: validates broken internal/external links and missing anchors across all HTML files.
+- `check:assets`: validates local asset references in HTML (`img/src`, `script/src`, `link[href]`, `source/srcset`, `img/srcset`).
+- `check:html`: runs `check:links` and `check:assets`.
+- `qa:a11y`: runs axe-based accessibility scans in a headless browser on key pages.
+- `check:predeploy`: runs `check:html` and `qa:a11y` as the local pre-deploy gate.
+- `format`: applies Prettier writes.
+- `format:check`: validates formatting without writes.
 
-### `watch:css`
-- **Command:** `postcss css/style.css --watch --no-map -o css/style.min.css`
-- **What it does:** Watches CSS entry and rebuilds `css/style.min.css` on change (no sourcemaps)
-- **When to use it:** Fast CSS iteration during development
+## Source vs Generated Assets
 
-### `watch:js`
-- **Command:** `esbuild js/script.js --bundle --minify --target=es2018 --format=iife --outfile=js/script.min.js --watch=forever`
-- **What it does:** Watches JS entry and rebuilds `js/script.min.js` on change
-- **When to use it:** Fast JS iteration during development
+- Source assets (editable):
+  - `css/style.css`
+  - `js/script.js`
+  - `js/theme-init.js`
+  - `assets/img-src/**`
+- Generated assets (pipeline outputs):
+  - `css/style.min.css`
+  - `js/script.min.js`
+  - `js/theme-init.min.js`
+  - `assets/img/**` (from `images:build`)
+- Rule: modify non-minified/source files; regenerate minified and derived artifacts via scripts.
 
-### `build:dist`
-- **Command:** `node scripts/build-dist.js`
-- **What it does:** Creates `dist`, copies project files (excluding `.git`, `node_modules`, `dist`), and rewrites HTML to use minified assets
-- **When to use it:** Preparing the final distributable build artifact
+## QA / Validation
 
-### `format`
-- **Command:** `prettier -w "**/*.{html,css,js,json,md}"`
-- **What it does:** Formats files in-place using Prettier
-- **When to use it:** Before committing to keep consistent formatting
+- CSS validation is embedded in `build:css` through `scripts/verify-css-build.js`.
+- JS validation is embedded in `build:js` through `scripts/verify-js-build.js`.
+- `build:dist` fails if required production assets are missing (`css/style.min.css`, `js/script.min.js`, `js/theme-init.min.js`).
+- `format:check` is the formatting gate.
+- A11y validation: `npm run qa:a11y` fails on `serious`/`critical` axe impacts, while `minor`/`moderate` are reported only.
+- Run local pre-deploy regressions with `npm run check:predeploy`.
 
-### `format:check`
-- **Command:** `prettier -c "**/*.{html,css,js,json,md}"`
-- **What it does:** Checks formatting without writing changes
-- **When to use it:** CI checks or pre-push validation
+## Deployment Notes
 
-### `images:build`
-- **Command:** `node scripts/images.js build`
-- **What it does:** Generates production images in `assets/img` from sources in `assets/img-src` (sizes + formats)
-- **When to use it:** After adding or updating source images
+- Deployment artifact is `dist/`, produced by `npm run build:dist`.
+- Sitemap generation is part of deploy build (`npm run build:dist`) via `npm run build:sitemap`.
+- `build:sitemap` requires `SITE_URL` (for example: `SITE_URL=https://example.com npm run build:sitemap`) and exits non-zero if missing.
+- `build:sitemap` includes real `.html` pages discovered from source and excludes non-indexable pages by default: `404.html`, `offline.html`, `thank-you/**`.
+- `build:dist` copies all HTML files plus required runtime assets and selected optional files (`_headers`, `_redirects`, `netlify.toml`, `robots.txt`, `sitemap.xml`, `manifest.webmanifest`, `sw.js`, `js/sw-register.js`, `assets/`).
+- During `dist` build, HTML references are rewritten from source assets to minified assets.
 
-### `images:clean`
-- **Command:** `node scripts/images.js clean`
-- **What it does:** Removes generated image artifacts from the image pipeline
-- **When to use it:** Full cleanup before regenerating images
+## Logging Hygiene (tooling scripts)
+
+- Tooling scripts use `scripts/utils/logger.js`.
+- Default output is concise (summary/errors).
+- Verbose logs are opt-in via `--verbose` or `VERBOSE=1`.
+
+## Single Source of Truth
+
+Pipeline/tooling documentation lives only in `settings.md`. Keep pipeline notes out of separate docs to avoid drift.

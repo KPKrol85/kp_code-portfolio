@@ -1,4 +1,3 @@
-
 const CACHE_PREFIX = "solidcraft-";
 const CACHE_VERSION = "v2";
 const CACHE_NAME = `${CACHE_PREFIX}${CACHE_VERSION}`;
@@ -47,13 +46,15 @@ self.addEventListener("install", (event) => {
 
 self.addEventListener("activate", (event) => {
   event.waitUntil(
-    caches.keys().then((keys) =>
-      Promise.all(
-        keys
-          .filter((k) => k.startsWith(CACHE_PREFIX) && k !== CACHE_NAME)
-          .map((k) => caches.delete(k))
-      )
-    )
+    caches
+      .keys()
+      .then((keys) =>
+        Promise.all(
+          keys
+            .filter((k) => k.startsWith(CACHE_PREFIX) && k !== CACHE_NAME)
+            .map((k) => caches.delete(k)),
+        ),
+      ),
   );
   self.clients.claim();
 });
@@ -71,7 +72,7 @@ self.addEventListener("fetch", (event) => {
   const isStaticAsset =
     STATIC_DESTINATIONS.has(req.destination) ||
     /\.(?:css|js|mjs|png|jpg|jpeg|gif|svg|webp|avif|ico|woff2?|ttf|otf|eot|webmanifest)$/i.test(
-      url.pathname
+      url.pathname,
     );
 
   if (isHTML) {
@@ -86,8 +87,8 @@ self.addEventListener("fetch", (event) => {
         .catch(() =>
           caches
             .match(req, { ignoreSearch: true })
-            .then((cached) => cached || caches.match("/offline.html"))
-        )
+            .then((cached) => cached || caches.match("/offline.html")),
+        ),
     );
     return;
   }
@@ -103,7 +104,7 @@ self.addEventListener("fetch", (event) => {
           }
           return res;
         });
-      })
+      }),
     );
     return;
   }

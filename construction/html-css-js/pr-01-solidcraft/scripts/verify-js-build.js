@@ -1,10 +1,14 @@
 const fs = require("fs");
 const path = require("path");
+const { createLogger } = require("./utils/logger");
 
+const logger = createLogger();
 const outputPath = path.join(process.cwd(), "js", "script.min.js");
 
+logger.debug(`verify-js-build: checking ${outputPath}`);
+
 if (!fs.existsSync(outputPath)) {
-  console.error(`Missing JS output: ${outputPath}`);
+  logger.error(`Missing JS output: ${outputPath}`);
   process.exit(1);
 }
 
@@ -13,8 +17,10 @@ const hasImport = /\bimport\s+/m.test(js);
 const hasExport = /\bexport\s+/m.test(js);
 
 if (hasImport || hasExport) {
-  console.error("JS build verification failed: 'import' or 'export' found in js/script.min.js");
+  logger.error(
+    "JS build verification failed: 'import' or 'export' found in js/script.min.js",
+  );
   process.exit(1);
 }
 
-console.log("JS build verification passed.");
+logger.summary("OK: JS build verification passed.");

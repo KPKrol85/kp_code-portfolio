@@ -41,24 +41,34 @@ window.utils = window.utils || utils;
 const runInit = () => {
   utils.syncHeaderCssVar?.();
 
-  initNav?.();
-  initHeaderShrink?.();
-  initScrollSpy?.();
+  const has = (selector) => !!document.querySelector(selector);
 
-  initFooterYear?.();
-  initSmoothTop?.();
-  initScrollReveal?.();
-  initThemeToggle?.();
-  initRipple?.();
-  initHeroBlurSync?.();
+  if (has(".nav-toggle") && has("#navMenu")) initNav?.();
+  if (has('.site-header, header[role="banner"]')) initHeaderShrink?.();
+  if (has('.nav-menu a[href^="#"]')) initScrollSpy?.();
 
-  initOfertaLightbox?.();
-  initOfferPrefetch?.();
-  initHomeHelpers?.();
+  if (has("#year")) initFooterYear?.();
+  if (has('a[href="#top"], .scroll-top, [data-scroll="top"]'))
+    initSmoothTop?.();
+  if (has("[data-reveal]")) initScrollReveal?.();
+  if (has(".theme-toggle")) initThemeToggle?.();
+  if (has(".nav-menu li > a.btn.btn--sm")) initRipple?.();
+  if (has(".hero-bg img") && has(".hero__bg-blur")) initHeroBlurSync?.();
 
-  initMapConsent?.();
-  initContactForm?.();
-  initCookieBanner?.();
+  if (has("#oferta .card picture img, .gallery .gallery-item picture img"))
+    initOfertaLightbox?.();
+  if (
+    has(
+      '.services-track h3 a[href^="oferta/"], #oferta .card h3 a[href^="oferta/"]',
+    )
+  )
+    initOfferPrefetch?.();
+  if (has("#kontakt") || has("#oferta") || has("#strona-glowna"))
+    initHomeHelpers?.();
+
+  if (has("[data-map-src]")) initMapConsent?.();
+  if (has("section#kontakt .form")) initContactForm?.();
+  if (has("#cookie-banner")) initCookieBanner?.();
 };
 
 if (document.readyState === "loading") {

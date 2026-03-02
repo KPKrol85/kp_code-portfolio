@@ -15,9 +15,7 @@
 
     root.dataset.theme = theme;
     root.classList.add("preload-theme");
-  } catch {
-
-  }
+  } catch {}
 
   window.addEventListener("DOMContentLoaded", () => {
     requestAnimationFrame(() =>

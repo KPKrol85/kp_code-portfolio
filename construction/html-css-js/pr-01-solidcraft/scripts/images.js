@@ -1,6 +1,9 @@
 const fs = require("fs/promises");
 const path = require("path");
 const sharp = require("sharp");
+const { createLogger } = require("./utils/logger");
+
+const logger = createLogger();
 
 const PROJECT_ROOT = path.resolve(__dirname, "..");
 const SRC_ROOT = path.join(PROJECT_ROOT, "assets", "img-src");
@@ -196,38 +199,61 @@ async function cleanForFile(filePath, config) {
 
 async function run(mode) {
   const summary = [];
+  let scanned = 0;
+
+  logger.debug(`images:${mode} started`);
   for (const config of CONFIG) {
     const inputDir = path.join(SRC_ROOT, config.inputDir);
     if (!(await pathExists(inputDir))) {
+      logger.debug(
+        `images:${mode} skip missing input directory ${config.inputDir}`,
+      );
       continue;
     }
+
+    logger.debug(`images:${mode} scanning ${config.inputDir}`);
     const files = await walk(inputDir);
     for (const filePath of files) {
+      scanned += 1;
       if (mode === "build") {
         const outputs = await buildForFile(filePath, config);
+        if (outputs.length > 0) {
+          logger.debug(
+            `images:build created ${outputs.length} output(s) from ${path.relative(PROJECT_ROOT, filePath)}`,
+          );
+        }
         summary.push(...outputs);
       } else if (mode === "clean") {
         const removed = await cleanForFile(filePath, config);
+        if (removed.length > 0) {
+          logger.debug(
+            `images:clean removed ${removed.length} output(s) from ${path.relative(PROJECT_ROOT, filePath)}`,
+          );
+        }
         summary.push(...removed);
       }
     }
   }
 
   if (mode === "build") {
-    console.log(`images:build created ${summary.length} file(s).`);
+    logger.summary(
+      `OK: images:build created ${summary.length} file(s) from ${scanned} scanned source file(s).`,
+    );
   } else if (mode === "clean") {
-    console.log(`images:clean removed ${summary.length} file(s).`);
+    logger.summary(
+      `OK: images:clean removed ${summary.length} file(s) from ${scanned} scanned source file(s).`,
+    );
   }
 }
 
-const mode = process.argv[2];
+const mode = process.argv.slice(2).find((arg) => !arg.startsWith("-"));
 if (!mode || !["build", "clean"].includes(mode)) {
-  console.error("Usage: node scripts/images.js <build|clean>");
+  logger.error("Usage: node scripts/images.js <build|clean> [--verbose]");
   process.exit(1);
 }
 
 run(mode).catch((error) => {
-  console.error("Image processing failed.");
-  console.error(error);
+  logger.error("FAIL: image processing failed.");
+  logger.error(error.stack || String(error));
   process.exit(1);
 });

@@ -1,6 +1,5 @@
 "use strict";
 
-
 function initMapConsent() {
   const mapContainer = document.querySelector("[data-map-src]");
   if (!mapContainer) return;
