@@ -7,6 +7,7 @@ export const log = (...args) => {
 };
 
 export const reportError = (error, context = "UNKNOWN") => {
+  if (!DEBUG) return;
   // eslint-disable-next-line no-console
   console.error(`[AMBRE_INIT_ERROR] ${context}`, error);
 };
@@ -19,7 +20,11 @@ export const $$ = (selector, root = document) => Array.from(root.querySelectorAl
 
 export const getFocusable = (root) => {
   if (!root) return [];
-  return Array.from(root.querySelectorAll("a[href],button:not([disabled]),input:not([disabled]),select:not([disabled]),textarea:not([disabled]),[tabindex]:not([tabindex='-1'])")).filter(
+  return Array.from(
+    root.querySelectorAll(
+      "a[href],button:not([disabled]),input:not([disabled]),select:not([disabled]),textarea:not([disabled]),[tabindex]:not([tabindex='-1'])",
+    ),
+  ).filter(
     (el) => !el.hasAttribute("hidden") && el.getAttribute("aria-hidden") !== "true",
   );
 };
