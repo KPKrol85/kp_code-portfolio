@@ -47,7 +47,31 @@
     <link rel="preload" href="assets/fonts/montserrat-vari-latin.woff2" as="font" type="font/woff2" crossorigin />
     <link rel="preload" href="assets/fonts/playfair-display-vari-latin.woff2" as="font" type="font/woff2" crossorigin />
     <!-- Theme preload -->
-    <script src="js/bootstrap.js"></script>
+    <script>
+      (function () {
+        var storageKey = "kp-theme";
+        var root = document.documentElement;
+        var theme = null;
+
+        try {
+          var stored = localStorage.getItem(storageKey);
+          if (stored === "light" || stored === "dark") theme = stored;
+        } catch (err) {}
+
+        if (!theme) {
+          var preset = root.getAttribute("data-theme");
+          if (preset === "light" || preset === "dark") theme = preset;
+        }
+
+        if (!theme) {
+          var prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+          theme = prefersDark ? "dark" : "light";
+        }
+
+        root.setAttribute("data-theme", theme);
+      })();
+    </script>
+    <script src="js/bootstrap.js" defer></script>
     <!-- JSON-LD -->
     <script type="application/ld+json">
       {
@@ -135,7 +159,7 @@
     <!-- Header -->
     <header class="site-header" aria-label="Nagłówek strony z nawigacją">
       <div class="container header__inner">
-        <a class="brand" href="/#hero" aria-label="Atelier No.02 — Strona główna">
+        <a class="brand" href="index.html#hero" aria-label="Atelier No.02 — Strona główna">
           <img src="assets/img-optimized/logo/logo-and-name/header-logo-light.svg" alt="" class="brand__logo brand__logo--light" width="40" height="30" />
           <img src="assets/img-optimized/logo/logo-and-name/header-logo-dark.svg" alt="" class="brand__logo brand__logo--dark" width="40" height="30" />
         </a>
@@ -152,47 +176,47 @@
           <nav class="nav" id="primary-nav" aria-label="Nawigacja główna">
             <ul class="nav__list">
               <li class="nav__item nav__item--dropdown">
-                <a class="nav__link" href="/#about">O nas</a>
+                <a class="nav__link" href="index.html#about">O nas</a>
                 <button class="nav__dropdown-toggle" id="nav-dd-about-trigger" type="button" aria-expanded="false" aria-controls="nav-dd-about" aria-label="Pokaż więcej: O nas">
                   <svg class="nav__chevron" aria-hidden="true" viewBox="0 0 16 16" focusable="false">
                     <path d="M3.25 5.75L8 10.5l4.75-4.75" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
                   </svg>
                 </button>
                 <ul class="nav__dropdown" id="nav-dd-about" aria-labelledby="nav-dd-about-trigger">
-                  <li><a href="/about.html">Poznaj nas</a></li>
+                  <li><a href="about.html">Poznaj nas</a></li>
                 </ul>
               </li>
               <li class="nav__item nav__item--dropdown">
-                <a class="nav__link" href="/#menu">Menu</a>
+                <a class="nav__link" href="index.html#menu">Menu</a>
                 <button class="nav__dropdown-toggle" id="nav-dd-menu-trigger" type="button" aria-expanded="false" aria-controls="nav-dd-menu" aria-label="Pokaż więcej: Menu">
                   <svg class="nav__chevron" aria-hidden="true" viewBox="0 0 16 16" focusable="false">
                     <path d="M3.25 5.75L8 10.5l4.75-4.75" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
                   </svg>
                 </button>
                 <ul class="nav__dropdown" id="nav-dd-menu" aria-labelledby="nav-dd-menu-trigger">
-                  <li><a href="/menu.html">Pełne menu</a></li>
+                  <li><a href="menu.html">Pełne menu</a></li>
                 </ul>
               </li>
               <li class="nav__item nav__item--dropdown">
-                <a class="nav__link" href="/#gallery">Galeria</a>
+                <a class="nav__link" href="index.html#gallery">Galeria</a>
                 <button class="nav__dropdown-toggle" id="nav-dd-gallery-trigger" type="button" aria-expanded="false" aria-controls="nav-dd-gallery" aria-label="Pokaż więcej: Galeria">
                   <svg class="nav__chevron" aria-hidden="true" viewBox="0 0 16 16" focusable="false">
                     <path d="M3.25 5.75L8 10.5l4.75-4.75" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
                   </svg>
                 </button>
                 <ul class="nav__dropdown" id="nav-dd-gallery" aria-labelledby="nav-dd-gallery-trigger">
-                  <li><a href="/gallery.html">Pełna galeria</a></li>
+                  <li><a href="gallery.html">Pełna galeria</a></li>
                 </ul>
               </li>
-              <li><a href="/#testimonials">Opinie</a></li>
-              <li><a href="/contact.html">Kontakt</a></li>
+              <li><a href="index.html#testimonials">Opinie</a></li>
+              <li><a href="contact.html">Kontakt</a></li>
             </ul>
           </nav>
           <!-- theme toggle -->
           <button class="theme-toggle" type="button" aria-pressed="false" aria-label="Przełącz tryb ciemny">
             <span class="theme-toggle__icon theme-toggle__icon--sun" aria-hidden="true"><img src="assets/icons/svg-icon/icon-sun.svg" alt="" width="24" height="24" /></span>
             <span class="theme-toggle__icon theme-toggle__icon--moon" aria-hidden="true"><img src="assets/icons/svg-icon/icon-moon.svg" alt="" width="24" height="24" /></span>
-            <span class="visually-hidden">Toggle dark mode</span>
+            <span class="visually-hidden">Przełącz tryb ciemny</span>
           </button>
         </div>
       </div>
@@ -824,7 +848,7 @@
                   Polska
                 </address>
                 <p class="location-card__note">Parking miejski znajduje się 120 m od wejścia, a przystanek tramwajowy „Zakątek” tuż przy restauracji.</p>
-                <a class="btn btn--ghost location-card__cta" href="/contact.html#map" aria-label="Przejdź do mapy dojazdu na stronie kontaktowej">Pokaż na mapie</a>
+                <a class="btn btn--ghost location-card__cta" href="contact.html#map" aria-label="Przejdź do mapy dojazdu na stronie kontaktowej">Pokaż na mapie</a>
               </div>
             </article>
           </div>
@@ -917,7 +941,7 @@
             </span>
             <p class="cta__text">Zapraszamy na wieczór, który opowiemy wspólnie — my poprzez smaki, Państwo poprzez emocje i rozmowy przy naszym stole.</p>
             <div class="cta__actions">
-              <a class="btn btn--primary cta__btn" href="/contact.html">Zarezerwuj stolik</a>
+              <a class="btn btn--primary cta__btn" href="contact.html">Zarezerwuj stolik</a>
               <a class="btn btn--ghost cta__btn" href="menu.html">Zobacz pełne menu</a>
               <a class="btn btn--ghost cta__btn" href="gallery.html">Zobacz galerię</a>
             </div>
@@ -933,7 +957,7 @@
         <div class="footer__grid">
           <!-- brand -->
           <div class="footer__brand">
-            <a class="brand" href="/#hero" aria-label="Atelier No.02 — Strona główna">
+            <a class="brand" href="index.html#hero" aria-label="Atelier No.02 — Strona główna">
               <img src="assets/img-optimized/logo/logo-and-name/footer-logo-light.svg" alt="Logo Atelier No.02" class="footer__logo footer__logo--light" width="40" height="40" />
               <img src="assets/img-optimized/logo/logo-and-name/footer-logo-dark.svg" alt="" class="footer__logo footer__logo--dark" width="40" height="40" />
             </a>
@@ -943,20 +967,20 @@
           <nav class="footer__nav" aria-label="Nawigacja w stopce">
             <h3 class="footer__heading">Odkrywaj</h3>
             <ul class="footer__list">
-              <li><a href="/#about">O nas</a></li>
-              <li><a href="/#menu">Menu</a></li>
-              <li><a href="/#gallery">Galeria</a></li>
-              <li><a href="/#testimonials">Opinie</a></li>
-              <li><a href="/contact.html">Kontakt</a></li>
+              <li><a href="index.html#about">O nas</a></li>
+              <li><a href="index.html#menu">Menu</a></li>
+              <li><a href="index.html#gallery">Galeria</a></li>
+              <li><a href="index.html#testimonials">Opinie</a></li>
+              <li><a href="contact.html">Kontakt</a></li>
             </ul>
           </nav>
           <!-- info -->
           <nav class="footer__nav" aria-label="Informacje prawne">
             <h3 class="footer__heading">Informacje</h3>
             <ul class="footer__list">
-              <li><a href="/polityka-prywatnosci.html">Polityka prywatności</a></li>
-              <li><a href="/cookies.html">Polityka cookies</a></li>
-              <li><a href="/regulamin.html">Regulamin</a></li>
+              <li><a href="polityka-prywatnosci.html">Polityka prywatności</a></li>
+              <li><a href="cookies.html">Polityka cookies</a></li>
+              <li><a href="regulamin.html">Regulamin</a></li>
             </ul>
           </nav>
           <!-- kontakt -->
@@ -995,7 +1019,7 @@
                     <path
                       d="M5.315 2.1c.791 -.113 1.9 .145 3.333 .966l.272 .161l.16 .1l.397 -.083a13.3 13.3 0 0 1 4.59 -.08l.456 .08l.396 .083l.161 -.1c1.385 -.84 2.487 -1.17 3.322 -1.148l.164 .008l.147 .017l.076 .014l.05 .011l.144 .047a1 1 0 0 1 .53 .514a5.2 5.2 0 0 1 .397 2.91l-.047 .267l-.046 .196l.123 .163c.574 .795 .93 1.728 1.03 2.707l.023 .295l.007 .272c0 3.855 -1.659 5.883 -4.644 6.68l-.245 .061l-.132 .029l.014 .161l.008 .157l.004 .365l-.002 .213l-.003 3.834a1 1 0 0 1 -.883 .993l-.117 .007h-6a1 1 0 0 1 -.993 -.883l-.007 -.117v-.734c-1.818 .26 -3.03 -.424 -4.11 -1.878l-.535 -.766c-.28 -.396 -.455 -.579 -.589 -.644l-.048 -.019a1 1 0 0 1 .564 -1.918c.642 .188 1.074 .568 1.57 1.239l.538 .769c.76 1.079 1.36 1.459 2.609 1.191l.001 -.678l-.018 -.168a5.03 5.03 0 0 1 -.021 -.824l.017 -.185l.019 -.12l-.108 -.024c-2.976 -.71 -4.703 -2.573 -4.875 -6.139l-.01 -.31l-.004 -.292a5.6 5.6 0 0 1 .908 -3.051l.152 -.222l.122 -.163l-.045 -.196a5.2 5.2 0 0 1 .145 -2.642l.1 -.282l.106 -.253a1 1 0 0 1 .529 -.514l.144 -.047l.154 -.03z" />
                   </svg>
-                  <span class="visually-hidden">Github</span>
+                  <span class="visually-hidden">GitHub</span>
                 </a>
               </li>
               <li>
@@ -1029,13 +1053,13 @@
                 </a>
               </li>
               <li>
-                <a href="https://www.linkedin.com/kpkrol85" target="_blank" rel="noopener noreferrer" aria-label="Profil KPKrol85 na Linkedin">
+                <a href="https://www.linkedin.com/kpkrol85" target="_blank" rel="noopener noreferrer" aria-label="Profil KPKrol85 na LinkedIn">
                   <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
                     <path stroke="none" d="M0 0h24v24H0z" fill="none" />
                     <path
                       d="M17 2a5 5 0 0 1 5 5v10a5 5 0 0 1 -5 5h-10a5 5 0 0 1 -5 -5v-10a5 5 0 0 1 5 -5zm-9 8a1 1 0 0 0 -1 1v5a1 1 0 0 0 2 0v-5a1 1 0 0 0 -1 -1m6 0a3 3 0 0 0 -1.168 .236l-.125 .057a1 1 0 0 0 -1.707 .707v5a1 1 0 0 0 2 0v-3a1 1 0 0 1 2 0v3a1 1 0 0 0 2 0v-3a3 3 0 0 0 -3 -3m-6 -3a1 1 0 0 0 -.993 .883l-.007 .127a1 1 0 0 0 1.993 .117l.007 -.127a1 1 0 0 0 -1 -1" />
                   </svg>
-                  <span class="visually-hidden">Facebook</span>
+                  <span class="visually-hidden">LinkedIn</span>
                 </a>
               </li>
             </ul>

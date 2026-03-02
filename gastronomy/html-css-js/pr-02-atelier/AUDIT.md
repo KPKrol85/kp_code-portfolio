@@ -1,120 +1,62 @@
-# AUDIT.md
+# 1. Executive Summary
+Projekt ma dojrzałą, modułową strukturę front-endową (podział CSS na warstwy `base/components/layout/pages`, modułowy JS, konfiguracja builda i walidacji w `package.json`). Architektura jest spójna dla statycznego serwisu wielostronicowego i zawiera elementy produkcyjne: manifest PWA, service worker, sitemap, robots i reguły nagłówków HTTP. Największe ryzyka nie są krytyczne runtime, ale dotyczą utrzymania i spójności (duplikacja kodu HTML, niespójności semantyczno-a11y i polityk deploymentowych).
 
-## 1. Executive summary
-- Zakres: pełny przegląd projektu `C:\Users\KPKro\MY FILES\active-work\pr-02-atelier` (HTML/CSS/JS, assets, config, deploy files, package scripts).
-- Wynik kontroli automatycznych:
-- `npm run lint` - pass.
-- `npm run validate:html` - pass.
-- `npm run check:links:dev` - pass (`Successfully scanned 492 links`).
-- `npm run check:a11y` - pass (`10/10 URLs passed`, WCAG2AA runner `htmlcs`).
-- Architektura CSS jest modularna i spójna z podziałem `base/layout/components/pages` oraz tokenami w `css/base/tokens.css`.
-- Nie stwierdzono krytycznych runtime blockerów w lokalnym środowisku deweloperskim.
-- `netlify.toml` not detected in project.
-- `vercel.json` not detected in project.
-- `.github` not detected in project.
+# 2. P0 — Critical Risks
+No P0 issues detected.
 
-## 2. P0 — Critical risks
-- Not detected in project for audited local runtime.
+# 3. Strengths
+- Spójny szkielet semantyczny i nawigacyjny na stronach (skip-link, `main`, nagłówki, aria-label w nawigacji), co poprawia dostępność bazową.
+- Rozbudowane metadane SEO i social dla głównych stron (canonical, OpenGraph, Twitter, JSON-LD).
+- Dobra strategia obrazów: formaty AVIF/WebP/JPG, `srcset`, `sizes`, deklarowane `width/height`, lazy loading poza kluczowymi zasobami.
+- Modularny pipeline developerski i quality-gates w `package.json` (lint, walidacja HTML, link-check, a11y-check).
+- Konfiguracja deploymentowa zawiera polityki bezpieczeństwa i cache-control oraz wydzielone zasoby statyczne o długim TTL.
 
-## 3. Strengths
-- Modular CSS architecture and tokenization are implemented and consistently imported from a single entry point.
-- Evidence: `css/style.css:1-25`, `css/base/tokens.css:1-152`.
-- Accessibility baseline is solid: skip link, keyboard navigation, focus-visible handling, aria state synchronization, no-JS fallback.
-- Evidence: `contact.html:80`, `js/features/nav.js:73-77`, `js/features/nav.js:266-273`, `css/base/base.css:3-12`, `css/components/states.css:37-48`.
-- Automated quality gates are present and operational.
-- Evidence: `package.json:30-38`, `.pa11yci`, `.htmlvalidate.json`.
-- Form implementation includes Netlify handling and honeypot anti-spam.
-- Evidence: `contact.html:187-188`, `contact.html:192`, `contact.html:217-225`.
-- Asset delivery strategy covers responsive images (AVIF/WEBP/JPG) and explicit intrinsic dimensions.
-- Evidence: image scan over all HTML files returned `missing width/height=0`.
+# 4. P1 — Exactly 3 Improvements Worth Doing Next
 
-## 4. P1 — 5 improvements worth doing next
-1. Title: Scope COEP policy to avoid third-party embed breakage
-- Reason: Global `Cross-Origin-Embedder-Policy: require-corp` can block cross-origin embeds such as Google Maps iframe in production.
-- Evidence: `_headers:9`, `contact.html:250-251`.
-- Suggested improvement: Narrow COEP to selected routes/assets that require it, or relax policy on pages that intentionally embed external iframes.
-- Status (2026-02-25): scoped in `_headers` with explicit `/contact.html` override using `Cross-Origin-Embedder-Policy: unsafe-none`.
+## 1) Duplikacja krytycznych fragmentów HTML między stronami
+**Reason:** Ten sam inline skrypt motywu i duże bloki header/footer/modal są kopiowane między wieloma dokumentami (`index.html`, `404.html`, `thank-you.html`, `offline.html`). To zwiększa koszt zmian i ryzyko dryfu implementacyjnego.
+**Suggested improvement:** Wydzielić wspólne layouty do procesu templatingu (np. partiale w build-stepie) albo minimum: przenieść skrypt motywu do jednego pliku i używać jednego include.
 
-2. Title: Align Service Worker precache list with runtime asset strategy
-- Reason: SW install list pre-caches `.min` assets while pages load non-min runtime assets (`style.css`, `script.js`), creating maintenance drift.
-- Evidence: `sw.js:12-13`, `index.html:88`, `index.html:833`.
-- Suggested improvement: Keep precache list synchronized with actually referenced production assets, generated during build.
-- Status (2026-02-25): `sw.js` precache includes both runtime non-min and build-stage `.min` variants to remove filename drift.
+## 2) Niespójna polityka COEP w `_headers`
+**Reason:** Dla `/contact.html` ustawiono `Cross-Origin-Embedder-Policy: unsafe-none`, a globalnie `/*` ma `require-corp`. Taki wyjątek zwiększa złożoność operacyjną i utrudnia przewidywalność zachowania produkcyjnego.
+**Suggested improvement:** Udokumentować techniczny powód wyjątku albo zunifikować politykę COEP, jeśli brak realnej zależności wymagającej odstępstwa.
 
-3. Title: Remove remaining `!important` from nav link decoration
-- Reason: `!important` increases selector coupling and complicates future component overrides.
-- Evidence: `css/components/nav.css:18`.
-- Suggested improvement: replace with explicit scope/order strategy in nav component styles.
+## 3) Service Worker oparty na ręcznie utrzymywanej liście cache
+**Reason:** `FILES_TO_CACHE` jest statyczne i nie obejmuje wszystkich stron HTML projektu (np. `contact.html`, `thank-you.html`, `404.html`), co utrudnia utrzymanie i przewidywalność offline po rozbudowie serwisu.
+**Suggested improvement:** Generować listę precache automatycznie w buildzie albo jasno rozdzielić: „app shell” vs „offline-only pages” z opisanym kryterium.
 
-4. Title: Add `contact.html` explicitly to link-check seed URLs
-- Reason: Link checks currently rely on crawl reachability for `contact.html`; explicit seeding gives deterministic coverage.
-- Evidence: `package.json:33-34` (seed list includes many pages but not direct `contact.html`).
-- Suggested improvement: append `http://127.0.0.1:5173/contact.html` to `check:links:dev` and `check:links:prod` seeds.
+# 5. P2 — Minor Refinements (optional)
+- Dodać automatyczny test spójności `sitemap.xml` vs lista stron publicznych (bez `noindex`) w CI.
+- Uporządkować metadane stron systemowych (`404.html`, `offline.html`, `thank-you.html`) pod jeden standard (np. jawne zasady OG/Twitter lub ich świadome wyłączenie).
+- Rozważyć przeniesienie części inline skryptów do plików z CSP-friendly nonce/hash policy (ułatwia twarde CSP).
 
-5. Title: Unify SEO metadata policy for utility pages
-- Reason: Utility pages use inconsistent SEO/OpenGraph structure (e.g., 404 has no canonical/OG; thank-you has canonical but no OG URL).
-- Evidence: `404.html:1-19`, `thank-you.html:7-17`.
-- Suggested improvement: define a clear policy for utility pages (minimal noindex metadata set) and apply consistently.
+# 6. Future Enhancements — Exactly 5 Ideas
+1. Dodać wizualne testy regresji (np. Playwright) dla kluczowych breakpointów i motywów light/dark.
+2. Wprowadzić automatyczny budżet wydajności (LCP/CLS/JS budget) blokujący regresje w CI.
+3. Dodać pre-renderowany komponent breadcrumbs na podstronach informacyjnych dla lepszej orientacji i SEO.
+4. Rozszerzyć JSON-LD o `BreadcrumbList` i `WebSite` z `SearchAction` (jeśli pojawi się wyszukiwarka treści).
+5. Dodać monitor integralności linków zewnętrznych (cron CI) z raportem zmian statusów HTTP.
 
-## 5. P2 — Minor refinements
-- `X-XSS-Protection` header is legacy/deprecated in modern browsers.
-- Evidence: `_headers:4`.
-- Optional refinement: remove legacy header and rely on CSP + modern browser protections.
+# 7. Compliance Checklist (pass / fail)
+- headings structure valid: **pass**
+- no broken links (excluding .min strategy): **pass**
+- no console.log: **pass**
+- aria attributes valid: **pass**
+- images have width/height: **pass**
+- no-JS baseline usable: **pass**
+- robots.txt present (if expected): **pass**
+- sitemap.xml present (if expected): **pass**
+- OpenGraph image present: **fail** (not detected in project for `404.html`, `offline.html`, `thank-you.html`)
+- JSON-LD valid (if present): **pass**
 
-- Service worker registration logs warning with emoji-formatted message in production console.
-- Evidence: `js/bootstrap.js:34`.
-- Optional refinement: standardize logging format for production observability.
+# 8. Architecture Score (1–10)
+**8/10**
+- structural consistency: **8/10**
+- accessibility maturity: **8/10**
+- performance discipline: **8/10**
+- SEO correctness: **8/10**
+- maintainability: **7/10**
 
-- `manifest.webmanifest` includes duplicated icon sources (same file for `any` and `maskable`).
-- Evidence: `manifest.webmanifest:16-37`.
-- Optional refinement: keep this only if intentional; otherwise reduce duplication in manifest maintenance.
-
-## 6. Future enhancements — 5 realistic ideas
-1. Add CI workflow (GitHub Actions or equivalent) running `npm run check` and `npm run check:server:prod` on pull requests.
-2. Add automated screenshot/visual regression checks for light/dark themes and mobile/desktop breakpoints.
-3. Generate sitemap and JSON-LD validation reports in CI to prevent metadata drift.
-4. Introduce build-time generation of SW precache manifest to avoid manual cache list maintenance.
-5. Add performance budget checks (Lighthouse CI or equivalent) for LCP/CLS/INP on core pages.
-
-## 7. Compliance checklist (pass / fail)
-- headings valid: PASS
-- Evidence: heading-flow scan for all HTML files -> no level jumps; every page has one `h1`.
-
-- no broken links (excluding intentional .min strategy): PASS
-- Evidence: `npm run check:links:dev` -> `Successfully scanned 492 links`.
-
-- no console.log: PASS
-- Evidence: static search `console.log` -> not detected in project source.
-
-- aria attributes valid: PASS
-- Evidence: `npm run check:a11y` -> 10/10 URLs passed; nav and dropdown state sync in `js/features/nav.js`.
-
-- images have width/height: PASS
-- Evidence: HTML scan -> `missing width/height=0` for all pages.
-
-- no-JS baseline usable: PASS
-- Evidence: no-JS fallback present on all pages; JS-enhanced nav degrades to visible nav when JS is absent (`html:not(.js) .nav-toggle`).
-
-- sitemap present (if expected): PASS
-- Evidence: `sitemap.xml` present and includes indexable core pages including `contact.html`.
-
-- robots present: PASS
-- Evidence: `robots.txt` present; page-level robots meta present across audited HTML.
-
-- OG image exists: PASS
-- Evidence: OG image path configured on indexable content pages and file exists in assets.
-
-- JSON-LD valid: PASS
-- Evidence: JSON-LD parse check passed on pages where JSON-LD is present; utility pages without JSON-LD are not detected as schema pages.
-
-## 8. Architecture Score (0–10)
-- BEM consistency: 8.6/10
-- Token usage: 8.8/10
-- Accessibility: 9.1/10
-- Performance: 8.4/10
-- Maintainability: 8.2/10
-- Total Architecture Score: 8.6/10
-
-## 9. Senior rating (1–10)
-- Senior rating: 8.6/10
-- Justification: Projekt jest spójny architektonicznie, ma działające quality gates i bardzo dobry poziom dostępności technicznej. Główne obszary do domknięcia dotyczą polityk deploy/security headerów oraz kilku punktów utrzymaniowych (precache alignment, metadata consistency, redukcja `!important`).
+# 9. Senior Rating (1–10)
+**8/10**
+Projekt jest technicznie mocny i gotowy na produkcyjne użycie dla serwisu statycznego. Główne braki dotyczą nie awarii runtime, lecz kosztu utrzymania przy dalszym skalowaniu (duplikacja layoutu, ręczne listy SW, wyjątki w nagłówkach). Po zamknięciu wskazanych P1 architektura będzie bliżej standardu „production hardening”.
