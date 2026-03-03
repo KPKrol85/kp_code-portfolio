@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="pl" class="no-js">
   <head>
     <meta charset="UTF-8" />
@@ -244,7 +244,7 @@
     <section id="strona-glowna" class="hero" aria-labelledby="hero-heading" aria-describedby="hero-lead">
       <div class="hero__media" aria-hidden="true">
         <div class="hero__bg-blur" aria-hidden="true"></div>
-        <picture class="hero-bg">
+        <picture class="hero__bg">
           <source
             type="image/avif"
             srcset="
@@ -285,14 +285,18 @@
             draggable="false" />
         </picture>
       </div>
-      <div class="container">
-        <h1 id="hero-heading">
+      <div class="container hero__container">
+        <h1 id="hero-heading" class="hero__title">
           SolidCraft — firma remontowo-budowlana
           <br />
-          <span class="accent">Solidnie. Terminowo. Pod klucz.</span>
+          <span class="hero__accent accent">
+            Solidnie. Terminowo.
+            <br />
+            Pod klucz.
+          </span>
         </h1>
-        <p class="lead" id="hero-lead" data-reveal="up" data-reveal-delay="80">Remonty mieszkań i domów, przebudowy oraz kompleksowe wykończenia wnętrz. Darmowa wycena w 24–48 godzin.</p>
-        <div class="hero-cta">
+        <p class="hero__lead lead" id="hero-lead" data-reveal="up" data-reveal-delay="80">Remonty mieszkań i domów, przebudowy oraz kompleksowe wykończenia wnętrz. Darmowa wycena w 24–48 godzin.</p>
+        <div class="hero__cta hero-cta">
           <a class="btn btn--ghost" href="#oferta" data-reveal="up" data-reveal-delay="160">Sprawdź ofertę</a>
           <a class="btn" href="tel:+48533537091" data-reveal="up" data-reveal-delay="240">Wyceń inwestycję</a>
         </div>
@@ -301,14 +305,16 @@
 
     <!-- Main -->
     <main id="main">
+      <!-- Oferta -->
       <section id="oferta" class="block" aria-labelledby="oferta-heading" aria-describedby="oferta-lead">
         <div class="container">
           <header class="block-head">
-            <h2 id="oferta-heading" data-reveal="up">REMONTY I WYKOŃCZENIA</h2>
-            <p id="oferta-lead" data-reveal="up" data-reveal-delay="80">Kompleksowe prace w mieszkaniach i domach — czysto, terminowo, z gwarancją.</p>
+            <h2 id="oferta-heading" class="block-head__title" data-reveal="up">REMONTY I WYKOŃCZENIA</h2>
+            <p id="oferta-lead" class="lead block-head__lead" data-reveal="up" data-reveal-delay="80">Kompleksowe prace w mieszkaniach i domach — czysto, terminowo, z gwarancją.</p>
           </header>
           <div class="services-grid" id="oferta-grid">
             <div class="services-list" id="oferta-list">
+              <!-- Item 01-->
               <article id="oferta-lazienki" class="card hover-card" aria-labelledby="h-lazienki" aria-describedby="d-lazienki" data-reveal="up" data-reveal-delay="80">
                 <a href="#kontakt" aria-label="Zamów wycenę — Łazienki">
                   <picture>
@@ -346,11 +352,12 @@
                       decoding="async" />
                   </picture>
                 </a>
-                <h3 id="h-lazienki">
+                <h3 class="card__title" id="h-lazienki">
                   <a href="oferta/lazienki.html">Łazienki</a>
                 </h3>
-                <p id="d-lazienki">Płytki wielkoformatowe, armatura, hydroizolacje, zabudowy i oświetlenie.</p>
+                <p class="card__desc" id="d-lazienki">Płytki wielkoformatowe, armatura, hydroizolacje, zabudowy i oświetlenie.</p>
               </article>
+
               <article id="oferta-malowanie" class="card hover-card" aria-labelledby="h-malowanie" aria-describedby="d-malowanie" data-reveal="up" data-reveal-delay="160">
                 <a href="#kontakt" aria-label="Zamów wycenę — Malowanie i gładzie">
                   <picture>
@@ -388,10 +395,10 @@
                       decoding="async" />
                   </picture>
                 </a>
-                <h3 id="h-malowanie">
+                <h3 class="card__title" id="h-malowanie">
                   <a href="oferta/malowanie.html">Malowanie &amp; gładzie</a>
                 </h3>
-                <p id="d-malowanie">Gładkie ściany, farby premium, precyzyjne odcięcia i szybkie terminy.</p>
+                <p class="card__desc" id="d-malowanie">Gładkie ściany, farby premium, precyzyjne odcięcia i szybkie terminy.</p>
               </article>
               <article id="oferta-kafelkowanie" class="card hover-card" aria-labelledby="h-kafelkowanie" aria-describedby="d-kafelkowanie" data-reveal="up" data-reveal-delay="240">
                 <a href="#kontakt" aria-label="Zamów wycenę — Kafelkowanie">
@@ -439,10 +446,10 @@
                       decoding="async" />
                   </picture>
                 </a>
-                <h3 id="h-kafelkowanie">
+                <h3 class="card__title" id="h-kafelkowanie">
                   <a href="oferta/kafelkowanie.html">Kafelkowanie</a>
                 </h3>
-                <p id="d-kafelkowanie">Tarasy, kuchnie, łazienki — równe fugi, poziomice laserowe i detale.</p>
+                <p class="card__desc" id="d-kafelkowanie">Tarasy, kuchnie, łazienki — równe fugi, poziomice laserowe i detale.</p>
               </article>
               <article id="oferta-elektryka" class="card hover-card" aria-labelledby="h-elektryka" aria-describedby="d-elektryka" data-reveal="up" data-reveal-delay="320">
                 <a href="#kontakt" aria-label="Zamów wycenę — Elektryka">
@@ -490,10 +497,10 @@
                       decoding="async" />
                   </picture>
                 </a>
-                <h3 id="h-elektryka">
+                <h3 class="card__title" id="h-elektryka">
                   <a href="oferta/elektryka.html">Elektryka</a>
                 </h3>
-                <p id="d-elektryka">Przeróbki instalacji, białe montaże i próby szczelności.</p>
+                <p class="card__desc" id="d-elektryka">Przeróbki instalacji, białe montaże i próby szczelności.</p>
               </article>
               <article id="oferta-hydraulika" class="card hover-card" aria-labelledby="h-hydraulika" aria-describedby="d-hydraulika" data-reveal="up" data-reveal-delay="400">
                 <a href="#kontakt" aria-label="Zamów wycenę — Hydraulika">
@@ -541,10 +548,10 @@
                       decoding="async" />
                   </picture>
                 </a>
-                <h3 id="h-hydraulika">
+                <h3 class="card__title" id="h-hydraulika">
                   <a href="oferta/hydraulika.html">Hydraulika</a>
                 </h3>
-                <p id="d-hydraulika">Wszystkie prace hydrauliczne.</p>
+                <p class="card__desc" id="d-hydraulika">Wszystkie prace hydrauliczne.</p>
               </article>
               <article id="oferta-kompleksowe" class="card hover-card" aria-labelledby="h-kompleksowe" aria-describedby="d-kompleksowe" data-reveal="up" data-reveal-delay="480">
                 <a href="#kontakt" aria-label="Zamów wycenę — Remonty kompleksowe">
@@ -583,10 +590,10 @@
                       decoding="async" />
                   </picture>
                 </a>
-                <h3 id="h-kompleksowe">
+                <h3 class="card__title" id="h-kompleksowe">
                   <a href="oferta/remonty.html">Remonty kompleksowe</a>
                 </h3>
-                <p id="d-kompleksowe">Pełna koordynacja prac: projekt, demontaż, instalacje, wykończenia i sprzątanie.</p>
+                <p class="card__desc" id="d-kompleksowe">Pełna koordynacja prac: projekt, demontaż, instalacje, wykończenia i sprzątanie.</p>
               </article>
             </div>
           </div>
@@ -595,34 +602,44 @@
           </div>
         </div>
       </section>
-      <section id="realizacje" class="logos" aria-labelledby="logos-heading">
+
+      <!-- Realizacje -->
+      <section id="realizacje" class="partners" aria-labelledby="partners-heading">
         <div class="container">
-          <h2 id="logos-heading" data-reveal="up" data-reveal-delay="80">Firmy, które nam zaufały</h2>
-          <ul class="logos-grid" aria-label="Logotypy klientów">
-            <li class="logo" data-reveal="up" data-reveal-delay="100">
-              <img class="logo-img" src="assets/img/partners-logos/partner-01-80x60.svg" width="80" height="60" alt="" aria-hidden="true" loading="lazy" decoding="async" />
+          <h2 id="partners-heading" class="partners__title" data-reveal="up" data-reveal-delay="80">Firmy, które nam zaufały</h2>
+
+          <ul class="partners__grid" aria-label="Logotypy klientów">
+            <li class="partners__item" data-reveal="up" data-reveal-delay="100">
+              <img class="partners__logo" src="assets/img/partners-logos/partner-01-80x60.svg" width="80" height="60" alt="" aria-hidden="true" loading="lazy" decoding="async" />
             </li>
-            <li class="logo" data-reveal="down" data-reveal-delay="160">
-              <img class="logo-img" src="assets/img/partners-logos/partner-02-80x60.svg" width="80" height="60" alt="" aria-hidden="true" loading="lazy" decoding="async" />
+
+            <li class="partners__item" data-reveal="down" data-reveal-delay="160">
+              <img class="partners__logo" src="assets/img/partners-logos/partner-02-80x60.svg" width="80" height="60" alt="" aria-hidden="true" loading="lazy" decoding="async" />
             </li>
-            <li class="logo" data-reveal="up" data-reveal-delay="220">
-              <img class="logo-img" src="assets/img/partners-logos/partner-03-80x60.svg" width="80" height="60" alt="" aria-hidden="true" loading="lazy" decoding="async" />
+
+            <li class="partners__item" data-reveal="up" data-reveal-delay="220">
+              <img class="partners__logo" src="assets/img/partners-logos/partner-03-80x60.svg" width="80" height="60" alt="" aria-hidden="true" loading="lazy" decoding="async" />
             </li>
-            <li class="logo" data-reveal="down" data-reveal-delay="280">
-              <img class="logo-img" src="assets/img/partners-logos/partner-04-80x60.svg" width="80" height="60" alt="" aria-hidden="true" loading="lazy" decoding="async" />
+
+            <li class="partners__item" data-reveal="down" data-reveal-delay="280">
+              <img class="partners__logo" src="assets/img/partners-logos/partner-04-80x60.svg" width="80" height="60" alt="" aria-hidden="true" loading="lazy" decoding="async" />
             </li>
-            <li class="logo" data-reveal="up" data-reveal-delay="340">
-              <img class="logo-img" src="assets/img/partners-logos/partner-05-80x60.svg" width="80" height="60" alt="" aria-hidden="true" loading="lazy" decoding="async" />
+
+            <li class="partners__item" data-reveal="up" data-reveal-delay="340">
+              <img class="partners__logo" src="assets/img/partners-logos/partner-05-80x60.svg" width="80" height="60" alt="" aria-hidden="true" loading="lazy" decoding="async" />
             </li>
-            <li class="logo" data-reveal="down" data-reveal-delay="400">
-              <img class="logo-img" src="assets/img/partners-logos/partner-06-80x60.svg" width="80" height="60" alt="" aria-hidden="true" loading="lazy" decoding="async" />
+
+            <li class="partners__item" data-reveal="down" data-reveal-delay="400">
+              <img class="partners__logo" src="assets/img/partners-logos/partner-06-80x60.svg" width="80" height="60" alt="" aria-hidden="true" loading="lazy" decoding="async" />
             </li>
           </ul>
-          <div class="center" data-reveal="up" data-reveal-delay="520">
+
+          <div class="partners__cta" data-reveal="up" data-reveal-delay="520">
             <a class="btn" href="#kontakt">Formularz</a>
           </div>
         </div>
       </section>
+      <!-- Opinie -->
       <section id="opinie" class="block testimonials" aria-labelledby="opinie-heading" aria-describedby="opinie-desc">
         <div class="container">
           <header class="block-head">

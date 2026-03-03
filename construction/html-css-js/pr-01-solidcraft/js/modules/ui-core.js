@@ -316,7 +316,7 @@ function initHeroBlurSync() {
   const ac = new AbortController();
   const { signal } = ac;
   initHeroBlurSync._abort = ac;
-  const img = document.querySelector(".hero-bg img");
+  const img = document.querySelector(".hero__bg img");
   const blur = document.querySelector(".hero__bg-blur");
   if (!img || !blur) return;
   const pic = img.closest("picture") || null;

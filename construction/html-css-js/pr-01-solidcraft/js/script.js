@@ -53,7 +53,7 @@ const runInit = () => {
   if (has("[data-reveal]")) initScrollReveal?.();
   if (has(".theme-toggle")) initThemeToggle?.();
   if (has(".nav-menu li > a.btn.btn--sm")) initRipple?.();
-  if (has(".hero-bg img") && has(".hero__bg-blur")) initHeroBlurSync?.();
+  if (has(".hero__bg img") && has(".hero__bg-blur")) initHeroBlurSync?.();
 
   if (has("#oferta .card picture img, .gallery .gallery-item picture img"))
     initOfertaLightbox?.();

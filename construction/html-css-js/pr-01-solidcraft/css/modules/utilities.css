@@ -104,6 +104,7 @@
   }
 }
 
+/* Banner */
 .cc-banner {
   position: fixed;
   inset: auto 0 16px 0;
@@ -235,6 +236,8 @@
   }
 }
 
+
+/* Lightbox */
 .lb-backdrop {
   position: fixed;
   inset: 0;
@@ -371,6 +374,8 @@ body.lb-no-scroll {
   }
 }
 
+/* Buttons */
+/* btn */
 .btn {
   position: relative;
   overflow: hidden;
@@ -378,13 +383,13 @@ body.lb-no-scroll {
   align-items: center;
   justify-content: center;
   min-height: 44px;
-  padding: 12px 22px;
-  border-radius: 999px;
+  padding: var(--space-1) var(--space-3);
+  border-radius: var(--radius-pill);
   background: var(--brand);
-  color: #fff;
+  color: var(--fg);
   font-weight: 700;
-  font-size: 1rem;
-  line-height: 1.1;
+  font-size: var(--fs-3);
+  line-height: var(--lh-tight);
   text-decoration: none;
   border: none;
   box-shadow:
@@ -398,7 +403,6 @@ body.lb-no-scroll {
   -webkit-tap-highlight-color: transparent;
   isolation: isolate;
 }
-
 .btn:hover {
   background: var(--brand-grad);
   transform: translateY(-2px);
@@ -406,22 +410,19 @@ body.lb-no-scroll {
     0 14px 28px rgba(2, 8, 23, 0.18),
     0 0 0 1px rgba(255, 255, 255, 0.25) inset;
 }
-
 .btn:active {
   transform: translateY(0);
 }
-
 .btn:focus-visible {
   outline: 3px solid var(--ring);
   outline-offset: 2px;
 }
-
 .btn:disabled,
 .btn[aria-disabled="true"] {
   opacity: 0.6;
   pointer-events: none;
 }
-
+/* btn-ghost */
 .btn--ghost {
   background: transparent;
   color: var(--fg);
@@ -432,14 +433,12 @@ body.lb-no-scroll {
     color 0.2s ease,
     border-color 0.2s ease;
 }
-
 .btn--ghost:hover,
 .btn--ghost:focus-visible {
   background: color-mix(in srgb, #000 6%, transparent);
   border-color: var(--line-strong);
   color: var(--fg);
 }
-
 .btn::before {
   content: "";
   position: absolute;
@@ -458,16 +457,8 @@ body.lb-no-scroll {
   transition: transform 0.55s ease;
   pointer-events: none;
 }
-
 .btn:hover::before {
   transform: translateX(260%) rotate(20deg);
-}
-
-@media (max-width: 640px) {
-  .btn {
-    width: 60%;
-    justify-content: center;
-  }
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -479,6 +470,8 @@ body.lb-no-scroll {
     display: none;
   }
 }
+
+
 
 :root[data-theme="light"] {
   color-scheme: light;
@@ -609,8 +602,8 @@ body.lb-no-scroll {
   .hero {
     min-height: clamp(72vh, 82vh, 94vh);
   }
-  .hero .hero-bg img,
-  .hero-bg img {
+  .hero .hero__bg img,
+  .hero__bg img {
     object-position: center center;
   }
   #oferta > .container {
