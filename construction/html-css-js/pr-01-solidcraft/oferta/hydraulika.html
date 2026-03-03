@@ -167,26 +167,30 @@
       <div class="container header-bar">
         <a class="brand" href="../index.html#top" aria-label="Strona główna — SolidCraft">
           <picture class="brand-logo">
-            <img src="../assets/img/logo/logo-light.svg" width="512" height="512" alt="" aria-hidden="true" class="logo--light" loading="eager" fetchpriority="high" decoding="async" />
-            <img src="../assets/img/logo/logo-dark.svg" width="512" height="512" alt="" aria-hidden="true" class="logo--dark" loading="eager" fetchpriority="high" decoding="async" />
+            <img src="../assets/img/logo/logo-light.svg" width="512" height="512" alt="" aria-hidden="true" class="ft-logo logo--light" loading="eager" fetchpriority="high" decoding="async" />
+            <img src="../assets/img/logo/logo-dark.svg" width="512" height="512" alt="" aria-hidden="true" class="ft-logo logo--dark" loading="eager" fetchpriority="high" decoding="async" />
           </picture>
           <span class="brand-name">SolidCraft</span>
         </a>
         <nav class="nav" aria-label="Główna nawigacja">
           <ul id="navMenu" class="nav-menu">
-            <li><a href="../index.html#top">Strona główna</a></li>
+            <li>
+              <a href="../index.html#top" class="scroll-top">Strona główna</a>
+            </li>
             <li class="nav-item has-dropdown">
               <a id="dd-oferta-trigger" href="../index.html#oferta" class="nav-link dropdown-trigger" aria-expanded="false" aria-haspopup="true" aria-controls="dd-oferta">
                 Oferta
                 <span class="caret" aria-hidden="true">▾</span>
               </a>
               <ul id="dd-oferta" class="dropdown" aria-label="Podmenu: Oferta" aria-labelledby="dd-oferta-trigger">
-                <li><a href="lazienki.html">Łazienki</a></li>
-                <li><a href="malowanie.html">Malowanie &amp; gładzie</a></li>
-                <li><a href="kafelkowanie.html">Kafelkowanie</a></li>
-                <li><a href="elektryka.html">Elektryka</a></li>
-                <li><a href="hydraulika.html">Hydraulika</a></li>
-                <li><a href="remonty.html">Remonty</a></li>
+                <li><a href="../oferta/lazienki.html">Łazienki</a></li>
+                <li>
+                  <a href="../oferta/malowanie.html">Malowanie &amp; gładzie</a>
+                </li>
+                <li><a href="../oferta/kafelkowanie.html">Kafelkowanie</a></li>
+                <li><a href="../oferta/elektryka.html">Elektryka</a></li>
+                <li><a href="../oferta/hydraulika.html">Hydraulika</a></li>
+                <li><a href="../oferta/remonty.html">Remonty</a></li>
               </ul>
             </li>
             <li><a href="../index.html#realizacje">Realizacje</a></li>
@@ -596,18 +600,17 @@
       <div class="container">
         <h2 class="vh" id="footer-heading">Stopka serwisu</h2>
         <div class="ft-grid">
+          <!-- Brand  -->
           <div class="ft-col" data-reveal="up" data-reveal-delay="80">
             <a href="../index.html#top" class="brand-footer" aria-label="Strona główna">
               <picture>
-                <source srcset="../assets/img/logo/logo-dark.svg" type="image/png" />
+                <source srcset="../assets/img/logo/logo-dark.svg" type="image/svg+xml" />
                 <img src="../assets/img/logo/logo-dark.svg" alt="" aria-hidden="true" class="ft-logo" width="512" height="512" loading="lazy" decoding="async" />
               </picture>
             </a>
-            <p class="ft-lead">
-              SolidCraft to firma remontowo-budowlana specjalizująca się w kompleksowych remontach mieszkań i domów. Stawiamy na solidne wykonanie, terminowość oraz nowoczesne rozwiązania dopasowane
-              do potrzeb klientów.
-            </p>
+            <p class="ft-lead">SolidCraft to firma remontowo-budowlana realizująca kompleksowe remonty mieszkań i domów. Gwarantujemy solidne wykonanie i terminowość.</p>
           </div>
+          <!-- Navigation -->
           <nav class="ft-col" aria-labelledby="ft-nav-heading">
             <h3 class="ft-h" id="ft-nav-heading" data-reveal="up" data-reveal-delay="160">Nawigacja</h3>
             <ul class="ft-links" data-reveal="up" data-reveal-delay="160">
@@ -640,7 +643,7 @@
               <noscript><p>Mapa wymaga JavaScript. Adres: ul. Marynarki Wojennej 12/31, 33-100 Tarnów.</p></noscript>
             </div>
             <address class="ft-address">
-              <p><strong>SolidCraft</strong></p>
+              <p>SolidCraft</p>
               <p>
                 ul. Marynarki Wojennej 12/31,
                 <br />
@@ -665,6 +668,7 @@
             </div>
           </div>
         </div>
+        <!-- Kontakt i wycena -->
         <div class="ft-contact-bar" aria-label="Kontakt">
           <h3 class="ft-h" id="ft-contact-heading">Kontakt i wycena</h3>
           <ul class="ft-contact" aria-label="Dane kontaktowe">
@@ -703,7 +707,7 @@
           <p>
             ©
             <span id="year"></span>
-            KP_Code Digital Studio. Wszelkie prawa zastrzeżone.
+            KP_Code Digital Studio | Wszelkie prawa zastrzeżone.
           </p>
         </div>
       </div>
