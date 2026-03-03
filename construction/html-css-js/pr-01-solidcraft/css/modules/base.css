@@ -131,28 +131,14 @@ small {
   font-size: var(--fs-1)
 }
 
+.block-head__title {
+  margin: 0 0 var(--space-4);
+}
 .lead {
   max-width: 65ch;
   font-weight: 400;
   font-size: var(--fs-3);
   line-height: var(--lh-body);
-}
-
-
-:root[data-theme="dark"] .lead {
-  color: color-mix(in srgb, var(--fg) 92%, #fff);
-}
-
-.icon svg {
-  display: block;
-}
-
-.icon,
-.i {
-  width: 20px;
-  height: 20px;
-  flex: 0 0 auto;
-  opacity: 0.9;
 }
 
 .thumb--1x1 {
