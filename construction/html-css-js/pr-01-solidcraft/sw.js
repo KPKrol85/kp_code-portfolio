@@ -1,5 +1,5 @@
 const APP_ID = "solidcraft";
-const CACHE_VERSION = "1.0.0";
+const CACHE_VERSION = "1.0.1";
 const CACHE_NAME = `${APP_ID}-v${CACHE_VERSION}`;
 
 const ASSETS = [
