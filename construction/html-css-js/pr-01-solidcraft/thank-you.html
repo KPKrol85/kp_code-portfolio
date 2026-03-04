@@ -39,7 +39,7 @@
   </head>
 
   <!-- Body -->
-  <body class="site">
+  <body class="page page-status page-status--thank-you">
     <a class="skip" href="#main">Pomiń do treści</a>
     <div id="top" aria-hidden="true" class="top-anchor"></div>
 
@@ -102,19 +102,12 @@
     </header>
 
     <!-- Main -->
-    <main id="main" tabindex="-1" aria-labelledby="thank-you-heading">
-      <section class="cta">
-        <div class="container cta-wrap">
-          <div class="cta-text">
-            <h1 id="thank-you-heading">Dziękujemy!</h1>
-            <p>Wiadomość została wysłana. Skontaktujemy się z Tobą wkrótce, aby omówić szczegóły i przygotować wycenę.</p>
-            <div class="hero-cta">
-              <a class="btn" href="index.html">Wróć na stronę główną</a>
-              <a class="btn btn--ghost" href="index.html#kontakt">Przejdź do kontaktu</a>
-            </div>
-          </div>
-        </div>
-      </section>
+    <main class="section page-status__main" id="main" tabindex="-1" aria-labelledby="thank-you-title">
+      <div class="container page-status__container">
+        <h1 id="thank-you-title" class="page-status__title">Dziękujemy!</h1>
+        <p class="page-status__text">Wiadomość została wysłana. Skontaktujemy się z Tobą wkrótce, aby omówić szczegóły i przygotować wycenę.</p>
+        <a href="/" class="btn btn--primary page-status__cta" aria-label="Wróć na stronę główną">Strona główna</a>
+      </div>
     </main>
 
     <!-- Footer -->

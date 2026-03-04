@@ -970,7 +970,7 @@
   margin: var(--space-8) auto;
   padding-inline: var(--space-2);
   text-align: left;
-   max-width: 70ch;
+  max-width: 70ch;
 }
 .doc-page h1 {
   margin: var(--space-4) auto;
@@ -1027,9 +1027,9 @@
   font-size: var(--fs-3);
   line-height: var(--lh-body);
   color: inherit;
- max-width: 72ch;
- hyphens: auto;
- text-wrap: pretty;
+  max-width: 72ch;
+  hyphens: auto;
+  text-wrap: pretty;
 }
 .legal-doc {
   margin-inline: auto;
@@ -1098,7 +1098,9 @@
   color: var(--c-muted);
   text-decoration: none;
   opacity: 0.35;
-  transition: opacity 0.2s ease, color 0.2s ease;
+  transition:
+    opacity 0.2s ease,
+    color 0.2s ease;
 }
 
 @media (hover: hover) {
@@ -1108,7 +1110,7 @@
   .doc-content a:hover {
     color: var(--brand);
   }
-   .doc-back:hover {
+  .doc-back:hover {
     opacity: 1;
     color: var(--brand);
   }
@@ -1151,26 +1153,47 @@
   }
 }
 
-/* 404 */
-.page-404 {
+/* Status pages (404 / offline / thank-you) */
+.page-status {
   min-height: 100vh;
 }
-.page-404 .error-container {
+.page-status main.section {
+  min-height: min(70vh, 520px);
+  display: grid;
+  place-items: center;
+  padding: 0;
+}
+.page-status .page-status__container {
+  display: flex;
+  flex-direction: column;
   text-align: center;
-  padding: var(--space-4) var(--space-2);
-  max-width: 660px;
-  margin: var(--space-8) auto;
+  padding: var(--space-4);
+  max-width: clamp(320px, 90vw, 480px);
+  margin: var(--space-1) auto;
   background: var(--brand-grad);
   border-radius: var(--radius-3);
   box-shadow: var(--shadow);
 }
-.page-404 .error-title {
-  font-size: clamp(2.5rem, 6vw, 4rem);
-  margin-bottom: 1rem;
-  color: var(--c-accent);
+.page-status .page-status__title {
+  margin: var(--space-3);
+  color: var(--c-ink);
 }
-.page-404 .error-text {
-  font-size: 1.25rem;
-  color: var(--c-muted);
-  margin-bottom: 2rem;
+.page-status .page-status__text {
+  font-size: var(--space-3);
+  color: var(--c-ink);
+  margin: var(--space-4) 0;
+  font-weight: bold;
+  letter-spacing: var(--ls-3);
+  line-height: var(--lh-body);
+}
+.page-status .page-status__cta {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: min(280px, 100%);
+  margin: var(--space-4) auto 0;
+  color: #1f2937;
+  text-transform: uppercase;
+  line-height: 1;
+  font-size: var(--fs-3);
 }

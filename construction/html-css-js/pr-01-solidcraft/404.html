@@ -128,7 +128,7 @@
   </head>
 
   <!-- Body -->
-  <body class="page page-404">
+  <body class="page page-status page-status--404">
     <a class="skip" href="#main">Pomiń do treści</a>
     <div id="top" aria-hidden="true" class="top-anchor"></div>
 
@@ -191,11 +191,11 @@
     </header>
 
     <!-- Main -->
-    <main class="section" id="main" tabindex="-1" aria-labelledby="error-title">
-      <div class="container error-container">
-        <h1 id="error-title" class="error-title">404</h1>
-        <p class="error-text">Strona, której szukasz, nie istnieje lub została przeniesiona.</p>
-        <a href="/" class="btn btn--primary" aria-label="Wróć na stronę główną">Wróć na stronę główną</a>
+    <main class="section page-status__main" id="main" tabindex="-1" aria-labelledby="error-title">
+      <div class="container page-status__container">
+        <h1 id="error-title" class="page-status__title">404</h1>
+        <p class="page-status__text">Strona, której szukasz, nie istnieje lub została przeniesiona.</p>
+        <a href="/" class="btn btn--primary page-status__cta" aria-label="Wróć na stronę główną">Strona główna</a>
       </div>
     </main>
 

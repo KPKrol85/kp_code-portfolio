@@ -26,7 +26,7 @@
   </head>
 
   <!-- Body -->
-  <body class="page page-offline">
+  <body class="page page-status page-status--offline">
     <a class="skip" href="#main">Pomiń do treści</a>
     <div id="top" aria-hidden="true" class="top-anchor"></div>
 
@@ -88,11 +88,12 @@
       </div>
     </header>
 
-    <main class="section" id="main" tabindex="-1" aria-labelledby="offline-title">
-      <div class="container error-container">
-        <h1 id="offline-title" class="error-title">Jesteś offline</h1>
-        <p class="error-text">Wygląda na to, że nie masz teraz połączenia z internetem. Sprawdź sieć i spróbuj ponownie.</p>
-        <a href="/" class="btn btn--primary" aria-label="Przejdź do strony głównej">Wróć na stronę główną</a>
+    <!-- Main -->
+    <main class="section page-status__main" id="main" tabindex="-1" aria-labelledby="offline-title">
+      <div class="container page-status__container">
+        <h1 id="offline-title" class="page-status__title">Jesteś offline</h1>
+        <p class="page-status__text">Wygląda na to, że nie masz teraz połączenia z internetem. Sprawdź sieć i spróbuj ponownie.</p>
+        <a href="/" class="btn btn--primary page-status__cta" aria-label="Wróć na stronę główną">Strona główna</a>
       </div>
     </main>
 
