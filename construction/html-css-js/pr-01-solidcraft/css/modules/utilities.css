@@ -236,7 +236,6 @@
   }
 }
 
-
 /* Lightbox */
 .lb-backdrop {
   position: fixed;
@@ -470,8 +469,6 @@ body.lb-no-scroll {
     display: none;
   }
 }
-
-
 
 :root[data-theme="light"] {
   color-scheme: light;

@@ -13,10 +13,10 @@
     "start": "npm run dev",
     "dev": "live-server --port=15500 --open=index.html --quiet",
     "build:css": "postcss css/style.css --no-map -o css/style.min.css && node scripts/verify-css-build.js",
-    "build:js": "esbuild js/script.js --bundle --minify --target=es2018 --format=iife --outfile=js/script.min.js && node scripts/verify-js-build.js",
+    "build:js": "esbuild js/theme-init.js --bundle --minify --target=es2018 --format=iife --outfile=js/theme-init.min.js && esbuild js/script.js --bundle --minify --target=es2018 --format=iife --outfile=js/script.min.js && node scripts/verify-js-build.js",
     "build": "npm run build:css && npm run build:js",
     "watch:css": "postcss css/style.css --watch --no-map -o css/style.min.css",
-    "watch:js": "esbuild js/script.js --bundle --minify --target=es2018 --format=iife --outfile=js/script.min.js --watch=forever",
+    "watch:js": "esbuild js/theme-init.js --bundle --minify --target=es2018 --format=iife --outfile=js/theme-init.min.js --watch=forever & esbuild js/script.js --bundle --minify --target=es2018 --format=iife --outfile=js/script.min.js --watch=forever",
     "build:dist": "node scripts/build-dist.js && npm run build:sitemap",
     "format": "prettier -w \"**/*.{html,css,js,json,md}\"",
     "format:check": "prettier -c \"**/*.{html,css,js,json,md}\"",
@@ -27,12 +27,13 @@
     "check:html": "npm run check:links && npm run check:assets",
     "check:predeploy": "npm run check:html && npm run qa:a11y",
     "qa:a11y": "node scripts/qa-a11y.mjs",
-    "build:sitemap": "node scripts/generate-sitemap.mjs"
+    "build:sitemap": "cross-env SITE_URL=https://construction-pr01-solidcraft.netlify.app node scripts/generate-sitemap.mjs"
   },
   "devDependencies": {
     "autoprefixer": "^10.4.21",
     "axe-core": "^4.10.3",
     "baseline-browser-mapping": "^2.10.0",
+    "cross-env": "^10.1.0",
     "cssnano": "^6.1.2",
     "esbuild": "^0.27.0",
     "live-server": "1.2.2",

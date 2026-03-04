@@ -28,7 +28,13 @@ const ASSETS = [
   "/assets/img/favicon/web-app-manifest-512x512.png",
 ];
 
-const STATIC_DESTINATIONS = new Set(["style", "script", "font", "image", "manifest"]);
+const STATIC_DESTINATIONS = new Set([
+  "style",
+  "script",
+  "font",
+  "image",
+  "manifest",
+]);
 
 const isCacheableResponse = (response) => response && response.ok;
 
@@ -38,7 +44,17 @@ self.addEventListener("install", (event) => {
 });
 
 self.addEventListener("activate", (event) => {
-  event.waitUntil(caches.keys().then((keys) => Promise.all(keys.filter((k) => k.startsWith(CACHE_PREFIX) && k !== CACHE_NAME).map((k) => caches.delete(k)))));
+  event.waitUntil(
+    caches
+      .keys()
+      .then((keys) =>
+        Promise.all(
+          keys
+            .filter((k) => k.startsWith(CACHE_PREFIX) && k !== CACHE_NAME)
+            .map((k) => caches.delete(k)),
+        ),
+      ),
+  );
   self.clients.claim();
 });
 
@@ -50,8 +66,13 @@ self.addEventListener("fetch", (event) => {
   if (req.method !== "GET") return;
   if (!isSameOrigin) return;
 
-  const isHTML = req.mode === "navigate" || req.headers.get("accept")?.includes("text/html");
-  const isStaticAsset = STATIC_DESTINATIONS.has(req.destination) || /\.(?:css|js|mjs|png|jpg|jpeg|gif|svg|webp|avif|ico|woff2?|ttf|otf|eot|webmanifest)$/i.test(url.pathname);
+  const isHTML =
+    req.mode === "navigate" || req.headers.get("accept")?.includes("text/html");
+  const isStaticAsset =
+    STATIC_DESTINATIONS.has(req.destination) ||
+    /\.(?:css|js|mjs|png|jpg|jpeg|gif|svg|webp|avif|ico|woff2?|ttf|otf|eot|webmanifest)$/i.test(
+      url.pathname,
+    );
 
   if (isHTML) {
     event.respondWith(
@@ -62,7 +83,11 @@ self.addEventListener("fetch", (event) => {
           }
           return res;
         })
-        .catch(() => caches.match(req, { ignoreSearch: true }).then((cached) => cached || caches.match("/offline.html"))),
+        .catch(() =>
+          caches
+            .match(req, { ignoreSearch: true })
+            .then((cached) => cached || caches.match("/offline.html")),
+        ),
     );
     return;
   }
