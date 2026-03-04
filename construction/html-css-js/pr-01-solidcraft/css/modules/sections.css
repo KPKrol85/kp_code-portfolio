@@ -543,129 +543,6 @@
   }
 }
 
-/* FAQ */
-#faq {
-  scroll-margin-top: calc(var(--header-h) + var(--space-2));
-  --faq-gutter: clamp(var(--space-3), 2vw, var(--space-5));
-  --faq-radius: var(--radius-3);
-}
-#faq .container {
-  overflow: visible;
-}
-#faq .faq-list {
-  max-width: 1040px;
-  margin-inline: auto;
-  display: grid;
-  gap: var(--space-3);
-  list-style: none;
-  padding-block: var(--space-4);
-  padding-inline: var(--faq-gutter);
-}
-#faq .faq-list::after {
-  content: "";
-  display: block;
-  height: var(--space-4);
-}
-#faq .faq-list details {
-  border: 1px solid var(--c-border);
-  border-radius: var(--faq-radius);
-  background: var(--c-surface);
-  box-shadow: var(--shadow-sm);
-  transition:
-    box-shadow 0.2s ease,
-    transform 0.2s ease,
-    border-color 0.2s ease;
-  overflow: visible;
-}
-#faq .faq-list details:hover,
-#faq .faq-list details[open] {
-  box-shadow: var(--shadow-md);
-  transform: translateY(-1px);
-  border-color: var(--c-border-strong);
-}
-#faq .faq-list summary {
-  --faq-caret-w: 24px;
-  --faq-caret-gap: var(--space-4);
-  position: relative;
-  display: flex;
-  align-items: center;
-  gap: var(--space-3);
-  cursor: pointer;
-  min-height: var(--space-8);
-  line-height: var(--lh-title);
-  padding: var(--space-4) calc(var(--space-4) + var(--faq-caret-w) + var(--faq-caret-gap)) var(--space-4) var(--space-4);
-  font-weight: 600;
-  border-radius: inherit;
-  list-style: none;
-  overflow-wrap: anywhere;
-}
-#faq .faq-list summary::-webkit-details-marker {
-  display: none;
-}
-#faq .faq-list summary::after {
-  content: "▾";
-  position: absolute;
-  right: var(--space-3);
-  font-size: var(--fs-4);
-  line-height: var(--lh-tight);
-  opacity: 0.8;
-  transform: translateY(-1px) rotate(0deg);
-  transition:
-    transform 0.25s ease,
-    opacity 0.2s ease;
-}
-#faq .faq-list details[open] > summary {
-  font-weight: 700;
-}
-#faq .faq-list details[open] > summary::after {
-  transform: translateY(-1px) rotate(180deg);
-  opacity: 1;
-}
-#faq .faq-list summary:focus-visible {
-  outline: 3px solid var(--ring);
-  outline-offset: var(--space-2);
-}
-.faq-list .answer {
-  padding: 0 var(--space-4) var(--space-4);
-  color: var(--c-muted);
-  line-height: var(--lh-body);
-}
-#faq .faq-list .answer p {
-  margin: var(--space-2) 0;
-}
-:root[data-theme="dark"] #faq .faq-list details {
-  box-shadow:
-    0 2px 10px rgba(0, 0, 0, 0.45),
-    0 0 0 1px rgba(255, 255, 255, 0.05) inset;
-}
-:root[data-theme="dark"] #faq .faq-list details:hover,
-:root[data-theme="dark"] #faq .faq-list details[open] {
-  box-shadow:
-    0 10px 24px rgba(0, 0, 0, 0.5),
-    0 0 0 1px rgba(255, 255, 255, 0.08) inset;
-  border-color: rgba(255, 255, 255, 0.12);
-}
-[id^="faq-"] {
-  scroll-margin-top: var(--header-h, 72px);
-}
-@media (min-width: 480px) {
-  #faq .faq-list summary {
-    --faq-caret-w: 22px;
-    --faq-caret-gap: var(--space-4);
-    padding: var(--space-3) calc(var(--space-4) + var(--faq-caret-w) + var(--faq-caret-gap)) var(--space-3) var(--space-4);
-  }
-}
-@media (prefers-reduced-motion: reduce) {
-  #faq .faq-list details,
-  #faq .faq-list summary::after {
-    transition: none;
-  }
-  #faq .faq-list details:hover,
-  #faq .faq-list details[open] {
-    transform: none;
-  }
-}
-
 /* CTA */
 .cta {
   background: var(--brand-grad);
@@ -932,13 +809,12 @@
   margin-inline: auto;
   margin-bottom: 0;
 }
-
 .subpage-header .cards {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
   margin-block: var(--space-4);
   gap: var(--space-6);
-  margin-inline: var(--space-2) ;
+  margin-inline: var(--space-2);
 }
 .subpage-header .card {
   padding: var(--space-5) var(--space-6);
@@ -977,7 +853,6 @@
   flex-wrap: wrap;
   margin-top: var(--space-9);
 }
-
 .page-sub .gallery {
   padding-block: var(--section-py-lg);
 }
@@ -985,9 +860,8 @@
   margin-bottom: var(--space-8);
   padding-inline: var(--space-4);
 }
-.galler .block-head h2 {
+.gallery .block-head h2 {
   margin: var(--space-1) 0;
-  font-size: var(--fs-4);
   text-align: center;
 }
 .gallery .block-head .lead {
@@ -1026,159 +900,31 @@
   transition: transform 0.35s ease;
 }
 
-.page-sub .faq-list {
-  display: grid;
-  list-style: none;
-  padding: 0;
-  margin: 0;
-  gap: var(--space-3);
-}
-.page-sub .faq {
-  border: 1px solid var(--c-border);
-  border-radius: 12px;
-  background: var(--c-surface);
-  padding: 0.25rem 0.75rem;
-  transition:
-    border-color 0.2s ease,
-    background-color 0.2s ease,
-    box-shadow 0.2s ease;
-}
-.page-sub .faq-q {
-  display: grid;
-  grid-template-columns: 1fr auto;
-  align-items: center;
-  gap: var(--space-3);
-  cursor: pointer;
-  list-style: none;
-  padding: var(--space-3-5) 0.25rem;
-  font-weight: 600;
-}
-.page-sub .faq-q::-webkit-details-marker {
-  display: none;
-}
-.page-sub .faq-q::after {
-  content: "▾";
-  inline-size: 1.25em;
-  text-align: center;
-  transform: translateY(-1px);
-  transition: transform 0.2s ease;
-  opacity: 0.75;
-}
-.page-sub .faq[open] .faq-q::after {
-  transform: rotate(-180deg);
-}
-.page-sub .faq .answer {
-  padding: 0 0 var(--space-3-5) 0;
-  color: var(--c-ink);
-}
-.page-sub .faq .answer p {
-  margin: 0;
-}
-.page-sub .faq:hover,
-.page-sub .faq:has(.faq-q:focus-visible) {
-  border-color: var(--c-border-strong);
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
-}
-.page-sub .faq[data-reveal] {
-  transition:
-    opacity var(--sr-duration) var(--sr-ease),
-    transform var(--sr-duration) var(--sr-ease),
-    border-color 0.2s ease,
-    background-color 0.2s ease,
-    box-shadow 0.2s ease;
-}
-.page-sub .cta {
-  margin-top: clamp(var(--space-8), 6vw, var(--space-12));
-  padding-block: clamp(56px, 8vw, 112px);
-  border-top-left-radius: 16px;
-  border-top-right-radius: 16px;
-  overflow: clip;
-}
-
-.page-sub .cta .block-head {
-  text-align: center;
-  margin-bottom: var(--space-5);
-}
-
-.page-sub .cta .block-head h2 {
-  margin: 0 0 var(--space-2);
-  padding-bottom: var(--space-3);
-  line-height: 1.2;
-  scroll-margin-top: calc(var(--header-h, 72px) + 16px);
-}
-
-.page-sub .cta .block-head .lead {
-  max-width: 62ch;
-  margin-inline: auto;
-  color: rgba(255, 255, 255, 0.9);
-}
-
-.page-sub .cta .block-cta {
-  display: flex;
-  justify-content: center;
-  flex-wrap: wrap;
-  gap: var(--space-3);
-  margin-top: var(--space-4);
-}
-
-:root[data-theme="dark"] .page-sub .cards > .hover-card {
-  background: rgba(255, 255, 255, 0.03);
-}
-
-:root[data-theme="dark"] .page-sub .cards > .hover-card:hover,
-:root[data-theme="dark"] .page-sub .cards > .hover-card:focus-within {
-  background: rgba(255, 255, 255, 0.06);
-  border-color: rgba(255, 255, 255, 0.22);
-  box-shadow: 0 14px 34px rgba(0, 0, 0, 0.6);
-}
-
-:root[data-theme="dark"] .page-sub .faq {
-  background: rgba(255, 255, 255, 0.03);
-  border-color: rgba(255, 255, 255, 0.12);
-}
-
-:root[data-theme="dark"] .page-sub .faq:hover,
-:root[data-theme="dark"] .page-sub .faq:has(.faq-q:focus-visible) {
-  border-color: rgba(255, 255, 255, 0.22);
-  box-shadow: 0 14px 32px rgba(0, 0, 0, 0.55);
-}
-
-:root[data-theme="dark"] .page-sub .gallery-item {
-  background: rgba(255, 255, 255, 0.03);
-  border-color: rgba(255, 255, 255, 0.12);
-}
-
-:root[data-theme="dark"] .page-sub .gallery-item:hover,
-:root[data-theme="dark"] .page-sub .gallery-item:focus-visible {
-  border-color: rgba(255, 255, 255, 0.22);
-  box-shadow: 0 14px 30px rgba(0, 0, 0, 0.6);
-}
-
 @media (min-width: 480px) {
-  .page-sub .gallery-grid {
+  .gallery .gallery-grid {
     grid-template-columns: repeat(2, 1fr);
   }
 }
 @media (min-width: 760px) {
-  .page-sub .cards {
+  .gallery .cards {
     gap: var(--space-5);
   }
 }
 @media (min-width: 1024px) {
-  .page-sub .gallery-grid {
+  .gallery .gallery-grid {
     grid-template-columns: repeat(3, 1fr);
   }
-  .page-sub .cards {
+  .gallery .cards {
     grid-template-columns: 1fr 1fr;
   }
 }
 @media (hover: hover) {
-  .page-sub .gallery-item:hover {
+  .gallery .gallery-item:hover {
     transform: translateY(-3px);
     box-shadow: 0 12px 32px rgba(0, 0, 0, 0.14);
     border-color: var(--c-border-strong);
   }
-  .page-sub .gallery-item:hover img {
+  .gallery .gallery-item:hover img {
     transform: scale(1.03);
   }
 }
@@ -1191,10 +937,29 @@
   .page-sub .cards > .hover-card:active {
     transform: none;
   }
-  .page-sub .faq,
-  .page-sub .faq-q::after {
-    transition: none;
-  }
+}
+/* CTA */
+.page-sub .cta .block-head {
+  margin: var(--space-5) 0;
+  padding: var(--space-2);
+}
+.page-sub .cta h2 {
+  margin: var(--space-6) auto;
+  padding: 0;
+  line-height: var(--lh-title);
+  scroll-margin-top: calc(var(--header-h, 72px) + 16px);
+}
+.page-sub .cta .lead {
+  max-width: 52ch;
+  margin-inline: auto;
+  color: var(--c-ink);
+  font-weight: 600;
+}
+.page-sub .cta .block-cta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-3);
+  margin: var(--space-4);
 }
 
 /* Subpage doc */
