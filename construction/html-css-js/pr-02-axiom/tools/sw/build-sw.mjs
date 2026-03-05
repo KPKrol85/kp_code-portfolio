@@ -16,8 +16,8 @@ const REVISION_INPUTS = [
 const BASE_PRECACHE = [
   "/",
   "/offline.html",
-  "/dist/style.min.css",
-  "/dist/script.min.js",
+  "/style.min.css",
+  "/script.min.js",
   "/manifest.webmanifest",
 ];
 

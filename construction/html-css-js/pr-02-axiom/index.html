@@ -1,13 +1,16 @@
 <!doctype html>
 <html lang="pl" dir="ltr">
   <head>
+    
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <!-- SEO -->
     <title>Axiom Construction — firma budowlano-remontowa</title>
     <meta name="description" content="Kompleksowe remonty, budowa domów i wykończenia wnętrz. Profesjonalna firma budowlana Axiom Construction: terminowo, solidnie, z gwarancją." />
     <meta name="author" content="Kamil Król / KP_Code" />
     <link rel="canonical" href="https://construction-project-02.netlify.app/" />
     <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
+    <!-- Open Graph -->
     <meta property="og:locale" content="pl_PL" />
     <meta property="og:type" content="website" />
     <meta property="og:site_name" content="Axiom Construction" />
@@ -20,6 +23,7 @@
     <meta property="og:image:height" content="630" />
     <meta property="og:image:type" content="image/jpeg" />
     <meta property="og:image:alt" content="Axiom Construction - usługi budowlano-remontowe i realizacje" />
+    <!-- Twitter -->
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content="Axiom Construction — firma budowlano-remontowa" />
     <meta name="twitter:description" content="Remonty, budowa domów i wykończenia wnętrz. Sprawdź ofertę, realizacje i skontaktuj się z Axiom Construction." />
@@ -27,11 +31,13 @@
     <meta name="twitter:image:alt" content="Axiom Construction - usługi budowlano-remontowe i realizacje" />
     <meta name="twitter:site" content="@KP_Code_85" />
     <meta name="twitter:creator" content="@KP_Code_85" />
+    <!-- Favicons + manifest -->
     <link rel="icon" type="image/svg+xml" href="assets/img/favicon/favicon.svg" />
     <link rel="icon" type="image/png" sizes="96x96" href="assets/img/favicon/favicon-96x96.png" />
     <link rel="apple-touch-icon" sizes="180x180" href="assets/img/favicon/apple-touch-icon.png" />
     <link rel="shortcut icon" href="assets/img/favicon/favicon.ico" type="image/x-icon" />
     <link rel="manifest" href="manifest.webmanifest" />
+    <!-- PWA / UI -->
     <meta name="application-name" content="Axiom Construction" />
     <meta name="apple-mobile-web-app-title" content="Axiom Construction" />
     <meta name="msapplication-TileColor" content="#0ea5e9" />
@@ -39,212 +45,216 @@
     <meta name="theme-color" content="#121212" media="(prefers-color-scheme: dark)" />
     <meta name="color-scheme" content="light dark" />
     <meta name="format-detection" content="telephone=no" />
+    <!-- Preload fonts -->
     <link rel="preload" href="assets/fonts/lato-v25-latin/lato-v25-latin-regular.woff2" as="font" type="font/woff2" crossorigin />
     <link rel="preload" href="assets/fonts/montserrat-v31-latin/montserrat-v31-latin-600.woff2" as="font" type="font/woff2" crossorigin />
+    <!-- Theme preload -->
     <link rel="preload" as="style" href="dist/style.min.css" />
+    <!-- Styles -->
     <link rel="stylesheet" href="dist/style.min.css" />
-    <script type="application/ld+json">
-      [
-        {
-          "@context": "https://schema.org",
-          "@type": "HomeAndConstructionBusiness",
-          "@id": "https://construction-project-02.netlify.app/#localbusiness",
-          "name": "Axiom Construction",
-          "url": "https://construction-project-02.netlify.app/",
-          "logo": "https://construction-project-02.netlify.app/assets/img/favicon/web-app-manifest-1024x1024.png",
-          "image": ["https://construction-project-02.netlify.app/assets/img/og/og-1200x630.jpg", "https://construction-project-02.netlify.app/assets/img/og/og-1200x1200.jpg"],
-          "description": "Firma budowlano-remontowa oferująca kompleksowe remonty, budowę domów, wykończenia wnętrz oraz adaptacje poddaszy na terenie Polski.",
-          "telephone": "+48533537091",
-          "email": "kontakt@kp-code.pl",
-          "priceRange": "$",
-          "address": { "@type": "PostalAddress", "streetAddress": "ul. Marynarki Wojennej 12/31", "addressLocality": "Tarnów", "postalCode": "33-100", "addressCountry": "PL" },
-          "areaServed": { "@type": "Country", "name": "Polska" },
-          "geo": { "@type": "GeoCoordinates", "latitude": 50.0121, "longitude": 20.9858 },
-          "openingHoursSpecification": [{ "@type": "OpeningHoursSpecification", "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"], "opens": "08:00", "closes": "17:00" }],
-          "sameAs": ["https://github.com/KP-Code", "https://x.com/KP_Code_85"]
-        },
-        {
-          "@context": "https://schema.org",
-          "@type": "ItemList",
-          "name": "Oferta usług",
-          "inLanguage": "pl-PL",
-          "url": "https://construction-project-02.netlify.app/#services-heading",
-          "itemListElement": [
-            {
-              "@type": "ListItem",
-              "position": 1,
-              "item": {
-                "@type": "Service",
-                "name": "Remonty mieszkań",
-                "description": "Kompleksowe remonty wnętrz dostosowane do Twoich potrzeb.",
-                "url": "https://construction-project-02.netlify.app/#svc-remonty-ttl",
-                "areaServed": { "@type": "Country", "name": "Polska" },
-                "provider": { "@id": "https://construction-project-02.netlify.app/#localbusiness" }
-              }
-            },
-            {
-              "@type": "ListItem",
-              "position": 2,
-              "item": {
-                "@type": "Service",
-                "name": "Budowa domów",
-                "description": "Od fundamentów po dach - budujemy domy Twoich marzeń.",
-                "url": "https://construction-project-02.netlify.app/#svc-domy-ttl",
-                "areaServed": { "@type": "Country", "name": "Polska" },
-                "provider": { "@id": "https://construction-project-02.netlify.app/#localbusiness" }
-              }
-            },
-            {
-              "@type": "ListItem",
-              "position": 3,
-              "item": {
-                "@type": "Service",
-                "name": "Wykończenia wnętrz",
-                "description": "Stylowe i nowoczesne wykończenia dla każdego pomieszczenia.",
-                "url": "https://construction-project-02.netlify.app/#svc-wyk-ttl",
-                "areaServed": { "@type": "Country", "name": "Polska" },
-                "provider": { "@id": "https://construction-project-02.netlify.app/#localbusiness" }
-              }
-            },
-            {
-              "@type": "ListItem",
-              "position": 4,
-              "item": {
-                "@type": "Service",
-                "name": "Adaptacje poddaszy",
-                "description": "Przekształcamy poddasza w funkcjonalne i przytulne przestrzenie mieszkalne.",
-                "url": "https://construction-project-02.netlify.app/#svc-poddasze-ttl",
-                "areaServed": { "@type": "Country", "name": "Polska" },
-                "provider": { "@id": "https://construction-project-02.netlify.app/#localbusiness" }
-              }
-            },
-            {
-              "@type": "ListItem",
-              "position": 5,
-              "item": {
-                "@type": "Service",
-                "name": "Instalacje sanitarne",
-                "description": "Profesjonalny montaż i serwis instalacji wodno-kanalizacyjnych oraz grzewczych.",
-                "url": "https://construction-project-02.netlify.app/#svc-sanitarne-ttl",
-                "areaServed": { "@type": "Country", "name": "Polska" },
-                "provider": { "@id": "https://construction-project-02.netlify.app/#localbusiness" }
-              }
-            },
-            {
-              "@type": "ListItem",
-              "position": 6,
-              "item": {
-                "@type": "Service",
-                "name": "Instalacje elektryczne",
-                "description": "Bezpieczny montaż i modernizacja instalacji elektrycznych w domach i firmach.",
-                "url": "https://construction-project-02.netlify.app/#svc-elektryczne-ttl",
-                "areaServed": { "@type": "Country", "name": "Polska" },
-                "provider": { "@id": "https://construction-project-02.netlify.app/#localbusiness" }
-              }
-            }
-          ]
-        },
-        {
-          "@context": "https://schema.org",
-          "@type": "ImageGallery",
-          "name": "Nasze realizacje",
-          "inLanguage": "pl-PL",
-          "url": "https://construction-project-02.netlify.app/#gallery-heading",
-          "publisher": { "@id": "https://construction-project-02.netlify.app/#localbusiness" },
-          "hasPart": [
-            {
-              "@type": "ImageObject",
-              "name": "Budowa domu jednorodzinnego",
-              "contentUrl": "https://construction-project-02.netlify.app/assets/img/realizacje/budowa-domu-01-1200x800.jpg",
-              "url": "https://construction-project-02.netlify.app/assets/img/realizacje/budowa-domu-01-1200x800.jpg",
-              "width": 1200,
-              "height": 800
-            },
-            {
-              "@type": "ImageObject",
-              "name": "Budowa domu w stanie deweloperskim",
-              "contentUrl": "https://construction-project-02.netlify.app/assets/img/realizacje/budowa-domu-02-1200x800.jpg",
-              "url": "https://construction-project-02.netlify.app/assets/img/realizacje/budowa-domu-02-1200x800.jpg",
-              "width": 1200,
-              "height": 800
-            },
-            {
-              "@type": "ImageObject",
-              "name": "Remont mieszkania z wykończeniem",
-              "contentUrl": "https://construction-project-02.netlify.app/assets/img/realizacje/remont-01-1200x800.jpg",
-              "url": "https://construction-project-02.netlify.app/assets/img/realizacje/remont-01-1200x800.jpg",
-              "width": 1200,
-              "height": 800
-            },
-            {
-              "@type": "ImageObject",
-              "name": "Instalacje elektryczne w budynku",
-              "contentUrl": "https://construction-project-02.netlify.app/assets/img/realizacje/instalacje-elektryczne-01-1200x800.jpg",
-              "url": "https://construction-project-02.netlify.app/assets/img/realizacje/instalacje-elektryczne-01-1200x800.jpg",
-              "width": 1200,
-              "height": 800
-            },
-            {
-              "@type": "ImageObject",
-              "name": "Instalacje sanitarne i przyłącza",
-              "contentUrl": "https://construction-project-02.netlify.app/assets/img/realizacje/instalacje-sanitarne-01-1200x800.jpg",
-              "url": "https://construction-project-02.netlify.app/assets/img/realizacje/instalacje-sanitarne-01-1200x800.jpg",
-              "width": 1200,
-              "height": 800
-            },
-            {
-              "@type": "ImageObject",
-              "name": "Wykończenia wnętrz pod klucz",
-              "contentUrl": "https://construction-project-02.netlify.app/assets/img/realizacje/wykonczenia-01-1200x800.jpg",
-              "url": "https://construction-project-02.netlify.app/assets/img/realizacje/wykonczenia-01-1200x800.jpg",
-              "width": 1200,
-              "height": 800
-            }
-          ]
-        },
-        {
-          "@context": "https://schema.org",
-          "@type": "WebSite",
-          "@id": "https://construction-project-02.netlify.app/#website",
-          "name": "Axiom Construction - firma budowlano-remontowa",
-          "url": "https://construction-project-02.netlify.app/",
-          "inLanguage": "pl-PL",
-          "publisher": { "@id": "https://construction-project-02.netlify.app/#localbusiness" },
-          "potentialAction": { "@type": "SearchAction", "target": "https://construction-project-02.netlify.app/?q={search_term_string}", "query-input": "required name=search_term_string" }
-        }
-      ]
-    </script>
 
     <script type="application/ld+json">
-      [
-        {
-          "@context": "https://schema.org",
-          "@type": "FAQPage",
-          "mainEntity": [
+          [
             {
-              "@type": "Question",
-              "name": "Jak szybko odpowiadamy na zapytania?",
-              "acceptedAnswer": { "@type": "Answer", "text": "Najczęściej jeszcze tego samego dnia roboczego. W pilnych sprawach — do 2 godzin." }
+              "@context": "https://schema.org",
+              "@type": "HomeAndConstructionBusiness",
+              "@id": "https://construction-project-02.netlify.app/#localbusiness",
+              "name": "Axiom Construction",
+              "url": "https://construction-project-02.netlify.app/",
+              "logo": "https://construction-project-02.netlify.app/assets/img/favicon/web-app-manifest-1024x1024.png",
+              "image": ["https://construction-project-02.netlify.app/assets/img/og/og-1200x630.jpg", "https://construction-project-02.netlify.app/assets/img/og/og-1200x1200.jpg"],
+              "description": "Firma budowlano-remontowa oferująca kompleksowe remonty, budowę domów, wykończenia wnętrz oraz adaptacje poddaszy na terenie Polski.",
+              "telephone": "+48533537091",
+              "email": "kontakt@kp-code.pl",
+              "priceRange": "$",
+              "address": { "@type": "PostalAddress", "streetAddress": "ul. Marynarki Wojennej 12/31", "addressLocality": "Tarnów", "postalCode": "33-100", "addressCountry": "PL" },
+              "areaServed": { "@type": "Country", "name": "Polska" },
+              "geo": { "@type": "GeoCoordinates", "latitude": 50.0121, "longitude": 20.9858 },
+              "openingHoursSpecification": [{ "@type": "OpeningHoursSpecification", "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"], "opens": "08:00", "closes": "17:00" }],
+              "sameAs": ["https://github.com/KP-Code", "https://x.com/KP_Code_85"]
             },
             {
-              "@type": "Question",
-              "name": "Czy wystawiamy faktury i dajemy gwarancję?",
-              "acceptedAnswer": { "@type": "Answer", "text": "Tak, wystawiamy faktury VAT. Na wykonane prace udzielamy gwarancji — standardowo 24 miesiące." }
+              "@context": "https://schema.org",
+              "@type": "ItemList",
+              "name": "Oferta usług",
+              "inLanguage": "pl-PL",
+              "url": "https://construction-project-02.netlify.app/#services-heading",
+              "itemListElement": [
+                {
+                  "@type": "ListItem",
+                  "position": 1,
+                  "item": {
+                    "@type": "Service",
+                    "name": "Remonty mieszkań",
+                    "description": "Kompleksowe remonty wnętrz dostosowane do Twoich potrzeb.",
+                    "url": "https://construction-project-02.netlify.app/#svc-remonty-ttl",
+                    "areaServed": { "@type": "Country", "name": "Polska" },
+                    "provider": { "@id": "https://construction-project-02.netlify.app/#localbusiness" }
+                  }
+                },
+                {
+                  "@type": "ListItem",
+                  "position": 2,
+                  "item": {
+                    "@type": "Service",
+                    "name": "Budowa domów",
+                    "description": "Od fundamentów po dach - budujemy domy Twoich marzeń.",
+                    "url": "https://construction-project-02.netlify.app/#svc-domy-ttl",
+                    "areaServed": { "@type": "Country", "name": "Polska" },
+                    "provider": { "@id": "https://construction-project-02.netlify.app/#localbusiness" }
+                  }
+                },
+                {
+                  "@type": "ListItem",
+                  "position": 3,
+                  "item": {
+                    "@type": "Service",
+                    "name": "Wykończenia wnętrz",
+                    "description": "Stylowe i nowoczesne wykończenia dla każdego pomieszczenia.",
+                    "url": "https://construction-project-02.netlify.app/#svc-wyk-ttl",
+                    "areaServed": { "@type": "Country", "name": "Polska" },
+                    "provider": { "@id": "https://construction-project-02.netlify.app/#localbusiness" }
+                  }
+                },
+                {
+                  "@type": "ListItem",
+                  "position": 4,
+                  "item": {
+                    "@type": "Service",
+                    "name": "Adaptacje poddaszy",
+                    "description": "Przekształcamy poddasza w funkcjonalne i przytulne przestrzenie mieszkalne.",
+                    "url": "https://construction-project-02.netlify.app/#svc-poddasze-ttl",
+                    "areaServed": { "@type": "Country", "name": "Polska" },
+                    "provider": { "@id": "https://construction-project-02.netlify.app/#localbusiness" }
+                  }
+                },
+                {
+                  "@type": "ListItem",
+                  "position": 5,
+                  "item": {
+                    "@type": "Service",
+                    "name": "Instalacje sanitarne",
+                    "description": "Profesjonalny montaż i serwis instalacji wodno-kanalizacyjnych oraz grzewczych.",
+                    "url": "https://construction-project-02.netlify.app/#svc-sanitarne-ttl",
+                    "areaServed": { "@type": "Country", "name": "Polska" },
+                    "provider": { "@id": "https://construction-project-02.netlify.app/#localbusiness" }
+                  }
+                },
+                {
+                  "@type": "ListItem",
+                  "position": 6,
+                  "item": {
+                    "@type": "Service",
+                    "name": "Instalacje elektryczne",
+                    "description": "Bezpieczny montaż i modernizacja instalacji elektrycznych w domach i firmach.",
+                    "url": "https://construction-project-02.netlify.app/#svc-elektryczne-ttl",
+                    "areaServed": { "@type": "Country", "name": "Polska" },
+                    "provider": { "@id": "https://construction-project-02.netlify.app/#localbusiness" }
+                  }
+                }
+              ]
             },
             {
-              "@type": "Question",
-              "name": "W jakich lokalizacjach działacie?",
-              "acceptedAnswer": { "@type": "Answer", "text": "Realizujemy zlecenia w całej Polsce, a na większe inwestycje dojeżdżamy w dowolne miejsce." }
+              "@context": "https://schema.org",
+              "@type": "ImageGallery",
+              "name": "Nasze realizacje",
+              "inLanguage": "pl-PL",
+              "url": "https://construction-project-02.netlify.app/#gallery-heading",
+              "publisher": { "@id": "https://construction-project-02.netlify.app/#localbusiness" },
+              "hasPart": [
+                {
+                  "@type": "ImageObject",
+                  "name": "Budowa domu jednorodzinnego",
+                  "contentUrl": "https://construction-project-02.netlify.app/assets/img/realizacje/budowa-domu-01-1200x800.jpg",
+                  "url": "https://construction-project-02.netlify.app/assets/img/realizacje/budowa-domu-01-1200x800.jpg",
+                  "width": 1200,
+                  "height": 800
+                },
+                {
+                  "@type": "ImageObject",
+                  "name": "Budowa domu w stanie deweloperskim",
+                  "contentUrl": "https://construction-project-02.netlify.app/assets/img/realizacje/budowa-domu-02-1200x800.jpg",
+                  "url": "https://construction-project-02.netlify.app/assets/img/realizacje/budowa-domu-02-1200x800.jpg",
+                  "width": 1200,
+                  "height": 800
+                },
+                {
+                  "@type": "ImageObject",
+                  "name": "Remont mieszkania z wykończeniem",
+                  "contentUrl": "https://construction-project-02.netlify.app/assets/img/realizacje/remont-01-1200x800.jpg",
+                  "url": "https://construction-project-02.netlify.app/assets/img/realizacje/remont-01-1200x800.jpg",
+                  "width": 1200,
+                  "height": 800
+                },
+                {
+                  "@type": "ImageObject",
+                  "name": "Instalacje elektryczne w budynku",
+                  "contentUrl": "https://construction-project-02.netlify.app/assets/img/realizacje/instalacje-elektryczne-01-1200x800.jpg",
+                  "url": "https://construction-project-02.netlify.app/assets/img/realizacje/instalacje-elektryczne-01-1200x800.jpg",
+                  "width": 1200,
+                  "height": 800
+                },
+                {
+                  "@type": "ImageObject",
+                  "name": "Instalacje sanitarne i przyłącza",
+                  "contentUrl": "https://construction-project-02.netlify.app/assets/img/realizacje/instalacje-sanitarne-01-1200x800.jpg",
+                  "url": "https://construction-project-02.netlify.app/assets/img/realizacje/instalacje-sanitarne-01-1200x800.jpg",
+                  "width": 1200,
+                  "height": 800
+                },
+                {
+                  "@type": "ImageObject",
+                  "name": "Wykończenia wnętrz pod klucz",
+                  "contentUrl": "https://construction-project-02.netlify.app/assets/img/realizacje/wykonczenia-01-1200x800.jpg",
+                  "url": "https://construction-project-02.netlify.app/assets/img/realizacje/wykonczenia-01-1200x800.jpg",
+                  "width": 1200,
+                  "height": 800
+                }
+              ]
             },
             {
-              "@type": "Question",
-              "name": "Jak wygląda wycena?",
-              "acceptedAnswer": { "@type": "Answer", "text": "Wstępną wycenę przygotowujemy bezpłatnie na podstawie wiadomości, zdjęć i/lub krótkiej rozmowy." }
+              "@context": "https://schema.org",
+              "@type": "WebSite",
+              "@id": "https://construction-project-02.netlify.app/#website",
+              "name": "Axiom Construction - firma budowlano-remontowa",
+              "url": "https://construction-project-02.netlify.app/",
+              "inLanguage": "pl-PL",
+              "publisher": { "@id": "https://construction-project-02.netlify.app/#localbusiness" },
+              "potentialAction": { "@type": "SearchAction", "target": "https://construction-project-02.netlify.app/?q={search_term_string}", "query-input": "required name=search_term_string" }
             }
           ]
-        }
-      ]
-    </script>
+        </script>
+
+    <script type="application/ld+json">
+          [
+            {
+              "@context": "https://schema.org",
+              "@type": "FAQPage",
+              "mainEntity": [
+                {
+                  "@type": "Question",
+                  "name": "Jak szybko odpowiadamy na zapytania?",
+                  "acceptedAnswer": { "@type": "Answer", "text": "Najczęściej jeszcze tego samego dnia roboczego. W pilnych sprawach — do 2 godzin." }
+                },
+                {
+                  "@type": "Question",
+                  "name": "Czy wystawiamy faktury i dajemy gwarancję?",
+                  "acceptedAnswer": { "@type": "Answer", "text": "Tak, wystawiamy faktury VAT. Na wykonane prace udzielamy gwarancji — standardowo 24 miesiące." }
+                },
+                {
+                  "@type": "Question",
+                  "name": "W jakich lokalizacjach działacie?",
+                  "acceptedAnswer": { "@type": "Answer", "text": "Realizujemy zlecenia w całej Polsce, a na większe inwestycje dojeżdżamy w dowolne miejsce." }
+                },
+                {
+                  "@type": "Question",
+                  "name": "Jak wygląda wycena?",
+                  "acceptedAnswer": { "@type": "Answer", "text": "Wstępną wycenę przygotowujemy bezpłatnie na podstawie wiadomości, zdjęć i/lub krótkiej rozmowy." }
+                }
+              ]
+            }
+          ]
+        </script>
   </head>
 
   <!-- Body -->
@@ -313,6 +323,7 @@
 
     <!-- Main -->
     <main id="main">
+      <!-- Hero -->
       <section class="hero">
         <picture class="hero__media">
           <source
@@ -354,6 +365,8 @@
           </h1>
         </div>
       </section>
+
+      <!-- About -->
       <section id="o-nas" class="about section--divider" aria-labelledby="about-heading" data-reveal="defer">
         <div class="about__inner">
           <h2 id="about-heading" class="section__title u-hidden">O nas</h2>
@@ -424,6 +437,8 @@
           </div>
         </div>
       </section>
+
+      <!-- Usługi-->
       <section id="uslugi" class="services__section">
         <h2 id="services-heading" class="section__title">Nasze Usługi</h2>
         <div class="services">
@@ -1064,7 +1079,7 @@
         <div class="lb__backdrop" data-lb-close aria-hidden="true"></div>
         <figure class="lb__figure">
           <h2 id="lightbox-title" class="sr-only">Podgląd zdjęcia</h2>
-          <img class="lb__img" alt="" />
+          <img class="lb__img" alt="" width="1200" height="800" />
           <figcaption class="lb__caption" id="lightbox-caption"></figcaption>
           <button class="lb__close" type="button" aria-label="Zamknij (Esc)" data-lb-close>&times;</button>
         </figure>
@@ -1307,6 +1322,7 @@
     </div>
 
     <!-- Script -->
-    <script src="dist/script.min.js" defer></script>
+    <script src="js/main.js" type="module"></script>
   </body>
 </html>
+  

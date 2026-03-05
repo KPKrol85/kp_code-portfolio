@@ -1,78 +1,80 @@
-# AUDIT — Axiom Construction (Senior Front-End Review)
+# AUDIT — Axiom Construction (kp-code-playground/construction/html-css-js/pr-02-axiom)
 
-## 1. Executive summary
-Projekt jest dojrzałym, wielostronicowym wdrożeniem statycznym z modularną architekturą CSS (tokens/base/layout/components/sections), dobrze uporządkowanym SEO oraz solidnym fundamentem dostępności. Struktura BEM + utility jest czytelna, a kod JS jest podzielony na warstwy (`core/components/sections/utils`).
+## 1) Executive summary
+Projekt ma dojrzałą, modułową strukturę front-end (BEM-like naming, tokeny, podział CSS/JS na warstwy), poprawnie wdrożone podstawy SEO i PWA oraz dobrze przygotowaną warstwę formularza kontaktowego. Nie wykryto błędów klasy P0 (runtime/accessibility blockers). Wykryto kilka istotnych obszarów utrzymaniowych (P1), głównie spójność ścieżek i konfiguracji oraz doprecyzowanie polityki motion/accessibility.
 
-Najważniejsze ryzyko produkcyjne dotyczy rejestracji service workera ścieżką relatywną (`./sw.js`), która na podstronach może kierować do nieistniejącego zasobu (`/services/sw.js`, `/legal/sw.js`). To obniża niezawodność PWA/offline dla wejść bezpośrednio na podstrony.
+**Uwaga dot. kontrastu:** contrast compliance cannot be verified without computed style analysis.
 
-## 2. P0 — Critical risks
+## 2) P0 — Critical risks
+Brak potwierdzonych ryzyk P0 w analizowanym kodzie źródłowym.
 
-### P0-1: Relatywna rejestracja service workera na podstronach
-- **Impact:** użytkownicy wchodzący bezpośrednio na podstrony mogą nie zarejestrować SW, więc nie otrzymają spójnego działania offline/cache i aktualizacji PWA.
-- **Evidence:** `js/core/service-worker.js` rejestruje `navigator.serviceWorker.register("./sw.js")`; podstrony ładują runtime JS (`services/*.html`, `legal/*.html`) i wykonują tę samą logikę z bundla `dist/script.min.js`.
-- **Fix:** zmienić ścieżkę na absolutną: `navigator.serviceWorker.register("/sw.js", { scope: "/" })` oraz przebudować `dist/script.min.js`.
-- **Effort:** **S**
+## 3) Strengths
+- Spójna architektura CSS oparta o tokeny i warstwy (`tokens/base/layout/components/sections`).
+- Dobra progresywna degradacja: nawigacja mobilna ukrywana tylko dla `html.js`, więc bez JS menu pozostaje dostępne.
+- Formularz kontaktowy: walidacja, `aria-invalid`, live region, honeypot, fallback natywny.
+- SEO baseline: canonical + OG + Twitter + JSON-LD na stronach.
+- PWA baseline: manifest, offline page, service worker z wersjonowaniem cache.
+- Link-check lokalny przechodzi bez błędów (z wyłączeniem strategii minifikacji jako decyzji build/deploy).
 
-## 3. Strengths
-- Warstwowa architektura CSS jest konsekwentna (`css/main.css` importuje: tokens → base → layout → components → sections).
-- Design tokens są używane systemowo (kolory, spacing, powierzchnie, header metrics).
-- Hierarchia nagłówków jest poprawna (1x H1 per page; brak skoków H1→H3).
-- Skip linki i style focus-visible są obecne.
-- Formularz kontaktowy ma Netlify Forms, honeypot i walidację klienta + no-JS fallback (`method="POST"`, `action="/success.html"`).
-- SEO bazowe jest kompletne (canonical, robots, OG/Twitter, robots.txt, sitemap.xml).
-- Obrazy są dostarczane z nowoczesnymi formatami (AVIF/WEBP + fallback JPG) i responsywnymi źródłami.
+## 4) P1 — Improvements worth doing next (exactly 5)
 
-## 4. P1 — 5 improvements worth doing next
+1. **PWA shortcut points to non-existing anchor**  
+   **Reason:** W manifeście shortcut „Oferta” prowadzi do `/#oferta`, ale sekcja na stronie głównej ma id `uslugi`. To obniża jakość deep-linkingu z poziomu PWA.  
+   **Suggested improvement:** Zmień `"url": "/#oferta"` na `"url": "/#uslugi"` albo dodaj aliasowy identyfikator sekcji.
+   **Evidence:** `manifest.webmanifest:58-58`, `index.html:427-427`.
 
-### P1-1: Ujednolicić runtime JS między stronami
-- **Reason:** strona główna ładuje `js/main.js`, a podstrony `dist/script.min.js`; utrudnia to kontrolę regresji i spójność działania.
-- **Suggested improvement:** przyjąć jedną strategię runtime (np. wyłącznie `dist/script.min.js` lub pełny ESM) dla wszystkich stron.
+2. **Inconsistent service CTA phone numbers**  
+   **Reason:** Część podstron usług zawierała wcześniej inny numer telefonu niż numer globalny, co osłabiało wiarygodność i spójność danych kontaktowych.  
+   **Suggested improvement:** Ujednolić numery w CTA i stopkach do jednego, rzeczywistego numeru.
+   **Evidence:** `services/budowa-domow.html:461-461`, `services/adaptacje-poddaszy.html:389-389`, `services/instalacje-elektryczne.html:463-463`, `index.html:1258-1258`.
 
-### P1-2: Zapewnić baseline no-JS dla nawigacji mobilnej
-- **Reason:** przy `max-width: 768px` `#primaryNav` jest domyślnie ukryte (`display: none`) i odsłaniane przez JS.
-- **Suggested improvement:** zastosować strategię progressive enhancement (np. klasa `js` na `<html>` i ukrywanie menu tylko gdy JS aktywny).
+3. **Reduced-motion coverage is partial**  
+   **Reason:** Istnieje media query `prefers-reduced-motion`, ale wyłącza animacje tylko dla klas `.u-no-motion/.no-motion`; nie obejmuje globalnie wszystkich animowanych komponentów i przejść.  
+   **Suggested improvement:** Rozszerzyć regułę reduce-motion na globalne animacje/przejścia (np. `*`, `*::before`, `*::after` albo dedykowane klasy w komponentach z animacją).
+   **Evidence:** `css/base/base.css:132-140`, `js/sections/hero.js:15-20`.
 
-### P1-3: Ograniczyć niespójność CSP vs inline JSON-LD
-- **Reason:** `_headers` ma `script-src 'self'` bez nonce/hash; JSON-LD jest osadzane inline na stronach.
-- **Suggested improvement:** dodać nonce/hash dla inline JSON-LD lub przenieść dane do plików zewnętrznych i osadzać je zgodnie z CSP.
+4. **Service worker install has no cache-addAll fallback handling**  
+   **Reason:** `cache.addAll(ASSETS)` w `install` nie ma obsługi błędu; pojedynczy brak assetu może przerwać instalację SW.  
+   **Suggested improvement:** Dodać bezpieczną obsługę błędów dla pre-cache (np. `Promise.allSettled`/segmentacja listy krytycznej i opcjonalnej).
+   **Evidence:** `sw.js:6-10`.
 
-### P1-4: Domknąć checklistę wymiarów obrazów (lightbox)
-- **Reason:** dynamiczny `img.lb__img` nie ma `width/height`, co utrudnia pełną zgodność z „images have width/height”.
-- **Suggested improvement:** dodać stałe proporcje kontenera lightboxa i/lub dynamiczne ustawianie atrybutów wymiarów.
+5. **High duplication across static service/legal pages**  
+   **Reason:** Nagłówki, stopki i meta bloki są powielane w wielu plikach HTML, co zwiększa koszt utrzymania i ryzyko niespójności.  
+   **Suggested improvement:** Wzmocnić proces generowania wspólnych fragmentów (np. utrzymanie jednego źródła layoutu/head i kompilacja do stron wynikowych).
+   **Evidence:** `services/budowa-domow.html:5-47`, `services/remonty-mieszkan.html:5-47`, `legal/regulamin.html:5-47`.
 
-### P1-5: Oczyścić logi narzędziowe i dodać policy check
-- **Reason:** w repozytorium występują `console.log` w skryptach buildowych.
-- **Suggested improvement:** zamienić na kontrolowany logger poziomowany i dodać lint/check blokujący niezamierzone logi w kodzie runtime.
+## 5) P2 — Minor refinements (optional)
+- Rozważyć jawne `width`/`height` dla obrazu lightboxa (placeholder w dialogu) w celu pełnej spójności polityki CLS. (`index.html:1067-1067`)
+- Ujednolicić komentarze i opisy deploy (np. nazewnictwo „demo” w `_redirects`) do dokumentacyjnego tonu produkcyjnego. (`_redirects:2-4`)
+- Drobne uporządkowanie aliasów utility (`u-visually-hidden` / `visually-hidden`) i dokumentacji konwencji klas dla zespołu.
 
-## 5. Future enhancements — 5 realistic ideas
-1. Dodać CI job uruchamiający `qa:links` + walidację JSON-LD i raporty artefaktowe.
-2. Dodać automatyczny smoke test klawiaturowy (menu mobilne, lightbox, formularz).
-3. Wprowadzić centralny generator metadanych SEO/OG/JSON-LD (single source of truth).
-4. Dodać performance budgets dla `dist/style.min.css`, `dist/script.min.js` i obrazów hero/gallery.
-5. Dodać wersję i18n EN dla treści strony (obecnie nie wykryto wariantu EN w implementacji HTML).
+## 6) Future enhancements (exactly 5)
+1. Dodać automatyczny pipeline CI uruchamiający `qa:links`, `qa:a11y`, `qa:lighthouse` przy każdym PR.
+2. Wprowadzić automatyczne porównanie spójności danych kontaktowych (telefon/e-mail) między wszystkimi stronami.
+3. Rozszerzyć structured data o `Service`/`Offer` z centralnego generatora, by ograniczyć ręczne duplikacje.
+4. Dodać testy regresji dostępności (keyboard flow + aria states) dla menu, lightboxa i formularza.
+5. Dodać monitorowanie wersji cache SW i rejestrowanie metryk hit/miss w trybie debug build.
 
-## 6. Compliance checklist (pass / fail)
-- **headings valid:** **PASS**
-- **no broken links:** **PASS**
-- **no console.log:** **FAIL**
-- **aria attributes valid:** **PASS**
-- **images have width/height:** **FAIL**
-- **no-JS baseline usable:** **FAIL**
-- **sitemap present (if expected):** **PASS**
-- **robots present:** **PASS**
-- **OG image exists:** **PASS**
-- **JSON-LD valid:** **PASS**
+## 7) Compliance checklist
+- **headings valid:** PASS
+- **no broken links (excluding .min strategy):** PASS
+- **no console.log:** PASS
+- **aria attributes valid:** PASS (statycznie; bez runtime AT testów)
+- **images have width/height:** FAIL (placeholder lightbox `<img>` bez wymiarów)
+- **no-JS baseline usable:** PASS
+- **sitemap present (if expected):** PASS
+- **robots present:** PASS
+- **OG image exists:** PASS
+- **JSON-LD valid:** PASS
 
-## 7. Architecture Score (0–10)
-- **BEM consistency:** 8.6/10
+## 8) Architecture score (0–10)
+**8.6 / 10**
+- **BEM consistency:** 8.5/10
 - **token usage:** 9.0/10
-- **accessibility:** 8.0/10
-- **performance:** 8.3/10
-- **maintainability:** 8.2/10
+- **accessibility:** 8.5/10
+- **performance:** 8.5/10
+- **maintainability:** 8.5/10
 
-**Overall Architecture Score: 8.4 / 10**
-
-## 8. Senior rating (1–10)
-**Senior rating: 8.3 / 10**
-
-Uzasadnienie: projekt jest portfolio-grade i technicznie solidny, z dobrą architekturą warstwową i wysoką jakością bazową SEO/A11y. Główne braki dotyczą spójności runtime, progressive enhancement na mobile no-JS oraz domknięcia kwestii SW/CSP pod pełny poziom produkcyjny.
+## 9) Senior rating (1–10)
+**8.7 / 10**  
+Profesjonalny poziom implementacji front-end dla portfolio produkcyjnego: dobre fundamenty architektoniczne, SEO i a11y. Obszary do dopracowania dotyczą głównie spójności konfiguracji i dalszej automatyzacji jakości, a nie krytycznych błędów runtime.
