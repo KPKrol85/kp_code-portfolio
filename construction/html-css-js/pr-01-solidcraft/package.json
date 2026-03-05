@@ -7,7 +7,7 @@
     "name": "Kamil Król | KP_Code Digital Studio",
     "email": "kontakt@kp-code.pl"
   },
-  "homepage": "https://construction-pr-01-solidcraft.netlify.app/",
+  "homepage": "https://construction-pr01-solidcraft.netlify.app/",
   "license": "MIT",
   "scripts": {
     "start": "npm run dev",
@@ -27,7 +27,8 @@
     "check:html": "npm run check:links && npm run check:assets",
     "check:predeploy": "npm run check:html && npm run qa:a11y",
     "qa:a11y": "node scripts/qa-a11y.mjs",
-    "build:sitemap": "cross-env SITE_URL=https://construction-pr01-solidcraft.netlify.app node scripts/generate-sitemap.mjs"
+    "build:sitemap": "cross-env SITE_URL=https://construction-pr01-solidcraft.netlify.app node scripts/generate-sitemap.mjs",
+    "qa:lhci": "npm run build && npm run build:dist && lhci autorun --config=./lighthouserc.json"
   },
   "devDependencies": {
     "autoprefixer": "^10.4.21",
@@ -44,7 +45,8 @@
     "postcss-preset-env": "^10.4.0",
     "prettier": "3.3.3",
     "sharp": "^0.34.5",
-    "terser": "^5.31.0"
+    "terser": "^5.31.0",
+    "@lhci/cli": "^0.15.1"
   },
   "engines": {
     "node": ">=18"

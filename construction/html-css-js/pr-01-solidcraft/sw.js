@@ -50,7 +50,7 @@ self.addEventListener("activate", (event) => {
       .then((keys) =>
         Promise.all(
           keys
-            .filter((k) => k.startsWith(CACHE_PREFIX) && k !== CACHE_NAME)
+            .filter((k) => k.startsWith(`${APP_ID}-v`) && k !== CACHE_NAME)
             .map((k) => caches.delete(k)),
         ),
       ),
