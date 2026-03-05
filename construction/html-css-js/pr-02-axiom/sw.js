@@ -1,4 +1,4 @@
-const REVISION = "6fd69ab8a963bd2f";
+const REVISION = "7140571b0053ee53";
 const CACHE_PREFIX = "axiom-static-";
 const CACHE_NAME = `${CACHE_PREFIX}${REVISION}`;
 const HTML_CACHE_PREFIX = "html-pages-";
