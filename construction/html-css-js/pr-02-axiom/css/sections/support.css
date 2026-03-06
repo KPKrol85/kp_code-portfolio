@@ -4,7 +4,7 @@
     background: linear-gradient(135deg, color-mix(in srgb, var(--bg-light) 92%, var(--primary) 8%) 0%, color-mix(in srgb, var(--bg-light) 96%, var(--bg-dark) 4%) 100%);
     border-bottom-color: color-mix(in srgb, var(--text-dark) 14%, transparent);
   }
-  body.dark-mode header {
+  :root[data-theme="dark"] body header {
     background: linear-gradient(135deg, color-mix(in srgb, var(--bg-dark) 92%, transparent) 0%, color-mix(in srgb, var(--bg-dark) 98%, transparent) 100%);
     border-bottom-color: color-mix(in srgb, var(--text-light) 18%, transparent);
   }
@@ -41,7 +41,7 @@
     0 10px 24px rgba(0, 0, 0, 0.18);
   z-index: 1000;
 }
-body.dark-mode .cookies {
+:root[data-theme="dark"] body .cookies {
   background: rgba(20, 24, 33, 0.5);
   backdrop-filter: blur(6px) saturate(130%);
   -webkit-backdrop-filter: blur(6px) saturate(130%);
@@ -63,17 +63,17 @@ body.dark-mode .cookies {
   outline-offset: 2px;
   border-radius: 6px;
 }
-body.dark-mode .cookies__text a {
+:root[data-theme="dark"] body .cookies__text a {
   font-weight: 600;
   color: var(--accent-600);
   text-decoration: underline;
 }
-body.dark-mode .cookies__text a:focus-visible {
+:root[data-theme="dark"] body .cookies__text a:focus-visible {
   outline: 2px solid var(--accent-600);
   outline-offset: 2px;
   border-radius: 6px;
 }
-body.dark-mode .cookies__text a:hover {
+:root[data-theme="dark"] body .cookies__text a:hover {
   color: var(--primary-400);
 }
 .cookies__actions {
@@ -138,7 +138,7 @@ body.dark-mode .cookies__text a:hover {
   color: var(--primary);
   text-wrap: balance;
 }
-body.dark-mode .error__title {
+:root[data-theme="dark"] body .error__title {
   color: var(--accent);
 }
 .error__lead {
@@ -147,7 +147,7 @@ body.dark-mode .error__title {
   color: var(--text-dark);
   opacity: 0.95;
 }
-body.dark-mode .error__lead {
+:root[data-theme="dark"] body .error__lead {
   color: var(--text-light);
   opacity: 0.9;
 }

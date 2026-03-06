@@ -7,7 +7,7 @@
   content-visibility: auto;
   contain-intrinsic-size: 900px;
 }
-body.dark-mode .contact-form__section {
+:root[data-theme="dark"] body .contact-form__section {
   background: var(--surface-3);
   border-top: 1px solid color-mix(in srgb, var(--text-light) 12%, transparent);
 }
@@ -16,7 +16,7 @@ body.dark-mode .contact-form__section {
   font-size: 2rem;
   color: var(--primary);
 }
-body.dark-mode .contact-form__section h2 {
+:root[data-theme="dark"] body .contact-form__section h2 {
   color: var(--accent);
 }
 .contact-form__container {
@@ -28,7 +28,7 @@ body.dark-mode .contact-form__section h2 {
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
   text-align: left;
 }
-body.dark-mode .contact-form__container {
+:root[data-theme="dark"] body .contact-form__container {
   background: #2c2c2c;
   box-shadow: 0 4px 10px rgba(255, 255, 255, 0.05);
 }
@@ -42,7 +42,7 @@ body.dark-mode .contact-form__container {
   font-size: 0.9rem;
   color: var(--text-dark);
 }
-body.dark-mode .contact-form label {
+:root[data-theme="dark"] body .contact-form label {
   color: var(--text-light);
   opacity: 0.9;
 }
@@ -60,7 +60,7 @@ body.dark-mode .contact-form label {
   background: var(--text-light);
   color: var(--text-dark);
 }
-body.dark-mode .contact-form :is(input, textarea, select) {
+:root[data-theme="dark"] body .contact-form :is(input, textarea, select) {
   background-color: #3a3a3a;
   color: var(--text-light);
   border-color: var(--primary-600);
@@ -79,7 +79,7 @@ body.dark-mode .contact-form :is(input, textarea, select) {
   background-position: right 0.75rem center;
   background-size: 1rem;
 }
-body.dark-mode .contact-form select {
+:root[data-theme="dark"] body .contact-form select {
   background-image: url("data:image/svg+xml;utf8,<svg fill='%23ffffff' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><path d='M7 10l5 5 5-5z'/></svg>");
 }
 .contact-form :is(input, textarea, select):focus-visible {
@@ -100,7 +100,7 @@ body.dark-mode .contact-form select {
   -webkit-text-fill-color: var(--text-dark);
   box-shadow: 0 0 0 1000px var(--text-light) inset;
 }
-body.dark-mode .contact-form :is(input, textarea, select):-webkit-autofill {
+:root[data-theme="dark"] body .contact-form :is(input, textarea, select):-webkit-autofill {
   -webkit-text-fill-color: var(--text-light);
   box-shadow: 0 0 0 1000px #3a3a3a inset;
 }
@@ -149,7 +149,7 @@ body.dark-mode .contact-form :is(input, textarea, select):-webkit-autofill {
   text-decoration: underline;
   text-underline-offset: 2px;
 }
-body.dark-mode .contact-form .form__consent a {
+:root[data-theme="dark"] body .contact-form .form__consent a {
   color: var(--accent-600);
 }
 .contact-form .form__consent input[type="checkbox"].is-invalid {

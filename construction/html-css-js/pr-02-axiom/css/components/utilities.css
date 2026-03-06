@@ -1,22 +1,22 @@
 
-#primaryNav .nav a[aria-current="page"],
-body[data-current="services"] .nav a[href$="#uslugi"] {
+#primaryNav .site-nav__link[aria-current="page"],
+body[data-current="services"] .site-nav__link[href$="#uslugi"] {
   color: var(--primary);
   font-weight: 700;
   text-decoration: none;
 }
-#primaryNav .nav a[aria-current="page"]::after {
+#primaryNav .site-nav__link[aria-current="page"]::after {
   content: none !important;
   display: none !important;
 }
-#primaryNav .nav a[aria-current="page"]:hover {
+#primaryNav .site-nav__link[aria-current="page"]:hover {
   transform: none;
   box-shadow: none;
   background: transparent;
 }
 
 @media (prefers-color-scheme: dark) {
-  #primaryNav .nav a[aria-current="page"] {
+  #primaryNav .site-nav__link[aria-current="page"] {
     color: var(--accent-400);
   }
 }
@@ -66,13 +66,13 @@ footer .footer__section li[aria-current="page"] {
 .breadcrumb {
   color: color-mix(in srgb, var(--text-dark) 75%, transparent);
 }
-body.dark-mode .breadcrumb {
+:root[data-theme="dark"] body .breadcrumb {
   color: color-mix(in srgb, var(--text-light) 85%, transparent);
 }
-body:not(.dark-mode) .breadcrumb a {
+:root:not([data-theme="dark"]) body .breadcrumb a {
   color: var(--primary);
 }
-body.dark-mode .breadcrumb a {
+:root[data-theme="dark"] body .breadcrumb a {
   color: var(--accent);
 }
 .breadcrumb a {

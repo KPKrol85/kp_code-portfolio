@@ -5,7 +5,7 @@ export const initNavigation = () => {
   const btn = qs(SELECTORS.navToggle);
   const nav = qs(SELECTORS.primaryNav);
   if (!btn || !nav) return;
-  const mql = window.matchMedia("(max-width: 768px)");
+  const mql = window.matchMedia("(max-width: 899px)");
   if (!btn.hasAttribute("aria-expanded")) btn.setAttribute("aria-expanded", "false");
   let lastTrigger = null;
   const unlock = () => document.body.classList.remove("nav-open");
@@ -51,7 +51,7 @@ export const initNavigation = () => {
     nav.setAttribute("aria-hidden", "false");
     lock();
     lastTrigger = document.activeElement instanceof HTMLElement ? document.activeElement : btn;
-    const firstLink = nav.querySelector(".nav a");
+    const firstLink = nav.querySelector(".site-nav__link");
     if (firstLink && typeof firstLink.focus === "function") {
       firstLink.focus({ preventScroll: true });
     }

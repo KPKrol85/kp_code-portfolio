@@ -7,7 +7,7 @@
   content-visibility: auto;
   contain-intrinsic-size: 800px;
 }
-body.dark-mode .testimonials {
+:root[data-theme="dark"] body .testimonials {
   background: var(--surface-2);
   border-top: 1px solid color-mix(in srgb, var(--text-light) 12%, transparent);
 }
@@ -22,7 +22,7 @@ body.dark-mode .testimonials {
   font-size: 2rem;
   color: var(--primary);
 }
-body.dark-mode .testimonials .section__title {
+:root[data-theme="dark"] body .testimonials .section__title {
   color: var(--accent);
 }
 .testimonials__container {
@@ -41,7 +41,7 @@ body.dark-mode .testimonials .section__title {
   transform: translateY(-5px);
   box-shadow: 0 8px 18px color-mix(in srgb, black 18%, transparent);
 }
-body.dark-mode .testimonials__card {
+:root[data-theme="dark"] body .testimonials__card {
   background: color-mix(in srgb, var(--bg-dark) 85%, white 15%);
   box-shadow: 0 4px 10px color-mix(in srgb, var(--text-light) 6%, transparent);
 }
@@ -50,7 +50,7 @@ body.dark-mode .testimonials__card {
   color: color-mix(in srgb, var(--text-dark) 95%, white 5%);
   line-height: 1.6;
 }
-body.dark-mode .testimonials__card p {
+:root[data-theme="dark"] body .testimonials__card p {
   color: color-mix(in srgb, var(--text-light) 95%, black 5%);
 }
 .form__client-info {
@@ -58,7 +58,7 @@ body.dark-mode .testimonials__card p {
   border-top: 1px solid color-mix(in srgb, var(--text-dark) 12%, transparent);
   padding-top: 1rem;
 }
-body.dark-mode .form__client-info {
+:root[data-theme="dark"] body .form__client-info {
   border-color: color-mix(in srgb, var(--text-light) 24%, transparent);
 }
 .form__client-info h4 {
@@ -66,7 +66,7 @@ body.dark-mode .form__client-info {
   font-size: 1.1rem;
   color: var(--primary);
 }
-body.dark-mode .form__client-info h4 {
+:root[data-theme="dark"] body .form__client-info h4 {
   color: var(--accent-400);
 }
 

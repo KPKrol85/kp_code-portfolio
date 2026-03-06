@@ -11,7 +11,7 @@
 .about .section__title {
   color: var(--primary);
 }
-body.dark-mode .about .section__title {
+:root[data-theme="dark"] body .about .section__title {
   color: var(--accent);
 }
 .about__grid {
@@ -99,7 +99,7 @@ body.dark-mode .about .section__title {
   transform: scale(1.02);
   filter: brightness(1.05);
 }
-body.dark-mode .about__media .frame {
+:root[data-theme="dark"] body .about__media .frame {
   background: var(--surface-2);
   border-color: color-mix(in srgb, var(--text-light) 14%, transparent);
   box-shadow: 0 6px 20px rgba(0, 0, 0, 0.35);

@@ -1,4 +1,4 @@
-
+/* Btn */
 .btn {
   display: inline-flex;
   align-items: center;
@@ -40,6 +40,7 @@
   margin-left: 0.35rem;
 }
 
+/* Btn Primary */
 .btn-primary {
   text-transform: uppercase;
   padding: 0.9rem 1.4rem;
@@ -78,6 +79,7 @@ a.btn-primary:visited {
   color: var(--text-light);
 }
 
+/* Btn Ghost */
 .btn-ghost {
   padding: 0.9rem 1.4rem;
   border-radius: 8px;
@@ -93,7 +95,7 @@ a.btn-primary:visited {
 a.btn-ghost {
   color: var(--primary);
 }
-body.dark-mode a.btn-ghost {
+:root[data-theme="dark"] body a.btn-ghost {
   color: var(--accent);
 }
 .btn-ghost:hover {
@@ -111,102 +113,15 @@ body.dark-mode a.btn-ghost {
   transform: translateY(0);
   box-shadow: none;
 }
-body.dark-mode .btn-ghost {
+:root[data-theme="dark"] body .btn-ghost {
   color: var(--accent);
   border-color: color-mix(in srgb, var(--accent) 60%, transparent);
 }
-body.dark-mode .btn-ghost:hover {
+:root[data-theme="dark"] body .btn-ghost:hover {
   color: var(--text-light);
   background: color-mix(in srgb, var(--accent) 8%, transparent);
   box-shadow: 0 4px 12px color-mix(in srgb, var(--accent) 12%, transparent);
 }
 a.btn-ghost:hover {
   color: var(--text-dark);
-}
-
-.icon-button:not(.nav-toggle) {
-  display: inline-grid;
-  place-items: center;
-  width: 40px;
-  height: 40px;
-  border-radius: 8px;
-  border: 1px solid color-mix(in srgb, var(--primary) 40%, transparent);
-  background: transparent;
-  color: var(--primary);
-  transition: background 0.2s ease, transform 0.15s ease, box-shadow 0.15s ease, border-color 0.2s ease, color 0.2s ease;
-}
-.icon-button:not(.nav-toggle) svg {
-  width: 1.1em;
-  height: 1.1em;
-}
-.icon-button:not(.nav-toggle):hover {
-  background: color-mix(in srgb, var(--primary) 12%, transparent);
-  transform: translateY(-1px);
-}
-.icon-button:not(.nav-toggle):focus-visible {
-  outline: 3px solid var(--accent-400);
-  outline-offset: 3px;
-  box-shadow: 0 0 0 3px color-mix(in srgb, var(--accent) 30%, transparent);
-}
-body.dark-mode .icon-button:not(.nav-toggle) {
-  color: var(--accent);
-  border-color: color-mix(in srgb, var(--accent) 60%, transparent);
-}
-body.dark-mode .icon-button:not(.nav-toggle):hover {
-  background: color-mix(in srgb, var(--accent) 15%, transparent);
-}
-
-.nav-toggle.icon-button {
-  all: unset;
-  display: none;
-  place-items: center;
-  width: 40px;
-  height: 40px;
-  padding: 8px;
-  line-height: 0;
-  background: transparent;
-  border: 0;
-  color: inherit;
-  position: relative;
-  z-index: 5;
-}
-.nav-toggle .icon-button__svg {
-  position: absolute;
-  inset: 0;
-  margin: auto;
-  display: block;
-  width: 26px;
-  height: 26px;
-  transition: opacity 0.18s ease, transform 0.18s ease;
-}
-#hamburgerIcon {
-  transform: translate(var(--icon-nudge-x, 0), var(--icon-nudge-y, 0));
-}
-.nav-toggle .icon-button__icon--menu {
-  opacity: 1;
-  transform: translate(var(--icon-nudge-x, 0), var(--icon-nudge-y, 0)) scale(1);
-}
-.nav-toggle .icon-button__icon--close {
-  opacity: 0;
-  transform: translate(var(--icon-nudge-x, 0), var(--icon-nudge-y, 0)) scale(0.9);
-}
-.nav-toggle.active .icon-button__icon--menu {
-  opacity: 0;
-  transform: translate(var(--icon-nudge-x, 0), var(--icon-nudge-y, 0)) scale(0.9) rotate(90deg);
-}
-.nav-toggle.active .icon-button__icon--close {
-  opacity: 1;
-  transform: translate(var(--icon-nudge-x, 0), var(--icon-nudge-y, 0)) scale(1);
-}
-
-@media (min-width: 769px) {
-  .nav-toggle.icon-button {
-    display: none;
-  }
-}
-
-@media (max-width: 768px) {
-  .nav-toggle.icon-button {
-    display: inline-grid;
-  }
 }

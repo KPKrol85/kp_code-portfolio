@@ -7,7 +7,7 @@
   contain-intrinsic-size: 1000px;
   text-align: center;
 }
-body.dark-mode .faq {
+:root[data-theme="dark"] body .faq {
   background: var(--surface-2);
   border-top: 1px solid color-mix(in srgb, var(--text-light) 12%, transparent);
 }
@@ -23,7 +23,7 @@ body.dark-mode .faq {
   font-size: 2rem;
   color: var(--primary);
 }
-body.dark-mode .faq .section__title {
+:root[data-theme="dark"] body .faq .section__title {
   color: var(--accent);
 }
 .faq__list {
@@ -62,7 +62,7 @@ body.dark-mode .faq .section__title {
   text-align: left;
   transition: color 0.22s ease;
 }
-body.dark-mode .faq__question {
+:root[data-theme="dark"] body .faq__question {
   color: var(--text-light);
 }
 .faq__item:hover .faq__question,
@@ -112,7 +112,7 @@ body.dark-mode .faq__question {
   font-size: 1.05rem;
   letter-spacing: 0.02rem;
 }
-body.dark-mode .faq__answer {
+:root[data-theme="dark"] body .faq__answer {
   color: color-mix(in srgb, var(--text-light) 92%, black 8%);
 }
 

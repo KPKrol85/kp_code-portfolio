@@ -23,7 +23,7 @@ body.page--service :is(.service-intro, .service-details, .gallery, .cta) {
 body.page--service .section--divider {
   border-top: 1px solid color-mix(in srgb, var(--text-dark) 10%, transparent);
 }
-body.dark-mode.page--service .section--divider {
+:root[data-theme="dark"] body.page--service .section--divider {
   border-top: 1px solid color-mix(in srgb, var(--text-light) 12%, transparent);
 }
 body.page--service .service-intro {
@@ -35,16 +35,16 @@ body.page--service :is(.service-details, .cta) {
 body.page--service .gallery {
   background: var(--surface-3);
 }
-body.dark-mode.page--service .service-intro {
+:root[data-theme="dark"] body.page--service .service-intro {
   background: var(--surface-3);
 }
-body.dark-mode.page--service .service-details {
+:root[data-theme="dark"] body.page--service .service-details {
   background: var(--surface-2);
 }
-body.dark-mode.page--service .gallery {
+:root[data-theme="dark"] body.page--service .gallery {
   background: var(--surface-1);
 }
-body.dark-mode.page--service .cta {
+:root[data-theme="dark"] body.page--service .cta {
   background: var(--surface-2);
 }
 .service-intro__inner,
@@ -60,9 +60,9 @@ body.dark-mode.page--service .cta {
 body.page--service .cta .section__title {
   color: var(--primary);
 }
-body.dark-mode .service-intro__inner .section__title,
-body.dark-mode .service-details__inner .section__title,
-body.dark-mode.page--service .cta .section__title {
+:root[data-theme="dark"] body .service-intro__inner .section__title,
+:root[data-theme="dark"] body .service-details__inner .section__title,
+:root[data-theme="dark"] body.page--service .cta .section__title {
   color: var(--accent);
 }
 .service-intro__inner {
@@ -89,7 +89,7 @@ body.dark-mode.page--service .cta .section__title {
   box-shadow: 0 4px 12px color-mix(in srgb, var(--shadow) 10%, transparent);
   transition: box-shadow 0.3s ease;
 }
-body.dark-mode .service-intro__media {
+:root[data-theme="dark"] body .service-intro__media {
   box-shadow: 0 6px 20px color-mix(in srgb, var(--text-light) 8%, transparent);
 }
 .service-intro__media img {
@@ -122,7 +122,7 @@ body.dark-mode .service-intro__media {
   color: var(--primary);
   position: relative;
 }
-body.dark-mode .service-details__inner h2 {
+:root[data-theme="dark"] body .service-details__inner h2 {
   color: var(--accent);
 }
 .features__list {

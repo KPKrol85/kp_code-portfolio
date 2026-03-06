@@ -4,7 +4,7 @@
   border-top: 1px solid color-mix(in srgb, var(--text-dark) 10%, transparent);
   text-align: center;
 }
-body.dark-mode .services__section {
+:root[data-theme="dark"] body .services__section {
   background: var(--surface-3);
   border-top: 1px solid color-mix(in srgb, var(--text-light) 10%, transparent);
 }
@@ -14,7 +14,7 @@ body.dark-mode .services__section {
   font-size: 2rem;
   color: var(--primary);
 }
-body.dark-mode .services__section .section__title {
+:root[data-theme="dark"] body .services__section .section__title {
   color: var(--accent);
 }
 .services {
@@ -32,7 +32,7 @@ body.dark-mode .services__section .section__title {
   box-shadow: 0 4px 10px color-mix(in srgb, black 12%, transparent);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
-body.dark-mode .service {
+:root[data-theme="dark"] body .service {
   background: color-mix(in srgb, var(--bg-dark) 85%, white 15%);
   box-shadow: 0 4px 10px color-mix(in srgb, var(--text-light) 6%, transparent);
 }
@@ -64,7 +64,7 @@ body.dark-mode .service {
   color: var(--text-dark);
   transition: color 0.3s ease;
 }
-body.dark-mode .service h3 {
+:root[data-theme="dark"] body .service h3 {
   color: var(--text-light);
   transition: color 0.3s ease;
 }
@@ -72,7 +72,7 @@ body.dark-mode .service h3 {
   margin-top: var(--space-1);
   color: var(--text-dark);
 }
-body.dark-mode .service p {
+:root[data-theme="dark"] body .service p {
   color: var(--text-light);
   opacity: 0.9;
 }
@@ -85,8 +85,8 @@ body.dark-mode .service p {
 .service a:focus h3 {
   color: var(--primary-400);
 }
-body.dark-mode .service a:hover h3,
-body.dark-mode .service a:focus h3 {
+:root[data-theme="dark"] body .service a:hover h3,
+:root[data-theme="dark"] body .service a:focus h3 {
   color: var(--accent-400);
 }
 

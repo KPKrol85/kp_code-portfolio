@@ -7,7 +7,7 @@
   content-visibility: visible;
   contain-intrinsic-size: auto;
 }
-body.dark-mode .gallery {
+:root[data-theme="dark"] body .gallery {
   background: var(--surface-1);
   border-top: 1px solid color-mix(in srgb, var(--text-light) 12%, transparent);
 }
@@ -21,7 +21,7 @@ body.dark-mode .gallery {
   font-size: 2rem;
   color: var(--primary);
 }
-body.dark-mode .gallery .section__title {
+:root[data-theme="dark"] body .gallery .section__title {
   color: var(--accent);
 }
 .gallery__container {
@@ -39,7 +39,7 @@ body.dark-mode .gallery .section__title {
   transition: opacity 0.36s ease, transform 0.36s ease;
   will-change: opacity, transform;
 }
-body.dark-mode .gallery__item {
+:root[data-theme="dark"] body .gallery__item {
   box-shadow: 0 4px 10px rgba(255, 255, 255, 0.05);
 }
 .gallery__link {

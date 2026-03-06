@@ -3,9 +3,10 @@ import { qs, qsa } from "../utils/dom.js";
 import { safeGetItem, safeSetItem } from "../utils/storage.js";
 
 export const initThemeToggle = () => {
+  const root = document.documentElement;
   const btnDesktop = qs(SELECTORS.themeToggleDesktop);
   const btnMobile = qs(SELECTORS.themeToggleMobile);
-  const hamburgerIcon = qs(SELECTORS.hamburgerIcon);
+
   const mq = window.matchMedia ? window.matchMedia("(prefers-color-scheme: dark)") : null;
   const setLogo = (isDark) => {
     qsa(".logo__img[data-light][data-dark]").forEach((img) => {
@@ -15,11 +16,7 @@ export const initThemeToggle = () => {
       if (img.src !== absNext) img.setAttribute("src", next);
     });
   };
-  const setHamburgerIcon = (isDark) => {
-    if (!hamburgerIcon) return;
-    const next = isDark ? hamburgerIcon.dataset.dark : hamburgerIcon.dataset.light;
-    if (next && hamburgerIcon.getAttribute("src") !== next) hamburgerIcon.setAttribute("src", next);
-  };
+
   const syncButtonsA11y = (isDark) => {
     const pressed = String(isDark);
     const label = isDark ? "Przełącz na jasny motyw" : "Przełącz na ciemny motyw";
@@ -34,16 +31,16 @@ export const initThemeToggle = () => {
   };
   const setTheme = (mode, persist = true) => {
     const isDark = mode === "dark";
-    document.body.classList.toggle("dark-mode", isDark);
+    root.setAttribute("data-theme", isDark ? "dark" : "light");
     setLogo(isDark);
-    setHamburgerIcon(isDark);
+
     syncButtonsA11y(isDark);
     if (persist) safeSetItem("theme", isDark ? "dark" : "light");
   };
   const saved = safeGetItem("theme");
   if (saved === "dark" || saved === "light") setTheme(saved, false);
   else setTheme(mq && mq.matches ? "dark" : "light", false);
-  const onToggle = () => setTheme(document.body.classList.contains("dark-mode") ? "light" : "dark", true);
+  const onToggle = () => setTheme(root.getAttribute("data-theme") === "dark" ? "light" : "dark", true);
   if (btnDesktop) btnDesktop.addEventListener("click", onToggle);
   if (btnMobile) btnMobile.addEventListener("click", onToggle);
   if (!saved && mq) {

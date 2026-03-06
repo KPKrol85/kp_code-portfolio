@@ -1,18 +1,11 @@
 (function () {
-  document.documentElement.classList.add("js");
+  var root = document.documentElement;
+  root.classList.add("js");
   try {
-    var applyTheme = function (isDark) {
-      if (!document.body) return;
-      document.body.classList.toggle("dark-mode", isDark);
-    };
-    var initTheme = function () {
-      var t = localStorage.getItem("theme");
-      if (t === "dark" || t === "light") applyTheme(t === "dark");
-      else if (window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches) {
-        applyTheme(true);
-      }
-    };
-    if (document.body) initTheme();
-    else document.addEventListener("DOMContentLoaded", initTheme, { once: true });
+    var mode = "light";
+    var saved = localStorage.getItem("theme");
+    if (saved === "dark" || saved === "light") mode = saved;
+    else if (window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches) mode = "dark";
+    root.setAttribute("data-theme", mode);
   } catch (e) {}
 })();
