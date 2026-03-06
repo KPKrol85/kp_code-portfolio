@@ -79,7 +79,7 @@ h3 {
 
 h1 {
   font-size: var(--fs-2);
-  line-height: 1.2;
+  line-height: var(--lh-heading);
   margin: 0 0 0.6em;
 }
 
@@ -108,7 +108,7 @@ h3 {
 
 section {
   scroll-margin-top: clamp(64px, 8vh, 96px);
-  padding: var(--section-py) var(--section-px);
+  padding: var(--section-py-lg) var(--section-px-sm);
 }
 .section__title {
   position: relative;

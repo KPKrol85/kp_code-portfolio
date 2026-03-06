@@ -376,6 +376,9 @@ body.nav-open {
   .nav-toggle {
     display: none;
   }
+  .theme-toggle {
+    margin: 0 var(--space-3);
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {
