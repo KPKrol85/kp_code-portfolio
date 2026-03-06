@@ -1,95 +1,85 @@
-
 .faq {
-  padding: 4rem 2rem;
   background: var(--surface-2);
-  border-top: 1px solid color-mix(in srgb, var(--text-dark) 10%, transparent);
+  border-top: 1px solid var(--feature-border);
   content-visibility: auto;
   contain-intrinsic-size: 1000px;
   text-align: center;
-}
-:root[data-theme="dark"] body .faq {
-  background: var(--surface-2);
-  border-top: 1px solid color-mix(in srgb, var(--text-light) 12%, transparent);
 }
 .faq__inner {
   max-width: 1200px;
   margin: 0 auto;
   text-align: center;
 }
-.faq .section__title {
-  display: inline-block;
-  text-align: center;
-  margin-bottom: 3rem;
-  font-size: 2rem;
-  color: var(--primary);
-}
-:root[data-theme="dark"] body .faq .section__title {
-  color: var(--accent);
-}
 .faq__list {
-  max-width: 900px;
-  margin: 0 auto;
+  max-width: 700px;
+  margin: var(--space-6) auto;
   display: grid;
-  gap: 1rem;
+  gap: var(--space-4);
   text-align: left;
 }
 .faq__item {
   background: var(--feature-surface);
   border: 1px solid var(--feature-border);
-  border-radius: var(--radius-xl, 16px);
+  border-radius: var(--radius-2);
   box-shadow: 0 2px 8px var(--feature-shadow);
-  transition: transform 0.18s ease, box-shadow 0.22s ease, border-color 0.22s ease, background 0.22s ease;
+  transition:
+    transform 0.18s ease,
+    box-shadow 0.22s ease,
+    border-color 0.22s ease,
+    background 0.22s ease;
   overflow: clip;
   will-change: transform;
 }
 .faq__question {
   position: relative;
+  box-sizing: border-box;
   list-style: none;
   cursor: pointer;
-  padding: 1rem 3rem 1rem 1.1rem;
+  padding: var(--space-2) var(--space-4);
   min-height: 48px;
   display: flex;
   align-items: center;
+  width: 100%;
   font-weight: 700;
-  line-height: 1.25;
-  letter-spacing: 0.1rem;
-  background-color: var(--feature-surface);
+  line-height: var(--lh-heading);
+  letter-spacing: var(--ls-wide);
+  color: var(--text-body);
+  text-align: left;
   background: transparent;
   border: 0;
   outline: 0;
-  width: 100%;
-  color: var(--text-dark);
-  text-align: left;
   transition: color 0.22s ease;
-}
-:root[data-theme="dark"] body .faq__question {
-  color: var(--text-light);
-}
-.faq__item:hover .faq__question,
-.faq__item:focus-within .faq__question {
-  color: var(--feature-accent);
 }
 .faq__question::-webkit-details-marker {
   display: none;
 }
 .faq__question::after {
-  content: "";
+  content: "▾";
   position: absolute;
-  right: 0.9rem;
   top: 50%;
-  width: 18px;
-  height: 18px;
-  transform: translateY(-50%) rotate(0deg);
-  opacity: 0.8;
+  right: var(--space-2);
+  display: block;
+  width: 20px;
+  height: 20px;
+  line-height: 20px;
+  text-align: center;
+  font-size: 18px;
+  font-weight: 700;
+  color: #1f5fa8;
+  transform: translateY(-50%);
+  opacity: 1;
+  z-index: 2;
+  pointer-events: none;
   transition: transform 0.22s ease, opacity 0.22s ease;
-  mask: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><path d='M9 6l6 6-6 6'/></svg>") center/18px 18px no-repeat;
-  background-color: currentColor;
-  background: none;
 }
 .faq__question:focus-visible {
   outline: 3px solid var(--accent-400);
   outline-offset: 3px;
-  border-radius: 8px;
+  border-radius: var(--radius-2);
+}
+.faq__item:hover .faq__question,
+.faq__item:focus-within .faq__question {
+  color: var(--feature-accent);
 }
 .faq__item:hover .faq__question::after,
 .faq__item:focus-within .faq__question::after {
@@ -101,28 +91,16 @@
   background: var(--feature-hover-bg);
 }
 .faq__item[open] .faq__question::after {
-  transform: translateY(-50%) rotate(90deg);
-  background: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><path fill='%23999999' d='M9 6l6 6-6 6'/></svg>") center/18px 18px no-repeat;
+  content: "▴";
 }
 .faq__answer {
-  padding: 0 1.1rem 1.1rem 1.1rem;
+  padding: var(--space-2) var(--space-4);
   background: transparent;
   border: 0;
-  color: color-mix(in srgb, var(--text-dark) 92%, white 8%);
-  font-size: 1.05rem;
-  letter-spacing: 0.02rem;
-}
-:root[data-theme="dark"] body .faq__answer {
-  color: color-mix(in srgb, var(--text-light) 92%, black 8%);
-}
-
-@media (max-width: 768px) {
-  .faq {
-    padding: 3rem 1rem;
-  }
-  .faq__question {
-    padding-right: 2.5rem;
-  }
+  color: var(--text-mute);
+  font-size: var(--fs-8);
+  letter-spacing: var(--ls-wide);
+  margin: 0  auto;
 }
 
 @media (hover: hover) and (pointer: fine) {

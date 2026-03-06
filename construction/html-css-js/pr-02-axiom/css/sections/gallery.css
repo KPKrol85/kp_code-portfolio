@@ -224,7 +224,7 @@
   position: absolute;
   left: 0;
   right: 0;
-  bottom: -2.25rem;
+  bottom: -52px;
   text-align: center;
   font-size: var(--fs-8);
   color: var(--text-inverse, #fff);
@@ -244,11 +244,11 @@ body.lb-open {
   .lb__img {
     max-height: 100vh;
   }
-}
-
-@media (orientation: landscape) and (max-width: 900px), (orientation: landscape) and (max-height: 480px) {
   .lb__caption {
-    display: none;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #00000073;
   }
 }
 
