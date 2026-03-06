@@ -1,25 +1,11 @@
-(() => {
-  const root = document.documentElement;
-  root.classList.remove("no-js");
+(function () {
+  var root = document.documentElement;
   root.classList.add("js");
-
   try {
-    const stored = localStorage.getItem("theme");
-
-    const theme =
-      stored === "light" || stored === "dark"
-        ? stored
-        : window.matchMedia("(prefers-color-scheme: dark)").matches
-          ? "dark"
-          : "light";
-
-    root.dataset.theme = theme;
-    root.classList.add("preload-theme");
-  } catch {}
-
-  window.addEventListener("DOMContentLoaded", () => {
-    requestAnimationFrame(() =>
-      document.documentElement.classList.remove("preload-theme"),
-    );
-  });
+    var mode = "light";
+    var saved = localStorage.getItem("theme");
+    if (saved === "dark" || saved === "light") mode = saved;
+    else if (window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches) mode = "dark";
+    root.setAttribute("data-theme", mode);
+  } catch (e) {}
 })();

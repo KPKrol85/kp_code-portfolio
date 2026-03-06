@@ -1,0 +1,22 @@
+
+.not-found__section {
+  text-align: center;
+  padding: 5rem 2rem;
+}
+
+.not-found__title {
+  font-size: clamp(2.5rem, 6vw, 4rem);
+  color: var(--primary);
+  margin-bottom: 1rem;
+}
+
+.not-found__text {
+  font-size: 1.1rem;
+  color: var(--text-dark);
+  margin-bottom: 2rem;
+}
+
+.not-found__button {
+  display: inline-block;
+  text-decoration: none;
+}

@@ -1,0 +1,139 @@
+/* Btn */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.55rem;
+  padding: 0.65rem 1.1rem;
+  border-radius: 8px;
+  border: 1px solid color-mix(in srgb, var(--primary) 40%, transparent);
+  text-decoration: none;
+  font-weight: 600;
+  -webkit-tap-highlight-color: transparent;
+  transition:
+    transform 0.15s ease,
+    background 0.2s ease,
+    box-shadow 0.15s ease,
+    color 0.2s ease,
+    border-color 0.2s ease;
+}
+.btn:hover {
+  transform: translateY(-1px);
+}
+.btn:active {
+  transform: translateY(0);
+}
+.btn[disabled],
+.btn:disabled {
+  opacity: 0.6;
+  pointer-events: none;
+}
+.btn svg,
+.btn .icon {
+  width: 1.1em;
+  height: 1.1em;
+  flex-shrink: 0;
+}
+.btn * {
+  color: inherit;
+  fill: currentColor;
+}
+.btn .icon-left {
+  margin-right: 0.35rem;
+}
+.btn .icon-right {
+  margin-left: 0.35rem;
+}
+
+/* Btn Primary */
+/* Btn Primary */
+.btn-primary {
+  text-transform: uppercase;
+  padding: var(--space-3) var(--space-5);
+  border: 1px solid transparent;
+  font-weight: 600;
+  color: var(--text-inverse);
+  min-width: 160px;
+  font-size: var(--fs-7);
+  letter-spacing: var(--ls-wide);
+  border-radius: var(--radius-2);
+  cursor: pointer;
+  border: none;
+  background-size: 200% 100%;
+  background-position: 0 0;
+  background-image: linear-gradient(90deg, var(--primary-400), var(--accent-400));
+  transition:
+    background-position 0.35s ease,
+    transform 0.15s ease,
+    box-shadow 0.15s ease;
+}
+.btn-primary:hover {
+  background-position: 100% 0;
+  transform: translateY(-2px);
+
+}
+.btn-primary:focus-visible {
+  outline: 3px solid var(--accent-400);
+  outline-offset: 3px;
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--accent) 30%, transparent);
+}
+.btn-primary:active {
+  transform: translateY(0);
+}
+a.btn-primary:hover,
+a.btn-primary:focus-visible {
+  text-decoration: none;
+  color: var(--text-title);
+}
+
+/* Btn Ghost */
+.btn-ghost {
+  padding: 0.9rem 1.4rem;
+  border-radius: 8px;
+  font-weight: 500;
+  font-size: 1rem;
+  letter-spacing: 0.1rem;
+  text-transform: uppercase;
+  background: transparent;
+  color: var(--primary);
+  border: 1px solid color-mix(in srgb, var(--primary) 60%, transparent);
+  transition:
+    background 0.3s ease,
+    color 0.3s ease,
+    transform 0.15s ease,
+    box-shadow 0.15s ease,
+    border-color 0.2s ease;
+}
+a.btn-ghost {
+  color: var(--primary);
+}
+:root[data-theme="dark"] body a.btn-ghost {
+  color: var(--accent);
+}
+.btn-ghost:hover {
+  color: var(--text-dark);
+  background: color-mix(in srgb, var(--primary) 8%, transparent);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px color-mix(in srgb, var(--primary) 12%, transparent);
+}
+.btn-ghost:focus-visible {
+  outline: 3px solid var(--accent-400);
+  outline-offset: 3px;
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--accent) 30%, transparent);
+}
+.btn-ghost:active {
+  transform: translateY(0);
+  box-shadow: none;
+}
+:root[data-theme="dark"] body .btn-ghost {
+  color: var(--accent);
+  border-color: color-mix(in srgb, var(--accent) 60%, transparent);
+}
+:root[data-theme="dark"] body .btn-ghost:hover {
+  color: var(--text-light);
+  background: color-mix(in srgb, var(--accent) 8%, transparent);
+  box-shadow: 0 4px 12px color-mix(in srgb, var(--accent) 12%, transparent);
+}
+a.btn-ghost:hover {
+  color: var(--text-dark);
+}

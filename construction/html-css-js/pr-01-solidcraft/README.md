@@ -1,281 +1,145 @@
-# Solidcraft
+# Axiom Construction — dokumentacja projektu
 
-## PL — Dokumentacja projektu
+## Wersja polska
 
-### 1. Project Overview
+### Przegląd projektu
+Axiom Construction to wielostronicowy serwis firmowy (HTML/CSS/JS) dla firmy budowlano-remontowej. Projekt zawiera stronę główną, podstrony usług, podstrony prawne, formularz kontaktowy Netlify oraz konfigurację PWA (manifest + service worker).
 
-Solidcraft to statyczny serwis WWW firmy remontowo-budowlanej. Repozytorium zawiera stronę główną, podstrony ofertowe, strony dokumentów, stronę 404, stronę offline oraz stronę potwierdzenia wysłania formularza.
+### Kluczowe funkcje
+- Strona główna z sekcjami: hero, o nas, usługi, galeria, FAQ, kontakt.
+- Podstrony usług: budowa domów, remonty mieszkań, wykończenia wnętrz, adaptacje poddaszy, instalacje sanitarne, instalacje elektryczne.
+- Podstrony prawne: regulamin, polityka prywatności, polityka cookies, certyfikaty, kariera.
+- Formularz kontaktowy z walidacją klienta, honeypotem, reCAPTCHA Netlify i trybem fallback.
+- Tryb jasny/ciemny z zapisem preferencji.
+- Lightbox galerii i mobilne menu z obsługą klawiatury.
+- SEO: canonicale, OpenGraph, Twitter cards, JSON-LD, robots.txt i sitemap.xml.
+- PWA: manifest.webmanifest, offline page oraz service worker.
 
-### 2. Key Features
+### Tech stack
+- HTML5
+- CSS (modułowy podział: tokens/base/layout/components/sections)
+- Vanilla JavaScript (modułowy podział: core/components/sections/utils)
+- Narzędzia Node.js (build CSS/JS/SW, obrazki, QA links/lighthouse/pa11y)
 
-- Wielosekcyjna strona główna (oferta, realizacje, opinie, FAQ, kontakt).
-- Podstrony usług w katalogu `oferta/`.
-- Formularz kontaktowy oparty o Netlify Forms (`netlify`, `data-netlify`, `netlify-honeypot`) z walidacją po stronie klienta.
-- Walidacja formularza obejmująca komunikaty błędów ARIA, blokadę wielokrotnego wysyłania, timeout żądania, honeypot i proste heurystyki antyspamowe.
-- Nawigacja responsywna z menu mobilnym, dropdownem, obsługą klawiatury (`Tab`, `Shift+Tab`, `Escape`) i scroll-spy.
-- Lightbox galerii/oferty z obsługą klawiatury, focus management i atrybutami dialogu modalnego.
-- Przełącznik motywu jasny/ciemny z zapisem preferencji w `localStorage` oraz inicjalizacją motywu przed renderowaniem.
-- Baner cookies z zapisem decyzji użytkownika w `localStorage`.
-- Lazy-load osadzonej mapy po akcji użytkownika (`data-map-src`, przycisk „Załaduj mapę”).
-- Warstwa PWA: `manifest.webmanifest`, rejestracja Service Workera, `offline.html`.
-- SEO: `robots.txt`, `sitemap.xml`, metadane Open Graph/Twitter, canonicale i JSON-LD.
-
-### 3. Tech Stack
-
-- HTML5 (architektura wielostronicowa).
-- CSS z architekturą modułową (`css/style.css` + `css/modules/*`).
-- JavaScript (Vanilla JS, moduły ES).
-- Node.js + npm.
-- PostCSS: `postcss-import`, `postcss-preset-env`, `autoprefixer`, `cssnano`.
-- Bundling/minifikacja JS: `esbuild`.
-- Środowisko deweloperskie: `live-server`.
-- Formatowanie: `prettier`.
-- Przetwarzanie obrazów: `sharp` (skrypt `scripts/images.js`).
-- QA: Playwright + axe-core (audyt dostępności), skrypty kontroli linków i assetów HTML, Lighthouse CI.
-- Hosting/deployment: Netlify (`netlify.toml`, `_headers`, `_redirects`).
-
-### 4. Project Structure
-
+### Struktura projektu (skrót)
 - `index.html` — strona główna.
-- `oferta/*.html` — podstrony usług.
-- `doc/*.html` — strony dokumentów.
-- `404.html`, `offline.html`, `thank-you.html` — strony systemowe.
-- `css/style.css` + `css/modules/*.css` — źródła stylów.
-- `css/style.min.css` — artefakt produkcyjny CSS.
-- `js/script.js`, `js/theme-init.js`, `js/sw-register.js` — źródła JS.
-- `js/modules/*.js` — moduły logiki UI (nawigacja, formularze, lightbox, consent mapy, cookies, itp.).
-- `js/script.min.js`, `js/theme-init.min.js` — artefakty produkcyjne JS.
-- `sw.js` — Service Worker.
-- `scripts/*` — skrypty build/QA/automatyzacji.
-- `assets/img-src/*` — źródła grafik.
-- `assets/img/*` — wygenerowane zasoby obrazów.
-- `dist/` — katalog publikacyjny generowany przez `npm run build:dist`.
+- `services/*.html` — podstrony usług.
+- `legal/*.html` — podstrony prawne.
+- `css/main.css` + moduły `css/tokens`, `css/base`, `css/layout`, `css/components`, `css/sections`.
+- `js/main.js` + moduły `js/core`, `js/components`, `js/sections`, `js/utils`.
+- `manifest.webmanifest`, `sw.js`, `offline.html`.
+- `_headers`, `_redirects`, `robots.txt`, `sitemap.xml`.
 
-### 5. Setup and Installation
+### Setup i uruchomienie
+1. Zainstaluj zależności:
+   - `npm install`
+2. Uruchom lokalny serwer:
+   - `npm run serve`
+3. (Opcjonalnie) uruchom build assetów:
+   - `npm run build`
 
-```bash
-npm install
-```
+### Notatki build/deployment
+- Projekt ma gotowe skrypty do budowy CSS/JS/SW oraz head metadata.
+- Konfiguracja deploymentu opiera się o pliki `_headers` i `_redirects` (Netlify).
+- Strategia minifikacji (`dist/style.min.css`, `dist/script.min.js`) jest częścią pipeline’u build.
 
-### 6. Local Development
+### Notatki dostępności
+- Dostępny skip link do `<main>`.
+- Widoczne style `:focus-visible` i ARIA dla kluczowych kontrolek nawigacji.
+- FAQ oparte o natywne `<details>/<summary>`.
+- Formularz zawiera etykiety, statusy live region i komunikaty błędów.
+- Występuje fallback bez JavaScript dla formularza (POST + strona sukcesu).
 
-```bash
-npm run dev
-npm run watch:css
-npm run watch:js
-npm run check:html
-npm run qa:a11y
-```
+### Notatki SEO
+- Meta description, canonical, OpenGraph i Twitter Cards obecne na stronach.
+- JSON-LD osadzone inline (m.in. LocalBusiness/WebSite/Breadcrumb/FAQ).
+- robots.txt i sitemap.xml obecne.
 
-### 7. Production Build
+### Notatki wydajności
+- Obrazy responsywne (`<picture>`, AVIF/WebP/JPG fallback).
+- W większości obrazów ustawione `width`/`height`, `loading="lazy"`, `decoding="async"`.
+- Fonty preload + `font-display: swap`.
+- Skrypt główny ładowany z `defer`.
 
-```bash
-npm run build
-npm run build:dist
-```
+### Roadmapa
+- Spójność danych kontaktowych na wszystkich CTA usług.
+- Korekta skrótu PWA „Oferta” (`/#oferta` → istniejący identyfikator sekcji).
+- Ujednolicenie polityki redukcji ruchu dla wszystkich animacji/przejść.
+- Rozszerzenie automatycznych testów QA (np. regularne uruchamianie pa11y/lighthouse).
+- Dalsze porządkowanie współdzielonych fragmentów HTML pod kątem utrzymania.
 
-- `npm run build` generuje artefakty produkcyjne: `css/style.min.css`, `js/theme-init.min.js`, `js/script.min.js`.
-- `npm run build:dist`:
-  - czyści i buduje `dist/`,
-  - kopiuje pliki HTML i zasoby runtime,
-  - kopiuje pliki deploy (`_headers`, `_redirects`, `netlify.toml`, `robots.txt`, `manifest.webmanifest`, `sw.js` itd. jeśli istnieją),
-  - podmienia odwołania w HTML z plików źródłowych na zminifikowane,
-  - uruchamia generowanie mapy strony (`npm run build:sitemap`).
-
-### 8. Deployment
-
-- Konfiguracja Netlify jest częścią repozytorium.
-- `netlify.toml` definiuje:
-  - komendę build: `npm run build:dist`,
-  - katalog publikacji: `dist`.
-- `_headers` definiuje nagłówki bezpieczeństwa i CSP.
-- `_redirects` definiuje przekierowania 301 oraz fallback `/* /404.html 404`.
-
-### 9. Accessibility
-
-- Rozbudowane użycie atrybutów ARIA w nawigacji, formularzu, FAQ, banerze cookies i lightboxie.
-- Obsługa klawiatury w menu mobilnym i dropdownie, w tym trap focus i zamykanie klawiszem `Escape`.
-- Lightbox z `role="dialog"`, `aria-modal="true"` oraz kontrolą fokusu.
-- Formularz z komunikatami statusu (`role="status"`, `aria-live="polite"`) i polami błędów.
-- Skrypt audytu dostępności `npm run qa:a11y` (Playwright + axe-core).
-
-### 10. SEO
-
-- Metatagi: `title`, `description`, `canonical`, `robots` na stronach HTML.
-- Open Graph i Twitter Card.
-- Dane strukturalne JSON-LD (`GeneralContractor`, `WebSite`, `CollectionPage`, `FAQPage`).
-- `robots.txt` z adresem mapy strony.
-- `sitemap.xml` oraz skrypt `scripts/generate-sitemap.mjs`.
-
-### 11. Performance
-
-- Minifikacja CSS i JS (PostCSS + esbuild).
-- Responsywne obrazy (`srcset`, `sizes`) oraz wiele formatów (`AVIF`, `WebP`, `JPG`).
-- `loading="lazy"` dla części obrazów.
-- Preload kluczowych fontów i obrazu hero.
-- Service Worker:
-  - pre-cache wskazanych zasobów statycznych,
-  - strategia **network-first** dla HTML (z fallbackiem do cache i `offline.html`),
-  - strategia **cache-first** dla zasobów statycznych.
-
-### 12. Project Maintenance
-
-- Główna orkiestracja aplikacji: `js/script.js`.
-- Moduły UI i logika domenowa: `js/modules/*.js`.
-- Inicjalizacja motywu przed renderowaniem: `js/theme-init.js`.
-- Rejestracja PWA: `js/sw-register.js`; logika cache: `sw.js`.
-- Architektura CSS oparta o moduły importowane przez `css/style.css`.
-- Proces build/deploy i QA utrzymywany przez skrypty w `scripts/` oraz konfiguracje `postcss.config.js`, `lighthouserc.json`, `netlify.toml`.
-
-### 13. Roadmap
-
-- Dodać pipeline CI uruchamiający automatycznie `check:html`, `qa:a11y` i `qa:lhci`.
-- Uzupełnić testy E2E dla krytycznych ścieżek (formularz kontaktowy, nawigacja mobilna, lightbox).
-- Rozszerzyć automatyczną kontrolę jakości o linting JS/CSS.
-- Sparametryzować `SITE_URL` dla wielu środowisk deploymentu bez zmian w skryptach lokalnych.
-- Uporządkować i udokumentować konwencję nazewnictwa assetów (w tym pliki odstające) w katalogach obrazów.
-
-### 14. License
-
+### Licencja
 MIT (zgodnie z `package.json`).
 
 ---
 
-## EN — Project Documentation
+## English version
 
-### 1. Project Overview
+### Project overview
+Axiom Construction is a multi-page company website (HTML/CSS/JS) for a construction and renovation business. The project includes a homepage, service subpages, legal subpages, a Netlify contact form, and PWA configuration (manifest + service worker).
 
-Solidcraft is a static website for a construction and renovation business. The repository includes a homepage, service subpages, document pages, a 404 page, an offline page, and a form submission confirmation page.
+### Key features
+- Homepage sections: hero, about, services, gallery, FAQ, contact.
+- Service pages: home construction, apartment renovations, interior finishing, attic adaptations, sanitary installations, electrical installations.
+- Legal pages: terms, privacy policy, cookies policy, certificates, careers.
+- Contact form with client-side validation, honeypot, Netlify reCAPTCHA, and fallback mode.
+- Light/dark theme with persisted preference.
+- Gallery lightbox and keyboard-capable mobile navigation.
+- SEO: canonical tags, OpenGraph, Twitter cards, JSON-LD, robots.txt, sitemap.xml.
+- PWA: manifest.webmanifest, offline page, and service worker.
 
-### 2. Key Features
+### Tech stack
+- HTML5
+- CSS (modular split: tokens/base/layout/components/sections)
+- Vanilla JavaScript (modular split: core/components/sections/utils)
+- Node.js tooling (CSS/JS/SW build, image tasks, QA links/lighthouse/pa11y)
 
-- Multi-section homepage (offer, projects, testimonials, FAQ, contact).
-- Service subpages in the `oferta/` directory.
-- Contact form built with Netlify Forms (`netlify`, `data-netlify`, `netlify-honeypot`) and client-side validation.
-- Form validation with ARIA error/status messaging, duplicate-submit guard, request timeout, honeypot, and basic anti-spam heuristics.
-- Responsive navigation with mobile menu, dropdown, keyboard handling (`Tab`, `Shift+Tab`, `Escape`), and scroll-spy.
-- Gallery/offer lightbox with keyboard support, focus management, and modal dialog semantics.
-- Light/dark theme switch with `localStorage` persistence and pre-render theme initialization.
-- Cookie banner with user decision persisted in `localStorage`.
-- Lazy-loaded embedded map after explicit user action (`data-map-src`, “Load map” button).
-- PWA layer: `manifest.webmanifest`, Service Worker registration, `offline.html`.
-- SEO layer: `robots.txt`, `sitemap.xml`, Open Graph/Twitter metadata, canonicals, and JSON-LD.
-
-### 3. Tech Stack
-
-- HTML5 (multi-page architecture).
-- CSS with modular architecture (`css/style.css` + `css/modules/*`).
-- JavaScript (Vanilla JS, ES modules).
-- Node.js + npm.
-- PostCSS: `postcss-import`, `postcss-preset-env`, `autoprefixer`, `cssnano`.
-- JS bundling/minification: `esbuild`.
-- Local development server: `live-server`.
-- Formatting: `prettier`.
-- Image processing: `sharp` (via `scripts/images.js`).
-- QA: Playwright + axe-core (accessibility audit), HTML link/asset checks, Lighthouse CI.
-- Hosting/deployment: Netlify (`netlify.toml`, `_headers`, `_redirects`).
-
-### 4. Project Structure
-
+### Structure overview (short)
 - `index.html` — homepage.
-- `oferta/*.html` — service pages.
-- `doc/*.html` — document pages.
-- `404.html`, `offline.html`, `thank-you.html` — system pages.
-- `css/style.css` + `css/modules/*.css` — style sources.
-- `css/style.min.css` — production CSS artifact.
-- `js/script.js`, `js/theme-init.js`, `js/sw-register.js` — JS sources.
-- `js/modules/*.js` — UI/domain modules (navigation, forms, lightbox, map consent, cookies, etc.).
-- `js/script.min.js`, `js/theme-init.min.js` — production JS artifacts.
-- `sw.js` — Service Worker.
-- `scripts/*` — build/QA/automation scripts.
-- `assets/img-src/*` — image source assets.
-- `assets/img/*` — generated image assets.
-- `dist/` — publish directory generated by `npm run build:dist`.
+- `services/*.html` — service pages.
+- `legal/*.html` — legal pages.
+- `css/main.css` + modules in `css/tokens`, `css/base`, `css/layout`, `css/components`, `css/sections`.
+- `js/main.js` + modules in `js/core`, `js/components`, `js/sections`, `js/utils`.
+- `manifest.webmanifest`, `sw.js`, `offline.html`.
+- `_headers`, `_redirects`, `robots.txt`, `sitemap.xml`.
 
-### 5. Setup and Installation
+### Setup & run
+1. Install dependencies:
+   - `npm install`
+2. Start local server:
+   - `npm run serve`
+3. (Optional) run full asset build:
+   - `npm run build`
 
-```bash
-npm install
-```
+### Build/deployment notes
+- The project has dedicated scripts for CSS/JS/SW and head metadata generation.
+- Deployment configuration is handled via `_headers` and `_redirects` (Netlify).
+- Minified asset strategy (`dist/style.min.css`, `dist/script.min.js`) is part of the build pipeline.
 
-### 6. Local Development
+### Accessibility notes
+- Skip link to `<main>` is implemented.
+- Visible `:focus-visible` styles and ARIA states for key navigation controls.
+- FAQ uses native `<details>/<summary>`.
+- Form includes labels, live regions, and validation feedback.
+- No-JS form fallback is present (POST + success page).
 
-```bash
-npm run dev
-npm run watch:css
-npm run watch:js
-npm run check:html
-npm run qa:a11y
-```
+### SEO notes
+- Meta description, canonical, OpenGraph, and Twitter Cards are implemented.
+- Inline JSON-LD is present (including LocalBusiness/WebSite/Breadcrumb/FAQ).
+- robots.txt and sitemap.xml are included.
 
-### 7. Production Build
+### Performance notes
+- Responsive images (`<picture>`, AVIF/WebP/JPG fallback).
+- Most images include `width`/`height`, `loading="lazy"`, and `decoding="async"`.
+- Font preloads + `font-display: swap`.
+- Main script is loaded with `defer`.
 
-```bash
-npm run build
-npm run build:dist
-```
+### Roadmap
+- Normalize contact data across all service-page CTAs.
+- Fix PWA shortcut target for “Oferta” (`/#oferta` → existing section id).
+- Expand reduced-motion coverage across all animations/transitions.
+- Extend repeatable QA runs (pa11y/lighthouse in routine workflow).
+- Further reduce duplicated HTML fragments for long-term maintainability.
 
-- `npm run build` generates production artifacts: `css/style.min.css`, `js/theme-init.min.js`, `js/script.min.js`.
-- `npm run build:dist`:
-  - cleans and rebuilds `dist/`,
-  - copies HTML files and runtime assets,
-  - copies deployment files (`_headers`, `_redirects`, `netlify.toml`, `robots.txt`, `manifest.webmanifest`, `sw.js`, etc. when present),
-  - rewrites HTML references from source assets to minified artifacts,
-  - runs sitemap generation (`npm run build:sitemap`).
-
-### 8. Deployment
-
-- Netlify deployment config is included in the repository.
-- `netlify.toml` defines:
-  - build command: `npm run build:dist`,
-  - publish directory: `dist`.
-- `_headers` defines security headers and CSP.
-- `_redirects` defines 301 redirects and the fallback `/* /404.html 404`.
-
-### 9. Accessibility
-
-- Extensive ARIA usage in navigation, form, FAQ, cookie banner, and lightbox.
-- Keyboard support in mobile nav and dropdown, including focus trap and `Escape` handling.
-- Lightbox uses `role="dialog"`, `aria-modal="true"`, and focus control.
-- Form uses status messaging (`role="status"`, `aria-live="polite"`) and field-level error handling.
-- Dedicated accessibility audit script `npm run qa:a11y` (Playwright + axe-core).
-
-### 10. SEO
-
-- Meta tags: `title`, `description`, `canonical`, `robots` across HTML pages.
-- Open Graph and Twitter Card metadata.
-- JSON-LD structured data (`GeneralContractor`, `WebSite`, `CollectionPage`, `FAQPage`).
-- `robots.txt` including sitemap location.
-- `sitemap.xml` and `scripts/generate-sitemap.mjs`.
-
-### 11. Performance
-
-- CSS and JS minification (PostCSS + esbuild).
-- Responsive images (`srcset`, `sizes`) with multiple formats (`AVIF`, `WebP`, `JPG`).
-- `loading="lazy"` on selected images.
-- Preloading of key fonts and hero image.
-- Service Worker strategy:
-  - pre-cache of selected static assets,
-  - **network-first** for HTML (with cache and `offline.html` fallback),
-  - **cache-first** for static assets.
-
-### 12. Project Maintenance
-
-- Main application orchestration: `js/script.js`.
-- UI/domain modules: `js/modules/*.js`.
-- Pre-render theme bootstrap: `js/theme-init.js`.
-- PWA registration: `js/sw-register.js`; cache logic: `sw.js`.
-- CSS architecture maintained through modules imported by `css/style.css`.
-- Build/deploy/QA flow maintained in `scripts/` and config files (`postcss.config.js`, `lighthouserc.json`, `netlify.toml`).
-
-### 13. Roadmap
-
-- Add a CI pipeline to run `check:html`, `qa:a11y`, and `qa:lhci` automatically.
-- Add E2E tests for critical paths (contact form, mobile navigation, lightbox).
-- Extend quality checks with JS/CSS linting.
-- Parameterize `SITE_URL` for multiple deployment environments without local script changes.
-- Standardize and document asset naming conventions (including outlier files) in image directories.
-
-### 14. License
-
-MIT (as defined in `package.json`).
+### License
+MIT (as declared in `package.json`).
