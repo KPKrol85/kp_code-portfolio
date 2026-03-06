@@ -8,9 +8,6 @@
   margin: 0 auto;
   padding: 0 var(--space-2);
 }
-.about .section__title {
-  color: var(--primary);
-}
 .about__grid {
   display: grid;
   grid-template-columns: 1fr;

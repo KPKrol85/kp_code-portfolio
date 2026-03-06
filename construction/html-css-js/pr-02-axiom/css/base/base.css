@@ -27,10 +27,10 @@
   width: auto;
   overflow: visible;
   white-space: normal;
-  margin: 0.5rem 0;
-  padding: 0.5rem 1rem;
+  margin: var(--space-2) 0;
+  padding: var(--space-2) var(--space-4);
   border: 1px solid #ddd;
-  border-radius: 0.5rem;
+  border-radius: var(--radius-2);
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
   background: var(--surface-1, #fff);
   color: var(--text-dark, #1c1c1c);
@@ -52,7 +52,7 @@ html {
 }
 ::selection {
   background: color-mix(in srgb, var(--accent) 35%, transparent);
-  color: var(--text-light);
+  color: var(--text-body);
 }
 :where(a, button, [role="button"], .btn):focus-visible {
   outline: 3px solid var(--accent-400);
@@ -62,13 +62,15 @@ body {
   padding: 0;
   font-family: "Lato", "Source Sans 3", system-ui, sans-serif;
   background: var(--bg-light);
-  color: var(--text-dark);
-  line-height: 1.6;
-  transition: background-color 0.4s, color 0.4s;
+  color: var(--text-body);
+  line-height: var(--lh-body);
+  transition:
+    background-color 0.4s,
+    color 0.4s;
 }
 :root[data-theme="dark"] body {
   background: var(--bg-dark);
-  color: var(--text-light);
+  color: var(--text-body);
 }
 
 h1,
@@ -80,24 +82,20 @@ h3 {
 h1 {
   font-size: var(--fs-2);
   line-height: var(--lh-heading);
-  margin: 0 0 0.6em;
+  margin: 0 0 var(--space-3);
 }
 
 h2 {
-  font-size: var(--fs-3);
-  line-height: 1.25;
-  margin: 0 0 0.65em;
+  font-size: var(--fs-4);
+  line-height: var(--lh-heading);
+  margin: 0 0 var(--space-3);
 }
 
 h3 {
-  font-size: var(--fs-4);
-  line-height: 1.3;
-  margin: 0 0 0.7em;
+  font-size: var(--fs-5);
+  line-height: var(--lh-heading);
+  margin: 0 0 var(--space-3);
 }
-
-
-
-
 
 section {
   scroll-margin-top: clamp(64px, 8vh, 96px);
@@ -106,6 +104,7 @@ section {
 .section__title {
   position: relative;
   display: inline-block;
+  color: var(--text-title);
   padding-bottom: var(--space-2);
   font-family: "Montserrat", system-ui, sans-serif;
 }
@@ -123,8 +122,6 @@ section {
   transform-origin: center;
   animation: underlineGrow 0.6s ease forwards;
 }
-
-
 
 .lead {
   font-size: var(--fs-7);
