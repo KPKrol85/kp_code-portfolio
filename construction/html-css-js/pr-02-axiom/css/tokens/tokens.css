@@ -83,14 +83,19 @@
   --section-py-sm: 2rem;
   --section-py: 3rem;
   --section-py-lg: 5rem;
-
   --section-px-sm: 0.5rem;
   --section-px: 1rem;
+
+/* card */
+  --card-min: 300px;
+
+
+
   /* ---  */
   --edge-pad: 12px;
 }
 :root[data-theme="dark"] {
-  
+
   /* text colors */
   --text-title: #ffffff;
   --text-body: #e6e6e6;
