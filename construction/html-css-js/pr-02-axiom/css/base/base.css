@@ -95,16 +95,9 @@ h3 {
   margin: 0 0 0.7em;
 }
 
-.lead {
-  font-size: var(--fs-6);
-  line-height: 1.7;
-  color: var(--text-dark);
-}
 
-:root[data-theme="dark"] body .lead {
-  color: var(--text-light);
-  opacity: 0.9;
-}
+
+
 
 section {
   scroll-margin-top: clamp(64px, 8vh, 96px);
@@ -113,7 +106,7 @@ section {
 .section__title {
   position: relative;
   display: inline-block;
-  padding-bottom: 0.4rem;
+  padding-bottom: var(--space-2);
   font-family: "Montserrat", system-ui, sans-serif;
 }
 .section__title::after {
@@ -129,6 +122,15 @@ section {
   transform: translateX(-50%) scaleX(0);
   transform-origin: center;
   animation: underlineGrow 0.6s ease forwards;
+}
+
+
+
+.lead {
+  font-size: var(--fs-7);
+  line-height: var(--lh-body);
+  letter-spacing: var(--ls-normal);
+  color: var(--text-body);
 }
 
 @keyframes underlineGrow {

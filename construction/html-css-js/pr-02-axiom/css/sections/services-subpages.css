@@ -132,8 +132,8 @@ body.page--service .cta .section__title {
 }
 .features__item {
   position: relative;
-  padding: 1rem;
-  border-radius: var(--radius-xl, 16px);
+  padding: var(--space-3);
+  border-radius: var(--radius-2);
   background: var(--feature-surface);
   border: 1px solid var(--feature-border);
 }
