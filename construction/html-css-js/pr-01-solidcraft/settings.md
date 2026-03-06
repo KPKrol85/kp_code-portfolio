@@ -1,73 +1,77 @@
-# npm scripts — opis
+# Pipeline & Tooling Settings
 
-`package.json` został wykryty w projekcie.
+## Purpose
 
-## img:build
-- **command:** `node tools/images/build-images.mjs`
-- **what it does:** Buduje zoptymalizowane warianty obrazów (pipeline obrazków).
-- **when to use:** Po dodaniu/zmianie grafik źródłowych lub przed publikacją.
+This file is the canonical source of truth for the Solidcraft build/development pipeline and tooling behavior.
 
-## img:clean
-- **command:** `node tools/images/build-images.mjs --clean`
-- **what it does:** Czyści wygenerowane artefakty pipeline’u obrazów.
-- **when to use:** Gdy chcesz odtworzyć obrazki od zera lub usunąć stare warianty.
+## Tooling Overview
 
-## build:css
-- **command:** `node tools/css/build-css.mjs`
-- **what it does:** Buduje finalny CSS do dystrybucji.
-- **when to use:** Po zmianach w plikach CSS przed testami/deployem.
+- Runtime baseline: Node.js `>=18`.
+- Local dev server: `live-server`.
+- CSS pipeline: PostCSS (`postcss-import`, `postcss-preset-env`, `autoprefixer`, `cssnano`) via `postcss-cli`.
+- JS pipeline: `esbuild` (bundle + minify, target `es2018`, format `iife`).
+- Image pipeline: `sharp` via `scripts/images.js`.
+- Formatting: `prettier`.
 
-## min:css
-- **command:** `npm run build:css`
-- **what it does:** Alias do `build:css`.
-- **when to use:** Gdy workflow używa nazwy `min:css`.
+## Scripts
 
-## build:js
-- **command:** `node tools/js/build-js.mjs`
-- **what it does:** Buduje/minifikuje finalny bundle JavaScript.
-- **when to use:** Po zmianach JS przed publikacją.
+- `start`: alias for `dev`.
+- `dev`: serves project locally on port `15500`, opens `index.html`.
+- `build:css`: builds `css/style.min.css` and verifies no `@import` remains.
+- `build:js`: builds `js/script.min.js` and verifies no `import`/`export` remains.
+- `build`: runs `build:css` and `build:js`.
+- `build:sitemap`: scans real HTML pages and generates `dist/sitemap.xml`.
+- `watch:css`: watches `css/style.css` and rebuilds `css/style.min.css`.
+- `watch:js`: watches `js/script.js` and rebuilds `js/script.min.js`.
+- `build:dist`: creates `dist/`, copies runtime files, rewrites HTML references to minified assets, then runs `build:sitemap` to generate `dist/sitemap.xml`.
+- `images:build`: generates production images from `assets/img-src` into `assets/img`.
+- `images:clean`: removes generated image outputs.
+- `check:links`: validates broken internal/external links and missing anchors across all HTML files.
+- `check:assets`: validates local asset references in HTML (`img/src`, `script/src`, `link[href]`, `source/srcset`, `img/srcset`).
+- `check:html`: runs `check:links` and `check:assets`.
+- `qa:a11y`: runs axe-based accessibility scans in a headless browser on key pages.
+- `check:predeploy`: runs `check:html` and `qa:a11y` as the local pre-deploy gate.
+- `format`: applies Prettier writes.
+- `format:check`: validates formatting without writes.
 
-## build:sw
-- **command:** `node tools/sw/build-sw.mjs`
-- **what it does:** Generuje finalny service worker na podstawie szablonu/konfiguracji.
-- **when to use:** Po zmianach PWA/cache listy lub przed release.
+## Source vs Generated Assets
 
-## build
-- **command:** `npm run build:clean && npm run build:head && npm run build:css && npm run build:js && npm run build:sw && npm run build:dist`
-- **what it does:** Uruchamia pełny, czysty build i pakuje kompletny output deploy do `dist/`.
-- **when to use:** Standardowy build przed wdrożeniem.
+- Source assets (editable):
+  - `css/style.css`
+  - `js/script.js`
+  - `js/theme-init.js`
+  - `assets/img-src/**`
+- Generated assets (pipeline outputs):
+  - `css/style.min.css`
+  - `js/script.min.js`
+  - `js/theme-init.min.js`
+  - `assets/img/**` (from `images:build`)
+- Rule: modify non-minified/source files; regenerate minified and derived artifacts via scripts.
 
-## serve
-- **command:** `http-server -c-1 -p 8080`
-- **what it does:** Uruchamia lokalny serwer HTTP bez cache (`-c-1`) na porcie 8080.
-- **when to use:** Lokalny podgląd i testy manualne.
+## QA / Validation
 
-## serve:dist
-- **command:** `http-server dist -c-1 -p 8080`
-- **what it does:** Uruchamia podgląd produkcyjnego outputu z folderu `dist/` (dokładnie to, co publikujesz).
-- **when to use:** Weryfikacja buildu przed deployem na Netlify.
+- CSS validation is embedded in `build:css` through `scripts/verify-css-build.js`.
+- JS validation is embedded in `build:js` through `scripts/verify-js-build.js`.
+- `build:dist` fails if required production assets are missing (`css/style.min.css`, `js/script.min.js`, `js/theme-init.min.js`).
+- `format:check` is the formatting gate.
+- A11y validation: `npm run qa:a11y` fails on `serious`/`critical` axe impacts, while `minor`/`moderate` are reported only.
+- Run local pre-deploy regressions with `npm run check:predeploy`.
 
-## qa:lighthouse
-- **command:** `mkdir -p reports/lighthouse && lhci collect --url=http://localhost:8080/ --url=http://localhost:8080/services/budowa-domow.html --url=http://localhost:8080/legal/regulamin.html --outputDir=reports/lighthouse`
-- **what it does:** Zbiera raporty Lighthouse dla wybranych URL.
-- **when to use:** Audyt wydajności/SEO/best practices/a11y.
+## Deployment Notes
 
-## qa:a11y
-- **command:** `mkdir -p reports/pa11y && pa11y http://localhost:8080/ --reporter json --output reports/pa11y/index.json && pa11y http://localhost:8080/services/budowa-domow.html --reporter json --output reports/pa11y/budowa-domow.json && pa11y http://localhost:8080/legal/regulamin.html --reporter json --output reports/pa11y/regulamin.json`
-- **what it does:** Uruchamia pa11y dla kluczowych stron i zapisuje wyniki JSON.
-- **when to use:** Kontrola dostępności przed release.
+- Deployment artifact is `dist/`, produced by `npm run build:dist`.
+- Sitemap generation is part of deploy build (`npm run build:dist`) via `npm run build:sitemap`.
+- `build:sitemap` requires `SITE_URL` (for example: `SITE_URL=https://example.com npm run build:sitemap`) and exits non-zero if missing.
+- `build:sitemap` includes real `.html` pages discovered from source and excludes non-indexable pages by default: `404.html`, `offline.html`, `thank-you.html`.
+- `build:dist` copies all HTML files plus required runtime assets and selected optional files (`_headers`, `_redirects`, `netlify.toml`, `robots.txt`, `sitemap.xml`, `manifest.webmanifest`, `sw.js`, `js/sw-register.js`, `assets/`).
+- During `dist` build, HTML references are rewritten from source assets to minified assets.
 
-## qa
-- **command:** `npm run qa:lighthouse && npm run qa:a11y`
-- **what it does:** Pełny zestaw QA (Lighthouse + pa11y).
-- **when to use:** Kompleksowy quality gate.
+## Logging Hygiene (tooling scripts)
 
-## build:head
-- **command:** `node tools/html/build-head.mjs`
-- **what it does:** Buduje/aktualizuje sekcje `<head>` stron na bazie tooling.
-- **when to use:** Po zmianach SEO/meta/canonical/OG lub template head.
+- Tooling scripts use `scripts/utils/logger.js`.
+- Default output is concise (summary/errors).
+- Verbose logs are opt-in via `--verbose` or `VERBOSE=1`.
 
-## qa:links
-- **command:** `node ../../../scripts/check-links-local.mjs --root "construction/html-css-js/pr-02-axiom"`
-- **what it does:** Sprawdza lokalne linki, zasoby i odwołania fragmentów `#id`.
-- **when to use:** Po zmianach w linkowaniu, strukturze stron lub assetach.
+## Single Source of Truth
+
+Pipeline/tooling documentation lives only in `settings.md`. Keep pipeline notes out of separate docs to avoid drift.

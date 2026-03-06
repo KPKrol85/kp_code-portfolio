@@ -1,77 +1,112 @@
-const REVISION = "040002b65860381e";
-const CACHE_PREFIX = "axiom-static-";
-const CACHE_NAME = `${CACHE_PREFIX}${REVISION}`;
-const HTML_CACHE_PREFIX = "html-pages-";
-const HTML_CACHE_NAME = `${HTML_CACHE_PREFIX}${REVISION}`;
-const ASSETS = ["/","/offline.html","/style.min.css","/script.min.js","/manifest.webmanifest","/assets/img/favicon/favicon.svg","/assets/img/favicon/favicon-96x96.png","/assets/img/favicon/web-app-manifest-192x192.png","/assets/img/favicon/web-app-manifest-512x512.png","/assets/img/favicon/web-app-manifest-1024x1024.png","/assets/img/favicon/apple-touch-icon.png"];
+const APP_ID = "solidcraft";
+const CACHE_VERSION = "1.0.1";
+const CACHE_NAME = `${APP_ID}-v${CACHE_VERSION}`;
+
+const ASSETS = [
+  "/",
+  "/index.html",
+  "/offline.html",
+  "/404.html",
+  "/doc/cookies.html",
+  "/doc/polityka-prywatnosci.html",
+  "/doc/regulamin.html",
+  "/oferta/elektryka.html",
+  "/oferta/hydraulika.html",
+  "/oferta/kafelkowanie.html",
+  "/oferta/lazienki.html",
+  "/oferta/malowanie.html",
+  "/oferta/remonty.html",
+  "/thank-you.html",
+  "/manifest.webmanifest",
+  "/css/style.min.css",
+  "/js/script.min.js",
+  "/assets/img/favicon/favicon.ico",
+  "/assets/img/favicon/favicon.svg",
+  "/assets/img/favicon/favicon-96x96.png",
+  "/assets/img/favicon/apple-touch-icon.png",
+  "/assets/img/favicon/web-app-manifest-192x192.png",
+  "/assets/img/favicon/web-app-manifest-512x512.png",
+];
+
+const STATIC_DESTINATIONS = new Set([
+  "style",
+  "script",
+  "font",
+  "image",
+  "manifest",
+]);
+
+const isCacheableResponse = (response) => response && response.ok;
 
 self.addEventListener("install", (event) => {
-  event.waitUntil(caches.open(CACHE_NAME).then((cache) => cache.addAll(ASSETS)));
+  event.waitUntil(caches.open(CACHE_NAME).then((c) => c.addAll(ASSETS)));
   self.skipWaiting();
 });
 
 self.addEventListener("activate", (event) => {
   event.waitUntil(
-    caches.keys().then((keys) =>
-      Promise.all(
-        keys
-          .filter((key) => key.startsWith(CACHE_PREFIX) && key !== CACHE_NAME)
-          .concat(keys.filter((key) => key.startsWith(HTML_CACHE_PREFIX) && key !== HTML_CACHE_NAME))
-          .map((key) => caches.delete(key))
-      )
-    )
+    caches
+      .keys()
+      .then((keys) =>
+        Promise.all(
+          keys
+            .filter((k) => k.startsWith(`${APP_ID}-v`) && k !== CACHE_NAME)
+            .map((k) => caches.delete(k)),
+        ),
+      ),
   );
   self.clients.claim();
 });
 
 self.addEventListener("fetch", (event) => {
   const req = event.request;
-  const dest = req.destination;
-  if (dest === "document" && req.method === "GET" && new URL(req.url).origin === self.location.origin) {
+  const url = new URL(req.url);
+  const isSameOrigin = url.origin === self.location.origin;
+
+  if (req.method !== "GET") return;
+  if (!isSameOrigin) return;
+
+  const isHTML =
+    req.mode === "navigate" || req.headers.get("accept")?.includes("text/html");
+  const isStaticAsset =
+    STATIC_DESTINATIONS.has(req.destination) ||
+    /\.(?:css|js|mjs|png|jpg|jpeg|gif|svg|webp|avif|ico|woff2?|ttf|otf|eot|webmanifest)$/i.test(
+      url.pathname,
+    );
+
+  if (isHTML) {
     event.respondWith(
       fetch(req)
         .then((res) => {
-          if (res && res.status === 200) {
-            const copy = res.clone();
-            caches.open(HTML_CACHE_NAME).then((c) => c.put(req, copy));
+          if (isCacheableResponse(res)) {
+            caches.open(CACHE_NAME).then((c) => c.put(req, res.clone()));
           }
           return res;
         })
-        .catch(async () => (await caches.match(req)) || (await caches.match("./offline.html")) || (await caches.match("./index.html")))
+        .catch(() =>
+          caches
+            .match(req, { ignoreSearch: true })
+            .then((cached) => cached || caches.match("/offline.html")),
+        ),
     );
     return;
   }
-  if (dest === "style" || dest === "script") {
+
+  if (isStaticAsset) {
     event.respondWith(
-      caches.open(CACHE_NAME).then((cache) =>
-        cache.match(req).then((cached) => {
-          const fetchPromise = fetch(req)
-            .then((net) => {
-              if (net && net.status === 200) cache.put(req, net.clone());
-              return net;
-            })
-            .catch(() => cached);
-          return cached || fetchPromise;
-        })
-      )
+      caches.match(req).then((cached) => {
+        if (cached) return cached;
+
+        return fetch(req).then((res) => {
+          if (isCacheableResponse(res)) {
+            caches.open(CACHE_NAME).then((c) => c.put(req, res.clone()));
+          }
+          return res;
+        });
+      }),
     );
     return;
   }
-  if (dest === "image") {
-    event.respondWith(
-      caches.open(CACHE_NAME).then((cache) =>
-        cache.match(req).then((cached) => {
-          if (cached) return cached;
-          return fetch(req)
-            .then((net) => {
-              if (net && net.status === 200) cache.put(req, net.clone());
-              return net;
-            })
-            .catch(() => cached);
-        })
-      )
-    );
-    return;
-  }
-  event.respondWith(fetch(req).catch(() => caches.match(req)));
+
+  event.respondWith(fetch(req));
 });
