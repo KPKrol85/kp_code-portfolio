@@ -136,6 +136,26 @@ section {
   font-size: var(--fs-7);
 }
 
+.features__list {
+  display: grid;
+  gap: var(--space-4);
+  list-style: none;
+  padding: 0;
+  margin: var(--space-6) auto;
+  grid-template-columns: 1fr;
+  max-width: 480px;
+}
+.features__item {
+  display: grid;
+  gap: var(--space-1);
+  box-shadow: 0 2px 8px var(--feature-shadow);
+  color: var(--text-body);
+  padding: var(--space-3);
+  border-radius: var(--radius-2);
+  background: var(--feature-surface);
+  border: 1px solid var(--feature-border);
+}
+
 @keyframes underlineGrow {
   to {
     transform: translateX(-50%) scaleX(1);
