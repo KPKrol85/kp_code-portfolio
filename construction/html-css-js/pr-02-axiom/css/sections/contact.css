@@ -191,16 +191,3 @@ fieldset.form__group.form__captcha-wrap {
   margin: var(--space-6) auto;
 }
 
-@media (max-width: 380px) {
-  .contact-form button[type="submit"],
-  .contact-form .btn[type="submit"] {
-    width: 90%;
-  }
-}
-
-@media (max-width: 420px) {
-  .form__captcha-wrap {
-    transform: scale(0.88);
-    transform-origin: center center;
-  }
-}

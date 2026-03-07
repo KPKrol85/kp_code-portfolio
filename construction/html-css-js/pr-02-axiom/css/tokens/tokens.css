@@ -21,6 +21,9 @@
   --text-inverse: #ffffff;
   --text-link: var(--primary);
 
+  /* footer colors */
+  --footer-bg: var(--surface-2);
+
   /* Surface layers & component UI tokens */
   --surface-1: color-mix(in srgb, var(--bg-light) 8%, var(--text-body) 8%);
   --surface-2: color-mix(in srgb, var(--bg-light) 18%, var(--text-body) 14%);
@@ -86,22 +89,22 @@
   --section-px-sm: 0.5rem;
   --section-px: 1rem;
 
-/* card */
+  /* card */
   --card-min: 300px;
-
-
 
   /* ---  */
   --edge-pad: 12px;
 }
 :root[data-theme="dark"] {
-
   /* text colors */
   --text-title: #ffffff;
   --text-body: #e6e6e6;
   --text-muted: #a1a1a1;
   --text-inverse: #1c1c1c;
   --text-link: var(--primary-400);
+
+  /* footer color */
+  --footer-bg: var(--surface-1);
 
   /* Surface layers & component UI tokens */
   --surface-1: color-mix(in srgb, var(--bg-dark) 98%, var(--text-body) 6%);
