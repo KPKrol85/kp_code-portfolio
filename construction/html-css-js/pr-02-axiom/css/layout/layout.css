@@ -19,7 +19,7 @@ header {
   color: var(--text-body);
   position: sticky;
   top: 0;
-  z-index: 100;
+  z-index: 1100;
   transition:
     background-color 0.4s ease,
     box-shadow 0.3s ease,
@@ -192,14 +192,14 @@ html.js .site-nav {
 }
 html.js .site-nav.mobile-open {
   display: block;
-  position: absolute;
-  top: 100%;
-  left: 0;
-  right: 0;
+  position: fixed;
+  top: var(--mobile-nav-top, var(--header-h));
+  left: var(--space-1);
+  right: var(--space-1);
   height: auto;
-  max-height: calc(100dvh - 100%);
-  max-height: calc(100svh - 100%);
-  z-index: 990;
+  max-height: var(--mobile-nav-max-height, calc(100dvh - var(--header-h) - var(--space-2)));
+  max-height: var(--mobile-nav-max-height, calc(100svh - var(--header-h) - var(--space-2)));
+  z-index: 1090;
   overflow-y: auto;
   -webkit-overflow-scrolling: touch;
   border-radius: var(--radius-2);
@@ -210,7 +210,7 @@ html.js .site-nav.mobile-open {
   background-color: color-mix(in srgb, var(--bg-light) 80%, transparent);
   -webkit-backdrop-filter: blur(10px) saturate(1.1);
   backdrop-filter: blur(10px) saturate(1.1);
-  margin-inline: var(--space-1);
+  overscroll-behavior: contain;
 }
 :root[data-theme="dark"] .site-nav.mobile-open {
   background:
@@ -278,8 +278,9 @@ html.js .site-nav.mobile-open {
 :root[data-theme="dark"] .site-nav__item > .site-nav__link[aria-current="page"] {
   background: color-mix(in srgb, var(--text-inverse) 8%, transparent);
 }
+/* Keep sticky header stable on mobile while the fixed nav drawer is open. */
 body.nav-open {
-  overflow: hidden;
+  overflow: visible;
 }
 
 @media (min-width: 480px) {
@@ -430,7 +431,7 @@ footer {
   display: block;
   width: 32px;
   height: 1px;
-  margin: var(--space-2) auto 0;
+  margin: var(--space-2) auto;
   background: color-mix(in srgb, var(--text-body) 20%, transparent);
 }
 .footer__section p {
@@ -468,7 +469,7 @@ footer {
 }
 .footer__extras::before {
   content: "";
-  width: min(220px, 60%);
+  width: min(260px, 60%);
   height: 1px;
   background: color-mix(in srgb, var(--text-body) 15%, transparent);
 }
@@ -602,17 +603,38 @@ footer a[href^="mailto:"]:focus-visible {
 
 @media (min-width: 900px) {
   .footer__content {
-  
     grid-template-columns: 1.5fr 1fr 1fr 1fr;
     align-items: start;
-    text-align: left;
+    text-align: center;
+    gap: var(--space-4);
   }
-
+  .footer__section h3 {
+    font-size: var(--fs-7);
+  }
+  .footer__section h3::after {
+    margin: var(--space-2) auto 0;
+  }
+  .footer__section p {
+    font-size: var(--fs-8);
+  }
   .footer__brand {
     justify-items: start;
   }
-
-  .footer__section h3::after {
-    margin-left: 0;
+  .footer__extras {
+    gap: var(--space-4);
+  }
+  .footer__social {
+    gap: var(--space-7);
+  }
+  .footer__contact-actions {
+    gap: var(--space-7);
+  }
+  .footer__social-link svg {
+    width: 18px;
+    height: 18px;
+  }
+  .footer__contact-link svg {
+    width: 18px;
+    height: 18px;
   }
 }

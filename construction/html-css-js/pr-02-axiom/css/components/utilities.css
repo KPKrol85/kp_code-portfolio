@@ -20,6 +20,7 @@ body[data-current="services"] .site-nav__link[href$="#uslugi"] {
   }
 }
 
+/* Aria Current */
 a[aria-current="page"] {
   color: var(--accent);
   opacity: 1;
@@ -62,6 +63,8 @@ footer .footer__section li[aria-current="page"]::after {
 footer .footer__section li[aria-current="page"] {
   display: inline-block;
 }
+
+/* Breadcrumb */
 .breadcrumb {
   color: color-mix(in srgb, var(--text-dark) 75%, transparent);
 }

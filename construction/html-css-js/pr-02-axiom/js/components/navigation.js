@@ -5,11 +5,28 @@ export const initNavigation = () => {
   const btn = qs(SELECTORS.navToggle);
   const nav = qs(SELECTORS.primaryNav);
   if (!btn || !nav) return;
+  const header = btn.closest("header");
   const mql = window.matchMedia("(max-width: 899px)");
   if (!btn.hasAttribute("aria-expanded")) btn.setAttribute("aria-expanded", "false");
   let lastTrigger = null;
+  let syncFrame = 0;
   const unlock = () => document.body.classList.remove("nav-open");
   const lock = () => document.body.classList.add("nav-open");
+  const syncMobileNavPosition = () => {
+    if (!header || !mql.matches) return;
+    const headerBottom = Math.ceil(header.getBoundingClientRect().bottom);
+    const topOffset = Math.max(0, headerBottom);
+    const maxHeight = Math.max(160, window.innerHeight - topOffset - 16);
+    document.documentElement.style.setProperty("--mobile-nav-top", `${topOffset}px`);
+    document.documentElement.style.setProperty("--mobile-nav-max-height", `${maxHeight}px`);
+  };
+  const queueSyncMobileNavPosition = () => {
+    if (syncFrame) return;
+    syncFrame = window.requestAnimationFrame(() => {
+      syncFrame = 0;
+      syncMobileNavPosition();
+    });
+  };
   const applyDesktopState = () => {
     nav.classList.remove("mobile-open");
     btn.classList.remove("active");
@@ -43,6 +60,7 @@ export const initNavigation = () => {
     removeOutsideClick();
   };
   const openMenu = () => {
+    syncMobileNavPosition();
     nav.classList.add("mobile-open");
     btn.classList.add("active");
     btn.setAttribute("aria-expanded", "true");
@@ -62,6 +80,14 @@ export const initNavigation = () => {
   document.addEventListener("keydown", (e) => {
     if (e.key === "Escape" && nav.classList.contains("mobile-open")) closeMenu();
   });
+  window.addEventListener(
+    "scroll",
+    () => {
+      if (nav.classList.contains("mobile-open")) queueSyncMobileNavPosition();
+    },
+    { passive: true }
+  );
+  window.addEventListener("resize", queueSyncMobileNavPosition, { passive: true });
   nav.addEventListener("click", (e) => {
     const link = e.target.closest("a[href], area[href]");
     if (link && mql.matches) closeMenu();
@@ -84,6 +110,7 @@ export const initNavigation = () => {
   }
   const onChange = (e) => {
     if (e.matches) {
+      syncMobileNavPosition();
       applyMobileCollapsed();
     } else {
       applyDesktopState();

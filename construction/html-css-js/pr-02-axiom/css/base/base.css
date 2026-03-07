@@ -91,19 +91,15 @@ h3 {
   margin: var(--space-3) auto;
   line-height: var(--lh-heading);
 }
-
 h1 {
   font-size: var(--fs-2);
 }
-
 h2 {
   font-size: var(--fs-4);
 }
-
 h3 {
   font-size: var(--fs-5);
 }
-
 p {
   color: var(--text-body);
   line-height: var(--lh-body);
@@ -115,7 +111,6 @@ section {
   scroll-margin-top: clamp(64px, 8vh, 96px);
   padding: var(--section-py-lg) var(--section-px-sm);
 }
-
 .section__title {
   position: relative;
   display: inline-block;
@@ -123,7 +118,6 @@ section {
   padding-bottom: var(--space-2);
   font-size: var(--fs-5);
 }
-
 .section__title::after {
   content: "";
   position: absolute;
@@ -138,7 +132,6 @@ section {
   transform-origin: center;
   animation: underlineGrow 0.6s ease forwards;
 }
-
 .lead {
   font-size: var(--fs-7);
   letter-spacing: var(--ls-normal);
