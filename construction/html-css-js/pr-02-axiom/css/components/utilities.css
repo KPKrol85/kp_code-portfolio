@@ -64,44 +64,9 @@ footer .footer__section li[aria-current="page"] {
   display: inline-block;
 }
 
-/* Breadcrumb */
-.breadcrumb {
-  color: color-mix(in srgb, var(--text-dark) 75%, transparent);
-}
-:root[data-theme="dark"] body .breadcrumb {
-  color: color-mix(in srgb, var(--text-light) 85%, transparent);
-}
-:root:not([data-theme="dark"]) body .breadcrumb a {
-  color: var(--primary);
-}
-:root[data-theme="dark"] body .breadcrumb a {
-  color: var(--accent);
-}
-.breadcrumb a {
-  text-decoration: none;
-  border-bottom: 1px solid transparent;
-  transition:
-    border-color 0.2s ease,
-    opacity 0.2s ease;
-}
-.breadcrumb a:hover,
-.breadcrumb a:focus-visible {
-  border-bottom-color: currentColor;
-  opacity: 0.9;
-}
-.breadcrumb li[aria-current="page"],
-.breadcrumb [aria-current="page"] {
-  color: currentColor;
-  font-weight: 400;
-  text-decoration: none;
-  border-bottom: none;
-}
-.breadcrumb li + li::before {
-  content: "/";
-  margin: 0 0.5rem;
-  color: currentColor;
-  opacity: 0.6;
-}
+
+
+/* menu open */
 body.menu-open {
   overflow: hidden;
 }

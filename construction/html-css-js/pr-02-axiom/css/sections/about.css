@@ -4,7 +4,7 @@
   background: var(--surface-2);
 }
 .about__inner {
-  max-width: var(--max-w, 1200px);
+  max-width: 1200px;
   margin: 0 auto;
   padding: 0 var(--space-2);
 }
