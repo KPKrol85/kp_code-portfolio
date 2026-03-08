@@ -106,9 +106,9 @@
   gap: var(--space-4);
 }
 .cta__row .btn {
-  width: 220px;
+  width: 180px;
   margin: 0;
-  font-size: var(--fs-8);
+  font-size: var(--fs-9-micro);
 }
 
 @media (min-width: 1024px) {
@@ -123,5 +123,12 @@
   .service-intro__media {
     align-self: center;
     margin-left: var(--space-8);
+  }
+}
+
+@media (min-width: 1024px) {
+  .features__list {
+    grid-template-columns: 1fr 1fr;
+    max-width: 900px;
   }
 }
