@@ -1,8 +1,8 @@
 .legal {
   background: var(--surface-1);
-  border-top: var(--feature-border);
+  border-top: 1px solid var(--feature-border);
 }
-.page--legal .legal__container {
+.legal__container {
   max-width: 900px;
   margin: 0 auto;
   padding: var(--space-8) var(--space-2);
@@ -98,7 +98,7 @@
   position: relative;
   font-size: var(--fs-5);
   margin-top: var(--space-7);
-  padding-right: 1.5rem;
+  padding-right: var(--space-6);
 }
 .legal__back-link {
   position: absolute;
@@ -219,6 +219,23 @@
   margin: var(--space-6) auto 0;
   cursor: pointer;
 }
+
+/* Certyfikaty */
+.legal__section {
+  padding: var(--space-6) var(--space-4);
+  background: var(--surface-1);
+  border-radius: var(--radius-2);
+}
+.legal__section + .legal__section {
+  margin-top: var(--space-3);
+}
+.legal__content .legal__section-title {
+  position: static;
+  font-size: var(--fs-6);
+  margin: 0 0 var(--space-3);
+  padding: 0;
+}
+
 
 @media (prefers-reduced-motion: reduce) {
   .page--legal .legal__container {
