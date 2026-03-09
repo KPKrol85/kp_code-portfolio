@@ -1,7 +1,6 @@
 <!doctype html>
 <html data-theme="light" lang="pl" dir="ltr">
   <head>
-
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
     <!-- SEO -->
@@ -52,31 +51,31 @@
     <link rel="preload" as="style" href="../css/main.css" />
     <!-- Styles -->
     <link rel="stylesheet" href="../css/main.css" />
-
+    <!-- JSON-LD -->
     <script type="application/ld+json">
-                          [
-                            {
-                              "@context": "https://schema.org",
-                              "@type": "WebPage",
-                              "@id": "https://construction-project-02.netlify.app/legal/kariera.html#webpage",
-                              "name": "Kariera - Axiom Construction",
-                              "description": "Kariera w Axiom Construction: aktualne rekrutacje, wymagania, benefity i ścieżki rozwoju w zespołach budowlanych i technicznych.",
-                              "url": "https://construction-project-02.netlify.app/legal/kariera.html",
-                              "inLanguage": "pl-PL",
-                              "isPartOf": { "@type": "WebSite", "@id": "https://construction-project-02.netlify.app/#website" },
-                              "breadcrumb": { "@id": "https://construction-project-02.netlify.app/legal/kariera.html#breadcrumb" }
-                            },
-                            {
-                              "@context": "https://schema.org",
-                              "@type": "BreadcrumbList",
-                              "@id": "https://construction-project-02.netlify.app/legal/kariera.html#breadcrumb",
-                              "itemListElement": [
-                                { "@type": "ListItem", "position": 1, "name": "Strona główna", "item": "https://construction-project-02.netlify.app/" },
-                                { "@type": "ListItem", "position": 2, "name": "Kariera", "item": "https://construction-project-02.netlify.app/legal/kariera.html" }
-                              ]
-                            }
-                          ]
-                        </script>
+      [
+        {
+          "@context": "https://schema.org",
+          "@type": "WebPage",
+          "@id": "https://construction-project-02.netlify.app/legal/kariera.html#webpage",
+          "name": "Kariera - Axiom Construction",
+          "description": "Kariera w Axiom Construction: aktualne rekrutacje, wymagania, benefity i ścieżki rozwoju w zespołach budowlanych i technicznych.",
+          "url": "https://construction-project-02.netlify.app/legal/kariera.html",
+          "inLanguage": "pl-PL",
+          "isPartOf": { "@type": "WebSite", "@id": "https://construction-project-02.netlify.app/#website" },
+          "breadcrumb": { "@id": "https://construction-project-02.netlify.app/legal/kariera.html#breadcrumb" }
+        },
+        {
+          "@context": "https://schema.org",
+          "@type": "BreadcrumbList",
+          "@id": "https://construction-project-02.netlify.app/legal/kariera.html#breadcrumb",
+          "itemListElement": [
+            { "@type": "ListItem", "position": 1, "name": "Strona główna", "item": "https://construction-project-02.netlify.app/" },
+            { "@type": "ListItem", "position": 2, "name": "Kariera", "item": "https://construction-project-02.netlify.app/legal/kariera.html" }
+          ]
+        }
+      ]
+    </script>
   </head>
 
   <!-- Body -->
@@ -86,7 +85,8 @@
     <div id="top"></div>
 
     <!-- Header -->
-    <header>
+ <header class="site-header">
+      <div class="site-header__inner">
       <a href="../index.html#top" class="logo">
         <img
           class="header__logo theme-logo"
@@ -131,6 +131,7 @@
           <path class="line line--bottom" d="M3.75 17.25h16.5" />
         </svg>
       </button>
+      </div>
     </header>
 
     <!-- Main -->
@@ -141,12 +142,16 @@
           <li aria-current="page">Kariera</li>
         </ol>
       </nav>
+
+      <!-- Kariera -->
       <section class="legal" aria-labelledby="career-title">
         <div class="legal__container">
           <h1 id="career-title" class="legal__title">Kariera</h1>
-          <p class="legal__lead">
+          <p class="lead legal__lead">
             Dołącz do naszego zespołu! Wypełnij formularz, aby zgłosić swoją kandydaturę. Poszukujemy osób ambitnych, odpowiedzialnych i gotowych do współpracy przy realizacji projektów budowlanych.
           </p>
+
+          <!-- Formularz kontaktowy -->
           <div class="legal__content">
             <form id="career__form" class="career__form" action="#" method="post" aria-labelledby="career-title" novalidate>
               <div class="form__group">
@@ -283,7 +288,8 @@
           <a href="https://github.com/KPKrol85" class="footer__social-link" aria-label="GitHub — KP_Code" target="_blank" rel="me noopener noreferrer">
             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
               <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-              <path d="M9 19c-4.3 1.4 -4.3 -2.5 -6 -3m12 5v-3.5c0 -1 .1 -1.4 -.5 -2c2.8 -.3 5.5 -1.4 5.5 -6a4.6 4.6 0 0 0 -1.3 -3.2a4.2 4.2 0 0 0 -.1 -3.2s-1.1 -.3 -3.5 1.3a12.3 12.3 0 0 0 -6.2 0c-2.4 -1.6 -3.5 -1.3 -3.5 -1.3a4.2 4.2 0 0 0 -.1 3.2a4.6 4.6 0 0 0 -1.3 3.2c0 4.6 2.7 5.7 5.5 6c-.6 .6 -.6 1.2 -.5 2v3.5" />
+              <path
+                d="M9 19c-4.3 1.4 -4.3 -2.5 -6 -3m12 5v-3.5c0 -1 .1 -1.4 -.5 -2c2.8 -.3 5.5 -1.4 5.5 -6a4.6 4.6 0 0 0 -1.3 -3.2a4.2 4.2 0 0 0 -.1 -3.2s-1.1 -.3 -3.5 1.3a12.3 12.3 0 0 0 -6.2 0c-2.4 -1.6 -3.5 -1.3 -3.5 -1.3a4.2 4.2 0 0 0 -.1 3.2a4.6 4.6 0 0 0 -1.3 3.2c0 4.6 2.7 5.7 5.5 6c-.6 .6 -.6 1.2 -.5 2v3.5" />
             </svg>
           </a>
           <!-- Facebook -->
@@ -323,7 +329,8 @@
             aria-label="Otwórz naszą mapę w Google My Maps">
             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
               <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-              <path d="M12 2a9.96 9.96 0 0 1 6.29 2.226a1 1 0 0 1 .04 1.52l-1.51 1.362a1 1 0 0 1 -1.265 .06a6 6 0 1 0 2.103 6.836l.001 -.004h-3.66a1 1 0 0 1 -.992 -.883l-.007 -.117v-2a1 1 0 0 1 1 -1h6.945a1 1 0 0 1 .994 .89c.04 .367 .061 .737 .061 1.11c0 5.523 -4.477 10 -10 10s-10 -4.477 -10 -10s4.477 -10 10 -10z" />
+              <path
+                d="M12 2a9.96 9.96 0 0 1 6.29 2.226a1 1 0 0 1 .04 1.52l-1.51 1.362a1 1 0 0 1 -1.265 .06a6 6 0 1 0 2.103 6.836l.001 -.004h-3.66a1 1 0 0 1 -.992 -.883l-.007 -.117v-2a1 1 0 0 1 1 -1h6.945a1 1 0 0 1 .994 .89c.04 .367 .061 .737 .061 1.11c0 5.523 -4.477 10 -10 10s-10 -4.477 -10 -10s4.477 -10 10 -10z" />
             </svg>
           </a>
           <!-- Telefon -->
@@ -333,7 +340,6 @@
               <path d="M5 4h4l2 5l-2.5 1.5a11 11 0 0 0 5 5l1.5 -2.5l5 2v4a2 2 0 0 1 -2 2a16 16 0 0 1 -15 -15a2 2 0 0 1 2 -2" />
             </svg>
           </a>
-
           <!-- whats up-->
           <a class="footer__contact-link" href="https://wa.me/48533537091" target="_blank" rel="noopener noreferrer" aria-label="Napisz do nas na WhatsApp">
             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -342,7 +348,6 @@
               <path d="M9 10a.5 .5 0 0 0 1 0v-1a.5 .5 0 0 0 -1 0v1a5 5 0 0 0 5 5h1a.5 .5 0 0 0 0 -1h-1a.5 .5 0 0 0 0 1" />
             </svg>
           </a>
-
           <!-- Email -->
           <a class="footer__contact-link" href="mailto:kontakt@kp-code.pl" aria-label="Napisz do nas email">
             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -354,18 +359,18 @@
         </div>
       </div>
 
+      <!-- Powrót na górę -->
       <button id="powrot-na-gore" class="scroll-top" type="button" aria-label="Powrót na górę" title="Powrót na górę">
         <svg class="scroll-top__icon" viewBox="0 0 20 20" aria-hidden="true">
           <path d="M10 4l-6 6h4v6h4v-6h4z" fill="currentColor" />
         </svg>
       </button>
 
+      <!-- Copyright -->
       <div class="footer__bottom">
         <p>&copy; 2026 KP_Code Digital Studio | Wszystkie prawa zastrzeżone.</p>
       </div>
     </footer>
-
-    <!-- Script -->
 
     <!-- Informacja o projekcie -->
     <div id="cookieBanner" class="project-modal" role="dialog" aria-modal="true" aria-labelledby="projectInfoTitle" aria-describedby="projectInfoDesc" hidden>
@@ -373,19 +378,22 @@
       <div class="project-modal__content" role="document" tabindex="-1">
         <h2 id="projectInfoTitle" class="project-modal__title">Informacja o projekcie</h2>
         <p id="projectInfoDesc" class="project-modal__text">
-          Serwis „Axiom Construction” ma charakter demonstracyjny i został przygotowany przez KP_Code Digital Studio jako przykładowa strona internetowa dla branży budowlanej. Korzystając z serwisu,
-          akceptujesz <a href="../legal/regulamin.html">Regulamin</a>.
+          Serwis „Axiom Construction” ma charakter demonstracyjny i został przygotowany przez <strong>KP_Code Digital Studio</strong> jako przykładowa strona internetowa dla branży budowlanej. Korzystając z serwisu,
+          akceptujesz
+          <a href="legal/regulamin.html"><strong>Regulamin</strong></a>
+          .
         </p>
         <p class="project-modal__links">
-          <a href="../legal/polityka-prywatnosci.html">Polityka prywatności</a>
-          <a href="../legal/polityka-cookies.html">Cookies</a>
+          <a href="legal/polityka-prywatnosci.html">Polityka prywatności</a>
+          <a href="legal/polityka-cookies.html">Cookies</a>
         </p>
         <div class="project-modal__actions">
-          <button id="cookieAccept" class="btn-primary" type="button">Akceptuję</button>
+          <button id="cookieAccept" class="btn btn-primary" type="button">Akceptuję</button>
         </div>
       </div>
     </div>
 
+    <!-- Script -->
     <script src="../js/main.js" type="module"></script>
   </body>
 </html>
