@@ -1358,7 +1358,6 @@
               <path d="M5 4h4l2 5l-2.5 1.5a11 11 0 0 0 5 5l1.5 -2.5l5 2v4a2 2 0 0 1 -2 2a16 16 0 0 1 -15 -15a2 2 0 0 1 2 -2" />
             </svg>
           </a>
-
           <!-- whats up-->
           <a class="footer__contact-link" href="https://wa.me/48533537091" target="_blank" rel="noopener noreferrer" aria-label="Napisz do nas na WhatsApp">
             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -1367,7 +1366,6 @@
               <path d="M9 10a.5 .5 0 0 0 1 0v-1a.5 .5 0 0 0 -1 0v1a5 5 0 0 0 5 5h1a.5 .5 0 0 0 0 -1h-1a.5 .5 0 0 0 0 1" />
             </svg>
           </a>
-
           <!-- Email -->
           <a class="footer__contact-link" href="mailto:kontakt@kp-code.pl" aria-label="Napisz do nas email">
             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -1386,24 +1384,30 @@
         </svg>
       </button>
 
-      <!-- Footer bottom -->
+      <!-- Copyright -->
       <div class="footer__bottom">
         <p>&copy; 2026 KP_Code Digital Studio | Wszystkie prawa zastrzeżone.</p>
       </div>
     </footer>
 
-    <!-- Banner -->
-    <div id="cookieBanner" class="cookies" role="region" aria-label="Informacja o plikach cookie" hidden>
-      <p class="cookies__text">
-        Używamy plików cookie do działania podstawowych funkcji serwisu oraz anonimowych statystyk. Więcej informacji znajdziesz w
-        <a href="/legal/polityka-prywatnosci.html">Polityce prywatności</a>
-        oraz w
-        <a href="/legal/regulamin.html">Regulaminie</a>
-        .
-      </p>
-      <div class="cookies__actions">
-        <button id="cookieReject" class="btn-secondary" type="button">Odrzuć</button>
-        <button id="cookieAccept" class="btn-primary" type="button">Akceptuj</button>
+    <!-- Informacja o projekcie -->
+    <div id="cookieBanner" class="project-modal" role="dialog" aria-modal="true" aria-labelledby="projectInfoTitle" aria-describedby="projectInfoDesc" hidden>
+      <div class="project-modal__overlay" aria-hidden="true"></div>
+      <div class="project-modal__content" role="document" tabindex="-1">
+        <h2 id="projectInfoTitle" class="project-modal__title">Informacja o projekcie</h2>
+        <p id="projectInfoDesc" class="project-modal__text">
+          Serwis „Axiom Construction” ma charakter demonstracyjny i został przygotowany przez <strong>KP_Code Digital Studio</strong> jako przykładowa strona internetowa dla branży budowlanej. Korzystając z serwisu,
+          akceptujesz
+          <a href="legal/regulamin.html"><strong>Regulamin</strong></a>
+          .
+        </p>
+        <p class="project-modal__links">
+          <a href="legal/polityka-prywatnosci.html">Polityka prywatności</a>
+          <a href="legal/polityka-cookies.html">Cookies</a>
+        </p>
+        <div class="project-modal__actions">
+          <button id="cookieAccept" class="btn btn-primary" type="button">Akceptuję</button>
+        </div>
       </div>
     </div>
 

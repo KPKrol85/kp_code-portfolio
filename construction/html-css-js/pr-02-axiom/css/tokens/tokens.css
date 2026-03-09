@@ -8,6 +8,8 @@
   --accent-600: #cc5f1d;
   --bg-light: #f6f7f9;
   --bg-dark: #121212;
+  --modal-overlay-bg: rgba(12, 16, 24, 0.36);
+  --bg-modal: rgba(255, 255, 255, 0.85);
 
   /* status colors */
   --success: #2ecc71;
@@ -102,6 +104,8 @@
   --text-muted: #a1a1a1;
   --text-inverse: #1c1c1c;
   --text-link: var(--accent);
+  --modal-overlay-bg: rgba(8, 12, 20, 0.48);
+  --bg-modal: rgba(16, 22, 34, 0.85);
 
   /* footer color */
   --footer-bg: var(--surface-1);
