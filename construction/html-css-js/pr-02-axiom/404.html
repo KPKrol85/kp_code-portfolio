@@ -316,18 +316,22 @@
       </div>
     </footer>
 
-    <!-- Banner -->
-    <div id="cookieBanner" class="cookies" role="region" aria-label="Informacja o plikach cookie" hidden>
-      <p class="cookies__text">
-        Używamy plików cookie do działania podstawowych funkcji serwisu oraz anonimowych statystyk. Więcej informacji znajdziesz w
-        <a href="legal/polityka-prywatnosci.html">Polityce prywatności</a>
-        oraz w
-        <a href="legal/regulamin.html">Regulaminie</a>
-        .
-      </p>
-      <div class="cookies__actions">
-        <button id="cookieReject" class="btn-secondary" type="button">Odrzuć</button>
-        <button id="cookieAccept" class="btn-primary" type="button">Akceptuj</button>
+    <!-- Informacja o projekcie -->
+    <div id="cookieBanner" class="project-modal" role="dialog" aria-modal="true" aria-labelledby="projectInfoTitle" aria-describedby="projectInfoDesc" hidden>
+      <div class="project-modal__overlay" aria-hidden="true"></div>
+      <div class="project-modal__content" role="document" tabindex="-1">
+        <h2 id="projectInfoTitle" class="project-modal__title">Informacja o projekcie</h2>
+        <p id="projectInfoDesc" class="project-modal__text">
+          Serwis „Axiom Construction” ma charakter demonstracyjny i został przygotowany przez KP_Code Digital Studio jako przykładowa strona internetowa dla branży budowlanej. Korzystając z serwisu,
+          akceptujesz <a href="legal/regulamin.html">Regulamin</a>.
+        </p>
+        <p class="project-modal__links">
+          <a href="legal/polityka-prywatnosci.html">Polityka prywatności</a>
+          <a href="legal/polityka-cookies.html">Cookies</a>
+        </p>
+        <div class="project-modal__actions">
+          <button id="cookieAccept" class="btn-primary" type="button">Akceptuję</button>
+        </div>
       </div>
     </div>
 
