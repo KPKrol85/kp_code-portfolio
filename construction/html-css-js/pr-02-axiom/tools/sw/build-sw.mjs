@@ -4,7 +4,7 @@ import path from "node:path";
 
 const ROOT = process.cwd();
 const TEMPLATE_PATH = path.join(ROOT, "sw.template.js");
-const OUTPUT_PATH = path.join(ROOT, "sw.js");
+const OUTPUT_PATH = path.join(ROOT, "dist", "sw.js");
 const MANIFEST_PATH = path.join(ROOT, "manifest.webmanifest");
 
 const REVISION_INPUTS = [
@@ -69,6 +69,7 @@ const buildServiceWorker = async () => {
     .replace("__SW_REVISION__", revision)
     .replace("__PRECACHE_ASSETS__", precacheAssets);
 
+  await fs.mkdir(path.dirname(OUTPUT_PATH), { recursive: true });
   await fs.writeFile(OUTPUT_PATH, output, "utf8");
   console.log(`Generated sw.js (revision: ${revision})`);
 };

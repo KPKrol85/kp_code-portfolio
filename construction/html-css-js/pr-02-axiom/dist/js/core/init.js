@@ -6,7 +6,6 @@ import { initLightbox } from "../components/lightbox.js";
 import { initNavigation } from "../components/navigation.js";
 import { initScrollTop } from "../components/scroll-top.js";
 import { initThemeToggle } from "../components/theme.js";
-import { initFaqSection } from "../sections/faq.js";
 import { registerServiceWorker } from "./service-worker.js";
 
 export const initApp = () => {
@@ -18,6 +17,5 @@ export const initApp = () => {
   initLightbox();
   initCompactHeader();
   initCookieBanner();
-  initFaqSection();
   registerServiceWorker();
 };

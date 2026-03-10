@@ -9,7 +9,7 @@ const mainFile = path.join(rootDir, "css", "main.css");
 const distDir = path.join(rootDir, "dist");
 const tempFile = path.join(distDir, "style.css");
 const outputFile = path.join(distDir, "style.min.css");
-const cssnanoBin = path.join(rootDir, "node_modules", ".bin", "cssnano.cmd");
+const cssnanoBin = path.join(rootDir, "node_modules", ".bin", process.platform === "win32" ? "cssnano.cmd" : "cssnano");
 
 const importRegex = /^\s*@import\s+(?:url\()?['"]([^'"]+)['"]\)?\s*;/;
 

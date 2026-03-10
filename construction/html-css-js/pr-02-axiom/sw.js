@@ -3,7 +3,7 @@ const CACHE_PREFIX = "axiom-static-";
 const CACHE_NAME = `${CACHE_PREFIX}${REVISION}`;
 const HTML_CACHE_PREFIX = "html-pages-";
 const HTML_CACHE_NAME = `${HTML_CACHE_PREFIX}${REVISION}`;
-const ASSETS = ["/","/offline.html","/style.min.css","/script.min.js","/manifest.webmanifest","/assets/img/favicon/favicon.svg","/assets/img/favicon/favicon-96x96.png","/assets/img/favicon/web-app-manifest-192x192.png","/assets/img/favicon/web-app-manifest-512x512.png","/assets/img/favicon/web-app-manifest-1024x1024.png","/assets/img/favicon/apple-touch-icon.png"];
+const ASSETS = ["/","/offline.html","/css/main.css","/js/main.js","/js/theme-init.js","/manifest.webmanifest","/assets/img/favicon/favicon.svg","/assets/img/favicon/favicon-96x96.png","/assets/img/favicon/web-app-manifest-192x192.png","/assets/img/favicon/web-app-manifest-512x512.png","/assets/img/favicon/web-app-manifest-1024x1024.png","/assets/img/favicon/apple-touch-icon.png"];
 
 self.addEventListener("install", (event) => {
   event.waitUntil(caches.open(CACHE_NAME).then((cache) => cache.addAll(ASSETS)));
