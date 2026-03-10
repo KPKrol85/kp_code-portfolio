@@ -1,11 +1,12 @@
 /* Theme toggle */
+
 .theme-toggle {
   display: inline-grid;
   place-items: center;
   width: var(--toggle-size);
   height: var(--toggle-size);
   padding: 0;
-  border-radius: 999px;
+  border-radius: var(--radius-full);
   border: 1px solid color-mix(in oklab, var(--border) 55%, transparent);
   background: color-mix(in oklab, var(--bg-elev) 85%, var(--bg) 15%);
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.12);
@@ -27,7 +28,8 @@
   pointer-events: none;
 }
 
-/* Button */
+/* btn */
+
 .btn {
   --btn-bg: var(--bg-elev);
   --btn-color: var(--text);
@@ -40,11 +42,10 @@
   padding-inline: var(--space-md);
   font-family: var(--font-sans);
   font-size: var(--fs-btn);
-  line-height: 1;
+  line-height: var(--lh-tight);
   font-weight: 500;
-  letter-spacing: 0.2px;
-  border-radius: 999px;
-  border: 1px solid var(--btn-border);
+  letter-spacing: var(--ls-subtle);
+  border-radius: var(--radius-full);
   color: var(--btn-color);
   background: var(--btn-bg);
   text-decoration: none;
@@ -68,11 +69,13 @@
   outline: 3px solid color-mix(in oklab, var(--focus) 55%, transparent);
   outline-offset: 3px;
 }
+
+/* btn--primary */
+
 .btn--primary {
   --btn-bg: linear-gradient(135deg, var(--primary) 0%, var(--primary-alt) 100%);
   --btn-color: var(--primary-contrast);
   --btn-border: transparent;
-
   border-color: var(--btn-border);
   box-shadow: 0 4px 12px color-mix(in oklab, var(--primary-alt) 35%, transparent);
 }
@@ -84,6 +87,10 @@
   filter: brightness(0.95);
   box-shadow: none;
 }
+
+
+/* btn--secondary */
+
 .btn--secondary {
   --btn-bg: color-mix(in oklab, var(--bg-elev) 94%, var(--primary) 6%);
   --btn-border: color-mix(in oklab, var(--border) 60%, var(--primary) 40%);
@@ -97,12 +104,15 @@
   --btn-bg: color-mix(in oklab, var(--bg-elev) 88%, var(--primary) 12%);
   filter: none;
 }
+
+/* btn-ghost */
+
 .btn--ghost {
   --ghost-accent: var(--primary);
-
   --btn-bg: transparent;
   --btn-color: var(--ghost-accent);
   --btn-border: color-mix(in oklab, var(--ghost-accent) 40%, var(--border));
+  border: 1px solid color-mix(in oklab, var(--primary) 45%, transparent);
 }
 .btn--ghost:hover {
   --btn-bg: color-mix(in oklab, var(--ghost-accent) 10%, transparent);
@@ -117,6 +127,9 @@ html[data-theme="dark"] .btn--ghost {
   --btn-border: color-mix(in oklab, var(--primary) 45%, var(--text) 15%, transparent);
   --btn-border: transparent;
 }
+
+/* btn--link */
+
 .btn--link {
   --btn-bg: transparent;
   --btn-border: transparent;
@@ -131,6 +144,7 @@ html[data-theme="dark"] .btn--ghost {
 }
 
 /* Form */
+
 .form {
   display: grid;
   gap: var(--space-md);
@@ -380,6 +394,7 @@ fieldset.form__field legend {
 }
 
 /* Lightbox */
+
 .lightbox[hidden] {
   display: none !important;
 }
@@ -578,6 +593,7 @@ fieldset.form__field legend {
 }
 
 /* Tabs */
+
 .tabs {
   display: flex;
   gap: var(--space-xs);
@@ -598,6 +614,7 @@ fieldset.form__field legend {
 }
 
 /* 404 */
+
 .not-found__text {
   margin: 0;
   margin-top: var(--space-xs);

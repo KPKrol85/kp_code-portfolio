@@ -46,7 +46,7 @@
 
   /* Buttons */
   --fs-btn-sm: 0.4rem;
-  --fs-btn: 0.85rem;
+  --fs-btn: 0.8rem;
   --fs-btn-lg: 1.05rem;
 
   /* Spacing */
@@ -78,6 +78,7 @@
   /* Letter-spacing */
   --ls-tight: -0.02em;
   --ls-normal: 0;
+  --ls-subtle: 0.02em;
   --ls-wide: 0.04em;
   --ls-wider: 0.08em;
   --ls-ultra: 0.16em;
@@ -90,6 +91,7 @@
 
   --footer-icon-filter: none;
 }
+
 html[data-theme="light"] {
   --bg: #faf8f3;
   --bg-elev: #ffffff;
@@ -101,6 +103,7 @@ html[data-theme="light"] {
     radial-gradient(60vw 60vw at 10% 6%, color-mix(in oklab, #ffd37a 35%, transparent) 0%, transparent 60%),
     radial-gradient(40vw 40vw at 88% 90%, color-mix(in oklab, #2dc7a6 10%, transparent) 0%, transparent 70%);
 }
+
 html[data-theme="dark"] {
   --bg: var(--bg-dark);
   --bg-elev: var(--bg-elev-dark);
@@ -112,6 +115,7 @@ html[data-theme="dark"] {
     radial-gradient(60vw 60vw at 92% 8%, color-mix(in oklab, #2d9bf0 18%, transparent) 0%, transparent 60%),
     radial-gradient(35vw 35vw at 6% 94%, color-mix(in oklab, #34d1b2 10%, transparent) 0%, transparent 70%);
 }
+
 @media (prefers-color-scheme: dark) {
   html:not([data-theme]),
   html[data-theme="auto"] {
@@ -126,6 +130,7 @@ html[data-theme="dark"] {
       radial-gradient(35vw 35vw at 6% 94%, color-mix(in oklab, #34d1b2 10%, transparent) 0%, transparent 70%);
   }
 }
+
 @media (prefers-color-scheme: light) {
   html:not([data-theme]),
   html[data-theme="auto"] {
