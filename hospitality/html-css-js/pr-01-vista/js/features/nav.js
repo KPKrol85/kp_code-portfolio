@@ -3,7 +3,7 @@ export function initNav() {
   const nav = document.getElementById("site-nav");
   if (!toggle || !nav) return;
 
-  const mobileMq = window.matchMedia("(max-width: 900px)");
+  const mobileMq = window.matchMedia("(max-width: 960px)");
   let lastFocused = null;
 
   const CLOSED_LABEL = "Otwórz menu";

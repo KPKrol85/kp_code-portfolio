@@ -1,51 +1,28 @@
 <!doctype html>
 <html lang="pl" class="no-js" data-theme="auto">
   <head>
+    <!-- Document meta -->
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Vista — Hotels &amp; Travel</title>
+
+    <!-- SEO -->
     <meta name="description" content="Vista — Hotels &amp; Travel. Nowoczesny projekt front-end HTML / CSS / JS dla branży turystyczno-hotelarskiej z eleganckim, lekkim motywem." />
-    <meta name="color-scheme" content="light dark" />
-    <meta name="theme-color" media="(prefers-color-scheme: light)" content="#f7f6f3" />
-    <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#0d0f14" />
     <meta name="robots" content="index,follow" />
     <meta name="referrer" content="strict-origin-when-cross-origin" />
     <meta name="format-detection" content="telephone=no" />
     <meta name="ld-json" content="assets/seo/ld-index.json" />
-    <script type="application/ld+json" data-seo-jsonld="fallback">
-{
-  "@context": "https://schema.org",
-  "@type": "Hotel",
-  "name": "Vista",
-  "url": "https://hospitality-pr-01-vista.netlify.app/",
-  "image": "https://hospitality-pr-01-vista.netlify.app/assets/img/og/og-1200x630.jpg",
-  "logo": "https://hospitality-pr-01-vista.netlify.app/assets/img/ui/android-chrome-192x192.png",
-  "telephone": "+48 533537091",
-  "email": "kontakt@kp-code.pl",
-  "address": {
-    "@type": "PostalAddress",
-    "streetAddress": "Marynarki Wojennej 12/31",
-    "postalCode": "33-100",
-    "addressLocality": "Tarnów",
-    "addressCountry": "PL"
-  },
-  "contactPoint": [
-    {
-      "@type": "ContactPoint",
-      "telephone": "+48 533537091",
-      "email": "kontakt@kp-code.pl",
-      "contactType": "customer service",
-      "areaServed": "PL",
-      "availableLanguage": [
-        "pl"
-      ]
-    }
-  ],
-  "alternateName": "Vista — Hotels & Travel",
-  "description": "Vista — Hotels & Travel."
-}
-    </script>
+
+    <!-- PWA / UI -->
+    <meta name="color-scheme" content="light dark" />
+    <meta name="theme-color" media="(prefers-color-scheme: light)" content="#f7f6f3" />
+    <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#0d0f14" />
+    <meta name="msapplication-TileColor" content="#2dc7a6" />
+
+    <!-- Indexing / canonical -->
     <link rel="canonical" href="https://hospitality-pr-01-vista.netlify.app/" />
+
+    <!-- Open Graph -->
     <meta property="og:type" content="website" />
     <meta property="og:site_name" content="Vista" />
     <meta property="og:title" content="Vista — Hotels &amp; Travel" />
@@ -57,19 +34,61 @@
     <meta property="og:image:height" content="630" />
     <meta property="og:image:type" content="image/jpeg" />
     <meta property="og:image:alt" content="Nowoczesny hotel z widokiem na morze — Vista — Hotels &amp; Travel" />
+
+    <!-- Twitter -->
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content="Vista — Hotels &amp; Travel" />
     <meta name="twitter:description" content="Vista — Hotels &amp; Travel. Nowoczesny projekt front-end HTML / CSS / JS dla branży turystyczno-hotelarskiej." />
     <meta name="twitter:image" content="https://hospitality-pr-01-vista.netlify.app/assets/img/og/og-1200x1200.jpg" />
+
+    <!-- Favicons + manifest -->
     <link rel="manifest" href="site.webmanifest" />
     <link rel="icon" href="assets/img/ui/favicon.svg" type="image/svg+xml" />
     <link rel="icon" href="assets/img/ui/favicon-32x32.png" sizes="32x32" />
     <link rel="icon" href="assets/img/ui/favicon-16x16.png" sizes="16x16" />
     <link rel="apple-touch-icon" href="assets/img/ui/apple-touch-icon.png" sizes="180x180" />
     <link rel="mask-icon" href="assets/img/ui/safari-pinned-tab.svg" color="#0d0f14" />
-    <meta name="msapplication-TileColor" content="#2dc7a6" />
+
+    <!-- Theme preload -->
     <script src="js/theme-init.js"></script>
+
+    <!-- Styles -->
     <link rel="stylesheet" href="css/style.css" />
+
+    <!-- JSON-LD -->
+    <script type="application/ld+json" data-seo-jsonld="fallback">
+      {
+        "@context": "https://schema.org",
+        "@type": "Hotel",
+        "name": "Vista",
+        "url": "https://hospitality-pr-01-vista.netlify.app/",
+        "image": "https://hospitality-pr-01-vista.netlify.app/assets/img/og/og-1200x630.jpg",
+        "logo": "https://hospitality-pr-01-vista.netlify.app/assets/img/ui/android-chrome-192x192.png",
+        "telephone": "+48 533537091",
+        "email": "kontakt@kp-code.pl",
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "Marynarki Wojennej 12/31",
+          "postalCode": "33-100",
+          "addressLocality": "Tarnów",
+          "addressCountry": "PL"
+        },
+        "contactPoint": [
+          {
+            "@type": "ContactPoint",
+            "telephone": "+48 533537091",
+            "email": "kontakt@kp-code.pl",
+            "contactType": "customer service",
+            "areaServed": "PL",
+            "availableLanguage": ["pl"]
+          }
+        ],
+        "alternateName": "Vista — Hotels & Travel",
+        "description": "Vista — Hotels & Travel."
+      }
+    </script>
+
+    <!-- Performance hints -->
     <link
       rel="preload"
       as="image"
@@ -90,21 +109,24 @@
     <header class="site-header" id="top">
       <div class="container site-header__inner">
         <a class="site-header__brand" href="index.html" aria-label="Strona główna">
-          <img src="assets/img/logo/logo-128x128.svg" alt="Logo Vista" class="brand-logo" width="36" height="36" />
+          <img src="assets/img/logo/logo-128x128.svg" alt="Logo Vista" class="site-header__logo" width="36" height="36" />
           <span class="brand-lockup">
             <span class="brand-lockup__name">Vista</span>
             <span class="brand-lockup__tagline">Hotels &amp; Travel</span>
           </span>
         </a>
+        <!-- hamburger menu -->
         <button class="site-header__nav-toggle" id="nav-toggle" aria-controls="site-nav" aria-expanded="false" aria-label="Otwórz menu">
           <span class="visually-hidden">Menu</span>
           <svg class="icon" viewBox="0 0 24 24" aria-hidden="true">
             <path d="M3 6h18M3 12h18M3 18h18" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
           </svg>
         </button>
+        <!-- theme toggle -->
         <button type="button" id="theme-toggle" class="theme-toggle" aria-label="Zmień motyw kolorystyczny" aria-pressed="false" data-theme-toggle>
           <img class="theme-toggle__icon" src="assets/img/icons/sun-40x40.svg" alt="" aria-hidden="true" width="20" height="20" decoding="async" />
         </button>
+        <!-- navigation -->
         <nav class="site-nav" id="site-nav" aria-label="Główne">
           <ul class="site-nav__list">
             <li><a href="index.html" data-nav aria-current="page">Home</a></li>
@@ -130,11 +152,21 @@
             <picture>
               <source
                 type="image/avif"
-                srcset="assets/img/optimized/hero/hero-01-640x360.avif 640w, assets/img/optimized/hero/hero-01-960x540.avif 960w, assets/img/optimized/hero/hero-01-1200x675.avif 1200w, assets/img/optimized/hero/hero-01-1600x900.avif 1600w"
+                srcset="
+                  assets/img/optimized/hero/hero-01-640x360.avif   640w,
+                  assets/img/optimized/hero/hero-01-960x540.avif   960w,
+                  assets/img/optimized/hero/hero-01-1200x675.avif 1200w,
+                  assets/img/optimized/hero/hero-01-1600x900.avif 1600w
+                "
                 sizes="(max-width: 900px) calc(100vw - 2rem), 628px" />
               <source
                 type="image/webp"
-                srcset="assets/img/optimized/hero/hero-01-640x360.webp 640w, assets/img/optimized/hero/hero-01-960x540.webp 960w, assets/img/optimized/hero/hero-01-1200x675.webp 1200w, assets/img/optimized/hero/hero-01-1600x900.webp 1600w"
+                srcset="
+                  assets/img/optimized/hero/hero-01-640x360.webp   640w,
+                  assets/img/optimized/hero/hero-01-960x540.webp   960w,
+                  assets/img/optimized/hero/hero-01-1200x675.webp 1200w,
+                  assets/img/optimized/hero/hero-01-1600x900.webp 1600w
+                "
                 sizes="(max-width: 900px) calc(100vw - 2rem), 628px" />
               <img
                 src="assets/img/src/hero/hero-01-1200x675.jpg"
@@ -287,7 +319,12 @@
                 <img
                   class="room-card__img"
                   src="assets/img/src/rooms/deluxe-1208x853.jpg"
-                  srcset="assets/img/src/rooms/deluxe-640x427.jpg 640w, assets/img/src/rooms/deluxe-960x640.jpg 960w, assets/img/src/rooms/deluxe-1208x853.jpg 1208w, assets/img/src/rooms/deluxe-1600x1067.jpg 1600w"
+                  srcset="
+                    assets/img/src/rooms/deluxe-640x427.jpg    640w,
+                    assets/img/src/rooms/deluxe-960x640.jpg    960w,
+                    assets/img/src/rooms/deluxe-1208x853.jpg  1208w,
+                    assets/img/src/rooms/deluxe-1600x1067.jpg 1600w
+                  "
                   sizes="(max-width: 900px) calc(100vw - 2rem), 400px"
                   alt="Pokój Deluxe – elegancki, nowoczesny pokój z dwoma łóżkami, nastrojowym oświetleniem i telewizorem na ścianie"
                   width="1600"
@@ -778,7 +815,7 @@
             <p>
               ©
               <span data-year></span>
-              KP_Code. Wszelkie prawa zastrzeżone.
+              KP_Code Digital Studio | Wszelkie prawa zastrzeżone.
             </p>
           </div>
         </div>

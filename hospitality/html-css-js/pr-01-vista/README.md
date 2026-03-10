@@ -1,157 +1,149 @@
 # Vista — Hotels & Travel
 
-## PL
+## 🇵🇱 Dokumentacja (PL)
 
 ### Przegląd projektu
-Profesjonalny projekt portfolio front-end dla branży hospitality, zrealizowany jako strona wielopodstronowa w czystym HTML, CSS i JavaScript. Projekt obejmuje stronę główną, podstrony ofertowe, galerię, kontakt oraz strony prawne.
+Statyczna strona front-end dla marki hotelowo-turystycznej „Vista”, zbudowana w oparciu o wielostronicowy HTML, modularny CSS i modularny JavaScript. Projekt wdraża przełączanie motywu (light/dark/auto), elementy PWA (manifest + service worker) oraz konfigurację wdrożeniową dla Netlify.
 
-### Kluczowe funkcje
-- Wielostronicowa architektura: `index.html`, `rooms.html`, `offers.html`, `gallery.html`, `contact.html`, `onas.html`, strony prawne oraz `404.html` i `offline.html`.
-- Modularny CSS oparty o tokeny (`css/modules/tokens.css`) i podział na warstwy: base/layout/components/sections/utilities/themes/motion/print.
-- Stylowanie i nazewnictwo komponentów w konwencji BEM (np. `site-header__inner`, `room-card__img`, `gallery-cats__link`).
-- Modułowy JavaScript (`js/features/*`) dla nawigacji, motywu, tabów, lightboxa, filtrów galerii, formularza i dynamicznego JSON-LD.
-- PWA: `site.webmanifest`, rejestracja Service Workera i fallback offline (`offline.html`).
-- Konfiguracja wdrożeniowa Netlify (`netlify/_headers`, `netlify/_redirects`).
+### Kluczowe funkcje (potwierdzone w repozytorium)
+- Wielostronicowy serwis: strona główna, pokoje, oferty, galeria, kontakt, o nas oraz strony prawne.
+- Responsywna nawigacja mobilna z obsługą klawiatury (Escape + pułapka focusu).
+- Przełącznik motywu i inicjalizacja motywu przed renderem.
+- Dynamiczne ustawianie `aria-current` w nawigacji.
+- Formularz kontaktowo-rezerwacyjny z walidacją kliencką i integracją Netlify Forms.
+- Lekki mechanizm lightboxa oraz filtrowanie kategorii galerii.
+- JSON-LD fallback + dynamiczne ładowanie danych strukturalnych z plików `assets/seo/*.json`.
+- PWA: `site.webmanifest`, `pwa/service-worker.js`, strona offline.
 
 ### Tech stack
-- HTML5
-- CSS3 + design tokens + PostCSS (`postcss-import`, `cssnano`)
+- HTML5 (MVP, strony statyczne)
+- CSS (architektura modułowa przez `@import`, tokeny design systemu)
 - Vanilla JavaScript (ES modules)
-- Node.js tooling (`sharp`, `chokidar`)
-- Netlify (nagłówki bezpieczeństwa i przekierowania)
+- PostCSS (`postcss`, `autoprefixer`, `cssnano`, `postcss-import`)
+- Narzędzia Node.js (`sharp`, `chokidar`) do optymalizacji obrazów i prostych testów integralności
+- Netlify (`netlify/_headers`, `netlify/_redirects`)
 
 ### Struktura projektu (skrót)
-- `css/` — entry CSS + moduły
-- `js/` — entry JS + moduły feature
-- `assets/img/` — obrazy źródłowe i zoptymalizowane + favicon/OG/logo
-- `assets/seo/` — JSON-LD per podstrona
-- `pwa/` — service worker
-- `netlify/` — konfiguracja hostingu
+- `*.html` — strony serwisu
+- `css/style.css` + `css/modules/*.css` — warstwa stylów (tokeny, baza, layout, komponenty, sekcje, motion)
+- `js/script.js` + `js/features/*.js` — bootstrap i moduły funkcjonalne
+- `assets/` — obrazy, fonty, JSON-LD
+- `pwa/service-worker.js`, `site.webmanifest`, `offline.html` — PWA/offline
+- `scripts/*.mjs` — skrypty developerskie (obrazy, linki, a11y)
+- `netlify/` — konfiguracja nagłówków i redirectów
 
-### Setup i uruchomienie
-1. Zainstaluj zależności:
-   ```bash
-   npm install
-   ```
-2. Zbuduj CSS i obrazy:
-   ```bash
-   npm run build
-   ```
-3. W środowisku lokalnym uruchom serwer statyczny (dowolny), np.:
-   ```bash
-   npx serve .
-   ```
+### Instalacja i uruchomienie
+1. `npm ci`
+2. Build CSS i obrazów: `npm run build`
+3. W trakcie pracy:
+   - `npm run css:watch`
+   - `npm run img:watch`
+4. Kontrola jakości:
+   - `npm run check:links`
+   - `npm run test:a11y` (wymaga dostępu do npm registry)
 
 ### Build i wdrożenie
-- `npm run css:build` generuje `css/style.min.css`.
-- `npm run img:opt` generuje WebP/AVIF do `assets/img/optimized`.
-- Netlify wykorzystuje:
-  - `netlify/_headers` (CSP, HSTS, Referrer-Policy, itp.)
-  - `netlify/_redirects` (redirect `/index.html` → `/` oraz fallback 404).
+- Build lokalny opiera się o `npm run build`.
+- Deploy target: Netlify (nagłówki bezpieczeństwa i reguły trasowania).
+- Service worker utrzymuje cache statyczny i fallback `offline.html` dla nawigacji.
 
-### Dostępność (A11y)
-- Skip link (`.skip-link`) obecny na podstronach.
-- Semantyczne sekcje (`header`, `nav`, `main`, `section`, `article`, `footer`).
-- Widoczne style focus (`:focus-visible`) i obsługa klawiatury dla nawigacji, tabów i lightboxa.
-- Obsługa `prefers-reduced-motion` w module `motion.css`.
-- Formularz kontaktowy ma walidację atrybutową + walidację JS i komunikaty błędów `aria-live`.
+### Dostępność
+- Zaimplementowano skip-link, focus styles i preferencję ograniczenia ruchu (`prefers-reduced-motion`).
+- Menu mobilne oraz lightbox mają obsługę klawiatury i podstawowe zarządzanie focusem.
+- Formularz posiada komunikaty walidacyjne z `aria-live`.
+- Część zgodności kontrastu wymaga analizy runtime (computed styles), nie samego audytu statycznego.
 
 ### SEO
-- Każda podstrona ma `title`, `meta description`, `canonical`, `og:*`, `twitter:*`, `robots`.
-- JSON-LD jest dostarczane jako fallback inline + aktualizacja z plików `assets/seo/*.json`.
-- Dostępne: `robots.txt` i `sitemap.xml`.
+- Każda strona ma metadane (`description`, canonical, OG, Twitter) i tag robots.
+- Repo zawiera `robots.txt`, `sitemap.xml` i dane strukturalne JSON-LD.
+- `og:url` jest zgodny z canonical na przejrzanych podstronach.
 
 ### Wydajność
-- Obrazy realizowane przez `<picture>` z AVIF/WebP + JPEG fallback.
-- Atrybuty `loading="lazy"` i `decoding="async"` na większości obrazów niekrytycznych.
-- Preload obrazu hero na stronie głównej.
-- Fonty lokalne (`woff2`) ładowane przez `@font-face` z `font-display: swap`.
+- Obrazy hero i galerie korzystają z nowoczesnych formatów (`avif`, `webp`) i `srcset`.
+- Większość obrazów ma jawne `width/height` i lazy loading poza elementami lightboxa.
+- Fonty lokalne ładowane przez `@font-face` z `font-display: swap`.
 
-### Roadmap
-- Zastąpienie konsolowych logów SW wzorcem telemetrycznym bez `console.*` w bundle runtime.
-- Opcjonalne cache busting assetów (hashing nazw plików) przy wdrożeniu.
-- Rozszerzenie automatycznych testów statycznych (link check + a11y lint).
-- Dalsze dopracowanie krytycznej ścieżki renderowania (critical CSS).
-- Wzmocnienie strategii cache PWA dla obrazów o wysokiej wadze.
+### Roadmap (zalecenia)
+- Scalić CSS do jednego pliku produkcyjnego (`style.min.css`) i przełączyć referencje HTML.
+- Ujednolicić i zautomatyzować walidację danych strukturalnych JSON-LD.
+- Dodać zautomatyzowane testy a11y uruchamiane offline/CI bez dynamicznego pobierania pakietów.
+- Dopracować atrybuty wymiarów w lightboxie, by ograniczyć CLS.
+- Rozważyć metryki Lighthouse/Web Vitals jako stały element jakości.
 
 ### Licencja
-MIT
+MIT (zgodnie z `package.json`).
 
 ---
 
-## EN
+## 🇬🇧 Documentation (EN)
 
 ### Project overview
-Production-oriented front-end portfolio project for the hospitality domain, implemented as a multi-page website in plain HTML, CSS, and JavaScript. It includes a homepage, offer pages, gallery, contact page, and legal pages.
+A static multi-page front-end website for the “Vista” hospitality brand, built with HTML, modular CSS, and modular JavaScript. The implementation includes theme switching (light/dark/auto), PWA capabilities (manifest + service worker), and Netlify deployment configuration.
 
-### Key features
-- Multi-page architecture: `index.html`, `rooms.html`, `offers.html`, `gallery.html`, `contact.html`, `onas.html`, legal pages, plus `404.html` and `offline.html`.
-- Modular CSS built around design tokens (`css/modules/tokens.css`) and layer separation: base/layout/components/sections/utilities/themes/motion/print.
-- BEM-oriented component naming (e.g. `site-header__inner`, `room-card__img`, `gallery-cats__link`).
-- Modular JavaScript (`js/features/*`) for navigation, theme switching, tabs, lightbox, gallery filters, forms, and dynamic JSON-LD.
-- PWA setup: `site.webmanifest`, Service Worker registration, and offline fallback (`offline.html`).
-- Netlify deployment configuration (`netlify/_headers`, `netlify/_redirects`).
+### Key implemented features
+- Multi-page website: home, rooms, offers, gallery, contact, about, and legal pages.
+- Responsive mobile navigation with keyboard support (Escape + focus trap).
+- Theme switcher with early theme initialization.
+- Dynamic navigation `aria-current` handling.
+- Booking/contact form with client-side validation and Netlify Forms attributes.
+- Lightbox interactions and gallery category filtering.
+- JSON-LD fallback plus dynamic loading from `assets/seo/*.json`.
+- PWA support: `site.webmanifest`, `pwa/service-worker.js`, offline fallback page.
 
 ### Tech stack
 - HTML5
-- CSS3 + design tokens + PostCSS (`postcss-import`, `cssnano`)
+- CSS (modular architecture via `@import` + tokenized design system)
 - Vanilla JavaScript (ES modules)
-- Node.js tooling (`sharp`, `chokidar`)
-- Netlify (security headers and redirects)
+- PostCSS toolchain (`postcss`, `autoprefixer`, `cssnano`, `postcss-import`)
+- Node.js scripts (`sharp`, `chokidar`) for image processing and checks
+- Netlify headers and redirects
 
-### Structure overview (short)
-- `css/` — CSS entry + modules
-- `js/` — JS entry + feature modules
-- `assets/img/` — source and optimized images + favicon/OG/logo
-- `assets/seo/` — JSON-LD per page
-- `pwa/` — service worker
-- `netlify/` — hosting configuration
+### Project structure (overview)
+- `*.html` — site pages
+- `css/style.css` + `css/modules/*.css` — styles
+- `js/script.js` + `js/features/*.js` — app bootstrap and feature modules
+- `assets/` — images, fonts, structured data
+- `pwa/service-worker.js`, `site.webmanifest`, `offline.html` — PWA/offline
+- `scripts/*.mjs` — developer scripts
+- `netlify/` — deployment headers and redirects
 
-### Setup & run
-1. Install dependencies:
-   ```bash
-   npm install
-   ```
-2. Build CSS and images:
-   ```bash
-   npm run build
-   ```
-3. Run any static local server, e.g.:
-   ```bash
-   npx serve .
-   ```
+### Setup and run
+1. `npm ci`
+2. Build assets: `npm run build`
+3. During development:
+   - `npm run css:watch`
+   - `npm run img:watch`
+4. Quality checks:
+   - `npm run check:links`
+   - `npm run test:a11y` (requires npm registry access)
 
 ### Build & deployment notes
-- `npm run css:build` builds `css/style.min.css`.
-- `npm run img:opt` generates WebP/AVIF into `assets/img/optimized`.
-- Netlify uses:
-  - `netlify/_headers` (CSP, HSTS, Referrer-Policy, etc.)
-  - `netlify/_redirects` (`/index.html` → `/` and 404 fallback).
+- Local build pipeline uses `npm run build`.
+- Deployment target is Netlify with security headers and redirects.
+- Service worker provides static caching and offline navigation fallback.
 
 ### Accessibility notes
-- Skip link (`.skip-link`) is present across pages.
-- Semantic landmarks are used (`header`, `nav`, `main`, `section`, `article`, `footer`).
-- Visible focus styles (`:focus-visible`) and keyboard support for nav, tabs, and lightbox.
-- `prefers-reduced-motion` handling is included in `motion.css`.
-- Contact form includes native attributes + JS validation with `aria-live` error feedback.
+- Skip link, focus-visible styles, and reduced-motion support are implemented.
+- Mobile nav and lightbox provide keyboard behavior and focus management.
+- Form validation feedback uses `aria-live`.
+- Full contrast compliance requires runtime/computed-style verification.
 
 ### SEO notes
-- Each page includes `title`, `meta description`, `canonical`, `og:*`, `twitter:*`, and `robots`.
-- JSON-LD is delivered via inline fallback + runtime updates from `assets/seo/*.json`.
-- `robots.txt` and `sitemap.xml` are included.
+- Pages provide `description`, canonical, Open Graph, Twitter cards, and robots meta.
+- Repository includes `robots.txt`, `sitemap.xml`, and JSON-LD payload files.
+- `og:url` and canonical are aligned on reviewed pages.
 
 ### Performance notes
-- Images use `<picture>` with AVIF/WebP and JPEG fallback.
-- `loading="lazy"` and `decoding="async"` are used for most non-critical images.
-- Hero image preload is defined on the homepage.
-- Local `woff2` fonts are loaded via `@font-face` with `font-display: swap`.
+- Hero and gallery images use AVIF/WebP and responsive `srcset`.
+- Most images define dimensions and lazy loading outside dynamic lightbox updates.
+- Local fonts are loaded with `font-display: swap`.
 
 ### Roadmap
-- Replace runtime SW console logging with non-console diagnostics.
-- Add optional cache-busting strategy (hashed assets) for deployment.
-- Extend automated static checks (link checking + accessibility linting).
-- Continue refining critical render path (critical CSS strategy).
-- Improve PWA caching strategy for heavy visual assets.
+- Ship and reference bundled/minified production CSS consistently.
+- Add stricter automated JSON-LD validation.
+- Make accessibility checks CI-friendly without on-demand package downloads.
+- Keep explicit image dimensions in lightbox flows to reduce CLS.
+- Add repeatable Lighthouse/Web Vitals tracking.
 
 ### License
-MIT
+MIT (as declared in `package.json`).
