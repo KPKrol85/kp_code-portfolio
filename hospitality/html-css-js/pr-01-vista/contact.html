@@ -5,23 +5,19 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Vista | Kontakt i rezerwacje — Hotels &amp; Travel</title>
-
     <!-- SEO -->
     <meta name="description" content="Skontaktuj się z nami, aby uzyskać informacje o rezerwacjach, dostępności pokoi oraz ofertach specjalnych w Vista — Hotels &amp; Travel." />
     <meta name="robots" content="index,follow" />
     <meta name="referrer" content="strict-origin-when-cross-origin" />
     <meta name="format-detection" content="telephone=no" />
     <meta name="ld-json" content="assets/seo/ld-contact.json" />
-
     <!-- PWA / UI -->
     <meta name="color-scheme" content="light dark" />
     <meta name="theme-color" media="(prefers-color-scheme: light)" content="#f7f6f3" />
     <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#0d0f14" />
     <meta name="msapplication-TileColor" content="#2dc7a6" />
-
     <!-- Indexing / canonical -->
     <link rel="canonical" href="https://hospitality-pr-01-vista.netlify.app/contact.html" />
-
     <!-- Open Graph -->
     <meta property="og:type" content="website" />
     <meta property="og:site_name" content="Vista" />
@@ -34,13 +30,11 @@
     <meta property="og:image:height" content="630" />
     <meta property="og:image:type" content="image/jpeg" />
     <meta property="og:image:alt" content="Nowoczesny hotel z widokiem na morze — Vista — Hotels &amp; Travel" />
-
     <!-- Twitter -->
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content="Vista | Kontakt i rezerwacje — Hotels &amp; Travel" />
     <meta name="twitter:description" content="Skontaktuj się z nami w sprawie rezerwacji i ofert specjalnych Vista — Hotels &amp; Travel." />
     <meta name="twitter:image" content="https://hospitality-pr-01-vista.netlify.app/assets/img/og/og-1200x1200.jpg" />
-
     <!-- Favicons + manifest -->
     <link rel="manifest" href="site.webmanifest" />
     <link rel="icon" href="assets/img/ui/favicon.svg" type="image/svg+xml" />
@@ -48,52 +42,48 @@
     <link rel="icon" href="assets/img/ui/favicon-16x16.png" sizes="16x16" />
     <link rel="apple-touch-icon" href="assets/img/ui/apple-touch-icon.png" sizes="180x180" />
     <link rel="mask-icon" href="assets/img/ui/safari-pinned-tab.svg" color="#0d0f14" />
-
     <!-- Theme preload -->
     <script src="js/theme-init.js"></script>
-
     <!-- Styles -->
     <link rel="stylesheet" href="css/style.css" />
-
     <!-- JSON-LD -->
     <script type="application/ld+json" data-seo-jsonld="fallback">
-{
-  "@context": "https://schema.org",
-  "@type": "Hotel",
-  "name": "Vista",
-  "url": "https://hospitality-pr-01-vista.netlify.app/contact.html",
-  "image": "https://hospitality-pr-01-vista.netlify.app/assets/img/og/og-1200x630.jpg",
-  "logo": "https://hospitality-pr-01-vista.netlify.app/assets/img/ui/android-chrome-192x192.png",
-  "telephone": "+48 533537091",
-  "email": "kontakt@kp-code.pl",
-  "address": {
-    "@type": "PostalAddress",
-    "streetAddress": "Marynarki Wojennej 12/31",
-    "postalCode": "33-100",
-    "addressLocality": "Tarnów",
-    "addressCountry": "PL"
-  },
-  "contactPoint": [
-    {
-      "@type": "ContactPoint",
-      "telephone": "+48 533537091",
-      "email": "kontakt@kp-code.pl",
-      "contactType": "customer service",
-      "areaServed": "PL",
-      "availableLanguage": [
-        "pl"
-      ]
-    }
-  ],
-  "alternateName": "Vista — Hotels & Travel",
-  "description": "Vista — Hotels & Travel."
-}
+      {
+        "@context": "https://schema.org",
+        "@type": "Hotel",
+        "name": "Vista",
+        "url": "https://hospitality-pr-01-vista.netlify.app/contact.html",
+        "image": "https://hospitality-pr-01-vista.netlify.app/assets/img/og/og-1200x630.jpg",
+        "logo": "https://hospitality-pr-01-vista.netlify.app/assets/img/ui/android-chrome-192x192.png",
+        "telephone": "+48 533537091",
+        "email": "kontakt@kp-code.pl",
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "Marynarki Wojennej 12/31",
+          "postalCode": "33-100",
+          "addressLocality": "Tarnów",
+          "addressCountry": "PL"
+        },
+        "contactPoint": [
+          {
+            "@type": "ContactPoint",
+            "telephone": "+48 533537091",
+            "email": "kontakt@kp-code.pl",
+            "contactType": "customer service",
+            "areaServed": "PL",
+            "availableLanguage": ["pl"]
+          }
+        ],
+        "alternateName": "Vista — Hotels & Travel",
+        "description": "Vista — Hotels & Travel."
+      }
     </script>
   </head>
 
   <!-- Body  -->
-  <body>
+  <body class="page page--contact">
     <a class="skip-link" href="#main">Przejdź do treści</a>
+
     <!-- Header -->
     <header class="site-header" id="top">
       <div class="container site-header__inner">
@@ -146,26 +136,51 @@
       <!-- Contact -->
       <section class="section" aria-labelledby="contact-heading">
         <div class="container">
-          <h1 id="contact-heading" class="section-title">Kontakt i rezerwacje</h1>
+          <div class="section-header">
+            <h1 id="contact-heading" class="section-title">Kontakt i rezerwacje</h1>
+          </div>
+          <!-- contact info-->
           <div class="grid-2">
             <article class="contact-info">
               <h2 class="contact-info__title">Dane kontaktowe</h2>
+
               <address class="contact-address" translate="no">
-                ul. Marynarki Wojennej 12/31, 33-100 Tarnów
+                ul. Marynarki Wojennej 12/31,
                 <br />
+                33-100 Tarnów,
+                <br />
+                Polska
+                <!-- tel -->
                 <span class="contact-row">
-                  <img src="assets/img/icons/tel-40x40.svg" alt="" class="footer__icon-img icon--mono" width="20" height="20" decoding="async" loading="lazy" aria-hidden="true" />
-                  <a href="tel:+48533537091">+48 533537091</a>
+                  <svg class="contact-row__icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                    <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                    <path
+                      d="M9 3a1 1 0 0 1 .877 .519l.051 .11l2 5a1 1 0 0 1 -.313 1.16l-.1 .068l-1.674 1.004l.063 .103a10 10 0 0 0 3.132 3.132l.102 .062l1.005 -1.672a1 1 0 0 1 1.113 -.453l.115 .039l5 2a1 1 0 0 1 .622 .807l.007 .121v4c0 1.657 -1.343 3 -3.06 2.998c-8.579 -.521 -15.418 -7.36 -15.94 -15.998a3 3 0 0 1 2.824 -2.995l.176 -.005h4z" />
+                  </svg>
+                  <a href="tel:+48533537091">+48 533 537 091</a>
                 </span>
+                <!-- email -->
                 <span class="contact-row">
-                  <img src="assets/img/icons/email-40x40.svg" alt="" class="footer__icon-img icon--mono" width="20" height="20" decoding="async" loading="lazy" aria-hidden="true" />
+                  <svg class="contact-row__icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                    <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                    <path d="M22 7.535v9.465a3 3 0 0 1 -2.824 2.995l-.176 .005h-14a3 3 0 0 1 -2.995 -2.824l-.005 -.176v-9.465l9.445 6.297l.116 .066a1 1 0 0 0 .878 0l.116 -.066l9.445 -6.297z" />
+                    <path d="M19 4c1.08 0 2.027 .57 2.555 1.427l-9.555 6.37l-9.555 -6.37a2.999 2.999 0 0 1 2.354 -1.42l.201 -.007h14z" />
+                  </svg>
                   <a href="mailto:kontakt@kp-code.pl">kontakt@kp-code.pl</a>
                 </span>
               </address>
+
+              <!-- map -->
               <figure class="map map--embed" aria-label="Mapa dojazdu" data-map-embed>
                 <div class="map__frame">
                   <div class="map__fallback" data-map-fallback>
-                    <img src="assets/img/src/contact/map-fallback.svg" alt="Statyczna mapa lokalizacji hotelu Vista przy ulicy Marynarki Wojennej 12/31 w Tarnowie" loading="lazy" decoding="async" width="1280" height="720" />
+                    <img
+                      src="assets/img/src/contact/map-fallback.svg"
+                      alt="Statyczna mapa lokalizacji hotelu Vista przy ulicy Marynarki Wojennej 12/31 w Tarnowie"
+                      loading="lazy"
+                      decoding="async"
+                      width="1280"
+                      height="720" />
                   </div>
                   <iframe
                     title="Mapa dojazdu — ul. Marynarki Wojennej 12/31, Tarnów"
@@ -180,30 +195,42 @@
                     hidden
                     aria-hidden="true"></iframe>
                 </div>
+                <!-- caption -->
                 <figcaption class="map__caption">
                   Interaktywna mapa może być zablokowana przez ustawienia prywatności przeglądarki.
-                  <a href="https://www.google.com/maps?q=ul.+Marynarki+Wojennej+12,+33-100+Tarnów,+Polska" target="_blank" rel="noopener noreferrer" aria-label="Otwórz lokalizację hotelu Vista w Google Maps (otwiera się w nowej karcie)">Otwórz w Google Maps</a>.
+                  <a
+                    href="https://www.google.com/maps?q=ul.+Marynarki+Wojennej+12,+33-100+Tarnów,+Polska"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label="Otwórz lokalizację hotelu Vista w Google Maps (otwiera się w nowej karcie)">
+                    Otwórz w Google Maps
+                  </a>
+                  .
                 </figcaption>
               </figure>
             </article>
 
-            <article id="form">
-              <h2 class="contact-info__title">Zapytanie o rezerwację</h2>
+            <!-- form -->
+            <article id="form" class="contact-form">
+              <h2 class="contact-info__title">Formularz kontaktowy</h2>
               <form class="form" name="booking" method="POST" data-netlify="true" netlify-honeypot="website" novalidate data-form aria-describedby="form-note">
                 <input type="hidden" name="form-name" value="booking" />
                 <input type="text" name="website" class="visually-hidden" aria-hidden="true" tabindex="-1" autocomplete="off" />
                 <p id="form-note" class="form__note">Wypełnij pola oznaczone * i wyślij zapytanie. Odezwiemy się mailowo lub telefonicznie.</p>
+                <!-- imię i nazwisko -->
                 <div class="form__field">
                   <label for="name">Imię i nazwisko *</label>
                   <input id="name" name="name" type="text" required inputmode="text" autocomplete="name" placeholder="Jan Kowalski" aria-describedby="hint-name err-name" />
                   <p class="form__hint" id="hint-name">Minimum 2 znaki.</p>
                   <p class="form__error" id="err-name" aria-live="polite" hidden>Podaj imię i nazwisko.</p>
                 </div>
+                <!-- e-mail -->
                 <div class="form__field">
                   <label for="email">E-mail *</label>
                   <input id="email" name="email" type="email" required autocomplete="email" placeholder="kontakt@kp-code.pl" aria-describedby="err-email" />
                   <p class="form__error" id="err-email" aria-live="polite" hidden>Podaj poprawny adres e-mail.</p>
                 </div>
+                <!-- telefon -->
                 <div class="form__field">
                   <label for="phone">Telefon (opcjonalnie)</label>
                   <input
@@ -218,8 +245,10 @@
                   <p class="form__hint" id="hint-phone">Tylko do kontaktu w sprawie rezerwacji.</p>
                   <p class="form__error" id="err-phone" aria-live="polite" hidden>Podaj poprawny numer telefonu lub pozostaw to pole puste.</p>
                 </div>
+                <!-- termin pobytu -->
                 <fieldset class="form__field">
                   <legend>Termin pobytu *</legend>
+                  <!-- data przyjazdu i wyjazdu -->
                   <div class="grid-2">
                     <div>
                       <label for="checkin">Przyjazd</label>
@@ -233,16 +262,19 @@
                     </div>
                   </div>
                 </fieldset>
+                <!-- liczba osob -->
                 <div class="form__field">
                   <label for="guests">Liczba osób *</label>
                   <input id="guests" name="guests" type="number" min="1" max="6" step="1" required value="2" aria-describedby="hint-guests err-guests" />
                   <p class="form__hint" id="hint-guests">Zakres 1–6.</p>
                   <p class="form__error" id="err-guests" aria-live="polite" hidden>Podaj liczbę osób (1–6).</p>
                 </div>
+                <!-- wiadomość -->
                 <div class="form__field">
                   <label for="message">Wiadomość</label>
                   <textarea id="message" name="message" rows="4" placeholder="Preferencje, pytania (opcjonalnie)"></textarea>
                 </div>
+                <!-- zgoda -->
                 <div class="form__field form__field--checkbox">
                   <label class="checkbox">
                     <input id="consent" name="consent" type="checkbox" required aria-describedby="err-consent" />
@@ -290,7 +322,7 @@
                 <li><a href="rooms.html" data-nav>Pokoje</a></li>
                 <li><a href="offers.html" data-nav>Oferty</a></li>
                 <li><a href="gallery.html" data-nav>Galeria</a></li>
-            <li><a href="onas.html" data-nav>O nas</a></li>
+                <li><a href="onas.html" data-nav>O nas</a></li>
                 <li><a href="contact.html" data-nav aria-current="page">Kontakt</a></li>
               </ul>
             </nav>

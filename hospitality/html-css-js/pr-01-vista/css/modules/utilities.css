@@ -64,5 +64,5 @@
 .grid-2 {
   display: grid;
   grid-template-columns: 1fr;
-  gap: var(--space-md);
+  gap: var(--space-xl);
 }
