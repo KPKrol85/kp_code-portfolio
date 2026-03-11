@@ -330,11 +330,11 @@ fieldset.form__field legend {
   position: relative;
   background: var(--bg-elev);
   color: var(--text);
-  border-radius: var(--radius-md);
+  border-radius: var(--radius-sm);
   box-shadow: var(--elev);
   width: min(96vw, 980px);
-  max-height: min(100dvh - 1rem, 720px);
-  padding: var(--space-md);
+  max-height: min(100dvh - 1rem, 820px);
+  padding: var(--space-sm);
   display: grid;
   grid-template-rows: auto 1fr auto;
   gap: var(--space-sm);
@@ -345,72 +345,7 @@ fieldset.form__field legend {
   min-height: 0;
   display: grid;
   grid-template-rows: 1fr auto;
-  gap: var(--space-2xs);
-}
-.lightbox__img {
-  width: 100%;
-  height: auto;
-  max-height: 100%;
-  object-fit: contain;
-  border-radius: var(--radius-md);
-  display: block;
-  margin-inline: auto;
-}
-.lightbox__nav {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-.lightbox__nav button {
-  pointer-events: all;
-  width: 40px;
-  height: 40px;
-  border-radius: var(--radius-md);
-  padding: 0;
-  display: grid;
-  place-items: center;
-  background: rgba(0, 0, 0, 0.45);
-  backdrop-filter: blur(6px);
-  border: 1px solid rgba(255, 255, 255, 0.25);
-  color: #fff;
-  font-size: var(--fs-500);
-  line-height: 0;
-  transition:
-    background 0.2s ease,
-    transform 0.2s ease;
-}
-.lightbox__nav button:hover {
-  background: rgba(0, 0, 0, 0.6);
-  transform: scale(1.05);
-}
-.lightbox__nav button:active {
-  transform: scale(0.92);
-}
-.lightbox__nav button:first-child {
-  margin-left: var(--space-sm);
-}
-.lightbox__nav button:last-child {
-  margin-right: var(--space-sm);
-}
-.lightbox__close {
-  position: absolute;
-  top: 1rem;
-  right: 1.4rem;
-  border: none;
-  background: transparent;
-  color: var(--text);
-  font-size: var(--fs-600);
-  line-height: 1;
-  padding: var(--space-2xs);
-  transition: color 0.2s ease;
-}
-.lightbox__close:hover,
-.lightbox__close:active {
-  color: var(--text, #e6ebef);
-}
-.lightbox__close:focus-visible {
-  outline: 2px solid color-mix(in oklab, var(--accent, #2dc7a6) 60%, transparent);
-  outline-offset: 2px;
+  gap: var(--space-xs);
 }
 .lightbox__caption {
   font-size: var(--fs-200);
@@ -419,6 +354,98 @@ fieldset.form__field legend {
   margin-top: var(--space-2xs);
   max-width: 90%;
   margin-inline: auto;
+}
+.lightbox__img {
+  width: 100%;
+  height: auto;
+  max-height: 100%;
+  object-fit: contain;
+  border-radius: var(--radius-sm);
+  display: block;
+  margin-inline: auto;
+}
+.lightbox__nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.lightbox__close {
+  position: absolute;
+  top: 1rem;
+  right: 1.4rem;
+  z-index: 5;
+  display: inline-grid;
+  place-items: center;
+  inline-size: 44px;
+  block-size: 44px;
+  padding: 0;
+  border: none;
+  border-radius: var(--radius-md);
+  background: transparent;
+  color: var(--text);
+  line-height: 1;
+  cursor: pointer;
+  transition:
+    color 0.2s ease,
+    background-color 0.2s ease,
+    transform 0.2s ease;
+  opacity: 0.6;
+}
+.lightbox__close:hover {
+  background: color-mix(in oklab, var(--bg-elev) 45%, transparent);
+  opacity: 0.9;
+}
+.lightbox__close:active {
+  transform: scale(0.96);
+}
+.lightbox__close:focus-visible {
+  outline: 2px solid color-mix(in oklab, var(--accent, #2dc7a6) 60%, transparent);
+  outline-offset: 2px;
+}
+.lightbox__close svg {
+  inline-size: clamp(16px, 1.6vw, 22px);
+  block-size: clamp(16px, 1.6vw, 22px);
+}
+.lightbox__nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.lightbox__control {
+  display: inline-grid;
+  place-items: center;
+  inline-size: 44px;
+  block-size: 44px;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: var(--text);
+  opacity: 0.58;
+  cursor: pointer;
+  transition:
+    opacity 0.2s ease,
+    transform 0.2s ease;
+}
+.lightbox__control:hover {
+  opacity: 0.88;
+}
+.lightbox__control:active {
+  transform: scale(0.96);
+}
+.lightbox__control:focus-visible {
+  outline: 2px solid color-mix(in oklab, var(--primary) 60%, transparent);
+  outline-offset: 2px;
+  opacity: 1;
+}
+.lightbox__control svg {
+  inline-size: clamp(28px, 2.2vw, 34px);
+  block-size: clamp(28px, 2.2vw, 34px);
+  display: block;
+  fill: currentColor;
+}
+.lightbox__control[disabled] {
+  opacity: 0.28;
+  pointer-events: none;
 }
 .lightbox.lightbox--fullscreen {
   padding: 0;
@@ -451,18 +478,17 @@ fieldset.form__field legend {
   position: absolute;
   left: 0;
   right: 0;
-  bottom: var(--space-xs);
+  bottom: 0;
   margin: 0;
   max-width: none;
-  padding: var(--space-2xs) var(--space-sm);
-  background: linear-gradient(to top, rgba(0, 0, 0, 0.55), rgba(0, 0, 0, 0.2), transparent);
+  padding: var(--space-2xs) 0 var(--space-sm);
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.55), rgba(0, 0, 0, 0.4), transparent);
   color: #fff;
   font-size: var(--fs-200);
 }
 .lightbox.lightbox--fullscreen .lightbox__close {
   top: 0.6rem;
   right: 0.8rem;
-  color: #fff;
   z-index: 5;
 }
 .lightbox.lightbox--fullscreen .lightbox__nav {
@@ -487,18 +513,7 @@ fieldset.form__field legend {
     overflow: auto;
   }
 }
-@media (max-width: 900px) {
-  .lightbox__nav {
-    padding: 0 var(--space-xs);
-  }
-  .lightbox__nav button:first-child {
-    margin-left: var(--space-2xs);
-  }
-  .lightbox__nav button:last-child {
-    margin-right: var(--space-2xs);
-  }
-}
-@media (orientation: portrait) and (max-width: 900px) {
+@media (orientation: portrait) {
   .lightbox__nav button:first-child {
     margin-left: var(--space-xs);
   }
@@ -575,7 +590,6 @@ fieldset.form__field legend {
   text-decoration: none;
   color: var(--primary);
 }
-
 
 /* Filters */
 
