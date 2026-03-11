@@ -450,7 +450,7 @@ fieldset.form__field legend {
   pointer-events: all;
   width: 40px;
   height: 40px;
-  border-radius: 50%;
+  border-radius: var(--radius-md);
   padding: 0;
   display: grid;
   place-items: center;
@@ -458,7 +458,7 @@ fieldset.form__field legend {
   backdrop-filter: blur(6px);
   border: 1px solid rgba(255, 255, 255, 0.25);
   color: #fff;
-  font-size: 1.2rem;
+  font-size: var(--fs-500);
   line-height: 0;
   transition:
     background 0.2s ease,
@@ -484,7 +484,7 @@ fieldset.form__field legend {
   border: none;
   background: transparent;
   color: var(--text);
-  font-size: 1.4rem;
+  font-size: var(--fs-600);
   line-height: 1;
   padding: var(--space-2xs);
   transition: color 0.2s ease;
@@ -498,7 +498,7 @@ fieldset.form__field legend {
   outline-offset: 2px;
 }
 .lightbox__caption {
-  font-size: 0.85rem;
+  font-size: var(--fs-200);
   color: color-mix(in oklab, var(--text) 80%, var(--muted) 20%);
   text-align: center;
   margin-top: var(--space-2xs);
@@ -536,13 +536,13 @@ fieldset.form__field legend {
   position: absolute;
   left: 0;
   right: 0;
-  bottom: 0.4rem;
+  bottom: var(--space-xs);
   margin: 0;
   max-width: none;
   padding: var(--space-2xs) var(--space-sm);
   background: linear-gradient(to top, rgba(0, 0, 0, 0.55), rgba(0, 0, 0, 0.2), transparent);
   color: #fff;
-  font-size: 0.8rem;
+  font-size: var(--fs-200);
 }
 .lightbox.lightbox--fullscreen .lightbox__close {
   top: 0.6rem;
@@ -603,7 +603,7 @@ fieldset.form__field legend {
 .tabs__tab {
   padding: var(--space-xs) var(--space-sm);
   border: 1px solid var(--border);
-  border-radius: 999px;
+  border-radius: var(--radius-full);
   background: var(--bg-elev);
   cursor: pointer;
 }
@@ -613,10 +613,8 @@ fieldset.form__field legend {
   border-color: transparent;
 }
 
-
-
-
 /* Breadcrumb */
+
 .breadcrumb {
   border-bottom: 1px solid var(--border);
   padding: 0;

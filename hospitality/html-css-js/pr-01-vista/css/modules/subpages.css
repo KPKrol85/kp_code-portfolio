@@ -387,30 +387,35 @@
 }
 
 
-/* 404 */
+/* 404 & offlie */
 
-.not-found__text {
-  margin: 0;
-  margin-top: var(--space-xs);
-  font-size: var(--fs-200);
-  color: color-mix(in oklab, var(--text) 80%, var(--muted) 20%);
+.page--404 main,
+.page--offline main {
+  display: grid;
+  align-items: start;
+}
+.page--404 .content,
+.page--offline .content {
+  min-height: 45vh;
+  display: grid;
+  align-content: center;
   text-align: center;
 }
-.not-found__actions {
-  display: flex;
-  flex-direction: column;
-  gap: var(--space-sm);
-  margin-top: var(--space-md);
-  align-items: center;
+.page--404 .section-title,
+.page--offline .section-title {
+  margin-bottom: var(--space-md);
+  font-size: var(--fs-700);
 }
-@media (min-width: 480px) {
-  .not-found__actions {
-    flex-direction: row;
-    justify-content: center;
-  }
+.page--404 .not-found__text,
+.page--offline .not-found__text {
+  max-width: 38ch;
+  margin: 0 auto;
+  font-size: var(--fs-300);
 }
-@media (min-width: 760px) {
-  .not-found__text {
-    font-size: var(--fs-100);
-  }
+.page--404 .not-found__actions,
+.page--offline .not-found__actions {
+  display: grid;
+  gap: var(--space-md);
+  justify-content: center;
+  margin-top: var(--space-xl);
 }

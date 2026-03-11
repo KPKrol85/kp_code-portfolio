@@ -479,7 +479,6 @@ body.is-nav-open {
   .footer__contact {
     grid-area: contact;
   }
-
   .footer__grid {
     grid-template-columns: 1.2fr 0.6fr 0.6fr 0.6fr;
     grid-template-areas:
