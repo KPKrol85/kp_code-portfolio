@@ -71,7 +71,7 @@ Statyczna strona front-end dla marki hotelowo-turystycznej „Vista”, zbudowan
 - Rozważyć metryki Lighthouse/Web Vitals jako stały element jakości.
 
 ### Licencja
-MIT (zgodnie z `package.json`).
+MIT.
 
 ---
 
@@ -146,4 +146,4 @@ A static multi-page front-end website for the “Vista” hospitality brand, bui
 - Add repeatable Lighthouse/Web Vitals tracking.
 
 ### License
-MIT (as declared in `package.json`).
+MIT.
