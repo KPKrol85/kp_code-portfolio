@@ -13,13 +13,47 @@
   margin: var(--space-md) auto 0;
   background: linear-gradient(to right, transparent, color-mix(in oklab, var(--primary) 35%, transparent), transparent);
 }
-
 .gallery-section__title,
 .section-title {
   scroll-margin-top: 8rem;
 }
 
-/* Rooms subpage */
+/* Subpage Offers */
+
+.offer-card__meta {
+  display: inline-block;
+  margin-bottom: var(--space-md);
+  font-size: var(--fs-300);
+  line-height: var(--lh-snug);
+  color: var(--text-muted);
+  letter-spacing: var(--ls-wide);
+  text-transform: uppercase;
+}
+.offer-card__list {
+  margin: var(--space-sm) 0 var(--space-md);
+  padding-left: var(--space-lg);
+  color: var(--muted);
+  font-size: var(--fs-300);
+  line-height: var(--lh-relaxed);
+}
+.offer-card__list li + li {
+  margin-top: var(--space-2xs);
+}
+.offer-card__list li::marker {
+  color: var(--primary);
+}
+.offers-cta {
+  margin-top: var(--space-xl);
+  text-align: center;
+}
+.offers-cta__text {
+  max-width: 60ch;
+  font-size: var(--fs-300);
+  margin: 0 auto var(--space-xl);
+  color: var(--muted);
+}
+
+/* Subpage Rooms */
 
 .subpage-rooms .card-grid {
   display: grid;
@@ -146,6 +180,7 @@
 }
 
 /* Legal */
+
 .legal {
   padding-block: clamp(var(--space-xl), 5vw, var(--space-2xl));
 }
@@ -213,6 +248,7 @@
 }
 
 /* O nas */
+
 .section--brand .container {
   max-inline-size: 60rem;
   text-align: center;

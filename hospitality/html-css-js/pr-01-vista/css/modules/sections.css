@@ -336,85 +336,7 @@
   }
 }
 
-/* Offer Card */
 
-.offer-card {
-  background: var(--bg-elev);
-  border: 1px solid var(--border);
-  border-radius: var(--radius-md);
-  box-shadow: var(--elev);
-  overflow: hidden;
-  display: grid;
-  padding: var(--space-md);
-  position: relative;
-  transition:
-    transform 0.3s ease,
-    box-shadow 0.3s ease,
-    border-color 0.2s ease;
-  will-change: transform;
-}
-.offer-card:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
-  border-color: color-mix(in oklab, var(--border) 60%, #2dc7a6 40%);
-}
-.offer-card:focus-within {
-  outline: 2px solid #2dc7a6;
-  outline-offset: 4px;
-}
-.offer-card__badge {
-  display: inline-grid;
-  place-items: center;
-  min-width: 4.5rem;
-  height: 2rem;
-  padding: 0 var(--space-sm);
-  margin-left: auto;
-  background: var(--primary);
-  color: var(--primary-contrast);
-  border-radius: var(--radius-full);
-  font-weight: 500;
-  font-size: var(--fs-200);
-  line-height: 1;
-  font-variant-numeric: tabular-nums;
-}
-.offer-card__title {
-  margin: var(--space-xs) 0;
-  font-size: var(--fs-500);
-  color: var(--text);
-  font-weight: 600;
-  text-align: center;
-}
-.offer-card__text {
-  margin: var(--space-xs) 0;
-  color: var(--muted);
-  font-size: var(--fs-200);
-  text-align: center;
-  letter-spacing: var(--ls-subtle);
-}
-.offer-card .btn {
-  margin-top: var(--space-md);
-  width: 100%;
-  max-width: 180px;
-  justify-self: center;
-  font-weight: 500;
-}
-@media (min-width: 480px) {
-  .offer-card__title {
-    font-size: var(--fs-400);
-  }
-}
-@media (min-width: 760px) {
-  .offer-card__title {
-    font-size: var(--fs-400);
-    text-align: left;
-  }
-  .offer-card__text {
-    text-align: left;
-  }
-  .offer-card .btn {
-    justify-self: start;
-  }
-}
 
 /* Testimonials */
 
@@ -486,7 +408,6 @@
   max-width: 32ch;
 }
 .section--cta .btn {
-
   margin: var(--space-md) auto;
 }
 @media (min-width: 760px) {
@@ -517,6 +438,12 @@
   margin: var(--space-md) auto 0;
   background: linear-gradient(to right, transparent, color-mix(in oklab, var(--primary) 35%, transparent), transparent);
 }
+.section-intro {
+  max-width: 38ch;
+  margin: 0 auto var(--space-lg);
+  text-align: center;
+  font-size: var(--fs-300);
+}
 .section-header {
   display: flex;
   flex-direction: column;
@@ -538,6 +465,11 @@
 .section-header a:focus-visible {
   text-decoration: underline;
 }
+@media (min-width: 480px) {
+  .section-intro {
+    max-width: 58ch;
+  }
+}
 @media (min-width: 760px) {
   .section-header {
     flex-direction: row;
@@ -545,5 +477,9 @@
     justify-content: space-between;
     text-align: left;
     padding-inline: var(--space-lg);
+  }
+  .section-intro {
+    text-align: left;
+    margin: 0 var(--space-sm) var(--space-lg);
   }
 }

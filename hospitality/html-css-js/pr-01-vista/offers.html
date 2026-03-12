@@ -122,7 +122,6 @@
         </nav>
       </div>
     </header>
-
     <!-- Main -->
     <main id="main">
       <nav class="breadcrumb" aria-label="Okruszki">
@@ -133,30 +132,103 @@
           </ol>
         </div>
       </nav>
+
       <!-- Oferty -->
       <section class="section" aria-labelledby="offers-heading">
         <div class="container">
-          <h1 id="offers-heading" class="section-title">Oferty</h1>
+          <div class="section-header">
+            <h1 id="offers-heading" class="section-title">Oferty</h1>
+          </div>
+          <p class="section-intro">Wybierz pobyt dopasowany do celu podróży — romantyczny weekend, wyjazd służbowy, rodzinny city break lub dłuższy relaks z dodatkowymi korzyściami.</p>
+
+          <!-- card grid -->
           <div class="card-grid">
+            <!-- item 1 -->
             <article id="weekend" class="offer-card">
               <div class="offer-card__badge">-15%</div>
+              <p class="offer-card__meta">Dla par</p>
               <h2 class="offer-card__title">Weekend dla dwojga</h2>
-              <p class="offer-card__text">Dwie noce, śniadania i późny check-out do 14:00.</p>
+              <p class="offer-card__text">Dwie noce, śniadania i późny check-out do 14:00 w komfortowych warunkach sprzyjających odpoczynkowi.</p>
+              <ul class="offer-card__list">
+                <li>2 noclegi dla 2 osób</li>
+                <li>śniadania w cenie pobytu</li>
+                <li>późny check-out do 14:00</li>
+              </ul>
               <a class="btn btn--secondary" href="contact.html#form" aria-label="Skorzystaj z oferty Weekend dla dwojga">Skorzystaj</a>
             </article>
+            <!-- item 2 -->
             <article id="biz" class="offer-card">
               <div class="offer-card__badge">-10%</div>
+              <p class="offer-card__meta">Dla biznesu</p>
               <h2 class="offer-card__title">Biznes w mieście</h2>
-              <p class="offer-card__text">Elastyczne godziny, szybkie Wi-Fi i ciche pokoje.</p>
+              <p class="offer-card__text">Oferta dla osób podróżujących służbowo, które cenią wygodę, sprawną organizację i spokojną przestrzeń do pracy.</p>
+              <ul class="offer-card__list">
+                <li>cichy pokój do pracy i wypoczynku</li>
+                <li>szybkie Wi-Fi w całym obiekcie</li>
+                <li>elastyczne godziny pobytu</li>
+              </ul>
               <a class="btn btn--secondary" href="contact.html#form" aria-label="Skorzystaj z oferty Biznes w mieście">Skorzystaj</a>
             </article>
-            <article class="offer-card">
+            <!-- item 3 -->
+            <article id="long-stay" class="offer-card">
               <div class="offer-card__badge">-20%</div>
+              <p class="offer-card__meta">Na dłuższy pobyt</p>
               <h2 class="offer-card__title">Zostań dłużej</h2>
-              <p class="offer-card__text">Pobyt 4+ nocy ze zniżką i usługami dodatkowymi.</p>
+              <p class="offer-card__text">Pobyt na 4 noce lub dłużej ze zniżką, dodatkowymi udogodnieniami i większą swobodą planowania czasu.</p>
+              <ul class="offer-card__list">
+                <li>zniżka przy pobycie 4+ nocy</li>
+                <li>dodatkowe usługi w pakiecie</li>
+                <li>wygodne warunki na dłuższy pobyt</li>
+              </ul>
               <a class="btn btn--secondary" href="contact.html#form" aria-label="Skorzystaj z oferty Zostań dłużej">Skorzystaj</a>
             </article>
+            <!-- item 4 -->
+            <article id="family" class="offer-card">
+              <div class="offer-card__badge">-12%</div>
+              <p class="offer-card__meta">Dla rodzin</p>
+              <h2 class="offer-card__title">Rodzinny city break</h2>
+              <p class="offer-card__text">Krótki pobyt dla rodzin, które chcą połączyć komfortowy nocleg z wygodnym dostępem do atrakcji miasta.</p>
+              <ul class="offer-card__list">
+                <li>przestronny pokój rodzinny</li>
+                <li>śniadania dla całej rodziny</li>
+                <li>dogodna lokalizacja blisko centrum</li>
+              </ul>
+              <a class="btn btn--secondary" href="contact.html#form" aria-label="Skorzystaj z oferty Rodzinny city break">Skorzystaj</a>
+            </article>
+            <!-- item 5 -->
+            <article id="wellness" class="offer-card">
+              <div class="offer-card__badge">-18%</div>
+              <p class="offer-card__meta">Relaks i wellness</p>
+              <h2 class="offer-card__title">Relaks w rytmie slow</h2>
+              <p class="offer-card__text">Oferta dla gości, którzy chcą zwolnić tempo i cieszyć się spokojnym pobytem z akcentem na regenerację.</p>
+              <ul class="offer-card__list">
+                <li>dostęp do strefy wellness</li>
+                <li>komfortowy pokój z późnym wymeldowaniem</li>
+                <li>idealna opcja na spokojny odpoczynek</li>
+              </ul>
+              <a class="btn btn--secondary" href="contact.html#form" aria-label="Skorzystaj z oferty Relaks w rytmie slow">Skorzystaj</a>
+            </article>
+            <!-- item 6 -->
+            <article id="premium" class="offer-card">
+              <div class="offer-card__badge">-14%</div>
+              <p class="offer-card__meta">Pobyt premium</p>
+              <h2 class="offer-card__title">Premium z widokiem</h2>
+              <p class="offer-card__text">Oferta dla gości, którzy oczekują podwyższonego komfortu, wyjątkowej atmosfery i pobytu z dopracowanymi detalami.</p>
+              <ul class="offer-card__list">
+                <li>pokój premium z widokiem</li>
+                <li>śniadanie w cenie pobytu</li>
+                <li>późniejsze wymeldowanie</li>
+              </ul>
+              <a class="btn btn--secondary" href="contact.html#form" aria-label="Skorzystaj z oferty Premium z widokiem">Skorzystaj</a>
+            </article>
           </div>
+
+          <div class="offers-cta">
+            <p class="offers-cta__text">Szukasz pobytu dopasowanego do własnych planów? Skontaktuj się z nami, a przygotujemy indywidualną propozycję.</p>
+            <a class="btn btn--primary" href="contact.html#form">Zapytaj o ofertę</a>
+          </div>
+
+          
         </div>
       </section>
     </main>
@@ -268,6 +340,7 @@
               </div>
             </section>
           </div>
+
           <!-- copyright -->
           <div class="footer__bottom">
             <p>
