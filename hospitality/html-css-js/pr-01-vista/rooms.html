@@ -88,7 +88,7 @@
     <header class="site-header" id="top">
       <div class="container site-header__inner">
         <a class="site-header__brand" href="index.html" aria-label="Strona główna">
-          <img src="assets/img/logo/logo-128x128.svg" alt="Logo Vista" class="brand-logo" width="36" height="36" />
+          <img src="assets/img/logo/logo-128x128.svg" alt="Logo Vista" class="site-header__logo" width="36" height="36" />
           <span class="brand-lockup">
             <span class="brand-lockup__name">Vista</span>
             <span class="brand-lockup__tagline">Hotels &amp; Travel</span>
@@ -108,7 +108,7 @@
         <!-- navigation -->
         <nav class="site-nav" id="site-nav" aria-label="Główne">
           <ul class="site-nav__list">
-            <li><a href="index.html">Home</a></li>
+            <li><a href="index.html" data-nav>Home</a></li>
             <li><a href="rooms.html" data-nav aria-current="page">Pokoje</a></li>
             <li><a href="offers.html" data-nav>Oferty</a></li>
             <li><a href="gallery.html" data-nav>Galeria</a></li>
@@ -133,10 +133,13 @@
           </ol>
         </div>
       </nav>
+
       <!-- Rooms -->
       <section class="section subpage-rooms" aria-labelledby="rooms-heading">
         <div class="container">
-          <h1 id="rooms-heading" class="section-title">Pokoje</h1>
+          <div class="section-header">
+            <h1 id="rooms-heading" class="section-title">Pokoje</h1>
+          </div>
           <!-- filters -->
           <nav class="tabs gallery-cats gallery-cats--panel rooms-filters" aria-label="Filtruj typ pokoi">
             <ul class="gallery-cats__list" role="tablist" aria-label="Typy pokoi">
@@ -154,6 +157,7 @@
               </li>
             </ul>
           </nav>
+
           <!-- tabs panels -->
           <div class="tabs__panels">
             <div class="tabs__panel" id="rooms-panel-all" role="tabpanel" aria-labelledby="rooms-tab-all">
@@ -317,10 +321,9 @@
               </div>
             </div>
 
-            <!-- classic -->
+            <!-- item 1 -->
             <div class="tabs__panel" id="rooms-panel-classic" role="tabpanel" aria-labelledby="rooms-tab-classic" hidden>
               <div class="card-grid">
-                <!-- item 1 -->
                 <article class="room-card">
                   <picture>
                     <source

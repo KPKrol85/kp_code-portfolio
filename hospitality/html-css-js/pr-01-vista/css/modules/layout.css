@@ -287,7 +287,7 @@ body.is-nav-open {
 }
 .footer__brand-link small {
   display: block;
-  margin: var(--space-xs);
+  margin-block: var(--space-xs);
   font-size: var(--fs-200);
   font-weight: 400;
   letter-spacing: var(--ls-ultra);
@@ -295,7 +295,7 @@ body.is-nav-open {
   color: var(--muted);
 }
 .footer__heading {
-  margin: var(--space-sm) auto;
+
   font-size: var(--fs-400);
 }
 .footer__text {

@@ -59,7 +59,7 @@
   --space-2xl: clamp(3rem, 4vw, 4rem);
   --space-3xl: clamp(4rem, 5vw, 6rem);
   --space-4xl: clamp(6rem, 7vw, 8rem);
-  --space-5xl: clamp(8rem, 10vw, 12rem); 
+  --space-5xl: clamp(8rem, 10vw, 12rem);
 
   /* Radius */
   --radius-xs: 6px; /* badges, inputs */
@@ -101,7 +101,7 @@ html[data-theme="light"] {
   --border: #e0e3e8;
   --bg-gradients:
     radial-gradient(60vw 60vw at 10% 6%, color-mix(in oklab, #ffd37a 35%, transparent) 0%, transparent 60%),
-    radial-gradient(40vw 40vw at 88% 90%, color-mix(in oklab, #2dc7a6 10%, transparent) 0%, transparent 70%);
+    radial-gradient(40vw 40vw at 88% 90%, color-mix(in oklab, var(--focus)  10%, transparent) 0%, transparent 70%);
 }
 
 html[data-theme="dark"] {
@@ -113,7 +113,7 @@ html[data-theme="dark"] {
   --border: var(--border-dark);
   --bg-gradients:
     radial-gradient(60vw 60vw at 92% 8%, color-mix(in oklab, #2d9bf0 18%, transparent) 0%, transparent 60%),
-    radial-gradient(35vw 35vw at 6% 94%, color-mix(in oklab, #34d1b2 10%, transparent) 0%, transparent 70%);
+    radial-gradient(35vw 35vw at 6% 94%, color-mix(in oklab, var(--primary-dark) 10%, transparent) 0%, transparent 70%);
 }
 
 @media (prefers-color-scheme: dark) {
@@ -127,7 +127,7 @@ html[data-theme="dark"] {
     --border: var(--border-dark);
     --bg-gradients:
       radial-gradient(60vw 60vw at 92% 8%, color-mix(in oklab, #2d9bf0 18%, transparent) 0%, transparent 60%),
-      radial-gradient(35vw 35vw at 6% 94%, color-mix(in oklab, #34d1b2 10%, transparent) 0%, transparent 70%);
+      radial-gradient(35vw 35vw at 6% 94%, color-mix(in oklab, var(--primary-dark) 10%, transparent) 0%, transparent 70%);
   }
 }
 
@@ -142,7 +142,7 @@ html[data-theme="dark"] {
     --border: #e0e3e8;
     --bg-gradients:
       radial-gradient(60vw 60vw at 10% 6%, color-mix(in oklab, #ffd37a 35%, transparent) 0%, transparent 60%),
-      radial-gradient(40vw 40vw at 88% 90%, color-mix(in oklab, #2dc7a6 10%, transparent) 0%, transparent 70%);
+      radial-gradient(40vw 40vw at 88% 90%, color-mix(in oklab, var(--focus) 10%, transparent) 0%, transparent 70%);
   }
 }
 
