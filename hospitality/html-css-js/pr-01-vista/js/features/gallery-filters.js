@@ -1,4 +1,3 @@
-
 export function initGalleryFilters() {
   const filters = document.querySelectorAll("#gallery-filters .gallery-cats__link");
   const items = document.querySelectorAll(".gallery-grid [data-cat-item]");
@@ -37,8 +36,30 @@ export function initGalleryFilters() {
   applyFilter(initialFilter);
 
   filters.forEach((a) => {
-    a.addEventListener("click", () => {
-      applyFilter(a.getAttribute("data-filter"));
+    a.addEventListener("click", (event) => {
+      event.preventDefault();
+
+      const filter = a.getAttribute("data-filter");
+      applyFilter(filter);
+
+      if (filter === "all") {
+        const galleryHeading = document.getElementById("gallery-heading");
+
+        galleryHeading?.scrollIntoView({
+          behavior: "smooth",
+          block: "start",
+        });
+
+        return;
+      }
+
+      const targetSection = document.getElementById(filter);
+      const targetTitle = targetSection?.querySelector(".gallery-section__title");
+
+      targetTitle?.scrollIntoView({
+        behavior: "smooth",
+        block: "start",
+      });
     });
   });
 }

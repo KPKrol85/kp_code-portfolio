@@ -14,6 +14,11 @@
   background: linear-gradient(to right, transparent, color-mix(in oklab, var(--primary) 35%, transparent), transparent);
 }
 
+.gallery-section__title,
+.section-title {
+  scroll-margin-top: 8rem;
+}
+
 /* Rooms subpage */
 
 .subpage-rooms .card-grid {
