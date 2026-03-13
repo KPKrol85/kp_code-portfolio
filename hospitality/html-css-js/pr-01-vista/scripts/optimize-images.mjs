@@ -37,6 +37,7 @@ function getOutputPaths(inputPath) {
   const outputBase = path.join(outputDir, parsed.name);
   return {
     outputDir,
+    originalPath: path.join(outputDir, parsed.base),
     webpPath: `${outputBase}.webp`,
     avifPath: `${outputBase}.avif`,
   };
@@ -74,14 +75,15 @@ async function isOutputFresh(outputPath, inputMtimeMs) {
 }
 
 async function processImage(inputPath, stats) {
-  const { outputDir, webpPath, avifPath } = getOutputPaths(inputPath);
+  const { outputDir, originalPath, webpPath, avifPath } = getOutputPaths(inputPath);
   await fs.mkdir(outputDir, { recursive: true });
 
   const inputMtimeMs = await getMtimeMs(inputPath);
+  const originalFresh = await isOutputFresh(originalPath, inputMtimeMs);
   const webpFresh = await isOutputFresh(webpPath, inputMtimeMs);
   const avifFresh = await isOutputFresh(avifPath, inputMtimeMs);
 
-  if (webpFresh && avifFresh) {
+  if (originalFresh && webpFresh && avifFresh) {
     stats.skipped += 1;
     return;
   }
@@ -93,6 +95,9 @@ async function processImage(inputPath, stats) {
   });
 
   const tasks = [];
+  if (!originalFresh) {
+    tasks.push(fs.copyFile(inputPath, originalPath));
+  }
   if (!webpFresh) {
     tasks.push(source.clone().webp({ quality: WEBP_QUALITY }).toFile(webpPath));
   }
@@ -183,8 +188,9 @@ async function runOptimization({ watch }) {
 
   watcher.on("unlink", async (filePath) => {
     if (!isSupportedImage(filePath)) return;
-    const { webpPath, avifPath } = getOutputPaths(filePath);
+    const { originalPath, webpPath, avifPath } = getOutputPaths(filePath);
     await Promise.all([
+      fs.rm(originalPath, { force: true }),
       fs.rm(webpPath, { force: true }),
       fs.rm(avifPath, { force: true }),
     ]);
