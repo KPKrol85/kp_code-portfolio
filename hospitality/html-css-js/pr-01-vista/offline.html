@@ -7,12 +7,40 @@
     <title>Jesteś offline — Vista | Hotels &amp; Travel</title>
     <!-- SEO -->
     <meta name="description" content="Brak połączenia z internetem. Spróbuj ponownie później." />
+    <meta name="ld-json" content="assets/seo/ld-offline.json" />
     <!-- PWA / UI -->
     <meta name="theme-color" content="#0d0f14" />
     <!-- Theme preload -->
     <script src="js/theme-init.js"></script>
     <!-- Styles -->
     <link rel="stylesheet" href="css/style.css" />
+    <!-- JSON-LD -->
+    <script type="application/ld+json" data-seo-jsonld="fallback">
+      {
+        "@context": "https://schema.org",
+        "@graph": [
+          {
+            "@type": "WebSite",
+            "@id": "https://hospitality-pr01-vista.netlify.app/#website",
+            "url": "https://hospitality-pr01-vista.netlify.app/",
+            "name": "Vista",
+            "alternateName": "Vista — Hotels & Travel",
+            "inLanguage": "pl-PL"
+          },
+          {
+            "@type": "WebPage",
+            "@id": "https://hospitality-pr01-vista.netlify.app/offline.html#webpage",
+            "url": "https://hospitality-pr01-vista.netlify.app/offline.html",
+            "name": "Jesteś offline — Vista | Hotels & Travel",
+            "description": "Brak połączenia z internetem. Spróbuj ponownie później.",
+            "isPartOf": {
+              "@id": "https://hospitality-pr01-vista.netlify.app/#website"
+            },
+            "inLanguage": "pl-PL"
+          }
+        ]
+      }
+    </script>
   </head>
 
   <!-- Body -->

@@ -21,7 +21,7 @@ function setYear() {
 function registerSW() {
   if ("serviceWorker" in navigator) {
     navigator.serviceWorker
-      .register("pwa/service-worker.js")
+      .register("pwa/service-worker.js", { scope: "/" })
       .then((reg) => {
         logger.info("[PWA] Service Worker zarejestrowany", reg.scope);
       })

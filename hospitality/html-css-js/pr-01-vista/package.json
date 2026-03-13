@@ -5,7 +5,9 @@
   "scripts": {
     "build:css": "postcss ./css/style.css -o ./css/style.min.css && node ./scripts/verify-build.mjs css ./css/style.min.css",
     "build:js": "esbuild ./js/script.js --bundle --minify --target=es2018 --format=iife --outfile=./js/script.min.js && node ./scripts/verify-build.mjs js ./js/script.min.js",
-    "build": "npm run build:css && npm run build:js",
+    "build": "npm run build:css && npm run build:js && npm run build:dist",
+    "dist:clean": "node ./scripts/build-dist.mjs --clean",
+    "build:dist": "node ./scripts/build-dist.mjs",
     "watch:css": "postcss ./css/style.css -o ./css/style.min.css -w",
     "watch:js": "esbuild ./js/script.js --bundle --minify --target=es2018 --format=iife --outfile=./js/script.min.js --watch",
     "img:opt": "node scripts/optimize-images.mjs",

@@ -25,6 +25,7 @@
 # Service Worker – bez cache, zawsze najnowszy
 /pwa/service-worker.js
   Cache-Control: no-cache, no-store, must-revalidate
+  Service-Worker-Allowed: /
 
 # Ikony UI – długie cache
 /assets/img/ui/*
