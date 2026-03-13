@@ -6,6 +6,7 @@ import { initReveal } from "./features/reveal.js";
 import { initLightbox } from "./features/lightbox.js";
 import { initForm } from "./features/form.js";
 import { initTabs } from "./features/tabs.js";
+import { initRoomFilters } from "./features/room-filters.js";
 import { initCompactHeader } from "./features/compact-header.js";
 import { initGalleryFilters } from "./features/gallery-filters.js";
 import { setAriaCurrent } from "./features/aria-current.js";
@@ -41,6 +42,7 @@ function boot() {
   initLightbox();
   initForm();
   initTabs();
+  initRoomFilters();
   initJsonLd();
   initMapEmbed();
 
