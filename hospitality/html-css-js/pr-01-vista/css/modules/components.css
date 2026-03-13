@@ -383,7 +383,7 @@ fieldset.form__field legend {
   border-radius: var(--radius-md);
   background: transparent;
   color: var(--text);
-  line-height: 1;
+  line-height: var(--lh-tight);
   cursor: pointer;
   transition:
     color 0.2s ease,
@@ -660,7 +660,7 @@ fieldset.form__field legend {
   border-radius: var(--radius-full);
   font-weight: 500;
   font-size: var(--fs-200);
-  line-height: 1;
+  line-height: var(--lh-tight);
   font-variant-numeric: tabular-nums;
 }
 .offer-card__title {
