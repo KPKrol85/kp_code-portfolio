@@ -158,7 +158,6 @@ body.has-project-modal {
 .project-modal__title {
   margin: var(--space-4) 0 0;
   font-size: var(--fs-5);
-  text-align: center;
 }
 .project-modal__text {
   color: var(--c-ink);
@@ -175,11 +174,11 @@ body.has-project-modal {
   display: flex;
   flex-wrap: wrap;
   gap: var(--space-4);
-  margin: 0 auto;
+  margin: 0;
 }
 .project-modal__actions {
   display: flex;
-  justify-content: flex-start;
+  justify-content: flex-end;
   margin-top: var(--space-2);
 }
 .project-modal__actions .btn {
@@ -189,6 +188,11 @@ body.has-project-modal {
   color: var(--bg);
   text-transform: uppercase;
   letter-spacing: var(--ls-2);
+}
+@media (min-width: 480px) {
+  .project-modal__actions .btn {
+    margin: 0;
+  }
 }
 
 /* Buttons */
