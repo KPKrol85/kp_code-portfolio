@@ -1,6 +1,6 @@
 
 
-const CACHE_VERSION = "v1.2.0";
+const CACHE_VERSION = "v1.2.1";
 const STATIC_CACHE = `th-static-${CACHE_VERSION}`;
 const HTML_CACHE = `th-html-${CACHE_VERSION}`;
 const STATIC_ASSETS = [

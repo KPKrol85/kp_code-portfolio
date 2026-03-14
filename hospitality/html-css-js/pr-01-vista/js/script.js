@@ -12,6 +12,7 @@ import { initGalleryFilters } from "./features/gallery-filters.js";
 import { setAriaCurrent } from "./features/aria-current.js";
 import { initJsonLd } from "./features/seo-jsonld.js";
 import { initMapEmbed } from "./features/map-embed.js";
+import { initProjectBanner } from "./features/project-banner.js";
 import * as logger from "./features/logger.js";
 
 function setYear() {
@@ -45,6 +46,7 @@ function boot() {
   initRoomFilters();
   initJsonLd();
   initMapEmbed();
+  initProjectBanner();
 
   if (document.getElementById("gallery-filters")) {
     initGalleryFilters();
