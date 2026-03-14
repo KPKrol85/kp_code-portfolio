@@ -17,7 +17,7 @@ const STATIC_ASSETS = [
   "offline.html",
   "css/style.min.css",
   "js/theme-init.js",
-  "js/script.minjs",
+  "js/script.min.js",
   "js/features/nav.js",
   "js/features/theme.js",
   "js/features/reveal.js",

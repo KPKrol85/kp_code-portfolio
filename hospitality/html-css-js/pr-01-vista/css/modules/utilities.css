@@ -27,7 +27,7 @@
   background: var(--focus);
   color: #ffffff;
   font-weight: 600;
-  border-radius: var(--radius-pill);
+  border-radius: var(--radius-full);
   box-shadow: var(--elev);
 }
 .skip-link:focus {
