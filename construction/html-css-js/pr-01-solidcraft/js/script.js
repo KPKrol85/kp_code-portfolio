@@ -13,7 +13,7 @@ import { initOfertaLightbox } from "./modules/lightbox.js";
 import { initOfferPrefetch } from "./modules/prefetch.js";
 import { initHomeHelpers } from "./modules/home.js";
 import { initMapConsent } from "./modules/map-consent.js";
-import { initCookieBanner } from "./modules/cookie-banner.js";
+import { initProjectBanner } from "./modules/project-banner.js";
 
 window.SC = window.SC || {};
 window.SC.utils = utils;
@@ -35,7 +35,7 @@ window.SC.lightbox = { init: initOfertaLightbox };
 window.SC.prefetch = { init: initOfferPrefetch };
 window.SC.home = { init: initHomeHelpers };
 window.SC.mapConsent = { init: initMapConsent };
-window.SC.cookieBanner = { init: initCookieBanner };
+window.SC.projectBanner = { init: initProjectBanner };
 window.utils = window.utils || utils;
 
 const runInit = () => {
@@ -68,7 +68,7 @@ const runInit = () => {
 
   if (has("[data-map-src]")) initMapConsent?.();
   if (has("section#kontakt .form")) initContactForm?.();
-  if (has("#cookie-banner")) initCookieBanner?.();
+  if (has("#projectBanner")) initProjectBanner?.();
 };
 
 if (document.readyState === "loading") {

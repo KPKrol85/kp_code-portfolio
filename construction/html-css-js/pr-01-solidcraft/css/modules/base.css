@@ -73,7 +73,7 @@ a:hover {
 }
 
 a:focus-visible {
-  border-radius: 6px;
+  border-radius: var(--radius-3);
 }
 
 :where(a, button, [role="button"], .dropdown-trigger):not(.btn):focus-visible {

@@ -60,6 +60,22 @@ function initSmoothTop() {
     !e.ctrlKey &&
     !e.shiftKey &&
     !e.altKey;
+  const isSamePageTopLink = (el) => {
+    if (!el?.matches?.("a")) return false;
+    const rawHref = el.getAttribute("href");
+    if (!rawHref) return el.classList.contains("scroll-top");
+    if (rawHref === "#top") return true;
+    try {
+      const url = new URL(rawHref, window.location.href);
+      return (
+        url.hash === "#top" &&
+        url.pathname === window.location.pathname &&
+        url.search === window.location.search
+      );
+    } catch {
+      return false;
+    }
+  };
   document.addEventListener(
     "click",
     (e) => {
@@ -68,6 +84,7 @@ function initSmoothTop() {
       );
       if (!el) return;
       if (!isPrimaryClick(e)) return;
+      if (el.matches("a") && !isSamePageTopLink(el)) return;
       if (
         el.getAttribute &&
         (el.getAttribute("target") === "_blank" || el.hasAttribute("download"))
