@@ -133,7 +133,7 @@ body.has-project-modal {
 .project-modal {
   position: fixed;
   inset: 0;
-  z-index: calc(var(--z-overlay) + 10);
+  z-index: 1000;
   display: grid;
   place-items: center;
   padding: var(--space-4);
@@ -147,65 +147,48 @@ body.has-project-modal {
 .project-modal__content {
   position: relative;
   max-width: 480px;
-  padding: var(--space-3);
+  padding: var(--space-4);
   border: 1px solid color-mix(in oklab, var(--c-border) 80%, transparent);
   border-radius: var(--radius-3);
-  background: color-mix(in oklab, var(--bg-elev) 94%, var(--bg) 6%);
-  box-shadow: 0 24px 64px rgba(0, 0, 0, 0.24);
+  background: color-mix(in oklab, var(--brand-weak) 74%, var(--c-bg) 17%);
+  box-shadow: var(--shadow);
   display: grid;
   gap: var(--space-3);
 }
 .project-modal__title {
-  margin: 0;
-  font-size: var(--fs-500);
-  line-height: var(--lh-snug);
+  margin: var(--space-4) 0 0;
+  font-size: var(--fs-5);
+  text-align: center;
 }
 .project-modal__text {
-  font-size: var(--fs-200);
-  color: color-mix(in oklab, var(--text) 88%, var(--muted) 12%);
+  color: var(--c-ink);
 }
 .project-modal__text a,
 .project-modal__links a {
-  color: var(--muted);
-  font-weight: 600;
-  text-decoration: none;
-  letter-spacing: var(--ls-wide);
+  color: var(--c-muted);
 }
 .project-modal__text a:hover,
 .project-modal__links a:hover {
-  color: var(--primary);
+  color: var(--c-accent);
 }
 .project-modal__links {
   display: flex;
   flex-wrap: wrap;
-  gap: var(--space-sm) var(--space-md);
-  margin: 0;
-  font-size: var(--fs-100);
+  gap: var(--space-4);
+  margin: 0 auto;
 }
 .project-modal__actions {
   display: flex;
   justify-content: flex-start;
+  margin-top: var(--space-2);
 }
 .project-modal__actions .btn {
+  max-width: 220px;
   width: 100%;
-  min-width: 0;
-}
-@media (min-width: 480px) {
-  .project-modal {
-    padding: var(--space-md);
-  }
-  .project-modal__content {
-    padding: var(--space-lg);
-  }
-  .project-modal__actions .btn {
-    width: auto;
-    min-width: 10rem;
-  }
-}
-@media (min-width: 760px) {
-  .project-modal__content {
-    padding: clamp(1.5rem, 1.15rem + 0.8vw, 2rem);
-  }
+  margin: 0 auto;
+  color: var(--bg);
+  text-transform: uppercase;
+  letter-spacing: var(--ls-2);
 }
 
 /* Buttons */
@@ -358,7 +341,7 @@ body.has-project-modal {
   border-radius: 999px;
   background: rgba(255, 255, 255, 0.08);
   color: #fff;
-  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.3);
+  box-shadow: var(--shadow-md);
   cursor: pointer;
   transition:
     transform 0.15s ease,

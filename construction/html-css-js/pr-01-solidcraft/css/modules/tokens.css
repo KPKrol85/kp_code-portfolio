@@ -16,20 +16,16 @@
   --c-border: var(--line);
   --c-border-strong: color-mix(in oklab, var(--c-border), black 16%);
   --line-strong: var(--c-border-strong);
-
   --brand-grad: linear-gradient(135deg, var(--brand), var(--brand-2));
   --brand-weak: color-mix(in oklab, var(--brand) 14%, var(--bg));
+  --ring: color-mix(in oklab, var(--brand) 45%, transparent);
 
-  --ring: color-mix(in oklab, var(--brand) 55%, #334155);
-
-  --radius-0: 0;
   --radius-1: 4px;
   --radius-2: 8px;
   --radius-3: 12px;
   --radius-4: 16px;
   --radius-pill: 9999px;
 
-  --space-0: 0;
   --space-1: clamp(0.25rem, 0.2rem + 0.2vw, 0.375rem);
   --space-2: clamp(0.5rem, 0.45rem + 0.25vw, 0.75rem);
   --space-3: clamp(0.75rem, 0.65rem + 0.35vw, 1rem);
@@ -94,23 +90,6 @@
   --sr-distance: 18px;
 }
 
-:root[data-theme="light"] {
-  color-scheme: light;
-  --bg: #ffffff;
-  --fg: #0f172a;
-  --muted: #64748b;
-  --card: #f8fafc;
-  --line: #e2e8f0;
-  --shadow-sm: 0 2px 10px rgba(2, 8, 23, 0.04);
-  --shadow-md: 0 6px 18px rgba(2, 8, 23, 0.06);
-  --shadow-lg: 0 10px 30px rgba(2, 8, 23, 0.08);
-  --shadow: var(--shadow-lg);
-  --ring: rgba(245, 158, 11, 0.45);
-  --ring: color-mix(in oklab, var(--brand) 45%, transparent);
-  --hero-img-brightness: 1.1;
-  --hero-overlay-a: 0.12;
-}
-
 :root[data-theme="dark"] {
   color-scheme: dark;
   --bg: #0b1220;
@@ -121,8 +100,6 @@
   --shadow-sm: 0 2px 10px rgba(0, 0, 0, 0.28);
   --shadow-md: 0 6px 18px rgba(0, 0, 0, 0.36);
   --shadow-lg: 0 10px 30px rgba(0, 0, 0, 0.44);
-  --shadow: var(--shadow-lg);
-  --ring: rgba(245, 158, 11, 0.55);
   --ring: color-mix(in oklab, var(--brand) 55%, transparent);
   --hero-img-brightness: 0.95;
   --hero-overlay-a: 0.35;
@@ -138,7 +115,6 @@
     --shadow-sm: 0 2px 10px rgba(0, 0, 0, 0.28);
     --shadow-md: 0 6px 18px rgba(0, 0, 0, 0.36);
     --shadow-lg: 0 10px 30px rgba(0, 0, 0, 0.44);
-    --shadow: var(--shadow-lg);
     --ring: color-mix(in oklab, var(--brand) 65%, transparent);
     --hero-img-brightness: 0.92;
     --hero-overlay-a: 0.42;
@@ -150,8 +126,7 @@
   font-family: "Montserrat";
   font-style: normal;
   font-weight: 400;
-  src: url("../../assets/fonts/montserrat-v31-latin-regular.woff2")
-    format("woff2");
+  src: url("../../assets/fonts/montserrat-v31-latin-regular.woff2") format("woff2");
 }
 @font-face {
   font-display: swap;
