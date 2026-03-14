@@ -40,7 +40,6 @@ No active P1 issues remain in the current repository state.
 | Check | Status | Evidence |
 |---|---|---|
 | headings valid | PASS | Single page-level `h1` pattern visible across pages (examples: `index.html:222-225`, `contact.html:178`, `rooms.html:167`). |
-| no broken links excluding intentional minification strategy | FAIL | `npm run check:links` reports missing `assets/img/optimized/contact/map-fallback.svg` referenced by `contact.html`. |
 | no console.log | PASS | No `console.log` found in runtime page JS modules (`js/script.js`, `js/features/*`); logs only in tooling scripts. |
 | aria attributes valid | PASS | ARIA states and roles are consistently used in menu/tabs/lightbox/form code (`js/features/nav.js:27-41`, `js/features/tabs.js:12-52`, `js/features/lightbox.js:80-90`, `contact.html:284-329`). |
 | images have width/height | PASS | Static check across root HTML found 0 `<img>` missing width/height; examples in `index.html:214-215`, `contact.html:220-221`, `gallery.html:219-220`. |
