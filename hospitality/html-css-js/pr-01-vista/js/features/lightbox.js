@@ -32,10 +32,26 @@ export function initLightbox() {
 
     if (img && fullSrc) {
       img.src = fullSrc;
-      img.removeAttribute("width");
-      img.removeAttribute("height");
       img.alt = text || "Podgląd";
+
+      if (thumbImg) {
+        const width = thumbImg.getAttribute("width");
+        const height = thumbImg.getAttribute("height");
+
+        if (width) {
+          img.setAttribute("width", width);
+        } else {
+          img.removeAttribute("width");
+        }
+
+        if (height) {
+          img.setAttribute("height", height);
+        } else {
+          img.removeAttribute("height");
+        }
+      }
     }
+
     if (caption) caption.textContent = text;
   }
 
