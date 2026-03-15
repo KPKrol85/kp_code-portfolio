@@ -1,6 +1,7 @@
 
 /* Layout */
 
+
 .container {
   width: var(--container);
   margin: 0 auto;
@@ -11,14 +12,14 @@ main {
 .section {
   padding: var(--space-8) 0;
 }
-.section--muted {
-  background: var(--bg-elev);
-}
 .section__header {
   margin-bottom: var(--space-6);
 }
 .section__title {
   font-size: var(--fs-6);
+}
+.section--muted {
+  background: var(--bg-elev);
 }
 
 /* Header */
