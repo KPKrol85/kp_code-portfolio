@@ -1,5 +1,5 @@
 {
-  "name": "turystyka-html-css-js-projekt-02",
+  "name": "aurora-travel",
   "version": "1.0.0",
   "main": "service-worker.js",
   "scripts": {
@@ -10,8 +10,8 @@
     "check:assets": "node scripts/check-asset-integrity.js"
   },
   "keywords": [],
-  "author": "",
-  "license": "ISC",
+  "author": "Kamil Król | KP_Code Digital Studio",
+  "license": "MIT",
   "description": "",
   "devDependencies": {
     "autoprefixer": "^10.4.22",

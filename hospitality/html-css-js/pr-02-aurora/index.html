@@ -1,21 +1,27 @@
 <!doctype html>
 <html lang="pl">
   <head>
+    <!-- Document meta -->
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Aurora Travel - Butikowe biuro podróży</title>
+    <!-- SEO -->
     <meta name="description" content="Aurora Travel – butikowe biuro podróży tworzące spersonalizowane wycieczki, city breaki i egzotyczne wyprawy. Projekt zaprojektowany przez KP_Code_." />
+    <!-- Indexing / canonical -->
     <meta name="robots" content="index,follow" />
+    <link rel="canonical" href="https://hospitality-pr02-aurora.netlify.app/" />
+    <!-- PWA / UI -->
     <meta name="color-scheme" content="light dark" />
     <meta name="theme-color" media="(prefers-color-scheme: light)" content="#f8f7f2" />
     <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#05060a" />
-    <link rel="canonical" href="https://hospitality-pr02-aurora.netlify.app/" />
+    <!-- Favicons + manifest -->
     <link rel="manifest" href="site.webmanifest" />
     <link rel="icon" type="image/svg+xml" href="assets/img/icons/favicon.svg" />
     <link rel="icon" type="image/png" sizes="32x32" href="assets/img/icons/favicon-32x32.png" />
     <link rel="icon" type="image/png" sizes="16x16" href="assets/img/icons/favicon-16x16.png" />
     <link rel="apple-touch-icon" href="assets/img/icons/apple-touch-icon.png" />
     <link rel="mask-icon" href="assets/img/icons/safari-pinned-tab.svg" color="#0c2d48" />
+    <!-- Open Graph -->
     <meta property="og:type" content="website" />
     <meta property="og:site_name" content="Aurora Travel" />
     <meta property="og:title" content="Aurora Travel – butikowe biuro podróży" />
@@ -23,10 +29,12 @@
     <meta property="og:url" content="https://hospitality-pr02-aurora.netlify.app/" />
     <meta property="og:image" content="https://hospitality-pr02-aurora.netlify.app/assets/img/og-cover.svg" />
     <meta property="og:locale" content="pl_PL" />
+    <!-- Twitter -->
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content="Aurora Travel – butikowe biuro podróży" />
     <meta name="twitter:description" content="Ekskluzywne podróże, butikowe doświadczenia i dedykowany concierge od Aurora Travel." />
     <meta name="twitter:image" content="https://hospitality-pr02-aurora.netlify.app/assets/img/og-cover.svg" />
+    <!-- Theme preload -->
     <script>
       (function () {
         var key = "kp-travel-theme";
@@ -50,7 +58,9 @@
         document.documentElement.style.colorScheme = theme;
       })();
     </script>
+    <!-- Styles -->
     <link rel="stylesheet" href="css/style.css" />
+    <!-- JSON-LD -->
     <script type="application/ld+json">
       {
         "@context": "https://schema.org",
@@ -100,12 +110,25 @@
           <img src="assets/img/logo/logo.svg" alt="" class="logo__icon" />
           <span class="logo__text">Aurora Travel</span>
         </a>
+        <!-- nav toggle -->
         <button class="nav__toggle" type="button" data-nav-toggle aria-expanded="false" aria-controls="primary-navigation">
-          <svg class="nav__toggle-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true">
-            <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
+          <svg
+            class="nav__toggle-icon"
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1.8"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            aria-hidden="true">
+            <path class="line line--top" d="M3.75 6.75h16.5" />
+            <path class="line line--middle" d="M3.75 12h16.5" />
+            <path class="line line--bottom" d="M3.75 17.25h16.5" />
           </svg>
           <span class="visually-hidden">Otwórz menu</span>
         </button>
+        <!-- navigation -->
         <nav class="nav" id="primary-navigation" aria-label="Główne menu" data-nav>
           <ul>
             <li><a href="index.html">Strona główna</a></li>
@@ -115,6 +138,7 @@
             <li><a href="contact.html">Kontakt</a></li>
           </ul>
         </nav>
+        <!-- theme toggle -->
         <button class="theme-toggle" type="button" data-theme-toggle aria-label="Przełącz motyw" title="Toggle theme">
           <svg class="theme-toggle__icon theme-toggle__icon--sun" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true">
             <path
@@ -137,15 +161,22 @@
       <!-- Hero -->
       <section class="hero">
         <div class="container hero__grid">
+          <!-- hero content -->
           <div class="hero__content">
             <p class="eyebrow">Biuro podróży klasy premium</p>
-            <h1>Wyjątkowe wycieczki na wyciągnięcie ręki</h1>
+            <h1>Świat w zasięgu Twojej podróży</h1>
             <p class="hero__lead">Łączymy pasję do odkrywania z perfekcyjną organizacją i concierge 24/7. Zarezerwuj podróż, która spełni Twoje wysokie oczekiwania.</p>
             <div class="hero__actions">
-              <a class="btn" href="tours.html">Zobacz wycieczki</a>
+              <a class="btn" href="tours.html">Wycieczki</a>
               <a class="btn btn--ghost" href="contact.html">Skontaktuj się</a>
             </div>
           </div>
+          <!--- hero logo -->
+          <div class="hero__logo">
+            <img src="assets/img/logo/logo.svg" alt="" class="hero__logo-icon" />
+          </div>
+
+          <!-- hero media -->
           <picture class="hero__media">
             <source
               type="image/avif"
@@ -486,10 +517,11 @@
           </div>
         </div>
       </div>
+      <!-- copyright -->
       <p class="site-footer__copy">
         &copy;
         <span id="current-year">2026</span>
-        KP_Code Digital Studio – Wszelkie prawa zastrzeżone.
+        KP_Code Digital Studio | Wszelkie prawa zastrzeżone.
       </p>
     </footer>
 

@@ -1,4 +1,5 @@
-/* Components */
+/* Feauture Card */
+
 .feature-card {
   padding: var(--space-5);
   border-radius: var(--radius-md);
@@ -576,6 +577,8 @@ html[data-theme="dark"] .dropdown__icon {
 }
 
 /* Buttons */
+
+/* btn */
 .btn {
   display: inline-flex;
   align-items: center;
@@ -583,8 +586,8 @@ html[data-theme="dark"] .dropdown__icon {
   padding: var(--space-2) var(--space-5);
   border-radius: var(--radius-pill);
   border: none;
-  font-weight: 600;
-  background: linear-gradient(135deg, var(--primary), var(--primary-alt));
+  font-weight: var(--fw-semibold);
+  background: var(--gradient-primary);
   color: #fff;
   cursor: pointer;
   transition:
@@ -596,11 +599,10 @@ html[data-theme="dark"] .dropdown__icon {
   box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2);
   transform: translateY(-2px);
 }
+/* btn-ghost */
 .btn--ghost {
   background: transparent;
-  padding: var(--space-2) var(--space-5);
-  border-radius: var(--radius-pill);
-  border: 1px solid rgba(12, 27, 51, 0.14);
+  border: 1px solid var(--border);
   color: var(--text);
   transition:
     background 0.25s ease,
@@ -615,17 +617,7 @@ html[data-theme="dark"] .dropdown__icon {
   box-shadow: 0 12px 28px rgba(0, 0, 0, 0.1);
   transform: translateY(-2px);
 }
-[data-theme="dark"] .btn--ghost {
-  border-color: rgba(255, 255, 255, 0.38);
-  color: #ffffff;
-  background: rgba(255, 255, 255, 0.03);
-}
-[data-theme="dark"] .btn--ghost:hover,
-[data-theme="dark"] .btn--ghost:focus-visible {
-  background: rgba(255, 255, 255, 0.1);
-  border-color: rgba(255, 255, 255, 0.6);
-  box-shadow: 0 16px 36px rgba(0, 0, 0, 0.75);
-}
+/* btn-text */
 .btn--text {
   background: none;
   padding: 0;
@@ -662,6 +654,7 @@ html[data-theme="dark"] .dropdown__icon {
 }
 
 /* Lightbox */
+
 .lightbox {
   position: fixed;
   inset: 0;
@@ -807,4 +800,34 @@ html[data-theme="dark"] .dropdown__icon {
 
 .test-autoprefix {
   user-select: none;
+}
+
+/* Breadcrumb */
+.breadcrumb {
+  font-size: 0.9rem;
+  color: var(--muted);
+}
+.breadcrumb ol {
+  display: flex;
+  gap: 0.4rem;
+  list-style: none;
+  padding: 0;
+  margin: 0 0 var(--space-2);
+}
+.breadcrumb li::after {
+  content: "/";
+  margin-left: 0.4rem;
+}
+.breadcrumb li:last-child::after {
+  content: "";
+}
+
+/* Eyebrow */
+
+.eyebrow {
+  margin: var(--space-4) 0;
+  text-transform: uppercase;
+  letter-spacing: var(--ls-ultra);
+  font-size: var(--fs-eyebrow);
+  color: var(--muted);
 }
