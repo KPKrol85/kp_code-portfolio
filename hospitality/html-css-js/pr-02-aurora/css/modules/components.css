@@ -1,11 +1,11 @@
 /* Feauture Card */
 
 .feature-card {
-  padding: var(--space-5);
-  border-radius: var(--radius-md);
+  padding: var(--space-4);
+  border-radius: var(--radius-lg);
   border: 1px solid var(--border);
   background: var(--bg-elev);
-  box-shadow: var(--shadow);
+  box-shadow: var(--shadow-sm);
   display: flex;
   flex-direction: column;
   gap: var(--space-3);
@@ -16,11 +16,11 @@
     background 0.22s ease;
 }
 .feature-card svg {
-  width: 32px;
-  height: 32px;
+  width: 28px;
+  height: 28px;
   fill: none;
   stroke: var(--primary);
-  margin-bottom: var(--space-3);
+  margin-bottom: var(--space-2);
 }
 .feature-card__title {
   margin: 0;
@@ -33,36 +33,35 @@
   position: absolute;
   left: 0;
   bottom: 0;
-  width: 22px;
+  width: 32px;
   height: 1px;
+  opacity: 0.8;
   background: color-mix(in srgb, var(--primary) 25%, transparent);
-  border-radius: 2px;
+  border-radius: var(--radius-lg);
 }
 .feature-card__text {
-  font-size: var(--fs-1);
-  line-height: 1.65;
-  color: var(--text-muted);
+  font-size: var(--fs-2);
+  letter-spacing: var(--ls-wide);
+  color: var(--muted);
 }
-.feature-card:hover,
-.feature-card:focus-within {
-  transform: translateY(-4px);
-  box-shadow: 0 20px 45px rgba(0, 0, 0, 0.14);
-  border-color: rgba(12, 27, 51, 0.18);
-  background: color-mix(in oklab, var(--bg-elev) 88%, #ffffff 12%);
-}
-[data-theme="dark"] .feature-card:hover,
-[data-theme="dark"] .feature-card:focus-within {
-  background: color-mix(in oklab, var(--bg-elev) 92%, #111827 8%);
-  box-shadow: 0 22px 55px rgba(0, 0, 0, 0.6);
+@media (hover: hover) and (pointer: fine) {
+  .feature-card:hover,
+  .feature-card:focus-within {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-hover-md);
+    border-color: var(--border);
+    background: color-mix(in oklab, var(--bg-elev) 88%, #ffffff 2%);
+  }
 }
 
 /* Tour Card */
+
 .tour-card {
   display: grid;
-  gap: var(--space-6);
+  gap: var(--space-4);
   border: 1px solid var(--border);
   background: var(--bg-elev);
-  border-radius: var(--radius-md);
+  border-radius: var(--radius-lg);
   padding: var(--space-3);
   box-shadow: var(--shadow-sm);
   overflow: visible;
@@ -72,12 +71,9 @@
     border-color 0.22s ease,
     background 0.22s ease;
 }
-.tour-card a:hover {
-  text-decoration: none;
-}
 .tour-card__media,
 .tour-card picture {
-  border-radius: var(--radius-md);
+  border-radius: var(--radius-lg);
   overflow: hidden;
   aspect-ratio: 4 / 3;
 }
@@ -94,10 +90,11 @@
   font-size: var(--fs-3);
 }
 .tour-card__text {
-  margin: 0 0 var(--space-4);
-  font-size: var(--fs-1);
-  line-height: 1.45;
+  margin-bottom: var(--space-4);
+  font-size: var(--fs-2);
   color: var(--muted);
+  font-weight: var(--fw-medium);
+  letter-spacing: var(--ls-wide);
 }
 .tour-card__meta {
   display: flex;
@@ -132,30 +129,16 @@
   font-size: var(--fs-1);
   max-width: 148px;
 }
-.tour-card:hover,
-.tour-card:focus-within {
-  transform: translateY(-4px);
-  box-shadow: 0 20px 45px rgba(0, 0, 0, 0.14);
-  border-color: rgba(12, 27, 51, 0.18);
-  background: color-mix(in oklab, var(--bg-elev) 88%, #ffffff 12%);
-}
-[data-theme="dark"] .tour-card:hover,
-[data-theme="dark"] .tour-card:focus-within {
-  background: color-mix(in oklab, var(--bg-elev) 92%, #111827 8%);
-  box-shadow: 0 22px 55px rgba(0, 0, 0, 0.6);
-}
 .tour-card .btn--text {
   margin-bottom: var(--space-4);
+  font-size: var(--fs-2);
+  padding: var(--space-2) var(--space-4);
 }
 .btn--text::before {
   content: "→";
   margin-right: 0.45em;
   display: inline-block;
   transition: transform 0.2s ease;
-}
-.btn--text:hover::before,
-.tour-card .btn--text:hover::before {
-  transform: translateX(3px);
 }
 .tour-card--detailed > div {
   display: flex;
@@ -169,10 +152,6 @@
     grid-template-columns: 280px 1fr;
     align-items: stretch;
   }
-  .tour-card__title {
-    margin: var(--space-4) 0;
-    font-size: var(--fs-3);
-  }
   .tour-card__actions {
     justify-content: flex-start;
   }
@@ -180,6 +159,19 @@
 @media (min-width: 1024px) {
   .tour-card--detailed {
     grid-template-columns: 320px 1fr;
+  }
+}
+@media (hover: hover) and (pointer: fine) {
+  .tour-card:hover,
+  .tour-card:focus-within {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-hover-md);
+    border-color: var(--border);
+    background: color-mix(in oklab, var(--bg-elev) 88%, #ffffff 2%);
+  }
+  .btn--text:hover::before,
+  .tour-card .btn--text:hover::before {
+    transform: translateX(3px);
   }
 }
 
@@ -596,7 +588,7 @@ html[data-theme="dark"] .dropdown__icon {
 }
 .btn:focus-visible,
 .btn:hover {
-  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2);
+  box-shadow: var(--shadow-hover-md);
   transform: translateY(-2px);
 }
 /* btn-ghost */
@@ -613,44 +605,20 @@ html[data-theme="dark"] .dropdown__icon {
 .btn--ghost:hover,
 .btn--ghost:focus-visible {
   background: var(--bg-elev);
-  border-color: rgba(12, 27, 51, 0.25);
-  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.1);
+  border-color: var(--border);
+  box-shadow: var(--shadow-sm);
   transform: translateY(-2px);
 }
 /* btn-text */
 .btn--text {
   background: none;
-  padding: 0;
   color: var(--primary);
-  position: relative;
-  font-weight: 600;
+  text-decoration: none;
+  border: 0;
 }
-.btn--text::after {
-  content: "";
-  position: absolute;
-  left: 0;
-  bottom: 0;
-  transform: translateY(2px);
-  width: 0;
-  height: 1px;
-  background: currentColor;
-  transition: width 0.25s ease;
-}
-.btn--text:hover::after,
-.btn--text:focus-visible::after {
-  width: 100%;
-}
-.btn--text:hover,
-.btn--text:focus-visible {
-  transform: none;
-  box-shadow: none;
-}
-.btn--text,
 .btn--text:hover,
 .btn--text:focus-visible {
   text-decoration: none;
-  border-bottom: 0;
-  background-image: none;
 }
 
 /* Lightbox */

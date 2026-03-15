@@ -74,7 +74,7 @@
     display: flex;
     flex-wrap: wrap;
     justify-content: flex-start;
-    gap: var(--space-2);
+    gap: var(--space-4);
     margin: var(--space-5) 0 0;
   }
   .hero__logo {
@@ -115,7 +115,9 @@
     transform: scale(1.03);
   }
 }
+
 /* CTA */
+
 .cta {
   display: flex;
   flex-direction: column;
@@ -160,13 +162,11 @@
   display: grid;
   gap: var(--space-4);
 }
-
 .cards-grid,
 .tour-list {
   display: grid;
   gap: var(--space-5);
 }
-
 @media (min-width: 768px) {
   .cards-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -175,15 +175,13 @@
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 }
-
-@media (min-width: 1280px) {
-  .cards-grid {
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-  }
-}
-
 @media (min-width: 1024px) {
   .features-grid {
     grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+}
+@media (min-width: 1280px) {
+  .cards-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
   }
 }

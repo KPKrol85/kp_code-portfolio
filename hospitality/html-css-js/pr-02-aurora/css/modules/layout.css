@@ -9,13 +9,16 @@ main {
   padding-bottom: var(--space-7);
 }
 .section {
-  padding: var(--space-7) 0;
+  padding: var(--space-8) 0;
 }
 .section--muted {
   background: var(--bg-elev);
 }
 .section__header {
-  margin-bottom: var(--space-5);
+  margin-bottom: var(--space-6);
+}
+.section__title {
+  font-size: var(--fs-6);
 }
 
 /* Header */
