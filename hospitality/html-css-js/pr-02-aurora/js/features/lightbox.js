@@ -1,4 +1,3 @@
-
 export function initLightbox() {
   const overlay = document.querySelector("[data-lightbox]");
   if (!overlay) return;
@@ -66,7 +65,7 @@ export function initLightbox() {
   function updateContent(img) {
     preview.src = img.dataset.lightboxSrc || img.src;
     preview.alt = img.alt;
-    caption.textContent = img.closest("figure")?.querySelector("figcaption")?.textContent || "";
+    caption.textContent = img.dataset.caption || "";
   }
 
   function trapFocus(event) {
@@ -129,16 +128,15 @@ export function initLightbox() {
   });
 
   function toggleFullscreen() {
-
-    if (!preview.requestFullscreen && !preview.webkitRequestFullscreen) return;
+    if (!overlay.requestFullscreen && !overlay.webkitRequestFullscreen) return;
 
     const isFs = document.fullscreenElement || document.webkitFullscreenElement;
 
     if (!isFs) {
-      if (preview.requestFullscreen) {
-        preview.requestFullscreen().catch(() => {});
-      } else if (preview.webkitRequestFullscreen) {
-        preview.webkitRequestFullscreen();
+      if (overlay.requestFullscreen) {
+        overlay.requestFullscreen().catch(() => {});
+      } else if (overlay.webkitRequestFullscreen) {
+        overlay.webkitRequestFullscreen();
       }
     } else {
       if (document.exitFullscreen) {

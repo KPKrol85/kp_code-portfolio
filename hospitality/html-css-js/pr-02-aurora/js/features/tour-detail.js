@@ -34,12 +34,12 @@ function fillTourContent(tour) {
   const mainImage = tour.images[0];
   const mainImageContainer = document.querySelector("[data-tour-main-image]");
   if (mainImage && mainImageContainer) {
-    mainImageContainer.innerHTML = createPictureMarkup(mainImage.base, mainImage.alt);
+    mainImageContainer.innerHTML = createPictureMarkup(mainImage.base, mainImage.alt, mainImage.caption);
   }
 
   const galleryEl = document.querySelector("[data-tour-gallery]");
   if (galleryEl && tour.images.length > 0) {
-    galleryEl.innerHTML = tour.images.map((img) => createPictureMarkup(img.base, img.alt)).join("");
+    galleryEl.innerHTML = tour.images.map((img) => createPictureMarkup(img.base, img.alt, img.caption)).join("");
   }
 }
 
@@ -72,7 +72,7 @@ function sanitizeTourHtml(html) {
   return template.innerHTML;
 }
 
-function createPictureMarkup(base, alt) {
+function createPictureMarkup(base, alt, caption = "") {
   const basePath = `assets/img/tours/${base}`;
 
   return `
@@ -104,6 +104,7 @@ function createPictureMarkup(base, alt) {
         alt="${alt}"
         loading="lazy"
         data-lightbox-src="${basePath}-1600x1040.jpg"
+data-caption="${caption}"
         tabindex="0"
       />
     </picture>
