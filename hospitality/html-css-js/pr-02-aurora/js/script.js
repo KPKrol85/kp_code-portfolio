@@ -9,13 +9,13 @@ import { initForm } from "./features/form.js";
 import { initAriaCurrent } from "./features/aria-current.js";
 import { initLightbox } from "./features/lightbox.js";
 import { initTourDetail } from "./features/tour-detail.js";
+import { initGallery } from "./features/gallery.js";
 import { initGalleryFilters } from "./features/gallery-filters.js";
 
-document.addEventListener("DOMContentLoaded", () => {
+document.addEventListener("DOMContentLoaded", async () => {
   initNav();
   initThemeToggle();
   initCompactHeader();
-  initReveal();
   initToursFilters();
   initFiltersDropdowns();
   initTabs();
@@ -24,9 +24,11 @@ document.addEventListener("DOMContentLoaded", () => {
   initAriaCurrent();
 
   if (document.body.dataset.page === "gallery") {
+    await initGallery();
     initGalleryFilters();
   }
 
+  initReveal();
   initTourDetail();
   initLightbox();
   updateYear();

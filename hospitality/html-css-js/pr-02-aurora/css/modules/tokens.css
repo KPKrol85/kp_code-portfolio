@@ -35,20 +35,23 @@
   --bg-elev: #ffffff;
   --footer-bg: #f3f2ec;
   --text: #0c1b33;
-  --muted: #5b6070;
   --text-subtle: color-mix(in srgb, var(--text) 75%, var(--muted));
+  --muted: #5b6070;
+  /* primary colors */
   --primary: #0f6d8c;
   --primary-alt: #6fd1ff;
-  --gradient-primary: linear-gradient(135deg, var(--primary), var(--primary-alt));
-  --border: rgba(15, 109, 140, 0.15);
   --primary-alt-active: color-mix(in srgb, var(--primary-alt) 85%, white);
+  --gradient-primary: linear-gradient(135deg, var(--primary), var(--primary-alt));
+  /* border colors */
+  --border: rgba(15, 109, 140, 0.15);
+  --border-focus: color-mix(in srgb, var(--text) 18%, transparent);
   /* Shadows */
   --shadow-sm: 0 10px 25px rgba(6, 17, 35, 0.1);
   --shadow-md: 0 18px 40px rgba(6, 17, 35, 0.12);
   --shadow-lg: 0 25px 60px rgba(6, 17, 35, 0.16);
   --shadow-hover-md: 0 22px 50px rgba(6, 17, 35, 0.18);
   --shadow-hover-lg: 0 26px 60px rgba(6, 17, 35, 0.24);
- --focus-ring: 0 0 0 3px color-mix(in oklab, var(--primary) 35%, transparent);
+  --focus-ring: 0 0 0 3px color-mix(in oklab, var(--primary) 35%, transparent);
   --shadow-focus: 0 6px 18px rgba(6, 17, 35, 0.12);
   /* Radius */
   --radius-min: 4px;
