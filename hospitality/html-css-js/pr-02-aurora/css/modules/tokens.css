@@ -48,6 +48,8 @@
   --shadow-lg: 0 25px 60px rgba(6, 17, 35, 0.16);
   --shadow-hover-md: 0 22px 50px rgba(6, 17, 35, 0.18);
   --shadow-hover-lg: 0 26px 60px rgba(6, 17, 35, 0.24);
+ --focus-ring: 0 0 0 3px color-mix(in oklab, var(--primary) 35%, transparent);
+  --shadow-focus: 0 6px 18px rgba(6, 17, 35, 0.12);
   /* Radius */
   --radius-min: 4px;
   --radius-sm: 8px;

@@ -44,9 +44,10 @@ function fillTourContent(tour) {
 }
 
 function sanitizeTourHtml(html) {
-  const allowedTags = new Set(["P", "STRONG", "UL", "LI", "H3", "EM", "BR"]);
+  const allowedTags = new Set(["P", "STRONG", "OL", "UL", "LI", "H3", "EM", "BR"]);
   const allowedAttrsByTag = {
     UL: new Set(["class"]),
+    OL: new Set(["class"]),
   };
 
   const template = document.createElement("template");
