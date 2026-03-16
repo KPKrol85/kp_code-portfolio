@@ -41,11 +41,7 @@ function createGalleryFigure(item) {
   const picture = document.createElement("picture");
   picture.className = "gallery-item";
 
-  picture.append(
-    createSource(item.base, "avif"),
-    createSource(item.base, "webp"),
-    createImage(item),
-  );
+  picture.append(createSource(item.base, "avif"), createSource(item.base, "webp"), createImage(item));
 
   const figcaption = document.createElement("figcaption");
   figcaption.textContent = item.caption || "";
@@ -80,10 +76,5 @@ function createImage(item) {
 function createSrcset(base, format) {
   const basePath = `assets/img/tours/${base}`;
 
-  return [
-    `${basePath}-400x260.${format} 400w`,
-    `${basePath}-800x520.${format} 800w`,
-    `${basePath}-1200x780.${format} 1200w`,
-    `${basePath}-1600x1040.${format} 1600w`,
-  ].join(", ");
+  return [`${basePath}-400x260.${format} 400w`, `${basePath}-800x520.${format} 800w`, `${basePath}-1200x780.${format} 1200w`, `${basePath}-1600x1040.${format} 1600w`].join(", ");
 }
