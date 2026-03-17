@@ -5,19 +5,15 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Aurora Travel – Polityka prywatności | KP_Code_</title>
-
     <!-- SEO -->
     <meta name="description" content="Polityka prywatności serwisu Aurora Travel." />
-
     <!-- Indexing / canonical -->
     <meta name="robots" content="index,follow" />
     <link rel="canonical" href="https://hospitality-pr02-aurora.netlify.app/polityka-prywatnosci.html" />
-
     <!-- PWA / UI -->
     <meta name="color-scheme" content="light dark" />
     <meta name="theme-color" media="(prefers-color-scheme: light)" content="#f8f7f2" />
     <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#05060a" />
-
     <!-- Favicons + manifest -->
     <link rel="manifest" href="site.webmanifest" />
     <link rel="icon" type="image/svg+xml" href="assets/img/icons/favicon.svg" />
@@ -25,7 +21,6 @@
     <link rel="icon" type="image/png" sizes="16x16" href="assets/img/icons/favicon-16x16.png" />
     <link rel="apple-touch-icon" href="assets/img/icons/apple-touch-icon.png" />
     <link rel="mask-icon" href="assets/img/icons/safari-pinned-tab.svg" color="#0c2d48" />
-
     <!-- Open Graph -->
     <meta property="og:type" content="article" />
     <meta property="og:site_name" content="Aurora Travel" />
@@ -34,13 +29,11 @@
     <meta property="og:url" content="https://hospitality-pr02-aurora.netlify.app/polityka-prywatnosci.html" />
     <meta property="og:image" content="https://hospitality-pr02-aurora.netlify.app/assets/img/og-cover.svg" />
     <meta property="og:locale" content="pl_PL" />
-
     <!-- Twitter -->
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content="Polityka prywatności – Aurora Travel" />
     <meta name="twitter:description" content="Polityka prywatności serwisu Aurora Travel." />
     <meta name="twitter:image" content="https://hospitality-pr02-aurora.netlify.app/assets/img/og-cover.svg" />
-
     <!-- Theme preload -->
     <script>
       (function () {
@@ -66,10 +59,8 @@
         document.documentElement.style.colorScheme = theme;
       })();
     </script>
-
     <!-- Styles -->
     <link rel="stylesheet" href="css/style.css" />
-
     <!-- JSON-LD -->
     <script type="application/ld+json">
       {
@@ -98,12 +89,25 @@
           <img src="assets/img/logo/logo.svg" alt="" class="logo__icon" />
           <span class="logo__text">Aurora Travel</span>
         </a>
+        <!-- nav toggle -->
         <button class="nav__toggle" type="button" data-nav-toggle aria-expanded="false" aria-controls="primary-navigation">
-          <svg class="nav__toggle-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true">
-            <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
+          <svg
+            class="nav__toggle-icon"
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1.8"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            aria-hidden="true">
+            <path class="line line--top" d="M3.75 6.75h16.5" />
+            <path class="line line--middle" d="M3.75 12h16.5" />
+            <path class="line line--bottom" d="M3.75 17.25h16.5" />
           </svg>
           <span class="visually-hidden">Otwórz menu</span>
         </button>
+        <!-- navigation -->
         <nav class="nav" id="primary-navigation" aria-label="Główne menu" data-nav>
           <ul>
             <li><a href="index.html">Strona główna</a></li>
@@ -113,6 +117,7 @@
             <li><a href="contact.html">Kontakt</a></li>
           </ul>
         </nav>
+        <!-- theme toggle -->
         <button class="theme-toggle" type="button" data-theme-toggle aria-label="Przełącz motyw" title="Toggle theme">
           <svg class="theme-toggle__icon theme-toggle__icon--sun" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true">
             <path
@@ -131,134 +136,247 @@
     </header>
 
     <!-- Main -->
-    <main id="main-content">
-      <div class="page-hero reveal is-visible">
+    <main id="main-content" tabindex="-1">
+      <!-- Hero -->
+      <div class="page-hero page-hero--legal reveal is-visible">
         <div class="container">
+          <!-- breadcrumb -->
           <nav class="breadcrumb" aria-label="Ścieżka nawigacyjna">
             <ol>
               <li><a href="index.html">Strona główna</a></li>
               <li aria-current="page">Polityka prywatności</li>
             </ol>
           </nav>
-          <h1>Polityka prywatności</h1>
-          <p>Niniejsza Polityka prywatności określa zasady przetwarzania danych osobowych w ramach demonstracyjnego projektu strony internetowej.</p>
+          <h1 class="page-hero__title">Polityka prywatności</h1>
+          <p class="page-hero__lead">Informacje o zasadach przetwarzania danych osobowych i funkcjonowaniu serwisu.</p>
         </div>
       </div>
+
+      <!-- Legal -->
       <section class="section legal reveal is-visible" aria-labelledby="privacy-heading">
+        <!-- Polityka prywatności -->
         <div class="container">
-          <h2 id="privacy-heading">Polityka prywatności</h2>
-          <p>
-            Niniejsza Polityka prywatności określa zasady przetwarzania danych osobowych w ramach demonstracyjnego projektu strony internetowej „………………..”, opracowanego przez KP_Code Digital Studio.
-            Dokument ma charakter informacyjny i dotyczy sposobu działania funkcjonalności prezentowanych w Serwisie.
+          <div class="legal__header">
+            <h2 class="legal__title">Informacje wstępne</h2>
+            <p class="legal__lead">
+              Niniejsza Polityka prywatności określa zasady przetwarzania danych osobowych w ramach demonstracyjnego projektu strony internetowej Aurora Travel, opracowanego przez
+              <a href="https://kp-code.pl" target="_blank" rel="noopener noreferrer"><strong>KP_Code Digital Studio</strong></a>
+              dla branży turystycznej i hospitality. Dokument ma charakter informacyjny i dotyczy sposobu działania funkcjonalności prezentowanych w Serwisie.
+            </p>
+          </div>
+
+          <!-- Spis treści -->
+          <div class="legal__toc" aria-labelledby="privacy-toc-heading">
+            <h2 id="privacy-toc-heading" class="legal__title">Spis treści</h2>
+            <ol class="legal__toc-list">
+              <li><a href="#privacy-section-1">Administratora danych</a></li>
+              <li><a href="#privacy-section-2">Charakter serwisu</a></li>
+              <li><a href="#privacy-section-3">Zakres i charakter przetwarzania danych</a></li>
+              <li><a href="#privacy-section-4">Podstawy prawne przetwarzania</a></li>
+              <li><a href="#privacy-section-5">Odbiorcy danych</a></li>
+              <li><a href="#privacy-section-6">Okres przechowywania danych</a></li>
+              <li><a href="#privacy-section-7">Prawa Użytkownika</a></li>
+              <li><a href="#privacy-section-8">Bezpieczeństwo danych</a></li>
+              <li><a href="#privacy-section-9">Pliki cookies</a></li>
+              <li><a href="#privacy-section-10">Kontakt</a></li>
+              <li><a href="#privacy-section-11">Zmiany polityki prywatności</a></li>
+            </ol>
+          </div>
+
+          <!-- Polityka prywatności treść -->
+
+          <!-- 1. Administrator danych -->
+          <section class="legal__block" id="privacy-section-1" aria-labelledby="privacy-section-1-heading">
+            <div class="legal__block-header">
+              <h3 id="privacy-section-1-heading" class="legal__block-title">Administrator danych</h3>
+              <a class="legal__back-link" href="#privacy-toc-heading" aria-label="Wróć do spisu treści">↑</a>
+            </div>
+            <p>
+              Administratorem danych osobowych jest
+              <a href="https://kp-code.pl" target="_blank" rel="noopener noreferrer"><strong>KP_Code Digital Studio</strong></a>
+              (dalej: „Administrator”).
+            </p>
+            <p>
+              W sprawach związanych z przetwarzaniem danych osobowych można skontaktować się z Administratorem za pośrednictwem adresu e-mail:
+              <a href="mailto:kontakt@kp-code.pl"><strong>kontakt@kp-code.pl</strong></a>
+              .
+            </p>
+          </section>
+          <!-- 2. Charakter Serwisu -->
+          <section class="legal__block" id="privacy-section-2" aria-labelledby="privacy-section-2-heading">
+            <div class="legal__block-header">
+              <h3 id="privacy-section-2-heading" class="legal__block-title">Charakter Serwisu</h3>
+              <a class="legal__back-link" href="#privacy-toc-heading" aria-label="Wróć do spisu treści">↑</a>
+            </div>
+            <p>
+              Serwis „Aurora Travel” ma charakter demonstracyjny i służy prezentacji rozwiązań projektowych oraz implementacji front-end. Serwis nie prowadzi rzeczywistej działalności gospodarczej ani
+              sprzedaży i nie umożliwia składania wiążących zamówień, rezerwacji ani dokonywania płatności.
+            </p>
+            <p>Dane wprowadzane w formularzach mają charakter testowy. Użytkownik nie powinien podawać danych wrażliwych ani informacji poufnych.</p>
+          </section>
+          <!-- 3. Zakres i charakter przetwarzania danych -->
+          <section class="legal__block" id="privacy-section-3" aria-labelledby="privacy-section-3-heading">
+            <div class="legal__block-header">
+              <h3 id="privacy-section-3-heading" class="legal__block-title">Zakres i charakter przetwarzania danych</h3>
+              <a class="legal__back-link" href="#privacy-toc-heading" aria-label="Wróć do spisu treści">↑</a>
+            </div>
+            <p>Administrator przetwarza dane osobowe wyłącznie w zakresie niezbędnym do:</p>
+            <ul>
+              <li>zapewnienia prawidłowego funkcjonowania Serwisu,</li>
+              <li>obsługi zapytań kierowanych za pośrednictwem formularza kontaktowego,</li>
+              <li>zapewnienia bezpieczeństwa infrastruktury IT.</li>
+            </ul>
+            <p>Dane mogą obejmować w szczególności:</p>
+            <ul>
+              <li>imię,</li>
+              <li>adres e-mail,</li>
+              <li>inne informacje dobrowolnie podane przez Użytkownika w treści wiadomości,</li>
+              <li>dane techniczne związane z korzystaniem z Serwisu, takie jak adres IP, dane przeglądarki, system operacyjny lub identyfikatory plików cookies.</li>
+            </ul>
+            <p>Dane nie są wykorzystywane do zautomatyzowanego podejmowania decyzji ani profilowania.</p>
+          </section>
+          <!-- 4. Podstawy prawne przetwarzania -->
+          <section class="legal__block" id="privacy-section-4" aria-labelledby="privacy-section-4-heading">
+            <div class="legal__block-header">
+              <h3 id="privacy-section-4-heading" class="legal__block-title">Podstawy prawne przetwarzania</h3>
+              <a class="legal__back-link" href="#privacy-toc-heading" aria-label="Wróć do spisu treści">↑</a>
+            </div>
+            <p>Dane osobowe przetwarzane są zgodnie z obowiązującymi przepisami prawa, w szczególności z Rozporządzeniem Parlamentu Europejskiego i Rady (UE) 2016/679 (RODO).</p>
+            <p>Podstawą przetwarzania danych może być:</p>
+            <ul>
+              <li>zgoda Użytkownika (art. 6 ust. 1 lit. a RODO) – w przypadku dobrowolnego przesłania danych za pośrednictwem formularza,</li>
+              <li>
+                prawnie uzasadniony interes Administratora (art. 6 ust. 1 lit. f RODO) – w zakresie zapewnienia bezpieczeństwa Serwisu, obsługi zapytań oraz analizy technicznej działania strony,
+              </li>
+              <li>obowiązek prawny ciążący na Administratorze (art. 6 ust. 1 lit. c RODO) – jeżeli wynika on z przepisów prawa.</li>
+            </ul>
+          </section>
+          <!-- 5. Odbiorcy danych -->
+          <section class="legal__block" id="privacy-section-5" aria-labelledby="privacy-section-5-heading">
+            <div class="legal__block-header">
+              <h3 id="privacy-section-5-heading" class="legal__block-title">Odbiorcy danych</h3>
+              <a class="legal__back-link" href="#privacy-toc-heading" aria-label="Wróć do spisu treści">↑</a>
+            </div>
+            <p>
+              Dane osobowe mogą być przekazywane podmiotom współpracującym z Administratorem wyłącznie w zakresie niezbędnym do prawidłowego funkcjonowania Serwisu oraz realizacji wskazanych celów
+              przetwarzania, w szczególności:
+            </p>
+            <ul>
+              <li>dostawcom usług hostingowych,</li>
+              <li>podmiotom zapewniającym infrastrukturę IT,</li>
+              <li>dostawcom narzędzi technicznych wykorzystywanych do obsługi formularzy lub komunikacji e-mail,</li>
+              <li>podmiotom uprawnionym do otrzymania danych na podstawie przepisów prawa.</li>
+            </ul>
+            <p>Dane nie są sprzedawane ani udostępniane podmiotom trzecim w celach marketingowych.</p>
+          </section>
+          <!-- 6. Okres przechowywania danych -->
+          <section class="legal__block" id="privacy-section-6" aria-labelledby="privacy-section-6-heading">
+            <div class="legal__block-header">
+              <h3 id="privacy-section-6-heading" class="legal__block-title">Okres przechowywania danych</h3>
+              <a class="legal__back-link" href="#privacy-toc-heading" aria-label="Wróć do spisu treści">↑</a>
+            </div>
+            <p>Dane osobowe przechowywane są przez okres niezbędny do realizacji celów, dla których zostały zebrane, z uwzględnieniem obowiązujących przepisów prawa.</p>
+            <p>W szczególności:</p>
+            <ul>
+              <li>dane przekazane za pośrednictwem formularza kontaktowego – przez czas niezbędny do udzielenia odpowiedzi oraz ewentualnej dalszej korespondencji,</li>
+              <li>dane techniczne związane z bezpieczeństwem – przez okres wymagany do zapewnienia ochrony infrastruktury IT,</li>
+              <li>dane przetwarzane na podstawie obowiązku prawnego – przez okres wynikający z przepisów prawa.</li>
+            </ul>
+            <p>Po upływie wskazanych okresów dane są usuwane lub poddawane anonimizacji.</p>
+          </section>
+          <!-- 7. Prawa Użytkownika -->
+          <section class="legal__block" id="privacy-section-7" aria-labelledby="privacy-section-7-heading">
+            <div class="legal__block-header">
+              <h3 id="privacy-section-7-heading" class="legal__block-title">Prawa Użytkownika</h3>
+              <a class="legal__back-link" href="#privacy-toc-heading" aria-label="Wróć do spisu treści">↑</a>
+            </div>
+            <p>Użytkownikowi przysługują prawa wynikające z przepisów RODO, w szczególności:</p>
+            <ul>
+              <li>prawo dostępu do danych i uzyskania ich kopii,</li>
+              <li>prawo do sprostowania danych,</li>
+              <li>prawo do usunięcia danych,</li>
+              <li>prawo do ograniczenia przetwarzania,</li>
+              <li>prawo do przenoszenia danych,</li>
+              <li>prawo do wniesienia sprzeciwu wobec przetwarzania,</li>
+              <li>prawo do cofnięcia zgody w dowolnym momencie (jeżeli przetwarzanie odbywa się na podstawie zgody),</li>
+              <li>prawo wniesienia skargi do Prezesa Urzędu Ochrony Danych Osobowych.</li>
+            </ul>
+            <p>
+              W celu realizacji swoich praw Użytkownik może skontaktować się z Administratorem pod adresem:
+              <a href="mailto:kontakt@kp-code.pl"><strong>kontakt@kp-code.pl</strong></a>
+              .
+            </p>
+          </section>
+          <!-- 8. Bezpieczeństwo danych -->
+          <section class="legal__block" id="privacy-section-8" aria-labelledby="privacy-section-8-heading">
+            <div class="legal__block-header">
+              <h3 id="privacy-section-8-heading" class="legal__block-title">Bezpieczeństwo danych</h3>
+              <a class="legal__back-link" href="#privacy-toc-heading" aria-label="Wróć do spisu treści">↑</a>
+            </div>
+            <p>
+              Administrator stosuje odpowiednie środki techniczne i organizacyjne mające na celu ochronę przetwarzanych danych osobowych, adekwatne do charakteru, zakresu oraz ryzyka związanego z
+              przetwarzaniem.
+            </p>
+            <p>Środki te obejmują w szczególności:</p>
+            <ul>
+              <li>zabezpieczenia infrastruktury serwerowej i systemów informatycznych,</li>
+              <li>ograniczenie dostępu do danych wyłącznie do osób upoważnionych,</li>
+              <li>monitorowanie działania Serwisu w celu wykrywania potencjalnych zagrożeń.</li>
+            </ul>
+          </section>
+          <!-- 9. Pliki cookies -->
+          <section class="legal__block" id="privacy-section-9" aria-labelledby="privacy-section-9-heading">
+            <div class="legal__block-header">
+              <h3 id="privacy-section-9-heading" class="legal__block-title">Pliki cookies</h3>
+              <a class="legal__back-link" href="#privacy-toc-heading" aria-label="Wróć do spisu treści">↑</a>
+            </div>
+            <p>Serwis może wykorzystywać pliki cookies w celu zapewnienia prawidłowego działania strony oraz poprawy jakości świadczonych usług.</p>
+            <p>Cookies mogą obejmować:</p>
+            <ul>
+              <li>cookies techniczne – niezbędne do funkcjonowania Serwisu,</li>
+              <li>cookies analityczne – umożliwiające analizę sposobu korzystania z Serwisu,</li>
+              <li>cookies funkcjonalne – zapamiętujące wybrane ustawienia Użytkownika.</li>
+            </ul>
+            <p>
+              Użytkownik może w każdej chwili zmienić ustawienia dotyczące plików cookies w swojej przeglądarce internetowej. Ograniczenie stosowania cookies może wpłynąć na funkcjonalność Serwisu.
+            </p>
+          </section>
+          <!-- 10. Kontakt -->
+          <section class="legal__block" id="privacy-section-10" aria-labelledby="privacy-section-10-heading">
+            <div class="legal__block-header">
+              <h3 id="privacy-section-10-heading" class="legal__block-title">Kontakt</h3>
+              <a class="legal__back-link" href="#privacy-toc-heading" aria-label="Wróć do spisu treści">↑</a>
+            </div>
+            <p>
+              W sprawach związanych z przetwarzaniem danych osobowych można skontaktować się z Administratorem pod adresem:
+              <a href="mailto:kontakt@kp-code.pl"><strong>kontakt@kp-code.pl</strong></a>
+              .
+            </p>
+            <p>Administrator udziela odpowiedzi w możliwie najkrótszym terminie, z uwzględnieniem charakteru zgłoszenia oraz obowiązujących przepisów prawa.</p>
+          </section>
+          <!-- 11. Zmiany Polityki prywatności -->
+          <section class="legal__block" id="privacy-section-11" aria-labelledby="privacy-section-11-heading">
+            <div class="legal__block-header">
+              <h3 id="privacy-section-11-heading" class="legal__block-title">Zmiany Polityki prywatności</h3>
+              <a class="legal__back-link" href="#privacy-toc-heading" aria-label="Wróć do spisu treści">↑</a>
+            </div>
+            <p>
+              Administrator zastrzega sobie prawo do wprowadzania zmian w niniejszej Polityce prywatności w szczególności w przypadku zmian przepisów prawa, aktualizacji funkcjonalności Serwisu lub
+              zmiany sposobu przetwarzania danych.
+            </p>
+            <p>Aktualna wersja Polityki prywatności publikowana jest w Serwisie i wchodzi w życie z dniem jej opublikowania.</p>
+          </section>
+
+          <!-- Data ostatniej aktualizacji -->
+          <p class="legal__meta">
+            Data ostatniej aktualizacji:
+            <time datetime="2026-03-17">17.03.2026</time>
           </p>
-          <h2>1. Administrator danych</h2>
-          <p>Administratorem danych osobowych jest KP_Code Digital Studio (dalej: „Administrator”).</p>
-          <p>W sprawach związanych z przetwarzaniem danych osobowych można skontaktować się z Administratorem za pośrednictwem adresu e-mail: kontakt@kp-code.pl.</p>
-          <h2>2. Charakter Serwisu</h2>
-          <p>
-            Serwis „………………..” ma charakter demonstracyjny i służy prezentacji rozwiązań projektowych oraz implementacji front-end. Serwis nie prowadzi rzeczywistej działalności gospodarczej ani
-            sprzedaży i nie umożliwia składania wiążących zamówień, rezerwacji ani dokonywania płatności.
-          </p>
-          <p>Dane wprowadzane w formularzach mają charakter testowy. Użytkownik nie powinien podawać danych wrażliwych ani informacji poufnych.</p>
-          <h2>3. Zakres i charakter przetwarzania danych</h2>
-          <p>Administrator przetwarza dane osobowe wyłącznie w zakresie niezbędnym do:</p>
-          <ul>
-            <li>zapewnienia prawidłowego funkcjonowania Serwisu,</li>
-            <li>obsługi zapytań kierowanych za pośrednictwem formularza kontaktowego,</li>
-            <li>zapewnienia bezpieczeństwa infrastruktury IT.</li>
-          </ul>
-          <p>Dane mogą obejmować w szczególności:</p>
-          <ul>
-            <li>imię,</li>
-            <li>adres e-mail,</li>
-            <li>inne informacje dobrowolnie podane przez Użytkownika w treści wiadomości,</li>
-            <li>dane techniczne związane z korzystaniem z Serwisu, takie jak adres IP, dane przeglądarki, system operacyjny lub identyfikatory plików cookies.</li>
-          </ul>
-          <p>Dane nie są wykorzystywane do zautomatyzowanego podejmowania decyzji ani profilowania.</p>
-          <h2>4. Podstawy prawne przetwarzania</h2>
-          <p>
-            Dane osobowe przetwarzane są zgodnie z obowiązującymi przepisami prawa, w szczególności z Rozporządzeniem Parlamentu Europejskiego i Rady (UE) 2016/679 (RODO).
-          </p>
-          <p>Podstawą przetwarzania danych może być:</p>
-          <ul>
-            <li>zgoda Użytkownika (art. 6 ust. 1 lit. a RODO) – w przypadku dobrowolnego przesłania danych za pośrednictwem formularza,</li>
-            <li>
-              prawnie uzasadniony interes Administratora (art. 6 ust. 1 lit. f RODO) – w zakresie zapewnienia bezpieczeństwa Serwisu, obsługi zapytań oraz analizy technicznej działania strony,
-            </li>
-            <li>obowiązek prawny ciążący na Administratorze (art. 6 ust. 1 lit. c RODO) – jeżeli wynika on z przepisów prawa.</li>
-          </ul>
-          <h2>5. Odbiorcy danych</h2>
-          <p>Dane osobowe mogą być przekazywane podmiotom współpracującym z Administratorem wyłącznie w zakresie niezbędnym do prawidłowego funkcjonowania Serwisu oraz realizacji wskazanych celów przetwarzania, w szczególności:</p>
-          <ul>
-            <li>dostawcom usług hostingowych,</li>
-            <li>podmiotom zapewniającym infrastrukturę IT,</li>
-            <li>dostawcom narzędzi technicznych wykorzystywanych do obsługi formularzy lub komunikacji e-mail,</li>
-            <li>podmiotom uprawnionym do otrzymania danych na podstawie przepisów prawa.</li>
-          </ul>
-          <p>Dane nie są sprzedawane ani udostępniane podmiotom trzecim w celach marketingowych.</p>
-          <h2>6. Okres przechowywania danych</h2>
-          <p>Dane osobowe przechowywane są przez okres niezbędny do realizacji celów, dla których zostały zebrane, z uwzględnieniem obowiązujących przepisów prawa.</p>
-          <p>W szczególności:</p>
-          <ul>
-            <li>dane przekazane za pośrednictwem formularza kontaktowego – przez czas niezbędny do udzielenia odpowiedzi oraz ewentualnej dalszej korespondencji,</li>
-            <li>dane techniczne związane z bezpieczeństwem – przez okres wymagany do zapewnienia ochrony infrastruktury IT,</li>
-            <li>dane przetwarzane na podstawie obowiązku prawnego – przez okres wynikający z przepisów prawa.</li>
-          </ul>
-          <p>Po upływie wskazanych okresów dane są usuwane lub poddawane anonimizacji.</p>
-          <h2>7. Prawa Użytkownika</h2>
-          <p>Użytkownikowi przysługują prawa wynikające z przepisów RODO, w szczególności:</p>
-          <ul>
-            <li>prawo dostępu do danych i uzyskania ich kopii,</li>
-            <li>prawo do sprostowania danych,</li>
-            <li>prawo do usunięcia danych,</li>
-            <li>prawo do ograniczenia przetwarzania,</li>
-            <li>prawo do przenoszenia danych,</li>
-            <li>prawo do wniesienia sprzeciwu wobec przetwarzania,</li>
-            <li>prawo do cofnięcia zgody w dowolnym momencie (jeżeli przetwarzanie odbywa się na podstawie zgody),</li>
-            <li>prawo wniesienia skargi do Prezesa Urzędu Ochrony Danych Osobowych.</li>
-          </ul>
-          <p>
-            W celu realizacji swoich praw Użytkownik może skontaktować się z Administratorem pod adresem: kontakt@kp-code.pl.
-          </p>
-          <h2>8. Bezpieczeństwo danych</h2>
-          <p>
-            Administrator stosuje odpowiednie środki techniczne i organizacyjne mające na celu ochronę przetwarzanych danych osobowych, adekwatne do charakteru, zakresu oraz ryzyka związanego z
-            przetwarzaniem.
-          </p>
-          <p>Środki te obejmują w szczególności:</p>
-          <ul>
-            <li>zabezpieczenia infrastruktury serwerowej i systemów informatycznych,</li>
-            <li>ograniczenie dostępu do danych wyłącznie do osób upoważnionych,</li>
-            <li>monitorowanie działania Serwisu w celu wykrywania potencjalnych zagrożeń.</li>
-          </ul>
-          <h2>9. Pliki cookies</h2>
-          <p>
-            Serwis może wykorzystywać pliki cookies w celu zapewnienia prawidłowego działania strony oraz poprawy jakości świadczonych usług.
-          </p>
-          <p>Cookies mogą obejmować:</p>
-          <ul>
-            <li>cookies techniczne – niezbędne do funkcjonowania Serwisu,</li>
-            <li>cookies analityczne – umożliwiające analizę sposobu korzystania z Serwisu,</li>
-            <li>cookies funkcjonalne – zapamiętujące wybrane ustawienia Użytkownika.</li>
-          </ul>
-          <p>
-            Użytkownik może w każdej chwili zmienić ustawienia dotyczące plików cookies w swojej przeglądarce internetowej. Ograniczenie stosowania cookies może wpłynąć na funkcjonalność Serwisu.
-          </p>
-          <h2>10. Kontakt</h2>
-          <p>W sprawach związanych z przetwarzaniem danych osobowych można skontaktować się z Administratorem pod adresem: kontakt@kp-code.pl.</p>
-          <p>Administrator udziela odpowiedzi w możliwie najkrótszym terminie, z uwzględnieniem charakteru zgłoszenia oraz obowiązujących przepisów prawa.</p>
-          <h2>11. Zmiany Polityki prywatności</h2>
-          <p>
-            Administrator zastrzega sobie prawo do wprowadzania zmian w niniejszej Polityce prywatności w szczególności w przypadku zmian przepisów prawa, aktualizacji funkcjonalności Serwisu lub zmiany
-            sposobu przetwarzania danych.
-          </p>
-          <p>Aktualna wersja Polityki prywatności publikowana jest w Serwisie i wchodzi w życie z dniem jej opublikowania.</p>
-          <p>Data ostatniej aktualizacji: 17.03.2026</p>
         </div>
       </section>
     </main>
 
-     <!-- Footer -->
+    <!-- Footer -->
     <footer class="site-footer">
       <div class="container site-footer__grid">
         <!-- footer columns -->
