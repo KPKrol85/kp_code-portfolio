@@ -5,19 +5,15 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Aurora Travel - Kontakt</title>
-
     <!-- SEO -->
     <meta name="description" content="Skontaktuj się z doradcą Aurora Travel i zaplanuj swoją kolejną, szytą na miarę podróż." />
-
     <!-- Indexing / canonical -->
     <meta name="robots" content="index,follow" />
     <link rel="canonical" href="https://hospitality-pr02-aurora.netlify.app/contact.html" />
-
     <!-- PWA / UI -->
     <meta name="color-scheme" content="light dark" />
     <meta name="theme-color" media="(prefers-color-scheme: light)" content="#f8f7f2" />
     <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#05060a" />
-
     <!-- Favicons + manifest -->
     <link rel="manifest" href="site.webmanifest" />
     <link rel="icon" type="image/svg+xml" href="assets/img/icons/favicon.svg" />
@@ -25,7 +21,6 @@
     <link rel="icon" type="image/png" sizes="16x16" href="assets/img/icons/favicon-16x16.png" />
     <link rel="apple-touch-icon" href="assets/img/icons/apple-touch-icon.png" />
     <link rel="mask-icon" href="assets/img/icons/safari-pinned-tab.svg" color="#0c2d48" />
-
     <!-- Open Graph -->
     <meta property="og:type" content="website" />
     <meta property="og:site_name" content="Aurora Travel" />
@@ -34,13 +29,11 @@
     <meta property="og:url" content="https://hospitality-pr02-aurora.netlify.app/contact.html" />
     <meta property="og:image" content="https://hospitality-pr02-aurora.netlify.app/assets/img/og-cover.svg" />
     <meta property="og:locale" content="pl_PL" />
-
     <!-- Twitter -->
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content="Aurora Travel - Kontakt" />
     <meta name="twitter:description" content="Dedykowany concierge odpowie na Twoje zapytanie w ciągu 24 godzin." />
     <meta name="twitter:image" content="https://hospitality-pr02-aurora.netlify.app/assets/img/og-cover.svg" />
-
     <!-- JSON-LD -->
     <script type="application/ld+json">
       {
@@ -78,7 +71,6 @@
         ]
       }
     </script>
-
     <!-- Theme preload -->
     <script>
       (function () {
@@ -108,28 +100,40 @@
         document.documentElement.style.colorScheme = theme;
       })();
     </script>
-
     <!-- Styles -->
     <link rel="stylesheet" href="css/style.css" />
   </head>
 
-  <!-- BODY -->
+  <!-- Body -->
   <body data-page="contact">
     <a class="skip-link" href="#main-content">Przejdź do treści</a>
 
-    <!-- HEADER -->
+    <!-- Header -->
     <header class="site-header" data-header>
       <div class="container site-header__inner">
         <a class="logo" href="index.html" aria-label="Aurora Travel">
           <img src="assets/img/logo/logo.svg" alt="" class="logo__icon" />
           <span class="logo__text">Aurora Travel</span>
         </a>
+        <!-- nav toggle -->
         <button class="nav__toggle" type="button" data-nav-toggle aria-expanded="false" aria-controls="primary-navigation">
-          <svg class="nav__toggle-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true">
-            <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
+          <svg
+            class="nav__toggle-icon"
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1.8"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            aria-hidden="true">
+            <path class="line line--top" d="M3.75 6.75h16.5" />
+            <path class="line line--middle" d="M3.75 12h16.5" />
+            <path class="line line--bottom" d="M3.75 17.25h16.5" />
           </svg>
           <span class="visually-hidden">Otwórz menu</span>
         </button>
+        <!-- navigation -->
         <nav class="nav" id="primary-navigation" aria-label="Główne menu" data-nav>
           <ul>
             <li><a href="index.html">Strona główna</a></li>
@@ -139,6 +143,7 @@
             <li><a href="contact.html">Kontakt</a></li>
           </ul>
         </nav>
+        <!-- theme toggle -->
         <button class="theme-toggle" type="button" data-theme-toggle aria-label="Przełącz motyw" title="Toggle theme">
           <svg class="theme-toggle__icon theme-toggle__icon--sun" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true">
             <path
@@ -156,23 +161,27 @@
       </div>
     </header>
 
-    <!-- MAIN CONTENT -->
+    <!-- Main -->
     <main id="main-content" tabindex="-1">
-      <!-- HERO -->
+      <!-- Hero -->
       <div class="page-hero page-hero--contact reveal is-visible">
         <div class="container">
+          <!-- breadcrumb -->
           <nav class="breadcrumb" aria-label="Ścieżka nawigacyjna">
             <ol>
               <li><a href="index.html">Strona główna</a></li>
               <li aria-current="page">Kontakt</li>
             </ol>
           </nav>
-          <h1>Porozmawiajmy o Twojej podróży</h1>
-          <p>Nasz zespół odpowiada w ciągu 24 godzin i przygotowuje propozycję dopasowaną do Twojego stylu.</p>
+          <h1 class="page-hero__title">Porozmawiajmy o Twojej podróży</h1>
+          <p class="page-hero__lead">Nasz zespół odpowiada w ciągu 24 godzin i przygotowuje propozycję dopasowaną do Twojego stylu.</p>
         </div>
       </div>
+
+      <!-- Contact -->
       <section class="section contact-grid reveal" aria-labelledby="contact-heading">
         <div class="container contact-grid__inner">
+          <!-- office -->
           <article>
             <picture class="contact-media">
               <source
@@ -204,19 +213,29 @@
                 sizes="(min-width: 1024px) 420px, (min-width: 768px) 50vw, 100vw"
                 alt="Zespół Aurora Travel w eleganckim biurze podróży" />
             </picture>
+            <!-- contact details -->
             <h2 id="contact-heading">Dane kontaktowe</h2>
-            <p>
-              <strong>Telefon:</strong>
-              <a href="tel:+48533537091">+48 533 537 091</a>
-            </p>
-            <p>
-              <strong>Email:</strong>
-              <a href="mailto:kontakt@kp-code.pl">kontakt@kp-code.pl</a>
-            </p>
-            <p>
-              <strong>Adres:</strong>
-              ul. Marynarki Wojennej 12/31, 33-100 Tarnów
-            </p>
+            <address class="contact-details">
+              <p class="contact-details__item">
+                <span class="contact-details__label">Telefon</span>
+                <a href="tel:+48533537091" class="contact-details__value">+48 533 537 091</a>
+              </p>
+              <p class="contact-details__item">
+                <span class="contact-details__label">Email</span>
+                <a href="mailto:kontakt@kp-code.pl" class="contact-details__value">kontakt@kp-code.pl</a>
+              </p>
+              <p class="contact-details__item">
+                <span class="contact-details__label">Adres</span>
+                <span class="contact-details__value">
+                  ul. Marynarki Wojennej 12
+                  <br />
+                  33-100 Tarnów
+                  <br />
+                  Polska
+                </span>
+              </p>
+            </address>
+            <!--             map -->
             <div class="map">
               <iframe
                 title="Mapa biura Aurora Travel"
@@ -225,6 +244,8 @@
                 referrerpolicy="no-referrer-when-downgrade"></iframe>
             </div>
           </article>
+
+          <!-- form -->
           <article>
             <h2>Wyślij zapytanie</h2>
             <form class="form" name="zapytanie" method="POST" data-netlify="true" data-form>
