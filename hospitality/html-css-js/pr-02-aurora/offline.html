@@ -4,9 +4,9 @@
     <!-- Document meta -->
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Aurora Travel – Tryb offline | KP_Code_</title>
+    <title>Aurora Travel – Tryb offline</title>
     <!-- SEO -->
-    <meta name="description" content="Strona Aurora Travel jest niedostępna z powodu braku połączenia z internetem. Projekt KP_Code_." />
+    <meta name="description" content="Strona Aurora Travel jest niedostępna z powodu braku połączenia z internetem." />
     <!-- Indexing -->
     <meta name="robots" content="noindex,follow" />
     <!-- PWA / UI -->
@@ -24,7 +24,7 @@
     <meta property="og:type" content="article" />
     <meta property="og:site_name" content="Aurora Travel" />
     <meta property="og:title" content="Tryb offline – Aurora Travel" />
-    <meta property="og:description" content="Brak połączenia z siecią. Strona Aurora Travel działa w trybie offline. Projekt KP_Code_." />
+    <meta property="og:description" content="Brak połączenia z siecią. Strona Aurora Travel działa w trybie offline." />
     <meta property="og:url" content="https://hospitality-pr02-aurora.netlify.app/offline.html" />
     <meta property="og:image" content="https://hospitality-pr02-aurora.netlify.app/assets/img/og-cover.svg" />
     <meta property="og:locale" content="pl_PL" />
@@ -81,6 +81,7 @@
   <!-- Body -->
   <body data-page="utility">
     <a class="skip-link" href="#main-content">Przejdź do treści</a>
+
     <!-- Header -->
     <header class="site-header" data-header>
       <div class="container site-header__inner">
@@ -88,12 +89,25 @@
           <img src="assets/img/logo/logo.svg" alt="" class="logo__icon" />
           <span class="logo__text">Aurora Travel</span>
         </a>
+        <!-- nav toggle -->
         <button class="nav__toggle" type="button" data-nav-toggle aria-expanded="false" aria-controls="primary-navigation">
-          <svg class="nav__toggle-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true">
-            <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
+          <svg
+            class="nav__toggle-icon"
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1.8"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            aria-hidden="true">
+            <path class="line line--top" d="M3.75 6.75h16.5" />
+            <path class="line line--middle" d="M3.75 12h16.5" />
+            <path class="line line--bottom" d="M3.75 17.25h16.5" />
           </svg>
           <span class="visually-hidden">Otwórz menu</span>
         </button>
+        <!-- navigation -->
         <nav class="nav" id="primary-navigation" aria-label="Główne menu" data-nav>
           <ul>
             <li><a href="index.html">Strona główna</a></li>
@@ -103,6 +117,7 @@
             <li><a href="contact.html">Kontakt</a></li>
           </ul>
         </nav>
+        <!-- theme toggle -->
         <button class="theme-toggle" type="button" data-theme-toggle aria-label="Przełącz motyw" title="Toggle theme">
           <svg class="theme-toggle__icon theme-toggle__icon--sun" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true">
             <path
@@ -119,7 +134,10 @@
         </button>
       </div>
     </header>
+
+    <!-- Main -->
     <main id="main-content" class="utility-page">
+      <!-- section -->
       <section class="section utility-page__section">
         <div class="container utility-page__inner">
           <article class="utility-page__card reveal is-visible">
