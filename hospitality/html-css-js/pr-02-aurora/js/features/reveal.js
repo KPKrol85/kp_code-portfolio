@@ -1,15 +1,12 @@
-const SELECTORS = [".hero", ".section", ".tour-card", ".feature-card", ".cta", ".page-hero", ".testimonials", ".gallery-grid figure"];
-
 export function initReveal() {
-  let elements = Array.from(document.querySelectorAll(SELECTORS.join(",")));
-  elements = elements.filter((el) => {
-    const ariaLabel = el.getAttribute("aria-label");
-    return ariaLabel !== "Lista wycieczek" && ariaLabel !== "Galeria zdjęć";
-  });
+  const elements = Array.from(document.querySelectorAll(".reveal"));
 
-  if (!elements.length || !("IntersectionObserver" in window)) return;
+  if (!elements.length) return;
 
-  elements.forEach((el) => el.classList.add("reveal"));
+  if (!("IntersectionObserver" in window)) {
+    elements.forEach((el) => el.classList.add("is-visible"));
+    return;
+  }
 
   const observer = new IntersectionObserver(
     (entries) => {

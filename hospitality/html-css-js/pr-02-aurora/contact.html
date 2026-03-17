@@ -82,6 +82,7 @@
     <!-- Theme preload -->
     <script>
       (function () {
+        document.documentElement.classList.add("js");
         var key = "kp-travel-theme";
         var stored = null;
 
@@ -158,7 +159,7 @@
     <!-- MAIN CONTENT -->
     <main id="main-content" tabindex="-1">
       <!-- HERO -->
-      <div class="page-hero page-hero--contact">
+      <div class="page-hero page-hero--contact reveal is-visible">
         <div class="container">
           <nav class="breadcrumb" aria-label="Ścieżka nawigacyjna">
             <ol>
@@ -170,7 +171,7 @@
           <p>Nasz zespół odpowiada w ciągu 24 godzin i przygotowuje propozycję dopasowaną do Twojego stylu.</p>
         </div>
       </div>
-      <section class="section contact-grid" aria-labelledby="contact-heading">
+      <section class="section contact-grid reveal" aria-labelledby="contact-heading">
         <div class="container contact-grid__inner">
           <article>
             <picture class="contact-media">

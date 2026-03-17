@@ -74,6 +74,7 @@
     <!-- Theme preload -->
     <script>
       (function () {
+        document.documentElement.classList.add("js");
         var key = "kp-travel-theme";
         var stored = null;
         try {
@@ -160,7 +161,7 @@
     <main id="main-content" tabindex="-1">
 
       <!-- Hero -->
-      <div class="page-hero page-hero--about">
+      <div class="page-hero page-hero--about reveal is-visible">
         <div class="container">
 
           <!-- breadcrumb -->
@@ -176,7 +177,7 @@
       </div>
 
       <!-- About -->
-      <section class="section" aria-labelledby="story-heading">
+      <section class="section reveal" aria-labelledby="story-heading">
         <div class="container about-grid">
           <!-- story -->
           <article class="about-story">
@@ -265,7 +266,7 @@
       </section>
 
       <!-- Process  -->
-      <section class="section" aria-labelledby="process-heading">
+      <section class="section reveal" aria-labelledby="process-heading">
         <div class="container">
           <div class="section__header">
             <p class="eyebrow">Jak pracujemy</p>
@@ -289,7 +290,7 @@
       </section>
 
       <!-- FAQ -->
-      <section class="section section--muted" aria-labelledby="faq-heading">
+      <section class="section section--muted reveal" aria-labelledby="faq-heading">
         <div class="container">
           <div class="section__header">
             <p class="eyebrow">FAQ</p>

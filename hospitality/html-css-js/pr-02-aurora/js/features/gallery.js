@@ -36,6 +36,7 @@ function renderGallery(gallery, items) {
 
 function createGalleryFigure(item) {
   const figure = document.createElement("figure");
+  figure.className = "reveal";
   figure.dataset.country = item.country;
 
   const picture = document.createElement("picture");

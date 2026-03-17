@@ -44,6 +44,7 @@
     <!-- Theme preload -->
     <script>
       (function () {
+        document.documentElement.classList.add("js");
         var key = "kp-travel-theme";
         var stored = null;
         try {
@@ -131,7 +132,7 @@
 
     <!-- Main -->
     <main id="main-content">
-      <div class="page-hero">
+      <div class="page-hero reveal is-visible">
         <div class="container">
           <nav class="breadcrumb" aria-label="Ścieżka nawigacyjna">
             <ol>
@@ -143,7 +144,7 @@
           <p>Niniejszy dokument określa zasady korzystania z demonstracyjnej wersji projektu strony internetowej.</p>
         </div>
       </div>
-      <section class="section legal" aria-labelledby="terms-heading">
+      <section class="section legal reveal is-visible" aria-labelledby="terms-heading">
         <div class="container">
           <h2 id="terms-heading">Informacje prawne</h2>
           <p>

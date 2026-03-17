@@ -95,6 +95,7 @@
     <!-- Theme preload -->
     <script>
       (function () {
+        document.documentElement.classList.add("js");
         var key = "kp-travel-theme";
         var stored = null;
         try {
@@ -181,7 +182,7 @@
     <main id="main-content" tabindex="-1">
 
       <!-- Hero -->
-      <div class="page-hero page-hero--tours">
+      <div class="page-hero page-hero--tours reveal is-visible">
         <div class="container">
           <!-- breadcrumb -->
           <nav class="breadcrumb" aria-label="Ścieżka nawigacyjna">
@@ -196,7 +197,7 @@
       </div>
 
       <!-- Filters -->
-      <section class="section section--filters" aria-label="Filtry ofert">
+      <section class="section section--filters reveal" aria-label="Filtry ofert">
         <div class="container">
           <form class="filters" data-filters>
             <!-- item 1 -->
@@ -244,7 +245,7 @@
       <section class="section" aria-label="Lista wycieczek">
         <div class="container tour-list" data-tours-list>
           <!-- item 1 -->
-          <article class="tour-card tour-card--detailed" id="tokio" data-type="city" data-region="azja" data-days="12" data-price="24000">
+          <article class="tour-card tour-card--detailed reveal" id="tokio" data-type="city" data-region="azja" data-days="12" data-price="24000">
             <picture class="tour-card__media">
               <source
                 srcset="
@@ -289,7 +290,7 @@
             </div>
           </article>
           <!-- item 2 -->
-          <article class="tour-card tour-card--detailed" id="malediwy" data-type="egzotyczne" data-region="ocean" data-days="7" data-price="32000">
+          <article class="tour-card tour-card--detailed reveal" id="malediwy" data-type="egzotyczne" data-region="ocean" data-days="7" data-price="32000">
             <picture class="tour-card__media">
               <source
                 srcset="
@@ -333,7 +334,7 @@
             </div>
           </article>
           <!-- item 3 -->
-          <article class="tour-card tour-card--detailed" id="patagonia" data-type="objazdowe" data-region="ameryka" data-days="14" data-price="28000">
+          <article class="tour-card tour-card--detailed reveal" id="patagonia" data-type="objazdowe" data-region="ameryka" data-days="14" data-price="28000">
             <picture class="tour-card__media">
               <source
                 srcset="
@@ -377,7 +378,7 @@
             </div>
           </article>
           <!-- item 4 -->
-          <article class="tour-card tour-card--detailed" id="nyc" data-type="city" data-region="ameryka" data-days="5" data-price="15000">
+          <article class="tour-card tour-card--detailed reveal" id="nyc" data-type="city" data-region="ameryka" data-days="5" data-price="15000">
             <picture class="tour-card__media">
               <source
                 srcset="
@@ -421,7 +422,7 @@
             </div>
           </article>
           <!-- item 5 -->
-          <article class="tour-card tour-card--detailed" id="maroko" data-type="rodzinne" data-region="afryka" data-days="8" data-price="11000">
+          <article class="tour-card tour-card--detailed reveal" id="maroko" data-type="rodzinne" data-region="afryka" data-days="8" data-price="11000">
             <picture class="tour-card__media">
               <source
                 srcset="
@@ -465,7 +466,7 @@
             </div>
           </article>
           <!-- item 6 -->
-          <article class="tour-card tour-card--detailed" id="islandia" data-type="objazdowe" data-region="europa" data-days="9" data-price="19000">
+          <article class="tour-card tour-card--detailed reveal" id="islandia" data-type="objazdowe" data-region="europa" data-days="9" data-price="19000">
             <picture class="tour-card__media">
               <source
                 srcset="
