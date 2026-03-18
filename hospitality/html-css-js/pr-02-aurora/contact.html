@@ -249,8 +249,14 @@
           <!-- form -->
           <article>
             <h2>Wyślij zapytanie</h2>
-            <form class="form" name="zapytanie" method="POST" data-netlify="true" data-form>
+            <form class="form" name="zapytanie" method="POST" action="dziekuje.html" data-netlify="true" netlify-honeypot="bot-field" data-form>
               <input type="hidden" name="form-name" value="zapytanie" />
+              <p class="visually-hidden">
+                <label for="bot-field">
+                  Nie wypełniaj tego pola
+                  <input id="bot-field" name="bot-field" type="text" tabindex="-1" autocomplete="off" />
+                </label>
+              </p>
               <div class="form__field">
                 <label for="name">Imię i nazwisko *</label>
                 <input id="name" name="name" type="text" required minlength="3" aria-describedby="error-name" />
