@@ -4,7 +4,7 @@
     <!-- Document meta -->
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Aurora Travel - Butikowe biuro podróży</title>
+    <title>Aurora Travel – Butikowe biuro podróży</title>
     <!-- SEO -->
     <meta name="description" content="Aurora Travel – butikowe biuro podróży tworzące spersonalizowane wycieczki, city breaki i egzotyczne wyprawy." />
     <!-- Indexing / canonical -->
@@ -60,26 +60,39 @@
       })();
     </script>
     <!-- Styles -->
-    <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="css/style.min.css" />
     <!-- JSON-LD -->
     <script type="application/ld+json">
       {
         "@context": "https://schema.org",
         "@graph": [
           {
+            "@type": "WebSite",
+            "@id": "https://hospitality-pr02-aurora.netlify.app/#website",
+            "url": "https://hospitality-pr02-aurora.netlify.app/",
+            "name": "Aurora Travel",
+            "inLanguage": "pl-PL",
+            "publisher": {
+              "@id": "https://hospitality-pr02-aurora.netlify.app/#travel-agency"
+            }
+          },
+          {
             "@type": "WebPage",
             "@id": "https://hospitality-pr02-aurora.netlify.app/#home",
             "url": "https://hospitality-pr02-aurora.netlify.app/",
-            "name": "Aurora Travel - Butikowe biuro podróży | KP_Code_",
-            "description": "Strona główna Aurora Travel – butikowego biura podróży. Projekt KP_Code_.",
+            "name": "Aurora Travel – Butikowe biuro podróży",
+            "description": "Aurora Travel – butikowe biuro podróży tworzące spersonalizowane wycieczki, city breaki i egzotyczne wyprawy.",
             "inLanguage": "pl-PL",
             "isPartOf": {
-              "@id": "https://hospitality-pr02-aurora.netlify.app/"
+              "@id": "https://hospitality-pr02-aurora.netlify.app/#website"
+            },
+            "about": {
+              "@id": "https://hospitality-pr02-aurora.netlify.app/#travel-agency"
             }
           },
           {
             "@type": "TravelAgency",
-            "@id": "https://hospitality-pr02-aurora.netlify.app/",
+            "@id": "https://hospitality-pr02-aurora.netlify.app/#travel-agency",
             "name": "Aurora Travel",
             "url": "https://hospitality-pr02-aurora.netlify.app/",
             "logo": "https://hospitality-pr02-aurora.netlify.app/assets/img/logo/logo.svg",
@@ -88,12 +101,11 @@
             "email": "kontakt@kp-code.pl",
             "address": {
               "@type": "PostalAddress",
-              "streetAddress": "ul. Marynarki Wojennej 12/31",
+              "streetAddress": "ul. Marynarki Wojennej 12",
               "addressLocality": "Tarnów",
               "postalCode": "33-100",
               "addressCountry": "PL"
-            },
-            "sameAs": ["https://www.linkedin.com/in/kp-code/", "https://www.facebook.com/kpkrol85", "https://github.com/KPKrol85", "https://x.com/KP_Code_85", "https://www.youtube.com/@kp_code"]
+            }
           }
         ]
       }
@@ -568,6 +580,6 @@
     </footer>
 
     <!-- Script -->
-    <script type="module" src="js/script.js"></script>
+    <script src="js/script.min.js"></script>
   </body>
 </html>
