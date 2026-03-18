@@ -1,285 +1,219 @@
-# Aurora – dokumentacja projektu / project documentation
+# Aurora
 
 ## PL
 
-### 1. Przegląd projektu
-Aurora to statyczna, wielostronicowa strona front-endowa biura podróży. Aplikacja działa bez frameworka i bez etapu bundlowania JavaScript.
+### Przegląd projektu
+Aurora to statyczny, wielostronicowy serwis front-endowy dla marki Aurora Travel. Repozytorium zawiera źródłowe pliki HTML, modularny CSS oparty na importach, modułowy JavaScript w Vanilla JS oraz lekki pipeline buildowy dla minifikacji, weryfikacji assetów i przygotowania katalogu `dist`.
 
-**Stos technologiczny (aktualny):**
-- HTML5 (wielostronicowy serwis)
-- CSS (źródło `css/style.css` + wersja produkcyjna `css/style.min.css`)
-- JavaScript ES Modules (`js/script.js` + moduły w `js/features/`)
-- PWA (`site.webmanifest`, `service-worker.js`, strona `offline.html`)
-- Netlify (hosting + plik `_headers` + formularz kontaktowy z `data-netlify="true"`)
+### Kluczowe funkcje
+- Wielostronicowa architektura oparta na statycznych plikach HTML.
+- Responsywna nawigacja z mobilnym menu, obsługą `aria-expanded`, klawisza `Escape` i pułapką fokusu.
+- Przełącznik motywu jasny/ciemny z zapisem preferencji w `localStorage`.
+- Sekcje interaktywne oparte na modułach JS: tabs, accordion FAQ, filtry ofert, filtry galerii, lightbox.
+- Dynamiczne ładowanie galerii i szczegółów wycieczki z plików JSON.
+- Formularz kontaktowy przygotowany pod Netlify Forms z walidacją po stronie klienta i natywnym submit flow.
+- Strony prawne, strona offline, strona 404 i strona potwierdzenia wysłania formularza.
+- Inline SEO metadata: meta description, canonical, Open Graph, Twitter cards, robots, JSON-LD i `BreadcrumbList` na wybranych stronach statycznych.
+- PWA baseline: `site.webmanifest`, `service-worker.js`, offline fallback.
 
----
+### Tech stack
+- HTML5
+- CSS z podziałem na moduły i tokeny projektowe
+- Vanilla JavaScript ES modules
+- PostCSS (`postcss-import`, `autoprefixer`, `cssnano`)
+- esbuild do bundlowania i minifikacji JS
+- Netlify-compatible deployment files: `_redirects`, `_headers`, Netlify-ready form markup
 
-### 2. Struktura projektu
-Najważniejsze elementy repozytorium:
+### Struktura projektu
+- `index.html`, `about.html`, `tours.html`, `tour.html`, `gallery.html`, `contact.html`
+- `cookies.html`, `regulamin.html`, `polityka-prywatnosci.html`
+- `404.html`, `offline.html`, `dziekuje.html`
+- `css/style.css` jako główne wejście źródłowe CSS
+- `css/modules/` z podziałem na tokens, base, layout, components, sections, fonts, subpages, utilities
+- `js/script.js` jako główny entrypoint
+- `js/features/` z modułami funkcjonalnymi
+- `assets/` z fontami, ikonami, grafikami i danymi JSON
+- `assets/img-src/` jako źródłowy katalog rasterów dla pipeline optymalizacji obrazów
+- `scripts/` z narzędziami buildowymi i walidatorami repozytorium
+- `service-worker.js`, `site.webmanifest`, `robots.txt`, `sitemap.xml`, `_headers`, `_redirects`
 
-- `index.html`, `about.html`, `tours.html`, `tour.html`, `gallery.html`, `contact.html`, `offline.html` oraz strony prawne (`cookies.html`, `regulamin.html`, `polityka-prywatnosci.html`)
-- `css/style.css` – główny plik źródłowy CSS (wersja developerska)
-- `css/style.min.css` – plik CSS używany przez strony HTML i Service Workera (wersja produkcyjna)
-- `js/script.js` – główny punkt wejścia JS (ES module)
-- `js/features/` – moduły funkcjonalne (nawigacja, formularz, filtry, lightbox, itp.)
-- `service-worker.js` – cache statycznych zasobów + strategia network-first dla HTML
-- `site.webmanifest` – konfiguracja PWA (ikony, shortcuty, kolory)
-- `scripts/check-css-assets.js` – walidacja spójności referencji do CSS w HTML i Service Workerze
-- `_headers` / `_redirects` – ustawienia pod deployment Netlify
-
-**Dev vs prod assets (CSS):**
-- **Dev source:** `css/style.css` (edytowany ręcznie)
-- **Prod asset:** `css/style.min.css` (generowany przez PostCSS)
-- HTML-e w aktualnym stanie odwołują się do `css/style.min.css`.
-
----
-
-### 3. Development
-Projekt nie wymaga procesu build do uruchomienia strony jako statycznego frontendu, ale wymaga serwera HTTP (ze względu na moduły JS i Service Workera).
-
-Przykładowe uruchomienie lokalne:
+### Setup i uruchomienie
+1. Zainstaluj zależności:
 
 ```bash
 npm install
-python3 -m http.server 8080
 ```
 
-Następnie otwórz: `http://localhost:8080`
-
-**Co traktujemy jako tryb dev:**
-- Edycja plików źródłowych (`*.html`, `css/style.css`, `js/features/*.js`)
-- Lokalne testy na serwerze statycznym
-- Regeneracja `css/style.min.css` po zmianach w CSS
-
----
-
-### 4. Build i produkcja
-W projekcie istnieje build tylko dla CSS.
-
-Dostępne skrypty npm:
-
-```bash
-npm run build:css
-```
-- Uruchamia PostCSS (`autoprefixer` + `cssnano`)
-- Generuje/aktualizuje `css/style.min.css` na podstawie `css/style.css`
-
-```bash
-npm run check:css-assets
-```
-- Sprawdza, czy wszystkie kluczowe strony odwołują się do `css/style.min.css`
-- Sprawdza, czy `service-worker.js` cache’uje `/css/style.min.css`
-- Wykrywa niepożądane odwołania do `/css/style.css` w Service Workerze
+2. Zbuduj assety produkcyjne:
 
 ```bash
 npm run build
 ```
-- Wykonuje: `build:css` + `check:css-assets`
 
-**Co jest generowane dla produkcji:**
-- `css/style.min.css`
+3. Przy pierwszym uruchomieniu workflow obrazów wykonaj bootstrap źródeł:
 
-Brak skryptu minifikacji JavaScript w aktualnym stanie repozytorium.
+```bash
+npm run images:bootstrap
+```
 
----
+4. Przygotuj pełny katalog dystrybucyjny:
 
-### 5. PWA i Service Worker
-PWA jest aktywowane przez rejestrację `service-worker.js` w `js/script.js`.
+```bash
+npm run dist
+```
 
-**Offline i cache:**
-- Wstępnie cache’owane zasoby statyczne obejmują m.in. `/`, `/index.html`, `/css/style.min.css`, `/js/script.js`, `/site.webmanifest`, `/offline.html`
-- Dla HTML działa strategia **network-first** z fallbackiem do cache/offline page
-- Dla zasobów statycznych działa **cache-first**
+5. Uruchamiaj projekt przez serwer HTTP. Service worker i moduły JS nie są przeznaczone do otwierania bezpośrednio z systemu plików.
 
-**Aktualizacja Service Workera:**
-- Po wykryciu nowej wersji pokazywany jest baner „New version available.”
-- Użytkownik decyduje, czy odświeżyć stronę (przycisk `Refresh`), co wywołuje `SKIP_WAITING`
-- Po przejęciu kontroli przez nowego SW następuje przeładowanie strony
+### Build i deployment
+- CSS jest budowany z `css/style.css` do `css/style.min.css`.
+- JavaScript jest bundlowany z `js/script.js` do `js/script.min.js`.
+- Raster images są budowane z `assets/img-src/` do `assets/img/` przez `npm run build:images`.
+- `npm run images:bootstrap` jednorazowo kopiuje obecne rastry z `assets/img/` do `assets/img-src/` jako warstwę źródłową workflow.
+- `npm run check:assets` sprawdza integralność odwołań assetów w źródłowych stronach HTML.
+- `npm run dist` czyści katalog wynikowy, buduje assety i kopiuje wymagane pliki do `dist/`.
+- Repozytorium zawiera pliki wdrożeniowe dla hostingu statycznego: `_redirects`, `_headers`, `site.webmanifest`, `service-worker.js`.
+- Formularz kontaktowy używa znacznika zgodnego z Netlify Forms i przekierowuje na `dziekuje.html`.
 
----
+### Notatki dostępności
+- Wspólne strony mają skip link do `#main-content`.
+- Mobilna nawigacja i lightbox mają obsługę klawiatury, focus management i zamykanie przez `Escape`.
+- Tabs i accordion używają atrybutów ARIA.
+- Formularz kontaktowy ma powiązania `label` -> `input`, komunikaty błędów przez `aria-describedby` i walidację progresywnie ulepszaną przez JS.
+- W CSS obecne są reguły `prefers-reduced-motion`.
+- Strony prawne mają osobne style do druku.
+- Część treści kluczowych na `gallery.html` i `tour.html` zależy od JavaScript.
 
-### 6. Uwagi dot. dostępności i SEO
-**Podejście progressive enhancement:**
-- Semantyczny HTML działa bez warstwy JS, a JS rozszerza interakcje (filtry, lightbox, nawigacja, formularz)
+### Notatki SEO
+- Wszystkie publiczne strony źródłowe mają title, meta description i Open Graph.
+- Strony indeksowalne mają canonical i `meta name="robots"`.
+- `robots.txt` wskazuje `sitemap.xml`.
+- W projekcie używany jest inline JSON-LD; na zatwierdzonych stronach statycznych dodano też `BreadcrumbList`.
+- Strony narzędziowe `404.html`, `offline.html` i `dziekuje.html` mają `noindex,follow`.
 
-**Widoczne elementy a11y w kodzie:**
-- Skip link (`.skip-link`)
-- Rozbudowane style `:focus-visible`
-- Obsługa `prefers-reduced-motion: reduce`
-- Atrybuty ARIA w nawigacji i komponentach interaktywnych
-- Formularz kontaktowy z etykietami, walidacją i komunikatami `aria-live`
+### Notatki wydajnościowe
+- Projekt używa obrazów responsywnych z formatami AVIF, WebP i JPG.
+- Część obrazów niekrytycznych ma `loading="lazy"`.
+- Hero na stronie głównej ma `fetchpriority="high"` oraz jawne `width` i `height`.
+- Fonty lokalne `Inter` i `Manrope` są ładowane przez `@font-face` z `font-display: swap`.
+- Assety produkcyjne są minifikowane, a service worker cache'uje podstawowe zasoby statyczne i stronę offline.
+- Workflow obrazów zachowuje strukturę katalogów, wspiera obecny wzorzec nazw `basename-WxH.ext` i generuje `.webp` oraz `.avif` dla responsywnych rasterów.
 
-**Podstawy SEO obecne w projekcie:**
-- Meta `description` i `robots` na stronach
-- `rel="canonical"`
-- `sitemap.xml`
-- `robots.txt`
+### Roadmapa
+- Dodać fallback bez JavaScript dla galerii i strony szczegółów wycieczki.
+- Ujednolicić strategię indeksacji dla `tour.html` i wpisów w sitemapie.
+- Uzupełnić brakujące wymiary obrazów w źródłowych szablonach i renderowaniu JS.
+- Aktywować i zweryfikować nagłówki bezpieczeństwa w `_headers`.
+- Ujednolicić publiczne nazewnictwo między HTML, manifestem i materiałami prawnymi.
 
----
-
-### 7. Deployment (Netlify)
-Projekt jest przygotowany do hostowania jako statyczna strona na Netlify.
-
-Praktyczny przepływ:
-1. Zbuduj CSS: `npm run build`
-2. Wdróż zawartość katalogu projektu jako static site
-3. Netlify zastosuje reguły z `_headers` i `_redirects`
-
-Uwagi:
-- Formularz kontaktowy korzysta z atrybutu `data-netlify="true"`
-- PWA korzysta z `service-worker.js` i `site.webmanifest`; po deployu warto wykonać smoke test offline
-
----
-
-### 8. Checklist release’u
-Przed publikacją:
-- [ ] `npm install`
-- [ ] `npm run build`
-- [ ] Potwierdź obecność `css/style.min.css`
-- [ ] Otwórz kluczowe strony i sprawdź brak błędów stylów/JS
-- [ ] Sprawdź formularz kontaktowy (render + walidacja)
-- [ ] Wykonaj szybki test offline (po wcześniejszym załadowaniu strony online)
-- [ ] Zweryfikuj `robots.txt` i `sitemap.xml`
+### Licencja
+MIT, zgodnie z `package.json`.
 
 ---
 
 ## EN
 
-### 1. Project overview
-Aurora is a static multi-page frontend website for a travel agency. It runs without a framework and without a JavaScript bundling step.
+### Project overview
+Aurora is a static multi-page front-end website for the Aurora Travel brand. The repository contains source HTML pages, modular CSS built from imports, modular Vanilla JS, and a lightweight build pipeline for minification, asset verification, and `dist` packaging.
 
-**Current tech stack:**
-- HTML5 (multi-page website)
-- CSS (`css/style.css` source + `css/style.min.css` production file)
-- JavaScript ES Modules (`js/script.js` + modules in `js/features/`)
-- PWA (`site.webmanifest`, `service-worker.js`, `offline.html`)
-- Netlify (hosting + `_headers` + contact form with `data-netlify="true"`)
+### Key features
+- Static multi-page HTML architecture.
+- Responsive navigation with mobile menu, `aria-expanded`, `Escape` handling, and focus trapping.
+- Light/dark theme toggle with preference persisted in `localStorage`.
+- Interactive sections powered by JS modules: tabs, FAQ accordion, offer filters, gallery filters, lightbox.
+- Dynamic gallery loading and tour-detail rendering from JSON files.
+- Contact form prepared for Netlify Forms with client-side validation and native form submission flow.
+- Legal pages, offline page, 404 page, and a thank-you page for form submission.
+- Inline SEO metadata: meta description, canonical, Open Graph, Twitter cards, robots, JSON-LD, and `BreadcrumbList` on approved static pages.
+- PWA baseline with `site.webmanifest`, `service-worker.js`, and offline fallback.
 
----
+### Tech stack
+- HTML5
+- Modular CSS with design tokens
+- Vanilla JavaScript ES modules
+- PostCSS (`postcss-import`, `autoprefixer`, `cssnano`)
+- esbuild for JS bundling and minification
+- Netlify-compatible deployment files: `_redirects`, `_headers`, Netlify-ready form markup
 
-### 2. Project structure
-Key repository elements:
+### Project structure
+- `index.html`, `about.html`, `tours.html`, `tour.html`, `gallery.html`, `contact.html`
+- `cookies.html`, `regulamin.html`, `polityka-prywatnosci.html`
+- `404.html`, `offline.html`, `dziekuje.html`
+- `css/style.css` as the main source CSS entry
+- `css/modules/` split into tokens, base, layout, components, sections, fonts, subpages, utilities
+- `js/script.js` as the main entry point
+- `js/features/` for feature modules
+- `assets/` for fonts, icons, images, and JSON data
+- `assets/img-src/` as the source raster directory for the image optimization pipeline
+- `scripts/` for build and verification utilities
+- `service-worker.js`, `site.webmanifest`, `robots.txt`, `sitemap.xml`, `_headers`, `_redirects`
 
-- `index.html`, `about.html`, `tours.html`, `tour.html`, `gallery.html`, `contact.html`, `offline.html`, and legal pages (`cookies.html`, `regulamin.html`, `polityka-prywatnosci.html`)
-- `css/style.css` – main CSS source file (development)
-- `css/style.min.css` – CSS file used by HTML pages and Service Worker (production)
-- `js/script.js` – main JS entry point (ES module)
-- `js/features/` – feature modules (navigation, form, filters, lightbox, etc.)
-- `service-worker.js` – static asset caching + network-first strategy for HTML
-- `site.webmanifest` – PWA settings (icons, shortcuts, theme colors)
-- `scripts/check-css-assets.js` – consistency check for CSS references in HTML and Service Worker
-- `_headers` / `_redirects` – Netlify deployment settings
-
-**Dev vs prod assets (CSS):**
-- **Dev source:** `css/style.css` (manually edited)
-- **Prod asset:** `css/style.min.css` (generated by PostCSS)
-- Current HTML pages reference `css/style.min.css`.
-
----
-
-### 3. Development
-The project does not require a build step to run as a static frontend, but it does require an HTTP server (because of JS modules and Service Worker behavior).
-
-Example local run:
+### Setup and run
+1. Install dependencies:
 
 ```bash
 npm install
-python3 -m http.server 8080
 ```
 
-Then open: `http://localhost:8080`
-
-**What is considered dev mode:**
-- Editing source files (`*.html`, `css/style.css`, `js/features/*.js`)
-- Local testing on a static server
-- Regenerating `css/style.min.css` after CSS changes
-
----
-
-### 4. Build & production
-This project currently has a build pipeline only for CSS.
-
-Available npm scripts:
-
-```bash
-npm run build:css
-```
-- Runs PostCSS (`autoprefixer` + `cssnano`)
-- Generates/updates `css/style.min.css` from `css/style.css`
-
-```bash
-npm run check:css-assets
-```
-- Verifies key pages reference `css/style.min.css`
-- Verifies `service-worker.js` caches `/css/style.min.css`
-- Detects legacy `/css/style.css` references in Service Worker
+2. Build production assets:
 
 ```bash
 npm run build
 ```
-- Runs: `build:css` + `check:css-assets`
 
-**Production-generated output:**
-- `css/style.min.css`
+3. On the first run of the image workflow, bootstrap the source image directory:
 
-There is no JavaScript minification script in the current repository state.
+```bash
+npm run images:bootstrap
+```
 
----
+4. Prepare the distribution directory:
 
-### 5. PWA & Service Worker
-PWA support is enabled by registering `service-worker.js` in `js/script.js`.
+```bash
+npm run dist
+```
 
-**Offline and caching behavior:**
-- Precached static assets include `/`, `/index.html`, `/css/style.min.css`, `/js/script.js`, `/site.webmanifest`, `/offline.html`
-- HTML requests use a **network-first** strategy with cache/offline fallback
-- Static assets use **cache-first**
+5. Serve the site over HTTP. The service worker and JS modules are not intended to run directly from the filesystem.
 
-**Service Worker update flow:**
-- When a new version is detected, a “New version available.” banner is shown
-- The user decides whether to refresh (`Refresh` button), which triggers `SKIP_WAITING`
-- After controller change, the page reloads
+### Build and deployment notes
+- CSS is built from `css/style.css` into `css/style.min.css`.
+- JavaScript is bundled from `js/script.js` into `js/script.min.js`.
+- Raster images are built from `assets/img-src/` into `assets/img/` via `npm run build:images`.
+- `npm run images:bootstrap` performs the one-time copy of current raster assets from `assets/img/` into `assets/img-src/`.
+- `npm run check:assets` verifies source HTML asset references.
+- `npm run dist` cleans the output directory, builds production assets, and copies the required files into `dist/`.
+- The repository includes static-hosting deployment files: `_redirects`, `_headers`, `site.webmanifest`, `service-worker.js`.
+- The contact form uses Netlify-compatible markup and redirects to `dziekuje.html`.
 
----
+### Accessibility notes
+- Shared pages include a skip link to `#main-content`.
+- Mobile navigation and the lightbox support keyboard usage, focus management, and `Escape` closing.
+- Tabs and accordion components use ARIA attributes.
+- The contact form has proper `label` -> `input` associations, `aria-describedby` error messaging, and progressive-enhancement validation.
+- CSS includes `prefers-reduced-motion` handling.
+- Legal pages include print-specific styling.
+- Some core content on `gallery.html` and `tour.html` depends on JavaScript.
 
-### 6. Accessibility & SEO notes
-**Progressive enhancement approach:**
-- Semantic HTML works without JavaScript, while JS enhances interactivity (filters, lightbox, navigation, form behavior)
+### SEO notes
+- All public source pages include title, meta description, and Open Graph metadata.
+- Indexable pages include canonical URLs and `meta name="robots"`.
+- `robots.txt` points to `sitemap.xml`.
+- The project uses inline JSON-LD; approved static pages also include `BreadcrumbList`.
+- Utility pages `404.html`, `offline.html`, and `dziekuje.html` use `noindex,follow`.
 
-**Implemented a11y elements visible in code:**
-- Skip link (`.skip-link`)
-- Extensive `:focus-visible` styling
-- `prefers-reduced-motion: reduce` support
-- ARIA attributes in navigation and interactive UI
-- Contact form with labels, validation, and `aria-live` feedback
+### Performance notes
+- The project uses responsive image sets in AVIF, WebP, and JPG.
+- Some non-critical images use `loading="lazy"`.
+- The homepage hero image uses `fetchpriority="high"` and explicit `width` and `height`.
+- Local `Inter` and `Manrope` fonts are loaded via `@font-face` with `font-display: swap`.
+- Production assets are minified, and the service worker caches core static assets plus the offline page.
+- The image workflow preserves folder structure, keeps the current `basename-WxH.ext` naming pattern, and generates `.webp` and `.avif` for responsive raster assets.
 
-**SEO basics present in the project:**
-- `description` and `robots` meta tags
-- `rel="canonical"`
-- `sitemap.xml`
-- `robots.txt`
+### Roadmap
+- Add no-JS fallback content for the gallery and tour-detail pages.
+- Align indexing strategy for `tour.html` and sitemap entries.
+- Add missing image dimensions in source templates and JS renderers.
+- Activate and verify security headers in `_headers`.
+- Normalize public naming across HTML, manifest, and legal content.
 
----
-
-### 7. Deployment (Netlify)
-The project is prepared for static-site hosting on Netlify.
-
-Practical deployment flow:
-1. Build CSS: `npm run build`
-2. Deploy the project directory as a static site
-3. Netlify applies rules from `_headers` and `_redirects`
-
-Notes:
-- The contact form uses `data-netlify="true"`
-- PWA uses `service-worker.js` and `site.webmanifest`; run an offline smoke test after deployment
-
----
-
-### 8. Release checklist
-Before deployment:
-- [ ] `npm install`
-- [ ] `npm run build`
-- [ ] Confirm `css/style.min.css` exists
-- [ ] Open key pages and verify no CSS/JS regressions
-- [ ] Check contact form rendering + validation
-- [ ] Run a quick offline smoke test (after loading the site online)
-- [ ] Verify `robots.txt` and `sitemap.xml`
+### License
+MIT, as declared in `package.json`.
