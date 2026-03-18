@@ -101,6 +101,8 @@ function createPictureMarkup(base, alt, caption = "") {
           ${basePath}-1200x780.jpg 1200w,
           ${basePath}-1600x1040.jpg 1600w"
         sizes="(min-width: 900px) 360px, 100vw"
+        width="1200"
+        height="780"
         alt="${alt}"
         loading="lazy"
         data-lightbox-src="${basePath}-1600x1040.jpg"

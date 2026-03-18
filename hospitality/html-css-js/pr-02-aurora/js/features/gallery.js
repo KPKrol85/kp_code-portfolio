@@ -65,6 +65,8 @@ function createImage(item) {
   img.src = `${basePath}-1200x780.jpg`;
   img.srcset = createSrcset(item.base, "jpg");
   img.sizes = GALLERY_IMAGE_SIZES;
+  img.width = 1200;
+  img.height = 780;
   img.alt = item.alt || "";
   img.loading = "lazy";
   img.dataset.lightboxSrc = item.lightbox || `${basePath}-1600x1040.jpg`;
