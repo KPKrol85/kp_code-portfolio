@@ -44,7 +44,7 @@ Aurora to statyczny, wielostronicowy serwis front-endowy dla marki Aurora Travel
 npm install
 ```
 
-2. Zbuduj assety produkcyjne:
+2. Zbuduj standardowy build aplikacji:
 
 ```bash
 npm run build
@@ -56,21 +56,29 @@ npm run build
 npm run images:bootstrap
 ```
 
-4. Przygotuj pełny katalog dystrybucyjny:
+4. Wygeneruj obrazy tylko wtedy, gdy zmieniasz rastry w `assets/img-src/`:
+
+```bash
+npm run build:images
+```
+
+5. Przygotuj pełny katalog dystrybucyjny:
 
 ```bash
 npm run dist
 ```
 
-5. Uruchamiaj projekt przez serwer HTTP. Service worker i moduły JS nie są przeznaczone do otwierania bezpośrednio z systemu plików.
+6. Uruchamiaj projekt przez serwer HTTP. Service worker i moduły JS nie są przeznaczone do otwierania bezpośrednio z systemu plików.
 
 ### Build i deployment
 - CSS jest budowany z `css/style.css` do `css/style.min.css`.
 - JavaScript jest bundlowany z `js/script.js` do `js/script.min.js`.
 - Raster images są budowane z `assets/img-src/` do `assets/img/` przez `npm run build:images`.
 - `npm run images:bootstrap` jednorazowo kopiuje obecne rastry z `assets/img/` do `assets/img-src/` jako warstwę źródłową workflow.
+- `npm run build` buduje standardowe assety aplikacji i uruchamia checki repozytorium, ale nie regeneruje obrazów.
 - `npm run check:assets` sprawdza integralność odwołań assetów w źródłowych stronach HTML.
-- `npm run dist` czyści katalog wynikowy, buduje assety i kopiuje wymagane pliki do `dist/`.
+- `npm run dist` czyści katalog wynikowy, uruchamia standardowy build aplikacji i kopiuje wymagane pliki do `dist/` bez pośredniej regeneracji obrazów.
+- `npm run dist` zakłada, że aktualne obrazy produkcyjne są już obecne w `assets/img/`.
 - Repozytorium zawiera pliki wdrożeniowe dla hostingu statycznego: `_redirects`, `_headers`, `site.webmanifest`, `service-worker.js`.
 - Formularz kontaktowy używa znacznika zgodnego z Netlify Forms i przekierowuje na `dziekuje.html`.
 
@@ -154,7 +162,7 @@ Aurora is a static multi-page front-end website for the Aurora Travel brand. The
 npm install
 ```
 
-2. Build production assets:
+2. Build the standard application assets:
 
 ```bash
 npm run build
@@ -166,21 +174,29 @@ npm run build
 npm run images:bootstrap
 ```
 
-4. Prepare the distribution directory:
+4. Generate images only when you change raster sources in `assets/img-src/`:
+
+```bash
+npm run build:images
+```
+
+5. Prepare the distribution directory:
 
 ```bash
 npm run dist
 ```
 
-5. Serve the site over HTTP. The service worker and JS modules are not intended to run directly from the filesystem.
+6. Serve the site over HTTP. The service worker and JS modules are not intended to run directly from the filesystem.
 
 ### Build and deployment notes
 - CSS is built from `css/style.css` into `css/style.min.css`.
 - JavaScript is bundled from `js/script.js` into `js/script.min.js`.
 - Raster images are built from `assets/img-src/` into `assets/img/` via `npm run build:images`.
 - `npm run images:bootstrap` performs the one-time copy of current raster assets from `assets/img/` into `assets/img-src/`.
+- `npm run build` runs the standard application build and repository checks, but does not regenerate images.
 - `npm run check:assets` verifies source HTML asset references.
-- `npm run dist` cleans the output directory, builds production assets, and copies the required files into `dist/`.
+- `npm run dist` cleans the output directory, runs the standard application build, and copies the required files into `dist/` without regenerating images.
+- `npm run dist` assumes the current production-ready images are already present in `assets/img/`.
 - The repository includes static-hosting deployment files: `_redirects`, `_headers`, `site.webmanifest`, `service-worker.js`.
 - The contact form uses Netlify-compatible markup and redirects to `dziekuje.html`.
 

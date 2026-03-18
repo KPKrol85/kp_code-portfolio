@@ -11,6 +11,7 @@ import { initLightbox } from "./features/lightbox.js";
 import { initTourDetail } from "./features/tour-detail.js";
 import { initGallery } from "./features/gallery.js";
 import { initGalleryFilters } from "./features/gallery-filters.js";
+import { initProjectNotice } from "./features/project-notice.js";
 
 document.addEventListener("DOMContentLoaded", async () => {
   initNav();
@@ -31,6 +32,7 @@ document.addEventListener("DOMContentLoaded", async () => {
   initReveal();
   initTourDetail();
   initLightbox();
+  initProjectNotice();
   updateYear();
 });
 
