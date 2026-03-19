@@ -1,9 +1,29 @@
 {
-  "name": "kp-code-digital-studio-codex",
+  "name": "kp-code-digital-studio",
+  "version": "1.0.0",
+  "description": "Official website for KP_Code Digital Studio.",
   "private": true,
+  "type": "module",
+  "main": "",
   "scripts": {
     "img:build": "node ./scripts/images/build-images.mjs",
     "img:clean": "node ./scripts/images/clean-images.mjs"
+  },
+  "keywords": [
+    "kp-code",
+    "digital-studio",
+    "brand-website",
+    "services-website",
+    "html",
+    "css",
+    "javascript",
+    "image-optimization"
+  ],
+  "author": "Kamil Król",
+  "license": "UNLICENSED",
+  "homepage": "",
+  "engines": {
+    "node": ">=18.0.0"
   },
   "dependencies": {
     "fast-glob": "^3.3.2",

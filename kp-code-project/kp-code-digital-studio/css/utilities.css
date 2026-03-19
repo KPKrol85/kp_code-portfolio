@@ -1,0 +1,41 @@
+/*
+ * Small helper classes and limited utilities only.
+ * Utilities should stay intentionally small and must not become the main styling system.
+ * Do not place component skins, layout shells, or full section styling in this file.
+ */
+
+/* Accessibility helpers */
+.skip-link {
+  position: absolute;
+  left: -999px;
+  top: var(--space-4);
+  background: var(--color-primary);
+  color: #fff;
+  padding: var(--space-3) var(--space-5);
+  z-index: var(--z-skip-link);
+}
+
+.skip-link:focus {
+  left: var(--space-4);
+}
+
+/* Small layout helpers */
+.pill-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-3) var(--space-4);
+}
+
+/* Motion helpers */
+.reveal {
+  opacity: 0;
+  transform: translateY(18px);
+  transition:
+    opacity var(--transition-base),
+    transform var(--transition-base);
+}
+
+.reveal.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
