@@ -93,14 +93,14 @@
       "sizes": "720x1280",
       "type": "image/jpeg",
       "label": "Strona główna — widok mobilny",
-      "platform": "narrow"
+      "form_factor": "narrow"
     },
     {
       "src": "/assets/img/screenshots/desktop.jpg",
       "sizes": "1280x720",
       "type": "image/jpeg",
       "label": "Strona główna — widok desktopowy",
-      "platform": "wide"
+      "form_factor": "wide"
     }
   ]
 }
