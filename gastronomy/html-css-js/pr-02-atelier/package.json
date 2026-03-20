@@ -27,6 +27,8 @@
     "build:js:core": "esbuild js/core.js --bundle --minify --outfile=js/core.min.js --target=es2018",
     "build:js": "npm run build:js:script && npm run build:js:core",
     "build": "npm run build:css && npm run build:js",
+    "clean:dist": "node -e \"require('fs').rmSync('dist', { recursive: true, force: true })\"",
+    "build:dist": "npm run build && node scripts/build-dist.js",
     "images:build": "node scripts/images/build-images.js",
     "dev:server": "http-server -p 5173 -c-1",
     "lint": "eslint \"js/**/*.js\"",
