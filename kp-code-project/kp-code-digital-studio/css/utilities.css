@@ -5,6 +5,7 @@
  */
 
 /* Accessibility helpers */
+
 .skip-link {
   position: absolute;
   left: -999px;
@@ -14,19 +15,28 @@
   padding: var(--space-3) var(--space-5);
   z-index: var(--z-skip-link);
 }
-
 .skip-link:focus {
   left: var(--space-4);
 }
 
 /* Small layout helpers */
+
 .pill-grid {
   display: flex;
   flex-wrap: wrap;
   gap: var(--space-3) var(--space-4);
 }
 
+.actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-4);
+    margin-top: var(--space-7);
+    justify-content: space-between;
+}
+
 /* Motion helpers */
+
 .reveal {
   opacity: 0;
   transform: translateY(18px);
@@ -34,7 +44,6 @@
     opacity var(--transition-base),
     transform var(--transition-base);
 }
-
 .reveal.is-visible {
   opacity: 1;
   transform: translateY(0);
