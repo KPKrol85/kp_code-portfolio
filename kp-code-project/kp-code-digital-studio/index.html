@@ -616,44 +616,44 @@
       <!-- About -->
       <section class="section about" id="about" data-reveal>
         <div class="container">
-          <!-- header -->
-          <div class="section__header about__header">
-            <div class="section__header-text">
-              <p class="section__eyebrow">O mnie</p>
-              <h2 class="section__title">
-                Kamil Król
-                <br />
-                <span class="title__sub">Założyciel i programista webowy</span>
-              </h2>
-            </div>
-            <!-- avatar -->
-            <div class="about__avatar" aria-hidden="true">
-              <picture>
-                <source
-                  type="image/avif"
-                  srcset="./assets/img/img_optimized/about/ceo-480.avif 480w, ./assets/img/img_optimized/about/ceo-768.avif 768w, ./assets/img/img_optimized/about/ceo-1024.avif 1024w"
-                  sizes="72px" />
-                <source
-                  type="image/webp"
-                  srcset="./assets/img/img_optimized/about/ceo-480.webp 480w, ./assets/img/img_optimized/about/ceo-768.webp 768w, ./assets/img/img_optimized/about/ceo-1024.webp 1024w"
-                  sizes="72px" />
-                <img
-                  class="about__avatar-img"
-                  src="./assets/img/img_optimized/about/ceo-480.webp"
-                  alt="Kamil Król — Założyciel i programista webowy"
-                  width="480"
-                  height="480"
-                  loading="lazy"
-                  decoding="async" />
-              </picture>
+          <div class="section__header section__header--about">
+            <p class="section__eyebrow">O mnie</p>
+            <div class="about__intro">
+              <div class="about__intro-text">
+                <h2 class="section__title">Kamil Król</h2>
+                <p class="section__subtitle about__subtitle">Web developer i założyciel</p>
+              </div>
+              <!-- avatar -->
+              <div class="about__avatar" aria-hidden="true">
+                <picture>
+                  <source
+                    type="image/avif"
+                    srcset="./assets/img/img_optimized/about/ceo-480.avif 480w, ./assets/img/img_optimized/about/ceo-768.avif 768w, ./assets/img/img_optimized/about/ceo-1024.avif 1024w"
+                    sizes="72px" />
+                  <source
+                    type="image/webp"
+                    srcset="./assets/img/img_optimized/about/ceo-480.webp 480w, ./assets/img/img_optimized/about/ceo-768.webp 768w, ./assets/img/img_optimized/about/ceo-1024.webp 1024w"
+                    sizes="72px" />
+                  <img
+                    class="about__avatar-img"
+                    src="./assets/img/img_optimized/about/ceo-480.webp"
+                    alt="Kamil Król — Założyciel i programista webowy"
+                    width="480"
+                    height="480"
+                    loading="lazy"
+                    decoding="async" />
+                </picture>
+              </div>
             </div>
           </div>
           <!-- grid -->
           <div class="grid grid--2 about__grid">
             <!-- content -->
             <div class="about__content">
-              <p class="section__subtitle">Programista webowy z obsesją na punkcie jakości i prostoty. Łączę technologię z biznesem, żeby strona była narzędziem — nie „ładnym plikiem”.</p>
-              <p class="about__lead">
+              <p class="section__subtitle about__content-subtitle">
+                Programista webowy z obsesją na punkcie jakości i prostoty. Łączę technologię z biznesem, żeby strona była narzędziem — nie „ładnym plikiem”.
+              </p>
+              <p class="section__subtitle about__lead">
                 Pracuję end-to-end: od koncepcji i treści, przez UI/UX, po wdrożenie i dopracowanie detali. Stawiam na przewidywalny proces, wysoką czytelność kodu i rozwiązania, które łatwo rozwijać
                 w przyszłości.
               </p>
@@ -675,16 +675,18 @@
             <!-- about card -->
             <aside class="card about__card">
               <h3 class="card__title">Technologie i narzędzia</h3>
+              <!-- pill grid -->
               <div class="pill-grid about__pill-grid" aria-label="Technologie i narzędzia">
                 <span class="tag">HTML</span>
                 <span class="tag">CSS</span>
                 <span class="tag">JavaScript</span>
                 <span class="tag">WordPress</span>
-                <span class="tag">SEO</span>
-                <span class="tag">Canva</span>
                 <span class="tag">Git</span>
+                <span class="tag">SEO</span>
+                <span class="tag">Dostępność</span>
                 <span class="tag">Wydajność</span>
               </div>
+              <!-- meta -->
               <p class="card__meta">Dobieram technologie do celu: szybkość, dostępność, skalowalność i proste utrzymanie — bez przerostu formy.</p>
               <div class="about__divider" role="separator" aria-hidden="true"></div>
               <h4 class="about__mini-title">Jak pracuję</h4>
@@ -703,10 +705,11 @@
                 </li>
               </ol>
             </aside>
-            <div class="about__actions">
-              <a class="button button--primary" href="#contact">Napisz do mnie</a>
-              <a class="button button--ghost" href="#projects">Zobacz realizacje</a>
-            </div>
+          </div>
+          <!-- actions -->
+          <div class="about__actions actions">
+            <a class="button button--primary" href="#contact">Napisz do mnie</a>
+            <a class="button button--ghost" href="#projects">Zobacz realizacje</a>
           </div>
         </div>
       </section>
@@ -714,13 +717,13 @@
       <!-- CTA -->
       <section class="section section--tight" data-reveal>
         <div class="container cta">
-          <div class="cta__content">
-            <h2>Zacznijmy współpracę</h2>
-            <p>Powiedz mi o swoim projekcie, a przygotuję spersonalizowaną wycenę.</p>
+          <div class="section__header">
+            <h2 class="section__title">Zacznijmy współpracę</h2>
+            <p class="section__subtitle">Powiedz mi o swoim projekcie, a przygotuję spersonalizowaną wycenę.</p>
           </div>
-          <div class="cta__actions">
+          <div class="actions">
             <a class="button button--primary" href="./contact.html">Przejdź do kontaktu</a>
-            <a class="button button--ghost" href="./projects.html">Przeglądaj realizacje</a>
+            <a class="button button--ghost" href="./projects.html">Zobacz realizacje</a>
           </div>
         </div>
       </section>

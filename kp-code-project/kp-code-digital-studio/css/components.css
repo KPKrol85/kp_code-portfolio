@@ -215,13 +215,7 @@
   padding-top: var(--space-2);
   justify-content: space-between;
 }
-/*
-@media (min-width: 480px) {
-  .card__actions .button {
-    flex: 0 0 160px;
-  }
-}
-*/
+
 /* Work card */
 
 .work-card {
@@ -323,20 +317,12 @@
   display: inline-flex;
   align-items: center;
   gap: var(--space-2);
-  padding: var(--space-2) var(--space-4);
+  padding: var(--space-2) var(--space-5);
   border-radius: var(--radius-soft);
   background: var(--color-surface-alt);
+  letter-spacing: var(--ls-wide);
   font-size: var(--fs-2);
 }
-/*
-.badge {
-  padding: var(--space-2) var(--space-4);
-  background: var(--color-primary-soft);
-  color: var(--color-primary);
-  font-size: var(--fs-2);
-  font-weight: var(--fw-semibold);
-}
-*/
 .list {
   list-style: none;
   padding: 0;
@@ -346,12 +332,10 @@
   color: var(--color-text-muted);
   font-size: var(--fs-4);
 }
-
 .list li {
   position: relative;
   padding-left: calc(var(--space-4) + 6px);
 }
-
 .list li::before {
   content: "";
   position: absolute;
@@ -359,11 +343,12 @@
   top: 0.62em;
   width: 4px;
   height: 4px;
-  border-radius: 999px;
+  border-radius: var(--radius-pill);
   background: color-mix(in srgb, var(--color-text-muted) 55%, transparent);
 }
 
 /* Footer components */
+
 .footer__brand-title {
   font-size: var(--fs-7);
   font-weight: var(--fw-semibold);

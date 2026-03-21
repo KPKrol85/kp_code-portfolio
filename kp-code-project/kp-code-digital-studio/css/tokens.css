@@ -96,11 +96,11 @@
   --logo-3xl: clamp(220px, 22vw, 300px);
   --logo-4xl: clamp(300px, 26vw, 420px);
 
-  --avatar-xs: clamp(56px, 18vw, 80px);
-  --avatar-sm: clamp(72px, 16vw, 104px);
-  --avatar-md: clamp(96px, 14vw, 136px);
-  --avatar-lg: clamp(120px, 12vw, 168px);
-  --avatar-xl: clamp(144px, 10vw, 200px);
+  --avatar-xs: clamp(72px, 10vw, 112px);
+  --avatar-sm: clamp(96px, 9vw, 144px);
+  --avatar-md: clamp(120px, 10vw, 192px);
+  --avatar-lg: clamp(144px, 12vw, 240px);
+  --avatar-xl: clamp(168px, 14vw, 288px);
 
   /* Radius */
   --radius-xs: 4px;

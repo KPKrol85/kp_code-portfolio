@@ -28,11 +28,19 @@
 }
 
 .actions {
-    display: flex;
-    flex-wrap: wrap;
-    gap: var(--space-4);
-    margin-top: var(--space-7);
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  margin-inline: auto;
+  gap: var(--space-4);
+  margin-top: var(--space-7);
+}
+@media (min-width: 574px) {
+  .actions {
+    margin-inline: 0;
     justify-content: space-between;
+  }
 }
 
 /* Motion helpers */
