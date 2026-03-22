@@ -408,29 +408,28 @@ html:not(.js) .nav__toggle {
 }
 
 /* Footer shell */
+
 .footer {
-  padding: var(--space-8) 0;
+  padding: var(--space-9) 0 var(--space-6);
   border-top: 1px solid var(--color-border);
   background: var(--color-surface);
 }
-
 .footer__grid {
   display: grid;
   column-gap: var(--space-7);
-  row-gap: var(--space-8);
+  row-gap: var(--space-9);
   grid-template-columns: 1fr;
 }
-
 .footer__col {
   display: grid;
   gap: var(--space-4);
   align-content: start;
 }
-
 .footer__logo {
   display: inline-flex;
   align-items: center;
   margin-bottom: var(--space-5);
+  margin-left: var(--space-4)
 }
 
 .footer__logo img {
@@ -439,9 +438,7 @@ html:not(.js) .nav__toggle {
   max-width: 220px;
 }
 
-.footer__brand {
-  padding-right: var(--space-5);
-}
+
 
 .footer__contact-list {
   display: grid;
@@ -489,19 +486,14 @@ html:not(.js) .nav__toggle {
   white-space: nowrap;
 }
 
+
+
+
+
 @media (min-width: 768px) {
   .footer__grid {
-    grid-template-columns: repeat(3, minmax(0, 1fr));
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
-
-  .footer__grid > :first-child {
-    grid-column: 1 / -1;
-  }
-
-  .footer__nav {
-    padding-right: var(--space-4);
-  }
-
   .footer__bottom {
     flex-direction: row;
     align-items: center;

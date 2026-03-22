@@ -352,33 +352,51 @@
 .footer__brand-title {
   font-size: var(--fs-7);
   font-weight: var(--fw-semibold);
-  margin: 0;
-  letter-spacing: -0.01em;
+  margin-bottom: var(--space-4);
+  letter-spacing: var(--ls-tight);
 }
-
 .footer__brand-title a {
   color: var(--color-text);
   text-decoration: none;
 }
-
-.footer__brand-title a:hover,
 .footer__brand-title a:focus-visible {
-  color: var(--color-text);
+  color: var(--color-primary);
+}
+
+@media (hover:hover) and (pointer: fine) {
+  .footer__brand-title a:hover {
+    color: var(--color-primary);
+  }
 }
 
 .footer__lead {
-  font-size: var(--fs-6);
-  line-height: 1.5;
+  font-size: var(--fs-5);
   color: var(--color-text);
-  margin: 0;
-  max-width: 32ch;
+  max-width: 24ch;
+}
+
+
+
+
+
+@media (min-width: 760px) {
+  .footer__brand-title {
+    font-size: var(--fs-6);
+  }
 }
 
 .footer__meta {
-  font-size: var(--fs-5);
+  font-size: var(--fs-4);
   color: var(--color-text-muted);
-  margin: 0;
 }
+
+
+
+
+
+
+
+
 
 .footer__title {
   font-size: var(--fs-6);
