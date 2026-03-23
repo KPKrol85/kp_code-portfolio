@@ -63,7 +63,7 @@
 
   /* Spacing scale */
   --space-unit: 0.25rem;
-  --space-3xs: calc(var(--space-unit) * 0.5);
+  --space-1: calc(var(--space-unit) * 0.5);
   --space-2: calc(var(--space-unit) * 1);
   --space-3: calc(var(--space-unit) * 2);
   --space-4: calc(var(--space-unit) * 3);
