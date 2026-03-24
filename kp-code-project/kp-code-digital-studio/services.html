@@ -44,7 +44,7 @@
   </head>
 
   <!-- Body -->
-  <body page page--services>
+  <body class="page page--services">
     <a class="skip-link" href="#main">Przejdź do treści</a>
 
     <!-- Header -->
@@ -129,7 +129,6 @@
           </div>
           <!-- Services overview grid -->
           <div class="grid grid--2 services-overview__grid">
-
             <!-- Strony internetowe html css js -->
             <article class="card service-card">
               <div class="service-card__head">
@@ -219,7 +218,7 @@
                 <a class="button button--ghost" href="./services/seo.html">Szczegóły</a>
               </div>
             </article>
-            
+
             <!-- UI i identyfikacja wizualna -->
             <article class="card service-card">
               <div class="service-card__head">
@@ -251,21 +250,74 @@
         </div>
       </section>
 
-      <!-- Service details -->
-      <section class="section service-detail" id="websites" data-reveal>
+      <!-- Service detail: websites -->
+      <section class="section service-detail" aria-labelledby="service-websites-title" data-reveal>
         <div class="container">
-          <div class="service-detail__content">
-            <p class="section__eyebrow">01 · Strony internetowe</p>
-            <h2 class="section__title">Dedykowane strony internetowe tworzone od podstaw.</h2>
-            <p class="section__subtitle">
-              Projektuję i wdrażam nowoczesne strony internetowe w oparciu o HTML, CSS i JavaScript, dbając o estetykę, przejrzystość kodu, wydajność oraz dobre doświadczenie użytkownika.
-            </p>
-            <p>To rozwiązanie dla firm, które potrzebują strony szytej pod konkretny cel — wizerunkowy, ofertowy lub sprzedażowy — bez zbędnych ograniczeń gotowych szablonów.</p>
-            <a class="button button--secondary" href="./services/websites.html">Zobacz szczegóły usługi</a>
+          <div class="service-detail__grid">
+            <div class="service-detail__content">
+              <!-- section header -->
+              <div class="section__header">
+                <p class="section__eyebrow">Strony internetowe</p>
+                <h2 class="section__title" id="service-websites-title">Nowoczesne strony internetowe projektowane pod konkretny cel.</h2>
+                <p class="section__subtitle">
+                  Tworzę dedykowane strony internetowe od podstaw — estetyczne, szybkie i dopasowane do realnych potrzeb marki, oferty oraz sposobu komunikacji z klientem.
+                </p>
+              </div>
+              <!-- text flow -->
+              <div class="service-detail__text flow">
+                <p>To rozwiązanie dla firm, które potrzebują strony szytej pod konkretny cel — wizerunkowy, ofertowy lub sprzedażowy — bez zbędnych ograniczeń gotowych szablonów.</p>
+                <p>
+                  Projekt i wdrożenie obejmują przejrzystą strukturę treści, responsywny układ, techniczne podstawy SEO, semantyczny HTML oraz lekkie, nowoczesne rozwiązania front-endowe oparte na
+                  HTML, CSS i JavaScript.
+                </p>
+                <p>Taka strona może pełnić rolę wizytówki firmy, strony usługowej, landing page lub bardziej rozbudowanego serwisu firmowego rozwijanego etapami wraz z biznesem.</p>
+              </div>
+              <!-- actions -->
+              <div class="actions">
+                <a class="button button--primary" href="./contact.html">Zapytaj o wycenę</a>
+                <a class="button button--ghost" href="./services/websites.html">Zobacz szczegóły usługi</a>
+              </div>
+            </div>
+
+            <!-- aside -->
+            <aside class="service-detail__aside" aria-label="Informacje o usłudze: strony internetowe">
+              <div class="service-detail__panel">
+                <!-- group 01 -->
+                <section class="service-detail__group" aria-labelledby="service-websites-tech">
+                  <h3 class="service-detail__subtitle" id="service-websites-tech">Technologie</h3>
+                  <ul class="service-detail__list">
+                    <li>HTML5 i semantyczna struktura treści</li>
+                    <li>CSS3, responsive layout i dopracowana warstwa wizualna</li>
+                    <li>Vanilla JavaScript dla lekkich interakcji i lepszego UX</li>
+                    <li>techniczne podstawy wydajności i dobre praktyki SEO</li>
+                  </ul>
+                </section>
+                <!-- group 02 -->
+                <section class="service-detail__group" aria-labelledby="service-websites-scope">
+                  <h3 class="service-detail__subtitle" id="service-websites-scope">Zakres usługi</h3>
+                  <ul class="service-detail__list">
+                    <li>projekt układu i architektury treści strony</li>
+                    <li>wdrożenie front-endu od podstaw</li>
+                    <li>sekcje ofertowe, CTA i formularz kontaktowy</li>
+                    <li>optymalizacja pod urządzenia mobilne</li>
+                    <li>przygotowanie strony pod dalszy rozwój</li>
+                  </ul>
+                </section>
+                <!-- group 03 -->
+                <section class="service-detail__group" aria-labelledby="service-websites-budget">
+                  <h3 class="service-detail__subtitle" id="service-websites-budget">Zakres projektu i wycena</h3>
+                  <p class="service-detail__note">
+                    Realizuję zarówno proste strony ofertowe i landing page, jak również bardziej rozbudowane serwisy firmowe. Zakres i wycena ustalane są indywidualnie w zależności od liczby sekcji,
+                    treści, funkcjonalności i etapu projektu.
+                  </p>
+                </section>
+              </div>
+            </aside>
           </div>
         </div>
       </section>
 
+      <!-- Service details -->
       <section class="section service-detail" id="wordpress" data-reveal>
         <div class="container">
           <div class="service-detail__content">

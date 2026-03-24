@@ -71,6 +71,18 @@ main {
   }
 }
 
+.service-detail__grid {
+  display: grid;
+  gap: var(--space-7);
+  align-items: start;
+}
+@media (min-width: 900px) {
+  .service-detail__grid {
+    grid-template-columns: minmax(0, 1.45fr) minmax(19rem, 0.9fr);
+    gap: var(--space-7);
+  }
+}
+
 /* Header and navigation */
 
 .header {

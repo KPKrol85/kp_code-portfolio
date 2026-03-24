@@ -239,13 +239,13 @@
   inset: 0;
   pointer-events: none;
   opacity: 0;
-  background: radial-gradient(700px 220px at 20% 0%, color-mix(in srgb, var(--color-primary) 14%, transparent), transparent 60%);
+  background: radial-gradient(600px 180px at 100% 0%, color-mix(in srgb, var(--color-primary) 14%, transparent), transparent 60%);
   transition: opacity var(--transition-base);
 }
 @media (hover: hover) and (pointer: fine) {
   .service-card:hover {
     transform: translateY(-2px);
-    border-color: color-mix(in srgb, var(--color-primary) 28%, var(--color-border));
+    border-color: color-mix(in srgb, var(--color-primary) 8%, var(--color-border));
     box-shadow: var(--shadow-md);
   }
   .service-card:hover::before {
