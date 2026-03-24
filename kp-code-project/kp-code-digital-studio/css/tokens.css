@@ -12,7 +12,7 @@
   --color-surface: #ffffff;
   --color-surface-alt: #eef1f7;
   --color-text: #1a1d26;
-  --color-text-muted: #6f788b;
+  --color-text-muted: #6b7486;
   --color-primary: #1d4ed8;
   --color-primary-soft: #dbe7ff;
   --color-border: #d8dce6;
@@ -124,6 +124,7 @@
   /* Motion */
   --transition-fast: 180ms ease;
   --transition-base: 220ms ease;
+  --transition-slow: 300ms ease;
   --ease-3: cubic-bezier(0.25, 0, 0.3, 1);
   --ease-out-5: cubic-bezier(0, 0, 0, 1);
   --ease-elastic-3: cubic-bezier(0.5, 1.25, 0.75, 1.25);
@@ -141,7 +142,7 @@
   --color-surface: #121826;
   --color-surface-alt: #182033;
   --color-text: #eef2ff;
-  --color-text-muted: #a4acc4;
+  --color-text-muted: #b7c0da;
   --color-primary: #7aa2ff;
   --color-primary-soft: #1b2a4d;
   --color-border: #25304b;
