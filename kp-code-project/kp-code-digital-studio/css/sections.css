@@ -407,6 +407,11 @@
   margin: var(--space-4) auto 0;
   text-align: center;
 }
+.cta .section__subtitle {
+  margin: 0 auto;
+  padding-inline: var(--space-2);
+  text-align: center;
+}
 .cta .actions .button {
   flex: 0 0 240px;
 }

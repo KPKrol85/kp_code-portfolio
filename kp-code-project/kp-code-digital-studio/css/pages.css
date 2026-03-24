@@ -69,14 +69,47 @@
 .about-intro__photo-placeholder {
   aspect-ratio: 4 / 5;
 }
+.about-focus__subtitle {
+  color: var(--color-text);
+  max-width: 60ch;
+}
+.about-focus__top {
+  display: grid;
+  gap: var(--space-8);
+  align-items: center;
+  margin-bottom: var(--space-6);
+  margin-right: var(--space-9);
+}
+.about-focus__brand-mark {
+  display: none;
+}
+.about-focus__brand-mark img {
+  display: block;
+  width: 100%;
+  height: auto;
+  opacity: 0.12;
+}
 @media (min-width: 700px) {
   .about-intro__grid {
     grid-template-columns: minmax(0, 1.15fr) minmax(18rem, 0.85fr);
   }
 }
-
-
-.about-focus__subtitle {
-  color: var(--color-text);
-  max-width: 60ch;
+@media (min-width: 760px) {
+  .about-focus__top {
+    grid-template-columns: minmax(0, 1fr) clamp(8rem, 14vw, 11rem);
+    gap: var(--space-6);
+  }
+  .about-focus__brand-mark {
+    display: flex;
+    justify-content: flex-end;
+  }
+}
+@media (min-width: 1024px) {
+  .about-focus__top {
+    grid-template-columns: minmax(0, 1fr) clamp(10rem, 19vw, 13rem);
+    gap: var(--space-7);
+  }
+  .about-focus__brand-mark img {
+    opacity: 0.2;
+  }
 }
