@@ -429,7 +429,7 @@
   height: var(--service-glow-size);
   transform: translateX(var(--service-glow-offset));
   background: radial-gradient(circle at 30% 50%, color-mix(in srgb, var(--color-primary) 36%, transparent) 0%, transparent 54%);
-  opacity: 0.4;
+  opacity: 0.6;
   filter: blur(24px);
   pointer-events: none;
   z-index: -1;
