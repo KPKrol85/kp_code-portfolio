@@ -429,6 +429,10 @@ html:not(.js) .nav__toggle {
 .footer__logo img {
   height: var(--logo-lg);
   width: auto;
+  content: url("../assets/img/logo/logo-light-mode.svg");
+}
+[data-theme="dark"] .footer__logo img {
+  content: url("../assets/img/logo/logo-dark-mode.svg");
 }
 .footer__contact-list {
   display: grid;
