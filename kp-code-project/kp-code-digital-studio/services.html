@@ -1,61 +1,63 @@
 <!doctype html>
 <html lang="pl">
-<head>
-  <!-- Meta / Base -->
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <head>
+    <!-- Meta / Base -->
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#ffffff" />
+    <meta name="robots" content="index, follow" />
+    <!-- Title -->
+    <title>Usługi — KP_Code Digital Studio</title>
+    <!-- SEO -->
+    <meta name="description" content="Zakres usług web development, WordPress, SEO i projektowania UI/brand." />
+    <link rel="canonical" href="https://www.kp-code.pl/services.html" />
+    <!-- Open Graph -->
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content="pl_PL" />
+    <meta property="og:site_name" content="KP_Code Digital Studio" />
+    <meta property="og:title" content="KP_Code Digital Studio" />
+    <meta property="og:description" content="Nowoczesne strony, WordPress i SEO dla biznesów. Poznaj projekty Kamila Króla." />
+    <meta property="og:url" content="https://www.kp-code.pl/" />
+    <meta property="og:image" content="https://www.kp-code.pl/assets/og/og-img.png" />
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="KP_Code Digital Studio" />
+    <meta name="twitter:description" content="Projektujemy i wdrażamy strony oraz strategie SEO." />
+    <meta name="twitter:image" content="https://www.kp-code.pl/assets/og/og-img.png" />
+    <!-- Icons / PWA -->
+    <link rel="icon" href="https://www.kp-code.pl/assets/icons/favicon.svg" type="image/svg+xml" />
+    <link rel="apple-touch-icon" href="https://www.kp-code.pl/assets/icons/apple-touch-icon.png" />
+    <link rel="manifest" href="https://www.kp-code.pl/assets/icons/site.webmanifest" />
+    <!-- Styles / Theme -->
+    <script>
+      document.documentElement.classList.add("js");
+      try {
+        const storedTheme = localStorage.getItem("theme-preference");
+        const theme = storedTheme === "light" || storedTheme === "dark" ? storedTheme : window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+        document.documentElement.dataset.theme = theme;
+      } catch {
+        document.documentElement.dataset.theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+      }
+    </script>
+    <!-- Styles -->
+    <link rel="stylesheet" href="./css/main.css" />
+  </head>
 
-  <!-- Title -->
-  <title>Usługi — KP_Code Digital Studio</title>
+  <!-- Body -->
+  <body page page--services>
+    <a class="skip-link" href="#main">Przejdź do treści</a>
 
-  <!-- SEO -->
-  <meta name="description" content="Zakres usług web development, WordPress, SEO i projektowania UI/brand." />
-
-  <!-- Canonical -->
-  <link rel="canonical" href="https://www.kp-code.pl/services.html" />
-
-  <!-- Open Graph -->
-  <meta property="og:title" content="Usługi — KP_Code Digital Studio" />
-  <meta property="og:description" content="Zakres usług web development, WordPress, SEO i projektowania UI/brand." />
-  <meta property="og:type" content="website" />
-  <meta property="og:url" content="https://www.kp-code.pl/services.html" />
-  <meta property="og:image" content="./og/og-default.svg" />
-
-  <!-- Twitter -->
-  <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:image" content="./og/og-default.svg" />
-
-  <!-- PWA / UI -->
-  <link rel="icon" href="/assets/icons/favicon.svg" type="image/svg+xml" />
-  <link rel="manifest" href="/seo/manifest.webmanifest" />
-
-  <!-- Styles / Theme -->
-  <script>
-    document.documentElement.classList.add('js');
-    try {
-      const storedTheme = localStorage.getItem('theme-preference');
-      const theme =
-        storedTheme === 'light' || storedTheme === 'dark'
-          ? storedTheme
-          : (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
-      document.documentElement.dataset.theme = theme;
-    } catch {
-      document.documentElement.dataset.theme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
-    }
-  </script>
-  <link rel="stylesheet" href="./css/main.css" />
-</head>
-<body>
-  <a class="skip-link" href="#main">Przejdź do treści</a>
-  <header class="header">
+    <!-- Header -->
+    <header class="header">
       <div class="container nav">
         <a class="nav__brand" href="/index.html" aria-label="KP_Code Digital Studio, strona główna">
           <picture class="brand__logo">
             <source srcset="/assets/img/logo/logo-dark-mode.svg" media="(prefers-color-scheme: dark)" />
             <img src="/assets/img/logo/logo-light-mode.svg" alt="KP_Code Digital Studio" width="512" height="512" />
           </picture>
-          <span>KP_Code Digital Studio</span>
+          <span class="nav__brand-text">KP_Code Digital Studio</span>
         </a>
+        <!-- navigation -->
         <nav class="nav__links" id="primary-navigation" aria-label="Główna nawigacja">
           <a class="nav__link" href="/index.html">Start</a>
           <a class="nav__link" href="/about.html">O mnie</a>
@@ -64,6 +66,7 @@
           <a class="nav__link" href="/contact.html">Kontakt</a>
         </nav>
         <div class="nav__backdrop" data-nav-backdrop aria-hidden="true"></div>
+        <!-- theme toggle -->
         <div class="nav__actions">
           <button class="theme-toggle" id="theme-toggle" title="Przełącza motyw jasny i ciemny" aria-label="Automatyczny" aria-live="polite">
             <svg class="sun-and-moon" aria-hidden="true" width="20" height="20" viewBox="0 0 24 24">
@@ -84,6 +87,7 @@
               </g>
             </svg>
           </button>
+          <!-- navigation toggle -->
           <button class="nav__toggle" type="button" data-nav-toggle aria-label="Otwórz menu" aria-expanded="false" aria-controls="primary-navigation">
             <span class="nav__toggle-icon" aria-hidden="true"></span>
           </button>
@@ -91,51 +95,244 @@
       </div>
     </header>
 
-  <main id="main">
-    <section class="section" data-reveal>
-      <div class="container">
-        <div class="section__header">
-          <p class="section__eyebrow">Usługi</p>
-          <h1 class="section__title">Usługi dopasowane do etapu rozwoju Twojego biznesu.</h1>
-          <p class="section__subtitle">Od pojedynczej strony ofertowej po kompleksowy ekosystem digital.</p>
+    <!-- Main -->
+    <main id="main">
+      <!-- Hero -->
+      <section class="section page-hero" data-reveal>
+        <div class="container">
+          <nav class="breadcrumbs" aria-label="Breadcrumb">
+            <ol class="breadcrumbs__list">
+              <li class="breadcrumbs__item">
+                <a class="breadcrumbs__link" href="/index.html">Start</a>
+              </li>
+              <li class="breadcrumbs__item" aria-current="page">
+                <span class="breadcrumbs__current">Usługi</span>
+              </li>
+            </ol>
+          </nav>
+          <div class="page-hero__content">
+            <h1 class="hero__title page-hero__title">Nowoczesne usługi webowe dla firm i projektów cyfrowych.</h1>
+            <p class="hero__lead page-hero__lead">
+              Od stron internetowych i wdrożeń WordPress po SEO, UI i identyfikację wizualną — tworzę rozwiązania, które mają wyglądać dobrze, działać sprawnie i wspierać rozwój biznesu.
+            </p>
+          </div>
         </div>
-        <div class="grid grid--2">
-          <article class="card"><h2 class="card__title">Websites (HTML/CSS/JS)</h2><p class="card__meta">Szybkie, dostępne i lekkie strony dedykowane celom marketingowym.</p><a class="button button--ghost" href="./services/websites.html">Poznaj usługę</a></article>
-          <article class="card"><h2 class="card__title">WordPress</h2><p class="card__meta">Elastyczne wdrożenia CMS z prostą edycją treści i bezpiecznym zapleczem.</p><a class="button button--ghost" href="./services/wordpress.html">Poznaj usługę</a></article>
-          <article class="card"><h2 class="card__title">SEO</h2><p class="card__meta">Optymalizacja techniczna i contentowa zwiększająca widoczność organiczną.</p><a class="button button--ghost" href="./services/seo.html">Poznaj usługę</a></article>
-          <article class="card"><h2 class="card__title">UI & Brand Design</h2><p class="card__meta">Spójna identyfikacja i interfejsy, które budują wiarygodność marki.</p><a class="button button--ghost" href="./services/design.html">Poznaj usługę</a></article>
-        </div>
-      </div>
-    </section>
-  </main>
+      </section>
 
-  <footer class="footer">
+      <!-- Services overview -->
+      <section class="section services-overview" data-reveal>
+        <div class="container">
+          <div class="section__header services-overview__header">
+            <p class="section__eyebrow">Usługi</p>
+            <h2 class="section__title">Usługi dopasowane do etapu rozwoju Twojego biznesu.</h2>
+            <p class="section__subtitle">Od pojedynczej strony ofertowej po bardziej rozbudowane wdrożenia i rozwój obecnego serwisu.</p>
+          </div>
+          <!-- Services overview grid -->
+          <div class="grid grid--2 services-overview__grid">
+
+            <!-- Strony internetowe html css js -->
+            <article class="card service-card">
+              <div class="service-card__head">
+                <span class="service-card__icon" aria-hidden="true">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M12 12h.01" />
+                    <path d="M16 12h.01" />
+                    <path d="m17 7 5 5-5 5" />
+                    <path d="m7 7-5 5 5 5" />
+                    <path d="M8 12h.01" />
+                  </svg>
+                </span>
+                <h3 class="card__title">Strony internetowe (HTML/CSS/JS)</h3>
+              </div>
+              <p class="card__lead">
+                Projektuję i wdrażam nowoczesne strony internetowe tworzone od podstaw — szybkie, estetyczne i dopasowane do realnych celów biznesowych, komunikacyjnych oraz sprzedażowych.
+              </p>
+              <ul class="list">
+                <li>indywidualny projekt dopasowany do branży, oferty i charakteru marki</li>
+                <li>wydajność, Core Web Vitals i techniczne podstawy pod dobre SEO</li>
+                <li>dostępność, semantyczny HTML i przejrzysta architektura treści</li>
+                <li>czysty, skalowalny kod ułatwiający rozwój strony w przyszłości</li>
+              </ul>
+              <p class="card__meta">To rozwiązanie dla firm, które potrzebują profesjonalnej strony wizerunkowej, ofertowej lub landing page tworzonego bez kompromisów gotowych szablonów.</p>
+              <div class="card__actions">
+                <a class="button button--primary" href="./contact.html?service=websites">Kontakt</a>
+                <a class="button button--ghost" href="./services/websites.html">Szczegóły</a>
+              </div>
+            </article>
+
+            <!-- Wdrożenia WordPress -->
+            <article class="card service-card">
+              <div class="service-card__head">
+                <span class="service-card__icon" aria-hidden="true">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <rect width="7" height="7" x="3" y="3" rx="1" />
+                    <rect width="7" height="7" x="14" y="3" rx="1" />
+                    <rect width="7" height="7" x="14" y="14" rx="1" />
+                    <rect width="7" height="7" x="3" y="14" rx="1" />
+                  </svg>
+                </span>
+                <h3 class="card__title">Strony WordPress</h3>
+              </div>
+              <p class="card__lead">Tworzę wdrożenia WordPress, które łączą wygodną edycję treści z estetycznym projektem, stabilnym działaniem i możliwością dalszej rozbudowy serwisu.</p>
+              <ul class="list">
+                <li>motyw dopasowany do marki, oferty i celów biznesowych</li>
+                <li>wygodna edycja treści bez potrzeby kodowania</li>
+                <li>lekkie, bezpieczne i uporządkowane wdrożenie CMS</li>
+                <li>solidna baza pod rozwój strony i kolejne podstrony</li>
+              </ul>
+              <p class="card__meta">To rozwiązanie dla firm, które chcą samodzielnie zarządzać treścią strony, zachowując jednocześnie profesjonalny wygląd, dobrą wydajność i elastyczność rozwoju.</p>
+              <div class="card__actions">
+                <a class="button button--primary" href="./contact.html?service=wordpress">Kontakt</a>
+                <a class="button button--ghost" href="./services/wordpress.html">Szczegóły</a>
+              </div>
+            </article>
+
+            <!-- SEO -->
+            <article class="card service-card">
+              <div class="service-card__head">
+                <span class="service-card__icon" aria-hidden="true">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M12 16v5" />
+                    <path d="M16 14v7" />
+                    <path d="M20 10v11" />
+                    <path d="m22 3-8.646 8.646a.5.5 0 0 1-.708 0L9.354 8.354a.5.5 0 0 0-.707 0L2 15" />
+                    <path d="M4 18v3" />
+                    <path d="M8 14v7" />
+                  </svg>
+                </span>
+                <h3 class="card__title">Optymalizacja SEO</h3>
+              </div>
+              <p class="card__lead">
+                Wspieram rozwój widoczności strony w wyszukiwarce poprzez działania techniczne, optymalizację treści oraz uporządkowanie struktury serwisu pod lepsze wyniki organiczne.
+              </p>
+              <ul class="list">
+                <li>audyt techniczny i analiza obecnej kondycji strony</li>
+                <li>optymalizacja on-page, struktury nagłówków i architektury treści</li>
+                <li>dane strukturalne, meta dane i techniczne podstawy indeksacji</li>
+                <li>SEO lokalne oraz przygotowanie strony pod dalszy rozwój contentu</li>
+              </ul>
+              <p class="card__meta">
+                To usługa dla firm, które chcą zwiększyć swoją widoczność w Google, poprawić jakość strony od strony technicznej i zbudować mocniejsze podstawy pod pozyskiwanie ruchu organicznego.
+              </p>
+              <div class="card__actions">
+                <a class="button button--primary" href="./contact.html?service=seo">Kontakt</a>
+                <a class="button button--ghost" href="./services/seo.html">Szczegóły</a>
+              </div>
+            </article>
+            
+            <!-- UI i identyfikacja wizualna -->
+            <article class="card service-card">
+              <div class="service-card__head">
+                <span class="service-card__icon" aria-hidden="true">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M12 17v4" />
+                    <path d="M8 21h8" />
+                    <path d="m9 17 6.1-6.1a2 2 0 0 1 2.81.01L22 15" />
+                    <circle cx="8" cy="9" r="2" />
+                    <rect x="2" y="3" width="20" height="14" rx="2" />
+                  </svg>
+                </span>
+                <h3 class="card__title">UI i identyfikacja wizualna</h3>
+              </div>
+              <p class="card__lead">Projektuję spójny wygląd stron i produktów cyfrowych, łącząc estetykę interfejsu z czytelną komunikacją wizualną dopasowaną do charakteru marki.</p>
+              <ul class="list">
+                <li>układ, hierarchia treści i kierunek wizualny interfejsu</li>
+                <li>dobór kolorów, typografii i podstaw systemu wizualnego</li>
+                <li>spójne komponenty oraz estetyka dopasowana do branży</li>
+                <li>materiały wspierające komunikację marki w kanałach digital</li>
+              </ul>
+              <p class="card__meta">To usługa dla firm i projektów, które chcą wyglądać bardziej profesjonalnie, budować rozpoznawalność i uporządkować warstwę wizualną strony lub produktu.</p>
+              <div class="card__actions">
+                <a class="button button--primary" href="./contact.html?service=design">Kontakt</a>
+                <a class="button button--ghost" href="./services/design.html">Szczegóły</a>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <!-- Service details -->
+      <section class="section service-detail" id="websites" data-reveal>
+        <div class="container">
+          <div class="service-detail__content">
+            <p class="section__eyebrow">01 · Strony internetowe</p>
+            <h2 class="section__title">Dedykowane strony internetowe tworzone od podstaw.</h2>
+            <p class="section__subtitle">
+              Projektuję i wdrażam nowoczesne strony internetowe w oparciu o HTML, CSS i JavaScript, dbając o estetykę, przejrzystość kodu, wydajność oraz dobre doświadczenie użytkownika.
+            </p>
+            <p>To rozwiązanie dla firm, które potrzebują strony szytej pod konkretny cel — wizerunkowy, ofertowy lub sprzedażowy — bez zbędnych ograniczeń gotowych szablonów.</p>
+            <a class="button button--secondary" href="./services/websites.html">Zobacz szczegóły usługi</a>
+          </div>
+        </div>
+      </section>
+
+      <section class="section service-detail" id="wordpress" data-reveal>
+        <div class="container">
+          <div class="service-detail__content">
+            <p class="section__eyebrow">02 · WordPress</p>
+            <h2 class="section__title">Wdrożenia WordPress z myślą o wygodnej edycji treści.</h2>
+            <p class="section__subtitle">
+              Tworzę strony oparte o WordPress dla projektów, które wymagają prostego zarządzania treścią, elastyczności rozbudowy i stabilnego zaplecza do codziennej pracy.
+            </p>
+            <p>To dobra opcja dla firm, które chcą samodzielnie rozwijać zawartość strony, publikować aktualności, rozbudowywać podstrony i zachować kontrolę nad CMS-em.</p>
+            <a class="button button--secondary" href="./services/wordpress.html">Zobacz szczegóły usługi</a>
+          </div>
+        </div>
+      </section>
+
+      <section class="section service-detail" id="seo" data-reveal>
+        <div class="container">
+          <div class="service-detail__content">
+            <p class="section__eyebrow">03 · SEO</p>
+            <h2 class="section__title">SEO, które wspiera widoczność i rozwój strony.</h2>
+            <p class="section__subtitle">Pomagam uporządkować techniczne podstawy SEO oraz zadbać o strukturę i treści, które zwiększają szanse na lepszą widoczność w wynikach wyszukiwania.</p>
+            <p>Działania obejmują zarówno optymalizację samej strony, jak i przygotowanie solidnej bazy pod dalszy rozwój contentu, architektury informacji i obecności online.</p>
+            <a class="button button--secondary" href="./services/seo.html">Zobacz szczegóły usługi</a>
+          </div>
+        </div>
+      </section>
+
+      <section class="section service-detail" id="design" data-reveal>
+        <div class="container">
+          <div class="service-detail__content">
+            <p class="section__eyebrow">04 · UI i identyfikacja wizualna</p>
+            <h2 class="section__title">Spójny wygląd marki i interfejsów cyfrowych.</h2>
+            <p class="section__subtitle">Projektuję kierunek wizualny stron i interfejsów tak, aby całość była estetyczna, spójna i dopasowana do charakteru marki oraz odbiorców.</p>
+            <p>To obszar, który porządkuje komunikację wizualną projektu — od układu i typografii po detale wpływające na odbiór profesjonalizmu i jakości.</p>
+            <a class="button button--secondary" href="./services/design.html">Zobacz szczegóły usługi</a>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
       <div class="container">
         <div class="footer__grid">
+          <!-- brand -->
           <div class="footer__col footer__brand">
             <picture class="footer__logo">
               <source srcset="/assets/img/logo/logo-dark-mode.svg" media="(prefers-color-scheme: dark)" />
               <img src="/assets/img/logo/logo-light-mode.svg" alt="KP_Code Digital Studio" loading="lazy" width="512" height="512" />
             </picture>
-
-            <h4 class="footer__brand-title">
+            <h3 class="footer__brand-title">
               <a href="/index.html">KP_Code Digital Studio</a>
-            </h4>
+            </h3>
             <p class="footer__lead">Studio front-endowe specjalizujące się w nowoczesnych stronach internetowych.</p>
             <p class="footer__meta">Projektowanie, wdrożenia, SEO i identyfikacja.</p>
           </div>
-
+          <!-- nav -->
           <nav class="footer__col footer__nav" aria-label="Nawigacja">
             <h3 class="footer__title">Nawigacja</h3>
             <ul class="footer__links" role="list">
               <li><a class="footer__link" href="/index.html">Start</a></li>
               <li><a class="footer__link" href="/about.html">O mnie</a></li>
-              <li><a class="footer__link" href="/services.html">Usługi</a></li>
+              <li><a class="footer__link" href="/services.html" aria-current="page">Usługi</a></li>
               <li><a class="footer__link" href="/projects.html">Projekty</a></li>
               <li><a class="footer__link" href="/contact.html">Kontakt</a></li>
             </ul>
           </nav>
-
+          <!-- services -->
           <nav class="footer__col footer__nav" aria-label="Usługi">
             <h3 class="footer__title">Usługi</h3>
             <ul class="footer__links" role="list">
@@ -145,13 +342,13 @@
               <li><a class="footer__link" href="/services/design.html">UI i identyfikacja</a></li>
             </ul>
           </nav>
-
+          <!-- contact -->
           <div class="footer__col footer__contact">
             <h3 class="footer__title">Kontakt</h3>
             <address class="footer__contact-list">
               <a class="footer__link" href="tel:+48533537091">+48 533 537 091</a>
               <a class="footer__link" href="mailto:kontakt@kp-code.pl">kontakt@kp-code.pl</a>
-              <span class="footer__meta">
+              <span class="footer__meta footer__meta--address">
                 KP_Code Digital Studio
                 <br />
                 ul. Marynarki Wojennej 12
@@ -160,12 +357,15 @@
               </span>
               <span class="footer__meta">Współpraca zdalna i stacjonarna · odpowiedź do 24h</span>
             </address>
-            <a class="button button--ghost footer__cta" href="/contact.html">Skontaktuj się</a>
+            <div class="actions">
+              <a class="button button--primary" href="/contact.html">Skontaktuj się</a>
+            </div>
           </div>
         </div>
-
+        <!-- social -->
         <div class="footer__social" aria-label="Social media">
           <ul class="footer__social-links" role="list">
+            <!-- github -->
             <li>
               <a class="footer__social-link" href="https://github.com/KPKrol85" aria-label="GitHub" target="_blank" rel="noopener noreferrer">
                 <svg class="footer__social-icon" aria-hidden="true" viewBox="0 0 24 24" fill="currentColor">
@@ -174,6 +374,7 @@
                 </svg>
               </a>
             </li>
+            <!-- facebook -->
             <li>
               <a class="footer__social-link" href="https://www.facebook.com/kpkrol85" aria-label="Facebook" target="_blank" rel="noopener noreferrer">
                 <svg class="footer__social-icon" aria-hidden="true" viewBox="0 0 24 24" fill="currentColor">
@@ -181,6 +382,7 @@
                 </svg>
               </a>
             </li>
+            <!-- instagram -->
             <li>
               <a class="footer__social-link" href="https://www.instagram.com/kp_code_/" aria-label="Instagram" target="_blank" rel="noopener noreferrer">
                 <svg class="footer__social-icon" aria-hidden="true" viewBox="0 0 24 24" fill="currentColor">
@@ -191,6 +393,7 @@
                 </svg>
               </a>
             </li>
+            <!-- x -->
             <li>
               <a class="footer__social-link" href="https://x.com/KP_Code_85" aria-label="X" target="_blank" rel="noopener noreferrer">
                 <svg class="footer__social-icon" aria-hidden="true" viewBox="0 0 24 24" fill="currentColor">
@@ -198,6 +401,7 @@
                 </svg>
               </a>
             </li>
+            <!-- linkedin -->
             <li>
               <a class="footer__social-link" href="https://www.linkedin.com/in/kp-code/" aria-label="LinkedIn" target="_blank" rel="noopener noreferrer">
                 <svg class="footer__social-icon" aria-hidden="true" viewBox="0 0 24 24" fill="currentColor">
@@ -208,9 +412,9 @@
             </li>
           </ul>
         </div>
-
+        <!-- bottom -->
         <div class="footer__bottom">
-          <p class="footer__legal">© 2026 Kamil Król. Wszelkie prawa zastrzeżone.</p>
+          <p class="footer__legal">© KP_Code Digital Studio | Wszelkie prawa zastrzeżone.</p>
           <div class="footer__legal-links">
             <a class="footer__link" href="/regulamin.html">Regulamin</a>
             <a class="footer__link" href="/polityka-prywatnosci.html">Polityka prywatności</a>
@@ -220,6 +424,7 @@
       </div>
     </footer>
 
-  <script type="module" src="./js/main.js"></script>
-</body>
+    <!-- Script -->
+    <script type="module" src="./js/main.js"></script>
+  </body>
 </html>
