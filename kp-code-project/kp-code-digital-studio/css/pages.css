@@ -440,3 +440,45 @@
     top: var(--header-links-offset-shrink);
   }
 }
+/* Scrollable services */
+.page--services .service-card__jump {
+  position: absolute;
+  top: var(--space-5);
+  right: var(--space-5);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: var(--space-7);
+  height: var(--space-7);
+  border-radius: var(--radius-md);
+  background: none;
+  color: var(--color-text-muted);
+  opacity: 0.18;
+  transform: translateY(-0.125rem);
+  transition:
+    opacity var(--transition-base),
+    transform var(--transition-base),
+    color var(--transition-base),
+    border-color var(--transition-base),
+    background-color var(--transition-base);
+  z-index: 2;
+}
+.page--services .service-card__jump svg {
+  width: var(--space-4);
+  height: var(--space-4);
+}
+.page--services .service-card:hover .service-card__jump,
+.page--services .service-card:focus-within .service-card__jump {
+  opacity: 0.62;
+  transform: translateY(0);
+}
+.page--services .service-card__jump:hover,
+.page--services .service-card__jump:focus-visible {
+  opacity: 1;
+  color: var(--color-text);
+  border-color: color-mix(in srgb, var(--color-primary) 32%, var(--color-border));
+  background: color-mix(in srgb, var(--color-surface) 92%, transparent);
+}
+.page--services .service-detail {
+  scroll-margin-top: var(--space-8);
+}
