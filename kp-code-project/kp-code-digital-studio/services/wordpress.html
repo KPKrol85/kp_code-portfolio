@@ -1,69 +1,72 @@
 <!doctype html>
 <html lang="pl">
-<head>
-  <!-- Meta / Base -->
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <head>
+    <!-- Meta / Base -->
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#ffffff" />
+    <meta name="robots" content="index, follow" />
+    <!-- Title -->
+    <title>Websites (HTML/CSS/JS) — KP_Code Digital Studio</title>
+    <!-- SEO -->
+    <meta name="description" content="KP_Code Digital Studio tworzy nowoczesne strony, SEO i identyfikację. Kamil Król buduje produkty webowe, które sprzedają." />
+    <link rel="canonical" href="https://www.kp-code.pl/services/websites.html" />
+    <!-- Open Graph -->
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content="pl_PL" />
+    <meta property="og:site_name" content="KP_Code Digital Studio" />
+    <meta property="og:title" content="KP_Code Digital Studio" />
+    <meta property="og:description" content="Nowoczesne strony, WordPress i SEO dla biznesów. Poznaj projekty Kamila Króla." />
+    <meta property="og:url" content="https://www.kp-code.pl/" />
+    <meta property="og:image" content="https://www.kp-code.pl/assets/og/og-img.png" />
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="KP_Code Digital Studio" />
+    <meta name="twitter:description" content="Projektujemy i wdrażamy strony oraz strategie SEO." />
+    <meta name="twitter:image" content="https://www.kp-code.pl/assets/og/og-img.png" />
+    <!-- Icons / PWA -->
+    <link rel="icon" href="https://www.kp-code.pl/assets/icons/favicon.svg" type="image/svg+xml" />
+    <link rel="apple-touch-icon" href="https://www.kp-code.pl/assets/icons/apple-touch-icon.png" />
+    <link rel="manifest" href="https://www.kp-code.pl/assets/icons/site.webmanifest" />
+    <!-- Styles / Theme -->
+    <script>
+      document.documentElement.classList.add("js");
+      try {
+        const storedTheme = localStorage.getItem("theme-preference");
+        const theme = storedTheme === "light" || storedTheme === "dark" ? storedTheme : window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+        document.documentElement.dataset.theme = theme;
+      } catch {
+        document.documentElement.dataset.theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+      }
+    </script>
+    <!-- Styles -->
+    <link rel="stylesheet" href="../css/main.css" />
+  </head>
 
-  <!-- Title -->
-  <title>WordPress — KP_Code Digital Studio</title>
+  <!-- Body -->
+  <body class="page page--websites">
+    <a class="skip-link" href="#main">Przejdź do treści</a>
 
-  <!-- SEO -->
-  <meta name="description" content="Projektuję i wdrażam strony WordPress z naciskiem na ergonomię panelu, bezpieczeństwo i łatwe skalowanie." />
-
-  <!-- Canonical -->
-  <link rel="canonical" href="https://www.kp-code.pl/services/wordpress.html" />
-
-  <!-- Open Graph -->
-  <meta property="og:title" content="WordPress — KP_Code Digital Studio" />
-  <meta property="og:description" content="Projektuję i wdrażam strony WordPress z naciskiem na ergonomię panelu, bezpieczeństwo i łatwe skalowanie." />
-  <meta property="og:type" content="website" />
-  <meta property="og:url" content="https://www.kp-code.pl/services/wordpress.html" />
-  <meta property="og:image" content="../og/og-default.svg" />
-
-  <!-- Twitter -->
-  <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:image" content="../og/og-default.svg" />
-
-  <!-- PWA / UI -->
-  <link rel="icon" href="/assets/icons/favicon.svg" type="image/svg+xml" />
-  <link rel="manifest" href="/seo/manifest.webmanifest" />
-
-  <!-- Styles / Theme -->
-  <script>
-    document.documentElement.classList.add('js');
-    try {
-      const storedTheme = localStorage.getItem('theme-preference');
-      const theme =
-        storedTheme === 'light' || storedTheme === 'dark'
-          ? storedTheme
-          : (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
-      document.documentElement.dataset.theme = theme;
-    } catch {
-      document.documentElement.dataset.theme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
-    }
-  </script>
-  <link rel="stylesheet" href="../css/main.css" />
-</head>
-<body>
-  <a class="skip-link" href="#main">Przejdź do treści</a>
-  <header class="header">
+    <!-- Header -->
+    <header class="header">
       <div class="container nav">
         <a class="nav__brand" href="/index.html" aria-label="KP_Code Digital Studio, strona główna">
           <picture class="brand__logo">
             <source srcset="/assets/img/logo/logo-dark-mode.svg" media="(prefers-color-scheme: dark)" />
             <img src="/assets/img/logo/logo-light-mode.svg" alt="KP_Code Digital Studio" width="512" height="512" />
           </picture>
-          <span>KP_Code Digital Studio</span>
+          <span class="nav__brand-text">KP_Code Digital Studio</span>
         </a>
+        <!-- navigation -->
         <nav class="nav__links" id="primary-navigation" aria-label="Główna nawigacja">
           <a class="nav__link" href="/index.html">Start</a>
           <a class="nav__link" href="/about.html">O mnie</a>
-          <a class="nav__link" href="/services.html" aria-current="page">Usługi</a>
+          <a class="nav__link" href="/services.html">Usługi</a>
           <a class="nav__link" href="/projects.html">Projekty</a>
           <a class="nav__link" href="/contact.html">Kontakt</a>
         </nav>
         <div class="nav__backdrop" data-nav-backdrop aria-hidden="true"></div>
+        <!-- theme toggle -->
         <div class="nav__actions">
           <button class="theme-toggle" id="theme-toggle" title="Przełącza motyw jasny i ciemny" aria-label="Automatyczny" aria-live="polite">
             <svg class="sun-and-moon" aria-hidden="true" width="20" height="20" viewBox="0 0 24 24">
@@ -84,6 +87,7 @@
               </g>
             </svg>
           </button>
+          <!-- navigation toggle -->
           <button class="nav__toggle" type="button" data-nav-toggle aria-label="Otwórz menu" aria-expanded="false" aria-controls="primary-navigation">
             <span class="nav__toggle-icon" aria-hidden="true"></span>
           </button>
@@ -91,36 +95,399 @@
       </div>
     </header>
 
-  <main id="main">
-    <section class="section" data-reveal>
-      <div class="container">
-        <div class="section__header">
-          <p class="section__eyebrow">Usługa</p>
-          <h1 class="section__title">WordPress dla zespołów, które chcą łatwo zarządzać treścią.</h1>
-          <p class="section__subtitle">Projektuję i wdrażam strony WordPress z naciskiem na ergonomię panelu, bezpieczeństwo i łatwe skalowanie.</p>
+    <!-- Main -->
+    <main id="main">
+      <!-- Hero -->
+      <section class="section page-hero" data-reveal>
+        <div class="container">
+          <nav class="breadcrumbs" aria-label="Breadcrumb">
+            <ol class="breadcrumbs__list">
+              <li class="breadcrumbs__item">
+                <a class="breadcrumbs__link" href="/index.html">Start</a>
+              </li>
+              <li class="breadcrumbs__item" aria-current="page">
+                <span class="breadcrumbs__current">Strony WordPress</span>
+              </li>
+            </ol>
+          </nav>
+          <div class="page-hero__content">
+            <h1 class="hero__title page-hero__title">Profesjonalne strony WordPress tworzone z myślą o wygodnej edycji, stabilnym działaniu i rozwoju biznesu.</h1>
+            <p class="hero__lead page-hero__lead">
+              Strony firmowe i serwisy oparte na WordPressie projektowane tak, aby łączyły estetyczny wygląd, łatwe zarządzanie treścią i elastyczną bazę do dalszej rozbudowy.
+            </p>
+          </div>
         </div>
-        <article class="card"><h2 class="card__title">Co dostajesz</h2><p class="card__meta">Dostarczam customowe sekcje edycyjne, integracje formularzy, politykę kopii zapasowych oraz plan utrzymania po wdrożeniu.</p></article>
-        <div class="cta-block"><a class="button button--primary" href="../contact.html?service=wordpress">Umów konsultację</a> <a class="button button--ghost" href="../services.html">Wróć do usług</a></div>
-      </div>
-    </section>
-  </main>
+      </section>
 
-  <footer class="footer">
+      <!-- Service detail -->
+      <section class="section websites-service wordpress-service websites-service--intro" data-reveal>
+        <div class="container">
+          <div class="service-detail__grid">
+            <div class="service-detail__content">
+              <div class="section__header">
+                <p class="section__eyebrow">Usługa</p>
+                <h2 class="section__title">WordPress dla firm, które chcą połączyć profesjonalny wygląd strony z wygodnym zarządzaniem treścią.</h2>
+                <p class="section__subtitle">
+                  Usługa jest skierowana do firm, które potrzebują estetycznej, uporządkowanej i wiarygodnej strony internetowej, a jednocześnie chcą zachować możliwość samodzielnej edycji wybranych
+                  treści bez konieczności angażowania developera do każdej zmiany.
+                </p>
+              </div>
+              <div class="websites-service__intro-text">
+                <p>
+                  Realizacja strony WordPress opiera się na przejrzystej strukturze, wygodnym panelu administracyjnym oraz rozwiązaniach, które wspierają codzienną pracę z treścią. Celem nie jest
+                  wyłącznie wdrożenie CMS-a, ale przygotowanie narzędzia, które jest praktyczne, stabilne i dopasowane do sposobu działania firmy.
+                </p>
+                <p>Efektem jest strona gotowa do dalszego rozwoju, wygodna w obsłudze i przygotowana do zarządzania ofertą, aktualnościami, treściami oraz kolejnymi etapami rozbudowy serwisu.</p>
+              </div>
+              <div class="actions">
+                <a class="button button--primary" href="../contact.html?service=wordpress">Zapytaj o wycenę</a>
+                <a class="button button--ghost" href="../services.html">Wróć do usług</a>
+              </div>
+            </div>
+            <aside class="service-detail__aside websites-service__aside" aria-label="Podsumowanie usługi WordPress">
+              <div class="service-detail__panel websites-service__panel">
+                <section class="service-detail__group" aria-labelledby="wordpress-summary-title">
+                  <h3 class="service-detail__subtitle" id="wordpress-summary-title">W skrócie</h3>
+                  <ul class="service-detail__list">
+                    <li>strony firmowe i usługowe oparte na WordPressie</li>
+                    <li>wygodna edycja treści i rozwój serwisu po wdrożeniu</li>
+                    <li>wdrożenie dopasowane do marki, oferty i sposobu pracy</li>
+                    <li>solidna baza pod SEO, marketing i dalszą rozbudowę</li>
+                    <li>przejrzysty proces od briefu do publikacji</li>
+                  </ul>
+                </section>
+                <section class="service-detail__group" aria-labelledby="wordpress-outcome-title">
+                  <h3 class="service-detail__subtitle" id="wordpress-outcome-title">Efekt współpracy</h3>
+                  <p class="service-detail__note">
+                    Strona, która profesjonalnie prezentuje firmę, daje wygodę zarządzania treścią i pozwala rozwijać serwis w uporządkowany oraz przewidywalny sposób.
+                  </p>
+                </section>
+              </div>
+            </aside>
+          </div>
+        </div>
+      </section>
+
+      <!-- Included -->
+      <section class="section websites-service wordpress-service" aria-labelledby="wordpress-included-title" data-reveal>
+        <div class="container">
+          <div class="section__header websites-service__header">
+            <p class="section__eyebrow">Zakres</p>
+            <h2 class="section__title" id="wordpress-included-title">Co obejmuje usługa tworzenia stron WordPress.</h2>
+            <p class="section__subtitle">
+              Zakres realizacji jest dopasowywany do potrzeb projektu, ale każda strona opiera się na połączeniu przemyślanej struktury, dopracowanego wyglądu oraz wygodnego systemu zarządzania
+              treścią po stronie firmy.
+            </p>
+          </div>
+          <div class="grid grid--2 websites-service__cards">
+            <article class="card websites-service__card">
+              <p class="websites-service__card-label">01</p>
+              <h3 class="card__title">Architektura treści i zakres strony</h3>
+              <p class="card__meta">Ustalenie układu strony, podstron, sekcji, hierarchii informacji oraz obszarów, które mają być później wygodnie edytowane w panelu WordPress.</p>
+            </article>
+
+            <article class="card websites-service__card">
+              <p class="websites-service__card-label">02</p>
+              <h3 class="card__title">Projekt wizualny i elementy interfejsu</h3>
+              <p class="card__meta">Spójny kierunek wizualny dopasowany do marki, oferty i charakteru komunikacji, przygotowany tak, aby serwis był czytelny, profesjonalny i wygodny w odbiorze.</p>
+            </article>
+
+            <article class="card websites-service__card">
+              <p class="websites-service__card-label">03</p>
+              <h3 class="card__title">Wdrożenie serwisu w WordPressie</h3>
+              <p class="card__meta">Budowa i konfiguracja strony z naciskiem na stabilne działanie, przejrzystą strukturę oraz wygodne zarządzanie treścią przez właściciela firmy lub zespół.</p>
+            </article>
+
+            <article class="card websites-service__card">
+              <p class="websites-service__card-label">04</p>
+              <h3 class="card__title">Przygotowanie do publikacji i dalszej pracy</h3>
+              <p class="card__meta">Dopracowanie kluczowych ustawień, formularzy, podstaw wydajności i SEO oraz przygotowanie strony do bezpiecznego startu i dalszego rozwoju po wdrożeniu.</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <!-- Audience -->
+      <!-- Audience -->
+      <section class="section websites-service wordpress-service websites-service--surface" aria-labelledby="wordpress-audience-title" data-reveal>
+        <div class="container">
+          <div class="section__header websites-service__header">
+            <p class="section__eyebrow">Dla kogo</p>
+            <h2 class="section__title" id="wordpress-audience-title">Dla firm, które chcą połączyć profesjonalną stronę z wygodnym zarządzaniem treścią.</h2>
+            <p class="section__subtitle">
+              To rozwiązanie szczególnie dobrze sprawdza się tam, gdzie strona ma być nie tylko wizytówką firmy, ale również elastycznym zapleczem do aktualizacji oferty, komunikatów i treści
+              rozwijanych wraz z biznesem.
+            </p>
+          </div>
+
+          <div class="grid grid--2 websites-service__cards">
+            <article class="card websites-service__card">
+              <h3 class="card__title">Firmy publikujące i aktualizujące treści</h3>
+              <p class="card__meta">Dla biznesów, które chcą samodzielnie edytować i rozwijać treści ofertowe, aktualności, wpisy oraz podstawowe elementy strony bez zbędnych utrudnień.</p>
+            </article>
+
+            <article class="card websites-service__card">
+              <h3 class="card__title">Zespoły marketingowe i sprzedażowe</h3>
+              <p class="card__meta">Dla firm, które potrzebują elastycznego systemu do szybkiej edycji komunikatów, stron ofertowych i treści wspierających działania marketingowe.</p>
+            </article>
+
+            <article class="card websites-service__card">
+              <h3 class="card__title">Firmy rozwijające ofertę etapami</h3>
+              <p class="card__meta">Gdy serwis ma być stopniowo rozbudowywany o kolejne podstrony, usługi, sekcje lub materiały bez potrzeby przebudowywania całej strony od podstaw.</p>
+            </article>
+
+            <article class="card websites-service__card">
+              <h3 class="card__title">Marki potrzebujące wygodnego CMS-a</h3>
+              <p class="card__meta">Dla klientów, którzy chcą zachować większą niezależność w codziennej obsłudze strony, a jednocześnie oczekują dopracowanego i biznesowego wdrożenia.</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <!-- Process -->
+      <section class="section websites-service wordpress-service" aria-labelledby="wordpress-process-title" data-reveal>
+        <div class="container">
+          <div class="section__header websites-service__header">
+            <p class="section__eyebrow">Proces</p>
+            <h2 class="section__title" id="wordpress-process-title">Jak wygląda współpraca przy wdrożeniu strony WordPress.</h2>
+            <p class="section__subtitle">
+              Proces współpracy jest uporządkowany tak, aby strona była dopracowana wizualnie i technicznie, a jednocześnie zapewniała wygodny oraz logiczny system pracy z treścią po wdrożeniu.
+            </p>
+          </div>
+          <div class="grid grid--2 process websites-service__process">
+            <article class="card process__item">
+              <div class="process__header">
+                <span class="process__step">1</span>
+                <h3 class="card__title">Brief i cele biznesowe</h3>
+              </div>
+              <p class="card__meta">Ustalenie zakresu strony, struktury oferty, potrzeb edycyjnych, liczby podstron oraz obszarów, które mają być później wygodnie zarządzane po stronie firmy.</p>
+            </article>
+
+            <article class="card process__item">
+              <div class="process__header">
+                <span class="process__step">2</span>
+                <h3 class="card__title">Układ i logika CMS</h3>
+              </div>
+              <p class="card__meta">
+                Opracowanie struktury treści, kierunku wizualnego oraz sposobu edycji strony tak, aby panel administracyjny był intuicyjny, przejrzysty i dopasowany do codziennego użytkowania.
+              </p>
+            </article>
+
+            <article class="card process__item">
+              <div class="process__header">
+                <span class="process__step">3</span>
+                <h3 class="card__title">Wdrożenie i konfiguracja</h3>
+              </div>
+              <p class="card__meta">
+                Powstaje właściwy serwis WordPress z odpowiednią konfiguracją, strukturą podstron, formularzami oraz dopracowaniem kluczowych elementów technicznych i użytkowych.
+              </p>
+            </article>
+
+            <article class="card process__item">
+              <div class="process__header">
+                <span class="process__step">4</span>
+                <h3 class="card__title">Testy i publikacja</h3>
+              </div>
+              <p class="card__meta">Na końcowym etapie serwis jest sprawdzany, dopracowywany i przygotowywany do publikacji oraz późniejszej wygodnej obsługi po stronie klienta.</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <!-- Pricing -->
+      <section class="section websites-service wordpress-service websites-service--surface" aria-labelledby="wordpress-pricing-title" data-reveal>
+        <div class="container">
+          <div class="section__header websites-service__header">
+            <p class="section__eyebrow">Wycena</p>
+            <h2 class="section__title" id="wordpress-pricing-title">Jak wygląda wycena projektów WordPress i od jakiego poziomu zaczynają się realizacje.</h2>
+            <p class="section__subtitle">
+              Koszt wdrożenia WordPress zależy nie tylko od wyglądu strony, ale również od zakresu CMS, liczby podstron, poziomu indywidualizacji oraz tego, jak elastyczny ma być system pracy z
+              treścią po stronie firmy.
+            </p>
+          </div>
+
+          <div class="grid grid--3 websites-service__pricing">
+            <article class="card websites-service__pricing-card">
+              <p class="websites-service__price-kicker">Od</p>
+              <p class="websites-service__price-value">2 500 zł</p>
+              <h3 class="card__title">Prosty serwis WordPress</h3>
+              <p class="card__meta">Strona dla firmy lub usługi z podstawowym zakresem podstron oraz wygodnym panelem do samodzielnej edycji najważniejszych treści.</p>
+            </article>
+
+            <article class="card websites-service__pricing-card">
+              <p class="websites-service__price-kicker">Od</p>
+              <p class="websites-service__price-value">4 200 zł</p>
+              <h3 class="card__title">Strona firmowa WordPress</h3>
+              <p class="card__meta">Profesjonalny serwis z bardziej rozbudowaną ofertą, większą liczbą sekcji oraz lepiej dopasowanym sposobem zarządzania treścią w WordPressie.</p>
+            </article>
+
+            <article class="card websites-service__pricing-card">
+              <p class="websites-service__price-kicker">Od</p>
+              <p class="websites-service__price-value">6 900 zł</p>
+              <h3 class="card__title">Rozbudowany serwis WordPress</h3>
+              <p class="card__meta">Większy projekt z bardziej złożoną strukturą, dodatkowymi modułami, większą liczbą widoków oraz szerszym zakresem konfiguracji i wdrożenia.</p>
+            </article>
+          </div>
+
+          <p class="websites-service__pricing-note">
+            Finalna wycena zależy od liczby podstron, poziomu indywidualizacji projektu, zakresu konfiguracji WordPress oraz tego, jak rozbudowany i elastyczny ma być system pracy z treścią po
+            wdrożeniu.
+          </p>
+        </div>
+      </section>
+
+      <!-- Factors -->
+      <section class="section websites-service wordpress-service" aria-labelledby="wordpress-factors-title" data-reveal>
+        <div class="container">
+          <div class="section__header websites-service__header">
+            <p class="section__eyebrow">Co wpływa na koszt</p>
+            <h2 class="section__title" id="wordpress-factors-title">Najważniejsze elementy wpływające na końcową wycenę strony WordPress.</h2>
+            <p class="section__subtitle">
+              W projektach WordPress znaczenie ma nie tylko sam wygląd serwisu, ale również poziom wygody edycji, logika panelu administracyjnego oraz zakres funkcji, które mają działać po wdrożeniu.
+            </p>
+          </div>
+
+          <div class="grid grid--2 websites-service__factors">
+            <article class="card websites-service__factor-card">
+              <h3 class="card__title">Liczba podstron i widoków</h3>
+              <p class="card__meta">Im bardziej rozbudowany serwis i struktura treści, tym większy zakres pracy projektowej, wdrożeniowej oraz organizacji treści po stronie WordPressa.</p>
+            </article>
+
+            <article class="card websites-service__factor-card">
+              <h3 class="card__title">Zakres edycji po stronie klienta</h3>
+              <p class="card__meta">Im więcej elementów ma być później wygodnie edytowalnych, tym większa złożoność wdrożenia, konfiguracji oraz przygotowania logicznego systemu pracy z treścią.</p>
+            </article>
+
+            <article class="card websites-service__factor-card">
+              <h3 class="card__title">Gotowość materiałów i treści</h3>
+              <p class="card__meta">
+                Dostarczone teksty, zdjęcia i uporządkowana oferta przyspieszają realizację, natomiast ich brak zwykle oznacza dodatkowy etap porządkowania zakresu i struktury strony.
+              </p>
+            </article>
+
+            <article class="card websites-service__factor-card">
+              <h3 class="card__title">Funkcje dodatkowe i konfiguracja</h3>
+              <p class="card__meta">Formularze, blog, niestandardowe sekcje, integracje lub bardziej rozbudowany panel administracyjny zwiększają zakres projektu i wpływają na finalną wycenę.</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <!-- Benefits -->
+      <section class="section websites-service wordpress-service websites-service--benefits" aria-labelledby="wordpress-benefits-title" data-reveal>
+        <div class="container">
+          <div class="service-detail__grid">
+            <div class="service-detail__content">
+              <div class="section__header websites-service__header">
+                <p class="section__eyebrow">Korzyści</p>
+                <h2 class="section__title" id="wordpress-benefits-title">Co daje firmie dobrze wdrożona strona WordPress.</h2>
+                <p class="section__subtitle">
+                  WordPress ma największą wartość wtedy, gdy poza estetyką i jakością strony zapewnia również wygodę codziennej pracy z treścią oraz możliwość dalszego rozwoju serwisu bez zbędnych
+                  ograniczeń.
+                </p>
+              </div>
+              <ul class="websites-service__benefits-list" role="list">
+                <li>wygodna edycja treści bez potrzeby angażowania developera do każdej zmiany</li>
+                <li>profesjonalny wygląd strony połączony z funkcjonalnym i uporządkowanym zapleczem CMS</li>
+                <li>większa elastyczność przy rozbudowie oferty, podstron i kolejnych sekcji</li>
+                <li>lepsza organizacja pracy z treścią po stronie firmy lub zespołu marketingowego</li>
+                <li>solidna baza pod dalszy rozwój serwisu, SEO i działania sprzedażowe</li>
+              </ul>
+            </div>
+            <aside class="service-detail__aside" aria-label="Wartość biznesowa usługi WordPress">
+              <div class="card websites-service__result-card">
+                <p class="websites-service__result-label">Finalny efekt</p>
+                <h3 class="card__title">Strona WordPress, która wygląda profesjonalnie i realnie ułatwia pracę z treścią.</h3>
+                <p class="card__meta">
+                  Efektem współpracy jest serwis gotowy do codziennego użycia, rozwoju i samodzielnego zarządzania, bez utraty jakości wykonania oraz bez chaosu po stronie panelu administracyjnego.
+                </p>
+              </div>
+            </aside>
+          </div>
+        </div>
+      </section>
+
+      <!-- FAQ -->
+      <section class="section websites-service wordpress-service websites-service--surface" aria-labelledby="wordpress-faq-title" data-reveal>
+        <div class="container">
+          <div class="section__header websites-service__header">
+            <p class="section__eyebrow">FAQ</p>
+            <h2 class="section__title" id="wordpress-faq-title">Najczęstsze pytania przed wdrożeniem strony WordPress.</h2>
+            <p class="section__subtitle">
+              Jeśli po zapoznaniu się z zakresem usługi nadal pojawiają się pytania, najlepiej opisać planowany projekt. To pozwala szybciej określić właściwy kierunek i dobrać sensowny zakres
+              wdrożenia.
+            </p>
+          </div>
+
+          <div class="websites-service__faq">
+            <details class="card websites-service__faq-item">
+              <summary class="websites-service__faq-question">Czy będę mógł samodzielnie edytować treści na stronie?</summary>
+              <p class="websites-service__faq-answer">
+                Tak. Jednym z głównych założeń tej usługi jest przygotowanie strony w taki sposób, aby edycja najważniejszych treści była możliwa bez konieczności korzystania ze wsparcia technicznego
+                przy każdej zmianie.
+              </p>
+            </details>
+
+            <details class="card websites-service__faq-item">
+              <summary class="websites-service__faq-question">Czy WordPress nadaje się do profesjonalnej strony firmowej?</summary>
+              <p class="websites-service__faq-answer">
+                Tak, pod warunkiem że wdrożenie jest dobrze zaprojektowane i uporządkowane. WordPress może być stabilnym i wygodnym rozwiązaniem dla biznesu, jeśli opiera się na przemyślanej
+                strukturze i właściwie przygotowanym zapleczu CMS.
+              </p>
+            </details>
+
+            <details class="card websites-service__faq-item">
+              <summary class="websites-service__faq-question">Czy mogę później rozbudowywać stronę o nowe podstrony i sekcje?</summary>
+              <p class="websites-service__faq-answer">
+                Tak. Strony WordPress mogą być rozwijane wraz z rozwojem oferty, komunikacji i działań marketingowych, bez potrzeby przebudowywania całego serwisu od podstaw.
+              </p>
+            </details>
+
+            <details class="card websites-service__faq-item">
+              <summary class="websites-service__faq-question">Czy WordPress obejmuje też podstawy SEO i przygotowanie techniczne?</summary>
+              <p class="websites-service__faq-answer">
+                Tak. W standardzie uwzględniane są podstawy techniczne, czytelna struktura treści, konfiguracja kluczowych elementów strony oraz przygotowanie do dalszych działań SEO i marketingowych.
+              </p>
+            </details>
+          </div>
+        </div>
+      </section>
+
+      <!-- CTA -->
+      <section class="section websites-service wordpress-service" data-reveal>
+        <div class="container cta websites-service__cta">
+          <div class="section__header">
+            <h2 class="section__title">Potrzebujesz strony WordPress, która będzie dobrze wyglądać i jednocześnie da wygodę zarządzania treścią?</h2>
+            <p class="section__subtitle">
+              Wystarczy krótki opis projektu, liczby podstron oraz zakresu treści, które mają być później samodzielnie edytowane, aby łatwiej określić właściwy kierunek, zakres wdrożenia i
+              orientacyjny poziom wyceny.
+            </p>
+          </div>
+          <div class="actions">
+            <a class="button button--primary" href="../contact.html?service=wordpress">Zapytaj o wycenę</a>
+            <a class="button button--ghost" href="../projects.html">Zobacz realizacje</a>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
       <div class="container">
         <div class="footer__grid">
+          <!-- brand -->
           <div class="footer__col footer__brand">
             <picture class="footer__logo">
               <source srcset="/assets/img/logo/logo-dark-mode.svg" media="(prefers-color-scheme: dark)" />
               <img src="/assets/img/logo/logo-light-mode.svg" alt="KP_Code Digital Studio" loading="lazy" width="512" height="512" />
             </picture>
-
-            <h4 class="footer__brand-title">
+            <h3 class="footer__brand-title">
               <a href="/index.html">KP_Code Digital Studio</a>
-            </h4>
+            </h3>
             <p class="footer__lead">Studio front-endowe specjalizujące się w nowoczesnych stronach internetowych.</p>
             <p class="footer__meta">Projektowanie, wdrożenia, SEO i identyfikacja.</p>
           </div>
-
+          <!-- nav -->
           <nav class="footer__col footer__nav" aria-label="Nawigacja">
             <h3 class="footer__title">Nawigacja</h3>
             <ul class="footer__links" role="list">
@@ -131,7 +498,7 @@
               <li><a class="footer__link" href="/contact.html">Kontakt</a></li>
             </ul>
           </nav>
-
+          <!-- services -->
           <nav class="footer__col footer__nav" aria-label="Usługi">
             <h3 class="footer__title">Usługi</h3>
             <ul class="footer__links" role="list">
@@ -141,13 +508,13 @@
               <li><a class="footer__link" href="/services/design.html">UI i identyfikacja</a></li>
             </ul>
           </nav>
-
+          <!-- contact -->
           <div class="footer__col footer__contact">
             <h3 class="footer__title">Kontakt</h3>
             <address class="footer__contact-list">
               <a class="footer__link" href="tel:+48533537091">+48 533 537 091</a>
               <a class="footer__link" href="mailto:kontakt@kp-code.pl">kontakt@kp-code.pl</a>
-              <span class="footer__meta">
+              <span class="footer__meta footer__meta--address">
                 KP_Code Digital Studio
                 <br />
                 ul. Marynarki Wojennej 12
@@ -156,12 +523,15 @@
               </span>
               <span class="footer__meta">Współpraca zdalna i stacjonarna · odpowiedź do 24h</span>
             </address>
-            <a class="button button--ghost footer__cta" href="/contact.html">Skontaktuj się</a>
+            <div class="actions">
+              <a class="button button--primary" href="/contact.html">Skontaktuj się</a>
+            </div>
           </div>
         </div>
-
+        <!-- social -->
         <div class="footer__social" aria-label="Social media">
           <ul class="footer__social-links" role="list">
+            <!-- github -->
             <li>
               <a class="footer__social-link" href="https://github.com/KPKrol85" aria-label="GitHub" target="_blank" rel="noopener noreferrer">
                 <svg class="footer__social-icon" aria-hidden="true" viewBox="0 0 24 24" fill="currentColor">
@@ -170,6 +540,7 @@
                 </svg>
               </a>
             </li>
+            <!-- facebook -->
             <li>
               <a class="footer__social-link" href="https://www.facebook.com/kpkrol85" aria-label="Facebook" target="_blank" rel="noopener noreferrer">
                 <svg class="footer__social-icon" aria-hidden="true" viewBox="0 0 24 24" fill="currentColor">
@@ -177,6 +548,7 @@
                 </svg>
               </a>
             </li>
+            <!-- instagram -->
             <li>
               <a class="footer__social-link" href="https://www.instagram.com/kp_code_/" aria-label="Instagram" target="_blank" rel="noopener noreferrer">
                 <svg class="footer__social-icon" aria-hidden="true" viewBox="0 0 24 24" fill="currentColor">
@@ -187,6 +559,7 @@
                 </svg>
               </a>
             </li>
+            <!-- x -->
             <li>
               <a class="footer__social-link" href="https://x.com/KP_Code_85" aria-label="X" target="_blank" rel="noopener noreferrer">
                 <svg class="footer__social-icon" aria-hidden="true" viewBox="0 0 24 24" fill="currentColor">
@@ -194,6 +567,7 @@
                 </svg>
               </a>
             </li>
+            <!-- linkedin -->
             <li>
               <a class="footer__social-link" href="https://www.linkedin.com/in/kp-code/" aria-label="LinkedIn" target="_blank" rel="noopener noreferrer">
                 <svg class="footer__social-icon" aria-hidden="true" viewBox="0 0 24 24" fill="currentColor">
@@ -204,9 +578,9 @@
             </li>
           </ul>
         </div>
-
+        <!-- bottom -->
         <div class="footer__bottom">
-          <p class="footer__legal">© 2026 Kamil Król. Wszelkie prawa zastrzeżone.</p>
+          <p class="footer__legal">© KP_Code Digital Studio | Wszelkie prawa zastrzeżone.</p>
           <div class="footer__legal-links">
             <a class="footer__link" href="/regulamin.html">Regulamin</a>
             <a class="footer__link" href="/polityka-prywatnosci.html">Polityka prywatności</a>
@@ -216,6 +590,6 @@
       </div>
     </footer>
 
-  <script type="module" src="../js/main.js"></script>
-</body>
+    <script type="module" src="../js/main.js"></script>
+  </body>
 </html>

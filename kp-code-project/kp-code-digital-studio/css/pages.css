@@ -547,7 +547,7 @@
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
   .filter-button {
-     width: 180px;
+    width: 180px;
   }
 }
 
@@ -557,43 +557,8 @@
   --websites-glow-top: 2rem;
   --websites-glow-size: 16rem;
   --websites-glow-offset: -30%;
-
   position: relative;
 }
-
-.websites-service::before {
-  content: "";
-  position: absolute;
-  top: var(--websites-glow-top);
-  left: 0;
-  width: var(--websites-glow-size);
-  height: var(--websites-glow-size);
-  transform: translateX(var(--websites-glow-offset));
-  background: red;
-  opacity: 0.6;
-  filter: blur(24px);
-  pointer-events: none;
-  z-index: 0;
-
-
-
-
-    content: "";
-  position: absolute;
-  top: var(--service-glow-top);
-  left: 0;
-  width: var(--service-glow-size);
-  height: var(--service-glow-size);
-  transform: translateX(var(--service-glow-offset));
-  background: radial-gradient(circle at 30% 50%, color-mix(in srgb, var(--color-primary) 36%, transparent) 0%, transparent 54%);
-  opacity: 0.6;
-  filter: blur(24px);
-  pointer-events: none;
-  z-index: -1;
-}
-
-
-
 
 
 .websites-service--surface {
@@ -619,9 +584,7 @@
   min-width: 0;
 }
 .websites-service__panel {
-  background:
-    linear-gradient(180deg, color-mix(in srgb, var(--color-surface-alt) 78%, transparent), color-mix(in srgb, var(--color-surface) 96%, transparent)),
-    var(--color-surface);
+  background: linear-gradient(180deg, color-mix(in srgb, var(--color-surface-alt) 78%, transparent), color-mix(in srgb, var(--color-surface) 96%, transparent)), var(--color-surface);
 }
 .websites-service__cards {
   align-items: stretch;
@@ -762,4 +725,27 @@
 }
 .websites-service__cta .section__header {
   max-width: 48rem;
+}
+
+/* Page Services: wordpress */
+
+.wordpress-service .actions .button {
+  flex: 0 0 240px;
+}
+
+@media (min-width: 1444px) {
+  .websites-service::before {
+    content: "";
+    position: absolute;
+    top: var(--websites-glow-top);
+    left: 0;
+    width: var(--websites-glow-size);
+    height: var(--websites-glow-size);
+    transform: translateX(var(--websites-glow-offset));
+    background: radial-gradient(circle at 30% 50%, color-mix(in srgb, var(--color-primary) 16%, transparent) 0%, transparent 34%);
+    opacity: 0.6;
+    filter: blur(24px);
+    pointer-events: none;
+    z-index: -1;
+  }
 }
