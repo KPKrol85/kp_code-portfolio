@@ -7,30 +7,28 @@
     <meta name="theme-color" content="#ffffff" />
     <meta name="robots" content="index, follow" />
     <!-- Title -->
-    <title>Projekty | KP_Code Digital Studio</title>
+    <title>Ekosystem — KP_Code Digital Studio</title>
     <!-- SEO -->
-    <meta
-      name="description"
-      content="Zobacz projekty KP_Code Digital Studio — nowoczesne strony internetowe, wdrożenia webowe i realizacje tworzone z naciskiem na estetykę, wydajność oraz jakość wykonania." />
-    <link rel="canonical" href="https://www.kp-code.pl/projects.html" />
+    <meta name="description" content="Zakres usług web development, WordPress, SEO i projektowania UI/brand." />
+    <link rel="canonical" href="https://www.kp-code.pl/services.html" />
     <!-- Open Graph -->
     <meta property="og:type" content="website" />
     <meta property="og:locale" content="pl_PL" />
     <meta property="og:site_name" content="KP_Code Digital Studio" />
-    <meta property="og:title" content="Projekty | KP_Code Digital Studio" />
-    <meta property="og:description" content="Poznaj wybrane projekty KP_Code Digital Studio i zobacz, jak tworzę nowoczesne strony oraz rozwiązania webowe dla marek i biznesu." />
-    <meta property="og:url" content="https://www.kp-code.pl/projects.html" />
+    <meta property="og:title" content="KP_Code Digital Studio" />
+    <meta property="og:description" content="Nowoczesne strony, WordPress i SEO dla biznesów. Poznaj projekty Kamila Króla." />
+    <meta property="og:url" content="https://www.kp-code.pl/" />
     <meta property="og:image" content="https://www.kp-code.pl/assets/og/og-img.png" />
     <!-- Twitter -->
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="Projekty | KP_Code Digital Studio" />
-    <meta name="twitter:description" content="Zobacz portfolio KP_Code Digital Studio — wybrane projekty stron internetowych i realizacji webowych." />
+    <meta name="twitter:title" content="KP_Code Digital Studio" />
+    <meta name="twitter:description" content="Projektujemy i wdrażamy strony oraz strategie SEO." />
     <meta name="twitter:image" content="https://www.kp-code.pl/assets/og/og-img.png" />
     <!-- Icons / PWA -->
     <link rel="icon" href="https://www.kp-code.pl/assets/icons/favicon.svg" type="image/svg+xml" />
     <link rel="apple-touch-icon" href="https://www.kp-code.pl/assets/icons/apple-touch-icon.png" />
     <link rel="manifest" href="https://www.kp-code.pl/assets/icons/site.webmanifest" />
-    <!-- Theme -->
+    <!-- Styles / Theme -->
     <script>
       document.documentElement.classList.add("js");
       try {
@@ -44,9 +42,8 @@
     <!-- Styles -->
     <link rel="stylesheet" href="./css/main.css" />
   </head>
-
   <!-- Body -->
-  <body class="page page--projects">
+  <body class="page page--services">
     <a class="skip-link" href="#main">Przejdź do treści</a>
 
     <!-- Header -->
@@ -64,7 +61,7 @@
           <a class="nav__link" href="/index.html">Start</a>
           <a class="nav__link" href="/about.html">O mnie</a>
           <a class="nav__link" href="/services.html">Usługi</a>
-          <a class="nav__link" href="/projects.html" aria-current="page">Projekty</a>
+          <a class="nav__link" href="/projects.html">Projekty</a>
           <a class="nav__link" href="/contact.html">Kontakt</a>
         </nav>
         <div class="nav__backdrop" data-nav-backdrop aria-hidden="true"></div>
@@ -97,65 +94,10 @@
       </div>
     </header>
 
-    <!-- Main -->
     <main id="main">
-      <!-- Hero -->
-      <section class="section page-hero" data-reveal>
+      <section class="section" aria-labelledby="services-title">
         <div class="container">
-          <nav class="breadcrumbs" aria-label="Breadcrumb">
-            <ol class="breadcrumbs__list">
-              <li class="breadcrumbs__item">
-                <a class="breadcrumbs__link" href="/index.html">Start</a>
-              </li>
-              <li class="breadcrumbs__item" aria-current="page">
-                <span class="breadcrumbs__current">Projekty</span>
-              </li>
-            </ol>
-          </nav>
-          <div class="page-hero__content">
-            <h1 class="hero__title page-hero__title">Projekty i realizacje KP_Code Digital Studio.</h1>
-            <p class="hero__lead page-hero__lead">Zobacz wybrane projekty webowe, które tworzę z naciskiem na estetykę, jakość wykonania i spójny kierunek rozwoju.</p>
-          </div>
-        </div>
-      </section>
-
-      <!-- Projekty -->
-      <!-- Projects archive -->
-      <section class="section projects-archive" data-reveal>
-        <div class="container">
-          <div class="section__header projects-archive__header">
-            <p class="section__eyebrow">Portfolio</p>
-            <h2 class="section__title">Wybrane projekty i realizacje.</h2>
-            <p class="section__subtitle">Przeglądaj projekty webowe, wdrożenia i rozwijane koncepty tworzone w ramach KP_Code Digital Studio.</p>
-          </div>
-
-          <!-- Filters -->
-          <div class="project-filters" aria-label="Filtruj projekty">
-            <button class="filter-button is-active" type="button" data-filter="all" aria-pressed="true">Wszystkie</button>
-            <button class="filter-button" type="button" data-filter="websites" aria-pressed="false">Strony internetowe</button>
-            <button class="filter-button" type="button" data-filter="wordpress" aria-pressed="false">WordPress</button>
-            <button class="filter-button" type="button" data-filter="products" aria-pressed="false">Produkty własne</button>
-            <button class="filter-button" type="button" data-filter="in-progress" aria-pressed="false">W toku</button>
-          </div>
-
-          <!-- Projects grid -->
-          <div class="grid grid--2 projects-archive__grid" data-project-grid>
-            <article class="card work-card" data-category="websites">
-              <!-- project card -->
-            </article>
-
-            <article class="card work-card" data-category="products">
-              <!-- project card -->
-            </article>
-
-            <article class="card work-card" data-category="wordpress">
-              <!-- project card -->
-            </article>
-
-            <article class="card work-card" data-category="in-progress">
-              <!-- project card -->
-            </article>
-          </div>
+          <h1 class="section__title" id="services-title">Ecosystem</h1>
         </div>
       </section>
     </main>
@@ -182,8 +124,8 @@
             <ul class="footer__links" role="list">
               <li><a class="footer__link" href="/index.html">Start</a></li>
               <li><a class="footer__link" href="/about.html">O mnie</a></li>
-              <li><a class="footer__link" href="/services.html">Usługi</a></li>
-              <li><a class="footer__link" href="/projects.html" aria-current="page">Projekty</a></li>
+              <li><a class="footer__link" href="/services.html" aria-current="page">Usługi</a></li>
+              <li><a class="footer__link" href="/projects.html">Projekty</a></li>
               <li><a class="footer__link" href="/contact.html">Kontakt</a></li>
             </ul>
           </nav>
@@ -278,75 +220,6 @@
         </div>
       </div>
     </footer>
-
-    <!-- Json-LD -->
-    <script type="application/ld+json">
-      {
-        "@context": "https://schema.org",
-        "@graph": [
-          {
-            "@type": "Person",
-            "@id": "https://www.kp-code.pl/#person",
-            "name": "Kamil Król",
-            "url": "https://www.kp-code.pl/",
-            "jobTitle": "Programista webowy",
-            "description": "Projektuję i tworzę nowoczesne strony internetowe dla firm i marek.",
-            "email": "kontakt@kp-code.pl",
-            "telephone": "+48533537091",
-            "worksFor": {
-              "@id": "https://www.kp-code.pl/#organization"
-            },
-            "sameAs": ["https://github.com/KPKrol85", "https://www.facebook.com/kpkrol85", "https://www.instagram.com/kp_code_/", "https://x.com/KP_Code_85", "https://www.linkedin.com/in/kp-code/"]
-          },
-          {
-            "@type": "Organization",
-            "@id": "https://www.kp-code.pl/#organization",
-            "name": "KP_Code Digital Studio",
-            "url": "https://www.kp-code.pl/",
-            "logo": "https://www.kp-code.pl/assets/img/logo/logo-light-mode.svg",
-            "description": "Studio front-endowe specjalizujące się w nowoczesnych stronach internetowych.",
-            "email": "kontakt@kp-code.pl",
-            "telephone": "+48 533 537 091",
-            "sameAs": ["https://github.com/KPKrol85", "https://www.facebook.com/kpkrol85", "https://www.instagram.com/kp_code_/", "https://x.com/KP_Code_85", "https://www.linkedin.com/in/kp-code/"],
-            "contactPoint": {
-              "@type": "ContactPoint",
-              "contactType": "customer support",
-              "email": "kontakt@kp-code.pl",
-              "telephone": "+48 533 537 091",
-              "areaServed": "PL",
-              "availableLanguage": ["pl", "en"]
-            }
-          },
-          {
-            "@type": "WebSite",
-            "@id": "https://www.kp-code.pl/#website",
-            "url": "https://www.kp-code.pl/",
-            "name": "KP_Code Digital Studio",
-            "publisher": {
-              "@id": "https://www.kp-code.pl/#organization"
-            },
-            "inLanguage": "pl-PL"
-          },
-          {
-            "@type": "CollectionPage",
-            "@id": "https://www.kp-code.pl/projects.html#webpage",
-            "url": "https://www.kp-code.pl/projects.html",
-            "name": "Projekty | KP_Code Digital Studio",
-            "description": "Zobacz projekty KP_Code Digital Studio — nowoczesne strony internetowe, wdrożenia webowe i realizacje tworzone z naciskiem na estetykę, wydajność oraz jakość wykonania.",
-            "isPartOf": {
-              "@id": "https://www.kp-code.pl/#website"
-            },
-            "about": {
-              "@id": "https://www.kp-code.pl/#organization"
-            },
-            "publisher": {
-              "@id": "https://www.kp-code.pl/#organization"
-            },
-            "inLanguage": "pl-PL"
-          }
-        ]
-      }
-    </script>
 
     <!-- Script -->
     <script type="module" src="./js/main.js"></script>

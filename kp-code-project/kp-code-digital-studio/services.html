@@ -671,6 +671,91 @@
       </div>
     </footer>
 
+    <!-- Json-LD -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@graph": [
+          {
+            "@type": "Person",
+            "@id": "https://www.kp-code.pl/#person",
+            "name": "Kamil Król",
+            "url": "https://www.kp-code.pl/",
+            "jobTitle": "Programista webowy",
+            "description": "Projektuję i tworzę nowoczesne strony internetowe dla firm i marek.",
+            "email": "kontakt@kp-code.pl",
+            "telephone": "+48533537091",
+            "worksFor": {
+              "@id": "https://www.kp-code.pl/#organization"
+            },
+            "sameAs": ["https://github.com/KPKrol85", "https://www.facebook.com/kpkrol85", "https://www.instagram.com/kp_code_/", "https://x.com/KP_Code_85", "https://www.linkedin.com/in/kp-code/"]
+          },
+          {
+            "@type": "Organization",
+            "@id": "https://www.kp-code.pl/#organization",
+            "name": "KP_Code Digital Studio",
+            "url": "https://www.kp-code.pl/",
+            "logo": "https://www.kp-code.pl/assets/img/logo/logo-light-mode.svg",
+            "description": "Studio front-endowe specjalizujące się w nowoczesnych stronach internetowych.",
+            "email": "kontakt@kp-code.pl",
+            "telephone": "+48 533 537 091",
+            "sameAs": ["https://github.com/KPKrol85", "https://www.facebook.com/kpkrol85", "https://www.instagram.com/kp_code_/", "https://x.com/KP_Code_85", "https://www.linkedin.com/in/kp-code/"],
+            "contactPoint": {
+              "@type": "ContactPoint",
+              "contactType": "customer support",
+              "email": "kontakt@kp-code.pl",
+              "telephone": "+48 533 537 091",
+              "areaServed": "PL",
+              "availableLanguage": ["pl", "en"]
+            }
+          },
+          {
+            "@type": "WebSite",
+            "@id": "https://www.kp-code.pl/#website",
+            "url": "https://www.kp-code.pl/",
+            "name": "KP_Code Digital Studio",
+            "publisher": {
+              "@id": "https://www.kp-code.pl/#organization"
+            },
+            "inLanguage": "pl-PL"
+          },
+          {
+            "@type": "WebPage",
+            "@id": "https://www.kp-code.pl/services.html#webpage",
+            "url": "https://www.kp-code.pl/services.html",
+            "name": "Usługi | KP_Code Digital Studio",
+            "description": "Poznaj usługi KP_Code Digital Studio: strony internetowe, WordPress, SEO oraz UI i identyfikację wizualną.",
+            "isPartOf": {
+              "@id": "https://www.kp-code.pl/#website"
+            },
+            "about": {
+              "@id": "https://www.kp-code.pl/services.html#service"
+            },
+            "publisher": {
+              "@id": "https://www.kp-code.pl/#organization"
+            },
+            "inLanguage": "pl-PL"
+          },
+          {
+            "@type": "Service",
+            "@id": "https://www.kp-code.pl/services.html#service",
+            "name": "Usługi tworzenia stron internetowych i rozwoju obecności online",
+            "serviceType": ["Strony internetowe", "WordPress", "SEO", "UI i identyfikacja wizualna"],
+            "description": "KP_Code Digital Studio oferuje projektowanie i wdrażanie nowoczesnych stron internetowych, wdrożenia WordPress, optymalizację SEO oraz projektowanie UI i identyfikacji wizualnej.",
+            "url": "https://www.kp-code.pl/services.html",
+            "provider": {
+              "@id": "https://www.kp-code.pl/#organization"
+            },
+            "areaServed": {
+              "@type": "Country",
+              "name": "Polska"
+            },
+            "availableLanguage": ["pl", "en"]
+          }
+        ]
+      }
+    </script>
+
     <!-- Script -->
     <script type="module" src="./js/main.js"></script>
   </body>

@@ -1,69 +1,72 @@
 <!doctype html>
 <html lang="pl">
-<head>
-  <!-- Meta / Base -->
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <head>
+    <!-- Meta / Base -->
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#ffffff" />
+    <meta name="robots" content="index, follow" />
+    <!-- Title -->
+    <title>Websites (HTML/CSS/JS) — KP_Code Digital Studio</title>
+    <!-- SEO -->
+    <meta name="description" content="KP_Code Digital Studio tworzy nowoczesne strony, SEO i identyfikację. Kamil Król buduje produkty webowe, które sprzedają." />
+    <link rel="canonical" href="https://www.kp-code.pl/services/websites.html" />
+    <!-- Open Graph -->
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content="pl_PL" />
+    <meta property="og:site_name" content="KP_Code Digital Studio" />
+    <meta property="og:title" content="KP_Code Digital Studio" />
+    <meta property="og:description" content="Nowoczesne strony, WordPress i SEO dla biznesów. Poznaj projekty Kamila Króla." />
+    <meta property="og:url" content="https://www.kp-code.pl/" />
+    <meta property="og:image" content="https://www.kp-code.pl/assets/og/og-img.png" />
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="KP_Code Digital Studio" />
+    <meta name="twitter:description" content="Projektujemy i wdrażamy strony oraz strategie SEO." />
+    <meta name="twitter:image" content="https://www.kp-code.pl/assets/og/og-img.png" />
+    <!-- Icons / PWA -->
+    <link rel="icon" href="https://www.kp-code.pl/assets/icons/favicon.svg" type="image/svg+xml" />
+    <link rel="apple-touch-icon" href="https://www.kp-code.pl/assets/icons/apple-touch-icon.png" />
+    <link rel="manifest" href="https://www.kp-code.pl/assets/icons/site.webmanifest" />
+    <!-- Styles / Theme -->
+    <script>
+      document.documentElement.classList.add("js");
+      try {
+        const storedTheme = localStorage.getItem("theme-preference");
+        const theme = storedTheme === "light" || storedTheme === "dark" ? storedTheme : window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+        document.documentElement.dataset.theme = theme;
+      } catch {
+        document.documentElement.dataset.theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+      }
+    </script>
+    <!-- Styles -->
+    <link rel="stylesheet" href="../css/main.css" />
+  </head>
 
-  <!-- Title -->
-  <title>Websites (HTML/CSS/JS) — KP_Code Digital Studio</title>
+  <!-- Body -->
+  <body class="page page--websites">
+    <a class="skip-link" href="#main">Przejdź do treści</a>
 
-  <!-- SEO -->
-  <meta name="description" content="Buduję serwisy statyczne i landing page’e o wysokiej wydajności, gotowe na intensywny ruch z reklam i SEO." />
-
-  <!-- Canonical -->
-  <link rel="canonical" href="https://www.kp-code.pl/services/websites.html" />
-
-  <!-- Open Graph -->
-  <meta property="og:title" content="Websites (HTML/CSS/JS) — KP_Code Digital Studio" />
-  <meta property="og:description" content="Buduję serwisy statyczne i landing page’e o wysokiej wydajności, gotowe na intensywny ruch z reklam i SEO." />
-  <meta property="og:type" content="website" />
-  <meta property="og:url" content="https://www.kp-code.pl/services/websites.html" />
-  <meta property="og:image" content="../og/og-default.svg" />
-
-  <!-- Twitter -->
-  <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:image" content="../og/og-default.svg" />
-
-  <!-- PWA / UI -->
-  <link rel="icon" href="/assets/icons/favicon.svg" type="image/svg+xml" />
-  <link rel="manifest" href="/seo/manifest.webmanifest" />
-
-  <!-- Styles / Theme -->
-  <script>
-    document.documentElement.classList.add('js');
-    try {
-      const storedTheme = localStorage.getItem('theme-preference');
-      const theme =
-        storedTheme === 'light' || storedTheme === 'dark'
-          ? storedTheme
-          : (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
-      document.documentElement.dataset.theme = theme;
-    } catch {
-      document.documentElement.dataset.theme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
-    }
-  </script>
-  <link rel="stylesheet" href="../css/main.css" />
-</head>
-<body>
-  <a class="skip-link" href="#main">Przejdź do treści</a>
-  <header class="header">
+    <!-- Header -->
+    <header class="header">
       <div class="container nav">
         <a class="nav__brand" href="/index.html" aria-label="KP_Code Digital Studio, strona główna">
           <picture class="brand__logo">
             <source srcset="/assets/img/logo/logo-dark-mode.svg" media="(prefers-color-scheme: dark)" />
             <img src="/assets/img/logo/logo-light-mode.svg" alt="KP_Code Digital Studio" width="512" height="512" />
           </picture>
-          <span>KP_Code Digital Studio</span>
+          <span class="nav__brand-text">KP_Code Digital Studio</span>
         </a>
+        <!-- navigation -->
         <nav class="nav__links" id="primary-navigation" aria-label="Główna nawigacja">
           <a class="nav__link" href="/index.html">Start</a>
           <a class="nav__link" href="/about.html">O mnie</a>
-          <a class="nav__link" href="/services.html" aria-current="page">Usługi</a>
+          <a class="nav__link" href="/services.html">Usługi</a>
           <a class="nav__link" href="/projects.html">Projekty</a>
           <a class="nav__link" href="/contact.html">Kontakt</a>
         </nav>
         <div class="nav__backdrop" data-nav-backdrop aria-hidden="true"></div>
+        <!-- theme toggle -->
         <div class="nav__actions">
           <button class="theme-toggle" id="theme-toggle" title="Przełącza motyw jasny i ciemny" aria-label="Automatyczny" aria-live="polite">
             <svg class="sun-and-moon" aria-hidden="true" width="20" height="20" viewBox="0 0 24 24">
@@ -84,6 +87,7 @@
               </g>
             </svg>
           </button>
+          <!-- navigation toggle -->
           <button class="nav__toggle" type="button" data-nav-toggle aria-label="Otwórz menu" aria-expanded="false" aria-controls="primary-navigation">
             <span class="nav__toggle-icon" aria-hidden="true"></span>
           </button>
@@ -91,36 +95,412 @@
       </div>
     </header>
 
-  <main id="main">
-    <section class="section" data-reveal>
-      <div class="container">
-        <div class="section__header">
-          <p class="section__eyebrow">Usługa</p>
-          <h1 class="section__title">Dedykowane strony WWW dla kampanii i lead generation.</h1>
-          <p class="section__subtitle">Buduję serwisy statyczne i landing page’e o wysokiej wydajności, gotowe na intensywny ruch z reklam i SEO.</p>
+    <!-- Main -->
+    <main id="main">
+      <!-- Hero -->
+      <section class="section page-hero" data-reveal>
+        <div class="container">
+          <nav class="breadcrumbs" aria-label="Breadcrumb">
+            <ol class="breadcrumbs__list">
+              <li class="breadcrumbs__item">
+                <a class="breadcrumbs__link" href="/index.html">Start</a>
+              </li>
+              <li class="breadcrumbs__item" aria-current="page">
+                <span class="breadcrumbs__current">Strony internetowe</span>
+              </li>
+            </ol>
+          </nav>
+          <div class="page-hero__content">
+            <h1 class="hero__title page-hero__title">Profesjonalne strony internetowe wspierające wizerunek, komunikację i rozwój biznesu.</h1>
+            <p class="hero__lead page-hero__lead">
+              Strony firmowe, landing page’e i serwisy usługowe projektowane tak, aby jasno prezentowały ofertę, budowały zaufanie i prowadziły użytkownika do działania.
+            </p>
+          </div>
         </div>
-        <article class="card"><h2 class="card__title">Co dostajesz</h2><p class="card__meta">Pakiet obejmuje architekturę informacji, implementację komponentów, optymalizację Core Web Vitals, konfigurację analityki i checklistę publikacji.</p></article>
-        <div class="cta-block"><a class="button button--primary" href="../contact.html?service=websites">Umów konsultację</a> <a class="button button--ghost" href="../services.html">Wróć do usług</a></div>
-      </div>
-    </section>
-  </main>
+      </section>
 
-  <footer class="footer">
+      <!-- Section about-intro -->
+      <section class="section websites-service websites-service--intro" data-reveal>
+        <div class="container">
+          <div class="service-detail__grid">
+            <div class="service-detail__content">
+              <div class="section__header">
+                <p class="section__eyebrow">Usługa</p>
+                <h2 class="section__title">Profesjonalna strona internetowa dopasowana do marki, oferty i celów biznesowych.</h2>
+                <p class="section__subtitle">
+                  Usługa skierowana do firm, które potrzebują estetycznej, uporządkowanej i wiarygodnej strony internetowej, wspierającej komunikację oferty oraz prowadzącej użytkownika do kontaktu
+                  lub działania.
+                </p>
+              </div>
+
+              <div class="websites-service__intro-text">
+                <p>
+                  Realizacja opiera się na indywidualnym podejściu do marki, struktury treści i celu, jaki ma spełniać strona. Projekt nie bazuje na przypadkowych szablonach ani przeładowanych
+                  rozwiązaniach, które utrudniają rozwój serwisu.
+                </p>
+                <p>
+                  Efektem jest strona, która prezentuje firmę w profesjonalny sposób, działa płynnie na urządzeniach mobilnych, posiada solidne podstawy techniczne i może być rozwijana wraz z ofertą,
+                  kampaniami lub kolejnymi etapami biznesu.
+                </p>
+              </div>
+
+              <div class="actions">
+                <a class="button button--primary" href="../contact.html?service=websites">Zapytaj o wycenę</a>
+                <a class="button button--ghost" href="../services.html">Wróć do usług</a>
+              </div>
+            </div>
+
+            <aside class="service-detail__aside websites-service__aside" aria-label="Podsumowanie usługi">
+              <div class="service-detail__panel websites-service__panel">
+                <section class="service-detail__group" aria-labelledby="websites-summary-title">
+                  <h3 class="service-detail__subtitle" id="websites-summary-title">W skrócie</h3>
+                  <ul class="service-detail__list">
+                    <li>strony firmowe, usługowe i sprzedażowe</li>
+                    <li>indywidualny projekt dopasowany do marki i oferty</li>
+                    <li>responsywne wdrożenie HTML, CSS i JavaScript</li>
+                    <li>techniczne podstawy SEO i wydajności</li>
+                    <li>przejrzysty proces od briefu do publikacji</li>
+                  </ul>
+                </section>
+
+                <section class="service-detail__group" aria-labelledby="websites-outcome-title">
+                  <h3 class="service-detail__subtitle" id="websites-outcome-title">Efekt współpracy</h3>
+                  <p class="service-detail__note">Strona porządkująca komunikację marki, wzmacniająca profesjonalny wizerunek i tworząca solidną bazę pod dalszy marketing oraz rozwój oferty.</p>
+                </section>
+              </div>
+            </aside>
+          </div>
+        </div>
+      </section>
+
+      <!-- Section included -->
+      <section class="section websites-service" aria-labelledby="websites-included-title" data-reveal>
+        <div class="container">
+          <div class="section__header websites-service__header">
+            <p class="section__eyebrow">Zakres</p>
+            <h2 class="section__title" id="websites-included-title">Co obejmuje usługa tworzenia strony internetowej.</h2>
+            <p class="section__subtitle">
+              Zakres realizacji jest dopasowywany do potrzeb projektu, ale każda strona opiera się na tych samych fundamentach: przemyślanej strukturze, spójnym projekcie wizualnym, poprawnym
+              wdrożeniu i przygotowaniu do publikacji.
+            </p>
+          </div>
+
+          <div class="grid grid--2 websites-service__cards">
+            <article class="card websites-service__card">
+              <p class="websites-service__card-label">01</p>
+              <h3 class="card__title">Strategia i struktura treści</h3>
+              <p class="card__meta">
+                Ustalenie celu strony, układu sekcji, hierarchii informacji oraz sposobu prowadzenia użytkownika przez ofertę, tak aby treść była czytelna i wspierała kontakt lub sprzedaż.
+              </p>
+            </article>
+
+            <article class="card websites-service__card">
+              <p class="websites-service__card-label">02</p>
+              <h3 class="card__title">Projekt wizualny</h3>
+              <p class="card__meta">
+                Spójny kierunek estetyczny dopasowany do marki, branży i charakteru komunikacji, z naciskiem na przejrzystość, profesjonalny odbiór i wygodę korzystania ze strony.
+              </p>
+            </article>
+
+            <article class="card websites-service__card">
+              <p class="websites-service__card-label">03</p>
+              <h3 class="card__title">Budowa i wdrożenie strony</h3>
+              <p class="card__meta">
+                Responsywna i uporządkowana realizacja oparta na HTML, CSS i JavaScript, przygotowana tak, aby strona działała płynnie, dobrze wyglądała na różnych urządzeniach i była gotowa do
+                dalszego rozwoju.
+              </p>
+            </article>
+
+            <article class="card websites-service__card">
+              <p class="websites-service__card-label">04</p>
+              <h3 class="card__title">Optymalizacja i przygotowanie do publikacji</h3>
+              <p class="card__meta">
+                Uporządkowanie kluczowych elementów strony, podstawy technicznego SEO, wydajności, formularzy kontaktowych oraz przygotowanie serwisu do bezpiecznego i profesjonalnego startu.
+              </p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <!-- Section audience -->
+      <section class="section websites-service websites-service--surface" aria-labelledby="websites-audience-title" data-reveal>
+        <div class="container">
+          <div class="section__header websites-service__header">
+            <p class="section__eyebrow">Dla kogo</p>
+            <h2 class="section__title" id="websites-audience-title">Dla firm, które potrzebują profesjonalnej strony wspierającej komunikację, sprzedaż i rozwój marki.</h2>
+            <p class="section__subtitle">
+              Usługa sprawdza się zarówno wtedy, gdy obecna strona nie odpowiada już poziomowi marki, jak i wtedy, gdy firma dopiero buduje swoją profesjonalną obecność online.
+            </p>
+          </div>
+
+          <div class="grid grid--2 websites-service__cards">
+            <article class="card websites-service__card">
+              <h3 class="card__title">Firmy usługowe</h3>
+              <p class="card__meta">Dla marek, które chcą czytelniej prezentować ofertę, wzmacniać wiarygodność i ułatwiać klientowi pierwszy kontakt.</p>
+            </article>
+
+            <article class="card websites-service__card">
+              <h3 class="card__title">Nowe biznesy i marki osobiste</h3>
+              <p class="card__meta">Dla projektów, które potrzebują mocnego startu online i strony spójnej z kierunkiem komunikacji od pierwszego dnia.</p>
+            </article>
+
+            <article class="card websites-service__card">
+              <h3 class="card__title">Firmy po rebrandingu lub zmianie oferty</h3>
+              <p class="card__meta">Gdy dotychczasowy serwis nie odpowiada już poziomowi marki, nowej ofercie albo aktualnym potrzebom grupy docelowej.</p>
+            </article>
+
+            <article class="card websites-service__card">
+              <h3 class="card__title">Marki potrzebujące landing page’a lub strony kampanijnej</h3>
+              <p class="card__meta">Dla działań nastawionych na konkretny cel, takich jak pozyskanie leadów, prezentacja nowej usługi, zapis lub wsparcie kampanii reklamowej.</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <!-- Section process -->
+      <section class="section websites-service" aria-labelledby="websites-process-title" data-reveal>
+        <div class="container">
+          <div class="section__header websites-service__header">
+            <p class="section__eyebrow">Proces</p>
+            <h2 class="section__title" id="websites-process-title">Jak wygląda współpraca krok po kroku.</h2>
+            <p class="section__subtitle">Proces współpracy jest uporządkowany i przejrzysty, tak aby każdy etap projektu miał jasno określony kierunek, zakres i następny krok.</p>
+          </div>
+
+          <div class="grid grid--2 process websites-service__process">
+            <article class="card process__item">
+              <div class="process__header">
+                <span class="process__step">1</span>
+                <h3 class="card__title">Brief i zakres</h3>
+              </div>
+              <p class="card__meta">Ustalenie celu strony, grupy docelowej, struktury oferty, potrzebnych podstron oraz materiałów wejściowych niezbędnych do rozpoczęcia realizacji.</p>
+            </article>
+
+            <article class="card process__item">
+              <div class="process__header">
+                <span class="process__step">2</span>
+                <h3 class="card__title">Układ i kierunek wizualny</h3>
+              </div>
+              <p class="card__meta">Opracowanie architektury treści, układu sekcji oraz estetycznego kierunku strony dopasowanego do marki, oferty i oczekiwań odbiorcy.</p>
+            </article>
+
+            <article class="card process__item">
+              <div class="process__header">
+                <span class="process__step">3</span>
+                <h3 class="card__title">Wdrożenie i dopracowanie</h3>
+              </div>
+              <p class="card__meta">Powstaje responsywna i uporządkowana realizacja strony z dbałością o czytelność, wydajność, spójność sekcji oraz solidne podstawy techniczne.</p>
+            </article>
+
+            <article class="card process__item">
+              <div class="process__header">
+                <span class="process__step">4</span>
+                <h3 class="card__title">Testy i publikacja</h3>
+              </div>
+              <p class="card__meta">Na końcowym etapie strona jest sprawdzana, dopracowywana i przygotowywana do bezpiecznej publikacji oraz profesjonalnego startu.</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <!-- Section pricing -->
+      <section class="section websites-service websites-service--surface" aria-labelledby="websites-pricing-title" data-reveal>
+        <div class="container">
+          <div class="section__header websites-service__header">
+            <p class="section__eyebrow">Wycena</p>
+            <h2 class="section__title" id="websites-pricing-title">Jak wygląda wycena i od jakiego poziomu zaczynają się projekty.</h2>
+            <p class="section__subtitle">
+              Wycena jest dopasowywana do zakresu, celu strony i poziomu złożoności projektu. Poniższe kwoty pokazują orientacyjne poziomy startowe dla najczęstszych typów realizacji.
+            </p>
+          </div>
+
+          <div class="grid grid--3 websites-service__pricing">
+            <article class="card websites-service__pricing-card">
+              <p class="websites-service__price-kicker">Od</p>
+              <p class="websites-service__price-value">2 500 zł</p>
+              <h3 class="card__title">Landing page</h3>
+              <p class="card__meta">
+                Rozbudowana strona pod konkretną usługę, ofertę lub kampanię, zaprojektowana z naciskiem na czytelny przekaz, mocną strukturę i skuteczne prowadzenie użytkownika do działania.
+              </p>
+            </article>
+
+            <article class="card websites-service__pricing-card">
+              <p class="websites-service__price-kicker">Od</p>
+              <p class="websites-service__price-value">4 500 zł</p>
+              <h3 class="card__title">Strona firmowa</h3>
+              <p class="card__meta">
+                Profesjonalny serwis dla firmy z kluczowymi podstronami, dopracowaną prezentacją oferty, spójnym projektem wizualnym i solidną bazą pod dalszy rozwój marki online.
+              </p>
+            </article>
+
+            <article class="card websites-service__pricing-card">
+              <p class="websites-service__price-kicker">Od</p>
+              <p class="websites-service__price-value">7 500 zł</p>
+              <h3 class="card__title">Rozbudowany serwis</h3>
+              <p class="card__meta">
+                Większy projekt z bardziej złożoną strukturą, większą liczbą sekcji lub podstron, indywidualnymi rozwiązaniami oraz szerszym zakresem projektowym i wdrożeniowym.
+              </p>
+            </article>
+          </div>
+
+          <p class="websites-service__pricing-note">
+            Finalna wycena zależy od zakresu projektu, liczby podstron, stopnia złożoności, przygotowania materiałów oraz ewentualnych funkcji dodatkowych. Im większy zakres i poziom indywidualizacji,
+            tym szersza wycena realizacji.
+          </p>
+        </div>
+      </section>
+
+      <!-- Section factors -->
+
+      <!-- Section factors -->
+      <section class="section websites-service" aria-labelledby="websites-factors-title" data-reveal>
+        <div class="container">
+          <div class="section__header websites-service__header">
+            <p class="section__eyebrow">Co wpływa na koszt</p>
+            <h2 class="section__title" id="websites-factors-title">Najważniejsze czynniki wpływające na końcową wycenę.</h2>
+            <p class="section__subtitle">
+              Koszt realizacji zależy od rzeczywistego zakresu projektu, poziomu złożoności oraz stopnia dopasowania strony do potrzeb marki, oferty i planowanego sposobu działania.
+            </p>
+          </div>
+
+          <div class="grid grid--2 websites-service__factors">
+            <article class="card websites-service__factor-card">
+              <h3 class="card__title">Liczba podstron i sekcji</h3>
+              <p class="card__meta">Im bardziej rozbudowana struktura serwisu, tym większy zakres pracy projektowej, wdrożeniowej, porządkowania treści i testowania.</p>
+            </article>
+
+            <article class="card websites-service__factor-card">
+              <h3 class="card__title">Stopień indywidualizacji projektu</h3>
+              <p class="card__meta">Dedykowany kierunek wizualny, niestandardowe sekcje oraz większy poziom dopracowania wpływają na czas realizacji i szerokość wyceny.</p>
+            </article>
+
+            <article class="card websites-service__factor-card">
+              <h3 class="card__title">Gotowość materiałów</h3>
+              <p class="card__meta">Uporządkowane treści, zdjęcia, oferta i identyfikacja wizualna przyspieszają realizację. Ich brak zwykle oznacza dodatkowy etap pracy koncepcyjnej.</p>
+            </article>
+
+            <article class="card websites-service__factor-card">
+              <h3 class="card__title">Dodatkowe funkcje i integracje</h3>
+              <p class="card__meta">Rozbudowane formularze, elementy interaktywne, analityka, niestandardowe moduły lub integracje zwiększają zakres techniczny projektu.</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <!-- Section benefits -->
+      <section class="section websites-service websites-service--benefits" aria-labelledby="websites-benefits-title" data-reveal>
+        <div class="container">
+          <div class="service-detail__grid">
+            <div class="service-detail__content">
+              <div class="section__header websites-service__header">
+                <p class="section__eyebrow">Korzyści</p>
+                <h2 class="section__title" id="websites-benefits-title">Co zyskuje firma po wdrożeniu profesjonalnej strony internetowej.</h2>
+                <p class="section__subtitle">
+                  Dobrze zaprojektowana strona nie jest wyłącznie estetycznym dodatkiem. Porządkuje komunikację marki, wzmacnia wiarygodność i ułatwia użytkownikowi przejście od zainteresowania do
+                  kontaktu.
+                </p>
+              </div>
+
+              <ul class="websites-service__benefits-list" role="list">
+                <li>bardziej profesjonalny i spójny wizerunek marki online</li>
+                <li>czytelniejsza prezentacja oferty i lepsze prowadzenie użytkownika do działania</li>
+                <li>wygodniejsze korzystanie ze strony na telefonach, tabletach i desktopie</li>
+                <li>solidna baza techniczna pod SEO, kampanie i dalszy rozwój serwisu</li>
+                <li>strona gotowa do rozbudowy wraz z kolejnymi etapami rozwoju biznesu</li>
+              </ul>
+            </div>
+
+            <aside class="service-detail__aside" aria-label="Wartość biznesowa strony internetowej">
+              <div class="card websites-service__result-card">
+                <p class="websites-service__result-label">Finalny efekt</p>
+                <h3 class="card__title">Strona, która realnie wspiera biznes, zamiast jedynie być obecna w internecie.</h3>
+                <p class="card__meta">
+                  Efektem współpracy jest narzędzie, które profesjonalnie prezentuje firmę, porządkuje ofertę i pomaga użytkownikowi płynnie przejść od pierwszego wrażenia do kontaktu.
+                </p>
+              </div>
+            </aside>
+          </div>
+        </div>
+      </section>
+
+      <!-- Section faq -->
+      <section class="section websites-service websites-service--surface" aria-labelledby="websites-faq-title" data-reveal>
+        <div class="container">
+          <div class="section__header websites-service__header">
+            <p class="section__eyebrow">FAQ</p>
+            <h2 class="section__title" id="websites-faq-title">Najczęstsze pytania przed rozpoczęciem współpracy.</h2>
+            <p class="section__subtitle">
+              Jeśli po zapoznaniu się z zakresem usługi nadal pojawiają się pytania, najlepiej opisać projekt w wiadomości. Na tej podstawie można szybciej określić właściwy kierunek, zakres i
+              orientacyjny poziom wyceny.
+            </p>
+          </div>
+
+          <div class="websites-service__faq">
+            <details class="card websites-service__faq-item">
+              <summary class="websites-service__faq-question">Czy mogę zgłosić się tylko z pomysłem, bez gotowych treści?</summary>
+              <p class="websites-service__faq-answer">
+                Tak. Współpraca może rozpocząć się już na etapie pomysłu. Gotowe treści i materiały przyspieszają proces, ale nie są warunkiem rozpoczęcia prac nad strukturą, zakresem i kierunkiem
+                strony.
+              </p>
+            </details>
+
+            <details class="card websites-service__faq-item">
+              <summary class="websites-service__faq-question">Ile trwa realizacja strony?</summary>
+              <p class="websites-service__faq-answer">
+                Czas realizacji zależy od zakresu projektu, liczby podstron, poziomu złożoności oraz dostępności materiałów. Mniejsze landing page’e mogą powstać szybciej, natomiast większe serwisy
+                wymagają szerszego procesu i dodatkowych etapów.
+              </p>
+            </details>
+
+            <details class="card websites-service__faq-item">
+              <summary class="websites-service__faq-question">Czy strona będzie przygotowana pod SEO?</summary>
+              <p class="websites-service__faq-answer">
+                Tak. W standardzie uwzględniane są techniczne podstawy SEO, takie jak semantyczna struktura, uporządkowany układ treści, wydajność oraz poprawne przygotowanie strony do dalszych
+                działań optymalizacyjnych.
+              </p>
+            </details>
+
+            <details class="card websites-service__faq-item">
+              <summary class="websites-service__faq-question">Czy mogę później rozbudować stronę?</summary>
+              <p class="websites-service__faq-answer">
+                Tak. Strony są przygotowywane w taki sposób, aby mogły być rozwijane etapami — o kolejne sekcje, podstrony lub dodatkowe funkcje — wraz z rozwojem firmy i oferty.
+              </p>
+            </details>
+          </div>
+        </div>
+      </section>
+
+      <!-- Section cta -->
+      <section class="section websites-service" data-reveal>
+        <div class="container cta websites-service__cta">
+          <div class="section__header">
+            <h2 class="section__title">Masz pomysł na stronę lub chcesz uporządkować obecną ofertę online?</h2>
+            <p class="section__subtitle">Wystarczy krótki opis projektu, zakresu i celu strony, aby łatwiej określić właściwy kierunek, orientacyjny poziom wyceny i możliwy zakres realizacji.</p>
+          </div>
+          <div class="actions">
+            <a class="button button--primary" href="../contact.html?service=websites">Zapytaj o wycenę</a>
+            <a class="button button--ghost" href="../projects.html">Zobacz realizacje</a>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
       <div class="container">
         <div class="footer__grid">
+          <!-- brand -->
           <div class="footer__col footer__brand">
             <picture class="footer__logo">
               <source srcset="/assets/img/logo/logo-dark-mode.svg" media="(prefers-color-scheme: dark)" />
               <img src="/assets/img/logo/logo-light-mode.svg" alt="KP_Code Digital Studio" loading="lazy" width="512" height="512" />
             </picture>
-
-            <h4 class="footer__brand-title">
+            <h3 class="footer__brand-title">
               <a href="/index.html">KP_Code Digital Studio</a>
-            </h4>
+            </h3>
             <p class="footer__lead">Studio front-endowe specjalizujące się w nowoczesnych stronach internetowych.</p>
             <p class="footer__meta">Projektowanie, wdrożenia, SEO i identyfikacja.</p>
           </div>
-
+          <!-- nav -->
           <nav class="footer__col footer__nav" aria-label="Nawigacja">
             <h3 class="footer__title">Nawigacja</h3>
             <ul class="footer__links" role="list">
@@ -131,7 +511,7 @@
               <li><a class="footer__link" href="/contact.html">Kontakt</a></li>
             </ul>
           </nav>
-
+          <!-- services -->
           <nav class="footer__col footer__nav" aria-label="Usługi">
             <h3 class="footer__title">Usługi</h3>
             <ul class="footer__links" role="list">
@@ -141,13 +521,13 @@
               <li><a class="footer__link" href="/services/design.html">UI i identyfikacja</a></li>
             </ul>
           </nav>
-
+          <!-- contact -->
           <div class="footer__col footer__contact">
             <h3 class="footer__title">Kontakt</h3>
             <address class="footer__contact-list">
               <a class="footer__link" href="tel:+48533537091">+48 533 537 091</a>
               <a class="footer__link" href="mailto:kontakt@kp-code.pl">kontakt@kp-code.pl</a>
-              <span class="footer__meta">
+              <span class="footer__meta footer__meta--address">
                 KP_Code Digital Studio
                 <br />
                 ul. Marynarki Wojennej 12
@@ -156,12 +536,15 @@
               </span>
               <span class="footer__meta">Współpraca zdalna i stacjonarna · odpowiedź do 24h</span>
             </address>
-            <a class="button button--ghost footer__cta" href="/contact.html">Skontaktuj się</a>
+            <div class="actions">
+              <a class="button button--primary" href="/contact.html">Skontaktuj się</a>
+            </div>
           </div>
         </div>
-
+        <!-- social -->
         <div class="footer__social" aria-label="Social media">
           <ul class="footer__social-links" role="list">
+            <!-- github -->
             <li>
               <a class="footer__social-link" href="https://github.com/KPKrol85" aria-label="GitHub" target="_blank" rel="noopener noreferrer">
                 <svg class="footer__social-icon" aria-hidden="true" viewBox="0 0 24 24" fill="currentColor">
@@ -170,6 +553,7 @@
                 </svg>
               </a>
             </li>
+            <!-- facebook -->
             <li>
               <a class="footer__social-link" href="https://www.facebook.com/kpkrol85" aria-label="Facebook" target="_blank" rel="noopener noreferrer">
                 <svg class="footer__social-icon" aria-hidden="true" viewBox="0 0 24 24" fill="currentColor">
@@ -177,6 +561,7 @@
                 </svg>
               </a>
             </li>
+            <!-- instagram -->
             <li>
               <a class="footer__social-link" href="https://www.instagram.com/kp_code_/" aria-label="Instagram" target="_blank" rel="noopener noreferrer">
                 <svg class="footer__social-icon" aria-hidden="true" viewBox="0 0 24 24" fill="currentColor">
@@ -187,6 +572,7 @@
                 </svg>
               </a>
             </li>
+            <!-- x -->
             <li>
               <a class="footer__social-link" href="https://x.com/KP_Code_85" aria-label="X" target="_blank" rel="noopener noreferrer">
                 <svg class="footer__social-icon" aria-hidden="true" viewBox="0 0 24 24" fill="currentColor">
@@ -194,6 +580,7 @@
                 </svg>
               </a>
             </li>
+            <!-- linkedin -->
             <li>
               <a class="footer__social-link" href="https://www.linkedin.com/in/kp-code/" aria-label="LinkedIn" target="_blank" rel="noopener noreferrer">
                 <svg class="footer__social-icon" aria-hidden="true" viewBox="0 0 24 24" fill="currentColor">
@@ -204,9 +591,9 @@
             </li>
           </ul>
         </div>
-
+        <!-- bottom -->
         <div class="footer__bottom">
-          <p class="footer__legal">© 2026 Kamil Król. Wszelkie prawa zastrzeżone.</p>
+          <p class="footer__legal">© KP_Code Digital Studio | Wszelkie prawa zastrzeżone.</p>
           <div class="footer__legal-links">
             <a class="footer__link" href="/regulamin.html">Regulamin</a>
             <a class="footer__link" href="/polityka-prywatnosci.html">Polityka prywatności</a>
@@ -216,6 +603,53 @@
       </div>
     </footer>
 
-  <script type="module" src="../js/main.js"></script>
-</body>
+    <!-- Json-LD -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Service",
+        "@id": "https://www.kp-code.pl/services/websites.html#service",
+        "name": "Tworzenie stron internetowych",
+        "description": "Profesjonalne strony internetowe dla firm: strony firmowe, landing page’e i serwisy usługowe projektowane pod realne cele biznesowe, komunikację oferty i rozwój marki.",
+        "url": "https://www.kp-code.pl/services/websites.html",
+        "serviceType": "Tworzenie stron internetowych",
+        "areaServed": {
+          "@type": "Country",
+          "name": "Polska"
+        },
+        "provider": {
+          "@type": "Organization",
+          "@id": "https://www.kp-code.pl/#organization",
+          "name": "KP_Code Digital Studio",
+          "url": "https://www.kp-code.pl/",
+          "logo": "https://www.kp-code.pl/assets/img/logo/logo-light-mode.svg"
+        },
+        "offers": [
+          {
+            "@type": "Offer",
+            "name": "Landing page",
+            "price": "2500",
+            "priceCurrency": "PLN",
+            "description": "Rozbudowana strona pod konkretną usługę, ofertę lub kampanię."
+          },
+          {
+            "@type": "Offer",
+            "name": "Strona firmowa",
+            "price": "4500",
+            "priceCurrency": "PLN",
+            "description": "Profesjonalny serwis dla firmy z kluczowymi podstronami i dopracowaną prezentacją oferty."
+          },
+          {
+            "@type": "Offer",
+            "name": "Rozbudowany serwis",
+            "price": "7500",
+            "priceCurrency": "PLN",
+            "description": "Większy projekt z bardziej złożoną strukturą, dodatkowymi podstronami i szerszym zakresem wdrożenia."
+          }
+        ]
+      }
+    </script>
+    <!-- Script -->
+    <script type="module" src="../js/main.js"></script>
+  </body>
 </html>
