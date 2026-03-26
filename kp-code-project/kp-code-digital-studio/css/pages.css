@@ -551,54 +551,61 @@
   }
 }
 
-/* Page Services: website */
+/* Page Service */
 
-.websites-service {
-  --websites-glow-top: 2rem;
-  --websites-glow-size: 16rem;
-  --websites-glow-offset: -30%;
+.service {
+  --websites-glow-offset: -10%;
   position: relative;
 }
-
-
-.websites-service--surface {
-  background: color-mix(in srgb, var(--color-surface) 76%, transparent);
-  border-block: 1px solid color-mix(in srgb, var(--color-border) 72%, transparent);
+.service::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -80px;
+  width: 16rem;
+  height: 16rem;
+  border-radius: var(--radius-pill);
+  transform: translateX(var(--websites-glow-offset));
+  background: radial-gradient(circle at 10% 50%, color-mix(in srgb, var(--color-primary) 76%, transparent) 0%, transparent 34%);
+  opacity: 0.8;
+  filter: blur(24px);
+  pointer-events: none;
+  z-index: -1;
 }
-.websites-service__header {
+.page--service .section__header {
   max-width: 58rem;
 }
-.websites-service__intro-text {
+.page--service .section__subtitle {
+  max-width: 42rem;
+}
+.service__intro-text {
   display: grid;
   gap: var(--space-4);
   max-width: 68ch;
-  font-size: var(--fs-5);
+  font-size: var(--fs-4);
 }
-.websites-service__intro-text p {
+.service__intro-text p {
   color: var(--color-text);
+  font-weight: var(--fw-regular);
 }
-.page--websites .actions .button {
-  flex: 0 0 240px;
+.service-detail__content .actions .button {
+  flex: 0 0 220px;
 }
-.websites-service__aside {
-  min-width: 0;
-}
-.websites-service__panel {
+.page--service .service-detail__panel {
   background: linear-gradient(180deg, color-mix(in srgb, var(--color-surface-alt) 78%, transparent), color-mix(in srgb, var(--color-surface) 96%, transparent)), var(--color-surface);
 }
-.websites-service__cards {
+.service__cards {
   align-items: stretch;
 }
-.websites-service__card,
-.websites-service__factor-card,
-.websites-service__pricing-card {
+.service__card,
+.service__factor-card,
+.service__pricing-card {
   height: 100%;
 }
-.websites-service__card {
+.service__card {
   position: relative;
-  background: color-mix(in srgb, var(--color-surface) 94%, transparent);
 }
-.websites-service__card-label {
+.service__card-label {
   margin: 0;
   font-size: var(--fs-2);
   letter-spacing: var(--ls-widest);
@@ -606,95 +613,94 @@
   color: var(--color-primary);
   font-weight: var(--fw-semibold);
 }
-.websites-service__process .process__item,
-.websites-service__pricing-card,
-.websites-service__factor-card,
-.websites-service__result-card,
-.websites-service__faq-item {
-  background: color-mix(in srgb, var(--color-surface) 92%, transparent);
+.service--surface {
+  background: color-mix(in srgb, var(--color-surface) 76%, transparent);
+  border-block: 1px solid color-mix(in srgb, var(--color-border) 72%, transparent);
 }
-.websites-service__pricing {
+.service__pricing {
   align-items: stretch;
 }
-.websites-service__pricing-card {
-  gap: var(--space-4);
+.service__pricing-card {
   justify-content: start;
+  background: color-mix(in srgb, var(--color-surface-alt) 82%, transparent);
 }
-.websites-service__price-kicker,
-.websites-service__result-label {
-  margin: 0;
+.service__price-kicker,
+.service__result-label {
   font-size: var(--fs-2);
   letter-spacing: var(--ls-widest);
   text-transform: uppercase;
   color: var(--color-text-muted);
   font-weight: var(--fw-semibold);
 }
-.websites-service__price-value {
-  margin: 0;
-  font-size: clamp(2rem, 4vw, 2.8rem);
+.service__result-label {
+  color: var(--color-primary);
+}
+.service__price-value {
+  font-size: var(--fs-9);
   line-height: 1;
   letter-spacing: var(--ls-tight);
   color: var(--color-text);
   font-weight: var(--fw-semibold);
 }
-.websites-service__pricing-note {
+.service__pricing-note {
   margin: var(--space-6) 0 0;
   max-width: 70ch;
   color: var(--color-text-muted);
   font-size: var(--fs-4);
 }
-.websites-service__benefits-list {
+.service__benefits-list {
   list-style: none;
   margin: 0;
   padding: 0;
   display: grid;
   gap: var(--space-4);
 }
-.websites-service__benefits-list li {
+.service__benefits-list li {
   position: relative;
-  padding: var(--space-4) var(--space-5) var(--space-4) calc(var(--space-6) + var(--space-3));
+  padding: var(--space-4) var(--space-5) var(--space-4) calc(var(--space-6) + var(--space-4));
   border: 1px solid color-mix(in srgb, var(--color-border) 78%, transparent);
   border-radius: var(--radius-sm);
   background: color-mix(in srgb, var(--color-surface) 90%, transparent);
   color: var(--color-text);
   box-shadow: var(--shadow-sm);
+  font-size: var(--fs-4);
 }
-.websites-service__benefits-list li::before {
+.service__benefits-list li::before {
   content: "";
   position: absolute;
   left: var(--space-5);
   top: 50%;
-  width: 0.45rem;
-  height: 0.45rem;
+  width: var(--space-3);
+  height: var(--space-1);
   border-radius: var(--radius-pill);
   background: var(--color-primary);
   transform: translateY(-50%);
 }
-.websites-service__result-card {
+.service__result-card {
   position: relative;
   overflow: hidden;
 }
-.websites-service__result-card::before {
+.service__result-card::before {
   content: "";
   position: absolute;
   inset: 0;
   pointer-events: none;
-  background: radial-gradient(320px 180px at 100% 0%, color-mix(in srgb, var(--color-primary) 10%, transparent), transparent 60%);
+  background: radial-gradient(220px 120px at 100% 0%, color-mix(in srgb, var(--color-primary) 10%, transparent), transparent 60%);
 }
-.websites-service__faq {
+.service__faq {
   display: grid;
   gap: var(--space-5);
 }
-.websites-service__faq-item {
+.service__faq-item {
   gap: var(--space-4);
 }
-.websites-service__faq-item summary {
+.service__faq-item summary {
   list-style: none;
 }
-.websites-service__faq-item summary::-webkit-details-marker {
+.service__faq-item summary::-webkit-details-marker {
   display: none;
 }
-.websites-service__faq-question {
+.service__faq-question {
   position: relative;
   padding-right: var(--space-8);
   font-size: var(--fs-5);
@@ -702,7 +708,7 @@
   color: var(--color-text);
   cursor: pointer;
 }
-.websites-service__faq-question::after {
+.service__faq-question::after {
   content: "+";
   position: absolute;
   right: 0;
@@ -712,40 +718,16 @@
   line-height: 1;
   color: var(--color-primary);
 }
-.websites-service__faq-item[open] .websites-service__faq-question::after {
+.service__faq-item[open] .service__faq-question::after {
   content: "−";
 }
-.websites-service__faq-answer {
+.service__faq-answer {
   margin: 0;
   color: var(--color-text-muted);
   max-width: 64ch;
-}
-.websites-service__cta {
-  gap: var(--space-4);
-}
-.websites-service__cta .section__header {
-  max-width: 48rem;
+  font-size: var(--fs-5);
+  font-weight: var(--fw-regular);
 }
 
-/* Page Services: wordpress */
 
-.wordpress-service .actions .button {
-  flex: 0 0 240px;
-}
 
-@media (min-width: 1444px) {
-  .websites-service::before {
-    content: "";
-    position: absolute;
-    top: var(--websites-glow-top);
-    left: 0;
-    width: var(--websites-glow-size);
-    height: var(--websites-glow-size);
-    transform: translateX(var(--websites-glow-offset));
-    background: radial-gradient(circle at 30% 50%, color-mix(in srgb, var(--color-primary) 16%, transparent) 0%, transparent 34%);
-    opacity: 0.6;
-    filter: blur(24px);
-    pointer-events: none;
-    z-index: -1;
-  }
-}

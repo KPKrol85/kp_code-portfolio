@@ -39,7 +39,7 @@
 @media (min-width: 574px) {
   .actions {
     margin-inline: 0;
-    justify-content: space-between;
+    justify-content: flex-end;
   }
 }
 
