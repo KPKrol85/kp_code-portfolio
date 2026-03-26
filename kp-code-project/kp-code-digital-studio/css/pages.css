@@ -486,32 +486,47 @@
 
 /* Page: Projects */
 
-.projects-archive__header {
+.page--projects .section__header {
   max-width: 46rem;
 }
 .project-filters {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  gap: var(--space-3);
-  margin: var(--space-6) auto;
+  gap: var(--space-1) var(--space-6);
+  margin: 0 auto var(--space-8);
+  padding: var(--space-3);
+  border: 1px solid color-mix(in srgb, var(--color-border) 30%, transparent);
+  border-radius: var(--radius-sm);
+  background:
+    linear-gradient(
+      180deg,
+      color-mix(in srgb, var(--color-surface) 32%, transparent),
+      color-mix(in srgb, var(--color-surface-alt) 78%, transparent)
+    );
+  box-shadow:
+    0 10px 30px color-mix(in srgb, var(--color-shadow) 10%, transparent),
+    inset 0 1px 0 color-mix(in srgb, white 10%, transparent);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
 }
 .filter-button {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  padding: var(--space-4) var(--space-6);
-  width: 160px;
-  border: 1px solid color-mix(in srgb, var(--color-border) 78%, transparent);
-  border-radius: var(--radius-md);
-  background: color-mix(in srgb, var(--color-surface) 88%, transparent);
+  min-height: 36px;
+  padding: var(--space-2) var(--space-3);
+  width: 148px;
+  border: 1px solid transparent;
+  border-radius: var(--radius-sm);
+  background: transparent;
   color: var(--color-text);
   font: inherit;
   font-size: var(--fs-2);
-  text-transform: uppercase;
-  line-height: var(--lh-tight);
   font-weight: var(--fw-semibold);
+  line-height: var(--lh-flat);
   letter-spacing: var(--ls-wide);
+  text-transform: none;
   cursor: pointer;
   transition:
     background-color var(--transition-base),
@@ -520,30 +535,29 @@
     transform var(--transition-fast),
     box-shadow var(--transition-base);
 }
-.filter-button:hover {
-  border-color: color-mix(in srgb, var(--color-primary) 26%, var(--color-border));
-  background: color-mix(in srgb, var(--color-surface-alt) 72%, transparent);
-  transform: translateY(-1px);
+.filter-button:is(.is-active, [aria-pressed="true"]) {
+  border-color: color-mix(in srgb, var(--color-primary) 10%, var(--color-border));
+  background: color-mix(in srgb, var(--color-primary) 14%, var(--color-surface));
+  box-shadow:
+    0 8px 20px color-mix(in srgb, var(--color-primary) 12%, transparent),
+    inset 0 1px 0 color-mix(in srgb, white 10%, transparent);
 }
 .filter-button:focus-visible {
   outline: none;
-  border-color: color-mix(in srgb, var(--color-primary) 38%, var(--color-border));
-  box-shadow: 0 0 0 3px color-mix(in srgb, var(--color-primary) 18%, transparent);
+  border-color: color-mix(in srgb, var(--color-primary) 18%, var(--color-border));
+  box-shadow:
+    0 0 0 3px color-mix(in srgb, var(--color-primary) 18%, transparent),
+    0 8px 20px color-mix(in srgb, var(--color-primary) 10%, transparent);
 }
-.filter-button.is-active,
-.filter-button[aria-pressed="true"] {
-  border-color: color-mix(in srgb, var(--color-primary) 34%, var(--color-border));
-  background: color-mix(in srgb, var(--color-primary) 12%, var(--color-surface));
-  color: var(--color-text);
+@media (hover: hover) and (pointer: fine) {
+  .filter-button:hover {
+    border-color: color-mix(in srgb, var(--color-primary) 22%, var(--color-border));
+    background: color-mix(in srgb, var(--color-surface) 72%, transparent);
+    transform: translateY(-1px);
+  }
 }
-
 .projects-archive .work-card {
   height: 100%;
-}
-@media (min-width: 760px) {
-  .filter-button {
-    width: 180px;
-  }
 }
 
 /* Page Service */

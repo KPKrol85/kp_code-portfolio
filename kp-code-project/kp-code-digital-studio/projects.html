@@ -4,7 +4,8 @@
     <!-- Meta -->
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="theme-color" content="#ffffff" />
+    <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#0f1115" media="(prefers-color-scheme: dark)" />
     <meta name="robots" content="index, follow" />
     <!-- Title -->
     <title>Projekty | KP_Code Digital Studio</title>
@@ -21,11 +22,13 @@
     <meta property="og:description" content="Poznaj wybrane projekty KP_Code Digital Studio i zobacz, jak tworzę nowoczesne strony oraz rozwiązania webowe dla marek i biznesu." />
     <meta property="og:url" content="https://www.kp-code.pl/projects.html" />
     <meta property="og:image" content="https://www.kp-code.pl/assets/og/og-img.png" />
+    <meta property="og:image:alt" content="Podgląd strony projekty w KP_Code Digital Studio" />
     <!-- Twitter -->
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content="Projekty | KP_Code Digital Studio" />
     <meta name="twitter:description" content="Zobacz portfolio KP_Code Digital Studio — wybrane projekty stron internetowych i realizacji webowych." />
     <meta name="twitter:image" content="https://www.kp-code.pl/assets/og/og-img.png" />
+    <meta name="twitter:image:alt" content="Podgląd strony projekty w KP_Code Digital Studio" />
     <!-- Icons / PWA -->
     <link rel="icon" href="https://www.kp-code.pl/assets/icons/favicon.svg" type="image/svg+xml" />
     <link rel="apple-touch-icon" href="https://www.kp-code.pl/assets/icons/apple-touch-icon.png" />
@@ -119,7 +122,7 @@
       <!-- Projects -->
       <section class="section projects-archive" data-reveal>
         <div class="container">
-          <div class="section__header projects-archive__header">
+          <div class="section__header">
             <p class="section__eyebrow">Portfolio</p>
             <h2 class="section__title">Wybrane projekty i realizacje.</h2>
             <p class="section__subtitle">Przeglądaj projekty webowe, wdrożenia i rozwijane koncepty tworzone w ramach KP_Code Digital Studio.</p>
@@ -133,6 +136,7 @@
             <button class="filter-button" type="button" data-filter="products" aria-pressed="false">Produkty własne</button>
             <button class="filter-button" type="button" data-filter="in-progress" aria-pressed="false">W toku</button>
           </div>
+
           <!-- Projects grid -->
           <div class="grid grid--2 projects-archive__grid" data-project-grid>
             <!-- Solidcraft -->
