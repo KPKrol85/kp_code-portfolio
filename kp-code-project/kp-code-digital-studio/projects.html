@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="pl">
   <head>
-    <!-- Meta / Base -->
+    <!-- Meta -->
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="theme-color" content="#ffffff" />
@@ -59,7 +59,6 @@
           </picture>
           <span class="nav__brand-text">KP_Code Digital Studio</span>
         </a>
-        <!-- navigation -->
         <nav class="nav__links" id="primary-navigation" aria-label="Główna nawigacja">
           <a class="nav__link" href="/index.html">Start</a>
           <a class="nav__link" href="/about.html">O mnie</a>
@@ -68,7 +67,6 @@
           <a class="nav__link" href="/contact.html">Kontakt</a>
         </nav>
         <div class="nav__backdrop" data-nav-backdrop aria-hidden="true"></div>
-        <!-- theme toggle -->
         <div class="nav__actions">
           <button class="theme-toggle" id="theme-toggle" title="Przełącza motyw jasny i ciemny" aria-label="Automatyczny" aria-live="polite">
             <svg class="sun-and-moon" aria-hidden="true" width="20" height="20" viewBox="0 0 24 24">
@@ -89,7 +87,6 @@
               </g>
             </svg>
           </button>
-          <!-- navigation toggle -->
           <button class="nav__toggle" type="button" data-nav-toggle aria-label="Otwórz menu" aria-expanded="false" aria-controls="primary-navigation">
             <span class="nav__toggle-icon" aria-hidden="true"></span>
           </button>
@@ -119,8 +116,7 @@
         </div>
       </section>
 
-      <!-- Projekty -->
-      <!-- Projects archive -->
+      <!-- Projects -->
       <section class="section projects-archive" data-reveal>
         <div class="container">
           <div class="section__header projects-archive__header">
@@ -137,23 +133,241 @@
             <button class="filter-button" type="button" data-filter="products" aria-pressed="false">Produkty własne</button>
             <button class="filter-button" type="button" data-filter="in-progress" aria-pressed="false">W toku</button>
           </div>
-
           <!-- Projects grid -->
           <div class="grid grid--2 projects-archive__grid" data-project-grid>
+            <!-- Solidcraft -->
+            <article class="card work-card" data-category="websites in-progress">
+              <div class="work-card__image">
+                <picture>
+                  <source
+                    type="image/avif"
+                    srcset="
+                      ./assets/img/img_optimized/selected-work/solidcraft-480.avif   480w,
+                      ./assets/img/img_optimized/selected-work/solidcraft-768.avif   768w,
+                      ./assets/img/img_optimized/selected-work/solidcraft-1024.avif 1024w
+                    "
+                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 50vw" />
+                  <source
+                    type="image/webp"
+                    srcset="
+                      ./assets/img/img_optimized/selected-work/solidcraft-480.webp   480w,
+                      ./assets/img/img_optimized/selected-work/solidcraft-768.webp   768w,
+                      ./assets/img/img_optimized/selected-work/solidcraft-1024.webp 1024w
+                    "
+                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 50vw" />
+                  <img src="./assets/img/img_optimized/selected-work/solidcraft-768.jpg" alt="Solidcraft — strona firmy budowlanej" loading="lazy" decoding="async" width="768" height="512" />
+                </picture>
+              </div>
+              <h3 class="card__title">
+                Solidcraft
+                <br />
+                <span class="card__subtitle">— strona firmy budowlanej</span>
+              </h3>
+              <p class="card__meta">Nowoczesna strona firmowa z ofertą usług i realizacji.</p>
+              <div class="pill-grid">
+                <span class="tag">Strony</span>
+                <span class="tag">Biznes</span>
+                <span class="tag">Usługi</span>
+              </div>
+              <div class="work-card__actions">
+                <a class="button button--primary" href="https://construction-pr01-solidcraft.netlify.app/" target="_blank" rel="noopener noreferrer">Zobacz stronę</a>
+                <a class="button button--ghost" href="./projects/solidcraft.html">Szczegóły</a>
+              </div>
+            </article>
+            <!-- Ambre -->
+            <article class="card work-card" data-category="websites in-progress">
+              <div class="work-card__image">
+                <picture>
+                  <source
+                    type="image/avif"
+                    srcset="
+                      ./assets/img/img_optimized/selected-work/ambre-480.avif   480w,
+                      ./assets/img/img_optimized/selected-work/ambre-768.avif   768w,
+                      ./assets/img/img_optimized/selected-work/ambre-1024.avif 1024w
+                    "
+                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 50vw" />
+                  <source
+                    type="image/webp"
+                    srcset="
+                      ./assets/img/img_optimized/selected-work/ambre-480.webp   480w,
+                      ./assets/img/img_optimized/selected-work/ambre-768.webp   768w,
+                      ./assets/img/img_optimized/selected-work/ambre-1024.webp 1024w
+                    "
+                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 50vw" />
+                  <img src="./assets/img/img_optimized/selected-work/ambre-768.jpg" alt="Ambre — strona restauracji premium" loading="lazy" decoding="async" width="768" height="512" />
+                </picture>
+              </div>
+              <h3 class="card__title">
+                Ambre
+                <br />
+                <span class="card__subtitle">— strona restauracji premium</span>
+              </h3>
+              <p class="card__meta">Nowoczesna strona restauracyjna z ofertą i rezerwacją.</p>
+              <div class="pill-grid">
+                <span class="tag">Strony</span>
+                <span class="tag">Biznes</span>
+                <span class="tag">Gastronomia</span>
+              </div>
+              <div class="work-card__actions">
+                <a class="button button--primary" href="https://gastronomy-pr01-ambre.netlify.app/" target="_blank" rel="noopener noreferrer">Zobacz stronę</a>
+                <a class="button button--ghost" href="./projects/ambre.html">Szczegóły</a>
+              </div>
+            </article>
+            <!-- Vista -->
+            <article class="card work-card" data-category="websites in-progress">
+              <div class="work-card__image">
+                <picture>
+                  <source
+                    type="image/avif"
+                    srcset="
+                      ./assets/img/img_optimized/selected-work/vista-480.avif   480w,
+                      ./assets/img/img_optimized/selected-work/vista-768.avif   768w,
+                      ./assets/img/img_optimized/selected-work/vista-1024.avif 1024w
+                    "
+                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 50vw" />
+                  <source
+                    type="image/webp"
+                    srcset="
+                      ./assets/img/img_optimized/selected-work/vista-480.webp   480w,
+                      ./assets/img/img_optimized/selected-work/vista-768.webp   768w,
+                      ./assets/img/img_optimized/selected-work/vista-1024.webp 1024w
+                    "
+                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 50vw" />
+                  <img src="./assets/img/img_optimized/selected-work/vista-768.jpg" alt="Vista — strona hotelarsko-turystyczna" loading="lazy" decoding="async" width="768" height="512" />
+                </picture>
+              </div>
+              <h3 class="card__title">
+                Vista
+                <br />
+                <span class="card__subtitle">— strona hotelarsko-turystyczna</span>
+              </h3>
+              <p class="card__meta">Nowoczesna strona dla hotelarstwa i turystyki.</p>
+              <div class="pill-grid">
+                <span class="tag">Strony</span>
+                <span class="tag">Biznes</span>
+                <span class="tag">Turystyka</span>
+              </div>
+              <div class="work-card__actions">
+                <a class="button button--primary" href="https://hospitality-pr01-vista.netlify.app/" target="_blank" rel="noopener noreferrer">Zobacz stronę</a>
+                <a class="button button--ghost" href="./projects/vista.html">Szczegóły</a>
+              </div>
+            </article>
+            <!-- Axiom -->
             <article class="card work-card" data-category="websites">
-              <!-- project card -->
+              <div class="work-card__image">
+                <picture>
+                  <source
+                    type="image/avif"
+                    srcset="
+                      ./assets/img/img_optimized/selected-work/axiom-480.avif   480w,
+                      ./assets/img/img_optimized/selected-work/axiom-768.avif   768w,
+                      ./assets/img/img_optimized/selected-work/axiom-1024.avif 1024w
+                    "
+                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 50vw" />
+                  <source
+                    type="image/webp"
+                    srcset="
+                      ./assets/img/img_optimized/selected-work/axiom-480.webp   480w,
+                      ./assets/img/img_optimized/selected-work/axiom-768.webp   768w,
+                      ./assets/img/img_optimized/selected-work/axiom-1024.webp 1024w
+                    "
+                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 50vw" />
+                  <img src="./assets/img/img_optimized/selected-work/axiom-768.jpg" alt="Axiom — strona firmy budowlanej" loading="lazy" decoding="async" width="768" height="512" />
+                </picture>
+              </div>
+              <h3 class="card__title">
+                Axiom
+                <br />
+                <span class="card__subtitle">— strona firmy budowlanej</span>
+              </h3>
+              <p class="card__meta">Nowoczesna strona firmowa z ofertą usług i realizacji.</p>
+              <div class="pill-grid">
+                <span class="tag">Strony</span>
+                <span class="tag">Biznes</span>
+                <span class="tag">Usługi</span>
+              </div>
+              <div class="work-card__actions">
+                <a class="button button--primary" href="https://construction-pr02-axiom.netlify.app/" target="_blank" rel="noopener noreferrer">Zobacz stronę</a>
+                <a class="button button--ghost" href="./projects/axiom-construction.html">Szczegóły</a>
+              </div>
             </article>
-
-            <article class="card work-card" data-category="products">
-              <!-- project card -->
+            <!-- Atelier No.02 -->
+            <article class="card work-card" data-category="websites">
+              <div class="work-card__image">
+                <picture>
+                  <source
+                    type="image/avif"
+                    srcset="
+                      ./assets/img/img_optimized/selected-work/atelier-480.avif   480w,
+                      ./assets/img/img_optimized/selected-work/atelier-768.avif   768w,
+                      ./assets/img/img_optimized/selected-work/atelier-1024.avif 1024w
+                    "
+                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 50vw" />
+                  <source
+                    type="image/webp"
+                    srcset="
+                      ./assets/img/img_optimized/selected-work/atelier-480.webp   480w,
+                      ./assets/img/img_optimized/selected-work/atelier-768.webp   768w,
+                      ./assets/img/img_optimized/selected-work/atelier-1024.webp 1024w
+                    "
+                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 50vw" />
+                  <img src="./assets/img/img_optimized/selected-work/atelier-768.jpg" alt="Atelier No.02 — strona restauracji premium" loading="lazy" decoding="async" width="768" height="512" />
+                </picture>
+              </div>
+              <h3 class="card__title">
+                Atelier No.02
+                <br />
+                <span class="card__subtitle">— strona restauracji premium</span>
+              </h3>
+              <p class="card__meta">Nowoczesna strona restauracyjna z ofertą i rezerwacją.</p>
+              <div class="pill-grid">
+                <span class="tag">Strony</span>
+                <span class="tag">Biznes</span>
+                <span class="tag">Gastronomia</span>
+              </div>
+              <div class="work-card__actions">
+                <a class="button button--primary" href="https://gastronomy-pr02-atelier.netlify.app/" target="_blank" rel="noopener noreferrer">Zobacz stronę</a>
+                <a class="button button--ghost" href="./projects/atelier-no-02.html">Szczegóły</a>
+              </div>
             </article>
-
-            <article class="card work-card" data-category="wordpress">
-              <!-- project card -->
-            </article>
-
-            <article class="card work-card" data-category="in-progress">
-              <!-- project card -->
+            <!-- Aurora -->
+            <article class="card work-card" data-category="websites">
+              <div class="work-card__image">
+                <picture>
+                  <source
+                    type="image/avif"
+                    srcset="
+                      ./assets/img/img_optimized/selected-work/aurora-480.avif   480w,
+                      ./assets/img/img_optimized/selected-work/aurora-768.avif   768w,
+                      ./assets/img/img_optimized/selected-work/aurora-1024.avif 1024w
+                    "
+                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 50vw" />
+                  <source
+                    type="image/webp"
+                    srcset="
+                      ./assets/img/img_optimized/selected-work/aurora-480.webp   480w,
+                      ./assets/img/img_optimized/selected-work/aurora-768.webp   768w,
+                      ./assets/img/img_optimized/selected-work/aurora-1024.webp 1024w
+                    "
+                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 50vw" />
+                  <img src="./assets/img/img_optimized/selected-work/aurora-768.jpg" alt="Aurora Travel — strona hotelarsko-turystyczna" loading="lazy" decoding="async" width="768" height="512" />
+                </picture>
+              </div>
+              <h3 class="card__title">
+                Aurora Travel
+                <br />
+                <span class="card__subtitle">— hotelarstwo i turystyka</span>
+              </h3>
+              <p class="card__meta">Nowoczesna strona dla hotelarstwa i turystyki.</p>
+              <div class="pill-grid">
+                <span class="tag">Strony</span>
+                <span class="tag">Biznes</span>
+                <span class="tag">Turystyka</span>
+              </div>
+              <div class="work-card__actions">
+                <a class="button button--primary" href="https://hospitality-pr02-aurora.netlify.app/" target="_blank" rel="noopener noreferrer">Zobacz stronę</a>
+                <a class="button button--ghost" href="./projects/aurora.html">Szczegóły</a>
+              </div>
             </article>
           </div>
         </div>

@@ -3,7 +3,7 @@
  */
 
 export const initProjectFilter = () => {
-  const filterWrapper = document.querySelector(".project-filter");
+  const filterWrapper = document.querySelector(".project-filters");
   const projectGrid = document.querySelector("[data-project-grid]");
   if (!filterWrapper || !projectGrid) {
     return;
@@ -14,7 +14,7 @@ export const initProjectFilter = () => {
     return;
   }
 
-  const items = Array.from(projectGrid.children);
+  const items = Array.from(projectGrid.querySelectorAll("[data-category]"));
 
   const setActiveFilter = (filterKey) => {
     filterButtons.forEach((button) => {
@@ -24,9 +24,11 @@ export const initProjectFilter = () => {
     });
 
     items.forEach((item) => {
-      const category = item.getAttribute("data-category");
-      const visible = filterKey === "all" || filterKey === category;
-      item.style.display = visible ? "grid" : "none";
+      const categoryTokens = (item.getAttribute("data-category") || "")
+        .split(/\s+/)
+        .filter(Boolean);
+      const visible = filterKey === "all" || categoryTokens.includes(filterKey);
+      item.hidden = !visible;
     });
   };
 
