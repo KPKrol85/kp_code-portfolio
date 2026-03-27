@@ -3,8 +3,7 @@
 ## 1. Executive summary
 Audit wykonano wyłącznie na podstawie realnych plików w repozytorium. Projekt ma czytelną strukturę MPA, modularny JavaScript, sensowną warstwę PWA i widoczne działania na rzecz dostępności, SEO oraz jakości kodu. Najpoważniejsze wykryte ryzyko dotyczy konfliktu między polityką CSP w `_headers` a osadzoną mapą Google na stronie kontaktowej, co może blokować iframe w środowisku produkcyjnym. Poza tym kod jest uporządkowany, ale wymaga kilku celowanych poprawek w obszarach QA coverage, cache strategy, no-JS baseline i ograniczania ręcznej duplikacji.
 
-## 2. P0 — Critical risks
-- **CSP blokuje osadzoną mapę Google na stronie kontaktowej.** `_headers` ustawia `Content-Security-Policy` z `default-src 'self'` i nie definiuje `frame-src`, więc zewnętrzny iframe dziedziczy restrykcję same-origin. Jednocześnie `pages/contact.html` osadza mapę z `https://www.google.com/maps?...&output=embed`, co oznacza realne ryzyko zablokowania mapy po wdrożeniu. Evidence: `_headers:6`, `pages/contact.html:254-260`.
+## 2. P0 — Critical risks 0
 
 ## 3. Strengths
 - **Architektura front-end jest modularna i spójna.** Główny bootstrap agreguje moduły `ui`, `features`, `services` i `core`, a inicjalizacja jest warunkowa zależnie od obecności danego widoku. Evidence: `js/main.js:1-25`, `js/main.js:167-207`.
@@ -15,10 +14,12 @@ Audit wykonano wyłącznie na podstawie realnych plików w repozytorium. Projekt
 - **Repo zawiera użyteczne skrypty jakościowe, a nie tylko pojedynczy build.** Są osobne komendy dla HTML, CSS, JS, linków, JSON-LD i Lighthouse smoke. Evidence: `package.json:19-40`.
 
 ## 4. P1 — Improvements worth doing next
-- **`npm run qa` nie obejmuje pełnego zestawu krytycznych stron i walidacji schema.** Główna komenda QA uruchamia HTML, linki, JS i CSS, ale nie zawiera `validate:jsonld`, a sama walidacja HTML pomija `404.html` i `offline.html`. Evidence: `package.json:30-32`, `package.json:37-38`.
+
+
 - **Strategia cache dla CSS i JS jest agresywna względem niezhashowanych plików.** `_headers` ustawia `Cache-Control: public, max-age=31536000, immutable` dla `/css/*` i `/js/*`, podczas gdy HTML odwołuje się bezpośrednio do `/css/main.css` i `/js/main.js`, bez wersjonowania nazw plików. To zwiększa ryzyko serwowania przestarzałych assetów po wdrożeniu. Evidence: `_headers:14-18`, `index.html:86`, `index.html:590`, `404.html:54`, `offline.html:54`.
+
 - **Baseline bez JavaScript jest ograniczony dla kluczowych widoków katalogowych.** W sekcjach produktów użytkownik bez JS widzi tylko komunikat fallback zamiast realnej listy katalogowej lub statycznych rekomendacji. Evidence: `index.html:328-333`, `pages/shop.html:279-281`, `pages/product.html:217-227`, `js/features/products.js:129-160`, `js/features/products.js:225-301`.
-- **CSS entry opiera się na łańcuchu `@import`.** `css/main.css` składa arkusze z czterech importów runtime, co jest prostsze organizacyjnie, ale mniej korzystne dla render path niż pojedynczy zbundlowany arkusz źródłowy. Evidence: `css/main.css:2-5`.
+
 - **Współdzielony modal projektu jest ręcznie kopiowany przez wiele stron.** Ta sama struktura `project-modal` występuje w `index.html`, `404.html`, `offline.html` i wszystkich głównych podstronach, co podnosi koszt utrzymania i ryzyko niespójnych zmian treści. Evidence: `index.html:558-579`, `404.html:364-385`, `offline.html:363-384`, `pages/shop.html:434-455`, `pages/contact.html:504-525`.
 
 ## 5. P2 — Minor refinements
@@ -48,15 +49,15 @@ Audit wykonano wyłącznie na podstawie realnych plików w repozytorium. Projekt
 ## 8. Architecture score (0–10)
 **Overall: 7.9 / 10**
 
-- **BEM consistency: 8.2/10**  
+- **BEM consistency: 8.2/10**
   Nazewnictwo komponentów i stanów jest w większości spójne (`project-modal__panel`, `card--skeleton`, `page-hero--contact`), choć duplikacja markupu obniża ergonomię zmian. Evidence: `css/partials/components.css:950-1031`, `js/features/products.js:91-99`.
-- **Token usage: 8.9/10**  
+- **Token usage: 8.9/10**
   System tokenów obejmuje fonty, skale typografii, spacing, radius i shadow, a motywy są oparte o custom properties. Evidence: `css/partials/themes.css:45-80`.
-- **Accessibility: 8.1/10**  
+- **Accessibility: 8.1/10**
   Silne podstawy: skip link, focus-visible, keyboard nav, focus trap, aria feedback w formularzach, reduced motion. Punktację obniża częściowy baseline bez JS dla katalogu. Evidence: `css/partials/base.css:62-126`, `js/ui/header.js:75-170`, `js/ui/project-modal.js:23-43`, `js/main.js:27-155`.
-- **Performance: 7.6/10**  
+- **Performance: 7.6/10**
   Dobre praktyki obrazów i fontów są obecne, ale `@import` w CSS i długie cache dla niezhashowanych assetów tworzą pole do poprawy. Evidence: `js/features/products.js:19-29`, `css/partials/themes.css:2-42`, `css/main.css:2-5`, `_headers:14-18`.
-- **Maintainability: 6.8/10**  
+- **Maintainability: 6.8/10**
   Struktura modułów jest czytelna, lecz ręczna duplikacja współdzielonych bloków i niepełne pokrycie głównego QA utrudniają bezpieczne skalowanie zmian. Evidence: `package.json:30-38`, `index.html:558-579`, `pages/contact.html:504-525`.
 
 ## 9. Senior rating (1–10)

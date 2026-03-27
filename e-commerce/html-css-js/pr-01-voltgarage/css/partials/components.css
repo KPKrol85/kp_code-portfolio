@@ -410,6 +410,11 @@ main p,
   min-height: clamp(720px, 100vh, 980px);
 }
 
+.products--featured {
+  min-height: 0;
+  align-content: start;
+}
+
 .products--loading {
   align-content: start;
 }
@@ -480,6 +485,10 @@ main p,
 @media (max-width: 767px) {
   .products {
     min-height: clamp(1320px, 210vh, 1680px);
+  }
+
+  .products--featured {
+    min-height: 0;
   }
 }
 
