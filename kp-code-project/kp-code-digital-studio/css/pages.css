@@ -1039,3 +1039,202 @@
     grid-template-columns: repeat(3, minmax(0, 1fr));
   }
 }
+
+/* Page: Legal */
+
+.page--legal .page-hero__content {
+  max-width: 64rem;
+}
+.page--legal .page-hero__title {
+  max-width: 20ch;
+}
+.page--legal .page-hero__lead {
+  max-width: 60ch;
+}
+.page--legal .section__title {
+  max-width: 34ch;
+}
+.page--legal .section__subtitle {
+  max-width: 64ch;
+}
+.legal-intro__panel,
+.legal-toc,
+.legal-section,
+.legal-note__panel {
+  position: relative;
+  overflow: hidden;
+}
+.legal-intro__panel::before,
+.legal-toc::before,
+.legal-note__panel::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: radial-gradient(240px 160px at 100% 0%, color-mix(in srgb, var(--color-primary) 8%, transparent), transparent 65%);
+}
+.legal-intro__header,
+.legal-toc__header {
+  margin-bottom: 0;
+}
+.legal-intro__note,
+.legal-note__meta {
+  margin: 0;
+  max-width: 72ch;
+  color: var(--color-text-muted);
+  font-size: var(--fs-4);
+}
+.legal-content {
+  padding-top: 0;
+}
+.legal-content__stack {
+  display: grid;
+  gap: var(--space-6);
+}
+.legal-toc__list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: grid;
+  gap: var(--space-3);
+}
+.legal-toc__list li {
+  margin: 0;
+}
+.legal-toc__list a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 2.5rem;
+  color: var(--color-text);
+  font-size: var(--fs-4);
+  font-weight: var(--fw-medium);
+  text-decoration: none;
+  transition:
+    color var(--transition-fast),
+    transform var(--transition-fast);
+}
+.legal-toc__list a::before {
+  content: "";
+  width: 0.5rem;
+  height: 1px;
+  margin-right: var(--space-4);
+  background: color-mix(in srgb, var(--color-primary) 48%, transparent);
+  transition:
+    width var(--transition-fast),
+    background-color var(--transition-fast);
+}
+.legal-toc__list a:focus-visible {
+  outline: 2px solid color-mix(in srgb, var(--color-primary) 30%, transparent);
+  outline-offset: 4px;
+  border-radius: var(--radius-xs);
+}
+.legal-section {
+  gap: var(--space-5);
+}
+.legal-section__kicker {
+  margin: 0;
+  font-size: var(--fs-2);
+  letter-spacing: var(--ls-widest);
+  text-transform: uppercase;
+  color: var(--color-primary);
+  font-weight: var(--fw-semibold);
+}
+.legal-section__title {
+  margin: 0;
+  font-size: var(--fs-7);
+  letter-spacing: var(--ls-tight);
+}
+.legal-section__body {
+  display: grid;
+  gap: var(--space-4);
+  max-width: 72ch;
+}
+.legal-section__body p {
+  margin: 0;
+  color: var(--color-text);
+  font-size: var(--fs-4);
+}
+.legal-section__body a,
+.legal-note__meta a {
+  color: var(--color-text);
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.18em;
+}
+.legal-list {
+  margin: 0;
+  padding-left: 1.2rem;
+  display: grid;
+  gap: var(--space-3);
+  color: var(--color-text);
+  font-size: var(--fs-4);
+}
+.legal-list li {
+  padding-left: var(--space-2);
+}
+.legal-backlink {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-3);
+  width: fit-content;
+  min-height: 2rem;
+  margin-top: var(--space-1);
+  color: var(--color-text-muted);
+  font-size: var(--fs-3);
+  font-weight: var(--fw-medium);
+  text-decoration: none;
+  transition:
+    color var(--transition-fast),
+    transform var(--transition-fast);
+}
+.legal-backlink::before {
+  content: "↑";
+  font-size: var(--fs-4);
+  line-height: 1;
+  color: color-mix(in srgb, var(--color-primary) 68%, var(--color-text-muted));
+}
+.legal-backlink:focus-visible {
+  outline: 2px solid color-mix(in srgb, var(--color-primary) 28%, transparent);
+  outline-offset: 4px;
+  border-radius: var(--radius-xs);
+}
+@media (hover: hover) and (pointer: fine) {
+  .legal-toc__list a:hover,
+  .legal-backlink:hover {
+    color: var(--color-text);
+    transform: translateY(-1px);
+  }
+  .legal-toc__list a:hover::before {
+    width: 0.9rem;
+    background: color-mix(in srgb, var(--color-primary) 78%, transparent);
+  }
+}
+@media (min-width: 900px) {
+  .legal-content__stack {
+    gap: var(--space-7);
+  }
+}
+
+/* Page: Cookies */
+
+.cookies-intro__panel .legal-intro__note a,
+.cookies-note__panel .legal-note__meta a,
+.page--legal .legal-section__body code {
+  color: var(--color-text);
+}
+.page--legal .legal-section__body code {
+  display: inline-flex;
+  align-items: center;
+  min-height: 1.5rem;
+  padding: 0 var(--space-2);
+  border: 1px solid color-mix(in srgb, var(--color-border) 72%, transparent);
+  border-radius: var(--radius-xs);
+  background: color-mix(in srgb, var(--color-surface-alt) 82%, transparent);
+  font-size: var(--fs-3);
+}
+
+/* Page: Privacy */
+
+.privacy-intro__panel .legal-intro__note a,
+.privacy-note__panel .legal-note__meta a {
+  color: var(--color-text);
+}
