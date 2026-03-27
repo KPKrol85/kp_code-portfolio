@@ -9,12 +9,14 @@
 .breadcrumbs {
   margin-bottom: var(--space-9);
 }
+
 .breadcrumbs__list {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
   gap: var(--space-3);
 }
+
 .breadcrumbs__item {
   display: inline-flex;
   align-items: center;
@@ -29,6 +31,7 @@
   content: "/";
   color: color-mix(in srgb, var(--color-text-muted) 65%, transparent);
 }
+
 .breadcrumbs__link,
 .breadcrumbs__current {
   line-height: var(--lh-flat);
@@ -42,10 +45,6 @@
 @media (hover: hover) and (pointer: fine) {
   .breadcrumbs__link:hover {
     color: var(--color-text);
-    text-decoration: underline;
-    text-decoration-thickness: 1px;
-    text-underline-offset: 0.2em;
-    text-decoration-color: color-mix(in srgb, var(--color-text) 45%, transparent);
   }
 }
 .breadcrumbs__link:focus-visible {
@@ -53,6 +52,7 @@
   outline-offset: 3px;
   border-radius: var(--radius-xs);
 }
+
 .breadcrumbs__current {
   color: color-mix(in srgb, var(--color-text) 84%, var(--color-text-muted));
   font-weight: var(--fw-semibold);
@@ -78,7 +78,6 @@
 @media (min-width: 480px) {
   .section__eyebrow {
     margin-bottom: var(--space-4);
-    letter-spacing: var(--ls-widest);
   }
 }
 

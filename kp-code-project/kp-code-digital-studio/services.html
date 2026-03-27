@@ -4,26 +4,28 @@
     <!-- Meta / Base -->
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="theme-color" content="#ffffff" />
+    <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#0f1115" media="(prefers-color-scheme: dark)" />
     <meta name="robots" content="index, follow" />
     <!-- Title -->
-    <title>Usługi — KP_Code Digital Studio</title>
+    <title>Usługi | KP_Code Digital Studio</title>
     <!-- SEO -->
-    <meta name="description" content="Zakres usług web development, WordPress, SEO i projektowania UI/brand." />
+    <meta name="description" content="Poznaj usługi KP_Code Digital Studio obejmujące nowoczesne strony internetowe, WordPress, SEO oraz projektowanie interfejsów i identyfikacji wizualnej." />
     <link rel="canonical" href="https://www.kp-code.pl/services.html" />
     <!-- Open Graph -->
     <meta property="og:type" content="website" />
     <meta property="og:locale" content="pl_PL" />
     <meta property="og:site_name" content="KP_Code Digital Studio" />
-    <meta property="og:title" content="KP_Code Digital Studio" />
-    <meta property="og:description" content="Nowoczesne strony, WordPress i SEO dla biznesów. Poznaj projekty Kamila Króla." />
-    <meta property="og:url" content="https://www.kp-code.pl/" />
+    <meta property="og:title" content="Usługi | KP_Code Digital Studio" />
+    <meta property="og:description" content="Zakres usług KP_Code Digital Studio: nowoczesne strony internetowe, WordPress, SEO i UI Design dla firm i marek." />
+    <meta property="og:url" content="https://www.kp-code.pl/services.html" />
     <meta property="og:image" content="https://www.kp-code.pl/assets/og/og-img.png" />
     <!-- Twitter -->
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="KP_Code Digital Studio" />
-    <meta name="twitter:description" content="Projektujemy i wdrażamy strony oraz strategie SEO." />
+    <meta name="twitter:title" content="Usługi | KP_Code Digital Studio" />
+    <meta name="twitter:description" content="Strony internetowe, WordPress, SEO i UI Design w ofercie KP_Code Digital Studio." />
     <meta name="twitter:image" content="https://www.kp-code.pl/assets/og/og-img.png" />
+    <meta name="twitter:image:alt" content="Strona usług KP_Code Digital Studio" />
     <!-- Icons / PWA -->
     <link rel="icon" href="https://www.kp-code.pl/assets/icons/favicon.svg" type="image/svg+xml" />
     <link rel="apple-touch-icon" href="https://www.kp-code.pl/assets/icons/apple-touch-icon.png" />
@@ -57,7 +59,6 @@
           </picture>
           <span class="nav__brand-text">KP_Code Digital Studio</span>
         </a>
-        <!-- navigation -->
         <nav class="nav__links" id="primary-navigation" aria-label="Główna nawigacja">
           <a class="nav__link" href="/index.html">Start</a>
           <a class="nav__link" href="/about.html">O mnie</a>
@@ -66,7 +67,6 @@
           <a class="nav__link" href="/contact.html">Kontakt</a>
         </nav>
         <div class="nav__backdrop" data-nav-backdrop aria-hidden="true"></div>
-        <!-- theme toggle -->
         <div class="nav__actions">
           <button class="theme-toggle" id="theme-toggle" title="Przełącza motyw jasny i ciemny" aria-label="Automatyczny" aria-live="polite">
             <svg class="sun-and-moon" aria-hidden="true" width="20" height="20" viewBox="0 0 24 24">
@@ -87,7 +87,6 @@
               </g>
             </svg>
           </button>
-          <!-- navigation toggle -->
           <button class="nav__toggle" type="button" data-nav-toggle aria-label="Otwórz menu" aria-expanded="false" aria-controls="primary-navigation">
             <span class="nav__toggle-icon" aria-hidden="true"></span>
           </button>
@@ -127,7 +126,6 @@
             <h2 class="section__title">Usługi dopasowane do etapu rozwoju Twojego biznesu.</h2>
             <p class="section__subtitle">Od pojedynczej strony ofertowej po bardziej rozbudowane wdrożenia i rozwój obecnego serwisu.</p>
           </div>
-          <!-- Services overview grid -->
           <div class="grid grid--2 services-overview__grid">
             <!-- Strony internetowe html css js -->
             <article class="card service-card">
@@ -164,7 +162,6 @@
                 <a class="button button--ghost" href="./services/websites.html">Szczegóły</a>
               </div>
             </article>
-
             <!-- Wdrożenia WordPress -->
             <article class="card service-card">
               <a class="service-card__jump" href="#service-wordpress" aria-label="Przejdź do sekcji usługi: Strony internetowe">
@@ -197,7 +194,6 @@
                 <a class="button button--ghost" href="./services/wordpress.html">Szczegóły</a>
               </div>
             </article>
-
             <!-- SEO -->
             <article class="card service-card">
               <a class="service-card__jump" href="#service-seo" aria-label="Przejdź do sekcji usługi: Strony internetowe">
@@ -236,7 +232,6 @@
                 <a class="button button--ghost" href="./services/seo.html">Szczegóły</a>
               </div>
             </article>
-
             <!-- UI i identyfikacja wizualna -->
             <article class="card service-card">
               <a class="service-card__jump" href="#service-design" aria-label="Przejdź do sekcji usługi: Strony internetowe">
@@ -279,7 +274,6 @@
         <div class="container">
           <div class="service-detail__grid">
             <div class="service-detail__content">
-              <!-- section header -->
               <div class="section__header">
                 <p class="section__eyebrow">Strony internetowe</p>
                 <h2 class="section__title" id="service-websites-title">Nowoczesne strony internetowe projektowane pod konkretny cel.</h2>
@@ -287,7 +281,7 @@
                   Tworzę dedykowane strony internetowe od podstaw — estetyczne, szybkie i dopasowane do realnych potrzeb marki, oferty oraz sposobu komunikacji z klientem.
                 </p>
               </div>
-              <!-- text flow -->
+
               <div class="service-detail__text flow">
                 <p>To rozwiązanie dla firm, które potrzebują strony szytej pod konkretny cel — wizerunkowy, ofertowy lub sprzedażowy — bez zbędnych ograniczeń gotowych szablonów.</p>
                 <p>
@@ -296,16 +290,15 @@
                 </p>
                 <p>Taka strona może pełnić rolę wizytówki firmy, strony usługowej, landing page lub bardziej rozbudowanego serwisu firmowego rozwijanego etapami wraz z biznesem.</p>
               </div>
-              <!-- actions -->
+
               <div class="actions">
                 <a class="button button--primary" href="./contact.html">Zapytaj o wycenę</a>
                 <a class="button button--ghost" href="./services/websites.html">Zobacz szczegóły usługi</a>
               </div>
             </div>
-            <!-- aside -->
+
             <aside class="service-detail__aside" aria-label="Informacje o usłudze: strony internetowe">
               <div class="service-detail__panel">
-                <!-- group 01 -->
                 <section class="service-detail__group" aria-labelledby="service-websites-tech">
                   <h3 class="service-detail__subtitle" id="service-websites-tech">Technologie</h3>
                   <ul class="service-detail__list">
@@ -315,7 +308,6 @@
                     <li>techniczne podstawy wydajności i dobre praktyki SEO</li>
                   </ul>
                 </section>
-                <!-- group 02 -->
                 <section class="service-detail__group" aria-labelledby="service-websites-scope">
                   <h3 class="service-detail__subtitle" id="service-websites-scope">Zakres usługi</h3>
                   <ul class="service-detail__list">
@@ -326,7 +318,6 @@
                     <li>przygotowanie strony pod dalszy rozwój</li>
                   </ul>
                 </section>
-                <!-- group 03 -->
                 <section class="service-detail__group" aria-labelledby="service-websites-budget">
                   <h3 class="service-detail__subtitle" id="service-websites-budget">Zakres projektu i wycena</h3>
                   <p class="service-detail__note">
@@ -345,7 +336,6 @@
         <div class="container">
           <div class="service-detail__grid">
             <div class="service-detail__content">
-              <!-- section header -->
               <div class="section__header">
                 <p class="section__eyebrow">WordPress</p>
                 <h2 class="section__title" id="service-wordpress-title">Wdrożenia WordPress z myślą o wygodnej edycji treści.</h2>
@@ -353,7 +343,7 @@
                   Tworzę strony oparte o WordPress dla projektów, które wymagają prostego zarządzania treścią, elastyczności rozbudowy i stabilnego zaplecza do codziennej pracy.
                 </p>
               </div>
-              <!-- text flow -->
+
               <div class="service-detail__text flow">
                 <p>
                   To rozwiązanie dla firm, które chcą samodzielnie edytować treści na stronie, dodawać nowe podstrony, publikować aktualności i rozwijać serwis bez konieczności każdorazowego wdrażania
@@ -368,16 +358,16 @@
                   właściciela lub zespół.
                 </p>
               </div>
-              <!-- actions -->
+
               <div class="actions">
                 <a class="button button--primary" href="./contact.html">Zapytaj o wycenę</a>
                 <a class="button button--ghost" href="./services/wordpress.html">Zobacz szczegóły usługi</a>
               </div>
             </div>
-            <!-- aside -->
+
             <aside class="service-detail__aside" aria-label="Informacje o usłudze: WordPress">
               <div class="service-detail__panel">
-                <!-- group 01 -->
+                <!-- item 01 -->
                 <section class="service-detail__group" aria-labelledby="service-wordpress-tech">
                   <h3 class="service-detail__subtitle" id="service-wordpress-tech">Technologie</h3>
                   <ul class="service-detail__list">
@@ -387,7 +377,7 @@
                     <li>techniczne podstawy SEO i dobre praktyki wydajności</li>
                   </ul>
                 </section>
-                <!-- group 02 -->
+                <!-- item 02 -->
                 <section class="service-detail__group" aria-labelledby="service-wordpress-scope">
                   <h3 class="service-detail__subtitle" id="service-wordpress-scope">Zakres usługi</h3>
                   <ul class="service-detail__list">
@@ -398,7 +388,7 @@
                     <li>przygotowanie strony do dalszej samodzielnej edycji</li>
                   </ul>
                 </section>
-                <!-- group 03 -->
+                <!-- item 03 -->
                 <section class="service-detail__group" aria-labelledby="service-wordpress-budget">
                   <h3 class="service-detail__subtitle" id="service-wordpress-budget">Zakres projektu i wycena</h3>
                   <p class="service-detail__note">
@@ -417,13 +407,12 @@
         <div class="container">
           <div class="service-detail__grid">
             <div class="service-detail__content">
-              <!-- section header -->
               <div class="section__header">
                 <p class="section__eyebrow">SEO</p>
                 <h2 class="section__title" id="service-seo-title">SEO, które wspiera widoczność i rozwój strony.</h2>
                 <p class="section__subtitle">Pomagam uporządkować techniczne podstawy SEO oraz zadbać o strukturę i treści, które zwiększają szanse na lepszą widoczność w wynikach wyszukiwania.</p>
               </div>
-              <!-- text flow -->
+
               <div class="service-detail__text flow">
                 <p>
                   To usługa dla firm, które chcą lepiej przygotować swoją stronę pod widoczność w Google i innych wyszukiwarkach — zarówno od strony technicznej, jak i pod kątem struktury treści oraz
@@ -438,16 +427,16 @@
                   rozwój można było prowadzić w uporządkowany i skalowalny sposób.
                 </p>
               </div>
-              <!-- actions -->
+
               <div class="actions">
                 <a class="button button--primary" href="./contact.html">Zapytaj o wycenę</a>
                 <a class="button button--ghost" href="./services/seo.html">Zobacz szczegóły usługi</a>
               </div>
             </div>
-            <!-- aside -->
+
             <aside class="service-detail__aside" aria-label="Informacje o usłudze: SEO">
               <div class="service-detail__panel">
-                <!-- group 01 -->
+                <!-- item 01 -->
                 <section class="service-detail__group" aria-labelledby="service-seo-tech">
                   <h3 class="service-detail__subtitle" id="service-seo-tech">Obszary optymalizacji</h3>
                   <ul class="service-detail__list">
@@ -457,7 +446,7 @@
                     <li>linkowanie wewnętrzne, czytelność struktury i użyteczność strony</li>
                   </ul>
                 </section>
-                <!-- group 02 -->
+                <!-- item 02 -->
                 <section class="service-detail__group" aria-labelledby="service-seo-scope">
                   <h3 class="service-detail__subtitle" id="service-seo-scope">Zakres usługi</h3>
                   <ul class="service-detail__list">
@@ -468,7 +457,7 @@
                     <li>przygotowanie bazy pod dalszy rozwój contentu i pozycjonowania</li>
                   </ul>
                 </section>
-                <!-- group 03 -->
+                <!-- item 03 -->
                 <section class="service-detail__group" aria-labelledby="service-seo-budget">
                   <h3 class="service-detail__subtitle" id="service-seo-budget">Zakres projektu i wycena</h3>
                   <p class="service-detail__note">
@@ -487,13 +476,12 @@
         <div class="container">
           <div class="service-detail__grid">
             <div class="service-detail__content">
-              <!-- section header -->
               <div class="section__header">
                 <p class="section__eyebrow">UI i identyfikacja wizualna</p>
                 <h2 class="section__title" id="service-design-title">Spójny wygląd marki i interfejsów cyfrowych.</h2>
                 <p class="section__subtitle">Projektuję kierunek wizualny stron i interfejsów tak, aby całość była estetyczna, spójna i dopasowana do charakteru marki oraz odbiorców.</p>
               </div>
-              <!-- text flow -->
+
               <div class="service-detail__text flow">
                 <p>
                   To usługa dla firm, które chcą uporządkować warstwę wizualną swojej obecności online i zbudować bardziej profesjonalny, spójny oraz wiarygodny odbiór marki w środowisku cyfrowym.
@@ -507,16 +495,16 @@
                   lepsze dopasowanie do charakteru marki i oczekiwań odbiorców.
                 </p>
               </div>
-              <!-- actions -->
+
               <div class="actions">
                 <a class="button button--primary" href="./contact.html">Zapytaj o wycenę</a>
                 <a class="button button--ghost" href="./services/design.html">Zobacz szczegóły usługi</a>
               </div>
             </div>
-            <!-- aside -->
+
             <aside class="service-detail__aside" aria-label="Informacje o usłudze: UI i identyfikacja wizualna">
               <div class="service-detail__panel">
-                <!-- group 01 -->
+                <!-- item 01 -->
                 <section class="service-detail__group" aria-labelledby="service-design-tech">
                   <h3 class="service-detail__subtitle" id="service-design-tech">Obszary projektowe</h3>
                   <ul class="service-detail__list">
@@ -526,7 +514,7 @@
                     <li>spójność marki w środowisku cyfrowym</li>
                   </ul>
                 </section>
-                <!-- group 02 -->
+                <!-- item 02 -->
                 <section class="service-detail__group" aria-labelledby="service-design-scope">
                   <h3 class="service-detail__subtitle" id="service-design-scope">Zakres usługi</h3>
                   <ul class="service-detail__list">
@@ -537,7 +525,7 @@
                     <li>wzmocnienie estetyki, czytelności i odbioru jakości</li>
                   </ul>
                 </section>
-                <!-- group 03 -->
+                <!-- item 03 -->
                 <section class="service-detail__group" aria-labelledby="service-design-budget">
                   <h3 class="service-detail__subtitle" id="service-design-budget">Zakres projektu i wycena</h3>
                   <p class="service-detail__note">
@@ -556,7 +544,6 @@
     <footer class="footer">
       <div class="container">
         <div class="footer__grid">
-          <!-- brand -->
           <div class="footer__col footer__brand">
             <picture class="footer__logo">
               <source srcset="/assets/img/logo/logo-dark-mode.svg" media="(prefers-color-scheme: dark)" />
@@ -568,7 +555,7 @@
             <p class="footer__lead">Studio front-endowe specjalizujące się w nowoczesnych stronach internetowych.</p>
             <p class="footer__meta">Projektowanie, wdrożenia, SEO i identyfikacja.</p>
           </div>
-          <!-- nav -->
+
           <nav class="footer__col footer__nav" aria-label="Nawigacja">
             <h3 class="footer__title">Nawigacja</h3>
             <ul class="footer__links" role="list">
@@ -579,7 +566,7 @@
               <li><a class="footer__link" href="/contact.html">Kontakt</a></li>
             </ul>
           </nav>
-          <!-- services -->
+
           <nav class="footer__col footer__nav" aria-label="Usługi">
             <h3 class="footer__title">Usługi</h3>
             <ul class="footer__links" role="list">
@@ -589,7 +576,7 @@
               <li><a class="footer__link" href="/services/design.html">UI i identyfikacja</a></li>
             </ul>
           </nav>
-          <!-- contact -->
+
           <div class="footer__col footer__contact">
             <h3 class="footer__title">Kontakt</h3>
             <address class="footer__contact-list">
@@ -609,10 +596,9 @@
             </div>
           </div>
         </div>
-        <!-- social -->
+
         <div class="footer__social" aria-label="Social media">
           <ul class="footer__social-links" role="list">
-            <!-- github -->
             <li>
               <a class="footer__social-link" href="https://github.com/KPKrol85" aria-label="GitHub" target="_blank" rel="noopener noreferrer">
                 <svg class="footer__social-icon" aria-hidden="true" viewBox="0 0 24 24" fill="currentColor">
@@ -621,7 +607,6 @@
                 </svg>
               </a>
             </li>
-            <!-- facebook -->
             <li>
               <a class="footer__social-link" href="https://www.facebook.com/kpkrol85" aria-label="Facebook" target="_blank" rel="noopener noreferrer">
                 <svg class="footer__social-icon" aria-hidden="true" viewBox="0 0 24 24" fill="currentColor">
@@ -629,7 +614,6 @@
                 </svg>
               </a>
             </li>
-            <!-- instagram -->
             <li>
               <a class="footer__social-link" href="https://www.instagram.com/kp_code_/" aria-label="Instagram" target="_blank" rel="noopener noreferrer">
                 <svg class="footer__social-icon" aria-hidden="true" viewBox="0 0 24 24" fill="currentColor">
@@ -640,7 +624,6 @@
                 </svg>
               </a>
             </li>
-            <!-- x -->
             <li>
               <a class="footer__social-link" href="https://x.com/KP_Code_85" aria-label="X" target="_blank" rel="noopener noreferrer">
                 <svg class="footer__social-icon" aria-hidden="true" viewBox="0 0 24 24" fill="currentColor">
@@ -648,7 +631,6 @@
                 </svg>
               </a>
             </li>
-            <!-- linkedin -->
             <li>
               <a class="footer__social-link" href="https://www.linkedin.com/in/kp-code/" aria-label="LinkedIn" target="_blank" rel="noopener noreferrer">
                 <svg class="footer__social-icon" aria-hidden="true" viewBox="0 0 24 24" fill="currentColor">
@@ -659,7 +641,7 @@
             </li>
           </ul>
         </div>
-        <!-- bottom -->
+
         <div class="footer__bottom">
           <p class="footer__legal">© KP_Code Digital Studio | Wszelkie prawa zastrzeżone.</p>
           <div class="footer__legal-links">

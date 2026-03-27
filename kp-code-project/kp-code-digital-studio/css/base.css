@@ -40,6 +40,7 @@ html {
   scroll-behavior: smooth;
   -webkit-font-smoothing: antialiased;
 }
+
 body {
   margin: 0;
   font-family: var(--font-family-base);
@@ -68,12 +69,14 @@ a {
   color: inherit;
   text-decoration: none;
 }
+
 button,
 input,
 textarea,
 select {
   font: inherit;
 }
+
 button {
   border: none;
   background: none;
@@ -92,15 +95,18 @@ h3,
 h4 {
   margin: 0;
 }
+
 p {
   line-height: var(--lh-base);
   text-wrap: pretty;
 }
+
 ul,
 ol {
   padding: 0;
   list-style: none;
 }
+
 h1,
 h2,
 h3,

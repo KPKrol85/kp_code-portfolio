@@ -4,26 +4,28 @@
     <!-- Meta / Base -->
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="theme-color" content="#ffffff" />
+    <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#0f1115" media="(prefers-color-scheme: dark)" />
     <meta name="robots" content="index, follow" />
     <!-- Title -->
-    <title>Kontakt — KP_Code Digital Studio</title>
+    <title>Kontakt | KP_Code Digital Studio</title>
     <!-- SEO -->
-    <meta name="description" content="Skontaktuj się z KP_Code Digital Studio. Darmowa wycena projektu webowego." />
+    <meta name="description" content="Skontaktuj się z KP_Code Digital Studio w sprawie strony internetowej, WordPressa, SEO lub dedykowanego rozwiązania webowego." />
     <link rel="canonical" href="https://www.kp-code.pl/contact.html" />
     <!-- Open Graph -->
     <meta property="og:type" content="website" />
     <meta property="og:locale" content="pl_PL" />
     <meta property="og:site_name" content="KP_Code Digital Studio" />
-    <meta property="og:title" content="KP_Code Digital Studio" />
-    <meta property="og:description" content="Nowoczesne strony, WordPress i SEO dla biznesów. Poznaj projekty Kamila Króla." />
-    <meta property="og:url" content="https://www.kp-code.pl/" />
+    <meta property="og:title" content="Kontakt | KP_Code Digital Studio" />
+    <meta property="og:description" content="Napisz do KP_Code Digital Studio i porozmawiaj o stronie internetowej, SEO, WordPressie lub nowym projekcie cyfrowym." />
+    <meta property="og:url" content="https://www.kp-code.pl/contact.html" />
     <meta property="og:image" content="https://www.kp-code.pl/assets/og/og-img.png" />
     <!-- Twitter -->
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="KP_Code Digital Studio" />
-    <meta name="twitter:description" content="Projektujemy i wdrażamy strony oraz strategie SEO." />
+    <meta name="twitter:title" content="Kontakt | KP_Code Digital Studio" />
+    <meta name="twitter:description" content="Skontaktuj się z KP_Code Digital Studio w sprawie strony internetowej, SEO, WordPressa lub nowego wdrożenia." />
     <meta name="twitter:image" content="https://www.kp-code.pl/assets/og/og-img.png" />
+    <meta name="twitter:image:alt" content="Strona kontaktowa KP_Code Digital Studio" />
     <!-- Icons / PWA -->
     <link rel="icon" href="https://www.kp-code.pl/assets/icons/favicon.svg" type="image/svg+xml" />
     <link rel="apple-touch-icon" href="https://www.kp-code.pl/assets/icons/apple-touch-icon.png" />
@@ -39,6 +41,7 @@
         document.documentElement.dataset.theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
       }
     </script>
+    <!-- Styles -->
     <link rel="stylesheet" href="./css/main.css" />
   </head>
 
@@ -56,7 +59,6 @@
           </picture>
           <span class="nav__brand-text">KP_Code Digital Studio</span>
         </a>
-        <!-- navigation -->
         <nav class="nav__links" id="primary-navigation" aria-label="Główna nawigacja">
           <a class="nav__link" href="/index.html">Start</a>
           <a class="nav__link" href="/about.html">O mnie</a>
@@ -65,7 +67,6 @@
           <a class="nav__link" href="/contact.html" aria-current="page">Kontakt</a>
         </nav>
         <div class="nav__backdrop" data-nav-backdrop aria-hidden="true"></div>
-        <!-- theme toggle -->
         <div class="nav__actions">
           <button class="theme-toggle" id="theme-toggle" title="Przełącza motyw jasny i ciemny" aria-label="Automatyczny" aria-live="polite">
             <svg class="sun-and-moon" aria-hidden="true" width="20" height="20" viewBox="0 0 24 24">
@@ -86,7 +87,6 @@
               </g>
             </svg>
           </button>
-          <!-- navigation toggle -->
           <button class="nav__toggle" type="button" data-nav-toggle aria-label="Otwórz menu" aria-expanded="false" aria-controls="primary-navigation">
             <span class="nav__toggle-icon" aria-hidden="true"></span>
           </button>
@@ -121,14 +121,12 @@
       <!-- Contact -->
       <section class="section" data-reveal>
         <div class="container contact-grid">
-          <!-- Contact info -->
           <div class="contact-info">
             <div class="section__header">
               <p class="section__eyebrow">Kontakt</p>
               <h2 class="section__title">Skontaktuj się w wygodny dla siebie sposób.</h2>
               <p class="section__subtitle">Napisz wiadomość, zadzwoń lub skorzystaj z formularza. Opisz krótko swój projekt, a wrócę z konkretną odpowiedzią.</p>
             </div>
-            <!-- Contact details -->
             <div class="card contact__card">
               <h3 class="card__title">Dane kontaktowe</h3>
               <ul class="contact__list">
@@ -150,9 +148,8 @@
                 </li>
               </ul>
             </div>
-            <!-- Contact actions -->
+
             <div class="contact__actions" aria-label="Szybki kontakt">
-              <!-- phone-->
               <a class="contact__action" href="tel:+48533537091" aria-label="Zadzwoń">
                 <svg class="contact__action-icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
                   <path stroke="none" d="M0 0h24v24H0z" fill="none" />
@@ -163,7 +160,6 @@
                 </svg>
                 <span class="contact__action-text">Zadzwoń</span>
               </a>
-              <!-- email-->
               <a class="contact__action" href="mailto:kontakt@kp-code.pl" aria-label="Napisz e-mail">
                 <svg class="contact__action-icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
                   <path stroke="none" d="M0 0h24v24H0z" fill="none" />
@@ -179,28 +175,26 @@
           <div class="card contact__form-card">
             <h3 class="card__title">Formularz kontaktowy</h3>
             <p class="card__meta">Opisz krótko, czego potrzebujesz — to wystarczy na początek.</p>
-            <!-- Contact form -->
             <form class="form contact-form" data-contact-form novalidate>
               <div class="alert form__summary" data-form-summary role="alert" aria-live="assertive" hidden></div>
-              <!-- Contact form fields -->
               <div class="form__field">
                 <label class="form__label" for="name">Imię i nazwisko</label>
                 <input class="form__input" id="name" name="name" type="text" autocomplete="name" placeholder="Jak mogę się do Ciebie zwracać?" required />
                 <p class="form__error" id="error-name" hidden></p>
               </div>
-              <!-- Contact form fields -->
+
               <div class="form__field">
                 <label class="form__label" for="email">E-mail</label>
                 <input class="form__input" id="email" name="email" type="email" autocomplete="email" placeholder="twoj@email.pl" required />
                 <p class="form__error" id="error-email" hidden></p>
               </div>
-              <!-- Contact form fields -->
+
               <div class="form__field">
                 <label class="form__label" for="message">Wiadomość</label>
                 <textarea class="form__textarea" id="message" name="message" rows="6" placeholder="Napisz krótko, czego potrzebujesz i jaki jest cel projektu." required></textarea>
                 <p class="form__error" id="error-message" hidden></p>
               </div>
-              <!-- Contact form actions -->
+
               <div class="contact-form__actions">
                 <button class="button button--primary" type="submit">Wyślij wiadomość</button>
                 <p class="form__message" data-form-message aria-live="polite"></p>
@@ -210,10 +204,8 @@
         </div>
       </section>
 
-      <!-- Map & contact details -->
       <section class="section" data-reveal>
         <div class="container contact-details-grid">
-          <!-- map -->
           <div class="card contact__map-card">
             <iframe
               class="contact__map"
@@ -223,7 +215,6 @@
               referrerpolicy="no-referrer-when-downgrade"
               allowfullscreen></iframe>
           </div>
-          <!-- contact details -->
           <div class="contact__details">
             <p class="section__eyebrow">Współpraca</p>
             <h2 class="section__title">Pracuję zdalnie i wspieram projekty na różnych etapach.</h2>
@@ -241,7 +232,6 @@
     <footer class="footer">
       <div class="container">
         <div class="footer__grid">
-          <!-- brand -->
           <div class="footer__col footer__brand">
             <picture class="footer__logo">
               <source srcset="/assets/img/logo/logo-dark-mode.svg" media="(prefers-color-scheme: dark)" />
@@ -253,7 +243,7 @@
             <p class="footer__lead">Studio front-endowe specjalizujące się w nowoczesnych stronach internetowych.</p>
             <p class="footer__meta">Projektowanie, wdrożenia, SEO i identyfikacja.</p>
           </div>
-          <!-- nav -->
+
           <nav class="footer__col footer__nav" aria-label="Nawigacja">
             <h3 class="footer__title">Nawigacja</h3>
             <ul class="footer__links" role="list">
@@ -264,7 +254,7 @@
               <li><a class="footer__link" href="/contact.html" aria-current="page">Kontakt</a></li>
             </ul>
           </nav>
-          <!-- services -->
+
           <nav class="footer__col footer__nav" aria-label="Usługi">
             <h3 class="footer__title">Usługi</h3>
             <ul class="footer__links" role="list">
@@ -274,7 +264,7 @@
               <li><a class="footer__link" href="/services/design.html">UI i identyfikacja</a></li>
             </ul>
           </nav>
-          <!-- contact -->
+
           <div class="footer__col footer__contact">
             <h3 class="footer__title">Kontakt</h3>
             <address class="footer__contact-list">
@@ -294,10 +284,9 @@
             </div>
           </div>
         </div>
-        <!-- social -->
+
         <div class="footer__social" aria-label="Social media">
           <ul class="footer__social-links" role="list">
-            <!-- github -->
             <li>
               <a class="footer__social-link" href="https://github.com/KPKrol85" aria-label="GitHub" target="_blank" rel="noopener noreferrer">
                 <svg class="footer__social-icon" aria-hidden="true" viewBox="0 0 24 24" fill="currentColor">
@@ -306,7 +295,6 @@
                 </svg>
               </a>
             </li>
-            <!-- facebook -->
             <li>
               <a class="footer__social-link" href="https://www.facebook.com/kpkrol85" aria-label="Facebook" target="_blank" rel="noopener noreferrer">
                 <svg class="footer__social-icon" aria-hidden="true" viewBox="0 0 24 24" fill="currentColor">
@@ -314,7 +302,6 @@
                 </svg>
               </a>
             </li>
-            <!-- instagram -->
             <li>
               <a class="footer__social-link" href="https://www.instagram.com/kp_code_/" aria-label="Instagram" target="_blank" rel="noopener noreferrer">
                 <svg class="footer__social-icon" aria-hidden="true" viewBox="0 0 24 24" fill="currentColor">
@@ -325,7 +312,6 @@
                 </svg>
               </a>
             </li>
-            <!-- x -->
             <li>
               <a class="footer__social-link" href="https://x.com/KP_Code_85" aria-label="X" target="_blank" rel="noopener noreferrer">
                 <svg class="footer__social-icon" aria-hidden="true" viewBox="0 0 24 24" fill="currentColor">
@@ -333,7 +319,6 @@
                 </svg>
               </a>
             </li>
-            <!-- linkedin -->
             <li>
               <a class="footer__social-link" href="https://www.linkedin.com/in/kp-code/" aria-label="LinkedIn" target="_blank" rel="noopener noreferrer">
                 <svg class="footer__social-icon" aria-hidden="true" viewBox="0 0 24 24" fill="currentColor">
@@ -344,7 +329,6 @@
             </li>
           </ul>
         </div>
-        <!-- bottom -->
         <div class="footer__bottom">
           <p class="footer__legal">© KP_Code Digital Studio | Wszelkie prawa zastrzeżone.</p>
           <div class="footer__legal-links">
