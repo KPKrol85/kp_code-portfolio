@@ -646,7 +646,7 @@
 }
 .service__price-value {
   font-size: var(--fs-9);
-  line-height: 1;
+  line-height: var(--lh-flat);
   letter-spacing: var(--ls-tight);
   color: var(--color-text);
   font-weight: var(--fw-semibold);
@@ -724,7 +724,7 @@
   top: 50%;
   transform: translateY(-50%);
   font-size: var(--fs-6);
-  line-height: 1;
+  line-height: var(--lh-flat);
   color: var(--color-primary);
 }
 .service__faq-item[open] .service__faq-question::after {
@@ -736,4 +736,165 @@
   max-width: 64ch;
   font-size: var(--fs-5);
   font-weight: var(--fw-regular);
+}
+
+/* Page: Case Study */
+
+.page--case-study .section__header {
+  max-width: 58rem;
+}
+.page--case-study .section__subtitle {
+  max-width: 60ch;
+}
+.vault-overview__shell {
+  display: grid;
+  gap: var(--space-7);
+}
+.vault-overview__intro {
+  display: grid;
+  gap: var(--space-6);
+}
+.vault-overview__header {
+  margin-bottom: 0;
+}
+.vault-overview__meta {
+  align-content: start;
+  background: linear-gradient(180deg, color-mix(in srgb, var(--color-surface-alt) 78%, transparent), color-mix(in srgb, var(--color-surface) 96%, transparent));
+}
+.vault-overview__meta-label,
+.vault-solution__panel-label,
+.vault-module__label,
+.vault-layer__index,
+.vault-relationship__label,
+.vault-roadmap__phase {
+  margin: 0;
+  font-size: var(--fs-2);
+  letter-spacing: var(--ls-widest);
+  text-transform: uppercase;
+  color: var(--color-primary);
+  font-weight: var(--fw-semibold);
+}
+.vault-overview__meta-value {
+  margin: 0;
+  font-size: var(--fs-7);
+  line-height: var(--lh-tight);
+  letter-spacing: var(--ls-tight);
+  color: var(--color-text);
+  font-weight: var(--fw-semibold);
+}
+.page--case-study .case-study .pill-grid {
+  gap: var(--space-3);
+  margin: 0;
+}
+.vault-problem__card,
+.vault-module,
+.vault-audience,
+.vault-layer,
+.vault-relationship__card,
+.vault-roadmap__item {
+  height: 100%;
+}
+.vault-solution__grid {
+  display: grid;
+  gap: var(--space-7);
+  align-items: start;
+}
+.vault-solution__content {
+  margin-bottom: 0;
+}
+.vault-solution__list {
+  max-width: 68ch;
+}
+.vault-solution__panel {
+  position: relative;
+  overflow: hidden;
+  gap: var(--space-5);
+  background: color-mix(in srgb, var(--color-surface) 94%, transparent);
+}
+.vault-solution__panel::before,
+.vault-roadmap__item::before,
+.vault-relationship__card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: radial-gradient(240px 160px at 100% 0%, color-mix(in srgb, var(--color-primary) 10%, transparent), transparent 65%);
+}
+.vault-solution__metrics {
+  display: grid;
+  gap: var(--space-4);
+}
+.vault-solution__metric {
+  display: grid;
+  gap: var(--space-2);
+  padding-top: var(--space-4);
+  border-top: 1px solid color-mix(in srgb, var(--color-border) 70%, transparent);
+}
+.vault-solution__metric:first-child {
+  padding-top: 0;
+  border-top: none;
+}
+.vault-solution__metric strong {
+  font-size: var(--fs-6);
+  line-height: var(--lh-flat);
+  color: var(--color-text);
+}
+.vault-solution__metric span {
+  color: var(--color-text-muted);
+  font-size: var(--fs-4);
+}
+.vault-layers,
+.vault-roadmap__stack {
+  display: grid;
+  gap: var(--space-5);
+}
+.vault-layer {
+  position: relative;
+  padding-left: calc(var(--space-6) + var(--space-3));
+}
+.vault-layer::before {
+  content: "";
+  position: absolute;
+  left: var(--space-5);
+  top: var(--space-6);
+  bottom: var(--space-6);
+  width: 1px;
+  background: linear-gradient(180deg, color-mix(in srgb, var(--color-primary) 45%, transparent), color-mix(in srgb, var(--color-border) 42%, transparent));
+}
+.vault-relationship__grid {
+  align-items: stretch;
+}
+.vault-relationship__card,
+.vault-roadmap__item {
+  position: relative;
+  overflow: hidden;
+}
+.vault-cta {
+  position: relative;
+  overflow: hidden;
+}
+.vault-cta::before {
+  content: "";
+  position: absolute;
+  inset: auto auto -20% -10%;
+  width: 18rem;
+  height: 18rem;
+  border-radius: var(--radius-pill);
+  background: radial-gradient(circle, color-mix(in srgb, var(--color-primary) 10%, transparent) 0%, transparent 72%);
+  opacity: 0.6;
+  pointer-events: none;
+}
+@media (min-width: 760px) {
+  .vault-overview__intro,
+  .vault-solution__grid {
+    grid-template-columns: minmax(0, 1.2fr) minmax(18rem, 0.8fr);
+  }
+}
+@media (min-width: 900px) {
+  .vault-overview__shell {
+    gap: var(--space-8);
+  }
+  .vault-layers {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
 }

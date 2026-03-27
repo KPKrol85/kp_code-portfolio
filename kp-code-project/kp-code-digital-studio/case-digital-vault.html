@@ -1,66 +1,74 @@
 <!doctype html>
 <html lang="pl">
-<head>
-  <!-- Meta / Base -->
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <head>
+    <!-- Meta -->
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#0f1115" media="(prefers-color-scheme: dark)" />
+    <meta name="robots" content="index, follow" />
+    <!-- Title -->
+    <title>KP_Code Digital Vault | Studium przypadku</title>
+    <!-- SEO -->
+    <meta
+      name="description"
+      content="Poznaj KP_Code Digital Vault jako strategiczną platformę do zarządzania wiedzą, zasobami cyfrowymi, produktami, edukacją i systemami wielokrotnego użycia w ekosystemie KP_Code." />
+    <link rel="canonical" href="https://www.kp-code.pl/case-digital-vault.html" />
+    <!-- Open Graph -->
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content="pl_PL" />
+    <meta property="og:site_name" content="KP_Code Digital Studio" />
+    <meta property="og:title" content="KP_Code Digital Vault | Studium przypadku" />
+    <meta
+      property="og:description"
+      content="Studium przypadku platformy KP_Code Digital Vault: strategiczny ekosystem wiedzy, produktów cyfrowych, edukacji i zasobów developerskich." />
+    <meta property="og:url" content="https://www.kp-code.pl/case-digital-vault.html" />
+    <meta property="og:image" content="https://www.kp-code.pl/assets/og/og-img.png" />
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="KP_Code Digital Vault | Studium przypadku" />
+    <meta
+      name="twitter:description"
+      content="Studium przypadku platformy KP_Code Digital Vault: wiedza, produkty cyfrowe, edukacja i systemy wielokrotnego użycia." />
+    <meta name="twitter:image" content="https://www.kp-code.pl/assets/og/og-img.png" />
+    <!-- Icons / PWA -->
+    <link rel="icon" href="https://www.kp-code.pl/assets/icons/favicon.svg" type="image/svg+xml" />
+    <link rel="apple-touch-icon" href="https://www.kp-code.pl/assets/icons/apple-touch-icon.png" />
+    <link rel="manifest" href="https://www.kp-code.pl/assets/icons/site.webmanifest" />
+    <!-- Theme -->
+    <script>
+      document.documentElement.classList.add("js");
+      try {
+        const storedTheme = localStorage.getItem("theme-preference");
+        const theme = storedTheme === "light" || storedTheme === "dark" ? storedTheme : window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+        document.documentElement.dataset.theme = theme;
+      } catch {
+        document.documentElement.dataset.theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+      }
+    </script>
+    <!-- Styles -->
+    <link rel="stylesheet" href="./css/main.css" />
+  </head>
 
-  <!-- Title -->
-  <title>KP_Code Digital Vault — Studium przypadku</title>
+  <!-- Body -->
+  <body class="page page--case-study">
+    <a class="skip-link" href="#main">Przejdź do treści</a>
 
-  <!-- SEO -->
-  <meta name="description" content="Studium przypadku platformy KP_Code Digital Vault: problem, rozwiązanie i efekty." />
-
-  <!-- Canonical -->
-  <link rel="canonical" href="https://www.kp-code.pl/case-digital-vault.html" />
-
-  <!-- Open Graph -->
-  <meta property="og:title" content="KP_Code Digital Vault — Studium przypadku" />
-  <meta property="og:description" content="Poznaj proces i architekturę Digital Vault." />
-  <meta property="og:type" content="article" />
-  <meta property="og:url" content="https://www.kp-code.pl/case-digital-vault.html" />
-  <meta property="og:image" content="./og/og-dv.svg" />
-
-  <!-- Twitter -->
-  <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:image" content="./og/og-dv.svg" />
-
-  <!-- PWA / UI -->
-  <link rel="icon" href="/assets/icons/favicon.svg" type="image/svg+xml" />
-  <link rel="manifest" href="/seo/manifest.webmanifest" />
-
-  <!-- Styles / Theme -->
-  <script>
-    document.documentElement.classList.add('js');
-    try {
-      const storedTheme = localStorage.getItem('theme-preference');
-      const theme =
-        storedTheme === 'light' || storedTheme === 'dark'
-          ? storedTheme
-          : (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
-      document.documentElement.dataset.theme = theme;
-    } catch {
-      document.documentElement.dataset.theme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
-    }
-  </script>
-  <link rel="stylesheet" href="./css/main.css" />
-</head>
-<body>
-  <a class="skip-link" href="#main">Przejdź do treści</a>
-  <header class="header">
+    <!-- Header -->
+    <header class="header">
       <div class="container nav">
         <a class="nav__brand" href="/index.html" aria-label="KP_Code Digital Studio, strona główna">
           <picture class="brand__logo">
             <source srcset="/assets/img/logo/logo-dark-mode.svg" media="(prefers-color-scheme: dark)" />
             <img src="/assets/img/logo/logo-light-mode.svg" alt="KP_Code Digital Studio" width="512" height="512" />
           </picture>
-          <span>KP_Code Digital Studio</span>
+          <span class="nav__brand-text">KP_Code Digital Studio</span>
         </a>
         <nav class="nav__links" id="primary-navigation" aria-label="Główna nawigacja">
           <a class="nav__link" href="/index.html">Start</a>
           <a class="nav__link" href="/about.html">O mnie</a>
           <a class="nav__link" href="/services.html">Usługi</a>
-          <a class="nav__link" href="/projects.html" aria-current="page">Projekty</a>
+          <a class="nav__link" href="/projects.html">Projekty</a>
           <a class="nav__link" href="/contact.html">Kontakt</a>
         </nav>
         <div class="nav__backdrop" data-nav-backdrop aria-hidden="true"></div>
@@ -91,106 +99,328 @@
       </div>
     </header>
 
-  <main id="main">
-    <section class="section hero" data-reveal>
-      <div class="container hero__grid">
-        <div>
-          <p class="section__eyebrow">Studium przypadku</p>
-          <h1 class="hero__title">KP_Code Digital Vault</h1>
-          <p class="hero__lead">Platforma do zarządzania wiedzą, dokumentacją i procesami zespołu.</p>
-          <div class="hero__cta">
-            <a class="button button--primary" href="./contact.html">Skonsultuj projekt</a>
-            <a class="button button--ghost" href="./projects.html">Wróć do projektów</a>
+    <!-- Main -->
+    <main id="main">
+      <!-- Hero -->
+      <section class="section page-hero" data-reveal>
+        <div class="container">
+          <nav class="breadcrumbs" aria-label="Breadcrumb">
+            <ol class="breadcrumbs__list">
+              <li class="breadcrumbs__item">
+                <a class="breadcrumbs__link" href="/index.html">Start</a>
+              </li>
+              <li class="breadcrumbs__item" aria-current="page">
+                <span class="breadcrumbs__current">Studium przypadku</span>
+              </li>
+            </ol>
+          </nav>
+          <div class="page-hero__content">
+            <h1 class="hero__title page-hero__title">KP_Code Digital Vault</h1>
+            <p class="hero__lead page-hero__lead">Platforma do zarządzania wiedzą, dokumentacją i procesami zespołu.</p>
           </div>
         </div>
-        <div class="hero__meta">
-          <strong>Cel biznesowy</strong>
-          <p>Stworzenie skalowalnej bazy wiedzy dla klientów i zespołu.</p>
-          <div class="pill-grid">
-            <span class="tag">Aplikacje</span>
-            <span class="tag">PWA</span>
-            <span class="tag">SEO</span>
+      </section>
+
+      <!-- Section overview -->
+      <section class="section vault-overview" data-reveal>
+        <div class="container">
+          <div class="case-study vault-overview__shell">
+            <div class="vault-overview__intro">
+              <div class="section__header vault-overview__header">
+                <p class="section__eyebrow">Platform concept</p>
+                <h2 class="section__title">KP_Code Digital Vault rozwijany jest jako uporządkowana platforma łącząca wiedzę, produkty cyfrowe, edukację i zasoby wielokrotnego użycia.</h2>
+                <p class="case-study__lead">
+                  To nie jest pojedynczy projekt portfolio, ale fundament większego ekosystemu. Digital Vault ma porządkować rozproszone materiały, architekturę treści i budować zaplecze dla produktów,
+                  bibliotek, materiałów edukacyjnych oraz własnych systemów rozwijanych długoterminowo.
+                </p>
+              </div>
+
+              <div class="vault-overview__meta card card--compact">
+                <p class="vault-overview__meta-label">Rola projektu</p>
+                <p class="vault-overview__meta-value">Centralny hub ekosystemu KP_Code</p>
+                <p class="card__meta">Warstwa strategiczna dla repozytoriów wiedzy, produktów cyfrowych, materiałów edukacyjnych, assetów projektowych i zasobów developerskich.</p>
+              </div>
+            </div>
+
+            <div class="pill-grid" aria-label="Zakres platformy">
+              <span class="tag">Knowledge management</span>
+              <span class="tag">Digital products</span>
+              <span class="tag">Edukacja</span>
+              <span class="tag">Developer resources</span>
+              <span class="tag">Reusable systems</span>
+              <span class="tag">Cloud &amp; security mindset</span>
+            </div>
           </div>
         </div>
-      </div>
-    </section>
+      </section>
 
-    <section class="section" data-reveal>
-      <div class="container grid grid--2">
-        <article class="card">
-          <h2 class="card__title">Opis</h2>
-          <p class="card__meta">Digital Vault łączy repozytorium plików, checklisty i system dostępu do procedur w jednym narzędziu.</p>
-        </article>
-        <article class="card">
-          <h2 class="card__title">Wyzwanie</h2>
-          <p class="card__meta">Zespoły traciły czas na szukanie informacji, brakowało spójnych procesów i wersjonowania.</p>
-        </article>
-        <article class="card">
-          <h2 class="card__title">Rozwiązanie</h2>
-          <p class="card__meta">Nowa platforma PWA z szybkim wyszukiwaniem, uprawnieniami i sekcjami tematycznymi.</p>
-        </article>
-        <article class="card">
-          <h2 class="card__title">Technologie</h2>
-          <p class="card__meta">HTML, CSS, JavaScript, Service Worker, headless CMS, analityka zdarzeń.</p>
-        </article>
-      </div>
-    </section>
+      <!-- Section problem -->
+      <section class="section vault-problem" data-reveal>
+        <div class="container">
+          <div class="section__header">
+            <p class="section__eyebrow">Problem space</p>
+            <h2 class="section__title">Największym problemem nie jest brak treści, ale brak wspólnego systemu, który pozwala nimi zarządzać, rozwijać je i zamieniać w realną wartość.</h2>
+            <p class="section__subtitle">
+              W praktyce wiedza projektowa, dokumentacja, komponenty, assety i produkty cyfrowe często żyją w osobnych miejscach. Bez spójnej architektury trudno je skalować, udostępniać i rozwijać bez
+              chaosu.
+            </p>
+          </div>
 
-    <section class="section" data-reveal>
-      <div class="container grid grid--2">
-        <div class="card">
-          <h2 class="card__title">Najważniejsze elementy</h2>
-          <ul class="list">
-            <li>System projektowy z 40+ komponentami.</li>
-            <li>Tryb offline i synchronizacja.</li>
-            <li>Wynik Lighthouse: 95+.</li>
-            <li>Dynamiczne dashboardy zespołu.</li>
-          </ul>
+          <div class="grid grid--3">
+            <article class="card vault-problem__card">
+              <h3 class="card__title">Rozproszenie wiedzy</h3>
+              <p class="card__meta">Notatki, dokumentacja, checklisty i materiały robocze trafiają do wielu narzędzi, przez co ich utrzymanie i ponowne wykorzystanie staje się kosztowne.</p>
+            </article>
+            <article class="card vault-problem__card">
+              <h3 class="card__title">Brak warstwy produktowej</h3>
+              <p class="card__meta">Dobre zasoby i know-how pozostają zamknięte w projektach, zamiast być rozwijane jako cyfrowe produkty, biblioteki i moduły edukacyjne.</p>
+            </article>
+            <article class="card vault-problem__card">
+              <h3 class="card__title">Trudna skalowalność</h3>
+              <p class="card__meta">Bez wspólnych standardów rośnie liczba duplikacji, niespójnych struktur i zależności, które utrudniają dalszy rozwój ekosystemu.</p>
+            </article>
+          </div>
         </div>
-        <div class="card">
-          <h2 class="card__title">Lista funkcji</h2>
-          <ul class="list">
-            <li>Kontrola dostępu oparta na rolach.</li>
-            <li>Mapy wiedzy i tagowanie.</li>
-            <li>Integracja z Google Drive.</li>
-            <li>Automatyczne raporty KPI.</li>
-          </ul>
-        </div>
-      </div>
-    </section>
+      </section>
 
-    <section class="section" data-reveal>
-      <div class="container grid grid--2">
-        <div class="card">
-          <h2 class="card__title">Kolejne kroki</h2>
-          <p class="card__meta">Rozszerzenie o moduł onboardingowy, wersjonowanie dokumentów i eksport danych.</p>
-        </div>
-        <div class="card">
-          <h2 class="card__title">Wskaźniki (cel)</h2>
-          <ul class="list">
-            <li>+35% krótsze wdrożenie.</li>
-            <li>+20% szybszy dostęp do wiedzy.</li>
-            <li>0% utraty wiedzy.</li>
-          </ul>
-        </div>
-      </div>
-    </section>
+      <!-- Section solution -->
+      <section class="section vault-solution" data-reveal>
+        <div class="container">
+          <div class="vault-solution__grid">
+            <div class="section__header vault-solution__content">
+              <p class="section__eyebrow">Solution</p>
+              <h2 class="section__title">Digital Vault odpowiada na ten problem poprzez model platformy, która traktuje wiedzę i zasoby cyfrowe jak system możliwy do utrzymania, rozwijania i produktowego wykorzystania.</h2>
+              <p class="section__subtitle">
+                Platforma łączy porządek informacyjny z podejściem produktowym. Każdy moduł może pełnić rolę zaplecza operacyjnego, zasobu edukacyjnego, komponentu dla kolejnych wdrożeń lub produktu
+                gotowego do dalszej dystrybucji.
+              </p>
+              <ul class="list vault-solution__list">
+                <li>repozytoria wiedzy są tworzone z myślą o aktualizacji, kategoryzacji i ponownym użyciu,</li>
+                <li>assety oraz komponenty rozwijane są jako element większego systemu, a nie jednorazowy output projektu,</li>
+                <li>warstwa cloud i security mindset porządkuje sposób myślenia o dostępie, strukturze i skalowalności.</li>
+              </ul>
+            </div>
 
-    <section class="section" data-reveal>
-      <div class="container callout">
-        <div>
-          <h2>Chcesz podobny produkt?</h2>
-          <p>Porozmawiajmy o Twojej platformie lub portalu wiedzy.</p>
+            <aside class="card vault-solution__panel" aria-label="Kluczowe cechy platformy">
+              <p class="vault-solution__panel-label">Core principles</p>
+              <div class="vault-solution__metrics">
+                <div class="vault-solution__metric">
+                  <strong>01</strong>
+                  <span>Modularna architektura treści i zasobów</span>
+                </div>
+                <div class="vault-solution__metric">
+                  <strong>02</strong>
+                  <span>Productized knowledge zamiast rozproszonych materiałów</span>
+                </div>
+                <div class="vault-solution__metric">
+                  <strong>03</strong>
+                  <span>Wspólny standard dla edukacji, produktów i systemów</span>
+                </div>
+              </div>
+            </aside>
+          </div>
         </div>
-        <div class="callout__actions">
-          <a class="button button--primary" href="./contact.html">Kontakt</a>
-          <a class="button button--ghost" href="./index.html">Strona główna</a>
-        </div>
-      </div>
-    </section>
-  </main>
+      </section>
 
-  <footer class="footer">
+      <!-- Section modules -->
+      <section class="section vault-modules" data-reveal>
+        <div class="container">
+          <div class="section__header">
+            <p class="section__eyebrow">Ecosystem modules</p>
+            <h2 class="section__title">Platforma składa się z warstw, które razem budują pełny ekosystem wiedzy, narzędzi, produktów i operacyjnych zasobów.</h2>
+            <p class="section__subtitle">Każdy moduł pełni inną funkcję, ale wszystkie współpracują w ramach jednego uporządkowanego modelu zarządzania cyfrowym zapleczem marki KP_Code.</p>
+          </div>
+
+          <div class="grid grid--3">
+            <article class="card vault-module">
+              <p class="vault-module__label">01</p>
+              <h3 class="card__title">Knowledge hub</h3>
+              <p class="card__meta">Centralne repozytorium wiedzy projektowej, dokumentacji, notatek, checklist i wewnętrznych standardów pracy.</p>
+            </article>
+            <article class="card vault-module">
+              <p class="vault-module__label">02</p>
+              <h3 class="card__title">Digital products</h3>
+              <p class="card__meta">Warstwa produktów cyfrowych rozwijanych jako gotowe zasoby, pakiety, szablony, materiały i rozwiązania do dalszej dystrybucji.</p>
+            </article>
+            <article class="card vault-module">
+              <p class="vault-module__label">03</p>
+              <h3 class="card__title">Education layer</h3>
+              <p class="card__meta">Materiały edukacyjne, ścieżki nauki i zasoby rozwijające kompetencje w obszarze webu, organizacji wiedzy i pracy z narzędziami cyfrowymi.</p>
+            </article>
+            <article class="card vault-module">
+              <p class="vault-module__label">04</p>
+              <h3 class="card__title">Developer resources</h3>
+              <p class="card__meta">Komponenty, UI patterns, snippet library, reusable front-end resources i elementy wspierające szybsze oraz bardziej spójne wdrożenia.</p>
+            </article>
+            <article class="card vault-module">
+              <p class="vault-module__label">05</p>
+              <h3 class="card__title">Project assets &amp; systems</h3>
+              <p class="card__meta">Assety projektowe, struktury treści, biblioteki zasobów i systemy pracy, które można rozwijać i stosować w kolejnych inicjatywach.</p>
+            </article>
+            <article class="card vault-module">
+              <p class="vault-module__label">06</p>
+              <h3 class="card__title">Governance &amp; security</h3>
+              <p class="card__meta">Warstwa odpowiedzialna za porządek dostępu, standaryzację, bezpieczeństwo informacji i przygotowanie platformy do skalowania.</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <!-- Section audiences -->
+      <section class="section vault-audiences" data-reveal>
+        <div class="container">
+          <div class="section__header">
+            <p class="section__eyebrow">Audience &amp; use cases</p>
+            <h2 class="section__title">Digital Vault jest projektowany jako platforma użyteczna dla różnych grup, które potrzebują lepszego dostępu do wiedzy, zasobów i gotowych systemów pracy.</h2>
+            <p class="section__subtitle">Wartość platformy wynika z tego, że ten sam ekosystem może wspierać działania biznesowe, development, naukę i codzienną organizację pracy cyfrowej.</p>
+          </div>
+
+          <div class="grid grid--2">
+            <article class="card vault-audience">
+              <h3 class="card__title">Biznesy i marki</h3>
+              <p class="card__meta">Otrzymują uporządkowaną przestrzeń dla materiałów, procedur, assetów i wiedzy operacyjnej, którą można rozwijać wraz z rozwojem oferty i procesów.</p>
+            </article>
+            <article class="card vault-audience">
+              <h3 class="card__title">Developerzy</h3>
+              <p class="card__meta">Zyskują bibliotekę komponentów, wzorców i zasobów technicznych, które przyspieszają wdrożenia i zmniejszają liczbę powtarzalnej pracy.</p>
+            </article>
+            <article class="card vault-audience">
+              <h3 class="card__title">Freelancerzy</h3>
+              <p class="card__meta">Mogą budować własne zaplecze procesowe, bazę wiedzy oraz zestaw gotowych materiałów, które zwiększają jakość i przewidywalność realizacji.</p>
+            </article>
+            <article class="card vault-audience">
+              <h3 class="card__title">Learnerzy</h3>
+              <p class="card__meta">Dostają środowisko nauki oparte na praktycznych materiałach, strukturze treści i realnych zasobach projektowych, a nie wyłącznie na teorii.</p>
+            </article>
+            <article class="card vault-audience">
+              <h3 class="card__title">Użytkownicy indywidualni</h3>
+              <p class="card__meta">Mogą wykorzystywać platformę do organizowania własnej wiedzy cyfrowej, zarządzania materiałami i pracy z narzędziami w bardziej świadomy sposób.</p>
+            </article>
+            <article class="card vault-audience">
+              <h3 class="card__title">Ekosystem KP_Code</h3>
+              <p class="card__meta">Zyskuje wspólną warstwę porządkującą produkty, usługi, dokumentację i rozwój własnych systemów pod jednym strategicznym kierunkiem.</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <!-- Section architecture -->
+      <section class="section vault-architecture" data-reveal>
+        <div class="container">
+          <div class="section__header">
+            <p class="section__eyebrow">Architecture</p>
+            <h2 class="section__title">Architektura Digital Vault opiera się na warstwach, które pozwalają oddzielić content, produkty, assety i operacyjne mechanizmy platformy.</h2>
+            <p class="section__subtitle">Taki model ułatwia utrzymanie porządku, wprowadzanie nowych modułów oraz stopniowe przekształcanie zasobów w gotowe elementy większego systemu.</p>
+          </div>
+
+          <div class="vault-layers" aria-label="Warstwy platformy Digital Vault">
+            <article class="card vault-layer">
+              <p class="vault-layer__index">Layer 01</p>
+              <h3 class="card__title">Content layer</h3>
+              <p class="card__meta">Struktury wiedzy, notatki, dokumentacja, opisy procesów i baza materiałów źródłowych.</p>
+            </article>
+            <article class="card vault-layer">
+              <p class="vault-layer__index">Layer 02</p>
+              <h3 class="card__title">Assets layer</h3>
+              <p class="card__meta">Szablony, pliki robocze, biblioteki zasobów wizualnych i komponenty wykorzystywane w wielu projektach.</p>
+            </article>
+            <article class="card vault-layer">
+              <p class="vault-layer__index">Layer 03</p>
+              <h3 class="card__title">Products layer</h3>
+              <p class="card__meta">Pakiety, produkty cyfrowe, uporządkowane zasoby i gotowe materiały rozwijane w kierunku oferty produktowej.</p>
+            </article>
+            <article class="card vault-layer">
+              <p class="vault-layer__index">Layer 04</p>
+              <h3 class="card__title">Learning layer</h3>
+              <p class="card__meta">Ścieżki edukacyjne, materiały szkoleniowe i praktyczne zasoby wspierające rozwój kompetencji.</p>
+            </article>
+            <article class="card vault-layer">
+              <p class="vault-layer__index">Layer 05</p>
+              <h3 class="card__title">Reusable systems</h3>
+              <p class="card__meta">Systemy komponentów, standardy wdrożeń i moduły powtarzalne, które zwiększają przewidywalność i spójność pracy.</p>
+            </article>
+            <article class="card vault-layer">
+              <p class="vault-layer__index">Layer 06</p>
+              <h3 class="card__title">Operational &amp; security layer</h3>
+              <p class="card__meta">Zasady dostępu, porządek architektoniczny, governance, bezpieczeństwo danych i przygotowanie platformy do dalszego wzrostu.</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <!-- Section relationship -->
+      <section class="section vault-relationship" data-reveal>
+        <div class="container">
+          <div class="section__header">
+            <p class="section__eyebrow">Studio relation</p>
+            <h2 class="section__title">KP_Code Digital Studio i KP_Code Digital Vault są częścią jednego kierunku, ale pełnią różne role w ekosystemie.</h2>
+            <p class="section__subtitle">Studio odpowiada za warstwę usługową i współpracę projektową, natomiast Vault stanowi zaplecze systemowe, produktowe i wiedzo-centryczne.</p>
+          </div>
+
+          <div class="grid grid--2 vault-relationship__grid">
+            <article class="card vault-relationship__card">
+              <p class="vault-relationship__label">KP_Code Digital Studio</p>
+              <h3 class="card__title">Gałąź usługowa</h3>
+              <p class="card__meta">Miejsce, w którym realizowane są nowoczesne strony internetowe, wdrożenia webowe i współprace dla firm, marek oraz projektów cyfrowych.</p>
+            </article>
+            <article class="card vault-relationship__card">
+              <p class="vault-relationship__label">KP_Code Digital Vault</p>
+              <h3 class="card__title">Zaplecze platformowe</h3>
+              <p class="card__meta">Warstwa odpowiedzialna za repozytoria wiedzy, produkty, systemy, zasoby reusable i kierunek długofalowego rozwoju całego ekosystemu.</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <!-- Section roadmap -->
+      <section class="section vault-roadmap" data-reveal>
+        <div class="container">
+          <div class="section__header">
+            <p class="section__eyebrow">Long-term direction</p>
+            <h2 class="section__title">Docelowo Digital Vault ma stać się skalowalnym środowiskiem, które łączy uporządkowaną wiedzę, gotowe produkty i własne systemy rozwijane etapami.</h2>
+            <p class="section__subtitle">Rozwój nie zakłada budowy wszystkiego naraz, ale konsekwentne wzmacnianie warstw, które zwiększają wartość całego ekosystemu KP_Code.</p>
+          </div>
+
+          <div class="vault-roadmap__stack">
+            <article class="card vault-roadmap__item">
+              <p class="vault-roadmap__phase">Phase 01</p>
+              <h3 class="card__title">Porządkowanie bazy wiedzy i zasobów</h3>
+              <p class="card__meta">Budowa struktur treści, repozytoriów, kategorii i standardów, które stają się bazą dla dalszych modułów platformy.</p>
+            </article>
+            <article class="card vault-roadmap__item">
+              <p class="vault-roadmap__phase">Phase 02</p>
+              <h3 class="card__title">Rozwój warstwy produktowej i edukacyjnej</h3>
+              <p class="card__meta">Tworzenie materiałów, bibliotek, pakietów i zasobów, które można udostępniać jako gotowe produkty lub ścieżki nauki.</p>
+            </article>
+            <article class="card vault-roadmap__item">
+              <p class="vault-roadmap__phase">Phase 03</p>
+              <h3 class="card__title">Budowa własnych systemów i szerszego zaplecza operacyjnego</h3>
+              <p class="card__meta">Rozszerzanie platformy o bardziej zaawansowane moduły, uporządkowane mechanizmy zarządzania i kolejne elementy ekosystemu KP_Code.</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <!-- CTA -->
+      <section class="section" data-reveal>
+        <div class="container cta vault-cta">
+          <div class="section__header">
+            <h2 class="section__title">Szukasz partnera, który myśli o projekcie nie tylko jak o stronie, ale jak o rozwijanym systemie cyfrowym?</h2>
+            <p class="section__subtitle">
+              KP_Code Digital Studio rozwija wdrożenia usługowe, a Digital Vault wyznacza kierunek dla wiedzy, produktów i skalowalnych zasobów. Jeśli taki model jest Ci bliski, porozmawiajmy o
+              projekcie.
+            </p>
+          </div>
+          <div class="actions">
+            <a class="button button--primary" href="./contact.html">Skontaktuj się</a>
+            <a class="button button--ghost" href="./projects.html">Zobacz projekty</a>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
       <div class="container">
         <div class="footer__grid">
           <div class="footer__col footer__brand">
@@ -198,14 +428,12 @@
               <source srcset="/assets/img/logo/logo-dark-mode.svg" media="(prefers-color-scheme: dark)" />
               <img src="/assets/img/logo/logo-light-mode.svg" alt="KP_Code Digital Studio" loading="lazy" width="512" height="512" />
             </picture>
-
-            <h4 class="footer__brand-title">
+            <h3 class="footer__brand-title">
               <a href="/index.html">KP_Code Digital Studio</a>
-            </h4>
+            </h3>
             <p class="footer__lead">Studio front-endowe specjalizujące się w nowoczesnych stronach internetowych.</p>
             <p class="footer__meta">Projektowanie, wdrożenia, SEO i identyfikacja.</p>
           </div>
-
           <nav class="footer__col footer__nav" aria-label="Nawigacja">
             <h3 class="footer__title">Nawigacja</h3>
             <ul class="footer__links" role="list">
@@ -216,7 +444,6 @@
               <li><a class="footer__link" href="/contact.html">Kontakt</a></li>
             </ul>
           </nav>
-
           <nav class="footer__col footer__nav" aria-label="Usługi">
             <h3 class="footer__title">Usługi</h3>
             <ul class="footer__links" role="list">
@@ -226,13 +453,12 @@
               <li><a class="footer__link" href="/services/design.html">UI i identyfikacja</a></li>
             </ul>
           </nav>
-
           <div class="footer__col footer__contact">
             <h3 class="footer__title">Kontakt</h3>
             <address class="footer__contact-list">
               <a class="footer__link" href="tel:+48533537091">+48 533 537 091</a>
               <a class="footer__link" href="mailto:kontakt@kp-code.pl">kontakt@kp-code.pl</a>
-              <span class="footer__meta">
+              <span class="footer__meta footer__meta--address">
                 KP_Code Digital Studio
                 <br />
                 ul. Marynarki Wojennej 12
@@ -241,10 +467,11 @@
               </span>
               <span class="footer__meta">Współpraca zdalna i stacjonarna · odpowiedź do 24h</span>
             </address>
-            <a class="button button--ghost footer__cta" href="/contact.html">Skontaktuj się</a>
+            <div class="actions">
+              <a class="button button--primary" href="/contact.html">Skontaktuj się</a>
+            </div>
           </div>
         </div>
-
         <div class="footer__social" aria-label="Social media">
           <ul class="footer__social-links" role="list">
             <li>
@@ -289,9 +516,8 @@
             </li>
           </ul>
         </div>
-
         <div class="footer__bottom">
-          <p class="footer__legal">© 2026 Kamil Król. Wszelkie prawa zastrzeżone.</p>
+          <p class="footer__legal">© KP_Code Digital Studio | Wszelkie prawa zastrzeżone.</p>
           <div class="footer__legal-links">
             <a class="footer__link" href="/regulamin.html">Regulamin</a>
             <a class="footer__link" href="/polityka-prywatnosci.html">Polityka prywatności</a>
@@ -301,6 +527,7 @@
       </div>
     </footer>
 
-  <script type="module" src="./js/main.js"></script>
-</body>
+    <!-- Script -->
+    <script type="module" src="./js/main.js"></script>
+  </body>
 </html>
