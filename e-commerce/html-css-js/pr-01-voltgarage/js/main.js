@@ -3,7 +3,7 @@ import { initHeader } from './ui/header.js';
 import { initTheme } from './ui/theme.js';
 import { initReveal } from './ui/reveal.js';
 import { initAccessibility } from './ui/accessibility.js';
-import { initDemoModal } from './ui/demo-modal.js';
+import { initProjectModal } from './ui/project-modal.js';
 import { initGlobalErrorHandling } from './core/errors.js';
 import { emit, events, on } from './core/events.js';
 import { injectBreadcrumbJsonLd } from './ui/structured-data.js';
@@ -197,7 +197,7 @@ const initApp = () => {
   // Przyczyna: przyciski są renderowane po async load produktów, więc selektor na starcie zwraca null.
   // Delegacja klików musi być podpięta zawsze, niezależnie od chwili renderu.
   initAddToCartButtons();
-  initDemoModal();
+  initProjectModal();
   if ('serviceWorker' in navigator) {
     const registrationPromise = navigator.serviceWorker
       .register('/sw.js')
