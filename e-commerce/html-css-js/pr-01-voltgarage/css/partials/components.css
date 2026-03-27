@@ -414,6 +414,11 @@ main p,
   align-content: start;
 }
 
+.products-fallback {
+  grid-column: 1 / -1;
+  margin: 0;
+}
+
 .card--skeleton {
   pointer-events: none;
 }
@@ -927,6 +932,18 @@ main p,
 .legal-doc small {
   color: var(--color-ink-muted);
   display: block;
+}
+.legal-lead a,
+.legal-doc a {
+  text-decoration: underline;
+  text-underline-offset: 0.12em;
+  text-decoration-thickness: from-font;
+}
+.legal-lead a:hover,
+.legal-lead a:focus-visible,
+.legal-doc a:hover,
+.legal-doc a:focus-visible {
+  color: var(--color-accent);
 }
 
 /* Demo Modal */

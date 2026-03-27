@@ -92,12 +92,12 @@
         <p>Przed korzystaniem z serwisu zaakceptuj Regulamin.</p>
         <div class="demo-modal__actions">
           <button class="btn btn-accent" type="button" data-demo-accept>Akceptuję i przechodzę</button>
-          <a class="btn btn-outline" data-demo-regulamin href="#">Przeczytaj regulamin</a>
+          <a class="btn btn-outline" data-demo-regulamin href="regulamin.html">Przeczytaj regulamin</a>
         </div>
         <div class="demo-modal__links">
-          <a data-demo-privacy href="#">Polityka prywatności</a>
+          <a data-demo-privacy href="polityka-prywatnosci.html">Polityka prywatności</a>
           <span aria-hidden="true">•</span>
-          <a data-demo-cookies href="#">Cookies</a>
+          <a data-demo-cookies href="cookies.html">Cookies</a>
         </div>
       </div>
     </div>
@@ -220,7 +220,7 @@
       <nav class="breadcrumbs" aria-label="Okruszki">
         <ol>
           <li><a href="../index.html">Strona główna</a></li>
-          <li aria-current="page">Promocje</li>
+          <li>Promocje</li>
         </ol>
       </nav>
 
@@ -247,7 +247,9 @@
             <h2>Produkty w promocji</h2>
             <span data-result-count="sale">0 produktów</span>
           </div>
-          <div class="grid-3 products" data-products="sale"></div>
+          <div class="grid-3 products" data-products="sale">
+            <p class="state-block state-block--empty products-fallback">Promocje ładują się dynamicznie. Włącz JavaScript, aby zobaczyć aktualne okazje.</p>
+          </div>
         </div>
       </section>
     </main>

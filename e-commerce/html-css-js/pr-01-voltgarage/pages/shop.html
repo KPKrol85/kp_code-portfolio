@@ -92,12 +92,12 @@
         <p>Przed korzystaniem z serwisu zaakceptuj Regulamin.</p>
         <div class="demo-modal__actions">
           <button class="btn btn-accent" type="button" data-demo-accept>Akceptuję i przechodzę</button>
-          <a class="btn btn-outline" data-demo-regulamin href="#">Przeczytaj regulamin</a>
+          <a class="btn btn-outline" data-demo-regulamin href="regulamin.html">Przeczytaj regulamin</a>
         </div>
         <div class="demo-modal__links">
-          <a data-demo-privacy href="#">Polityka prywatności</a>
+          <a data-demo-privacy href="polityka-prywatnosci.html">Polityka prywatności</a>
           <span aria-hidden="true">•</span>
-          <a data-demo-cookies href="#">Cookies</a>
+          <a data-demo-cookies href="cookies.html">Cookies</a>
         </div>
       </dialog>
     </div>
@@ -221,7 +221,7 @@
       <nav class="breadcrumbs" aria-label="Okruszki">
         <ol>
           <li><a href="../index.html">Strona główna</a></li>
-          <li aria-current="page">Sklep</li>
+          <li>Sklep</li>
         </ol>
       </nav>
 
@@ -296,7 +296,9 @@
               <h2 id="filter-heading">Produkty</h2>
               <span data-result-count aria-live="polite">0 wyników</span>
             </div>
-            <div class="grid-3 products" data-products="shop"></div>
+            <div class="grid-3 products" data-products="shop">
+              <p class="state-block state-block--empty products-fallback">Produkty ładują się dynamicznie. Włącz JavaScript, aby przeglądać pełny katalog.</p>
+            </div>
           </div>
         </div>
       </section>
@@ -311,6 +313,8 @@
               src="../assets/images/logo/logo.svg"
               alt=""
               aria-hidden="true"
+              width="120"
+              height="32"
             />
 
             <span class="footer-brand-text">VOLT GARAGE</span>

@@ -11,7 +11,7 @@ const normalizePath = (pathname) => {
 
 const applyAriaCurrent = () => {
   const currentPath = normalizePath(window.location.pathname);
-  const links = document.querySelectorAll('.nav a[href], .footer a[href]');
+  const links = document.querySelectorAll('.nav a[href], .footer a[href], .cart-link[href]');
 
   links.forEach((link) => {
     const href = link.getAttribute('href');
@@ -37,6 +37,15 @@ const applyAriaCurrent = () => {
     } else {
       link.removeAttribute('aria-current');
       link.classList.remove('is-current');
+    }
+  });
+
+  const breadcrumbItems = document.querySelectorAll('.breadcrumbs ol > li');
+  breadcrumbItems.forEach((item, index) => {
+    if (index === breadcrumbItems.length - 1) {
+      item.setAttribute('aria-current', 'page');
+    } else {
+      item.removeAttribute('aria-current');
     }
   });
 };

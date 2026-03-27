@@ -27,13 +27,16 @@
     "minify:js": "terser js/main.js -o js/main.min.js -c -m",
     "build": "npm run minify:css && npm run minify:js",
     "watch:css": "postcss css/main.css -o css/main.min.css --watch --no-map -u cssnano",
-    "qa": "npm run qa:html && npm run qa:js && npm run qa:css",
+    "qa": "npm run qa:html && npm run qa:links && npm run qa:js && npm run qa:css",
     "qa:format": "npm run format:check",
     "qa:html": "html-validate --config htmlvalidate.json index.html pages/cart.html pages/checkout.html pages/contact.html pages/cookies.html pages/kolekcje.html pages/nowosci.html pages/polityka-prywatnosci.html pages/product.html pages/promocje.html pages/regulamin.html pages/shop.html",
     "qa:js": "eslint --max-warnings 0 \"js/**/*.js\" \"tools/**/*.mjs\"",
     "qa:css": "stylelint --max-warnings 0 \"css/**/*.css\"",
     "format": "prettier . --write",
     "format:check": "prettier . --check",
-    "validate:jsonld": "node scripts/validate-jsonld.js"
+    "validate:jsonld": "node scripts/validate-jsonld.js",
+    "qa:links": "node scripts/validate-internal-links.js",
+    "qa:smoke": "node scripts/qa-smoke-lighthouse.js",
+    "qa:smoke:enforce": "node scripts/qa-smoke-lighthouse.js --enforce"
   }
 }

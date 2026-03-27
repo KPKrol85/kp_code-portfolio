@@ -63,6 +63,18 @@
       type="font/woff2"
       crossorigin
     />
+    <link
+      rel="preload"
+      as="image"
+      href="/assets/images/_optimized/hero/hero-05-1280x720.avif"
+      type="image/avif"
+      imagesrcset="
+        /assets/images/_optimized/hero/hero-05-800x600.avif 800w,
+        /assets/images/_optimized/hero/hero-05-1280x720.avif 1280w,
+        /assets/images/_optimized/hero/hero-05-1920x1080.avif 1920w
+      "
+      imagesizes="100vw"
+    />
     <link rel="stylesheet" href="/css/main.css" />
 
     <script type="application/ld+json">
@@ -327,7 +339,9 @@
             <h2>Polecane produkty</h2>
             <a class="btn btn-outline" href="pages/shop.html">Zobacz wszystkie</a>
           </div>
-          <div class="grid-3 products" data-products="featured"></div>
+          <div class="grid-3 products" data-products="featured">
+            <p class="state-block state-block--empty products-fallback">Produkty ładują się dynamicznie. Włącz JavaScript, aby zobaczyć pełną listę polecanych.</p>
+          </div>
         </div>
       </section>
 

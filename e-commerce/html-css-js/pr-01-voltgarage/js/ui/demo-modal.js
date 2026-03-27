@@ -3,10 +3,6 @@ import { createFocusTrap } from './focus-trap.js';
 
 const STORAGE_KEY = 'vg_demo_terms_accepted';
 
-const getLegalHref = (slug) => {
-  return window.location.pathname.includes('/pages/') ? `${slug}.html` : `pages/${slug}.html`;
-};
-
 const showModal = (modal, trap) => {
   modal.hidden = false;
   document.body.classList.add('demo-modal-open');
@@ -38,14 +34,6 @@ export const initDemoModal = () => {
     modal.hidden = true;
     return;
   }
-
-  const regulamin = modal.querySelector('[data-demo-regulamin]');
-  const privacy = modal.querySelector('[data-demo-privacy]');
-  const cookies = modal.querySelector('[data-demo-cookies]');
-
-  if (regulamin) regulamin.setAttribute('href', getLegalHref('regulamin'));
-  if (privacy) privacy.setAttribute('href', getLegalHref('polityka-prywatnosci'));
-  if (cookies) cookies.setAttribute('href', getLegalHref('cookies'));
 
   const accept = modal.querySelector('[data-demo-accept]');
   const closeButtons = modal.querySelectorAll('[data-demo-close]');

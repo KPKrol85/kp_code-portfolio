@@ -108,10 +108,12 @@ const initForms = () => {
   };
 
   forms.forEach((form) => {
+    form.noValidate = true;
     const status = form.querySelector('[data-form-status]');
     if (status) {
       status.setAttribute('aria-live', 'polite');
     }
+    const handlesSubmissionInJs = form.hasAttribute('data-checkout-form');
 
     const focusFirstInvalid = (fields) => {
       const invalid = fields.find((field) => field.getAttribute('aria-invalid') === 'true');
@@ -119,12 +121,12 @@ const initForms = () => {
     };
 
     form.addEventListener('submit', (event) => {
-      event.preventDefault();
       const fields = Array.from(form.querySelectorAll('input, textarea, select'));
       const results = fields.map((field) => validateField(field));
       const isValid = results.every(Boolean);
 
       if (!isValid) {
+        event.preventDefault();
         if (status) {
           status.textContent = 'Uzupełnij wymagane pola i popraw zaznaczone błędy.';
         }
@@ -132,6 +134,11 @@ const initForms = () => {
         return;
       }
 
+      if (!handlesSubmissionInJs) {
+        return;
+      }
+
+      event.preventDefault();
       if (status) {
         status.textContent = 'Dziękujemy! Twoje zgłoszenie zostało przyjęte.';
       }
