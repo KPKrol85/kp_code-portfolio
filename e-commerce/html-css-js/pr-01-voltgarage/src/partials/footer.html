@@ -1,62 +1,5 @@
+<!-- Footer -->
 <footer class="footer">
-  {{#if isPagesDir}}
-  <div class="container footer-grid">
-    <div>
-      <div class="footer-brand">
-        <img
-          class="footer-logo"
-          src="{{rootPrefix}}assets/images/logo/logo.svg"
-          alt=""
-          aria-hidden="true"
-          width="120"
-          height="32"
-        />
-        <span class="footer-brand-text">VOLT GARAGE</span>
-      </div>
-      <p>
-        Nowoczesny sklep z akcesoriami samochodowymi. Projektowany przez pasjonatów dla
-        pasjonatów.
-      </p>
-    </div>
-    <div>
-      <h4>Sklep</h4>
-      <ul class="stacked">
-        <li><a href="{{pagesPrefix}}shop.html">Wszystkie produkty</a></li>
-        <li><a href="{{pagesPrefix}}nowosci.html">Nowości</a></li>
-        <li><a href="{{pagesPrefix}}product.html">Produkt</a></li>
-        <li><a href="{{pagesPrefix}}kolekcje.html">Kolekcje / Kategorie</a></li>
-        <li><a href="{{pagesPrefix}}promocje.html">Promocje</a></li>
-      </ul>
-    </div>
-    <div>
-      <h4>Pomoc</h4>
-      <ul class="stacked">
-        <li><a href="{{pagesPrefix}}contact.html">Kontakt</a></li>
-        <li><a href="{{pagesPrefix}}checkout.html">Dostawa</a></li>
-        <li><a href="{{pagesPrefix}}cart.html">Zwroty</a></li>
-      </ul>
-    </div>
-    <div>
-      <h4>Informacje</h4>
-      <ul class="stacked">
-        <li><a href="{{pagesPrefix}}polityka-prywatnosci.html">Polityka prywatności</a></li>
-        <li><a href="{{pagesPrefix}}cookies.html">Cookies</a></li>
-        <li><a href="{{pagesPrefix}}regulamin.html">Regulamin</a></li>
-      </ul>
-    </div>
-    <div class="footer-col footer-col--newsletter">
-      <h4>Biuletyn</h4>
-      <p>Ekskluzywne rabaty i newsy co tydzień.</p>
-      <form class="footer-form" aria-label="Stopka biuletynu">
-        <label class="input-group">
-          <span>E-mail</span>
-          <input type="email" placeholder="kontakt@kp-code.pl" required />
-        </label>
-        <button class="btn btn-outline" type="submit">Zapisz się</button>
-      </form>
-    </div>
-  </div>
-  {{else}}
   <div class="container">
     <div class="footer-grid">
       <div>
@@ -152,7 +95,7 @@
         </ul>
       </div>
     </div>
-  {{/if}}
+
     <nav class="footer-social" aria-label="Social media">
       <ul class="footer-social-list">
         <li>
@@ -244,9 +187,41 @@
     </nav>
     <div class="container footer-bottom">
       <small>
-        &copy; <span data-current-year>2026</span> {{#if isPagesDir}}KP_Code | Wszelkie prawa
-        zastrzeżone{{else}}KP_Code Digital Studio | Wszelkie prawa zastrzeżone.{{/if}}
+        &copy; <span data-current-year>2026</span> KP_Code Digital Studio | Wszelkie prawa
+        zastrzeżone.
       </small>
     </div>
-  {{#if isPagesDir}}{{else}}</div>{{/if}}
+  </div>
 </footer>
+
+<!-- Project Modal -->
+<div class="project-modal" data-project-modal hidden>
+  <div class="project-modal__backdrop" aria-hidden="true"></div>
+  <div
+    class="project-modal__panel"
+    role="dialog"
+    aria-modal="true"
+    aria-labelledby="project-modal-title"
+    aria-describedby="project-modal-description"
+  >
+    <span class="project-modal__badge">VOLT GARAGE</span>
+    <h2 id="project-modal-title">Informacja o projekcie</h2>
+    <p id="project-modal-description">
+      Volt Garage to projekt demonstracyjny przygotowany przez KP_Code Digital Studio.
+    </p>
+    <p>
+      Korzystanie z serwisu oznacza akceptację
+      <a href="{{pagesPrefix}}regulamin.html">Regulaminu</a>.
+    </p>
+    <div class="project-modal__actions">
+      <button class="btn btn-accent" type="button" data-project-accept>Akceptuję</button>
+    </div>
+    <div class="project-modal__links">
+      <a href="{{pagesPrefix}}polityka-prywatnosci.html">Polityka prywatności</a>
+      <span aria-hidden="true">•</span>
+      <a href="{{pagesPrefix}}cookies.html">Cookies</a>
+      <span aria-hidden="true">•</span>
+      <a href="{{pagesPrefix}}regulamin.html">Regulamin</a>
+    </div>
+  </div>
+</div>

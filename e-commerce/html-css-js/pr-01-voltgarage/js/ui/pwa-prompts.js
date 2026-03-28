@@ -12,7 +12,11 @@ const createElement = (tag, className, attrs = {}) => {
 const renderToast = (message, actions = []) => {
   let toast = document.querySelector('[data-toast]');
   if (!toast) {
-    toast = createElement('div', 'toast', { 'data-toast': 'true', role: 'status', 'aria-live': 'polite' });
+    toast = createElement('div', 'toast', {
+      'data-toast': 'true',
+      role: 'status',
+      'aria-live': 'polite',
+    });
     const text = createElement('span', 'toast__message', { 'data-toast-message': 'true' });
     const actionsEl = createElement('div', 'toast__actions', { 'data-toast-actions': 'true' });
     toast.append(text, actionsEl);
@@ -38,24 +42,40 @@ const hideToast = () => {
 
 const renderInstallCta = (onInstall, onDismiss) => {
   let cta = document.querySelector('[data-install-cta]');
+  let installBtn;
+  let closeBtn;
+
   if (!cta) {
-    cta = createElement('div', 'install-cta', { 'data-install-cta': 'true', role: 'status', 'aria-live': 'polite' });
+    cta = createElement('div', 'install-cta', {
+      'data-install-cta': 'true',
+      role: 'status',
+      'aria-live': 'polite',
+    });
     const text = createElement('p', 'install-cta__text');
     text.textContent = 'Zainstaluj aplikację VOLT GARAGE na swoim urządzeniu.';
     const actions = createElement('div', 'install-cta__actions');
-    const installBtn = createElement('button', 'btn btn-accent btn-sm');
+
+    installBtn = createElement('button', 'btn btn-accent btn-sm');
     installBtn.type = 'button';
+    installBtn.setAttribute('data-install-action', 'install');
     installBtn.textContent = 'Zainstaluj';
-    const closeBtn = createElement('button', 'btn btn-outline btn-sm');
+
+    closeBtn = createElement('button', 'btn btn-outline btn-sm');
     closeBtn.type = 'button';
+    closeBtn.setAttribute('data-install-action', 'dismiss');
     closeBtn.textContent = 'Nie teraz';
+
     actions.append(installBtn, closeBtn);
     cta.append(text, actions);
     document.body.appendChild(cta);
-
-    installBtn.addEventListener('click', onInstall);
-    closeBtn.addEventListener('click', onDismiss);
+  } else {
+    installBtn = cta.querySelector('[data-install-action="install"]');
+    closeBtn = cta.querySelector('[data-install-action="dismiss"]');
   }
+
+  installBtn.onclick = onInstall;
+  closeBtn.onclick = onDismiss;
+
   cta.hidden = false;
 };
 
@@ -72,19 +92,22 @@ export const initPwaPrompts = (registrationPromise) => {
     event.preventDefault();
     if (safeStorage.get(INSTALL_DISMISSED_KEY) === '1') return;
     deferredPrompt = event;
-    renderInstallCta(async () => {
-      hideInstallCta();
-      if (!deferredPrompt) return;
-      deferredPrompt.prompt();
-      const { outcome } = await deferredPrompt.userChoice;
-      if (outcome === 'accepted') {
+    renderInstallCta(
+      async () => {
+        hideInstallCta();
+        if (!deferredPrompt) return;
+        deferredPrompt.prompt();
+        const { outcome } = await deferredPrompt.userChoice;
+        if (outcome === 'accepted') {
+          safeStorage.set(INSTALL_DISMISSED_KEY, '1');
+        }
+        deferredPrompt = null;
+      },
+      () => {
         safeStorage.set(INSTALL_DISMISSED_KEY, '1');
+        hideInstallCta();
       }
-      deferredPrompt = null;
-    }, () => {
-      safeStorage.set(INSTALL_DISMISSED_KEY, '1');
-      hideInstallCta();
-    });
+    );
   });
 
   window.addEventListener('appinstalled', () => {
