@@ -41,6 +41,8 @@ main {
   display: block;
 }
 
+/* Typography */
+
 h1,
 h2,
 h3,
@@ -50,9 +52,17 @@ h4 {
   margin: 0 0 var(--space-03);
   text-wrap: balance;
 }
+h1 {
+  font-size: var(--fs-h1);
+}
+h2 {
+  font-size: var(--fs-h2);
+}
 
 p {
   margin: 0 0 var(--space-03);
+  font-size: var(--fs-04);
+  color: var(--color-ink);
   text-wrap: pretty;
 }
 

@@ -56,8 +56,8 @@
   --fs-08: clamp(1.5rem, 1.28rem + 0.9vw, 2rem);
   --fs-09: clamp(2rem, 1.64rem + 1.4vw, 2.75rem);
   --fs-display: clamp(2.5rem, 2rem + 2vw, 3.5rem);
-  --fs-h1: clamp(2.2rem, 1.7rem + 1.2vw, 2.75rem);
-  --fs-h2: clamp(1.5rem, 1.28rem + 0.8vw, 2rem);
+  --fs-h1: var(--fs-09);
+  --fs-h2: var(--fs-07);
   /* Line heights */
   --lh-01: 1;
   --lh-02: 1.1;
@@ -76,7 +76,9 @@
   --ls-03: 0;
   --ls-04: 0.02em;
   --ls-05: 0.08em;
+  --ls-06: 0.16em;
   /* Section Spacing */
+  --section-footer-bottom: 24px;
   --section-py-sm: 48px;
   --section-py-md: 64px;
   --section-py-lg: 72px;
@@ -119,6 +121,7 @@
   --logo-size-03: 44px;
   --logo-size-04: 52px;
   --logo-size-05: 64px;
+  --logo-size-06: 104px;
   --logo-size-fluid-sm: clamp(28px, 3vw, 36px);
   --logo-size-fluid-md: clamp(40px, 4vw, 46px);
   --logo-size-fluid-lg: clamp(48px, 5vw, 64px);
