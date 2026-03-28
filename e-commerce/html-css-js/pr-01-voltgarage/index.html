@@ -190,7 +190,9 @@
             </li>
           </ul>
         </nav>
+        <!-- Header actions -->
         <div class="header-actions">
+          <!-- Toggle theme -->
           <button
             class="theme-toggle"
             id="theme-toggle"
@@ -226,18 +228,53 @@
               </g>
             </svg>
           </button>
+          <!-- Koszyk -->
           <a class="cart-link" href="pages/cart.html" aria-label="Koszyk">
-            <span>Koszyk</span>
+            <span class="cart-link__icon">
+              <svg
+                class="cart-link__svg"
+                xmlns="http://www.w3.org/2000/svg"
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                <path d="M4 19a2 2 0 1 0 4 0a2 2 0 1 0 -4 0" />
+                <path d="M15 19a2 2 0 1 0 4 0a2 2 0 1 0 -4 0" />
+                <path d="M17 17h-11v-14h-2" />
+                <path d="M6 5l14 1l-1 7h-13" />
+              </svg>
+            </span>
             <span class="cart-count" data-cart-count>0</span>
           </a>
+          <!-- Hamburger -->
           <button
             class="nav-toggle"
             type="button"
+            aria-label="Otwórz menu"
             aria-controls="primary-nav"
             aria-expanded="false"
             data-nav-toggle
           >
-            Menu
+            <svg
+              class="nav-toggle__icon"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.8"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              aria-hidden="true"
+            >
+              <path class="line line--top" d="M3.75 6.75h16.5" />
+              <path class="line line--middle" d="M3.75 12h16.5" />
+              <path class="line line--bottom" d="M3.75 17.25h16.5" />
+            </svg>
           </button>
         </div>
       </div>
@@ -323,13 +360,15 @@
         <div class="container">
           <div class="section-title">
             <h2>Polecane produkty</h2>
-            <a class="btn btn-outline" href="pages/shop.html">Zobacz wszystkie</a>
           </div>
           <div class="grid-3 products products--featured" data-products="featured">
             <p class="state-block state-block--empty products-fallback">
               Produkty ładują się dynamicznie. Włącz JavaScript, aby zobaczyć pełną listę
               polecanych.
             </p>
+          </div>
+          <div class="section-actions">
+            <a class="btn btn-outline" href="pages/shop.html">Zobacz wszystkie</a>
           </div>
         </div>
       </section>
