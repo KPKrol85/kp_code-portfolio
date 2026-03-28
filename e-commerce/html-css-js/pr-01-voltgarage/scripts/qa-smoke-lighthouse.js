@@ -39,7 +39,10 @@ const MIME_TYPES = {
 
 function runCommand(command, args) {
   return new Promise((resolve) => {
-    const child = spawn(command, args, { stdio: ['ignore', 'pipe', 'pipe'] });
+    const child = spawn(command, args, {
+      stdio: ['ignore', 'pipe', 'pipe'],
+      shell: true,
+    });
     let stdout = '';
     let stderr = '';
 
