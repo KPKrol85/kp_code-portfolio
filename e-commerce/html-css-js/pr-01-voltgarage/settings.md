@@ -28,6 +28,8 @@
 ### QA
 - `npm run qa`
   Główny quality gate: HTML, JSON-LD, linki, JS, CSS.
+- `npm run format:html-tight`
+  Formatuje wszystkie pliki HTML przez Prettiera, a następnie usuwa zbędne puste linie w sekcji `<head>`. Używaj tej komendy zamiast samego `Format Document`, jeśli chcesz zachować zwarty układ nagłówka HTML.
 - `npm run qa:html`
   Waliduje `index.html`, `404.html`, `offline.html` i główne pliki w `pages/`.
 - `npm run validate:jsonld`
@@ -112,6 +114,8 @@
 
 ### Important notes
 - The project currently has no dedicated `dev` script.
+- `npm run format:html-tight`
+  Formats all HTML files with Prettier and then removes extra blank lines inside the `<head>` section. Use this instead of plain `Format Document` when you want compact HTML head spacing in this project.
 - The JS build uses `esbuild` because the app runs on ES modules.
 - The CSS build resolves `@import` before minification.
 - `dist/` is the only deploy-ready artifact.

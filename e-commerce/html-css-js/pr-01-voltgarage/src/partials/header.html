@@ -114,7 +114,6 @@
           </g>
         </svg>
       </button>
-      {{#if isHomePage}}
       <a class="cart-link" href="{{pagesPrefix}}cart.html" aria-label="Koszyk">
         <span class="cart-link__icon">
           <svg
@@ -161,21 +160,6 @@
           <path class="line line--bottom" d="M3.75 17.25h16.5" />
         </svg>
       </button>
-      {{else}}
-      <a class="cart-link" href="{{pagesPrefix}}cart.html" aria-label="Koszyk">
-        <span>Koszyk</span>
-        <span class="cart-count" data-cart-count>0</span>
-      </a>
-      <button
-        class="nav-toggle"
-        type="button"
-        aria-controls="primary-nav"
-        aria-expanded="false"
-        data-nav-toggle
-      >
-        Menu
-      </button>
-      {{/if}}
     </div>
   </div>
 </header>

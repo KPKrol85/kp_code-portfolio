@@ -24,6 +24,7 @@
     "qa:js": "eslint --max-warnings 0 \"js/**/*.js\" \"scripts/**/*.js\" \"tools/**/*.mjs\" --ignore-pattern \"js/**/*.min.js\"",
     "qa:css": "stylelint --max-warnings 0 \"css/**/*.css\" --ignore-pattern \"css/**/*.min.css\"",
     "format": "prettier . --write",
+    "format:html-tight": "prettier --write \"index.html\" \"404.html\" \"offline.html\" \"pages/**/*.html\" && node scripts/format-html-tight.js",
     "format:check": "prettier . --check",
     "validate:jsonld": "node scripts/validate-jsonld.js",
     "qa:links": "node scripts/validate-internal-links.js",

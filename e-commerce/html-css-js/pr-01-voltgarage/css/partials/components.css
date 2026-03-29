@@ -894,10 +894,11 @@
 }
 
 /* Breadcrumbs */
+
 .breadcrumbs {
-  width: min(920px, 92vw);
+   width: min(1200px, 92vw);
   margin: var(--space-02) auto var(--space-04);
-  font-size: var(--fs-03);
+  font-size: var(--fs-02);
   color: var(--color-ink-muted);
 }
 .breadcrumbs ol {

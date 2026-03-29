@@ -1,10 +1,56 @@
 <!doctype html>
 <html lang="pl">
   <head>
+    <!-- Meta -->
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="description" content="Promocje VOLT GARAGE – wyprzedaże akcesoriów samochodowych, obniżki na emblematy, naklejki i gadżety." />
+    <meta
+      name="description"
+      content="Promocje VOLT GARAGE – wyprzedaże akcesoriów samochodowych, obniżki na emblematy, naklejki i gadżety."
+    />
     <meta name="color-scheme" content="light dark" />
+    <meta name="theme-color" content="#0f172a" />
+    <!-- Title -->
+    <title>Promocje | VOLT GARAGE – wyprzedaże i rabaty</title>
+    <!-- Canonical -->
+    <link
+      rel="canonical"
+      href="https://e-commerce-pr01-voltgarage.netlify.app/pages/promocje.html"
+    />
+    <!-- Open Graph -->
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Promocje | VOLT GARAGE – wyprzedaże i rabaty" />
+    <meta
+      property="og:description"
+      content="Promocje VOLT GARAGE – wyprzedaże akcesoriów samochodowych, obniżki na emblematy, naklejki i gadżety."
+    />
+    <meta
+      property="og:url"
+      content="https://e-commerce-pr01-voltgarage.netlify.app/pages/promocje.html"
+    />
+    <meta
+      property="og:image"
+      content="https://e-commerce-pr01-voltgarage.netlify.app/assets/images/og/og-1200x630.jpg"
+    />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Promocje | VOLT GARAGE – wyprzedaże i rabaty" />
+    <meta
+      name="twitter:description"
+      content="Promocje VOLT GARAGE – wyprzedaże akcesoriów samochodowych, obniżki na emblematy, naklejki i gadżety."
+    />
+    <meta
+      name="twitter:image"
+      content="https://e-commerce-pr01-voltgarage.netlify.app/assets/images/og/og-1200x630.jpg"
+    />
+    <!-- Favicons + manifest -->
+    <link rel="icon" href="/assets/icons/favicon/favicon.ico" />
+    <link rel="icon" type="image/svg+xml" href="/assets/icons/favicon/favicon.svg" />
+    <link rel="apple-touch-icon" href="/assets/icons/favicon/apple-touch-icon.png" />
+    <link rel="manifest" href="/site.webmanifest" />
+    <!-- Theme preload -->
     <script data-theme-preload>
       (function () {
         var storageKey = 'vg_theme';
@@ -22,25 +68,7 @@
         document.documentElement.setAttribute('data-theme', theme);
       })();
     </script>
-    <title>Promocje | VOLT GARAGE – wyprzedaże i rabaty</title>
-    <link rel="canonical" href="https://e-commerce-pr01-voltgarage.netlify.app/pages/promocje.html" />
-    <meta property="og:type" content="website" />
-    <meta property="og:title" content="Promocje | VOLT GARAGE – wyprzedaże i rabaty" />
-    <meta property="og:description" content="Promocje VOLT GARAGE – wyprzedaże akcesoriów samochodowych, obniżki na emblematy, naklejki i gadżety." />
-    <meta property="og:url" content="https://e-commerce-pr01-voltgarage.netlify.app/pages/promocje.html" />
-    <meta property="og:image" content="https://e-commerce-pr01-voltgarage.netlify.app/assets/images/og/og-1200x630.jpg" />
-    <meta property="og:image:width" content="1200" />
-    <meta property="og:image:height" content="630" />
-    <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="Promocje | VOLT GARAGE – wyprzedaże i rabaty" />
-    <meta name="twitter:description" content="Promocje VOLT GARAGE – wyprzedaże akcesoriów samochodowych, obniżki na emblematy, naklejki i gadżety." />
-    <meta name="twitter:image" content="https://e-commerce-pr01-voltgarage.netlify.app/assets/images/og/og-1200x630.jpg" />
-    <link rel="icon" href="/assets/icons/favicon/favicon.ico" />
-    <link rel="icon" type="image/svg+xml" href="/assets/icons/favicon/favicon.svg" />
-    <link rel="apple-touch-icon" href="/assets/icons/favicon/apple-touch-icon.png" />
-
-    <link rel="manifest" href="/site.webmanifest" />
-    <meta name="theme-color" content="#0f172a" />
+    <!-- Preloads -->
     <link
       rel="preload"
       href="/assets/fonts/space-grotesk/SpaceGrotesk-700.woff2"
@@ -48,8 +76,9 @@
       type="font/woff2"
       crossorigin
     />
+    <!-- Styles -->
     <link rel="stylesheet" href="/css/main.css" />
-
+    <!-- JSON-LD -->
     <script type="application/ld+json">
       {
         "@context": "https://schema.org",
@@ -79,8 +108,8 @@
         }
       }
     </script>
-  </head>
-  <body>
+</head>
+  <body class="page page--promotions">
     <!-- @include src/partials/header.html -->
 
     <main id="main">
@@ -115,44 +144,15 @@
             <span data-result-count="sale">0 produktów</span>
           </div>
           <div class="grid-3 products" data-products="sale">
-            <p class="state-block state-block--empty products-fallback">Promocje ładują się dynamicznie. Włącz JavaScript, aby zobaczyć aktualne okazje.</p>
+            <p class="state-block state-block--empty products-fallback">
+              Promocje ładują się dynamicznie. Włącz JavaScript, aby zobaczyć aktualne okazje.
+            </p>
           </div>
         </div>
       </section>
     </main>
 
-            <!-- @include src/partials/footer.html -->
-
-    <div class="project-modal" data-project-modal hidden>
-      <div class="project-modal__backdrop" aria-hidden="true"></div>
-      <div
-        class="project-modal__panel"
-        role="dialog"
-        aria-modal="true"
-        aria-labelledby="project-modal-title"
-        aria-describedby="project-modal-description"
-      >
-        <span class="project-modal__badge">VOLT GARAGE</span>
-        <h2 id="project-modal-title">Informacja o projekcie</h2>
-        <p id="project-modal-description">
-          Volt Garage to projekt demonstracyjny przygotowany przez KP_Code Digital Studio.
-        </p>
-        <p>
-          Korzystanie z serwisu oznacza akceptację
-          <a href="regulamin.html">Regulaminu</a>.
-        </p>
-        <div class="project-modal__actions">
-          <button class="btn btn-accent" type="button" data-project-accept>Akceptuję</button>
-        </div>
-        <div class="project-modal__links">
-          <a href="polityka-prywatnosci.html">Polityka prywatności</a>
-          <span aria-hidden="true">•</span>
-          <a href="cookies.html">Cookies</a>
-          <span aria-hidden="true">•</span>
-          <a href="regulamin.html">Regulamin</a>
-        </div>
-      </div>
-    </div>
+    <!-- @include src/partials/footer.html -->
 
     <script type="module" src="../js/main.js"></script>
   </body>
