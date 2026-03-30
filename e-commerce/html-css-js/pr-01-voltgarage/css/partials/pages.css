@@ -147,6 +147,123 @@
   border: none;
 }
 
+/* Page: Contact */
+
+.page--contact .promo {
+  justify-items: left;
+  text-align: left;
+  padding-left: var(--space-06);
+}
+.page--contact .contact-details {
+  gap: var(--space-03);
+}
+.page--contact .contact-details__item {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-02);
+  width: fit-content;
+}
+.page--contact .contact-details__icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+.page--contact .contact-details__icon-svg {
+  width: 18px;
+  height: 18px;
+}
+.page--contact .contact-details__address {
+  display: block;
+  color: var(--color-muted);
+  font-weight: var(--fw-02);
+  margin-top: var(--space-01);
+  font-size: var(--fs-03);
+  max-width: 32ch;
+}
+.page--contact .map-card {
+  background: var(--color-surface-alt);
+  border: 1px solid color-mix(in srgb, var(--color-border) 80%, transparent);
+  border-radius: var(--radius-sm);
+  overflow: hidden;
+  min-height: 0;
+}
+.page--contact .map-card iframe {
+  display: block;
+  width: 100%;
+  height: clamp(320px, 45vw, 520px);
+  border: 0;
+}
+.page--contact [data-contact-form] {
+  width: 100%;
+  min-width: 0;
+  margin: 0;
+  padding: var(--space-05);
+  gap: var(--space-04);
+  background: color-mix(in srgb, var(--color-surface) 88%, var(--color-bg));
+  border: 1px solid color-mix(in srgb, var(--color-border) 82%, transparent);
+  border-radius: var(--radius-sm);
+  box-shadow: var(--shadow-sm);
+}
+.page--contact [data-contact-form] .section-title {
+  margin-bottom: var(--space-02);
+}
+.page--contact [data-contact-form] .section-title h2 {
+  margin-bottom: 0;
+  font-size: var(--fs-06);
+}
+.page--contact [data-contact-form] .input-group {
+  gap: var(--space-02);
+}
+.page--contact [data-contact-form] .input-group span {
+  color: var(--color-ink-muted);
+  font-size: var(--fs-03);
+  font-weight: var(--fw-02);
+  letter-spacing: var(--ls-02);
+}
+.page--contact [data-contact-form] :is(input, textarea):not([type='hidden']) {
+  width: 100%;
+  min-height: 46px;
+  background: color-mix(in srgb, var(--color-surface) 90%, var(--color-bg));
+  border: 1px solid color-mix(in srgb, var(--color-border) 85%, transparent);
+  border-radius: var(--radius-sm);
+  padding: var(--space-02) var(--space-04);
+  transition:
+    border-color var(--transition-fast),
+    box-shadow var(--transition-fast),
+    background var(--transition-fast);
+}
+.page--contact [data-contact-form] textarea {
+  min-height: 140px;
+  resize: vertical;
+}
+.page--contact [data-contact-form] :is(input, textarea):hover {
+  border-color: color-mix(in srgb, var(--color-border) 55%, var(--color-ink));
+}
+.page--contact [data-contact-form] :is(input, textarea):focus-visible {
+  outline: 2px solid color-mix(in srgb, var(--color-accent) 40%, transparent);
+  outline-offset: 2px;
+  border-color: color-mix(in srgb, var(--color-accent) 60%, var(--color-border));
+  box-shadow:
+    0 0 0 4px color-mix(in srgb, var(--color-accent) 16%, transparent),
+    0 10px 18px rgba(0, 0, 0, 0.18);
+}
+.page--contact [data-contact-form] .btn-accent {
+  justify-self: end;
+  width: min(100%, 220px);
+}
+.page--contact [data-contact-form] [data-form-status] {
+  width: auto;
+  max-width: 100%;
+  padding-inline: 0;
+  border: 0;
+  background: transparent;
+  color: var(--color-ink-muted);
+  text-transform: none;
+  letter-spacing: normal;
+  font-weight: var(--fw-02);
+  opacity: 1;
+}
 
 /* other */
 
@@ -159,4 +276,21 @@
   display: block;
   width: 100%;
   height: auto;
+}
+
+@media (min-width: 760px) {
+  .page--contact .map-card iframe {
+    height: 100%;
+  }
+  .page--contact [data-contact-form] {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    align-items: start;
+  }
+  .page--contact [data-contact-form] > :is(.section-title, .btn, [data-form-status]) {
+    grid-column: 1 / -1;
+  }
+  .page--contact [data-contact-form] .input-group:has(input[name='subject']),
+  .page--contact [data-contact-form] .input-group:has(textarea) {
+    grid-column: 1 / -1;
+  }
 }

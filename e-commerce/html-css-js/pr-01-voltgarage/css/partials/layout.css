@@ -647,7 +647,6 @@ main > section {
   font-size: var(--fs-02);
 }
 
-
 /* Page Layout */
 
 .page-layout {
@@ -685,8 +684,8 @@ main > section {
   .page-layout--contact {
     grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
     grid-template-areas:
-      'promo form'
-      'map form';
+      'promo map'
+      'form form';
     grid-template-rows: auto 1fr;
   }
   .page-layout--contact .promo {

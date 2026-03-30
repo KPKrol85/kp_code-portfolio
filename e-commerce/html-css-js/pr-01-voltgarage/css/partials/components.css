@@ -666,24 +666,6 @@
   display: none !important;
 }
 
-/* Map Card */
-
-.map-card {
-  background: var(--color-surface-alt);
-  border-radius: var(--radius-lg);
-  overflow: hidden;
-}
-.map-card iframe {
-  display: block;
-  width: 100%;
-  height: clamp(240px, 32vw, 320px);
-  border: 0;
-}
-.page-layout--contact .map-card iframe {
-  width: 100%;
-  height: clamp(320px, 45vw, 520px);
-}
-
 /* Cart item */
 
 .cart-item {
@@ -749,12 +731,12 @@
 
 .form-grid {
   display: grid;
-  margin: 0 auto;
-  background-color: var(--color-surface-alt);
-  border-radius: var(--radius-sm);
-  gap: var(--space-03);
-  padding: var(--space-04);
-  width: min(100%, 900px);
+  gap: var(--space-04);
+  width: 100%;
+  min-width: 0;
+}
+.form-grid > * {
+  min-width: 0;
 }
 .form-row {
   display: grid;
@@ -840,7 +822,7 @@
   color: color-mix(in srgb, var(--color-ink-muted) 80%, transparent);
 }
 [data-checkout-form] .btn-accent {
-display: inline-flex;
+  display: inline-flex;
 }
 [data-checkout-form] .btn-accent {
   display: inline-flex;
@@ -1133,18 +1115,28 @@ display: inline-flex;
 /* Promo */
 
 .promo {
-  background: var(--color-surface-alt);
-  border-radius: var(--radius-md);
-  padding: var(--space-06);
+  background:
+    radial-gradient(
+      circle at top center,
+      color-mix(in srgb, var(--color-accent) 2%, transparent),
+      transparent 55%
+    ),
+    linear-gradient(
+      180deg,
+      color-mix(in srgb, var(--color-surface) 88%, var(--color-accent) 4%),
+      color-mix(in srgb, var(--color-surface-alt) 94%, var(--color-bg) 6%)
+    );
+  border-radius: var(--radius-sm);
+  padding: var(--space-04);
   display: grid;
-  gap: var(--space-04);
+  gap: var(--space-02);
   justify-items: center;
   text-align: center;
   position: relative;
 }
 .promo > div:first-child {
   position: relative;
-  padding-bottom: var(--space-03);
+  padding-bottom: var(--space-04);
 }
 .promo > div:first-child::after {
   content: '';
@@ -1160,8 +1152,14 @@ display: inline-flex;
   );
   opacity: 0.65;
 }
+.promo h2 {
+  font-size: var(--fs-06);
+  color: var(--color-text);
+  margin-top: var(--space-04);
+}
 .promo p {
   max-width: 52ch;
+  font-size: var(--fs-03);
 }
 .promo .tag-list {
   justify-content: center;
@@ -1173,15 +1171,7 @@ display: inline-flex;
 
 .stacked {
   display: grid;
-  gap: var(--space-02);
-}
-.stacked span:last-child {
-  color: var(--color-ink);
-  font-weight: var(--fw-02);
-  padding-block: var(--space-02);
-  border-top: 1px solid var(--color-border);
-  margin-top: var(--space-01);
-  font-size: var(--fs-06);
+  gap: var(--space-01);
 }
 
 /* Table-like */
