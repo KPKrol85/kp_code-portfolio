@@ -122,6 +122,7 @@
   font-size: var(--fs-03);
   letter-spacing: var(--ls-05);
   max-width: 42ch;
+  opacity: 0.9;
 }
 .product-category {
   text-transform: uppercase;

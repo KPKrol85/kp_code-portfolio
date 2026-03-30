@@ -285,12 +285,12 @@ export const initProductDetails = async () => {
         <div class="card product-info" data-reveal>
           <span class="badge">${product.badge}</span>
           <h2 class="product-title">${product.name}</h2>
-          <p class="product-description">${product.description}</p>
-          <div class="price">${formatPrice(product.price)}</div>
+          <p class="card-text">${product.description}</p>
+
           <ul class="stacked">
             ${product.features.map((feature) => `<li>${feature}</li>`).join('')}
           </ul>
-          
+ <div class="price">${formatPrice(product.price)}</div>
           <div class="tag-list">
           <label class="input-group">
             <span class="qty-label">Ilość:</span>
