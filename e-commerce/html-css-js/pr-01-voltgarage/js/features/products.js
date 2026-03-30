@@ -2,10 +2,9 @@ import { initReveal } from '../ui/reveal.js';
 import { renderState } from '../ui/state.js';
 import { fetchProducts } from '../services/products.js';
 import { logError } from '../core/errors.js';
+import { STORE_ID, injectBreadcrumbJsonLd, injectItemListJsonLd, resolvePageUrl, toAbsolute, upsertJsonLd } from '../ui/structured-data.js';
 
 const getPrefix = () => (window.location.pathname.includes('/pages/') ? '../' : '');
-const toAbsolute = (path) => new URL(path, window.location.origin).href;
-
 const formatPrice = (value) => `${value.toFixed(0)} zł`;
 const isNewProduct = (product) => product.badge?.toLowerCase().includes('nowo');
 
@@ -126,6 +125,13 @@ const renderSaleGrid = (container, products) => {
   initReveal();
 };
 
+const mapProductsToItemList = (products) =>
+  products.map((product) => ({
+    name: product.name,
+    url: toAbsolute(productLink(product.id)),
+    image: toAbsolute(productImage(product.image)),
+  }));
+
 export const initFeaturedProducts = async () => {
   const container = document.querySelector('[data-products="featured"]');
   if (!container) return;
@@ -188,8 +194,13 @@ export const initNewArrivalsProducts = async () => {
     const filtered = products.filter(isNewProduct);
     if (!filtered.length) {
       renderState(container, 'empty', 'Brak nowości do wyświetlenia.');
+      injectItemListJsonLd({ name: 'Nowości VOLT GARAGE', items: [] });
     } else {
       renderGrid(container, filtered);
+      injectItemListJsonLd({
+        name: 'Nowości VOLT GARAGE',
+        items: mapProductsToItemList(filtered),
+      });
     }
     if (resultCount) {
       resultCount.textContent = `${filtered.length} produktów`;
@@ -197,6 +208,7 @@ export const initNewArrivalsProducts = async () => {
   } catch (error) {
     logError('products:new', error);
     renderState(container, 'error', 'Nie udało się załadować nowości.');
+    injectItemListJsonLd({ name: 'Nowości VOLT GARAGE', items: [] });
   }
 };
 
@@ -210,8 +222,13 @@ export const initSaleProducts = async () => {
     const filtered = products.filter((product) => product.onSale);
     if (!filtered.length) {
       renderState(container, 'empty', 'Aktualnie brak promocji.');
+      injectItemListJsonLd({ name: 'Promocje VOLT GARAGE', items: [] });
     } else {
       renderSaleGrid(container, filtered);
+      injectItemListJsonLd({
+        name: 'Promocje VOLT GARAGE',
+        items: mapProductsToItemList(filtered),
+      });
     }
     if (resultCount) {
       resultCount.textContent = `${filtered.length} produktów`;
@@ -219,6 +236,7 @@ export const initSaleProducts = async () => {
   } catch (error) {
     logError('products:sale', error);
     renderState(container, 'error', 'Nie udało się wczytać promocji.');
+    injectItemListJsonLd({ name: 'Promocje VOLT GARAGE', items: [] });
   }
 };
 
@@ -272,30 +290,34 @@ export const initProductDetails = async () => {
     `;
     initReveal();
 
+    const pageUrl = resolvePageUrl({ preferCanonical: false });
     const ld = {
       '@context': 'https://schema.org',
       '@type': 'Product',
+      '@id': `${pageUrl}#product`,
+      url: canonicalUrl,
       name: product.name,
+      category: product.category,
       image: [toAbsolute(productImage(product.image))],
       description: product.description,
       sku: product.id,
       brand: {
         '@type': 'Brand',
-        name: 'Volt Garage',
+        name: 'VOLT GARAGE',
       },
       offers: {
         '@type': 'Offer',
         url: canonicalUrl,
         priceCurrency: 'PLN',
         price: product.price.toFixed(0),
-        availability: 'https://schema.org/InStock',
+        seller: {
+          '@id': STORE_ID,
+        },
       },
     };
 
-    const script = document.createElement('script');
-    script.type = 'application/ld+json';
-    script.textContent = JSON.stringify(ld, null, 2);
-    document.head.appendChild(script);
+    upsertJsonLd('product', ld);
+    injectBreadcrumbJsonLd();
   } catch (error) {
     logError('products:detail', error);
     renderState(container, 'error', 'Nie udało się wczytać produktu.');

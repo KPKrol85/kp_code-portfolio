@@ -7,26 +7,21 @@ const SKIP_DIRS = new Set(['node_modules', '.git']);
 const JSON_LD_REGEX = /<script\b[^>]*type=["']application\/ld\+json["'][^>]*>([\s\S]*?)<\/script>/gi;
 const PRODUCT_SCHEMA_SOURCE = 'js/features/products.js';
 const PRODUCT_SCHEMA_REGEX = /['"]@type['"]\s*:\s*['"]Product['"]/;
+const SEARCH_ACTION_REGEX = /['"]@type['"]\s*:\s*['"]SearchAction['"]/;
+const ORGANIZATION_REGEX = /['"]@type['"]\s*:\s*['"]Organization['"]/;
 
 const TEMPLATE_RULES = [
   {
     key: 'home',
     paths: ['index.html'],
-    requiredTypes: ['Organization', 'WebSite'],
-    disallowedTypes: ['Product', 'BreadcrumbList'],
+    requiredTypes: ['OnlineStore', 'WebSite'],
+    disallowedTypes: ['Product', 'BreadcrumbList', 'ItemList'],
   },
   {
     key: 'product',
     paths: ['pages/product.html'],
-    requiredTypes: ['Organization', 'WebSite'],
-    disallowedTypes: ['BreadcrumbList'],
+    disallowedTypes: ['Product', 'BreadcrumbList', 'ItemList', 'OnlineStore', 'WebSite', 'Organization'],
     requireRuntimeProductSchema: true,
-  },
-  {
-    key: 'legal',
-    paths: ['pages/regulamin.html', 'pages/polityka-prywatnosci.html', 'pages/cookies.html'],
-    requiredTypes: ['Organization', 'WebSite'],
-    disallowedTypes: ['Product'],
   },
 ];
 
@@ -148,14 +143,23 @@ function validateTemplateExpectations(filePath, types, rule) {
 async function validateRuntimeProductSchema() {
   const productScriptPath = path.join(ROOT_DIR, PRODUCT_SCHEMA_SOURCE);
   const scriptContent = await fs.readFile(productScriptPath, 'utf8');
+  const errors = [];
 
   if (!PRODUCT_SCHEMA_REGEX.test(scriptContent)) {
-    return [
+    errors.push(
       `pages/product.html: template "product" expects runtime Product JSON-LD in ${PRODUCT_SCHEMA_SOURCE}, but "@type: Product" was not found.`,
-    ];
+    );
   }
 
-  return [];
+  if (SEARCH_ACTION_REGEX.test(scriptContent)) {
+    errors.push(`${PRODUCT_SCHEMA_SOURCE}: runtime schema must not include SearchAction.`);
+  }
+
+  if (ORGANIZATION_REGEX.test(scriptContent)) {
+    errors.push(`${PRODUCT_SCHEMA_SOURCE}: runtime schema must not include Organization.`);
+  }
+
+  return errors;
 }
 
 async function main() {
@@ -169,6 +173,10 @@ async function main() {
 
     const { errors: blockErrors, types } = validateJsonLdBlocks(relPath, content);
     errors.push(...blockErrors);
+
+    if (SEARCH_ACTION_REGEX.test(content)) {
+      errors.push(`${relPath}: static JSON-LD must not include SearchAction.`);
+    }
 
     const templateRule = getTemplateRule(relPath);
     if (templateRule) {

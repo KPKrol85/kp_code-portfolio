@@ -1,7 +1,8 @@
 import { fetchProducts } from '../services/products.js';
-import { renderGrid, renderProductsLoading } from './products.js';
+import { getProductImage, getProductLink, renderGrid, renderProductsLoading } from './products.js';
 import { renderState } from '../ui/state.js';
 import { logError } from '../core/errors.js';
+import { injectItemListJsonLd, toAbsolute } from '../ui/structured-data.js';
 
 export const initFilters = async () => {
   const container = document.querySelector('[data-products="shop"]');
@@ -164,6 +165,14 @@ export const initFilters = async () => {
     }
 
     renderGrid(container, filtered);
+    injectItemListJsonLd({
+      name: 'Sklep VOLT GARAGE',
+      items: filtered.map((product) => ({
+        name: product.name,
+        url: toAbsolute(getProductLink(product.id)),
+        image: toAbsolute(getProductImage(product.image)),
+      })),
+    });
     if (resultCount) {
       resultCount.textContent = `${filtered.length} wynik\u00f3w`;
       resultCount.setAttribute('aria-live', 'polite');
