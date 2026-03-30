@@ -42,7 +42,6 @@
 .page-hero p {
   max-width: 42ch;
   margin-top: var(--space-04);
-  font-size: var(--fs-04);
   color: var(--color-hero-text-muted);
 }
 @media (prefers-reduced-motion: reduce) {
@@ -149,4 +148,14 @@
   display: block;
   width: 100%;
   height: auto;
+}
+
+.page--cart .total-panel > :is(.btn, .notice) {
+  justify-self: stretch;
+  max-width: 100%;
+}
+
+.page--cart .total-panel .notice {
+  width: auto;
+  display: flex;
 }
