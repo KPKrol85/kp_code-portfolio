@@ -258,10 +258,17 @@ export const initProductDetails = async () => {
       canonical.setAttribute('href', canonicalUrl);
     }
     document.title = `${product.name} | VOLT GARAGE`;
-    const metaDescription = document.querySelector('meta[name="description"]');
-    if (metaDescription) {
-      metaDescription.setAttribute('content', product.description);
-    }
+    const descriptionSelectors = [
+      'meta[name="description"]',
+      'meta[property="og:description"]',
+      'meta[name="twitter:description"]',
+    ];
+    descriptionSelectors.forEach((selector) => {
+      const metaTag = document.querySelector(selector);
+      if (metaTag) {
+        metaTag.setAttribute('content', product.description);
+      }
+    });
 
     container.innerHTML = `
       <div class="page-layout product-details">
