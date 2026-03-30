@@ -94,7 +94,7 @@
       <section class="page-hero">
         <div class="container">
           <h1>Zamówienie</h1>
-          <p>Finalizacja zamówienia bez backendu, pełna walidacja po stronie klienta.</p>
+          <p>Uzupełnij dane, wybierz dostawę i przejdź do podsumowania zamówienia.</p>
           <span class="page-hero-mark" aria-hidden="true"></span>
         </div>
       </section>
@@ -208,8 +208,32 @@
             <button class="btn btn-accent" type="submit">Złóż zamówienie</button>
             <p class="notice" role="status" aria-live="polite" data-form-status></p>
           </form>
+
           <aside class="total-panel" data-reveal>
-            <h3>Podsumowanie koszyka</h3>
+            <h3>
+              Podsumowanie
+              <span class="total-panel__icon" aria-hidden="true">
+                <svg
+                  class="total-panel__icon-svg"
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="24"
+                  height="24"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                  <path d="M4 19a2 2 0 1 0 4 0a2 2 0 1 0 -4 0" />
+                  <path d="M15 19a2 2 0 1 0 4 0a2 2 0 1 0 -4 0" />
+                  <path d="M17 17h-11v-14h-2" />
+                  <path d="M6 5l14 1l-1 7h-13" />
+                </svg>
+              </span>
+            </h3>
+
             <div class="stacked" data-checkout-summary>
               <span>Wartość produktów: <strong data-cart-subtotal>0 zł</strong></span>
               <span>Dostawa: <strong data-cart-shipping>0 zł</strong></span>

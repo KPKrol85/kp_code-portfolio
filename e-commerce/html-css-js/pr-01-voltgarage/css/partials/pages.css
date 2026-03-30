@@ -146,14 +146,7 @@
   font-size: var(--fs-01);
   border: none;
 }
-.page--cart .total-panel h3 {
-  display: inline-flex;
-  align-items: center;
-  gap: var(--space-03);
-}
-.page--cart .total-panel .total-panel__icon {
-  color: var(--color-accent);
-}
+
 
 /* other */
 
