@@ -3,7 +3,7 @@ const path = require('node:path');
 
 const ROOT_DIR = process.cwd();
 const HTML_EXT = '.html';
-const SKIP_DIRS = new Set(['node_modules', '.git']);
+const SKIP_DIRS = new Set(['node_modules', '.git', 'dist', 'src']);
 const HREF_REGEX = /\bhref\s*=\s*(?:"([^"]*)"|'([^']*)')/gi;
 const EXCLUDED_SCHEMES = new Set(['http', 'https', 'mailto', 'tel', 'javascript', 'data']);
 
@@ -118,7 +118,9 @@ async function validateFileLinks(filePath, content) {
 
     const line = getLineNumber(content, match.index);
     const sourceRelPath = path.relative(ROOT_DIR, filePath);
-    const resolvedTargets = result.candidates.map((candidate) => path.relative(ROOT_DIR, candidate)).join(' | ');
+    const resolvedTargets = result.candidates
+      .map((candidate) => path.relative(ROOT_DIR, candidate))
+      .join(' | ');
 
     errors.push({
       source: sourceRelPath,

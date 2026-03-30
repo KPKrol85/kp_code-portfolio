@@ -80,15 +80,29 @@
 
     <!-- Main -->
     <main id="main">
-      <section>
-        <div class="container">
-          <article class="card" data-reveal>
-            <h2>Wygląda na to, że ten adres nie istnieje</h2>
-            <p>
-              Sprawdź, czy adres jest poprawny lub skorzystaj z poniższego przycisku, aby wrócić do
-              strony głównej sklepu.
+      <section aria-labelledby="status-title">
+        <div class="container stats-shell">
+          <article class="card stats-card" data-reveal>
+            <span class="badge stats-card__eyebrow">404 / Nie znaleziono strony</span>
+            <div class="stats-card__content">
+              <h1 id="status-title" class="stats-card__title">Ten adres już nie prowadzi dalej.</h1>
+              <p class="stats-card__lead">
+                Link mógł się zmienić, wygasnąć albo został wpisany z błędem. Wróć do strony głównej
+                lub przejdź bezpośrednio do sklepu, aby kontynuować przeglądanie.
+              </p>
+            </div>
+            <ul class="stats-card__meta" aria-label="Sugestie nawigacyjne">
+              <li>Sprawdź pisownię adresu, jeśli wpisywałeś go ręcznie.</li>
+              <li>Najważniejsze kolekcje i produkty nadal są dostępne z poziomu sklepu.</li>
+            </ul>
+            <div class="stats-card__actions">
+              <a class="btn btn-accent" href="index.html">Wróć na stronę główną</a>
+              <a class="btn btn-outline" href="pages/shop.html">Przejdź do sklepu</a>
+            </div>
+            <p class="stats-card__support">
+              <a href="pages/contact.html">Potrzebujesz pomocy?</a>
+              <a href="pages/collections.html">Zobacz kolekcje</a>
             </p>
-            <a class="btn btn-outline" href="index.html">Wróć na stronę główną</a>
           </article>
         </div>
       </section>

@@ -6,22 +6,26 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta
       name="description"
-      content="Brak połączenia z siecią w VOLT GARAGE. Spróbuj ponownie za chwilę, aby wrócić do przeglądania produktów i zamówienia."
+      content="Dziękujemy za kontakt z VOLT GARAGE. Wiadomość została wysłana pomyślnie, a my wrócimy z odpowiedzią tak szybko, jak to możliwe."
     />
+    <meta name="robots" content="noindex,follow" />
     <meta name="color-scheme" content="light dark" />
     <meta name="theme-color" content="#0f172a" />
     <!-- Title -->
-    <title>Offline | VOLT GARAGE</title>
+    <title>Dziękujemy | VOLT GARAGE</title>
     <!-- Canonical -->
-    <link rel="canonical" href="https://e-commerce-pr01-voltgarage.netlify.app/" />
+    <link rel="canonical" href="https://e-commerce-pr01-voltgarage.netlify.app/thank-you.html" />
     <!-- Open Graph -->
     <meta property="og:type" content="website" />
-    <meta property="og:title" content="Offline | VOLT GARAGE" />
+    <meta property="og:title" content="Dziękujemy | VOLT GARAGE" />
     <meta
       property="og:description"
-      content="Brak połączenia z siecią w VOLT GARAGE. Spróbuj ponownie za chwilę, aby wrócić do przeglądania produktów i zamówienia."
+      content="Dziękujemy za kontakt z VOLT GARAGE. Wiadomość została wysłana pomyślnie, a my wrócimy z odpowiedzią tak szybko, jak to możliwe."
     />
-    <meta property="og:url" content="https://e-commerce-pr01-voltgarage.netlify.app/" />
+    <meta
+      property="og:url"
+      content="https://e-commerce-pr01-voltgarage.netlify.app/thank-you.html"
+    />
     <meta
       property="og:image"
       content="https://e-commerce-pr01-voltgarage.netlify.app/assets/images/og/og-1200x630.jpg"
@@ -30,10 +34,10 @@
     <meta property="og:image:height" content="630" />
     <!-- Twitter -->
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="Offline | VOLT GARAGE" />
+    <meta name="twitter:title" content="Dziękujemy | VOLT GARAGE" />
     <meta
       name="twitter:description"
-      content="Brak połączenia z siecią w VOLT GARAGE. Spróbuj ponownie za chwilę, aby wrócić do przeglądania produktów i zamówienia."
+      content="Dziękujemy za kontakt z VOLT GARAGE. Wiadomość została wysłana pomyślnie, a my wrócimy z odpowiedzią tak szybko, jak to możliwe."
     />
     <meta
       name="twitter:image"
@@ -75,32 +79,37 @@
   </head>
 
   <!-- Body -->
-  <body class="page page--stats page--offline">
+  <body class="page page--stats page--thank-you">
     <!-- @include src/partials/header.html -->
 
     <main id="main">
       <section aria-labelledby="status-title">
         <div class="container stats-shell">
           <article class="card stats-card" data-reveal>
-            <span class="badge stats-card__eyebrow">Offline / Brak połączenia</span>
+            <span class="badge stats-card__eyebrow">Dziękujemy / Wiadomość wysłana</span>
             <div class="stats-card__content">
-              <h1 id="status-title" class="stats-card__title">Sieć chwilowo nie odpowiada.</h1>
+              <h1 id="status-title" class="stats-card__title">
+                Wiadomość jest już po naszej stronie.
+              </h1>
               <p class="stats-card__lead">
-                Wygląda na to, że połączenie zostało przerwane. Odśwież widok, gdy internet wróci,
-                albo przejdź na stronę główną, aby sprawdzić wcześniej zapisane sekcje serwisu.
+                Dzięki za kontakt z VOLT GARAGE. Wrócimy z odpowiedzią możliwie szybko, a w
+                międzyczasie możesz dalej przeglądać kolekcje, nowości i akcesoria dostępne w
+                sklepie.
               </p>
             </div>
-            <ul class="stats-card__meta" aria-label="Dostępne działania">
-              <li>Po odzyskaniu połączenia spróbuj ponownie otworzyć tę samą stronę.</li>
-              <li>Niektóre ostatnio odwiedzone podstrony mogą być nadal dostępne lokalnie.</li>
+            <ul class="stats-card__meta" aria-label="Co dalej">
+              <li>Odpowiadamy zwykle w ciągu 24 godzin w dni robocze.</li>
+              <li>
+                Jeśli sprawa dotyczy zamówienia, przygotuj numer zamówienia do kolejnej wiadomości.
+              </li>
             </ul>
             <div class="stats-card__actions">
-              <a class="btn btn-accent" href="offline.html">Spróbuj ponownie</a>
+              <a class="btn btn-accent" href="pages/shop.html">Kontynuuj zakupy</a>
               <a class="btn btn-outline" href="index.html">Wróć na stronę główną</a>
             </div>
             <p class="stats-card__support">
-              <a href="pages/shop.html">Przejdź do sklepu</a>
-              <a href="pages/contact.html">Kontakt po odzyskaniu sieci</a>
+              <a href="pages/contact.html">Wyślij kolejną wiadomość</a>
+              <a href="pages/new-arrivals.html">Zobacz nowości</a>
             </p>
           </article>
         </div>
@@ -108,7 +117,6 @@
     </main>
 
     <!-- @include src/partials/footer.html -->
-
     <script type="module" src="js/main.js"></script>
   </body>
 </html>
