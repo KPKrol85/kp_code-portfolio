@@ -200,6 +200,7 @@
 }
 
 /* Feature Card */
+
 .card--feature {
   padding: var(--space-04);
 }
@@ -634,6 +635,8 @@
   border: 1px dashed var(--color-border);
   background: color-mix(in srgb, var(--color-surface) 70%, var(--color-bg));
   text-align: center;
+  font-size: var(--fs-04);
+  color: var(--color-ink-muted);
 }
 .state-block--loading {
   border-color: color-mix(in srgb, var(--color-accent) 40%, var(--color-border));
@@ -641,6 +644,9 @@
 .state-block--error {
   border-color: color-mix(in srgb, var(--color-danger) 50%, var(--color-border));
 }
+
+/* Toast */
+
 .toast {
   position: fixed;
   inset: auto var(--space-04) var(--space-04) var(--space-04);
@@ -750,6 +756,14 @@
   justify-self: center;
   text-align: left;
 }
+.total-panel strong {
+  color: var(--color-accent);
+}
+
+
+
+
+/* Checkout Form */
 
 [data-checkout-form].form-grid {
   background: color-mix(in srgb, var(--color-surface) 85%, var(--color-bg));
@@ -1158,21 +1172,23 @@
   margin-bottom: var(--space-04);
 }
 
-/* Table-like */
+/* Stacked */
 
 .stacked {
   display: grid;
   gap: var(--space-02);
-  font-size: var(--fs-03);
 }
 .stacked span:last-child {
-  color: var(--color-accent);
-  font-weight: var(--fw-03);
+  color: var(--color-ink);
+  font-weight: var(--fw-02);
   padding-block: var(--space-02);
   border-top: 1px solid var(--color-border);
   margin-top: var(--space-01);
-  font-size: var(--fs-04);
+  font-size: var(--fs-06);
 }
+
+/* Table-like */
+
 .table-like {
   display: grid;
   gap: var(--space-03);
@@ -1180,10 +1196,10 @@
   justify-self: center;
   text-align: center;
 }
-
 .table-like {
   width: min(100%, 512px);
 }
+
 /* Stats */
 
 .stats {
