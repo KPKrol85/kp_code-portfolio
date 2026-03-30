@@ -53,10 +53,10 @@ const renderCard = (product) => `
     ${cardPicture(product)}
     <span class="badge">${product.badge}</span>
     <h3 class="card-title">${product.name}</h3>
-    <p>${product.description}</p>
+    <p class="card-text">${product.description}</p>
     <div class="card-meta">
       <span class="price">${formatPrice(product.price)}</span>
-      <span>${product.category}</span>
+      <span class="product-category">${product.category}</span>
     </div>
     <div class="tag-list">
       <a class="btn btn-outline" href="${productLink(product.id)}">Szczegóły</a>

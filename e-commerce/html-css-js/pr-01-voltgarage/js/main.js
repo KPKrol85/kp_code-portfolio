@@ -16,7 +16,6 @@ import {
 } from './features/cart.js';
 import {
   initFeaturedProducts,
-  initShopProducts,
   initProductDetails,
   initRelatedProducts,
   initNewArrivalsProducts,
@@ -182,10 +181,7 @@ const initApp = () => {
   if (has('[data-reveal]')) initReveal();
   if (has('[data-cart-count]')) initCart();
   if (has('[data-products="featured"]')) initFeaturedProducts();
-  if (has('[data-products="shop"]')) {
-    initShopProducts();
-    initFilters();
-  }
+  if (has('[data-products="shop"]')) initFilters();
   if (has('[data-products="new"]')) initNewArrivalsProducts();
   if (has('[data-products="related"]')) initRelatedProducts();
   if (has('[data-products="sale"]')) initSaleProducts();

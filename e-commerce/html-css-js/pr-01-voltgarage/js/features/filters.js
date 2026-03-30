@@ -174,7 +174,7 @@ export const initFilters = async () => {
       })),
     });
     if (resultCount) {
-      resultCount.textContent = `${filtered.length} wynik\u00f3w`;
+      resultCount.textContent = `${filtered.length} produktów`;
       resultCount.setAttribute('aria-live', 'polite');
     }
   };
