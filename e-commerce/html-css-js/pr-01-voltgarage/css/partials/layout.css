@@ -90,8 +90,6 @@ main > section {
   .section-title {
     flex-direction: row;
     align-items: center;
-    gap: var(--space-05);
-    text-align: left;
   }
   .section-title h2 {
     width: auto;
@@ -700,10 +698,4 @@ main > section {
   .page-layout {
     grid-template-columns: minmax(0, 1fr);
   }
-  .product-details {
-    grid-template-columns: 1.3fr 0.7fr;
-    align-items: start;
-  }
-  .page-layout.product-details {
-    align-items: stretch;
-  }}
+}

@@ -2,7 +2,14 @@ import { initReveal } from '../ui/reveal.js';
 import { renderState } from '../ui/state.js';
 import { fetchProducts } from '../services/products.js';
 import { logError } from '../core/errors.js';
-import { STORE_ID, injectBreadcrumbJsonLd, injectItemListJsonLd, resolvePageUrl, toAbsolute, upsertJsonLd } from '../ui/structured-data.js';
+import {
+  STORE_ID,
+  injectBreadcrumbJsonLd,
+  injectItemListJsonLd,
+  resolvePageUrl,
+  toAbsolute,
+  upsertJsonLd,
+} from '../ui/structured-data.js';
 
 const getPrefix = () => (window.location.pathname.includes('/pages/') ? '../' : '');
 const formatPrice = (value) => `${value.toFixed(0)} zł`;
@@ -277,22 +284,25 @@ export const initProductDetails = async () => {
         </div>
         <div class="card product-info" data-reveal>
           <span class="badge">${product.badge}</span>
-          <h2>${product.name}</h2>
-          <p>${product.description}</p>
+          <h2 class="product-title">${product.name}</h2>
+          <p class="product-description">${product.description}</p>
           <div class="price">${formatPrice(product.price)}</div>
           <ul class="stacked">
             ${product.features.map((feature) => `<li>${feature}</li>`).join('')}
           </ul>
+          
+          <div class="tag-list">
           <label class="input-group">
-            <span>Ilość</span>
+            <span class="qty-label">Ilość:</span>
             <select name="qty" data-qty-select>
               <option value="1">1</option>
               <option value="2">2</option>
               <option value="3">3</option>
             </select>
           </label>
-          <button class="btn btn-accent" type="button" data-add-to-cart data-product-id="${product.id}">Dodaj do koszyka</button>
-        </div>
+            <button class="btn btn-accent" type="button" data-add-to-cart data-product-id="${product.id}">Dodaj</button>
+          </div>
+          </div>
       </div>
     `;
     initReveal();

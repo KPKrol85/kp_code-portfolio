@@ -121,7 +121,6 @@
 
   <!-- Body -->
   <body class="page page--home">
-    <!-- Header -->
     <!-- @include src/partials/header.html -->
 
     <!-- Main -->
@@ -252,7 +251,7 @@
           <div class="grid-3">
             <div class="card card--feature" data-reveal>
               <h3 class="card-title">Projekt premium</h3>
-              <p class="card-text">Minimalistyczne wzory i dopracowane detale w stylu motoryzacyjnym.</p>
+              <p>Minimalistyczne wzory i dopracowane detale w stylu motoryzacyjnym.</p>
             </div>
             <div class="card card--feature" data-reveal>
               <h3 class="card-title">Szybka wysyłka</h3>
@@ -274,9 +273,9 @@
             <p>Dostęp do premier, dropów i limitowanych akcesoriów.</p>
           </div>
           <form class="footer-form" aria-label="Biuletyn">
-            <label class="input-group">
+            <label class="promo-input" for="newsletter-email">
               <span>E-mail</span>
-              <input type="email" placeholder="kontakt@kp-code.pl" required />
+              <input id="newsletter-email" type="email" placeholder="kontakt@kp-code.pl" required />
             </label>
             <button class="btn btn-accent" type="submit">Dołączam</button>
           </form>
@@ -284,7 +283,6 @@
       </section>
     </main>
 
-    <!-- Footer -->
     <!-- @include src/partials/footer.html -->
 
     <!-- Scripts -->

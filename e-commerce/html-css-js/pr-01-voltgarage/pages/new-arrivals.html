@@ -78,8 +78,8 @@
     />
     <!-- Styles -->
     <link rel="stylesheet" href="/css/main.css" />
-</head>
-  <body class="page page--news">
+  </head>
+  <body class="page page--new-arrivals">
     <!-- @include src/partials/header.html -->
 
     <main id="main">
@@ -89,7 +89,7 @@
           <li>Nowości</li>
         </ol>
       </nav>
-
+      <!-- Hero -->
       <section class="page-hero">
         <div class="container">
           <h1>Nowości</h1>
@@ -100,18 +100,9 @@
 
       <section>
         <div class="container">
-          <div class="tag-list">
-            <a class="btn btn-accent" href="shop.html">Zobacz wszystkie produkty</a>
-            <a class="btn btn-outline" href="promocje.html">Sprawdź promocje</a>
-          </div>
-        </div>
-      </section>
-
-      <section>
-        <div class="container">
           <div class="section-title">
             <h2>Nowości w ofercie</h2>
-            <span data-result-count="new">0 produktów</span>
+            <span class="result-count" data-result-count="new">0 produktów</span>
           </div>
           <div class="grid-3 products" data-products="new">
             <p class="state-block state-block--empty products-fallback">
@@ -119,6 +110,15 @@
             </p>
           </div>
         </div>
+
+
+        <div class="container new-arrivals-cta">
+          <div class="tag-list">
+            <a class="btn btn-accent" href="shop.html">Zobacz wszystkie produkty</a>
+          </div>
+        </div>
+
+        
       </section>
     </main>
 
