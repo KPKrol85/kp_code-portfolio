@@ -6,6 +6,12 @@
   "type": "module",
   "main": "",
   "scripts": {
+    "build:css": "node ./scripts/build-css.mjs",
+    "build:js": "node ./scripts/build-js.mjs",
+    "build:dist": "node ./scripts/build-dist.mjs",
+    "build": "npm run build:dist",
+    "preview": "node ./scripts/preview-dist.mjs",
+    "build:preview": "npm run build && npm run preview",
     "img:build": "node ./scripts/images/build-images.mjs",
     "img:clean": "node ./scripts/images/clean-images.mjs"
   },
@@ -29,7 +35,9 @@
     "node": ">=18.0.0"
   },
   "dependencies": {
+    "esbuild": "^0.25.2",
     "fast-glob": "^3.3.2",
+    "lightningcss": "^1.30.2",
     "sharp": "^0.33.5"
   }
 }
