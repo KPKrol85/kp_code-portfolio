@@ -1,66 +1,78 @@
-# AUDIT — Volt Garage
+# Final Technical Audit
 
 ## 1. Executive summary
-Audit wykonano wyłącznie na podstawie realnych plików w repozytorium. Projekt ma czytelną strukturę MPA, modularny JavaScript, sensowną warstwę PWA i widoczne działania na rzecz dostępności, SEO oraz jakości kodu. Najpoważniejsze wykryte ryzyko dotyczy konfliktu między polityką CSP w `_headers` a osadzoną mapą Google na stronie kontaktowej, co może blokować iframe w środowisku produkcyjnym. Poza tym kod jest uporządkowany, ale wymaga kilku celowanych poprawek w obszarach QA coverage, cache strategy, no-JS baseline i ograniczania ręcznej duplikacji.
+Volt Garage is a well-structured static front-end with clear separation between layout, components, page-specific styling, and feature-level JavaScript. The repository shows real production intent: build packaging for `dist/`, validation scripts, deployment headers, PWA support, responsive images, keyboard-aware navigation, and reduced-motion handling are all present and working from source evidence.
 
-## 2. P0 — Critical risks 0
+This final pass did not find any real P0 issues. The strongest next-step work is around route inventory consistency and product/checkout production semantics: public metadata files and one QA script have drifted from current page filenames, product-level SEO remains heavily runtime-driven, and the checkout flow still behaves like a demo interaction rather than a production transaction path.
+
+Evidence used in this audit comes from direct repository inspection and local command runs, including `npm run qa:html`, `npm run qa:links`, `npm run validate:jsonld`, `npm run qa:js`, and `npm run qa:css`, all of which completed successfully.
+
+## 2. P0 — Critical risks
+No real P0 issues were found in the current implementation.
 
 ## 3. Strengths
-- **Architektura front-end jest modularna i spójna.** Główny bootstrap agreguje moduły `ui`, `features`, `services` i `core`, a inicjalizacja jest warunkowa zależnie od obecności danego widoku. Evidence: `js/main.js:1-25`, `js/main.js:167-207`.
-- **Repo ma realną warstwę PWA, a nie tylko deklaracje marketingowe.** Obecne są `site.webmanifest`, rejestracja service workera, prompt instalacji oraz obsługa aktualizacji. Evidence: `site.webmanifest:1-75`, `js/main.js:200-205`.
-- **Dostępność jest widoczna w implementacji.** Strony mają skip link, formularze sterują `aria-invalid` i `aria-describedby`, nawigacja ustawia `aria-current` i obsługuje klawiaturę, a modal projektu ma focus trap. Evidence: `index.html:118`, `css/partials/base.css:62-80`, `js/main.js:27-155`, `js/ui/header.js:12-50`, `js/ui/header.js:75-170`, `js/ui/project-modal.js:23-43`.
-- **Fundamenty SEO są wdrożone konsekwentnie.** Występują canonicale, Open Graph, Twitter cards, `robots.txt`, `sitemap.xml` i JSON-LD. Evidence: `index.html:15-40`, `index.html:88-110`, `robots.txt:1-4`, `sitemap.xml:1-63`.
-- **Wydajność obrazów i fontów jest traktowana poważnie.** Produkty używają `<picture>` z AVIF/WebP, lazy loading i atrybutów wymiarów, a fonty lokalne mają `font-display: swap`. Evidence: `js/features/products.js:19-29`, `js/features/products.js:42-47`, `js/features/cart.js:83-99`, `css/partials/themes.css:2-42`.
-- **Repo zawiera użyteczne skrypty jakościowe, a nie tylko pojedynczy build.** Są osobne komendy dla HTML, CSS, JS, linków, JSON-LD i Lighthouse smoke. Evidence: `package.json:19-40`.
+- Source architecture is clear and maintainable: CSS is split into base, layout, components, themes, and pages, while JS is separated into `ui`, `features`, `services`, and `core`. Evidence: [css/main.css](/C:/Users/KPKro/MY%20FILES/codex-playground/pr-01-voltgarage/css/main.css), [scripts/build-dist.js:23-32](/C:/Users/KPKro/MY%20FILES/codex-playground/pr-01-voltgarage/scripts/build-dist.js#L23), [js/main.js:1-24](/C:/Users/KPKro/MY%20FILES/codex-playground/pr-01-voltgarage/js/main.js#L1).
+- The deployment pipeline is real, not placeholder: HTML partials are assembled, template tokens are resolved, source asset references are rewritten to minified bundles, and the build fails if packaged HTML still points at source assets. Evidence: [scripts/build-dist.js:146-235](/C:/Users/KPKro/MY%20FILES/codex-playground/pr-01-voltgarage/scripts/build-dist.js#L146).
+- Accessibility foundations are materially present: skip link, `:focus-visible`, keyboard state handling, dropdown state management, `Escape` support, focus trap for the modal, and reduced-motion handling are visible in source. Evidence: [src/partials/header.html:1-2](/C:/Users/KPKro/MY%20FILES/codex-playground/pr-01-voltgarage/src/partials/header.html#L1), [css/partials/base.css:81-145](/C:/Users/KPKro/MY%20FILES/codex-playground/pr-01-voltgarage/css/partials/base.css#L81), [js/ui/header.js](/C:/Users/KPKro/MY%20FILES/codex-playground/pr-01-voltgarage/js/ui/header.js), [js/ui/project-modal.js](/C:/Users/KPKro/MY%20FILES/codex-playground/pr-01-voltgarage/js/ui/project-modal.js).
+- Performance decisions are evidence-based: responsive `picture` usage, explicit image dimensions, `font-display: swap`, theme preload before CSS, and a conservative service worker strategy are all implemented. Evidence: [index.html:47-78](/C:/Users/KPKro/MY%20FILES/codex-playground/pr-01-voltgarage/index.html#L47), [js/features/products.js:25-55](/C:/Users/KPKro/MY%20FILES/codex-playground/pr-01-voltgarage/js/features/products.js#L25), [sw.js:1-120](/C:/Users/KPKro/MY%20FILES/codex-playground/pr-01-voltgarage/sw.js#L1).
+- SEO basics are in place across the source tree: canonical tags, OG/Twitter metadata, homepage JSON-LD, breadcrumb JSON-LD injection, robots, sitemap, and OG assets all exist. Evidence: [index.html:13-114](/C:/Users/KPKro/MY%20FILES/codex-playground/pr-01-voltgarage/index.html#L13), [robots.txt:1-3](/C:/Users/KPKro/MY%20FILES/codex-playground/pr-01-voltgarage/robots.txt#L1), [assets/images/og/og-1200x630.jpg](/C:/Users/KPKro/MY%20FILES/codex-playground/pr-01-voltgarage/assets/images/og/og-1200x630.jpg).
 
 ## 4. P1 — Improvements worth doing next
 
 
-- **Strategia cache dla CSS i JS jest agresywna względem niezhashowanych plików.** `_headers` ustawia `Cache-Control: public, max-age=31536000, immutable` dla `/css/*` i `/js/*`, podczas gdy HTML odwołuje się bezpośrednio do `/css/main.css` i `/js/main.js`, bez wersjonowania nazw plików. To zwiększa ryzyko serwowania przestarzałych assetów po wdrożeniu. Evidence: `_headers:14-18`, `index.html:86`, `index.html:590`, `404.html:54`, `offline.html:54`.
+2. PWA shortcuts in the manifest also point to stale route names, so installed-app shortcuts can resolve to missing pages.
+Evidence: [site.webmanifest:23-59](/C:/Users/KPKro/MY%20FILES/codex-playground/pr-01-voltgarage/site.webmanifest#L23). `Nowości` and `Promocje` shortcuts still use `/pages/nowosci.html` and `/pages/promocje.html`.
 
-- **Baseline bez JavaScript jest ograniczony dla kluczowych widoków katalogowych.** W sekcjach produktów użytkownik bez JS widzi tylko komunikat fallback zamiast realnej listy katalogowej lub statycznych rekomendacji. Evidence: `index.html:328-333`, `pages/shop.html:279-281`, `pages/product.html:217-227`, `js/features/products.js:129-160`, `js/features/products.js:225-301`.
+3. Product-page SEO remains largely runtime-dependent, which weakens crawlability and share metadata for specific products.
+Evidence: [pages/product.html:82-102](/C:/Users/KPKro/MY%20FILES/codex-playground/pr-01-voltgarage/pages/product.html#L82) renders only a generic shell, while [js/features/products.js:262-336](/C:/Users/KPKro/MY%20FILES/codex-playground/pr-01-voltgarage/js/features/products.js#L262) mutates canonical, title, meta description, and product JSON-LD after load based on `?id=`. This is workable for users, but weaker for robust product indexing.
 
-- **Współdzielony modal projektu jest ręcznie kopiowany przez wiele stron.** Ta sama struktura `project-modal` występuje w `index.html`, `404.html`, `offline.html` i wszystkich głównych podstronach, co podnosi koszt utrzymania i ryzyko niespójnych zmian treści. Evidence: `index.html:558-579`, `404.html:364-385`, `offline.html:363-384`, `pages/shop.html:434-455`, `pages/contact.html:504-525`.
+4. The checkout flow is still effectively a demo interaction, not a production-ready submission path, and its no-JS fallback is weak for a page framed as order finalization.
+Evidence: [pages/checkout.html:104-196](/C:/Users/KPKro/MY%20FILES/codex-playground/pr-01-voltgarage/pages/checkout.html#L104) defines a checkout form with no `action`, no `method`, and no server target. [js/main.js:119-149](/C:/Users/KPKro/MY%20FILES/codex-playground/pr-01-voltgarage/js/main.js#L119) intercepts submission and only shows a local success message. That is acceptable for a demo, but it is still a production-readiness gap for this specific page intent.
+
+5. The `qa:html` script has drifted from the current file naming, which reduces confidence that the documented QA command reflects the actual page inventory.
+Evidence: [package.json:21-23](/C:/Users/KPKro/MY%20FILES/codex-playground/pr-01-voltgarage/package.json#L21) still references `pages/polityka-prywatnosci.html` and `pages/regulamin.html`, which are not the current source filenames.
 
 ## 5. P2 — Minor refinements
-- **JSON-LD `SearchAction` wskazuje ścieżkę `/search`, której nie wykryto jako rzeczywistego widoku repo.** Nie powoduje to awarii runtime, ale warto doprecyzować zgodność schema z realnym interfejsem. Evidence: `pages/contact.html:82-93`, `404.html:72-82`, `offline.html:72-82`.
-- **W repo występują `console.log`, ale tylko w skryptach narzędziowych i walidacyjnych.** To nie jest problem runtime aplikacji, jednak w ścisłej ocenie porządku repo warto rozróżnić logi narzędzi od produkcyjnego front-endu. Evidence: `scripts/validate-jsonld.js:190`, `scripts/validate-internal-links.js:152`, `scripts/qa-smoke-lighthouse.js:169-179`, `tools/image-optimizer/optimize-images.mjs:75`, `tools/image-optimizer/optimize-images.mjs:274-283`.
-- **Logo w `404.html` nie ma jawnych atrybutów `width` i `height`, podczas gdy większość głównych stron je ustawia.** To drobna niespójność mogąca zwiększać ryzyko CLS na tej jednej stronie. Evidence: `404.html:90-92`, porównawczo `index.html:120-128`.
+- The theme toggle exposes raw state tokens as its accessible name (`auto`, then `light` / `dark`) instead of a clearer Polish action-oriented label. Evidence: [src/partials/header.html:82-90](/C:/Users/KPKro/MY%20FILES/codex-playground/pr-01-voltgarage/src/partials/header.html#L82), [js/ui/theme.js:14-19](/C:/Users/KPKro/MY%20FILES/codex-playground/pr-01-voltgarage/js/ui/theme.js#L14).
+- A dead page selector remains in CSS: `.page--news .products` exists without a corresponding source page. Evidence: [css/partials/pages.css:99-103](/C:/Users/KPKro/MY%20FILES/codex-playground/pr-01-voltgarage/css/partials/pages.css#L99).
+- Temporary implementation comments (`<!-- CHANGED: img -> picture -->`) are still embedded in HTML strings rendered by JS. Evidence: [js/features/products.js:57-80](/C:/Users/KPKro/MY%20FILES/codex-playground/pr-01-voltgarage/js/features/products.js#L57).
+- `console.log` is absent from the runtime front-end, but still present in tooling scripts. This is not a shipping blocker, just a repository-hygiene note. Evidence: [scripts/validate-internal-links.js:154](/C:/Users/KPKro/MY%20FILES/codex-playground/pr-01-voltgarage/scripts/validate-internal-links.js#L154), [scripts/validate-jsonld.js:206-208](/C:/Users/KPKro/MY%20FILES/codex-playground/pr-01-voltgarage/scripts/validate-jsonld.js#L206).
+- Contrast compliance cannot be verified conclusively from static source alone; token definitions are present, but computed foreground/background combinations were not measured in a rendered browser.
 
 ## 6. Future enhancements
-- Dodać CI uruchamiające `npm run qa`, `npm run validate:jsonld` i opcjonalnie `npm run qa:smoke:enforce` przy każdym PR.
-- Wersjonować pliki CSS i JS albo złagodzić długie cache `immutable` dla niehashowanych assetów.
-- Rozszerzyć statyczny fallback katalogu, aby `shop`, `featured` i `related` były bardziej użyteczne bez JavaScript.
-- Ograniczyć ręczną duplikację współdzielonych bloków HTML przez prosty proces składania partiali lub templating build step.
-- Zaostrzyć CSP tak, by jawnie dopuszczać tylko potrzebne zewnętrzne źródła, zamiast polegać na szerokich wyjątkach lub fallbackach.
+1. Generate product-specific static routes or pre-rendered variants so each product has stable HTML metadata, canonical, and JSON-LD without relying on runtime mutation.
+2. Introduce one canonical route inventory source and derive `sitemap.xml`, `site.webmanifest`, and QA page lists from it to prevent filename drift.
+3. Either wire the checkout form to a real submission target or label it more explicitly as a demo-only flow at page level.
+4. Add automated consistency checks for manifest shortcuts, sitemap URLs, and `package.json` QA targets.
+5. Extend operational docs with a small release checklist covering build, QA, sitemap/manifest review, and dist verification.
 
 ## 7. Compliance checklist
-- **Headings valid:** PASS. Przejrzane strony utrzymują jednego `h1` na widok oraz dalsze sekcje `h2`/`h3` zgodne z układem treści. Evidence: `index.html:249-333`, `pages/contact.html:234-274`, `pages/regulamin.html:234-327`.
-- **No broken links excluding intentional minification strategy:** PASS. `node scripts/validate-internal-links.js` zakończył się wynikiem: `Internal link validation passed for 14 HTML files.` Evidence: `package.json:38`, `scripts/validate-internal-links.js:152`.
-- **No console.log:** FAIL. `console.log` nie występuje w głównym front-endzie, ale jest obecny w skryptach repo, więc przy ścisłej ocenie repo warunek nie jest spełniony. Evidence: `scripts/validate-jsonld.js:190`, `scripts/validate-internal-links.js:152`, `scripts/qa-smoke-lighthouse.js:169-179`, `tools/image-optimizer/optimize-images.mjs:75`, `tools/image-optimizer/optimize-images.mjs:274-283`.
-- **Aria attributes valid:** PASS statycznie. Kod pokazuje poprawne użycie `aria-current`, `aria-expanded`, `aria-modal`, `aria-describedby` i `aria-invalid` w kluczowych interakcjach. Evidence: `js/ui/header.js:33-49`, `js/ui/header.js:75-170`, `js/main.js:77-105`, `index.html:561-579`.
-- **Images have width/height:** FAIL. Nie wszystkie obrazy w repo mają jawne atrybuty wymiarów, co widać na przykładzie logo w `404.html`. Evidence: `404.html:90-92`.
-- **No-JS baseline usable:** FAIL. Główne widoki produktowe pokazują tylko komunikaty fallback, bez pełnego katalogu lub statycznych odpowiedników treści. Evidence: `index.html:328-333`, `pages/shop.html:279-281`, `pages/product.html:217-227`.
-- **Sitemap present if expected:** PASS. `sitemap.xml` istnieje i zawiera główne adresy URL projektu. Evidence: `sitemap.xml:1-63`.
-- **Robots present:** PASS. `robots.txt` jest obecny i wskazuje sitemapę. Evidence: `robots.txt:1-4`.
-- **OG image exists:** PASS. Repo zawiera plik wskazywany w meta OG/Twitter. Evidence: `index.html:25-40`, `assets/images/og/og-1200x630.jpg`.
-- **JSON-LD valid:** PASS. `node scripts/validate-jsonld.js` zakończył się powodzeniem dla 14 plików HTML. Evidence: `package.json:37`, `scripts/validate-jsonld.js:190`.
+- `headings valid`: PASS. `npm run qa:html` completed successfully and sampled page structure uses valid `h1`/`h2` progression.
+- `no broken links excluding intentional minification strategy`: FAIL. Internal HTML href validation passes, but public metadata still advertises stale URLs in [sitemap.xml:14-25](/C:/Users/KPKro/MY%20FILES/codex-playground/pr-01-voltgarage/sitemap.xml#L14) and [site.webmanifest:37-52](/C:/Users/KPKro/MY%20FILES/codex-playground/pr-01-voltgarage/site.webmanifest#L37).
+- `no console.log`: FAIL. Not in runtime UI code, but present in tooling scripts such as [scripts/validate-internal-links.js:154](/C:/Users/KPKro/MY%20FILES/codex-playground/pr-01-voltgarage/scripts/validate-internal-links.js#L154).
+- `aria attributes valid`: PASS. `npm run qa:html` completed successfully after the latest markup fixes.
+- `images have width/height`: PASS. Static source scan found no HTML `<img>` without dimensions, and dynamic product templates include explicit `width`/`height`. Evidence: [js/features/products.js:29-34](/C:/Users/KPKro/MY%20FILES/codex-playground/pr-01-voltgarage/js/features/products.js#L29), [js/features/products.js:48-53](/C:/Users/KPKro/MY%20FILES/codex-playground/pr-01-voltgarage/js/features/products.js#L48).
+- `no-JS baseline usable`: FAIL. Core navigation and content remain usable, but checkout completion depends on JS interception and has no real form target. Evidence: [pages/checkout.html:104-196](/C:/Users/KPKro/MY%20FILES/codex-playground/pr-01-voltgarage/pages/checkout.html#L104), [js/main.js:119-149](/C:/Users/KPKro/MY%20FILES/codex-playground/pr-01-voltgarage/js/main.js#L119).
+- `sitemap present if expected`: PASS. Present at [sitemap.xml](/C:/Users/KPKro/MY%20FILES/codex-playground/pr-01-voltgarage/sitemap.xml).
+- `robots present`: PASS. Present at [robots.txt](/C:/Users/KPKro/MY%20FILES/codex-playground/pr-01-voltgarage/robots.txt).
+- `OG image exists`: PASS. File exists at [assets/images/og/og-1200x630.jpg](/C:/Users/KPKro/MY%20FILES/codex-playground/pr-01-voltgarage/assets/images/og/og-1200x630.jpg).
+- `JSON-LD valid`: PASS. `npm run validate:jsonld` completed successfully.
 
 ## 8. Architecture score (0–10)
-**Overall: 7.9 / 10**
+**8.1 / 10**
 
-- **BEM consistency: 8.2/10**
-  Nazewnictwo komponentów i stanów jest w większości spójne (`project-modal__panel`, `card--skeleton`, `page-hero--contact`), choć duplikacja markupu obniża ergonomię zmian. Evidence: `css/partials/components.css:950-1031`, `js/features/products.js:91-99`.
-- **Token usage: 8.9/10**
-  System tokenów obejmuje fonty, skale typografii, spacing, radius i shadow, a motywy są oparte o custom properties. Evidence: `css/partials/themes.css:45-80`.
-- **Accessibility: 8.1/10**
-  Silne podstawy: skip link, focus-visible, keyboard nav, focus trap, aria feedback w formularzach, reduced motion. Punktację obniża częściowy baseline bez JS dla katalogu. Evidence: `css/partials/base.css:62-126`, `js/ui/header.js:75-170`, `js/ui/project-modal.js:23-43`, `js/main.js:27-155`.
-- **Performance: 7.6/10**
-  Dobre praktyki obrazów i fontów są obecne, ale `@import` w CSS i długie cache dla niezhashowanych assetów tworzą pole do poprawy. Evidence: `js/features/products.js:19-29`, `css/partials/themes.css:2-42`, `css/main.css:2-5`, `_headers:14-18`.
-- **Maintainability: 6.8/10**
-  Struktura modułów jest czytelna, lecz ręczna duplikacja współdzielonych bloków i niepełne pokrycie głównego QA utrudniają bezpieczne skalowanie zmian. Evidence: `package.json:30-38`, `index.html:558-579`, `pages/contact.html:504-525`.
+- `BEM consistency`: 8.0/10
+  Naming is broadly consistent and readable across layout/components/pages, with only a few leftover orphan selectors and implementation comments.
+- `token usage`: 8.0/10
+  The token system is real and widespread across base/layout/components/themes, not ad hoc.
+- `accessibility`: 7.8/10
+  Strong baseline with skip links, focus styling, keyboard handling, modal trapping, and reduced motion. Remaining gaps are mostly around control naming clarity and the checkout no-JS path.
+- `performance`: 8.4/10
+  Responsive images, explicit dimensions, font strategy, theme preload, minified dist assets, and a conservative service worker all help.
+- `maintainability`: 8.2/10
+  Build and QA tooling are solid, but route inventory drift across metadata and scripts should be cleaned up.
 
 ## 9. Senior rating (1–10)
-**7.8 / 10**
+**8 / 10**
 
-Technicznie to repo jest blisko solidnego poziomu produkcyjnego: ma realny podział odpowiedzialności, QA, PWA i sensowną dbałość o dostępność. Ocena spada przez jeden potwierdzony problem wdrożeniowy P0 oraz kilka wyraźnych luk jakościowych w no-JS resilience, cache strategy i utrzymywalności współdzielonego HTML.
+This reads as a mature static front-end project with real production discipline: clear module boundaries, a real deployment pipeline, useful QA coverage, and visible attention to accessibility and performance. The main reason it does not score higher is not code quality in the core UI, but consistency drift between source routes and public metadata, plus runtime-heavy product SEO and demo-style checkout behavior that would need tightening for a fully production-ready storefront.

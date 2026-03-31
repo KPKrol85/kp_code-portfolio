@@ -3,7 +3,8 @@ export const WEBSITE_ID = 'https://e-commerce-pr01-voltgarage.netlify.app/#websi
 
 export const toAbsolute = (href) => new URL(href, window.location.origin).href;
 
-const getCanonicalHref = () => document.querySelector('link[rel="canonical"]')?.getAttribute('href') || '';
+const getCanonicalHref = () =>
+  document.querySelector('link[rel="canonical"]')?.getAttribute('href') || '';
 
 const stripHash = (href) => {
   const url = new URL(href, window.location.origin);
@@ -73,7 +74,11 @@ export const injectBreadcrumbJsonLd = (selector = '.breadcrumbs') => {
   });
 };
 
-export const injectItemListJsonLd = ({ name, items, pageUrl = resolvePageUrl({ preferCanonical: false }) }) => {
+export const injectItemListJsonLd = ({
+  name,
+  items,
+  pageUrl = resolvePageUrl({ preferCanonical: false }),
+}) => {
   if (!Array.isArray(items) || !items.length) {
     upsertJsonLd('itemlist', null);
     return;

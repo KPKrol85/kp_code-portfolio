@@ -55,19 +55,16 @@
       (function () {
         var storageKey = 'vg_theme';
         var theme = null;
-
         try {
           theme = localStorage.getItem(storageKey);
         } catch (e) {
           theme = null;
         }
-
         if (theme !== 'light' && theme !== 'dark') {
           var prefersDark =
             window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
           theme = prefersDark ? 'dark' : 'light';
         }
-
         document.documentElement.dataset.theme = theme;
       })();
     </script>
@@ -167,7 +164,6 @@
             <a class="btn btn-accent" href="shop.html">Zobacz wszystkie produkty</a>
           </div>
         </div>
-
       </section>
     </main>
 

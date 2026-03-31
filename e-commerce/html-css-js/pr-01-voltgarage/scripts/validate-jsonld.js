@@ -4,7 +4,8 @@ const path = require('node:path');
 const ROOT_DIR = process.cwd();
 const HTML_EXT = '.html';
 const SKIP_DIRS = new Set(['node_modules', '.git']);
-const JSON_LD_REGEX = /<script\b[^>]*type=["']application\/ld\+json["'][^>]*>([\s\S]*?)<\/script>/gi;
+const JSON_LD_REGEX =
+  /<script\b[^>]*type=["']application\/ld\+json["'][^>]*>([\s\S]*?)<\/script>/gi;
 const PRODUCT_SCHEMA_SOURCE = 'js/features/products.js';
 const PRODUCT_SCHEMA_REGEX = /['"]@type['"]\s*:\s*['"]Product['"]/;
 const SEARCH_ACTION_REGEX = /['"]@type['"]\s*:\s*['"]SearchAction['"]/;
@@ -20,7 +21,14 @@ const TEMPLATE_RULES = [
   {
     key: 'product',
     paths: ['pages/product.html'],
-    disallowedTypes: ['Product', 'BreadcrumbList', 'ItemList', 'OnlineStore', 'WebSite', 'Organization'],
+    disallowedTypes: [
+      'Product',
+      'BreadcrumbList',
+      'ItemList',
+      'OnlineStore',
+      'WebSite',
+      'Organization',
+    ],
     requireRuntimeProductSchema: true,
   },
 ];
@@ -147,7 +155,7 @@ async function validateRuntimeProductSchema() {
 
   if (!PRODUCT_SCHEMA_REGEX.test(scriptContent)) {
     errors.push(
-      `pages/product.html: template "product" expects runtime Product JSON-LD in ${PRODUCT_SCHEMA_SOURCE}, but "@type: Product" was not found.`,
+      `pages/product.html: template "product" expects runtime Product JSON-LD in ${PRODUCT_SCHEMA_SOURCE}, but "@type: Product" was not found.`
     );
   }
 

@@ -802,8 +802,6 @@
   color: var(--color-ink);
 }
 
-
-
 /* Project Modal */
 
 .project-modal {
@@ -988,11 +986,8 @@
 .table-like {
   display: grid;
   gap: var(--space-03);
-  width: 100%;
   justify-self: center;
   text-align: center;
-}
-.table-like {
   width: min(100%, 512px);
 }
 

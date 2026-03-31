@@ -49,19 +49,16 @@
       (function () {
         var storageKey = 'vg_theme';
         var theme = null;
-
         try {
           theme = localStorage.getItem(storageKey);
         } catch (e) {
           theme = null;
         }
-
         if (theme !== 'light' && theme !== 'dark') {
           var prefersDark =
             window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
           theme = prefersDark ? 'dark' : 'light';
         }
-
         document.documentElement.dataset.theme = theme;
       })();
     </script>
@@ -276,7 +273,7 @@
             <p>Dostęp do premier, dropów i limitowanych akcesoriów.</p>
           </div>
           <form class="footer-form" aria-label="Biuletyn">
-            <label class="promo-input" for="newsletter-email">
+            <label class="promo-input">
               <span>E-mail</span>
               <input id="newsletter-email" type="email" placeholder="kontakt@kp-code.pl" required />
             </label>

@@ -3,7 +3,6 @@ const path = require('node:path');
 
 const ROOT_DIR = process.cwd();
 const DIST_DIR = path.join(ROOT_DIR, 'dist');
-const TEMPLATE_ROOT = path.join(ROOT_DIR, 'src');
 const REQUIRED_FILES = [
   'index.html',
   '404.html',
@@ -133,7 +132,11 @@ const resolveIncludes = async (content, sourceDir, context) => {
       ? path.resolve(ROOT_DIR, includeTarget)
       : path.resolve(sourceDir, includeTarget);
     const includeContent = await fs.readFile(absoluteIncludePath, 'utf8');
-    const resolvedInclude = await resolveIncludes(includeContent, path.dirname(absoluteIncludePath), context);
+    const resolvedInclude = await resolveIncludes(
+      includeContent,
+      path.dirname(absoluteIncludePath),
+      context
+    );
     rendered = rendered.replace(match[0], resolvedInclude);
   }
 

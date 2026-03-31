@@ -1,173 +1,193 @@
-# VOLT GARAGE
+# Volt Garage
 
-## Dokumentacja projektu (PL)
+## PL
 
-### Przegląd
-Volt Garage to wielostronicowy front-end sklepu internetowego oparty na statycznych plikach HTML, modularnym JavaScripcie i własnej strukturze CSS. Repozytorium zawiera warstwę PWA z `site.webmanifest`, service workerem, stroną offline oraz zestawem skryptów QA zdefiniowanych w `package.json`.
+### Przegląd projektu
+Volt Garage to statyczny, wielostronicowy front-end e-commerce o charakterze demonstracyjnym. Repozytorium zawiera źródła HTML/CSS/Vanilla JS, lokalny katalog produktów zasilany z JSON, prosty koszyk oparty o `localStorage`, stronę kontaktową z atrybutami Netlify Forms oraz pipeline budujący gotowy pakiet `dist/`.
 
 ### Kluczowe funkcje
-- Wielostronicowa struktura z widokami: strona główna, sklep, produkt, koszyk, checkout, kontakt, strony prawne, `404.html` i `offline.html`.
-- Dynamiczne renderowanie list produktów, nowości, promocji i rekomendacji z `data/products.json`.
-- Front-endowy koszyk z podsumowaniem zamówienia i obsługą ilości produktów.
-- Formularz kontaktowy i formularz checkout z walidacją po stronie klienta.
-- Przełącznik motywu z zapisem preferencji w `localStorage`.
-- Modal informacyjny projektu z akceptacją regulaminu i focus trapem.
-- Funkcje PWA: manifest, rejestracja service workera, cache offline, prompt instalacji i obsługa aktualizacji.
-- SEO i dane strukturalne: canonical, Open Graph, Twitter cards, JSON-LD, `robots.txt`, `sitemap.xml`.
+- Wielostronicowa struktura serwisu: strona główna, sklep, produkt, kolekcje, promocje, kontakt, checkout, koszyk, strony prawne, statusy `404` i `offline`.
+- Dynamiczne renderowanie kart produktów i szczegółów produktu z danych w [data/products.json](/C:/Users/KPKro/MY%20FILES/codex-playground/pr-01-voltgarage/data/products.json).
+- Filtrowanie, wyszukiwanie i sortowanie katalogu na stronie sklepu.
+- Koszyk przechowywany lokalnie w przeglądarce.
+- Przełączanie motywu `light` / `dark` z preloadem motywu przed załadowaniem CSS.
+- PWA baseline: `site.webmanifest`, Service Worker, strona offline, prompt instalacji i komunikaty o aktualizacji.
+- Wstrzykiwanie JSON-LD dla breadcrumbs, list produktów i strony produktu.
+- Składanie HTML z partiali `src/partials/*` podczas budowy `dist/`.
 
-### Tech stack
+### Stack technologiczny
 - HTML5
-- CSS z podziałem na partiale: `base`, `layout`, `components`, `themes`
-- Vanilla JavaScript ES modules
-- Node.js tooling: PostCSS, cssnano, Terser, ESLint, Stylelint, Prettier, html-validate
-- Netlify-oriented deployment files: `_headers`, `_redirects`
+- CSS z podziałem na partiale i tokeny projektowe
+- Vanilla JavaScript (ES modules)
+- Node.js 18+
+- PostCSS + `postcss-import` + `cssnano`
+- esbuild
+- html-validate, ESLint, Stylelint, Prettier
 
 ### Struktura projektu
-- `index.html`, `404.html`, `offline.html`
-- `pages/*.html`
-- `css/main.css` i `css/partials/*.css`
-- `js/main.js` oraz `js/core`, `js/ui`, `js/features`, `js/services`
-- `data/products.json`
-- `assets/`
-- `site.webmanifest`, `sw.js`, `_headers`, `_redirects`, `robots.txt`, `sitemap.xml`
-- `scripts/` i `tools/` dla walidacji oraz optymalizacji obrazów
+- [index.html](/C:/Users/KPKro/MY%20FILES/codex-playground/pr-01-voltgarage/index.html), [404.html](/C:/Users/KPKro/MY%20FILES/codex-playground/pr-01-voltgarage/404.html), [offline.html](/C:/Users/KPKro/MY%20FILES/codex-playground/pr-01-voltgarage/offline.html), [thank-you.html](/C:/Users/KPKro/MY%20FILES/codex-playground/pr-01-voltgarage/thank-you.html): główne entry pointy.
+- [pages/](/C:/Users/KPKro/MY%20FILES/codex-playground/pr-01-voltgarage/pages): podstrony funkcjonalne i prawne.
+- [src/partials/](/C:/Users/KPKro/MY%20FILES/codex-playground/pr-01-voltgarage/src/partials): partiale nagłówka i stopki włączane do buildu `dist/`.
+- [css/main.css](/C:/Users/KPKro/MY%20FILES/codex-playground/pr-01-voltgarage/css/main.css) + [css/partials/](/C:/Users/KPKro/MY%20FILES/codex-playground/pr-01-voltgarage/css/partials): warstwa stylów.
+- [js/main.js](/C:/Users/KPKro/MY%20FILES/codex-playground/pr-01-voltgarage/js/main.js) + [js/ui/](/C:/Users/KPKro/MY%20FILES/codex-playground/pr-01-voltgarage/js/ui) + [js/features/](/C:/Users/KPKro/MY%20FILES/codex-playground/pr-01-voltgarage/js/features): bootstrap aplikacji, moduły UI i funkcje domenowe.
+- [data/products.json](/C:/Users/KPKro/MY%20FILES/codex-playground/pr-01-voltgarage/data/products.json): dane katalogowe.
+- [scripts/build-dist.js](/C:/Users/KPKro/MY%20FILES/codex-playground/pr-01-voltgarage/scripts/build-dist.js): składanie `dist/`.
 
-### Setup i uruchomienie
-Wymagania: Node.js i npm.
-
+### Instalacja i uruchomienie
 ```bash
 npm install
+```
+
+Tryb lokalnego podglądu gotowego buildu:
+```bash
+npm run build
+npm run preview
+```
+
+Szybki pakiet QA:
+```bash
 npm run qa
 ```
 
-Repozytorium nie definiuje własnego skryptu dev-servera. Do lokalnego podglądu trzeba użyć dowolnego statycznego serwera HTTP.
+Przydatne pojedyncze komendy:
+```bash
+npm run qa:html
+npm run qa:js
+npm run qa:css
+npm run validate:jsonld
+npm run qa:links
+```
 
-Przydatne komendy:
-- `npm run build` minifikuje `css/main.css` i `js/main.js`.
-- `npm run qa:links` sprawdza linki wewnętrzne pomiędzy stronami HTML.
-- `npm run validate:jsonld` sprawdza bloki JSON-LD.
-- `npm run qa:smoke` uruchamia smoke test Lighthouse.
-
-### Build i wdrożenie
-- Projekt ma pliki wdrożeniowe pod hosting statyczny z konfiguracją Netlify.
-- `site.webmanifest` ustawia `start_url`, `scope`, skróty i screenshoty aplikacji.
-- `js/main.js` rejestruje `/sw.js`, a `sw.js` obsługuje cache wersjonowany i fallback offline.
-- `_headers` definiuje nagłówki bezpieczeństwa oraz długie cache dla `/assets/*`, `/css/*` i `/js/*`.
+### Notatki build / deployment
+- `npm run build:css` tworzy [css/main.min.css](/C:/Users/KPKro/MY%20FILES/codex-playground/pr-01-voltgarage/css/main.min.css).
+- `npm run build:js` tworzy [js/main.min.js](/C:/Users/KPKro/MY%20FILES/codex-playground/pr-01-voltgarage/js/main.min.js).
+- `npm run build:dist` kopiuje wymagane zasoby, rozwija partiale HTML i podmienia odwołania z wersji źródłowych na `.min.*` w `dist/`.
+- Konfiguracja hostingowa jest przygotowana pod statyczny deployment z [\_headers](/C:/Users/KPKro/MY%20FILES/codex-playground/pr-01-voltgarage/_headers) i [\_redirects](/C:/Users/KPKro/MY%20FILES/codex-playground/pr-01-voltgarage/_redirects).
 
 ### Dostępność
-- Strony mają skip link do głównej treści.
-- Nawigacja ustawia `aria-current`, obsługuje `aria-expanded` i sterowanie klawiaturą dla dropdownów.
-- Modal projektu ma `role="dialog"`, `aria-modal="true"` i focus trap.
-- Formularze ustawiają `aria-invalid`, `aria-describedby` i komunikaty `aria-live`.
-- CSS i JS uwzględniają `prefers-reduced-motion`.
-- Baseline bez JavaScript jest częściowy: kluczowe sekcje katalogu pokazują fallback tekstowy, ale nie pełną listę produktów.
+- Skip link do `#main` jest obecny w partialu nagłówka.
+- Styl `:focus-visible` i tryb klawiaturowy są zaimplementowane w CSS/JS.
+- Nawigacja mobilna i dropdowny obsługują `aria-expanded`, `aria-current` i zamykanie klawiszem `Escape`.
+- Animacje respektują `prefers-reduced-motion`.
+- Formularze mają walidację kliencką z komunikatami ARIA.
+- No-JS baseline jest częściowo zachowany: treści statyczne, fallbacki list produktów i strona kontaktowa pozostają używalne.
 
 ### SEO
-- Główne strony zawierają `meta description`, canonical, Open Graph i Twitter cards.
-- Repozytorium zawiera `robots.txt` i `sitemap.xml`.
-- Strony mają bloki JSON-LD dla `Organization` i `WebSite`, a nawigacja breadcrumbów jest rozszerzana w JS o dane strukturalne.
-- W repo istnieje asset OG: `assets/images/og/og-1200x630.jpg`.
+- Każda główna podstrona ma `title`, `meta description`, canonical i Open Graph.
+- Strona główna zawiera statyczne JSON-LD `OnlineStore` i `WebSite`.
+- Breadcrumbs, `ItemList` i `Product` JSON-LD są uzupełniane przez JavaScript tam, gdzie to potrzebne.
+- Repozytorium zawiera [robots.txt](/C:/Users/KPKro/MY%20FILES/codex-playground/pr-01-voltgarage/robots.txt), [sitemap.xml](/C:/Users/KPKro/MY%20FILES/codex-playground/pr-01-voltgarage/sitemap.xml) i [humans.txt](/C:/Users/KPKro/MY%20FILES/codex-playground/pr-01-voltgarage/humans.txt).
 
 ### Wydajność
-- Produkty korzystają z `<picture>` z AVIF/WebP/JPG oraz `loading="lazy"` i `decoding="async"`.
-- Fonty lokalne `woff2` są deklarowane z `font-display: swap`.
-- Hero na stronie głównej używa preloaded obrazu AVIF.
-- CSS entry jest zbudowany z `@import`, co wydłuża łańcuch ładowania względem jednego zbundlowanego arkusza.
-- Długie cache dla `/css/*` i `/js/*` wymagają ostrożności, bo HTML odwołuje się do niezhashowanych nazw plików.
+- Obrazy produktów i hero korzystają z `picture`, AVIF/WebP, `loading`, `decoding` i zadanych wymiarów.
+- Fonty mają `font-display: swap`.
+- Motyw jest ustalany przed załadowaniem CSS, co ogranicza flash motywu.
+- Service Worker dodaje cache dla HTML, assetów i offline fallback.
+- Dist używa zminifikowanych bundle’i CSS/JS.
 
 ### Roadmap
-- Naprawić konflikt CSP z osadzoną mapą Google na stronie kontaktu.
-- Rozszerzyć baseline bez JS dla list i widoków produktów.
-- Włączyć walidację `404.html`, `offline.html` i JSON-LD do głównego skryptu `npm run qa`.
-- Ograniczyć ręczną duplikację współdzielonego markupu między stronami.
-- Wprowadzić wersjonowanie assetów lub zmianę polityki cache dla CSS i JS.
+- Ujednolicić publiczne mapowanie tras między HTML, `sitemap.xml`, `site.webmanifest` i skryptami QA.
+- Rozważyć statyczne strony produktowe lub pre-render dla SEO produktowego.
+- Doprecyzować produkcyjne zachowanie checkoutu albo wyraźniej oznaczyć go jako flow demonstracyjny.
+- Dodać spójne testy regresyjne dla manifestu, sitemap i route inventory.
+- Rozszerzyć dokumentację operacyjną wokół build/deploy/QA.
 
 ### Licencja
-Plik licencji nie został wykryty w repozytorium.
+Brak pliku `LICENSE` w repozytorium.
 
 ---
 
-## Project documentation (EN)
+## EN
 
-### Overview
-Volt Garage is a multi-page storefront front end built with static HTML, modular JavaScript, and a custom CSS structure. The repository includes a PWA layer with `site.webmanifest`, a service worker, an offline page, and QA scripts defined in `package.json`.
+### Project overview
+Volt Garage is a static multi-page e-commerce front-end with a demonstrational character. The repository contains HTML/CSS/Vanilla JS sources, a local JSON-backed product catalog, a `localStorage` cart, a contact page prepared for Netlify Forms, and a build pipeline that assembles a production-ready `dist/` package.
 
 ### Key features
-- Multi-page structure covering home, shop, product, cart, checkout, contact, legal pages, `404.html`, and `offline.html`.
-- Dynamic product rendering, new arrivals, sale listings, and related-product sections backed by `data/products.json`.
-- Client-side cart with checkout summary and quantity controls.
-- Contact and checkout forms with client-side validation.
-- Theme switcher with persisted preference in `localStorage`.
-- Project information modal with terms acceptance and focus trap.
-- PWA support: manifest, service worker registration, offline caching, install prompt, and update prompt flow.
-- SEO and structured data: canonical URLs, Open Graph, Twitter cards, JSON-LD, `robots.txt`, and `sitemap.xml`.
+- Multi-page site structure: homepage, shop, product, collections, promotions, contact, checkout, cart, legal pages, `404`, and `offline`.
+- Dynamic product cards and product detail rendering from [data/products.json](/C:/Users/KPKro/MY%20FILES/codex-playground/pr-01-voltgarage/data/products.json).
+- Catalog filtering, search, and sorting on the shop page.
+- Browser-local cart storage.
+- `light` / `dark` theme switching with a pre-CSS theme preload snippet.
+- PWA baseline: `site.webmanifest`, Service Worker, offline page, install CTA, and update notifications.
+- JSON-LD injection for breadcrumbs, item lists, and product pages.
+- HTML partial assembly from `src/partials/*` during `dist/` packaging.
 
 ### Tech stack
 - HTML5
-- CSS split into partials: `base`, `layout`, `components`, `themes`
-- Vanilla JavaScript ES modules
-- Node.js tooling: PostCSS, cssnano, Terser, ESLint, Stylelint, Prettier, html-validate
-- Netlify-oriented deployment files: `_headers`, `_redirects`
+- CSS with partials and design tokens
+- Vanilla JavaScript (ES modules)
+- Node.js 18+
+- PostCSS + `postcss-import` + `cssnano`
+- esbuild
+- html-validate, ESLint, Stylelint, Prettier
 
-### Project structure
-- `index.html`, `404.html`, `offline.html`
-- `pages/*.html`
-- `css/main.css` and `css/partials/*.css`
-- `js/main.js` plus `js/core`, `js/ui`, `js/features`, `js/services`
-- `data/products.json`
-- `assets/`
-- `site.webmanifest`, `sw.js`, `_headers`, `_redirects`, `robots.txt`, `sitemap.xml`
-- `scripts/` and `tools/` for validation and image optimization
+### Structure overview
+- [index.html](/C:/Users/KPKro/MY%20FILES/codex-playground/pr-01-voltgarage/index.html), [404.html](/C:/Users/KPKro/MY%20FILES/codex-playground/pr-01-voltgarage/404.html), [offline.html](/C:/Users/KPKro/MY%20FILES/codex-playground/pr-01-voltgarage/offline.html), [thank-you.html](/C:/Users/KPKro/MY%20FILES/codex-playground/pr-01-voltgarage/thank-you.html): primary entry points.
+- [pages/](/C:/Users/KPKro/MY%20FILES/codex-playground/pr-01-voltgarage/pages): feature and legal subpages.
+- [src/partials/](/C:/Users/KPKro/MY%20FILES/codex-playground/pr-01-voltgarage/src/partials): header/footer partials expanded during build.
+- [css/main.css](/C:/Users/KPKro/MY%20FILES/codex-playground/pr-01-voltgarage/css/main.css) + [css/partials/](/C:/Users/KPKro/MY%20FILES/codex-playground/pr-01-voltgarage/css/partials): styling layer.
+- [js/main.js](/C:/Users/KPKro/MY%20FILES/codex-playground/pr-01-voltgarage/js/main.js) + [js/ui/](/C:/Users/KPKro/MY%20FILES/codex-playground/pr-01-voltgarage/js/ui) + [js/features/](/C:/Users/KPKro/MY%20FILES/codex-playground/pr-01-voltgarage/js/features): app bootstrap, UI modules, and feature logic.
+- [data/products.json](/C:/Users/KPKro/MY%20FILES/codex-playground/pr-01-voltgarage/data/products.json): catalog data.
+- [scripts/build-dist.js](/C:/Users/KPKro/MY%20FILES/codex-playground/pr-01-voltgarage/scripts/build-dist.js): `dist/` assembly pipeline.
 
-### Setup and run
-Requirements: Node.js and npm.
-
+### Setup & run
 ```bash
 npm install
+```
+
+Preview the built package locally:
+```bash
+npm run build
+npm run preview
+```
+
+Run the main QA bundle:
+```bash
 npm run qa
 ```
 
-The repository does not define a dedicated dev-server script. Local preview requires any static HTTP server.
+Useful individual commands:
+```bash
+npm run qa:html
+npm run qa:js
+npm run qa:css
+npm run validate:jsonld
+npm run qa:links
+```
 
-Useful commands:
-- `npm run build` minifies `css/main.css` and `js/main.js`.
-- `npm run qa:links` validates internal HTML links.
-- `npm run validate:jsonld` validates JSON-LD blocks.
-- `npm run qa:smoke` runs the Lighthouse smoke script.
-
-### Build and deployment notes
-- The project ships deployment files for static hosting with Netlify-style configuration.
-- `site.webmanifest` defines the app scope, shortcuts, and screenshots.
-- `js/main.js` registers `/sw.js`, and `sw.js` manages versioned caches with an offline fallback.
-- `_headers` defines security headers and long-lived caching for `/assets/*`, `/css/*`, and `/js/*`.
+### Build / deployment notes
+- `npm run build:css` outputs [css/main.min.css](/C:/Users/KPKro/MY%20FILES/codex-playground/pr-01-voltgarage/css/main.min.css).
+- `npm run build:js` outputs [js/main.min.js](/C:/Users/KPKro/MY%20FILES/codex-playground/pr-01-voltgarage/js/main.min.js).
+- `npm run build:dist` copies required assets, expands HTML partials, and rewrites source asset references to minified bundles inside `dist/`.
+- Hosting headers and redirect rules are provided in [\_headers](/C:/Users/KPKro/MY%20FILES/codex-playground/pr-01-voltgarage/_headers) and [\_redirects](/C:/Users/KPKro/MY%20FILES/codex-playground/pr-01-voltgarage/_redirects).
 
 ### Accessibility notes
-- Pages include a skip link to the main content.
-- Navigation applies `aria-current`, maintains `aria-expanded`, and supports keyboard control for dropdown menus.
-- The project modal uses `role="dialog"`, `aria-modal="true"`, and a focus trap.
-- Forms manage `aria-invalid`, `aria-describedby`, and `aria-live` feedback.
-- CSS and JS both account for `prefers-reduced-motion`.
-- The no-JS baseline is partial: core catalog areas show fallback text instead of a complete product listing.
+- A skip link to `#main` is present in the header partial.
+- `:focus-visible` styling and keyboard mode handling are implemented.
+- Mobile navigation and dropdowns use `aria-expanded`, `aria-current`, and `Escape` handling.
+- Motion is reduced when `prefers-reduced-motion` is enabled.
+- Forms include client-side validation with ARIA status/error messaging.
+- The no-JS baseline is partially preserved: static content, product-list fallback messages, and the contact page remain usable.
 
 ### SEO notes
-- Main pages include `meta description`, canonical, Open Graph, and Twitter metadata.
-- The repository contains `robots.txt` and `sitemap.xml`.
-- JSON-LD blocks for `Organization` and `WebSite` are present, and breadcrumb structured data is injected by JavaScript.
-- The OG image asset exists at `assets/images/og/og-1200x630.jpg`.
+- Main pages include `title`, `meta description`, canonical, and Open Graph tags.
+- The homepage ships static `OnlineStore` and `WebSite` JSON-LD.
+- Breadcrumb, `ItemList`, and `Product` JSON-LD are injected by JavaScript where needed.
+- The repo includes [robots.txt](/C:/Users/KPKro/MY%20FILES/codex-playground/pr-01-voltgarage/robots.txt), [sitemap.xml](/C:/Users/KPKro/MY%20FILES/codex-playground/pr-01-voltgarage/sitemap.xml), and [humans.txt](/C:/Users/KPKro/MY%20FILES/codex-playground/pr-01-voltgarage/humans.txt).
 
 ### Performance notes
-- Product cards use `<picture>` with AVIF/WebP/JPG plus `loading="lazy"` and `decoding="async"`.
-- Local `woff2` fonts are declared with `font-display: swap`.
-- The homepage hero image is preloaded in AVIF format.
-- The CSS entry relies on `@import`, which creates a longer loading chain than a single bundled stylesheet.
-- Long-lived caching for `/css/*` and `/js/*` needs care because HTML points to unhashed filenames.
+- Hero and product images use `picture`, AVIF/WebP, `loading`, `decoding`, and explicit dimensions.
+- Fonts use `font-display: swap`.
+- Theme selection runs before CSS loads, reducing theme flash.
+- The Service Worker adds HTML, asset, and offline caching.
+- The production package references minified CSS/JS bundles.
 
 ### Roadmap
-- Fix the CSP conflict with the embedded Google Map on the contact page.
-- Improve the no-JS baseline for product-driven views.
-- Add `404.html`, `offline.html`, and JSON-LD validation to the main `npm run qa` path.
-- Reduce manual duplication of shared markup across pages.
-- Introduce asset versioning or adjust cache policy for CSS and JS.
+- Align public route inventory across HTML, `sitemap.xml`, `site.webmanifest`, and QA scripts.
+- Consider static product pages or pre-rendering for stronger product SEO.
+- Clarify or harden checkout behavior for a production use case.
+- Add regression checks for manifest, sitemap, and route consistency.
+- Expand operational documentation around build, deploy, and QA.
 
 ### License
-No license file was detected in the repository.
+No `LICENSE` file was detected in the repository.

@@ -179,7 +179,9 @@ function printResults(results) {
       const percent = toPercent(score);
       const status = isCategoryPassing(name, score) ? 'PASS' : 'WARN';
       const threshold = DEFAULT_THRESHOLDS[name];
-      console.log(`  - ${name}: ${percent ?? 'n/a'} (${status}, threshold ${Math.round(threshold * 100)})`);
+      console.log(
+        `  - ${name}: ${percent ?? 'n/a'} (${status}, threshold ${Math.round(threshold * 100)})`
+      );
     }
   }
 }
@@ -224,7 +226,8 @@ async function main() {
   const runner = await resolveLighthouseRunner();
 
   if (!runner) {
-    const message = 'Lighthouse CLI is not available. Install lighthouse or set SMOKE_LIGHTHOUSE_BIN.';
+    const message =
+      'Lighthouse CLI is not available. Install lighthouse or set SMOKE_LIGHTHOUSE_BIN.';
 
     if (ENFORCE) {
       throw new Error(message);

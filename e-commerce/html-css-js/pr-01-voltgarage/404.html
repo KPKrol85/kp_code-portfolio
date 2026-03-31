@@ -49,19 +49,16 @@
       (function () {
         var storageKey = 'vg_theme';
         var theme = null;
-
         try {
           theme = localStorage.getItem(storageKey);
         } catch (e) {
           theme = null;
         }
-
         if (theme !== 'light' && theme !== 'dark') {
           var prefersDark =
             window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
           theme = prefersDark ? 'dark' : 'light';
         }
-
         document.documentElement.dataset.theme = theme;
       })();
     </script>
@@ -94,7 +91,7 @@
                 lub przejdź bezpośrednio do sklepu, aby kontynuować przeglądanie.
               </p>
             </div>
-            <ul class="stats-card__meta" aria-label="Sugestie nawigacyjne">
+            <ul class="stats-card__meta">
               <li>Sprawdź pisownię adresu, jeśli wpisywałeś go ręcznie.</li>
               <li>Najważniejsze kolekcje i produkty nadal są dostępne z poziomu sklepu.</li>
             </ul>
