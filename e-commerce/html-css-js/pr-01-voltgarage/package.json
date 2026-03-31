@@ -20,7 +20,7 @@
     "build:preview": "npm run build && npm run preview",
     "qa": "npm run qa:html && npm run validate:jsonld && npm run qa:links && npm run qa:js && npm run qa:css",
     "qa:format": "npm run format:check",
-    "qa:html": "html-validate --config htmlvalidate.json index.html 404.html offline.html thank-you.html pages/cart.html pages/checkout.html pages/collections.html pages/contact.html pages/cookies.html pages/new-arrivals.html pages/polityka-prywatnosci.html pages/product.html pages/promotions.html pages/regulamin.html pages/shop.html",
+    "qa:html": "html-validate --config htmlvalidate.json index.html 404.html offline.html thank-you.html pages/cart.html pages/checkout.html pages/collections.html pages/contact.html pages/cookies.html pages/new-arrivals.html pages/privacy-policy.html pages/product.html pages/promotions.html pages/shop.html pages/terms.html",
     "qa:js": "eslint --max-warnings 0 \"js/**/*.js\" \"scripts/**/*.js\" \"tools/**/*.mjs\" --ignore-pattern \"js/**/*.min.js\"",
     "qa:css": "stylelint --max-warnings 0 \"css/**/*.css\" --ignore-pattern \"css/**/*.min.css\"",
     "format": "prettier . --write",
