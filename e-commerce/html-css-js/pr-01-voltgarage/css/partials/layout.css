@@ -26,7 +26,7 @@
 
 .hero-grid {
   display: grid;
-  gap: var(--space-10);
+  gap: var(--space-09);
   align-items: center;
   position: relative;
   z-index: 2;
@@ -46,7 +46,7 @@
 
 .footer-grid {
   display: grid;
-  gap: var(--space-10);
+  gap: var(--space-09);
   grid-template-columns: 1fr;
 }
 @media (min-width: 480px) {
@@ -153,11 +153,11 @@ main > section {
   gap: 0;
   font-family: var(--font-display);
   font-size: var(--fs-04);
-  font-weight: var(--fw-04);
-  letter-spacing: var(--ls-04);
+  font-weight: var(--fw-03);
+  letter-spacing: var(--ls-03);
 }
 .brand-logo {
-  height: var(--logo-size-fluid-md);
+  height: var(--logo-header-size);
   width: auto;
   flex-shrink: 0;
 }
@@ -203,7 +203,7 @@ main > section {
 }
 .nav a[aria-current='page'] {
   color: var(--color-ink);
-  font-weight: var(--fw-03);
+  font-weight: var(--fw-02);
 }
 .nav a:focus-visible,
 .nav .nav-button:focus-visible {
@@ -417,7 +417,7 @@ main > section {
 .hero p {
   max-width: 52ch;
   color: color-mix(in srgb, var(--color-hero-text) 88%, transparent);
-  line-height: var(--lh-04);
+  line-height: var(--lh-02);
   margin: var(--space-04) 0;
 }
 .hero-media {
@@ -479,7 +479,7 @@ main > section {
   box-shadow: 0 0 0 1px color-mix(in srgb, var(--color-accent) 6%, transparent) inset;
 }
 .hero-card h3 {
-  letter-spacing: var(--ls-04);
+  letter-spacing: var(--ls-03);
   font-size: var(--fs-06);
 }
 .hero-card > p {
@@ -503,7 +503,7 @@ main > section {
   color: var(--color-hero-text);
   display: inline-block;
   font-size: var(--fs-03);
-  letter-spacing: var(--ls-05);
+  letter-spacing: var(--ls-04);
 }
 
 /* Footer */
@@ -520,7 +520,7 @@ main > section {
 }
 .footer-grid p {
   color: color-mix(in srgb, var(--color-hero-text) 78%, transparent);
-  line-height: var(--lh-05);
+  line-height: var(--lh-03);
 }
 .footer a:not(.footer-social-link) {
   color: color-mix(in srgb, var(--color-hero-text) 82%, transparent);
@@ -561,7 +561,7 @@ main > section {
   margin-bottom: var(--space-02);
 }
 .footer-logo {
-  width: var(--logo-size-06);
+  width: var(--logo-footer-size);
   height: auto;
   flex-shrink: 0;
   margin-bottom: var(--space-02);
@@ -569,9 +569,9 @@ main > section {
 }
 .footer-brand-text {
   font-family: var(--font-display);
-  font-weight: var(--fw-04);
+  font-weight: var(--fw-03);
   font-size: var(--fs-05);
-  letter-spacing: var(--ls-05);
+  letter-spacing: var(--ls-04);
 }
 .footer-brand p {
   max-width: 32ch;

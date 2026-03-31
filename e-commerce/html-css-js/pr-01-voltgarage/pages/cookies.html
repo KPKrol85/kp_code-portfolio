@@ -55,17 +55,20 @@
       (function () {
         var storageKey = 'vg_theme';
         var theme = null;
+
         try {
           theme = localStorage.getItem(storageKey);
         } catch (e) {
           theme = null;
         }
-        if (!theme) {
+
+        if (theme !== 'light' && theme !== 'dark') {
           var prefersDark =
             window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
           theme = prefersDark ? 'dark' : 'light';
         }
-        document.documentElement.setAttribute('data-theme', theme);
+
+        document.documentElement.dataset.theme = theme;
       })();
     </script>
     <!-- Preloads -->
@@ -90,6 +93,7 @@
           <li>Cookies</li>
         </ol>
       </nav>
+
       <section class="legal-simple" aria-labelledby="legal-top">
         <div class="legal-container">
           <h1 id="legal-top" class="legal-title">Polityka cookies</h1>
@@ -99,20 +103,23 @@
             przez KP_Code Digital Studio. Dokument ma charakter informacyjny i wyjaśnia sposób
             działania mechanizmów technicznych związanych z funkcjonowaniem Serwisu.
           </p>
+
           <nav class="doc-toc" aria-label="Spis treści">
-            <ul>
-              <li><a href="#cookies-1">1. Postanowienia ogólne</a></li>
-              <li><a href="#cookies-2">2. Czym są pliki cookies i podobne technologie</a></li>
-              <li><a href="#cookies-3">3. Rodzaje plików cookies</a></li>
-              <li><a href="#cookies-4">4. Cele wykorzystywania plików cookies</a></li>
-              <li><a href="#cookies-5">5. Podstawy prawne stosowania plików cookies</a></li>
-              <li><a href="#cookies-6">6. Zarządzanie ustawieniami cookies</a></li>
-              <li><a href="#cookies-7">7. Pliki cookies podmiotów trzecich</a></li>
-              <li><a href="#cookies-8">8. Zmiany Polityki cookies</a></li>
-              <li><a href="#cookies-9">9. Kontakt</a></li>
-            </ul>
+            <ol>
+              <li><a href="#cookies-1">Postanowienia ogólne</a></li>
+              <li><a href="#cookies-2">Czym są pliki cookies i podobne technologie</a></li>
+              <li><a href="#cookies-3">Rodzaje plików cookies</a></li>
+              <li><a href="#cookies-4">Cele wykorzystywania plików cookies</a></li>
+              <li><a href="#cookies-5">Podstawy prawne stosowania plików cookies</a></li>
+              <li><a href="#cookies-6">Zarządzanie ustawieniami cookies</a></li>
+              <li><a href="#cookies-7">Pliki cookies podmiotów trzecich</a></li>
+              <li><a href="#cookies-8">Zmiany Polityki cookies</a></li>
+              <li><a href="#cookies-9">Kontakt</a></li>
+            </ol>
           </nav>
+
           <article class="doc-content legal-doc legal-content">
+            <!-- Wprowadzenie -->
             <p class="legal-note">
               <small>
                 Dokument wyjaśnia mechanizmy techniczne związane z zapisywaniem oraz odczytywaniem
@@ -121,6 +128,7 @@
               </small>
             </p>
 
+            <!-- 1 Postanowienia ogólne -->
             <section class="legal-section" aria-labelledby="cookies-1">
               <h2 id="cookies-1">1. Postanowienia ogólne</h2>
               <p>
@@ -150,6 +158,7 @@
               </a>
             </section>
 
+            <!-- 2 Czym są pliki cookies i podobne technologie -->
             <section class="legal-section" aria-labelledby="cookies-2">
               <h2 id="cookies-2">2. Czym są pliki cookies i podobne technologie</h2>
               <p>
@@ -175,6 +184,7 @@
               </a>
             </section>
 
+            <!-- 3 Rodzaje plików cookies -->
             <section class="legal-section" aria-labelledby="cookies-3">
               <h2 id="cookies-3">3. Rodzaje plików cookies</h2>
               <p>
@@ -189,7 +199,7 @@
                 </li>
                 <li>
                   <strong>Cookies funkcjonalne</strong> – pozwalają na zapamiętanie wybranych
-                  ustawień Użytkownika (np. preferencji interfejsu), w celu zapewnienia bardziej
+                  ustawień Użytkownika (np. preferencji interfejsu) w celu zapewnienia bardziej
                   spersonalizowanego działania Serwisu.
                 </li>
                 <li>
@@ -201,11 +211,11 @@
               <p>Ze względu na czas przechowywania pliki cookies mogą mieć charakter:</p>
               <ul>
                 <li>
-                  <strong>Sesyjny</strong> – przechowywane na urządzeniu Użytkownika do momentu
+                  <strong>sesyjny</strong> – przechowywane na urządzeniu Użytkownika do momentu
                   zakończenia sesji przeglądarki.
                 </li>
                 <li>
-                  <strong>Trwały</strong> – przechowywane przez określony czas lub do momentu ich
+                  <strong>trwały</strong> – przechowywane przez określony czas lub do momentu ich
                   usunięcia przez Użytkownika.
                 </li>
               </ul>
@@ -215,6 +225,7 @@
               </a>
             </section>
 
+            <!-- 4 Cele wykorzystywania plików cookies -->
             <section class="legal-section" aria-labelledby="cookies-4">
               <h2 id="cookies-4">4. Cele wykorzystywania plików cookies</h2>
               <p>Pliki cookies mogą być wykorzystywane w Serwisie w następujących celach:</p>
@@ -229,8 +240,8 @@
                   interfejsu),
                 </li>
                 <li>
-                  prowadzenia analiz statystycznych dotyczących sposobu korzystania z Serwisu, w
-                  celu jego optymalizacji i rozwoju,
+                  prowadzenia analiz statystycznych dotyczących sposobu korzystania z Serwisu w celu
+                  jego optymalizacji i rozwoju,
                 </li>
                 <li>
                   realizacji obowiązków wynikających z przepisów prawa, jeżeli zastosowanie
@@ -247,6 +258,7 @@
               </a>
             </section>
 
+            <!-- 5 Podstawy prawne stosowania plików cookies -->
             <section class="legal-section" aria-labelledby="cookies-5">
               <h2 id="cookies-5">5. Podstawy prawne stosowania plików cookies</h2>
               <p>
@@ -266,7 +278,7 @@
                 na urządzeniu końcowym.
               </p>
               <p>
-                Użytkownik ma prawo w dowolnym momencie wycofać zgodę na stosowanie plików cookies,
+                Użytkownik ma prawo w dowolnym momencie wycofać zgodę na stosowanie plików cookies
                 bez wpływu na zgodność z prawem przetwarzania dokonanego przed jej cofnięciem.
               </p>
               <a class="legal-backtotop" href="#legal-top" aria-label="Powrót na górę strony">
@@ -275,6 +287,7 @@
               </a>
             </section>
 
+            <!-- 6 Zarządzanie ustawieniami cookies -->
             <section class="legal-section" aria-labelledby="cookies-6">
               <h2 id="cookies-6">6. Zarządzanie ustawieniami cookies</h2>
               <p>
@@ -298,6 +311,7 @@
               </a>
             </section>
 
+            <!-- 7 Pliki cookies podmiotów trzecich -->
             <section class="legal-section" aria-labelledby="cookies-7">
               <h2 id="cookies-7">7. Pliki cookies podmiotów trzecich</h2>
               <p>
@@ -325,11 +339,12 @@
               </a>
             </section>
 
+            <!-- 8 Zmiany Polityki cookies -->
             <section class="legal-section" aria-labelledby="cookies-8">
               <h2 id="cookies-8">8. Zmiany Polityki cookies</h2>
               <p>
-                Operator zastrzega sobie prawo do wprowadzania zmian w niniejszej Polityce cookies w
-                szczególności w przypadku zmian przepisów prawa, aktualizacji funkcjonalności
+                Operator zastrzega sobie prawo do wprowadzania zmian w niniejszej Polityce cookies,
+                w szczególności w przypadku zmian przepisów prawa, aktualizacji funkcjonalności
                 Serwisu lub zmiany stosowanych technologii.
               </p>
               <p>
@@ -342,6 +357,7 @@
               </a>
             </section>
 
+            <!-- 9 Kontakt -->
             <section class="legal-section" aria-labelledby="cookies-9">
               <h2 id="cookies-9">9. Kontakt</h2>
               <p>
@@ -360,10 +376,11 @@
               </a>
             </section>
 
+            <!-- Date last updated -->
             <p class="legal-meta">
               <small>
                 Data ostatniej aktualizacji:
-                <time datetime="2026-02-22">22.02.2026</time>
+                <time datetime="2026-03-31">31.03.2026</time>
               </small>
             </p>
           </article>

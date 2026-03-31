@@ -55,17 +55,20 @@
       (function () {
         var storageKey = 'vg_theme';
         var theme = null;
+
         try {
           theme = localStorage.getItem(storageKey);
         } catch (e) {
           theme = null;
         }
-        if (!theme) {
+
+        if (theme !== 'light' && theme !== 'dark') {
           var prefersDark =
             window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
           theme = prefersDark ? 'dark' : 'light';
         }
-        document.documentElement.setAttribute('data-theme', theme);
+
+        document.documentElement.dataset.theme = theme;
       })();
     </script>
     <!-- Preloads -->
@@ -83,6 +86,7 @@
   <body class="page page--legal page--privacy">
     <!-- @include src/partials/header.html -->
 
+    <!-- Main -->
     <main id="main">
       <nav class="breadcrumbs" aria-label="Okruszki">
         <ol>
@@ -95,37 +99,35 @@
           <h1 id="legal-top" class="legal-title">Polityka prywatności</h1>
           <p class="legal-lead">
             Niniejsza Polityka prywatności określa zasady przetwarzania danych osobowych w ramach
-            serwisu internetowego <strong>Volt Garage</strong>, opracowanego przez KP_Code Digital
-            Studio. Dokument ma charakter informacyjny i dotyczy sposobu działania
-            funkcjonalności dostępnych w Serwisie.
+            serwisu internetowego <strong>Volt Garage</strong>, opracowanego przez
+            <a href="https://www.kp-code.pl" target="_blank" rel="noopener noreferrer">
+              KP_Code Digital Studio </a
+            >. Dokument ma charakter informacyjny i opisuje sposób działania funkcjonalności
+            dostępnych w Serwisie.
           </p>
           <nav class="doc-toc" aria-label="Spis treści">
-            <ul>
-              <li><a href="#pp-1">1. Administrator danych</a></li>
-              <li><a href="#pp-2">2. Charakter Serwisu</a></li>
-              <li><a href="#pp-3">3. Zakres i charakter przetwarzania danych</a></li>
-              <li><a href="#pp-4">4. Podstawy prawne przetwarzania</a></li>
-              <li><a href="#pp-5">5. Odbiorcy danych</a></li>
-              <li><a href="#pp-6">6. Okres przechowywania danych</a></li>
-              <li><a href="#pp-7">7. Prawa Użytkownika</a></li>
-              <li><a href="#pp-8">8. Bezpieczeństwo danych</a></li>
-              <li><a href="#pp-9">9. Pliki cookies</a></li>
-              <li><a href="#pp-10">10. Kontakt</a></li>
-              <li><a href="#pp-11">11. Zmiany Polityki prywatności</a></li>
-            </ul>
+            <ol>
+              <li><a href="#pp-1">Administrator danych</a></li>
+              <li><a href="#pp-2">Charakter Serwisu</a></li>
+              <li><a href="#pp-3">Zakres i charakter przetwarzania danych</a></li>
+              <li><a href="#pp-4">Podstawy prawne przetwarzania</a></li>
+              <li><a href="#pp-5">Odbiorcy danych</a></li>
+              <li><a href="#pp-6">Okres przechowywania danych</a></li>
+              <li><a href="#pp-7">Prawa Użytkownika</a></li>
+              <li><a href="#pp-8">Bezpieczeństwo danych</a></li>
+              <li><a href="#pp-9">Pliki cookies</a></li>
+              <li><a href="#pp-10">Kontakt</a></li>
+              <li><a href="#pp-11">Zmiany Polityki prywatności</a></li>
+            </ol>
           </nav>
           <article class="doc-content legal-doc legal-content">
-            <p class="legal-note">
-              <small>
-                Dokument ma charakter informacyjny i opisuje zasady przetwarzania danych oraz
-                funkcjonowania wybranych usług dostępnych w Serwisie Volt Garage.
-              </small>
-            </p>
-
+            <!-- 1 Administrator danych -->
             <section class="legal-section" aria-labelledby="pp-1">
               <h2 id="pp-1">1. Administrator danych</h2>
               <p>
-                Administratorem danych osobowych jest KP_Code Digital Studio (dalej:
+                Administratorem danych osobowych jest <a href="https://www.kp-code.pl" target="_blank" rel="noopener noreferrer">
+                  KP_Code Digital Studio </a
+                > (dalej:
                 „Administrator”).
               </p>
               <p>
@@ -139,11 +141,12 @@
               </a>
             </section>
 
+            <!-- 2 Charakter Serwisu -->
             <section class="legal-section" aria-labelledby="pp-2">
               <h2 id="pp-2">2. Charakter Serwisu</h2>
               <p>
-                Serwis Volt Garage ma charakter informacyjny i prezentacyjny. Serwis nie
-                umożliwia składanie wiążących zamówień, rezerwacji ani dokonywanie płatności.
+                Serwis Volt Garage ma charakter informacyjny i prezentacyjny. Serwis nie umożliwia
+                składania wiążących zamówień, rezerwacji ani dokonywania płatności.
               </p>
               <p>
                 Dane wprowadzane w formularzach mają charakter testowy. Użytkownik nie powinien
@@ -155,6 +158,7 @@
               </a>
             </section>
 
+            <!-- 3 Zakres i charakter przetwarzania danych -->
             <section class="legal-section" aria-labelledby="pp-3">
               <h2 id="pp-3">3. Zakres i charakter przetwarzania danych</h2>
               <p>Administrator przetwarza dane osobowe wyłącznie w zakresie niezbędnym do:</p>
@@ -183,6 +187,7 @@
               </a>
             </section>
 
+            <!-- 4 Podstawy prawne przetwarzania -->
             <section class="legal-section" aria-labelledby="pp-4">
               <h2 id="pp-4">4. Podstawy prawne przetwarzania</h2>
               <p>
@@ -212,6 +217,7 @@
               </a>
             </section>
 
+            <!-- 5 Odbiorcy danych -->
             <section class="legal-section" aria-labelledby="pp-5">
               <h2 id="pp-5">5. Odbiorcy danych</h2>
               <p>
@@ -237,6 +243,7 @@
               </a>
             </section>
 
+            <!-- 6 Okres przechowywania danych -->
             <section class="legal-section" aria-labelledby="pp-6">
               <h2 id="pp-6">6. Okres przechowywania danych</h2>
               <p>
@@ -265,6 +272,7 @@
               </a>
             </section>
 
+            <!-- 7 Prawa Użytkownika -->
             <section class="legal-section" aria-labelledby="pp-7">
               <h2 id="pp-7">7. Prawa Użytkownika</h2>
               <p>Użytkownikowi przysługują prawa wynikające z przepisów RODO, w szczególności:</p>
@@ -279,7 +287,7 @@
                   prawo do cofnięcia zgody w dowolnym momencie (jeżeli przetwarzanie odbywa się na
                   podstawie zgody),
                 </li>
-                <li>prawo wniesienia skargi do Prezesa Urzędu Ochrony Danych Osobowych.</li>
+                <li>prawo do wniesienia skargi do Prezesa Urzędu Ochrony Danych Osobowych.</li>
               </ul>
               <p>
                 W celu realizacji swoich praw Użytkownik może skontaktować się z Administratorem pod
@@ -291,6 +299,7 @@
               </a>
             </section>
 
+            <!-- 8 Bezpieczeństwo danych -->
             <section class="legal-section" aria-labelledby="pp-8">
               <h2 id="pp-8">8. Bezpieczeństwo danych</h2>
               <p>
@@ -310,6 +319,7 @@
               </a>
             </section>
 
+            <!-- 9 Pliki cookies -->
             <section class="legal-section" aria-labelledby="pp-9">
               <h2 id="pp-9">9. Pliki cookies</h2>
               <p>
@@ -324,7 +334,7 @@
               </ul>
               <p>
                 Użytkownik może w każdej chwili zmienić ustawienia dotyczące plików cookies w swojej
-                przeglądarce internetowej. Ograniczenie stosowania cookies może wpłynąć na
+                przeglądarce internetowej. Ograniczenie stosowania plików cookies może wpłynąć na
                 funkcjonalność Serwisu.
               </p>
               <a class="legal-backtotop" href="#legal-top" aria-label="Powrót na górę strony">
@@ -333,6 +343,7 @@
               </a>
             </section>
 
+            <!-- 10 Kontakt -->
             <section class="legal-section" aria-labelledby="pp-10">
               <h2 id="pp-10">10. Kontakt</h2>
               <p>
@@ -350,11 +361,12 @@
               </a>
             </section>
 
+            <!-- 11 Zmiany Polityki prywatności -->
             <section class="legal-section" aria-labelledby="pp-11">
               <h2 id="pp-11">11. Zmiany Polityki prywatności</h2>
               <p>
                 Administrator zastrzega sobie prawo do wprowadzania zmian w niniejszej Polityce
-                prywatności w szczególności w przypadku zmian przepisów prawa, aktualizacji
+                prywatności, w szczególności w przypadku zmian przepisów prawa, aktualizacji
                 funkcjonalności Serwisu lub zmiany sposobu przetwarzania danych.
               </p>
               <p>
@@ -367,10 +379,11 @@
               </a>
             </section>
 
+            <!-- Date last updated -->
             <p class="legal-meta">
               <small>
                 Data ostatniej aktualizacji:
-                <time datetime="2026-02-23">23.02.2026</time>
+                <time datetime="2026-03-31">31.03.2026</time>
               </small>
             </p>
           </article>

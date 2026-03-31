@@ -30,7 +30,7 @@ body {
   font-family: var(--font-body);
   background: var(--color-bg);
   color: var(--color-ink);
-  line-height: var(--lh-05);
+  line-height: var(--lh-03);
   min-height: 100vh;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
@@ -60,7 +60,7 @@ h2,
 h3,
 h4 {
   font-family: var(--font-display);
-  line-height: var(--lh-02);
+  line-height: var(--lh-01);
   margin: 0 0 var(--space-03);
   text-wrap: balance;
 }
@@ -114,7 +114,7 @@ textarea {
   left: 24px;
   background: var(--color-accent);
   color: var(--color-text);
-  padding: 10px var(--space-04);
+  padding: var(--space-02) var(--space-04);
   border-radius: var(--radius-sm);
   z-index: 1000;
   transition: transform var(--transition-fast);
