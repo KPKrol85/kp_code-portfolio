@@ -1,0 +1,396 @@
+<!doctype html>
+<html lang="pl">
+  <head>
+    <!-- Meta -->
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#0f1115" media="(prefers-color-scheme: dark)" />
+    <meta name="robots" content="index, follow" />
+    <title>Solidcraft | Projekt portfolio</title>
+    <meta
+      name="description"
+      content="Poznaj projekt Solidcraft: nowoczesną stronę firmy budowlanej z uporządkowaną ofertą, sekcją realizacji i komunikacją zaprojektowaną pod wiarygodny wizerunek marki." />
+    <link rel="canonical" href="https://www.kp-code.pl/projects/solidcraft.html" />
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content="pl_PL" />
+    <meta property="og:site_name" content="KP_Code Digital Studio" />
+    <meta property="og:title" content="Solidcraft | Projekt portfolio" />
+    <meta
+      property="og:description"
+      content="Projekt strony dla marki budowlanej: czytelna oferta, nowoczesny frontend i struktura przygotowana pod dalszy rozwój komunikacji." />
+    <meta property="og:url" content="https://www.kp-code.pl/projects/solidcraft.html" />
+    <meta property="og:image" content="https://www.kp-code.pl/assets/og/og-img.png" />
+    <meta property="og:image:alt" content="Podgląd projektu Solidcraft w KP_Code Digital Studio" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Solidcraft | Projekt portfolio" />
+    <meta
+      name="twitter:description"
+      content="Projekt Solidcraft pokazuje kierunek nowoczesnej strony dla firmy budowlanej z naciskiem na wiarygodność, przejrzystość i mocny wizerunek." />
+    <meta name="twitter:image" content="https://www.kp-code.pl/assets/og/og-img.png" />
+    <meta name="twitter:image:alt" content="Podgląd projektu Solidcraft w KP_Code Digital Studio" />
+    <link rel="icon" href="https://www.kp-code.pl/assets/icons/favicon.svg" type="image/svg+xml" />
+    <link rel="apple-touch-icon" href="https://www.kp-code.pl/assets/icons/apple-touch-icon.png" />
+    <link rel="manifest" href="https://www.kp-code.pl/assets/icons/site.webmanifest" />
+    <script>
+      document.documentElement.classList.add("js");
+      try {
+        const storedTheme = localStorage.getItem("theme-preference");
+        const theme = storedTheme === "light" || storedTheme === "dark" ? storedTheme : window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+        document.documentElement.dataset.theme = theme;
+      } catch {
+        document.documentElement.dataset.theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+      }
+    </script>
+    <link rel="stylesheet" href="../css/main.css" />
+  </head>
+  <body class="page page--project-detail page--project-solidcraft">
+    <a class="skip-link" href="#main">Przejdź do treści</a>
+
+    <header class="header">
+      <div class="container nav">
+        <a class="nav__brand" href="/index.html" aria-label="KP_Code Digital Studio, strona główna">
+          <picture class="brand__logo">
+            <source srcset="/assets/img/logo/logo-dark-mode.svg" media="(prefers-color-scheme: dark)" />
+            <img src="/assets/img/logo/logo-light-mode.svg" alt="KP_Code Digital Studio" width="512" height="512" />
+          </picture>
+          <span class="nav__brand-text">KP_Code Digital Studio</span>
+        </a>
+        <nav class="nav__links" id="primary-navigation" aria-label="Główna nawigacja">
+          <a class="nav__link" href="/index.html">Start</a>
+          <a class="nav__link" href="/about.html">O mnie</a>
+          <a class="nav__link" href="/services.html">Usługi</a>
+          <a class="nav__link" href="/projects.html" aria-current="page">Projekty</a>
+          <a class="nav__link" href="/contact.html">Kontakt</a>
+        </nav>
+        <div class="nav__backdrop" data-nav-backdrop aria-hidden="true"></div>
+        <div class="nav__actions">
+          <button class="theme-toggle" id="theme-toggle" title="Przełącza motyw jasny i ciemny" aria-label="Automatyczny" aria-live="polite">
+            <svg class="sun-and-moon" aria-hidden="true" width="20" height="20" viewBox="0 0 24 24">
+              <mask class="moon" id="moon-mask">
+                <rect x="0" y="0" width="100%" height="100%" fill="white" />
+                <circle cx="24" cy="10" r="6" fill="black" />
+              </mask>
+              <circle class="sun" cx="12" cy="12" r="6" mask="url(#moon-mask)" fill="currentColor" />
+              <g class="sun-beams" stroke="currentColor">
+                <line x1="12" y1="1" x2="12" y2="3" />
+                <line x1="12" y1="21" x2="12" y2="23" />
+                <line x1="4.22" y1="4.22" x2="5.64" y2="5.64" />
+                <line x1="18.36" y1="18.36" x2="19.78" y2="19.78" />
+                <line x1="1" y1="12" x2="3" y2="12" />
+                <line x1="21" y1="12" x2="23" y2="12" />
+                <line x1="4.22" y1="19.78" x2="5.64" y2="18.36" />
+                <line x1="18.36" y1="5.64" x2="19.78" y2="4.22" />
+              </g>
+            </svg>
+          </button>
+          <button class="nav__toggle" type="button" data-nav-toggle aria-label="Otwórz menu" aria-expanded="false" aria-controls="primary-navigation">
+            <span class="nav__toggle-icon" aria-hidden="true"></span>
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <main id="main">
+      <section class="section page-hero" data-reveal>
+        <div class="container">
+          <nav class="breadcrumbs" aria-label="Breadcrumb">
+            <ol class="breadcrumbs__list">
+              <li class="breadcrumbs__item">
+                <a class="breadcrumbs__link" href="/index.html">Start</a>
+              </li>
+              <li class="breadcrumbs__item">
+                <a class="breadcrumbs__link" href="/projects.html">Projekty</a>
+              </li>
+              <li class="breadcrumbs__item" aria-current="page">
+                <span class="breadcrumbs__current">Solidcraft</span>
+              </li>
+            </ol>
+          </nav>
+          <div class="page-hero__content">
+            <h1 class="hero__title page-hero__title">Solidcraft</h1>
+            <p class="hero__lead page-hero__lead">Projekt strony dla firmy budowlanej, która ma komunikować solidność wykonania, zakres usług i gotowość do dalszego rozwoju marki online.</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" data-reveal>
+        <div class="container">
+          <div class="project-overview__grid">
+            <div class="project-overview__copy">
+              <div class="section__header">
+                <p class="section__eyebrow">Przegląd projektu</p>
+                <h2 class="section__title">Solidcraft porządkuje ofertę usług budowlanych w formie nowoczesnej, wiarygodnej i łatwej do dalszej rozbudowy strony firmowej.</h2>
+                <p class="section__subtitle">Kierunek projektu został zbudowany wokół czytelnej struktury treści, mocnej prezentacji usług oraz spokojnej estetyki, która wspiera zaufanie do marki.</p>
+              </div>
+              <p>Układ strony stawia na szybkie zrozumienie oferty, klarowny podział sekcji i prezentację realizacji bez wizualnego chaosu. To podejście dobrze sprawdza się w branżach, w których profesjonalny odbiór marki ma duży wpływ na decyzję o kontakcie.</p>
+              <p>Projekt jest rozwijany jako dopracowany koncept portfolio. Architektura treści i komponentów pozwala później rozszerzyć serwis o kolejne podstrony, galerie realizacji lub rozbudowane sekcje ofertowe.</p>
+              <div class="pill-grid" aria-label="Kategorie projektu Solidcraft">
+                <span class="tag">Strony</span>
+                <span class="tag">Biznes</span>
+                <span class="tag">Usługi</span>
+                <span class="tag">Budownictwo</span>
+              </div>
+            </div>
+
+            <aside class="card project-overview__panel" aria-label="Podsumowanie projektu Solidcraft">
+              <div class="project-meta">
+                <div class="project-meta__group">
+                  <p class="project-meta__label">Typ projektu</p>
+                  <p class="project-meta__value">Strona firmowa</p>
+                </div>
+                <div class="project-meta__group">
+                  <p class="project-meta__label">Status</p>
+                  <p class="project-meta__value">Rozwijany koncept</p>
+                  <p class="project-meta__note">Projekt widoczny w portfolio jako realizacja w toku, przygotowana pod dalsze dopracowanie i publikację.</p>
+                </div>
+                <div class="project-meta__group">
+                  <p class="project-meta__label">Priorytet</p>
+                  <p class="project-meta__value">Wiarygodność marki i czytelna oferta</p>
+                </div>
+              </div>
+            </aside>
+          </div>
+        </div>
+      </section>
+
+      <section class="section project-highlights" aria-labelledby="solidcraft-highlights-title" data-reveal>
+        <div class="container">
+          <div class="section__header">
+            <p class="section__eyebrow">Zakres i akcenty</p>
+            <h2 class="section__title" id="solidcraft-highlights-title">Najważniejsze elementy projektu zostały podporządkowane mocnej prezentacji usług i profesjonalnemu odbiorowi marki.</h2>
+          </div>
+          <div class="grid grid--3">
+            <article class="card project-highlights__card">
+              <p class="project-highlights__index">01</p>
+              <h3 class="project-highlights__title">Oferta z dobrą hierarchią</h3>
+              <p class="card__meta">Sekcje prowadzą użytkownika od ogólnego wrażenia marki do konkretnych usług i argumentów wspierających decyzję o kontakcie.</p>
+            </article>
+            <article class="card project-highlights__card">
+              <p class="project-highlights__index">02</p>
+              <h3 class="project-highlights__title">Estetyka oparta na zaufaniu</h3>
+              <p class="card__meta">Spokojna kolorystyka, wyraźne spacingi i uporządkowany układ wspierają wizerunek solidnej firmy wykonawczej.</p>
+            </article>
+            <article class="card project-highlights__card">
+              <p class="project-highlights__index">03</p>
+              <h3 class="project-highlights__title">Przestrzeń na rozwój</h3>
+              <p class="card__meta">Strona została pomyślana tak, aby w przyszłości łatwo dodać bardziej rozbudowane realizacje, referencje i dodatkowe podstrony usługowe.</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" data-reveal>
+        <div class="container">
+          <div class="project-stack__grid">
+            <div class="project-stack__intro">
+              <div class="section__header">
+                <p class="section__eyebrow">Technologie i standard</p>
+                <h2 class="section__title">Projekt korzysta z lekkiego frontendu i standardów, które wspierają czytelność, wydajność i wygodne dalsze utrzymanie.</h2>
+              </div>
+              <p>Realizacja wpisuje się w architekturę statycznego serwisu HTML, CSS i JavaScript. Dzięki temu strona zachowuje przewidywalność wdrożenia, szybkie działanie i pełną kontrolę nad strukturą interfejsu.</p>
+              <ul class="list">
+                <li>semantyczny HTML wspierający dostępność i SEO,</li>
+                <li>responsywny layout dopasowany do urządzeń mobilnych i desktopowych,</li>
+                <li>spójny system komponentów i sekcji gotowy do dalszej rozbudowy.</li>
+              </ul>
+            </div>
+
+            <aside class="card project-stack__panel" aria-label="Standard wdrożenia projektu Solidcraft">
+              <div class="project-stack__list">
+                <div class="project-stack__item">
+                  <p class="project-stack__label">Frontend</p>
+                  <p class="project-stack__value">HTML / CSS / JavaScript</p>
+                  <p class="project-stack__desc">Lekka warstwa wdrożeniowa bez zbędnych zależności.</p>
+                </div>
+                <div class="project-stack__item">
+                  <p class="project-stack__label">Układ treści</p>
+                  <p class="project-stack__value">Oferta, sekcje zaufania, realizacje</p>
+                  <p class="project-stack__desc">Struktura ukierunkowana na prezentację usług i kontakt.</p>
+                </div>
+                <div class="project-stack__item">
+                  <p class="project-stack__label">Standard jakości</p>
+                  <p class="project-stack__value">Responsywność i czytelność</p>
+                  <p class="project-stack__desc">Projektowany z myślą o estetyce, prostocie i dalszym utrzymaniu.</p>
+                </div>
+              </div>
+            </aside>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" aria-labelledby="solidcraft-visual-title" data-reveal>
+        <div class="container">
+          <div class="section__header">
+            <p class="section__eyebrow">Prezentacja wizualna</p>
+            <h2 class="section__title" id="solidcraft-visual-title">Widok projektu pokazuje kierunek nowoczesnej strony dla firmy wykonawczej z mocnym, uporządkowanym przekazem.</h2>
+          </div>
+          <figure class="project-visual__frame">
+            <picture>
+              <source
+                type="image/avif"
+                srcset="
+                  ../assets/img/img_optimized/selected-work/solidcraft-480.avif   480w,
+                  ../assets/img/img_optimized/selected-work/solidcraft-768.avif   768w,
+                  ../assets/img/img_optimized/selected-work/solidcraft-1024.avif 1024w
+                "
+                sizes="(max-width: 640px) 100vw, (max-width: 1100px) 90vw, 960px" />
+              <source
+                type="image/webp"
+                srcset="
+                  ../assets/img/img_optimized/selected-work/solidcraft-480.webp   480w,
+                  ../assets/img/img_optimized/selected-work/solidcraft-768.webp   768w,
+                  ../assets/img/img_optimized/selected-work/solidcraft-1024.webp 1024w
+                "
+                sizes="(max-width: 640px) 100vw, (max-width: 1100px) 90vw, 960px" />
+              <img src="../assets/img/img_optimized/selected-work/solidcraft-1024.jpg" alt="Solidcraft — strona firmy budowlanej" width="1024" height="683" />
+            </picture>
+            <figcaption class="project-visual__caption">Kadr z projektu Solidcraft użytego w portfolio KP_Code Digital Studio.</figcaption>
+          </figure>
+        </div>
+      </section>
+
+      <section class="section" data-reveal>
+        <div class="container">
+          <div class="card project-cta__shell">
+            <div class="section__header">
+              <p class="section__eyebrow">Dalszy krok</p>
+              <h2 class="section__title">Zobacz projekt w praktyce albo wróć do pełnego portfolio.</h2>
+              <p class="section__subtitle">Ta strona jest częścią rozwijanego systemu prezentacji projektów, który ma porządkować case studies i ułatwiać dalszą rozbudowę portfolio.</p>
+            </div>
+            <div class="project-cta__actions">
+              <a class="button button--primary" href="https://construction-pr01-solidcraft.netlify.app/" target="_blank" rel="noopener noreferrer">Zobacz stronę</a>
+              <a class="button button--ghost" href="/projects.html">Wróć do projektów</a>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <div class="container">
+        <div class="footer__grid">
+          <div class="footer__col footer__brand">
+            <picture class="footer__logo">
+              <source srcset="/assets/img/logo/logo-dark-mode.svg" media="(prefers-color-scheme: dark)" />
+              <img src="/assets/img/logo/logo-light-mode.svg" alt="KP_Code Digital Studio" loading="lazy" width="512" height="512" />
+            </picture>
+            <h3 class="footer__brand-title">
+              <a href="/index.html">KP_Code Digital Studio</a>
+            </h3>
+            <p class="footer__lead">Studio front-endowe specjalizujące się w nowoczesnych stronach internetowych.</p>
+            <p class="footer__meta">Projektowanie, wdrożenia, SEO i identyfikacja.</p>
+          </div>
+          <nav class="footer__col footer__nav" aria-label="Nawigacja">
+            <h3 class="footer__title">Nawigacja</h3>
+            <ul class="footer__links" role="list">
+              <li><a class="footer__link" href="/index.html">Start</a></li>
+              <li><a class="footer__link" href="/about.html">O mnie</a></li>
+              <li><a class="footer__link" href="/services.html">Usługi</a></li>
+              <li><a class="footer__link" href="/projects.html" aria-current="page">Projekty</a></li>
+              <li><a class="footer__link" href="/contact.html">Kontakt</a></li>
+            </ul>
+          </nav>
+          <nav class="footer__col footer__nav" aria-label="Usługi">
+            <h3 class="footer__title">Usługi</h3>
+            <ul class="footer__links" role="list">
+              <li><a class="footer__link" href="/services/websites.html">Strony (HTML/CSS/JS)</a></li>
+              <li><a class="footer__link" href="/services/wordpress.html">WordPress</a></li>
+              <li><a class="footer__link" href="/services/seo.html">SEO</a></li>
+              <li><a class="footer__link" href="/services/design.html">UI i identyfikacja</a></li>
+            </ul>
+          </nav>
+          <div class="footer__col footer__contact">
+            <h3 class="footer__title">Kontakt</h3>
+            <address class="footer__contact-list">
+              <a class="footer__link" href="tel:+48533537091">+48 533 537 091</a>
+              <a class="footer__link" href="mailto:kontakt@kp-code.pl">kontakt@kp-code.pl</a>
+              <span class="footer__meta footer__meta--address">
+                KP_Code Digital Studio
+                <br />
+                ul. Marynarki Wojennej 12
+                <br />
+                33-100 Tarnów, Polska
+              </span>
+              <span class="footer__meta">Współpraca zdalna i stacjonarna · odpowiedź do 24h</span>
+            </address>
+            <div class="actions">
+              <a class="button button--primary" href="/contact.html">Skontaktuj się</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@graph": [
+          {
+            "@type": "Organization",
+            "@id": "https://www.kp-code.pl/#organization",
+            "name": "KP_Code Digital Studio",
+            "url": "https://www.kp-code.pl/",
+            "logo": "https://www.kp-code.pl/assets/img/logo/logo-light-mode.svg",
+            "description": "Studio front-endowe specjalizujące się w nowoczesnych stronach internetowych.",
+            "email": "kontakt@kp-code.pl",
+            "telephone": "+48 533 537 091"
+          },
+          {
+            "@type": "WebSite",
+            "@id": "https://www.kp-code.pl/#website",
+            "url": "https://www.kp-code.pl/",
+            "name": "KP_Code Digital Studio",
+            "publisher": {
+              "@id": "https://www.kp-code.pl/#organization"
+            },
+            "inLanguage": "pl-PL"
+          },
+          {
+            "@type": "WebPage",
+            "@id": "https://www.kp-code.pl/projects/solidcraft.html#webpage",
+            "url": "https://www.kp-code.pl/projects/solidcraft.html",
+            "name": "Solidcraft | Projekt portfolio",
+            "description": "Poznaj projekt Solidcraft: nowoczesną stronę firmy budowlanej z uporządkowaną ofertą, sekcją realizacji i komunikacją zaprojektowaną pod wiarygodny wizerunek marki.",
+            "isPartOf": {
+              "@id": "https://www.kp-code.pl/#website"
+            },
+            "about": {
+              "@id": "https://www.kp-code.pl/#organization"
+            },
+            "publisher": {
+              "@id": "https://www.kp-code.pl/#organization"
+            },
+            "inLanguage": "pl-PL"
+          },
+          {
+            "@type": "BreadcrumbList",
+            "@id": "https://www.kp-code.pl/projects/solidcraft.html#breadcrumb",
+            "itemListElement": [
+              {
+                "@type": "ListItem",
+                "position": 1,
+                "name": "Start",
+                "item": "https://www.kp-code.pl/"
+              },
+              {
+                "@type": "ListItem",
+                "position": 2,
+                "name": "Projekty",
+                "item": "https://www.kp-code.pl/projects.html"
+              },
+              {
+                "@type": "ListItem",
+                "position": 3,
+                "name": "Solidcraft",
+                "item": "https://www.kp-code.pl/projects/solidcraft.html"
+              }
+            ]
+          }
+        ]
+      }
+    </script>
+
+    <script type="module" src="../js/main.js"></script>
+  </body>
+</html>

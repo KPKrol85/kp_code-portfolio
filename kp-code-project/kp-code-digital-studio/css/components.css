@@ -276,8 +276,12 @@
 /* Work card */
 
 .work-card {
+  display: flex;
+  flex-direction: column;
   position: relative;
+  height: 100%;
   overflow: hidden;
+  margin-top: auto;
   padding: var(--space-5);
   background: color-mix(in srgb, var(--color-surface) 96%, var(--color-bg));
   border-color: color-mix(in srgb, var(--color-border) 90%, transparent);
@@ -287,9 +291,6 @@
     border-color var(--transition-base),
     background var(--transition-base);
   will-change: transform;
-  display: flex;
-  flex-direction: column;
-  height: 100%;
 }
 .work-card::before {
   content: "";
@@ -360,6 +361,7 @@
 .work-card__actions {
   display: flex;
   flex-wrap: wrap;
+  margin-top: auto;
   gap: var(--space-4);
   justify-content: space-between;
 }
