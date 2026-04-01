@@ -39,11 +39,15 @@
 .project-stack__panel::before,
 .project-visual__frame::before,
 .project-cta__shell::before {
-  content: "";
+  content: '';
   position: absolute;
   inset: 0;
   pointer-events: none;
-  background: radial-gradient(240px 140px at 100% 0%, color-mix(in srgb, var(--color-primary) 10%, transparent), transparent 65%);
+  background: radial-gradient(
+    240px 140px at 100% 0%,
+    color-mix(in srgb, var(--color-primary) 10%, transparent),
+    transparent 65%
+  );
 }
 
 .project-meta {
@@ -87,12 +91,11 @@
 }
 
 .project-highlights {
-  background:
-    linear-gradient(
-      180deg,
-      color-mix(in srgb, var(--color-surface) 82%, transparent),
-      color-mix(in srgb, var(--color-surface-alt) 62%, transparent)
-    );
+  background: linear-gradient(
+    180deg,
+    color-mix(in srgb, var(--color-surface) 82%, transparent),
+    color-mix(in srgb, var(--color-surface-alt) 62%, transparent)
+  );
   border-block: 1px solid color-mix(in srgb, var(--color-border) 72%, transparent);
 }
 
@@ -145,7 +148,11 @@
 
 .project-visual__frame {
   background:
-    linear-gradient(180deg, color-mix(in srgb, var(--color-surface-alt) 82%, transparent), color-mix(in srgb, var(--color-surface) 96%, transparent)),
+    linear-gradient(
+      180deg,
+      color-mix(in srgb, var(--color-surface-alt) 82%, transparent),
+      color-mix(in srgb, var(--color-surface) 96%, transparent)
+    ),
     var(--color-surface);
   border: 1px solid color-mix(in srgb, var(--color-border) 82%, transparent);
   border-radius: var(--radius-sm);
@@ -176,7 +183,11 @@
   display: grid;
   gap: var(--space-6);
   background:
-    linear-gradient(180deg, color-mix(in srgb, var(--color-surface-alt) 76%, transparent), color-mix(in srgb, var(--color-surface) 96%, transparent)),
+    linear-gradient(
+      180deg,
+      color-mix(in srgb, var(--color-surface-alt) 76%, transparent),
+      color-mix(in srgb, var(--color-surface) 96%, transparent)
+    ),
     var(--color-surface);
 }
 

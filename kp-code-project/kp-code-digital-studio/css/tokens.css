@@ -23,7 +23,9 @@
   --icon-fill-hover: var(--color-text);
 
   /* Typography */
-  --font-sans: "Space Grotesk", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, Arial, "Noto Sans", "Liberation Sans", sans-serif;
+  --font-sans:
+    'Space Grotesk', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, Arial,
+    'Noto Sans', 'Liberation Sans', sans-serif;
   --font-family-base: var(--font-sans);
   --font-family-display: var(--font-sans);
 
@@ -150,7 +152,7 @@
   --z-skip-link: 999;
 }
 
-[data-theme="dark"] {
+[data-theme='dark'] {
   --color-bg: #0b0f17;
   --color-surface: #121826;
   --color-surface-alt: #182033;

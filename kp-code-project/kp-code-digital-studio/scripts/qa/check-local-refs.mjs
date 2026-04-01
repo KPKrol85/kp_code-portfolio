@@ -6,14 +6,14 @@ import {
   isIgnoredReference,
   listExpectedHtmlOutputs,
   readDistHtml,
-  resolveDistReference
-} from "./utils.mjs";
+  resolveDistReference,
+} from './utils.mjs';
 
 function collectReferences(html) {
   return [
-    ...extractAttributeValues(html, "href"),
-    ...extractAttributeValues(html, "src"),
-    ...extractSrcsetValues(html)
+    ...extractAttributeValues(html, 'href'),
+    ...extractAttributeValues(html, 'src'),
+    ...extractSrcsetValues(html),
   ];
 }
 
@@ -45,5 +45,5 @@ export async function checkLocalRefs() {
     }
   }
 
-  return createCheckResult("local-refs", errors);
+  return createCheckResult('local-refs', errors);
 }

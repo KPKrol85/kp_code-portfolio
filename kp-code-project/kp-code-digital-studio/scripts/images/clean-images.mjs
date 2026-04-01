@@ -1,10 +1,10 @@
-import fs from "node:fs/promises";
-import path from "node:path";
+import fs from 'node:fs/promises';
+import path from 'node:path';
 
-const CONFIG_PATH = path.resolve(process.cwd(), "image.config.json");
+const CONFIG_PATH = path.resolve(process.cwd(), 'image.config.json');
 
 const loadConfig = async () => {
-  const raw = await fs.readFile(CONFIG_PATH, "utf8");
+  const raw = await fs.readFile(CONFIG_PATH, 'utf8');
   return JSON.parse(raw);
 };
 

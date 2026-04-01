@@ -1,3 +1,3 @@
-import { buildCSS } from "./build-utils.mjs";
+import { buildCSS } from './build-utils.mjs';
 
 await buildCSS();

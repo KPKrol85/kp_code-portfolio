@@ -8,8 +8,8 @@ import {
   DIST_CSS_FILE,
   DIST_JS_FILE,
   fixManifestInDist,
-  removeDist
-} from "./build-utils.mjs";
+  removeDist,
+} from './build-utils.mjs';
 
 await removeDist();
 await buildCSS();

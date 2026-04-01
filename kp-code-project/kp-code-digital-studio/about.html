@@ -10,20 +10,29 @@
     <!-- Title -->
     <title>O mnie | KP_Code Digital Studio</title>
     <!-- SEO -->
-    <meta name="description" content="Poznaj Kamila Króla, założyciela KP_Code Digital Studio, i sposób, w jaki tworzę nowoczesne strony internetowe, SEO oraz dopracowane rozwiązania cyfrowe." />
+    <meta
+      name="description"
+      content="Poznaj Kamila Króla, założyciela KP_Code Digital Studio, i sposób, w jaki tworzę nowoczesne strony internetowe, SEO oraz dopracowane rozwiązania cyfrowe."
+    />
     <link rel="canonical" href="https://www.kp-code.pl/about.html" />
     <!-- Open Graph -->
     <meta property="og:type" content="website" />
     <meta property="og:locale" content="pl_PL" />
     <meta property="og:site_name" content="KP_Code Digital Studio" />
     <meta property="og:title" content="O mnie | KP_Code Digital Studio" />
-    <meta property="og:description" content="Poznaj Kamila Króla i sposób pracy KP_Code Digital Studio. Nowoczesne strony, SEO i podejście oparte na jakości." />
+    <meta
+      property="og:description"
+      content="Poznaj Kamila Króla i sposób pracy KP_Code Digital Studio. Nowoczesne strony, SEO i podejście oparte na jakości."
+    />
     <meta property="og:url" content="https://www.kp-code.pl/about.html" />
     <meta property="og:image" content="https://www.kp-code.pl/assets/og/og-img.png" />
     <!-- Twitter -->
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content="O mnie | KP_Code Digital Studio" />
-    <meta name="twitter:description" content="Poznaj Kamila Króla i sposób pracy KP_Code Digital Studio." />
+    <meta
+      name="twitter:description"
+      content="Poznaj Kamila Króla i sposób pracy KP_Code Digital Studio."
+    />
     <meta name="twitter:image" content="https://www.kp-code.pl/assets/og/og-img.png" />
     <meta name="twitter:image:alt" content="Strona O mnie w KP_Code Digital Studio" />
     <!-- Icons / PWA -->
@@ -32,13 +41,21 @@
     <link rel="manifest" href="https://www.kp-code.pl/assets/icons/site.webmanifest" />
     <!-- Theme -->
     <script>
-      document.documentElement.classList.add("js");
+      document.documentElement.classList.add('js');
       try {
-        const storedTheme = localStorage.getItem("theme-preference");
-        const theme = storedTheme === "light" || storedTheme === "dark" ? storedTheme : window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+        const storedTheme = localStorage.getItem('theme-preference');
+        const theme =
+          storedTheme === 'light' || storedTheme === 'dark'
+            ? storedTheme
+            : window.matchMedia('(prefers-color-scheme: dark)').matches
+              ? 'dark'
+              : 'light';
         document.documentElement.dataset.theme = theme;
       } catch {
-        document.documentElement.dataset.theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+        document.documentElement.dataset.theme = window.matchMedia('(prefers-color-scheme: dark)')
+          .matches
+          ? 'dark'
+          : 'light';
       }
     </script>
     <!-- Styles -->
@@ -48,8 +65,6 @@
   <!-- Body -->
   <body class="page page--about">
     <a class="skip-link" href="#main">Przejdź do treści</a>
-
-    
 
     <!-- Header -->
     <!-- @include:header -->
@@ -70,8 +85,14 @@
             </ol>
           </nav>
           <div class="page-hero__content">
-            <h1 class="hero__title page-hero__title">Projektuję i tworzę nowoczesne strony internetowe, które łączą estetykę, użyteczność i realne cele biznesowe.</h1>
-            <p class="hero__lead page-hero__lead">Łączę development, UX i strategię treści, aby budować rozwiązania cyfrowe, które są przejrzyste, nowoczesne i skuteczne.</p>
+            <h1 class="hero__title page-hero__title">
+              Projektuję i tworzę nowoczesne strony internetowe, które łączą estetykę, użyteczność i
+              realne cele biznesowe.
+            </h1>
+            <p class="hero__lead page-hero__lead">
+              Łączę development, UX i strategię treści, aby budować rozwiązania cyfrowe, które są
+              przejrzyste, nowoczesne i skuteczne.
+            </p>
           </div>
         </div>
       </section>
@@ -82,11 +103,17 @@
           <div class="about-intro__grid">
             <div class="section__header about-intro__content">
               <p class="section__eyebrow">Kilka słów o mnie</p>
-              <h2 class="section__title about-intro__title">W pracy łączę front-end, UX i dbałość o każdy detal.</h2>
-              <p class="section__subtitle">Tworzę nowoczesne rozwiązania cyfrowe, łącząc front-end, użyteczność i przemyślaną komunikację marki.</p>
+              <h2 class="section__title about-intro__title">
+                W pracy łączę front-end, UX i dbałość o każdy detal.
+              </h2>
+              <p class="section__subtitle">
+                Tworzę nowoczesne rozwiązania cyfrowe, łącząc front-end, użyteczność i przemyślaną
+                komunikację marki.
+              </p>
               <p class="section__subtitle about-intro__text">
-                Zwracam uwagę nie tylko na warstwę wizualną, ale także na strukturę treści, wygodę użytkownika i jakość wykonania. Dzięki temu buduję strony, które są spójne, czytelne i gotowe do
-                dalszego rozwoju.
+                Zwracam uwagę nie tylko na warstwę wizualną, ale także na strukturę treści, wygodę
+                użytkownika i jakość wykonania. Dzięki temu buduję strony, które są spójne, czytelne
+                i gotowe do dalszego rozwoju.
               </p>
             </div>
             <div class="about-intro__media">
@@ -94,12 +121,22 @@
                 <picture>
                   <source
                     type="image/avif"
-                    srcset="./assets/img/img_optimized/about/ceo-480.avif 480w, ./assets/img/img_optimized/about/ceo-768.avif 768w, ./assets/img/img_optimized/about/ceo-1024.avif 1024w"
-                    sizes="(max-width: 759px) 100vw, 40vw" />
+                    srcset="
+                      ./assets/img/img_optimized/about/ceo-480.avif   480w,
+                      ./assets/img/img_optimized/about/ceo-768.avif   768w,
+                      ./assets/img/img_optimized/about/ceo-1024.avif 1024w
+                    "
+                    sizes="(max-width: 759px) 100vw, 40vw"
+                  />
                   <source
                     type="image/webp"
-                    srcset="./assets/img/img_optimized/about/ceo-480.webp 480w, ./assets/img/img_optimized/about/ceo-768.webp 768w, ./assets/img/img_optimized/about/ceo-1024.webp 1024w"
-                    sizes="(max-width: 759px) 100vw, 40vw" />
+                    srcset="
+                      ./assets/img/img_optimized/about/ceo-480.webp   480w,
+                      ./assets/img/img_optimized/about/ceo-768.webp   768w,
+                      ./assets/img/img_optimized/about/ceo-1024.webp 1024w
+                    "
+                    sizes="(max-width: 759px) 100vw, 40vw"
+                  />
                   <img
                     class="about-intro__photo"
                     src="./assets/img/img_optimized/about/ceo-480.webp"
@@ -107,7 +144,8 @@
                     width="720"
                     height="900"
                     loading="lazy"
-                    decoding="async" />
+                    decoding="async"
+                  />
                 </picture>
               </div>
             </div>
@@ -120,33 +158,50 @@
         <div class="container">
           <div class="section__header" data-reveal="soft">
             <p class="section__eyebrow">Jak pracuję</p>
-            <h2 class="section__title">Każdy projekt prowadzę w uporządkowanym i przemyślanym procesie.</h2>
-            <p class="section__subtitle">Od kierunku i struktury treści, przez UI i development, aż po dopracowanie detali dbam o spójność, użyteczność i jakość wykonania.</p>
+            <h2 class="section__title">
+              Każdy projekt prowadzę w uporządkowanym i przemyślanym procesie.
+            </h2>
+            <p class="section__subtitle">
+              Od kierunku i struktury treści, przez UI i development, aż po dopracowanie detali dbam
+              o spójność, użyteczność i jakość wykonania.
+            </p>
           </div>
           <div class="grid grid--2" data-reveal-group="cards">
             <!-- item 01 -->
             <article class="card process__item" data-reveal-item="soft">
               <span class="process__step">01</span>
               <h3 class="card__title">Kierunek i strategia</h3>
-              <p class="card__meta">Na początku określam cel projektu, priorytety biznesowe, grupę odbiorców i sposób, w jaki marka powinna komunikować swoją wartość.</p>
+              <p class="card__meta">
+                Na początku określam cel projektu, priorytety biznesowe, grupę odbiorców i sposób, w
+                jaki marka powinna komunikować swoją wartość.
+              </p>
             </article>
             <!-- item 02 -->
             <article class="card process__item" data-reveal-item="soft">
               <span class="process__step">02</span>
               <h3 class="card__title">Struktura i doświadczenie użytkownika</h3>
-              <p class="card__meta">Porządkuję treści, układam architekturę sekcji i dbam o to, aby strona była czytelna, logiczna i wygodna w odbiorze.</p>
+              <p class="card__meta">
+                Porządkuję treści, układam architekturę sekcji i dbam o to, aby strona była
+                czytelna, logiczna i wygodna w odbiorze.
+              </p>
             </article>
             <!-- item 03 -->
             <article class="card process__item" data-reveal-item="soft">
               <span class="process__step">03</span>
               <h3 class="card__title">Interfejs i wdrożenie</h3>
-              <p class="card__meta">Projektuję warstwę wizualną i wdrażam ją w kodzie, zachowując spójność komponentów, responsywność i wysoką jakość front-endu.</p>
+              <p class="card__meta">
+                Projektuję warstwę wizualną i wdrażam ją w kodzie, zachowując spójność komponentów,
+                responsywność i wysoką jakość front-endu.
+              </p>
             </article>
             <!-- item 04 -->
             <article class="card process__item" data-reveal-item="soft">
               <span class="process__step">04</span>
               <h3 class="card__title">Optymalizacja i finalne szlify</h3>
-              <p class="card__meta">Na końcu dopracowuję wydajność, dostępność, SEO i detale interfejsu, tak aby strona była gotowa do publikacji i dalszego rozwoju.</p>
+              <p class="card__meta">
+                Na końcu dopracowuję wydajność, dostępność, SEO i detale interfejsu, tak aby strona
+                była gotowa do publikacji i dalszego rozwoju.
+              </p>
             </article>
           </div>
         </div>
@@ -158,14 +213,29 @@
           <div class="about-focus__top" data-reveal="standard">
             <div class="section__header about-focus__header">
               <p class="section__eyebrow">Ekosystem KP_Code</p>
-              <h2 class="section__title">KP_Code Digital Studio jest częścią większego ekosystemu, który rozwijam pod marką KP_Code Digital Vault.</h2>
-              <p class="section__subtitle">KP_Code Digital Vault rozwijam jako długoterminowy ekosystem łączący usługi, produkty cyfrowe, edukację i rozwój własnych systemów.</p>
+              <h2 class="section__title">
+                KP_Code Digital Studio jest częścią większego ekosystemu, który rozwijam pod marką
+                KP_Code Digital Vault.
+              </h2>
+              <p class="section__subtitle">
+                KP_Code Digital Vault rozwijam jako długoterminowy ekosystem łączący usługi,
+                produkty cyfrowe, edukację i rozwój własnych systemów.
+              </p>
               <p class="section__subtitle about-focus__subtitle">
-                KP_Code Digital Studio pełni w nim rolę gałęzi usługowej, skoncentrowanej na nowoczesnych stronach internetowych, rozwiązaniach webowych i współpracy z klientami biznesowymi.
+                KP_Code Digital Studio pełni w nim rolę gałęzi usługowej, skoncentrowanej na
+                nowoczesnych stronach internetowych, rozwiązaniach webowych i współpracy z klientami
+                biznesowymi.
               </p>
             </div>
             <div class="about-focus__brand-mark" aria-hidden="true">
-              <img src="/assets/img/logo/logo.svg" alt="" loading="lazy" decoding="async" width="512" height="512" />
+              <img
+                src="/assets/img/logo/logo.svg"
+                alt=""
+                loading="lazy"
+                decoding="async"
+                width="512"
+                height="512"
+              />
             </div>
           </div>
 
@@ -174,24 +244,28 @@
             <article class="card" data-reveal-item="soft">
               <h3 class="card__title">KP_Code Digital Studio</h3>
               <p class="card__meta">
-                To część ekosystemu KP_Code odpowiedzialna za usługi cyfrowe — od nowoczesnych stron internetowych po dopracowane rozwiązania webowe dla biznesu. Fundamentem tej gałęzi są wysoka
-                jakość wykonania, przejrzysta struktura, czysty kod i dbałość o widoczność w wyszukiwarkach.
+                To część ekosystemu KP_Code odpowiedzialna za usługi cyfrowe — od nowoczesnych stron
+                internetowych po dopracowane rozwiązania webowe dla biznesu. Fundamentem tej gałęzi
+                są wysoka jakość wykonania, przejrzysta struktura, czysty kod i dbałość o widoczność
+                w wyszukiwarkach.
               </p>
             </article>
             <!-- item 02 -->
             <article class="card" data-reveal-item="soft">
               <h3 class="card__title">KP_Code Digital Vault</h3>
               <p class="card__meta">
-                To centralny projekt marki KP_Code — rozwijany ekosystem, który łączy usługi, produkty cyfrowe, edukację i dalszy rozwój własnych rozwiązań. Wokół KP_Code Digital Vault buduję spójną
-                platformę dla kolejnych inicjatyw, narzędzi i kierunków rozwoju.
+                To centralny projekt marki KP_Code — rozwijany ekosystem, który łączy usługi,
+                produkty cyfrowe, edukację i dalszy rozwój własnych rozwiązań. Wokół KP_Code Digital
+                Vault buduję spójną platformę dla kolejnych inicjatyw, narzędzi i kierunków rozwoju.
               </p>
             </article>
             <!-- item 03 -->
             <article class="card" data-reveal-item="soft">
               <h3 class="card__title">Systemy i rozwój długoterminowy</h3>
               <p class="card__meta">
-                To kierunek skoncentrowany na rozwoju własnych systemów, narzędzi cyfrowych i bardziej zaawansowanych rozwiązań webowych. Ten obszar stanowi długoterminowy filar rozwoju marki KP_Code
-                i naturalnie rozszerza ją poza usługi oraz produkty cyfrowe.
+                To kierunek skoncentrowany na rozwoju własnych systemów, narzędzi cyfrowych i
+                bardziej zaawansowanych rozwiązań webowych. Ten obszar stanowi długoterminowy filar
+                rozwoju marki KP_Code i naturalnie rozszerza ją poza usługi oraz produkty cyfrowe.
               </p>
             </article>
           </div>
@@ -204,7 +278,8 @@
           <div class="section__header">
             <h2 class="section__title">Masz projekt, który chcesz omówić?</h2>
             <p class="section__subtitle">
-              Jeżeli szukasz nowoczesnej strony internetowej, dopracowanego wdrożenia i współpracy opartej na przejrzystym procesie, chętnie porozmawiam o Twoim projekcie.
+              Jeżeli szukasz nowoczesnej strony internetowej, dopracowanego wdrożenia i współpracy
+              opartej na przejrzystym procesie, chętnie porozmawiam o Twoim projekcie.
             </p>
           </div>
           <div class="actions">
@@ -214,8 +289,6 @@
         </div>
       </section>
     </main>
-
-    
 
     <!-- Footer -->
     <!-- @include:footer -->
@@ -237,7 +310,13 @@
             "worksFor": {
               "@id": "https://www.kp-code.pl/#organization"
             },
-            "sameAs": ["https://github.com/KPKrol85", "https://www.facebook.com/kpkrol85", "https://www.instagram.com/kp_code_/", "https://x.com/KP_Code_85", "https://www.linkedin.com/in/kp-code/"]
+            "sameAs": [
+              "https://github.com/KPKrol85",
+              "https://www.facebook.com/kpkrol85",
+              "https://www.instagram.com/kp_code_/",
+              "https://x.com/KP_Code_85",
+              "https://www.linkedin.com/in/kp-code/"
+            ]
           },
           {
             "@type": "Organization",
@@ -248,7 +327,13 @@
             "description": "Studio front-endowe specjalizujące się w nowoczesnych stronach internetowych.",
             "email": "kontakt@kp-code.pl",
             "telephone": "+48 533 537 091",
-            "sameAs": ["https://github.com/KPKrol85", "https://www.facebook.com/kpkrol85", "https://www.instagram.com/kp_code_/", "https://x.com/KP_Code_85", "https://www.linkedin.com/in/kp-code/"]
+            "sameAs": [
+              "https://github.com/KPKrol85",
+              "https://www.facebook.com/kpkrol85",
+              "https://www.instagram.com/kp_code_/",
+              "https://x.com/KP_Code_85",
+              "https://www.linkedin.com/in/kp-code/"
+            ]
           },
           {
             "@type": "WebSite",

@@ -1,33 +1,33 @@
-import http from "node:http";
-import path from "node:path";
-import { fileURLToPath } from "node:url";
-import { readFile, stat } from "node:fs/promises";
+import http from 'node:http';
+import path from 'node:path';
+import { fileURLToPath } from 'node:url';
+import { readFile, stat } from 'node:fs/promises';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-const ROOT_DIR = path.resolve(__dirname, "..");
-const DIST_DIR = path.join(ROOT_DIR, "dist");
-const DIST_INDEX = path.join(DIST_DIR, "index.html");
+const ROOT_DIR = path.resolve(__dirname, '..');
+const DIST_DIR = path.join(ROOT_DIR, 'dist');
+const DIST_INDEX = path.join(DIST_DIR, 'index.html');
 const DEFAULT_PORT = 4173;
 
 const CONTENT_TYPES = new Map([
-  [".html", "text/html; charset=utf-8"],
-  [".css", "text/css; charset=utf-8"],
-  [".js", "text/javascript; charset=utf-8"],
-  [".json", "application/json; charset=utf-8"],
-  [".map", "application/json; charset=utf-8"],
-  [".svg", "image/svg+xml"],
-  [".png", "image/png"],
-  [".jpg", "image/jpeg"],
-  [".jpeg", "image/jpeg"],
-  [".webp", "image/webp"],
-  [".avif", "image/avif"],
-  [".ico", "image/x-icon"],
-  [".woff2", "font/woff2"],
-  [".txt", "text/plain; charset=utf-8"],
-  [".xml", "application/xml; charset=utf-8"],
-  [".webmanifest", "application/manifest+json; charset=utf-8"]
+  ['.html', 'text/html; charset=utf-8'],
+  ['.css', 'text/css; charset=utf-8'],
+  ['.js', 'text/javascript; charset=utf-8'],
+  ['.json', 'application/json; charset=utf-8'],
+  ['.map', 'application/json; charset=utf-8'],
+  ['.svg', 'image/svg+xml'],
+  ['.png', 'image/png'],
+  ['.jpg', 'image/jpeg'],
+  ['.jpeg', 'image/jpeg'],
+  ['.webp', 'image/webp'],
+  ['.avif', 'image/avif'],
+  ['.ico', 'image/x-icon'],
+  ['.woff2', 'font/woff2'],
+  ['.txt', 'text/plain; charset=utf-8'],
+  ['.xml', 'application/xml; charset=utf-8'],
+  ['.webmanifest', 'application/manifest+json; charset=utf-8'],
 ]);
 
 function getPort() {
@@ -57,9 +57,9 @@ async function assertDistReady() {
 }
 
 function resolveRequestPath(urlPathname) {
-  const normalizedPath = urlPathname === "/" ? "/index.html" : urlPathname;
+  const normalizedPath = urlPathname === '/' ? '/index.html' : urlPathname;
   const decodedPath = decodeURIComponent(normalizedPath);
-  const relativePath = decodedPath.replace(/^\/+/, "");
+  const relativePath = decodedPath.replace(/^\/+/, '');
   const absolutePath = path.resolve(DIST_DIR, relativePath);
 
   if (!absolutePath.startsWith(DIST_DIR)) {
@@ -71,46 +71,47 @@ function resolveRequestPath(urlPathname) {
 
 function sendText(response, statusCode, body) {
   response.writeHead(statusCode, {
-    "Content-Type": "text/plain; charset=utf-8",
-    "Cache-Control": "no-store"
+    'Content-Type': 'text/plain; charset=utf-8',
+    'Cache-Control': 'no-store',
   });
   response.end(body);
 }
 
 async function handleRequest(request, response) {
-  if (request.method !== "GET" && request.method !== "HEAD") {
+  if (request.method !== 'GET' && request.method !== 'HEAD') {
     response.writeHead(405, {
-      Allow: "GET, HEAD",
-      "Content-Type": "text/plain; charset=utf-8",
-      "Cache-Control": "no-store"
+      Allow: 'GET, HEAD',
+      'Content-Type': 'text/plain; charset=utf-8',
+      'Cache-Control': 'no-store',
     });
-    response.end(request.method === "HEAD" ? undefined : "Method Not Allowed");
+    response.end(request.method === 'HEAD' ? undefined : 'Method Not Allowed');
     return;
   }
 
-  const requestUrl = new URL(request.url ?? "/", "http://127.0.0.1");
+  const requestUrl = new URL(request.url ?? '/', 'http://127.0.0.1');
   const filePath = resolveRequestPath(requestUrl.pathname);
 
   if (!filePath) {
-    sendText(response, 403, "Forbidden");
+    sendText(response, 403, 'Forbidden');
     return;
   }
 
   try {
     const fileStats = await stat(filePath);
     if (!fileStats.isFile()) {
-      sendText(response, 404, "Not Found");
+      sendText(response, 404, 'Not Found');
       return;
     }
 
-    const contentType = CONTENT_TYPES.get(path.extname(filePath).toLowerCase()) ?? "application/octet-stream";
+    const contentType =
+      CONTENT_TYPES.get(path.extname(filePath).toLowerCase()) ?? 'application/octet-stream';
     response.writeHead(200, {
-      "Content-Type": contentType,
-      "Content-Length": fileStats.size,
-      "Cache-Control": "no-store"
+      'Content-Type': contentType,
+      'Content-Length': fileStats.size,
+      'Cache-Control': 'no-store',
     });
 
-    if (request.method === "HEAD") {
+    if (request.method === 'HEAD') {
       response.end();
       return;
     }
@@ -118,13 +119,13 @@ async function handleRequest(request, response) {
     const fileBuffer = await readFile(filePath);
     response.end(fileBuffer);
   } catch (error) {
-    if (error && typeof error === "object" && "code" in error && error.code === "ENOENT") {
-      sendText(response, 404, "Not Found");
+    if (error && typeof error === 'object' && 'code' in error && error.code === 'ENOENT') {
+      sendText(response, 404, 'Not Found');
       return;
     }
 
-    console.error("Preview server error:", error);
-    sendText(response, 500, "Internal Server Error");
+    console.error('Preview server error:', error);
+    sendText(response, 500, 'Internal Server Error');
   }
 }
 
@@ -140,7 +141,7 @@ server.listen(port, () => {
   console.log(`Serving: ${DIST_DIR}`);
 });
 
-server.on("error", (error) => {
-  console.error("Failed to start preview server:", error);
+server.on('error', (error) => {
+  console.error('Failed to start preview server:', error);
   process.exitCode = 1;
 });

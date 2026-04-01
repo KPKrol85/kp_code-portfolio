@@ -2,8 +2,8 @@
  * Theme preference management and theme toggle behavior.
  */
 
-const THEME_STORAGE_KEY = "theme-preference";
-const THEME_VALUES = ["light", "dark"];
+const THEME_STORAGE_KEY = 'theme-preference';
+const THEME_VALUES = ['light', 'dark'];
 
 const getStoredTheme = () => {
   try {
@@ -20,7 +20,7 @@ const getPreferredTheme = () => {
     return stored;
   }
 
-  return window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+  return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
 };
 
 const applyTheme = (theme) => {
@@ -46,37 +46,37 @@ const setTheme = (theme, { persist = true } = {}) => {
 };
 
 const syncToggle = () => {
-  const toggle = document.querySelector("#theme-toggle");
+  const toggle = document.querySelector('#theme-toggle');
   if (!toggle) {
     return;
   }
 
   const currentTheme = document.documentElement.dataset.theme || getPreferredTheme();
-  toggle.setAttribute("aria-label", currentTheme);
-  toggle.setAttribute("aria-pressed", currentTheme === "dark" ? "true" : "false");
+  toggle.setAttribute('aria-label', currentTheme);
+  toggle.setAttribute('aria-pressed', currentTheme === 'dark' ? 'true' : 'false');
 };
 
 export const initTheme = () => {
   applyTheme(getPreferredTheme());
   syncToggle();
 
-  const toggle = document.querySelector("#theme-toggle");
+  const toggle = document.querySelector('#theme-toggle');
   if (toggle) {
-    toggle.addEventListener("click", () => {
+    toggle.addEventListener('click', () => {
       const currentTheme = document.documentElement.dataset.theme || getPreferredTheme();
-      const nextTheme = currentTheme === "dark" ? "light" : "dark";
+      const nextTheme = currentTheme === 'dark' ? 'light' : 'dark';
       setTheme(nextTheme);
       syncToggle();
     });
   }
 
-  const mediaQuery = window.matchMedia("(prefers-color-scheme: dark)");
-  mediaQuery.addEventListener("change", (event) => {
+  const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
+  mediaQuery.addEventListener('change', (event) => {
     if (getStoredTheme()) {
       return;
     }
 
-    setTheme(event.matches ? "dark" : "light", { persist: false });
+    setTheme(event.matches ? 'dark' : 'light', { persist: false });
     syncToggle();
   });
 

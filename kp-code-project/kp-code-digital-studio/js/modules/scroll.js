@@ -9,9 +9,9 @@ export const initSmoothScroll = () => {
   }
 
   anchors.forEach((anchor) => {
-    anchor.addEventListener("click", (event) => {
-      const href = anchor.getAttribute("href");
-      if (!href || href === "#") {
+    anchor.addEventListener('click', (event) => {
+      const href = anchor.getAttribute('href');
+      if (!href || href === '#') {
         return;
       }
 
@@ -22,12 +22,12 @@ export const initSmoothScroll = () => {
 
       event.preventDefault();
 
-      if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+      if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
         target.scrollIntoView();
         return;
       }
 
-      target.scrollIntoView({ behavior: "smooth" });
+      target.scrollIntoView({ behavior: 'smooth' });
     });
   });
 };

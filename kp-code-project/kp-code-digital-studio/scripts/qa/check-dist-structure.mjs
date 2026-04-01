@@ -1,4 +1,4 @@
-import path from "node:path";
+import path from 'node:path';
 import {
   DIST_CSS_FILE,
   DIST_DIR,
@@ -6,15 +6,15 @@ import {
   REQUIRED_DIST_FILES,
   createCheckResult,
   distPathExists,
-  listExpectedHtmlOutputs
-} from "./utils.mjs";
+  listExpectedHtmlOutputs,
+} from './utils.mjs';
 
 export async function checkDistStructure() {
   const errors = [];
   const requiredPaths = [
     ...REQUIRED_DIST_FILES,
     path.relative(DIST_DIR, DIST_CSS_FILE),
-    path.relative(DIST_DIR, DIST_JS_FILE)
+    path.relative(DIST_DIR, DIST_JS_FILE),
   ];
 
   for (const relativePath of requiredPaths) {
@@ -31,5 +31,5 @@ export async function checkDistStructure() {
     }
   }
 
-  return createCheckResult("dist-structure", errors);
+  return createCheckResult('dist-structure', errors);
 }

@@ -2,29 +2,29 @@
  * Scroll-reveal behavior for sections and grouped reveal items.
  */
 
-const REVEAL_SELECTOR = "[data-reveal], [data-reveal-item]";
+const REVEAL_SELECTOR = '[data-reveal], [data-reveal-item]';
 const REVEAL_OPTIONS = {
   root: null,
-  rootMargin: "0px 0px -6% 0px",
+  rootMargin: '0px 0px -6% 0px',
   threshold: 0.08,
 };
 
 const markVisible = (element) => {
-  element.classList.add("reveal", "is-visible");
-  element.classList.remove("reveal--pending");
+  element.classList.add('reveal', 'is-visible');
+  element.classList.remove('reveal--pending');
 };
 
 const armReveal = (element) => {
-  element.classList.add("reveal", "reveal--pending");
-  element.classList.remove("is-visible");
+  element.classList.add('reveal', 'reveal--pending');
+  element.classList.remove('is-visible');
 };
 
 const setStaggerOrder = () => {
-  const revealGroups = document.querySelectorAll("[data-reveal-group]");
+  const revealGroups = document.querySelectorAll('[data-reveal-group]');
   revealGroups.forEach((group) => {
-    const items = Array.from(group.querySelectorAll("[data-reveal-item]"));
+    const items = Array.from(group.querySelectorAll('[data-reveal-item]'));
     items.forEach((item, index) => {
-      item.style.setProperty("--reveal-index", String(index));
+      item.style.setProperty('--reveal-index', String(index));
     });
   });
 };
@@ -44,8 +44,8 @@ export const initReveal = () => {
 
   setStaggerOrder();
 
-  const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
-  if (prefersReducedMotion.matches || !("IntersectionObserver" in window)) {
+  const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+  if (prefersReducedMotion.matches || !('IntersectionObserver' in window)) {
     revealElements.forEach(markVisible);
     return;
   }

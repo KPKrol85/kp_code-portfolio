@@ -52,7 +52,7 @@
   opacity: 0.5;
   margin-top: 0;
 }
-[data-theme="dark"] .hero__logo {
+[data-theme='dark'] .hero__logo {
   filter: invert(1);
 }
 
@@ -78,7 +78,7 @@
     grid-template-columns: 1.2fr 0.8fr;
     align-items: center;
   }
-   .hero__logo {
+  .hero__logo {
     margin: 0;
   }
 }
@@ -122,7 +122,11 @@
 /* Callout section */
 
 .callout {
-  background: linear-gradient(180deg, color-mix(in srgb, var(--color-accent) 78%, #fff), color-mix(in srgb, var(--color-accent) 98%, #000));
+  background: linear-gradient(
+    180deg,
+    color-mix(in srgb, var(--color-accent) 78%, #fff),
+    color-mix(in srgb, var(--color-accent) 98%, #000)
+  );
   color: #fff;
   border: 1px solid color-mix(in srgb, var(--color-accent) 55%, #fff);
   border-radius: var(--radius-sm);
@@ -131,8 +135,12 @@
   gap: var(--space-7);
   box-shadow: var(--shadow-sm);
 }
-[data-theme="dark"] .callout {
-  background: linear-gradient(180deg, color-mix(in srgb, var(--color-surface) 98%, #fff), color-mix(in srgb, var(--color-surface) 45%, #000));
+[data-theme='dark'] .callout {
+  background: linear-gradient(
+    180deg,
+    color-mix(in srgb, var(--color-surface) 98%, #fff),
+    color-mix(in srgb, var(--color-surface) 45%, #000)
+  );
   color: var(--color-text);
   border-color: color-mix(in srgb, var(--color-border) 70%, transparent);
 }
@@ -190,13 +198,13 @@
   overflow: hidden;
 }
 .case-study::after {
-  content: "";
+  content: '';
   position: absolute;
   top: 5%;
   right: 5%;
   width: 72px;
   height: 72px;
-  background: url("/assets/img/logo/logo.svg") no-repeat center / contain;
+  background: url('/assets/img/logo/logo.svg') no-repeat center / contain;
   opacity: 0.12;
   pointer-events: none;
 }
@@ -232,7 +240,7 @@
 }
 
 @media (min-width: 760px) {
-   .case-study::after {
+  .case-study::after {
     width: 184px;
     height: 184px;
     top: 10%;
@@ -257,11 +265,15 @@
   width: 100%;
 }
 .about__intro::before {
-  content: "";
+  content: '';
   position: absolute;
   inset: 0;
   pointer-events: none;
-  background: radial-gradient(360px 120px at 0% 16%, color-mix(in srgb, var(--color-primary) 5%, transparent), transparent 60%);
+  background: radial-gradient(
+    360px 120px at 0% 16%,
+    color-mix(in srgb, var(--color-primary) 5%, transparent),
+    transparent 60%
+  );
   opacity: 0.9;
 }
 
@@ -278,7 +290,7 @@
   padding-bottom: var(--space-4);
 }
 .about__subtitle::after {
-  content: "";
+  content: '';
   position: absolute;
   left: 0;
   bottom: -0.25rem;
@@ -304,7 +316,6 @@
   margin-right: var(--space-8);
   opacity: 0.1;
 }
-
 
 .about__logo-img {
   display: block;
@@ -387,11 +398,15 @@
   position: relative;
 }
 .about__card::before {
-  content: "";
+  content: '';
   position: absolute;
   inset: 0;
   pointer-events: none;
-  background: radial-gradient(320px 320px at 50% 48%, color-mix(in srgb, var(--color-primary) 2%, transparent), transparent 20%);
+  background: radial-gradient(
+    320px 320px at 50% 48%,
+    color-mix(in srgb, var(--color-primary) 2%, transparent),
+    transparent 20%
+  );
   opacity: 0.8;
 }
 
@@ -402,7 +417,12 @@
 
 .about__divider {
   height: 1px;
-  background: linear-gradient(90deg, transparent, color-mix(in srgb, var(--color-border) 70%, transparent), transparent);
+  background: linear-gradient(
+    90deg,
+    transparent,
+    color-mix(in srgb, var(--color-border) 70%, transparent),
+    transparent
+  );
   margin: var(--space-3) 0;
 }
 
@@ -427,7 +447,7 @@
   gap: var(--space-2);
 }
 .about__step::before {
-  content: "";
+  content: '';
   position: absolute;
   left: 0;
   top: 0.4rem;

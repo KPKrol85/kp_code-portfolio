@@ -12,21 +12,28 @@
     <!-- SEO -->
     <meta
       name="description"
-      content="Zobacz projekty KP_Code Digital Studio — nowoczesne strony internetowe, wdrożenia webowe i realizacje tworzone z naciskiem na estetykę, wydajność oraz jakość wykonania." />
+      content="Zobacz projekty KP_Code Digital Studio — nowoczesne strony internetowe, wdrożenia webowe i realizacje tworzone z naciskiem na estetykę, wydajność oraz jakość wykonania."
+    />
     <link rel="canonical" href="https://www.kp-code.pl/projects.html" />
     <!-- Open Graph -->
     <meta property="og:type" content="website" />
     <meta property="og:locale" content="pl_PL" />
     <meta property="og:site_name" content="KP_Code Digital Studio" />
     <meta property="og:title" content="Projekty | KP_Code Digital Studio" />
-    <meta property="og:description" content="Poznaj wybrane projekty KP_Code Digital Studio i zobacz, jak tworzę nowoczesne strony oraz rozwiązania webowe dla marek i biznesu." />
+    <meta
+      property="og:description"
+      content="Poznaj wybrane projekty KP_Code Digital Studio i zobacz, jak tworzę nowoczesne strony oraz rozwiązania webowe dla marek i biznesu."
+    />
     <meta property="og:url" content="https://www.kp-code.pl/projects.html" />
     <meta property="og:image" content="https://www.kp-code.pl/assets/og/og-img.png" />
     <meta property="og:image:alt" content="Podgląd strony projekty w KP_Code Digital Studio" />
     <!-- Twitter -->
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content="Projekty | KP_Code Digital Studio" />
-    <meta name="twitter:description" content="Zobacz portfolio KP_Code Digital Studio — wybrane projekty stron internetowych i realizacji webowych." />
+    <meta
+      name="twitter:description"
+      content="Zobacz portfolio KP_Code Digital Studio — wybrane projekty stron internetowych i realizacji webowych."
+    />
     <meta name="twitter:image" content="https://www.kp-code.pl/assets/og/og-img.png" />
     <meta name="twitter:image:alt" content="Podgląd strony projekty w KP_Code Digital Studio" />
     <!-- Icons / PWA -->
@@ -35,13 +42,21 @@
     <link rel="manifest" href="https://www.kp-code.pl/assets/icons/site.webmanifest" />
     <!-- Theme -->
     <script>
-      document.documentElement.classList.add("js");
+      document.documentElement.classList.add('js');
       try {
-        const storedTheme = localStorage.getItem("theme-preference");
-        const theme = storedTheme === "light" || storedTheme === "dark" ? storedTheme : window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+        const storedTheme = localStorage.getItem('theme-preference');
+        const theme =
+          storedTheme === 'light' || storedTheme === 'dark'
+            ? storedTheme
+            : window.matchMedia('(prefers-color-scheme: dark)').matches
+              ? 'dark'
+              : 'light';
         document.documentElement.dataset.theme = theme;
       } catch {
-        document.documentElement.dataset.theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+        document.documentElement.dataset.theme = window.matchMedia('(prefers-color-scheme: dark)')
+          .matches
+          ? 'dark'
+          : 'light';
       }
     </script>
     <!-- Styles -->
@@ -51,8 +66,6 @@
   <!-- Body -->
   <body class="page page--projects">
     <a class="skip-link" href="#main">Przejdź do treści</a>
-
-    
 
     <!-- Header -->
     <!-- @include:header -->
@@ -73,8 +86,13 @@
             </ol>
           </nav>
           <div class="page-hero__content">
-            <h1 class="hero__title page-hero__title">Projekty i realizacje KP_Code Digital Studio.</h1>
-            <p class="hero__lead page-hero__lead">Zobacz wybrane projekty webowe, które tworzę z naciskiem na estetykę, jakość wykonania i spójny kierunek rozwoju.</p>
+            <h1 class="hero__title page-hero__title">
+              Projekty i realizacje KP_Code Digital Studio.
+            </h1>
+            <p class="hero__lead page-hero__lead">
+              Zobacz wybrane projekty webowe, które tworzę z naciskiem na estetykę, jakość wykonania
+              i spójny kierunek rozwoju.
+            </p>
           </div>
         </div>
       </section>
@@ -85,22 +103,58 @@
           <div class="section__header" data-reveal="soft">
             <p class="section__eyebrow">Portfolio</p>
             <h2 class="section__title">Wybrane projekty i realizacje.</h2>
-            <p class="section__subtitle">Przeglądaj projekty webowe, wdrożenia i rozwijane koncepty tworzone w ramach KP_Code Digital Studio.</p>
+            <p class="section__subtitle">
+              Przeglądaj projekty webowe, wdrożenia i rozwijane koncepty tworzone w ramach KP_Code
+              Digital Studio.
+            </p>
           </div>
 
           <!-- Filters -->
           <div class="project-filters" aria-label="Filtruj projekty">
-            <button class="filter-button is-active" type="button" data-filter="all" aria-pressed="true">Wszystkie</button>
-            <button class="filter-button" type="button" data-filter="websites" aria-pressed="false">Strony internetowe</button>
-            <button class="filter-button" type="button" data-filter="wordpress" aria-pressed="false">WordPress</button>
-            <button class="filter-button" type="button" data-filter="products" aria-pressed="false">Produkty własne</button>
-            <button class="filter-button" type="button" data-filter="in-progress" aria-pressed="false">W toku</button>
+            <button
+              class="filter-button is-active"
+              type="button"
+              data-filter="all"
+              aria-pressed="true"
+            >
+              Wszystkie
+            </button>
+            <button class="filter-button" type="button" data-filter="websites" aria-pressed="false">
+              Strony internetowe
+            </button>
+            <button
+              class="filter-button"
+              type="button"
+              data-filter="wordpress"
+              aria-pressed="false"
+            >
+              WordPress
+            </button>
+            <button class="filter-button" type="button" data-filter="products" aria-pressed="false">
+              Produkty własne
+            </button>
+            <button
+              class="filter-button"
+              type="button"
+              data-filter="in-progress"
+              aria-pressed="false"
+            >
+              W toku
+            </button>
           </div>
 
           <!-- Projects grid -->
-          <div class="grid grid--2 projects-archive__grid" data-project-grid data-reveal-group="visual">
+          <div
+            class="grid grid--2 projects-archive__grid"
+            data-project-grid
+            data-reveal-group="visual"
+          >
             <!-- Solidcraft -->
-            <article class="card work-card" data-category="websites in-progress" data-reveal-item="visual">
+            <article
+              class="card work-card"
+              data-category="websites in-progress"
+              data-reveal-item="visual"
+            >
               <div class="work-card__image">
                 <picture>
                   <source
@@ -110,7 +164,8 @@
                       ./assets/img/img_optimized/selected-work/solidcraft-768.avif   768w,
                       ./assets/img/img_optimized/selected-work/solidcraft-1024.avif 1024w
                     "
-                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 50vw" />
+                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 50vw"
+                  />
                   <source
                     type="image/webp"
                     srcset="
@@ -118,8 +173,16 @@
                       ./assets/img/img_optimized/selected-work/solidcraft-768.webp   768w,
                       ./assets/img/img_optimized/selected-work/solidcraft-1024.webp 1024w
                     "
-                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 50vw" />
-                  <img src="./assets/img/img_optimized/selected-work/solidcraft-768.jpg" alt="Solidcraft — strona firmy budowlanej" loading="lazy" decoding="async" width="768" height="512" />
+                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 50vw"
+                  />
+                  <img
+                    src="./assets/img/img_optimized/selected-work/solidcraft-768.jpg"
+                    alt="Solidcraft — strona firmy budowlanej"
+                    loading="lazy"
+                    decoding="async"
+                    width="768"
+                    height="512"
+                  />
                 </picture>
               </div>
               <h3 class="card__title">
@@ -134,12 +197,22 @@
                 <span class="tag">Usługi</span>
               </div>
               <div class="work-card__actions">
-                <a class="button button--primary" href="https://construction-pr01-solidcraft.netlify.app/" target="_blank" rel="noopener noreferrer">Zobacz stronę</a>
+                <a
+                  class="button button--primary"
+                  href="https://construction-pr01-solidcraft.netlify.app/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  >Zobacz stronę</a
+                >
                 <a class="button button--ghost" href="./projects/solidcraft.html">Szczegóły</a>
               </div>
             </article>
             <!-- Ambre -->
-            <article class="card work-card" data-category="websites in-progress" data-reveal-item="visual">
+            <article
+              class="card work-card"
+              data-category="websites in-progress"
+              data-reveal-item="visual"
+            >
               <div class="work-card__image">
                 <picture>
                   <source
@@ -149,7 +222,8 @@
                       ./assets/img/img_optimized/selected-work/ambre-768.avif   768w,
                       ./assets/img/img_optimized/selected-work/ambre-1024.avif 1024w
                     "
-                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 50vw" />
+                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 50vw"
+                  />
                   <source
                     type="image/webp"
                     srcset="
@@ -157,8 +231,16 @@
                       ./assets/img/img_optimized/selected-work/ambre-768.webp   768w,
                       ./assets/img/img_optimized/selected-work/ambre-1024.webp 1024w
                     "
-                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 50vw" />
-                  <img src="./assets/img/img_optimized/selected-work/ambre-768.jpg" alt="Ambre — strona restauracji premium" loading="lazy" decoding="async" width="768" height="512" />
+                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 50vw"
+                  />
+                  <img
+                    src="./assets/img/img_optimized/selected-work/ambre-768.jpg"
+                    alt="Ambre — strona restauracji premium"
+                    loading="lazy"
+                    decoding="async"
+                    width="768"
+                    height="512"
+                  />
                 </picture>
               </div>
               <h3 class="card__title">
@@ -173,12 +255,22 @@
                 <span class="tag">Gastronomia</span>
               </div>
               <div class="work-card__actions">
-                <a class="button button--primary" href="https://gastronomy-pr01-ambre.netlify.app/" target="_blank" rel="noopener noreferrer">Zobacz stronę</a>
+                <a
+                  class="button button--primary"
+                  href="https://gastronomy-pr01-ambre.netlify.app/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  >Zobacz stronę</a
+                >
                 <a class="button button--ghost" href="./projects/ambre.html">Szczegóły</a>
               </div>
             </article>
             <!-- Vista -->
-            <article class="card work-card" data-category="websites in-progress" data-reveal-item="visual">
+            <article
+              class="card work-card"
+              data-category="websites in-progress"
+              data-reveal-item="visual"
+            >
               <div class="work-card__image">
                 <picture>
                   <source
@@ -188,7 +280,8 @@
                       ./assets/img/img_optimized/selected-work/vista-768.avif   768w,
                       ./assets/img/img_optimized/selected-work/vista-1024.avif 1024w
                     "
-                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 50vw" />
+                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 50vw"
+                  />
                   <source
                     type="image/webp"
                     srcset="
@@ -196,8 +289,16 @@
                       ./assets/img/img_optimized/selected-work/vista-768.webp   768w,
                       ./assets/img/img_optimized/selected-work/vista-1024.webp 1024w
                     "
-                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 50vw" />
-                  <img src="./assets/img/img_optimized/selected-work/vista-768.jpg" alt="Vista — strona hotelarsko-turystyczna" loading="lazy" decoding="async" width="768" height="512" />
+                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 50vw"
+                  />
+                  <img
+                    src="./assets/img/img_optimized/selected-work/vista-768.jpg"
+                    alt="Vista — strona hotelarsko-turystyczna"
+                    loading="lazy"
+                    decoding="async"
+                    width="768"
+                    height="512"
+                  />
                 </picture>
               </div>
               <h3 class="card__title">
@@ -212,7 +313,13 @@
                 <span class="tag">Turystyka</span>
               </div>
               <div class="work-card__actions">
-                <a class="button button--primary" href="https://hospitality-pr01-vista.netlify.app/" target="_blank" rel="noopener noreferrer">Zobacz stronę</a>
+                <a
+                  class="button button--primary"
+                  href="https://hospitality-pr01-vista.netlify.app/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  >Zobacz stronę</a
+                >
                 <a class="button button--ghost" href="./projects/vista.html">Szczegóły</a>
               </div>
             </article>
@@ -227,7 +334,8 @@
                       ./assets/img/img_optimized/selected-work/axiom-768.avif   768w,
                       ./assets/img/img_optimized/selected-work/axiom-1024.avif 1024w
                     "
-                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 50vw" />
+                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 50vw"
+                  />
                   <source
                     type="image/webp"
                     srcset="
@@ -235,8 +343,16 @@
                       ./assets/img/img_optimized/selected-work/axiom-768.webp   768w,
                       ./assets/img/img_optimized/selected-work/axiom-1024.webp 1024w
                     "
-                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 50vw" />
-                  <img src="./assets/img/img_optimized/selected-work/axiom-768.jpg" alt="Axiom — strona firmy budowlanej" loading="lazy" decoding="async" width="768" height="512" />
+                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 50vw"
+                  />
+                  <img
+                    src="./assets/img/img_optimized/selected-work/axiom-768.jpg"
+                    alt="Axiom — strona firmy budowlanej"
+                    loading="lazy"
+                    decoding="async"
+                    width="768"
+                    height="512"
+                  />
                 </picture>
               </div>
               <h3 class="card__title">
@@ -251,8 +367,16 @@
                 <span class="tag">Usługi</span>
               </div>
               <div class="work-card__actions">
-                <a class="button button--primary" href="https://construction-pr02-axiom.netlify.app/" target="_blank" rel="noopener noreferrer">Zobacz stronę</a>
-                <a class="button button--ghost" href="./projects/axiom-construction.html">Szczegóły</a>
+                <a
+                  class="button button--primary"
+                  href="https://construction-pr02-axiom.netlify.app/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  >Zobacz stronę</a
+                >
+                <a class="button button--ghost" href="./projects/axiom-construction.html"
+                  >Szczegóły</a
+                >
               </div>
             </article>
             <!-- Atelier No.02 -->
@@ -266,7 +390,8 @@
                       ./assets/img/img_optimized/selected-work/atelier-768.avif   768w,
                       ./assets/img/img_optimized/selected-work/atelier-1024.avif 1024w
                     "
-                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 50vw" />
+                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 50vw"
+                  />
                   <source
                     type="image/webp"
                     srcset="
@@ -274,8 +399,16 @@
                       ./assets/img/img_optimized/selected-work/atelier-768.webp   768w,
                       ./assets/img/img_optimized/selected-work/atelier-1024.webp 1024w
                     "
-                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 50vw" />
-                  <img src="./assets/img/img_optimized/selected-work/atelier-768.jpg" alt="Atelier No.02 — strona restauracji premium" loading="lazy" decoding="async" width="768" height="512" />
+                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 50vw"
+                  />
+                  <img
+                    src="./assets/img/img_optimized/selected-work/atelier-768.jpg"
+                    alt="Atelier No.02 — strona restauracji premium"
+                    loading="lazy"
+                    decoding="async"
+                    width="768"
+                    height="512"
+                  />
                 </picture>
               </div>
               <h3 class="card__title">
@@ -290,7 +423,13 @@
                 <span class="tag">Gastronomia</span>
               </div>
               <div class="work-card__actions">
-                <a class="button button--primary" href="https://gastronomy-pr02-atelier.netlify.app/" target="_blank" rel="noopener noreferrer">Zobacz stronę</a>
+                <a
+                  class="button button--primary"
+                  href="https://gastronomy-pr02-atelier.netlify.app/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  >Zobacz stronę</a
+                >
                 <a class="button button--ghost" href="./projects/atelier-no-02.html">Szczegóły</a>
               </div>
             </article>
@@ -305,7 +444,8 @@
                       ./assets/img/img_optimized/selected-work/aurora-768.avif   768w,
                       ./assets/img/img_optimized/selected-work/aurora-1024.avif 1024w
                     "
-                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 50vw" />
+                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 50vw"
+                  />
                   <source
                     type="image/webp"
                     srcset="
@@ -313,8 +453,16 @@
                       ./assets/img/img_optimized/selected-work/aurora-768.webp   768w,
                       ./assets/img/img_optimized/selected-work/aurora-1024.webp 1024w
                     "
-                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 50vw" />
-                  <img src="./assets/img/img_optimized/selected-work/aurora-768.jpg" alt="Aurora Travel — strona hotelarsko-turystyczna" loading="lazy" decoding="async" width="768" height="512" />
+                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 50vw"
+                  />
+                  <img
+                    src="./assets/img/img_optimized/selected-work/aurora-768.jpg"
+                    alt="Aurora Travel — strona hotelarsko-turystyczna"
+                    loading="lazy"
+                    decoding="async"
+                    width="768"
+                    height="512"
+                  />
                 </picture>
               </div>
               <h3 class="card__title">
@@ -329,13 +477,23 @@
                 <span class="tag">Turystyka</span>
               </div>
               <div class="work-card__actions">
-                <a class="button button--primary" href="https://hospitality-pr02-aurora.netlify.app/" target="_blank" rel="noopener noreferrer">Zobacz stronę</a>
+                <a
+                  class="button button--primary"
+                  href="https://hospitality-pr02-aurora.netlify.app/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  >Zobacz stronę</a
+                >
                 <a class="button button--ghost" href="./projects/aurora.html">Szczegóły</a>
               </div>
             </article>
 
             <!-- Volt Garage -->
-            <article class="card work-card" data-category="websites in-progress" data-reveal-item="visual">
+            <article
+              class="card work-card"
+              data-category="websites in-progress"
+              data-reveal-item="visual"
+            >
               <div class="work-card__image">
                 <picture>
                   <source
@@ -345,7 +503,8 @@
                       ./assets/img/img_optimized/selected-work/volt-garage-768.avif   768w,
                       ./assets/img/img_optimized/selected-work/volt-garage-1024.avif 1024w
                     "
-                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 50vw" />
+                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 50vw"
+                  />
                   <source
                     type="image/webp"
                     srcset="
@@ -353,14 +512,16 @@
                       ./assets/img/img_optimized/selected-work/volt-garage-768.webp   768w,
                       ./assets/img/img_optimized/selected-work/volt-garage-1024.webp 1024w
                     "
-                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 50vw" />
+                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 50vw"
+                  />
                   <img
                     src="./assets/img/img_optimized/selected-work/volt-garage-768.jpg"
                     alt="Volt Garage — sklep e-commerce z częściami i akcesoriami samochodowymi"
                     loading="lazy"
                     decoding="async"
                     width="768"
-                    height="512" />
+                    height="512"
+                  />
                 </picture>
               </div>
               <h3 class="card__title">
@@ -368,14 +529,22 @@
                 <br />
                 <span class="card__subtitle">— sklep e-commerce</span>
               </h3>
-              <p class="card__meta">Nowoczesny sklep internetowy z częściami i akcesoriami samochodowymi.</p>
+              <p class="card__meta">
+                Nowoczesny sklep internetowy z częściami i akcesoriami samochodowymi.
+              </p>
               <div class="pill-grid">
                 <span class="tag">E-commerce</span>
                 <span class="tag">Motoryzacja</span>
                 <span class="tag">Sklep online</span>
               </div>
               <div class="work-card__actions">
-                <a class="button button--primary" href="https://e-commerce-pr01-voltgarage.netlify.app/" target="_blank" rel="noopener noreferrer">Zobacz stronę</a>
+                <a
+                  class="button button--primary"
+                  href="https://e-commerce-pr01-voltgarage.netlify.app/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  >Zobacz stronę</a
+                >
                 <a class="button button--ghost" href="./projects/volt-garage.html">Szczegóły</a>
               </div>
             </article>
@@ -383,8 +552,6 @@
         </div>
       </section>
     </main>
-
-    
 
     <!-- Footer -->
     <!-- @include:footer -->
@@ -406,7 +573,13 @@
             "worksFor": {
               "@id": "https://www.kp-code.pl/#organization"
             },
-            "sameAs": ["https://github.com/KPKrol85", "https://www.facebook.com/kpkrol85", "https://www.instagram.com/kp_code_/", "https://x.com/KP_Code_85", "https://www.linkedin.com/in/kp-code/"]
+            "sameAs": [
+              "https://github.com/KPKrol85",
+              "https://www.facebook.com/kpkrol85",
+              "https://www.instagram.com/kp_code_/",
+              "https://x.com/KP_Code_85",
+              "https://www.linkedin.com/in/kp-code/"
+            ]
           },
           {
             "@type": "Organization",
@@ -417,7 +590,13 @@
             "description": "Studio front-endowe specjalizujące się w nowoczesnych stronach internetowych.",
             "email": "kontakt@kp-code.pl",
             "telephone": "+48 533 537 091",
-            "sameAs": ["https://github.com/KPKrol85", "https://www.facebook.com/kpkrol85", "https://www.instagram.com/kp_code_/", "https://x.com/KP_Code_85", "https://www.linkedin.com/in/kp-code/"],
+            "sameAs": [
+              "https://github.com/KPKrol85",
+              "https://www.facebook.com/kpkrol85",
+              "https://www.instagram.com/kp_code_/",
+              "https://x.com/KP_Code_85",
+              "https://www.linkedin.com/in/kp-code/"
+            ],
             "contactPoint": {
               "@type": "ContactPoint",
               "contactType": "customer support",

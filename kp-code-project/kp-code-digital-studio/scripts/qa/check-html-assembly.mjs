@@ -1,4 +1,4 @@
-import { createCheckResult, listExpectedHtmlOutputs, readDistHtml } from "./utils.mjs";
+import { createCheckResult, listExpectedHtmlOutputs, readDistHtml } from './utils.mjs';
 
 function countMatches(html, pattern) {
   return [...html.matchAll(pattern)].length;
@@ -11,7 +11,7 @@ export async function checkHtmlAssembly() {
   for (const relativePath of htmlFiles) {
     const html = await readDistHtml(relativePath);
 
-    if (html.includes("@include:")) {
+    if (html.includes('@include:')) {
       errors.push(`${relativePath}: unresolved include placeholder found`);
     }
 
@@ -44,5 +44,5 @@ export async function checkHtmlAssembly() {
     }
   }
 
-  return createCheckResult("html-assembly", errors);
+  return createCheckResult('html-assembly', errors);
 }

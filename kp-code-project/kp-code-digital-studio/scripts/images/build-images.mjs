@@ -1,17 +1,19 @@
-import fs from "node:fs/promises";
-import path from "node:path";
-import fg from "fast-glob";
-import sharp from "sharp";
+import fs from 'node:fs/promises';
+import path from 'node:path';
+import fg from 'fast-glob';
+import sharp from 'sharp';
 
-const CONFIG_PATH = path.resolve(process.cwd(), "image.config.json");
+const CONFIG_PATH = path.resolve(process.cwd(), 'image.config.json');
 
 const loadConfig = async () => {
-  const raw = await fs.readFile(CONFIG_PATH, "utf8");
+  const raw = await fs.readFile(CONFIG_PATH, 'utf8');
   return JSON.parse(raw);
 };
 
 const uniqueSorted = (values) => {
-  return Array.from(new Set(values)).filter(Boolean).sort((a, b) => a - b);
+  return Array.from(new Set(values))
+    .filter(Boolean)
+    .sort((a, b) => a - b);
 };
 
 const calculateWidths = (sourceWidth, config) => {
@@ -42,17 +44,17 @@ const normalizeFormats = (inputExt, config, hasAlpha) => {
   const input = inputExt.toLowerCase();
   const keepOriginal = Boolean(config.keepOriginal);
 
-  if (input === ".png") {
-    const filtered = formats.filter((fmt) => fmt !== "jpg");
-    if (keepOriginal && !filtered.includes("png")) {
-      filtered.push("png");
+  if (input === '.png') {
+    const filtered = formats.filter((fmt) => fmt !== 'jpg');
+    if (keepOriginal && !filtered.includes('png')) {
+      filtered.push('png');
     }
     return uniqueSorted(filtered.map((fmt) => fmt.toLowerCase()));
   }
 
   const normalized = formats.map((fmt) => fmt.toLowerCase());
   if (hasAlpha) {
-    return normalized.filter((fmt) => fmt !== "jpg");
+    return normalized.filter((fmt) => fmt !== 'jpg');
   }
   return uniqueSorted(normalized);
 };
@@ -64,7 +66,7 @@ const ensureDir = async (dirPath) => {
 const buildOutputPath = (outputDir, relativePath, width, format) => {
   const dirName = path.dirname(relativePath);
   const baseName = path.basename(relativePath, path.extname(relativePath));
-  const outputDirPath = dirName === "." ? outputDir : path.join(outputDir, dirName);
+  const outputDirPath = dirName === '.' ? outputDir : path.join(outputDir, dirName);
   const outputFile = `${baseName}-${width}.${format}`;
   return {
     outputDirPath,
@@ -83,24 +85,24 @@ const buildImage = async (inputPath, outputPath, width, format, config) => {
   }
 
   switch (format) {
-    case "jpg":
-    case "jpeg":
+    case 'jpg':
+    case 'jpeg':
       pipeline.jpeg({
         quality: config.quality?.jpg ?? 82,
         mozjpeg: true,
       });
       break;
-    case "webp":
+    case 'webp':
       pipeline.webp({
         quality: config.quality?.webp ?? 80,
       });
       break;
-    case "avif":
+    case 'avif':
       pipeline.avif({
         quality: config.quality?.avif ?? 50,
       });
       break;
-    case "png":
+    case 'png':
       pipeline.png({
         compressionLevel: config.png?.compressionLevel ?? 9,
         adaptiveFiltering: config.png?.adaptiveFiltering ?? true,
@@ -128,7 +130,7 @@ const run = async () => {
 
   await ensureDir(outputDir);
 
-  const patterns = ["**/*.jpg", "**/*.jpeg", "**/*.png"];
+  const patterns = ['**/*.jpg', '**/*.jpeg', '**/*.png'];
   let files = [];
   try {
     files = await fg(patterns, {
@@ -154,7 +156,7 @@ const run = async () => {
     try {
       const meta = await sharp(inputPath, { failOnError: false }).metadata();
       if (!meta.width) {
-        throw new Error("Missing image width metadata.");
+        throw new Error('Missing image width metadata.');
       }
 
       const hasAlpha = Boolean(meta.hasAlpha);
@@ -163,7 +165,7 @@ const run = async () => {
 
       for (const width of widths) {
         for (const format of formats) {
-          if (format === "jpg" && hasAlpha) {
+          if (format === 'jpg' && hasAlpha) {
             continue;
           }
 
@@ -171,7 +173,7 @@ const run = async () => {
             outputDir,
             relativePath,
             width,
-            format,
+            format
           );
           await ensureDir(outputDirPath);
           await buildImage(inputPath, outputFilePath, width, format, config);
@@ -186,7 +188,7 @@ const run = async () => {
   }
 
   console.log(
-    `Processed ${files.length} file(s). Generated ${outputCount} output(s). Errors: ${errorCount}.`,
+    `Processed ${files.length} file(s). Generated ${outputCount} output(s). Errors: ${errorCount}.`
   );
 };
 

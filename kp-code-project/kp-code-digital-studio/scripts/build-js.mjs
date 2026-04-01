@@ -1,3 +1,3 @@
-import { buildJS } from "./build-utils.mjs";
+import { buildJS } from './build-utils.mjs';
 
 await buildJS();

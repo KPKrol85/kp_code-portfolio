@@ -10,6 +10,8 @@
     "build:js": "node ./scripts/build-js.mjs",
     "build:dist": "node ./scripts/build-dist.mjs",
     "build": "npm run build:dist",
+    "format": "prettier . --write",
+    "format:check": "prettier . --check",
     "qa": "npm run build && node ./scripts/qa/run-qa.mjs",
     "preview": "node ./scripts/preview-dist.mjs",
     "build:preview": "npm run build && npm run preview",
@@ -40,5 +42,9 @@
     "fast-glob": "^3.3.2",
     "lightningcss": "^1.30.2",
     "sharp": "^0.33.5"
+  },
+  "devDependencies": {
+    "@prettier/plugin-php": "^0.25.0",
+    "prettier": "^3.8.1"
   }
 }

@@ -3,18 +3,20 @@
  */
 
 export const initNavigation = () => {
-  const navToggle = document.querySelector("[data-nav-toggle]");
-  const navBackdrop = document.querySelector("[data-nav-backdrop]");
-  const nav = document.querySelector(".nav");
-  const navLinks = document.querySelector(".nav__links");
-  const navDesktopQuery = window.matchMedia("(min-width: 1024px)");
+  const navToggle = document.querySelector('[data-nav-toggle]');
+  const navBackdrop = document.querySelector('[data-nav-backdrop]');
+  const nav = document.querySelector('.nav');
+  const navLinks = document.querySelector('.nav__links');
+  const navDesktopQuery = window.matchMedia('(min-width: 1024px)');
 
   const getFocusableNavItems = () => {
     if (!navLinks) {
       return [];
     }
 
-    return Array.from(navLinks.querySelectorAll('a[href], button:not([disabled]), [tabindex]:not([tabindex="-1"])')).filter((element) => element.getClientRects().length);
+    return Array.from(
+      navLinks.querySelectorAll('a[href], button:not([disabled]), [tabindex]:not([tabindex="-1"])')
+    ).filter((element) => element.getClientRects().length);
   };
 
   const setNavAria = (isOpen) => {
@@ -22,9 +24,9 @@ export const initNavigation = () => {
       return;
     }
 
-    navToggle.setAttribute("aria-expanded", String(isOpen));
-    navToggle.setAttribute("aria-label", isOpen ? "Zamknij menu" : "Otwórz menu");
-    navLinks.setAttribute("aria-hidden", isOpen ? "false" : "true");
+    navToggle.setAttribute('aria-expanded', String(isOpen));
+    navToggle.setAttribute('aria-label', isOpen ? 'Zamknij menu' : 'Otwórz menu');
+    navLinks.setAttribute('aria-hidden', isOpen ? 'false' : 'true');
   };
 
   const closeNav = (returnFocus = true) => {
@@ -32,16 +34,16 @@ export const initNavigation = () => {
       return;
     }
 
-    if (!nav.classList.contains("nav--open")) {
+    if (!nav.classList.contains('nav--open')) {
       setNavAria(false);
-      document.body.classList.remove("nav-open");
+      document.body.classList.remove('nav-open');
       return;
     }
 
-    nav.classList.remove("nav--open");
-    document.body.classList.remove("nav-open");
+    nav.classList.remove('nav--open');
+    document.body.classList.remove('nav-open');
     setNavAria(false);
-    document.removeEventListener("keydown", handleNavKeydown);
+    document.removeEventListener('keydown', handleNavKeydown);
 
     if (returnFocus) {
       navToggle.focus();
@@ -49,13 +51,13 @@ export const initNavigation = () => {
   };
 
   const handleNavKeydown = (event) => {
-    if (event.key === "Escape") {
+    if (event.key === 'Escape') {
       event.preventDefault();
       closeNav();
       return;
     }
 
-    if (event.key !== "Tab") {
+    if (event.key !== 'Tab') {
       return;
     }
 
@@ -90,17 +92,17 @@ export const initNavigation = () => {
       return;
     }
 
-    if (nav.classList.contains("nav--open")) {
+    if (nav.classList.contains('nav--open')) {
       return;
     }
 
-    nav.classList.add("nav--open");
-    document.body.classList.add("nav-open");
+    nav.classList.add('nav--open');
+    document.body.classList.add('nav-open');
     setNavAria(true);
-    document.addEventListener("keydown", handleNavKeydown);
+    document.addEventListener('keydown', handleNavKeydown);
 
     requestAnimationFrame(() => {
-      const focusTarget = navLinks.querySelector(".nav__link");
+      const focusTarget = navLinks.querySelector('.nav__link');
       focusTarget?.focus();
     });
   };
@@ -112,17 +114,17 @@ export const initNavigation = () => {
 
     if (navDesktopQuery.matches) {
       closeNav(false);
-      navLinks.removeAttribute("aria-hidden");
+      navLinks.removeAttribute('aria-hidden');
       return;
     }
 
-    const isOpen = nav?.classList.contains("nav--open");
-    navLinks.setAttribute("aria-hidden", isOpen ? "false" : "true");
+    const isOpen = nav?.classList.contains('nav--open');
+    navLinks.setAttribute('aria-hidden', isOpen ? 'false' : 'true');
   };
 
   if (navToggle) {
-    navToggle.addEventListener("click", () => {
-      if (nav?.classList.contains("nav--open")) {
+    navToggle.addEventListener('click', () => {
+      if (nav?.classList.contains('nav--open')) {
         closeNav();
         return;
       }
@@ -132,12 +134,12 @@ export const initNavigation = () => {
   }
 
   if (navBackdrop) {
-    navBackdrop.addEventListener("click", () => closeNav());
+    navBackdrop.addEventListener('click', () => closeNav());
   }
 
   if (navLinks) {
-    navLinks.addEventListener("click", (event) => {
-      const link = event.target.closest(".nav__link");
+    navLinks.addEventListener('click', (event) => {
+      const link = event.target.closest('.nav__link');
       if (link && !navDesktopQuery.matches) {
         closeNav();
       }
@@ -145,9 +147,9 @@ export const initNavigation = () => {
   }
 
   syncNavToViewport();
-  navDesktopQuery.addEventListener("change", syncNavToViewport);
+  navDesktopQuery.addEventListener('change', syncNavToViewport);
 
-  const header = document.querySelector(".header");
+  const header = document.querySelector('.header');
   if (!header) {
     return;
   }
@@ -164,20 +166,20 @@ export const initNavigation = () => {
     if (scrollY <= 0) {
       if (isShrink) {
         isShrink = false;
-        header.classList.remove("is-shrink");
+        header.classList.remove('is-shrink');
       }
       return;
     }
 
     if (!isShrink && scrollY >= enter) {
       isShrink = true;
-      header.classList.add("is-shrink");
+      header.classList.add('is-shrink');
       return;
     }
 
     if (isShrink && scrollY <= exit) {
       isShrink = false;
-      header.classList.remove("is-shrink");
+      header.classList.remove('is-shrink');
     }
   };
 
@@ -190,7 +192,7 @@ export const initNavigation = () => {
     requestAnimationFrame(applyHeaderState);
   };
 
-  window.addEventListener("scroll", onScroll, { passive: true });
-  window.addEventListener("resize", onScroll);
+  window.addEventListener('scroll', onScroll, { passive: true });
+  window.addEventListener('resize', onScroll);
   applyHeaderState();
 };

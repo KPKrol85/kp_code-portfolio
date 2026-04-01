@@ -1,12 +1,12 @@
-import path from "node:path";
-import { access, readFile } from "node:fs/promises";
-import { DIST_DIR, DIST_CSS_FILE, DIST_JS_FILE, listPublicHtmlFiles } from "../build-utils.mjs";
+import path from 'node:path';
+import { access, readFile } from 'node:fs/promises';
+import { DIST_DIR, DIST_CSS_FILE, DIST_JS_FILE, listPublicHtmlFiles } from '../build-utils.mjs';
 
 export const REQUIRED_DIST_FILES = [
-  "index.html",
-  "robots.txt",
-  "sitemap.xml",
-  "assets/icons/site.webmanifest"
+  'index.html',
+  'robots.txt',
+  'sitemap.xml',
+  'assets/icons/site.webmanifest',
 ];
 
 export { DIST_DIR, DIST_CSS_FILE, DIST_JS_FILE };
@@ -20,7 +20,7 @@ export async function listDistHtmlFiles() {
 }
 
 export async function readDistHtml(relativePath) {
-  return readFile(path.join(DIST_DIR, relativePath), "utf8");
+  return readFile(path.join(DIST_DIR, relativePath), 'utf8');
 }
 
 export async function distPathExists(relativePath) {
@@ -36,7 +36,7 @@ export function createCheckResult(name, errors = []) {
   return {
     name,
     ok: errors.length === 0,
-    errors
+    errors,
   };
 }
 
@@ -48,17 +48,17 @@ export function formatFailures(results) {
       for (const error of result.errors) {
         lines.push(`  ${error}`);
       }
-      return lines.join("\n");
+      return lines.join('\n');
     })
-    .join("\n");
+    .join('\n');
 }
 
 export function normalizeSlashes(value) {
-  return value.replaceAll("\\", "/");
+  return value.replaceAll('\\', '/');
 }
 
 export function stripQueryAndHash(value) {
-  return value.replace(/[?#].*$/, "");
+  return value.replace(/[?#].*$/, '');
 }
 
 export function isIgnoredReference(rawValue) {
@@ -67,11 +67,11 @@ export function isIgnoredReference(rawValue) {
   }
 
   return (
-    rawValue.startsWith("#") ||
-    rawValue.startsWith("mailto:") ||
-    rawValue.startsWith("tel:") ||
-    rawValue.startsWith("data:") ||
-    rawValue.startsWith("javascript:") ||
+    rawValue.startsWith('#') ||
+    rawValue.startsWith('mailto:') ||
+    rawValue.startsWith('tel:') ||
+    rawValue.startsWith('data:') ||
+    rawValue.startsWith('javascript:') ||
     /^[a-zA-Z][a-zA-Z\d+\-.]*:/.test(rawValue)
   );
 }
@@ -83,17 +83,17 @@ export function resolveDistReference(pageRelativePath, rawValue) {
     return null;
   }
 
-  if (cleaned.startsWith("/")) {
+  if (cleaned.startsWith('/')) {
     return cleaned.slice(1);
   }
 
   const pageDir = path.posix.dirname(normalizeSlashes(pageRelativePath));
-  const resolved = pageDir === "." ? cleaned : path.posix.join(pageDir, cleaned);
+  const resolved = pageDir === '.' ? cleaned : path.posix.join(pageDir, cleaned);
   return path.posix.normalize(resolved);
 }
 
 export function extractAttributeValues(html, attributeName) {
-  const regex = new RegExp(`${attributeName}="([^"]+)"`, "g");
+  const regex = new RegExp(`${attributeName}="([^"]+)"`, 'g');
   const values = [];
 
   for (const match of html.matchAll(regex)) {
@@ -106,8 +106,8 @@ export function extractAttributeValues(html, attributeName) {
 export function extractSrcsetValues(html) {
   const values = [];
 
-  for (const srcset of extractAttributeValues(html, "srcset")) {
-    for (const candidate of srcset.split(",")) {
+  for (const srcset of extractAttributeValues(html, 'srcset')) {
+    for (const candidate of srcset.split(',')) {
       const [url] = candidate.trim().split(/\s+/, 1);
 
       if (url) {
