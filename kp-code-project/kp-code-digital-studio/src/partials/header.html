@@ -1,0 +1,43 @@
+<header class="header">
+  <div class="container nav">
+    <a class="nav__brand" href="/index.html" aria-label="KP_Code Digital Studio, strona główna">
+      <picture class="brand__logo">
+        <source srcset="/assets/img/logo/logo-dark-mode.svg" media="(prefers-color-scheme: dark)" />
+        <img src="/assets/img/logo/logo-light-mode.svg" alt="KP_Code Digital Studio" width="512" height="512" />
+      </picture>
+      <span class="nav__brand-text">KP_Code Digital Studio</span>
+    </a>
+    <nav class="nav__links" id="primary-navigation" aria-label="Główna nawigacja">
+      <a class="nav__link" href="/index.html"{{NAV_START_CURRENT}}>Start</a>
+      <a class="nav__link" href="/about.html"{{NAV_ABOUT_CURRENT}}>O mnie</a>
+      <a class="nav__link" href="/services.html"{{NAV_SERVICES_CURRENT}}>Usługi</a>
+      <a class="nav__link" href="/projects.html"{{NAV_PROJECTS_CURRENT}}>Projekty</a>
+      <a class="nav__link" href="/contact.html"{{NAV_CONTACT_CURRENT}}>Kontakt</a>
+    </nav>
+    <div class="nav__backdrop" data-nav-backdrop aria-hidden="true"></div>
+    <div class="nav__actions">
+      <button class="theme-toggle" id="theme-toggle" title="Przełącza motyw jasny i ciemny" aria-label="Automatyczny" aria-live="polite">
+        <svg class="sun-and-moon" aria-hidden="true" width="20" height="20" viewBox="0 0 24 24">
+          <mask class="moon" id="moon-mask">
+            <rect x="0" y="0" width="100%" height="100%" fill="white" />
+            <circle cx="24" cy="10" r="6" fill="black" />
+          </mask>
+          <circle class="sun" cx="12" cy="12" r="6" mask="url(#moon-mask)" fill="currentColor" />
+          <g class="sun-beams" stroke="currentColor">
+            <line x1="12" y1="1" x2="12" y2="3" />
+            <line x1="12" y1="21" x2="12" y2="23" />
+            <line x1="4.22" y1="4.22" x2="5.64" y2="5.64" />
+            <line x1="18.36" y1="18.36" x2="19.78" y2="19.78" />
+            <line x1="1" y1="12" x2="3" y2="12" />
+            <line x1="21" y1="12" x2="23" y2="12" />
+            <line x1="4.22" y1="19.78" x2="5.64" y2="18.36" />
+            <line x1="18.36" y1="5.64" x2="19.78" y2="4.22" />
+          </g>
+        </svg>
+      </button>
+      <button class="nav__toggle" type="button" data-nav-toggle aria-label="Otwórz menu" aria-expanded="false" aria-controls="primary-navigation">
+        <span class="nav__toggle-icon" aria-hidden="true"></span>
+      </button>
+    </div>
+  </div>
+</header>

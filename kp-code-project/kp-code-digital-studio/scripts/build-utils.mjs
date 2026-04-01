@@ -17,6 +17,9 @@ const CSS_ENTRY = path.join(ROOT_DIR, "css", "main.css");
 const JS_ENTRY = path.join(ROOT_DIR, "js", "main.js");
 const MANIFEST_PATH = path.join(ROOT_DIR, "assets", "icons", "site.webmanifest");
 const SEO_DIR = path.join(ROOT_DIR, "seo");
+const PARTIALS_DIR = path.join(ROOT_DIR, "src", "partials");
+const HEADER_PARTIAL_PATH = path.join(PARTIALS_DIR, "header.html");
+const FOOTER_PARTIAL_PATH = path.join(PARTIALS_DIR, "footer.html");
 
 const ROOT_HTML_GLOBS = [
   "*.html",
@@ -96,11 +99,67 @@ function rewriteHtmlAssetRefs(html) {
     .replaceAll("../js/main.js", "../js/main.min.js");
 }
 
+function getActiveNavKey(relativeFilePath) {
+  const normalizedPath = `/${relativeFilePath.replaceAll("\\", "/")}`;
+
+  if (normalizedPath === "/index.html") {
+    return "start";
+  }
+
+  if (normalizedPath === "/about.html") {
+    return "about";
+  }
+
+  if (normalizedPath === "/contact.html") {
+    return "contact";
+  }
+
+  if (normalizedPath === "/services.html" || normalizedPath.startsWith("/services/")) {
+    return "services";
+  }
+
+  if (normalizedPath === "/projects.html" || normalizedPath.startsWith("/projects/")) {
+    return "projects";
+  }
+
+  return null;
+}
+
+function renderHeaderPartial(headerTemplate, relativeFilePath) {
+  const activeNavKey = getActiveNavKey(relativeFilePath);
+  const navCurrentTokens = {
+    "{{NAV_START_CURRENT}}": activeNavKey === "start" ? ' aria-current="page"' : "",
+    "{{NAV_ABOUT_CURRENT}}": activeNavKey === "about" ? ' aria-current="page"' : "",
+    "{{NAV_SERVICES_CURRENT}}": activeNavKey === "services" ? ' aria-current="page"' : "",
+    "{{NAV_PROJECTS_CURRENT}}": activeNavKey === "projects" ? ' aria-current="page"' : "",
+    "{{NAV_CONTACT_CURRENT}}": activeNavKey === "contact" ? ' aria-current="page"' : ""
+  };
+
+  return Object.entries(navCurrentTokens).reduce(
+    (markup, [token, value]) => markup.replaceAll(token, value),
+    headerTemplate
+  );
+}
+
+function assembleHtml(html, relativeFilePath, partials) {
+  return html
+    .replace("<!-- @include:header -->", renderHeaderPartial(partials.header, relativeFilePath))
+    .replace("<!-- @include:footer -->", partials.footer);
+}
+
 export async function writeRewrittenHtml(relativeFilePath) {
   const sourcePath = path.join(ROOT_DIR, relativeFilePath);
   const targetPath = path.join(DIST_DIR, relativeFilePath);
-  const originalHtml = await readFile(sourcePath, "utf8");
-  const rewrittenHtml = rewriteHtmlAssetRefs(originalHtml);
+  const [originalHtml, headerPartial, footerPartial] = await Promise.all([
+    readFile(sourcePath, "utf8"),
+    readFile(HEADER_PARTIAL_PATH, "utf8"),
+    readFile(FOOTER_PARTIAL_PATH, "utf8")
+  ]);
+  const assembledHtml = assembleHtml(originalHtml, relativeFilePath, {
+    header: headerPartial,
+    footer: footerPartial
+  });
+  const rewrittenHtml = rewriteHtmlAssetRefs(assembledHtml);
 
   await ensureDir(path.dirname(targetPath));
   await writeFile(targetPath, rewrittenHtml, "utf8");
