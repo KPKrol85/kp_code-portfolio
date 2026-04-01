@@ -1,80 +1,78 @@
-# Front-End Audit
+# Technical Audit
 
-## 1. Executive summary
+## 1. Executive Summary
 
-Projekt jest statycznym serwisem wielostronicowym opartym na czystym HTML, CSS i Vanilla JS, z wyraźnym podziałem na tokeny, bazę, komponenty i sekcje oraz z osobnym zestawem plików SEO w `seo/`. Repozytorium zawiera również narzędzia Node do generowania wariantów obrazów (`package.json:4-10`).
+Repo contains a custom-built static front-end site with a clear separation of HTML, layered CSS, modular JS, image optimization tooling, and explicit SEO assets. The implementation is strongest in structure, local asset strategy, baseline accessibility primitives, and build clarity. The main gaps are not framework-level problems but concrete content and integration issues: two broken homepage CTAs, a contact form that never actually submits, a sitemap that does not cover all indexable canonical pages, and copied ARIA labels in the services overview.
 
-Najmocniejsze strony implementacji to spójna struktura klas BEM-like, lokalne fonty z `font-display: swap`, poprawnie oznaczone grafiki, widoczne style fokusu, skip-link oraz obsługa `prefers-reduced-motion` w CSS i JS (`css\tokens.css:1-14`, `css\tokens.css:125-129`, `css\base.css:75-96`, `js\main.js:184-214`).
+## 2. P0 — Critical Risks
 
-Najpoważniejszy problem dotyczy formularza kontaktowego: kod przechwytuje `submit`, nie wysyła danych do żadnego endpointu i wyświetla komunikat sukcesu, co tworzy fałszywe wrażenie dostarczenia wiadomości (`contact.html:90-109`, `js\main.js:348-379`).
-
-## 2. P0 — Critical risks
-
-- `P0` Formularz kontaktowy nie realizuje wysyłki danych i symuluje sukces. W HTML nie ma `action` ani widocznej integracji z backendem (`contact.html:90-109`), a JS zawsze blokuje natywne wysłanie przez `event.preventDefault()` i po przejściu walidacji jedynie ustawia tekst „Dziękuję! Wrócę z odpowiedzią w ciągu 24h.” oraz resetuje formularz (`js\main.js:348-379`). To jest realne ryzyko produkcyjne i problem no-JS/progressive enhancement.
+No P0 issues were confirmed from repository evidence.
 
 ## 3. Strengths
 
-- Semantyczna struktura dokumentów jest obecna: `header`, `nav`, `main`, `section`, `article`, `footer` są używane konsekwentnie, a strony mają po jednym `h1` i kolejne poziomy nagłówków (`index.html:30-103`, `about.html:76-83`, `services.html:76-83`, `projects.html:76-145`, `contact.html:76-109`).
-- Dostępność klawiaturowa została uwzględniona w menu mobilnym: `aria-expanded`, `aria-hidden`, obsługa `Escape`, focus trap i zwrot fokusu do przycisku (`js\main.js:1-101`).
-- W repo jest skip-link i globalny styl `:focus-visible`, więc fokus nie jest całkowicie ukryty (`css\base.css:75-96`).
-- Wdrożono redukcję ruchu zarówno w CSS, jak i JS (`css\tokens.css:125-129`, `css\components.css:314-320`, `css\components.css:430-433`, `css\components.css:536-544`, `js\main.js:184-189`).
-- Strategia obrazów na stronie głównej jest dojrzała: `picture`, warianty `AVIF`/`WebP`, `loading="lazy"`, `decoding="async"` i jawne wymiary (`index.html:228-282`, `index.html:299-353`, `index.html:370-424`, `index.html:441-495`, `index.html:512-566`, `index.html:583-637`).
-- SEO bazowe jest obecne na wszystkich sprawdzonych stronach: `title`, `meta description`, `canonical`, `og:url`, `og:image`, manifest (`index.html:6-27`, `about.html:6-23`, `services.html:6-23`, `projects.html:6-23`, `contact.html:6-23`).
-- Lokalna integralność ścieżek wygląda poprawnie: statyczna weryfikacja nie wykryła brakujących lokalnych `href`/`src`.
+- Layered CSS architecture is explicit and readable across `css/base.css`, `css/tokens.css`, `css/layout.css`, `css/components.css`, `css/sections.css`, `css/pages.css`, and `css/utilities.css`.
+- Design tokens are centralized, including spacing, typography, colors, z-index, and motion variables (`css/tokens.css:1-157`).
+- Font loading uses local `woff2` files and `font-display: swap` (`css/base.css:7-23`).
+- Focus styling is present at the global layer and reinforced on interactive components (`css/base.css:123-128`, `css/layout.css:186-189`, `css/components.css:472-474`, `css/pages.css:263-264`).
+- Mobile navigation includes keyboard handling, focus trap, `Escape`, and ARIA state synchronization (`js/modules/navigation.js:20-148`).
+- Anchor scrolling respects reduced-motion preference (`js/modules/scroll.js:23-30`).
+- Images in audited HTML files include explicit dimensions; no missing `width`/`height` was detected in the source HTML set.
+- JSON-LD blocks are present across the audited HTML pages and parse as valid JSON.
+- Internal external-link safety is consistently handled with `target="_blank"` plus `rel="noopener noreferrer"` in audited HTML examples such as `projects.html:177-178` and `about.html:318-350`.
 
-## 4. P1 — Improvements worth doing next
+## 4. P1 — Improvements Worth Doing Next
 
+1. Broken internal homepage CTAs lead to non-existent pages. Evidence: `index.html:605-606` links to `./kp-code-digital-vault.html` and `./roadmap.html`, but those files are not present in the repository.
+2. The contact form has no real submission path and is not usable without JavaScript. Evidence: the form has no `action` or `method` (`contact.html:178-202`), and JS always cancels submit via `event.preventDefault()` while only rendering a success message (`js/modules/forms.js:160-194`).
+3. `seo/sitemap.xml` is incomplete relative to canonical indexable pages. Evidence: the sitemap currently lists only home, portfolio, selected project pages, one case study, and contact (`seo/sitemap.xml:1-58`), while additional pages expose `canonical` and `meta name="robots" content="index, follow"` such as `about.html:9-14`, `services.html:9-14`, `ecosystem.html:9-16`, `services/websites.html:9-16`, and the legal pages.
+4. Service overview jump links reuse the same ARIA label text across unrelated cards, which makes screen-reader output inaccurate. Evidence: `services.html:132`, `services.html:167`, `services.html:199`, and `services.html:237` all use `aria-label="Przejdź do sekcji usługi: Strony internetowe"` even when the target section is WordPress, SEO, or Design.
+5. Homepage markup contains an extraneous text node inside a decorative SVG icon, creating avoidable markup noise and a potential rendering inconsistency. Evidence: standalone `d` inside the SVG at `index.html:132-139`.
 
+## 5. P2 — Minor Refinements
 
-- `P1` `sitemap.xml` nie odzwierciedla rzeczywistego zestawu publicznych stron. Plik zawiera tylko 4 adresy (`seo\sitemap.xml:3-22`), podczas gdy repo publikuje dodatkowo m.in. `about.html`, `services.html`, strony usług, strony projektów i strony prawne z własnymi canonicalami (`about.html:8`, `services.html:8`, `services\websites.html:8`, `projects\ambre.html:8`, `polityka-prywatnosci.html:8`, `regulamin.html:8`, `cookies.html:8`).
+- No `noscript` fallback was detected for JS-enhanced behaviors such as project filtering and theme state. The content remains largely readable, but enhancement intent is undocumented in markup.
+- Tooling files still include `console.log`, which is acceptable for local scripts but prevents a strict “no logs anywhere in repo” standard (`scripts/preview-dist.mjs:139-140`, `scripts/images/build-images.mjs:146-188`, `scripts/images/clean-images.mjs:26`).
+- Contrast compliance cannot be verified without computed style analysis, even though token usage is structured.
+- Project filtering uses `aria-pressed` correctly, but the filter group is a plain `div`; adding stronger group semantics would make the intent clearer.
 
-- `P1` Formularz kontaktowy nie zawiera przy polach ani przy przycisku wysyłki odnośnika do polityki prywatności, zgody lub wyjaśnienia podstawy przetwarzania, mimo że repo zawiera osobną stronę prywatności (`contact.html:90-109`, `polityka-prywatnosci.html:76-80`). To jest luka jakościowa w obszarze form/privacy.
+## 6. Future Enhancements
 
-- `P1` Strona `projects.html` ma niespójny model nawigacyjny kart: tylko jedna karta prowadzi do szczegółów, a pozostałe nie mają CTA ani linku do podstrony, mimo że repo zawiera kilka szczegółowych case pages w `projects/` (`projects.html:91-145`, `projects\ambre.html:1`, `projects\volt-garage.html:1`, `projects\translogix.html:1`, `projects\fleetops.html:1`, `projects\axiom-construction.html:1`, `projects\atelier-no-02.html:1`).
+1. Add a real submission backend or external form handler and keep the current validation layer as progressive enhancement.
+2. Generate the sitemap from the actual HTML inventory during build to remove manual drift.
+3. Add automated link validation for internal `href`/`src` references before build output is accepted.
+4. Add automated structured-data and metadata checks to catch canonical/OG/sitemap mismatches.
+5. Add a lightweight accessibility regression pass for keyboard navigation, heading structure, and landmark consistency.
 
-## 5. P2 — Minor refinements
+## 7. Compliance Checklist
 
-- `P2` Cztery arkusze CSS są ładowane synchronicznie na każdej stronie, bez śladu preloadu lub krytycznej strategii CSS (`index.html:23-27`, `about.html:19-23`, `projects.html:19-23`).
-- `P2` `theme.js` jest ładowany w `<head>` bez `defer`; to może być celowe dla uniknięcia FOUC, ale warto to jawnie udokumentować jako świadomą decyzję (`index.html:22-23`, `about.html:18-19`).
-- `P2` W repozytorium nie wykryto plików `_headers`, `_redirects`, konfiguracji Netlify/Vercel ani service workera. To nie jest błąd wdrożeniowy samo w sobie, ale oznacza brak jawnie zapisanej strategii hostingu i cache.
-- `P2` W `scripts/images/*.mjs` występują `console.log`, więc repo nie jest całkowicie wolne od logów pomocniczych (`scripts\images\build-images.mjs:146-188`, `scripts\images\clean-images.mjs:26`).
-- `P2` Kontrast kolorów nie może zostać wiarygodnie potwierdzony bez obliczenia stylów końcowych i zestawienia ich z realnym tłem w przeglądarce.
+- `PASS` Headings valid: each audited HTML page contains exactly one `h1`.
+- `FAIL` No broken links excluding intentional minification strategy: `index.html:605-606` points to two missing internal pages.
+- `FAIL` No `console.log`: logging remains in local tooling files (`scripts/preview-dist.mjs:139-140`, `scripts/images/build-images.mjs:146-188`, `scripts/images/clean-images.mjs:26`).
+- `PASS` ARIA attributes valid: no invalid ARIA token values were detected in the audited HTML set.
+- `PASS` Images have `width`/`height`: no missing dimensions were detected in the audited HTML images.
+- `FAIL` No-JS baseline usable: the contact form has no server-side target and JS intercepts submit (`contact.html:178-202`, `js/modules/forms.js:160-194`).
+- `PASS` Sitemap present if expected: `seo/sitemap.xml` exists.
+- `PASS` Robots present: `seo/robots.txt` exists, and build logic also writes root `robots.txt` for `dist/` (`scripts/build-utils.mjs:118-127`).
+- `PASS` OG image exists: `assets/og/og-img.png` is present and referenced across pages.
+- `PASS` JSON-LD valid: all audited JSON-LD blocks parsed as valid JSON.
 
-## 6. Future enhancements
+## 8. Architecture Score (0–10)
 
-- Dodać rzeczywistą integrację formularza z backendem lub usługą formularzy oraz jawny fallback no-JS.
-- Wygenerować sitemapę automatycznie na podstawie kanonicznych stron HTML.
-- Ujednolicić aktywną nawigację (`aria-current`) i dodać test regresji dla wszystkich layoutów stron.
-- Zastąpić generyczne linki social/`sameAs` docelowymi profilami i ujednolicić je między stopką a JSON-LD.
-- Opisać i zautomatyzować lokalny preview/deploy oraz pipeline obrazów w repo.
-
-## 7. Compliance checklist
-
-- `PASS` Headings valid: sprawdzone strony mają pojedynczy `h1` i zachowaną podstawową hierarchię sekcji (`index.html:85`, `about.html:76-83`, `services.html:76-83`, `projects.html:76-145`, `contact.html:76-109`).
-- `PASS` No broken links excluding intentional minification strategy: statyczna walidacja lokalnych `href`/`src` nie wykryła brakujących zasobów.
-- `FAIL` No console.log: logi istnieją w narzędziach obrazów (`scripts\images\build-images.mjs:146-188`, `scripts\images\clean-images.mjs:26`).
-- `FAIL` ARIA attributes valid: `aria-current="page"` jest błędne na podstronach (`about.html:37`, `contact.html:37`, `projects.html:37`, `services.html:37`).
-- `PASS` Images have width/height: obrazy HTML zawierają jawne wymiary na stronach głównych i podstronach (`index.html:93`, `index.html:251-254`, `projects.html:92`, `contact.html:121`).
-- `FAIL` No-JS baseline usable: formularz kontaktowy nie ma wykrytej ścieżki wysyłki bez JS i nawet z JS nie wysyła danych (`contact.html:90-109`, `js\main.js:348-379`).
-- `PASS` Sitemap present if expected: `seo/sitemap.xml` istnieje (`seo\sitemap.xml:1-23`).
-- `PASS` Robots present: `seo/robots.txt` istnieje (`seo\robots.txt:1-3`).
-- `PASS` OG image exists: repo zawiera `og/og-default.svg` i `og/og-dv.svg`, a strony odwołują się do tych plików (`index.html:13`, `case-digital-vault.html:13`).
-- `PASS` JSON-LD valid: wykryto jeden poprawnie sformatowany blok JSON-LD w `index.html` (`index.html:989-1021`).
-
-## 8. Architecture score (0–10)
-
-- BEM consistency: `8.5/10`
+- BEM consistency: `8/10`
+  Evidence: class naming is largely BEM-like and predictable across layout, components, sections, and page layers.
 - Token usage: `9/10`
-- Accessibility: `6/10`
-- Performance: `7.5/10`
-- Maintainability: `7.5/10`
+  Evidence: tokens are centralized and reused for typography, spacing, color, z-index, and motion in `css/tokens.css`.
+- Accessibility: `7/10`
+  Evidence: strong focus and keyboard patterns are present, but form fallback and copied ARIA labels reduce confidence.
+- Performance: `8/10`
+  Evidence: local fonts, `font-display: swap`, responsive image formats, lazy loading, and explicit dimensions are in place.
+- Maintainability: `7/10`
+  Evidence: build scripts are clear and the codebase is organized, but link drift, sitemap drift, and a non-functional form show missing verification rails.
 
-**Overall architecture score:** `7.7/10`
+**Overall Architecture Score: 7.8/10**
 
-Uzasadnienie: architektura jest czytelna, modularna i spójna wizualnie, z dobrym użyciem tokenów i współdzielonych komponentów. Wynik obniżają brak rzeczywistej ścieżki wysyłki formularza, błędna aktywna nawigacja oraz niedomknięte elementy SEO/information architecture.
+## 9. Senior Rating (1–10)
 
-## 9. Senior rating (1–10)
+**Senior rating: 7/10**
 
-**Senior rating:** `7/10`
-
-Techniczne uzasadnienie: implementacja pokazuje dobrą dyscyplinę w warstwie front-endowej, szczególnie w CSS architecture, obrazie wydajnościowym i bazowej a11y. Nie jest to jednak poziom w pełni produkcyjnie domknięty, ponieważ najważniejszy punkt konwersji, czyli formularz kontaktowy, nie realizuje swojej funkcji, a warstwa informacji o bieżącej stronie i indeksacji jest niespójna.
+Technical justification: the repository shows senior-level discipline in front-end organization, progressive layering, asset handling, and keyboard-aware navigation. It falls short of a higher rating because some production-facing details are still unmanaged by process: homepage link integrity, sitemap completeness, and actual contact-form delivery should already be locked down in a mature front-end workflow.

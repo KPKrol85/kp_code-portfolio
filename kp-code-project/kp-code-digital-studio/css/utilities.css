@@ -46,13 +46,71 @@
 /* Motion helpers */
 
 .reveal {
-  opacity: 0;
-  transform: translateY(18px);
-  transition:
-    opacity var(--transition-base),
-    transform var(--transition-base);
+  --reveal-index: 0;
+  --reveal-distance-current: var(--reveal-distance-standard, var(--reveal-distance));
+  --reveal-duration-current: var(--reveal-duration-standard, var(--reveal-duration));
+  --reveal-delay-step-current: var(--reveal-delay-step);
+  --reveal-delay-max-current: var(--reveal-delay-max);
+  --reveal-scale-current: 1;
+  --reveal-delay: min(calc(var(--reveal-index) * var(--reveal-delay-step-current)), var(--reveal-delay-max-current));
 }
+
+[data-reveal="soft"],
+[data-reveal-item="soft"] {
+  --reveal-distance-current: var(--reveal-distance-soft);
+  --reveal-duration-current: var(--reveal-duration-soft);
+}
+
+[data-reveal="standard"],
+[data-reveal-item="standard"] {
+  --reveal-distance-current: var(--reveal-distance-standard);
+  --reveal-duration-current: var(--reveal-duration-standard);
+}
+
+[data-reveal="visual"],
+[data-reveal-item="visual"] {
+  --reveal-distance-current: var(--reveal-distance-visual);
+  --reveal-duration-current: var(--reveal-duration-visual);
+  --reveal-scale-current: var(--reveal-scale-visual);
+}
+
+[data-reveal-group="cards"] {
+  --reveal-delay-step-current: var(--reveal-delay-step-cards);
+}
+
+[data-reveal-group="visual"] {
+  --reveal-delay-step-current: var(--reveal-delay-step-visual);
+}
+
+[data-reveal-group="visual"] [data-reveal-item]:not([data-reveal-item="soft"]):not([data-reveal-item="standard"]) {
+  --reveal-distance-current: var(--reveal-distance-visual);
+  --reveal-duration-current: var(--reveal-duration-visual);
+  --reveal-scale-current: var(--reveal-scale-visual);
+}
+
+.js [data-reveal].reveal--pending,
+.js [data-reveal-item].reveal--pending {
+  opacity: 0;
+  transform: translate3d(0, var(--reveal-distance-current), 0) scale(var(--reveal-scale-current));
+  transition:
+    opacity var(--reveal-duration-current) var(--ease-reveal) var(--reveal-delay),
+    transform var(--reveal-duration-current) var(--ease-reveal) var(--reveal-delay);
+  will-change: opacity, transform;
+}
+
+.js [data-reveal].reveal--pending.is-visible,
+.js [data-reveal-item].reveal--pending.is-visible,
 .reveal.is-visible {
   opacity: 1;
-  transform: translateY(0);
+  transform: translate3d(0, 0, 0) scale(1);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .js [data-reveal].reveal--pending,
+  .js [data-reveal-item].reveal--pending {
+    opacity: 1;
+    transform: none;
+    transition: none;
+    will-change: auto;
+  }
 }

@@ -92,7 +92,7 @@
     </header>
 
     <main id="main">
-      <section class="section page-hero" data-reveal>
+      <section class="section page-hero" data-reveal="soft">
         <div class="container">
           <nav class="breadcrumbs" aria-label="Breadcrumb">
             <ol class="breadcrumbs__list">
@@ -114,7 +114,7 @@
         </div>
       </section>
 
-      <section class="section" data-reveal>
+      <section class="section" data-reveal="standard">
         <div class="container">
           <div class="project-overview__grid">
             <div class="project-overview__copy">
@@ -154,24 +154,24 @@
         </div>
       </section>
 
-      <section class="section project-highlights" aria-labelledby="solidcraft-highlights-title" data-reveal>
+      <section class="section project-highlights" aria-labelledby="solidcraft-highlights-title">
         <div class="container">
-          <div class="section__header">
+          <div class="section__header" data-reveal="soft">
             <p class="section__eyebrow">Zakres i akcenty</p>
             <h2 class="section__title" id="solidcraft-highlights-title">Najważniejsze elementy projektu zostały podporządkowane mocnej prezentacji usług i profesjonalnemu odbiorowi marki.</h2>
           </div>
-          <div class="grid grid--3">
-            <article class="card project-highlights__card">
+          <div class="grid grid--3" data-reveal-group="cards">
+            <article class="card project-highlights__card" data-reveal-item="soft">
               <p class="project-highlights__index">01</p>
               <h3 class="project-highlights__title">Oferta z dobrą hierarchią</h3>
               <p class="card__meta">Sekcje prowadzą użytkownika od ogólnego wrażenia marki do konkretnych usług i argumentów wspierających decyzję o kontakcie.</p>
             </article>
-            <article class="card project-highlights__card">
+            <article class="card project-highlights__card" data-reveal-item="soft">
               <p class="project-highlights__index">02</p>
               <h3 class="project-highlights__title">Estetyka oparta na zaufaniu</h3>
               <p class="card__meta">Spokojna kolorystyka, wyraźne spacingi i uporządkowany układ wspierają wizerunek solidnej firmy wykonawczej.</p>
             </article>
-            <article class="card project-highlights__card">
+            <article class="card project-highlights__card" data-reveal-item="soft">
               <p class="project-highlights__index">03</p>
               <h3 class="project-highlights__title">Przestrzeń na rozwój</h3>
               <p class="card__meta">Strona została pomyślana tak, aby w przyszłości łatwo dodać bardziej rozbudowane realizacje, referencje i dodatkowe podstrony usługowe.</p>
@@ -180,7 +180,7 @@
         </div>
       </section>
 
-      <section class="section" data-reveal>
+      <section class="section" data-reveal="standard">
         <div class="container">
           <div class="project-stack__grid">
             <div class="project-stack__intro">
@@ -219,7 +219,7 @@
         </div>
       </section>
 
-      <section class="section" aria-labelledby="solidcraft-visual-title" data-reveal>
+      <section class="section" aria-labelledby="solidcraft-visual-title" data-reveal="visual">
         <div class="container">
           <div class="section__header">
             <p class="section__eyebrow">Prezentacja wizualna</p>
@@ -250,7 +250,7 @@
         </div>
       </section>
 
-      <section class="section" data-reveal>
+      <section class="section" data-reveal="soft">
         <div class="container">
           <div class="card project-cta__shell">
             <div class="section__header">

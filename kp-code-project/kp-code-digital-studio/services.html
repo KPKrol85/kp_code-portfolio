@@ -97,7 +97,7 @@
     <!-- Main -->
     <main id="main">
       <!-- Hero -->
-      <section class="section page-hero" data-reveal>
+      <section class="section page-hero" data-reveal="soft">
         <div class="container">
           <nav class="breadcrumbs" aria-label="Breadcrumb">
             <ol class="breadcrumbs__list">
@@ -119,16 +119,16 @@
       </section>
 
       <!-- Services overview -->
-      <section class="section services-overview" data-reveal>
+      <section class="section services-overview">
         <div class="container">
-          <div class="section__header services-overview__header">
+          <div class="section__header services-overview__header" data-reveal="soft">
             <p class="section__eyebrow">Usługi</p>
             <h2 class="section__title">Usługi dopasowane do etapu rozwoju Twojego biznesu.</h2>
             <p class="section__subtitle">Od pojedynczej strony ofertowej po bardziej rozbudowane wdrożenia i rozwój obecnego serwisu.</p>
           </div>
-          <div class="grid grid--2 services-overview__grid">
+          <div class="grid grid--2 services-overview__grid" data-reveal-group="cards">
             <!-- Strony internetowe html css js -->
-            <article class="card service-card">
+            <article class="card service-card" data-reveal-item="soft">
               <a class="service-card__jump" href="#service-websites" aria-label="Przejdź do sekcji usługi: Strony internetowe">
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
                   <path d="M12 5v14" />
@@ -163,7 +163,7 @@
               </div>
             </article>
             <!-- Wdrożenia WordPress -->
-            <article class="card service-card">
+            <article class="card service-card" data-reveal-item="soft">
               <a class="service-card__jump" href="#service-wordpress" aria-label="Przejdź do sekcji usługi: Strony internetowe">
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
                   <path d="M12 5v14" />
@@ -195,7 +195,7 @@
               </div>
             </article>
             <!-- SEO -->
-            <article class="card service-card">
+            <article class="card service-card" data-reveal-item="soft">
               <a class="service-card__jump" href="#service-seo" aria-label="Przejdź do sekcji usługi: Strony internetowe">
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
                   <path d="M12 5v14" />
@@ -233,7 +233,7 @@
               </div>
             </article>
             <!-- UI i identyfikacja wizualna -->
-            <article class="card service-card">
+            <article class="card service-card" data-reveal-item="soft">
               <a class="service-card__jump" href="#service-design" aria-label="Przejdź do sekcji usługi: Strony internetowe">
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
                   <path d="M12 5v14" />
@@ -270,7 +270,7 @@
       </section>
 
       <!-- Service detail: websites -->
-      <section class="section service-detail" id="service-websites" aria-labelledby="service-websites-title" data-reveal>
+      <section class="section service-detail" id="service-websites" aria-labelledby="service-websites-title" data-reveal="standard">
         <div class="container">
           <div class="service-detail__grid">
             <div class="service-detail__content">
@@ -332,7 +332,7 @@
       </section>
 
       <!-- Service detail: WordPress -->
-      <section class="section service-detail" id="service-wordpress" aria-labelledby="service-wordpress-title" data-reveal>
+      <section class="section service-detail" id="service-wordpress" aria-labelledby="service-wordpress-title" data-reveal="standard">
         <div class="container">
           <div class="service-detail__grid">
             <div class="service-detail__content">
@@ -403,7 +403,7 @@
       </section>
 
       <!-- Service detail: SEO -->
-      <section class="section service-detail" id="service-seo" aria-labelledby="service-seo-title" data-reveal>
+      <section class="section service-detail" id="service-seo" aria-labelledby="service-seo-title" data-reveal="standard">
         <div class="container">
           <div class="service-detail__grid">
             <div class="service-detail__content">
@@ -472,7 +472,7 @@
       </section>
 
       <!-- Service detail: UI and visual identity -->
-      <section class="section service-detail" id="service-design" aria-labelledby="service-design-title" data-reveal>
+      <section class="section service-detail" id="service-design" aria-labelledby="service-design-title" data-reveal="standard">
         <div class="container">
           <div class="service-detail__grid">
             <div class="service-detail__content">

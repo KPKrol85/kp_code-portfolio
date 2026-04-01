@@ -127,6 +127,22 @@
   --ease-elastic-3: cubic-bezier(0.5, 1.25, 0.75, 1.25);
   --ease-elastic-4: cubic-bezier(0.5, 1.5, 0.75, 1.25);
 
+  /* Reveal animation */
+  --ease-reveal: cubic-bezier(0.2, 0.8, 0.2, 1);
+  --reveal-distance: 26px;
+  --reveal-duration: 520ms;
+  --reveal-delay-step: 64ms;
+  --reveal-delay-max: 320ms;
+  --reveal-distance-soft: 14px;
+  --reveal-duration-soft: 420ms;
+  --reveal-distance-standard: 26px;
+  --reveal-duration-standard: 560ms;
+  --reveal-distance-visual: 40px;
+  --reveal-duration-visual: 640ms;
+  --reveal-scale-visual: 0.985;
+  --reveal-delay-step-cards: 56ms;
+  --reveal-delay-step-visual: 90ms;
+
   /* Z-index */
   --z-header: 100;
   --z-nav-backdrop: 105;
@@ -154,5 +170,18 @@
   :root {
     --transition-fast: 0ms;
     --transition-base: 0ms;
+    --reveal-distance: 0px;
+    --reveal-duration: 1ms;
+    --reveal-delay-step: 0ms;
+    --reveal-delay-max: 0ms;
+    --reveal-distance-soft: 0px;
+    --reveal-duration-soft: 1ms;
+    --reveal-distance-standard: 0px;
+    --reveal-duration-standard: 1ms;
+    --reveal-distance-visual: 0px;
+    --reveal-duration-visual: 1ms;
+    --reveal-scale-visual: 1;
+    --reveal-delay-step-cards: 0ms;
+    --reveal-delay-step-visual: 0ms;
   }
 }

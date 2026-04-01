@@ -4,91 +4,114 @@
 
 ### Przegląd projektu
 
-Repozytorium zawiera statyczny serwis front-end dla `KP_Code Digital Studio`, zbudowany z wielu stron HTML, współdzielonych arkuszy CSS, skryptów Vanilla JS oraz pomocniczych skryptów Node do przetwarzania obrazów. Implementacja jest oparta na plikach źródłowych w katalogach `css/`, `js/`, `services/`, `projects/` i `seo/`.
+Statyczna strona firmowa z własnym procesem builda opartym na Node.js. Repozytorium zawiera wielostronicowy serwis HTML z ręcznie organizowanym CSS i modułowym JavaScriptem, podstrony usług, podstrony projektów, zasoby SEO oraz skrypty do budowy `dist/`.
 
 ### Kluczowe funkcje
 
-- Wielostronicowy serwis z podstronami: `about.html`, `services.html`, `projects.html`, `contact.html`, stronami usług, stronami projektów oraz stronami prawnymi.
-- Wspólna nawigacja z menu mobilnym, obsługą `Escape`, blokadą fokusu w otwartym menu i linkiem skip-link do treści.
-- Przełącznik motywu jasny/ciemny z zapisem preferencji w `localStorage`.
-- Sekcje ujawniane przy przewijaniu (`IntersectionObserver`) oraz filtrowanie listy projektów po kategoriach.
-- Formularz kontaktowy z walidacją po stronie klienta i komunikatami błędów.
-- Lokalnie hostowane fonty `Space Grotesk`, system tokenów CSS i rozdzielenie stylów na pliki bazowe, komponentowe i sekcyjne.
-- Pliki SEO i PWA: `manifest.webmanifest`, `robots.txt`, `sitemap.xml`, Open Graph i dane strukturalne JSON-LD na stronie głównej.
-- Skrypty Node do generowania zoptymalizowanych wariantów obrazów przy użyciu `sharp`.
+- Wielostronicowa architektura z głównymi widokami: `index.html`, `about.html`, `services.html`, `projects.html`, `contact.html`, `ecosystem.html`, `case-digital-vault.html` oraz strony prawne.
+- Dedykowane podstrony usług w katalogu `services/`.
+- Dedykowane podstrony projektów w katalogu `projects/`.
+- Przełączanie motywu jasny/ciemny z zapisem preferencji w `localStorage`.
+- Mobilna nawigacja z obsługą `aria-expanded`, `Escape`, trapem fokusu i zwrotem fokusu.
+- Sekcje z reveal-on-scroll, płynne przewijanie anchorów i filtrowanie projektów po kategorii.
+- Lokalne fonty `woff2`, obrazy responsywne (`avif`, `webp`, `jpg`) oraz manifest PWA.
+- Meta SEO, Open Graph, Twitter Cards, `robots`, `canonical`, `sitemap.xml` i JSON-LD na stronach HTML.
 
 ### Stack technologiczny
 
 - HTML5
-- CSS3
-- Vanilla JavaScript
-- Node.js
+- CSS podzielony na: `base`, `tokens`, `layout`, `components`, `sections`, `pages`, `utilities`, `projects`
+- Vanilla JavaScript ES modules
+- Node.js `>=18`
+- `esbuild`
+- `lightningcss`
 - `sharp`
 - `fast-glob`
 
 ### Struktura projektu
 
-- `index.html` - strona główna
-- `about.html`, `services.html`, `projects.html`, `contact.html` - główne podstrony
-- `services/` - podstrony ofert
-- `projects/` - podstrony projektów
-- `css/` - `tokens.css`, `base.css`, `components.css`, `sections.css`
-- `js/` - `theme.js`, `main.js`
-- `assets/` - obrazy, ikony, fonty
-- `og/` - obrazy Open Graph
-- `seo/` - `manifest.webmanifest`, `robots.txt`, `sitemap.xml`
-- `scripts/images/` - narzędzia do budowy i czyszczenia wariantów obrazów
-- `docs/` - istniejąca dokumentacja repozytorium
+```text
+.
+|-- assets/           # fonty, ikony, logo, obrazy źródłowe i zoptymalizowane
+|-- css/              # warstwy stylów
+|-- js/               # entrypoint i moduły funkcjonalne
+|-- projects/         # podstrony projektów
+|-- services/         # podstrony usług
+|-- scripts/          # build, preview, optymalizacja obrazów
+|-- seo/              # sitemap i robots
+|-- dist/             # wynik buildu
+|-- *.html            # główne strony serwisu
+`-- package.json
+```
 
 ### Instalacja i uruchomienie
 
-1. `npm install`
-2. Serwis nie definiuje skryptu `dev` ani `start`.
-3. Do lokalnego podglądu użyj statycznego serwera HTTP uruchomionego w katalogu projektu.
+1. Zainstaluj zależności:
 
-Uwaga: w repozytorium występują ścieżki root-relative, np. `/assets/...` i `/seo/...`, więc testowanie przez zwykłe `file://` może dawać inne wyniki niż hosting statyczny.
+   ```bash
+   npm install
+   ```
+
+2. Zbuduj wersję produkcyjną:
+
+   ```bash
+   npm run build
+   ```
+
+3. Uruchom podgląd katalogu `dist/`:
+
+   ```bash
+   npm run preview
+   ```
+
+4. Alternatywnie zbuduj i od razu uruchom preview:
+
+   ```bash
+   npm run build:preview
+   ```
 
 ### Build i wdrożenie
 
-- `package.json` zawiera tylko skrypty związane z obrazami.
-- Nie wykryto bundlera front-endowego ani skryptu produkcyjnego.
-- Nie wykryto plików `_headers`, `_redirects`, konfiguracji Netlify ani Vercel.
-- Nie wykryto service workera.
-- Wdrożenie wymaga hostingu statycznego serwującego katalog projektu jako root oraz pliki z `seo/`.
+- Główny build działa przez `scripts/build-dist.mjs`.
+- Build generuje CSS i JS, kopiuje HTML, `assets/`, pliki SEO i poprawia ścieżki ikon w manifeście dla `dist/`.
+- `scripts/preview-dist.mjs` uruchamia prosty serwer HTTP dla gotowego `dist/`.
+- Pliki konfiguracyjne Netlify/Vercel nie zostały wykryte w repozytorium.
 
 ### Dostępność
 
-- Wdrożono skip-link, widoczne style fokusu oraz semantyczne elementy `header`, `nav`, `main`, `section`, `article`, `footer`.
-- Menu mobilne obsługuje `aria-expanded`, `aria-hidden`, zamykanie klawiszem `Escape` i zwrot fokusu.
-- Styl i skrypty reagują na `prefers-reduced-motion`.
-- Formularz ma etykiety, komunikaty błędów i `aria-live`.
-- Szczegóły braków i ryzyk znajdują się w `AUDIT.md`.
+- Wykryto skip-linki i widoczne style fokusu.
+- Nawigacja mobilna ma obsługę klawiatury i atrybutów ARIA.
+- Strony mają po jednym `h1`.
+- Obrazy w sprawdzonych plikach HTML mają `width` i `height`.
+- Obsługa `prefers-reduced-motion` jest widoczna w CSS i przy smooth scrollu.
+- Formularz kontaktowy ma walidację po stronie klienta, ale nie ma rzeczywistej ścieżki wysyłki bez JS ani z JS.
 
 ### SEO
 
-- Każda sprawdzona strona HTML zawiera `title`, `meta description`, `canonical`, `og:url`, `og:image` i manifest.
-- `index.html` zawiera dane strukturalne JSON-LD dla `Person`, `Organization` i `Service`.
-- W repozytorium są obecne `seo/robots.txt` i `seo/sitemap.xml`.
-- Zakres sitemap nie pokrywa całego aktualnego zestawu publicznych stron.
+- W repo wykryto `meta description`, `canonical`, `og:image`, `robots` i bloki JSON-LD na wszystkich sprawdzonych stronach HTML.
+- W repo jest `seo/sitemap.xml` oraz `seo/robots.txt`; build kopiuje też `robots.txt` i `sitemap.xml` do root `dist/`.
+- Nie wszystkie indeksowalne adresy z `canonical` są obecne w aktualnym `seo/sitemap.xml`.
 
 ### Wydajność
 
-- Na stronie głównej wdrożono obrazy responsywne w `AVIF` i `WebP`.
-- Obrazy w HTML mają atrybuty `width` i `height`, a większość niekrytycznych grafik używa `loading="lazy"` i `decoding="async"`.
-- Fonty są hostowane lokalnie i używają `font-display: swap`.
-- Style są rozbite na cztery osobne pliki ładowane synchronicznie.
+- Fonty są lokalne i używają `font-display: swap`.
+- Karty projektów i część grafik korzystają z `<picture>` oraz formatów `avif` i `webp`.
+- W sprawdzonych znacznikach `<img>` obecne są `loading="lazy"`, `decoding="async"` oraz wymiary.
+- CSS korzysta z tokenów i warstw plików, co ogranicza przypadkowe duplikowanie stylów.
 
-### Roadmapa rekomendowana
+### Roadmapa
 
-- Podłączyć rzeczywisty backend lub usługę wysyłki formularza kontaktowego.
-- Naprawić `aria-current` na wszystkich podstronach.
-- Uzupełnić `sitemap.xml` o wszystkie kanoniczne strony publiczne.
-- Zastąpić generyczne linki społecznościowe docelowymi profilami lub usunąć je do czasu publikacji.
-- Dodać jawny workflow lokalnego uruchamiania i wdrożenia do repozytorium.
+Jawny plik roadmapy nie został wykryty w repozytorium. Z samego audytu wynikają następujące priorytety:
+
+- naprawa dwóch niedziałających linków CTA na stronie głównej
+- dodanie realnej obsługi wysyłki formularza kontaktowego
+- uzupełnienie sitemap o wszystkie strony kanoniczne oznaczone jako `index, follow`
+- korekta etykiet ARIA w kartach usług
+- przegląd drobnych niespójności markupu SVG i treści pomocniczych
 
 ### Licencja
 
-Licencja nie została wykryta w repozytorium.
+`MIT` według `package.json`.
 
 ---
 
@@ -96,88 +119,111 @@ Licencja nie została wykryta w repozytorium.
 
 ### Project overview
 
-This repository contains a static front-end website for `KP_Code Digital Studio`, built from multiple HTML pages, shared CSS stylesheets, Vanilla JS modules, and Node-based image utilities. The implementation is driven by source files in `css/`, `js/`, `services/`, `projects/`, and `seo/`.
+Static company website with a custom Node.js build pipeline. The repository contains a multi-page HTML site, layered CSS, modular vanilla JavaScript, service pages, project pages, SEO assets, and scripts for producing `dist/`.
 
 ### Key features
 
-- Multi-page website with `about.html`, `services.html`, `projects.html`, `contact.html`, service detail pages, project detail pages, and legal pages.
-- Shared navigation with a mobile menu, `Escape` handling, focus trapping, and a skip link.
-- Light/dark theme toggle with persistence in `localStorage`.
-- Scroll-reveal sections (`IntersectionObserver`) and category filtering on the projects page.
-- Contact form with client-side validation and inline error messaging.
-- Locally hosted `Space Grotesk` fonts, CSS token system, and separate base/component/section stylesheets.
-- SEO and PWA files: `manifest.webmanifest`, `robots.txt`, `sitemap.xml`, Open Graph metadata, and homepage JSON-LD.
-- Node scripts for generating optimized image variants with `sharp`.
+- Multi-page structure with core views: `index.html`, `about.html`, `services.html`, `projects.html`, `contact.html`, `ecosystem.html`, `case-digital-vault.html`, plus legal pages.
+- Dedicated service detail pages in `services/`.
+- Dedicated project detail pages in `projects/`.
+- Light/dark theme toggle with preference persisted in `localStorage`.
+- Mobile navigation with `aria-expanded`, `Escape` handling, focus trap, and focus return.
+- Reveal-on-scroll sections, anchor smooth scrolling, and category-based project filtering.
+- Local `woff2` fonts, responsive images (`avif`, `webp`, `jpg`), and a web app manifest.
+- SEO metadata, Open Graph, Twitter cards, `robots`, `canonical`, `sitemap.xml`, and JSON-LD across HTML pages.
 
 ### Tech stack
 
 - HTML5
-- CSS3
-- Vanilla JavaScript
-- Node.js
+- CSS split into `base`, `tokens`, `layout`, `components`, `sections`, `pages`, `utilities`, and `projects`
+- Vanilla JavaScript ES modules
+- Node.js `>=18`
+- `esbuild`
+- `lightningcss`
 - `sharp`
 - `fast-glob`
 
 ### Structure overview
 
-- `index.html` - homepage
-- `about.html`, `services.html`, `projects.html`, `contact.html` - main pages
-- `services/` - service detail pages
-- `projects/` - project detail pages
-- `css/` - `tokens.css`, `base.css`, `components.css`, `sections.css`
-- `js/` - `theme.js`, `main.js`
-- `assets/` - images, icons, fonts
-- `og/` - Open Graph assets
-- `seo/` - `manifest.webmanifest`, `robots.txt`, `sitemap.xml`
-- `scripts/images/` - image build and cleanup utilities
-- `docs/` - existing repository documentation
+```text
+.
+|-- assets/           # fonts, icons, logo, source and optimized images
+|-- css/              # style layers
+|-- js/               # entrypoint and feature modules
+|-- projects/         # project detail pages
+|-- services/         # service detail pages
+|-- scripts/          # build, preview, image tooling
+|-- seo/              # sitemap and robots
+|-- dist/             # build output
+|-- *.html            # top-level site pages
+`-- package.json
+```
 
 ### Setup and run
 
-1. `npm install`
-2. The repository does not define `dev` or `start` scripts.
-3. Use any static HTTP server from the project root for local preview.
+1. Install dependencies:
 
-Note: the project uses root-relative paths such as `/assets/...` and `/seo/...`, so `file://` preview may not match real hosting behavior.
+   ```bash
+   npm install
+   ```
+
+2. Build production output:
+
+   ```bash
+   npm run build
+   ```
+
+3. Preview the generated `dist/` folder:
+
+   ```bash
+   npm run preview
+   ```
+
+4. Or build and preview in one step:
+
+   ```bash
+   npm run build:preview
+   ```
 
 ### Build and deployment notes
 
-- `package.json` only defines image-processing scripts.
-- No front-end bundler or production build script was detected.
-- No `_headers`, `_redirects`, Netlify config, or Vercel config was detected.
-- No service worker was detected.
-- Deployment requires a static host serving the project root and the `seo/` files.
+- The main build entry is `scripts/build-dist.mjs`.
+- The build compiles CSS and JS, copies HTML and `assets/`, copies SEO files, and rewrites manifest icon paths inside `dist/`.
+- `scripts/preview-dist.mjs` serves the built output through a small local HTTP server.
+- No Netlify or Vercel configuration files were detected in the repository.
 
 ### Accessibility notes
 
-- The implementation includes a skip link, visible focus styles, and semantic `header`, `nav`, `main`, `section`, `article`, and `footer` elements.
-- The mobile menu handles `aria-expanded`, `aria-hidden`, `Escape`, and focus return.
-- Both CSS and JS respect `prefers-reduced-motion`.
-- The contact form includes labels, inline error containers, and live regions.
-- Known gaps and risks are documented in `AUDIT.md`.
+- Skip links and visible focus styles are present.
+- Mobile navigation includes keyboard support and ARIA state handling.
+- Each audited page has a single `h1`.
+- Audited HTML images include `width` and `height`.
+- `prefers-reduced-motion` is handled in CSS and in smooth-scroll logic.
+- The contact form provides client-side validation only; there is no real submission path with or without JavaScript.
 
 ### SEO notes
 
-- Each reviewed HTML page includes `title`, `meta description`, `canonical`, `og:url`, `og:image`, and manifest metadata.
-- `index.html` includes JSON-LD for `Person`, `Organization`, and `Service`.
-- `seo/robots.txt` and `seo/sitemap.xml` are present in the repository.
-- The current sitemap does not cover the full set of public canonical pages.
+- `meta description`, `canonical`, `og:image`, `robots`, and JSON-LD were detected across the audited HTML pages.
+- The repository includes `seo/sitemap.xml` and `seo/robots.txt`; the build also writes root-level `robots.txt` and `sitemap.xml` into `dist/`.
+- Not every canonical indexable page is currently included in `seo/sitemap.xml`.
 
 ### Performance notes
 
-- The homepage uses responsive `AVIF` and `WebP` images.
-- HTML images include `width` and `height`, and most non-critical images use `loading="lazy"` and `decoding="async"`.
-- Fonts are self-hosted and use `font-display: swap`.
-- Styles are split into four synchronous CSS files.
+- Fonts are local and use `font-display: swap`.
+- Project cards and several other assets use `<picture>` with `avif` and `webp`.
+- Audited `<img>` tags include `loading="lazy"`, `decoding="async"`, and explicit dimensions.
+- CSS is organized by layer and token usage, which helps limit style sprawl.
 
-### Recommended roadmap
+### Roadmap
 
-- Connect the contact form to a real submission backend or service.
-- Fix `aria-current` across all non-home pages.
-- Expand `sitemap.xml` to include all canonical public pages.
-- Replace generic social links with real profiles or remove them until ready.
-- Add an explicit local-run and deployment workflow to the repository.
+No explicit roadmap file was detected in the repository. Based on the audit, the next practical priorities are:
+
+- fix the two broken homepage CTA links
+- add a real submission path for the contact form
+- expand the sitemap to cover all canonical indexable pages
+- correct ARIA labels in the services overview cards
+- clean up minor SVG/markup inconsistencies
 
 ### License
 
-No license file was detected in the repository.
+`MIT` according to `package.json`.

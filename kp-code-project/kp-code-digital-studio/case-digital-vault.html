@@ -99,7 +99,7 @@
     <!-- Main -->
     <main id="main">
       <!-- Hero -->
-      <section class="section page-hero" data-reveal>
+      <section class="section page-hero" data-reveal="soft">
         <div class="container">
           <nav class="breadcrumbs" aria-label="Breadcrumb">
             <ol class="breadcrumbs__list">
@@ -119,7 +119,7 @@
       </section>
 
       <!-- Section overview -->
-      <section class="section vault-overview" data-reveal>
+      <section class="section vault-overview" data-reveal="standard">
         <div class="container">
           <div class="case-study vault-overview__shell">
             <div class="vault-overview__intro">
@@ -152,9 +152,9 @@
       </section>
 
       <!-- Section problem -->
-      <section class="section vault-problem" data-reveal>
+      <section class="section vault-problem">
         <div class="container">
-          <div class="section__header">
+          <div class="section__header" data-reveal="soft">
             <p class="section__eyebrow">Problem space</p>
             <h2 class="section__title">Największym problemem nie jest brak treści, ale brak wspólnego systemu, który pozwala nimi zarządzać, rozwijać je i zamieniać w realną wartość.</h2>
             <p class="section__subtitle">
@@ -163,19 +163,19 @@
             </p>
           </div>
 
-          <div class="grid grid--3">
+          <div class="grid grid--3" data-reveal-group="cards">
             <!-- item 01 -->
-            <article class="card vault-problem__card">
+            <article class="card vault-problem__card" data-reveal-item="soft">
               <h3 class="card__title">Rozproszenie wiedzy</h3>
               <p class="card__meta">Notatki, dokumentacja, checklisty i materiały robocze trafiają do wielu narzędzi, przez co ich utrzymanie i ponowne wykorzystanie staje się kosztowne.</p>
             </article>
             <!-- item 02 -->
-            <article class="card vault-problem__card">
+            <article class="card vault-problem__card" data-reveal-item="soft">
               <h3 class="card__title">Brak warstwy produktowej</h3>
               <p class="card__meta">Dobre zasoby i know-how pozostają zamknięte w projektach, zamiast być rozwijane jako cyfrowe produkty, biblioteki i moduły edukacyjne.</p>
             </article>
             <!-- item 03 -->
-            <article class="card vault-problem__card">
+            <article class="card vault-problem__card" data-reveal-item="soft">
               <h3 class="card__title">Trudna skalowalność</h3>
               <p class="card__meta">Bez wspólnych standardów rośnie liczba duplikacji, niespójnych struktur i zależności, które utrudniają dalszy rozwój ekosystemu.</p>
             </article>
@@ -184,7 +184,7 @@
       </section>
 
       <!-- Section solution -->
-      <section class="section vault-solution" data-reveal>
+      <section class="section vault-solution" data-reveal="standard">
         <div class="container">
           <div class="vault-solution__grid">
             <div class="section__header vault-solution__content">
@@ -225,47 +225,47 @@
       </section>
 
       <!-- Section modules -->
-      <section class="section vault-modules" data-reveal>
+      <section class="section vault-modules">
         <div class="container">
-          <div class="section__header">
+          <div class="section__header" data-reveal="soft">
             <p class="section__eyebrow">Ecosystem modules</p>
             <h2 class="section__title">Platforma składa się z warstw, które razem budują pełny ekosystem wiedzy, narzędzi, produktów i operacyjnych zasobów.</h2>
             <p class="section__subtitle">Każdy moduł pełni inną funkcję, ale wszystkie współpracują w ramach jednego uporządkowanego modelu zarządzania cyfrowym zapleczem marki KP_Code.</p>
           </div>
 
-          <div class="grid grid--3">
+          <div class="grid grid--3" data-reveal-group="cards">
             <!-- item 01 -->
-            <article class="card vault-module">
+            <article class="card vault-module" data-reveal-item="soft">
               <p class="vault-module__label">01</p>
               <h3 class="card__title">Knowledge hub</h3>
               <p class="card__meta">Centralne repozytorium wiedzy projektowej, dokumentacji, notatek, checklist i wewnętrznych standardów pracy.</p>
             </article>
             <!-- item 02 -->
-            <article class="card vault-module">
+            <article class="card vault-module" data-reveal-item="soft">
               <p class="vault-module__label">02</p>
               <h3 class="card__title">Digital products</h3>
               <p class="card__meta">Warstwa produktów cyfrowych rozwijanych jako gotowe zasoby, pakiety, szablony, materiały i rozwiązania do dalszej dystrybucji.</p>
             </article>
             <!-- item 03 -->
-            <article class="card vault-module">
+            <article class="card vault-module" data-reveal-item="soft">
               <p class="vault-module__label">03</p>
               <h3 class="card__title">Education layer</h3>
               <p class="card__meta">Materiały edukacyjne, ścieżki nauki i zasoby rozwijające kompetencje w obszarze webu, organizacji wiedzy i pracy z narzędziami cyfrowymi.</p>
             </article>
             <!-- item 04 -->
-            <article class="card vault-module">
+            <article class="card vault-module" data-reveal-item="soft">
               <p class="vault-module__label">04</p>
               <h3 class="card__title">Developer resources</h3>
               <p class="card__meta">Komponenty, UI patterns, snippet library, reusable front-end resources i elementy wspierające szybsze oraz bardziej spójne wdrożenia.</p>
             </article>
             <!-- item 05 -->
-            <article class="card vault-module">
+            <article class="card vault-module" data-reveal-item="soft">
               <p class="vault-module__label">05</p>
               <h3 class="card__title">Project assets &amp; systems</h3>
               <p class="card__meta">Assety projektowe, struktury treści, biblioteki zasobów i systemy pracy, które można rozwijać i stosować w kolejnych inicjatywach.</p>
             </article>
             <!-- item 06 -->
-            <article class="card vault-module">
+            <article class="card vault-module" data-reveal-item="soft">
               <p class="vault-module__label">06</p>
               <h3 class="card__title">Governance &amp; security</h3>
               <p class="card__meta">Warstwa odpowiedzialna za porządek dostępu, standaryzację, bezpieczeństwo informacji i przygotowanie platformy do skalowania.</p>
@@ -275,42 +275,42 @@
       </section>
 
       <!-- Section audiences -->
-      <section class="section vault-audiences" data-reveal>
+      <section class="section vault-audiences">
         <div class="container">
-          <div class="section__header">
+          <div class="section__header" data-reveal="soft">
             <p class="section__eyebrow">Audience &amp; use cases</p>
             <h2 class="section__title">Digital Vault jest projektowany jako platforma użyteczna dla różnych grup, które potrzebują lepszego dostępu do wiedzy, zasobów i gotowych systemów pracy.</h2>
             <p class="section__subtitle">Wartość platformy wynika z tego, że ten sam ekosystem może wspierać działania biznesowe, development, naukę i codzienną organizację pracy cyfrowej.</p>
           </div>
 
-          <div class="grid grid--2">
+          <div class="grid grid--2" data-reveal-group="cards">
             <!-- item 01 -->
-            <article class="card vault-audience">
+            <article class="card vault-audience" data-reveal-item="soft">
               <h3 class="card__title">Biznesy i marki</h3>
               <p class="card__meta">Otrzymują uporządkowaną przestrzeń dla materiałów, procedur, assetów i wiedzy operacyjnej, którą można rozwijać wraz z rozwojem oferty i procesów.</p>
             </article>
             <!-- item 02 -->
-            <article class="card vault-audience">
+            <article class="card vault-audience" data-reveal-item="soft">
               <h3 class="card__title">Developerzy</h3>
               <p class="card__meta">Zyskują bibliotekę komponentów, wzorców i zasobów technicznych, które przyspieszają wdrożenia i zmniejszają liczbę powtarzalnej pracy.</p>
             </article>
             <!-- item 03 -->
-            <article class="card vault-audience">
+            <article class="card vault-audience" data-reveal-item="soft">
               <h3 class="card__title">Freelancerzy</h3>
               <p class="card__meta">Mogą budować własne zaplecze procesowe, bazę wiedzy oraz zestaw gotowych materiałów, które zwiększają jakość i przewidywalność realizacji.</p>
             </article>
             <!-- item 04 -->
-            <article class="card vault-audience">
+            <article class="card vault-audience" data-reveal-item="soft">
               <h3 class="card__title">Learnerzy</h3>
               <p class="card__meta">Dostają środowisko nauki oparte na praktycznych materiałach, strukturze treści i realnych zasobach projektowych, a nie wyłącznie na teorii.</p>
             </article>
             <!-- item 05 -->
-            <article class="card vault-audience">
+            <article class="card vault-audience" data-reveal-item="soft">
               <h3 class="card__title">Użytkownicy indywidualni</h3>
               <p class="card__meta">Mogą wykorzystywać platformę do organizowania własnej wiedzy cyfrowej, zarządzania materiałami i pracy z narzędziami w bardziej świadomy sposób.</p>
             </article>
             <!-- item 06 -->
-            <article class="card vault-audience">
+            <article class="card vault-audience" data-reveal-item="soft">
               <h3 class="card__title">Ekosystem KP_Code</h3>
               <p class="card__meta">Zyskuje wspólną warstwę porządkującą produkty, usługi, dokumentację i rozwój własnych systemów pod jednym strategicznym kierunkiem.</p>
             </article>
@@ -319,47 +319,47 @@
       </section>
 
       <!-- Section architecture -->
-      <section class="section vault-architecture" data-reveal>
+      <section class="section vault-architecture">
         <div class="container">
-          <div class="section__header">
+          <div class="section__header" data-reveal="soft">
             <p class="section__eyebrow">Architecture</p>
             <h2 class="section__title">Architektura Digital Vault opiera się na warstwach, które pozwalają oddzielić content, produkty, assety i operacyjne mechanizmy platformy.</h2>
             <p class="section__subtitle">Taki model ułatwia utrzymanie porządku, wprowadzanie nowych modułów oraz stopniowe przekształcanie zasobów w gotowe elementy większego systemu.</p>
           </div>
 
-          <div class="vault-layers" aria-label="Warstwy platformy Digital Vault">
+          <div class="vault-layers" aria-label="Warstwy platformy Digital Vault" data-reveal-group="cards">
             <!-- item 01 -->
-            <article class="card vault-layer">
+            <article class="card vault-layer" data-reveal-item="soft">
               <p class="vault-layer__index">Layer 01</p>
               <h3 class="card__title">Content layer</h3>
               <p class="card__meta">Struktury wiedzy, notatki, dokumentacja, opisy procesów i baza materiałów źródłowych.</p>
             </article>
             <!-- item 02 -->
-            <article class="card vault-layer">
+            <article class="card vault-layer" data-reveal-item="soft">
               <p class="vault-layer__index">Layer 02</p>
               <h3 class="card__title">Assets layer</h3>
               <p class="card__meta">Szablony, pliki robocze, biblioteki zasobów wizualnych i komponenty wykorzystywane w wielu projektach.</p>
             </article>
             <!-- item 03 -->
-            <article class="card vault-layer">
+            <article class="card vault-layer" data-reveal-item="soft">
               <p class="vault-layer__index">Layer 03</p>
               <h3 class="card__title">Products layer</h3>
               <p class="card__meta">Pakiety, produkty cyfrowe, uporządkowane zasoby i gotowe materiały rozwijane w kierunku oferty produktowej.</p>
             </article>
             <!-- item 04 -->
-            <article class="card vault-layer">
+            <article class="card vault-layer" data-reveal-item="soft">
               <p class="vault-layer__index">Layer 04</p>
               <h3 class="card__title">Learning layer</h3>
               <p class="card__meta">Ścieżki edukacyjne, materiały szkoleniowe i praktyczne zasoby wspierające rozwój kompetencji.</p>
             </article>
             <!-- item 05 -->
-            <article class="card vault-layer">
+            <article class="card vault-layer" data-reveal-item="soft">
               <p class="vault-layer__index">Layer 05</p>
               <h3 class="card__title">Reusable systems</h3>
               <p class="card__meta">Systemy komponentów, standardy wdrożeń i moduły powtarzalne, które zwiększają przewidywalność i spójność pracy.</p>
             </article>
             <!-- item 06 -->
-            <article class="card vault-layer">
+            <article class="card vault-layer" data-reveal-item="soft">
               <p class="vault-layer__index">Layer 06</p>
               <h3 class="card__title">Operational &amp; security layer</h3>
               <p class="card__meta">Zasady dostępu, porządek architektoniczny, governance, bezpieczeństwo danych i przygotowanie platformy do dalszego wzrostu.</p>
@@ -369,23 +369,23 @@
       </section>
 
       <!-- Section relationship -->
-      <section class="section vault-relationship" data-reveal>
+      <section class="section vault-relationship">
         <div class="container">
-          <div class="section__header">
+          <div class="section__header" data-reveal="soft">
             <p class="section__eyebrow">Studio relation</p>
             <h2 class="section__title">KP_Code Digital Studio i KP_Code Digital Vault są częścią jednego kierunku, ale pełnią różne role w ekosystemie.</h2>
             <p class="section__subtitle">Studio odpowiada za warstwę usługową i współpracę projektową, natomiast Vault stanowi zaplecze systemowe, produktowe i wiedzo-centryczne.</p>
           </div>
 
-          <div class="grid grid--2 vault-relationship__grid">
+          <div class="grid grid--2 vault-relationship__grid" data-reveal-group="cards">
             <!-- item 01 -->
-            <article class="card vault-relationship__card">
+            <article class="card vault-relationship__card" data-reveal-item="soft">
               <p class="vault-relationship__label">KP_Code Digital Studio</p>
               <h3 class="card__title">Gałąź usługowa</h3>
               <p class="card__meta">Miejsce, w którym realizowane są nowoczesne strony internetowe, wdrożenia webowe i współprace dla firm, marek oraz projektów cyfrowych.</p>
             </article>
             <!-- item 02 -->
-            <article class="card vault-relationship__card">
+            <article class="card vault-relationship__card" data-reveal-item="soft">
               <p class="vault-relationship__label">KP_Code Digital Vault</p>
               <h3 class="card__title">Zaplecze platformowe</h3>
               <p class="card__meta">Warstwa odpowiedzialna za repozytoria wiedzy, produkty, systemy, zasoby reusable i kierunek długofalowego rozwoju całego ekosystemu.</p>
@@ -395,29 +395,29 @@
       </section>
 
       <!-- Section roadmap -->
-      <section class="section vault-roadmap" data-reveal>
+      <section class="section vault-roadmap">
         <div class="container">
-          <div class="section__header">
+          <div class="section__header" data-reveal="soft">
             <p class="section__eyebrow">Long-term direction</p>
             <h2 class="section__title">Docelowo Digital Vault ma stać się skalowalnym środowiskiem, które łączy uporządkowaną wiedzę, gotowe produkty i własne systemy rozwijane etapami.</h2>
             <p class="section__subtitle">Rozwój nie zakłada budowy wszystkiego naraz, ale konsekwentne wzmacnianie warstw, które zwiększają wartość całego ekosystemu KP_Code.</p>
           </div>
 
-          <div class="vault-roadmap__stack">
+          <div class="vault-roadmap__stack" data-reveal-group="cards">
             <!-- item 01 -->
-            <article class="card vault-roadmap__item">
+            <article class="card vault-roadmap__item" data-reveal-item="soft">
               <p class="vault-roadmap__phase">Phase 01</p>
               <h3 class="card__title">Porządkowanie bazy wiedzy i zasobów</h3>
               <p class="card__meta">Budowa struktur treści, repozytoriów, kategorii i standardów, które stają się bazą dla dalszych modułów platformy.</p>
             </article>
             <!-- item 02 -->
-            <article class="card vault-roadmap__item">
+            <article class="card vault-roadmap__item" data-reveal-item="soft">
               <p class="vault-roadmap__phase">Phase 02</p>
               <h3 class="card__title">Rozwój warstwy produktowej i edukacyjnej</h3>
               <p class="card__meta">Tworzenie materiałów, bibliotek, pakietów i zasobów, które można udostępniać jako gotowe produkty lub ścieżki nauki.</p>
             </article>
             <!-- item 03 -->
-            <article class="card vault-roadmap__item">
+            <article class="card vault-roadmap__item" data-reveal-item="soft">
               <p class="vault-roadmap__phase">Phase 03</p>
               <h3 class="card__title">Budowa własnych systemów i szerszego zaplecza operacyjnego</h3>
               <p class="card__meta">Rozszerzanie platformy o bardziej zaawansowane moduły, uporządkowane mechanizmy zarządzania i kolejne elementy ekosystemu KP_Code.</p>
@@ -427,7 +427,7 @@
       </section>
 
       <!-- CTA -->
-      <section class="section" data-reveal>
+      <section class="section" data-reveal="soft">
         <div class="container cta vault-cta">
           <div class="section__header">
             <h2 class="section__title">Szukasz partnera, który myśli o projekcie nie tylko jak o stronie, ale jak o rozwijanym systemie cyfrowym?</h2>

@@ -69,7 +69,7 @@
       </div>
     </header>
     <main id="main">
-      <section class="section page-hero" data-reveal>
+      <section class="section page-hero" data-reveal="soft">
         <div class="container">
           <nav class="breadcrumbs" aria-label="Breadcrumb">
             <ol class="breadcrumbs__list">
@@ -84,7 +84,7 @@
           </div>
         </div>
       </section>
-      <section class="section" data-reveal>
+      <section class="section" data-reveal="standard">
         <div class="container">
           <div class="project-overview__grid">
             <div class="project-overview__copy">
@@ -107,20 +107,20 @@
           </div>
         </div>
       </section>
-      <section class="section project-highlights" aria-labelledby="vista-highlights-title" data-reveal>
+      <section class="section project-highlights" aria-labelledby="vista-highlights-title">
         <div class="container">
-          <div class="section__header">
+          <div class="section__header" data-reveal="soft">
             <p class="section__eyebrow">Zakres i akcenty</p>
             <h2 class="section__title" id="vista-highlights-title">Każda część projektu została podporządkowana temu, by użytkownik łatwo zrozumiał ofertę i poczuł jakość miejsca.</h2>
           </div>
-          <div class="grid grid--3">
-            <article class="card project-highlights__card"><p class="project-highlights__index">01</p><h3 class="project-highlights__title">Oferta pobytowa</h3><p class="card__meta">Sekcje eksponują najważniejsze informacje o miejscu, korzyściach i doświadczeniu, bez przeciążenia treścią.</p></article>
-            <article class="card project-highlights__card"><p class="project-highlights__index">02</p><h3 class="project-highlights__title">Wizerunek miejsca</h3><p class="card__meta">Projekt wykorzystuje nowoczesny, lekki język wizualny, który wspiera odbiór marki jako uporządkowanej i dopracowanej.</p></article>
-            <article class="card project-highlights__card"><p class="project-highlights__index">03</p><h3 class="project-highlights__title">Scenariusze rozbudowy</h3><p class="card__meta">Struktura pozwala później dodać cennik, pakiety pobytowe, FAQ lub rozbudowane sekcje lokalnych atrakcji.</p></article>
+          <div class="grid grid--3" data-reveal-group="cards">
+            <article class="card project-highlights__card" data-reveal-item="soft"><p class="project-highlights__index">01</p><h3 class="project-highlights__title">Oferta pobytowa</h3><p class="card__meta">Sekcje eksponują najważniejsze informacje o miejscu, korzyściach i doświadczeniu, bez przeciążenia treścią.</p></article>
+            <article class="card project-highlights__card" data-reveal-item="soft"><p class="project-highlights__index">02</p><h3 class="project-highlights__title">Wizerunek miejsca</h3><p class="card__meta">Projekt wykorzystuje nowoczesny, lekki język wizualny, który wspiera odbiór marki jako uporządkowanej i dopracowanej.</p></article>
+            <article class="card project-highlights__card" data-reveal-item="soft"><p class="project-highlights__index">03</p><h3 class="project-highlights__title">Scenariusze rozbudowy</h3><p class="card__meta">Struktura pozwala później dodać cennik, pakiety pobytowe, FAQ lub rozbudowane sekcje lokalnych atrakcji.</p></article>
           </div>
         </div>
       </section>
-      <section class="section" data-reveal>
+      <section class="section" data-reveal="standard">
         <div class="container">
           <div class="project-stack__grid">
             <div class="project-stack__intro">
@@ -145,7 +145,7 @@
           </div>
         </div>
       </section>
-      <section class="section" aria-labelledby="vista-visual-title" data-reveal>
+      <section class="section" aria-labelledby="vista-visual-title" data-reveal="visual">
         <div class="container">
           <div class="section__header">
             <p class="section__eyebrow">Prezentacja wizualna</p>
@@ -161,7 +161,7 @@
           </figure>
         </div>
       </section>
-      <section class="section" data-reveal>
+      <section class="section" data-reveal="soft">
         <div class="container">
           <div class="card project-cta__shell">
             <div class="section__header">

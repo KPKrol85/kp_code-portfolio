@@ -87,7 +87,7 @@
       </div>
     </header>
     <main id="main">
-      <section class="section page-hero" data-reveal>
+      <section class="section page-hero" data-reveal="soft">
         <div class="container">
           <nav class="breadcrumbs" aria-label="Breadcrumb">
             <ol class="breadcrumbs__list">
@@ -102,7 +102,7 @@
           </div>
         </div>
       </section>
-      <section class="section" data-reveal>
+      <section class="section" data-reveal="standard">
         <div class="container">
           <div class="project-overview__grid">
             <div class="project-overview__copy">
@@ -140,24 +140,24 @@
           </div>
         </div>
       </section>
-      <section class="section project-highlights" aria-labelledby="ambre-highlights-title" data-reveal>
+      <section class="section project-highlights" aria-labelledby="ambre-highlights-title">
         <div class="container">
-          <div class="section__header">
+          <div class="section__header" data-reveal="soft">
             <p class="section__eyebrow">Zakres i akcenty</p>
             <h2 class="section__title" id="ambre-highlights-title">Projekt skupia się na tym, aby luksusowy charakter marki był widoczny bez utraty funkcjonalności i jasnego przekazu.</h2>
           </div>
-          <div class="grid grid--3">
-            <article class="card project-highlights__card">
+          <div class="grid grid--3" data-reveal-group="cards">
+            <article class="card project-highlights__card" data-reveal-item="soft">
               <p class="project-highlights__index">01</p>
               <h3 class="project-highlights__title">Mood premium</h3>
               <p class="card__meta">Kompozycja i proporcje sekcji budują wrażenie dopracowanej marki, bez przesady i nadmiaru ozdobników.</p>
             </article>
-            <article class="card project-highlights__card">
+            <article class="card project-highlights__card" data-reveal-item="soft">
               <p class="project-highlights__index">02</p>
               <h3 class="project-highlights__title">Czytelna prezentacja oferty</h3>
               <p class="card__meta">Treść jest układana tak, by użytkownik szybko zrozumiał charakter miejsca, menu i najważniejsze argumenty marki.</p>
             </article>
-            <article class="card project-highlights__card">
+            <article class="card project-highlights__card" data-reveal-item="soft">
               <p class="project-highlights__index">03</p>
               <h3 class="project-highlights__title">Gotowość na rozwój</h3>
               <p class="card__meta">Struktura bez problemu przyjmie kolejne sekcje, np. degustacje, wydarzenia, sezonowe menu lub rozbudowaną galerię.</p>
@@ -165,7 +165,7 @@
           </div>
         </div>
       </section>
-      <section class="section" data-reveal>
+      <section class="section" data-reveal="standard">
         <div class="container">
           <div class="project-stack__grid">
             <div class="project-stack__intro">
@@ -202,7 +202,7 @@
           </div>
         </div>
       </section>
-      <section class="section" aria-labelledby="ambre-visual-title" data-reveal>
+      <section class="section" aria-labelledby="ambre-visual-title" data-reveal="visual">
         <div class="container">
           <div class="section__header">
             <p class="section__eyebrow">Prezentacja wizualna</p>
@@ -232,7 +232,7 @@
           </figure>
         </div>
       </section>
-      <section class="section" data-reveal>
+      <section class="section" data-reveal="soft">
         <div class="container">
           <div class="card project-cta__shell">
             <div class="section__header">

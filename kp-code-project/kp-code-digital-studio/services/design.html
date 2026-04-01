@@ -99,7 +99,7 @@
     <!-- Main -->
     <main id="main">
       <!-- Hero -->
-      <section class="section page-hero" data-reveal>
+      <section class="section page-hero" data-reveal="soft">
         <div class="container">
           <nav class="breadcrumbs" aria-label="Breadcrumb">
             <ol class="breadcrumbs__list">
@@ -121,7 +121,7 @@
       </section>
 
       <!-- Section intro -->
-      <section class="section service" data-reveal>
+      <section class="section service" data-reveal="standard">
         <div class="container">
           <div class="service-detail__grid">
             <div class="service-detail__content">
@@ -171,9 +171,9 @@
       </section>
 
       <!-- Section scope -->
-      <section class="section service" aria-labelledby="design-included-title" data-reveal>
+      <section class="section service" aria-labelledby="design-included-title">
         <div class="container">
-          <div class="section__header">
+          <div class="section__header" data-reveal="soft">
             <p class="section__eyebrow">Zakres</p>
             <h2 class="section__title" id="design-included-title">Co obejmuje usługa UI Design.</h2>
             <p class="section__subtitle">
@@ -181,9 +181,9 @@
               oraz przygotowaniu projektu do późniejszego wdrożenia.
             </p>
           </div>
-          <div class="grid grid--2 service__cards">
+          <div class="grid grid--2 service__cards" data-reveal-group="cards">
             <!-- idem 01 -->
-            <article class="card service__card">
+            <article class="card service__card" data-reveal-item="soft">
               <p class="service__card-label">01</p>
               <h3 class="card__title">Architektura ekranu i układu</h3>
               <p class="card__meta">
@@ -191,13 +191,13 @@
               </p>
             </article>
             <!-- idem 02 -->
-            <article class="card service__card">
+            <article class="card service__card" data-reveal-item="soft">
               <p class="service__card-label">02</p>
               <h3 class="card__title">Hierarchia wizualna i komponenty</h3>
               <p class="card__meta">Porządkowanie nagłówków, przycisków, kart, formularzy i innych elementów UI w spójny system, który poprawia odbiór i ogranicza wizualny chaos.</p>
             </article>
             <!-- idem 03 -->
-            <article class="card service__card">
+            <article class="card service__card" data-reveal-item="soft">
               <p class="service__card-label">03</p>
               <h3 class="card__title">Responsywność i jakość prezentacji</h3>
               <p class="card__meta">
@@ -205,7 +205,7 @@
               </p>
             </article>
             <!-- idem 04 -->
-            <article class="card service__card">
+            <article class="card service__card" data-reveal-item="soft">
               <p class="service__card-label">04</p>
               <h3 class="card__title">Przygotowanie do wdrożenia</h3>
               <p class="card__meta">Projekt uporządkowany w sposób czytelny dla dalszych prac front-endowych, z logicznym systemem elementów i jasnym kierunkiem implementacji.</p>
@@ -215,9 +215,9 @@
       </section>
 
       <!-- Section audience -->
-      <section class="section service service--surface" aria-labelledby="design-audience-title" data-reveal>
+      <section class="section service service--surface" aria-labelledby="design-audience-title">
         <div class="container">
-          <div class="section__header">
+          <div class="section__header" data-reveal="soft">
             <p class="section__eyebrow">Dla kogo</p>
             <h2 class="section__title" id="design-audience-title">Dla firm i produktów cyfrowych, które potrzebują bardziej dopracowanego, czytelnego i spójnego interfejsu.</h2>
             <p class="section__subtitle">
@@ -225,24 +225,24 @@
               odświeżyć lub poprawić pod kątem użyteczności.
             </p>
           </div>
-          <div class="grid grid--2 service__cards">
+          <div class="grid grid--2 service__cards" data-reveal-group="cards">
             <!-- idem 01 -->
-            <article class="card service__card">
+            <article class="card service__card" data-reveal-item="soft">
               <h3 class="card__title">Firmy usługowe i strony ofertowe</h3>
               <p class="card__meta">Dla marek, które chcą prezentować ofertę w bardziej przejrzysty, nowoczesny i profesjonalny sposób bez chaosu wizualnego.</p>
             </article>
             <!-- idem 02 -->
-            <article class="card service__card">
+            <article class="card service__card" data-reveal-item="soft">
               <h3 class="card__title">Produkty cyfrowe i aplikacje</h3>
               <p class="card__meta">Dla projektów, które potrzebują logicznego interfejsu, spójnych komponentów i lepszego prowadzenia użytkownika przez kolejne widoki.</p>
             </article>
             <!-- idem 03 -->
-            <article class="card service__card">
+            <article class="card service__card" data-reveal-item="soft">
               <h3 class="card__title">Firmy odświeżające obecną stronę</h3>
               <p class="card__meta">Gdy obecny interfejs nie odpowiada już poziomowi marki, utrudnia odbiór treści albo nie wspiera odpowiednio działań sprzedażowych i komunikacyjnych.</p>
             </article>
             <!-- idem 04 -->
-            <article class="card service__card">
+            <article class="card service__card" data-reveal-item="soft">
               <h3 class="card__title">Zespoły potrzebujące spójnego systemu UI</h3>
               <p class="card__meta">Dla projektów rozwijanych etapami, w których ważna jest powtarzalność elementów, przewidywalność projektowa i łatwiejsze wdrażanie kolejnych ekranów.</p>
             </article>
@@ -251,18 +251,18 @@
       </section>
 
       <!-- Section process -->
-      <section class="section service" aria-labelledby="design-process-title" data-reveal>
+      <section class="section service" aria-labelledby="design-process-title">
         <div class="container">
-          <div class="section__header">
+          <div class="section__header" data-reveal="soft">
             <p class="section__eyebrow">Proces</p>
             <h2 class="section__title" id="design-process-title">Jak wygląda współpraca przy projekcie UI Design.</h2>
             <p class="section__subtitle">
               Proces jest uporządkowany tak, aby projekt interfejsu był nie tylko estetyczny, ale również logiczny, użyteczny i gotowy do dalszego wdrożenia bez zbędnych niejasności.
             </p>
           </div>
-          <div class="grid grid--2 process">
+          <div class="grid grid--2 process" data-reveal-group="cards">
             <!-- idem 01 -->
-            <article class="card process__item">
+            <article class="card process__item" data-reveal-item="soft">
               <div class="process__header">
                 <span class="process__step">1</span>
                 <h3 class="card__title">Analiza i założenia</h3>
@@ -270,7 +270,7 @@
               <p class="card__meta">Ustalenie celu interfejsu, typu użytkownika, kluczowych ekranów, potrzeb projektowych oraz problemów, które UI ma rozwiązać.</p>
             </article>
             <!-- idem 02 -->
-            <article class="card process__item">
+            <article class="card process__item" data-reveal-item="soft">
               <div class="process__header">
                 <span class="process__step">2</span>
                 <h3 class="card__title">Struktura i kierunek wizualny</h3>
@@ -278,7 +278,7 @@
               <p class="card__meta">Opracowanie układu, hierarchii treści i estetycznego kierunku interfejsu tak, aby wspierał czytelność, spójność i profesjonalny odbiór.</p>
             </article>
             <!-- idem 03 -->
-            <article class="card process__item">
+            <article class="card process__item" data-reveal-item="soft">
               <div class="process__header">
                 <span class="process__step">3</span>
                 <h3 class="card__title">Projekt ekranów i komponentów</h3>
@@ -286,7 +286,7 @@
               <p class="card__meta">Powstają właściwe widoki i elementy UI z uwzględnieniem powtarzalności komponentów, logiki działań użytkownika oraz responsywnego zachowania projektu.</p>
             </article>
             <!-- idem 04 -->
-            <article class="card process__item">
+            <article class="card process__item" data-reveal-item="soft">
               <div class="process__header">
                 <span class="process__step">4</span>
                 <h3 class="card__title">Dopracowanie i przekazanie</h3>
@@ -298,9 +298,9 @@
       </section>
 
       <!-- Section pricing -->
-      <section class="section service service--surface" aria-labelledby="design-pricing-title" data-reveal>
+      <section class="section service service--surface" aria-labelledby="design-pricing-title">
         <div class="container">
-          <div class="section__header">
+          <div class="section__header" data-reveal="soft">
             <p class="section__eyebrow">Wycena</p>
             <h2 class="section__title" id="design-pricing-title">Jak wygląda wycena UI Design i od jakiego poziomu zaczynają się projekty.</h2>
             <p class="section__subtitle">
@@ -308,23 +308,23 @@
               systemu UI.
             </p>
           </div>
-          <div class="grid grid--3 service__pricing">
+          <div class="grid grid--3 service__pricing" data-reveal-group="cards">
             <!-- idem 01 -->
-            <article class="card service__pricing-card">
+            <article class="card service__pricing-card" data-reveal-item="soft">
               <p class="service__price-kicker">Od</p>
               <p class="service__price-value">1 200 zł</p>
               <h3 class="card__title">Pojedyncza strona lub widok</h3>
               <p class="card__meta">Projekt jednego kluczowego widoku lub strony z naciskiem na przejrzysty układ, hierarchię treści i dopracowaną prezentację interfejsu.</p>
             </article>
             <!-- idem 02 -->
-            <article class="card service__pricing-card">
+            <article class="card service__pricing-card" data-reveal-item="soft">
               <p class="service__price-kicker">Od</p>
               <p class="service__price-value">2 400 zł</p>
               <h3 class="card__title">Mały zestaw ekranów</h3>
               <p class="card__meta">Projekt kilku powiązanych widoków z podstawowym systemem komponentów i spójnym kierunkiem wizualnym dla strony lub prostego produktu cyfrowego.</p>
             </article>
             <!-- idem 03 -->
-            <article class="card service__pricing-card">
+            <article class="card service__pricing-card" data-reveal-item="soft">
               <p class="service__price-kicker">Od</p>
               <p class="service__price-value">4 200 zł</p>
               <h3 class="card__title">Szerszy system UI</h3>
@@ -339,9 +339,9 @@
       </section>
 
       <!-- Section factors -->
-      <section class="section service" aria-labelledby="design-factors-title" data-reveal>
+      <section class="section service" aria-labelledby="design-factors-title">
         <div class="container">
-          <div class="section__header">
+          <div class="section__header" data-reveal="soft">
             <p class="section__eyebrow">Co wpływa na koszt</p>
             <h2 class="section__title" id="design-factors-title">Najważniejsze elementy wpływające na końcową wycenę UI Design.</h2>
             <p class="section__subtitle">
@@ -349,24 +349,24 @@
               efektu końcowego.
             </p>
           </div>
-          <div class="grid grid--2">
+          <div class="grid grid--2" data-reveal-group="cards">
             <!-- idem 01 -->
-            <article class="card service__factor-card">
+            <article class="card service__factor-card" data-reveal-item="soft">
               <h3 class="card__title">Liczba ekranów i sekcji</h3>
               <p class="card__meta">Im więcej widoków, sekcji i wariantów interfejsu, tym większy zakres pracy projektowej, porządkowania struktury i zachowania spójności między elementami.</p>
             </article>
             <!-- idem 02 -->
-            <article class="card service__factor-card">
+            <article class="card service__factor-card" data-reveal-item="soft">
               <h3 class="card__title">Poziom złożoności interfejsu</h3>
               <p class="card__meta">Rozbudowane formularze, dashboardy, wielowarstwowe układy i większa liczba stanów komponentów wpływają na szerokość oraz czas realizacji.</p>
             </article>
             <!-- idem 03 -->
-            <article class="card service__factor-card">
+            <article class="card service__factor-card" data-reveal-item="soft">
               <h3 class="card__title">Zakres systemu komponentów</h3>
               <p class="card__meta">Jeśli projekt wymaga bardziej uporządkowanego i skalowalnego systemu UI, rośnie zakres pracy nad powtarzalnością, logiką i spójnością elementów.</p>
             </article>
             <!-- idem 04 -->
-            <article class="card service__factor-card">
+            <article class="card service__factor-card" data-reveal-item="soft">
               <h3 class="card__title">Stan materiałów i kierunku wyjściowego</h3>
               <p class="card__meta">Gotowe treści, struktura i założenia projektowe przyspieszają pracę. Ich brak zwykle oznacza dodatkowy etap koncepcyjny i porządkowanie założeń.</p>
             </article>
@@ -375,7 +375,7 @@
       </section>
 
       <!-- Section benefits -->
-      <section class="section service service--benefits" aria-labelledby="design-benefits-title" data-reveal>
+      <section class="section service service--benefits" aria-labelledby="design-benefits-title" data-reveal="standard">
         <div class="container">
           <div class="service-detail__grid">
             <div class="service-detail__content">
@@ -409,9 +409,9 @@
       </section>
 
       <!-- Section FAQ -->
-      <section class="section service service--surface" aria-labelledby="design-faq-title" data-reveal>
+      <section class="section service service--surface" aria-labelledby="design-faq-title">
         <div class="container">
-          <div class="section__header">
+          <div class="section__header" data-reveal="soft">
             <p class="section__eyebrow">FAQ</p>
             <h2 class="section__title" id="design-faq-title">Najczęstsze pytania przed rozpoczęciem współpracy przy UI Design.</h2>
             <p class="section__subtitle">
@@ -452,7 +452,7 @@
       </section>
 
       <!-- Section cta -->
-      <section class="section service" data-reveal>
+      <section class="section service" data-reveal="soft">
         <div class="container cta service__cta">
           <div class="section__header">
             <h2 class="section__title">Potrzebujesz bardziej dopracowanego interfejsu dla strony lub produktu cyfrowego?</h2>

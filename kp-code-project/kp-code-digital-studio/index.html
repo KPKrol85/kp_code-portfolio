@@ -98,7 +98,7 @@
     <!-- Main -->
     <main id="main">
       <!-- Hero -->
-      <section class="section hero" data-reveal>
+      <section class="section hero" data-reveal="soft">
         <div class="container hero__grid">
           <div class="hero__content">
             <p class="section__eyebrow">Kamil Król — Programista webowy</p>
@@ -116,17 +116,17 @@
       </section>
 
       <!-- Services -->
-      <section class="section" data-reveal>
+      <section class="section">
         <div class="container">
-          <div class="section__header">
+          <div class="section__header" data-reveal="soft">
             <p class="section__eyebrow">Usługi</p>
             <h2 class="section__title">Pakiety usług do budowy nowoczesnych produktów webowych.</h2>
             <p class="section__subtitle">Projektuję i wdrażam przejrzyste, skalowalne rozwiązania — od HTML/CSS/JS, przez WordPress, po SEO i systemy projektowe.</p>
           </div>
 
-          <div class="grid grid--2">
+          <div class="grid grid--2" data-reveal-group="cards">
             <!-- Websites -->
-            <article class="card service-card">
+            <article class="card service-card" data-reveal-item="soft">
               <div class="service-card__head">
                 <span class="service-card__icon" aria-hidden="true">
                   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -154,7 +154,7 @@
             </article>
 
             <!-- Wordpress -->
-            <article class="card service-card">
+            <article class="card service-card" data-reveal-item="soft">
               <div class="service-card__head">
                 <span class="service-card__icon" aria-hidden="true">
                   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -179,7 +179,7 @@
               </div>
             </article>
             <!-- Seo -->
-            <article class="card service-card">
+            <article class="card service-card" data-reveal-item="soft">
               <div class="service-card__head">
                 <span class="service-card__icon" aria-hidden="true">
                   <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -206,7 +206,7 @@
               </div>
             </article>
             <!-- UI Design -->
-            <article class="card service-card">
+            <article class="card service-card" data-reveal-item="soft">
               <div class="service-card__head">
                 <span class="service-card__icon" aria-hidden="true">
                   <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -236,16 +236,16 @@
       </section>
 
       <!-- Selected work -->
-      <section class="section" data-reveal>
+      <section class="section">
         <div class="container">
-          <div class="section__header">
+          <div class="section__header" data-reveal="soft">
             <p class="section__eyebrow">Wybrane realizacje</p>
             <h2 class="section__title">Wybrane realizacje i koncepty.</h2>
             <p class="section__subtitle">Starannie wybrane projekty komercyjne i autorskie.</p>
           </div>
-          <div class="grid grid--3">
+          <div class="grid grid--3" data-reveal-group="visual">
             <!-- Volt Garage -->
-            <article class="card work-card">
+            <article class="card work-card" data-reveal-item="visual">
               <div class="work-card__image">
                 <picture>
                   <source
@@ -291,7 +291,7 @@
             </article>
 
             <!-- Ambre -->
-            <article class="card work-card">
+            <article class="card work-card" data-reveal-item="visual">
               <div class="work-card__image">
                 <picture>
                   <source
@@ -330,7 +330,7 @@
               </div>
             </article>
             <!-- Vista -->
-            <article class="card work-card">
+            <article class="card work-card" data-reveal-item="visual">
               <div class="work-card__image">
                 <picture>
                   <source
@@ -369,7 +369,7 @@
               </div>
             </article>
             <!-- Axiom Construction -->
-            <article class="card work-card">
+            <article class="card work-card" data-reveal-item="visual">
               <div class="work-card__image">
                 <picture>
                   <source
@@ -408,7 +408,7 @@
               </div>
             </article>
             <!-- Atelier No.02 -->
-            <article class="card work-card">
+            <article class="card work-card" data-reveal-item="visual">
               <div class="work-card__image">
                 <picture>
                   <source
@@ -447,7 +447,7 @@
               </div>
             </article>
             <!-- Aurora -->
-            <article class="card work-card">
+            <article class="card work-card" data-reveal-item="visual">
               <div class="work-card__image">
                 <picture>
                   <source
@@ -490,7 +490,7 @@
       </section>
 
       <!-- Case Study -->
-      <section class="section" data-reveal>
+      <section class="section" data-reveal="standard">
         <div class="container case-study">
           <div class="section__header">
             <p class="section__eyebrow">Wyróżnione studium przypadku</p>
@@ -522,15 +522,15 @@
       </section>
 
       <!-- Process -->
-      <section class="section" data-reveal>
+      <section class="section">
         <div class="container">
-          <div class="section__header">
+          <div class="section__header" data-reveal="soft">
             <p class="section__eyebrow">Proces</p>
             <h2 class="section__title">Sprawdzony workflow, który oszczędza czas.</h2>
           </div>
-          <div class="grid grid--2 process">
+          <div class="grid grid--2 process" data-reveal-group="cards">
             <!--item 1 -->
-            <article class="card process__item">
+            <article class="card process__item" data-reveal-item="soft">
               <div class="process__header">
                 <span class="process__step">1</span>
                 <h3 class="card__title">Założenia</h3>
@@ -542,7 +542,7 @@
               </p>
             </article>
             <!-- item 2 -->
-            <article class="card process__item">
+            <article class="card process__item" data-reveal-item="soft">
               <div class="process__header">
                 <span class="process__step">2</span>
                 <h3 class="card__title">Projekt / UX</h3>
@@ -554,7 +554,7 @@
               </p>
             </article>
             <!-- item 3 -->
-            <article class="card process__item">
+            <article class="card process__item" data-reveal-item="soft">
               <div class="process__header">
                 <span class="process__step">3</span>
                 <h3 class="card__title">Wdrożenie</h3>
@@ -566,7 +566,7 @@
               </p>
             </article>
             <!-- item 4 -->
-            <article class="card process__item">
+            <article class="card process__item" data-reveal-item="soft">
               <div class="process__header">
                 <span class="process__step">4</span>
                 <h3 class="card__title">Start i wsparcie</h3>
@@ -582,7 +582,7 @@
       </section>
 
       <!-- Digital Vault promo -->
-      <section class="section" data-reveal>
+      <section class="section" data-reveal="standard">
         <div class="container callout">
           <div class="callout__header">
             <h2 class="section__title">KP_Code Digital Vault</h2>
@@ -609,7 +609,7 @@
       </section>
 
       <!-- About -->
-      <section class="section about" id="about" data-reveal>
+      <section class="section about" id="about" data-reveal="standard">
         <div class="container">
           <div class="section__header section__header--about">
             <p class="section__eyebrow">O mnie</p>
@@ -708,7 +708,7 @@
       </section>
 
       <!-- CTA -->
-      <section class="section" data-reveal>
+      <section class="section" data-reveal="soft">
         <div class="container cta">
           <div class="section__header">
             <h2 class="section__title">Zacznijmy współpracę</h2>
