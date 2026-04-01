@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="pl">
+  <head>
+    <!-- Meta -->
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#0f1115" media="(prefers-color-scheme: dark)" />
+    <meta name="robots" content="noindex, follow" />
+    <!-- Title -->
+    <title>KP_Code Digital Vault | Strona w przygotowaniu</title>
+    <!-- SEO -->
+    <meta
+      name="description"
+      content="Tymczasowa strona informacyjna dla rozwijanego obszaru KP_Code Digital Vault i roadmapy. Ta część projektu jest obecnie przygotowywana." />
+    <link rel="canonical" href="https://www.kp-code.pl/digital-vault-preview.html" />
+    <!-- Open Graph -->
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content="pl_PL" />
+    <meta property="og:site_name" content="KP_Code Digital Studio" />
+    <meta property="og:title" content="KP_Code Digital Vault | Strona w przygotowaniu" />
+    <meta property="og:description" content="Obszar KP_Code Digital Vault i roadmapa są obecnie przygotowywane. Wróć wkrótce, aby zobaczyć kolejne etapy rozwoju." />
+    <meta property="og:url" content="https://www.kp-code.pl/digital-vault-preview.html" />
+    <meta property="og:image" content="https://www.kp-code.pl/assets/og/og-img.png" />
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="KP_Code Digital Vault | Strona w przygotowaniu" />
+    <meta name="twitter:description" content="KP_Code Digital Vault i roadmapa są obecnie przygotowywane." />
+    <meta name="twitter:image" content="https://www.kp-code.pl/assets/og/og-img.png" />
+    <meta name="twitter:image:alt" content="Tymczasowa strona KP_Code Digital Vault w przygotowaniu" />
+    <!-- Icons / PWA -->
+    <link rel="icon" href="https://www.kp-code.pl/assets/icons/favicon.svg" type="image/svg+xml" />
+    <link rel="apple-touch-icon" href="https://www.kp-code.pl/assets/icons/apple-touch-icon.png" />
+    <link rel="manifest" href="https://www.kp-code.pl/assets/icons/site.webmanifest" />
+    <!-- Theme -->
+    <script>
+      document.documentElement.classList.add("js");
+      try {
+        const storedTheme = localStorage.getItem("theme-preference");
+        const theme = storedTheme === "light" || storedTheme === "dark" ? storedTheme : window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+        document.documentElement.dataset.theme = theme;
+      } catch {
+        document.documentElement.dataset.theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+      }
+    </script>
+    <!-- Styles -->
+    <link rel="stylesheet" href="./css/main.css" />
+  </head>
+
+  <!-- Body -->
+  <body class="page page--vault-placeholder">
+    <a class="skip-link" href="#main">Przejdź do treści</a>
+
+    <!-- Header -->
+    <!-- @include:header -->
+
+    <!-- Main -->
+    <main id="main">
+      <!-- Hero -->
+      <section class="section page-hero" data-reveal="soft">
+        <div class="container">
+          <nav class="breadcrumbs" aria-label="Breadcrumb">
+            <ol class="breadcrumbs__list">
+              <li class="breadcrumbs__item">
+                <a class="breadcrumbs__link" href="/index.html">Start</a>
+              </li>
+              <li class="breadcrumbs__item" aria-current="page">
+                <span class="breadcrumbs__current">W przygotowaniu</span>
+              </li>
+            </ol>
+          </nav>
+          <div class="page-hero__content">
+            <h1 class="hero__title page-hero__title">KP_Code Digital Vault jest obecnie w przygotowaniu.</h1>
+            <p class="hero__lead page-hero__lead">
+              Docelowa platforma i roadmapa tego obszaru są rozwijane etapami. Ta strona pełni tymczasową rolę informacyjną, dopóki finalne widoki nie zostaną wdrożone.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Status -->
+      <section class="section" data-reveal="soft">
+        <div class="container">
+          <div class="card project-cta__shell">
+            <div class="section__header">
+              <p class="section__eyebrow">Status</p>
+              <h2 class="section__title">Ta część ekosystemu jest porządkowana i przygotowywana do publikacji.</h2>
+              <p class="section__subtitle">
+                Zakres obejmuje rozwój warstwy platformowej, uporządkowanie treści oraz przygotowanie docelowych materiałów dla przyszłego obszaru KP_Code Digital Vault i jego roadmapy.
+              </p>
+            </div>
+            <div class="project-cta__actions">
+              <a class="button button--primary" href="/index.html">Wróć na stronę główną</a>
+              <a class="button button--ghost" href="/contact.html">Skontaktuj się</a>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- Footer -->
+    <!-- @include:footer -->
+
+    <!-- Script -->
+    <script type="module" src="./js/main.js"></script>
+  </body>
+</html>
