@@ -1,5 +1,6 @@
 /*
- * Contact form validation, error messaging, and summary rendering.
+ * Contact form progressive enhancement.
+ * Keeps the form submittable without JavaScript and enhances it with validation and async submission when available.
  */
 
 export const initForms = () => {
@@ -10,10 +11,16 @@ export const initForms = () => {
 
   const formMessage = contactForm.querySelector("[data-form-message]");
   const formSummary = contactForm.querySelector("[data-form-summary]");
-  const fields = Array.from(contactForm.querySelectorAll(".form__field"));
+  const submitButton = contactForm.querySelector("[data-form-submit]");
+  const fields = Array.from(contactForm.querySelectorAll(".form__field")).filter((field) => !field.hasAttribute("data-honeypot-field"));
   const fieldInputs = fields
     .map((field) => field.querySelector("input, textarea, select"))
     .filter(Boolean);
+  const canEnhanceSubmit =
+    typeof window.fetch === "function" &&
+    typeof window.FormData === "function";
+
+  let isSubmitting = false;
 
   const getFieldErrorElement = (field) => field.querySelector(".form__error");
 
@@ -26,13 +33,10 @@ export const initForms = () => {
   };
 
   const setDescribedBy = (input, errorId) => {
-    const base = getBaseDescribedBy(input);
-    const ids = new Set(base.split(" ").filter(Boolean));
+    const ids = new Set(getBaseDescribedBy(input).split(" ").filter(Boolean));
 
     if (errorId) {
       ids.add(errorId);
-    } else {
-      ids.delete(errorId);
     }
 
     const describedBy = Array.from(ids).join(" ");
@@ -42,6 +46,42 @@ export const initForms = () => {
     }
 
     input.removeAttribute("aria-describedby");
+  };
+
+  const clearDescribedByError = (input, errorId) => {
+    const ids = new Set(getBaseDescribedBy(input).split(" ").filter(Boolean));
+    ids.delete(errorId);
+
+    const describedBy = Array.from(ids).join(" ");
+    if (describedBy) {
+      input.setAttribute("aria-describedby", describedBy);
+      return;
+    }
+
+    input.removeAttribute("aria-describedby");
+  };
+
+  const setMessage = (message, state = "") => {
+    if (!formMessage) {
+      return;
+    }
+
+    formMessage.textContent = message;
+
+    if (state) {
+      formMessage.dataset.state = state;
+      return;
+    }
+
+    delete formMessage.dataset.state;
+  };
+
+  const focusStatus = (element) => {
+    if (!element || element.hidden || !element.textContent.trim()) {
+      return;
+    }
+
+    element.focus({ preventScroll: false });
   };
 
   const validateField = (input) => {
@@ -58,7 +98,7 @@ export const initForms = () => {
     if (input.tagName === "TEXTAREA" && input.hasAttribute("minlength")) {
       const minLength = Number(input.getAttribute("minlength"));
       if (value.length < minLength) {
-        return { valid: false, message: "Wiadomość jest za krótka." };
+        return { valid: false, message: "Wiadomość powinna mieć co najmniej 10 znaków." };
       }
     }
 
@@ -94,14 +134,11 @@ export const initForms = () => {
     errorElement.hidden = true;
     errorElement.setAttribute("aria-hidden", "true");
     input.removeAttribute("aria-invalid");
+    clearDescribedByError(input, errorElement.id);
+  };
 
-    const base = getBaseDescribedBy(input);
-    if (base) {
-      input.setAttribute("aria-describedby", base);
-      return;
-    }
-
-    input.removeAttribute("aria-describedby");
+  const clearAllFieldErrors = () => {
+    fields.forEach(clearFieldError);
   };
 
   const renderSummary = (errors) => {
@@ -124,14 +161,74 @@ export const initForms = () => {
     const list = document.createElement("ul");
     errors.forEach(({ input, message }) => {
       const item = document.createElement("li");
-      const link = document.createElement("a");
-      link.href = `#${input.id}`;
-      link.textContent = message;
-      item.appendChild(link);
+
+      if (input?.id) {
+        const link = document.createElement("a");
+        link.href = `#${input.id}`;
+        link.textContent = message;
+        item.appendChild(link);
+      } else {
+        item.textContent = message;
+      }
+
       list.appendChild(item);
     });
 
     formSummary.append(heading, list);
+  };
+
+  const validateFields = () => {
+    const errors = [];
+
+    fields.forEach((field) => {
+      const input = field.querySelector("input, textarea, select");
+      if (!input) {
+        return;
+      }
+
+      const result = validateField(input);
+      if (!result.valid) {
+        setFieldError(field, result.message);
+        errors.push({ input, message: result.message });
+        return;
+      }
+
+      clearFieldError(field);
+    });
+
+    return errors;
+  };
+
+  const applyServerErrors = (errorMap = {}) => {
+    const summaryErrors = [];
+
+    fields.forEach((field) => {
+      const input = field.querySelector("input, textarea, select");
+      if (!input) {
+        return;
+      }
+
+      const message = errorMap[input.name];
+      if (!message) {
+        clearFieldError(field);
+        return;
+      }
+
+      setFieldError(field, message);
+      summaryErrors.push({ input, message });
+    });
+
+    renderSummary(summaryErrors);
+    return summaryErrors;
+  };
+
+  const setSubmittingState = (submitting) => {
+    isSubmitting = submitting;
+    contactForm.dataset.submitting = submitting ? "true" : "false";
+
+    if (submitButton) {
+      submitButton.disabled = submitting;
+    }
   };
 
   const handleFieldEvent = (event) => {
@@ -157,39 +254,74 @@ export const initForms = () => {
     input.addEventListener("blur", handleFieldEvent);
   });
 
-  contactForm.addEventListener("submit", (event) => {
-    event.preventDefault();
-    const errors = [];
-
-    fields.forEach((field) => {
-      const input = field.querySelector("input, textarea, select");
-      if (!input) {
-        return;
-      }
-
-      const result = validateField(input);
-      if (!result.valid) {
-        setFieldError(field, result.message);
-        errors.push({ input, message: result.message });
-        return;
-      }
-
-      clearFieldError(field);
-    });
+  contactForm.addEventListener("submit", async (event) => {
+    const errors = validateFields();
 
     if (errors.length) {
+      event.preventDefault();
       renderSummary(errors);
-      if (formMessage) {
-        formMessage.textContent = "Uzupełnij wymagane pola formularza.";
-      }
+      setMessage("Uzupełnij wymagane pola formularza.", "error");
       errors[0].input.focus();
+      focusStatus(formSummary);
       return;
     }
 
     renderSummary([]);
-    if (formMessage) {
-      formMessage.textContent = "Dziękuję! Wrócę z odpowiedzią w ciągu 24h.";
+    setMessage("", "");
+
+    if (isSubmitting) {
+      event.preventDefault();
+      return;
     }
-    contactForm.reset();
+
+    if (!canEnhanceSubmit) {
+      return;
+    }
+
+    event.preventDefault();
+    setSubmittingState(true);
+    setMessage("Trwa wysyłanie wiadomości...", "pending");
+
+    try {
+      const response = await fetch(contactForm.dataset.formEndpoint || contactForm.action, {
+        method: (contactForm.method || "post").toUpperCase(),
+        body: new FormData(contactForm),
+        headers: {
+          Accept: "application/json"
+        }
+      });
+
+      const contentType = response.headers.get("content-type") || "";
+      const payload = contentType.includes("application/json") ? await response.json() : null;
+
+      if (!response.ok || !payload?.ok) {
+        const summaryErrors = applyServerErrors(payload?.errors || {});
+        const message =
+          payload?.message ||
+          "Nie udało się wysłać wiadomości. Spróbuj ponownie lub napisz bezpośrednio na adres kontakt@kp-code.pl.";
+
+        setMessage(message, "error");
+
+        if (summaryErrors.length) {
+          summaryErrors[0].input.focus();
+          focusStatus(formSummary);
+        } else {
+          focusStatus(formMessage);
+        }
+
+        return;
+      }
+
+      clearAllFieldErrors();
+      renderSummary([]);
+      contactForm.reset();
+      setMessage(payload.message, "success");
+      focusStatus(formMessage);
+    } catch {
+      setMessage("Nie udało się wysłać wiadomości. Spróbuj ponownie lub napisz bezpośrednio na adres kontakt@kp-code.pl.", "error");
+      focusStatus(formMessage);
+    } finally {
+      setSubmittingState(false);
+    }
   });
 };

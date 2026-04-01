@@ -135,8 +135,12 @@
           <div class="card contact__form-card">
             <h3 class="card__title">Formularz kontaktowy</h3>
             <p class="card__meta">Opisz krótko, czego potrzebujesz — to wystarczy na początek.</p>
-            <form class="form contact-form" data-contact-form novalidate>
-              <div class="alert form__summary" data-form-summary role="alert" aria-live="assertive" hidden></div>
+            <form class="form contact-form" data-contact-form data-form-endpoint="./contact-submit.php" action="./contact-submit.php" method="post" novalidate>
+              <div class="alert form__summary" data-form-summary role="alert" aria-live="assertive" tabindex="-1" hidden></div>
+              <div class="form__field form__field--honeypot" data-honeypot-field aria-hidden="true">
+                <label class="form__label" for="company">Pozostaw to pole puste</label>
+                <input class="form__input" id="company" name="company" type="text" tabindex="-1" autocomplete="off" />
+              </div>
               <div class="form__field">
                 <label class="form__label" for="name">Imię i nazwisko</label>
                 <input class="form__input" id="name" name="name" type="text" autocomplete="name" placeholder="Jak mogę się do Ciebie zwracać?" required />
@@ -151,13 +155,13 @@
 
               <div class="form__field">
                 <label class="form__label" for="message">Wiadomość</label>
-                <textarea class="form__textarea" id="message" name="message" rows="6" placeholder="Napisz krótko, czego potrzebujesz i jaki jest cel projektu." required></textarea>
+                <textarea class="form__textarea" id="message" name="message" rows="6" minlength="10" placeholder="Napisz krótko, czego potrzebujesz i jaki jest cel projektu." required></textarea>
                 <p class="form__error" id="error-message" hidden></p>
               </div>
 
               <div class="contact-form__actions">
-                <button class="button button--primary" type="submit">Wyślij wiadomość</button>
-                <p class="form__message" data-form-message aria-live="polite"></p>
+                <button class="button button--primary" type="submit" data-form-submit>Wyślij wiadomość</button>
+                <p class="form__message" data-form-message role="status" aria-live="polite" tabindex="-1"></p>
               </div>
             </form>
           </div>

@@ -218,9 +218,45 @@
   gap: var(--space-5);
   margin-top: var(--space-5);
 }
+.form__summary {
+  display: grid;
+  gap: var(--space-2);
+  padding: var(--space-3) var(--space-4);
+  border: 1px solid color-mix(in srgb, var(--color-primary) 22%, transparent);
+  border-radius: var(--radius-sm);
+  background: color-mix(in srgb, var(--color-primary) 6%, var(--color-surface));
+  color: var(--color-text);
+}
+.form__summary p,
+.form__summary ul {
+  margin: 0;
+}
+.form__summary ul {
+  padding-left: 1.2rem;
+}
+.form__summary a {
+  color: inherit;
+}
 .form__field {
   display: grid;
   gap: var(--space-2);
+}
+.form__field--honeypot {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  clip-path: inset(50%);
+  border: 0;
+  white-space: nowrap;
+}
+.form__field--error .form__input,
+.form__field--error .form__textarea {
+  border-color: color-mix(in srgb, var(--color-primary) 24%, var(--color-border));
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--color-primary) 8%, transparent);
 }
 .form__label {
   font-size: var(--fs-3);
@@ -277,6 +313,10 @@
   width: 280px;
   justify-self: center;
 }
+.contact-form__actions .button[disabled] {
+  opacity: 0.7;
+  cursor: wait;
+}
 .form__error {
   font-size: var(--fs-2);
   color: var(--color-primary);
@@ -284,6 +324,15 @@
 .form__message {
   font-size: var(--fs-3);
   color: var(--color-text-muted);
+}
+.form__message[data-state="pending"] {
+  color: var(--color-text-muted);
+}
+.form__message[data-state="success"] {
+  color: var(--color-text);
+}
+.form__message[data-state="error"] {
+  color: var(--color-primary);
 }
 @media (hover: hover) and (pointer: fine) {
   .form__input:hover,
