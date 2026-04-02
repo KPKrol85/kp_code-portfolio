@@ -17,12 +17,12 @@ const CSS_ENTRY = path.join(ROOT_DIR, 'css', 'main.css');
 const JS_ENTRY = path.join(ROOT_DIR, 'js', 'main.js');
 const MANIFEST_PATH = path.join(ROOT_DIR, 'assets', 'icons', 'site.webmanifest');
 const ROOT_ROBOTS_PATH = path.join(ROOT_DIR, 'robots.txt');
-const ROOT_SITEMAP_PATH = path.join(ROOT_DIR, 'sitemap.xml');
 const PARTIALS_DIR = path.join(ROOT_DIR, 'src', 'partials');
 const HEADER_PARTIAL_PATH = path.join(PARTIALS_DIR, 'header.html');
 const FOOTER_PARTIAL_PATH = path.join(PARTIALS_DIR, 'footer.html');
 
 const ROOT_HTML_GLOBS = ['*.html', 'services/**/*.html', 'projects/**/*.html'];
+const LEGAL_PAGE_FILES = new Set(['cookies.html', 'polityka-prywatnosci.html', 'regulamin.html']);
 
 export async function ensureDir(dirPath) {
   await mkdir(dirPath, { recursive: true });
@@ -171,12 +171,149 @@ export async function copyAssets() {
   await copyDirectory(path.join(ROOT_DIR, 'assets'), path.join(DIST_DIR, 'assets'));
 }
 
+function getHtmlTagAttributes(tagMarkup) {
+  return Object.fromEntries(
+    Array.from(tagMarkup.matchAll(/([^\s=/>]+)\s*=\s*(['"])(.*?)\2/gs), ([, name, , value]) => [
+      name.toLowerCase(),
+      value.trim(),
+    ])
+  );
+}
+
+function extractCanonicalUrl(html) {
+  for (const match of html.matchAll(/<link\b[^>]*>/gi)) {
+    const attributes = getHtmlTagAttributes(match[0]);
+
+    if (attributes.rel?.toLowerCase() === 'canonical' && attributes.href) {
+      return attributes.href;
+    }
+  }
+
+  return null;
+}
+
+function extractRobotsContent(html) {
+  for (const match of html.matchAll(/<meta\b[^>]*>/gi)) {
+    const attributes = getHtmlTagAttributes(match[0]);
+
+    if (attributes.name?.toLowerCase() === 'robots' && attributes.content) {
+      return attributes.content;
+    }
+  }
+
+  return null;
+}
+
+function isIndexableRobotsContent(robotsContent) {
+  if (!robotsContent) {
+    return false;
+  }
+
+  const directives = robotsContent
+    .toLowerCase()
+    .split(',')
+    .map((token) => token.trim())
+    .filter(Boolean);
+
+  return directives.includes('index') && !directives.includes('noindex');
+}
+
+function getSitemapPriority(relativeFilePath) {
+  const normalizedPath = relativeFilePath.replaceAll('\\', '/');
+
+  if (normalizedPath === 'index.html') {
+    return '1.0';
+  }
+
+  if (LEGAL_PAGE_FILES.has(normalizedPath)) {
+    return '0.4';
+  }
+
+  if (normalizedPath.startsWith('services/') || normalizedPath.startsWith('projects/')) {
+    return '0.7';
+  }
+
+  return '0.8';
+}
+
+function escapeXml(value) {
+  return value
+    .replaceAll('&', '&amp;')
+    .replaceAll('<', '&lt;')
+    .replaceAll('>', '&gt;')
+    .replaceAll('"', '&quot;')
+    .replaceAll("'", '&apos;');
+}
+
+function renderSitemapXml(entries) {
+  const urlEntries = entries
+    .map(
+      ({ canonicalUrl, priority }) => `  <url>
+    <loc>${escapeXml(canonicalUrl)}</loc>
+    <changefreq>monthly</changefreq>
+    <priority>${priority}</priority>
+  </url>`
+    )
+    .join('\n');
+
+  return `<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+${urlEntries}
+</urlset>
+`;
+}
+
+export async function generateSitemapEntries() {
+  const htmlFiles = await listPublicHtmlFiles();
+  const pages = await Promise.all(
+    htmlFiles.map(async (relativeFilePath) => {
+      const sourcePath = path.join(ROOT_DIR, relativeFilePath);
+      const html = await readFile(sourcePath, 'utf8');
+      const canonicalUrl = extractCanonicalUrl(html);
+      const robotsContent = extractRobotsContent(html);
+      const indexable = isIndexableRobotsContent(robotsContent);
+
+      if (indexable && !canonicalUrl) {
+        throw new Error(`Indexable page is missing canonical URL: ${relativeFilePath}`);
+      }
+
+      return {
+        relativeFilePath,
+        canonicalUrl,
+        indexable,
+      };
+    })
+  );
+
+  return pages
+    .filter((page) => page.indexable && page.canonicalUrl)
+    .sort((left, right) => {
+      if (left.relativeFilePath === 'index.html') {
+        return -1;
+      }
+
+      if (right.relativeFilePath === 'index.html') {
+        return 1;
+      }
+
+      return left.relativeFilePath.localeCompare(right.relativeFilePath);
+    })
+    .map((page) => ({
+      ...page,
+      priority: getSitemapPriority(page.relativeFilePath),
+    }));
+}
+
+export async function writeGeneratedSitemap(targetPath = path.join(DIST_DIR, 'sitemap.xml')) {
+  const entries = await generateSitemapEntries();
+  await writeFile(targetPath, renderSitemapXml(entries), 'utf8');
+}
+
 export async function copySeoFiles() {
   const rootRobotsPath = path.join(DIST_DIR, 'robots.txt');
-  const rootSitemapPath = path.join(DIST_DIR, 'sitemap.xml');
 
-  await copyFile(ROOT_SITEMAP_PATH, rootSitemapPath);
   await copyFile(ROOT_ROBOTS_PATH, rootRobotsPath);
+  await writeGeneratedSitemap();
 }
 
 export async function fixManifestInDist() {

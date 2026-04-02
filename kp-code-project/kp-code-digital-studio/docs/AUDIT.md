@@ -24,7 +24,7 @@ No P0 issues were detected from repository evidence.
 
 ## 4. P1 — Improvements worth doing next
 
-1. Several project detail source files are stored as dense single-line HTML, which lowers reviewability and maintainability in the source layer. This is visible in files such as `projects/aurora.html`, `projects/atelier-no-02.html`, `projects/axiom-construction.html`, and `projects/volt-garage.html`, where large sections are compressed into long single lines in the source files.
+FIXED
 
 ## 5. P2 — Minor refinements
 
@@ -34,10 +34,9 @@ No P0 issues were detected from repository evidence.
 
 ## 6. Future enhancements
 
-1. Generate `sitemap.xml` from the actual HTML inventory used by the build (`scripts/build-utils.mjs:24`, `scripts/build-utils.mjs:64-69`) instead of maintaining it manually.
-2. Add a static QA check for metadata consistency across `canonical`, `og:url`, `robots`, sitemap inclusion, and JSON-LD presence.
-3. Move duplicated head/bootstrap concerns further into shared generation logic to reduce page-by-page metadata drift.
-4. Add static checks for repeated ARIA labels and similar accessibility-copy regressions in the source HTML.
+1. Add a static QA check for metadata consistency across `canonical`, `og:url`, `robots`, sitemap inclusion, and JSON-LD presence.
+2. Move duplicated head/bootstrap concerns further into shared generation logic to reduce page-by-page metadata drift.
+3. Add static checks for repeated ARIA labels and similar accessibility-copy regressions in the source HTML.
 
 ## 7. Compliance checklist
 
@@ -47,7 +46,7 @@ No P0 issues were detected from repository evidence.
 - `PASS` aria attributes valid: audited ARIA state values such as `aria-current`, `aria-expanded`, `aria-controls`, and `aria-hidden` use valid tokens in source (`src/partials/header.html:50-57`, `js/modules/navigation.js:22-30`).
 - `PASS` images have width/height: static scan of source HTML did not detect `<img>` elements missing explicit dimensions.
 - `PASS` no-JS baseline usable: navigation has a CSS fallback (`css/layout.css:290-309`), and the contact form posts to PHP without requiring JS (`contact.html:186-193`, `contact-submit.php:1-102`).
-- `PASS` sitemap present if expected: root `sitemap.xml` exists.
+- `PASS` sitemap present if expected: `dist/sitemap.xml` is generated from the build HTML inventory and current page metadata.
 - `PASS` robots present: root `robots.txt` exists.
 - `PASS` OG image exists: `assets/og/og-img.png` exists and is referenced in page metadata (`index.html:27`, `services.html:28`, `contact.html:28`).
 - `PASS` JSON-LD valid: detected JSON-LD blocks parse as valid JSON; pages without JSON-LD were noted separately and not treated as invalid markup.

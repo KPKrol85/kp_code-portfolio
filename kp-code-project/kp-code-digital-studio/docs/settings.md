@@ -21,7 +21,7 @@ Detected in project root: `package.json`.
 ### `build:dist`
 
 - Command: `node ./scripts/build-dist.mjs`
-- What it does: removes `dist/`, builds CSS and JS, assembles HTML from shared partials, copies assets, copies SEO files, rewrites manifest icon paths for `dist`, and asserts that the bundled CSS and JS files exist.
+- What it does: removes `dist/`, builds CSS and JS, assembles HTML from shared partials, copies assets, copies `robots.txt`, generates `sitemap.xml` from the source HTML inventory and page metadata, rewrites manifest icon paths for `dist`, and asserts that the bundled CSS and JS files exist.
 - When to use it: for the full production-style build pipeline.
 
 ### `build`
@@ -98,6 +98,6 @@ Detected in project root: `package.json`.
 
 - HTML build inventory comes from `*.html`, `services/**/*.html`, and `projects/**/*.html` (`scripts/build-utils.mjs:24`, `scripts/build-utils.mjs:64-69`).
 - Shared header/footer assembly happens in `scripts/build-utils.mjs:140-167`.
-- Root-level `robots.txt` and `sitemap.xml` are copied directly into `dist/` from the project root (`scripts/build-utils.mjs:173-179`).
+- Root-level `robots.txt` is copied into `dist/`, while `dist/sitemap.xml` is generated from the HTML inventory plus page `canonical` and `robots` metadata (`scripts/build-utils.mjs`).
 - Manifest icon paths are rewritten for `dist` in `scripts/build-utils.mjs:184-200`.
 - Service worker registration was not detected in project source.

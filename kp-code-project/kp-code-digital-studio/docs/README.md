@@ -42,7 +42,6 @@ Repozytorium zawiera wielostronicowy serwis front-endowy budowany własnym pipel
 |-- *.html          # strony główne
 |-- contact*.php    # obsługa formularza kontaktowego
 |-- robots.txt      # źródłowy plik robots
-|-- sitemap.xml     # źródłowa mapa witryny
 `-- package.json
 ```
 
@@ -62,7 +61,7 @@ npm run qa
 
 ### Build i wdrożenie
 
-- Build produkcyjny uruchamia `scripts/build-dist.mjs`, który czyści `dist/`, bundluje CSS/JS, składa HTML, kopiuje zasoby i pliki SEO oraz poprawia manifest w `dist/` (`scripts/build-dist.mjs:1-18`, `scripts/build-utils.mjs:34-61`, `scripts/build-utils.mjs:164-200`).
+- Build produkcyjny uruchamia `scripts/build-dist.mjs`, który czyści `dist/`, bundluje CSS/JS, składa HTML, kopiuje zasoby, generuje `sitemap.xml` z inventory HTML i metadanych stron, kopiuje `robots.txt` oraz poprawia manifest w `dist/` (`scripts/build-dist.mjs:1-18`, `scripts/build-utils.mjs`).
 - Publiczny inwentarz HTML jest wyznaczany przez globy `*.html`, `services/**/*.html`, `projects/**/*.html` (`scripts/build-utils.mjs:24`, `scripts/build-utils.mjs:64-69`).
 - Pliki `_headers`, `_redirects`, `netlify.toml` i `vercel.json` nie zostały wykryte w projekcie.
 - Service worker nie został wykryty w projekcie.
@@ -79,9 +78,9 @@ npm run qa
 ### SEO
 
 - Strony zawierają `meta description`, `canonical`, `robots`, Open Graph i Twitter Cards, np. `index.html:5-40`, `services.html:13-41`, `contact.html:13-41`.
-- `robots.txt` i `sitemap.xml` są utrzymywane w katalogu głównym jako źródłowe pliki SEO.
+- `robots.txt` jest utrzymywany w katalogu głównym jako źródłowy plik SEO.
 - JSON-LD jest obecny na większości stron i wykryte bloki parsują się poprawnie jako JSON; nie został wykryty w `404.html`, `in-progress.html`, `offline.html` i `thank-you.html`.
-- `sitemap.xml` jest utrzymywana w katalogu głównym jako jedyne źródło prawdy dla mapy witryny.
+- `sitemap.xml` jest generowana podczas builda na podstawie inventory HTML oraz `canonical` i `meta name="robots"` w stronach źródłowych.
 
 ### Wydajność
 
@@ -94,7 +93,6 @@ npm run qa
 
 Na podstawie aktualnego repo najbliższe uzasadnione kroki to:
 
-- uzupełnienie `sitemap.xml` o pełny zestaw stron kanonicznych
 - poprawa zduplikowanych etykiet `aria-label` w kartach usług
 - usunięcie zależności od buildowego przepisywania ikon manifestu
 - rozszerzenie QA o sprawdzenia metadanych i JSON-LD
@@ -145,7 +143,6 @@ This repository contains a multi-page front-end website built with a custom Node
 |-- *.html          # top-level pages
 |-- contact*.php    # contact form handling
 |-- robots.txt      # source robots file
-|-- sitemap.xml     # source sitemap
 `-- package.json
 ```
 
@@ -165,7 +162,7 @@ npm run qa
 
 ### Build and Deployment Notes
 
-- Production build runs through `scripts/build-dist.mjs`, which clears `dist/`, bundles CSS/JS, assembles HTML, copies assets and SEO files, and rewrites the manifest in `dist/` (`scripts/build-dist.mjs:1-18`, `scripts/build-utils.mjs:34-61`, `scripts/build-utils.mjs:164-200`).
+- Production build runs through `scripts/build-dist.mjs`, which clears `dist/`, bundles CSS/JS, assembles HTML, copies assets, generates `sitemap.xml` from the HTML inventory and page metadata, copies `robots.txt`, and rewrites the manifest in `dist/` (`scripts/build-dist.mjs:1-18`, `scripts/build-utils.mjs`).
 - Public HTML inventory is defined by `*.html`, `services/**/*.html`, and `projects/**/*.html` (`scripts/build-utils.mjs:24`, `scripts/build-utils.mjs:64-69`).
 - `_headers`, `_redirects`, `netlify.toml`, and `vercel.json` were not detected in the project.
 - A service worker was not detected in the project.
@@ -182,9 +179,9 @@ npm run qa
 ### SEO Notes
 
 - Pages include `meta description`, `canonical`, `robots`, Open Graph, and Twitter Card metadata, for example `index.html:5-40`, `services.html:13-41`, and `contact.html:13-41`.
-- `robots.txt` and `sitemap.xml` are maintained in the project root as the source SEO files.
+- `robots.txt` is maintained in the project root as the source SEO file.
 - JSON-LD is present on most pages and detected blocks parse as valid JSON; it was not detected in `404.html`, `in-progress.html`, `offline.html`, or `thank-you.html`.
-- `sitemap.xml` is maintained in the project root as the single source of truth for sitemap content.
+- `sitemap.xml` is generated during build from the HTML inventory plus each page's `canonical` and `meta name="robots"` metadata.
 
 ### Performance Notes
 
@@ -197,7 +194,6 @@ npm run qa
 
 Based on the current repository, the next justified steps are:
 
-- complete `sitemap.xml` for the full canonical page set
 - fix duplicated `aria-label` values in service jump links
 - remove dependence on build-time manifest icon rewriting
 - extend QA to include metadata and JSON-LD checks
