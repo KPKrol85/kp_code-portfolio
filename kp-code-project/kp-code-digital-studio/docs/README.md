@@ -4,25 +4,24 @@
 
 ### Przegląd projektu
 
-Repozytorium zawiera statyczny, wielostronicowy serwis front-endowy budowany własnym pipeline’em Node.js. Implementacja opiera się na źródłowych plikach HTML, warstwowym CSS, modułowym Vanilla JS, współdzielonych partialach header/footer oraz skryptach do budowy `dist/`, preview, QA i optymalizacji obrazów.
+Repozytorium zawiera wielostronicowy serwis front-endowy budowany własnym pipeline'em Node.js. Warstwa źródłowa składa się z plików HTML, warstwowego CSS, modułowego JavaScriptu, współdzielonych partiali `header` i `footer`, zasobów SEO oraz endpointu formularza kontaktowego w PHP.
 
 ### Kluczowe funkcje
 
-- Wielostronicowa architektura HTML z głównymi stronami root oraz podstronami w `services/` i `projects/`.
-- Współdzielone partiale `src/partials/header.html` i `src/partials/footer.html`, składane do pełnych stron podczas builda (`scripts/build-utils.mjs:21-22`, `scripts/build-utils.mjs:146-156`).
-- Warstwowa organizacja CSS przez `tokens`, `base`, `layout`, `components`, `sections`, `utilities`, `pages`, `projects` (`css/main.css:1-13`).
-- Modułowy JS z inicjalizacją motywu, nawigacji mobilnej, smooth scrolla, reveal-on-scroll, formularza kontaktowego i filtrowania projektów (`js/main.js:1-24`).
-- Przełącznik motywu light/dark z zapisem preferencji w `localStorage` (`js/modules/theme.js:5-69`).
-- Mobilna nawigacja z `aria-expanded`, `aria-hidden`, obsługą `Escape`, trapem fokusu i zwrotem fokusu (`js/modules/navigation.js:7-164`).
-- Prosty lokalny layer QA sprawdzający strukturę `dist`, montaż partiali i lokalne referencje (`package.json:13`, `scripts/qa/run-qa.mjs:1-25`).
-- Lokalne fonty `woff2`, zoptymalizowane warianty obrazów `avif` / `webp` / `jpg`, manifest i zasoby SEO.
+- Wielostronicowa struktura HTML z głównymi stronami w katalogu root oraz podstronami w `services/` i `projects/`.
+- Składanie współdzielonych partiali podczas builda (`scripts/build-utils.mjs:20-22`, `scripts/build-utils.mjs:140-167`).
+- Warstwowa architektura CSS: `tokens`, `base`, `layout`, `components`, `sections`, `utilities`, `pages`, `projects` (`css/main.css:1-11`).
+- Modułowy JS inicjalizujący motyw, nawigację, scroll, reveal, formularz kontaktowy i filtrowanie projektów (`js/main.js:1-22`).
+- Formularz kontaktowy z progressive enhancement: klasyczny `POST` do PHP oraz asynchroniczne wysyłanie po stronie JS (`contact.html:186-193`, `js/modules/forms.js:21-23`, `js/modules/forms.js:258-330`, `contact-submit.php:1-102`).
+- QA buildowe dla `dist/`, składania HTML i lokalnych referencji (`scripts/qa/run-qa.mjs:1-21`).
 
 ### Stack technologiczny
 
 - HTML5
 - CSS
-- Vanilla JavaScript ES Modules
-- Node.js `>=18.0.0`
+- Vanilla JavaScript ES modules
+- PHP dla obsługi formularza
+- Node.js `>=18`
 - `esbuild`
 - `lightningcss`
 - `fast-glob`
@@ -32,132 +31,100 @@ Repozytorium zawiera statyczny, wielostronicowy serwis front-endowy budowany wł
 
 ```text
 .
-|-- assets/           # fonty, ikony, logo, obrazy źródłowe i zoptymalizowane
-|-- css/              # warstwy stylów
-|-- docs/             # dokumentacja techniczna
-|-- js/               # entrypoint i moduły funkcjonalne
-|-- projects/         # podstrony projektów
-|-- scripts/          # build, preview, QA, obrazy
-|   |-- images/
-|   `-- qa/
-|-- seo/              # robots i sitemap źródłowe
-|-- services/         # podstrony usług
-|-- src/partials/     # współdzielony header i footer
-|-- *.html            # strony root
-|-- image.config.json # konfiguracja pipeline’u obrazów
+|-- assets/         # fonty, ikony, logo, obrazy źródłowe i zoptymalizowane
+|-- css/            # warstwy stylów
+|-- docs/           # istniejąca dokumentacja pomocnicza
+|-- js/             # entrypoint i moduły funkcjonalne
+|-- projects/       # podstrony projektów
+|-- scripts/        # build, preview, QA, przetwarzanie obrazów
+|-- seo/            # robots.txt i sitemap.xml
+|-- services/       # podstrony usług
+|-- src/partials/   # współdzielony header i footer
+|-- *.html          # strony główne
+|-- contact*.php    # obsługa formularza kontaktowego
 `-- package.json
 ```
 
-### Instalacja i uruchomienie
+### Setup i uruchomienie
 
-1. Zainstaluj zależności:
+```bash
+npm install
+npm run build
+npm run preview
+```
 
-   ```bash
-   npm install
-   ```
+Do pełnej walidacji buildu:
 
-2. Zbuduj `dist/`:
-
-   ```bash
-   npm run build
-   ```
-
-3. Uruchom lokalny preview gotowego buildu:
-
-   ```bash
-   npm run preview
-   ```
-
-4. Uruchom build i preview jednym poleceniem:
-
-   ```bash
-   npm run build:preview
-   ```
-
-5. Uruchom build z dodatkową walidacją QA:
-
-   ```bash
-   npm run qa
-   ```
+```bash
+npm run qa
+```
 
 ### Build i wdrożenie
 
-- Główne wejście builda to `scripts/build-dist.mjs:1-18`.
-- Build:
-  - usuwa poprzedni `dist/`,
-  - buduje CSS i JS,
-  - składa HTML z partiali,
-  - kopiuje `assets/` i pliki SEO,
-  - poprawia ścieżki ikon w wygenerowanym manifeście (`scripts/build-utils.mjs:146-203`).
-- Preview działa przez własny serwer HTTP dla `dist/` (`scripts/preview-dist.mjs:1-130`).
-- Pliki `_headers`, `_redirects`, `netlify.toml`, `vercel.json` nie zostały wykryte w projekcie.
+- Build produkcyjny uruchamia `scripts/build-dist.mjs`, który czyści `dist/`, bundluje CSS/JS, składa HTML, kopiuje zasoby i pliki SEO oraz poprawia manifest w `dist/` (`scripts/build-dist.mjs:1-18`, `scripts/build-utils.mjs:34-61`, `scripts/build-utils.mjs:164-200`).
+- Publiczny inwentarz HTML jest wyznaczany przez globy `*.html`, `services/**/*.html`, `projects/**/*.html` (`scripts/build-utils.mjs:24`, `scripts/build-utils.mjs:64-69`).
+- Pliki `_headers`, `_redirects`, `netlify.toml` i `vercel.json` nie zostały wykryte w projekcie.
 - Service worker nie został wykryty w projekcie.
 
 ### Dostępność
 
-- Na stronach obecny jest skip link do `#main` (`index.html:51`, `about.html:50`, `contact.html:50`).
-- Globalne style fokusu są zdefiniowane przez `:focus-visible` (`css/base.css:102-126`).
-- Nawigacja mobilna ma focus management, `Escape` i synchronizację stanów ARIA (`js/modules/navigation.js:17-124`).
-- CSS i JS uwzględniają `prefers-reduced-motion` (`css/tokens.css:169-183`, `css\layout.css:379-417`, `js/modules/scroll.js:17-30`, `js/modules/reveal.js:47-51`).
-- Fallback no-JS dla nawigacji jest widoczny w `html:not(.js) .nav__links` i ukryciu toggla (`css/layout.css:290-308`).
-- Formularz kontaktowy ma walidację klienta, ale nie ma rzeczywistej ścieżki wysyłki i nie zapewnia użytecznego fallbacku bez JS (`contact.html:138-160`, `js/modules/forms.js:161-191`).
+- Każda audytowana strona ma skip link do `#main` (`index.html:66`, `contact.html:67`, `services.html:67`).
+- Widoczny fokus jest zdefiniowany globalnie przez `:focus-visible` (`css/base.css:127-131`).
+- Nawigacja mobilna obsługuje `aria-expanded`, `aria-hidden`, `Escape`, trap fokusu i zwrot fokusu (`src/partials/header.html:50-57`, `js/modules/navigation.js:22-50`, `js/modules/navigation.js:53-107`).
+- Fallback bez JS jest zaimplementowany dla nawigacji i formularza (`css/layout.css:290-309`, `contact.html:186-193`, `contact-submit.php:1-102`).
+- Obsługa `prefers-reduced-motion` jest obecna w tokenach i layoutcie (`css/tokens.css:171-189`, `css/layout.css:379-418`).
 - Zgodność kontrastu nie może zostać potwierdzona bez analizy stylów obliczonych.
 
 ### SEO
 
-- W źródłowych stronach HTML wykryto `meta description`, `canonical`, `robots`, `og:url`, `og:image` oraz Twitter Cards (`index.html:9-29`, `services.html:9-29`, `projects/ambre.html:8-27`).
-- Na większości stron HTML obecny jest JSON-LD; podczas audytu wykryte bloki parsowały się jako poprawny JSON.
-- Strona tymczasowa `in-progress.html` jest oznaczona jako `noindex, follow` (`in-progress.html:9`).
-- Repo zawiera `seo/sitemap.xml` i `seo/robots.txt`; build generuje też root-level `robots.txt` i `sitemap.xml` w `dist/` (`scripts/build-utils.mjs:177-185`).
-- Nie wszystkie kanoniczne strony oznaczone jako `index, follow` są obecne w aktualnym `seo/sitemap.xml`.
+- Strony zawierają `meta description`, `canonical`, `robots`, Open Graph i Twitter Cards, np. `index.html:5-40`, `services.html:13-41`, `contact.html:13-41`.
+- `seo/robots.txt` i `seo/sitemap.xml` są obecne (`seo/robots.txt:1-3`, `seo/sitemap.xml:1-108`).
+- JSON-LD jest obecny na większości stron i wykryte bloki parsują się poprawnie jako JSON; nie został wykryty w `404.html`, `in-progress.html`, `offline.html` i `thank-you.html`.
+- `seo/sitemap.xml` nie obejmuje wszystkich kanonicznych stron indeksowalnych, np. `thank-you.html` nie jest w niej ujęte mimo `meta robots="index, follow"` i `canonical` (`thank-you.html:9-17`, `seo/sitemap.xml:1-108`).
 
 ### Wydajność
 
-- Fonty są hostowane lokalnie i używają `font-display: swap` (`css/base.css:7-23`).
-- Źródłowe obrazy są budowane do wariantów szerokości i formatów przez `sharp` (`image.config.json:1-15`, `scripts/images/build-images.mjs:1-192`).
-- W repo widoczne są `<picture>`, `srcset`, `loading="lazy"` i jawne `width` / `height` w audytowanych obrazach (`about.html:97-109`, `projects.html:108-122`, `index.html:227-233`).
-- CSS i JS są bundlowane dopiero na etapie builda; minifikacja nie zanieczyszcza warstwy source.
-- Dedykowany service worker nie został wykryty w projekcie.
+- Fonty są self-hosted i używają `font-display: swap` (`css/base.css:7-28`).
+- Projekt używa zoptymalizowanych wariantów obrazów i pipeline'u opartego o `sharp` (`image.config.json`, `scripts/images/build-images.mjs`).
+- Audytowane elementy `<img>` mają jawne `width` i `height`.
+- Obrazy i iframe używają `loading="lazy"` tam, gdzie zostało to wdrożone, np. `index.html:307-310`, `about.html:144-147`, `contact.html:275-281`.
 
 ### Roadmapa
 
-Jawny plik roadmapy nie został wykryty w projekcie. Najbardziej uzasadnione następne kroki wynikające ze stanu repo to:
+Na podstawie aktualnego repo najbliższe uzasadnione kroki to:
 
-- dodanie rzeczywistej obsługi wysyłki formularza kontaktowego
-- uzupełnienie sitemap o wszystkie kanoniczne strony indeksowalne
-- korekta etykiet ARIA w kartach usług na `services.html`
-- ujednolicenie źródła prawdy dla `robots.txt` i ścieżki do sitemap
-- sformatowanie zwięzłych, jednowierszowych plików HTML w `projects/` dla lepszej utrzymywalności
+- uzupełnienie `sitemap.xml` o pełny zestaw stron kanonicznych
+- poprawa zduplikowanych etykiet `aria-label` w kartach usług
+- ujednolicenie źródła prawdy dla `robots.txt` i lokalizacji sitemap
+- usunięcie zależności od buildowego przepisywania ikon manifestu
+- rozszerzenie QA o sprawdzenia metadanych i JSON-LD
 
 ### Licencja
 
-Licencja `MIT` według `package.json`.
-
----
+`MIT` według `package.json`.
 
 ## EN
 
 ### Project Overview
 
-This repository contains a static multi-page front-end website built with a custom Node.js pipeline. The implementation uses source HTML files, layered CSS, modular vanilla JS, shared header/footer partials, and scripts for generating `dist/`, previewing output, running QA, and optimizing images.
+This repository contains a multi-page front-end website built with a custom Node.js pipeline. The source layer includes HTML files, layered CSS, modular JavaScript, shared `header` and `footer` partials, SEO assets, and a PHP-backed contact form endpoint.
 
 ### Key Features
 
-- Multi-page HTML structure with top-level pages and nested pages in `services/` and `projects/`.
-- Shared partials in `src/partials/header.html` and `src/partials/footer.html`, assembled into final pages at build time (`scripts/build-utils.mjs:21-22`, `scripts/build-utils.mjs:146-156`).
-- Layered CSS architecture across `tokens`, `base`, `layout`, `components`, `sections`, `utilities`, `pages`, and `projects` (`css/main.css:1-13`).
-- Modular JavaScript for theme handling, mobile navigation, smooth scrolling, reveal-on-scroll, contact form logic, and project filtering (`js/main.js:1-24`).
-- Light/dark theme toggle with `localStorage` persistence (`js/modules/theme.js:5-69`).
-- Mobile navigation with `aria-expanded`, `aria-hidden`, `Escape` handling, focus trap, and focus return (`js/modules/navigation.js:7-164`).
-- Lightweight QA layer for `dist` structure, partial assembly integrity, and local reference validation (`package.json:13`, `scripts/qa/run-qa.mjs:1-25`).
-- Local `woff2` fonts, optimized `avif` / `webp` / `jpg` image outputs, manifest, and SEO assets.
+- Multi-page HTML structure with root-level pages and detail pages in `services/` and `projects/`.
+- Shared partial assembly during build (`scripts/build-utils.mjs:20-22`, `scripts/build-utils.mjs:140-167`).
+- Layered CSS architecture across `tokens`, `base`, `layout`, `components`, `sections`, `utilities`, `pages`, and `projects` (`css/main.css:1-11`).
+- Modular JS entrypoint for theme, navigation, scroll, reveal, contact form handling, and project filtering (`js/main.js:1-22`).
+- Progressive-enhanced contact form: regular `POST` fallback plus async submission in JS (`contact.html:186-193`, `js/modules/forms.js:21-23`, `js/modules/forms.js:258-330`, `contact-submit.php:1-102`).
+- Build QA for `dist/`, HTML assembly, and local references (`scripts/qa/run-qa.mjs:1-21`).
 
 ### Tech Stack
 
 - HTML5
 - CSS
-- Vanilla JavaScript ES Modules
-- Node.js `>=18.0.0`
+- Vanilla JavaScript ES modules
+- PHP for contact form delivery
+- Node.js `>=18`
 - `esbuild`
 - `lightningcss`
 - `fast-glob`
@@ -167,102 +134,73 @@ This repository contains a static multi-page front-end website built with a cust
 
 ```text
 .
-|-- assets/           # fonts, icons, logo, source and optimized images
-|-- css/              # style layers
-|-- docs/             # technical documentation
-|-- js/               # entrypoint and feature modules
-|-- projects/         # project detail pages
-|-- scripts/          # build, preview, QA, image tooling
-|   |-- images/
-|   `-- qa/
-|-- seo/              # source robots and sitemap
-|-- services/         # service detail pages
-|-- src/partials/     # shared header and footer
-|-- *.html            # root pages
-|-- image.config.json # image pipeline configuration
+|-- assets/         # fonts, icons, logo, source and optimized images
+|-- css/            # style layers
+|-- docs/           # existing supporting documentation
+|-- js/             # entrypoint and feature modules
+|-- projects/       # project detail pages
+|-- scripts/        # build, preview, QA, image tooling
+|-- seo/            # robots.txt and sitemap.xml
+|-- services/       # service detail pages
+|-- src/partials/   # shared header and footer
+|-- *.html          # top-level pages
+|-- contact*.php    # contact form handling
 `-- package.json
 ```
 
 ### Setup and Run
 
-1. Install dependencies:
+```bash
+npm install
+npm run build
+npm run preview
+```
 
-   ```bash
-   npm install
-   ```
+For full build validation:
 
-2. Build `dist/`:
-
-   ```bash
-   npm run build
-   ```
-
-3. Preview the generated build locally:
-
-   ```bash
-   npm run preview
-   ```
-
-4. Build and preview in one step:
-
-   ```bash
-   npm run build:preview
-   ```
-
-5. Run build plus QA validation:
-
-   ```bash
-   npm run qa
-   ```
+```bash
+npm run qa
+```
 
 ### Build and Deployment Notes
 
-- The main build entry is `scripts/build-dist.mjs:1-18`.
-- The build:
-  - removes the previous `dist/`,
-  - builds CSS and JS,
-  - assembles HTML from partials,
-  - copies `assets/` and SEO files,
-  - rewrites icon paths in the generated manifest (`scripts/build-utils.mjs:146-203`).
-- Preview is served through a custom local HTTP server for `dist/` (`scripts/preview-dist.mjs:1-130`).
+- Production build runs through `scripts/build-dist.mjs`, which clears `dist/`, bundles CSS/JS, assembles HTML, copies assets and SEO files, and rewrites the manifest in `dist/` (`scripts/build-dist.mjs:1-18`, `scripts/build-utils.mjs:34-61`, `scripts/build-utils.mjs:164-200`).
+- Public HTML inventory is defined by `*.html`, `services/**/*.html`, and `projects/**/*.html` (`scripts/build-utils.mjs:24`, `scripts/build-utils.mjs:64-69`).
 - `_headers`, `_redirects`, `netlify.toml`, and `vercel.json` were not detected in the project.
 - A service worker was not detected in the project.
 
 ### Accessibility Notes
 
-- Skip links to `#main` are present across pages (`index.html:51`, `about.html:50`, `contact.html:50`).
-- Global focus visibility is defined through `:focus-visible` (`css/base.css:102-126`).
-- Mobile navigation includes focus management, `Escape`, and ARIA state synchronization (`js/modules/navigation.js:17-124`).
-- Both CSS and JS respect `prefers-reduced-motion` (`css/tokens.css:169-183`, `css/layout.css:379-417`, `js/modules/scroll.js:17-30`, `js/modules/reveal.js:47-51`).
-- A no-JS navigation fallback exists through `html:not(.js) .nav__links` and hidden toggle behavior (`css/layout.css:290-308`).
-- The contact form provides client-side validation only and does not expose a real submission path or useful no-JS fallback (`contact.html:138-160`, `js/modules/forms.js:161-191`).
+- Each audited page includes a skip link to `#main` (`index.html:66`, `contact.html:67`, `services.html:67`).
+- Visible focus is defined globally via `:focus-visible` (`css/base.css:127-131`).
+- Mobile navigation implements `aria-expanded`, `aria-hidden`, `Escape`, focus trapping, and focus return (`src/partials/header.html:50-57`, `js/modules/navigation.js:22-50`, `js/modules/navigation.js:53-107`).
+- No-JS fallback exists for both navigation and form submission (`css/layout.css:290-309`, `contact.html:186-193`, `contact-submit.php:1-102`).
+- `prefers-reduced-motion` handling exists in both tokens and layout (`css/tokens.css:171-189`, `css/layout.css:379-418`).
 - Contrast compliance cannot be verified without computed style analysis.
 
 ### SEO Notes
 
-- Source HTML pages include `meta description`, `canonical`, `robots`, `og:url`, `og:image`, and Twitter card metadata (`index.html:9-29`, `services.html:9-29`, `projects/ambre.html:8-27`).
-- JSON-LD is present on most HTML pages; during the audit, detected blocks parsed as valid JSON.
-- The temporary `in-progress.html` page is marked `noindex, follow` (`in-progress.html:9`).
-- The repository includes `seo/sitemap.xml` and `seo/robots.txt`; the build also emits root-level `robots.txt` and `sitemap.xml` in `dist/` (`scripts/build-utils.mjs:177-185`).
-- Not every canonical `index, follow` page is currently included in `seo/sitemap.xml`.
+- Pages include `meta description`, `canonical`, `robots`, Open Graph, and Twitter Card metadata, for example `index.html:5-40`, `services.html:13-41`, and `contact.html:13-41`.
+- `seo/robots.txt` and `seo/sitemap.xml` are present (`seo/robots.txt:1-3`, `seo/sitemap.xml:1-108`).
+- JSON-LD is present on most pages and detected blocks parse as valid JSON; it was not detected in `404.html`, `in-progress.html`, `offline.html`, or `thank-you.html`.
+- `seo/sitemap.xml` does not include every canonical indexable page. For example, `thank-you.html` exposes `index, follow` and a canonical URL but is missing from the sitemap (`thank-you.html:9-17`, `seo/sitemap.xml:1-108`).
 
 ### Performance Notes
 
-- Fonts are self-hosted and use `font-display: swap` (`css/base.css:7-23`).
-- Source images are transformed into width and format variants through `sharp` (`image.config.json:1-15`, `scripts/images/build-images.mjs:1-192`).
-- Audited images use `<picture>`, `srcset`, `loading="lazy"`, and explicit `width` / `height` (`about.html:97-109`, `projects.html:108-122`, `index.html:227-233`).
-- CSS and JS are bundled at build time; minified artifacts stay out of the source layer.
-- A dedicated service worker was not detected in the project.
+- Fonts are self-hosted and use `font-display: swap` (`css/base.css:7-28`).
+- The project uses optimized image variants and a `sharp`-based image pipeline (`image.config.json`, `scripts/images/build-images.mjs`).
+- Audited `<img>` elements include explicit `width` and `height`.
+- Images and the contact map iframe use `loading="lazy"` where implemented, for example `index.html:307-310`, `about.html:144-147`, and `contact.html:275-281`.
 
 ### Roadmap
 
-No explicit roadmap file was detected in the repository. The most justified next steps based on the current codebase are:
+Based on the current repository, the next justified steps are:
 
-- add a real submission path for the contact form
-- expand the sitemap to include all canonical indexable pages
-- fix copied ARIA labels in the service overview cards
+- complete `sitemap.xml` for the full canonical page set
+- fix duplicated `aria-label` values in service jump links
 - unify the source of truth for `robots.txt` and sitemap location
-- reformat the compressed single-line HTML files in `projects/` for better maintainability
+- remove dependence on build-time manifest icon rewriting
+- extend QA to include metadata and JSON-LD checks
 
 ### License
 

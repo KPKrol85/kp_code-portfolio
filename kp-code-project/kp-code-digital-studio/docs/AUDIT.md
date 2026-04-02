@@ -1,80 +1,78 @@
-# Audyt techniczny
+# AUDIT
 
-## 1. Podsumowanie wykonawcze
+## 1. Executive summary
 
-Repozytorium stanowi zorientowaną produkcyjnie statyczną bazę front-endową z niestandardowym pipeline’em builda w Node, warstwowym CSS, modułowym JS, współdzielonymi partialami HTML, narzędziami do obsługi obrazów oraz kontrolą jakości po buildzie. Najmocniejsze obszary to organizacja kodu źródłowego, fundamenty ruchu i dostępności, obsługa obrazów i fontów oraz przejrzystość procesu budowania. Główne problemy koncentrują się wokół kompletności operacyjnej i utrzymywalności: formularz kontaktowy nigdzie nie wysyła danych, `seo/sitemap.xml` nie obejmuje wszystkich kanonicznych stron indeksowalnych, etykiety jump-linków w sekcji usług są błędnie skopiowane, obsługa robots/sitemap jest rozdzielona między źródło i wynik builda, a kilka źródłowych stron projektów zostało zapisanych w skompresowanej, jednolinijkowej formie.
+The repository is a production-oriented multi-page front-end codebase with a clear source/build split. The strongest areas are CSS layering, centralized token usage, keyboard-aware navigation, reduced-motion handling, explicit image dimensions, and a working build QA path (`css/main.css:1-11`, `css/tokens.css:7-189`, `js/modules/navigation.js:22-150`, `scripts/qa/run-qa.mjs:1-21`).
 
-## 2. P0 — Krytyczne ryzyka
+No P0 issue was confirmed from repository evidence. The next-value improvements are mostly around metadata completeness, small accessibility correctness issues, and removing source/build drift in SEO and manifest handling.
 
-Nie potwierdzono problemów klasy P0 na podstawie dowodów z repozytorium.
+## 2. P0 — Critical risks
 
-## 3. Mocne strony
+No P0 issues were detected from repository evidence.
 
-- Warstwowy punkt wejścia CSS jest jawny i uporządkowany: `tokens`, `base`, `layout`, `components`, `sections`, `utilities`, `pages`, `projects` (`css/main.css:1-13`).
-- Design tokeny są scentralizowane dla kolorów, odstępów, typografii, promieni, cieni, z-indexów i ruchu (`css/tokens.css:1-183`).
-- Ładowanie fontów jest self-hosted i używa `font-display: swap` (`css/base.css:7-23`).
-- Źródłowy HTML korzysta teraz ze współdzielonych partiali nagłówka i stopki składanych w czasie builda (`scripts/build-utils.mjs:21-22`, `scripts/build-utils.mjs:146-156`).
-- Nawigacja mobilna obejmuje obsługę klawiatury, focus trap, `Escape`, przywracanie fokusu i synchronizację ARIA (`js/modules/navigation.js:17-124`).
-- Obsługa ograniczenia ruchu jest widoczna zarówno w tokenach CSS, jak i w zachowaniu scroll/reveal wzmacnianym przez JS (`css/tokens.css:169-183`, `js/modules/scroll.js:17-30`, `js/modules/reveal.js:47-51`).
-- Fallback nawigacji bez JS jest zaimplementowany przez reguły `html:not(.js)` (`css/layout.css:290-308`).
-- Obrazy w przeaudytowanym HTML mają jawnie ustawione `width` i `height`; statyczny skan źródeł nie wykrył brakujących wymiarów w pełnostronicowych plikach HTML.
-- Lokalna warstwa QA istnieje i waliduje wygenerowaną strukturę `dist`, integralność składania partiali oraz lokalne referencje (`package.json:13`, `scripts/qa/check-dist-structure.mjs:12-31`, `scripts/qa/check-html-assembly.mjs:7-43`, `scripts/qa/check-local-refs.mjs:20-49`).
-- Bloki JSON-LD wykryte w audytowanych stronach HTML zostały poprawnie sparsowane jako prawidłowy JSON podczas audytu.
+## 3. Strengths
 
-## 4. P1 — Ulepszenia, które warto zrobić jako następne
+- CSS architecture is explicitly layered and easy to reason about from the entrypoint (`css/main.css:1-11`).
+- Design tokens are centralized for colors, typography, spacing, motion, radius, and z-index (`css/tokens.css:7-189`).
+- Focus visibility is defined globally and reinforced in navigation/components (`css/base.css:127-131`, `css/layout.css:186-190`).
+- Mobile navigation includes `aria-expanded`, `aria-hidden`, `Escape`, focus trap, and focus return (`src/partials/header.html:50-57`, `js/modules/navigation.js:22-50`, `js/modules/navigation.js:53-107`).
+- No-JS fallback exists for the main navigation and the contact form (`css/layout.css:290-309`, `contact.html:186-193`, `contact-submit.php:1-102`).
+- Reduced-motion handling is implemented in both CSS tokens/layout and JS behavior (`css/tokens.css:171-189`, `css/layout.css:379-418`, `js/modules/scroll.js`, `js/modules/reveal.js`).
+- The contact form uses progressive enhancement rather than JS-only submission (`contact.html:186-193`, `js/modules/forms.js:278-330`, `contact-form-support.php:156-183`).
+- Local reference QA passed during the audit via `npm run qa`, and the QA layer checks build structure, HTML assembly, and local asset/link resolution (`scripts/qa/run-qa.mjs:1-21`, `scripts/qa/check-dist-structure.mjs`, `scripts/qa/check-html-assembly.mjs`, `scripts/qa/check-local-refs.mjs`).
 
-1. Formularz kontaktowy nie zapewnia rzeczywistej ścieżki wysyłki i nie jest użyteczny bez JavaScriptu. Dowód: formularz nie ma `action` ani `method` i jest oznaczony jako `novalidate` (`contact.html:138-160`), podczas gdy JS zawsze przechwytuje wysyłkę przez `event.preventDefault()` (`js/modules/forms.js:161`).
-2. `seo/sitemap.xml` jest niekompletny względem kanonicznych stron indeksowalnych. Dowód: wpisy mapy witryny ograniczają się do strony głównej, portfolio, wybranych stron projektów, jednej strony case study i kontaktu (`seo/sitemap.xml:1-46`), podczas gdy dodatkowe strony wystawiają `canonical` oraz `meta name="robots" content="index, follow"`, takie jak `about.html:9-14`, `services.html:9-14`, `ecosystem.html:9-16` oraz strony szczegółowe usług, np. `services/websites.html:9-16`.
-3. Jump-linki na stronie przeglądu usług używają tego samego tekstu etykiety ARIA dla wielu różnych celów, przez co odczyt czytników ekranu jest niepoprawny. Dowód: `services.html:92`, `services.html:127`, `services.html:159` i `services.html:197` wszystkie używają `aria-label="Przejdź do sekcji usługi: Strony internetowe"`.
-4. Obsługa robots/sitemap jest rozdzielona między źródłowe pliki SEO i generowany przez build output w katalogu głównym, co tworzy dwa różne miejsca mapy witryny do utrzymania. Dowód: źródłowy `seo/robots.txt` wskazuje na `https://www.kp-code.pl/seo/sitemap.xml` (`seo/robots.txt:3`), podczas gdy build zapisuje główny `robots.txt` z `Sitemap: https://www.kp-code.pl/sitemap.xml` (`scripts/build-utils.mjs:182-185`).
-5. Kilka źródłowych stron szczegółów projektów zostało zapisanych w skompresowanej, jednolinijkowej formie, co pogarsza czytelność i bezpieczeństwo review w nieminifikowanej warstwie źródłowej. Dowód: całe sekcje stron są zwinięte do pojedynczych linii w plikach takich jak `projects/aurora.html:43-55`, `projects/atelier-no-02.html:43-55`, `projects/axiom-construction.html:43-55` i `projects/volt-garage.html:43-55`.
+## 4. P1 — Improvements worth doing next
 
-## 5. P2 — Drobne dopracowania
+1. `seo/sitemap.xml` does not cover the full set of canonical indexable pages. `thank-you.html` exposes `meta name="robots" content="index, follow"` and a canonical URL (`thank-you.html:9-17`), but the page is absent from `seo/sitemap.xml:1-108`.
+2. Service jump links on the overview page reuse the same ARIA label for different targets, which creates incorrect spoken labels for assistive tech. `services.html:115-118`, `services.html:175-179`, and `services.html:237-240` all expose `aria-label="Przejdź do sekcji usługi: Strony internetowe"` despite pointing to different sections.
+3. The source web manifest contains icon paths that do not match the actual source asset location, and the build compensates by rewriting them later. `assets/icons/site.webmanifest:10-22` points to `/web-app-manifest-192x192.png` and `/web-app-manifest-512x512.png`, while the build rewrites those paths in `scripts/build-utils.mjs:184-200`.
+4. SEO ownership is split between source and build output. Source `seo/robots.txt:1-3` points to `https://www.kp-code.pl/seo/sitemap.xml`, while build output is generated to point at `https://www.kp-code.pl/sitemap.xml` in `scripts/build-utils.mjs:173-181`.
+5. Several project detail source files are stored as dense single-line HTML, which lowers reviewability and maintainability in the source layer. This is visible in files such as `projects/aurora.html`, `projects/atelier-no-02.html`, `projects/axiom-construction.html`, and `projects/volt-garage.html`, where large sections are compressed into long single lines in the source files.
 
-- `console.log` nadal występuje w narzędziach i skryptach QA (`scripts/preview-dist.mjs:139-140`, `scripts/images/build-images.mjs:146-188`, `scripts/images/clean-images.mjs:26`, `scripts/qa/run-qa.mjs:16-25`).
-- Filtr projektów poprawnie używa `aria-pressed`, ale jego wrapper to generyczny `div` z `aria-label`, zamiast semantyki silniej wskazującej grupowanie (`projects.html:92-97`).
-- Tymczasowa strona `in-progress.html` jest celowo minimalna i oznaczona jako `noindex`, ale nie wykryto tam bloku JSON-LD. Nie jest to problem runtime i może być akceptowalne dla strony tymczasowej.
-- W projekcie nie wykryto plików konfiguracyjnych zależnych od wdrożenia, takich jak `_headers`, `_redirects`, `netlify.toml` i `vercel.json`.
-- Zgodności kontrastu nie da się potwierdzić bez analizy stylów obliczonych, mimo że definicje tokenów są uporządkowane i jawne.
+## 5. P2 — Minor refinements
 
-## 6. Przyszłe usprawnienia
+- JSON-LD was not detected in `404.html`, `in-progress.html`, `offline.html`, or `thank-you.html`. This is not a runtime failure, but it leaves metadata coverage inconsistent across public pages.
+- `console.log` remains in repository tooling and QA scripts (`scripts/qa/run-qa.mjs:11-21`, `scripts/preview-dist.mjs`, `scripts/images/build-images.mjs`, `scripts/images/clean-images.mjs`).
+- `offline.html` exists, but no service worker registration or scope was detected, so offline support is not wired into runtime behavior.
 
-1. Dodaj rzeczywistą ścieżkę dostarczania formularza albo zewnętrzny handler formularza i zachowaj obecną walidację po stronie klienta jako progressive enhancement.
-2. Generuj `sitemap.xml` z faktycznego inwentarza HTML podczas builda, aby usunąć ręczne rozjeżdżanie się stanu.
-3. Ujednolić source-of-truth dla robots/sitemap, tak aby źródłowe pliki SEO i output builda wskazywały tę samą kanoniczną lokalizację mapy witryny.
-4. Przeformatować skompresowane źródłowe strony HTML w `projects/`, aby zachowywały się jak utrzymywalne pliki developerskie zamiast gęstego wygenerowanego markupu.
-5. Rozszerzyć obecną warstwę QA o statyczne kontrole metadanych/JSON-LD i dostępności, a nie tylko składanie `dist` i walidację lokalnych referencji.
+## 6. Future enhancements
 
-## 7. Lista kontrolna zgodności
+1. Generate `sitemap.xml` from the actual HTML inventory used by the build (`scripts/build-utils.mjs:24`, `scripts/build-utils.mjs:64-69`) instead of maintaining it manually.
+2. Add a static QA check for metadata consistency across `canonical`, `og:url`, `robots`, sitemap inclusion, and JSON-LD presence.
+3. Move duplicated head/bootstrap concerns further into shared generation logic to reduce page-by-page metadata drift.
+4. Align the source manifest so it is valid before build-time rewriting, not only after `fixManifestInDist()`.
+5. Add static checks for repeated ARIA labels and similar accessibility-copy regressions in the source HTML.
 
-- `PASS` Nagłówki poprawne: przeaudytowane pełnostronicowe źródłowe pliki HTML zawierają dokładnie po jednym `h1`.
-- `PASS` Brak uszkodzonych linków z wyłączeniem celowej strategii minifikacji: statyczny skan lokalnych referencji w źródłowym HTML nie wykrył nierozwiązanych lokalnych celów `href` / `src` / `srcset`, a `npm run qa` przeszedł podczas audytu.
-- `FAIL` Brak `console.log`: `console.log` występuje w narzędziach repozytorium i skryptach QA (`scripts/preview-dist.mjs:139-140`, `scripts/images/build-images.mjs:146-188`, `scripts/images/clean-images.mjs:26`, `scripts/qa/run-qa.mjs:16-25`).
-- `PASS` Atrybuty ARIA poprawne: nie wykryto statycznie nieprawidłowych wartości tokenów ARIA w przeaudytowanych wzorcach HTML i JS; użycie stanów ARIA, takich jak `aria-current`, `aria-expanded` i `aria-pressed`, zostało wdrożone z poprawnymi wartościami.
-- `PASS` Obrazy mają `width`/`height`: statyczny skan pełnostronicowych źródłowych plików HTML nie wykrył brakujących wymiarów na elementach `<img>`.
-- `FAIL` Bazowa wersja bez JS jest użyteczna: nawigacja ma fallback bez JS, ale formularz kontaktowy nie ma endpointu wysyłki i jest przechwytywany w JS (`contact.html:138-160`, `js/modules/forms.js:161-191`).
-- `PASS` Mapa witryny istnieje, jeśli jest oczekiwana: `seo/sitemap.xml` jest obecny.
-- `PASS` Robots istnieje: `seo/robots.txt` jest obecny.
-- `PASS` Istnieje obraz OG: `assets/og/og-img.png` istnieje i jest referencjonowany w przeaudytowanych stronach HTML (`index.html:23`, `services.html:22`, `projects/ambre.html:20`).
-- `PASS` JSON-LD poprawny: wykryte bloki JSON-LD w przeaudytowanych stronach HTML zostały poprawnie sparsowane jako prawidłowy JSON podczas audytu.
+## 7. Compliance checklist
 
-## 8. Ocena architektury (0–10)
+- `PASS` headings valid: audited source pages contain one `h1` each; automated scan returned `ONE_H1_PER_PAGE`.
+- `PASS` no broken links excluding intentional minification strategy: `npm run qa` passed during the audit, including `local-refs`.
+- `FAIL` no `console.log`: repository tooling still contains `console.log` usage (`scripts/qa/run-qa.mjs:11-21` and additional tooling files).
+- `PASS` aria attributes valid: audited ARIA state values such as `aria-current`, `aria-expanded`, `aria-controls`, and `aria-hidden` use valid tokens in source (`src/partials/header.html:50-57`, `js/modules/navigation.js:22-30`).
+- `PASS` images have width/height: static scan of source HTML did not detect `<img>` elements missing explicit dimensions.
+- `PASS` no-JS baseline usable: navigation has a CSS fallback (`css/layout.css:290-309`), and the contact form posts to PHP without requiring JS (`contact.html:186-193`, `contact-submit.php:1-102`).
+- `PASS` sitemap present if expected: `seo/sitemap.xml` exists.
+- `PASS` robots present: `seo/robots.txt` exists.
+- `PASS` OG image exists: `assets/og/og-img.png` exists and is referenced in page metadata (`index.html:27`, `services.html:28`, `contact.html:28`).
+- `PASS` JSON-LD valid: detected JSON-LD blocks parse as valid JSON; pages without JSON-LD were noted separately and not treated as invalid markup.
 
-- Spójność BEM: `8/10`
-  Dowód: nazewnictwo klas jest w dużej mierze skomponentyzowane i zbliżone do BEM w plikach layoutu, komponentów, sekcji, stron i plikach specyficznych dla projektów.
-- Użycie tokenów: `9/10`
-  Dowód: typografia, kolor, odstępy, ruch, promienie, cienie i wartości z-index są scentralizowane w `css/tokens.css`.
-- Dostępność: `7/10`
-  Dowód: skip linki, style fokusu, nawigacja uwzględniająca klawiaturę i wsparcie reduced motion są solidne, ale fallback formularza kontaktowego i skopiowane etykiety ARIA nadal obniżają ocenę.
-- Wydajność: `8/10`
-  Dowód: obecne są lokalne fonty, jawne wymiary obrazów, lazy loading, responsywne warianty obrazów oraz dedykowany pipeline obrazów.
-- Utrzymywalność: `8/10`
-  Dowód: pipeline builda, składanie partiali i warstwa QA istotnie poprawiają utrzymywalność, ale rozjazdy sitemap, duplikacja robots, braki w dostarczaniu formularza i skompresowany źródłowy HTML nadal dodają zbędne tarcie.
+## 8. Architecture score (0–10)
 
-**Łączna ocena architektury: 8.0/10**
+- BEM consistency: `8/10`
+  Evidence: class naming is componentized and largely BEM-like across layout, components, pages, and project-specific files.
+- Token usage: `9/10`
+  Evidence: color, spacing, typography, motion, radius, and z-index values are centralized in `css/tokens.css:7-189`.
+- Accessibility: `8/10`
+  Evidence: skip links, focus treatment, keyboard-aware navigation, reduced-motion support, and non-JS form fallback are implemented; duplicated ARIA labels in services prevent a higher score.
+- Performance: `8/10`
+  Evidence: self-hosted fonts with `font-display: swap`, explicit image dimensions, lazy loading, and image optimization tooling are present.
+- Maintainability: `7/10`
+  Evidence: source/build separation and QA are solid, but sitemap drift, manifest rewriting, and compressed HTML sources add avoidable maintenance friction.
 
-## 9. Ocena seniorska (1–10)
+**Architecture score: 8.0/10**
 
-**Ocena seniorska: 8/10**
+## 9. Senior rating (1–10)
 
-Uzasadnienie techniczne: repozytorium pokazuje seniorski poziom dyscypliny w strukturyzacji front-endu, rozdzieleniu warstwy źródłowej i builda, nawigacji uwzględniającej dostępność, obsłudze obrazów oraz lekkich, własnych narzędziach. Nie otrzymuje wyższej oceny, ponieważ część detali produkcyjnych nadal zależy od ręcznego utrzymania zamiast pełnej systematyzacji, szczególnie w obszarach dostarczania formularza kontaktowego, pokrycia sitemap, spójności robots oraz kilku regresji w utrzymywalności źródeł.
+**Senior rating: 8/10**
+
+Technical justification: the repository shows senior-level discipline in front-end structure, build tooling, accessibility fundamentals, and evidence-driven optimization choices. It does not rate higher because some operational details still depend on manual consistency rather than a single automated source of truth, especially around sitemap coverage, manifest correctness before build, and small accessibility-copy regressions.
