@@ -17,13 +17,13 @@
 ### `build:dist`
 
 - Command: `node ./scripts/build-dist.mjs`
-- What it does: czyści `dist/`, buduje CSS i JS, składa HTML z partiali, kopiuje assety, `robots.txt`, service workera i generuje `sitemap.xml`.
+- What it does: czyści `dist/`, buduje CSS i JS, składa HTML z partiali, kopiuje assety, `robots.txt`, service workera i generuje `sitemap.xml` jako artefakt outputu `dist/`, a nie plik source w root.
 - When to use it: przed lokalnym preview, QA albo wdrożeniem.
 
 ### `build`
 
 - Command: `npm run build:dist`
-- What it does: alias do pełnego builda produkcyjnego.
+- What it does: alias do pełnego builda produkcyjnego, który tworzy także generowane artefakty deployowe, w tym `sitemap.xml` w `dist/`.
 - When to use it: jako domyślna komenda budowania projektu.
 
 ### `format`

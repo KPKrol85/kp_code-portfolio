@@ -1,4 +1,5 @@
 import path from 'node:path';
+import { createHash } from 'node:crypto';
 import { fileURLToPath } from 'node:url';
 import { mkdir, readFile, readdir, rm, stat, writeFile, copyFile } from 'node:fs/promises';
 import fg from 'fast-glob';
@@ -15,7 +16,6 @@ export const DIST_JS_FILE = path.join(DIST_DIR, 'js', 'main.min.js');
 
 const CSS_ENTRY = path.join(ROOT_DIR, 'css', 'main.css');
 const JS_ENTRY = path.join(ROOT_DIR, 'js', 'main.js');
-const MANIFEST_PATH = path.join(ROOT_DIR, 'assets', 'icons', 'site.webmanifest');
 const ROOT_ROBOTS_PATH = path.join(ROOT_DIR, 'robots.txt');
 const SERVICE_WORKER_PATH = path.join(ROOT_DIR, 'service-worker.js');
 const PARTIALS_DIR = path.join(ROOT_DIR, 'src', 'partials');
@@ -25,6 +25,7 @@ const THEME_BOOTSTRAP_PARTIAL_PATH = path.join(PARTIALS_DIR, 'theme-bootstrap.ht
 
 const ROOT_HTML_GLOBS = ['*.html', 'services/**/*.html', 'projects/**/*.html'];
 const LEGAL_PAGE_FILES = new Set(['cookies.html', 'polityka-prywatnosci.html', 'regulamin.html']);
+const SERVICE_WORKER_SHELL_ASSETS = ['/offline.html', '/css/main.min.css', '/js/main.min.js'];
 
 export async function ensureDir(dirPath) {
   await mkdir(dirPath, { recursive: true });
@@ -321,27 +322,34 @@ export async function copySeoFiles() {
   await writeGeneratedSitemap();
 }
 
-export async function copyServiceWorker() {
-  await copyFile(SERVICE_WORKER_PATH, path.join(DIST_DIR, 'service-worker.js'));
+function createServiceWorkerCacheName(shellContents) {
+  const hash = createHash('sha256');
+
+  shellContents.forEach(({ path: assetPath, content }) => {
+    hash.update(assetPath);
+    hash.update('\n');
+    hash.update(content);
+    hash.update('\n');
+  });
+
+  return `kp-code-shell-${hash.digest('hex').slice(0, 12)}`;
 }
 
-export async function fixManifestInDist() {
-  const manifest = JSON.parse(await readFile(MANIFEST_PATH, 'utf8'));
-  const fixedManifest = {
-    ...manifest,
-    icons: (manifest.icons ?? []).map((icon) => ({
-      ...icon,
-      src:
-        icon.sizes === '192x192'
-          ? '/assets/icons/web-app-manifest-192x192.png'
-          : icon.sizes === '512x512'
-            ? '/assets/icons/web-app-manifest-512x512.png'
-            : icon.src,
+export async function writeServiceWorker() {
+  const [template, ...shellContents] = await Promise.all([
+    readFile(SERVICE_WORKER_PATH, 'utf8'),
+    ...SERVICE_WORKER_SHELL_ASSETS.map(async (assetPath) => ({
+      path: assetPath,
+      content: await readFile(path.join(DIST_DIR, assetPath.slice(1)), 'utf8'),
     })),
-  };
+  ]);
 
-  const distManifestPath = path.join(DIST_DIR, 'assets', 'icons', 'site.webmanifest');
-  await writeFile(distManifestPath, `${JSON.stringify(fixedManifest, null, 2)}\n`, 'utf8');
+  const cacheName = createServiceWorkerCacheName(shellContents);
+  const renderedServiceWorker = template
+    .replace('__CACHE_NAME__', cacheName)
+    .replace('__SHELL_ASSETS__', JSON.stringify(SERVICE_WORKER_SHELL_ASSETS));
+
+  await writeFile(path.join(DIST_DIR, 'service-worker.js'), `${renderedServiceWorker}\n`, 'utf8');
 }
 
 export async function assertFileExists(filePath) {

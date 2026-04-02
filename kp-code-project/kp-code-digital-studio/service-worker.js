@@ -1,6 +1,6 @@
-const CACHE_NAME = 'kp-code-shell-v1.01';
+const CACHE_NAME = '__CACHE_NAME__';
 const OFFLINE_URL = '/offline.html';
-const SHELL_ASSETS = [OFFLINE_URL, '/css/main.min.css', '/js/main.min.js'];
+const SHELL_ASSETS = __SHELL_ASSETS__;
 
 self.addEventListener('install', (event) => {
   event.waitUntil(

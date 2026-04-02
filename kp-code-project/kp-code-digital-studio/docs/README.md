@@ -70,7 +70,7 @@ npm run preview
 
 ### Build i wdrożenie
 
-- `npm run build` uruchamia `scripts/build-dist.mjs`, który czyści `dist/`, bundluje CSS i JS, składa HTML z partiali, kopiuje assety, kopiuje `robots.txt`, generuje `sitemap.xml` i kopiuje service workera.
+- `npm run build` uruchamia `scripts/build-dist.mjs`, który czyści `dist/`, bundluje CSS i JS, składa HTML z partiali, kopiuje assety, kopiuje `robots.txt`, generuje `sitemap.xml` jako artefakt builda i kopiuje service workera.
 - Build przepisuje referencje z `main.css` / `main.js` na `main.min.css` / `main.min.js` (`scripts/build-utils.mjs:92-98`).
 - Build poprawia ścieżki ikon w manifeście dopiero w `dist/` (`scripts/build-utils.mjs:324-340`).
 - Konfiguracja formularza używa modelu `ENV first`: najpierw zmiennych środowiskowych PHP (`KP_CODE_SMTP_HOST`, `KP_CODE_SMTP_PORT`, `KP_CODE_SMTP_USERNAME`, `KP_CODE_SMTP_PASSWORD`, `KP_CODE_SMTP_SECURE`, `KP_CODE_MAIL_FROM_EMAIL`, `KP_CODE_MAIL_FROM_NAME`, `KP_CODE_MAIL_RECIPIENT_EMAIL`, `KP_CODE_CONTACT_REDIRECT_PATH`), a opcjonalnie prywatnego fallbacku `contact-mail.config.local.php` wykluczonego z Git.
@@ -91,7 +91,7 @@ npm run preview
 
 - Strony źródłowe zawierają `meta description`, `canonical`, `robots`, Open Graph i Twitter Cards.
 - `robots.txt` istnieje w katalogu głównym i wskazuje na `https://www.kp-code.pl/sitemap.xml` (`robots.txt:1-3`).
-- `sitemap.xml` nie jest utrzymywany w root source; jest generowany podczas builda do `dist/` (`scripts/build-utils.mjs:308-317`).
+- `sitemap.xml` nie jest utrzymywany jako source file w katalogu głównym repozytorium; to świadoma decyzja projektowa. Mapa witryny jest generowana wyłącznie podczas builda i istnieje jako artefakt outputu w `dist/` (`scripts/build-utils.mjs:308-317`).
 - JSON-LD jest obecny na głównych stronach contentowych, ale nie został wykryty na części stron pomocniczych, m.in. `404.html`, `offline.html`, `in-progress.html` i `thank-you.html`.
 - Obraz OG istnieje w repozytorium: `assets/og/og-img.png`.
 
@@ -184,7 +184,7 @@ npm run preview
 
 ### Build and deployment notes
 
-- `npm run build` runs `scripts/build-dist.mjs`, which clears `dist/`, bundles CSS and JS, assembles HTML from partials, copies assets, copies `robots.txt`, generates `sitemap.xml`, and copies the service worker.
+- `npm run build` runs `scripts/build-dist.mjs`, which clears `dist/`, bundles CSS and JS, assembles HTML from partials, copies assets, copies `robots.txt`, generates `sitemap.xml` as a build artifact, and copies the service worker.
 - The build rewrites `main.css` / `main.js` references to `main.min.css` / `main.min.js` (`scripts/build-utils.mjs:92-98`).
 - Manifest icon paths are fixed only in `dist/` (`scripts/build-utils.mjs:324-340`).
 - The contact form configuration now uses an `ENV first` pattern: PHP environment variables (`KP_CODE_SMTP_HOST`, `KP_CODE_SMTP_PORT`, `KP_CODE_SMTP_USERNAME`, `KP_CODE_SMTP_PASSWORD`, `KP_CODE_SMTP_SECURE`, `KP_CODE_MAIL_FROM_EMAIL`, `KP_CODE_MAIL_FROM_NAME`, `KP_CODE_MAIL_RECIPIENT_EMAIL`, `KP_CODE_CONTACT_REDIRECT_PATH`) take precedence, with an optional private `contact-mail.config.local.php` fallback excluded from Git.
@@ -205,7 +205,7 @@ npm run preview
 
 - Source pages include `meta description`, `canonical`, `robots`, Open Graph, and Twitter Card metadata.
 - `robots.txt` exists at project root and points to `https://www.kp-code.pl/sitemap.xml` (`robots.txt:1-3`).
-- `sitemap.xml` is not committed in the root source tree; it is generated during build into `dist/` (`scripts/build-utils.mjs:308-317`).
+- `sitemap.xml` is not maintained as a source file in the repository root by design. The sitemap is generated only during the build and exists as a build output artifact in `dist/` (`scripts/build-utils.mjs:308-317`).
 - JSON-LD exists on major content pages, but was not detected on some utility pages such as `404.html`, `offline.html`, `in-progress.html`, and `thank-you.html`.
 - The OG image file exists in the repository at `assets/og/og-img.png`.
 

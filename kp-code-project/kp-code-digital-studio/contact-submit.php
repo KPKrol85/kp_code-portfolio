@@ -31,6 +31,44 @@ if ($input['company'] !== '') {
   contact_form_respond(200, true, contact_form_success_message(), [], [], $redirectPath);
 }
 
+$timingGuard = contact_form_validate_timing_guard($_POST);
+if (!$timingGuard['ok']) {
+  $clientIdentifier = contact_form_get_client_identifier();
+  contact_form_log_abuse_event((string) $timingGuard['reason'], $clientIdentifier);
+
+  contact_form_respond(
+    429,
+    false,
+    contact_form_abuse_error_message(),
+    [],
+    [
+      'name' => $input['name'],
+      'email' => $input['email'],
+      'message' => $input['message'],
+    ],
+    $redirectPath,
+  );
+}
+
+$clientIdentifier = contact_form_get_client_identifier();
+$rateLimit = contact_form_check_rate_limit($clientIdentifier);
+if (!$rateLimit['ok']) {
+  contact_form_log_abuse_event((string) $rateLimit['reason'], $clientIdentifier);
+
+  contact_form_respond(
+    429,
+    false,
+    contact_form_abuse_error_message(),
+    [],
+    [
+      'name' => $input['name'],
+      'email' => $input['email'],
+      'message' => $input['message'],
+    ],
+    $redirectPath,
+  );
+}
+
 [$sanitized, $errors] = contact_form_validate_input($input);
 $oldInput = [
   'name' => $sanitized['name'],

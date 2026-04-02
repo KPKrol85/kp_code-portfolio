@@ -5,11 +5,10 @@ import {
   copyAssets,
   copyHtmlPages,
   copySeoFiles,
-  copyServiceWorker,
   DIST_CSS_FILE,
   DIST_JS_FILE,
-  fixManifestInDist,
   removeDist,
+  writeServiceWorker,
 } from './build-utils.mjs';
 
 await removeDist();
@@ -18,7 +17,6 @@ await buildJS();
 await copyHtmlPages();
 await copyAssets();
 await copySeoFiles();
-await copyServiceWorker();
-await fixManifestInDist();
+await writeServiceWorker();
 await assertFileExists(DIST_CSS_FILE);
 await assertFileExists(DIST_JS_FILE);

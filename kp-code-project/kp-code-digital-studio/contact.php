@@ -6,6 +6,7 @@ require_once __DIR__ . '/contact-form-support.php';
 
 contact_form_start_session();
 $flash = contact_form_pull_flash();
+$timingGuard = contact_form_issue_timing_guard();
 
 function contact_find_first(DOMXPath $xpath, string $query): ?DOMElement
 {
@@ -88,6 +89,11 @@ if ($messageField && isset($oldInput['message'])) {
   contact_set_text($dom, $messageField, (string) $oldInput['message']);
 }
 
+$guardField = contact_find_first($xpath, '//*[@id="form_guard_token"]');
+if ($guardField) {
+  $guardField->setAttribute('value', (string) ($timingGuard['token'] ?? ''));
+}
+
 if ($errors !== []) {
   foreach ($errors as $fieldName => $errorMessage) {
     $field = contact_find_first(
@@ -159,4 +165,11 @@ if ($message !== '') {
   }
 }
 
-echo $dom->saveHTML();
+$renderedHtml = $dom->saveHTML();
+if ($renderedHtml === false) {
+  http_response_code(500);
+  echo 'Nie udało się wyrenderować strony kontaktowej.';
+  exit();
+}
+
+echo contact_form_assemble_shell($renderedHtml, 'contact.html');
