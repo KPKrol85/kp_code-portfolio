@@ -13,8 +13,8 @@
 - Architektura CSS rozdzielona na `tokens`, `base`, `layout`, `components`, `sections`, `pages` i `utilities`.
 - JavaScript modułowy dla motywu, nawigacji mobilnej, smooth scroll, reveal animations, filtrowania projektów, formularza i rejestracji service workera.
 - Formularz kontaktowy z progresywnym ulepszeniem po stronie klienta i serwerową obsługą PHP/PHPMailer.
-- Build produkcyjny generujący `dist/`, minifikowane assety, złożone HTML oraz `sitemap.xml`.
-- QA dla wygenerowanego `dist/` sprawdzające strukturę, assembly HTML i lokalne referencje.
+- Build produkcyjny generujący kompletne, ale odchudzone `dist/` jako artefakt deployowy: HTML, runtime assety, runtime PHP, minimalny runtime subset `vendor/`, `.htaccess`, minifikowane assety oraz `sitemap.xml`.
+- QA dla wygenerowanego `dist/` sprawdzające strukturę, assembly HTML, lokalne referencje oraz kompletność runtime PHP.
 
 ### Tech stack
 
@@ -70,12 +70,20 @@ npm run preview
 
 ### Build i wdrożenie
 
-- `npm run build` uruchamia `scripts/build-dist.mjs`, który czyści `dist/`, bundluje CSS i JS, składa HTML z partiali, kopiuje assety, kopiuje `robots.txt`, generuje `sitemap.xml` jako artefakt builda i kopiuje service workera.
+- `npm run build` uruchamia `scripts/build-dist.mjs`, który czyści `dist/`, bundluje CSS i JS, składa HTML z partiali, kopiuje tylko runtime assety, kopiuje runtime PHP formularza, `.htaccess`, minimalny runtime subset `vendor/`, `robots.txt`, generuje `sitemap.xml` jako artefakt builda i renderuje finalny `service-worker.js`.
 - Build przepisuje referencje z `main.css` / `main.js` na `main.min.css` / `main.min.js` (`scripts/build-utils.mjs:92-98`).
-- Build poprawia ścieżki ikon w manifeście dopiero w `dist/` (`scripts/build-utils.mjs:324-340`).
 - Konfiguracja formularza używa modelu `ENV first`: najpierw zmiennych środowiskowych PHP (`KP_CODE_SMTP_HOST`, `KP_CODE_SMTP_PORT`, `KP_CODE_SMTP_USERNAME`, `KP_CODE_SMTP_PASSWORD`, `KP_CODE_SMTP_SECURE`, `KP_CODE_MAIL_FROM_EMAIL`, `KP_CODE_MAIL_FROM_NAME`, `KP_CODE_MAIL_RECIPIENT_EMAIL`, `KP_CODE_CONTACT_REDIRECT_PATH`), a opcjonalnie prywatnego fallbacku `contact-mail.config.local.php` wykluczonego z Git.
+- Jeśli lokalnie istnieje nieśledzony `contact-mail.config.local.php`, build kopiuje go do `dist/`, dzięki czemu upload samego `dist/` wystarcza także dla runtime formularza.
 - `.htaccess` blokuje bezpośredni dostęp do `contact-mail.config.php` i `contact-mail.config.local.php` oraz przepisuje `contact.html` na `contact.php`.
+- `dist/` jest docelowym katalogiem wdrożeniowym: po buildzie należy uploadować tylko jego zawartość, bez ręcznego dokładania plików PHP lub zależności.
 - Rejestracja service workera działa tylko w secure context (`js/modules/service-worker.js:1-15`).
+
+### Co zawiera `dist/`
+
+- Publiczne strony HTML: `index.html`, `about.html`, `services.html`, `projects.html`, `contact.html`, `cookies.html`, `polityka-prywatnosci.html`, `regulamin.html`, `404.html`, `offline.html`, `in-progress.html`, `thank-you.html`, `ecosystem.html`, `case-digital-vault.html`, a także podstrony w `services/` i `projects/`.
+- Zasoby front-endowe: `css/main.min.css`, `js/main.min.js`, runtime subset `assets/` bez `assets/img/img_src/`, `robots.txt`, `service-worker.js`, `sitemap.xml`.
+- Runtime PHP formularza: `contact.php`, `contact-submit.php`, `contact-form-support.php`, `contact-mail.config.php`, opcjonalnie `contact-mail.config.local.php`, `.htaccess`, `src/partials/` oraz tylko runtime subset `vendor/` potrzebny Composer autoload i PHPMailer.
+- Build celowo nie kopiuje do `dist/` plików development-only, w tym `docs/`, `scripts/`, `package*.json`, `composer*.json`, `image.config.json`, `.gitignore`, `contact-mail.config.example.php`, `assets/img/img_src/` oraz nieruntime plików PHPMailera.
 
 ### Dostępność
 
@@ -127,8 +135,8 @@ MIT (`package.json:36`)
 - CSS architecture split into `tokens`, `base`, `layout`, `components`, `sections`, `pages`, and `utilities`.
 - Modular JavaScript for theme handling, mobile navigation, smooth scrolling, reveal animations, project filtering, form enhancement, and service worker registration.
 - Contact form with progressive enhancement on the client and PHP/PHPMailer handling on the server.
-- Production build that generates `dist/`, minified assets, assembled HTML, and `sitemap.xml`.
-- QA checks for generated `dist/` structure, HTML assembly, and local references.
+- Production build that generates complete but trimmed `dist/` as the deploy artifact: HTML, runtime assets, PHP runtime, a minimal runtime `vendor/` subset, `.htaccess`, minified assets, and `sitemap.xml`.
+- QA checks for generated `dist/` structure, HTML assembly, local references, and PHP runtime completeness.
 
 ### Tech stack
 
@@ -184,12 +192,20 @@ npm run preview
 
 ### Build and deployment notes
 
-- `npm run build` runs `scripts/build-dist.mjs`, which clears `dist/`, bundles CSS and JS, assembles HTML from partials, copies assets, copies `robots.txt`, generates `sitemap.xml` as a build artifact, and copies the service worker.
+- `npm run build` runs `scripts/build-dist.mjs`, which clears `dist/`, bundles CSS and JS, assembles HTML from partials, copies only runtime assets, copies the PHP form runtime, `.htaccess`, a minimal runtime `vendor/` subset, `robots.txt`, generates `sitemap.xml` as a build artifact, and renders the final `service-worker.js`.
 - The build rewrites `main.css` / `main.js` references to `main.min.css` / `main.min.js` (`scripts/build-utils.mjs:92-98`).
-- Manifest icon paths are fixed only in `dist/` (`scripts/build-utils.mjs:324-340`).
 - The contact form configuration now uses an `ENV first` pattern: PHP environment variables (`KP_CODE_SMTP_HOST`, `KP_CODE_SMTP_PORT`, `KP_CODE_SMTP_USERNAME`, `KP_CODE_SMTP_PASSWORD`, `KP_CODE_SMTP_SECURE`, `KP_CODE_MAIL_FROM_EMAIL`, `KP_CODE_MAIL_FROM_NAME`, `KP_CODE_MAIL_RECIPIENT_EMAIL`, `KP_CODE_CONTACT_REDIRECT_PATH`) take precedence, with an optional private `contact-mail.config.local.php` fallback excluded from Git.
+- If a local untracked `contact-mail.config.local.php` exists, the build copies it into `dist/` so deploying `dist/` alone remains sufficient for the form runtime.
 - `.htaccess` denies direct access to both `contact-mail.config.php` and `contact-mail.config.local.php`, and rewrites `contact.html` to `contact.php`.
+- `dist/` is the deployment directory; after the build, only its contents should be uploaded to the server.
 - Service worker registration is gated behind secure context checks (`js/modules/service-worker.js:1-15`).
+
+### What `dist/` contains
+
+- Public HTML pages: `index.html`, `about.html`, `services.html`, `projects.html`, `contact.html`, `cookies.html`, `polityka-prywatnosci.html`, `regulamin.html`, `404.html`, `offline.html`, `in-progress.html`, `thank-you.html`, `ecosystem.html`, `case-digital-vault.html`, plus nested pages in `services/` and `projects/`.
+- Front-end assets: `css/main.min.css`, `js/main.min.js`, the runtime subset of `assets/` without `assets/img/img_src/`, `robots.txt`, `service-worker.js`, `sitemap.xml`.
+- PHP form runtime: `contact.php`, `contact-submit.php`, `contact-form-support.php`, `contact-mail.config.php`, optional `contact-mail.config.local.php`, `.htaccess`, `src/partials/`, and only the runtime subset of `vendor/` needed by Composer autoload and PHPMailer.
+- The build intentionally excludes development-only files from `dist/`, including `docs/`, `scripts/`, `package*.json`, `composer*.json`, `image.config.json`, `.gitignore`, `contact-mail.config.example.php`, `assets/img/img_src/`, and non-runtime PHPMailer docs/examples/tests/metadata files.
 
 ### Accessibility notes
 

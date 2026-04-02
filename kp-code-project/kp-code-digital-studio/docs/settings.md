@@ -17,13 +17,13 @@
 ### `build:dist`
 
 - Command: `node ./scripts/build-dist.mjs`
-- What it does: czyści `dist/`, buduje CSS i JS, składa HTML z partiali, kopiuje assety, `robots.txt`, service workera i generuje `sitemap.xml` jako artefakt outputu `dist/`, a nie plik source w root.
+- What it does: czyści `dist/`, buduje CSS i JS, składa HTML z partiali, kopiuje tylko runtime assety, runtime PHP formularza, `.htaccess`, minimalny runtime subset `vendor/`, `robots.txt`, renderuje finalny service worker i generuje `sitemap.xml` jako artefakt outputu `dist/`.
 - When to use it: przed lokalnym preview, QA albo wdrożeniem.
 
 ### `build`
 
 - Command: `npm run build:dist`
-- What it does: alias do pełnego builda produkcyjnego, który tworzy także generowane artefakty deployowe, w tym `sitemap.xml` w `dist/`.
+- What it does: alias do pełnego builda produkcyjnego, który tworzy kompletne `dist/` jako katalog deployowy dla frontendu i runtime PHP.
 - When to use it: jako domyślna komenda budowania projektu.
 
 ### `format`
@@ -41,8 +41,22 @@
 ### `qa`
 
 - Command: `npm run build && node ./scripts/qa/run-qa.mjs`
-- What it does: wykonuje pełny build, a następnie sprawdza strukturę `dist/`, assembly HTML i lokalne referencje.
+- What it does: wykonuje pełny build, a następnie sprawdza strukturę `dist/`, assembly HTML, lokalne referencje, kompletność runtime PHP i brak znanych nieruntime plików w artefakcie.
 - When to use it: przed publikacją lub po większych zmianach w HTML/build/deploy flow.
+
+## dist/
+
+- `dist/` jest docelowym artefaktem wdrożeniowym.
+- Po `npm run build` uploadujesz tylko zawartość `dist/`.
+- `dist/` zawiera:
+  - publiczne strony HTML z root oraz podkatalogów `services/` i `projects/`
+  - `css/main.min.css` i `js/main.min.js`
+  - runtime subset katalogu `assets/`, bez `assets/img/img_src/`
+  - `robots.txt`, `service-worker.js`, `sitemap.xml`
+  - runtime PHP formularza: `contact.php`, `contact-submit.php`, `contact-form-support.php`, `contact-mail.config.php`
+  - opcjonalnie `contact-mail.config.local.php`, jeśli istnieje lokalnie podczas builda
+  - `.htaccess`, `src/partials/`, `vendor/autoload.php`, `vendor/composer/`, `vendor/phpmailer/phpmailer/src/`
+- `dist/` nie powinien zawierać plików development-only, `contact-mail.config.example.php`, `assets/img/img_src/` ani nieruntime plików PHPMailera.
 
 ### `preview`
 

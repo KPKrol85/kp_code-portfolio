@@ -1,7 +1,7 @@
 import path from 'node:path';
 import { createHash } from 'node:crypto';
 import { fileURLToPath } from 'node:url';
-import { mkdir, readFile, readdir, rm, stat, writeFile, copyFile } from 'node:fs/promises';
+import { mkdir, readFile, readdir, rm, stat, writeFile, copyFile, access } from 'node:fs/promises';
 import fg from 'fast-glob';
 import { build as esbuild } from 'esbuild';
 import { bundle as bundleCss } from 'lightningcss';
@@ -22,6 +22,32 @@ const PARTIALS_DIR = path.join(ROOT_DIR, 'src', 'partials');
 const HEADER_PARTIAL_PATH = path.join(PARTIALS_DIR, 'header.html');
 const FOOTER_PARTIAL_PATH = path.join(PARTIALS_DIR, 'footer.html');
 const THEME_BOOTSTRAP_PARTIAL_PATH = path.join(PARTIALS_DIR, 'theme-bootstrap.html');
+const ROOT_HTACCESS_PATH = path.join(ROOT_DIR, '.htaccess');
+const ROOT_VENDOR_DIR = path.join(ROOT_DIR, 'vendor');
+const OPTIONAL_LOCAL_CONTACT_CONFIG_PATH = path.join(ROOT_DIR, 'contact-mail.config.local.php');
+const ROOT_ASSETS_DIR = path.join(ROOT_DIR, 'assets');
+
+const PHP_RUNTIME_FILES = [
+  'contact.php',
+  'contact-submit.php',
+  'contact-form-support.php',
+  'contact-mail.config.php',
+];
+const PHP_RUNTIME_PARTIALS = ['header.html', 'footer.html', 'theme-bootstrap.html'];
+const RUNTIME_ASSET_PATHS = [
+  'fonts',
+  'icons',
+  'img/img_optimized',
+  'img/logo',
+  'img/projects',
+  'og',
+  'screenshots',
+];
+const PHPMAILER_RUNTIME_FILES = [
+  'vendor/autoload.php',
+  'vendor/composer',
+  'vendor/phpmailer/phpmailer/src',
+];
 
 const ROOT_HTML_GLOBS = ['*.html', 'services/**/*.html', 'projects/**/*.html'];
 const LEGAL_PAGE_FILES = new Set(['cookies.html', 'polityka-prywatnosci.html', 'regulamin.html']);
@@ -88,6 +114,15 @@ export async function copyDirectory(sourceDir, targetDir) {
 
     await ensureDir(path.dirname(targetPath));
     await copyFile(sourcePath, targetPath);
+  }
+}
+
+export async function pathExists(targetPath) {
+  try {
+    await access(targetPath);
+    return true;
+  } catch {
+    return false;
   }
 }
 
@@ -174,7 +209,54 @@ export async function copyHtmlPages() {
 }
 
 export async function copyAssets() {
-  await copyDirectory(path.join(ROOT_DIR, 'assets'), path.join(DIST_DIR, 'assets'));
+  await Promise.all(
+    RUNTIME_ASSET_PATHS.map((relativePath) =>
+      copyDirectory(path.join(ROOT_ASSETS_DIR, relativePath), path.join(DIST_DIR, 'assets', relativePath))
+    )
+  );
+}
+
+export async function copyPhpRuntime() {
+  await Promise.all([
+    ...PHP_RUNTIME_FILES.map(async (relativePath) => {
+      const targetPath = path.join(DIST_DIR, relativePath);
+      await ensureDir(path.dirname(targetPath));
+      await copyFile(path.join(ROOT_DIR, relativePath), targetPath);
+    }),
+    (async () => {
+      const targetPath = path.join(DIST_DIR, '.htaccess');
+      await ensureDir(path.dirname(targetPath));
+      await copyFile(ROOT_HTACCESS_PATH, targetPath);
+    })(),
+    ...PHPMAILER_RUNTIME_FILES.map(async (relativePath) => {
+      const sourcePath = path.join(ROOT_DIR, relativePath);
+      const targetPath = path.join(DIST_DIR, relativePath);
+      const sourceStats = await stat(sourcePath);
+
+      if (sourceStats.isDirectory()) {
+        await copyDirectory(sourcePath, targetPath);
+        return;
+      }
+
+      await ensureDir(path.dirname(targetPath));
+      await copyFile(sourcePath, targetPath);
+    }),
+    ...PHP_RUNTIME_PARTIALS.map(async (filename) => {
+      const targetPath = path.join(DIST_DIR, 'src', 'partials', filename);
+      await ensureDir(path.dirname(targetPath));
+      await copyFile(path.join(PARTIALS_DIR, filename), targetPath);
+    }),
+  ]);
+
+  if (await pathExists(OPTIONAL_LOCAL_CONTACT_CONFIG_PATH)) {
+    const targetPath = path.join(DIST_DIR, 'contact-mail.config.local.php');
+    await ensureDir(path.dirname(targetPath));
+    await copyFile(OPTIONAL_LOCAL_CONTACT_CONFIG_PATH, targetPath);
+  }
+}
+
+export async function hasOptionalLocalContactConfig() {
+  return pathExists(OPTIONAL_LOCAL_CONTACT_CONFIG_PATH);
 }
 
 function getHtmlTagAttributes(tagMarkup) {

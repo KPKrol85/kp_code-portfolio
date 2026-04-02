@@ -6,7 +6,7 @@ Path: `C:\Users\KPKro\MY FILES\active-work\kp-code-digital-studio`
 
 ## 1. Short overall assessment
 
-This is a disciplined front-end codebase with a clear source/build split, consistent metadata coverage, good accessibility fundamentals, and a working QA layer. The previously identified P1 issues in the PHP contact flow and mail-endpoint abuse protection have been resolved. At this point, no open P1 items remain; the remaining review items are minor P2 maintainability refinements around PWA/build coupling. Project QA was run during this audit and passed (`npm run qa`).
+This is a disciplined front-end codebase with a clear source/build split, consistent metadata coverage, good accessibility fundamentals, and a working QA layer. The previously identified P1 issues in the PHP contact flow and mail-endpoint abuse protection have been resolved. The build/deploy flow now also packages the PHP runtime into `dist/`, so `dist/` acts as the complete deployment artifact. At this point, no open P1 items remain; the remaining review items are minor P2 maintainability refinements around PWA/build coupling. Project QA was run during this audit and passed (`npm run qa`).
 
 Intentional build decisions were not treated as defects where the repository shows they are deliberate. In particular, `sitemap.xml` is intentionally generated during build (`scripts/build-utils.mjs:271-321`) and is not a missing root source file.
 

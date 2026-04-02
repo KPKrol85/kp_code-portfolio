@@ -2,9 +2,10 @@ import { checkDistStructure } from './check-dist-structure.mjs';
 import { checkHtmlAssembly } from './check-html-assembly.mjs';
 import { checkLocalRefs } from './check-local-refs.mjs';
 import { checkMetadata } from './check-metadata.mjs';
+import { checkPhpRuntime } from './check-php-runtime.mjs';
 import { formatFailures } from './utils.mjs';
 
-const checks = [checkDistStructure, checkHtmlAssembly, checkLocalRefs, checkMetadata];
+const checks = [checkDistStructure, checkHtmlAssembly, checkLocalRefs, checkMetadata, checkPhpRuntime];
 
 const results = await Promise.all(checks.map((check) => check()));
 const hasFailures = results.some((result) => !result.ok);
