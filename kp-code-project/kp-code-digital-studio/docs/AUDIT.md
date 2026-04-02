@@ -4,7 +4,7 @@
 
 The repository is a production-oriented multi-page front-end codebase with a clear source/build split. The strongest areas are CSS layering, centralized token usage, keyboard-aware navigation, reduced-motion handling, explicit image dimensions, and a working build QA path (`css/main.css:1-11`, `css/tokens.css:7-189`, `js/modules/navigation.js:22-150`, `scripts/qa/run-qa.mjs:1-21`).
 
-No P0 issue was confirmed from repository evidence. The next-value improvements are mostly around metadata completeness, small accessibility correctness issues, and removing source/build drift in SEO and manifest handling.
+No P0 issue was confirmed from repository evidence. The next-value improvements are mostly around metadata completeness, small accessibility correctness issues, and removing source/build drift in SEO handling.
 
 ## 2. P0 — Critical risks
 
@@ -19,13 +19,14 @@ No P0 issues were detected from repository evidence.
 - No-JS fallback exists for the main navigation and the contact form (`css/layout.css:290-309`, `contact.html:186-193`, `contact-submit.php:1-102`).
 - Reduced-motion handling is implemented in both CSS tokens/layout and JS behavior (`css/tokens.css:171-189`, `css/layout.css:379-418`, `js/modules/scroll.js`, `js/modules/reveal.js`).
 - The contact form uses progressive enhancement rather than JS-only submission (`contact.html:186-193`, `js/modules/forms.js:278-330`, `contact-form-support.php:156-183`).
+- The manifest icon path strategy is deployment-aware rather than broken in isolation: the source manifest keeps deployment-tested root-style icon paths, while the build rewrites the generated manifest to valid `/assets/icons/...` paths in `dist` (`assets/icons/site.webmanifest:10-22`, `scripts/build-utils.mjs:184-200`, `dist/assets/icons/site.webmanifest:10-22`).
 - Local reference QA passed during the audit via `npm run qa`, and the QA layer checks build structure, HTML assembly, and local asset/link resolution (`scripts/qa/run-qa.mjs:1-21`, `scripts/qa/check-dist-structure.mjs`, `scripts/qa/check-html-assembly.mjs`, `scripts/qa/check-local-refs.mjs`).
 
 ## 4. P1 — Improvements worth doing next
 
-1. The source web manifest contains icon paths that do not match the actual source asset location, and the build compensates by rewriting them later. `assets/icons/site.webmanifest:10-22` points to `/web-app-manifest-192x192.png` and `/web-app-manifest-512x512.png`, while the build rewrites those paths in `scripts/build-utils.mjs:184-200`.
-2. SEO ownership is split between source and build output. Source `seo/robots.txt:1-3` points to `https://www.kp-code.pl/seo/sitemap.xml`, while build output is generated to point at `https://www.kp-code.pl/sitemap.xml` in `scripts/build-utils.mjs:173-181`.
-3. Several project detail source files are stored as dense single-line HTML, which lowers reviewability and maintainability in the source layer. This is visible in files such as `projects/aurora.html`, `projects/atelier-no-02.html`, `projects/axiom-construction.html`, and `projects/volt-garage.html`, where large sections are compressed into long single lines in the source files.
+1. SEO ownership is split between source and build output. Source `seo/robots.txt:1-3` points to `https://www.kp-code.pl/seo/sitemap.xml`, while build output is generated to point at `https://www.kp-code.pl/sitemap.xml` in `scripts/build-utils.mjs:173-181`.
+
+2. Several project detail source files are stored as dense single-line HTML, which lowers reviewability and maintainability in the source layer. This is visible in files such as `projects/aurora.html`, `projects/atelier-no-02.html`, `projects/axiom-construction.html`, and `projects/volt-garage.html`, where large sections are compressed into long single lines in the source files.
 
 ## 5. P2 — Minor refinements
 
@@ -38,8 +39,7 @@ No P0 issues were detected from repository evidence.
 1. Generate `sitemap.xml` from the actual HTML inventory used by the build (`scripts/build-utils.mjs:24`, `scripts/build-utils.mjs:64-69`) instead of maintaining it manually.
 2. Add a static QA check for metadata consistency across `canonical`, `og:url`, `robots`, sitemap inclusion, and JSON-LD presence.
 3. Move duplicated head/bootstrap concerns further into shared generation logic to reduce page-by-page metadata drift.
-4. Align the source manifest so it is valid before build-time rewriting, not only after `fixManifestInDist()`.
-5. Add static checks for repeated ARIA labels and similar accessibility-copy regressions in the source HTML.
+4. Add static checks for repeated ARIA labels and similar accessibility-copy regressions in the source HTML.
 
 ## 7. Compliance checklist
 
@@ -65,7 +65,7 @@ No P0 issues were detected from repository evidence.
 - Performance: `8/10`
   Evidence: self-hosted fonts with `font-display: swap`, explicit image dimensions, lazy loading, and image optimization tooling are present.
 - Maintainability: `7/10`
-  Evidence: source/build separation and QA are solid, but sitemap drift, manifest rewriting, and compressed HTML sources add avoidable maintenance friction.
+  Evidence: source/build separation and QA are solid, but robots ownership drift and compressed HTML sources still add avoidable maintenance friction.
 
 **Architecture score: 8.0/10**
 
@@ -73,4 +73,4 @@ No P0 issues were detected from repository evidence.
 
 **Senior rating: 8/10**
 
-Technical justification: the repository shows senior-level discipline in front-end structure, build tooling, accessibility fundamentals, and evidence-driven optimization choices. It does not rate higher because some operational details still depend on manual consistency rather than a single automated source of truth, especially around sitemap coverage, manifest correctness before build, and small accessibility-copy regressions.
+Technical justification: the repository shows senior-level discipline in front-end structure, build tooling, accessibility fundamentals, and evidence-driven optimization choices. It does not rate higher because some operational details still depend on manual consistency rather than a single automated source of truth, especially around SEO ownership between source and build output and small accessibility-copy regressions.
