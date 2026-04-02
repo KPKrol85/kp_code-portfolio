@@ -9,6 +9,7 @@ import { initSmoothScroll } from './modules/scroll.js';
 import { initReveal } from './modules/reveal.js';
 import { initForms } from './modules/forms.js';
 import { initProjectFilter } from './modules/project-filter.js';
+import { initServiceWorker } from './modules/service-worker.js';
 
 const initApp = () => {
   initTheme();
@@ -17,6 +18,7 @@ const initApp = () => {
   initReveal();
   initForms();
   initProjectFilter();
+  initServiceWorker();
 };
 
 if (document.readyState === 'loading') {

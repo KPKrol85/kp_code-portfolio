@@ -28,7 +28,7 @@ FIXED
 
 ## 5. P2 — Minor refinements
 
-  - `offline.html` exists, but no service worker registration or scope was detected, so offline support is not wired into runtime behavior.
+DONE
 
 ## 6. Future enhancements
 

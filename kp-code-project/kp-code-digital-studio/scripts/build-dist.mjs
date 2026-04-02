@@ -5,6 +5,7 @@ import {
   copyAssets,
   copyHtmlPages,
   copySeoFiles,
+  copyServiceWorker,
   DIST_CSS_FILE,
   DIST_JS_FILE,
   fixManifestInDist,
@@ -17,6 +18,7 @@ await buildJS();
 await copyHtmlPages();
 await copyAssets();
 await copySeoFiles();
+await copyServiceWorker();
 await fixManifestInDist();
 await assertFileExists(DIST_CSS_FILE);
 await assertFileExists(DIST_JS_FILE);

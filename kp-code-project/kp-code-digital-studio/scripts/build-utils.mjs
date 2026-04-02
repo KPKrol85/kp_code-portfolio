@@ -17,6 +17,7 @@ const CSS_ENTRY = path.join(ROOT_DIR, 'css', 'main.css');
 const JS_ENTRY = path.join(ROOT_DIR, 'js', 'main.js');
 const MANIFEST_PATH = path.join(ROOT_DIR, 'assets', 'icons', 'site.webmanifest');
 const ROOT_ROBOTS_PATH = path.join(ROOT_DIR, 'robots.txt');
+const SERVICE_WORKER_PATH = path.join(ROOT_DIR, 'service-worker.js');
 const PARTIALS_DIR = path.join(ROOT_DIR, 'src', 'partials');
 const HEADER_PARTIAL_PATH = path.join(PARTIALS_DIR, 'header.html');
 const FOOTER_PARTIAL_PATH = path.join(PARTIALS_DIR, 'footer.html');
@@ -314,6 +315,10 @@ export async function copySeoFiles() {
 
   await copyFile(ROOT_ROBOTS_PATH, rootRobotsPath);
   await writeGeneratedSitemap();
+}
+
+export async function copyServiceWorker() {
+  await copyFile(SERVICE_WORKER_PATH, path.join(DIST_DIR, 'service-worker.js'));
 }
 
 export async function fixManifestInDist() {

@@ -6,6 +6,7 @@ export const REQUIRED_DIST_FILES = [
   'index.html',
   'robots.txt',
   'sitemap.xml',
+  'service-worker.js',
   'assets/icons/site.webmanifest',
 ];
 
