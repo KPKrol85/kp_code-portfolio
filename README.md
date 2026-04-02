@@ -1,7 +1,7 @@
 # KP_Code — Professional Web Development Portfolio
 
 <p align="center">
-  <img src="assets/logo-dark-mode.png" alt="KP_Code logo" width="220" />
+  <img src="assets/logo-dark-mode.png" alt="KP_Code logo" width="220" margin="100px" />
 </p>
 
 > A professional, long-term portfolio showcasing real-world web projects and SaaS-style web applications.
