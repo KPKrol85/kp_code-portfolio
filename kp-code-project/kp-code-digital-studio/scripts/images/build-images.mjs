@@ -188,7 +188,7 @@ const run = async () => {
   }
 
   console.log(
-    `Processed ${files.length} file(s). Generated ${outputCount} output(s). Errors: ${errorCount}.`
+    `Image build complete: ${files.length} source file(s), ${outputCount} output(s), ${errorCount} error(s).`
   );
 };
 

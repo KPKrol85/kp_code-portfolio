@@ -28,9 +28,7 @@ FIXED
 
 ## 5. P2 — Minor refinements
 
-- JSON-LD was not detected in `404.html`, `in-progress.html`, `offline.html`, or `thank-you.html`. This is not a runtime failure, but it leaves metadata coverage inconsistent across public pages.
-- `console.log` remains in repository tooling and QA scripts (`scripts/qa/run-qa.mjs:11-21`, `scripts/preview-dist.mjs`, `scripts/images/build-images.mjs`, `scripts/images/clean-images.mjs`).
-- `offline.html` exists, but no service worker registration or scope was detected, so offline support is not wired into runtime behavior.
+  - `offline.html` exists, but no service worker registration or scope was detected, so offline support is not wired into runtime behavior.
 
 ## 6. Future enhancements
 

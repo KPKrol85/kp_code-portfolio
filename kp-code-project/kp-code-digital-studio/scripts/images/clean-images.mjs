@@ -23,7 +23,7 @@ const run = async () => {
   await fs.rm(outputDir, { recursive: true, force: true });
   await fs.mkdir(outputDir, { recursive: true });
 
-  console.log(`Cleaned ${outputDir}.`);
+  console.log(`Image output cleaned: ${outputDir}`);
 };
 
 run();

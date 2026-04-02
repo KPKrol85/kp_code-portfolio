@@ -137,8 +137,8 @@ const server = http.createServer((request, response) => {
 });
 
 server.listen(port, () => {
-  console.log(`Preview server running at http://127.0.0.1:${port}`);
-  console.log(`Serving: ${DIST_DIR}`);
+  console.log(`Preview ready at http://127.0.0.1:${port}`);
+  console.log(`Serving dist from ${DIST_DIR}`);
 });
 
 server.on('error', (error) => {

@@ -13,7 +13,7 @@ for (const result of results) {
 }
 
 if (hasFailures) {
-  console.error('\nQA failed:\n');
+  console.error('\nQA failed.\n');
   console.error(formatFailures(results));
   process.exit(1);
 }
