@@ -2,70 +2,72 @@
 
 ## 1. Executive summary
 
-The repository is a production-oriented multi-page front-end codebase with a clear source/build split. The strongest areas are CSS layering, centralized token usage, keyboard-aware navigation, reduced-motion handling, explicit image dimensions, and a working build QA path (`css/main.css:1-11`, `css/tokens.css:7-189`, `js/modules/navigation.js:22-150`, `scripts/qa/run-qa.mjs:1-21`).
-
-No P0 issue was confirmed from repository evidence. The next-value improvements are mostly around metadata completeness, small accessibility correctness issues, and removing source/build drift in SEO handling.
+Repozytorium prezentuje uporządkowaną architekturę statycznego front-endu: wielostronicowe HTML, warstwowy CSS, modularny JS, build do `dist/` oraz QA dla outputu. Najpoważniejsze ryzyko nie dotyczy front-endowej struktury, tylko bezpieczeństwa wdrożenia formularza: w repozytorium wykryto jawne dane SMTP. Poza tym kod jest technicznie spójny, QA przechodzi poprawnie, a główne obszary do poprawy dotyczą głównie sprzężeń build/deploy, spójności SEO/PWA i utrzymania.
 
 ## 2. P0 — Critical risks
 
-No P0 issues were detected from repository evidence.
+- Jawne dane SMTP zostały zapisane w repozytorium w pliku konfiguracyjnym formularza. To jest realne ryzyko bezpieczeństwa i operacyjne, bo hasło jest przechowywane w plaintext w śledzonym pliku: `contact-mail.config.php:5-15`.
 
 ## 3. Strengths
 
-- CSS architecture is explicitly layered and easy to reason about from the entrypoint (`css/main.css:1-11`).
-- Design tokens are centralized for colors, typography, spacing, motion, radius, and z-index (`css/tokens.css:7-189`).
-- Focus visibility is defined globally and reinforced in navigation/components (`css/base.css:127-131`, `css/layout.css:186-190`).
-- Mobile navigation includes `aria-expanded`, `aria-hidden`, `Escape`, focus trap, and focus return (`src/partials/header.html:50-57`, `js/modules/navigation.js:22-50`, `js/modules/navigation.js:53-107`).
-- No-JS fallback exists for the main navigation and the contact form (`css/layout.css:290-309`, `contact.html:186-193`, `contact-submit.php:1-102`).
-- Reduced-motion handling is implemented in both CSS tokens/layout and JS behavior (`css/tokens.css:171-189`, `css/layout.css:379-418`, `js/modules/scroll.js`, `js/modules/reveal.js`).
-- The contact form uses progressive enhancement rather than JS-only submission (`contact.html:186-193`, `js/modules/forms.js:278-330`, `contact-form-support.php:156-183`).
-- The manifest icon path strategy is deployment-aware rather than broken in isolation: the source manifest keeps deployment-tested root-style icon paths, while the build rewrites the generated manifest to valid `/assets/icons/...` paths in `dist` (`assets/icons/site.webmanifest:10-22`, `scripts/build-utils.mjs:184-200`, `dist/assets/icons/site.webmanifest:10-22`).
-- Local reference QA passed during the audit via `npm run qa`, and the QA layer checks build structure, HTML assembly, and local asset/link resolution (`scripts/qa/run-qa.mjs:1-21`, `scripts/qa/check-dist-structure.mjs`, `scripts/qa/check-html-assembly.mjs`, `scripts/qa/check-local-refs.mjs`).
+- Architektura CSS jest czytelnie rozdzielona na warstwy systemowe i pliki mają jednoznaczne przeznaczenie (`css/tokens.css:1-5`, `css/base.css:1-5`, `css/layout.css`, `css/components.css`, `css/pages.css`, `css/utilities.css:1-5`).
+- Build składa współdzielone partiale, ustawia `aria-current` dla aktywnej nawigacji i przepisuje assety do wersji produkcyjnych (`scripts/build-utils.mjs:126-160`).
+- QA dla `dist/` jest zautomatyzowane i w aktualnym stanie przechodzi poprawnie: `PASS dist-structure`, `PASS html-assembly`, `PASS local-refs` (`scripts/qa/run-qa.mjs:6-21`; lokalnie wykonane `npm run qa`).
+- Dostępność ma realne implementacje, a nie wyłącznie deklaracje: skip link (`index.html:66`), fokus globalny (`css/base.css:129-131`), reduced motion (`css/tokens.css:171-189`, `css/utilities.css:112-120`) oraz focus management w mobilnej nawigacji (`src/partials/header.html:49-58`, `js/modules/navigation.js:22-107`).
+- Warstwa performance ma sensowne podstawy: self-hosted font z `font-display: swap` (`css/base.css:7-28`), obrazy responsywne z wymiarami i lazy loadingiem (`about.html:121-148`, `index.html:304-310`), a build tworzy minifikowane pliki do `dist/` (`scripts/build-utils.mjs:36-64`).
 
 ## 4. P1 — Improvements worth doing next
 
-FIXED
+1. Source manifest nie jest samowystarczalny i zależy od poprawiania ścieżek dopiero podczas builda. W `assets/icons/site.webmanifest` ikony wskazują na nieistniejące w root source pliki `/web-app-manifest-192x192.png` i `/web-app-manifest-512x512.png`, a dopiero build zamienia je na `/assets/icons/...` (`assets/icons/site.webmanifest:10-22`, `scripts/build-utils.mjs:324-340`).
+2. Source service worker cache'uje wyłącznie buildowe assety `/css/main.min.css` i `/js/main.min.js`, podczas gdy źródłowe HTML odwołują się do `./css/main.css` i `./js/main.js`. Przy serwowaniu source tree bez kroku build offline shell nie zainstaluje się poprawnie (`service-worker.js:1-9`, `index.html:61`, `contact.html:411`, `scripts/build-utils.mjs:92-98`).
+3. Bootstrap motywu jest skopiowany inline przez cały zestaw stron zamiast być utrzymywany z jednego źródła. Ten sam blok występuje m.in. w `index.html:42-59`, `about.html:43-60` i `contact.html:43-60`, co podnosi koszt zmian i ryzyko dryfu.
+4. `robots.txt` wskazuje na `https://www.kp-code.pl/sitemap.xml`, ale `sitemap.xml` nie jest wykryty w source root repozytorium; pojawia się dopiero podczas builda do `dist/`. To jest poprawne dla pipeline'u buildowego, ale osłabia samowystarczalność source tree i statyczną weryfikację bez builda (`robots.txt:1-3`, `scripts/build-utils.mjs:308-317`).
+5. Structured data nie jest wdrożone konsekwentnie na wszystkich publicznych stronach repozytorium. JSON-LD jest obecny np. na `index.html:903` i `contact.html:307`, ale nie został wykryty w `404.html`, `offline.html`, `in-progress.html` i `thank-you.html`.
 
 ## 5. P2 — Minor refinements
 
-DONE
+- Open Graph image alt jest wdrożony niespójnie: występuje np. w `projects.html:29` i `cookies.html:31-44`, ale nie został wykryty na wielu innych stronach, w tym na `index.html`, `about.html` i `contact.html`.
+- W `index.html` znajduje się osierocony tekstowy token `d` wewnątrz SVG, co jest błędem jakości markupu, choć nie wygląda na krytyczny runtime blocker (`index.html:126-129`).
+- W repozytorium tooling używa `console.log`, co nie wpływa na produkcyjny front-end, ale obniża czystość checklisty jakości (`scripts/qa/run-qa.mjs:11-21`, `scripts/preview-dist.mjs:139-141`).
 
 ## 6. Future enhancements
 
-1. Add a static QA check for metadata consistency across `canonical`, `og:url`, `robots`, sitemap inclusion, and JSON-LD presence.
-2. Move duplicated head/bootstrap concerns further into shared generation logic to reduce page-by-page metadata drift.
-3. Add static checks for repeated ARIA labels and similar accessibility-copy regressions in the source HTML.
+1. Dodać statyczny check spójności `canonical`, `og:url`, `robots`, obecności `og:image:alt` i coverage JSON-LD w pipeline QA.
+2. Zastąpić duplikowany inline bootstrap motywu jednym współdzielonym źródłem generowanym podczas assembly HTML.
+3. Rozszerzyć QA o walidację PWA, w tym source manifest paths i service worker shell assets.
+4. Dodać repozytoryjny mechanizm konfiguracji sekretów poza śledzonym plikiem source, np. przez env/config injection podczas wdrożenia.
+5. Utrzymać source `sitemap.xml` lub dodać jawny etap dokumentacyjny, że mapa strony istnieje wyłącznie jako artefakt builda.
 
 ## 7. Compliance checklist
 
-- `PASS` headings valid: audited source pages contain one `h1` each; automated scan returned `ONE_H1_PER_PAGE`.
-- `PASS` no broken links excluding intentional minification strategy: `npm run qa` passed during the audit, including `local-refs`.
-- `FAIL` no `console.log`: repository tooling still contains `console.log` usage (`scripts/qa/run-qa.mjs:11-21` and additional tooling files).
-- `PASS` aria attributes valid: audited ARIA state values such as `aria-current`, `aria-expanded`, `aria-controls`, and `aria-hidden` use valid tokens in source (`src/partials/header.html:50-57`, `js/modules/navigation.js:22-30`).
-- `PASS` images have width/height: static scan of source HTML did not detect `<img>` elements missing explicit dimensions.
-- `PASS` no-JS baseline usable: navigation has a CSS fallback (`css/layout.css:290-309`), and the contact form posts to PHP without requiring JS (`contact.html:186-193`, `contact-submit.php:1-102`).
-- `PASS` sitemap present if expected: `dist/sitemap.xml` is generated from the build HTML inventory and current page metadata.
-- `PASS` robots present: root `robots.txt` exists.
-- `PASS` OG image exists: `assets/og/og-img.png` exists and is referenced in page metadata (`index.html:27`, `services.html:28`, `contact.html:28`).
-- `PASS` JSON-LD valid: detected JSON-LD blocks parse as valid JSON; pages without JSON-LD were noted separately and not treated as invalid markup.
+- `PASS` headings valid: audytowane strony mają pojedyncze `h1`, a struktura nagłówków jest obecna na stronach głównych, usługowych, projektowych i prawnych.
+- `PASS` no broken links excluding intentional minification strategy: lokalnie wykonane `npm run qa` zakończyło się `PASS local-refs`.
+- `FAIL` no console.log: `console.log` jest używany w tooling repozytorium (`scripts/qa/run-qa.mjs:11-21`, `scripts/preview-dist.mjs:139-141`).
+- `PASS` aria attributes valid: aktywna nawigacja i toggle menu używają poprawnych wartości `aria-current`, `aria-expanded`, `aria-controls` i `aria-hidden` (`src/partials/header.html:15-58`, `js/modules/navigation.js:22-30`).
+- `PASS` images have width/height: w statycznym przeglądzie HTML nie wykryto `<img>` bez jawnych `width` i `height`.
+- `PASS` no-JS baseline usable: treść jest serwowana w HTML, skip link działa bez JS, a formularz ma klasyczny fallback POST (`contact.html:186-193`).
+- `FAIL` sitemap present if expected: `robots.txt` wskazuje sitemapę, ale `sitemap.xml` nie jest wykryty w root source; jest generowany dopiero do `dist/` (`robots.txt:1-3`, `scripts/build-utils.mjs:308-317`).
+- `PASS` robots present: `robots.txt` istnieje w katalogu głównym repozytorium.
+- `PASS` OG image exists: plik `assets/og/og-img.png` istnieje w repozytorium i jest używany w metadanych OG.
+- `FAIL` JSON-LD valid: bloki JSON-LD są składniowo poprawne tam, gdzie występują, ale structured data nie została wykryta na części publicznych stron pomocniczych, więc zgodność projektowa jest niepełna.
 
 ## 8. Architecture score (0–10)
 
 - BEM consistency: `8/10`
-  Evidence: class naming is componentized and largely BEM-like across layout, components, pages, and project-specific files.
+  Uzasadnienie: nazewnictwo klas jest w większości konsekwentne (`block__element--modifier`), szczególnie w layout/components/pages, bez widocznego chaosu selektorów.
 - Token usage: `9/10`
-  Evidence: color, spacing, typography, motion, radius, and z-index values are centralized in `css/tokens.css:7-189`.
+  Uzasadnienie: tokeny kolorów, typografii, spacingu, motion i z-index są wyraźnie scentralizowane w `css/tokens.css`.
 - Accessibility: `8/10`
-  Evidence: skip links, focus treatment, keyboard-aware navigation, reduced-motion support, and non-JS form fallback are implemented; duplicated ARIA labels in services prevent a higher score.
-- Performance: `8/10`
-  Evidence: self-hosted fonts with `font-display: swap`, explicit image dimensions, lazy loading, and image optimization tooling are present.
+  Uzasadnienie: są skip linki, focus styles, reduced motion, focus management i progressive enhancement formularza; brakuje pełnej spójności structured metadata i nie da się statycznie potwierdzić kontrastu.
+- Performance: `7/10`
+  Uzasadnienie: obrazy i fonty są obsłużone sensownie, ale source PWA/service worker zależy od build-only assetów.
 - Maintainability: `7/10`
-  Evidence: source/build separation and QA are solid, but compressed HTML sources still add avoidable maintenance friction.
+  Uzasadnienie: warstwy są dobrze rozdzielone, lecz duplikacja inline bootstrapu motywu i build-time fixups dla manifestu/PWA obniżają jakość utrzymania.
 
-**Architecture score: 8.0/10**
+**Architecture score: 7.8/10**
 
 ## 9. Senior rating (1–10)
 
-**Senior rating: 8/10**
+**8/10**
 
-Technical justification: the repository shows senior-level discipline in front-end structure, build tooling, accessibility fundamentals, and evidence-driven optimization choices. It does not rate higher because some operational details still depend on manual consistency rather than full automation in source maintenance, especially around dense source HTML and small accessibility-copy regressions.
+Technicznie to jest dojrzały, uporządkowany front-end z realnym pipeline build/QA i sensowną bazą a11y/performance. Ocena spada głównie przez jawny sekret w repozytorium oraz kilka miejsc, gdzie source tree nie jest w pełni samowystarczalny bez kroku build.

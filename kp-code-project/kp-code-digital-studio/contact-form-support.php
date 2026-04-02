@@ -138,6 +138,12 @@ function contact_form_load_config(string $configPath): array
 
   $config = array_merge($defaults, $config);
 
+  foreach ($config as $key => $value) {
+    if (is_string($value)) {
+      $config[$key] = trim($value);
+    }
+  }
+
   foreach (
     [
       'smtp_host',
@@ -156,6 +162,10 @@ function contact_form_load_config(string $configPath): array
   }
 
   $config['smtp_port'] = (int) $config['smtp_port'];
+  if ($config['smtp_port'] < 1) {
+    throw new RuntimeException('Nieprawidłowa konfiguracja: smtp_port.');
+  }
+
   $config['smtp_secure'] = strtolower((string) $config['smtp_secure']);
   $config['redirect_path'] = contact_form_resolve_redirect_path($config);
 

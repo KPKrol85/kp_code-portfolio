@@ -1,103 +1,73 @@
 # settings.md
 
-## package.json
-
-Detected in project root: `package.json`.
-
 ## npm scripts
 
 ### `build:css`
 
 - Command: `node ./scripts/build-css.mjs`
-- What it does: runs the standalone CSS build entry and writes the bundled stylesheet to `dist/css/main.min.css` through the shared build utilities.
-- When to use it: when only CSS output needs rebuilding.
+- What it does: bundluje źródłowe style z `css/main.css` do produkcyjnego `dist/css/main.min.css` przez `lightningcss`.
+- When to use it: gdy chcesz odświeżyć tylko CSS bez pełnego builda.
 
 ### `build:js`
 
 - Command: `node ./scripts/build-js.mjs`
-- What it does: runs the standalone JS build entry and writes the bundled script to `dist/js/main.min.js`.
-- When to use it: when only JavaScript output needs rebuilding.
+- What it does: bundluje `js/main.js` i moduły zależne do `dist/js/main.min.js` przez `esbuild`.
+- When to use it: gdy zmiany dotyczą tylko JavaScriptu.
 
 ### `build:dist`
 
 - Command: `node ./scripts/build-dist.mjs`
-- What it does: removes `dist/`, builds CSS and JS, assembles HTML from shared partials, copies assets, copies `robots.txt`, generates `sitemap.xml` from the source HTML inventory and page metadata, rewrites manifest icon paths for `dist`, and asserts that the bundled CSS and JS files exist.
-- When to use it: for the full production-style build pipeline.
+- What it does: czyści `dist/`, buduje CSS i JS, składa HTML z partiali, kopiuje assety, `robots.txt`, service workera i generuje `sitemap.xml`.
+- When to use it: przed lokalnym preview, QA albo wdrożeniem.
 
 ### `build`
 
 - Command: `npm run build:dist`
-- What it does: alias for the full distribution build.
-- When to use it: as the default build command before preview or QA.
+- What it does: alias do pełnego builda produkcyjnego.
+- When to use it: jako domyślna komenda budowania projektu.
 
 ### `format`
 
 - Command: `prettier . --write`
-- What it does: formats repository files in place using Prettier and the configured plugins.
-- When to use it: after source edits when you want repo-wide formatting applied.
+- What it does: formatuje repozytorium zgodnie z konfiguracją Prettier.
+- When to use it: po zmianach w kodzie lub dokumentacji, gdy chcesz zapisać automatyczne formatowanie.
 
 ### `format:check`
 
 - Command: `prettier . --check`
-- What it does: checks whether files match Prettier formatting without changing them.
-- When to use it: before review or CI-style verification.
+- What it does: sprawdza, czy pliki są zgodne z regułami Prettier bez modyfikowania ich.
+- When to use it: w lokalnej kontroli jakości albo przed commitem/CI.
 
 ### `qa`
 
 - Command: `npm run build && node ./scripts/qa/run-qa.mjs`
-- What it does: performs a fresh build and then runs the repository QA checks against generated output.
-- When to use it: when you want validation that `dist/` is assembled correctly and local references resolve.
+- What it does: wykonuje pełny build, a następnie sprawdza strukturę `dist/`, assembly HTML i lokalne referencje.
+- When to use it: przed publikacją lub po większych zmianach w HTML/build/deploy flow.
 
 ### `preview`
 
 - Command: `node ./scripts/preview-dist.mjs`
-- What it does: starts a local HTTP server for the generated `dist/` output.
-- When to use it: after building, when you want to inspect the final site locally.
+- What it does: uruchamia prosty lokalny serwer HTTP dla zbudowanego katalogu `dist/`.
+- When to use it: po `npm run build`, gdy chcesz sprawdzić wynik builda lokalnie.
 
 ### `build:preview`
 
 - Command: `npm run build && npm run preview`
-- What it does: performs a fresh build and then starts the preview server.
-- When to use it: when you want a one-command build-and-preview workflow.
+- What it does: buduje projekt i od razu wystawia lokalny preview `dist/`.
+- When to use it: gdy potrzebujesz szybkiego sprawdzenia wersji produkcyjnej jednym poleceniem.
 
 ### `img:build`
 
 - Command: `node ./scripts/images/build-images.mjs`
-- What it does: reads `image.config.json`, processes source images with `sharp`, and writes optimized output variants.
-- When to use it: after adding or updating images in the source image directories.
+- What it does: generuje zoptymalizowane warianty obrazów na podstawie konfiguracji i źródeł wejściowych.
+- When to use it: po dodaniu nowych obrazów źródłowych albo zmianie strategii optymalizacji.
 
 ### `img:clean`
 
 - Command: `node ./scripts/images/clean-images.mjs`
-- What it does: removes and recreates the configured optimized-image output directory.
-- When to use it: before regenerating image derivatives from scratch.
+- What it does: czyści wygenerowane outputy obrazów.
+- When to use it: gdy trzeba przebudować obrazy od zera lub usunąć stare warianty.
 
-## QA layer
+## package.json
 
-### `scripts/qa/check-dist-structure.mjs`
-
-- What it checks: required files in `dist/`, including generated HTML pages, minified CSS/JS, and generated SEO files.
-- Why it matters: catches incomplete or missing build output.
-
-### `scripts/qa/check-html-assembly.mjs`
-
-- What it checks: unresolved `@include:` placeholders, unresolved nav tokens, shared header/footer presence, and correct minified asset references in generated HTML.
-- Why it matters: catches broken HTML assembly during build.
-
-### `scripts/qa/check-local-refs.mjs`
-
-- What it checks: local `href`, `src`, and `srcset` references in generated HTML resolve inside `dist/`.
-- Why it matters: catches broken local asset and page references after build.
-
-### `scripts/qa/run-qa.mjs`
-
-- What it does: runs all QA checks, prints pass/fail output, and exits non-zero on failure.
-- When to use it: indirectly through `npm run qa`.
-
-## Build notes visible in source
-
-- HTML build inventory comes from `*.html`, `services/**/*.html`, and `projects/**/*.html` (`scripts/build-utils.mjs:24`, `scripts/build-utils.mjs:64-69`).
-- Shared header/footer assembly happens in `scripts/build-utils.mjs:140-167`.
-- Root-level `robots.txt` is copied into `dist/`, while `dist/sitemap.xml` is generated from the HTML inventory plus page `canonical` and `robots` metadata (`scripts/build-utils.mjs`).
-- Manifest icon paths are rewritten for `dist` in `scripts/build-utils.mjs:184-200`.
-- Service worker registration was not detected in project source.
+`package.json` detected in project: [package.json](C:/Users/KPKro/MY%20FILES/active-work/kp-code-digital-studio/package.json)

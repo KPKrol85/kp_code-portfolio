@@ -2,10 +2,17 @@
   <Files "contact-mail.config.php">
     Require all denied
   </Files>
+  <Files "contact-mail.config.local.php">
+    Require all denied
+  </Files>
 </IfModule>
 
 <IfModule !mod_authz_core.c>
   <Files "contact-mail.config.php">
+    Order Allow,Deny
+    Deny from all
+  </Files>
+  <Files "contact-mail.config.local.php">
     Order Allow,Deny
     Deny from all
   </Files>

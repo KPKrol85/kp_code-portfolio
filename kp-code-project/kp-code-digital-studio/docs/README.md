@@ -1,203 +1,229 @@
-# KP_Code Digital Studio
+# README
 
 ## PL
 
 ### Przegląd projektu
 
-Repozytorium zawiera wielostronicowy serwis front-endowy budowany własnym pipeline'em Node.js. Warstwa źródłowa składa się z plików HTML, warstwowego CSS, modułowego JavaScriptu, współdzielonych partiali `header` i `footer`, zasobów SEO oraz endpointu formularza kontaktowego w PHP.
+`kp-code-digital-studio` to statyczny serwis front-endowy z własnym buildem Node.js oraz obsługą formularza kontaktowego w PHP. Repozytorium zawiera wielostronicowy serwis HTML, modularny CSS, modularny JavaScript, zasoby PWA oraz skrypty build/QA.
 
-### Kluczowe funkcje
+### Kluczowe cechy
 
-- Wielostronicowa struktura HTML z głównymi stronami w katalogu root oraz podstronami w `services/` i `projects/`.
-- Składanie współdzielonych partiali podczas builda (`scripts/build-utils.mjs:20-22`, `scripts/build-utils.mjs:140-167`).
-- Warstwowa architektura CSS: `tokens`, `base`, `layout`, `components`, `sections`, `utilities`, `pages`, `projects` (`css/main.css:1-11`).
-- Modułowy JS inicjalizujący motyw, nawigację, scroll, reveal, formularz kontaktowy i filtrowanie projektów (`js/main.js:1-22`).
-- Formularz kontaktowy z progressive enhancement: klasyczny `POST` do PHP oraz asynchroniczne wysyłanie po stronie JS (`contact.html:186-193`, `js/modules/forms.js:21-23`, `js/modules/forms.js:258-330`, `contact-submit.php:1-102`).
-- QA buildowe dla `dist/`, składania HTML i lokalnych referencji (`scripts/qa/run-qa.mjs:1-21`).
+- Wielostronicowa struktura HTML z oddzielnymi stronami głównymi, usług, projektów, treści prawnych i podstron portfolio.
+- Wspólny `header` i `footer` składane podczas builda z `src/partials/`.
+- Architektura CSS rozdzielona na `tokens`, `base`, `layout`, `components`, `sections`, `pages` i `utilities`.
+- JavaScript modułowy dla motywu, nawigacji mobilnej, smooth scroll, reveal animations, filtrowania projektów, formularza i rejestracji service workera.
+- Formularz kontaktowy z progresywnym ulepszeniem po stronie klienta i serwerową obsługą PHP/PHPMailer.
+- Build produkcyjny generujący `dist/`, minifikowane assety, złożone HTML oraz `sitemap.xml`.
+- QA dla wygenerowanego `dist/` sprawdzające strukturę, assembly HTML i lokalne referencje.
 
-### Stack technologiczny
+### Tech stack
 
 - HTML5
-- CSS
-- Vanilla JavaScript ES modules
-- PHP dla obsługi formularza
-- Node.js `>=18`
-- `esbuild`
-- `lightningcss`
-- `fast-glob`
-- `sharp`
+- CSS z custom properties i self-hosted fontem `Space Grotesk`
+- JavaScript ES modules
+- Node.js + `esbuild` + `lightningcss` + `fast-glob` + `sharp`
+- PHP + PHPMailer dla formularza kontaktowego
 
 ### Struktura projektu
 
 ```text
-.
-|-- assets/         # fonty, ikony, logo, obrazy źródłowe i zoptymalizowane
-|-- css/            # warstwy stylów
-|-- docs/           # istniejąca dokumentacja pomocnicza
-|-- js/             # entrypoint i moduły funkcjonalne
-|-- projects/       # podstrony projektów
-|-- scripts/        # build, preview, QA, przetwarzanie obrazów
-|-- services/       # podstrony usług
-|-- src/partials/   # współdzielony header i footer
-|-- *.html          # strony główne
-|-- contact*.php    # obsługa formularza kontaktowego
-|-- robots.txt      # źródłowy plik robots
-`-- package.json
+assets/              zasoby statyczne, ikony, fonty, obrazy, OG
+css/                 warstwy stylów źródłowych
+js/                  główne wejście i moduły front-endowe
+projects/            podstrony projektów
+services/            podstrony usług
+scripts/             build, preview, QA i przetwarzanie obrazów
+src/partials/        współdzielone partiale header/footer
+dist/                wygenerowany output builda
+index.html           strona główna źródłowa
+service-worker.js    source service worker
+robots.txt           source robots
+contact.php          strona kontaktu po stronie PHP
+contact-submit.php   endpoint wysyłki formularza
+composer.json        zależność PHPMailer
+package.json         skrypty npm i zależności buildowe
 ```
 
 ### Setup i uruchomienie
 
+Wymagania:
+
+- Node.js `>=18.0.0` (`package.json:37-39`)
+- npm
+- PHP, jeśli ma działać obsługa formularza
+- Composer, jeśli ma być instalowany backend formularza od zera
+
+Instalacja:
+
 ```bash
 npm install
-npm run build
-npm run preview
+composer install
 ```
 
-Do pełnej walidacji buildu:
+Najczęstsze komendy:
 
 ```bash
+npm run build
 npm run qa
+npm run preview
 ```
 
 ### Build i wdrożenie
 
-- Build produkcyjny uruchamia `scripts/build-dist.mjs`, który czyści `dist/`, bundluje CSS/JS, składa HTML, kopiuje zasoby, generuje `sitemap.xml` z inventory HTML i metadanych stron, kopiuje `robots.txt` oraz poprawia manifest w `dist/` (`scripts/build-dist.mjs:1-18`, `scripts/build-utils.mjs`).
-- Publiczny inwentarz HTML jest wyznaczany przez globy `*.html`, `services/**/*.html`, `projects/**/*.html` (`scripts/build-utils.mjs:24`, `scripts/build-utils.mjs:64-69`).
-- Pliki `_headers`, `_redirects`, `netlify.toml` i `vercel.json` nie zostały wykryte w projekcie.
-- Service worker nie został wykryty w projekcie.
+- `npm run build` uruchamia `scripts/build-dist.mjs`, który czyści `dist/`, bundluje CSS i JS, składa HTML z partiali, kopiuje assety, kopiuje `robots.txt`, generuje `sitemap.xml` i kopiuje service workera.
+- Build przepisuje referencje z `main.css` / `main.js` na `main.min.css` / `main.min.js` (`scripts/build-utils.mjs:92-98`).
+- Build poprawia ścieżki ikon w manifeście dopiero w `dist/` (`scripts/build-utils.mjs:324-340`).
+- Konfiguracja formularza używa modelu `ENV first`: najpierw zmiennych środowiskowych PHP (`KP_CODE_SMTP_HOST`, `KP_CODE_SMTP_PORT`, `KP_CODE_SMTP_USERNAME`, `KP_CODE_SMTP_PASSWORD`, `KP_CODE_SMTP_SECURE`, `KP_CODE_MAIL_FROM_EMAIL`, `KP_CODE_MAIL_FROM_NAME`, `KP_CODE_MAIL_RECIPIENT_EMAIL`, `KP_CODE_CONTACT_REDIRECT_PATH`), a opcjonalnie prywatnego fallbacku `contact-mail.config.local.php` wykluczonego z Git.
+- `.htaccess` blokuje bezpośredni dostęp do `contact-mail.config.php` i `contact-mail.config.local.php` oraz przepisuje `contact.html` na `contact.php`.
+- Rejestracja service workera działa tylko w secure context (`js/modules/service-worker.js:1-15`).
 
 ### Dostępność
 
-- Każda audytowana strona ma skip link do `#main` (`index.html:66`, `contact.html:67`, `services.html:67`).
-- Widoczny fokus jest zdefiniowany globalnie przez `:focus-visible` (`css/base.css:127-131`).
-- Nawigacja mobilna obsługuje `aria-expanded`, `aria-hidden`, `Escape`, trap fokusu i zwrot fokusu (`src/partials/header.html:50-57`, `js/modules/navigation.js:22-50`, `js/modules/navigation.js:53-107`).
-- Fallback bez JS jest zaimplementowany dla nawigacji i formularza (`css/layout.css:290-309`, `contact.html:186-193`, `contact-submit.php:1-102`).
-- Obsługa `prefers-reduced-motion` jest obecna w tokenach i layoutcie (`css/tokens.css:171-189`, `css/layout.css:379-418`).
-- Zgodność kontrastu nie może zostać potwierdzona bez analizy stylów obliczonych.
+- Każda audytowana strona ma skip link do `#main`.
+- Mobilna nawigacja używa `aria-expanded`, `aria-controls`, `aria-hidden`, obsługi `Escape`, zwrotu fokusu i pułapki fokusu (`src/partials/header.html:15-58`, `js/modules/navigation.js:22-150`).
+- Globalny styl fokusu jest zdefiniowany przez `:focus-visible` (`css/base.css:129-131`).
+- Obsługa `prefers-reduced-motion` jest obecna w tokenach i helperach reveal (`css/tokens.css:171-189`, `css/utilities.css:112-120`).
+- Formularz kontaktowy ma działanie bez JavaScript dzięki `action="./contact-submit.php"` i `method="post"`, a JS dodaje walidację i submit asynchroniczny (`contact.html:186-193`, `js/modules/forms.js`).
+- Zgodność kontrastu nie może zostać potwierdzona bez analizy computed styles.
+- Wdrożenie produkcyjne wymaga ustawienia sekretów SMTP w środowisku serwera albo w prywatnym `contact-mail.config.local.php`, który nie powinien trafiać do repozytorium.
 
 ### SEO
 
-- Strony zawierają `meta description`, `canonical`, `robots`, Open Graph i Twitter Cards, np. `index.html:5-40`, `services.html:13-41`, `contact.html:13-41`.
-- `robots.txt` jest utrzymywany w katalogu głównym jako źródłowy plik SEO.
-- JSON-LD jest obecny na większości stron i wykryte bloki parsują się poprawnie jako JSON; nie został wykryty w `404.html`, `in-progress.html`, `offline.html` i `thank-you.html`.
-- `sitemap.xml` jest generowana podczas builda na podstawie inventory HTML oraz `canonical` i `meta name="robots"` w stronach źródłowych.
+- Strony źródłowe zawierają `meta description`, `canonical`, `robots`, Open Graph i Twitter Cards.
+- `robots.txt` istnieje w katalogu głównym i wskazuje na `https://www.kp-code.pl/sitemap.xml` (`robots.txt:1-3`).
+- `sitemap.xml` nie jest utrzymywany w root source; jest generowany podczas builda do `dist/` (`scripts/build-utils.mjs:308-317`).
+- JSON-LD jest obecny na głównych stronach contentowych, ale nie został wykryty na części stron pomocniczych, m.in. `404.html`, `offline.html`, `in-progress.html` i `thank-you.html`.
+- Obraz OG istnieje w repozytorium: `assets/og/og-img.png`.
 
 ### Wydajność
 
-- Fonty są self-hosted i używają `font-display: swap` (`css/base.css:7-28`).
-- Projekt używa zoptymalizowanych wariantów obrazów i pipeline'u opartego o `sharp` (`image.config.json`, `scripts/images/build-images.mjs`).
-- Audytowane elementy `<img>` mają jawne `width` i `height`.
-- Obrazy i iframe używają `loading="lazy"` tam, gdzie zostało to wdrożone, np. `index.html:307-310`, `about.html:144-147`, `contact.html:275-281`.
-
-### Roadmapa
-
-Na podstawie aktualnego repo najbliższe uzasadnione kroki to:
-
-- poprawa zduplikowanych etykiet `aria-label` w kartach usług
-- usunięcie zależności od buildowego przepisywania ikon manifestu
-- rozszerzenie QA o sprawdzenia metadanych i JSON-LD
-
-### Licencja
-
-`MIT` według `package.json`.
-
-## EN
-
-### Project Overview
-
-This repository contains a multi-page front-end website built with a custom Node.js pipeline. The source layer includes HTML files, layered CSS, modular JavaScript, shared `header` and `footer` partials, SEO assets, and a PHP-backed contact form endpoint.
-
-### Key Features
-
-- Multi-page HTML structure with root-level pages and detail pages in `services/` and `projects/`.
-- Shared partial assembly during build (`scripts/build-utils.mjs:20-22`, `scripts/build-utils.mjs:140-167`).
-- Layered CSS architecture across `tokens`, `base`, `layout`, `components`, `sections`, `utilities`, `pages`, and `projects` (`css/main.css:1-11`).
-- Modular JS entrypoint for theme, navigation, scroll, reveal, contact form handling, and project filtering (`js/main.js:1-22`).
-- Progressive-enhanced contact form: regular `POST` fallback plus async submission in JS (`contact.html:186-193`, `js/modules/forms.js:21-23`, `js/modules/forms.js:258-330`, `contact-submit.php:1-102`).
-- Build QA for `dist/`, HTML assembly, and local references (`scripts/qa/run-qa.mjs:1-21`).
-
-### Tech Stack
-
-- HTML5
-- CSS
-- Vanilla JavaScript ES modules
-- PHP for contact form delivery
-- Node.js `>=18`
-- `esbuild`
-- `lightningcss`
-- `fast-glob`
-- `sharp`
-
-### Structure Overview
-
-```text
-.
-|-- assets/         # fonts, icons, logo, source and optimized images
-|-- css/            # style layers
-|-- docs/           # existing supporting documentation
-|-- js/             # entrypoint and feature modules
-|-- projects/       # project detail pages
-|-- scripts/        # build, preview, QA, image tooling
-|-- services/       # service detail pages
-|-- src/partials/   # shared header and footer
-|-- *.html          # top-level pages
-|-- contact*.php    # contact form handling
-|-- robots.txt      # source robots file
-`-- package.json
-```
-
-### Setup and Run
-
-```bash
-npm install
-npm run build
-npm run preview
-```
-
-For full build validation:
-
-```bash
-npm run qa
-```
-
-### Build and Deployment Notes
-
-- Production build runs through `scripts/build-dist.mjs`, which clears `dist/`, bundles CSS/JS, assembles HTML, copies assets, generates `sitemap.xml` from the HTML inventory and page metadata, copies `robots.txt`, and rewrites the manifest in `dist/` (`scripts/build-dist.mjs:1-18`, `scripts/build-utils.mjs`).
-- Public HTML inventory is defined by `*.html`, `services/**/*.html`, and `projects/**/*.html` (`scripts/build-utils.mjs:24`, `scripts/build-utils.mjs:64-69`).
-- `_headers`, `_redirects`, `netlify.toml`, and `vercel.json` were not detected in the project.
-- A service worker was not detected in the project.
-
-### Accessibility Notes
-
-- Each audited page includes a skip link to `#main` (`index.html:66`, `contact.html:67`, `services.html:67`).
-- Visible focus is defined globally via `:focus-visible` (`css/base.css:127-131`).
-- Mobile navigation implements `aria-expanded`, `aria-hidden`, `Escape`, focus trapping, and focus return (`src/partials/header.html:50-57`, `js/modules/navigation.js:22-50`, `js/modules/navigation.js:53-107`).
-- No-JS fallback exists for both navigation and form submission (`css/layout.css:290-309`, `contact.html:186-193`, `contact-submit.php:1-102`).
-- `prefers-reduced-motion` handling exists in both tokens and layout (`css/tokens.css:171-189`, `css/layout.css:379-418`).
-- Contrast compliance cannot be verified without computed style analysis.
-
-### SEO Notes
-
-- Pages include `meta description`, `canonical`, `robots`, Open Graph, and Twitter Card metadata, for example `index.html:5-40`, `services.html:13-41`, and `contact.html:13-41`.
-- `robots.txt` is maintained in the project root as the source SEO file.
-- JSON-LD is present on most pages and detected blocks parse as valid JSON; it was not detected in `404.html`, `in-progress.html`, `offline.html`, or `thank-you.html`.
-- `sitemap.xml` is generated during build from the HTML inventory plus each page's `canonical` and `meta name="robots"` metadata.
-
-### Performance Notes
-
-- Fonts are self-hosted and use `font-display: swap` (`css/base.css:7-28`).
-- The project uses optimized image variants and a `sharp`-based image pipeline (`image.config.json`, `scripts/images/build-images.mjs`).
-- Audited `<img>` elements include explicit `width` and `height`.
-- Images and the contact map iframe use `loading="lazy"` where implemented, for example `index.html:307-310`, `about.html:144-147`, and `contact.html:275-281`.
+- Font jest self-hosted i używa `font-display: swap` (`css/base.css:7-28`).
+- Obrazy contentowe korzystają z wariantów AVIF/WebP/JPG oraz `width` / `height` / `loading="lazy"` tam, gdzie wdrożono `picture`.
+- Build tworzy minifikowane assety CSS/JS do `dist/`.
+- Service worker dostarcza prosty offline shell, ale jego source cache list zależy od plików buildowych (`service-worker.js:1-9`).
 
 ### Roadmap
 
-Based on the current repository, the next justified steps are:
+- Wynieść bootstrap motywu z duplikowanego inline script do współdzielonego mechanizmu source.
+- Ujednolicić manifest source tak, aby nie wymagał poprawiania ikon dopiero w `dist/`.
+- Rozszerzyć QA o walidację metadanych SEO i structured data.
+- Uporządkować obsługę sekretów formularza poza repozytorium.
+- Domknąć spójność structured data i metadanych Open Graph na wszystkich publicznych stronach.
 
-- fix duplicated `aria-label` values in service jump links
-- remove dependence on build-time manifest icon rewriting
-- extend QA to include metadata and JSON-LD checks
+### Licencja
+
+MIT (`package.json:36`)
+
+## EN
+
+### Project overview
+
+`kp-code-digital-studio` is a static front-end website with a custom Node.js build pipeline and a PHP contact form handler. The repository contains a multi-page HTML site, modular CSS, modular JavaScript, PWA assets, and build/QA scripts.
+
+### Key features
+
+- Multi-page HTML structure for main pages, service pages, project pages, legal pages, and portfolio details.
+- Shared `header` and `footer` assembled during build from `src/partials/`.
+- CSS architecture split into `tokens`, `base`, `layout`, `components`, `sections`, `pages`, and `utilities`.
+- Modular JavaScript for theme handling, mobile navigation, smooth scrolling, reveal animations, project filtering, form enhancement, and service worker registration.
+- Contact form with progressive enhancement on the client and PHP/PHPMailer handling on the server.
+- Production build that generates `dist/`, minified assets, assembled HTML, and `sitemap.xml`.
+- QA checks for generated `dist/` structure, HTML assembly, and local references.
+
+### Tech stack
+
+- HTML5
+- CSS with custom properties and self-hosted `Space Grotesk`
+- JavaScript ES modules
+- Node.js + `esbuild` + `lightningcss` + `fast-glob` + `sharp`
+- PHP + PHPMailer for the contact form
+
+### Structure overview
+
+```text
+assets/              static assets, icons, fonts, images, OG
+css/                 source style layers
+js/                  main entry and front-end modules
+projects/            project detail pages
+services/            service detail pages
+scripts/             build, preview, QA, and image processing
+src/partials/        shared header/footer partials
+dist/                generated build output
+index.html           source home page
+service-worker.js    source service worker
+robots.txt           source robots file
+contact.php          PHP contact page
+contact-submit.php   form submission endpoint
+composer.json        PHPMailer dependency
+package.json         npm scripts and build dependencies
+```
+
+### Setup and run
+
+Requirements:
+
+- Node.js `>=18.0.0`
+- npm
+- PHP if form handling must work
+- Composer if the form backend is installed from scratch
+
+Install:
+
+```bash
+npm install
+composer install
+```
+
+Common commands:
+
+```bash
+npm run build
+npm run qa
+npm run preview
+```
+
+### Build and deployment notes
+
+- `npm run build` runs `scripts/build-dist.mjs`, which clears `dist/`, bundles CSS and JS, assembles HTML from partials, copies assets, copies `robots.txt`, generates `sitemap.xml`, and copies the service worker.
+- The build rewrites `main.css` / `main.js` references to `main.min.css` / `main.min.js` (`scripts/build-utils.mjs:92-98`).
+- Manifest icon paths are fixed only in `dist/` (`scripts/build-utils.mjs:324-340`).
+- The contact form configuration now uses an `ENV first` pattern: PHP environment variables (`KP_CODE_SMTP_HOST`, `KP_CODE_SMTP_PORT`, `KP_CODE_SMTP_USERNAME`, `KP_CODE_SMTP_PASSWORD`, `KP_CODE_SMTP_SECURE`, `KP_CODE_MAIL_FROM_EMAIL`, `KP_CODE_MAIL_FROM_NAME`, `KP_CODE_MAIL_RECIPIENT_EMAIL`, `KP_CODE_CONTACT_REDIRECT_PATH`) take precedence, with an optional private `contact-mail.config.local.php` fallback excluded from Git.
+- `.htaccess` denies direct access to both `contact-mail.config.php` and `contact-mail.config.local.php`, and rewrites `contact.html` to `contact.php`.
+- Service worker registration is gated behind secure context checks (`js/modules/service-worker.js:1-15`).
+
+### Accessibility notes
+
+- Every audited page includes a skip link to `#main`.
+- Mobile navigation uses `aria-expanded`, `aria-controls`, `aria-hidden`, `Escape` handling, focus return, and focus trapping (`src/partials/header.html:15-58`, `js/modules/navigation.js:22-150`).
+- Global focus styling is defined through `:focus-visible` (`css/base.css:129-131`).
+- `prefers-reduced-motion` handling exists in tokens and reveal helpers (`css/tokens.css:171-189`, `css/utilities.css:112-120`).
+- The contact form keeps a no-JS baseline through `action="./contact-submit.php"` and `method="post"`, while JavaScript adds validation and async submission (`contact.html:186-193`, `js/modules/forms.js`).
+- Contrast compliance cannot be verified without computed style analysis.
+- Production deployment requires SMTP secrets to be provided through server environment variables or a private `contact-mail.config.local.php` file that is not committed.
+
+### SEO notes
+
+- Source pages include `meta description`, `canonical`, `robots`, Open Graph, and Twitter Card metadata.
+- `robots.txt` exists at project root and points to `https://www.kp-code.pl/sitemap.xml` (`robots.txt:1-3`).
+- `sitemap.xml` is not committed in the root source tree; it is generated during build into `dist/` (`scripts/build-utils.mjs:308-317`).
+- JSON-LD exists on major content pages, but was not detected on some utility pages such as `404.html`, `offline.html`, `in-progress.html`, and `thank-you.html`.
+- The OG image file exists in the repository at `assets/og/og-img.png`.
+
+### Performance notes
+
+- The font is self-hosted and uses `font-display: swap` (`css/base.css:7-28`).
+- Content images use AVIF/WebP/JPG variants plus explicit `width` / `height` and `loading="lazy"` where implemented.
+- The build outputs minified CSS and JS for `dist/`.
+- The service worker provides a simple offline shell, but its source cache list depends on build artifacts (`service-worker.js:1-9`).
+
+### Roadmap
+
+- Move the theme bootstrap out of duplicated inline scripts into a shared source mechanism.
+- Make source manifest paths self-consistent so they do not rely on post-build icon rewriting.
+- Extend QA to validate SEO metadata and structured data consistency.
+- Move form secrets out of the repository.
+- Complete structured data and Open Graph metadata consistency across all public pages.
 
 ### License
 
-`MIT` according to `package.json`.
+MIT (`package.json:36`)
