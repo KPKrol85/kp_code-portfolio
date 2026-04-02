@@ -23,11 +23,9 @@ No P0 issues were detected from repository evidence.
 
 ## 4. P1 — Improvements worth doing next
 
-1. `seo/sitemap.xml` does not cover the full set of canonical indexable pages. `thank-you.html` exposes `meta name="robots" content="index, follow"` and a canonical URL (`thank-you.html:9-17`), but the page is absent from `seo/sitemap.xml:1-108`.
-2. Service jump links on the overview page reuse the same ARIA label for different targets, which creates incorrect spoken labels for assistive tech. `services.html:115-118`, `services.html:175-179`, and `services.html:237-240` all expose `aria-label="Przejdź do sekcji usługi: Strony internetowe"` despite pointing to different sections.
-3. The source web manifest contains icon paths that do not match the actual source asset location, and the build compensates by rewriting them later. `assets/icons/site.webmanifest:10-22` points to `/web-app-manifest-192x192.png` and `/web-app-manifest-512x512.png`, while the build rewrites those paths in `scripts/build-utils.mjs:184-200`.
-4. SEO ownership is split between source and build output. Source `seo/robots.txt:1-3` points to `https://www.kp-code.pl/seo/sitemap.xml`, while build output is generated to point at `https://www.kp-code.pl/sitemap.xml` in `scripts/build-utils.mjs:173-181`.
-5. Several project detail source files are stored as dense single-line HTML, which lowers reviewability and maintainability in the source layer. This is visible in files such as `projects/aurora.html`, `projects/atelier-no-02.html`, `projects/axiom-construction.html`, and `projects/volt-garage.html`, where large sections are compressed into long single lines in the source files.
+1. The source web manifest contains icon paths that do not match the actual source asset location, and the build compensates by rewriting them later. `assets/icons/site.webmanifest:10-22` points to `/web-app-manifest-192x192.png` and `/web-app-manifest-512x512.png`, while the build rewrites those paths in `scripts/build-utils.mjs:184-200`.
+2. SEO ownership is split between source and build output. Source `seo/robots.txt:1-3` points to `https://www.kp-code.pl/seo/sitemap.xml`, while build output is generated to point at `https://www.kp-code.pl/sitemap.xml` in `scripts/build-utils.mjs:173-181`.
+3. Several project detail source files are stored as dense single-line HTML, which lowers reviewability and maintainability in the source layer. This is visible in files such as `projects/aurora.html`, `projects/atelier-no-02.html`, `projects/axiom-construction.html`, and `projects/volt-garage.html`, where large sections are compressed into long single lines in the source files.
 
 ## 5. P2 — Minor refinements
 
