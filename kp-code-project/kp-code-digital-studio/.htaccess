@@ -2,9 +2,9 @@
   <Files "contact-mail.config.php">
     Require all denied
   </Files>
-  <Files "contact-mail.config.local.php">
+  <FilesMatch "^contact-mail\.config(\..+)?\.local\.php$">
     Require all denied
-  </Files>
+  </FilesMatch>
 </IfModule>
 
 <IfModule !mod_authz_core.c>
@@ -12,10 +12,10 @@
     Order Allow,Deny
     Deny from all
   </Files>
-  <Files "contact-mail.config.local.php">
+  <FilesMatch "^contact-mail\.config(\..+)?\.local\.php$">
     Order Allow,Deny
     Deny from all
-  </Files>
+  </FilesMatch>
 </IfModule>
 
 <IfModule mod_rewrite.c>

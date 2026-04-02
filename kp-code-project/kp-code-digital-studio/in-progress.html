@@ -26,6 +26,10 @@
     />
     <meta property="og:url" content="https://www.kp-code.pl/in-progress.html" />
     <meta property="og:image" content="https://www.kp-code.pl/assets/og/og-img.png" />
+    <meta
+      property="og:image:alt"
+      content="Tymczasowa strona w przygotowaniu w KP_Code Digital Studio"
+    />
     <!-- Twitter -->
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content="W przygotowaniu | KP_Code Digital Studio" />
@@ -40,24 +44,7 @@
     <link rel="apple-touch-icon" href="/assets/icons/apple-touch-icon.png" />
     <link rel="manifest" href="/assets/icons/site.webmanifest" />
     <!-- Theme -->
-    <script>
-      document.documentElement.classList.add('js');
-      try {
-        const storedTheme = localStorage.getItem('theme-preference');
-        const theme =
-          storedTheme === 'light' || storedTheme === 'dark'
-            ? storedTheme
-            : window.matchMedia('(prefers-color-scheme: dark)').matches
-              ? 'dark'
-              : 'light';
-        document.documentElement.dataset.theme = theme;
-      } catch {
-        document.documentElement.dataset.theme = window.matchMedia('(prefers-color-scheme: dark)')
-          .matches
-          ? 'dark'
-          : 'light';
-      }
-    </script>
+    <!-- @include:theme-bootstrap -->
     <!-- Styles -->
     <link rel="stylesheet" href="./css/main.css" />
   </head>

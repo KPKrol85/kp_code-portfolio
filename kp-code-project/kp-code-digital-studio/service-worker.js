@@ -1,4 +1,4 @@
-const CACHE_NAME = 'kp-code-shell-v1';
+const CACHE_NAME = 'kp-code-shell-v1.01';
 const OFFLINE_URL = '/offline.html';
 const SHELL_ASSETS = [OFFLINE_URL, '/css/main.min.css', '/js/main.min.js'];
 

@@ -21,6 +21,7 @@ const SERVICE_WORKER_PATH = path.join(ROOT_DIR, 'service-worker.js');
 const PARTIALS_DIR = path.join(ROOT_DIR, 'src', 'partials');
 const HEADER_PARTIAL_PATH = path.join(PARTIALS_DIR, 'header.html');
 const FOOTER_PARTIAL_PATH = path.join(PARTIALS_DIR, 'footer.html');
+const THEME_BOOTSTRAP_PARTIAL_PATH = path.join(PARTIALS_DIR, 'theme-bootstrap.html');
 
 const ROOT_HTML_GLOBS = ['*.html', 'services/**/*.html', 'projects/**/*.html'];
 const LEGAL_PAGE_FILES = new Set(['cookies.html', 'polityka-prywatnosci.html', 'regulamin.html']);
@@ -141,6 +142,7 @@ function renderHeaderPartial(headerTemplate, relativeFilePath) {
 
 function assembleHtml(html, relativeFilePath, partials) {
   return html
+    .replace('<!-- @include:theme-bootstrap -->', partials.themeBootstrap)
     .replace('<!-- @include:header -->', renderHeaderPartial(partials.header, relativeFilePath))
     .replace('<!-- @include:footer -->', partials.footer);
 }
@@ -148,14 +150,16 @@ function assembleHtml(html, relativeFilePath, partials) {
 export async function writeRewrittenHtml(relativeFilePath) {
   const sourcePath = path.join(ROOT_DIR, relativeFilePath);
   const targetPath = path.join(DIST_DIR, relativeFilePath);
-  const [originalHtml, headerPartial, footerPartial] = await Promise.all([
+  const [originalHtml, headerPartial, footerPartial, themeBootstrapPartial] = await Promise.all([
     readFile(sourcePath, 'utf8'),
     readFile(HEADER_PARTIAL_PATH, 'utf8'),
     readFile(FOOTER_PARTIAL_PATH, 'utf8'),
+    readFile(THEME_BOOTSTRAP_PARTIAL_PATH, 'utf8'),
   ]);
   const assembledHtml = assembleHtml(originalHtml, relativeFilePath, {
     header: headerPartial,
     footer: footerPartial,
+    themeBootstrap: themeBootstrapPartial,
   });
   const rewrittenHtml = rewriteHtmlAssetRefs(assembledHtml);
 
