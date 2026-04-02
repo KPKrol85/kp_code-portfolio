@@ -98,6 +98,6 @@ Detected in project root: `package.json`.
 
 - HTML build inventory comes from `*.html`, `services/**/*.html`, and `projects/**/*.html` (`scripts/build-utils.mjs:24`, `scripts/build-utils.mjs:64-69`).
 - Shared header/footer assembly happens in `scripts/build-utils.mjs:140-167`.
-- SEO files are copied to `dist/seo/`, while root `robots.txt` and `sitemap.xml` are also emitted into `dist/` (`scripts/build-utils.mjs:173-181`).
+- Root-level `robots.txt` and `sitemap.xml` are copied directly into `dist/` from the project root (`scripts/build-utils.mjs:173-179`).
 - Manifest icon paths are rewritten for `dist` in `scripts/build-utils.mjs:184-200`.
 - Service worker registration was not detected in project source.

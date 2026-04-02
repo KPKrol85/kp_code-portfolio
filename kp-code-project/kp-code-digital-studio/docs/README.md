@@ -37,11 +37,12 @@ Repozytorium zawiera wielostronicowy serwis front-endowy budowany własnym pipel
 |-- js/             # entrypoint i moduły funkcjonalne
 |-- projects/       # podstrony projektów
 |-- scripts/        # build, preview, QA, przetwarzanie obrazów
-|-- seo/            # robots.txt i sitemap.xml
 |-- services/       # podstrony usług
 |-- src/partials/   # współdzielony header i footer
 |-- *.html          # strony główne
 |-- contact*.php    # obsługa formularza kontaktowego
+|-- robots.txt      # źródłowy plik robots
+|-- sitemap.xml     # źródłowa mapa witryny
 `-- package.json
 ```
 
@@ -78,9 +79,9 @@ npm run qa
 ### SEO
 
 - Strony zawierają `meta description`, `canonical`, `robots`, Open Graph i Twitter Cards, np. `index.html:5-40`, `services.html:13-41`, `contact.html:13-41`.
-- `seo/robots.txt` i `seo/sitemap.xml` są obecne (`seo/robots.txt:1-3`, `seo/sitemap.xml:1-108`).
+- `robots.txt` i `sitemap.xml` są utrzymywane w katalogu głównym jako źródłowe pliki SEO.
 - JSON-LD jest obecny na większości stron i wykryte bloki parsują się poprawnie jako JSON; nie został wykryty w `404.html`, `in-progress.html`, `offline.html` i `thank-you.html`.
-- `seo/sitemap.xml` nie obejmuje wszystkich kanonicznych stron indeksowalnych, np. `thank-you.html` nie jest w niej ujęte mimo `meta robots="index, follow"` i `canonical` (`thank-you.html:9-17`, `seo/sitemap.xml:1-108`).
+- `sitemap.xml` jest utrzymywana w katalogu głównym jako jedyne źródło prawdy dla mapy witryny.
 
 ### Wydajność
 
@@ -95,7 +96,6 @@ Na podstawie aktualnego repo najbliższe uzasadnione kroki to:
 
 - uzupełnienie `sitemap.xml` o pełny zestaw stron kanonicznych
 - poprawa zduplikowanych etykiet `aria-label` w kartach usług
-- ujednolicenie źródła prawdy dla `robots.txt` i lokalizacji sitemap
 - usunięcie zależności od buildowego przepisywania ikon manifestu
 - rozszerzenie QA o sprawdzenia metadanych i JSON-LD
 
@@ -140,11 +140,12 @@ This repository contains a multi-page front-end website built with a custom Node
 |-- js/             # entrypoint and feature modules
 |-- projects/       # project detail pages
 |-- scripts/        # build, preview, QA, image tooling
-|-- seo/            # robots.txt and sitemap.xml
 |-- services/       # service detail pages
 |-- src/partials/   # shared header and footer
 |-- *.html          # top-level pages
 |-- contact*.php    # contact form handling
+|-- robots.txt      # source robots file
+|-- sitemap.xml     # source sitemap
 `-- package.json
 ```
 
@@ -181,9 +182,9 @@ npm run qa
 ### SEO Notes
 
 - Pages include `meta description`, `canonical`, `robots`, Open Graph, and Twitter Card metadata, for example `index.html:5-40`, `services.html:13-41`, and `contact.html:13-41`.
-- `seo/robots.txt` and `seo/sitemap.xml` are present (`seo/robots.txt:1-3`, `seo/sitemap.xml:1-108`).
+- `robots.txt` and `sitemap.xml` are maintained in the project root as the source SEO files.
 - JSON-LD is present on most pages and detected blocks parse as valid JSON; it was not detected in `404.html`, `in-progress.html`, `offline.html`, or `thank-you.html`.
-- `seo/sitemap.xml` does not include every canonical indexable page. For example, `thank-you.html` exposes `index, follow` and a canonical URL but is missing from the sitemap (`thank-you.html:9-17`, `seo/sitemap.xml:1-108`).
+- `sitemap.xml` is maintained in the project root as the single source of truth for sitemap content.
 
 ### Performance Notes
 
@@ -198,7 +199,6 @@ Based on the current repository, the next justified steps are:
 
 - complete `sitemap.xml` for the full canonical page set
 - fix duplicated `aria-label` values in service jump links
-- unify the source of truth for `robots.txt` and sitemap location
 - remove dependence on build-time manifest icon rewriting
 - extend QA to include metadata and JSON-LD checks
 

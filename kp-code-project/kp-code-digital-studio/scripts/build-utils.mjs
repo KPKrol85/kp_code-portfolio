@@ -16,7 +16,8 @@ export const DIST_JS_FILE = path.join(DIST_DIR, 'js', 'main.min.js');
 const CSS_ENTRY = path.join(ROOT_DIR, 'css', 'main.css');
 const JS_ENTRY = path.join(ROOT_DIR, 'js', 'main.js');
 const MANIFEST_PATH = path.join(ROOT_DIR, 'assets', 'icons', 'site.webmanifest');
-const SEO_DIR = path.join(ROOT_DIR, 'seo');
+const ROOT_ROBOTS_PATH = path.join(ROOT_DIR, 'robots.txt');
+const ROOT_SITEMAP_PATH = path.join(ROOT_DIR, 'sitemap.xml');
 const PARTIALS_DIR = path.join(ROOT_DIR, 'src', 'partials');
 const HEADER_PARTIAL_PATH = path.join(PARTIALS_DIR, 'header.html');
 const FOOTER_PARTIAL_PATH = path.join(PARTIALS_DIR, 'footer.html');
@@ -171,14 +172,11 @@ export async function copyAssets() {
 }
 
 export async function copySeoFiles() {
-  await copyDirectory(SEO_DIR, path.join(DIST_DIR, 'seo'));
-
   const rootRobotsPath = path.join(DIST_DIR, 'robots.txt');
   const rootSitemapPath = path.join(DIST_DIR, 'sitemap.xml');
-  const robotsContent = 'User-agent: *\nAllow: /\nSitemap: https://www.kp-code.pl/sitemap.xml\n';
 
-  await copyFile(path.join(SEO_DIR, 'sitemap.xml'), rootSitemapPath);
-  await writeFile(rootRobotsPath, robotsContent, 'utf8');
+  await copyFile(ROOT_SITEMAP_PATH, rootSitemapPath);
+  await copyFile(ROOT_ROBOTS_PATH, rootRobotsPath);
 }
 
 export async function fixManifestInDist() {

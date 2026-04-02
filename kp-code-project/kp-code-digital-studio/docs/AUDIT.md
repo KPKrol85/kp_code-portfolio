@@ -24,9 +24,7 @@ No P0 issues were detected from repository evidence.
 
 ## 4. P1 — Improvements worth doing next
 
-1. SEO ownership is split between source and build output. Source `seo/robots.txt:1-3` points to `https://www.kp-code.pl/seo/sitemap.xml`, while build output is generated to point at `https://www.kp-code.pl/sitemap.xml` in `scripts/build-utils.mjs:173-181`.
-
-2. Several project detail source files are stored as dense single-line HTML, which lowers reviewability and maintainability in the source layer. This is visible in files such as `projects/aurora.html`, `projects/atelier-no-02.html`, `projects/axiom-construction.html`, and `projects/volt-garage.html`, where large sections are compressed into long single lines in the source files.
+1. Several project detail source files are stored as dense single-line HTML, which lowers reviewability and maintainability in the source layer. This is visible in files such as `projects/aurora.html`, `projects/atelier-no-02.html`, `projects/axiom-construction.html`, and `projects/volt-garage.html`, where large sections are compressed into long single lines in the source files.
 
 ## 5. P2 — Minor refinements
 
@@ -49,8 +47,8 @@ No P0 issues were detected from repository evidence.
 - `PASS` aria attributes valid: audited ARIA state values such as `aria-current`, `aria-expanded`, `aria-controls`, and `aria-hidden` use valid tokens in source (`src/partials/header.html:50-57`, `js/modules/navigation.js:22-30`).
 - `PASS` images have width/height: static scan of source HTML did not detect `<img>` elements missing explicit dimensions.
 - `PASS` no-JS baseline usable: navigation has a CSS fallback (`css/layout.css:290-309`), and the contact form posts to PHP without requiring JS (`contact.html:186-193`, `contact-submit.php:1-102`).
-- `PASS` sitemap present if expected: `seo/sitemap.xml` exists.
-- `PASS` robots present: `seo/robots.txt` exists.
+- `PASS` sitemap present if expected: root `sitemap.xml` exists.
+- `PASS` robots present: root `robots.txt` exists.
 - `PASS` OG image exists: `assets/og/og-img.png` exists and is referenced in page metadata (`index.html:27`, `services.html:28`, `contact.html:28`).
 - `PASS` JSON-LD valid: detected JSON-LD blocks parse as valid JSON; pages without JSON-LD were noted separately and not treated as invalid markup.
 
@@ -65,7 +63,7 @@ No P0 issues were detected from repository evidence.
 - Performance: `8/10`
   Evidence: self-hosted fonts with `font-display: swap`, explicit image dimensions, lazy loading, and image optimization tooling are present.
 - Maintainability: `7/10`
-  Evidence: source/build separation and QA are solid, but robots ownership drift and compressed HTML sources still add avoidable maintenance friction.
+  Evidence: source/build separation and QA are solid, but compressed HTML sources still add avoidable maintenance friction.
 
 **Architecture score: 8.0/10**
 
@@ -73,4 +71,4 @@ No P0 issues were detected from repository evidence.
 
 **Senior rating: 8/10**
 
-Technical justification: the repository shows senior-level discipline in front-end structure, build tooling, accessibility fundamentals, and evidence-driven optimization choices. It does not rate higher because some operational details still depend on manual consistency rather than a single automated source of truth, especially around SEO ownership between source and build output and small accessibility-copy regressions.
+Technical justification: the repository shows senior-level discipline in front-end structure, build tooling, accessibility fundamentals, and evidence-driven optimization choices. It does not rate higher because some operational details still depend on manual consistency rather than full automation in source maintenance, especially around dense source HTML and small accessibility-copy regressions.
