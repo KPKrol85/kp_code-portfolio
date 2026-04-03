@@ -8,7 +8,7 @@
 
 .hero__grid {
   display: grid;
-  gap: var(--space-4);
+  gap: var(--space-6);
   grid-template-columns: 1fr;
 }
 
@@ -26,7 +26,7 @@
 .hero__lead {
   margin-bottom: var(--space-8);
   color: color-mix(in srgb, var(--color-text) 75%, var(--color-text-muted));
-  max-width: 60ch;
+  max-width: 52ch;
   font-size: var(--fs-4);
 }
 
@@ -46,10 +46,10 @@
 }
 
 .hero__logo {
-  max-width: min(280px, 80vw);
-  max-height: 280px;
+  max-width: var(--logo-3xl);
+  max-height: var(--logo-3xl);
   width: 100%;
-  opacity: 0.5;
+  opacity: 0.11;
   margin-top: 0;
 }
 [data-theme='dark'] .hero__logo {
@@ -73,9 +73,9 @@
   }
 }
 
-@media (min-width: 760px) {
+@media (min-width: 660px) {
   .hero__grid {
-    grid-template-columns: 1.2fr 0.8fr;
+    grid-template-columns: 1.2fr 0.6fr;
     align-items: center;
   }
   .hero__logo {
@@ -83,7 +83,16 @@
   }
 }
 
+@media (min-width: 760px) {
+  .hero__grid {
+    grid-template-columns: 1.2fr 0.7fr;
+  }
+}
+
 @media (min-width: 1024px) {
+  .hero__grid {
+    grid-template-columns: 1.2fr 1fr;
+  }
   .hero {
     padding: var(--space-10) 0;
   }
@@ -171,19 +180,11 @@
 }
 
 .callout .actions .button {
-  flex: 0 0 240px;
+  flex: 0 0 220px;
 }
 
 .callout .button--ghost {
   color: inherit;
-  border-color: color-mix(in srgb, currentColor 40%, transparent);
-}
-
-@media (hover: hover) and (pointer: fine) {
-  .callout .button--ghost:hover {
-    background: color-mix(in srgb, currentColor 8%, transparent);
-    border-color: color-mix(in srgb, currentColor 55%, transparent);
-  }
 }
 
 /* Case study section */
@@ -202,10 +203,10 @@
   position: absolute;
   top: 5%;
   right: 5%;
-  width: 72px;
-  height: 72px;
-  background: url('/assets/img/logo/logo.svg') no-repeat center / contain;
-  opacity: 0.12;
+  width: var(--logo-md);
+  height: var(--logo-md);
+  background: url('/assets/img/logo/logo-magic.svg') no-repeat center / contain;
+  opacity: 0.21;
   pointer-events: none;
 }
 
@@ -217,6 +218,7 @@
 .case-study .pill-grid {
   align-items: center;
   margin: var(--space-4) 0;
+  justify-content: center;
 }
 
 .case-study .tag {
@@ -227,25 +229,22 @@
 }
 
 .case-study .actions .button {
-  flex: 0 0 240px;
+  flex: 0 0 220px;
 }
 
 @media (min-width: 480px) {
   .case-study::after {
-    width: 104px;
-    height: 104px;
-    top: 8%;
-    right: 8%;
+    width: var(--logo-xl);
+    height: var(--logo-xl);
+    right: 10%;
   }
 }
 
 @media (min-width: 760px) {
   .case-study::after {
-    width: 184px;
-    height: 184px;
-    top: 10%;
-    right: 10%;
+    right: 15%;
   }
+
   .case-study .pill-grid {
     justify-content: flex-end;
   }

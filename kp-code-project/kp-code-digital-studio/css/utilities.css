@@ -36,6 +36,7 @@
   gap: var(--space-4);
   margin-top: var(--space-7);
 }
+
 @media (min-width: 574px) {
   .actions {
     margin-inline: 0;

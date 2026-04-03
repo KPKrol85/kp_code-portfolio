@@ -216,24 +216,6 @@
     background var(--transition-base);
   will-change: transform;
 }
-.service-card__head {
-  display: flex;
-  align-items: center;
-  gap: var(--space-6);
-}
-.service-card::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  pointer-events: none;
-  opacity: 0;
-  background: radial-gradient(
-    600px 180px at 100% 0%,
-    color-mix(in srgb, var(--color-primary) 14%, transparent),
-    transparent 60%
-  );
-  transition: opacity var(--transition-base);
-}
 @media (hover: hover) and (pointer: fine) {
   .service-card:hover {
     transform: translateY(-2px);
@@ -244,29 +226,51 @@
     opacity: 1;
   }
 }
+.service-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0;
+  background: radial-gradient(
+    180px 120px at 0% 0%,
+    color-mix(in srgb, var(--color-primary) 12%, transparent),
+    transparent 60%
+  );
+  transition: opacity var(--transition-base);
+}
 .service-card:focus-within {
   border-color: color-mix(in srgb, var(--color-primary) 38%, var(--color-border));
   box-shadow: var(--shadow-md);
 }
+
+.service-card__head {
+  display: flex;
+  align-items: center;
+  gap: var(--space-6);
+}
+
 .service-card__icon {
   display: inline-flex;
   align-items: center;
   justify-content: center;
   inline-size: 24px;
   block-size: 24px;
-  color: var(--color-text-muted);
+  color: var(--color-primary);
   flex: 0 0 24px;
 }
+
 .service-card__icon svg {
   inline-size: 100%;
   block-size: 100%;
   display: block;
 }
+
 .service-card .card__actions {
   margin-top: auto;
-  padding-top: var(--space-2);
   justify-content: space-between;
 }
+
 @media (prefers-reduced-motion: reduce) {
   .service-card,
   .service-card::before {
@@ -334,6 +338,7 @@
     transparent 60%
   );
 }
+
 .work-card__image {
   border: 1px solid color-mix(in srgb, var(--color-border) 70%, transparent);
   background: color-mix(in srgb, var(--color-surface-alt) 80%, var(--color-bg));
@@ -341,6 +346,7 @@
   margin: calc(var(--space-5) * -1);
   margin-bottom: var(--space-2);
 }
+
 .work-card__image img {
   inline-size: 100%;
   block-size: auto;
@@ -361,15 +367,18 @@
     box-shadow: 0 20px 48px rgba(0, 0, 0, 0.55);
   }
 }
+
 .work-card .card__title {
   letter-spacing: var(--ls-tight);
 }
+
 .work-card .card__subtitle {
   font-size: var(--fs-5);
   opacity: 0.8;
   line-height: var(--lh-base);
   font-weight: var(--fw-semibold);
 }
+
 .work-card__actions {
   display: flex;
   flex-wrap: wrap;
@@ -377,6 +386,7 @@
   gap: var(--space-4);
   justify-content: space-between;
 }
+
 .work-card .button {
   flex: 0 0 146px;
   min-height: 42px;
@@ -394,6 +404,7 @@
   letter-spacing: var(--ls-wide);
   font-size: var(--fs-2);
 }
+
 .list {
   list-style: none;
   padding: 0;
@@ -403,6 +414,7 @@
   color: var(--color-text-muted);
   font-size: var(--fs-4);
 }
+
 .list li {
   position: relative;
   padding-left: calc(var(--space-4) + 6px);
