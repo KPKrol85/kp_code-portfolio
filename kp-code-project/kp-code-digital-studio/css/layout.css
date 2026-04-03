@@ -154,16 +154,7 @@ main {
   width: 48px;
   height: 48px;
   flex: 0 0 auto;
-}
-.brand__logo img {
-  display: block;
-  width: 100%;
-  height: 100%;
   object-fit: contain;
-  content: url('../assets/img/logo/logo-light-mode-modern.png');
-}
-[data-theme='dark'] .brand__logo img {
-  content: url('../assets/img/logo/logo-dark-mode-modern.png');
 }
 .nav__brand-text {
   font-size: var(--fs-5);
@@ -451,18 +442,11 @@ html:not(.js) .nav__toggle {
   align-content: start;
 }
 .footer__logo {
-  display: inline-flex;
-  align-items: center;
+  display: block;
   margin-bottom: var(--space-5);
   margin-left: var(--space-4);
-}
-.footer__logo img {
   height: var(--logo-lg);
   width: auto;
-  content: url('../assets/img/logo/logo-light-mode-modern.svg');
-}
-[data-theme='dark'] .footer__logo img {
-  content: url('../assets/img/logo/logo-dark-mode-modern.svg');
 }
 .footer__contact-list {
   display: grid;
@@ -520,7 +504,10 @@ html:not(.js) .nav__toggle {
   .footer__grid {
     grid-template-columns: minmax(0, 1.6fr) repeat(3, minmax(0, 1fr));
   }
-  .footer__logo img {
+
+  
+  .footer__logo {
     height: var(--logo-md);
   }
+
 }
