@@ -246,7 +246,8 @@
   }
 
   .case-study .pill-grid {
-    justify-content: flex-end;
+    justify-content: center;
+    padding-left: var(--space-4);
   }
 }
 
