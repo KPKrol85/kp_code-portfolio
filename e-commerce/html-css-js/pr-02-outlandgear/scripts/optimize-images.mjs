@@ -1,15 +1,18 @@
 #!/usr/bin/env node
 
-import { readdir, mkdir, copyFile, rm, stat } from 'node:fs/promises';
-import path from 'node:path';
-import sharp from 'sharp';
+import { readdir, mkdir, copyFile, rm, stat } from "node:fs/promises";
+import path from "node:path";
+import { fileURLToPath } from "node:url";
+import sharp from "sharp";
 
-const ROOT_DIR = process.cwd();
-const SOURCE_DIR = path.join(ROOT_DIR, 'assets', 'img-src');
-const OUTPUT_DIR = path.join(ROOT_DIR, 'assets', 'img');
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+const ROOT_DIR = path.resolve(__dirname, "..");
+const SOURCE_DIR = path.join(ROOT_DIR, "assets", "img-src");
+const DEFAULT_OUTPUT_DIR = path.join(ROOT_DIR, "dist", "assets", "img");
 
-const RASTER_INPUTS = new Set(['.jpg', '.jpeg', '.png', '.webp', '.avif']);
-const SKIP_INPUTS = new Set(['.svg']);
+const RASTER_INPUTS = new Set([".jpg", ".jpeg", ".png", ".webp", ".avif"]);
+const PASSTHROUGH_INPUTS = new Set([".svg"]);
 
 const jpegOptions = {
   quality: 78,
@@ -57,6 +60,8 @@ async function listFilesRecursively(dir) {
   const results = [];
 
   for (const entry of entries) {
+    if (entry.name.startsWith(".")) continue;
+
     const fullPath = path.join(dir, entry.name);
     if (entry.isDirectory()) {
       results.push(...(await listFilesRecursively(fullPath)));
@@ -76,110 +81,117 @@ async function ensureDirForFile(filePath) {
 }
 
 async function optimizeSameFamily(image, targetPath, ext) {
-  if (ext === '.jpg' || ext === '.jpeg') {
+  if (ext === ".jpg" || ext === ".jpeg") {
     await image.jpeg(jpegOptions).toFile(targetPath);
     return;
   }
 
-  if (ext === '.png') {
+  if (ext === ".png") {
     await image.png(pngOptions).toFile(targetPath);
     return;
   }
 
-  if (ext === '.webp') {
+  if (ext === ".webp") {
     await image.webp(webpOptions).toFile(targetPath);
     return;
   }
 
-  if (ext === '.avif') {
+  if (ext === ".avif") {
     await image.avif(avifOptions).toFile(targetPath);
   }
 }
 
-async function optimizeRaster(sourcePath, relativePath) {
+async function optimizeRaster(sourcePath, relativePath, outputDir) {
   const ext = path.extname(sourcePath).toLowerCase();
-  const outputOriginal = path.join(OUTPUT_DIR, relativePath);
+  const outputOriginal = path.join(outputDir, relativePath);
   const baseOutput = outputOriginal.slice(0, -ext.length);
 
   await ensureDirForFile(outputOriginal);
 
-  const image = sharp(sourcePath, { failOn: 'warning' });
+  const image = sharp(sourcePath, { failOn: "warning" });
 
   await optimizeSameFamily(image.clone(), outputOriginal, ext);
 
   const webpPath = `${baseOutput}.webp`;
-  if (ext !== '.webp') {
+  if (ext !== ".webp") {
     await image.clone().webp(webpOptions).toFile(webpPath);
   }
 
   const avifPath = `${baseOutput}.avif`;
-  if (ext !== '.avif') {
+  if (ext !== ".avif") {
     await image.clone().avif(avifOptions).toFile(avifPath);
   }
-
-  return {
-    relativePath,
-    generated: [
-      outputOriginal,
-      ...(ext === '.webp' ? [] : [webpPath]),
-      ...(ext === '.avif' ? [] : [avifPath]),
-    ],
-  };
 }
 
-async function main() {
-  const shouldClean = process.argv.includes('--clean');
-
+export async function buildImages({
+  outputDir = DEFAULT_OUTPUT_DIR,
+  clean = false,
+  logger = log,
+} = {}) {
   if (!(await pathExists(SOURCE_DIR))) {
-    log.error(`Source folder not found: ${SOURCE_DIR}`);
-    process.exit(1);
+    logger.error(`Source folder not found: ${SOURCE_DIR}`);
+    throw new Error(`Source folder not found: ${SOURCE_DIR}`);
   }
 
-  if (shouldClean) {
-    await rm(OUTPUT_DIR, { recursive: true, force: true });
+  if (clean) {
+    await rm(outputDir, { recursive: true, force: true });
   }
 
-  await mkdir(OUTPUT_DIR, { recursive: true });
+  await mkdir(outputDir, { recursive: true });
 
   const files = await listFilesRecursively(SOURCE_DIR);
 
   if (!files.length) {
-    log.info('No source files found in assets/img-src/.');
-    return;
+    logger.info("No source files found in assets/img-src/.");
+    return {
+      optimizedCount: 0,
+      passthroughCount: 0,
+      skippedCount: 0,
+    };
   }
 
   let optimizedCount = 0;
-  let skippedSvgCount = 0;
-  let copiedCount = 0;
+  let passthroughCount = 0;
+  let skippedCount = 0;
 
   for (const sourcePath of files) {
     const relativePath = path.relative(SOURCE_DIR, sourcePath);
     const ext = path.extname(sourcePath).toLowerCase();
 
     if (RASTER_INPUTS.has(ext)) {
-      await optimizeRaster(sourcePath, relativePath);
+      await optimizeRaster(sourcePath, relativePath, outputDir);
       optimizedCount += 1;
       continue;
     }
 
-    if (SKIP_INPUTS.has(ext)) {
-      skippedSvgCount += 1;
+    if (PASSTHROUGH_INPUTS.has(ext)) {
+      const outputPath = path.join(outputDir, relativePath);
+      await ensureDirForFile(outputPath);
+      await copyFile(sourcePath, outputPath);
+      passthroughCount += 1;
       continue;
     }
 
-    const outputPath = path.join(OUTPUT_DIR, relativePath);
-    await ensureDirForFile(outputPath);
-    await copyFile(sourcePath, outputPath);
-    copiedCount += 1;
+    skippedCount += 1;
   }
 
-  log.info(`Raster images optimized: ${optimizedCount}`);
-  log.info(`Non-raster files copied as-is: ${copiedCount}`);
-  log.info(`SVG files skipped: ${skippedSvgCount}`);
-  log.info('Done.');
+  logger.info(`Raster images optimized: ${optimizedCount}`);
+  logger.info(`Pass-through image files copied: ${passthroughCount}`);
+  logger.info(`Unsupported files skipped: ${skippedCount}`);
+  logger.info(`Output directory: ${path.relative(ROOT_DIR, outputDir)}`);
+
+  return {
+    optimizedCount,
+    passthroughCount,
+    skippedCount,
+  };
 }
 
-main().catch((error) => {
-  log.error(error instanceof Error ? error.stack ?? error.message : String(error));
-  process.exit(1);
-});
+const isDirectRun = process.argv[1] && path.resolve(process.argv[1]) === __filename;
+
+if (isDirectRun) {
+  buildImages({ clean: process.argv.includes("--clean") }).catch((error) => {
+    log.error(error instanceof Error ? error.stack ?? error.message : String(error));
+    process.exit(1);
+  });
+}

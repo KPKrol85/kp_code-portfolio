@@ -17,6 +17,7 @@ The current build pipeline defined in `package.json` uses:
 - `postcss-import`
 - `cssnano`
 - `esbuild`
+- `sharp`
 - local Node.js scripts from `scripts/`
 
 ## Source Entrypoints
@@ -41,6 +42,12 @@ Builds and minifies the main stylesheet from `css/main.css` into:
 Bundles and minifies the application JavaScript from `js/app.js` into:
 - `dist/js/app.min.js`
 
+### `npm run build:images`
+Builds production-ready images from `assets/img-src/` into:
+- `dist/assets/img/`
+
+Raster files are optimized for deployment, while `.svg` files from the image-source area are copied through without rasterization.
+
 ### `npm run build:html`
 Builds the HTML layer into `dist/` by:
 - copying public HTML pages
@@ -52,7 +59,7 @@ The generated HTML in `dist/` does not depend on runtime partial fetching.
 
 ### `npm run build:assets`
 Copies deployable static files into `dist/`, including:
-- `assets/`
+- `assets/` except source image folders reserved for the image pipeline
 - `data/`
 - `robots.txt`
 - `sitemap.xml`
@@ -87,12 +94,15 @@ Expected production output includes:
 - `dist/css/main.min.css`
 - `dist/js/app.min.js`
 - copied `assets/`
+- generated `dist/assets/img/`
 - copied `data/`
 - copied `robots.txt`
 - copied `sitemap.xml`
 
 ## Operational Notes
 - Source files are not the production artifact.
+- `assets/img-src/` is the editable source area for deployment images.
+- Optimized deployment images are generated only into `dist/assets/img/`.
 - Legacy minified files in source directories are not part of the target deployment workflow.
 - Production preview must always serve `dist/`, not the source project.
 - Any future build changes should preserve the same contract: editable source, deployable `dist/`.

@@ -5,6 +5,7 @@ import postcss from "postcss";
 import postcssImport from "postcss-import";
 import cssnano from "cssnano";
 import * as esbuild from "esbuild";
+import { buildImages } from "./optimize-images.mjs";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -12,6 +13,7 @@ const ROOT = path.resolve(__dirname, "..");
 const DIST = path.join(ROOT, "dist");
 const DIST_CSS = path.join(DIST, "css");
 const DIST_JS = path.join(DIST, "js");
+const DIST_IMG = path.join(DIST, "assets", "img");
 const HTML_ENTRY_GLOB = /\.html$/i;
 const STATIC_DIRS = ["assets", "data"];
 const STATIC_FILES = ["robots.txt", "sitemap.xml"];
@@ -43,6 +45,18 @@ const writeText = async (relativePath, content) => {
   const fullPath = path.join(ROOT, relativePath);
   await ensureDir(path.dirname(fullPath));
   await fs.writeFile(fullPath, content, "utf8");
+};
+
+const shouldCopyAssetPath = (sourcePath) => {
+  const relativePath = path.relative(ROOT, sourcePath);
+  const normalizedPath = relativePath.split(path.sep).join("/");
+
+  if (!normalizedPath || normalizedPath.startsWith("..")) return false;
+  if (normalizedPath === "assets/img" || normalizedPath.startsWith("assets/img/")) return false;
+  if (normalizedPath === "assets/img-src" || normalizedPath.startsWith("assets/img-src/")) return false;
+  if (path.basename(sourcePath).startsWith(".")) return false;
+
+  return true;
 };
 
 const escapeForRegExp = (value) => value.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
@@ -111,10 +125,20 @@ const buildJs = async () => {
   });
 };
 
+const buildImagesForDist = async ({ clean = false } = {}) => {
+  await buildImages({
+    outputDir: DIST_IMG,
+    clean,
+  });
+};
+
 const copyStaticAssets = async () => {
   await Promise.all(
     STATIC_DIRS.map(async (dirName) => {
-      await fs.cp(path.join(ROOT, dirName), path.join(DIST, dirName), { recursive: true });
+      await fs.cp(path.join(ROOT, dirName), path.join(DIST, dirName), {
+        recursive: true,
+        filter: shouldCopyAssetPath,
+      });
     })
   );
 
@@ -138,12 +162,14 @@ const prepareDist = async () => {
   await ensureDir(DIST);
   await ensureDir(DIST_CSS);
   await ensureDir(DIST_JS);
+  await ensureDir(DIST_IMG);
 };
 
 const buildDist = async () => {
   await emptyDir(DIST);
   await prepareDist();
   await Promise.all([buildCss(), buildJs(), copyStaticAssets(), buildHtml()]);
+  await buildImagesForDist();
 };
 
 switch (command) {
@@ -168,6 +194,10 @@ switch (command) {
   case "assets":
     await prepareDist();
     await copyStaticAssets();
+    break;
+  case "images":
+    await prepareDist();
+    await buildImagesForDist({ clean: true });
     break;
   case "build":
     await buildDist();
