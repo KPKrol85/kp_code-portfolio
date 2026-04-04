@@ -125,7 +125,47 @@ const setupDrawer = () => {
   });
 };
 
+const setupStickyHeaderShrink = () => {
+  const header = qs(".site-header");
+  const ENTER_THRESHOLD = 44;
+  const EXIT_THRESHOLD = 16;
+  let isShrunk = false;
+  let frameId = null;
+
+  if (!header) return;
+
+  const applyState = (shouldShrink) => {
+    if (shouldShrink === isShrunk) return;
+    isShrunk = shouldShrink;
+    header.classList.toggle("is-shrunk", shouldShrink);
+  };
+
+  const updateState = () => {
+    frameId = null;
+    const scrollY = window.scrollY || window.pageYOffset || 0;
+
+    if (!isShrunk && scrollY >= ENTER_THRESHOLD) {
+      applyState(true);
+      return;
+    }
+
+    if (isShrunk && scrollY <= EXIT_THRESHOLD) {
+      applyState(false);
+    }
+  };
+
+  const requestUpdate = () => {
+    if (frameId !== null) return;
+    frameId = window.requestAnimationFrame(updateState);
+  };
+
+  updateState();
+  on(window, "scroll", requestUpdate, { passive: true });
+  on(window, "resize", requestUpdate, { passive: true });
+};
+
 export const initNav = () => {
   setupDropdowns();
   setupDrawer();
+  setupStickyHeaderShrink();
 };
