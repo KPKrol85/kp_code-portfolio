@@ -3,6 +3,7 @@
 }
 
 .dropdown__toggle {
+  position: relative;
   display: inline-flex;
   align-items: center;
   gap: var(--space-xs);
@@ -12,11 +13,66 @@
   padding: 0.5rem 0.75rem;
   border-radius: 999px;
   cursor: pointer;
+  transition:
+    color var(--transition-fast),
+    background-color var(--transition-fast),
+    box-shadow var(--transition-fast);
 }
 
-.dropdown__toggle:hover,
+.dropdown__toggle::after {
+  content: "";
+  position: absolute;
+  left: 0.75rem;
+  right: 0.75rem;
+  bottom: 0.32rem;
+  height: 2px;
+  border-radius: 999px;
+  background: rgba(31, 76, 58, 0.72);
+  transform: scaleX(0.2);
+  transform-origin: center;
+  opacity: 0;
+  transition:
+    transform var(--transition-fast),
+    opacity var(--transition-fast),
+    background-color var(--transition-fast);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .dropdown__toggle:hover {
+    background: rgba(214, 232, 229, 0.52);
+    color: var(--color-forest-dark);
+    box-shadow: inset 0 0 0 1px rgba(111, 142, 128, 0.12);
+  }
+
+  .dropdown__toggle:hover::after {
+    transform: scaleX(1);
+    opacity: 0.88;
+  }
+}
+
 .dropdown__toggle[aria-expanded="true"] {
-  background: var(--color-sky);
+  background: rgba(214, 232, 229, 0.64);
+  color: var(--color-forest-dark);
+  box-shadow: inset 0 0 0 1px rgba(111, 142, 128, 0.14);
+}
+
+.dropdown__toggle[aria-expanded="true"]::after {
+  transform: scaleX(1);
+  opacity: 1;
+}
+
+.dropdown__toggle:focus-visible {
+  background: rgba(214, 232, 229, 0.6);
+  color: var(--color-forest-dark);
+  box-shadow:
+    inset 0 0 0 1px rgba(111, 142, 128, 0.16),
+    0 0 0 2px rgba(255, 255, 255, 0.92),
+    0 0 0 4px rgba(31, 76, 58, 0.18);
+}
+
+.dropdown__toggle:focus-visible::after {
+  transform: scaleX(1);
+  opacity: 0.95;
 }
 
 .dropdown__menu {
@@ -51,4 +107,11 @@
 .dropdown__link:focus-visible {
   background: var(--color-sky);
   color: var(--color-forest-dark);
+}
+
+.dropdown__link:focus-visible {
+  box-shadow:
+    inset 0 0 0 1px rgba(111, 142, 128, 0.12),
+    0 0 0 2px rgba(255, 255, 255, 0.92),
+    0 0 0 4px rgba(31, 76, 58, 0.16);
 }

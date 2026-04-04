@@ -9,7 +9,7 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 const ROOT_DIR = path.resolve(__dirname, "..");
 const SOURCE_DIR = path.join(ROOT_DIR, "assets", "img-src");
-const DEFAULT_OUTPUT_DIR = path.join(ROOT_DIR, "dist", "assets", "img");
+const DEFAULT_OUTPUT_DIR = path.join(ROOT_DIR, "assets", "img");
 
 const RASTER_INPUTS = new Set([".jpg", ".jpeg", ".png", ".webp", ".avif"]);
 const PASSTHROUGH_INPUTS = new Set([".svg"]);

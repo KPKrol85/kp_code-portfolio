@@ -5,7 +5,6 @@ import postcss from "postcss";
 import postcssImport from "postcss-import";
 import cssnano from "cssnano";
 import * as esbuild from "esbuild";
-import { buildImages } from "./optimize-images.mjs";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -13,7 +12,6 @@ const ROOT = path.resolve(__dirname, "..");
 const DIST = path.join(ROOT, "dist");
 const DIST_CSS = path.join(DIST, "css");
 const DIST_JS = path.join(DIST, "js");
-const DIST_IMG = path.join(DIST, "assets", "img");
 const HTML_ENTRY_GLOB = /\.html$/i;
 const STATIC_DIRS = ["assets", "data"];
 const STATIC_FILES = ["robots.txt", "sitemap.xml"];
@@ -52,7 +50,6 @@ const shouldCopyAssetPath = (sourcePath) => {
   const normalizedPath = relativePath.split(path.sep).join("/");
 
   if (!normalizedPath || normalizedPath.startsWith("..")) return false;
-  if (normalizedPath === "assets/img" || normalizedPath.startsWith("assets/img/")) return false;
   if (normalizedPath === "assets/img-src" || normalizedPath.startsWith("assets/img-src/")) return false;
   if (path.basename(sourcePath).startsWith(".")) return false;
 
@@ -125,13 +122,6 @@ const buildJs = async () => {
   });
 };
 
-const buildImagesForDist = async ({ clean = false } = {}) => {
-  await buildImages({
-    outputDir: DIST_IMG,
-    clean,
-  });
-};
-
 const copyStaticAssets = async () => {
   await Promise.all(
     STATIC_DIRS.map(async (dirName) => {
@@ -162,14 +152,12 @@ const prepareDist = async () => {
   await ensureDir(DIST);
   await ensureDir(DIST_CSS);
   await ensureDir(DIST_JS);
-  await ensureDir(DIST_IMG);
 };
 
 const buildDist = async () => {
   await emptyDir(DIST);
   await prepareDist();
   await Promise.all([buildCss(), buildJs(), copyStaticAssets(), buildHtml()]);
-  await buildImagesForDist();
 };
 
 switch (command) {
@@ -196,8 +184,7 @@ switch (command) {
     await copyStaticAssets();
     break;
   case "images":
-    await prepareDist();
-    await buildImagesForDist({ clean: true });
+    throw new Error("build-dist images command has been removed; use `npm run build:images`.");
     break;
   case "build":
     await buildDist();
