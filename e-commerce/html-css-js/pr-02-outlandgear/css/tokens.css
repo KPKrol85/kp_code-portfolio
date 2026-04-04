@@ -31,11 +31,18 @@
   --space-3xl: 4rem;
   --container: 1200px;
   --focus-ring: 0 0 0 3px rgba(31, 76, 58, 0.25);
-  --transition-fast: 150ms ease;
+  --ease-standard: ease;
+  --duration-fast: 150ms;
+  --transition-fast: var(--duration-fast) var(--ease-standard);
 }
 
 @media (prefers-reduced-motion: reduce) {
   :root {
+    --duration-fast: 0ms;
     --transition-fast: 0ms;
+  }
+
+  html {
+    scroll-behavior: auto;
   }
 }

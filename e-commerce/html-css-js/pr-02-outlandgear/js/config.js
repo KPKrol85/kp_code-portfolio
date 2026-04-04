@@ -10,7 +10,6 @@ export const CONFIG = {
     cartCount: "[data-cart-count]",
     cartContainer: "[data-cart-container]",
     cartSummary: "[data-cart-summary]",
-    cartEmpty: "[data-cart-empty]",
     listingGrid: "[data-listing-grid]",
     listingCount: "[data-listing-count]",
     listingLoad: "[data-load-more]",

@@ -1,0 +1,66 @@
+<div class="container">
+  <div class="site-header__top">
+    <a class="logo" href="index.html" aria-label="Outland Gear">
+      <img class="logo__mark" src="assets/svg/logo.svg" alt="" width="32" height="32" />
+      Outland Gear
+    </a>
+    <form class="search" data-search-form role="search">
+      <label class="visually-hidden" for="search-input">Szukaj produktów</label>
+      <input
+        id="search-input"
+        type="search"
+        data-search-input
+        placeholder="Szukaj plecaków, kuchenek, termiki..."
+        autocomplete="off"
+      />
+      <button type="submit">Szukaj</button>
+    </form>
+    <button class="nav-toggle" data-nav-toggle aria-expanded="false" aria-controls="mobile-drawer">
+      <span class="visually-hidden">Otwórz menu</span>
+      ☰
+    </button>
+    <nav class="site-nav" aria-label="Główna">
+      <div class="dropdown">
+        <button
+          class="dropdown__toggle"
+          type="button"
+          aria-expanded="false"
+          aria-controls="nav-categories"
+          data-dropdown-toggle
+        >
+          Kategorie
+        </button>
+        <div class="dropdown__menu" id="nav-categories" aria-hidden="true">
+          <a class="dropdown__link" href="kategoria.html">Plecaki i torby</a>
+          <a class="dropdown__link" href="kategoria.html">Termika i napoje</a>
+          <a class="dropdown__link" href="kategoria.html">Kemping</a>
+          <a class="dropdown__link" href="kategoria.html">Elektronika outdoor</a>
+          <a class="dropdown__link" href="kategoria.html">Akcesoria</a>
+        </div>
+      </div>
+      <a class="site-nav__link" href="kategoria.html" data-nav-link>Nowości</a>
+      <a class="site-nav__link" href="o-nas.html" data-nav-link>O nas</a>
+      <a class="site-nav__link" href="kontakt.html" data-nav-link>Kontakt</a>
+    </nav>
+    <div class="site-nav__actions">
+      <a class="btn btn--ghost btn--small" href="koszyk.html">
+        Koszyk (<span data-cart-count>0</span>)
+      </a>
+    </div>
+  </div>
+</div>
+<div class="nav-drawer" id="mobile-drawer" data-nav-drawer aria-hidden="true">
+  <div class="nav-drawer__panel" data-nav-panel tabindex="-1">
+    <div class="row row--between">
+      <strong>Menu</strong>
+      <button class="btn btn--ghost btn--small" type="button" data-nav-close>Zamknij</button>
+    </div>
+    <div class="nav-drawer__links">
+      <a class="site-nav__link" href="kategoria.html">Kategorie</a>
+      <a class="site-nav__link" href="kategoria.html" data-nav-link>Nowości</a>
+      <a class="site-nav__link" href="o-nas.html" data-nav-link>O nas</a>
+      <a class="site-nav__link" href="kontakt.html" data-nav-link>Kontakt</a>
+      <a class="site-nav__link" href="koszyk.html">Koszyk</a>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,65 @@
+.ui-state {
+  display: grid;
+  gap: var(--space-xs);
+  padding: var(--space-md);
+  border-radius: var(--radius-md);
+  border: 1px solid var(--ui-state-border, var(--color-border));
+  border-left: 4px solid var(--ui-state-accent, var(--color-moss));
+  background: var(--ui-state-bg, var(--color-sky));
+  color: var(--ui-state-text, var(--color-text));
+}
+
+.ui-state__title {
+  margin: 0;
+  font-weight: 600;
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-xs);
+}
+
+.ui-state__title::before {
+  content: var(--ui-state-icon, "ℹ");
+  font-size: 1rem;
+  line-height: 1;
+  flex-shrink: 0;
+}
+
+.ui-state__message {
+  margin: 0;
+  font-size: 0.95rem;
+}
+
+.ui-state--loading {
+  --ui-state-bg: #f8f7f3;
+  --ui-state-border: var(--color-border);
+  --ui-state-accent: var(--color-moss);
+  --ui-state-icon: "⏳";
+}
+
+.ui-state--empty {
+  --ui-state-bg: #f8f7f3;
+  --ui-state-border: var(--color-border);
+  --ui-state-accent: var(--color-muted);
+  --ui-state-icon: "◦";
+}
+
+.ui-state--error {
+  --ui-state-bg: #fdf4f3;
+  --ui-state-border: #f0cbc7;
+  --ui-state-accent: var(--color-alert);
+  --ui-state-icon: "⚠";
+}
+
+.ui-state--success {
+  --ui-state-bg: #f2faf6;
+  --ui-state-border: #b9dbc9;
+  --ui-state-accent: var(--color-success);
+  --ui-state-icon: "✓";
+}
+
+.ui-state--info {
+  --ui-state-bg: var(--color-sky);
+  --ui-state-border: var(--color-border);
+  --ui-state-accent: var(--color-forest);
+  --ui-state-icon: "ℹ";
+}

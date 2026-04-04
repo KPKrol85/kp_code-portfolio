@@ -1,10 +1,13 @@
 import { CONFIG } from "./config.js";
 import { qs, on } from "./modules/dom.js";
 import { initNav } from "./modules/nav.js";
+import { initPartials } from "./modules/partials.js";
 import { initCatalog } from "./modules/catalog.js";
 import { initProduct } from "./modules/product.js";
 import { initCart, updateCartCount } from "./modules/cart.js";
 import { initCheckout } from "./modules/checkout.js";
+import { initContactForm } from "./modules/contact.js";
+import { initLegalModal } from "./modules/legal-modal.js";
 
 const initSearch = () => {
   const form = qs(CONFIG.selectors.searchForm);
@@ -27,6 +30,15 @@ const initApp = () => {
   initProduct();
   initCart();
   initCheckout();
+  initContactForm();
+  initLegalModal();
 };
 
-document.addEventListener("DOMContentLoaded", initApp);
+const bootstrapApp = async () => {
+  await initPartials();
+  initApp();
+};
+
+document.addEventListener("DOMContentLoaded", () => {
+  void bootstrapApp();
+});

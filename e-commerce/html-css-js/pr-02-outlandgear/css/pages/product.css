@@ -26,11 +26,24 @@
 }
 
 .gallery__thumbs button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
   border: 1px solid var(--color-border);
   padding: var(--space-2xs);
   border-radius: var(--radius-sm);
   background: var(--color-white);
   cursor: pointer;
+}
+
+.gallery__thumbs button:hover:not(:disabled),
+.gallery__thumbs button:focus-visible {
+  border-color: var(--color-moss);
+  background: var(--color-sky);
+}
+
+.gallery__thumbs button[aria-current="true"] {
+  border-color: var(--color-forest);
 }
 
 .product-meta {

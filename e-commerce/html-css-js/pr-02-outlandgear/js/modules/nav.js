@@ -44,18 +44,66 @@ const setupDrawer = () => {
   const toggle = qs("[data-nav-toggle]");
   const drawer = qs("[data-nav-drawer]");
   const closeBtn = qs("[data-nav-close]");
+  const panel = qs("[data-nav-panel]", drawer);
+  const FOCUSABLE_SELECTOR = [
+    "a[href]",
+    "button:not([disabled])",
+    "input:not([disabled])",
+    "select:not([disabled])",
+    "textarea:not([disabled])",
+    "[tabindex]:not([tabindex='-1'])"
+  ].join(", ");
+  let lastActiveElement = null;
+
   if (!toggle || !drawer) return;
 
+  const getFocusableElements = () =>
+    qsa(FOCUSABLE_SELECTOR, drawer).filter(
+      (element) => !element.hasAttribute("disabled") && element.getAttribute("aria-hidden") !== "true"
+    );
+
   const open = () => {
+    lastActiveElement = document.activeElement;
     drawer.setAttribute("aria-hidden", "false");
     toggle.setAttribute("aria-expanded", "true");
-    const panel = qs("[data-nav-panel]", drawer);
-    if (panel) panel.focus();
+    const [firstFocusable] = getFocusableElements();
+    if (firstFocusable) firstFocusable.focus();
+    else if (panel) panel.focus();
   };
 
   const close = () => {
     drawer.setAttribute("aria-hidden", "true");
     toggle.setAttribute("aria-expanded", "false");
+    if (lastActiveElement instanceof HTMLElement) {
+      lastActiveElement.focus();
+      lastActiveElement = null;
+    }
+  };
+
+  const handleFocusTrap = (event) => {
+    if (drawer.getAttribute("aria-hidden") === "true" || event.key !== "Tab") return;
+
+    const focusableElements = getFocusableElements();
+    if (!focusableElements.length) {
+      event.preventDefault();
+      if (panel) panel.focus();
+      return;
+    }
+
+    const firstFocusable = focusableElements[0];
+    const lastFocusable = focusableElements[focusableElements.length - 1];
+    const activeElement = document.activeElement;
+
+    if (event.shiftKey && (activeElement === firstFocusable || !drawer.contains(activeElement))) {
+      event.preventDefault();
+      lastFocusable.focus();
+      return;
+    }
+
+    if (!event.shiftKey && activeElement === lastFocusable) {
+      event.preventDefault();
+      firstFocusable.focus();
+    }
   };
 
   on(toggle, "click", () => {
@@ -69,6 +117,8 @@ const setupDrawer = () => {
   on(drawer, "click", (event) => {
     if (event.target === drawer) close();
   });
+
+  on(drawer, "keydown", handleFocusTrap);
 
   on(document, "keydown", (event) => {
     if (event.key === "Escape") close();

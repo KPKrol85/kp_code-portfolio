@@ -1,0 +1,24 @@
+{
+  "name": "outlandgear",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "clean:dist": "node scripts/build-dist.mjs clean",
+    "build:prepare": "node scripts/build-dist.mjs prepare",
+    "build:css": "node scripts/build-dist.mjs css",
+    "build:js": "node scripts/build-dist.mjs js",
+    "build:html": "node scripts/build-dist.mjs html",
+    "build:assets": "node scripts/build-dist.mjs assets",
+    "build": "node scripts/build-dist.mjs",
+    "build:preview": "npm run build && node scripts/preview-dist.mjs",
+    "watch:css": "npm run build:prepare && postcss css/main.css -o dist/css/main.min.css --watch",
+    "watch:js": "npm run build:prepare && esbuild js/app.js --bundle --minify --outfile=dist/js/app.min.js --watch"
+  },
+  "devDependencies": {
+    "cssnano": "^7.0.7",
+    "esbuild": "^0.25.11",
+    "postcss": "^8.5.6",
+    "postcss-cli": "^11.0.1",
+    "postcss-import": "^16.1.1"
+  }
+}

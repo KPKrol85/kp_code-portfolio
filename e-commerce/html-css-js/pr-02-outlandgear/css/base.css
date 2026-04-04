@@ -56,8 +56,48 @@ h4 {
 
 :focus-visible {
   outline: none;
+  outline-offset: 2px;
   box-shadow: var(--focus-ring);
   border-radius: var(--radius-sm);
+}
+
+:where(a, button, [role="button"], input[type="submit"], input[type="button"]) {
+  transition:
+    color var(--transition-fast),
+    background-color var(--transition-fast),
+    border-color var(--transition-fast),
+    box-shadow var(--transition-fast),
+    transform var(--transition-fast),
+    opacity var(--transition-fast);
+}
+
+:where(button, [role="button"], input[type="submit"], input[type="button"], .btn, .filters__chip, .nav-toggle, .dropdown__toggle, .gallery__thumbs button) {
+  cursor: pointer;
+}
+
+:where(a, button, [role="button"], input[type="submit"], input[type="button"]):where(:not(:disabled):not([aria-disabled="true"])):active {
+  transform: translateY(1px);
+}
+
+:where(button, input[type="submit"], input[type="button"], .btn):disabled,
+:where(.btn, a, button, [role="button"], .filters__chip, .dropdown__toggle, .nav-toggle)[aria-disabled="true"] {
+  opacity: 0.55;
+  cursor: not-allowed;
+  pointer-events: none;
+  box-shadow: none;
+  transform: none;
+}
+
+main p a,
+main li a {
+  color: var(--color-forest);
+  text-decoration: underline;
+  text-underline-offset: 0.16em;
+}
+
+main p a:hover,
+main li a:hover {
+  color: var(--color-forest-dark);
 }
 
 .skip-link {

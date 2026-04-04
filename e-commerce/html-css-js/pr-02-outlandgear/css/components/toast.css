@@ -7,10 +7,36 @@
   padding: var(--space-sm) var(--space-md);
   border-radius: var(--radius-md);
   box-shadow: var(--shadow-md);
+  border-left: 4px solid var(--color-border);
   opacity: 0;
   transform: translateY(10px);
   transition: opacity var(--transition-fast), transform var(--transition-fast);
   z-index: 200;
+  display: inline-flex;
+  gap: var(--space-xs);
+  align-items: baseline;
+  max-width: min(92vw, 28rem);
+}
+
+.toast__label {
+  font-weight: 700;
+}
+
+.toast__message {
+  overflow-wrap: anywhere;
+}
+
+.toast[data-feedback-type="success"] {
+  border-left-color: var(--color-success);
+}
+
+.toast[data-feedback-type="warning"],
+.toast[data-feedback-type="error"] {
+  border-left-color: var(--color-alert);
+}
+
+.toast[data-feedback-type="info"] {
+  border-left-color: var(--color-sky);
 }
 
 .toast--visible {
