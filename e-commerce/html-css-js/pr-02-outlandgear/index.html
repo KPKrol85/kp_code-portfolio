@@ -53,11 +53,9 @@
   <!-- Body -->
   <body>
     <a class="skip-link" href="#main">Przejdź do treści</a>
+
+    <!-- Header -->
     <header class="site-header" data-partial-src="partials/header.html"></header>
-
-
-
-
 
     <!-- Main -->
     <main id="main">
@@ -153,15 +151,16 @@
       </section>
 
       <!-- Section info -->
-      <section class="section section--tight">
+      <section class="section">
         <div class="container">
+          <!-- marketplace experience -->
           <div class="marketplace-experience">
             <div class="card marketplace-experience__intro">
               <p class="kicker">Zakupy bez tarcia</p>
               <h2 class="section-header__title">Marketplace experience</h2>
               <p class="subtle">Outland Gear jest zbudowany tak, żeby szybko przejść od inspiracji do dobrze dobranego zestawu. Mniej szukania, więcej konkretu przed wyjazdem.</p>
               <div class="marketplace-experience__promise">
-                <span class="badge">Gotowy setup szybciej</span>
+                <span class="badge marketplace-experience__badge">Gotowy setup szybciej</span>
                 <p class="subtle">Selekcja oparta na praktyce: czytelne badge, jasne parametry i krótsza droga do decyzji zakupowej.</p>
               </div>
               <div class="marketplace-experience__highlights" aria-label="Najważniejsze korzyści zakupowe">
@@ -171,6 +170,7 @@
               </div>
             </div>
 
+            <!-- marketplace benefits -->
             <div class="grid grid--2 marketplace-benefits">
               <article class="card info-card">
                 <p class="kicker">Odkrywanie</p>
@@ -202,6 +202,7 @@
         </div>
       </section>
 
+      <!-- Section featured products -->
       <section class="section featured-products">
         <div class="container">
           <div class="section-header">
@@ -212,17 +213,22 @@
             </div>
             <a class="btn btn--ghost" href="kategoria.html">Przejdź do katalogu</a>
           </div>
-
+          <!-- grid -->
           <div class="grid grid--4 featured-products__grid">
+            <!-- product card 01 -->
             <article class="card product-card">
               <div class="product-card__media">
-                <img src="assets/svg/product-05.svg" alt="Termos Outland Thermal Core 0.75L" width="320" height="220" loading="lazy" decoding="async" />
+                <picture>
+                  <source srcset="assets/img/products/pr-id-105-640x427.avif" type="image/avif" />
+                  <source srcset="assets/img/products/pr-id-105-640x427.webp" type="image/webp" />
+                  <img src="assets/img/products/pr-id-105-640x427.jpg" alt="Termos Outland Thermal Core 0.75L" width="640" height="427" loading="lazy" decoding="async" />
+                </picture>
                 <span class="badge product-card__badge badge--bestseller">Bestseller</span>
               </div>
               <div class="product-card__content">
                 <p class="kicker">Termika i napoje</p>
                 <h3 class="product-card__title">Outland Thermal Core 0.75L</h3>
-                <p class="subtle">Termos próżniowy na trasę, do auta i na szybkie postoje bez utraty temperatury.</p>
+                <p class="subtle product-card__subtitle">Termos próżniowy na trasę, do auta i na szybkie postoje bez utraty temperatury.</p>
                 <div class="product-card__price">
                   139 PLN
                   <span class="product-card__price--old">169 PLN</span>
@@ -230,61 +236,77 @@
                 <p class="product-card__meta">Ocena 4.8 • 202 opinie</p>
                 <div class="product-card__actions">
                   <a class="btn btn--outline btn--small" href="produkt.html?slug=outland-thermal-core-075l">Zobacz</a>
-                  <a class="btn btn--small" href="kategoria.html">Kup teraz</a>
+                  <button class="btn btn--small" type="button" data-add-to-cart="105">Dodaj do koszyka</button>
                 </div>
               </div>
             </article>
 
+            <!-- product card 02 -->
             <article class="card product-card">
               <div class="product-card__media">
-                <img src="assets/svg/product-06.svg" alt="Namiot Outland Summit 2P" width="320" height="220" loading="lazy" decoding="async" />
+                <picture>
+                  <source srcset="assets/img/products/pr-id-112-640x427.avif" type="image/avif" />
+                  <source srcset="assets/img/products/pr-id-112-640x427.webp" type="image/webp" />
+                  <img src="assets/img/products/pr-id-112-640x427.jpg" alt="Namiot Outland Summit 2P" width="640" height="427" loading="lazy" decoding="async" />
+                </picture>
                 <span class="badge product-card__badge badge--bestseller">Bestseller</span>
               </div>
               <div class="product-card__content">
                 <p class="kicker">Kemping</p>
                 <h3 class="product-card__title">Outland Summit 2P</h3>
-                <p class="subtle">Lekki namiot 2-osobowy z szybkim rozkładaniem, kiedy liczy się sprawny setup po dojeździe.</p>
+                <p class="subtle product-card__subtitle">Lekki namiot 2-osobowy z szybkim rozkładaniem, kiedy liczy się sprawny setup po dojeździe.</p>
                 <div class="product-card__price">899 PLN</div>
                 <p class="product-card__meta">Ocena 4.7 • 140 opinii</p>
                 <div class="product-card__actions">
                   <a class="btn btn--outline btn--small" href="produkt.html?slug=outland-summit-2p">Zobacz</a>
-                  <a class="btn btn--small" href="kategoria.html">Do zestawu</a>
+                  <button class="btn btn--small" type="button" data-add-to-cart="112">Dodaj do koszyka</button>
                 </div>
               </div>
             </article>
 
+            <!-- product card 03 -->
             <article class="card product-card">
               <div class="product-card__media">
-                <img src="assets/svg/product-03.svg" alt="Plecak Outland Trek Pro 55L" width="320" height="220" loading="lazy" decoding="async" />
+                <picture>
+                  <source srcset="assets/img/products/pr-id-121-640x427.avif" type="image/avif" />
+                  <source srcset="assets/img/products/pr-id-121-640x427.webp" type="image/webp" />
+                  <img src="assets/img/products/pr-id-121-640x427.jpg" alt="Plecak Outland Trek Pro 55L" width="640" height="427" loading="lazy" decoding="async" />
+                </picture>
                 <span class="badge product-card__badge badge--bestseller">Bestseller</span>
               </div>
               <div class="product-card__content">
                 <p class="kicker">Plecaki i torby</p>
                 <h3 class="product-card__title">Outland Trek Pro 55L</h3>
-                <p class="subtle">Duży plecak wyprawowy z pokrowcem i systemem airflow na wielodniowe przejścia.</p>
+                <p class="subtle product-card__subtitle">Duży plecak wyprawowy z pokrowcem i systemem airflow na wielodniowe przejścia.</p>
                 <div class="product-card__price">749 PLN</div>
                 <p class="product-card__meta">Ocena 4.8 • 164 opinie</p>
                 <div class="product-card__actions">
                   <a class="btn btn--outline btn--small" href="produkt.html?slug=outland-trek-pro-55l">Zobacz</a>
-                  <a class="btn btn--small" href="kategoria.html">Sprawdź kategorię</a>
+                  <button class="btn btn--small" type="button" data-add-to-cart="121">Dodaj do koszyka</button>
                 </div>
               </div>
             </article>
 
+            <!-- product card 04 -->
             <article class="card product-card">
               <div class="product-card__media">
-                <img src="assets/svg/product-05.svg" alt="Apteczka Outland Med Kit Pro" width="320" height="220" loading="lazy" decoding="async" />
+                <picture>
+                  <source srcset="assets/img/products/pr-id-129-640x427.avif" type="image/avif" />
+                  <source srcset="assets/img/products/pr-id-129-640x427.webp" type="image/webp" />
+                  <img src="assets/img/products/pr-id-129-640x427.jpg" alt="Apteczka Outland Med Kit Pro" width="640" height="427" loading="lazy" decoding="async" />
+                </picture>
+
                 <span class="badge product-card__badge badge--bestseller">Bestseller</span>
               </div>
               <div class="product-card__content">
                 <p class="kicker">Akcesoria</p>
                 <h3 class="product-card__title">Outland Med Kit Pro</h3>
-                <p class="subtle">Rozszerzona apteczka na dłuższe wypady, z modułami gotowymi do szybkiego dostępu.</p>
+                <p class="subtle product-card__subtitle">Rozszerzona apteczka na dłuższe wypady, z modułami gotowymi do szybkiego dostępu.</p>
                 <div class="product-card__price">159 PLN</div>
                 <p class="product-card__meta">Ocena 4.6 • 84 opinie</p>
                 <div class="product-card__actions">
                   <a class="btn btn--outline btn--small" href="produkt.html?slug=outland-med-kit-pro">Zobacz</a>
-                  <a class="btn btn--small" href="kategoria.html">Dodaj do listy</a>
+                  <button class="btn btn--small" type="button" data-add-to-cart="129">Dodaj do koszyka</button>
                 </div>
               </div>
             </article>
@@ -292,17 +314,21 @@
         </div>
       </section>
 
-      <section class="section section--tight travel-kits">
+      <!-- Section travel kits -->
+      <section class="section travel-kits" id="travel-kits">
         <div class="container">
           <div class="section-header">
             <div class="section-header__intro">
-              <p class="kicker">Gotowe scenariusze</p>
-              <h2 class="section-header__title">Zestawy na trasę, które ułatwiają start</h2>
-              <p class="subtle section-header__lead">Trzy kierunki zakupowe zbudowane wokół realnych wyjazdów. Mniej przypadkowych wyborów, więcej sprzętu, który pracuje razem w jednym setupie.</p>
+              <p class="kicker">Gotowe zestawy</p>
+              <h2 class="section-header__title">Sprawdzone komplety na różne typy wyjazdów</h2>
+              <p class="subtle section-header__lead">
+                Dobierz sprzęt wygodniej dzięki zestawom przygotowanym pod konkretne scenariusze. Mniej przypadkowych wyborów, więcej produktów, które dobrze współpracują w trasie.
+              </p>
             </div>
             <a class="btn btn--ghost" href="kategoria.html">Buduj własny zestaw</a>
           </div>
 
+          <!-- travel kits 01 -->
           <div class="grid grid--3 travel-kits__grid">
             <article class="card travel-kit-card">
               <div class="travel-kit-card__eyebrow">
@@ -320,9 +346,9 @@
                 <span>najczęściej wybierany start</span>
                 <span>od 129 PLN</span>
               </div>
-              <a class="travel-kit-card__cta" href="kategoria.html">Zobacz zestaw trekkingowy</a>
+              <a class="travel-kit-card__cta" href="komplety.html?slug=weekend-w-gorach">Zobacz zestaw trekkingowy</a>
             </article>
-
+            <!-- travel kits 02 -->
             <article class="card travel-kit-card">
               <div class="travel-kit-card__eyebrow">
                 <span class="badge badge--eco">Road trip</span>
@@ -339,9 +365,9 @@
                 <span>łatwy do rozbudowy</span>
                 <span>pod wieloetapowy wyjazd</span>
               </div>
-              <a class="travel-kit-card__cta" href="kategoria.html">Przejdź do road trip essentials</a>
+              <a class="travel-kit-card__cta" href="komplety.html?slug=road-trip">Przejdź do road trip essentials</a>
             </article>
-
+            <!-- travel kits 03 -->
             <article class="card travel-kit-card">
               <div class="travel-kit-card__eyebrow">
                 <span class="badge badge--new">Daily carry</span>
@@ -358,25 +384,24 @@
                 <span>na co dzień i na weekend</span>
                 <span>szybki upgrade EDC</span>
               </div>
-              <a class="travel-kit-card__cta" href="kategoria.html">Odkryj daily carry</a>
+              <a class="travel-kit-card__cta" href="komplety.html?slug=daily-carry">Odkryj daily carry</a>
             </article>
           </div>
         </div>
       </section>
 
+      <!-- CTA -->
       <section class="section homepage-closing-cta">
         <div class="container">
           <div class="card homepage-closing-cta__panel">
             <div class="homepage-closing-cta__content">
-              <p class="kicker">Gotowy na kolejny krok</p>
-              <h2 class="section-header__title">Zbuduj swój setup na trasę</h2>
-              <p class="subtle">
-                Przejdź do katalogu i wybierz sprzęt dopasowany do stylu podróży, długości wyjazdu i tempa pakowania. Jeśli wolisz zacząć od sprawdzonych wyborów, zobacz rzeczy, które najczęściej
-                trafiają do koszyka.
-              </p>
+              <p class="kicker">Potrzebujesz pomocy w wyborze?</p>
+              <h2 class="section-header__title">Dobierz sprzęt do swojego wyjazdu</h2>
+              <p class="subtle">Napisz do nas, jeśli chcesz szybciej wybrać odpowiedni sprzęt na krótki wyjazd, road trip albo codzienny setup. Pomożemy zawęzić wybór i wskazać najlepszy kierunek.</p>
+
               <div class="button-group homepage-closing-cta__actions">
-                <a class="btn" href="kategoria.html">Przeglądaj produkty</a>
-                <a class="btn btn--ghost" href="produkt.html?slug=outland-thermal-core-075l">Zobacz bestseller</a>
+                <a class="btn" href="kontakt.html">Skontaktuj się</a>
+                <a class="btn btn--ghost" href="kategoria.html">Przejdź do katalogu</a>
               </div>
             </div>
             <div class="homepage-closing-cta__benefits" aria-label="Korzyści zakupowe Outland Gear">

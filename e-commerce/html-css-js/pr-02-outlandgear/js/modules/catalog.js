@@ -4,6 +4,9 @@ import { debounce, formatCurrency } from "../utils.js";
 import { addToCart, updateCartCount } from "./cart.js";
 import { showToast } from "./toast.js";
 import { createFallbackNotice } from "./fallback.js";
+import { fetchJson } from "./data.js";
+import { findProductById } from "./product-data.js";
+import { clearUiState, setUiState } from "./ui-state.js";
 
 const parseRange = (value) => {
   if (!value) return null;
@@ -26,6 +29,8 @@ const sorters = {
   priceDesc: (a, b) => b.price - a.price,
   newest: (a, b) => b.id - a.id,
 };
+
+let addToCartHandlersBound = false;
 
 
 const hasOption = (select, value) => Boolean(select && value && qsa("option", select).some((option) => option.value === value));
@@ -244,23 +249,49 @@ const renderCatalogLoadError = (grid, countEl, loadMoreBtn) => {
   }
 };
 
+const bindAddToCartTriggers = (products) => {
+  if (addToCartHandlersBound) return;
+
+  delegate(document, "[data-add-to-cart]", "click", (_, target) => {
+    const productId = Number(target.getAttribute("data-add-to-cart"));
+    const product = findProductById(products, productId);
+    if (!product) return;
+
+    const saved = addToCart(product, 1);
+    if (!saved) return;
+
+    updateCartCount();
+    showToast(`Dodano „${product.name}” do koszyka.`, { type: "success" });
+  });
+
+  addToCartHandlersBound = true;
+};
+
 export const initCatalog = async () => {
   const grid = qs(CONFIG.selectors.listingGrid);
-  if (!grid) return;
+  const staticAddToCartButtons = qsa("[data-add-to-cart]");
+  if (!grid && !staticAddToCartButtons.length) return;
 
   const form = qs(CONFIG.selectors.filtersForm);
   const countEl = qs(CONFIG.selectors.listingCount);
   const loadMoreBtn = qs(CONFIG.selectors.listingLoad);
   const searchInput = qs(CONFIG.selectors.searchInput);
+  const stateRegion = qs("[data-listing-state]");
 
   let products = [];
   try {
     products = await fetchJson("data/products.json");
   } catch (error) {
     console.error("Catalog data error", error);
-    renderCatalogLoadError(grid, countEl, loadMoreBtn);
+    if (grid) {
+      renderCatalogLoadError(grid, countEl, loadMoreBtn);
+    }
     return;
   }
+
+  bindAddToCartTriggers(products);
+
+  if (!grid) return;
 
   const initialState = parseStateFromUrl(form);
   let limit = initialState.limit;
@@ -320,17 +351,6 @@ export const initCatalog = async () => {
       updateListing();
     });
   }
-
-  delegate(grid, "[data-add-to-cart]", "click", (_, target) => {
-    const productId = Number(target.getAttribute("data-add-to-cart"));
-    const product = findProductById(products, productId);
-    if (!product) return;
-    const saved = addToCart(product, 1);
-    if (!saved) return;
-
-    updateCartCount();
-    showToast(`Dodano „${product.name}” do koszyka.`, { type: "success" });
-  });
 
   on(window, "popstate", () => {
     const stateFromUrl = parseStateFromUrl(form);

@@ -4,12 +4,10 @@
 }
 
 .section {
-  padding: var(--space-07) 0;
+  padding: var(--space-08) 0;
 }
 
-.section--tight {
-  padding: var(--space-06) 0;
-}
+/* Grids */
 
 .grid {
   display: grid;
@@ -56,17 +54,7 @@
   padding: var(--space-05);
 }
 
-.badge {
-  display: inline-flex;
-  align-items: center;
-  gap: var(--space-07);
-  font-size: 0.75rem;
-  font-weight: var(--fw-semibold);
-  padding: 0.25rem 0.5rem;
-  border-radius: 999px;
-  background: var(--color-sky);
-  color: var(--color-forest-dark);
-}
+/* Headers */
 
 .section-header {
   display: flex;
@@ -74,7 +62,7 @@
   gap: var(--space-04);
   align-items: flex-start;
   justify-content: space-between;
-  margin-bottom: var(---space-05);
+  margin-bottom: var(--space-05);
 }
 
 .section-header__intro {
@@ -85,10 +73,13 @@
 
 .section-header__title {
   margin: 0;
+  font-weight: var(--fw-semibold);
+  font-size: var(--fs-07);
 }
 
 .section-header__lead {
   margin: 0;
+    font-weight: var(--fw-medium);
 }
 
 .section-header .kicker,
@@ -157,9 +148,11 @@
   }
 }
 
+/* Text */
+
 .subtle {
   color: var(--color-muted);
-  font-size: 0.95rem;
+  font-size: var(--fs-03);
 }
 
 .section-actions {
@@ -174,7 +167,7 @@
 
 .kicker {
   text-transform: uppercase;
-  letter-spacing: var(--ls-displa);
+  letter-spacing: var(--ls-display);
   font-size: var(--fs-02);
   color: var(--color-moss);
   font-weight: var(--fw-semibold);

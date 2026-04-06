@@ -15,6 +15,7 @@ export const CONFIG = {
     listingLoad: "[data-load-more]",
     filtersForm: "[data-filters-form]",
     productRoot: "[data-product-root]",
+    kitRoot: "[data-kit-root]",
     relatedGrid: "[data-related-grid]",
     checkoutForm: "[data-checkout-form]",
     checkoutStatus: "[data-checkout-status]",

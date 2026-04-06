@@ -1,7 +1,7 @@
 import { CONFIG } from "../config.js";
 import { fetchJson } from "./data.js";
 
-const DEFAULT_IMAGE = "assets/svg/product-01.svg";
+const DEFAULT_IMAGE = "assets/svg/product-placeholder-01.svg";
 const DEFAULT_STOCK_STATUS = "Brak informacji";
 
 const isNonEmptyString = (value) => typeof value === "string" && value.trim().length > 0;

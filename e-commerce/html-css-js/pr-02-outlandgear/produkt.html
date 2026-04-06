@@ -59,23 +59,22 @@
       }
     </script>
   </head>
+
+  <!-- Body -->
   <body>
     <a class="skip-link" href="#main">Przejdź do treści</a>
+
+    <!-- Header -->
     <header class="site-header" data-partial-src="partials/header.html"></header>
 
+    <!-- Main -->
     <main id="main" class="section" data-product-root>
       <noscript>
         <div class="container">
           <section class="notice stack" role="status" aria-label="Informacje o produkcie bez JavaScriptu">
             <h2>Karta produktu w trybie podstawowym</h2>
-            <p>
-              Pełna konfiguracja wariantów, stan magazynowy i dodawanie do koszyka działają po
-              włączeniu JavaScriptu.
-            </p>
-            <p>
-              Jeśli potrzebujesz pomocy z doborem sprzętu lub chcesz złożyć zamówienie, skontaktuj
-              się z nami — przygotujemy ofertę ręcznie.
-            </p>
+            <p>Pełna konfiguracja wariantów, stan magazynowy i dodawanie do koszyka działają po włączeniu JavaScriptu.</p>
+            <p>Jeśli potrzebujesz pomocy z doborem sprzętu lub chcesz złożyć zamówienie, skontaktuj się z nami — przygotujemy ofertę ręcznie.</p>
             <p>
               <a class="btn btn--ghost btn--small" href="kontakt.html">Przejdź do kontaktu</a>
               <a class="btn btn--ghost btn--small" href="kategoria.html">Wróć do kategorii</a>
@@ -83,31 +82,47 @@
           </section>
         </div>
       </noscript>
+
+      <!-- Product -->
       <div class="container">
         <div class="ui-state" data-product-state hidden></div>
         <div class="product-layout">
           <div class="gallery">
+            <!-- main img -->
             <div class="gallery__main">
-              <img data-product-main src="assets/svg/product-01.svg" alt="Zdjęcie produktu Outland Ridge 45L" width="480" height="360" />
+              <img data-product-main src="assets/svg/product-placeholder-01.svg" alt="" width="640" height="427" />
             </div>
-            <div class="gallery__thumbs" aria-label="Miniatury">
-              <button type="button" data-product-thumb aria-label="Pokaż zdjęcie 1 produktu Outland Ridge 45L">
-                <img src="assets/svg/product-01.svg" alt="" width="96" height="64" loading="lazy" aria-hidden="true" />
+
+            <!-- gallery thumbs -->
+            <div class="gallery__thumbs" aria-label="Miniatury produktu">
+              <!-- min img 01 -->
+              <button type="button" data-product-thumb data-thumb-index="0" aria-label="Pokaż zdjęcie 1 produktu" aria-pressed="true">
+                <img src="assets/svg/product-placeholder-01.svg" alt="" width="96" height="64" loading="lazy" decoding="async" aria-hidden="true" />
               </button>
-              <button type="button" data-product-thumb aria-label="Pokaż zdjęcie 2 produktu Outland Ridge 45L">
-                <img src="assets/svg/product-02.svg" alt="" width="96" height="64" loading="lazy" aria-hidden="true" />
+
+              <!-- min img 02 -->
+              <button type="button" data-product-thumb data-thumb-index="1" aria-label="Pokaż zdjęcie 2 produktu" aria-pressed="false">
+                <img src="assets/svg/product-placeholder-01.svg" alt="" width="96" height="64" loading="lazy" decoding="async" aria-hidden="true" />
               </button>
-              <button type="button" data-product-thumb aria-label="Pokaż zdjęcie 3 produktu Outland Ridge 45L">
-                <img src="assets/svg/product-03.svg" alt="" width="96" height="64" loading="lazy" aria-hidden="true" />
+
+              <!-- min img 03 -->
+              <button type="button" data-product-thumb data-thumb-index="2" aria-label="Pokaż zdjęcie 3 produktu" aria-pressed="false">
+                <img src="assets/svg/product-placeholder-01.svg" alt="" width="96" height="64" loading="lazy" decoding="async" aria-hidden="true" />
               </button>
-              <button type="button" data-product-thumb aria-pressed="true">
-                <img src="assets/svg/product-01.svg" alt="" width="96" height="64" loading="lazy" />
+
+              <!-- min img 04 -->
+              <button type="button" data-product-thumb data-thumb-index="3" aria-label="Pokaż zdjęcie 4 produktu" aria-pressed="false">
+                <img src="assets/svg/product-placeholder-01.svg" alt="" width="96" height="64" loading="lazy" decoding="async" aria-hidden="true" />
               </button>
-              <button type="button" data-product-thumb aria-pressed="false">
-                <img src="assets/svg/product-02.svg" alt="" width="96" height="64" loading="lazy" />
+
+              <!-- min img 05 -->
+              <button type="button" data-product-thumb data-thumb-index="4" aria-label="Pokaż zdjęcie 5 produktu" aria-pressed="false">
+                <img src="assets/svg/product-placeholder-01.svg" alt="" width="96" height="64" loading="lazy" decoding="async" aria-hidden="true" />
               </button>
-              <button type="button" data-product-thumb aria-pressed="false">
-                <img src="assets/svg/product-03.svg" alt="" width="96" height="64" loading="lazy" />
+
+              <!-- min img 06 -->
+              <button type="button" data-product-thumb data-thumb-index="5" aria-label="Pokaż zdjęcie 6 produktu" aria-pressed="false">
+                <img src="assets/svg/product-placeholder-01.svg" alt="" width="96" height="64" loading="lazy" decoding="async" aria-hidden="true" />
               </button>
             </div>
           </div>
@@ -138,6 +153,8 @@
           </div>
         </div>
       </div>
+
+      <!-- Related -->
       <section class="section">
         <div class="container">
           <div class="section-header">
@@ -148,11 +165,13 @@
         </div>
       </section>
     </main>
-    <footer class="site-footer" aria-label="Stopka Outland Gear" data-partial-src="partials/footer.html"></footer>
 
+    <!-- Footer -->
+    <footer class="site-footer" aria-label="Stopka Outland Gear" data-partial-src="partials/footer.html"></footer>
 
     <div class="toast" data-toast role="status" aria-live="polite"></div>
 
+    <!-- Scripts -->
     <script type="module" src="js/app.js?v=20260405-3"></script>
   </body>
 </html>

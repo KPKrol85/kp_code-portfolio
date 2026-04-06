@@ -61,9 +61,7 @@ const setProductMetadata = (product, slug) => {
   const pageTitle = titleParts.filter(Boolean).join(" | ");
   document.title = pageTitle;
 
-  const description = [product.shortDescription, product.subcategory]
-    .filter(Boolean)
-    .join(" ");
+  const description = [product.shortDescription, product.subcategory].filter(Boolean).join(" ");
   setMetaContent('meta[name="description"]', { name: "description" }, description);
 
   const canonicalUrl = new URL(PRODUCT_PAGE_PATH, window.location.origin);
@@ -71,9 +69,7 @@ const setProductMetadata = (product, slug) => {
   const canonicalHref = canonicalUrl.href;
   const primaryImagePath = product.images?.[0] || FALLBACK_SOCIAL_IMAGE;
   const imageUrl = new URL(primaryImagePath, window.location.origin).href;
-  const imageAlt = product.name
-    ? `${product.name} — ${SITE_NAME}`
-    : "Outland Gear - outdoor i travel marketplace";
+  const imageAlt = product.name ? `${product.name} — ${SITE_NAME}` : "Outland Gear - outdoor i travel marketplace";
   const formattedPrice = Number.isFinite(product.price) ? product.price.toFixed(2) : "";
 
   const canonicalLink = document.querySelector('link[rel="canonical"]');
@@ -196,7 +192,7 @@ const renderProduct = (product) => {
 
   if (mainImage) {
     mainImage.src = images[0] || "";
-    mainImage.alt = product.name || "";
+    mainImage.alt = product.imageAlt || product.name || "";
   }
 
   setActiveThumb(0);
@@ -205,7 +201,8 @@ const renderProduct = (product) => {
     const img = qs("img", thumb);
     if (img && images[index]) {
       img.src = images[index];
-      img.alt = `${product.name} ${index + 1}`;
+      img.alt = "";
+      img.setAttribute("aria-hidden", "true");
     }
 
     thumb.setAttribute("aria-label", `Pokaż zdjęcie ${index + 1} produktu ${product.name}`);
@@ -235,9 +232,7 @@ const renderRelated = (products, current) => {
   const grid = qs(CONFIG.selectors.relatedGrid);
   if (!grid) return;
   grid.innerHTML = "";
-  const related = products
-    .filter((item) => item.category === current.category && item.id !== current.id)
-    .slice(0, 3);
+  const related = products.filter((item) => item.category === current.category && item.id !== current.id).slice(0, 3);
   related.forEach((product) => {
     const article = document.createElement("article");
     article.className = "card product-card";
@@ -280,7 +275,6 @@ const renderRelated = (products, current) => {
     grid.appendChild(article);
   });
 };
-
 
 const renderProductLoadError = (root) => {
   if (!root) return;

@@ -59,60 +59,7 @@
   align-items: stretch;
 }
 
-.category-card {
-  position: relative;
-  padding: var(--space-05);
-  gap: var(--space-04);
-}
-
-.category-card__meta {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  justify-content: space-between;
-  gap: var(--space-03);
-}
-
-.category-card__highlights {
-  display: flex;
-  flex-wrap: wrap;
-  gap: var(--space-02);
-  margin: 0;
-  padding: 0;
-}
-
-.category-card__highlights li {
-  display: inline-flex;
-  align-items: center;
-  gap: var(--space-07);
-  padding: 0.35rem var(--space-02);
-  border-radius: 999px;
-  background: var(--color-sky);
-  color: var(--color-forest-dark);
-  font-size: 0.82rem;
-  line-height: 1.25;
-}
-
-.category-card__cta {
-  margin-top: auto;
-  display: inline-flex;
-  align-items: center;
-  gap: var(--space-02);
-  color: var(--color-forest);
-  font-weight: var(--fw-semibold);
-  text-decoration: none;
-}
-
-.category-card__cta:hover,
-.category-card__cta:focus-visible {
-  color: var(--color-forest-dark);
-  text-decoration: underline;
-}
-
-.category-card__cta::after {
-  content: "→";
-  font-size: 0.95em;
-}
+/* Marketplace Experience */
 
 .marketplace-experience {
   display: grid;
@@ -141,6 +88,13 @@
   background: rgba(255, 255, 255, 0.72);
 }
 
+.marketplace-experience__badge {
+  font-weight: var(--fw-bold);
+  letter-spacing: var(--ls-caps);
+  text-transform: uppercase;
+  font-size: var(--fs-02);
+}
+
 .marketplace-experience__highlights {
   display: flex;
   flex-wrap: wrap;
@@ -150,12 +104,17 @@
 .marketplace-experience__highlights span {
   display: inline-flex;
   align-items: center;
-  padding: 0.35rem 0.7rem;
-  border-radius: 999px;
+  padding: var(--space-02) var(--space-03);
+  border-radius: var(--radius-pill);
   border: 1px solid var(--color-border);
   background: var(--color-white);
+
+  background: radial-gradient(circle at top right, rgba(131, 189, 127, 0.18), transparent 34%), linear-gradient(180deg, rgba(238, 244, 246, 0.9), rgba(255, 255, 255, 0.96));
   color: var(--color-ink);
-  font-size: 0.85rem;
+  font-size: var(--fs-02);
+  text-transform: uppercase;
+  font-weight: var(--fw-bold);
+  letter-spacing: var(--ls-caps);
 }
 
 .marketplace-benefits {
@@ -167,13 +126,7 @@
   gap: var(--space-02);
 }
 
-.marketplace-benefits .info-card .kicker {
-  margin: 0;
-}
-
-.marketplace-benefits .info-card .subtle {
-  margin: 0;
-}
+/* Featured Products */
 
 .featured-products__grid .product-card {
   min-height: 100%;
@@ -185,97 +138,16 @@
 }
 
 .featured-products__grid .product-card__content .subtle {
-  min-height: 3.8rem;
+  min-height: var(--space-09);
 }
+
+/* Travel Kits */
 
 .travel-kits__grid {
   align-items: stretch;
 }
 
-.travel-kit-card {
-  display: grid;
-  gap: var(--space-04);
-  min-height: 100%;
-  padding: var(--space-06) var(--space-05);
-  background: radial-gradient(circle at top right, rgba(131, 189, 127, 0.14), transparent 38%), linear-gradient(180deg, rgba(255, 255, 255, 0.98), rgba(244, 241, 234, 0.9));
-}
-
-.travel-kit-card h3,
-.travel-kit-card .subtle {
-  margin: 0;
-}
-
-.travel-kit-card__eyebrow {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  justify-content: space-between;
-  gap: var(--space-03);
-}
-
-.travel-kit-card__list {
-  display: grid;
-  gap: var(--space-02);
-  margin: 0;
-  padding: 0;
-}
-
-.travel-kit-card__list li {
-  display: inline-flex;
-  align-items: center;
-  gap: var(--space-02);
-  color: var(--color-ink);
-  font-size: 0.92rem;
-}
-
-.travel-kit-card__list li::before {
-  content: "";
-  width: 0.45rem;
-  height: 0.45rem;
-  border-radius: 999px;
-  background: var(--color-moss);
-  flex-shrink: 0;
-}
-
-.travel-kit-card__meta {
-  display: flex;
-  flex-wrap: wrap;
-  gap: var(--space-03);
-  color: var(--color-muted);
-  font-size: 0.85rem;
-}
-
-.travel-kit-card__meta span {
-  display: inline-flex;
-  align-items: center;
-  gap: var(--space-07);
-}
-
-.travel-kit-card__meta span::before {
-  content: "•";
-  color: var(--color-moss);
-}
-
-.travel-kit-card__cta {
-  margin-top: auto;
-  display: inline-flex;
-  align-items: center;
-  gap: var(--space-02);
-  color: var(--color-forest);
-  font-weight: var(--fw-semibold);
-  text-decoration: none;
-}
-
-.travel-kit-card__cta:hover,
-.travel-kit-card__cta:focus-visible {
-  color: var(--color-forest-dark);
-  text-decoration: underline;
-}
-
-.travel-kit-card__cta::after {
-  content: "→";
-  font-size: 0.95em;
-}
+/* Closing CTA */
 
 .homepage-closing-cta {
   padding-bottom: 0;
