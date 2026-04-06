@@ -1,8 +1,8 @@
 .ui-state {
   display: grid;
-  gap: var(--space-xs);
-  padding: var(--space-md);
-  border-radius: var(--radius-md);
+  gap: var(--space-02);
+  padding: var(--space-04);
+  border-radius: var(--radius-04);
   border: 1px solid var(--ui-state-border, var(--color-border));
   border-left: 4px solid var(--ui-state-accent, var(--color-moss));
   background: var(--ui-state-bg, var(--color-sky));
@@ -11,16 +11,16 @@
 
 .ui-state__title {
   margin: 0;
-  font-weight: 600;
+  font-weight: var(--fw-semibold);
   display: inline-flex;
   align-items: center;
-  gap: var(--space-xs);
+  gap: var(--space-02);
 }
 
 .ui-state__title::before {
   content: var(--ui-state-icon, "ℹ");
   font-size: 1rem;
-  line-height: 1;
+  line-height: var(--lh-normal);
   flex-shrink: 0;
 }
 

@@ -1,5 +1,7 @@
 import { qsa } from "./dom.js";
 
+export const PARTIALS_READY_EVENT = "partials:ready";
+
 const normalizePath = (path) => {
   const normalized = path.replace(/\/index\.html$/, "/").replace(/\/+$/, "");
   return normalized || "/";
@@ -41,9 +43,11 @@ export const initPartials = async () => {
   const hosts = qsa("[data-partial-src]");
   if (!hosts.length) {
     markCurrentNavLinks();
+    document.dispatchEvent(new CustomEvent(PARTIALS_READY_EVENT));
     return;
   }
 
   await Promise.all(hosts.map((host) => loadPartial(host)));
   markCurrentNavLinks();
+  document.dispatchEvent(new CustomEvent(PARTIALS_READY_EVENT));
 };

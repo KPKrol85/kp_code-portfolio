@@ -1,15 +1,15 @@
 .site-footer {
-  margin-top: var(--space-3xl);
+  margin-top: var(--space-09);
   background:
     radial-gradient(circle at top right, rgba(131, 189, 127, 0.25), transparent 38%),
     linear-gradient(150deg, #0d1722, #0f2230 65%, #102e3a);
   color: var(--color-white);
-  padding: var(--space-2xl) 0 var(--space-lg);
+  padding: var(--space-07) 0 var(--space-05);
 }
 
 .site-footer a {
   color: rgba(255, 255, 255, 0.9);
-  border-radius: var(--radius-sm);
+  border-radius: var(--radius-03);
 }
 
 .site-footer a:hover,
@@ -23,7 +23,7 @@
 
 .site-footer h2,
 .site-footer h3 {
-  margin-bottom: var(--space-sm);
+  margin-bottom: var(--space-03);
 }
 
 .site-footer .subtle {
@@ -32,31 +32,31 @@
 
 .site-footer__promo {
   display: grid;
-  gap: var(--space-md);
+  gap: var(--space-04);
   align-items: center;
   background: rgba(255, 255, 255, 0.06);
   border: 1px solid rgba(255, 255, 255, 0.15);
   backdrop-filter: blur(5px);
-  margin-bottom: var(--space-xl);
+  margin-bottom: var(--space-06);
 }
 
 .site-footer__promo h2 {
-  margin-bottom: var(--space-xs);
+  margin-bottom: var(--space-02);
 }
 
 .site-footer__subscribe {
   display: grid;
-  gap: var(--space-xs);
+  gap: var(--space-02);
 }
 
 .site-footer__subscribe input {
   width: 100%;
-  border-radius: var(--radius-md);
+  border-radius: var(--radius-04);
   border: 1px solid rgba(255, 255, 255, 0.25);
   background: rgba(0, 0, 0, 0.25);
   color: var(--color-white);
   min-height: 46px;
-  padding: 0 var(--space-md);
+  padding: 0 var(--space-04);
 }
 
 .site-footer__subscribe input::placeholder {
@@ -65,7 +65,7 @@
 
 .site-footer__grid {
   display: grid;
-  gap: var(--space-xl);
+  gap: var(--space-06);
 }
 
 .site-footer__brand {
@@ -75,7 +75,7 @@
 .site-footer__social {
   display: flex;
   flex-wrap: wrap;
-  gap: var(--space-sm);
+  gap: var(--space-03);
   list-style: none;
   padding: 0;
   margin: 0;
@@ -91,16 +91,16 @@
 }
 
 .site-footer__bottom {
-  margin-top: var(--space-xl);
+  margin-top: var(--space-06);
   border-top: 1px solid rgba(255, 255, 255, 0.2);
-  padding-top: var(--space-md);
+  padding-top: var(--space-04);
   font-size: 0.85rem;
   color: rgba(255, 255, 255, 0.75);
   display: flex;
   flex-wrap: wrap;
   align-items: center;
   justify-content: space-between;
-  gap: var(--space-sm);
+  gap: var(--space-03);
 }
 
 .site-footer__bottom p {
@@ -109,14 +109,14 @@
 
 .site-footer__meta-links {
   display: flex;
-  gap: var(--space-sm);
+  gap: var(--space-03);
   flex-wrap: wrap;
 }
 
 @media (min-width: 700px) {
   .site-footer__promo {
     grid-template-columns: 1.35fr 1fr;
-    padding: var(--space-lg);
+    padding: var(--space-05);
   }
 
   .site-footer__subscribe {

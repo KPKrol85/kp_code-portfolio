@@ -2,14 +2,15 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: var(--space-xs);
-  padding: 0.65rem 1.1rem;
-  border-radius: 999px;
+  gap: var(--space-02);
+  padding: var(--space-02) var(--space-04);
+  border-radius: var(--radius-04);
   border: 1px solid transparent;
   background: var(--color-forest);
   color: var(--color-white);
-  font-weight: 600;
-  line-height: 1.2;
+  font-size: var(--fs-03);
+  font-weight: var(--fw-semibold);
+  line-height: var(---ls-normal);
   text-decoration: none;
   transition:
     background-color var(--transition-fast),
@@ -75,8 +76,8 @@
 }
 
 .btn--small {
-  padding: 0.45rem 0.85rem;
-  font-size: 0.9rem;
+  padding: var(--space-02) var(--space-03);
+  font-size: var(--fs-03);
 }
 
 .btn__icon {
@@ -87,5 +88,5 @@
 .button-group {
   display: flex;
   flex-wrap: wrap;
-  gap: var(--space-sm);
+  gap: var(--space-03);
 }

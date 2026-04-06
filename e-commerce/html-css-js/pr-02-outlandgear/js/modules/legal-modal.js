@@ -140,7 +140,9 @@ export const initLegalModal = () => {
     readStorageFlag(window.localStorage, STORAGE_KEY) ||
     readStorageFlag(window.sessionStorage, SESSION_STORAGE_KEY);
 
-  if (!alreadyAccepted) {
+  const shouldAutoOpen = modal.dataset.legalAutoOpen === "true";
+
+  if (shouldAutoOpen && !alreadyAccepted) {
     window.setTimeout(openModal, 700);
   }
 };

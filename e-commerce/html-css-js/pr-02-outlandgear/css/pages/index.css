@@ -1,9 +1,35 @@
-
 /* Hero */
 
+.hero__title {
+  font-size: var(--fs-hero-title);
+  line-height: var(--lh-tight);
+  letter-spacing: var(--ls-tighter);
+  color: var(--color-white);
+}
+@supports ((-webkit-background-clip: text) or (background-clip: text)) {
+  .hero__title {
+    background: linear-gradient(180deg, rgb(255 255 255 / 1) 0%, rgb(244 247 242 / 0.98) 55%, rgb(225 233 223 / 0.96) 100%);
+    background-clip: text;
+    -webkit-background-clip: text;
+    color: transparent;
+  }
+}
+
+.hero__subtitle {
+  max-inline-size: 32ch;
+  font-size: var(--fs-04);
+  line-height: var(--lh-relaxe);
+  color: rgb(255 255 255 / 0.92);
+}
+
 .hero__media {
+  position: relative;
   display: flex;
   align-items: stretch;
+  padding: var(--space-03);
+  border-radius: var(--radius-05);
+  background:
+    radial-gradient(circle at 50% 50%, rgb(255 255 255 / 0.08) 0%, rgb(255 255 255 / 0.04) 42%, transparent 78%), linear-gradient(180deg, rgb(255 255 255 / 0.1) 0%, rgb(255 255 255 / 0.05) 100%);
 }
 
 .hero__media picture {
@@ -15,9 +41,19 @@
   display: block;
   inline-size: 100%;
   block-size: auto;
-  border-radius: inherit;
+  border-radius: var(--radius-02);
   object-fit: cover;
 }
+
+.hero .btn--ghost {
+  color: var(--color-white);
+  border: 1px solid color-mix(in srgb, var(--color-white) 24%, transparent);
+}
+.hero .btn--ghost:hover {
+  color: var(--color-ink);
+}
+
+/* Categories */
 
 .category-showcase {
   align-items: stretch;
@@ -25,8 +61,8 @@
 
 .category-card {
   position: relative;
-  padding: var(--space-lg);
-  gap: var(--space-md);
+  padding: var(--space-05);
+  gap: var(--space-04);
 }
 
 .category-card__meta {
@@ -34,13 +70,13 @@
   flex-wrap: wrap;
   align-items: center;
   justify-content: space-between;
-  gap: var(--space-sm);
+  gap: var(--space-03);
 }
 
 .category-card__highlights {
   display: flex;
   flex-wrap: wrap;
-  gap: var(--space-xs);
+  gap: var(--space-02);
   margin: 0;
   padding: 0;
 }
@@ -48,8 +84,8 @@
 .category-card__highlights li {
   display: inline-flex;
   align-items: center;
-  gap: var(--space-2xs);
-  padding: 0.35rem 0.65rem;
+  gap: var(--space-07);
+  padding: 0.35rem var(--space-02);
   border-radius: 999px;
   background: var(--color-sky);
   color: var(--color-forest-dark);
@@ -61,9 +97,9 @@
   margin-top: auto;
   display: inline-flex;
   align-items: center;
-  gap: var(--space-xs);
+  gap: var(--space-02);
   color: var(--color-forest);
-  font-weight: 600;
+  font-weight: var(--fw-semibold);
   text-decoration: none;
 }
 
@@ -80,16 +116,14 @@
 
 .marketplace-experience {
   display: grid;
-  gap: var(--space-lg);
+  gap: var(--space-05);
 }
 
 .marketplace-experience__intro {
-  padding: var(--space-xl);
+  padding: var(--space-06);
   display: grid;
-  gap: var(--space-md);
-  background:
-    radial-gradient(circle at top right, rgba(131, 189, 127, 0.18), transparent 34%),
-    linear-gradient(180deg, rgba(238, 244, 246, 0.9), rgba(255, 255, 255, 0.96));
+  gap: var(--space-04);
+  background: radial-gradient(circle at top right, rgba(131, 189, 127, 0.18), transparent 34%), linear-gradient(180deg, rgba(238, 244, 246, 0.9), rgba(255, 255, 255, 0.96));
 }
 
 .marketplace-experience__intro .section-header__title,
@@ -100,9 +134,9 @@
 
 .marketplace-experience__promise {
   display: grid;
-  gap: var(--space-xs);
-  padding: var(--space-md);
-  border-radius: var(--radius-md);
+  gap: var(--space-02);
+  padding: var(--space-04);
+  border-radius: var(--radius-04);
   border: 1px solid var(--color-border);
   background: rgba(255, 255, 255, 0.72);
 }
@@ -110,7 +144,7 @@
 .marketplace-experience__highlights {
   display: flex;
   flex-wrap: wrap;
-  gap: var(--space-xs);
+  gap: var(--space-02);
 }
 
 .marketplace-experience__highlights span {
@@ -129,8 +163,8 @@
 }
 
 .marketplace-benefits .info-card {
-  padding: var(--space-md) var(--space-lg);
-  gap: var(--space-xs);
+  padding: var(--space-04) var(--space-05);
+  gap: var(--space-02);
 }
 
 .marketplace-benefits .info-card .kicker {
@@ -160,12 +194,10 @@
 
 .travel-kit-card {
   display: grid;
-  gap: var(--space-md);
+  gap: var(--space-04);
   min-height: 100%;
-  padding: var(--space-xl) var(--space-lg);
-  background:
-    radial-gradient(circle at top right, rgba(131, 189, 127, 0.14), transparent 38%),
-    linear-gradient(180deg, rgba(255, 255, 255, 0.98), rgba(244, 241, 234, 0.9));
+  padding: var(--space-06) var(--space-05);
+  background: radial-gradient(circle at top right, rgba(131, 189, 127, 0.14), transparent 38%), linear-gradient(180deg, rgba(255, 255, 255, 0.98), rgba(244, 241, 234, 0.9));
 }
 
 .travel-kit-card h3,
@@ -178,12 +210,12 @@
   flex-wrap: wrap;
   align-items: center;
   justify-content: space-between;
-  gap: var(--space-sm);
+  gap: var(--space-03);
 }
 
 .travel-kit-card__list {
   display: grid;
-  gap: var(--space-xs);
+  gap: var(--space-02);
   margin: 0;
   padding: 0;
 }
@@ -191,7 +223,7 @@
 .travel-kit-card__list li {
   display: inline-flex;
   align-items: center;
-  gap: var(--space-xs);
+  gap: var(--space-02);
   color: var(--color-ink);
   font-size: 0.92rem;
 }
@@ -208,7 +240,7 @@
 .travel-kit-card__meta {
   display: flex;
   flex-wrap: wrap;
-  gap: var(--space-sm);
+  gap: var(--space-03);
   color: var(--color-muted);
   font-size: 0.85rem;
 }
@@ -216,7 +248,7 @@
 .travel-kit-card__meta span {
   display: inline-flex;
   align-items: center;
-  gap: var(--space-2xs);
+  gap: var(--space-07);
 }
 
 .travel-kit-card__meta span::before {
@@ -228,9 +260,9 @@
   margin-top: auto;
   display: inline-flex;
   align-items: center;
-  gap: var(--space-xs);
+  gap: var(--space-02);
   color: var(--color-forest);
-  font-weight: 600;
+  font-weight: var(--fw-semibold);
   text-decoration: none;
 }
 
@@ -251,16 +283,14 @@
 
 .homepage-closing-cta__panel {
   display: grid;
-  gap: var(--space-lg);
-  padding: var(--space-xl);
-  background:
-    radial-gradient(circle at top right, rgba(131, 189, 127, 0.18), transparent 34%),
-    linear-gradient(180deg, rgba(238, 244, 246, 0.92), rgba(255, 255, 255, 0.98));
+  gap: var(--space-05);
+  padding: var(--space-06);
+  background: radial-gradient(circle at top right, rgba(131, 189, 127, 0.18), transparent 34%), linear-gradient(180deg, rgba(238, 244, 246, 0.92), rgba(255, 255, 255, 0.98));
 }
 
 .homepage-closing-cta__content {
   display: grid;
-  gap: var(--space-md);
+  gap: var(--space-04);
 }
 
 .homepage-closing-cta__content .kicker,
@@ -276,13 +306,13 @@
 .homepage-closing-cta__benefits {
   display: flex;
   flex-wrap: wrap;
-  gap: var(--space-xs);
+  gap: var(--space-02);
 }
 
 .homepage-closing-cta__benefits span {
   display: inline-flex;
   align-items: center;
-  padding: 0.4rem 0.8rem;
+  padding: var(--space-02) 0.8rem;
   border-radius: 999px;
   border: 1px solid var(--color-border);
   background: var(--color-white);

@@ -1,13 +1,13 @@
-import { CONFIG } from "./config.js";
-import { qs, on } from "./modules/dom.js";
-import { initNav } from "./modules/nav.js";
-import { initPartials } from "./modules/partials.js";
-import { initCatalog } from "./modules/catalog.js";
-import { initProduct } from "./modules/product.js";
-import { initCart, updateCartCount } from "./modules/cart.js";
-import { initCheckout } from "./modules/checkout.js";
-import { initContactForm } from "./modules/contact.js";
-import { initLegalModal } from "./modules/legal-modal.js";
+import { CONFIG } from "./config.js?v=20260405-3";
+import { qs, on } from "./modules/dom.js?v=20260405-3";
+import { initNav } from "./modules/nav.js?v=20260405-3";
+import { initPartials, PARTIALS_READY_EVENT } from "./modules/partials.js?v=20260405-3";
+import { initCatalog } from "./modules/catalog.js?v=20260405-3";
+import { initProduct } from "./modules/product.js?v=20260405-3";
+import { initCart, updateCartCount } from "./modules/cart.js?v=20260405-3";
+import { initCheckout } from "./modules/checkout.js?v=20260405-3";
+import { initContactForm } from "./modules/contact.js?v=20260405-3";
+import { initLegalModal } from "./modules/legal-modal.js?v=20260405-3";
 
 const initSearch = () => {
   const form = qs(CONFIG.selectors.searchForm);
@@ -22,7 +22,12 @@ const initSearch = () => {
   });
 };
 
+let appInitialized = false;
+
 const initApp = () => {
+  if (appInitialized) return;
+  appInitialized = true;
+
   initNav();
   initSearch();
   updateCartCount();
@@ -35,8 +40,15 @@ const initApp = () => {
 };
 
 const bootstrapApp = async () => {
+  document.addEventListener(
+    PARTIALS_READY_EVENT,
+    () => {
+      initApp();
+    },
+    { once: true }
+  );
+
   await initPartials();
-  initApp();
 };
 
 document.addEventListener("DOMContentLoaded", () => {

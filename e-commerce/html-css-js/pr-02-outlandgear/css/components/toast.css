@@ -1,11 +1,11 @@
 .toast {
   position: fixed;
-  bottom: var(--space-lg);
-  right: var(--space-lg);
+  bottom: var(--space-05);
+  right: var(--space-05);
   background: var(--color-ink);
   color: var(--color-white);
-  padding: var(--space-sm) var(--space-md);
-  border-radius: var(--radius-md);
+  padding: var(--space-03) var(--space-04);
+  border-radius: var(--radius-04);
   box-shadow: var(--shadow-md);
   border-left: 4px solid var(--color-border);
   opacity: 0;
@@ -13,7 +13,7 @@
   transition: opacity var(--transition-fast), transform var(--transition-fast);
   z-index: 200;
   display: inline-flex;
-  gap: var(--space-xs);
+  gap: var(--space-02);
   align-items: baseline;
   max-width: min(92vw, 28rem);
 }

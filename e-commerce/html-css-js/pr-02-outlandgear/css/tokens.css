@@ -18,20 +18,96 @@
   --font-display: "Sora", "Inter", system-ui, sans-serif;
   --shadow-sm: 0 1px 2px rgba(17, 24, 20, 0.08);
   --shadow-md: 0 8px 24px rgba(17, 24, 20, 0.12);
-  --radius-sm: 8px;
-  --radius-md: 12px;
-  --radius-lg: 18px;
-  --space-2xs: 0.25rem;
-  --space-xs: 0.5rem;
-  --space-sm: 0.75rem;
-  --space-md: 1rem;
-  --space-lg: 1.5rem;
-  --space-xl: 2rem;
-  --space-2xl: 3rem;
-  --space-3xl: 4rem;
+
+  /* Radius */
+  --radius-01: 4px;
+  --radius-02: 6px;
+  --radius-03: 8px;
+  --radius-04: 12px;
+  --radius-05: 16px;
+  --radius-06: 20px;
+  --radius-pill: 9999px;
+  /* Radius Patterns */
+  --radius-top-soft: 12px 12px 6px 6px;
+  --radius-bottom-soft: 6px 6px 12px 12px;
+  --radius-diagonal-soft: 12px 6px 12px 6px;
+
+  /* Font Sizes */
+  --fs-01: 0.625rem;
+  --fs-02: 0.75rem;
+  --fs-03: 0.875rem;
+  --fs-04: 1rem;
+  --fs-05: 1.125rem;
+  --fs-06: 1.25rem;
+  --fs-07: 1.5rem;
+  --fs-08: 1.75rem;
+  --fs-09: 2rem;
+  --fs-10: 3rem;
+  --fs-hero-title: clamp(2.3rem, 4vw, 2.9rem);
+
+  /* Font Weights */
+  --fw-regular: 400;
+  --fw-medium: 500;
+  --fw-semibold: 600;
+  --fw-bold: 700;
+
+  /* Spacing */
+  --space-01: 0.25rem;
+  --space-02: 0.5rem;
+  --space-03: 0.75rem;
+  --space-04: 1rem;
+  --space-05: 1.25rem;
+  --space-06: 1.5rem;
+  --space-07: 2rem;
+  --space-08: 2.5rem;
+  --space-09: 3rem;
+  --space-10: 4rem;
+
+  /* Letter Spacing */
+  --ls-tighter: -0.03em;
+  --ls-tight: -0.02em;
+  --ls-snug: -0.01em;
+  --ls-normal: 0;
+  --ls-wide: 0.01em;
+  --ls-wider: 0.02em;
+  --ls-caps: 0.06em;
+  --ls-display: 0.08em;
+
+  /* Line Heights */
+  --lh-normal: 1;
+  --lh-tight: 1.1;
+  --lh-heading: 1.2;
+  --lh-snug: 1.35;
+  --lh-base: 1.5;
+  --lh-relaxed: 1.65;
+  --lh-loose: 1.8;
+
+  /* Icon Sizes */
+  --size-icon-01: 0.75rem; /* 12px */
+  --size-icon-02: 1rem; /* 16px */
+  --size-icon-03: 1.25rem; /* 20px */
+  --size-icon-04: 1.5rem; /* 24px */
+  --size-icon-05: 1.75rem; /* 28px */
+  --size-icon-06: 2rem; /* 32px */
+
+  /* Brand Sizes */
+  --size-brand-01: 1.875rem; /* 30px */
+  --size-brand-02: 2.25rem; /* 36px */
+  --size-brand-03: 2.5rem; /* 40px */
+  --size-brand-04: 3rem; /* 48px */
+  --size-brand-05: 3.5rem; /* 56px */
+  --size-brand-06: 4rem; /* 64px */
+
+  /* Container */
   --container: 1200px;
+
+  /* Focus Ring */
   --focus-ring: 0 0 0 3px rgba(31, 76, 58, 0.25);
+
+  /* Motion */
   --ease-standard: ease;
+
+  /* Transitions */
   --duration-fast: 150ms;
   --transition-fast: var(--duration-fast) var(--ease-standard);
 }

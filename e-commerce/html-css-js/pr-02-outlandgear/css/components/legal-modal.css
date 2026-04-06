@@ -4,7 +4,7 @@
   z-index: 300;
   display: grid;
   place-items: center;
-  padding: var(--space-md);
+  padding: var(--space-04);
 }
 
 .outland-legal-modal[hidden] {
@@ -23,7 +23,7 @@
   position: relative;
   z-index: 1;
   width: min(100%, 640px);
-  border-radius: var(--radius-lg);
+  border-radius: var(--radius-05);
   border: 1px solid rgba(255, 255, 255, 0.16);
   background:
     radial-gradient(circle at 85% -30%, rgba(131, 189, 127, 0.18), transparent 38%),
@@ -43,7 +43,7 @@
 }
 
 .outland-legal-modal__title {
-  margin-top: var(--space-xs);
+  margin-top: var(--space-02);
   color: var(--color-white);
 }
 
@@ -62,14 +62,14 @@
 .outland-legal-modal__links {
   display: flex;
   flex-wrap: wrap;
-  gap: var(--space-md);
-  margin-bottom: var(--space-lg);
+  gap: var(--space-04);
+  margin-bottom: var(--space-05);
 }
 
 .outland-legal-modal__actions {
   display: flex;
   flex-wrap: wrap;
-  gap: var(--space-sm);
+  gap: var(--space-03);
 }
 
 .outland-legal-modal__actions .btn--ghost {

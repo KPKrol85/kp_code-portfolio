@@ -13,7 +13,7 @@ body {
   font-family: var(--font-sans);
   color: var(--color-text);
   background: var(--color-sand);
-  line-height: 1.5;
+  line-height: var(--lh-base);
 }
 
 img {
@@ -42,7 +42,8 @@ ol {
 }
 
 p {
-  margin: 0 0 var(--space-md);
+  margin: 0 0 var(--space-04);
+  text-wrap: pretty;
 }
 
 h1,
@@ -50,15 +51,16 @@ h2,
 h3,
 h4 {
   font-family: var(--font-display);
-  margin: 0 0 var(--space-md);
+  margin: 0 0 var(--space-04);
   color: var(--color-ink);
+  text-wrap: balance;
 }
 
 :focus-visible {
   outline: none;
   outline-offset: 2px;
   box-shadow: var(--focus-ring);
-  border-radius: var(--radius-sm);
+  border-radius: var(--radius-05);
 }
 
 :where(a, button, [role="button"], input[type="submit"], input[type="button"]) {
@@ -106,14 +108,14 @@ main li a:hover {
   top: 0;
   background: var(--color-forest);
   color: var(--color-white);
-  padding: var(--space-sm) var(--space-md);
+  padding: var(--space-03) var(--space-04);
   z-index: 999;
 }
 
 .skip-link:focus {
-  left: var(--space-md);
-  top: var(--space-md);
-  border-radius: var(--radius-sm);
+  left: var(--space-04);
+  top: var(--space-04);
+  border-radius: var(--radius-03);
 }
 
 .visually-hidden {

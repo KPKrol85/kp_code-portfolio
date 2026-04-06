@@ -13,5 +13,5 @@ td {
 
 th {
   background: var(--color-sky);
-  font-weight: 600;
+  font-weight: var(--fw-semibold);
 }
