@@ -35,11 +35,10 @@ export const initLegalModal = () => {
   if (!modal) return;
 
   const panel = qs("[data-legal-modal-panel]", modal);
-  const closeTargets = qsa("[data-legal-close]", modal);
   const openTriggers = qsa("[data-legal-open]");
   const acceptButton = qs("[data-legal-accept]", modal);
 
-  if (!panel) return;
+  if (!panel || !acceptButton) return;
 
   let lastFocusedElement = null;
 
@@ -70,23 +69,19 @@ export const initLegalModal = () => {
     }
   };
 
-  const closeModal = () => {
-    if (modal.getAttribute("aria-hidden") === "true") return;
+  const acceptAndClose = () => {
+    const acceptedAt = new Date().toISOString();
+    const persisted = writeStorageFlag(window.localStorage, STORAGE_KEY, acceptedAt);
+    if (!persisted) {
+      writeStorageFlag(window.sessionStorage, SESSION_STORAGE_KEY, acceptedAt);
+    }
+
     setModalVisibility(false);
     unlockScroll();
 
     if (lastFocusedElement instanceof HTMLElement) {
       lastFocusedElement.focus();
       lastFocusedElement = null;
-    }
-  };
-
-  const acceptAndClose = () => {
-    closeModal();
-    const acceptedAt = new Date().toISOString();
-    const persisted = writeStorageFlag(window.localStorage, STORAGE_KEY, acceptedAt);
-    if (!persisted) {
-      writeStorageFlag(window.sessionStorage, SESSION_STORAGE_KEY, acceptedAt);
     }
   };
 
@@ -123,18 +118,8 @@ export const initLegalModal = () => {
     });
   });
 
-  closeTargets.forEach((target) => {
-    on(target, "click", closeModal);
-  });
-
   on(acceptButton, "click", acceptAndClose);
-  on(modal, "keydown", (event) => {
-    if (event.key === "Escape") {
-      closeModal();
-      return;
-    }
-    trapFocus(event);
-  });
+  on(modal, "keydown", trapFocus);
 
   const alreadyAccepted =
     readStorageFlag(window.localStorage, STORAGE_KEY) ||

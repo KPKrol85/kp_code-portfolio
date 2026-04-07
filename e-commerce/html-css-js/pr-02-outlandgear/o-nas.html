@@ -23,7 +23,7 @@
     <meta name="twitter:description" content="Poznaj Outland Gear — filozofia marki, dostawa i zwroty." />
     <meta name="twitter:image" content="https://outlandgear.example.com/assets/svg/social-share-placeholder.svg" />
     <link rel="icon" href="assets/svg/favicon.svg" type="image/svg+xml" />
-    <link rel="stylesheet" href="css/main.css?v=20260405" />
+    <link rel="stylesheet" href="css/main.css?v=20260407-breadcrumbs" />
     <script type="application/ld+json">
       {
         "@context": "https://schema.org",
@@ -53,46 +53,56 @@
     <a class="skip-link" href="#main">Przejdź do treści</a>
     <header class="site-header" data-partial-src="partials/header.html"></header>
 
-    <main id="main" class="section">
-      <div class="container">
-        <div class="section-header">
-          <div class="section-header__intro">
+    <main id="main">
+      <section class="hero-subpage">
+        <div class="container">
+          <div class="hero-subpage__content">
+            <nav class="breadcrumbs" aria-label="Breadcrumb">
+              <ol class="breadcrumbs__list">
+                <li class="breadcrumbs__item"><a class="breadcrumbs__link" href="index.html">Strona główna</a></li>
+                <li class="breadcrumbs__item"><span class="breadcrumbs__current" aria-current="page">O nas</span></li>
+              </ol>
+            </nav>
             <p class="kicker">Outland Gear</p>
             <h1>O marce i standardach obsługi</h1>
           </div>
         </div>
-        <div class="grid grid--2">
-          <article class="card info-card">
-            <h2>Nasza misja</h2>
-            <p>
-              Outland Gear łączy nowoczesny design z funkcjonalnością outdoor. Wybieramy sprzęt, który sprawdza się
-              w podróży, na campingu i podczas weekendowych wypadów.
-            </p>
-          </article>
-          <article class="card info-card">
-            <h2>Dostawa i zwroty</h2>
-            <ul class="stack">
-              <li>Wysyłka w 24h dla zamówień złożonych do 15:00.</li>
-              <li>Zwroty do 30 dni bez podawania przyczyny.</li>
-              <li>Wsparcie doradców w doborze rozmiaru i sprzętu.</li>
-            </ul>
-          </article>
-          <article class="card info-card">
-            <h2>Wybór produktów</h2>
-            <p>
-              Stawiamy na wyselekcjonowane kolekcje. Każdy produkt ma opis, specyfikację i rekomendacje, aby szybko
-              porównać parametry.
-            </p>
-          </article>
-          <article class="card info-card">
-            <h2>Jakość obsługi</h2>
-            <p>
-              Marketplace vibe, ale wciąż personalne podejście. Zespół Outland Gear odpowiada na zapytania w ciągu 2
-              godzin roboczych.
-            </p>
-          </article>
+      </section>
+      <section class="section">
+        <div class="container">
+          <div class="grid grid--2">
+            <article class="card info-card">
+              <h2>Nasza misja</h2>
+              <p>
+                Outland Gear łączy nowoczesny design z funkcjonalnością outdoor. Wybieramy sprzęt, który sprawdza się
+                w podróży, na campingu i podczas weekendowych wypadów.
+              </p>
+            </article>
+            <article class="card info-card">
+              <h2>Dostawa i zwroty</h2>
+              <ul class="stack">
+                <li>Wysyłka w 24h dla zamówień złożonych do 15:00.</li>
+                <li>Zwroty do 30 dni bez podawania przyczyny.</li>
+                <li>Wsparcie doradców w doborze rozmiaru i sprzętu.</li>
+              </ul>
+            </article>
+            <article class="card info-card">
+              <h2>Wybór produktów</h2>
+              <p>
+                Stawiamy na wyselekcjonowane kolekcje. Każdy produkt ma opis, specyfikację i rekomendacje, aby szybko
+                porównać parametry.
+              </p>
+            </article>
+            <article class="card info-card">
+              <h2>Jakość obsługi</h2>
+              <p>
+                Marketplace vibe, ale wciąż personalne podejście. Zespół Outland Gear odpowiada na zapytania w ciągu 2
+                godzin roboczych.
+              </p>
+            </article>
+          </div>
         </div>
-      </div>
+      </section>
     </main>
     <footer class="site-footer" aria-label="Stopka Outland Gear" data-partial-src="partials/footer.html"></footer>
 

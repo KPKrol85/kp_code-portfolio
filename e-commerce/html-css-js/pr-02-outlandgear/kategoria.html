@@ -23,7 +23,7 @@
     <meta name="twitter:description" content="Przeglądaj sprzęt outdoor i travel gear Outland Gear. Filtrowanie po cenie, ocenach i badge." />
     <meta name="twitter:image" content="https://outlandgear.example.com/assets/svg/social-share-placeholder.svg" />
     <link rel="icon" href="assets/svg/favicon.svg" type="image/svg+xml" />
-    <link rel="stylesheet" href="css/main.css?v=20260405" />
+    <link rel="stylesheet" href="css/main.css?v=20260407-breadcrumbs" />
     <script type="application/ld+json">
       {
         "@context": "https://schema.org",
@@ -59,7 +59,22 @@
 
 <!-- Main -->
     <main id="main">
-      
+      <section class="hero-subpage">
+        <div class="container">
+          <div class="hero-subpage__content">
+            <nav class="breadcrumbs" aria-label="Breadcrumb">
+              <ol class="breadcrumbs__list">
+                <li class="breadcrumbs__item"><a class="breadcrumbs__link" href="index.html">Strona główna</a></li>
+                <li class="breadcrumbs__item"><span class="breadcrumbs__current" aria-current="page">Katalog</span></li>
+              </ol>
+            </nav>
+            <p class="kicker">Marketplace</p>
+            <h1>Nowości i bestsellery</h1>
+            <p class="hero-subpage__lead">Wszystkie produkty Outland Gear w jednym miejscu.</p>
+          </div>
+        </div>
+      </section>
+
       <section class="section">
         <div class="container">
           <img src="assets/svg/banner.svg" alt="Nowa kolekcja Outland Gear" width="1200" height="320" />
@@ -67,14 +82,7 @@
       </section>
       <section class="section">
         <div class="container">
-          <div class="section-header">
-            <div class="section-header__intro">
-              <p class="kicker">Marketplace</p>
-              <h1>Nowości i bestsellery</h1>
-              <p class="subtle section-header__lead">Wszystkie produkty Outland Gear w jednym miejscu.</p>
-            </div>
-            <p class="badge" data-listing-count>0 produktów</p>
-          </div>
+          <p class="badge" data-listing-count>0 produktów</p>
           <div class="listing-layout">
             <aside class="filters">
               <form class="filters__form" data-filters-form>

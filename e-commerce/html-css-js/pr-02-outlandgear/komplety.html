@@ -23,7 +23,7 @@
     <meta name="twitter:description" content="Sprawdzone komplety Outland Gear na różne typy wyjazdów: krótkie trekkingi, road tripy i codzienny daily carry." />
     <meta name="twitter:image" content="https://outlandgear.example.com/assets/svg/social-share-placeholder.svg" />
     <link rel="icon" href="assets/svg/favicon.svg" type="image/svg+xml" />
-    <link rel="stylesheet" href="css/main.css?v=20260405" />
+    <link rel="stylesheet" href="css/main.css?v=20260407-breadcrumbs" />
     <script type="application/ld+json">
       {
         "@context": "https://schema.org",
@@ -54,7 +54,7 @@
 
     <header class="site-header" data-partial-src="partials/header.html"></header>
 
-    <main id="main" class="section" data-kit-root>
+    <main id="main" data-kit-root>
       <noscript>
         <div class="container">
           <section class="notice stack" role="status" aria-label="Informacje o kompletach bez JavaScriptu">
@@ -68,13 +68,29 @@
         </div>
       </noscript>
 
-      <div class="container">
-        <div class="ui-state" data-kit-state hidden></div>
+      <section class="hero-subpage">
+        <div class="container">
+          <div class="hero-subpage__content">
+            <nav class="breadcrumbs" aria-label="Breadcrumb">
+              <ol class="breadcrumbs__list">
+                <li class="breadcrumbs__item"><a class="breadcrumbs__link" href="index.html">Strona główna</a></li>
+                <li class="breadcrumbs__item"><span class="breadcrumbs__current" aria-current="page">Komplety podróżne</span></li>
+              </ol>
+            </nav>
+            <p class="kicker" data-kit-eyebrow>Gotowy komplet</p>
+            <h1 data-kit-title>Komplety podróżne</h1>
+            <p class="hero-subpage__lead" data-kit-description>Kuratorskie zestawy sprzętu dopasowane do krótkich wyjazdów, road tripów i weekendów w terenie.</p>
+          </div>
+        </div>
+      </section>
 
-        <div class="kit-detail product-layout" data-kit-content hidden>
+      <section class="section">
+        <div class="container">
+          <div class="ui-state" data-kit-state hidden></div>
+
+          <div class="kit-detail product-layout" data-kit-content hidden>
           <div class="stack">
             <article class="card card--padded kit-hero">
-              <p class="kicker" data-kit-eyebrow></p>
               <div class="kit-hero__media">
                 <img data-kit-image src="assets/svg/product-placeholder-01.svg" alt="" width="640" height="427" />
               </div>
@@ -93,12 +109,6 @@
           </div>
 
           <div class="stack">
-            <div class="section-header__intro">
-              <p class="kicker">Gotowy komplet</p>
-              <h1 data-kit-title></h1>
-              <p class="subtle section-header__lead" data-kit-description></p>
-            </div>
-
             <section class="card card--padded">
               <div class="stack">
                 <div class="section-header__intro">
@@ -120,7 +130,8 @@
             </section>
           </div>
         </div>
-      </div>
+        </div>
+      </section>
     </main>
 
     <footer class="site-footer" aria-label="Stopka Outland Gear" data-partial-src="partials/footer.html"></footer>

@@ -23,7 +23,7 @@
     <meta name="twitter:description" content="Szczegóły produktu Outland Gear: opis, specyfikacja i rekomendacje." />
     <meta name="twitter:image" content="https://outlandgear.example.com/assets/svg/social-share-placeholder.svg" />
     <link rel="icon" href="assets/svg/favicon.svg" type="image/svg+xml" />
-    <link rel="stylesheet" href="css/main.css?v=20260405" />
+    <link rel="stylesheet" href="css/main.css?v=20260407-breadcrumbs" />
     <script type="application/ld+json">
       {
         "@context": "https://schema.org",
@@ -68,7 +68,7 @@
     <header class="site-header" data-partial-src="partials/header.html"></header>
 
     <!-- Main -->
-    <main id="main" class="section" data-product-root>
+    <main id="main" data-product-root>
       <noscript>
         <div class="container">
           <section class="notice stack" role="status" aria-label="Informacje o produkcie bez JavaScriptu">
@@ -83,10 +83,29 @@
         </div>
       </noscript>
 
+      <section class="hero-subpage">
+        <div class="container">
+          <div class="hero-subpage__content">
+            <nav class="breadcrumbs" aria-label="Breadcrumb">
+              <ol class="breadcrumbs__list">
+                <li class="breadcrumbs__item"><a class="breadcrumbs__link" href="index.html">Strona główna</a></li>
+                <li class="breadcrumbs__item"><a class="breadcrumbs__link" href="kategoria.html">Katalog</a></li>
+                <li class="breadcrumbs__item"><span class="breadcrumbs__current" aria-current="page">Produkt</span></li>
+              </ol>
+            </nav>
+            <p class="kicker">Outland Gear</p>
+            <h1 data-product-title>Outland Ridge 45L</h1>
+            <p class="hero-subpage__meta" data-product-rating>Ocena 4.7 • 128 opinii</p>
+            <p class="hero-subpage__lead" data-product-description>Sprzęt gotowy na trekking, city break i dłuższy wyjazd.</p>
+          </div>
+        </div>
+      </section>
+
       <!-- Product -->
-      <div class="container">
-        <div class="ui-state" data-product-state hidden></div>
-        <div class="product-layout">
+      <section class="section">
+        <div class="container">
+          <div class="ui-state" data-product-state hidden></div>
+          <div class="product-layout">
           <div class="gallery">
             <!-- main img -->
             <div class="gallery__main">
@@ -127,17 +146,11 @@
             </div>
           </div>
           <div class="product-meta">
-            <div class="section-header__intro">
-              <p class="kicker">Outland Gear</p>
-              <h1 data-product-title>Outland Ridge 45L</h1>
-              <p class="subtle section-header__lead" data-product-rating>Ocena 4.7 • 128 opinii</p>
-            </div>
             <div>
               <div class="product-price" data-product-price>649 PLN</div>
               <div class="subtle" data-product-old-price></div>
               <p class="badge" data-product-stock>Dostępny</p>
             </div>
-            <p data-product-description></p>
             <ul class="stack" data-product-highlights></ul>
             <div class="row">
               <label class="form__label" for="qty">Ilość</label>
@@ -152,7 +165,8 @@
             </div>
           </div>
         </div>
-      </div>
+        </div>
+      </section>
 
       <!-- Related -->
       <section class="section">

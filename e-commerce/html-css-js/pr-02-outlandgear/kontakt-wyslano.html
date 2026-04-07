@@ -7,24 +7,42 @@
     <meta name="description" content="Potwierdzenie wysyłki formularza kontaktowego Outland Gear (demo)." />
     <meta name="robots" content="noindex, nofollow" />
     <link rel="icon" href="assets/svg/favicon.svg" type="image/svg+xml" />
-    <link rel="stylesheet" href="css/main.css?v=20260405" />
+    <link rel="stylesheet" href="css/main.css?v=20260407-breadcrumbs" />
   </head>
   <body>
     <a class="skip-link" href="#main">Przejdź do treści</a>
     <header class="site-header" data-partial-src="partials/header.html"></header>
 
-    <main id="main" class="section">
-      <div class="container">
-        <article class="card info-card" aria-live="polite">
-          <h1>Wiadomość wysłana (demo)</h1>
-          <p>Dziękujemy! Odpowiemy na wiadomość najszybciej jak to możliwe.</p>
-          <p class="subtle">To uproszczone potwierdzenie dla scenariusza bez JavaScript.</p>
-          <div class="flow-actions">
-            <a class="btn" href="kontakt.html">Wyślij kolejną wiadomość</a>
-            <a class="btn btn--outline" href="index.html">Wróć na stronę główną</a>
+    <main id="main">
+      <section class="hero-subpage">
+        <div class="container">
+          <div class="hero-subpage__content">
+            <nav class="breadcrumbs" aria-label="Breadcrumb">
+              <ol class="breadcrumbs__list">
+                <li class="breadcrumbs__item"><a class="breadcrumbs__link" href="index.html">Strona główna</a></li>
+                <li class="breadcrumbs__item"><a class="breadcrumbs__link" href="kontakt.html">Kontakt</a></li>
+                <li class="breadcrumbs__item"><span class="breadcrumbs__current" aria-current="page">Wiadomość wysłana</span></li>
+              </ol>
+            </nav>
+            <p class="kicker">Kontakt</p>
+            <h1>Wiadomość wysłana (demo)</h1>
+            <p class="hero-subpage__meta">Twoje zgłoszenie zostało zapisane w scenariuszu demonstracyjnym.</p>
           </div>
-        </article>
-      </div>
+        </div>
+      </section>
+      <section class="section">
+        <div class="container">
+          <article class="card info-card" aria-live="polite">
+            <h2>Co dalej?</h2>
+            <p>Dziękujemy! Odpowiemy na wiadomość najszybciej jak to możliwe.</p>
+            <p class="subtle">To uproszczone potwierdzenie dla scenariusza bez JavaScript.</p>
+            <div class="flow-actions">
+              <a class="btn" href="kontakt.html">Wyślij kolejną wiadomość</a>
+              <a class="btn btn--outline" href="index.html">Wróć na stronę główną</a>
+            </div>
+          </article>
+        </div>
+      </section>
     </main>
 
     <footer class="site-footer" aria-label="Stopka Outland Gear" data-partial-src="partials/footer.html"></footer>

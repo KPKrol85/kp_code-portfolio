@@ -23,7 +23,7 @@
     <meta name="twitter:description" content="Checkout demo Outland Gear: dane dostawy i podsumowanie zamówienia." />
     <meta name="twitter:image" content="https://outlandgear.example.com/assets/svg/social-share-placeholder.svg" />
     <link rel="icon" href="assets/svg/favicon.svg" type="image/svg+xml" />
-    <link rel="stylesheet" href="css/main.css?v=20260405" />
+    <link rel="stylesheet" href="css/main.css?v=20260407-breadcrumbs" />
     <script type="application/ld+json">
       {
         "@context": "https://schema.org",
@@ -53,15 +53,24 @@
     <a class="skip-link" href="#main">Przejdź do treści</a>
     <header class="site-header" data-partial-src="partials/header.html"></header>
 
-    <main id="main" class="section">
-      <div class="container">
-        <div class="section-header">
-          <div class="section-header__intro">
+    <main id="main">
+      <section class="hero-subpage">
+        <div class="container">
+          <div class="hero-subpage__content">
+            <nav class="breadcrumbs" aria-label="Breadcrumb">
+              <ol class="breadcrumbs__list">
+                <li class="breadcrumbs__item"><a class="breadcrumbs__link" href="index.html">Strona główna</a></li>
+                <li class="breadcrumbs__item"><a class="breadcrumbs__link" href="koszyk.html">Koszyk</a></li>
+                <li class="breadcrumbs__item"><span class="breadcrumbs__current" aria-current="page">Checkout</span></li>
+              </ol>
+            </nav>
             <p class="kicker">Checkout demo</p>
             <h1>Finalizacja zamówienia</h1>
           </div>
-          <a class="btn btn--ghost" href="koszyk.html">Wróć do koszyka</a>
         </div>
+      </section>
+      <section class="section">
+        <div class="container">
         <div class="checkout-layout">
           <form class="form" data-checkout-form action="checkout-potwierdzenie.html" method="get">
             <div data-checkout-status class="ui-state" hidden></div>
@@ -159,7 +168,8 @@
           <p>Dziękujemy! W prawdziwej wersji otrzymasz maila z potwierdzeniem.</p>
           <a class="btn" href="index.html">Wróć na stronę główną</a>
         </div>
-      </div>
+        </div>
+      </section>
     </main>
     <footer class="site-footer" aria-label="Stopka Outland Gear" data-partial-src="partials/footer.html"></footer>
 

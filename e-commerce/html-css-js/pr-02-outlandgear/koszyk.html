@@ -23,7 +23,7 @@
     <meta name="twitter:description" content="Sprawdź wybrane produkty Outland Gear i przejdź do checkout demo." />
     <meta name="twitter:image" content="https://outlandgear.example.com/assets/svg/social-share-placeholder.svg" />
     <link rel="icon" href="assets/svg/favicon.svg" type="image/svg+xml" />
-    <link rel="stylesheet" href="css/main.css?v=20260405" />
+    <link rel="stylesheet" href="css/main.css?v=20260407-breadcrumbs" />
     <script type="application/ld+json">
       {
         "@context": "https://schema.org",
@@ -53,15 +53,23 @@
     <a class="skip-link" href="#main">Przejdź do treści</a>
     <header class="site-header" data-partial-src="partials/header.html"></header>
 
-    <main id="main" class="section">
-      <div class="container">
-        <div class="section-header">
-          <div class="section-header__intro">
+    <main id="main">
+      <section class="hero-subpage">
+        <div class="container">
+          <div class="hero-subpage__content">
+            <nav class="breadcrumbs" aria-label="Breadcrumb">
+              <ol class="breadcrumbs__list">
+                <li class="breadcrumbs__item"><a class="breadcrumbs__link" href="index.html">Strona główna</a></li>
+                <li class="breadcrumbs__item"><span class="breadcrumbs__current" aria-current="page">Koszyk</span></li>
+              </ol>
+            </nav>
             <p class="kicker">Twój koszyk</p>
             <h1>Podsumowanie zakupów</h1>
           </div>
-          <a class="btn btn--ghost" href="kategoria.html">Kontynuuj zakupy</a>
         </div>
+      </section>
+      <section class="section">
+        <div class="container">
         <div class="cart">
           <div class="card card--padded">
             <div data-cart-container></div>
@@ -90,7 +98,8 @@
           <a class="btn btn--outline" href="kategoria.html">Kontynuuj zakupy</a>
           <a class="btn" href="checkout.html">Przejdź do checkout</a>
         </div>
-      </div>
+        </div>
+      </section>
     </main>
     <footer class="site-footer" aria-label="Stopka Outland Gear" data-partial-src="partials/footer.html"></footer>
 
