@@ -1,9 +1,11 @@
 <div class="container">
   <div class="site-header__top">
+    <!-- logo -->
     <a class="logo" href="index.html" aria-label="Outland Gear">
       <img class="logo__mark" src="assets/logo/logo.svg" alt="" width="44" height="44" />
       Outland Gear
     </a>
+    <!-- search -->
     <form class="search" id="header-search" data-search-form data-search-panel role="search">
       <label class="visually-hidden" for="search-input">Szukaj produktów</label>
       <input id="search-input" type="search" data-search-input placeholder="Szukaj plecaków, kuchenek, termiki..." autocomplete="off" />
@@ -13,7 +15,17 @@
     <!-- search toggle -->
     <button class="nav-toggle search-toggle" type="button" data-search-toggle aria-label="Otwórz wyszukiwanie" aria-expanded="false" aria-controls="header-search">
       <span aria-hidden="true">
-        <svg xmlns="http://www.w3.org/2000/svg" class="search-toggle__icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          class="search-toggle__icon"
+          width="24"
+          height="24"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round">
           <path stroke="none" d="M0 0h24v24H0z" fill="none" />
           <path d="M3 10a7 7 0 1 0 14 0a7 7 0 1 0 -14 0" />
           <path d="M21 21l-6 -6" />
@@ -21,7 +33,6 @@
       </span>
       <span class="visually-hidden">Otwórz wyszukiwanie</span>
     </button>
-
     <!-- hamburger -->
     <button id="nav-toggle" type="button" class="nav-toggle" data-nav-toggle aria-label="Otwórz menu" aria-controls="mobile-drawer" aria-haspopup="true" aria-expanded="false">
       <svg class="nav-toggle__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
@@ -31,24 +42,22 @@
       </svg>
       <span class="visually-hidden">Otwórz menu</span>
     </button>
-
-    <!-- navigation -->
-    <nav class="site-nav" aria-label="Główna">
-      <div class="dropdown">
-        <button class="dropdown__toggle" type="button" aria-expanded="false" aria-controls="nav-categories" data-dropdown-toggle>Kategorie</button>
-        <div class="dropdown__menu" id="nav-categories" aria-hidden="true">
-          <a class="dropdown__link" href="kategoria.html">Plecaki i torby</a>
-          <a class="dropdown__link" href="kategoria.html">Termika i napoje</a>
-          <a class="dropdown__link" href="kategoria.html">Kemping</a>
-          <a class="dropdown__link" href="kategoria.html">Elektronika outdoor</a>
-          <a class="dropdown__link" href="kategoria.html">Akcesoria</a>
-        </div>
-      </div>
-      <a class="site-nav__link" href="kategoria.html" data-nav-link>Nowości</a>
-      <a class="site-nav__link" href="o-nas.html" data-nav-link>O nas</a>
-      <a class="site-nav__link" href="kontakt.html" data-nav-link>Kontakt</a>
-    </nav>
-
+   <!-- navigation -->
+<nav class="site-nav" aria-label="Główna">
+  <div class="dropdown">
+    <button class="dropdown__toggle" type="button" aria-expanded="false" aria-controls="nav-categories" data-dropdown-toggle>Kategorie</button>
+    <div class="dropdown__menu" id="nav-categories" aria-hidden="true">
+      <a class="dropdown__link" href="kategoria.html?category=Plecaki%20i%20torby">Plecaki i torby</a>
+      <a class="dropdown__link" href="kategoria.html?category=Termika%20i%20napoje">Termika i napoje</a>
+      <a class="dropdown__link" href="kategoria.html?category=Kemping">Kemping</a>
+      <a class="dropdown__link" href="kategoria.html?category=Elektronika%20outdoor">Elektronika outdoor</a>
+      <a class="dropdown__link" href="kategoria.html?category=Akcesoria">Akcesoria</a>
+    </div>
+  </div>
+  <a class="site-nav__link" href="kategoria.html" data-nav-link>Sklep</a>
+  <a class="site-nav__link" href="o-nas.html" data-nav-link>O nas</a>
+  <a class="site-nav__link" href="kontakt.html" data-nav-link>Kontakt</a>
+</nav>
     <!-- actions -->
     <div class="site-nav__actions">
       <a class="btn btn--ghost btn--small" href="koszyk.html">
@@ -61,6 +70,7 @@
     </div>
   </div>
 </div>
+<!-- mobile drawer -->
 <div class="nav-drawer" id="mobile-drawer" data-nav-drawer aria-hidden="true">
   <div class="nav-drawer__panel" data-nav-panel tabindex="-1">
     <div class="row row--between">

@@ -9,14 +9,21 @@
     <link rel="icon" href="assets/svg/favicon.svg" type="image/svg+xml" />
     <link rel="stylesheet" href="css/main.css?v=20260407-breadcrumbs" />
   </head>
+
+  <!-- Body -->
   <body>
     <a class="skip-link" href="#main">Przejdź do treści</a>
-    <header class="site-header" data-partial-src="partials/header.html"></header>
 
+    <!-- Header -->
+
+    <header class="site-header" data-partial-src="partials/header.html"></header>
+    <!-- Main -->
     <main id="main">
+      <!-- Hero Subpage -->
       <section class="hero-subpage">
         <div class="container">
           <div class="hero-subpage__content">
+            <!-- breadcrumbs -->
             <nav class="breadcrumbs" aria-label="Breadcrumb">
               <ol class="breadcrumbs__list">
                 <li class="breadcrumbs__item"><a class="breadcrumbs__link" href="index.html">Strona główna</a></li>
@@ -25,12 +32,17 @@
                 <li class="breadcrumbs__item"><span class="breadcrumbs__current" aria-current="page">Zamówienie przyjęte</span></li>
               </ol>
             </nav>
-            <p class="kicker">Checkout demo</p>
-            <h1>Zamówienie przyjęte (demo)</h1>
-            <p class="hero-subpage__meta">Potwierdzenie dla demonstracyjnego procesu zakupowego.</p>
+            <!-- hero-subpage__body -->
+            <div class="hero-subpage__body">
+              <p class="kicker">Checkout demo</p>
+              <h1 class="hero-subpage__title">Zamówienie przyjęte (demo)</h1>
+              <p class="hero-subpage__meta">Potwierdzenie dla demonstracyjnego procesu zakupowego.</p>
+            </div>
           </div>
         </div>
       </section>
+
+      <!-- Checkout -->
       <section class="section">
         <div class="container">
           <article class="card info-card" aria-live="polite">
@@ -46,8 +58,10 @@
       </section>
     </main>
 
+    <!-- Footer -->
     <footer class="site-footer" aria-label="Stopka Outland Gear" data-partial-src="partials/footer.html"></footer>
 
+    <!-- Scripts -->
     <script type="module" src="js/app.js?v=20260405-3"></script>
   </body>
 </html>

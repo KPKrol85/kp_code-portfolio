@@ -43,16 +43,6 @@
   justify-content: space-between;
 }
 
-.card {
-  background: var(--color-white);
-  border-radius: var(--radius-04);
-  box-shadow: var(--shadow-sm);
-  border: 1px solid var(--color-border);
-}
-
-.card--padded {
-  padding: var(--space-05);
-}
 
 /* Headers */
 

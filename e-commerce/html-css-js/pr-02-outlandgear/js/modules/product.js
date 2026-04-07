@@ -9,7 +9,7 @@ import { findProductBySlug } from "./product-data.js";
 import { setUiState, clearUiState } from "./ui-state.js";
 
 const SITE_NAME = "Outland Gear";
-const SITE_URL = "https://outlandgear.example.com/";
+const SITE_URL = "https://e-commerce-pr02-outlandgear/";
 const PRODUCT_PAGE_PATH = "produkt.html";
 const FALLBACK_SOCIAL_IMAGE = "assets/svg/social-share-placeholder.svg";
 const WEBPAGE_SCHEMA_SELECTOR = 'script[data-schema="webpage"]';

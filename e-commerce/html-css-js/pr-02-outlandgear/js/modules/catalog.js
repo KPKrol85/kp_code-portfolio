@@ -41,6 +41,7 @@ const parseStateFromUrl = (form) => {
     searchTerm: params.get("q")?.trim() || "",
     price: params.get("price") || "",
     rating: params.get("rating") || "",
+    category: params.get("category") || "",
     subcategory: params.get("subcategory") || "",
     badges: (params.get("badges") || "")
       .split(",")
@@ -97,6 +98,7 @@ const syncUrlState = (searchTerm, filters, limit) => {
   if (searchTerm) params.set("q", searchTerm);
   if (filters.price) params.set("price", filters.price);
   if (filters.rating) params.set("rating", String(filters.rating));
+  if (filters.category) params.set("category", filters.category);
   if (filters.subcategory) params.set("subcategory", filters.subcategory);
   if (filters.badges.length) params.set("badges", filters.badges.join(","));
   if (filters.sort && filters.sort !== DEFAULT_FILTERS.sort) params.set("sort", filters.sort);
@@ -193,6 +195,7 @@ const applyFilters = (products, filters, searchTerm) => {
         const haystack = `${name} ${shortDescription} ${badges.join(" ")}`.toLowerCase();
         if (!haystack.includes(term)) return false;
       }
+      if (filters.category && product.category !== filters.category) return false;
       if (filters.subcategory && product.subcategory !== filters.subcategory) return false;
       if (filters.rating && product.rating < filters.rating) return false;
       if (filters.range) {
@@ -305,6 +308,8 @@ export const initCatalog = async () => {
 
   const updateListing = () => {
     const filters = form ? getFilters(form) : { ...DEFAULT_FILTERS };
+    const stateFromUrl = parseStateFromUrl(form);
+    filters.category = stateFromUrl.category || "";
     const filtered = applyFilters(products, filters, searchTerm);
     renderListing(filtered, grid, countEl, limit);
 

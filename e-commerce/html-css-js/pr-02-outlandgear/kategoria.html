@@ -8,29 +8,30 @@
     <meta name="author" content="Outland Gear" />
     <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
     <meta name="theme-color" content="#0f172a" />
-    <link rel="canonical" href="https://outlandgear.example.com/kategoria.html" />
-    <link rel="alternate" hreflang="pl-PL" href="https://outlandgear.example.com/kategoria.html" />
+    <link rel="canonical" href="https://e-commerce-pr02-outlandgear/kategoria.html" />
+    <link rel="alternate" hreflang="pl-PL" href="https://e-commerce-pr02-outlandgear/kategoria.html" />
     <meta property="og:locale" content="pl_PL" />
     <meta property="og:type" content="website" />
     <meta property="og:site_name" content="Outland Gear" />
     <meta property="og:title" content="Kategoria — Outland Gear" />
     <meta property="og:description" content="Przeglądaj sprzęt outdoor i travel gear Outland Gear. Filtrowanie po cenie, ocenach i badge." />
-    <meta property="og:url" content="https://outlandgear.example.com/kategoria.html" />
-    <meta property="og:image" content="https://outlandgear.example.com/assets/svg/social-share-placeholder.svg" />
+    <meta property="og:url" content="https://e-commerce-pr02-outlandgear/kategoria.html" />
+    <meta property="og:image" content="https://e-commerce-pr02-outlandgear/assets/svg/social-share-placeholder.svg" />
     <meta property="og:image:alt" content="Outland Gear - outdoor i travel marketplace" />
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content="Kategoria — Outland Gear" />
     <meta name="twitter:description" content="Przeglądaj sprzęt outdoor i travel gear Outland Gear. Filtrowanie po cenie, ocenach i badge." />
-    <meta name="twitter:image" content="https://outlandgear.example.com/assets/svg/social-share-placeholder.svg" />
+    <meta name="twitter:image" content="https://e-commerce-pr02-outlandgear/assets/svg/social-share-placeholder.svg" />
     <link rel="icon" href="assets/svg/favicon.svg" type="image/svg+xml" />
     <link rel="stylesheet" href="css/main.css?v=20260407-breadcrumbs" />
+    <!-- JSON-LD -->
     <script type="application/ld+json">
       {
         "@context": "https://schema.org",
         "@type": "Organization",
         "name": "Outland Gear",
-        "url": "https://outlandgear.example.com/",
-        "logo": "https://outlandgear.example.com/assets/svg/logo.svg"
+        "url": "https://e-commerce-pr02-outlandgear/",
+        "logo": "https://e-commerce-pr02-outlandgear/assets/svg/logo.svg"
       }
     </script>
     <script type="application/ld+json">
@@ -39,12 +40,12 @@
         "@type": "CollectionPage",
         "name": "Kategoria — Outland Gear",
         "description": "Przeglądaj sprzęt outdoor i travel gear Outland Gear. Filtrowanie po cenie, ocenach i badge.",
-        "url": "https://outlandgear.example.com/kategoria.html",
+        "url": "https://e-commerce-pr02-outlandgear/kategoria.html",
         "inLanguage": "pl-PL",
         "isPartOf": {
           "@type": "WebSite",
           "name": "Outland Gear",
-          "url": "https://outlandgear.example.com/"
+          "url": "https://e-commerce-pr02-outlandgear/"
         }
       }
     </script>
@@ -57,29 +58,30 @@
     <!-- Header -->
     <header class="site-header" data-partial-src="partials/header.html"></header>
 
-<!-- Main -->
+    <!-- Main -->
     <main id="main">
+      <!-- Hero Subpage -->
       <section class="hero-subpage">
         <div class="container">
           <div class="hero-subpage__content">
+            <!-- breadcrumbs -->
             <nav class="breadcrumbs" aria-label="Breadcrumb">
               <ol class="breadcrumbs__list">
                 <li class="breadcrumbs__item"><a class="breadcrumbs__link" href="index.html">Strona główna</a></li>
                 <li class="breadcrumbs__item"><span class="breadcrumbs__current" aria-current="page">Katalog</span></li>
               </ol>
             </nav>
-            <p class="kicker">Marketplace</p>
-            <h1>Nowości i bestsellery</h1>
-            <p class="hero-subpage__lead">Wszystkie produkty Outland Gear w jednym miejscu.</p>
+            <!-- hero-subpage__body -->
+            <div class="hero-subpage__body">
+              <p class="kicker">Marketplace</p>
+              <h1 class="hero-subpage__title">Nowości i bestsellery</h1>
+              <p class="hero-subpage__lead">Wszystkie produkty Outland Gear w jednym miejscu.</p>
+            </div>
           </div>
         </div>
       </section>
 
-      <section class="section">
-        <div class="container">
-          <img src="assets/svg/banner.svg" alt="Nowa kolekcja Outland Gear" width="1200" height="320" />
-        </div>
-      </section>
+      <!-- Listing -->
       <section class="section">
         <div class="container">
           <p class="badge" data-listing-count>0 produktów</p>
@@ -88,71 +90,71 @@
               <form class="filters__form" data-filters-form>
                 <fieldset class="filters__group">
                   <legend class="filters__title">Cena</legend>
-                <select class="form__select" name="price">
-                  <option value="">Wszystkie</option>
-                  <option value="0-150">0–150 PLN</option>
-                  <option value="151-300">151–300 PLN</option>
-                  <option value="301-600">301–600 PLN</option>
-                  <option value="601-1200">601–1200 PLN</option>
-                </select>
+                  <select class="form__select" name="price">
+                    <option value="">Wszystkie</option>
+                    <option value="0-150">0–150 PLN</option>
+                    <option value="151-300">151–300 PLN</option>
+                    <option value="301-600">301–600 PLN</option>
+                    <option value="601-1200">601–1200 PLN</option>
+                  </select>
                 </fieldset>
                 <fieldset class="filters__group">
                   <legend class="filters__title">Minimalna ocena</legend>
-                <select class="form__select" name="rating">
-                  <option value="">Każda</option>
-                  <option value="4">4.0+</option>
-                  <option value="4.5">4.5+</option>
-                </select>
+                  <select class="form__select" name="rating">
+                    <option value="">Każda</option>
+                    <option value="4">4.0+</option>
+                    <option value="4.5">4.5+</option>
+                  </select>
                 </fieldset>
                 <fieldset class="filters__group">
                   <legend class="filters__title">Podkategorie</legend>
-                <select class="form__select" name="subcategory">
-                  <option value="">Wszystkie</option>
-                  <option value="Plecaki trekkingowe">Plecaki trekkingowe</option>
-                  <option value="Plecaki miejskie">Plecaki miejskie</option>
-                  <option value="Torby podróżne">Torby podróżne</option>
-                  <option value="Saszetki i organizery">Saszetki i organizery</option>
-                  <option value="Termosy">Termosy</option>
-                  <option value="Kubki termiczne">Kubki termiczne</option>
-                  <option value="Butelki filtrujące">Butelki filtrujące</option>
-                  <option value="Kuchenki">Kuchenki</option>
-                  <option value="Maty i hamaki">Maty i hamaki</option>
-                  <option value="Namioty i tarp">Namioty i tarp</option>
-                  <option value="Latarki">Latarki</option>
-                  <option value="Powerbanki">Powerbanki</option>
-                  <option value="Nawigacja">Nawigacja</option>
-                  <option value="Karabińczyki">Karabińczyki</option>
-                  <option value="Apteczki">Apteczki</option>
-                  <option value="Zestawy naprawcze">Zestawy naprawcze</option>
-                </select>
+                  <select class="form__select" name="subcategory">
+                    <option value="">Wszystkie</option>
+                    <option value="Plecaki trekkingowe">Plecaki trekkingowe</option>
+                    <option value="Plecaki miejskie">Plecaki miejskie</option>
+                    <option value="Torby podróżne">Torby podróżne</option>
+                    <option value="Saszetki i organizery">Saszetki i organizery</option>
+                    <option value="Termosy">Termosy</option>
+                    <option value="Kubki termiczne">Kubki termiczne</option>
+                    <option value="Butelki filtrujące">Butelki filtrujące</option>
+                    <option value="Kuchenki">Kuchenki</option>
+                    <option value="Maty i hamaki">Maty i hamaki</option>
+                    <option value="Namioty i tarp">Namioty i tarp</option>
+                    <option value="Latarki">Latarki</option>
+                    <option value="Powerbanki">Powerbanki</option>
+                    <option value="Nawigacja">Nawigacja</option>
+                    <option value="Karabińczyki">Karabińczyki</option>
+                    <option value="Apteczki">Apteczki</option>
+                    <option value="Zestawy naprawcze">Zestawy naprawcze</option>
+                  </select>
                 </fieldset>
                 <fieldset class="filters__group">
                   <legend class="filters__title">Badge</legend>
-                <label class="checkbox">
-                  <input type="checkbox" name="badge" value="Bestseller" />
-                  Bestseller
-                </label>
-                <label class="checkbox">
-                  <input type="checkbox" name="badge" value="New" />
-                  New
-                </label>
-                <label class="checkbox">
-                  <input type="checkbox" name="badge" value="Eco" />
-                  Eco
-                </label>
-                <label class="checkbox">
-                  <input type="checkbox" name="badge" value="Limited" />
-                  Limited
-                </label>
+                  <label class="checkbox">
+                    <input type="checkbox" name="badge" value="Bestseller" />
+                    Bestseller
+                  </label>
+                  <label class="checkbox">
+                    <input type="checkbox" name="badge" value="New" />
+                    New
+                  </label>
+                  <label class="checkbox">
+                    <input type="checkbox" name="badge" value="Eco" />
+                    Eco
+                  </label>
+                  <label class="checkbox">
+                    <input type="checkbox" name="badge" value="Limited" />
+                    Limited
+                  </label>
                 </fieldset>
                 <fieldset class="filters__group">
                   <legend class="filters__title">Sortowanie</legend>
-                <select class="form__select" name="sort">
-                  <option value="popularity">Popularność</option>
-                  <option value="priceAsc">Cena rosnąco</option>
-                  <option value="priceDesc">Cena malejąco</option>
-                  <option value="newest">Najnowsze</option>
-                </select>
+                  <select class="form__select" name="sort">
+                    <option value="popularity">Popularność</option>
+                    <option value="priceAsc">Cena rosnąco</option>
+                    <option value="priceDesc">Cena malejąco</option>
+                    <option value="newest">Najnowsze</option>
+                  </select>
                 </fieldset>
               </form>
             </aside>
@@ -161,10 +163,7 @@
               <noscript>
                 <section class="notice stack" role="status" aria-label="Informacje bez JavaScriptu">
                   <h2>Przeglądanie kategorii bez JavaScriptu</h2>
-                  <p>
-                    Interaktywna lista produktów i filtry nie są dostępne bez JavaScriptu.
-                    Możesz jednak kontynuować zakupy, korzystając z poniższych stron:
-                  </p>
+                  <p>Interaktywna lista produktów i filtry nie są dostępne bez JavaScriptu. Możesz jednak kontynuować zakupy, korzystając z poniższych stron:</p>
                   <ul>
                     <li><a href="index.html">Strona główna z polecanymi produktami</a></li>
                     <li><a href="produkt.html">Przykładowa karta produktu</a></li>
@@ -174,20 +173,20 @@
               </noscript>
               <div class="ui-state" data-listing-state hidden></div>
               <div class="section-actions text-center">
-                <button class="btn btn--ghost" type="button" data-load-more>
-                  Pokaż więcej
-                </button>
+                <button class="btn btn--ghost" type="button" data-load-more>Pokaż więcej</button>
               </div>
             </div>
           </div>
         </div>
       </section>
     </main>
-    <footer class="site-footer" aria-label="Stopka Outland Gear" data-partial-src="partials/footer.html"></footer>
 
+    <!-- Footer -->
+    <footer class="site-footer" aria-label="Stopka Outland Gear" data-partial-src="partials/footer.html"></footer>
 
     <div class="toast" data-toast role="status" aria-live="polite"></div>
 
+    <!--- Scripts -->
     <script type="module" src="js/app.js?v=20260405-3"></script>
   </body>
 </html>

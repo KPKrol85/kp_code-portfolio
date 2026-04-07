@@ -5,7 +5,7 @@ import { createFallbackNotice } from "./fallback.js?v=20260405-3";
 import { formatCurrency } from "../utils.js?v=20260405-3";
 
 const SITE_NAME = "Outland Gear";
-const SITE_URL = "https://outlandgear.example.com/";
+const SITE_URL = "https://e-commerce-pr02-outlandgear/";
 const KIT_PAGE_PATH = "komplety.html";
 const KIT_ROOT_SELECTOR = "[data-kit-root]";
 const FALLBACK_SOCIAL_IMAGE = "assets/svg/social-share-placeholder.svg";

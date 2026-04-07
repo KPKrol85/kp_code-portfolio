@@ -1,7 +1,7 @@
 .breadcrumbs {
-  margin-bottom: var(--space-04);
-  font-size: var(--fs-03);
-  color: var(--color-muted);
+  margin-bottom: var(--space-06);
+  font-size: var(--fs-02);
+   color: color-mix(in srgb, var(--color-muted) 90%, var(--color-white));
 }
 
 .breadcrumbs__list {
@@ -43,13 +43,6 @@
 }
 
 .breadcrumbs .breadcrumbs__current {
-  color: var(--color-ink);
+  color: var(--color-forest);
   font-weight: var(--fw-medium);
-}
-
-@media (max-width: 640px) {
-  .breadcrumbs {
-    margin-bottom: var(--space-03);
-    font-size: var(--fs-02);
-  }
 }
