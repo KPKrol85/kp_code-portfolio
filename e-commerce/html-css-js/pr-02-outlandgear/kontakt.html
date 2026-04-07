@@ -104,13 +104,32 @@
               <p class="contact-card__item">
                 <strong>Showroom:</strong>
               </p>
-              <address class="contact-card__address">Marynarki Wojennej 12 <br> 33-100 Tarnów, Polska</address>
+              <address class="contact-card__address">
+                Marynarki Wojennej 12
+                <br />
+                33-100 Tarnów, Polska
+              </address>
               <!-- working hours -->
               <p class="contact-card__meta subtle">Godziny pracy: pn-pt 9:00–18:00</p>
+              <!-- showroom -->
+              <div class="contact-card__media">
+                <picture class="contact-card__picture">
+                  <source srcset="assets/img/kontakt/kontakt-outlandgear.avif" type="image/avif" />
+                  <source srcset="assets/img/kontakt/kontakt-outlandgear.webp" type="image/webp" />
+                  <img
+                    class="contact-card__image"
+                    src="assets/img/kontakt/kontakt-outlandgear.png"
+                    alt="Showroom Outland Gear z wejściem do sklepu i ekspozycją sprzętu outdoorowego"
+                    width="1536"
+                    height="1024"
+                    loading="lazy"
+                    decoding="async" />
+                </picture>
+              </div>
             </article>
             <!-- Contact form -->
             <form class="form card info-card" data-contact-form action="kontakt-wyslano.html" method="get">
-              <h2>Formularz kontaktowy</h2>
+              <h2 class="contact-card__title">Formularz kontaktowy</h2>
               <p aria-live="polite" role="status" data-form-status class="form__status"></p>
               <div class="form__group">
                 <label class="form__label" for="contactName">Imię i nazwisko</label>
@@ -127,7 +146,7 @@
                 <textarea class="form__textarea" id="contactMessage" name="contactMessage" rows="4" required></textarea>
                 <span class="form__error" data-error-for="contactMessage"></span>
               </div>
-              <p class="subtle">
+              <p class="subtle contact-form__consent">
                 Wysyłając formularz, akceptujesz
                 <a href="regulamin.html">regulamin</a>
                 i

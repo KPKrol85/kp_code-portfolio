@@ -23,13 +23,15 @@
 
 .form__label {
   font-weight: var(--fw-semibold);
+  font-size: var(--fs-03);
+  letter-spacing: var(--ls-snug);
 }
 
 .form__input,
 .form__select,
 .form__textarea {
-  padding: var(--space-02) 0.75rem;
-  border-radius: var(--radius-03);
+  padding: var(--space-02) var(--space-03);
+  border-radius: var(--radius-04);
   border: 1px solid var(--color-border);
   background: var(--color-white);
 }
@@ -48,18 +50,18 @@
 
 .form__error {
   color: var(--color-alert);
-  font-size: 0.85rem;
+  font-size: var(--fs-03);
   min-height: 1.2em;
 }
 
 .form__hint {
   color: var(--color-muted);
-  font-size: 0.85rem;
+  font-size: var(--fs-03);
 }
 
 .form__status {
   color: var(--color-muted);
-  font-size: 0.92rem;
+  font-size: var(--fs-03);
   margin: 0;
 }
 
@@ -74,6 +76,11 @@
 .form__row {
   display: grid;
   gap: var(--space-04);
+}
+
+
+.contact-form__consent {
+  color: var(--color-muted);
 }
 
 @media (min-width: 720px) {
