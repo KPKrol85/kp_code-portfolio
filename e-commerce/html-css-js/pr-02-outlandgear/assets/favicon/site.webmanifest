@@ -1,0 +1,26 @@
+{
+  "name": "Outland Gear",
+  "short_name": "Outland",
+  "description": "Nowoczesny sklep outdoor i travel gear z plecakami, termiką, wyposażeniem kempingowym i akcesoriami na każdą wyprawę.",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "orientation": "portrait-primary",
+  "theme_color": "#0f172a",
+  "background_color": "#f5f3ee",
+  "lang": "pl-PL",
+  "icons": [
+    {
+      "src": "/assets/fav-icons/web-app-manifest-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/assets/fav-icons/web-app-manifest-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}
