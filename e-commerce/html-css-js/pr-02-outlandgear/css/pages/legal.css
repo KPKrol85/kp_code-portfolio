@@ -6,24 +6,24 @@
   --legal-footer-space: var(--space-05);
 }
 
-.legal-page .legal-main {
+.legal-main {
   padding-bottom: var(--space-08);
 }
 
-.legal-page .legal-main > .container {
-  padding-top: var(--space-07);
+.legal-main > .container {
+  padding-top: var(--space-08);
 }
 
-.legal-page .legal-article {
+.legal-article {
   display: grid;
   gap: var(--space-07);
   align-items: start;
   justify-items: center;
 }
 
-.legal-page .legal-intro,
-.legal-page .legal-toc,
-.legal-page .legal-content {
+.legal-intro,
+.legal-toc,
+.legal-content {
   background: var(--color-white);
   border: 1px solid var(--color-border);
   border-radius: var(--radius-04);
@@ -32,12 +32,16 @@
 
 .legal-page .legal-intro,
 .legal-page .legal-toc {
-  padding: var(--space-05);
+  padding: var(--space-06);
 }
 
 .legal-page .legal-intro {
-  max-width: var(--legal-block-width);
   width: 100%;
+}
+
+.legal-page .legal-intro h2 {
+  font-size: var(--fs-06);
+  line-height: var(--lh-relaxed);
 }
 
 .legal-page .legal-intro > *:last-child,
@@ -55,12 +59,13 @@
 .legal-page .legal-content ol {
   max-width: var(--legal-content-width);
   line-height: var(--lh-relaxed);
+  font-size: var(--fs-04);
+  font-weight: var(--fw-regular);
 }
 
 .legal-page .legal-toc {
   display: grid;
   gap: var(--space-04);
-  max-width: var(--legal-block-width);
   width: 100%;
   margin-bottom: var(--space-02);
 }
@@ -71,24 +76,23 @@
 }
 
 .legal-page .legal-toc__list {
-  list-style: none;
+  list-style: decimal;
   display: grid;
   gap: var(--space-03);
   margin: 0;
-  padding: 0;
+  padding-left: var(--space-05);
 }
 
 .legal-page .legal-toc__link {
   color: var(--color-forest);
   font-weight: var(--fw-semibold);
-  text-decoration: underline;
-  text-decoration-color: transparent;
-  text-underline-offset: 0.16em;
+  text-decoration: none;
+  margin-left: var(--space-02);
 }
 
 .legal-page .legal-toc__link:hover,
 .legal-page .legal-toc__link:focus-visible {
-  color: var(--color-forest-dark);
+  color: var(--color-moss);
   text-decoration-color: currentColor;
 }
 
@@ -96,7 +100,7 @@
   display: grid;
   gap: var(--legal-section-space);
   padding: var(--space-06);
-  max-width: var(--legal-block-width);
+
   width: 100%;
   align-content: start;
 }
@@ -127,18 +131,17 @@
   max-width: var(--legal-content-width);
 }
 
-.legal-page .legal-back-link {
+.legal-back-link {
   display: inline-flex;
   align-items: center;
   justify-content: center;
   justify-self: end;
-  inline-size: 2rem;
-  block-size: 2rem;
-  margin-top: var(--legal-footer-space);
-  padding-top: var(--space-03);
+  inline-size: var(--size-icon-05);
+  block-size: var(--size-icon-05);
+  padding-top: var(--space-01);
   border-top: 1px solid color-mix(in srgb, var(--color-border) 72%, var(--color-white));
   border-radius: var(--radius-pill);
-  font-size: var(--fs-04);
+  font-size: var(--fs-03);
   line-height: 1;
   color: color-mix(in srgb, var(--color-muted) 78%, var(--color-white));
   background: color-mix(in srgb, var(--color-sky) 26%, var(--color-white));
@@ -161,10 +164,6 @@
 .legal-page .legal-content .legal-section > ul,
 .legal-page .legal-content .legal-section > ol {
   margin: 0;
-}
-
-.legal-page .legal-content .legal-section > * + .legal-back-link {
-  margin-top: var(--legal-footer-space);
 }
 
 .legal-page .legal-content ul,
@@ -194,13 +193,11 @@
   color: inherit;
   font-weight: var(--fw-medium);
   text-decoration: none;
-  border-bottom: 1px solid color-mix(in srgb, var(--color-border) 88%, var(--color-white));
 }
 
 .legal-page .legal-inline-link:hover,
 .legal-page .legal-inline-link:focus-visible {
-  color: var(--color-forest-dark);
-  border-bottom-color: color-mix(in srgb, var(--color-forest) 48%, var(--color-white));
+  color: var(--color-moss);
 }
 
 .legal-page .legal-meta {
@@ -213,29 +210,19 @@
   .legal-page .legal-main {
     padding-bottom: var(--space-09);
   }
-
   .legal-page .legal-main > .container {
     padding-top: var(--space-08);
   }
-
   .legal-page .legal-article {
     gap: var(--space-08);
   }
 
-  .legal-page .legal-intro,
-  .legal-page .legal-toc,
-  .legal-page .legal-content {
-    padding: var(--space-06);
-  }
-
   .legal-page .legal-content {
     gap: var(--space-08);
   }
-
   .legal-page .legal-section {
     padding: var(--space-07);
   }
-
   .legal-page .legal-content > .legal-section:first-child {
     margin-top: var(--space-06);
   }
