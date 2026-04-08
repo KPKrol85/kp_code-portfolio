@@ -132,7 +132,7 @@ const renderCart = (items, stateRegion) => {
 
     const info = document.createElement("div");
     info.className = "cart-item__info";
-    const title = document.createElement("h3");
+    const title = document.createElement("p");
     title.className = "cart-item__title";
     title.textContent = item.name;
     const meta = document.createElement("p");

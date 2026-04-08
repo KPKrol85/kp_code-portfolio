@@ -5,6 +5,7 @@ import postcss from "postcss";
 import postcssImport from "postcss-import";
 import cssnano from "cssnano";
 import * as esbuild from "esbuild";
+import { buildRobotsTxt, buildSitemapXml } from "./seo-config.mjs";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -14,7 +15,6 @@ const DIST_CSS = path.join(DIST, "css");
 const DIST_JS = path.join(DIST, "js");
 const HTML_ENTRY_GLOB = /\.html$/i;
 const STATIC_DIRS = ["assets", "data"];
-const STATIC_FILES = ["robots.txt", "sitemap.xml"];
 const PARTIALS = {
   header: {
     path: "partials/header.html",
@@ -41,6 +41,12 @@ const readText = async (relativePath) => fs.readFile(path.join(ROOT, relativePat
 
 const writeText = async (relativePath, content) => {
   const fullPath = path.join(ROOT, relativePath);
+  await ensureDir(path.dirname(fullPath));
+  await fs.writeFile(fullPath, content, "utf8");
+};
+
+const writeTextToDir = async (baseDir, relativePath, content) => {
+  const fullPath = path.join(baseDir, relativePath);
   await ensureDir(path.dirname(fullPath));
   await fs.writeFile(fullPath, content, "utf8");
 };
@@ -131,12 +137,13 @@ const copyStaticAssets = async () => {
       });
     })
   );
+};
 
-  await Promise.all(
-    STATIC_FILES.map(async (fileName) => {
-      await fs.copyFile(path.join(ROOT, fileName), path.join(DIST, fileName));
-    })
-  );
+const generateSeoFiles = async (targetDir) => {
+  await Promise.all([
+    writeTextToDir(targetDir, "robots.txt", buildRobotsTxt()),
+    writeTextToDir(targetDir, "sitemap.xml", buildSitemapXml()),
+  ]);
 };
 
 const buildHtml = async () => {
@@ -157,7 +164,8 @@ const prepareDist = async () => {
 const buildDist = async () => {
   await emptyDir(DIST);
   await prepareDist();
-  await Promise.all([buildCss(), buildJs(), copyStaticAssets(), buildHtml()]);
+  await generateSeoFiles(ROOT);
+  await Promise.all([buildCss(), buildJs(), copyStaticAssets(), buildHtml(), generateSeoFiles(DIST)]);
 };
 
 switch (command) {
@@ -181,7 +189,12 @@ switch (command) {
     break;
   case "assets":
     await prepareDist();
-    await copyStaticAssets();
+    await generateSeoFiles(ROOT);
+    await Promise.all([copyStaticAssets(), generateSeoFiles(DIST)]);
+    break;
+  case "seo":
+    await generateSeoFiles(ROOT);
+    await generateSeoFiles(DIST);
     break;
   case "images":
     throw new Error("build-dist images command has been removed; use `npm run build:images`.");

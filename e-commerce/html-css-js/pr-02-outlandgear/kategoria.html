@@ -4,58 +4,27 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Kategoria — Outland Gear</title>
-    <meta
-      name="description"
-      content="Przeglądaj sprzęt outdoor i travel gear Outland Gear. Filtrowanie po cenie, ocenach i badge."
-    />
+    <meta name="description" content="Przeglądaj sprzęt outdoor i travel gear Outland Gear. Filtrowanie po cenie, ocenach i badge." />
     <meta name="author" content="Outland Gear" />
-    <meta
-      name="robots"
-      content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1"
-    />
+    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
     <meta name="theme-color" content="#0f172a" />
-    <link
-      rel="canonical"
-      href="https://e-commerce-pr02-outlandgear.netlify.app/kategoria.html"
-    />
-    <link
-      rel="alternate"
-      hreflang="pl-PL"
-      href="https://e-commerce-pr02-outlandgear.netlify.app/kategoria.html"
-    />
+    <link rel="canonical" href="https://e-commerce-pr02-outlandgear.netlify.app/kategoria.html" />
+    <link rel="alternate" hreflang="pl-PL" href="https://e-commerce-pr02-outlandgear.netlify.app/kategoria.html" />
     <meta property="og:locale" content="pl_PL" />
     <meta property="og:type" content="website" />
     <meta property="og:site_name" content="Outland Gear" />
     <meta property="og:title" content="Kategoria — Outland Gear" />
-    <meta
-      property="og:description"
-      content="Przeglądaj sprzęt outdoor i travel gear Outland Gear. Filtrowanie po cenie, ocenach i badge."
-    />
-    <meta
-      property="og:url"
-      content="https://e-commerce-pr02-outlandgear.netlify.app/kategoria.html"
-    />
-    <meta
-      property="og:image"
-      content="https://e-commerce-pr02-outlandgear.netlify.app/assets/og-img/og-img.svg"
-    />
-    <meta
-      property="og:image:alt"
-      content="Grafika Outland Gear przedstawiająca leśny krajobraz, góry, jezioro i centralne logo marki w zielono-beżowej kolorystyce."
-    />
+    <meta property="og:description" content="Przeglądaj sprzęt outdoor i travel gear Outland Gear. Filtrowanie po cenie, ocenach i badge." />
+    <meta property="og:url" content="https://e-commerce-pr02-outlandgear.netlify.app/kategoria.html" />
+    <meta property="og:image" content="https://e-commerce-pr02-outlandgear.netlify.app/assets/og-img/og-img.svg" />
+    <meta property="og:image:alt" content="Grafika Outland Gear przedstawiająca leśny krajobraz, góry, jezioro i centralne logo marki w zielono-beżowej kolorystyce." />
     <meta property="og:image:type" content="image/png" />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content="Kategoria — Outland Gear" />
-    <meta
-      name="twitter:description"
-      content="Przeglądaj sprzęt outdoor i travel gear Outland Gear. Filtrowanie po cenie, ocenach i badge."
-    />
-    <meta
-      name="twitter:image"
-      content="https://e-commerce-pr02-outlandgear.netlify.app/assets/og-img/og-img.svg"
-    />
+    <meta name="twitter:description" content="Przeglądaj sprzęt outdoor i travel gear Outland Gear. Filtrowanie po cenie, ocenach i badge." />
+    <meta name="twitter:image" content="https://e-commerce-pr02-outlandgear.netlify.app/assets/og-img/og-img.svg" />
     <link rel="icon" type="image/svg+xml" href="assets/fav-icons/favicon.svg" />
     <link rel="icon" type="image/x-icon" href="assets/fav-icons/favicon.ico" />
     <link rel="apple-touch-icon" href="assets/fav-icons/apple-touch-icon.png" />
@@ -93,10 +62,7 @@
     <a class="skip-link" href="#main">Przejdź do treści</a>
 
     <!-- Header -->
-    <header
-      class="site-header"
-      data-partial-src="partials/header.html"
-    ></header>
+    <header class="site-header" data-partial-src="partials/header.html"></header>
 
     <!-- Main -->
     <main id="main">
@@ -108,14 +74,10 @@
             <nav class="breadcrumbs" aria-label="Breadcrumb">
               <ol class="breadcrumbs__list">
                 <li class="breadcrumbs__item">
-                  <a class="breadcrumbs__link" href="index.html"
-                    >Strona główna</a
-                  >
+                  <a class="breadcrumbs__link" href="index.html">Strona główna</a>
                 </li>
                 <li class="breadcrumbs__item">
-                  <span class="breadcrumbs__current" aria-current="page"
-                    >Katalog</span
-                  >
+                  <span class="breadcrumbs__current" aria-current="page">Katalog</span>
                 </li>
               </ol>
             </nav>
@@ -123,9 +85,7 @@
             <div class="hero-subpage__body">
               <p class="kicker">Marketplace</p>
               <h1 class="hero-subpage__title">Nowości i bestsellery</h1>
-              <p class="hero-subpage__lead">
-                Wszystkie produkty Outland Gear w jednym miejscu.
-              </p>
+              <p class="hero-subpage__lead">Wszystkie produkty Outland Gear w jednym miejscu.</p>
             </div>
           </div>
         </div>
@@ -136,11 +96,12 @@
         <div class="container">
           <p class="badge" data-listing-count>0 produktów</p>
           <div class="listing-layout">
-            <aside class="filters">
+            <div class="filters">
               <form class="filters__form" data-filters-form>
                 <fieldset class="filters__group">
                   <legend class="filters__title">Cena</legend>
-                  <select class="form__select" name="price">
+                  <label class="form__label" for="filters-price">Zakres cenowy</label>
+                  <select class="form__select" id="filters-price" name="price">
                     <option value="">Wszystkie</option>
                     <option value="0-150">0–150 PLN</option>
                     <option value="151-300">151–300 PLN</option>
@@ -150,7 +111,8 @@
                 </fieldset>
                 <fieldset class="filters__group">
                   <legend class="filters__title">Minimalna ocena</legend>
-                  <select class="form__select" name="rating">
+                  <label class="form__label" for="filters-rating">Wybierz minimalną ocenę</label>
+                  <select class="form__select" id="filters-rating" name="rating">
                     <option value="">Każda</option>
                     <option value="4">4.0+</option>
                     <option value="4.5">4.5+</option>
@@ -158,21 +120,16 @@
                 </fieldset>
                 <fieldset class="filters__group">
                   <legend class="filters__title">Podkategorie</legend>
-                  <select class="form__select" name="subcategory">
+                  <label class="form__label" for="filters-subcategory">Wybierz podkategorię</label>
+                  <select class="form__select" id="filters-subcategory" name="subcategory">
                     <option value="">Wszystkie</option>
-                    <option value="Plecaki trekkingowe">
-                      Plecaki trekkingowe
-                    </option>
+                    <option value="Plecaki trekkingowe">Plecaki trekkingowe</option>
                     <option value="Plecaki miejskie">Plecaki miejskie</option>
                     <option value="Torby podróżne">Torby podróżne</option>
-                    <option value="Saszetki i organizery">
-                      Saszetki i organizery
-                    </option>
+                    <option value="Saszetki i organizery">Saszetki i organizery</option>
                     <option value="Termosy">Termosy</option>
                     <option value="Kubki termiczne">Kubki termiczne</option>
-                    <option value="Butelki filtrujące">
-                      Butelki filtrujące
-                    </option>
+                    <option value="Butelki filtrujące">Butelki filtrujące</option>
                     <option value="Kuchenki">Kuchenki</option>
                     <option value="Maty i hamaki">Maty i hamaki</option>
                     <option value="Namioty i tarp">Namioty i tarp</option>
@@ -205,7 +162,8 @@
                 </fieldset>
                 <fieldset class="filters__group">
                   <legend class="filters__title">Sortowanie</legend>
-                  <select class="form__select" name="sort">
+                  <label class="form__label" for="filters-sort">Wybierz sposób sortowania</label>
+                  <select class="form__select" id="filters-sort" name="sort">
                     <option value="popularity">Popularność</option>
                     <option value="priceAsc">Cena rosnąco</option>
                     <option value="priceDesc">Cena malejąco</option>
@@ -213,26 +171,16 @@
                   </select>
                 </fieldset>
               </form>
-            </aside>
+            </div>
             <div>
               <div class="grid grid--3" data-listing-grid></div>
               <noscript>
-                <section
-                  class="notice stack"
-                  role="status"
-                  aria-label="Informacje bez JavaScriptu"
-                >
+                <section class="notice stack" role="status" aria-label="Informacje bez JavaScriptu">
                   <h2>Przeglądanie kategorii bez JavaScriptu</h2>
-                  <p>
-                    Interaktywna lista produktów i filtry nie są dostępne bez
-                    JavaScriptu. Możesz jednak kontynuować zakupy, korzystając z
-                    poniższych stron:
-                  </p>
+                  <p>Interaktywna lista produktów i filtry nie są dostępne bez JavaScriptu. Możesz jednak kontynuować zakupy, korzystając z poniższych stron:</p>
                   <ul>
                     <li>
-                      <a href="index.html"
-                        >Strona główna z polecanymi produktami</a
-                      >
+                      <a href="index.html">Strona główna z polecanymi produktami</a>
                     </li>
                     <li>
                       <a href="produkt.html">Przykładowa karta produktu</a>
@@ -245,9 +193,7 @@
               </noscript>
               <div class="ui-state" data-listing-state hidden></div>
               <div class="section-actions text-center">
-                <button class="btn btn--ghost" type="button" data-load-more>
-                  Pokaż więcej
-                </button>
+                <button class="btn btn--ghost" type="button" data-load-more>Pokaż więcej</button>
               </div>
             </div>
           </div>
@@ -256,11 +202,7 @@
     </main>
 
     <!-- Footer -->
-    <footer
-      class="site-footer"
-      aria-label="Stopka Outland Gear"
-      data-partial-src="partials/footer.html"
-    ></footer>
+    <footer class="site-footer" aria-label="Stopka Outland Gear" data-partial-src="partials/footer.html"></footer>
 
     <div class="toast" data-toast role="status" aria-live="polite"></div>
 
