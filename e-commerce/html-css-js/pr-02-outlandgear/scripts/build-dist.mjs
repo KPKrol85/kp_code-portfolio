@@ -39,6 +39,9 @@ const emptyDir = async (targetPath) => {
 
 const readText = async (relativePath) => fs.readFile(path.join(ROOT, relativePath), "utf8");
 
+const readJson = async (relativePath) =>
+  JSON.parse(await fs.readFile(path.join(ROOT, relativePath), "utf8"));
+
 const writeText = async (relativePath, content) => {
   const fullPath = path.join(ROOT, relativePath);
   await ensureDir(path.dirname(fullPath));
@@ -139,10 +142,10 @@ const copyStaticAssets = async () => {
   );
 };
 
-const generateSeoFiles = async (targetDir) => {
+const generateSeoFiles = async (targetDir, sitemapContext = {}) => {
   await Promise.all([
     writeTextToDir(targetDir, "robots.txt", buildRobotsTxt()),
-    writeTextToDir(targetDir, "sitemap.xml", buildSitemapXml()),
+    writeTextToDir(targetDir, "sitemap.xml", buildSitemapXml(sitemapContext)),
   ]);
 };
 
@@ -162,10 +165,16 @@ const prepareDist = async () => {
 };
 
 const buildDist = async () => {
+  const [products, travelKits] = await Promise.all([
+    readJson("data/products.json"),
+    readJson("data/travel-kits.json"),
+  ]);
+  const sitemapContext = { products, travelKits };
+
   await emptyDir(DIST);
   await prepareDist();
-  await generateSeoFiles(ROOT);
-  await Promise.all([buildCss(), buildJs(), copyStaticAssets(), buildHtml(), generateSeoFiles(DIST)]);
+  await generateSeoFiles(ROOT, sitemapContext);
+  await Promise.all([buildCss(), buildJs(), copyStaticAssets(), buildHtml(), generateSeoFiles(DIST, sitemapContext)]);
 };
 
 switch (command) {
@@ -189,12 +198,26 @@ switch (command) {
     break;
   case "assets":
     await prepareDist();
-    await generateSeoFiles(ROOT);
-    await Promise.all([copyStaticAssets(), generateSeoFiles(DIST)]);
+    {
+      const [products, travelKits] = await Promise.all([
+        readJson("data/products.json"),
+        readJson("data/travel-kits.json"),
+      ]);
+      const sitemapContext = { products, travelKits };
+      await generateSeoFiles(ROOT, sitemapContext);
+      await Promise.all([copyStaticAssets(), generateSeoFiles(DIST, sitemapContext)]);
+    }
     break;
   case "seo":
-    await generateSeoFiles(ROOT);
-    await generateSeoFiles(DIST);
+    {
+      const [products, travelKits] = await Promise.all([
+        readJson("data/products.json"),
+        readJson("data/travel-kits.json"),
+      ]);
+      const sitemapContext = { products, travelKits };
+      await generateSeoFiles(ROOT, sitemapContext);
+      await generateSeoFiles(DIST, sitemapContext);
+    }
     break;
   case "images":
     throw new Error("build-dist images command has been removed; use `npm run build:images`.");

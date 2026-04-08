@@ -3,7 +3,7 @@ const SEO_ORIGIN = "https://e-commerce-pr02-outlandgear.netlify.app";
 const INDEXABLE_PAGE_PATHS = [
   "/",
   "/kategoria.html",
-  "/produkt.html",
+  "/komplety.html",
   "/o-nas.html",
   "/kontakt.html",
   "/regulamin.html",
@@ -20,11 +20,37 @@ const NON_INDEXABLE_PAGE_PATHS = [
 
 const resolveSeoUrl = (pathname) => new URL(pathname, `${SEO_ORIGIN}/`).toString();
 
+const isNonEmptyString = (value) =>
+  typeof value === "string" && value.trim().length > 0;
+
+const normalizeSlug = (value) => (isNonEmptyString(value) ? value.trim() : "");
+
+const buildProductPath = (slug) => `/produkt.html?slug=${encodeURIComponent(slug)}`;
+
+const buildTravelKitPath = (slug) =>
+  `/komplety.html?slug=${encodeURIComponent(slug)}`;
+
+const collectSlugPaths = (items, buildPath) => {
+  const safeItems = Array.isArray(items) ? items : [];
+  return safeItems
+    .map((item) => normalizeSlug(item?.slug))
+    .filter(Boolean)
+    .map((slug) => buildPath(slug));
+};
+
 const buildRobotsTxt = () =>
   ["User-agent: *", "Allow: /", `Sitemap: ${resolveSeoUrl("/sitemap.xml")}`].join("\n") + "\n";
 
-const buildSitemapXml = () => {
-  const urls = INDEXABLE_PAGE_PATHS.map(
+const buildSitemapXml = ({ products = [], travelKits = [] } = {}) => {
+  const uniquePaths = Array.from(
+    new Set([
+      ...INDEXABLE_PAGE_PATHS,
+      ...collectSlugPaths(products, buildProductPath),
+      ...collectSlugPaths(travelKits, buildTravelKitPath),
+    ]),
+  );
+
+  const urls = uniquePaths.map(
     (pathname) => `  <url>\n    <loc>${resolveSeoUrl(pathname)}</loc>\n  </url>`
   ).join("\n");
 
@@ -35,7 +61,9 @@ export {
   INDEXABLE_PAGE_PATHS,
   NON_INDEXABLE_PAGE_PATHS,
   SEO_ORIGIN,
+  buildProductPath,
   buildRobotsTxt,
   buildSitemapXml,
+  buildTravelKitPath,
   resolveSeoUrl,
 };
