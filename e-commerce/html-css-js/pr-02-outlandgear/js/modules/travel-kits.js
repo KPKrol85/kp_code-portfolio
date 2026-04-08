@@ -8,7 +8,12 @@ const SITE_NAME = "Outland Gear";
 const SITE_URL = "https://e-commerce-pr02-outlandgear.netlify.app/";
 const KIT_PAGE_PATH = "komplety.html";
 const KIT_ROOT_SELECTOR = "[data-kit-root]";
-const FALLBACK_SOCIAL_IMAGE = "assets/og-img/og-img.svg";
+const FALLBACK_SOCIAL_IMAGE = "assets/og-img/og-img.png";
+const FALLBACK_SOCIAL_IMAGE_ALT =
+  "Grafika Outland Gear przedstawiająca leśny krajobraz, góry, jezioro i centralne logo marki w zielono-beżowej kolorystyce.";
+const FALLBACK_SOCIAL_IMAGE_TYPE = "image/png";
+const FALLBACK_SOCIAL_IMAGE_WIDTH = "1536";
+const FALLBACK_SOCIAL_IMAGE_HEIGHT = "1024";
 const WEBPAGE_SCHEMA_SELECTOR = 'script[data-schema="webpage"]';
 const TRAVEL_KITS_DATA_PATH = "data/travel-kits.json?v=20260406-2";
 const PRODUCTS_DATA_PATH = "data/products.json?v=20260406-2";
@@ -94,11 +99,7 @@ const setKitMetadata = (kit) => {
   const canonicalUrl = new URL(KIT_PAGE_PATH, window.location.origin);
   canonicalUrl.searchParams.set("slug", kit.slug);
   const canonicalHref = canonicalUrl.href;
-  const primaryImagePath = kit.heroImage || FALLBACK_SOCIAL_IMAGE;
-  const imageUrl = new URL(primaryImagePath, window.location.origin).href;
-  const imageAlt = kit.title
-    ? `${kit.title} — ${SITE_NAME}`
-    : "Outland Gear travel kit";
+  const imageUrl = new URL(FALLBACK_SOCIAL_IMAGE, window.location.origin).href;
 
   document.title = pageTitle;
   setMetaContent(
@@ -135,7 +136,22 @@ const setKitMetadata = (kit) => {
   setMetaContent(
     'meta[property="og:image:alt"]',
     { property: "og:image:alt" },
-    imageAlt,
+    FALLBACK_SOCIAL_IMAGE_ALT,
+  );
+  setMetaContent(
+    'meta[property="og:image:type"]',
+    { property: "og:image:type" },
+    FALLBACK_SOCIAL_IMAGE_TYPE,
+  );
+  setMetaContent(
+    'meta[property="og:image:width"]',
+    { property: "og:image:width" },
+    FALLBACK_SOCIAL_IMAGE_WIDTH,
+  );
+  setMetaContent(
+    'meta[property="og:image:height"]',
+    { property: "og:image:height" },
+    FALLBACK_SOCIAL_IMAGE_HEIGHT,
   );
 
   setMetaContent(

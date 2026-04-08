@@ -11,7 +11,12 @@ import { setUiState, clearUiState } from "./ui-state.js";
 const SITE_NAME = "Outland Gear";
 const SITE_URL = "https://e-commerce-pr02-outlandgear.netlify.app/";
 const PRODUCT_PAGE_PATH = "produkt.html";
-const FALLBACK_SOCIAL_IMAGE = "assets/og-img/og-img.svg";
+const FALLBACK_SOCIAL_IMAGE = "assets/og-img/og-img.png";
+const FALLBACK_SOCIAL_IMAGE_ALT =
+  "Grafika Outland Gear przedstawiająca leśny krajobraz, góry, jezioro i centralne logo marki w zielono-beżowej kolorystyce.";
+const FALLBACK_SOCIAL_IMAGE_TYPE = "image/png";
+const FALLBACK_SOCIAL_IMAGE_WIDTH = "1536";
+const FALLBACK_SOCIAL_IMAGE_HEIGHT = "1024";
 const WEBPAGE_SCHEMA_SELECTOR = 'script[data-schema="webpage"]';
 const PRODUCT_SCHEMA_SELECTOR = 'script[data-schema="product"]';
 const getMainImageAlt = (productName, index = 0) =>
@@ -76,11 +81,7 @@ const setProductMetadata = (product, slug) => {
   const canonicalUrl = new URL(PRODUCT_PAGE_PATH, window.location.origin);
   canonicalUrl.searchParams.set("slug", slug);
   const canonicalHref = canonicalUrl.href;
-  const primaryImagePath = product.images?.[0] || FALLBACK_SOCIAL_IMAGE;
-  const imageUrl = new URL(primaryImagePath, window.location.origin).href;
-  const imageAlt = product.name
-    ? `${product.name} — ${SITE_NAME}`
-    : "Outland Gear - outdoor i travel marketplace";
+  const imageUrl = new URL(FALLBACK_SOCIAL_IMAGE, window.location.origin).href;
   const formattedPrice = Number.isFinite(product.price)
     ? product.price.toFixed(2)
     : "";
@@ -113,7 +114,22 @@ const setProductMetadata = (product, slug) => {
   setMetaContent(
     'meta[property="og:image:alt"]',
     { property: "og:image:alt" },
-    imageAlt,
+    FALLBACK_SOCIAL_IMAGE_ALT,
+  );
+  setMetaContent(
+    'meta[property="og:image:type"]',
+    { property: "og:image:type" },
+    FALLBACK_SOCIAL_IMAGE_TYPE,
+  );
+  setMetaContent(
+    'meta[property="og:image:width"]',
+    { property: "og:image:width" },
+    FALLBACK_SOCIAL_IMAGE_WIDTH,
+  );
+  setMetaContent(
+    'meta[property="og:image:height"]',
+    { property: "og:image:height" },
+    FALLBACK_SOCIAL_IMAGE_HEIGHT,
   );
 
   setMetaContent(
