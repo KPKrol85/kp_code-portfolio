@@ -4,26 +4,58 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Koszyk — Outland Gear</title>
-    <meta name="description" content="Sprawdź wybrane produkty Outland Gear i przejdź do checkout demo." />
+    <meta
+      name="description"
+      content="Sprawdź wybrane produkty Outland Gear i przejdź do checkout demo."
+    />
     <meta name="author" content="Outland Gear" />
-    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
+    <meta
+      name="robots"
+      content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1"
+    />
     <meta name="theme-color" content="#0f172a" />
-    <link rel="canonical" href="https://e-commerce-pr02-outlandgear.netlify.app/koszyk.html" />
-    <link rel="alternate" hreflang="pl-PL" href="https://e-commerce-pr02-outlandgear.netlify.app/koszyk.html" />
+    <link
+      rel="canonical"
+      href="https://e-commerce-pr02-outlandgear.netlify.app/koszyk.html"
+    />
+    <link
+      rel="alternate"
+      hreflang="pl-PL"
+      href="https://e-commerce-pr02-outlandgear.netlify.app/koszyk.html"
+    />
     <meta property="og:locale" content="pl_PL" />
     <meta property="og:type" content="website" />
     <meta property="og:site_name" content="Outland Gear" />
     <meta property="og:title" content="Koszyk — Outland Gear" />
-    <meta property="og:description" content="Sprawdź wybrane produkty Outland Gear i przejdź do checkout demo." />
-    <meta property="og:url" content="https://e-commerce-pr02-outlandgear.netlify.app/koszyk.html" />
-    <meta property="og:image" content="https://e-commerce-pr02-outlandgear.netlify.app/assets/svg/social-share-placeholder.svg" />
-    <meta property="og:image:alt" content="Outland Gear - outdoor i travel marketplace" />
+    <meta
+      property="og:description"
+      content="Sprawdź wybrane produkty Outland Gear i przejdź do checkout demo."
+    />
+    <meta
+      property="og:url"
+      content="https://e-commerce-pr02-outlandgear.netlify.app/koszyk.html"
+    />
+    <meta
+      property="og:image"
+      content="https://e-commerce-pr02-outlandgear.netlify.app/assets/svg/social-share-placeholder.svg"
+    />
+    <meta
+      property="og:image:alt"
+      content="Outland Gear - outdoor i travel marketplace"
+    />
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content="Koszyk — Outland Gear" />
-    <meta name="twitter:description" content="Sprawdź wybrane produkty Outland Gear i przejdź do checkout demo." />
-    <meta name="twitter:image" content="https://e-commerce-pr02-outlandgear.netlify.app/assets/svg/social-share-placeholder.svg" />
+    <meta
+      name="twitter:description"
+      content="Sprawdź wybrane produkty Outland Gear i przejdź do checkout demo."
+    />
+    <meta
+      name="twitter:image"
+      content="https://e-commerce-pr02-outlandgear.netlify.app/assets/svg/social-share-placeholder.svg"
+    />
     <link rel="icon" href="assets/svg/favicon.svg" type="image/svg+xml" />
     <link rel="stylesheet" href="css/main.css?v=20260407-breadcrumbs" />
+    <!-- JSON-LD -->
     <script type="application/ld+json">
       {
         "@context": "https://schema.org",
@@ -55,10 +87,13 @@
     <a class="skip-link" href="#main">Przejdź do treści</a>
 
     <!-- Header -->
-    <header class="site-header" data-partial-src="partials/header.html"></header>
+    <header
+      class="site-header"
+      data-partial-src="partials/header.html"
+    ></header>
 
     <!-- Main -->
-    <main id="main">
+    <main id="main" class="cart-page">
       <!-- Hero Subpage -->
       <section class="hero-subpage">
         <div class="container">
@@ -66,8 +101,16 @@
             <!-- breadcrumbs -->
             <nav class="breadcrumbs" aria-label="Breadcrumb">
               <ol class="breadcrumbs__list">
-                <li class="breadcrumbs__item"><a class="breadcrumbs__link" href="index.html">Strona główna</a></li>
-                <li class="breadcrumbs__item"><span class="breadcrumbs__current" aria-current="page">Koszyk</span></li>
+                <li class="breadcrumbs__item">
+                  <a class="breadcrumbs__link" href="index.html"
+                    >Strona główna</a
+                  >
+                </li>
+                <li class="breadcrumbs__item">
+                  <span class="breadcrumbs__current" aria-current="page"
+                    >Koszyk</span
+                  >
+                </li>
               </ol>
             </nav>
             <!-- hero-subpage__body -->
@@ -83,24 +126,37 @@
       <section class="section">
         <div class="container">
           <div class="cart">
-            <div class="card card--padded">
+            <div class="card card--padded cart-panel">
               <div data-cart-container></div>
               <noscript>
-                <section class="notice stack" role="status" aria-label="Koszyk bez JavaScriptu">
+                <section
+                  class="notice stack"
+                  role="status"
+                  aria-label="Koszyk bez JavaScriptu"
+                >
                   <h2>Podsumowanie koszyka bez JavaScriptu</h2>
-                  <p>Dynamiczna zawartość koszyka i automatyczne podsumowanie wartości zamówienia wymagają JavaScriptu.</p>
+                  <p>
+                    Dynamiczna zawartość koszyka i automatyczne podsumowanie
+                    wartości zamówienia wymagają JavaScriptu.
+                  </p>
                   <p>W trybie podstawowym możesz:</p>
                   <ul>
                     <li>
-                      <a href="kategoria.html">wrócić do kategorii i przeglądać ofertę</a>
+                      <a href="kategoria.html"
+                        >wrócić do kategorii i przeglądać ofertę</a
+                      >
                       ,
                     </li>
                     <li>
-                      <a href="produkt.html">otworzyć przykładową kartę produktu</a>
+                      <a href="produkt.html"
+                        >otworzyć przykładową kartę produktu</a
+                      >
                       ,
                     </li>
                     <li>
-                      <a href="kontakt.html">skontaktować się z obsługą, aby dokończyć zamówienie</a>
+                      <a href="kontakt.html"
+                        >skontaktować się z obsługą, aby dokończyć zamówienie</a
+                      >
                       .
                     </li>
                   </ul>
@@ -112,17 +168,28 @@
               <p class="subtle">Dodaj produkty, aby zobaczyć podsumowanie.</p>
             </div>
           </div>
+          <!-- section-actions -->
           <div class="button-group section-actions">
-            <a class="btn btn--outline" href="kategoria.html">Kontynuuj zakupy</a>
+            <a class="btn btn--outline" href="kategoria.html"
+              >Kontynuuj zakupy</a
+            >
             <a class="btn" href="checkout.html">Przejdź do checkout</a>
           </div>
         </div>
       </section>
     </main>
-    <footer class="site-footer" aria-label="Stopka Outland Gear" data-partial-src="partials/footer.html"></footer>
 
+    <!-- Footer -->
+    <footer
+      class="site-footer"
+      aria-label="Stopka Outland Gear"
+      data-partial-src="partials/footer.html"
+    ></footer>
+
+    <!-- Toast -->
     <div class="toast" data-toast role="status" aria-live="polite"></div>
 
+    <!-- Scripts -->
     <script type="module" src="js/app.js?v=20260405-3"></script>
   </body>
 </html>

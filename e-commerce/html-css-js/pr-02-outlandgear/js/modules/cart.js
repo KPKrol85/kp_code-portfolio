@@ -19,7 +19,10 @@ const upsertStorageNotice = (container, actionLabel, onAction) => {
   if (!container) return;
 
   const status = getStorageStatus();
-  const existing = qs("[data-storage-warning]", container.parentElement || container);
+  const existing = qs(
+    "[data-storage-warning]",
+    container.parentElement || container,
+  );
 
   if (status.available) {
     if (existing) existing.remove();
@@ -56,7 +59,9 @@ export const addToCart = (product, qty = 1) => {
   }
   const saved = setCart(cart);
   if (!saved) {
-    showToast("Nie udało się zapisać koszyka. Odśwież stronę i spróbuj ponownie.");
+    showToast(
+      "Nie udało się zapisać koszyka. Odśwież stronę i spróbuj ponownie.",
+    );
   }
   return saved;
 };
@@ -85,7 +90,10 @@ const updateQty = (id, qty) => {
 };
 
 const calculateTotals = (items) => {
-  const subtotal = items.reduce((sum, item) => sum + Number(item.price || 0) * Number(item.qty || 0), 0);
+  const subtotal = items.reduce(
+    (sum, item) => sum + Number(item.price || 0) * Number(item.qty || 0),
+    0,
+  );
   const delivery = subtotal > 600 ? 0 : 24;
   return { subtotal, delivery, total: subtotal + delivery };
 };
@@ -123,23 +131,27 @@ const renderCart = (items, stateRegion) => {
     media.height = 90;
 
     const info = document.createElement("div");
+    info.className = "cart-item__info";
     const title = document.createElement("h3");
+    title.className = "cart-item__title";
     title.textContent = item.name;
     const meta = document.createElement("p");
-    meta.className = "subtle";
+    meta.className = "subtle cart-item__meta";
     meta.textContent = `${item.category} • ${item.subcategory}`;
     info.append(title, meta);
 
     const price = document.createElement("div");
+    price.className = "cart-item__price";
     price.textContent = formatCurrency(item.price, item.currency);
 
     const qtyGroup = document.createElement("div");
+    qtyGroup.className = "cart-item__controls";
     const qtyLabel = document.createElement("label");
     qtyLabel.className = "visually-hidden";
     qtyLabel.textContent = "Ilość";
     qtyLabel.setAttribute("for", `qty-${item.id}`);
     const qtyInput = document.createElement("input");
-    qtyInput.className = "form__input";
+    qtyInput.className = "form__input cart-item__qty";
     qtyInput.type = "number";
     qtyInput.min = "1";
     qtyInput.max = "99";
@@ -148,7 +160,7 @@ const renderCart = (items, stateRegion) => {
     qtyInput.setAttribute("data-qty-input", item.id);
 
     const removeBtn = document.createElement("button");
-    removeBtn.className = "btn btn--ghost btn--small";
+    removeBtn.className = "btn btn--ghost btn--small cart-item__remove";
     removeBtn.type = "button";
     removeBtn.textContent = "Usuń";
     removeBtn.setAttribute("data-remove-item", item.id);
@@ -161,9 +173,15 @@ const renderCart = (items, stateRegion) => {
 
   const totals = calculateTotals(items);
   summary.innerHTML = `
-    <div class="cart-summary__row"><span>Subtotal</span><span>${formatCurrency(totals.subtotal)}</span></div>
-    <div class="cart-summary__row"><span>Dostawa</span><span>${totals.delivery ? formatCurrency(totals.delivery) : "0 PLN"}</span></div>
-    <div class="cart-summary__row"><span>Razem</span><span>${formatCurrency(totals.total)}</span></div>
+    <div class="cart-summary__header">
+      <p class="kicker">Podsumowanie</p>
+      <h2 class="cart-summary__title">Wartość zamówienia</h2>
+    </div>
+    <div class="cart-summary__rows">
+      <div class="cart-summary__row"><span>Subtotal</span><span>${formatCurrency(totals.subtotal)}</span></div>
+      <div class="cart-summary__row"><span>Dostawa</span><span>${totals.delivery ? formatCurrency(totals.delivery) : "0 PLN"}</span></div>
+      <div class="cart-summary__row cart-summary__row--total"><span>Razem</span><span>${formatCurrency(totals.total)}</span></div>
+    </div>
   `;
 };
 
@@ -181,14 +199,16 @@ const renderCartLoadError = (container, summary) => {
 
   container.innerHTML = "";
   const fallback = createFallbackNotice({
-    message: "Nie udało się załadować danych produktów w koszyku. Spróbuj ponownie.",
+    message:
+      "Nie udało się załadować danych produktów w koszyku. Spróbuj ponownie.",
     actionLabel: "Spróbuj ponownie",
     onAction: () => initCart(),
   });
 
   container.appendChild(fallback);
   if (summary) {
-    summary.innerHTML = '<p class="subtle">Odśwież dane, aby zobaczyć podsumowanie zamówienia.</p>';
+    summary.innerHTML =
+      '<p class="subtle">Odśwież dane, aby zobaczyć podsumowanie zamówienia.</p>';
   }
 };
 
@@ -214,7 +234,9 @@ export const initCart = async () => {
   const items = hydrateItems(productsCache, cart);
   renderCart(items, stateRegion);
   updateCartCount();
-  upsertStorageNotice(container, "Odśwież stronę", () => window.location.reload());
+  upsertStorageNotice(container, "Odśwież stronę", () =>
+    window.location.reload(),
+  );
 
   if (cartHandlersBound) return;
 
@@ -223,14 +245,18 @@ export const initCart = async () => {
     if (!Number.isInteger(id)) return;
     const updated = removeItem(id);
     if (!updated) {
-      upsertStorageNotice(container, "Odśwież stronę", () => window.location.reload());
+      upsertStorageNotice(container, "Odśwież stronę", () =>
+        window.location.reload(),
+      );
       return;
     }
 
     const refreshed = hydrateItems(productsCache, getCart());
     renderCart(refreshed, stateRegion);
     updateCartCount();
-    upsertStorageNotice(container, "Odśwież stronę", () => window.location.reload());
+    upsertStorageNotice(container, "Odśwież stronę", () =>
+      window.location.reload(),
+    );
   });
 
   delegate(container, "[data-qty-input]", "change", (_, target) => {
@@ -240,14 +266,18 @@ export const initCart = async () => {
     const updated = updateQty(id, qty);
 
     if (!updated) {
-      upsertStorageNotice(container, "Odśwież stronę", () => window.location.reload());
+      upsertStorageNotice(container, "Odśwież stronę", () =>
+        window.location.reload(),
+      );
       return;
     }
 
     const refreshed = hydrateItems(productsCache, getCart());
     renderCart(refreshed, stateRegion);
     updateCartCount();
-    upsertStorageNotice(container, "Odśwież stronę", () => window.location.reload());
+    upsertStorageNotice(container, "Odśwież stronę", () =>
+      window.location.reload(),
+    );
   });
 
   cartHandlersBound = true;
