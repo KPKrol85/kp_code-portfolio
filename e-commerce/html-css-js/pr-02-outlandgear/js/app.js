@@ -1,13 +1,17 @@
 import { CONFIG } from "./config.js?v=20260405-3";
 import { qs, on } from "./modules/dom.js?v=20260405-3";
 import { initNav } from "./modules/nav.js?v=20260405-3";
-import { initPartials, PARTIALS_READY_EVENT } from "./modules/partials.js?v=20260405-3";
+import {
+  initPartials,
+  PARTIALS_READY_EVENT,
+} from "./modules/partials.js?v=20260405-3";
 import { initCatalog } from "./modules/catalog.js?v=20260405-3";
 import { initProduct } from "./modules/product.js?v=20260405-3";
 import { initCart, updateCartCount } from "./modules/cart.js?v=20260405-3";
 import { initCheckout } from "./modules/checkout.js?v=20260405-3";
 import { initContactForm } from "./modules/contact.js?v=20260405-3";
 import { initLegalModal } from "./modules/legal-modal.js?v=20260405-3";
+import { initFaq } from "./modules/faq.js?v=20260405-3";
 
 const initSearch = () => {
   const form = qs(CONFIG.selectors.searchForm);
@@ -17,7 +21,9 @@ const initSearch = () => {
   on(form, "submit", (event) => {
     event.preventDefault();
     const query = input.value.trim();
-    const target = query ? `kategoria.html?q=${encodeURIComponent(query)}` : "kategoria.html";
+    const target = query
+      ? `kategoria.html?q=${encodeURIComponent(query)}`
+      : "kategoria.html";
     window.location.href = target;
   });
 };
@@ -36,6 +42,7 @@ const initApp = () => {
   initCart();
   initCheckout();
   initContactForm();
+  initFaq();
   initLegalModal();
 };
 
@@ -45,7 +52,7 @@ const bootstrapApp = async () => {
     () => {
       initApp();
     },
-    { once: true }
+    { once: true },
   );
 
   await initPartials();
