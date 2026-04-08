@@ -108,7 +108,7 @@
 .legal-page .legal-section {
   display: grid;
   gap: var(--legal-flow-space);
-  scroll-margin-top: calc(var(--space-10) + var(--space-06));
+  scroll-margin-top: calc(var(--space-08) + var(--space-06));
   padding: var(--space-06);
   border: 1px solid color-mix(in srgb, var(--color-border) 76%, var(--color-white));
   border-radius: var(--radius-04);

@@ -9,13 +9,15 @@ import { findProductBySlug } from "./product-data.js";
 import { setUiState, clearUiState } from "./ui-state.js";
 
 const SITE_NAME = "Outland Gear";
-const SITE_URL = "https://e-commerce-pr02-outlandgear/";
+const SITE_URL = "https://e-commerce-pr02-outlandgear.netlify.app/";
 const PRODUCT_PAGE_PATH = "produkt.html";
-const FALLBACK_SOCIAL_IMAGE = "assets/svg/social-share-placeholder.svg";
+const FALLBACK_SOCIAL_IMAGE = "assets/og-img/og-img.svg";
 const WEBPAGE_SCHEMA_SELECTOR = 'script[data-schema="webpage"]';
 const PRODUCT_SCHEMA_SELECTOR = 'script[data-schema="product"]';
-const getMainImageAlt = (productName, index = 0) => `Zdjęcie ${index + 1} produktu ${productName}`;
-const getThumbLabel = (productName, index = 0) => `Pokaż zdjęcie ${index + 1} produktu ${productName}`;
+const getMainImageAlt = (productName, index = 0) =>
+  `Zdjęcie ${index + 1} produktu ${productName}`;
+const getThumbLabel = (productName, index = 0) =>
+  `Pokaż zdjęcie ${index + 1} produktu ${productName}`;
 
 const ensureMetaTag = (selector, attributes) => {
   let tag = document.querySelector(selector);
@@ -61,31 +63,73 @@ const setProductMetadata = (product, slug) => {
   const pageTitle = titleParts.filter(Boolean).join(" | ");
   document.title = pageTitle;
 
-  const description = [product.shortDescription, product.subcategory].filter(Boolean).join(" ");
-  setMetaContent('meta[name="description"]', { name: "description" }, description);
+  const description = [product.shortDescription, product.subcategory]
+    .filter(Boolean)
+    .join(" ");
+  setMetaContent(
+    'meta[name="description"]',
+    { name: "description" },
+    description,
+  );
 
   const canonicalUrl = new URL(PRODUCT_PAGE_PATH, window.location.origin);
   canonicalUrl.searchParams.set("slug", slug);
   const canonicalHref = canonicalUrl.href;
   const primaryImagePath = product.images?.[0] || FALLBACK_SOCIAL_IMAGE;
   const imageUrl = new URL(primaryImagePath, window.location.origin).href;
-  const imageAlt = product.name ? `${product.name} — ${SITE_NAME}` : "Outland Gear - outdoor i travel marketplace";
-  const formattedPrice = Number.isFinite(product.price) ? product.price.toFixed(2) : "";
+  const imageAlt = product.name
+    ? `${product.name} — ${SITE_NAME}`
+    : "Outland Gear - outdoor i travel marketplace";
+  const formattedPrice = Number.isFinite(product.price)
+    ? product.price.toFixed(2)
+    : "";
 
   const canonicalLink = document.querySelector('link[rel="canonical"]');
   if (canonicalLink) {
     canonicalLink.setAttribute("href", canonicalHref);
   }
 
-  setMetaContent('meta[property="og:title"]', { property: "og:title" }, pageTitle);
-  setMetaContent('meta[property="og:description"]', { property: "og:description" }, description);
-  setMetaContent('meta[property="og:url"]', { property: "og:url" }, canonicalHref);
-  setMetaContent('meta[property="og:image"]', { property: "og:image" }, imageUrl);
-  setMetaContent('meta[property="og:image:alt"]', { property: "og:image:alt" }, imageAlt);
+  setMetaContent(
+    'meta[property="og:title"]',
+    { property: "og:title" },
+    pageTitle,
+  );
+  setMetaContent(
+    'meta[property="og:description"]',
+    { property: "og:description" },
+    description,
+  );
+  setMetaContent(
+    'meta[property="og:url"]',
+    { property: "og:url" },
+    canonicalHref,
+  );
+  setMetaContent(
+    'meta[property="og:image"]',
+    { property: "og:image" },
+    imageUrl,
+  );
+  setMetaContent(
+    'meta[property="og:image:alt"]',
+    { property: "og:image:alt" },
+    imageAlt,
+  );
 
-  setMetaContent('meta[name="twitter:title"]', { name: "twitter:title" }, pageTitle);
-  setMetaContent('meta[name="twitter:description"]', { name: "twitter:description" }, description);
-  setMetaContent('meta[name="twitter:image"]', { name: "twitter:image" }, imageUrl);
+  setMetaContent(
+    'meta[name="twitter:title"]',
+    { name: "twitter:title" },
+    pageTitle,
+  );
+  setMetaContent(
+    'meta[name="twitter:description"]',
+    { name: "twitter:description" },
+    description,
+  );
+  setMetaContent(
+    'meta[name="twitter:image"]',
+    { name: "twitter:image" },
+    imageUrl,
+  );
 
   setJsonLd(WEBPAGE_SCHEMA_SELECTOR, "webpage", {
     "@context": "https://schema.org",
@@ -118,7 +162,10 @@ const setProductMetadata = (product, slug) => {
       "@type": "Offer",
       priceCurrency: product.currency || "PLN",
       price: formattedPrice,
-      availability: product.stockStatus === "Dostępny" ? "https://schema.org/InStock" : "https://schema.org/OutOfStock",
+      availability:
+        product.stockStatus === "Dostępny"
+          ? "https://schema.org/InStock"
+          : "https://schema.org/OutOfStock",
       url: canonicalHref,
     },
     aggregateRating: Number.isFinite(product.rating)
@@ -145,7 +192,8 @@ const renderProduct = (product) => {
   const specs = qs("[data-product-specs]", root);
 
   if (title) title.textContent = product.name || "";
-  if (price) price.textContent = formatCurrency(product.price, product.currency);
+  if (price)
+    price.textContent = formatCurrency(product.price, product.currency);
   if (oldPrice) {
     if (product.oldPrice) {
       oldPrice.textContent = formatCurrency(product.oldPrice, product.currency);
@@ -153,7 +201,8 @@ const renderProduct = (product) => {
       oldPrice.textContent = "";
     }
   }
-  if (rating) rating.textContent = `Ocena ${product.rating} • ${product.reviewsCount} opinii`;
+  if (rating)
+    rating.textContent = `Ocena ${product.rating} • ${product.reviewsCount} opinii`;
   if (stock) stock.textContent = product.stockStatus;
   if (description) description.textContent = product.shortDescription || "";
 
@@ -183,10 +232,16 @@ const renderProduct = (product) => {
 
   const mainImage = qs("[data-product-main]", root);
   const thumbs = qsa("[data-product-thumb]", root);
-  const images = Array.isArray(product?.images) && product.images.length ? product.images : [""];
+  const images =
+    Array.isArray(product?.images) && product.images.length
+      ? product.images
+      : [""];
   const setActiveThumb = (activeIndex) => {
     thumbs.forEach((thumb, index) => {
-      thumb.setAttribute("aria-pressed", index === activeIndex ? "true" : "false");
+      thumb.setAttribute(
+        "aria-pressed",
+        index === activeIndex ? "true" : "false",
+      );
     });
   };
 
@@ -205,7 +260,10 @@ const renderProduct = (product) => {
       img.setAttribute("aria-hidden", "true");
     }
 
-    thumb.setAttribute("aria-label", `Pokaż zdjęcie ${index + 1} produktu ${product.name}`);
+    thumb.setAttribute(
+      "aria-label",
+      `Pokaż zdjęcie ${index + 1} produktu ${product.name}`,
+    );
 
     on(thumb, "click", () => {
       if (mainImage && images[index]) {
@@ -232,7 +290,11 @@ const renderRelated = (products, current) => {
   const grid = qs(CONFIG.selectors.relatedGrid);
   if (!grid) return;
   grid.innerHTML = "";
-  const related = products.filter((item) => item.category === current.category && item.id !== current.id).slice(0, 3);
+  const related = products
+    .filter(
+      (item) => item.category === current.category && item.id !== current.id,
+    )
+    .slice(0, 3);
   related.forEach((product) => {
     const article = document.createElement("article");
     article.className = "card product-card";
@@ -286,7 +348,8 @@ const renderProductLoadError = (root) => {
   container.className = "container";
 
   const fallback = createFallbackNotice({
-    message: "Nie udało się załadować produktu. Odśwież stronę i spróbuj ponownie.",
+    message:
+      "Nie udało się załadować produktu. Odśwież stronę i spróbuj ponownie.",
     actionLabel: "Odśwież stronę",
     onAction: () => window.location.reload(),
   });

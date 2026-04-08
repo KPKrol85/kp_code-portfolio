@@ -4,33 +4,67 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Checkout — Outland Gear</title>
-    <meta name="description" content="Checkout demo Outland Gear: dane dostawy i podsumowanie zamówienia." />
+    <meta
+      name="description"
+      content="Checkout demo Outland Gear: dane dostawy i podsumowanie zamówienia."
+    />
     <meta name="author" content="Outland Gear" />
-    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
+    <meta name="robots" content="noindex, nofollow" />
     <meta name="theme-color" content="#0f172a" />
-    <link rel="canonical" href="https://e-commerce-pr02-outlandgear/checkout.html" />
-    <link rel="alternate" hreflang="pl-PL" href="https://e-commerce-pr02-outlandgear/checkout.html" />
+    <link
+      rel="canonical"
+      href="https://e-commerce-pr02-outlandgear.netlify.app/checkout.html"
+    />
+    <link
+      rel="alternate"
+      hreflang="pl-PL"
+      href="https://e-commerce-pr02-outlandgear.netlify.app/checkout.html"
+    />
     <meta property="og:locale" content="pl_PL" />
     <meta property="og:type" content="website" />
     <meta property="og:site_name" content="Outland Gear" />
     <meta property="og:title" content="Checkout — Outland Gear" />
-    <meta property="og:description" content="Checkout demo Outland Gear: dane dostawy i podsumowanie zamówienia." />
-    <meta property="og:url" content="https://e-commerce-pr02-outlandgear/checkout.html" />
-    <meta property="og:image" content="https://e-commerce-pr02-outlandgear/assets/svg/social-share-placeholder.svg" />
-    <meta property="og:image:alt" content="Outland Gear - outdoor i travel marketplace" />
+    <meta
+      property="og:description"
+      content="Checkout demo Outland Gear: dane dostawy i podsumowanie zamówienia."
+    />
+    <meta
+      property="og:url"
+      content="https://e-commerce-pr02-outlandgear.netlify.app/checkout.html"
+    />
+    <meta
+      property="og:image"
+      content="https://e-commerce-pr02-outlandgear.netlify.app/assets/og-img/og-img.svg"
+    />
+    <meta
+      property="og:image:alt"
+      content="Grafika Outland Gear przedstawiająca leśny krajobraz, góry, jezioro i centralne logo marki w zielono-beżowej kolorystyce."
+    />
+    <meta property="og:image:type" content="image/png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content="Checkout — Outland Gear" />
-    <meta name="twitter:description" content="Checkout demo Outland Gear: dane dostawy i podsumowanie zamówienia." />
-    <meta name="twitter:image" content="https://e-commerce-pr02-outlandgear/assets/svg/social-share-placeholder.svg" />
-    <link rel="icon" href="assets/svg/favicon.svg" type="image/svg+xml" />
+    <meta
+      name="twitter:description"
+      content="Checkout demo Outland Gear: dane dostawy i podsumowanie zamówienia."
+    />
+    <meta
+      name="twitter:image"
+      content="https://e-commerce-pr02-outlandgear.netlify.app/assets/og-img/og-img.svg"
+    />
+    <link rel="icon" type="image/svg+xml" href="assets/fav-icons/favicon.svg" />
+    <link rel="icon" type="image/x-icon" href="assets/fav-icons/favicon.ico" />
+    <link rel="apple-touch-icon" href="assets/fav-icons/apple-touch-icon.png" />
+    <link rel="manifest" href="assets/fav-icons/site.webmanifest" />
     <link rel="stylesheet" href="css/main.css?v=20260407-breadcrumbs" />
     <script type="application/ld+json">
       {
         "@context": "https://schema.org",
         "@type": "Organization",
         "name": "Outland Gear",
-        "url": "https://e-commerce-pr02-outlandgear/",
-        "logo": "https://e-commerce-pr02-outlandgear/assets/svg/logo.svg"
+        "url": "https://e-commerce-pr02-outlandgear.netlify.app/",
+        "logo": "https://e-commerce-pr02-outlandgear.netlify.app/assets/svg/logo.svg"
       }
     </script>
     <script type="application/ld+json">
@@ -39,12 +73,12 @@
         "@type": "WebPage",
         "name": "Checkout — Outland Gear",
         "description": "Checkout demo Outland Gear: dane dostawy i podsumowanie zamówienia.",
-        "url": "https://e-commerce-pr02-outlandgear/checkout.html",
+        "url": "https://e-commerce-pr02-outlandgear.netlify.app/checkout.html",
         "inLanguage": "pl-PL",
         "isPartOf": {
           "@type": "WebSite",
           "name": "Outland Gear",
-          "url": "https://e-commerce-pr02-outlandgear/"
+          "url": "https://e-commerce-pr02-outlandgear.netlify.app/"
         }
       }
     </script>
@@ -55,10 +89,13 @@
     <a class="skip-link" href="#main">Przejdź do treści</a>
 
     <!-- Header -->
-    <header class="site-header" data-partial-src="partials/header.html"></header>
+    <header
+      class="site-header"
+      data-partial-src="partials/header.html"
+    ></header>
 
     <!-- Main -->
-    <main id="main">
+    <main id="main" class="checkout-page">
       <!-- Hero Subpage -->
       <section class="hero-subpage">
         <div class="container">
@@ -66,9 +103,19 @@
             <!-- breadcrumbs -->
             <nav class="breadcrumbs" aria-label="Breadcrumb">
               <ol class="breadcrumbs__list">
-                <li class="breadcrumbs__item"><a class="breadcrumbs__link" href="index.html">Strona główna</a></li>
-                <li class="breadcrumbs__item"><a class="breadcrumbs__link" href="koszyk.html">Koszyk</a></li>
-                <li class="breadcrumbs__item"><span class="breadcrumbs__current" aria-current="page">Checkout</span></li>
+                <li class="breadcrumbs__item">
+                  <a class="breadcrumbs__link" href="index.html"
+                    >Strona główna</a
+                  >
+                </li>
+                <li class="breadcrumbs__item">
+                  <a class="breadcrumbs__link" href="koszyk.html">Koszyk</a>
+                </li>
+                <li class="breadcrumbs__item">
+                  <span class="breadcrumbs__current" aria-current="page"
+                    >Checkout</span
+                  >
+                </li>
               </ol>
             </nav>
             <!-- hero-subpage__body -->
@@ -84,56 +131,120 @@
       <section class="section">
         <div class="container">
           <div class="checkout-layout">
-            <form class="form" data-checkout-form action="checkout-potwierdzenie.html" method="get">
-              <div data-checkout-status class="ui-state" hidden></div>
-              <fieldset class="form__fieldset">
+            <form
+              class="form card checkout-form"
+              data-checkout-form
+              action="checkout-potwierdzenie.html"
+              method="get"
+            >
+              <div
+                class="ui-state checkout-form__status"
+                data-checkout-status
+                hidden
+              ></div>
+              <fieldset class="form__fieldset checkout-form__section">
                 <legend class="form__legend">Dane kontaktowe</legend>
-                <div class="form__row">
+                <div class="checkout-form__stack">
                   <div class="form__group">
                     <label class="form__label" for="firstName">Imię</label>
-                    <input class="form__input" id="firstName" name="firstName" type="text" autocomplete="given-name" required />
+                    <input
+                      class="form__input"
+                      id="firstName"
+                      name="firstName"
+                      type="text"
+                      autocomplete="given-name"
+                      required
+                    />
                     <span class="form__error" data-error-for="firstName"></span>
                   </div>
                   <div class="form__row">
                     <div class="form__group">
                       <label class="form__label" for="email">Email</label>
-                      <input class="form__input" id="email" name="email" type="email" autocomplete="email" inputmode="email" required />
+                      <input
+                        class="form__input"
+                        id="email"
+                        name="email"
+                        type="email"
+                        autocomplete="email"
+                        inputmode="email"
+                        required
+                      />
                       <span class="form__error" data-error-for="email"></span>
                     </div>
                     <div class="form__group">
                       <label class="form__label" for="phone">Telefon</label>
-                      <input class="form__input" id="phone" name="phone" type="tel" autocomplete="tel-national" inputmode="tel" required />
+                      <input
+                        class="form__input"
+                        id="phone"
+                        name="phone"
+                        type="tel"
+                        autocomplete="tel-national"
+                        inputmode="tel"
+                        required
+                      />
                       <span class="form__error" data-error-for="phone"></span>
                     </div>
                   </div>
                 </div>
               </fieldset>
-              <fieldset class="form__fieldset">
+              <fieldset class="form__fieldset checkout-form__section">
                 <legend class="form__legend">Adres dostawy</legend>
                 <div class="form__group">
                   <label class="form__label" for="address">Adres</label>
-                  <input class="form__input" id="address" name="address" type="text" autocomplete="street-address" required />
+                  <input
+                    class="form__input"
+                    id="address"
+                    name="address"
+                    type="text"
+                    autocomplete="street-address"
+                    required
+                  />
                   <span class="form__error" data-error-for="address"></span>
                 </div>
                 <div class="form__row">
                   <div class="form__group">
                     <label class="form__label" for="city">Miasto</label>
-                    <input class="form__input" id="city" name="city" type="text" autocomplete="address-level2" required />
+                    <input
+                      class="form__input"
+                      id="city"
+                      name="city"
+                      type="text"
+                      autocomplete="address-level2"
+                      required
+                    />
                     <span class="form__error" data-error-for="city"></span>
                   </div>
                   <div class="form__group">
                     <label class="form__label" for="zip">Kod pocztowy</label>
-                    <input class="form__input" id="zip" name="zip" type="text" autocomplete="postal-code" inputmode="numeric" required pattern="\d{2}-\d{3}" />
+                    <input
+                      class="form__input"
+                      id="zip"
+                      name="zip"
+                      type="text"
+                      autocomplete="postal-code"
+                      inputmode="numeric"
+                      required
+                      pattern="\d{2}-\d{3}"
+                    />
                     <span class="form__error" data-error-for="zip"></span>
                     <span class="form__hint">Format: 00-000</span>
                   </div>
                 </div>
               </fieldset>
-              <fieldset class="form__fieldset">
-                <legend class="form__legend">Dostawa i dodatkowe informacje</legend>
+              <fieldset class="form__fieldset checkout-form__section">
+                <legend class="form__legend">
+                  Dostawa i dodatkowe informacje
+                </legend>
                 <div class="form__group">
-                  <label class="form__label" for="delivery">Metoda dostawy</label>
-                  <select class="form__select" id="delivery" name="delivery" required>
+                  <label class="form__label" for="delivery"
+                    >Metoda dostawy</label
+                  >
+                  <select
+                    class="form__select"
+                    id="delivery"
+                    name="delivery"
+                    required
+                  >
                     <option value="">Wybierz metodę</option>
                     <option value="courier">Kurier 24h</option>
                     <option value="parcel">Paczkomat</option>
@@ -142,30 +253,54 @@
                   <span class="form__error" data-error-for="delivery"></span>
                 </div>
                 <div class="form__group">
-                  <label class="form__label" for="notes">Uwagi do zamówienia</label>
-                  <textarea class="form__textarea" id="notes" name="notes" rows="3" autocomplete="off"></textarea>
+                  <label class="form__label" for="notes"
+                    >Uwagi do zamówienia</label
+                  >
+                  <textarea
+                    class="form__textarea"
+                    id="notes"
+                    name="notes"
+                    rows="3"
+                    autocomplete="off"
+                  ></textarea>
                   <span class="form__error" data-error-for="notes"></span>
                 </div>
                 <div class="form__group">
-                  <label class="checkbox">
+                  <label class="checkbox checkout-form__checkbox">
                     <input type="checkbox" name="terms" required />
                     <span>
                       Akceptuję
                       <a href="regulamin.html">regulamin</a>
                       i
-                      <a href="polityka-prywatnosci.html">politykę prywatności</a>
+                      <a href="polityka-prywatnosci.html"
+                        >politykę prywatności</a
+                      >
                       .
                     </span>
                   </label>
                   <span class="form__error" data-error-for="terms"></span>
                 </div>
               </fieldset>
-              <button class="btn" type="submit">Złóż zamówienie (demo)</button>
+              <div class="checkout-form__actions">
+                <a class="btn btn--outline" href="koszyk.html"
+                  >Wróć do koszyka</a
+                >
+                <button class="btn" type="submit">
+                  Złóż zamówienie (demo)
+                </button>
+              </div>
             </form>
             <aside class="order-summary">
-              <h2>Podsumowanie</h2>
-              <p class="subtle">Po złożeniu zamówienia otrzymasz ekran potwierdzenia (demo).</p>
-              <div class="notice">
+              <div class="order-summary__header">
+                <p class="kicker">Podsumowanie</p>
+                <h2 class="order-summary__title">
+                  Finalizacja bez zbędnych kroków
+                </h2>
+                <p class="subtle">
+                  Po złożeniu zamówienia otrzymasz ekran potwierdzenia (demo).
+                </p>
+              </div>
+              <div class="notice order-summary__notice">
                 <p>
                   <strong>Dostawa:</strong>
                   Kurier 24h / Paczkomat
@@ -175,12 +310,26 @@
                   30 dni na test sprzętu.
                 </p>
               </div>
-              <a class="btn btn--outline" href="kategoria.html">Wróć do katalogu</a>
+              <div
+                class="order-summary__benefits"
+                aria-label="Korzyści zakupowe"
+              >
+                <span>czytelny formularz</span>
+                <span>krótka ścieżka</span>
+                <span>potwierdzenie demo</span>
+              </div>
+              <div class="order-summary__actions">
+                <a class="btn btn--outline" href="kategoria.html"
+                  >Wróć do katalogu</a
+                >
+              </div>
             </aside>
           </div>
           <div class="success-panel" data-checkout-success hidden>
             <h2>Zamówienie przyjęte (demo)</h2>
-            <p>Dziękujemy! W prawdziwej wersji otrzymasz maila z potwierdzeniem.</p>
+            <p>
+              Dziękujemy! W prawdziwej wersji otrzymasz maila z potwierdzeniem.
+            </p>
             <a class="btn" href="index.html">Wróć na stronę główną</a>
           </div>
         </div>
@@ -188,7 +337,11 @@
     </main>
 
     <!-- Footer -->
-    <footer class="site-footer" aria-label="Stopka Outland Gear" data-partial-src="partials/footer.html"></footer>
+    <footer
+      class="site-footer"
+      aria-label="Stopka Outland Gear"
+      data-partial-src="partials/footer.html"
+    ></footer>
 
     <div class="toast" data-toast role="status" aria-live="polite"></div>
 

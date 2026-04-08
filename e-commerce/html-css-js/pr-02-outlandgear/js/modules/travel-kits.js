@@ -5,10 +5,10 @@ import { createFallbackNotice } from "./fallback.js?v=20260405-3";
 import { formatCurrency } from "../utils.js?v=20260405-3";
 
 const SITE_NAME = "Outland Gear";
-const SITE_URL = "https://e-commerce-pr02-outlandgear/";
+const SITE_URL = "https://e-commerce-pr02-outlandgear.netlify.app/";
 const KIT_PAGE_PATH = "komplety.html";
 const KIT_ROOT_SELECTOR = "[data-kit-root]";
-const FALLBACK_SOCIAL_IMAGE = "assets/svg/social-share-placeholder.svg";
+const FALLBACK_SOCIAL_IMAGE = "assets/og-img/og-img.svg";
 const WEBPAGE_SCHEMA_SELECTOR = 'script[data-schema="webpage"]';
 const TRAVEL_KITS_DATA_PATH = "data/travel-kits.json?v=20260406-2";
 const PRODUCTS_DATA_PATH = "data/products.json?v=20260406-2";
@@ -60,8 +60,15 @@ const findKitBySlug = (kits, slug) => {
 };
 
 const resolveKitProducts = (kit, products) => {
-  const ids = Array.isArray(kit?.productIds) ? kit.productIds.map(Number).filter(Number.isInteger) : [];
-  const byId = new Map((Array.isArray(products) ? products : []).map((product) => [Number(product?.id), product]));
+  const ids = Array.isArray(kit?.productIds)
+    ? kit.productIds.map(Number).filter(Number.isInteger)
+    : [];
+  const byId = new Map(
+    (Array.isArray(products) ? products : []).map((product) => [
+      Number(product?.id),
+      product,
+    ]),
+  );
   const matched = [];
   const missing = [];
 
@@ -80,32 +87,72 @@ const resolveKitProducts = (kit, products) => {
 const setKitMetadata = (kit) => {
   if (!kit?.slug) return;
 
-  const pageTitle = [kit.title, kit.label, SITE_NAME].filter(Boolean).join(" | ");
+  const pageTitle = [kit.title, kit.label, SITE_NAME]
+    .filter(Boolean)
+    .join(" | ");
   const description = [kit.description, kit.duration].filter(Boolean).join(" ");
   const canonicalUrl = new URL(KIT_PAGE_PATH, window.location.origin);
   canonicalUrl.searchParams.set("slug", kit.slug);
   const canonicalHref = canonicalUrl.href;
   const primaryImagePath = kit.heroImage || FALLBACK_SOCIAL_IMAGE;
   const imageUrl = new URL(primaryImagePath, window.location.origin).href;
-  const imageAlt = kit.title ? `${kit.title} — ${SITE_NAME}` : "Outland Gear travel kit";
+  const imageAlt = kit.title
+    ? `${kit.title} — ${SITE_NAME}`
+    : "Outland Gear travel kit";
 
   document.title = pageTitle;
-  setMetaContent('meta[name="description"]', { name: "description" }, description);
+  setMetaContent(
+    'meta[name="description"]',
+    { name: "description" },
+    description,
+  );
 
   const canonicalLink = document.querySelector('link[rel="canonical"]');
   if (canonicalLink) {
     canonicalLink.setAttribute("href", canonicalHref);
   }
 
-  setMetaContent('meta[property="og:title"]', { property: "og:title" }, pageTitle);
-  setMetaContent('meta[property="og:description"]', { property: "og:description" }, description);
-  setMetaContent('meta[property="og:url"]', { property: "og:url" }, canonicalHref);
-  setMetaContent('meta[property="og:image"]', { property: "og:image" }, imageUrl);
-  setMetaContent('meta[property="og:image:alt"]', { property: "og:image:alt" }, imageAlt);
+  setMetaContent(
+    'meta[property="og:title"]',
+    { property: "og:title" },
+    pageTitle,
+  );
+  setMetaContent(
+    'meta[property="og:description"]',
+    { property: "og:description" },
+    description,
+  );
+  setMetaContent(
+    'meta[property="og:url"]',
+    { property: "og:url" },
+    canonicalHref,
+  );
+  setMetaContent(
+    'meta[property="og:image"]',
+    { property: "og:image" },
+    imageUrl,
+  );
+  setMetaContent(
+    'meta[property="og:image:alt"]',
+    { property: "og:image:alt" },
+    imageAlt,
+  );
 
-  setMetaContent('meta[name="twitter:title"]', { name: "twitter:title" }, pageTitle);
-  setMetaContent('meta[name="twitter:description"]', { name: "twitter:description" }, description);
-  setMetaContent('meta[name="twitter:image"]', { name: "twitter:image" }, imageUrl);
+  setMetaContent(
+    'meta[name="twitter:title"]',
+    { name: "twitter:title" },
+    pageTitle,
+  );
+  setMetaContent(
+    'meta[name="twitter:description"]',
+    { name: "twitter:description" },
+    description,
+  );
+  setMetaContent(
+    'meta[name="twitter:image"]',
+    { name: "twitter:image" },
+    imageUrl,
+  );
 
   setJsonLd(WEBPAGE_SCHEMA_SELECTOR, "webpage", {
     "@context": "https://schema.org",
@@ -181,7 +228,9 @@ const createKitProductCard = (product) => {
 
   const meta = document.createElement("p");
   meta.className = "subtle kit-product-card__meta";
-  meta.textContent = [product.category, product.subcategory].filter(Boolean).join(" • ");
+  meta.textContent = [product.category, product.subcategory]
+    .filter(Boolean)
+    .join(" • ");
 
   const title = document.createElement("h3");
   title.className = "kit-product-card__title";
@@ -233,7 +282,8 @@ const renderKitProducts = (root, products, missingIds = []) => {
     setUiState(state, {
       type: "info",
       title: "Produkty w tym komplecie są chwilowo niedostępne",
-      message: "Narracja zestawu jest dostępna, ale nie udało się powiązać produktów z katalogu.",
+      message:
+        "Narracja zestawu jest dostępna, ale nie udało się powiązać produktów z katalogu.",
     });
     return;
   }
@@ -276,7 +326,10 @@ const renderKit = (root, kit, products, missingIds) => {
     image.alt = kit.heroAlt || kit.title || "";
   }
 
-  setTextContent(supportTitle, kit.supportTitle || "Dlaczego ten komplet działa");
+  setTextContent(
+    supportTitle,
+    kit.supportTitle || "Dlaczego ten komplet działa",
+  );
   setTextContent(supportText, kit.supportText);
 
   renderMetaList(meta, kit.meta);
@@ -292,9 +345,12 @@ const renderKit = (root, kit, products, missingIds) => {
     const secondaryHref = kit.secondaryCtaHref || "kategoria.html";
     const hasDistinctSecondary = Boolean(
       kit.secondaryCtaLabel &&
-        secondaryHref &&
-        secondaryHref !== primaryCta?.href &&
-        !(secondaryHref.startsWith("kategoria.html?q=") && primaryCta?.href?.includes("kategoria.html?q="))
+      secondaryHref &&
+      secondaryHref !== primaryCta?.href &&
+      !(
+        secondaryHref.startsWith("kategoria.html?q=") &&
+        primaryCta?.href?.includes("kategoria.html?q=")
+      ),
     );
 
     secondaryCta.hidden = !hasDistinctSecondary;
@@ -326,7 +382,8 @@ const renderKitLoadError = (root) => {
   container.className = "container";
 
   const fallback = createFallbackNotice({
-    message: "Nie udało się załadować danych zestawu. Odśwież stronę i spróbuj ponownie.",
+    message:
+      "Nie udało się załadować danych zestawu. Odśwież stronę i spróbuj ponownie.",
     actionLabel: "Odśwież stronę",
     onAction: () => window.location.reload(),
   });
@@ -353,7 +410,10 @@ export const initTravelKits = async () => {
   let kits = [];
   let products = [];
   try {
-    [kits, products] = await Promise.all([fetchJson(TRAVEL_KITS_DATA_PATH), fetchJson(PRODUCTS_DATA_PATH)]);
+    [kits, products] = await Promise.all([
+      fetchJson(TRAVEL_KITS_DATA_PATH),
+      fetchJson(PRODUCTS_DATA_PATH),
+    ]);
   } catch (error) {
     console.error("Travel kits data error", error);
     travelKitsInitialized = false;
@@ -375,7 +435,8 @@ export const initTravelKits = async () => {
     setUiState(stateRegion, {
       type: "info",
       title: "Nie znaleźliśmy tego kompletu",
-      message: "Wróć do strony głównej lub przejdź do katalogu, aby zobaczyć inne propozycje.",
+      message:
+        "Wróć do strony głównej lub przejdź do katalogu, aby zobaczyć inne propozycje.",
     });
     travelKitsInitialized = false;
     return;
