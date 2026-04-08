@@ -200,12 +200,6 @@
   color: var(--color-moss);
 }
 
-.legal-page .legal-meta {
-  margin-top: var(--space-02);
-  font-size: var(--fs-03);
-  color: var(--color-muted);
-}
-
 @media (min-width: 768px) {
   .legal-page .legal-main {
     padding-bottom: var(--space-09);

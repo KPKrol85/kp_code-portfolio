@@ -19,7 +19,7 @@
 }
 
 .toast__label {
-  font-weight: 700;
+  font-weight: var(--fw-bold);
 }
 
 .toast__message {

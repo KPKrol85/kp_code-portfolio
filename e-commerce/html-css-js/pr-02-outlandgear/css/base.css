@@ -1,4 +1,3 @@
-
 *,
 *::before,
 *::after {
@@ -74,7 +73,7 @@ h4 {
     opacity var(--transition-fast);
 }
 
-:where(button, [role="button"], input[type="submit"], input[type="button"], .btn, .filters__chip, .nav-toggle, .dropdown__toggle, .gallery__thumbs button) {
+:where(button, [role="button"], input[type="submit"], input[type="button"], .btn, .nav-toggle, .dropdown__toggle, .gallery__thumbs button) {
   cursor: pointer;
 }
 
@@ -83,7 +82,7 @@ h4 {
 }
 
 :where(button, input[type="submit"], input[type="button"], .btn):disabled,
-:where(.btn, a, button, [role="button"], .filters__chip, .dropdown__toggle, .nav-toggle)[aria-disabled="true"] {
+:where(.btn, a, button, [role="button"], .dropdown__toggle, .nav-toggle)[aria-disabled="true"] {
   opacity: 0.55;
   cursor: not-allowed;
   pointer-events: none;
@@ -130,5 +129,16 @@ main li a:hover {
   border: 0;
 }
 
-
-
+.ui-chip {
+  display: inline-flex;
+  align-items: center;
+  padding: var(--space-02) var(--space-04);
+  border-radius: var(--radius-pill);
+  border: 1px solid var(--color-border);
+  background: var(--color-white);
+  color: var(--color-ink);
+  font-size: var(--fs-01);
+  font-weight: var(--fw-semibold);
+  letter-spacing: var(--ls-caps);
+  text-transform: uppercase;
+}

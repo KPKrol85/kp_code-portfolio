@@ -72,19 +72,3 @@
 .outland-legal-modal__actions .btn--ghost:hover {
   background: rgba(255, 255, 255, 0.14);
 }
-
-.site-footer__link-button {
-  appearance: none;
-  border: none;
-  background: none;
-  padding: 0;
-  color: rgba(255, 255, 255, 0.9);
-  cursor: pointer;
-  text-align: left;
-  font: inherit;
-}
-
-.site-footer__link-button:hover,
-.site-footer__link-button:focus-visible {
-  color: var(--color-white);
-}

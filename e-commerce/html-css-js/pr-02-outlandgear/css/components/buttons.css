@@ -55,19 +55,6 @@
   color: var(--color-white);
 }
 
-.btn--link {
-  background: none;
-  border: none;
-  color: var(--color-forest);
-  padding: 0;
-}
-
-.btn--link:hover:not(:disabled):not([aria-disabled="true"]),
-.btn--link:focus-visible {
-  color: var(--color-forest-dark);
-  text-decoration: underline;
-}
-
 .btn:disabled,
 .btn[aria-disabled="true"] {
   background: var(--color-stone);
@@ -78,11 +65,6 @@
 .btn--small {
   padding: var(--space-02) var(--space-03);
   font-size: var(--fs-03);
-}
-
-.btn__icon {
-  width: 1rem;
-  height: 1rem;
 }
 
 .button-group {

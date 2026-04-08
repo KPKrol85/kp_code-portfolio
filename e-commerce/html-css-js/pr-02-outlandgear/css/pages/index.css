@@ -181,20 +181,6 @@
   gap: var(--space-02);
 }
 
-.homepage-closing-cta__benefits span {
-  display: inline-flex;
-  align-items: center;
-  padding: var(--space-02) var(--space-04);
-  border-radius: var(--radius-pill);
-  border: 1px solid var(--color-border);
-  background: var(--color-white);
-  color: var(--color-ink);
-  font-size: var(--fs-01);
-  text-transform: uppercase;
-  font-weight: var(--fw-semibold);
-  letter-spacing: var(--ls-caps);
-}
-
 @media (min-width: 980px) {
   .marketplace-experience {
     grid-template-columns: minmax(280px, 0.9fr) minmax(0, 1.1fr);

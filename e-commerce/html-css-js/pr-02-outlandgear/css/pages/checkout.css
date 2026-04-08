@@ -144,20 +144,6 @@
   gap: var(--space-02);
 }
 
-.order-summary__benefits span {
-  display: inline-flex;
-  align-items: center;
-  padding: var(--space-02) var(--space-04);
-  border-radius: var(--radius-pill);
-  border: 1px solid var(--color-border);
-  background: var(--color-white);
-  color: var(--color-ink);
-  font-size: var(--fs-01);
-  font-weight: var(--fw-semibold);
-  letter-spacing: var(--ls-caps);
-  text-transform: uppercase;
-}
-
 .order-summary__actions {
   display: flex;
   justify-content: flex-start;
