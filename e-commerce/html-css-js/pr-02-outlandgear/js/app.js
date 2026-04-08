@@ -12,6 +12,7 @@ import { initCheckout } from "./modules/checkout.js?v=20260405-3";
 import { initContactForm } from "./modules/contact.js?v=20260405-3";
 import { initLegalModal } from "./modules/legal-modal.js?v=20260405-3";
 import { initFaq } from "./modules/faq.js?v=20260405-3";
+import { initNewsletterForm } from "./modules/newsletter.js?v=20260405-3";
 
 const initSearch = () => {
   const form = qs(CONFIG.selectors.searchForm);
@@ -43,6 +44,7 @@ const initApp = () => {
   initCheckout();
   initContactForm();
   initFaq();
+  initNewsletterForm();
   initLegalModal();
 };
 
