@@ -252,6 +252,14 @@ const renderCatalogLoadError = (grid, countEl, loadMoreBtn) => {
   }
 };
 
+const ensureProductsCollection = (value) => {
+  if (!Array.isArray(value)) {
+    throw new Error("Catalog products payload must be an array.");
+  }
+
+  return value;
+};
+
 const bindAddToCartTriggers = (products) => {
   if (addToCartHandlersBound) return;
 
@@ -283,7 +291,7 @@ export const initCatalog = async () => {
 
   let products = [];
   try {
-    products = await fetchJson("data/products.json");
+    products = ensureProductsCollection(await fetchJson("data/products.json"));
   } catch (error) {
     console.error("Catalog data error", error);
     if (grid) {

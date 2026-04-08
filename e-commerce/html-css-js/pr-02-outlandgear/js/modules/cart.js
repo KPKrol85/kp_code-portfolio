@@ -212,6 +212,14 @@ const renderCartLoadError = (container, summary) => {
   }
 };
 
+const ensureProductsCollection = (value) => {
+  if (!Array.isArray(value)) {
+    throw new Error("Cart products payload must be an array.");
+  }
+
+  return value;
+};
+
 export const initCart = async () => {
   const container = qs(CONFIG.selectors.cartContainer);
   if (!container) {
@@ -223,7 +231,9 @@ export const initCart = async () => {
   const stateRegion = qs("[data-cart-state]");
 
   try {
-    productsCache = await fetchJson("data/products.json");
+    productsCache = ensureProductsCollection(
+      await fetchJson("data/products.json"),
+    );
   } catch (error) {
     console.error("Cart data error", error);
     renderCartLoadError(container, summary);

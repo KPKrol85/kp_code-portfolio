@@ -9,17 +9,12 @@ export const fetchJson = async (path, fallback = null) => {
     return cache.get(path);
   }
 
-  try {
-    const response = await fetch(path);
-    if (!response.ok) {
-      throw new Error(`Failed to load ${path}`);
-    }
-
-    const data = await response.json();
-    cache.set(path, data);
-    return data;
-  } catch (error) {
-    console.error(error);
-    return fallback;
+  const response = await fetch(path);
+  if (!response.ok) {
+    throw new Error(`Failed to load ${path}`);
   }
+
+  const data = await response.json();
+  cache.set(path, data);
+  return data;
 };

@@ -18,6 +18,7 @@ const getMainImageAlt = (productName, index = 0) =>
   `Zdjęcie ${index + 1} produktu ${productName}`;
 const getThumbLabel = (productName, index = 0) =>
   `Pokaż zdjęcie ${index + 1} produktu ${productName}`;
+const THUMB_EMPTY_LABEL = "Miniatura produktu niedostępna";
 
 const ensureMetaTag = (selector, attributes) => {
   let tag = document.querySelector(selector);
@@ -242,6 +243,7 @@ const renderProduct = (product) => {
         "aria-pressed",
         index === activeIndex ? "true" : "false",
       );
+      thumb.tabIndex = index === activeIndex ? 0 : -1;
     });
   };
 
@@ -254,20 +256,27 @@ const renderProduct = (product) => {
 
   thumbs.forEach((thumb, index) => {
     const img = qs("img", thumb);
-    if (img && images[index]) {
-      img.src = images[index];
+    const imageSrc = images[index];
+    const hasImage = Boolean(imageSrc);
+
+    thumb.dataset.thumbEmpty = hasImage ? "false" : "true";
+    thumb.hidden = !hasImage;
+    thumb.disabled = !hasImage;
+
+    if (img) {
+      img.src = imageSrc || "";
       img.alt = "";
       img.setAttribute("aria-hidden", "true");
     }
 
     thumb.setAttribute(
       "aria-label",
-      `Pokaż zdjęcie ${index + 1} produktu ${product.name}`,
+      hasImage ? getThumbLabel(product.name, index) : THUMB_EMPTY_LABEL,
     );
 
     on(thumb, "click", () => {
-      if (mainImage && images[index]) {
-        mainImage.src = images[index];
+      if (mainImage && imageSrc) {
+        mainImage.src = imageSrc;
         mainImage.alt = getMainImageAlt(product.name, index);
       }
       setActiveThumb(index);
@@ -359,13 +368,21 @@ const renderProductLoadError = (root) => {
   root.appendChild(section);
 };
 
+const ensureProductsCollection = (value) => {
+  if (!Array.isArray(value)) {
+    throw new Error("Product payload must be an array.");
+  }
+
+  return value;
+};
+
 export const initProduct = async () => {
   const root = qs(CONFIG.selectors.productRoot);
   if (!root) return;
   const stateRegion = qs("[data-product-state]", root);
   let products = [];
   try {
-    products = await fetchJson("data/products.json");
+    products = ensureProductsCollection(await fetchJson("data/products.json"));
   } catch (error) {
     console.error("Product data error", error);
     renderProductLoadError(root);

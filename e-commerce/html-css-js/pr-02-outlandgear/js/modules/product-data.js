@@ -117,10 +117,23 @@ export const loadNormalizedProducts = async () => {
   if (normalizedProductsPromise) return normalizedProductsPromise;
 
   normalizedProductsPromise = (async () => {
+    const loadCategories = async () => {
+      try {
+        const categories = await fetchJson("data/categories.json");
+        return Array.isArray(categories) ? categories : [];
+      } catch {
+        return [];
+      }
+    };
+
     const [rawProducts, rawCategories] = await Promise.all([
       fetchJson("data/products.json"),
-      fetchJson("data/categories.json").catch(() => []),
+      loadCategories(),
     ]);
+
+    if (!Array.isArray(rawProducts)) {
+      throw new Error("Products payload must be an array.");
+    }
 
     const categoryMap = createCategoryMap(rawCategories);
     const seenIds = new Set();
