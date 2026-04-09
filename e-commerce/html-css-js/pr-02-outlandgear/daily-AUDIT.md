@@ -16,12 +16,12 @@ none detected.
 
 ## 4. P1 — Important issues worth fixing next
 
-- Globalna wyszukiwarka w headerze nie ma sensownego fallbacku bez JavaScriptu. W `partials/header.html:9-12` formularz nie ma `action`, a pole nie ma `name`, więc bez JS nie serializuje zapytania i nie prowadzi do wyników. Działa wyłącznie dlatego, że `js/app.js:19-32` przechwytuje `submit` i ręcznie buduje URL. To jest realna luka w progressive enhancement dla jednego z głównych elementów nawigacyjnych.
-
-- Dynamiczne karty produktów w katalogu tracą semantykę nagłówków. `js/modules/catalog.js:112-170` renderuje tytuł produktu jako `<p class="product-card__title">`, podczas gdy równoległe karty statyczne na stronie głównej i karty related na stronie produktu używają nagłówków (`index.html`, `js/modules/product.js`). Nie blokuje to działania, ale osłabia hierarchię treści i nawigację po nagłówkach na kluczowej stronie listingowej.
 
 ## 5. P2 — Minor refinements
+
 - Newsletter w stopce nie ma pełnego baseline bez JS. W `partials/footer.html:11-40` formularz ma `action=""`, a `js/modules/newsletter.js:9-35` zawsze robi `event.preventDefault()` i pokazuje wyłącznie komunikat demonstracyjny po stronie klienta. Przy wyłączonym JS użytkownik nie dostaje ani rzeczywistego submitu, ani jawnej informacji o ograniczeniu.
+
+
 - Polityka indeksacji nie jest w pełni spójna między HTML a generatorem sitemap. `cookies.html:9` deklaruje `index, follow`, ale `scripts/seo-config.mjs:3-12` nie zawiera `/cookies.html` w `INDEXABLE_PAGE_PATHS`. To nie jest awaria SEO, bo sitemap nie musi zawierać wszystkiego, ale jest to niespójność polityki indeksowania widoczna w repo.
 
 ## 6. Extra quality improvements
