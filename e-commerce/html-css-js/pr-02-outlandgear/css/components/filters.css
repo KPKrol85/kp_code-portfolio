@@ -1,5 +1,5 @@
 .filters {
-  background: var(--color-white);
+  background: var(--color-surface-base);
   border: 1px solid var(--color-border);
   border-radius: var(--radius-04);
   padding: var(--space-04);
@@ -38,4 +38,3 @@
   margin-bottom: var(--space-02);
   padding: 0;
 }
-

@@ -1,7 +1,7 @@
 /* Card */
 
 .card {
-  background: var(--color-white);
+  background: var(--color-surface-base);
   border-radius: var(--radius-05);
   box-shadow: var(--shadow-sm);
   border: 1px solid var(--color-border);
@@ -246,7 +246,9 @@
   gap: var(--space-04);
   min-height: 100%;
   padding: var(--space-06) var(--space-05);
-  background: radial-gradient(circle at top right, rgba(131, 189, 127, 0.14), transparent 38%), linear-gradient(180deg, rgba(255, 255, 255, 0.98), rgba(244, 241, 234, 0.9));
+  background:
+    radial-gradient(circle at top right, var(--color-page-accent-soft), transparent 38%),
+    linear-gradient(180deg, var(--color-surface-elevated), var(--color-page-bg));
 }
 
 .travel-kit-card__eyebrow {

@@ -33,7 +33,7 @@
   padding: var(--space-02) var(--space-03);
   border-radius: var(--radius-04);
   border: 1px solid var(--color-border);
-  background: var(--color-white);
+  background: var(--color-surface-base);
 }
 
 .form__input:focus-visible,

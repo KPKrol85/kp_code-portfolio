@@ -1,6 +1,8 @@
 .hero-subpage {
   padding: var(--space-02) 0 var(--space-08);
-  background: radial-gradient(circle at top right, rgba(131, 189, 127, 0.16), transparent 28%), linear-gradient(180deg, rgba(238, 244, 246, 0.96), rgba(244, 241, 234, 0.92));
+  background:
+    radial-gradient(circle at top right, var(--color-page-accent-soft), transparent 28%),
+    linear-gradient(180deg, var(--color-surface-alt), var(--color-page-bg));
   border-bottom: 1px solid color-mix(in srgb, var(--color-border) 78%, var(--color-white));
 }
 

@@ -70,7 +70,9 @@
   padding: var(--space-06);
   display: grid;
   gap: var(--space-04);
-  background: radial-gradient(circle at top right, rgba(131, 189, 127, 0.18), transparent 34%), linear-gradient(180deg, rgba(238, 244, 246, 0.9), rgba(255, 255, 255, 0.96));
+  background:
+    radial-gradient(circle at top right, var(--color-page-accent-strong), transparent 34%),
+    linear-gradient(180deg, var(--color-surface-alt), var(--color-surface-elevated));
 }
 
 .marketplace-experience__intro .section-header__title,
@@ -85,7 +87,7 @@
   padding: var(--space-04);
   border-radius: var(--radius-04);
   border: 1px solid var(--color-border);
-  background: rgba(255, 255, 255, 0.72);
+  background: var(--color-surface-subtle);
 }
 
 .marketplace-experience__badge {
@@ -107,9 +109,9 @@
   padding: var(--space-02) var(--space-03);
   border-radius: var(--radius-pill);
   border: 1px solid var(--color-border);
-  background: var(--color-white);
-
-  background: radial-gradient(circle at top right, rgba(131, 189, 127, 0.18), transparent 34%), linear-gradient(180deg, rgba(238, 244, 246, 0.9), rgba(255, 255, 255, 0.96));
+  background:
+    radial-gradient(circle at top right, var(--color-page-accent-strong), transparent 34%),
+    linear-gradient(180deg, var(--color-surface-alt), var(--color-surface-elevated));
   color: var(--color-ink);
   font-size: var(--fs-02);
   text-transform: uppercase;
@@ -157,7 +159,9 @@
   display: grid;
   gap: var(--space-05);
   padding: var(--space-06);
-  background: radial-gradient(circle at top right, rgba(131, 189, 127, 0.18), transparent 34%), linear-gradient(180deg, rgba(238, 244, 246, 0.92), rgba(255, 255, 255, 0.98));
+  background:
+    radial-gradient(circle at top right, var(--color-page-accent-strong), transparent 34%),
+    linear-gradient(180deg, var(--color-surface-alt), var(--color-surface-elevated));
 }
 
 .homepage-closing-cta__content {

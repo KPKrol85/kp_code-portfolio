@@ -26,9 +26,8 @@
   border-radius: var(--radius-05);
   padding-block: var(--space-01);
   background:
-    radial-gradient(circle at top right, rgba(131, 189, 127, 0.18), transparent 36%),
-    linear-gradient(180deg, rgba(255, 255, 255, 0.98), rgba(238, 244, 246, 0.95));
-    background: var(--color-forest);
+    radial-gradient(circle at top right, var(--color-page-accent-strong), transparent 36%),
+    linear-gradient(180deg, var(--color-surface-elevated), var(--color-surface-alt));
   box-shadow: var(--shadow-sm);
   overflow: hidden;
 }
@@ -57,8 +56,8 @@
   padding: var(--space-02);
   border-radius: var(--radius-03);
   background:
-    radial-gradient(circle at top right, rgba(131, 189, 127, 0.14), transparent 40%),
-    linear-gradient(180deg, rgba(255, 255, 255, 0.98), rgba(238, 244, 246, 0.9));
+    radial-gradient(circle at top right, var(--color-page-accent-soft), transparent 40%),
+    linear-gradient(180deg, var(--color-surface-elevated), var(--color-surface-alt));
   cursor: pointer;
   box-shadow: var(--shadow-sm);
   overflow: hidden;
@@ -93,8 +92,8 @@
     inset 0 0 0 1px var(--color-forest),
     var(--shadow-sm);
   background:
-    radial-gradient(circle at top right, rgba(131, 189, 127, 0.2), transparent 36%),
-    linear-gradient(180deg, rgba(255, 255, 255, 1), rgba(244, 241, 234, 0.95));
+    radial-gradient(circle at top right, var(--color-page-accent-strong), transparent 36%),
+    linear-gradient(180deg, var(--color-surface-elevated), var(--color-page-bg));
 }
 
 .product-meta {
@@ -177,7 +176,7 @@
 }
 
 .product-specs {
-  background: var(--color-white);
+  background: var(--color-surface-base);
   border: 1px solid var(--color-border);
   border-radius: var(--radius-05);
   padding: var(--space-05);

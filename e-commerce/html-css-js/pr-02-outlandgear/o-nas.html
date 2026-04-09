@@ -32,6 +32,20 @@
     <link rel="icon" type="image/x-icon" href="assets/fav-icons/favicon.ico" />
     <link rel="apple-touch-icon" href="assets/fav-icons/apple-touch-icon.png" />
     <link rel="manifest" href="assets/fav-icons/site.webmanifest" />
+    <script>
+  (() => {
+    const storageKey = "outlandgear-theme";
+    let theme = "light";
+    try {
+      const storedTheme = window.localStorage.getItem(storageKey);
+      if (storedTheme === "light" || storedTheme === "dark") theme = storedTheme;
+      else if (window.matchMedia?.("(prefers-color-scheme: dark)").matches) theme = "dark";
+    } catch {
+      if (window.matchMedia?.("(prefers-color-scheme: dark)").matches) theme = "dark";
+    }
+    document.documentElement.dataset.theme = theme;
+  })();
+</script>
     <!-- JSON-LD -->
     <script type="application/ld+json">
       {

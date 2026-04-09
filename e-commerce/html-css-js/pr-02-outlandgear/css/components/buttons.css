@@ -41,11 +41,11 @@
 }
 
 .btn--ghost:hover:not(:disabled):not([aria-disabled="true"]) {
-  background: var(--color-sky);
+  background: var(--color-surface-alt);
 }
 
 .btn--outline {
-  background: var(--color-white);
+  background: var(--color-surface-base);
   border-color: var(--color-forest);
   color: var(--color-forest);
 }

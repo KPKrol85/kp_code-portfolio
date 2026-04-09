@@ -15,7 +15,9 @@
   justify-content: center;
   border-radius: var(--radius-04);
   padding: var(--space-05);
-  background: radial-gradient(circle at top right, rgba(131, 189, 127, 0.14), transparent 36%), linear-gradient(180deg, rgba(238, 244, 246, 0.95), rgba(255, 255, 255, 0.98));
+  background:
+    radial-gradient(circle at top right, var(--color-page-accent-soft), transparent 36%),
+    linear-gradient(180deg, var(--color-surface-alt), var(--color-surface-elevated));
 }
 
 .kit-hero__media img {
@@ -96,7 +98,9 @@
   align-items: center;
   justify-content: center;
   border-radius: var(--radius-04);
-  background: radial-gradient(circle at top right, rgba(131, 189, 127, 0.14), transparent 36%), linear-gradient(180deg, rgba(238, 244, 246, 0.95), rgba(255, 255, 255, 0.98));
+  background:
+    radial-gradient(circle at top right, var(--color-page-accent-soft), transparent 36%),
+    linear-gradient(180deg, var(--color-surface-alt), var(--color-surface-elevated));
   padding: var(--space-04);
   aspect-ratio: 16 / 11;
   overflow: hidden;

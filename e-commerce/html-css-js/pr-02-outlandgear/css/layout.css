@@ -86,13 +86,13 @@
 .notice {
   padding: var(--space-04);
   border-radius: var(--radius-04);
-  background: var(--color-sky);
+  background: var(--color-notice-bg);
   border: 1px solid var(--color-border);
 }
 
 .notice--error {
-  background: #fff4f3;
-  border-color: rgba(200, 67, 58, 0.35);
+  background: var(--color-notice-error-bg);
+  border-color: var(--color-notice-error-border);
 }
 
 .notice__message {
@@ -106,7 +106,7 @@
 /* Hero */
 
 .hero {
-  background: var(--color-ink);
+  background: var(--color-hero-bg);
   color: var(--color-white);
   padding: var(--space-09) 0;
 }
@@ -164,5 +164,5 @@
 }
 
 .hero .kicker {
-  color: #93b29b;
+  color: var(--color-hero-kicker);
 }
