@@ -14,6 +14,7 @@ import { initLegalModal } from "./modules/legal-modal.js?v=20260405-3";
 import { initFaq } from "./modules/faq.js?v=20260405-3";
 import { initNewsletterForm } from "./modules/newsletter.js?v=20260405-3";
 import { initTheme } from "./modules/theme.js?v=20260409-darkmode";
+import { initTravelKits } from "./modules/travel-kits.js?v=20260406-3";
 
 const initSearch = () => {
   const form = qs(CONFIG.selectors.searchForm);
@@ -42,6 +43,7 @@ const initApp = () => {
   updateCartCount();
   initCatalog();
   initProduct();
+  initTravelKits();
   initCart();
   initCheckout();
   initContactForm();
