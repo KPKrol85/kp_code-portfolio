@@ -1,6 +1,8 @@
 import { qs, on } from "./dom.js";
 import { initFormFieldUX, setFormStatus, setSubmitState, validateFormFields } from "./form-ux.js";
 
+const encodeFormBody = (form) => new URLSearchParams(new FormData(form)).toString();
+
 export const initContactForm = () => {
   const form = qs("[data-contact-form]");
   if (!form) return;
@@ -8,7 +10,7 @@ export const initContactForm = () => {
   form.noValidate = true;
   initFormFieldUX(form);
 
-  on(form, "submit", (event) => {
+  on(form, "submit", async (event) => {
     event.preventDefault();
 
     const { firstInvalidField } = validateFormFields(form);
@@ -22,10 +24,33 @@ export const initContactForm = () => {
     setSubmitState(form, true, "Wysyłanie wiadomości...");
     setFormStatus(form, "Wiadomość jest wysyłana...", "info");
 
-    window.setTimeout(() => {
+    try {
+      const response = await fetch("/", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/x-www-form-urlencoded",
+        },
+        body: encodeFormBody(form),
+      });
+
+      if (!response.ok) {
+        throw new Error(`Contact form request failed with status ${response.status}`);
+      }
+
+      const successTarget = form.getAttribute("action") || "kontakt-wyslano.html";
+      window.location.assign(successTarget);
+    } catch (error) {
       setSubmitState(form, false);
-      setFormStatus(form, "Dziękujemy! Odpowiemy na wiadomość najszybciej jak to możliwe (demo).", "success");
-      form.reset();
-    }, 500);
+      setFormStatus(
+        form,
+        "Nie udało się wysłać wiadomości. Sprawdź połączenie i spróbuj ponownie.",
+        "error",
+      );
+      console.error("Contact form submission error", error);
+    }
+  });
+
+  on(form, "input", () => {
+    setFormStatus(form, "", "info");
   });
 };

@@ -18,12 +18,15 @@ none detected.
 ## 4. P1 — Important issues worth fixing next
 
 ## 5. P2 — Minor refinements
-- `cookies.html` ładuje ten sam arkusz stylów dwa razy (`cookies.html:51`, `cookies.html:78`). Ponieważ build HTML zachowuje source markup i tylko podmienia ścieżkę pliku CSS, duplikat przechodzi dalej do outputu produkcyjnego. To nie jest blocker, ale powoduje zbędny fetch/parse i jest prostym cleanupem jakościowym.
 
 ## 6. Extra quality improvements
+
 - Jeśli formularz kontaktowy ma docelowo zapisywać zgłoszenia do Netlify także przy włączonym JS, obecny demo flow trzeba byłoby dopiąć do rzeczywistego POST-a. Obecnie markup jest gotowy (`kontakt.html:163-170`), ale `js/modules/contact.js:12-28` zawsze przechwytuje submit i pokazuje wyłącznie lokalny komunikat sukcesu. To wygląda na świadomą decyzję demo, nie na bieżący defekt architektury.
+
 - Jeśli dokładna typografia marki ma być gwarantowana, repo powinno albo dostarczyć realne ładowanie fontów, albo oprzeć tokeny wyłącznie na lokalnych fallbackach. Obecnie `css/tokens.css:17-18` deklaruje `Inter` i `Sora`, ale `@font-face` ani zewnętrzny import fontów nie zostały wykryte w source.
+
 - Warto spiąć `npm run qa:a11y` z CI, żeby regresje takie jak obecny `heading-order` na katalogu były blokowane automatycznie przed mergem. To ulepszenie procesu, nie defekt samej aplikacji.
+
 - `_headers`, `_redirects`, `netlify.toml` i service worker were not detected in project. To nie jest samo w sobie wada; warto je rozważyć tylko wtedy, gdy projekt ma rozszerzać caching policy, security headers albo offline support poza obecną statyczną architekturę.
 
 ## 7. Senior rating (1–10)
