@@ -38,3 +38,20 @@
   margin-bottom: var(--space-02);
   padding: 0;
 }
+
+.listing-results__header {
+  display: grid;
+  gap: var(--space-02);
+  margin-bottom: var(--space-05);
+}
+
+.listing-results__title {
+  margin: 0;
+  font-size: var(--fs-07);
+  line-height: var(--lh-snug);
+}
+
+.listing-results__lead {
+  margin: 0;
+  max-width: 54ch;
+}
