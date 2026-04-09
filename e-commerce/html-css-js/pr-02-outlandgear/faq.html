@@ -27,24 +27,26 @@
     <meta name="twitter:title" content="FAQ — Outland Gear" />
     <meta name="twitter:description" content="Najczęstsze pytania o zamówienia, dostawę, zwroty, płatności i dobór sprzętu w Outland Gear." />
     <meta name="twitter:image" content="https://e-commerce-pr02-outlandgear.netlify.app/assets/og-img/og-img.png" />
+    <!-- Favicon -->
     <link rel="icon" type="image/svg+xml" href="assets/fav-icons/favicon.svg" />
     <link rel="icon" type="image/x-icon" href="assets/fav-icons/favicon.ico" />
     <link rel="apple-touch-icon" href="assets/fav-icons/apple-touch-icon.png" />
     <link rel="manifest" href="assets/fav-icons/site.webmanifest" />
+    <!-- Theme -->
     <script>
-  (() => {
-    const storageKey = "outlandgear-theme";
-    let theme = "light";
-    try {
-      const storedTheme = window.localStorage.getItem(storageKey);
-      if (storedTheme === "light" || storedTheme === "dark") theme = storedTheme;
-      else if (window.matchMedia?.("(prefers-color-scheme: dark)").matches) theme = "dark";
-    } catch {
-      if (window.matchMedia?.("(prefers-color-scheme: dark)").matches) theme = "dark";
-    }
-    document.documentElement.dataset.theme = theme;
-  })();
-</script>
+      (() => {
+        const storageKey = "outlandgear-theme";
+        let theme = "light";
+        try {
+          const storedTheme = window.localStorage.getItem(storageKey);
+          if (storedTheme === "light" || storedTheme === "dark") theme = storedTheme;
+          else if (window.matchMedia?.("(prefers-color-scheme: dark)").matches) theme = "dark";
+        } catch {
+          if (window.matchMedia?.("(prefers-color-scheme: dark)").matches) theme = "dark";
+        }
+        document.documentElement.dataset.theme = theme;
+      })();
+    </script>
     <!-- JSON-LD -->
     <script type="application/ld+json">
       {

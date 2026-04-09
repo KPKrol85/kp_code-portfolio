@@ -32,20 +32,21 @@
     <link rel="icon" type="image/x-icon" href="assets/fav-icons/favicon.ico" />
     <link rel="apple-touch-icon" href="assets/fav-icons/apple-touch-icon.png" />
     <link rel="manifest" href="assets/fav-icons/site.webmanifest" />
+    <!-- Theme-->
     <script>
-  (() => {
-    const storageKey = "outlandgear-theme";
-    let theme = "light";
-    try {
-      const storedTheme = window.localStorage.getItem(storageKey);
-      if (storedTheme === "light" || storedTheme === "dark") theme = storedTheme;
-      else if (window.matchMedia?.("(prefers-color-scheme: dark)").matches) theme = "dark";
-    } catch {
-      if (window.matchMedia?.("(prefers-color-scheme: dark)").matches) theme = "dark";
-    }
-    document.documentElement.dataset.theme = theme;
-  })();
-</script>
+      (() => {
+        const storageKey = "outlandgear-theme";
+        let theme = "light";
+        try {
+          const storedTheme = window.localStorage.getItem(storageKey);
+          if (storedTheme === "light" || storedTheme === "dark") theme = storedTheme;
+          else if (window.matchMedia?.("(prefers-color-scheme: dark)").matches) theme = "dark";
+        } catch {
+          if (window.matchMedia?.("(prefers-color-scheme: dark)").matches) theme = "dark";
+        }
+        document.documentElement.dataset.theme = theme;
+      })();
+    </script>
     <!-- JSON-LD -->
     <script type="application/ld+json">
       {
@@ -157,9 +158,16 @@
               </div>
             </article>
             <!-- Contact form -->
-            <form class="form card info-card" data-contact-form action="kontakt-wyslano.html" method="get">
+            <form
+              class="form card info-card"
+              name="contact"
+              data-contact-form
+              data-netlify="true"
+              action="kontakt-wyslano.html"
+              method="POST">
               <h2 class="contact-card__title">Formularz kontaktowy</h2>
               <p aria-live="polite" role="status" data-form-status class="form__status"></p>
+              <input type="hidden" name="form-name" value="contact" />
               <div class="form__group">
                 <label class="form__label" for="contactName">Imię i nazwisko</label>
                 <input class="form__input" id="contactName" name="contactName" type="text" autocomplete="name" required />
