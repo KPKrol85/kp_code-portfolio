@@ -20,13 +20,12 @@ none detected.
 ## 5. P2 — Minor refinements
 
 
-
-
-- Polityka indeksacji nie jest w pełni spójna między HTML a generatorem sitemap. `cookies.html:9` deklaruje `index, follow`, ale `scripts/seo-config.mjs:3-12` nie zawiera `/cookies.html` w `INDEXABLE_PAGE_PATHS`. To nie jest awaria SEO, bo sitemap nie musi zawierać wszystkiego, ale jest to niespójność polityki indeksowania widoczna w repo.
-
 ## 6. Extra quality improvements
+
 - Rozszerzyć testy renderowanej dostępności o strony obecnie pominięte w zestawie, zwłaszcza `komplety.html`, strony prawne i „o nas”. Aktualny zakres w `tests/a11y/a11y.spec.js:4-70` obejmuje tylko 6 tras.
+
 - Service worker not detected in project. Przy obecnym zakresie nie jest to defect, ale jeśli manifest ma być rozwijany w kierunku pełniejszego PWA, offline/cache behavior wymagałby osobnej decyzji architektonicznej.
+
 - Utrzymać konsekwencję progressive enhancement w formularzach: kontakt ma fallback `action="kontakt-wyslano.html"`, natomiast newsletter i wyszukiwarka działają obecnie głównie jako JS-first. Warto to ujednolicić zamiast mnożyć wyjątki.
 
 ## 7. Senior rating (1–10)

@@ -6,6 +6,7 @@ const INDEXABLE_PAGE_PATHS = [
   "/komplety.html",
   "/o-nas.html",
   "/kontakt.html",
+  "/cookies.html",
   "/regulamin.html",
   "/polityka-prywatnosci.html",
   "/faq.html",
