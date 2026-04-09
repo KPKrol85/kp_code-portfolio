@@ -98,6 +98,16 @@ const calculateTotals = (items) => {
   return { subtotal, delivery, total: subtotal + delivery };
 };
 
+const syncCartLayout = (summary, isEmpty) => {
+  if (!summary) return;
+
+  summary.hidden = isEmpty;
+  const cartLayout = summary.closest(".cart");
+  if (!cartLayout) return;
+
+  cartLayout.classList.toggle("cart--empty", isEmpty);
+};
+
 const renderCart = (items, stateRegion) => {
   const container = qs(CONFIG.selectors.cartContainer);
   const summary = qs(CONFIG.selectors.cartSummary);
@@ -105,15 +115,16 @@ const renderCart = (items, stateRegion) => {
 
   container.innerHTML = "";
   if (!items.length) {
+    syncCartLayout(summary, true);
     setUiState(stateRegion, {
       type: "empty",
       title: "Koszyk jest pusty",
       message: "Dodaj produkty z katalogu, aby przejść do podsumowania.",
     });
-    summary.innerHTML = "";
     return;
   }
 
+  syncCartLayout(summary, false);
   clearUiState(stateRegion);
 
   items.forEach((item) => {
@@ -198,6 +209,7 @@ const renderCartLoadError = (container, summary) => {
   if (!container) return;
 
   container.innerHTML = "";
+  syncCartLayout(summary, false);
   const fallback = createFallbackNotice({
     message:
       "Nie udało się załadować danych produktów w koszyku. Spróbuj ponownie.",

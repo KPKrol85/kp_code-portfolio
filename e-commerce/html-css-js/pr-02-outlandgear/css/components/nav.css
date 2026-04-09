@@ -51,6 +51,10 @@
     height var(--transition-fast);
 }
 
+.logo__text {
+  display: none;
+}
+
 .search {
   flex: 1 0 100%;
   display: none;
@@ -518,6 +522,12 @@
   min-width: var(--space-03);
   min-height: var(--space-03);
   padding: var(--space-01);
+}
+
+@media (min-width: 480px) {
+  .logo__text {
+    display: inline-flex;
+  }
 }
 
 @media (min-width: 1040px) {

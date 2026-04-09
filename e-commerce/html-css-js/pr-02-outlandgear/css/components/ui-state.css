@@ -9,8 +9,7 @@
   border-radius: var(--radius-04);
   border: 1px solid var(--ui-state-border, var(--color-border));
   border-left: 4px solid var(--ui-state-accent, var(--color-moss));
-  background: var(--ui-state-bg, var(--color-sky));
-  color: var(--ui-state-text, var(--color-text));
+  color: var(--color-text);
 }
 
 .ui-state__title {

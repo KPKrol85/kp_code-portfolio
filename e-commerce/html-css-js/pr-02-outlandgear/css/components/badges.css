@@ -1,4 +1,3 @@
-
 /* Badges */
 
 .badge {
@@ -31,4 +30,14 @@
 .badge--limited {
   background: rgba(200, 67, 58, 0.15);
   color: var(--color-alert);
+}
+
+[data-theme="dark"] .category-card .badge--bestseller,
+[data-theme="dark"] .travel-kit-card .badge--bestseller {
+  color: #eecc8c;
+}
+
+[data-theme="dark"] .category-card .badge--new,
+[data-theme="dark"] .travel-kit-card .badge--new {
+  color: #7dafcf;
 }
