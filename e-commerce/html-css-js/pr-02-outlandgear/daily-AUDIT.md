@@ -19,7 +19,7 @@ none detected.
 
 ## 5. P2 — Minor refinements
 
-- Newsletter w stopce nie ma pełnego baseline bez JS. W `partials/footer.html:11-40` formularz ma `action=""`, a `js/modules/newsletter.js:9-35` zawsze robi `event.preventDefault()` i pokazuje wyłącznie komunikat demonstracyjny po stronie klienta. Przy wyłączonym JS użytkownik nie dostaje ani rzeczywistego submitu, ani jawnej informacji o ograniczeniu.
+
 
 
 - Polityka indeksacji nie jest w pełni spójna między HTML a generatorem sitemap. `cookies.html:9` deklaruje `index, follow`, ale `scripts/seo-config.mjs:3-12` nie zawiera `/cookies.html` w `INDEXABLE_PAGE_PATHS`. To nie jest awaria SEO, bo sitemap nie musi zawierać wszystkiego, ale jest to niespójność polityki indeksowania widoczna w repo.
