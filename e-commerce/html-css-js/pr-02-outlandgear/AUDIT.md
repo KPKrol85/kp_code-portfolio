@@ -21,7 +21,7 @@ none detected.
 
 ## 6. Extra quality improvements
 
-- `_headers`, `_redirects`, `netlify.toml` i service worker were not detected in project. To nie jest samo w sobie wada; warto je rozważyć tylko wtedy, gdy projekt ma rozszerzać caching policy, security headers albo offline support poza obecną statyczną architekturę.
+
 
 ## 7. Senior rating (1–10)
 **8/10** — repo ma dobrą jakość jak na statyczny storefront bez frameworka: modularny build, sensowne SEO, widoczne praktyki A11Y i test renderowany. Ocena nie jest wyższa głównie dlatego, że aktualny stan main catalog view nie przechodzi własnego testu axe z powodu problemu semantycznego, a w source pozostał jeszcze drobny drift jakościowy w `cookies.html`.
