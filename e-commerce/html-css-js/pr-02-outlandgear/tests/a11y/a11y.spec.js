@@ -76,6 +76,45 @@ const ROUTES = [
       return page.locator("[data-contact-form]").waitFor();
     },
   },
+  {
+    name: "travel kits",
+    path: "/komplety.html?slug=weekend-w-gorach",
+    async waitFor(page) {
+      await page.locator("[data-kit-root]").waitFor();
+      await page.locator("[data-kit-content]").waitFor();
+      await expect(page.locator("[data-kit-title]")).not.toHaveText(
+        /Komplety podróżne/i,
+      );
+    },
+  },
+  {
+    name: "about",
+    path: "/o-nas.html",
+    waitFor(page) {
+      return page.locator("main.about-page").waitFor();
+    },
+  },
+  {
+    name: "terms",
+    path: "/regulamin.html",
+    waitFor(page) {
+      return page.locator("#legal-page-title").waitFor();
+    },
+  },
+  {
+    name: "privacy policy",
+    path: "/polityka-prywatnosci.html",
+    waitFor(page) {
+      return page.locator("#legal-page-title").waitFor();
+    },
+  },
+  {
+    name: "cookies policy",
+    path: "/cookies.html",
+    waitFor(page) {
+      return page.locator("#legal-page-title").waitFor();
+    },
+  },
 ];
 
 const formatViolations = (pageName, violations) => {
