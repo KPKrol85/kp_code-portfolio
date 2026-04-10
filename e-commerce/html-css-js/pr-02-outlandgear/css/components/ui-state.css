@@ -6,7 +6,7 @@
   display: grid;
   gap: var(--space-02);
   padding: var(--space-04);
-  border-radius: var(--radius-04);
+  border-radius: var(--radius-ui);
   border: 1px solid var(--ui-state-border, var(--color-border));
   border-left: 4px solid var(--ui-state-accent, var(--color-moss));
   color: var(--color-text);

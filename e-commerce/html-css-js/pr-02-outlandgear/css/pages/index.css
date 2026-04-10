@@ -27,7 +27,7 @@
   display: flex;
   align-items: stretch;
   padding: var(--space-03);
-  border-radius: var(--radius-05);
+  border-radius: var(--radius-ui);
   background:
     radial-gradient(circle at 50% 50%, rgb(255 255 255 / 0.08) 0%, rgb(255 255 255 / 0.04) 42%, transparent 78%), linear-gradient(180deg, rgb(255 255 255 / 0.1) 0%, rgb(255 255 255 / 0.05) 100%);
 }
@@ -41,7 +41,7 @@
   display: block;
   inline-size: 100%;
   block-size: auto;
-  border-radius: var(--radius-02);
+  border-radius: var(--radius-ui);
   object-fit: cover;
 }
 
@@ -85,7 +85,7 @@
   display: grid;
   gap: var(--space-02);
   padding: var(--space-04);
-  border-radius: var(--radius-04);
+  border-radius: var(--radius-ui);
   border: 1px solid var(--color-border);
   background: var(--color-surface-subtle);
 }

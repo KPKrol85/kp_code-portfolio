@@ -43,7 +43,7 @@
   align-items: center;
   background: rgba(255, 255, 255, 0.06);
   border: 1px solid rgba(255, 255, 255, 0.15);
-  border-radius: var(--radius-05);
+  border-radius: var(--radius-ui);
   backdrop-filter: blur(5px);
   margin-bottom: var(--space-08);
   padding: var(--space-03) var(--space-04);
@@ -69,7 +69,7 @@
 
 .site-footer__subscribe input {
   width: 100%;
-  border-radius: var(--radius-04);
+  border-radius: var(--radius-ui);
   border: 1px solid rgba(255, 255, 255, 0.25);
   background: rgba(0, 0, 0, 0.25);
   color: var(--color-white);
@@ -128,8 +128,8 @@
 
 .footer-brand__mark {
   display: block;
-  width: var(--size-brand-10);
-  height: var(--size-brand-10);
+  width: var(--size-brand-lg);
+  height: var(--size-brand-lg);
   flex-shrink: 0;
 }
 
@@ -168,7 +168,7 @@
 .site-footer__link:focus-visible {
   outline: 2px solid rgba(255, 255, 255, 0.65);
   outline-offset: 3px;
-  border-radius: var(--radius-02);
+  border-radius: var(--radius-ui);
 }
 
 .site-footer__social {
@@ -188,7 +188,7 @@
   justify-content: center;
   color: var(--color-white);
   text-decoration: none;
-  border-radius: 50%;
+  border-radius: var(--radius-ui);
   transition: box-shadow 180ms ease;
 }
 
@@ -209,8 +209,8 @@
 }
 
 .site-footer__social-icon {
-  width: var(--size-icon-04);
-  height: var(--size-icon-04);
+  width: var(--size-icon-md);
+  height: var(--size-icon-md);
   display: block;
   color: var(--color-white);
   fill: currentColor;

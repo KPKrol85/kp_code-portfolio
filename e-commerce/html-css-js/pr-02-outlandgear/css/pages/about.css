@@ -37,7 +37,7 @@
   right: -1.5rem;
   width: clamp(11rem, 24vw, 17rem);
   aspect-ratio: 1;
-  border-radius: 50%;
+  border-radius: var(--radius-pill);
   background: radial-gradient(
     circle,
     var(--color-page-accent-strong) 0%,

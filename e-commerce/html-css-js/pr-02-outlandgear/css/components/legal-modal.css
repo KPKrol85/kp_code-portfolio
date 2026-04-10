@@ -23,7 +23,7 @@
   position: relative;
   z-index: 1;
   width: min(100%, 640px);
-  border-radius: var(--radius-05);
+  border-radius: var(--radius-ui);
   border: 1px solid rgba(255, 255, 255, 0.16);
   background: radial-gradient(circle at 85% -30%, rgba(131, 189, 127, 0.18), transparent 38%), linear-gradient(150deg, #0f1e2b, #112a38 62%, #163848);
   color: var(--color-white);
@@ -38,7 +38,7 @@
 }
 
 .outland-legal-modal__text {
-  color: var(--color-sand);
+  color: var(--color-text);
   max-width: 58ch;
 }
 

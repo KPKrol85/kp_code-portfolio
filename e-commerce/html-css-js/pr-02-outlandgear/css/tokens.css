@@ -1,5 +1,6 @@
 :root {
   color-scheme: light;
+  /* Colors */
   --color-ink: #1d2a26;
   --color-forest: #1f4c3a;
   --color-forest-dark: #153227;
@@ -19,35 +20,27 @@
   --shadow-sm: 0 1px 2px rgba(17, 24, 20, 0.08);
   --shadow-md: 0 8px 24px rgba(17, 24, 20, 0.12);
 
-  --radius-01: 4px;
-  --radius-02: 6px;
-  --radius-03: 8px;
-  --radius-04: 12px;
-  --radius-05: 16px;
-  --radius-06: 20px;
+  /* Radius */
+  --radius-ui: 12px;
   --radius-pill: 9999px;
 
-  --radius-top-soft: 12px 12px 6px 6px;
-  --radius-bottom-soft: 6px 6px 12px 12px;
-  --radius-diagonal-soft: 12px 6px 12px 6px;
-
+  /* Font sizes */
   --fs-01: 0.625rem;
   --fs-02: 0.75rem;
   --fs-03: 0.875rem;
   --fs-04: 1rem;
   --fs-05: 1.125rem;
   --fs-06: 1.25rem;
-  --fs-07: 1.5rem;
-  --fs-08: 1.75rem;
-  --fs-09: 2rem;
-  --fs-10: 3rem;
+  --fs-07: 1.75rem;
   --fs-hero-title: clamp(2.3rem, 4vw, 2.9rem);
 
+  /* Font weights */
   --fw-regular: 400;
   --fw-medium: 500;
   --fw-semibold: 600;
   --fw-bold: 700;
 
+  /* Spacing */
   --space-01: 0.25rem;
   --space-02: 0.5rem;
   --space-03: 0.75rem;
@@ -59,6 +52,7 @@
   --space-09: 3rem;
   --space-10: 4rem;
 
+  /* Letter spacing */
   --ls-tighter: -0.03em;
   --ls-tight: -0.02em;
   --ls-snug: -0.01em;
@@ -68,41 +62,37 @@
   --ls-caps: 0.06em;
   --ls-display: 0.08em;
 
+  /* Line heights */
   --lh-normal: 1;
   --lh-tight: 1.1;
   --lh-heading: 1.2;
   --lh-snug: 1.35;
   --lh-base: 1.5;
   --lh-relaxed: 1.65;
-  --lh-loose: 1.8;
 
-  --size-icon-01: 0.75rem;
-  --size-icon-02: 1rem;
-  --size-icon-03: 1.25rem;
-  --size-icon-04: 1.5rem;
-  --size-icon-05: 1.75rem;
-  --size-icon-06: 2rem;
+  /* Sizes */
+  --size-icon-sm: 1.25rem;
+  --size-icon-md: 1.5rem;
+  --size-icon-lg: 1.75rem;
 
-  --size-brand-01: 1.875rem;
-  --size-brand-02: 2.25rem;
-  --size-brand-03: 2.5rem;
-  --size-brand-04: 3rem;
-  --size-brand-05: 3.5rem;
-  --size-brand-06: 4rem;
-  --size-brand-07: 4.5rem;
-  --size-brand-08: 5rem;
-  --size-brand-09: 5.5rem;
-  --size-brand-10: 6rem;
+  /* Brand sizes */
+  --size-brand-sm: 3rem;
+  --size-brand-md: 3.5rem;
+  --size-brand-lg: 6rem;
 
+  /* Container */
   --container: 1200px;
 
+  /* Focus ring */
   --focus-ring: 0 0 0 3px rgba(31, 76, 58, 0.25);
 
+  /* Easing */
   --ease-standard: ease;
 
   --duration-fast: 150ms;
   --transition-fast: var(--duration-fast) var(--ease-standard);
 
+  /* Colors */
   --color-page-bg: var(--color-sand);
   --color-surface-base: var(--color-white);
   --color-surface-alt: var(--color-sky);

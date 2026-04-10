@@ -63,7 +63,7 @@ h4 {
   outline: none;
   outline-offset: 2px;
   box-shadow: var(--focus-ring);
-  border-radius: var(--radius-05);
+  border-radius: var(--radius-ui);
 }
 
 :where(a, button, [role="button"], input[type="submit"], input[type="button"]) {
@@ -118,7 +118,7 @@ main li a:hover {
 .skip-link:focus {
   left: var(--space-04);
   top: var(--space-04);
-  border-radius: var(--radius-03);
+  border-radius: var(--radius-ui);
 }
 
 .visually-hidden {
