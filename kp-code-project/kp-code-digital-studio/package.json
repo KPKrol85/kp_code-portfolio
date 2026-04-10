@@ -14,6 +14,7 @@
     "format:check": "prettier . --check",
     "qa": "npm run build && node ./scripts/qa/run-qa.mjs",
     "preview": "node ./scripts/preview-dist.mjs",
+    "preview:source": "node ./scripts/preview-source.mjs",
     "build:preview": "npm run build && npm run preview",
     "img:build": "node ./scripts/images/build-images.mjs",
     "img:clean": "node ./scripts/images/clean-images.mjs"

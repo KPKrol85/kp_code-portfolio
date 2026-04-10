@@ -134,7 +134,7 @@ function rewriteHtmlAssetRefs(html) {
     .replaceAll('../js/main.js', '../js/main.min.js');
 }
 
-function getActiveNavKey(relativeFilePath) {
+export function getActiveNavKey(relativeFilePath) {
   const normalizedPath = `/${relativeFilePath.replaceAll('\\', '/')}`;
 
   if (normalizedPath === '/index.html') {
@@ -160,7 +160,7 @@ function getActiveNavKey(relativeFilePath) {
   return null;
 }
 
-function renderHeaderPartial(headerTemplate, relativeFilePath) {
+export function renderHeaderPartial(headerTemplate, relativeFilePath) {
   const activeNavKey = getActiveNavKey(relativeFilePath);
   const navCurrentTokens = {
     '{{NAV_START_CURRENT}}': activeNavKey === 'start' ? ' aria-current="page"' : '',
@@ -176,28 +176,44 @@ function renderHeaderPartial(headerTemplate, relativeFilePath) {
   );
 }
 
-function assembleHtml(html, relativeFilePath, partials) {
+export function assembleHtml(html, relativeFilePath, partials) {
   return html
     .replace('<!-- @include:theme-bootstrap -->', partials.themeBootstrap)
     .replace('<!-- @include:header -->', renderHeaderPartial(partials.header, relativeFilePath))
     .replace('<!-- @include:footer -->', partials.footer);
 }
 
-export async function writeRewrittenHtml(relativeFilePath) {
-  const sourcePath = path.join(ROOT_DIR, relativeFilePath);
-  const targetPath = path.join(DIST_DIR, relativeFilePath);
-  const [originalHtml, headerPartial, footerPartial, themeBootstrapPartial] = await Promise.all([
-    readFile(sourcePath, 'utf8'),
+export async function loadShellPartials() {
+  const [header, footer, themeBootstrap] = await Promise.all([
     readFile(HEADER_PARTIAL_PATH, 'utf8'),
     readFile(FOOTER_PARTIAL_PATH, 'utf8'),
     readFile(THEME_BOOTSTRAP_PARTIAL_PATH, 'utf8'),
   ]);
-  const assembledHtml = assembleHtml(originalHtml, relativeFilePath, {
-    header: headerPartial,
-    footer: footerPartial,
-    themeBootstrap: themeBootstrapPartial,
+
+  return {
+    header,
+    footer,
+    themeBootstrap,
+  };
+}
+
+export async function renderAssembledHtml(relativeFilePath, options = {}) {
+  const { rewriteAssetRefs: shouldRewriteAssetRefs = false } = options;
+  const sourcePath = path.join(ROOT_DIR, relativeFilePath);
+  const [originalHtml, partials] = await Promise.all([
+    readFile(sourcePath, 'utf8'),
+    loadShellPartials(),
+  ]);
+  const assembledHtml = assembleHtml(originalHtml, relativeFilePath, partials);
+
+  return shouldRewriteAssetRefs ? rewriteHtmlAssetRefs(assembledHtml) : assembledHtml;
+}
+
+export async function writeRewrittenHtml(relativeFilePath) {
+  const targetPath = path.join(DIST_DIR, relativeFilePath);
+  const rewrittenHtml = await renderAssembledHtml(relativeFilePath, {
+    rewriteAssetRefs: true,
   });
-  const rewrittenHtml = rewriteHtmlAssetRefs(assembledHtml);
 
   await ensureDir(path.dirname(targetPath));
   await writeFile(targetPath, rewrittenHtml, 'utf8');
