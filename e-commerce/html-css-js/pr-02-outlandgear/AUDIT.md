@@ -1,6 +1,6 @@
 1. Short overall assessment
 
-Outland Gear is a disciplined static front-end repository with a real build pipeline, shared partials, modular CSS/JS, and rendered accessibility coverage. The current codebase does not show critical runtime or deployment blockers. The main issues are SEO/data-quality inconsistencies around dynamic query-string pages and a broken structured-data logo URL.
+Outland Gear is a disciplined static front-end repository with a real build pipeline, shared partials, modular CSS/JS, rendered accessibility coverage, and build-time SEO generation for indexable detail pages. The current codebase does not show critical runtime or deployment blockers.
 
 2. Strengths
 
@@ -16,13 +16,12 @@ none detected.
 
 4. P1 — Important issues worth fixing next
 
-- Broken Organization logo URL in JSON-LD across the site.  
-  Evidence: the JSON-LD blocks point to `https://e-commerce-pr02-outlandgear.netlify.app/assets/svg/logo.svg` in multiple source pages, for example `index.html:51-57`, `produkt.html:50-56`, `kontakt.html:51-57`. The repository does not contain `assets/svg/logo.svg`; the tracked logo asset is `assets/logo/logo.svg` (and `assets/svg/logo.svg` is not detected in project).  
-  Why it matters: this is a real structured-data asset mismatch, so crawlers consuming the Organization markup receive a broken logo URL.
+- Resolved: Organization logo URL in JSON-LD was corrected across source pages to the real asset path `https://e-commerce-pr02-outlandgear.netlify.app/assets/logo/logo.svg`.  
+  Evidence: source pages now reference the real logo asset path, for example `index.html:57`, `produkt.html:56`, `kontakt.html:57`, and the tracked logo file exists at `assets/logo/logo.svg`. The previous broken `/assets/svg/logo.svg` path is no longer used in source HTML.
 
-- Dynamic product and travel-kit URLs are listed as indexable in the sitemap, but their source HTML ships with generic canonical and structured-data values until client-side JavaScript rewrites them.  
-  Evidence: the sitemap advertises query URLs in `sitemap.xml:31-142`. The source pages ship generic canonicals and generic JSON-LD in `produkt.html:11-12`, `produkt.html:59-82`, `komplety.html:11-12`, `komplety.html:60-73`. The parameterized canonical/schema values are only added at runtime in `js/modules/product.js:81-92`, `js/modules/product.js:151-195`, `js/modules/travel-kits.js:99-114`, `js/modules/travel-kits.js:173-185`.  
-  Why it matters: crawlers that do not fully execute the page scripts can see all product URLs as variants of the same base document, which weakens canonical consistency and structured-data quality for the URLs the sitemap explicitly asks search engines to index.
+- Resolved: product and travel-kit detail URLs now ship build-time canonical and structured-data output on prerendered static paths instead of relying on runtime JavaScript rewrites as the primary SEO mechanism.  
+  Evidence: canonical URL construction now resolves to static detail paths in `scripts/seo-config.mjs:25-33`. The build pipeline generates per-item pages in `dist/produkt/<slug>/index.html` and `dist/komplety/<slug>/index.html` with prerendered metadata and JSON-LD in `scripts/build-dist.mjs`. The shipped sitemap now points to those prerendered paths in `dist/sitemap.xml`. The source fallback entry pages were reclassified as non-indexed in `produkt.html:9-11` and `komplety.html:9-11`, and runtime routing now supports canonical path hydration in `js/modules/routes.js`, `js/modules/product.js`, and `js/modules/travel-kits.js`.  
+  Result: sitemap entries, canonical URLs, structured data, and shipped HTML are now aligned through build-time prerendering for indexed detail pages.
 
 5. P2 — Minor refinements
 
@@ -32,11 +31,10 @@ none detected.
 
 6. Extra quality improvements
 
-- If search visibility for dynamic detail pages matters, move product/travel-kit canonical and structured-data generation into the build step so the shipped HTML already matches the indexed URL.
 - Several catalog entries still rely on placeholder SVG product imagery while a subset has real raster assets. This reads as content incompleteness rather than an architecture defect. Evidence: placeholder-only entries in `data/products.json:23`, `data/products.json:45`, `data/products.json:67` versus real product image sets in `data/products.json:114-122`, `data/products.json:278-286`, `data/products.json:485-493`.
 - Service worker registration is not detected in project. That is acceptable for the current scope, but offline behavior should not be implied beyond the manifest support already present.
 - Contrast compliance cannot be verified without computed style analysis.
 
 7. Senior rating (1–10)
 
-7.5/10 — solid repository discipline, credible accessibility work, and a clean static-site build pipeline. The rating is held back by the current SEO/data mismatch on dynamic indexed URLs and the broken structured-data logo path.
+8.3/10 — solid repository discipline, credible accessibility work, and a clean static-site build pipeline. The prior indexed-detail SEO mismatch has been resolved with build-time prerendering, leaving mainly secondary content-quality refinements rather than structural production risks.

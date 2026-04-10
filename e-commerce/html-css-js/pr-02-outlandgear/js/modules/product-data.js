@@ -119,7 +119,7 @@ export const loadNormalizedProducts = async () => {
   normalizedProductsPromise = (async () => {
     const loadCategories = async () => {
       try {
-        const categories = await fetchJson("data/categories.json");
+        const categories = await fetchJson("/data/categories.json");
         return Array.isArray(categories) ? categories : [];
       } catch {
         return [];
@@ -127,7 +127,7 @@ export const loadNormalizedProducts = async () => {
     };
 
     const [rawProducts, rawCategories] = await Promise.all([
-      fetchJson("data/products.json"),
+      fetchJson("/data/products.json"),
       loadCategories(),
     ]);
 

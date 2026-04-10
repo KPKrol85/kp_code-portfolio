@@ -3,7 +3,6 @@ const SEO_ORIGIN = "https://e-commerce-pr02-outlandgear.netlify.app";
 const INDEXABLE_PAGE_PATHS = [
   "/",
   "/kategoria.html",
-  "/komplety.html",
   "/o-nas.html",
   "/kontakt.html",
   "/cookies.html",
@@ -13,6 +12,8 @@ const INDEXABLE_PAGE_PATHS = [
 ];
 
 const NON_INDEXABLE_PAGE_PATHS = [
+  "/produkt.html",
+  "/komplety.html",
   "/checkout.html",
   "/checkout-potwierdzenie.html",
   "/kontakt-wyslano.html",
@@ -26,10 +27,10 @@ const isNonEmptyString = (value) =>
 
 const normalizeSlug = (value) => (isNonEmptyString(value) ? value.trim() : "");
 
-const buildProductPath = (slug) => `/produkt.html?slug=${encodeURIComponent(slug)}`;
+const buildProductPath = (slug) => `/produkt/${encodeURIComponent(slug)}/`;
 
 const buildTravelKitPath = (slug) =>
-  `/komplety.html?slug=${encodeURIComponent(slug)}`;
+  `/komplety/${encodeURIComponent(slug)}/`;
 
 const collectSlugPaths = (items, buildPath) => {
   const safeItems = Array.isArray(items) ? items : [];

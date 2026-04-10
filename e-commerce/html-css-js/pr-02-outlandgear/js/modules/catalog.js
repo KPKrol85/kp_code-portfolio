@@ -6,6 +6,7 @@ import { showToast } from "./toast.js";
 import { createFallbackNotice } from "./fallback.js";
 import { fetchJson } from "./data.js";
 import { findProductById } from "./product-data.js";
+import { buildProductUrl } from "./routes.js";
 import { clearUiState, setUiState } from "./ui-state.js";
 
 const parseRange = (value) => {
@@ -157,7 +158,7 @@ const createCard = (product) => {
   actions.className = "product-card__actions";
 
   const viewLink = document.createElement("a");
-  viewLink.href = `produkt.html?slug=${product.slug}`;
+  viewLink.href = buildProductUrl(product.slug);
   viewLink.className = "btn btn--outline btn--small";
   viewLink.textContent = "Zobacz";
 

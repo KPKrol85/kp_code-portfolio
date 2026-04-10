@@ -6,11 +6,12 @@ import { showToast } from "./toast.js";
 import { createFallbackNotice } from "./fallback.js";
 import { fetchJson } from "./data.js";
 import { findProductBySlug } from "./product-data.js";
+import { buildProductUrl, resolveProductSlug } from "./routes.js";
 import { setUiState, clearUiState } from "./ui-state.js";
 
 const SITE_NAME = "Outland Gear";
 const SITE_URL = "https://e-commerce-pr02-outlandgear.netlify.app/";
-const PRODUCT_PAGE_PATH = "produkt.html";
+const PRODUCTS_DATA_PATH = "/data/products.json";
 const FALLBACK_SOCIAL_IMAGE = "assets/og-img/og-img.png";
 const FALLBACK_SOCIAL_IMAGE_ALT =
   "Grafika Outland Gear przedstawiająca leśny krajobraz, góry, jezioro i centralne logo marki w zielono-beżowej kolorystyce.";
@@ -78,8 +79,7 @@ const setProductMetadata = (product, slug) => {
     description,
   );
 
-  const canonicalUrl = new URL(PRODUCT_PAGE_PATH, window.location.origin);
-  canonicalUrl.searchParams.set("slug", slug);
+  const canonicalUrl = new URL(buildProductUrl(slug), window.location.origin);
   const canonicalHref = canonicalUrl.href;
   const imageUrl = new URL(FALLBACK_SOCIAL_IMAGE, window.location.origin).href;
   const formattedPrice = Number.isFinite(product.price)
@@ -352,7 +352,7 @@ const renderRelated = (products, current) => {
     actions.className = "product-card__actions";
 
     const link = document.createElement("a");
-    link.href = `produkt.html?slug=${product.slug}`;
+    link.href = buildProductUrl(product.slug);
     link.className = "btn btn--outline btn--small";
     link.textContent = "Zobacz";
 
@@ -398,15 +398,14 @@ export const initProduct = async () => {
   const stateRegion = qs("[data-product-state]", root);
   let products = [];
   try {
-    products = ensureProductsCollection(await fetchJson("data/products.json"));
+    products = ensureProductsCollection(await fetchJson(PRODUCTS_DATA_PATH));
   } catch (error) {
     console.error("Product data error", error);
     renderProductLoadError(root);
     return;
   }
 
-  const slug = new URLSearchParams(window.location.search).get("slug");
-  const normalizedSlug = slug?.trim() || "";
+  const normalizedSlug = resolveProductSlug();
   const matchedProduct = findProductBySlug(products, normalizedSlug);
   const product = matchedProduct || products[0];
   if (!product) {

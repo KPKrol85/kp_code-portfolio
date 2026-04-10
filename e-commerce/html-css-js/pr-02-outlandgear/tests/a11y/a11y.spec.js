@@ -27,7 +27,7 @@ const ROUTES = [
   },
   {
     name: "product",
-    path: "/produkt.html?slug=outland-thermal-core-075l",
+    path: "/produkt/outland-thermal-core-075l/",
     async waitFor(page) {
       await page.locator("[data-product-root]").waitFor();
       await expect(page.locator("[data-product-title]")).toHaveText(
@@ -78,7 +78,7 @@ const ROUTES = [
   },
   {
     name: "travel kits",
-    path: "/komplety.html?slug=weekend-w-gorach",
+    path: "/komplety/weekend-w-gorach/",
     async waitFor(page) {
       await page.locator("[data-kit-root]").waitFor();
       await page.locator("[data-kit-content]").waitFor();

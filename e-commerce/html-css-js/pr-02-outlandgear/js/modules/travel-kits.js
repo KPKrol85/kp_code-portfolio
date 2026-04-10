@@ -3,10 +3,10 @@ import { fetchJson } from "./data.js?v=20260405-3";
 import { setUiState, clearUiState } from "./ui-state.js?v=20260405-3";
 import { createFallbackNotice } from "./fallback.js?v=20260405-3";
 import { formatCurrency } from "../utils.js?v=20260405-3";
+import { buildProductUrl, buildTravelKitUrl, resolveTravelKitSlug } from "./routes.js?v=20260405-3";
 
 const SITE_NAME = "Outland Gear";
 const SITE_URL = "https://e-commerce-pr02-outlandgear.netlify.app/";
-const KIT_PAGE_PATH = "komplety.html";
 const KIT_ROOT_SELECTOR = "[data-kit-root]";
 const FALLBACK_SOCIAL_IMAGE = "assets/og-img/og-img.png";
 const FALLBACK_SOCIAL_IMAGE_ALT =
@@ -15,8 +15,8 @@ const FALLBACK_SOCIAL_IMAGE_TYPE = "image/png";
 const FALLBACK_SOCIAL_IMAGE_WIDTH = "1536";
 const FALLBACK_SOCIAL_IMAGE_HEIGHT = "1024";
 const WEBPAGE_SCHEMA_SELECTOR = 'script[data-schema="webpage"]';
-const TRAVEL_KITS_DATA_PATH = "data/travel-kits.json?v=20260406-2";
-const PRODUCTS_DATA_PATH = "data/products.json?v=20260406-2";
+const TRAVEL_KITS_DATA_PATH = "/data/travel-kits.json?v=20260406-2";
+const PRODUCTS_DATA_PATH = "/data/products.json?v=20260406-2";
 const KIT_SLUG_ALIASES = new Map([["wekend-w-gorach", "weekend-w-gorach"]]);
 let travelKitsInitialized = false;
 
@@ -96,8 +96,7 @@ const setKitMetadata = (kit) => {
     .filter(Boolean)
     .join(" | ");
   const description = [kit.description, kit.duration].filter(Boolean).join(" ");
-  const canonicalUrl = new URL(KIT_PAGE_PATH, window.location.origin);
-  canonicalUrl.searchParams.set("slug", kit.slug);
+  const canonicalUrl = new URL(buildTravelKitUrl(kit.slug), window.location.origin);
   const canonicalHref = canonicalUrl.href;
   const imageUrl = new URL(FALLBACK_SOCIAL_IMAGE, window.location.origin).href;
 
@@ -227,7 +226,7 @@ const createKitProductCard = (product) => {
 
   const mediaLink = document.createElement("a");
   mediaLink.className = "kit-product-card__media";
-  mediaLink.href = `produkt.html?slug=${product.slug}`;
+  mediaLink.href = buildProductUrl(product.slug);
   mediaLink.setAttribute("aria-label", `Przejdź do produktu ${product.name}`);
 
   const image = document.createElement("img");
@@ -252,7 +251,7 @@ const createKitProductCard = (product) => {
   title.className = "kit-product-card__title";
 
   const titleLink = document.createElement("a");
-  titleLink.href = `produkt.html?slug=${product.slug}`;
+  titleLink.href = buildProductUrl(product.slug);
   titleLink.textContent = product.name || "";
   title.appendChild(titleLink);
 
@@ -262,7 +261,7 @@ const createKitProductCard = (product) => {
 
   const action = document.createElement("a");
   action.className = "kit-product-card__link";
-  action.href = `produkt.html?slug=${product.slug}`;
+  action.href = buildProductUrl(product.slug);
   action.textContent = "Zobacz produkt";
 
   if (meta.textContent) {
@@ -444,7 +443,7 @@ export const initTravelKits = async () => {
     return;
   }
 
-  const slug = new URLSearchParams(window.location.search).get("slug");
+  const slug = resolveTravelKitSlug();
   const matchedKit = findKitBySlug(kits, slug);
 
   if (!matchedKit) {
