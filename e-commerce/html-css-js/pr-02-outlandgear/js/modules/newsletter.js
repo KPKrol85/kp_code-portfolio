@@ -6,6 +6,8 @@ import {
   validateFormFields,
 } from "./form-ux.js";
 
+const getSuccessUrl = (form) => new URL(form.getAttribute("action") || window.location.href, window.location.href);
+
 export const initNewsletterForm = () => {
   const form = qs("[data-newsletter-form]");
   if (!form) return;
@@ -32,13 +34,7 @@ export const initNewsletterForm = () => {
     setFormStatus(form, "Zapisywanie do listy pokazowej...", "info");
 
     window.setTimeout(() => {
-      setSubmitState(form, false);
-      setFormStatus(
-        form,
-        "Dziękujemy. Adres został zapisany w prezentacyjnej wersji formularza.",
-        "success",
-      );
-      form.reset();
+      window.location.assign(getSuccessUrl(form));
     }, 500);
   });
 };

@@ -3,29 +3,33 @@
 ## PL
 
 ### Przegląd projektu
-OutlandGear to statyczny, wielostronicowy front-end sklepu demonstracyjnego zbudowany w HTML, CSS i Vanilla JavaScript. Repozytorium zawiera komplet stron publicznych, wspólne partiale layoutu, modułowy system stylów i skryptowy pipeline budujący produkcyjny output do katalogu `dist/`.
 
-Zakres wdrożony w repo obejmuje m.in. stronę główną, katalog produktów, kartę produktu, koszyk, checkout, kontakt, FAQ, strony prawne oraz dodatkową stronę z kompletami podróżnymi.
+Outland Gear to statyczny, wielostronicowy front-end sklepu demonstracyjnego zbudowany w HTML, CSS i Vanilla JavaScript. Repozytorium zawiera źródłowe strony HTML, współdzielone partiale layoutu, modułową warstwę stylów, lokalne dane JSON oraz pipeline budujący finalny output do katalogu `dist/`.
+
+Zakres repo obejmuje stronę główną, katalog produktów, prerenderowane strony detalu produktu i kompletów podróżnych, koszyk, checkout, formularz kontaktowy, FAQ, strony prawne oraz strony potwierdzeń dla formularzy.
 
 ### Kluczowe funkcje
-- Wielostronicowa struktura oparta o statyczne pliki HTML i współdzielone partiale `header` / `footer`.
-- Dynamiczny katalog produktów renderowany z `data/products.json`, z filtrowaniem, sortowaniem, paginacją typu "load more" i obsługą parametrów URL.
-- Dynamiczna karta produktu oparta o parametr `slug`, z renderowaniem galerii, specyfikacji, sekcji produktów powiązanych oraz aktualizacją metadanych strony.
-- Koszyk oparty o `localStorage`, z aktualizacją ilości, usuwaniem pozycji i przeliczeniem podsumowania zamówienia.
-- Formularze kontaktu, newslettera i checkoutu z walidacją po stronie klienta oraz komunikatami statusu.
-- FAQ w formie akordeonu oraz modal informacyjny uruchamiany z poziomu wspólnej stopki.
-- Build produkcyjny generujący `dist/`, minifikujący CSS i JS, inline’ujący partiale oraz generujący `robots.txt` i `sitemap.xml` ze wspólnej konfiguracji SEO.
-- Manifest aplikacji webowej z ikonami, shortcutami i screenshotami.
-- Automatyczny audit dostępności renderowanych stron oparty o Playwright i `@axe-core/playwright`.
+
+- Wielostronicowa architektura oparta o statyczne pliki HTML i współdzielone partiale `header` / `footer`.
+- Katalog produktów renderowany z `data/products.json`, z wyszukiwaniem, filtrowaniem, sortowaniem, synchronizacją stanu z URL i paginacją typu "load more".
+- Detal produktu i detale kompletów podróżnych oparte o dane JSON, z hydracją treści po stronie klienta oraz build-time prerenderingiem indeksowalnych ścieżek w `dist/`.
+- Koszyk oparty o `localStorage`, z aktualizacją ilości, usuwaniem pozycji, licznikiem w nagłówku i przeliczeniem podsumowania zamówienia.
+- Formularze kontaktu, newslettera i checkoutu z walidacją po stronie klienta oraz wspólnym dokumentowym modelem potwierdzeń.
+- Nawigacja mobilna z drawerem, wyszukiwarka w nagłówku, dropdowny, FAQ accordion, modal informacyjny i przełącznik motywu jasny/ciemny.
+- Build produkcyjny generujący `dist/`, minifikujący CSS i JS, inline'ujący partiale, kopiujący zasoby i dane oraz generujący pliki SEO.
+- Renderowane testy dostępności oparte o Playwright i `@axe-core/playwright`.
 
 ### Stack technologiczny
+
 Runtime:
+
 - HTML5
 - CSS3
 - Vanilla JavaScript (ES modules)
 - JSON jako lokalne źródło danych
 
 Build i QA:
+
 - Node.js
 - PostCSS
 - `postcss-import`
@@ -36,49 +40,49 @@ Build i QA:
 - `@axe-core/playwright`
 
 ### Struktura projektu
+
 ```text
 .
-├── assets/                 # favicony, logo, obrazy źródłowe i zoptymalizowane, sprite SVG, screenshots, shortcuty
+├── assets/                # fonty, favicony, logo, obrazy, sprite SVG, manifest metadata
 ├── css/
-│   ├── components/         # współdzielone komponenty UI
-│   ├── pages/              # style specyficzne dla widoków
-│   ├── base.css            # reset i baza typografii / focus states
-│   ├── layout.css          # layout współdzielony
-│   ├── tokens.css          # tokeny projektu
-│   └── main.css            # główny punkt wejścia stylów
-├── data/                   # dane produktów
-├── dist/                   # generowany build produkcyjny
+│   ├── components/        # współdzielone komponenty UI
+│   ├── pages/             # style specyficzne dla widoków
+│   ├── base.css           # baza, focus states, utilities
+│   ├── layout.css         # warstwa layoutu
+│   ├── tokens.css         # tokeny projektu i reduced-motion
+│   └── main.css           # główny entry CSS
+├── data/                  # produkty, kategorie, komplety podróżne
+├── dist/                  # generowany output produkcyjny
 ├── js/
-│   ├── modules/            # moduły funkcjonalne aplikacji
-│   ├── app.js              # główny bootstrap front-endu
-│   ├── config.js           # współdzielona konfiguracja
-│   └── utils.js            # helpery ogólne
-├── partials/               # współdzielony header i footer
-├── scripts/                # build, preview, SEO generation, image optimization
-├── tests/a11y/            # testy dostępności renderowanych stron
-├── *.html                  # strony źródłowe
+│   ├── modules/           # moduły funkcjonalne aplikacji
+│   ├── app.js             # bootstrap aplikacji
+│   └── config.js          # współdzielona konfiguracja
+├── partials/              # współdzielony header i footer
+├── scripts/               # build, preview, SEO config, image optimization
+├── tests/a11y/            # renderowane testy dostępności
+├── *.html                 # strony źródłowe
 ├── package.json
+├── netlify.toml
 ├── playwright.config.js
-├── postcss.config.js
 ├── robots.txt
 └── sitemap.xml
 ```
 
 ### Instalacja i konfiguracja
+
 ```bash
 npm install
 ```
 
 ### Development lokalny
-Podstawowe komendy:
+
+Podstawowy podgląd lokalny:
 
 ```bash
 npm run build:preview
 ```
 
-Buduje projekt i uruchamia lokalny podgląd katalogu `dist/` pod `http://127.0.0.1:4173`.
-
-Tryb watch dla assetów produkcyjnych:
+Tryb watch dla produkcyjnych assetów:
 
 ```bash
 npm run watch:css
@@ -90,103 +94,135 @@ Dostępne są również komendy pomocnicze:
 ```bash
 npm run clean:dist
 npm run build:prepare
-npm run build:images
+npm run build:html
+npm run build:assets
 npm run build:seo
+npm run build:images
 npm run images:optimize
+npm run qa:a11y
 ```
 
 ### Build produkcyjny
+
 ```bash
 npm run build
 ```
 
-Build:
-- czyści i odtwarza katalog `dist/`
-- minifikuje CSS z `css/main.css` do `dist/css/main.min.css`
+Pipeline:
+
+- odtwarza katalog `dist/`
+- minifikuje `css/main.css` do `dist/css/main.min.css`
 - bundluje i minifikuje `js/app.js` do `dist/js/app.min.js`
 - kopiuje `assets/` i `data/`
-- inline’uje partiale `partials/header.html` i `partials/footer.html` do stron HTML w `dist/`
-- generuje `robots.txt` i `sitemap.xml` z jednej konfiguracji SEO
+- inline'uje `partials/header.html` i `partials/footer.html` do stron HTML
+- generuje `robots.txt` i `sitemap.xml`
+- prerenderuje indeksowalne strony:
+  - `dist/produkt/<slug>/index.html`
+  - `dist/komplety/<slug>/index.html`
+
+### Deployment
+
+Repo zawiera konfigurację dla Netlify w `netlify.toml`:
+
+- build command: `npm run build`
+- publish directory: `dist`
+- nagłówki bezpieczeństwa dla całego serwisu
+- reguły cache dla HTML, zasobów, danych, `robots.txt`, `sitemap.xml` i manifestu
 
 ### Dostępność
-Repo zawiera wdrożone elementy dostępności widoczne w kodzie:
+
+W repo widoczne są zaimplementowane elementy dostępności:
+
 - skip link do głównej treści
 - widoczne stany `:focus-visible`
-- etykiety formularzy, komunikaty błędów i statusy `aria-live`
 - `aria-current` dla aktywnej nawigacji
-- `aria-expanded`, `aria-controls` i focus management dla menu mobilnego, wyszukiwarki i dropdownów
-- akordeon FAQ oparty o przyciski i regiony
-- dialog modalny z `role="dialog"` i `aria-modal="true"`
-- obsługę `prefers-reduced-motion`
-- testy renderowanej dostępności uruchamiane komendą:
+- `aria-expanded`, `aria-controls` i zarządzanie fokusem dla drawer navigation, wyszukiwarki i dropdownów
+- formularze z etykietami, komunikatami błędów i regionami `aria-live`
+- FAQ oparte o przyciski i regiony
+- modal z `role="dialog"` i `aria-modal="true"`
+- obsługa `prefers-reduced-motion`
+- renderowane testy axe uruchamiane przez:
 
 ```bash
 npm run qa:a11y
 ```
 
 ### SEO
-W repo wdrożono:
+
+Repo zawiera wdrożone elementy SEO:
+
 - `meta description`
 - `canonical`
-- Open Graph i Twitter Card metadata
+- Open Graph i Twitter metadata
 - `robots.txt`
 - `sitemap.xml`
-- JSON-LD na wybranych stronach (`Organization`, `WebPage`, `CollectionPage`, `Product`, `ContactPage`, `FAQPage`)
-- build-time generowanie `robots.txt` i `sitemap.xml` z jednej konfiguracji URL
+- JSON-LD na stronach publicznych i detalach (`Organization`, `WebPage`, `CollectionPage`, `Product`, `ContactPage`, `FAQPage`)
+- wspólną konfigurację adresów w `scripts/seo-config.mjs`
+- build-time prerendering indeksowalnych stron produktu i kompletów podróżnych do statycznych ścieżek w `dist/`
 
-Dodatkowo karta produktu aktualizuje metadane i dane strukturalne dynamicznie na podstawie ładowanego produktu.
+Źródłowe strony `produkt.html` i `komplety.html` pozostają warstwą fallback/progressive enhancement, natomiast indeksowalne URL-e są generowane w buildzie.
 
 ### Wydajność
-W repo widoczne są następujące rozwiązania:
+
+W repozytorium widać następujące rozwiązania związane z wydajnością:
+
 - minifikacja CSS i JS w buildzie produkcyjnym
 - bundling JS przez `esbuild`
 - pipeline optymalizacji obrazów przez `sharp`
-- rozdzielenie obrazów źródłowych (`assets/img-src/`) i wynikowych (`assets/img/`)
-- wykorzystanie formatów `AVIF`, `WebP`, `PNG`, `JPG`, `SVG`
+- rozdzielenie obrazów źródłowych `assets/img-src/` i wynikowych `assets/img/`
+- użycie `AVIF`, `WebP`, `JPG`, `PNG` i `SVG`
 - obrazy responsywne przez `picture`, `srcset` i `sizes`
-- jawne `width` / `height` dla obrazów
-- `loading="lazy"` i `decoding="async"` dla wybranych obrazów renderowanych statycznie i dynamicznie
-- lekka architektura bez frameworka UI
+- jawne `width` / `height`
+- `loading="lazy"` i `decoding="async"` dla obrazów statycznych i renderowanych dynamicznie
+- architektura bez frameworka UI
 
 ### Utrzymanie projektu
-Najważniejsze miejsca dla dalszego rozwoju:
-- `js/app.js` uruchamia moduły strony i bootstrap wspólnych partiali
-- `js/modules/` zawiera logikę domenową: katalog, produkt, koszyk, checkout, kontakt, FAQ, nawigację, newsletter i UI helpers
-- `css/tokens.css`, `css/layout.css` i `css/components/` stanowią współdzieloną warstwę stylów
-- `css/pages/` zawiera warstwę stylów specyficznych dla widoków
-- `scripts/build-dist.mjs` kontroluje generowanie builda produkcyjnego
-- `scripts/seo-config.mjs` jest źródłem prawdy dla hosta i listy stron indexowalnych
-- `tests/a11y/a11y.spec.js` obejmuje kluczowe renderowane strony testami axe
+
+Najważniejsze miejsca dla dalszego utrzymania:
+
+- `js/app.js` uruchamia bootstrap aplikacji i moduły stron
+- `js/modules/` zawiera logikę katalogu, produktu, kompletów, koszyka, formularzy, nawigacji, motywu i helperów UI
+- `js/modules/routes.js` centralizuje budowę i odczyt ścieżek detail pages
+- `css/tokens.css`, `css/layout.css` i `css/components/` stanowią wspólną warstwę stylów
+- `css/pages/` zawiera style specyficzne dla poszczególnych widoków
+- `scripts/build-dist.mjs` kontroluje build, inline partials, prerendering i generację plików SEO
+- `scripts/seo-config.mjs` jest źródłem prawdy dla originu i indeksowalnych ścieżek
+- `tests/a11y/a11y.spec.js` obejmuje kluczowe widoki testami renderowanymi
 
 ### Licencja
-MIT. Licencja jest zadeklarowana w `package.json`.
+
+MIT. Licencja jest zadeklarowana w `package.json`, a plik licencji znajduje się w repozytorium jako `LICENSE`.
 
 ## EN
 
 ### Project Overview
-OutlandGear is a static multi-page storefront front-end built with HTML, CSS, and Vanilla JavaScript. The repository includes the full set of public pages, shared layout partials, a modular styling system, and a script-based pipeline that generates a production build into `dist/`.
 
-The implemented scope includes a homepage, product listing, product detail page, cart, checkout, contact page, FAQ, legal pages, and an additional travel kits page.
+Outland Gear is a static multi-page storefront front-end built with HTML, CSS, and Vanilla JavaScript. The repository contains source HTML pages, shared layout partials, a modular styling layer, local JSON datasets, and a build pipeline that generates the final production output into `dist/`.
+
+The implemented scope includes the homepage, product listing, prerendered product and travel-kit detail pages, cart, checkout, contact form, FAQ, legal pages, and form confirmation pages.
 
 ### Key Features
-- Multi-page structure based on static HTML files and shared `header` / `footer` partials.
-- Dynamic product listing rendered from `data/products.json`, with filtering, sorting, load-more pagination, and URL parameter handling.
-- Dynamic product page driven by the `slug` query parameter, including gallery rendering, specifications, related products, and page metadata updates.
-- `localStorage`-based cart with quantity updates, item removal, and order summary recalculation.
-- Contact, newsletter, and checkout forms with client-side validation and status messaging.
-- FAQ accordion and informational modal launched from the shared footer.
-- Production build pipeline that generates `dist/`, minifies CSS and JS, inlines partials, and generates `robots.txt` and `sitemap.xml` from shared SEO configuration.
-- Web app manifest with icons, shortcuts, and screenshots.
-- Automated rendered accessibility audit powered by Playwright and `@axe-core/playwright`.
+
+- Multi-page architecture based on static HTML files and shared `header` / `footer` partials.
+- Product listing rendered from `data/products.json`, with search, filtering, sorting, URL state sync, and load-more pagination.
+- Product detail and travel-kit detail views powered by JSON data, with client-side hydration and build-time prerendering of indexable routes in `dist/`.
+- `localStorage`-based cart with quantity updates, item removal, header counter, and order summary recalculation.
+- Contact, newsletter, and checkout forms with client-side validation and a shared document-level confirmation flow.
+- Mobile drawer navigation, header search, dropdowns, FAQ accordion, informational modal, and light/dark theme toggle.
+- Production build pipeline that generates `dist/`, minifies CSS and JS, inlines partials, copies assets and data, and generates SEO files.
+- Rendered accessibility testing powered by Playwright and `@axe-core/playwright`.
 
 ### Tech Stack
+
 Runtime:
+
 - HTML5
 - CSS3
 - Vanilla JavaScript (ES modules)
 - JSON as a local data source
 
 Build and QA:
+
 - Node.js
 - PostCSS
 - `postcss-import`
@@ -197,47 +233,47 @@ Build and QA:
 - `@axe-core/playwright`
 
 ### Project Structure
+
 ```text
 .
-├── assets/                 # favicons, logo, source and optimized images, SVG sprite, screenshots, shortcuts
+├── assets/                # fonts, favicons, logo, images, SVG sprite, manifest metadata
 ├── css/
-│   ├── components/         # shared UI components
-│   ├── pages/              # page-specific styles
-│   ├── base.css            # reset and base typography / focus states
-│   ├── layout.css          # shared layout layer
-│   ├── tokens.css          # design tokens
-│   └── main.css            # main stylesheet entry point
-├── data/                   # product data
-├── dist/                   # generated production build
+│   ├── components/        # shared UI components
+│   ├── pages/             # page-specific styles
+│   ├── base.css           # base layer, focus states, utilities
+│   ├── layout.css         # layout layer
+│   ├── tokens.css         # project tokens and reduced-motion handling
+│   └── main.css           # main CSS entry point
+├── data/                  # products, categories, travel kits
+├── dist/                  # generated production output
 ├── js/
-│   ├── modules/            # application feature modules
-│   ├── app.js              # main frontend bootstrap
-│   ├── config.js           # shared configuration
-│   └── utils.js            # general helpers
-├── partials/               # shared header and footer
-├── scripts/                # build, preview, SEO generation, image optimization
+│   ├── modules/           # application feature modules
+│   ├── app.js             # application bootstrap
+│   └── config.js          # shared configuration
+├── partials/              # shared header and footer
+├── scripts/               # build, preview, SEO config, image optimization
 ├── tests/a11y/            # rendered accessibility tests
-├── *.html                  # source pages
+├── *.html                 # source pages
 ├── package.json
+├── netlify.toml
 ├── playwright.config.js
-├── postcss.config.js
 ├── robots.txt
 └── sitemap.xml
 ```
 
 ### Setup and Installation
+
 ```bash
 npm install
 ```
 
 ### Local Development
-Primary command:
+
+Primary local preview:
 
 ```bash
 npm run build:preview
 ```
-
-This builds the project and starts a local preview server for `dist/` at `http://127.0.0.1:4173`.
 
 Watch mode for production assets:
 
@@ -251,73 +287,101 @@ Additional helper commands:
 ```bash
 npm run clean:dist
 npm run build:prepare
-npm run build:images
+npm run build:html
+npm run build:assets
 npm run build:seo
+npm run build:images
 npm run images:optimize
+npm run qa:a11y
 ```
 
 ### Production Build
+
 ```bash
 npm run build
 ```
 
-The build process:
+The pipeline:
+
 - recreates the `dist/` directory
-- minifies CSS from `css/main.css` into `dist/css/main.min.css`
+- minifies `css/main.css` into `dist/css/main.min.css`
 - bundles and minifies `js/app.js` into `dist/js/app.min.js`
 - copies `assets/` and `data/`
-- inlines `partials/header.html` and `partials/footer.html` into HTML files in `dist/`
-- generates `robots.txt` and `sitemap.xml` from a single SEO configuration
+- inlines `partials/header.html` and `partials/footer.html` into HTML files
+- generates `robots.txt` and `sitemap.xml`
+- prerenders indexable detail pages:
+  - `dist/produkt/<slug>/index.html`
+  - `dist/komplety/<slug>/index.html`
+
+### Deployment
+
+The repository includes Netlify configuration in `netlify.toml`:
+
+- build command: `npm run build`
+- publish directory: `dist`
+- security headers for the site
+- cache rules for HTML, assets, data, `robots.txt`, `sitemap.xml`, and the manifest
 
 ### Accessibility
-The repository includes visible accessibility implementation in source code:
-- skip link to main content
+
+The repository includes visible accessibility implementation:
+
+- skip link to the main content
 - visible `:focus-visible` states
-- form labels, inline error messaging, and `aria-live` status regions
-- `aria-current` for active navigation links
-- `aria-expanded`, `aria-controls`, and focus management for the mobile menu, search panel, and dropdowns
-- FAQ accordion built with buttons and labelled regions
+- `aria-current` for active navigation
+- `aria-expanded`, `aria-controls`, and focus management for drawer navigation, search, and dropdowns
+- forms with labels, inline error messaging, and `aria-live` status regions
+- FAQ built with buttons and labelled regions
 - modal dialog with `role="dialog"` and `aria-modal="true"`
-- `prefers-reduced-motion` support
-- rendered accessibility tests available via:
+- `prefers-reduced-motion` handling
+- rendered axe-based tests available via:
 
 ```bash
 npm run qa:a11y
 ```
 
 ### SEO
+
 The repository implements:
+
 - `meta description`
 - `canonical`
-- Open Graph and Twitter Card metadata
+- Open Graph and Twitter metadata
 - `robots.txt`
 - `sitemap.xml`
-- JSON-LD on selected pages (`Organization`, `WebPage`, `CollectionPage`, `Product`, `ContactPage`, `FAQPage`)
-- build-time generation of `robots.txt` and `sitemap.xml` from a shared URL policy
+- JSON-LD on public pages and detail views (`Organization`, `WebPage`, `CollectionPage`, `Product`, `ContactPage`, `FAQPage`)
+- shared URL policy in `scripts/seo-config.mjs`
+- build-time prerendering of indexable product and travel-kit pages to static routes in `dist/`
 
-In addition, the product page updates metadata and structured data dynamically based on the loaded product.
+The source `produkt.html` and `komplety.html` pages remain fallback/progressive-enhancement entry points, while indexable URLs are generated during the build.
 
 ### Performance
+
 The repository contains explicit performance-related implementation:
+
 - CSS and JS minification in the production build
 - JS bundling via `esbuild`
 - image optimization pipeline using `sharp`
-- separation between source images (`assets/img-src/`) and generated assets (`assets/img/`)
-- use of `AVIF`, `WebP`, `PNG`, `JPG`, and `SVG`
+- separation between source images in `assets/img-src/` and generated assets in `assets/img/`
+- use of `AVIF`, `WebP`, `JPG`, `PNG`, and `SVG`
 - responsive images via `picture`, `srcset`, and `sizes`
-- explicit `width` / `height` on images
-- `loading="lazy"` and `decoding="async"` for selected static and dynamically rendered images
+- explicit `width` / `height`
+- `loading="lazy"` and `decoding="async"` for static and dynamically rendered images
 - lightweight architecture without a UI framework
 
 ### Project Maintenance
-Key locations for future maintenance:
-- `js/app.js` bootstraps page modules and shared partial loading
-- `js/modules/` contains domain logic for catalog, product, cart, checkout, contact, FAQ, navigation, newsletter, and UI helpers
+
+Key locations for ongoing maintenance:
+
+- `js/app.js` bootstraps the application and page modules
+- `js/modules/` contains catalog, product, travel-kit, cart, form, navigation, theme, and UI helper logic
+- `js/modules/routes.js` centralizes detail-page path building and resolution
 - `css/tokens.css`, `css/layout.css`, and `css/components/` define the shared styling layer
 - `css/pages/` contains page-specific styles
-- `scripts/build-dist.mjs` controls production build generation
-- `scripts/seo-config.mjs` is the source of truth for origin and indexable URLs
-- `tests/a11y/a11y.spec.js` covers key rendered pages with axe-based checks
+- `scripts/build-dist.mjs` controls the build, partial inlining, prerendering, and SEO file generation
+- `scripts/seo-config.mjs` is the source of truth for origin and indexable paths
+- `tests/a11y/a11y.spec.js` covers key rendered views with automated checks
 
 ### License
-MIT. The license is declared in `package.json`.
+
+MIT. The license is declared in `package.json`, and the repository also includes a `LICENSE` file.
