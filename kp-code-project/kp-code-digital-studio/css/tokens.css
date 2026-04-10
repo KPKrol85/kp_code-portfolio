@@ -83,6 +83,7 @@
 
   /* Layout scales */
   --container: 1120px;
+  --container-lg: 1440px;
   --header-py: var(--space-4);
   --header-py-shrink: var(--space-3);
   --header-links-offset: 72px;

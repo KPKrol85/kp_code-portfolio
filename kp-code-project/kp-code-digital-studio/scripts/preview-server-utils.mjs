@@ -1,6 +1,6 @@
 import path from 'node:path';
 
-export const DEFAULT_PORT = 4173;
+export const DEFAULT_PORT = 8181;
 
 export const CONTENT_TYPES = new Map([
   ['.html', 'text/html; charset=utf-8'],
