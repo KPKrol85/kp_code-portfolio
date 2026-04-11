@@ -10,6 +10,7 @@ import { initReveal } from './modules/reveal.js';
 import { initForms } from './modules/forms.js';
 import { initProjectFilter } from './modules/project-filter.js';
 import { initServiceWorker } from './modules/service-worker.js';
+import { initAboutBinaryRain } from './modules/about-binary-rain.js';
 
 const initApp = () => {
   initTheme();
@@ -18,6 +19,7 @@ const initApp = () => {
   initReveal();
   initForms();
   initProjectFilter();
+  initAboutBinaryRain();
   initServiceWorker();
 };
 
