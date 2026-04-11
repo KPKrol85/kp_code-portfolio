@@ -528,6 +528,25 @@
   flex: 0 0 auto;
   inline-size: var(--avatar-sm);
   block-size: var(--avatar-sm);
+  padding: 3px;
+  border: 1px solid color-mix(in srgb, var(--color-border) 78%, transparent);
+  border-radius: var(--radius-md);
+  background:
+    linear-gradient(
+      180deg,
+      color-mix(in srgb, var(--color-surface) 94%, transparent) 0%,
+      color-mix(in srgb, var(--color-surface-alt) 84%, transparent) 100%
+    );
+  box-shadow: var(--shadow-sm);
+}
+
+.about__avatar-surface {
+  inline-size: 100%;
+  block-size: 100%;
+  padding: 2px;
+  border: 1px solid color-mix(in srgb, var(--color-border) 72%, transparent);
+  border-radius: calc(var(--radius-md) - 2px);
+  background: color-mix(in srgb, var(--color-surface) 96%, transparent);
 }
 
 .about__profile-copy {
@@ -555,9 +574,8 @@
   inline-size: 100%;
   block-size: 100%;
   object-fit: cover;
-  border-radius: var(--radius-sm);
+  border-radius: calc(var(--radius-sm) + 1px);
   display: block;
-  box-shadow: var(--shadow-md);
 }
 
 .about__grid {
