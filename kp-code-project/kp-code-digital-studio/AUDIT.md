@@ -18,11 +18,12 @@ none detected.
 
 4. P1 — Important issues worth fixing next
 
-- Broken responsive WebP candidate in the `Outland Gear` project card. The `srcset` points to `./assets/img/img_optimized/selected-work/voutland-gear-024.webp`, which does not match the actual asset naming used elsewhere in the repository and differs from the existing `outland-gear-1024.webp` file pattern. This can produce a 404 for browsers selecting the 1024w WebP candidate and degrades the responsive image path for that card. Evidence: `projects.html:552-559`.
+Resolvet: - Broken responsive WebP candidate in the `Outland Gear` project card. The `srcset` points to `./assets/img/img_optimized/selected-work/voutland-gear-024.webp`, which does not match the actual asset naming used elsewhere in the repository and differs from the existing `outland-gear-1024.webp` file pattern. This can produce a 404 for browsers selecting the 1024w WebP candidate and degrades the responsive image path for that card. Evidence: `projects.html:552-559`.
 
 5. P2 — Minor refinements
 
 - The `Outland Gear` project card exposes a visible `Szczegóły` CTA with `href="#"`, which behaves as a non-destination link instead of a real details page or disabled state. This is a minor UX defect because it presents an affordance that does not lead anywhere meaningful. Evidence: `projects.html:582-590`.
+
 - The same `Outland Gear` card uses an incorrect alternative text label referencing `Volt Garage` and contains a spelling error in the descriptive copy (`turstycznym`). This is not a runtime failure, but it reduces content quality and introduces inaccurate accessible naming for assistive technology users. Evidence: `projects.html:561-576`.
 
 6. Extra quality improvements
