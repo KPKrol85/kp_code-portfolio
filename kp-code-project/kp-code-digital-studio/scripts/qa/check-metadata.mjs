@@ -13,6 +13,7 @@ const JSONLD_EXPECTED_PAGES = new Set([
   'projects/atelier-no-02.html',
   'projects/aurora.html',
   'projects/axiom-construction.html',
+  'projects/outland-gear.html',
   'projects/solidcraft.html',
   'projects/vista.html',
   'projects/volt-garage.html',

@@ -22,9 +22,9 @@ Resolvet: - Broken responsive WebP candidate in the `Outland Gear` project card.
 
 5. P2 — Minor refinements
 
-- The `Outland Gear` project card exposes a visible `Szczegóły` CTA with `href="#"`, which behaves as a non-destination link instead of a real details page or disabled state. This is a minor UX defect because it presents an affordance that does not lead anywhere meaningful. Evidence: `projects.html:582-590`.
+Resolvet: - The `Outland Gear` project card exposes a visible `Szczegóły` CTA with `href="#"`, which behaves as a non-destination link instead of a real details page or disabled state. This is a minor UX defect because it presents an affordance that does not lead anywhere meaningful. Evidence: `projects.html:582-590`.
 
-- The same `Outland Gear` card uses an incorrect alternative text label referencing `Volt Garage` and contains a spelling error in the descriptive copy (`turstycznym`). This is not a runtime failure, but it reduces content quality and introduces inaccurate accessible naming for assistive technology users. Evidence: `projects.html:561-576`.
+Resolved: - The same `Outland Gear` card uses an incorrect alternative text label referencing `Volt Garage` and contains a spelling error in the descriptive copy (`turstycznym`). This is not a runtime failure, but it reduces content quality and introduces inaccurate accessible naming for assistive technology users. Evidence: `projects.html:561-576`.
 
 6. Extra quality improvements
 
