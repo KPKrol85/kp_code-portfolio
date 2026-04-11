@@ -200,16 +200,14 @@ Najważniejsze miejsca utrzymaniowe:
 - `js/main.js` inicjalizuje wszystkie moduły front-endowe
 - `src/partials/` zawiera współdzielony shell HTML
 - `scripts/build-utils.mjs` zawiera główną logikę budowania, przepisywania assetów, generowania sitemap i service workera
-- `scripts/qa/` zawiera automatyczne kontrole jakości dla outputu `dist/`
+- `scripts/qa/` zawiera automatyczne kontrole jakości dla outputu `dist/` oraz wybrane guardraile dla source HTML
 - `contact-form-support.php`, `contact.php` i `contact-submit.php` zawierają pełną logikę formularza kontaktowego
 
 W pracy nad projektem źródłem zmian powinny pozostawać source files. `dist/` jest katalogiem wynikowym generowanym przez build.
 
 ### Roadmap
 
-- Dodać source-level QA dla placeholder links i innych nieprodukcyjnych odnośników w plikach HTML.
 - Rozszerzyć automatyczne sprawdzanie obrazów o walidację `srcset` względem realnie istniejących assetów.
-- Uzupełnić repozytorium o krótką dokumentację środowiska PHP i konfiguracji formularza kontaktowego.
 - Rozważyć dodanie trybu watch lub lekkiego local dev servera dla source files, jeśli workflow projektu będzie rozwijany dalej.
 
 ### Licencja
@@ -416,16 +414,14 @@ Main maintenance points:
 - `js/main.js` initializes all front-end modules
 - `src/partials/` contains the shared HTML shell
 - `scripts/build-utils.mjs` contains the core build logic, asset rewriting, sitemap generation, and service worker generation
-- `scripts/qa/` contains automated quality checks for the `dist/` output
+- `scripts/qa/` contains automated quality checks for the `dist/` output and selected source-HTML guardrails
 - `contact-form-support.php`, `contact.php`, and `contact-submit.php` contain the full contact-form logic
 
 Source files should remain the primary editing surface. `dist/` is a generated output directory produced by the build.
 
 ### Roadmap
 
-- Add source-level QA for placeholder links and other non-production references in HTML files.
 - Extend automated image checks to validate `srcset` entries against actual generated assets.
-- Add short repository documentation for the PHP environment and contact-form configuration.
 - Consider adding a watch mode or lightweight local dev server for source files if the workflow expands further.
 
 ### License

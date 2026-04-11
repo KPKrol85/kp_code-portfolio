@@ -28,10 +28,11 @@ Resolved: - The same `Outland Gear` card uses an incorrect alternative text labe
 
 6. Extra quality improvements
 
-- Add minimal repository documentation for local development, build output expectations, PHP/contact deployment requirements, and source-vs-dist conventions. This is not a current runtime defect, but the absence of repo-level documentation increases onboarding cost. Evidence: not detected in project.
-- If this site is expected to be deployed anywhere other than the web root, review the use of absolute root-based navigation and asset paths in shared partials and JS service-worker registration. In the current repository this reads as an intentional root-deploy convention, not a defect. Evidence: `src/partials/header.html:3-15`, `src/partials/footer.html:19-42`, `js/modules/service-worker.js:2-10`.
-- Contrast compliance cannot be verified without computed style analysis. Token usage is consistent, but this audit did not perform rendered contrast measurement. Evidence: `css/tokens.css:8-23`, `css/tokens.css:156-168`.
-- Consider adding a small automated source-level check for placeholder links like `href="#"` in marketing cards. Existing QA scripts already cover assembled HTML and broken local references, so this would fit the current tooling approach. Evidence: `scripts/qa/check-local-refs.mjs:1-34`, `scripts/qa/check-html-assembly.mjs:1-40`.
+Added: - Add minimal repository documentation for local development, build output expectations, PHP/contact deployment requirements, and source-vs-dist conventions. This is not a current runtime defect, but the absence of repo-level documentation increases onboarding cost. Evidence: not detected in project.
+
+Open/Veryfy: - Contrast compliance cannot be verified without computed style analysis. Token usage is consistent, but this audit did not perform rendered contrast measurement. Evidence: `css/tokens.css:8-23`, `css/tokens.css:156-168`.
+
+Added: - Consider adding a small automated source-level check for placeholder links like `href="#"` in marketing cards. Existing QA scripts already cover assembled HTML and broken local references, so this would fit the current tooling approach. Evidence: `scripts/qa/check-local-refs.mjs:1-34`, `scripts/qa/check-html-assembly.mjs:1-40`.
 
 7. Senior rating (1–10)
 

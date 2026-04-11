@@ -68,6 +68,10 @@ export async function readDistHtml(relativePath) {
   return readFile(path.join(DIST_DIR, relativePath), 'utf8');
 }
 
+export async function readSourceHtml(relativePath) {
+  return readFile(path.join(ROOT_DIR, relativePath), 'utf8');
+}
+
 export async function distPathExists(relativePath) {
   try {
     await access(path.join(DIST_DIR, relativePath));
