@@ -1,6 +1,6 @@
 1. Short overall assessment
 
-KP_Code Digital Studio is a structured static front-end repository with a clear source/build split, shared partial assembly, token-based CSS, progressive enhancement for the contact form, and generally consistent SEO metadata. No repository-level README, settings file, or prior audit document were detected in project. The audit found no P0 issues, one real P1 implementation defect in responsive image source data, and a small number of P2 usability/content refinements.
+KP_Code Digital Studio is a structured static front-end repository with a clear source/build split, shared partial assembly, token-based CSS, progressive enhancement for the contact form, repository-level README documentation, and generally consistent SEO metadata. After the resolved fixes and the current follow-up review, no open P0, P1, or P2 implementation defects were confirmed in the repository. The remaining improvement areas are optional quality guardrails and one unverified contrast check that still requires rendered measurement.
 
 2. Strengths
 
@@ -18,24 +18,24 @@ none detected.
 
 4. P1 — Important issues worth fixing next
 
-Resolvet: - Broken responsive WebP candidate in the `Outland Gear` project card. The `srcset` points to `./assets/img/img_optimized/selected-work/voutland-gear-024.webp`, which does not match the actual asset naming used elsewhere in the repository and differs from the existing `outland-gear-1024.webp` file pattern. This can produce a 404 for browsers selecting the 1024w WebP candidate and degrades the responsive image path for that card. Evidence: `projects.html:552-559`.
+Resolved: - Broken responsive WebP candidate in the `Outland Gear` project card. The `srcset` pointed to `./assets/img/img_optimized/selected-work/voutland-gear-024.webp`, which did not match the actual asset naming used elsewhere in the repository and differed from the existing `outland-gear-1024.webp` file pattern. This could produce a 404 for browsers selecting the 1024w WebP candidate and degraded the responsive image path for that card. Evidence: `projects.html:552-559`.
 
 5. P2 — Minor refinements
 
-Resolvet: - The `Outland Gear` project card exposes a visible `Szczegóły` CTA with `href="#"`, which behaves as a non-destination link instead of a real details page or disabled state. This is a minor UX defect because it presents an affordance that does not lead anywhere meaningful. Evidence: `projects.html:582-590`.
+Resolved: - The `Outland Gear` project card exposed a visible `Szczegóły` CTA with `href="#"`, which behaved as a non-destination link instead of a real details page or disabled state. This was a minor UX defect because it presented an affordance that did not lead anywhere meaningful. Evidence: `projects.html:582-590`.
 
 Resolved: - The same `Outland Gear` card uses an incorrect alternative text label referencing `Volt Garage` and contains a spelling error in the descriptive copy (`turstycznym`). This is not a runtime failure, but it reduces content quality and introduces inaccurate accessible naming for assistive technology users. Evidence: `projects.html:561-576`.
 
 6. Extra quality improvements
 
-Added: - Add minimal repository documentation for local development, build output expectations, PHP/contact deployment requirements, and source-vs-dist conventions. This is not a current runtime defect, but the absence of repo-level documentation increases onboarding cost. Evidence: not detected in project.
+Resolved: - Add minimal repository documentation for local development, build output expectations, PHP/contact deployment requirements, and source-vs-dist conventions. This was not a runtime defect, but the absence of repo-level documentation increased onboarding cost. Evidence: `README.md:1-220`.
 
-Open/Veryfy: - Contrast compliance cannot be verified without computed style analysis. Token usage is consistent, but this audit did not perform rendered contrast measurement. Evidence: `css/tokens.css:8-23`, `css/tokens.css:156-168`.
+Open/Verify: - Contrast compliance cannot be verified without computed style analysis. Token usage is consistent, but this audit did not perform rendered contrast measurement. Evidence: `css/tokens.css:8-23`, `css/tokens.css:156-168`.
 
-Added: - Consider adding a small automated source-level check for placeholder links like `href="#"` in marketing cards. Existing QA scripts already cover assembled HTML and broken local references, so this would fit the current tooling approach. Evidence: `scripts/qa/check-local-refs.mjs:1-34`, `scripts/qa/check-html-assembly.mjs:1-40`.
+Resolved: - Add a small automated source-level check for placeholder links like `href="#"` in marketing cards. Existing QA scripts already covered assembled HTML and broken local references, and the repository now includes a dedicated source-level guardrail in the same tooling approach. Evidence: `scripts/qa/check-source-placeholder-links.mjs:1-25`, `scripts/qa/run-qa.mjs:1-26`.
 
 7. Senior rating (1–10)
 
-8/10
+9/10
 
-The repository is production-minded in structure: shared assembly, coherent CSS architecture, progressive enhancement, reduced-motion handling, broad metadata coverage, and safe config externalization are all implemented with real code evidence. The score is held back mainly by a small but real responsive asset defect and a couple of unfinished content/CTA details rather than any systemic architecture failure.
+The repository is production-minded in structure: shared assembly, coherent CSS architecture, progressive enhancement, reduced-motion handling, broad metadata coverage, safe config externalization, README-level onboarding context, and automated QA guardrails at both dist and source level. The score is held back mainly by optional next-step improvements such as rendered contrast verification and broader source-level asset validation rather than by any confirmed implementation defect.
