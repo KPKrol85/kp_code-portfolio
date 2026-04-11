@@ -102,35 +102,40 @@
             </div>
             <div class="about-intro__media">
               <div class="about-intro__photo-wrap">
-                <picture>
-                  <source
-                    type="image/avif"
-                    srcset="
-                      ./assets/img/img_optimized/about/ceo-480.avif   480w,
-                      ./assets/img/img_optimized/about/ceo-768.avif   768w,
-                      ./assets/img/img_optimized/about/ceo-1024.avif 1024w
-                    "
-                    sizes="(max-width: 759px) 100vw, 40vw"
-                  />
-                  <source
-                    type="image/webp"
-                    srcset="
-                      ./assets/img/img_optimized/about/ceo-480.webp   480w,
-                      ./assets/img/img_optimized/about/ceo-768.webp   768w,
-                      ./assets/img/img_optimized/about/ceo-1024.webp 1024w
-                    "
-                    sizes="(max-width: 759px) 100vw, 40vw"
-                  />
-                  <img
-                    class="about-intro__photo"
-                    src="./assets/img/img_optimized/about/ceo-480.webp"
-                    alt="Kamil Król przy pracy nad projektem."
-                    width="720"
-                    height="900"
-                    loading="lazy"
-                    decoding="async"
-                  />
-                </picture>
+                <div class="about-intro__photo-accent" aria-hidden="true"></div>
+                <div class="about-intro__photo-frame">
+                  <div class="about-intro__photo-surface">
+                    <picture>
+                      <source
+                        type="image/avif"
+                        srcset="
+                          ./assets/img/img_optimized/about/ceo-480.avif   480w,
+                          ./assets/img/img_optimized/about/ceo-768.avif   768w,
+                          ./assets/img/img_optimized/about/ceo-1024.avif 1024w
+                        "
+                        sizes="(max-width: 759px) 100vw, 40vw"
+                      />
+                      <source
+                        type="image/webp"
+                        srcset="
+                          ./assets/img/img_optimized/about/ceo-480.webp   480w,
+                          ./assets/img/img_optimized/about/ceo-768.webp   768w,
+                          ./assets/img/img_optimized/about/ceo-1024.webp 1024w
+                        "
+                        sizes="(max-width: 759px) 100vw, 40vw"
+                      />
+                      <img
+                        class="about-intro__photo"
+                        src="./assets/img/img_optimized/about/ceo-480.webp"
+                        alt="Kamil Król przy pracy nad projektem."
+                        width="720"
+                        height="900"
+                        loading="lazy"
+                        decoding="async"
+                      />
+                    </picture>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
