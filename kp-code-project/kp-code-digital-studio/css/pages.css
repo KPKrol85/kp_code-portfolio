@@ -92,7 +92,10 @@
 /* Page: About */
 
 .page--about .about-binary-rain,
-.page--home .about-binary-rain {
+.page--home .about-binary-rain,
+.page--services .about-binary-rain,
+.page--projects .about-binary-rain,
+.page--contact .about-binary-rain {
   position: fixed;
   inset: calc(var(--header-links-offset) + var(--space-5)) 0 auto 0;
   height: min(18rem, 34vh);
@@ -102,11 +105,17 @@
   transition: opacity var(--transition-base);
 }
 .page--about .about-binary-rain.is-active,
-.page--home .about-binary-rain.is-active {
+.page--home .about-binary-rain.is-active,
+.page--services .about-binary-rain.is-active,
+.page--projects .about-binary-rain.is-active,
+.page--contact .about-binary-rain.is-active {
   opacity: 1;
 }
 .page--about .about-binary-rain__lane,
-.page--home .about-binary-rain__lane {
+.page--home .about-binary-rain__lane,
+.page--services .about-binary-rain__lane,
+.page--projects .about-binary-rain__lane,
+.page--contact .about-binary-rain__lane {
   position: absolute;
   top: 0;
   display: flex;
@@ -115,15 +124,24 @@
   justify-content: space-between;
 }
 .page--about .about-binary-rain__lane--left,
-.page--home .about-binary-rain__lane--left {
+.page--home .about-binary-rain__lane--left,
+.page--services .about-binary-rain__lane--left,
+.page--projects .about-binary-rain__lane--left,
+.page--contact .about-binary-rain__lane--left {
   left: clamp(0.25rem, 1.5vw, 1.25rem);
 }
 .page--about .about-binary-rain__lane--right,
-.page--home .about-binary-rain__lane--right {
+.page--home .about-binary-rain__lane--right,
+.page--services .about-binary-rain__lane--right,
+.page--projects .about-binary-rain__lane--right,
+.page--contact .about-binary-rain__lane--right {
   right: clamp(0.25rem, 1.5vw, 1.25rem);
 }
 .page--about .about-binary-rain__stream,
-.page--home .about-binary-rain__stream {
+.page--home .about-binary-rain__stream,
+.page--services .about-binary-rain__stream,
+.page--projects .about-binary-rain__stream,
+.page--contact .about-binary-rain__stream {
   display: block;
   white-space: pre;
   font-size: var(--fs-2);
@@ -138,17 +156,26 @@
   will-change: transform, opacity;
 }
 .page--about .about-binary-rain__stream:nth-child(2),
-.page--home .about-binary-rain__stream:nth-child(2) {
+.page--home .about-binary-rain__stream:nth-child(2),
+.page--services .about-binary-rain__stream:nth-child(2),
+.page--projects .about-binary-rain__stream:nth-child(2),
+.page--contact .about-binary-rain__stream:nth-child(2) {
   margin-top: var(--space-6);
   opacity: 0.03;
 }
 .page--about .about-binary-rain.is-active .about-binary-rain__stream,
-.page--home .about-binary-rain.is-active .about-binary-rain__stream {
+.page--home .about-binary-rain.is-active .about-binary-rain__stream,
+.page--services .about-binary-rain.is-active .about-binary-rain__stream,
+.page--projects .about-binary-rain.is-active .about-binary-rain__stream,
+.page--contact .about-binary-rain.is-active .about-binary-rain__stream {
   opacity: 0.1;
   animation: about-binary-rain-fall 880ms var(--ease-3) 1 both;
 }
 .page--about .about-binary-rain.is-active .about-binary-rain__stream:nth-child(2),
-.page--home .about-binary-rain.is-active .about-binary-rain__stream:nth-child(2) {
+.page--home .about-binary-rain.is-active .about-binary-rain__stream:nth-child(2),
+.page--services .about-binary-rain.is-active .about-binary-rain__stream:nth-child(2),
+.page--projects .about-binary-rain.is-active .about-binary-rain__stream:nth-child(2),
+.page--contact .about-binary-rain.is-active .about-binary-rain__stream:nth-child(2) {
   animation-delay: 90ms;
   opacity: 0.075;
 }
@@ -267,11 +294,17 @@
 }
 @media (min-width: 700px) {
   .page--about .about-binary-rain,
-  .page--home .about-binary-rain {
+  .page--home .about-binary-rain,
+  .page--services .about-binary-rain,
+  .page--projects .about-binary-rain,
+  .page--contact .about-binary-rain {
     inset: calc(var(--header-links-offset) + var(--space-6)) 0 auto 0;
   }
   .page--about .about-binary-rain__lane,
-  .page--home .about-binary-rain__lane {
+  .page--home .about-binary-rain__lane,
+  .page--services .about-binary-rain__lane,
+  .page--projects .about-binary-rain__lane,
+  .page--contact .about-binary-rain__lane {
     width: clamp(4rem, 8vw, 6.5rem);
   }
   .about-intro__grid {
@@ -286,11 +319,17 @@
 }
 @media (min-width: 760px) {
   .page--about .about-binary-rain__lane--left,
-  .page--home .about-binary-rain__lane--left {
+  .page--home .about-binary-rain__lane--left,
+  .page--services .about-binary-rain__lane--left,
+  .page--projects .about-binary-rain__lane--left,
+  .page--contact .about-binary-rain__lane--left {
     left: clamp(0.5rem, 3vw, 2rem);
   }
   .page--about .about-binary-rain__lane--right,
-  .page--home .about-binary-rain__lane--right {
+  .page--home .about-binary-rain__lane--right,
+  .page--services .about-binary-rain__lane--right,
+  .page--projects .about-binary-rain__lane--right,
+  .page--contact .about-binary-rain__lane--right {
     right: clamp(0.5rem, 3vw, 2rem);
   }
   .about-focus__top {
@@ -304,15 +343,24 @@
 }
 @media (min-width: 1024px) {
   .page--about .about-binary-rain,
-  .page--home .about-binary-rain {
+  .page--home .about-binary-rain,
+  .page--services .about-binary-rain,
+  .page--projects .about-binary-rain,
+  .page--contact .about-binary-rain {
     height: min(19rem, 36vh);
   }
   .page--about .about-binary-rain__lane--left,
-  .page--home .about-binary-rain__lane--left {
+  .page--home .about-binary-rain__lane--left,
+  .page--services .about-binary-rain__lane--left,
+  .page--projects .about-binary-rain__lane--left,
+  .page--contact .about-binary-rain__lane--left {
     left: clamp(1rem, 5vw, 4rem);
   }
   .page--about .about-binary-rain__lane--right,
-  .page--home .about-binary-rain__lane--right {
+  .page--home .about-binary-rain__lane--right,
+  .page--services .about-binary-rain__lane--right,
+  .page--projects .about-binary-rain__lane--right,
+  .page--contact .about-binary-rain__lane--right {
     right: clamp(1rem, 5vw, 4rem);
   }
   .about-intro__photo-wrap {
@@ -335,11 +383,17 @@
 
 @media (prefers-reduced-motion: reduce) {
   .page--about .about-binary-rain,
-  .page--home .about-binary-rain {
+  .page--home .about-binary-rain,
+  .page--services .about-binary-rain,
+  .page--projects .about-binary-rain,
+  .page--contact .about-binary-rain {
     display: none;
   }
   .page--about .about-binary-rain__stream,
-  .page--home .about-binary-rain__stream {
+  .page--home .about-binary-rain__stream,
+  .page--services .about-binary-rain__stream,
+  .page--projects .about-binary-rain__stream,
+  .page--contact .about-binary-rain__stream {
     animation: none;
     transition: none;
   }
