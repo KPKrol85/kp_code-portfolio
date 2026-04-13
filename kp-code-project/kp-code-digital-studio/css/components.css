@@ -393,6 +393,18 @@
   font-size: var(--fs-3);
 }
 
+.work-card .button--ghost {
+  border-color: color-mix(in srgb, var(--color-text) 14%, var(--color-border));
+  background: color-mix(in srgb, var(--color-surface-alt) 42%, transparent);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .work-card .button--ghost:hover {
+    background: color-mix(in srgb, var(--color-surface-alt) 72%, transparent);
+    border-color: color-mix(in srgb, var(--color-text) 22%, var(--color-border));
+  }
+}
+
 /* Small UI elements */
 
 .tag {
