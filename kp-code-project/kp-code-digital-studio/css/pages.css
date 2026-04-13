@@ -904,6 +904,10 @@
   max-width: 46rem;
 }
 
+.page--projects .projects-archive {
+  padding-top: var(--space-8);
+}
+
 .projects-archive__grid-wrap {
   width: min(100% - 2rem, var(--projects-archive-grid-max));
   margin-inline: auto;
