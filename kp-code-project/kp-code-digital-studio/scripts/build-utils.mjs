@@ -39,7 +39,6 @@ const RUNTIME_ASSET_PATHS = [
   'icons',
   'img/img_optimized',
   'img/logo',
-  'img/projects',
   'og',
   'screenshots',
 ];
