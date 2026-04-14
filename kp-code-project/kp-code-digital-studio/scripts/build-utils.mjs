@@ -34,14 +34,7 @@ const PHP_RUNTIME_FILES = [
   'contact-mail.config.php',
 ];
 const PHP_RUNTIME_PARTIALS = ['header.html', 'footer.html', 'theme-bootstrap.html'];
-const RUNTIME_ASSET_PATHS = [
-  'fonts',
-  'icons',
-  'img/img_optimized',
-  'img/logo',
-  'og',
-  'screenshots',
-];
+const EXCLUDED_RUNTIME_ASSET_PATHS = ['img/img_src'];
 const PHPMAILER_RUNTIME_FILES = [
   'vendor/autoload.php',
   'vendor/composer',
@@ -98,7 +91,8 @@ export async function listPublicHtmlFiles() {
   });
 }
 
-export async function copyDirectory(sourceDir, targetDir) {
+export async function copyDirectory(sourceDir, targetDir, options = {}) {
+  const { shouldSkip } = options;
   await ensureDir(targetDir);
   const entries = await readdir(sourceDir, { withFileTypes: true });
 
@@ -106,8 +100,12 @@ export async function copyDirectory(sourceDir, targetDir) {
     const sourcePath = path.join(sourceDir, entry.name);
     const targetPath = path.join(targetDir, entry.name);
 
+    if (shouldSkip?.(sourcePath)) {
+      continue;
+    }
+
     if (entry.isDirectory()) {
-      await copyDirectory(sourcePath, targetPath);
+      await copyDirectory(sourcePath, targetPath, options);
       continue;
     }
 
@@ -224,11 +222,21 @@ export async function copyHtmlPages() {
 }
 
 export async function copyAssets() {
-  await Promise.all(
-    RUNTIME_ASSET_PATHS.map((relativePath) =>
-      copyDirectory(path.join(ROOT_ASSETS_DIR, relativePath), path.join(DIST_DIR, 'assets', relativePath))
-    )
+  const excludedPaths = new Set(
+    EXCLUDED_RUNTIME_ASSET_PATHS.map((relativePath) => path.join(ROOT_ASSETS_DIR, relativePath))
   );
+
+  await copyDirectory(ROOT_ASSETS_DIR, path.join(DIST_DIR, 'assets'), {
+    shouldSkip: (sourcePath) => {
+      for (const excludedPath of excludedPaths) {
+        if (sourcePath === excludedPath || sourcePath.startsWith(`${excludedPath}${path.sep}`)) {
+          return true;
+        }
+      }
+
+      return false;
+    },
+  });
 }
 
 export async function copyPhpRuntime() {
