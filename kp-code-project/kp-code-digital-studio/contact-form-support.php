@@ -310,7 +310,7 @@ function contact_form_normalize_input(array $source): array
 {
   $normalized = [];
 
-  foreach (['name', 'email', 'message', 'company'] as $field) {
+  foreach (['name', 'email', 'message', 'company', 'service'] as $field) {
     $value = $source[$field] ?? '';
     $normalized[$field] = is_string($value) ? trim($value) : '';
   }
@@ -326,7 +326,19 @@ function contact_form_validate_input(array $input): array
     'email' => trim((string) ($input['email'] ?? '')),
     'message' => trim((string) ($input['message'] ?? '')),
     'company' => trim((string) ($input['company'] ?? '')),
+    'service' => trim((string) ($input['service'] ?? '')),
   ];
+
+  $allowedServices = [
+    'Strony internetowe (HTML/CSS/JS)',
+    'Strony WordPress',
+    'SEO',
+    'UI i identyfikacja wizualna',
+  ];
+
+  if ($sanitized['service'] !== '' && !in_array($sanitized['service'], $allowedServices, true)) {
+    $sanitized['service'] = '';
+  }
 
   if ($sanitized['name'] === '') {
     $errors['name'] = 'To pole jest wymagane.';

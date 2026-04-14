@@ -9,9 +9,17 @@ export const initForms = () => {
     return;
   }
 
+  const serviceLabels = {
+    websites: 'Strony internetowe (HTML/CSS/JS)',
+    wordpress: 'Strony WordPress',
+    seo: 'SEO',
+    design: 'UI i identyfikacja wizualna',
+  };
   const formMessage = contactForm.querySelector('[data-form-message]');
   const formSummary = contactForm.querySelector('[data-form-summary]');
   const submitButton = contactForm.querySelector('[data-form-submit]');
+  const serviceInput = contactForm.querySelector('[data-service-input]');
+  const serviceContext = contactForm.querySelector('[data-service-context]');
   const fields = Array.from(contactForm.querySelectorAll('.form__field')).filter(
     (field) => !field.hasAttribute('data-honeypot-field')
   );
@@ -22,6 +30,33 @@ export const initForms = () => {
     typeof window.fetch === 'function' && typeof window.FormData === 'function';
 
   let isSubmitting = false;
+
+  const syncServiceContext = () => {
+    if (typeof window.URLSearchParams !== 'function') {
+      return;
+    }
+
+    const params = new URLSearchParams(window.location.search);
+    const serviceSlug = params.get('service');
+    const serviceLabel = serviceSlug ? serviceLabels[serviceSlug] : '';
+
+    if (serviceInput) {
+      serviceInput.value = serviceLabel || '';
+    }
+
+    if (!serviceContext) {
+      return;
+    }
+
+    if (!serviceLabel) {
+      serviceContext.hidden = true;
+      serviceContext.textContent = '';
+      return;
+    }
+
+    serviceContext.hidden = false;
+    serviceContext.textContent = `Temat formularza: ${serviceLabel}.`;
+  };
 
   const getFieldErrorElement = (field) => field.querySelector('.form__error');
 
@@ -254,6 +289,8 @@ export const initForms = () => {
     input.addEventListener('input', handleFieldEvent);
     input.addEventListener('blur', handleFieldEvent);
   });
+
+  syncServiceContext();
 
   contactForm.addEventListener('submit', async (event) => {
     const errors = validateFields();

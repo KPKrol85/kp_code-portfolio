@@ -45,6 +45,7 @@ if (!$timingGuard['ok']) {
       'name' => $input['name'],
       'email' => $input['email'],
       'message' => $input['message'],
+      'service' => $input['service'],
     ],
     $redirectPath,
   );
@@ -64,6 +65,7 @@ if (!$rateLimit['ok']) {
       'name' => $input['name'],
       'email' => $input['email'],
       'message' => $input['message'],
+      'service' => $input['service'],
     ],
     $redirectPath,
   );
@@ -74,6 +76,7 @@ $oldInput = [
   'name' => $sanitized['name'],
   'email' => $sanitized['email'],
   'message' => $sanitized['message'],
+  'service' => $sanitized['service'],
 ];
 
 if ($errors !== []) {
@@ -120,15 +123,23 @@ try {
 
   $safeName = htmlspecialchars($sanitized['name'], ENT_QUOTES | ENT_SUBSTITUTE, 'UTF-8');
   $safeEmail = htmlspecialchars($sanitized['email'], ENT_QUOTES | ENT_SUBSTITUTE, 'UTF-8');
+  $safeService = htmlspecialchars($sanitized['service'], ENT_QUOTES | ENT_SUBSTITUTE, 'UTF-8');
   $safeMessageHtml = nl2br(
     htmlspecialchars($sanitized['message'], ENT_QUOTES | ENT_SUBSTITUTE, 'UTF-8'),
   );
   $safeMessageText = str_replace(["\r\n", "\r"], "\n", $sanitized['message']);
+  $serviceHtml = $sanitized['service'] !== ''
+    ? sprintf('<p><strong>Usługa:</strong> %s</p>', $safeService)
+    : '';
+  $serviceText = $sanitized['service'] !== ''
+    ? "Usługa: {$sanitized['service']}\n\n"
+    : '';
 
   $mail->Body = <<<HTML
   <h2>Nowa wiadomość z formularza kontaktowego</h2>
   <p><strong>Imię i nazwisko:</strong> {$safeName}</p>
   <p><strong>E-mail:</strong> {$safeEmail}</p>
+  {$serviceHtml}
   <p><strong>Wiadomość:</strong></p>
   <p>{$safeMessageHtml}</p>
   HTML;
@@ -138,6 +149,7 @@ try {
 
   Imię i nazwisko: {$sanitized['name']}
   E-mail: {$sanitized['email']}
+  {$serviceText}
 
   Wiadomość:
   {$safeMessageText}
