@@ -730,18 +730,27 @@
 .page--services .section__subtitle {
   max-width: 60ch;
 }
+.page--services .services-overview__header {
+  margin-bottom: var(--space-7);
+}
+.page--services .services-overview__grid {
+  row-gap: var(--space-6);
+}
 .service-detail__text {
   display: grid;
-  gap: var(--space-4);
-  max-width: 68ch;
+  gap: var(--space-3);
+  max-width: 62ch;
   font-size: var(--fs-5);
 }
 .service-detail__text p {
   color: var(--color-text);
   opacity: 0.96;
 }
+.page--services .service-detail__content .section__header {
+  margin-bottom: var(--space-5);
+}
 .page--services .actions {
-  margin-top: var(--space-8);
+  margin-top: var(--space-6);
 }
 .page--services .actions .button {
   flex: 0 0 240px;
@@ -751,8 +760,8 @@
 }
 .service-detail__panel {
   display: grid;
-  gap: var(--space-4);
-  padding: var(--space-6);
+  gap: var(--space-3);
+  padding: var(--space-5);
   border: 1px solid color-mix(in srgb, var(--color-border) 78%, transparent);
   border-radius: var(--radius-sm);
   background: color-mix(in srgb, var(--color-surface-alt) 72%, transparent);
@@ -760,10 +769,10 @@
 }
 .service-detail__group {
   display: grid;
-  gap: var(--space-4);
+  gap: var(--space-3);
 }
 .service-detail__group + .service-detail__group {
-  padding-top: var(--space-4);
+  padding-top: var(--space-3);
   border-top: 1px solid color-mix(in srgb, var(--color-border) 72%, transparent);
 }
 .service-detail__subtitle {
@@ -799,7 +808,7 @@
 .service-detail__note {
   margin: 0;
   color: var(--color-text);
-  font-size: var(--fs-5);
+  font-size: var(--fs-4);
   opacity: 0.92;
 }
 .service-detail {
@@ -831,6 +840,12 @@
   .service-detail__aside {
     position: sticky;
     top: var(--header-links-offset-shrink);
+  }
+  .service-detail--reverse .service-detail__content {
+    order: 2;
+  }
+  .service-detail--reverse .service-detail__aside {
+    order: 1;
   }
 }
 @media (min-width: 760px) {
