@@ -1236,6 +1236,7 @@
   );
 }
 .vault-overview__meta-label,
+.vault-status__label,
 .vault-solution__panel-label,
 .vault-module__label,
 .vault-layer__index,
@@ -1255,6 +1256,27 @@
   letter-spacing: var(--ls-tight);
   color: var(--color-text);
   font-weight: var(--fw-semibold);
+}
+.vault-status {
+  display: grid;
+  gap: var(--space-4);
+}
+.vault-status__item {
+  gap: var(--space-4);
+  align-content: start;
+  background: linear-gradient(
+    180deg,
+    color-mix(in srgb, var(--color-surface) 94%, transparent),
+    color-mix(in srgb, var(--color-surface-alt) 72%, transparent)
+  );
+  border-color: color-mix(in srgb, var(--color-border) 76%, transparent);
+}
+.vault-status__item .card__title {
+  font-size: var(--fs-6);
+  max-width: 22ch;
+}
+.vault-status__item .card__meta {
+  max-width: 34ch;
 }
 .page--case-study .case-study .pill-grid {
   gap: var(--space-3);
@@ -1374,6 +1396,9 @@
   .vault-overview__intro,
   .vault-solution__grid {
     grid-template-columns: minmax(0, 1.2fr) minmax(18rem, 0.8fr);
+  }
+  .vault-status {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
   }
 }
 @media (min-width: 900px) {
