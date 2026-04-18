@@ -1,0 +1,11 @@
+.quote {
+  background: var(--color-white);
+  padding: var(--space-5);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-card);
+}
+
+.quote__name {
+  font-weight: 600;
+  color: var(--color-ink);
+}

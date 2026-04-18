@@ -1,0 +1,27 @@
+.steps {
+  counter-reset: step;
+  display: grid;
+  gap: var(--space-4);
+}
+
+.steps__item {
+  background: var(--color-white);
+  padding: var(--space-4);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-card);
+}
+
+.steps__item::before {
+  counter-increment: step;
+  content: counter(step, decimal-leading-zero);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.4rem;
+  height: 2.4rem;
+  border-radius: 50%;
+  background: var(--color-blush);
+  color: var(--color-rosewood);
+  margin-bottom: var(--space-3);
+  font-weight: 600;
+}

@@ -1,0 +1,16 @@
+.callout {
+  background: var(--color-rosewood);
+  color: var(--color-white);
+  padding: var(--space-7) 0;
+}
+
+.callout p {
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.callout__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-3);
+  margin-top: var(--space-4);
+}

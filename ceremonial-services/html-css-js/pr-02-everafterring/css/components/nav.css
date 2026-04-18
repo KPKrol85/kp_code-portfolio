@@ -1,3 +1,26 @@
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  background: rgba(250, 247, 242, 0.92);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid var(--color-border);
+}
+
+.header__inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--space-3) 0;
+  gap: var(--space-4);
+}
+
+.brand {
+  font-family: var(--font-serif);
+  font-size: var(--font-size-lg);
+  letter-spacing: 0.02em;
+}
+
 .site-nav {
   position: relative;
 }
@@ -29,7 +52,7 @@
   color: var(--color-ink);
 }
 
-.nav__link[aria-current='page'] {
+.nav__link[aria-current="page"] {
   color: var(--color-rosewood);
   font-weight: 600;
 }
@@ -60,7 +83,7 @@
   gap: var(--space-2);
 }
 
-.nav__dropdown[data-open='true'] {
+.nav__dropdown[data-open="true"] {
   display: flex;
 }
 

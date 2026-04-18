@@ -6,7 +6,6 @@ export const initNav = () => {
   const navPanel = qs(SELECTORS.navPanel);
   const dropdownToggle = qs(SELECTORS.dropdownToggle);
   const dropdownMenu = qs(SELECTORS.dropdownMenu);
-  let removeTrap = null;
 
   if (navToggle?.dataset.initialized === 'true') return;
 
@@ -15,34 +14,17 @@ export const initNav = () => {
     setExpanded(navToggle, false);
   }
 
-  const activateTrap = () => {
-    const isMobileViewport = window.innerWidth <= 860;
-    const isNavOpen = navToggle?.getAttribute('aria-expanded') === 'true';
-
-    if (!navPanel || removeTrap || !isMobileViewport || !isNavOpen) return;
-    removeTrap = trapFocus(navPanel);
-  };
-
-  const deactivateTrap = () => {
-    removeTrap?.();
-    removeTrap = null;
-  };
-
-  const closeNav = ({ returnFocus = false } = {}) => {
+  const closeNav = () => {
     if (!navPanel || !navToggle) return;
-    deactivateTrap();
     navPanel.hidden = true;
     setExpanded(navToggle, false);
-    if (returnFocus) {
-      navToggle.focus();
-    }
+    navToggle.focus();
   };
 
   const openNav = () => {
     if (!navPanel || !navToggle) return;
     navPanel.hidden = false;
     setExpanded(navToggle, true);
-    activateTrap();
     const firstLink = qs('a, button', navPanel);
     firstLink?.focus();
   };
@@ -51,7 +33,7 @@ export const initNav = () => {
     if (!navPanel || !navToggle) return;
     const isOpen = navToggle.getAttribute('aria-expanded') === 'true';
     if (isOpen) {
-      closeNav({ returnFocus: true });
+      closeNav();
     } else {
       openNav();
     }
@@ -60,7 +42,7 @@ export const initNav = () => {
   const handleEscape = (event) => {
     if (event.key !== 'Escape') return;
     if (navToggle?.getAttribute('aria-expanded') === 'true') {
-      closeNav({ returnFocus: true });
+      closeNav();
     }
     if (dropdownToggle?.getAttribute('aria-expanded') === 'true') {
       closeDropdown();
@@ -69,6 +51,11 @@ export const initNav = () => {
   };
 
   document.addEventListener('keydown', handleEscape);
+
+  let removeTrap = null;
+  if (navPanel) {
+    removeTrap = trapFocus(navPanel);
+  }
 
   const closeDropdown = () => {
     if (!dropdownMenu || !dropdownToggle) return;
@@ -122,11 +109,9 @@ export const initNav = () => {
 
   window.addEventListener('resize', () => {
     if (window.innerWidth > 860) {
-      deactivateTrap();
       navPanel?.removeAttribute('hidden');
       setExpanded(navToggle, false);
     } else if (navToggle?.getAttribute('aria-expanded') !== 'true') {
-      deactivateTrap();
       navPanel?.setAttribute('hidden', '');
     }
   });
@@ -134,7 +119,7 @@ export const initNav = () => {
   navToggle && (navToggle.dataset.initialized = 'true');
 
   return () => {
-    deactivateTrap();
+    removeTrap?.();
     document.removeEventListener('keydown', handleEscape);
   };
 };
