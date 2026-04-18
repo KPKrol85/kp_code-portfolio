@@ -19,3 +19,7 @@ Ten plik służy do krótkiego potwierdzania wykonanych zadań.
 3. 03: domenowa walidacja formularza kontaktowego
    Status: zrobione
    Uwagi: dodałem reguły dla daty wydarzenia i liczby gości, precyzyjniejsze komunikaty błędów oraz spójną walidację podczas edycji i przy wysyłce formularza.
+
+4. 04: doprecyzowanie komunikatów błędów formularza kontaktowego
+   Status: zrobione
+   Uwagi: ujednoliciłem i doprecyzowałem komunikaty dla wszystkich pól formularza, tak aby jasno wskazywały, co jest nie tak i jak poprawić wartość.

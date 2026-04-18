@@ -32,17 +32,17 @@ const clearError = (field) => {
 
 const getRequiredMessage = (field) => {
   const messages = {
-    name: 'Podaj imię i nazwisko.',
-    email: 'Podaj adres e-mail.',
-    date: 'Wybierz datę wydarzenia.',
-    city: 'Podaj miasto lub region.',
-    budget: 'Wybierz zakres budżetu.',
-    package: 'Wybierz preferowany pakiet.',
-    guests: 'Podaj planowaną liczbę gości.',
-    message: 'Napisz kilka słów o wydarzeniu.'
+    name: 'Wpisz imię i nazwisko, abyśmy wiedzieli, z kim się kontaktujemy.',
+    email: 'Podaj adres e-mail, na który mamy wysłać odpowiedź.',
+    date: 'Wybierz planowaną datę ślubu lub wydarzenia.',
+    city: 'Wpisz miasto lub region, w którym planujecie wydarzenie.',
+    budget: 'Wybierz przedział budżetu, abyśmy mogli dopasować zakres usług.',
+    package: 'Wybierz pakiet, który najlepiej odpowiada Waszym potrzebom.',
+    guests: 'Podaj orientacyjną liczbę gości.',
+    message: 'Opisz krótko Wasze wydarzenie, abyśmy mogli przygotować lepszą ofertę.'
   };
 
-  return messages[field.name] || 'To pole jest wymagane.';
+  return messages[field.name] || 'Uzupełnij to pole, aby przejść dalej.';
 };
 
 const getFieldErrorMessage = (field) => {
@@ -54,35 +54,35 @@ const getFieldErrorMessage = (field) => {
   }
 
   if (field.name === 'email' && field.validity.typeMismatch) {
-    return 'Podaj poprawny adres e-mail.';
+    return 'Wpisz adres e-mail w formacie nazwa@domena.pl.';
   }
 
   if (field.name === 'date' && field.value) {
     const today = getTodayDateString();
     if (field.value < today || field.validity.rangeUnderflow) {
-      return 'Data wydarzenia nie może być z przeszłości.';
+      return 'Wybierz datę wydarzenia od dzisiaj wzwyż.';
     }
   }
 
   if (field.name === 'guests') {
     if (field.validity.badInput) {
-      return 'Podaj poprawną liczbę gości.';
+      return 'Wpisz liczbę gości cyframi, np. 80.';
     }
 
     if (field.validity.rangeUnderflow) {
-      return `Podaj liczbę gości nie mniejszą niż ${guestsMin}.`;
+      return `Podaj co najmniej ${guestsMin} gości lub popraw wpisaną wartość.`;
     }
 
     if (field.validity.rangeOverflow) {
-      return `Podaj liczbę gości nie większą niż ${guestsMax}.`;
+      return `Podaj nie więcej niż ${guestsMax} gości lub skoryguj wpisaną wartość.`;
     }
   }
 
   if (field.validity.typeMismatch) {
-    return 'Wprowadź poprawny format.';
+    return 'Popraw format wpisanej wartości.';
   }
 
-  return 'Sprawdź poprawność pola.';
+  return 'Sprawdź wpisaną wartość i popraw to pole.';
 };
 
 export const initForm = () => {
