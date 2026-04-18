@@ -1,6 +1,6 @@
 # Done
 
-Ten plik służy do krótkiego potwierdzania wykonanych zadań z przesłanych promptów.
+Ten plik służy do krótkiego potwierdzania wykonanych zadań.
 
 ## Szablon wpisu
 
@@ -8,10 +8,14 @@ Ten plik służy do krótkiego potwierdzania wykonanych zadań z przesłanych pr
 - Status: zrobione
 - Uwagi: [opcjonalnie]
 
-1. PROMPT 01: trapFocus aktywny tylko przy otwartym menu mobilnym
+1. 01: trapFocus aktywny tylko przy otwartym menu mobilnym
    Status: zrobione
    Uwagi: focus trap jest podpinany w `openNav()` i usuwany przy zamknięciu menu oraz przy resecie po `resize`.
 
-2. PROMPT 02: keyboard accessibility smoke test dla nawigacji i dropdownu
+2. 02: keyboard accessibility smoke test dla nawigacji i   dropdownu
    Status: zrobione
    Uwagi: dodałem do `README.md` ręczny, powtarzalny checklist pre-merge obejmujący `Tab`, `Shift+Tab`, `Enter`, `Space` i `Escape`.
+
+3. 03: domenowa walidacja formularza kontaktowego
+   Status: zrobione
+   Uwagi: dodałem reguły dla daty wydarzenia i liczby gości, precyzyjniejsze komunikaty błędów oraz spójną walidację podczas edycji i przy wysyłce formularza.
