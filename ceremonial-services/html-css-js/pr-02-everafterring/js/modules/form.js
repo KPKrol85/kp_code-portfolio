@@ -1,11 +1,7 @@
 import { qs, qsa } from '../utils.js';
 import { SELECTORS } from '../config.js';
 
-const STATUS_CLASSES = [
-  'form__status--loading',
-  'form__status--success',
-  'form__status--error'
-];
+const STATUS_CLASSES = ['form__status--loading', 'form__status--success', 'form__status--error'];
 const DEFAULT_SUBMIT_COOLDOWN_MS = 10000;
 
 const getTodayDateString = () => {
@@ -153,9 +149,10 @@ export const initForm = () => {
   const submitButton = qs('[type="submit"]', form);
   const defaultSubmitLabel = submitButton?.textContent?.trim() || 'Wyślij zapytanie';
   const configuredCooldownMs = Number(form.dataset.submitCooldownMs);
-  const submitCooldownMs = Number.isFinite(configuredCooldownMs) && configuredCooldownMs > 0
-    ? configuredCooldownMs
-    : DEFAULT_SUBMIT_COOLDOWN_MS;
+  const submitCooldownMs =
+    Number.isFinite(configuredCooldownMs) && configuredCooldownMs > 0
+      ? configuredCooldownMs
+      : DEFAULT_SUBMIT_COOLDOWN_MS;
   let isSubmitting = false;
   let lastSuccessfulSubmissionAt = 0;
   let formStartedAt = Date.now();
@@ -272,7 +269,10 @@ export const initForm = () => {
     }
 
     if (isSubmitCoolingDown()) {
-      setStatus(`Formularz został już wysłany. Odczekaj ${getRemainingCooldownSeconds()} s przed kolejną próbą.`, 'error');
+      setStatus(
+        `Formularz został już wysłany. Odczekaj ${getRemainingCooldownSeconds()} s przed kolejną próbą.`,
+        'error'
+      );
       return;
     }
 

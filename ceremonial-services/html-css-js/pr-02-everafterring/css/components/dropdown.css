@@ -4,6 +4,6 @@
   transition: transform var(--transition-fast);
 }
 
-.nav__dropdown-toggle[aria-expanded="true"] .dropdown__icon {
+.nav__dropdown-toggle[aria-expanded='true'] .dropdown__icon {
   transform: rotate(180deg);
 }

@@ -3,10 +3,21 @@
 Demo wielostronicowej strony WWW dla marki **EverAfter Ring** (wedding planning & coordination). Projekt działa lokalnie, bez instalacji.
 
 ## Uruchomienie
+
 1. Otwórz plik `index.html` w przeglądarce.
 2. Przejdź do pozostałych podstron przez nawigację.
 
+## Code Quality
+
+1. Zainstaluj zależności: `npm install`
+2. Uruchom pełny zestaw checków: `npm run lint`
+3. Uruchom formatowanie źródeł i dokumentacji: `npm run format`
+4. Sprawdź format bez zapisu zmian: `npm run format:check`
+
+Dostępne są też osobne komendy: `npm run lint:html`, `npm run lint:css`, `npm run lint:js`. Setup jest gotowy do lokalnego użycia i do późniejszego podpięcia pod CI.
+
 ## Struktura projektu
+
 ```
 ceremonial-services-pr02-everafter-ring/
 ├── assets/            # SVG placeholdery i favicon
@@ -33,6 +44,7 @@ ceremonial-services-pr02-everafter-ring/
 ```
 
 ## Moduły CSS
+
 - **tokens.css** – paleta kolorów wedding, typografia, spacing i promienie.
 - **base.css** – reset, typografia bazowa, focus-visible.
 - **layout.css** – kontenery, gridy, układ sekcji, sticky header.
@@ -40,11 +52,13 @@ ceremonial-services-pr02-everafter-ring/
 - **components/** – BEM dla nawigacji, kart, przycisków, formularzy.
 
 ## Moduły JS
+
 - **nav.js** – dostępne menu mobilne i dropdown (ESC, click outside, focus management).
 - **form.js** – walidacja UX z komunikatami pod polami i statusem aria-live.
 - **dom.js** – bezpieczny init po DOMContentLoaded.
 
 ## SEO / a11y checklist
+
 - [x] Unikalne `title` i `description` na każdej stronie.
 - [x] Canonical i JSON-LD (LocalBusiness + WebSite).
 - [x] Jeden `h1` na stronę.
@@ -54,6 +68,7 @@ ceremonial-services-pr02-everafter-ring/
 - [x] Menu mobilne i dropdown z `aria-expanded` i obsługą klawiatury.
 
 ## QA checklist
+
 - [ ] Lighthouse (Performance/SEO/Accessibility).
 - [ ] Klawiatura: Tab/Shift+Tab oraz ESC w menu.
 - [ ] W3C HTML Validator – brak krytycznych błędów.
@@ -65,6 +80,7 @@ ceremonial-services-pr02-everafter-ring/
 Powtarzaj ten smoke test przed merge, po każdej zmianie w `js/modules/nav.js`, znacznikach headera lub stylach nawigacji.
 
 ### Setup
+
 1. Uruchom projekt lokalnie i otwórz dowolną stronę z główną nawigacją.
 2. Przygotuj dwa viewporty:
    - mobile: szerokość `860px` lub mniej,
@@ -72,6 +88,7 @@ Powtarzaj ten smoke test przed merge, po każdej zmianie w `js/modules/nav.js`, 
 3. Test wykonuj wyłącznie klawiaturą.
 
 ### Mobile menu
+
 1. Ustaw viewport mobilny i naciśnij `Tab`, aż fokus trafi na przycisk `Menu`.
 2. Naciśnij `Enter`.
    Oczekiwane: panel nawigacji otwiera się, `aria-expanded` na przycisku menu zmienia się na `true`, a fokus przechodzi do pierwszego linku lub przycisku w panelu.
@@ -89,6 +106,7 @@ Powtarzaj ten smoke test przed merge, po każdej zmianie w `js/modules/nav.js`, 
    Oczekiwane: menu zamyka się, `aria-expanded` na przycisku menu wraca do `false`, fokus wraca na przycisk `Menu`, a kolejny `Tab` przechodzi dalej po stronie bez uwięzienia w panelu.
 
 ### Desktop dropdown
+
 1. Ustaw viewport desktopowy i przejdź klawiszem `Tab` do przycisku `Usługi`.
 2. Naciśnij `Enter`.
    Oczekiwane: dropdown otwiera się, `aria-expanded` zmienia się na `true`, fokus przechodzi do pierwszego linku w dropdownie.
@@ -100,6 +118,7 @@ Powtarzaj ten smoke test przed merge, po każdej zmianie w `js/modules/nav.js`, 
    Oczekiwane: kolejność fokusu pozostaje logiczna, dropdown nie przejmuje fokusu po zamknięciu, a reszta strony pozostaje osiągalna z klawiatury.
 
 ### Pass criteria
+
 - Menu mobilne otwiera się z klawiatury i trap focus działa tylko wtedy, gdy menu jest otwarte.
 - `Tab` i `Shift+Tab` zachowują się przewidywalnie zarówno w menu mobilnym, jak i po jego zamknięciu.
 - `Enter` i `Space` aktywują przyciski menu oraz dropdownu bez ubocznych efektów.

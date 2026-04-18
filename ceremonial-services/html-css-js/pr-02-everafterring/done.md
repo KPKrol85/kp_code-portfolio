@@ -12,7 +12,7 @@ Ten plik służy do krótkiego potwierdzania wykonanych zadań.
    Status: zrobione
    Uwagi: focus trap jest podpinany w `openNav()` i usuwany przy zamknięciu menu oraz przy resecie po `resize`.
 
-2. 02: keyboard accessibility smoke test dla nawigacji i   dropdownu
+2. 02: keyboard accessibility smoke test dla nawigacji i dropdownu
    Status: zrobione
    Uwagi: dodałem do `README.md` ręczny, powtarzalny checklist pre-merge obejmujący `Tab`, `Shift+Tab`, `Enter`, `Space` i `Escape`.
 
@@ -31,3 +31,7 @@ Ten plik służy do krótkiego potwierdzania wykonanych zadań.
 6. 06: lekka warstwa antyspamowa dla formularza kontaktowego
    Status: zrobione
    Uwagi: dodałem honeypot ukryty w sposób bezpieczny dla UX i accessibility oraz lekki cooldown po udanej wysyłce, a payload przygotowałem pod późniejsze backendowe rate limiting.
+
+7. 07: minimalny setup lintingu i formatowania dla HTML, CSS i JavaScript
+   Status: zrobione
+   Uwagi: dodałem package.json, konfiguracje ESLint/Stylelint/HTMLHint/Prettier, skrypty npm oraz instrukcję uruchamiania toolingu lokalnie i pod przyszłe CI.
