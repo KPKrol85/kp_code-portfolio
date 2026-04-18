@@ -16,6 +16,10 @@ Demo wielostronicowej strony WWW dla marki **EverAfter Ring** (wedding planning 
 
 Dostępne są też osobne komendy: `npm run lint:html`, `npm run lint:css`, `npm run lint:js`. Setup jest gotowy do lokalnego użycia i do późniejszego podpięcia pod CI.
 
+## CI
+
+Repo ma minimalny workflow CI w GitHub Actions. Na `push` i `pull_request` uruchamia on `npm run check`, czyli lokalne linty, `format:check` oraz statyczny `check:static` sprawdzający kluczowe pliki deploy-ready i podstawowe lokalne referencje projektu.
+
 ## Struktura projektu
 
 ```

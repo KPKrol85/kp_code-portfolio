@@ -35,3 +35,7 @@ Ten plik służy do krótkiego potwierdzania wykonanych zadań.
 7. 07: minimalny setup lintingu i formatowania dla HTML, CSS i JavaScript
    Status: zrobione
    Uwagi: dodałem package.json, konfiguracje ESLint/Stylelint/HTMLHint/Prettier, skrypty npm oraz instrukcję uruchamiania toolingu lokalnie i pod przyszłe CI.
+
+8. 08: minimalny CI quality gate dla statycznego repo
+   Status: zrobione
+   Uwagi: dodałem pojedynczy workflow GitHub Actions, skrypt `check:static` do weryfikacji gotowości statycznego artefaktu oraz integrację tych checków z istniejącymi komendami npm.

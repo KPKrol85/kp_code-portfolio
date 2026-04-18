@@ -8,6 +8,8 @@
     "lint:html": "htmlhint \"*.html\"",
     "lint:css": "stylelint \"css/**/*.css\"",
     "lint:js": "eslint \"js/**/*.js\"",
+    "check": "npm run lint && npm run format:check && npm run check:static",
+    "check:static": "node scripts/check-static.mjs",
     "format": "prettier --write \"*.html\" \"css/**/*.css\" \"js/**/*.js\" \"README.md\" \"audyt.md\" \"done.md\" \"list-to-do.md\"",
     "format:check": "prettier --check \"*.html\" \"css/**/*.css\" \"js/**/*.js\" \"README.md\" \"audyt.md\" \"done.md\" \"list-to-do.md\""
   },
