@@ -59,3 +59,49 @@ ceremonial-services-pr02-everafter-ring/
 - [ ] W3C HTML Validator – brak krytycznych błędów.
 - [ ] Kontrast tekstu względem tła.
 - [ ] Formularz: walidacja pól i komunikat sukcesu.
+
+## Keyboard accessibility smoke test
+
+Powtarzaj ten smoke test przed merge, po każdej zmianie w `js/modules/nav.js`, znacznikach headera lub stylach nawigacji.
+
+### Setup
+1. Uruchom projekt lokalnie i otwórz dowolną stronę z główną nawigacją.
+2. Przygotuj dwa viewporty:
+   - mobile: szerokość `860px` lub mniej,
+   - desktop: szerokość powyżej `860px`.
+3. Test wykonuj wyłącznie klawiaturą.
+
+### Mobile menu
+1. Ustaw viewport mobilny i naciśnij `Tab`, aż fokus trafi na przycisk `Menu`.
+2. Naciśnij `Enter`.
+   Oczekiwane: panel nawigacji otwiera się, `aria-expanded` na przycisku menu zmienia się na `true`, a fokus przechodzi do pierwszego linku lub przycisku w panelu.
+3. Naciskaj `Tab`, aż dojdziesz do ostatniego fokusowalnego elementu w panelu.
+   Oczekiwane: kolejny `Tab` przenosi fokus z powrotem na pierwszy element panelu.
+4. Naciskaj `Shift+Tab` od pierwszego fokusowalnego elementu.
+   Oczekiwane: fokus wraca na ostatni fokusowalny element panelu.
+5. Gdy fokus jest na przycisku `Usługi`, naciśnij `Enter`.
+   Oczekiwane: dropdown otwiera się i fokus przechodzi do pierwszego linku w dropdownie.
+6. Zamknij dropdown klawiszem `Escape`.
+   Oczekiwane: dropdown zamyka się, a fokus wraca na przycisk `Usługi`.
+7. Na przycisku `Usługi` naciśnij `Space`.
+   Oczekiwane: dropdown otwiera się lub zamyka tak samo jak po `Enter`, bez przewijania strony.
+8. Naciśnij `Escape`, gdy otwarte jest menu mobilne.
+   Oczekiwane: menu zamyka się, `aria-expanded` na przycisku menu wraca do `false`, fokus wraca na przycisk `Menu`, a kolejny `Tab` przechodzi dalej po stronie bez uwięzienia w panelu.
+
+### Desktop dropdown
+1. Ustaw viewport desktopowy i przejdź klawiszem `Tab` do przycisku `Usługi`.
+2. Naciśnij `Enter`.
+   Oczekiwane: dropdown otwiera się, `aria-expanded` zmienia się na `true`, fokus przechodzi do pierwszego linku w dropdownie.
+3. Powtórz test z klawiszem `Space`.
+   Oczekiwane: zachowanie jest identyczne jak dla `Enter`.
+4. Naciśnij `Escape` z poziomu linku w dropdownie.
+   Oczekiwane: dropdown zamyka się, a fokus wraca na przycisk `Usługi`.
+5. Kontynuuj `Tab` i `Shift+Tab`.
+   Oczekiwane: kolejność fokusu pozostaje logiczna, dropdown nie przejmuje fokusu po zamknięciu, a reszta strony pozostaje osiągalna z klawiatury.
+
+### Pass criteria
+- Menu mobilne otwiera się z klawiatury i trap focus działa tylko wtedy, gdy menu jest otwarte.
+- `Tab` i `Shift+Tab` zachowują się przewidywalnie zarówno w menu mobilnym, jak i po jego zamknięciu.
+- `Enter` i `Space` aktywują przyciski menu oraz dropdownu bez ubocznych efektów.
+- `Escape` zamyka otwarte warstwy i zwraca fokus do logicznego kontrolera.
+- Po zamknięciu menu lub dropdownu nie zostaje żaden „stale active” stan fokusu.
