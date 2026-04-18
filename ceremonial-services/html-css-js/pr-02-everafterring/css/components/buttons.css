@@ -34,3 +34,9 @@
 .button--block {
   width: 100%;
 }
+
+.button:disabled {
+  opacity: 0.65;
+  cursor: not-allowed;
+  pointer-events: none;
+}

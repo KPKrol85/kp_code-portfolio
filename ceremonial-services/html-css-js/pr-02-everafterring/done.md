@@ -23,3 +23,7 @@ Ten plik służy do krótkiego potwierdzania wykonanych zadań.
 4. 04: doprecyzowanie komunikatów błędów formularza kontaktowego
    Status: zrobione
    Uwagi: ujednoliciłem i doprecyzowałem komunikaty dla wszystkich pól formularza, tak aby jasno wskazywały, co jest nie tak i jak poprawić wartość.
+
+5. 05: przejściowy async submission flow dla formularza kontaktowego
+   Status: zrobione
+   Uwagi: wdrożyłem mockowy, asynchroniczny flow wysyłki z obsługą loading, sukcesu i błędu sieciowego, blokadą podwójnego submitu oraz strukturą gotową do późniejszej podmiany na prawdziwy endpoint.

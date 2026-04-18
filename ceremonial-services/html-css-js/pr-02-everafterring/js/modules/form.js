@@ -1,6 +1,12 @@
 import { qs, qsa } from '../utils.js';
 import { SELECTORS } from '../config.js';
 
+const STATUS_CLASSES = [
+  'form__status--loading',
+  'form__status--success',
+  'form__status--error'
+];
+
 const getTodayDateString = () => {
   const today = new Date();
   const year = today.getFullYear();
@@ -9,6 +15,8 @@ const getTodayDateString = () => {
 
   return `${year}-${month}-${day}`;
 };
+
+const wait = (duration) => new Promise((resolve) => window.setTimeout(resolve, duration));
 
 const showError = (field, message) => {
   const errorId = field.getAttribute('aria-describedby');
@@ -85,6 +93,47 @@ const getFieldErrorMessage = (field) => {
   return 'Sprawdź wpisaną wartość i popraw to pole.';
 };
 
+const serializeFormData = (form) => {
+  const formData = new FormData(form);
+  return Object.fromEntries(formData.entries());
+};
+
+const mockSubmitContactForm = async (payload, form) => {
+  await wait(900);
+
+  if (form.dataset.submitMode === 'mock-error') {
+    throw new Error('Mock submission failed.');
+  }
+
+  return {
+    ok: true,
+    payload
+  };
+};
+
+const submitContactForm = async (payload, form) => {
+  const endpoint = form.dataset.submitEndpoint?.trim();
+
+  if (!endpoint) {
+    return mockSubmitContactForm(payload, form);
+  }
+
+  const response = await fetch(endpoint, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      Accept: 'application/json'
+    },
+    body: JSON.stringify(payload)
+  });
+
+  if (!response.ok) {
+    throw new Error(`Submission failed with status ${response.status}.`);
+  }
+
+  return response;
+};
+
 export const initForm = () => {
   const form = qs(SELECTORS.contactForm);
   if (!form || form.dataset.initialized === 'true') return;
@@ -92,6 +141,9 @@ export const initForm = () => {
   const status = qs('[data-form-status]', form);
   const fields = qsa('[data-validate]', form);
   const dateField = qs('#date', form);
+  const submitButton = qs('[type="submit"]', form);
+  const defaultSubmitLabel = submitButton?.textContent?.trim() || 'Wyślij zapytanie';
+  let isSubmitting = false;
 
   const applyDynamicConstraints = () => {
     if (dateField) {
@@ -102,6 +154,30 @@ export const initForm = () => {
   const clearStatus = () => {
     if (status) {
       status.textContent = '';
+      status.classList.remove(...STATUS_CLASSES);
+    }
+  };
+
+  const setStatus = (message, variant) => {
+    if (!status) return;
+    status.textContent = message;
+    status.classList.remove(...STATUS_CLASSES);
+    if (variant) {
+      status.classList.add(`form__status--${variant}`);
+    }
+  };
+
+  const setSubmittingState = (submitting) => {
+    isSubmitting = submitting;
+    if (submitting) {
+      form.setAttribute('aria-busy', 'true');
+    } else {
+      form.removeAttribute('aria-busy');
+    }
+
+    if (submitButton) {
+      submitButton.disabled = submitting;
+      submitButton.textContent = submitting ? 'Wysyłanie...' : defaultSubmitLabel;
     }
   };
 
@@ -130,8 +206,10 @@ export const initForm = () => {
     });
   });
 
-  form.addEventListener('submit', (event) => {
+  form.addEventListener('submit', async (event) => {
     event.preventDefault();
+    if (isSubmitting) return;
+
     clearStatus();
     let firstInvalid = null;
     let allValid = true;
@@ -147,21 +225,25 @@ export const initForm = () => {
     });
 
     if (!allValid) {
-      if (status) {
-        status.textContent = 'Uzupełnij zaznaczone pola, aby wysłać zapytanie.';
-        status.classList.add('status');
-      }
+      setStatus('Uzupełnij zaznaczone pola, aby wysłać zapytanie.', 'error');
       firstInvalid?.focus();
       return;
     }
 
-    fields.forEach((field) => clearError(field));
-    form.reset();
-    applyDynamicConstraints();
+    const payload = serializeFormData(form);
+    setSubmittingState(true);
+    setStatus('Wysyłamy Twoje zapytanie...', 'loading');
 
-    if (status) {
-      status.textContent = 'Dziękujemy! Twoja wiadomość została przyjęta. Odpowiemy w ciągu 24 godzin.';
-      status.classList.add('status');
+    try {
+      await submitContactForm(payload, form);
+      fields.forEach((field) => clearError(field));
+      form.reset();
+      applyDynamicConstraints();
+      setStatus('Dziękujemy! Twoja wiadomość została wysłana. Odpowiemy w ciągu 24 godzin.', 'success');
+    } catch (error) {
+      setStatus('Nie udało się wysłać formularza. Sprawdź połączenie i spróbuj ponownie.', 'error');
+    } finally {
+      setSubmittingState(false);
     }
   });
 
