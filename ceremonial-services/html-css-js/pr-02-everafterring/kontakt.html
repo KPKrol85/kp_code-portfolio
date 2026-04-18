@@ -98,6 +98,10 @@
             <h2>Formularz kontaktowy</h2>
             <p class="section__meta">Im więcej szczegółów, tym lepiej dopasujemy zakres usług.</p>
             <form class="form" data-contact-form novalidate>
+              <div class="form__honeypot" aria-hidden="true">
+                <label class="form__label" for="website">Website</label>
+                <input class="form__input" id="website" name="website" type="text" tabindex="-1" autocomplete="off" data-honeypot />
+              </div>
               <div class="form__grid form__grid--2">
                 <div class="form__field">
                   <label class="form__label" for="name">Imię i nazwisko</label>

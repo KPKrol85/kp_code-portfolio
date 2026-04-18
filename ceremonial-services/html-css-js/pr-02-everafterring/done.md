@@ -27,3 +27,7 @@ Ten plik służy do krótkiego potwierdzania wykonanych zadań.
 5. 05: przejściowy async submission flow dla formularza kontaktowego
    Status: zrobione
    Uwagi: wdrożyłem mockowy, asynchroniczny flow wysyłki z obsługą loading, sukcesu i błędu sieciowego, blokadą podwójnego submitu oraz strukturą gotową do późniejszej podmiany na prawdziwy endpoint.
+
+6. 06: lekka warstwa antyspamowa dla formularza kontaktowego
+   Status: zrobione
+   Uwagi: dodałem honeypot ukryty w sposób bezpieczny dla UX i accessibility oraz lekki cooldown po udanej wysyłce, a payload przygotowałem pod późniejsze backendowe rate limiting.

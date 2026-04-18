@@ -6,6 +6,7 @@ const STATUS_CLASSES = [
   'form__status--success',
   'form__status--error'
 ];
+const DEFAULT_SUBMIT_COOLDOWN_MS = 10000;
 
 const getTodayDateString = () => {
   const today = new Date();
@@ -93,9 +94,16 @@ const getFieldErrorMessage = (field) => {
   return 'Sprawdź wpisaną wartość i popraw to pole.';
 };
 
-const serializeFormData = (form) => {
+const serializeFormData = (form, excludeFieldName) => {
   const formData = new FormData(form);
-  return Object.fromEntries(formData.entries());
+  const payload = {};
+
+  formData.forEach((value, key) => {
+    if (key === excludeFieldName) return;
+    payload[key] = typeof value === 'string' ? value.trim() : value;
+  });
+
+  return payload;
 };
 
 const mockSubmitContactForm = async (payload, form) => {
@@ -141,9 +149,16 @@ export const initForm = () => {
   const status = qs('[data-form-status]', form);
   const fields = qsa('[data-validate]', form);
   const dateField = qs('#date', form);
+  const honeypotField = qs('[data-honeypot]', form);
   const submitButton = qs('[type="submit"]', form);
   const defaultSubmitLabel = submitButton?.textContent?.trim() || 'Wyślij zapytanie';
+  const configuredCooldownMs = Number(form.dataset.submitCooldownMs);
+  const submitCooldownMs = Number.isFinite(configuredCooldownMs) && configuredCooldownMs > 0
+    ? configuredCooldownMs
+    : DEFAULT_SUBMIT_COOLDOWN_MS;
   let isSubmitting = false;
+  let lastSuccessfulSubmissionAt = 0;
+  let formStartedAt = Date.now();
 
   const applyDynamicConstraints = () => {
     if (dateField) {
@@ -180,6 +195,27 @@ export const initForm = () => {
       submitButton.textContent = submitting ? 'Wysyłanie...' : defaultSubmitLabel;
     }
   };
+
+  const isHoneypotFilled = () => Boolean(honeypotField?.value.trim());
+
+  const isSubmitCoolingDown = () => {
+    if (!lastSuccessfulSubmissionAt) return false;
+    return Date.now() - lastSuccessfulSubmissionAt < submitCooldownMs;
+  };
+
+  const getRemainingCooldownSeconds = () => {
+    const remainingMs = submitCooldownMs - (Date.now() - lastSuccessfulSubmissionAt);
+    return Math.max(1, Math.ceil(remainingMs / 1000));
+  };
+
+  const createSubmissionPayload = () => ({
+    ...serializeFormData(form, honeypotField?.name),
+    meta: {
+      submittedAt: new Date().toISOString(),
+      fillDurationMs: Date.now() - formStartedAt,
+      submitCooldownMs
+    }
+  });
 
   const validateField = (field) => {
     if (field.validity.valid) {
@@ -230,7 +266,17 @@ export const initForm = () => {
       return;
     }
 
-    const payload = serializeFormData(form);
+    if (isHoneypotFilled()) {
+      setStatus('Nie udało się wysłać formularza. Odśwież stronę i spróbuj ponownie.', 'error');
+      return;
+    }
+
+    if (isSubmitCoolingDown()) {
+      setStatus(`Formularz został już wysłany. Odczekaj ${getRemainingCooldownSeconds()} s przed kolejną próbą.`, 'error');
+      return;
+    }
+
+    const payload = createSubmissionPayload();
     setSubmittingState(true);
     setStatus('Wysyłamy Twoje zapytanie...', 'loading');
 
@@ -239,6 +285,8 @@ export const initForm = () => {
       fields.forEach((field) => clearError(field));
       form.reset();
       applyDynamicConstraints();
+      lastSuccessfulSubmissionAt = Date.now();
+      formStartedAt = Date.now();
       setStatus('Dziękujemy! Twoja wiadomość została wysłana. Odpowiemy w ciągu 24 godzin.', 'success');
     } catch (error) {
       setStatus('Nie udało się wysłać formularza. Sprawdź połączenie i spróbuj ponownie.', 'error');
