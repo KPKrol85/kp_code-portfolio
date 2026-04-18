@@ -43,3 +43,7 @@ Ten plik służy do krótkiego potwierdzania wykonanych zadań.
 9. 09: zwięzły pre-release quality checklist w README
    Status: zrobione
    Uwagi: dodałem krótki checklist releasowy obejmujący accessibility, SEO, linki wewnętrzne, formularz i responsywność, wyraźnie oddzielony od automatycznych checków CI.
+
+10. 10: ograniczenie duplikacji wspólnych sekcji HTML przez lekkie partiale i build statyczny
+    Status: zrobione
+    Uwagi: dodałem źródłowe szablony w `src/`, partiale dla `head`/headera/footera oraz generator `npm run build:site`, który składa deploy-ready pliki HTML w root repo.

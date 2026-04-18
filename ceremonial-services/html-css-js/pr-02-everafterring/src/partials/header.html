@@ -1,0 +1,43 @@
+<a class="skip-link" href="#main">Przejdź do treści</a>
+<header class="site-header">
+  <div class="container header__inner">
+    <a class="brand" href="index.html">EverAfter Ring</a>
+    <button class="nav__toggle" type="button" data-nav-toggle aria-expanded="false" aria-controls="site-menu">
+      Menu
+    </button>
+    <div class="nav__panel" id="site-menu" data-nav-panel>
+      <nav class="site-nav" aria-label="Główna">
+        <ul class="nav__list" id="primary-navigation">
+          <li><a class="nav__link" href="index.html" {{homeCurrent}}>Home</a></li>
+          <li><a class="nav__link" href="oferta.html" {{ofertaCurrent}}>Oferta</a></li>
+          <li class="nav__item nav__item--has-dropdown">
+            <button
+              class="nav__dropdown-toggle"
+              type="button"
+              data-dropdown-toggle
+              aria-expanded="false"
+              aria-controls="services-menu"
+            >
+              Usługi
+              <svg class="dropdown__icon" viewBox="0 0 12 12" aria-hidden="true">
+                <path d="M2 4 L6 8 L10 4" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" />
+              </svg>
+            </button>
+            <ul class="nav__dropdown" id="services-menu" data-dropdown-menu data-open="false">
+              <li><a href="{{servicesOverviewHref}}" {{servicesOverviewCurrent}}>Przegląd usług</a></li>
+              <li><a href="{{servicesSaleHref}}">Sale i lokalizacje</a></li>
+              <li><a href="{{servicesDecorHref}}">Wystrój i dekoracje</a></li>
+              <li><a href="{{servicesTransportHref}}">Samochody i transport</a></li>
+              <li><a href="{{servicesCoordinationHref}}">Koordynacja dnia ślubu</a></li>
+              <li><a href="{{servicesVendorsHref}}">Dostawcy</a></li>
+            </ul>
+          </li>
+          <li><a class="nav__link" href="realizacje.html" {{realizacjeCurrent}}>Realizacje</a></li>
+          <li><a class="nav__link" href="o-nas.html" {{onasCurrent}}>O nas</a></li>
+          <li><a class="nav__link" href="kontakt.html" {{kontaktCurrent}}>Kontakt</a></li>
+        </ul>
+      </nav>
+      <a class="button button--primary" href="kontakt.html">Zapytaj o termin</a>
+    </div>
+  </div>
+</header>

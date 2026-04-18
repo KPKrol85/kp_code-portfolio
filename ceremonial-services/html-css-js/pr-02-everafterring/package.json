@@ -4,14 +4,15 @@
   "private": true,
   "description": "Minimal quality tooling for the EverAfter Ring static frontend project.",
   "scripts": {
+    "build:site": "node scripts/build-site.mjs",
     "lint": "npm run lint:html && npm run lint:css && npm run lint:js",
     "lint:html": "htmlhint \"*.html\"",
     "lint:css": "stylelint \"css/**/*.css\"",
-    "lint:js": "eslint \"js/**/*.js\"",
-    "check": "npm run lint && npm run format:check && npm run check:static",
+    "lint:js": "eslint \"js/**/*.js\" \"scripts/**/*.mjs\" \"eslint.config.js\" \"stylelint.config.js\"",
+    "check": "npm run build:site && npm run lint && npm run format:check && npm run check:static",
     "check:static": "node scripts/check-static.mjs",
-    "format": "prettier --write \"*.html\" \"css/**/*.css\" \"js/**/*.js\" \"README.md\" \"audyt.md\" \"done.md\" \"list-to-do.md\"",
-    "format:check": "prettier --check \"*.html\" \"css/**/*.css\" \"js/**/*.js\" \"README.md\" \"audyt.md\" \"done.md\" \"list-to-do.md\""
+    "format": "prettier --write \"*.html\" \"css/**/*.css\" \"js/**/*.js\" \"scripts/**/*.mjs\" \"src/**/*.html\" \"src/**/*.json\" \"eslint.config.js\" \"stylelint.config.js\" \"package.json\" \"README.md\" \"audyt.md\" \"done.md\" \"list-to-do.md\"",
+    "format:check": "prettier --check \"*.html\" \"css/**/*.css\" \"js/**/*.js\" \"scripts/**/*.mjs\" \"src/**/*.html\" \"src/**/*.json\" \"eslint.config.js\" \"stylelint.config.js\" \"package.json\" \"README.md\" \"audyt.md\" \"done.md\" \"list-to-do.md\""
   },
   "devDependencies": {
     "@eslint/js": "^10.0.1",

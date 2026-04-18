@@ -10,11 +10,23 @@ Demo wielostronicowej strony WWW dla marki **EverAfter Ring** (wedding planning 
 ## Code Quality
 
 1. Zainstaluj zależności: `npm install`
-2. Uruchom pełny zestaw checków: `npm run lint`
-3. Uruchom formatowanie źródeł i dokumentacji: `npm run format`
-4. Sprawdź format bez zapisu zmian: `npm run format:check`
+2. Przebuduj statyczne strony z partiali i szablonów: `npm run build:site`
+3. Uruchom pełny zestaw checków: `npm run lint`
+4. Uruchom formatowanie źródeł i dokumentacji: `npm run format`
+5. Sprawdź format bez zapisu zmian: `npm run format:check`
 
-Dostępne są też osobne komendy: `npm run lint:html`, `npm run lint:css`, `npm run lint:js`. Setup jest gotowy do lokalnego użycia i do późniejszego podpięcia pod CI.
+Dostępne są też osobne komendy: `npm run lint:html`, `npm run lint:css`, `npm run lint:js`. `npm run check` wykonuje pełny baseline: build, lint, `format:check` i `check:static`.
+
+## Shared HTML Workflow
+
+Wspólne fragmenty HTML zostały przeniesione do lekkiej warstwy źródłowej:
+
+- `src/partials/` zawiera współdzielone sekcje `head`, header, footer i wspólny skrypt wejściowy.
+- `src/pages/` zawiera źródłowe szablony poszczególnych podstron z placeholderami dla części wspólnych.
+- `src/pages.json` trzyma page-specific metadata, canonicale i stan aktywnej nawigacji.
+- `npm run build:site` składa te źródła do deploy-ready plików `*.html` w root repo.
+
+Przy zmianach globalnych edytuj najpierw `src/partials/` lub `src/pages.json`, a potem uruchom `npm run build:site`. Rootowe pliki `index.html`, `oferta.html`, `uslugi.html`, `realizacje.html`, `o-nas.html` i `kontakt.html` traktuj jako wynik builda gotowy do statycznego hostingu.
 
 ## CI
 
@@ -75,6 +87,13 @@ ceremonial-services-pr02-everafter-ring/
 │   ├── app.js          # Entry point
 │   ├── config.js       # Selektory
 │   └── utils.js        # Helpery
+├── scripts/
+│   ├── build-site.mjs  # Składanie partiali i szablonów do root HTML
+│   └── check-static.mjs # Lekki check deploy-ready statycznych plików
+├── src/
+│   ├── partials/       # Współdzielone sekcje HTML
+│   ├── pages/          # Źródłowe szablony podstron
+│   └── pages.json      # Metadata i konfiguracja stron
 ├── index.html
 ├── oferta.html
 ├── uslugi.html

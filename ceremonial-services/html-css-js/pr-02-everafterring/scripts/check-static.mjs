@@ -28,12 +28,7 @@ const localReferencePattern = /\b(?:href|src)=["']([^"']+)["']/gi;
 const hasLocalReference = (value) => {
   if (!value) return false;
 
-  return !(
-    value.startsWith('#') ||
-    value.startsWith('//') ||
-    value.startsWith('data:') ||
-    /^[a-z]+:/i.test(value)
-  );
+  return !(value.startsWith('#') || value.startsWith('//') || value.startsWith('data:') || /^[a-z]+:/i.test(value));
 };
 
 const normalizeReference = (value) => value.split('#')[0].split('?')[0];
@@ -90,9 +85,7 @@ const ensureLocalReferences = async (filePath, source) => {
     const normalizedReference = normalizeReference(originalReference);
     if (!normalizedReference) continue;
 
-    const resolvedPath = path
-      .normalize(path.join(path.dirname(filePath), normalizedReference))
-      .replace(/\\/g, '/');
+    const resolvedPath = path.normalize(path.join(path.dirname(filePath), normalizedReference)).replace(/\\/g, '/');
 
     if (seen.has(resolvedPath)) continue;
     seen.add(resolvedPath);
@@ -107,9 +100,7 @@ const run = async () => {
   await ensureRequiredFiles();
 
   if (missingFiles.length > 0) {
-    missingFiles
-      .sort()
-      .forEach((relativePath) => errors.push(`Missing required deploy-ready file: ${relativePath}`));
+    missingFiles.sort().forEach((relativePath) => errors.push(`Missing required deploy-ready file: ${relativePath}`));
   }
 
   for (const htmlFile of htmlFiles) {
