@@ -20,6 +20,44 @@ Dostępne są też osobne komendy: `npm run lint:html`, `npm run lint:css`, `npm
 
 Repo ma minimalny workflow CI w GitHub Actions. Na `push` i `pull_request` uruchamia on `npm run check`, czyli lokalne linty, `format:check` oraz statyczny `check:static` sprawdzający kluczowe pliki deploy-ready i podstawowe lokalne referencje projektu.
 
+## Pre-release Checklist
+
+### Baseline
+
+- [ ] `npm run check` przechodzi lokalnie bez błędów.
+- [ ] CI jest zielone, ale ręczny przegląd releasowy został wykonany osobno.
+
+### Accessibility
+
+- [ ] Wykonano istniejący `Keyboard accessibility smoke test` dla nawigacji i dropdownu.
+- [ ] Focus states są widoczne w kluczowych elementach interaktywnych.
+- [ ] Komunikaty formularza i statusy `loading/success/error` są czytelne i logiczne.
+
+### SEO
+
+- [ ] Każda publikowana strona ma poprawne `title`, `meta description` i `canonical`.
+- [ ] Każda publikowana strona ma tylko jeden `h1`.
+- [ ] Placeholderowe dane kontaktowe i structured data zostały sprawdzone przed publikacją.
+
+### Internal links
+
+- [ ] Główna nawigacja i linki w stopce prowadzą do właściwych stron.
+- [ ] Główne CTA prowadzą do właściwych podstron lub sekcji.
+- [ ] Anchory na `uslugi.html` działają poprawnie.
+
+### Form
+
+- [ ] Walidacja formularza działa poprawnie dla pustych i błędnych danych.
+- [ ] Formularz pokazuje poprawne stany `loading`, `success` i `error`.
+- [ ] Po błędzie dane formularza zostają, a po sukcesie formularz się resetuje.
+- [ ] Honeypot i cooldown nie przeszkadzają w normalnym użyciu formularza.
+
+### Responsive
+
+- [ ] Widok mobile działa poprawnie bez poziomego scrolla.
+- [ ] Widok średni/tablet nie rozbija layoutu kluczowych sekcji.
+- [ ] Widok desktop zachowuje poprawny układ headera, gridów i formularza.
+
 ## Struktura projektu
 
 ```

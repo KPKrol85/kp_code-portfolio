@@ -39,3 +39,7 @@ Ten plik służy do krótkiego potwierdzania wykonanych zadań.
 8. 08: minimalny CI quality gate dla statycznego repo
    Status: zrobione
    Uwagi: dodałem pojedynczy workflow GitHub Actions, skrypt `check:static` do weryfikacji gotowości statycznego artefaktu oraz integrację tych checków z istniejącymi komendami npm.
+
+9. 09: zwięzły pre-release quality checklist w README
+   Status: zrobione
+   Uwagi: dodałem krótki checklist releasowy obejmujący accessibility, SEO, linki wewnętrzne, formularz i responsywność, wyraźnie oddzielony od automatycznych checków CI.
