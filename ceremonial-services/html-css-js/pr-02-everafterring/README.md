@@ -1,14 +1,23 @@
 # EverAfter Ring – demo wedding planning
 
-Demo wielostronicowej strony WWW dla marki **EverAfter Ring** (wedding planning & coordination). Projekt działa lokalnie, bez instalacji.
+Demo wielostronicowej strony WWW dla marki **EverAfter Ring** (wedding planning & coordination). Edytowalny kod źródłowy pozostaje w katalogach głównych projektu, a produkcyjny artefakt jest generowany do `dist/`.
 
 ## Uruchomienie
-1. Otwórz plik `index.html` w przeglądarce.
-2. Przejdź do pozostałych podstron przez nawigację.
+### Podgląd źródła
+1. Uruchom `start-local-preview.bat` albo `python -m http.server 8181`.
+2. Otwórz `http://localhost:8181/`.
+
+Uwaga: podgląd źródła powinien działać przez HTTP, ponieważ współdzielone partiale są ładowane z użyciem `fetch()`.
+
+### Build produkcyjny
+1. Zainstaluj zależności: `npm install`
+2. Wygeneruj produkcyjny build: `npm run build`
+3. Wdróż lub podejrzyj zawartość katalogu `dist/`
 
 ## Struktura projektu
 ```
 ceremonial-services-pr02-everafter-ring/
+├── dist/              # Generowany build produkcyjny (po npm run build)
 ├── assets/            # SVG placeholdery i favicon
 ├── css/
 │   ├── components/    # Komponenty (nav, cards, buttons, forms, footer)
@@ -22,6 +31,8 @@ ceremonial-services-pr02-everafter-ring/
 │   ├── app.js          # Entry point
 │   ├── config.js       # Selektory
 │   └── utils.js        # Helpery
+├── partials/          # Źródłowe fragmenty header/footer dla authoringu
+├── scripts/           # Skrypty builda source -> dist
 ├── index.html
 ├── oferta.html
 ├── uslugi.html
@@ -43,6 +54,15 @@ ceremonial-services-pr02-everafter-ring/
 - **nav.js** – dostępne menu mobilne i dropdown (ESC, click outside, focus management).
 - **form.js** – walidacja UX z komunikatami pod polami i statusem aria-live.
 - **dom.js** – bezpieczny init po DOMContentLoaded.
+
+## Workflow source / dist
+- Edytowalne źródła HTML/CSS/JS pozostają poza `dist/`.
+- `partials/header.html` i `partials/footer.html` są używane tylko na etapie authoringu oraz builda.
+- `npm run build`:
+  - minifikuje CSS do `dist/css/main.min.css`
+  - bundluje i minifikuje JS do `dist/js/app.min.js`
+  - generuje finalne strony HTML do `dist/` z wbudowanym headerem i footerem
+  - kopiuje tylko produkcyjne assety potrzebne do wdrożenia
 
 ## SEO / a11y checklist
 - [x] Unikalne `title` i `description` na każdej stronie.
