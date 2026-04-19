@@ -1,0 +1,52 @@
+<div class="container header__inner">
+  <a class="brand" href="index.html" aria-label="EverAfter Ring - powrót do strony głównej">
+    <span class="brand__text">EverAfter Ring</span>
+  </a>
+  <button class="nav__toggle" type="button" data-nav-toggle aria-expanded="false" aria-controls="site-menu" aria-label="Przełącz menu nawigacji">
+    <svg class="hamburger" viewBox="0 0 24 24" aria-hidden="true">
+      <rect class="hamburger__line hamburger__line--top" x="3" y="6" width="18" height="2" rx="1" />
+      <rect class="hamburger__line hamburger__line--middle" x="3" y="11" width="18" height="2" rx="1" />
+      <rect class="hamburger__line hamburger__line--bottom" x="3" y="16" width="18" height="2" rx="1" />
+    </svg>
+  </button>
+  <div class="nav__panel" id="site-menu" data-nav-panel>
+    <nav class="site-nav" aria-label="Główna nawigacja">
+      <ul class="nav__list" id="primary-navigation">
+        <li class="nav__item">
+          <a class="nav__link" href="index.html">Strona główna</a>
+        </li>
+        <li class="nav__item">
+          <a class="nav__link" href="oferta.html">Oferta</a>
+        </li>
+        <li class="nav__item nav__item--has-dropdown">
+          <button class="nav__dropdown-toggle" type="button" data-dropdown-toggle aria-expanded="false" aria-controls="services-menu">
+            <span>Usługi</span>
+            <svg class="dropdown__icon" viewBox="0 0 16 16" aria-hidden="true">
+              <path d="M4 6L8 10L12 6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" fill="none" />
+            </svg>
+          </button>
+          <div class="nav__dropdown-wrapper">
+            <ul class="nav__dropdown" id="services-menu" data-dropdown-menu data-open="false">
+              <li><a href="uslugi.html" class="nav__dropdown-link">Przegląd usług</a></li>
+              <li><a href="uslugi.html#sale" class="nav__dropdown-link">Sale i lokalizacje</a></li>
+              <li><a href="uslugi.html#wystroj" class="nav__dropdown-link">Wystrój i dekoracje</a></li>
+              <li><a href="uslugi.html#transport" class="nav__dropdown-link">Samochody i transport</a></li>
+              <li><a href="uslugi.html#koordynacja" class="nav__dropdown-link">Koordynacja dnia ślubu</a></li>
+              <li><a href="uslugi.html#dostawcy" class="nav__dropdown-link">Dostawcy</a></li>
+            </ul>
+          </div>
+        </li>
+        <li class="nav__item">
+          <a class="nav__link" href="realizacje.html">Realizacje</a>
+        </li>
+        <li class="nav__item">
+          <a class="nav__link" href="o-nas.html">O nas</a>
+        </li>
+        <li class="nav__item">
+          <a class="nav__link" href="kontakt.html">Kontakt</a>
+        </li>
+      </ul>
+    </nav>
+    <a class="button button--primary" href="kontakt.html">Zapytaj o termin</a>
+  </div>
+</div>

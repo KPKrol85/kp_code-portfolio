@@ -15,6 +15,8 @@
   --font-serif: "Cormorant Garamond", "Times New Roman", Georgia, serif;
   --font-sans: "Inter", "Segoe UI", "Helvetica Neue", Arial, sans-serif;
 
+  --font-size-micro: 0.5rem;
+  --font-size-xxs: 0.7rem;
   --font-size-xs: 0.85rem;
   --font-size-sm: 0.95rem;
   --font-size-base: 1rem;
@@ -38,6 +40,7 @@
   --radius-sm: 8px;
   --radius-md: 16px;
   --radius-lg: 28px;
+  --radius-pill: 9999px;
 
   --shadow-soft: 0 20px 40px rgba(42, 36, 34, 0.08);
   --shadow-card: 0 12px 24px rgba(42, 36, 34, 0.1);

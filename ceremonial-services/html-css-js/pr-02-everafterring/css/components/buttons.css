@@ -3,12 +3,12 @@
   align-items: center;
   justify-content: center;
   gap: var(--space-2);
-  padding: 0.75rem 1.5rem;
-  border-radius: 999px;
+  padding: var(--space-2) var(--space-4);
+  border-radius: var(--radius-pill);
   border: 1px solid transparent;
   transition: var(--transition-base);
   font-weight: 600;
-  font-size: var(--font-size-sm);
+  font-size: var(--font-size-xs);
 }
 
 .button--primary {
@@ -17,6 +17,7 @@
 }
 
 .button--primary:hover {
+  color: var(--color-white);
   background: #583b3b;
 }
 
