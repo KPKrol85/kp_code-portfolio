@@ -17,7 +17,8 @@ Projekt jest dobrze uporządkowanym statycznym front-endem z czytelnym modelem s
 
 ## 4. P1 — Istotne problemy warte naprawy w następnej kolejności
 - Formularz kontaktowy nie jest funkcjonalnie podłączony do żadnej ścieżki wysyłki. Formularz źródłowy nie ma `action` ani `method` (`kontakt.html:55`), a handler submitu zawsze wykonuje `event.preventDefault()`, waliduje dane lokalnie, następnie wyświetla komunikat sukcesu i resetuje formularz bez jakiegokolwiek żądania sieciowego (`js/modules/form.js:56-75`). Dla produkcyjnej strony kontaktowej jest to realna awaria przechwytywania leadów.
-- Obsługa reduced motion jest niepełna. CSS wyłącza czas trwania animacji i przejść przy `prefers-reduced-motion: reduce` (`css/base.css:92-101`), ale moduł hero nadal podpina obsługę ruchu kursora i uruchamia niekończącą się pętlę `requestAnimationFrame` (`js/modules/hero.js:13-36`). Użytkownicy proszący o ograniczenie ruchu nadal dostają efekt ruchu sterowany JavaScriptem.
+
+- Rozwiązane: efekt hero respektuje teraz `prefers-reduced-motion: reduce` również w JavaScript; ruch sterowany wskaźnikiem i pętla animacji są wyłączane, gdy preferencja ograniczenia ruchu jest aktywna (`js/modules/hero.js`).
 
 ## 5. P2 — Drobne dopracowania
 - Strony źródłowe nie są samowystarczalne bez JavaScriptu, ponieważ współdzielony layout jest ładowany do pustych hostów `header` i `footer` przez `fetch()` w runtime (`index.html:34,265`, `oferta.html:34,128`, `uslugi.html:34,206`, `realizacje.html:34,172`, `o-nas.html:34,124`, `kontakt.html:34,152`, `js/modules/partials.js:37-58`). Jest to częściowo zneutralizowane przez build, który osadza partiale bezpośrednio w produkcyjnym HTML (`scripts/build.mjs:89-116`). To oznacza lukę progressive enhancement w trybie źródłowym, a nie blokadę produkcyjną, o ile wdrażanym artefaktem jest `dist/`.
