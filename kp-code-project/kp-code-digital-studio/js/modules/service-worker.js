@@ -1,5 +1,11 @@
 export function initServiceWorker() {
-  if (!('serviceWorker' in navigator) || !window.isSecureContext) {
+  const isSourcePreviewRuntime = Boolean(
+    document.querySelector('meta[name="kp-code-runtime"][content="source-preview"]')
+  );
+
+  // Source preview serves the raw service-worker template, so registration must stay disabled
+  // until the built runtime provides the generated worker file.
+  if (isSourcePreviewRuntime || !('serviceWorker' in navigator) || !window.isSecureContext) {
     return;
   }
 

@@ -15,9 +15,21 @@ const __dirname = path.dirname(__filename);
 
 const PROJECT_ROOT = path.resolve(__dirname, '..');
 const publicHtmlFiles = new Set((await listPublicHtmlFiles()).map((filePath) => filePath.replaceAll('\\', '/')));
+const SOURCE_PREVIEW_RUNTIME_MARKER =
+  '    <meta name="kp-code-runtime" content="source-preview" />\n';
 
 function toRelativeRootPath(filePath) {
   return path.relative(ROOT_DIR, filePath).replaceAll('\\', '/');
+}
+
+function injectSourcePreviewRuntimeMarker(html) {
+  if (html.includes('name="kp-code-runtime"')) {
+    return html;
+  }
+
+  return html.includes('</head>')
+    ? html.replace('</head>', `${SOURCE_PREVIEW_RUNTIME_MARKER}</head>`)
+    : html;
 }
 
 async function handleRequest(request, response) {
@@ -48,7 +60,7 @@ async function handleRequest(request, response) {
 
     const relativePath = toRelativeRootPath(filePath);
     if (publicHtmlFiles.has(relativePath)) {
-      const html = await renderAssembledHtml(relativePath);
+      const html = injectSourcePreviewRuntimeMarker(await renderAssembledHtml(relativePath));
       const htmlBuffer = Buffer.from(html, 'utf8');
 
       response.writeHead(200, {
