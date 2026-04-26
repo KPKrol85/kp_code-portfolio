@@ -9,7 +9,7 @@
     <title>Aurora Travel | Projekt portfolio</title>
     <meta
       name="description"
-      content="Poznaj projekt Aurora Travel: nowoczesną stronę hotelarsko-turystyczną opartą na lekkiej estetyce, czytelnej ofercie i premium prezentacji doświadczenia marki."
+      content="Poznaj projekt Aurora Travel: statyczny, wielostronicowy front-end biura podróży z ofertami wycieczek, galerią, formularzem, SEO i PWA."
     />
     <link rel="canonical" href="https://www.kp-code.pl/projects/aurora.html" />
     <meta property="og:type" content="website" />
@@ -18,16 +18,19 @@
     <meta property="og:title" content="Aurora Travel | Projekt portfolio" />
     <meta
       property="og:description"
-      content="Projekt strony dla marki z obszaru hospitality i turystyki, zaprojektowany z naciskiem na atmosferę, czytelność i wygodne ścieżki użytkownika."
+      content="Aurora Travel to projekt serwisu biura podróży z filtrowaniem ofert, dynamicznymi szczegółami wycieczek, galerią, formularzem i przygotowaniem do publikacji statycznej."
     />
     <meta property="og:url" content="https://www.kp-code.pl/projects/aurora.html" />
     <meta property="og:image" content="https://www.kp-code.pl/assets/og/og-img.png" />
-    <meta property="og:image:alt" content="Podgląd projektu Aurora Travel w KP_Code Digital Studio" />
+    <meta
+      property="og:image:alt"
+      content="Podgląd projektu Aurora Travel w KP_Code Digital Studio"
+    />
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content="Aurora Travel | Projekt portfolio" />
     <meta
       name="twitter:description"
-      content="Aurora Travel pokazuje dopracowany kierunek strony turystycznej, która buduje wizerunek marki i ułatwia odbiór oferty."
+      content="Aurora Travel pokazuje wielostronicowy front-end biura podróży z ofertami, galerią, formularzem, PWA i uporządkowanym standardem technicznym."
     />
     <meta name="twitter:image" content="https://www.kp-code.pl/assets/og/og-img.png" />
     <link rel="icon" href="/assets/icons/favicon.svg" type="image/svg+xml" />
@@ -61,8 +64,8 @@
             <div class="page-hero__content">
               <h1 class="hero__title page-hero__title">Aurora Travel</h1>
               <p class="hero__lead page-hero__lead">
-                Nowoczesna strona z obszaru hotelarstwa i turystyki, która łączy atmosferę marki z
-                lekką, klarowną prezentacją oferty i korzyści pobytowych.
+                Wielostronicowy front-end biura podróży, który łączy ofertę wycieczek, galerię,
+                formularz kontaktowy, PWA i techniczne przygotowanie pod statyczną publikację.
               </p>
             </div>
             <div class="page-hero__media" aria-hidden="true">
@@ -108,27 +111,29 @@
               <div class="section__header">
                 <p class="section__eyebrow">Przegląd projektu</p>
                 <h2 class="section__title">
-                  Aurora Travel została pomyślana jako estetyczna, nowoczesna strona dla marki
-                  turystycznej, która ma inspirować i jednocześnie zachować pełną czytelność.
+                  Aurora Travel to statyczny serwis biura podróży zaprojektowany wokół ofert,
+                  szczegółów wycieczek, galerii i wygodnej ścieżki kontaktu.
                 </h2>
                 <p class="section__subtitle">
-                  Projekt koncentruje się na pokazaniu doświadczenia marki, jasnym układzie oferty
-                  oraz kompozycji wspierającej płynne przeglądanie serwisu na każdym urządzeniu.
+                  Projekt obejmuje stronę główną, listę wycieczek, widok szczegółowy, galerię,
+                  sekcję o marce, kontakt, strony prawne oraz stany techniczne, w tym offline i 404.
                 </p>
               </div>
               <p>
-                Takie strony muszą balansować między warstwą aspiracyjną a konkretem potrzebnym
-                użytkownikowi. Aurora Travel wykorzystuje spokojny rytm sekcji, czytelne bloki
-                treści i odpowiednią ilość przestrzeni, by odbiór projektu pozostał lekki i premium.
+                Warstwa ofertowa opiera się na danych JSON, filtrowaniu i sortowaniu wycieczek
+                według typu, regionu, ceny oraz długości. Widok szczegółów wycieczki jest
+                renderowany dynamicznie na podstawie parametru URL i danych z
+                <code>assets/data/tours.json</code>.
               </p>
               <p>
-                To gotowy koncept portfolio, który może być później rozwijany o pakiety podróżne,
-                rozbudowane galerie, sekcje lokalizacji czy bardziej szczegółowe ścieżki
-                rezerwacyjne.
+                Aurora wykorzystuje również dynamiczną galerię zasilaną przez
+                <code>assets/data/gallery-data.json</code>, lightbox, przełącznik motywu light/dark,
+                walidację formularza kontaktowego, Service Worker, manifest aplikacji webowej oraz
+                komplet elementów SEO dla stron indeksowanych.
               </p>
               <div class="pill-grid" aria-label="Kategorie projektu Aurora Travel">
                 <span class="tag">Strony</span><span class="tag">Biznes</span
-                ><span class="tag">Turystyka</span><span class="tag">Hospitality</span>
+                ><span class="tag">Turystyka</span><span class="tag">Biuro podróży</span>
               </div>
             </div>
             <aside
@@ -138,19 +143,35 @@
               <div class="project-meta">
                 <div class="project-meta__group">
                   <p class="project-meta__label">Typ projektu</p>
-                  <p class="project-meta__value">Strona hotelarsko-turystyczna</p>
+                  <p class="project-meta__value">Wielostronicowy front-end biura podróży</p>
                 </div>
                 <div class="project-meta__group">
                   <p class="project-meta__label">Status</p>
-                  <p class="project-meta__value">Gotowy koncept</p>
+                  <p class="project-meta__value">
+                    Projekt referencyjny / gotowy front-end statyczny
+                  </p>
                   <p class="project-meta__note">
-                    Projekt pokazuje dopracowany kierunek dla marki turystycznej, przygotowany z
-                    myślą o dalszej rozbudowie i utrzymaniu wysokiej jakości wizualnej.
+                    Serwis pokazuje kompletny zakres strony podróżniczej: oferty, szczegóły,
+                    galerię, formularz, stany techniczne, PWA i przygotowanie do hostingu
+                    statycznego.
                   </p>
                 </div>
                 <div class="project-meta__group">
+                  <p class="project-meta__label">Dokumentacja</p>
+                  <p class="project-meta__value">Opis techniczny projektu</p>
+                  <p class="project-meta__note">
+                    Plik opisuje zakres serwisu, funkcje, dane, stack, PWA, SEO i przygotowanie do
+                    publikacji statycznej.
+                  </p>
+                  <a class="footer__link" href="../assets/docs/aurora-readme.md" download
+                    >Pobierz opis techniczny</a
+                  >
+                </div>
+                <div class="project-meta__group">
                   <p class="project-meta__label">Priorytet</p>
-                  <p class="project-meta__value">Doświadczenie marki i użyteczność</p>
+                  <p class="project-meta__value">
+                    Oferty wycieczek, filtrowanie, galeria, formularz, SEO i PWA
+                  </p>
                 </div>
               </div>
             </aside>
@@ -162,33 +183,34 @@
           <div class="section__header" data-reveal="soft">
             <p class="section__eyebrow">Zakres i akcenty</p>
             <h2 class="section__title" id="aurora-highlights-title">
-              Projekt wspiera markę przez połączenie atrakcyjnego odbioru wizualnego z uporządkowaną
-              strukturą informacji.
+              Case study koncentruje się na praktycznych elementach serwisu podróżniczego: ofertach,
+              danych, interakcjach użytkownika i standardzie publikacji statycznej.
             </h2>
           </div>
           <div class="grid grid--3" data-reveal-group="cards">
             <article class="card project-highlights__card" data-reveal-item="soft">
               <p class="project-highlights__index">01</p>
-              <h3 class="project-highlights__title">Lekki premium branding</h3>
+              <h3 class="project-highlights__title">Oferty i szczegóły wycieczek</h3>
               <p class="card__meta">
-                Kompozycja wzmacnia odbiór marki jako nowoczesnej, dopracowanej i przyjaznej
-                użytkownikowi.
+                Lista wycieczek obsługuje filtrowanie i sortowanie, a podstrona szczegółów renderuje
+                treść na podstawie parametrów URL oraz danych z
+                <code>assets/data/tours.json</code>.
               </p>
             </article>
             <article class="card project-highlights__card" data-reveal-item="soft">
               <p class="project-highlights__index">02</p>
-              <h3 class="project-highlights__title">Czytelne sekcje ofertowe</h3>
+              <h3 class="project-highlights__title">Galeria i interakcje UI</h3>
               <p class="card__meta">
-                Układ wspiera prezentację najważniejszych korzyści i prowadzi użytkownika do
-                kolejnych informacji bez chaosu.
+                Galeria korzysta z danych JSON i filtrowania po kierunku, a lightbox, przełącznik
+                motywu oraz walidacja formularza porządkują kluczowe akcje użytkownika.
               </p>
             </article>
             <article class="card project-highlights__card" data-reveal-item="soft">
               <p class="project-highlights__index">03</p>
-              <h3 class="project-highlights__title">Gotowość do rozwoju</h3>
+              <h3 class="project-highlights__title">SEO, PWA i publikacja</h3>
               <p class="card__meta">
-                Projekt może zostać rozszerzony o dodatkowe pakiety, inspiracje podróżnicze lub
-                moduły rezerwacyjne.
+                Projekt zawiera metadane, canonicale, JSON-LD, sitemapę, manifest, Service Worker,
+                responsywne obrazy oraz pliki <code>_headers</code> i <code>_redirects</code>.
               </p>
             </article>
           </div>
@@ -201,19 +223,25 @@
               <div class="section__header">
                 <p class="section__eyebrow">Technologie i standard</p>
                 <h2 class="section__title">
-                  Architektura strony wspiera szybkość działania, mobilność i łatwe utrzymanie
-                  porządku w treści.
+                  Aurora została zbudowana w statycznym stacku HTML, modularnym CSS i JavaScript ES
+                  Modules, z procesem buildowym oraz pipeline'em obrazów.
                 </h2>
               </div>
               <p>
-                Statyczny frontend jest dobrym wyborem dla projektów wizerunkowo-ofertowych,
-                ponieważ zapewnia wysoką wydajność i pozwala precyzyjnie zarządzać kompozycją oraz
-                doświadczeniem użytkownika.
+                Dane ofert i galerii są utrzymywane w plikach JSON, a logika front-endowa jest
+                rozdzielona na moduły funkcjonalne odpowiedzialne między innymi za nawigację,
+                filtrowanie, lightbox, motyw i formularz.
               </p>
               <ul class="list">
-                <li>semantyczne sekcje wspierające SEO i czytelność,</li>
-                <li>responsywne układy przygotowane pod mobile i desktop,</li>
-                <li>łatwo rozszerzalne komponenty i bloki treści.</li>
+                <li>
+                  PostCSS z <code>postcss-import</code>, <code>autoprefixer</code> i
+                  <code>cssnano</code> dla CSS,
+                </li>
+                <li>esbuild dla bundlowania i minifikacji JavaScriptu,</li>
+                <li>sharp dla generowania wariantów obrazów oraz kontroli assetów,</li>
+                <li>
+                  skip link, landmarki, atrybuty ARIA i powiązane komunikaty walidacyjne formularza.
+                </li>
               </ul>
             </div>
             <aside
@@ -223,23 +251,26 @@
               <div class="project-stack__list">
                 <div class="project-stack__item">
                   <p class="project-stack__label">Frontend</p>
-                  <p class="project-stack__value">HTML / CSS / JavaScript</p>
+                  <p class="project-stack__value">HTML5 / modularny CSS / ES Modules</p>
                   <p class="project-stack__desc">
-                    Lekki stack wspierający estetyczne i szybkie wdrożenie.
+                    Statyczna struktura stron z logiką rozdzieloną na moduły w
+                    <code>js/features</code>.
                   </p>
                 </div>
                 <div class="project-stack__item">
-                  <p class="project-stack__label">Fokus treści</p>
-                  <p class="project-stack__value">Doświadczenie i oferta</p>
+                  <p class="project-stack__label">Dane i interakcje</p>
+                  <p class="project-stack__value">JSON, filtry, lightbox i formularz</p>
                   <p class="project-stack__desc">
-                    Treści skupione na marce, pobycie i przejrzystej ścieżce kontaktu.
+                    Oferty i galeria korzystają z plików danych, a formularz ma walidację po stronie
+                    klienta z komunikatami dostępności.
                   </p>
                 </div>
                 <div class="project-stack__item">
                   <p class="project-stack__label">Standard jakości</p>
-                  <p class="project-stack__value">Responsywność i rytm wizualny</p>
+                  <p class="project-stack__value">SEO, PWA i hosting statyczny</p>
                   <p class="project-stack__desc">
-                    Projekt utrzymuje czytelność i spokojny odbiór na różnych szerokościach ekranu.
+                    Projekt obejmuje JSON-LD, <code>site.webmanifest</code>, Service Worker,
+                    <code>_headers</code>, <code>_redirects</code> i responsywne obrazy.
                   </p>
                 </div>
               </div>
@@ -247,42 +278,121 @@
           </div>
         </div>
       </section>
-      <section class="section" aria-labelledby="aurora-visual-title" data-reveal="visual">
+      <!-- Visual -->
+      <section
+        class="section"
+        aria-label="Podgląd wizualny projektu Aurora Travel"
+        data-reveal="visual"
+      >
         <div class="container">
-          <div class="section__header">
-            <p class="section__eyebrow">Prezentacja wizualna</p>
-            <h2 class="section__title" id="aurora-visual-title">
-              Główny kadr projektu pokazuje świeży, uporządkowany kierunek dla nowoczesnej marki
-              turystycznej.
-            </h2>
-          </div>
           <figure class="project-visual__frame">
-            <picture
-              ><source
-                type="image/avif"
-                srcset="
-                  ../assets/img/img_optimized/selected-work/aurora-480.avif   480w,
-                  ../assets/img/img_optimized/selected-work/aurora-768.avif   768w,
-                  ../assets/img/img_optimized/selected-work/aurora-1024.avif 1024w
-                "
-                sizes="(max-width: 640px) 100vw, (max-width: 1100px) 90vw, 960px" />
-              <source
-                type="image/webp"
-                srcset="
-                  ../assets/img/img_optimized/selected-work/aurora-480.webp   480w,
-                  ../assets/img/img_optimized/selected-work/aurora-768.webp   768w,
-                  ../assets/img/img_optimized/selected-work/aurora-1024.webp 1024w
-                "
-                sizes="(max-width: 640px) 100vw, (max-width: 1100px) 90vw, 960px" />
-              <img
-                src="../assets/img/img_optimized/selected-work/aurora-1024.jpg"
-                alt="Aurora Travel — hotelarstwo i turystyka"
-                width="1024"
-                height="683"
-            /></picture>
-            <figcaption class="project-visual__caption">
-              Widok projektu Aurora Travel wykorzystany jako główna prezentacja case study.
-            </figcaption>
+            <div class="project-mockups project-mockups--trio">
+              <!-- Mobile -->
+              <div class="project-mockups__item project-mockups__item--mobile">
+                <div class="project-mockups__media">
+                  <picture>
+                    <source
+                      type="image/avif"
+                      srcset="
+                        ../assets/img/img_optimized/mockup/aurora-mobile-480.avif   480w,
+                        ../assets/img/img_optimized/mockup/aurora-mobile-768.avif   768w,
+                        ../assets/img/img_optimized/mockup/aurora-mobile-1024.avif 1024w,
+                        ../assets/img/img_optimized/mockup/aurora-mobile-1440.avif 1440w
+                      "
+                      sizes="(min-width: 1024px) 33vw, (min-width: 760px) 70vw, 90vw"
+                    />
+                    <source
+                      type="image/webp"
+                      srcset="
+                        ../assets/img/img_optimized/mockup/aurora-mobile-480.webp   480w,
+                        ../assets/img/img_optimized/mockup/aurora-mobile-768.webp   768w,
+                        ../assets/img/img_optimized/mockup/aurora-mobile-1024.webp 1024w,
+                        ../assets/img/img_optimized/mockup/aurora-mobile-1440.webp 1440w
+                      "
+                      sizes="(min-width: 1024px) 33vw, (min-width: 760px) 70vw, 90vw"
+                    />
+                    <img
+                      src="../assets/img/img_optimized/mockup/aurora-mobile-768.webp"
+                      alt="Mockup mobilny projektu Aurora Travel prezentowany w widoku telefonu"
+                      width="770"
+                      height="666"
+                      loading="lazy"
+                      decoding="async"
+                    />
+                  </picture>
+                </div>
+              </div>
+              <!-- Tablet -->
+              <div class="project-mockups__item project-mockups__item--tablet">
+                <div class="project-mockups__media">
+                  <picture>
+                    <source
+                      type="image/avif"
+                      srcset="
+                        ../assets/img/img_optimized/mockup/aurora-tablet-480.avif   480w,
+                        ../assets/img/img_optimized/mockup/aurora-tablet-768.avif   768w,
+                        ../assets/img/img_optimized/mockup/aurora-tablet-1024.avif 1024w,
+                        ../assets/img/img_optimized/mockup/aurora-tablet-1440.avif 1440w
+                      "
+                      sizes="(min-width: 1024px) 33vw, (min-width: 760px) 70vw, 90vw"
+                    />
+                    <source
+                      type="image/webp"
+                      srcset="
+                        ../assets/img/img_optimized/mockup/aurora-tablet-480.webp   480w,
+                        ../assets/img/img_optimized/mockup/aurora-tablet-768.webp   768w,
+                        ../assets/img/img_optimized/mockup/aurora-tablet-1024.webp 1024w,
+                        ../assets/img/img_optimized/mockup/aurora-tablet-1440.webp 1440w
+                      "
+                      sizes="(min-width: 1024px) 33vw, (min-width: 760px) 70vw, 90vw"
+                    />
+                    <img
+                      src="../assets/img/img_optimized/mockup/aurora-tablet-1024.webp"
+                      alt="Mockup tabletowy projektu Aurora Travel prezentowany w widoku tabletu"
+                      width="770"
+                      height="666"
+                      loading="lazy"
+                      decoding="async"
+                    />
+                  </picture>
+                </div>
+              </div>
+              <!-- Desktop -->
+              <div class="project-mockups__item project-mockups__item--desktop">
+                <div class="project-mockups__media">
+                  <picture>
+                    <source
+                      type="image/avif"
+                      srcset="
+                        ../assets/img/img_optimized/mockup/aurora-laptop-480.avif   480w,
+                        ../assets/img/img_optimized/mockup/aurora-laptop-768.avif   768w,
+                        ../assets/img/img_optimized/mockup/aurora-laptop-1024.avif 1024w,
+                        ../assets/img/img_optimized/mockup/aurora-laptop-1440.avif 1440w
+                      "
+                      sizes="(min-width: 1024px) 33vw, (min-width: 760px) 70vw, 90vw"
+                    />
+                    <source
+                      type="image/webp"
+                      srcset="
+                        ../assets/img/img_optimized/mockup/aurora-laptop-480.webp   480w,
+                        ../assets/img/img_optimized/mockup/aurora-laptop-768.webp   768w,
+                        ../assets/img/img_optimized/mockup/aurora-laptop-1024.webp 1024w,
+                        ../assets/img/img_optimized/mockup/aurora-laptop-1440.webp 1440w
+                      "
+                      sizes="(min-width: 1024px) 33vw, (min-width: 760px) 70vw, 90vw"
+                    />
+                    <img
+                      src="../assets/img/img_optimized/mockup/aurora-laptop-1024.webp"
+                      alt="Mockup desktopowy projektu Aurora Travel prezentowany w widoku laptopa"
+                      width="770"
+                      height="666"
+                      loading="lazy"
+                      decoding="async"
+                    />
+                  </picture>
+                </div>
+              </div>
+            </div>
           </figure>
         </div>
       </section>
@@ -292,11 +402,11 @@
             <div class="section__header">
               <p class="section__eyebrow">Dalszy krok</p>
               <h2 class="section__title">
-                Sprawdź wersję live projektu albo wróć do pełnej listy realizacji.
+                Zobacz wielostronicowy serwis Aurora albo wróć do pełnego portfolio.
               </h2>
               <p class="section__subtitle">
-                Ta podstrona jest częścią spójnego systemu detail pages, który można łatwo rozwijać
-                o kolejne projekty i case studies.
+                Aurora pokazuje, jak wielostronicowy serwis podróżniczy może połączyć ofertę,
+                galerię, formularz i techniczne przygotowanie do publikacji statycznej.
               </p>
             </div>
             <div class="project-cta__actions">
@@ -342,7 +452,7 @@
             "@id": "https://www.kp-code.pl/projects/aurora.html#webpage",
             "url": "https://www.kp-code.pl/projects/aurora.html",
             "name": "Aurora Travel | Projekt portfolio",
-            "description": "Poznaj projekt Aurora Travel: nowoczesną stronę hotelarsko-turystyczną opartą na lekkiej estetyce, czytelnej ofercie i premium prezentacji doświadczenia marki.",
+            "description": "Poznaj projekt Aurora Travel: statyczny, wielostronicowy front-end biura podróży z ofertami wycieczek, galerią, formularzem, SEO i PWA.",
             "isPartOf": { "@id": "https://www.kp-code.pl/#website" },
             "about": { "@id": "https://www.kp-code.pl/#organization" },
             "publisher": { "@id": "https://www.kp-code.pl/#organization" },

@@ -3,18 +3,15 @@ import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { readFile, stat } from 'node:fs/promises';
 import { ROOT_DIR, listPublicHtmlFiles, renderAssembledHtml } from './build-utils.mjs';
-import {
-  getContentType,
-  getPort,
-  resolveRequestPath,
-  sendText,
-} from './preview-server-utils.mjs';
+import { getContentType, getPort, resolveRequestPath, sendText } from './preview-server-utils.mjs';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 const PROJECT_ROOT = path.resolve(__dirname, '..');
-const publicHtmlFiles = new Set((await listPublicHtmlFiles()).map((filePath) => filePath.replaceAll('\\', '/')));
+const publicHtmlFiles = new Set(
+  (await listPublicHtmlFiles()).map((filePath) => filePath.replaceAll('\\', '/'))
+);
 const SOURCE_PREVIEW_RUNTIME_MARKER =
   '    <meta name="kp-code-runtime" content="source-preview" />\n';
 

@@ -27,6 +27,7 @@
   letter-spacing: var(--ls-wide);
   font-weight: var(--fw-medium);
 }
+
 .breadcrumbs__item + .breadcrumbs__item::before {
   content: '/';
   color: color-mix(in srgb, var(--color-text-muted) 65%, transparent);
@@ -36,6 +37,7 @@
 .breadcrumbs__current {
   line-height: var(--lh-flat);
 }
+
 .breadcrumbs__link {
   color: inherit;
   transition:
@@ -47,6 +49,7 @@
     color: var(--color-text);
   }
 }
+
 .breadcrumbs__link:focus-visible {
   outline: 2px solid color-mix(in srgb, var(--color-primary) 40%, transparent);
   outline-offset: 3px;
@@ -75,6 +78,7 @@
   width: fit-content;
   font-weight: var(--fw-semibold);
 }
+
 @media (min-width: 480px) {
   .section__eyebrow {
     margin-bottom: var(--space-4);

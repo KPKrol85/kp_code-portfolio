@@ -128,12 +128,9 @@ try {
     htmlspecialchars($sanitized['message'], ENT_QUOTES | ENT_SUBSTITUTE, 'UTF-8'),
   );
   $safeMessageText = str_replace(["\r\n", "\r"], "\n", $sanitized['message']);
-  $serviceHtml = $sanitized['service'] !== ''
-    ? sprintf('<p><strong>Usługa:</strong> %s</p>', $safeService)
-    : '';
-  $serviceText = $sanitized['service'] !== ''
-    ? "Usługa: {$sanitized['service']}\n\n"
-    : '';
+  $serviceHtml =
+    $sanitized['service'] !== '' ? sprintf('<p><strong>Usługa:</strong> %s</p>', $safeService) : '';
+  $serviceText = $sanitized['service'] !== '' ? "Usługa: {$sanitized['service']}\n\n" : '';
 
   $mail->Body = <<<HTML
   <h2>Nowa wiadomość z formularza kontaktowego</h2>

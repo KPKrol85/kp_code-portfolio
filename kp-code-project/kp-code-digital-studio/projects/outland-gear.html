@@ -9,7 +9,7 @@
     <title>Outland Gear | Projekt portfolio</title>
     <meta
       name="description"
-      content="Poznaj projekt Outland Gear: nowoczesny sklep e-commerce ze sprzętem outdoorowym i turystycznym, zaprojektowany pod czytelną ofertę, mocną prezentację produktu i premium odbiór marki."
+      content="Poznaj projekt Outland Gear: statyczny, wielostronicowy front-end e-commerce z katalogiem produktów, kompletami podróżnymi, koszykiem, checkoutem, SEO i testami dostępności."
     />
     <link rel="canonical" href="https://www.kp-code.pl/projects/outland-gear.html" />
     <meta property="og:type" content="website" />
@@ -18,7 +18,7 @@
     <meta property="og:title" content="Outland Gear | Projekt portfolio" />
     <meta
       property="og:description"
-      content="Projekt sklepu internetowego dla branży outdoor i travel, skupiony na przejrzystej ekspozycji asortymentu, mocnym klimacie marki i wygodnej ścieżce zakupowej."
+      content="Outland Gear to projekt MPA e-commerce z katalogiem produktów opartym o JSON, filtrami, koszykiem w localStorage, checkoutem, formularzami i buildem pod Netlify."
     />
     <meta property="og:url" content="https://www.kp-code.pl/projects/outland-gear.html" />
     <meta property="og:image" content="https://www.kp-code.pl/assets/og/og-img.png" />
@@ -30,7 +30,7 @@
     <meta name="twitter:title" content="Outland Gear | Projekt portfolio" />
     <meta
       name="twitter:description"
-      content="Outland Gear to koncept sklepu outdoorowego, który łączy wyrazisty charakter marki z czytelną prezentacją kategorii, produktów i ścieżki zakupu."
+      content="Outland Gear pokazuje statyczny front-end sklepu e-commerce z katalogiem, stronami produktów, kompletami podróżnymi, koszykiem, checkoutem i pipeline'em buildowym."
     />
     <meta name="twitter:image" content="https://www.kp-code.pl/assets/og/og-img.png" />
     <link rel="icon" href="/assets/icons/favicon.svg" type="image/svg+xml" />
@@ -64,8 +64,9 @@
             <div class="page-hero__content">
               <h1 class="hero__title page-hero__title">Outland Gear</h1>
               <p class="hero__lead page-hero__lead">
-                Projekt sklepu e-commerce ze sprzętem outdoorowym i turystycznym, zaprojektowany pod
-                mocną ekspozycję produktu, czytelną ofertę i nowoczesny odbiór marki.
+                Statyczny, wielostronicowy front-end sklepu e-commerce ze sprzętem outdoorowym,
+                katalogiem produktów, kompletami podróżnymi, koszykiem, checkoutem i zapleczem
+                buildowym pod publikację.
               </p>
             </div>
             <div class="page-hero__media" aria-hidden="true">
@@ -111,25 +112,24 @@
               <div class="section__header">
                 <p class="section__eyebrow">Przegląd projektu</p>
                 <h2 class="section__title">
-                  Outland Gear rozwija kierunek nowoczesnego sklepu internetowego dla branży outdoor
-                  i travel, który łączy charakter marki z uporządkowaną strukturą sprzedażową.
+                  Outland Gear to statyczna aplikacja MPA dla sklepu outdoorowego, z katalogiem,
+                  stronami produktów, koszykiem, checkoutem, formularzami i zapleczem SEO.
                 </h2>
                 <p class="section__subtitle">
-                  Projekt pokazuje, jak prezentować sprzęt turystyczny i podróżniczy w sposób
-                  wizualnie dopracowany, ale jednocześnie prosty w odbiorze i gotowy do dalszej
-                  rozbudowy.
+                  Zakres obejmuje katalog produktów, strony szczegółowe produktów, stronę kompletów
+                  podróżnych, kontakt, FAQ, checkout oraz strony regulaminowe.
                 </p>
               </div>
               <p>
-                W sklepach z takim asortymentem liczy się nie tylko atmosfera marki, ale też szybka
-                orientacja w ofercie, kategoriach i wyróżnionych produktach. Outland Gear stawia na
-                czytelny rytm sekcji, mocne kadrowanie oferty i spokojną hierarchię treści, która
-                wspiera decyzję zakupową.
+                Katalog korzysta z danych w <code>data/products.json</code> i obsługuje filtrowanie
+                po cenie, ocenie, podkategorii oraz badge'u, a także sortowanie, wyszukiwanie,
+                paginację typu load more i synchronizację stanu filtrów z adresem URL.
               </p>
               <p>
-                To dopracowany koncept portfolio, który może być dalej rozwijany o filtry, kolekcje
-                sezonowe, landing pages kampanii, rozbudowane karty produktów lub sekcje poradnikowe
-                związane z podróżami i aktywnością outdoorową.
+                Projekt zawiera dynamiczne strony produktów i kompletów podróżnych oparte o slugi i
+                dane JSON, koszyk zapisujący stan w <code>localStorage</code>, checkout z walidacją,
+                formularz kontaktowy, newsletter, obsługę motywu light/dark oraz fallbacki dla
+                problemów z danymi lub storage.
               </p>
               <div class="pill-grid" aria-label="Kategorie projektu Outland Gear">
                 <span class="tag">E-commerce</span><span class="tag">Outdoor</span
@@ -143,19 +143,35 @@
               <div class="project-meta">
                 <div class="project-meta__group">
                   <p class="project-meta__label">Typ projektu</p>
-                  <p class="project-meta__value">Sklep e-commerce</p>
+                  <p class="project-meta__value">Wielostronicowy front-end sklepu e-commerce</p>
                 </div>
                 <div class="project-meta__group">
                   <p class="project-meta__label">Status</p>
-                  <p class="project-meta__value">Gotowy koncept</p>
+                  <p class="project-meta__value">
+                    Projekt referencyjny / gotowy front-end statyczny
+                  </p>
                   <p class="project-meta__note">
-                    Projekt pokazuje dopracowany kierunek sklepu outdoorowego przygotowanego pod
-                    dalszy rozwój oferty, kategorii i warstwy sprzedażowej.
+                    Showcase portfolio bez backendu zamówień. Zakres skupia się na warstwie
+                    front-endowej: katalogu, koszyku, checkoutcie, formularzach, SEO, dostępności i
+                    buildzie produkcyjnym.
                   </p>
                 </div>
                 <div class="project-meta__group">
+                  <p class="project-meta__label">Dokumentacja</p>
+                  <p class="project-meta__value">Opis techniczny projektu</p>
+                  <p class="project-meta__note">
+                    Plik opisuje zakres sklepu, funkcje, dane, stack, build, deployment, SEO i testy
+                    dostępności.
+                  </p>
+                  <a class="footer__link" href="../assets/docs/outland-gear-readme.md" download
+                    >Pobierz opis techniczny</a
+                  >
+                </div>
+                <div class="project-meta__group">
                   <p class="project-meta__label">Priorytet</p>
-                  <p class="project-meta__value">Czytelna oferta i ekspozycja produktu</p>
+                  <p class="project-meta__value">
+                    Katalog produktów, koszyk, checkout, dostępność, SEO i build e-commerce
+                  </p>
                 </div>
               </div>
             </aside>
@@ -167,33 +183,34 @@
           <div class="section__header" data-reveal="soft">
             <p class="section__eyebrow">Zakres i akcenty</p>
             <h2 class="section__title" id="outland-highlights-title">
-              Projekt został zbudowany tak, by sklep wyglądał nowocześnie i wiarygodnie, a przy tym
-              prowadził użytkownika przez ofertę bez chaosu.
+              Case study koncentruje się na praktycznych elementach sklepu: katalogu, danych
+              produktowych, koszyku, checkoutcie oraz standardzie technicznym wdrożenia.
             </h2>
           </div>
           <div class="grid grid--3" data-reveal-group="cards">
             <article class="card project-highlights__card" data-reveal-item="soft">
               <p class="project-highlights__index">01</p>
-              <h3 class="project-highlights__title">Charakter outdoorowej marki</h3>
+              <h3 class="project-highlights__title">Katalog produktów i filtry</h3>
               <p class="card__meta">
-                Warstwa wizualna buduje klimat aktywności, podróży i jakościowego sprzętu bez
-                przeciążania interfejsu.
+                Katalog korzysta z lokalnych danych JSON, obsługuje filtrowanie, sortowanie,
+                wyszukiwanie, paginację load more oraz synchronizację stanu filtrów z URL.
               </p>
             </article>
             <article class="card project-highlights__card" data-reveal-item="soft">
               <p class="project-highlights__index">02</p>
-              <h3 class="project-highlights__title">Czytelna prezentacja asortymentu</h3>
+              <h3 class="project-highlights__title">Produkt, koszyk i checkout</h3>
               <p class="card__meta">
-                Układ wspiera szybkie rozpoznanie kategorii, produktów wyróżnionych i kluczowych
-                ścieżek zakupowych.
+                Dynamiczne strony produktów i kompletów działają na podstawie slugów, a koszyk w
+                <code>localStorage</code> obsługuje ilości, usuwanie pozycji i podsumowanie
+                zamówienia.
               </p>
             </article>
             <article class="card project-highlights__card" data-reveal-item="soft">
               <p class="project-highlights__index">03</p>
-              <h3 class="project-highlights__title">Przestrzeń na rozwój sklepu</h3>
+              <h3 class="project-highlights__title">SEO, Netlify i testy a11y</h3>
               <p class="card__meta">
-                Projekt może zostać rozszerzony o kolejne kampanie, sekcje inspiracyjne i bardziej
-                rozbudowaną architekturę produktową.
+                Build generuje metadane, sitemapę, roboty i prerenderowane ścieżki, a jakość
+                dostępności wspierają testy Playwright + axe-core oraz workflow GitHub Actions.
               </p>
             </article>
           </div>
@@ -206,19 +223,25 @@
               <div class="section__header">
                 <p class="section__eyebrow">Technologie i standard</p>
                 <h2 class="section__title">
-                  Strona korzysta z lekkiego frontendu i architektury, która wspiera estetykę,
-                  wydajność oraz dalszy rozwój sprzedażowych sekcji sklepu.
+                  Outland Gear został zbudowany jako wielostronicowy front-end HTML, CSS i Vanilla
+                  JavaScript, z lokalnymi danymi JSON oraz procesem buildowym dla e-commerce.
                 </h2>
               </div>
               <p>
-                Projekty e-commerce z segmentu outdoor potrzebują kontroli nad hierarchią, rytmem
-                treści i jakością ekspozycji wizualnej. Statyczna warstwa frontendowa dobrze
-                sprawdza się jako baza dla konceptowych sklepów, które można rozwijać etapami.
+                Architektura CSS jest podzielona na warstwy <code>tokens</code>, <code>base</code>,
+                <code>layout</code>, <code>components</code> i <code>pages</code>. Logika aplikacji
+                działa w modułach ES, a dane produktów, kategorii i kompletów są utrzymywane w
+                <code>data/*.json</code>.
               </p>
               <ul class="list">
-                <li>semantyczna struktura sekcji wspierająca SEO i czytelność,</li>
-                <li>responsywny układ dopasowany do mobile commerce,</li>
-                <li>komponenty przygotowane pod rozbudowę katalogu i kampanii.</li>
+                <li>
+                  moduły <code>catalog</code>, <code>product</code>, <code>cart</code>,
+                  <code>checkout</code>, <code>travel-kits</code>, <code>faq</code>,
+                  <code>newsletter</code> i <code>contact</code>,
+                </li>
+                <li>PostCSS z <code>postcss-import</code> i <code>cssnano</code> oraz esbuild,</li>
+                <li>sharp, własne skrypty Node i prerender ścieżek produktów oraz kompletów,</li>
+                <li>Playwright, axe-core i GitHub Actions dla automatyzacji testów dostępności.</li>
               </ul>
             </div>
             <aside
@@ -228,21 +251,25 @@
               <div class="project-stack__list">
                 <div class="project-stack__item">
                   <p class="project-stack__label">Frontend</p>
-                  <p class="project-stack__value">HTML / CSS / JavaScript</p>
-                  <p class="project-stack__desc">Lekki stack dla sklepu i stron produktowych.</p>
+                  <p class="project-stack__value">HTML5 MPA / CSS3 / ES Modules</p>
+                  <p class="project-stack__desc">
+                    Wielostronicowa aplikacja z partialami header/footer i modułowym JavaScriptem.
+                  </p>
                 </div>
                 <div class="project-stack__item">
-                  <p class="project-stack__label">Fokus treści</p>
-                  <p class="project-stack__value">Oferta, kategorie, produkt</p>
+                  <p class="project-stack__label">Dane i sprzedaż</p>
+                  <p class="project-stack__value">JSON, katalog, koszyk, checkout</p>
                   <p class="project-stack__desc">
-                    Treści wspierają szybką orientację w asortymencie i ścieżce zakupu.
+                    Produkty i komplety są zasilane z danych, a koszyk oraz formularze działają po
+                    stronie klienta.
                   </p>
                 </div>
                 <div class="project-stack__item">
                   <p class="project-stack__label">Standard jakości</p>
-                  <p class="project-stack__value">Czytelność i spójny rytm wizualny</p>
+                  <p class="project-stack__value">Build, SEO, Netlify i a11y</p>
                   <p class="project-stack__desc">
-                    Projekt utrzymuje balans między charakterem marki a funkcjonalnością sklepu.
+                    Projekt obejmuje <code>netlify.toml</code>, <code>robots.txt</code>,
+                    <code>sitemap.xml</code>, nagłówki, cache policy i testy Playwright + axe-core.
                   </p>
                 </div>
               </div>
@@ -250,43 +277,126 @@
           </div>
         </div>
       </section>
-      <section class="section" aria-labelledby="outland-visual-title" data-reveal="visual">
+      <!-- Visual -->
+      <section
+        class="section"
+        aria-label="Podgląd wizualny projektu Outland Gear"
+        data-reveal="visual"
+      >
         <div class="container">
-          <div class="section__header">
-            <p class="section__eyebrow">Prezentacja wizualna</p>
-            <h2 class="section__title" id="outland-visual-title">
-              Główny kadr projektu pokazuje kierunek dla nowoczesnego sklepu outdoorowego z wyraźnym
-              produktem i uporządkowaną prezentacją oferty.
-            </h2>
-          </div>
           <figure class="project-visual__frame">
-            <picture
-              ><source
-                type="image/avif"
-                srcset="
-                  ../assets/img/img_optimized/selected-work/outland-gear-480.avif   480w,
-                  ../assets/img/img_optimized/selected-work/outland-gear-768.avif   768w,
-                  ../assets/img/img_optimized/selected-work/outland-gear-1024.avif 1024w
-                "
-                sizes="(max-width: 640px) 100vw, (max-width: 1100px) 90vw, 960px" />
-              <source
-                type="image/webp"
-                srcset="
-                  ../assets/img/img_optimized/selected-work/outland-gear-480.webp   480w,
-                  ../assets/img/img_optimized/selected-work/outland-gear-768.webp   768w,
-                  ../assets/img/img_optimized/selected-work/outland-gear-1024.webp 1024w
-                "
-                sizes="(max-width: 640px) 100vw, (max-width: 1100px) 90vw, 960px" />
-              <img
-                src="../assets/img/img_optimized/selected-work/outland-gear-1024.jpg"
-                alt="Outland Gear — sklep e-commerce ze sprzętem outdoorowym i turystycznym"
-                width="1024"
-                height="683"
-            /></picture>
-           
+            <div class="project-mockups project-mockups--trio">
+              <!-- Mobile -->
+              <div class="project-mockups__item project-mockups__item--mobile">
+                <div class="project-mockups__media">
+                  <picture>
+                    <source
+                      type="image/avif"
+                      srcset="
+                        ../assets/img/img_optimized/mockup/outland-gear-mobile-480.avif   480w,
+                        ../assets/img/img_optimized/mockup/outland-gear-mobile-768.avif   768w,
+                        ../assets/img/img_optimized/mockup/outland-gear-mobile-1024.avif 1024w,
+                        ../assets/img/img_optimized/mockup/outland-gear-mobile-1440.avif 1440w
+                      "
+                      sizes="(min-width: 1024px) 33vw, (min-width: 760px) 70vw, 90vw"
+                    />
+                    <source
+                      type="image/webp"
+                      srcset="
+                        ../assets/img/img_optimized/mockup/outland-gear-mobile-480.webp   480w,
+                        ../assets/img/img_optimized/mockup/outland-gear-mobile-768.webp   768w,
+                        ../assets/img/img_optimized/mockup/outland-gear-mobile-1024.webp 1024w,
+                        ../assets/img/img_optimized/mockup/outland-gear-mobile-1440.webp 1440w
+                      "
+                      sizes="(min-width: 1024px) 33vw, (min-width: 760px) 70vw, 90vw"
+                    />
+                    <img
+                      src="../assets/img/img_optimized/mockup/outland-gear-mobile-768.webp"
+                      alt="Mockup mobilny projektu Outland Gear prezentowany w widoku telefonu"
+                      width="770"
+                      height="666"
+                      loading="lazy"
+                      decoding="async"
+                    />
+                  </picture>
+                </div>
+              </div>
+              <!-- Tablet -->
+              <div class="project-mockups__item project-mockups__item--tablet">
+                <div class="project-mockups__media">
+                  <picture>
+                    <source
+                      type="image/avif"
+                      srcset="
+                        ../assets/img/img_optimized/mockup/outland-gear-tablet-480.avif   480w,
+                        ../assets/img/img_optimized/mockup/outland-gear-tablet-768.avif   768w,
+                        ../assets/img/img_optimized/mockup/outland-gear-tablet-1024.avif 1024w,
+                        ../assets/img/img_optimized/mockup/outland-gear-tablet-1440.avif 1440w
+                      "
+                      sizes="(min-width: 1024px) 33vw, (min-width: 760px) 70vw, 90vw"
+                    />
+                    <source
+                      type="image/webp"
+                      srcset="
+                        ../assets/img/img_optimized/mockup/outland-gear-tablet-480.webp   480w,
+                        ../assets/img/img_optimized/mockup/outland-gear-tablet-768.webp   768w,
+                        ../assets/img/img_optimized/mockup/outland-gear-tablet-1024.webp 1024w,
+                        ../assets/img/img_optimized/mockup/outland-gear-tablet-1440.webp 1440w
+                      "
+                      sizes="(min-width: 1024px) 33vw, (min-width: 760px) 70vw, 90vw"
+                    />
+                    <img
+                      src="../assets/img/img_optimized/mockup/outland-gear-tablet-1024.webp"
+                      alt="Mockup tabletowy projektu Outland Gear prezentowany w widoku tabletu"
+                      width="770"
+                      height="666"
+                      loading="lazy"
+                      decoding="async"
+                    />
+                  </picture>
+                </div>
+              </div>
+              <!-- Desktop -->
+              <div class="project-mockups__item project-mockups__item--desktop">
+                <div class="project-mockups__media">
+                  <picture>
+                    <source
+                      type="image/avif"
+                      srcset="
+                        ../assets/img/img_optimized/mockup/outland-gear-laptop-480.avif   480w,
+                        ../assets/img/img_optimized/mockup/outland-gear-laptop-768.avif   768w,
+                        ../assets/img/img_optimized/mockup/outland-gear-laptop-1024.avif 1024w,
+                        ../assets/img/img_optimized/mockup/outland-gear-laptop-1440.avif 1440w
+                      "
+                      sizes="(min-width: 1024px) 33vw, (min-width: 760px) 70vw, 90vw"
+                    />
+                    <source
+                      type="image/webp"
+                      srcset="
+                        ../assets/img/img_optimized/mockup/outland-gear-laptop-480.webp   480w,
+                        ../assets/img/img_optimized/mockup/outland-gear-laptop-768.webp   768w,
+                        ../assets/img/img_optimized/mockup/outland-gear-laptop-1024.webp 1024w,
+                        ../assets/img/img_optimized/mockup/outland-gear-laptop-1440.webp 1440w
+                      "
+                      sizes="(min-width: 1024px) 33vw, (min-width: 760px) 70vw, 90vw"
+                    />
+                    <img
+                      src="../assets/img/img_optimized/mockup/outland-gear-laptop-1024.webp"
+                      alt="Mockup desktopowy projektu Outland Gear prezentowany w widoku laptopa"
+                      width="770"
+                      height="666"
+                      loading="lazy"
+                      decoding="async"
+                    />
+                  </picture>
+                </div>
+              </div>
+            </div>
           </figure>
         </div>
       </section>
+
+      <!-- CTA -->
       <section class="section" data-reveal="soft">
         <div class="container">
           <div class="card project-cta__shell">
@@ -296,8 +406,8 @@
                 Przejdź do wersji live sklepu albo wróć do pełnego portfolio.
               </h2>
               <p class="section__subtitle">
-                Ta podstrona jest częścią spójnego systemu detail pages, który można łatwo rozwijać
-                o kolejne projekty i case studies.
+                Outland Gear pokazuje, jak statyczny front-end e-commerce może połączyć katalog,
+                koszyk, checkout, dane produktowe i techniczne przygotowanie do publikacji.
               </p>
             </div>
             <div class="project-cta__actions">
@@ -343,7 +453,7 @@
             "@id": "https://www.kp-code.pl/projects/outland-gear.html#webpage",
             "url": "https://www.kp-code.pl/projects/outland-gear.html",
             "name": "Outland Gear | Projekt portfolio",
-            "description": "Poznaj projekt Outland Gear: nowoczesny sklep e-commerce ze sprzętem outdoorowym i turystycznym, zaprojektowany pod czytelną ofertę, mocną prezentację produktu i premium odbiór marki.",
+            "description": "Poznaj projekt Outland Gear: statyczny, wielostronicowy front-end e-commerce z katalogiem produktów, kompletami podróżnymi, koszykiem, checkoutem, SEO i testami dostępności.",
             "isPartOf": { "@id": "https://www.kp-code.pl/#website" },
             "about": { "@id": "https://www.kp-code.pl/#organization" },
             "publisher": { "@id": "https://www.kp-code.pl/#organization" },

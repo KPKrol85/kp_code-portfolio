@@ -16,7 +16,7 @@ export async function checkPhpRuntime() {
   ]);
 
   if (!contactPhp.includes("__DIR__ . '/contact.html'")) {
-    errors.push("contact.php: expected runtime template path to contact.html in dist");
+    errors.push('contact.php: expected runtime template path to contact.html in dist');
   }
 
   if (!contactPhp.includes("require_once __DIR__ . '/contact-form-support.php'")) {
@@ -56,7 +56,9 @@ export async function checkPhpRuntime() {
       .sort();
 
     if (extraEntries.length > 0) {
-      errors.push(`vendor/phpmailer/phpmailer contains non-runtime entries: ${extraEntries.join(', ')}`);
+      errors.push(
+        `vendor/phpmailer/phpmailer contains non-runtime entries: ${extraEntries.join(', ')}`
+      );
     }
   }
 

@@ -1,35 +1,40 @@
 <!doctype html>
 <html lang="pl">
   <head>
+    <!-- Meta -->
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)" />
     <meta name="theme-color" content="#0f1115" media="(prefers-color-scheme: dark)" />
     <meta name="robots" content="index, follow" />
     <title>Volt Garage | Projekt portfolio</title>
+    <!-- SEO -->
     <meta
       name="description"
-      content="Poznaj projekt Volt Garage: nowoczesny sklep e-commerce z częściami i akcesoriami samochodowymi, zaprojektowany pod czytelną ofertę i mocny charakter marki."
+      content="Poznaj Volt Garage: statyczny, wielostronicowy front-end sklepu z akcesoriami motoryzacyjnymi, katalogiem produktów z JSON, koszykiem localStorage i podstawą PWA."
     />
     <link rel="canonical" href="https://www.kp-code.pl/projects/volt-garage.html" />
+    <!-- Open Graph -->
     <meta property="og:type" content="website" />
     <meta property="og:locale" content="pl_PL" />
     <meta property="og:site_name" content="KP_Code Digital Studio" />
     <meta property="og:title" content="Volt Garage | Projekt portfolio" />
     <meta
       property="og:description"
-      content="Projekt sklepu internetowego dla branży motoryzacyjnej, skupiony na ekspozycji produktu, klarownej strukturze i wyrazistym looku."
+      content="Referencyjny front-end e-commerce dla branży motoryzacyjnej: katalog produktów z JSON, filtrowanie, koszyk, checkout po stronie klienta i przygotowanie pod statyczną publikację."
     />
     <meta property="og:url" content="https://www.kp-code.pl/projects/volt-garage.html" />
     <meta property="og:image" content="https://www.kp-code.pl/assets/og/og-img.png" />
     <meta property="og:image:alt" content="Podgląd projektu Volt Garage w KP_Code Digital Studio" />
+    <!-- Twitter -->
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content="Volt Garage | Projekt portfolio" />
     <meta
       name="twitter:description"
-      content="Volt Garage to projekt e-commerce dla motoryzacji, który łączy mocny branding z czytelną prezentacją asortymentu."
+      content="Volt Garage to statyczny front-end sklepu motoryzacyjnego z katalogiem JSON, koszykiem localStorage, walidacją formularzy i podstawą PWA."
     />
     <meta name="twitter:image" content="https://www.kp-code.pl/assets/og/og-img.png" />
+    <!-- Icons / PWA -->
     <link rel="icon" href="/assets/icons/favicon.svg" type="image/svg+xml" />
     <link rel="apple-touch-icon" href="/assets/icons/apple-touch-icon.png" />
     <link rel="manifest" href="/assets/icons/site.webmanifest" />
@@ -41,7 +46,10 @@
 
     <!-- Header -->
     <!-- @include:header -->
+
+    <!-- Main -->
     <main id="main">
+      <!-- Hero -->
       <section class="section page-hero" data-reveal="soft">
         <div class="container">
           <nav class="breadcrumbs" aria-label="Breadcrumb">
@@ -61,8 +69,8 @@
             <div class="page-hero__content">
               <h1 class="hero__title page-hero__title">Volt Garage</h1>
               <p class="hero__lead page-hero__lead">
-                Projekt sklepu e-commerce z częściami i akcesoriami samochodowymi, zaprojektowany pod
-                mocny branding, czytelną ofertę i wygodną ścieżkę zakupową.
+                Statyczny, wielostronicowy front-end sklepu z akcesoriami motoryzacyjnymi, łączący
+                lokalny katalog produktów, koszyk po stronie klienta, checkout i podstawy PWA.
               </p>
             </div>
             <div class="page-hero__media" aria-hidden="true">
@@ -101,6 +109,8 @@
           </div>
         </div>
       </section>
+
+      <!-- Project overview -->
       <section class="section" data-reveal="standard">
         <div class="container">
           <div class="project-overview__grid">
@@ -108,23 +118,26 @@
               <div class="section__header">
                 <p class="section__eyebrow">Przegląd projektu</p>
                 <h2 class="section__title">
-                  Volt Garage rozwija kierunek nowoczesnego sklepu internetowego dla branży
-                  motoryzacyjnej, który łączy energiczny charakter marki z uporządkowaną strukturą
-                  sprzedażową.
+                  Volt Garage pokazuje realistyczny zakres statycznego front-endu e-commerce: od
+                  wielostronicowej struktury sklepu po katalog produktów, koszyk i checkout
+                  obsługiwane w przeglądarce.
                 </h2>
                 <p class="section__subtitle">
-                  Projekt pokazuje, jak połączyć wizerunek sklepu z czytelną ekspozycją kategorii,
-                  produktów i kluczowych informacji wspierających decyzję zakupową.
+                  Projekt został przygotowany jako referencyjna realizacja portfolio: bez backendu
+                  zamówień, SSR i serwerowego checkoutu, ale z dopracowaną warstwą interfejsu,
+                  danych lokalnych, SEO i podstaw publikacji statycznej.
                 </p>
               </div>
               <p>
-                W e-commerce znaczenie ma zarówno klimat marki, jak i logika interfejsu. Volt Garage
-                zachowuje wyrazisty ton wizualny, ale nie rezygnuje z klarownego układu sekcji,
-                dzięki czemu sklep pozostaje łatwy do skanowania i rozwijania.
+                Zakres obejmuje stronę główną, sklep, szczegóły produktu, nowości, promocje,
+                kolekcje, kontakt, koszyk, checkout oraz strony prawne. Dzięki temu case study
+                pokazuje nie tylko pojedynczy landing, ale pełniejszą architekturę sklepu
+                internetowego w wersji front-endowej.
               </p>
               <p>
-                Projekt może stanowić bazę dla dalszej rozbudowy o filtry, wyróżnione kolekcje,
-                akcje promocyjne, sekcje inspiracyjne czy rozbudowane karty produktów.
+                Repozytorium zawiera również elementy wspierające wdrożenie statyczne: bundling CSS
+                i JS, generowanie katalogu <code>dist</code>, konfigurację nagłówków i przekierowań,
+                manifest, Service Workera oraz stronę offline.
               </p>
               <div class="pill-grid" aria-label="Kategorie projektu Volt Garage">
                 <span class="tag">E-commerce</span><span class="tag">Motoryzacja</span
@@ -138,62 +151,80 @@
               <div class="project-meta">
                 <div class="project-meta__group">
                   <p class="project-meta__label">Typ projektu</p>
-                  <p class="project-meta__value">Sklep e-commerce</p>
+                  <p class="project-meta__value">Front-end sklepu e-commerce</p>
                 </div>
                 <div class="project-meta__group">
                   <p class="project-meta__label">Status</p>
-                  <p class="project-meta__value">Gotowy koncept</p>
+                  <p class="project-meta__value">
+                    Projekt referencyjny / gotowy front-end statyczny
+                  </p>
                   <p class="project-meta__note">
-                    Projekt stanowi rozwinięty kierunek sklepu internetowego dla marki z branży
-                    motoryzacyjnej i jest przygotowany pod dalsze rozbudowanie warstwy sprzedażowej.
+                    Showcase portfolio bez backendu zamówień i serwerowego checkoutu. Zakres skupia
+                    się na warstwie UI, logice katalogu, koszyku po stronie klienta i przygotowaniu
+                    do publikacji statycznej.
                   </p>
                 </div>
                 <div class="project-meta__group">
+                  <p class="project-meta__label">Dokumentacja</p>
+                  <p class="project-meta__value">Opis techniczny projektu</p>
+                  <p class="project-meta__note">
+                    Plik opisuje zakres projektu, strukturę, funkcje oraz założenia techniczne
+                    referencyjnego front-endu.
+                  </p>
+                  <a class="footer__link" href="../assets/docs/volt-garage-readme.md" download
+                    >Pobierz opis techniczny</a
+                  >
+                </div>
+                <div class="project-meta__group">
                   <p class="project-meta__label">Priorytet</p>
-                  <p class="project-meta__value">Ekspozycja produktu i charakter marki</p>
+                  <p class="project-meta__value">Katalog, ścieżka zakupowa i jakość front-endu</p>
                 </div>
               </div>
             </aside>
           </div>
         </div>
       </section>
+
+      <!-- Highlights -->
       <section class="section project-highlights" aria-labelledby="volt-highlights-title">
         <div class="container">
           <div class="section__header" data-reveal="soft">
             <p class="section__eyebrow">Zakres i akcenty</p>
             <h2 class="section__title" id="volt-highlights-title">
-              Projekt został podporządkowany temu, by sklep wyglądał wyraziście, ale pozostawał
-              czytelny i sprzedażowo uporządkowany.
+              Case study koncentruje się na praktycznych elementach sklepu: danych produktowych,
+              interakcji użytkownika i standardzie przygotowania front-endu.
             </h2>
           </div>
           <div class="grid grid--3" data-reveal-group="cards">
             <article class="card project-highlights__card" data-reveal-item="soft">
               <p class="project-highlights__index">01</p>
-              <h3 class="project-highlights__title">Mocny branding</h3>
+              <h3 class="project-highlights__title">Katalog produktów z JSON</h3>
               <p class="card__meta">
-                Stylistyka projektu buduje charakter motoryzacyjnej marki i wzmacnia rozpoznawalność
-                sklepu.
+                Lista produktów i widok szczegółów są renderowane z lokalnego pliku
+                <code>data/products.json</code>, co pozwala pokazać pracę z danymi bez backendu.
               </p>
             </article>
             <article class="card project-highlights__card" data-reveal-item="soft">
               <p class="project-highlights__index">02</p>
-              <h3 class="project-highlights__title">Czytelna prezentacja oferty</h3>
+              <h3 class="project-highlights__title">Filtry, koszyk i checkout</h3>
               <p class="card__meta">
-                Układ strony pomaga szybko rozpoznać kategorie, wyróżnione produkty i główne ścieżki
-                zakupowe.
+                Sklep obsługuje filtrowanie, sortowanie, wyszukiwanie z podpowiedziami oraz koszyk
+                zapisany w <code>localStorage</code> z klientowym flow checkoutu.
               </p>
             </article>
             <article class="card project-highlights__card" data-reveal-item="soft">
               <p class="project-highlights__index">03</p>
-              <h3 class="project-highlights__title">Skalowalność e-commerce</h3>
+              <h3 class="project-highlights__title">SEO, dostępność i PWA</h3>
               <p class="card__meta">
-                Projekt może zostać rozwinięty o więcej sekcji produktowych, landingów i elementów
-                wspierających sprzedaż.
+                Projekt uwzględnia walidację formularzy, dynamiczne JSON-LD, tryb jasny/ciemny,
+                Service Workera, fallback offline i podstawowe założenia wydajnościowe.
               </p>
             </article>
           </div>
         </div>
       </section>
+
+      <!-- Stack -->
       <section class="section" data-reveal="standard">
         <div class="container">
           <div class="project-stack__grid">
@@ -201,19 +232,22 @@
               <div class="section__header">
                 <p class="section__eyebrow">Technologie i standard</p>
                 <h2 class="section__title">
-                  Strona korzysta z lekkiego frontendu i struktury, która wspiera estetykę,
-                  wydajność i łatwiejszy rozwój sprzedażowych sekcji.
+                  Projekt został zbudowany w lekkim stacku HTML, CSS i Vanilla JavaScript, z
+                  modułową logiką front-endową oraz narzędziami wspierającymi jakość kodu.
                 </h2>
               </div>
               <p>
-                Takie projekty potrzebują dobrej kontroli nad layoutem, hierarchią i wizualnym
-                ciężarem interfejsu. Statyczna warstwa frontendowa dobrze wspiera konceptowe sklepy
-                i warstwy sprzedażowe rozwijane krok po kroku.
+                Warstwa runtime opiera się na HTML5, CSS z partialami, ES Modules i lokalnych danych
+                produktowych w JSON. Po stronie utrzymania projekt korzysta z procesu buildowego,
+                walidacji kodu, formatowania oraz skryptów QA wspierających spójność i kontrolę
+                jakości.
               </p>
               <ul class="list">
-                <li>semantyczna struktura treści i sekcji ofertowych,</li>
-                <li>responsywny układ dopasowany do mobile commerce,</li>
-                <li>komponenty gotowe do dalszego rozwijania katalogu i kampanii.</li>
+                <li>wielostronicowa struktura sklepu i semantyczne szablony widoków,</li>
+                <li>moduły produktów, filtrów, koszyka, formularzy i obsługi PWA,</li>
+                <li>
+                  build statyczny z minifikacją assetów i generowaniem katalogu <code>dist</code>.
+                </li>
               </ul>
             </div>
             <aside
@@ -223,21 +257,23 @@
               <div class="project-stack__list">
                 <div class="project-stack__item">
                   <p class="project-stack__label">Frontend</p>
-                  <p class="project-stack__value">HTML / CSS / JavaScript</p>
-                  <p class="project-stack__desc">Lekki stack dla sklepu i stron produktowych.</p>
+                  <p class="project-stack__value">HTML5 / CSS / Vanilla JS</p>
+                  <p class="project-stack__desc">
+                    ES Modules, partiale CSS i lokalny katalog produktów w JSON.
+                  </p>
                 </div>
                 <div class="project-stack__item">
-                  <p class="project-stack__label">Fokus treści</p>
-                  <p class="project-stack__value">Oferta, kategorie, produkt</p>
+                  <p class="project-stack__label">Logika sklepu</p>
+                  <p class="project-stack__value">Produkty, filtry, koszyk</p>
                   <p class="project-stack__desc">
-                    Treści wspierają szybkie zrozumienie asortymentu i nawigacji sklepu.
+                    Renderowanie katalogu, wyszukiwanie, sortowanie i koszyk zapisany lokalnie.
                   </p>
                 </div>
                 <div class="project-stack__item">
                   <p class="project-stack__label">Standard jakości</p>
-                  <p class="project-stack__value">Czytelność i dynamika wizualna</p>
+                  <p class="project-stack__value">SEO, PWA i QA</p>
                   <p class="project-stack__desc">
-                    Projekt utrzymuje balans między energią marki a funkcjonalnością interfejsu.
+                    JSON-LD, offline fallback, walidacja formularzy oraz narzędzia lint/validate.
                   </p>
                 </div>
               </div>
@@ -245,45 +281,127 @@
           </div>
         </div>
       </section>
-      <section class="section" aria-labelledby="volt-visual-title" data-reveal="visual">
+
+      <!-- Visual -->
+      <section
+        class="section"
+        aria-label="Podgląd wizualny projektu Volt Garage"
+        data-reveal="visual"
+      >
         <div class="container">
-          <div class="section__header">
-            <p class="section__eyebrow">Prezentacja wizualna</p>
-            <h2 class="section__title" id="volt-visual-title">
-              Główny kadr projektu pokazuje kierunek dla nowoczesnego sklepu motoryzacyjnego z
-              wyraźnym charakterem marki.
-            </h2>
-          </div>
           <figure class="project-visual__frame">
-            <picture
-              ><source
-                type="image/avif"
-                srcset="
-                  ../assets/img/img_optimized/selected-work/volt-garage-480.avif   480w,
-                  ../assets/img/img_optimized/selected-work/volt-garage-768.avif   768w,
-                  ../assets/img/img_optimized/selected-work/volt-garage-1024.avif 1024w
-                "
-                sizes="(max-width: 640px) 100vw, (max-width: 1100px) 90vw, 960px" />
-              <source
-                type="image/webp"
-                srcset="
-                  ../assets/img/img_optimized/selected-work/volt-garage-480.webp   480w,
-                  ../assets/img/img_optimized/selected-work/volt-garage-768.webp   768w,
-                  ../assets/img/img_optimized/selected-work/volt-garage-1024.webp 1024w
-                "
-                sizes="(max-width: 640px) 100vw, (max-width: 1100px) 90vw, 960px" />
-              <img
-                src="../assets/img/img_optimized/selected-work/volt-garage-1024.jpg"
-                alt="Volt Garage — sklep e-commerce z częściami i akcesoriami samochodowymi"
-                width="1024"
-                height="683"
-            /></picture>
-            <figcaption class="project-visual__caption">
-              Kadr projektu Volt Garage użyty jako główna prezentacja dla strony szczegółowej.
-            </figcaption>
+            <div class="project-mockups project-mockups--trio">
+              <!-- Mobile -->
+              <div class="project-mockups__item project-mockups__item--mobile">
+                <div class="project-mockups__media">
+                  <picture>
+                    <source
+                      type="image/avif"
+                      srcset="
+                        ../assets/img/img_optimized/mockup/volt-garage-mobile-480.avif   480w,
+                        ../assets/img/img_optimized/mockup/volt-garage-mobile-768.avif   768w,
+                        ../assets/img/img_optimized/mockup/volt-garage-mobile-1024.avif 1024w,
+                        ../assets/img/img_optimized/mockup/volt-garage-mobile-1440.avif 1440w
+                      "
+                      sizes="(min-width: 1024px) 33vw, (min-width: 760px) 70vw, 90vw"
+                    />
+                    <source
+                      type="image/webp"
+                      srcset="
+                        ../assets/img/img_optimized/mockup/volt-garage-mobile-480.webp   480w,
+                        ../assets/img/img_optimized/mockup/volt-garage-mobile-768.webp   768w,
+                        ../assets/img/img_optimized/mockup/volt-garage-mobile-1024.webp 1024w,
+                        ../assets/img/img_optimized/mockup/volt-garage-mobile-1440.webp 1440w
+                      "
+                      sizes="(min-width: 1024px) 33vw, (min-width: 760px) 70vw, 90vw"
+                    />
+                    <img
+                      src="../assets/img/img_optimized/mockup/volt-garage-mobile-768.webp"
+                      alt="Mockup mobilny projektu Volt Garage prezentowany w widoku telefonu"
+                      width="770"
+                      height="666"
+                      loading="lazy"
+                      decoding="async"
+                    />
+                  </picture>
+                </div>
+              </div>
+              <!-- Tablet -->
+              <div class="project-mockups__item project-mockups__item--tablet">
+                <div class="project-mockups__media">
+                  <picture>
+                    <source
+                      type="image/avif"
+                      srcset="
+                        ../assets/img/img_optimized/mockup/volt-garage-tablet-480.avif   480w,
+                        ../assets/img/img_optimized/mockup/volt-garage-tablet-768.avif   768w,
+                        ../assets/img/img_optimized/mockup/volt-garage-tablet-1024.avif 1024w,
+                        ../assets/img/img_optimized/mockup/volt-garage-tablet-1440.avif 1440w
+                      "
+                      sizes="(min-width: 1024px) 33vw, (min-width: 760px) 70vw, 90vw"
+                    />
+                    <source
+                      type="image/webp"
+                      srcset="
+                        ../assets/img/img_optimized/mockup/volt-garage-tablet-480.webp   480w,
+                        ../assets/img/img_optimized/mockup/volt-garage-tablet-768.webp   768w,
+                        ../assets/img/img_optimized/mockup/volt-garage-tablet-1024.webp 1024w,
+                        ../assets/img/img_optimized/mockup/volt-garage-tablet-1440.webp 1440w
+                      "
+                      sizes="(min-width: 1024px) 33vw, (min-width: 760px) 70vw, 90vw"
+                    />
+                    <img
+                      src="../assets/img/img_optimized/mockup/volt-garage-tablet-1024.webp"
+                      alt="Mockup tabletowy projektu Volt Garage prezentowany w widoku tabletu"
+                      width="770"
+                      height="666"
+                      loading="lazy"
+                      decoding="async"
+                    />
+                  </picture>
+                </div>
+              </div>
+              <!-- Desktop -->
+              <div class="project-mockups__item project-mockups__item--desktop">
+                <div class="project-mockups__media">
+                  <picture>
+                    <source
+                      type="image/avif"
+                      srcset="
+                        ../assets/img/img_optimized/mockup/volt-garage-laptop-480.avif   480w,
+                        ../assets/img/img_optimized/mockup/volt-garage-laptop-768.avif   768w,
+                        ../assets/img/img_optimized/mockup/volt-garage-laptop-1024.avif 1024w,
+                        ../assets/img/img_optimized/mockup/volt-garage-laptop-1440.avif 1440w
+                      "
+                      sizes="(min-width: 1024px) 33vw, (min-width: 760px) 70vw, 90vw"
+                    />
+                    <source
+                      type="image/webp"
+                      srcset="
+                        ../assets/img/img_optimized/mockup/volt-garage-laptop-480.webp   480w,
+                        ../assets/img/img_optimized/mockup/volt-garage-laptop-768.webp   768w,
+                        ../assets/img/img_optimized/mockup/volt-garage-laptop-1024.webp 1024w,
+                        ../assets/img/img_optimized/mockup/volt-garage-laptop-1440.webp 1440w
+                      "
+                      sizes="(min-width: 1024px) 33vw, (min-width: 760px) 70vw, 90vw"
+                    />
+                    <img
+                      src="../assets/img/img_optimized/mockup/volt-garage-laptop-1024.webp"
+                      alt="Mockup desktopowy projektu Volt Garage prezentowany w widoku laptopa"
+                      width="770"
+                      height="666"
+                      loading="lazy"
+                      decoding="async"
+                    />
+                  </picture>
+                </div>
+              </div>
+            </div>
           </figure>
         </div>
       </section>
+
+      <!-- CTA -->
       <section class="section" data-reveal="soft">
         <div class="container">
           <div class="card project-cta__shell">
@@ -293,8 +411,8 @@
                 Przejdź do wersji live sklepu albo wróć do pełnego portfolio.
               </h2>
               <p class="section__subtitle">
-                System detail pages porządkuje projekty i przygotowuje portfolio na łatwe dodawanie
-                kolejnych case studies.
+                Volt Garage pokazuje zakres pracy nad statycznym front-endem sklepu: od interfejsu
+                katalogu i koszyka po SEO, dostępność, PWA i przygotowanie projektu do publikacji.
               </p>
             </div>
             <div class="project-cta__actions">
@@ -313,6 +431,8 @@
 
     <!-- Footer -->
     <!-- @include:footer -->
+
+    <!-- Json-LD -->
     <script type="application/ld+json">
       {
         "@context": "https://schema.org",
@@ -340,7 +460,7 @@
             "@id": "https://www.kp-code.pl/projects/volt-garage.html#webpage",
             "url": "https://www.kp-code.pl/projects/volt-garage.html",
             "name": "Volt Garage | Projekt portfolio",
-            "description": "Poznaj projekt Volt Garage: nowoczesny sklep e-commerce z częściami i akcesoriami samochodowymi, zaprojektowany pod czytelną ofertę i mocny charakter marki.",
+            "description": "Poznaj Volt Garage: statyczny, wielostronicowy front-end sklepu z akcesoriami motoryzacyjnymi, katalogiem produktów z JSON, koszykiem localStorage i podstawą PWA.",
             "isPartOf": { "@id": "https://www.kp-code.pl/#website" },
             "about": { "@id": "https://www.kp-code.pl/#organization" },
             "publisher": { "@id": "https://www.kp-code.pl/#organization" },
@@ -373,6 +493,8 @@
         ]
       }
     </script>
+
+    <!-- Script -->
     <script type="module" src="../js/main.js"></script>
   </body>
 </html>

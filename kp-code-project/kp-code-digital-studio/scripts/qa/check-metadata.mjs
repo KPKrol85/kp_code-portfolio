@@ -75,7 +75,9 @@ function isIndexableRobotsContent(robotsContent) {
 function countJsonLdBlocks(html) {
   let count = 0;
 
-  for (const match of html.matchAll(/<script\b[^>]*type\s*=\s*(['"])application\/ld\+json\1[^>]*>/gi)) {
+  for (const match of html.matchAll(
+    /<script\b[^>]*type\s*=\s*(['"])application\/ld\+json\1[^>]*>/gi
+  )) {
     if (match[0]) {
       count += 1;
     }

@@ -54,8 +54,10 @@ function contact_form_get_active_nav_key(string $relativeFilePath): ?string
   return null;
 }
 
-function contact_form_render_header_partial(string $headerTemplate, string $relativeFilePath): string
-{
+function contact_form_render_header_partial(
+  string $headerTemplate,
+  string $relativeFilePath,
+): string {
   $activeNavKey = contact_form_get_active_nav_key($relativeFilePath);
   $navCurrentTokens = [
     '{{NAV_START_CURRENT}}' => $activeNavKey === 'start' ? ' aria-current="page"' : '',
@@ -144,7 +146,11 @@ function contact_form_validate_timing_guard(array $source): array
     return ['ok' => false, 'reason' => 'missing_guard_token'];
   }
 
-  if (!is_string($expectedToken) || $expectedToken === '' || !hash_equals($expectedToken, trim($token))) {
+  if (
+    !is_string($expectedToken) ||
+    $expectedToken === '' ||
+    !hash_equals($expectedToken, trim($token))
+  ) {
     return ['ok' => false, 'reason' => 'invalid_guard_token'];
   }
 
@@ -152,7 +158,7 @@ function contact_form_validate_timing_guard(array $source): array
     return ['ok' => false, 'reason' => 'invalid_guard_timestamp'];
   }
 
-  if ((time() - $issuedAt) < CONTACT_FORM_GUARD_MIN_SECONDS) {
+  if (time() - $issuedAt < CONTACT_FORM_GUARD_MIN_SECONDS) {
     return ['ok' => false, 'reason' => 'submitted_too_fast'];
   }
 
@@ -161,7 +167,9 @@ function contact_form_validate_timing_guard(array $source): array
 
 function contact_form_get_throttle_dir(): string
 {
-  return rtrim(sys_get_temp_dir(), DIRECTORY_SEPARATOR) . DIRECTORY_SEPARATOR . CONTACT_FORM_THROTTLE_DIR;
+  return rtrim(sys_get_temp_dir(), DIRECTORY_SEPARATOR) .
+    DIRECTORY_SEPARATOR .
+    CONTACT_FORM_THROTTLE_DIR;
 }
 
 function contact_form_check_rate_limit(string $clientIdentifier): array
@@ -195,7 +203,7 @@ function contact_form_check_rate_limit(string $clientIdentifier): array
         $timestamps = array_values(
           array_filter(
             $decoded,
-            static fn ($value): bool => is_int($value) || ctype_digit((string) $value),
+            static fn($value): bool => is_int($value) || ctype_digit((string) $value),
           ),
         );
       }
@@ -204,7 +212,7 @@ function contact_form_check_rate_limit(string $clientIdentifier): array
     $timestamps = array_values(
       array_filter(
         array_map('intval', $timestamps),
-        static fn (int $timestamp): bool => $timestamp >= $windowStart,
+        static fn(int $timestamp): bool => $timestamp >= $windowStart,
       ),
     );
 
