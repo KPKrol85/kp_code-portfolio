@@ -1,133 +1,245 @@
-# Axiom Construction
+# Axiom
 
 ## PL
 
 ### Przegląd projektu
-Axiom Construction to statyczny serwis front-end (MPA) dla firmy budowlano-remontowej. Projekt zawiera stronę główną, podstrony usług i podstrony prawne, a także warstwę PWA (manifest + service worker).
+Axiom to statyczny serwis WWW (multi-page) dla firmy budowlano-remontowej, zbudowany w oparciu o HTML, CSS i Vanilla JavaScript. Repozytorium zawiera stronę główną, podstrony usług, podstrony prawne, stronę sukcesu formularza, stronę offline oraz stronę błędu 404.
 
-### Kluczowe funkcje (potwierdzone w repozytorium)
-- Strona główna (`index.html`) oraz dedykowane podstrony usług (`services/*.html`) i treści prawnych (`legal/*.html`).
-- Formularz kontaktowy Netlify (`data-netlify="true"`, honeypot, reCAPTCHA, statusy `aria-live`, fallback bez JS).
-- Komponenty JS: menu mobilne, przełącznik motywu, lightbox galerii, „powrót na górę”, banner informacji/cookies.
-- SEO i social metadata: canonical, robots meta, Open Graph, Twitter cards, JSON-LD.
-- Artefakty deploy/SEO/PWA: `_headers`, `_redirects`, `robots.txt`, `sitemap.xml`, `manifest.webmanifest`, `sw.js`, `offline.html`.
+### Kluczowe funkcje
+- Struktura wielostronicowa: strona główna, 6 podstron usług oraz sekcja dokumentów prawnych.
+- Interaktywne komponenty frontendowe: mobilna nawigacja, przełącznik motywu, przycisk „powrót na górę”, lightbox galerii, sekcja FAQ.
+- Formularz kontaktowy z walidacją po stronie klienta, honeypotem i integracją z Netlify Forms (`data-netlify`, `data-netlify-recaptcha`, strona `success.html`).
+- Baner cookies z zapisem zgody w `localStorage` oraz ciasteczku.
+- PWA surface: `manifest.webmanifest`, rejestracja Service Workera i obsługa strony offline.
+- Pipeline QA: skrypty Lighthouse i pa11y zapisujące raporty do katalogu `reports/`.
 
-### Tech stack
-- HTML5 (wielostronicowy serwis statyczny).
-- CSS oparty o podział: `tokens` / `base` / `layout` / `components` / `sections`.
-- Vanilla JavaScript (moduły `js/core`, `js/components`, `js/sections`, `js/utils`).
-- Node.js + npm scripts do budowania assetów, QA i przygotowania dystrybucji.
+### Stack technologiczny
+**Runtime (frontend)**
+- HTML5
+- CSS3 (modułowa organizacja przez `@import`)
+- Vanilla JavaScript (ES Modules)
 
-### Struktura projektu (skrót)
-- Widoki główne: `index.html`, `404.html`, `offline.html`, `success.html`
-- Podstrony: `services/`, `legal/`
-- Style: `css/`
-- Skrypty: `js/`
-- Assety: `assets/`
-- Narzędzia: `tools/`
+**Build i narzędzia**
+- Node.js + npm scripts
+- `cssnano` / `cssnano-cli` (minifikacja CSS)
+- `terser` (minifikacja JavaScript)
+- `sharp` (przetwarzanie obrazów)
+- `@lhci/cli`, `lighthouse` (audyty Lighthouse)
+- `pa11y` (audyty dostępności)
+- `http-server` (lokalny serwer)
 
-### Setup i uruchomienie
-1. `npm install`
-2. `npm run serve` — podgląd katalogu roboczego na porcie 8080.
-3. `npm run build` — pełny build release.
-4. `npm run serve:dist` — podgląd wynikowego `dist/`.
+### Struktura projektu
+```text
+.
+├── index.html
+├── services/                  # podstrony usług
+├── legal/                     # podstrony dokumentów prawnych i certyfikatów
+├── css/                       # warstwy stylów: tokens/base/layout/components/sections
+├── js/                        # core, components, sections, utils, structured-data
+├── assets/                    # fonty, obrazy, favicony, certyfikaty
+├── tools/
+│   ├── css/                   # build CSS
+│   ├── js/                    # build JS
+│   ├── sw/                    # build Service Workera
+│   ├── html/                  # generowanie/aktualizacja sekcji <head>
+│   ├── images/                # pipeline obrazów
+│   ├── qa/                    # Lighthouse + pa11y
+│   └── release/               # clean dist + składanie artefaktów produkcyjnych
+├── manifest.webmanifest
+├── sw.template.js
+├── robots.txt
+├── sitemap.xml
+├── _headers
+├── _redirects
+└── package.json
+```
 
-### Build i deployment
-- Główny pipeline produkcyjny to: `build:clean` → `build:css` → `build:js` → `build:sw` → `build:dist`.
-- `_headers` definiuje polityki bezpieczeństwa i cache.
-- `_redirects` jest obecnie plikiem opisowym (komentarze), bez aktywnych reguł przekierowań.
+### Instalacja i konfiguracja
+```bash
+npm install
+```
 
-### Dostępność (A11y)
-- Obecny skip link i semantyczny układ sekcji (`header`, `nav`, `main`, `section`, `footer`).
-- Nawigacja mobilna aktualizuje `aria-expanded`, `aria-hidden`, wspiera ESC i przywracanie fokusu.
-- Formularz ma komunikaty statusowe, podsumowanie błędów, sterowanie fokusem i fallback bez JS.
-- Obsłużono `prefers-reduced-motion` w CSS i w zachowaniu scroll-top.
-- Kontrast: pełna ocena zgodności wymaga analizy computed styles w runtime.
+### Development lokalny
+Uruchomienie lokalnego serwera dla katalogu roboczego:
+```bash
+npm run serve
+```
+Aplikacja będzie dostępna pod adresem `http://localhost:8080`.
+
+### Build produkcyjny
+Pełny build produkcyjny (`dist/`):
+```bash
+npm run build
+```
+Podgląd artefaktów produkcyjnych:
+```bash
+npm run serve:dist
+```
+
+### Deployment
+Repozytorium zawiera artefakty i konfigurację zgodną z hostingiem statycznym Netlify:
+- `_headers` (nagłówki bezpieczeństwa, CSP, cache policy)
+- `_redirects` (reguły redirect)
+- formularz oparty o Netlify Forms (`data-netlify`, `data-netlify-recaptcha`)
+
+### Dostępność
+W kodzie zaimplementowano m.in.:
+- skip link do głównej treści,
+- atrybuty ARIA w kluczowych komponentach (nawigacja, lightbox, modal cookies, formularze),
+- focus management i trap focus (lightbox, modal cookies),
+- walidację formularza z komunikatami błędów i podsumowaniem błędów,
+- automatyczne audyty dostępności przez pa11y.
 
 ### SEO
-- Wdrożone meta description, canonical, Open Graph, Twitter cards.
-- Obecne JSON-LD na stronach HTML.
-- `robots.txt` oraz `sitemap.xml` są obecne i spójne względem domeny kanonicznej.
+Zaimplementowane elementy SEO obejmują:
+- `canonical`, `meta description`, `robots` na stronach,
+- metadane Open Graph i Twitter,
+- dane strukturalne JSON-LD (`LocalBusiness`, `Service`, `FAQPage`, `WebSite` i inne pliki w `js/structured-data/`),
+- `robots.txt` i `sitemap.xml`,
+- skrypt `tools/html/build-head.mjs` do spójnej aktualizacji sekcji `<head>`.
 
 ### Wydajność
-- Obrazy używają `picture` + AVIF/WebP/JPEG, `srcset/sizes`, lazy loading dla większości zasobów poniżej „folda”.
-- Obrazy contentowe mają jawne `width/height`.
-- Fonty są preloadowane i ładowane przez `@font-face` z `font-display: swap`.
-- Service worker cache’uje zasoby statyczne i dokumenty oraz zapewnia fallback offline.
+W repozytorium widoczne są konkretne mechanizmy wydajnościowe:
+- minifikacja CSS i JS do `dist/style.min.css` oraz `dist/script.min.js`,
+- optymalizacja obrazów przez pipeline oparty o `sharp`,
+- Service Worker z precache i cache strategy dla dokumentów, stylów, skryptów i obrazów,
+- atrybuty `loading="lazy"`, `decoding="async"` i `fetchpriority` dla obrazów,
+- preloading kluczowych fontów i arkusza stylów.
+
+### Utrzymanie projektu
+- Główny punkt wejścia JavaScript: `js/main.js` oraz orchestracja inicjalizacji w `js/core/init.js`.
+- Konfiguracja selektorów i parametrów wspólnych: `js/core/config.js`.
+- Stylowanie warstwowe: `css/main.css` agreguje moduły z `css/tokens`, `css/base`, `css/layout`, `css/components`, `css/sections`.
+- Aktualizacja metadanych stron: `tools/templates/pages.meta.json` + `tools/html/build-head.mjs`.
+- Release pipeline: `build:clean` → `build:css` → `build:js` → `build:sw` → `build:dist`.
 
 ### Roadmap
-- Uzupełnić aktywne reguły w `_redirects` (canonical host/HTTPS/trailing slash), jeśli są wymagane operacyjnie.
-- Ograniczyć render-blocking `@import` w CSS przez bundlowanie do pojedynczego pliku wynikowego dla środowiska dev.
-- Ujednolicić źródło danych JSON-LD (inline vs `js/structured-data/*`).
-- Dodać automatyczny checker integralności linków i metadanych SEO do CI.
-- Dodać automatyczne testy przepływów klawiaturowych dla menu/lightbox/modala.
+- Rozszerzenie skryptów QA o automatyczne uruchamianie serwera testowego przed audytami.
+- Dodanie testów jednostkowych dla modułów JS o najwyższej złożoności (np. formularz i lightbox).
+- Ujednolicenie źródeł JSON-LD (aktualnie część jest inline w HTML, część w `js/structured-data/`).
+- Dodanie automatycznej walidacji linków wewnętrznych dla całej struktury wielostronicowej.
 
 ### Licencja
-MIT (`LICENSE`).
-
----
+Projekt jest udostępniony na licencji MIT. Szczegóły w pliku `LICENSE`.
 
 ## EN
 
-### Project overview
-Axiom Construction is a static multi-page front-end website for a construction and renovation business. The repository includes a homepage, service subpages, legal subpages, and a PWA layer (manifest + service worker).
+### Project Overview
+Axiom is a static multi-page website for a construction and renovation company, built with HTML, CSS, and Vanilla JavaScript. The repository includes a homepage, service pages, legal pages, a form success page, an offline page, and a custom 404 page.
 
-### Key features (repository-verified)
-- Homepage (`index.html`) plus dedicated service (`services/*.html`) and legal (`legal/*.html`) pages.
-- Netlify contact form (`data-netlify="true"`) with honeypot, reCAPTCHA, `aria-live` status messaging, and no-JS fallback.
-- JS UI modules: mobile navigation, theme toggle, gallery lightbox, back-to-top, project/cookie info modal.
-- SEO/social metadata: canonical, robots meta, Open Graph, Twitter cards, JSON-LD.
-- Deployment/SEO/PWA files: `_headers`, `_redirects`, `robots.txt`, `sitemap.xml`, `manifest.webmanifest`, `sw.js`, `offline.html`.
+### Key Features
+- Multi-page structure: homepage, 6 service pages, and a legal/document section.
+- Interactive frontend components: mobile navigation, theme toggle, scroll-to-top button, gallery lightbox, and FAQ section.
+- Contact form with client-side validation, honeypot protection, and Netlify Forms integration (`data-netlify`, `data-netlify-recaptcha`, `success.html`).
+- Cookie banner with consent persistence in `localStorage` and a browser cookie.
+- PWA surface: `manifest.webmanifest`, Service Worker registration, and offline fallback page.
+- QA pipeline: Lighthouse and pa11y scripts that write reports to `reports/`.
 
-### Tech stack
-- HTML5 static MPA.
-- Layered CSS architecture (`tokens` / `base` / `layout` / `components` / `sections`).
-- Vanilla JS modules (`js/core`, `js/components`, `js/sections`, `js/utils`).
-- Node.js/npm scripts for build, QA, and release packaging.
+### Tech Stack
+**Runtime (frontend)**
+- HTML5
+- CSS3 (modular structure via `@import`)
+- Vanilla JavaScript (ES Modules)
 
-### Structure overview
-- Main views: `index.html`, `404.html`, `offline.html`, `success.html`
-- Subpages: `services/`, `legal/`
-- Styles: `css/`
-- Scripts: `js/`
-- Assets: `assets/`
-- Tooling: `tools/`
+**Build and tooling**
+- Node.js + npm scripts
+- `cssnano` / `cssnano-cli` (CSS minification)
+- `terser` (JavaScript minification)
+- `sharp` (image processing)
+- `@lhci/cli`, `lighthouse` (Lighthouse audits)
+- `pa11y` (accessibility audits)
+- `http-server` (local server)
 
-### Setup & run
-1. `npm install`
-2. `npm run serve` — serve source workspace on port 8080.
-3. `npm run build` — run full production build pipeline.
-4. `npm run serve:dist` — serve built `dist/` output.
+### Project Structure
+```text
+.
+├── index.html
+├── services/                  # service subpages
+├── legal/                     # legal and certification pages
+├── css/                       # style layers: tokens/base/layout/components/sections
+├── js/                        # core, components, sections, utils, structured-data
+├── assets/                    # fonts, images, favicons, certificates
+├── tools/
+│   ├── css/                   # CSS build
+│   ├── js/                    # JS build
+│   ├── sw/                    # Service Worker build
+│   ├── html/                  # <head> generation/update tooling
+│   ├── images/                # image pipeline
+│   ├── qa/                    # Lighthouse + pa11y
+│   └── release/               # dist cleanup + production assembly
+├── manifest.webmanifest
+├── sw.template.js
+├── robots.txt
+├── sitemap.xml
+├── _headers
+├── _redirects
+└── package.json
+```
 
-### Build & deployment notes
-- Production pipeline is: `build:clean` → `build:css` → `build:js` → `build:sw` → `build:dist`.
-- `_headers` defines security and cache policies.
-- `_redirects` currently contains descriptive comments only (no active redirect rules).
+### Setup and Installation
+```bash
+npm install
+```
 
-### Accessibility notes
-- Skip link and semantic document structure are implemented.
-- Mobile nav updates `aria-expanded`/`aria-hidden`, supports Escape, and restores focus.
-- Contact form includes status messaging, error summary, focus behavior, and no-JS fallback.
-- `prefers-reduced-motion` is handled in CSS and JS behavior.
-- Color contrast compliance cannot be fully confirmed without runtime computed style analysis.
+### Local Development
+Run a local server for the working directory:
+```bash
+npm run serve
+```
+The site is available at `http://localhost:8080`.
 
-### SEO notes
-- Meta description, canonical, Open Graph, and Twitter metadata are present.
-- JSON-LD is present across HTML pages.
-- `robots.txt` and `sitemap.xml` are present and aligned with the canonical domain.
+### Production Build
+Run the full production build (`dist/`):
+```bash
+npm run build
+```
+Preview production artifacts:
+```bash
+npm run serve:dist
+```
 
-### Performance notes
-- Image strategy uses `picture`, AVIF/WebP/JPEG, `srcset/sizes`, and lazy loading for non-critical media.
-- Content images include explicit `width/height`.
-- Fonts are preloaded and configured via `@font-face` with `font-display: swap`.
-- Service worker provides static/document caching and offline fallback.
+### Deployment
+The repository includes assets and configuration aligned with Netlify static hosting:
+- `_headers` (security headers, CSP, cache policy)
+- `_redirects` (redirect rules)
+- Netlify Forms markup (`data-netlify`, `data-netlify-recaptcha`)
+
+### Accessibility
+The implementation includes, among others:
+- skip link to main content,
+- ARIA attributes in key components (navigation, lightbox, cookie modal, forms),
+- focus management and focus trap (lightbox, cookie modal),
+- form validation with error status and error summary,
+- automated accessibility checks via pa11y.
+
+### SEO
+Implemented SEO elements include:
+- page-level `canonical`, `meta description`, and `robots`,
+- Open Graph and Twitter metadata,
+- JSON-LD structured data (`LocalBusiness`, `Service`, `FAQPage`, `WebSite`, and additional files in `js/structured-data/`),
+- `robots.txt` and `sitemap.xml`,
+- `tools/html/build-head.mjs` for consistent `<head>` updates.
+
+### Performance
+The repository contains explicit performance mechanisms:
+- CSS and JS minification to `dist/style.min.css` and `dist/script.min.js`,
+- image optimization pipeline based on `sharp`,
+- Service Worker precache and runtime cache strategy for documents, styles, scripts, and images,
+- `loading="lazy"`, `decoding="async"`, and `fetchpriority` attributes on images,
+- preload of key fonts and stylesheet.
+
+### Project Maintenance
+- Main JavaScript entry point: `js/main.js` with init orchestration in `js/core/init.js`.
+- Shared selectors and runtime settings: `js/core/config.js`.
+- Layered styling: `css/main.css` aggregates modules from `css/tokens`, `css/base`, `css/layout`, `css/components`, and `css/sections`.
+- Page metadata maintenance: `tools/templates/pages.meta.json` + `tools/html/build-head.mjs`.
+- Release pipeline: `build:clean` → `build:css` → `build:js` → `build:sw` → `build:dist`.
 
 ### Roadmap
-- Add active redirect rules in `_redirects` when operationally required.
-- Reduce render-blocking CSS `@import` chains in development output.
-- Consolidate JSON-LD data source (inline blocks vs `js/structured-data/*`).
-- Add automated internal link and SEO metadata consistency checks in CI.
-- Add keyboard-flow regression tests for nav/lightbox/modal behaviors.
+- Extend QA scripts to auto-start a test server before audits.
+- Add unit tests for higher-complexity JS modules (e.g., contact form and lightbox).
+- Consolidate JSON-LD sources (currently split between inline HTML and `js/structured-data/`).
+- Add automated internal link validation across the multi-page structure.
 
 ### License
-MIT (`LICENSE`).
+This project is licensed under the MIT License. See `LICENSE` for details.
