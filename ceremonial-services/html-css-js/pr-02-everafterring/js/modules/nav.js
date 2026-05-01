@@ -7,12 +7,27 @@ export const initNav = () => {
   const primaryNav = qs("#primary-navigation");
   const dropdownToggles = qsa(SELECTORS.dropdownToggle);
   const dropdownMenus = qsa(SELECTORS.dropdownMenu);
+  let releaseFocusTrap = null;
 
   if (navToggle?.dataset.initialized === "true") return;
 
+  const isMobileNav = () => window.innerWidth <= 1024;
+
+  const activateFocusTrap = () => {
+    if (!navPanel || releaseFocusTrap || !isMobileNav()) return;
+    releaseFocusTrap = trapFocus(navPanel);
+  };
+
+  const releaseNavFocusTrap = () => {
+    releaseFocusTrap?.();
+    releaseFocusTrap = null;
+  };
+
   // Initialize panel state based on screen size
   const initPanelState = () => {
-    if (window.innerWidth <= 1024) {
+    releaseNavFocusTrap();
+
+    if (isMobileNav()) {
       navPanel?.setAttribute("hidden", "");
       navPanel?.removeAttribute("data-open");
       setExpanded(navToggle, false);
@@ -24,12 +39,15 @@ export const initNav = () => {
 
   initPanelState();
 
-  const closeNav = () => {
+  const closeNav = ({ restoreFocus = true } = {}) => {
     if (!navPanel || !navToggle) return;
+    releaseNavFocusTrap();
     navPanel.setAttribute("hidden", "");
     navPanel.removeAttribute("data-open");
     setExpanded(navToggle, false);
-    navToggle.focus();
+    if (restoreFocus) {
+      navToggle.focus();
+    }
   };
 
   const openNav = () => {
@@ -37,6 +55,7 @@ export const initNav = () => {
     navPanel.removeAttribute("hidden");
     navPanel.setAttribute("data-open", "true");
     setExpanded(navToggle, true);
+    activateFocusTrap();
     const firstLink = qs("a, button", navPanel);
     firstLink?.focus();
   };
@@ -152,19 +171,24 @@ export const initNav = () => {
 
   // Handle window resize
   window.addEventListener("resize", () => {
-    if (window.innerWidth > 1024) {
+    if (!isMobileNav()) {
+      releaseNavFocusTrap();
       navPanel?.removeAttribute("hidden");
       navPanel?.removeAttribute("data-open");
       setExpanded(navToggle, false);
     } else if (navToggle?.getAttribute("aria-expanded") !== "true") {
+      releaseNavFocusTrap();
       navPanel?.setAttribute("hidden", "");
       navPanel?.removeAttribute("data-open");
+    } else {
+      activateFocusTrap();
     }
   });
 
   navToggle && (navToggle.dataset.initialized = "true");
 
   return () => {
+    releaseNavFocusTrap();
     document.removeEventListener("keydown", handleEscape);
     document.removeEventListener("click", () => {});
   };

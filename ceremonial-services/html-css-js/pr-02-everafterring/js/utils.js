@@ -15,13 +15,23 @@ export const trapFocus = (container) => {
     'textarea:not([disabled])',
     '[tabindex]:not([tabindex="-1"])'
   ];
-  const focusables = qsa(focusableSelectors.join(','), container);
-  const first = focusables[0];
-  const last = focusables[focusables.length - 1];
+
+  const getFocusableElements = () =>
+    qsa(focusableSelectors.join(','), container).filter((element) => {
+      if (element.hasAttribute('hidden')) return false;
+      if (element.getAttribute('aria-hidden') === 'true') return false;
+      return element.getClientRects().length > 0;
+    });
 
   const handleKeydown = (event) => {
     if (event.key !== 'Tab') return;
+
+    const focusables = getFocusableElements();
+    const first = focusables[0];
+    const last = focusables[focusables.length - 1];
+
     if (!first || !last) return;
+
     if (event.shiftKey && document.activeElement === first) {
       event.preventDefault();
       last.focus();

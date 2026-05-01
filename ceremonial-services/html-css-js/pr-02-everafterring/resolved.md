@@ -79,6 +79,8 @@ Dodano źródłową stronę `polityka-prywatnosci.html` z treścią polityki pry
 
 Nie dodano `regulamin.html`, `cookies.html`, bannera cookies, analityki, backendu ani ręcznych zmian w `dist/`. Strona potwierdzenia formularza `dziekujemy.html` pozostaje poza sitemapą.
 
+----------
+
 ## Szablon wpisu
 
 ### Data
@@ -108,5 +110,3 @@ Opis faktycznie wykonanej naprawy.
 ### Notatki
 
 Dodatkowy kontekst, wynik weryfikacji lub powód przyjętego rozwiązania.
-
-----------

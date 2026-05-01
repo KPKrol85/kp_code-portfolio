@@ -30,5 +30,43 @@
       "type": "image/png",
       "purpose": "any maskable"
     }
+  ],
+  "shortcuts": [
+    {
+      "name": "Oferta",
+      "description": "Poznaj ofertę kompleksowej organizacji uroczystości.",
+      "url": "../../oferta.html",
+      "icons": [
+        {
+          "src": "shortcut-offer.png",
+          "sizes": "192x192",
+          "type": "image/png"
+        }
+      ]
+    },
+    {
+      "name": "Realizacje",
+      "description": "Zobacz wybrane realizacje i inspiracje ślubne.",
+      "url": "../../realizacje.html",
+      "icons": [
+        {
+          "src": "shortcut-portfolio.png",
+          "sizes": "192x192",
+          "type": "image/png"
+        }
+      ]
+    },
+    {
+      "name": "Kontakt",
+      "description": "Skontaktuj się w sprawie planowania uroczystości.",
+      "url": "../../kontakt.html",
+      "icons": [
+        {
+          "src": "shortcut-contact.png",
+          "sizes": "192x192",
+          "type": "image/png"
+        }
+      ]
+    }
   ]
 }
