@@ -4,19 +4,24 @@
 }
 
 .section {
-  padding: var(--space-8) 0;
+  padding: var(--section-space-medium) 0;
 }
 
 .section--muted {
-  background: var(--color-champagne);
+  background: var(--color-page-bg-muted);
 }
 
 .section__header {
+  max-width: 58ch;
   margin-bottom: var(--space-6);
 }
 
 .section__meta {
-  max-width: 640px;
+  max-width: 62ch;
+}
+
+.section__actions {
+  margin-top: var(--space-6);
 }
 
 .grid {

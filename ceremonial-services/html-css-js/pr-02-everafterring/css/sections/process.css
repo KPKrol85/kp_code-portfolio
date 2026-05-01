@@ -1,3 +1,5 @@
+/* Process Section */
+
 .steps {
   counter-reset: step;
   display: grid;
@@ -5,7 +7,7 @@
 }
 
 .steps__item {
-  background: var(--color-white);
+  background: var(--color-surface);
   padding: var(--space-4);
   border-radius: var(--radius-md);
   box-shadow: var(--shadow-card);
@@ -19,9 +21,10 @@
   justify-content: center;
   width: 2.4rem;
   height: 2.4rem;
-  border-radius: 50%;
-  background: var(--color-blush);
-  color: var(--color-rosewood);
+  border-radius: var(--radius-pill);
+  background: var(--color-accent-soft);
+  color: var(--color-accent);
   margin-bottom: var(--space-3);
-  font-weight: 600;
+  font-weight: var(--font-weight-medium);
+  font-size: var(--font-size-xs);
 }

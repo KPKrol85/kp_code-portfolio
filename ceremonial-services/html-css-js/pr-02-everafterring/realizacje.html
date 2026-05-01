@@ -6,7 +6,14 @@
     <title>Realizacje – Portfolio EverAfter Ring</title>
     <meta name="description" content="Zobacz realizacje EverAfter Ring: klasyczne, garden i nowoczesne śluby premium z dopracowaną estetyką." />
     <link rel="canonical" href="https://www.everafterring.pl/realizacje.html" />
-    <link rel="icon" href="assets/favicon.svg" type="image/svg+xml" />
+    <link rel="icon" href="assets/favicon/favicon.ico" sizes="any" />
+    <link rel="icon" type="image/svg+xml" href="assets/favicon/favicon.svg" />
+    <link rel="icon" type="image/png" href="assets/favicon/favicon-96x96.png" sizes="96x96" />
+    <link rel="apple-touch-icon" sizes="180x180" href="assets/favicon/apple-touch-icon.png" />
+    <meta name="apple-mobile-web-app-title" content="EverAfter Ring" />
+    <meta name="theme-color" content="#faf7f2" data-theme-color />
+    <link rel="manifest" href="assets/favicon/site.webmanifest" />
+    <script src="js/theme-bootstrap.js"></script>
     <link rel="stylesheet" href="css/main.css" />
     <script type="application/ld+json">
       {
@@ -16,8 +23,15 @@
         "url": "https://www.everafterring.pl/",
         "description": "Butikowa agencja wedding planning & coordination.",
         "areaServed": "Polska",
-        "telephone": "+48 000 000 000",
-        "email": "kontakt@everafterring.pl"
+        "telephone": "+48 533 537 091",
+        "email": "kontakt@kp-code.pl",
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "ul. Marynarki Wojennej 12",
+          "postalCode": "33-100",
+          "addressLocality": "Tarnów",
+          "addressCountry": "PL"
+        }
       }
     </script>
     <script type="application/ld+json">
@@ -42,7 +56,11 @@
             <p class="hero__tagline">Każda realizacja jest opowieścią, którą tworzymy wspólnie z parą młodą.</p>
           </div>
           <div class="hero__media" data-hero-image>
-            <img src="assets/img/hero/hero.jpg" width="640" height="480" alt="Stylowe portfolio ślubne" />
+            <picture>
+              <source type="image/avif" srcset="assets/img/hero/hero-400.avif 400w, assets/img/hero/hero-800.avif 800w, assets/img/hero/hero-1080.avif 1080w" sizes="(min-width: 900px) 45vw, calc(100vw - 2rem)" />
+              <source type="image/webp" srcset="assets/img/hero/hero-400.webp 400w, assets/img/hero/hero-800.webp 800w, assets/img/hero/hero-1080.webp 1080w" sizes="(min-width: 900px) 45vw, calc(100vw - 2rem)" />
+              <img src="assets/img/hero/hero-800.jpg" srcset="assets/img/hero/hero-400.jpg 400w, assets/img/hero/hero-800.jpg 800w, assets/img/hero/hero-1080.jpg 1080w" sizes="(min-width: 900px) 45vw, calc(100vw - 2rem)" width="1080" height="720" alt="Stylowe portfolio ślubne" decoding="async" />
+            </picture>
           </div>
         </div>
       </section>
@@ -67,7 +85,11 @@
             </article>
             <article class="card">
               <div class="card__image">
-                <img src="assets/portfolio-placeholder.svg" width="480" height="360" alt="Wesele plenerowe w ogrodzie" loading="lazy" />
+                <picture>
+                  <source type="image/avif" srcset="assets/img/portfolio-img/garden-elegance-400.avif 400w, assets/img/portfolio-img/garden-elegance-800.avif 800w, assets/img/portfolio-img/garden-elegance-1200.avif 1200w" sizes="(min-width: 900px) 33vw, (min-width: 640px) 50vw, calc(100vw - 2rem)" />
+                  <source type="image/webp" srcset="assets/img/portfolio-img/garden-elegance-400.webp 400w, assets/img/portfolio-img/garden-elegance-800.webp 800w, assets/img/portfolio-img/garden-elegance-1200.webp 1200w" sizes="(min-width: 900px) 33vw, (min-width: 640px) 50vw, calc(100vw - 2rem)" />
+                  <img src="assets/img/portfolio-img/garden-elegance-800.jpg" srcset="assets/img/portfolio-img/garden-elegance-400.jpg 400w, assets/img/portfolio-img/garden-elegance-800.jpg 800w, assets/img/portfolio-img/garden-elegance-1200.jpg 1200w" sizes="(min-width: 900px) 33vw, (min-width: 640px) 50vw, calc(100vw - 2rem)" width="1200" height="900" alt="Wesele plenerowe w ogrodzie" loading="lazy" decoding="async" />
+                </picture>
               </div>
               <h3 class="card__title">Garden Romance</h3>
               <p>Plenerowa ceremonia z pastelową florystyką i naturalnym światłem.</p>

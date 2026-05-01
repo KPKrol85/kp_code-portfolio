@@ -12,7 +12,7 @@ export const initNav = () => {
 
   // Initialize panel state based on screen size
   const initPanelState = () => {
-    if (window.innerWidth <= 860) {
+    if (window.innerWidth <= 1024) {
       navPanel?.setAttribute("hidden", "");
       navPanel?.removeAttribute("data-open");
       setExpanded(navToggle, false);
@@ -55,7 +55,7 @@ export const initNav = () => {
   const navLinks = qsa(".nav__link", navPanel);
   navLinks.forEach((link) => {
     link.addEventListener("click", () => {
-      if (window.innerWidth <= 860) {
+      if (window.innerWidth <= 1024) {
         closeNav();
       }
     });
@@ -152,7 +152,7 @@ export const initNav = () => {
 
   // Handle window resize
   window.addEventListener("resize", () => {
-    if (window.innerWidth > 860) {
+    if (window.innerWidth > 1024) {
       navPanel?.removeAttribute("hidden");
       navPanel?.removeAttribute("data-open");
       setExpanded(navToggle, false);

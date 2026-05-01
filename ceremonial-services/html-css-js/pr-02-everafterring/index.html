@@ -6,8 +6,18 @@
     <title>EverAfter Ring – Planowanie ślubów z klasą</title>
     <meta name="description" content="EverAfter Ring to butikowa agencja wedding planning & coordination. Łączymy estetykę premium z perfekcyjną logistyką." />
     <link rel="canonical" href="https://www.everafterring.pl/index.html" />
-    <link rel="icon" href="assets/favicon.svg" type="image/svg+xml" />
+    <!-- Favicon -->
+    <link rel="icon" href="assets/favicon/favicon.ico" sizes="any" />
+    <link rel="icon" type="image/svg+xml" href="assets/favicon/favicon.svg" />
+    <link rel="icon" type="image/png" href="assets/favicon/favicon-96x96.png" sizes="96x96" />
+    <link rel="apple-touch-icon" sizes="180x180" href="assets/favicon/apple-touch-icon.png" />
+    <meta name="apple-mobile-web-app-title" content="EverAfter Ring" />
+    <meta name="theme-color" content="#faf7f2" data-theme-color />
+    <link rel="manifest" href="assets/favicon/site.webmanifest" />
+    <!-- Styles -->
+    <script src="js/theme-bootstrap.js"></script>
     <link rel="stylesheet" href="css/main.css" />
+    <!-- JSON-LD -->
     <script type="application/ld+json">
       {
         "@context": "https://schema.org",
@@ -16,8 +26,15 @@
         "url": "https://www.everafterring.pl/",
         "description": "Butikowa agencja wedding planning & coordination.",
         "areaServed": "Polska",
-        "telephone": "+48 000 000 000",
-        "email": "kontakt@everafterring.pl"
+        "telephone": "+48 533 537 091",
+        "email": "kontakt@kp-code.pl",
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "ul. Marynarki Wojennej 12",
+          "postalCode": "33-100",
+          "addressLocality": "Tarnów",
+          "addressCountry": "PL"
+        }
       }
     </script>
     <script type="application/ld+json">
@@ -29,11 +46,15 @@
       }
     </script>
   </head>
+
+  <!-- Body -->
   <body>
     <a class="skip-link" href="#main">Przejdź do treści</a>
     <header class="site-header" data-partial="header" data-partial-src="partials/header.html"></header>
 
+    <!-- Main -->
     <main id="main">
+      <!-- Hero -->
       <section class="hero">
         <div class="container hero__layout">
           <div class="hero__content">
@@ -51,11 +72,29 @@
             </div>
           </div>
           <div class="hero__media" data-hero-image>
-            <img src="assets/img/hero/hero.jpg" width="640" height="480" alt="Elegancka scena ślubna z łukiem i światłem" />
+            <picture>
+              <source
+                type="image/avif"
+                srcset="assets/img/hero/hero-400.avif 400w, assets/img/hero/hero-800.avif 800w, assets/img/hero/hero-1080.avif 1080w"
+                sizes="(min-width: 900px) 45vw, calc(100vw - 2rem)" />
+              <source
+                type="image/webp"
+                srcset="assets/img/hero/hero-400.webp 400w, assets/img/hero/hero-800.webp 800w, assets/img/hero/hero-1080.webp 1080w"
+                sizes="(min-width: 900px) 45vw, calc(100vw - 2rem)" />
+              <img
+                src="assets/img/hero/hero-800.jpg"
+                srcset="assets/img/hero/hero-400.jpg 400w, assets/img/hero/hero-800.jpg 800w, assets/img/hero/hero-1080.jpg 1080w"
+                sizes="(min-width: 900px) 45vw, calc(100vw - 2rem)"
+                width="1080"
+                height="720"
+                alt="Elegancka scena ślubna z łukiem i światłem"
+                decoding="async" />
+            </picture>
           </div>
         </div>
       </section>
 
+      <!-- Features -->
       <section class="section section--muted">
         <div class="container">
           <div class="section__header">
@@ -91,6 +130,7 @@
         </div>
       </section>
 
+      <!-- Services -->
       <section class="section">
         <div class="container">
           <div class="section__header">
@@ -114,12 +154,13 @@
               <p>Zarządzamy harmonogramem i komunikacją z zespołem realizacyjnym.</p>
             </article>
           </div>
-          <div class="hero__actions">
+          <div class="section__actions">
             <a class="button button--primary" href="uslugi.html">Zobacz wszystkie usługi</a>
           </div>
         </div>
       </section>
 
+      <!-- Packages -->
       <section class="section section--muted">
         <div class="container">
           <div class="section__header">
@@ -146,12 +187,13 @@
               <p><strong>od 18 000 zł</strong></p>
             </article>
           </div>
-          <div class="hero__actions">
+          <div class="section__actions">
             <a class="button button--ghost" href="oferta.html">Poznaj szczegóły pakietów</a>
           </div>
         </div>
       </section>
 
+      <!-- Process -->
       <section class="section">
         <div class="container">
           <div class="section__header">
@@ -183,6 +225,7 @@
         </div>
       </section>
 
+      <!-- Testimonials -->
       <section class="section section--muted">
         <div class="container">
           <div class="section__header">
@@ -206,6 +249,7 @@
         </div>
       </section>
 
+      <!-- Portfolio -->
       <section class="section">
         <div class="container">
           <div class="section__header">
@@ -213,9 +257,28 @@
             <p class="section__meta">Sprawdź wybrane historie i zobacz, jak interpretujemy różne style.</p>
           </div>
           <div class="grid grid--3">
+            <!-- Garden Elegance -->
             <article class="card card--outline">
               <div class="card__image">
-                <img src="assets/portfolio-placeholder.svg" width="480" height="360" alt="Garden wedding z pastelowymi dekoracjami" loading="lazy" />
+                <picture>
+                  <source
+                    type="image/avif"
+                    srcset="assets/img/portfolio-img/garden-elegance-400.avif 400w, assets/img/portfolio-img/garden-elegance-800.avif 800w, assets/img/portfolio-img/garden-elegance-1200.avif 1200w"
+                    sizes="(min-width: 900px) 33vw, (min-width: 640px) 50vw, calc(100vw - 2rem)" />
+                  <source
+                    type="image/webp"
+                    srcset="assets/img/portfolio-img/garden-elegance-400.webp 400w, assets/img/portfolio-img/garden-elegance-800.webp 800w, assets/img/portfolio-img/garden-elegance-1200.webp 1200w"
+                    sizes="(min-width: 900px) 33vw, (min-width: 640px) 50vw, calc(100vw - 2rem)" />
+                  <img
+                    src="assets/img/portfolio-img/garden-elegance-800.jpg"
+                    srcset="assets/img/portfolio-img/garden-elegance-400.jpg 400w, assets/img/portfolio-img/garden-elegance-800.jpg 800w, assets/img/portfolio-img/garden-elegance-1200.jpg 1200w"
+                    sizes="(min-width: 900px) 33vw, (min-width: 640px) 50vw, calc(100vw - 2rem)"
+                    width="1200"
+                    height="900"
+                    alt="Garden wedding z pastelowymi dekoracjami"
+                    loading="lazy"
+                    decoding="async" />
+                </picture>
               </div>
               <h3 class="card__title">Garden Elegance</h3>
               <div class="card__taglist">
@@ -223,9 +286,28 @@
                 <span class="badge badge--outline">pastel</span>
               </div>
             </article>
+            <!-- Royal Classic -->
             <article class="card card--outline">
               <div class="card__image">
-                <img src="assets/portfolio-placeholder.svg" width="480" height="360" alt="Klasyczna aranżacja sali balowej" loading="lazy" />
+                <picture>
+                  <source
+                    type="image/avif"
+                    srcset="assets/img/portfolio-img/royal-classic-400.avif 400w, assets/img/portfolio-img/royal-classic-800.avif 800w, assets/img/portfolio-img/royal-classic-1200.avif 1200w"
+                    sizes="(min-width: 900px) 33vw, (min-width: 640px) 50vw, calc(100vw - 2rem)" />
+                  <source
+                    type="image/webp"
+                    srcset="assets/img/portfolio-img/royal-classic-400.webp 400w, assets/img/portfolio-img/royal-classic-800.webp 800w, assets/img/portfolio-img/royal-classic-1200.webp 1200w"
+                    sizes="(min-width: 900px) 33vw, (min-width: 640px) 50vw, calc(100vw - 2rem)" />
+                  <img
+                    src="assets/img/portfolio-img/royal-classic-800.jpg"
+                    srcset="assets/img/portfolio-img/royal-classic-400.jpg 400w, assets/img/portfolio-img/royal-classic-800.jpg 800w, assets/img/portfolio-img/royal-classic-1200.jpg 1200w"
+                    sizes="(min-width: 900px) 33vw, (min-width: 640px) 50vw, calc(100vw - 2rem)"
+                    width="1200"
+                    height="900"
+                    alt="Klasyczna aranżacja sali balowej"
+                    loading="lazy"
+                    decoding="async" />
+                </picture>
               </div>
               <h3 class="card__title">Royal Classic</h3>
               <div class="card__taglist">
@@ -233,9 +315,28 @@
                 <span class="badge badge--outline">bal</span>
               </div>
             </article>
+            <!-- Urban Minimal -->
             <article class="card card--outline">
               <div class="card__image">
-                <img src="assets/portfolio-placeholder.svg" width="480" height="360" alt="Nowoczesne wesele w loftowej przestrzeni" loading="lazy" />
+                <picture>
+                  <source
+                    type="image/avif"
+                    srcset="assets/img/portfolio-img/urban-minimal-400.avif 400w, assets/img/portfolio-img/urban-minimal-800.avif 800w, assets/img/portfolio-img/urban-minimal-1200.avif 1200w"
+                    sizes="(min-width: 900px) 33vw, (min-width: 640px) 50vw, calc(100vw - 2rem)" />
+                  <source
+                    type="image/webp"
+                    srcset="assets/img/portfolio-img/urban-minimal-400.webp 400w, assets/img/portfolio-img/urban-minimal-800.webp 800w, assets/img/portfolio-img/urban-minimal-1200.webp 1200w"
+                    sizes="(min-width: 900px) 33vw, (min-width: 640px) 50vw, calc(100vw - 2rem)" />
+                  <img
+                    src="assets/img/portfolio-img/urban-minimal-800.jpg"
+                    srcset="assets/img/portfolio-img/urban-minimal-400.jpg 400w, assets/img/portfolio-img/urban-minimal-800.jpg 800w, assets/img/portfolio-img/urban-minimal-1200.jpg 1200w"
+                    sizes="(min-width: 900px) 33vw, (min-width: 640px) 50vw, calc(100vw - 2rem)"
+                    width="1200"
+                    height="900"
+                    alt="Nowoczesne wesele w loftowej przestrzeni"
+                    loading="lazy"
+                    decoding="async" />
+                </picture>
               </div>
               <h3 class="card__title">Urban Minimal</h3>
               <div class="card__taglist">
@@ -244,12 +345,13 @@
               </div>
             </article>
           </div>
-          <div class="hero__actions">
+          <div class="section__actions">
             <a class="button button--primary" href="realizacje.html">Zobacz pełne portfolio</a>
           </div>
         </div>
       </section>
 
+      <!-- Callout -->
       <section class="callout">
         <div class="container">
           <h2>Gotowi na ślub bez stresu?</h2>
@@ -262,8 +364,10 @@
       </section>
     </main>
 
+    <!-- Footer -->
     <footer class="site-footer" data-partial="footer" data-partial-src="partials/footer.html"></footer>
 
+    <!-- Scripts -->
     <script type="module" src="js/app.js"></script>
   </body>
 </html>

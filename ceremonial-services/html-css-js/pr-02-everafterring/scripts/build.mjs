@@ -1,6 +1,6 @@
 import { build as bundleScript } from "esbuild";
 import { bundle as bundleStyles } from "lightningcss";
-import { cpSync, existsSync, mkdirSync, readFileSync, rmSync, writeFileSync } from "node:fs";
+import { cpSync, existsSync, mkdirSync, readFileSync, readdirSync, rmSync, writeFileSync } from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 
@@ -15,7 +15,11 @@ const htmlPages = [
   "uslugi.html",
   "realizacje.html",
   "o-nas.html",
-  "kontakt.html"
+  "kontakt.html",
+  "dziekujemy.html",
+  "polityka-prywatnosci.html",
+  "regulamin.html",
+  "cookies.html"
 ];
 
 const ensureDir = (targetPath) => {
@@ -57,23 +61,36 @@ const buildCss = () => {
 const buildJs = async () => {
   ensureDir(path.join(distRoot, "js"));
 
-  await bundleScript({
-    entryPoints: [path.join(projectRoot, "js", "app.js")],
-    bundle: true,
-    format: "esm",
-    minify: true,
-    outfile: path.join(distRoot, "js", "app.min.js")
-  });
+  await Promise.all([
+    bundleScript({
+      entryPoints: [path.join(projectRoot, "js", "app.js")],
+      bundle: true,
+      format: "esm",
+      minify: true,
+      outfile: path.join(distRoot, "js", "app.min.js")
+    }),
+    bundleScript({
+      entryPoints: [path.join(projectRoot, "js", "theme-bootstrap.js")],
+      bundle: true,
+      format: "iife",
+      minify: true,
+      outfile: path.join(distRoot, "js", "theme-bootstrap.min.js")
+    })
+  ]);
 };
 
 const getHeaderMarkupForPage = (page) => {
   let headerMarkup = readProjectFile(path.join("partials", "header.html")).trimEnd();
 
   if (page !== "uslugi.html") {
-    headerMarkup = headerMarkup.replace(
-      `class="nav__link" href="${page}"`,
-      `class="nav__link" href="${page}" aria-current="page"`
-    );
+    const activeLinkPattern = `class="nav__link" href="${page}"`;
+
+    if (headerMarkup.includes(activeLinkPattern)) {
+      headerMarkup = headerMarkup.replace(
+        activeLinkPattern,
+        `class="nav__link" href="${page}" aria-current="page"`
+      );
+    }
 
     return headerMarkup;
   }
@@ -112,6 +129,7 @@ const buildHtml = () => {
     const withFooter = replacePartialHost(withHeader, "footer", "footer", footerMarkup);
     const productionHtml = withFooter
       .replaceAll('href="css/main.css"', 'href="css/main.min.css"')
+      .replaceAll('src="js/theme-bootstrap.js"', 'src="js/theme-bootstrap.min.js"')
       .replaceAll('src="js/app.js"', 'src="js/app.min.js"');
 
     writeDistFile(page, productionHtml);
@@ -121,7 +139,16 @@ const buildHtml = () => {
 const copyAssets = () => {
   const assetsSource = path.join(projectRoot, "assets");
   if (existsSync(assetsSource)) {
-    cpSync(assetsSource, path.join(distRoot, "assets"), { recursive: true });
+    const assetsDestination = path.join(distRoot, "assets");
+    ensureDir(assetsDestination);
+
+    readdirSync(assetsSource, { withFileTypes: true }).forEach((entry) => {
+      if (entry.name === "img-src") {
+        return;
+      }
+
+      cpSync(path.join(assetsSource, entry.name), path.join(assetsDestination, entry.name), { recursive: true });
+    });
   }
 
   ["robots.txt", "sitemap.xml"].forEach((file) => {

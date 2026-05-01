@@ -6,7 +6,14 @@
     <title>Kontakt – EverAfter Ring</title>
     <meta name="description" content="Skontaktuj się z EverAfter Ring. Umów konsultację i opowiedz o swoim ślubie – odpowiadamy w 24 godziny." />
     <link rel="canonical" href="https://www.everafterring.pl/kontakt.html" />
-    <link rel="icon" href="assets/favicon.svg" type="image/svg+xml" />
+    <link rel="icon" href="assets/favicon/favicon.ico" sizes="any" />
+    <link rel="icon" type="image/svg+xml" href="assets/favicon/favicon.svg" />
+    <link rel="icon" type="image/png" href="assets/favicon/favicon-96x96.png" sizes="96x96" />
+    <link rel="apple-touch-icon" sizes="180x180" href="assets/favicon/apple-touch-icon.png" />
+    <meta name="apple-mobile-web-app-title" content="EverAfter Ring" />
+    <meta name="theme-color" content="#faf7f2" data-theme-color />
+    <link rel="manifest" href="assets/favicon/site.webmanifest" />
+    <script src="js/theme-bootstrap.js"></script>
     <link rel="stylesheet" href="css/main.css" />
     <script type="application/ld+json">
       {
@@ -16,8 +23,15 @@
         "url": "https://www.everafterring.pl/",
         "description": "Butikowa agencja wedding planning & coordination.",
         "areaServed": "Polska",
-        "telephone": "+48 000 000 000",
-        "email": "kontakt@everafterring.pl"
+        "telephone": "+48 533 537 091",
+        "email": "kontakt@kp-code.pl",
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "ul. Marynarki Wojennej 12",
+          "postalCode": "33-100",
+          "addressLocality": "Tarnów",
+          "addressCountry": "PL"
+        }
       }
     </script>
     <script type="application/ld+json">
@@ -42,7 +56,11 @@
             <p class="hero__tagline">Wypełnij formularz, a wrócimy do Ciebie w ciągu 24 godzin z propozycją spotkania.</p>
           </div>
           <div class="hero__media" data-hero-image>
-            <img src="assets/img/hero/hero.jpg" width="640" height="480" alt="Kontakt z konsultantem ślubnym" />
+            <picture>
+              <source type="image/avif" srcset="assets/img/hero/hero-400.avif 400w, assets/img/hero/hero-800.avif 800w, assets/img/hero/hero-1080.avif 1080w" sizes="(min-width: 900px) 45vw, calc(100vw - 2rem)" />
+              <source type="image/webp" srcset="assets/img/hero/hero-400.webp 400w, assets/img/hero/hero-800.webp 800w, assets/img/hero/hero-1080.webp 1080w" sizes="(min-width: 900px) 45vw, calc(100vw - 2rem)" />
+              <img src="assets/img/hero/hero-800.jpg" srcset="assets/img/hero/hero-400.jpg 400w, assets/img/hero/hero-800.jpg 800w, assets/img/hero/hero-1080.jpg 1080w" sizes="(min-width: 900px) 45vw, calc(100vw - 2rem)" width="1080" height="720" alt="Kontakt z konsultantem ślubnym" decoding="async" />
+            </picture>
           </div>
         </div>
       </section>
@@ -52,7 +70,12 @@
           <div>
             <h2>Formularz kontaktowy</h2>
             <p class="section__meta">Im więcej szczegółów, tym lepiej dopasujemy zakres usług.</p>
-            <form class="form" data-contact-form novalidate>
+            <form class="form" name="kontakt-everafterring" method="POST" action="/dziekujemy.html" data-netlify="true" netlify-honeypot="bot-field" data-contact-form>
+              <input type="hidden" name="form-name" value="kontakt-everafterring" />
+              <p aria-hidden="true" style="position: absolute; width: 1px; height: 1px; margin: -1px; padding: 0; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0;">
+                <label for="bot-field">Nie wypełniaj tego pola, jeśli jesteś człowiekiem</label>
+                <input id="bot-field" name="bot-field" type="text" tabindex="-1" autocomplete="off" />
+              </p>
               <div class="form__grid form__grid--2">
                 <div class="form__field">
                   <label class="form__label" for="name">Imię i nazwisko</label>
@@ -117,7 +140,7 @@
                 <textarea class="form__textarea" id="message" name="message" required data-validate aria-describedby="message-error"></textarea>
                 <span class="form__error" id="message-error"></span>
               </div>
-              <p class="form__hint">Wysyłając formularz, potwierdzasz zapoznanie się z informacją o przetwarzaniu danych.</p>
+              <p class="form__hint">Wysyłając formularz, potwierdzasz zapoznanie się z informacją o przetwarzaniu danych w <a href="polityka-prywatnosci.html">Polityce prywatności</a>.</p>
               <button class="button button--primary button--block" type="submit">Wyślij zapytanie</button>
               <div class="form__status" data-form-status aria-live="polite"></div>
             </form>
@@ -128,11 +151,15 @@
             <ul class="list">
               <li>
                 <strong>Email:</strong>
-                kontakt@everafterring.pl
+                <a href="mailto:kontakt@kp-code.pl">kontakt@kp-code.pl</a>
               </li>
               <li>
                 <strong>Telefon:</strong>
-                +48 000 000 000
+                <a href="tel:+48533537091">+48 533 537 091</a>
+              </li>
+              <li>
+                <strong>Adres:</strong>
+                ul. Marynarki Wojennej 12, 33-100 Tarnów, POLSKA
               </li>
               <li>
                 <strong>Godziny:</strong>

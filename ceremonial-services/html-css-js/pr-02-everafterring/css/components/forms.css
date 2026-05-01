@@ -21,7 +21,7 @@
 
 .form__label {
   font-size: var(--font-size-sm);
-  color: var(--color-ink);
+  color: var(--color-text);
   font-weight: 500;
 }
 
@@ -30,8 +30,9 @@
 .form__textarea {
   padding: 0.75rem 1rem;
   border-radius: var(--radius-sm);
-  border: 1px solid var(--color-border);
-  background: var(--color-white);
+  border: 1px solid var(--color-border-subtle);
+  background: var(--color-surface);
+  color: var(--color-text);
   font-size: var(--font-size-base);
 }
 
@@ -48,18 +49,18 @@
 
 .form__hint {
   font-size: var(--font-size-xs);
-  color: var(--color-muted);
+  color: var(--color-text-muted);
 }
 
 .form__status {
   border-radius: var(--radius-sm);
   padding: var(--space-3);
-  background: var(--color-champagne);
-  color: var(--color-ink);
+  background: var(--color-surface-alt);
+  color: var(--color-text);
 }
 
 .status {
   margin-top: var(--space-4);
-  background: var(--color-blush);
-  color: var(--color-rosewood);
+  background: var(--color-accent-soft);
+  color: var(--color-accent);
 }

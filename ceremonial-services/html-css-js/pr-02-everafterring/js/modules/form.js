@@ -25,6 +25,7 @@ export const initForm = () => {
 
   const status = qs('[data-form-status]', form);
   const fields = qsa('[data-validate]', form);
+  form.setAttribute('novalidate', '');
 
   const validateField = (field) => {
     if (field.validity.valid) {
@@ -53,26 +54,33 @@ export const initForm = () => {
   });
 
   form.addEventListener('submit', (event) => {
-    event.preventDefault();
     let firstInvalid = null;
-    const allValid = fields.every((field) => {
+    let allValid = true;
+
+    fields.forEach((field) => {
       const isValid = validateField(field);
       if (!isValid && !firstInvalid) {
         firstInvalid = field;
       }
-      return isValid;
+      if (!isValid) {
+        allValid = false;
+      }
     });
 
     if (!allValid) {
-      status.textContent = 'Uzupełnij zaznaczone pola, aby wysłać zapytanie.';
-      status.classList.add('status');
+      event.preventDefault();
+      if (status) {
+        status.textContent = 'Uzupełnij zaznaczone pola, aby wysłać zapytanie.';
+        status.classList.add('status');
+      }
       firstInvalid?.focus();
       return;
     }
 
-    status.textContent = 'Dziękujemy! Twoja wiadomość została przyjęta. Odpowiemy w ciągu 24 godzin.';
-    status.classList.add('status');
-    form.reset();
+    if (status) {
+      status.textContent = '';
+      status.classList.remove('status');
+    }
   });
 
   form.dataset.initialized = 'true';

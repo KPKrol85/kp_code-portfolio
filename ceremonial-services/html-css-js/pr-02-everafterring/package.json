@@ -4,14 +4,16 @@
   "private": true,
   "scripts": {
     "clean": "node scripts/build.mjs clean",
+    "optimize:images": "node scripts/optimize-images.mjs",
     "build:css": "node scripts/build.mjs css",
     "build:js": "node scripts/build.mjs js",
     "build:html": "node scripts/build.mjs html",
     "build:assets": "node scripts/build.mjs assets",
-    "build": "node scripts/build.mjs build"
+    "build": "npm run optimize:images && node scripts/build.mjs build"
   },
   "devDependencies": {
     "esbuild": "latest",
-    "lightningcss": "latest"
+    "lightningcss": "latest",
+    "sharp": "^0.34.5"
   }
 }
