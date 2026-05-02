@@ -22,6 +22,15 @@ const htmlPages = [
   "cookies.html"
 ];
 
+const primaryNavPages = new Set([
+  "index.html",
+  "oferta.html",
+  "uslugi.html",
+  "realizacje.html",
+  "o-nas.html",
+  "kontakt.html"
+]);
+
 const ensureDir = (targetPath) => {
   mkdirSync(targetPath, { recursive: true });
 };
@@ -81,26 +90,30 @@ const buildJs = async () => {
 
 const getHeaderMarkupForPage = (page) => {
   let headerMarkup = readProjectFile(path.join("partials", "header.html")).trimEnd();
+  const activeLinkPattern = `class="nav__link" href="${page}"`;
 
-  if (page !== "uslugi.html") {
-    const activeLinkPattern = `class="nav__link" href="${page}"`;
-
-    if (headerMarkup.includes(activeLinkPattern)) {
-      headerMarkup = headerMarkup.replace(
-        activeLinkPattern,
-        `class="nav__link" href="${page}" aria-current="page"`
-      );
-    }
-
-    return headerMarkup;
+  if (headerMarkup.includes(activeLinkPattern)) {
+    headerMarkup = headerMarkup.replace(
+      activeLinkPattern,
+      `class="nav__link" href="${page}" aria-current="page"`
+    );
   }
 
-  headerMarkup = headerMarkup.replace(
-    'href="uslugi.html" class="nav__dropdown-link"',
-    'href="uslugi.html" class="nav__dropdown-link" aria-current="page"'
-  );
+  return headerMarkup;
+};
 
-  return headerMarkup.replaceAll('href="uslugi.html#', 'href="#');
+const assertPrimaryNavActiveState = (page, headerMarkup) => {
+  if (!primaryNavPages.has(page)) return;
+
+  const expectedActiveLink = `class="nav__link" href="${page}" aria-current="page"`;
+  const activeLinkCount = (headerMarkup.match(/class="nav__link"[^>]*aria-current="page"/g) || []).length;
+  const expectedActiveLinkCount = headerMarkup.includes(expectedActiveLink) ? 1 : 0;
+
+  if (expectedActiveLinkCount !== 1 || activeLinkCount !== 1) {
+    throw new Error(
+      `Invalid active primary navigation state for ${page}. Expected exactly one nav__link with href="${page}" and aria-current="page"; found ${activeLinkCount}.`
+    );
+  }
 };
 
 const replacePartialHost = (html, tagName, partialName, partialMarkup) => {
@@ -125,6 +138,7 @@ const buildHtml = () => {
   htmlPages.forEach((page) => {
     const sourceHtml = readProjectFile(page);
     const headerMarkup = getHeaderMarkupForPage(page);
+    assertPrimaryNavActiveState(page, headerMarkup);
     const withHeader = replacePartialHost(sourceHtml, "header", "header", headerMarkup);
     const withFooter = replacePartialHost(withHeader, "footer", "footer", footerMarkup);
     const productionHtml = withFooter

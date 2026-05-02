@@ -82,28 +82,29 @@
       <!-- Hero -->
       <section class="hero">
         <div class="container hero__layout">
-          <div>
+          <div class="hero__content">
             <span class="badge badge--animate">Zakres usług</span>
             <h1 class="hero__title">Kompleksowe usługi wedding planning &amp; coordination.</h1>
             <p class="hero__tagline">Dobieramy elementy wydarzenia tak, aby tworzyły spójną i ponadczasową historię.</p>
           </div>
+          <!-- hero img -->
           <div class="hero__media" data-hero-image>
             <picture>
               <source
                 type="image/avif"
-                srcset="assets/img/hero/hero-400.avif 400w, assets/img/hero/hero-800.avif 800w, assets/img/hero/hero-1080.avif 1080w"
+                srcset="assets/img/hero/hero-uslugi-400.avif 400w, assets/img/hero/hero-uslugi-800.avif 800w, assets/img/hero/hero-uslugi-1080.avif 1080w"
                 sizes="(min-width: 900px) 45vw, calc(100vw - 2rem)" />
               <source
                 type="image/webp"
-                srcset="assets/img/hero/hero-400.webp 400w, assets/img/hero/hero-800.webp 800w, assets/img/hero/hero-1080.webp 1080w"
+                srcset="assets/img/hero/hero-uslugi-400.webp 400w, assets/img/hero/hero-uslugi-800.webp 800w, assets/img/hero/hero-uslugi-1080.webp 1080w"
                 sizes="(min-width: 900px) 45vw, calc(100vw - 2rem)" />
               <img
-                src="assets/img/hero/hero-800.jpg"
-                srcset="assets/img/hero/hero-400.jpg 400w, assets/img/hero/hero-800.jpg 800w, assets/img/hero/hero-1080.jpg 1080w"
+                src="assets/img/hero/hero-uslugi-800.jpg"
+                srcset="assets/img/hero/hero-uslugi-400.jpg 400w, assets/img/hero/hero-uslugi-800.jpg 800w, assets/img/hero/hero-uslugi-1080.jpg 1080w"
                 sizes="(min-width: 900px) 45vw, calc(100vw - 2rem)"
                 width="1080"
                 height="720"
-                alt="Zespół planujący elegancną uroczystość"
+                alt="Elegancko nakryty stół weselny z kwiatową dekoracją"
                 decoding="async" />
             </picture>
           </div>
@@ -117,7 +118,9 @@
             <h2>Sale i lokalizacje</h2>
             <p class="section__meta">Wybieramy miejsca, które podkreślą Waszą historię i zapewnią komfort gościom.</p>
           </div>
+          <!-- grid -->
           <div class="grid grid--2">
+            <!-- card 01 -->
             <article class="card">
               <h3 class="card__title">Kuratorski wybór przestrzeni</h3>
               <p>Analizujemy styl wydarzenia, liczbę gości oraz logistykę, aby dobrać idealną lokalizację.</p>
@@ -126,8 +129,17 @@
                 <li>Negocjacje warunków z obiektem</li>
                 <li>Planowanie stref wydarzenia</li>
               </ul>
-              <p class="card__meta">Proces: 1) brief 2) shortlist 3) wizyty 4) wybór</p>
+              <div class="card__process" aria-label="Proces wyboru lokalizacji">
+                <span class="card__process-label">Proces</span>
+                <ol class="card__process-list">
+                  <li>Brief</li>
+                  <li>Shortlist</li>
+                  <li>Wizyty</li>
+                  <li>Wybór</li>
+                </ol>
+              </div>
             </article>
+            <!-- card 02 -->
             <article class="card card--outline">
               <h3 class="card__title">Wsparcie logistyczne</h3>
               <p>Dbamy o dojazdy, harmonogram dostaw i plan awaryjny dla miejsc plenerowych.</p>
@@ -136,7 +148,14 @@
                 <li>Koordynacja ekip technicznych</li>
                 <li>Plan B na każdą pogodę</li>
               </ul>
-              <p class="card__meta">Proces: 1) analiza 2) plan 3) briefing</p>
+              <div class="card__process" aria-label="Proces wsparcia logistycznego">
+                <span class="card__process-label">Proces</span>
+                <ol class="card__process-list">
+                  <li>Analiza</li>
+                  <li>Plan</li>
+                  <li>Briefing</li>
+                </ol>
+              </div>
             </article>
           </div>
         </div>
@@ -149,7 +168,9 @@
             <h2>Wystrój i dekoracje</h2>
             <p class="section__meta">Tworzymy estetykę, która buduje emocje – od florystyki po światło.</p>
           </div>
+          <!-- grid -->
           <div class="grid grid--2">
+            <!-- card 01 -->
             <article class="card">
               <h3 class="card__title">Koncepcja stylistyczna</h3>
               <p>Projektujemy kompletne scenografie i koordynujemy wszystkie elementy dekoracyjne.</p>
@@ -158,8 +179,16 @@
                 <li>Projekt stref ceremonii i przyjęcia</li>
                 <li>Detale premium i personalizacje</li>
               </ul>
-              <p class="card__meta">Proces: 1) inspiracje 2) projekt 3) realizacja</p>
+              <div class="card__process" aria-label="Proces koncepcji stylistycznej">
+                <span class="card__process-label">Proces</span>
+                <ol class="card__process-list">
+                  <li>Inspiracje</li>
+                  <li>Projekt</li>
+                  <li>Realizacja</li>
+                </ol>
+              </div>
             </article>
+            <!-- card 02 -->
             <article class="card card--outline">
               <h3 class="card__title">Florystyka i światło</h3>
               <p>Współpracujemy z topowymi florystami i ekipami oświetleniowymi.</p>
@@ -168,7 +197,14 @@
                 <li>Aranżacje stołów i stref chill</li>
                 <li>Światło budujące klimat</li>
               </ul>
-              <p class="card__meta">Proces: 1) dobór 2) test 3) montaż</p>
+              <div class="card__process" aria-label="Proces florystyki i światła">
+                <span class="card__process-label">Proces</span>
+                <ol class="card__process-list">
+                  <li>Dobór</li>
+                  <li>Test</li>
+                  <li>Montaż</li>
+                </ol>
+              </div>
             </article>
           </div>
         </div>
@@ -181,7 +217,9 @@
             <h2>Samochody i transport</h2>
             <p class="section__meta">Logistyka w eleganckim wydaniu – od auta pary młodej po transfery gości.</p>
           </div>
+          <!-- grid -->
           <div class="grid grid--2">
+            <!-- card 01 -->
             <article class="card">
               <h3 class="card__title">Auta ślubne</h3>
               <p>Dobieramy pojazdy spójne z estetyką wydarzenia.</p>
@@ -190,8 +228,16 @@
                 <li>Nowoczesne auta premium</li>
                 <li>Opieka kierowcy i logistyka</li>
               </ul>
-              <p class="card__meta">Proces: 1) styl 2) wybór 3) rezerwacja</p>
+              <div class="card__process" aria-label="Proces doboru aut ślubnych">
+                <span class="card__process-label">Proces</span>
+                <ol class="card__process-list">
+                  <li>Styl</li>
+                  <li>Wybór</li>
+                  <li>Rezerwacja</li>
+                </ol>
+              </div>
             </article>
+            <!-- card 02 -->
             <article class="card card--outline">
               <h3 class="card__title">Transport gości</h3>
               <p>Koordynujemy transfery z hoteli, lotnisk i po ceremonii.</p>
@@ -200,7 +246,14 @@
                 <li>Harmonogram kursów</li>
                 <li>Kontakt z koordynatorem</li>
               </ul>
-              <p class="card__meta">Proces: 1) analiza 2) plan 3) realizacja</p>
+              <div class="card__process" aria-label="Proces organizacji transportu gości">
+                <span class="card__process-label">Proces</span>
+                <ol class="card__process-list">
+                  <li>Analiza</li>
+                  <li>Plan</li>
+                  <li>Realizacja</li>
+                </ol>
+              </div>
             </article>
           </div>
         </div>
@@ -213,7 +266,9 @@
             <h2>Koordynacja dnia ślubu</h2>
             <p class="section__meta">Jesteśmy Waszym zapleczem, abyście mogli celebrować bez stresu.</p>
           </div>
+          <!-- grid -->
           <div class="grid grid--2">
+            <!-- card 01 -->
             <article class="card">
               <h3 class="card__title">Scenariusz wydarzenia</h3>
               <p>Tworzymy szczegółowy harmonogram dnia i rozdzielamy role wśród zespołu.</p>
@@ -222,8 +277,16 @@
                 <li>Briefing dla dostawców</li>
                 <li>Plan awaryjny i checklista</li>
               </ul>
-              <p class="card__meta">Proces: 1) plan 2) konsultacja 3) finalizacja</p>
+              <div class="card__process" aria-label="Proces przygotowania scenariusza wydarzenia">
+                <span class="card__process-label">Proces</span>
+                <ol class="card__process-list">
+                  <li>Plan</li>
+                  <li>Konsultacja</li>
+                  <li>Finalizacja</li>
+                </ol>
+              </div>
             </article>
+            <!-- card 02 -->
             <article class="card card--outline">
               <h3 class="card__title">Opieka w dniu ślubu</h3>
               <p>Koordynujemy przebieg wydarzenia od startu przygotowań po ostatni toast.</p>
@@ -232,7 +295,14 @@
                 <li>Kontrola jakości usług</li>
                 <li>Zarządzanie czasem i komunikacją</li>
               </ul>
-              <p class="card__meta">Proces: 1) briefing 2) obecność 3) podsumowanie</p>
+              <div class="card__process" aria-label="Proces opieki w dniu ślubu">
+                <span class="card__process-label">Proces</span>
+                <ol class="card__process-list">
+                  <li>Briefing</li>
+                  <li>Obecność</li>
+                  <li>Podsumowanie</li>
+                </ol>
+              </div>
             </article>
           </div>
         </div>
@@ -245,7 +315,9 @@
             <h2>Dostawcy: foto, wideo, muzyka, catering</h2>
             <p class="section__meta">Dbamy o spójny standard usług i dopasowanie do Waszej osobowości.</p>
           </div>
+          <!-- grid -->
           <div class="grid grid--2">
+            <!-- card 01 -->
             <article class="card">
               <h3 class="card__title">Selekcja partnerów</h3>
               <p>Dobieramy dostawców, których styl i podejście pasuje do Waszej wizji.</p>
@@ -254,8 +326,16 @@
                 <li>Sprawdzone rekomendacje</li>
                 <li>Negocjacje warunków współpracy</li>
               </ul>
-              <p class="card__meta">Proces: 1) shortlist 2) spotkania 3) umowy</p>
+              <div class="card__process" aria-label="Proces selekcji partnerów">
+                <span class="card__process-label">Proces</span>
+                <ol class="card__process-list">
+                  <li>Shortlist</li>
+                  <li>Spotkania</li>
+                  <li>Umowy</li>
+                </ol>
+              </div>
             </article>
+            <!-- card 02 -->
             <article class="card card--outline">
               <h3 class="card__title">Koordynacja współpracy</h3>
               <p>Dbamy o to, aby każdy dostawca wiedział, kiedy i jak działać.</p>
@@ -264,7 +344,14 @@
                 <li>Spójne briefy</li>
                 <li>Kontrola jakości usług</li>
               </ul>
-              <p class="card__meta">Proces: 1) briefing 2) monitoring 3) egzekucja</p>
+              <div class="card__process" aria-label="Proces koordynacji współpracy z dostawcami">
+                <span class="card__process-label">Proces</span>
+                <ol class="card__process-list">
+                  <li>Briefing</li>
+                  <li>Monitoring</li>
+                  <li>Egzekucja</li>
+                </ol>
+              </div>
             </article>
           </div>
         </div>

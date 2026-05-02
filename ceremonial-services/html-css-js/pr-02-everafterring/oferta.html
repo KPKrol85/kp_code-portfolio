@@ -82,7 +82,7 @@
       <!-- Hero -->
       <section class="hero">
         <div class="container hero__layout">
-          <div>
+          <div class="hero__content">
             <span class="badge badge--animate">Pakiety usług</span>
             <h1 class="hero__title">Wybierz zakres wsparcia idealny dla Waszej historii.</h1>
             <p class="hero__tagline">Każdy pakiet możemy rozbudować o dodatkowe elementy, aby stworzyć pełną opiekę dopasowaną do Waszych potrzeb.</p>
@@ -91,19 +91,19 @@
             <picture>
               <source
                 type="image/avif"
-                srcset="assets/img/hero/hero-400.avif 400w, assets/img/hero/hero-800.avif 800w, assets/img/hero/hero-1080.avif 1080w"
+                srcset="assets/img/hero/hero-oferta-400.avif 400w, assets/img/hero/hero-oferta-800.avif 800w, assets/img/hero/hero-oferta-1080.avif 1080w"
                 sizes="(min-width: 900px) 45vw, calc(100vw - 2rem)" />
               <source
                 type="image/webp"
-                srcset="assets/img/hero/hero-400.webp 400w, assets/img/hero/hero-800.webp 800w, assets/img/hero/hero-1080.webp 1080w"
+                srcset="assets/img/hero/hero-oferta-400.webp 400w, assets/img/hero/hero-oferta-800.webp 800w, assets/img/hero/hero-oferta-1080.webp 1080w"
                 sizes="(min-width: 900px) 45vw, calc(100vw - 2rem)" />
               <img
-                src="assets/img/hero/hero-800.jpg"
-                srcset="assets/img/hero/hero-400.jpg 400w, assets/img/hero/hero-800.jpg 800w, assets/img/hero/hero-1080.jpg 1080w"
+                src="assets/img/hero/hero-oferta-800.jpg"
+                srcset="assets/img/hero/hero-oferta-400.jpg 400w, assets/img/hero/hero-oferta-800.jpg 800w, assets/img/hero/hero-oferta-1080.jpg 1080w"
                 sizes="(min-width: 900px) 45vw, calc(100vw - 2rem)"
                 width="1080"
                 height="720"
-                alt="Planowanie ślubu w eleganckim stylu"
+                alt="Złote zaproszenia ślubne, obrączka i eleganckie dodatki"
                 decoding="async" />
             </picture>
           </div>
@@ -113,12 +113,15 @@
       <!-- Packages -->
       <section class="section section--muted">
         <div class="container">
+          <!-- Header -->
           <div class="section__header">
             <h2>Pakiety EverAfter Ring</h2>
             <p class="section__meta">Trzy poziomy współpracy – od strategicznych konsultacji po pełną koordynację dnia ślubu.</p>
           </div>
+          <!-- Cards -->
           <div class="grid grid--3">
-            <article class="card">
+            <!-- card essential -->
+            <article class="card card--package">
               <p class="card__meta">Essential</p>
               <h3 class="card__title">Plan Startowy</h3>
               <p>Idealny dla par, które potrzebują kierunku, checklisty i kontroli nad budżetem.</p>
@@ -128,9 +131,11 @@
                 <li>Wstępna lista rekomendowanych dostawców</li>
                 <li>Budżet z priorytetami</li>
               </ul>
-              <p><strong>od 6 500 zł</strong></p>
+              <p class="card__price"><strong>od 6 500 zł</strong></p>
             </article>
-            <article class="card">
+
+            <!-- card signature -->
+            <article class="card card--package">
               <p class="card__meta">Signature</p>
               <h3 class="card__title">Koncepcja Premium</h3>
               <p>Najczęściej wybierany pakiet – pełna koncepcja stylistyczna i wsparcie w wyborze dostawców.</p>
@@ -140,9 +145,11 @@
                 <li>Plan logistyczny uroczystości</li>
                 <li>Kwartalne spotkania kontrolne</li>
               </ul>
-              <p><strong>od 12 000 zł</strong></p>
+              <p class="card__price"><strong>od 12 000 zł</strong></p>
             </article>
-            <article class="card">
+
+            <!-- card full service -->
+            <article class="card card--package">
               <p class="card__meta">Full Service</p>
               <h3 class="card__title">Pełna Koordynacja</h3>
               <p>Kompleksowa opieka od startu przygotowań aż po ostatni detal w dniu ślubu.</p>
@@ -152,7 +159,7 @@
                 <li>Obecność zespołu w dniu ślubu</li>
                 <li>Plan B i briefing dla gości</li>
               </ul>
-              <p><strong>od 18 000 zł</strong></p>
+              <p class="card__price"><strong>od 18 000 zł</strong></p>
             </article>
           </div>
         </div>

@@ -401,9 +401,7 @@
   .theme-toggle,
   .theme-toggle__icon,
   .nav__panel,
-  .nav__dropdown,
-  .hamburger__line,
-  .dropdown__icon {
+  .hamburger__line {
     transition: none;
   }
 }

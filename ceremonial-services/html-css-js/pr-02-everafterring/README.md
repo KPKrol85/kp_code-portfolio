@@ -8,7 +8,7 @@ EverAfter Ring to statyczny, wielostronicowy serwis WWW zbudowany w HTML, CSS i 
 ### Kluczowe funkcje
 - Wielostronicowa struktura obejmująca strony: `index.html`, `oferta.html`, `uslugi.html`, `realizacje.html`, `o-nas.html`, `kontakt.html`, `dziekujemy.html`, `polityka-prywatnosci.html`, `regulamin.html` oraz `cookies.html`.
 - Współdzielony `header` i `footer` obsługiwane przez `partials/`, ładowane w wersji źródłowej przez JavaScript i osadzane bezpośrednio w HTML podczas builda.
-- Responsywna nawigacja z menu mobilnym, dropdownem dla sekcji usług, obsługą `Escape`, kliknięcia poza menu oraz stanem aktywnej strony przez `aria-current`.
+- Responsywna, płaska nawigacja z menu mobilnym, obsługą `Escape`, powrotem fokusu po zamknięciu oraz stanem aktywnej strony przez `aria-current`.
 - Formularz kontaktowy z walidacją po stronie klienta, komunikatami błędów dla poszczególnych pól oraz komunikatem statusu aktualizowanym w `aria-live`.
 - Strona usług z linkowaniem do sekcji przez kotwice oraz efekt ruchu obrazu w sekcjach hero.
 
@@ -98,7 +98,7 @@ Build:
 ### Dostępność
 - Każda strona zawiera link pomijający do `#main`.
 - Struktura dokumentów korzysta z semantycznych landmarków: `header`, `nav`, `main`, `footer`.
-- Nawigacja używa atrybutów `aria-expanded`, `aria-controls` i `aria-current`, a dropdown obsługuje klawiaturę.
+- Nawigacja mobilna używa atrybutów `aria-expanded` i `aria-controls`, aktywna strona jest oznaczana przez `aria-current`, a otwarte menu mobilne utrzymuje fokus w panelu.
 - Styl bazowy definiuje widoczny stan `:focus-visible` dla elementów interaktywnych.
 - Obsługiwane jest `prefers-reduced-motion: reduce`.
 - Formularz kontaktowy korzysta z powiązań `label`, `aria-describedby` i regionu statusu `aria-live="polite"`.
@@ -131,7 +131,7 @@ EverAfter Ring is a static multi-page website built with HTML, CSS, and JavaScri
 ### Key Features
 - Multi-page structure covering `index.html`, `oferta.html`, `uslugi.html`, `realizacje.html`, `o-nas.html`, `kontakt.html`, `dziekujemy.html`, `polityka-prywatnosci.html`, `regulamin.html`, and `cookies.html`.
 - Shared `header` and `footer` managed through `partials/`, loaded by JavaScript in source mode and embedded directly into HTML during the build.
-- Responsive navigation with a mobile menu, services dropdown, `Escape` handling, outside-click closing, and active-page state via `aria-current`.
+- Responsive flat navigation with a mobile menu, `Escape` handling, focus return on close, and active-page state via `aria-current`.
 - Contact form with client-side validation, field-level error messages, and a status message updated through `aria-live`.
 - Services page with anchor-based section linking and a hero image motion effect.
 
@@ -221,7 +221,7 @@ The build process:
 ### Accessibility
 - Every page includes a skip link targeting `#main`.
 - Document structure uses semantic landmarks: `header`, `nav`, `main`, and `footer`.
-- Navigation uses `aria-expanded`, `aria-controls`, and `aria-current`, and the dropdown supports keyboard interaction.
+- Mobile navigation uses `aria-expanded` and `aria-controls`, the active page is marked with `aria-current`, and the open mobile panel traps focus.
 - The base styles define a visible `:focus-visible` state for interactive elements.
 - `prefers-reduced-motion: reduce` is supported.
 - The contact form uses connected `label` elements, `aria-describedby`, and an `aria-live="polite"` status region.

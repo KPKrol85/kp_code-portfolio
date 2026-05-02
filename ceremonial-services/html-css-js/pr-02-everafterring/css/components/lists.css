@@ -4,6 +4,7 @@
   color: var(--color-text-muted);
   padding-left: var(--space-4);
   list-style: disc;
+  font-size: var(--font-size-xs);
 }
 
 .list li {

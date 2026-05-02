@@ -83,28 +83,29 @@
       <!-- Hero -->
       <section class="hero">
         <div class="container hero__layout">
-          <div>
+          <div class="hero__content">
             <span class="badge badge--animate">Portfolio</span>
             <h1 class="hero__title">Realizacje EverAfter Ring – różne style, ta sama dbałość o detal.</h1>
             <p class="hero__tagline">Każda realizacja jest opowieścią, którą tworzymy wspólnie z parą młodą.</p>
           </div>
+          <!-- hero media -->
           <div class="hero__media" data-hero-image>
             <picture>
               <source
                 type="image/avif"
-                srcset="assets/img/hero/hero-400.avif 400w, assets/img/hero/hero-800.avif 800w, assets/img/hero/hero-1080.avif 1080w"
+                srcset="assets/img/hero/hero-realizacje-400.avif 400w, assets/img/hero/hero-realizacje-800.avif 800w, assets/img/hero/hero-realizacje-1080.avif 1080w"
                 sizes="(min-width: 900px) 45vw, calc(100vw - 2rem)" />
               <source
                 type="image/webp"
-                srcset="assets/img/hero/hero-400.webp 400w, assets/img/hero/hero-800.webp 800w, assets/img/hero/hero-1080.webp 1080w"
+                srcset="assets/img/hero/hero-realizacje-400.webp 400w, assets/img/hero/hero-realizacje-800.webp 800w, assets/img/hero/hero-realizacje-1080.webp 1080w"
                 sizes="(min-width: 900px) 45vw, calc(100vw - 2rem)" />
               <img
-                src="assets/img/hero/hero-800.jpg"
-                srcset="assets/img/hero/hero-400.jpg 400w, assets/img/hero/hero-800.jpg 800w, assets/img/hero/hero-1080.jpg 1080w"
+                src="assets/img/hero/hero-realizacje-800.jpg"
+                srcset="assets/img/hero/hero-realizacje-400.jpg 400w, assets/img/hero/hero-realizacje-800.jpg 800w, assets/img/hero/hero-realizacje-1080.jpg 1080w"
                 sizes="(min-width: 900px) 45vw, calc(100vw - 2rem)"
                 width="1080"
                 height="720"
-                alt="Stylowe portfolio ślubne"
+                alt="Para młoda na wzgórzu wśród drzew o zachodzie słońca"
                 decoding="async" />
             </picture>
           </div>
@@ -120,6 +121,7 @@
           </div>
           <!-- Grid -->
           <div class="grid grid--3">
+
             <!-- Royal Classic -->
             <article class="card">
               <div class="card__image">
@@ -213,10 +215,28 @@
               </div>
             </article>
 
-            <!-- Card -->
+            <!-- Vineyard Glow -->
             <article class="card">
               <div class="card__image">
-                <img src="assets\placeholders\placeholder.jpg" width="480" height="360" alt="Eleganckie wesele w winnicy" loading="lazy" />
+               <picture>
+                  <source
+                    type="image/avif"
+                    srcset="assets/img/portfolio-img/vineyard-glow-400.avif 400w, assets/img/portfolio-img/vineyard-glow-800.avif 800w, assets/img/portfolio-img/vineyard-glow-1200.avif 1200w"
+                    sizes="(min-width: 900px) 33vw, (min-width: 640px) 50vw, calc(100vw - 2rem)" />
+                  <source
+                    type="image/webp"
+                    srcset="assets/img/portfolio-img/vineyard-glow-400.webp 400w, assets/img/portfolio-img/vineyard-glow-800.webp 800w, assets/img/portfolio-img/vineyard-glow-1200.webp 1200w"
+                    sizes="(min-width: 900px) 33vw, (min-width: 640px) 50vw, calc(100vw - 2rem)" />
+                  <img
+                    src="assets/img/portfolio-img/vineyard-glow-800.jpg"
+                    srcset="assets/img/portfolio-img/vineyard-glow-400.jpg 400w, assets/img/portfolio-img/vineyard-glow-800.jpg 800w, assets/img/portfolio-img/vineyard-glow-1200.jpg 1200w"
+                    sizes="(min-width: 900px) 33vw, (min-width: 640px) 50vw, calc(100vw - 2rem)"
+                    width="1200"
+                    height="900"
+                    alt="Długi drewniany stół weselny z białą florystyką i plecionymi krzesłami"
+                    loading="lazy"
+                    decoding="async" />
+                </picture>
               </div>
               <h3 class="card__title">Vineyard Glow</h3>
               <p>Kolacje przy długim stole i miękkie światło girland.</p>
@@ -226,10 +246,28 @@
               </div>
             </article>
 
-            <!-- Card -->
+            <!-- Modern Classic -->
             <article class="card">
               <div class="card__image">
-                <img src="assets\placeholders\placeholder.jpg" width="480" height="360" alt="Wesele w stylu nowoczesnej klasyki" loading="lazy" />
+                <picture>
+                  <source
+                    type="image/avif"
+                    srcset="assets/img/portfolio-img/modern-classic-400.avif 400w, assets/img/portfolio-img/modern-classic-800.avif 800w, assets/img/portfolio-img/modern-classic-1200.avif 1200w"
+                    sizes="(min-width: 900px) 33vw, (min-width: 640px) 50vw, calc(100vw - 2rem)" />
+                  <source
+                    type="image/webp"
+                    srcset="assets/img/portfolio-img/modern-classic-400.webp 400w, assets/img/portfolio-img/modern-classic-800.webp 800w, assets/img/portfolio-img/modern-classic-1200.webp 1200w"
+                    sizes="(min-width: 900px) 33vw, (min-width: 640px) 50vw, calc(100vw - 2rem)" />
+                  <img
+                    src="assets/img/portfolio-img/modern-classic-800.jpg"
+                    srcset="assets/img/portfolio-img/modern-classic-400.jpg 400w, assets/img/portfolio-img/modern-classic-800.jpg 800w, assets/img/portfolio-img/modern-classic-1200.jpg 1200w"
+                    sizes="(min-width: 900px) 33vw, (min-width: 640px) 50vw, calc(100vw - 2rem)"
+                    width="1200"
+                    height="900"
+                    alt="Elegancka sala weselna z kryształowym żyrandolem, kremowymi tkaninami i białymi stołami"
+                    loading="lazy"
+                    decoding="async" />
+                </picture>
               </div>
               <h3 class="card__title">Modern Classic</h3>
               <p>Czyste linie, kremowe tekstylia i delikatne złote akcenty.</p>
@@ -239,10 +277,28 @@
               </div>
             </article>
 
-            <!-- Card -->
+            <!-- Intimate Boutique -->
             <article class="card">
               <div class="card__image">
-                <img src="assets\placeholders\placeholder.jpg" width="480" height="360" alt="Ślub kameralny w boutique hotelu" loading="lazy" />
+                <picture>
+                  <source
+                    type="image/avif"
+                    srcset="assets/img/portfolio-img/intimate-boutique-400.avif 400w, assets/img/portfolio-img/intimate-boutique-800.avif 800w, assets/img/portfolio-img/intimate-boutique-1200.avif 1200w"
+                    sizes="(min-width: 900px) 33vw, (min-width: 640px) 50vw, calc(100vw - 2rem)" />
+                  <source
+                    type="image/webp"
+                    srcset="assets/img/portfolio-img/intimate-boutique-400.webp 400w, assets/img/portfolio-img/intimate-boutique-800.webp 800w, assets/img/portfolio-img/intimate-boutique-1200.webp 1200w"
+                    sizes="(min-width: 900px) 33vw, (min-width: 640px) 50vw, calc(100vw - 2rem)" />
+                  <img
+                    src="assets/img/portfolio-img/intimate-boutique-800.jpg"
+                    srcset="assets/img/portfolio-img/intimate-boutique-400.jpg 400w, assets/img/portfolio-img/intimate-boutique-800.jpg 800w, assets/img/portfolio-img/intimate-boutique-1200.jpg 1200w"
+                    sizes="(min-width: 900px) 33vw, (min-width: 640px) 50vw, calc(100vw - 2rem)"
+                    width="1200"
+                    height="900"
+                    alt="Kameralny stół weselny w plenerze z białymi krzesłami i delikatną dekoracją kwiatową"
+                    loading="lazy"
+                    decoding="async" />
+                </picture>
               </div>
               <h3 class="card__title">Intimate Boutique</h3>
               <p>Kameralne przyjęcie z personalizowanym menu i muzyką na żywo.</p>
@@ -252,10 +308,28 @@
               </div>
             </article>
 
-            <!-- Card -->
+            <!-- Modern Glam -->
             <article class="card">
               <div class="card__image">
-                <img src="assets\placeholders\placeholder.jpg" width="480" height="360" alt="Wesele inspirowane stylem modern glam" loading="lazy" />
+                <picture>
+                  <source
+                    type="image/avif"
+                    srcset="assets/img/portfolio-img/modern-glam-400.avif 400w, assets/img/portfolio-img/modern-glam-800.avif 800w, assets/img/portfolio-img/modern-glam-1200.avif 1200w"
+                    sizes="(min-width: 900px) 33vw, (min-width: 640px) 50vw, calc(100vw - 2rem)" />
+                  <source
+                    type="image/webp"
+                    srcset="assets/img/portfolio-img/modern-glam-400.webp 400w, assets/img/portfolio-img/modern-glam-800.webp 800w, assets/img/portfolio-img/modern-glam-1200.webp 1200w"
+                    sizes="(min-width: 900px) 33vw, (min-width: 640px) 50vw, calc(100vw - 2rem)" />
+                  <img
+                    src="assets/img/portfolio-img/modern-glam-800.jpg"
+                    srcset="assets/img/portfolio-img/modern-glam-400.jpg 400w, assets/img/portfolio-img/modern-glam-800.jpg 800w, assets/img/portfolio-img/modern-glam-1200.jpg 1200w"
+                    sizes="(min-width: 900px) 33vw, (min-width: 640px) 50vw, calc(100vw - 2rem)"
+                    width="1200"
+                    height="900"
+                    alt="Elegancki stół weselny z białą florystyką, kryształowymi kieliszkami i ciepłym światłem"
+                    loading="lazy"
+                    decoding="async" />
+                </picture>
               </div>
               <h3 class="card__title">Modern Glam</h3>
               <p>Kryształowe detale, szampańskie barwy i światło świec.</p>
@@ -265,10 +339,28 @@
               </div>
             </article>
 
-            <!-- Card -->
+            <!-- Soft Boho -->
             <article class="card">
               <div class="card__image">
-                <img src="assets\placeholders\placeholder.jpg" width="480" height="360" alt="Ślub boho z naturalnymi dekoracjami" loading="lazy" />
+                 <picture>
+                  <source
+                    type="image/avif"
+                    srcset="assets/img/portfolio-img/soft-boho-400.avif 400w, assets/img/portfolio-img/soft-boho-800.avif 800w, assets/img/portfolio-img/soft-boho-1200.avif 1200w"
+                    sizes="(min-width: 900px) 33vw, (min-width: 640px) 50vw, calc(100vw - 2rem)" />
+                  <source
+                    type="image/webp"
+                    srcset="assets/img/portfolio-img/soft-boho-400.webp 400w, assets/img/portfolio-img/soft-boho-800.webp 800w, assets/img/portfolio-img/soft-boho-1200.webp 1200w"
+                    sizes="(min-width: 900px) 33vw, (min-width: 640px) 50vw, calc(100vw - 2rem)" />
+                  <img
+                    src="assets/img/portfolio-img/soft-boho-800.jpg"
+                    srcset="assets/img/portfolio-img/soft-boho-400.jpg 400w, assets/img/portfolio-img/soft-boho-800.jpg 800w, assets/img/portfolio-img/soft-boho-1200.jpg 1200w"
+                    sizes="(min-width: 900px) 33vw, (min-width: 640px) 50vw, calc(100vw - 2rem)"
+                    width="1200"
+                    height="900"
+                    alt="Plenerowa aleja ślubna z białą florystyką, zielenią i naturalnym światłem"
+                    loading="lazy"
+                    decoding="async" />
+                </picture>
               </div>
               <h3 class="card__title">Soft Boho</h3>
               <p>Naturalne tkaniny, beże i ręcznie robione dekoracje.</p>
@@ -278,10 +370,28 @@
               </div>
             </article>
 
-            <!-- Card -->
+            <!-- Art Deco Night -->
             <article class="card">
               <div class="card__image">
-                <img src="assets\placeholders\placeholder.jpg" width="480" height="360" alt="Wesele w stylu nowoczesnego art deco" loading="lazy" />
+                <picture>
+                  <source
+                    type="image/avif"
+                    srcset="assets/img/portfolio-img/art-deco-night-400.avif 400w, assets/img/portfolio-img/art-deco-night-800.avif 800w, assets/img/portfolio-img/art-deco-night-1200.avif 1200w"
+                    sizes="(min-width: 900px) 33vw, (min-width: 640px) 50vw, calc(100vw - 2rem)" />
+                  <source
+                    type="image/webp"
+                    srcset="assets/img/portfolio-img/art-deco-night-400.webp 400w, assets/img/portfolio-img/art-deco-night-800.webp 800w, assets/img/portfolio-img/art-deco-night-1200.webp 1200w"
+                    sizes="(min-width: 900px) 33vw, (min-width: 640px) 50vw, calc(100vw - 2rem)" />
+                  <img
+                    src="assets/img/portfolio-img/art-deco-night-800.jpg"
+                    srcset="assets/img/portfolio-img/art-deco-night-400.jpg 400w, assets/img/portfolio-img/art-deco-night-800.jpg 800w, assets/img/portfolio-img/art-deco-night-1200.jpg 1200w"
+                    sizes="(min-width: 900px) 33vw, (min-width: 640px) 50vw, calc(100vw - 2rem)"
+                    width="1200"
+                    height="900"
+                    alt="Wieczorna scena weselna z geometrycznymi dekoracjami, złotymi detalami i teatralnym światłem"
+                    loading="lazy"
+                    decoding="async" />
+                </picture>
               </div>
               <h3 class="card__title">Art Deco Night</h3>
               <p>Geometria, ciemne tony i teatralne oświetlenie.</p>

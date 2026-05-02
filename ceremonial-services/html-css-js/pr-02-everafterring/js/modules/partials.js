@@ -14,20 +14,6 @@ const applyHeaderState = (header) => {
 
   const currentPrimaryLink = qs(`.nav__link[href="${currentPage}"]`, header);
   currentPrimaryLink?.setAttribute("aria-current", "page");
-
-  if (currentPage !== "uslugi.html") return;
-
-  const servicesOverviewLink = qs('.nav__dropdown-link[href="uslugi.html"]', header);
-  servicesOverviewLink?.setAttribute("aria-current", "page");
-
-  // Keep section links local when the current page already contains the sections.
-  qsa('.nav__dropdown-link[href^="uslugi.html#"]', header).forEach((link) => {
-    const href = link.getAttribute("href");
-    if (!href) return;
-    const hashIndex = href.indexOf("#");
-    if (hashIndex === -1) return;
-    link.setAttribute("href", href.slice(hashIndex));
-  });
 };
 
 const decoratePartial = (host) => {

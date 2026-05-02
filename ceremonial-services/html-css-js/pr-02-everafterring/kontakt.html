@@ -82,28 +82,29 @@
     <main id="main">
       <section class="hero">
         <div class="container hero__layout">
-          <div>
+          <div class="hero__content">
             <span class="badge badge--animate">Kontakt</span>
             <h1 class="hero__title">Opowiedz nam o swoim ślubie – przygotujemy spersonalizowaną ofertę.</h1>
             <p class="hero__tagline">Wypełnij formularz, a wrócimy do Ciebie w ciągu 24 godzin z propozycją spotkania.</p>
           </div>
+          <!-- hero img -->
           <div class="hero__media" data-hero-image>
             <picture>
               <source
                 type="image/avif"
-                srcset="assets/img/hero/hero-400.avif 400w, assets/img/hero/hero-800.avif 800w, assets/img/hero/hero-1080.avif 1080w"
+                srcset="assets/img/hero/hero-kontakt-400.avif 400w, assets/img/hero/hero-kontakt-800.avif 800w, assets/img/hero/hero-kontakt-1080.avif 1080w"
                 sizes="(min-width: 900px) 45vw, calc(100vw - 2rem)" />
               <source
                 type="image/webp"
-                srcset="assets/img/hero/hero-400.webp 400w, assets/img/hero/hero-800.webp 800w, assets/img/hero/hero-1080.webp 1080w"
+                srcset="assets/img/hero/hero-kontakt-400.webp 400w, assets/img/hero/hero-kontakt-800.webp 800w, assets/img/hero/hero-kontakt-1080.webp 1080w"
                 sizes="(min-width: 900px) 45vw, calc(100vw - 2rem)" />
               <img
-                src="assets/img/hero/hero-800.jpg"
-                srcset="assets/img/hero/hero-400.jpg 400w, assets/img/hero/hero-800.jpg 800w, assets/img/hero/hero-1080.jpg 1080w"
+                src="assets/img/hero/hero-kontakt-800.jpg"
+                srcset="assets/img/hero/hero-kontakt-400.jpg 400w, assets/img/hero/hero-kontakt-800.jpg 800w, assets/img/hero/hero-kontakt-1080.jpg 1080w"
                 sizes="(min-width: 900px) 45vw, calc(100vw - 2rem)"
                 width="1080"
                 height="720"
-                alt="Kontakt z konsultantem ślubnym"
+                alt="Konsultantka ślubna rozmawiająca przez telefon przy laptopie"
                 decoding="async" />
             </picture>
           </div>
@@ -223,6 +224,22 @@
               </li>
             </ul>
             <p class="section__meta">Na pierwszej konsultacji omawiamy wizję i budżet, a następnie przedstawiamy plan działania.</p>
+            <div class="card__map" aria-label="Mapa lokalizacji EverAfter Ring w Tarnowie">
+              <iframe
+                title="Mapa Google: ul. Marynarki Wojennej 12, 33-100 Tarnów"
+                src="https://www.google.com/maps?q=ul.%20Marynarki%20Wojennej%2012%2C%2033-100%20Tarn%C3%B3w%2C%20Polska&amp;output=embed"
+                loading="lazy"
+                referrerpolicy="no-referrer-when-downgrade"
+              ></iframe>
+              <a
+                class="card__map-link"
+                href="https://www.google.com/maps/search/?api=1&amp;query=ul.%20Marynarki%20Wojennej%2012%2C%2033-100%20Tarn%C3%B3w%2C%20Polska"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Otwórz lokalizację w Google Maps
+              </a>
+            </div>
           </aside>
         </div>
       </section>

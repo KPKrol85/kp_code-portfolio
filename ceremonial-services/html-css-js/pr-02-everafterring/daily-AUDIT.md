@@ -31,7 +31,7 @@ nie wykryto
 
 ## 5. P2 — Drobne usprawnienia
 
-- Porządkowanie JS: `primaryNav` jest deklarowane w `js/modules/nav.js`, ale nie jest używane. To nie blokuje działania nawigacji, ale warto usunąć martwą deklarację przy najbliższej drobnej korekcie (`js/modules/nav.js:7`).
+Aktywne: brak.
 
 ## 6. Dodatkowe ulepszenia jakościowe
 
