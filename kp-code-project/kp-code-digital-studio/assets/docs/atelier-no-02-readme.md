@@ -177,7 +177,7 @@ W projekcie zaimplementowano m.in.:
 
 ### Licencja
 
-MIT (zgodnie z polem `license` w `package.json`).
+`UNLICENSED` (zgodnie z polem `license` w `package.json`).
 
 ## EN
 
@@ -356,4 +356,4 @@ Detected performance-oriented implementation includes:
 
 ### License
 
-MIT (as declared in `package.json`).
+`UNLICENSED` (as declared in `package.json`).

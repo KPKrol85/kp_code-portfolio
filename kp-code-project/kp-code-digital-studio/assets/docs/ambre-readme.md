@@ -127,7 +127,7 @@ Zaobserwowane implementacje wydajnościowe:
 
 ### Licencja
 
-Projekt jest udostępniony na licencji MIT (plik `LICENSE`).
+Projekt jest oznaczony jako `UNLICENSED`.
 
 ## EN
 
@@ -256,4 +256,4 @@ Verified performance-oriented implementation includes:
 
 ### License
 
-This project is licensed under the MIT License (see `LICENSE`).
+This project is declared as `UNLICENSED`.

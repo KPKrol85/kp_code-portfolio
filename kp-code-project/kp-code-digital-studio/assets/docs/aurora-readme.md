@@ -142,7 +142,7 @@ Wdrożone techniki:
 
 ### Licencja
 
-Projekt jest udostępniony na licencji MIT (`LICENSE`).
+Projekt jest oznaczony jako `UNLICENSED`.
 
 ## EN
 
@@ -286,4 +286,4 @@ Implemented performance-oriented patterns:
 
 ### License
 
-This project is released under the MIT License (`LICENSE`).
+This project is declared as `UNLICENSED`.

@@ -152,7 +152,7 @@ W repozytorium widoczne są następujące rozwiązania:
 
 ### Licencja
 
-Projekt jest udostępniony na licencji MIT (plik `LICENSE`).
+Projekt jest oznaczony jako `UNLICENSED`.
 
 ## EN
 
@@ -306,4 +306,4 @@ The repository includes the following explicit optimizations:
 
 ### License
 
-This project is distributed under the MIT License (`LICENSE` file).
+This project is declared as `UNLICENSED`.

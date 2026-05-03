@@ -164,7 +164,7 @@ W kodzie występują jawne mechanizmy wspierające wydajność:
 
 ### Licencja
 
-Projekt jest oznaczony jako `MIT` w `package.json`.
+Projekt jest oznaczony jako `UNLICENSED` w `package.json`.
 
 ## EN
 
@@ -330,4 +330,4 @@ The codebase includes explicit performance-related mechanisms:
 
 ### License
 
-The project is declared as `MIT` in `package.json`.
+The project is declared as `UNLICENSED` in `package.json`.

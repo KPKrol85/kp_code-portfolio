@@ -1,20 +1,23 @@
-# Daily Audit — 2026-04-21
+# Daily Audit — 2026-04-29
 
 ## 1. Short overall assessment
 
-Projekt jest technicznie uporządkowany i ma wiarygodną strukturę produkcyjną: wyraźny podział source/build, współdzielone partiale, tokenowy CSS, sensowny podział modułów JS, progressive enhancement formularza kontaktowego, szerokie metadane SEO oraz własne skrypty QA. Implementacja w większości potwierdza opis z `README.md`.
+KP_Code Digital Studio pozostaje uporządkowanym, produkcyjnie myślącym projektem front-endowym: ma czytelny podział source/build, współdzielone partiale, modularny CSS i JS, progressive enhancement formularza, zewnętrzną konfigurację mailową, metadane SEO oraz własne skrypty QA.
 
-W aktualnym stanie repo potwierdzono jeden realny problem P1 związany z workflow `preview:source`: lokalny source preview serwuje surowy szablon service workera, a kod front-endu próbuje go rejestrować w przeglądarce. To powoduje rozjazd między source preview a zachowaniem po buildzie. Jest to też jedyne istotne miejsce, w którym bieżąca implementacja nie potwierdza optymistycznej oceny z `AUDIT.md`.
+Poprzedni P1 z `daily-AUDIT.md` dotyczący rejestracji surowego szablonu service workera w `preview:source` jest obecnie rozwiązany. Implementacja source preview wstrzykuje marker runtime, a moduł service workera blokuje rejestrację w tym trybie. Po przeniesieniu tej pozycji do `resolved-audit-log.md` nie potwierdzono nowych P0, P1 ani P2 w zakresie statycznego audytu.
 
 ## 2. Strengths
 
-- Architektura source/build jest czytelna i konsekwentna. Build składa HTML z partiali, przepina referencje do minifikowanych assetów i generuje `sitemap.xml` oraz finalny `service-worker.js`. Dowód: `scripts/build-utils.mjs`, `src/partials/`, `css/main.css`, `js/main.js`.
-- Podstawy dostępności są realnie obecne w source: `skip-link`, semantyczne `main` i `nav`, `aria-current`, mobilna nawigacja z obsługą klawiatury i pułapką fokusu oraz fallback dla `prefers-reduced-motion`. Dowód: `index.html`, `about.html`, `contact.html`, `js/modules/navigation.js`, `js/modules/reveal.js`, `css/utilities.css`.
-- Formularz kontaktowy ma poprawny model progressive enhancement: działa bez JS przez `action="./contact-submit.php"`, a po stronie klienta dostaje walidację i wysyłkę asynchroniczną. Dowód: `contact.html`, `js/modules/forms.js`, `contact-submit.php`, `contact-form-support.php`.
-- Ochrona formularza nie jest pozorna: repo potwierdza honeypot, token czasowy, sesję, walidację i prosty rate limiting oparty o dane techniczne żądania. Dowód: `contact.html`, `contact-form-support.php`, `contact-submit.php`.
-- Warstwa SEO jest szeroko wdrożona: `description`, `canonical`, Open Graph, Twitter cards, `robots`, JSON-LD na kluczowych stronach oraz QA dla metadanych. Dowód: publiczne pliki `*.html`, `projects/*.html`, `services/*.html`, `robots.txt`, `scripts/qa/check-metadata.mjs`.
-- Ekspozycja sekretów nie została potwierdzona w repo. Konfiguracja formularza jest oparta o zmienne środowiskowe i opcjonalny plik lokalny, a `.htaccess` blokuje dostęp do plików konfiguracyjnych. Dowód: `contact-mail.config.php`, `.htaccess`.
-- Ślady robocze typu `TODO` i `FIXME`: not detected in project.
+- Source/build split jest spójny. Build składa HTML z partiali, przepina referencje do minifikowanych assetów, generuje `sitemap.xml` i materializuje finalny `service-worker.js`. Dowód: `scripts/build-utils.mjs`, `src/partials/`, `scripts/qa/check-html-assembly.mjs`.
+- `preview:source` składa publiczne HTML-e w pamięci, dodaje marker `kp-code-runtime=source-preview` i serwuje odpowiedzi z `Cache-Control: no-store`. Dowód: `scripts/preview-source.mjs`.
+- Rejestracja service workera jest świadomie wyłączona w source preview, a produkcyjny service worker jest generowany dopiero przez build z placeholderów `__CACHE_NAME__` i `__SHELL_ASSETS__`. Dowód: `js/modules/service-worker.js`, `service-worker.js`, `scripts/build-utils.mjs`.
+- Architektura CSS jest rozdzielona przez jedno wejście `css/main.css` na tokeny, base, layout, komponenty, sekcje, utilities, pages i projects. Dowód: `css/main.css`.
+- Moduły JS są inicjalizowane z jednego wejścia i zachowują separację odpowiedzialności: theme, navigation, scroll, reveal, forms, project-filter, service-worker i about-binary-rain. Dowód: `js/main.js`, `js/modules/`.
+- Formularz kontaktowy ma realny progressive enhancement: formularz pozostaje submittable bez JS, a runtime dodaje walidację klienta, `fetch` submission i obsługę błędów. Dowód: `contact.html`, `js/modules/forms.js`, `contact.php`, `contact-submit.php`.
+- Konfiguracja formularza nie ujawnia sekretów w repo. SMTP i odbiorca są ładowane ze zmiennych `KP_CODE_*` albo opcjonalnego pliku lokalnego, a `.htaccess` blokuje dostęp do plików konfiguracyjnych. Dowód: `contact-mail.config.php`, `contact-mail.config.example.php`, `.htaccess`.
+- Podstawy dostępności są widoczne w kodzie: `skip-link`, semantyczne landmarki, `aria-current`, mobilna nawigacja z obsługą klawiatury i fokusu, `:focus-visible`, `prefers-reduced-motion` oraz dostępne komunikaty formularza. Dowód: publiczne HTML-e, `js/modules/navigation.js`, `js/modules/reveal.js`, `js/modules/forms.js`, `css/base.css`, `css/utilities.css`.
+- Warstwa SEO jest konsekwentna. W 26 źródłowych stronach potwierdzono `title`, `meta description`, `canonical` i `robots`, a repo zawiera Open Graph, Twitter metadata, JSON-LD na wybranych stronach, `robots.txt` i generowanie sitemap. Dowód: publiczne HTML-e, `robots.txt`, `scripts/qa/check-metadata.mjs`, `scripts/build-utils.mjs`.
+- Ślady robocze `TODO`, `FIXME`, `HACK`, `XXX`: not detected in project.
 
 ## 3. P0 — Critical risks
 
@@ -22,8 +25,7 @@ none detected.
 
 ## 4. P1 — Important issues worth fixing next
 
-- `preview:source` rejestruje nieprzetworzony szablon service workera zamiast poprawnego runtime assetu. `scripts/preview-source.mjs` serwuje pliki nie-HTML bez transformacji z katalogu projektu, `js/modules/service-worker.js` zawsze próbuje zarejestrować `/service-worker.js` w secure context, a rootowy `service-worker.js` nadal zawiera placeholdery `__CACHE_NAME__` i `__SHELL_ASSETS__`. Dopiero build materializuje poprawny plik w `dist/`. Dowód: `scripts/preview-source.mjs:49-82`, `js/modules/service-worker.js:1-15`, `service-worker.js:1-3`, `scripts/build-utils.mjs:443-457`.
-  Skutek: przy `npm run preview:source` lokalny preview może generować błąd rejestracji service workera i nie odzwierciedlać poprawnie zachowania środowiska po buildzie.
+none detected.
 
 ## 5. P2 — Minor refinements
 
@@ -31,12 +33,11 @@ none detected.
 
 ## 6. Extra quality improvements
 
-- Rendered contrast verification: not detected in project. Repo ma spójne tokeny kolorystyczne i obsługę `prefers-reduced-motion`, ale nie zawiera renderowanego pomiaru kontrastu ani wizualnych testów dostępności. To opcjonalne pogłębienie QA, nie bieżący defekt. Dowód: `css/tokens.css`, `scripts/qa/`.
-- Automatyczna walidacja source-level heading hierarchy i landmark integrity: not detected in project. Obecne QA sprawdza składanie HTML, metadane, lokalne referencje, placeholder links i runtime PHP, ale nie ma osobnego checka semantycznej struktury nagłówków. To ulepszenie jakościowe, nie wada krytyczna. Dowód: `scripts/qa/run-qa.mjs` oraz importowane checki.
-- Runtime `console.log` w publicznej aplikacji: not detected in project poza kontrolowanym `console.error` dla nieudanej rejestracji service workera. Logi obecne w repo dotyczą głównie narzędzi preview/QA/build i nie są same w sobie defektem produkcyjnym. Dowód: `js/modules/service-worker.js`, `scripts/preview-*.mjs`, `scripts/qa/run-qa.mjs`.
+- Rendered contrast verification: not detected in project. Tokeny kolorystyczne i `prefers-reduced-motion` są obecne, ale repo nie zawiera renderowanego pomiaru kontrastu ani automatycznych testów wizualnych dostępności. To opcjonalne rozszerzenie QA, nie potwierdzony defekt.
+- Runtime `console.log` w publicznych modułach aplikacji: not detected in project. W runtime wykryto tylko kontrolowany `console.error` przy nieudanej rejestracji service workera; pozostałe logi należą do skryptów build/preview/QA.
 
 ## 7. Senior rating (1–10)
 
-**8.5/10**
+**9/10**
 
-To jest dojrzały, produkcyjnie myślący front-end z sensowną architekturą, dobrą warstwą SEO, realnym progressive enhancement i własnymi guardrailami QA. Ocena nie jest wyższa głównie przez jeden potwierdzony problem w oficjalnym workflow `preview:source` oraz brak głębszych, renderowanych testów dostępności w repo.
+Ocena wynika z dojrzałej struktury source/build, współdzielonego shell HTML, modularnej organizacji CSS/JS, realnego progressive enhancement, dobrej konfiguracji formularza, szerokiej warstwy SEO i sensownych guardraili QA. Wynik nie jest maksymalny, bo repo nie ma jeszcze renderowanych testów dostępności ani pełniejszej automatycznej walidacji semantyki i responsive assetów.

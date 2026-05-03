@@ -5,7 +5,7 @@
  */
 
 :root {
-  color-scheme: light dark;
+  color-scheme: light;
 
   /* Color system */
   --color-bg: #f6f7fb;
@@ -154,6 +154,8 @@
 }
 
 [data-theme='dark'] {
+  color-scheme: dark;
+
   --color-bg: #0b0f17;
   --color-surface: #121826;
   --color-surface-alt: #182033;

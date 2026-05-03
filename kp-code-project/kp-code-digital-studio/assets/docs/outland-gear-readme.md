@@ -163,7 +163,7 @@ W repozytorium widać następujące techniki związane z wydajnością:
 
 ### Licencja
 
-Projekt jest udostępniony na licencji MIT. Szczegóły: `LICENSE`.
+Projekt jest oznaczony jako `UNLICENSED`.
 
 ## EN
 
@@ -328,4 +328,4 @@ Repository-evidenced performance-related practices include:
 
 ### License
 
-This project is released under the MIT License. See `LICENSE`.
+This project is declared as `UNLICENSED`.

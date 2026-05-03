@@ -145,7 +145,7 @@ W repozytorium widoczne są konkretne mechanizmy wydajnościowe:
 
 ### Licencja
 
-Projekt jest udostępniony na licencji MIT. Szczegóły w pliku `LICENSE`.
+Projekt jest oznaczony jako `UNLICENSED`.
 
 ## EN
 
@@ -292,4 +292,4 @@ The repository contains explicit performance mechanisms:
 
 ### License
 
-This project is licensed under the MIT License. See `LICENSE` for details.
+This project is declared as `UNLICENSED`.

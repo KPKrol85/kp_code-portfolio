@@ -4,31 +4,47 @@
 
 const THEME_STORAGE_KEY = 'theme-preference';
 const THEME_VALUES = ['light', 'dark'];
+const THEME_COLORS = {
+  light: '#ffffff',
+  dark: '#0f1115',
+};
+
+const isThemeValue = (theme) => THEME_VALUES.includes(theme);
 
 const getStoredTheme = () => {
   try {
     const stored = localStorage.getItem(THEME_STORAGE_KEY);
-    return THEME_VALUES.includes(stored) ? stored : null;
+    return isThemeValue(stored) ? stored : null;
   } catch {
     return null;
   }
 };
 
-const getPreferredTheme = () => {
-  const stored = getStoredTheme();
-  if (stored) {
-    return stored;
+const getSystemTheme = () => {
+  if (!window.matchMedia) {
+    return 'light';
   }
 
   return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
 };
 
+const getPreferredTheme = () => getStoredTheme() || getSystemTheme();
+
 const applyTheme = (theme) => {
+  if (!isThemeValue(theme)) {
+    return;
+  }
+
   document.documentElement.dataset.theme = theme;
+  document.documentElement.style.colorScheme = theme;
+
+  document.querySelectorAll('meta[name="theme-color"]').forEach((meta) => {
+    meta.setAttribute('content', THEME_COLORS[theme]);
+  });
 };
 
 const setTheme = (theme, { persist = true } = {}) => {
-  if (!THEME_VALUES.includes(theme)) {
+  if (!isThemeValue(theme)) {
     return;
   }
 
@@ -52,13 +68,21 @@ const syncToggle = () => {
   }
 
   const currentTheme = document.documentElement.dataset.theme || getPreferredTheme();
-  toggle.setAttribute('aria-label', currentTheme);
   toggle.setAttribute('aria-pressed', currentTheme === 'dark' ? 'true' : 'false');
+
+  const nextThemeLabel = currentTheme === 'dark' ? 'jasny' : 'ciemny';
+  const label = `Przełącz na motyw ${nextThemeLabel}`;
+  toggle.setAttribute('aria-label', label);
+  toggle.setAttribute('title', label);
 };
 
 export const initTheme = () => {
-  applyTheme(getPreferredTheme());
-  syncToggle();
+  const syncTheme = () => {
+    applyTheme(getPreferredTheme());
+    syncToggle();
+  };
+
+  syncTheme();
 
   const toggle = document.querySelector('#theme-toggle');
   if (toggle) {
@@ -70,18 +94,33 @@ export const initTheme = () => {
     });
   }
 
-  const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
-  mediaQuery.addEventListener('change', (event) => {
-    if (getStoredTheme()) {
+  if (window.matchMedia) {
+    const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
+    mediaQuery.addEventListener('change', (event) => {
+      if (getStoredTheme()) {
+        return;
+      }
+
+      setTheme(event.matches ? 'dark' : 'light', { persist: false });
+      syncToggle();
+    });
+  }
+
+  window.addEventListener('pageshow', syncTheme);
+  window.addEventListener('storage', (event) => {
+    if (event.key !== THEME_STORAGE_KEY) {
       return;
     }
 
-    setTheme(event.matches ? 'dark' : 'light', { persist: false });
-    syncToggle();
+    syncTheme();
   });
 
   window.KPTheme = {
     THEME_STORAGE_KEY,
+    THEME_VALUES,
+    THEME_COLORS,
+    getStoredTheme,
+    getSystemTheme,
     getPreferredTheme,
     setTheme,
     applyTheme,
