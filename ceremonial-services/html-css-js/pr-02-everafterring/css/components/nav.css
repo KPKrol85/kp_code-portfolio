@@ -260,7 +260,7 @@
   font-weight: var(--font-weight-medium);
   color: var(--color-text);
   text-decoration: none;
-  letter-spacing: var(--letter-spacing-compact);
+  letter-spacing: var(--letter-spacing-tight);
   transition: color var(--transition-fast);
 }
 

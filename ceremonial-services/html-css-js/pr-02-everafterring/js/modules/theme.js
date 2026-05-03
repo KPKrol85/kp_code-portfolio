@@ -2,7 +2,7 @@ const STORAGE_KEY = "everafterring-theme";
 const THEMES = ["light", "dark"];
 const THEME_COLORS = {
   light: "#faf7f2",
-  dark: "#171311"
+  dark: "#171311",
 };
 
 const isValidTheme = (theme) => THEMES.includes(theme);
@@ -24,12 +24,7 @@ const setStoredTheme = (theme) => {
   }
 };
 
-const getSystemTheme = () => {
-  const mediaQuery = window.matchMedia?.("(prefers-color-scheme: dark)");
-  return mediaQuery?.matches ? "dark" : "light";
-};
-
-const resolveTheme = () => getStoredTheme() || getSystemTheme() || "light";
+const resolveTheme = () => getStoredTheme() || "light";
 
 const updateToggle = (toggle, theme) => {
   if (!toggle) return;
@@ -53,18 +48,14 @@ const applyTheme = (theme, toggle) => {
 
 export const initTheme = () => {
   const toggle = document.querySelector("[data-theme-toggle]");
-  const initialTheme = isValidTheme(document.documentElement.dataset.theme)
-    ? document.documentElement.dataset.theme
-    : resolveTheme();
+  const initialTheme = resolveTheme();
 
   applyTheme(initialTheme, toggle);
 
   if (!toggle || toggle.dataset.initialized === "true") return;
 
   toggle.addEventListener("click", () => {
-    const currentTheme = isValidTheme(document.documentElement.dataset.theme)
-      ? document.documentElement.dataset.theme
-      : resolveTheme();
+    const currentTheme = isValidTheme(document.documentElement.dataset.theme) ? document.documentElement.dataset.theme : resolveTheme();
     const nextTheme = currentTheme === "dark" ? "light" : "dark";
 
     setStoredTheme(nextTheme);
@@ -74,12 +65,6 @@ export const initTheme = () => {
   window.addEventListener("storage", (event) => {
     if (event.key !== STORAGE_KEY) return;
     applyTheme(isValidTheme(event.newValue) ? event.newValue : resolveTheme(), toggle);
-  });
-
-  const mediaQuery = window.matchMedia?.("(prefers-color-scheme: dark)");
-  mediaQuery?.addEventListener?.("change", () => {
-    if (getStoredTheme()) return;
-    applyTheme(resolveTheme(), toggle);
   });
 
   toggle.dataset.initialized = "true";

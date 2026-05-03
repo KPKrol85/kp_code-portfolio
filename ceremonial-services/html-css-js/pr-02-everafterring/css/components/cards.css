@@ -21,7 +21,7 @@
 .card__meta {
   font-size: var(--font-size-xs);
   text-transform: uppercase;
-  letter-spacing: var(--letter-spacing-widest);
+  letter-spacing: var(--letter-spacing-wide);
   color: var(--color-accent);
 }
 
@@ -103,7 +103,7 @@
 .card__process-label {
   font-size: var(--font-size-xs);
   font-weight: var(--font-weight-bold);
-  letter-spacing: var(--letter-spacing-widest);
+  letter-spacing: var(--letter-spacing-wide);
   text-transform: uppercase;
   color: var(--color-accent);
 }

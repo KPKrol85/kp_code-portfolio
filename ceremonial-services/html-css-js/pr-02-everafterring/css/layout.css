@@ -4,7 +4,7 @@
 }
 
 .section {
-  padding: var(--section-space-medium) 0;
+  padding: var(--section-space) 0;
 }
 
 .section--muted {
@@ -35,10 +35,6 @@
 
 .grid--3 {
   grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-}
-
-.grid--4 {
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
 }
 
 .stack {

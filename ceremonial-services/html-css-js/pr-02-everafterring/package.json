@@ -1,7 +1,19 @@
 {
   "name": "everafterring",
   "version": "1.0.0",
+  "description": "A static portfolio reference website for a premium wedding and ceremonial services brand.",
   "private": true,
+  "author": "Kamil Król",
+  "license": "UNLICENSED",
+  "type": "module",
+  "keywords": [
+    "portfolio",
+    "static-site",
+    "wedding",
+    "html",
+    "css",
+    "javascript"
+  ],
   "scripts": {
     "clean": "node scripts/build.mjs clean",
     "optimize:images": "node scripts/optimize-images.mjs",

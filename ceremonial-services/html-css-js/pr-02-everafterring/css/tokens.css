@@ -5,7 +5,6 @@
   --color-ivory: #faf7f2;
   --color-champagne: #f2e7da;
   --color-blush: #f5e1e6;
-  --color-sand: #e8ded2;
   --color-rosewood: #6c4a4a;
   --color-ink: #2a2422;
   --color-gold: #c6a77a;
@@ -48,7 +47,6 @@
   --font-sans: "Inter", "Segoe UI", "Helvetica Neue", Arial, sans-serif;
 
   /* Font Sizes */
-  --font-size-micro: 0.5rem;
   --font-size-nano: 0.6rem;
   --font-size-xxs: 0.7rem;
   --font-size-xs: 0.85rem;
@@ -72,12 +70,8 @@
   --line-height-relaxed: 1.7;
 
   /* Letter Spacing */
-  --letter-spacing-compact: -0.01em;
-  --letter-spacing-tight: -0.02em;
-  --letter-spacing-base: 0;
-  --letter-spacing-loose: 0.01em;
-  --letter-spacing-wide: 0.02em;
-  --letter-spacing-widest: 0.04em;
+  --letter-spacing-tight: -0.01em;
+  --letter-spacing-wide: 0.04em;
   --letter-spacing-badge: 0.08em;
 
   /* Font Weights */
@@ -113,9 +107,7 @@
   --container-width: 1100px;
 
   /* Section spacing */
-  --section-space-small: 4rem;
-  --section-space-medium: 6rem;
-  --section-space-large: 8rem;
+  --section-space: 6rem;
 
   /* Focus Ring */
   --focus-ring: 0 0 0 3px rgba(198, 167, 122, 0.5);
