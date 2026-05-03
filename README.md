@@ -129,5 +129,9 @@ This repository represents an evolving personal brand and a long-term commitment
 
 ## 📜 License
 
-MIT © [kpkrol85](https://github.com/kpkrol85)
+This repository is not distributed as an open-source project.
+
+The code, project structures, layouts, visual assets, documentation, and other materials in this repository are part of the KP_Code portfolio and are not intended for copying, redistribution, modification, publication, or commercial use without prior permission.
+
+Unless a specific project folder or file states otherwise, this repository should be treated as `UNLICENSED`.
 
