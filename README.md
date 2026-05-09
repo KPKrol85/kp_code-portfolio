@@ -65,7 +65,7 @@ Completed and actively developed frontend projects are deployed on **Netlify** a
 - [SaaS Dashboards — Pr03 — Digital Class](https://saas-pr03-digitalclass.netlify.app/)
 - [Sports & Wellness — Pr01 — Active Life](https://sports-pr01-activelife.netlify.app/)
 - [Sports & Wellness — Pr02 — Performance Coach](https://sports-pr02-performancecoach.netlify.app/)
-- [Transport — Pr01 — TransLogix](https://transport-pr01-trans-logix.netlify.app/)
+- [Transport — Pr01 — TransLogix](https://transport-pr01-translogix.netlify.app/)
 - [Transport — Pr02 — Easy Move](https://transport-pr02-easymove.netlify.app/)
   
 *(More projects are added continuously.)*
