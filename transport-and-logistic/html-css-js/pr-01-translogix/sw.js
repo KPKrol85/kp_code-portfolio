@@ -4,9 +4,13 @@ const PRECACHE_URLS = [
   "/",
   "/index.html",
   "/services.html",
+  "/service.html",
   "/fleet.html",
   "/pricing.html",
   "/contact.html",
+  "/privacy.html",
+  "/terms.html",
+  "/cookies.html",
   "/404.html",
   "/offline.html",
 

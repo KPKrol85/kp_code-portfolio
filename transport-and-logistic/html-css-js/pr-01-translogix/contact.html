@@ -1,10 +1,15 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="pl" class="no-js">
   <head>
+    <!-- Core metadata -->
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+
+    <!-- Early theme boot -->
     <script src="assets/js/theme-init.js"></script>
     <script src="assets/js/boot.js"></script>
+
+    <!-- SEO -->
     <title>Kontakt i szybka wycena | TransLogix</title>
     <meta name="description" content="Skontaktuj się z TransLogix: formularz kontaktowy, szybka wycena transportu i wsparcie B2B. Odpowiadamy 24/7, obsługujemy klientów w całej UE." />
     <meta name="author" content="KP_Code_" />
@@ -14,6 +19,8 @@
     <meta name="theme-color" media="(prefers-color-scheme: light)" content="#ffffff" />
     <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#020617" />
     <link rel="canonical" href="https://transport-pr01-translogix.netlify.app/contact.html" />
+
+    <!-- Theme and icons -->
     <link rel="icon" type="image/png" href="/assets/icons/favicon-96x96.png" sizes="96x96" />
     <link rel="icon" type="image/svg+xml" href="/assets/icons/favicon.svg" />
     <link rel="shortcut icon" href="/assets/icons/favicon.ico" />
@@ -21,7 +28,11 @@
     <meta name="apple-mobile-web-app-title" content="TransLogix" />
     <meta name="apple-mobile-web-app-capable" content="yes" />
     <link rel="manifest" href="/assets/icons/site.webmanifest" />
-<link rel="stylesheet" href="/assets/css/style.css" />
+
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="/assets/css/style.css" />
+
+    <!-- Social sharing -->
     <meta property="og:type" content="website" />
     <meta property="og:title" content="Kontakt i szybka wycena transportu | TransLogix" />
     <meta property="og:description" content="Napisz do TransLogix lub zamów szybką wycenę transportu. Działamy 24/7, obsługujemy klientów w Polsce i UE." />
@@ -36,8 +47,10 @@
     <meta name="twitter:title" content="Kontakt i szybka wycena transportu | TransLogix" />
     <meta name="twitter:description" content="Skontaktuj się z zespołem TransLogix – szybkie odpowiedzi, wsparcie techniczne, wyceny 24/7." />
     <meta name="twitter:image" content="https://transport-pr01-translogix.netlify.app/assets/img/og-img/og-1200x630.jpg" />
+
+    <!-- Structured data -->
     <script type="application/ld+json">
-{
+      {
         "@context": "https://schema.org",
         "@type": "ContactPage",
         "name": "Kontakt – TransLogix",
@@ -65,38 +78,9 @@
     <a class="skip-link" href="#main">Przejdź do treści głównej</a>
 
     <!-- Header -->
-        <header>
-      <div class="header-inner">
-        <a href="index.html" class="brand">
-          <img src="assets/img/logo/logo-translogix-light.svg" alt="" class="brand__logo brand__logo--light"  width="128" height="128" />
-          <img src="assets/img/logo/logo-translogix-dark.svg" alt="" class="brand__logo brand__logo--dark"  width="128" height="128" />
-          <span class="brand__text">TransLogix</span>
-        </a>
-        <nav class="nav" aria-label="Główna nawigacja">
-          <button class="nav__toggle" aria-expanded="false" aria-controls="mobile-nav" aria-label="Otwórz menu">
-            <span aria-hidden="true"></span>
-          </button>
-          <div id="mobile-nav" class="nav__panel">
-            <div class="nav__links">
-              <a href="index.html">Start</a>
-              <a href="services.html">Usługi</a>
-              <a href="fleet.html">Flota</a>
-              <a href="pricing.html">Cennik</a>
-              <a href="contact.html">Kontakt</a>
-            </div>
-          </div>
-        </nav>
-        <div class="header-actions">
-          <button class="theme-toggle" aria-pressed="false" aria-label="Przełącz tryb kolorów">
-            <img src="assets/img/svg/sun.svg" alt="" class="icon-sun" aria-hidden="true"  width="128" height="64" />
-            <img src="assets/img/svg/moon.svg" alt="" class="icon-moon" aria-hidden="true"  width="128" height="64" />
-          </button>
-          <a class="btn nav__cta" href="contact.html#quote">Zamów</a>
-        </div>
-      </div>
-    </header>
+    <div data-partial="header"></div>
 
-<!-- Main -->
+    <!-- Main -->
     <main id="main">
       <section class="section">
         <div class="container reveal">
@@ -114,7 +98,7 @@
                 <strong>Email:</strong>
                 kontakt@kp-code.pl
               </p>
-              <div class="map-embed" aria-label="Mapa dojazdu">
+              <div class="map-embed">
                 <iframe
                   title="Mapa dojazdu do ul. Marynarki Wojennej 12, 33-100 Tarnow"
                   src="https://www.google.com/maps?q=ul.+Marynarki+Wojennej+12,+33-100+Tarn%C3%B3w,+Polska&output=embed"
@@ -123,15 +107,7 @@
               </div>
             </div>
             <div class="stack contact-panel" id="quote">
-              <form
-                class="form"
-                id="contact-form"
-                name="contact"
-                method="POST"
-                action="/contact.html?success=1"
-                data-netlify="true"
-                netlify-honeypot="bot-field"
-                novalidate>
+              <form class="form" id="contact-form" name="contact" method="POST" action="/contact.html?success=1" data-netlify="true" netlify-honeypot="bot-field" novalidate>
                 <div class="form__honeypot" aria-hidden="true">
                   <label for="bot-field">Nie wypelniaj tego pola</label>
                   <input type="text" id="bot-field" name="bot-field" tabindex="-1" />
@@ -186,166 +162,85 @@
           <div class="faq" id="faq">
             <div class="accordion__item">
               <h3>
-                <button class="accordion__button" aria-expanded="false" aria-controls="faq1" id="faq1-label">
+                <button class="accordion__button" type="button" aria-expanded="false" aria-controls="faq1" id="faq1-label">
                   Jak szybko mozecie podstawic pojazd?
                   <span class="accordion__icon" aria-hidden="true"></span>
                 </button>
               </h3>
-              <div class="accordion__panel" role="region" aria-labelledby="faq1-label" id="faq1" hidden>
+              <section class="accordion__panel" aria-labelledby="faq1-label" id="faq1" hidden>
                 <p>W wiekszych miastach podstawiamy busa w 90 minut, a zestaw w 3h. Poza godzinami szczytu zwykle szybciej.</p>
-              </div>
+              </section>
             </div>
             <div class="accordion__item">
               <h3>
-                <button class="accordion__button" aria-expanded="false" aria-controls="faq2" id="faq2-label">
+                <button class="accordion__button" type="button" aria-expanded="false" aria-controls="faq2" id="faq2-label">
                   Czy obslugujecie ADR?
                   <span class="accordion__icon" aria-hidden="true"></span>
                 </button>
               </h3>
-              <div class="accordion__panel" role="region" aria-labelledby="faq2-label" id="faq2" hidden>
+              <section class="accordion__panel" aria-labelledby="faq2-label" id="faq2" hidden>
                 <p>Tak, posiadamy zestawy i kierowcow z pelnymi uprawnieniami ADR. Dostarczamy dokumentacje i konsultacje DGSA.</p>
-              </div>
+              </section>
             </div>
             <div class="accordion__item">
               <h3>
-                <button class="accordion__button" aria-expanded="false" aria-controls="faq3" id="faq3-label">
+                <button class="accordion__button" type="button" aria-expanded="false" aria-controls="faq3" id="faq3-label">
                   Jak wyglada raportowanie?
                   <span class="accordion__icon" aria-hidden="true"></span>
                 </button>
               </h3>
-              <div class="accordion__panel" role="region" aria-labelledby="faq3-label" id="faq3" hidden>
+              <section class="accordion__panel" aria-labelledby="faq3-label" id="faq3" hidden>
                 <p>Otrzymujesz link do sledzenia GPS oraz raporty statusowe co 2 godziny lub czesciej na zyczenie.</p>
-              </div>
+              </section>
             </div>
             <div class="accordion__item">
               <h3>
-                <button class="accordion__button" aria-expanded="false" aria-controls="faq4" id="faq4-label">
+                <button class="accordion__button" type="button" aria-expanded="false" aria-controls="faq4" id="faq4-label">
                   Jakie dokumenty sa potrzebne do wyceny i zlecenia?
                   <span class="accordion__icon" aria-hidden="true"></span>
                 </button>
               </h3>
-              <div class="accordion__panel" role="region" aria-labelledby="faq4-label" id="faq4" hidden>
-                <p>Standardowo prosimy o dane firmy, specyfikacje ladunku, warunki INCOTERMS, adresy zaladunku i dostawy oraz oczekiwane okna czasowe. Przy ADR lub chlodni dolaczamy karty charakterystyki i wymagania temperaturowe.</p>
-              </div>
+              <section class="accordion__panel" aria-labelledby="faq4-label" id="faq4" hidden>
+                <p>
+                  Standardowo prosimy o dane firmy, specyfikacje ladunku, warunki INCOTERMS, adresy zaladunku i dostawy oraz oczekiwane okna czasowe. Przy ADR lub chlodni dolaczamy karty
+                  charakterystyki i wymagania temperaturowe.
+                </p>
+              </section>
             </div>
             <div class="accordion__item">
               <h3>
-                <button class="accordion__button" aria-expanded="false" aria-controls="faq5" id="faq5-label">
+                <button class="accordion__button" type="button" aria-expanded="false" aria-controls="faq5" id="faq5-label">
                   Czy oferujecie monitoring GPS i powiadomienia?
                   <span class="accordion__icon" aria-hidden="true"></span>
                 </button>
               </h3>
-              <div class="accordion__panel" role="region" aria-labelledby="faq5-label" id="faq5" hidden>
+              <section class="accordion__panel" aria-labelledby="faq5-label" id="faq5" hidden>
                 <p>Tak, udostepniamy tracking GPS w czasie rzeczywistym i statusy mail/SMS w kluczowych punktach trasy. Dla flot kontraktowych mozemy integrowac webhooki lub raporty automatyczne.</p>
-              </div>
+              </section>
             </div>
             <div class="accordion__item">
               <h3>
-                <button class="accordion__button" aria-expanded="false" aria-controls="faq6" id="faq6-label">
+                <button class="accordion__button" type="button" aria-expanded="false" aria-controls="faq6" id="faq6-label">
                   Jak zabezpieczacie ladunek i jakie macie ubezpieczenie?
                   <span class="accordion__icon" aria-hidden="true"></span>
                 </button>
               </h3>
-              <div class="accordion__panel" role="region" aria-labelledby="faq6-label" id="faq6" hidden>
-                <p>Pracujemy na pasach, matach antyposlizgowych i zabezpieczeniach zgodnych z EN 12195. Posiadamy OCP i dodatkowe ubezpieczenia cargo do 500k EUR; w razie potrzeby organizujemy rozszerzone klauzule pod konkretny ladunek.</p>
-              </div>
+              <section class="accordion__panel" aria-labelledby="faq6-label" id="faq6" hidden>
+                <p>
+                  Pracujemy na pasach, matach antyposlizgowych i zabezpieczeniach zgodnych z EN 12195. Posiadamy OCP i dodatkowe ubezpieczenia cargo do 500k EUR; w razie potrzeby organizujemy
+                  rozszerzone klauzule pod konkretny ladunek.
+                </p>
+              </section>
             </div>
           </div>
+        </div>
+      </section>
     </main>
 
     <!-- Footer -->
-        <footer class="footer section">
-      <div class="container footer__inner">
-        <section class="footer__stats" aria-label="Kluczowe liczby TransLogix">
-          <ul class="stats">
-            <li class="stat">
-              <h3 data-stat="deliveries" data-value="550">612+</h3>
-              <p class="text-muted">Udanych dostaw miesięcznie</p>
-            </li>
-            <li class="stat">
-              <h3 data-stat="vehicles" data-value="45">45</h3>
-              <p class="text-muted">Pojazdów w ruchu</p>
-            </li>
-            <li class="stat">
-              <h3 data-stat="countries" data-value="27">27</h3>
-              <p class="text-muted">Obsługiwanych krajów UE</p>
-            </li>
-          </ul>
-        </section>
-        <nav class="footer__nav" aria-label="Nawigacja w stopce">
-          <div class="footer__grid">
-            <div class="footer__column footer__brand">
-              <a href="index.html" class="brand brand--footer" aria-label="Strona główna TransLogix">
-                <img src="assets/img/logo/logo-translogix-light.svg" alt="" class="brand__logo brand__logo--light"  width="128" height="128" />
-                <img src="assets/img/logo/logo-translogix-dark.svg" alt="" class="brand__logo brand__logo--dark"  width="128" height="128" />
-              </a>
-              <p class="footer__brand-text">
-                TransLogix dostarcza nowoczesne rozwiązania transportowe 24/7 — real-time monitoring floty, przewozy krajowe i międzynarodowe oraz pełną transparentność operacyjną.
-              </p>
-            </div>
-            <div class="footer__column">
-              <h2 class="footer__title">Oferta</h2>
-              <ul class="footer__list">
-                <li><a href="index.html">Start</a></li>
-                <li><a href="services.html">Usługi</a></li>
-                <li><a href="fleet.html">Flota</a></li>
-                <li><a href="pricing.html">Cennik</a></li>
-              </ul>
-            </div>
-            <div class="footer__column">
-              <h2 class="footer__title">Wsparcie</h2>
-              <ul class="footer__list">
-                <li><a href="contact.html">Kontakt</a></li>
-                <li><a href="contact.html#quote">Szybka wycena</a></li>
-                <li><a href="contact.html#faq">FAQ</a></li>
-              </ul>
-            </div>
-            <div class="footer__column">
-              <h2 class="footer__title">Dane firmy</h2>
-              <ul class="footer__list footer__list--meta">
-                <li>TransLogix Sp. z o.o.</li>
-                <li>
-                  ul. Marynarki Wojennej 12,
-                  <br />
-                  33-100 Tarnów,
-                  <br />
-                  Polska
-                </li>
-                <li><a href="mailto:kontakt@kp-code.pl">kontakt@kp-code.pl</a></li>
-                <li><a href="tel:+48533537091">+48 533 537 091</a></li>
-              </ul>
-            </div>
-          </div>
-        </nav>
-        <div class="footer__social">
-          <h2 class="footer__title">Social Media</h2>
-          <nav class="footer__social-row" aria-label="Social media">
-            <a href="#" class="social-link" aria-label="Facebook" target="_blank" rel="noopener noreferrer">
-              <img src="assets/img/svg/fb.svg" alt=""  width="512" height="512" />
-            </a>
-            <a href="#" class="social-link" aria-label="Instagram" target="_blank" rel="noopener noreferrer">
-              <img src="assets/img/svg/insta.svg" alt=""  width="512" height="512" />
-            </a>
-            <a href="#" class="social-link" aria-label="LinkedIn" target="_blank" rel="noopener noreferrer">
-              <img src="assets/img/svg/linkedin.svg" alt=""  width="512" height="512" />
-            </a>
-            <a href="#" class="social-link" aria-label="GitHub" target="_blank" rel="noopener noreferrer">
-              <img src="assets/img/svg/github.svg" alt=""  width="512" height="512" />
-            </a>
-          </nav>
-        </div>
-        <div class="footer__bottom">
-          <p class="footer__bottom-text">© 2026 KP_Code Digital Studio. Wszelkie prawa zastrzeżone.</p>
-          <ul class="footer__bottom-links">
-            <li><a href="privacy.html">Polityka prywatności</a></li>
-            <li><a href="terms.html">Regulamin serwisu</a></li>
-            <li><a href="cookies.html">Cookies</a></li>
-          </ul>
-        </div>
-      </div>
-    </footer>
+    <div data-partial="footer"></div>
 
-<!-- Script -->
+    <!-- Script -->
     <script type="module" src="assets/js/main.js"></script>
   </body>
 </html>

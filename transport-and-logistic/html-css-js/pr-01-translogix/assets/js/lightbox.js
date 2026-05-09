@@ -125,17 +125,17 @@ export function initLightbox() {
       .map((item) => {
         if (item.avif && item.webp && item.jpg) {
           return `
-          <button type="button" class="lightbox__thumb" aria-label="Powiększ zdjęcie"><picture>
+          <li><button type="button" class="lightbox__thumb" aria-label="Powiększ zdjęcie"><picture>
             <source srcset="${item.avif}" type="image/avif">
             <source srcset="${item.webp}" type="image/webp">
             <img src="${item.jpg}" alt="${item.alt || ""}" title="Powiększ zdjęcie" loading="lazy">
-          </picture></button>
+          </picture></button></li>
         `;
         }
         return `
-        <button type="button" class="lightbox__thumb" aria-label="Powiększ zdjęcie"><picture>
+        <li><button type="button" class="lightbox__thumb" aria-label="Powiększ zdjęcie"><picture>
           <img src="${item.src}" alt="${item.alt || ""}" title="Powiększ zdjęcie" loading="lazy">
-        </picture></button>
+        </picture></button></li>
       `;
       })
       .join("");

@@ -3,8 +3,33 @@ const path = require('path');
 
 const projectRoot = path.resolve(__dirname, '..');
 const ignoredPrefixes = ['http://', 'https://', 'data:', 'mailto:', '#'];
+const ignoredDirectories = new Set([
+  '.git',
+  'coverage',
+  'dist',
+  'node_modules',
+  'playwright-report',
+  'test-results',
+]);
+const projectOwnedHtmlDirectories = [
+  path.join(projectRoot, 'partials'),
+  path.join(projectRoot, 'templates'),
+];
 
-function getAllHtmlFiles(dir) {
+function isIgnoredDirectory(entryName) {
+  return ignoredDirectories.has(entryName);
+}
+
+function getRootHtmlFiles() {
+  return fs
+    .readdirSync(projectRoot, { withFileTypes: true })
+    .filter((entry) => entry.isFile() && entry.name.toLowerCase().endsWith('.html'))
+    .map((entry) => path.join(projectRoot, entry.name));
+}
+
+function getProjectHtmlFiles(dir) {
+  if (!fs.existsSync(dir)) return [];
+
   const entries = fs.readdirSync(dir, { withFileTypes: true });
   const files = [];
 
@@ -12,7 +37,9 @@ function getAllHtmlFiles(dir) {
     const fullPath = path.join(dir, entry.name);
 
     if (entry.isDirectory()) {
-      files.push(...getAllHtmlFiles(fullPath));
+      if (!isIgnoredDirectory(entry.name)) {
+        files.push(...getProjectHtmlFiles(fullPath));
+      }
       continue;
     }
 
@@ -22,6 +49,13 @@ function getAllHtmlFiles(dir) {
   }
 
   return files;
+}
+
+function getVerifiableHtmlFiles() {
+  return [
+    ...getRootHtmlFiles(),
+    ...projectOwnedHtmlDirectories.flatMap((dir) => getProjectHtmlFiles(dir)),
+  ];
 }
 
 function shouldIgnoreAsset(assetPath) {
@@ -90,7 +124,7 @@ function verifyAssets() {
   const missingAssets = new Set();
   const referencedAssets = new Set();
 
-  const htmlFiles = getAllHtmlFiles(projectRoot);
+  const htmlFiles = getVerifiableHtmlFiles();
 
   for (const htmlFile of htmlFiles) {
     const htmlContent = fs.readFileSync(htmlFile, 'utf8');

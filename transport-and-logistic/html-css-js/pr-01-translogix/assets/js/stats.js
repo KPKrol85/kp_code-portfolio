@@ -1,5 +1,5 @@
 export function initFooterStats() {
-  const statHeaders = document.querySelectorAll(".footer__stats .stat h3");
+  const statHeaders = document.querySelectorAll(".footer__stats .stat [data-stat]");
   if (!statHeaders.length) return;
   const prefersReducedMotion = !!(window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches);
 

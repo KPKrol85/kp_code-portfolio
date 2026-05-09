@@ -118,7 +118,7 @@ export async function initServicesFilters() {
     const filtered = filterServices(allServices, state);
     renderServices(filtered, container);
     if (countEl) {
-      countEl.textContent = filtered.length ? `Wyswietlono ${filtered.length}/${allServices.length}` : "Brak wynikow dla wybranych filtrow.";
+      countEl.textContent = filtered.length ? `Wyświetlono ${filtered.length}/${allServices.length}` : "Brak wyników dla wybranych filtrów.";
     }
     if (state.filter && state.filter !== "all") {
       params.set("filter", state.filter);
