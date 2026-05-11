@@ -21,6 +21,7 @@
   --shadow-lg: 0 20px 60px rgba(15, 23, 42, 0.12);
 
   /* Radius */
+  --radius-xs: 6px;
   --radius-sm: 10px;
   --radius-md: 16px;
   --radius-lg: 22px;
@@ -28,29 +29,58 @@
   --radius-pill: 999px;
 
   /* Spacing (fluid but close to current values) */
-  --space-1: clamp(0.5rem, 0.45rem + 0.2vw, 0.625rem);
-  --space-2: clamp(1rem, 0.9rem + 0.3vw, 1.125rem);
-  --space-3: clamp(1.5rem, 1.35rem + 0.45vw, 1.75rem);
-  --space-4: clamp(2rem, 1.8rem + 0.6vw, 2.375rem);
-  --space-5: clamp(3rem, 2.7rem + 0.9vw, 3.5rem);
-  --space-6: clamp(4rem, 3.6rem + 1.2vw, 4.75rem);
-  --space-7: clamp(5rem, 4.5rem + 1.5vw, 6rem);
-  --space-8: clamp(6rem, 5.4rem + 1.8vw, 7.5rem);
-
-  --transition: 200ms ease;
+  --space-01: clamp(0.25rem, 0.22rem + 0.1vw, 0.375rem);
+  --space-02: clamp(0.5rem, 0.45rem + 0.15vw, 0.625rem);
+  --space-03: clamp(0.75rem, 0.68rem + 0.2vw, 0.875rem);
+  --space-04: clamp(1rem, 0.9rem + 0.3vw, 1.125rem);
+  --space-05: clamp(1.5rem, 1.35rem + 0.45vw, 1.75rem);
+  --space-06: clamp(2rem, 1.8rem + 0.6vw, 2.375rem);
+  --space-07: clamp(3rem, 2.7rem + 0.9vw, 3.5rem);
+  --space-08: clamp(4rem, 3.6rem + 1.2vw, 4.75rem);
+  --space-09: clamp(5rem, 4.5rem + 1.5vw, 6rem);
+  --space-10: clamp(6rem, 5.4rem + 1.8vw, 7.5rem);
 
   /* Font scale */
-  --fs-xs: 0.75rem;
-  --fs-sm: 0.875rem;
-  --fs-base: 1rem;
-  --fs-md: 1.125rem;
-  --fs-lg: 1.25rem;
-  --fs-xl: clamp(1.5rem, 1.3rem + 0.6vw, 1.75rem);
-  --fs-2xl: clamp(2rem, 1.6rem + 1.2vw, 2.75rem);
+  --fs-01: 0.5rem; /* 8px */
+  --fs-02: 0.625rem; /* 10px */
+  --fs-03: 0.75rem; /* 12px */
+  --fs-04: 0.875rem; /* 14px */
+  --fs-05: 1rem; /* 16px */
+  --fs-06: 1.15rem; /* 18px */
+  --fs-07: 1.25rem; /* 20px */
+  --fs-08: clamp(1.5rem, 1.3rem + 0.6vw, 1.75rem);
+  --fs-09: clamp(2rem, 1.6rem + 1.2vw, 2.75rem);
+  --fs-10: clamp(2.5rem, 2rem + 1.6vw, 3.5rem);
 
+  /* Font weight */
+  --fw-regular: 400;
+  --fw-medium: 500;
+  --fw-semibold: 600;
+  --fw-bold: 700;
+  --fw-extrabold: 800;
+
+  /* Line height */
+  --lh-tight: 1;
+  --lh-heading: 1.1;
+  --lh-title: 1.2;
+  --lh-base: 1.5;
+  --lh-relaxed: 1.7;
+
+  /* Letter spacing */
+  --ls-tight: -0.03em;
+  --ls-compact: -0.02em;
+  --ls-normal: 0;
+  --ls-wide: 0.04em;
+  --ls-wider: 0.08em;
+
+  /* Transition */
+  --transition: 200ms ease;
+
+  /* Other */
   --container: 1120px;
   --ring: 0 0 0 3px rgba(14, 165, 233, 0.35);
 
+  /* social */
   --social-icon-filter: brightness(0);
 }
 

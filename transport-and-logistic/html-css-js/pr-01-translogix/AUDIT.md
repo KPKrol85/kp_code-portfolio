@@ -98,8 +98,6 @@ nie wykryto.
 
 - Rozważyć dodanie testów wizualnych albo sprawdzania kontrastu na podstawie stylów wyliczonych dla najważniejszych stron, jeśli projekt ma wymagać mocniejszego dowodu niż statyczne tokeny i pokrycie pa11y.
 
-- Rozważyć zastąpienie ogólnych URL-i social linkami brandowymi albo celowe pominięcie tych linków przed traktowaniem strony jako treści gotowej do publicznej publikacji.
-
 ## 7. Ocena seniorska (1–10)
 
 **8.4 / 10**
