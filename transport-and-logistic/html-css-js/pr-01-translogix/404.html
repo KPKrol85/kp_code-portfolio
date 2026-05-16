@@ -58,16 +58,20 @@
 
     <!-- Main -->
     <main id="main">
-      <section class="section">
-        <div class="container stack reveal">
-          <p class="eyebrow">Błąd 404</p>
-          <h1>Nie znaleziono strony</h1>
-          <p class="lead">Adres mógł zostać zmieniony lub strona nie istnieje. Wróć do strony głównej lub skorzystaj z menu powyżej.</p>
-          <hr class="divider" aria-hidden="true" />
-          <div class="hero__actions">
-            <a class="cta cta--primary" href="index.html">Wróć na start</a>
-            <a class="cta cta--ghost" href="services.html">Przejdź do usług</a>
-          </div>
+      <section class="system-page system-page--not-found" aria-labelledby="system-page-title">
+        <div class="system-page__inner">
+          <article class="system-page__card">
+            <p class="system-page__eyebrow">Błąd 404</p>
+            <h1 class="system-page__title" id="system-page-title">Nie znaleziono strony</h1>
+            <p class="system-page__text">
+              Ten adres mógł zostać zmieniony, usunięty albo wpisany z literówką. Wróć do głównych sekcji serwisu i wybierz właściwy kierunek obsługi.
+            </p>
+            <nav class="system-page__actions" aria-label="Przydatne linki">
+              <a class="cta cta--primary" href="index.html">Wróć na start</a>
+              <a class="btn" href="services.html">Przejdź do usług</a>
+              <a class="btn" href="contact.html">Skontaktuj się</a>
+            </nav>
+          </article>
         </div>
       </section>
     </main>

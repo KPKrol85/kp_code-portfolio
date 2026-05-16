@@ -79,40 +79,44 @@
     <main id="main">
       <section class="section">
         <div class="container reveal">
-          <p class="eyebrow">Cennik</p>
-          <h1>Proste pakiety z klarownymi stawkami</h1>
-          <p class="lead">Wybierz orientacyjny pakiet lub przelicz koszt indywidualnie. Ceny finalne ustalamy po potwierdzeniu okien czasowych.</p>
-          <table class="pricing-table" aria-label="Pakiety cenowe">
-            <thead>
-              <tr>
-                <th>Pakiet</th>
-                <th>Co zawiera</th>
-                <th>Cena od</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>Standard</td>
-                <td>Przewóz krajowy, monitoring online, ubezpieczenie do 200k zł</td>
-                <td>1,80 zł/km</td>
-              </tr>
-              <tr>
-                <td>Express</td>
-                <td>Dedykowany bus, SLA czasowe, kierowca standby</td>
-                <td>2,40 zł/km</td>
-              </tr>
-              <tr>
-                <td>ADR</td>
-                <td>Zestaw ADR, kierowca z uprawnieniami, dokumentacja, DGSA</td>
-                <td>2,90 zł/km</td>
-              </tr>
-              <tr>
-                <td>Chłodnia</td>
-                <td>Pełna kontrola temperatury, rejestrator, raporty PDF</td>
-                <td>3,10 zł/km</td>
-              </tr>
-            </tbody>
-          </table>
+          <div class="section__header">
+            <p class="eyebrow">Cennik</p>
+            <h1>Proste pakiety z klarownymi stawkami</h1>
+            <p class="section__lead">Wybierz orientacyjny pakiet lub przelicz koszt indywidualnie. Ceny finalne ustalamy po potwierdzeniu okien czasowych.</p>
+          </div>
+          <div class="pricing-overview">
+            <table class="pricing-table" aria-label="Pakiety cenowe">
+              <thead>
+                <tr>
+                  <th scope="col">Pakiet</th>
+                  <th scope="col">Co zawiera</th>
+                  <th scope="col">Cena od</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <th scope="row">Standard</th>
+                  <td>Przewóz krajowy, monitoring online, ubezpieczenie do 200k zł</td>
+                  <td>1,80 zł/km</td>
+                </tr>
+                <tr>
+                  <th scope="row">Express</th>
+                  <td>Dedykowany bus, SLA czasowe, kierowca standby</td>
+                  <td>2,40 zł/km</td>
+                </tr>
+                <tr>
+                  <th scope="row">ADR</th>
+                  <td>Zestaw ADR, kierowca z uprawnieniami, dokumentacja, DGSA</td>
+                  <td>2,90 zł/km</td>
+                </tr>
+                <tr>
+                  <th scope="row">Chłodnia</th>
+                  <td>Pełna kontrola temperatury, rejestrator, raporty PDF</td>
+                  <td>3,10 zł/km</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
         </div>
       </section>
       <section class="section" id="quote">
@@ -120,7 +124,7 @@
           <div class="section__header">
             <p class="eyebrow">Szybka wycena</p>
             <h2>Oblicz koszt w 30 sekund</h2>
-            <p class="text-muted">Podaj podstawowe parametry, a my wyświetlimy szacunkową kwotę. Dokładną wycenę otrzymasz po weryfikacji trasy.</p>
+            <p class="section__lead">Podaj podstawowe parametry, a my wyświetlimy szacunkową kwotę. Dokładną wycenę otrzymasz po weryfikacji trasy.</p>
           </div>
           <div class="calculator">
             <form class="form" id="quick-quote" novalidate>
@@ -158,11 +162,11 @@
                   Dostawa weekend
                 </label>
               </fieldset>
-              <button class="cta cta--primary" type="submit">Przelicz</button>
+              <button class="cta cta--primary quote-form__submit" type="submit">Przelicz</button>
             </form>
             <div class="summary" aria-live="polite">
               <h3>Wynik wyceny</h3>
-              <p class="lead" id="quote-result">Wprowadź parametry, aby zobaczyć stawkę.</p>
+              <p class="section__lead" id="quote-result">Wprowadź parametry, aby zobaczyć stawkę.</p>
               <p class="text-muted">Ceny orientacyjne. Finalna stawka zależy od okien czasowych, wymaganego sprzętu i okolic dokumentowych.</p>
               <div class="quote-history" aria-live="polite">
                 <h4 class="quote-history__title">Ostatnie wyceny</h4>

@@ -63,7 +63,7 @@
           "logo": "https://transport-pr01-translogix.netlify.app/assets/img/logo/logo-translogix-light.svg",
           "contactPoint": {
             "@type": "ContactPoint",
-            "telephone": "+48-500-000-000",
+            "telephone": "+48533537091",
             "email": "kontakt@kp-code.pl",
             "contactType": "customer service",
             "availableLanguage": ["pl", "en"]
@@ -107,7 +107,7 @@
               </div>
             </div>
             <div class="stack contact-panel" id="quote">
-              <form class="form" id="contact-form" name="contact" method="POST" action="/contact.html?success=1" data-netlify="true" netlify-honeypot="bot-field" novalidate>
+              <form class="form" id="contact-form" name="contact" method="POST" action="/thankyou.html" data-netlify="true" netlify-honeypot="bot-field" novalidate>
                 <div class="form__honeypot" aria-hidden="true">
                   <label for="bot-field">Nie wypelniaj tego pola</label>
                   <input type="text" id="bot-field" name="bot-field" tabindex="-1" />
@@ -153,56 +153,57 @@
           </div>
         </div>
       </section>
-      <section class="section">
+      <section class="section contact-faq" aria-labelledby="contact-faq-title">
         <div class="container reveal">
           <div class="section__header">
             <p class="eyebrow">FAQ</p>
-            <h2>Najczęstsze pytania</h2>
+            <h2 id="contact-faq-title">Najczęstsze pytania</h2>
+            <p class="section__lead">Krótko o czasie reakcji, dokumentach i bezpieczeństwie transportu przed wysłaniem zapytania.</p>
           </div>
           <div class="faq" id="faq">
             <div class="accordion__item">
               <h3>
                 <button class="accordion__button" type="button" aria-expanded="false" aria-controls="faq1" id="faq1-label">
-                  Jak szybko mozecie podstawic pojazd?
+                  Jak szybko możecie podstawić pojazd?
                   <span class="accordion__icon" aria-hidden="true"></span>
                 </button>
               </h3>
               <section class="accordion__panel" aria-labelledby="faq1-label" id="faq1" hidden>
-                <p>W wiekszych miastach podstawiamy busa w 90 minut, a zestaw w 3h. Poza godzinami szczytu zwykle szybciej.</p>
+                <p>W większych miastach podstawiamy busa w 90 minut, a zestaw w 3 godziny. Poza godzinami szczytu zwykle szybciej.</p>
               </section>
             </div>
             <div class="accordion__item">
               <h3>
                 <button class="accordion__button" type="button" aria-expanded="false" aria-controls="faq2" id="faq2-label">
-                  Czy obslugujecie ADR?
+                  Czy obsługujecie ADR?
                   <span class="accordion__icon" aria-hidden="true"></span>
                 </button>
               </h3>
               <section class="accordion__panel" aria-labelledby="faq2-label" id="faq2" hidden>
-                <p>Tak, posiadamy zestawy i kierowcow z pelnymi uprawnieniami ADR. Dostarczamy dokumentacje i konsultacje DGSA.</p>
+                <p>Tak, posiadamy zestawy i kierowców z pełnymi uprawnieniami ADR. Dostarczamy dokumentację i konsultacje DGSA.</p>
               </section>
             </div>
             <div class="accordion__item">
               <h3>
                 <button class="accordion__button" type="button" aria-expanded="false" aria-controls="faq3" id="faq3-label">
-                  Jak wyglada raportowanie?
+                  Jak wygląda raportowanie?
                   <span class="accordion__icon" aria-hidden="true"></span>
                 </button>
               </h3>
               <section class="accordion__panel" aria-labelledby="faq3-label" id="faq3" hidden>
-                <p>Otrzymujesz link do sledzenia GPS oraz raporty statusowe co 2 godziny lub czesciej na zyczenie.</p>
+                <p>Otrzymujesz link do śledzenia GPS oraz raporty statusowe co 2 godziny lub częściej na życzenie.</p>
               </section>
             </div>
             <div class="accordion__item">
               <h3>
                 <button class="accordion__button" type="button" aria-expanded="false" aria-controls="faq4" id="faq4-label">
-                  Jakie dokumenty sa potrzebne do wyceny i zlecenia?
+                  Jakie dokumenty są potrzebne do wyceny i zlecenia?
                   <span class="accordion__icon" aria-hidden="true"></span>
                 </button>
               </h3>
               <section class="accordion__panel" aria-labelledby="faq4-label" id="faq4" hidden>
                 <p>
-                  Standardowo prosimy o dane firmy, specyfikacje ladunku, warunki INCOTERMS, adresy zaladunku i dostawy oraz oczekiwane okna czasowe. Przy ADR lub chlodni dolaczamy karty
+                  Standardowo prosimy o dane firmy, specyfikację ładunku, warunki INCOTERMS, adresy załadunku i dostawy oraz oczekiwane okna czasowe. Przy ADR lub chłodni dołączamy karty
                   charakterystyki i wymagania temperaturowe.
                 </p>
               </section>
@@ -215,20 +216,20 @@
                 </button>
               </h3>
               <section class="accordion__panel" aria-labelledby="faq5-label" id="faq5" hidden>
-                <p>Tak, udostepniamy tracking GPS w czasie rzeczywistym i statusy mail/SMS w kluczowych punktach trasy. Dla flot kontraktowych mozemy integrowac webhooki lub raporty automatyczne.</p>
+                <p>Tak, udostępniamy tracking GPS w czasie rzeczywistym i statusy mail/SMS w kluczowych punktach trasy. Dla flot kontraktowych możemy integrować webhooki lub raporty automatyczne.</p>
               </section>
             </div>
             <div class="accordion__item">
               <h3>
                 <button class="accordion__button" type="button" aria-expanded="false" aria-controls="faq6" id="faq6-label">
-                  Jak zabezpieczacie ladunek i jakie macie ubezpieczenie?
+                  Jak zabezpieczacie ładunek i jakie macie ubezpieczenie?
                   <span class="accordion__icon" aria-hidden="true"></span>
                 </button>
               </h3>
               <section class="accordion__panel" aria-labelledby="faq6-label" id="faq6" hidden>
                 <p>
-                  Pracujemy na pasach, matach antyposlizgowych i zabezpieczeniach zgodnych z EN 12195. Posiadamy OCP i dodatkowe ubezpieczenia cargo do 500k EUR; w razie potrzeby organizujemy
-                  rozszerzone klauzule pod konkretny ladunek.
+                  Pracujemy na pasach, matach antypoślizgowych i zabezpieczeniach zgodnych z EN 12195. Posiadamy OCP i dodatkowe ubezpieczenia cargo do 500k EUR; w razie potrzeby organizujemy
+                  rozszerzone klauzule pod konkretny ładunek.
                 </p>
               </section>
             </div>

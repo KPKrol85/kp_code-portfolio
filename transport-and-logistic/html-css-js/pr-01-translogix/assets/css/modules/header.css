@@ -74,7 +74,7 @@ html.theme-dark .brand__logo--dark {
   font-family: var(--font-heading);
   font-size: var(--fs-07);
   font-weight: var(--fw-bold);
-  line-height: 1;
+  line-height: var(--lh-tight);
   letter-spacing: -0.01em;
 }
 

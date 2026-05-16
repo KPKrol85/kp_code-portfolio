@@ -70,7 +70,7 @@
         },
         "contactPoint": {
           "@type": "ContactPoint",
-          "telephone": "+48-500-000-000",
+          "telephone": "+48533537091",
           "email": "kontakt@kp-code.pl",
           "contactType": "customer service",
           "areaServed": "EU",
@@ -193,39 +193,65 @@
         </div>
       </section>
 
+      <!-- Fleet -->
       <section class="section" id="fleet">
         <div class="container reveal">
+          <!-- section header -->
           <div class="section__header">
             <p class="eyebrow">Flota</p>
             <h2>Pojazdy gotowe do jazdy</h2>
             <p class="section__lead">Nowe roczniki, regularny serwis i monitoring online. Sprawdź wszystkie pojazdy w dziale flota.</p>
           </div>
-          <div class="fleet-grid">
-            <article class="card fleet-card">
-              <div class="fleet-card__icon">
-                <img src="assets/img/svg/fleet-solo.svg" alt="Bus dostawczy" loading="lazy" width="240" height="120" />
+          <!-- fleet grid -->
+          <div class="fleet-grid home-fleet-grid">
+            <!-- card 01 -->
+            <article class="card fleet-card home-fleet-card">
+              <div class="home-fleet-card__media">
+                <picture>
+                  <source srcset="assets/img/fleet/bus/1.avif" type="image/avif" />
+                  <source srcset="assets/img/fleet/bus/1.webp" type="image/webp" />
+                  <img src="assets/img/fleet/bus/1.jpg" alt="Bus dostawczy TransLogix w trasie" loading="lazy" width="800" height="600" />
+                </picture>
               </div>
+              <span class="badge badge--subtle">do 3,5 t</span>
               <h3>Bus dostawczy</h3>
               <p>Ładowność do 3,5t, winda, idealny do dostaw miejskich.</p>
             </article>
-            <article class="card fleet-card">
-              <div class="fleet-card__icon">
-                <img src="assets/img/svg/fleet-boxtruck-tarpaulin.svg" alt="Bus plandeka 10 palet" loading="lazy" width="240" height="120" />
+            <!-- card 02 -->
+            <article class="card fleet-card home-fleet-card">
+              <div class="home-fleet-card__media">
+                <picture>
+                  <source srcset="assets/img/fleet/truck/truck-1.avif" type="image/avif" />
+                  <source srcset="assets/img/fleet/truck/truck-1.webp" type="image/webp" />
+                  <img src="assets/img/fleet/truck/truck-1.jpg" alt="Ciężarówka plandeka TransLogix podczas postoju" loading="lazy" width="800" height="600" />
+                </picture>
               </div>
+              <span class="badge badge--subtle">18 europalet</span>
               <h3>Ciężarówka plandeka</h3>
               <p>18 europalet, do 10t ładowności, pasy i plandeka XL.</p>
             </article>
-            <article class="card fleet-card">
-              <div class="fleet-card__icon">
-                <img src="assets/img/svg/fleet-refrigerated.svg" alt="Chłodnia solo 18 palet" loading="lazy" width="240" height="120" />
+            <!-- card 03 -->
+            <article class="card fleet-card home-fleet-card">
+              <div class="home-fleet-card__media">
+                <picture>
+                  <source srcset="assets/img/fleet/chlodnia/1.avif" type="image/avif" />
+                  <source srcset="assets/img/fleet/chlodnia/1.webp" type="image/webp" />
+                  <img src="assets/img/fleet/chlodnia/1.jpg" alt="Ciężarówka chłodnia TransLogix z zabudową temperaturową" loading="lazy" width="800" height="600" />
+                </picture>
               </div>
-              <h3>Ciężarówka chlodnia</h3>
+              <span class="badge badge--subtle">2-8°C</span>
+              <h3>Ciężarówka chłodnia</h3>
               <p>18 europalet, chłodnia 2–8°C, rejestracja temperatury, plandeka XL.</p>
             </article>
-            <article class="card fleet-card">
-              <div class="fleet-card__icon">
-                <img src="assets/img/svg/fleet-mega-set.svg" alt="Zestaw Mega 100 m3" loading="lazy" width="240" height="120" />
+            <!-- card 04 -->
+            <article class="card fleet-card home-fleet-card">
+              <div class="home-fleet-card__media">
+                <picture>
+                  <source srcset="assets/img/fleet/mega/1.avif" type="image/avif" />
+                  <img src="assets/img/fleet/mega/1.jpg" alt="Zestaw Mega TransLogix przygotowany do transportu dalekobieżnego" loading="lazy" width="800" height="600" />
+                </picture>
               </div>
+              <span class="badge badge--subtle">100 m³+</span>
               <h3>Zestaw Mega</h3>
               <p>100 m³, kurtyny XL, możliwość dopięcia dodatkowej przyczepy, zabezpieczenia i monitoring.</p>
             </article>
@@ -233,13 +259,16 @@
         </div>
       </section>
 
+      <!-- Quote -->
       <section class="section" id="quote">
         <div class="container reveal">
+          <!-- section header -->
           <div class="section__header">
             <p class="eyebrow">Szybka wycena</p>
             <h2>Oblicz koszt w 30 sekund</h2>
             <p class="section__lead">Podaj podstawowe parametry, a my wyświetlimy szacunkową kwotę. Dokładną wycenę otrzymasz po weryfikacji trasy.</p>
           </div>
+          <!-- calculator -->
           <div class="calculator">
             <form class="form" id="quick-quote" novalidate>
               <label for="distance">Dystans (km)</label>
@@ -274,8 +303,9 @@
                   Dostawa weekend
                 </label>
               </fieldset>
-              <button class="cta cta--primary" type="submit">Przelicz</button>
+              <button class="cta cta--primary quote-form__submit" type="submit">Przelicz</button>
             </form>
+            <!-- summary -->
             <div class="summary" aria-live="polite">
               <h3>Wynik wyceny</h3>
               <p class="section__lead" id="quote-result">Wprowadź parametry, aby zobaczyć stawkę.</p>

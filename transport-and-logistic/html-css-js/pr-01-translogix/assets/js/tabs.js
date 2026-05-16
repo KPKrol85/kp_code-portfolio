@@ -5,7 +5,7 @@ export function initTabs() {
     const tabs = tablist.querySelectorAll("[role='tab']");
     const panels = Array.from(tabs).map((tab) => document.getElementById(tab.getAttribute("aria-controls")));
 
-    const activateTab = (tab) => {
+    const activateTab = (tab, { focus = true } = {}) => {
       tabs.forEach((t) => {
         const isActive = t === tab;
         t.setAttribute("aria-selected", isActive);
@@ -15,7 +15,9 @@ export function initTabs() {
           panel.hidden = !isActive;
         }
       });
-      tab.focus();
+      if (focus) {
+        tab.focus();
+      }
     };
 
     tabs.forEach((tab) => {
@@ -35,6 +37,6 @@ export function initTabs() {
     });
 
     const initial = Array.from(tabs).find((tab) => tab.getAttribute("aria-selected") === "true") || tabs[0];
-    activateTab(initial);
+    activateTab(initial, { focus: false });
   });
 }

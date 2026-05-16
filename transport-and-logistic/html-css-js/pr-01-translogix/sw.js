@@ -1,4 +1,4 @@
-const CACHE_NAME = "translogix-static-v2";
+const CACHE_NAME = "translogix-static-v3";
 
 const PRECACHE_URLS = [
   "/",
@@ -12,6 +12,7 @@ const PRECACHE_URLS = [
   "/terms.html",
   "/cookies.html",
   "/404.html",
+  "/thankyou.html",
   "/offline.html",
 
   "/assets/js/main.js",

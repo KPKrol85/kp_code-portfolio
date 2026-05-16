@@ -62,7 +62,7 @@
         "areaServed": "EU",
         "availableChannel": {
           "@type": "ServiceChannel",
-          "servicePhone": "+48-500-000-000",
+          "servicePhone": "+48533537091",
           "serviceUrl": "https://transport-pr01-translogix.netlify.app/contact.html"
         }
       }
@@ -81,9 +81,9 @@
       <section class="section">
         <div class="container reveal">
           <article id="service-detail" class="service-detail" aria-live="polite">
-            <header class="section__header">
+            <header class="section__header service-detail__header">
               <p class="eyebrow">Usługi</p>
-              <nav aria-label="Okruszki">
+              <nav class="service-detail__breadcrumb" aria-label="Okruszki">
                 <a href="services.html">Usługi</a>
                 &gt;
                 <span id="service-breadcrumb-current" aria-current="page">Transport dedykowany krajowy</span>
@@ -93,59 +93,63 @@
                 Elastyczna usługa dla firm, które potrzebują pewnych terminów, bieżącego monitoringu i pełnej transparentności przewozu na trasach krajowych.
               </p>
             </header>
-            <div class="grid grid-2">
-              <section class="card" aria-labelledby="service-scope-heading">
+            <div class="grid grid-2 service-detail__grid">
+              <section class="card service-detail__card" aria-labelledby="service-scope-heading">
                 <h2 id="service-scope-heading">Zakres usługi</h2>
-                <p>
-                  <strong>Trasa:</strong>
-                  <span id="service-route">Polska — trasy krajowe door-to-door</span>
-                </p>
-                <p>
-                  <strong>Limit:</strong>
-                  <span id="service-weight-limit">do 24 t (w zależności od zestawu)</span>
-                </p>
-                <p>
-                  <strong>Czas realizacji:</strong>
-                  <span id="service-eta">zgodnie z ustalonym oknem czasowym</span>
-                </p>
-                <p>
-                  <strong>Cena orientacyjna:</strong>
-                  <span id="service-price">wycena indywidualna</span>
-                </p>
-                <p>
-                  <strong>Ładunki:</strong>
-                  <span id="service-load-types">Palety, LTL/FTL, ładunki regularne i sezonowe</span>
-                </p>
-                <p>
-                  <strong>Bezpieczeństwo:</strong>
-                  <span id="service-security">Monitoring GPS, check-call i potwierdzenia statusów</span>
-                </p>
-                <p>
-                  <strong>Dokumenty:</strong>
-                  <span id="service-documents">List przewozowy, potwierdzenie dostawy, raport statusów</span>
-                </p>
-                <p>
-                  <strong>Opcje:</strong>
-                  <span id="service-extras">Obsługa stałych tras, dostawy poranne, opcje express</span>
-                </p>
-                <div id="service-tags" class="filters" role="group" aria-label="Tagi usługi">
+                <dl class="service-detail__specs">
+                  <div class="service-detail__spec">
+                    <dt>Trasa</dt>
+                    <dd id="service-route">Polska — trasy krajowe door-to-door</dd>
+                  </div>
+                  <div class="service-detail__spec">
+                    <dt>Limit</dt>
+                    <dd id="service-weight-limit">do 24 t (w zależności od zestawu)</dd>
+                  </div>
+                  <div class="service-detail__spec">
+                    <dt>Czas realizacji</dt>
+                    <dd id="service-eta">zgodnie z ustalonym oknem czasowym</dd>
+                  </div>
+                  <div class="service-detail__spec">
+                    <dt>Cena orientacyjna</dt>
+                    <dd id="service-price">wycena indywidualna</dd>
+                  </div>
+                  <div class="service-detail__spec">
+                    <dt>Ładunki</dt>
+                    <dd id="service-load-types">Palety, LTL/FTL, ładunki regularne i sezonowe</dd>
+                  </div>
+                  <div class="service-detail__spec">
+                    <dt>Bezpieczeństwo</dt>
+                    <dd id="service-security">Monitoring GPS, check-call i potwierdzenia statusów</dd>
+                  </div>
+                  <div class="service-detail__spec">
+                    <dt>Dokumenty</dt>
+                    <dd id="service-documents">List przewozowy, potwierdzenie dostawy, raport statusów</dd>
+                  </div>
+                  <div class="service-detail__spec">
+                    <dt>Opcje</dt>
+                    <dd id="service-extras">Obsługa stałych tras, dostawy poranne, opcje express</dd>
+                  </div>
+                </dl>
+                <div id="service-tags" class="filters service-detail__tags" role="group" aria-label="Tagi usługi">
                   <span class="tag">krajowy</span>
                   <span class="tag">dedykowany</span>
                   <span class="tag">monitoring GPS</span>
                 </div>
               </section>
-              <section class="card" aria-labelledby="service-benefits-heading">
+              <section class="card service-detail__card service-detail__card--next" aria-labelledby="service-benefits-heading">
                 <h2 id="service-benefits-heading">Najważniejsze korzyści</h2>
                 <ul id="service-audience" class="service-details">
                   <li>Terminowe dostawy dla produkcji, retail i e-commerce.</li>
                   <li>Pełna widoczność trasy i statusów w czasie rzeczywistym.</li>
                   <li>Szybka wycena oraz opiekun operacyjny dla stałych zleceń.</li>
                 </ul>
-                <h3>Co dalej?</h3>
-                <p id="service-cta-text">Wypełnij formularz, a dyspozytor wróci z potwierdzeniem szczegółów realizacji.</p>
-                <div>
-                  <a class="btn" href="contact.html#quote">Zapytaj o termin</a>
-                  <a class="btn" href="pricing.html#calculator">Sprawdź stawkę</a>
+                <div class="service-detail__cta">
+                  <h3>Co dalej?</h3>
+                  <p id="service-cta-text">Wypełnij formularz, a dyspozytor wróci z potwierdzeniem szczegółów realizacji.</p>
+                </div>
+                <div class="service-detail__actions">
+                  <a class="btn service-detail__btn service-detail__btn--primary" href="contact.html">Zapytaj o termin</a>
+                  <a class="btn service-detail__btn" href="pricing.html#calculator">Sprawdź stawkę</a>
                 </div>
               </section>
             </div>

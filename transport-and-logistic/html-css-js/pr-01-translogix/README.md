@@ -4,27 +4,26 @@
 
 ### Przegląd projektu
 
-TransLogix to statyczny, wielostronicowy projekt front-endowy dla marki transportowo-logistycznej. Repozytorium jest przygotowane jako portfolio/reference build KP_Code Digital Studio: źródła są jawne, build jest powtarzalny, a jakość jest weryfikowana przez skrypty npm i testy Playwright.
+TransLogix to statyczny, wielostronicowy front-end dla serwisu transportowo-logistycznego B2B. Projekt jest częścią workspace `kp-code-playground` i jest opisany w metadanych pakietu jako realizacja KP_Code Digital Studio.
 
-Projekt nie używa frameworka front-endowego ani backendu aplikacyjnego. Warstwa runtime opiera się na HTML, modularnym CSS i Vanilla JavaScript w modułach ES. Pliki źródłowe są kanoniczne, a `dist/`, `assets/css/style.min.css` i `assets/js/main.min.js` są artefaktami generowanymi przez build.
+Repozytorium nie używa frameworka front-endowego ani backendu aplikacyjnego. Warstwa źródłowa opiera się na stronach HTML, modularnym CSS i Vanilla JavaScript w modułach ES. Pliki źródłowe są kanoniczne; `dist/`, `assets/css/style.min.css` i `assets/js/main.min.js` są generowane przez pipeline builda.
 
 ### Kluczowe funkcje
 
-- Wielostronicowa struktura: strona główna, usługi, szczegóły usługi, flota, cennik, kontakt, strony prawne, 404 i fallback offline.
-- Wspólne partiale nagłówka i stopki w `partials/`, z kopiami szablonowymi w `templates/partials/`.
-- Nawigacja mobilna, kompaktowy nagłówek, przełącznik motywu, aktywny stan nawigacji i panel zgody.
-- Zakładki, akordeon FAQ, filtrowanie usług, filtrowanie floty, lightbox galerii i strona szczegółów usługi oparta o dane JSON.
-- Formularz kontaktowy z atrybutami Netlify Forms, honeypotem i walidacją po stronie klienta.
-- Service worker z precache stron root, fallbackiem offline i strategią stale-while-revalidate dla assetów.
-- Web App Manifest z ikonami, skrótami i screenshotami.
-- Skrypty build, QA, weryfikacji assetów, budżetów wydajnościowych, Lighthouse CI i testów E2E.
+- Strony źródłowe dla: home, services, service detail, fleet, pricing, contact, privacy, terms, cookies, thank you, 404 i offline.
+- Wspólne partiale nagłówka i stopki ładowane w źródłach oraz inline'owane do `dist/` podczas builda.
+- Moduły JS dla nawigacji, aktywnego stanu linków, przełącznika motywu, zgody użytkownika, reveal, tabs, FAQ accordion, formularzy, filtrów, galerii floty, lightboxa, szczegółów usługi i statystyk stopki.
+- Dane usług w `assets/data/services.json`, używane przez listę usług i stronę szczegółów usługi.
+- Formularz kontaktowy z atrybutami Netlify Forms, honeypotem i walidacją klienta.
+- Service worker z precache stron, fallbackiem offline i cache'owaniem assetów.
+- Manifest aplikacji z ikonami, skrótami i screenshotami.
 
 ### Stack technologiczny
 
 Runtime:
 
-- HTML5
-- CSS importowany modularnie przez `assets/css/style.css`
+- HTML
+- CSS z modularnym entrypointem `assets/css/style.css`
 - Vanilla JavaScript jako ES modules
 - Service Worker API
 - Web App Manifest
@@ -44,25 +43,23 @@ Build i QA:
 
 ```text
 .
-├── *.html                         # źródłowe strony root
+├── *.html                     # źródłowe strony root
 ├── assets/
 │   ├── css/
-│   │   ├── style.css              # źródłowy entrypoint CSS
-│   │   └── modules/               # settings, base, layout, components, utilities, pages
-│   ├── data/
-│   │   ├── services.json          # dane usług
-│   │   └── jsonld/                # pliki danych strukturalnych
-│   ├── fonts/                     # lokalne fonty woff2
-│   ├── icons/                     # favicony, manifest i ikony aplikacji
-│   ├── img/                       # obrazy, SVG, OG images i screenshoty
-│   └── js/                        # moduły interakcji front-end
-├── partials/                      # wspólny header i footer
-├── templates/partials/            # kopie szablonowe partiali
-├── scripts/                       # build, walidacja i weryfikacja
-├── tests/e2e/                     # testy Playwright
-├── dist/                          # generowany output builda
-├── _headers                       # nagłówki i polityki cache dla hostingu statycznego
-├── _redirects                     # reguły przekierowań/przepisania ścieżek
+│   │   ├── style.css          # źródłowy entrypoint CSS
+│   │   └── modules/           # settings, base, layout, header, footer, components, utilities, pages
+│   ├── data/                  # services.json i pliki JSON-LD
+│   ├── fonts/                 # lokalne fonty
+│   ├── icons/                 # favicony, manifest i ikony aplikacji
+│   ├── img/                   # obrazy strony, OG images, screenshoty i SVG
+│   └── js/                    # moduły interakcji front-end
+├── partials/                  # źródłowy header i footer
+├── templates/partials/        # kopie szablonowe partiali
+├── scripts/                   # build, walidacja i weryfikacja
+├── tests/e2e/                 # testy Playwright
+├── dist/                      # generowany output builda
+├── _headers                   # nagłówki dla hostingu statycznego
+├── _redirects                 # reguły przekierowań/przepisania ścieżek
 ├── robots.txt
 ├── sitemap.xml
 └── sw.js
@@ -74,13 +71,20 @@ Build i QA:
 npm install
 ```
 
-Zależności developerskie są zdefiniowane w `package.json` i zablokowane w `package-lock.json`. Pakiet jest oznaczony jako prywatny.
+Zależności developerskie są zdefiniowane w `package.json` i zablokowane w `package-lock.json`.
 
 ### Development lokalny
 
-Projekt nie ma osobnego skryptu `dev`. Do pracy edytuj pliki źródłowe: root `*.html`, `partials/`, `assets/css/modules/`, `assets/js/`, `assets/data/` i `scripts/`.
+Projekt nie ma osobnego skryptu `dev`. Źródła do edycji znajdują się głównie w:
 
-Po zbudowaniu paczki produkcyjnej można uruchomić lokalny podgląd `dist/`:
+- root `*.html`
+- `partials/`
+- `assets/css/modules/`
+- `assets/js/`
+- `assets/data/`
+- `scripts/`
+
+Podgląd wygenerowanego `dist/`:
 
 ```bash
 npm run preview:dist
@@ -92,57 +96,60 @@ npm run preview:dist
 npm run build
 ```
 
-Najważniejsze skrypty builda:
+Skrypty builda:
 
-- `npm run build:css` - generuje `assets/css/style.min.css` z `assets/css/style.css`.
-- `npm run build:js` - generuje `assets/js/main.min.js`.
-- `npm run build:assets` - uruchamia build CSS i JS.
-- `npm run build:dist` - buduje `dist/`, kopiuje strony i assety, inlinuje header/footer oraz przepisuje referencje na minifikowane assety.
-- `npm run clean` - usuwa `dist/`.
+- `npm run build:css` generuje `assets/css/style.min.css` z `assets/css/style.css`.
+- `npm run build:js` generuje `assets/js/main.min.js`.
+- `npm run build:assets` uruchamia build CSS i JS.
+- `npm run build:dist` buduje `dist/`, kopiuje pliki root i `assets/`, inline'uje partiale oraz przepisuje referencje na minifikowane assety.
+- `npm run clean` usuwa `dist/`.
 
 ### Deployment
 
 Repozytorium zawiera pliki wspierające hosting statyczny:
 
 - `_headers` z nagłówkami bezpieczeństwa, CSP i politykami cache.
-- `_redirects` z regułami dla ścieżek `/services`, `/fleet`, `/pricing`, `/contact` oraz przekierowaniem `/index.html`.
-- `robots.txt` wskazujący sitemap.
+- `_redirects` z regułami dla `/services`, `/fleet`, `/pricing`, `/contact` i `/index.html`.
+- `robots.txt` wskazujący `sitemap.xml`.
 - `sitemap.xml` z publicznymi adresami stron.
-- `sw.js` i `assets/icons/site.webmanifest`.
+- `sw.js` oraz `assets/icons/site.webmanifest`.
 
 ### Dostępność
 
-Projekt zawiera dostępnościowe wzorce widoczne w kodzie:
+W kodzie są zaimplementowane wzorce dostępnościowe:
 
-- Skip linki prowadzące do `main id="main"`.
-- Semantyczne landmarki, nagłówki, nawigacje i sekcje.
-- Stany ARIA dla menu mobilnego, zakładek, akordeonu i lightboxa.
-- `aria-live`, `aria-invalid` i fokusowanie pierwszego niepoprawnego pola w formularzu.
-- Widoczne style `:focus-visible`.
-- Obsługa `prefers-reduced-motion` w CSS i wybranych modułach JS.
-- Automatyczny `pa11y-ci` skonfigurowany dla 11 stron root w standardzie WCAG2AA.
+- skip linki do `main`;
+- semantyczne sekcje, landmarki, nagłówki i nawigacje;
+- ARIA dla menu mobilnego, tabs, accordion, lightboxa, filtrów i regionów dynamicznych;
+- `aria-invalid`, `aria-describedby` i komunikaty błędów w formularzach;
+- globalne i komponentowe style `:focus-visible`;
+- obsługa `prefers-reduced-motion` w CSS i wybranych modułach JS;
+- konfiguracja `pa11y-ci` dla stron root.
 
 ### SEO
 
-Źródła zawierają zweryfikowane elementy SEO i social metadata:
+Źródła zawierają:
 
-- Tytuły stron i `meta description`.
-- Linki canonical na głównych stronach biznesowych i prawnych.
-- Open Graph i Twitter Card metadata.
-- Inline JSON-LD w stronach root.
-- Dane JSON-LD w `assets/data/jsonld/` oraz walidator `npm run qa:jsonld`.
-- `robots.txt`, `sitemap.xml` i obrazy OG w `assets/img/og-img/`.
+- tytuły stron i meta description;
+- canonical URLs na stronach biznesowych i prawnych;
+- Open Graph i Twitter Card metadata;
+- inline JSON-LD w stronach HTML;
+- pliki JSON-LD w `assets/data/jsonld/`;
+- `robots.txt`;
+- `sitemap.xml`;
+- obrazy OG w `assets/img/og-img/`.
 
 ### Wydajność
 
-Repozytorium zawiera jawne mechanizmy wydajnościowe:
+Repozytorium zawiera wykrywalne mechanizmy wydajnościowe:
 
-- Minifikacja CSS i JS w pipeline builda.
-- Budżety gzip dla `assets/css/style.min.css` i grafu modułów `assets/js/main.min.js`.
-- Lokalne fonty `woff2` z `font-display: swap`.
-- Obrazy w formatach AVIF, WebP, JPG, PNG i SVG.
-- `image-set()` dla obrazów hero oraz `loading="lazy"` i wymiary na wybranych obrazach.
-- Service worker z precache stron root i runtime cachingiem assetów.
+- minifikacja CSS i JS w pipeline builda;
+- budżety gzip dla `assets/css/style.min.css` i grafu modułów `assets/js/main.min.js`;
+- lokalne fonty ładowane przez `@font-face` z `font-display: swap`;
+- obrazy w formatach AVIF, WebP, JPG, PNG i SVG;
+- `image-set()` dla hero images;
+- `loading="lazy"` i jawne wymiary na wielu obrazach;
+- service worker z precache i runtime cachingiem assetów.
 
 ### Quality Assurance
 
@@ -154,7 +161,7 @@ npm run release-check
 npm run test:e2e
 ```
 
-Dostępne kontrole szczegółowe:
+Kontrole szczegółowe:
 
 ```bash
 npm run qa:html
@@ -168,57 +175,49 @@ npm run assets:verify
 
 Zakres:
 
-- `qa` uruchamia walidacje HTML, JSON-LD, linków lokalnych i dostępności.
-- `release-check` uruchamia finalną lokalną bramkę: `qa`, `assets:verify`, `qa:budget` i `test:e2e`.
+- `qa` uruchamia walidację HTML, JSON-LD, linków lokalnych i dostępności.
+- `release-check` uruchamia `qa`, `assets:verify`, `qa:budget` i `test:e2e`.
 - `test:e2e` uruchamia Playwright na zbudowanym `dist/`.
 - Testy E2E obejmują formularz kontaktowy, lightbox floty, nawigację mobilną, stronę offline, service worker/offline fallback i filtrowanie usług.
 - `qa:lighthouse` używa konfiguracji Lighthouse CI dla strony głównej, usług i kontaktu.
 
 ### Utrzymanie projektu
 
-- Edytuj źródła, nie artefakty: `dist/`, `assets/css/style.min.css` i `assets/js/main.min.js` są generowane.
-- Zmiany w headerze i footerze utrzymuj w `partials/`; `templates/partials/` przechowuje kopie szablonowe.
-- Po zmianach w assetach, ścieżkach lub service workerze uruchamiaj `npm run assets:verify` i `npm run qa:links`.
-- Po zmianach w HTML uruchamiaj `npm run qa:html` i odpowiednie testy dostępności.
-- Po zmianach w interakcjach uruchamiaj odpowiednie testy Playwright albo `npm run release-check`.
-
-### Roadmap
-
-- Dodać computed contrast checks albo visual regression dla kluczowych widoków.
-- Rozszerzyć Playwright o warianty strony szczegółów usługi i przypadki brzegowe formularza kontaktowego.
-- Doprecyzować dokumentację workflow preview/deployment po wyborze docelowego hostingu.
+- Edytuj źródła, nie artefakty generowane.
+- Nie edytuj ręcznie `dist/`, `assets/css/style.min.css` ani `assets/js/main.min.js`.
+- Zmiany w CSS utrzymuj w `assets/css/modules/`; kolejność importów definiuje `assets/css/style.css`.
+- Zmiany w interakcjach utrzymuj w modułach `assets/js/`, a inicjalizację w `assets/js/main.js`.
+- Zmiany w nagłówku i stopce utrzymuj w `partials/`.
+- Po zmianach w HTML, assetach, ścieżkach lub service workerze uruchom odpowiednie skrypty QA z `package.json`.
 
 ### Licencja
 
-`UNLICENSED` zgodnie z deklaracją w `package.json`.
-
----
+Projekt jest proprietary. `package.json` deklaruje `UNLICENSED`, a `LICENSE` zastrzega wszystkie prawa i ogranicza użycie do celów portfolio, referencyjnych i code review bez udzielenia licencji.
 
 ## EN
 
 ### Project Overview
 
-TransLogix is a static multi-page front-end project for a transport and logistics brand. The repository is prepared as a KP_Code Digital Studio portfolio/reference build: sources are explicit, the build is repeatable, and quality is verified through npm scripts and Playwright tests.
+TransLogix is a static multi-page front-end for a B2B transport and logistics website. The project is part of the `kp-code-playground` workspace and is identified in package metadata as a KP_Code Digital Studio build.
 
-The project does not use a front-end framework or an application backend. The runtime layer is built with HTML, modular CSS, and Vanilla JavaScript ES modules. Source files are canonical, while `dist/`, `assets/css/style.min.css`, and `assets/js/main.min.js` are generated build artifacts.
+The repository does not use a front-end framework or an application backend. The source layer is built with HTML pages, modular CSS, and Vanilla JavaScript ES modules. Source files are canonical; `dist/`, `assets/css/style.min.css`, and `assets/js/main.min.js` are generated by the build pipeline.
 
 ### Key Features
 
-- Multi-page structure: home, services, service detail, fleet, pricing, contact, legal pages, 404, and offline fallback.
-- Shared header and footer partials in `partials/`, with template copies in `templates/partials/`.
-- Mobile navigation, compact header, theme toggle, active navigation state, and consent panel.
-- Tabs, FAQ accordion, services filtering, fleet filtering, gallery lightbox, and JSON data-driven service detail page.
+- Source pages for home, services, service detail, fleet, pricing, contact, privacy, terms, cookies, thank you, 404, and offline.
+- Shared header and footer partials loaded in source pages and inlined into `dist/` during the build.
+- JS modules for navigation, active link state, theme toggle, user consent, reveal behavior, tabs, FAQ accordion, forms, filters, fleet galleries, lightbox, service details, and footer stats.
+- Services data in `assets/data/services.json`, used by the services list and service detail page.
 - Contact form with Netlify Forms attributes, honeypot field, and client-side validation.
-- Service worker with root-page precache, offline fallback, and stale-while-revalidate strategy for assets.
-- Web App Manifest with icons, shortcuts, and screenshots.
-- Build, QA, asset verification, performance budget, Lighthouse CI, and E2E test scripts.
+- Service worker with page precache, offline fallback, and asset caching.
+- Web app manifest with icons, shortcuts, and screenshots.
 
 ### Tech Stack
 
 Runtime:
 
-- HTML5
-- CSS imported modularly through `assets/css/style.css`
+- HTML
+- CSS with the modular entrypoint `assets/css/style.css`
 - Vanilla JavaScript as ES modules
 - Service Worker API
 - Web App Manifest
@@ -238,25 +237,23 @@ Build and QA:
 
 ```text
 .
-├── *.html                         # root source pages
+├── *.html                     # root source pages
 ├── assets/
 │   ├── css/
-│   │   ├── style.css              # source CSS entrypoint
-│   │   └── modules/               # settings, base, layout, components, utilities, pages
-│   ├── data/
-│   │   ├── services.json          # services data
-│   │   └── jsonld/                # structured data files
-│   ├── fonts/                     # local woff2 fonts
-│   ├── icons/                     # favicons, manifest, and app icons
-│   ├── img/                       # images, SVG, OG images, and screenshots
-│   └── js/                        # front-end interaction modules
-├── partials/                      # shared header and footer
-├── templates/partials/            # template copies of partials
-├── scripts/                       # build, validation, and verification
-├── tests/e2e/                     # Playwright tests
-├── dist/                          # generated build output
-├── _headers                       # headers and cache policies for static hosting
-├── _redirects                     # redirect/rewrite rules
+│   │   ├── style.css          # source CSS entrypoint
+│   │   └── modules/           # settings, base, layout, header, footer, components, utilities, pages
+│   ├── data/                  # services.json and JSON-LD files
+│   ├── fonts/                 # local fonts
+│   ├── icons/                 # favicons, manifest, and app icons
+│   ├── img/                   # site images, OG images, screenshots, and SVG
+│   └── js/                    # front-end interaction modules
+├── partials/                  # source header and footer
+├── templates/partials/        # template copies of partials
+├── scripts/                   # build, validation, and verification
+├── tests/e2e/                 # Playwright tests
+├── dist/                      # generated build output
+├── _headers                   # headers for static hosting
+├── _redirects                 # redirect/rewrite rules
 ├── robots.txt
 ├── sitemap.xml
 └── sw.js
@@ -268,13 +265,20 @@ Build and QA:
 npm install
 ```
 
-Development dependencies are declared in `package.json` and locked in `package-lock.json`. The package is marked as private.
+Development dependencies are declared in `package.json` and locked in `package-lock.json`.
 
 ### Local Development
 
-The project has no separate `dev` script. For development, edit source files: root `*.html`, `partials/`, `assets/css/modules/`, `assets/js/`, `assets/data/`, and `scripts/`.
+The project has no dedicated `dev` script. Source files are primarily located in:
 
-After generating the production package, preview `dist/` locally:
+- root `*.html`
+- `partials/`
+- `assets/css/modules/`
+- `assets/js/`
+- `assets/data/`
+- `scripts/`
+
+Preview the generated `dist/` output:
 
 ```bash
 npm run preview:dist
@@ -286,13 +290,13 @@ npm run preview:dist
 npm run build
 ```
 
-Main build scripts:
+Build scripts:
 
-- `npm run build:css` - generates `assets/css/style.min.css` from `assets/css/style.css`.
-- `npm run build:js` - generates `assets/js/main.min.js`.
-- `npm run build:assets` - runs the CSS and JS builds.
-- `npm run build:dist` - builds `dist/`, copies pages and assets, inlines header/footer, and rewrites references to minified assets.
-- `npm run clean` - removes `dist/`.
+- `npm run build:css` generates `assets/css/style.min.css` from `assets/css/style.css`.
+- `npm run build:js` generates `assets/js/main.min.js`.
+- `npm run build:assets` runs the CSS and JS builds.
+- `npm run build:dist` builds `dist/`, copies root files and `assets/`, inlines partials, and rewrites references to minified assets.
+- `npm run clean` removes `dist/`.
 
 ### Deployment
 
@@ -300,43 +304,46 @@ The repository contains files that support static hosting:
 
 - `_headers` with security headers, CSP, and cache policies.
 - `_redirects` with rules for `/services`, `/fleet`, `/pricing`, `/contact`, and `/index.html`.
-- `robots.txt` pointing to the sitemap.
+- `robots.txt` pointing to `sitemap.xml`.
 - `sitemap.xml` with public page URLs.
 - `sw.js` and `assets/icons/site.webmanifest`.
 
 ### Accessibility
 
-The project includes accessibility-focused patterns visible in the codebase:
+The codebase implements accessibility patterns:
 
-- Skip links targeting `main id="main"`.
-- Semantic landmarks, headings, navigation, and sections.
-- ARIA states for the mobile menu, tabs, accordion, and lightbox.
-- `aria-live`, `aria-invalid`, and focus movement to the first invalid form field.
-- Visible `:focus-visible` styles.
-- `prefers-reduced-motion` handling in CSS and selected JS modules.
-- Automated `pa11y-ci` checks configured for 11 root pages using WCAG2AA.
+- skip links to `main`;
+- semantic sections, landmarks, headings, and navigation;
+- ARIA for mobile menu, tabs, accordion, lightbox, filters, and dynamic regions;
+- `aria-invalid`, `aria-describedby`, and form error messages;
+- global and component-level `:focus-visible` styles;
+- `prefers-reduced-motion` handling in CSS and selected JS modules;
+- `pa11y-ci` configuration for root pages.
 
 ### SEO
 
-The source files include verified SEO and social metadata:
+The source files include:
 
-- Page titles and `meta description`.
-- Canonical links on the main business and legal pages.
-- Open Graph and Twitter Card metadata.
-- Inline JSON-LD in root pages.
-- JSON-LD data in `assets/data/jsonld/` and validation through `npm run qa:jsonld`.
-- `robots.txt`, `sitemap.xml`, and OG images in `assets/img/og-img/`.
+- page titles and meta descriptions;
+- canonical URLs on business and legal pages;
+- Open Graph and Twitter Card metadata;
+- inline JSON-LD in HTML pages;
+- JSON-LD files in `assets/data/jsonld/`;
+- `robots.txt`;
+- `sitemap.xml`;
+- OG images in `assets/img/og-img/`.
 
 ### Performance
 
-The repository includes explicit performance mechanisms:
+The repository includes detectable performance mechanisms:
 
-- CSS and JS minification in the build pipeline.
-- Gzip budgets for `assets/css/style.min.css` and the `assets/js/main.min.js` module graph.
-- Local `woff2` fonts with `font-display: swap`.
-- Images in AVIF, WebP, JPG, PNG, and SVG formats.
-- `image-set()` for hero imagery plus `loading="lazy"` and dimensions on selected images.
-- Service worker root-page precache and runtime asset caching.
+- CSS and JS minification in the build pipeline;
+- gzip budgets for `assets/css/style.min.css` and the `assets/js/main.min.js` module graph;
+- local fonts loaded through `@font-face` with `font-display: swap`;
+- images in AVIF, WebP, JPG, PNG, and SVG formats;
+- `image-set()` for hero images;
+- `loading="lazy"` and explicit dimensions on many images;
+- service worker precache and runtime asset caching.
 
 ### Quality Assurance
 
@@ -348,7 +355,7 @@ npm run release-check
 npm run test:e2e
 ```
 
-Available focused checks:
+Focused checks:
 
 ```bash
 npm run qa:html
@@ -362,26 +369,21 @@ npm run assets:verify
 
 Scope:
 
-- `qa` runs HTML, JSON-LD, local link, and accessibility checks.
-- `release-check` runs the final local gate: `qa`, `assets:verify`, `qa:budget`, and `test:e2e`.
-- `test:e2e` runs Playwright against the built `dist/` package.
+- `qa` runs HTML, JSON-LD, local link, and accessibility validation.
+- `release-check` runs `qa`, `assets:verify`, `qa:budget`, and `test:e2e`.
+- `test:e2e` runs Playwright against the built `dist/`.
 - E2E tests cover the contact form, fleet lightbox, mobile navigation, offline page, service worker/offline fallback, and services filtering.
 - `qa:lighthouse` uses the Lighthouse CI configuration for the home, services, and contact pages.
 
 ### Project Maintenance
 
-- Edit source files, not artifacts: `dist/`, `assets/css/style.min.css`, and `assets/js/main.min.js` are generated.
-- Keep header and footer changes in `partials/`; `templates/partials/` stores template copies.
-- After asset, path, or service worker changes, run `npm run assets:verify` and `npm run qa:links`.
-- After HTML changes, run `npm run qa:html` and the relevant accessibility checks.
-- After interaction changes, run the relevant Playwright tests or `npm run release-check`.
-
-### Roadmap
-
-- Add computed contrast checks or visual regression for key views.
-- Expand Playwright coverage for service-detail variants and contact-form edge cases.
-- Clarify the preview/deployment workflow after the target static host is finalized.
+- Edit source files, not generated artifacts.
+- Do not edit `dist/`, `assets/css/style.min.css`, or `assets/js/main.min.js` manually.
+- Keep CSS changes in `assets/css/modules/`; import order is defined by `assets/css/style.css`.
+- Keep interaction changes in `assets/js/` modules and initialization in `assets/js/main.js`.
+- Keep header and footer changes in `partials/`.
+- After HTML, asset, path, or service worker changes, run the relevant QA scripts from `package.json`.
 
 ### License
 
-`UNLICENSED` as declared in `package.json`.
+The project is proprietary. `package.json` declares `UNLICENSED`, and `LICENSE` reserves all rights and limits use to portfolio, reference, and code review purposes without granting a license.

@@ -14,19 +14,23 @@ export function initGalleryFilters() {
     items.forEach((item) => {
       const match = filter === "all" || item.dataset.type === filter || item.dataset.purpose === filter;
 
-      item.style.display = match ? "grid" : "none";
+      item.style.display = match ? "" : "none";
     });
 
-    updateFleetSingleState(); // ← TU
+    updateFleetSingleState();
   };
 
   chips.forEach((chip) => {
     chip.addEventListener("click", () => {
       chips.forEach((c) => c.classList.remove("is-active"));
       chip.classList.add("is-active");
+      chip.setAttribute("aria-pressed", "true");
+      chips.forEach((c) => c !== chip && c.setAttribute("aria-pressed", "false"));
       applyFilters(chip.dataset.filter);
     });
+    if (chip.dataset.filter === "all") chip.classList.add("is-active");
+    chip.setAttribute("aria-pressed", chip.classList.contains("is-active"));
   });
 
-  applyFilters("all"); // start
+  applyFilters("all");
 }
