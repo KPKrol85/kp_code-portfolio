@@ -58,6 +58,7 @@ function initMarketingShell() {
     if (!navToggle || !navDrawer) return;
     document.documentElement.classList.add("is-nav-open");
     navToggle.setAttribute("aria-expanded", "true");
+    navDrawer.setAttribute("aria-hidden", "false");
     navOpen = true;
     window.requestAnimationFrame(() => {
       const focusables = getDrawerFocusables();
@@ -70,6 +71,7 @@ function initMarketingShell() {
     if (!navToggle) return;
     document.documentElement.classList.remove("is-nav-open");
     navToggle.setAttribute("aria-expanded", "false");
+    if (navDrawer) navDrawer.setAttribute("aria-hidden", "true");
     navOpen = false;
     navToggle.focus();
   };
@@ -113,19 +115,26 @@ function initMarketingShell() {
   if (navbar) {
     let lastY = 0;
     let ticking = false;
-    const addAt = 18;
-    const removeAt = 6;
+    let isScrolled = navbar.classList.contains("is-scrolled");
+    const SHRINK_ADD_Y = 72;
+    const SHRINK_REMOVE_Y = 24;
     const scrollOptions = { passive: true };
+
+    const setScrolled = (next) => {
+      if (next === isScrolled) return;
+      isScrolled = next;
+      navbar.classList.toggle("is-scrolled", next);
+    };
 
     const onScroll = () => {
       lastY = window.scrollY || 0;
       if (ticking) return;
       ticking = true;
       window.requestAnimationFrame(() => {
-        if (lastY > addAt) {
-          navbar.classList.add("is-scrolled");
-        } else if (lastY < removeAt) {
-          navbar.classList.remove("is-scrolled");
+        if (lastY > SHRINK_ADD_Y) {
+          setScrolled(true);
+        } else if (lastY < SHRINK_REMOVE_Y) {
+          setScrolled(false);
         }
         ticking = false;
       });
@@ -210,6 +219,12 @@ function renderMarketingShell({ title, description, eyebrow, lead, body }) {
   setMarketingTheme();
   const theme = FleetStore.state.preferences.theme || "light";
   const themeAsset = (light, dark) => (theme === "dark" ? dark : light);
+  const menuToggleIcon = `
+            <span class="menu-toggle-icon" aria-hidden="true">
+              <span class="menu-toggle-icon__line menu-toggle-icon__line--top"></span>
+              <span class="menu-toggle-icon__line menu-toggle-icon__line--middle"></span>
+              <span class="menu-toggle-icon__line menu-toggle-icon__line--bottom"></span>
+            </span>`;
   setPageMeta(title, description);
 
   app.innerHTML = `
@@ -217,16 +232,16 @@ function renderMarketingShell({ title, description, eyebrow, lead, body }) {
       <header class="container navbar" role="banner">
         <a class="logo flex" href="#/" aria-label="FleetOps — Strona główna" data-scroll-top="home">
 
-          <img class="logo__icon" src="${themeAsset("assets/icons/logo-black.svg", "assets/icons/logo-white.svg")}" data-theme-src-light="assets/icons/logo-black.svg" data-theme-src-dark="assets/icons/logo-white.svg" alt="FleetOps logo" width="52" height="52" />
+          <img class="logo__icon" src="${themeAsset("assets/logos/logo-black.svg", "assets/logos/logo-white.svg")}" data-theme-src-light="assets/logos/logo-black.svg" data-theme-src-dark="assets/logos/logo-white.svg" alt="FleetOps logo" width="52" height="52" />
 
           <span>FleetOps</span>
         </a>
         <nav class="nav" aria-label="Nawigacja glowna">
           <button class="button ghost nav-toggle" id="navToggle" type="button" aria-expanded="false" aria-controls="mobileNav" aria-label="Przelacz nawigacje">
-            <img class="nav-toggle__icon" src="${themeAsset("assets/icons/hamburger-light.svg", "assets/icons/hamburger-dark.svg")}" data-theme-src-light="assets/icons/hamburger-light.svg" data-theme-src-dark="assets/icons/hamburger-dark.svg" alt="" aria-hidden="true" />
+${menuToggleIcon}
           </button>
           <div class="nav-backdrop" data-nav-close></div>
-          <div class="nav-drawer" id="mobileNav" role="dialog" aria-modal="true" aria-label="Nawigacja mobilna">
+          <div class="nav-drawer" id="mobileNav" role="dialog" aria-modal="true" aria-label="Nawigacja mobilna" aria-hidden="true">
             <ul class="nav-links">
               <li><a href="#/product">Produkt</a></li>
               <li><a href="#/features">Funkcje</a></li>
@@ -276,7 +291,7 @@ function renderMarketingShell({ title, description, eyebrow, lead, body }) {
           <div class="footer__grid">
             <div class="footer__brand">
               <a class="footer__logo" href="#/" aria-label="FleetOps home" data-scroll-top="home">
-                <img class="logo__icon" src="${themeAsset("assets/icons/logo-black.svg", "assets/icons/logo-white.svg")}" data-theme-src-light="assets/icons/logo-black.svg" data-theme-src-dark="assets/icons/logo-white.svg" alt="FleetOps logo" width="52" height="52" />
+                <img class="logo__icon" src="${themeAsset("assets/logos/logo-black.svg", "assets/logos/logo-white.svg")}" data-theme-src-light="assets/logos/logo-black.svg" data-theme-src-dark="assets/logos/logo-white.svg" alt="FleetOps logo" width="52" height="52" />
               </a>
               <p class="footer__desc">Zarządzaj flotą, dyspozytornią i SLA w jednym, spokojnym środowisku pracy dla zespołów operacyjnych.</p>
               <span class="footer__eyebrow">Stworzone dla zespołów operacyjnych</span>
@@ -361,7 +376,7 @@ function renderMarketingShell({ title, description, eyebrow, lead, body }) {
           </div>
 
           <div class="footer__bottom">
-            <span>© 2025 kp_code_ — Wszelkie prawa zastrzeżone</span>
+            <span>© 2026 KP_Code Digital Studio | Wszelkie prawa zastrzeżone.</span>
           </div>
         </div>
       </footer>
@@ -515,7 +530,7 @@ function renderProductPage() {
     mark.setAttribute("aria-hidden", "true");
     mark.setAttribute("role", "presentation");
     mark.innerHTML = `
-      <img class="logo__icon" src="${themeAsset("assets/icons/logo-black.svg", "assets/icons/logo-white.svg")}" data-theme-src-light="assets/icons/logo-black.svg" data-theme-src-dark="assets/icons/logo-white.svg" alt="" aria-hidden="true" />
+      <img class="logo__icon" src="${themeAsset("assets/logos/logo-black.svg", "assets/logos/logo-white.svg")}" data-theme-src-light="assets/logos/logo-black.svg" data-theme-src-dark="assets/logos/logo-white.svg" alt="" aria-hidden="true" />
     `;
     hero.appendChild(mark);
   }

@@ -1,48 +1,34 @@
-/* ==================================
-   = Project: transport-02
-   = Name: FleetOps
-   = Technology: html/css/js
-   = Author: Kamil Król - kp_code_
-   = Last Update: 2025-12-21
-   = Version: 1.00
-   ==================================
-   = CSS Stylesheet: app.css
-   = Structure overview
-   ==================================
-   = 00 - App Shell Layout
-   = 01 - Sidebar
-   = 02 - Topbar
-   = 03 - App Main & Content
-   = 04 - Modules & Panels
-   = 05 - Activity & Lists
-   = 06 - Tables & Rows
-   = 07 - Toolbars
-   = 08 - Settings
-   = 09 - Compact Mode
-   = 10 - Responsive
-   = 11 - Empty State
-   ================================== */
-
-/* === 00 - App Shell Layout === */
+/* App Shell Layout */
 
 .app-shell {
-  display: grid;
-  grid-template-columns: 240px 1fr;
+  display: block;
   min-height: 100vh;
 }
 
-/* === 01 - Sidebar === */
+/* Sidebar */
 
 .sidebar {
   background: var(--surface);
   border-right: 1px solid var(--border);
   padding: var(--space-4) var(--space-3);
-  position: sticky;
+  padding-top: calc(env(safe-area-inset-top) + var(--space-4));
+  position: fixed;
   top: 0;
+  left: 0;
+  z-index: 50;
+  width: min(280px, 84vw);
   height: 100vh;
   display: grid;
   grid-template-rows: auto 1fr auto;
   gap: var(--space-4);
+  transform: translateX(-100%);
+  visibility: hidden;
+  box-shadow: var(--shadow);
+}
+
+.sidebar.is-open {
+  transform: translateX(0);
+  visibility: visible;
 }
 
 .sidebar .logo {
@@ -72,33 +58,40 @@
   border-color: transparent;
 }
 
-/* === 02 - Topbar === */
+/* Topbar */
 
 .topbar {
-  position: sticky;
+  position: static;
   top: 0;
   z-index: 10;
   background: var(--bg-elevated);
   border-bottom: 1px solid var(--border);
-  padding: 14px var(--space-4);
+  padding: var(--space-3);
   display: flex;
-  align-items: center;
+  flex-direction: column;
+  flex-wrap: wrap;
+  align-items: flex-start;
   justify-content: space-between;
-  gap: 12px;
+  gap: 10px;
 }
 
 .topbar-left {
   display: flex;
-  align-items: center;
+  flex: 1 1 auto;
+  flex-direction: column;
+  align-items: flex-start;
   gap: 12px;
+  width: 100%;
+  min-width: 0;
 }
 
 .topbar h2 {
-  font-size: 18px;
+  font-size: var(--fs-04);
 }
 
 .search {
-  min-width: 220px;
+  width: 100%;
+  min-width: 0;
   background: var(--surface);
   border: 1px solid var(--border);
   border-radius: var(--radius-sm);
@@ -115,7 +108,31 @@
 .topbar-actions {
   display: flex;
   align-items: center;
+  flex: 1 1 100%;
+  flex-wrap: wrap;
+  justify-content: flex-start;
   gap: 8px;
+  width: 100%;
+  margin-left: 0;
+}
+
+.topbar-actions > button[aria-label="Powiadomienia"] {
+  order: 1;
+}
+
+.topbar-actions > .dropdown {
+  order: 1;
+  margin-left: auto;
+}
+
+.topbar-actions > .role-switcher {
+  order: 2;
+  flex: 1 1 100%;
+  width: 100%;
+}
+
+.topbar-actions #themeToggle {
+  display: none;
 }
 
 .offline-banner {
@@ -127,7 +144,7 @@
   background: color-mix(in srgb, var(--accent) 12%, var(--bg-elevated));
   border-bottom: 1px solid var(--border);
   color: var(--text);
-  font-size: 13px;
+  font-size: var(--fs-02);
 }
 
 .offline-banner.is-visible {
@@ -154,41 +171,43 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  font-weight: 700;
+  font-weight: var(--fw-bold);
 }
 
-/* === 02b - App Topbar (Mobile) === */
+/* App Topbar */
 
 .app-topbar {
-  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 50;
+  min-height: 58px;
+  padding: calc(env(safe-area-inset-top) + 8px) var(--space-3) 10px;
+  background: var(--bg-elevated);
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
 }
 
 .app-topbar__brand {
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  font-weight: 700;
+  font-weight: var(--fw-bold);
   letter-spacing: -0.02em;
+}
+
+.app-topbar__brand span {
+  font-size: var(--fs-02);
 }
 
 .app-topbar__actions {
   display: inline-flex;
   align-items: center;
   gap: 6px;
-}
-
-.drawer-toggle__icon {
-  display: block;
-  width: 22px;
-  height: 22px;
-}
-
-html[data-theme="light"] .drawer-toggle__icon--light {
-  display: block;
-}
-
-html[data-theme="dark"] .drawer-toggle__icon--dark {
-  display: block;
 }
 
 .theme-toggle__icon {
@@ -204,7 +223,9 @@ html[data-theme="dark"] #themeToggleMobile .theme-toggle__icon--dark {
 }
 
 .drawer {
-  transition: transform 0.2s ease, visibility 0.2s ease;
+  transition:
+    transform 0.2s ease,
+    visibility 0.2s ease;
 }
 
 .drawer-backdrop {
@@ -213,7 +234,9 @@ html[data-theme="dark"] #themeToggleMobile .theme-toggle__icon--dark {
   background: rgba(9, 13, 20, 0.45);
   opacity: 0;
   visibility: hidden;
-  transition: opacity 0.2s ease, visibility 0.2s ease;
+  transition:
+    opacity 0.2s ease,
+    visibility 0.2s ease;
   z-index: 40;
 }
 
@@ -226,12 +249,13 @@ body.drawer-open {
   overflow: hidden;
 }
 
-/* === 03 - App Main & Content === */
+/* App Main & Content */
 
 .app-main {
   background: var(--bg);
   min-height: 100vh;
   min-width: 0;
+  padding-top: calc(58px + env(safe-area-inset-top));
 }
 
 .app-content {
@@ -250,7 +274,7 @@ body.drawer-open {
   margin-top: var(--space-3);
 }
 
-/* === 04 - Modules & Panels === */
+/* Modules & Panels */
 
 .panel {
   border: 1px solid var(--border);
@@ -286,26 +310,7 @@ body.drawer-open {
   margin-top: var(--space-1);
 }
 
-/*
-.panel {
-  border: 1px solid var(--border);
-  border-radius: var(--radius);
-  background: var(--surface);
-  padding: var(--space-3);
-  box-shadow: var(--shadow);
-}
-
-.module-header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  flex-wrap: wrap;
-  gap: 10px;
-  margin-bottom: var(--space-3);
-}
-*/
-
-/* === 05 - Activity & Lists === */
+/* Activity & Lists */
 
 .activity-row {
   display: flex;
@@ -345,17 +350,20 @@ body.drawer-open {
   display: block;
 }
 
-/* === 06 - Tables & Rows === */
+/* Tables & Rows */
 
 .order-row {
   cursor: pointer;
 }
 
-/* === 06b - App interactive hover/focus (tool-style) === */
+/* App interactive hover/focus */
 
 .app-shell .sidebar a,
 .app-shell .order-row td {
-  transition: background-color 140ms ease, border-color 140ms ease, color 140ms ease;
+  transition:
+    background-color 140ms ease,
+    border-color 140ms ease,
+    color 140ms ease;
 }
 
 .app-shell .sidebar a[aria-current="page"],
@@ -423,7 +431,7 @@ html[data-theme="dark"] .app-shell .setting-card:has(input, select, textarea, bu
   }
 }
 
-/* === 07 - Toolbars === */
+/* Toolbars */
 
 .toolbar {
   display: flex;
@@ -432,26 +440,17 @@ html[data-theme="dark"] .app-shell .setting-card:has(input, select, textarea, bu
   flex-wrap: wrap;
 }
 
-/* App spacing between filters and main data panel */
 .app-shell .table-filter + .panel,
 .app-shell .table-filter + .card-list,
 .app-shell .table-filter + .panel.table-responsive {
   margin-top: var(--space-3);
 }
 
-/* Overview: spacing between KPI grid and main panels */
 .app-shell .app-content .grid.kpi-grid + .grid {
   margin-top: var(--space-3);
 }
 
-/* Reports: spacing between stacked panels */ /*
-.app-shell .app-content .panel + .panel,
-.app-shell .app-content .panel + .panel.table-responsive {
-  margin-top: var(--space-3);
-}
-*/
-
-/* === 08 - Settings === */
+/* Settings */
 
 .settings-grid {
   display: grid;
@@ -466,7 +465,7 @@ html[data-theme="dark"] .app-shell .setting-card:has(input, select, textarea, bu
   background: var(--surface);
 }
 
-/* === 09 - Compact Mode === */
+/* Compact Mode */
 
 body[data-compact="true"] .app-content {
   padding: 16px;
@@ -476,63 +475,114 @@ body[data-compact="true"] .panel {
   padding: 14px;
 }
 body[data-compact="true"] .sidebar {
-  padding: 18px 14px;
-}
-body[data-compact="true"] .topbar {
-  padding: 10px 14px;
+  padding: calc(env(safe-area-inset-top) + var(--space-4)) 14px 18px;
 }
 
-/* === 10 - Responsive === */
-
-@media (max-width: 1024px) {
-  .app-shell {
-    display: block;
+@media (min-width: 401px) {
+  .topbar-actions > button[aria-label="Powiadomienia"],
+  .topbar-actions > .dropdown,
+  .topbar-actions > .role-switcher {
+    order: 0;
   }
-  .app-topbar {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    z-index: 50;
-    min-height: 58px;
-    padding: calc(env(safe-area-inset-top) + 8px) var(--space-3) 10px;
-    background: var(--bg-elevated);
-    border-bottom: 1px solid var(--border);
-    display: flex;
+
+  .topbar-actions > .dropdown {
+    margin-left: 0;
+  }
+
+  .topbar-actions > .role-switcher {
+    flex: 0 1 auto;
+    width: auto;
+  }
+}
+
+@media (min-width: 641px) {
+  .topbar {
+    flex-direction: row;
     align-items: center;
-    justify-content: space-between;
+  }
+
+  .topbar-left {
+    flex-direction: row;
+    align-items: center;
+    width: auto;
+  }
+
+  .search {
+    width: auto;
+    min-width: 220px;
+  }
+}
+
+@media (min-width: 701px) {
+  .topbar {
+    flex-wrap: nowrap;
     gap: 12px;
   }
-  .app-topbar__brand span {
-    font-size: 14px;
+
+  .topbar-left {
+    flex: 0 1 auto;
+    min-width: auto;
   }
-  .sidebar {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: min(280px, 84vw);
-    height: 100vh;
-    padding-top: calc(env(safe-area-inset-top) + var(--space-4));
-    background: var(--surface);
-    z-index: 50;
-    transform: translateX(-100%);
-    visibility: hidden;
-    box-shadow: var(--shadow);
+
+  .topbar-actions {
+    flex: 0 1 auto;
+    flex-wrap: nowrap;
+    width: auto;
   }
-  .sidebar.is-open {
-    transform: translateX(0);
-    visibility: visible;
+}
+
+@media (min-width: 1025px) {
+  .app-shell {
+    display: grid;
+    grid-template-columns: 240px 1fr;
   }
-  .app-main {
-    padding-top: calc(58px + env(safe-area-inset-top));
-  }
-  .topbar {
-    position: static;
-    padding: var(--space-3);
-  }
-  .topbar-actions #themeToggle {
+
+  .app-topbar {
     display: none;
   }
+
+  .sidebar {
+    position: sticky;
+    top: 0;
+    left: auto;
+    z-index: auto;
+    width: auto;
+    height: 100vh;
+    padding: var(--space-4) var(--space-3);
+    transform: none;
+    visibility: visible;
+    box-shadow: none;
+  }
+
+  .sidebar.is-open {
+    transform: none;
+    visibility: visible;
+  }
+
+  .app-main {
+    padding-top: 0;
+  }
+
+  .topbar {
+    position: sticky;
+    top: 0;
+    padding: 14px var(--space-4);
+  }
+
+  body[data-compact="true"] .topbar {
+    padding: 10px 14px;
+  }
+
+  body[data-compact="true"] .sidebar {
+    padding: 18px 14px;
+  }
+
+  .topbar-actions #themeToggle {
+    display: inline-flex;
+  }
+}
+
+@media (max-width: 1024px) {
   .app-main .grid,
   .app-main .kpi-grid,
   .app-main .card-list {
@@ -547,38 +597,7 @@ body[data-compact="true"] .topbar {
   }
 }
 
-@media (max-width: 700px) {
-  .topbar {
-    flex-wrap: wrap;
-    align-items: center;
-    gap: 10px;
-  }
-  .topbar-left {
-    flex: 1 1 auto;
-    min-width: 0;
-  }
-  .topbar-actions {
-    flex: 1 1 100%;
-    width: 100%;
-    justify-content: flex-start;
-    margin-left: 0;
-  }
-}
-
 @media (max-width: 640px) {
-  .topbar {
-    flex-direction: column;
-    align-items: flex-start;
-  }
-  .topbar-left {
-    width: 100%;
-    flex-direction: column;
-    align-items: flex-start;
-  }
-  .search {
-    min-width: 0;
-    width: 100%;
-  }
   .app-content {
     padding: var(--space-3);
   }
@@ -587,27 +606,7 @@ body[data-compact="true"] .topbar {
   }
 }
 
-@media (max-width: 400px) {
-  .topbar-actions {
-    flex-wrap: wrap;
-    width: 100%;
-    gap: 8px;
-  }
-  .topbar-actions > button[aria-label="Powiadomienia"] {
-    order: 1;
-  }
-  .topbar-actions > .dropdown {
-    order: 1;
-    margin-left: auto;
-  }
-  .topbar-actions > .role-switcher {
-    order: 2;
-    flex: 1 1 100%;
-    width: 100%;
-  }
-}
-
-/* === 11 - Empty State === */
+/* Empty State */
 
 .empty-state {
   display: grid;
@@ -632,45 +631,20 @@ body[data-compact="true"] .topbar {
   margin: 0;
 }
 
-/* === 13 - Utility Components (Progress / Pills / Inline) === */
-
-.label-pill {
-  padding: 4px 8px;
-  border-radius: 999px;
-  font-size: 12px;
-  border: 1px solid var(--border);
+.app-shell .navbar {
+  flex-direction: column;
+  gap: 12px;
+  align-items: flex-start;
 }
 
-/* Progress */
-.progress-bar {
-  height: 6px;
-  background: var(--bg-muted);
-  border-radius: 999px;
-  overflow: hidden;
-}
-
-.progress-bar span {
-  display: block;
-  height: 100%;
-  background: var(--accent);
-}
-
-/* Inline form */
-.form-inline {
-  display: flex;
-  gap: 10px;
+.app-shell .nav-links {
   flex-wrap: wrap;
 }
 
-/* Responsive (app shell navbar) */
-@media (max-width: 1024px) {
+@media (min-width: 1025px) {
   .app-shell .navbar {
-    flex-direction: column;
-    gap: 12px;
-    align-items: flex-start;
-  }
-
-  .app-shell .nav-links {
-    flex-wrap: wrap;
+    flex-direction: row;
+    gap: var(--space-3);
+    align-items: center;
   }
 }

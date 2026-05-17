@@ -8,8 +8,7 @@
 
   const savedTheme = FleetStore.state.preferences.theme;
   if (!savedTheme) {
-    const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
-    FleetStore.setTheme(prefersDark ? "dark" : "light");
+    FleetStore.setTheme("light");
   } else {
     document.documentElement.setAttribute("data-theme", savedTheme);
   }

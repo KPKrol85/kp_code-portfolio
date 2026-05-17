@@ -1,0 +1,122 @@
+
+/* Global Reset & Selection */
+
+* {
+  box-sizing: border-box;
+}
+
+*::selection {
+  background: var(--accent-ghost);
+  color: var(--text);
+}
+
+/* Document Base */
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  min-height: 100%;
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font-sans);
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: clip;
+}
+
+/* Links & Media */
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+a:hover {
+  color: var(--accent);
+}
+
+img {
+  display: block;
+  max-width: 100%;
+}
+
+/* Form Elements & Focus Styles */
+
+button,
+input,
+select,
+textarea {
+  font-family: inherit;
+  color: inherit;
+  background: none;
+  border: none;
+}
+
+button:focus,
+input:focus,
+select:focus,
+textarea:focus,
+a:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+  border-radius: 6px;
+}
+
+/* Accessibility */
+
+.skip-link {
+  position: absolute;
+  top: 0;
+  left: -999px;
+  z-index: 999;
+  padding: var(--space-2) var(--space-3);
+  border-radius: var(--radius-sm);
+  background: var(--accent);
+  color: #0b0d10;
+}
+
+.skip-link:focus {
+  left: 16px;
+}
+
+/* Typography Base */
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin: 0;
+  font-weight: var(--fw-semibold);
+  line-height: var(--lh-tight);
+  letter-spacing: var(--ls-compact);
+  color: var(--text);
+  text-wrap: balance;
+}
+
+h1,
+h2 {
+  font-weight: var(--fw-bold);
+  letter-spacing: var(--ls-tight);
+}
+
+p {
+  margin: 0;
+  line-height: var(--lh-relaxed);
+  color: var(--text-muted);
+  text-wrap: pretty;
+}
+
+/* Lists & Content Defaults */
+
+ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+main {
+  min-height: 60vh;
+}

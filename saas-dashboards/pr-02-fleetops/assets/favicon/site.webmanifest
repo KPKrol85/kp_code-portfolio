@@ -35,16 +35,16 @@
   ],
   "screenshots": [
     {
-      "src": "https://transport-project-02.netlify.app/assets/screenshots/screenshot-desktop.png",
-      "sizes": "1280x720",
-      "type": "image/png",
+      "src": "/assets/screenshots/desktop.jpg",
+      "sizes": "1440x900",
+      "type": "image/jpeg",
       "form_factor": "wide",
       "label": "Widok aplikacji – desktop"
     },
     {
-      "src": "https://transport-project-02.netlify.app/assets/screenshots/screenshot-mobile.png",
-      "sizes": "720x1280",
-      "type": "image/png",
+      "src": "/assets/screenshots/mobile.jpg",
+      "sizes": "390x844",
+      "type": "image/jpeg",
       "form_factor": "narrow",
       "label": "Widok aplikacji – mobile"
     }
@@ -54,10 +54,10 @@
       "name": "Dashboard",
       "short_name": "Dashboard",
       "description": "Główny panel aplikacji",
-      "url": "/app/dashboard",
+      "url": "/app",
       "icons": [
         {
-          "src": "https://transport-project-02.netlify.app/assets/shortcuts/dashboard.png",
+          "src": "/assets/shortcuts/dashboard.png",
           "sizes": "96x96",
           "type": "image/png"
         }
@@ -70,7 +70,7 @@
       "url": "/app/fleet",
       "icons": [
         {
-          "src": "https://transport-project-02.netlify.app/assets/shortcuts/flota.png",
+          "src": "/assets/shortcuts/flota.png",
           "sizes": "96x96",
           "type": "image/png"
         }
@@ -83,7 +83,7 @@
       "url": "/app/orders",
       "icons": [
         {
-          "src": "https://transport-project-02.netlify.app/assets/shortcuts/zlecenia.png",
+          "src": "/assets/shortcuts/zlecenia.png",
           "sizes": "96x96",
           "type": "image/png"
         }

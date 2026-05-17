@@ -1,54 +1,47 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="pl" data-theme="light">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content="FleetOps - strona nie istnieje lub zostala przeniesiona." />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <meta name="description" content="FleetOps – strona nie istnieje lub została przeniesiona." />
     <meta name="color-scheme" content="light dark" />
     <meta name="theme-color" content="#0b0f19" />
+    <meta name="robots" content="noindex, follow" />
     <title>404 – Page not found | FleetOps</title>
 
-    <link rel="stylesheet" href="/styles/base.min.css" />
-    <link rel="stylesheet" href="/styles/components.min.css" />
+    <!-- SEO -->
+    <link rel="canonical" href="https://saas-pr02-fleetops.netlify.app/404.html" />
 
-    <style>
-      .error-page {
-        min-height: 100vh;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        padding: var(--space-6) 0;
-      }
+    <!-- Open Graph -->
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="FleetOps" />
+    <meta property="og:title" content="404 – Page not found | FleetOps" />
+    <meta property="og:description" content="Strona nie istnieje lub została przeniesiona." />
+    <meta property="og:url" content="https://saas-pr02-fleetops.netlify.app/404.html" />
+    <meta property="og:image" content="https://saas-pr02-fleetops.netlify.app/assets/og-img/og-1200x630.jpg" />
+    <meta property="og:image:secure_url" content="https://saas-pr02-fleetops.netlify.app/assets/og-img/og-1200x630.jpg" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="Dashboard floty i transportu FleetOps" />
 
-      .error-card {
-        width: min(560px, 92vw);
-        background: var(--surface);
-        border: 1px solid var(--border);
-        border-radius: var(--radius-lg);
-        box-shadow: var(--shadow);
-        padding: var(--space-5);
-        text-align: center;
-        display: grid;
-        gap: var(--space-2);
-      }
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="404 – Page not found | FleetOps" />
+    <meta name="twitter:description" content="Strona nie istnieje lub została przeniesiona." />
+    <meta name="twitter:image" content="https://saas-pr02-fleetops.netlify.app/assets/og-img/og-1200x630.jpg" />
 
-      .error-code {
-        font-size: clamp(48px, 8vw, 96px);
-        letter-spacing: -0.04em;
-        margin: 0;
-      }
+    <!-- Icons / PWA -->
+    <link rel="icon" href="./assets/favicon/favicon.ico" sizes="any" />
+    <link rel="icon" type="image/svg+xml" href="./assets/favicon/favicon.svg" />
+    <link rel="icon" type="image/png" sizes="96x96" href="./assets/favicon/favicon-96x96.png" />
+    <link rel="apple-touch-icon" href="./assets/favicon/apple-touch-icon.png" />
+    <link rel="manifest" href="./assets/favicon/site.webmanifest" />
 
-      .error-title {
-        font-size: clamp(20px, 3vw, 28px);
-        margin: 0;
-      }
+    <!-- Fonts -->
+    <link rel="preload" as="font" type="font/woff2" href="/assets/fonts/inter-latin.woff2" crossorigin />
 
-      .error-actions {
-        margin-top: var(--space-2);
-        display: flex;
-        justify-content: center;
-      }
-    </style>
+    <!-- Styles -->
+    <link rel="stylesheet" href="/styles/main.css" />
   </head>
 
   <body>

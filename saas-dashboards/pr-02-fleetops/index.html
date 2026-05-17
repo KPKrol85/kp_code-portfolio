@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="pl" data-theme="light">
   <head>
     <meta charset="UTF-8" />
@@ -9,16 +9,16 @@
     <title>FleetOps</title>
 
     <!-- SEO -->
-    <link rel="canonical" href="https://transport-project-02.netlify.app/" />
+    <link rel="canonical" href="https://saas-pr02-fleetops.netlify.app/" />
 
     <!-- Open Graph -->
     <meta property="og:type" content="website" />
     <meta property="og:site_name" content="FleetOps" />
     <meta property="og:title" content="FleetOps" />
     <meta property="og:description" content="Centrum operacyjne floty i transportu" />
-    <meta property="og:url" content="https://transport-project-02.netlify.app" />
-    <meta property="og:image" content="https://transport-project-02.netlify.app/assets/og-img/og-1200x630.png" />
-    <meta property="og:image:secure_url" content="https://transport-project-02.netlify.app/assets/og-img/og-1200x630.png" />
+    <meta property="og:url" content="https://saas-pr02-fleetops.netlify.app" />
+    <meta property="og:image" content="https://saas-pr02-fleetops.netlify.app/assets/og-img/og-1200x630.jpg" />
+    <meta property="og:image:secure_url" content="https://saas-pr02-fleetops.netlify.app/assets/og-img/og-1200x630.jpg" />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
     <meta property="og:image:alt" content="Dashboard floty i transportu FleetOps" />
@@ -27,7 +27,7 @@
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content="FleetOps" />
     <meta name="twitter:description" content="Centrum operacyjne floty i transportu" />
-    <meta name="twitter:image" content="https://transport-project-02.netlify.app/assets/og-img/og-1200x630.png" />
+    <meta name="twitter:image" content="https://saas-pr02-fleetops.netlify.app/assets/og-img/og-1200x630.jpg" />
 
     <!-- Icons / PWA -->
     <link rel="icon" href="./assets/favicon/favicon.ico" sizes="any" />
@@ -37,18 +37,25 @@
     <link rel="manifest" href="./assets/favicon/site.webmanifest" />
 
     <!-- Fonts -->
-    <link rel="preload" as="font" type="font/woff2" href="./assets/fonts/inter-latin.woff2" crossorigin />
+    <link rel="preload" as="font" type="font/woff2" href="/assets/fonts/inter-latin.woff2" crossorigin />
 
     <!-- Styles -->
-    <link rel="stylesheet" href="/styles/base.min.css" />
-    <link rel="stylesheet" href="/styles/components.min.css" />
-    <link rel="stylesheet" href="/styles/landing.min.css" />
-    <link rel="stylesheet" href="/styles/app.min.css" />
+    <link rel="stylesheet" href="/styles/main.css" />
   </head>
 
   <body>
     <a class="skip-link" href="#main-content">Pomiń do treści</a>
     <div id="app" aria-live="polite"></div>
+    <noscript>
+      <main id="main-content" class="container section noscript-fallback" role="main">
+        <section class="card noscript-fallback__card" aria-labelledby="noscript-title">
+          <p class="tag">FleetOps</p>
+          <h1 id="noscript-title">JavaScript jest wymagany</h1>
+          <p>FleetOps używa JavaScriptu do wyświetlenia landing page, logowania demo oraz widoków dashboardu SaaS. Włącz JavaScript w przeglądarce i odśwież stronę, aby uruchomić aplikację.</p>
+          <a class="button secondary" href="./">Odśwież stronę</a>
+        </section>
+      </main>
+    </noscript>
 
     <!-- Scripts -->
     <script src="./scripts/utils/storage.js" defer></script>
