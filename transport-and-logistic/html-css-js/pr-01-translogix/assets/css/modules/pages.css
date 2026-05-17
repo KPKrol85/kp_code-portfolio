@@ -90,7 +90,7 @@ html.theme-dark #why .card__icon {
 .home-fleet-card p {
   margin-bottom: 0;
   color: var(--color-muted);
-  font-size: var(--fs-01);
+  font-size: var(--fs-04);
   line-height: var(--lh-base);
 }
 
@@ -615,9 +615,7 @@ html.theme-dark #why .card__icon {
 .tabpanel {
   border: 1px solid var(--color-border);
   border-radius: var(--radius-lg);
-  background:
-    linear-gradient(90deg, color-mix(in srgb, var(--color-accent) 10%, transparent), transparent 46%),
-    var(--color-surface);
+  background: linear-gradient(90deg, color-mix(in srgb, var(--color-accent) 10%, transparent), transparent 46%), var(--color-surface);
   box-shadow: var(--color-shadow);
   overflow: hidden;
 }
@@ -947,9 +945,7 @@ html.theme-dark #why .card__icon {
 .accordion__item {
   border: 1px solid var(--color-border);
   border-radius: var(--radius-lg);
-  background:
-    linear-gradient(180deg, rgba(255, 255, 255, 0.025), transparent 62%),
-    var(--color-surface);
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.025), transparent 62%), var(--color-surface);
   box-shadow: var(--shadow-sm);
   overflow: hidden;
   transition:
@@ -977,9 +973,7 @@ html.theme-dark #why .card__icon {
 }
 
 html.theme-dark .accordion__item {
-  background:
-    linear-gradient(180deg, rgba(255, 255, 255, 0.035), transparent 64%),
-    var(--color-surface-elevated, rgba(15, 23, 42, 0.96));
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.035), transparent 64%), var(--color-surface-elevated, rgba(15, 23, 42, 0.96));
 }
 
 html.theme-dark .accordion__item:hover,
