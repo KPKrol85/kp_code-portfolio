@@ -1,0 +1,2 @@
+import {qsa} from '../utils.js';
+export function initAccordion(){qsa('.accordion__button').forEach((b)=>{b.addEventListener('click',()=>{const p=document.getElementById(b.getAttribute('aria-controls'));const ex=b.getAttribute('aria-expanded')==='true';b.setAttribute('aria-expanded',String(!ex));p.hidden=ex;});b.addEventListener('keydown',(e)=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();b.click();}});});}

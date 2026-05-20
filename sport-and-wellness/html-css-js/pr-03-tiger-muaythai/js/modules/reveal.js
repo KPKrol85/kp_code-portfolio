@@ -1,0 +1,2 @@
+import {prefersReducedMotion,qsa} from '../utils.js';
+export function initReveal(){if(prefersReducedMotion()||!('IntersectionObserver'in window))return;qsa('[data-reveal]').forEach((el)=>{el.style.opacity='0';el.style.transform='translateY(12px)';});const io=new IntersectionObserver((ents)=>ents.forEach((en)=>{if(en.isIntersecting){en.target.style.transition='opacity .4s, transform .4s';en.target.style.opacity='1';en.target.style.transform='none';io.unobserve(en.target);}}),{threshold:.2});qsa('[data-reveal]').forEach((el)=>io.observe(el));}

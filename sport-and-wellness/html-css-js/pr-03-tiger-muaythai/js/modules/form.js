@@ -1,0 +1,3 @@
+import {qs,qsa} from '../utils.js';
+export function initForm(){const form=qs('[data-form]');if(!form)return;const status=qs('[data-form-status]',form);
+form.addEventListener('submit',(e)=>{let first=null;qsa('[required]',form).forEach((f)=>{const err=qs(`[data-error-for="${f.id}"]`,form);if(!f.checkValidity()){err.textContent='To pole jest wymagane.';if(!first)first=f;}else{err.textContent='';}});if(first){e.preventDefault();first.focus();status.textContent='Popraw błędy w formularzu.';return;}e.preventDefault();status.textContent='Dziękujemy! Skontaktujemy się w ciągu 24 godzin.';form.reset();});}

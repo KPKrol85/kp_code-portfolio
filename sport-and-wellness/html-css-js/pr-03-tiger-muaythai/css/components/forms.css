@@ -1,0 +1,4 @@
+.form__group{display:grid;gap:var(--space-xs);margin-bottom:var(--space-md)}
+.form__input,.form__select,.form__textarea{width:100%;padding:.72rem;border:1px solid var(--border);border-radius:var(--radius-sm);background:var(--surface);color:var(--text)}
+.form__error{color:var(--danger);font-size:var(--fs-sm);min-height:1.2em}
+.form__status{margin-top:var(--space-md);font-weight:var(--fw-medium)}

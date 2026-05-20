@@ -1,0 +1,4 @@
+.btn{display:inline-flex;align-items:center;justify-content:center;padding:.75rem 1.2rem;border-radius:var(--radius-md);font-weight:var(--fw-semibold);border:1px solid transparent;transition:background-color .2s,border-color .2s,color .2s,transform .2s}
+.btn:hover{transform:translateY(-1px)}
+.btn--primary{background:var(--brand);color:#fff}.btn--primary:hover{background:#9f2525}
+.btn--secondary{background:transparent;border-color:var(--border)}

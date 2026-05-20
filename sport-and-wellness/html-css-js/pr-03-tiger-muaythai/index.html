@@ -1,0 +1,122 @@
+<!doctype html>
+<html lang="pl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Tiger Muay Thai Club | Trening MuayThai w Krakowie</title>
+  <meta name="description" content="Nowoczesny klub MuayThai: treningi, grafik, trenerzy i zapisy na trening próbny.">
+  <link rel="canonical" href="https://example.com/index.html">
+  <link rel="icon" type="image/svg+xml" href="assets/icons/favicon.svg">
+  <link rel="stylesheet" href="css/main.css">
+  <script type="module" src="js/app.js"></script>
+</head>
+<body>
+  <div class="scroll-progress" data-scroll-progress></div>
+  <a href="#main" class="skip-link">Przejdź do treści</a>
+  <header class="site-header">
+    <div class="container nav">
+      <a href="index.html"><strong>Tiger Muay Thai Club</strong></a>
+      <button class="nav__toggle" data-nav-toggle aria-expanded="false" aria-controls="site-menu">Menu</button>
+      <ul class="nav__list" id="site-menu">
+        <li><a class="nav__link" href="#start" aria-current="page">Start</a></li>
+        <li><a class="nav__link" href="#programy">Programy</a></li>
+        <li><a class="nav__link" href="#cennik">Cennik</a></li>
+        <li><a class="nav__link" href="#trenerzy">Trenerzy</a></li>
+        <li><a class="nav__link" href="#opinie">Opinie</a></li>
+        <li><a class="btn btn--primary" href="kontakt.html">Zapisz się na trening</a></li>
+      </ul>
+    </div>
+  </header>
+
+  <main id="main">
+    <section id="start" class="hero hero--enhanced section-anchor">
+      <div class="container hero__grid">
+        <div>
+          <div class="badge-row"><span class="badge-pill">Senior UI</span><span class="badge-pill">Nowa architektura</span><span class="badge-pill">A11Y first</span></div>
+          <h1>Tiger Muay Thai Club</h1>
+          <p class="hero__lead">Profesjonalny, nowoczesny i skalowalny serwis klubu Muay Thai: czytelny UX, modularne komponenty i wydajna architektura frontendu.</p>
+          <div class="cluster">
+            <a class="btn btn--primary" href="kontakt.html">Umów pierwszy trening</a>
+            <a class="btn btn--secondary" href="grafik.html">Zobacz grafik</a>
+            <button class="btn btn--secondary" type="button" data-modal-open>Audyt zmian</button>
+          </div>
+        </div>
+        <img src="assets/images/hero-training.svg" alt="Trening MuayThai na sali" width="640" height="420">
+      </div>
+    </section>
+
+    <section class="section container home-stats section-anchor" aria-label="Najważniejsze liczby">
+      <div class="metric-grid">
+        <article class="metric" data-reveal><p class="metric__value" data-counter-target="12" data-counter-suffix="+">0+</p><p class="metric__label">lat doświadczenia</p></article>
+        <article class="metric" data-reveal><p class="metric__value" data-counter-target="40" data-counter-suffix="+">0+</p><p class="metric__label">treningów miesięcznie</p></article>
+        <article class="metric" data-reveal><p class="metric__value" data-counter-target="350" data-counter-suffix="+">0+</p><p class="metric__label">aktywnych klubowiczów</p></article>
+        <article class="metric" data-reveal><p class="metric__value" data-counter-target="4">0</p><p class="metric__label">poziomy zaawansowania</p></article>
+      </div>
+    </section>
+
+    <section id="programy" class="section container section-anchor" data-tabs>
+      <h2>Programy treningowe</h2>
+      <div role="tablist" aria-label="Programy" class="tabs__list">
+        <button class="tabs__button" role="tab" id="tab-1" aria-selected="true" aria-controls="panel-1">Start</button>
+        <button class="tabs__button" role="tab" id="tab-2" aria-selected="false" aria-controls="panel-2">Średniozaawansowani</button>
+        <button class="tabs__button" role="tab" id="tab-3" aria-selected="false" aria-controls="panel-3">Zawodnicy</button>
+      </div>
+      <div class="tabs">
+        <article class="tabs__panel" role="tabpanel" id="panel-1" aria-labelledby="tab-1"><h3>Fundamenty Muay Thai</h3><p>Technika bazowa, mobilność, rytm i bezpieczny progres.</p></article>
+        <article class="tabs__panel" role="tabpanel" id="panel-2" aria-labelledby="tab-2" hidden><h3>Program rozwojowy</h3><p>Praca na zadaniach, sparingi kontrolowane i budowanie wydolności.</p></article>
+        <article class="tabs__panel" role="tabpanel" id="panel-3" aria-labelledby="tab-3" hidden><h3>Ścieżka startowa</h3><p>Planowanie mikrocykli, analiza video i obozy przygotowawcze.</p></article>
+      </div>
+    </section>
+
+    <section id="cennik" class="section container section-anchor">
+      <h2>Cennik</h2>
+      <div class="pricing-grid">
+        <article class="pricing-card"><p class="pricing-card__name">Basic</p><p class="pricing-card__price">239 zł <small>/ miesiąc</small></p><ul><li>8 wejść</li><li>Plan startowy</li></ul></article>
+        <article class="pricing-card is-featured"><p class="pricing-card__name">Pro</p><p class="pricing-card__price">339 zł <small>/ miesiąc</small></p><ul><li>nielimitowane wejścia</li><li>konsultacja trenerska</li></ul></article>
+        <article class="pricing-card"><p class="pricing-card__name">Elite</p><p class="pricing-card__price">549 zł <small>/ miesiąc</small></p><ul><li>przygotowanie startowe</li><li>analiza video</li></ul></article>
+      </div>
+    </section>
+
+    <section id="trenerzy" class="section container section-anchor">
+      <h2>Zespół trenerów</h2>
+      <div class="grid grid--3">
+        <article class="card"><img src="assets/images/coach-1.svg" alt="Trener Michał Wrona" width="320" height="220" loading="lazy"><h3>Michał Wrona</h3></article>
+        <article class="card"><img src="assets/images/coach-2.svg" alt="Trenerka Anna Rattan" width="320" height="220" loading="lazy"><h3>Anna Rattan</h3></article>
+        <article class="card"><img src="assets/images/coach-3.svg" alt="Trener Paweł Klimczak" width="320" height="220" loading="lazy"><h3>Paweł Klimczak</h3></article>
+      </div>
+    </section>
+
+    <section id="opinie" class="section container section-anchor">
+      <h2>Opinie klubowiczów</h2>
+      <div class="testimonial-grid">
+        <figure class="quote"><blockquote class="quote__text">"Mega profesjonalne podejście i super klimat."</blockquote><figcaption class="quote__author">— Karol, 2 lata w klubie</figcaption></figure>
+        <figure class="quote"><blockquote class="quote__text">"Najlepsza progresja treningowa jaką miałem."</blockquote><figcaption class="quote__author">— Patryk, grupa PRO</figcaption></figure>
+        <figure class="quote"><blockquote class="quote__text">"Bezpiecznie i konkretnie, zero chaosu."</blockquote><figcaption class="quote__author">— Joanna, początkująca</figcaption></figure>
+      </div>
+    </section>
+  </main>
+
+  <aside class="sticky-cta" data-sticky-cta>
+    <p class="sticky-cta__txt">Gotowy na trening próbny?</p>
+    <a class="btn btn--primary" href="kontakt.html">Zapisz się</a>
+  </aside>
+
+  <div data-modal hidden>
+    <div class="modal__dialog" role="dialog" aria-modal="true" aria-labelledby="audit-title">
+      <div class="modal__head">
+        <h2 id="audit-title" class="modal__title">Audyt i mapa zmian</h2>
+        <button class="modal__close" type="button" data-modal-close aria-label="Zamknij">×</button>
+      </div>
+      <div class="audit">
+        <h3>Co zostało podniesione do poziomu senior?</h3>
+        <ul class="audit__list">
+          <li>Modularny JS (tabs, modal, scroll-progress, sticky CTA, section spy).</li>
+          <li>Rozszerzony design-system oraz enterprise utilities.</li>
+          <li>Lepsza semantyka, dostępność i stabilna struktura sekcji.</li>
+          <li>Przygotowanie pod skalowanie i dalsze iteracje UI.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

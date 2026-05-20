@@ -1,0 +1,8 @@
+.site-header{position:sticky;top:0;z-index:var(--z-header);background:color-mix(in srgb,var(--bg) 92%, transparent);backdrop-filter:blur(6px);border-bottom:1px solid transparent;transition:border-color .2s,background-color .2s}
+.site-header.is-scrolled{border-color:var(--border)}
+.nav{display:flex;justify-content:space-between;align-items:center;padding:var(--space-sm) 0}
+.nav__list{display:none;list-style:none;margin:0;padding:0;gap:var(--space-md)}
+.nav__toggle{background:none;border:1px solid var(--border);padding:.5rem .65rem;border-radius:var(--radius-sm)}
+.nav__list.is-open{display:flex;position:absolute;left:0;right:0;top:100%;padding:var(--space-md);background:var(--surface);flex-direction:column}
+.nav__link[aria-current="page"]{color:var(--brand);font-weight:var(--fw-semibold)}
+@media(min-width:900px){.nav__toggle{display:none}.nav__list{display:flex;position:static;flex-direction:row;background:none}}

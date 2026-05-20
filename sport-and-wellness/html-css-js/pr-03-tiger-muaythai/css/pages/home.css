@@ -1,0 +1,38 @@
+.hero {
+  padding: var(--space-3xl) 0;
+  background: linear-gradient(135deg, var(--surface-strong), #272d39);
+  color: #fff;
+}
+
+.hero__grid {
+  display: grid;
+  gap: var(--space-xl);
+  align-items: center;
+}
+
+.hero__lead {
+  color: rgb(255 255 255 / 85%);
+  max-width: 50ch;
+}
+
+@media (min-width: 900px) {
+  .hero__grid {
+    grid-template-columns: 1.1fr 0.9fr;
+  }
+}
+
+.home-benefits__intro {
+  max-width: 65ch;
+  color: var(--muted);
+}
+
+.home-cta {
+  background: var(--brand-weak);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: var(--space-xl);
+}
+
+.home-cta__actions {
+  margin-top: var(--space-md);
+}

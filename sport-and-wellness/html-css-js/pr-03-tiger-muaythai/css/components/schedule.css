@@ -1,0 +1,3 @@
+.schedule{width:100%;border-collapse:collapse;background:var(--surface)}
+.schedule th,.schedule td{border:1px solid var(--border);padding:.65rem;text-align:left}
+@media(max-width:768px){.schedule-wrap{overflow-x:auto}}
