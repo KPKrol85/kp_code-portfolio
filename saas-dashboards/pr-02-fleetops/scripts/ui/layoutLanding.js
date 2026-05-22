@@ -73,7 +73,7 @@ function renderLanding() {
             </span>`;
 
   app.innerHTML = `
-    <div class="landing">
+    <div class="landing landing-home">
       <header class="container navbar" role="banner">
         <a class="logo flex" href="#/" aria-label="FleetOps — Strona główna" data-scroll-top="home">
 
@@ -153,12 +153,12 @@ ${menuToggleIcon}
           </div>
         </section>
 
-        <section class="container section">
-          <div class="flex-between" style="margin-bottom: var(--space-3);">
+        <section class="container section landing-home__section">
+          <div class="landing-section-header landing-section-header--split flex-between">
             <div>
               <p class="tag">Funkcje</p>
               <h2>Usprawnij dyspozycje, kondycje floty i SLA.</h2>
-              <p>Pracuj szybciej dzięki jasnym statusom, filtrom i alertom prosto z panelu.</p>
+              <p class="landing-section-copy">Pracuj szybciej dzięki jasnym statusom, filtrom i alertom prosto z panelu.</p>
             </div>
             <a class="button ghost" href="#/login">Otworz panel</a>
           </div>
@@ -182,10 +182,12 @@ ${menuToggleIcon}
           </div>
         </section>
 
-        <section class="container section">
-          <p class="tag">Jak to dziala</p>
-          <h2>3 kroki do kontroli nad transportem</h2>
-          <div class="grid how-grid" style="margin-top: var(--space-3);">
+        <section class="container section landing-home__section">
+          <div class="landing-section-header">
+            <p class="tag">Jak to dziala</p>
+            <h2>3 kroki do kontroli nad transportem</h2>
+          </div>
+          <div class="grid how-grid">
             <div class="step">
               <h3>1. Podłącz dane</h3>
               <p>Dodaj zlecenia i flote lub skorzystaj z danych demo.</p>
@@ -201,17 +203,19 @@ ${menuToggleIcon}
           </div>
         </section>
 
-        <section class="container section">
-          <p class="tag">Cennik</p>
-          <h2>Lekki cennik na start</h2>
-          <div class="pricing" style="margin-top: var(--space-3);">
+        <section class="container section landing-home__section">
+          <div class="landing-section-header">
+            <p class="tag">Cennik</p>
+            <h2>Lekki cennik na start</h2>
+          </div>
+          <div class="pricing">
             <div class="price-card">
               <div class="badge">Start</div>
               <div class="price">199 PLN</div>
               <p>miesiecznie, do 15 pojazdow</p>
               <a class="button secondary" href="#/login">Zacznij za darmo</a>
             </div>
-            <div class="price-card">
+            <div class="price-card featured">
               <div class="badge">Rozwoj</div>
               <div class="price">499 PLN</div>
               <p>miesiecznie, do 60 pojazdow</p>
@@ -226,10 +230,12 @@ ${menuToggleIcon}
           </div>
         </section>
 
-        <section class="container section">
-          <p class="tag">Opinie</p>
-          <h2>Operatorzy o FleetOps</h2>
-          <div class="testimonials" style="margin-top: var(--space-3);">
+        <section class="container section landing-home__section">
+          <div class="landing-section-header">
+            <p class="tag">Opinie</p>
+            <h2>Operatorzy o FleetOps</h2>
+          </div>
+          <div class="testimonials">
             <div class="testimonial">
               <p>"Planowanie tras skróciło się o 40%. Alerty SLA są bardzo klarowne."</p>
               <p class="muted small">COO, CargoNord</p>
@@ -245,9 +251,11 @@ ${menuToggleIcon}
           </div>
         </section>
 
-        <section class="container section faq">
-          <p class="tag">Pytania</p>
-          <h2>Najczęstsze pytania</h2>
+        <section class="container section landing-home__section faq">
+          <div class="landing-section-header">
+            <p class="tag">Pytania</p>
+            <h2>Najczęstsze pytania</h2>
+          </div>
           <div class="accordion" id="faq">
             <div class="accordion-item">
               <button class="accordion-header">Czy mogę używać trybu dark?<span aria-hidden="true">▾</span></button>

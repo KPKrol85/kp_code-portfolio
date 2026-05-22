@@ -29,6 +29,45 @@
     <meta name="twitter:description" content="Centrum operacyjne floty i transportu" />
     <meta name="twitter:image" content="https://saas-pr02-fleetops.netlify.app/assets/og-img/og-1200x630.jpg" />
 
+    <!-- Structured data -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@graph": [
+          {
+            "@type": "Organization",
+            "@id": "https://saas-pr02-fleetops.netlify.app/#organization",
+            "name": "KP_Code Digital Studio",
+            "url": "https://saas-pr02-fleetops.netlify.app/",
+            "logo": "https://saas-pr02-fleetops.netlify.app/assets/logos/logo-512.png"
+          },
+          {
+            "@type": "WebSite",
+            "@id": "https://saas-pr02-fleetops.netlify.app/#website",
+            "name": "FleetOps",
+            "url": "https://saas-pr02-fleetops.netlify.app/",
+            "description": "FleetOps – centrum operacyjne floty i transportu. Nowoczesny dashboard SaaS do zarządzania zleceniami, pojazdami, kierowcami i raportami.",
+            "publisher": {
+              "@id": "https://saas-pr02-fleetops.netlify.app/#organization"
+            }
+          },
+          {
+            "@type": "SoftwareApplication",
+            "@id": "https://saas-pr02-fleetops.netlify.app/#webapp",
+            "name": "FleetOps",
+            "url": "https://saas-pr02-fleetops.netlify.app/",
+            "applicationCategory": "BusinessApplication",
+            "operatingSystem": "Web",
+            "description": "FleetOps – centrum operacyjne floty i transportu. Nowoczesny dashboard SaaS do zarządzania zleceniami, pojazdami, kierowcami i raportami.",
+            "image": "https://saas-pr02-fleetops.netlify.app/assets/og-img/og-1200x630.jpg",
+            "creator": {
+              "@id": "https://saas-pr02-fleetops.netlify.app/#organization"
+            }
+          }
+        ]
+      }
+    </script>
+
     <!-- Icons / PWA -->
     <link rel="icon" href="./assets/favicon/favicon.ico" sizes="any" />
     <link rel="icon" type="image/svg+xml" href="./assets/favicon/favicon.svg" />
@@ -37,7 +76,7 @@
     <link rel="manifest" href="./assets/favicon/site.webmanifest" />
 
     <!-- Fonts -->
-    <link rel="preload" as="font" type="font/woff2" href="/assets/fonts/inter-latin.woff2" crossorigin />
+    <link rel="preload" as="font" type="font/woff2" href="./assets/fonts/inter-latin.woff2" crossorigin />
 
     <!-- Styles -->
     <link rel="stylesheet" href="/styles/main.css" />

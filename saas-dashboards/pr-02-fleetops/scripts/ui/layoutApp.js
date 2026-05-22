@@ -3,13 +3,19 @@ function renderAppShell(viewTitle, contentNode) {
   const { auth, preferences } = FleetStore.state;
   const currentUser = FleetStore.state.currentUser || window.FleetPermissions?.defaultUser;
   const demoUsers = window.FleetPermissions?.DemoUsers || [];
+  const escapeHtml = window.FleetUI.escapeHtml;
 
   const theme = preferences.theme || "light";
   document.documentElement.setAttribute("data-theme", theme);
 
-  const initials = auth.user ? format.avatarInitials(auth.user.name || auth.user.email) : "FO";
+  const initials = escapeHtml(auth.user ? format.avatarInitials(auth.user.name || auth.user.email) : "FO");
+  const safeUserEmail = escapeHtml(auth.user ? auth.user.email : "użytkownik demo");
+  const safeUserName = escapeHtml(auth.user ? auth.user.name : "Użytkownik demo");
+  const safeRole = escapeHtml(currentUser ? currentUser.role : "admin");
+  const safeRoleLabel = escapeHtml(currentUser ? currentUser.displayName || currentUser.role : "Admin");
+  const safeViewTitle = escapeHtml(viewTitle);
   const roleOptions = demoUsers
-    .map((user) => `<option value="${user.id}">${user.displayName || user.role}</option>`)
+    .map((user) => `<option value="${escapeHtml(user.id)}">${escapeHtml(user.displayName || user.role)}</option>`)
     .join("");
 
   const shell = dom.h("div", "app-shell");
@@ -64,8 +70,8 @@ function renderAppShell(viewTitle, contentNode) {
       <a href="#/app/reports" data-route="/app/reports">Raporty</a>
       <a href="#/app/settings" data-route="/app/settings">Ustawienia</a>
     </nav>
-    <div class="muted small">Użytkownik: ${auth.user ? auth.user.email : "użytkownik demo"}</div>
-    <div class="muted small">Rola: ${currentUser ? currentUser.role : "admin"}</div>
+    <div class="muted small">Użytkownik: ${safeUserEmail}</div>
+    <div class="muted small">Rola: ${safeRole}</div>
   `;
   shell.appendChild(sidebar);
 
@@ -73,7 +79,7 @@ function renderAppShell(viewTitle, contentNode) {
   const topbar = dom.h("div", "topbar");
   topbar.innerHTML = `
     <div class="topbar-left">
-      <h2>${viewTitle}</h2>
+      <h1>${safeViewTitle}</h1>
       <div class="search"><input aria-label="Szukaj" type="search" placeholder="Szukaj..." /></div>
     </div>
     <div class="topbar-actions">
@@ -96,8 +102,8 @@ function renderAppShell(viewTitle, contentNode) {
       <div class="dropdown">
         <button class="button ghost avatar" id="userMenuBtn" type="button" aria-haspopup="menu" aria-expanded="false" aria-controls="userMenu">${initials}</button>
         <div class="dropdown-menu" id="userMenu" role="menu">
-          <div class="dropdown-item muted">${auth.user ? auth.user.name : "Użytkownik demo"}</div>
-          <div class="dropdown-item muted">Rola: ${currentUser ? currentUser.displayName || currentUser.role : "Admin"}</div>
+          <div class="dropdown-item muted">${safeUserName}</div>
+          <div class="dropdown-item muted">Rola: ${safeRoleLabel}</div>
           <div class="dropdown-item"><a href="#/about">O projekcie</a></div>
           <div class="dropdown-item"><a href="#/privacy">Polityka prywatności</a></div>
           <button class="dropdown-item" id="logoutBtn" type="button">Wyloguj się</button>

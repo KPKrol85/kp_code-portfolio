@@ -7,9 +7,10 @@ function driversView() {
   const applyDisabledState = permissions.applyDisabledState || ((el) => el && el.setAttribute("aria-disabled", "false"));
   const guard = permissions.guard || (() => true);
   const getPermissionContext = (record) => ({ user: FleetStore.state.currentUser, record });
+  const escapeHtml = window.FleetUI.escapeHtml;
 
   const header = dom.h("div", "module-header");
-  header.innerHTML = `<div><h3>Kierowcy</h3><p class="muted small">Status i ostatnie kursy</p></div><div class="toolbar"><select class="input" id="driversSortBy" aria-label="Sortuj"><option value="name">Imie i nazwisko</option><option value="status">Status</option><option value="phone">Telefon</option><option value="lastTrip">Ostatni kurs</option></select><select class="input" id="driversSortDir" aria-label="Kierunek"><option value="asc">Rosnaco</option><option value="desc">Malejaco</option></select><button class="button primary" id="addDriver" type="button">Dodaj kierowce</button></div>`;
+  header.innerHTML = `<div><h2>Kierowcy</h2><p class="muted small">Status i ostatnie kursy</p></div><div class="toolbar"><select class="input" id="driversSortBy" aria-label="Sortuj"><option value="name">Imie i nazwisko</option><option value="status">Status</option><option value="phone">Telefon</option><option value="lastTrip">Ostatni kurs</option></select><select class="input" id="driversSortDir" aria-label="Kierunek"><option value="asc">Rosnaco</option><option value="desc">Malejaco</option></select><button class="button primary" id="addDriver" type="button">Dodaj kierowce</button></div>`;
   root.appendChild(header);
 
   const filterBar = dom.h("div", "table-filter");
@@ -278,15 +279,15 @@ function driversView() {
       renderRows();
     });
 
-    Modal.open({ title: isEdit && driver ? `Edytuj ${driver.name}` : "Dodaj kierowce", body: form });
+    Modal.open({ title: isEdit && driver ? `Edytuj ${escapeHtml(driver.name)}` : "Dodaj kierowce", body: form });
   };
 
   const openDeleteConfirm = (driver) => {
     if (!guard(Actions.DRIVERS_DELETE, getPermissionContext(driver))) return;
     const body = dom.h("div");
     body.innerHTML = `
-      <p>Usunac kierowce <strong>${driver.name}</strong>?</p>
-      <p class="muted small">${driver.phone || ""}</p>
+      <p>Usunac kierowce <strong>${escapeHtml(driver.name)}</strong>?</p>
+      <p class="muted small">${escapeHtml(driver.phone)}</p>
       <div style="display:flex;justify-content:flex-end;gap:10px;margin-top:16px;">
         <button class="button ghost" type="button" data-modal-cancel>Anuluj</button>
         <button class="button primary" type="button" data-modal-confirm>Usun</button>
@@ -314,10 +315,10 @@ function driversView() {
   const openDriver = (driver) => {
     const body = dom.h("div");
     body.innerHTML = `
-      <p><strong>${driver.name}</strong></p>
-      <p>Status: ${format.statusLabel(driver.status)}</p>
-      <p>Ostatni kurs: ${driver.lastTrip}</p>
-      <p>Telefon: ${driver.phone}</p>
+      <p><strong>${escapeHtml(driver.name)}</strong></p>
+      <p>Status: ${escapeHtml(format.statusLabel(driver.status))}</p>
+      <p>Ostatni kurs: ${escapeHtml(driver.lastTrip)}</p>
+      <p>Telefon: ${escapeHtml(driver.phone)}</p>
     `;
     Modal.open({ title: "Szczegóły kierowcy", body });
   };
@@ -407,11 +408,15 @@ function driversView() {
 
     visibleRows.forEach((driver) => {
       const tr = dom.h("tr");
+      const safeName = escapeHtml(driver.name);
+      const safeStatus = escapeHtml(format.statusLabel(driver.status));
+      const safeLastTrip = escapeHtml(driver.lastTrip);
+      const safePhone = escapeHtml(driver.phone);
       tr.innerHTML = `
-        <td>${driver.name}</td>
-        <td><span class="badge">${format.statusLabel(driver.status)}</span></td>
-        <td>${driver.lastTrip}</td>
-        <td>${driver.phone}</td>
+        <td>${safeName}</td>
+        <td><span class="badge">${safeStatus}</span></td>
+        <td>${safeLastTrip}</td>
+        <td>${safePhone}</td>
         <td>
           <div class="dropdown" data-driver-menu>
             <button class="button ghost dropdown-trigger" type="button" aria-haspopup="menu" aria-expanded="false">...</button>
@@ -509,4 +514,3 @@ function driversView() {
 }
 
 window.driversView = driversView;
-

@@ -16,7 +16,6 @@
   padding: var(--space-0) var(--space-2);
   border-radius: var(--radius);
   font-size: var(--fs-01);
-  font-variant-numeric: tabular-nums;
   border: 1px solid var(--border);
   background: var(--surface-2);
   color: var(--text);
@@ -415,11 +414,11 @@ textarea:invalid:focus-visible {
 
 .navbar {
   display: flex;
-  align-items: flex-start;
+  align-items: center;
   justify-content: space-between;
   min-height: 64px;
   gap: var(--space-3);
-  padding: 14px 0;
+  padding: var(--space-2);
   border-bottom: 1px solid var(--border);
 }
 
@@ -439,7 +438,7 @@ textarea:invalid:focus-visible {
 .nav-links {
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: var(--space-1);
   flex-wrap: wrap;
 }
 
@@ -449,7 +448,7 @@ textarea:invalid:focus-visible {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  padding: 8px 10px;
+  padding: var(--space-2) var(--space-3);
   border-radius: var(--radius-sm);
   color: var(--text-muted);
   border: 1px solid transparent;
@@ -503,19 +502,19 @@ textarea:invalid:focus-visible {
   font-size: var(--fs-02);
 }
 
-@media (min-width: 769px) {
+@media (max-width: 768px) {
   .navbar {
-    align-items: center;
-    padding: var(--space-2);
+    align-items: flex-start;
+    padding: 14px 0;
   }
 
   .nav-links {
-    gap: var(--space-1);
+    gap: 8px;
   }
 
   .nav-links a,
   .nav-links button {
-    padding: var(--space-2) var(--space-3);
+    padding: 8px 10px;
   }
 }
 
@@ -546,7 +545,6 @@ textarea:invalid:focus-visible {
 .price-card,
 .marketing-card,
 .stat-card {
-  font-variant-numeric: tabular-nums;
   transition:
     transform 140ms ease,
     box-shadow 160ms ease,

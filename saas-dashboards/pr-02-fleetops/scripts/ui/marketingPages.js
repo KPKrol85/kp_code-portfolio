@@ -452,7 +452,7 @@ function renderProductPage() {
       <section class="section-tight">
         <p class="tag">Moduly</p>
         <h2>Najwazniejsze obszary pod kontrola</h2>
-        <div class="grid marketing-grid"">
+        <div class="grid marketing-grid">
           <div class="marketing-card">
             <h3>Zlecenia</h3>
             <p>Statusy, priorytety, ETA, alerty opoznien i szybkie wyszukiwanie tras.</p>
@@ -544,6 +544,7 @@ function renderFeaturesPage() {
     description: "Lista funkcji FleetOps: dyspozycja, monitoring, kierowcy, analityka i zgodnosc dla zespolow transportowych.",
     body: `
       <section class="section-tight">
+        <h2 class="sr-only">Funkcje operacyjne</h2>
         <div class="grid marketing-grid">
           <div class="feature-group">
             <h3>Dyspozycja</h3>
@@ -957,7 +958,7 @@ function renderPrivacyPage() {
       <section class="section-tight">
         <p class="tag">Informacja o wersji demo</p>
         <h2>Serwis demonstracyjny bez backendu</h2>
-        <div class="grid marketing-grid"">
+        <div class="grid marketing-grid">
           <div class="marketing-card">
             <h3>Brak kont produkcyjnych</h3>
             <p>FleetOps to projekt portfolio / demo. Nie tworzymy kont w chmurze ani nie udostepniamy panelu klientom komercyjnym.</p>
@@ -1011,7 +1012,7 @@ function renderPrivacyPage() {
       <section class="section-tight">
         <p class="tag">Zakres danych</p>
         <h2>Jakie dane moga wystapic w demo</h2>
-        <div class="grid marketing-grid"">
+        <div class="grid marketing-grid">
           <div class="marketing-card">
             <h3>Formularz kontaktowy</h3>
             <ul class="list-check">

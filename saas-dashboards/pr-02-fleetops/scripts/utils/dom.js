@@ -19,6 +19,18 @@ const mount = (selector, content) => {
 
 window.dom = { h, clear, mount };
 
+const escapeHtml = (value) =>
+  String(value ?? "").replace(/[&<>"']/g, (char) => ({
+    "&": "&amp;",
+    "<": "&lt;",
+    ">": "&gt;",
+    '"': "&quot;",
+    "'": "&#39;",
+  }[char]));
+
+window.FleetUI = window.FleetUI || {};
+window.FleetUI.escapeHtml = escapeHtml;
+
 // ===== Scroll-to-top binding =====
 function bindLogoScroll(kind, getContainer) {
   const links = document.querySelectorAll(`[data-scroll-top="${kind}"]`);
@@ -91,15 +103,19 @@ window.FleetUI.syncThemeImages = syncThemeImages;
 function emptyState({ title = "Brak danych", description = "", actionLabel = "", actionHref = "" } = {}) {
   const wrap = document.createElement("div");
   wrap.className = "empty-state";
+  const safeTitle = escapeHtml(title);
+  const safeDescription = escapeHtml(description);
+  const safeActionLabel = escapeHtml(actionLabel);
+  const safeActionHref = escapeHtml(actionHref);
 
   wrap.innerHTML = `
     <div class="empty-state__card">
       <p class="tag">Brak</p>
-      <h3 class="empty-state__title">${title}</h3>
-      ${description ? `<p class="muted">${description}</p>` : ""}
+      <h3 class="empty-state__title">${safeTitle}</h3>
+      ${description ? `<p class="muted">${safeDescription}</p>` : ""}
       ${
         actionLabel && actionHref
-          ? `<a class="button secondary" href="${actionHref}">${actionLabel}</a>`
+          ? `<a class="button secondary" href="${safeActionHref}">${safeActionLabel}</a>`
           : ""
       }
     </div>

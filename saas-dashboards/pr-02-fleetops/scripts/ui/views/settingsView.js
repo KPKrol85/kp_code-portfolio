@@ -1,14 +1,15 @@
 function settingsView() {
   const root = dom.h('div');
+  const escapeHtml = window.FleetUI.escapeHtml;
   const header = dom.h('div', 'module-header');
-  header.innerHTML = `<div><h3>Ustawienia</h3><p class="muted small">Personalizacja i demo</p></div>`;
+  header.innerHTML = `<div><h2>Ustawienia</h2><p class="muted small">Personalizacja i demo</p></div>`;
   root.appendChild(header);
 
   const grid = dom.h('div', 'settings-grid');
 
   const themeCard = dom.h('div', 'setting-card');
   themeCard.innerHTML = `
-    <h4>Motyw</h4>
+    <h3>Motyw</h3>
     <p class="muted small">Jasny / Ciemny</p>
     <div class="form-inline">
       <button class="button ${FleetStore.state.preferences.theme === 'light' ? 'secondary' : 'ghost'}" id="lightBtn">Jasny</button>
@@ -19,7 +20,7 @@ function settingsView() {
 
   const compactCard = dom.h('div', 'setting-card');
   compactCard.innerHTML = `
-    <h4>Tryb kompaktowy</h4>
+    <h3>Tryb kompaktowy</h3>
     <p class="muted small">Mniej odstępów</p>
     <label class="form-control" style="flex-direction: row; align-items: center; gap: 10px;">
       <input type="checkbox" id="compactToggle" ${FleetStore.state.preferences.compact ? 'checked' : ''} /> Włącz
@@ -29,7 +30,7 @@ function settingsView() {
 
   const resetCard = dom.h('div', 'setting-card');
   resetCard.innerHTML = `
-    <h4>Reset demo</h4>
+    <h3>Reset demo</h3>
     <p class="muted small">Czyści localStorage</p>
     <button class="button ghost" id="resetDemo">Resetuj</button>
   `;
@@ -39,11 +40,11 @@ function settingsView() {
   const user = FleetStore.state.auth.user || { name: 'Użytkownik demo', email: 'demo@fleetops.app' };
   const currentUser = FleetStore.state.currentUser || window.FleetPermissions?.defaultUser;
   accountCard.innerHTML = `
-    <h4>Konto</h4>
-    <p>${user.name}</p>
-    <p class="muted small">${user.email}</p>
-    <p class="muted small">Rola: ${currentUser ? currentUser.displayName || currentUser.role : 'Admin'}</p>
-    <p class="muted small">ID: ${currentUser ? currentUser.id : 'u_admin_1'}</p>
+    <h3>Konto</h3>
+    <p>${escapeHtml(user.name)}</p>
+    <p class="muted small">${escapeHtml(user.email)}</p>
+    <p class="muted small">Rola: ${escapeHtml(currentUser ? currentUser.displayName || currentUser.role : 'Admin')}</p>
+    <p class="muted small">ID: ${escapeHtml(currentUser ? currentUser.id : 'u_admin_1')}</p>
   `;
   grid.appendChild(accountCard);
 

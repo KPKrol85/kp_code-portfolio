@@ -7,9 +7,10 @@ function fleetView() {
   const applyDisabledState = permissions.applyDisabledState || ((el) => el && el.setAttribute("aria-disabled", "false"));
   const guard = permissions.guard || (() => true);
   const getPermissionContext = (record) => ({ user: FleetStore.state.currentUser, record });
+  const escapeHtml = window.FleetUI.escapeHtml;
 
   const header = dom.h("div", "module-header");
-  header.innerHTML = `<div><h3>Flota</h3><p class="muted small">Zarządzaj pojazdami</p></div><div class="toolbar"><select class="input" id="fleetSortBy" aria-label="Sortuj"><option value="id">Rejestracja</option><option value="status">Status</option><option value="lastCheck">Ostatni przeglad</option><option value="type">Typ</option></select><select class="input" id="fleetSortDir" aria-label="Kierunek"><option value="asc">Rosnaco</option><option value="desc">Malejaco</option></select><button class="button primary" id="addVehicle" type="button">Dodaj pojazd</button></div>`;
+  header.innerHTML = `<div><h2>Flota</h2><p class="muted small">Zarządzaj pojazdami</p></div><div class="toolbar"><select class="input" id="fleetSortBy" aria-label="Sortuj"><option value="id">Rejestracja</option><option value="status">Status</option><option value="lastCheck">Ostatni przeglad</option><option value="type">Typ</option></select><select class="input" id="fleetSortDir" aria-label="Kierunek"><option value="asc">Rosnaco</option><option value="desc">Malejaco</option></select><button class="button primary" id="addVehicle" type="button">Dodaj pojazd</button></div>`;
   root.appendChild(header);
 
   const filterBar = dom.h("div", "table-filter");
@@ -284,15 +285,15 @@ function fleetView() {
       renderCards();
     });
 
-    Modal.open({ title: isEdit && vehicle ? `Edytuj ${vehicle.id}` : "Dodaj pojazd", body: form });
+    Modal.open({ title: isEdit && vehicle ? `Edytuj ${escapeHtml(vehicle.id)}` : "Dodaj pojazd", body: form });
   };
 
   const openDeleteConfirm = (vehicle) => {
     if (!guard(Actions.FLEET_DELETE, getPermissionContext(vehicle))) return;
     const body = dom.h("div");
     body.innerHTML = `
-      <p>Usunac pojazd <strong>${vehicle.id}</strong>?</p>
-      <p class="muted small">${vehicle.type}</p>
+      <p>Usunac pojazd <strong>${escapeHtml(vehicle.id)}</strong>?</p>
+      <p class="muted small">${escapeHtml(vehicle.type)}</p>
       <div style="display:flex;justify-content:flex-end;gap:10px;margin-top:16px;">
         <button class="button ghost" type="button" data-modal-cancel>Anuluj</button>
         <button class="button primary" type="button" data-modal-confirm>Usun</button>
@@ -320,10 +321,10 @@ function fleetView() {
   const openVehicle = (vehicle) => {
     const body = dom.h("div");
     body.innerHTML = `
-      <p><strong>Rejestracja:</strong> ${vehicle.id}</p>
-      <p><strong>Typ:</strong> ${vehicle.type}</p>
-      <p><strong>Status:</strong> ${format.statusLabel(vehicle.status)}</p>
-      <p><strong>Kierowca:</strong> ${vehicle.driver}</p>
+      <p><strong>Rejestracja:</strong> ${escapeHtml(vehicle.id)}</p>
+      <p><strong>Typ:</strong> ${escapeHtml(vehicle.type)}</p>
+      <p><strong>Status:</strong> ${escapeHtml(format.statusLabel(vehicle.status))}</p>
+      <p><strong>Kierowca:</strong> ${escapeHtml(vehicle.driver)}</p>
       <p><strong>Ostatni przegląd:</strong> ${format.dateShort(vehicle.lastCheck)}</p>
     `;
     Modal.open({ title: "Szczegóły pojazdu", body });
@@ -401,11 +402,15 @@ function fleetView() {
     loadMoreBtn.disabled = !canLoadMore;
     visibleRows.forEach((vehicle) => {
       const card = dom.h("div", "panel");
+      const safeId = escapeHtml(vehicle.id);
+      const safeType = escapeHtml(vehicle.type);
+      const safeStatus = escapeHtml(format.statusLabel(vehicle.status));
+      const safeDriver = escapeHtml(vehicle.driver);
       card.innerHTML = `
         <div class="flex-between">
-          <h4>${vehicle.id}</h4>
+          <h3 class="vehicle-card__title">${safeId}</h3>
           <div style="display:flex;align-items:center;gap:8px;">
-            <span class="badge">${format.statusLabel(vehicle.status)}</span>
+            <span class="badge">${safeStatus}</span>
             <div class="dropdown" data-vehicle-menu>
               <button class="button ghost dropdown-trigger" type="button" aria-haspopup="menu" aria-expanded="false">...</button>
               <div class="dropdown-menu" role="menu" aria-label="Akcje pojazdu">
@@ -415,8 +420,8 @@ function fleetView() {
             </div>
           </div>
         </div>
-        <p class="muted">${vehicle.type}</p>
-        <p class="small">Kierowca: ${vehicle.driver}</p>
+        <p class="muted">${safeType}</p>
+        <p class="small">Kierowca: ${safeDriver}</p>
         <p class="small">Ostatni przegląd: ${format.dateShort(vehicle.lastCheck)}</p>
         <button class="button ghost small">Szczegóły</button>
       `;

@@ -9,8 +9,13 @@ const Toast = (() => {
   };
   const show = (message, tone = 'default') => {
     const c = ensure();
+    const toneClass = /^[a-z0-9_-]+$/i.test(String(tone)) ? String(tone) : 'default';
     const toast = dom.h('div', 'toast');
-    toast.innerHTML = `<span class="badge ${tone}">${tone === 'success' ? '✓' : '•'}</span>${message}`;
+    const badge = dom.h('span', 'badge');
+    badge.classList.add(toneClass);
+    badge.textContent = toneClass === 'success' ? '✓' : '•';
+    toast.appendChild(badge);
+    toast.appendChild(document.createTextNode(String(message ?? "")));
     c.appendChild(toast);
     setTimeout(() => toast.remove(), 2600);
   };

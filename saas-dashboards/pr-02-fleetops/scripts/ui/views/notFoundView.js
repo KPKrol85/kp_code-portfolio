@@ -6,7 +6,7 @@ function notFoundView() {
 
   root.innerHTML = `
     <div class="module-header" style="justify-content:center;">
-      <h3>Nie znaleziono</h3>
+      <h2>Nie znaleziono</h2>
     </div>
     <p class="muted" style="margin: 8px 0 20px;">
       Ta sekcja nie istnieje w aplikacji.

@@ -7,10 +7,11 @@ function ordersView() {
   const applyDisabledState = permissions.applyDisabledState || ((el) => el && el.setAttribute("aria-disabled", "false"));
   const guard = permissions.guard || (() => true);
   const getPermissionContext = (record) => ({ user: FleetStore.state.currentUser, record });
+  const escapeHtml = window.FleetUI.escapeHtml;
 
 
   const header = dom.h("div", "module-header");
-  header.innerHTML = `<div><h3>Zlecenia</h3><p class="muted small">Monitoruj status dostaw</p></div><div class="toolbar"><select class="input" id="ordersSortBy" aria-label="Sortuj"><option value="updated">Aktualizacja</option><option value="client">Klient</option><option value="status">Status</option><option value="priority">Priorytet</option></select><select class="input" id="ordersSortDir" aria-label="Kierunek"><option value="asc">Rosnaco</option><option value="desc">Malejaco</option></select><button class="button primary" id="addOrder" type="button">Add order</button><button class="button secondary" id="exportOrders" type="button">Eksportuj CSV</button></div>`;
+  header.innerHTML = `<div><h2>Zlecenia</h2><p class="muted small">Monitoruj status dostaw</p></div><div class="toolbar"><select class="input" id="ordersSortBy" aria-label="Sortuj"><option value="updated">Aktualizacja</option><option value="client">Klient</option><option value="status">Status</option><option value="priority">Priorytet</option></select><select class="input" id="ordersSortDir" aria-label="Kierunek"><option value="asc">Rosnaco</option><option value="desc">Malejaco</option></select><button class="button primary" id="addOrder" type="button">Add order</button><button class="button secondary" id="exportOrders" type="button">Eksportuj CSV</button></div>`;
   root.appendChild(header);
 
   const filterBar = dom.h("div", "table-filter");
@@ -313,15 +314,15 @@ function ordersView() {
   renderRows();
     });
 
-    Modal.open({ title: isEdit && order ? `Edytuj ${order.id}` : "Dodaj zlecenie", body: form });
+    Modal.open({ title: isEdit && order ? `Edytuj ${escapeHtml(order.id)}` : "Dodaj zlecenie", body: form });
   };
 
   const openDeleteConfirm = (order) => {
     if (!guard(Actions.ORDERS_DELETE, getPermissionContext(order))) return;
     const body = dom.h("div");
     body.innerHTML = `
-      <p>Czy na pewno usunac zlecenie <strong>${order.id}</strong>?</p>
-      <p class="muted small">${order.client} - ${order.route}</p>
+      <p>Czy na pewno usunac zlecenie <strong>${escapeHtml(order.id)}</strong>?</p>
+      <p class="muted small">${escapeHtml(order.client)} - ${escapeHtml(order.route)}</p>
       <div style="display:flex;justify-content:flex-end;gap:10px;margin-top:16px;">
         <button class="button ghost" type="button" data-modal-cancel>Anuluj</button>
         <button class="button primary" type="button" data-modal-confirm>Usun</button>
@@ -411,15 +412,22 @@ function ordersView() {
       return;
     }
 
-    const renderedRows = visibleRows.map(
-      (order) => `
-      <tr class="order-row" data-id="${order.id}">
-        <td>${order.id}</td>
-        <td>${order.client}</td>
-        <td>${order.route}</td>
-        <td><span class="${format.badgeClass(order.status)}">${format.statusLabel(order.status)}</span></td>
-        <td>${order.eta}</td>
-        <td><span class="badge">${priorityLabel(order.priority)}</span></td>
+    const renderedRows = visibleRows.map((order) => {
+      const safeId = escapeHtml(order.id);
+      const safeClient = escapeHtml(order.client);
+      const safeRoute = escapeHtml(order.route);
+      const safeStatus = escapeHtml(format.statusLabel(order.status));
+      const safeEta = escapeHtml(order.eta);
+      const safePriority = escapeHtml(priorityLabel(order.priority));
+
+      return `
+      <tr class="order-row" data-id="${safeId}">
+        <td>${safeId}</td>
+        <td>${safeClient}</td>
+        <td>${safeRoute}</td>
+        <td><span class="${format.badgeClass(order.status)}">${safeStatus}</span></td>
+        <td>${safeEta}</td>
+        <td><span class="badge">${safePriority}</span></td>
         <td>
           <div class="dropdown" data-order-menu>
             <button class="button ghost dropdown-trigger" type="button" aria-haspopup="menu" aria-expanded="false">...</button>
@@ -429,8 +437,8 @@ function ordersView() {
             </div>
           </div>
         </td>
-      </tr>`
-    );
+      </tr>`;
+    });
 
     tableWrap.innerHTML = Table.render(["ID", "Klient", "Trasa", "Status", "ETA", "Priorytet", "Akcje"], renderedRows);
 
@@ -486,14 +494,14 @@ function ordersView() {
     if (!order) return;
     const body = dom.h("div");
     body.innerHTML = `
-      <p><strong>Klient:</strong> ${order.client}</p>
-      <p><strong>Trasa:</strong> ${order.route}</p>
-      <p><strong>Status:</strong> ${format.statusLabel(order.status)}</p>
-      <p><strong>ETA:</strong> ${order.eta}</p>
-      <p><strong>Priorytet:</strong> ${priorityLabel(order.priority)}</p>
+      <p><strong>Klient:</strong> ${escapeHtml(order.client)}</p>
+      <p><strong>Trasa:</strong> ${escapeHtml(order.route)}</p>
+      <p><strong>Status:</strong> ${escapeHtml(format.statusLabel(order.status))}</p>
+      <p><strong>ETA:</strong> ${escapeHtml(order.eta)}</p>
+      <p><strong>Priorytet:</strong> ${escapeHtml(priorityLabel(order.priority))}</p>
       <p class="muted small">Ostatnia aktualizacja: ${format.dateShort(order.updated)}</p>
     `;
-    Modal.open({ title: `Zlecenie ${order.id}`, body });
+    Modal.open({ title: `Zlecenie ${escapeHtml(order.id)}`, body });
   };
 
   const pushFilters = () => {

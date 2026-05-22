@@ -35,16 +35,16 @@
   ],
   "screenshots": [
     {
-      "src": "/assets/screenshots/desktop.jpg",
-      "sizes": "1440x900",
-      "type": "image/jpeg",
+      "src": "/assets/screenshots/screenshot-desktop.png",
+      "sizes": "1280x720",
+      "type": "image/png",
       "form_factor": "wide",
       "label": "Widok aplikacji – desktop"
     },
     {
-      "src": "/assets/screenshots/mobile.jpg",
-      "sizes": "390x844",
-      "type": "image/jpeg",
+      "src": "/assets/screenshots/screenshot-mobile.png",
+      "sizes": "720x1280",
+      "type": "image/png",
       "form_factor": "narrow",
       "label": "Widok aplikacji – mobile"
     }
@@ -54,10 +54,10 @@
       "name": "Dashboard",
       "short_name": "Dashboard",
       "description": "Główny panel aplikacji",
-      "url": "/app",
+      "url": "/#/app",
       "icons": [
         {
-          "src": "/assets/shortcuts/dashboard.png",
+          "src": "https://saas-pr02-fleetops.netlify.app/assets/shortcuts/dashboard.png",
           "sizes": "96x96",
           "type": "image/png"
         }
@@ -67,10 +67,10 @@
       "name": "Flota",
       "short_name": "Flota",
       "description": "Zarządzanie pojazdami",
-      "url": "/app/fleet",
+      "url": "/#/app/fleet",
       "icons": [
         {
-          "src": "/assets/shortcuts/flota.png",
+          "src": "https://saas-pr02-fleetops.netlify.app/assets/shortcuts/flota.png",
           "sizes": "96x96",
           "type": "image/png"
         }
@@ -80,10 +80,10 @@
       "name": "Zlecenia",
       "short_name": "Zlecenia",
       "description": "Lista zleceń transportowych",
-      "url": "/app/orders",
+      "url": "/#/app/orders",
       "icons": [
         {
-          "src": "/assets/shortcuts/zlecenia.png",
+          "src": "https://saas-pr02-fleetops.netlify.app/assets/shortcuts/zlecenia.png",
           "sizes": "96x96",
           "type": "image/png"
         }

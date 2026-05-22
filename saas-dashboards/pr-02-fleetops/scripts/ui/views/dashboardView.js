@@ -1,10 +1,11 @@
 function dashboardView() {
   const root = dom.h("div");
+  const escapeHtml = window.FleetUI.escapeHtml;
   // ===== KPI =====
   const rangeHeader = dom.h("div", "module-header");
   rangeHeader.innerHTML = `
     <div>
-      <h3>Przeglad KPI</h3>
+      <h2>Przeglad KPI</h2>
       <p class="muted small">Zakres czasu</p>
     </div>
     <div class="toolbar">
@@ -54,7 +55,7 @@ function dashboardView() {
       card.style.width = "100%";
       card.style.cursor = "pointer";
       card.setAttribute("aria-label", item.label);
-      card.innerHTML = `<p class="muted small">${item.label}</p><h3>${item.value}</h3>`;
+      card.innerHTML = `<p class="muted small">${escapeHtml(item.label)}</p><strong class="kpi-value">${escapeHtml(item.value)}</strong>`;
       card.addEventListener("click", () => handleKpiClick(item.action));
       kpis.appendChild(card);
     });
@@ -103,7 +104,7 @@ function dashboardView() {
   // ===== Activity =====
   const activity = dom.h("div", "panel");
   activity.id = "dashboard-activity";
-  activity.innerHTML = `<div class="module-header"><h3>Aktywność</h3><span class="muted small">Operacje na żywo</span></div>`;
+  activity.innerHTML = `<div class="module-header"><h2>Aktywność</h2><span class="muted small">Operacje na żywo</span></div>`;
 
   const formatActivityTime = (value) => {
     if (!value) return "";
@@ -124,7 +125,7 @@ function dashboardView() {
     : FleetSeed.activities;
   activities.forEach((a) => {
     const row = dom.h("div", "activity-row");
-    row.innerHTML = `<div><strong>${a.title}</strong><p class="muted small">${a.detail}</p></div><span class="muted small">${formatActivityTime(a.time)}</span>`;
+    row.innerHTML = `<div><strong>${escapeHtml(a.title)}</strong><p class="muted small">${escapeHtml(a.detail)}</p></div><span class="muted small">${escapeHtml(formatActivityTime(a.time))}</span>`;
     feed.appendChild(row);
   });
 
@@ -136,7 +137,7 @@ function dashboardView() {
 
   alerts.innerHTML = `
     <div class="module-header">
-      <h3>Alerty</h3>
+      <h2>Alerty</h2>
 
       <div class="dropdown" data-dropdown="alerts-rules">
         <button class="button ghost small dropdown-trigger" type="button" aria-expanded="false">
@@ -203,12 +204,13 @@ function dashboardView() {
     const tag = dom.h("span", "badge");
     tag.textContent = alert.type;
 
-    const content = dom.h(
-      "div",
-      "alert-content",
-      `<strong>${alert.message}</strong>
-       <p class="muted small">Priorytet: ${alert.severity}</p>`
-    );
+    const content = dom.h("div", "alert-content");
+    const message = dom.h("strong");
+    message.textContent = alert.message || "";
+    const severity = dom.h("p", "muted small");
+    severity.textContent = `Priorytet: ${alert.severity || ""}`;
+    content.appendChild(message);
+    content.appendChild(severity);
 
     const row = dom.h("div", "alert");
     // dataset -> data-alert-type / data-alert-severity
@@ -366,4 +368,3 @@ function initAlertsRulesDropdown(scopeEl) {
 
   applyRules();
 }
-

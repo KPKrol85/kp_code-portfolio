@@ -99,6 +99,14 @@ Domyślny adres lokalny:
 http://localhost:8181/
 ```
 
+### Smoke testy
+
+Smoke testy uruchamiają FleetOps w przeglądarce przez Playwright i sprawdzają kluczowe przepływy demo: landing, logowanie, routing aplikacji oraz CRUD z bezpiecznym renderowaniem danych.
+
+```bash
+npm run test:smoke
+```
+
 ### Build produkcyjny
 
 ```bash
@@ -323,6 +331,14 @@ Default local URL:
 
 ```text
 http://localhost:8181/
+```
+
+### Smoke Tests
+
+Smoke tests run FleetOps in a browser with Playwright and verify the key demo flows: landing, login, app routing, and CRUD with safe data rendering.
+
+```bash
+npm run test:smoke
 ```
 
 ### Production Build
