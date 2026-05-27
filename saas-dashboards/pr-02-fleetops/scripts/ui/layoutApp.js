@@ -12,7 +12,7 @@ function renderAppShell(viewTitle, contentNode) {
   const safeUserEmail = escapeHtml(auth.user ? auth.user.email : "użytkownik demo");
   const safeUserName = escapeHtml(auth.user ? auth.user.name : "Użytkownik demo");
   const safeRole = escapeHtml(currentUser ? currentUser.role : "admin");
-  const safeRoleLabel = escapeHtml(currentUser ? currentUser.displayName || currentUser.role : "Admin");
+  const safeRoleLabel = escapeHtml(currentUser ? currentUser.displayName || currentUser.role : "Administrator");
   const safeViewTitle = escapeHtml(viewTitle);
   const roleOptions = demoUsers
     .map((user) => `<option value="${escapeHtml(user.id)}">${escapeHtml(user.displayName || user.role)}</option>`)
@@ -84,8 +84,8 @@ function renderAppShell(viewTitle, contentNode) {
     </div>
     <div class="topbar-actions">
       <label class="role-switcher">
-        <span class="muted small">Role</span>
-        <select class="input" id="roleSwitcher" aria-label="Role switcher">
+        <span class="muted small">Rola</span>
+        <select class="input" id="roleSwitcher" aria-label="Wybierz rolę">
           ${roleOptions}
         </select>
       </label>
@@ -100,8 +100,8 @@ function renderAppShell(viewTitle, contentNode) {
       </button>
       <button class="button ghost" aria-label="Powiadomienia" type="button">Powiadomienia</button>
       <div class="dropdown">
-        <button class="button ghost avatar" id="userMenuBtn" type="button" aria-haspopup="menu" aria-expanded="false" aria-controls="userMenu">${initials}</button>
-        <div class="dropdown-menu" id="userMenu" role="menu">
+        <button class="button ghost avatar" id="userMenuBtn" type="button" aria-label="Menu użytkownika" aria-expanded="false" aria-controls="userMenu">${initials}</button>
+        <div class="dropdown-menu" id="userMenu">
           <div class="dropdown-item muted">${safeUserName}</div>
           <div class="dropdown-item muted">Rola: ${safeRoleLabel}</div>
           <div class="dropdown-item"><a href="#/about">O projekcie</a></div>
@@ -113,7 +113,7 @@ function renderAppShell(viewTitle, contentNode) {
   `;
   const offlineBanner = dom.h("div", "offline-banner");
   offlineBanner.setAttribute("role", "status");
-  offlineBanner.textContent = "Offline mode";
+  offlineBanner.textContent = "Tryb offline";
 
   const updateOfflineBanner = () => {
     const isOnline = typeof navigator !== "undefined" ? navigator.onLine : true;
@@ -139,7 +139,7 @@ function renderAppShell(viewTitle, contentNode) {
       const selected = demoUsers.find((user) => user.id === roleSwitcher.value) || currentUser;
       FleetStore.setCurrentUser(selected);
       FleetStore.addActivity({
-        title: "Role switched",
+        title: "Rola zmieniona",
         detail: `Rola zmieniona: ${selected.displayName || selected.role}`,
         time: new Date().toISOString(),
       });

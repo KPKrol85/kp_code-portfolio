@@ -10,7 +10,7 @@ function fleetView() {
   const escapeHtml = window.FleetUI.escapeHtml;
 
   const header = dom.h("div", "module-header");
-  header.innerHTML = `<div><h2>Flota</h2><p class="muted small">Zarządzaj pojazdami</p></div><div class="toolbar"><select class="input" id="fleetSortBy" aria-label="Sortuj"><option value="id">Rejestracja</option><option value="status">Status</option><option value="lastCheck">Ostatni przeglad</option><option value="type">Typ</option></select><select class="input" id="fleetSortDir" aria-label="Kierunek"><option value="asc">Rosnaco</option><option value="desc">Malejaco</option></select><button class="button primary" id="addVehicle" type="button">Dodaj pojazd</button></div>`;
+  header.innerHTML = `<div><h2>Flota</h2><p class="muted small">Zarządzaj pojazdami</p></div><div class="toolbar"><select class="input" id="fleetSortBy" aria-label="Sortuj"><option value="id">Rejestracja</option><option value="status">Status</option><option value="lastCheck">Ostatni przegląd</option><option value="type">Typ</option></select><select class="input" id="fleetSortDir" aria-label="Kierunek"><option value="asc">Rosnąco</option><option value="desc">Malejąco</option></select><button class="button primary" id="addVehicle" type="button">Dodaj pojazd</button></div>`;
   root.appendChild(header);
 
   const filterBar = dom.h("div", "table-filter");
@@ -35,7 +35,7 @@ function fleetView() {
   loadMoreWrap.style.marginTop = "12px";
   loadMoreWrap.style.display = "flex";
   loadMoreWrap.style.justifyContent = "center";
-  const loadMoreBtn = dom.h("button", "button secondary", "Load more");
+  const loadMoreBtn = dom.h("button", "button secondary", "Załaduj więcej");
   loadMoreBtn.type = "button";
   loadMoreWrap.appendChild(loadMoreBtn);
   root.appendChild(loadMoreWrap);
@@ -76,7 +76,7 @@ function fleetView() {
   let filterTimer = null;
   const FILTER_DELAY = 160;
   const statusOptions = [
-    { value: "available", label: "Dostepny" },
+    { value: "available", label: "Dostępny" },
     { value: "on-route", label: "W trasie" },
     { value: "maintenance", label: "Serwis" },
   ];
@@ -90,7 +90,7 @@ function fleetView() {
   };
   const datePattern = /^\d{4}-\d{2}-\d{2}$/;
   const buildActivityEntry = (action, vehicle) => {
-    const verb = { created: "dodany", updated: "zaktualizowany", deleted: "usuniety" }[action] || "zaktualizowany";
+    const verb = { created: "dodany", updated: "zaktualizowany", deleted: "usunięty" }[action] || "zaktualizowany";
     const detail = vehicle ? `${vehicle.type || "Pojazd"} (${vehicle.id || "nowy"})` : "";
     FleetStore.addActivity({
       title: vehicle && vehicle.id ? `Pojazd ${vehicle.id} ${verb}` : `Pojazd ${verb}`,
@@ -145,21 +145,8 @@ function fleetView() {
     }, 180);
   };
 
-  const clearFormErrors = (form) => {
-    form.querySelectorAll("[data-error-for]").forEach((el) => {
-      el.textContent = "";
-    });
-    form.querySelectorAll("[aria-invalid]").forEach((el) => {
-      el.setAttribute("aria-invalid", "false");
-    });
-  };
-
-  const setFieldError = (form, name, message) => {
-    const field = form.querySelector(`[name="${name}"]`);
-    const error = form.querySelector(`[data-error-for="${name}"]`);
-    if (field) field.setAttribute("aria-invalid", message ? "true" : "false");
-    if (error) error.textContent = message || "";
-  };
+  const clearFormErrors = window.FleetUI.clearFormErrors;
+  const setFieldError = window.FleetUI.setFieldError;
 
   const getVehicleFormValues = (form) => {
     const data = new FormData(form);
@@ -175,18 +162,18 @@ function fleetView() {
   const validateVehicleForm = (values, { isEdit = false, existingIds = [] } = {}) => {
     const errors = {};
     if (!values.id) errors.id = "Wymagane";
-    else if (values.id.length > 20) errors.id = "Maks. 20 znakow";
-    else if (!isEdit && existingIds.includes(values.id)) errors.id = "ID pojazdu juz istnieje";
+    else if (values.id.length > 20) errors.id = "Maks. 20 znaków";
+    else if (!isEdit && existingIds.includes(values.id)) errors.id = "ID pojazdu już istnieje";
 
     if (!values.type) errors.type = "Wymagane";
-    else if (values.type.length > 40) errors.type = "Maks. 40 znakow";
+    else if (values.type.length > 40) errors.type = "Maks. 40 znaków";
 
     if (!values.status) errors.status = "Wybierz status";
 
     if (!values.lastCheck) errors.lastCheck = "Wymagane";
     else if (!datePattern.test(values.lastCheck)) errors.lastCheck = "Format: YYYY-MM-DD";
 
-    if (values.driver.length > 40) errors.driver = "Maks. 40 znakow";
+    if (values.driver.length > 40) errors.driver = "Maks. 40 znaków";
     return errors;
   };
 
@@ -204,7 +191,7 @@ function fleetView() {
       </label>
       <label class="form-control">
         <span class="label">Typ</span>
-        <input class="input" name="type" maxlength="40" placeholder="np. Chlodnia" required />
+        <input class="input" name="type" maxlength="40" placeholder="np. Chłodnia" required />
         <span class="form-error" data-error-for="type"></span>
       </label>
       <label class="form-control">
@@ -215,7 +202,7 @@ function fleetView() {
         <span class="form-error" data-error-for="status"></span>
       </label>
       <label class="form-control">
-        <span class="label">Ostatni przeglad</span>
+        <span class="label">Ostatni przegląd</span>
         <input class="input" name="lastCheck" maxlength="10" placeholder="YYYY-MM-DD" required />
         <span class="form-error" data-error-for="lastCheck"></span>
       </label>
@@ -229,6 +216,7 @@ function fleetView() {
         <button class="button primary" type="submit">${isEdit ? "Zapisz zmiany" : "Dodaj pojazd"}</button>
       </div>
     `;
+    window.FleetUI.connectFieldErrors(form, "fleet-form");
 
     const defaultValues = {
       id: "",
@@ -292,11 +280,11 @@ function fleetView() {
     if (!guard(Actions.FLEET_DELETE, getPermissionContext(vehicle))) return;
     const body = dom.h("div");
     body.innerHTML = `
-      <p>Usunac pojazd <strong>${escapeHtml(vehicle.id)}</strong>?</p>
+      <p>Usunąć pojazd <strong>${escapeHtml(vehicle.id)}</strong>?</p>
       <p class="muted small">${escapeHtml(vehicle.type)}</p>
       <div style="display:flex;justify-content:flex-end;gap:10px;margin-top:16px;">
         <button class="button ghost" type="button" data-modal-cancel>Anuluj</button>
-        <button class="button primary" type="button" data-modal-confirm>Usun</button>
+        <button class="button primary" type="button" data-modal-confirm>Usuń</button>
       </div>
     `;
 
@@ -310,12 +298,12 @@ function fleetView() {
       if (!guard(Actions.FLEET_DELETE, getPermissionContext(vehicle))) return;
       if (!FleetStore.deleteVehicle(vehicle.id)) return;
       buildActivityEntry("deleted", vehicle);
-      Toast.show("Pojazd usuniety", "success");
+      Toast.show("Pojazd usunięty", "success");
       Modal.close();
       renderCards();
     });
 
-    Modal.open({ title: "Potwierdzenie usuniecia", body });
+    Modal.open({ title: "Potwierdzenie usunięcia", body });
   };
 
   const openVehicle = (vehicle) => {
@@ -400,22 +388,23 @@ function fleetView() {
     dom.clear(cards);
     loadMoreWrap.style.display = canLoadMore ? "flex" : "none";
     loadMoreBtn.disabled = !canLoadMore;
-    visibleRows.forEach((vehicle) => {
+    visibleRows.forEach((vehicle, index) => {
       const card = dom.h("div", "panel");
       const safeId = escapeHtml(vehicle.id);
       const safeType = escapeHtml(vehicle.type);
       const safeStatus = escapeHtml(format.statusLabel(vehicle.status));
       const safeDriver = escapeHtml(vehicle.driver);
+      const menuId = `vehicle-actions-${index}`;
       card.innerHTML = `
         <div class="flex-between">
           <h3 class="vehicle-card__title">${safeId}</h3>
           <div style="display:flex;align-items:center;gap:8px;">
             <span class="badge">${safeStatus}</span>
             <div class="dropdown" data-vehicle-menu>
-              <button class="button ghost dropdown-trigger" type="button" aria-haspopup="menu" aria-expanded="false">...</button>
-              <div class="dropdown-menu" role="menu" aria-label="Akcje pojazdu">
+              <button class="button ghost dropdown-trigger" type="button" aria-label="Akcje pojazdu ${safeId}" aria-expanded="false" aria-controls="${menuId}">...</button>
+              <div class="dropdown-menu" id="${menuId}">
                 <button class="dropdown-item" type="button" data-vehicle-action="edit">Edytuj</button>
-                <button class="dropdown-item" type="button" data-vehicle-action="delete">Usun</button>
+                <button class="dropdown-item" type="button" data-vehicle-action="delete">Usuń</button>
               </div>
             </div>
           </div>

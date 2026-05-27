@@ -6,7 +6,7 @@ function reportsView() {
   root.appendChild(header);
 
   const chart = dom.h('div', 'panel');
-  chart.innerHTML = '<h3 class="panel-heading">Miks wydajności</h3><div class="grid" style="grid-template-columns: repeat(3,1fr); gap: 12px; margin-top: 12px;"></div>';
+  chart.innerHTML = '<h3 class="panel-heading">Miks wydajności</h3><div class="grid report-mix-grid" style="gap: 12px; margin-top: 12px;"></div>';
   const bars = chart.querySelector('.grid');
   FleetSeed.reports.performance.forEach((item) => {
     const wrap = dom.h('div');

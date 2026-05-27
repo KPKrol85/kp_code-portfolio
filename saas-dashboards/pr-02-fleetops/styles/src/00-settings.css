@@ -3,7 +3,7 @@
   font-style: normal;
   font-weight: 400 700;
   font-display: swap;
-  src: url("../assets/fonts/inter-latin.woff2") format("woff2");
+  src: url("/assets/fonts/inter-latin.woff2") format("woff2");
 }
 
 :root {
@@ -46,6 +46,8 @@
   --radius-pill: 9999px;
 
   /* font sizes */
+  --fs-0: 0.5rem;
+  --fs-00: 0.625rem;
   --fs-01: 0.75rem;
   --fs-02: 0.875rem;
   --fs-03: 1rem;
@@ -89,6 +91,7 @@
   --space-8: 5rem; /* ~80px */
 
   /* section spacing */
+  --space-section-xs: 1.5rem; /* ~24px */
   --space-section-sm: 2rem; /* ~32px */
   --space-section: 3rem; /* ~48px */
   --space-section-lg: 3.5rem; /* ~56px */

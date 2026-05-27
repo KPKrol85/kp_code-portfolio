@@ -5,7 +5,7 @@ function dashboardView() {
   const rangeHeader = dom.h("div", "module-header");
   rangeHeader.innerHTML = `
     <div>
-      <h2>Przeglad KPI</h2>
+      <h2>Przegląd KPI</h2>
       <p class="muted small">Zakres czasu</p>
     </div>
     <div class="toolbar">
@@ -41,8 +41,8 @@ function dashboardView() {
     const activityInRange = (FleetStore.state.activity || []).filter((a) => isInRange(a.time, rangeDays));
 
     const kpiData = [
-      { label: "Laczna liczba zlecen", value: ordersInRange.length, action: "orders" },
-      { label: "Terminowosc", value: onTimePct, action: "ontime" },
+      { label: "Łączna liczba zleceń", value: ordersInRange.length, action: "orders" },
+      { label: "Terminowość", value: onTimePct, action: "ontime" },
       { label: "Aktywne pojazdy", value: activeVehicles.length, action: "fleet" },
       { label: "Zdarzenia", value: activityInRange.length, action: "alerts" },
     ];
@@ -83,7 +83,10 @@ function dashboardView() {
     if (action === "alerts") {
       window.location.hash = "#/app";
       window.setTimeout(() => {
-        document.getElementById("dashboard-alerts")?.scrollIntoView({ behavior: "smooth", block: "start" });
+        const behavior = window.FleetUI.getMotionSafeScrollBehavior
+          ? window.FleetUI.getMotionSafeScrollBehavior()
+          : "smooth";
+        document.getElementById("dashboard-alerts")?.scrollIntoView({ behavior, block: "start" });
       }, 200);
     }
   };
@@ -111,7 +114,7 @@ function dashboardView() {
     const ts = Date.parse(value);
     if (Number.isNaN(ts)) return value;
     const diffMinutes = Math.floor((Date.now() - ts) / 60000);
-    if (diffMinutes < 1) return "przed chwila";
+    if (diffMinutes < 1) return "przed chwilą";
     if (diffMinutes < 60) return `${diffMinutes} min temu`;
     const diffHours = Math.floor(diffMinutes / 60);
     if (diffHours < 24) return `${diffHours} h temu`;
@@ -140,11 +143,11 @@ function dashboardView() {
       <h2>Alerty</h2>
 
       <div class="dropdown" data-dropdown="alerts-rules">
-        <button class="button ghost small dropdown-trigger" type="button" aria-expanded="false">
+        <button class="button ghost small dropdown-trigger" type="button" aria-expanded="false" aria-controls="alertsRulesMenu">
           Zobacz reguły
         </button>
 
-        <div class="dropdown-menu" role="menu" aria-label="Reguły alertów">
+        <div class="dropdown-menu" id="alertsRulesMenu">
           <div style="padding:8px 10px;display:flex;align-items:center;justify-content:space-between;gap:8px;">
             <span class="muted small">Reguły alertów</span>
             <button class="button ghost small" type="button" data-alerts-reset>Reset</button>
@@ -226,8 +229,7 @@ function dashboardView() {
   alerts.appendChild(alertsList);
 
   // ===== Layout columns =====
-  const columns = dom.h("div", "grid");
-  columns.style.gridTemplateColumns = "2fr 1fr";
+  const columns = dom.h("div", "grid dashboard-columns");
   columns.style.gap = "16px";
   columns.appendChild(activity);
   columns.appendChild(alerts);

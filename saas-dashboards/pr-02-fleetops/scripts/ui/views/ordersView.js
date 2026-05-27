@@ -11,7 +11,7 @@ function ordersView() {
 
 
   const header = dom.h("div", "module-header");
-  header.innerHTML = `<div><h2>Zlecenia</h2><p class="muted small">Monitoruj status dostaw</p></div><div class="toolbar"><select class="input" id="ordersSortBy" aria-label="Sortuj"><option value="updated">Aktualizacja</option><option value="client">Klient</option><option value="status">Status</option><option value="priority">Priorytet</option></select><select class="input" id="ordersSortDir" aria-label="Kierunek"><option value="asc">Rosnaco</option><option value="desc">Malejaco</option></select><button class="button primary" id="addOrder" type="button">Add order</button><button class="button secondary" id="exportOrders" type="button">Eksportuj CSV</button></div>`;
+  header.innerHTML = `<div><h2>Zlecenia</h2><p class="muted small">Monitoruj status dostaw</p></div><div class="toolbar"><select class="input" id="ordersSortBy" aria-label="Sortuj"><option value="updated">Aktualizacja</option><option value="client">Klient</option><option value="status">Status</option><option value="priority">Priorytet</option></select><select class="input" id="ordersSortDir" aria-label="Kierunek"><option value="asc">Rosnąco</option><option value="desc">Malejąco</option></select><button class="button primary" id="addOrder" type="button">Dodaj zlecenie</button><button class="button secondary" id="exportOrders" type="button">Eksportuj CSV</button></div>`;
   root.appendChild(header);
 
   const filterBar = dom.h("div", "table-filter");
@@ -45,7 +45,7 @@ function ordersView() {
   loadMoreWrap.style.marginTop = "12px";
   loadMoreWrap.style.display = "flex";
   loadMoreWrap.style.justifyContent = "center";
-  const loadMoreBtn = dom.h("button", "button secondary", "Load more");
+  const loadMoreBtn = dom.h("button", "button secondary", "Załaduj więcej");
   loadMoreBtn.type = "button";
   loadMoreWrap.appendChild(loadMoreBtn);
   root.appendChild(loadMoreWrap);
@@ -103,19 +103,19 @@ function ordersView() {
   };
   const statusOptions = [
     { value: "in-progress", label: "W realizacji" },
-    { value: "delayed", label: "Opoznione" },
+    { value: "delayed", label: "Opóźnione" },
     { value: "delivered", label: "Dostarczone" },
-    { value: "pending", label: "Oczekujace" },
+    { value: "pending", label: "Oczekujące" },
   ];
   const priorityOptions = [
     { value: "high", label: "Wysoki" },
-    { value: "medium", label: "Sredni" },
+    { value: "medium", label: "Średni" },
     { value: "low", label: "Niski" },
   ];
   const etaPattern = /^(\d{4}-\d{2}-\d{2}|\d+h\s?\d+m|Dostarczono)$/i;
   const nowIso = () => new Date().toISOString();
   const buildActivityEntry = (action, order) => {
-    const verb = { created: "dodane", updated: "zaktualizowane", deleted: "usuniete" }[action] || "zaktualizowane";
+    const verb = { created: "dodane", updated: "zaktualizowane", deleted: "usunięte" }[action] || "zaktualizowane";
     const detail = order ? `${order.client} - ${order.route}` : "";
     FleetStore.addActivity({
       title: order ? `Zlecenie ${order.id} ${verb}` : `Zlecenie ${verb}`,
@@ -159,21 +159,8 @@ function ordersView() {
     }, FILTER_DELAY);
   };
 
-  const clearFormErrors = (form) => {
-    form.querySelectorAll("[data-error-for]").forEach((el) => {
-      el.textContent = "";
-    });
-    form.querySelectorAll("[aria-invalid]").forEach((el) => {
-      el.setAttribute("aria-invalid", "false");
-    });
-  };
-
-  const setFieldError = (form, name, message) => {
-    const field = form.querySelector(`[name="${name}"]`);
-    const error = form.querySelector(`[data-error-for="${name}"]`);
-    if (field) field.setAttribute("aria-invalid", message ? "true" : "false");
-    if (error) error.textContent = message || "";
-  };
+  const clearFormErrors = window.FleetUI.clearFormErrors;
+  const setFieldError = window.FleetUI.setFieldError;
 
   const getOrderFormValues = (form) => {
     const data = new FormData(form);
@@ -190,10 +177,10 @@ function ordersView() {
   const validateOrderForm = (values) => {
     const errors = {};
     if (!values.client) errors.client = "Wymagane";
-    else if (values.client.length > 80) errors.client = "Maks. 80 znakow";
+    else if (values.client.length > 80) errors.client = "Maks. 80 znaków";
 
     if (!values.route) errors.route = "Wymagane";
-    else if (values.route.length > 120) errors.route = "Maks. 120 znakow";
+    else if (values.route.length > 120) errors.route = "Maks. 120 znaków";
 
     if (!values.status) errors.status = "Wybierz status";
     if (!values.priority) errors.priority = "Wybierz priorytet";
@@ -220,7 +207,7 @@ function ordersView() {
       </label>
       <label class="form-control">
         <span class="label">Trasa</span>
-        <input class="input" name="route" maxlength="120" placeholder="np. Gdansk - Poznan" required />
+        <input class="input" name="route" maxlength="120" placeholder="np. Gdańsk - Poznań" required />
         <span class="form-error" data-error-for="route"></span>
       </label>
       <label class="form-control">
@@ -253,6 +240,7 @@ function ordersView() {
         <button class="button primary" type="submit">${isEdit ? "Zapisz zmiany" : "Dodaj zlecenie"}</button>
       </div>
     `;
+    window.FleetUI.connectFieldErrors(form, "orders-form");
 
     const defaultValues = {
       client: "",
@@ -321,11 +309,11 @@ function ordersView() {
     if (!guard(Actions.ORDERS_DELETE, getPermissionContext(order))) return;
     const body = dom.h("div");
     body.innerHTML = `
-      <p>Czy na pewno usunac zlecenie <strong>${escapeHtml(order.id)}</strong>?</p>
+      <p>Czy na pewno usunąć zlecenie <strong>${escapeHtml(order.id)}</strong>?</p>
       <p class="muted small">${escapeHtml(order.client)} - ${escapeHtml(order.route)}</p>
       <div style="display:flex;justify-content:flex-end;gap:10px;margin-top:16px;">
         <button class="button ghost" type="button" data-modal-cancel>Anuluj</button>
-        <button class="button primary" type="button" data-modal-confirm>Usun</button>
+        <button class="button primary" type="button" data-modal-confirm>Usuń</button>
       </div>
     `;
 
@@ -339,13 +327,13 @@ function ordersView() {
       if (!guard(Actions.ORDERS_DELETE, getPermissionContext(order))) return;
       if (!FleetStore.deleteOrder(order.id)) return;
       buildActivityEntry("deleted", order);
-      Toast.show("Zlecenie usuniete", "success");
+      Toast.show("Zlecenie usunięte", "success");
       Modal.close();
 
   renderRows();
     });
 
-    Modal.open({ title: "Potwierdzenie usuniecia", body });
+    Modal.open({ title: "Potwierdzenie usunięcia", body });
   };
 
   const renderRows = () => {
@@ -412,13 +400,14 @@ function ordersView() {
       return;
     }
 
-    const renderedRows = visibleRows.map((order) => {
+    const renderedRows = visibleRows.map((order, index) => {
       const safeId = escapeHtml(order.id);
       const safeClient = escapeHtml(order.client);
       const safeRoute = escapeHtml(order.route);
       const safeStatus = escapeHtml(format.statusLabel(order.status));
       const safeEta = escapeHtml(order.eta);
       const safePriority = escapeHtml(priorityLabel(order.priority));
+      const menuId = `order-actions-${index}`;
 
       return `
       <tr class="order-row" data-id="${safeId}">
@@ -430,10 +419,10 @@ function ordersView() {
         <td><span class="badge">${safePriority}</span></td>
         <td>
           <div class="dropdown" data-order-menu>
-            <button class="button ghost dropdown-trigger" type="button" aria-haspopup="menu" aria-expanded="false">...</button>
-            <div class="dropdown-menu" role="menu" aria-label="Akcje zlecenia">
+            <button class="button ghost dropdown-trigger" type="button" aria-label="Akcje zlecenia ${safeId}" aria-expanded="false" aria-controls="${menuId}">...</button>
+            <div class="dropdown-menu" id="${menuId}">
               <button class="dropdown-item" type="button" data-order-action="edit">Edytuj</button>
-              <button class="dropdown-item" type="button" data-order-action="delete">Usun</button>
+              <button class="dropdown-item" type="button" data-order-action="delete">Usuń</button>
             </div>
           </div>
         </td>
@@ -559,10 +548,10 @@ function ordersView() {
   const exportBtn = header.querySelector("#exportOrders");
   if (exportBtn) {
     exportBtn.disabled = true;
-    exportBtn.title = "Brak uprawnieä w wersji demo";
+    exportBtn.title = "Brak uprawnień w wersji demo";
     exportBtn.addEventListener("click", (e) => {
       e.preventDefault();
-      Toast.show("Brak uprawnieä w wersji demo", "warning");
+      Toast.show("Brak uprawnień w wersji demo", "warning", { assertive: true });
     });
   }
 

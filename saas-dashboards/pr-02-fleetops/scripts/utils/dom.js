@@ -31,6 +31,66 @@ const escapeHtml = (value) =>
 window.FleetUI = window.FleetUI || {};
 window.FleetUI.escapeHtml = escapeHtml;
 
+const getMotionSafeScrollBehavior = () => {
+  if (typeof window.matchMedia !== "function") return "smooth";
+  return window.matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth";
+};
+
+window.FleetUI.getMotionSafeScrollBehavior = getMotionSafeScrollBehavior;
+
+const getNamedFormField = (form, name) => {
+  const field = form && form.elements ? form.elements.namedItem(name) : null;
+  if (!field) return null;
+  if (field.nodeType === 1) return field;
+  return field[0] || null;
+};
+
+const syncDescribedBy = (field, id) => {
+  if (!field || !id) return;
+  const ids = (field.getAttribute("aria-describedby") || "").split(/\s+/).filter(Boolean);
+  if (!ids.includes(id)) ids.push(id);
+  field.setAttribute("aria-describedby", ids.join(" "));
+};
+
+const connectFieldErrors = (form, idPrefix) => {
+  if (!form || !idPrefix) return;
+  form.querySelectorAll("[data-error-for]").forEach((error) => {
+    const name = error.dataset.errorFor;
+    const field = getNamedFormField(form, name);
+    if (!name || !field) return;
+
+    const fieldId = field.id || `${idPrefix}-${name}`;
+    const errorId = error.id || `${fieldId}-error`;
+    field.id = fieldId;
+    error.id = errorId;
+    syncDescribedBy(field, errorId);
+  });
+};
+
+const clearFormErrors = (form) => {
+  if (!form) return;
+  form.querySelectorAll("[data-error-for]").forEach((el) => {
+    el.textContent = "";
+  });
+  form.querySelectorAll("[aria-invalid]").forEach((el) => {
+    el.removeAttribute("aria-invalid");
+  });
+};
+
+const setFieldError = (form, name, message) => {
+  const field = getNamedFormField(form, name);
+  const error = form ? form.querySelector(`[data-error-for="${name}"]`) : null;
+  if (field) {
+    if (message) field.setAttribute("aria-invalid", "true");
+    else field.removeAttribute("aria-invalid");
+  }
+  if (error) error.textContent = message || "";
+};
+
+window.FleetUI.connectFieldErrors = connectFieldErrors;
+window.FleetUI.clearFormErrors = clearFormErrors;
+window.FleetUI.setFieldError = setFieldError;
+
 // ===== Scroll-to-top binding =====
 function bindLogoScroll(kind, getContainer) {
   const links = document.querySelectorAll(`[data-scroll-top="${kind}"]`);
@@ -53,10 +113,11 @@ function bindLogoScroll(kind, getContainer) {
 
       window.setTimeout(() => {
         const container = getContainer ? getContainer() : null;
+        const behavior = getMotionSafeScrollBehavior();
         if (container && typeof container.scrollTo === "function") {
-          container.scrollTo({ top: 0, left: 0, behavior: "smooth" });
+          container.scrollTo({ top: 0, left: 0, behavior });
         } else {
-          window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
+          window.scrollTo({ top: 0, left: 0, behavior });
         }
       }, 0);
     };

@@ -1,4 +1,3 @@
-
 /* Global Reset & Selection */
 
 * {
@@ -101,9 +100,6 @@ h4,
 h5,
 h6 {
   margin: 0;
-  font-weight: var(--fw-semibold);
-  line-height: var(--lh-tight);
-  letter-spacing: var(--ls-compact);
   color: var(--text);
   text-wrap: balance;
 }
@@ -114,8 +110,54 @@ h2 {
   letter-spacing: var(--ls-tight);
 }
 
+h3,
+h4,
+h5,
+h6 {
+  font-weight: var(--fw-semibold);
+  line-height: var(--lh-snug);
+}
+
+h3,
+h4 {
+  letter-spacing: var(--ls-compact);
+}
+
+h5,
+h6 {
+  letter-spacing: var(--ls-normal);
+}
+
+h1 {
+  font-size: var(--fs-07);
+  line-height: var(--lh-very-tight);
+}
+
+h2 {
+  font-size: var(--fs-06);
+  line-height: var(--lh-tight);
+}
+
+h3 {
+  font-size: var(--fs-05);
+}
+
+h4 {
+  font-size: var(--fs-04);
+}
+
+h5 {
+  font-size: var(--fs-03);
+}
+
+h6 {
+  font-size: var(--fs-02);
+}
+
 p {
   margin: 0;
+  font-size: var(--fs-02);
+  font-weight: var(--fw-regular);
   line-height: var(--lh-relaxed);
   color: var(--text-muted);
   text-wrap: pretty;

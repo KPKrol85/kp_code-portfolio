@@ -12,6 +12,7 @@
     "optimize:images": "node optimize-images.js",
     "preview": "python -m http.server 8181",
     "preview:dist": "python -m http.server 8182 --directory dist",
+    "qa:css-vars": "node scripts/qa/check-css-vars.js",
     "test": "npm run build",
     "test:smoke": "playwright test"
   },

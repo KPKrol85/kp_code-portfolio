@@ -348,7 +348,7 @@ const Store = {
     if (next.isOnline && offline.queue && offline.queue.length) {
       this.clearOfflineQueue();
       if (window.Toast && typeof Toast.show === "function") {
-        Toast.show("Back online", "success");
+        Toast.show("Połączenie przywrócone", "success");
       }
     }
   },
@@ -375,7 +375,7 @@ const Store = {
     if (typeof navigator !== "undefined" && navigator.onLine === false) {
       this.enqueueOfflineAction(actionLabel);
       if (window.Toast && typeof Toast.show === "function") {
-        Toast.show("Offline – action queued", "warning");
+        Toast.show("Tryb offline - akcja dodana do kolejki", "warning");
       }
       return false;
     }

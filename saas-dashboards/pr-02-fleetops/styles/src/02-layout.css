@@ -28,7 +28,8 @@ body > #app {
 }
 
 .section {
-  padding: var(--space-6) 0;
+  padding: var(--space-5) 0;
+  text-align: center;
 }
 
 .grid {
@@ -63,20 +64,15 @@ body > #app {
 
 /* Responsive */
 
-@media (max-width: 1024px) {
+@media (min-width: 760px) {
   .section {
     padding: var(--space-6) 0;
-    text-align: center;
   }
 }
 
-@media (max-width: 768px) {
+@media (min-width: 1024px) {
   .section {
-    padding: var(--space-5) 0;
-  }
-
-  .container {
-    width: 92vw;
+    text-align: start;
   }
 }
 

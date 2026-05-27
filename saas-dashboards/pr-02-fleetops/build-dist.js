@@ -14,6 +14,8 @@ const cssSources = [
   "styles/src/03-components.css",
   "styles/src/04-data.css",
   "styles/src/05-landing.css",
+  "styles/src/07-footer.css",
+  "styles/src/08-header.css",
   "styles/src/06-app.css",
 ];
 

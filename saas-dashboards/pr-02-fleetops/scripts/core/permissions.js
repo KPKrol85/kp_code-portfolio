@@ -17,27 +17,27 @@ const Actions = {
 };
 
 const roleLabels = {
-  [Roles.ADMIN]: "Admin",
-  [Roles.DISPATCHER]: "Dispatcher",
-  [Roles.DRIVER]: "Driver",
+  [Roles.ADMIN]: "Administrator",
+  [Roles.DISPATCHER]: "Dyspozytor",
+  [Roles.DRIVER]: "Kierowca",
 };
 
 const actionLabels = {
-  [Actions.ORDERS_CREATE]: "tworzenie zlecen",
-  [Actions.ORDERS_EDIT]: "edycja zlecen",
-  [Actions.ORDERS_DELETE]: "usuwanie zlecen",
-  [Actions.FLEET_CREATE]: "dodawanie pojazdow",
-  [Actions.FLEET_EDIT]: "edycja pojazdow",
-  [Actions.FLEET_DELETE]: "usuwanie pojazdow",
-  [Actions.DRIVERS_CREATE]: "dodawanie kierowcow",
-  [Actions.DRIVERS_EDIT]: "edycja kierowcow",
-  [Actions.DRIVERS_DELETE]: "usuwanie kierowcow",
+  [Actions.ORDERS_CREATE]: "tworzenie zleceń",
+  [Actions.ORDERS_EDIT]: "edycja zleceń",
+  [Actions.ORDERS_DELETE]: "usuwanie zleceń",
+  [Actions.FLEET_CREATE]: "dodawanie pojazdów",
+  [Actions.FLEET_EDIT]: "edycja pojazdów",
+  [Actions.FLEET_DELETE]: "usuwanie pojazdów",
+  [Actions.DRIVERS_CREATE]: "dodawanie kierowców",
+  [Actions.DRIVERS_EDIT]: "edycja kierowców",
+  [Actions.DRIVERS_DELETE]: "usuwanie kierowców",
 };
 
 const DemoUsers = [
-  { id: "u_admin_1", role: Roles.ADMIN, displayName: "Admin Demo" },
-  { id: "u_disp_1", role: Roles.DISPATCHER, displayName: "Dispatcher Demo" },
-  { id: "u_drv_1", role: Roles.DRIVER, displayName: "Driver Demo" },
+  { id: "u_admin_1", role: Roles.ADMIN, displayName: "Administrator demo" },
+  { id: "u_disp_1", role: Roles.DISPATCHER, displayName: "Dyspozytor demo" },
+  { id: "u_drv_1", role: Roles.DRIVER, displayName: "Kierowca demo" },
 ];
 
 const defaultUser = DemoUsers[0];
@@ -70,18 +70,18 @@ const can = (action, context = {}) => {
 
 const explainDeny = (action, context = {}) => {
   const user = resolveUser(context);
-  const role = user ? roleLabels[user.role] || user.role : "Uzytkownik";
+  const role = user ? roleLabels[user.role] || user.role : "Użytkownik";
   const actionLabel = actionLabels[action] || "akcja";
 
   if (user && user.role === Roles.DRIVER) {
-    return `${role} ma tylko podglad - ${actionLabel} zablokowane.`;
+    return `${role} ma tylko podgląd - ${actionLabel} zablokowane.`;
   }
 
   if (user && user.role === Roles.DISPATCHER && action && action.endsWith(":edit")) {
-    return `Tylko wlasne rekordy - ${actionLabel} niedozwolone.`;
+    return `Tylko własne rekordy - ${actionLabel} niedozwolone.`;
   }
 
-  return `${role} nie ma uprawnien na ${actionLabel}.`;
+  return `${role} nie ma uprawnień na ${actionLabel}.`;
 };
 
 const applyDisabledState = (el, allowed, message) => {
@@ -104,11 +104,11 @@ const guard = (action, context = {}) => {
   if (can(action, context)) return true;
   const message = explainDeny(action, context);
   if (window.Toast && typeof Toast.show === "function") {
-    Toast.show(`Brak uprawnien: ${message}`, "warning");
+    Toast.show(`Brak uprawnień: ${message}`, "warning", { assertive: true });
   }
   if (window.FleetStore && typeof FleetStore.addActivity === "function") {
     FleetStore.addActivity({
-      title: "Permission blocked",
+      title: "Odmowa uprawnień",
       detail: message,
       time: new Date().toISOString(),
     });

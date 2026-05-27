@@ -10,7 +10,7 @@ function driversView() {
   const escapeHtml = window.FleetUI.escapeHtml;
 
   const header = dom.h("div", "module-header");
-  header.innerHTML = `<div><h2>Kierowcy</h2><p class="muted small">Status i ostatnie kursy</p></div><div class="toolbar"><select class="input" id="driversSortBy" aria-label="Sortuj"><option value="name">Imie i nazwisko</option><option value="status">Status</option><option value="phone">Telefon</option><option value="lastTrip">Ostatni kurs</option></select><select class="input" id="driversSortDir" aria-label="Kierunek"><option value="asc">Rosnaco</option><option value="desc">Malejaco</option></select><button class="button primary" id="addDriver" type="button">Dodaj kierowce</button></div>`;
+  header.innerHTML = `<div><h2>Kierowcy</h2><p class="muted small">Status i ostatnie kursy</p></div><div class="toolbar"><select class="input" id="driversSortBy" aria-label="Sortuj"><option value="name">Imię i nazwisko</option><option value="status">Status</option><option value="phone">Telefon</option><option value="lastTrip">Ostatni kurs</option></select><select class="input" id="driversSortDir" aria-label="Kierunek"><option value="asc">Rosnąco</option><option value="desc">Malejąco</option></select><button class="button primary" id="addDriver" type="button">Dodaj kierowcę</button></div>`;
   root.appendChild(header);
 
   const filterBar = dom.h("div", "table-filter");
@@ -36,7 +36,7 @@ function driversView() {
   loadMoreWrap.style.marginTop = "12px";
   loadMoreWrap.style.display = "flex";
   loadMoreWrap.style.justifyContent = "center";
-  const loadMoreBtn = dom.h("button", "button secondary", "Load more");
+  const loadMoreBtn = dom.h("button", "button secondary", "Załaduj więcej");
   loadMoreBtn.type = "button";
   loadMoreWrap.appendChild(loadMoreBtn);
   root.appendChild(loadMoreWrap);
@@ -79,7 +79,7 @@ function driversView() {
   let filterTimer = null;
   const FILTER_DELAY = 160;
   const statusOptions = [
-    { value: "available", label: "Dostepny" },
+    { value: "available", label: "Dostępny" },
     { value: "on-route", label: "W trasie" },
     { value: "maintenance", label: "Serwis" },
   ];
@@ -93,11 +93,11 @@ function driversView() {
   };
   const normalizePhone = (value) => String(value || "").replace(/\D/g, "");
   const buildActivityEntry = (action, driver) => {
-    const verb = { created: "added", updated: "updated", deleted: "deleted" }[action] || "updated";
-    const label = driver ? `${driver.name || "Driver"} (${driver.id || "new"})` : "";
+    const verb = { created: "dodany", updated: "zaktualizowany", deleted: "usunięty" }[action] || "zaktualizowany";
+    const label = driver ? `${driver.name || "Kierowca"} (${driver.id || "nowy"})` : "";
     FleetStore.addActivity({
-      title: `Driver ${verb}: ${label}`.trim(),
-      detail: driver && driver.phone ? `Phone: ${driver.phone}` : "",
+      title: `Kierowca ${verb}: ${label}`.trim(),
+      detail: driver && driver.phone ? `Telefon: ${driver.phone}` : "",
       time: new Date().toISOString(),
     });
   };
@@ -146,21 +146,8 @@ function driversView() {
     }, 180);
   };
 
-  const clearFormErrors = (form) => {
-    form.querySelectorAll("[data-error-for]").forEach((el) => {
-      el.textContent = "";
-    });
-    form.querySelectorAll("[aria-invalid]").forEach((el) => {
-      el.setAttribute("aria-invalid", "false");
-    });
-  };
-
-  const setFieldError = (form, name, message) => {
-    const field = form.querySelector(`[name="${name}"]`);
-    const error = form.querySelector(`[data-error-for="${name}"]`);
-    if (field) field.setAttribute("aria-invalid", message ? "true" : "false");
-    if (error) error.textContent = message || "";
-  };
+  const clearFormErrors = window.FleetUI.clearFormErrors;
+  const setFieldError = window.FleetUI.setFieldError;
 
   const getDriverFormValues = (form) => {
     const data = new FormData(form);
@@ -175,7 +162,7 @@ function driversView() {
   const validateDriverForm = (values, { isEdit = false, currentId = null } = {}) => {
     const errors = {};
     if (!values.name) errors.name = "Wymagane";
-    else if (values.name.length > 80) errors.name = "Maks. 80 znakow";
+    else if (values.name.length > 80) errors.name = "Maks. 80 znaków";
 
     if (!values.status) errors.status = "Wybierz status";
 
@@ -186,10 +173,10 @@ function driversView() {
       const duplicates = FleetStore.state.domain.drivers
         .filter((d) => (isEdit ? d.id !== currentId : true))
         .some((d) => normalizePhone(d.phone) === phoneDigits);
-      if (duplicates) errors.phone = "Telefon juz istnieje";
+      if (duplicates) errors.phone = "Telefon już istnieje";
     }
 
-    if (values.lastTrip.length > 80) errors.lastTrip = "Maks. 80 znakow";
+    if (values.lastTrip.length > 80) errors.lastTrip = "Maks. 80 znaków";
     return errors;
   };
 
@@ -201,7 +188,7 @@ function driversView() {
     form.style.gap = "12px";
     form.innerHTML = `
       <label class="form-control">
-        <span class="label">Imie i nazwisko</span>
+        <span class="label">Imię i nazwisko</span>
         <input class="input" name="name" maxlength="80" placeholder="np. Anna Lewandowska" required />
         <span class="form-error" data-error-for="name"></span>
       </label>
@@ -219,14 +206,15 @@ function driversView() {
       </label>
       <label class="form-control">
         <span class="label">Ostatni kurs</span>
-        <input class="input" name="lastTrip" maxlength="80" placeholder="np. Warszawa - Rzeszow" />
+        <input class="input" name="lastTrip" maxlength="80" placeholder="np. Warszawa - Rzeszów" />
         <span class="form-error" data-error-for="lastTrip"></span>
       </label>
       <div style="display:flex;justify-content:flex-end;gap:10px;margin-top:4px;">
         <button class="button ghost" type="button" data-modal-cancel>Anuluj</button>
-        <button class="button primary" type="submit">${isEdit ? "Zapisz zmiany" : "Dodaj kierowce"}</button>
+        <button class="button primary" type="submit">${isEdit ? "Zapisz zmiany" : "Dodaj kierowcę"}</button>
       </div>
     `;
+    window.FleetUI.connectFieldErrors(form, "drivers-form");
 
     const defaultValues = {
       name: "",
@@ -279,18 +267,18 @@ function driversView() {
       renderRows();
     });
 
-    Modal.open({ title: isEdit && driver ? `Edytuj ${escapeHtml(driver.name)}` : "Dodaj kierowce", body: form });
+    Modal.open({ title: isEdit && driver ? `Edytuj ${escapeHtml(driver.name)}` : "Dodaj kierowcę", body: form });
   };
 
   const openDeleteConfirm = (driver) => {
     if (!guard(Actions.DRIVERS_DELETE, getPermissionContext(driver))) return;
     const body = dom.h("div");
     body.innerHTML = `
-      <p>Usunac kierowce <strong>${escapeHtml(driver.name)}</strong>?</p>
+      <p>Usunąć kierowcę <strong>${escapeHtml(driver.name)}</strong>?</p>
       <p class="muted small">${escapeHtml(driver.phone)}</p>
       <div style="display:flex;justify-content:flex-end;gap:10px;margin-top:16px;">
         <button class="button ghost" type="button" data-modal-cancel>Anuluj</button>
-        <button class="button primary" type="button" data-modal-confirm>Usun</button>
+        <button class="button primary" type="button" data-modal-confirm>Usuń</button>
       </div>
     `;
 
@@ -304,12 +292,12 @@ function driversView() {
       if (!guard(Actions.DRIVERS_DELETE, getPermissionContext(driver))) return;
       if (!FleetStore.deleteDriver(driver.id)) return;
       buildActivityEntry("deleted", driver);
-      Toast.show("Kierowca usuniety", "success");
+      Toast.show("Kierowca usunięty", "success");
       Modal.close();
       renderRows();
     });
 
-    Modal.open({ title: "Potwierdzenie usuniecia", body });
+    Modal.open({ title: "Potwierdzenie usunięcia", body });
   };
 
   const openDriver = (driver) => {
@@ -406,12 +394,13 @@ function driversView() {
     loadMoreWrap.style.display = canLoadMore ? "flex" : "none";
     loadMoreBtn.disabled = !canLoadMore;
 
-    visibleRows.forEach((driver) => {
+    visibleRows.forEach((driver, index) => {
       const tr = dom.h("tr");
       const safeName = escapeHtml(driver.name);
       const safeStatus = escapeHtml(format.statusLabel(driver.status));
       const safeLastTrip = escapeHtml(driver.lastTrip);
       const safePhone = escapeHtml(driver.phone);
+      const menuId = `driver-actions-${index}`;
       tr.innerHTML = `
         <td>${safeName}</td>
         <td><span class="badge">${safeStatus}</span></td>
@@ -419,10 +408,10 @@ function driversView() {
         <td>${safePhone}</td>
         <td>
           <div class="dropdown" data-driver-menu>
-            <button class="button ghost dropdown-trigger" type="button" aria-haspopup="menu" aria-expanded="false">...</button>
-            <div class="dropdown-menu" role="menu" aria-label="Akcje kierowcy">
+            <button class="button ghost dropdown-trigger" type="button" aria-label="Akcje kierowcy ${safeName}" aria-expanded="false" aria-controls="${menuId}">...</button>
+            <div class="dropdown-menu" id="${menuId}">
               <button class="dropdown-item" type="button" data-driver-action="edit">Edytuj</button>
-              <button class="dropdown-item" type="button" data-driver-action="delete">Usun</button>
+              <button class="dropdown-item" type="button" data-driver-action="delete">Usuń</button>
             </div>
           </div>
         </td>`;
