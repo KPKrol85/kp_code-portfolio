@@ -3,7 +3,7 @@
 .landing .footer {
   border-top: 1px solid var(--border);
   background: var(--bg);
-  padding: var(--space-section) 0 var(--space-section-xs);
+  padding: var(--space-section-xl) 0 var(--space-section-xs);
 }
 
 .landing .footer__inner {
@@ -30,34 +30,28 @@
   display: inline-flex;
   flex-direction: column;
   align-items: flex-start;
-  gap: var(--space-3);
+  gap: var(--space-4);
   width: fit-content;
   color: var(--text);
 }
 
 .landing .footer__logo img {
-  width: 92px;
-  height: 92px;
+  width: clamp(64px, 6vw, 72px);
+  height: clamp(64px, 6vw, 72px);
 }
 
 .landing .footer__name {
   font-size: var(--fs-04);
   font-weight: var(--fw-bold);
-  color: var(--text);
 }
 
 .landing .footer__desc {
-  max-width: 30ch;
-  margin: 0;
-  color: var(--text-muted);
-  line-height: 1.65;
+  max-width: 26ch;
 }
 
 .landing .footer__title {
-  margin: 0;
   color: var(--text-muted);
   font-size: var(--fs-02);
-  font-weight: var(--fw-semibold);
   letter-spacing: var(--ls-tight);
   text-transform: uppercase;
 }
@@ -67,7 +61,6 @@
   gap: var(--space-2);
   margin: 0;
   padding: 0;
-  list-style: none;
 }
 
 .landing .footer__list a {
@@ -87,15 +80,11 @@
 .landing .footer__list a:hover,
 .landing .footer__list a:focus-visible {
   color: var(--text);
-background: color-mix(in srgb, var(--bg-muted) 15%, transparent);
+  background: color-mix(in srgb, var(--bg-muted) 15%, transparent);
 }
 
 .landing .footer__address {
   font-style: normal;
-}
-
-.landing .footer__contact-list {
-  gap: var(--space-2);
 }
 
 .landing .footer__contact-list a {
@@ -124,7 +113,7 @@ background: color-mix(in srgb, var(--bg-muted) 15%, transparent);
 }
 
 .landing .footer__social-block {
-  margin-top: var(--space-4);
+  margin-top: var(--space-6);
 }
 
 .landing .footer__social {
@@ -140,13 +129,32 @@ background: color-mix(in srgb, var(--bg-muted) 15%, transparent);
   align-items: center;
   justify-content: center;
   color: var(--text);
-  border: 1px solid var(--border);
+  border: none;
   border-radius: var(--radius-sm);
   background: var(--surface-2);
+  transform: translateY(0) scale(1);
   transition:
-    color 140ms ease,
-    background-color 140ms ease,
-    border-color 140ms ease;
+    color 160ms ease,
+    background-color 160ms ease,
+    border-color 160ms ease,
+    box-shadow 160ms ease,
+    transform 180ms ease;
+  will-change: transform;
+}
+
+.landing .footer__social-link img {
+  display: block;
+  width: 18px;
+  height: 18px;
+  object-fit: contain;
+  transform: scale(1);
+  transition:
+    filter 160ms ease,
+    transform 180ms ease;
+}
+
+html[data-theme="dark"] .landing .footer__social-link img {
+  filter: invert(1);
 }
 
 .landing .footer__social-link:hover,
@@ -154,6 +162,13 @@ background: color-mix(in srgb, var(--bg-muted) 15%, transparent);
   color: var(--accent);
   border-color: color-mix(in srgb, var(--accent) 40%, var(--border));
   background: var(--bg-muted);
+  box-shadow: 0 10px 24px color-mix(in srgb, var(--accent) 14%, transparent);
+  transform: translateY(-2px) scale(1.04);
+}
+
+.landing .footer__social-link:hover img,
+.landing .footer__social-link:focus-visible img {
+  transform: scale(1.08);
 }
 
 .landing .footer__legal {
@@ -162,7 +177,7 @@ background: color-mix(in srgb, var(--bg-muted) 15%, transparent);
   width: 100%;
   color: var(--text-muted);
   font-size: var(--fs-01);
-  margin-top: var(--space-4);
+  margin-top: var(--space-6);
 }
 
 .landing .footer__legal-label {
@@ -187,7 +202,6 @@ background: color-mix(in srgb, var(--bg-muted) 15%, transparent);
   color: var(--text-muted);
   border-radius: var(--radius-sm);
   text-underline-offset: 4px;
-
   transition:
     color 140ms ease,
     background-color 140ms ease;
@@ -213,13 +227,11 @@ background: color-mix(in srgb, var(--bg-muted) 15%, transparent);
 
 @media (min-width: 760px) {
   .landing .footer__inner {
-    padding: var(--space-6) 0 0;
+    padding: var(--space-4) 0 0;
   }
 
   .landing .footer__grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
-    column-gap: var(--space-6);
-    row-gap: var(--space-6);
   }
 
   .landing .footer__brand {
@@ -232,7 +244,6 @@ background: color-mix(in srgb, var(--bg-muted) 15%, transparent);
     flex-direction: column;
     align-items: center;
     justify-content: space-between;
-    gap: var(--space-3);
   }
 
   .landing .footer__legal-list {
@@ -257,7 +268,6 @@ background: color-mix(in srgb, var(--bg-muted) 15%, transparent);
 
   .landing .footer__brand {
     grid-column: auto;
-    padding-right: var(--space-5);
   }
 }
 

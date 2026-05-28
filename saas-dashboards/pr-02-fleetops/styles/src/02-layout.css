@@ -28,7 +28,7 @@ body > #app {
 }
 
 .section {
-  padding: var(--space-5) 0;
+  padding: var(--space-section-lg) 0;
   text-align: center;
 }
 
@@ -64,12 +64,6 @@ body > #app {
 
 /* Responsive */
 
-@media (min-width: 760px) {
-  .section {
-    padding: var(--space-6) 0;
-  }
-}
-
 @media (min-width: 1024px) {
   .section {
     text-align: start;
@@ -95,22 +89,20 @@ body > #app {
   padding: var(--space-5);
   text-align: center;
   display: grid;
-  gap: var(--space-2);
+  gap: var(--space-3);
 }
 
 .error-code {
-  font-size: clamp(48px, 8vw, 96px);
-  letter-spacing: -0.04em;
-  margin: 0;
+  color: var(--text-muted);
 }
 
-.error-title {
-  font-size: clamp(20px, 3vw, 28px);
-  margin: 0;
+.error-subtitle {
+  max-width: 28ch;
+  margin: 0 auto;
 }
 
 .error-actions {
-  margin-top: var(--space-2);
+  margin-top: var(--space-4);
   display: flex;
   justify-content: center;
 }
