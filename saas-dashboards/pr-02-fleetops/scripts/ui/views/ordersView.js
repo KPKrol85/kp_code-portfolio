@@ -11,7 +11,7 @@ function ordersView() {
 
 
   const header = dom.h("div", "module-header");
-  header.innerHTML = `<div><h2>Zlecenia</h2><p class="muted small">Monitoruj status dostaw</p></div><div class="toolbar"><select class="input" id="ordersSortBy" aria-label="Sortuj"><option value="updated">Aktualizacja</option><option value="client">Klient</option><option value="status">Status</option><option value="priority">Priorytet</option></select><select class="input" id="ordersSortDir" aria-label="Kierunek"><option value="asc">Rosnąco</option><option value="desc">Malejąco</option></select><button class="button primary" id="addOrder" type="button">Dodaj zlecenie</button><button class="button secondary" id="exportOrders" type="button">Eksportuj CSV</button></div>`;
+  header.innerHTML = `<div><h2>Zlecenia</h2><p class="muted small">Monitoruj status dostaw</p></div><div class="toolbar"><select class="input" id="ordersSortBy" aria-label="Sortuj"><option value="updated">Aktualizacja</option><option value="client">Klient</option><option value="status">Status</option><option value="priority">Priorytet</option></select><select class="input" id="ordersSortDir" aria-label="Kierunek"><option value="asc">Rosnąco</option><option value="desc">Malejąco</option></select><button class="button button--primary" id="addOrder" type="button">Dodaj zlecenie</button><button class="button button--secondary" id="exportOrders" type="button">Eksportuj CSV</button></div>`;
   root.appendChild(header);
 
   const filterBar = dom.h("div", "table-filter");
@@ -41,11 +41,8 @@ function ordersView() {
   tableWrap.id = "ordersTable";
   root.appendChild(tableWrap);
 
-  const loadMoreWrap = dom.h("div");
-  loadMoreWrap.style.marginTop = "12px";
-  loadMoreWrap.style.display = "flex";
-  loadMoreWrap.style.justifyContent = "center";
-  const loadMoreBtn = dom.h("button", "button secondary", "Załaduj więcej");
+  const loadMoreWrap = dom.h("div", "load-more");
+  const loadMoreBtn = dom.h("button", "button button--secondary", "Załaduj więcej");
   loadMoreBtn.type = "button";
   loadMoreWrap.appendChild(loadMoreBtn);
   root.appendChild(loadMoreWrap);
@@ -195,10 +192,8 @@ function ordersView() {
 
   const openOrderForm = ({ mode = "add", order = null } = {}) => {
     const isEdit = mode === "edit";
-    const form = dom.h("form");
+    const form = dom.h("form", "modal-form");
     form.noValidate = true;
-    form.style.display = "grid";
-    form.style.gap = "12px";
     form.innerHTML = `
       <label class="form-control">
         <span class="label">Klient</span>
@@ -235,9 +230,9 @@ function ordersView() {
         <input class="input" name="updated" readonly />
         <span class="form-hint">Ustawiane automatycznie.</span>
       </label>
-      <div style="display:flex;justify-content:flex-end;gap:10px;margin-top:4px;">
-        <button class="button ghost" type="button" data-modal-cancel>Anuluj</button>
-        <button class="button primary" type="submit">${isEdit ? "Zapisz zmiany" : "Dodaj zlecenie"}</button>
+      <div class="modal-actions modal-actions--form">
+        <button class="button button--ghost" type="button" data-modal-cancel>Anuluj</button>
+        <button class="button button--primary" type="submit">${isEdit ? "Zapisz zmiany" : "Dodaj zlecenie"}</button>
       </div>
     `;
     window.FleetUI.connectFieldErrors(form, "orders-form");
@@ -311,9 +306,9 @@ function ordersView() {
     body.innerHTML = `
       <p>Czy na pewno usunąć zlecenie <strong>${escapeHtml(order.id)}</strong>?</p>
       <p class="muted small">${escapeHtml(order.client)} - ${escapeHtml(order.route)}</p>
-      <div style="display:flex;justify-content:flex-end;gap:10px;margin-top:16px;">
-        <button class="button ghost" type="button" data-modal-cancel>Anuluj</button>
-        <button class="button primary" type="button" data-modal-confirm>Usuń</button>
+      <div class="modal-actions modal-actions--confirm">
+        <button class="button button--ghost" type="button" data-modal-cancel>Anuluj</button>
+        <button class="button button--primary" type="button" data-modal-confirm>Usuń</button>
       </div>
     `;
 
@@ -381,7 +376,7 @@ function ordersView() {
             <p class="tag">Brak</p>
             <h3 class="empty-state__title">Brak wyników</h3>
             <p class="muted">Zmień filtry lub wyszukiwanie, żeby zobaczyć zlecenia.</p>
-            <button class="button secondary" id="clearOrdersFilters" type="button">Wyczyść filtry</button>
+            <button class="button button--secondary" id="clearOrdersFilters" type="button">Wyczyść filtry</button>
           </div>
         </div>
       `;
@@ -419,7 +414,7 @@ function ordersView() {
         <td><span class="badge">${safePriority}</span></td>
         <td>
           <div class="dropdown" data-order-menu>
-            <button class="button ghost dropdown-trigger" type="button" aria-label="Akcje zlecenia ${safeId}" aria-expanded="false" aria-controls="${menuId}">...</button>
+            <button class="button button--ghost dropdown-trigger" type="button" aria-label="Akcje zlecenia ${safeId}" aria-expanded="false" aria-controls="${menuId}">...</button>
             <div class="dropdown-menu" id="${menuId}">
               <button class="dropdown-item" type="button" data-order-action="edit">Edytuj</button>
               <button class="dropdown-item" type="button" data-order-action="delete">Usuń</button>

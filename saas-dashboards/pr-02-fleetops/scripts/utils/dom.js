@@ -176,7 +176,7 @@ function emptyState({ title = "Brak danych", description = "", actionLabel = "",
       ${description ? `<p class="muted">${safeDescription}</p>` : ""}
       ${
         actionLabel && actionHref
-          ? `<a class="button secondary" href="${safeActionHref}">${safeActionLabel}</a>`
+          ? `<a class="button button--secondary" href="${safeActionHref}">${safeActionLabel}</a>`
           : ""
       }
     </div>

@@ -103,6 +103,13 @@
   --hero-mark-size-md: 200px;
   --hero-mark-size-lg: 240px;
 
+  /* logo sizes */
+  --logo-size-1: clamp(1.625rem, 1.55rem + 0.2vw, 1.75rem);
+  --logo-size-2: clamp(1.875rem, 1.8rem + 0.25vw, 2rem);
+  --logo-size-3: clamp(2.25rem, 2.15rem + 0.25vw, 2.375rem);
+  --logo-size-4: clamp(2.5rem, 2.25rem + 0.75vw, 2.75rem);
+  --logo-size-5: clamp(4rem, 3.5rem + 1.5vw, 4.5rem);
+
   color-scheme: light;
 }
 

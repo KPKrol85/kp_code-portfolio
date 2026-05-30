@@ -18,27 +18,27 @@ function renderLandingHeader(themeAsset = getLandingThemeAsset()) {
             </span>`;
 
   return `
-      <header class="container navbar" role="banner">
-        <a class="logo flex" href="#/" aria-label="FleetOps — Strona główna" data-scroll-top="home">
+      <header class="container site-header" role="banner">
+        <a class="site-header__brand logo flex" href="#/" aria-label="FleetOps — Strona główna" data-scroll-top="home">
 
-          <img class="logo__icon" src="${themeAsset("assets/logos/logo-black.svg", "assets/logos/logo-white.svg")}" data-theme-src-light="assets/logos/logo-black.svg" data-theme-src-dark="assets/logos/logo-white.svg" alt="FleetOps logo" width="52" height="52" />
+          <img class="site-header__logo logo__icon" src="${themeAsset("assets/logos/logo-black.svg", "assets/logos/logo-white.svg")}" data-theme-src-light="assets/logos/logo-black.svg" data-theme-src-dark="assets/logos/logo-white.svg" alt="FleetOps logo" width="44" height="44" />
 
           <span>FleetOps</span>
         </a>
-        <nav class="nav" aria-label="Nawigacja główna">
-          <button class="button ghost nav-toggle" id="navToggle" type="button" aria-expanded="false" aria-controls="mobileNav" aria-label="Przełącz nawigację">
+        <nav class="site-header__nav" aria-label="Nawigacja główna">
+          <button class="button button--ghost site-header__menu-button" id="navToggle" type="button" aria-expanded="false" aria-controls="mobileNav" aria-label="Przełącz nawigację">
 ${menuToggleIcon}
           </button>
-          <div class="nav-backdrop" data-nav-close></div>
-          <div class="nav-drawer" id="mobileNav" role="dialog" aria-modal="true" aria-label="Nawigacja mobilna" aria-hidden="true">
-            <ul class="nav-links">
-              <li><a href="#/product">Produkt</a></li>
-              <li><a href="#/features">Funkcje</a></li>
-              <li><a href="#/pricing">Cennik</a></li>
-              <li><a href="#/about">O nas</a></li>
-              <li><a href="#/contact">Kontakt</a></li>
-              <li class="dropdown">
-                <button class="nav-link" id="resourcesToggle" type="button" aria-expanded="false" aria-controls="resourcesMenu">
+          <div class="site-header__backdrop" data-nav-close></div>
+          <div class="site-header__drawer" id="mobileNav" role="dialog" aria-modal="true" aria-label="Nawigacja mobilna" aria-hidden="true">
+            <ul class="site-header__links">
+              <li class="site-header__item"><a class="site-header__link" href="#/product">Produkt</a></li>
+              <li class="site-header__item"><a class="site-header__link" href="#/features">Funkcje</a></li>
+              <li class="site-header__item"><a class="site-header__link" href="#/pricing">Cennik</a></li>
+              <li class="site-header__item"><a class="site-header__link" href="#/about">O nas</a></li>
+              <li class="site-header__item"><a class="site-header__link" href="#/contact">Kontakt</a></li>
+              <li class="site-header__item dropdown">
+                <button class="site-header__link" id="resourcesToggle" type="button" aria-expanded="false" aria-controls="resourcesMenu">
                   Zasoby
                 </button>
                 <ul class="dropdown-menu" id="resourcesMenu" aria-label="Zasoby">
@@ -47,19 +47,19 @@ ${menuToggleIcon}
                   <li><a class="dropdown-item" href="#/cookies">Polityka cookies</a></li>
                 </ul>
               </li>
-              <li><a class="button ghost" href="#/login">Zaloguj się</a></li>
-              <li>
-                <button class="button ghost" id="themeToggleLanding" type="button" aria-label="Przełącz motyw">
-                  <svg class="theme-toggle__icon theme-toggle__icon--light" width="18" height="18" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
-                    <circle cx="12" cy="12" r="4" fill="currentColor"></circle>
-                    <path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41" stroke="currentColor" stroke-width="2" stroke-linecap="round"></path>
-                  </svg>
-                  <svg class="theme-toggle__icon theme-toggle__icon--dark" width="18" height="18" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
-                    <path d="M20 12.5A7.5 7.5 0 1 1 11.5 4a6 6 0 0 0 8.5 8.5Z" fill="currentColor"></path>
-                  </svg>
-                </button>
-              </li>
             </ul>
+            <div class="site-header__actions">
+              <a class="button button--ghost site-header__action" href="#/login">Zaloguj się</a>
+              <button class="button button--ghost theme-toggle site-header__theme-toggle" id="themeToggleLanding" type="button" aria-label="Przełącz motyw">
+                <svg class="theme-toggle__icon theme-toggle__icon--light" width="18" height="18" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                  <circle cx="12" cy="12" r="4" fill="currentColor"></circle>
+                  <path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41" stroke="currentColor" stroke-width="2" stroke-linecap="round"></path>
+                </svg>
+                <svg class="theme-toggle__icon theme-toggle__icon--dark" width="18" height="18" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                  <path d="M20 12.5A7.5 7.5 0 1 1 11.5 4a6 6 0 0 0 8.5 8.5Z" fill="currentColor"></path>
+                </svg>
+              </button>
+            </div>
           </div>
         </nav>
       </header>`;
@@ -243,7 +243,7 @@ function initLandingShell() {
 
   const navToggle = document.getElementById("navToggle");
   const navDrawer = document.getElementById("mobileNav");
-  const navBackdrop = document.querySelector(".nav-backdrop");
+  const navBackdrop = document.querySelector("[data-nav-close]");
   let navOpen = false;
 
   const getDrawerFocusables = () => {
@@ -332,11 +332,11 @@ function initLandingShell() {
     document.removeEventListener("keydown", handleKeydown);
   });
 
-  const navbar = document.querySelector(".landing .navbar");
-  if (navbar) {
+  const siteHeader = document.querySelector(".landing .site-header");
+  if (siteHeader) {
     let lastY = 0;
     let ticking = false;
-    let isScrolled = navbar.classList.contains("is-scrolled");
+    let isScrolled = siteHeader.classList.contains("is-scrolled");
     const SHRINK_ADD_Y = 72;
     const SHRINK_REMOVE_Y = 24;
     const scrollOptions = { passive: true };
@@ -344,7 +344,7 @@ function initLandingShell() {
     const setScrolled = (next) => {
       if (next === isScrolled) return;
       isScrolled = next;
-      navbar.classList.toggle("is-scrolled", next);
+      siteHeader.classList.toggle("is-scrolled", next);
     };
 
     const onScroll = () => {
@@ -385,13 +385,16 @@ ${renderLandingHeader(themeAsset)}
 
       <main id="main-content">
         <section class="container section hero">
-          <div>
+          <div class="hero__content">
             <div class="tag">Centrum operacji floty i transportu</div>
-            <h1>FleetOps - zarządzanie transportem bez tarcia.</h1>
-            <p>Monitoruj zlecenia, pojazdy i kierowców w jednym widoku. Alerty SLA, realtime ETA i szybkie decyzje wspierane przez przejrzysty interfejs.</p>
+            <h1 class="hero__title">
+              <span class="hero__title-brand">FleetOps</span>
+              <span class="hero__title-main">- panel operacyjny dla transportu i floty.</span>
+            </h1>
+            <p class="hero__subtitle">Monitoruj zlecenia, pojazdy i kierowców w jednym widoku. Alerty SLA, realtime ETA i szybkie decyzje wspierane przez przejrzysty interfejs.</p>
             <div class="hero-cta">
-              <a class="button primary" href="#/login">Zacznij</a>
-              <a class="button secondary" href="#/app">Zobacz demo</a>
+              <a class="button button--primary" href="#/login">Zacznij</a>
+              <a class="button button--secondary" href="#/app">Zobacz demo</a>
               <span class="muted small">Bez instalacji. Dane demo.</span>
             </div>
           </div>
@@ -416,11 +419,16 @@ ${renderLandingHeader(themeAsset)}
           </div>
         </section>
 
-        <section class="container section landing-home__section">
-          <div class="landing-section-header">
+
+
+
+
+
+        <section class="container section">
+          <div class="landing-section__header">
             <p class="tag">Funkcje</p>
-            <h2>Usprawnij dyspozycje, kondycje floty i SLA.</h2>
-            <p class="landing-section-copy">Pracuj szybciej dzięki jasnym statusom, filtrom i alertom prosto z panelu.</p>
+            <h2 class="landing-section__title">Usprawnij dyspozycje, kondycje floty i SLA.</h2>
+            <p class="landing-section__lead">Pracuj szybciej dzięki jasnym statusom, filtrom i alertom prosto z panelu.</p>
           </div>
           <div class="grid feature-grid">
             <div class="feature-card">
@@ -442,10 +450,10 @@ ${renderLandingHeader(themeAsset)}
           </div>
         </section>
 
-        <section class="container section landing-home__section">
-          <div class="landing-section-header">
+        <section class="container section">
+          <div class="landing-section__header">
             <p class="tag">Jak to dziala</p>
-            <h2>3 kroki do kontroli nad transportem</h2>
+            <h2 class="landing-section__title">3 kroki do kontroli nad transportem</h2>
           </div>
           <div class="grid how-grid">
             <div class="step">
@@ -463,37 +471,37 @@ ${renderLandingHeader(themeAsset)}
           </div>
         </section>
 
-        <section class="container section landing-home__section">
-          <div class="landing-section-header">
+        <section class="container section">
+          <div class="landing-section__header">
             <p class="tag">Cennik</p>
-            <h2>Lekki cennik na start</h2>
+            <h2 class="landing-section__title">Lekki cennik na start</h2>
           </div>
           <div class="pricing">
             <div class="price-card">
               <div class="badge">Start</div>
               <div class="price">199 PLN</div>
               <p>miesięcznie, do 15 pojazdów</p>
-              <a class="button secondary" href="#/login">Zacznij za darmo</a>
+              <a class="button button--secondary" href="#/login">Zacznij za darmo</a>
             </div>
             <div class="price-card featured">
               <div class="badge">Rozwoj</div>
               <div class="price">499 PLN</div>
               <p>miesięcznie, do 60 pojazdów</p>
-              <a class="button secondary" href="#/contact">Umów demo</a>
+              <a class="button button--secondary" href="#/contact">Umów demo</a>
             </div>
             <div class="price-card">
               <div class="badge">Korporacyjny</div>
               <p>Indywidualnie</p>
               <p>dla flot 60+ pojazdów</p>
-              <a class="button secondary" href="#/contact">Porozmawiajmy</a>
+              <a class="button button--secondary" href="#/contact">Porozmawiajmy</a>
             </div>
           </div>
         </section>
 
-        <section class="container section landing-home__section">
-          <div class="landing-section-header">
+        <section class="container section">
+          <div class="landing-section__header">
             <p class="tag">Opinie</p>
-            <h2>Operatorzy o FleetOps</h2>
+            <h2 class="landing-section__title">Operatorzy o FleetOps</h2>
           </div>
           <div class="testimonials">
             <div class="testimonial">
@@ -511,10 +519,10 @@ ${renderLandingHeader(themeAsset)}
           </div>
         </section>
 
-        <section class="container section landing-home__section faq">
-          <div class="landing-section-header">
+        <section class="container section faq">
+          <div class="landing-section__header">
             <p class="tag">Pytania</p>
-            <h2>Najczęstsze pytania</h2>
+            <h2 class="landing-section__title">Najczęstsze pytania</h2>
           </div>
           <div class="accordion" id="faq">
             <div class="accordion-item">

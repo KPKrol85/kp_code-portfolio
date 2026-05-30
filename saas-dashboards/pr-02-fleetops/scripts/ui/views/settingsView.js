@@ -12,8 +12,8 @@ function settingsView() {
     <h3>Motyw</h3>
     <p class="muted small">Jasny / Ciemny</p>
     <div class="form-inline">
-      <button class="button ${FleetStore.state.preferences.theme === 'light' ? 'secondary' : 'ghost'}" id="lightBtn">Jasny</button>
-      <button class="button ${FleetStore.state.preferences.theme === 'dark' ? 'secondary' : 'ghost'}" id="darkBtn">Ciemny</button>
+      <button class="button ${FleetStore.state.preferences.theme === 'light' ? 'button--secondary' : 'button--ghost'}" id="lightBtn">Jasny</button>
+      <button class="button ${FleetStore.state.preferences.theme === 'dark' ? 'button--secondary' : 'button--ghost'}" id="darkBtn">Ciemny</button>
     </div>
   `;
   grid.appendChild(themeCard);
@@ -22,7 +22,7 @@ function settingsView() {
   compactCard.innerHTML = `
     <h3>Tryb kompaktowy</h3>
     <p class="muted small">Mniej odstępów</p>
-    <label class="form-control" style="flex-direction: row; align-items: center; gap: 10px;">
+    <label class="form-control settings-compact-toggle">
       <input type="checkbox" id="compactToggle" ${FleetStore.state.preferences.compact ? 'checked' : ''} /> Włącz
     </label>
   `;
@@ -32,7 +32,7 @@ function settingsView() {
   resetCard.innerHTML = `
     <h3>Reset demo</h3>
     <p class="muted small">Czyści localStorage</p>
-    <button class="button ghost" id="resetDemo">Resetuj</button>
+    <button class="button button--ghost" id="resetDemo">Resetuj</button>
   `;
   grid.appendChild(resetCard);
 

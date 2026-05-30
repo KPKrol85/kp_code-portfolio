@@ -26,7 +26,7 @@ ${FleetUI.renderLandingHeader(themeAsset)}
 
       <main class="container section" id="main-content">
         <div class="page-hero">
-          <div class="landing-section-header">
+          <div class="landing-section__header">
             <p class="tag">${eyebrow}</p>
             <h1>${title}</h1>
             <p>${lead}</p>
@@ -56,8 +56,8 @@ function renderProductPage() {
             <h2>Operacje w czasie rzeczywistym</h2>
             <p>Widoki zleceń, floty i kierowców synchronizują statusy, ETA i alerty. Zespół operacyjny ma jedno źródło prawdy.</p>
             <div class="hero-cta">
-              <a class="button primary" href="#/login">Umów demo</a>
-              <a class="button secondary" href="#/app">Zobacz panel</a>
+              <a class="button button--primary" href="#/login">Umów demo</a>
+              <a class="button button--secondary" href="#/app">Zobacz panel</a>
             </div>
           </div>
           <div class="marketing-hero__panel">
@@ -81,9 +81,9 @@ function renderProductPage() {
       </section>
 
       <section class="section-tight">
-        <div class="landing-section-header">
+        <div class="landing-section__header">
           <p class="tag">Jak to dziala</p>
-          <h2>Od danych do decyzji w 4 krokach</h2>
+          <h2 class="landing-section__title">Od danych do decyzji w 4 krokach</h2>
         </div>
         <div class="grid marketing-grid">
           <div class="marketing-card">
@@ -106,9 +106,9 @@ function renderProductPage() {
       </section>
 
       <section class="section-tight">
-        <div class="landing-section-header">
+        <div class="landing-section__header">
           <p class="tag">Moduly</p>
-          <h2>Najwazniejsze obszary pod kontrola</h2>
+          <h2 class="landing-section__title">Najwazniejsze obszary pod kontrola</h2>
         </div>
         <div class="grid marketing-grid">
           <div class="marketing-card">
@@ -131,9 +131,9 @@ function renderProductPage() {
       </section>
 
       <section class="section-tight">
-        <div class="landing-section-header">
+        <div class="landing-section__header">
           <p class="tag">Integracje</p>
-          <h2>Podlacz swoje systemy</h2>
+          <h2 class="landing-section__title">Podlacz swoje systemy</h2>
         </div>
         <div class="grid marketing-grid">
           <div class="marketing-card">
@@ -152,9 +152,9 @@ function renderProductPage() {
       </section>
 
       <section class="section-tight">
-        <div class="landing-section-header">
+        <div class="landing-section__header">
           <p class="tag">Bezpieczenstwo</p>
-          <h2>Role, uprawnienia i audyt</h2>
+          <h2 class="landing-section__title">Role, uprawnienia i audyt</h2>
         </div>
         <div class="grid marketing-grid">
           <div class="marketing-card">
@@ -174,12 +174,12 @@ function renderProductPage() {
 
       <section class="section-tight cta-panel">
         <div>
-          <h2>Gotowy na spokojniesza operacje?</h2>
+          <h2 class="landing-section__title">Gotowy na spokojniesza operacje?</h2>
           <p>Umów demo lub uruchom wersję demonstracyjną w przeglądarce.</p>
         </div>
         <div class="hero-cta">
-          <a class="button primary" href="#/contact">Skontaktuj się</a>
-          <a class="button secondary" href="#/app">Zobacz demo aplikacji</a>
+          <a class="button button--primary" href="#/contact">Skontaktuj się</a>
+          <a class="button button--secondary" href="#/app">Zobacz demo aplikacji</a>
         </div>
       </section>
     `,
@@ -245,9 +245,9 @@ function renderFeaturesPage() {
       </section>
 
       <section class="section-tight">
-        <div class="landing-section-header">
+        <div class="landing-section__header">
           <p class="tag">Dla kogo</p>
-          <h2>Branze, ktore wspiera FleetOps</h2>
+          <h2 class="landing-section__title">Branze, ktore wspiera FleetOps</h2>
         </div>
         <div class="grid marketing-grid">
           <div class="marketing-card">
@@ -271,8 +271,8 @@ function renderFeaturesPage() {
           <p>Wersja demo jest dostępna od razu, bez instalacji.</p>
         </div>
         <div class="hero-cta">
-          <a class="button primary" href="#/contact">Skontaktuj się</a>
-          <a class="button secondary" href="#/app">Zobacz demo aplikacji</a>
+          <a class="button button--primary" href="#/contact">Skontaktuj się</a>
+          <a class="button button--secondary" href="#/app">Zobacz demo aplikacji</a>
         </div>
       </section>
     `,
@@ -297,7 +297,7 @@ function renderPricingPage() {
               <li>Podstawowe alerty</li>
               <li>Raporty CSV</li>
             </ul>
-            <a class="button secondary" href="#/login">Zacznij za darmo</a>
+            <a class="button button--secondary" href="#/login">Zacznij za darmo</a>
           </div>
           <div class="price-card featured">
             <div class="badge">Rozwoj</div>
@@ -308,7 +308,7 @@ function renderPricingPage() {
               <li>SLA alerts + raporty</li>
               <li>Kierowcy + Role</li>
             </ul>
-            <a class="button primary" href="#/contact">Umów demo</a>
+            <a class="button button--primary" href="#/contact">Umów demo</a>
           </div>
           <div class="price-card">
             <div class="badge">Korporacyjny</div>
@@ -319,15 +319,15 @@ function renderPricingPage() {
               <li>SLA 99.9% + SSO</li>
               <li>Dedykowane wsparcie</li>
             </ul>
-            <a class="button ghost" href="#/contact">Porozmawiajmy</a>
+            <a class="button button--ghost" href="#/contact">Porozmawiajmy</a>
           </div>
         </div>
       </section>
 
       <section class="section-tight">
-        <div class="landing-section-header">
+        <div class="landing-section__header">
           <p class="tag">Porownanie</p>
-          <h2>Funkcje w planach</h2>
+          <h2 class="landing-section__title">Funkcje w planach</h2>
         </div>
         <div class="table-responsive">
           <table class="table">
@@ -349,7 +349,7 @@ function renderPricingPage() {
             </tbody>
           </table>
         </div>
-        <p class="muted small" style="margin-top: var(--space-2);">Faktura VAT, SLA i wsparcie w cenie. Ceny netto.</p>
+        <p class="muted small pricing-note">Faktura VAT, SLA i wsparcie w cenie. Ceny netto.</p>
       </section>
 
       <section class="section-tight cta-panel">
@@ -358,8 +358,8 @@ function renderPricingPage() {
           <p>Skontaktuj się, przygotujemy ofertę dopasowaną do skali operacji.</p>
         </div>
         <div class="hero-cta">
-          <a class="button primary" href="#/contact">Skontaktuj się</a>
-          <a class="button secondary" href="#/app">Zobacz demo aplikacji</a>
+          <a class="button button--primary" href="#/contact">Skontaktuj się</a>
+          <a class="button button--secondary" href="#/app">Zobacz demo aplikacji</a>
         </div>
       </section>
     `,
@@ -380,8 +380,8 @@ function renderSecurityPage() {
           <p>Ta podstrona jest w trakcie przygotowań. Udostępnimy szczegóły o praktykach i certyfikacjach bezpieczeństwa.</p>
           <p class="muted small">W przygotowaniu - wróć wkrótce.</p>
           <div class="hero-cta">
-            <a class="button primary" href="#/contact">Skontaktuj się</a>
-            <a class="button secondary" href="#/app">Zobacz demo</a>
+            <a class="button button--primary" href="#/contact">Skontaktuj się</a>
+            <a class="button button--secondary" href="#/app">Zobacz demo</a>
           </div>
         </div>
       </section>
@@ -403,8 +403,8 @@ function renderCareersPage() {
           <p>Budujemy sekcję z ofertami pracy i opisem zespołu. Jeśli chcesz porozmawiać wcześniej, odezwij się.</p>
           <p class="muted small">W przygotowaniu - sprawdź ponownie niebawem.</p>
           <div class="hero-cta">
-            <a class="button primary" href="#/contact">Skontaktuj się</a>
-            <a class="button secondary" href="#/app">Zobacz demo</a>
+            <a class="button button--primary" href="#/contact">Skontaktuj się</a>
+            <a class="button button--secondary" href="#/app">Zobacz demo</a>
           </div>
         </div>
       </section>
@@ -439,9 +439,9 @@ function renderAboutPage() {
       </section>
 
       <section class="section-tight">
-        <div class="landing-section-header">
+        <div class="landing-section__header">
           <p class="tag">Dlaczego FleetOps</p>
-          <h2>Operacje bez chaosu</h2>
+          <h2 class="landing-section__title">Operacje bez chaosu</h2>
         </div>
         <div class="grid marketing-grid">
           <div class="marketing-card">
@@ -460,9 +460,9 @@ function renderAboutPage() {
       </section>
 
       <section class="section-tight">
-        <div class="landing-section-header">
+        <div class="landing-section__header">
           <p class="tag">Podejście</p>
-          <h2>Praca w iteracjach</h2>
+          <h2 class="landing-section__title">Praca w iteracjach</h2>
         </div>
         <div class="grid marketing-grid">
           <div class="marketing-card">
@@ -486,8 +486,8 @@ function renderAboutPage() {
           <p>Porozmawiajmy o twojej flocie i pokażmy, jak pracuje FleetOps.</p>
         </div>
         <div class="hero-cta">
-          <a class="button primary" href="#/contact">Skontaktuj się</a>
-          <a class="button secondary" href="#/app">Zobacz demo aplikacji</a>
+          <a class="button button--primary" href="#/contact">Skontaktuj się</a>
+          <a class="button button--secondary" href="#/app">Zobacz demo aplikacji</a>
         </div>
       </section>
     `,
@@ -506,7 +506,7 @@ function renderContactPage() {
           <div class="form-card">
             <h2>Formularz kontaktowy</h2>
             <p class="muted">Zostaw dane, a odezwiemy się w ciągu 1 dnia roboczego.</p>
-            <form id="contactForm" style="display:grid; gap: 12px; margin-top: var(--space-3);">
+            <form id="contactForm" class="contact-form">
               <label class="form-control">
                 <span class="label">Imię i nazwisko</span>
                 <input class="input" name="name" type="text" required minlength="3" placeholder="Jan Kowalski" />
@@ -535,7 +535,7 @@ function renderContactPage() {
                   <span>Zgadzam się na kontakt w sprawie FleetOps. Formularz jest częścią demonstracyjnego projektu portfolio.</span>
                 </label>
               </div>
-              <button class="button primary" type="submit">Wyślij zapytanie</button>
+              <button class="button button--primary" type="submit">Wyślij zapytanie</button>
             </form>
           </div>
           <div class="marketing-card">
@@ -568,16 +568,16 @@ function renderContactPage() {
             <div class="card-soft">
               <p class="muted small">FleetOps to projekt demonstracyjny. Kontakt dotyczy twórcy projektu.</p>
               <p class="muted small">Projekt i interfejs: Kamil Król (kp_code_).</p>
-              <a class="button secondary" href="#/pricing">Zobacz cennik</a>
+              <a class="button button--secondary" href="#/pricing">Zobacz cennik</a>
             </div>
           </div>
         </div>
       </section>
 
       <section class="section-tight">
-        <div class="landing-section-header">
+        <div class="landing-section__header">
           <p class="tag">Pytania</p>
-          <h2>Najczęstsze pytania</h2>
+          <h2 class="landing-section__title">Najczęstsze pytania</h2>
         </div>
         <div class="accordion" id="faq">
           <div class="accordion-item">
@@ -619,9 +619,9 @@ function renderPrivacyPage() {
     description: "Polityka prywatności FleetOps (wersja demo). Dane lokalne, brak backendu i jasne zasady przetwarzania informacji.",
     body: `
       <section class="section-tight">
-        <div class="landing-section-header">
+        <div class="landing-section__header">
           <p class="tag">Informacja o wersji demo</p>
-          <h2>Serwis demonstracyjny bez backendu</h2>
+          <h2 class="landing-section__title">Serwis demonstracyjny bez backendu</h2>
         </div>
         <div class="grid marketing-grid">
           <div class="marketing-card">
@@ -640,9 +640,9 @@ function renderPrivacyPage() {
       </section>
 
       <section class="section-tight">
-        <div class="landing-section-header">
+        <div class="landing-section__header">
           <p class="tag">Administrator</p>
-          <h2>Kto jest administratorem danych</h2>
+          <h2 class="landing-section__title">Kto jest administratorem danych</h2>
         </div>
         <div class="card-soft">
           <p>
@@ -677,9 +677,9 @@ function renderPrivacyPage() {
       </section>
 
       <section class="section-tight">
-        <div class="landing-section-header">
+        <div class="landing-section__header">
           <p class="tag">Zakres danych</p>
-          <h2>Jakie dane mogą wystąpić w demo</h2>
+          <h2 class="landing-section__title">Jakie dane mogą wystąpić w demo</h2>
         </div>
         <div class="grid marketing-grid">
           <div class="marketing-card">
@@ -711,9 +711,9 @@ function renderPrivacyPage() {
       </section>
 
       <section class="section-tight">
-        <div class="landing-section-header">
+        <div class="landing-section__header">
           <p class="tag">Cookies i technologie podobne</p>
-          <h2>Pliki cookies oraz localStorage</h2>
+          <h2 class="landing-section__title">Pliki cookies oraz localStorage</h2>
         </div>
         <div class="marketing-card">
           <p>W wersji demo nie korzystamy z cookies marketingowych ani narzędzi analitycznych. Serwis może wykorzystywać localStorage w celu zapisania preferencji (np. motyw) oraz danych demo generowanych lokalnie w przeglądarce.</p>
@@ -721,9 +721,9 @@ function renderPrivacyPage() {
       </section>
 
       <section class="section-tight">
-        <div class="landing-section-header">
+        <div class="landing-section__header">
           <p class="tag">Prawa użytkownika</p>
-          <h2>Kontrola nad danymi w wersji demo</h2>
+          <h2 class="landing-section__title">Kontrola nad danymi w wersji demo</h2>
         </div>
         <div class="grid marketing-grid">
           <div class="marketing-card">
@@ -742,9 +742,9 @@ function renderPrivacyPage() {
       </section>
 
       <section class="section-tight">
-        <div class="landing-section-header">
+        <div class="landing-section__header">
           <p class="tag">Bezpieczeństwo</p>
-          <h2>Jak dbamy o bezpieczeństwo</h2>
+          <h2 class="landing-section__title">Jak dbamy o bezpieczeństwo</h2>
         </div>
         <div class="marketing-card">
           <p>Wersja demo działa wyłącznie po stronie klienta. Nie przechowujemy danych na serwerze, nie profilujemy i nie sprzedajemy informacji. Stosujemy podstawowe praktyki bezpieczeństwa: aktualne zależności, brak publicznego API / endpointów do przesyłania danych oraz minimalny zakres danych.</p>
@@ -753,12 +753,12 @@ function renderPrivacyPage() {
 
       <section class="section-tight cta-panel">
         <div>
-          <h2>Masz pytania o prywatność?</h2>
+          <h2 class="landing-section__title">Masz pytania o prywatność?</h2>
           <p>Skontaktuj się z nami, odpowiemy w sprawie wersji demo FleetOps.</p>
         </div>
         <div class="hero-cta">
-          <a class="button primary" href="#/contact">Kontakt</a>
-          <a class="button secondary" href="#/app">Przejdź do demo</a>
+          <a class="button button--primary" href="#/contact">Kontakt</a>
+          <a class="button button--secondary" href="#/app">Przejdź do demo</a>
         </div>
       </section>
     `,
@@ -773,9 +773,9 @@ function renderTermsPage() {
     description: "Regulamin korzystania z wersji demo FleetOps. Zasady użytkowania, ograniczenia odpowiedzialności i prawa autorskie.",
     body: `
       <section class="section-tight">
-        <div class="landing-section-header">
+        <div class="landing-section__header">
           <p class="tag">Zakres</p>
-          <h2>Charakter usługi</h2>
+          <h2 class="landing-section__title">Charakter usługi</h2>
         </div>
         <div class="grid marketing-grid">
           <div class="marketing-card">
@@ -794,9 +794,9 @@ function renderTermsPage() {
       </section>
 
       <section class="section-tight">
-        <div class="landing-section-header">
+        <div class="landing-section__header">
           <p class="tag">Zasady korzystania</p>
-          <h2>Co jest dozwolone</h2>
+          <h2 class="landing-section__title">Co jest dozwolone</h2>
         </div>
         <div class="marketing-card">
           <ul class="list-check">
@@ -808,9 +808,9 @@ function renderTermsPage() {
       </section>
 
       <section class="section-tight">
-        <div class="landing-section-header">
+        <div class="landing-section__header">
           <p class="tag">Nadużycia</p>
-          <h2>Czego zabrania regulamin</h2>
+          <h2 class="landing-section__title">Czego zabrania regulamin</h2>
         </div>
         <div class="grid marketing-grid">
           <div class="marketing-card">
@@ -829,9 +829,9 @@ function renderTermsPage() {
       </section>
 
       <section class="section-tight">
-        <div class="landing-section-header">
+        <div class="landing-section__header">
           <p class="tag">Odpowiedzialność</p>
-          <h2>Ograniczenie odpowiedzialności</h2>
+          <h2 class="landing-section__title">Ograniczenie odpowiedzialności</h2>
         </div>
         <div class="marketing-card">
           <p>Wersja demo jest udostępniana "tak jak jest" (as is). W najszerszym zakresie dopuszczalnym przez prawo właściciel projektu nie ponosi odpowiedzialności za szkody wynikające z korzystania z demo, w tym za utratę danych lokalnych, przerwy w dostępie, błędy interfejsu lub decyzje podjęte na podstawie prezentowanych informacji.</p>
@@ -839,9 +839,9 @@ function renderTermsPage() {
       </section>
 
       <section class="section-tight">
-        <div class="landing-section-header">
+        <div class="landing-section__header">
           <p class="tag">Prawa autorskie</p>
-          <h2>Własność intelektualna</h2>
+          <h2 class="landing-section__title">Własność intelektualna</h2>
         </div>
         <div class="marketing-card">
           <p>Interfejs, treści, layout, grafiki oraz kod źródłowy FleetOps są chronione prawem autorskim i należą do właściciela projektu: Kamil Król (KP_Code_). Zabronione jest kopiowanie, rozpowszechnianie lub udostępnianie bez uprzedniej pisemnej zgody.</p>
@@ -849,9 +849,9 @@ function renderTermsPage() {
       </section>
 
       <section class="section-tight">
-        <div class="landing-section-header">
+        <div class="landing-section__header">
           <p class="tag">Kontakt</p>
-          <h2>Dane właściciela</h2>
+          <h2 class="landing-section__title">Dane właściciela</h2>
         </div>
 
         <div class="card-soft">
@@ -887,12 +887,12 @@ function renderTermsPage() {
 
       <section class="section-tight cta-panel">
         <div>
-          <h2>Chcesz poznać FleetOps bliżej?</h2>
+          <h2 class="landing-section__title">Chcesz poznać FleetOps bliżej?</h2>
           <p>Przetestuj demo lub napisz do nas z pytaniami o wdrożenie.</p>
         </div>
         <div class="hero-cta">
-          <a class="button primary" href="#/app">Otwórz demo</a>
-          <a class="button secondary" href="#/contact">Skontaktuj się</a>
+          <a class="button button--primary" href="#/app">Otwórz demo</a>
+          <a class="button button--secondary" href="#/contact">Skontaktuj się</a>
         </div>
       </section>
     `,
@@ -907,9 +907,9 @@ function renderCookiesPage() {
     description: "Polityka cookies FleetOps (wersja demo). Informacje o danych technicznych, localStorage i sposobach zarządzania ustawieniami.",
     body: `
       <section class="section-tight">
-        <div class="landing-section-header">
+        <div class="landing-section__header">
           <p class="tag">Podstawy</p>
-          <h2>Jakich mechanizmów używamy</h2>
+          <h2 class="landing-section__title">Jakich mechanizmów używamy</h2>
         </div>
         <div class="grid marketing-grid">
           <div class="marketing-card">
@@ -928,9 +928,9 @@ function renderCookiesPage() {
       </section>
 
       <section class="section-tight">
-        <div class="landing-section-header">
+        <div class="landing-section__header">
           <p class="tag">Kategorie</p>
-          <h2>Jakie dane techniczne mogą wystąpić</h2>
+          <h2 class="landing-section__title">Jakie dane techniczne mogą wystąpić</h2>
         </div>
         <div class="marketing-card">
           <ul class="list-check">
@@ -943,9 +943,9 @@ function renderCookiesPage() {
       </section>
 
       <section class="section-tight">
-        <div class="landing-section-header">
+        <div class="landing-section__header">
           <p class="tag">Zarządzanie</p>
-          <h2>Jak kontrolować dane w przeglądarce</h2>
+          <h2 class="landing-section__title">Jak kontrolować dane w przeglądarce</h2>
         </div>
         <div class="grid marketing-grid">
           <div class="marketing-card">
@@ -964,9 +964,9 @@ function renderCookiesPage() {
       </section>
 
       <section class="section-tight">
-        <div class="landing-section-header">
+        <div class="landing-section__header">
           <p class="tag">Kontakt</p>
-          <h2>Masz pytania o politykę cookies?</h2>
+          <h2 class="landing-section__title">Masz pytania o politykę cookies?</h2>
         </div>
         <div class="card-soft">
           <address class="contact-address">

@@ -28,7 +28,7 @@ body > #app {
 }
 
 .section {
-  padding: var(--space-section-lg) 0;
+  padding: var(--space-section-xl) 0;
   text-align: center;
 }
 
@@ -64,7 +64,7 @@ body > #app {
 
 /* Responsive */
 
-@media (min-width: 1024px) {
+@media (min-width: 480px) {
   .section {
     text-align: start;
   }

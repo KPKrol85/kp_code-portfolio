@@ -84,6 +84,21 @@
   gap: 14px;
 }
 
+.kpi-card {
+  width: 100%;
+  text-align: left;
+  cursor: pointer;
+}
+
+.dashboard-columns {
+  gap: 16px;
+}
+
+.report-mix-grid {
+  gap: 12px;
+  margin-top: 12px;
+}
+
 /* Feed */
 
 .feed {
@@ -109,6 +124,18 @@
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
   gap: 14px;
+}
+
+.load-more {
+  display: flex;
+  justify-content: center;
+  margin-top: 12px;
+}
+
+.vehicle-card__actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
 }
 
 /* Skeleton */
@@ -161,6 +188,10 @@
   gap: 10px;
 }
 
+.skeleton-row--drivers {
+  grid-template-columns: 1.2fr 0.7fr 1fr 0.8fr 0.4fr;
+}
+
 .skeleton-cell {
   height: 14px;
 }
@@ -195,6 +226,36 @@
 
 .skeleton-card .line.md {
   width: 85%;
+}
+
+.skeleton-line--vehicle-id {
+  width: 120px;
+  margin-top: 0;
+}
+
+.skeleton-pill--vehicle-status {
+  width: 70px;
+  height: 18px;
+  border-radius: 999px;
+}
+
+.skeleton-line--vehicle-type {
+  width: 160px;
+}
+
+.skeleton-line--vehicle-driver {
+  width: 140px;
+}
+
+.skeleton-line--vehicle-check {
+  width: 150px;
+}
+
+.skeleton-button--vehicle {
+  width: 90px;
+  height: 30px;
+  margin-top: 12px;
+  border-radius: 10px;
 }
 
 .table-responsive .table {

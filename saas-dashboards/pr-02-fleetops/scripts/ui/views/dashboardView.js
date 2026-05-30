@@ -49,11 +49,8 @@ function dashboardView() {
 
     dom.clear(kpis);
     kpiData.forEach((item) => {
-      const card = dom.h("button", "panel");
+      const card = dom.h("button", "panel kpi-card");
       card.type = "button";
-      card.style.textAlign = "left";
-      card.style.width = "100%";
-      card.style.cursor = "pointer";
       card.setAttribute("aria-label", item.label);
       card.innerHTML = `<p class="muted small">${escapeHtml(item.label)}</p><strong class="kpi-value">${escapeHtml(item.value)}</strong>`;
       card.addEventListener("click", () => handleKpiClick(item.action));
@@ -143,49 +140,49 @@ function dashboardView() {
       <h2>Alerty</h2>
 
       <div class="dropdown" data-dropdown="alerts-rules">
-        <button class="button ghost small dropdown-trigger" type="button" aria-expanded="false" aria-controls="alertsRulesMenu">
+        <button class="button button--ghost small dropdown-trigger" type="button" aria-expanded="false" aria-controls="alertsRulesMenu">
           Zobacz reguły
         </button>
 
-        <div class="dropdown-menu" id="alertsRulesMenu">
-          <div style="padding:8px 10px;display:flex;align-items:center;justify-content:space-between;gap:8px;">
+        <div class="dropdown-menu alerts-rules-menu" id="alertsRulesMenu">
+          <div class="alerts-rules-menu__header">
             <span class="muted small">Reguły alertów</span>
-            <button class="button ghost small" type="button" data-alerts-reset>Reset</button>
+            <button class="button button--ghost small" type="button" data-alerts-reset>Reset</button>
           </div>
 
-          <div style="padding:6px 10px;">
-            <div class="muted small" style="padding:6px 0;">Priorytety</div>
+          <div class="alerts-rules-menu__section">
+            <div class="muted small alerts-rules-menu__title">Priorytety</div>
 
-            <label class="muted small" style="display:flex;gap:8px;align-items:center;">
+            <label class="muted small alerts-rules-menu__option">
               <input type="checkbox" data-rule-severity="wysoki" checked />
               Wysoki
             </label>
 
-            <label class="muted small" style="display:flex;gap:8px;align-items:center;margin-top:6px;">
+            <label class="muted small alerts-rules-menu__option">
               <input type="checkbox" data-rule-severity="średni" checked />
               Średni
             </label>
 
-            <label class="muted small" style="display:flex;gap:8px;align-items:center;margin-top:6px;">
+            <label class="muted small alerts-rules-menu__option">
               <input type="checkbox" data-rule-severity="niski" checked />
               Niski
             </label>
           </div>
 
-          <div class="muted small" style="padding:8px 10px;">Typy (widok)</div>
+          <div class="muted small alerts-rules-menu__group-title">Typy (widok)</div>
 
-          <div style="padding:6px 10px;">
-            <label class="muted small" style="display:flex;gap:8px;align-items:center;">
+          <div class="alerts-rules-menu__section">
+            <label class="muted small alerts-rules-menu__option">
               <input type="checkbox" data-rule-type="SLA" checked />
               SLA
             </label>
 
-            <label class="muted small" style="display:flex;gap:8px;align-items:center;margin-top:6px;">
+            <label class="muted small alerts-rules-menu__option">
               <input type="checkbox" data-rule-type="Opóźnienie" checked />
               Opóźnienie
             </label>
 
-            <label class="muted small" style="display:flex;gap:8px;align-items:center;margin-top:6px;">
+            <label class="muted small alerts-rules-menu__option">
               <input type="checkbox" data-rule-type="Serwis" checked />
               Serwis
             </label>
@@ -230,7 +227,6 @@ function dashboardView() {
 
   // ===== Layout columns =====
   const columns = dom.h("div", "grid dashboard-columns");
-  columns.style.gap = "16px";
   columns.appendChild(activity);
   columns.appendChild(alerts);
 

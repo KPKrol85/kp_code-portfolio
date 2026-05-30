@@ -10,7 +10,7 @@ function fleetView() {
   const escapeHtml = window.FleetUI.escapeHtml;
 
   const header = dom.h("div", "module-header");
-  header.innerHTML = `<div><h2>Flota</h2><p class="muted small">Zarządzaj pojazdami</p></div><div class="toolbar"><select class="input" id="fleetSortBy" aria-label="Sortuj"><option value="id">Rejestracja</option><option value="status">Status</option><option value="lastCheck">Ostatni przegląd</option><option value="type">Typ</option></select><select class="input" id="fleetSortDir" aria-label="Kierunek"><option value="asc">Rosnąco</option><option value="desc">Malejąco</option></select><button class="button primary" id="addVehicle" type="button">Dodaj pojazd</button></div>`;
+  header.innerHTML = `<div><h2>Flota</h2><p class="muted small">Zarządzaj pojazdami</p></div><div class="toolbar"><select class="input" id="fleetSortBy" aria-label="Sortuj"><option value="id">Rejestracja</option><option value="status">Status</option><option value="lastCheck">Ostatni przegląd</option><option value="type">Typ</option></select><select class="input" id="fleetSortDir" aria-label="Kierunek"><option value="asc">Rosnąco</option><option value="desc">Malejąco</option></select><button class="button button--primary" id="addVehicle" type="button">Dodaj pojazd</button></div>`;
   root.appendChild(header);
 
   const filterBar = dom.h("div", "table-filter");
@@ -31,11 +31,8 @@ function fleetView() {
   const cards = dom.h("div", "card-list");
   root.appendChild(cards);
 
-  const loadMoreWrap = dom.h("div");
-  loadMoreWrap.style.marginTop = "12px";
-  loadMoreWrap.style.display = "flex";
-  loadMoreWrap.style.justifyContent = "center";
-  const loadMoreBtn = dom.h("button", "button secondary", "Załaduj więcej");
+  const loadMoreWrap = dom.h("div", "load-more");
+  const loadMoreBtn = dom.h("button", "button button--secondary", "Załaduj więcej");
   loadMoreBtn.type = "button";
   loadMoreWrap.appendChild(loadMoreBtn);
   root.appendChild(loadMoreWrap);
@@ -119,14 +116,14 @@ function fleetView() {
           () => `
         <div class="panel skeleton-card">
           <div class="flex-between">
-            <div class="skeleton line" style="width:120px;margin-top:0;"></div>
-            <div class="skeleton" style="height:18px;width:70px;border-radius:999px;"></div>
+            <div class="skeleton line skeleton-line--vehicle-id"></div>
+            <div class="skeleton skeleton-pill--vehicle-status"></div>
           </div>
 
-          <div class="skeleton line" style="width:160px;"></div>
-          <div class="skeleton line" style="width:140px;"></div>
-          <div class="skeleton line" style="width:150px;"></div>
-          <div class="skeleton" style="height:30px;width:90px;border-radius:10px;margin-top:12px;"></div>
+          <div class="skeleton line skeleton-line--vehicle-type"></div>
+          <div class="skeleton line skeleton-line--vehicle-driver"></div>
+          <div class="skeleton line skeleton-line--vehicle-check"></div>
+          <div class="skeleton skeleton-button--vehicle"></div>
         </div>
       `
         )
@@ -179,10 +176,8 @@ function fleetView() {
 
   const openVehicleForm = ({ mode = "add", vehicle = null } = {}) => {
     const isEdit = mode === "edit";
-    const form = dom.h("form");
+    const form = dom.h("form", "modal-form");
     form.noValidate = true;
-    form.style.display = "grid";
-    form.style.gap = "12px";
     form.innerHTML = `
       <label class="form-control">
         <span class="label">Rejestracja</span>
@@ -211,9 +206,9 @@ function fleetView() {
         <input class="input" name="driver" maxlength="40" placeholder="np. K. Mazur" />
         <span class="form-error" data-error-for="driver"></span>
       </label>
-      <div style="display:flex;justify-content:flex-end;gap:10px;margin-top:4px;">
-        <button class="button ghost" type="button" data-modal-cancel>Anuluj</button>
-        <button class="button primary" type="submit">${isEdit ? "Zapisz zmiany" : "Dodaj pojazd"}</button>
+      <div class="modal-actions modal-actions--form">
+        <button class="button button--ghost" type="button" data-modal-cancel>Anuluj</button>
+        <button class="button button--primary" type="submit">${isEdit ? "Zapisz zmiany" : "Dodaj pojazd"}</button>
       </div>
     `;
     window.FleetUI.connectFieldErrors(form, "fleet-form");
@@ -282,9 +277,9 @@ function fleetView() {
     body.innerHTML = `
       <p>Usunąć pojazd <strong>${escapeHtml(vehicle.id)}</strong>?</p>
       <p class="muted small">${escapeHtml(vehicle.type)}</p>
-      <div style="display:flex;justify-content:flex-end;gap:10px;margin-top:16px;">
-        <button class="button ghost" type="button" data-modal-cancel>Anuluj</button>
-        <button class="button primary" type="button" data-modal-confirm>Usuń</button>
+      <div class="modal-actions modal-actions--confirm">
+        <button class="button button--ghost" type="button" data-modal-cancel>Anuluj</button>
+        <button class="button button--primary" type="button" data-modal-confirm>Usuń</button>
       </div>
     `;
 
@@ -367,7 +362,7 @@ function fleetView() {
             <p class="tag">Brak</p>
             <h3 class="empty-state__title">Brak pojazdów</h3>
             <p class="muted">Zmień filtry lub wyszukiwanie, żeby zobaczyć pojazdy we flocie.</p>
-            <button class="button secondary" id="clearFleetFilters" type="button">Wyczyść filtry</button>
+            <button class="button button--secondary" id="clearFleetFilters" type="button">Wyczyść filtry</button>
           </div>
         </div>
       `;
@@ -398,10 +393,10 @@ function fleetView() {
       card.innerHTML = `
         <div class="flex-between">
           <h3 class="vehicle-card__title">${safeId}</h3>
-          <div style="display:flex;align-items:center;gap:8px;">
+          <div class="vehicle-card__actions">
             <span class="badge">${safeStatus}</span>
             <div class="dropdown" data-vehicle-menu>
-              <button class="button ghost dropdown-trigger" type="button" aria-label="Akcje pojazdu ${safeId}" aria-expanded="false" aria-controls="${menuId}">...</button>
+              <button class="button button--ghost dropdown-trigger" type="button" aria-label="Akcje pojazdu ${safeId}" aria-expanded="false" aria-controls="${menuId}">...</button>
               <div class="dropdown-menu" id="${menuId}">
                 <button class="dropdown-item" type="button" data-vehicle-action="edit">Edytuj</button>
                 <button class="dropdown-item" type="button" data-vehicle-action="delete">Usuń</button>
@@ -412,9 +407,9 @@ function fleetView() {
         <p class="muted">${safeType}</p>
         <p class="small">Kierowca: ${safeDriver}</p>
         <p class="small">Ostatni przegląd: ${format.dateShort(vehicle.lastCheck)}</p>
-        <button class="button ghost small">Szczegóły</button>
+        <button class="button button--ghost small">Szczegóły</button>
       `;
-      const detailsBtn = card.querySelector("button.button.ghost.small");
+      const detailsBtn = card.querySelector("button.button--ghost.small");
       detailsBtn.addEventListener("click", () => openVehicle(vehicle));
 
       const trigger = card.querySelector(".dropdown-trigger");

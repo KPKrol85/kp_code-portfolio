@@ -39,6 +39,11 @@
   gap: 10px;
 }
 
+.sidebar .logo__icon {
+  width: var(--logo-size-2);
+  height: var(--logo-size-2);
+}
+
 .sidebar nav {
   display: grid;
   gap: 8px;
@@ -116,7 +121,7 @@
   margin-left: 0;
 }
 
-.topbar-actions #themeToggle {
+.topbar-actions > .theme-toggle {
   display: none;
 }
 
@@ -200,22 +205,15 @@
   letter-spacing: -0.02em;
 }
 
+.app-topbar__brand .logo__icon {
+  width: var(--logo-size-1);
+  height: var(--logo-size-1);
+}
+
 .app-topbar__actions {
   display: inline-flex;
   align-items: center;
   gap: 6px;
-}
-
-.theme-toggle__icon {
-  display: none;
-}
-
-html[data-theme="light"] #themeToggleMobile .theme-toggle__icon--light {
-  display: block;
-}
-
-html[data-theme="dark"] #themeToggleMobile .theme-toggle__icon--dark {
-  display: block;
 }
 
 .drawer {
@@ -364,6 +362,36 @@ body.drawer-open {
   border-color: color-mix(in srgb, var(--border) 80%, transparent);
 }
 
+.alerts-rules-menu__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  padding: 8px 10px;
+}
+
+.alerts-rules-menu__section {
+  padding: 6px 10px;
+}
+
+.alerts-rules-menu__title {
+  padding: 6px 0;
+}
+
+.alerts-rules-menu__group-title {
+  padding: 8px 10px;
+}
+
+.alerts-rules-menu__option {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.alerts-rules-menu__option + .alerts-rules-menu__option {
+  margin-top: 6px;
+}
+
 .alert-content strong {
   display: block;
 }
@@ -481,6 +509,26 @@ html[data-theme="dark"] .app-shell .setting-card:has(input, select, textarea, bu
   padding: var(--space-3);
   border-radius: var(--radius);
   background: var(--surface);
+}
+
+.settings-compact-toggle {
+  flex-direction: row;
+  align-items: center;
+  gap: 10px;
+}
+
+.not-found-panel {
+  max-width: 520px;
+  margin: 40px auto;
+  text-align: center;
+}
+
+.not-found-panel__header {
+  justify-content: center;
+}
+
+.not-found-panel__copy {
+  margin: 8px 0 20px;
 }
 
 /* Compact Mode */
@@ -611,7 +659,7 @@ body[data-compact="true"] .topbar {
     padding: 14px var(--space-4);
   }
 
-  .topbar-actions #themeToggle {
+  .topbar-actions > .theme-toggle {
     display: inline-flex;
   }
 

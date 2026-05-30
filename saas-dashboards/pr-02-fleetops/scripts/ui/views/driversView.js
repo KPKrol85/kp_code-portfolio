@@ -10,7 +10,7 @@ function driversView() {
   const escapeHtml = window.FleetUI.escapeHtml;
 
   const header = dom.h("div", "module-header");
-  header.innerHTML = `<div><h2>Kierowcy</h2><p class="muted small">Status i ostatnie kursy</p></div><div class="toolbar"><select class="input" id="driversSortBy" aria-label="Sortuj"><option value="name">Imię i nazwisko</option><option value="status">Status</option><option value="phone">Telefon</option><option value="lastTrip">Ostatni kurs</option></select><select class="input" id="driversSortDir" aria-label="Kierunek"><option value="asc">Rosnąco</option><option value="desc">Malejąco</option></select><button class="button primary" id="addDriver" type="button">Dodaj kierowcę</button></div>`;
+  header.innerHTML = `<div><h2>Kierowcy</h2><p class="muted small">Status i ostatnie kursy</p></div><div class="toolbar"><select class="input" id="driversSortBy" aria-label="Sortuj"><option value="name">Imię i nazwisko</option><option value="status">Status</option><option value="phone">Telefon</option><option value="lastTrip">Ostatni kurs</option></select><select class="input" id="driversSortDir" aria-label="Kierunek"><option value="asc">Rosnąco</option><option value="desc">Malejąco</option></select><button class="button button--primary" id="addDriver" type="button">Dodaj kierowcę</button></div>`;
   root.appendChild(header);
 
   const filterBar = dom.h("div", "table-filter");
@@ -32,11 +32,8 @@ function driversView() {
   list.innerHTML = '<div class="table-responsive"><table class="table"><thead><tr><th>Imię i nazwisko</th><th>Status</th><th>Ostatni kurs</th><th>Telefon</th><th>Akcje</th></tr></thead><tbody></tbody></table></div>';
   root.appendChild(list);
 
-  const loadMoreWrap = dom.h("div");
-  loadMoreWrap.style.marginTop = "12px";
-  loadMoreWrap.style.display = "flex";
-  loadMoreWrap.style.justifyContent = "center";
-  const loadMoreBtn = dom.h("button", "button secondary", "Załaduj więcej");
+  const loadMoreWrap = dom.h("div", "load-more");
+  const loadMoreBtn = dom.h("button", "button button--secondary", "Załaduj więcej");
   loadMoreBtn.type = "button";
   loadMoreWrap.appendChild(loadMoreBtn);
   root.appendChild(loadMoreWrap);
@@ -121,7 +118,7 @@ function driversView() {
         ${Array.from({ length: 6 })
           .map(
             () => `
-          <div class="skeleton-row" style="grid-template-columns: 1.2fr 0.7fr 1fr 0.8fr 0.4fr;">
+          <div class="skeleton-row skeleton-row--drivers">
             <div class="skeleton skeleton-cell lg"></div>
             <div class="skeleton skeleton-cell"></div>
             <div class="skeleton skeleton-cell"></div>
@@ -182,10 +179,8 @@ function driversView() {
 
   const openDriverForm = ({ mode = "add", driver = null } = {}) => {
     const isEdit = mode === "edit";
-    const form = dom.h("form");
+    const form = dom.h("form", "modal-form");
     form.noValidate = true;
-    form.style.display = "grid";
-    form.style.gap = "12px";
     form.innerHTML = `
       <label class="form-control">
         <span class="label">Imię i nazwisko</span>
@@ -209,9 +204,9 @@ function driversView() {
         <input class="input" name="lastTrip" maxlength="80" placeholder="np. Warszawa - Rzeszów" />
         <span class="form-error" data-error-for="lastTrip"></span>
       </label>
-      <div style="display:flex;justify-content:flex-end;gap:10px;margin-top:4px;">
-        <button class="button ghost" type="button" data-modal-cancel>Anuluj</button>
-        <button class="button primary" type="submit">${isEdit ? "Zapisz zmiany" : "Dodaj kierowcę"}</button>
+      <div class="modal-actions modal-actions--form">
+        <button class="button button--ghost" type="button" data-modal-cancel>Anuluj</button>
+        <button class="button button--primary" type="submit">${isEdit ? "Zapisz zmiany" : "Dodaj kierowcę"}</button>
       </div>
     `;
     window.FleetUI.connectFieldErrors(form, "drivers-form");
@@ -276,9 +271,9 @@ function driversView() {
     body.innerHTML = `
       <p>Usunąć kierowcę <strong>${escapeHtml(driver.name)}</strong>?</p>
       <p class="muted small">${escapeHtml(driver.phone)}</p>
-      <div style="display:flex;justify-content:flex-end;gap:10px;margin-top:16px;">
-        <button class="button ghost" type="button" data-modal-cancel>Anuluj</button>
-        <button class="button primary" type="button" data-modal-confirm>Usuń</button>
+      <div class="modal-actions modal-actions--confirm">
+        <button class="button button--ghost" type="button" data-modal-cancel>Anuluj</button>
+        <button class="button button--primary" type="button" data-modal-confirm>Usuń</button>
       </div>
     `;
 
@@ -369,7 +364,7 @@ function driversView() {
             <p class="tag">Brak</p>
             <h3 class="empty-state__title">Brak wyników</h3>
             <p class="muted">Zmień filtry lub wyszukiwanie, żeby zobaczyć kierowców.</p>
-            <button class="button secondary" id="clearDriversFilters" type="button">Wyczyść filtry</button>
+            <button class="button button--secondary" id="clearDriversFilters" type="button">Wyczyść filtry</button>
           </div>
         </div>
       `;
@@ -408,7 +403,7 @@ function driversView() {
         <td>${safePhone}</td>
         <td>
           <div class="dropdown" data-driver-menu>
-            <button class="button ghost dropdown-trigger" type="button" aria-label="Akcje kierowcy ${safeName}" aria-expanded="false" aria-controls="${menuId}">...</button>
+            <button class="button button--ghost dropdown-trigger" type="button" aria-label="Akcje kierowcy ${safeName}" aria-expanded="false" aria-controls="${menuId}">...</button>
             <div class="dropdown-menu" id="${menuId}">
               <button class="dropdown-item" type="button" data-driver-action="edit">Edytuj</button>
               <button class="dropdown-item" type="button" data-driver-action="delete">Usuń</button>

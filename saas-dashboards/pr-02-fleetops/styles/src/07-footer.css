@@ -36,8 +36,8 @@
 }
 
 .landing .footer__logo img {
-  width: clamp(64px, 6vw, 72px);
-  height: clamp(64px, 6vw, 72px);
+  width: var(--logo-size-5);
+  height: var(--logo-size-5);
 }
 
 .landing .footer__name {

@@ -1,61 +1,54 @@
 /* Landing Base */
 
-.landing {
-  background: var(--bg);
-  color: var(--text);
-}
-
 .landing-home {
   background: linear-gradient(180deg, color-mix(in srgb, var(--bg-elevated) 32%, transparent), transparent 34rem), var(--bg);
 }
 
-/* Hero */
-
 .landing-home .section:not(.hero) {
-  padding-block: var(--space-6);
+  padding-block: var(--space-section-xl);
 }
 
-.landing .section.hero {
+/* Hero */
+
+.landing .hero {
   padding-block: var(--space-section-xl);
   display: grid;
   grid-template-columns: 1fr;
   align-items: center;
   gap: var(--space-5);
+}
+
+.landing .hero__content {
   text-align: center;
 }
 
-.landing .hero h1 {
-  max-width: 16ch;
+.landing .hero__title {
+  max-width: 18ch;
   margin: 0 auto;
 }
 
-.landing .hero p {
-  max-width: 56ch;
+.landing .hero__title-brand,
+.landing .hero__title-main {
+  display: block;
+}
+
+.landing .hero__subtitle {
+  max-width: 38ch;
   margin: var(--space-3) auto;
 }
 
 .landing .hero-cta {
   display: flex;
   justify-content: center;
-  gap: var(--space-3);
+  gap: var(--space-2);
   flex-wrap: wrap;
-  margin-top: var(--space-5);
-  text-align: center;
-}
-
-.landing .section.hero .hero-cta {
-  justify-content: center;
+  margin-top: var(--space-6);
   text-align: center;
 }
 
 .landing .hero-cta .button {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
   height: 40px;
   min-width: 140px;
-  padding: var(--space-1) var(--space-3);
-  border-radius: var(--radius);
   font-size: var(--fs-02);
   line-height: 1;
   text-align: center;
@@ -65,7 +58,7 @@
   color: var(--text-muted);
   font-size: var(--fs-01);
   flex-basis: 100%;
-  margin-top: var(--space-1);
+  margin-top: var(--space-2);
   text-align: inherit;
 }
 
@@ -92,12 +85,12 @@
   position: relative;
   width: 100%;
   max-width: 620px;
-  border-radius: var(--radius-md);
+  border-radius: var(--radius);
   overflow: hidden;
   border: 1px solid color-mix(in srgb, var(--border) 88%, transparent);
   box-shadow: var(--shadow-elev-1);
   background: color-mix(in srgb, var(--bg-elevated) 88%, var(--surface));
-   filter: saturate(1.04) contrast(1.04);
+  filter: saturate(1.04) contrast(1.04);
 }
 
 .img-swap {
@@ -139,17 +132,37 @@
   }
 }
 
+@media (min-width: 480px) {
+  .landing .hero__content {
+    text-align: left;
+    margin: 0 var(--space-3);
+  }
+
+  .landing .hero__title {
+    max-width: 18ch;
+    margin: 0;
+  }
+
+  .landing .hero__subtitle {
+    margin: var(--space-3) 0;
+    max-width: 46ch;
+  }
+
+  .landing .hero-cta {
+    justify-content: flex-start;
+    text-align: left;
+  }
+}
+
 @media (min-width: 760px) {
   .landing .section.hero {
     grid-template-columns: 1fr 1fr;
-    gap: var(--space-6);
   }
 }
 
 @media (min-width: 1024px) {
   .landing .section.hero {
     grid-template-columns: 1fr 1.1fr;
-    gap: var(--space-8);
   }
 }
 
@@ -162,24 +175,42 @@
 
 /* Section Rhythm */
 
-.landing .landing-section-header {
+.landing .landing-section__header {
   display: grid;
-  gap: var(--space-1);
+  gap: var(--space-2);
   justify-items: center;
-  margin-bottom: var(--space-3);
+  margin-bottom: var(--space-4);
   text-align: center;
 }
 
-.landing .landing-section-header .tag {
-  justify-self: center;
-  margin-bottom: var(--space-1);
+.landing .landing-section__title {
+  max-width: 18ch;
+  margin-inline: auto;
 }
 
-.landing .landing-section-copy,
-.landing .landing-section-header > p:not(.tag) {
-  max-width: 64ch;
-  color: var(--text-muted);
+.landing .landing-section__lead {
+  max-width: 38ch;
+  margin: var(--space-1) auto;
 }
+
+@media (min-width: 480px) {
+  .landing .landing-section__header {
+    justify-items: start;
+    text-align: left;
+  }
+
+  .landing .landing-section__title {
+    max-width: 28ch;
+    margin: 0;
+  }
+
+  .landing .landing-section__lead {
+    max-width: 46ch;
+    margin: 0;
+  }
+}
+
+/* Grids & Cards */
 
 .landing-home .feature-grid,
 .landing-home .how-grid,
@@ -367,31 +398,7 @@ html[data-theme="dark"] .landing .testimonial:focus-within {
   box-shadow: var(--shadow);
 }
 
-@media (min-width: 480px) {
-  .landing-home .hero-cta {
-    gap: var(--space-3);
-  }
-
-  .landing-home .hero-cta .button {
-    flex: 0 0 auto;
-    min-width: 140px;
-  }
-}
-
 @media (min-width: 760px) {
-  .landing-home .section:not(.hero),
-  .landing.marketing .section-tight {
-    padding-block: var(--space-section-lg);
-  }
-
-  .landing .landing-section-header {
-    margin-bottom: var(--space-4);
-  }
-
-  .landing .landing-section-header h2 {
-    font-size: var(--fs-07);
-  }
-
   .landing-home .feature-grid,
   .landing-home .how-grid,
   .landing-home .pricing,
@@ -419,15 +426,6 @@ html[data-theme="dark"] .landing .testimonial:focus-within {
 }
 
 @media (min-width: 1024px) {
-  .landing .landing-section-header {
-    justify-items: start;
-    text-align: left;
-  }
-
-  .landing .landing-section-header .tag {
-    justify-self: start;
-  }
-
   .landing .marketing-hero__content .hero-cta,
   .landing .marketing-card > .hero-cta {
     justify-content: flex-start;
@@ -452,7 +450,7 @@ html[data-theme="dark"] .landing .testimonial:focus-within {
   overflow-x: clip;
 }
 
-.landing .page-hero .landing-section-header {
+.landing .page-hero .landing-section__header {
   justify-items: center;
   margin-bottom: 0;
   text-align: center;
@@ -513,6 +511,11 @@ html[data-theme="dark"] .landing .testimonial:focus-within {
 .landing .marketing-grid {
   grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
   gap: var(--space-3);
+}
+
+.landing .info-page__body {
+  gap: 12px;
+  margin-top: var(--space-3);
 }
 
 .landing .contact-grid {
@@ -588,6 +591,16 @@ html[data-theme="dark"] .landing .testimonial:focus-within {
   gap: var(--space-2);
   margin-top: var(--space-2);
   font-style: normal;
+}
+
+.landing .contact-form {
+  display: grid;
+  gap: 12px;
+  margin-top: var(--space-3);
+}
+
+.landing .pricing-note {
+  margin-top: var(--space-2);
 }
 
 .landing .list-check {
@@ -686,12 +699,12 @@ html[data-theme="dark"] .landing .testimonial:focus-within {
 }
 
 @media (min-width: 1024px) {
-  .landing .page-hero .landing-section-header {
+  .landing .page-hero .landing-section__header {
     justify-items: start;
     text-align: left;
   }
 
-  .landing .page-hero .landing-section-header > h1 {
+  .landing .page-hero .landing-section__header > h1 {
     max-width: 20ch;
   }
 

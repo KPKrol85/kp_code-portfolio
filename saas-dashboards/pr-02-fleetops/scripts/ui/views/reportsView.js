@@ -2,11 +2,11 @@ function reportsView() {
   const root = dom.h('div');
   const escapeHtml = window.FleetUI.escapeHtml;
   const header = dom.h('div', 'module-header');
-  header.innerHTML = `<div><h2>Raporty</h2><p class="muted small">Wydajność i SLA</p></div><div class="toolbar"><button class="button secondary" id="exportReports">Eksportuj JSON</button></div>`;
+  header.innerHTML = `<div><h2>Raporty</h2><p class="muted small">Wydajność i SLA</p></div><div class="toolbar"><button class="button button--secondary" id="exportReports">Eksportuj JSON</button></div>`;
   root.appendChild(header);
 
   const chart = dom.h('div', 'panel');
-  chart.innerHTML = '<h3 class="panel-heading">Miks wydajności</h3><div class="grid report-mix-grid" style="gap: 12px; margin-top: 12px;"></div>';
+  chart.innerHTML = '<h3 class="panel-heading">Miks wydajności</h3><div class="grid report-mix-grid"></div>';
   const bars = chart.querySelector('.grid');
   FleetSeed.reports.performance.forEach((item) => {
     const wrap = dom.h('div');
