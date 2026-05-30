@@ -20,7 +20,7 @@ body > #app {
   justify-self: start;
 }
 
-/* Layout Utilities */
+/* Layout Primitives */
 
 .container {
   width: min(1120px, 92vw);
@@ -35,6 +35,13 @@ body > #app {
 .grid {
   display: grid;
   gap: var(--space-3);
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+}
+
+@media (min-width: 480px) {
+  .grid {
+    gap: var(--space-4);
+  }
 }
 
 .flex {

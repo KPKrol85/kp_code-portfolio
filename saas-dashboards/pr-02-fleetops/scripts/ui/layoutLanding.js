@@ -431,24 +431,28 @@ ${renderLandingHeader(themeAsset)}
             <p class="landing-section__lead">Pracuj szybciej dzięki jasnym statusom, filtrom i alertom prosto z panelu.</p>
           </div>
           <div class="grid feature-grid">
-            <div class="feature-card">
-              <h3>Rozwój dyspozycji</h3>
-              <p>Przydzielaj kursy, śledź postęp i reaguj na zakłócenia z jednego widoku.</p>
+            <div class="card card--feature">
+              <h3 class="card__title">Rozwój dyspozycji</h3>
+              <p class="card__text">Przydzielaj kursy, śledź postęp i reaguj na zakłócenia z jednego widoku.</p>
             </div>
-            <div class="feature-card">
-              <h3>Kondycja floty</h3>
-              <p>Przeglądy, serwisy i awarie pod kontrolą dzięki checklistom i timeline.</p>
+            <div class="card card--feature">
+              <h3 class="card__title">Kondycja floty</h3>
+              <p class="card__text">Przeglądy, serwisy i awarie pod kontrolą dzięki checklistom i timeline.</p>
             </div>
-            <div class="feature-card">
-              <h3>Alerty SLA</h3>
-              <p>Alerty o opóźnieniach i KPI, zanim klient to zauważy.</p>
+            <div class="card card--feature">
+              <h3 class="card__title">Alerty SLA</h3>
+              <p class="card__text">Alerty o opóźnieniach i KPI, zanim klient to zauważy.</p>
             </div>
-            <div class="feature-card">
-              <h3>Raporty</h3>
-              <p>Wydajność, wykorzystanie floty i emisje w lekkich raportach eksportowalnych.</p>
+            <div class="card card--feature">
+              <h3 class="card__title">Raporty</h3>
+              <p class="card__text">Wydajność, wykorzystanie floty i emisje w lekkich raportach eksportowalnych.</p>
             </div>
           </div>
         </section>
+
+
+
+
 
         <section class="container section">
           <div class="landing-section__header">

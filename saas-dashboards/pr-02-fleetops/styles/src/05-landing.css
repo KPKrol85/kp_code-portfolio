@@ -212,21 +212,13 @@
 
 /* Grids & Cards */
 
-.landing-home .feature-grid,
-.landing-home .how-grid,
-.landing-home .pricing,
-.landing-home .testimonials {
-  gap: var(--space-3);
-}
 
-.landing-home .feature-card,
 .landing-home .step,
 .landing-home .price-card,
 .landing-home .testimonial {
   min-width: 0;
 }
 
-.landing-home .feature-card,
 .landing-home .step {
   display: grid;
   align-content: start;
@@ -234,7 +226,6 @@
   min-height: 0;
 }
 
-.landing-home .feature-card p,
 .landing-home .step p,
 .landing-home .price-card p,
 .landing-home .testimonial p {
@@ -245,7 +236,6 @@
 
 .landing .how-grid {
   grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-  gap: var(--space-3);
 }
 
 .landing .step {
@@ -399,15 +389,7 @@ html[data-theme="dark"] .landing .testimonial:focus-within {
 }
 
 @media (min-width: 760px) {
-  .landing-home .feature-grid,
-  .landing-home .how-grid,
-  .landing-home .pricing,
-  .landing-home .testimonials,
-  .landing .marketing-grid {
-    gap: var(--space-4);
-  }
-
-  .landing-home .feature-card,
+  .landing-home,
   .landing-home .step {
     min-height: 132px;
   }

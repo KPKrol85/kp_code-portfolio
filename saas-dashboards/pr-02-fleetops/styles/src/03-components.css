@@ -35,16 +35,6 @@ hr {
   margin: var(--space-3) 0;
 }
 
-/* Surfaces */
-
-.card {
-  padding: var(--space-3);
-  border-radius: var(--radius);
-  background: var(--surface);
-  border: 1px solid var(--border);
-  box-shadow: var(--shadow);
-}
-
 /* Theme swap */
 
 .logo__icon--dark {
@@ -105,11 +95,7 @@ hr {
 /* button--primary */
 
 .button--primary {
-  background: linear-gradient(
-    120deg,
-    color-mix(in srgb, var(--accent) 88%, white 12%),
-    color-mix(in srgb, var(--accent-strong) 88%, white 12%)
-  );
+  background: linear-gradient(120deg, color-mix(in srgb, var(--accent) 88%, white 12%), color-mix(in srgb, var(--accent-strong) 88%, white 12%));
   color: #ffffff;
   border-color: transparent;
   box-shadow:
@@ -122,11 +108,7 @@ hr {
 }
 
 .button--primary:hover {
-  background: linear-gradient(
-    120deg,
-    color-mix(in srgb, var(--accent) 94%, white 6%),
-    color-mix(in srgb, var(--accent-strong) 92%, white 8%)
-  );
+  background: linear-gradient(120deg, color-mix(in srgb, var(--accent) 94%, white 6%), color-mix(in srgb, var(--accent-strong) 92%, white 8%));
   color: #ffffff;
   transform: translateY(-1px);
   box-shadow:
@@ -470,111 +452,6 @@ textarea:invalid:focus-visible {
   margin-top: 16px;
 }
 
-.feature-grid {
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-}
-
-.feature-card {
-  padding: var(--space-3);
-  border-radius: var(--radius);
-  border: 1px solid var(--border);
-  background: var(--surface);
-  box-shadow: var(--shadow);
-}
-
-.feature-card,
-.feature-group,
-.price-card,
-.marketing-card,
-.stat-card {
-  transition:
-    transform 140ms ease,
-    box-shadow 160ms ease,
-    border-color 160ms ease,
-    background-color 160ms ease;
-}
-
-html[data-theme="light"] .feature-card:focus-within,
-html[data-theme="light"] .feature-group:focus-within,
-html[data-theme="light"] .price-card:focus-within,
-html[data-theme="light"] .marketing-card:focus-within,
-html[data-theme="light"] .stat-card:focus-within {
-  border-color: color-mix(in srgb, var(--accent) 28%, var(--border));
-  background-color: color-mix(in srgb, var(--surface) 92%, var(--accent-ghost) 8%);
-  box-shadow: 0 10px 24px rgba(15, 23, 42, 0.08);
-  transform: translateY(-1px);
-}
-
-html[data-theme="dark"] .feature-card:focus-within,
-html[data-theme="dark"] .feature-group:focus-within,
-html[data-theme="dark"] .price-card:focus-within,
-html[data-theme="dark"] .marketing-card:focus-within,
-html[data-theme="dark"] .stat-card:focus-within {
-  border-color: color-mix(in srgb, var(--accent) 32%, var(--border));
-  background-color: color-mix(in srgb, var(--surface) 86%, var(--accent-ghost) 14%);
-  box-shadow:
-    0 12px 26px rgba(0, 0, 0, 0.38),
-    0 0 0 1px color-mix(in srgb, var(--accent) 28%, transparent);
-  transform: translateY(-1px);
-}
-
-.feature-card:active,
-.feature-group:active,
-.price-card:active,
-.marketing-card:active,
-.stat-card:active {
-  transform: translateY(0);
-}
-
-@media (hover: hover) and (pointer: fine) {
-  html[data-theme="light"] .feature-card:hover,
-  html[data-theme="light"] .feature-group:hover,
-  html[data-theme="light"] .price-card:hover,
-  html[data-theme="light"] .marketing-card:hover,
-  html[data-theme="light"] .stat-card:hover {
-    border-color: color-mix(in srgb, var(--accent) 28%, var(--border));
-    background-color: color-mix(in srgb, var(--surface) 92%, var(--accent-ghost) 8%);
-    box-shadow: 0 10px 24px rgba(15, 23, 42, 0.08);
-    transform: translateY(-1px);
-  }
-
-  html[data-theme="dark"] .feature-card:hover,
-  html[data-theme="dark"] .feature-group:hover,
-  html[data-theme="dark"] .price-card:hover,
-  html[data-theme="dark"] .marketing-card:hover,
-  html[data-theme="dark"] .stat-card:hover {
-    border-color: color-mix(in srgb, var(--accent) 32%, var(--border));
-    background-color: color-mix(in srgb, var(--surface) 86%, var(--accent-ghost) 14%);
-    box-shadow:
-      0 12px 26px rgba(0, 0, 0, 0.38),
-      0 0 0 1px color-mix(in srgb, var(--accent) 28%, transparent);
-    transform: translateY(-1px);
-  }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .feature-card,
-  .feature-group,
-  .price-card,
-  .marketing-card,
-  .stat-card {
-    transition: none;
-  }
-
-  .feature-card:focus-within,
-  .feature-group:focus-within,
-  .price-card:focus-within,
-  .marketing-card:focus-within,
-  .stat-card:focus-within,
-  .feature-card:hover,
-  .feature-group:hover,
-  .price-card:hover,
-  .marketing-card:hover,
-  .stat-card:hover {
-    transform: none;
-  }
-}
-
 /* Accordion */
 
 .accordion {
@@ -758,4 +635,84 @@ html[data-theme="dark"] .stat-card:focus-within {
   display: flex;
   gap: var(--space-2);
   flex-wrap: wrap;
+}
+
+/* Cards */
+
+.card {
+  padding: var(--space-3);
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  background: var(--surface);
+  box-shadow: var(--shadow);
+  transition:
+    transform 140ms ease,
+    box-shadow 160ms ease,
+    border-color 160ms ease,
+    background-color 160ms ease;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  html[data-theme="light"] .card:hover {
+    border-color: color-mix(in srgb, var(--accent) 28%, var(--border));
+    background-color: color-mix(in srgb, var(--surface) 92%, var(--accent-ghost) 8%);
+    box-shadow: 0 10px 24px rgba(15, 23, 42, 0.08);
+    transform: translateY(-1px);
+  }
+  html[data-theme="dark"] .card:hover {
+    border-color: color-mix(in srgb, var(--accent) 32%, var(--border));
+    background-color: color-mix(in srgb, var(--surface) 86%, var(--accent-ghost) 14%);
+    box-shadow:
+      0 12px 26px rgba(0, 0, 0, 0.38),
+      0 0 0 1px color-mix(in srgb, var(--accent) 28%, transparent);
+    transform: translateY(-1px);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .card {
+    transition: none;
+  }
+  .card:focus-within,
+  .card:hover {
+    transform: none;
+  }
+}
+
+html[data-theme="light"] .card:focus-within {
+  border-color: color-mix(in srgb, var(--accent) 28%, var(--border));
+  background-color: color-mix(in srgb, var(--surface) 92%, var(--accent-ghost) 8%);
+  box-shadow: 0 10px 24px rgba(15, 23, 42, 0.08);
+  transform: translateY(-1px);
+}
+html[data-theme="dark"] .card:focus-within {
+  border-color: color-mix(in srgb, var(--accent) 32%, var(--border));
+  background-color: color-mix(in srgb, var(--surface) 86%, var(--accent-ghost) 14%);
+  box-shadow:
+    0 12px 26px rgba(0, 0, 0, 0.38),
+    0 0 0 1px color-mix(in srgb, var(--accent) 28%, transparent);
+  transform: translateY(-1px);
+}
+
+.card:active {
+  transform: translateY(0);
+}
+
+/* Feature cards */
+
+.card--feature {
+  display: grid;
+  align-content: start;
+  gap: var(--space-2);
+  min-width: 0;
+}
+
+.card__title {
+  margin: 0;
+   max-width: 18ch;
+}
+
+.card__text {
+  margin: 0;
+   max-width: 22ch;
 }
