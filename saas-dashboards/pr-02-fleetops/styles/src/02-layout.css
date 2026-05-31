@@ -27,10 +27,14 @@ body > #app {
   margin: 0 auto;
 }
 
+/* Sections */
+
 .section {
   padding: var(--space-section-xl) 0;
   text-align: center;
 }
+
+/* Grid */
 
 .grid {
   display: grid;
@@ -44,6 +48,12 @@ body > #app {
   }
 }
 
+.grid--pricing {
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+}
+
+/* Flex */
+
 .flex {
   display: flex;
 }
@@ -53,6 +63,8 @@ body > #app {
   align-items: center;
   justify-content: space-between;
 }
+
+
 
 .muted {
   color: var(--text-muted);

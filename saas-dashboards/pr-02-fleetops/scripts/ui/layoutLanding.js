@@ -419,18 +419,13 @@ ${renderLandingHeader(themeAsset)}
           </div>
         </section>
 
-
-
-
-
-
         <section class="container section">
           <div class="landing-section__header">
             <p class="tag">Funkcje</p>
             <h2 class="landing-section__title">Usprawnij dyspozycje, kondycje floty i SLA.</h2>
             <p class="landing-section__lead">Pracuj szybciej dzięki jasnym statusom, filtrom i alertom prosto z panelu.</p>
           </div>
-          <div class="grid feature-grid">
+          <div class="grid">
             <div class="card card--feature">
               <h3 class="card__title">Rozwój dyspozycji</h3>
               <p class="card__text">Przydzielaj kursy, śledź postęp i reaguj na zakłócenia z jednego widoku.</p>
@@ -450,57 +445,91 @@ ${renderLandingHeader(themeAsset)}
           </div>
         </section>
 
-
-
-
-
         <section class="container section">
           <div class="landing-section__header">
-            <p class="tag">Jak to dziala</p>
+            <p class="tag">Jak to działa</p>
             <h2 class="landing-section__title">3 kroki do kontroli nad transportem</h2>
+            <p class="landing-section__lead">
+              Zacznij od danych, ustaw zasady pracy i zarządzaj operacjami z jednego panelu.
+            </p>
           </div>
-          <div class="grid how-grid">
-            <div class="step">
-              <h3>1. Podłącz dane</h3>
-              <p>Dodaj zlecenia i flotę lub skorzystaj z danych demo.</p>
+          <div class="grid">
+            <div class="card card--step">
+            <span class="card__step-number" aria-hidden="true">1</span>
+              <h3 class="card__title">Podłącz dane</h3>
+              <p class="card__text">Dodaj zlecenia i flotę lub rozpocznij pracę na danych demo.</p>
             </div>
-            <div class="step">
-              <h3>2. Ustaw reguły</h3>
-              <p>Zdefiniuj SLA, alerty i filtry priorytetów.</p>
+            <div class="card card--step">
+            <span class="card__step-number" aria-hidden="true">2</span>
+              <h3 class="card__title">Ustaw reguły</h3>
+              <p class="card__text">Zdefiniuj SLA, alerty i filtry priorytetów dla codziennej pracy.</p>
             </div>
-            <div class="step">
-              <h3>3. Operuj</h3>
-              <p>Monitoruj, reaguj, eksportuj raporty. Wszystko w jednym panelu.</p>
+            <div class="card card--step">
+            <span class="card__step-number" aria-hidden="true">3</span>
+              <h3 class="card__title">Zarządzaj</h3>
+              <p class="card__text">Monitoruj statusy, reaguj na ryzyka i eksportuj raporty z jednego panelu.</p>
             </div>
           </div>
         </section>
+
+
+
 
         <section class="container section">
           <div class="landing-section__header">
             <p class="tag">Cennik</p>
             <h2 class="landing-section__title">Lekki cennik na start</h2>
+            <p class="landing-section__lead">Przejrzyste progi cenowe pomagają szybko ocenić, który zakres panelu najlepiej pasuje do codziennej obsługi transportu.</p>
           </div>
-          <div class="pricing">
-            <div class="price-card">
+
+          <div class="grid grid--pricing">
+
+            <div class="card card--pricing">
               <div class="badge">Start</div>
-              <div class="price">199 PLN</div>
-              <p>miesięcznie, do 15 pojazdów</p>
-              <a class="button button--secondary" href="#/login">Zacznij za darmo</a>
+              <h3 class="card__title">Podstawowa kontrola operacji</h3>
+              <div class="card__price">199 PLN</div>
+              <p class="card__text">dla małych flot do 15 pojazdów</p>
+              <ul class="card__list">
+                <li>kontrola zleceń i statusów</li>
+                <li>podgląd pojazdów w jednym panelu</li>
+                <li>dobry start dla małego zespołu</li>
+              </ul>
+              <a class="button button--secondary" href="#/login">Przetestuj panel</a>
             </div>
-            <div class="price-card featured">
-              <div class="badge">Rozwoj</div>
-              <div class="price">499 PLN</div>
-              <p>miesięcznie, do 60 pojazdów</p>
+
+            <div class="card card--pricing">
+              <div class="badge">Rozwój</div>
+              <h3 class="card__title">Rozszerzona kontrola operacji</h3>
+              <div class="card__price">499 PLN</div>
+              <p class="card__text">dla zespołów obsługujących do 60 pojazdów</p>
+              <ul class="card__list">
+                <li>szersza obsługa zleceń i floty</li>
+                <li>raporty operacyjne dla zespołu</li>
+                <li>więcej kontroli nad codzienną pracą</li>
+              </ul>
               <a class="button button--secondary" href="#/contact">Umów demo</a>
             </div>
-            <div class="price-card">
+
+            <div class="card card--pricing">
               <div class="badge">Korporacyjny</div>
-              <p>Indywidualnie</p>
-              <p>dla flot 60+ pojazdów</p>
+              <h3 class="card__title">Kontrola operacji w większej skali</h3>
+              <div class="card__price">Indywidualnie</div>
+              <p class="card__text">dla flot powyżej 60 pojazdów</p>
+              <ul class="card__list">
+                <li>zakres dopasowany do większej skali</li>
+                <li>wsparcie dla procesów i zespołów</li>
+                <li>elastyczne podejście do wdrożenia</li>
+              </ul>
               <a class="button button--secondary" href="#/contact">Porozmawiajmy</a>
             </div>
+
           </div>
         </section>
+
+
+
+
+
 
         <section class="container section">
           <div class="landing-section__header">

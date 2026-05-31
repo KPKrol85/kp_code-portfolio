@@ -210,147 +210,6 @@
   }
 }
 
-/* Grids & Cards */
-
-
-.landing-home .step,
-.landing-home .price-card,
-.landing-home .testimonial {
-  min-width: 0;
-}
-
-.landing-home .step {
-  display: grid;
-  align-content: start;
-  gap: var(--space-1);
-  min-height: 0;
-}
-
-.landing-home .step p,
-.landing-home .price-card p,
-.landing-home .testimonial p {
-  line-height: var(--lh-normal);
-}
-
-/* How It Works */
-
-.landing .how-grid {
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-}
-
-.landing .step {
-  border: 1px solid var(--border);
-  padding: var(--space-3);
-  border-radius: var(--radius);
-  background: var(--surface);
-}
-
-.landing .step,
-.landing .testimonial {
-  transition:
-    transform 140ms ease,
-    box-shadow 160ms ease,
-    border-color 160ms ease,
-    background-color 160ms ease;
-}
-
-html[data-theme="light"] .landing .step:focus-within,
-html[data-theme="light"] .landing .testimonial:focus-within {
-  border-color: color-mix(in srgb, var(--border) 80%, var(--text-muted));
-  background-color: color-mix(in srgb, var(--surface) 94%, var(--bg-muted) 6%);
-  box-shadow: 0 8px 18px rgba(15, 23, 42, 0.06);
-  transform: translateY(-1px);
-}
-
-html[data-theme="dark"] .landing .step:focus-within,
-html[data-theme="dark"] .landing .testimonial:focus-within {
-  border-color: color-mix(in srgb, var(--border) 85%, #fff);
-  background-color: color-mix(in srgb, var(--surface) 90%, var(--bg-elevated) 10%);
-  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.35);
-  transform: translateY(-1px);
-}
-
-.landing .step:active,
-.landing .testimonial:active {
-  transform: translateY(0);
-}
-
-@media (hover: hover) and (pointer: fine) {
-  html[data-theme="light"] .landing .step:hover,
-  html[data-theme="light"] .landing .testimonial:hover {
-    border-color: color-mix(in srgb, var(--border) 80%, var(--text-muted));
-    background-color: color-mix(in srgb, var(--surface) 94%, var(--bg-muted) 6%);
-    box-shadow: 0 8px 18px rgba(15, 23, 42, 0.06);
-    transform: translateY(-1px);
-  }
-
-  html[data-theme="dark"] .landing .step:hover,
-  html[data-theme="dark"] .landing .testimonial:hover {
-    border-color: color-mix(in srgb, var(--border) 85%, #fff);
-    background-color: color-mix(in srgb, var(--surface) 90%, var(--bg-elevated) 10%);
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.35);
-    transform: translateY(-1px);
-  }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .landing .step,
-  .landing .testimonial {
-    transition: none;
-  }
-
-  .landing .step:focus-within,
-  .landing .testimonial:focus-within,
-  .landing .step:hover,
-  .landing .testimonial:hover {
-    transform: none;
-  }
-}
-
-/* Pricing */
-
-.landing .pricing {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-  gap: var(--space-3);
-  justify-content: center;
-}
-
-.landing .price-card {
-  display: grid;
-  gap: 10px;
-  border: 1px solid var(--border);
-  border-radius: var(--radius);
-  padding: var(--space-3);
-  background: var(--surface);
-  box-shadow: var(--shadow);
-}
-
-.landing-home .price-card {
-  gap: var(--space-2);
-  min-height: 0;
-  align-content: start;
-}
-
-.landing-home .price-card .button {
-  align-self: end;
-  margin-top: auto;
-}
-
-.landing-home .price-card.featured {
-  background: linear-gradient(180deg, color-mix(in srgb, var(--accent-ghost) 38%, transparent), transparent 42%), var(--surface);
-}
-
-.landing .price {
-  font-size: 28px;
-  font-weight: var(--fw-bold);
-}
-
-.landing-home .price {
-  font-size: var(--fs-07);
-  line-height: var(--lh-tight);
-}
-
 /* Testimonials */
 
 .landing .testimonials {
@@ -389,14 +248,7 @@ html[data-theme="dark"] .landing .testimonial:focus-within {
 }
 
 @media (min-width: 760px) {
-  .landing-home,
-  .landing-home .step {
-    min-height: 132px;
-  }
 
-  .landing-home .price-card {
-    min-height: 196px;
-  }
 
   .landing-home .testimonial {
     min-height: 124px;
@@ -635,11 +487,6 @@ html[data-theme="dark"] .landing .testimonial:focus-within {
   width: 100%;
   justify-content: center;
   margin-top: 0;
-}
-
-.landing .pricing .price-card.featured {
-  border-color: var(--accent);
-  box-shadow: var(--shadow-elev-2);
 }
 
 @keyframes heroMarkIn {

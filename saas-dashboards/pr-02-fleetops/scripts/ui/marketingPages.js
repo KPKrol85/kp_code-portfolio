@@ -287,10 +287,10 @@ function renderPricingPage() {
     description: "Cennik FleetOps: Start, Rozwoj i Korporacyjny z porownaniem funkcji.",
     body: `
       <section class="section-tight">
-        <div class="pricing">
-          <div class="price-card">
+        <div class="grid grid--pricing">
+          <div class="card--pricing">
             <div class="badge">Start</div>
-            <div class="price">199 PLN</div>
+            <div class="card__price">199 PLN</div>
             <p class="muted small">miesięcznie, do 15 pojazdów</p>
             <ul class="list-check">
               <li>Zlecenia + Flota</li>
@@ -299,9 +299,9 @@ function renderPricingPage() {
             </ul>
             <a class="button button--secondary" href="#/login">Zacznij za darmo</a>
           </div>
-          <div class="price-card featured">
+          <div class="card--pricing">
             <div class="badge">Rozwoj</div>
-            <div class="price">499 PLN</div>
+            <div class="card__price">499 PLN</div>
             <p class="muted small">miesięcznie, do 60 pojazdów</p>
             <ul class="list-check">
               <li>Pelny monitoring ETA</li>
@@ -310,9 +310,9 @@ function renderPricingPage() {
             </ul>
             <a class="button button--primary" href="#/contact">Umów demo</a>
           </div>
-          <div class="price-card">
+          <div class="card--pricing">
             <div class="badge">Korporacyjny</div>
-            <div class="price">Indywidualnie</div>
+            <div class="card__price">Indywidualnie</div>
             <p class="muted small">dla flot 60+ pojazdów</p>
             <ul class="list-check">
               <li>Integracje ERP / TMS</li>

@@ -12,10 +12,9 @@
 }
 
 .badge {
-  padding: var(--space-0) var(--space-2);
+  padding: var(--space-1) var(--space-2);
   border-radius: var(--radius);
   font-size: var(--fs-01);
-  border: 1px solid var(--border);
   background: var(--surface-2);
   color: var(--text);
 }
@@ -698,6 +697,15 @@ html[data-theme="dark"] .card:focus-within {
   transform: translateY(0);
 }
 
+.card__title {
+  margin: 0;
+}
+
+.card__text {
+  margin: 0;
+  width: min(100%, 28ch);
+}
+
 /* Feature cards */
 
 .card--feature {
@@ -707,12 +715,85 @@ html[data-theme="dark"] .card:focus-within {
   min-width: 0;
 }
 
-.card__title {
-  margin: 0;
-   max-width: 18ch;
+/* Step cards */
+
+.card--step {
+  display: grid;
+  align-content: start;
+  justify-items: center;
+  gap: var(--space-3);
+  min-width: 0;
+  text-align: center;
 }
 
-.card__text {
-  margin: 0;
-   max-width: 22ch;
+.card__step-number {
+  display: inline-grid;
+  width: 2.25rem;
+  height: 2.25rem;
+  border-radius: var(--radius);
+  place-items: center;
+  color: var(--accent);
+  background: var(--accent-ghost);
+  font-size: var(--fs-01);
+  font-weight: var(--fw-bold);
+  line-height: 1;
+}
+
+/* Pricing cards */
+
+.card--pricing {
+  display: grid;
+  gap: var(--space-3);
+  justify-items: center;
+  grid-template-rows: auto auto auto 1fr auto;
+  height: 100%;
+}
+
+.card--pricing .card__title {
+  font-size: var(--fs-04);
+}
+
+.card__price {
+  font-size: var(--fs-07);
+  font-weight: var(--fw-semibold);
+  line-height: var(--lh-tight);
+  color: var(--accent);
+}
+
+.card--pricing .card__list {
+  display: grid;
+  gap: var(--space-1);
+  width: min(100%, 28ch);
+  margin: 0 auto;
+  padding: 0;
+  text-align: left;
+  font-size: var(--fs-02);
+  list-style: none;
+}
+
+.card--pricing .card__list li {
+  position: relative;
+  padding-left: var(--space-3);
+}
+
+.card--pricing .card__list li::before {
+  position: absolute;
+  top: 0.65em;
+  left: 0;
+  width: 0.4rem;
+  height: 0.4rem;
+  border-radius: 999px;
+  background: var(--accent);
+  content: "";
+}
+
+.card--pricing .button {
+  font-size: var(--fs-02);
+  font-weight: var(--fw-medium);
+  align-self: end;
+  margin-top: var(--space-2);
+}
+
+.card--pricing.featured {
+  background: linear-gradient(180deg, color-mix(in srgb, var(--accent-ghost) 38%, transparent), transparent 42%), var(--surface);
 }
