@@ -472,18 +472,13 @@ ${renderLandingHeader(themeAsset)}
           </div>
         </section>
 
-
-
-
         <section class="container section">
           <div class="landing-section__header">
             <p class="tag">Cennik</p>
             <h2 class="landing-section__title">Lekki cennik na start</h2>
             <p class="landing-section__lead">Przejrzyste progi cenowe pomagają szybko ocenić, który zakres panelu najlepiej pasuje do codziennej obsługi transportu.</p>
           </div>
-
           <div class="grid grid--pricing">
-
             <div class="card card--pricing">
               <div class="badge">Start</div>
               <h3 class="card__title">Podstawowa kontrola operacji</h3>
@@ -496,7 +491,6 @@ ${renderLandingHeader(themeAsset)}
               </ul>
               <a class="button button--secondary" href="#/login">Przetestuj panel</a>
             </div>
-
             <div class="card card--pricing">
               <div class="badge">Rozwój</div>
               <h3 class="card__title">Rozszerzona kontrola operacji</h3>
@@ -509,7 +503,6 @@ ${renderLandingHeader(themeAsset)}
               </ul>
               <a class="button button--secondary" href="#/contact">Umów demo</a>
             </div>
-
             <div class="card card--pricing">
               <div class="badge">Korporacyjny</div>
               <h3 class="card__title">Kontrola operacji w większej skali</h3>
@@ -522,56 +515,91 @@ ${renderLandingHeader(themeAsset)}
               </ul>
               <a class="button button--secondary" href="#/contact">Porozmawiajmy</a>
             </div>
-
           </div>
         </section>
-
-
-
-
-
 
         <section class="container section">
           <div class="landing-section__header">
             <p class="tag">Opinie</p>
             <h2 class="landing-section__title">Operatorzy o FleetOps</h2>
+            <p class="landing-section__lead">Zobacz, jak FleetOps porządkuje codzienną pracę zespołów odpowiedzialnych za trasy, kierowców i statusy zleceń.</p>
           </div>
-          <div class="testimonials">
-            <div class="testimonial">
-              <p>"Planowanie tras skróciło się o 40%. Alerty SLA są bardzo klarowne."</p>
-              <p class="muted small">COO, CargoNord</p>
+          <div class="grid grid--testimonials">
+            <figure class="card card--testimonial">
+              <h3 class="card__title">Mniej ręcznego sprawdzania statusów</h3>
+              <blockquote class="card__quote">
+                <p>Szybciej widzimy status tras, opóźnienia i priorytety. Zespół operacyjny ma mniej ręcznego sprawdzania danych.</p>
+              </blockquote>
+              <figcaption class="card__author">
+                <span class="card__author-role">COO</span>
+                <span class="card__author-company">CargoNord</span>
+              </figcaption>
+            </figure>
+            <figure class="card card--testimonial">
+              <h3 class="card__title">Sprawniejsza komunikacja operacyjna</h3>
+              <blockquote class="card__quote">
+                <p>FleetOps uporządkował codzienną komunikację między dyspozytorami, kierowcami i obsługą klienta.</p>
+              </blockquote>
+              <figcaption class="card__author">
+                <span class="card__author-role">Lider operacji</span>
+                <span class="card__author-company">FreshLine</span>
+              </figcaption>
+            </figure>
+            <figure class="card card--testimonial">
+              <h3 class="card__title">Jedno miejsce do kontroli floty</h3>
+              <blockquote class="card__quote">
+                <p>Największa różnica to jedno miejsce do kontroli floty, zleceń i raportów. Łatwiej podejmujemy decyzje operacyjne.</p>
+              </blockquote>
+              <figcaption class="card__author">
+                <span class="card__author-role">Fleet Manager</span>
+                <span class="card__author-company">AeroParts</span>
+              </figcaption>
+            </figure>
+          </div>
+        </section>
+
+        <section class="container section section-faq">
+          <div class="landing-section__header">
+            <p class="tag">Pytania</p>
+            <h2 class="landing-section__title">Najczęstsze pytania</h2>
+            <p class="landing-section__lead">
+            Krótkie odpowiedzi na najważniejsze pytania dotyczące działania panelu demonstracyjnego FleetOps.
+            </p>
+          </div>
+          <div class="accordion" id="faq">
+            <div class="accordion-item">
+              <button class="accordion-header">Czy FleetOps działa bez instalacji?<span aria-hidden="true">▾</span></button>
+              <div class="accordion-content">
+                <p class="accordion-text">Tak. FleetOps działa w przeglądarce i pozwala szybko przejść do panelu demonstracyjnego bez konfiguracji.</p>
+              </div>
             </div>
-            <div class="testimonial">
-              <p>"Kierowcy wiedzą, co robić. Wsparcie klienta widzi statusy na żywo."</p>
-              <p class="muted small">Lider operacji, FreshLine</p>
+            <div class="accordion-item">
+              <button class="accordion-header">Czy dane w panelu są prawdziwe?<span aria-hidden="true">▾</span></button>
+              <div class="accordion-content">
+                <p class="accordion-text">Nie. Panel korzysta z bezpiecznych danych przykładowych, przygotowanych do prezentacji przepływów, widoków i funkcji aplikacji.</p>
+              </div>
             </div>
-            <div class="testimonial">
-              <p>"Profesjonalne rozwiązania i jedno źródło prawdy. Dziękujemy, zespół pokochał."</p>
-              <p class="muted small">Flota Manager, AeroParts</p>
+            <div class="accordion-item">
+              <button class="accordion-header">Czy mogę zmienić motyw interfejsu?<span aria-hidden="true">▾</span></button>
+              <div class="accordion-content">
+                <p class="accordion-text">Tak. Aplikacja ma przełącznik jasnego i ciemnego motywu, a wybrana opcja zostaje zapamiętana w przeglądarce.</p>
+              </div>
+            </div>
+            <div class="accordion-item">
+              <button class="accordion-header">Co mogę sprawdzić w wersji demo?<span aria-hidden="true">▾</span></button>
+              <div class="accordion-content">
+                <p class="accordion-text">Możesz przejrzeć dashboard, zlecenia, flotę, kierowców, raporty oraz przykładowe interakcje typowe dla panelu operacyjnego.</p>
+              </div>
+            </div>
+            <div class="accordion-item">
+              <button class="accordion-header">Jak rozpocząć testowanie panelu?<span aria-hidden="true">▾</span></button>
+              <div class="accordion-content">
+                <p class="accordion-text">Wybierz „Zobacz demo” lub „Zacznij”, aby przejść do panelu i sprawdzić przykładowy przepływ pracy.</p>
+              </div>
             </div>
           </div>
         </section>
 
-        <section class="container section faq">
-          <div class="landing-section__header">
-            <p class="tag">Pytania</p>
-            <h2 class="landing-section__title">Najczęstsze pytania</h2>
-          </div>
-          <div class="accordion" id="faq">
-            <div class="accordion-item">
-              <button class="accordion-header">Czy mogę używać trybu dark?<span aria-hidden="true">▾</span></button>
-              <div class="accordion-content"><p>Tak, FleetOps ma wbudowany przełącznik, który zapamiętuje wybór.</p></div>
-            </div>
-            <div class="accordion-item">
-              <button class="accordion-header">Czy dane to produkcja?<span aria-hidden="true">▾</span></button>
-              <div class="accordion-content"><p>To mocki bez backendu. Idealne do demo i portfolio.</p></div>
-            </div>
-            <div class="accordion-item">
-              <button class="accordion-header">Jak zacząć?<span aria-hidden="true">▾</span></button>
-              <div class="accordion-content"><p>Wejdź na "Zacznij" lub "Zobacz demo" i odkryj panel.</p></div>
-            </div>
-          </div>
-        </section>
       </main>
 
 ${renderLandingFooter(themeAsset)}

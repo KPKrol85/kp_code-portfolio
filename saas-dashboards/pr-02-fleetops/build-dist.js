@@ -17,6 +17,7 @@ const cssSources = [
   "styles/src/07-footer.css",
   "styles/src/08-header.css",
   "styles/src/06-app.css",
+  "styles/src/09-pages.css",
 ];
 
 const staticFiles = ["sw.js", "_headers", "_redirects", "robots.txt", "sitemap.xml"];

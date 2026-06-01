@@ -16,6 +16,80 @@ async function loginAsDemo(page) {
   await expect(page.getByRole("heading", { name: "Przegląd", level: 1 })).toBeVisible();
 }
 
+async function getRouteScrollState(page) {
+  return page.evaluate(() => {
+    const getScrollTop = (selector) => {
+      const element = document.querySelector(selector);
+      return element ? Math.round(element.scrollTop || 0) : 0;
+    };
+
+    const routeContainer = document.querySelector(".app-main") || document.querySelector("main") || document.getElementById("app");
+    const routeTop = routeContainer ? Math.round(routeContainer.getBoundingClientRect().top) : 0;
+    const root = document.scrollingElement || document.documentElement;
+    const values = {
+      windowY: Math.round(window.scrollY || window.pageYOffset || 0),
+      scrollingElementTop: Math.round(root?.scrollTop || 0),
+      htmlTop: Math.round(document.documentElement.scrollTop || 0),
+      bodyTop: Math.round(document.body.scrollTop || 0),
+      appTop: getScrollTop("#app"),
+      mainTop: getScrollTop("main"),
+      appMainTop: getScrollTop(".app-main"),
+      routeTop,
+    };
+
+    return {
+      ...values,
+      maxScrollTop: Math.max(
+        values.windowY,
+        values.scrollingElementTop,
+        values.htmlTop,
+        values.bodyTop,
+        values.appTop,
+        values.mainTop,
+        values.appMainTop
+      ),
+    };
+  });
+}
+
+async function scrollPageDown(page) {
+  await page.evaluate(() => {
+    const scrollToBottom = (element) => {
+      if (!element) return;
+
+      if (element === document.scrollingElement || element === document.documentElement || element === document.body) {
+        window.scrollTo(0, element.scrollHeight);
+        element.scrollTop = element.scrollHeight;
+        return;
+      }
+
+      if (typeof element.scrollTo === "function") {
+        element.scrollTo({ top: element.scrollHeight, left: 0, behavior: "auto" });
+      } else if ("scrollTop" in element) {
+        element.scrollTop = element.scrollHeight;
+      }
+    };
+
+    [
+      document.scrollingElement,
+      document.documentElement,
+      document.body,
+      document.getElementById("app"),
+      document.querySelector("main"),
+      document.querySelector(".app-main"),
+    ].forEach(scrollToBottom);
+  });
+  await expect.poll(async () => (await getRouteScrollState(page)).maxScrollTop).toBeGreaterThan(0);
+}
+
+async function expectPageTop(page) {
+  await expect.poll(async () => (await getRouteScrollState(page)).maxScrollTop).toBe(0);
+
+  const state = await getRouteScrollState(page);
+  expect(state.routeTop).toBeGreaterThanOrEqual(0);
+  expect(state.routeTop).toBeLessThanOrEqual(120);
+}
+
 async function expectCrudErrorsLinked(page, scenario) {
   await page.locator(`.sidebar nav a[data-route="${scenario.route}"]`).click();
   await expect(page.getByRole("heading", { name: scenario.heading, level: 1 })).toBeVisible();
@@ -51,6 +125,74 @@ test("landing loads and demo login reaches the app shell", async ({ page }) => {
 
   await loginAsDemo(page);
   await expect(page.locator(".sidebar")).toContainText("demo@fleetops.app");
+});
+
+test("route changes reset scroll position after rendering", async ({ page }) => {
+  await openFresh(page);
+  await scrollPageDown(page);
+  await page.getByRole("link", { name: "Porozmawiajmy" }).click();
+  await expect(page).toHaveURL(/#\/contact$/);
+  await expect(page.getByRole("heading", { name: "Kontakt", level: 1 })).toBeVisible();
+  await expectPageTop(page);
+
+  await scrollPageDown(page);
+  await page.locator('.site-header__link[href="#/pricing"]').click();
+  await expect(page).toHaveURL(/#\/pricing$/);
+  await expect(page.getByRole("heading", { name: "Cennik FleetOps", level: 1 })).toBeVisible();
+  await expectPageTop(page);
+
+  await scrollPageDown(page);
+  await page.locator('a.site-header__action[href="#/login"]').click();
+  await expect(page).toHaveURL(/#\/login$/);
+  await expect(page.getByRole("heading", { name: "Zaloguj się", level: 1 })).toBeVisible();
+  await expectPageTop(page);
+
+  await page.getByRole("button", { name: "Kontynuuj jako demo" }).click();
+  await expect(page).toHaveURL(/#\/app$/);
+  await expect(page.getByRole("heading", { name: "Przegląd", level: 1 })).toBeVisible();
+  await page.locator('.sidebar nav a[data-route="/app/orders"]').click();
+  await expect(page).toHaveURL(/#\/app\/orders$/);
+  await expect(page.getByRole("heading", { name: "Zlecenia", level: 1 })).toBeVisible();
+  await expectPageTop(page);
+  await scrollPageDown(page);
+  await page.locator('.sidebar nav a[data-route="/app/reports"]').click();
+  await expect(page).toHaveURL(/#\/app\/reports$/);
+  await expect(page.getByRole("heading", { name: "Raporty", level: 1 })).toBeVisible();
+  await expectPageTop(page);
+});
+
+test("mobile drawer route changes reset visible scroll position", async ({ page }) => {
+  await page.setViewportSize({ width: 390, height: 600 });
+  await openFresh(page);
+  await scrollPageDown(page);
+  await page.locator("#navToggle").click();
+  await page.locator('#mobileNav a[href="#/contact"]').click();
+  await expect(page).toHaveURL(/#\/contact$/);
+  await expect(page.getByRole("heading", { name: "Kontakt", level: 1 })).toBeVisible();
+  await expectPageTop(page);
+
+  await scrollPageDown(page);
+  await page.locator("#navToggle").click();
+  await page.locator('#mobileNav a[href="#/pricing"]').click();
+  await expect(page).toHaveURL(/#\/pricing$/);
+  await expect(page.getByRole("heading", { name: "Cennik FleetOps", level: 1 })).toBeVisible();
+  await expectPageTop(page);
+
+  await openFresh(page, "#/login");
+  await page.getByRole("button", { name: "Kontynuuj jako demo" }).click();
+  await expect(page).toHaveURL(/#\/app$/);
+  await expect(page.getByRole("heading", { name: "Przegląd", level: 1 })).toBeVisible();
+  await page.locator("#drawerToggle").click();
+  await page.locator('#appDrawer a[data-route="/app/orders"]').click();
+  await expect(page).toHaveURL(/#\/app\/orders$/);
+  await expect(page.getByRole("heading", { name: "Zlecenia", level: 1 })).toBeVisible();
+  await expectPageTop(page);
+  await scrollPageDown(page);
+  await page.locator("#drawerToggle").click();
+  await page.locator('#appDrawer a[data-route="/app/reports"]').click();
+  await expect(page).toHaveURL(/#\/app\/reports$/);
+  await expect(page.getByRole("heading", { name: "Raporty", level: 1 })).toBeVisible();
+  await expectPageTop(page);
 });
 
 test("toast feedback exposes stable polite and assertive live regions", async ({ page }) => {

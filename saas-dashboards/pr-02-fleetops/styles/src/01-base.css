@@ -19,6 +19,8 @@ body {
   background: var(--bg);
   color: var(--text);
   font-family: var(--font-sans);
+  font-kerning: normal;
+  font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   overflow-x: clip;
@@ -161,6 +163,10 @@ p {
   letter-spacing: var(--ls-normal);
   color: var(--text-muted);
   text-wrap: pretty;
+}
+
+.muted {
+  color: var(--text-muted);
 }
 
 /* Lists & Content Defaults */

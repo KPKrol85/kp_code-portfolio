@@ -1,0 +1,36 @@
+/* System pages */
+
+.error-page {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--space-6) 0;
+}
+
+.error-card {
+  width: min(560px, 92vw);
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow);
+  padding: var(--space-5);
+  text-align: center;
+  display: grid;
+  gap: var(--space-3);
+}
+
+.error-code {
+  color: var(--text-muted);
+}
+
+.error-subtitle {
+  max-width: 28ch;
+  margin: 0 auto;
+}
+
+.error-actions {
+  margin-top: var(--space-4);
+  display: flex;
+  justify-content: center;
+}

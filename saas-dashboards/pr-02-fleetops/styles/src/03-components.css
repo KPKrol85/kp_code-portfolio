@@ -453,7 +453,10 @@ textarea:invalid:focus-visible {
 
 /* Accordion */
 
+/* FAQ */
+
 .accordion {
+  box-shadow: var(--shadow);
   border: 1px solid var(--border);
   border-radius: var(--radius);
   overflow: hidden;
@@ -468,11 +471,9 @@ textarea:invalid:focus-visible {
   border-bottom: 0;
 }
 
-/* Header */
-
 .accordion-header {
   width: 100%;
-  padding: 14px;
+  padding: var(--space-3) var(--space-4);
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -480,20 +481,21 @@ textarea:invalid:focus-visible {
   font-weight: var(--fw-semibold);
   color: var(--text);
   cursor: pointer;
+  font-size: var(--fs-02);
 }
-
-/* Content */
 
 .accordion-content {
   max-height: 0;
-  padding: 0 14px;
   overflow: hidden;
   transition: max-height 0.2s ease;
 }
 
 .accordion-content.open {
-  padding-top: var(--space-2);
-  padding-bottom: var(--space-3);
+  padding: var(--space-3) var(--space-4);
+}
+
+.accordion-text {
+    max-width: 72ch;
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -796,4 +798,38 @@ html[data-theme="dark"] .card:focus-within {
 
 .card--pricing.featured {
   background: linear-gradient(180deg, color-mix(in srgb, var(--accent-ghost) 38%, transparent), transparent 42%), var(--surface);
+}
+
+/* Testimonials cards */
+
+.card--testimonial {
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  gap: var(--space-3);
+  height: 100%;
+  margin: 0;
+}
+
+.card__quote {
+  margin: 0;
+}
+
+.card__author {
+  display: grid;
+  gap: var(--space-1);
+  margin: 0;
+  color: var(--text-muted);
+  text-align: left;
+}
+
+.card__author-role {
+  font-size: var(--fs-01);
+  font-weight: var(--fw-semibold);
+  line-height: var(--lh-tight);
+}
+
+.card__author-company {
+  font-size: var(--fs-01);
+  line-height: var(--lh-normal);
+  color: var(--accent);
 }

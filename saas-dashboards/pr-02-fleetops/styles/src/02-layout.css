@@ -34,6 +34,18 @@ body > #app {
   text-align: center;
 }
 
+.section-faq {
+  max-width: 840px;
+  margin: 0 auto;
+}
+
+
+@media (min-width: 480px) {
+  .section {
+    text-align: start;
+  }
+}
+
 /* Grid */
 
 .grid {
@@ -42,14 +54,15 @@ body > #app {
   grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
 }
 
+.grid--pricing,
+.grid--testimonials {
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+}
+
 @media (min-width: 480px) {
   .grid {
     gap: var(--space-4);
   }
-}
-
-.grid--pricing {
-  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
 }
 
 /* Flex */
@@ -64,12 +77,6 @@ body > #app {
   justify-content: space-between;
 }
 
-
-
-.muted {
-  color: var(--text-muted);
-}
-
 /* Tables / Overflow Helpers */
 
 .table-responsive,
@@ -79,49 +86,4 @@ body > #app {
   max-width: 100%;
   overflow-x: auto;
   -webkit-overflow-scrolling: touch;
-}
-
-/* Responsive */
-
-@media (min-width: 480px) {
-  .section {
-    text-align: start;
-  }
-}
-
-/* system pages */
-
-.error-page {
-  min-height: 100vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: var(--space-6) 0;
-}
-
-.error-card {
-  width: min(560px, 92vw);
-  background: var(--surface);
-  border: 1px solid var(--border);
-  border-radius: var(--radius-lg);
-  box-shadow: var(--shadow);
-  padding: var(--space-5);
-  text-align: center;
-  display: grid;
-  gap: var(--space-3);
-}
-
-.error-code {
-  color: var(--text-muted);
-}
-
-.error-subtitle {
-  max-width: 28ch;
-  margin: 0 auto;
-}
-
-.error-actions {
-  margin-top: var(--space-4);
-  display: flex;
-  justify-content: center;
 }
