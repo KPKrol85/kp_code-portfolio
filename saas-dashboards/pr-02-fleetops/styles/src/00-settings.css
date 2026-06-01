@@ -99,9 +99,11 @@
   --space-section-2xl: 5rem; /* ~80px */
 
   /* hero visuals */
-  --hero-mark-size-sm: 160px;
-  --hero-mark-size-md: 200px;
-  --hero-mark-size-lg: 240px;
+  --hero-mark-size-sm: 80px;
+  --hero-mark-size: 140px;
+  --hero-mark-size-md: 160px;
+  --hero-mark-size-lg: 200px;
+  --hero-mark-size-xl: 240px;
 
   /* logo sizes */
   --logo-size-1: clamp(1.625rem, 1.55rem + 0.2vw, 1.75rem);

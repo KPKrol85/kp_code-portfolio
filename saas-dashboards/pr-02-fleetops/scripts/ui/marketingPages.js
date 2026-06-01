@@ -26,10 +26,10 @@ ${FleetUI.renderLandingHeader(themeAsset)}
 
       <main class="container section" id="main-content">
         <div class="page-hero">
-          <div class="landing-section__header">
+          <div class="page-hero__content">
             <p class="tag">${eyebrow}</p>
-            <h1>${title}</h1>
-            <p>${lead}</p>
+            <h1 class="page-hero__title">${title}</h1>
+            <p class="page-hero__lead">${lead}</p>
           </div>
 ${renderPageHeroMark(themeAsset)}
         </div>
