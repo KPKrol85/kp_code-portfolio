@@ -100,10 +100,9 @@
 
   /* hero visuals */
   --hero-mark-size-sm: 80px;
-  --hero-mark-size: 140px;
-  --hero-mark-size-md: 160px;
-  --hero-mark-size-lg: 200px;
-  --hero-mark-size-xl: 240px;
+  --hero-mark-size-md: 100px;
+  --hero-mark-size: 120px;
+  --hero-mark-size-lg: 140px;
 
   /* logo sizes */
   --logo-size-1: clamp(1.625rem, 1.55rem + 0.2vw, 1.75rem);

@@ -39,6 +39,9 @@ body > #app {
   margin: 0 auto;
 }
 
+.section-tight {
+  padding-block: var(--space-section);
+}
 
 @media (min-width: 480px) {
   .section {

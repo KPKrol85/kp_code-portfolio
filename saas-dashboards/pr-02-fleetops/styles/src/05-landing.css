@@ -226,21 +226,10 @@
 
 
 
-.landing.marketing .section-tight {
-  padding-block: var(--space-6);
-}
 
-.landing .marketing-hero {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: var(--space-3);
-  align-items: center;
-}
 
-.landing .marketing-hero__content,
-.landing .marketing-hero__panel {
-  min-width: 0;
-}
+
+
 
 .landing .stat-grid {
   display: grid;
@@ -425,9 +414,6 @@
 }
 
 @media (min-width: 760px) {
-  .landing .marketing-hero {
-    grid-template-columns: minmax(0, 1.2fr) minmax(0, 0.8fr);
-  }
 
   .landing .contact-grid {
     grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr);

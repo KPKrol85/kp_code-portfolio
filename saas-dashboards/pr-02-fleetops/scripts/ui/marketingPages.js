@@ -53,7 +53,7 @@ function renderProductPage() {
       <section class="section-tight">
         <div class="marketing-hero">
           <div class="marketing-hero__content">
-            <h2>Operacje w czasie rzeczywistym</h2>
+            <h2 class="marketing-hero__title">Operacje w czasie rzeczywistym</h2>
             <p>Widoki zleceń, floty i kierowców synchronizują statusy, ETA i alerty. Zespół operacyjny ma jedno źródło prawdy.</p>
             <div class="hero-cta">
               <a class="button button--primary" href="#/login">Umów demo</a>
@@ -422,7 +422,7 @@ function renderAboutPage() {
       <section class="section-tight">
         <div class="marketing-hero">
           <div class="marketing-hero__content">
-            <h2>Nasza misja</h2>
+            <h2 class="marketing-hero__title">Nasza misja</h2>
             <p>Uprościć zarządzanie transportem tak, by zespoły operacyjne mogły skupić się na decyzjach, a nie na szukaniu danych.</p>
             <ul class="list-check">
               <li>Jedno źródło prawdy dla statusów</li>
