@@ -420,10 +420,10 @@ ${renderLandingHeader(themeAsset)}
         </section>
 
         <section class="container section">
-          <div class="landing-section__header">
+          <div class="section-header">
             <p class="tag">Funkcje</p>
-            <h2 class="landing-section__title">Usprawnij dyspozycje, kondycje floty i SLA.</h2>
-            <p class="landing-section__lead">Pracuj szybciej dzięki jasnym statusom, filtrom i alertom prosto z panelu.</p>
+            <h2 class="section-header__title">Usprawnij dyspozycje, kondycje floty i SLA.</h2>
+            <p class="section-header__lead">Pracuj szybciej dzięki jasnym statusom, filtrom i alertom prosto z panelu.</p>
           </div>
           <div class="grid">
             <div class="card card--feature">
@@ -446,10 +446,10 @@ ${renderLandingHeader(themeAsset)}
         </section>
 
         <section class="container section">
-          <div class="landing-section__header">
+          <div class="section-header">
             <p class="tag">Jak to działa</p>
-            <h2 class="landing-section__title">3 kroki do kontroli nad transportem</h2>
-            <p class="landing-section__lead">
+            <h2 class="section-header__title">3 kroki do kontroli nad transportem</h2>
+            <p class="section-header__lead">
               Zacznij od danych, ustaw zasady pracy i zarządzaj operacjami z jednego panelu.
             </p>
           </div>
@@ -473,10 +473,10 @@ ${renderLandingHeader(themeAsset)}
         </section>
 
         <section class="container section">
-          <div class="landing-section__header">
+          <div class="section-header">
             <p class="tag">Cennik</p>
-            <h2 class="landing-section__title">Lekki cennik na start</h2>
-            <p class="landing-section__lead">Przejrzyste progi cenowe pomagają szybko ocenić, który zakres panelu najlepiej pasuje do codziennej obsługi transportu.</p>
+            <h2 class="section-header__title">Lekki cennik na start</h2>
+            <p class="section-header__lead">Przejrzyste progi cenowe pomagają szybko ocenić, który zakres panelu najlepiej pasuje do codziennej obsługi transportu.</p>
           </div>
           <div class="grid grid--pricing">
             <div class="card card--pricing">
@@ -519,10 +519,10 @@ ${renderLandingHeader(themeAsset)}
         </section>
 
         <section class="container section">
-          <div class="landing-section__header">
+          <div class="section-header">
             <p class="tag">Opinie</p>
-            <h2 class="landing-section__title">Operatorzy o FleetOps</h2>
-            <p class="landing-section__lead">Zobacz, jak FleetOps porządkuje codzienną pracę zespołów odpowiedzialnych za trasy, kierowców i statusy zleceń.</p>
+            <h2 class="section-header__title">Operatorzy o FleetOps</h2>
+            <p class="section-header__lead">Zobacz, jak FleetOps porządkuje codzienną pracę zespołów odpowiedzialnych za trasy, kierowców i statusy zleceń.</p>
           </div>
           <div class="grid grid--testimonials">
             <figure class="card card--testimonial">
@@ -559,10 +559,10 @@ ${renderLandingHeader(themeAsset)}
         </section>
 
         <section class="container section section-faq">
-          <div class="landing-section__header">
+          <div class="section-header">
             <p class="tag">Pytania</p>
-            <h2 class="landing-section__title">Najczęstsze pytania</h2>
-            <p class="landing-section__lead">
+            <h2 class="section-header__title">Najczęstsze pytania</h2>
+            <p class="section-header__lead">
             Krótkie odpowiedzi na najważniejsze pytania dotyczące działania panelu demonstracyjnego FleetOps.
             </p>
           </div>

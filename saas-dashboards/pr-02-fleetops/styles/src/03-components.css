@@ -451,8 +451,6 @@ textarea:invalid:focus-visible {
   margin-top: 16px;
 }
 
-/* Accordion */
-
 /* FAQ */
 
 .accordion {
@@ -704,7 +702,7 @@ html[data-theme="dark"] .card:focus-within {
 }
 
 .card__text {
-  margin: 0;
+  margin: 0 auto;
   width: min(100%, 28ch);
 }
 
@@ -713,8 +711,8 @@ html[data-theme="dark"] .card:focus-within {
 .card--feature {
   display: grid;
   align-content: start;
+  text-align: center;
   gap: var(--space-2);
-  min-width: 0;
 }
 
 /* Step cards */
@@ -832,4 +830,15 @@ html[data-theme="dark"] .card:focus-within {
   font-size: var(--fs-01);
   line-height: var(--lh-normal);
   color: var(--accent);
+}
+
+/* Marketing Card */
+
+.marketing-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-2);
+  min-width: 0;
+  text-align: center;
 }

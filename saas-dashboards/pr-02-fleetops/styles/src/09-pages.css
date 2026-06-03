@@ -47,7 +47,7 @@
   .page-hero {
     grid-template-columns: minmax(0, 1fr) auto;
     text-align: left;
-    padding-bottom: var(--space-section);
+    padding-bottom: var(--space-section-sm);
   }
   .page-hero__content {
     justify-items: start;
@@ -150,24 +150,92 @@
 .marketing-hero__content {
   max-width: 46ch;
 }
+
 .marketing-hero__title {
   max-width: 18ch;
   margin-inline: auto;
+}
+
+.marketing-hero__text {
+  max-width: 38ch;
+  margin: var(--space-2) auto 0;
+}
+
+.marketing-hero__cta {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: var(--space-2);
+  margin-block: var(--space-5);
+  text-align: center;
+}
+
+.marketing-hero__cta .button {
+  height: 40px;
+  min-width: 140px;
+  font-size: var(--fs-02);
+  line-height: 1;
+  text-align: center;
+}
+
+.marketing-hero__stats {
+  display: grid;
+  gap: var(--space-3);
+}
+
+.marketing-hero__stat-card {
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: var(--space-3);
+  background: var(--surface);
+  box-shadow: var(--shadow);
+  min-width: 0;
+}
+
+.marketing-hero__stat-label {
+  margin: 0;
+  color: var(--text-muted);
+  font-size: var(--fs-02);
+  font-weight: var(--fw-regular);
+}
+
+.marketing-hero__stat-value {
+  margin: var(--space-1) 0 0;
+  color: var(--text);
+  font-size: var(--fs-05);
+  font-weight: var(--fw-bold);
+  line-height: var(--lh-tight);
 }
 
 @media (min-width: 480px) {
   .marketing-hero {
     padding: 0;
   }
+
   .marketing-hero__title {
     max-width: 22ch;
     margin-inline: 0;
+  }
+
+  .marketing-hero__text {
+    margin: var(--space-3) 0 0;
+  }
+
+  .marketing-hero__cta {
+    justify-content: flex-start;
+    text-align: left;
   }
 }
 
 @media (min-width: 760px) {
   .marketing-hero {
-    grid-template-columns: minmax(0, 1.2fr) minmax(0, 0.8fr);
+    grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr);
+  }
+
+  .marketing-hero .tag {
+    display: flex;
+    width: fit-content;
+    margin-inline: auto;
   }
 }
 

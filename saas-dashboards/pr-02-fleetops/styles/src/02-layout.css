@@ -20,6 +20,17 @@ body > #app {
   justify-self: start;
 }
 
+/* Tables / Overflow Helpers */
+
+.table-responsive,
+.table-wrap,
+.scroll-x {
+  width: 100%;
+  max-width: 100%;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
 /* Layout Primitives */
 
 .container {
@@ -80,13 +91,39 @@ body > #app {
   justify-content: space-between;
 }
 
-/* Tables / Overflow Helpers */
+/* Section Header */
 
-.table-responsive,
-.table-wrap,
-.scroll-x {
-  width: 100%;
-  max-width: 100%;
-  overflow-x: auto;
-  -webkit-overflow-scrolling: touch;
+.section-header {
+  display: grid;
+  gap: var(--space-2);
+  justify-items: center;
+  margin-bottom: var(--space-4);
+  text-align: center;
+}
+
+.section-header__title {
+  max-width: 18ch;
+  margin-inline: auto;
+}
+
+.section-header__lead {
+  max-width: 38ch;
+  margin: var(--space-1) auto;
+}
+
+@media (min-width: 480px) {
+  .section-header {
+    justify-items: start;
+    text-align: left;
+  }
+
+  .section-header__title {
+    max-width: 28ch;
+    margin: 0;
+  }
+
+  .section-header__lead {
+    max-width: 46ch;
+    margin: 0;
+  }
 }

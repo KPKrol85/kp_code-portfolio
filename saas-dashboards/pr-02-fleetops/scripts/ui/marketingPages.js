@@ -54,127 +54,143 @@ function renderProductPage() {
         <div class="marketing-hero">
           <div class="marketing-hero__content">
             <h2 class="marketing-hero__title">Operacje w czasie rzeczywistym</h2>
-            <p>Widoki zleceń, floty i kierowców synchronizują statusy, ETA i alerty. Zespół operacyjny ma jedno źródło prawdy.</p>
-            <div class="hero-cta">
+            <p class="marketing-hero__text">Widoki zleceń, floty i kierowców synchronizują statusy, ETA i alerty. Zespół operacyjny ma jedno źródło prawdy.</p>
+            <div class="marketing-hero__cta">
               <a class="button button--primary" href="#/login">Umów demo</a>
               <a class="button button--secondary" href="#/app">Zobacz panel</a>
             </div>
           </div>
           <div class="marketing-hero__panel">
             <p class="tag">Wskazniki zaufania</p>
-            <div class="stat-grid">
-              <div class="stat-card">
-                <p class="muted small">Dokladnosc ETA</p>
-                <h3>96.8%</h3>
+            <dl class="marketing-hero__stats">
+              <div class="marketing-hero__stat-card">
+                <dt class="marketing-hero__stat-label">Dokładność ETA</dt>
+                <dd class="marketing-hero__stat-value">96.8%</dd>
               </div>
-              <div class="stat-card">
-                <p class="muted small">Dostępność SLA</p>
-                <h3>99.6%</h3>
+              <div class="marketing-hero__stat-card">
+                <dt class="marketing-hero__stat-label">Dostępność SLA</dt>
+                <dd class="marketing-hero__stat-value">99.6%</dd>
               </div>
-              <div class="stat-card">
-                <p class="muted small">Reakcja na alert</p>
-                <h3>12 min</h3>
+              <div class="marketing-hero__stat-card">
+                <dt class="marketing-hero__stat-label">Reakcja na alert</dt>
+                <dd class="marketing-hero__stat-value">12 min</dd>
               </div>
-            </div>
+            </dl>
           </div>
         </div>
       </section>
 
       <section class="section-tight">
-        <div class="landing-section__header">
+        <div class="section-header">
           <p class="tag">Jak to dziala</p>
-          <h2 class="landing-section__title">Od danych do decyzji w 4 krokach</h2>
+          <h2 class="section-header__title">Od danych do decyzji w 4 krokach</h2>
+          <p class="section-header__lead">
+            FleetOps prowadzi zespół od uporządkowania danych po bieżącą kontrolę operacji, SLA i raportów w jednym widoku.
+          </p>
         </div>
-        <div class="grid marketing-grid">
-          <div class="marketing-card">
-            <h3>1. Zasil dane</h3>
-            <p>Import zleceń, pojazdów i kierowców lub start na danych demo.</p>
+        <div class="grid">
+          <div class="card marketing-card">
+          <span class="card__step-number" aria-hidden="true">1</span>
+            <h3 class="card__title">Zasil dane</h3>
+            <p class="card__text">Import zleceń, pojazdów i kierowców lub start na danych demo.</p>
           </div>
-          <div class="marketing-card">
-            <h3>2. Ustaw SLA</h3>
-            <p>Definiuj priorytety, progi opóźnień i alerty operacyjne.</p>
+          <div class="card marketing-card">
+          <span class="card__step-number" aria-hidden="true">2</span>
+            <h3 class="card__title">Ustaw SLA</h3>
+            <p class="card__text">Definiuj priorytety, progi opóźnień i alerty operacyjne.</p>
           </div>
-          <div class="marketing-card">
-            <h3>3. Monitoruj</h3>
-            <p>Statusy na żywo, ETA i oś czasu serwisów w jednym widoku.</p>
+          <div class="card marketing-card">
+          <span class="card__step-number" aria-hidden="true">3</span>
+            <h3 class="card__title">Monitoruj</h3>
+            <p class="card__text">Statusy na żywo, ETA i oś czasu serwisów w jednym widoku.</p>
           </div>
-          <div class="marketing-card">
-            <h3>4. Ulepszaj</h3>
-            <p>Raporty KPI i eksporty pomagaja zamykac petle operacyjna.</p>
-          </div>
-        </div>
-      </section>
-
-      <section class="section-tight">
-        <div class="landing-section__header">
-          <p class="tag">Moduly</p>
-          <h2 class="landing-section__title">Najwazniejsze obszary pod kontrola</h2>
-        </div>
-        <div class="grid marketing-grid">
-          <div class="marketing-card">
-            <h3>Zlecenia</h3>
-            <p>Statusy, priorytety, ETA, alerty opóźnień i szybkie wyszukiwanie tras.</p>
-          </div>
-          <div class="marketing-card">
-            <h3>Flota</h3>
-            <p>Przeglądy, zdarzenia, koszty i harmonogramy serwisowe floty.</p>
-          </div>
-          <div class="marketing-card">
-            <h3>Kierowcy</h3>
-            <p>Widok dyspozycyjnosci, ostatnie kursy, telefon i przypisania.</p>
-          </div>
-          <div class="marketing-card">
-            <h3>Raporty</h3>
-            <p>KPI, SLA, wydajnosc i zgodnosc z wymaganiami klienta.</p>
+          <div class="card marketing-card">
+          <span class="card__step-number" aria-hidden="true">4</span>
+            <h3 class="card__title">Ulepszaj</h3>
+            <p class="card__text">Raporty KPI i eksporty pomagaja zamykac petle operacyjna.</p>
           </div>
         </div>
       </section>
 
       <section class="section-tight">
-        <div class="landing-section__header">
+        <div class="section-header">
+          <p class="tag">Moduły</p>
+          <h2 class="section-header__title">Najważniejsze obszary pod kontrolą</h2>
+          <p class="section-header__lead">
+            FleetOps łączy kluczowe obszary pracy operacyjnej, żeby zespół widział zlecenia, flotę, kierowców i raporty bez przełączania się między narzędziami.
+          </p>
+        </div>
+        <div class="grid">
+          <div class="card marketing-card">
+            <h3 class="card__title">Zlecenia</h3>
+            <p class="card__text">Statusy, priorytety, ETA, alerty opóźnień i szybkie wyszukiwanie tras.</p>
+          </div>
+          <div class="card marketing-card">
+            <h3 class="card__title">Flota</h3>
+            <p class="card__text">Przeglądy, zdarzenia, koszty i harmonogramy serwisowe floty.</p>
+          </div>
+          <div class="card marketing-card">
+            <h3 class="card__title">Kierowcy</h3>
+            <p class="card__text">Widok dyspozycyjności, ostatnie kursy, telefon i przypisania.</p>
+          </div>
+          <div class="card marketing-card">
+            <h3 class="card__title">Raporty</h3>
+            <p class="card__text">KPI, SLA, wydajność i zgodność z wymaganiami klienta.</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="section-tight">
+        <div class="section-header">
           <p class="tag">Integracje</p>
-          <h2 class="landing-section__title">Podlacz swoje systemy</h2>
+          <h2 class="section-header__title">Podłącz swoje systemy</h2>
+          <p class="section-header__lead">
+            FleetOps może zbierać dane z systemów używanych w operacjach transportowych, żeby statusy, trasy i raporty trafiały do jednego panelu.
+          </p>
         </div>
-        <div class="grid marketing-grid">
-          <div class="marketing-card">
-            <h3>GPS i telematyka</h3>
-            <p>Pozycje na żywo, prędkości i przestoje w jednej osi czasu.</p>
+        <div class="grid">
+          <div class="card marketing-card">
+            <h3 class="card__title">GPS i telematyka</h3>
+            <p class="card__text">Pozycje pojazdów, prędkości, postoje i zdarzenia drogowe w jednej osi czasu.</p>
           </div>
-          <div class="marketing-card">
-            <h3>ERP / TMS</h3>
-            <p>Zlecenia i kontrakty trafiaja automatycznie do operacji.</p>
+          <div class="card marketing-card">
+            <h3 class="card__title">ERP / TMS</h3>
+            <p class="card__text">Zlecenia, kontrakty i dane operacyjne trafiają do panelu bez ręcznego przepisywania.</p>
           </div>
-          <div class="marketing-card">
-            <h3>WMS / e-commerce</h3>
-            <p>Statusy dostaw i ETA wracaja do klienta koncowego.</p>
+          <div class="card marketing-card">
+            <h3 class="card__title">WMS / e-commerce</h3>
+            <p class="card__text">Statusy dostaw, ETA i informacje o realizacji wracają do klienta końcowego.</p>
           </div>
         </div>
       </section>
 
       <section class="section-tight">
-        <div class="landing-section__header">
-          <p class="tag">Bezpieczenstwo</p>
-          <h2 class="landing-section__title">Role, uprawnienia i audyt</h2>
+        <div class="section-header">
+          <p class="tag">Bezpieczeństwo</p>
+          <h2 class="section-header__title">Role, uprawnienia i audyt</h2>
+          <p class="section-header__lead">
+            FleetOps porządkuje dostęp do danych operacyjnych, żeby każdy członek zespołu widział tylko właściwe moduły, działania i historię zmian.
+          </p>
         </div>
-        <div class="grid marketing-grid">
-          <div class="marketing-card">
-            <h3>RBAC</h3>
-            <p>Role: Dyspozytor, Menedżer floty, Lider operacji, Podgląd.</p>
+        <div class="grid">
+          <div class="card marketing-card">
+            <h3 class="card__title">RBAC</h3>
+            <p class="card__text">Role dla dyspozytora, menedżera floty, lidera operacji i podglądu.</p>
           </div>
-          <div class="marketing-card">
-            <h3>Audyt zmian</h3>
-            <p>Historia statusow, notatki i eksport logow do compliance.</p>
+          <div class="card marketing-card">
+            <h3 class="card__title">Audyt zmian</h3>
+            <p class="card__text">Historia statusów, notatek i eksportów dostępna do kontroli oraz compliance.</p>
           </div>
-          <div class="marketing-card">
-            <h3>Kontrola dostępu</h3>
-            <p>Uprawnienia per modul i widok, idealne dla podwykonawcow.</p>
+          <div class="card marketing-card">
+            <h3 class="card__title">Kontrola dostępu</h3>
+            <p class="card__text">Uprawnienia per moduł i widok, przydatne przy pracy z podwykonawcami.</p>
           </div>
         </div>
       </section>
 
       <section class="section-tight cta-panel">
         <div>
-          <h2 class="landing-section__title">Gotowy na spokojniesza operacje?</h2>
+          <h2 class="section-header__title">Gotowy na spokojniesza operacje?</h2>
           <p>Umów demo lub uruchom wersję demonstracyjną w przeglądarce.</p>
         </div>
         <div class="hero-cta">
@@ -195,7 +211,7 @@ function renderFeaturesPage() {
     body: `
       <section class="section-tight">
         <h2 class="sr-only">Funkcje operacyjne</h2>
-        <div class="grid marketing-grid">
+        <div class="grid">
           <div class="feature-group">
             <h3>Dyspozycja</h3>
             <ul class="list-check">
@@ -245,20 +261,20 @@ function renderFeaturesPage() {
       </section>
 
       <section class="section-tight">
-        <div class="landing-section__header">
+        <div class="section-header">
           <p class="tag">Dla kogo</p>
-          <h2 class="landing-section__title">Branze, ktore wspiera FleetOps</h2>
+          <h2 class="section-header__title">Branze, ktore wspiera FleetOps</h2>
         </div>
-        <div class="grid marketing-grid">
-          <div class="marketing-card">
+        <div class="grid">
+          <div class="card marketing-card">
             <h3>Logistyka MSP</h3>
             <p>Kompletny panel do operacji bez kosztownych wdrozen enterprise.</p>
           </div>
-          <div class="marketing-card">
+          <div class="card marketing-card">
             <h3>Operatorzy logistyczni</h3>
             <p>Wiele flot, wielu kierowców, jeden standard SLA i raportowania.</p>
           </div>
-          <div class="marketing-card">
+          <div class="card marketing-card">
             <h3>Handel internetowy i detaliczny</h3>
             <p>Widocznosc dostaw last mile i SLA dla kluczowych klientow.</p>
           </div>
@@ -288,46 +304,48 @@ function renderPricingPage() {
     body: `
       <section class="section-tight">
         <div class="grid grid--pricing">
-          <div class="card--pricing">
-            <div class="badge">Start</div>
-            <div class="card__price">199 PLN</div>
-            <p class="muted small">miesięcznie, do 15 pojazdów</p>
-            <ul class="list-check">
-              <li>Zlecenia + Flota</li>
-              <li>Podstawowe alerty</li>
-              <li>Raporty CSV</li>
-            </ul>
-            <a class="button button--secondary" href="#/login">Zacznij za darmo</a>
-          </div>
-          <div class="card--pricing">
-            <div class="badge">Rozwoj</div>
-            <div class="card__price">499 PLN</div>
-            <p class="muted small">miesięcznie, do 60 pojazdów</p>
-            <ul class="list-check">
-              <li>Pelny monitoring ETA</li>
-              <li>SLA alerts + raporty</li>
-              <li>Kierowcy + Role</li>
-            </ul>
-            <a class="button button--primary" href="#/contact">Umów demo</a>
-          </div>
-          <div class="card--pricing">
-            <div class="badge">Korporacyjny</div>
-            <div class="card__price">Indywidualnie</div>
-            <p class="muted small">dla flot 60+ pojazdów</p>
-            <ul class="list-check">
-              <li>Integracje ERP / TMS</li>
-              <li>SLA 99.9% + SSO</li>
-              <li>Dedykowane wsparcie</li>
-            </ul>
-            <a class="button button--ghost" href="#/contact">Porozmawiajmy</a>
-          </div>
-        </div>
+            <div class="card card--pricing">
+              <div class="badge">Start</div>
+              <h3 class="card__title">Podstawowa kontrola operacji</h3>
+              <div class="card__price">199 PLN</div>
+              <p class="card__text">dla małych flot do 15 pojazdów</p>
+              <ul class="card__list">
+                <li>kontrola zleceń i statusów</li>
+                <li>podgląd pojazdów w jednym panelu</li>
+                <li>dobry start dla małego zespołu</li>
+              </ul>
+              <a class="button button--secondary" href="#/login">Przetestuj panel</a>
+            </div>
+            <div class="card card--pricing">
+              <div class="badge">Rozwój</div>
+              <h3 class="card__title">Rozszerzona kontrola operacji</h3>
+              <div class="card__price">499 PLN</div>
+              <p class="card__text">dla zespołów obsługujących do 60 pojazdów</p>
+              <ul class="card__list">
+                <li>szersza obsługa zleceń i floty</li>
+                <li>raporty operacyjne dla zespołu</li>
+                <li>więcej kontroli nad codzienną pracą</li>
+              </ul>
+              <a class="button button--secondary" href="#/contact">Umów demo</a>
+            </div>
+            <div class="card card--pricing">
+              <div class="badge">Korporacyjny</div>
+              <h3 class="card__title">Kontrola operacji w większej skali</h3>
+              <div class="card__price">Indywidualnie</div>
+              <p class="card__text">dla flot powyżej 60 pojazdów</p>
+              <ul class="card__list">
+                <li>zakres dopasowany do większej skali</li>
+                <li>wsparcie dla procesów i zespołów</li>
+                <li>elastyczne podejście do wdrożenia</li>
+              </ul>
+              <a class="button button--secondary" href="#/contact">Porozmawiajmy</a>
+            </div>
       </section>
 
       <section class="section-tight">
-        <div class="landing-section__header">
+        <div class="section-header">
           <p class="tag">Porownanie</p>
-          <h2 class="landing-section__title">Funkcje w planach</h2>
+          <h2 class="section-header__title">Funkcje w planach</h2>
         </div>
         <div class="table-responsive">
           <table class="table">
@@ -439,11 +457,11 @@ function renderAboutPage() {
       </section>
 
       <section class="section-tight">
-        <div class="landing-section__header">
+        <div class="section-header">
           <p class="tag">Dlaczego FleetOps</p>
-          <h2 class="landing-section__title">Operacje bez chaosu</h2>
+          <h2 class="section-header__title">Operacje bez chaosu</h2>
         </div>
-        <div class="grid marketing-grid">
+        <div class="grid">
           <div class="marketing-card">
             <h3>Transparentność</h3>
             <p>Jasne statusy, ETA i alerty dla całego zespołu.</p>
@@ -460,11 +478,11 @@ function renderAboutPage() {
       </section>
 
       <section class="section-tight">
-        <div class="landing-section__header">
+        <div class="section-header">
           <p class="tag">Podejście</p>
-          <h2 class="landing-section__title">Praca w iteracjach</h2>
+          <h2 class="section-header__title">Praca w iteracjach</h2>
         </div>
-        <div class="grid marketing-grid">
+        <div class="grid">
           <div class="marketing-card">
             <h3>Diagnoza</h3>
             <p>Mapujemy procesy dispatch i SLA, by dobrze ustawić priorytety.</p>
@@ -575,9 +593,9 @@ function renderContactPage() {
       </section>
 
       <section class="section-tight">
-        <div class="landing-section__header">
+        <div class="section-header">
           <p class="tag">Pytania</p>
-          <h2 class="landing-section__title">Najczęstsze pytania</h2>
+          <h2 class="section-header__title">Najczęstsze pytania</h2>
         </div>
         <div class="accordion" id="faq">
           <div class="accordion-item">
@@ -619,11 +637,11 @@ function renderPrivacyPage() {
     description: "Polityka prywatności FleetOps (wersja demo). Dane lokalne, brak backendu i jasne zasady przetwarzania informacji.",
     body: `
       <section class="section-tight">
-        <div class="landing-section__header">
+        <div class="section-header">
           <p class="tag">Informacja o wersji demo</p>
-          <h2 class="landing-section__title">Serwis demonstracyjny bez backendu</h2>
+          <h2 class="section-header__title">Serwis demonstracyjny bez backendu</h2>
         </div>
-        <div class="grid marketing-grid">
+        <div class="grid">
           <div class="marketing-card">
             <h3>Brak kont produkcyjnych</h3>
             <p>FleetOps to projekt portfolio / demo. Nie tworzymy kont w chmurze ani nie udostępniamy panelu klientom komercyjnym.</p>
@@ -640,9 +658,9 @@ function renderPrivacyPage() {
       </section>
 
       <section class="section-tight">
-        <div class="landing-section__header">
+        <div class="section-header">
           <p class="tag">Administrator</p>
-          <h2 class="landing-section__title">Kto jest administratorem danych</h2>
+          <h2 class="section-header__title">Kto jest administratorem danych</h2>
         </div>
         <div class="card-soft">
           <p>
@@ -677,11 +695,11 @@ function renderPrivacyPage() {
       </section>
 
       <section class="section-tight">
-        <div class="landing-section__header">
+        <div class="section-header">
           <p class="tag">Zakres danych</p>
-          <h2 class="landing-section__title">Jakie dane mogą wystąpić w demo</h2>
+          <h2 class="section-header__title">Jakie dane mogą wystąpić w demo</h2>
         </div>
-        <div class="grid marketing-grid">
+        <div class="grid">
           <div class="marketing-card">
             <h3>Formularz kontaktowy</h3>
             <ul class="list-check">
@@ -711,9 +729,9 @@ function renderPrivacyPage() {
       </section>
 
       <section class="section-tight">
-        <div class="landing-section__header">
+        <div class="section-header">
           <p class="tag">Cookies i technologie podobne</p>
-          <h2 class="landing-section__title">Pliki cookies oraz localStorage</h2>
+          <h2 class="section-header__title">Pliki cookies oraz localStorage</h2>
         </div>
         <div class="marketing-card">
           <p>W wersji demo nie korzystamy z cookies marketingowych ani narzędzi analitycznych. Serwis może wykorzystywać localStorage w celu zapisania preferencji (np. motyw) oraz danych demo generowanych lokalnie w przeglądarce.</p>
@@ -721,11 +739,11 @@ function renderPrivacyPage() {
       </section>
 
       <section class="section-tight">
-        <div class="landing-section__header">
+        <div class="section-header">
           <p class="tag">Prawa użytkownika</p>
-          <h2 class="landing-section__title">Kontrola nad danymi w wersji demo</h2>
+          <h2 class="section-header__title">Kontrola nad danymi w wersji demo</h2>
         </div>
-        <div class="grid marketing-grid">
+        <div class="grid">
           <div class="marketing-card">
             <h3>Dostęp i poprawa</h3>
             <p>Masz prawo uzyskać informacje o danych zapisanych lokalnie. W wersji demo wystarczy przejrzeć dane w przeglądarce.</p>
@@ -742,9 +760,9 @@ function renderPrivacyPage() {
       </section>
 
       <section class="section-tight">
-        <div class="landing-section__header">
+        <div class="section-header">
           <p class="tag">Bezpieczeństwo</p>
-          <h2 class="landing-section__title">Jak dbamy o bezpieczeństwo</h2>
+          <h2 class="section-header__title">Jak dbamy o bezpieczeństwo</h2>
         </div>
         <div class="marketing-card">
           <p>Wersja demo działa wyłącznie po stronie klienta. Nie przechowujemy danych na serwerze, nie profilujemy i nie sprzedajemy informacji. Stosujemy podstawowe praktyki bezpieczeństwa: aktualne zależności, brak publicznego API / endpointów do przesyłania danych oraz minimalny zakres danych.</p>
@@ -753,7 +771,7 @@ function renderPrivacyPage() {
 
       <section class="section-tight cta-panel">
         <div>
-          <h2 class="landing-section__title">Masz pytania o prywatność?</h2>
+          <h2 class="section-header__title">Masz pytania o prywatność?</h2>
           <p>Skontaktuj się z nami, odpowiemy w sprawie wersji demo FleetOps.</p>
         </div>
         <div class="hero-cta">
@@ -773,11 +791,11 @@ function renderTermsPage() {
     description: "Regulamin korzystania z wersji demo FleetOps. Zasady użytkowania, ograniczenia odpowiedzialności i prawa autorskie.",
     body: `
       <section class="section-tight">
-        <div class="landing-section__header">
+        <div class="section-header">
           <p class="tag">Zakres</p>
-          <h2 class="landing-section__title">Charakter usługi</h2>
+          <h2 class="section-header__title">Charakter usługi</h2>
         </div>
-        <div class="grid marketing-grid">
+        <div class="grid">
           <div class="marketing-card">
             <h3>Projekt demonstracyjny</h3>
             <p>FleetOps jest projektem demonstracyjnym (demo). Aplikacja służy do prezentacji interfejsu i funkcji i nie stanowi komercyjnego produktu produkcyjnego.</p>
@@ -794,9 +812,9 @@ function renderTermsPage() {
       </section>
 
       <section class="section-tight">
-        <div class="landing-section__header">
+        <div class="section-header">
           <p class="tag">Zasady korzystania</p>
-          <h2 class="landing-section__title">Co jest dozwolone</h2>
+          <h2 class="section-header__title">Co jest dozwolone</h2>
         </div>
         <div class="marketing-card">
           <ul class="list-check">
@@ -808,11 +826,11 @@ function renderTermsPage() {
       </section>
 
       <section class="section-tight">
-        <div class="landing-section__header">
+        <div class="section-header">
           <p class="tag">Nadużycia</p>
-          <h2 class="landing-section__title">Czego zabrania regulamin</h2>
+          <h2 class="section-header__title">Czego zabrania regulamin</h2>
         </div>
-        <div class="grid marketing-grid">
+        <div class="grid">
           <div class="marketing-card">
             <h3>Próby łamania zabezpieczeń</h3>
             <p>Zakazane są próby obejścia zabezpieczeń, ingerencja w działanie aplikacji, testy penetracyjne oraz działania zmierzające do uzyskania nieuprawnionego dostępu.</p>
@@ -829,9 +847,9 @@ function renderTermsPage() {
       </section>
 
       <section class="section-tight">
-        <div class="landing-section__header">
+        <div class="section-header">
           <p class="tag">Odpowiedzialność</p>
-          <h2 class="landing-section__title">Ograniczenie odpowiedzialności</h2>
+          <h2 class="section-header__title">Ograniczenie odpowiedzialności</h2>
         </div>
         <div class="marketing-card">
           <p>Wersja demo jest udostępniana "tak jak jest" (as is). W najszerszym zakresie dopuszczalnym przez prawo właściciel projektu nie ponosi odpowiedzialności za szkody wynikające z korzystania z demo, w tym za utratę danych lokalnych, przerwy w dostępie, błędy interfejsu lub decyzje podjęte na podstawie prezentowanych informacji.</p>
@@ -839,9 +857,9 @@ function renderTermsPage() {
       </section>
 
       <section class="section-tight">
-        <div class="landing-section__header">
+        <div class="section-header">
           <p class="tag">Prawa autorskie</p>
-          <h2 class="landing-section__title">Własność intelektualna</h2>
+          <h2 class="section-header__title">Własność intelektualna</h2>
         </div>
         <div class="marketing-card">
           <p>Interfejs, treści, layout, grafiki oraz kod źródłowy FleetOps są chronione prawem autorskim i należą do właściciela projektu: Kamil Król (KP_Code_). Zabronione jest kopiowanie, rozpowszechnianie lub udostępnianie bez uprzedniej pisemnej zgody.</p>
@@ -849,9 +867,9 @@ function renderTermsPage() {
       </section>
 
       <section class="section-tight">
-        <div class="landing-section__header">
+        <div class="section-header">
           <p class="tag">Kontakt</p>
-          <h2 class="landing-section__title">Dane właściciela</h2>
+          <h2 class="section-header__title">Dane właściciela</h2>
         </div>
 
         <div class="card-soft">
@@ -887,7 +905,7 @@ function renderTermsPage() {
 
       <section class="section-tight cta-panel">
         <div>
-          <h2 class="landing-section__title">Chcesz poznać FleetOps bliżej?</h2>
+          <h2 class="section-header__title">Chcesz poznać FleetOps bliżej?</h2>
           <p>Przetestuj demo lub napisz do nas z pytaniami o wdrożenie.</p>
         </div>
         <div class="hero-cta">
@@ -907,11 +925,11 @@ function renderCookiesPage() {
     description: "Polityka cookies FleetOps (wersja demo). Informacje o danych technicznych, localStorage i sposobach zarządzania ustawieniami.",
     body: `
       <section class="section-tight">
-        <div class="landing-section__header">
+        <div class="section-header">
           <p class="tag">Podstawy</p>
-          <h2 class="landing-section__title">Jakich mechanizmów używamy</h2>
+          <h2 class="section-header__title">Jakich mechanizmów używamy</h2>
         </div>
-        <div class="grid marketing-grid">
+        <div class="grid">
           <div class="marketing-card">
             <h3>Brak tracking cookies</h3>
             <p>FleetOps nie wykorzystuje marketingowych ani analitycznych ciasteczek śledzących.</p>
@@ -930,7 +948,7 @@ function renderCookiesPage() {
       <section class="section-tight">
         <div class="landing-section__header">
           <p class="tag">Kategorie</p>
-          <h2 class="landing-section__title">Jakie dane techniczne mogą wystąpić</h2>
+          <h2 class="section-header__title">Jakie dane techniczne mogą wystąpić</h2>
         </div>
         <div class="marketing-card">
           <ul class="list-check">
@@ -943,11 +961,11 @@ function renderCookiesPage() {
       </section>
 
       <section class="section-tight">
-        <div class="landing-section__header">
+        <div class="section-header">
           <p class="tag">Zarządzanie</p>
-          <h2 class="landing-section__title">Jak kontrolować dane w przeglądarce</h2>
+          <h2 class="section-header__title">Jak kontrolować dane w przeglądarce</h2>
         </div>
-        <div class="grid marketing-grid">
+        <div class="grid">
           <div class="marketing-card">
             <h3>Ustawienia przeglądarki</h3>
             <p>W ustawieniach przeglądarki możesz wyczyścić dane strony oraz ograniczyć zapisywanie danych lokalnych.</p>
@@ -964,9 +982,9 @@ function renderCookiesPage() {
       </section>
 
       <section class="section-tight">
-        <div class="landing-section__header">
+        <div class="section-header">
           <p class="tag">Kontakt</p>
-          <h2 class="landing-section__title">Masz pytania o politykę cookies?</h2>
+          <h2 class="section-header__title">Masz pytania o politykę cookies?</h2>
         </div>
         <div class="card-soft">
           <address class="contact-address">
