@@ -64,6 +64,7 @@ body > #app {
 
 .grid {
   display: grid;
+  align-items: stretch;
   gap: var(--space-3);
   grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
 }

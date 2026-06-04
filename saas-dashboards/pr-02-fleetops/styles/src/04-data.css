@@ -7,7 +7,7 @@
 
 .table th,
 .table td {
-  padding: 12px;
+  padding: var(--space-3);
   text-align: left;
   border-bottom: 1px solid var(--border);
   overflow-wrap: anywhere;
@@ -15,12 +15,54 @@
 }
 
 .table th {
+  background: var(--bg-elevated);
   font-weight: var(--fw-semibold);
   color: var(--text-muted);
+  font-size: var(--fs-03);
+}
+
+.table td {
+  font-size: var(--fs-02);
 }
 
 .table tr:hover td {
   background: var(--bg-muted);
+}
+
+/* Table Responsiveness */
+
+.table-responsive .table {
+  width: max-content;
+  min-width: 640px;
+  border-collapse: collapse;
+}
+
+.table-responsive th,
+.table-responsive td {
+  white-space: nowrap;
+}
+
+.table-responsive td:first-child,
+.table-responsive th:first-child {
+  white-space: normal;
+  min-width: 160px;
+}
+
+@media (min-width: 641px) {
+  .table-responsive .table {
+    width: 100%;
+    min-width: 0;
+  }
+
+  .table-responsive th,
+  .table-responsive td {
+    white-space: normal;
+  }
+
+  .table-responsive td:first-child,
+  .table-responsive th:first-child {
+    min-width: 0;
+  }
 }
 
 /* Status Badges */
@@ -256,40 +298,6 @@
   height: 30px;
   margin-top: 12px;
   border-radius: 10px;
-}
-
-.table-responsive .table {
-  width: max-content;
-  min-width: 640px;
-  border-collapse: collapse;
-}
-
-.table-responsive th,
-.table-responsive td {
-  white-space: nowrap;
-}
-
-.table-responsive td:first-child,
-.table-responsive th:first-child {
-  white-space: normal;
-  min-width: 160px;
-}
-
-@media (min-width: 641px) {
-  .table-responsive .table {
-    width: 100%;
-    min-width: 0;
-  }
-
-  .table-responsive th,
-  .table-responsive td {
-    white-space: normal;
-  }
-
-  .table-responsive td:first-child,
-  .table-responsive th:first-child {
-    min-width: 0;
-  }
 }
 
 /* Utility Components */

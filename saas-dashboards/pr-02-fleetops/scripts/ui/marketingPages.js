@@ -89,22 +89,22 @@ function renderProductPage() {
           </p>
         </div>
         <div class="grid">
-          <div class="card marketing-card">
+          <div class="card card--step">
           <span class="card__step-number" aria-hidden="true">1</span>
             <h3 class="card__title">Zasil dane</h3>
             <p class="card__text">Import zleceń, pojazdów i kierowców lub start na danych demo.</p>
           </div>
-          <div class="card marketing-card">
+          <div class="card card--step">
           <span class="card__step-number" aria-hidden="true">2</span>
             <h3 class="card__title">Ustaw SLA</h3>
             <p class="card__text">Definiuj priorytety, progi opóźnień i alerty operacyjne.</p>
           </div>
-          <div class="card marketing-card">
+          <div class="card card--step">
           <span class="card__step-number" aria-hidden="true">3</span>
             <h3 class="card__title">Monitoruj</h3>
             <p class="card__text">Statusy na żywo, ETA i oś czasu serwisów w jednym widoku.</p>
           </div>
-          <div class="card marketing-card">
+          <div class="card card--step">
           <span class="card__step-number" aria-hidden="true">4</span>
             <h3 class="card__title">Ulepszaj</h3>
             <p class="card__text">Raporty KPI i eksporty pomagaja zamykac petle operacyjna.</p>
@@ -188,14 +188,16 @@ function renderProductPage() {
         </div>
       </section>
 
-      <section class="section-tight cta-panel">
-        <div>
-          <h2 class="section-header__title">Gotowy na spokojniesza operacje?</h2>
-          <p>Umów demo lub uruchom wersję demonstracyjną w przeglądarce.</p>
-        </div>
-        <div class="hero-cta">
-          <a class="button button--primary" href="#/contact">Skontaktuj się</a>
-          <a class="button button--secondary" href="#/app">Zobacz demo aplikacji</a>
+      <section class="section-tight">
+        <div class="cta-panel">
+          <div class="cta-panel__header">
+            <h2 class="cta-panel__title">Gotowy uporządkować pracę floty?</h2>
+            <p class="cta-panel__lead">Sprawdź FleetOps w wersji demonstracyjnej lub umów rozmowę o wdrożeniu dla zespołu operacyjnego.</p>
+          </div>
+          <div class="cta-panel__actions">
+            <a class="button button--primary" href="#/contact">Umów rozmowę</a>
+            <a class="button button--secondary" href="#/app">Zobacz demo aplikacji</a>
+          </div>
         </div>
       </section>
     `,
@@ -211,50 +213,59 @@ function renderFeaturesPage() {
     body: `
       <section class="section-tight">
         <h2 class="sr-only">Funkcje operacyjne</h2>
-        <div class="grid">
-          <div class="feature-group">
-            <h3>Dyspozycja</h3>
-            <ul class="list-check">
+        <div class="grid grid--features">
+          <div class="card card--feature">
+            <h3 class="card__title">Dyspozycja</h3>
+            <ul class="card__list">
               <li>Przypisania kursow i priorytetow</li>
               <li>Widok statusow i szybkie filtry</li>
               <li>Alerty opóźnień i SLA</li>
               <li>Historia zmian i notatki operacyjne</li>
             </ul>
           </div>
-          <div class="feature-group">
-            <h3>Monitoring</h3>
-            <ul class="list-check">
+          <div class="card card--feature">
+            <h3 class="card__title">Monitoring</h3>
+            <ul class="card__list">
               <li>ETA w czasie rzeczywistym</li>
               <li>Podglad trasy i punktow kontrolnych</li>
               <li>Wczesne ostrzeżenia o ryzyku opóźnienia</li>
               <li>Lista incydentow i eskalacji</li>
             </ul>
           </div>
-          <div class="feature-group">
-            <h3>Kierowcy</h3>
-            <ul class="list-check">
+          <div class="card card--feature">
+            <h3 class="card__title">Kierowcy</h3>
+            <ul class="card__list">
               <li>Dyspozycyjnosc i ostatnie kursy</li>
               <li>Kontakt do kierowcy z panelu</li>
               <li>Wydajność kierowców i rotacja</li>
               <li>Notatki i zgodnosc z instrukcjami</li>
             </ul>
           </div>
-          <div class="feature-group">
-            <h3>Analityka</h3>
-            <ul class="list-check">
+          <div class="card card--feature">
+            <h3 class="card__title">Analityka</h3>
+            <ul class="card__list">
               <li>Raporty KPI i SLA</li>
               <li>Eksport CSV do klienta</li>
               <li>Wydajność floty i wykorzystanie pojazdów</li>
               <li>Trendy opóźnień i kosztów</li>
             </ul>
           </div>
-          <div class="feature-group">
-            <h3>Zgodnosc</h3>
-            <ul class="list-check">
+          <div class="card card--feature">
+            <h3 class="card__title">Zgodnosc</h3>
+            <ul class="card__list">
               <li>Audit log zmian statusow</li>
               <li>Role i uprawnienia RBAC</li>
               <li>Polityki SLA i potwierdzenia</li>
               <li>Historia serwisów i przeglądów</li>
+            </ul>
+          </div>
+          <div class="card card--feature">
+            <h3 class="card__title">Automatyzacja</h3>
+            <ul class="card__list">
+              <li>Reguły alertów dla opóźnień i SLA</li>
+              <li>Automatyczne przypomnienia dla zespołu</li>
+              <li>Szablony procesów operacyjnych</li>
+              <li>Powiadomienia o zmianach statusów</li>
             </ul>
           </div>
         </div>
@@ -264,31 +275,34 @@ function renderFeaturesPage() {
         <div class="section-header">
           <p class="tag">Dla kogo</p>
           <h2 class="section-header__title">Branze, ktore wspiera FleetOps</h2>
+          <p class="section-header__lead">FleetOps sprawdza się tam, gdzie liczy się widoczność dostaw, szybka reakcja zespołu i kontrola jakości operacji.</p>
         </div>
-        <div class="grid">
+        <div class="grid grid--industries">
           <div class="card marketing-card">
-            <h3>Logistyka MSP</h3>
-            <p>Kompletny panel do operacji bez kosztownych wdrozen enterprise.</p>
+            <h3 class="card__title">Logistyka MSP</h3>
+            <p class="card__text">Panel operacyjny dla firm, które chcą uporządkować zlecenia, statusy i komunikację bez ciężkich wdrożeń enterprise.</p>
           </div>
           <div class="card marketing-card">
-            <h3>Operatorzy logistyczni</h3>
-            <p>Wiele flot, wielu kierowców, jeden standard SLA i raportowania.</p>
+            <h3 class="card__title">Operatorzy logistyczni</h3>
+            <p class="card__text">Jeden standard pracy dla wielu flot, kierowców, klientów i zespołów odpowiedzialnych za realizację dostaw.</p>
           </div>
           <div class="card marketing-card">
-            <h3>Handel internetowy i detaliczny</h3>
-            <p>Widocznosc dostaw last mile i SLA dla kluczowych klientow.</p>
+            <h3 class="card__title">Handel internetowy i detaliczny</h3>
+            <p class="card__text">Lepsza widoczność dostaw last mile, SLA i opóźnień w procesach ważnych dla obsługi klienta.</p>
           </div>
         </div>
       </section>
 
-      <section class="section-tight cta-panel">
-        <div>
-          <h2>Chcesz zobaczyć funkcje na żywo?</h2>
-          <p>Wersja demo jest dostępna od razu, bez instalacji.</p>
-        </div>
-        <div class="hero-cta">
-          <a class="button button--primary" href="#/contact">Skontaktuj się</a>
-          <a class="button button--secondary" href="#/app">Zobacz demo aplikacji</a>
+      <section class="section-tight">
+        <div class="cta-panel">
+          <div class="cta-panel__header">
+            <h2 class="cta-panel__title">Chcesz sprawdzić funkcje w praktyce?</h2>
+            <p class="cta-panel__lead">Otwórz demo FleetOps i zobacz, jak panel wspiera dyspozycję, monitoring, raporty i automatyzację pracy zespołu.</p>
+          </div>
+          <div class="cta-panel__actions">
+            <a class="button button--primary" href="#/contact">Umów rozmowę</a>
+            <a class="button button--secondary" href="#/app">Zobacz demo aplikacji</a>
+          </div>
         </div>
       </section>
     `,
@@ -340,14 +354,16 @@ function renderPricingPage() {
               </ul>
               <a class="button button--secondary" href="#/contact">Porozmawiajmy</a>
             </div>
+        </div>
       </section>
 
       <section class="section-tight">
         <div class="section-header">
           <p class="tag">Porownanie</p>
-          <h2 class="section-header__title">Funkcje w planach</h2>
+          <h2 class="section-header__title">Porównanie planów FleetOps</h2>
+          <p class="section-header__lead">Zobacz, które funkcje są dostępne w każdym planie i wybierz zakres dopasowany do skali pracy zespołu.</p>
         </div>
-        <div class="table-responsive">
+        <div class="table-responsive pricing-table">
           <table class="table">
             <thead>
               <tr>
@@ -367,17 +383,19 @@ function renderPricingPage() {
             </tbody>
           </table>
         </div>
-        <p class="muted small pricing-note">Faktura VAT, SLA i wsparcie w cenie. Ceny netto.</p>
+        <p class="pricing-note">Faktura VAT, SLA i wsparcie w cenie. Ceny netto.</p>
       </section>
 
-      <section class="section-tight cta-panel">
-        <div>
-          <h2>Potrzebujesz wyceny dla swojej floty?</h2>
-          <p>Skontaktuj się, przygotujemy ofertę dopasowaną do skali operacji.</p>
-        </div>
-        <div class="hero-cta">
-          <a class="button button--primary" href="#/contact">Skontaktuj się</a>
-          <a class="button button--secondary" href="#/app">Zobacz demo aplikacji</a>
+      <section class="section-tight">
+        <div class="cta-panel">
+          <div class="cta-panel__header">
+            <h2 class="cta-panel__title">Potrzebujesz wyceny dla swojej floty?</h2>
+            <p class="cta-panel__lead">Skontaktuj się, przygotujemy ofertę dopasowaną do skali operacji.</p>
+          </div>
+          <div class="cta-panel__actions">
+            <a class="button button--primary" href="#/contact">Skontaktuj się</a>
+            <a class="button button--secondary" href="#/app">Zobacz demo aplikacji</a>
+          </div>
         </div>
       </section>
     `,
@@ -434,15 +452,15 @@ function renderAboutPage() {
   renderMarketingShell({
     title: "O nas",
     eyebrow: "O FleetOps",
-    lead: "Budujemy produkt dla zespołów, które muszą dowozić na czas. Transparentność, szybkość reakcji i spokój operacji.",
+    lead: "Budujemy FleetOps dla zespołów transportowych, które potrzebują przejrzystości, szybkiej reakcji i większego spokoju w codziennej operacji.",
     description: "Poznaj zespół FleetOps i naszą misję budowania operacyjnej przejrzystości w transporcie.",
     body: `
       <section class="section-tight">
         <div class="marketing-hero">
           <div class="marketing-hero__content">
             <h2 class="marketing-hero__title">Nasza misja</h2>
-            <p>Uprościć zarządzanie transportem tak, by zespoły operacyjne mogły skupić się na decyzjach, a nie na szukaniu danych.</p>
-            <ul class="list-check">
+            <p class="marketing-hero__text">Upraszczamy zarządzanie transportem, żeby zespoły operacyjne szybciej widziały statusy, ryzyka i dane potrzebne do decyzji.</p>
+            <ul class="marketing-hero__list">
               <li>Jedno źródło prawdy dla statusów</li>
               <li>Operacje oparte o SLA i fakty</li>
               <li>Przejrzysta współpraca z klientami</li>
@@ -450,8 +468,11 @@ function renderAboutPage() {
           </div>
           <div class="marketing-hero__panel">
             <p class="tag">Historia</p>
-            <p class="muted">FleetOps powstał z potrzeb operatorów logistycznych, którzy chcieli jednego, uporządkowanego panelu do pracy dziennej.</p>
-            <p class="muted">Łączymy produktowe podejście z praktyką branży transportowej.</p>
+            <div class="marketing-hero__panel-copy">
+              <p class="marketing-hero__panel-text marketing-hero__panel-text--strong">FleetOps powstał z potrzeby uporządkowania codziennej pracy operatorów logistycznych w jednym panelu.</p>
+              <p class="marketing-hero__panel-text">Łączymy produktowe podejście z praktyką branży transportowej, żeby wspierać realne procesy operacyjne.</p>
+              <p class="marketing-hero__panel-text">Projektujemy FleetOps tak, żeby codzienne decyzje były szybsze, dane bardziej dostępne, a odpowiedzialność w zespole jasno widoczna.</p>
+            </div>
           </div>
         </div>
       </section>
@@ -460,19 +481,20 @@ function renderAboutPage() {
         <div class="section-header">
           <p class="tag">Dlaczego FleetOps</p>
           <h2 class="section-header__title">Operacje bez chaosu</h2>
+          <p class="section-header__lead">FleetOps porządkuje statusy, dane i odpowiedzialność, żeby zespół mógł szybciej reagować na zmiany w codziennej pracy.</p>
         </div>
         <div class="grid">
-          <div class="marketing-card">
-            <h3>Transparentność</h3>
-            <p>Jasne statusy, ETA i alerty dla całego zespołu.</p>
+          <div class="card marketing-card">
+            <h3 class="card__title">Transparentność</h3>
+            <p class="card__text">Jasne statusy, ETA i alerty dla całego zespołu.</p>
           </div>
-          <div class="marketing-card">
-            <h3>Szybkie decyzje</h3>
-            <p>Fakty zamiast telefonów i arkuszy, bez opóźnień w reakcjach.</p>
+          <div class="card marketing-card">
+            <h3 class="card__title">Szybkie decyzje</h3>
+            <p class="card__text">Fakty zamiast telefonów i arkuszy, bez opóźnień w reakcjach.</p>
           </div>
-          <div class="marketing-card">
-            <h3>Skalowalnosc</h3>
-            <p>Ten sam proces dla 10 i 500 pojazdów.</p>
+          <div class="card marketing-card">
+            <h3 class="card__title">Skalowalność</h3>
+            <p class="card__text">Ten sam proces dla 10 i 500 pojazdów.</p>
           </div>
         </div>
       </section>
@@ -483,29 +505,34 @@ function renderAboutPage() {
           <h2 class="section-header__title">Praca w iteracjach</h2>
         </div>
         <div class="grid">
-          <div class="marketing-card">
+          <div class="card card--step">
+            <span class="card__step-number" aria-hidden="true">1</span>
             <h3>Diagnoza</h3>
             <p>Mapujemy procesy dispatch i SLA, by dobrze ustawić priorytety.</p>
           </div>
-          <div class="marketing-card">
+          <div class="card card--step">
+            <span class="card__step-number" aria-hidden="true">2</span>
             <h3>Wdrożenie</h3>
             <p>Konfigurujemy role, alerty i raporty zgodnie z operacjami.</p>
           </div>
-          <div class="marketing-card">
+          <div class="card card--step">
+            <span class="card__step-number" aria-hidden="true">3</span>
             <h3>Ulepszanie</h3>
             <p>Regularnie pracujemy nad KPI, trendami i automatyzacjami.</p>
           </div>
         </div>
       </section>
 
-      <section class="section-tight cta-panel">
-        <div>
-          <h2>Chcesz poznać nasz zespół?</h2>
-          <p>Porozmawiajmy o twojej flocie i pokażmy, jak pracuje FleetOps.</p>
-        </div>
-        <div class="hero-cta">
-          <a class="button button--primary" href="#/contact">Skontaktuj się</a>
-          <a class="button button--secondary" href="#/app">Zobacz demo aplikacji</a>
+      <section class="section-tight">
+        <div class="cta-panel">
+          <div class="cta-panel__header">
+            <h2 class="cta-panel__title">Chcesz poznać nasz zespół?</h2>
+            <p class="cta-panel__lead">Porozmawiajmy o twojej flocie i pokażmy, jak pracuje FleetOps.</p>
+          </div>
+          <div class="cta-panel__actions">
+            <a class="button button--primary" href="#/contact">Skontaktuj się</a>
+            <a class="button button--secondary" href="#/app">Zobacz demo aplikacji</a>
+          </div>
         </div>
       </section>
     `,
@@ -516,15 +543,15 @@ function renderContactPage() {
   renderMarketingShell({
     title: "Kontakt",
     eyebrow: "Kontakt",
-    lead: "Opowiedz nam o swojej flocie. Odpowiadamy szybko i konkretnie.",
+    lead: "Opisz potrzeby swojej floty, a wrócimy z konkretną odpowiedzią dotyczącą demo, wdrożenia lub zakresu funkcji.",
     description: "Skontaktuj się z zespołem FleetOps. Demo, integracje i pytania o cennik.",
     body: `
       <section class="section-tight">
-        <div class="contact-grid">
-          <div class="form-card">
-            <h2>Formularz kontaktowy</h2>
-            <p class="muted">Zostaw dane, a odezwiemy się w ciągu 1 dnia roboczego.</p>
-            <form id="contactForm" class="contact-form">
+        <div class="grid grid--contact">
+          <div class="contact-form">
+            <h2 class="contact-form__title">Formularz kontaktowy</h2>
+            <p class="contact-form__lead">Zostaw dane, a odezwiemy się w ciągu 1 dnia roboczego.</p>
+            <form id="contactForm" class="contact-form__body">
               <label class="form-control">
                 <span class="label">Imię i nazwisko</span>
                 <input class="input" name="name" type="text" required minlength="3" placeholder="Jan Kowalski" />
@@ -559,7 +586,6 @@ function renderContactPage() {
           <div class="marketing-card">
             <h2>Dane kontaktowe</h2>
             <p class="muted">Kontakt do twórcy projektu</p>
-
               <address class="contact-address">
                 <div>
                   <p class="muted small">E-mail</p>
@@ -582,7 +608,6 @@ function renderContactPage() {
                   </p>
                 </div>
               </address>
-
             <div class="card-soft">
               <p class="muted small">FleetOps to projekt demonstracyjny. Kontakt dotyczy twórcy projektu.</p>
               <p class="muted small">Projekt i interfejs: Kamil Król (kp_code_).</p>

@@ -19,12 +19,6 @@
   color: var(--text);
 }
 
-/* Text helpers */
-
-.small {
-  font-size: var(--fs-02);
-}
-
 /* Separators */
 
 hr {
@@ -307,7 +301,7 @@ select,
 textarea {
   width: 100%;
   padding: var(--space-2) var(--space-3);
-  border-radius: var(--radius-sm);
+  border-radius: var(--radius);
   border: 1px solid var(--border);
   background: var(--surface-2);
   color: var(--text);
@@ -351,27 +345,26 @@ textarea[aria-disabled="true"] {
 
 .input[aria-invalid="true"],
 select[aria-invalid="true"],
-textarea[aria-invalid="true"],
-.input:invalid,
-select:invalid,
-textarea:invalid {
+textarea[aria-invalid="true"] {
   border-color: var(--danger);
 }
 
 .input[aria-invalid="true"]:focus-visible,
 select[aria-invalid="true"]:focus-visible,
-textarea[aria-invalid="true"]:focus-visible,
-.input:invalid:focus-visible,
-select:invalid:focus-visible,
-textarea:invalid:focus-visible {
+textarea[aria-invalid="true"]:focus-visible {
   outline-color: var(--danger);
   box-shadow: 0 0 0 4px rgba(248, 113, 113, 0.22);
 }
 
 .label {
-  display: inline-block;
-  font-weight: var(--fw-semibold);
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-1);
   margin-bottom: var(--space-1);
+  color: color-mix(in srgb, var(--text) 88%, var(--text-muted) 12%);
+  font-size: var(--fs-02);
+  font-weight: var(--fw-semibold);
+  line-height: var(--lh-tight);
 }
 
 .form-control {
@@ -394,7 +387,7 @@ textarea:invalid:focus-visible {
   flex: 0 0 auto;
   width: 18px;
   height: 18px;
-  margin: 2px 0 0;
+  margin: var(--space-0) 0 0;
   accent-color: var(--accent);
   cursor: pointer;
 }
@@ -493,7 +486,7 @@ textarea:invalid:focus-visible {
 }
 
 .accordion-text {
-    max-width: 72ch;
+  max-width: 72ch;
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -706,13 +699,42 @@ html[data-theme="dark"] .card:focus-within {
   width: min(100%, 28ch);
 }
 
+.card__list {
+  display: grid;
+  gap: var(--space-2);
+  width: min(100%, 30ch);
+  margin: 0 auto;
+  padding: 0;
+  text-align: left;
+  font-size: var(--fs-02);
+  list-style: none;
+}
+
+.card__list li {
+  position: relative;
+  padding-left: var(--space-4);
+}
+
+.card__list li::before {
+  position: absolute;
+  top: 0.65em;
+  left: 0;
+  width: 0.4rem;
+  height: 0.4rem;
+  border-radius: var(--radius-pill);
+  background: var(--accent);
+   box-shadow: 0 0 0 0.25rem var(--accent-ghost);
+  content: "";
+}
+
 /* Feature cards */
 
 .card--feature {
   display: grid;
   align-content: start;
   text-align: center;
-  gap: var(--space-2);
+  gap: var(--space-3);
+  min-block-size: 8.6rem;;
 }
 
 /* Step cards */
@@ -743,7 +765,7 @@ html[data-theme="dark"] .card:focus-within {
 
 .card--pricing {
   display: grid;
-  gap: var(--space-3);
+  gap: var(--space-4);
   justify-items: center;
   grid-template-rows: auto auto auto 1fr auto;
   height: 100%;
@@ -758,33 +780,6 @@ html[data-theme="dark"] .card:focus-within {
   font-weight: var(--fw-semibold);
   line-height: var(--lh-tight);
   color: var(--accent);
-}
-
-.card--pricing .card__list {
-  display: grid;
-  gap: var(--space-1);
-  width: min(100%, 28ch);
-  margin: 0 auto;
-  padding: 0;
-  text-align: left;
-  font-size: var(--fs-02);
-  list-style: none;
-}
-
-.card--pricing .card__list li {
-  position: relative;
-  padding-left: var(--space-3);
-}
-
-.card--pricing .card__list li::before {
-  position: absolute;
-  top: 0.65em;
-  left: 0;
-  width: 0.4rem;
-  height: 0.4rem;
-  border-radius: 999px;
-  background: var(--accent);
-  content: "";
 }
 
 .card--pricing .button {
@@ -841,4 +836,61 @@ html[data-theme="dark"] .card:focus-within {
   gap: var(--space-2);
   min-width: 0;
   text-align: center;
+}
+
+/* CTA Panel */
+
+.cta-panel {
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: var(--space-5);
+  background: color-mix(in srgb, var(--surface) 80%, var(--bg-elevated));
+  display: grid;
+  justify-items: center;
+  gap: var(--space-4);
+  text-align: center;
+}
+
+.cta-panel__header {
+  display: grid;
+  justify-items: center;
+  gap: var(--space-3);
+}
+
+.cta-panel__title {
+  max-width: 18ch;
+  margin: 0;
+  font-size: var(--fs-06);
+  color: var(--text);
+  text-wrap: balance;
+}
+
+.cta-panel__lead {
+  max-width: 44ch;
+}
+
+.cta-panel__actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: var(--space-3);
+}
+
+.cta-panel__actions .button {
+  min-width: min(100%, 14rem);
+  font-size: var(--fs-02);
+  font-weight: var(--fw-medium);
+}
+
+@media (min-width: 760px) {
+  .cta-panel {
+    grid-template-columns: minmax(0, 1fr) auto;
+    justify-items: stretch;
+    align-items: center;
+    text-align: left;
+  }
+
+  .cta-panel__header {
+    justify-items: start;
+  }
 }
