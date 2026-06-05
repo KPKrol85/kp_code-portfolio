@@ -172,7 +172,7 @@
   height: 34px;
   background: var(--accent-ghost);
   color: var(--accent);
-  border-radius: 50%;
+  border-radius: var(--radius);
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -188,9 +188,10 @@
   right: 0;
   z-index: 50;
   min-height: 58px;
-  padding: calc(env(safe-area-inset-top) + 8px) var(--space-3) 10px;
+  padding: var(--space-3);
   background: var(--bg-elevated);
   border-bottom: 1px solid var(--border);
+  border-radius: var(--radius-);
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -712,4 +713,15 @@ body[data-compact="true"] .topbar {
 
 .empty-state__title {
   margin: 0;
+}
+
+
+/* Inline form */
+
+.form-inline {
+  display: flex;
+  margin-top: var(--space-2);
+  gap: var(--space-2);
+  flex-wrap: wrap;
+  font-size: var(--fs-01);
 }

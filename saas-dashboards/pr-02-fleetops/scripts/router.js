@@ -15,7 +15,7 @@ function renderInfoPage({ title, body }) {
         <div class="hero-card">
           <p class="tag">Informacja</p>
           <h1>${title}</h1>
-          <div class="grid info-page__body">${body}</div>
+          <div class="grid">${body}</div>
         </div>
       </main>
     </div>

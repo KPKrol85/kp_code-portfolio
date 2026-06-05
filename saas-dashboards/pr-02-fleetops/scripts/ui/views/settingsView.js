@@ -10,7 +10,6 @@ function settingsView() {
   const themeCard = dom.h('div', 'setting-card');
   themeCard.innerHTML = `
     <h3>Motyw</h3>
-    <p class="muted small">Jasny / Ciemny</p>
     <div class="form-inline">
       <button class="button ${FleetStore.state.preferences.theme === 'light' ? 'button--secondary' : 'button--ghost'}" id="lightBtn">Jasny</button>
       <button class="button ${FleetStore.state.preferences.theme === 'dark' ? 'button--secondary' : 'button--ghost'}" id="darkBtn">Ciemny</button>

@@ -703,388 +703,654 @@ function renderPrivacyPage() {
   renderMarketingShell({
     title: "Polityka prywatności",
     eyebrow: "Polityka prywatności",
-    lead: "Szanujemy prywatność użytkowników wersji demonstracyjnej FleetOps. Poniżej opisujemy zakres danych i sposób ich przetwarzania w modelu demo.",
-    description: "Polityka prywatności FleetOps (wersja demo). Dane lokalne, brak backendu i jasne zasady przetwarzania informacji.",
+    lead: "Informacje o zasadach przetwarzania danych, korzystania z formularza kontaktowego oraz danych zapisywanych lokalnie w projekcie FleetOps.",
+    description: "Polityka prywatności FleetOps. Zasady dotyczące danych kontaktowych, danych lokalnych, cookies i sposobu działania projektu.",
     body: `
       <section class="section-tight">
-        <div class="section-header">
-          <p class="tag">Informacja o wersji demo</p>
-          <h2 class="section-header__title">Serwis demonstracyjny bez backendu</h2>
-        </div>
-        <div class="grid">
-          <div class="marketing-card">
-            <h3>Brak kont produkcyjnych</h3>
-            <p>FleetOps to projekt portfolio / demo. Nie tworzymy kont w chmurze ani nie udostępniamy panelu klientom komercyjnym.</p>
+        <nav class="legal-nav" aria-label="Spis treści polityki prywatności">
+          <div class="legal-nav__box">
+            <p class="tag">Spis treści</p>
+            <ol class="legal-nav__list">
+              <li><a class="legal-nav__link" href="#privacy-character">Charakter projektu FleetOps</a></li>
+              <li><a class="legal-nav__link" href="#privacy-administrator">Administrator, twórca i kontakt</a></li>
+              <li><a class="legal-nav__link" href="#privacy-scope">Zakres danych, cele i podstawy przetwarzania</a></li>
+              <li><a class="legal-nav__link" href="#privacy-contact">Formularz kontaktowy i komunikacja e-mail</a></li>
+              <li><a class="legal-nav__link" href="#privacy-local-storage">Dane lokalne, localStorage i preferencje</a></li>
+              <li><a class="legal-nav__link" href="#privacy-cookies">Cookies i technologie podobne</a></li>
+              <li><a class="legal-nav__link" href="#privacy-rights">Odbiorcy, okres przechowywania i prawa użytkownika</a></li>
+              <li><a class="legal-nav__link" href="#privacy-security">Bezpieczeństwo, zmiany dokumentu i kontakt</a></li>
+            </ol>
           </div>
-          <div class="marketing-card">
-            <h3>Dane w przeglądarce</h3>
-            <p>Wszelkie dane są zapisywane lokalnie w przeglądarce użytkownika (localStorage) i nie są wysyłane na serwer.</p>
-          </div>
-          <div class="marketing-card">
-            <h3>Brak integracji z osobami trzecimi</h3>
-            <p>Demo nie przekazuje danych do zewnętrznych systemów ani narzędzi analitycznych poza standardowymi funkcjami przeglądarki.</p>
-          </div>
-        </div>
+        </nav>
       </section>
 
       <section class="section-tight">
-        <div class="section-header">
-          <p class="tag">Administrator</p>
-          <h2 class="section-header__title">Kto jest administratorem danych</h2>
-        </div>
-        <div class="card-soft">
-          <p>
-            Administratorem danych w ramach wersji demonstracyjnej FleetOps jest:
-          </p>
-          <div class="grid">
-            <div>
-              <strong>Imię i nazwisko:</strong> Kamil Król (KP_Code_)
-            </div>
-            <div>
-              <strong>Adres:</strong>
-              <a
-                href="https://www.google.com/maps?q=Marynarki+Wojennej+12/3,+33-100+Tarn%C3%B3w,+Polska"
-                target="_blank"
-                rel="noopener noreferrer">
-                Marynarki Wojennej 12/3, 33-100 Tarnów, Polska
-              </a>
-            </div>
-            <div>
-              <strong>Telefon:</strong>
-              <a href="tel:+48533537091">+48 533 537 091</a>
-            </div>
-            <div>
-              <strong>E-mail:</strong>
-              <a href="mailto:kontakt@kp-code.pl">kontakt@kp-code.pl</a>
-            </div>
+        <article class="legal-doc" aria-labelledby="privacy-document-title">
+          <div class="section-header">
+            <p class="tag">Dokument</p>
+            <h2 class="section-header__title" id="privacy-document-title">Zasady prywatności FleetOps</h2>
+            <p class="section-header__lead">
+              Dokument określa zasady przetwarzania danych w ramach projektu FleetOps oraz kontaktu z KP_Code Digital Studio.
+            </p>
           </div>
-          <p class="muted small">
-            Dane kontaktowe dotyczą twórcy projektu demonstracyjnego FleetOps.
-          </p>
-        </div>
+
+          <div class="legal-doc__content">
+            <section class="legal-doc__section" id="privacy-character" tabindex="-1">
+              <h3>1. Charakter projektu FleetOps</h3>
+              <p>
+                FleetOps jest statycznym projektem typu SaaS, przygotowanym jako realizacja portfolio i referencyjny projekt front-end dla KP_Code Digital Studio. Projekt prezentuje przykładowy panel do pracy z flotą, zleceniami, kierowcami, raportami i ustawieniami.
+              </p>
+              <p>
+                FleetOps ma charakter demonstracyjny i nie stanowi produkcyjnej usługi transportowej, operatora floty ani komercyjnej platformy do obsługi realnych procesów operacyjnych. Projekt nie umożliwia zawierania umów, dokonywania płatności, realizacji usług przewozowych ani korzystania z rzeczywistych integracji GPS, TMS, ERP lub podobnych systemów.
+              </p>
+              <p>
+                Dane widoczne w panelu mają charakter przykładowy albo lokalny. Użytkownik nie powinien wprowadzać do formularzy ani widoków projektu danych wrażliwych, poufnych, produkcyjnych danych firmowych ani informacji dotyczących rzeczywistych operacji transportowych.
+              </p>
+            </section>
+
+            <section class="legal-doc__section" id="privacy-administrator" tabindex="-1">
+              <h3>2. Administrator, twórca i kontakt</h3>
+              <p>
+                Administratorem danych przetwarzanych w związku z kontaktem dotyczącym FleetOps jest KP_Code Digital Studio. Projekt został zaprojektowany i wykonany przez Kamila Króla oraz stanowi jego własność jako twórcy i właściciela projektu.
+              </p>
+              <p>
+                W sprawach związanych z prywatnością, projektem FleetOps lub podobnymi realizacjami można skontaktować się za pośrednictwem adresu
+                <a class="legal-doc__link" href="mailto:kontakt@kp-code.pl">kontakt@kp-code.pl</a>.
+              </p>
+              <p>
+                Dane kontaktowe publikowane w serwisie służą komunikacji dotyczącej projektu, współpracy z KP_Code Digital Studio oraz zapytań związanych z podobnymi wdrożeniami.
+              </p>
+            </section>
+
+            <section class="legal-doc__section" id="privacy-scope" tabindex="-1">
+              <h3>3. Zakres danych, cele i podstawy przetwarzania</h3>
+              <p>
+                W ramach projektu mogą występować dane wpisane dobrowolnie przez użytkownika w formularzu kontaktowym, dane przekazane w korespondencji e-mail oraz dane techniczne związane z korzystaniem ze strony i działania przeglądarki.
+              </p>
+              <p>
+                Dane mogą obejmować w szczególności imię i nazwisko, adres e-mail, treść wiadomości, informacje o zakresie zapytania oraz dane techniczne przetwarzane w zakresie niezbędnym do prawidłowego działania strony, bezpieczeństwa lub obsługi komunikacji.
+              </p>
+              <ul>
+                <li>dane kontaktowe mogą być przetwarzane w celu obsługi zapytania i prowadzenia korespondencji,</li>
+                <li>podstawą przetwarzania może być zgoda użytkownika albo prawnie uzasadniony interes administratora polegający na udzieleniu odpowiedzi,</li>
+                <li>dane techniczne mogą być przetwarzane w zakresie wynikającym z działania przeglądarki, hostingu lub zabezpieczenia strony.</li>
+              </ul>
+              <p>
+                FleetOps nie wykorzystuje danych do zautomatyzowanego podejmowania decyzji, profilowania marketingowego ani sprzedaży danych podmiotom trzecim.
+              </p>
+            </section>
+
+            <section class="legal-doc__section" id="privacy-contact" tabindex="-1">
+              <h3>4. Formularz kontaktowy i komunikacja e-mail</h3>
+              <p>
+                Formularz kontaktowy służy do przekazania zapytania dotyczącego FleetOps, podobnego panelu, strony firmowej lub współpracy z KP_Code Digital Studio. W aktualnej implementacji formularz działa po stronie przeglądarki i nie wysyła danych do produkcyjnego backendu FleetOps.
+              </p>
+              <p>
+                Jeżeli użytkownik skorzysta z linku e-mail lub wyśle wiadomość bezpośrednio na adres kontaktowy, dane zawarte w wiadomości są przetwarzane w celu udzielenia odpowiedzi, prowadzenia korespondencji oraz ustalenia kontekstu zapytania.
+              </p>
+              <p>
+                W wiadomościach nie należy przekazywać haseł, danych wrażliwych, poufnych materiałów, danych produkcyjnych firm ani informacji o realnych klientach, jeżeli nie są one konieczne do obsługi zapytania.
+              </p>
+            </section>
+
+            <section class="legal-doc__section" id="privacy-local-storage" tabindex="-1">
+              <h3>5. Dane lokalne, localStorage i preferencje</h3>
+              <p>
+                FleetOps działa głównie po stronie przeglądarki. Mechanizm localStorage może zapisywać lokalnie dane przykładowe oraz preferencje interfejsu, takie jak motyw, tryb kompaktowy, zakres dashboardu, status logowania testowego, filtry, preferencje list, aktualny użytkownik demonstracyjny, dane domenowe, aktywność oraz kolejka działań offline.
+              </p>
+              <p>
+                Dane zapisane w localStorage pozostają w przeglądarce użytkownika i mogą zostać usunięte z poziomu ustawień przeglądarki albo przez funkcję resetu danych w panelu FleetOps. Usunięcie tych danych przywraca projekt do stanu początkowego lub usuwa lokalne zmiany testowe.
+              </p>
+              <p>
+                Router może używać sessionStorage do tymczasowego zapamiętania ścieżki powrotu po logowaniu testowym. Taki zapis ma charakter techniczny, krótkotrwały i jest związany z działaniem nawigacji w przeglądarce.
+              </p>
+            </section>
+
+            <section class="legal-doc__section" id="privacy-cookies" tabindex="-1">
+              <h3>6. Cookies i technologie podobne</h3>
+              <p>
+                W kodzie projektu nie przewidziano narzędzi analitycznych, reklamowych ani marketingowych plików cookies. Projekt może natomiast korzystać z mechanizmów przeglądarki, takich jak localStorage, sessionStorage, cache oraz standardowe zasoby niezbędne do wyświetlenia strony.
+              </p>
+              <p>
+                W zależności od sposobu hostingu przeglądarka lub infrastruktura hostingowa może przetwarzać podstawowe dane techniczne, takie jak adres IP, informacje o żądaniu, typ przeglądarki lub logi bezpieczeństwa. Zakres takich danych zależy od środowiska, w którym projekt jest uruchomiony.
+              </p>
+              <p>
+                Użytkownik może zarządzać cookies, cache i danymi lokalnymi w ustawieniach swojej przeglądarki. Ograniczenie lub usunięcie danych lokalnych może spowodować utratę zapisanych preferencji i zmian testowych.
+              </p>
+            </section>
+
+            <section class="legal-doc__section" id="privacy-rights" tabindex="-1">
+              <h3>7. Odbiorcy, okres przechowywania i prawa użytkownika</h3>
+              <p>
+                Dane kontaktowe mogą być obsługiwane przez narzędzia poczty elektronicznej, dostawców hostingu lub inne narzędzia techniczne wykorzystywane przez administratora wyłącznie w zakresie potrzebnym do komunikacji, utrzymania strony i zapewnienia bezpieczeństwa.
+              </p>
+              <p>
+                Dane nie są sprzedawane ani udostępniane podmiotom trzecim w celach marketingowych. Wiadomości e-mail mogą być przechowywane przez okres potrzebny do udzielenia odpowiedzi, prowadzenia dalszej korespondencji lub ochrony przed roszczeniami.
+              </p>
+              <p>
+                Użytkownik może żądać dostępu do swoich danych, ich sprostowania, usunięcia, ograniczenia przetwarzania, przeniesienia danych, wniesienia sprzeciwu oraz cofnięcia zgody, jeżeli przetwarzanie odbywa się na podstawie zgody. Przysługuje także prawo wniesienia skargi do Prezesa Urzędu Ochrony Danych Osobowych.
+              </p>
+            </section>
+
+            <section class="legal-doc__section" id="privacy-security" tabindex="-1">
+              <h3>8. Bezpieczeństwo, zmiany dokumentu i kontakt</h3>
+              <p>
+                Projekt ogranicza zakres przetwarzania danych przez brak produkcyjnego systemu kont użytkowników, brak płatności oraz lokalny charakter danych przykładowych. Podstawowe środki bezpieczeństwa obejmują ostrożne projektowanie formularzy, ograniczenie zakresu danych oraz możliwość usunięcia danych lokalnych.
+              </p>
+              <p>
+                Polityka prywatności może być aktualizowana wraz ze zmianami projektu, sposobu hostingu, funkcji strony lub przepisów prawa. Aktualna wersja dokumentu jest publikowana w serwisie.
+              </p>
+              <p>
+                W sprawach związanych z prywatnością można skontaktować się przez adres
+                <a class="legal-doc__link" href="mailto:kontakt@kp-code.pl">kontakt@kp-code.pl</a>.
+              </p>
+              <p class="legal-doc__meta">
+                Data ostatniej aktualizacji:
+                <time datetime="2026-06-05">05.06.2026</time>
+              </p>
+            </section>
+          </div>
+        </article>
       </section>
 
       <section class="section-tight">
-        <div class="section-header">
-          <p class="tag">Zakres danych</p>
-          <h2 class="section-header__title">Jakie dane mogą wystąpić w demo</h2>
-        </div>
-        <div class="grid">
-          <div class="marketing-card">
-            <h3>Formularz kontaktowy</h3>
-            <ul class="list-check">
-              <li>Imię i nazwisko</li>
-              <li>E-mail służbowy</li>
-              <li>Wiadomość i wielkość floty</li>
-            </ul>
-            <p class="muted small">Formularz działa lokalnie i nie wysyła danych na serwer. Dane wpisane w formularzu pozostają wyłącznie w przeglądarce użytkownika.</p>
+        <div class="cta-panel">
+          <div class="cta-panel__header">
+            <h2 class="cta-panel__title">Masz pytania o prywatność?</h2>
+            <p class="cta-panel__lead">Skontaktuj się w sprawie projektu FleetOps lub zasad opisanych w polityce prywatności.</p>
           </div>
-          <div class="marketing-card">
-            <h3>Dane demo w aplikacji</h3>
-            <ul class="list-check">
-              <li>Mockowe zlecenia, pojazdy i kierowcy</li>
-              <li>Ustawienia SLA i statusy operacyjne</li>
-              <li>Preferencje użytkownika (np. motyw)</li>
-            </ul>
+          <div class="cta-panel__actions">
+            <a class="button button--primary" href="#/contact">Kontakt</a>
+            <a class="button button--secondary" href="#/app">Przejdź do panelu</a>
           </div>
-          <div class="marketing-card">
-            <h3>LocalStorage</h3>
-            <ul class="list-check">
-              <li>Preferencje interfejsu</li>
-              <li>Dane demo wygenerowane lokalnie</li>
-              <li>Ostatnio otwarte widoki</li>
-            </ul>
-          </div>
-        </div>
-      </section>
-
-      <section class="section-tight">
-        <div class="section-header">
-          <p class="tag">Cookies i technologie podobne</p>
-          <h2 class="section-header__title">Pliki cookies oraz localStorage</h2>
-        </div>
-        <div class="marketing-card">
-          <p>W wersji demo nie korzystamy z cookies marketingowych ani narzędzi analitycznych. Serwis może wykorzystywać localStorage w celu zapisania preferencji (np. motyw) oraz danych demo generowanych lokalnie w przeglądarce.</p>
-        </div>
-      </section>
-
-      <section class="section-tight">
-        <div class="section-header">
-          <p class="tag">Prawa użytkownika</p>
-          <h2 class="section-header__title">Kontrola nad danymi w wersji demo</h2>
-        </div>
-        <div class="grid">
-          <div class="marketing-card">
-            <h3>Dostęp i poprawa</h3>
-            <p>Masz prawo uzyskać informacje o danych zapisanych lokalnie. W wersji demo wystarczy przejrzeć dane w przeglądarce.</p>
-          </div>
-          <div class="marketing-card">
-            <h3>Usunięcie danych</h3>
-            <p>Możesz wyczyścić localStorage w ustawieniach przeglądarki, aby usunąć dane demo i preferencje.</p>
-          </div>
-          <div class="marketing-card">
-            <h3>Kontakt z administratorem</h3>
-            <p>Jeśli potrzebujesz wsparcia, napisz na kontakt@kp-code.pl. Uwaga: wiadomość wysłana e-mailem (mailto) trafia do administratora i jest przetwarzana w celu odpowiedzi na zapytanie.</p>
-          </div>
-        </div>
-      </section>
-
-      <section class="section-tight">
-        <div class="section-header">
-          <p class="tag">Bezpieczeństwo</p>
-          <h2 class="section-header__title">Jak dbamy o bezpieczeństwo</h2>
-        </div>
-        <div class="marketing-card">
-          <p>Wersja demo działa wyłącznie po stronie klienta. Nie przechowujemy danych na serwerze, nie profilujemy i nie sprzedajemy informacji. Stosujemy podstawowe praktyki bezpieczeństwa: aktualne zależności, brak publicznego API / endpointów do przesyłania danych oraz minimalny zakres danych.</p>
-        </div>
-      </section>
-
-      <section class="section-tight cta-panel">
-        <div>
-          <h2 class="section-header__title">Masz pytania o prywatność?</h2>
-          <p>Skontaktuj się z nami, odpowiemy w sprawie wersji demo FleetOps.</p>
-        </div>
-        <div class="hero-cta">
-          <a class="button button--primary" href="#/contact">Kontakt</a>
-          <a class="button button--secondary" href="#/app">Przejdź do demo</a>
         </div>
       </section>
     `,
   });
+
+  const links = Array.from(document.querySelectorAll(".legal-nav__link"));
+  const cleanups = links.map((link) => {
+    const handleClick = (event) => {
+      const href = link.getAttribute("href") || "";
+      if (!href.startsWith("#privacy-")) return;
+
+      const target = document.getElementById(href.slice(1));
+      if (!target) return;
+
+      event.preventDefault();
+      const behavior = window.FleetUI?.getMotionSafeScrollBehavior
+        ? FleetUI.getMotionSafeScrollBehavior()
+        : "smooth";
+
+      target.scrollIntoView({ behavior, block: "start" });
+      target.focus({ preventScroll: true });
+    };
+
+    link.addEventListener("click", handleClick);
+    return () => link.removeEventListener("click", handleClick);
+  });
+
+  if (window.CleanupRegistry && typeof CleanupRegistry.add === "function") {
+    CleanupRegistry.add(() => cleanups.forEach((cleanup) => cleanup()));
+  }
 }
 
 function renderTermsPage() {
   renderMarketingShell({
     title: "Regulamin",
     eyebrow: "Regulamin",
-    lead: "Regulamin określa zasady korzystania z demonstracyjnej wersji FleetOps. To projekt demo bez backendu i bez gwarancji produkcyjnej.",
-    description: "Regulamin korzystania z wersji demo FleetOps. Zasady użytkowania, ograniczenia odpowiedzialności i prawa autorskie.",
+    lead: "Zasady korzystania z projektu FleetOps, prezentowanych funkcji panelu oraz materiałów przygotowanych przez KP_Code Digital Studio.",
+    description: "Regulamin FleetOps. Zasady korzystania z projektu SaaS-style dla transportu i floty, prawa autorskie KP_Code Digital Studio oraz ograniczenia odpowiedzialności.",
     body: `
       <section class="section-tight">
-        <div class="section-header">
-          <p class="tag">Zakres</p>
-          <h2 class="section-header__title">Charakter usługi</h2>
-        </div>
-        <div class="grid">
-          <div class="marketing-card">
-            <h3>Projekt demonstracyjny</h3>
-            <p>FleetOps jest projektem demonstracyjnym (demo). Aplikacja służy do prezentacji interfejsu i funkcji i nie stanowi komercyjnego produktu produkcyjnego.</p>
+        <nav class="legal-nav" aria-label="Spis treści regulaminu">
+          <div class="legal-nav__box">
+            <p class="tag">Spis treści</p>
+            <ol class="legal-nav__list">
+              <li><a class="legal-nav__link" href="#terms-definitions">Definicje</a></li>
+              <li><a class="legal-nav__link" href="#terms-general">Postanowienia ogólne</a></li>
+              <li><a class="legal-nav__link" href="#terms-character">Charakter projektu FleetOps</a></li>
+              <li><a class="legal-nav__link" href="#terms-functionality">Funkcjonalności i panel aplikacji</a></li>
+              <li><a class="legal-nav__link" href="#terms-intellectual-property">Własność intelektualna</a></li>
+              <li><a class="legal-nav__link" href="#terms-contact">Formularz kontaktowy i komunikacja</a></li>
+              <li><a class="legal-nav__link" href="#terms-liability">Odpowiedzialność</a></li>
+              <li><a class="legal-nav__link" href="#terms-external-links">Linki zewnętrzne</a></li>
+              <li><a class="legal-nav__link" href="#terms-security">Bezpieczeństwo i zasady korzystania</a></li>
+              <li><a class="legal-nav__link" href="#terms-changes">Zmiany regulaminu</a></li>
+              <li><a class="legal-nav__link" href="#terms-final">Postanowienia końcowe</a></li>
+            </ol>
           </div>
-          <div class="marketing-card">
-            <h3>Brak gwarancji SLA</h3>
-            <p>Nie gwarantujemy ciągłości działania, dostępności, kompletności funkcji ani określonego poziomu wsparcia. Dostęp do demo może być zmieniany lub wstrzymany.</p>
-          </div>
-          <div class="marketing-card">
-            <h3>Tryb lokalny</h3>
-            <p>Dane demo zapisywane są lokalnie w przeglądarce użytkownika (np. localStorage), bez synchronizacji z serwerem.</p>
-          </div>
-        </div>
+        </nav>
       </section>
 
       <section class="section-tight">
-        <div class="section-header">
-          <p class="tag">Zasady korzystania</p>
-          <h2 class="section-header__title">Co jest dozwolone</h2>
-        </div>
-        <div class="marketing-card">
-          <ul class="list-check">
-            <li>Korzystanie z demo w celach edukacyjnych i prezentacyjnych.</li>
-            <li>Przeglądanie interfejsu, funkcji i przykładowych danych.</li>
-            <li>Kontakt w celu omówienia współpracy lub wdrożenia.</li>
-          </ul>
-        </div>
-      </section>
-
-      <section class="section-tight">
-        <div class="section-header">
-          <p class="tag">Nadużycia</p>
-          <h2 class="section-header__title">Czego zabrania regulamin</h2>
-        </div>
-        <div class="grid">
-          <div class="marketing-card">
-            <h3>Próby łamania zabezpieczeń</h3>
-            <p>Zakazane są próby obejścia zabezpieczeń, ingerencja w działanie aplikacji, testy penetracyjne oraz działania zmierzające do uzyskania nieuprawnionego dostępu.</p>
+        <article class="legal-doc" aria-labelledby="terms-document-title">
+          <div class="section-header">
+            <p class="tag">Dokument</p>
+            <h2 class="section-header__title" id="terms-document-title">Zasady korzystania z FleetOps</h2>
+            <p class="section-header__lead">
+              Dokument określa zasady korzystania z projektu FleetOps, prezentowanych treści oraz funkcjonalności front-end.
+            </p>
           </div>
-          <div class="marketing-card">
-            <h3>Automaty i spam</h3>
-            <p>Zakazane jest generowanie sztucznego ruchu, wysyłanie automatycznych zgłoszeń oraz nadużywanie formularzy kontaktowych.</p>
+
+          <div class="legal-doc__content">
+            <section class="legal-doc__section" id="terms-definitions" tabindex="-1">
+              <h3>1. Definicje</h3>
+              <p>Na potrzeby niniejszego regulaminu przyjmuje się następujące znaczenie pojęć:</p>
+              <ul>
+                <li>Serwis - publiczna strona FleetOps oraz powiązany panel aplikacyjny dostępny w przeglądarce.</li>
+                <li>Projekt - FleetOps jako profesjonalny projekt referencyjny typu SaaS dla obszaru transportu, floty i operacji logistycznych.</li>
+                <li>Operator - KP_Code Digital Studio oraz Kamil Król jako projektant, twórca, właściciel i dysponent praw do projektu.</li>
+                <li>Użytkownik - każda osoba odwiedzająca Serwis lub korzystająca z prezentowanych funkcjonalności.</li>
+                <li>Funkcjonalności - elementy interfejsu, widoki panelu, formularze, przykładowe dane i mechanizmy front-end prezentowane w ramach FleetOps.</li>
+              </ul>
+            </section>
+
+            <section class="legal-doc__section" id="terms-general" tabindex="-1">
+              <h3>2. Postanowienia ogólne</h3>
+              <p>
+                Niniejszy regulamin określa zasady korzystania z Serwisu FleetOps przygotowanego przez KP_Code Digital Studio. Dokument ma charakter informacyjny i projektowy, a jego celem jest opisanie warunków korzystania z publicznie prezentowanej realizacji.
+              </p>
+              <p>
+                Korzystanie z Serwisu oznacza akceptację niniejszego regulaminu oraz zobowiązanie do korzystania z FleetOps zgodnie z jego przeznaczeniem, obowiązującymi przepisami prawa i zasadami bezpieczeństwa.
+              </p>
+              <p>
+                FleetOps może być wykorzystywany jako punkt odniesienia przy rozmowie o podobnych projektach komercyjnych zamawianych w KP_Code Digital Studio, ale sam Serwis nie stanowi gotowego systemu produkcyjnego dla przedsiębiorstwa transportowego.
+              </p>
+            </section>
+
+            <section class="legal-doc__section" id="terms-character" tabindex="-1">
+              <h3>3. Charakter projektu FleetOps</h3>
+              <p>
+                FleetOps prezentuje koncepcję produktu typu SaaS dla firm transportowych i flotowych. Projekt pokazuje przykładową architekturę informacji, układ marketingowej strony produktu oraz panel do pracy z flotą, zleceniami, kierowcami, raportami i ustawieniami.
+              </p>
+              <ul>
+                <li>prezentowane treści, dane operacyjne, statusy, nazwy i procesy mają charakter przykładowy,</li>
+                <li>Serwis nie reprezentuje realnego operatora transportowego ani działającej usługi przewozowej,</li>
+                <li>prezentowane informacje nie stanowią oferty w rozumieniu przepisów Kodeksu cywilnego,</li>
+                <li>Serwis nie umożliwia zawierania umów, dokonywania płatności ani obsługi rzeczywistych procesów firmy.</li>
+              </ul>
+              <p>
+                Projekt nie posiada produkcyjnego backendu FleetOps, rzeczywistych kont klientów, komercyjnych integracji GPS, TMS, ERP ani innych systemów operacyjnych.
+              </p>
+            </section>
+
+            <section class="legal-doc__section" id="terms-functionality" tabindex="-1">
+              <h3>4. Funkcjonalności i panel aplikacji</h3>
+              <p>
+                Serwis może zawierać widoki i funkcje charakterystyczne dla panelu SaaS, takie jak dashboard, zlecenia, flota, kierowcy, raporty, ustawienia, filtry, formularze i przykładowe akcje na danych.
+              </p>
+              <p>
+                Wskazane elementy służą prezentacji rozwiązań projektowych, interfejsu użytkownika oraz implementacji front-end. Dane wprowadzane w panelu albo formularzach powinny mieć wyłącznie charakter testowy i nie powinny dotyczyć realnych klientów, kierowców, pojazdów ani zleceń.
+              </p>
+              <p>
+                Dane lokalne i preferencje mogą być zapisywane w przeglądarce użytkownika. Szczegółowe informacje o localStorage, sessionStorage, cookies i danych kontaktowych opisują dokumenty
+                <a class="legal-doc__link" href="#/privacy">Polityka prywatności</a>
+                oraz
+                <a class="legal-doc__link" href="#/cookies">Polityka cookies</a>.
+              </p>
+            </section>
+
+            <section class="legal-doc__section" id="terms-intellectual-property" tabindex="-1">
+              <h3>5. Własność intelektualna</h3>
+              <p>
+                Układ graficzny, struktura Serwisu, treści, koncepcja produktu, elementy wizualne oraz kod źródłowy FleetOps stanowią utwór i podlegają ochronie prawnej. Prawa do projektu przysługują Kamilowi Królowi działającemu w kontekście KP_Code Digital Studio, o ile wyraźnie nie wskazano inaczej.
+              </p>
+              <ul>
+                <li>dopuszczalne jest przeglądanie Serwisu w celach informacyjnych, prezentacyjnych i oceny możliwości współpracy,</li>
+                <li>zabronione jest kopiowanie, rozpowszechnianie, modyfikowanie lub komercyjne wykorzystywanie projektu bez uprzedniej zgody właściciela praw,</li>
+                <li>niedozwolone jest przedstawianie FleetOps jako własnego produktu, wdrożenia produkcyjnego albo realnej platformy transportowej.</li>
+              </ul>
+            </section>
+
+            <section class="legal-doc__section" id="terms-contact" tabindex="-1">
+              <h3>6. Formularz kontaktowy i komunikacja</h3>
+              <p>
+                Formularz kontaktowy oraz linki kontaktowe służą do komunikacji w sprawie FleetOps, podobnych realizacji, usług KP_Code Digital Studio lub pytań dotyczących projektu. W aktualnej implementacji formularz kontaktowy działa po stronie przeglądarki i nie wysyła danych do produkcyjnego backendu FleetOps.
+              </p>
+              <p>
+                Wysłanie wiadomości e-mail na adres
+                <a class="legal-doc__link" href="mailto:kontakt@kp-code.pl">kontakt@kp-code.pl</a>
+                nie powoduje automatycznego zawarcia umowy, złożenia zamówienia ani powstania zobowiązania po stronie Operatora. Odpowiedź jest udzielana w rozsądnym terminie, z uwzględnieniem charakteru zapytania i dostępności Operatora.
+              </p>
+              <p>
+                Użytkownik nie powinien przekazywać w formularzach ani wiadomościach haseł, danych wrażliwych, danych produkcyjnych, tajemnic przedsiębiorstwa ani innych informacji, które nie są potrzebne do obsługi zapytania.
+              </p>
+            </section>
+
+            <section class="legal-doc__section" id="terms-liability" tabindex="-1">
+              <h3>7. Odpowiedzialność</h3>
+              <p>
+                Operator dokłada należytej staranności, aby Serwis działał prawidłowo i przedstawiał projekt w sposób rzetelny, jednak FleetOps jest udostępniany w aktualnym stanie technicznym, bez gwarancji ciągłości działania, kompletności funkcji ani przydatności do konkretnego zastosowania produkcyjnego.
+              </p>
+              <ul>
+                <li>Operator nie ponosi odpowiedzialności za decyzje podjęte na podstawie przykładowych treści, danych lub widoków panelu,</li>
+                <li>Operator nie odpowiada za wykorzystanie Serwisu niezgodnie z jego przeznaczeniem,</li>
+                <li>Operator nie gwarantuje dostępności Serwisu w każdym czasie ani braku przerw technicznych, błędów interfejsu lub utraty danych zapisanych lokalnie w przeglądarce.</li>
+              </ul>
+            </section>
+
+            <section class="legal-doc__section" id="terms-external-links" tabindex="-1">
+              <h3>8. Linki zewnętrzne</h3>
+              <p>
+                Serwis może zawierać odnośniki do zewnętrznych stron internetowych, w tym profili społecznościowych, map, narzędzi technicznych lub innych usług podmiotów trzecich.
+              </p>
+              <p>
+                Operator nie ponosi odpowiedzialności za treść, dostępność, bezpieczeństwo ani zasady przetwarzania danych obowiązujące w zewnętrznych serwisach. Korzystanie z takich stron odbywa się na zasadach określonych przez ich administratorów.
+              </p>
+            </section>
+
+            <section class="legal-doc__section" id="terms-security" tabindex="-1">
+              <h3>9. Bezpieczeństwo i zasady korzystania</h3>
+              <p>
+                Użytkownik powinien korzystać z aktualnej przeglądarki internetowej oraz dbać o bezpieczeństwo swojego urządzenia, połączenia sieciowego i danych wpisywanych w Serwisie.
+              </p>
+              <ul>
+                <li>zakazane są próby obejścia zabezpieczeń, ingerencji w działanie Serwisu lub uzyskania nieuprawnionego dostępu,</li>
+                <li>zakazane jest generowanie sztucznego ruchu, automatycznych zgłoszeń, spamu lub nadużywanie formularzy,</li>
+                <li>zakazane jest wykorzystywanie FleetOps jako systemu do obsługi rzeczywistych danych operacyjnych, danych osobowych lub procesów firmy bez odrębnego, właściwie przygotowanego wdrożenia.</li>
+              </ul>
+            </section>
+
+            <section class="legal-doc__section" id="terms-changes" tabindex="-1">
+              <h3>10. Zmiany regulaminu</h3>
+              <p>
+                Operator może wprowadzać zmiany w niniejszym regulaminie w szczególności w przypadku aktualizacji projektu, zmian technicznych, zmian treści, nowych funkcjonalności, korekt bezpieczeństwa lub zmian przepisów prawa.
+              </p>
+              <p>
+                Zmiany wchodzą w życie z dniem publikacji aktualnej wersji regulaminu w Serwisie, o ile w treści dokumentu nie wskazano innego terminu.
+              </p>
+            </section>
+
+            <section class="legal-doc__section" id="terms-final" tabindex="-1">
+              <h3>11. Postanowienia końcowe</h3>
+              <p>
+                W sprawach nieuregulowanych niniejszym regulaminem zastosowanie mają odpowiednie przepisy prawa. Regulamin dotyczy wyłącznie projektu FleetOps oraz zasad korzystania z publicznie prezentowanego Serwisu.
+              </p>
+              <p>
+                Pytania dotyczące projektu, regulaminu lub współpracy można kierować na adres
+                <a class="legal-doc__link" href="mailto:kontakt@kp-code.pl">kontakt@kp-code.pl</a>.
+              </p>
+              <p class="legal-doc__meta">
+                Data ostatniej aktualizacji:
+                <time datetime="2026-06-05">05.06.2026</time>
+              </p>
+            </section>
           </div>
-          <div class="marketing-card">
-            <h3>Użycie komercyjne</h3>
-            <p>Zakazane jest wykorzystywanie wersji demo jako gotowego systemu produkcyjnego, w tym do obsługi realnych procesów firmy lub danych osobowych.</p>
+        </article>
+      </section>
+
+      <section class="section-tight">
+        <div class="cta-panel">
+          <div class="cta-panel__header">
+            <h2 class="cta-panel__title">Masz pytania o regulamin?</h2>
+            <p class="cta-panel__lead">Skontaktuj się, jeśli chcesz doprecyzować zasady korzystania z FleetOps lub omówić podobny projekt dla swojej firmy.</p>
           </div>
-        </div>
-      </section>
-
-      <section class="section-tight">
-        <div class="section-header">
-          <p class="tag">Odpowiedzialność</p>
-          <h2 class="section-header__title">Ograniczenie odpowiedzialności</h2>
-        </div>
-        <div class="marketing-card">
-          <p>Wersja demo jest udostępniana "tak jak jest" (as is). W najszerszym zakresie dopuszczalnym przez prawo właściciel projektu nie ponosi odpowiedzialności za szkody wynikające z korzystania z demo, w tym za utratę danych lokalnych, przerwy w dostępie, błędy interfejsu lub decyzje podjęte na podstawie prezentowanych informacji.</p>
-        </div>
-      </section>
-
-      <section class="section-tight">
-        <div class="section-header">
-          <p class="tag">Prawa autorskie</p>
-          <h2 class="section-header__title">Własność intelektualna</h2>
-        </div>
-        <div class="marketing-card">
-          <p>Interfejs, treści, layout, grafiki oraz kod źródłowy FleetOps są chronione prawem autorskim i należą do właściciela projektu: Kamil Król (KP_Code_). Zabronione jest kopiowanie, rozpowszechnianie lub udostępnianie bez uprzedniej pisemnej zgody.</p>
-        </div>
-      </section>
-
-      <section class="section-tight">
-        <div class="section-header">
-          <p class="tag">Kontakt</p>
-          <h2 class="section-header__title">Dane właściciela</h2>
-        </div>
-
-        <div class="card-soft">
-          <address class="contact-address">
-            <div><strong>Imię i nazwisko:</strong> Kamil Król (KP_Code_)</div>
-
-            <div>
-              <strong>Adres:</strong>
-                <a
-                  href="https://www.google.com/maps?q=Marynarki+Wojennej+12/3+33-100+Tarnów"
-                  target="_blank"
-                  rel="noopener noreferrer">
-                  Marynarki Wojennej 12/3, 33-100 Tarnów, Polska
-                </a>
-            </div>
-
-            <div>
-              <strong>Telefon:</strong>
-              <a href="tel:+48533537091">+48 533 537 091</a>
-            </div>
-
-            <div>
-              <strong>E-mail:</strong>
-              <a href="mailto:kontakt@kp-code.pl">kontakt@kp-code.pl</a>
-            </div>
-          </address>
-
-          <p class="muted small">
-            Dane kontaktowe dotyczą twórcy projektu demonstracyjnego FleetOps.
-          </p>
-        </div>
-      </section>
-
-      <section class="section-tight cta-panel">
-        <div>
-          <h2 class="section-header__title">Chcesz poznać FleetOps bliżej?</h2>
-          <p>Przetestuj demo lub napisz do nas z pytaniami o wdrożenie.</p>
-        </div>
-        <div class="hero-cta">
-          <a class="button button--primary" href="#/app">Otwórz demo</a>
-          <a class="button button--secondary" href="#/contact">Skontaktuj się</a>
+          <div class="cta-panel__actions">
+            <a class="button button--primary" href="#/contact">Kontakt</a>
+            <a class="button button--secondary" href="#/app">Przejdź do panelu</a>
+          </div>
         </div>
       </section>
     `,
   });
+
+  const links = Array.from(document.querySelectorAll(".legal-nav__link"));
+  const cleanups = links.map((link) => {
+    const handleClick = (event) => {
+      const href = link.getAttribute("href") || "";
+      if (!href.startsWith("#terms-")) return;
+
+      const target = document.getElementById(href.slice(1));
+      if (!target) return;
+
+      event.preventDefault();
+      const behavior = window.FleetUI?.getMotionSafeScrollBehavior
+        ? FleetUI.getMotionSafeScrollBehavior()
+        : "smooth";
+
+      target.scrollIntoView({ behavior, block: "start" });
+      target.focus({ preventScroll: true });
+    };
+
+    link.addEventListener("click", handleClick);
+    return () => link.removeEventListener("click", handleClick);
+  });
+
+  if (window.CleanupRegistry && typeof CleanupRegistry.add === "function") {
+    CleanupRegistry.add(() => cleanups.forEach((cleanup) => cleanup()));
+  }
 }
 
 function renderCookiesPage() {
   renderMarketingShell({
     title: "Polityka cookies",
     eyebrow: "Polityka cookies",
-    lead: "Wersja demo FleetOps nie stosuje śledzących plików cookies. Wyjaśniamy, jakie dane techniczne mogą być zapisane lokalnie.",
-    description: "Polityka cookies FleetOps (wersja demo). Informacje o danych technicznych, localStorage i sposobach zarządzania ustawieniami.",
+    lead: "Informacje o cookies, danych lokalnych przeglądarki, cache, ustawieniach interfejsu oraz kontroli tych mechanizmów w projekcie FleetOps.",
+    description: "Polityka cookies FleetOps. Zasady dotyczące cookies, localStorage, sessionStorage, cache, preferencji przeglądarki i technicznych mechanizmów projektu KP_Code Digital Studio.",
     body: `
       <section class="section-tight">
-        <div class="section-header">
-          <p class="tag">Podstawy</p>
-          <h2 class="section-header__title">Jakich mechanizmów używamy</h2>
-        </div>
-        <div class="grid">
-          <div class="marketing-card">
-            <h3>Brak tracking cookies</h3>
-            <p>FleetOps nie wykorzystuje marketingowych ani analitycznych ciasteczek śledzących.</p>
+        <nav class="legal-nav" aria-label="Spis treści polityki cookies">
+          <div class="legal-nav__box">
+            <p class="tag">Spis treści</p>
+            <ol class="legal-nav__list">
+              <li><a class="legal-nav__link" href="#cookies-general">Postanowienia ogólne</a></li>
+              <li><a class="legal-nav__link" href="#cookies-definition">Czym są cookies i podobne technologie</a></li>
+              <li><a class="legal-nav__link" href="#cookies-types">Rodzaje cookies i danych lokalnych</a></li>
+              <li><a class="legal-nav__link" href="#cookies-purposes">Cele wykorzystywania mechanizmów przeglądarki</a></li>
+              <li><a class="legal-nav__link" href="#cookies-legal-basis">Podstawy prawne</a></li>
+              <li><a class="legal-nav__link" href="#cookies-management">Zarządzanie ustawieniami</a></li>
+              <li><a class="legal-nav__link" href="#cookies-third-parties">Technologie podmiotów trzecich</a></li>
+              <li><a class="legal-nav__link" href="#cookies-local-storage">localStorage, sessionStorage i cache</a></li>
+              <li><a class="legal-nav__link" href="#cookies-changes">Zmiany polityki cookies</a></li>
+              <li><a class="legal-nav__link" href="#cookies-contact">Kontakt</a></li>
+            </ol>
           </div>
-          <div class="marketing-card">
-            <h3>LocalStorage</h3>
-            <p>Preferencje interfejsu i dane demo są przechowywane lokalnie w przeglądarce użytkownika.</p>
-          </div>
-          <div class="marketing-card">
-            <h3>Dane techniczne przeglądarki</h3>
-            <p>Przeglądarka może zapisywać dane niezbędne do poprawnego działania strony (np. cache), zgodnie z jej własnymi zasadami.</p>
-          </div>
-        </div>
+        </nav>
       </section>
 
       <section class="section-tight">
-        <div class="landing-section__header">
-          <p class="tag">Kategorie</p>
-          <h2 class="section-header__title">Jakie dane techniczne mogą wystąpić</h2>
-        </div>
-        <div class="marketing-card">
-          <ul class="list-check">
-            <li>Ustawienia motywu i preferencje interfejsu</li>
-            <li>Historia ostatnich widoków w demo</li>
-            <li>Mockowe dane operacyjne zapisane lokalnie</li>
-          </ul>
-          <p class="muted small">Wersja demo nie wykorzystuje zewnętrznych skryptów analitycznych ani reklamowych.</p>
-        </div>
+        <article class="legal-doc" aria-labelledby="cookies-document-title">
+          <div class="section-header">
+            <p class="tag">Dokument</p>
+            <h2 class="section-header__title" id="cookies-document-title">Zasady cookies i danych lokalnych FleetOps</h2>
+            <p class="section-header__lead">
+              Dokument wyjaśnia, jakie mechanizmy przeglądarki mogą być wykorzystywane podczas korzystania z publicznej strony i panelu FleetOps.
+            </p>
+          </div>
+
+          <div class="legal-doc__content">
+            <section class="legal-doc__section" id="cookies-general" tabindex="-1">
+              <h3>1. Postanowienia ogólne</h3>
+              <p>
+                Niniejsza Polityka cookies określa zasady wykorzystywania plików cookies oraz technologii o podobnym charakterze w ramach projektu FleetOps przygotowanego przez KP_Code Digital Studio.
+              </p>
+              <p>
+                FleetOps jest profesjonalnym projektem referencyjnym typu SaaS dla obszaru floty, transportu i operacji logistycznych. Projekt został zaprojektowany i wykonany przez Kamila Króla, który jest jego twórcą, właścicielem i dysponentem praw.
+              </p>
+              <p>
+                Dokument ma charakter informacyjny i projektowy. FleetOps nie stanowi realnego operatora transportowego, produkcyjnej usługi flotowej ani systemu do obsługi rzeczywistych procesów przedsiębiorstwa.
+              </p>
+              <p>
+                W zakresie nieuregulowanym niniejszą Polityką cookies zastosowanie mają dokumenty
+                <a class="legal-doc__link" href="#/privacy">Polityka prywatności</a>
+                oraz
+                <a class="legal-doc__link" href="#/terms">Regulamin</a>.
+              </p>
+            </section>
+
+            <section class="legal-doc__section" id="cookies-definition" tabindex="-1">
+              <h3>2. Czym są cookies i podobne technologie</h3>
+              <p>
+                Pliki cookies to niewielkie informacje tekstowe zapisywane na urządzeniu użytkownika przez przeglądarkę internetową. Mogą wspierać prawidłowe działanie strony, utrzymanie ustawień, bezpieczeństwo oraz stabilność techniczną.
+              </p>
+              <p>
+                Technologie podobne do cookies obejmują między innymi localStorage, sessionStorage, cache przeglądarki oraz inne mechanizmy pozwalające zapisywać albo odczytywać informacje lokalnie po stronie urządzenia użytkownika.
+              </p>
+              <p>
+                W FleetOps mechanizmy tego typu są związane przede wszystkim z działaniem interfejsu, zachowaniem preferencji, lokalnymi danymi referencyjnymi oraz nawigacją w przeglądarce.
+              </p>
+            </section>
+
+            <section class="legal-doc__section" id="cookies-types" tabindex="-1">
+              <h3>3. Rodzaje cookies i danych lokalnych</h3>
+              <p>
+                W zależności od środowiska uruchomienia Serwisu mogą występować cookies techniczne, mechanizmy pamięci lokalnej przeglądarki oraz dane cache potrzebne do wyświetlenia zasobów strony.
+              </p>
+              <ul>
+                <li>cookies techniczne mogą wspierać prawidłowe działanie strony lub infrastruktury hostingu,</li>
+                <li>dane funkcjonalne mogą obejmować preferencje interfejsu, takie jak motyw, tryb kompaktowy i zakres dashboardu,</li>
+                <li>dane lokalne mogą obejmować filtry, preferencje list, status logowania testowego, użytkownika referencyjnego, dane domenowe, aktywność oraz kolejkę działań offline,</li>
+                <li>cache przeglądarki może przechowywać zasoby strony, takie jak pliki HTML, CSS, JavaScript, obrazy, fonty lub inne elementy potrzebne do jej szybszego wyświetlenia.</li>
+              </ul>
+              <p>
+                W aktualnym kodzie projektu nie przewidziano analitycznych cookies, reklamowych cookies, tracking scripts ani zewnętrznych pikseli marketingowych.
+              </p>
+            </section>
+
+            <section class="legal-doc__section" id="cookies-purposes" tabindex="-1">
+              <h3>4. Cele wykorzystywania mechanizmów przeglądarki</h3>
+              <p>
+                Mechanizmy przeglądarki mogą być wykorzystywane w FleetOps w celach technicznych, funkcjonalnych i organizacyjnych związanych z prezentacją projektu oraz działaniem panelu front-end.
+              </p>
+              <ul>
+                <li>zapewnienie prawidłowego działania strony, panelu i nawigacji,</li>
+                <li>zapamiętanie ustawień interfejsu, takich jak motyw, tryb kompaktowy i zakres danych w dashboardzie,</li>
+                <li>utrzymanie lokalnych danych referencyjnych, filtrów, preferencji widoków i stanu wybranych elementów panelu,</li>
+                <li>obsługa technicznego zapamiętania ścieżki powrotu po logowaniu testowym,</li>
+                <li>poprawa stabilności i szybkości wyświetlania zasobów przez cache przeglądarki.</li>
+              </ul>
+              <p>
+                Zakres danych może zależeć od używanej przeglądarki, ustawień użytkownika, sposobu hostingu oraz aktualnej wersji projektu FleetOps.
+              </p>
+            </section>
+
+            <section class="legal-doc__section" id="cookies-legal-basis" tabindex="-1">
+              <h3>5. Podstawy prawne</h3>
+              <p>
+                Stosowanie cookies i podobnych technologii odbywa się zgodnie z właściwymi przepisami dotyczącymi prywatności, ochrony danych osobowych oraz łączności elektronicznej, w tym RODO, jeżeli dane techniczne mogą zostać uznane za dane osobowe.
+              </p>
+              <p>
+                Dla mechanizmów niezbędnych do prawidłowego działania Serwisu podstawą może być prawnie uzasadniony interes Operatora polegający na zapewnieniu bezpieczeństwa, stabilności i poprawnego działania strony.
+              </p>
+              <p>
+                Jeżeli w przyszłości w FleetOps zostałyby wdrożone cookies lub narzędzia inne niż niezbędne, w szczególności analityczne albo marketingowe, ich stosowanie powinno być poprzedzone odpowiednią informacją oraz mechanizmem zgody użytkownika, jeżeli wymagają tego przepisy prawa.
+              </p>
+            </section>
+
+            <section class="legal-doc__section" id="cookies-management" tabindex="-1">
+              <h3>6. Zarządzanie ustawieniami</h3>
+              <p>
+                Użytkownik może zarządzać cookies, cache oraz danymi lokalnymi z poziomu ustawień swojej przeglądarki internetowej. Dostępne opcje zależą od przeglądarki, urządzenia i konfiguracji prywatności.
+              </p>
+              <ul>
+                <li>można ograniczyć albo zablokować zapisywanie cookies,</li>
+                <li>można usunąć zapisane wcześniej cookies, dane witryny, cache, localStorage albo sessionStorage,</li>
+                <li>w panelu FleetOps można skorzystać z funkcji resetu danych lokalnych, jeżeli jest dostępna w danym widoku ustawień.</li>
+              </ul>
+              <p>
+                Ograniczenie lub usunięcie danych lokalnych może spowodować utratę zapisanych preferencji, lokalnych zmian testowych, filtrów, ustawień widoków oraz powrót projektu do stanu początkowego.
+              </p>
+            </section>
+
+            <section class="legal-doc__section" id="cookies-third-parties" tabindex="-1">
+              <h3>7. Technologie podmiotów trzecich</h3>
+              <p>
+                W aktualnym kodzie FleetOps nie stwierdzono zewnętrznych narzędzi analitycznych, reklamowych, tracking scripts ani pikseli marketingowych, które służyłyby profilowaniu użytkowników.
+              </p>
+              <p>
+                W zależności od sposobu publikacji Serwis może być obsługiwany przez dostawców hostingu, infrastruktury IT, domeny, poczty elektronicznej lub narzędzi technicznych. Takie podmioty mogą przetwarzać podstawowe dane techniczne, na przykład logi serwera, adres IP, informacje o żądaniu, typ przeglądarki lub dane bezpieczeństwa.
+              </p>
+              <p>
+                Zasady działania usług zewnętrznych określają ich własne polityki prywatności i regulaminy. Operator nie odpowiada za treść ani praktyki prywatności stron zewnętrznych, do których użytkownik przechodzi poza FleetOps.
+              </p>
+            </section>
+
+            <section class="legal-doc__section" id="cookies-local-storage" tabindex="-1">
+              <h3>8. localStorage, sessionStorage i cache</h3>
+              <p>
+                FleetOps działa głównie po stronie przeglądarki. Mechanizm localStorage może przechowywać ustawienia i dane referencyjne, takie jak motyw, tryb kompaktowy, zakres dashboardu, status logowania testowego, aktualny użytkownik, filtry, preferencje list, aktywność, dane domenowe oraz kolejkę działań offline.
+              </p>
+              <p>
+                Mechanizm sessionStorage może być wykorzystywany technicznie przez router do tymczasowego zapamiętania ścieżki powrotu po logowaniu testowym. Taki zapis jest związany z bieżącą sesją przeglądarki.
+              </p>
+              <p>
+                Cache przeglądarki może przechowywać zasoby potrzebne do wyświetlenia strony. Usunięcie cache albo danych witryny może wymagać ponownego pobrania zasobów i odtworzenia preferencji interfejsu.
+              </p>
+              <p>
+                Szczegółowe informacje o danych lokalnych i prywatności opisuje
+                <a class="legal-doc__link" href="#/privacy">Polityka prywatności</a>.
+              </p>
+            </section>
+
+            <section class="legal-doc__section" id="cookies-changes" tabindex="-1">
+              <h3>9. Zmiany polityki cookies</h3>
+              <p>
+                Operator może aktualizować niniejszą Politykę cookies w przypadku zmian przepisów prawa, zmian sposobu hostingu, rozwoju funkcji FleetOps, korekt technicznych lub zmiany technologii używanych w projekcie.
+              </p>
+              <p>
+                Aktualna wersja dokumentu jest publikowana w Serwisie. Zmiany wchodzą w życie z dniem publikacji, o ile w treści dokumentu nie wskazano innego terminu.
+              </p>
+            </section>
+
+            <section class="legal-doc__section" id="cookies-contact" tabindex="-1">
+              <h3>10. Kontakt</h3>
+              <p>
+                W sprawach związanych z cookies, danymi lokalnymi, zasadami prywatności lub projektem FleetOps można skontaktować się z KP_Code Digital Studio pod adresem
+                <a class="legal-doc__link" href="mailto:kontakt@kp-code.pl">kontakt@kp-code.pl</a>.
+              </p>
+              <p>
+                Wiadomości są obsługiwane w zakresie potrzebnym do odpowiedzi na zapytanie i wyjaśnienia zasad działania projektu.
+              </p>
+              <p class="legal-doc__meta">
+                Data ostatniej aktualizacji:
+                <time datetime="2026-06-05">05.06.2026</time>
+              </p>
+            </section>
+          </div>
+        </article>
       </section>
 
       <section class="section-tight">
-        <div class="section-header">
-          <p class="tag">Zarządzanie</p>
-          <h2 class="section-header__title">Jak kontrolować dane w przeglądarce</h2>
-        </div>
-        <div class="grid">
-          <div class="marketing-card">
-            <h3>Ustawienia przeglądarki</h3>
-            <p>W ustawieniach przeglądarki możesz wyczyścić dane strony oraz ograniczyć zapisywanie danych lokalnych.</p>
+        <div class="cta-panel">
+          <div class="cta-panel__header">
+            <h2 class="cta-panel__title">Masz pytania o cookies?</h2>
+            <p class="cta-panel__lead">Skontaktuj się, jeśli chcesz doprecyzować zasady cookies, danych lokalnych lub działania FleetOps w przeglądarce.</p>
           </div>
-          <div class="marketing-card">
-            <h3>Czyszczenie localStorage</h3>
-            <p>Usunięcie danych lokalnych przywróci demo do stanu początkowego (np. motyw, ustawienia, dane demo).</p>
+          <div class="cta-panel__actions">
+            <a class="button button--primary" href="#/contact">Kontakt</a>
+            <a class="button button--secondary" href="#/app">Przejdź do panelu</a>
           </div>
-          <div class="marketing-card">
-            <h3>Brak narzędzi stron trzecich</h3>
-            <p>Nie korzystamy z zewnętrznych narzędzi analitycznych ani reklamowych, które mogłyby ustawić cookies śledzące.</p>
-          </div>
-        </div>
-      </section>
-
-      <section class="section-tight">
-        <div class="section-header">
-          <p class="tag">Kontakt</p>
-          <h2 class="section-header__title">Masz pytania o politykę cookies?</h2>
-        </div>
-        <div class="card-soft">
-          <address class="contact-address">
-            <div>
-              <strong>Imię i nazwisko:</strong> Kamil Król (KP_Code_)
-            </div>
-            <div>
-              <strong>Adres:</strong>
-              <a href="https://www.google.com/maps?q=Marynarki+Wojennej+12/3,+33-100+Tarn%C3%B3w,+Polska"
-                target="_blank"
-                rel="noopener noreferrer">
-                Marynarki Wojennej 12/3, 33-100 Tarnów, Polska
-              </a>
-            </div>
-            <div>
-              <strong>Telefon:</strong>
-              <a href="tel:+48533537091">+48 533 537 091</a>
-            </div>
-            <div>
-              <strong>E-mail:</strong>
-              <a href="mailto:kontakt@kp-code.pl">kontakt@kp-code.pl</a>
-            </div>
-          </address>
-          <p class="muted small">
-            Dane kontaktowe dotyczą twórcy projektu demonstracyjnego FleetOps.
-          </p>
         </div>
       </section>
     `,
   });
+
+  const links = Array.from(document.querySelectorAll(".legal-nav__link"));
+  const cleanups = links.map((link) => {
+    const handleClick = (event) => {
+      const href = link.getAttribute("href") || "";
+      if (!href.startsWith("#cookies-")) return;
+
+      const target = document.getElementById(href.slice(1));
+      if (!target) return;
+
+      event.preventDefault();
+      const behavior = window.FleetUI?.getMotionSafeScrollBehavior
+        ? FleetUI.getMotionSafeScrollBehavior()
+        : "smooth";
+
+      target.scrollIntoView({ behavior, block: "start" });
+      target.focus({ preventScroll: true });
+    };
+
+    link.addEventListener("click", handleClick);
+    return () => link.removeEventListener("click", handleClick);
+  });
+
+  if (window.CleanupRegistry && typeof CleanupRegistry.add === "function") {
+    CleanupRegistry.add(() => cleanups.forEach((cleanup) => cleanup()));
+  }
 }
 
 window.renderProductPage = renderProductPage;
