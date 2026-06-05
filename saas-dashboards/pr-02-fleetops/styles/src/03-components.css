@@ -573,10 +573,12 @@ textarea[aria-invalid="true"]:focus-visible {
 }
 
 .dropdown-menu.open {
-  display: block;
+  display: grid;
+  gap: var(--space-1);
 }
 
 .dropdown-item {
+  display: block;
   padding: var(--space-2);
   border-radius: var(--radius);
   cursor: pointer;

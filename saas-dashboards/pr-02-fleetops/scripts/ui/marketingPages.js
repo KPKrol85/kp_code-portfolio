@@ -583,57 +583,102 @@ function renderContactPage() {
               <button class="button button--primary" type="submit">Wyślij zapytanie</button>
             </form>
           </div>
-          <div class="marketing-card">
-            <h2>Dane kontaktowe</h2>
-            <p class="muted">Kontakt do twórcy projektu</p>
-              <address class="contact-address">
-                <div>
-                  <p class="muted small">E-mail</p>
-                  <p>
-                    <a href="mailto:kontakt@kp-code.pl">kontakt@kp-code.pl</a>
-                  </p>
-                </div>
-                <div>
-                  <p class="muted small">Telefon</p>
-                  <p>
-                    <a href="tel:+48533537091">+48 533 537 091</a>
-                  </p>
-                </div>
-                <div>
-                  <p class="muted small">Adres</p>
-                  <p>
-                    Marynarki Wojennej 12/3<br />
-                    33-100 Tarnów<br />
-                    Polska
-                  </p>
-                </div>
-              </address>
-            <div class="card-soft">
-              <p class="muted small">FleetOps to projekt demonstracyjny. Kontakt dotyczy twórcy projektu.</p>
-              <p class="muted small">Projekt i interfejs: Kamil Król (kp_code_).</p>
-              <a class="button button--secondary" href="#/pricing">Zobacz cennik</a>
+          <div class="contact-panel">
+            <div class="contact-panel__header">
+              <h2 class="contact-panel__title">Dane kontaktowe</h2>
+              <p class="contact-panel__lead">Kontakt w sprawie projektu, podobnych wdrożeń i współpracy z KP_Code Digital Studio.</p>
+            </div>
+            <address class="contact-panel__address">
+              <div class="contact-panel__address-item">
+                <p class="contact-panel__label">E-mail</p>
+                <p class="contact-panel__value">
+                  <a class="contact-panel__link" href="mailto:kontakt@kp-code.pl">kontakt@kp-code.pl</a>
+                </p>
+              </div>
+              <div class="contact-panel__address-item">
+                <p class="contact-panel__label">Telefon</p>
+                <p class="contact-panel__value">
+                  <a class="contact-panel__link" href="tel:+48533537091">+48 533 537 091</a>
+                </p>
+              </div>
+              <div class="contact-panel__address-item">
+                <p class="contact-panel__label">Adres</p>
+                <p class="contact-panel__value">
+                  Marynarki Wojennej 12/3<br />
+                  33-100 Tarnów<br />
+                  Polska
+                </p>
+              </div>
+            </address>
+            <div class="contact-panel__note">
+              <p class="contact-panel__note-text">
+                Chcesz omówić podobny panel SaaS, stronę firmową lub wdrożenie dla branży transportowej? Napisz kilka zdań o potrzebach, a wrócimy z propozycją zakresu i kierunku realizacji.
+                <span class="contact-panel__studio">
+                  Kontakt obsługuje <a class="contact-panel__studio-link" href="#/about">KP_Code Digital Studio</a>.
+                </span>
+              </p>
+              <a class="button button--secondary contact-panel__action" href="#/pricing">Zobacz cennik</a>
             </div>
           </div>
         </div>
       </section>
 
-      <section class="section-tight">
+      <section class="section-tight section-faq">
         <div class="section-header">
           <p class="tag">Pytania</p>
           <h2 class="section-header__title">Najczęstsze pytania</h2>
+          <p class="section-header__lead">
+            Krótkie odpowiedzi na pytania dotyczące kontaktu, demo FleetOps i podobnych wdrożeń SaaS.
+          </p>
         </div>
         <div class="accordion" id="faq">
           <div class="accordion-item">
-            <button class="accordion-header">Jak szybko odpowiadacie?<span aria-hidden="true">?</span></button>
-            <div class="accordion-content"><p>Najczęściej w ciągu 24h w dni robocze.</p></div>
+            <button class="accordion-header">Jak szybko odpowiadacie na wiadomość?<span aria-hidden="true">▾</span></button>
+            <div class="accordion-content">
+              <p class="accordion-text">Najczęściej odpowiadamy w ciągu 1 dnia roboczego. W pilnych sprawach warto opisać zakres potrzeby już w pierwszej wiadomości.</p>
+            </div>
           </div>
           <div class="accordion-item">
-            <button class="accordion-header">Czy jest demo?<span aria-hidden="true">?</span></button>
-            <div class="accordion-content"><p>Tak, wersja demo jest dostępna online bez instalacji.</p></div>
+            <button class="accordion-header">Czy formularz dotyczy prawdziwego wdrożenia FleetOps?<span aria-hidden="true">▾</span></button>
+            <div class="accordion-content">
+              <p class="accordion-text">FleetOps jest projektem demonstracyjnym, ale formularz może służyć do kontaktu w sprawie podobnego panelu, strony firmowej lub rozwiązania SaaS.</p>
+            </div>
           </div>
           <div class="accordion-item">
-            <button class="accordion-header">Czy są integracje?<span aria-hidden="true">?</span></button>
-            <div class="accordion-content"><p>Integrujemy się z GPS, telematyką oraz ERP/TMS. Szczegóły uzgadniamy w czasie wdrożenia.</p></div>
+            <button class="accordion-header">Czy można omówić podobny panel dla własnej firmy?<span aria-hidden="true">▾</span></button>
+            <div class="accordion-content">
+              <p class="accordion-text">Tak. Możesz opisać branżę, cele i najważniejsze funkcje, a kontakt wróci z propozycją kierunku, zakresu i możliwego sposobu realizacji.</p>
+            </div>
+          </div>
+          <div class="accordion-item">
+            <button class="accordion-header">Czy mogę najpierw sprawdzić wersję demo?<span aria-hidden="true">▾</span></button>
+            <div class="accordion-content">
+              <p class="accordion-text">Tak. Panel demonstracyjny działa w przeglądarce i pozwala sprawdzić przykładowy dashboard, zlecenia, flotę, kierowców oraz raporty.</p>
+            </div>
+          </div>
+          <div class="accordion-item">
+            <button class="accordion-header">Jakie informacje warto wysłać w formularzu?<span aria-hidden="true">▾</span></button>
+            <div class="accordion-content">
+              <p class="accordion-text">Najlepiej podać typ firmy, wielkość floty, główny problem operacyjny, oczekiwane funkcje oraz informację, czy chodzi o stronę, panel SaaS czy pełniejsze wdrożenie.</p>
+            </div>
+          </div>
+          <div class="accordion-item">
+            <button class="accordion-header">Czy takie rozwiązanie może być dopasowane do innej branży?<span aria-hidden="true">▾</span></button>
+            <div class="accordion-content">
+              <p class="accordion-text">Tak. FleetOps pokazuje przykład dla transportu, ale podobny układ można zastosować także dla usług, rezerwacji, obsługi klientów, raportowania lub paneli administracyjnych.</p>
+            </div>
+          </div>
+          <div class="accordion-item">
+            <button class="accordion-header">Czy kontakt obsługuje KP_Code Digital Studio?<span aria-hidden="true">▾</span></button>
+            <div class="accordion-content">
+              <p class="accordion-text">Tak. Kontakt dotyczy projektu FleetOps oraz podobnych realizacji przygotowywanych w ramach KP_Code Digital Studio.</p>
+            </div>
+          </div>
+          <div class="accordion-item">
+            <button class="accordion-header">Czy po kontakcie od razu powstaje wycena?<span aria-hidden="true">▾</span></button>
+            <div class="accordion-content">
+              <p class="accordion-text">Najpierw ustalany jest kontekst, zakres i cel projektu. Dopiero po krótkiej analizie można przygotować sensowną propozycję zakresu lub orientacyjną wycenę.</p>
+            </div>
           </div>
         </div>
       </section>
