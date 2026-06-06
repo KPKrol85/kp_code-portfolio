@@ -410,39 +410,7 @@ textarea[aria-invalid="true"]:focus-visible {
   line-height: var(--lh-normal);
 }
 
-/* Landing Cards */
 
-.hero-card {
-  padding: var(--space-5);
-  border-radius: var(--radius-lg);
-  background: radial-gradient(circle at 20% 20%, rgba(34, 211, 238, 0.15), transparent 40%), var(--surface);
-  border: 1px solid var(--border);
-  box-shadow: var(--shadow);
-}
-
-.login-card {
-  max-width: 520px;
-  margin: 40px auto;
-}
-
-.login-card__header {
-  margin-bottom: 12px;
-}
-
-.login-card__logo {
-  --login-logo-size: var(--logo-size-2);
-}
-
-.login-card__logo-icon {
-  width: var(--login-logo-size);
-  height: var(--login-logo-size);
-}
-
-.login-form {
-  display: grid;
-  gap: 12px;
-  margin-top: 16px;
-}
 
 /* Accordion */
 

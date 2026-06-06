@@ -28,17 +28,19 @@ function renderInfoPage({ title, body }) {
 function renderLogin() {
   const app = document.getElementById("app");
   app.innerHTML = `
-    <main class="container section" id="main-content">
-      <div class="hero-card login-card">
-        <div class="flex-between login-card__header">
-          <div class="logo flex login-card__logo">
-            <img class="logo__icon login-card__logo-icon" src="${FleetStore.state.preferences.theme === "dark" ? "assets/logos/logo-white.svg" : "assets/logos/logo-black.svg"}" data-theme-src-light="assets/logos/logo-black.svg" data-theme-src-dark="assets/logos/logo-white.svg" alt="FleetOps logo" />
-            <strong>FleetOps</strong>
+    <main class="login-page" id="main-content">
+      <div class="login-card">
+        <div class="login-card__topbar">
+          <div class="login-card__logo">
+            <img class="login-card__logo-icon" src="${FleetStore.state.preferences.theme === "dark" ? "assets/logos/logo-white.svg" : "assets/logos/logo-black.svg"}" data-theme-src-light="assets/logos/logo-black.svg" data-theme-src-dark="assets/logos/logo-white.svg" alt="FleetOps logo" />
+            <span class="login-card__brand">FleetOps</span>
           </div>
-          <a class="button button--ghost" href="#/">Wróć</a>
+          <a class="button button--ghost login-card__back" href="#/">Wróć</a>
         </div>
-        <h1>Zaloguj się</h1>
-        <p class="muted">Uwierzytelnianie demo - dane zapisane w przeglądarce.</p>
+        <div class="login-card__header">
+          <h1 class="login-card__title">Zaloguj się</h1>
+          <p class="login-card__lead">Logowanie demo — dane są zapisywane lokalnie w przeglądarce.</p>
+        </div>
         <form id="loginForm" class="login-form">
           <label class="form-control">
             <span class="label">E-mail</span>
@@ -48,8 +50,10 @@ function renderLogin() {
             <span class="label">Hasło</span>
             <input required minlength="4" type="password" name="password" class="input" placeholder="••••••" />
           </label>
-          <button class="button button--primary" type="submit">Zaloguj się</button>
-          <button class="button button--secondary" type="button" id="demoLogin">Kontynuuj jako demo</button>
+          <div class="login-form__actions">
+            <button class="button button--primary" type="submit">Zaloguj się</button>
+            <button class="button button--secondary" type="button" id="demoLogin">Kontynuuj jako demo</button>
+          </div>
         </form>
       </div>
     </main>

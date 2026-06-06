@@ -5,6 +5,17 @@
   min-height: 100vh;
 }
 
+/*
+TODO: verify whether this desktop app-shell grid is still needed.
+
+@media (min-width: 1025px) {
+  .app-shell {
+    display: grid;
+    grid-template-columns: 240px 1fr;
+  }
+}
+*/
+
 /* Sidebar */
 
 .sidebar {
@@ -714,7 +725,6 @@ body[data-compact="true"] .topbar {
 .empty-state__title {
   margin: 0;
 }
-
 
 /* Inline form */
 
