@@ -24,7 +24,7 @@ function renderAppShell(viewTitle, contentNode) {
   appTopbar.innerHTML = `
     <a class="app-topbar__brand logo flex" href="#/app" aria-label="FleetOps - Panel" data-scroll-top="app">
       <img class="logo__icon" src="${theme === "dark" ? "assets/logos/logo-white.svg" : "assets/logos/logo-black.svg"}" data-theme-src-light="assets/logos/logo-black.svg" data-theme-src-dark="assets/logos/logo-white.svg" alt="FleetOps logo" />
-      <span>FleetOps</span>
+      <span class="app-topbar__brand-name">FleetOps</span>
     </a>
     <div class="app-topbar__actions">
       <button class="button button--ghost theme-toggle" id="themeToggleMobile" type="button" aria-label="Przełącz motyw">
@@ -36,7 +36,7 @@ function renderAppShell(viewTitle, contentNode) {
           <path d="M20 12.5A7.5 7.5 0 1 1 11.5 4a6 6 0 0 0 8.5 8.5Z" fill="currentColor"></path>
         </svg>
       </button>
-      <button class="button button--ghost" id="drawerToggle" type="button" aria-label="Menu" aria-expanded="false" aria-controls="appDrawer">
+      <button class="button button--ghost app-topbar__menu-button" id="drawerToggle" type="button" aria-label="Menu" aria-expanded="false" aria-controls="appDrawer">
         <span class="menu-toggle-icon" aria-hidden="true">
           <span class="menu-toggle-icon__line menu-toggle-icon__line--top"></span>
           <span class="menu-toggle-icon__line menu-toggle-icon__line--middle"></span>

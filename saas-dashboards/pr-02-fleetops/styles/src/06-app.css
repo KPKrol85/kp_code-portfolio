@@ -1,6 +1,7 @@
 /* App Shell Layout */
 
 .app-shell {
+  --app-topbar-height: 74px;
   display: block;
   min-height: 100vh;
 }
@@ -16,62 +17,80 @@ TODO: verify whether this desktop app-shell grid is still needed.
 }
 */
 
-/* Sidebar */
+/* App Topbar */
 
-.sidebar {
-  background: var(--surface);
-  border-right: 1px solid var(--border);
-  padding: var(--space-4) var(--space-3);
-  padding-top: calc(env(safe-area-inset-top) + var(--space-4));
+.app-topbar {
   position: fixed;
   top: 0;
   left: 0;
-  width: min(280px, 84vw);
-  height: 100vh;
-  display: grid;
-  grid-template-rows: auto 1fr auto;
-  gap: var(--space-4);
+  right: 0;
   z-index: 50;
-  transform: translateX(-100%);
-  visibility: hidden;
-  box-shadow: var(--shadow);
-}
-
-.sidebar.is-open {
-  transform: translateX(0);
-  visibility: visible;
-}
-
-.sidebar .logo {
-  font-weight: 800;
-  letter-spacing: -0.02em;
+  min-height: var(--app-topbar-height);
+  padding: var(--space-3);
+  background: var(--bg-elevated);
+  border-bottom: 1px solid var(--border);
   display: flex;
   align-items: center;
-  gap: 10px;
+  justify-content: space-between;
+  gap: var(--space-3);
 }
 
-.sidebar .logo__icon {
+.app-topbar__brand {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+}
+
+.app-topbar__brand .logo__icon {
   width: var(--logo-size-2);
   height: var(--logo-size-2);
 }
 
-.sidebar nav {
-  display: grid;
-  gap: 8px;
+.app-topbar__brand-name {
+  font-size: var(--fs-02);
+  font-weight: var(--fw-semibold);
+  line-height: 1;
+  letter-spacing: var(--ls-compact);
 }
 
-.sidebar a {
-  padding: 10px 12px;
-  border-radius: var(--radius-sm);
-  color: var(--text-muted);
-  border: 1px solid transparent;
+.app-topbar__actions {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
 }
 
-.sidebar a.active,
-.sidebar a:hover {
-  color: var(--accent);
-  background: var(--accent-ghost);
-  border-color: transparent;
+.app-topbar__menu-button {
+  width: 40px;
+  height: 40px;
+  padding: 0;
+  border: none;
+}
+
+.drawer {
+  transition:
+    transform 0.2s ease,
+    visibility 0.2s ease;
+}
+
+.drawer-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(9, 13, 20, 0.45);
+  opacity: 0;
+  visibility: hidden;
+  transition:
+    opacity 0.2s ease,
+    visibility 0.2s ease;
+  z-index: 40;
+}
+
+.drawer-backdrop.is-visible {
+  opacity: 1;
+  visibility: visible;
+}
+
+body.drawer-open {
+  overflow: hidden;
 }
 
 /* Topbar */
@@ -190,69 +209,93 @@ TODO: verify whether this desktop app-shell grid is still needed.
   font-weight: var(--fw-bold);
 }
 
-/* App Topbar */
+/* Sidebar */
 
-.app-topbar {
+.sidebar {
+  background: var(--surface);
+  border-right: 1px solid var(--border);
+  padding: var(--space-4) var(--space-3);
+  padding-top: calc(env(safe-area-inset-top) + var(--space-4));
   position: fixed;
   top: 0;
   left: 0;
-  right: 0;
+  width: min(280px, 84vw);
+  height: 100vh;
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  gap: var(--space-4);
   z-index: 50;
-  min-height: 58px;
-  padding: var(--space-3);
-  background: var(--bg-elevated);
-  border-bottom: 1px solid var(--border);
-  border-radius: var(--radius-);
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 12px;
-}
-
-.app-topbar__brand {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  font-weight: var(--fw-bold);
-  letter-spacing: -0.02em;
-}
-
-.app-topbar__brand .logo__icon {
-  width: var(--logo-size-1);
-  height: var(--logo-size-1);
-}
-
-.app-topbar__actions {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-}
-
-.drawer {
-  transition:
-    transform 0.2s ease,
-    visibility 0.2s ease;
-}
-
-.drawer-backdrop {
-  position: fixed;
-  inset: 0;
-  background: rgba(9, 13, 20, 0.45);
-  opacity: 0;
+  transform: translateX(-100%);
   visibility: hidden;
-  transition:
-    opacity 0.2s ease,
-    visibility 0.2s ease;
-  z-index: 40;
+  box-shadow: var(--shadow);
 }
 
-.drawer-backdrop.is-visible {
-  opacity: 1;
+.sidebar.is-open {
+  transform: translateX(0);
   visibility: visible;
 }
 
-body.drawer-open {
-  overflow: hidden;
+.sidebar .logo {
+  font-weight: var(--fw-semibold);
+  letter-spacing: var(--ls-compact);
+}
+
+.sidebar .logo__icon {
+  width: var(--logo-size-2);
+  height: var(--logo-size-2);
+}
+
+.sidebar nav {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: var(--space-2);
+  align-self: start;
+}
+
+.sidebar a {
+  min-height: 40px;
+  display: flex;
+  align-items: center;
+  padding: var(--space-3) var(--space-4);
+  border-radius: var(--radius);
+  font-size: var(--fs-02);
+  color: var(--text-muted);
+  border: 1px solid transparent;
+}
+
+.sidebar a.active,
+.sidebar a:hover {
+  color: var(--accent);
+  background: var(--accent-ghost);
+  border-color: transparent;
+}
+
+@media (min-width: 1025px) {
+  .sidebar,
+  .sidebar.is-open {
+    position: sticky;
+    top: 0;
+    left: auto;
+    width: auto;
+    height: 100vh;
+    max-height: 100vh;
+    padding: var(--space-3);
+    z-index: auto;
+    transform: none;
+    visibility: visible;
+    box-shadow: none;
+    overflow-y: auto;
+  }
+
+  .sidebar nav {
+    align-self: start;
+  }
+
+  .sidebar a {
+    min-height: 38px;
+    padding: var(--space-2) var(--space-3);
+  }
 }
 
 /* App Main & Content */
@@ -261,7 +304,7 @@ body.drawer-open {
   background: var(--bg);
   min-height: 100vh;
   min-width: 0;
-  padding-top: calc(58px + env(safe-area-inset-top));
+  padding-top: calc(var(--app-topbar-height) + env(safe-area-inset-top));
 }
 
 .app-content {
@@ -426,8 +469,8 @@ body.drawer-open {
 
 .app-shell .sidebar a[aria-current="page"],
 .app-shell .sidebar a.active {
-  color: var(--accent);
-  background: var(--accent-ghost);
+  color: var(--text);
+  background: color-mix(in srgb, var(--accent-ghost) 72%, var(--surface));
   border-color: transparent;
 }
 
@@ -559,10 +602,6 @@ body[data-compact="true"] .topbar {
   padding: 10px 14px;
 }
 
-.app-topbar__brand span {
-  font-size: var(--fs-02);
-}
-
 .app-main .kpi-grid,
 .app-main .card-list,
 .app-main .dashboard-columns,
@@ -634,20 +673,6 @@ body[data-compact="true"] .topbar {
 
   .app-topbar {
     display: none;
-  }
-
-  .sidebar,
-  .sidebar.is-open {
-    position: sticky;
-    left: auto;
-    width: auto;
-    height: 100vh;
-    padding: var(--space-4) var(--space-3);
-    top: 0;
-    z-index: auto;
-    transform: none;
-    visibility: visible;
-    box-shadow: none;
   }
 
   body[data-compact="true"] .sidebar {

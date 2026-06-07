@@ -410,8 +410,6 @@ textarea[aria-invalid="true"]:focus-visible {
   line-height: var(--lh-normal);
 }
 
-
-
 /* Accordion */
 
 .accordion {
@@ -685,7 +683,7 @@ html[data-theme="dark"] .card:focus-within {
   height: 0.4rem;
   border-radius: var(--radius-pill);
   background: var(--accent);
-   box-shadow: 0 0 0 0.25rem var(--accent-ghost);
+  box-shadow: 0 0 0 0.25rem var(--accent-ghost);
   content: "";
 }
 
@@ -696,7 +694,7 @@ html[data-theme="dark"] .card:focus-within {
   align-content: start;
   text-align: center;
   gap: var(--space-3);
-  min-block-size: 8.6rem;;
+  min-block-size: 8.6rem;
 }
 
 /* Step cards */
