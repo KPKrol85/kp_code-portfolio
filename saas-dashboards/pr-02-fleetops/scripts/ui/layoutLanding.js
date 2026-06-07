@@ -19,7 +19,7 @@ function renderLandingHeader(themeAsset = getLandingThemeAsset()) {
 
   return `
       <header class="container site-header" role="banner">
-        <a class="site-header__brand logo flex" href="#/" aria-label="FleetOps — Strona główna" data-scroll-top="home">
+        <a class="site-header__brand logo" href="#/" aria-label="FleetOps — Strona główna" data-scroll-top="home">
 
           <img class="site-header__logo logo__icon" src="${themeAsset("assets/logos/logo-black.svg", "assets/logos/logo-white.svg")}" data-theme-src-light="assets/logos/logo-black.svg" data-theme-src-dark="assets/logos/logo-white.svg" alt="FleetOps logo" width="44" height="44" />
 

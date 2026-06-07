@@ -3,7 +3,7 @@ function renderInfoPage({ title, body }) {
   app.innerHTML = `
     <div class="landing">
       <header class="container site-header">
-        <a class="site-header__brand logo flex" href="#/" aria-label="FleetOps — Strona główna" data-scroll-top="home">
+        <a class="site-header__brand logo" href="#/" aria-label="FleetOps — Strona główna" data-scroll-top="home">
           <img class="site-header__logo logo__icon" src="assets/logos/logo-black.svg" alt="FleetOps logo" width="44" height="44" />
           <span>FleetOps</span>
         </a>

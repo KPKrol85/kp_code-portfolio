@@ -22,7 +22,7 @@ function renderAppShell(viewTitle, contentNode) {
 
   const appTopbar = dom.h("div", "app-topbar");
   appTopbar.innerHTML = `
-    <a class="app-topbar__brand logo flex" href="#/app" aria-label="FleetOps - Panel" data-scroll-top="app">
+    <a class="app-topbar__brand" href="#/app" aria-label="FleetOps - Panel" data-scroll-top="app">
       <img class="logo__icon" src="${theme === "dark" ? "assets/logos/logo-white.svg" : "assets/logos/logo-black.svg"}" data-theme-src-light="assets/logos/logo-black.svg" data-theme-src-dark="assets/logos/logo-white.svg" alt="FleetOps logo" />
       <span class="app-topbar__brand-name">FleetOps</span>
     </a>
@@ -58,9 +58,9 @@ function renderAppShell(viewTitle, contentNode) {
   sidebar.setAttribute("aria-label", "Nawigacja aplikacji");
   sidebar.setAttribute("aria-hidden", "true");
   sidebar.innerHTML = `
-    <a class="logo flex" href="#/app" aria-label="FleetOps - Panel" data-scroll-top="app">
+    <a class="sidebar__brand" href="#/app" aria-label="FleetOps - Panel" data-scroll-top="app">
       <img class="logo__icon" src="${theme === "dark" ? "assets/logos/logo-white.svg" : "assets/logos/logo-black.svg"}" data-theme-src-light="assets/logos/logo-black.svg" data-theme-src-dark="assets/logos/logo-white.svg" alt="FleetOps logo" />
-      <span>FleetOps</span>
+      <span class="sidebar__brand-name">FleetOps</span>
     </a>
     <nav aria-label="Aplikacja">
       <a href="#/app" data-route="/app">Przegląd</a>
@@ -70,8 +70,17 @@ function renderAppShell(viewTitle, contentNode) {
       <a href="#/app/reports" data-route="/app/reports">Raporty</a>
       <a href="#/app/settings" data-route="/app/settings">Ustawienia</a>
     </nav>
-    <div class="muted small">Użytkownik: ${safeUserEmail}</div>
-    <div class="muted small">Rola: ${safeRole}</div>
+    <div class="sidebar__footer">
+  <div class="sidebar__meta">
+    Konto: <span class="sidebar__meta-name">${safeUserName}</span>
+  </div>
+  <div class="sidebar__meta">
+    Email: <span class="sidebar__meta-value">${safeUserEmail}</span>
+  </div>
+  <div class="sidebar__meta">
+    Rola: <span class="sidebar__meta-value">${safeRole}</span>
+  </div>
+</div>
   `;
   shell.appendChild(sidebar);
 
@@ -79,13 +88,13 @@ function renderAppShell(viewTitle, contentNode) {
   const topbar = dom.h("div", "topbar");
   topbar.innerHTML = `
     <div class="topbar-left">
-      <h1>${safeViewTitle}</h1>
+      <h1 class="topbar__title">${safeViewTitle}</h1>
       <div class="search"><input aria-label="Szukaj" type="search" placeholder="Szukaj..." /></div>
     </div>
     <div class="topbar-actions">
       <label class="role-switcher">
-        <span class="muted small">Rola</span>
-        <select class="input" id="roleSwitcher" aria-label="Wybierz rolę">
+        <span class="role-switcher__label">Rola</span>
+        <select class="input role-switcher__select" id="roleSwitcher" aria-label="Wybierz rolę">
           ${roleOptions}
         </select>
       </label>
@@ -98,15 +107,13 @@ function renderAppShell(viewTitle, contentNode) {
           <path d="M20 12.5A7.5 7.5 0 1 1 11.5 4a6 6 0 0 0 8.5 8.5Z" fill="currentColor"></path>
         </svg>
       </button>
-      <button class="button button--ghost" aria-label="Powiadomienia" type="button">Powiadomienia</button>
-      <div class="dropdown">
+      <button class="button button--ghost topbar__notification-button" aria-label="Otwórz alerty" type="button">Alerty</button>
+      <div class="dropdown topbar__user-menu">
         <button class="button button--ghost avatar" id="userMenuBtn" type="button" aria-label="Menu użytkownika" aria-expanded="false" aria-controls="userMenu">${initials}</button>
-        <div class="dropdown-menu" id="userMenu">
-          <div class="dropdown-item muted">${safeUserName}</div>
-          <div class="dropdown-item muted">Rola: ${safeRoleLabel}</div>
-          <div class="dropdown-item"><a href="#/about">O projekcie</a></div>
-          <div class="dropdown-item"><a href="#/privacy">Polityka prywatności</a></div>
-          <button class="dropdown-item" id="logoutBtn" type="button">Wyloguj się</button>
+        <div class="dropdown-menu topbar__user-menu-panel" id="userMenu">
+          <div class="dropdown-item topbar__user-menu-item">Konto: <span class="topbar__user-menu-name">${safeUserName}</span></div>
+          <div class="dropdown-item topbar__user-menu-item">Rola: ${safeRole}</div>
+          <button class="dropdown-item topbar__user-menu-item" id="logoutBtn" type="button">Wyloguj się</button>
         </div>
       </div>
     </div>
