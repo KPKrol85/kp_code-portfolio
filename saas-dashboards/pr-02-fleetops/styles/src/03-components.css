@@ -320,7 +320,7 @@ textarea::placeholder {
 .input:hover,
 select:hover,
 textarea:hover {
-  background: var(--bg-muted);
+  background-color: var(--bg-muted);
 }
 
 .input:focus-visible,

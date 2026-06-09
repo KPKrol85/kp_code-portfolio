@@ -1,6 +1,7 @@
 function settingsView() {
   const root = dom.h('div');
   const escapeHtml = window.FleetUI.escapeHtml;
+  const getRoleLabel = window.FleetPermissions?.getRoleLabel || ((role) => role || "Użytkownik");
   const header = dom.h('div', 'module-header');
   header.innerHTML = `<div><h2>Ustawienia</h2><p class="muted small">Personalizacja i demo</p></div>`;
   root.appendChild(header);
@@ -20,7 +21,7 @@ function settingsView() {
   const compactCard = dom.h('div', 'setting-card');
   compactCard.innerHTML = `
     <h3>Tryb kompaktowy</h3>
-    <p class="muted small">Mniej odstępów</p>
+    <p>Mniej odstępów</p>
     <label class="form-control settings-compact-toggle">
       <input type="checkbox" id="compactToggle" ${FleetStore.state.preferences.compact ? 'checked' : ''} /> Włącz
     </label>
@@ -30,7 +31,7 @@ function settingsView() {
   const resetCard = dom.h('div', 'setting-card');
   resetCard.innerHTML = `
     <h3>Reset demo</h3>
-    <p class="muted small">Czyści localStorage</p>
+    <p>Czyści localStorage</p>
     <button class="button button--ghost" id="resetDemo">Resetuj</button>
   `;
   grid.appendChild(resetCard);
@@ -38,12 +39,13 @@ function settingsView() {
   const accountCard = dom.h('div', 'setting-card');
   const user = FleetStore.state.auth.user || { name: 'Użytkownik demo', email: 'demo@fleetops.app' };
   const currentUser = FleetStore.state.currentUser || window.FleetPermissions?.defaultUser;
+  const safeRoleLabel = escapeHtml(getRoleLabel(currentUser?.role));
   accountCard.innerHTML = `
     <h3>Konto</h3>
     <p>${escapeHtml(user.name)}</p>
-    <p class="muted small">${escapeHtml(user.email)}</p>
-    <p class="muted small">Rola: ${escapeHtml(currentUser ? currentUser.displayName || currentUser.role : 'Admin')}</p>
-    <p class="muted small">ID: ${escapeHtml(currentUser ? currentUser.id : 'u_admin_1')}</p>
+    <p>${escapeHtml(user.email)}</p>
+    <p>Rola: ${safeRoleLabel}</p>
+    <p>ID: ${escapeHtml(currentUser ? currentUser.id : 'u_admin_1')}</p>
   `;
   grid.appendChild(accountCard);
 

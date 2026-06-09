@@ -22,6 +22,8 @@ const roleLabels = {
   [Roles.DRIVER]: "Kierowca",
 };
 
+const getRoleLabel = (role) => roleLabels[role] || role || "Użytkownik";
+
 const actionLabels = {
   [Actions.ORDERS_CREATE]: "tworzenie zleceń",
   [Actions.ORDERS_EDIT]: "edycja zleceń",
@@ -70,7 +72,7 @@ const can = (action, context = {}) => {
 
 const explainDeny = (action, context = {}) => {
   const user = resolveUser(context);
-  const role = user ? roleLabels[user.role] || user.role : "Użytkownik";
+  const role = getRoleLabel(user && user.role);
   const actionLabel = actionLabels[action] || "akcja";
 
   if (user && user.role === Roles.DRIVER) {
@@ -119,6 +121,8 @@ const guard = (action, context = {}) => {
 window.FleetPermissions = {
   Roles,
   Actions,
+  roleLabels,
+  getRoleLabel,
   DemoUsers,
   defaultUser,
   can,

@@ -3,6 +3,7 @@ function renderAppShell(viewTitle, contentNode) {
   const { auth, preferences } = FleetStore.state;
   const currentUser = FleetStore.state.currentUser || window.FleetPermissions?.defaultUser;
   const demoUsers = window.FleetPermissions?.DemoUsers || [];
+  const getRoleLabel = window.FleetPermissions?.getRoleLabel || ((role) => role || "Użytkownik");
   const escapeHtml = window.FleetUI.escapeHtml;
 
   const theme = preferences.theme || "light";
@@ -11,8 +12,7 @@ function renderAppShell(viewTitle, contentNode) {
   const initials = escapeHtml(auth.user ? format.avatarInitials(auth.user.name || auth.user.email) : "FO");
   const safeUserEmail = escapeHtml(auth.user ? auth.user.email : "użytkownik demo");
   const safeUserName = escapeHtml(auth.user ? auth.user.name : "Użytkownik demo");
-  const safeRole = escapeHtml(currentUser ? currentUser.role : "admin");
-  const safeRoleLabel = escapeHtml(currentUser ? currentUser.displayName || currentUser.role : "Administrator");
+  const safeRoleLabel = escapeHtml(getRoleLabel(currentUser?.role));
   const safeViewTitle = escapeHtml(viewTitle);
   const roleOptions = demoUsers
     .map((user) => `<option value="${escapeHtml(user.id)}">${escapeHtml(user.displayName || user.role)}</option>`)
@@ -78,7 +78,7 @@ function renderAppShell(viewTitle, contentNode) {
     Email: <span class="sidebar__meta-value">${safeUserEmail}</span>
   </div>
   <div class="sidebar__meta">
-    Rola: <span class="sidebar__meta-value">${safeRole}</span>
+    Rola: <span class="sidebar__meta-value">${safeRoleLabel}</span>
   </div>
 </div>
   `;
@@ -112,8 +112,8 @@ function renderAppShell(viewTitle, contentNode) {
         <button class="button button--ghost avatar" id="userMenuBtn" type="button" aria-label="Menu użytkownika" aria-expanded="false" aria-controls="userMenu">${initials}</button>
         <div class="dropdown-menu topbar__user-menu-panel" id="userMenu">
           <div class="dropdown-item topbar__user-menu-item">Konto: <span class="topbar__user-menu-name">${safeUserName}</span></div>
-          <div class="dropdown-item topbar__user-menu-item">Rola: ${safeRole}</div>
-          <button class="dropdown-item topbar__user-menu-item" id="logoutBtn" type="button">Wyloguj się</button>
+          <div class="dropdown-item topbar__user-menu-item">Rola: ${safeRoleLabel}</div>
+          <button class="dropdown-item topbar__user-menu-item topbar__user-menu-logout" id="logoutBtn" type="button">Wyloguj się</button>
         </div>
       </div>
     </div>
@@ -144,13 +144,14 @@ function renderAppShell(viewTitle, contentNode) {
     roleSwitcher.value = currentUser.id;
     roleSwitcher.addEventListener("change", () => {
       const selected = demoUsers.find((user) => user.id === roleSwitcher.value) || currentUser;
+      const selectedRoleLabel = getRoleLabel(selected.role);
       FleetStore.setCurrentUser(selected);
       FleetStore.addActivity({
         title: "Rola zmieniona",
-        detail: `Rola zmieniona: ${selected.displayName || selected.role}`,
+        detail: `Rola zmieniona: ${selectedRoleLabel}`,
         time: new Date().toISOString(),
       });
-      Toast.show(`Rola zmieniona: ${selected.displayName || selected.role}`, "success");
+      Toast.show(`Rola zmieniona: ${selectedRoleLabel}`, "success");
       if (window.FleetRouter?.routeTo) {
         FleetRouter.routeTo(window.location.hash);
       }

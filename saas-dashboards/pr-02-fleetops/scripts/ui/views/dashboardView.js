@@ -4,18 +4,18 @@ function dashboardView() {
   // ===== KPI =====
   const rangeHeader = dom.h("div", "module-header");
   rangeHeader.innerHTML = `
-    <div>
-      <h2>Przegląd KPI</h2>
-      <p class="muted small">Zakres czasu</p>
-    </div>
-    <div class="toolbar">
-      <select class="input" id="dashboardRange" aria-label="Zakres czasu">
-        <option value="7">7 dni</option>
-        <option value="30">30 dni</option>
-        <option value="90">90 dni</option>
-      </select>
-    </div>
-  `;
+  <div>
+    <h2 class="module-header__title">Przegląd KPI</h2>
+    <p class="module-header__meta">Zakres czasu</p>
+  </div>
+  <div class="toolbar">
+    <select class="input dashboard-range__select" id="dashboardRange" aria-label="Zakres czasu">
+      <option value="7">7 dni</option>
+      <option value="30">30 dni</option>
+      <option value="90">90 dni</option>
+    </select>
+  </div>
+`;
   root.appendChild(rangeHeader);
 
   const rangeSelect = rangeHeader.querySelector("#dashboardRange");
@@ -35,9 +35,7 @@ function dashboardView() {
     const ordersInRange = FleetStore.state.domain.orders.filter((o) => isInRange(o.updated || o.updatedAt, rangeDays));
     const deliveredCount = ordersInRange.filter((o) => o.status === "delivered").length;
     const onTimePct = ordersInRange.length ? `${((deliveredCount / ordersInRange.length) * 100).toFixed(1)}%` : "0%";
-    const activeVehicles = FleetStore.state.domain.fleet
-      .filter((v) => v.status !== "maintenance")
-      .filter((v) => isInRange(v.lastCheck, rangeDays));
+    const activeVehicles = FleetStore.state.domain.fleet.filter((v) => v.status !== "maintenance").filter((v) => isInRange(v.lastCheck, rangeDays));
     const activityInRange = (FleetStore.state.activity || []).filter((a) => isInRange(a.time, rangeDays));
 
     const kpiData = [
@@ -52,7 +50,7 @@ function dashboardView() {
       const card = dom.h("button", "panel kpi-card");
       card.type = "button";
       card.setAttribute("aria-label", item.label);
-      card.innerHTML = `<p class="muted small">${escapeHtml(item.label)}</p><strong class="kpi-value">${escapeHtml(item.value)}</strong>`;
+      card.innerHTML = `<p class="kpi-card__label">${escapeHtml(item.label)}</p><strong class="kpi-value">${escapeHtml(item.value)}</strong>`;
       card.addEventListener("click", () => handleKpiClick(item.action));
       kpis.appendChild(card);
     });
@@ -80,9 +78,7 @@ function dashboardView() {
     if (action === "alerts") {
       window.location.hash = "#/app";
       window.setTimeout(() => {
-        const behavior = window.FleetUI.getMotionSafeScrollBehavior
-          ? window.FleetUI.getMotionSafeScrollBehavior()
-          : "smooth";
+        const behavior = window.FleetUI.getMotionSafeScrollBehavior ? window.FleetUI.getMotionSafeScrollBehavior() : "smooth";
         document.getElementById("dashboard-alerts")?.scrollIntoView({ behavior, block: "start" });
       }, 200);
     }
@@ -104,7 +100,12 @@ function dashboardView() {
   // ===== Activity =====
   const activity = dom.h("div", "panel");
   activity.id = "dashboard-activity";
-  activity.innerHTML = `<div class="module-header"><h2>Aktywność</h2><span class="muted small">Operacje na żywo</span></div>`;
+  activity.innerHTML = `
+    <div class="module-header">
+      <h2 class="module-header__title">Aktywność</h2>
+      <p class="module-header__meta">Operacje na żywo</p>
+    </div>
+  `;
 
   const formatActivityTime = (value) => {
     if (!value) return "";
@@ -120,9 +121,7 @@ function dashboardView() {
   };
 
   const feed = dom.h("div", "feed");
-  const activities = FleetStore.state.activity && FleetStore.state.activity.length
-    ? FleetStore.state.activity
-    : FleetSeed.activities;
+  const activities = FleetStore.state.activity && FleetStore.state.activity.length ? FleetStore.state.activity : FleetSeed.activities;
   activities.forEach((a) => {
     const row = dom.h("div", "activity-row");
     row.innerHTML = `<div><strong>${escapeHtml(a.title)}</strong><p class="muted small">${escapeHtml(a.detail)}</p></div><span class="muted small">${escapeHtml(formatActivityTime(a.time))}</span>`;
@@ -136,61 +135,61 @@ function dashboardView() {
   alerts.id = "dashboard-alerts";
 
   alerts.innerHTML = `
-    <div class="module-header">
-      <h2>Alerty</h2>
+  <div class="module-header">
+    <h2 class="module-header__title">Alerty</h2>
 
-      <div class="dropdown" data-dropdown="alerts-rules">
-        <button class="button button--ghost small dropdown-trigger" type="button" aria-expanded="false" aria-controls="alertsRulesMenu">
-          Zobacz reguły
-        </button>
+    <div class="dropdown" data-dropdown="alerts-rules">
+      <button class="button button--ghost small dropdown-trigger" type="button" aria-expanded="false" aria-controls="alertsRulesMenu">
+        Zobacz reguły
+      </button>
 
-        <div class="dropdown-menu alerts-rules-menu" id="alertsRulesMenu">
-          <div class="alerts-rules-menu__header">
-            <span class="muted small">Reguły alertów</span>
-            <button class="button button--ghost small" type="button" data-alerts-reset>Reset</button>
-          </div>
+      <div class="dropdown-menu alerts-rules-menu" id="alertsRulesMenu">
+        <div class="alerts-rules-menu__header">
+          <p class="alerts-rules-menu__eyebrow">Reguły alertów</p>
+          <button class="button button--ghost small" type="button" data-alerts-reset>Reset</button>
+        </div>
 
-          <div class="alerts-rules-menu__section">
-            <div class="muted small alerts-rules-menu__title">Priorytety</div>
+        <div class="alerts-rules-menu__section">
+          <p class="alerts-rules-menu__title">Priorytety</p>
 
-            <label class="muted small alerts-rules-menu__option">
-              <input type="checkbox" data-rule-severity="wysoki" checked />
-              Wysoki
-            </label>
+          <label class="alerts-rules-menu__option">
+            <input type="checkbox" data-rule-severity="wysoki" checked />
+            Wysoki
+          </label>
 
-            <label class="muted small alerts-rules-menu__option">
-              <input type="checkbox" data-rule-severity="średni" checked />
-              Średni
-            </label>
+          <label class="alerts-rules-menu__option">
+            <input type="checkbox" data-rule-severity="średni" checked />
+            Średni
+          </label>
 
-            <label class="muted small alerts-rules-menu__option">
-              <input type="checkbox" data-rule-severity="niski" checked />
-              Niski
-            </label>
-          </div>
+          <label class="alerts-rules-menu__option">
+            <input type="checkbox" data-rule-severity="niski" checked />
+            Niski
+          </label>
+        </div>
 
-          <div class="muted small alerts-rules-menu__group-title">Typy (widok)</div>
+        <p class="alerts-rules-menu__group-title">Typy (widok)</p>
 
-          <div class="alerts-rules-menu__section">
-            <label class="muted small alerts-rules-menu__option">
-              <input type="checkbox" data-rule-type="SLA" checked />
-              SLA
-            </label>
+        <div class="alerts-rules-menu__section">
+          <label class="alerts-rules-menu__option">
+            <input type="checkbox" data-rule-type="SLA" checked />
+            SLA
+          </label>
 
-            <label class="muted small alerts-rules-menu__option">
-              <input type="checkbox" data-rule-type="Opóźnienie" checked />
-              Opóźnienie
-            </label>
+          <label class="alerts-rules-menu__option">
+            <input type="checkbox" data-rule-type="Opóźnienie" checked />
+            Opóźnienie
+          </label>
 
-            <label class="muted small alerts-rules-menu__option">
-              <input type="checkbox" data-rule-type="Serwis" checked />
-              Serwis
-            </label>
-          </div>
+          <label class="alerts-rules-menu__option">
+            <input type="checkbox" data-rule-type="Serwis" checked />
+            Serwis
+          </label>
         </div>
       </div>
     </div>
-  `;
+  </div>
+`;
 
   const alertsList = dom.h("div", "alerts");
 
@@ -275,13 +274,13 @@ function initAlertsRulesDropdown(scopeEl) {
     const enabledTypes = new Set(
       Array.from(dd.querySelectorAll("input[data-rule-type]"))
         .filter((i) => i.checked)
-        .map((i) => i.getAttribute("data-rule-type"))
+        .map((i) => i.getAttribute("data-rule-type")),
     );
 
     const enabledSeverities = new Set(
       Array.from(dd.querySelectorAll("input[data-rule-severity]"))
         .filter((i) => i.checked)
-        .map((i) => i.getAttribute("data-rule-severity"))
+        .map((i) => i.getAttribute("data-rule-severity")),
     );
 
     scopeEl.querySelectorAll(".alert[data-alert-type]").forEach((el) => {
