@@ -10,7 +10,7 @@ function fleetView() {
   const escapeHtml = window.FleetUI.escapeHtml;
 
   const header = dom.h("div", "module-header");
-  header.innerHTML = `<div><h2>Flota</h2><p class="muted small">Zarządzaj pojazdami</p></div><div class="toolbar"><select class="input" id="fleetSortBy" aria-label="Sortuj"><option value="id">Rejestracja</option><option value="status">Status</option><option value="lastCheck">Ostatni przegląd</option><option value="type">Typ</option></select><select class="input" id="fleetSortDir" aria-label="Kierunek"><option value="asc">Rosnąco</option><option value="desc">Malejąco</option></select><button class="button button--primary" id="addVehicle" type="button">Dodaj pojazd</button></div>`;
+  header.innerHTML = `<div><h2 class="module-header__title">Flota</h2><p class="module-header__meta">Zarządzaj pojazdami</p></div><div class="toolbar"><select class="input" id="fleetSortBy" aria-label="Sortuj"><option value="id">Rejestracja</option><option value="status">Status</option><option value="lastCheck">Ostatni przegląd</option><option value="type">Typ</option></select><select class="input" id="fleetSortDir" aria-label="Kierunek"><option value="asc">Rosnąco</option><option value="desc">Malejąco</option></select><button class="button button--primary" id="addVehicle" type="button">Dodaj pojazd</button></div>`;
   root.appendChild(header);
 
   const filterBar = dom.h("div", "table-filter");
@@ -355,7 +355,7 @@ function fleetView() {
 
     if (rows.length === 0) {
       loadMoreWrap.style.display = "none";
-      
+
       cards.innerHTML = `
         <div class="empty-state">
           <div class="empty-state__card">

@@ -3,9 +3,9 @@ function notFoundView() {
 
   root.innerHTML = `
     <div class="module-header not-found-panel__header">
-      <h2>Nie znaleziono</h2>
+      <h2 class="module-header__title">Nie znaleziono</h2>
     </div>
-    <p class="muted not-found-panel__copy">
+    <p class="module-header__meta not-found-panel__copy">
       Ta sekcja nie istnieje w aplikacji.
     </p>
     <a class="button button--primary" href="#/app">Wróć do dashboardu</a>

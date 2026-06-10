@@ -11,7 +11,7 @@ function ordersView() {
 
 
   const header = dom.h("div", "module-header");
-  header.innerHTML = `<div><h2>Zlecenia</h2><p class="muted small">Monitoruj status dostaw</p></div><div class="toolbar"><select class="input" id="ordersSortBy" aria-label="Sortuj"><option value="updated">Aktualizacja</option><option value="client">Klient</option><option value="status">Status</option><option value="priority">Priorytet</option></select><select class="input" id="ordersSortDir" aria-label="Kierunek"><option value="asc">Rosnąco</option><option value="desc">Malejąco</option></select><button class="button button--primary" id="addOrder" type="button">Dodaj zlecenie</button><button class="button button--secondary" id="exportOrders" type="button">Eksportuj CSV</button></div>`;
+  header.innerHTML = `<div><h2 class="module-header__title">Zlecenia</h2><p class="module-header__meta">Monitoruj status dostaw</p></div><div class="toolbar"><select class="input" id="ordersSortBy" aria-label="Sortuj"><option value="updated">Aktualizacja</option><option value="client">Klient</option><option value="status">Status</option><option value="priority">Priorytet</option></select><select class="input" id="ordersSortDir" aria-label="Kierunek"><option value="asc">Rosnąco</option><option value="desc">Malejąco</option></select><button class="button button--primary" id="addOrder" type="button">Dodaj zlecenie</button><button class="button button--secondary" id="exportOrders" type="button">Eksportuj CSV</button></div>`;
   root.appendChild(header);
 
   const filterBar = dom.h("div", "table-filter");
@@ -369,7 +369,7 @@ function ordersView() {
 
     if (rows.length === 0) {
       loadMoreWrap.style.display = "none";
-      
+
       tableWrap.innerHTML = `
         <div class="empty-state">
           <div class="empty-state__card">

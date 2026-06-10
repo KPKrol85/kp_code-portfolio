@@ -10,7 +10,7 @@ function driversView() {
   const escapeHtml = window.FleetUI.escapeHtml;
 
   const header = dom.h("div", "module-header");
-  header.innerHTML = `<div><h2>Kierowcy</h2><p class="muted small">Status i ostatnie kursy</p></div><div class="toolbar"><select class="input" id="driversSortBy" aria-label="Sortuj"><option value="name">Imię i nazwisko</option><option value="status">Status</option><option value="phone">Telefon</option><option value="lastTrip">Ostatni kurs</option></select><select class="input" id="driversSortDir" aria-label="Kierunek"><option value="asc">Rosnąco</option><option value="desc">Malejąco</option></select><button class="button button--primary" id="addDriver" type="button">Dodaj kierowcę</button></div>`;
+  header.innerHTML = `<div><h2 class="module-header__title">Kierowcy</h2><p class="module-header__meta">Status i ostatnie kursy</p></div><div class="toolbar"><select class="input" id="driversSortBy" aria-label="Sortuj"><option value="name">Imię i nazwisko</option><option value="status">Status</option><option value="phone">Telefon</option><option value="lastTrip">Ostatni kurs</option></select><select class="input" id="driversSortDir" aria-label="Kierunek"><option value="asc">Rosnąco</option><option value="desc">Malejąco</option></select><button class="button button--primary" id="addDriver" type="button">Dodaj kierowcę</button></div>`;
   root.appendChild(header);
 
   const filterBar = dom.h("div", "table-filter");
@@ -357,7 +357,7 @@ function driversView() {
 
     if (rows.length === 0) {
       loadMoreWrap.style.display = "none";
-      
+
       tableWrap.innerHTML = `
         <div class="empty-state">
           <div class="empty-state__card">

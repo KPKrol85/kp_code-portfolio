@@ -2,7 +2,7 @@ function reportsView() {
   const root = dom.h('div');
   const escapeHtml = window.FleetUI.escapeHtml;
   const header = dom.h('div', 'module-header');
-  header.innerHTML = `<div><h2>Raporty</h2><p class="muted small">Wydajność i SLA</p></div><div class="toolbar"><button class="button button--secondary" id="exportReports">Eksportuj JSON</button></div>`;
+  header.innerHTML = `<div><h2 class="module-header__title">Raporty</h2><p class="module-header__meta">Wydajność i SLA</p></div><div class="toolbar"><button class="button button--secondary" id="exportReports">Eksportuj JSON</button></div>`;
   root.appendChild(header);
 
   const chart = dom.h('div', 'panel');

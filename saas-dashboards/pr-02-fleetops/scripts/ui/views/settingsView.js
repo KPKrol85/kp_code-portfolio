@@ -3,7 +3,7 @@ function settingsView() {
   const escapeHtml = window.FleetUI.escapeHtml;
   const getRoleLabel = window.FleetPermissions?.getRoleLabel || ((role) => role || "Użytkownik");
   const header = dom.h('div', 'module-header');
-  header.innerHTML = `<div><h2>Ustawienia</h2><p class="muted small">Personalizacja i demo</p></div>`;
+  header.innerHTML = `<div><h2 class="module-header__title">Ustawienia</h2><p class="module-header__meta">Personalizacja i demo</p></div>`;
   root.appendChild(header);
 
   const grid = dom.h('div', 'settings-grid');

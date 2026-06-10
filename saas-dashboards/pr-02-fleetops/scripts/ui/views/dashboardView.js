@@ -124,7 +124,13 @@ function dashboardView() {
   const activities = FleetStore.state.activity && FleetStore.state.activity.length ? FleetStore.state.activity : FleetSeed.activities;
   activities.forEach((a) => {
     const row = dom.h("div", "activity-row");
-    row.innerHTML = `<div><strong>${escapeHtml(a.title)}</strong><p class="muted small">${escapeHtml(a.detail)}</p></div><span class="muted small">${escapeHtml(formatActivityTime(a.time))}</span>`;
+      row.innerHTML = `
+        <div class="activity-row__content">
+          <h3 class="activity-row__title">${escapeHtml(a.title)}</h3>
+          <p class="activity-row__text">${escapeHtml(a.detail)}</p>
+        </div>
+        <span class="activity-row__time">${escapeHtml(formatActivityTime(a.time))}</span>
+      `;
     feed.appendChild(row);
   });
 
@@ -135,61 +141,61 @@ function dashboardView() {
   alerts.id = "dashboard-alerts";
 
   alerts.innerHTML = `
-  <div class="module-header">
-    <h2 class="module-header__title">Alerty</h2>
+    <div class="module-header">
+      <h2 class="module-header__title">Alerty</h2>
 
-    <div class="dropdown" data-dropdown="alerts-rules">
-      <button class="button button--ghost small dropdown-trigger" type="button" aria-expanded="false" aria-controls="alertsRulesMenu">
-        Zobacz reguły
-      </button>
+      <div class="dropdown" data-dropdown="alerts-rules">
+        <button class="button button--ghost dropdown-trigger dashboard-alerts__rules-trigger" type="button" aria-expanded="false" aria-controls="alertsRulesMenu">
+          Zobacz reguły
+        </button>
 
-      <div class="dropdown-menu alerts-rules-menu" id="alertsRulesMenu">
-        <div class="alerts-rules-menu__header">
-          <p class="alerts-rules-menu__eyebrow">Reguły alertów</p>
-          <button class="button button--ghost small" type="button" data-alerts-reset>Reset</button>
-        </div>
+        <div class="dropdown-menu alerts-rules-menu" id="alertsRulesMenu">
+          <div class="alerts-rules-menu__header">
+            <p class="alerts-rules-menu__eyebrow">Reguły alertów</p>
+            <button class="button button--ghost alerts-rules-menu__reset" type="button" data-alerts-reset>Reset</button>
+          </div>
 
-        <div class="alerts-rules-menu__section">
-          <p class="alerts-rules-menu__title">Priorytety</p>
+          <div class="alerts-rules-menu__section">
+            <p class="alerts-rules-menu__title">Priorytety</p>
 
-          <label class="alerts-rules-menu__option">
-            <input type="checkbox" data-rule-severity="wysoki" checked />
-            Wysoki
-          </label>
+            <label class="alerts-rules-menu__option">
+              <input type="checkbox" data-rule-severity="wysoki" checked />
+              Wysoki
+            </label>
 
-          <label class="alerts-rules-menu__option">
-            <input type="checkbox" data-rule-severity="średni" checked />
-            Średni
-          </label>
+            <label class="alerts-rules-menu__option">
+              <input type="checkbox" data-rule-severity="średni" checked />
+              Średni
+            </label>
 
-          <label class="alerts-rules-menu__option">
-            <input type="checkbox" data-rule-severity="niski" checked />
-            Niski
-          </label>
-        </div>
+            <label class="alerts-rules-menu__option">
+              <input type="checkbox" data-rule-severity="niski" checked />
+              Niski
+            </label>
+          </div>
 
-        <p class="alerts-rules-menu__group-title">Typy (widok)</p>
+          <p class="alerts-rules-menu__group-title">Typy (widok)</p>
 
-        <div class="alerts-rules-menu__section">
-          <label class="alerts-rules-menu__option">
-            <input type="checkbox" data-rule-type="SLA" checked />
-            SLA
-          </label>
+          <div class="alerts-rules-menu__section">
+            <label class="alerts-rules-menu__option">
+              <input type="checkbox" data-rule-type="SLA" checked />
+              SLA
+            </label>
 
-          <label class="alerts-rules-menu__option">
-            <input type="checkbox" data-rule-type="Opóźnienie" checked />
-            Opóźnienie
-          </label>
+            <label class="alerts-rules-menu__option">
+              <input type="checkbox" data-rule-type="Opóźnienie" checked />
+              Opóźnienie
+            </label>
 
-          <label class="alerts-rules-menu__option">
-            <input type="checkbox" data-rule-type="Serwis" checked />
-            Serwis
-          </label>
+            <label class="alerts-rules-menu__option">
+              <input type="checkbox" data-rule-type="Serwis" checked />
+              Serwis
+            </label>
+          </div>
         </div>
       </div>
     </div>
-  </div>
-`;
+  `;
 
   const alertsList = dom.h("div", "alerts");
 
@@ -200,14 +206,17 @@ function dashboardView() {
   };
 
   FleetSeed.alerts.forEach((alert) => {
-    const tag = dom.h("span", "badge");
+    const tag = dom.h("span", "badge alert__badge");
     tag.textContent = alert.type;
 
-    const content = dom.h("div", "alert-content");
-    const message = dom.h("strong");
+    const content = dom.h("div", "alert__content");
+
+    const message = dom.h("h3", "alert__title");
     message.textContent = alert.message || "";
-    const severity = dom.h("p", "muted small");
+
+    const severity = dom.h("p", "alert__meta");
     severity.textContent = `Priorytet: ${alert.severity || ""}`;
+
     content.appendChild(message);
     content.appendChild(severity);
 
