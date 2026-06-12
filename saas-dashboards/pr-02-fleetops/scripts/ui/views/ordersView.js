@@ -9,10 +9,42 @@ function ordersView() {
   const getPermissionContext = (record) => ({ user: FleetStore.state.currentUser, record });
   const escapeHtml = window.FleetUI.escapeHtml;
 
-
   const header = dom.h("div", "module-header");
-  header.innerHTML = `<div><h2 class="module-header__title">Zlecenia</h2><p class="module-header__meta">Monitoruj status dostaw</p></div><div class="toolbar"><select class="input" id="ordersSortBy" aria-label="Sortuj"><option value="updated">Aktualizacja</option><option value="client">Klient</option><option value="status">Status</option><option value="priority">Priorytet</option></select><select class="input" id="ordersSortDir" aria-label="Kierunek"><option value="asc">Rosnąco</option><option value="desc">Malejąco</option></select><button class="button button--primary" id="addOrder" type="button">Dodaj zlecenie</button><button class="button button--secondary" id="exportOrders" type="button">Eksportuj CSV</button></div>`;
+  header.innerHTML = `
+    <div>
+      <h2 class="module-header__title">Zlecenia</h2>
+      <p class="module-header__meta">Monitoruj status dostaw</p>
+    </div>
+
+    <div class="toolbar">
+      <select class="input toolbar__select" id="ordersSortBy" aria-label="Sortuj">
+        <option value="updated">Aktualizacja</option>
+        <option value="client">Klient</option>
+        <option value="status">Status</option>
+        <option value="priority">Priorytet</option>
+      </select>
+
+      <select class="input toolbar__select" id="ordersSortDir" aria-label="Kierunek">
+        <option value="asc">Rosnąco</option>
+        <option value="desc">Malejąco</option>
+      </select>
+    </div>
+  `;
+
   root.appendChild(header);
+
+  const ordersActions = dom.h("div", "app-actions");
+  ordersActions.innerHTML = `
+    <button class="button button--primary app-actions__button" id="addOrder" type="button">
+      Dodaj zlecenie
+    </button>
+
+    <button class="button button--secondary app-actions__button" id="exportOrders" type="button">
+      Eksportuj CSV
+    </button>
+  `;
+
+  root.appendChild(ordersActions);
 
   const filterBar = dom.h("div", "table-filter");
   const statusSelect = dom.h("select");
@@ -84,7 +116,7 @@ function ordersView() {
   let searchLoadingTimer = null;
   let initialLoadTimer = null;
   const FILTER_DELAY = 160;
-  const priorityLabel = (value) => ({ high: "Wysoki", medium: "Średni", low: "Niski" }[value] || value);
+  const priorityLabel = (value) => ({ high: "Wysoki", medium: "Średni", low: "Niski" })[value] || value;
   const statusOrder = { "in-progress": 1, delayed: 2, pending: 3, delivered: 4 };
   const priorityOrder = { high: 1, medium: 2, low: 3 };
   const getOrderSortValue = (order, sortBy) => {
@@ -94,10 +126,12 @@ function ordersView() {
     if (sortBy === "priority") return priorityOrder[order.priority] || 99;
     return String(order.id || "").toLowerCase();
   };
-  const debounce = (fn, wait = 250) => (...args) => {
-    if (searchDebounceTimer) clearTimeout(searchDebounceTimer);
-    searchDebounceTimer = setTimeout(() => fn(...args), wait);
-  };
+  const debounce =
+    (fn, wait = 250) =>
+    (...args) => {
+      if (searchDebounceTimer) clearTimeout(searchDebounceTimer);
+      searchDebounceTimer = setTimeout(() => fn(...args), wait);
+    };
   const statusOptions = [
     { value: "in-progress", label: "W realizacji" },
     { value: "delayed", label: "Opóźnione" },
@@ -136,7 +170,7 @@ function ordersView() {
             <div class="skeleton skeleton-cell"></div>
             <div class="skeleton skeleton-cell"></div>
             <div class="skeleton skeleton-cell"></div>
-          </div>`
+          </div>`,
           )
           .join("")}
       </div>
@@ -152,7 +186,7 @@ function ordersView() {
     filterTimer = setTimeout(() => {
       isLoading = false;
 
-  renderRows();
+      renderRows();
     }, FILTER_DELAY);
   };
 
@@ -294,7 +328,7 @@ function ordersView() {
 
       Modal.close();
 
-  renderRows();
+      renderRows();
     });
 
     Modal.open({ title: isEdit && order ? `Edytuj ${escapeHtml(order.id)}` : "Dodaj zlecenie", body: form });
@@ -325,7 +359,7 @@ function ordersView() {
       Toast.show("Zlecenie usunięte", "success");
       Modal.close();
 
-  renderRows();
+      renderRows();
     });
 
     Modal.open({ title: "Potwierdzenie usunięcia", body });
@@ -513,13 +547,13 @@ function ordersView() {
 
     isLoading = true;
 
-  renderRows();
+    renderRows();
 
     if (searchLoadingTimer) clearTimeout(searchLoadingTimer);
     searchLoadingTimer = setTimeout(() => {
       isLoading = false;
 
-  renderRows();
+      renderRows();
     }, 140);
   };
 
@@ -540,7 +574,7 @@ function ordersView() {
     Toast.show("CSV wyeksportowano", "success");
   };
 
-  const exportBtn = header.querySelector("#exportOrders");
+  const exportBtn = ordersActions.querySelector("#exportOrders");
   if (exportBtn) {
     exportBtn.disabled = true;
     exportBtn.title = "Brak uprawnień w wersji demo";
@@ -550,7 +584,7 @@ function ordersView() {
     });
   }
 
-  const addBtn = header.querySelector("#addOrder");
+  const addBtn = ordersActions.querySelector("#addOrder");
   if (addBtn) {
     const allowCreate = can(Actions.ORDERS_CREATE, getPermissionContext());
     applyDisabledState(addBtn, allowCreate, explainDeny(Actions.ORDERS_CREATE, getPermissionContext()));

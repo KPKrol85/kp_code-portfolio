@@ -4,18 +4,20 @@ function dashboardView() {
   // ===== KPI =====
   const rangeHeader = dom.h("div", "module-header");
   rangeHeader.innerHTML = `
-  <div>
-    <h2 class="module-header__title">Przegląd KPI</h2>
-    <p class="module-header__meta">Zakres czasu</p>
-  </div>
-  <div class="toolbar">
-    <select class="input dashboard-range__select" id="dashboardRange" aria-label="Zakres czasu">
-      <option value="7">7 dni</option>
-      <option value="30">30 dni</option>
-      <option value="90">90 dni</option>
-    </select>
-  </div>
-`;
+    <div>
+      <h2 class="module-header__title">Przegląd KPI</h2>
+      <p class="module-header__meta">Zakres czasu</p>
+    </div>
+
+    <div class="toolbar">
+      <select class="input toolbar__select" id="dashboardRange" aria-label="Zakres czasu">
+        <option value="7">7 dni</option>
+        <option value="30">30 dni</option>
+        <option value="90">90 dni</option>
+      </select>
+    </div>
+  `;
+
   root.appendChild(rangeHeader);
 
   const rangeSelect = rangeHeader.querySelector("#dashboardRange");
@@ -124,7 +126,7 @@ function dashboardView() {
   const activities = FleetStore.state.activity && FleetStore.state.activity.length ? FleetStore.state.activity : FleetSeed.activities;
   activities.forEach((a) => {
     const row = dom.h("div", "activity-row");
-      row.innerHTML = `
+    row.innerHTML = `
         <div class="activity-row__content">
           <h3 class="activity-row__title">${escapeHtml(a.title)}</h3>
           <p class="activity-row__text">${escapeHtml(a.detail)}</p>

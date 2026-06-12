@@ -10,8 +10,37 @@ function fleetView() {
   const escapeHtml = window.FleetUI.escapeHtml;
 
   const header = dom.h("div", "module-header");
-  header.innerHTML = `<div><h2 class="module-header__title">Flota</h2><p class="module-header__meta">Zarządzaj pojazdami</p></div><div class="toolbar"><select class="input" id="fleetSortBy" aria-label="Sortuj"><option value="id">Rejestracja</option><option value="status">Status</option><option value="lastCheck">Ostatni przegląd</option><option value="type">Typ</option></select><select class="input" id="fleetSortDir" aria-label="Kierunek"><option value="asc">Rosnąco</option><option value="desc">Malejąco</option></select><button class="button button--primary" id="addVehicle" type="button">Dodaj pojazd</button></div>`;
+  header.innerHTML = `
+    <div>
+      <h2 class="module-header__title">Flota</h2>
+      <p class="module-header__meta">Zarządzaj pojazdami</p>
+    </div>
+
+    <div class="toolbar">
+      <select class="input toolbar__select" id="fleetSortBy" aria-label="Sortuj">
+        <option value="id">Rejestracja</option>
+        <option value="status">Status</option>
+        <option value="lastCheck">Ostatni przegląd</option>
+        <option value="type">Typ</option>
+      </select>
+
+      <select class="input toolbar__select" id="fleetSortDir" aria-label="Kierunek">
+        <option value="asc">Rosnąco</option>
+        <option value="desc">Malejąco</option>
+      </select>
+    </div>
+  `;
+
   root.appendChild(header);
+
+  const fleetActions = dom.h("div", "app-actions");
+  fleetActions.innerHTML = `
+    <button class="button button--primary app-actions__button" id="addVehicle" type="button">
+      Dodaj pojazd
+    </button>
+  `;
+
+  root.appendChild(fleetActions);
 
   const filterBar = dom.h("div", "table-filter");
   const statusSelect = dom.h("select");
