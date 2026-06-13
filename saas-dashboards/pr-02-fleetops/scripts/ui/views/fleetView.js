@@ -43,17 +43,32 @@ function fleetView() {
   root.appendChild(fleetActions);
 
   const filterBar = dom.h("div", "table-filter");
+
   const statusSelect = dom.h("select");
+  statusSelect.id = "fleetStatusFilter";
+  statusSelect.name = "status";
+  statusSelect.setAttribute("aria-label", "Filtr statusu pojazdu");
   statusSelect.innerHTML = `
     <option value="all">Status: wszystkie</option>
     <option value="available">Dostępny</option>
     <option value="on-route">W trasie</option>
     <option value="maintenance">Serwis</option>`;
+
   const searchInput = dom.h("input");
+  searchInput.id = "fleetSearchFilter";
+  searchInput.name = "search";
   searchInput.type = "search";
   searchInput.placeholder = "Szukaj rejestracji / typu";
-  [statusSelect, searchInput].forEach((el) => el.classList.add("input"));
-  filterBar.appendChild(statusSelect);
+  searchInput.setAttribute("aria-label", "Szukaj rejestracji lub typu pojazdu");
+  searchInput.autocomplete = "off";
+
+  statusSelect.classList.add("input", "table-filter__field");
+  searchInput.classList.add("input", "search");
+
+  const filterSelects = dom.h("div", "table-filter__selects");
+  filterSelects.appendChild(statusSelect);
+
+  filterBar.appendChild(filterSelects);
   filterBar.appendChild(searchInput);
   root.appendChild(filterBar);
 
@@ -154,7 +169,7 @@ function fleetView() {
           <div class="skeleton line skeleton-line--vehicle-check"></div>
           <div class="skeleton skeleton-button--vehicle"></div>
         </div>
-      `
+      `,
         )
         .join("")}
     `;
@@ -354,9 +369,7 @@ function fleetView() {
 
     const { status, search } = FleetStore.state.filters.fleet;
 
-    const rows = FleetStore.state.domain.fleet
-      .filter((v) => (status === "all" ? true : v.status === status))
-      .filter((v) => `${v.id} ${v.type}`.toLowerCase().includes(search.toLowerCase()));
+    const rows = FleetStore.state.domain.fleet.filter((v) => (status === "all" ? true : v.status === status)).filter((v) => `${v.id} ${v.type}`.toLowerCase().includes(search.toLowerCase()));
 
     const prefs = getListPrefs();
     const sortBy = prefs.sortBy || listPrefsFallback.sortBy;

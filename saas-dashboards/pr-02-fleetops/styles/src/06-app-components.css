@@ -139,6 +139,63 @@
   }
 }
 
+/* App - Table Filter */
+
+.table-filter {
+  display: grid;
+  gap: var(--space-2);
+  padding: var(--space-2);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background: var(--surface);
+  box-shadow: var(--shadow);
+}
+
+.table-filter > * {
+  min-width: 0;
+}
+
+.table-filter__selects {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+}
+
+.table-filter__selects .table-filter__field {
+  flex: 1 1 100%;
+  width: 100%;
+  max-width: none;
+}
+
+.table-filter > .search {
+  max-width: none;
+}
+
+@media (min-width: 480px) {
+  .table-filter__selects .table-filter__field {
+    flex: 1 1 0;
+  }
+}
+
+@media (min-width: 866px) {
+  .table-filter {
+    grid-template-columns: minmax(0, 1fr) minmax(280px, 420px);
+    align-items: center;
+  }
+
+  .table-filter__selects .table-filter__field {
+    flex: 0 1 180px;
+    width: auto;
+    max-width: 220px;
+  }
+
+  .table-filter > .search {
+    justify-self: end;
+    width: 100%;
+    max-width: 420px;
+  }
+}
+
 /* KPI Cards */
 
 .kpi-card {
@@ -330,19 +387,17 @@
 .search {
   min-width: 0;
   width: 100%;
-  background: var(--surface);
-  border: 1px solid var(--border);
-  border-radius: var(--radius);
-  padding: var(--space-2) var(--space-3);
+  max-width: 420px;
 }
 
 .search input {
   width: 100%;
-  background: transparent;
-  border: 0;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: var(--space-2) var(--space-3);
   color: var(--text);
 }
-
 .role-switcher {
   display: inline-flex;
   align-items: center;
@@ -356,7 +411,8 @@
 }
 
 .role-switcher__select,
-.toolbar__select {
+.toolbar__select,
+.table-filter__field {
   width: auto;
   max-width: 180px;
   font-size: var(--fs-01);
@@ -371,7 +427,8 @@
 }
 
 [data-theme="dark"] .role-switcher__select,
-[data-theme="dark"] .toolbar__select {
+[data-theme="dark"] .toolbar__select,
+[data-theme="dark"] .table-filter__field {
   background: var(--surface-2)
     url("data:image/svg+xml,%3Csvg width='14' height='14' viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M7 10l5 5 5-5' fill='none' stroke='%23e5e7eb' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E")
     no-repeat right var(--space-2) center / 14px 14px;

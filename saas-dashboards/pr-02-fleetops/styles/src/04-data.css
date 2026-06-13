@@ -48,7 +48,7 @@
   min-width: 160px;
 }
 
-@media (min-width: 641px) {
+@media (min-width: 1144px) {
   .table-responsive .table {
     width: 100%;
     min-width: 0;
@@ -89,18 +89,7 @@
   background: #fde68a;
 }
 
-/* Filters */
 
-.table-filter {
-  display: flex;
-  align-items: center;
-  flex-wrap: wrap;
-  gap: 10px;
-}
-
-.table-filter > * {
-  min-width: 0;
-}
 
 /* Chips */
 

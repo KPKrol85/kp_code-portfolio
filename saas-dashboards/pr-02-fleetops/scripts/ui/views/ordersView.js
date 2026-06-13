@@ -47,25 +47,47 @@ function ordersView() {
   root.appendChild(ordersActions);
 
   const filterBar = dom.h("div", "table-filter");
+
   const statusSelect = dom.h("select");
+  statusSelect.id = "ordersStatusFilter";
+  statusSelect.name = "status";
+  statusSelect.setAttribute("aria-label", "Filtr statusu zlecenia");
   statusSelect.innerHTML = `
-    <option value="all">Status: wszystkie</option>
-    <option value="in-progress">W realizacji</option>
-    <option value="delayed">Opóźnione</option>
-    <option value="delivered">Dostarczone</option>
-    <option value="pending">Oczekujące</option>`;
+  <option value="all">Status: wszystkie</option>
+  <option value="in-progress">W realizacji</option>
+  <option value="delayed">Opóźnione</option>
+  <option value="delivered">Dostarczone</option>
+  <option value="pending">Oczekujące</option>`;
+
   const prioritySelect = dom.h("select");
+  prioritySelect.id = "ordersPriorityFilter";
+  prioritySelect.name = "priority";
+  prioritySelect.setAttribute("aria-label", "Filtr priorytetu zlecenia");
   prioritySelect.innerHTML = `
-    <option value="all">Priorytet: wszystkie</option>
-    <option value="high">Wysoki</option>
-    <option value="medium">Średni</option>
-    <option value="low">Niski</option>`;
+  <option value="all">Priorytet: wszystkie</option>
+  <option value="high">Wysoki</option>
+  <option value="medium">Średni</option>
+  <option value="low">Niski</option>`;
+
   const searchInput = dom.h("input");
+  searchInput.id = "ordersSearchFilter";
+  searchInput.name = "search";
   searchInput.type = "search";
   searchInput.placeholder = "Szukaj klienta / trasy";
-  [statusSelect, prioritySelect, searchInput].forEach((el) => el.classList.add("input"));
-  filterBar.appendChild(statusSelect);
-  filterBar.appendChild(prioritySelect);
+  searchInput.setAttribute("aria-label", "Szukaj klienta lub trasy");
+  searchInput.autocomplete = "off";
+
+  [statusSelect, prioritySelect].forEach((el) => {
+    el.classList.add("input", "table-filter__field");
+  });
+
+  searchInput.classList.add("input", "search");
+
+  const filterSelects = dom.h("div", "table-filter__selects");
+  filterSelects.appendChild(statusSelect);
+  filterSelects.appendChild(prioritySelect);
+
+  filterBar.appendChild(filterSelects);
   filterBar.appendChild(searchInput);
   root.appendChild(filterBar);
 

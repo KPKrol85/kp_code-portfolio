@@ -42,24 +42,39 @@ function driversView() {
 
   root.appendChild(driversActions);
 
-
   const filterBar = dom.h("div", "table-filter");
+
   const statusSelect = dom.h("select");
+  statusSelect.id = "driversStatusFilter";
+  statusSelect.name = "status";
+  statusSelect.setAttribute("aria-label", "Filtr statusu kierowcy");
   statusSelect.innerHTML = `
     <option value="all">Status: wszystkie</option>
     <option value="available">Dostępny</option>
     <option value="on-route">W trasie</option>
     <option value="maintenance">Serwis</option>`;
+
   const searchInput = dom.h("input");
+  searchInput.id = "driversSearchFilter";
+  searchInput.name = "search";
   searchInput.type = "search";
   searchInput.placeholder = "Szukaj kierowcy";
-  [statusSelect, searchInput].forEach((el) => el.classList.add("input"));
-  filterBar.appendChild(statusSelect);
+  searchInput.setAttribute("aria-label", "Szukaj kierowcy");
+  searchInput.autocomplete = "off";
+
+  statusSelect.classList.add("input", "table-filter__field");
+  searchInput.classList.add("input", "search");
+
+  const filterSelects = dom.h("div", "table-filter__selects");
+  filterSelects.appendChild(statusSelect);
+
+  filterBar.appendChild(filterSelects);
   filterBar.appendChild(searchInput);
   root.appendChild(filterBar);
 
   const list = dom.h("div", "panel");
-  list.innerHTML = '<div class="table-responsive"><table class="table"><thead><tr><th>Imię i nazwisko</th><th>Status</th><th>Ostatni kurs</th><th>Telefon</th><th>Akcje</th></tr></thead><tbody></tbody></table></div>';
+  list.innerHTML =
+    '<div class="table-responsive"><table class="table"><thead><tr><th>Imię i nazwisko</th><th>Status</th><th>Ostatni kurs</th><th>Telefon</th><th>Akcje</th></tr></thead><tbody></tbody></table></div>';
   root.appendChild(list);
 
   const loadMoreWrap = dom.h("div", "load-more");
@@ -155,7 +170,7 @@ function driversView() {
             <div class="skeleton skeleton-cell"></div>
             <div class="skeleton skeleton-cell"></div>
           </div>
-        `
+        `,
           )
           .join("")}
       </div>
@@ -197,9 +212,7 @@ function driversView() {
     const phoneDigits = normalizePhone(values.phone);
     if (!errors.phone && phoneDigits.length < 9) errors.phone = "Min. 9 cyfr";
     if (!errors.phone) {
-      const duplicates = FleetStore.state.domain.drivers
-        .filter((d) => (isEdit ? d.id !== currentId : true))
-        .some((d) => normalizePhone(d.phone) === phoneDigits);
+      const duplicates = FleetStore.state.domain.drivers.filter((d) => (isEdit ? d.id !== currentId : true)).some((d) => normalizePhone(d.phone) === phoneDigits);
       if (duplicates) errors.phone = "Telefon już istnieje";
     }
 
@@ -357,9 +370,7 @@ function driversView() {
 
     const { status, search } = FleetStore.state.filters.drivers;
 
-    const rows = FleetStore.state.domain.drivers
-      .filter((d) => (status === "all" ? true : d.status === status))
-      .filter((d) => d.name.toLowerCase().includes(search.toLowerCase()));
+    const rows = FleetStore.state.domain.drivers.filter((d) => (status === "all" ? true : d.status === status)).filter((d) => d.name.toLowerCase().includes(search.toLowerCase()));
 
     const prefs = getListPrefs();
     const sortBy = prefs.sortBy || listPrefsFallback.sortBy;
