@@ -29,6 +29,14 @@
   background: var(--bg-muted);
 }
 
+.table a:focus-visible,
+.table button:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+  box-shadow: 0 0 0 3px var(--accent-ghost);
+  border-color: transparent;
+}
+
 /* Table Responsiveness */
 
 .table-responsive .table {

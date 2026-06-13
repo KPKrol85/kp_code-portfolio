@@ -23,7 +23,7 @@ function reportsView() {
   FleetSeed.reports.performance.forEach((item) => {
     const wrap = dom.h('div');
     const value = Number(item.value) || 0;
-    wrap.innerHTML = `<p class="muted small">${escapeHtml(item.label)}</p><div class="progress-bar"><span style="width:${value}%;"></span></div><strong>${escapeHtml(value)}%</strong>`;
+    wrap.innerHTML = `<p>${escapeHtml(item.label)}</p><div class="progress-bar"><span style="width:${value}%;"></span></div><strong>${escapeHtml(value)}%</strong>`;
     bars.appendChild(wrap);
   });
   root.appendChild(chart);

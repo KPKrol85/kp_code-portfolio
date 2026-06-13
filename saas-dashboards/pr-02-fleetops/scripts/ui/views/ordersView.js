@@ -431,7 +431,7 @@ function ordersView() {
           <div class="empty-state__card">
             <p class="tag">Brak</p>
             <h3 class="empty-state__title">Brak wyników</h3>
-            <p class="muted">Zmień filtry lub wyszukiwanie, żeby zobaczyć zlecenia.</p>
+            <p>Zmień filtry lub wyszukiwanie, żeby zobaczyć zlecenia.</p>
             <button class="button button--secondary" id="clearOrdersFilters" type="button">Wyczyść filtry</button>
           </div>
         </div>
@@ -480,7 +480,11 @@ function ordersView() {
       </tr>`;
     });
 
-    tableWrap.innerHTML = Table.render(["ID", "Klient", "Trasa", "Status", "ETA", "Priorytet", "Akcje"], renderedRows);
+tableWrap.innerHTML = Table.render(
+  ["ID", "Klient", "Trasa", "Status", "ETA", "Priorytet", "Akcje"],
+  renderedRows,
+  { className: "table--orders" }
+);
 
     loadMoreWrap.style.display = canLoadMore ? "flex" : "none";
     loadMoreBtn.disabled = !canLoadMore;
