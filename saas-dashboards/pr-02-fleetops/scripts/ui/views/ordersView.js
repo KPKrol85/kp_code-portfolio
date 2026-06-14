@@ -480,11 +480,11 @@ function ordersView() {
       </tr>`;
     });
 
-tableWrap.innerHTML = Table.render(
-  ["ID", "Klient", "Trasa", "Status", "ETA", "Priorytet", "Akcje"],
-  renderedRows,
-  { className: "table--orders" }
-);
+    tableWrap.innerHTML = Table.render(
+      ["ID", "Klient", "Trasa", "Status", "ETA", "Priorytet", "Akcje"],
+      renderedRows,
+      { className: "table--app" }
+    );
 
     loadMoreWrap.style.display = canLoadMore ? "flex" : "none";
     loadMoreBtn.disabled = !canLoadMore;

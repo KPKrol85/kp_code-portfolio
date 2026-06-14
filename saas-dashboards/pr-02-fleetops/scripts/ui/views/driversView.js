@@ -72,9 +72,23 @@ function driversView() {
   filterBar.appendChild(searchInput);
   root.appendChild(filterBar);
 
-  const list = dom.h("div", "panel");
-  list.innerHTML =
-    '<div class="table-responsive"><table class="table"><thead><tr><th>Imię i nazwisko</th><th>Status</th><th>Ostatni kurs</th><th>Telefon</th><th>Akcje</th></tr></thead><tbody></tbody></table></div>';
+  const list = dom.h("div", "panel table--app table--drivers");
+  list.innerHTML = `
+    <div class="table-responsive">
+      <table class="table table--app table--drivers">
+        <thead>
+          <tr>
+            <th>Imię i nazwisko</th>
+            <th>Status</th>
+            <th>Ostatni kurs</th>
+            <th>Telefon</th>
+            <th>Akcje</th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+    </div>
+  `;
   root.appendChild(list);
 
   const loadMoreWrap = dom.h("div", "load-more");

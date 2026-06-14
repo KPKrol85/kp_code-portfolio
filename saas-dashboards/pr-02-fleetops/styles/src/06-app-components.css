@@ -655,31 +655,45 @@ textarea:focus-visible {
 
 /* Tables & Rows */
 
-.table--orders th {
+.table--app th {
   font-size: var(--fs-02);
   background: var(--bg-muted);
 }
 
-.table--orders th:not(:last-child) {
+.table--app th:not(:last-child) {
   border-right: 1px solid var(--border);
 }
 
-.table--orders th:first-child {
+.table--app th:first-child {
   border-radius: var(--radius) 0 0 0;
 }
 
-.table--orders th:last-child {
+.table--app th:last-child {
   border-radius: 0 var(--radius) 0 0;
 }
 
-.table--orders td {
+.table--app td {
   padding: var(--space-2) var(--space-3);
   font-size: var(--fs-01);
 }
 
-.table--orders td:first-child {
+.table--app td:first-child {
   font-weight: var(--fw-semibold);
   color: color-mix(in srgb, var(--accent) 66%, var(--text-muted));
+}
+
+.table--drivers td:first-child {
+  color: var(--text);
+}
+
+.table--reports td {
+  padding: var(--space-3);
+  font-size: var(--fs-02);
+}
+
+.table--reports td:first-child {
+  font-weight: var(--fw-medium);
+  color: var(--text);
 }
 
 .order-row {
@@ -708,4 +722,3 @@ textarea:focus-visible {
     transition: none;
   }
 }
-
