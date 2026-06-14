@@ -414,7 +414,7 @@ function renderSecurityPage() {
           <p class="tag">W przygotowaniu</p>
           <h2>Bezpieczeństwo w przygotowaniu</h2>
           <p>Ta podstrona jest w trakcie przygotowań. Udostępnimy szczegóły o praktykach i certyfikacjach bezpieczeństwa.</p>
-          <p class="muted small">W przygotowaniu - wróć wkrótce.</p>
+          <p>W przygotowaniu - wróć wkrótce.</p>
           <div class="hero-cta">
             <a class="button button--primary" href="#/contact">Skontaktuj się</a>
             <a class="button button--secondary" href="#/app">Zobacz demo</a>
@@ -437,7 +437,7 @@ function renderCareersPage() {
           <p class="tag">W przygotowaniu</p>
           <h2>Kariera w przygotowaniu</h2>
           <p>Budujemy sekcję z ofertami pracy i opisem zespołu. Jeśli chcesz porozmawiać wcześniej, odezwij się.</p>
-          <p class="muted small">W przygotowaniu - sprawdź ponownie niebawem.</p>
+          <p>W przygotowaniu - sprawdź ponownie niebawem.</p>
           <div class="hero-cta">
             <a class="button button--primary" href="#/contact">Skontaktuj się</a>
             <a class="button button--secondary" href="#/app">Zobacz demo</a>

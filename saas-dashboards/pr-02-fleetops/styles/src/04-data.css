@@ -77,8 +77,9 @@
 
 .badge.status {
   border: 0;
-  font-weight: var(--fw-bold);
+  font-weight: var(--fw-semibold);
   color: #0b0d10;
+  box-shadow: none;
 }
 
 .badge.in-progress {
@@ -96,8 +97,6 @@
 .badge.pending {
   background: #fde68a;
 }
-
-
 
 /* Chips */
 
@@ -118,13 +117,9 @@
 
 /* Dashboard Blocks */
 
-.kpi-grid {
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  gap: var(--space-2);
-}
-
 .dashboard-columns {
   gap: var(--space-3);
+  grid-template-columns: 1fr;
 }
 
 .report-mix-grid {
@@ -132,28 +127,25 @@
   margin-top: var(--space-2);
 }
 
-
-
-
-
-/* Cards Layout */
-
-.card-list {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-  gap: 14px;
+.report-mix-grid {
+  grid-template-columns: 1fr;
 }
+
+@media (min-width: 1024px) {
+  .dashboard-columns {
+    grid-template-columns: 2fr 1fr;
+  }
+  .report-mix-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+/* need to be relocat */
 
 .load-more {
   display: flex;
   justify-content: center;
-  margin-top: 12px;
-}
-
-.vehicle-card__actions {
-  display: flex;
-  align-items: center;
-  gap: 8px;
+  margin-top: var(--space-3);
 }
 
 /* Skeleton */
@@ -196,14 +188,14 @@
 
 .skeleton-table {
   display: grid;
-  gap: 10px;
-  padding: 14px;
+   gap: var(--space-2);
+  padding: var(--space-3);
 }
 
 .skeleton-row {
   display: grid;
   grid-template-columns: 1.2fr 0.7fr 1fr 0.8fr 0.6fr 0.6fr;
-  gap: 10px;
+   gap: var(--space-2);
 }
 
 .skeleton-row--drivers {
@@ -211,7 +203,7 @@
 }
 
 .skeleton-cell {
-  height: 14px;
+  height: var(--space-3);
 }
 
 .skeleton-cell.lg {
@@ -219,26 +211,26 @@
 }
 
 .skeleton-cell.sm {
-  height: 10px;
+  height: var(--space-2);
 }
 
 .skeleton-cards {
   display: grid;
-  gap: 12px;
+  gap: var(--space-3);
 }
 
 .skeleton-card {
-  padding: 14px;
+  padding: var(--space-3);
   border-radius: var(--radius-lg);
 }
 
 .skeleton-card .line {
-  height: 14px;
-  margin-top: 10px;
+  height: var(--space-3);
+  margin-top: var(--space-2);
 }
 
 .skeleton-card .line.sm {
-  height: 10px;
+  height: var(--space-2);
   width: 70%;
 }
 
@@ -272,21 +264,21 @@
 .skeleton-button--vehicle {
   width: 90px;
   height: 30px;
-  margin-top: 12px;
-  border-radius: 10px;
+  margin-top: var(--space-3);
+  border-radius: var(--radius);
 }
 
 /* Utility Components */
 
 .label-pill {
-  padding: 4px 8px;
+  padding: var(--space-1) var(--space-2);
   border-radius: 999px;
   font-size: var(--fs-01);
   border: 1px solid var(--border);
 }
 
 .progress-bar {
-  height: 6px;
+  height: var(--space-1);
   background: var(--bg-muted);
   border-radius: 999px;
   overflow: hidden;
@@ -297,3 +289,6 @@
   height: 100%;
   background: var(--accent);
 }
+
+
+

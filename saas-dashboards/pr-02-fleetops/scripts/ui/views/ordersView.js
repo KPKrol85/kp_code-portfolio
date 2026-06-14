@@ -361,7 +361,7 @@ function ordersView() {
     const body = dom.h("div");
     body.innerHTML = `
       <p>Czy na pewno usunąć zlecenie <strong>${escapeHtml(order.id)}</strong>?</p>
-      <p class="muted small">${escapeHtml(order.client)} - ${escapeHtml(order.route)}</p>
+      <p>${escapeHtml(order.client)} - ${escapeHtml(order.route)}</p>
       <div class="modal-actions modal-actions--confirm">
         <button class="button button--ghost" type="button" data-modal-cancel>Anuluj</button>
         <button class="button button--primary" type="button" data-modal-confirm>Usuń</button>
@@ -543,7 +543,7 @@ tableWrap.innerHTML = Table.render(
       <p><strong>Status:</strong> ${escapeHtml(format.statusLabel(order.status))}</p>
       <p><strong>ETA:</strong> ${escapeHtml(order.eta)}</p>
       <p><strong>Priorytet:</strong> ${escapeHtml(priorityLabel(order.priority))}</p>
-      <p class="muted small">Ostatnia aktualizacja: ${format.dateShort(order.updated)}</p>
+      <p>Ostatnia aktualizacja: ${format.dateShort(order.updated)}</p>
     `;
     Modal.open({ title: `Zlecenie ${escapeHtml(order.id)}`, body });
   };

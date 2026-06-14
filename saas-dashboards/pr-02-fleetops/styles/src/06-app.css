@@ -154,6 +154,13 @@ body.drawer-open {
   }
 }
 
+/* KPI Grid */
+
+.kpi-grid {
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: var(--space-2);
+}
+
 /* Topbar */
 
 .topbar {
@@ -474,24 +481,4 @@ body[data-compact="true"] .sidebar {
 }
 body[data-compact="true"] .topbar {
   padding: var(--space-2) var(--space-3);
-}
-
-.app-main .card-list,
-.app-main .dashboard-columns,
-.app-main .report-mix-grid {
-  grid-template-columns: 1fr;
-}
-
-@media (min-width: 1024px) {
-  .app-main .card-list {
-    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-  }
-
-  .app-main .dashboard-columns {
-    grid-template-columns: 2fr 1fr;
-  }
-
-  .app-main .report-mix-grid {
-    grid-template-columns: repeat(3, 1fr);
-  }
 }

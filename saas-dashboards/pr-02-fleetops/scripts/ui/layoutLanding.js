@@ -395,7 +395,7 @@ ${renderLandingHeader(themeAsset)}
             <div class="hero-cta">
               <a class="button button--primary" href="#/login">Zacznij</a>
               <a class="button button--secondary" href="#/app">Zobacz demo</a>
-              <span class="muted small">Bez instalacji. Dane demo.</span>
+              <span class="hero-cta__note">Bez instalacji. Dane demo.</span>
             </div>
           </div>
 

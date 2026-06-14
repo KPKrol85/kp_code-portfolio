@@ -153,7 +153,7 @@ function dashboardView() {
 
         <div class="dropdown-menu alerts-rules-menu" id="alertsRulesMenu">
           <div class="alerts-rules-menu__header">
-            <p class="alerts-rules-menu__eyebrow">Reguły alertów</p>
+            <p class="alerts-rules-menu__eyebrow">Filtry</p>
             <button class="button button--ghost alerts-rules-menu__reset" type="button" data-alerts-reset>Reset</button>
           </div>
 
@@ -175,10 +175,10 @@ function dashboardView() {
               Niski
             </label>
           </div>
-
+<div class="alerts-rules-menu__section">
           <p class="alerts-rules-menu__group-title">Typy (widok)</p>
 
-          <div class="alerts-rules-menu__section">
+
             <label class="alerts-rules-menu__option">
               <input type="checkbox" data-rule-type="SLA" checked />
               SLA

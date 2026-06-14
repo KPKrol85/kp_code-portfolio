@@ -313,7 +313,7 @@ function driversView() {
     const body = dom.h("div");
     body.innerHTML = `
       <p>Usunąć kierowcę <strong>${escapeHtml(driver.name)}</strong>?</p>
-      <p class="muted small">${escapeHtml(driver.phone)}</p>
+      <p>${escapeHtml(driver.phone)}</p>
       <div class="modal-actions modal-actions--confirm">
         <button class="button button--ghost" type="button" data-modal-cancel>Anuluj</button>
         <button class="button button--primary" type="button" data-modal-confirm>Usuń</button>
@@ -404,7 +404,7 @@ function driversView() {
           <div class="empty-state__card">
             <p class="tag">Brak</p>
             <h3 class="empty-state__title">Brak wyników</h3>
-            <p class="muted">Zmień filtry lub wyszukiwanie, żeby zobaczyć kierowców.</p>
+            <p>Zmień filtry lub wyszukiwanie, żeby zobaczyć kierowców.</p>
             <button class="button button--secondary" id="clearDriversFilters" type="button">Wyczyść filtry</button>
           </div>
         </div>

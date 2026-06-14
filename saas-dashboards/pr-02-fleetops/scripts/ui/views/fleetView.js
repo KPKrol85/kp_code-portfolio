@@ -320,7 +320,7 @@ function fleetView() {
     const body = dom.h("div");
     body.innerHTML = `
       <p>Usunąć pojazd <strong>${escapeHtml(vehicle.id)}</strong>?</p>
-      <p class="muted small">${escapeHtml(vehicle.type)}</p>
+      <p>${escapeHtml(vehicle.type)}</p>
       <div class="modal-actions modal-actions--confirm">
         <button class="button button--ghost" type="button" data-modal-cancel>Anuluj</button>
         <button class="button button--primary" type="button" data-modal-confirm>Usuń</button>
@@ -403,7 +403,7 @@ function fleetView() {
           <div class="empty-state__card">
             <p class="tag">Brak</p>
             <h3 class="empty-state__title">Brak pojazdów</h3>
-            <p class="muted">Zmień filtry lub wyszukiwanie, żeby zobaczyć pojazdy we flocie.</p>
+            <p>Zmień filtry lub wyszukiwanie, żeby zobaczyć pojazdy we flocie.</p>
             <button class="button button--secondary" id="clearFleetFilters" type="button">Wyczyść filtry</button>
           </div>
         </div>
@@ -426,32 +426,43 @@ function fleetView() {
     loadMoreWrap.style.display = canLoadMore ? "flex" : "none";
     loadMoreBtn.disabled = !canLoadMore;
     visibleRows.forEach((vehicle, index) => {
-      const card = dom.h("div", "panel");
+      const card = dom.h("div", "panel vehicle-card");
       const safeId = escapeHtml(vehicle.id);
       const safeType = escapeHtml(vehicle.type);
       const safeStatus = escapeHtml(format.statusLabel(vehicle.status));
       const safeDriver = escapeHtml(vehicle.driver);
       const menuId = `vehicle-actions-${index}`;
-      card.innerHTML = `
-        <div class="flex-between">
-          <h3 class="vehicle-card__title">${safeId}</h3>
-          <div class="vehicle-card__actions">
-            <span class="badge">${safeStatus}</span>
-            <div class="dropdown" data-vehicle-menu>
-              <button class="button button--ghost dropdown-trigger" type="button" aria-label="Akcje pojazdu ${safeId}" aria-expanded="false" aria-controls="${menuId}">...</button>
-              <div class="dropdown-menu" id="${menuId}">
-                <button class="dropdown-item" type="button" data-vehicle-action="edit">Edytuj</button>
-                <button class="dropdown-item" type="button" data-vehicle-action="delete">Usuń</button>
-              </div>
+
+    card.innerHTML = `
+      <div class="vehicle-card__header">
+        <div class="vehicle-card__toolbar">
+          <span class="badge">${safeStatus}</span>
+          <div class="dropdown" data-vehicle-menu>
+            <button class="button button--ghost dropdown-trigger" type="button" aria-label="Akcje pojazdu ${safeId}" aria-expanded="false" aria-controls="${menuId}">...</button>
+            <div class="dropdown-menu" id="${menuId}">
+              <button class="dropdown-item" type="button" data-vehicle-action="edit">Edytuj</button>
+              <button class="dropdown-item" type="button" data-vehicle-action="delete">Usuń</button>
             </div>
           </div>
         </div>
-        <p class="muted">${safeType}</p>
-        <p class="small">Kierowca: ${safeDriver}</p>
-        <p class="small">Ostatni przegląd: ${format.dateShort(vehicle.lastCheck)}</p>
-        <button class="button button--ghost small">Szczegóły</button>
-      `;
-      const detailsBtn = card.querySelector("button.button--ghost.small");
+
+        <h3 class="vehicle-card__title">${safeId}</h3>
+      </div>
+
+      <div class="vehicle-card__body">
+        <ul class="vehicle-card__meta">
+          <li><span class="vehicle-card__meta-label">Typ:</span> ${safeType}</li>
+          <li><span class="vehicle-card__meta-label">Kierowca:</span> ${safeDriver}</li>
+          <li><span class="vehicle-card__meta-label">Ostatni przegląd:</span> ${format.dateShort(vehicle.lastCheck)}</li>
+        </ul>
+      </div>
+
+      <div class="vehicle-card__actions">
+        <button class="button button--ghost">Szczegóły</button>
+      </div>
+    `;
+
+      const detailsBtn = card.querySelector(".vehicle-card__actions > .button.button--ghost");
       detailsBtn.addEventListener("click", () => openVehicle(vehicle));
 
       const trigger = card.querySelector(".dropdown-trigger");
