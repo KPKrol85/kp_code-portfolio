@@ -122,23 +122,13 @@
   grid-template-columns: 1fr;
 }
 
-.report-mix-grid {
-  gap: var(--space-2);
-  margin-top: var(--space-2);
-}
-
-.report-mix-grid {
-  grid-template-columns: 1fr;
-}
-
 @media (min-width: 1024px) {
   .dashboard-columns {
     grid-template-columns: 2fr 1fr;
   }
-  .report-mix-grid {
-    grid-template-columns: repeat(3, 1fr);
-  }
 }
+
+
 
 /* need to be relocat */
 
@@ -188,14 +178,14 @@
 
 .skeleton-table {
   display: grid;
-   gap: var(--space-2);
+  gap: var(--space-2);
   padding: var(--space-3);
 }
 
 .skeleton-row {
   display: grid;
   grid-template-columns: 1.2fr 0.7fr 1fr 0.8fr 0.6fr 0.6fr;
-   gap: var(--space-2);
+  gap: var(--space-2);
 }
 
 .skeleton-row--drivers {
@@ -276,19 +266,4 @@
   font-size: var(--fs-01);
   border: 1px solid var(--border);
 }
-
-.progress-bar {
-  height: var(--space-1);
-  background: var(--bg-muted);
-  border-radius: 999px;
-  overflow: hidden;
-}
-
-.progress-bar span {
-  display: block;
-  height: 100%;
-  background: var(--accent);
-}
-
-
 

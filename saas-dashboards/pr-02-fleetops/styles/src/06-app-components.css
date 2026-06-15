@@ -181,7 +181,12 @@ html[data-theme="dark"] .setting-card:has(input, select, textarea, button, a):fo
 }
 
 .panel + .panel.table-responsive {
-  margin-top: var(--space-1);
+  margin-top: var(--space-3);
+}
+
+.panel__heading {
+  font-size: var(--fs-03);
+  margin-bottom: var(--space-3);
 }
 
 /* Modules & Panels */
@@ -720,5 +725,50 @@ textarea:focus-visible {
 @media (prefers-reduced-motion: reduce) {
   .order-row td {
     transition: none;
+  }
+}
+
+/* Report App */
+
+.report-mix-grid {
+  grid-template-columns: 1fr;
+  gap: var(--space-4);
+  margin-top: var(--space-2);
+}
+
+.report-mix-grid__item {
+  min-width: 0;
+  padding: var(--space-3);
+  background: var(--surface-2);
+  border-radius: var(--radius);
+}
+
+.report-mix-grid__label {
+  font-size: var(--fs-02);
+  color: var(--text-muted);
+  margin-bottom: var(--space-2);
+}
+
+.progress-bar {
+  height: var(--space-1);
+  background: var(--surface);
+  border-radius: var(--radius-pill);
+  overflow: hidden;
+}
+
+.progress-bar span {
+  display: block;
+  height: 100%;
+  background: var(--accent);
+}
+
+.report-mix-grid__value {
+   display: block;
+  margin-top: var(--space-2);
+}
+
+@media (min-width: 1024px) {
+  .report-mix-grid {
+    grid-template-columns: repeat(3, 1fr);
   }
 }

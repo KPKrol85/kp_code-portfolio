@@ -19,12 +19,16 @@ function reportsView() {
   root.appendChild(header);
 
   const chart = dom.h("div", "panel");
-  chart.innerHTML = '<h3 class="panel-heading">Miks wydajności</h3><div class="grid report-mix-grid"></div>';
-  const bars = chart.querySelector(".grid");
+  chart.innerHTML = '<h3 class="panel__heading">Miks wydajności</h3><div class="grid report-mix-grid"></div>';
+  const bars = chart.querySelector(".report-mix-grid");
   FleetSeed.reports.performance.forEach((item) => {
-    const wrap = dom.h("div");
+    const wrap = dom.h("div", "report-mix-grid__item");
     const value = Number(item.value) || 0;
-    wrap.innerHTML = `<p>${escapeHtml(item.label)}</p><div class="progress-bar"><span style="width:${value}%;"></span></div><strong>${escapeHtml(value)}%</strong>`;
+  wrap.innerHTML = `
+    <p class="report-mix-grid__label">${escapeHtml(item.label)}</p>
+    <div class="progress-bar"><span style="width:${value}%;"></span></div>
+    <strong class="report-mix-grid__value">${escapeHtml(value)}%</strong>
+  `;
     bars.appendChild(wrap);
   });
   root.appendChild(chart);
