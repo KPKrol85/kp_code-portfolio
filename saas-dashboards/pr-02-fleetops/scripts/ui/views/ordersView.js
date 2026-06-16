@@ -461,8 +461,8 @@ function ordersView() {
       const menuId = `order-actions-${index}`;
 
       return `
-      <tr class="order-row" data-id="${safeId}">
-        <td>${safeId}</td>
+      <tr class="record-row order-row" data-id="${safeId}">
+        <td><button class="record-detail-trigger" type="button" data-record-detail aria-label="Pokaż szczegóły zlecenia ${safeId}">${safeId}</button></td>
         <td>${safeClient}</td>
         <td>${safeRoute}</td>
         <td><span class="${format.badgeClass(order.status)}">${safeStatus}</span></td>
@@ -498,8 +498,16 @@ function ordersView() {
       applyDisabledState(editBtn, editAllowed, explainDeny(Actions.ORDERS_EDIT, getPermissionContext(order)));
       applyDisabledState(deleteBtn, deleteAllowed, explainDeny(Actions.ORDERS_DELETE, getPermissionContext(order)));
       row.addEventListener("click", (event) => {
+        if (event.target.closest("[data-record-detail]")) return;
         if (event.target.closest("[data-order-menu]")) return;
-        openOrder(row.dataset.id);
+        openOrder(row.dataset.id, row.querySelector("[data-record-detail]"));
+      });
+
+      const detailTrigger = row.querySelector("[data-record-detail]");
+      detailTrigger?.addEventListener("click", (event) => {
+        event.preventDefault();
+        event.stopPropagation();
+        openOrder(row.dataset.id, detailTrigger);
       });
 
       const trigger = row.querySelector(".dropdown-trigger");
@@ -533,19 +541,25 @@ function ordersView() {
     });
   };
 
-  const openOrder = (id) => {
+  const openOrder = (id, trigger = null) => {
     const order = FleetStore.state.domain.orders.find((o) => o.id === id);
     if (!order) return;
-    const body = dom.h("div");
-    body.innerHTML = `
-      <p><strong>Klient:</strong> ${escapeHtml(order.client)}</p>
-      <p><strong>Trasa:</strong> ${escapeHtml(order.route)}</p>
-      <p><strong>Status:</strong> ${escapeHtml(format.statusLabel(order.status))}</p>
-      <p><strong>ETA:</strong> ${escapeHtml(order.eta)}</p>
-      <p><strong>Priorytet:</strong> ${escapeHtml(priorityLabel(order.priority))}</p>
-      <p>Ostatnia aktualizacja: ${format.dateShort(order.updated)}</p>
-    `;
-    Modal.open({ title: `Zlecenie ${escapeHtml(order.id)}`, body });
+    const body = RecordDrawer.createDetailList([
+      { label: "Klient", value: order.client },
+      { label: "Trasa", value: order.route },
+      { label: "Status", value: format.statusLabel(order.status) },
+      { label: "ETA", value: order.eta },
+      { label: "Priorytet", value: priorityLabel(order.priority) },
+      { label: "Ostatnia aktualizacja", value: format.dateShort(order.updated) },
+    ]);
+
+    RecordDrawer.open({
+      title: `Zlecenie ${order.id}`,
+      subtitle: `${order.client} - ${order.route}`,
+      body,
+      trigger,
+      fullDetailsLabel: "Pełny widok zlecenia - wkrótce",
+    });
   };
 
   const pushFilters = () => {

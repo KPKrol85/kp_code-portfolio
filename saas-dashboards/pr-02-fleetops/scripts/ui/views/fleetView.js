@@ -345,16 +345,22 @@ function fleetView() {
     Modal.open({ title: "Potwierdzenie usunięcia", body });
   };
 
-  const openVehicle = (vehicle) => {
-    const body = dom.h("div");
-    body.innerHTML = `
-      <p><strong>Rejestracja:</strong> ${escapeHtml(vehicle.id)}</p>
-      <p><strong>Typ:</strong> ${escapeHtml(vehicle.type)}</p>
-      <p><strong>Status:</strong> ${escapeHtml(format.statusLabel(vehicle.status))}</p>
-      <p><strong>Kierowca:</strong> ${escapeHtml(vehicle.driver)}</p>
-      <p><strong>Ostatni przegląd:</strong> ${format.dateShort(vehicle.lastCheck)}</p>
-    `;
-    Modal.open({ title: "Szczegóły pojazdu", body });
+  const openVehicle = (vehicle, trigger = null) => {
+    const body = RecordDrawer.createDetailList([
+      { label: "Rejestracja", value: vehicle.id },
+      { label: "Typ", value: vehicle.type },
+      { label: "Status", value: format.statusLabel(vehicle.status) },
+      { label: "Kierowca", value: vehicle.driver || "Brak przypisania" },
+      { label: "Ostatni przegląd", value: format.dateShort(vehicle.lastCheck) },
+    ]);
+
+    RecordDrawer.open({
+      title: "Szczegóły pojazdu",
+      subtitle: vehicle.id,
+      body,
+      trigger,
+      fullDetailsLabel: "Pełny widok pojazdu - wkrótce",
+    });
   };
 
   const saveFilters = () => {
@@ -458,12 +464,15 @@ function fleetView() {
       </div>
 
       <div class="vehicle-card__actions">
-        <button class="button button--ghost">Szczegóły</button>
+        <button class="button button--ghost" type="button">Szczegóły</button>
       </div>
     `;
 
       const detailsBtn = card.querySelector(".vehicle-card__actions > .button.button--ghost");
-      detailsBtn.addEventListener("click", () => openVehicle(vehicle));
+      detailsBtn.addEventListener("click", (event) => {
+        event.preventDefault();
+        openVehicle(vehicle, detailsBtn);
+      });
 
       const trigger = card.querySelector(".dropdown-trigger");
       const menu = card.querySelector(".dropdown-menu");
@@ -516,7 +525,7 @@ function fleetView() {
     startFilterLoading();
   });
 
-  const addBtn = header.querySelector("#addVehicle");
+  const addBtn = fleetActions.querySelector("#addVehicle");
   if (addBtn) {
     const allowCreate = can(Actions.FLEET_CREATE, getPermissionContext());
     applyDisabledState(addBtn, allowCreate, explainDeny(Actions.FLEET_CREATE, getPermissionContext()));

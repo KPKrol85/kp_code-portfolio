@@ -464,7 +464,7 @@
 }
 
 .contact-panel__link:hover {
-  color: var(--primary);
+  color: var(--accent);
 }
 
 .contact-panel__note {
@@ -475,7 +475,7 @@
   padding: var(--space-4);
   border: 1px solid var(--border);
   border-radius: var(--radius);
-  background: var(--surface-muted);
+  background: var(--surface-2);
 }
 
 .contact-panel__note-text {
@@ -495,7 +495,7 @@
 }
 
 .contact-panel__studio-link:hover {
-  color: var(--primary);
+  color: var(--accent);
 }
 
 .contact-panel__action {

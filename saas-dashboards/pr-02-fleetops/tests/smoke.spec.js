@@ -252,6 +252,117 @@ test("dropdowns use disclosure semantics and close with Escape", async ({ page }
   await expect(trigger).toBeFocused();
 });
 
+test("record detail drawer handles read-only app details accessibly", async ({ page }) => {
+  await loginAsDemo(page);
+  await page.locator('.sidebar nav a[data-route="/app/orders"]').click();
+  await expect(page.getByRole("heading", { name: "Zlecenia", level: 1 })).toBeVisible();
+
+  const firstOrderRow = page.locator("tr.order-row").first();
+  const firstOrderTrigger = firstOrderRow.locator("[data-record-detail]");
+  await expect(firstOrderTrigger).toBeVisible();
+  await firstOrderTrigger.click();
+
+  const orderDrawer = page.getByRole("dialog", { name: /Zlecenie FO-/ });
+  await expect(orderDrawer).toBeVisible();
+  await expect(page.locator(".record-drawer")).toHaveCount(1);
+  await expect(page.locator(".modal")).toHaveCount(0);
+  await expect(orderDrawer.getByRole("button", { name: "Pełny widok zlecenia - wkrótce" })).toBeDisabled();
+  await expect(orderDrawer.getByRole("button", { name: "Zamknij szczegóły" })).toBeFocused();
+
+  await page.keyboard.press("Tab");
+  await expect(orderDrawer.getByRole("button", { name: "Zamknij szczegóły" })).toBeFocused();
+
+  await page.keyboard.press("Escape");
+  await expect(page.locator(".record-drawer")).toHaveCount(0);
+  await expect(firstOrderTrigger).toBeFocused();
+
+  await firstOrderRow.locator("td").nth(1).click();
+  await expect(page.getByRole("dialog", { name: /Zlecenie FO-/ })).toBeVisible();
+  await expect(page.locator(".record-drawer")).toHaveCount(1);
+  await page.locator(".record-drawer__backdrop").click({ position: { x: 8, y: 8 } });
+  await expect(page.locator(".record-drawer")).toHaveCount(0);
+
+  await page.locator('.sidebar nav a[data-route="/app/drivers"]').click();
+  await expect(page.getByRole("heading", { name: "Kierowcy", level: 1 })).toBeVisible();
+  const firstDriverTrigger = page.locator(".driver-row [data-record-detail]").first();
+  await expect(firstDriverTrigger).toBeVisible();
+  await firstDriverTrigger.click();
+  await expect(page.getByRole("dialog", { name: "Szczegóły kierowcy" })).toBeVisible();
+  await expect(page.locator(".modal")).toHaveCount(0);
+  await page.getByRole("button", { name: "Zamknij szczegóły" }).click();
+  await expect(firstDriverTrigger).toBeFocused();
+
+  await page.locator('.sidebar nav a[data-route="/app/fleet"]').click();
+  await expect(page.getByRole("heading", { name: "Flota", level: 1 })).toBeVisible();
+  const firstVehicleDetails = page.getByRole("button", { name: "Szczegóły" }).first();
+  await expect(firstVehicleDetails).toBeVisible();
+  await firstVehicleDetails.click();
+  await expect(page.getByRole("dialog", { name: "Szczegóły pojazdu" })).toBeVisible();
+  await expect(page.locator(".modal")).toHaveCount(0);
+
+  await page.evaluate(() => {
+    window.location.hash = "#/app/reports";
+  });
+  await expect(page.getByRole("heading", { name: "Raporty", level: 1 })).toBeVisible();
+  await expect(page.locator(".record-drawer")).toHaveCount(0);
+});
+
+test("record detail drawer fits mobile viewport and CRUD still uses modals", async ({ page }) => {
+  await page.setViewportSize({ width: 390, height: 700 });
+  await loginAsDemo(page);
+
+  await page.locator("#drawerToggle").click();
+  await page.locator('#appDrawer a[data-route="/app/orders"]').click();
+  await expect(page.getByRole("heading", { name: "Zlecenia", level: 1 })).toBeVisible();
+  const scrollWidthBeforeDrawer = await page.evaluate(() => document.documentElement.scrollWidth);
+  await page.locator("tr.order-row [data-record-detail]").first().click();
+  await expect(page.getByRole("dialog", { name: /Zlecenie FO-/ })).toBeVisible();
+  await expect
+    .poll(async () =>
+      page.evaluate(() => {
+        const rect = document.querySelector(".record-drawer__panel").getBoundingClientRect();
+        return Math.ceil(rect.right - window.innerWidth);
+      }),
+    )
+    .toBeLessThanOrEqual(1);
+
+  const drawerBounds = await page.evaluate(() => {
+    const rect = document.querySelector(".record-drawer__panel").getBoundingClientRect();
+    return {
+      left: rect.left,
+      right: rect.right,
+      width: rect.width,
+      viewportWidth: window.innerWidth,
+      scrollWidth: document.documentElement.scrollWidth,
+    };
+  });
+  expect(drawerBounds.left).toBeGreaterThanOrEqual(-1);
+  expect(drawerBounds.width).toBeLessThanOrEqual(drawerBounds.viewportWidth + 1);
+  expect(drawerBounds.right).toBeLessThanOrEqual(drawerBounds.viewportWidth + 1);
+  expect(drawerBounds.scrollWidth).toBeLessThanOrEqual(scrollWidthBeforeDrawer + 1);
+  await page.keyboard.press("Escape");
+
+  await page.getByRole("button", { name: "Dodaj zlecenie" }).click();
+  await expect(page.getByRole("dialog", { name: "Dodaj zlecenie" })).toBeVisible();
+  await expect(page.locator(".modal")).toBeVisible();
+  await page.getByRole("button", { name: "Anuluj" }).click();
+
+  await page.locator("#drawerToggle").click();
+  await page.locator('#appDrawer a[data-route="/app/fleet"]').click();
+  await expect(page.getByRole("heading", { name: "Flota", level: 1 })).toBeVisible();
+  await page.getByRole("button", { name: "Dodaj pojazd" }).click();
+  await expect(page.getByRole("dialog", { name: "Dodaj pojazd" })).toBeVisible();
+  await expect(page.locator(".modal")).toBeVisible();
+  await page.getByRole("button", { name: "Anuluj" }).click();
+
+  await page.locator("#drawerToggle").click();
+  await page.locator('#appDrawer a[data-route="/app/drivers"]').click();
+  await expect(page.getByRole("heading", { name: "Kierowcy", level: 1 })).toBeVisible();
+  await page.getByRole("button", { name: "Dodaj kierowcę" }).click();
+  await expect(page.getByRole("dialog", { name: "Dodaj kierowcę" })).toBeVisible();
+  await expect(page.locator(".modal")).toBeVisible();
+});
+
 test("core app routes render route-level headings", async ({ page }) => {
   await loginAsDemo(page);
 
@@ -330,11 +441,11 @@ test("orders CRUD flow escapes user-entered HTML-like text", async ({ page }) =>
   await page.getByRole("button", { name: "Dodaj zlecenie" }).click();
   const addOrderDialog = page.getByRole("dialog", { name: "Dodaj zlecenie" });
   await expect(addOrderDialog).toBeVisible();
-  await page.getByLabel("Klient").fill(htmlLikeClient);
-  await page.getByLabel("Trasa").fill("Warszawa - Poznan");
-  await page.getByLabel("Status").selectOption("in-progress");
-  await page.getByLabel("ETA").fill("2026-12-31");
-  await page.getByLabel("Priorytet").selectOption("high");
+  await addOrderDialog.getByLabel("Klient").fill(htmlLikeClient);
+  await addOrderDialog.getByLabel("Trasa").fill("Warszawa - Poznan");
+  await addOrderDialog.getByLabel("Status").selectOption("in-progress");
+  await addOrderDialog.getByLabel("ETA").fill("2026-12-31");
+  await addOrderDialog.getByLabel("Priorytet").selectOption("high");
   await addOrderDialog.getByRole("button", { name: "Dodaj zlecenie" }).click();
 
   const createdRow = page.locator("tr.order-row").filter({ hasText: htmlLikeClient }).first();
@@ -346,8 +457,9 @@ test("orders CRUD flow escapes user-entered HTML-like text", async ({ page }) =>
   await createdRow.locator('[data-order-menu] .dropdown-trigger').click();
   await createdRow.locator('[data-order-action="edit"]').click();
   await expect(page.getByRole("dialog", { name: /Edytuj FO-/ })).toBeVisible();
-  await page.getByLabel("Klient").fill(editedClient);
-  await page.getByRole("button", { name: "Zapisz zmiany" }).click();
+  const editOrderDialog = page.getByRole("dialog", { name: /Edytuj FO-/ });
+  await editOrderDialog.getByLabel("Klient").fill(editedClient);
+  await editOrderDialog.getByRole("button", { name: "Zapisz zmiany" }).click();
 
   const editedRow = page.locator("tr.order-row").filter({ hasText: editedClient }).first();
   await expect(editedRow).toBeVisible();

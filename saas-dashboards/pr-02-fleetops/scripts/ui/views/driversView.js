@@ -352,15 +352,21 @@ function driversView() {
     Modal.open({ title: "Potwierdzenie usunięcia", body });
   };
 
-  const openDriver = (driver) => {
-    const body = dom.h("div");
-    body.innerHTML = `
-      <p><strong>${escapeHtml(driver.name)}</strong></p>
-      <p>Status: ${escapeHtml(format.statusLabel(driver.status))}</p>
-      <p>Ostatni kurs: ${escapeHtml(driver.lastTrip)}</p>
-      <p>Telefon: ${escapeHtml(driver.phone)}</p>
-    `;
-    Modal.open({ title: "Szczegóły kierowcy", body });
+  const openDriver = (driver, trigger = null) => {
+    const body = RecordDrawer.createDetailList([
+      { label: "Imię i nazwisko", value: driver.name },
+      { label: "Status", value: format.statusLabel(driver.status) },
+      { label: "Ostatni kurs", value: driver.lastTrip || "Brak danych" },
+      { label: "Telefon", value: driver.phone },
+    ]);
+
+    RecordDrawer.open({
+      title: "Szczegóły kierowcy",
+      subtitle: driver.name,
+      body,
+      trigger,
+      fullDetailsLabel: "Pełny widok kierowcy - wkrótce",
+    });
   };
 
   const saveFilters = () => {
@@ -445,14 +451,14 @@ function driversView() {
     loadMoreBtn.disabled = !canLoadMore;
 
     visibleRows.forEach((driver, index) => {
-      const tr = dom.h("tr");
+      const tr = dom.h("tr", "record-row driver-row");
       const safeName = escapeHtml(driver.name);
       const safeStatus = escapeHtml(format.statusLabel(driver.status));
       const safeLastTrip = escapeHtml(driver.lastTrip);
       const safePhone = escapeHtml(driver.phone);
       const menuId = `driver-actions-${index}`;
       tr.innerHTML = `
-        <td>${safeName}</td>
+        <td><button class="record-detail-trigger" type="button" data-record-detail aria-label="Pokaż szczegóły kierowcy ${safeName}">${safeName}</button></td>
         <td><span class="badge">${safeStatus}</span></td>
         <td>${safeLastTrip}</td>
         <td>${safePhone}</td>
@@ -467,8 +473,16 @@ function driversView() {
         </td>`;
 
       tr.addEventListener("click", (event) => {
+        if (event.target.closest("[data-record-detail]")) return;
         if (event.target.closest("[data-driver-menu]")) return;
-        openDriver(driver);
+        openDriver(driver, tr.querySelector("[data-record-detail]"));
+      });
+
+      const detailTrigger = tr.querySelector("[data-record-detail]");
+      detailTrigger?.addEventListener("click", (event) => {
+        event.preventDefault();
+        event.stopPropagation();
+        openDriver(driver, detailTrigger);
       });
 
       const trigger = tr.querySelector(".dropdown-trigger");
@@ -523,7 +537,7 @@ function driversView() {
     startFilterLoading();
   });
 
-  const addBtn = header.querySelector("#addDriver");
+  const addBtn = driversActions.querySelector("#addDriver");
   if (addBtn) {
     const allowCreate = can(Actions.DRIVERS_CREATE, getPermissionContext());
     applyDisabledState(addBtn, allowCreate, explainDeny(Actions.DRIVERS_CREATE, getPermissionContext()));
