@@ -312,7 +312,9 @@ const Store = {
   },
 
   resetDemo() {
-    FleetStorage.remove("fleet-auth");
+    const preservedAuth = this.state.auth;
+    const preservedCurrentUser = this.state.currentUser;
+
     FleetStorage.remove("fleet-theme");
     FleetStorage.remove("fleet-compact");
     FleetStorage.remove("fleet-dashboard-range");
@@ -323,7 +325,8 @@ const Store = {
     FleetStorage.remove(OFFLINE_QUEUE_KEY);
 
     this.setState({
-      auth: { isAuthenticated: false, user: null },
+      auth: preservedAuth,
+      currentUser: preservedCurrentUser,
       preferences: { theme: "light", compact: false, dashboardRangeDays: 30 },
       filters: defaultFiltersFallback,
       listPrefs: defaultListPrefsFallback,
