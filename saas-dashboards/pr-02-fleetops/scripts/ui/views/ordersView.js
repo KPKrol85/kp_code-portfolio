@@ -39,7 +39,7 @@ function ordersView() {
       Dodaj zlecenie
     </button>
 
-    <button class="button button--secondary app-actions__button" id="exportOrders" type="button">
+    <button class="button button--secondary app-actions__button" id="ordersCsvExport" type="button">
       Eksportuj CSV
     </button>
   `;
@@ -600,28 +600,10 @@ function ordersView() {
   const applySearchDebounced = debounce(applySearch, 250);
   searchInput.addEventListener("input", applySearchDebounced);
 
-  const exportOrders = () => {
-    const data = FleetStore.state.domain.orders;
-    const csv = ["id,client,route,status,eta,priority"];
-    data.forEach((o) => csv.push([o.id, o.client, o.route, o.status, o.eta, o.priority].join(",")));
-    const blob = new Blob([csv.join("\n")], { type: "text/csv" });
-    const url = URL.createObjectURL(blob);
-    const a = document.createElement("a");
-    a.href = url;
-    a.download = "fleetops-orders.csv";
-    a.click();
-    URL.revokeObjectURL(url);
-    Toast.show("CSV wyeksportowano", "success");
-  };
-
-  const exportBtn = ordersActions.querySelector("#exportOrders");
+  const exportBtn = ordersActions.querySelector("#ordersCsvExport");
   if (exportBtn) {
     exportBtn.disabled = true;
-    exportBtn.title = "Brak uprawnień w wersji demo";
-    exportBtn.addEventListener("click", (e) => {
-      e.preventDefault();
-      Toast.show("Brak uprawnień w wersji demo", "warning", { assertive: true });
-    });
+    exportBtn.title = "Eksport CSV jest niedostępny w wersji demo";
   }
 
   const addBtn = ordersActions.querySelector("#addOrder");

@@ -3,6 +3,17 @@ function settingsView() {
   const escapeHtml = window.FleetUI.escapeHtml;
   const getRoleLabel = window.FleetPermissions?.getRoleLabel || ((role) => role || "Użytkownik");
   const currentRangeDays = FleetStore.state.preferences.dashboardRangeDays || 30;
+  const listModules = ["orders", "fleet", "drivers"];
+  const defaultListPageSize = 10;
+  const expandedListPageSize = 25;
+  const hasExpandedListPageSize = () =>
+    listModules.every((moduleKey) => Number(FleetStore.state.listPrefs?.[moduleKey]?.pageSize || defaultListPageSize) === expandedListPageSize);
+  const hasDenseView = () => Boolean(FleetStore.state.preferences.compact);
+  const syncPressedState = (button, pressed) => {
+    if (!button) return;
+    button.classList.toggle("setting-card__button--active", pressed);
+    button.setAttribute("aria-pressed", String(pressed));
+  };
 
   const header = dom.h("div", "module-header");
   header.innerHTML = `
@@ -92,8 +103,8 @@ function settingsView() {
     <h3 class="setting-card__title">Tabele i listy</h3>
     <p class="setting-card__description">Ustaw preferowany sposób przeglądania danych</p>
     <div class="setting-card__actions">
-      <button class="button setting-card__button setting-card__button--active" type="button" aria-pressed="true">25 wierszy</button>
-      <button class="button setting-card__button" type="button" aria-pressed="false">Gęsty widok</button>
+      <button class="button setting-card__button ${hasExpandedListPageSize() ? "setting-card__button--active" : ""}" type="button" data-list-page-size="${expandedListPageSize}" aria-pressed="${hasExpandedListPageSize()}">25 wierszy</button>
+      <button class="button setting-card__button ${hasDenseView() ? "setting-card__button--active" : ""}" type="button" data-dense-list aria-pressed="${hasDenseView()}">Gęsty widok</button>
     </div>
   `;
   grid.appendChild(tableCard);
@@ -142,9 +153,21 @@ function settingsView() {
   themeCard.querySelector("#lightBtn").addEventListener("click", () => FleetStore.setTheme("light"));
   themeCard.querySelector("#darkBtn").addEventListener("click", () => FleetStore.setTheme("dark"));
 
-  compactCard.querySelector("#compactToggle").addEventListener("change", (e) => {
+  const compactToggle = compactCard.querySelector("#compactToggle");
+  const pageSizeButton = tableCard.querySelector("[data-list-page-size]");
+  const denseListButton = tableCard.querySelector("[data-dense-list]");
+  const syncDenseControls = () => {
+    const isDense = hasDenseView();
+    if (compactToggle) compactToggle.checked = isDense;
+    syncPressedState(denseListButton, isDense);
+  };
+  const syncPageSizeControl = () => {
+    syncPressedState(pageSizeButton, hasExpandedListPageSize());
+  };
+
+  compactToggle.addEventListener("change", (e) => {
     FleetStore.setCompact(e.target.checked);
-    document.body.dataset.compact = e.target.checked ? "true" : "false";
+    syncDenseControls();
   });
 
   startCard.querySelectorAll("[data-route]").forEach((button) => {
@@ -179,14 +202,29 @@ function settingsView() {
     });
   });
 
-  tableCard.querySelectorAll("button").forEach((button) => {
-    button.addEventListener("click", () => {
-      Toast.show("Preferencje tabel zapisane w demo", "success");
+  pageSizeButton?.addEventListener("click", () => {
+    const nextPageSize = hasExpandedListPageSize() ? defaultListPageSize : expandedListPageSize;
+    listModules.forEach((moduleKey) => {
+      FleetStore.setListPrefs(moduleKey, {
+        pageSize: nextPageSize,
+        visibleCount: nextPageSize,
+      });
     });
+    syncPageSizeControl();
+    Toast.show(`Listy pokazują teraz ${nextPageSize} wierszy`, "success");
+  });
+
+  denseListButton?.addEventListener("click", () => {
+    const nextDense = !hasDenseView();
+    FleetStore.setCompact(nextDense);
+    syncDenseControls();
+    Toast.show(nextDense ? "Gęsty widok list włączony" : "Gęsty widok list wyłączony", "success");
   });
 
   resetCard.querySelector("#resetDemo").addEventListener("click", () => {
     FleetStore.resetDemo();
+    syncPageSizeControl();
+    syncDenseControls();
     Toast.show("Demo przywrócone do stanu początkowego", "success");
     window.location.hash = "#/app";
   });

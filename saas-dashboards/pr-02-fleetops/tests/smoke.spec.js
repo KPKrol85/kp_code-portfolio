@@ -382,6 +382,61 @@ test("core app routes render route-level headings", async ({ page }) => {
   }
 });
 
+test("orders CSV export stays demo-disabled while reports JSON export works", async ({ page }) => {
+  await loginAsDemo(page);
+  await page.locator('.sidebar nav a[data-route="/app/orders"]').click();
+  await expect(page.getByRole("heading", { name: "Zlecenia", level: 1 })).toBeVisible();
+
+  const csvExport = page.getByRole("button", { name: "Eksportuj CSV" });
+  await expect(csvExport).toBeDisabled();
+  await expect(csvExport).toHaveAttribute("title", "Eksport CSV jest niedostępny w wersji demo");
+
+  await page.locator('.sidebar nav a[data-route="/app/reports"]').click();
+  await expect(page.getByRole("heading", { name: "Raporty", level: 1 })).toBeVisible();
+
+  const downloadPromise = page.waitForEvent("download");
+  await page.getByRole("button", { name: "Eksportuj JSON" }).click();
+  const download = await downloadPromise;
+  expect(download.suggestedFilename()).toBe("fleetops-reports.json");
+});
+
+test("settings table preferences update persisted list and dense state", async ({ page, context }) => {
+  await loginAsDemo(page);
+  await page.locator('.sidebar nav a[data-route="/app/settings"]').click();
+  await expect(page.getByRole("heading", { name: "Ustawienia", level: 1 })).toBeVisible();
+
+  const pageSizeButton = page.getByRole("button", { name: "25 wierszy" });
+  const denseButton = page.getByRole("button", { name: "Gęsty widok" });
+  const compactToggle = page.locator("#compactToggle");
+
+  await expect(pageSizeButton).toHaveAttribute("aria-pressed", "false");
+  await expect(denseButton).toHaveAttribute("aria-pressed", "false");
+  await expect(compactToggle).not.toBeChecked();
+
+  await pageSizeButton.click();
+  await expect(pageSizeButton).toHaveAttribute("aria-pressed", "true");
+  await expect.poll(async () =>
+    page.evaluate(() => {
+      const prefs = JSON.parse(localStorage.getItem("fleet-list-prefs-v1") || "{}");
+      return ["orders", "fleet", "drivers"].every((key) => prefs[key]?.pageSize === 25 && prefs[key]?.visibleCount === 25);
+    }),
+  ).toBe(true);
+
+  await denseButton.click();
+  await expect(denseButton).toHaveAttribute("aria-pressed", "true");
+  await expect(compactToggle).toBeChecked();
+  await expect(page.locator("body")).toHaveAttribute("data-compact", "true");
+  await expect.poll(async () => page.evaluate(() => JSON.parse(localStorage.getItem("fleet-compact") || "false"))).toBe(true);
+
+  const restoredPage = await context.newPage();
+  await restoredPage.goto("/#/app/settings");
+  await expect(restoredPage.getByRole("heading", { name: "Ustawienia", level: 1 })).toBeVisible();
+  await expect(restoredPage.getByRole("button", { name: "25 wierszy" })).toHaveAttribute("aria-pressed", "true");
+  await expect(restoredPage.getByRole("button", { name: "Gęsty widok" })).toHaveAttribute("aria-pressed", "true");
+  await expect(restoredPage.locator("#compactToggle")).toBeChecked();
+  await restoredPage.close();
+});
+
 test("CRUD validation errors are programmatically associated with fields", async ({ page }) => {
   await loginAsDemo(page);
 

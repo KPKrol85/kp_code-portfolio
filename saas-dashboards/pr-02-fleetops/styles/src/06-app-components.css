@@ -278,6 +278,12 @@ html[data-theme="dark"] .setting-card:has(input, select, textarea, button, a):fo
   min-inline-size: 88px;
   font-size: var(--fs-01);
 }
+.setting-card__button--active,
+.setting-card__button[aria-pressed="true"] {
+  border-color: color-mix(in srgb, var(--accent) 42%, var(--border));
+  background: var(--accent-ghost);
+  color: var(--accent);
+}
 .setting-card__button:hover {
   background: var(--accent-ghost);
 }

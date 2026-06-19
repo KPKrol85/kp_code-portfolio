@@ -6,6 +6,10 @@ Format wpisu: `YYYY-MM-DD - [Priorytet] Temat: krotki opis dowodu lub decyzji.`
 
 ## Resolved
 
+- 2026-06-18 - [P2] Eksport CSV zlecen w demo: CSV export is intentionally unavailable in the demo version. `scripts/ui/views/ordersView.js` usuwa nieosiagalna implementacje blob/download i zostawia natywnie wylaczony przycisk z jasnym tytulem, a `tests/smoke.spec.js` weryfikuje disabled CSV oraz niezmieniony eksport JSON raportow. Usunieto dokladny wpis P2 z `AUDIT.md`.
+
+- 2026-06-18 - [P2] Preferencje tabel/list w ustawieniach: `scripts/ui/views/settingsView.js` podpina przycisk `25 wierszy` pod realne `FleetStore.setListPrefs()` dla `orders`, `fleet` i `drivers`, a `Gesty widok` pod istniejace `FleetStore.setCompact()`. Stan UI uzywa `aria-pressed`, `styles/src/06-app-components.css` dodaje widoczna aktywna klase przycisku, preferencje sa zapisywane przez istniejacy mechanizm storage, a `tests/smoke.spec.js` weryfikuje persystencje po reloadzie. Usunieto dokladny wpis P2 z `AUDIT.md`.
+
 - 2026-05-25 - [P2] Jawna zgoda w formularzu kontaktowym: `scripts/ui/marketingPages.js` renderuje teraz wymagany checkbox `#contactConsent` / `name="consent"` z widoczna etykieta informujaca, ze formularz dotyczy demonstracyjnego projektu portfolio, a `styles/src/03-components.css` dodaje maly styl dla `.checkbox-control`. Usunieto dokladny wpis P2 z `daily-AUDIT.md`; zweryfikowano `node --check`, targeted `rg` i check natywnej walidacji formularza.
 
 - 2026-05-25 - [P1] Pelne reduced-motion dla pozostalych animacji: `styles/src/04-data.css` wylacza shimmer skeleton loaderow przy `prefers-reduced-motion: reduce`, `styles/src/05-landing.css` wylacza `heroFade` dla `.img-swap`, a `styles/src/03-components.css` usuwa przejscie `max-height` paneli accordion w reduced motion bez zmiany normalnego ruchu. Usunieto dokladny wpis P1 z `daily-AUDIT.md`; zweryfikowano targeted `rg`.
