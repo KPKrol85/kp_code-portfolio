@@ -3,12 +3,12 @@ function renderInfoPage({ title, body }) {
   app.innerHTML = `
     <div class="landing">
       <header class="container site-header">
-        <a class="site-header__brand logo" href="#/" aria-label="FleetOps — Strona główna" data-scroll-top="home">
+        <a class="site-header__brand logo" href="/" aria-label="FleetOps — Strona główna" data-scroll-top="home">
           <img class="site-header__logo logo__icon" src="assets/logos/logo-black.svg" alt="FleetOps logo" width="44" height="44" />
           <span>FleetOps</span>
         </a>
         <div class="site-header__actions">
-          <a class="button button--ghost site-header__action" href="#/login">Zaloguj się</a>
+          <a class="button button--ghost site-header__action" href="/#/login">Zaloguj się</a>
         </div>
       </header>
       <main class="container section" id="main-content">
@@ -35,7 +35,7 @@ function renderLogin() {
             <img class="login-card__logo-icon" src="${FleetStore.state.preferences.theme === "dark" ? "assets/logos/logo-white.svg" : "assets/logos/logo-black.svg"}" data-theme-src-light="assets/logos/logo-black.svg" data-theme-src-dark="assets/logos/logo-white.svg" alt="FleetOps logo" />
             <span class="login-card__brand">FleetOps</span>
           </div>
-          <a class="button button--ghost login-card__back" href="#/">Wróć</a>
+          <a class="button button--ghost login-card__back" href="/">Wróć</a>
         </div>
         <div class="login-card__header">
           <h1 class="login-card__title">Zaloguj się</h1>

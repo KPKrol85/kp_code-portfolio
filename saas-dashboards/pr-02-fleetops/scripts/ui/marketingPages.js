@@ -56,8 +56,8 @@ function renderProductPage() {
             <h2 class="marketing-hero__title">Operacje w czasie rzeczywistym</h2>
             <p class="marketing-hero__text">Widoki zleceń, floty i kierowców synchronizują statusy, ETA i alerty. Zespół operacyjny ma jedno źródło prawdy.</p>
             <div class="marketing-hero__cta">
-              <a class="button button--primary" href="#/login">Umów demo</a>
-              <a class="button button--secondary" href="#/app">Zobacz panel</a>
+              <a class="button button--primary" href="/#/login">Umów demo</a>
+              <a class="button button--secondary" href="/#/app">Zobacz panel</a>
             </div>
           </div>
           <div class="marketing-hero__panel">
@@ -195,8 +195,8 @@ function renderProductPage() {
             <p class="cta-panel__lead">Sprawdź FleetOps w wersji demonstracyjnej lub umów rozmowę o wdrożeniu dla zespołu operacyjnego.</p>
           </div>
           <div class="cta-panel__actions">
-            <a class="button button--primary" href="#/contact">Umów rozmowę</a>
-            <a class="button button--secondary" href="#/app">Zobacz demo aplikacji</a>
+            <a class="button button--primary" href="/contact/">Umów rozmowę</a>
+            <a class="button button--secondary" href="/#/app">Zobacz demo aplikacji</a>
           </div>
         </div>
       </section>
@@ -300,8 +300,8 @@ function renderFeaturesPage() {
             <p class="cta-panel__lead">Otwórz demo FleetOps i zobacz, jak panel wspiera dyspozycję, monitoring, raporty i automatyzację pracy zespołu.</p>
           </div>
           <div class="cta-panel__actions">
-            <a class="button button--primary" href="#/contact">Umów rozmowę</a>
-            <a class="button button--secondary" href="#/app">Zobacz demo aplikacji</a>
+            <a class="button button--primary" href="/contact/">Umów rozmowę</a>
+            <a class="button button--secondary" href="/#/app">Zobacz demo aplikacji</a>
           </div>
         </div>
       </section>
@@ -328,7 +328,7 @@ function renderPricingPage() {
                 <li>podgląd pojazdów w jednym panelu</li>
                 <li>dobry start dla małego zespołu</li>
               </ul>
-              <a class="button button--secondary" href="#/login">Przetestuj panel</a>
+              <a class="button button--secondary" href="/#/login">Przetestuj panel</a>
             </div>
             <div class="card card--pricing">
               <div class="badge">Rozwój</div>
@@ -340,7 +340,7 @@ function renderPricingPage() {
                 <li>raporty operacyjne dla zespołu</li>
                 <li>więcej kontroli nad codzienną pracą</li>
               </ul>
-              <a class="button button--secondary" href="#/contact">Umów demo</a>
+              <a class="button button--secondary" href="/contact/">Umów demo</a>
             </div>
             <div class="card card--pricing">
               <div class="badge">Korporacyjny</div>
@@ -352,7 +352,7 @@ function renderPricingPage() {
                 <li>wsparcie dla procesów i zespołów</li>
                 <li>elastyczne podejście do wdrożenia</li>
               </ul>
-              <a class="button button--secondary" href="#/contact">Porozmawiajmy</a>
+              <a class="button button--secondary" href="/contact/">Porozmawiajmy</a>
             </div>
         </div>
       </section>
@@ -393,8 +393,8 @@ function renderPricingPage() {
             <p class="cta-panel__lead">Skontaktuj się, przygotujemy ofertę dopasowaną do skali operacji.</p>
           </div>
           <div class="cta-panel__actions">
-            <a class="button button--primary" href="#/contact">Skontaktuj się</a>
-            <a class="button button--secondary" href="#/app">Zobacz demo aplikacji</a>
+            <a class="button button--primary" href="/contact/">Skontaktuj się</a>
+            <a class="button button--secondary" href="/#/app">Zobacz demo aplikacji</a>
           </div>
         </div>
       </section>
@@ -416,8 +416,8 @@ function renderSecurityPage() {
           <p>Ta podstrona jest w trakcie przygotowań. Udostępnimy szczegóły o praktykach i certyfikacjach bezpieczeństwa.</p>
           <p>W przygotowaniu - wróć wkrótce.</p>
           <div class="hero-cta">
-            <a class="button button--primary" href="#/contact">Skontaktuj się</a>
-            <a class="button button--secondary" href="#/app">Zobacz demo</a>
+            <a class="button button--primary" href="/contact/">Skontaktuj się</a>
+            <a class="button button--secondary" href="/#/app">Zobacz demo</a>
           </div>
         </div>
       </section>
@@ -439,8 +439,8 @@ function renderCareersPage() {
           <p>Budujemy sekcję z ofertami pracy i opisem zespołu. Jeśli chcesz porozmawiać wcześniej, odezwij się.</p>
           <p>W przygotowaniu - sprawdź ponownie niebawem.</p>
           <div class="hero-cta">
-            <a class="button button--primary" href="#/contact">Skontaktuj się</a>
-            <a class="button button--secondary" href="#/app">Zobacz demo</a>
+            <a class="button button--primary" href="/contact/">Skontaktuj się</a>
+            <a class="button button--secondary" href="/#/app">Zobacz demo</a>
           </div>
         </div>
       </section>
@@ -530,8 +530,8 @@ function renderAboutPage() {
             <p class="cta-panel__lead">Porozmawiajmy o twojej flocie i pokażmy, jak pracuje FleetOps.</p>
           </div>
           <div class="cta-panel__actions">
-            <a class="button button--primary" href="#/contact">Skontaktuj się</a>
-            <a class="button button--secondary" href="#/app">Zobacz demo aplikacji</a>
+            <a class="button button--primary" href="/contact/">Skontaktuj się</a>
+            <a class="button button--secondary" href="/#/app">Zobacz demo aplikacji</a>
           </div>
         </div>
       </section>
@@ -614,10 +614,10 @@ function renderContactPage() {
               <p class="contact-panel__note-text">
                 Chcesz omówić podobny panel SaaS, stronę firmową lub wdrożenie dla branży transportowej? Napisz kilka zdań o potrzebach, a wrócimy z propozycją zakresu i kierunku realizacji.
                 <span class="contact-panel__studio">
-                  Kontakt obsługuje <a class="contact-panel__studio-link" href="#/about">KP_Code Digital Studio</a>.
+                  Kontakt obsługuje <a class="contact-panel__studio-link" href="/about/">KP_Code Digital Studio</a>.
                 </span>
               </p>
-              <a class="button button--secondary contact-panel__action" href="#/pricing">Zobacz cennik</a>
+              <a class="button button--secondary contact-panel__action" href="/pricing/">Zobacz cennik</a>
             </div>
           </div>
         </div>
@@ -860,8 +860,8 @@ function renderPrivacyPage() {
             <p class="cta-panel__lead">Skontaktuj się w sprawie projektu FleetOps lub zasad opisanych w polityce prywatności.</p>
           </div>
           <div class="cta-panel__actions">
-            <a class="button button--primary" href="#/contact">Kontakt</a>
-            <a class="button button--secondary" href="#/app">Przejdź do panelu</a>
+            <a class="button button--primary" href="/contact/">Kontakt</a>
+            <a class="button button--secondary" href="/#/app">Przejdź do panelu</a>
           </div>
         </div>
       </section>
@@ -985,9 +985,9 @@ function renderTermsPage() {
               </p>
               <p>
                 Dane lokalne i preferencje mogą być zapisywane w przeglądarce użytkownika. Szczegółowe informacje o localStorage, sessionStorage, cookies i danych kontaktowych opisują dokumenty
-                <a class="legal-doc__link" href="#/privacy">Polityka prywatności</a>
+                <a class="legal-doc__link" href="/privacy/">Polityka prywatności</a>
                 oraz
-                <a class="legal-doc__link" href="#/cookies">Polityka cookies</a>.
+                <a class="legal-doc__link" href="/cookies/">Polityka cookies</a>.
               </p>
             </section>
 
@@ -1087,8 +1087,8 @@ function renderTermsPage() {
             <p class="cta-panel__lead">Skontaktuj się, jeśli chcesz doprecyzować zasady korzystania z FleetOps lub omówić podobny projekt dla swojej firmy.</p>
           </div>
           <div class="cta-panel__actions">
-            <a class="button button--primary" href="#/contact">Kontakt</a>
-            <a class="button button--secondary" href="#/app">Przejdź do panelu</a>
+            <a class="button button--primary" href="/contact/">Kontakt</a>
+            <a class="button button--secondary" href="/#/app">Przejdź do panelu</a>
           </div>
         </div>
       </section>
@@ -1173,9 +1173,9 @@ function renderCookiesPage() {
               </p>
               <p>
                 W zakresie nieuregulowanym niniejszą Polityką cookies zastosowanie mają dokumenty
-                <a class="legal-doc__link" href="#/privacy">Polityka prywatności</a>
+                <a class="legal-doc__link" href="/privacy/">Polityka prywatności</a>
                 oraz
-                <a class="legal-doc__link" href="#/terms">Regulamin</a>.
+                <a class="legal-doc__link" href="/terms/">Regulamin</a>.
               </p>
             </section>
 
@@ -1279,7 +1279,7 @@ function renderCookiesPage() {
               </p>
               <p>
                 Szczegółowe informacje o danych lokalnych i prywatności opisuje
-                <a class="legal-doc__link" href="#/privacy">Polityka prywatności</a>.
+                <a class="legal-doc__link" href="/privacy/">Polityka prywatności</a>.
               </p>
             </section>
 
@@ -1318,8 +1318,8 @@ function renderCookiesPage() {
             <p class="cta-panel__lead">Skontaktuj się, jeśli chcesz doprecyzować zasady cookies, danych lokalnych lub działania FleetOps w przeglądarce.</p>
           </div>
           <div class="cta-panel__actions">
-            <a class="button button--primary" href="#/contact">Kontakt</a>
-            <a class="button button--secondary" href="#/app">Przejdź do panelu</a>
+            <a class="button button--primary" href="/contact/">Kontakt</a>
+            <a class="button button--secondary" href="/#/app">Przejdź do panelu</a>
           </div>
         </div>
       </section>

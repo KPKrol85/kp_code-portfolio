@@ -4,466 +4,384 @@
 
 ### Przegląd projektu
 
-FleetOps to statyczna aplikacja demonstracyjna frontendu dla operacji transportowych i flotowych. Repozytorium zawiera landing page, strony informacyjne, ekran logowania demo oraz panel aplikacyjny renderowany po stronie przeglądarki.
+FleetOps to statyczny, frontend-only projekt demonstracyjny typu SaaS dla operacji transportowych i flotowych. Repozytorium zawiera publiczną stronę marketingową, statyczne podstrony informacyjne oraz hash-routowany panel demo z lokalnymi danymi.
 
-Aplikacja działa bez backendu. Dane demo, preferencje użytkownika, stan logowania, filtry, ustawienia list i zmiany rekordów są obsługiwane lokalnie w przeglądarce.
+Projekt jest częścią portfolio KP_Code Digital Studio i nie zawiera backendu, bazy danych, realnej autoryzacji ani produkcyjnych integracji z systemami zewnętrznymi.
 
 ### Kluczowe funkcje
 
-- Routing oparty o hash URL dla stron publicznych, logowania i widoków aplikacyjnych.
-- Widoki panelu: przegląd KPI, zlecenia, flota, kierowcy, raporty i ustawienia.
-- Dane demo dla zleceń, pojazdów, kierowców, aktywności, alertów i raportów.
-- Lokalne dodawanie, edycja i usuwanie zleceń, pojazdów oraz kierowców.
-- Filtrowanie, sortowanie, wyszukiwanie i przyrostowe ładowanie list.
-- Role demo i blokowanie wybranych akcji na podstawie uprawnień.
-- Motyw jasny/ciemny, tryb kompaktowy i reset danych demo.
-- Fallback `<noscript>` dla przeglądarek bez JavaScriptu.
-- Manifest aplikacji, statyczna strona `404.html` i plik źródłowy `sw.js`.
+- Publiczne strony: landing page, produkt, funkcje, cennik, o nas, kontakt, bezpieczeństwo, kariera, polityka prywatności, regulamin, polityka cookies oraz strona 404.
+- Panel demo pod trasami `#/app`, `#/app/orders`, `#/app/fleet`, `#/app/drivers`, `#/app/reports` i `#/app/settings`.
+- Demo logowania zapisujące stan lokalnie w przeglądarce.
+- Lokalne role demo: administrator, dyspozytor i kierowca, z ograniczeniami akcji w module uprawnień.
+- Dane przykładowe dla zleceń, pojazdów, kierowców, aktywności, alertów i raportów.
+- Lokalne operacje na zleceniach, flocie i kierowcach: dodawanie, edycja, usuwanie, filtrowanie, sortowanie, paginacja typu "załaduj więcej" i szczegóły rekordu.
+- Ustawienia interfejsu: motyw jasny/ciemny, tryb kompaktowy, zakres dashboardu, preferencje list i reset danych demo.
+- Eksport raportów do pliku JSON. Eksport CSV zleceń jest celowo wyłączony w wersji demo.
+- Responsywna nawigacja, dropdowny, modale, drawer szczegółów rekordu, toasty i akordeony.
+- Service worker dla cache nawigacji publicznych tras i assetów statycznych.
 
 ### Stack technologiczny
 
 Runtime:
 
-- HTML5
-- CSS3
-- Vanilla JavaScript
-- Web Storage API
-- Web App Manifest
+- HTML, CSS i Vanilla JavaScript.
+- Hash routing dla części aplikacyjnej.
+- `localStorage` i `sessionStorage` dla lokalnego stanu demo.
+- Service Worker API.
+- Web App Manifest.
 
 Tooling:
 
-- Node.js / npm
-- PostCSS
-- cssnano
-- postcss-cli
-- terser
-- sharp
+- Node.js / npm.
+- `sharp` do generowania obrazów AVIF/WebP/JPG z plików źródłowych.
+- PostCSS z `cssnano` do minifikacji CSS.
+- `terser` do minifikacji aktywnych plików JavaScript w buildzie.
+- Playwright do testów smoke.
+- Python `http.server` używany przez skrypty preview.
 
 ### Struktura projektu
 
 ```text
 .
-├── index.html              # Główny dokument HTML i punkt wejścia aplikacji
-├── 404.html                # Statyczna strona błędu
-├── build-dist.js           # Produkcyjny build do dist/
-├── optimize-images.js      # Optymalizacja obrazów runtime z assets/img-src/
-├── sw.js                   # Plik źródłowy service workera
-├── _headers                # Nagłówki dla statycznego hostingu
-├── _redirects              # Reguły fallback dla aplikacji statycznej
-├── assets/
-│   ├── favicon/            # Favicony, manifest i ikony manifestu
-│   ├── fonts/              # Lokalne fonty
-│   ├── icons/              # Ikony UI
-│   ├── img-src/            # Edytowalne źródła obrazów
-│   ├── img/                # Zoptymalizowane obrazy runtime
-│   ├── logos/              # Logo i assety brandowe
-│   ├── og-img/             # Obrazy Open Graph
-│   ├── screenshots/        # Screenshoty manifestu
-│   └── shortcuts/          # Ikony skrótów manifestu
+├── index.html                  # główna strona i wejście dla aplikacji demo
+├── 404.html                    # statyczna strona błędu
+├── product/ features/ pricing/ # publiczne podstrony marketingowe
+├── about/ contact/ security/ careers/
+├── privacy/ terms/ cookies/    # podstrony prawne i informacyjne
+├── scripts/
+│   ├── main.js                 # inicjalizacja, status online, service worker
+│   ├── router.js               # hash routing, auth guard, aria-current, scroll reset
+│   ├── core/                   # uprawnienia ról demo
+│   ├── data/                   # dane seed demo
+│   ├── state/                  # store i localStorage
+│   ├── ui/                     # layouty, strony, komponenty i widoki aplikacji
+│   └── utils/                  # DOM, formatowanie, storage, cleanup
 ├── styles/
-│   ├── main.css            # Development CSS entrypoint
-│   └── src/                # Modularne źródła CSS
-├── scripts/                # Routing, stan, dane demo, layouty, widoki i komponenty UI
-├── dist/                   # Wygenerowany output produkcyjny
-├── package.json            # Skrypty npm i zależności developerskie
-└── LICENSE                 # Warunki użycia repozytorium
+│   ├── main.css                # importuje moduły CSS
+│   └── src/                    # tokeny, layout, komponenty, widoki, strony
+├── assets/                     # favicony, font, ikony, logo, obrazy, OG, screenshoty
+├── tests/smoke.spec.js         # testy Playwright
+├── build-dist.js               # build produkcyjny do dist/
+├── optimize-images.js          # pipeline optymalizacji obrazów
+├── _headers                    # nagłówki dla statycznego hostingu
+├── _redirects                  # przekierowania i fallback routingu
+├── robots.txt
+├── sitemap.xml
+└── LICENSE
 ```
-
-Główna logika aplikacji znajduje się w `scripts/`:
-
-- `scripts/router.js` obsługuje routing hash-based i ochronę widoków `/app`.
-- `scripts/main.js` inicjalizuje stan, motyw, status online/offline i routing.
-- `scripts/state/store.js` zarządza stanem aplikacji i zapisem do `localStorage`.
-- `scripts/data/seed.js` dostarcza dane demonstracyjne.
-- `scripts/ui/layoutLanding.js` i `scripts/ui/layoutApp.js` renderują główne układy.
-- `scripts/ui/views/` zawiera widoki modułów aplikacyjnych.
-- `scripts/ui/components/` zawiera komponenty modal, dropdown, accordion, toast i table.
 
 ### Instalacja i konfiguracja
 
+Projekt ma zależności developerskie opisane w `package.json` i `package-lock.json`.
+
 ```bash
-npm install
+npm ci
 ```
 
 ### Development lokalny
 
-Development preview uruchamia projekt z katalogu źródłowego i ładuje czytelny CSS przez `styles/main.css`.
+Uruchomienie lokalnego serwera preview:
 
 ```bash
 npm run preview
 ```
 
-Domyślny adres lokalny:
+Domyślny adres preview to:
 
 ```text
-http://localhost:8181/
+http://127.0.0.1:8181
 ```
 
-### Smoke testy
+Alternatywnie dostępny jest plik `start-local-server.bat`, który uruchamia `python -m http.server 8181`.
 
-Smoke testy uruchamiają FleetOps w przeglądarce przez Playwright i sprawdzają kluczowe przepływy demo: landing, logowanie, routing aplikacji oraz CRUD z bezpiecznym renderowaniem danych.
+Testy smoke:
 
 ```bash
 npm run test:smoke
 ```
 
+Kontrola użycia zmiennych CSS:
+
+```bash
+npm run qa:css-vars
+```
+
 ### Build produkcyjny
+
+Build produkcyjny uruchamia optymalizację obrazów, generuje katalog `dist/`, buduje `styles/main.min.css`, podmienia referencje do CSS w HTML, minifikuje aktywne skrypty i kopiuje assety oraz pliki metadata.
 
 ```bash
 npm run build
 ```
 
-Build uruchamia optymalizację obrazów, generuje `dist/`, minifikuje CSS do `dist/styles/main.min.css`, minifikuje aktywne pliki JavaScript z `scripts/` i kopiuje wymagane assety runtime. Katalog `assets/img-src/` nie jest kopiowany do `dist/`.
-
-Preview wygenerowanej produkcji:
+Podgląd katalogu `dist/`:
 
 ```bash
 npm run preview:dist
 ```
 
-Domyślny adres:
-
-```text
-http://localhost:8182/
-```
-
-### Pipeline obrazów
-
-```bash
-npm run optimize:images
-```
-
-Pipeline obrazów:
-
-- czyta źródła z `assets/img-src/`;
-- generuje zoptymalizowane obrazy runtime do `assets/img/`;
-- dla obrazów hero generuje AVIF, WebP i JPG fallback;
-- pozostawia favicony, Open Graph, screenshoty, skróty manifestu i SVG bez zmian.
-
-### CSS
-
-Development CSS entrypoint:
-
-```text
-styles/main.css
-```
-
-Modularne źródła CSS:
-
-```text
-styles/src/00-settings.css
-styles/src/01-base.css
-styles/src/02-layout.css
-styles/src/03-components.css
-styles/src/04-data.css
-styles/src/05-landing.css
-styles/src/06-app.css
-```
-
-Produkcja używa wygenerowanego pliku:
-
-```text
-dist/styles/main.min.css
-```
-
-System tokenów CSS:
-
-- `--fs-01` do `--fs-08` definiują skalę font-size;
-- `--fw-regular`, `--fw-medium`, `--fw-semibold`, `--fw-bold` definiują font-weight;
-- `--lh-tight`, `--lh-snug`, `--lh-normal`, `--lh-relaxed` definiują line-height;
-- `--space-0` do `--space-8` definiują rem-based spacing scale;
-- bezpieczne użycia `font-size`, `font-weight` i `line-height` w source CSS zostały podpięte pod tokeny.
+Skrypt `npm run test` jest aliasem dla `npm run build`.
 
 ### Deployment
 
 Repozytorium zawiera konfigurację dla statycznego hostingu:
 
-- `_redirects` obsługuje fallback do `index.html`;
-- `_headers` definiuje nagłówki bezpieczeństwa i cache dla assetów;
-- `robots.txt` i `sitemap.xml` są obecne w katalogu źródłowym i kopiowane do `dist/`;
-- produkcyjny output znajduje się w `dist/`.
+- `_headers` definiuje nagłówki bezpieczeństwa, CSP oraz cache dla `/assets/*` i plików HTML.
+- `_redirects` obsługuje slash redirects dla publicznych podstron, ścieżki assetów oraz fallback `/* /index.html 200`.
+- `robots.txt` i `sitemap.xml` wskazują kanoniczną domenę `https://saas-pr02-fleetops.netlify.app/`.
+
+Publikowanym artefaktem builda jest katalog `dist/`.
 
 ### Dostępność
 
-W kodzie widoczne są:
+W kodzie zaimplementowano konkretne elementy dostępności:
 
-- link pomijania do `#main-content`;
-- fallback `<noscript>`;
-- role i etykiety ARIA w nawigacji, drawerach, menu, modalach i statusach;
-- obsługa `aria-current`, `aria-expanded`, `aria-controls`, `aria-modal`, `aria-live` i `aria-invalid`;
-- pułapka fokusu i obsługa Escape w modalach oraz drawerach;
-- widoczne style fokusu;
-- obsługa `prefers-reduced-motion` w CSS.
+- skip link do `#main-content`;
+- ukryty region `role="status"` dla zmian tras;
+- live regions dla toastów: `role="status"` i `role="alert"`;
+- obsługę `aria-current` dla aktywnej nawigacji;
+- `aria-expanded`, `aria-controls`, `aria-modal` i `aria-labelledby` w interaktywnych komponentach;
+- trap focus i przywracanie fokusu w modalach, drawerze aplikacji, nawigacji mobilnej i drawerze szczegółów;
+- powiązanie pól formularzy z błędami przez `aria-describedby` i `aria-invalid`;
+- uwzględnienie `prefers-reduced-motion` przy przewijaniu i wybranych animacjach.
+
+Repozytorium nie deklaruje formalnej zgodności WCAG.
 
 ### SEO
 
-Repozytorium zawiera:
+Projekt zawiera:
 
-- meta description i title;
-- canonical URL;
+- meta description na stronach HTML;
+- canonical URL dla publicznych podstron;
 - Open Graph i Twitter Card metadata;
-- favicony i Web App Manifest;
+- JSON-LD na stronie głównej;
 - `robots.txt`;
 - `sitemap.xml`;
-- statyczną stronę `404.html`.
+- `noindex, follow` dla strony `404.html`;
+- favicony, Apple touch icon i manifest aplikacji.
 
 ### Wydajność
 
-W kodzie widoczne są:
+W projekcie widoczne są następujące mechanizmy wydajnościowe:
 
-- preload lokalnego fontu Inter WOFF2;
-- hero image przez `picture` z AVIF, WebP i JPG fallback;
-- jawne wymiary, `fetchpriority="high"` i `decoding="async"` dla obrazu hero;
-- produkcyjny CSS bundle w `dist/styles/main.min.css`;
-- minifikacja aktywnych skryptów JavaScript do `dist/scripts/`;
-- optymalizacja obrazów przez `sharp`;
-- reguły cache dla `/assets/*` w `_headers`.
+- lokalny font Inter w formacie WOFF2 z `font-display: swap`;
+- preload fontu w HTML;
+- obrazy hero w wariantach AVIF, WebP i JPG;
+- jawne wymiary obrazu hero oraz `fetchpriority="high"` dla głównej grafiki;
+- build CSS do jednego minifikowanego pliku `styles/main.min.css`;
+- minifikacja aktywnych skryptów JavaScript w buildzie produkcyjnym;
+- cache assetów statycznych przez service worker i nagłówki `_headers`;
+- wykluczenie `assets/img-src/` z katalogu `dist/`.
+
+Repozytorium nie zawiera zmierzonych wyników wydajności.
 
 ### Utrzymanie projektu
 
-- `styles/src/` jest źródłem prawdy dla CSS.
-- `styles/main.css` jest development entrypointem.
-- `dist/` jest generowanym outputem i nie powinien być edytowany ręcznie.
-- `assets/img-src/` zawiera edytowalne źródła obrazów.
-- `assets/img/` zawiera zoptymalizowane obrazy runtime.
-- `assets/logos/` zawiera logo, a `assets/icons/` zawiera ikony UI.
-- `styles/src/00-settings.css` zawiera tokeny kolorów, typografii, spacingu, promieni, cieni i motywów.
-- `npm audit` zwraca obecnie `0 vulnerabilities`.
+- Logika startowa i rejestracja service workera są w `scripts/main.js`.
+- Routing, ochrona tras demo i reset scrolla są w `scripts/router.js`.
+- Dane demo są w `scripts/data/seed.js`.
+- Lokalny store, preferencje, dane domenowe i kolejka offline są w `scripts/state/store.js`.
+- Uprawnienia ról demo są w `scripts/core/permissions.js`.
+- Widoki aplikacji są w `scripts/ui/views/`.
+- Wspólne komponenty UI są w `scripts/ui/components/`.
+- Style źródłowe są modułowe w `styles/src/`, a `styles/main.css` tylko je importuje.
+- Pipeline obrazów jest opisany w `IMAGE-ASSET-PIPELINE-MAP.md` i zaimplementowany w `optimize-images.js`.
+- Notatki audytowe są w `AUDIT.md`, `audit-resolved.md` i `improvements.md`.
 
 ### Licencja
 
-Repozytorium zawiera plik `LICENSE` z deklaracją `UNLICENSED`. Kod jest udostępniony do celów portfolio, referencji i przeglądu kodu zgodnie z treścią pliku licencji.
+Projekt jest oznaczony jako `UNLICENSED` w `package.json` i `LICENSE`. Kod jest własnościowy, zastrzeżony dla Kamil Król / KP_Code Digital Studio i udostępniony do celów portfolio, referencyjnych oraz code review.
 
 ## EN
 
 ### Project Overview
 
-FleetOps is a static frontend demo application for transport and fleet operations. The repository includes a landing page, informational pages, a demo login screen, and a browser-rendered application dashboard.
+FleetOps is a static, frontend-only SaaS-style demo project for transport and fleet operations. The repository contains a public marketing site, static informational subpages, and a hash-routed demo dashboard with local data.
 
-The application runs without a backend. Demo data, user preferences, authentication state, filters, list settings, and record changes are handled locally in the browser.
+The project is part of the KP_Code Digital Studio portfolio and does not include a backend, database, real authentication, or production integrations with external systems.
 
 ### Key Features
 
-- Hash-based URL routing for public pages, login, and application views.
-- Dashboard views: KPI overview, orders, fleet, drivers, reports, and settings.
-- Demo data for orders, vehicles, drivers, activity, alerts, and reports.
-- Local create, edit, and delete flows for orders, vehicles, and drivers.
-- Filtering, sorting, search, and incremental list loading.
-- Demo roles and action blocking based on permissions.
-- Light/dark theme, compact mode, and demo data reset.
-- `<noscript>` fallback for browsers without JavaScript.
-- Application manifest, static `404.html` page, and `sw.js` source file.
+- Public pages: landing page, product, features, pricing, about, contact, security, careers, privacy policy, terms, cookies policy, and 404 page.
+- Demo dashboard under `#/app`, `#/app/orders`, `#/app/fleet`, `#/app/drivers`, `#/app/reports`, and `#/app/settings`.
+- Demo login that stores state locally in the browser.
+- Local demo roles: administrator, dispatcher, and driver, with action restrictions in the permissions module.
+- Sample data for orders, vehicles, drivers, activity, alerts, and reports.
+- Local operations for orders, fleet, and drivers: create, edit, delete, filter, sort, load-more pagination, and record details.
+- Interface settings: light/dark theme, compact mode, dashboard range, list preferences, and demo data reset.
+- JSON report export. Orders CSV export is intentionally disabled in the demo version.
+- Responsive navigation, dropdowns, modals, record detail drawer, toasts, and accordions.
+- Service worker for caching public navigation routes and static assets.
 
 ### Tech Stack
 
 Runtime:
 
-- HTML5
-- CSS3
-- Vanilla JavaScript
-- Web Storage API
-- Web App Manifest
+- HTML, CSS, and Vanilla JavaScript.
+- Hash routing for the application area.
+- `localStorage` and `sessionStorage` for local demo state.
+- Service Worker API.
+- Web App Manifest.
 
 Tooling:
 
-- Node.js / npm
-- PostCSS
-- cssnano
-- postcss-cli
-- terser
-- sharp
+- Node.js / npm.
+- `sharp` for generating AVIF/WebP/JPG images from source files.
+- PostCSS with `cssnano` for CSS minification.
+- `terser` for minifying active JavaScript files during the build.
+- Playwright for smoke tests.
+- Python `http.server` used by preview scripts.
 
 ### Project Structure
 
 ```text
 .
-├── index.html              # Main HTML document and application entry point
-├── 404.html                # Static error page
-├── build-dist.js           # Production build into dist/
-├── optimize-images.js      # Runtime image optimization from assets/img-src/
-├── sw.js                   # Service worker source file
-├── _headers                # Headers for static hosting
-├── _redirects              # Static-app fallback rules
-├── assets/
-│   ├── favicon/            # Favicons, manifest, and manifest icons
-│   ├── fonts/              # Local fonts
-│   ├── icons/              # UI icons
-│   ├── img-src/            # Editable image sources
-│   ├── img/                # Optimized runtime images
-│   ├── logos/              # Logo and brand assets
-│   ├── og-img/             # Open Graph images
-│   ├── screenshots/        # Manifest screenshots
-│   └── shortcuts/          # Manifest shortcut icons
+├── index.html                  # main page and demo app entry
+├── 404.html                    # static error page
+├── product/ features/ pricing/ # public marketing subpages
+├── about/ contact/ security/ careers/
+├── privacy/ terms/ cookies/    # legal and informational subpages
+├── scripts/
+│   ├── main.js                 # initialization, online status, service worker
+│   ├── router.js               # hash routing, auth guard, aria-current, scroll reset
+│   ├── core/                   # demo role permissions
+│   ├── data/                   # demo seed data
+│   ├── state/                  # store and localStorage
+│   ├── ui/                     # layouts, pages, components, and app views
+│   └── utils/                  # DOM, formatting, storage, cleanup
 ├── styles/
-│   ├── main.css            # Development CSS entrypoint
-│   └── src/                # Modular CSS sources
-├── scripts/                # Routing, state, demo data, layouts, views, and UI components
-├── dist/                   # Generated production output
-├── package.json            # npm scripts and development dependencies
-└── LICENSE                 # Repository usage terms
+│   ├── main.css                # imports CSS modules
+│   └── src/                    # tokens, layout, components, views, pages
+├── assets/                     # favicons, font, icons, logos, images, OG, screenshots
+├── tests/smoke.spec.js         # Playwright tests
+├── build-dist.js               # production build into dist/
+├── optimize-images.js          # image optimization pipeline
+├── _headers                    # static hosting headers
+├── _redirects                  # redirects and routing fallback
+├── robots.txt
+├── sitemap.xml
+└── LICENSE
 ```
-
-The main application logic is located in `scripts/`:
-
-- `scripts/router.js` handles hash-based routing and `/app` view protection.
-- `scripts/main.js` initializes state, theme, online/offline status, and routing.
-- `scripts/state/store.js` manages application state and `localStorage` persistence.
-- `scripts/data/seed.js` provides demo data.
-- `scripts/ui/layoutLanding.js` and `scripts/ui/layoutApp.js` render the main layouts.
-- `scripts/ui/views/` contains application module views.
-- `scripts/ui/components/` contains modal, dropdown, accordion, toast, and table components.
 
 ### Setup and Installation
 
+The project has development dependencies defined in `package.json` and `package-lock.json`.
+
 ```bash
-npm install
+npm ci
 ```
 
 ### Local Development
 
-The development preview serves the source project and loads readable CSS through `styles/main.css`.
+Run the local preview server:
 
 ```bash
 npm run preview
 ```
 
-Default local URL:
+The default preview URL is:
 
 ```text
-http://localhost:8181/
+http://127.0.0.1:8181
 ```
 
-### Smoke Tests
+Alternatively, `start-local-server.bat` starts `python -m http.server 8181`.
 
-Smoke tests run FleetOps in a browser with Playwright and verify the key demo flows: landing, login, app routing, and CRUD with safe data rendering.
+Smoke tests:
 
 ```bash
 npm run test:smoke
 ```
 
+CSS custom property usage check:
+
+```bash
+npm run qa:css-vars
+```
+
 ### Production Build
+
+The production build runs image optimization, generates the `dist/` directory, builds `styles/main.min.css`, rewrites CSS references in HTML, minifies active scripts, and copies assets plus metadata files.
 
 ```bash
 npm run build
 ```
 
-The build runs image optimization, generates `dist/`, minifies CSS into `dist/styles/main.min.css`, minifies the active JavaScript files from `scripts/`, and copies required runtime assets. The `assets/img-src/` directory is excluded from `dist/`.
-
-Preview the generated production output:
+Preview the `dist/` directory:
 
 ```bash
 npm run preview:dist
 ```
 
-Default URL:
-
-```text
-http://localhost:8182/
-```
-
-### Image Pipeline
-
-```bash
-npm run optimize:images
-```
-
-The image pipeline:
-
-- reads source images from `assets/img-src/`;
-- generates optimized runtime images into `assets/img/`;
-- generates AVIF, WebP, and JPG fallback variants for hero images;
-- leaves favicons, Open Graph images, screenshots, manifest shortcuts, and SVG files unchanged.
-
-### CSS
-
-Development CSS entrypoint:
-
-```text
-styles/main.css
-```
-
-Modular CSS sources:
-
-```text
-styles/src/00-settings.css
-styles/src/01-base.css
-styles/src/02-layout.css
-styles/src/03-components.css
-styles/src/04-data.css
-styles/src/05-landing.css
-styles/src/06-app.css
-```
-
-Production uses the generated file:
-
-```text
-dist/styles/main.min.css
-```
-
-CSS token system:
-
-- `--fs-01` through `--fs-08` define the font-size scale;
-- `--fw-regular`, `--fw-medium`, `--fw-semibold`, and `--fw-bold` define font weights;
-- `--lh-tight`, `--lh-snug`, `--lh-normal`, and `--lh-relaxed` define line heights;
-- `--space-0` through `--space-8` define the rem-based spacing scale;
-- safe `font-size`, `font-weight`, and `line-height` usages in source CSS are wired to tokens.
+The `npm run test` script is an alias for `npm run build`.
 
 ### Deployment
 
-The repository includes static hosting configuration:
+The repository contains static hosting configuration:
 
-- `_redirects` handles fallback to `index.html`;
-- `_headers` defines security headers and asset caching;
-- `robots.txt` and `sitemap.xml` are present in source and copied into `dist/`;
-- production output is generated into `dist/`.
+- `_headers` defines security headers, CSP, and cache rules for `/assets/*` and HTML files.
+- `_redirects` handles slash redirects for public subpages, asset paths, and the `/* /index.html 200` fallback.
+- `robots.txt` and `sitemap.xml` point to the canonical domain `https://saas-pr02-fleetops.netlify.app/`.
+
+The publishable build artifact is the `dist/` directory.
 
 ### Accessibility
 
-The code includes:
+The code implements specific accessibility elements:
 
 - skip link to `#main-content`;
-- `<noscript>` fallback;
-- ARIA roles and labels in navigation, drawers, menus, modals, and status elements;
-- usage of `aria-current`, `aria-expanded`, `aria-controls`, `aria-modal`, `aria-live`, and `aria-invalid`;
-- focus trapping and Escape-key handling in modals and drawers;
-- visible focus states;
-- `prefers-reduced-motion` handling in CSS.
+- hidden `role="status"` region for route changes;
+- toast live regions: `role="status"` and `role="alert"`;
+- `aria-current` handling for active navigation;
+- `aria-expanded`, `aria-controls`, `aria-modal`, and `aria-labelledby` in interactive components;
+- focus trapping and focus restoration in modals, the app drawer, mobile navigation, and the record detail drawer;
+- form fields associated with errors through `aria-describedby` and `aria-invalid`;
+- `prefers-reduced-motion` support for scrolling and selected animations.
+
+The repository does not declare formal WCAG compliance.
 
 ### SEO
 
-The repository includes:
+The project includes:
 
-- meta description and title;
-- canonical URL;
+- meta descriptions in HTML pages;
+- canonical URLs for public subpages;
 - Open Graph and Twitter Card metadata;
-- favicons and Web App Manifest;
+- JSON-LD on the homepage;
 - `robots.txt`;
 - `sitemap.xml`;
-- static `404.html` page.
+- `noindex, follow` for `404.html`;
+- favicons, Apple touch icon, and app manifest.
 
 ### Performance
 
-The code includes:
+The project contains the following performance-related mechanisms:
 
-- preload for the local Inter WOFF2 font;
-- hero image delivery through `picture` with AVIF, WebP, and JPG fallback;
-- explicit dimensions, `fetchpriority="high"`, and `decoding="async"` for the hero image;
-- production CSS bundle in `dist/styles/main.min.css`;
-- active JavaScript minification into `dist/scripts/`;
-- image optimization through `sharp`;
-- cache rules for `/assets/*` in `_headers`.
+- local Inter font in WOFF2 format with `font-display: swap`;
+- font preload in HTML;
+- hero images in AVIF, WebP, and JPG variants;
+- explicit hero image dimensions and `fetchpriority="high"` for the primary image;
+- CSS build into one minified `styles/main.min.css` file;
+- minification of active JavaScript files in the production build;
+- static asset caching through the service worker and `_headers`;
+- exclusion of `assets/img-src/` from the `dist/` directory.
+
+The repository does not contain measured performance scores.
 
 ### Project Maintenance
 
-- `styles/src/` is the source of truth for CSS.
-- `styles/main.css` is the development entrypoint.
-- `dist/` is generated output and should not be edited manually.
-- `assets/img-src/` contains editable image sources.
-- `assets/img/` contains optimized runtime images.
-- `assets/logos/` contains logos, while `assets/icons/` contains UI icons.
-- `styles/src/00-settings.css` contains color, typography, spacing, radius, shadow, and theme tokens.
-- `npm audit` currently reports `0 vulnerabilities`.
+- Startup logic and service worker registration live in `scripts/main.js`.
+- Routing, demo route protection, and scroll reset live in `scripts/router.js`.
+- Demo data lives in `scripts/data/seed.js`.
+- Local store, preferences, domain data, and offline queue live in `scripts/state/store.js`.
+- Demo role permissions live in `scripts/core/permissions.js`.
+- Application views live in `scripts/ui/views/`.
+- Shared UI components live in `scripts/ui/components/`.
+- Source styles are modular in `styles/src/`, while `styles/main.css` only imports them.
+- The image pipeline is documented in `IMAGE-ASSET-PIPELINE-MAP.md` and implemented in `optimize-images.js`.
+- Audit notes live in `AUDIT.md`, `audit-resolved.md`, and `improvements.md`.
 
 ### License
 
-The repository includes a `LICENSE` file declaring `UNLICENSED` usage terms. The code is provided for portfolio, reference, and code review purposes according to the license file.
+The project is marked as `UNLICENSED` in `package.json` and `LICENSE`. The code is proprietary, reserved for Kamil Król / KP_Code Digital Studio, and provided for portfolio, reference, and code review purposes.

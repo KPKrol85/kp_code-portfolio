@@ -19,7 +19,7 @@ function renderLandingHeader(themeAsset = getLandingThemeAsset()) {
 
   return `
       <header class="container site-header" role="banner">
-        <a class="site-header__brand logo" href="#/" aria-label="FleetOps — Strona główna" data-scroll-top="home">
+        <a class="site-header__brand logo" href="/" aria-label="FleetOps — Strona główna" data-scroll-top="home">
 
           <img class="site-header__logo logo__icon" src="${themeAsset("assets/logos/logo-black.svg", "assets/logos/logo-white.svg")}" data-theme-src-light="assets/logos/logo-black.svg" data-theme-src-dark="assets/logos/logo-white.svg" alt="FleetOps logo" width="44" height="44" />
 
@@ -32,24 +32,24 @@ ${menuToggleIcon}
           <div class="site-header__backdrop" data-nav-close></div>
           <div class="site-header__drawer" id="mobileNav" role="dialog" aria-modal="true" aria-label="Nawigacja mobilna" aria-hidden="true">
             <ul class="site-header__links">
-              <li class="site-header__item"><a class="site-header__link" href="#/product">Produkt</a></li>
-              <li class="site-header__item"><a class="site-header__link" href="#/features">Funkcje</a></li>
-              <li class="site-header__item"><a class="site-header__link" href="#/pricing">Cennik</a></li>
-              <li class="site-header__item"><a class="site-header__link" href="#/about">O nas</a></li>
-              <li class="site-header__item"><a class="site-header__link" href="#/contact">Kontakt</a></li>
+              <li class="site-header__item"><a class="site-header__link" href="/product/">Produkt</a></li>
+              <li class="site-header__item"><a class="site-header__link" href="/features/">Funkcje</a></li>
+              <li class="site-header__item"><a class="site-header__link" href="/pricing/">Cennik</a></li>
+              <li class="site-header__item"><a class="site-header__link" href="/about/">O nas</a></li>
+              <li class="site-header__item"><a class="site-header__link" href="/contact/">Kontakt</a></li>
               <li class="site-header__item dropdown">
                 <button class="site-header__link" id="resourcesToggle" type="button" aria-expanded="false" aria-controls="resourcesMenu">
                   Zasoby
                 </button>
                 <ul class="dropdown-menu" id="resourcesMenu" aria-label="Zasoby">
-                  <li><a class="dropdown-item" href="#/privacy">Polityka prywatności</a></li>
-                  <li><a class="dropdown-item" href="#/terms">Regulamin</a></li>
-                  <li><a class="dropdown-item" href="#/cookies">Polityka cookies</a></li>
+                  <li><a class="dropdown-item" href="/privacy/">Polityka prywatności</a></li>
+                  <li><a class="dropdown-item" href="/terms/">Regulamin</a></li>
+                  <li><a class="dropdown-item" href="/cookies/">Polityka cookies</a></li>
                 </ul>
               </li>
             </ul>
             <div class="site-header__actions">
-              <a class="button button--ghost site-header__action" href="#/login">Zaloguj się</a>
+              <a class="button button--ghost site-header__action" href="/#/login">Zaloguj się</a>
               <button class="button button--ghost theme-toggle site-header__theme-toggle" id="themeToggleLanding" type="button" aria-label="Przełącz motyw">
                 <svg class="theme-toggle__icon theme-toggle__icon--light" width="18" height="18" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
                   <circle cx="12" cy="12" r="4" fill="currentColor"></circle>
@@ -71,7 +71,7 @@ function renderLandingFooter(themeAsset = getLandingThemeAsset()) {
         <div class="container footer__inner">
           <div class="footer__grid">
             <div class="footer__brand">
-              <a class="footer__logo" href="#/" aria-label="FleetOps - strona główna" data-scroll-top="home">
+              <a class="footer__logo" href="/" aria-label="FleetOps - strona główna" data-scroll-top="home">
                 <img class="logo__icon" src="${themeAsset("assets/logos/logo-black.svg", "assets/logos/logo-white.svg")}" data-theme-src-light="assets/logos/logo-black.svg" data-theme-src-dark="assets/logos/logo-white.svg" alt="FleetOps logo" width="52" height="52" />
                 <span class="footer__name">FleetOps</span>
               </a>
@@ -81,22 +81,22 @@ function renderLandingFooter(themeAsset = getLandingThemeAsset()) {
             <div class="footer__col">
               <h3 class="footer__title">Produkt</h3>
               <ul class="footer__list">
-                <li><a href="#/app">Panel</a></li>
-                <li><a href="#/app/fleet">Flota</a></li>
-                <li><a href="#/app/orders">Dyspozytornia</a></li>
-                <li><a href="#/app/reports">Analityka</a></li>
-                <li><a href="#/app/settings">Ustawienia</a></li>
+                <li><a href="/#/app">Panel</a></li>
+                <li><a href="/#/app/fleet">Flota</a></li>
+                <li><a href="/#/app/orders">Dyspozytornia</a></li>
+                <li><a href="/#/app/reports">Analityka</a></li>
+                <li><a href="/#/app/settings">Ustawienia</a></li>
               </ul>
             </div>
 
             <div class="footer__col">
               <h3 class="footer__title">Firma</h3>
               <ul class="footer__list">
-                <li><a href="#/about">O nas</a></li>
-                <li><a href="#/pricing">Cennik</a></li>
-                <li><a href="#/security">Bezpieczeństwo</a></li>
-                <li><a href="#/contact">Kontakt</a></li>
-                <li><a href="#/careers">Kariera</a></li>
+                <li><a href="/about/">O nas</a></li>
+                <li><a href="/pricing/">Cennik</a></li>
+                <li><a href="/security/">Bezpieczeństwo</a></li>
+                <li><a href="/contact/">Kontakt</a></li>
+                <li><a href="/careers/">Kariera</a></li>
               </ul>
             </div>
 
@@ -157,9 +157,9 @@ function renderLandingFooter(themeAsset = getLandingThemeAsset()) {
           <nav class="footer__legal" aria-label="Informacje prawne">
             <span class="footer__legal-label">Informacje prawne</span>
             <ul class="footer__legal-list">
-              <li><a href="#/terms">Regulamin</a></li>
-              <li><a href="#/privacy">Polityka prywatności</a></li>
-              <li><a href="#/cookies">Polityka cookies</a></li>
+              <li><a href="/terms/">Regulamin</a></li>
+              <li><a href="/privacy/">Polityka prywatności</a></li>
+              <li><a href="/cookies/">Polityka cookies</a></li>
             </ul>
           </nav>
 
@@ -393,8 +393,8 @@ ${renderLandingHeader(themeAsset)}
             </h1>
             <p class="hero__subtitle">Monitoruj zlecenia, pojazdy i kierowców w jednym widoku. Alerty SLA, realtime ETA i szybkie decyzje wspierane przez przejrzysty interfejs.</p>
             <div class="hero-cta">
-              <a class="button button--primary" href="#/login">Zacznij</a>
-              <a class="button button--secondary" href="#/app">Zobacz demo</a>
+              <a class="button button--primary" href="/#/login">Zacznij</a>
+              <a class="button button--secondary" href="/#/app">Zobacz demo</a>
               <span class="hero-cta__note">Bez instalacji. Dane demo.</span>
             </div>
           </div>
@@ -489,7 +489,7 @@ ${renderLandingHeader(themeAsset)}
                 <li>podgląd pojazdów w jednym panelu</li>
                 <li>dobry start dla małego zespołu</li>
               </ul>
-              <a class="button button--secondary" href="#/login">Przetestuj panel</a>
+              <a class="button button--secondary" href="/#/login">Przetestuj panel</a>
             </div>
             <div class="card card--pricing">
               <div class="badge">Rozwój</div>
@@ -501,7 +501,7 @@ ${renderLandingHeader(themeAsset)}
                 <li>raporty operacyjne dla zespołu</li>
                 <li>więcej kontroli nad codzienną pracą</li>
               </ul>
-              <a class="button button--secondary" href="#/contact">Umów demo</a>
+              <a class="button button--secondary" href="/contact/">Umów demo</a>
             </div>
             <div class="card card--pricing">
               <div class="badge">Korporacyjny</div>
@@ -513,7 +513,7 @@ ${renderLandingHeader(themeAsset)}
                 <li>wsparcie dla procesów i zespołów</li>
                 <li>elastyczne podejście do wdrożenia</li>
               </ul>
-              <a class="button button--secondary" href="#/contact">Porozmawiajmy</a>
+              <a class="button button--secondary" href="/contact/">Porozmawiajmy</a>
             </div>
           </div>
         </section>

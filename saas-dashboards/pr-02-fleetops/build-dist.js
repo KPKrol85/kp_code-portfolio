@@ -22,6 +22,20 @@ const cssSources = [
 ];
 
 const staticFiles = ["sw.js", "_headers", "_redirects", "robots.txt", "sitemap.xml"];
+const htmlEntries = [
+  "index.html",
+  "404.html",
+  "product/index.html",
+  "features/index.html",
+  "pricing/index.html",
+  "about/index.html",
+  "contact/index.html",
+  "security/index.html",
+  "careers/index.html",
+  "privacy/index.html",
+  "terms/index.html",
+  "cookies/index.html",
+];
 
 const terserOptions = {
   compress: true,
@@ -86,15 +100,11 @@ function copyDirectory(sourceRelativePath, outputRelativePath = sourceRelativePa
 
 function getActiveScriptSources(html) {
   const scripts = [];
-  const scriptPattern = /<script\b[^>]*\bsrc=["'](\.\/scripts\/[^"']+\.js)["'][^>]*><\/script>/g;
+  const scriptPattern = /<script\b[^>]*\bsrc=["'](?:\.\/|\/)?(scripts\/[^"']+\.js)["'][^>]*><\/script>/g;
   let match;
 
   while ((match = scriptPattern.exec(html)) !== null) {
     scripts.push(match[1]);
-  }
-
-  if (scripts.length === 0) {
-    throw new Error("No active scripts found in index.html");
   }
 
   return scripts;
@@ -164,14 +174,26 @@ async function buildScripts(scriptSources) {
 }
 
 function buildHtml() {
-  const indexHtml = fs.readFileSync(path.join(rootDir, "index.html"), "utf8");
-  const errorHtml = fs.readFileSync(path.join(rootDir, "404.html"), "utf8");
-  const scriptSources = getActiveScriptSources(indexHtml);
+  const scriptSources = new Set();
 
-  fs.writeFileSync(path.join(distDir, "index.html"), replaceStylesheets(indexHtml));
-  fs.writeFileSync(path.join(distDir, "404.html"), replaceStylesheets(errorHtml));
+  for (const entry of htmlEntries) {
+    const sourcePath = path.join(rootDir, entry);
+    if (!fs.existsSync(sourcePath)) {
+      throw new Error(`Missing HTML entry: ${entry}`);
+    }
 
-  return scriptSources;
+    const html = fs.readFileSync(sourcePath, "utf8");
+    getActiveScriptSources(html).forEach((scriptSource) => scriptSources.add(scriptSource));
+    const outputPath = path.join(distDir, entry);
+    fs.mkdirSync(path.dirname(outputPath), { recursive: true });
+    fs.writeFileSync(outputPath, replaceStylesheets(html));
+  }
+
+  if (scriptSources.size === 0) {
+    throw new Error("No active scripts found in HTML entries");
+  }
+
+  return Array.from(scriptSources);
 }
 
 async function build() {

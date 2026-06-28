@@ -106,9 +106,16 @@ function bindLogoScroll(kind, getContainer) {
 
     const handleClick = (event) => {
       const targetHash = kind === "app" ? "#/app" : "#/";
-      const currentHash = window.location.hash || "#/";
-      if (currentHash === targetHash) {
+      const href = link.getAttribute("href") || "";
+      const isStaticHomeLink = kind === "home" && href === "/";
+      const currentHash = window.location.hash || "";
+      const isCurrentStaticHome = isStaticHomeLink && window.location.pathname === "/" && (!currentHash || currentHash === "#/");
+      const isCurrentHashTarget = !isStaticHomeLink && (currentHash || "#/") === targetHash;
+
+      if (isCurrentStaticHome || isCurrentHashTarget) {
         event.preventDefault();
+      } else if (isStaticHomeLink) {
+        return;
       }
 
       window.setTimeout(() => {

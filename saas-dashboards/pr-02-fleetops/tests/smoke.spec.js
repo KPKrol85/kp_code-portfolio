@@ -1,11 +1,24 @@
 const { test, expect } = require("@playwright/test");
 
-async function openFresh(page, hash = "#/") {
+async function openFresh(page, target = "/") {
   await page.addInitScript(() => {
     localStorage.clear();
     sessionStorage.clear();
   });
-  await page.goto(`/${hash}`);
+  await page.goto(target.startsWith("#") ? `/${target}` : target);
+}
+
+async function waitForServiceWorkerControl(page) {
+  await page.evaluate(async () => {
+    if (!("serviceWorker" in navigator)) {
+      throw new Error("Service workers are not available in this browser context.");
+    }
+
+    await navigator.serviceWorker.ready;
+  });
+
+  await page.reload({ waitUntil: "domcontentloaded" });
+  await expect.poll(async () => page.evaluate(() => Boolean(navigator.serviceWorker.controller))).toBe(true);
 }
 
 async function loginAsDemo(page) {
@@ -121,28 +134,128 @@ async function expectCrudErrorsLinked(page, scenario) {
 test("landing loads and demo login reaches the app shell", async ({ page }) => {
   await openFresh(page);
   await expect(page.locator("#app")).not.toBeEmpty();
+  await expect(page.locator(".landing-home")).toBeVisible();
+  await expect(page).toHaveURL(/\/$/);
   await expect(page.getByRole("heading", { name: /FleetOps/, level: 1 })).toBeVisible();
 
   await loginAsDemo(page);
   await expect(page.locator(".sidebar")).toContainText("demo@fleetops.app");
 });
 
-test("route changes reset scroll position after rendering", async ({ page }) => {
+test("public static pages expose route-specific metadata", async ({ page }) => {
+  const routes = [
+    { path: "/", title: "FleetOps", heading: /FleetOps/, canonical: "https://saas-pr02-fleetops.netlify.app/" },
+    { path: "/product/", title: "Produkt FleetOps | FleetOps", heading: "Produkt FleetOps", canonical: "https://saas-pr02-fleetops.netlify.app/product/" },
+    { path: "/features/", title: "Funkcje FleetOps | FleetOps", heading: "Funkcje FleetOps", canonical: "https://saas-pr02-fleetops.netlify.app/features/" },
+    { path: "/pricing/", title: "Cennik FleetOps | FleetOps", heading: "Cennik FleetOps", canonical: "https://saas-pr02-fleetops.netlify.app/pricing/" },
+    { path: "/about/", title: "O nas | FleetOps", heading: "O nas", canonical: "https://saas-pr02-fleetops.netlify.app/about/" },
+    { path: "/contact/", title: "Kontakt | FleetOps", heading: "Kontakt", canonical: "https://saas-pr02-fleetops.netlify.app/contact/" },
+    { path: "/security/", title: "Bezpieczeństwo | FleetOps", heading: "Bezpieczeństwo", canonical: "https://saas-pr02-fleetops.netlify.app/security/" },
+    { path: "/careers/", title: "Kariera | FleetOps", heading: "Kariera", canonical: "https://saas-pr02-fleetops.netlify.app/careers/" },
+    { path: "/privacy/", title: "Polityka prywatności | FleetOps", heading: "Polityka prywatności", canonical: "https://saas-pr02-fleetops.netlify.app/privacy/" },
+    { path: "/terms/", title: "Regulamin | FleetOps", heading: "Regulamin", canonical: "https://saas-pr02-fleetops.netlify.app/terms/" },
+    { path: "/cookies/", title: "Polityka cookies | FleetOps", heading: "Polityka cookies", canonical: "https://saas-pr02-fleetops.netlify.app/cookies/" },
+  ];
+
+  for (const route of routes) {
+    await openFresh(page, route.path);
+    await expect(page).toHaveTitle(route.title);
+    await expect(page.getByRole("heading", { name: route.heading, level: 1 })).toBeVisible();
+    await expect(page.locator('link[rel="canonical"]')).toHaveAttribute("href", route.canonical);
+    await expect(page.locator('meta[property="og:url"]')).toHaveAttribute("content", route.canonical);
+    await expect(page.locator('meta[name="twitter:title"]')).toHaveAttribute("content", route.title);
+  }
+});
+
+test("legacy public hashes redirect to static URLs", async ({ page }) => {
+  const redirects = [
+    { hash: "#/", expected: /\/$/ },
+    { hash: "#/product", expected: /\/product\/$/ },
+    { hash: "#/features", expected: /\/features\/$/ },
+    { hash: "#/pricing", expected: /\/pricing\/$/ },
+    { hash: "#/about", expected: /\/about\/$/ },
+    { hash: "#/contact", expected: /\/contact\/$/ },
+    { hash: "#/security", expected: /\/security\/$/ },
+    { hash: "#/careers", expected: /\/careers\/$/ },
+    { hash: "#/privacy", expected: /\/privacy\/$/ },
+    { hash: "#/terms", expected: /\/terms\/$/ },
+    { hash: "#/cookies", expected: /\/cookies\/$/ },
+  ];
+
+  for (const redirect of redirects) {
+    await openFresh(page, redirect.hash);
+    await expect(page).toHaveURL(redirect.expected);
+    await expect(page.locator(".landing")).toBeVisible();
+  }
+});
+
+test("static and dynamic entrypoints do not emit console errors", async ({ page }) => {
+  const errors = [];
+  page.on("console", (message) => {
+    if (message.type() === "error") errors.push(message.text());
+  });
+  page.on("pageerror", (error) => errors.push(error.message));
+
+  for (const path of ["/", "/features/", "/pricing/", "/about/", "/contact/", "/privacy/"]) {
+    await openFresh(page, path);
+    await expect(page.locator("#app > .landing")).toBeVisible();
+  }
+
+  await openFresh(page, "#/login");
+  await expect(page.getByRole("heading", { name: "Zaloguj się", level: 1 })).toBeVisible();
+  await page.getByRole("button", { name: "Kontynuuj jako demo" }).click();
+  await expect(page).toHaveURL(/#\/app$/);
+  await expect(page.getByRole("heading", { name: "Przegląd", level: 1 })).toBeVisible();
+
+  expect(errors).toEqual([]);
+});
+
+test.describe("service worker navigation cache", () => {
+  test.use({ serviceWorkers: "allow" });
+
+  test("serves cached static public routes by their own documents while offline", async ({ page, context }) => {
+    const baseUrl = "http://localhost:8181";
+    const routes = [
+      { path: "/features/", title: "Funkcje FleetOps | FleetOps", heading: "Funkcje FleetOps" },
+      { path: "/pricing/", title: "Cennik FleetOps | FleetOps", heading: "Cennik FleetOps" },
+      { path: "/about/", title: "O nas | FleetOps", heading: "O nas" },
+      { path: "/contact/", title: "Kontakt | FleetOps", heading: "Kontakt" },
+      { path: "/privacy/", title: "Polityka prywatności | FleetOps", heading: "Polityka prywatności" },
+    ];
+
+    await page.goto(`${baseUrl}/`);
+    await waitForServiceWorkerControl(page);
+    await context.setOffline(true);
+
+    try {
+      for (const route of routes) {
+        await page.goto(`${baseUrl}${route.path}`, { waitUntil: "domcontentloaded" });
+        await expect(page).toHaveTitle(route.title);
+        await expect(page.getByRole("heading", { name: route.heading, level: 1 })).toBeVisible();
+        await expect(page.locator(".landing-home")).toHaveCount(0);
+      }
+    } finally {
+      await context.setOffline(false);
+    }
+  });
+});
+
+test("static public navigation resets scroll position", async ({ page }) => {
   await openFresh(page);
   await scrollPageDown(page);
   await page.getByRole("link", { name: "Porozmawiajmy" }).click();
-  await expect(page).toHaveURL(/#\/contact$/);
+  await expect(page).toHaveURL(/\/contact\/$/);
   await expect(page.getByRole("heading", { name: "Kontakt", level: 1 })).toBeVisible();
   await expectPageTop(page);
 
   await scrollPageDown(page);
-  await page.locator('.site-header__link[href="#/pricing"]').click();
-  await expect(page).toHaveURL(/#\/pricing$/);
+  await page.locator('.site-header__link[href="/pricing/"]').click();
+  await expect(page).toHaveURL(/\/pricing\/$/);
   await expect(page.getByRole("heading", { name: "Cennik FleetOps", level: 1 })).toBeVisible();
   await expectPageTop(page);
 
   await scrollPageDown(page);
-  await page.locator('a.site-header__action[href="#/login"]').click();
+  await page.locator('a.site-header__action[href="/#/login"]').click();
   await expect(page).toHaveURL(/#\/login$/);
   await expect(page.getByRole("heading", { name: "Zaloguj się", level: 1 })).toBeVisible();
   await expectPageTop(page);
@@ -166,15 +279,15 @@ test("mobile drawer route changes reset visible scroll position", async ({ page 
   await openFresh(page);
   await scrollPageDown(page);
   await page.locator("#navToggle").click();
-  await page.locator('#mobileNav a[href="#/contact"]').click();
-  await expect(page).toHaveURL(/#\/contact$/);
+  await page.locator('#mobileNav a[href="/contact/"]').click();
+  await expect(page).toHaveURL(/\/contact\/$/);
   await expect(page.getByRole("heading", { name: "Kontakt", level: 1 })).toBeVisible();
   await expectPageTop(page);
 
   await scrollPageDown(page);
   await page.locator("#navToggle").click();
-  await page.locator('#mobileNav a[href="#/pricing"]').click();
-  await expect(page).toHaveURL(/#\/pricing$/);
+  await page.locator('#mobileNav a[href="/pricing/"]').click();
+  await expect(page).toHaveURL(/\/pricing\/$/);
   await expect(page.getByRole("heading", { name: "Cennik FleetOps", level: 1 })).toBeVisible();
   await expectPageTop(page);
 
