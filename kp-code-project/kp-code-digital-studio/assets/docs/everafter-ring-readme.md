@@ -3,9 +3,11 @@
 ## PL
 
 ### Przegląd projektu
+
 EverAfter Ring to statyczny, wielostronicowy serwis WWW zbudowany w HTML, CSS i JavaScript. Repozytorium zawiera sześć głównych stron źródłowych plus stronę potwierdzenia formularza i strony prawne, współdzielone partiale nagłówka i stopki, klientowe moduły interakcji oraz własny pipeline builda generujący gotową wersję produkcyjną w katalogu `dist/`.
 
 ### Kluczowe funkcje
+
 - Wielostronicowa struktura obejmująca strony: `index.html`, `oferta.html`, `uslugi.html`, `realizacje.html`, `o-nas.html`, `kontakt.html`, `dziekujemy.html`, `polityka-prywatnosci.html`, `regulamin.html` oraz `cookies.html`.
 - Współdzielony `header` i `footer` obsługiwane przez `partials/`, ładowane w wersji źródłowej przez JavaScript i osadzane bezpośrednio w HTML podczas builda.
 - Responsywna, płaska nawigacja z menu mobilnym, obsługą `Escape`, powrotem fokusu po zamknięciu oraz stanem aktywnej strony przez `aria-current`.
@@ -13,24 +15,29 @@ EverAfter Ring to statyczny, wielostronicowy serwis WWW zbudowany w HTML, CSS i 
 - Strona usług z linkowaniem do sekcji przez kotwice oraz efekt ruchu obrazu w sekcjach hero.
 
 ### Stack technologiczny
+
 **Runtime**
+
 - HTML5
 - CSS
 - Vanilla JavaScript w formie ES modules
 
 **Assety i metadane**
+
 - SVG, JPG, WOFF2
 - `robots.txt`
 - `sitemap.xml`
 - dane strukturalne JSON-LD
 
 **Tooling**
+
 - Node.js i `npm`
 - `esbuild`
 - `lightningcss`
 - własny skrypt builda `scripts/build.mjs`
 
 ### Struktura projektu
+
 ```text
 .
 ├── assets/                 # obrazy, fonty, favicony i placeholdery
@@ -57,6 +64,7 @@ EverAfter Ring to statyczny, wielostronicowy serwis WWW zbudowany w HTML, CSS i 
 ```
 
 ### Instalacja i konfiguracja
+
 Repozytorium zawiera zależności developerskie do procesu builda. Instalacja:
 
 ```bash
@@ -64,6 +72,7 @@ npm install
 ```
 
 ### Development lokalny
+
 Podgląd lokalny jest uruchamiany przez skrypt wsadowy, który startuje serwer HTTP w katalogu projektu:
 
 ```bat
@@ -73,6 +82,7 @@ start-local-preview.bat
 Skrypt uruchamia `python -m http.server 8181`, dzięki czemu strony źródłowe mogą pobierać partiale z katalogu `partials/`.
 
 ### Build produkcyjny
+
 Pełny build produkcyjny:
 
 ```bash
@@ -90,12 +100,14 @@ npm run build:assets
 ```
 
 Build:
+
 - minifikuje CSS do `dist/css/main.min.css`,
 - bundluje i minifikuje JavaScript do `dist/js/app.min.js`,
 - osadza partiale w finalnych plikach HTML,
 - kopiuje assety oraz pliki `robots.txt` i `sitemap.xml` do `dist/`.
 
 ### Dostępność
+
 - Każda strona zawiera link pomijający do `#main`.
 - Struktura dokumentów korzysta z semantycznych landmarków: `header`, `nav`, `main`, `footer`.
 - Nawigacja mobilna używa atrybutów `aria-expanded` i `aria-controls`, aktywna strona jest oznaczana przez `aria-current`, a otwarte menu mobilne utrzymuje fokus w panelu.
@@ -104,12 +116,14 @@ Build:
 - Formularz kontaktowy korzysta z powiązań `label`, `aria-describedby` i regionu statusu `aria-live="polite"`.
 
 ### SEO
+
 - Każda strona ma własny `<title>`, `meta name="description"` i `link rel="canonical"`.
 - Repozytorium zawiera `robots.txt` oraz `sitemap.xml` obejmujący sześć głównych stron i strony prawne.
 - W dokumentach osadzono dane strukturalne JSON-LD typu `LocalBusiness` i `WebSite`.
 - Projekt zawiera faviconę SVG.
 
 ### Wydajność
+
 - Produkcyjny pipeline generuje zminifikowane pliki CSS i JavaScript.
 - HTML produkcyjny przełącza odwołania z plików źródłowych na zasoby zminifikowane.
 - Obrazy w serwisie mają jawnie określone wymiary.
@@ -117,6 +131,7 @@ Build:
 - Fonty są serwowane lokalnie w formacie WOFF2.
 
 ### Utrzymanie projektu
+
 - Główna treść stron znajduje się w plikach HTML w katalogu głównym repozytorium.
 - Wspólne elementy layoutu są utrzymywane w `partials/header.html` i `partials/footer.html`.
 - Zachowania interaktywne są rozdzielone na moduły w `js/modules/` (`partials`, `nav`, `form`, `hero`).
@@ -126,9 +141,11 @@ Build:
 ## EN
 
 ### Project Overview
+
 EverAfter Ring is a static multi-page website built with HTML, CSS, and JavaScript. The repository contains six main source pages plus a post-submit success page and legal pages, shared header and footer partials, client-side interaction modules, and a custom build pipeline that produces a production-ready output in `dist/`.
 
 ### Key Features
+
 - Multi-page structure covering `index.html`, `oferta.html`, `uslugi.html`, `realizacje.html`, `o-nas.html`, `kontakt.html`, `dziekujemy.html`, `polityka-prywatnosci.html`, `regulamin.html`, and `cookies.html`.
 - Shared `header` and `footer` managed through `partials/`, loaded by JavaScript in source mode and embedded directly into HTML during the build.
 - Responsive flat navigation with a mobile menu, `Escape` handling, focus return on close, and active-page state via `aria-current`.
@@ -136,24 +153,29 @@ EverAfter Ring is a static multi-page website built with HTML, CSS, and JavaScri
 - Services page with anchor-based section linking and a hero image motion effect.
 
 ### Tech Stack
+
 **Runtime**
+
 - HTML5
 - CSS
 - Vanilla JavaScript using ES modules
 
 **Assets and metadata**
+
 - SVG, JPG, WOFF2
 - `robots.txt`
 - `sitemap.xml`
 - JSON-LD structured data
 
 **Tooling**
+
 - Node.js and `npm`
 - `esbuild`
 - `lightningcss`
 - custom build script in `scripts/build.mjs`
 
 ### Project Structure
+
 ```text
 .
 ├── assets/                 # images, fonts, favicons, and placeholders
@@ -180,6 +202,7 @@ EverAfter Ring is a static multi-page website built with HTML, CSS, and JavaScri
 ```
 
 ### Setup and Installation
+
 The repository includes development dependencies used by the build process. Install them with:
 
 ```bash
@@ -187,6 +210,7 @@ npm install
 ```
 
 ### Local Development
+
 Local preview is started through the batch script, which launches an HTTP server in the project root:
 
 ```bat
@@ -196,6 +220,7 @@ start-local-preview.bat
 The script runs `python -m http.server 8181`, allowing the source pages to fetch partials from `partials/`.
 
 ### Production Build
+
 Full production build:
 
 ```bash
@@ -213,12 +238,14 @@ npm run build:assets
 ```
 
 The build process:
+
 - minifies CSS into `dist/css/main.min.css`,
 - bundles and minifies JavaScript into `dist/js/app.min.js`,
 - embeds partials into the final HTML files,
 - copies assets plus `robots.txt` and `sitemap.xml` into `dist/`.
 
 ### Accessibility
+
 - Every page includes a skip link targeting `#main`.
 - Document structure uses semantic landmarks: `header`, `nav`, `main`, and `footer`.
 - Mobile navigation uses `aria-expanded` and `aria-controls`, the active page is marked with `aria-current`, and the open mobile panel traps focus.
@@ -227,12 +254,14 @@ The build process:
 - The contact form uses connected `label` elements, `aria-describedby`, and an `aria-live="polite"` status region.
 
 ### SEO
+
 - Each page defines its own `<title>`, `meta name="description"`, and `link rel="canonical"`.
 - The repository includes `robots.txt` and a `sitemap.xml` covering the six main pages and legal pages.
 - JSON-LD structured data for `LocalBusiness` and `WebSite` is embedded in the documents.
 - The project includes an SVG favicon.
 
 ### Performance
+
 - The production pipeline outputs minified CSS and JavaScript bundles.
 - Production HTML switches references from source assets to minified assets.
 - Images across the site use explicit dimensions.
@@ -240,6 +269,7 @@ The build process:
 - Fonts are served locally in WOFF2 format.
 
 ### Project Maintenance
+
 - Primary page content lives in the top-level HTML files.
 - Shared layout fragments are maintained in `partials/header.html` and `partials/footer.html`.
 - Interactive behaviors are split into focused modules in `js/modules/` (`partials`, `nav`, `form`, `hero`).

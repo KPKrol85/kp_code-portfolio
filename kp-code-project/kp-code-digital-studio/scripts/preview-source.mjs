@@ -2,21 +2,28 @@ import http from 'node:http';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { readFile, stat } from 'node:fs/promises';
-import { ROOT_DIR, listPublicHtmlFiles, renderAssembledHtml } from './build-utils.mjs';
+import { ROOT_DIR, renderAssembledHtml } from './build-utils.mjs';
 import { getContentType, getPort, resolveRequestPath, sendText } from './preview-server-utils.mjs';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 const PROJECT_ROOT = path.resolve(__dirname, '..');
-const publicHtmlFiles = new Set(
-  (await listPublicHtmlFiles()).map((filePath) => filePath.replaceAll('\\', '/'))
-);
 const SOURCE_PREVIEW_RUNTIME_MARKER =
   '    <meta name="kp-code-runtime" content="source-preview" />\n';
 
 function toRelativeRootPath(filePath) {
   return path.relative(ROOT_DIR, filePath).replaceAll('\\', '/');
+}
+
+function isPublicHtmlPath(relativePath) {
+  const normalizedPath = relativePath.replaceAll('\\', '/');
+
+  return (
+    /^[^/]+\.html$/u.test(normalizedPath) ||
+    /^services\/.+\.html$/u.test(normalizedPath) ||
+    /^projects\/.+\.html$/u.test(normalizedPath)
+  );
 }
 
 function injectSourcePreviewRuntimeMarker(html) {
@@ -56,7 +63,7 @@ async function handleRequest(request, response) {
     }
 
     const relativePath = toRelativeRootPath(filePath);
-    if (publicHtmlFiles.has(relativePath)) {
+    if (isPublicHtmlPath(relativePath)) {
       const html = injectSourcePreviewRuntimeMarker(await renderAssembledHtml(relativePath));
       const htmlBuffer = Buffer.from(html, 'utf8');
 

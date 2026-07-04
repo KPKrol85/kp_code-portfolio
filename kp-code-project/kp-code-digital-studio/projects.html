@@ -126,6 +126,9 @@
             <button class="filter-button" type="button" data-filter="products" aria-pressed="false">
               Produkty własne
             </button>
+            <button class="filter-button" type="button" data-filter="saas" aria-pressed="false">
+              SaaS
+            </button>
             <button
               class="filter-button"
               type="button"
@@ -730,6 +733,64 @@
                   >Zobacz stronę</a
                 >
                 <a class="button button--ghost" href="./projects/translogix.html">Szczegóły</a>
+              </div>
+            </article>
+
+            <!-- FleetOps -->
+            <article class="card work-card" data-category="saas" data-reveal-item="visual">
+              <div class="work-card__image">
+                <picture>
+                  <source
+                    type="image/avif"
+                    srcset="
+                      ./assets/img/img_optimized/selected-work/fleetops-desktop-480.avif   480w,
+                      ./assets/img/img_optimized/selected-work/fleetops-desktop-768.avif   768w,
+                      ./assets/img/img_optimized/selected-work/fleetops-desktop-1024.avif 1024w
+                    "
+                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 50vw"
+                  />
+                  <source
+                    type="image/webp"
+                    srcset="
+                      ./assets/img/img_optimized/selected-work/fleetops-desktop-480.webp   480w,
+                      ./assets/img/img_optimized/selected-work/fleetops-desktop-768.webp   768w,
+                      ./assets/img/img_optimized/selected-work/fleetops-desktop-1024.webp 1024w
+                    "
+                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 50vw"
+                  />
+                  <img
+                    src="./assets/img/img_optimized/selected-work/fleetops-desktop-768.jpg"
+                    alt="Tymczasowy podgląd projektu FleetOps"
+                    loading="lazy"
+                    decoding="async"
+                    width="768"
+                    height="512"
+                  />
+                </picture>
+              </div>
+              <h3 class="card__title">
+                FleetOps
+                <br />
+                <span class="card__subtitle">— demo SaaS dla operacji flotowych</span>
+              </h3>
+              <p class="card__meta">
+                Statyczny projekt demonstracyjny z publiczną stroną marketingową i lokalnym panelem
+                demo dla transportu, floty i zleceń.
+              </p>
+              <div class="pill-grid">
+                <span class="tag">SaaS</span>
+                <span class="tag">Transport</span>
+                <span class="tag">Dashboard</span>
+              </div>
+              <div class="work-card__actions">
+                <a
+                  class="button button--primary"
+                  href="https://saas-pr02-fleetops.netlify.app/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  >Zobacz stronę</a
+                >
+                <a class="button button--ghost" href="./projects/fleetops.html">Szczegóły</a>
               </div>
             </article>
           </div>
