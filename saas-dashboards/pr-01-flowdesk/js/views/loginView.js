@@ -1,6 +1,8 @@
 import { auth } from '../core/auth.js';
 import { qs } from '../core/dom.js';
 import { validators } from '../utils/validators.js';
+import { button } from '../components/button.js';
+import { inputField, setFieldError } from '../components/formControls.js';
 import { showToast } from '../components/toast.js';
 
 export const renderLoginView = (container) => {
@@ -10,27 +12,15 @@ export const renderLoginView = (container) => {
         <h1 class="login__title">Zaloguj się do FlowDesk</h1>
         <p class="login__desc">Użyj firmowego emaila. Demo nie wymaga prawdziwego hasła.</p>
         <form id="loginForm" class="form-grid" novalidate>
-          <div class="input">
-            <label class="input__label" for="email">Email</label>
-            <input class="input__field" id="email" name="email" type="email" placeholder="anna@firma.pl" required />
-            <span class="input__helper">Użyj formatu: imie@firma.pl</span>
-            <span class="input__error" id="emailError"></span>
-          </div>
-          <div class="input">
-            <label class="input__label" for="password">Hasło</label>
-            <input class="input__field" id="password" name="password" type="password" required minlength="6" />
-            <span class="input__helper">Minimum 6 znaków.</span>
-            <span class="input__error" id="passwordError"></span>
-          </div>
-          <button class="btn btn--primary" type="submit">Zaloguj</button>
+          ${inputField({ id: 'email', label: 'Email', type: 'email', placeholder: 'anna@firma.pl', required: true, helper: 'Użyj formatu: imie@firma.pl', autocomplete: 'email' })}
+          ${inputField({ id: 'password', label: 'Hasło', type: 'password', required: true, helper: 'Minimum 6 znaków.', autocomplete: 'current-password', minLength: 6 })}
+          ${button({ label: 'Zaloguj', type: 'submit', variant: 'primary' })}
         </form>
       </div>
     </main>
   `;
 
   const form = qs('#loginForm', container);
-  const emailError = qs('#emailError', container);
-  const passwordError = qs('#passwordError', container);
 
   form.addEventListener('submit', (event) => {
     event.preventDefault();
@@ -39,15 +29,15 @@ export const renderLoginView = (container) => {
     const password = data.get('password');
     let valid = true;
 
-    emailError.textContent = '';
-    passwordError.textContent = '';
+    setFieldError('email', '', container);
+    setFieldError('password', '', container);
 
     if (!validators.email(email)) {
-      emailError.textContent = 'Podaj poprawny adres email.';
+      setFieldError('email', 'Podaj poprawny adres email.', container);
       valid = false;
     }
     if (!validators.minLength(password, 6)) {
-      passwordError.textContent = 'Hasło jest za krótkie.';
+      setFieldError('password', 'Hasło jest za krótkie.', container);
       valid = false;
     }
 

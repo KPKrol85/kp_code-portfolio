@@ -13,4 +13,4 @@ export const formatNumber = (value) => {
   return new Intl.NumberFormat('pl-PL').format(value || 0);
 };
 
-export const capitalize = (text) => text ? text[0].toUpperCase() + text.slice(1) : '';
+export const capitalize = (text) => (text ? text[0].toUpperCase() + text.slice(1) : '');

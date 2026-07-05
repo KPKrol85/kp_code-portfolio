@@ -1,13 +1,8 @@
 import { qs, qsa, createElement } from '../core/dom.js';
+import { escapeHTML } from '../utils/sanitize.js';
+import { icon } from './icon.js';
 
-const focusableSelectors = [
-  'button',
-  '[href]',
-  'input',
-  'select',
-  'textarea',
-  '[tabindex]:not([tabindex="-1"])'
-];
+const focusableSelectors = ['button', '[href]', 'input', 'select', 'textarea', '[tabindex]:not([tabindex="-1"])'];
 
 const trapFocus = (container) => {
   const focusables = qsa(focusableSelectors.join(','), container);
@@ -35,8 +30,8 @@ export const openModal = ({ title, content, footer, onClose }) => {
     <div class="modal-backdrop" role="dialog" aria-modal="true">
       <div class="modal">
         <div class="modal__header">
-          <h2 class="modal__title">${title}</h2>
-          <button class="btn btn--ghost" data-modal-close aria-label="Zamknij modal">✕</button>
+          <h2 class="modal__title">${escapeHTML(title)}</h2>
+          <button class="btn btn--ghost btn--icon" data-modal-close aria-label="Zamknij modal">${icon('close')}</button>
         </div>
         <div class="modal__body">${content}</div>
         ${footer ? `<div class="modal__footer">${footer}</div>` : ''}
@@ -53,7 +48,7 @@ export const openModal = ({ title, content, footer, onClose }) => {
     if (event.target === backdrop) close();
   });
 
-  qs('[data-modal-close]', backdrop).addEventListener('click', close);
+  qsa('[data-modal-close]', backdrop).forEach((button) => button.addEventListener('click', close));
 
   document.body.appendChild(backdrop);
 

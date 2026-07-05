@@ -1,13 +1,22 @@
 import { qs } from '../core/dom.js';
+import { getActionFieldError } from '../core/actions.js';
+import { selectClientById, selectFilteredClients } from '../core/selectors.js';
 import { store } from '../core/store.js';
+import { CLIENT_SEGMENTS, CLIENT_STATUSES } from '../domain/constants.js';
+import { button } from '../components/button.js';
+import { openConfirmDialog } from '../components/confirmDialog.js';
+import { emptyState } from '../components/emptyState.js';
+import { inputField, selectField, setFieldError, textareaField } from '../components/formControls.js';
 import { openModal } from '../components/modal.js';
+import { pageHeader } from '../components/pageHeader.js';
 import { showToast } from '../components/toast.js';
+import { escapeAttribute, escapeHTML } from '../utils/sanitize.js';
 
 const renderDetails = (client) => {
   if (!client) {
     return `
       <div class="side-panel">
-        <h3>Podgląd klienta</h3>
+        <h2>Podgląd klienta</h2>
         <p class="input__helper">Wybierz klienta z listy, aby zobaczyć szczegóły.</p>
       </div>
     `;
@@ -15,12 +24,15 @@ const renderDetails = (client) => {
 
   return `
     <div class="side-panel">
-      <h3>${client.name}</h3>
-      <p class="input__helper">${client.status}</p>
+      <h2>${escapeHTML(client.name)}</h2>
+      <p class="input__helper">${escapeHTML(client.status)}</p>
       <div class="list">
-        <div><strong>Email:</strong> ${client.email}</div>
-        <div><strong>Telefon:</strong> ${client.phone}</div>
-        <div><strong>Notatki:</strong> ${client.notes}</div>
+        <div><strong>Email:</strong> ${escapeHTML(client.email)}</div>
+        <div><strong>Telefon:</strong> ${escapeHTML(client.phone)}</div>
+        <div><strong>Segment:</strong> ${escapeHTML(client.segment)}</div>
+        <div><strong>Owner:</strong> ${escapeHTML(client.owner || 'Nieprzypisany')}</div>
+        <div><strong>Notatki:</strong> ${escapeHTML(client.notes)}</div>
+        <a class="btn btn--secondary" href="#/clients/${encodeURIComponent(client.id)}">Otwórz szczegóły</a>
       </div>
     </div>
   `;
@@ -29,65 +41,63 @@ const renderDetails = (client) => {
 const clientModalContent = (client = {}) => `
   <form id="clientForm" class="form-grid">
     <div class="form-grid form-grid--two">
-      <div class="input">
-        <label class="input__label" for="name">Nazwa</label>
-        <input class="input__field" id="name" name="name" value="${client.name || ''}" required />
-        <span class="input__error" id="nameError"></span>
-      </div>
-      <div class="input">
-        <label class="input__label" for="status">Status</label>
-        <select class="input__select" id="status" name="status">
-          ${['Aktywny', 'Potencjalny', 'Zawieszony']
-            .map((status) => `<option value="${status}" ${client.status === status ? 'selected' : ''}>${status}</option>`)
-            .join('')}
-        </select>
-      </div>
+      ${inputField({ id: 'name', label: 'Nazwa', value: client.name || '', required: true })}
+      ${selectField({
+        id: 'status',
+        label: 'Status',
+        value: client.status,
+        options: CLIENT_STATUSES.map((status) => ({ value: status, label: status }))
+      })}
     </div>
     <div class="form-grid form-grid--two">
-      <div class="input">
-        <label class="input__label" for="email">Email</label>
-        <input class="input__field" id="email" name="email" type="email" value="${client.email || ''}" required />
-        <span class="input__error" id="emailError"></span>
-      </div>
-      <div class="input">
-        <label class="input__label" for="phone">Telefon</label>
-        <input class="input__field" id="phone" name="phone" value="${client.phone || ''}" required />
-      </div>
+      ${selectField({
+        id: 'segment',
+        label: 'Segment',
+        value: client.segment,
+        options: CLIENT_SEGMENTS.map((segment) => ({ value: segment, label: segment }))
+      })}
+      ${inputField({ id: 'owner', label: 'Owner', value: client.owner || '', placeholder: 'Alicja Maj' })}
     </div>
-    <div class="input">
-      <label class="input__label" for="notes">Notatki</label>
-      <textarea class="input__textarea" id="notes" name="notes" rows="3">${client.notes || ''}</textarea>
-      <span class="input__helper">Krótki kontekst dla zespołu.</span>
+    <div class="form-grid form-grid--two">
+      ${inputField({ id: 'email', label: 'Email', type: 'email', value: client.email || '', required: true, autocomplete: 'email' })}
+      ${inputField({ id: 'phone', label: 'Telefon', value: client.phone || '', required: true, autocomplete: 'tel' })}
     </div>
+    ${inputField({ id: 'tags', label: 'Tagi', value: (client.tags || []).join(', '), placeholder: 'sla, retainer, lead', helper: 'Oddziel tagi przecinkami.' })}
+    ${textareaField({ id: 'notes', label: 'Notatki', value: client.notes || '', rows: 3, helper: 'Krótki kontekst dla zespołu.' })}
   </form>
 `;
 
+const showClientErrors = (result) => {
+  setFieldError('name', getActionFieldError(result, 'name'));
+  setFieldError('email', getActionFieldError(result, 'email'));
+};
+
 export const renderClientsView = (container) => {
   const state = store.getState();
-  let selectedId = state.clients[0]?.id || null;
-  let filterState = { term: '', sort: 'name' };
+  let selectedId = state.clients.find((client) => !client.archivedAt)?.id || state.clients[0]?.id || null;
+  let filterState = { term: '', sort: 'name', archive: 'active' };
 
-  const render = (clients) => {
-    const sorted = [...clients].sort((a, b) => {
-      if (filterState.sort === 'status') return a.status.localeCompare(b.status);
-      return a.name.localeCompare(b.name);
-    });
-    const filtered = sorted.filter(
-      (client) =>
-        client.name.toLowerCase().includes(filterState.term.toLowerCase()) ||
-        client.email.toLowerCase().includes(filterState.term.toLowerCase())
-    );
+  const render = () => {
+    const currentState = store.getState();
+    const filtered = selectFilteredClients(currentState, filterState);
     const rows = filtered
       .map(
         (client) => `
-        <tr data-id="${client.id}">
-          <td>${client.name}</td>
-          <td>${client.email}</td>
-          <td>${client.status}</td>
+        <tr data-id="${escapeAttribute(client.id)}">
+          <td>${escapeHTML(client.name)}</td>
+          <td>${escapeHTML(client.email)}</td>
+          <td>${escapeHTML(client.status)}</td>
+          <td>${escapeHTML(client.segment)}</td>
+          <td>${client.archivedAt ? '<span class="badge badge--danger">Archiwum</span>' : `<span class="badge badge--info">${escapeHTML(client.owner || 'Brak')}</span>`}</td>
           <td>
             <div class="table__actions">
-              <button class="btn btn--ghost" data-action="edit" data-id="${client.id}">Edytuj</button>
-              <button class="btn btn--ghost" data-action="delete" data-id="${client.id}">Usuń</button>
+              <a class="btn btn--ghost" href="#/clients/${encodeURIComponent(client.id)}">Szczegóły</a>
+              ${button({ label: 'Edytuj', variant: 'ghost', iconName: 'edit', attributes: { 'data-action': 'edit', 'data-id': client.id } })}
+              ${
+                client.archivedAt
+                  ? button({ label: 'Przywróć', variant: 'ghost', iconName: 'reset', attributes: { 'data-action': 'restore', 'data-id': client.id } })
+                  : button({ label: 'Archiwizuj', variant: 'ghost', iconName: 'delete', attributes: { 'data-action': 'archive', 'data-id': client.id } })
+              }
             </div>
           </td>
         </tr>
@@ -97,27 +107,33 @@ export const renderClientsView = (container) => {
 
     container.innerHTML = `
       <main id="main" class="container">
-        <header class="view-header">
-          <h1 class="view-header__title">Klienci</h1>
-          <p class="view-header__desc">Baza klientów, statusy współpracy i szybkie akcje.</p>
-        </header>
+        ${pageHeader({ title: 'Klienci', description: 'Baza klientów, statusy współpracy i szybkie akcje.' })}
         <section class="clients-layout">
           <div class="card">
             <div class="list">
               <div class="form-grid form-grid--two">
                 <div class="input">
                   <label class="input__label" for="filterInput">Filtruj</label>
-                  <input class="input__field" id="filterInput" placeholder="Wpisz nazwę lub email" value="${filterState.term}" />
+                  <input class="input__field" id="filterInput" placeholder="Wpisz nazwę lub email" value="${escapeAttribute(filterState.term)}" />
                 </div>
                 <div class="input">
                   <label class="input__label" for="sortSelect">Sortuj</label>
                   <select class="input__select" id="sortSelect">
                     <option value="name" ${filterState.sort === 'name' ? 'selected' : ''}>Nazwa</option>
                     <option value="status" ${filterState.sort === 'status' ? 'selected' : ''}>Status</option>
+                    <option value="owner" ${filterState.sort === 'owner' ? 'selected' : ''}>Owner</option>
+                  </select>
+                </div>
+                <div class="input">
+                  <label class="input__label" for="archiveSelect">Zakres</label>
+                  <select class="input__select" id="archiveSelect">
+                    <option value="active" ${filterState.archive === 'active' ? 'selected' : ''}>Aktywni</option>
+                    <option value="archived" ${filterState.archive === 'archived' ? 'selected' : ''}>Archiwum</option>
+                    <option value="all" ${filterState.archive === 'all' ? 'selected' : ''}>Wszyscy</option>
                   </select>
                 </div>
               </div>
-              <button class="btn btn--primary" id="addClient">Dodaj klienta</button>
+              ${button({ label: 'Dodaj klienta', id: 'addClient', variant: 'primary', iconName: 'plus' })}
             </div>
             <div class="table-wrapper">
               ${
@@ -129,6 +145,8 @@ export const renderClientsView = (container) => {
                       <th>Klient</th>
                       <th>Email</th>
                       <th>Status</th>
+                      <th>Segment</th>
+                      <th>Owner/Archiwum</th>
                       <th>Akcje</th>
                     </tr>
                   </thead>
@@ -137,30 +155,36 @@ export const renderClientsView = (container) => {
                   </tbody>
                 </table>
               `
-                  : '<p class="empty-state">Brak klientów. Dodaj pierwszy rekord.</p>'
+                  : emptyState({ description: 'Brak klientów. Dodaj pierwszy rekord.', iconName: 'clients' })
               }
             </div>
           </div>
-          ${renderDetails(clients.find((client) => client.id === selectedId))}
+          ${renderDetails(selectClientById(currentState, selectedId))}
         </section>
       </main>
     `;
   };
 
-  render(state.clients);
+  render();
+
+  function refresh() {
+    render();
+    updateHandlers();
+  }
 
   const updateHandlers = () => {
     const filterInput = qs('#filterInput', container);
     const sortSelect = qs('#sortSelect', container);
+    const archiveSelect = qs('#archiveSelect', container);
 
     const filterAndRender = () => {
-      filterState = { term: filterInput.value, sort: sortSelect.value };
-      render(store.getState().clients);
-      updateHandlers();
+      filterState = { term: filterInput.value, sort: sortSelect.value, archive: archiveSelect.value };
+      refresh();
     };
 
     filterInput?.addEventListener('input', filterAndRender);
     sortSelect?.addEventListener('change', filterAndRender);
+    archiveSelect?.addEventListener('change', filterAndRender);
 
     qs('#addClient', container)?.addEventListener('click', () => {
       const close = openModal({
@@ -173,30 +197,33 @@ export const renderClientsView = (container) => {
       saveBtn?.addEventListener('click', () => {
         const form = qs('#clientForm', document);
         const data = new FormData(form);
-        const name = data.get('name');
-        const email = data.get('email');
-        if (!name || !email) {
-          qs('#nameError', document).textContent = name ? '' : 'Wymagane pole.';
-          qs('#emailError', document).textContent = email ? '' : 'Wymagane pole.';
-          return;
-        }
-        store.addClient({
-          name,
-          email,
+        const result = store.actions.createClient({
+          name: data.get('name'),
+          email: data.get('email'),
           phone: data.get('phone'),
           status: data.get('status'),
+          segment: data.get('segment'),
+          owner: data.get('owner'),
+          tags: data.get('tags'),
           notes: data.get('notes')
         });
+        if (!result.ok) {
+          showClientErrors(result);
+          return;
+        }
         showToast('Dodano klienta.');
         close();
-        render(store.getState().clients);
-        updateHandlers();
+        refresh();
       });
     });
 
     container.querySelectorAll('[data-action="edit"]').forEach((button) => {
       button.addEventListener('click', () => {
-        const client = store.getState().clients.find((item) => item.id === button.dataset.id);
+        const client = selectClientById(store.getState(), button.dataset.id);
+        if (!client) {
+          showToast('Nie znaleziono klienta.');
+          return;
+        }
         const close = openModal({
           title: 'Edytuj klienta',
           content: clientModalContent(client),
@@ -205,44 +232,65 @@ export const renderClientsView = (container) => {
         qs('#updateClient', document)?.addEventListener('click', () => {
           const form = qs('#clientForm', document);
           const data = new FormData(form);
-          store.updateClient(client.id, {
+          const result = store.actions.updateClient(client.id, {
             name: data.get('name'),
             email: data.get('email'),
             phone: data.get('phone'),
             status: data.get('status'),
+            segment: data.get('segment'),
+            owner: data.get('owner'),
+            tags: data.get('tags'),
             notes: data.get('notes')
           });
+          if (!result.ok) {
+            showClientErrors(result);
+            return;
+          }
           showToast('Zaktualizowano klienta.');
           close();
-          render(store.getState().clients);
-          updateHandlers();
+          refresh();
         });
       });
     });
 
-    container.querySelectorAll('[data-action="delete"]').forEach((button) => {
+    container.querySelectorAll('[data-action="archive"]').forEach((button) => {
       button.addEventListener('click', () => {
-        const client = store.getState().clients.find((item) => item.id === button.dataset.id);
-        const close = openModal({
-          title: 'Usuń klienta',
-          content: `<p>Czy na pewno usunąć <strong>${client.name}</strong>? Znikną też powiązane zlecenia.</p>`,
-          footer: '<button class="btn btn--secondary" data-modal-close>Anuluj</button><button class="btn btn--primary" id="confirmDelete">Usuń</button>'
+        const client = selectClientById(store.getState(), button.dataset.id);
+        if (!client) {
+          showToast('Nie znaleziono klienta.');
+          return;
+        }
+        openConfirmDialog({
+          title: 'Archiwizuj klienta',
+          message: `Czy zarchiwizować ${client.name}? Rekord pozostanie dostępny w filtrze archiwum.`,
+          confirmLabel: 'Archiwizuj',
+          destructive: true,
+          onConfirm: () => {
+            const result = store.actions.archiveClient(client.id);
+            if (!result.ok) {
+              showToast('Nie udało się zarchiwizować klienta.');
+              return;
+            }
+            showToast('Zarchiwizowano klienta.');
+            refresh();
+          }
         });
-        qs('#confirmDelete', document)?.addEventListener('click', () => {
-          store.deleteClient(client.id);
-          showToast('Usunięto klienta.');
-          close();
-          render(store.getState().clients);
-          updateHandlers();
-        });
+      });
+    });
+
+    container.querySelectorAll('[data-action="restore"]').forEach((button) => {
+      button.addEventListener('click', () => {
+        const result = store.actions.restoreArchivedClient(button.dataset.id);
+        showToast(result.ok ? 'Przywrócono klienta.' : 'Nie udało się przywrócić klienta.');
+        refresh();
       });
     });
 
     container.querySelectorAll('tbody tr').forEach((row) => {
-      row.addEventListener('click', () => {
+      row.addEventListener('click', (event) => {
+        if (event.target.closest('button, a')) return;
         selectedId = row.dataset.id || null;
-        render(store.getState().clients);
-        updateHandlers();
+        refresh();
       });
     });
   };

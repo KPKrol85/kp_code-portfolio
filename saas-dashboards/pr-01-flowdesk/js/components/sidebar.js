@@ -1,45 +1,47 @@
+import { icon } from './icon.js';
+
 const navItems = [
-  { path: '/dashboard', label: 'Dashboard', icon: '📊' },
-  { path: '/clients', label: 'Klienci', icon: '👥' },
-  { path: '/projects', label: 'Zlecenia', icon: '🧩' },
-  { path: '/calendar', label: 'Kalendarz', icon: '🗓️' },
-  { path: '/settings', label: 'Ustawienia', icon: '⚙️' }
+  { path: '/dashboard', label: 'Dashboard', iconName: 'dashboard' },
+  { path: '/clients', label: 'Klienci', iconName: 'clients' },
+  { path: '/projects', label: 'Zlecenia', iconName: 'projects' },
+  { path: '/calendar', label: 'Kalendarz', iconName: 'calendar' },
+  { path: '/settings', label: 'Ustawienia', iconName: 'settings' }
 ];
+
+const renderSidebarBrand = () => `
+  <a class="sidebar__brand" href="#/dashboard" aria-label="FlowDesk dashboard">
+    <img class="sidebar__brand-logo" src="assets/logo/logo.svg" alt="" aria-hidden="true" />
+    <span class="sidebar__brand-name">FlowDesk</span>
+  </a>
+`;
+
+const renderNavigationLinks = (activePath) => `
+  <nav class="sidebar__nav">
+    ${navItems
+      .map(
+        (item) => `
+        <a class="sidebar__link ${activePath === item.path ? 'sidebar__link--active' : ''}" href="#${item.path}">
+          ${icon(item.iconName)}
+          <span>${item.label}</span>
+        </a>
+      `
+      )
+      .join('')}
+  </nav>
+`;
 
 export const renderSidebar = (activePath) => {
   return `
     <aside class="sidebar" aria-label="Nawigacja główna">
-      <div class="sidebar__logo">FlowDesk</div>
-      <nav class="sidebar__nav">
-        ${navItems
-          .map(
-            (item) => `
-            <a class="sidebar__link ${activePath === item.path ? 'sidebar__link--active' : ''}" href="#${item.path}">
-              <span aria-hidden="true">${item.icon}</span>
-              <span>${item.label}</span>
-            </a>
-          `
-          )
-          .join('')}
-      </nav>
+      ${renderSidebarBrand()}
+      ${renderNavigationLinks(activePath)}
     </aside>
   `;
 };
 
 export const renderNavList = (activePath) => {
   return `
-    <div class="sidebar__logo">FlowDesk</div>
-    <nav class="sidebar__nav">
-      ${navItems
-        .map(
-          (item) => `
-          <a class="sidebar__link ${activePath === item.path ? 'sidebar__link--active' : ''}" href="#${item.path}">
-            <span aria-hidden="true">${item.icon}</span>
-            <span>${item.label}</span>
-          </a>
-        `
-        )
-        .join('')}
-    </nav>
+    ${renderSidebarBrand()}
+    ${renderNavigationLinks(activePath)}
   `;
 };

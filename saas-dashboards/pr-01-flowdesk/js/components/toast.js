@@ -11,7 +11,36 @@ const ensureStack = () => {
 
 export const showToast = (message) => {
   const stack = ensureStack();
-  const toast = createElement(`<div class="toast">${message}</div>`);
+  const toast = document.createElement('div');
+  toast.className = 'toast';
+  toast.textContent = message;
   stack.appendChild(toast);
   setTimeout(() => toast.remove(), 3200);
+};
+
+export const showActionToast = ({ message, actionLabel, onAction, timeout = 0 }) => {
+  const stack = ensureStack();
+  const toast = document.createElement('div');
+  toast.className = 'toast toast--action';
+
+  const text = document.createElement('span');
+  text.textContent = message;
+  toast.appendChild(text);
+
+  const action = document.createElement('button');
+  action.className = 'toast__action';
+  action.type = 'button';
+  action.textContent = actionLabel;
+  action.addEventListener('click', () => {
+    onAction?.();
+    toast.remove();
+  });
+  toast.appendChild(action);
+  stack.appendChild(toast);
+
+  if (timeout > 0) {
+    setTimeout(() => toast.remove(), timeout);
+  }
+
+  return toast;
 };

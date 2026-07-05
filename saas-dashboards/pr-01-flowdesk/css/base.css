@@ -36,6 +36,11 @@
 
 html {
   font-size: 16px;
+  scroll-behavior: smooth;
+}
+
+html.motion-reduced {
+  scroll-behavior: auto;
 }
 
 body {
@@ -45,6 +50,10 @@ body {
   min-height: 100vh;
   line-height: 1.5;
   -webkit-font-smoothing: antialiased;
+}
+
+body.scroll-lock {
+  overflow: hidden;
 }
 
 body,
@@ -137,4 +146,11 @@ a:focus-visible {
     transition-duration: 0.01ms !important;
     scroll-behavior: auto !important;
   }
+}
+
+html.motion-reduced * {
+  animation-duration: 0.01ms !important;
+  animation-iteration-count: 1 !important;
+  transition-duration: 0.01ms !important;
+  scroll-behavior: auto !important;
 }
