@@ -212,6 +212,8 @@ Add controlled depth and surface quality without turning FlowDesk into a visual 
 
 ## 5. Typography, Hierarchy, And Data Readability
 
+**Status:** Done — improved typography hierarchy, KPI emphasis, metadata readability, muted text scanability, and badge status clarity across core FlowDesk views.
+
 ### Goal
 
 Improve scanability so users can quickly identify the most important information on every screen.
@@ -253,6 +255,8 @@ Improve scanability so users can quickly identify the most important information
 
 ## 6. Dashboard Polish
 
+**Status:** Done — polished dashboard KPI alignment, card rhythm, responsive stacking, activity/event readability, priority indicators, overdue badges, quick-action rows, and empty states while preserving existing data and behavior.
+
 ### Goal
 
 Make the dashboard feel like a real SaaS operations overview and the strongest first impression in FlowDesk.
@@ -291,6 +295,8 @@ Make the dashboard feel like a real SaaS operations overview and the strongest f
 - `npm run test:e2e` if dashboard flow or quick actions are touched.
 
 ## 7. Tables, Lists, Kanban, And Data Density
+
+**Status:** Done — improved responsive data density, row actions, badges, archive states, kanban usability, calendar rows, and related-record scanability across FlowDesk data-heavy views.
 
 ### Goal
 
@@ -333,6 +339,8 @@ Improve every data-heavy surface so FlowDesk remains readable, responsive, and e
 
 ## 8. Forms, Modals, Drawers, And Destructive Actions
 
+**Status:** Done — aligned form control sizing, modal focus management, drawer fit, confirm dialog layout, destructive action hierarchy, settings import textarea sizing, and calendar deletion confirmation.
+
 ### Goal
 
 Bring all form and confirmation interactions to one coherent product standard.
@@ -373,6 +381,8 @@ Bring all form and confirmation interactions to one coherent product standard.
 
 ## 9. Microinteractions, States, And Reduced Motion
 
+**Status:** Done — refined restrained hover, active, disabled, focus-visible, modal, drawer, toast, user-menu, and reduced-motion interaction states while preserving accessibility and performance.
+
 ### Goal
 
 Add small interaction details that make the UI feel responsive while staying restrained and accessible.
@@ -412,6 +422,8 @@ Add small interaction details that make the UI feel responsive while staying res
 - `npm run perf:budget` if CSS effects add measurable app-shell size.
 
 ## 10. Visual QA, Responsive QA, Accessibility Checks, And Test Checklist
+
+**Status:** Done — created a repeatable final UI QA checklist and completed responsive, theme, reduced-motion, keyboard, accessibility, PWA, performance, and diff hygiene checks.
 
 ### Goal
 

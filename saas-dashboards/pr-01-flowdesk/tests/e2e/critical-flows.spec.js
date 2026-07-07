@@ -23,8 +23,10 @@ test('user can add a client', async ({ page }) => {
   await page.getByLabel('Notatki').fill('Created by Playwright');
   await page.getByRole('button', { name: 'Zapisz' }).click();
 
-  await expect(page.getByText('Acme Service E2E')).toBeVisible();
-  await expect(page.getByText('e2e-client@flowdesk.test')).toBeVisible();
+  const clientRow = page.locator('tbody tr', { hasText: 'Acme Service E2E' });
+  await expect(clientRow).toBeVisible();
+  await expect(clientRow.getByText('e2e-client@flowdesk.test')).toBeVisible();
+  await expect(page.getByRole('heading', { name: 'Acme Service E2E' })).toBeVisible();
 });
 
 test('user-entered client HTML is rendered as text', async ({ page }) => {
@@ -45,7 +47,8 @@ test('user-entered client HTML is rendered as text', async ({ page }) => {
   await page.getByLabel('Notatki').fill('<script>alert(1)</script>');
   await page.getByRole('button', { name: 'Zapisz' }).click();
 
-  await expect(page.getByText(payload)).toBeVisible();
+  await expect(page.locator('tbody tr', { hasText: payload })).toBeVisible();
+  await expect(page.getByRole('heading', { name: payload })).toBeVisible();
   await expect(page.locator('tbody img')).toHaveCount(0);
   await expect(page.locator('tbody script')).toHaveCount(0);
   expect(dialogs).toEqual([]);
@@ -62,6 +65,23 @@ test('user can add a project', async ({ page }) => {
   await page.getByRole('button', { name: 'Zapisz' }).click();
 
   await expect(page.getByText('E2E Service Job')).toBeVisible();
+});
+
+test('topbar quick add opens the client and project creation flows', async ({ page }) => {
+  await loginDemoUser(page);
+
+  await page.getByRole('button', { name: 'Nowy' }).click();
+  await page.getByRole('dialog', { name: 'Szybkie dodanie' }).getByRole('button', { name: 'Nowy klient' }).click();
+
+  await expect(page).toHaveURL(/#\/clients/);
+  await expect(page.getByRole('dialog', { name: 'Nowy klient' })).toBeVisible();
+  await page.getByRole('dialog', { name: 'Nowy klient' }).getByRole('button', { name: 'Anuluj' }).click();
+
+  await page.getByRole('button', { name: 'Nowy' }).click();
+  await page.getByRole('dialog', { name: 'Szybkie dodanie' }).getByRole('button', { name: 'Nowe zlecenie' }).click();
+
+  await expect(page).toHaveURL(/#\/projects/);
+  await expect(page.getByRole('dialog', { name: 'Nowe zlecenie' })).toBeVisible();
 });
 
 test('user can export JSON data', async ({ page }) => {
@@ -84,15 +104,69 @@ test('user can switch theme', async ({ page }) => {
   await expect(page.locator('body')).toHaveClass(/theme-dark/);
 });
 
+test('user menu and reduced motion setting stay keyboard accessible', async ({ page }) => {
+  await loginDemoUser(page);
+
+  const userMenu = page.getByRole('button', { name: 'Otwórz menu użytkownika' });
+  await userMenu.click();
+  await expect(userMenu).toHaveAttribute('aria-expanded', 'true');
+  await expect(page.getByRole('menu')).toBeVisible();
+
+  await page.keyboard.press('Escape');
+
+  await expect(userMenu).toHaveAttribute('aria-expanded', 'false');
+  await expect(page.getByRole('menu')).toBeHidden();
+  await expect(userMenu).toBeFocused();
+
+  await page.getByRole('link', { name: /Ustawienia/ }).click();
+  await page.getByLabel('Ogranicz animacje').check();
+
+  await expect(page.locator('html')).toHaveClass(/motion-reduced/);
+  await expect(page.getByText('Zaktualizowano preferencje animacji.')).toBeVisible();
+});
+
 test('user can search globally and open a client detail route', async ({ page }) => {
   await loginDemoUser(page);
 
   await page.getByLabel('Szukaj').fill('Nova');
-  await page.getByRole('link', { name: /Klient Nova Studio/ }).click();
+  await page.getByRole('link', { name: /Klient: Nova Studio/ }).click();
 
   await expect(page).toHaveURL(/#\/clients\/c1/);
   await expect(page.getByRole('heading', { name: 'Nova Studio' })).toBeVisible();
   await expect(page.getByText('Powiązane zlecenia')).toBeVisible();
+});
+
+test('global search supports metadata matches, no-match state, and keyboard navigation', async ({ page }) => {
+  await loginDemoUser(page);
+
+  const search = page.getByLabel('Szukaj');
+  const resultsPanel = page.locator('#searchResults');
+
+  await search.fill('bez-wyniku');
+  await expect(page.getByText('Brak wyników dla tej frazy.')).toBeVisible();
+  await expect(resultsPanel).toBeVisible();
+
+  await search.fill('Marta Demo');
+  await expect(page.getByRole('link', { name: /Klient: Nova Studio/ })).toBeVisible();
+
+  await search.fill('Wizyta');
+  const eventResult = page.getByRole('link', { name: /Wydarzenie: Wizyta serwisowa: klimatyzacja/ });
+  await expect(eventResult).toBeVisible();
+
+  await search.press('ArrowDown');
+  await expect(eventResult).toBeFocused();
+
+  await page.keyboard.press('Escape');
+  await expect(search).toBeFocused();
+  await expect(search).toHaveValue('');
+  await expect(resultsPanel).toBeHidden();
+
+  await search.fill('Wizyta');
+  await search.press('ArrowDown');
+  await page.keyboard.press('Enter');
+
+  await expect(page).toHaveURL(/#\/calendar/);
+  await expect(page.getByRole('heading', { name: 'Kalendarz' })).toBeVisible();
 });
 
 test('user can open a project detail route and update its checklist', async ({ page }) => {
@@ -116,6 +190,105 @@ test('user archives important records instead of deleting them permanently', asy
   await page.getByLabel('Zakres').selectOption('archived');
   await expect(page.getByText('Nova Studio')).toBeVisible();
   await expect(page.locator('.badge--danger', { hasText: 'Archiwum' }).first()).toBeVisible();
+});
+
+test('modal returns focus to its opener after keyboard close', async ({ page }) => {
+  await loginDemoUser(page);
+
+  await page.getByRole('link', { name: /Klienci/ }).click();
+  const addClient = page.getByRole('button', { name: 'Dodaj klienta' });
+  await addClient.click();
+  await expect(page.getByRole('dialog', { name: 'Nowy klient' })).toBeVisible();
+
+  await page.keyboard.press('Escape');
+
+  await expect(page.getByRole('dialog', { name: 'Nowy klient' })).toBeHidden();
+  await expect(addClient).toBeFocused();
+});
+
+test('user confirms or cancels calendar event deletion', async ({ page }) => {
+  await loginDemoUser(page);
+
+  await page.getByRole('link', { name: /Kalendarz/ }).click();
+  const deleteEvent = page.getByRole('button', { name: 'Usuń' }).first();
+
+  await deleteEvent.click();
+  let dialog = page.getByRole('dialog', { name: 'Usuń wydarzenie' });
+  await expect(dialog).toBeVisible();
+  await dialog.getByRole('button', { name: 'Anuluj' }).click();
+  await expect(dialog).toBeHidden();
+  await expect(deleteEvent).toBeFocused();
+
+  await deleteEvent.click();
+  dialog = page.getByRole('dialog', { name: 'Usuń wydarzenie' });
+  await dialog.getByRole('button', { name: 'Usuń' }).click();
+
+  await expect(page.getByText('Usunięto wydarzenie.')).toBeVisible();
+});
+
+test('user completes form, modal, restore, and reset flows', async ({ page }) => {
+  await loginDemoUser(page);
+
+  await page.getByRole('link', { name: /Klienci/ }).click();
+  await page
+    .getByRole('row', { name: /Nova Studio/ })
+    .getByRole('button', { name: 'Edytuj' })
+    .click();
+  let dialog = page.getByRole('dialog', { name: 'Edytuj klienta' });
+  await dialog.getByLabel('Telefon').fill('+48 600 600 600');
+  await dialog.getByRole('button', { name: 'Zapisz' }).click();
+  await expect(page.getByText('Zaktualizowano klienta.')).toBeVisible();
+
+  await page
+    .getByRole('row', { name: /Nova Studio/ })
+    .getByRole('button', { name: 'Archiwizuj' })
+    .click();
+  dialog = page.getByRole('dialog', { name: 'Archiwizuj klienta' });
+  await dialog.getByRole('button', { name: 'Archiwizuj' }).click();
+  await page.getByLabel('Zakres').selectOption('archived');
+  await page
+    .getByRole('row', { name: /Nova Studio/ })
+    .getByRole('button', { name: 'Przywróć' })
+    .click();
+  await expect(page.getByText('Przywrócono klienta.')).toBeVisible();
+
+  await page.getByRole('link', { name: /Zlecenia/ }).click();
+  const projectCard = page.locator('.kanban__card', { hasText: 'Wdrożenie panelu klienta' });
+  await projectCard.getByRole('button', { name: 'Edytuj' }).click();
+  dialog = page.getByRole('dialog', { name: 'Edytuj zlecenie' });
+  await dialog.getByLabel('Nazwa').fill('Wdrożenie panelu klienta E2E');
+  await dialog.getByRole('button', { name: 'Zapisz' }).click();
+  await expect(page.getByText('Zaktualizowano zlecenie.')).toBeVisible();
+
+  const editedProjectCard = page.locator('.kanban__card', { hasText: 'Wdrożenie panelu klienta E2E' });
+  await editedProjectCard.getByRole('button', { name: 'Archiwizuj' }).click();
+  dialog = page.getByRole('dialog', { name: 'Archiwizuj zlecenie' });
+  await dialog.getByRole('button', { name: 'Archiwizuj' }).click();
+  await page.getByLabel('Zakres').selectOption('archived');
+  await page.locator('.kanban__card', { hasText: 'Wdrożenie panelu klienta E2E' }).getByRole('button', { name: 'Przywróć' }).click();
+  await expect(page.getByText('Przywrócono zlecenie.')).toBeVisible();
+
+  await page.getByRole('link', { name: /Kalendarz/ }).click();
+  await page.getByRole('button', { name: 'Dodaj wydarzenie' }).click();
+  dialog = page.getByRole('dialog', { name: 'Nowe wydarzenie' });
+  await dialog.getByLabel('Tytuł').fill('E2E onboarding call');
+  await dialog.getByLabel('Data').fill('2026-08-20');
+  await dialog.getByRole('button', { name: 'Zapisz' }).click();
+  await expect(page.getByText('Dodano wydarzenie.')).toBeVisible();
+  await expect(page.getByText('E2E onboarding call')).toBeVisible();
+
+  await page.getByRole('link', { name: /Ustawienia/ }).click();
+  const resetData = page.getByRole('button', { name: 'Reset demo danych' });
+  await resetData.click();
+  dialog = page.getByRole('dialog', { name: 'Reset demo danych' });
+  await dialog.getByRole('button', { name: 'Anuluj' }).click();
+  await expect(dialog).toBeHidden();
+  await expect(resetData).toBeFocused();
+
+  await resetData.click();
+  dialog = page.getByRole('dialog', { name: 'Reset demo danych' });
+  await dialog.getByRole('button', { name: 'Resetuj' }).click();
+  await expect(page.getByText('Dane demo zostały przywrócone.')).toBeVisible();
 });
 
 test('user imports valid JSON and rejects malformed JSON', async ({ page }) => {

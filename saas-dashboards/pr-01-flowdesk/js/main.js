@@ -27,22 +27,53 @@ const applyTheme = () => {
 
 let userMenuHandler = null;
 let searchCloseHandler = null;
+let pendingQuickAction = '';
+
+const quickActionTargets = Object.freeze({
+  client: {
+    hash: '#/clients',
+    trigger: '#addClient',
+    fallback: 'Przejdź do klientów i użyj przycisku dodawania.'
+  },
+  project: {
+    hash: '#/projects',
+    trigger: '#addProject',
+    fallback: 'Przejdź do zleceń i użyj przycisku dodawania.'
+  }
+});
+
+const runPendingQuickAction = () => {
+  const action = pendingQuickAction;
+  const target = quickActionTargets[action];
+  if (!target) return;
+  pendingQuickAction = '';
+
+  window.setTimeout(() => {
+    const trigger = qs(target.trigger, app);
+    if (!trigger) {
+      showToast(target.fallback);
+      return;
+    }
+    trigger.click();
+  }, 160);
+};
 
 const renderSearchResults = (results) => {
   if (!results.length) {
-    return '<div class="search__empty">Brak wyników.</div>';
+    return '<div class="search__empty" role="status">Brak wyników dla tej frazy.</div>';
   }
 
   return results
-    .map(
-      (result) => `
-        <a class="search__result" href="${escapeAttribute(result.href)}" data-search-result>
+    .map((result) => {
+      const accessibleLabel = `${result.label}: ${result.title}. ${result.description}`;
+      return `
+        <a class="search__result" href="${escapeAttribute(result.href)}" data-search-result aria-label="${escapeAttribute(accessibleLabel)}">
           <span class="search__type">${escapeHTML(result.label)}</span>
           <strong>${escapeHTML(result.title)}</strong>
           <span>${escapeHTML(result.description)}</span>
         </a>
-      `
-    )
+      `;
+    })
     .join('');
 };
 
@@ -51,13 +82,24 @@ const bindGlobalSearch = () => {
   const panel = qs('#searchResults', app);
   if (!input || !panel) return;
 
-  const close = () => {
+  const searchResults = () => [...panel.querySelectorAll('[data-search-result]')];
+
+  const close = ({ clear = false, restoreFocus = false } = {}) => {
     panel.hidden = true;
     panel.innerHTML = '';
+    if (clear) input.value = '';
+    if (restoreFocus) input.focus();
   };
 
   const open = () => {
     panel.hidden = false;
+  };
+
+  const focusResult = (index) => {
+    const results = searchResults();
+    if (!results.length) return;
+    const nextIndex = (index + results.length) % results.length;
+    results[nextIndex].focus();
   };
 
   const update = () => {
@@ -77,16 +119,40 @@ const bindGlobalSearch = () => {
   input.addEventListener('input', update);
   input.addEventListener('keydown', (event) => {
     if (event.key === 'Escape') {
-      input.value = '';
-      close();
+      event.preventDefault();
+      close({ clear: true });
     }
     if (event.key === 'ArrowDown') {
-      const firstResult = panel.querySelector('[data-search-result]');
-      if (firstResult) {
+      if (searchResults().length) {
         event.preventDefault();
-        firstResult.focus();
+        focusResult(0);
       }
     }
+  });
+
+  panel.addEventListener('keydown', (event) => {
+    if (event.key === 'Escape') {
+      event.preventDefault();
+      close({ clear: true, restoreFocus: true });
+      return;
+    }
+
+    if (!['ArrowDown', 'ArrowUp', 'Home', 'End'].includes(event.key)) return;
+
+    const results = searchResults();
+    if (!results.length) return;
+
+    event.preventDefault();
+    const currentIndex = results.indexOf(document.activeElement);
+    if (event.key === 'Home') {
+      focusResult(0);
+      return;
+    }
+    if (event.key === 'End') {
+      focusResult(results.length - 1);
+      return;
+    }
+    focusResult(event.key === 'ArrowDown' ? currentIndex + 1 : currentIndex - 1);
   });
 
   if (searchCloseHandler) document.removeEventListener('click', searchCloseHandler);
@@ -114,18 +180,38 @@ const renderShell = (activePath, view, params = {}) => {
   const viewContainer = qs('#view', app);
   view(viewContainer, params);
   bindGlobalSearch();
+  runPendingQuickAction();
 
   const userMenuBtn = qs('#userMenuBtn', app);
   const userMenuPanel = qs('#userMenuPanel', app);
+
+  const closeUserMenu = ({ restoreFocus = false } = {}) => {
+    userMenuPanel.classList.remove('user-menu__panel--open');
+    userMenuBtn.setAttribute('aria-expanded', 'false');
+    if (restoreFocus) userMenuBtn.focus();
+  };
+
+  const handleUserMenuEscape = (event) => {
+    if (event.key !== 'Escape' || !userMenuPanel.classList.contains('user-menu__panel--open')) return;
+    event.preventDefault();
+    closeUserMenu({ restoreFocus: true });
+  };
+
   userMenuBtn?.addEventListener('click', () => {
-    const isOpen = userMenuPanel.classList.toggle('user-menu__panel--open');
-    userMenuBtn.setAttribute('aria-expanded', String(isOpen));
+    const isOpen = !userMenuPanel.classList.contains('user-menu__panel--open');
+    if (isOpen) {
+      userMenuPanel.classList.add('user-menu__panel--open');
+      userMenuBtn.setAttribute('aria-expanded', 'true');
+      return;
+    }
+    closeUserMenu({ restoreFocus: true });
   });
+  userMenuBtn?.addEventListener('keydown', handleUserMenuEscape);
+  userMenuPanel?.addEventListener('keydown', handleUserMenuEscape);
   if (userMenuHandler) document.removeEventListener('click', userMenuHandler);
   userMenuHandler = (event) => {
     if (!userMenuPanel.contains(event.target) && !userMenuBtn.contains(event.target)) {
-      userMenuPanel.classList.remove('user-menu__panel--open');
-      userMenuBtn.setAttribute('aria-expanded', 'false');
+      closeUserMenu();
     }
   };
   document.addEventListener('click', userMenuHandler);
@@ -138,7 +224,9 @@ const renderShell = (activePath, view, params = {}) => {
 
   qs('#themeToggle', app)?.addEventListener('click', () => {
     const current = selectUiPreferences(store.getState()).theme;
-    store.actions.updateUiPreferences({ theme: current === 'light' ? 'dark' : 'light' });
+    const nextTheme = current === 'light' ? 'dark' : 'light';
+    const result = store.actions.updateUiPreferences({ theme: nextTheme });
+    showToast(result.ok ? `Włączono motyw ${nextTheme === 'dark' ? 'ciemny' : 'jasny'}.` : 'Nie udało się zaktualizować motywu.');
   });
 
   qs('#quickAdd', app)?.addEventListener('click', () => {
@@ -146,7 +234,7 @@ const renderShell = (activePath, view, params = {}) => {
       title: 'Szybkie dodanie',
       content: `
         <div class="list">
-          <p>Wybierz typ rekordu do utworzenia. Dane zostaną zapisane w demo store.</p>
+          <p>Wybierz formularz, który chcesz otworzyć w lokalnej przestrzeni demo.</p>
           ${button({ label: 'Nowy klient', variant: 'secondary', iconName: 'clients', attributes: { 'data-quick': 'client' } })}
           ${button({ label: 'Nowe zlecenie', variant: 'secondary', iconName: 'projects', attributes: { 'data-quick': 'project' } })}
         </div>
@@ -156,8 +244,15 @@ const renderShell = (activePath, view, params = {}) => {
 
     document.querySelectorAll('[data-quick]').forEach((button) => {
       button.addEventListener('click', () => {
-        showToast(`Dodano szkic: ${button.dataset.quick === 'client' ? 'klient' : 'zlecenie'}.`);
+        const target = quickActionTargets[button.dataset.quick];
+        if (!target) return;
+        pendingQuickAction = button.dataset.quick;
         close();
+        if (window.location.hash === target.hash) {
+          runPendingQuickAction();
+          return;
+        }
+        window.location.hash = target.hash;
       });
     });
   });
