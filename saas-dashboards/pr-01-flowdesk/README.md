@@ -72,6 +72,7 @@ flowdesk/
     observability.md       # kontrakt monitoringu frontendowego
     performance-budget.md  # budżety JS/CSS/app-shell i progi Lighthouse
     pwa-strategy.md        # cache strategies, offline i update lifecycle
+    qa/                    # evidence z zakończonych przebiegów QA
     release-checklist.md   # release, deployment i rollback
     versioning.md          # konwencja wersjonowania
   js/
@@ -94,6 +95,8 @@ flowdesk/
   404.html
   _redirects               # konfiguracja redirectów pod hosting statyczny, np. Netlify
   CHANGELOG.md
+  DONE.md
+  FLOWDESK-CONTEXT.md
   index.html
   manifest.webmanifest
   offline.html
@@ -103,6 +106,7 @@ flowdesk/
   service-worker-assets.js # wygenerowany manifest app-shell dla service workera
   service-worker.js
   sitemap.xml
+  TO-DO.md
 ```
 
 ## Architektura aplikacji
@@ -242,6 +246,37 @@ npm run dev
 
 Projekt należy uruchamiać przez lokalny serwer HTTP. Otwieranie `index.html` bezpośrednio przez `file://` nie jest zalecane, ponieważ aplikacja korzysta ze ścieżek absolutnych, modułów ES i service workera.
 
+## Publiczne demo i portfolio review
+
+FlowDesk można oceniać jako frontend-only SaaS demo pokazujące service management workflow, a nie jako gotowy produkt dla danych klientów.
+
+Szybki dostęp po uruchomieniu lokalnym:
+
+- Wejdź na `#/login`.
+- Użyj fikcyjnego emaila, np. `demo@flowdesk.test`.
+- Użyj dowolnego hasła demo o długości minimum 6 znaków, np. `demo123`.
+- Logowanie tworzy wyłącznie lokalną sesję demo w `localStorage`; nie ma serwerowej weryfikacji użytkownika.
+
+Granice publicznego demo:
+
+- Dane klientów, zleceń i wydarzeń są przykładowe albo lokalnie utworzone w przeglądarce.
+- Eksport, import i reset to narzędzia danych demo, nie backup ani cloud sync.
+- Nie należy wprowadzać prawdziwych danych klientów, sekretów, tokenów ani produkcyjnych credentiali.
+- FlowDesk nie zawiera backendu, produkcyjnego auth, bazy danych, live API, billing ani synchronizacji w chmurze.
+
+Strategia screenshotów:
+
+- Screenshoty nie są obecnie commitowane jako osobny pakiet portfolio.
+- Przyszłe screenshoty powinny być przechwycone z aktualnie uruchomionego UI, bez makiet niezgodnych z produktem.
+- Minimalny zestaw powinien obejmować desktop dashboard, klientów, zlecenia, kalendarz, ustawienia oraz mobilny shell.
+- Screenshoty trzeba odświeżać po zmianach UI o charakterze release-grade.
+
+Metadane publiczne:
+
+- `index.html` ma demo-oriented title, description i social preview copy.
+- Docelowy publiczny URL nie jest jeszcze zapisany w repozytorium.
+- `canonical`, `og:url`, absolutny `og:image`, `robots.txt` sitemap URL i produkcyjne `sitemap.xml` należy uzupełnić dopiero po wyborze finalnego adresu deploymentu.
+
 ## Komendy npm
 
 | Komenda | Opis |
@@ -263,6 +298,18 @@ Projekt należy uruchamiać przez lokalny serwer HTTP. Otwieranie `index.html` b
 | `npm run check` | Uruchamia pełny lokalny zestaw jakości: PWA check, lint, testy, e2e, a11y, build i performance budget. |
 | `npm run images` | Kompresuje obrazy z `assets/images/*` do WebP, jeśli taki katalog istnieje. |
 
+## Release hygiene
+
+Pliki generowane, które są intencjonalnie commitowane:
+
+- `css/style.min.css` - aktualizowany przez `npm run build:css` albo `npm run build`.
+- `js/main.min.js` - aktualizowany przez `npm run build:js` albo `npm run build`.
+- `service-worker-assets.js` - aktualizowany przez `npm run pwa:manifest` oraz automatycznie przed `npm run build`.
+
+Nie edytuj tych plików ręcznie. Po zmianach runtime, manifestu, CSS, JS, fontów lub ikon uruchom `npm run build` i potwierdź `npm run pwa:check`.
+
+Lokalne artefakty takie jak `node_modules/`, `test-results/`, `playwright-report/`, `coverage/`, `.lighthouseci/`, logi, cache i katalogi workspace agenta są ignorowane przez `.gitignore`. Przed commitem sprawdź `git status --short`, żeby potwierdzić, że w diffie są tylko pliki związane z zakresem zadania.
+
 ## Mapa dokumentacji
 
 | Dokument | Zakres |
@@ -272,13 +319,18 @@ Projekt należy uruchamiać przez lokalny serwer HTTP. Otwieranie `index.html` b
 | `docs/design-system.md` | komponenty UI, tokeny i konwencje interfejsu |
 | `docs/backend-readiness.md` | przyszły backend, RBAC, multi-user i offline sync |
 | `docs/api-contracts.md` | projekt przyszłych endpointów i mapowanie błędów API |
+| `docs/future-saas-readiness.md` | przyszłe konta, workspace, plany, billing boundaries i audit logi |
 | `docs/pwa-strategy.md` | service worker, app-shell cache, offline i update lifecycle |
 | `docs/performance-budget.md` | budżety rozmiaru, Lighthouse i startup responsiveness |
 | `docs/observability.md` | lokalny kontrakt monitoringu i zasady danych |
 | `docs/definition-of-done.md` | kryteria gotowości zmiany |
+| `docs/qa/ui-final-qa-checklist.md` | evidence finalnego UI QA po zakończonej roadmapie UI polish |
 | `docs/release-checklist.md` | release, deployment, post-release validation i rollback |
 | `docs/versioning.md` | konwencja wersjonowania demo milestone |
 | `CHANGELOG.md` | historia zmian i milestone |
+| `FLOWDESK-CONTEXT.md` | trwały kontekst projektu, granice demo i zasady pracy |
+| `DONE.md` | skonsolidowany stan ukończonych roadmap i obecny baseline projektu |
+| `TO-DO.md` | aktualny backlog przyszłych zadań i parking lot |
 
 ## Backend readiness i multi-user
 
@@ -296,6 +348,7 @@ Szczegóły:
 
 - `docs/backend-readiness.md` - architektura repozytoriów, RBAC, ograniczenia bezpieczeństwa i strategia offline,
 - `docs/api-contracts.md` - projekt przyszłych endpointów, payloadów, błędów i mapowania na repozytoria.
+- `docs/future-saas-readiness.md` - planistyczne granice kont, workspace, subskrypcji, billing, audit logów i organizacyjnych ustawień.
 
 ## Uwierzytelnianie demo
 
@@ -365,21 +418,22 @@ Do dopracowania pozostają m.in. pełny focus management po złożonych przepły
 
 ## Kierunek rozwoju
 
-Rekomendowany kierunek to najpierw ustabilizować fundamenty jakości i architektury, a dopiero potem rozbudowywać domenę produktową. Szczegółowa analiza i 10 priorytetów implementacyjnych znajdują się w `implementation-plan.md`. Roadmapa rozwoju projektu znajduje się w `plan.md`.
+Rekomendowany kierunek to utrzymywać obecny stabilny baseline, a przyszłe prace prowadzić małymi, review-friendly zadaniami. Stan ukończonych roadmap jest skonsolidowany w `DONE.md`, a aktualny backlog dalszych prac znajduje się w `TO-DO.md`.
 
 Najważniejsze pierwsze kroki:
 
 1. Utrzymać istniejące quality gates: lint, format, unit, integration, e2e, a11y i build.
-2. Utrzymać PWA manifest, update flow, offline smoke tests i performance budgets przy każdej zmianie runtime.
-3. Utrzymywać dokumentację architektury, ADR-y, changelog, release checklistę i observability przy zmianach.
-4. Dopiero po stabilizacji procesów zdecydować o bundlerze, TypeScript albo frameworku.
-5. Przy przyszłym backendzie zaimplementować prawdziwe auth, serwerowy RBAC, walidację, storage, audyt i sync API zgodnie z `docs/api-contracts.md`.
+2. Doprowadzić publiczne demo do finalnego URL-a i uzupełnić deployment-specific metadata.
+3. Utrzymać PWA manifest, update flow, offline smoke tests i performance budgets przy każdej zmianie runtime.
+4. Utrzymywać dokumentację architektury, ADR-y, changelog, release checklistę i observability przy zmianach.
+5. Dopiero po realnej potrzebie zdecydować o bundlerze, TypeScript albo frameworku.
+6. Przy przyszłym backendzie zaimplementować prawdziwe auth, serwerowy RBAC, walidację, storage, audyt i sync API zgodnie z `docs/api-contracts.md`.
 
 ## Deployment
 
 Projekt jest przygotowany jako statyczna aplikacja, więc może być hostowany np. na Netlify, Cloudflare Pages, GitHub Pages lub dowolnym serwerze statycznym. Plik `_redirects` sugeruje kompatybilność z Netlify.
 
-Przed publikacją trzeba zmienić wartości produkcyjne w `index.html`, `sitemap.xml`, `robots.txt` i metadanych Open Graph, szczególnie `canonical`, `og:url` oraz `og:image`.
+Przed publikacją trzeba uzupełnić wartości produkcyjne w `index.html`, `sitemap.xml`, `robots.txt` i metadanych Open Graph, szczególnie `canonical`, `og:url`, absolutny `og:image`, `Sitemap` oraz `<loc>`. Do czasu wyboru finalnego URL-a repozytorium nie powinno wskazywać placeholderów typu `example.com`.
 
 Release i rollback należy prowadzić według `docs/release-checklist.md`. Przy nazwanych milestone trzeba zaktualizować `CHANGELOG.md` i wersję zgodnie z `docs/versioning.md`.
 

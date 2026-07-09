@@ -89,7 +89,7 @@ test('user can export JSON data', async ({ page }) => {
 
   await page.getByRole('link', { name: /Ustawienia/ }).click();
   const downloadPromise = page.waitForEvent('download');
-  await page.getByRole('button', { name: 'Eksportuj JSON' }).click();
+  await page.getByRole('button', { name: 'Eksportuj lokalny JSON' }).click();
   const download = await downloadPromise;
 
   expect(download.suggestedFilename()).toBe('flowdesk-data.json');
@@ -179,16 +179,47 @@ test('user can open a project detail route and update its checklist', async ({ p
   await expect(page.getByText('Zaktualizowano checklistę.')).toBeVisible();
 });
 
+test('edge states guide users through filtered empty and missing routes', async ({ page }) => {
+  await loginDemoUser(page);
+
+  await page.getByRole('link', { name: /Klienci/ }).click();
+  await page.getByLabel('Filtruj').fill('brak-klienta-e2e');
+
+  await expect(page.getByText('Filtry ukrywają klientów')).toBeVisible();
+  await expect(page.getByText('Brak klienta w podglądzie')).toBeVisible();
+
+  await page.getByRole('link', { name: /Zlecenia/ }).click();
+  await page.getByLabel('Status').selectOption('Done');
+  await page.getByLabel('Priorytet').selectOption('High');
+
+  await expect(page.getByText('Filtry ukrywają zlecenia')).toBeVisible();
+
+  await page.goto('/#/clients/missing-client');
+  await expect(page.getByRole('heading', { name: 'Klient nie znaleziony' })).toBeVisible();
+  await expect(page.getByText('Brak rekordu klienta')).toBeVisible();
+
+  await page.goto('/#/projects/missing-project');
+  await expect(page.getByRole('heading', { name: 'Zlecenie nie znalezione' })).toBeVisible();
+  await expect(page.getByText('Brak rekordu zlecenia')).toBeVisible();
+
+  await page.goto('/#/unknown-route');
+  await expect(page.getByRole('heading', { name: 'Nie znaleziono widoku' })).toBeVisible();
+  await expect(page.getByText('Dostępne widoki demo to dashboard, klienci, zlecenia, kalendarz i ustawienia.')).toBeVisible();
+});
+
 test('user archives important records instead of deleting them permanently', async ({ page }) => {
   await loginDemoUser(page);
 
   await page.getByRole('link', { name: /Klienci/ }).click();
-  await page.getByRole('button', { name: 'Archiwizuj' }).first().click();
+  await page
+    .getByRole('row', { name: /Nova Studio/ })
+    .getByRole('button', { name: 'Archiwizuj' })
+    .click();
   await page.locator('.modal__footer').getByRole('button', { name: 'Archiwizuj' }).click();
 
   await expect(page.getByText('Zarchiwizowano klienta.')).toBeVisible();
   await page.getByLabel('Zakres').selectOption('archived');
-  await expect(page.getByText('Nova Studio')).toBeVisible();
+  await expect(page.getByRole('row', { name: /Nova Studio/ })).toBeVisible();
   await expect(page.locator('.badge--danger', { hasText: 'Archiwum' }).first()).toBeVisible();
 });
 
@@ -278,7 +309,7 @@ test('user completes form, modal, restore, and reset flows', async ({ page }) =>
   await expect(page.getByText('E2E onboarding call')).toBeVisible();
 
   await page.getByRole('link', { name: /Ustawienia/ }).click();
-  const resetData = page.getByRole('button', { name: 'Reset demo danych' });
+  const resetData = page.getByRole('button', { name: 'Resetuj dane demo' });
   await resetData.click();
   dialog = page.getByRole('dialog', { name: 'Reset demo danych' });
   await dialog.getByRole('button', { name: 'Anuluj' }).click();
@@ -288,16 +319,33 @@ test('user completes form, modal, restore, and reset flows', async ({ page }) =>
   await resetData.click();
   dialog = page.getByRole('dialog', { name: 'Reset demo danych' });
   await dialog.getByRole('button', { name: 'Resetuj' }).click();
-  await expect(page.getByText('Dane demo zostały przywrócone.')).toBeVisible();
+  await expect(page.getByText('Przywrócono startowe dane demo.')).toBeVisible();
 });
 
-test('user imports valid JSON and rejects malformed JSON', async ({ page }) => {
+test('user imports confirmed valid JSON and rejects unsafe JSON', async ({ page }) => {
   await loginDemoUser(page);
 
   await page.getByRole('link', { name: /Ustawienia/ }).click();
   await page.getByLabel('Dane JSON').fill('{broken json');
-  await page.getByRole('button', { name: 'Importuj JSON' }).click();
+  await page.getByRole('button', { name: 'Sprawdź i importuj JSON' }).click();
   await expect(page.getByText('Nieprawidłowy plik JSON.')).toBeVisible();
+
+  await page.getByLabel('Dane JSON').fill(JSON.stringify({ clients: 'broken', projects: [], events: [] }));
+  await page.getByRole('button', { name: 'Sprawdź i importuj JSON' }).click();
+  await expect(page.getByText(/Import musi zawierać pełny eksport FlowDesk JSON/)).toBeVisible();
+
+  await page.getByLabel('Dane JSON').fill(
+    JSON.stringify({
+      clients: [
+        { id: 'c-duplicate', name: 'First Client', email: 'first@flowdesk.test' },
+        { id: 'c-duplicate', name: 'Second Client', email: 'second@flowdesk.test' }
+      ],
+      projects: [],
+      events: []
+    })
+  );
+  await page.getByRole('button', { name: 'Sprawdź i importuj JSON' }).click();
+  await expect(page.getByText(/Import zawiera zduplikowane identyfikatory rekordów/)).toBeVisible();
 
   await page.getByLabel('Dane JSON').fill(
     JSON.stringify({
@@ -307,7 +355,11 @@ test('user imports valid JSON and rejects malformed JSON', async ({ page }) => {
       ui: { theme: 'light' }
     })
   );
-  await page.getByRole('button', { name: 'Importuj JSON' }).click();
+  await page.getByRole('button', { name: 'Sprawdź i importuj JSON' }).click();
+
+  const importDialog = page.getByRole('dialog', { name: 'Zastąp lokalne dane demo?' });
+  await expect(importDialog).toBeVisible();
+  await importDialog.getByRole('button', { name: 'Importuj i zastąp' }).click();
   await page.getByRole('link', { name: /Klienci/ }).click();
 
   await expect(page.getByRole('cell', { name: 'Imported Client' })).toBeVisible();
