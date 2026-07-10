@@ -6,6 +6,9 @@ This document is the current repository-level backlog for realistic future FlowD
 work. It replaces older root roadmap documents as the compact place to decide what
 should happen next.
 
+Completed Priority 1 is recorded in `DONE.md`. Remaining priority numbers preserve
+the original backlog order.
+
 Items below are planning targets. They do not authorize backend implementation,
 real authentication, billing, payment integrations, a database, framework migration,
 new dependencies, or production security claims unless a future task scopes that work
@@ -22,36 +25,23 @@ explicitly.
 - do not add new dependencies for polish or convenience without a clear scoped reason
 - keep future tasks small enough to review and commit as one logical change
 
-## Priority 1 - Final Review And Demo Closure
-
-Goal: confirm the current completed roadmap state is clean, reviewable, and ready for
-the next public-demo step.
-
-Scope:
-
-- run the appropriate local quality gate for the current repository state
-- confirm `DONE.md`, `TO-DO.md`, `README.md`, and `FLOWDESK-CONTEXT.md` stay aligned
-- confirm no old root planning document references remain after consolidation
-- confirm git status is reviewable before the next commit
-
-Acceptance criteria:
-
-- no broken Markdown links to removed roadmap files
-- no source, generated, PWA, dependency, or test artifact changes bundled into the
-  consolidation work
-- current future work is represented in this file instead of obsolete root plans
-
-Suggested verification:
-
-- search Markdown files for removed root roadmap filenames
-- `npm run lint`
-- `git diff --check`
-- `git status --short`
-
 ## Priority 2 - Portfolio Release Package
 
 Goal: prepare FlowDesk for a public portfolio demo without overstating production
 readiness.
+
+Current status:
+
+- canonical public origin is confirmed as `https://saas-pr01-flowdesk.netlify.app/`
+- direct demo login URL is confirmed as
+  `https://saas-pr01-flowdesk.netlify.app/#/login`
+- repository-level metadata and release documentation have been prepared for the
+  confirmed public URLs
+- the public Netlify deployment is maintained separately through `kp-code-portfolio`
+  and must not be inspected, modified, or deployed from this repository
+- Priority 2 remains active until the owner-managed deployment sync publishes the
+  updated metadata and live `index.html`, `robots.txt`, and `sitemap.xml` match the
+  confirmed canonical origin
 
 Scope:
 
@@ -79,6 +69,21 @@ Suggested verification:
 
 Goal: create current, truthful portfolio visuals and close the remaining manual UI
 review gaps that automated Chromium checks do not fully cover.
+
+Current status:
+
+- local visual evidence has been captured from the current FlowDesk application
+  into `docs/qa/priority-3-screenshots/`
+- scoped QA evidence is recorded in `docs/qa/priority-3-visual-evidence.md`
+- Chromium visual smoke coverage has been completed for the captured app surfaces
+- one confirmed visual issue was fixed: desktop clients table action labels no
+  longer wrap inside words
+- Firefox and WebKit visual smoke checks remain pending because matching
+  Playwright browser executables are unavailable in the current environment
+- manual physical-device touch testing, genuine screen-reader testing, and final
+  owner-led portfolio review remain pending
+- Priority 3 remains active until the pending manual and unavailable browser gates
+  are completed and documented
 
 Scope:
 
@@ -127,6 +132,27 @@ Scope:
 - audit logging
 - request correlation and observability provider boundary
 - offline sync and conflict resolution model
+
+Current status (2026-07-10):
+
+- the current frontend readiness layers and their demo-only limitations are
+  mapped in `docs/backend-readiness.md`
+- provider-neutral session, organization lifecycle, tenant isolation,
+  server-side RBAC, persistence, validation, audit, correlation, and phased
+  migration boundaries are documented
+- `docs/api-contracts.md` now defines Proposed organization scoping, stable
+  envelopes, pagination, idempotency, online concurrency, error mapping, and a
+  Deferred offline-sync contract
+- `docs/future-saas-readiness.md` is the canonical Proposed/Deferred owner
+  decision register
+- `docs/adr/008-provider-neutral-backend-boundary.md` records the architecture
+  decision with status Proposed
+- Priority 4 remains active because backend technology, deployment topology,
+  identity provider, storage/recovery targets, final RBAC delete policy, data and
+  audit retention, observability constraints, and offline/conflict scope still
+  require owner approval
+- no backend runtime, API adapter, network request, dependency, deployment, or
+  current frontend behavior was added by this planning milestone
 
 Acceptance criteria:
 
