@@ -8,7 +8,9 @@
   border: 1px solid transparent;
   font-weight: 600;
   cursor: pointer;
-  transition: transform var(--transition-fast), box-shadow var(--transition-fast);
+  transition:
+    transform var(--transition-fast),
+    box-shadow var(--transition-fast);
   background: var(--color-surface);
   color: var(--color-text);
 }
@@ -16,6 +18,13 @@
 .button:hover {
   transform: translateY(-1px);
   box-shadow: var(--shadow-sm);
+}
+
+.button:disabled {
+  cursor: not-allowed;
+  opacity: 0.65;
+  transform: none;
+  box-shadow: none;
 }
 
 .button--primary {

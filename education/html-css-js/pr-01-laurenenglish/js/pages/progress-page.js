@@ -1,22 +1,22 @@
-import { TRACKS, WEEKDAY_LABELS } from '../data/progress.js';
+import { TRACKS, WEEKDAY_LABELS } from "../data/progress.js";
 import {
   exportProgressState,
   loadProgressState,
   resetProgressState,
-  saveProgressState
-} from '../state/storage.js';
+  saveProgressState,
+} from "../state/storage.js";
 
 const MAX_STREAK_DAYS = 60;
 
 const toLocalDateKey = (date) => {
   const year = date.getFullYear();
-  const month = String(date.getMonth() + 1).padStart(2, '0');
-  const day = String(date.getDate()).padStart(2, '0');
+  const month = String(date.getMonth() + 1).padStart(2, "0");
+  const day = String(date.getDate()).padStart(2, "0");
   return `${year}-${month}-${day}`;
 };
 
 const formatShortDate = (date) =>
-  date.toLocaleDateString('pl-PL', { day: '2-digit', month: '2-digit' });
+  date.toLocaleDateString("pl-PL", { day: "2-digit", month: "2-digit" });
 
 const getWeekStart = (date) => {
   const start = new Date(date);
@@ -64,11 +64,11 @@ const calculateStreak = (checkIns) => {
 const buildGoalOptions = (selected) =>
   Array.from({ length: 7 }, (_, index) => {
     const value = index + 1;
-    return `<option value="${value}" ${value === selected ? 'selected' : ''}>${value}</option>`;
-  }).join('');
+    return `<option value="${value}" ${value === selected ? "selected" : ""}>${value}</option>`;
+  }).join("");
 
-const renderTracks = ({ container, state, todayKey, weekDates }) => {
-  container.innerHTML = TRACKS.map((track) => {
+const renderTracks = ({ state, todayKey, weekDates }) =>
+  TRACKS.map((track) => {
     const goal = state.goals[track.id];
     const todayDone = state.checkIns[todayKey]?.[track.id] === true;
     const weekCount = countWeekCheckIns(state.checkIns, weekDates, track.id);
@@ -80,7 +80,7 @@ const renderTracks = ({ container, state, todayKey, weekDates }) => {
           <p class="card__text">${track.description}</p>
         </div>
         <div class="progress-card__controls">
-          <label class="form__label" for="goal-${track.id}">Cel tygodniowy (sesje)</label>
+          <label class="form__label" for="goal-${track.id}">Cel tygodniowy – ${track.label} (sesje)</label>
           <select
             id="goal-${track.id}"
             class="form__input"
@@ -95,23 +95,23 @@ const renderTracks = ({ container, state, todayKey, weekDates }) => {
             <button
               class="button button--ghost progress-card__toggle"
               type="button"
+              aria-label="Dzisiejszy check-in: ${track.label}"
               aria-pressed="${todayDone}"
               data-checkin-toggle
               data-track-id="${track.id}"
               data-focus-id="checkin-${track.id}"
             >
-              <span aria-hidden="true">${todayDone ? '✓' : '○'}</span>
-              <span>${todayDone ? 'Wykonane' : 'Nie'}</span>
+              <span aria-hidden="true">${todayDone ? "✓" : "○"}</span>
+              <span>${todayDone ? "Wykonane" : "Nie"}</span>
             </button>
           </div>
         </div>
         <p class="progress-card__summary">W tym tygodniu: ${weekCount}/${goal}</p>
       </article>
     `;
-  }).join('');
-};
+  }).join("");
 
-const renderWeekGrid = ({ container, state, weekDates }) => {
+const renderWeekGrid = ({ state, weekDates }) => {
   const headerCells = weekDates
     .map((date, index) => {
       const label = WEEKDAY_LABELS[index];
@@ -122,7 +122,7 @@ const renderWeekGrid = ({ container, state, weekDates }) => {
         </th>
       `;
     })
-    .join('');
+    .join("");
 
   const bodyRows = TRACKS.map((track) => {
     const cells = weekDates
@@ -131,12 +131,12 @@ const renderWeekGrid = ({ container, state, weekDates }) => {
         const done = state.checkIns[key]?.[track.id] === true;
         return `
           <td class="progress-week__cell">
-            <span class="progress-week__dot ${done ? 'is-done' : ''}" aria-hidden="true"></span>
-            <span class="sr-only">${done ? 'Wykonane' : 'Brak'}</span>
+            <span class="progress-week__dot ${done ? "is-done" : ""}" aria-hidden="true"></span>
+            <span class="sr-only">${done ? "Wykonane" : "Brak"}</span>
           </td>
         `;
       })
-      .join('');
+      .join("");
 
     return `
       <tr>
@@ -144,9 +144,9 @@ const renderWeekGrid = ({ container, state, weekDates }) => {
         ${cells}
       </tr>
     `;
-  }).join('');
+  }).join("");
 
-  container.innerHTML = `
+  return `
     <div class="progress-week">
       <table class="progress-week__table">
         <thead>
@@ -163,7 +163,7 @@ const renderWeekGrid = ({ container, state, weekDates }) => {
   `;
 };
 
-const renderStats = ({ container, state, weekDates }) => {
+const renderStats = ({ state, weekDates }) => {
   const trackCards = TRACKS.map((track) => {
     const goal = state.goals[track.id];
     const count = countWeekCheckIns(state.checkIns, weekDates, track.id);
@@ -176,11 +176,11 @@ const renderStats = ({ container, state, weekDates }) => {
         <p class="card__text">Realizacja celu tygodniowego (${count}/${goal}).</p>
       </article>
     `;
-  }).join('');
+  }).join("");
 
   const streak = calculateStreak(state.checkIns);
 
-  container.innerHTML = `
+  return `
     <div class="grid grid--cards">
       ${trackCards}
       <article class="card card--soft progress-stat">
@@ -193,23 +193,35 @@ const renderStats = ({ container, state, weekDates }) => {
 };
 
 export const initProgressPage = () => {
-  const root = document.querySelector('#progress-root');
+  const root = document.querySelector("#progress-root");
   if (!root) return;
+
+  const statusEl = root.querySelector("[data-progress-status]");
+  const tracksContainer = root.querySelector("[data-progress-tracks]");
+  const weekContainer = root.querySelector("[data-progress-week]");
+  const statsContainer = root.querySelector("[data-progress-stats]");
+  const actionButtons = Array.from(
+    root.querySelectorAll("[data-progress-action]"),
+  );
+  if (
+    !statusEl ||
+    !tracksContainer ||
+    !weekContainer ||
+    !statsContainer ||
+    actionButtons.length !== 2
+  ) {
+    return;
+  }
 
   let state = loadProgressState();
   let statusTimeout;
-
-  const statusEl = root.querySelector('[data-progress-status]');
-  const tracksContainer = root.querySelector('[data-progress-tracks]');
-  const weekContainer = root.querySelector('[data-progress-week]');
-  const statsContainer = root.querySelector('[data-progress-stats]');
 
   const setStatus = (message) => {
     if (!statusEl) return;
     statusEl.textContent = message;
     if (statusTimeout) window.clearTimeout(statusTimeout);
     statusTimeout = window.setTimeout(() => {
-      statusEl.textContent = '';
+      statusEl.textContent = "";
     }, 2500);
   };
 
@@ -217,25 +229,24 @@ export const initProgressPage = () => {
     const todayKey = toLocalDateKey(new Date());
     const weekDates = getWeekDates(new Date());
     const activeFocusId = document.activeElement?.dataset?.focusId;
+    const tracksMarkup = renderTracks({ state, todayKey, weekDates });
+    const weekMarkup = renderWeekGrid({ state, weekDates });
+    const statsMarkup = renderStats({ state, weekDates });
 
-    if (tracksContainer) {
-      renderTracks({ container: tracksContainer, state, todayKey, weekDates });
-    }
-    if (weekContainer) {
-      renderWeekGrid({ container: weekContainer, state, weekDates });
-    }
-    if (statsContainer) {
-      renderStats({ container: statsContainer, state, weekDates });
-    }
+    tracksContainer.innerHTML = tracksMarkup;
+    weekContainer.innerHTML = weekMarkup;
+    statsContainer.innerHTML = statsMarkup;
 
     if (activeFocusId) {
-      const nextFocus = root.querySelector(`[data-focus-id="${activeFocusId}"]`);
+      const nextFocus = root.querySelector(
+        `[data-focus-id="${activeFocusId}"]`,
+      );
       if (nextFocus) nextFocus.focus();
     }
   };
 
   const handleGoalChange = (event) => {
-    const select = event.target.closest('[data-goal-select]');
+    const select = event.target.closest("[data-goal-select]");
     if (!select) return;
     const trackId = select.dataset.trackId;
     const value = Number(select.value);
@@ -244,15 +255,15 @@ export const initProgressPage = () => {
       ...state,
       goals: {
         ...state.goals,
-        [trackId]: value
-      }
+        [trackId]: value,
+      },
     });
     render();
-    setStatus('Zaktualizowano cel tygodniowy.');
+    setStatus("Zaktualizowano cel tygodniowy.");
   };
 
   const handleToggle = (event) => {
-    const button = event.target.closest('[data-checkin-toggle]');
+    const button = event.target.closest("[data-checkin-toggle]");
     if (!button) return;
     const trackId = button.dataset.trackId;
     if (!trackId) return;
@@ -264,49 +275,55 @@ export const initProgressPage = () => {
       ...state.checkIns,
       [todayKey]: {
         ...currentEntry,
-        [trackId]: !isDone
-      }
+        [trackId]: !isDone,
+      },
     };
 
     state = saveProgressState({
       ...state,
-      checkIns: nextCheckIns
+      checkIns: nextCheckIns,
     });
     render();
-    setStatus(isDone ? 'Cofnięto dzisiejszy check-in.' : 'Zapisano dzisiejszy check-in.');
+    setStatus(
+      isDone
+        ? "Cofnięto dzisiejszy check-in."
+        : "Zapisano dzisiejszy check-in.",
+    );
   };
 
   const handleReset = () => {
-    const confirmed = window.confirm('Czy na pewno chcesz wyczyścić wszystkie dane postępów?');
+    const confirmed = window.confirm(
+      "Czy na pewno chcesz wyczyścić wszystkie dane postępów?",
+    );
     if (!confirmed) return;
     resetProgressState();
     state = loadProgressState();
     render();
-    setStatus('Dane zostały wyczyszczone.');
+    setStatus("Dane zostały wyczyszczone.");
   };
 
   const handleExport = () => {
     const json = exportProgressState(state);
-    const blob = new Blob([json], { type: 'application/json' });
+    const blob = new Blob([json], { type: "application/json" });
     const url = URL.createObjectURL(blob);
-    const link = document.createElement('a');
+    const link = document.createElement("a");
     link.href = url;
     link.download = `postepy-${toLocalDateKey(new Date())}.json`;
     document.body.appendChild(link);
     link.click();
     link.remove();
     URL.revokeObjectURL(url);
-    setStatus('Wyeksportowano dane do pliku JSON.');
+    setStatus("Wyeksportowano dane do pliku JSON.");
   };
 
-  root.addEventListener('change', handleGoalChange);
-  root.addEventListener('click', (event) => {
-    const action = event.target.closest('[data-progress-action]');
+  root.addEventListener("change", handleGoalChange);
+  root.addEventListener("click", (event) => {
+    const action = event.target.closest("[data-progress-action]");
     if (action) {
-      if (action.dataset.progressAction === 'reset') {
+      if (action.dataset.progressAction === "reset") {
         handleReset();
       }
-      if (action.dataset.progressAction === 'export') {
+      if (action.dataset.progressAction === "export") {
         handleExport();
       }
     }
@@ -314,4 +331,7 @@ export const initProgressPage = () => {
   });
 
   render();
+  actionButtons.forEach((button) => {
+    button.disabled = false;
+  });
 };

@@ -1,4 +1,5 @@
 :root {
+  /* Colors */
   --color-bg: #f6f7f9;
   --color-surface: #ffffff;
   --color-surface-soft: #eef7f4;
@@ -9,11 +10,17 @@
   --color-text-muted: #52616b;
   --color-border: #e0e6eb;
   --color-shadow: rgba(15, 23, 42, 0.08);
+
+  /* Radius */
   --radius-sm: 10px;
   --radius-md: 16px;
   --radius-lg: 24px;
+
+  /* Shadows */
   --shadow-sm: 0 8px 24px var(--color-shadow);
   --shadow-md: 0 16px 40px var(--color-shadow);
+
+  /* Spacing */
   --space-2xs: 4px;
   --space-xs: 8px;
   --space-sm: 12px;
@@ -23,6 +30,8 @@
   --space-2xl: 48px;
   --space-3xl: 64px;
   --space-4xl: 96px;
+
+  /* Font sizes */
   --text-xs: 0.75rem;
   --text-sm: 0.875rem;
   --text-md: 1rem;
@@ -31,6 +40,8 @@
   --text-2xl: 2rem;
   --text-3xl: 2.5rem;
   --text-4xl: 3.25rem;
+
+  /* Z-index */
   --z-header: 1000;
   --transition-fast: 160ms ease;
   --transition-base: 240ms ease;

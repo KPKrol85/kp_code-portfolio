@@ -6,6 +6,12 @@
   grid-template-columns: 1fr;
 }
 
+.progress-fallback {
+  grid-column: 1 / -1;
+  margin: 0;
+  color: var(--color-text-muted);
+}
+
 .progress-card {
   display: grid;
   gap: var(--space-md);
@@ -25,6 +31,12 @@
 
 .progress-card__toggle {
   gap: var(--space-xs);
+}
+
+.progress-card__toggle[aria-pressed="true"] {
+  border-color: var(--color-primary);
+  background: var(--color-surface-soft);
+  color: var(--color-primary-dark);
 }
 
 .progress-card__summary {

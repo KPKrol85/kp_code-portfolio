@@ -4,17 +4,20 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "dev": "concurrently -k \"npm:watch:js\" \"npm:watch:css\" \"npm:serve\"",
+    "dev": "npm run build:html && concurrently -k \"npm:watch:js\" \"npm:watch:css\" \"npm:serve\"",
     "serve": "serve .",
+    "check:data": "node scripts/check-content-data.mjs",
+    "build:html": "node scripts/build-html.mjs",
+    "check:html": "node scripts/build-html.mjs --check",
     "build:css": "node -e \"require('fs').mkdirSync('assets/build',{recursive:true})\" && postcss css/style.css -o assets/build/style.min.css",
     "watch:css": "node -e \"require('fs').mkdirSync('assets/build',{recursive:true})\" && postcss css/style.css -o assets/build/style.min.css --watch",
     "build:js": "node -e \"require('fs').mkdirSync('assets/build',{recursive:true})\" && esbuild js/main.js --bundle --minify --outfile=assets/build/main.min.js",
     "watch:js": "node -e \"require('fs').mkdirSync('assets/build',{recursive:true})\" && esbuild js/main.js --bundle --sourcemap=inline --watch --outfile=assets/build/main.min.js",
-    "build:sw": "node -e \"const fs=require('fs');const version=process.env.npm_package_version||new Date().toISOString().replace(/[-:.TZ]/g,'');const template=fs.readFileSync('service-worker.template.js','utf8');fs.writeFileSync('service-worker.js',template.replace(/__BUILD_VERSION__/g,version));\"",
-    "build": "npm run build:js && npm run build:css && npm run build:sw",
+    "build:sw": "node -e \"const fs=require('fs');const {version}=require('./package.json');const template=fs.readFileSync('service-worker.template.js','utf8');fs.writeFileSync('service-worker.js',template.replace(/__BUILD_VERSION__/g,version));\"",
+    "build": "npm run build:html && npm run build:js && npm run build:css && npm run build:sw",
     "images": "imagemin assets/img/* --out-dir=assets/img --plugin=webp --plugin=avif",
     "lint:js": "eslint js --ext .js",
-    "format": "prettier --write \"**/*.{html,css,js,md,json,webmanifest,xml}\""
+    "format": "prettier --write \"**/*.{html,css,js,mjs,md,json,webmanifest,xml}\""
   },
   "devDependencies": {
     "concurrently": "^8.2.2",
@@ -28,7 +31,6 @@
     "postcss-cli": "^11.0.0",
     "postcss-import": "^16.1.0",
     "prettier": "^3.2.5",
-    "serve": "^14.2.3",
-    "terser": "^5.31.0"
+    "serve": "^14.2.3"
   }
 }

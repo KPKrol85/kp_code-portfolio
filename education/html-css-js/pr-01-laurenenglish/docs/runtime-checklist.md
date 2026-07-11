@@ -1,9 +1,26 @@
 # Runtime checklist (prod)
 
+## Build
+- Zainstaluj zadeklarowane zależności: `npm install`.
+- Uruchom pełny build: `npm run build`.
+- Sprawdź parity i semantykę wspólnego shellu: `npm run check:html`.
+- Potwierdź, że powstały:
+  - `assets/build/style.min.css`
+  - `assets/build/main.min.js`
+  - `service-worker.js`
+- Sprawdź, czy `BUILD_VERSION` w `service-worker.js` jest identyczny z `version` w `package.json`.
+
 ## Build assets
-- Otwórz dowolną stronę i w DevTools → Network upewnij się, że:
-  - `style.min.css` i `main.min.js` ładują się z `/assets/build/`.
-  - Nie ma requestów do `css/` ani `js/` źródłowych plików.
+- Otwórz każdą stronę (`index.html`, `uslugi.html`, `pakiety.html`, `materialy.html`, `postepy.html`, `thank-you.html`, `offline.html`, `404.html`) i w DevTools → Network upewnij się, że:
+  - `/assets/build/style.min.css` zwraca HTTP 200.
+  - `/assets/build/main.min.js` zwraca HTTP 200.
+  - Nie ma requestów do kanonicznych plików `css/` ani `js/`.
+  - Fonty Inter ładują się z `/assets/fonts/` bez odpowiedzi 404.
+  - Konsola nie zawiera błędów modułów ani błędów ładowania zasobów.
+
+## Responsive smoke test
+- Sprawdź osiem stron przy szerokości desktopowej i mobilnej.
+- Potwierdź, że po zmianie ścieżek assetów nie pojawiły się nowe przesunięcia, nakładanie treści ani poziomy overflow względem stanu źródłowego.
 
 ## Service Worker (aktualizacja cache)
 - W DevTools → Application → Service Workers:

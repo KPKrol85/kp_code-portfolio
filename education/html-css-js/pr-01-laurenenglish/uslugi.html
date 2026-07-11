@@ -33,10 +33,11 @@
     <link rel="icon" href="assets/icons/icon-192.svg" type="image/svg+xml" />
   </head>
   <body class="page">
+    <!-- shared-shell:header:start -->
     <a class="skip-link" href="#main">Przejdź do treści</a>
     <header class="header" id="top">
       <div class="container header__inner">
-        <a class="header__logo" href="index.html" aria-label="Lauren – Clean English">
+        <a class="header__logo" href="/index.html" aria-label="Lauren – Clean English">
           <span class="header__logo-mark">LC</span>
           <span class="header__logo-text">Lauren – Clean English</span>
         </a>
@@ -46,43 +47,63 @@
             type="button"
             aria-expanded="false"
             aria-controls="nav-drawer"
+            hidden
           >
             <span class="nav__toggle-line"></span>
             <span class="nav__toggle-line"></span>
             <span class="nav__toggle-line"></span>
-            <span class="sr-only">Otwórz menu</span>
+            <span class="sr-only" data-nav-toggle-label>Otwórz menu</span>
           </button>
-          <div class="nav__drawer" id="nav-drawer" data-drawer aria-hidden="true">
+          <div class="nav__drawer" id="nav-drawer" data-drawer>
             <div class="nav__drawer-header">
               <span class="nav__drawer-title">Menu</span>
-              <button class="nav__close" type="button" data-drawer-close>
+              <button class="nav__close" type="button" data-drawer-close hidden>
                 <span aria-hidden="true">×</span>
                 <span class="sr-only">Zamknij menu</span>
               </button>
             </div>
             <ul class="nav__list" role="list">
-              <li class="nav__item"><a class="nav__link" href="uslugi.html">Usługi</a></li>
-              <li class="nav__item"><a class="nav__link" href="pakiety.html#pakiety">Pakiety</a></li>
-              <li class="nav__item"><a class="nav__link" href="materialy.html">Materiały</a></li>
-              <li class="nav__item"><a class="nav__link" href="postepy.html">Postępy (demo)</a></li>
-              <li class="nav__item"><a class="nav__link" href="index.html#how">Metodyka</a></li>
-              <li class="nav__item"><a class="nav__link" href="index.html#testimonials">Opinie</a></li>
-              <li class="nav__item"><a class="nav__link" href="index.html#about">O Lauren</a></li>
-              <li class="nav__item"><a class="nav__link" href="index.html#faq">FAQ</a></li>
-              <li class="nav__item"><a class="nav__link" href="index.html#contact">Kontakt</a></li>
+              <li class="nav__item">
+                <a class="nav__link" href="/uslugi.html" aria-current="page">Usługi</a>
+              </li>
+              <li class="nav__item">
+                <a class="nav__link" href="/pakiety.html#pakiety">Pakiety</a>
+              </li>
+              <li class="nav__item">
+                <a class="nav__link" href="/materialy.html">Materiały</a>
+              </li>
+              <li class="nav__item">
+                <a class="nav__link" href="/postepy.html">Postępy</a>
+              </li>
+              <li class="nav__item">
+                <a class="nav__link" href="/index.html#how">Metodyka</a>
+              </li>
+              <li class="nav__item">
+                <a class="nav__link" href="/index.html#testimonials">Opinie</a>
+              </li>
+              <li class="nav__item">
+                <a class="nav__link" href="/index.html#about">O Lauren</a>
+              </li>
+              <li class="nav__item">
+                <a class="nav__link" href="/index.html#faq">FAQ</a>
+              </li>
+              <li class="nav__item">
+                <a class="nav__link" href="/index.html#contact">Kontakt</a>
+              </li>
             </ul>
-            <a class="button button--primary nav__cta" href="index.html#contact">Umów lekcję</a>
+            <a class="button button--primary nav__cta" href="/index.html#contact">Umów lekcję</a>
           </div>
         </nav>
         <div class="header__actions">
-          <button class="button button--ghost" type="button" data-theme-toggle>
+          <button class="button button--ghost" type="button" aria-pressed="false" data-theme-toggle hidden>
             <span class="button__icon" aria-hidden="true">🌓</span>
-            Motyw
+            <span>Tryb ciemny</span>
           </button>
-          <a class="button button--primary header__cta" href="index.html#contact">Umów lekcję</a>
+          <a class="button button--primary header__cta" href="/index.html#contact">Umów lekcję</a>
         </div>
       </div>
     </header>
+    <!-- shared-shell:header:end -->
 
     <main id="main">
       <section class="section hero">
@@ -105,22 +126,22 @@
               <p class="hero__card-text">Diagnoza potrzeb, plan i regularny feedback po każdej lekcji.</p>
               <ul class="progress" role="list">
                 <li class="progress__item">
-                  <button class="progress__toggle" type="button" aria-pressed="true">
-                    <span class="progress__icon">✓</span>
+                  <span class="progress__status is-complete">
+                    <span class="progress__icon" aria-hidden="true">✓</span>
                     <span class="progress__label">Cel językowy na najbliższe 4 tygodnie</span>
-                  </button>
+                  </span>
                 </li>
                 <li class="progress__item">
-                  <button class="progress__toggle" type="button" aria-pressed="false">
-                    <span class="progress__icon">○</span>
+                  <span class="progress__status">
+                    <span class="progress__icon" aria-hidden="true">○</span>
                     <span class="progress__label">Plan lekcji i materiałów</span>
-                  </button>
+                  </span>
                 </li>
                 <li class="progress__item">
-                  <button class="progress__toggle" type="button" aria-pressed="false">
-                    <span class="progress__icon">○</span>
+                  <span class="progress__status">
+                    <span class="progress__icon" aria-hidden="true">○</span>
                     <span class="progress__label">Podsumowanie i rekomendacje</span>
-                  </button>
+                  </span>
                 </li>
               </ul>
             </div>
@@ -223,10 +244,11 @@
       </section>
     </main>
 
+    <!-- shared-shell:footer:start -->
     <footer class="footer">
       <div class="container footer__grid">
         <div>
-          <a class="header__logo" href="index.html">
+          <a class="header__logo" href="/index.html">
             <span class="header__logo-mark">LC</span>
             <span class="header__logo-text">Lauren – Clean English</span>
           </a>
@@ -235,11 +257,11 @@
         <div>
           <h3 class="footer__title">Linki</h3>
           <ul class="footer__list" role="list">
-            <li><a href="uslugi.html">Usługi</a></li>
-            <li><a href="pakiety.html#pakiety">Pakiety</a></li>
-            <li><a href="materialy.html">Materiały</a></li>
-            <li><a href="postepy.html">Postępy (demo)</a></li>
-            <li><a href="index.html#contact">Kontakt</a></li>
+            <li><a href="/uslugi.html">Usługi</a></li>
+            <li><a href="/pakiety.html#pakiety">Pakiety</a></li>
+            <li><a href="/materialy.html">Materiały</a></li>
+            <li><a href="/postepy.html">Postępy</a></li>
+            <li><a href="/index.html#contact">Kontakt</a></li>
           </ul>
         </div>
         <div>
@@ -253,8 +275,8 @@
         <div>
           <h3 class="footer__title">Legal</h3>
           <ul class="footer__list" role="list">
-            <li><a href="offline.html">Polityka prywatności</a></li>
-            <li><a href="offline.html">Regulamin</a></li>
+            <li><a href="/offline.html">Polityka prywatności</a></li>
+            <li><a href="/offline.html">Regulamin</a></li>
           </ul>
         </div>
       </div>
@@ -262,6 +284,7 @@
         <p>© 2026 Lauren – Clean English. Wszystkie prawa zastrzeżone.</p>
       </div>
     </footer>
+    <!-- shared-shell:footer:end -->
 
     <script src="/assets/build/main.min.js" defer></script>
   </body>

@@ -6,7 +6,10 @@
   background: color-mix(in srgb, var(--color-bg) 90%, transparent);
   backdrop-filter: blur(12px);
   border-bottom: 1px solid transparent;
-  transition: padding var(--transition-base), box-shadow var(--transition-base), background var(--transition-base);
+  transition:
+    padding var(--transition-base),
+    box-shadow var(--transition-base),
+    background var(--transition-base);
 }
 
 .header--scrolled {
@@ -14,8 +17,13 @@
   border-color: var(--color-border);
 }
 
+body.has-open-navigation {
+  overflow: hidden;
+}
+
 .header__inner {
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
   justify-content: space-between;
   gap: var(--space-md);
@@ -45,12 +53,17 @@
   gap: var(--space-sm);
 }
 
+.nav {
+  order: 3;
+  width: 100%;
+}
+
 .nav__toggle {
   background: transparent;
   border: 1px solid var(--color-border);
   padding: 10px;
   border-radius: 10px;
-  display: grid;
+  display: none;
   gap: 4px;
 }
 
@@ -62,6 +75,22 @@
 }
 
 .nav__drawer {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-lg);
+}
+
+.nav.is-enhanced {
+  order: initial;
+  width: auto;
+}
+
+.nav.is-enhanced .nav__toggle {
+  display: grid;
+}
+
+.nav.is-enhanced .nav__drawer {
   position: fixed;
   inset: 0 0 0 auto;
   width: min(320px, 80vw);
@@ -70,27 +99,33 @@
   transition: transform var(--transition-base);
   box-shadow: var(--shadow-md);
   padding: var(--space-lg);
-  display: flex;
-  flex-direction: column;
-  gap: var(--space-lg);
 }
 
-.nav__drawer.is-open {
+.nav.is-enhanced .nav__drawer.is-open {
   transform: translateX(0);
 }
 
 .nav__drawer-header {
-  display: flex;
+  display: none;
   justify-content: space-between;
   align-items: center;
 }
 
+.nav.is-enhanced .nav__drawer-header {
+  display: flex;
+}
+
 .nav__list {
-  display: grid;
+  display: flex;
+  flex-wrap: wrap;
   gap: var(--space-sm);
   padding: 0;
   margin: 0;
   list-style: none;
+}
+
+.nav.is-enhanced .nav__list {
+  display: grid;
 }
 
 .nav__link {
@@ -117,15 +152,27 @@
 }
 
 @media (min-width: 780px) {
+  .header__inner {
+    flex-wrap: nowrap;
+  }
+
   .header__actions {
     display: flex;
   }
 
-  .nav__toggle {
+  .nav,
+  .nav.is-enhanced {
+    order: initial;
+    width: auto;
+  }
+
+  .nav__toggle,
+  .nav.is-enhanced .nav__toggle {
     display: none;
   }
 
-  .nav__drawer {
+  .nav__drawer,
+  .nav.is-enhanced .nav__drawer {
     position: static;
     transform: none;
     width: auto;
@@ -137,12 +184,15 @@
   }
 
   .nav__drawer-header,
+  .nav.is-enhanced .nav__drawer-header,
   .nav__close {
     display: none;
   }
 
-  .nav__list {
+  .nav__list,
+  .nav.is-enhanced .nav__list {
     display: flex;
+    flex-wrap: nowrap;
     gap: var(--space-md);
   }
 

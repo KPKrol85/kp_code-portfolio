@@ -33,10 +33,11 @@
     <link rel="icon" href="assets/icons/icon-192.svg" type="image/svg+xml" />
   </head>
   <body class="page">
+    <!-- shared-shell:header:start -->
     <a class="skip-link" href="#main">Przejdź do treści</a>
     <header class="header" id="top">
       <div class="container header__inner">
-        <a class="header__logo" href="index.html" aria-label="Lauren – Clean English">
+        <a class="header__logo" href="/index.html" aria-label="Lauren – Clean English">
           <span class="header__logo-mark">LC</span>
           <span class="header__logo-text">Lauren – Clean English</span>
         </a>
@@ -46,43 +47,63 @@
             type="button"
             aria-expanded="false"
             aria-controls="nav-drawer"
+            hidden
           >
             <span class="nav__toggle-line"></span>
             <span class="nav__toggle-line"></span>
             <span class="nav__toggle-line"></span>
-            <span class="sr-only">Otwórz menu</span>
+            <span class="sr-only" data-nav-toggle-label>Otwórz menu</span>
           </button>
-          <div class="nav__drawer" id="nav-drawer" data-drawer aria-hidden="true">
+          <div class="nav__drawer" id="nav-drawer" data-drawer>
             <div class="nav__drawer-header">
               <span class="nav__drawer-title">Menu</span>
-              <button class="nav__close" type="button" data-drawer-close>
+              <button class="nav__close" type="button" data-drawer-close hidden>
                 <span aria-hidden="true">×</span>
                 <span class="sr-only">Zamknij menu</span>
               </button>
             </div>
             <ul class="nav__list" role="list">
-              <li class="nav__item"><a class="nav__link" href="uslugi.html">Usługi</a></li>
-              <li class="nav__item"><a class="nav__link" href="pakiety.html#pakiety">Pakiety</a></li>
-              <li class="nav__item"><a class="nav__link" href="materialy.html">Materiały</a></li>
-              <li class="nav__item"><a class="nav__link" href="postepy.html">Postępy (demo)</a></li>
-              <li class="nav__item"><a class="nav__link" href="index.html#how">Metodyka</a></li>
-              <li class="nav__item"><a class="nav__link" href="index.html#testimonials">Opinie</a></li>
-              <li class="nav__item"><a class="nav__link" href="index.html#about">O Lauren</a></li>
-              <li class="nav__item"><a class="nav__link" href="index.html#faq">FAQ</a></li>
-              <li class="nav__item"><a class="nav__link" href="index.html#contact">Kontakt</a></li>
+              <li class="nav__item">
+                <a class="nav__link" href="/uslugi.html">Usługi</a>
+              </li>
+              <li class="nav__item">
+                <a class="nav__link" href="/pakiety.html#pakiety">Pakiety</a>
+              </li>
+              <li class="nav__item">
+                <a class="nav__link" href="/materialy.html" aria-current="page">Materiały</a>
+              </li>
+              <li class="nav__item">
+                <a class="nav__link" href="/postepy.html">Postępy</a>
+              </li>
+              <li class="nav__item">
+                <a class="nav__link" href="/index.html#how">Metodyka</a>
+              </li>
+              <li class="nav__item">
+                <a class="nav__link" href="/index.html#testimonials">Opinie</a>
+              </li>
+              <li class="nav__item">
+                <a class="nav__link" href="/index.html#about">O Lauren</a>
+              </li>
+              <li class="nav__item">
+                <a class="nav__link" href="/index.html#faq">FAQ</a>
+              </li>
+              <li class="nav__item">
+                <a class="nav__link" href="/index.html#contact">Kontakt</a>
+              </li>
             </ul>
-            <a class="button button--primary nav__cta" href="index.html#contact">Umów lekcję</a>
+            <a class="button button--primary nav__cta" href="/index.html#contact">Umów lekcję</a>
           </div>
         </nav>
         <div class="header__actions">
-          <button class="button button--ghost" type="button" data-theme-toggle>
+          <button class="button button--ghost" type="button" aria-pressed="false" data-theme-toggle hidden>
             <span class="button__icon" aria-hidden="true">🌓</span>
-            Motyw
+            <span>Tryb ciemny</span>
           </button>
-          <a class="button button--primary header__cta" href="index.html#contact">Umów lekcję</a>
+          <a class="button button--primary header__cta" href="/index.html#contact">Umów lekcję</a>
         </div>
       </div>
     </header>
+    <!-- shared-shell:header:end -->
 
     <main id="main">
       <section class="section hero">
@@ -105,22 +126,22 @@
               <p class="hero__card-text">Krótkie moduły, checklisty i praktyczne ćwiczenia.</p>
               <ul class="progress" role="list">
                 <li class="progress__item">
-                  <button class="progress__toggle" type="button" aria-pressed="true">
-                    <span class="progress__icon">✓</span>
+                  <span class="progress__status is-complete">
+                    <span class="progress__icon" aria-hidden="true">✓</span>
                     <span class="progress__label">Checklisty słówek i zwrotów</span>
-                  </button>
+                  </span>
                 </li>
                 <li class="progress__item">
-                  <button class="progress__toggle" type="button" aria-pressed="false">
-                    <span class="progress__icon">○</span>
+                  <span class="progress__status">
+                    <span class="progress__icon" aria-hidden="true">○</span>
                     <span class="progress__label">Ćwiczenia utrwalające</span>
-                  </button>
+                  </span>
                 </li>
                 <li class="progress__item">
-                  <button class="progress__toggle" type="button" aria-pressed="false">
-                    <span class="progress__icon">○</span>
+                  <span class="progress__status">
+                    <span class="progress__icon" aria-hidden="true">○</span>
                     <span class="progress__label">Podsumowania gramatyczne</span>
-                  </button>
+                  </span>
                 </li>
               </ul>
             </div>
@@ -137,7 +158,13 @@
               przygotowane pod kolejne etapy rozwoju.
             </p>
           </div>
-          <form class="materials__filters" aria-label="Filtry katalogu materiałów" data-reveal>
+          <form
+            class="materials__filters"
+            aria-label="Filtry katalogu materiałów"
+            data-materials-filters
+            data-reveal
+            hidden
+          >
             <div class="materials__row">
               <div class="form__field">
                 <label class="form__label" for="materials-category">Kategoria</label>
@@ -177,7 +204,220 @@
             id="materials-list"
             class="materials__grid grid grid--resources"
             data-reveal
-          ></div>
+          >
+            <!-- materials-catalog:start -->
+            <article class="card card--resource materials__card" data-material-id="grammar-clarity-pack">
+              <h3 class="card__title">Gramatyka bez chaosu – kluczowe czasy</h3>
+              <div class="card__tags materials__meta">
+                <span class="badge">Gramatyka</span>
+                <span class="badge">A2</span>
+                <span class="badge">PDF</span>
+                <span class="badge">20–30 min</span>
+              </div>
+              <p class="card__text">Zwięzłe podsumowania czasów z przykładami i checklistą do powtórek.</p>
+              <div class="materials__footer">
+                <span class="badge badge--access badge--free" aria-label="Dostęp: Free">Free</span>
+                <span class="materials__availability">Obecnie niedostępne</span>
+              </div>
+            </article>
+            <article class="card card--resource materials__card" data-material-id="vocab-everyday-routines">
+              <h3 class="card__title">Słownictwo: rutyny dnia codziennego</h3>
+              <div class="card__tags materials__meta">
+                <span class="badge">Słownictwo</span>
+                <span class="badge">A1</span>
+                <span class="badge">Worksheet</span>
+                <span class="badge">10–15 min</span>
+              </div>
+              <p class="card__text">Karty pracy z obrazkami i krótkimi dialogami do pracy własnej.</p>
+              <div class="materials__footer">
+                <span class="badge badge--access badge--free" aria-label="Dostęp: Free">Free</span>
+                <span class="materials__availability">Obecnie niedostępne</span>
+              </div>
+            </article>
+            <article class="card card--resource materials__card" data-material-id="speaking-warmups">
+              <h3 class="card__title">Speaking warm-ups na start lekcji</h3>
+              <div class="card__tags materials__meta">
+                <span class="badge">Speaking</span>
+                <span class="badge">B1</span>
+                <span class="badge">PDF</span>
+                <span class="badge">15–20 min</span>
+              </div>
+              <p class="card__text">Zestaw pytań i mini-sytuacji do rozgrzewki językowej.</p>
+              <div class="materials__footer">
+                <span class="badge badge--access badge--free" aria-label="Dostęp: Free">Free</span>
+                <span class="materials__availability">Obecnie niedostępne</span>
+              </div>
+            </article>
+            <article class="card card--resource materials__card" data-material-id="writing-emails">
+              <h3 class="card__title">Pisanie maili po angielsku – szablony</h3>
+              <div class="card__tags materials__meta">
+                <span class="badge">Writing</span>
+                <span class="badge">B2</span>
+                <span class="badge">PDF</span>
+                <span class="badge">25–30 min</span>
+              </div>
+              <p class="card__text">Gotowe struktury maili i najczęstsze zwroty w komunikacji biznesowej.</p>
+              <div class="materials__footer">
+                <span class="badge badge--access badge--premium" aria-label="Dostęp: Premium">Premium</span>
+                <a class="button button--primary" href="/pakiety.html#pakiet-regular">Zobacz pakiet Regular</a>
+              </div>
+            </article>
+            <article class="card card--resource materials__card" data-material-id="exam-strategy-pack">
+              <h3 class="card__title">Strategie egzaminacyjne krok po kroku</h3>
+              <div class="card__tags materials__meta">
+                <span class="badge">Egzaminy</span>
+                <span class="badge">B2</span>
+                <span class="badge">PDF</span>
+                <span class="badge">30–40 min</span>
+              </div>
+              <p class="card__text">Plan działania, timeboxing i wskazówki do najczęstszych zadań.</p>
+              <div class="materials__footer">
+                <span class="badge badge--access badge--premium" aria-label="Dostęp: Premium">Premium</span>
+                <a class="button button--primary" href="/pakiety.html#pakiet-intensive">Zobacz pakiet Intensive</a>
+              </div>
+            </article>
+            <article class="card card--resource materials__card" data-material-id="business-meetings">
+              <h3 class="card__title">Meeting toolkit: zwroty do spotkań</h3>
+              <div class="card__tags materials__meta">
+                <span class="badge">Biznes</span>
+                <span class="badge">B2</span>
+                <span class="badge">Worksheet</span>
+                <span class="badge">20 min</span>
+              </div>
+              <p class="card__text">Zestaw zwrotów do prowadzenia spotkań i prezentowania wniosków.</p>
+              <div class="materials__footer">
+                <span class="badge badge--access badge--premium" aria-label="Dostęp: Premium">Premium</span>
+                <a class="button button--primary" href="/pakiety.html#pakiet-regular">Zobacz pakiet Regular</a>
+              </div>
+            </article>
+            <article class="card card--resource materials__card" data-material-id="vocab-travel">
+              <h3 class="card__title">Słownictwo w podróży – praktyczne scenki</h3>
+              <div class="card__tags materials__meta">
+                <span class="badge">Słownictwo</span>
+                <span class="badge">A2</span>
+                <span class="badge">Quiz</span>
+                <span class="badge">10–12 min</span>
+              </div>
+              <p class="card__text">Krótki quiz do utrwalenia zwrotów na lotnisku i w hotelu.</p>
+              <div class="materials__footer">
+                <span class="badge badge--access badge--free" aria-label="Dostęp: Free">Free</span>
+                <span class="materials__availability">Obecnie niedostępne</span>
+              </div>
+            </article>
+            <article class="card card--resource materials__card" data-material-id="grammar-modal-verbs">
+              <h3 class="card__title">Modal verbs w praktyce</h3>
+              <div class="card__tags materials__meta">
+                <span class="badge">Gramatyka</span>
+                <span class="badge">B1</span>
+                <span class="badge">PDF</span>
+                <span class="badge">20 min</span>
+              </div>
+              <p class="card__text">Przykłady użycia i ćwiczenia z must/should/can w codziennych sytuacjach.</p>
+              <div class="materials__footer">
+                <span class="badge badge--access badge--premium" aria-label="Dostęp: Premium">Premium</span>
+                <a class="button button--primary" href="/pakiety.html#pakiet-start">Zobacz pakiet Start</a>
+              </div>
+            </article>
+            <article class="card card--resource materials__card" data-material-id="speaking-clarity">
+              <h3 class="card__title">Speaking: odpowiedzi pełnym zdaniem</h3>
+              <div class="card__tags materials__meta">
+                <span class="badge">Speaking</span>
+                <span class="badge">A2</span>
+                <span class="badge">Audio</span>
+                <span class="badge">12–18 min</span>
+              </div>
+              <p class="card__text">Nagrania z modelowymi odpowiedziami i krótkimi ćwiczeniami shadowing.</p>
+              <div class="materials__footer">
+                <span class="badge badge--access badge--premium" aria-label="Dostęp: Premium">Premium</span>
+                <a class="button button--primary" href="/pakiety.html#pakiet-start">Zobacz pakiet Start</a>
+              </div>
+            </article>
+            <article class="card card--resource materials__card" data-material-id="writing-structures">
+              <h3 class="card__title">Writing structures: opinion paragraph</h3>
+              <div class="card__tags materials__meta">
+                <span class="badge">Writing</span>
+                <span class="badge">B1</span>
+                <span class="badge">Worksheet</span>
+                <span class="badge">15–20 min</span>
+              </div>
+              <p class="card__text">Schematy i łączniki do budowania spójnych wypowiedzi pisemnych.</p>
+              <div class="materials__footer">
+                <span class="badge badge--access badge--free" aria-label="Dostęp: Free">Free</span>
+                <span class="materials__availability">Obecnie niedostępne</span>
+              </div>
+            </article>
+            <article class="card card--resource materials__card" data-material-id="exam-speaking-checklist">
+              <h3 class="card__title">Checklist do Speaking (FCE/CAE)</h3>
+              <div class="card__tags materials__meta">
+                <span class="badge">Egzaminy</span>
+                <span class="badge">C1</span>
+                <span class="badge">PDF</span>
+                <span class="badge">15 min</span>
+              </div>
+              <p class="card__text">Konkretne kryteria oceny i plan przygotowania do części ustnej.</p>
+              <div class="materials__footer">
+                <span class="badge badge--access badge--premium" aria-label="Dostęp: Premium">Premium</span>
+                <a class="button button--primary" href="/pakiety.html#pakiet-intensive">Zobacz pakiet Intensive</a>
+              </div>
+            </article>
+            <article class="card card--resource materials__card" data-material-id="business-smalltalk">
+              <h3 class="card__title">Small talk w pracy: startery rozmów</h3>
+              <div class="card__tags materials__meta">
+                <span class="badge">Biznes</span>
+                <span class="badge">B1</span>
+                <span class="badge">PDF</span>
+                <span class="badge">10–15 min</span>
+              </div>
+              <p class="card__text">Gotowe startery i pytania do rozmów w środowisku zawodowym.</p>
+              <div class="materials__footer">
+                <span class="badge badge--access badge--free" aria-label="Dostęp: Free">Free</span>
+                <span class="materials__availability">Obecnie niedostępne</span>
+              </div>
+            </article>
+            <article class="card card--resource materials__card" data-material-id="grammar-review">
+              <h3 class="card__title">Powtórka gramatyczna – mapy myśli</h3>
+              <div class="card__tags materials__meta">
+                <span class="badge">Gramatyka</span>
+                <span class="badge">Wszystkie poziomy</span>
+                <span class="badge">PDF</span>
+                <span class="badge">20–25 min</span>
+              </div>
+              <p class="card__text">Mapy myśli do szybkiej powtórki i łączenia tematów gramatycznych.</p>
+              <div class="materials__footer">
+                <span class="badge badge--access badge--premium" aria-label="Dostęp: Premium">Premium</span>
+                <a class="button button--primary" href="/pakiety.html#pakiet-regular">Zobacz pakiet Regular</a>
+              </div>
+            </article>
+            <article class="card card--resource materials__card" data-material-id="vocab-idioms">
+              <h3 class="card__title">Idiomatyczne zwroty w praktyce</h3>
+              <div class="card__tags materials__meta">
+                <span class="badge">Słownictwo</span>
+                <span class="badge">B2</span>
+                <span class="badge">PDF</span>
+                <span class="badge">20 min</span>
+              </div>
+              <p class="card__text">Najczęstsze idiomy z przykładami użycia w kontekście.</p>
+              <div class="materials__footer">
+                <span class="badge badge--access badge--premium" aria-label="Dostęp: Premium">Premium</span>
+                <a class="button button--primary" href="/pakiety.html#pakiet-regular">Zobacz pakiet Regular</a>
+              </div>
+            </article>
+            <article class="card card--resource materials__card" data-material-id="speaking-roleplays">
+              <h3 class="card__title">Role-play scenarios do rozmów</h3>
+              <div class="card__tags materials__meta">
+                <span class="badge">Speaking</span>
+                <span class="badge">B2</span>
+                <span class="badge">Video</span>
+                <span class="badge">15–25 min</span>
+              </div>
+              <p class="card__text">Krótkie scenki video z zadaniami do samodzielnego przećwiczenia.</p>
+              <div class="materials__footer">
+                <span class="badge badge--access badge--premium" aria-label="Dostęp: Premium">Premium</span>
+                <a class="button button--primary" href="/pakiety.html#pakiet-intensive">Zobacz pakiet Intensive</a>
+              </div>
+            </article>
+            <!-- materials-catalog:end -->
+          </div>
           <p class="materials__empty" data-materials-empty hidden>
             Brak materiałów spełniających wybrane kryteria. Zmień filtry, aby zobaczyć więcej.
           </p>
@@ -207,10 +447,11 @@
       </section>
     </main>
 
+    <!-- shared-shell:footer:start -->
     <footer class="footer">
       <div class="container footer__grid">
         <div>
-          <a class="header__logo" href="index.html">
+          <a class="header__logo" href="/index.html">
             <span class="header__logo-mark">LC</span>
             <span class="header__logo-text">Lauren – Clean English</span>
           </a>
@@ -219,11 +460,11 @@
         <div>
           <h3 class="footer__title">Linki</h3>
           <ul class="footer__list" role="list">
-            <li><a href="uslugi.html">Usługi</a></li>
-            <li><a href="pakiety.html#pakiety">Pakiety</a></li>
-            <li><a href="materialy.html">Materiały</a></li>
-            <li><a href="postepy.html">Postępy (demo)</a></li>
-            <li><a href="index.html#contact">Kontakt</a></li>
+            <li><a href="/uslugi.html">Usługi</a></li>
+            <li><a href="/pakiety.html#pakiety">Pakiety</a></li>
+            <li><a href="/materialy.html">Materiały</a></li>
+            <li><a href="/postepy.html">Postępy</a></li>
+            <li><a href="/index.html#contact">Kontakt</a></li>
           </ul>
         </div>
         <div>
@@ -237,8 +478,8 @@
         <div>
           <h3 class="footer__title">Legal</h3>
           <ul class="footer__list" role="list">
-            <li><a href="offline.html">Polityka prywatności</a></li>
-            <li><a href="offline.html">Regulamin</a></li>
+            <li><a href="/offline.html">Polityka prywatności</a></li>
+            <li><a href="/offline.html">Regulamin</a></li>
           </ul>
         </div>
       </div>
@@ -246,6 +487,7 @@
         <p>© 2026 Lauren – Clean English. Wszystkie prawa zastrzeżone.</p>
       </div>
     </footer>
+    <!-- shared-shell:footer:end -->
 
     <script src="/assets/build/main.min.js" defer></script>
   </body>

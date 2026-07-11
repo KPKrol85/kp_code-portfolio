@@ -33,10 +33,11 @@
     <link rel="icon" href="assets/icons/icon-192.svg" type="image/svg+xml" />
   </head>
   <body class="page">
+    <!-- shared-shell:header:start -->
     <a class="skip-link" href="#main">Przejdź do treści</a>
     <header class="header" id="top">
       <div class="container header__inner">
-        <a class="header__logo" href="index.html" aria-label="Lauren – Clean English">
+        <a class="header__logo" href="/index.html" aria-label="Lauren – Clean English">
           <span class="header__logo-mark">LC</span>
           <span class="header__logo-text">Lauren – Clean English</span>
         </a>
@@ -46,43 +47,63 @@
             type="button"
             aria-expanded="false"
             aria-controls="nav-drawer"
+            hidden
           >
             <span class="nav__toggle-line"></span>
             <span class="nav__toggle-line"></span>
             <span class="nav__toggle-line"></span>
-            <span class="sr-only">Otwórz menu</span>
+            <span class="sr-only" data-nav-toggle-label>Otwórz menu</span>
           </button>
-          <div class="nav__drawer" id="nav-drawer" data-drawer aria-hidden="true">
+          <div class="nav__drawer" id="nav-drawer" data-drawer>
             <div class="nav__drawer-header">
               <span class="nav__drawer-title">Menu</span>
-              <button class="nav__close" type="button" data-drawer-close>
+              <button class="nav__close" type="button" data-drawer-close hidden>
                 <span aria-hidden="true">×</span>
                 <span class="sr-only">Zamknij menu</span>
               </button>
             </div>
             <ul class="nav__list" role="list">
-              <li class="nav__item"><a class="nav__link" href="uslugi.html">Usługi</a></li>
-              <li class="nav__item"><a class="nav__link" href="pakiety.html#pakiety">Pakiety</a></li>
-              <li class="nav__item"><a class="nav__link" href="materialy.html">Materiały</a></li>
-              <li class="nav__item"><a class="nav__link" href="postepy.html">Postępy (demo)</a></li>
-              <li class="nav__item"><a class="nav__link" href="index.html#how">Metodyka</a></li>
-              <li class="nav__item"><a class="nav__link" href="index.html#testimonials">Opinie</a></li>
-              <li class="nav__item"><a class="nav__link" href="index.html#about">O Lauren</a></li>
-              <li class="nav__item"><a class="nav__link" href="index.html#faq">FAQ</a></li>
-              <li class="nav__item"><a class="nav__link" href="index.html#contact">Kontakt</a></li>
+              <li class="nav__item">
+                <a class="nav__link" href="/uslugi.html">Usługi</a>
+              </li>
+              <li class="nav__item">
+                <a class="nav__link" href="/pakiety.html#pakiety" aria-current="page">Pakiety</a>
+              </li>
+              <li class="nav__item">
+                <a class="nav__link" href="/materialy.html">Materiały</a>
+              </li>
+              <li class="nav__item">
+                <a class="nav__link" href="/postepy.html">Postępy</a>
+              </li>
+              <li class="nav__item">
+                <a class="nav__link" href="/index.html#how">Metodyka</a>
+              </li>
+              <li class="nav__item">
+                <a class="nav__link" href="/index.html#testimonials">Opinie</a>
+              </li>
+              <li class="nav__item">
+                <a class="nav__link" href="/index.html#about">O Lauren</a>
+              </li>
+              <li class="nav__item">
+                <a class="nav__link" href="/index.html#faq">FAQ</a>
+              </li>
+              <li class="nav__item">
+                <a class="nav__link" href="/index.html#contact">Kontakt</a>
+              </li>
             </ul>
-            <a class="button button--primary nav__cta" href="index.html#contact">Umów lekcję</a>
+            <a class="button button--primary nav__cta" href="/index.html#contact">Umów lekcję</a>
           </div>
         </nav>
         <div class="header__actions">
-          <button class="button button--ghost" type="button" data-theme-toggle>
+          <button class="button button--ghost" type="button" aria-pressed="false" data-theme-toggle hidden>
             <span class="button__icon" aria-hidden="true">🌓</span>
-            Motyw
+            <span>Tryb ciemny</span>
           </button>
-          <a class="button button--primary header__cta" href="index.html#contact">Umów lekcję</a>
+          <a class="button button--primary header__cta" href="/index.html#contact">Umów lekcję</a>
         </div>
       </div>
     </header>
+    <!-- shared-shell:header:end -->
 
     <main id="main">
       <section class="section hero">
@@ -105,22 +126,22 @@
               <p class="hero__card-text">Jasny plan pracy, materiały i regularny feedback po lekcjach.</p>
               <ul class="progress" role="list">
                 <li class="progress__item">
-                  <button class="progress__toggle" type="button" aria-pressed="true">
-                    <span class="progress__icon">✓</span>
+                  <span class="progress__status is-complete">
+                    <span class="progress__icon" aria-hidden="true">✓</span>
                     <span class="progress__label">Indywidualny plan tematyczny</span>
-                  </button>
+                  </span>
                 </li>
                 <li class="progress__item">
-                  <button class="progress__toggle" type="button" aria-pressed="false">
-                    <span class="progress__icon">○</span>
+                  <span class="progress__status">
+                    <span class="progress__icon" aria-hidden="true">○</span>
                     <span class="progress__label">Materiały po każdej lekcji</span>
-                  </button>
+                  </span>
                 </li>
                 <li class="progress__item">
-                  <button class="progress__toggle" type="button" aria-pressed="false">
-                    <span class="progress__icon">○</span>
+                  <span class="progress__status">
+                    <span class="progress__icon" aria-hidden="true">○</span>
                     <span class="progress__label">Rekomendacje dalszej pracy</span>
-                  </button>
+                  </span>
                 </li>
               </ul>
             </div>
@@ -135,7 +156,8 @@
             <p class="section__subtitle">Trzy poziomy intensywności – wybierz rytm i zakres wsparcia.</p>
           </div>
           <div class="grid grid--pricing">
-            <article class="card card--pricing" id="pakiet-start" tabindex="-1" data-reveal>
+            <!-- package-cards:page:start -->
+            <article class="card card--pricing" id="pakiet-start" data-package-key="start" tabindex="-1" data-reveal>
               <h3 class="card__title">Start</h3>
               <p class="card__text">Rytm: spokojny, regularne spotkania w miesiącu.</p>
               <ul class="list" role="list">
@@ -144,14 +166,9 @@
                 <li>Feedback i rekomendacje</li>
               </ul>
               <p class="card__text"><strong>Dla kogo:</strong> dla osób wracających do nauki.</p>
-              <a class="button button--secondary" href="index.html#contact">Zapytaj o Start</a>
+              <a class="button button--secondary" href="/index.html#contact">Zapytaj o Start</a>
             </article>
-            <article
-              class="card card--pricing card--highlight"
-              id="pakiet-regular"
-              tabindex="-1"
-              data-reveal
-            >
+            <article class="card card--pricing card--highlight" id="pakiet-regular" data-package-key="regular" tabindex="-1" data-reveal>
               <p class="card__eyebrow">Najczęściej wybierany</p>
               <h3 class="card__title">Regular</h3>
               <p class="card__text">Rytm: stałe spotkania w tygodniu, spójny progres.</p>
@@ -161,9 +178,9 @@
                 <li>Mini podsumowania postępów</li>
               </ul>
               <p class="card__text"><strong>Dla kogo:</strong> dla osób, które chcą stabilnie rosnąć.</p>
-              <a class="button button--primary" href="index.html#contact">Zapytaj o Regular</a>
+              <a class="button button--primary" href="/index.html#contact">Zapytaj o Regular</a>
             </article>
-            <article class="card card--pricing" id="pakiet-intensive" tabindex="-1" data-reveal>
+            <article class="card card--pricing" id="pakiet-intensive" data-package-key="intensive" tabindex="-1" data-reveal>
               <h3 class="card__title">Intensive</h3>
               <p class="card__text">Rytm: intensywny, częstsze spotkania i wsparcie między lekcjami.</p>
               <ul class="list" role="list">
@@ -172,8 +189,9 @@
                 <li>Kontakt między spotkaniami</li>
               </ul>
               <p class="card__text"><strong>Dla kogo:</strong> dla osób z konkretnym terminem lub celem.</p>
-              <a class="button button--secondary" href="index.html#contact">Zapytaj o Intensive</a>
+              <a class="button button--secondary" href="/index.html#contact">Zapytaj o Intensive</a>
             </article>
+            <!-- package-cards:page:end -->
           </div>
         </div>
       </section>
@@ -185,51 +203,153 @@
             <p class="section__subtitle">Krótko i konkretnie o organizacji współpracy.</p>
           </div>
           <div class="accordion" data-accordion>
-            <div class="accordion__item" data-reveal>
-              <button class="accordion__trigger" type="button" data-accordion-trigger>
-                Czy mogę zmienić pakiet w trakcie współpracy?
-              </button>
-              <div class="accordion__panel" data-accordion-panel>
+            <div class="accordion__item" data-accordion-item data-reveal>
+              <h3 class="accordion__title">
+                <button
+                  class="accordion__trigger"
+                  id="packages-faq-trigger-1"
+                  type="button"
+                  aria-expanded="true"
+                  aria-controls="packages-faq-panel-1"
+                  data-accordion-trigger
+                  disabled
+                >
+                  Czy mogę zmienić pakiet w trakcie współpracy?
+                </button>
+              </h3>
+              <div
+                class="accordion__panel"
+                id="packages-faq-panel-1"
+                role="region"
+                aria-labelledby="packages-faq-trigger-1"
+                aria-hidden="false"
+                data-accordion-panel
+              >
                 Tak, po wspólnym podsumowaniu dopasowujemy rytm do Twojej sytuacji.
               </div>
             </div>
-            <div class="accordion__item" data-reveal>
-              <button class="accordion__trigger" type="button" data-accordion-trigger>
-                Jak wygląda rozliczenie pakietu?
-              </button>
-              <div class="accordion__panel" data-accordion-panel>
+            <div class="accordion__item" data-accordion-item data-reveal>
+              <h3 class="accordion__title">
+                <button
+                  class="accordion__trigger"
+                  id="packages-faq-trigger-2"
+                  type="button"
+                  aria-expanded="true"
+                  aria-controls="packages-faq-panel-2"
+                  data-accordion-trigger
+                  disabled
+                >
+                  Jak wygląda rozliczenie pakietu?
+                </button>
+              </h3>
+              <div
+                class="accordion__panel"
+                id="packages-faq-panel-2"
+                role="region"
+                aria-labelledby="packages-faq-trigger-2"
+                aria-hidden="false"
+                data-accordion-panel
+              >
                 Ustalamy miesięczny plan spotkań i rozliczenie zgodne z wybranym rytmem.
               </div>
             </div>
-            <div class="accordion__item" data-reveal>
-              <button class="accordion__trigger" type="button" data-accordion-trigger>
-                Czy mogę mieć tylko konwersacje?
-              </button>
-              <div class="accordion__panel" data-accordion-panel>
+            <div class="accordion__item" data-accordion-item data-reveal>
+              <h3 class="accordion__title">
+                <button
+                  class="accordion__trigger"
+                  id="packages-faq-trigger-3"
+                  type="button"
+                  aria-expanded="true"
+                  aria-controls="packages-faq-panel-3"
+                  data-accordion-trigger
+                  disabled
+                >
+                  Czy mogę mieć tylko konwersacje?
+                </button>
+              </h3>
+              <div
+                class="accordion__panel"
+                id="packages-faq-panel-3"
+                role="region"
+                aria-labelledby="packages-faq-trigger-3"
+                aria-hidden="false"
+                data-accordion-panel
+              >
                 Tak, pakiety można oprzeć wyłącznie na konwersacjach z tematycznym planem.
               </div>
             </div>
-            <div class="accordion__item" data-reveal>
-              <button class="accordion__trigger" type="button" data-accordion-trigger>
-                Czy materiały są w cenie?
-              </button>
-              <div class="accordion__panel" data-accordion-panel>
+            <div class="accordion__item" data-accordion-item data-reveal>
+              <h3 class="accordion__title">
+                <button
+                  class="accordion__trigger"
+                  id="packages-faq-trigger-4"
+                  type="button"
+                  aria-expanded="true"
+                  aria-controls="packages-faq-panel-4"
+                  data-accordion-trigger
+                  disabled
+                >
+                  Czy materiały są w cenie?
+                </button>
+              </h3>
+              <div
+                class="accordion__panel"
+                id="packages-faq-panel-4"
+                role="region"
+                aria-labelledby="packages-faq-trigger-4"
+                aria-hidden="false"
+                data-accordion-panel
+              >
                 Materiały i zadania dobieram do pakietu – bez dodatkowych opłat za podstawowe zasoby.
               </div>
             </div>
-            <div class="accordion__item" data-reveal>
-              <button class="accordion__trigger" type="button" data-accordion-trigger>
-                Ile trwa lekcja?
-              </button>
-              <div class="accordion__panel" data-accordion-panel>
+            <div class="accordion__item" data-accordion-item data-reveal>
+              <h3 class="accordion__title">
+                <button
+                  class="accordion__trigger"
+                  id="packages-faq-trigger-5"
+                  type="button"
+                  aria-expanded="true"
+                  aria-controls="packages-faq-panel-5"
+                  data-accordion-trigger
+                  disabled
+                >
+                  Ile trwa lekcja?
+                </button>
+              </h3>
+              <div
+                class="accordion__panel"
+                id="packages-faq-panel-5"
+                role="region"
+                aria-labelledby="packages-faq-trigger-5"
+                aria-hidden="false"
+                data-accordion-panel
+              >
                 Długość spotkań ustalamy indywidualnie na podstawie celu i dostępności.
               </div>
             </div>
-            <div class="accordion__item" data-reveal>
-              <button class="accordion__trigger" type="button" data-accordion-trigger>
-                Czy można łączyć pakiet z materiałami do samodzielnej pracy?
-              </button>
-              <div class="accordion__panel" data-accordion-panel>
+            <div class="accordion__item" data-accordion-item data-reveal>
+              <h3 class="accordion__title">
+                <button
+                  class="accordion__trigger"
+                  id="packages-faq-trigger-6"
+                  type="button"
+                  aria-expanded="true"
+                  aria-controls="packages-faq-panel-6"
+                  data-accordion-trigger
+                  disabled
+                >
+                  Czy można łączyć pakiet z materiałami do samodzielnej pracy?
+                </button>
+              </h3>
+              <div
+                class="accordion__panel"
+                id="packages-faq-panel-6"
+                role="region"
+                aria-labelledby="packages-faq-trigger-6"
+                aria-hidden="false"
+                data-accordion-panel
+              >
                 Tak, do pakietu mogę dobrać materiały z sekcji Materiały i sklepik.
               </div>
             </div>
@@ -248,10 +368,11 @@
       </section>
     </main>
 
+    <!-- shared-shell:footer:start -->
     <footer class="footer">
       <div class="container footer__grid">
         <div>
-          <a class="header__logo" href="index.html">
+          <a class="header__logo" href="/index.html">
             <span class="header__logo-mark">LC</span>
             <span class="header__logo-text">Lauren – Clean English</span>
           </a>
@@ -260,11 +381,11 @@
         <div>
           <h3 class="footer__title">Linki</h3>
           <ul class="footer__list" role="list">
-            <li><a href="uslugi.html">Usługi</a></li>
-            <li><a href="pakiety.html#pakiety">Pakiety</a></li>
-            <li><a href="materialy.html">Materiały</a></li>
-            <li><a href="postepy.html">Postępy (demo)</a></li>
-            <li><a href="index.html#contact">Kontakt</a></li>
+            <li><a href="/uslugi.html">Usługi</a></li>
+            <li><a href="/pakiety.html#pakiety">Pakiety</a></li>
+            <li><a href="/materialy.html">Materiały</a></li>
+            <li><a href="/postepy.html">Postępy</a></li>
+            <li><a href="/index.html#contact">Kontakt</a></li>
           </ul>
         </div>
         <div>
@@ -278,8 +399,8 @@
         <div>
           <h3 class="footer__title">Legal</h3>
           <ul class="footer__list" role="list">
-            <li><a href="offline.html">Polityka prywatności</a></li>
-            <li><a href="offline.html">Regulamin</a></li>
+            <li><a href="/offline.html">Polityka prywatności</a></li>
+            <li><a href="/offline.html">Regulamin</a></li>
           </ul>
         </div>
       </div>
@@ -287,6 +408,7 @@
         <p>© 2026 Lauren – Clean English. Wszystkie prawa zastrzeżone.</p>
       </div>
     </footer>
+    <!-- shared-shell:footer:end -->
 
     <script src="/assets/build/main.min.js" defer></script>
   </body>

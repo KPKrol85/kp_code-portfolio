@@ -54,18 +54,32 @@
   color: var(--color-text-muted);
 }
 
+.materials__availability {
+  color: var(--color-text-muted);
+  font-size: var(--text-sm);
+  font-weight: 600;
+}
+
 .badge--access {
   text-transform: uppercase;
   letter-spacing: 0.08em;
 }
 
 .badge--free {
-  background: color-mix(in srgb, var(--color-primary) 18%, var(--color-surface-soft));
+  background: color-mix(
+    in srgb,
+    var(--color-primary) 18%,
+    var(--color-surface-soft)
+  );
   color: var(--color-primary-dark);
 }
 
 .badge--premium {
-  background: color-mix(in srgb, var(--color-accent) 24%, var(--color-surface-soft));
+  background: color-mix(
+    in srgb,
+    var(--color-accent) 24%,
+    var(--color-surface-soft)
+  );
   color: #7a5200;
 }
 

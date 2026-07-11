@@ -1,12 +1,20 @@
 export const initProgressTracker = () => {
-  const items = document.querySelectorAll('[data-progress-item] .progress__toggle');
+  const items = document.querySelectorAll(
+    "[data-progress-item] .progress__toggle",
+  );
   if (!items.length) return;
 
   items.forEach((button) => {
-    button.addEventListener('click', () => {
-      const isPressed = button.getAttribute('aria-pressed') === 'true';
-      button.setAttribute('aria-pressed', String(!isPressed));
-      button.querySelector('.progress__icon').textContent = isPressed ? '○' : '✓';
-    });
+    const icon = button.querySelector(".progress__icon");
+    if (!icon) return;
+
+    const handleClick = () => {
+      const isPressed = button.getAttribute("aria-pressed") === "true";
+      button.setAttribute("aria-pressed", String(!isPressed));
+      icon.textContent = isPressed ? "○" : "✓";
+    };
+
+    button.addEventListener("click", handleClick);
+    button.disabled = false;
   });
 };

@@ -1,32 +1,20 @@
-import { materials } from '../data/materials.js';
-import { packages, packagesSectionHref } from '../data/packages.js';
+import { materials } from "../data/materials.js";
+import { getMaterialPresentation } from "../data/materialAccess.js";
+import { filterMaterials } from "../data/materialFilters.js";
 
-const categoryLabels = {
-  grammar: 'Gramatyka',
-  vocabulary: 'Słownictwo',
-  speaking: 'Speaking',
-  writing: 'Writing',
-  exam: 'Egzaminy',
-  business: 'Biznes',
-};
-
-const accessLabels = {
-  free: 'Free',
-  premium: 'Premium',
-};
-
-const createBadge = (label, className = '') => {
-  const badge = document.createElement('span');
+const createBadge = (label, className = "") => {
+  const badge = document.createElement("span");
   badge.className = `badge ${className}`.trim();
   badge.textContent = label;
   return badge;
 };
 
 const createMetaBadges = (item) => {
+  const presentation = getMaterialPresentation(item);
   const fragment = document.createDocumentFragment();
   fragment.append(
-    createBadge(categoryLabels[item.category] || item.category),
-    createBadge(item.level === 'All' ? 'Wszystkie poziomy' : item.level),
+    createBadge(presentation.categoryLabel),
+    createBadge(presentation.levelLabel),
     createBadge(item.format),
   );
 
@@ -37,84 +25,67 @@ const createMetaBadges = (item) => {
   return fragment;
 };
 
-const canAccess = (item) => {
-  // TODO: integrate with purchase/access logic
-  return item.access === 'free';
-};
-
-const getPremiumCtaHref = (item) => {
-  if (item.packageKey && packages[item.packageKey]) {
-    return packages[item.packageKey].href;
-  }
-  return packagesSectionHref;
-};
-
-const getCtaHref = (item) => {
-  if (item.access === 'premium') {
-    return getPremiumCtaHref(item);
-  }
-  return item.url || '#';
-};
-
 const getFilteredMaterials = (filters) =>
-  materials.filter((item) => {
-    if (filters.category !== 'all' && item.category !== filters.category) {
-      return false;
-    }
-    if (filters.level !== 'all' && item.level !== filters.level && item.level !== 'All') {
-      return false;
-    }
-    if (filters.freeOnly && item.access !== 'free') {
-      return false;
-    }
-    return true;
-  });
+  filterMaterials(materials, filters);
 
 const renderMaterials = (list, container, emptyState) => {
-  container.innerHTML = '';
-
   if (!list.length) {
+    container.replaceChildren();
     emptyState.hidden = false;
     return;
   }
 
-  emptyState.hidden = true;
   const fragment = document.createDocumentFragment();
 
   list.forEach((item) => {
-    const card = document.createElement('article');
-    card.className = 'card card--resource materials__card';
+    const presentation = getMaterialPresentation(item);
+    const card = document.createElement("article");
+    card.className = "card card--resource materials__card";
+    card.dataset.materialId = item.id;
 
-    const title = document.createElement('h3');
-    title.className = 'card__title';
+    const title = document.createElement("h3");
+    title.className = "card__title";
     title.textContent = item.title;
 
-    const meta = document.createElement('div');
-    meta.className = 'card__tags materials__meta';
+    const meta = document.createElement("div");
+    meta.className = "card__tags materials__meta";
     meta.append(createMetaBadges(item));
 
-    const description = document.createElement('p');
-    description.className = 'card__text';
+    const description = document.createElement("p");
+    description.className = "card__text";
     description.textContent = item.description;
 
-    const accessBadge = createBadge(accessLabels[item.access], `badge--access badge--${item.access}`);
-    accessBadge.setAttribute('aria-label', `Dostęp: ${accessLabels[item.access]}`);
+    const accessBadge = createBadge(
+      presentation.accessLabel,
+      `badge--access badge--${item.access}`,
+    );
+    accessBadge.setAttribute(
+      "aria-label",
+      `Dostęp: ${presentation.accessLabel}`,
+    );
 
-    const cta = document.createElement('a');
-    const hasAccess = canAccess(item);
-    cta.className = `button ${hasAccess ? 'button--ghost' : 'button--primary'}`;
-    cta.href = getCtaHref(item);
-    cta.textContent = item.ctaLabel;
+    let action;
+    if (presentation.action.kind === "link") {
+      action = document.createElement("a");
+      action.className = `button ${presentation.action.buttonClass}`;
+      action.href = presentation.action.href;
+      action.textContent = presentation.action.label;
+    } else {
+      action = document.createElement("span");
+      action.className = "materials__availability";
+      action.textContent = presentation.action.label;
+    }
 
-    const footer = document.createElement('div');
-    footer.className = 'materials__footer';
-    footer.append(accessBadge, cta);
+    const footer = document.createElement("div");
+    footer.className = "materials__footer";
+    footer.append(accessBadge, action);
 
     card.append(title, meta, description, footer);
     fragment.append(card);
   });
 
-  container.append(fragment);
+  container.replaceChildren(fragment);
+  emptyState.hidden = true;
 };
 
 const updateCount = (count, element) => {
@@ -146,24 +117,32 @@ const initMaterialsFilters = ({
     updateCount(filtered.length, countElement);
   };
 
-  categorySelect.addEventListener('change', applyFilters);
-  levelSelect.addEventListener('change', applyFilters);
-  freeToggle.addEventListener('change', applyFilters);
+  categorySelect.addEventListener("change", applyFilters);
+  levelSelect.addEventListener("change", applyFilters);
+  freeToggle.addEventListener("change", applyFilters);
 
   applyFilters();
 };
 
 export const initMaterialsCatalog = () => {
-  const listContainer = document.querySelector('#materials-list');
+  const listContainer = document.querySelector("#materials-list");
   if (!listContainer) return;
 
-  const categorySelect = document.querySelector('[data-materials-category]');
-  const levelSelect = document.querySelector('[data-materials-level]');
-  const freeToggle = document.querySelector('[data-materials-free]');
-  const emptyState = document.querySelector('[data-materials-empty]');
-  const countElement = document.querySelector('[data-materials-count]');
+  const categorySelect = document.querySelector("[data-materials-category]");
+  const levelSelect = document.querySelector("[data-materials-level]");
+  const freeToggle = document.querySelector("[data-materials-free]");
+  const emptyState = document.querySelector("[data-materials-empty]");
+  const countElement = document.querySelector("[data-materials-count]");
+  const filtersForm = document.querySelector("[data-materials-filters]");
 
-  if (!categorySelect || !levelSelect || !freeToggle || !emptyState) return;
+  if (
+    !categorySelect ||
+    !levelSelect ||
+    !freeToggle ||
+    !emptyState ||
+    !filtersForm
+  )
+    return;
 
   initMaterialsFilters({
     categorySelect,
@@ -173,6 +152,12 @@ export const initMaterialsCatalog = () => {
     emptyState,
     countElement,
   });
+  filtersForm.hidden = false;
 };
 
-export { getFilteredMaterials, renderMaterials, initMaterialsFilters };
+export {
+  getFilteredMaterials,
+  getMaterialPresentation,
+  renderMaterials,
+  initMaterialsFilters,
+};

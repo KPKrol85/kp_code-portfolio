@@ -33,10 +33,11 @@
     <link rel="icon" href="assets/icons/icon-192.svg" type="image/svg+xml" />
   </head>
   <body class="page">
+    <!-- shared-shell:header:start -->
     <a class="skip-link" href="#main">Przejdź do treści</a>
     <header class="header" id="top">
       <div class="container header__inner">
-        <a class="header__logo" href="index.html" aria-label="Lauren – Clean English">
+        <a class="header__logo" href="/index.html" aria-label="Lauren – Clean English">
           <span class="header__logo-mark">LC</span>
           <span class="header__logo-text">Lauren – Clean English</span>
         </a>
@@ -46,43 +47,63 @@
             type="button"
             aria-expanded="false"
             aria-controls="nav-drawer"
+            hidden
           >
             <span class="nav__toggle-line"></span>
             <span class="nav__toggle-line"></span>
             <span class="nav__toggle-line"></span>
-            <span class="sr-only">Otwórz menu</span>
+            <span class="sr-only" data-nav-toggle-label>Otwórz menu</span>
           </button>
-          <div class="nav__drawer" id="nav-drawer" data-drawer aria-hidden="true">
+          <div class="nav__drawer" id="nav-drawer" data-drawer>
             <div class="nav__drawer-header">
               <span class="nav__drawer-title">Menu</span>
-              <button class="nav__close" type="button" data-drawer-close>
+              <button class="nav__close" type="button" data-drawer-close hidden>
                 <span aria-hidden="true">×</span>
                 <span class="sr-only">Zamknij menu</span>
               </button>
             </div>
             <ul class="nav__list" role="list">
-              <li class="nav__item"><a class="nav__link" href="uslugi.html">Usługi</a></li>
-              <li class="nav__item"><a class="nav__link" href="pakiety.html#pakiety">Pakiety</a></li>
-              <li class="nav__item"><a class="nav__link" href="materialy.html">Materiały</a></li>
-              <li class="nav__item"><a class="nav__link" href="postepy.html">Postępy (demo)</a></li>
-              <li class="nav__item"><a class="nav__link" href="index.html#how">Metodyka</a></li>
-              <li class="nav__item"><a class="nav__link" href="index.html#testimonials">Opinie</a></li>
-              <li class="nav__item"><a class="nav__link" href="index.html#about">O Lauren</a></li>
-              <li class="nav__item"><a class="nav__link" href="index.html#faq">FAQ</a></li>
-              <li class="nav__item"><a class="nav__link" href="index.html#contact">Kontakt</a></li>
+              <li class="nav__item">
+                <a class="nav__link" href="/uslugi.html">Usługi</a>
+              </li>
+              <li class="nav__item">
+                <a class="nav__link" href="/pakiety.html#pakiety">Pakiety</a>
+              </li>
+              <li class="nav__item">
+                <a class="nav__link" href="/materialy.html">Materiały</a>
+              </li>
+              <li class="nav__item">
+                <a class="nav__link" href="/postepy.html" aria-current="page">Postępy</a>
+              </li>
+              <li class="nav__item">
+                <a class="nav__link" href="/index.html#how">Metodyka</a>
+              </li>
+              <li class="nav__item">
+                <a class="nav__link" href="/index.html#testimonials">Opinie</a>
+              </li>
+              <li class="nav__item">
+                <a class="nav__link" href="/index.html#about">O Lauren</a>
+              </li>
+              <li class="nav__item">
+                <a class="nav__link" href="/index.html#faq">FAQ</a>
+              </li>
+              <li class="nav__item">
+                <a class="nav__link" href="/index.html#contact">Kontakt</a>
+              </li>
             </ul>
-            <a class="button button--primary nav__cta" href="index.html#contact">Umów lekcję</a>
+            <a class="button button--primary nav__cta" href="/index.html#contact">Umów lekcję</a>
           </div>
         </nav>
         <div class="header__actions">
-          <button class="button button--ghost" type="button" data-theme-toggle>
+          <button class="button button--ghost" type="button" aria-pressed="false" data-theme-toggle hidden>
             <span class="button__icon" aria-hidden="true">🌓</span>
-            Motyw
+            <span>Tryb ciemny</span>
           </button>
-          <a class="button button--primary header__cta" href="index.html#contact">Umów lekcję</a>
+          <a class="button button--primary header__cta" href="/index.html#contact">Umów lekcję</a>
         </div>
       </div>
     </header>
+    <!-- shared-shell:header:end -->
 
     <main id="main">
       <section class="section hero progress-hero">
@@ -109,22 +130,22 @@
               <h3 class="hero__card-title">Co otrzymujesz w demo?</h3>
               <ul class="progress" role="list">
                 <li class="progress__item">
-                  <button class="progress__toggle" type="button" aria-pressed="true">
-                    <span class="progress__icon">✓</span>
+                  <span class="progress__status is-complete">
+                    <span class="progress__icon" aria-hidden="true">✓</span>
                     <span class="progress__label">Cele tygodnia na 3 kluczowe tracki</span>
-                  </button>
+                  </span>
                 </li>
                 <li class="progress__item">
-                  <button class="progress__toggle" type="button" aria-pressed="true">
-                    <span class="progress__icon">✓</span>
+                  <span class="progress__status is-complete">
+                    <span class="progress__icon" aria-hidden="true">✓</span>
                     <span class="progress__label">Tydzień w skrócie z check-inami</span>
-                  </button>
+                  </span>
                 </li>
                 <li class="progress__item">
-                  <button class="progress__toggle" type="button" aria-pressed="true">
-                    <span class="progress__icon">✓</span>
+                  <span class="progress__status is-complete">
+                    <span class="progress__icon" aria-hidden="true">✓</span>
                     <span class="progress__label">Statystyki realizacji i streak</span>
-                  </button>
+                  </span>
                 </li>
               </ul>
             </div>
@@ -140,11 +161,16 @@
             <div class="section__header" data-reveal>
               <h2 class="section__title">Cele tygodnia</h2>
               <p class="section__subtitle">
-                Ustaw liczbę sesji na tydzień i zaznacz dzisiejszą aktywność. Wszystkie dane zapisują
-                się lokalnie w przeglądarce.
+                Ustaw liczbę sesji na tydzień i zaznacz dzisiejszą aktywność. Dane są zapisywane
+                lokalnie, gdy przeglądarka udostępnia pamięć witryny.
               </p>
             </div>
-            <div class="grid grid--cards progress-grid" data-progress-tracks></div>
+            <div class="grid grid--cards progress-grid" data-progress-tracks>
+              <p class="progress-fallback">
+                Interaktywny dziennik celów jest obecnie niedostępny. Nadal możesz skorzystać z
+                pozostałych materiałów i informacji na stronie.
+              </p>
+            </div>
           </div>
         </section>
 
@@ -156,7 +182,11 @@
                 Zobacz, jak wygląda bieżący tydzień w podziale na trzy główne tracki.
               </p>
             </div>
-            <div data-progress-week></div>
+            <div data-progress-week>
+              <p class="progress-fallback">
+                Podsumowanie tygodnia pojawi się, gdy interaktywny dziennik będzie dostępny.
+              </p>
+            </div>
           </div>
         </section>
 
@@ -168,7 +198,11 @@
                 Proste liczby, które pomagają utrzymać rytm nauki bez presji.
               </p>
             </div>
-            <div data-progress-stats></div>
+            <div data-progress-stats>
+              <p class="progress-fallback">
+                Statystyki pojawią się, gdy interaktywny dziennik będzie dostępny.
+              </p>
+            </div>
           </div>
         </section>
 
@@ -177,14 +211,25 @@
             <div>
               <h2 class="section__title">Narzędzia demo</h2>
               <p class="section__subtitle">
-                Reset usuwa dane z localStorage. Eksport pobiera JSON na Twoje urządzenie.
+                Reset czyści dane bieżącej sesji i, gdy jest dostępna, pamięć witryny. Eksport
+                pobiera JSON na Twoje urządzenie.
               </p>
             </div>
             <div class="progress-tools__actions">
-              <button class="button button--ghost" type="button" data-progress-action="reset">
+              <button
+                class="button button--ghost"
+                type="button"
+                data-progress-action="reset"
+                disabled
+              >
                 Wyczyść dane
               </button>
-              <button class="button button--primary" type="button" data-progress-action="export">
+              <button
+                class="button button--primary"
+                type="button"
+                data-progress-action="export"
+                disabled
+              >
                 Eksportuj JSON
               </button>
             </div>
@@ -193,10 +238,11 @@
       </div>
     </main>
 
+    <!-- shared-shell:footer:start -->
     <footer class="footer">
       <div class="container footer__grid">
         <div>
-          <a class="header__logo" href="#top">
+          <a class="header__logo" href="/index.html">
             <span class="header__logo-mark">LC</span>
             <span class="header__logo-text">Lauren – Clean English</span>
           </a>
@@ -205,11 +251,11 @@
         <div>
           <h3 class="footer__title">Linki</h3>
           <ul class="footer__list" role="list">
-            <li><a href="uslugi.html">Usługi</a></li>
-            <li><a href="pakiety.html#pakiety">Pakiety</a></li>
-            <li><a href="materialy.html">Materiały</a></li>
-            <li><a href="postepy.html">Postępy (demo)</a></li>
-            <li><a href="index.html#contact">Kontakt</a></li>
+            <li><a href="/uslugi.html">Usługi</a></li>
+            <li><a href="/pakiety.html#pakiety">Pakiety</a></li>
+            <li><a href="/materialy.html">Materiały</a></li>
+            <li><a href="/postepy.html">Postępy</a></li>
+            <li><a href="/index.html#contact">Kontakt</a></li>
           </ul>
         </div>
         <div>
@@ -223,8 +269,8 @@
         <div>
           <h3 class="footer__title">Legal</h3>
           <ul class="footer__list" role="list">
-            <li><a href="offline.html">Polityka prywatności</a></li>
-            <li><a href="offline.html">Regulamin</a></li>
+            <li><a href="/offline.html">Polityka prywatności</a></li>
+            <li><a href="/offline.html">Regulamin</a></li>
           </ul>
         </div>
       </div>
@@ -232,6 +278,7 @@
         <p>© 2026 Lauren – Clean English. Wszystkie prawa zastrzeżone.</p>
       </div>
     </footer>
+    <!-- shared-shell:footer:end -->
 
     <script src="/assets/build/main.min.js" defer></script>
   </body>

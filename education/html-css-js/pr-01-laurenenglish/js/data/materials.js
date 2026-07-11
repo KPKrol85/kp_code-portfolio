@@ -1,3 +1,14 @@
+export const MATERIAL_ACTIONS = Object.freeze({
+  unavailable: Object.freeze({
+    type: 'unavailable',
+    label: 'Obecnie niedostępne',
+  }),
+  package: Object.freeze({
+    type: 'package',
+    label: 'Zobacz pakiet',
+  }),
+});
+
 export const materials = [
   {
     id: 'grammar-clarity-pack',
@@ -8,8 +19,8 @@ export const materials = [
     duration: '20–30 min',
     description: 'Zwięzłe podsumowania czasów z przykładami i checklistą do powtórek.',
     access: 'free',
-    ctaLabel: 'Pobierz',
-    url: '#',
+    action: MATERIAL_ACTIONS.unavailable,
+    featured: true,
     tags: ['czasy', 'podstawy'],
   },
   {
@@ -21,8 +32,8 @@ export const materials = [
     duration: '10–15 min',
     description: 'Karty pracy z obrazkami i krótkimi dialogami do pracy własnej.',
     access: 'free',
-    ctaLabel: 'Zobacz',
-    url: '#',
+    action: MATERIAL_ACTIONS.unavailable,
+    featured: true,
     tags: ['daily', 'praktyka'],
   },
   {
@@ -34,8 +45,7 @@ export const materials = [
     duration: '15–20 min',
     description: 'Zestaw pytań i mini-sytuacji do rozgrzewki językowej.',
     access: 'free',
-    ctaLabel: 'Pobierz',
-    url: '#',
+    action: MATERIAL_ACTIONS.unavailable,
     tags: ['rozmowa', 'fluency'],
   },
   {
@@ -47,8 +57,8 @@ export const materials = [
     duration: '25–30 min',
     description: 'Gotowe struktury maili i najczęstsze zwroty w komunikacji biznesowej.',
     access: 'premium',
-    ctaLabel: 'Kup dostęp',
     packageKey: 'regular',
+    action: MATERIAL_ACTIONS.package,
     tags: ['email', 'biznes'],
   },
   {
@@ -60,8 +70,9 @@ export const materials = [
     duration: '30–40 min',
     description: 'Plan działania, timeboxing i wskazówki do najczęstszych zadań.',
     access: 'premium',
-    ctaLabel: 'Kup dostęp',
     packageKey: 'intensive',
+    action: MATERIAL_ACTIONS.package,
+    featured: true,
     tags: ['egzamin', 'strategia'],
   },
   {
@@ -73,8 +84,9 @@ export const materials = [
     duration: '20 min',
     description: 'Zestaw zwrotów do prowadzenia spotkań i prezentowania wniosków.',
     access: 'premium',
-    ctaLabel: 'Kup dostęp',
     packageKey: 'regular',
+    action: MATERIAL_ACTIONS.package,
+    featured: true,
     tags: ['meeting', 'biznes'],
   },
   {
@@ -86,8 +98,7 @@ export const materials = [
     duration: '10–12 min',
     description: 'Krótki quiz do utrwalenia zwrotów na lotnisku i w hotelu.',
     access: 'free',
-    ctaLabel: 'Zobacz',
-    url: '#',
+    action: MATERIAL_ACTIONS.unavailable,
     tags: ['travel', 'quiz'],
   },
   {
@@ -99,8 +110,8 @@ export const materials = [
     duration: '20 min',
     description: 'Przykłady użycia i ćwiczenia z must/should/can w codziennych sytuacjach.',
     access: 'premium',
-    ctaLabel: 'Kup dostęp',
     packageKey: 'start',
+    action: MATERIAL_ACTIONS.package,
     tags: ['modals'],
   },
   {
@@ -112,8 +123,8 @@ export const materials = [
     duration: '12–18 min',
     description: 'Nagrania z modelowymi odpowiedziami i krótkimi ćwiczeniami shadowing.',
     access: 'premium',
-    ctaLabel: 'Kup dostęp',
     packageKey: 'start',
+    action: MATERIAL_ACTIONS.package,
     tags: ['audio', 'shadowing'],
   },
   {
@@ -125,8 +136,7 @@ export const materials = [
     duration: '15–20 min',
     description: 'Schematy i łączniki do budowania spójnych wypowiedzi pisemnych.',
     access: 'free',
-    ctaLabel: 'Pobierz',
-    url: '#',
+    action: MATERIAL_ACTIONS.unavailable,
     tags: ['writing', 'łączniki'],
   },
   {
@@ -138,8 +148,8 @@ export const materials = [
     duration: '15 min',
     description: 'Konkretne kryteria oceny i plan przygotowania do części ustnej.',
     access: 'premium',
-    ctaLabel: 'Kup dostęp',
     packageKey: 'intensive',
+    action: MATERIAL_ACTIONS.package,
     tags: ['speaking', 'egzamin'],
   },
   {
@@ -151,8 +161,7 @@ export const materials = [
     duration: '10–15 min',
     description: 'Gotowe startery i pytania do rozmów w środowisku zawodowym.',
     access: 'free',
-    ctaLabel: 'Zobacz',
-    url: '#',
+    action: MATERIAL_ACTIONS.unavailable,
     tags: ['small talk', 'relacje'],
   },
   {
@@ -164,8 +173,8 @@ export const materials = [
     duration: '20–25 min',
     description: 'Mapy myśli do szybkiej powtórki i łączenia tematów gramatycznych.',
     access: 'premium',
-    ctaLabel: 'Kup dostęp',
     packageKey: 'regular',
+    action: MATERIAL_ACTIONS.package,
     tags: ['powtórka', 'mapy'],
   },
   {
@@ -177,8 +186,8 @@ export const materials = [
     duration: '20 min',
     description: 'Najczęstsze idiomy z przykładami użycia w kontekście.',
     access: 'premium',
-    ctaLabel: 'Kup dostęp',
     packageKey: 'regular',
+    action: MATERIAL_ACTIONS.package,
     tags: ['idiomy', 'kontekst'],
   },
   {
@@ -190,8 +199,8 @@ export const materials = [
     duration: '15–25 min',
     description: 'Krótkie scenki video z zadaniami do samodzielnego przećwiczenia.',
     access: 'premium',
-    ctaLabel: 'Kup dostęp',
     packageKey: 'intensive',
+    action: MATERIAL_ACTIONS.package,
     tags: ['role-play', 'video'],
   },
 ];

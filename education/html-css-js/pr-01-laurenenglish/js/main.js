@@ -1,47 +1,79 @@
-import { initReveal } from './modules/reveal.js';
-import { initHeaderShrink } from './modules/headerShrink.js';
-import { initMobileNav } from './modules/mobileNav.js';
-import { initScrollSpy } from './modules/scrollSpy.js';
-import { initAccordion } from './modules/accordion.js';
-import { initResourcesFilter } from './modules/resourcesFilter.js';
-import { initProgressTracker } from './modules/progressTracker.js';
-import { initContactForm } from './modules/contactForm.js';
-import { initMaterialsCatalog } from './modules/materialsCatalog.js';
-import { initAnchorFocus } from './modules/anchorFocus.js';
-import { initProgressPage } from './pages/progress-page.js';
+import { initReveal } from "./modules/reveal.js";
+import { initHeaderShrink } from "./modules/headerShrink.js";
+import { initMobileNav } from "./modules/mobileNav.js";
+import { initScrollSpy } from "./modules/scrollSpy.js";
+import { initAccordion } from "./modules/accordion.js";
+import { initResourcesFilter } from "./modules/resourcesFilter.js";
+import { initProgressTracker } from "./modules/progressTracker.js";
+import { initContactForm } from "./modules/contactForm.js";
+import { initMaterialsCatalog } from "./modules/materialsCatalog.js";
+import { initAnchorFocus } from "./modules/anchorFocus.js";
+import { initProgressPage } from "./pages/progress-page.js";
+import { readStoredValue, writeStoredValue } from "./state/browserStorage.js";
+
+const reportInitializationFailure = (name, error) => {
+  console.error(`[Lauren English] ${name} initialization failed.`, error);
+};
+
+const runInitializer = (name, initializer) => {
+  try {
+    initializer();
+  } catch (error) {
+    reportInitializationFailure(name, error);
+  }
+};
 
 const initThemeToggle = () => {
-  const toggle = document.querySelector('[data-theme-toggle]');
+  const toggle = document.querySelector("[data-theme-toggle]");
   if (!toggle) return;
-  const saved = localStorage.getItem('theme');
-  if (saved) {
-    document.documentElement.dataset.theme = saved;
-  }
-  toggle.addEventListener('click', () => {
-    const current = document.documentElement.dataset.theme === 'dark' ? 'light' : 'dark';
-    document.documentElement.dataset.theme = current;
-    localStorage.setItem('theme', current);
+
+  const applyTheme = (theme) => {
+    const isDark = theme === "dark";
+    document.documentElement.dataset.theme = isDark ? "dark" : "light";
+    toggle.setAttribute("aria-pressed", String(isDark));
+  };
+
+  const savedTheme = readStoredValue("theme");
+  applyTheme(savedTheme === "dark" ? "dark" : "light");
+
+  toggle.addEventListener("click", () => {
+    const nextTheme =
+      document.documentElement.dataset.theme === "dark" ? "light" : "dark";
+    applyTheme(nextTheme);
+    writeStoredValue("theme", nextTheme);
   });
+
+  toggle.hidden = false;
 };
 
 const registerServiceWorker = () => {
-  if ('serviceWorker' in navigator) {
-    window.addEventListener('load', () => {
-      navigator.serviceWorker.register('/service-worker.js');
+  if ("serviceWorker" in navigator) {
+    window.addEventListener("load", () => {
+      try {
+        const registration =
+          navigator.serviceWorker.register("/service-worker.js");
+        registration.catch((error) =>
+          reportInitializationFailure("Service worker", error),
+        );
+      } catch (error) {
+        reportInitializationFailure("Service worker", error);
+      }
     });
   }
 };
 
-initReveal();
-initHeaderShrink();
-initMobileNav();
-initScrollSpy();
-initAccordion();
-initResourcesFilter();
-initProgressTracker();
-initMaterialsCatalog();
-initAnchorFocus();
-initThemeToggle();
-initContactForm();
-initProgressPage();
-registerServiceWorker();
+[
+  ["Reveal", initReveal],
+  ["Header shrink", initHeaderShrink],
+  ["Mobile navigation", initMobileNav],
+  ["Scroll spy", initScrollSpy],
+  ["Accordion", initAccordion],
+  ["Resource filters", initResourcesFilter],
+  ["Progress tracker", initProgressTracker],
+  ["Materials catalogue", initMaterialsCatalog],
+  ["Anchor focus", initAnchorFocus],
+  ["Theme toggle", initThemeToggle],
+  ["Contact form", initContactForm],
+  ["Progress page", initProgressPage],
+  ["Service worker", registerServiceWorker],
+].forEach(([name, initializer]) => runInitializer(name, initializer));
