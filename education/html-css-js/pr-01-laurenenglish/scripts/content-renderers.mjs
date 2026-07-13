@@ -1,4 +1,7 @@
-import { getMaterialPresentation, resolveMaterialAction } from "../js/data/materialAccess.js";
+import {
+  getMaterialPresentation,
+  resolveMaterialAction,
+} from "../js/data/materialAccess.js";
 import { filterMaterials } from "../js/data/materialFilters.js";
 import { materials } from "../js/data/materials.js";
 import {
@@ -40,7 +43,9 @@ const wrapRegion = (markers, content) =>
   `${markers.start}\n${content}\n${markers.end}`;
 
 const renderBenefits = (benefits) =>
-  benefits.map((benefit) => `                <li>${escapeHtml(benefit)}</li>`).join("\n");
+  benefits
+    .map((benefit) => `                <li>${escapeHtml(benefit)}</li>`)
+    .join("\n");
 
 const renderPackagePrice = (packageRecord) =>
   packageRecord.priceLabel
@@ -82,7 +87,7 @@ ${renderBenefits(packageRecord.benefits)}
 export const renderHomePackageCards = () =>
   wrapRegion(
     CONTENT_MARKERS.homePackages,
-    packageList.map(renderHomePackageCard).join("\n"),
+    renderHomePackageCard(packages.regular),
   );
 
 export const renderHomePackagesLink = () =>
@@ -185,12 +190,16 @@ const isUsableHref = (href) =>
   typeof href === "string" && href.trim() !== "" && href.trim() !== "#";
 
 const assertExactCount = (label, actual, expected) => {
-  assert(actual === expected, `${label}: expected ${expected}, received ${actual}`);
+  assert(
+    actual === expected,
+    `${label}: expected ${expected}, received ${actual}`,
+  );
 };
 
 export const validateContentData = () => {
   assert(
-    JSON.stringify(PACKAGE_KEYS) === JSON.stringify(["start", "regular", "intensive"]),
+    JSON.stringify(PACKAGE_KEYS) ===
+      JSON.stringify(["start", "regular", "intensive"]),
     "Package keys must be start, regular, intensive",
   );
   assert(
@@ -200,45 +209,88 @@ export const validateContentData = () => {
   assert(isUsableHref(packagesSectionHref), "Invalid packages section route");
 
   packageList.forEach((packageRecord) => {
-    assert(packageRecord.key && packages[packageRecord.key] === packageRecord, "Invalid package record");
+    assert(
+      packageRecord.key && packages[packageRecord.key] === packageRecord,
+      "Invalid package record",
+    );
     assert(packageRecord.label, `${packageRecord.key}: missing public label`);
     assert(
       packageRecord.href === `/pakiety.html#pakiet-${packageRecord.key}`,
       `${packageRecord.key}: invalid package route`,
     );
     assert(packageRecord.summary, `${packageRecord.key}: missing summary`);
-    assert(packageRecord.benefits.length > 0, `${packageRecord.key}: missing benefits`);
+    assert(
+      packageRecord.benefits.length > 0,
+      `${packageRecord.key}: missing benefits`,
+    );
     assert(packageRecord.audience, `${packageRecord.key}: missing audience`);
     assert(
       packageRecord.priceLabel === null ||
-        (typeof packageRecord.priceLabel === "string" && packageRecord.priceLabel.trim() !== ""),
+        (typeof packageRecord.priceLabel === "string" &&
+          packageRecord.priceLabel.trim() !== ""),
       `${packageRecord.key}: invalid price state`,
     );
     assert(packageRecord.cta.label, `${packageRecord.key}: missing CTA label`);
-    assert(isUsableHref(packageRecord.cta.href), `${packageRecord.key}: invalid CTA route`);
+    assert(
+      isUsableHref(packageRecord.cta.href),
+      `${packageRecord.key}: invalid CTA route`,
+    );
   });
 
   const materialIds = materials.map((item) => item.id);
-  assert(new Set(materialIds).size === materialIds.length, "Material IDs must be unique");
+  assert(
+    new Set(materialIds).size === materialIds.length,
+    "Material IDs must be unique",
+  );
 
   materials.forEach((item) => {
-    assert(item.id && item.title && item.description, "Material content is incomplete");
-    assert(item.category && item.level && item.format, `${item.id}: metadata is incomplete`);
-    assert(item.access === "free" || item.access === "premium", `${item.id}: invalid access type`);
-    assert(!Object.hasOwn(item, "url"), `${item.id}: legacy url field is not allowed`);
-    assert(!Object.hasOwn(item, "ctaLabel"), `${item.id}: legacy ctaLabel field is not allowed`);
+    assert(
+      item.id && item.title && item.description,
+      "Material content is incomplete",
+    );
+    assert(
+      item.category && item.level && item.format,
+      `${item.id}: metadata is incomplete`,
+    );
+    assert(
+      item.access === "free" || item.access === "premium",
+      `${item.id}: invalid access type`,
+    );
+    assert(
+      !Object.hasOwn(item, "url"),
+      `${item.id}: legacy url field is not allowed`,
+    );
+    assert(
+      !Object.hasOwn(item, "ctaLabel"),
+      `${item.id}: legacy ctaLabel field is not allowed`,
+    );
 
     if (item.access === "premium") {
-      assert(PACKAGE_KEYS.includes(item.packageKey), `${item.id}: invalid premium package key`);
-      assert(item.action.type === "package", `${item.id}: premium action must use a package route`);
+      assert(
+        PACKAGE_KEYS.includes(item.packageKey),
+        `${item.id}: invalid premium package key`,
+      );
+      assert(
+        item.action.type === "package",
+        `${item.id}: premium action must use a package route`,
+      );
     }
 
     const action = resolveMaterialAction(item);
-    assert(action.isValid, `${item.id}: invalid resolved action (${action.reason})`);
+    assert(
+      action.isValid,
+      `${item.id}: invalid resolved action (${action.reason})`,
+    );
     if (action.kind === "link") {
-      assert(isUsableHref(action.href), `${item.id}: invalid operational destination`);
+      assert(
+        isUsableHref(action.href),
+        `${item.id}: invalid operational destination`,
+      );
     } else {
-      assert(action.href === null, `${item.id}: informational action must not expose a link`);
+      assert(
+        action.href === null,
+        `${item.id}: informational action must not expose a link`,
+      );
     }
   });
 
@@ -275,13 +327,19 @@ export const validateContentData = () => {
     access: "free",
     action: { type: "contact", label: "Zapytaj o materiał" },
   });
-  assert(contactAction.isValid && contactAction.href === "/index.html#contact", "Contact route failed");
+  assert(
+    contactAction.isValid && contactAction.href === "/index.html#contact",
+    "Contact route failed",
+  );
 
   const invalidHashAction = resolveMaterialAction({
     access: "free",
     action: { type: "link", label: "Otwórz", href: "#" },
   });
-  assert(!invalidHashAction.isValid, "Hash-only material actions must be rejected");
+  assert(
+    !invalidHashAction.isValid,
+    "Hash-only material actions must be rejected",
+  );
 
   return Object.freeze({
     packageKeys: [...PACKAGE_KEYS],

@@ -24,26 +24,29 @@ const runInitializer = (name, initializer) => {
 };
 
 const initThemeToggle = () => {
-  const toggle = document.querySelector("[data-theme-toggle]");
-  if (!toggle) return;
+  const toggles = Array.from(document.querySelectorAll("[data-theme-toggle]"));
+  if (!toggles.length) return;
 
   const applyTheme = (theme) => {
     const isDark = theme === "dark";
     document.documentElement.dataset.theme = isDark ? "dark" : "light";
-    toggle.setAttribute("aria-pressed", String(isDark));
+    toggles.forEach((toggle) => {
+      toggle.setAttribute("aria-pressed", String(isDark));
+    });
   };
 
   const savedTheme = readStoredValue("theme");
   applyTheme(savedTheme === "dark" ? "dark" : "light");
 
-  toggle.addEventListener("click", () => {
-    const nextTheme =
-      document.documentElement.dataset.theme === "dark" ? "light" : "dark";
-    applyTheme(nextTheme);
-    writeStoredValue("theme", nextTheme);
+  toggles.forEach((toggle) => {
+    toggle.addEventListener("click", () => {
+      const nextTheme =
+        document.documentElement.dataset.theme === "dark" ? "light" : "dark";
+      applyTheme(nextTheme);
+      writeStoredValue("theme", nextTheme);
+    });
+    toggle.hidden = false;
   });
-
-  toggle.hidden = false;
 };
 
 const registerServiceWorker = () => {

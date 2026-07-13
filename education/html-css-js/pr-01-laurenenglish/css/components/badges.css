@@ -2,9 +2,10 @@
   display: inline-flex;
   align-items: center;
   gap: var(--space-2xs);
-  padding: 4px 10px;
-  border-radius: 999px;
+  padding: var(--space-2xs) 10px;
+  border-radius: var(--radius-pill);
   background: var(--color-surface-soft);
+  color: var(--color-text);
   font-size: var(--text-xs);
   font-weight: 600;
 }
@@ -12,21 +13,26 @@
 .pill {
   display: inline-flex;
   align-items: center;
-  padding: 6px 12px;
-  border-radius: 999px;
+  padding: 6px var(--space-sm);
+  border-radius: var(--radius-pill);
   background: var(--color-surface-soft);
+  color: var(--color-text);
   font-size: var(--text-xs);
   font-weight: 600;
 }
 
 .pill--filter {
-  border: 1px solid var(--color-border);
+  border: var(--size-1px) solid var(--color-control-border);
   background: transparent;
   cursor: pointer;
 }
 
 .pill--filter.is-active {
   background: var(--color-primary);
-  color: #fff;
+  color: var(--color-text-on-primary);
   border-color: transparent;
+}
+
+.pill--filter:hover:not(.is-active) {
+  background: var(--color-interactive-surface);
 }

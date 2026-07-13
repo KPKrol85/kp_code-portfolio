@@ -1,13 +1,15 @@
 .card {
+  min-width: 0;
   background: var(--color-surface);
   border-radius: var(--radius-md);
   padding: var(--space-lg);
   box-shadow: var(--shadow-sm);
-  border: 1px solid transparent;
+  border: var(--size-1px) solid var(--color-border);
 }
 
 .card--soft {
   background: var(--color-surface-soft);
+  box-shadow: none;
 }
 
 .card--highlight {
@@ -15,9 +17,23 @@
   box-shadow: var(--shadow-md);
 }
 
+.card--service {
+  height: 100%;
+}
+
+.card--pricing,
+.card--resource {
+  display: grid;
+  gap: var(--space-sm);
+  align-content: start;
+  height: 100%;
+}
+
 .card__title {
   margin: 0 0 var(--space-sm);
   font-size: var(--text-lg);
+  line-height: 1.35;
+  text-wrap: balance;
 }
 
 .card__text {
@@ -35,4 +51,18 @@
   color: var(--color-primary);
   font-weight: 600;
   margin-bottom: var(--space-xs);
+}
+
+.card--pricing > .button,
+.card--resource > .button {
+  align-self: end;
+  justify-self: start;
+  margin-top: auto;
+}
+
+@media (max-width: 479px) {
+  .card--pricing > .button,
+  .card--resource > .button {
+    justify-self: stretch;
+  }
 }

@@ -1,0 +1,83 @@
+{
+  "name": "Lauren – Clean English",
+  "short_name": "Clean English",
+  "description": "Nauka angielskiego, pakiety, materiały i lokalny dziennik postępów.",
+  "id": "/",
+  "start_url": "/index.html",
+  "scope": "/",
+  "display": "standalone",
+  "background_color": "#f6f7f9",
+  "theme_color": "#1b7f6c",
+  "lang": "pl",
+  "icons": [
+    {
+      "src": "/assets/favicon/web-app-manifest-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/assets/favicon/web-app-manifest-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "Pakiety nauki",
+      "short_name": "Pakiety",
+      "description": "Zobacz dostępne pakiety nauki angielskiego.",
+      "url": "/pakiety.html",
+      "icons": [
+        {
+          "src": "/assets/pwa/shortcuts/packages-192.png",
+          "sizes": "192x192",
+          "type": "image/png"
+        }
+      ]
+    },
+    {
+      "name": "Materiały do nauki",
+      "short_name": "Materiały",
+      "description": "Przeglądaj materiały do samodzielnej nauki.",
+      "url": "/materialy.html",
+      "icons": [
+        {
+          "src": "/assets/pwa/shortcuts/materials-192.png",
+          "sizes": "192x192",
+          "type": "image/png"
+        }
+      ]
+    },
+    {
+      "name": "Dziennik postępów",
+      "short_name": "Postępy",
+      "description": "Otwórz lokalny dziennik celów i postępów.",
+      "url": "/postepy.html",
+      "icons": [
+        {
+          "src": "/assets/pwa/shortcuts/progress-192.png",
+          "sizes": "192x192",
+          "type": "image/png"
+        }
+      ]
+    }
+  ],
+  "screenshots": [
+    {
+      "src": "/assets/pwa/screenshots/home-desktop-1280x720.png",
+      "sizes": "1280x720",
+      "type": "image/png",
+      "form_factor": "wide",
+      "label": "Strona główna Lauren English na komputerze"
+    },
+    {
+      "src": "/assets/pwa/screenshots/home-mobile-720x1280.png",
+      "sizes": "720x1280",
+      "type": "image/png",
+      "form_factor": "narrow",
+      "label": "Strona główna Lauren English na urządzeniu mobilnym"
+    }
+  ]
+}

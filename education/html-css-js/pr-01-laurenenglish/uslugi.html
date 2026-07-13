@@ -3,34 +3,47 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <!-- seo:head:start -->
     <title>Usługi | Lauren – Clean English</title>
-    <meta
-      name="description"
-      content="Usługi języka angielskiego dla osób, które chcą uporządkować naukę: korepetycje 1:1, konwersacje, przygotowanie do egzaminów i English for Business."
-    />
-    <link
-      rel="canonical"
-      href="https://education-pr-01-lauren-english.netlify.app/uslugi.html"
-    />
+    <meta name="description" content="Usługi języka angielskiego dla osób, które chcą uporządkować naukę: korepetycje 1:1, konwersacje, przygotowanie do egzaminów i English for Business." />
+    <link rel="canonical" href="https://education-pr-01-lauren-english.netlify.app/uslugi.html" />
+    <link rel="manifest" href="/site.webmanifest" />
+    <link rel="icon" href="/assets/favicon/favicon.svg" type="image/svg+xml" />
+    <link rel="preload" href="/assets/fonts/literata-700.woff2" as="font" type="font/woff2" crossorigin />
     <meta property="og:title" content="Usługi | Lauren – Clean English" />
-    <meta
-      property="og:description"
-      content="Indywidualne lekcje, konwersacje, egzaminacyjny fokus oraz English for Business. Jasny plan pracy i spokojny rytm nauki."
-    />
+    <meta property="og:description" content="Usługi języka angielskiego dla osób, które chcą uporządkować naukę: korepetycje 1:1, konwersacje, przygotowanie do egzaminów i English for Business." />
     <meta property="og:type" content="website" />
-    <meta
-      property="og:url"
-      content="https://education-pr-01-lauren-english.netlify.app/uslugi.html"
-    />
-    <meta
-      property="og:image"
-      content="https://education-pr-01-lauren-english.netlify.app/assets/og/og-default.svg"
-    />
+    <meta property="og:site_name" content="Lauren – Clean English" />
+    <meta property="og:locale" content="pl_PL" />
+    <meta property="og:url" content="https://education-pr-01-lauren-english.netlify.app/uslugi.html" />
+    <meta property="og:image" content="https://education-pr-01-lauren-english.netlify.app/assets/og/og.png" />
+    <meta property="og:image:secure_url" content="https://education-pr-01-lauren-english.netlify.app/assets/og/og.png" />
+    <meta property="og:image:type" content="image/png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="Lauren – Clean English — nauka angielskiego w spokojnym rytmie." />
     <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Usługi | Lauren – Clean English" />
+    <meta name="twitter:description" content="Usługi języka angielskiego dla osób, które chcą uporządkować naukę: korepetycje 1:1, konwersacje, przygotowanie do egzaminów i English for Business." />
+    <meta name="twitter:image" content="https://education-pr-01-lauren-english.netlify.app/assets/og/og.png" />
+    <meta name="twitter:image:alt" content="Lauren – Clean English — nauka angielskiego w spokojnym rytmie." />
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "WebPage",
+        "@id": "https://education-pr-01-lauren-english.netlify.app/uslugi.html#webpage",
+        "url": "https://education-pr-01-lauren-english.netlify.app/uslugi.html",
+        "name": "Usługi | Lauren – Clean English",
+        "description": "Usługi języka angielskiego dla osób, które chcą uporządkować naukę: korepetycje 1:1, konwersacje, przygotowanie do egzaminów i English for Business.",
+        "inLanguage": "pl-PL",
+        "isPartOf": {
+          "@id": "https://education-pr-01-lauren-english.netlify.app/#website"
+        }
+      }
+    </script>
+    <!-- seo:head:end -->
     <meta name="theme-color" content="#1b7f6c" />
-    <link rel="manifest" href="manifest.webmanifest" />
     <link rel="stylesheet" href="/assets/build/style.min.css" />
-    <link rel="icon" href="assets/icons/icon-192.svg" type="image/svg+xml" />
   </head>
   <body class="page">
     <!-- shared-shell:header:start -->
@@ -38,7 +51,7 @@
     <header class="header" id="top">
       <div class="container header__inner">
         <a class="header__logo" href="/index.html" aria-label="Lauren – Clean English">
-          <span class="header__logo-mark">LC</span>
+          <img class="header__logo-image" src="/assets/img/logo/logo.svg" alt="" width="512" height="512" />
           <span class="header__logo-text">Lauren – Clean English</span>
         </a>
         <nav class="nav" aria-label="Główna nawigacja">
@@ -79,9 +92,6 @@
                 <a class="nav__link" href="/index.html#how">Metodyka</a>
               </li>
               <li class="nav__item">
-                <a class="nav__link" href="/index.html#testimonials">Opinie</a>
-              </li>
-              <li class="nav__item">
                 <a class="nav__link" href="/index.html#about">O Lauren</a>
               </li>
               <li class="nav__item">
@@ -91,7 +101,11 @@
                 <a class="nav__link" href="/index.html#contact">Kontakt</a>
               </li>
             </ul>
-            <a class="button button--primary nav__cta" href="/index.html#contact">Umów lekcję</a>
+            <button class="button button--ghost nav__theme" type="button" aria-pressed="false" data-theme-toggle hidden>
+              <span class="button__icon" aria-hidden="true">🌓</span>
+              <span>Tryb ciemny</span>
+            </button>
+            <a class="button button--primary nav__cta" href="/index.html#contact">Informacje o zapisach</a>
           </div>
         </nav>
         <div class="header__actions">
@@ -99,7 +113,7 @@
             <span class="button__icon" aria-hidden="true">🌓</span>
             <span>Tryb ciemny</span>
           </button>
-          <a class="button button--primary header__cta" href="/index.html#contact">Umów lekcję</a>
+          <a class="button button--primary header__cta" href="/index.html#contact">Informacje o zapisach</a>
         </div>
       </div>
     </header>
@@ -116,14 +130,14 @@
               który pasuje do Twojego stylu uczenia się.
             </p>
             <div class="hero__actions">
-              <a class="button button--primary" href="index.html#contact">Zapytaj o wolne terminy</a>
+              <a class="button button--primary" href="index.html#contact">Informacje o zapisach</a>
               <a class="button button--secondary" href="pakiety.html#pakiety">Zobacz pakiety</a>
             </div>
           </div>
           <div class="hero__visual" data-reveal>
             <div class="hero__card">
               <h3 class="hero__card-title">Współpraca bez chaosu</h3>
-              <p class="hero__card-text">Diagnoza potrzeb, plan i regularny feedback po każdej lekcji.</p>
+              <p class="hero__card-text">Diagnoza potrzeb, plan oraz regularny feedback i rekomendacje.</p>
               <ul class="progress" role="list">
                 <li class="progress__item">
                   <span class="progress__status is-complete">
@@ -196,7 +210,7 @@
             </article>
             <article class="card card--service" data-reveal>
               <h3 class="card__title">Konwersacje</h3>
-              <p class="card__text">Realne tematy, praca nad płynnością i pewnością w mówieniu.</p>
+              <p class="card__text">Tematy dopasowane do celu, praca nad płynnością i pewnością w mówieniu.</p>
               <span class="badge">Speaking</span>
             </article>
             <article class="card card--service" data-reveal>
@@ -234,11 +248,11 @@
       <section class="section">
         <div class="container">
           <div class="card card--soft" data-reveal>
-            <h2 class="card__title">Gotowa/y na spokojny start?</h2>
+            <h2 class="card__title">Informacje o zapisach</h2>
             <p class="card__text">
-              Napisz, czego potrzebujesz – przygotuję propozycję planu i dopasuję format spotkań.
+              Aktualny status zapisów i dostępność kanału kontaktowego znajdziesz w sekcji Kontakt.
             </p>
-            <a class="button button--primary" href="index.html#contact">Skontaktuj się</a>
+            <a class="button button--primary" href="index.html#contact">Sprawdź status zapisów</a>
           </div>
         </div>
       </section>
@@ -248,9 +262,9 @@
     <footer class="footer">
       <div class="container footer__grid">
         <div>
-          <a class="header__logo" href="/index.html">
-            <span class="header__logo-mark">LC</span>
-            <span class="header__logo-text">Lauren – Clean English</span>
+          <a class="footer__brand" href="/index.html">
+            <img class="footer__logo-image" src="/assets/img/logo/logo.svg" alt="" width="512" height="512" />
+            <span class="footer__brand-text">Lauren – Clean English</span>
           </a>
           <p class="footer__text">Profesjonalny angielski w spokojnym rytmie.</p>
         </div>
@@ -264,24 +278,9 @@
             <li><a href="/index.html#contact">Kontakt</a></li>
           </ul>
         </div>
-        <div>
-          <h3 class="footer__title">Social</h3>
-          <ul class="footer__list" role="list">
-            <li><a href="https://www.linkedin.com" rel="noreferrer">LinkedIn</a></li>
-            <li><a href="https://www.instagram.com" rel="noreferrer">Instagram</a></li>
-            <li><a href="https://www.youtube.com" rel="noreferrer">YouTube</a></li>
-          </ul>
-        </div>
-        <div>
-          <h3 class="footer__title">Legal</h3>
-          <ul class="footer__list" role="list">
-            <li><a href="/offline.html">Polityka prywatności</a></li>
-            <li><a href="/offline.html">Regulamin</a></li>
-          </ul>
-        </div>
       </div>
       <div class="footer__bottom">
-        <p>© 2026 Lauren – Clean English. Wszystkie prawa zastrzeżone.</p>
+        <p>Lauren – Clean English — informacje o nauce angielskiego i materiałach.</p>
       </div>
     </footer>
     <!-- shared-shell:footer:end -->

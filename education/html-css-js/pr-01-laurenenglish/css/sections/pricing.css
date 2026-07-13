@@ -1,4 +1,4 @@
-.pricing .card--pricing {
-  display: grid;
-  gap: var(--space-sm);
+.pricing__featured {
+  max-width: var(--content-measure);
+  grid-template-columns: minmax(0, 1fr);
 }

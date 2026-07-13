@@ -17,6 +17,15 @@ import {
   renderPackagePageCards,
   validateContentData,
 } from "./content-renderers.mjs";
+import {
+  ALL_PAGES,
+  SEO_MARKERS,
+  SITE,
+  renderRedirects,
+  renderRobots,
+  renderSeoHead,
+  renderSitemap,
+} from "./site-config.mjs";
 
 const ROOT = resolve(dirname(fileURLToPath(import.meta.url)), "..");
 const CHECK_ONLY = process.argv.includes("--check");
@@ -52,9 +61,28 @@ const replaceRegion = (source, startMarker, endMarker, replacement, file) => {
   return source.replace(currentRegion, replacement);
 };
 
+const removeGeneratedHeadAssets = (source) =>
+  source.replace(
+    /^[\t ]*<link\s+rel="(?:manifest|icon)"[^>]*\/>[\t ]*(?:\n|$)/gim,
+    "",
+  );
+
 const assemblePage = (source, page) => {
+  const normalizedSource = removeGeneratedHeadAssets(
+    source.replace(/\r\n?/g, "\n"),
+  );
+  const withSeo = replaceRegion(
+    normalizedSource,
+    SEO_MARKERS.start,
+    SEO_MARKERS.end,
+    renderSeoHead(page),
+    page.file,
+  );
+
+  if (!PRIMARY_PAGES.includes(page)) return withSeo;
+
   const withHeader = replaceRegion(
-    source,
+    withSeo,
     SHELL_MARKERS.headerStart,
     SHELL_MARKERS.headerEnd,
     renderSharedHeader(page.key),
@@ -122,6 +150,8 @@ const getIds = (html) =>
   [...html.matchAll(/\sid="([^"]+)"/g)].map((match) => match[1]);
 
 const getAnchorHref = (anchor) => anchor.match(/\shref="([^"]+)"/)?.[1] ?? null;
+const getAttribute = (tag, name) =>
+  tag.match(new RegExp(`\\b${name}="([^"]*)"`, "i"))?.[1] ?? null;
 
 const validateLocalLink = async (href, page, assembledPages) => {
   if (/^(?:https?:|mailto:|tel:)/.test(href)) return;
@@ -242,8 +272,8 @@ const validatePage = async (html, page, assembledPages) => {
   }
 
   assert(
-    (header.match(/class="nav__item"/g) ?? []).length === 9,
-    `${page.file}: expected nine nav items`,
+    (header.match(/class="nav__item"/g) ?? []).length === 8,
+    `${page.file}: expected eight nav items`,
   );
   assert(
     (header.match(/id="nav-drawer" data-drawer/g) ?? []).length === 1,
@@ -275,7 +305,7 @@ const validatePage = async (html, page, assembledPages) => {
   );
   assert(
     (header.match(/aria-pressed="false" data-theme-toggle hidden/g) ?? [])
-      .length === 1,
+      .length === 2,
     `${page.file}: theme-toggle hook changed`,
   );
   assert(
@@ -334,14 +364,41 @@ const validatePage = async (html, page, assembledPages) => {
     }
   }
 
-  const logoHrefs = [
-    ...`${header}\n${footer}`.matchAll(
-      /<a class="header__logo" href="([^"]+)"/g,
-    ),
+  const headerLogoHrefs = [
+    ...header.matchAll(/<a class="header__logo" href="([^"]+)"/g),
+  ].map((match) => match[1]);
+  const footerLogoHrefs = [
+    ...footer.matchAll(/<a class="footer__brand" href="([^"]+)"/g),
   ].map((match) => match[1]);
   assert(
-    logoHrefs.length === 2 && logoHrefs.every((href) => href === "/index.html"),
-    `${page.file}: header and footer logos must link to /index.html`,
+    headerLogoHrefs.length === 1 && headerLogoHrefs[0] === "/index.html",
+    `${page.file}: header logo must link to /index.html`,
+  );
+  assert(
+    footerLogoHrefs.length === 1 && footerLogoHrefs[0] === "/index.html",
+    `${page.file}: footer logo must link to /index.html`,
+  );
+
+  const logoImages = [
+    ...header.matchAll(/<img\b[^>]*class="header__logo-image"[^>]*>/g),
+    ...footer.matchAll(/<img\b[^>]*class="footer__logo-image"[^>]*>/g),
+  ].map((match) => match[0]);
+  assert(
+    logoImages.length === 2,
+    `${page.file}: header and footer need one shared logo image each`,
+  );
+  for (const image of logoImages) {
+    assert(
+      getAttribute(image, "src") === SITE.brandLogo.path &&
+        getAttribute(image, "alt") === "" &&
+        getAttribute(image, "width") === String(SITE.brandLogo.width) &&
+        getAttribute(image, "height") === String(SITE.brandLogo.height),
+      `${page.file}: shared logo image attributes changed`,
+    );
+  }
+  assert(
+    !`${header}\n${footer}`.includes("header__logo-mark"),
+    `${page.file}: obsolete generated logo mark remains`,
   );
 
   const shellHrefs = [
@@ -358,7 +415,7 @@ const run = async () => {
   const sourcePages = new Map();
   const assembledPages = new Map();
 
-  for (const page of PRIMARY_PAGES) {
+  for (const page of ALL_PAGES) {
     const source = await readFile(resolve(ROOT, page.file), "utf8");
     sourcePages.set(page.file, source);
     assembledPages.set(page.file, assemblePage(source, page));
@@ -368,28 +425,44 @@ const run = async () => {
     await validatePage(assembledPages.get(page.file), page, assembledPages);
   }
 
-  const stalePages = PRIMARY_PAGES.filter(
+  const stalePages = ALL_PAGES.filter(
     ({ file }) => sourcePages.get(file) !== assembledPages.get(file),
   );
+  const generatedAssets = [
+    { file: "sitemap.xml", content: renderSitemap() },
+    { file: "robots.txt", content: renderRobots() },
+    { file: "_redirects", content: renderRedirects() },
+  ];
+  const staleAssets = [];
+  for (const asset of generatedAssets) {
+    const source = await readFile(resolve(ROOT, asset.file), "utf8");
+    if (source !== asset.content) staleAssets.push(asset);
+  }
 
   if (CHECK_ONLY) {
     assert(
-      stalePages.length === 0,
-      `Generated HTML is stale in: ${stalePages.map(({ file }) => file).join(", ")}. Run npm run build:html.`,
+      stalePages.length === 0 && staleAssets.length === 0,
+      `Generated output is stale in: ${[
+        ...stalePages.map(({ file }) => file),
+        ...staleAssets.map(({ file }) => file),
+      ].join(", ")}. Run npm run build:html.`,
     );
     console.log(
-      `Verified generated HTML regions and invariants for ${PRIMARY_PAGES.length} pages.`,
+      `Verified generated HTML regions for ${ALL_PAGES.length} pages, shared-shell invariants for ${PRIMARY_PAGES.length} primary pages, and ${generatedAssets.length} route assets.`,
     );
     return;
   }
 
-  await Promise.all(
-    stalePages.map(({ file }) =>
+  await Promise.all([
+    ...stalePages.map(({ file }) =>
       writeFile(resolve(ROOT, file), assembledPages.get(file), "utf8"),
     ),
-  );
+    ...staleAssets.map(({ file, content }) =>
+      writeFile(resolve(ROOT, file), content, "utf8"),
+    ),
+  ]);
   console.log(
-    `Assembled generated HTML for ${PRIMARY_PAGES.length} pages (${stalePages.length} updated).`,
+    `Assembled generated HTML and route assets (${stalePages.length} pages and ${staleAssets.length} route assets updated).`,
   );
 };
 

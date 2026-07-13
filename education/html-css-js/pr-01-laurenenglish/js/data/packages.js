@@ -15,7 +15,7 @@ export const packages = Object.freeze({
     audience: "dla osób wracających do nauki.",
     emphasisLabel: null,
     cta: Object.freeze({
-      label: "Zapytaj o Start",
+      label: "Informacje o zapisach",
       href: "/index.html#contact",
     }),
   }),
@@ -31,9 +31,9 @@ export const packages = Object.freeze({
       "Mini podsumowania postępów",
     ]),
     audience: "dla osób, które chcą stabilnie rosnąć.",
-    emphasisLabel: "Najczęściej wybierany",
+    emphasisLabel: null,
     cta: Object.freeze({
-      label: "Zapytaj o Regular",
+      label: "Informacje o zapisach",
       href: "/index.html#contact",
     }),
   }),
@@ -41,8 +41,7 @@ export const packages = Object.freeze({
     key: "intensive",
     label: "Intensive",
     href: "/pakiety.html#pakiet-intensive",
-    summary:
-      "Rytm: intensywny, częstsze spotkania i wsparcie między lekcjami.",
+    summary: "Rytm: intensywny, częstsze spotkania i wsparcie między lekcjami.",
     priceLabel: null,
     benefits: Object.freeze([
       "Priorytetowy plan i szybkie korekty",
@@ -52,7 +51,7 @@ export const packages = Object.freeze({
     audience: "dla osób z konkretnym terminem lub celem.",
     emphasisLabel: null,
     cta: Object.freeze({
-      label: "Zapytaj o Intensive",
+      label: "Informacje o zapisach",
       href: "/index.html#contact",
     }),
   }),

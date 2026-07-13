@@ -1,6 +1,6 @@
 const focusableSelectors =
   'a[href], button:not([disabled]), textarea, input, select, [tabindex]:not([tabindex="-1"])';
-const desktopNavigationQuery = "(min-width: 780px)";
+const desktopNavigationQuery = "(min-width: 1280px)";
 
 export const initMobileNav = () => {
   const toggle = document.querySelector(".nav__toggle");

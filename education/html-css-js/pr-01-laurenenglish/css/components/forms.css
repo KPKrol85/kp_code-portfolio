@@ -1,8 +1,15 @@
 .form {
   background: var(--color-surface);
-  padding: var(--space-xl);
+  border: var(--size-1px) solid var(--color-border);
+  padding: var(--space-lg);
   border-radius: var(--radius-lg);
   box-shadow: var(--shadow-md);
+}
+
+@media (min-width: 480px) {
+  .form {
+    padding: var(--space-xl);
+  }
 }
 
 .form__field {
@@ -16,11 +23,27 @@
 }
 
 .form__input {
-  padding: 10px 12px;
-  border-radius: 10px;
-  border: 1px solid var(--color-border);
+  min-height: var(--control-min-size);
+  padding: 10px var(--space-sm);
+  border-radius: var(--radius-sm);
+  border: var(--size-1px) solid var(--color-control-border);
   background: var(--color-surface);
-  color: inherit;
+  color: var(--color-text);
+}
+
+.form__input::placeholder {
+  color: var(--color-text-muted);
+}
+
+.form__input:hover:not(:disabled) {
+  border-color: var(--color-primary);
+}
+
+.form__input:disabled {
+  border-color: var(--color-disabled-border);
+  background: var(--color-disabled-surface);
+  color: var(--color-disabled-text);
+  cursor: not-allowed;
 }
 
 .form__hint {

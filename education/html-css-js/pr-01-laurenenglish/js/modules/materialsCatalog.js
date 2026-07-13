@@ -25,8 +25,7 @@ const createMetaBadges = (item) => {
   return fragment;
 };
 
-const getFilteredMaterials = (filters) =>
-  filterMaterials(materials, filters);
+const getFilteredMaterials = (filters) => filterMaterials(materials, filters);
 
 const renderMaterials = (list, container, emptyState) => {
   if (!list.length) {

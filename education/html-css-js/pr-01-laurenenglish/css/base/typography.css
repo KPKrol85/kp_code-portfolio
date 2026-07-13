@@ -1,1 +1,14 @@
-/* Typography scale extensions or overrides can live here. */
+/* Reserved base-layer extension point for global semantic heading typography. */
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: var(--font-family-heading);
+  font-weight: 700;
+  line-height: 1.2;
+  letter-spacing: -0.01em;
+  text-wrap: balance;
+}

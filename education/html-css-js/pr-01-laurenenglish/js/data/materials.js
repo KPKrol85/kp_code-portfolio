@@ -17,7 +17,8 @@ export const materials = [
     level: 'A2',
     format: 'PDF',
     duration: '20–30 min',
-    description: 'Zwięzłe podsumowania czasów z przykładami i checklistą do powtórek.',
+    description:
+      'Zwięzłe podsumowania czasów z przykładami i checklistą do powtórek.',
     access: 'free',
     action: MATERIAL_ACTIONS.unavailable,
     featured: true,
@@ -30,7 +31,8 @@ export const materials = [
     level: 'A1',
     format: 'Worksheet',
     duration: '10–15 min',
-    description: 'Karty pracy z obrazkami i krótkimi dialogami do pracy własnej.',
+    description:
+      'Karty pracy z obrazkami i krótkimi dialogami do pracy własnej.',
     access: 'free',
     action: MATERIAL_ACTIONS.unavailable,
     featured: true,
@@ -55,7 +57,8 @@ export const materials = [
     level: 'B2',
     format: 'PDF',
     duration: '25–30 min',
-    description: 'Gotowe struktury maili i najczęstsze zwroty w komunikacji biznesowej.',
+    description:
+      'Gotowe struktury maili i najczęstsze zwroty w komunikacji biznesowej.',
     access: 'premium',
     packageKey: 'regular',
     action: MATERIAL_ACTIONS.package,
@@ -68,7 +71,8 @@ export const materials = [
     level: 'B2',
     format: 'PDF',
     duration: '30–40 min',
-    description: 'Plan działania, timeboxing i wskazówki do najczęstszych zadań.',
+    description:
+      'Plan działania, timeboxing i wskazówki do najczęstszych zadań.',
     access: 'premium',
     packageKey: 'intensive',
     action: MATERIAL_ACTIONS.package,
@@ -82,7 +86,8 @@ export const materials = [
     level: 'B2',
     format: 'Worksheet',
     duration: '20 min',
-    description: 'Zestaw zwrotów do prowadzenia spotkań i prezentowania wniosków.',
+    description:
+      'Zestaw zwrotów do prowadzenia spotkań i prezentowania wniosków.',
     access: 'premium',
     packageKey: 'regular',
     action: MATERIAL_ACTIONS.package,
@@ -108,7 +113,8 @@ export const materials = [
     level: 'B1',
     format: 'PDF',
     duration: '20 min',
-    description: 'Przykłady użycia i ćwiczenia z must/should/can w codziennych sytuacjach.',
+    description:
+      'Przykłady użycia i ćwiczenia z must/should/can w codziennych sytuacjach.',
     access: 'premium',
     packageKey: 'start',
     action: MATERIAL_ACTIONS.package,
@@ -121,7 +127,8 @@ export const materials = [
     level: 'A2',
     format: 'Audio',
     duration: '12–18 min',
-    description: 'Nagrania z modelowymi odpowiedziami i krótkimi ćwiczeniami shadowing.',
+    description:
+      'Nagrania z modelowymi odpowiedziami i krótkimi ćwiczeniami shadowing.',
     access: 'premium',
     packageKey: 'start',
     action: MATERIAL_ACTIONS.package,
@@ -134,7 +141,8 @@ export const materials = [
     level: 'B1',
     format: 'Worksheet',
     duration: '15–20 min',
-    description: 'Schematy i łączniki do budowania spójnych wypowiedzi pisemnych.',
+    description:
+      'Schematy i łączniki do budowania spójnych wypowiedzi pisemnych.',
     access: 'free',
     action: MATERIAL_ACTIONS.unavailable,
     tags: ['writing', 'łączniki'],
@@ -146,7 +154,8 @@ export const materials = [
     level: 'C1',
     format: 'PDF',
     duration: '15 min',
-    description: 'Konkretne kryteria oceny i plan przygotowania do części ustnej.',
+    description:
+      'Konkretne kryteria oceny i plan przygotowania do części ustnej.',
     access: 'premium',
     packageKey: 'intensive',
     action: MATERIAL_ACTIONS.package,
@@ -171,7 +180,8 @@ export const materials = [
     level: 'All',
     format: 'PDF',
     duration: '20–25 min',
-    description: 'Mapy myśli do szybkiej powtórki i łączenia tematów gramatycznych.',
+    description:
+      'Mapy myśli do szybkiej powtórki i łączenia tematów gramatycznych.',
     access: 'premium',
     packageKey: 'regular',
     action: MATERIAL_ACTIONS.package,
@@ -197,7 +207,8 @@ export const materials = [
     level: 'B2',
     format: 'Video',
     duration: '15–25 min',
-    description: 'Krótkie scenki video z zadaniami do samodzielnego przećwiczenia.',
+    description:
+      'Krótkie scenki video z zadaniami do samodzielnego przećwiczenia.',
     access: 'premium',
     packageKey: 'intensive',
     action: MATERIAL_ACTIONS.package,

@@ -78,7 +78,7 @@ The intended source-only UI is more complete than the current runtime suggests. 
    - **Verification or acceptance criteria:** With JavaScript disabled, all essential content is visible, links and the form remain usable, and no control falsely implies unavailable behavior; with storage denied or observers unavailable, initialization completes without uncaught errors; reduced-motion mode removes non-essential motion; normal mode has no console errors.
    - **Likely source files or areas:** `css/sections/reveal.css`, `css/base/base.css`, `js/main.js`, `js/modules/reveal.js`, `js/modules/scrollSpy.js`, `js/modules/mobileNav.js`, `js/state/storage.js`, pages using `data-reveal`
 
-5. [ ] **Unify package, material, and access information behind canonical data**
+5. [x] **Unify package, material, and access information behind canonical data**
 
    - **Priority:** High
    - **Affected area:** Content architecture, catalogue UI, package CTAs, data modules, feature availability
@@ -89,7 +89,7 @@ The intended source-only UI is more complete than the current runtime suggests. 
    - **Verification or acceptance criteria:** The same three package keys and labels appear everywhere; each material has a valid, intentionally disabled, or clearly explained CTA; category/level/free filters return the expected data; no material card content is duplicated manually across tab panels; access rules remain centralized and unit-testable.
    - **Likely source files or areas:** `index.html`, `pakiety.html`, `materialy.html`, `js/data/packages.js`, `js/data/materials.js`, `js/modules/materialsCatalog.js`, `js/modules/resourcesFilter.js`, `docs/pakiety.md`
 
-6. [ ] **Replace unsupported public claims and legal placeholders with verified content**
+6. [x] **Replace unsupported public claims and legal placeholders with verified content**
 
    - **Priority:** Critical
    - **Affected area:** Brand credibility, public copy, testimonials, business identity, forms, legal and social destinations
@@ -100,7 +100,7 @@ The intended source-only UI is more complete than the current runtime suggests. 
    - **Verification or acceptance criteria:** Repository-wide searches find no prohibited public labels; testimonials, ratings, business details, prices, opening hours, and structured data each have an approved source or are absent; no legal link leads to an unrelated page; form disclosure names actual processing behavior and links to applicable policy content; generic social links are removed or replaced with verified profiles.
    - **Likely source files or areas:** All public HTML files, homepage JSON-LD and contact section, shared footer/navigation content, form copy, any approved legal documents, `CONTEXT-PROJECT.md` content rules
 
-7. [ ] **Complete the token-first CSS system and make both themes accessible**
+7. [x] **Complete the token-first CSS system and make both themes accessible**
 
    - **Priority:** High
    - **Affected area:** Design tokens, CSS layers, component reuse, dark theme, contrast, maintainability
@@ -111,7 +111,7 @@ The intended source-only UI is more complete than the current runtime suggests. 
    - **Verification or acceptance criteria:** Light and dark theme screenshots show readable hero, card, navigation, form, badge, and focus states; applicable text and control states meet WCAG AA contrast; raw colors outside the token layer are documented exceptions; no ID selectors or unnecessary `!important` are introduced; layer order and low specificity remain intact.
    - **Likely source files or areas:** `css/tokens/tokens.css`, `css/base/*`, `css/utilities/utilities.css`, `css/components/*`, `css/sections/hero.css`, `css/sections/resources.css`, `css/pages/pages.css`, `css/style.css`
 
-8. [ ] **Stabilize responsive layout and refine the educational UI hierarchy**
+8. [x] **Stabilize responsive layout and refine the educational UI hierarchy**
 
    - **Priority:** Medium
    - **Affected area:** Mobile layout, header/navigation density, typography, spacing, cards, CTA hierarchy, visual cohesion
@@ -122,7 +122,7 @@ The intended source-only UI is more complete than the current runtime suggests. 
    - **Verification or acceptance criteria:** At 320, 390, 768, 1024, and 1440px there is no document-level horizontal overflow, clipping, unintended overlap, or inaccessible off-screen focus; navigation labels and CTAs remain readable and usable; touch targets and line lengths are appropriate; page-level visual regression screenshots show consistent spacing, typography, and component states.
    - **Likely source files or areas:** Shared header/navigation HTML, homepage section structure, `css/tokens/tokens.css`, `css/components/navigation.css`, `css/components/buttons.css`, `css/components/cards.css`, `css/utilities/utilities.css`, section/page CSS
 
-9. [ ] **Correct routing, metadata, and structured-data foundations**
+9. [x] **Correct routing, metadata, and structured-data foundations**
 
    - **Priority:** High
    - **Affected area:** SEO, canonical URLs, 404 behavior, redirects, sitemap, robots, Open Graph, structured data
@@ -133,7 +133,7 @@ The intended source-only UI is more complete than the current runtime suggests. 
    - **Verification or acceptance criteria:** Known routes return 200 and unknown routes return 404; canonical URLs are self-consistent where appropriate; utility pages have deliberate index/noindex behavior; sitemap entries and dates reflect real content; robots points to the deployed sitemap; structured-data and social-preview validators report no unsupported or conflicting fields.
    - **Likely source files or areas:** All HTML `<head>` sections, `_redirects`, `404.html`, `offline.html`, `thank-you.html`, `sitemap.xml`, `robots.txt`, `assets/og/og-default.svg`, verified business/content source
 
-10. [ ] **Harden PWA lifecycle, offline behavior, and performance-critical assets**
+10. [x] **Harden PWA lifecycle, offline behavior, and performance-critical assets**
 
    - **Priority:** High
    - **Affected area:** Service worker, cache safety, offline navigation, manifest/installability, images, fonts, performance verification

@@ -2,10 +2,9 @@
   position: sticky;
   top: 0;
   z-index: var(--z-header);
-  background: var(--color-bg);
-  background: color-mix(in srgb, var(--color-bg) 90%, transparent);
+  background: var(--color-header-overlay);
   backdrop-filter: blur(12px);
-  border-bottom: 1px solid transparent;
+  border-bottom: var(--size-1px) solid transparent;
   transition:
     padding var(--transition-base),
     box-shadow var(--transition-base),
@@ -26,7 +25,8 @@ body.has-open-navigation {
   flex-wrap: wrap;
   align-items: center;
   justify-content: space-between;
-  gap: var(--space-md);
+  gap: var(--space-sm);
+  width: min(var(--layout-header-max), calc(100% - var(--space-xl)));
   padding: var(--space-md) 0;
 }
 
@@ -34,22 +34,26 @@ body.has-open-navigation {
   display: flex;
   align-items: center;
   gap: var(--space-sm);
+  min-width: 0;
   font-weight: 700;
 }
 
-.header__logo-mark {
-  width: 40px;
-  height: 40px;
-  border-radius: 12px;
-  background: var(--color-primary);
-  color: #fff;
-  display: grid;
-  place-items: center;
-  font-weight: 700;
+.header__logo-text {
+  line-height: 1.2;
+}
+
+.header__logo-image {
+  display: block;
+  flex: 0 0 auto;
+  width: var(--brand-logo-size);
+  height: var(--brand-logo-size);
+  object-fit: contain;
 }
 
 .header__actions {
   display: none;
+  align-items: center;
+  flex: 0 0 auto;
   gap: var(--space-sm);
 }
 
@@ -60,9 +64,11 @@ body.has-open-navigation {
 
 .nav__toggle {
   background: transparent;
-  border: 1px solid var(--color-border);
+  border: var(--size-1px) solid var(--color-control-border);
   padding: 10px;
-  border-radius: 10px;
+  border-radius: var(--radius-sm);
+  min-width: var(--control-min-size);
+  min-height: var(--control-min-size);
   display: none;
   gap: 4px;
 }
@@ -93,16 +99,27 @@ body.has-open-navigation {
 .nav.is-enhanced .nav__drawer {
   position: fixed;
   inset: 0 0 0 auto;
-  width: min(320px, 80vw);
+  width: min(320px, 100vw);
+  max-width: 100%;
+  height: 100dvh;
+  overflow-y: auto;
+  overscroll-behavior: contain;
   background: var(--color-surface);
-  transform: translateX(100%);
-  transition: transform var(--transition-base);
+  visibility: hidden;
+  opacity: 0;
+  pointer-events: none;
+  transition:
+    opacity var(--transition-base),
+    visibility 0s linear var(--transition-base);
   box-shadow: var(--shadow-md);
   padding: var(--space-lg);
 }
 
 .nav.is-enhanced .nav__drawer.is-open {
-  transform: translateX(0);
+  visibility: visible;
+  opacity: 1;
+  pointer-events: auto;
+  transition-delay: 0s;
 }
 
 .nav__drawer-header {
@@ -130,12 +147,21 @@ body.has-open-navigation {
 
 .nav__link {
   display: inline-flex;
-  padding: 8px 0;
+  padding: var(--space-xs) 0;
   color: var(--color-text-muted);
+  text-underline-offset: var(--space-2xs);
 }
 
+.nav__link:hover,
+.nav__link[aria-current="page"],
 .nav__link.is-active {
   color: var(--color-primary);
+  text-decoration: underline;
+  text-decoration-thickness: var(--size-1px);
+}
+
+.nav__link[aria-current="page"],
+.nav__link.is-active {
   font-weight: 600;
 }
 
@@ -143,15 +169,24 @@ body.has-open-navigation {
   width: 100%;
 }
 
+.nav__theme {
+  width: 100%;
+}
+
 .nav__close {
-  border: 1px solid var(--color-border);
+  border: var(--size-1px) solid var(--color-control-border);
   background: transparent;
-  border-radius: 999px;
+  border-radius: var(--radius-pill);
   width: 32px;
   height: 32px;
 }
 
-@media (min-width: 780px) {
+.nav__toggle:hover,
+.nav__close:hover {
+  background: var(--color-interactive-surface);
+}
+
+@media (min-width: 1280px) {
   .header__inner {
     flex-wrap: nowrap;
   }
@@ -175,7 +210,12 @@ body.has-open-navigation {
   .nav.is-enhanced .nav__drawer {
     position: static;
     transform: none;
+    visibility: visible;
+    opacity: 1;
+    pointer-events: auto;
     width: auto;
+    height: auto;
+    overflow-y: visible;
     padding: 0;
     box-shadow: none;
     flex-direction: row;
@@ -193,15 +233,23 @@ body.has-open-navigation {
   .nav.is-enhanced .nav__list {
     display: flex;
     flex-wrap: nowrap;
-    gap: var(--space-md);
+    gap: var(--space-sm);
+  }
+
+  .nav__link {
+    white-space: nowrap;
   }
 
   .nav__cta {
     display: none;
   }
+
+  .nav__theme {
+    display: none;
+  }
 }
 
-@media (min-width: 1024px) {
+@media (min-width: 1280px) {
   .header__inner {
     padding: var(--space-lg) 0;
   }

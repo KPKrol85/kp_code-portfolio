@@ -8,14 +8,6 @@
 
 @font-face {
   font-family: "Inter";
-  src: url("/assets/fonts/inter-500.woff2") format("woff2");
-  font-weight: 500;
-  font-style: normal;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: "Inter";
   src: url("/assets/fonts/inter-600.woff2") format("woff2");
   font-weight: 600;
   font-style: normal;
@@ -30,6 +22,14 @@
   font-display: swap;
 }
 
+@font-face {
+  font-family: "Literata";
+  src: url("/assets/fonts/literata-700.woff2") format("woff2");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
 *,
 *::before,
 *::after {
@@ -38,6 +38,11 @@
 
 html {
   scroll-behavior: smooth;
+  color-scheme: light;
+}
+
+html[data-theme="dark"] {
+  color-scheme: dark;
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -57,7 +62,7 @@ html {
 
 body {
   margin: 0;
-  font-family: "Inter", system-ui, sans-serif;
+  font-family: var(--font-family-body);
   font-size: var(--text-md);
   color: var(--color-text);
   background: var(--color-bg);
@@ -79,6 +84,7 @@ input,
 select,
 textarea {
   font: inherit;
+  font-family: var(--font-family-body);
 }
 
 [hidden] {
@@ -86,35 +92,38 @@ textarea {
 }
 
 :focus-visible {
-  outline: 3px solid var(--color-accent);
+  outline: 3px solid var(--color-focus-ring);
   outline-offset: 3px;
+  box-shadow: 0 0 0 2px var(--color-focus-guard);
 }
 
 .sr-only {
   position: absolute;
-  width: 1px;
-  height: 1px;
+  width: var(--size-1px);
+  height: var(--size-1px);
   padding: 0;
-  margin: -1px;
+  margin: calc(var(--size-1px) * -1);
   overflow: hidden;
-  clip: rect(0, 0, 0, 0);
+  clip-path: inset(50%);
   border: 0;
+  white-space: nowrap;
 }
 
 .skip-link {
   position: absolute;
-  top: -40px;
-  left: 16px;
+  top: var(--space-sm);
+  left: var(--space-sm);
   background: var(--color-primary);
-  color: #fff;
-  padding: 8px 16px;
-  border-radius: 999px;
-  transition: top var(--transition-fast);
+  color: var(--color-text-on-primary);
+  padding: var(--space-xs) var(--space-md);
+  border-radius: var(--radius-pill);
+  transform: translateY(-200%);
+  transition: transform var(--transition-fast);
   z-index: var(--z-header);
 }
 
-.skip-link:focus {
-  top: 16px;
+.skip-link:focus-visible {
+  transform: translateY(0);
 }
 
 .page--center {

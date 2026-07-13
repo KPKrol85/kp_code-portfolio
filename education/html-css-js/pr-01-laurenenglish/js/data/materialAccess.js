@@ -6,7 +6,11 @@ const DEFAULT_UNAVAILABLE_LABEL = "Obecnie niedostępne";
 const isUsableHref = (href) =>
   typeof href === "string" && href.trim() !== "" && href.trim() !== "#";
 
-const unavailableAction = ({ label = DEFAULT_UNAVAILABLE_LABEL, reason, isValid }) => ({
+const unavailableAction = ({
+  label = DEFAULT_UNAVAILABLE_LABEL,
+  reason,
+  isValid,
+}) => ({
   kind: "informational",
   label,
   href: null,
@@ -45,7 +49,7 @@ export const resolveMaterialAction = (item) => {
       kind: "link",
       label: `${action.label} ${packageRecord.label}`,
       href: packageRecord.href,
-      buttonClass: "button--primary",
+      buttonClass: "button--secondary",
       isValid: typeof action.label === "string" && action.label.trim() !== "",
       reason: "package-route",
       packageKey: packageRecord.key,

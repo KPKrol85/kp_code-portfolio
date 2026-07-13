@@ -4,7 +4,7 @@
 }
 
 .accordion__item {
-  border: 1px solid var(--color-border);
+  border: var(--size-1px) solid var(--color-control-border);
   border-radius: var(--radius-md);
   background: var(--color-surface);
 }
@@ -16,6 +16,7 @@
 
 .accordion__trigger {
   width: 100%;
+  min-height: var(--control-min-size);
   text-align: left;
   padding: var(--space-sm) var(--space-md);
   background: transparent;
@@ -23,8 +24,13 @@
   font-weight: 600;
 }
 
+.accordion__trigger:hover:not(:disabled) {
+  background: var(--color-interactive-surface);
+}
+
 .accordion__trigger:disabled {
   cursor: default;
+  color: var(--color-disabled-text);
 }
 
 .accordion__panel {
