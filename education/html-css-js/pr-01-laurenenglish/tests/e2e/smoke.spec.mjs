@@ -1,6 +1,10 @@
 import { expect, test } from "@playwright/test";
 
-import { FONT_PATHS } from "../../scripts/pwa-config.mjs";
+import {
+  FONT_PATHS,
+  RUNTIME_CSS_PATHS,
+  RUNTIME_JAVASCRIPT_PATHS,
+} from "../../scripts/pwa-config.mjs";
 import { SITE } from "../../scripts/site-config.mjs";
 import {
   PRIMARY_PAGES,
@@ -48,8 +52,16 @@ test.describe("generated production pages", () => {
           .map(({ origin, pathname }) => ({ origin, pathname })),
       );
 
-      expect(assetStatuses.get("/assets/build/style.min.css")).toBe(200);
-      expect(assetStatuses.get("/assets/build/main.min.js")).toBe(200);
+      for (const path of RUNTIME_CSS_PATHS) {
+        expect(assetStatuses.get(path), path).toBe(200);
+        expect(assetContentTypes.get(path), path).toContain("text/css");
+      }
+      for (const path of RUNTIME_JAVASCRIPT_PATHS) {
+        expect(assetStatuses.get(path), path).toBe(200);
+        expect(assetContentTypes.get(path), path).toMatch(/javascript/);
+      }
+      expect(assetStatuses.has("/assets/build/style.min.css")).toBe(false);
+      expect(assetStatuses.has("/assets/build/main.min.js")).toBe(false);
       expect(assetStatuses.get(SITE.brandLogo.path)).toBe(200);
       expect(assetContentTypes.get(SITE.brandLogo.path)).toContain(
         "image/svg+xml",
@@ -65,6 +77,24 @@ test.describe("generated production pages", () => {
         expect(assetStatuses.get(pathname)).toBe(200);
         expect(assetContentTypes.get(pathname)).toContain("font/woff2");
       }
+      const runtimeResources = await page.evaluate(() =>
+        performance
+          .getEntriesByType("resource")
+          .map((entry) => new URL(entry.name))
+          .filter(
+            ({ pathname }) =>
+              pathname.startsWith("/css/") || pathname.startsWith("/js/"),
+          )
+          .map(({ origin, pathname }) => ({ origin, pathname })),
+      );
+      expect(runtimeResources.map(({ pathname }) => pathname).sort()).toEqual(
+        [...RUNTIME_CSS_PATHS, ...RUNTIME_JAVASCRIPT_PATHS].sort(),
+      );
+      expect(
+        runtimeResources.every(
+          ({ origin }) => origin === "http://127.0.0.1:4173",
+        ),
+      ).toBe(true);
       expectCleanDiagnostics(diagnostics);
     });
   }

@@ -1,15 +1,24 @@
 <!doctype html>
 <html lang="pl">
   <head>
+    <!-- Document metadata -->
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <!-- seo:head:start -->
+    <!-- SEO -->
     <title>Usługi | Lauren – Clean English</title>
     <meta name="description" content="Usługi języka angielskiego dla osób, które chcą uporządkować naukę: korepetycje 1:1, konwersacje, przygotowanie do egzaminów i English for Business." />
     <link rel="canonical" href="https://education-pr-01-lauren-english.netlify.app/uslugi.html" />
+    <!-- App metadata -->
     <link rel="manifest" href="/site.webmanifest" />
     <link rel="icon" href="/assets/favicon/favicon.svg" type="image/svg+xml" />
+    <!-- Fonts -->
     <link rel="preload" href="/assets/fonts/literata-700.woff2" as="font" type="font/woff2" crossorigin />
+    <!-- Styles -->
+    <link rel="stylesheet" href="/css/style.css" />
+    <!-- Scripts -->
+    <script type="module" src="/js/main.js"></script>
+    <!-- Open Graph -->
     <meta property="og:title" content="Usługi | Lauren – Clean English" />
     <meta property="og:description" content="Usługi języka angielskiego dla osób, które chcą uporządkować naukę: korepetycje 1:1, konwersacje, przygotowanie do egzaminów i English for Business." />
     <meta property="og:type" content="website" />
@@ -22,11 +31,13 @@
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
     <meta property="og:image:alt" content="Lauren – Clean English — nauka angielskiego w spokojnym rytmie." />
+    <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content="Usługi | Lauren – Clean English" />
     <meta name="twitter:description" content="Usługi języka angielskiego dla osób, które chcą uporządkować naukę: korepetycje 1:1, konwersacje, przygotowanie do egzaminów i English for Business." />
     <meta name="twitter:image" content="https://education-pr-01-lauren-english.netlify.app/assets/og/og.png" />
     <meta name="twitter:image:alt" content="Lauren – Clean English — nauka angielskiego w spokojnym rytmie." />
+    <!-- Structured data -->
     <script type="application/ld+json">
       {
         "@context": "https://schema.org",
@@ -42,8 +53,8 @@
       }
     </script>
     <!-- seo:head:end -->
+    <!-- Theme -->
     <meta name="theme-color" content="#1b7f6c" />
-    <link rel="stylesheet" href="/assets/build/style.min.css" />
   </head>
   <body class="page">
     <!-- shared-shell:header:start -->
@@ -101,19 +112,23 @@
                 <a class="nav__link" href="/index.html#contact">Kontakt</a>
               </li>
             </ul>
-            <button class="button button--ghost nav__theme" type="button" aria-pressed="false" data-theme-toggle hidden>
-              <span class="button__icon" aria-hidden="true">🌓</span>
-              <span>Tryb ciemny</span>
+            <button class="button button--ghost theme-toggle nav__theme" type="button" aria-label="Włącz tryb ciemny" aria-pressed="false" data-theme-toggle hidden>
+              <span class="theme-toggle__icons" aria-hidden="true">
+                <img class="theme-toggle__icon theme-toggle__icon--sun" src="/assets/icons/sun.svg" alt="" width="24" height="24" />
+                <img class="theme-toggle__icon theme-toggle__icon--moon" src="/assets/icons/moon.svg" alt="" width="24" height="24" />
+              </span>
             </button>
             <a class="button button--primary nav__cta" href="/index.html#contact">Informacje o zapisach</a>
           </div>
         </nav>
         <div class="header__actions">
-          <button class="button button--ghost" type="button" aria-pressed="false" data-theme-toggle hidden>
-            <span class="button__icon" aria-hidden="true">🌓</span>
-            <span>Tryb ciemny</span>
+        <a class="button button--primary header__cta" href="/index.html#contact">Informacje o zapisach</a>
+          <button class="button button--ghost theme-toggle" type="button" aria-label="Włącz tryb ciemny" aria-pressed="false" data-theme-toggle hidden>
+            <span class="theme-toggle__icons" aria-hidden="true">
+              <img class="theme-toggle__icon theme-toggle__icon--sun" src="/assets/icons/sun.svg" alt="" width="24" height="24" />
+              <img class="theme-toggle__icon theme-toggle__icon--moon" src="/assets/icons/moon.svg" alt="" width="24" height="24" />
+            </span>
           </button>
-          <a class="button button--primary header__cta" href="/index.html#contact">Informacje o zapisach</a>
         </div>
       </div>
     </header>
@@ -285,6 +300,5 @@
     </footer>
     <!-- shared-shell:footer:end -->
 
-    <script src="/assets/build/main.min.js" defer></script>
   </body>
 </html>

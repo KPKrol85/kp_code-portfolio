@@ -10,11 +10,15 @@ import {
   collectRuntimeDiagnostics,
   expectCleanDiagnostics,
 } from "./helpers/runtime.mjs";
+import {
+  CSS_ENTRY_PATH,
+  JAVASCRIPT_ENTRY_PATH,
+} from "../../scripts/pwa-config.mjs";
 
 const EXPECTED_SOCIAL_IMAGE_PATH = "/assets/og/og.png";
 const EXPECTED_ASSETS = Object.freeze([
-  "/assets/build/style.min.css",
-  "/assets/build/main.min.js",
+  CSS_ENTRY_PATH,
+  JAVASCRIPT_ENTRY_PATH,
   EXPECTED_SOCIAL_IMAGE_PATH,
 ]);
 

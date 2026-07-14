@@ -9,6 +9,8 @@ import {
   OFFLINE_PATH,
   PRECACHE_PATHS,
   PRIMARY_DOCUMENT_PATHS,
+  RUNTIME_CSS_PATHS,
+  RUNTIME_JAVASCRIPT_PATHS,
   normalizePublicPath,
 } from "./pwa-config.mjs";
 
@@ -17,7 +19,11 @@ export const TEMPLATE_PATH = resolve(ROOT, "service-worker.template.js");
 export const OUTPUT_PATH = resolve(ROOT, "service-worker.js");
 
 const PACKAGE_PATH = resolve(ROOT, "package.json");
-const SOURCE_ONLY_PATH = /^\/(?:css|js)(?:\/|$)/;
+const DIRECT_RUNTIME_PATH = /^\/(?:css|js)(?:\/|$)/;
+const DIRECT_RUNTIME_PATHS = new Set([
+  ...RUNTIME_CSS_PATHS,
+  ...RUNTIME_JAVASCRIPT_PATHS,
+]);
 const PLACEHOLDER_PATTERN = /__[A-Z0-9_]+__/g;
 
 const assert = (condition, message) => {
@@ -50,10 +56,12 @@ export const validatePrecachePaths = async (paths = PRECACHE_PATHS) => {
       normalizedPath === path,
       `Precache path must already be normalized: ${path} -> ${normalizedPath}`,
     );
-    assert(
-      !SOURCE_ONLY_PATH.test(normalizedPath),
-      `Source-only CSS or JavaScript cannot be precached: ${normalizedPath}`,
-    );
+    if (DIRECT_RUNTIME_PATH.test(normalizedPath)) {
+      assert(
+        DIRECT_RUNTIME_PATHS.has(normalizedPath),
+        `Unconfigured CSS or JavaScript cannot be precached: ${normalizedPath}`,
+      );
+    }
     return normalizedPath;
   });
 

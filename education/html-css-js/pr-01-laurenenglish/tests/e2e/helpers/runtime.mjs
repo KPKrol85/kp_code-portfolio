@@ -97,15 +97,43 @@ export const getVisibleThemeToggle = async (page) => {
 export const expectThemeControls = async (page, pressed) => {
   const controls = page.locator("[data-theme-toggle]");
   await expect(controls).toHaveCount(2);
-  expect(
-    await controls.evaluateAll(
-      (elements, expected) =>
-        elements.every(
-          (element) => element.getAttribute("aria-pressed") === expected,
-        ),
-      String(pressed),
-    ),
-  ).toBe(true);
+  const expectedLabel = pressed ? "Włącz tryb jasny" : "Włącz tryb ciemny";
+  const expectedSunOpacity = pressed ? "0" : "1";
+  const expectedMoonOpacity = pressed ? "1" : "0";
+  const states = await controls.evaluateAll((elements) =>
+    elements.map((element) => {
+      const iconContainer = element.querySelector(".theme-toggle__icons");
+      const sun = element.querySelector(".theme-toggle__icon--sun");
+      const moon = element.querySelector(".theme-toggle__icon--moon");
+      return {
+        ariaLabel: element.getAttribute("aria-label"),
+        ariaPressed: element.getAttribute("aria-pressed"),
+        iconContainerHidden: iconContainer?.getAttribute("aria-hidden"),
+        moonAlt: moon?.getAttribute("alt"),
+        moonOpacity: moon ? getComputedStyle(moon).opacity : null,
+        moonPath: moon?.getAttribute("src"),
+        sunAlt: sun?.getAttribute("alt"),
+        sunOpacity: sun ? getComputedStyle(sun).opacity : null,
+        sunPath: sun?.getAttribute("src"),
+        text: element.textContent.trim(),
+      };
+    }),
+  );
+
+  for (const state of states) {
+    expect(state).toEqual({
+      ariaLabel: expectedLabel,
+      ariaPressed: String(pressed),
+      iconContainerHidden: "true",
+      moonAlt: "",
+      moonOpacity: expectedMoonOpacity,
+      moonPath: "/assets/icons/moon.svg",
+      sunAlt: "",
+      sunOpacity: expectedSunOpacity,
+      sunPath: "/assets/icons/sun.svg",
+      text: "",
+    });
+  }
 };
 
 export const expectNoDocumentOverflow = async (page) => {

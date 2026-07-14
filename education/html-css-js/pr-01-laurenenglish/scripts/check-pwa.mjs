@@ -13,16 +13,21 @@ import {
   BRAND_LOGO_PATH,
   CACHE_PREFIX,
   CRITICAL_ASSET_BUDGET,
+  CSS_ENTRY_PATH,
   FONT_ASSETS,
   FONT_PATHS,
   HERO_IMAGE_PATH,
+  JAVASCRIPT_ENTRY_PATH,
   MANIFEST_ICON_PATHS,
   MANIFEST_PATH,
   MANIFEST_SCREENSHOT_PATHS,
   OFFLINE_PATH,
   PRECACHE_PATHS,
   PRIMARY_DOCUMENT_PATHS,
+  RUNTIME_CSS_PATHS,
+  RUNTIME_JAVASCRIPT_PATHS,
   SHORTCUT_ICON_PATHS,
+  THEME_ICON_PATHS,
 } from "./pwa-config.mjs";
 import { ALL_PAGES, INDEXABLE_PAGES, SITE } from "./site-config.mjs";
 
@@ -142,6 +147,74 @@ const getCssFiles = async (directory) => {
     if (entry.isFile() && entry.name.endsWith(".css")) files.push(entryPath);
   }
   return files;
+};
+
+const resolveRuntimeImport = (importer, specifier, label) => {
+  assert(
+    !/^(?:[a-z]+:|\/\/|\/)/i.test(specifier),
+    `${label} must use a relative local import: ${specifier}`,
+  );
+  return new URL(specifier, `https://runtime.local${importer}`).pathname;
+};
+
+const collectRuntimeGraph = async (entryPath, type) => {
+  const visited = new Set();
+
+  const visit = async (publicPath) => {
+    if (visited.has(publicPath)) return;
+    visited.add(publicPath);
+    const source = await readText(publicFile(publicPath));
+    const specifiers =
+      type === "css"
+        ? [
+            ...source.matchAll(
+              /@import\s+(?:url\(\s*)?["']([^"']+)["']\s*\)?[^;]*;/g,
+            ),
+          ].map((match) => match[1])
+        : [
+            ...source.matchAll(
+              /(?:import|export)\s+(?:[^;]*?\s+from\s+)?["']([^"']+)["']/g,
+            ),
+          ].map((match) => match[1]);
+
+    for (const specifier of specifiers) {
+      const importedPath = resolveRuntimeImport(
+        publicPath,
+        specifier,
+        `${publicPath} ${type} import`,
+      );
+      assert(
+        importedPath.endsWith(type === "css" ? ".css" : ".js"),
+        `${publicPath} imports an unexpected runtime file: ${specifier}`,
+      );
+      await visit(importedPath);
+    }
+  };
+
+  await visit(entryPath);
+  return [...visited];
+};
+
+const assertExactRuntimeGraph = (actual, expected, label) => {
+  assertUniquePaths(expected, `${label} configuration`);
+  assert(
+    [...actual].sort().join(",") === [...expected].sort().join(","),
+    `${label} configuration does not match the browser import graph`,
+  );
+};
+
+const verifyRuntimeAssetGraphs = async () => {
+  const [cssGraph, javascriptGraph] = await Promise.all([
+    collectRuntimeGraph(CSS_ENTRY_PATH, "css"),
+    collectRuntimeGraph(JAVASCRIPT_ENTRY_PATH, "javascript"),
+  ]);
+  assertExactRuntimeGraph(cssGraph, RUNTIME_CSS_PATHS, "CSS runtime");
+  assertExactRuntimeGraph(
+    javascriptGraph,
+    RUNTIME_JAVASCRIPT_PATHS,
+    "JavaScript runtime",
+  );
+  return { cssGraph, javascriptGraph };
 };
 
 const verifyServiceWorker = async () => {
@@ -578,16 +651,19 @@ const verifyProductionAssetContract = async () => {
       `${page.file} must link exactly once to ${MANIFEST_PATH}`,
     );
     assert(
-      countOccurrences(html, 'href="/assets/build/style.min.css"') === 1,
-      `${page.file} must request one production CSS bundle`,
+      countOccurrences(html, `href="${CSS_ENTRY_PATH}"`) === 1,
+      `${page.file} must request the canonical CSS entry`,
     );
     assert(
-      countOccurrences(html, 'src="/assets/build/main.min.js"') === 1,
-      `${page.file} must request one production JavaScript bundle`,
+      countOccurrences(
+        html,
+        `<script type="module" src="${JAVASCRIPT_ENTRY_PATH}"></script>`,
+      ) === 1,
+      `${page.file} must request the canonical JavaScript module entry`,
     );
     assert(
-      !/(?:href|src)="\/(?:css|js)\//.test(html),
-      `${page.file} must not request source CSS or JavaScript`,
+      !html.includes("/assets/build/"),
+      `${page.file} must not request legacy assets/build files`,
     );
     const fontPreloads =
       html.match(
@@ -605,40 +681,15 @@ const verifyProductionAssetContract = async () => {
       `${page.file} must preload only the local Literata 700 WOFF2 face with CORS`,
     );
   }
-
-  const homepage = pageSources.find(({ page }) => page.key === "home").html;
-  assert(
-    countOccurrences(homepage, 'href="/assets/build/style.min.css"') ===
-      CRITICAL_ASSET_BUDGET.productionCssRequests,
-    "Homepage production CSS request budget changed",
-  );
-  assert(
-    countOccurrences(homepage, 'src="/assets/build/main.min.js"') ===
-      CRITICAL_ASSET_BUDGET.productionJavaScriptRequests,
-    "Homepage production JavaScript request budget changed",
-  );
-
-  const generatedCss = await readText(
-    publicFile("/assets/build/style.min.css"),
-  );
-  assert(
-    !generatedCss.includes("inter-500.woff2"),
-    "Generated CSS still delivers unused Inter 500",
-  );
-  for (const fontPath of FONT_PATHS) {
-    assert(
-      countOccurrences(generatedCss, fontPath) === 1,
-      `Generated CSS must declare ${fontPath} exactly once`,
-    );
-  }
 };
 
 const run = async () => {
-  const [build, manifest, criticalAssets] = await Promise.all([
+  const [build, manifest, criticalAssets, , runtimeGraphs] = await Promise.all([
     verifyServiceWorker(),
     verifyManifestAndIcons(),
     verifyHeroAndFonts(),
     verifyProductionAssetContract(),
+    verifyRuntimeAssetGraphs(),
   ]);
 
   assert(
@@ -651,6 +702,10 @@ const run = async () => {
     "Precache must contain the shared brand logo",
   );
   assert(
+    THEME_ICON_PATHS.every((path) => PRECACHE_PATHS.includes(path)),
+    "Precache must contain the shared theme icons",
+  );
+  assert(
     PRECACHE_PATHS.includes(MANIFEST_PATH) &&
       MANIFEST_ICON_PATHS.every((path) => PRECACHE_PATHS.includes(path)) &&
       SHORTCUT_ICON_PATHS.every((path) => PRECACHE_PATHS.includes(path)),
@@ -661,12 +716,22 @@ const run = async () => {
     "Install screenshots must remain outside the offline runtime precache",
   );
   assert(
+    [...RUNTIME_CSS_PATHS, ...RUNTIME_JAVASCRIPT_PATHS].every((path) =>
+      PRECACHE_PATHS.includes(path),
+    ),
+    "Precache must contain the complete direct CSS and JavaScript runtime graph",
+  );
+  assert(
+    PRECACHE_PATHS.every((path) => !path.startsWith("/assets/build/")),
+    "Legacy assets/build files must remain outside the runtime precache",
+  );
+  assert(
     INDEXABLE_PAGES.length === PRIMARY_DOCUMENT_PATHS.length,
     "PWA primary-document policy must match the site route registry",
   );
 
   console.log(
-    `Verified PWA cache ${build.cacheName}, ${PRECACHE_PATHS.length} precache entries, ${manifest.icons.length} install icons, ${manifest.shortcuts.length} shortcuts, ${manifest.screenshots.length} screenshots, hero ${criticalAssets.heroBytes} bytes, and ${FONT_PATHS.length} fonts totaling ${criticalAssets.fontBytes} bytes.`,
+    `Verified PWA cache ${build.cacheName}, ${PRECACHE_PATHS.length} precache entries, ${runtimeGraphs.cssGraph.length} CSS files, ${runtimeGraphs.javascriptGraph.length} JavaScript modules, ${manifest.icons.length} install icons, ${manifest.shortcuts.length} shortcuts, ${manifest.screenshots.length} screenshots, hero ${criticalAssets.heroBytes} bytes, and ${FONT_PATHS.length} fonts totaling ${criticalAssets.fontBytes} bytes.`,
   );
 };
 

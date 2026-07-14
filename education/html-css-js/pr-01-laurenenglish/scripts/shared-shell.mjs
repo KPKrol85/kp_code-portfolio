@@ -54,8 +54,7 @@ const renderFooterLinks = (links) =>
 export const renderSharedHeader = (pageKey) => {
   getPage(pageKey);
   const logoCurrent = pageKey === "home" ? ' aria-current="page"' : "";
-  const preservedHomeAnnotation =
-    pageKey === "home" ? "\n\n    <!-- Header -->" : "";
+  const preservedHomeAnnotation = pageKey === "home" ? "\n\n    <!-- Header -->" : "";
   const navToggleStart =
     pageKey === "home"
       ? '          <button class="nav__toggle" type="button" aria-expanded="false" aria-controls="nav-drawer" hidden>'
@@ -93,19 +92,23 @@ ${navToggleStart}
             <ul class="nav__list" role="list">
 ${renderNavItems(pageKey)}
             </ul>
-            <button class="button button--ghost nav__theme" type="button" aria-pressed="false" data-theme-toggle hidden>
-              <span class="button__icon" aria-hidden="true">🌓</span>
-              <span>Tryb ciemny</span>
+            <button class="button button--ghost theme-toggle nav__theme" type="button" aria-label="Włącz tryb ciemny" aria-pressed="false" data-theme-toggle hidden>
+              <span class="theme-toggle__icons" aria-hidden="true">
+                <img class="theme-toggle__icon theme-toggle__icon--sun" src="/assets/icons/sun.svg" alt="" width="24" height="24" />
+                <img class="theme-toggle__icon theme-toggle__icon--moon" src="/assets/icons/moon.svg" alt="" width="24" height="24" />
+              </span>
             </button>
             <a class="button button--primary nav__cta" href="/index.html#contact">Informacje o zapisach</a>
           </div>
         </nav>
         <div class="header__actions">
-          <button class="button button--ghost" type="button" aria-pressed="false" data-theme-toggle hidden>
-            <span class="button__icon" aria-hidden="true">🌓</span>
-            <span>Tryb ciemny</span>
+        <a class="button button--primary header__cta" href="/index.html#contact">Informacje o zapisach</a>
+          <button class="button button--ghost theme-toggle" type="button" aria-label="Włącz tryb ciemny" aria-pressed="false" data-theme-toggle hidden>
+            <span class="theme-toggle__icons" aria-hidden="true">
+              <img class="theme-toggle__icon theme-toggle__icon--sun" src="/assets/icons/sun.svg" alt="" width="24" height="24" />
+              <img class="theme-toggle__icon theme-toggle__icon--moon" src="/assets/icons/moon.svg" alt="" width="24" height="24" />
+            </span>
           </button>
-          <a class="button button--primary header__cta" href="/index.html#contact">Informacje o zapisach</a>
         </div>
       </div>
     </header>

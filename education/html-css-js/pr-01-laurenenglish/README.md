@@ -28,14 +28,16 @@ js/{data,modules,pages,state}/          # modułowe źródła JavaScript
 scripts/content-renderers.mjs           # build-time renderery pakietów i materiałów
 service-worker.template.js              # kanoniczny Service Worker
 assets/{favicon,fonts,img,og,pwa}/       # statyczne zasoby źródłowe
-assets/build/style.min.css               # wygenerowany bundle CSS
-assets/build/main.min.js                 # wygenerowany bundle JavaScript
+scripts/dev-server.py                    # lokalny serwer źródeł i live reload
+start-dev.bat                            # uruchamianie dev przez dwuklik w Windows
+assets/build/{style.min.css,main.min.js} # zachowane legacy outputy, poza runtime
 service-worker.js                        # wygenerowany Service Worker
 ```
 
 ## Build scripts
 
-- `npm run dev` – składa wspólny shell, a następnie uruchamia watch CSS/JS i lokalny serwer.
+- `npm run dev` – uruchamia źródłowy serwer Python na `http://127.0.0.1:8181`, składa HTML, otwiera przeglądarkę i włącza live reload.
+- `npm run check:dev` – weryfikuje serwer `8181`, live reload, rebuild zależności HTML, MIME, no-cache, prawdziwe 404 oraz lokalne sprzątanie PWA.
 - `npm run check:data` – sprawdza kanoniczne pakiety, materiały, dostęp i wyniki filtrów.
 - `npm run check:content` – sprawdza publiczne strony pod kątem niezweryfikowanych danych, atrap prawnych, opinii i aktywnego formularza danych osobowych.
 - `npm run check:css` – sprawdza kolejność warstw, semantyczne tokeny obu motywów, surowe kolory, selektory, duplikaty utilities i kontrast WCAG.
@@ -44,9 +46,9 @@ service-worker.js                        # wygenerowany Service Worker
 - `npm run test:e2e` – buduje produkcyjne pliki, uruchamia lokalny serwer i pełny zestaw testów Chromium w widokach desktop oraz mobile.
 - `npm run build:html` – składa wspólny header, nawigację i footer w pięciu głównych stronach oraz statyczny katalog materiałów.
 - `npm run check:html` – bez zapisu sprawdza aktualność regionów generowanych, semantykę, ID i lokalne linki.
-- `npm run build` – pełny build produkcyjny: JavaScript, CSS i Service Worker.
-- `npm run build:css` – PostCSS + `postcss-import` + cssnano; generuje `assets/build/style.min.css`.
-- `npm run build:js` – esbuild; bundluje moduły od `js/main.js` do `assets/build/main.min.js`.
+- `npm run build` – aktualny build produkcyjny: składa HTML i generuje Service Worker; nie tworzy `dist/` ani bundli runtime.
+- `npm run build:css` – jawne zadanie legacy PostCSS + cssnano; odświeża zachowany, nieużywany przez runtime `assets/build/style.min.css`.
+- `npm run build:js` – jawne zadanie legacy esbuild; odświeża zachowany, nieużywany przez runtime `assets/build/main.min.js`.
 - `npm run build:sw` – waliduje precache i generuje `service-worker.js` z wersji pakietu oraz deterministycznego fingerprintu szablonu i zawartości cache.
 - `npm run build:pwa-screenshots` – uruchamia lokalny serwer i projektowy Chromium, a następnie odtwarza screenshoty manifestu `1280 × 720` oraz `720 × 1280` z aktualnej produkcyjnej strony głównej.
 - `npm run images` – optymalizacja obrazów (webp/avif).
@@ -59,12 +61,26 @@ Przed pierwszym buildem zainstaluj zadeklarowane zależności przez `npm install
 npm run build
 ```
 
-Każdy skrypt CSS/JS tworzy `assets/build/`, jeżeli katalog nie istnieje. Wszystkie strony produkcyjne ładują wyłącznie:
+Wszystkie strony produkcyjne ładują bezpośrednio kanoniczne entrypointy:
 
-- `/assets/build/style.min.css`
-- `/assets/build/main.min.js`
+- `/css/style.css`
+- `/js/main.js` jako `<script type="module">`
 
-Pliki w `assets/build/` oraz `service-worker.js` są wygenerowane i śledzone na potrzeby statycznego wdrożenia. Nie edytuj ich ręcznie — po zmianie źródeł uruchom odpowiedni build. Stary bundle `css/style.min.css` został usunięty i nie należy już do kontraktu produkcyjnego.
+Przeglądarka rozwiązuje dalej jawny graf 25 lokalnych plików CSS (entrypoint i 24 standardowe `@import`) oraz 19 lokalnych modułów JavaScript. Pliki w `assets/build/` pozostają śledzonymi outputami legacy, ale nie są ładowane przez strony, precachowane ani wymagane przez build i testy. Zostały zachowane, ponieważ ich usunięcie nie jest potrzebne do tej migracji; nie edytuj ich ręcznie. `service-worker.js` również jest generowany i śledzony, a jego jedynym źródłem pozostaje szablon oraz konfiguracja PWA.
+
+## Lokalny development
+
+W Windows uruchom `start-dev.bat` dwuklikiem albo z terminala. Launcher sprawdza dostępność Pythona 3 i portu `8181`, składa HTML, uruchamia serwer w bieżącym oknie oraz automatycznie otwiera:
+
+```text
+http://127.0.0.1:8181/
+```
+
+Alternatywnie użyj `npm run dev`. Serwer korzysta wyłącznie z biblioteki standardowej Pythona, podaje poprawne MIME dla CSS, modułów JS, fontów i manifestu, wyłącza cache przeglądarki oraz zwraca projektowy `404.html` z prawdziwym statusem `404`.
+
+Live reload obserwuje źródłowe HTML, CSS, JavaScript, dane, manifest, SEO i lokalne assety. Zmiana wspólnego shellu, konfiguracji stron, rendererów lub kanonicznych danych pakietów i materiałów najpierw wykonuje `npm run build:html`; przeglądarka odświeża się dopiero po udanym assemblerze. Błąd jest wypisywany w konsoli i wstrzymuje reload do kolejnej zmiany. Watcher pomija `.git/`, `.codex/`, `.agents/`, `node_modules/`, raporty testów, `assets/build/`, wygenerowany `service-worker.js` oraz pliki tymczasowe edytora, dzięki czemu własne outputy nie tworzą pętli.
+
+Tylko na `localhost:8181` i `127.0.0.1:8181` aplikacja wyrejestrowuje `/service-worker.js` oraz usuwa cache zaczynające się od `clean-english-v`. Inne rejestracje i cache pozostają nietknięte; produkcyjny lifecycle PWA nie jest osłabiony. Zatrzymaj serwer przez `Ctrl+C`. Skupioną kontrolę workflow uruchom przez `npm run check:dev`.
 
 ## Browser E2E (Playwright)
 
@@ -83,7 +99,7 @@ npm run test:e2e
 
 Dostępne polecenia skupione:
 
-- `npm run test:e2e:smoke` – pięć głównych stron, współdzielone logo, wygenerowane CSS/JS, komplet lokalnych fontów wraz z MIME i diagnostyka runtime.
+- `npm run test:e2e:smoke` – pięć głównych stron, współdzielone logo, pełne grafy źródłowego CSS/JS, komplet lokalnych fontów wraz z MIME i diagnostyka runtime.
 - `npm run test:e2e:interactions` – nawigacja, drawer, focus, accordion i tabs.
 - `npm run test:e2e:theme` – light/dark, synchronizacja kontrolek i przywracanie zapisanego motywu.
 - `npm run test:e2e:responsive` – szerokości 320, 390, 768, 1024 i 1440 px, oba motywy, współdzielone logo, kontrakt typografii z polskimi znakami, layout shift, overflow i containment.
@@ -139,11 +155,11 @@ Każda strona ma dokładnie jeden stan `aria-current="page"`: na stronie główn
 - `service-worker.template.js` pozostaje jedynym źródłem Service Workera. `scripts/pwa-config.mjs` definiuje kontrakt assetów, a `scripts/build-service-worker.mjs` sprawdza istnienie i unikalność ścieżek przed wygenerowaniem `service-worker.js`.
 - Cache używa stałego prefiksu `clean-english-v` oraz rewizji `<package version>-<12 znaków SHA-256>`. Fingerprint obejmuje szablon, konfigurację i treść każdego precachowanego pliku, więc identyczne wejścia dają identyczną nazwę, a zmiana wejścia tworzy nową.
 - Instalacja kończy się dopiero po pełnym `cache.addAll`; nieudana instalacja usuwa wyłącznie niekompletny bieżący cache. Po udanej instalacji worker wywołuje `skipWaiting`, a aktywacja usuwa wyłącznie starsze cache z prefiksem Lauren English i wykonuje `clients.claim`.
-- Precache obejmuje pięć głównych dokumentów, `offline.html`, produkcyjne CSS/JS, Inter 400/600/700, Literata 700, ikony instalacyjne 192/512, trzy ikony skrótów, współdzielone logo, dwa obrazy używane na homepage (hero i portret) oraz `site.webmanifest`. Nie zawiera screenshotów instalacyjnych, stron błędów, formularzy, źródłowych `css/`/`js/` ani katalogu materiałów.
+- Precache obejmuje pięć głównych dokumentów, `offline.html`, dokładny graf 25 plików CSS i 19 modułów JavaScript, Inter 400/600/700, Literata 700, ikony instalacyjne 192/512, trzy ikony skrótów, współdzielone logo, dwa obrazy homepage (hero i portret) oraz `site.webmanifest`. Nie zawiera outputów `assets/build/`, screenshotów instalacyjnych, stron błędów, formularzy ani katalogu materiałów.
 - Nawigacja online jest network-first: prawdziwy `404` pozostaje `404` i nie trafia do cache. Przy awarii sieci główna znana trasa otrzymuje swoją kopię, a inna nawigacja otrzymuje `offline.html`; homepage nie jest fallbackiem ogólnym.
 - Cache przyjmuje tylko pełne odpowiedzi `200` dla zamierzonych, same-origin żądań `GET` HTTP(S). Odpowiedzi przekierowane, opaque, częściowe, nieudane, cross-origin i inne metody nie są zapisywane. Statyczny runtime jest ograniczony do jawnej listy precache, a query string nie tworzy dodatkowych wpisów.
 - `site.webmanifest` deklaruje pełny kontrakt instalacyjny, zweryfikowane PNG `192 × 192` i `512 × 512`, dokładnie trzy skróty do pakietów, materiałów i postępów oraz aktualne screenshoty `1280 × 720` (`wide`) i `720 × 1280` (`narrow`). Nie deklaruje `maskable`, ponieważ nie ma osobnego assetu ze zweryfikowaną strefą bezpieczną.
-- Hero używa jednego JPEG `1600 × 1200`, jawnych wymiarów, `loading="eager"`, `fetchpriority="high"` i `decoding="async"`. Budżet homepage to 1 CSS, 1 JS, 4 początkowe fonty (łącznie maks. 185 kB), 1 request współdzielonego logo oraz 1 request hero (maks. 1,1 MB), bez requestów źródłowych i duplikatów.
+- Hero używa jednego JPEG `1600 × 1200`, jawnych wymiarów, `loading="eager"`, `fetchpriority="high"` i `decoding="async"`. Budżet homepage to dokładnie 25 requestów CSS i 19 requestów JavaScript z lokalnego grafu, 4 początkowe fonty (łącznie maks. 185 kB), 1 request współdzielonego logo oraz 1 request hero (maks. 1,1 MB), bez outputów `assets/build/`, zewnętrznych źródeł i duplikatów.
 
 Weryfikacja lokalna:
 
@@ -176,6 +192,10 @@ Kanonicznym zasobem grafiki społecznościowej jest istniejący raster `assets/o
 npm run check:seo
 npm run test:e2e:seo
 ```
+
+## Wdrożenie Netlify
+
+Repozytorium nie zawiera `netlify.toml`, dlatego ustawienia wdrożenia pozostają w panelu Netlify. Dla obecnej architektury wymagane są: base directory = root repozytorium, build command = `npm run build`, publish directory = `.`. Nie ustawiaj `dist/`: taki katalog nie jest obecnie tworzony i stanie się publish directory dopiero w osobnej, planowanej migracji do Vite. Główny `_redirects` jest generowany przez `npm run build:html` i musi pozostać w katalogu publikowanym.
 
 ## Uwagi
 

@@ -170,7 +170,8 @@ body.has-open-navigation {
 }
 
 .nav__theme {
-  width: 100%;
+  align-self: flex-start;
+  width: var(--control-min-size);
 }
 
 .nav__close {

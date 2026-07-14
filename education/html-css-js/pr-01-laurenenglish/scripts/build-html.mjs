@@ -19,6 +19,7 @@ import {
 } from "./content-renderers.mjs";
 import {
   ALL_PAGES,
+  HEAD_SECTION_COMMENTS,
   SEO_MARKERS,
   SITE,
   renderRedirects,
@@ -61,14 +62,38 @@ const replaceRegion = (source, startMarker, endMarker, replacement, file) => {
   return source.replace(currentRegion, replacement);
 };
 
-const removeGeneratedHeadAssets = (source) =>
-  source.replace(
-    /^[\t ]*<link\s+rel="(?:manifest|icon)"[^>]*\/>[\t ]*(?:\n|$)/gim,
-    "",
-  );
+const removeLegacyGeneratedAssets = (source) =>
+  source
+    .replace(
+      /^[\t ]*<!-- (?:Document metadata|Styles|Theme) -->[\t ]*(?:\n|$)/gm,
+      "",
+    )
+    .replace(
+      /^[\t ]*<link\s+rel="(?:manifest|icon)"[^>]*\/>[\t ]*(?:\n|$)/gim,
+      "",
+    )
+    .replace(
+      /^[\t ]*<link\s+rel="stylesheet"\s+href="\/assets\/build\/style\.min\.css"\s*\/>[\t ]*(?:\n|$)/gim,
+      "",
+    )
+    .replace(
+      /^[\t ]*<script\s+src="\/assets\/build\/main\.min\.js"\s+defer><\/script>[\t ]*(?:\n|$)/gim,
+      "",
+    );
+
+const annotateStaticHeadSections = (source) =>
+  source
+    .replace(
+      /(<head>\n)([\t ]*<meta charset="[^"]+" \/>)/,
+      `$1${HEAD_SECTION_COMMENTS.documentMetadata}\n$2`,
+    )
+    .replace(
+      /^([\t ]*)(<meta name="theme-color" content="[^"]+" \/>)/m,
+      `${HEAD_SECTION_COMMENTS.theme}\n$1$2`,
+    );
 
 const assemblePage = (source, page) => {
-  const normalizedSource = removeGeneratedHeadAssets(
+  const normalizedSource = removeLegacyGeneratedAssets(
     source.replace(/\r\n?/g, "\n"),
   );
   const withSeo = replaceRegion(
@@ -78,11 +103,12 @@ const assemblePage = (source, page) => {
     renderSeoHead(page),
     page.file,
   );
+  const withAnnotatedHead = annotateStaticHeadSections(withSeo);
 
-  if (!PRIMARY_PAGES.includes(page)) return withSeo;
+  if (!PRIMARY_PAGES.includes(page)) return withAnnotatedHead;
 
   const withHeader = replaceRegion(
-    withSeo,
+    withAnnotatedHead,
     SHELL_MARKERS.headerStart,
     SHELL_MARKERS.headerEnd,
     renderSharedHeader(page.key),
@@ -152,6 +178,28 @@ const getIds = (html) =>
 const getAnchorHref = (anchor) => anchor.match(/\shref="([^"]+)"/)?.[1] ?? null;
 const getAttribute = (tag, name) =>
   tag.match(new RegExp(`\\b${name}="([^"]*)"`, "i"))?.[1] ?? null;
+
+const validateRuntimeAssets = (html, page) => {
+  const stylesheetTags =
+    html.match(/<link\b(?=[^>]*\brel="stylesheet")[^>]*>/gi) ?? [];
+  assert(
+    stylesheetTags.length === 1 &&
+      getAttribute(stylesheetTags[0], "href") === SITE.runtime.stylesheet,
+    `${page.file}: expected one canonical stylesheet ${SITE.runtime.stylesheet}`,
+  );
+
+  const moduleScripts =
+    html.match(/<script\b(?=[^>]*\btype="module")[^>]*><\/script>/gi) ?? [];
+  assert(
+    moduleScripts.length === 1 &&
+      getAttribute(moduleScripts[0], "src") === SITE.runtime.javascript,
+    `${page.file}: expected one canonical module ${SITE.runtime.javascript}`,
+  );
+  assert(
+    !html.includes("/assets/build/"),
+    `${page.file}: legacy assets/build runtime reference remains`,
+  );
+};
 
 const validateLocalLink = async (href, page, assembledPages) => {
   if (/^(?:https?:|mailto:|tel:)/.test(href)) return;
@@ -419,6 +467,10 @@ const run = async () => {
     const source = await readFile(resolve(ROOT, page.file), "utf8");
     sourcePages.set(page.file, source);
     assembledPages.set(page.file, assemblePage(source, page));
+  }
+
+  for (const page of ALL_PAGES) {
+    validateRuntimeAssets(assembledPages.get(page.file), page);
   }
 
   for (const page of PRIMARY_PAGES) {

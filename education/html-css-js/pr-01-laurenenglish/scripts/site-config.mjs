@@ -19,6 +19,10 @@ export const SITE = Object.freeze({
     path: "/assets/fonts/literata-700.woff2",
     type: "font/woff2",
   }),
+  runtime: Object.freeze({
+    stylesheet: "/css/style.css",
+    javascript: "/js/main.js",
+  }),
   socialImage: Object.freeze({
     path: "/assets/og/og.png",
     type: "image/png",
@@ -120,6 +124,19 @@ export const SEO_MARKERS = Object.freeze({
   end: "    <!-- seo:head:end -->",
 });
 
+export const HEAD_SECTION_COMMENTS = Object.freeze({
+  documentMetadata: "    <!-- Document metadata -->",
+  seo: "    <!-- SEO -->",
+  appMetadata: "    <!-- App metadata -->",
+  fonts: "    <!-- Fonts -->",
+  styles: "    <!-- Styles -->",
+  scripts: "    <!-- Scripts -->",
+  openGraph: "    <!-- Open Graph -->",
+  twitterCard: "    <!-- Twitter Card -->",
+  structuredData: "    <!-- Structured data -->",
+  theme: "    <!-- Theme -->",
+});
+
 export const absoluteUrl = (path) => new URL(path, SITE.origin).href;
 
 const indentJson = (value) =>
@@ -155,12 +172,20 @@ const renderIndexableHead = (page) => {
   const imageUrl = absoluteUrl(SITE.socialImage.path);
 
   return `${SEO_MARKERS.start}
+${HEAD_SECTION_COMMENTS.seo}
     <title>${page.title}</title>
     <meta name="description" content="${page.description}" />
     <link rel="canonical" href="${canonical}" />
+${HEAD_SECTION_COMMENTS.appMetadata}
     <link rel="manifest" href="${SITE.manifest.path}" />
     <link rel="icon" href="${SITE.favicon.path}" type="${SITE.favicon.type}" />
+${HEAD_SECTION_COMMENTS.fonts}
     <link rel="preload" href="${SITE.headingFont.path}" as="font" type="${SITE.headingFont.type}" crossorigin />
+${HEAD_SECTION_COMMENTS.styles}
+    <link rel="stylesheet" href="${SITE.runtime.stylesheet}" />
+${HEAD_SECTION_COMMENTS.scripts}
+    <script type="module" src="${SITE.runtime.javascript}"></script>
+${HEAD_SECTION_COMMENTS.openGraph}
     <meta property="og:title" content="${page.title}" />
     <meta property="og:description" content="${page.description}" />
     <meta property="og:type" content="website" />
@@ -173,11 +198,13 @@ const renderIndexableHead = (page) => {
     <meta property="og:image:width" content="${SITE.socialImage.width}" />
     <meta property="og:image:height" content="${SITE.socialImage.height}" />
     <meta property="og:image:alt" content="${SITE.socialImage.alt}" />
+${HEAD_SECTION_COMMENTS.twitterCard}
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content="${page.title}" />
     <meta name="twitter:description" content="${page.description}" />
     <meta name="twitter:image" content="${imageUrl}" />
     <meta name="twitter:image:alt" content="${SITE.socialImage.alt}" />
+${HEAD_SECTION_COMMENTS.structuredData}
     <script type="application/ld+json">
 ${indentJson(getStructuredData(page))}
     </script>
@@ -185,11 +212,18 @@ ${SEO_MARKERS.end}`;
 };
 
 const renderUtilityHead = (page) => `${SEO_MARKERS.start}
+${HEAD_SECTION_COMMENTS.seo}
     <title>${page.title}</title>
     <meta name="robots" content="noindex, nofollow" />
+${HEAD_SECTION_COMMENTS.appMetadata}
     <link rel="manifest" href="${SITE.manifest.path}" />
     <link rel="icon" href="${SITE.favicon.path}" type="${SITE.favicon.type}" />
+${HEAD_SECTION_COMMENTS.fonts}
     <link rel="preload" href="${SITE.headingFont.path}" as="font" type="${SITE.headingFont.type}" crossorigin />
+${HEAD_SECTION_COMMENTS.styles}
+    <link rel="stylesheet" href="${SITE.runtime.stylesheet}" />
+${HEAD_SECTION_COMMENTS.scripts}
+    <script type="module" src="${SITE.runtime.javascript}"></script>
 ${SEO_MARKERS.end}`;
 
 export const renderSeoHead = (page) =>

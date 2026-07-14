@@ -13,6 +13,8 @@ import {
   OFFLINE_PATH,
   PRECACHE_PATHS,
   PRIMARY_DOCUMENT_PATHS,
+  RUNTIME_CSS_PATHS,
+  RUNTIME_JAVASCRIPT_PATHS,
   SHORTCUT_ICON_PATHS,
 } from "../../scripts/pwa-config.mjs";
 import {
@@ -376,7 +378,7 @@ test("serves exact primary documents offline and uses offline.html for unknown n
   expectCleanDiagnostics(diagnostics);
 });
 
-test("meets the critical request budget without duplicate or source asset requests", async ({
+test("meets the direct source request budget without duplicates or legacy bundles", async ({
   page,
 }) => {
   const diagnostics = collectRuntimeDiagnostics(page);
@@ -395,12 +397,20 @@ test("meets the critical request budget without duplicate or source asset reques
   const countPath = (path) =>
     resourcePaths.filter((resourcePath) => resourcePath === path).length;
 
-  expect(countPath("/assets/build/style.min.css")).toBe(
-    CRITICAL_ASSET_BUDGET.productionCssRequests,
+  for (const path of RUNTIME_CSS_PATHS) {
+    expect(countPath(path), path).toBe(1);
+  }
+  for (const path of RUNTIME_JAVASCRIPT_PATHS) {
+    expect(countPath(path), path).toBe(1);
+  }
+  expect(resourcePaths.filter((path) => path.startsWith("/css/"))).toHaveLength(
+    CRITICAL_ASSET_BUDGET.runtimeCssRequests,
   );
-  expect(countPath("/assets/build/main.min.js")).toBe(
-    CRITICAL_ASSET_BUDGET.productionJavaScriptRequests,
+  expect(resourcePaths.filter((path) => path.startsWith("/js/"))).toHaveLength(
+    CRITICAL_ASSET_BUDGET.runtimeJavaScriptRequests,
   );
+  expect(countPath("/assets/build/style.min.css")).toBe(0);
+  expect(countPath("/assets/build/main.min.js")).toBe(0);
   expect(countPath(HERO_IMAGE_PATH)).toBe(
     CRITICAL_ASSET_BUDGET.heroImageRequests,
   );
@@ -414,8 +424,19 @@ test("meets the critical request budget without duplicate or source asset reques
   expect(requestedFonts).toHaveLength(
     CRITICAL_ASSET_BUDGET.initialFontRequests,
   );
-  expect(resourcePaths.some((path) => path.startsWith("/css/"))).toBe(false);
-  expect(resourcePaths.some((path) => path.startsWith("/js/"))).toBe(false);
+  const runtimeOrigins = await page.evaluate(() =>
+    performance
+      .getEntriesByType("resource")
+      .map((entry) => new URL(entry.name))
+      .filter(
+        ({ pathname }) =>
+          pathname.startsWith("/css/") || pathname.startsWith("/js/"),
+      )
+      .map(({ origin }) => origin),
+  );
+  expect(
+    runtimeOrigins.every((origin) => origin === "http://127.0.0.1:4173"),
+  ).toBe(true);
 
   const hero = page.locator(".hero__image");
   await expect(hero).toHaveAttribute("loading", "eager");

@@ -55,8 +55,7 @@ The project uses:
 - token-first CSS
 - Vanilla JavaScript
 - modular JavaScript files
-- PostCSS and cssnano
-- esbuild
+- PostCSS, cssnano and esbuild for explicit legacy asset tasks only
 - ESLint and Prettier
 - progressive enhancement
 - Service Worker and Web App Manifest
@@ -97,9 +96,12 @@ Use existing design tokens, BEM-style naming, low-specificity selectors, mobile-
 Preferred naming:
 
 ```css
-.component {}
-.component__element {}
-.component--modifier {}
+.component {
+}
+.component__element {
+}
+.component--modifier {
+}
 ```
 
 Avoid:
@@ -140,7 +142,7 @@ Use ARIA only when needed and keep dynamic state accurate.
 Respect:
 
 ```css
-@media (prefers-reduced-motion: reduce)
+@media (prefers-reduced-motion: reduce);
 ```
 
 Progressive enhancements must fail safely so content remains accessible without JavaScript.
@@ -189,7 +191,7 @@ Do not add fake reviews, fabricated ratings, false business details, or unsuppor
 
 Prefer optimized local assets, responsive images, explicit image dimensions, lazy loading below the fold, minimal JavaScript, efficient CSS, limited font variants, and no unnecessary third-party scripts.
 
-Production pages should load generated assets from the configured build location.
+Until the planned Vite migration, production pages load the canonical source entrypoints `/css/style.css` and `/js/main.js` directly. Browser-valid CSS imports and JavaScript modules form the runtime graph; preserved legacy outputs under `assets/build/` are not part of the current runtime contract.
 
 PWA-related changes must consider:
 
@@ -216,7 +218,7 @@ Consent and legal copy must match the actual technical behavior of the website.
 
 Development changes must be made in source files.
 
-Do not manually edit minified CSS, minified JavaScript, generated build assets, generated image output, or cache-busted production files.
+Do not manually edit minified CSS, minified JavaScript, generated build assets, generated image output, or cache-busted production files. The current normal build assembles standalone HTML and generates `service-worker.js`; direct CSS and JavaScript sources remain canonical runtime files.
 
 Use project scripts to regenerate production assets.
 

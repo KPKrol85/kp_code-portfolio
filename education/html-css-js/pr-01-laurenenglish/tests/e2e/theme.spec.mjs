@@ -43,6 +43,9 @@ test("theme controls synchronize and persisted theme restores", async ({
   await page.reload({ waitUntil: "networkidle" });
 
   let visibleToggle = await getVisibleThemeToggle(page);
+  const touchTarget = await visibleToggle.boundingBox();
+  expect(touchTarget?.width).toBeGreaterThanOrEqual(44);
+  expect(touchTarget?.height).toBeGreaterThanOrEqual(44);
   await visibleToggle.click();
   await expect(page.locator("html")).toHaveAttribute("data-theme", "dark");
   await expectThemeControls(page, true);
@@ -60,4 +63,20 @@ test("theme controls synchronize and persisted theme restores", async ({
     "light",
   );
   expectCleanDiagnostics(diagnostics);
+});
+
+test("theme icon motion respects reduced-motion preferences", async ({
+  page,
+}) => {
+  await page.emulateMedia({ reducedMotion: "reduce" });
+  await clearRuntimeState(page);
+  await page.reload({ waitUntil: "networkidle" });
+
+  const visibleToggle = await getVisibleThemeToggle(page);
+  const transitionDurations = await visibleToggle
+    .locator(".theme-toggle__icon")
+    .evaluateAll((icons) =>
+      icons.map((icon) => getComputedStyle(icon).transitionDuration),
+    );
+  expect(transitionDurations).toEqual(["0s", "0s"]);
 });
