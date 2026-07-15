@@ -12,6 +12,45 @@
   margin-bottom: var(--space-lg);
 }
 
+.contact__actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-sm);
+}
+
+.contact__method {
+  display: grid;
+  align-content: start;
+  gap: var(--space-sm);
+}
+
+.contact__method .card__text,
+.contact__method .card__title {
+  margin: 0;
+}
+
+.contact__link {
+  justify-self: start;
+  overflow-wrap: anywhere;
+}
+
+.contact__address {
+  margin: 0;
+  color: var(--color-text-muted);
+  font-style: normal;
+  line-height: 1.6;
+}
+
+.contact__process {
+  max-width: var(--content-measure);
+}
+
+.form__input--message {
+  min-height: 160px;
+  resize: vertical;
+}
+
 @media (min-width: 780px) {
   .contact__grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));

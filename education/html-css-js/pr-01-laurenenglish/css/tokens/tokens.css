@@ -77,6 +77,7 @@
   --size-1px: 1px;
   --control-min-size: 44px;
   --brand-logo-size: 40px;
+  --anchor-scroll-offset: calc(var(--brand-logo-size) + var(--space-md) + var(--space-md) + var(--space-xs));
 }
 
 [data-theme="dark"] {
@@ -126,5 +127,11 @@
 @media (min-width: 1024px) {
   :root {
     --text-4xl: 4rem;
+  }
+}
+
+@media (min-width: 1280px) {
+  :root {
+    --anchor-scroll-offset: calc(var(--brand-logo-size) + var(--space-lg) + var(--space-lg) + var(--space-xs));
   }
 }

@@ -7,6 +7,23 @@
   padding: var(--space-2xl) 0;
 }
 
+#main,
+#how,
+#about,
+#faq,
+#contact,
+#resources,
+#pakiety,
+#pakiet-start,
+#pakiet-regular,
+#pakiet-intensive,
+#materials-catalog,
+#cele,
+#statystyki,
+#formularz {
+  scroll-margin-top: var(--anchor-scroll-offset);
+}
+
 .section__header {
   max-width: var(--content-measure);
   margin-bottom: var(--space-xl);

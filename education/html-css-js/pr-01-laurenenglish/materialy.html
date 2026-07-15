@@ -83,10 +83,6 @@
           <div class="nav__drawer" id="nav-drawer" data-drawer>
             <div class="nav__drawer-header">
               <span class="nav__drawer-title">Menu</span>
-              <button class="nav__close" type="button" data-drawer-close hidden>
-                <span aria-hidden="true">×</span>
-                <span class="sr-only">Zamknij menu</span>
-              </button>
             </div>
             <ul class="nav__list" role="list">
               <li class="nav__item">
@@ -111,7 +107,7 @@
                 <a class="nav__link" href="/index.html#faq">FAQ</a>
               </li>
               <li class="nav__item">
-                <a class="nav__link" href="/index.html#contact">Kontakt</a>
+                <a class="nav__link" href="/kontakt.html">Kontakt</a>
               </li>
             </ul>
             <button class="button button--ghost theme-toggle nav__theme" type="button" aria-label="Włącz tryb ciemny" aria-pressed="false" data-theme-toggle hidden>
@@ -120,11 +116,11 @@
                 <img class="theme-toggle__icon theme-toggle__icon--moon" src="/assets/icons/moon.svg" alt="" width="24" height="24" />
               </span>
             </button>
-            <a class="button button--primary nav__cta" href="/index.html#contact">Informacje o zapisach</a>
+            <a class="button button--primary nav__cta" href="/kontakt.html#formularz">Umów rozmowę</a>
           </div>
         </nav>
         <div class="header__actions">
-        <a class="button button--primary header__cta" href="/index.html#contact">Informacje o zapisach</a>
+        <a class="button button--primary header__cta" href="/kontakt.html#formularz">Umów rozmowę</a>
           <button class="button button--ghost theme-toggle" type="button" aria-label="Włącz tryb ciemny" aria-pressed="false" data-theme-toggle hidden>
             <span class="theme-toggle__icons" aria-hidden="true">
               <img class="theme-toggle__icon theme-toggle__icon--sun" src="/assets/icons/sun.svg" alt="" width="24" height="24" />
@@ -480,26 +476,68 @@
     <!-- shared-shell:footer:start -->
     <footer class="footer">
       <div class="container footer__grid">
-        <div>
+        <section class="footer__column footer__column--brand" aria-labelledby="footer-brand-title">
+          <h2 class="sr-only" id="footer-brand-title">Marka</h2>
           <a class="footer__brand" href="/index.html">
             <img class="footer__logo-image" src="/assets/img/logo/logo.svg" alt="" width="512" height="512" />
             <span class="footer__brand-text">Lauren – Clean English</span>
           </a>
           <p class="footer__text">Profesjonalny angielski w spokojnym rytmie.</p>
-        </div>
-        <div>
-          <h3 class="footer__title">Linki</h3>
+        </section>
+        <section class="footer__column" aria-labelledby="footer-offer-title">
+          <h2 class="footer__title" id="footer-offer-title">Oferta</h2>
           <ul class="footer__list" role="list">
             <li><a href="/uslugi.html">Usługi</a></li>
             <li><a href="/pakiety.html#pakiety">Pakiety</a></li>
             <li><a href="/materialy.html">Materiały</a></li>
             <li><a href="/postepy.html">Postępy</a></li>
-            <li><a href="/index.html#contact">Kontakt</a></li>
+            <li><a href="/index.html#faq">FAQ</a></li>
           </ul>
-        </div>
+        </section>
+        <section class="footer__column" aria-labelledby="footer-contact-title">
+          <h2 class="footer__title" id="footer-contact-title">Kontakt</h2>
+          <ul class="footer__list footer__list--contact" role="list">
+            <li><a class="footer__contact-link" href="tel:+48533537091">+48 533 537 091</a></li>
+            <li><a class="footer__contact-link" href="mailto:kontakt@kp-code.pl">kontakt@kp-code.pl</a></li>
+            <li><address class="footer__address">ul. Marynarki Wojennej 12/31, 33-100 Tarnów, Polska</address></li>
+            <li><a class="footer__quiet-link" href="/kontakt.html">Przejdź do strony kontaktowej</a></li>
+          </ul>
+        </section>
+        <section class="footer__column" aria-labelledby="footer-information-title">
+          <h2 class="footer__title" id="footer-information-title">Informacje</h2>
+          <ul class="footer__list" role="list">
+            <li><a href="/index.html#about">O Lauren</a></li>
+            <li><a href="/kontakt.html">Kontakt</a></li>
+            <li><a href="/polityka-prywatnosci.html">Polityka prywatności</a></li>
+            <li><a href="/regulamin.html">Regulamin</a></li>
+            <li><a href="/cookies.html">Polityka cookies</a></li>
+          </ul>
+        </section>
       </div>
+      <section class="container footer__social" aria-labelledby="footer-social-title">
+        <h2 class="footer__social-title" id="footer-social-title">KP_Code Digital Studio w sieci</h2>
+        <ul class="footer__social-list" role="list">
+          <li>
+            <a class="footer__social-link" href="https://github.com/KPKrol85" target="_blank" rel="noopener noreferrer" aria-label="GitHub – KP_Code Digital Studio (otwiera się w nowej karcie)">GitHub</a>
+          </li>
+          <li>
+            <a class="footer__social-link" href="https://www.facebook.com/kpkrol85" target="_blank" rel="noopener noreferrer" aria-label="Facebook – KP_Code Digital Studio (otwiera się w nowej karcie)">Facebook</a>
+          </li>
+          <li>
+            <a class="footer__social-link" href="https://x.com/KP_Code_85" target="_blank" rel="noopener noreferrer" aria-label="X – KP_Code Digital Studio (otwiera się w nowej karcie)">X</a>
+          </li>
+          <li>
+            <a class="footer__social-link" href="https://www.linkedin.com/in/kp-code/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn – KP_Code Digital Studio (otwiera się w nowej karcie)">LinkedIn</a>
+          </li>
+          <li>
+            <a class="footer__social-link" href="https://www.instagram.com/kp_code_/" target="_blank" rel="noopener noreferrer" aria-label="Instagram – KP_Code Digital Studio (otwiera się w nowej karcie)">Instagram</a>
+          </li>
+        </ul>
+      </section>
       <div class="footer__bottom">
-        <p>Lauren – Clean English — informacje o nauce angielskiego i materiałach.</p>
+        <div class="container">
+          <p>© 2026 KP_Code Digital Studio | Wszelkie prawa zastrzeżone.</p>
+        </div>
       </div>
     </footer>
     <!-- shared-shell:footer:end -->

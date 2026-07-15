@@ -29,6 +29,76 @@ const expectSingleMeta = async (page, selector, expected) => {
 };
 
 test.describe("SEO metadata and static routing", () => {
+  test("contact page and public CTA destinations match the approved contract", async ({
+    page,
+    request,
+  }) => {
+    const response = await request.get("/kontakt.html");
+    expect(response.status()).toBe(200);
+
+    await page.goto("/kontakt.html", { waitUntil: "networkidle" });
+    await expect(
+      page.getByRole("heading", {
+        level: 1,
+        name: "Porozmawiajmy o Twojej nauce angielskiego.",
+      }),
+    ).toBeVisible();
+    await expect(
+      page.getByRole("link", { name: "+48 533 537 091" }),
+    ).toHaveAttribute("href", "tel:+48533537091");
+    await expect(
+      page.getByRole("link", { name: "kontakt@kp-code.pl" }),
+    ).toHaveAttribute("href", "mailto:kontakt@kp-code.pl");
+    await expect(page.locator("address")).toContainText(
+      "ul. Marynarki Wojennej 12/31, 33-100 Tarnów, Polska",
+    );
+    await expect(
+      page
+        .getByRole("navigation", { name: "Główna nawigacja" })
+        .getByRole("link", { name: "Kontakt", exact: true }),
+    ).toHaveAttribute("aria-current", "page");
+
+    const form = page.locator("#formularz form");
+    await expect(form).toHaveAttribute("method", "POST");
+    await expect(form).toHaveAttribute("action", "/thank-you.html");
+    await expect(form).toHaveAttribute("data-netlify", "true");
+    await expect(form).toHaveAttribute("netlify-honeypot", "bot-field");
+    for (const label of [
+      "Imię i nazwisko (wymagane)",
+      "Adres e-mail (wymagane)",
+      "Numer telefonu (opcjonalnie)",
+      "Temat zapytania (wymagane)",
+      "Wiadomość (wymagane)",
+    ]) {
+      await expect(page.getByLabel(label, { exact: true })).toHaveCount(1);
+    }
+    await expect(
+      page.locator('.nav__cta[href="/kontakt.html#formularz"]'),
+    ).toHaveText("Umów rozmowę");
+    await expect(
+      page.locator('.header__cta[href="/kontakt.html#formularz"]'),
+    ).toHaveText("Umów rozmowę");
+    await expect(
+      page.locator('footer a[href="/kontakt.html"]', { hasText: "Kontakt" }),
+    ).toHaveCount(1);
+
+    await page.goto("/index.html", { waitUntil: "networkidle" });
+    const heroActions = page.locator(".hero__actions").first();
+    await expect(
+      heroActions.getByRole("link", { name: "Zobacz pakiety" }),
+    ).toHaveAttribute("href", "/pakiety.html#pakiety");
+    await expect(
+      heroActions.getByRole("link", { name: "Zobacz materiały" }),
+    ).toHaveAttribute("href", "#resources");
+    const compactContact = page.locator("#contact");
+    await expect(
+      compactContact.getByRole("link", { name: "Przejdź do kontaktu" }),
+    ).toHaveAttribute("href", "/kontakt.html");
+    await expect(
+      compactContact.getByRole("link", { name: "Zadzwoń" }),
+    ).toHaveAttribute("href", "tel:+48533537091");
+  });
+
   test("known routes and required assets return 200 while unknown routes return the project 404", async ({
     request,
   }) => {

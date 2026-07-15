@@ -5,11 +5,10 @@ const desktopNavigationQuery = "(min-width: 1280px)";
 export const initMobileNav = () => {
   const toggle = document.querySelector(".nav__toggle");
   const drawer = document.querySelector("[data-drawer]");
-  const closeButton = document.querySelector("[data-drawer-close]");
   const toggleLabel = toggle?.querySelector("[data-nav-toggle-label]");
   const navigation = toggle?.closest(".nav");
   const desktopActions = document.querySelector(".header__actions");
-  if (!toggle || !drawer || !closeButton || !toggleLabel || !navigation) return;
+  if (!toggle || !drawer || !toggleLabel || !navigation) return;
   if (typeof window.matchMedia !== "function") return;
 
   const desktopQuery = window.matchMedia(desktopNavigationQuery);
@@ -63,7 +62,6 @@ export const initMobileNav = () => {
     const activeElement = document.activeElement;
     const mobileOnlyControlHasFocus =
       activeElement === toggle ||
-      activeElement === closeButton ||
       activeElement === drawer.querySelector(".nav__cta");
 
     drawer.classList.remove("is-open");
@@ -137,7 +135,6 @@ export const initMobileNav = () => {
     }
   });
 
-  closeButton.addEventListener("click", () => closeDrawer());
   drawer.addEventListener("click", (event) => {
     if (
       !desktopQuery.matches &&
@@ -160,12 +157,10 @@ export const initMobileNav = () => {
   try {
     navigation.classList.add("is-enhanced");
     toggle.hidden = false;
-    closeButton.hidden = false;
     syncNavigationMode();
   } catch (error) {
     navigation.classList.remove("is-enhanced");
     toggle.hidden = true;
-    closeButton.hidden = true;
     drawer.classList.remove("is-open");
     drawer.removeAttribute("aria-hidden");
     drawer.inert = false;

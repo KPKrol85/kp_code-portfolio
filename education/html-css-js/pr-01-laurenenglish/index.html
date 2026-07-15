@@ -78,10 +78,6 @@
           <div class="nav__drawer" id="nav-drawer" data-drawer>
             <div class="nav__drawer-header">
               <span class="nav__drawer-title">Menu</span>
-              <button class="nav__close" type="button" data-drawer-close hidden>
-                <span aria-hidden="true">×</span>
-                <span class="sr-only">Zamknij menu</span>
-              </button>
             </div>
             <ul class="nav__list" role="list">
               <li class="nav__item">
@@ -106,7 +102,7 @@
                 <a class="nav__link" href="/index.html#faq">FAQ</a>
               </li>
               <li class="nav__item">
-                <a class="nav__link" href="/index.html#contact">Kontakt</a>
+                <a class="nav__link" href="/kontakt.html">Kontakt</a>
               </li>
             </ul>
             <button class="button button--ghost theme-toggle nav__theme" type="button" aria-label="Włącz tryb ciemny" aria-pressed="false" data-theme-toggle hidden>
@@ -115,11 +111,11 @@
                 <img class="theme-toggle__icon theme-toggle__icon--moon" src="/assets/icons/moon.svg" alt="" width="24" height="24" />
               </span>
             </button>
-            <a class="button button--primary nav__cta" href="/index.html#contact">Informacje o zapisach</a>
+            <a class="button button--primary nav__cta" href="/kontakt.html#formularz">Umów rozmowę</a>
           </div>
         </nav>
         <div class="header__actions">
-        <a class="button button--primary header__cta" href="/index.html#contact">Informacje o zapisach</a>
+        <a class="button button--primary header__cta" href="/kontakt.html#formularz">Umów rozmowę</a>
           <button class="button button--ghost theme-toggle" type="button" aria-label="Włącz tryb ciemny" aria-pressed="false" data-theme-toggle hidden>
             <span class="theme-toggle__icons" aria-hidden="true">
               <img class="theme-toggle__icon theme-toggle__icon--sun" src="/assets/icons/sun.svg" alt="" width="24" height="24" />
@@ -137,11 +133,20 @@
         <div class="container hero__grid">
           <div class="hero__content" data-reveal>
             <p class="hero__eyebrow">Angielski w spokojnym rytmie</p>
-            <h1 class="hero__title">Lauren – Clean English. Jasny plan nauki angielskiego.</h1>
-            <p class="hero__subtitle">Indywidualne lekcje, konwersacje i przygotowanie do egzaminów z planem dopasowanym do celu nauki.</p>
+            <h1 class="hero__title">
+              Lauren – Clean English. Jasny plan nauki angielskiego.
+            </h1>
+            <p class="hero__subtitle">
+              Indywidualne lekcje, konwersacje i przygotowanie do egzaminów z
+              planem dopasowanym do celu nauki.
+            </p>
             <div class="hero__actions">
-              <a class="button button--primary" href="#contact">Informacje o zapisach</a>
-              <a class="button button--secondary" href="#resources">Zobacz materiały</a>
+              <a class="button button--primary" href="/pakiety.html#pakiety"
+                >Zobacz pakiety</a
+              >
+              <a class="button button--secondary" href="#resources"
+                >Zobacz materiały</a
+              >
             </div>
             <div class="hero__meta">
               <div class="pill">✓ Plan nauki</div>
@@ -159,26 +164,48 @@
                 height="1200"
                 loading="eager"
                 fetchpriority="high"
-                decoding="async" />
+                decoding="async"
+              />
             </div>
             <div class="hero__card">
               <h3 class="hero__card-title">Dziennik postępów</h3>
-              <p class="hero__card-text">Cele, check-iny i podsumowania zapisywane lokalnie.</p>
+              <p class="hero__card-text">
+                Cele, check-iny i podsumowania zapisywane lokalnie.
+              </p>
               <ul class="progress" role="list" data-progress>
                 <li class="progress__item" data-progress-item>
-                  <button class="progress__toggle" type="button" aria-pressed="true" disabled>
+                  <button
+                    class="progress__toggle"
+                    type="button"
+                    aria-pressed="true"
+                    disabled
+                  >
                     <span class="progress__icon" aria-hidden="true">✓</span>
-                    <span class="progress__label">Powtórka czasu Present Perfect</span>
+                    <span class="progress__label"
+                      >Powtórka czasu Present Perfect</span
+                    >
                   </button>
                 </li>
                 <li class="progress__item" data-progress-item>
-                  <button class="progress__toggle" type="button" aria-pressed="false" disabled>
+                  <button
+                    class="progress__toggle"
+                    type="button"
+                    aria-pressed="false"
+                    disabled
+                  >
                     <span class="progress__icon" aria-hidden="true">○</span>
-                    <span class="progress__label">Konwersacja: small talk w pracy</span>
+                    <span class="progress__label"
+                      >Konwersacja: small talk w pracy</span
+                    >
                   </button>
                 </li>
                 <li class="progress__item" data-progress-item>
-                  <button class="progress__toggle" type="button" aria-pressed="false" disabled>
+                  <button
+                    class="progress__toggle"
+                    type="button"
+                    aria-pressed="false"
+                    disabled
+                  >
                     <span class="progress__icon" aria-hidden="true">○</span>
                     <span class="progress__label">Mini test słówek</span>
                   </button>
@@ -194,7 +221,10 @@
         <div class="container">
           <div class="section__header" data-reveal>
             <h2 class="section__title">Jak uczę</h2>
-            <p class="section__subtitle">Łączę analityczne myślenie z praktyką. Masz plan, jasne cele i spokojny rytm.</p>
+            <p class="section__subtitle">
+              Łączę analityczne myślenie z praktyką. Masz plan, jasne cele i
+              spokojny rytm.
+            </p>
           </div>
           <div class="how__grid">
             <div class="card card--soft" data-reveal>
@@ -243,32 +273,45 @@
         <div class="container">
           <div class="section__header" data-reveal>
             <h2 class="section__title">Usługi</h2>
-            <p class="section__subtitle">Wybierz format dopasowany do Twoich potrzeb.</p>
+            <p class="section__subtitle">
+              Wybierz format dopasowany do Twoich potrzeb.
+            </p>
           </div>
           <div class="grid grid--cards">
             <article class="card card--service" data-reveal>
               <h3 class="card__title">Korepetycje 1:1</h3>
-              <p class="card__text">Indywidualny plan, dokładny feedback i stały monitoring postępów.</p>
+              <p class="card__text">
+                Indywidualny plan, dokładny feedback i stały monitoring
+                postępów.
+              </p>
               <span class="badge">1:1</span>
             </article>
             <article class="card card--service" data-reveal>
               <h3 class="card__title">Konwersacje</h3>
-              <p class="card__text">Płynność i pewność w mówieniu, tematy dopasowane do Ciebie.</p>
+              <p class="card__text">
+                Płynność i pewność w mówieniu, tematy dopasowane do Ciebie.
+              </p>
               <span class="badge">Fluency</span>
             </article>
             <article class="card card--service" data-reveal>
               <h3 class="card__title">Egzaminy</h3>
-              <p class="card__text">Strategie, struktura wypowiedzi i praktyka z arkuszami.</p>
+              <p class="card__text">
+                Strategie, struktura wypowiedzi i praktyka z arkuszami.
+              </p>
               <span class="badge">Egzaminy</span>
             </article>
             <article class="card card--service" data-reveal>
               <h3 class="card__title">Angielski biznesowy</h3>
-              <p class="card__text">Spotkania, maile, prezentacje i język profesjonalny.</p>
+              <p class="card__text">
+                Spotkania, maile, prezentacje i język profesjonalny.
+              </p>
               <span class="badge">Biznes</span>
             </article>
           </div>
           <div class="section__actions" data-reveal>
-            <a class="button button--secondary" href="uslugi.html">Zobacz usługi</a>
+            <a class="button button--secondary" href="uslugi.html"
+              >Zobacz usługi</a
+            >
           </div>
         </div>
       </section>
@@ -278,7 +321,10 @@
         <div class="container">
           <div class="section__header" data-reveal>
             <h2 class="section__title">Regularny rytm nauki</h2>
-            <p class="section__subtitle">Poznaj reprezentatywny plan pracy lub porównaj wszystkie pakiety na osobnej stronie.</p>
+            <p class="section__subtitle">
+              Poznaj reprezentatywny plan pracy lub porównaj wszystkie pakiety
+              na osobnej stronie.
+            </p>
           </div>
           <div class="grid grid--pricing pricing__featured">
             <!-- package-cards:home:start -->
@@ -307,14 +353,34 @@
         <div class="container">
           <div class="section__header" data-reveal>
             <h2 class="section__title">Materiały do nauki</h2>
-            <p class="section__subtitle">Ebooki, zestawy ćwiczeń i mini-kursy do samodzielnej pracy.</p>
+            <p class="section__subtitle">
+              Ebooki, zestawy ćwiczeń i mini-kursy do samodzielnej pracy.
+            </p>
           </div>
           <div class="filters" data-tablist data-reveal hidden>
-            <button class="pill pill--filter is-active" type="button" data-tab="all">Wszystko</button>
-            <button class="pill pill--filter" type="button" data-tab="grammar">Gramatyka</button>
-            <button class="pill pill--filter" type="button" data-tab="vocabulary">Słownictwo</button>
-            <button class="pill pill--filter" type="button" data-tab="exam">Egzaminy</button>
-            <button class="pill pill--filter" type="button" data-tab="business">Biznes</button>
+            <button
+              class="pill pill--filter is-active"
+              type="button"
+              data-tab="all"
+            >
+              Wszystko
+            </button>
+            <button class="pill pill--filter" type="button" data-tab="grammar">
+              Gramatyka
+            </button>
+            <button
+              class="pill pill--filter"
+              type="button"
+              data-tab="vocabulary"
+            >
+              Słownictwo
+            </button>
+            <button class="pill pill--filter" type="button" data-tab="exam">
+              Egzaminy
+            </button>
+            <button class="pill pill--filter" type="button" data-tab="business">
+              Biznes
+            </button>
           </div>
           <div class="resources__panels" data-tabpanels>
             <!-- materials-home:start -->
@@ -411,7 +477,9 @@
             <!-- materials-home:end -->
           </div>
           <div class="section__actions" data-reveal>
-            <a class="button button--secondary" href="materialy.html">Przeglądaj materiały</a>
+            <a class="button button--secondary" href="materialy.html"
+              >Przeglądaj materiały</a
+            >
           </div>
         </div>
       </section>
@@ -421,8 +489,15 @@
         <div class="container about__grid">
           <div class="about__content" data-reveal>
             <h2 class="section__title">O Lauren</h2>
-            <p class="section__subtitle">Nauczycielka języka angielskiego. Nauka w spokojnym rytmie, z jasnym planem.</p>
-            <p class="about__text">Zakres nauki obejmuje lekcje 1:1, konwersacje, przygotowanie do egzaminów oraz angielski biznesowy. Materiały i rytm pracy są dobierane do celu nauki.</p>
+            <p class="section__subtitle">
+              Nauczycielka języka angielskiego. Nauka w spokojnym rytmie, z
+              jasnym planem.
+            </p>
+            <p class="about__text">
+              Zakres nauki obejmuje lekcje 1:1, konwersacje, przygotowanie do
+              egzaminów oraz angielski biznesowy. Materiały i rytm pracy są
+              dobierane do celu nauki.
+            </p>
             <ul class="list list--inline" role="list">
               <li>Plan nauki + cele</li>
               <li>Feedback i rekomendacje</li>
@@ -434,7 +509,13 @@
             </div>
           </div>
           <div class="about__visual" data-reveal>
-            <img src="assets/img/about/lauren.jpg" alt="Portret Lauren" loading="lazy" width="420" height="480" />
+            <img
+              src="assets/img/about/lauren.jpg"
+              alt="Portret Lauren"
+              loading="lazy"
+              width="420"
+              height="480"
+            />
             <div class="card card--soft about__card">
               <h3 class="card__title">Kompetencje</h3>
               <ul class="list" role="list">
@@ -457,32 +538,86 @@
           <div class="accordion" data-accordion>
             <div class="accordion__item" data-accordion-item>
               <h3 class="accordion__title">
-                <button class="accordion__trigger" id="home-faq-trigger-1" type="button" aria-expanded="true" aria-controls="home-faq-panel-1" data-accordion-trigger disabled>
+                <button
+                  class="accordion__trigger"
+                  id="home-faq-trigger-1"
+                  type="button"
+                  aria-expanded="true"
+                  aria-controls="home-faq-panel-1"
+                  data-accordion-trigger
+                  disabled
+                >
                   Jak wygląda pierwsza lekcja?
                 </button>
               </h3>
-              <div class="accordion__panel" id="home-faq-panel-1" role="region" aria-labelledby="home-faq-trigger-1" aria-hidden="false" data-accordion-panel>
-                <p>Rozmawiamy o celach, sprawdzamy poziom i ustalamy plan na kolejne spotkania.</p>
+              <div
+                class="accordion__panel"
+                id="home-faq-panel-1"
+                role="region"
+                aria-labelledby="home-faq-trigger-1"
+                aria-hidden="false"
+                data-accordion-panel
+              >
+                <p>
+                  Rozmawiamy o celach, sprawdzamy poziom i ustalamy plan na
+                  kolejne spotkania.
+                </p>
               </div>
             </div>
             <div class="accordion__item" data-accordion-item>
               <h3 class="accordion__title">
-                <button class="accordion__trigger" id="home-faq-trigger-2" type="button" aria-expanded="true" aria-controls="home-faq-panel-2" data-accordion-trigger disabled>
+                <button
+                  class="accordion__trigger"
+                  id="home-faq-trigger-2"
+                  type="button"
+                  aria-expanded="true"
+                  aria-controls="home-faq-panel-2"
+                  data-accordion-trigger
+                  disabled
+                >
                   Czy dostanę materiały?
                 </button>
               </h3>
-              <div class="accordion__panel" id="home-faq-panel-2" role="region" aria-labelledby="home-faq-trigger-2" aria-hidden="false" data-accordion-panel>
-                <p>Zakres materiałów zależy od wybranego pakietu i jest opisany na stronie pakietów.</p>
+              <div
+                class="accordion__panel"
+                id="home-faq-panel-2"
+                role="region"
+                aria-labelledby="home-faq-trigger-2"
+                aria-hidden="false"
+                data-accordion-panel
+              >
+                <p>
+                  Zakres materiałów zależy od wybranego pakietu i jest opisany
+                  na stronie pakietów.
+                </p>
               </div>
             </div>
             <div class="accordion__item" data-accordion-item>
               <h3 class="accordion__title">
-                <button class="accordion__trigger" id="home-faq-trigger-3" type="button" aria-expanded="true" aria-controls="home-faq-panel-3" data-accordion-trigger disabled>
+                <button
+                  class="accordion__trigger"
+                  id="home-faq-trigger-3"
+                  type="button"
+                  aria-expanded="true"
+                  aria-controls="home-faq-panel-3"
+                  data-accordion-trigger
+                  disabled
+                >
                   Jak mierzymy progres?
                 </button>
               </h3>
-              <div class="accordion__panel" id="home-faq-panel-3" role="region" aria-labelledby="home-faq-trigger-3" aria-hidden="false" data-accordion-panel>
-                <p>Lokalny dziennik postępów pozwala ustawiać cele, zapisywać check-iny i przeglądać podsumowania bez logowania.</p>
+              <div
+                class="accordion__panel"
+                id="home-faq-panel-3"
+                role="region"
+                aria-labelledby="home-faq-trigger-3"
+                aria-hidden="false"
+                data-accordion-panel
+              >
+                <p>
+                  Lokalny dziennik postępów pozwala ustawiać cele, zapisywać
+                  check-iny i przeglądać podsumowania bez logowania.
+                </p>
               </div>
             </div>
           </div>
@@ -493,12 +628,19 @@
       <section class="section contact" id="contact">
         <div class="container contact__grid">
           <div class="contact__content" data-reveal>
-            <h2 class="section__title">Kontakt</h2>
-            <p class="section__subtitle">Aktualne dane kontaktowe nie są obecnie dostępne.</p>
+            <h2 class="section__title">Masz pytanie o naukę lub zapisy?</h2>
+            <p class="section__subtitle">
+              Przejdź do strony kontaktowej, aby opisać swój cel, albo zadzwoń i
+              rozpocznij rozmowę.
+            </p>
           </div>
-          <div class="card card--soft" data-contact-status data-reveal>
-            <h3 class="card__title">Zapisy są wstrzymane</h3>
-            <p class="card__text">Formularz i bezpośredni kanał kontaktu są wyłączone. Ta sekcja zostanie uzupełniona po potwierdzeniu danych kontaktowych.</p>
+          <div class="contact__actions" data-reveal>
+            <a class="button button--primary" href="/kontakt.html"
+              >Przejdź do kontaktu</a
+            >
+            <a class="button button--secondary" href="tel:+48533537091"
+              >Zadzwoń</a
+            >
           </div>
         </div>
       </section>
@@ -507,26 +649,68 @@
     <!-- shared-shell:footer:start -->
     <footer class="footer">
       <div class="container footer__grid">
-        <div>
+        <section class="footer__column footer__column--brand" aria-labelledby="footer-brand-title">
+          <h2 class="sr-only" id="footer-brand-title">Marka</h2>
           <a class="footer__brand" href="/index.html">
             <img class="footer__logo-image" src="/assets/img/logo/logo.svg" alt="" width="512" height="512" />
             <span class="footer__brand-text">Lauren – Clean English</span>
           </a>
           <p class="footer__text">Profesjonalny angielski w spokojnym rytmie.</p>
-        </div>
-        <div>
-          <h3 class="footer__title">Linki</h3>
+        </section>
+        <section class="footer__column" aria-labelledby="footer-offer-title">
+          <h2 class="footer__title" id="footer-offer-title">Oferta</h2>
           <ul class="footer__list" role="list">
             <li><a href="/uslugi.html">Usługi</a></li>
             <li><a href="/pakiety.html#pakiety">Pakiety</a></li>
             <li><a href="/materialy.html">Materiały</a></li>
             <li><a href="/postepy.html">Postępy</a></li>
-            <li><a href="/index.html#contact">Kontakt</a></li>
+            <li><a href="/index.html#faq">FAQ</a></li>
           </ul>
-        </div>
+        </section>
+        <section class="footer__column" aria-labelledby="footer-contact-title">
+          <h2 class="footer__title" id="footer-contact-title">Kontakt</h2>
+          <ul class="footer__list footer__list--contact" role="list">
+            <li><a class="footer__contact-link" href="tel:+48533537091">+48 533 537 091</a></li>
+            <li><a class="footer__contact-link" href="mailto:kontakt@kp-code.pl">kontakt@kp-code.pl</a></li>
+            <li><address class="footer__address">ul. Marynarki Wojennej 12/31, 33-100 Tarnów, Polska</address></li>
+            <li><a class="footer__quiet-link" href="/kontakt.html">Przejdź do strony kontaktowej</a></li>
+          </ul>
+        </section>
+        <section class="footer__column" aria-labelledby="footer-information-title">
+          <h2 class="footer__title" id="footer-information-title">Informacje</h2>
+          <ul class="footer__list" role="list">
+            <li><a href="/index.html#about">O Lauren</a></li>
+            <li><a href="/kontakt.html">Kontakt</a></li>
+            <li><a href="/polityka-prywatnosci.html">Polityka prywatności</a></li>
+            <li><a href="/regulamin.html">Regulamin</a></li>
+            <li><a href="/cookies.html">Polityka cookies</a></li>
+          </ul>
+        </section>
       </div>
+      <section class="container footer__social" aria-labelledby="footer-social-title">
+        <h2 class="footer__social-title" id="footer-social-title">KP_Code Digital Studio w sieci</h2>
+        <ul class="footer__social-list" role="list">
+          <li>
+            <a class="footer__social-link" href="https://github.com/KPKrol85" target="_blank" rel="noopener noreferrer" aria-label="GitHub – KP_Code Digital Studio (otwiera się w nowej karcie)">GitHub</a>
+          </li>
+          <li>
+            <a class="footer__social-link" href="https://www.facebook.com/kpkrol85" target="_blank" rel="noopener noreferrer" aria-label="Facebook – KP_Code Digital Studio (otwiera się w nowej karcie)">Facebook</a>
+          </li>
+          <li>
+            <a class="footer__social-link" href="https://x.com/KP_Code_85" target="_blank" rel="noopener noreferrer" aria-label="X – KP_Code Digital Studio (otwiera się w nowej karcie)">X</a>
+          </li>
+          <li>
+            <a class="footer__social-link" href="https://www.linkedin.com/in/kp-code/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn – KP_Code Digital Studio (otwiera się w nowej karcie)">LinkedIn</a>
+          </li>
+          <li>
+            <a class="footer__social-link" href="https://www.instagram.com/kp_code_/" target="_blank" rel="noopener noreferrer" aria-label="Instagram – KP_Code Digital Studio (otwiera się w nowej karcie)">Instagram</a>
+          </li>
+        </ul>
+      </section>
       <div class="footer__bottom">
-        <p>Lauren – Clean English — informacje o nauce angielskiego i materiałach.</p>
+        <div class="container">
+          <p>© 2026 KP_Code Digital Studio | Wszelkie prawa zastrzeżone.</p>
+        </div>
       </div>
     </footer>
     <!-- shared-shell:footer:end -->

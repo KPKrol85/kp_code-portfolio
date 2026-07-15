@@ -3,7 +3,10 @@ import { dirname, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
 
 import {
-  PRIMARY_PAGES,
+  FOOTER_CONTACT,
+  FOOTER_COPYRIGHT,
+  FOOTER_LEGAL_LINKS,
+  FOOTER_SOCIAL_LINKS,
   SHELL_MARKERS,
   renderSharedFooter,
   renderSharedHeader,
@@ -21,6 +24,7 @@ import {
   ALL_PAGES,
   HEAD_SECTION_COMMENTS,
   SEO_MARKERS,
+  SHARED_SHELL_PAGES,
   SITE,
   renderRedirects,
   renderRobots,
@@ -105,7 +109,7 @@ const assemblePage = (source, page) => {
   );
   const withAnnotatedHead = annotateStaticHeadSections(withSeo);
 
-  if (!PRIMARY_PAGES.includes(page)) return withAnnotatedHead;
+  if (!SHARED_SHELL_PAGES.includes(page)) return withAnnotatedHead;
 
   const withHeader = replaceRegion(
     withAnnotatedHead,
@@ -256,6 +260,55 @@ const validatePage = async (html, page, assembledPages) => {
     `${page.file}: shared footer is stale`,
   );
   assert(
+    (
+      footer.match(
+        /<section class="footer__column(?: footer__column--brand)?"/g,
+      ) ?? []
+    ).length === 4,
+    `${page.file}: footer must contain four primary columns`,
+  );
+  assert(
+    footer.includes(
+      `href="${FOOTER_CONTACT.telephoneUri}">${FOOTER_CONTACT.phone}</a>`,
+    ) &&
+      footer.includes(
+        `href="${FOOTER_CONTACT.emailUri}">${FOOTER_CONTACT.email}</a>`,
+      ) &&
+      footer.includes(
+        `<address class="footer__address">${FOOTER_CONTACT.address}</address>`,
+      ),
+    `${page.file}: footer contact details changed`,
+  );
+  for (const { label, href } of FOOTER_LEGAL_LINKS) {
+    assert(
+      footer.includes(`<a href="${href}">${label}</a>`),
+      `${page.file}: footer legal destination changed: ${label}`,
+    );
+  }
+  for (const { label, href } of FOOTER_SOCIAL_LINKS) {
+    assert(
+      footer.includes(
+        `<a class="footer__social-link" href="${href}" target="_blank" rel="noopener noreferrer" aria-label="${label} – KP_Code Digital Studio (otwiera się w nowej karcie)">${label}</a>`,
+      ),
+      `${page.file}: footer social contract changed: ${label}`,
+    );
+  }
+  assert(
+    (footer.match(/class="footer__social-link"/g) ?? []).length === 5 &&
+      footer.includes(
+        '<section class="container footer__social" aria-labelledby="footer-social-title">',
+      ),
+    `${page.file}: footer social row must contain five links`,
+  );
+  assert(
+    footer.includes(`<p>${FOOTER_COPYRIGHT}</p>`) &&
+      footer.indexOf('class="footer__grid"') <
+        footer.indexOf('class="container footer__social"') &&
+      footer.indexOf('class="container footer__social"') <
+        footer.indexOf('class="footer__bottom"'),
+    `${page.file}: footer copyright or row order changed`,
+  );
+  assert(
     (html.match(/<h1\b/g) ?? []).length === 1,
     `${page.file}: expected one h1`,
   );
@@ -299,24 +352,27 @@ const validatePage = async (html, page, assembledPages) => {
   const currentAnchors = [
     ...header.matchAll(/<a\b[^>]*\saria-current="page"[^>]*>/g),
   ].map((match) => match[0]);
+  const expectedCurrentHref = page.currentHref ?? null;
   assert(
-    currentAnchors.length === 1,
-    `${page.file}: expected exactly one aria-current="page" in the shared header`,
+    currentAnchors.length === (expectedCurrentHref ? 1 : 0),
+    `${page.file}: shared-header current-page state changed`,
   );
-  assert(
-    getAnchorHref(currentAnchors[0]) === page.currentHref,
-    `${page.file}: aria-current points to the wrong destination`,
-  );
-  if (page.key === "home") {
+  if (expectedCurrentHref) {
     assert(
-      currentAnchors[0].includes('class="header__logo"'),
-      `${page.file}: homepage current state must be on the home logo link`,
+      getAnchorHref(currentAnchors[0]) === expectedCurrentHref,
+      `${page.file}: aria-current points to the wrong destination`,
     );
-  } else {
-    assert(
-      currentAnchors[0].includes('class="nav__link"'),
-      `${page.file}: current state must be on the active navigation link`,
-    );
+    if (page.key === "home") {
+      assert(
+        currentAnchors[0].includes('class="header__logo"'),
+        `${page.file}: homepage current state must be on the home logo link`,
+      );
+    } else {
+      assert(
+        currentAnchors[0].includes('class="nav__link"'),
+        `${page.file}: current state must be on the active navigation link`,
+      );
+    }
   }
 
   assert(
@@ -336,12 +392,8 @@ const validatePage = async (html, page, assembledPages) => {
     `${page.file}: mobile drawer toggle baseline changed`,
   );
   assert(
-    (header.match(/data-drawer-close/g) ?? []).length === 1,
-    `${page.file}: mobile drawer close hook changed`,
-  );
-  assert(
-    (header.match(/data-drawer-close hidden/g) ?? []).length === 1,
-    `${page.file}: mobile drawer close baseline changed`,
+    (header.match(/data-drawer-close/g) ?? []).length === 0,
+    `${page.file}: redundant mobile drawer close hook returned`,
   );
   assert(
     (header.match(/aria-controls="nav-drawer"/g) ?? []).length === 1,
@@ -473,7 +525,7 @@ const run = async () => {
     validateRuntimeAssets(assembledPages.get(page.file), page);
   }
 
-  for (const page of PRIMARY_PAGES) {
+  for (const page of SHARED_SHELL_PAGES) {
     await validatePage(assembledPages.get(page.file), page, assembledPages);
   }
 
@@ -500,7 +552,7 @@ const run = async () => {
       ].join(", ")}. Run npm run build:html.`,
     );
     console.log(
-      `Verified generated HTML regions for ${ALL_PAGES.length} pages, shared-shell invariants for ${PRIMARY_PAGES.length} primary pages, and ${generatedAssets.length} route assets.`,
+      `Verified generated HTML regions for ${ALL_PAGES.length} pages, shared-shell invariants for ${SHARED_SHELL_PAGES.length} pages, and ${generatedAssets.length} route assets.`,
     );
     return;
   }
