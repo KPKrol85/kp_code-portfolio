@@ -23,6 +23,21 @@
 .about__visual {
   display: grid;
   gap: var(--space-md);
+  justify-self: center;
+  width: min(100%, 26.25rem);
+}
+
+.about__visual > img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: var(--radius-lg);
+  object-fit: contain;
+  object-position: center;
+}
+
+.about__card {
+  width: 100%;
 }
 
 @media (min-width: 780px) {

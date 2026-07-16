@@ -3,6 +3,7 @@ import { dirname, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
 
 import {
+  FOOTER_BRAND_DESCRIPTION,
   FOOTER_CONTACT,
   FOOTER_COPYRIGHT,
   FOOTER_LEGAL_LINKS,
@@ -267,6 +268,27 @@ const validatePage = async (html, page, assembledPages) => {
     ).length === 4,
     `${page.file}: footer must contain four primary columns`,
   );
+  const brandBlockIndex = footer.indexOf('class="footer__brand-block"');
+  const brandLogoIndex = footer.indexOf(
+    'class="footer__logo-image"',
+    brandBlockIndex,
+  );
+  const brandNameIndex = footer.indexOf(
+    '<span class="footer__brand-text">Lauren – Clean English</span>',
+    brandLogoIndex,
+  );
+  const brandDescriptionIndex = footer.indexOf(
+    `<p class="footer__text">${FOOTER_BRAND_DESCRIPTION}</p>`,
+    brandNameIndex,
+  );
+  assert(
+    brandBlockIndex >= 0 &&
+      brandLogoIndex > brandBlockIndex &&
+      brandNameIndex > brandLogoIndex &&
+      brandDescriptionIndex > brandNameIndex &&
+      !footer.includes("Profesjonalny angielski w spokojnym rytmie."),
+    `${page.file}: footer brand block content or order changed`,
+  );
   assert(
     footer.includes(
       `href="${FOOTER_CONTACT.telephoneUri}">${FOOTER_CONTACT.phone}</a>`,
@@ -279,26 +301,70 @@ const validatePage = async (html, page, assembledPages) => {
       ),
     `${page.file}: footer contact details changed`,
   );
+  assert(
+    !footer.includes('class="footer__quiet-link"') &&
+      !footer.includes("Przejdź do strony kontaktowej"),
+    `${page.file}: redundant footer contact link must remain removed`,
+  );
   for (const { label, href } of FOOTER_LEGAL_LINKS) {
     assert(
       footer.includes(`<a href="${href}">${label}</a>`),
       `${page.file}: footer legal destination changed: ${label}`,
     );
   }
-  for (const { label, href } of FOOTER_SOCIAL_LINKS) {
+  const socialLinks = [
+    ...footer.matchAll(
+      /<a\b(?=[^>]*\bclass="footer__social-link")[^>]*>([\s\S]*?)<\/a>/gi,
+    ),
+  ];
+  assert(
+    socialLinks.length === FOOTER_SOCIAL_LINKS.length &&
+      socialLinks.length === 5,
+    `${page.file}: footer social row must contain exactly five links`,
+  );
+  for (const [
+    index,
+    { label, href, viewBox, pathData },
+  ] of FOOTER_SOCIAL_LINKS.entries()) {
+    const socialLink = socialLinks[index];
+    const linkMarkup = socialLink[0];
+    const linkContent = socialLink[1].trim();
+    const svgTags = linkContent.match(/<svg\b[\s\S]*?<\/svg>/gi) ?? [];
+
     assert(
-      footer.includes(
-        `<a class="footer__social-link" href="${href}" target="_blank" rel="noopener noreferrer" aria-label="${label} – KP_Code Digital Studio (otwiera się w nowej karcie)">${label}</a>`,
-      ),
+      getAttribute(linkMarkup, "href") === href &&
+        getAttribute(linkMarkup, "target") === "_blank" &&
+        getAttribute(linkMarkup, "rel") === "noopener noreferrer" &&
+        getAttribute(linkMarkup, "aria-label") ===
+          `${label} — KP_Code Digital Studio`,
       `${page.file}: footer social contract changed: ${label}`,
+    );
+    assert(
+      svgTags.length === 1 && linkContent.replace(svgTags[0], "").trim() === "",
+      `${page.file}: footer social link must contain one icon and no visible label: ${label}`,
+    );
+
+    const svgMarkup = svgTags[0];
+    const pathTags = svgMarkup.match(/<path\b[^>]*\/>/gi) ?? [];
+    assert(
+      getAttribute(svgMarkup, "class") === "footer__social-icon" &&
+        getAttribute(svgMarkup, "viewBox") === viewBox &&
+        getAttribute(svgMarkup, "aria-hidden") === "true" &&
+        getAttribute(svgMarkup, "focusable") === "false" &&
+        getAttribute(svgMarkup, "fill") === "currentColor" &&
+        pathTags.length === 1 &&
+        getAttribute(pathTags[0], "d") === pathData,
+      `${page.file}: footer social SVG changed: ${label}`,
     );
   }
   assert(
-    (footer.match(/class="footer__social-link"/g) ?? []).length === 5 &&
+    footer.includes(
+      '<section class="container footer__social" aria-labelledby="footer-social-title">',
+    ) &&
       footer.includes(
-        '<section class="container footer__social" aria-labelledby="footer-social-title">',
+        '<h2 class="footer__social-title" id="footer-social-title">SOCIAL MEDIA</h2>',
       ),
-    `${page.file}: footer social row must contain five links`,
+    `${page.file}: footer social row structure changed`,
   );
   assert(
     footer.includes(`<p>${FOOTER_COPYRIGHT}</p>`) &&

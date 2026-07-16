@@ -21,7 +21,12 @@
   padding: var(--space-sm) var(--space-md);
   background: transparent;
   border: none;
+  border-radius: var(--radius-md);
   font-weight: 600;
+}
+
+.accordion__trigger[aria-expanded="true"] {
+  border-radius: var(--radius-md) var(--radius-md) 0 0;
 }
 
 .accordion__trigger:hover:not(:disabled) {

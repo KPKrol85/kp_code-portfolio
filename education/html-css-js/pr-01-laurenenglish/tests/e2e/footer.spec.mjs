@@ -88,6 +88,41 @@ test("shared footer exposes the approved responsive, legal, and social contract"
 
     const footer = page.locator(".footer");
     await expect(footer.locator(".footer__column")).toHaveCount(4);
+    const brandColumn = footer.locator(".footer__column--brand");
+    const brandBlock = brandColumn.locator(".footer__brand-block");
+    await expect(brandColumn.locator(".footer__brand-text")).toHaveText(
+      "Lauren – Clean English",
+    );
+    await expect(brandColumn.locator(".footer__text")).toHaveText(
+      "Indywidualna nauka angielskiego dopasowana do Twoich celów, poziomu i tempa. Spokojnie, konkretnie i bez chaosu.",
+    );
+    const brandLayout = await brandBlock.evaluate((block) => {
+      const column = block.closest(".footer__column--brand");
+      const logo = block.querySelector(".footer__logo-image");
+      const name = block.querySelector(".footer__brand-text");
+      const description = block.querySelector(".footer__text");
+      const blockRect = block.getBoundingClientRect();
+      const columnRect = column.getBoundingClientRect();
+      const logoRect = logo.getBoundingClientRect();
+      const nameRect = name.getBoundingClientRect();
+      const descriptionRect = description.getBoundingClientRect();
+
+      return {
+        blockMaxWidth: getComputedStyle(block).maxWidth,
+        blockWidth: blockRect.width,
+        columnWidth: columnRect.width,
+        descriptionTop: descriptionRect.top,
+        logoBottom: logoRect.bottom,
+        nameBottom: nameRect.bottom,
+        nameTop: nameRect.top,
+      };
+    });
+    expect(brandLayout.blockMaxWidth).not.toBe("none");
+    expect(brandLayout.blockWidth).toBeLessThanOrEqual(brandLayout.columnWidth);
+    expect(brandLayout.nameTop).toBeGreaterThanOrEqual(brandLayout.logoBottom);
+    expect(brandLayout.descriptionTop).toBeGreaterThanOrEqual(
+      brandLayout.nameBottom,
+    );
     await expect(footer.locator('a[href="tel:+48533537091"]')).toHaveText(
       "+48 533 537 091",
     );
@@ -97,6 +132,32 @@ test("shared footer exposes the approved responsive, legal, and social contract"
     await expect(footer.locator("address")).toHaveText(
       "ul. Marynarki Wojennej 12/31, 33-100 Tarnów, Polska",
     );
+    await expect(
+      footer.getByRole("link", { name: "Przejdź do strony kontaktowej" }),
+    ).toHaveCount(0);
+    await expect(
+      footer.getByRole("link", { name: "Kontakt", exact: true }),
+    ).toHaveCount(1);
+
+    const socialHeading = footer.getByRole("heading", {
+      name: "SOCIAL MEDIA",
+      exact: true,
+    });
+    await expect(socialHeading).toBeVisible();
+    const headingTypography = await socialHeading.evaluate((heading) => {
+      const columnHeading = document.querySelector(".footer__title");
+      const columnStyle = getComputedStyle(columnHeading);
+      const socialStyle = getComputedStyle(heading);
+      return {
+        columnSize: Number.parseFloat(columnStyle.fontSize),
+        letterSpacing: Number.parseFloat(socialStyle.letterSpacing),
+        socialSize: Number.parseFloat(socialStyle.fontSize),
+      };
+    });
+    expect(headingTypography.socialSize).toBeLessThan(
+      headingTypography.columnSize,
+    );
+    expect(headingTypography.letterSpacing).toBeGreaterThan(0);
 
     for (const path of LEGAL_PATHS) {
       await expect(footer.locator(`a[href="${path}"]`)).toHaveCount(1);
@@ -105,23 +166,56 @@ test("shared footer exposes the approved responsive, legal, and social contract"
     const socialLinks = await footer
       .locator(".footer__social-link")
       .evaluateAll((links) =>
-        links.map((link) => ({
-          ariaLabel: link.getAttribute("aria-label"),
-          href: link.getAttribute("href"),
-          rel: link.getAttribute("rel"),
-          target: link.getAttribute("target"),
-          text: link.textContent.trim(),
-        })),
+        links.map((link) => {
+          const icon = link.querySelector(":scope > svg.footer__social-icon");
+          const linkRect = link.getBoundingClientRect();
+          const iconRect = icon?.getBoundingClientRect();
+
+          return {
+            ariaLabel: link.getAttribute("aria-label"),
+            href: link.getAttribute("href"),
+            icon: icon
+              ? {
+                  ariaHidden: icon.getAttribute("aria-hidden"),
+                  fill: icon.getAttribute("fill"),
+                  focusable: icon.getAttribute("focusable"),
+                  height: iconRect.height,
+                  pathCount: icon.querySelectorAll(":scope > path").length,
+                  viewBox: icon.getAttribute("viewBox"),
+                  width: iconRect.width,
+                }
+              : null,
+            linkHeight: linkRect.height,
+            linkWidth: linkRect.width,
+            rel: link.getAttribute("rel"),
+            svgCount: link.querySelectorAll(":scope > svg").length,
+            target: link.getAttribute("target"),
+            text: link.textContent.trim(),
+          };
+        }),
       );
-    expect(socialLinks).toEqual(
-      SOCIAL_LINKS.map(({ label, href }) => ({
-        ariaLabel: `${label} – KP_Code Digital Studio (otwiera się w nowej karcie)`,
+    expect(socialLinks).toHaveLength(5);
+    for (const [index, { label, href }] of SOCIAL_LINKS.entries()) {
+      expect(socialLinks[index]).toMatchObject({
+        ariaLabel: `${label} — KP_Code Digital Studio`,
         href,
+        icon: {
+          ariaHidden: "true",
+          fill: "currentColor",
+          focusable: "false",
+          height: 24,
+          pathCount: 1,
+          viewBox: "0 0 448 512",
+          width: 24,
+        },
         rel: "noopener noreferrer",
+        svgCount: 1,
         target: "_blank",
-        text: label,
-      })),
-    );
+        text: "",
+      });
+      expect(socialLinks[index].linkHeight).toBeGreaterThanOrEqual(44);
+      expect(socialLinks[index].linkWidth).toBeGreaterThanOrEqual(44);
+    }
 
     await expect(footer.locator(".footer__bottom p")).toHaveText(
       "© 2026 KP_Code Digital Studio | Wszelkie prawa zastrzeżone.",
@@ -133,6 +227,17 @@ test("shared footer exposes the approved responsive, legal, and social contract"
           getComputedStyle(grid).gridTemplateColumns.split(/\s+/u).length,
       );
     expect(columnCount, viewport.name).toBe(viewport.columns);
+    if (viewport.name === "desktop") {
+      const columnWidths = await footer
+        .locator(".footer__column")
+        .evaluateAll((columns) =>
+          columns.map((column) => column.getBoundingClientRect().width),
+        );
+      expect(columnWidths[0]).toBeGreaterThan(columnWidths[1]);
+      expect(columnWidths[1]).toBeCloseTo(columnWidths[2], 1);
+      expect(columnWidths[2]).toBeCloseTo(columnWidths[3], 1);
+      expect(brandLayout.blockWidth).toBeLessThan(brandLayout.columnWidth);
+    }
 
     for (const theme of ["light", "dark"]) {
       await page.locator("html").evaluate((element, nextTheme) => {
@@ -143,10 +248,51 @@ test("shared footer exposes the approved responsive, legal, and social contract"
         Math.min(...contrastRatios),
         `${viewport.name} ${theme} footer contrast`,
       ).toBeGreaterThanOrEqual(4.5);
+
+      const iconColors = await footer
+        .locator(".footer__social-link")
+        .evaluateAll((links) =>
+          links.map((link) => {
+            const icon = link.querySelector(".footer__social-icon");
+            return {
+              icon: getComputedStyle(icon).fill,
+              link: getComputedStyle(link).color,
+            };
+          }),
+        );
+      expect(iconColors.every(({ icon, link }) => icon === link)).toBe(true);
     }
+
+    const firstSocialLink = footer.locator(".footer__social-link").first();
+    await firstSocialLink.hover();
+    expect(
+      await firstSocialLink.evaluate(
+        (link) => getComputedStyle(link).transform !== "none",
+      ),
+    ).toBe(true);
+
+    await firstSocialLink.focus();
+    await page.keyboard.press("Shift+Tab");
+    await page.keyboard.press("Tab");
+    const focusState = await firstSocialLink.evaluate((link) => {
+      const style = getComputedStyle(link);
+      return {
+        focusVisible: link.matches(":focus-visible"),
+        outlineStyle: style.outlineStyle,
+        outlineWidth: Number.parseFloat(style.outlineWidth),
+      };
+    });
+    expect(focusState.focusVisible).toBe(true);
+    expect(focusState.outlineStyle).not.toBe("none");
+    expect(focusState.outlineWidth).toBeGreaterThan(0);
 
     await expectNoDocumentOverflow(page);
   }
+
+  await page.emulateMedia({ reducedMotion: "reduce" });
+  const reducedMotionLink = page.locator(".footer__social-link").first();
+  await reducedMotionLink.hover();
+  await expect(reducedMotionLink).toHaveCSS("transform", "none");
 
   expectCleanDiagnostics(diagnostics);
 });

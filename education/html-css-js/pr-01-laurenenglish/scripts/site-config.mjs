@@ -62,7 +62,7 @@ export const INDEXABLE_PAGES = Object.freeze([
     file: "pakiety.html",
     path: "/pakiety.html",
     runtimePath: "/pakiety.html",
-    currentHref: "/pakiety.html#pakiety",
+    currentHref: "/pakiety.html",
     title: "Pakiety | Lauren – Clean English",
     description:
       "Pakiety nauki angielskiego dopasowane do rytmu pracy i celów: Start, Regular i Intensive z jasnym zakresem wsparcia.",
