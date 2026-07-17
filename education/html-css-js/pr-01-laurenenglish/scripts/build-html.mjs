@@ -274,7 +274,7 @@ const validatePage = async (html, page, assembledPages) => {
     brandBlockIndex,
   );
   const brandNameIndex = footer.indexOf(
-    '<span class="footer__brand-text">Lauren – Clean English</span>',
+    '<span class="footer__brand-text">Lauren English</span>',
     brandLogoIndex,
   );
   const brandDescriptionIndex = footer.indexOf(

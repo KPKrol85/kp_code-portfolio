@@ -110,6 +110,32 @@ test("desktop navigation exposes its links and theme action", async ({
   expectCleanDiagnostics(diagnostics);
 });
 
+test("homepage hero presents a static progress teaser", async ({ page }) => {
+  const diagnostics = collectRuntimeDiagnostics(page);
+  await page.goto("/index.html", { waitUntil: "networkidle" });
+
+  const teaser = page.locator(".hero__card--process");
+  await expect(
+    teaser.getByRole("heading", { level: 2, name: "Od celu do postępu" }),
+  ).toBeVisible();
+  await expect(teaser.locator(".hero__process-description")).toHaveText(
+    "Najpierw ustalamy kierunek, potem pracujemy według planu i regularnie sprawdzamy efekty.",
+  );
+  await expect(teaser.locator(".hero__process-item")).toHaveText([
+    "Cel dopasowany do Twoich potrzeb",
+    "Plan nauki i materiały",
+    "Regularny feedback i kolejny krok",
+  ]);
+  await expect(
+    teaser.locator("button, [data-progress], [data-progress-item]"),
+  ).toHaveCount(0);
+  await expect(
+    teaser.getByRole("link", { name: "Zobacz, jak mierzymy postępy" }),
+  ).toHaveAttribute("href", "/postepy.html");
+  await expect(page.locator(".hero__image")).toBeVisible();
+  expectCleanDiagnostics(diagnostics);
+});
+
 test("package navigation opens the hero while package CTAs target the cards", async ({
   page,
 }, testInfo) => {

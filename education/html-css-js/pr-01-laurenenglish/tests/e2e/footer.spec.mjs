@@ -91,7 +91,7 @@ test("shared footer exposes the approved responsive, legal, and social contract"
     const brandColumn = footer.locator(".footer__column--brand");
     const brandBlock = brandColumn.locator(".footer__brand-block");
     await expect(brandColumn.locator(".footer__brand-text")).toHaveText(
-      "Lauren – Clean English",
+      "Lauren English",
     );
     await expect(brandColumn.locator(".footer__text")).toHaveText(
       "Indywidualna nauka angielskiego dopasowana do Twoich celów, poziomu i tempa. Spokojnie, konkretnie i bez chaosu.",

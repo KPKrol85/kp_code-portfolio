@@ -150,9 +150,9 @@ export const renderSharedHeader = (pageKey) => {
     <a class="skip-link" href="#main">Przejdź do treści</a>${preservedHomeAnnotation}
     <header class="header" id="top">
       <div class="container header__inner">
-        <a class="header__logo" href="/index.html" aria-label="Lauren – Clean English"${logoCurrent}>
+        <a class="header__logo" href="/index.html" aria-label="${SITE.name}"${logoCurrent}>
           <img class="header__logo-image" src="${SITE.brandLogo.path}" alt="" width="${SITE.brandLogo.width}" height="${SITE.brandLogo.height}" />
-          <span class="header__logo-text">Lauren – Clean English</span>
+          <span class="header__logo-text">${SITE.name}</span>
         </a>
         <nav class="nav" aria-label="Główna nawigacja">
 ${navToggleStart}
@@ -174,11 +174,11 @@ ${renderNavItems(pageKey)}
                 <img class="theme-toggle__icon theme-toggle__icon--moon" src="/assets/icons/moon.svg" alt="" width="24" height="24" />
               </span>
             </button>
-            <a class="button button--primary nav__cta" href="/kontakt.html#formularz">Umów rozmowę</a>
+            <a class="button button--primary nav__cta" href="/kontakt.html#formularz">Napisz do mnie</a>
           </div>
         </nav>
         <div class="header__actions">
-        <a class="button button--primary header__cta" href="/kontakt.html#formularz">Umów rozmowę</a>
+        <a class="button button--primary header__cta" href="/kontakt.html#formularz">Napisz do mnie</a>
           <button class="button button--ghost theme-toggle" type="button" aria-label="Włącz tryb ciemny" aria-pressed="false" data-theme-toggle hidden>
             <span class="theme-toggle__icons" aria-hidden="true">
               <img class="theme-toggle__icon theme-toggle__icon--sun" src="/assets/icons/sun.svg" alt="" width="24" height="24" />
@@ -199,7 +199,7 @@ export const renderSharedFooter = () => `${SHELL_MARKERS.footerStart}
           <div class="footer__brand-block">
             <a class="footer__brand" href="/index.html">
               <img class="footer__logo-image" src="${SITE.brandLogo.path}" alt="" width="${SITE.brandLogo.width}" height="${SITE.brandLogo.height}" />
-              <span class="footer__brand-text">Lauren – Clean English</span>
+              <span class="footer__brand-text">${SITE.name}</span>
             </a>
             <p class="footer__text">${FOOTER_BRAND_DESCRIPTION}</p>
           </div>

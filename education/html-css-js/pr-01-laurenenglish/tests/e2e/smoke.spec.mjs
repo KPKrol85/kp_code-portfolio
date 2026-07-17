@@ -13,6 +13,24 @@ import {
 } from "./helpers/runtime.mjs";
 
 test.describe("generated production pages", () => {
+  test("homepage and shared shell expose the approved Lauren English identity", async ({
+    page,
+  }) => {
+    const diagnostics = collectRuntimeDiagnostics(page);
+    await page.goto("/index.html", { waitUntil: "networkidle" });
+
+    await expect(page.locator(".header__logo-text")).toHaveText(SITE.name);
+    await expect(page.locator(".footer__brand-text")).toHaveText(SITE.name);
+    await expect(page.locator(".hero__eyebrow")).toHaveText(
+      "INDYWIDUALNE LEKCJE ANGIELSKIEGO",
+    );
+    await expect(page.locator(".hero__title")).toHaveText(
+      "Lauren – English. Jasny plan nauki języka angielskiego.",
+    );
+    await expect(page.locator("body")).not.toContainText(/Clean English/u);
+    expectCleanDiagnostics(diagnostics);
+  });
+
   for (const publicPage of PRIMARY_PAGES) {
     test(`${publicPage.name} loads generated assets without runtime errors`, async ({
       page,

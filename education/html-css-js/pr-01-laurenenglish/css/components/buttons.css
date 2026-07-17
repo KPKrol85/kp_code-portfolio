@@ -4,6 +4,7 @@
   justify-content: center;
   gap: var(--space-xs);
   min-height: var(--control-min-size);
+  min-width: 160px;
   max-width: 100%;
   padding: var(--space-sm) 20px;
   border-radius: var(--radius-pill);

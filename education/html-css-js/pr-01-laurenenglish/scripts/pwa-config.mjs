@@ -1,6 +1,6 @@
 import { INDEXABLE_PAGES, SITE } from "./site-config.mjs";
 
-export const CACHE_PREFIX = "clean-english-v";
+export const CACHE_PREFIX = "lauren-english-v";
 export const OFFLINE_PATH = "/offline.html";
 export const MANIFEST_PATH = SITE.manifest.path;
 

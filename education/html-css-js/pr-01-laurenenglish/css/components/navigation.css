@@ -272,7 +272,7 @@ body.has-open-navigation {
   .nav.is-enhanced .nav__list {
     display: flex;
     flex-wrap: nowrap;
-    gap: var(--space-sm);
+    gap: var(--space-md);
   }
 
   .nav__link {

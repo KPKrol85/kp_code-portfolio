@@ -30,7 +30,7 @@ const FORBIDDEN_PUBLIC_PATTERNS = Object.freeze([
   },
   {
     label: "unsupported email address",
-    pattern: /lauren@cleanenglish\.pl/iu,
+    pattern: /lauren@laurenenglish\.pl/iu,
   },
   {
     label: "unsupported phone or WhatsApp",

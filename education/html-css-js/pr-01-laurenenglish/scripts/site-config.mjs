@@ -1,6 +1,6 @@
 export const SITE = Object.freeze({
   origin: "https://education-pr-01-lauren-english.netlify.app",
-  name: "Lauren – Clean English",
+  name: "Lauren English",
   language: "pl-PL",
   locale: "pl_PL",
   manifest: Object.freeze({
@@ -28,7 +28,7 @@ export const SITE = Object.freeze({
     type: "image/png",
     width: 1200,
     height: 630,
-    alt: "Lauren – Clean English — nauka angielskiego w spokojnym rytmie.",
+    alt: "Lauren English — nauka angielskiego w spokojnym rytmie.",
   }),
 });
 
@@ -41,7 +41,7 @@ export const INDEXABLE_PAGES = Object.freeze([
     path: "/",
     runtimePath: "/index.html",
     currentHref: "/index.html",
-    title: "Lauren – Clean English | Nauka angielskiego",
+    title: "Lauren English | Nauka angielskiego",
     description:
       "Informacje o indywidualnej nauce angielskiego, konwersacjach, przygotowaniu do egzaminów, pakietach i materiałach.",
     schemaType: "WebSite",
@@ -52,7 +52,7 @@ export const INDEXABLE_PAGES = Object.freeze([
     path: "/uslugi.html",
     runtimePath: "/uslugi.html",
     currentHref: "/uslugi.html",
-    title: "Usługi | Lauren – Clean English",
+    title: "Usługi | Lauren English",
     description:
       "Usługi języka angielskiego dla osób, które chcą uporządkować naukę: korepetycje 1:1, konwersacje, przygotowanie do egzaminów i English for Business.",
     schemaType: "WebPage",
@@ -63,7 +63,7 @@ export const INDEXABLE_PAGES = Object.freeze([
     path: "/pakiety.html",
     runtimePath: "/pakiety.html",
     currentHref: "/pakiety.html",
-    title: "Pakiety | Lauren – Clean English",
+    title: "Pakiety | Lauren English",
     description:
       "Pakiety nauki angielskiego dopasowane do rytmu pracy i celów: Start, Regular i Intensive z jasnym zakresem wsparcia.",
     schemaType: "WebPage",
@@ -74,7 +74,7 @@ export const INDEXABLE_PAGES = Object.freeze([
     path: "/materialy.html",
     runtimePath: "/materialy.html",
     currentHref: "/materialy.html",
-    title: "Materiały | Lauren – Clean English",
+    title: "Materiały | Lauren English",
     description:
       "Materiały do nauki angielskiego: gramatyka, słownictwo, speaking i przygotowanie do egzaminów. Zestawy PDF i notatki do samodzielnej pracy.",
     schemaType: "WebPage",
@@ -85,7 +85,7 @@ export const INDEXABLE_PAGES = Object.freeze([
     path: "/postepy.html",
     runtimePath: "/postepy.html",
     currentHref: "/postepy.html",
-    title: "Dziennik postępów | Lauren – Clean English",
+    title: "Dziennik postępów | Lauren English",
     description:
       "Lokalny dziennik postępów w nauce angielskiego z celami tygodnia, check-inami i statystykami bez logowania.",
     schemaType: "WebPage",
@@ -96,7 +96,7 @@ export const INDEXABLE_PAGES = Object.freeze([
     path: "/kontakt.html",
     runtimePath: "/kontakt.html",
     currentHref: "/kontakt.html",
-    title: "Kontakt | Lauren – Clean English",
+    title: "Kontakt | Lauren English",
     description:
       "Kontakt w sprawie indywidualnej nauki angielskiego: telefon, e-mail, adres oraz formularz zapytania o cele, poziom i format lekcji.",
     schemaType: "WebPage",
@@ -109,21 +109,21 @@ export const LEGAL_PAGES = Object.freeze([
     file: "polityka-prywatnosci.html",
     path: "/polityka-prywatnosci.html",
     runtimePath: "/polityka-prywatnosci.html",
-    title: "Polityka prywatności | Lauren – Clean English",
+    title: "Polityka prywatności | Lauren English",
   }),
   freezePage({
     key: "terms",
     file: "regulamin.html",
     path: "/regulamin.html",
     runtimePath: "/regulamin.html",
-    title: "Regulamin witryny | Lauren – Clean English",
+    title: "Regulamin witryny | Lauren English",
   }),
   freezePage({
     key: "cookies",
     file: "cookies.html",
     path: "/cookies.html",
     runtimePath: "/cookies.html",
-    title: "Polityka cookies | Lauren – Clean English",
+    title: "Polityka cookies | Lauren English",
   }),
 ]);
 
@@ -133,14 +133,14 @@ export const UTILITY_PAGES = Object.freeze([
     file: "404.html",
     path: "/404.html",
     runtimePath: "/404.html",
-    title: "404 — Nie znaleziono strony | Lauren – Clean English",
+    title: "404 — Nie znaleziono strony | Lauren English",
   }),
   freezePage({
     key: "offline",
     file: "offline.html",
     path: "/offline.html",
     runtimePath: "/offline.html",
-    title: "Offline | Lauren – Clean English",
+    title: "Offline | Lauren English",
   }),
   freezePage({
     key: "thank-you",
@@ -148,7 +148,7 @@ export const UTILITY_PAGES = Object.freeze([
     path: "/thank-you.html",
     runtimePath: "/thank-you.html",
     aliases: Object.freeze(["/thank-you"]),
-    title: "Dziękuję za wiadomość | Lauren – Clean English",
+    title: "Dziękuję za wiadomość | Lauren English",
   }),
   ...LEGAL_PAGES,
 ]);

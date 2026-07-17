@@ -1,4 +1,4 @@
-# Lauren – Clean English
+# Lauren English
 
 Profesjonalna, wielostronicowa strona edukacyjna dla nauczycielki języka angielskiego. Projekt łączy spójny UX, dostępność, katalog materiałów, śledzenie postępów oraz produkcyjne podstawy SEO i PWA.
 
@@ -80,7 +80,7 @@ Alternatywnie użyj `npm run dev`. Serwer korzysta wyłącznie z biblioteki stan
 
 Live reload obserwuje źródłowe HTML, CSS, JavaScript, dane, manifest, SEO i lokalne assety. Zmiana wspólnego shellu, konfiguracji stron, rendererów lub kanonicznych danych pakietów i materiałów najpierw wykonuje `npm run build:html`; przeglądarka odświeża się dopiero po udanym assemblerze. Błąd jest wypisywany w konsoli i wstrzymuje reload do kolejnej zmiany. Watcher pomija `.git/`, `.codex/`, `.agents/`, `node_modules/`, raporty testów, `assets/build/`, wygenerowany `service-worker.js` oraz pliki tymczasowe edytora, dzięki czemu własne outputy nie tworzą pętli.
 
-Tylko na `localhost:8181` i `127.0.0.1:8181` aplikacja wyrejestrowuje `/service-worker.js` oraz usuwa cache zaczynające się od `clean-english-v`. Inne rejestracje i cache pozostają nietknięte; produkcyjny lifecycle PWA nie jest osłabiony. Zatrzymaj serwer przez `Ctrl+C`. Skupioną kontrolę workflow uruchom przez `npm run check:dev`.
+Tylko na `localhost:8181` i `127.0.0.1:8181` aplikacja wyrejestrowuje `/service-worker.js` oraz usuwa cache zaczynające się od `lauren-english-v`. Inne rejestracje i cache pozostają nietknięte; produkcyjny lifecycle PWA nie jest osłabiony. Zatrzymaj serwer przez `Ctrl+C`. Skupioną kontrolę workflow uruchom przez `npm run check:dev`.
 
 ## Browser E2E (Playwright)
 
@@ -153,7 +153,7 @@ Każda strona ma dokładnie jeden stan `aria-current="page"`: na stronie główn
 ## PWA
 
 - `service-worker.template.js` pozostaje jedynym źródłem Service Workera. `scripts/pwa-config.mjs` definiuje kontrakt assetów, a `scripts/build-service-worker.mjs` sprawdza istnienie i unikalność ścieżek przed wygenerowaniem `service-worker.js`.
-- Cache używa stałego prefiksu `clean-english-v` oraz rewizji `<package version>-<12 znaków SHA-256>`. Fingerprint obejmuje szablon, konfigurację i treść każdego precachowanego pliku, więc identyczne wejścia dają identyczną nazwę, a zmiana wejścia tworzy nową.
+- Cache używa stałego prefiksu `lauren-english-v` oraz rewizji `<package version>-<12 znaków SHA-256>`. Fingerprint obejmuje szablon, konfigurację i treść każdego precachowanego pliku, więc identyczne wejścia dają identyczną nazwę, a zmiana wejścia tworzy nową.
 - Instalacja kończy się dopiero po pełnym `cache.addAll`; nieudana instalacja usuwa wyłącznie niekompletny bieżący cache. Po udanej instalacji worker wywołuje `skipWaiting`, a aktywacja usuwa wyłącznie starsze cache z prefiksem Lauren English i wykonuje `clients.claim`.
 - Precache obejmuje pięć głównych dokumentów, `offline.html`, dokładny graf 25 plików CSS i 19 modułów JavaScript, Inter 400/600/700, Literata 700, ikony instalacyjne 192/512, trzy ikony skrótów, współdzielone logo, dwa obrazy homepage (hero i portret) oraz `site.webmanifest`. Nie zawiera outputów `assets/build/`, screenshotów instalacyjnych, stron błędów, formularzy ani katalogu materiałów.
 - Nawigacja online jest network-first: prawdziwy `404` pozostaje `404` i nie trafia do cache. Przy awarii sieci główna znana trasa otrzymuje swoją kopię, a inna nawigacja otrzymuje `offline.html`; homepage nie jest fallbackiem ogólnym.

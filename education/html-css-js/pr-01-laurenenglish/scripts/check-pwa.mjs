@@ -241,7 +241,7 @@ const verifyServiceWorker = async () => {
     "Generated service-worker.js contains an unresolved placeholder",
   );
   assert(
-    CACHE_PREFIX === "clean-english-v",
+    CACHE_PREFIX === "lauren-english-v",
     "The cache prefix must remain stable and project-specific",
   );
   assert(
@@ -323,7 +323,7 @@ const verifyManifestAndIcons = async () => {
   }
   assert(manifest.name === SITE.name, "Manifest name must match the site name");
   assert(
-    manifest.short_name === "Clean English",
+    manifest.short_name === "Lauren English",
     "Manifest short_name must match the visible short brand name",
   );
   assert(

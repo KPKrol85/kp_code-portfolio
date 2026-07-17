@@ -1,5 +1,5 @@
-const CACHE_PREFIX = "clean-english-v";
-const CACHE_REVISION = "1.0.0-7473127fd71c";
+const CACHE_PREFIX = "lauren-english-v";
+const CACHE_REVISION = "1.0.0-03f5d75bce35";
 const CACHE_NAME = `${CACHE_PREFIX}${CACHE_REVISION}`;
 const OFFLINE_PATH = "/offline.html";
 const PRECACHE_PATHS = [
@@ -8,6 +8,7 @@ const PRECACHE_PATHS = [
   "/pakiety.html",
   "/materialy.html",
   "/postepy.html",
+  "/kontakt.html",
   "/offline.html",
   "/css/style.css",
   "/css/tokens/tokens.css",
@@ -75,6 +76,7 @@ const PRIMARY_DOCUMENT_PATHS = [
   "/pakiety.html",
   "/materialy.html",
   "/postepy.html",
+  "/kontakt.html",
 ];
 
 const primaryDocuments = new Set(PRIMARY_DOCUMENT_PATHS);

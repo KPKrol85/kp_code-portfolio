@@ -4,7 +4,6 @@ import { initMobileNav } from "./modules/mobileNav.js";
 import { initScrollSpy } from "./modules/scrollSpy.js";
 import { initAccordion } from "./modules/accordion.js";
 import { initResourcesFilter } from "./modules/resourcesFilter.js";
-import { initProgressTracker } from "./modules/progressTracker.js";
 import { initContactForm } from "./modules/contactForm.js";
 import { initMaterialsCatalog } from "./modules/materialsCatalog.js";
 import { initAnchorFocus } from "./modules/anchorFocus.js";
@@ -15,7 +14,7 @@ const reportInitializationFailure = (name, error) => {
   console.error(`[Lauren English] ${name} initialization failed.`, error);
 };
 
-const PROJECT_CACHE_PREFIX = "clean-english-v";
+const PROJECT_CACHE_PREFIX = "lauren-english-v";
 const PROJECT_SERVICE_WORKER_PATH = "/service-worker.js";
 
 const runInitializer = (name, initializer) => {
@@ -119,7 +118,6 @@ const registerServiceWorker = () => {
   ["Scroll spy", initScrollSpy],
   ["Accordion", initAccordion],
   ["Resource filters", initResourcesFilter],
-  ["Progress tracker", initProgressTracker],
   ["Materials catalogue", initMaterialsCatalog],
   ["Anchor focus", initAnchorFocus],
   ["Theme toggle", initThemeToggle],

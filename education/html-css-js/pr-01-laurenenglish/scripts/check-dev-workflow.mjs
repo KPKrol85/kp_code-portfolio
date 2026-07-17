@@ -228,7 +228,7 @@ const run = async () => {
     await page.evaluate(async () => {
       await navigator.serviceWorker.register("/service-worker.js");
       await navigator.serviceWorker.ready;
-      await caches.open("clean-english-v-local-development-probe");
+      await caches.open("lauren-english-v-local-development-probe");
       await caches.open("unrelated-local-development-probe");
     });
     await page.reload({ waitUntil: "load" });
@@ -251,7 +251,7 @@ const run = async () => {
                     new URL(worker.scriptURL).pathname !== "/service-worker.js",
                 ),
             ) &&
-            !cacheNames.some((name) => name.startsWith("clean-english-v")) &&
+            !cacheNames.some((name) => name.startsWith("lauren-english-v")) &&
             cacheNames.includes("unrelated-local-development-probe")
           );
         }),

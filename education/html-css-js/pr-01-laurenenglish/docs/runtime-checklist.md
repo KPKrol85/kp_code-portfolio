@@ -37,7 +37,7 @@
 - Zmień zwykłe źródło CSS/JS i potwierdź pojedynczy reload. Następnie zmień zależność assemblera (`scripts/shared-shell.mjs`, konfigurację strony, renderer lub kanoniczne dane) i potwierdź, że `npm run build:html` kończy się przed reloadem.
 - Wymuś błąd assemblera wyłącznie w kontrolowanej lokalnej próbie: konsola ma pokazać błąd, reload ma zostać wstrzymany, a kolejna poprawna zmiana ma przywrócić workflow. Nie zostawiaj uszkodzonych źródeł.
 - Potwierdź brak pętli po outputach: watcher pomija `.git/`, `.codex/`, `.agents/`, `node_modules/`, raporty testowe, `assets/build/`, `service-worker.js` i pliki tymczasowe edytora.
-- Na porcie `8181` potwierdź wyrejestrowanie wyłącznie `/service-worker.js` oraz usunięcie wyłącznie cache `clean-english-v*`; obce rejestracje i cache muszą pozostać.
+- Na porcie `8181` potwierdź wyrejestrowanie wyłącznie `/service-worker.js` oraz usunięcie wyłącznie cache `lauren-english-v*`; obce rejestracje i cache muszą pozostać.
 
 ## Responsive smoke test
 
@@ -68,8 +68,8 @@
 ## Service Worker i offline
 
 - `npm run build:sw` musi najpierw potwierdzić, że wszystkie ścieżki precache istnieją, są znormalizowane i unikalne, zawierają dokładny skonfigurowany graf 25 plików CSS i 19 modułów JavaScript oraz nie wskazują na `assets/build/`.
-- Oczekuj jednego bieżącego cache `clean-english-v<version>-<fingerprint>`. Identyczne wejścia nie zmieniają rewizji; zmiana szablonu, konfiguracji lub treści precache zmienia fingerprint.
-- Instalacja jest atomowa z perspektywy aktywnego workera: `skipWaiting` następuje dopiero po pełnym precache, a błąd usuwa niekompletny nowy cache. Aktywacja przejmuje klientów i usuwa wyłącznie starsze cache zaczynające się od `clean-english-v`; inne cache originu muszą pozostać.
+- Oczekuj jednego bieżącego cache `lauren-english-v<version>-<fingerprint>`. Identyczne wejścia nie zmieniają rewizji; zmiana szablonu, konfiguracji lub treści precache zmienia fingerprint.
+- Instalacja jest atomowa z perspektywy aktywnego workera: `skipWaiting` następuje dopiero po pełnym precache, a błąd usuwa niekompletny nowy cache. Aktywacja przejmuje klientów i usuwa wyłącznie starsze cache zaczynające się od `lauren-english-v`; inne cache originu muszą pozostać.
 - Online pięć głównych tras działa network-first. Tylko pełna, nieprzekierowana odpowiedź HTML `200` znanej trasy może odświeżyć jej wpis. Nieznana trasa online pozostaje realnym `404` i nie jest zapisywana.
 - Offline znana główna trasa korzysta ze swojej kopii precache. Inna nawigacja pokazuje `offline.html`; nie używaj homepage jako fallbacku.
 - Statyczne cache-first dotyczy wyłącznie jawnych assetów precache, w tym bezpośrednich źródeł CSS/JS, ikon instalacyjnych i trzech ikon skrótów, współdzielonego logo oraz hero i portretu wymaganych do kompletnych głównych stron offline. Screenshoty manifestu, katalog materiałów i outputy `assets/build/` nie są precachowane. Zapisywane są tylko same-origin żądania `GET` HTTP(S) z pełną odpowiedzią `200`; query string jest normalizowany do jednej ścieżki. Nie zapisuj `206`, 4xx/5xx, redirectów, opaque, cross-origin ani innych metod.
@@ -91,7 +91,7 @@
 ## Manualna kontrola po wdrożeniu
 
 - W bezpiecznym kontekście HTTPS otwórz DevTools → Application → Service Workers i potwierdź aktywny `/service-worker.js`, właściwy scope `/` oraz kontrolę strony po odświeżeniu.
-- Kliknij **Update**, odśwież i potwierdź, że po aktywacji pozostaje jeden cache `clean-english-v*`; cache o innej nazwie testowej nie może zostać usunięty.
+- Kliknij **Update**, odśwież i potwierdź, że po aktywacji pozostaje jeden cache `lauren-english-v*`; cache o innej nazwie testowej nie może zostać usunięty.
 - Przy połączeniu online potwierdź `200` pięciu tras i prawdziwy `404` dla nieznanej trasy. Następnie włącz Offline i sprawdź pięć tras oraz osobny fallback nieznanej trasy.
 - W Network potwierdź budżet krytycznych zasobów, brak `inter-500.woff2`, brak requestów `/assets/build/` oraz brak błędów konsoli, strony i zasobów.
 - Nie deklaruj zweryfikowanego browser install prompt na podstawie samych testów localhost; lokalnie potwierdzane są manifest, ikony, bezpieczny kontekst, rejestracja, aktywacja, kontrola i cache.

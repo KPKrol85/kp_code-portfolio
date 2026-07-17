@@ -175,8 +175,8 @@ test("installs, controls the page, validates install metadata, and preserves unr
   expect(manifestResult.status).toBe(200);
   expect(manifestResult.contentType).toContain("application/manifest+json");
   expect(manifestResult.manifest).toMatchObject({
-    name: "Lauren – Clean English",
-    short_name: "Clean English",
+    name: "Lauren English",
+    short_name: "Lauren English",
     id: "/",
     start_url: "/index.html",
     scope: "/",
@@ -372,7 +372,7 @@ test("serves exact primary documents offline and uses offline.html for unknown n
     "Jesteś offline",
   );
   expect(await page.locator('link[rel="canonical"]').count()).toBe(0);
-  expect(await page.title()).toBe("Offline | Lauren – Clean English");
+  expect(await page.title()).toBe("Offline | Lauren English");
 
   await context.setOffline(false);
   expectCleanDiagnostics(diagnostics);
