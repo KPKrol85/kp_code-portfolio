@@ -25,10 +25,10 @@ const homepageAnchorCases = Object.freeze([
     sourceSelector: '.nav__link[href="/index.html#faq"]',
   },
   {
-    destination: "/index.html#contact",
-    id: "contact",
+    destination: "/kontakt.html#formularz",
+    id: "formularz",
     sourcePath: "/uslugi.html",
-    sourceSelector: '.hero__actions a[href="index.html#contact"]',
+    sourceSelector: '.hero__actions a[href="/kontakt.html#formularz"]',
   },
 ]);
 

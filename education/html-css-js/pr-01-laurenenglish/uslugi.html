@@ -131,139 +131,290 @@
     <!-- shared-shell:header:end -->
 
     <main id="main">
-      <section class="section hero">
+      <section class="section hero hero--services">
         <div class="container hero__grid">
           <div class="hero__content" data-reveal>
-            <p class="hero__eyebrow">Usługi dopasowane do Twojego celu</p>
-            <h1 class="hero__title">Indywidualne wsparcie w nauce angielskiego.</h1>
+            <p class="hero__eyebrow">INDYWIDUALNE LEKCJE ANGIELSKIEGO</p>
+            <h1 class="hero__title">
+              Angielski dopasowany do Twojego celu i tempa.
+            </h1>
             <p class="hero__subtitle">
-              Pracujemy w spokojnym rytmie, z jasnym planem i mierzalnym postępem. Wybierz format,
-              który pasuje do Twojego stylu uczenia się.
+              Zaczynamy od Twojego poziomu i potrzeb. Dobieramy odpowiednią
+              formę zajęć, materiały oraz tempo pracy, a postępy regularnie
+              podsumowujemy.
             </p>
             <div class="hero__actions">
-              <a class="button button--primary" href="index.html#contact">Informacje o zapisach</a>
-              <a class="button button--secondary" href="pakiety.html#pakiety">Zobacz pakiety</a>
+              <a class="button button--primary" href="/kontakt.html#formularz"
+                >Napisz do mnie</a
+              >
+              <a class="button button--secondary" href="/pakiety.html"
+                >Zobacz pakiety</a
+              >
             </div>
           </div>
           <div class="hero__visual" data-reveal>
-            <div class="hero__card">
-              <h3 class="hero__card-title">Współpraca bez chaosu</h3>
-              <p class="hero__card-text">Diagnoza potrzeb, plan oraz regularny feedback i rekomendacje.</p>
-              <ul class="progress" role="list">
-                <li class="progress__item">
-                  <span class="progress__status is-complete">
-                    <span class="progress__icon" aria-hidden="true">✓</span>
-                    <span class="progress__label">Cel językowy na najbliższe 4 tygodnie</span>
-                  </span>
+            <aside
+              class="hero__card hero__services-summary"
+              aria-labelledby="services-summary-title"
+            >
+              <h2 class="hero__services-title" id="services-summary-title">
+                Co obejmuje współpraca
+              </h2>
+              <p class="hero__services-description">
+                Każdy etap jest dopasowany do Twojego celu, poziomu i tempa
+                nauki.
+              </p>
+              <ul class="hero__services-list">
+                <li class="hero__services-item">
+                  <svg
+                    class="hero__services-icon"
+                    viewBox="0 0 20 20"
+                    aria-hidden="true"
+                    focusable="false"
+                  >
+                    <path
+                      d="m4.5 10 3.25 3.25 7.75-7.75"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="2"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    />
+                  </svg>
+                  <span>Diagnoza poziomu i potrzeb</span>
                 </li>
-                <li class="progress__item">
-                  <span class="progress__status">
-                    <span class="progress__icon" aria-hidden="true">○</span>
-                    <span class="progress__label">Plan lekcji i materiałów</span>
-                  </span>
+                <li class="hero__services-item">
+                  <svg
+                    class="hero__services-icon"
+                    viewBox="0 0 20 20"
+                    aria-hidden="true"
+                    focusable="false"
+                  >
+                    <path
+                      d="m4.5 10 3.25 3.25 7.75-7.75"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="2"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    />
+                  </svg>
+                  <span>Plan lekcji oraz dobrane materiały</span>
                 </li>
-                <li class="progress__item">
-                  <span class="progress__status">
-                    <span class="progress__icon" aria-hidden="true">○</span>
-                    <span class="progress__label">Podsumowanie i rekomendacje</span>
-                  </span>
+                <li class="hero__services-item">
+                  <svg
+                    class="hero__services-icon"
+                    viewBox="0 0 20 20"
+                    aria-hidden="true"
+                    focusable="false"
+                  >
+                    <path
+                      d="m4.5 10 3.25 3.25 7.75-7.75"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="2"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    />
+                  </svg>
+                  <span>Regularna informacja zwrotna i kolejne kroki</span>
                 </li>
               </ul>
-            </div>
+            </aside>
           </div>
         </div>
       </section>
 
-      <section class="section">
+      <section class="section services__audience" aria-labelledby="services-audience-title">
         <div class="container">
           <div class="section__header" data-reveal>
-            <h2 class="section__title">Dla kogo jest ta współpraca?</h2>
+            <h2 class="section__title" id="services-audience-title">Dla kogo są te lekcje?</h2>
             <p class="section__subtitle">
-              Dla osób, które chcą uczyć się świadomie, bez presji i z konkretnym celem w tle.
+              Najczęściej pracuję z osobami, które chcą uporządkować naukę i rozwijać angielski w konkretnym celu.
             </p>
           </div>
           <div class="grid grid--cards">
-            <article class="card card--soft" data-reveal>
-              <h3 class="card__title">Dla dorosłych i studentów</h3>
-              <p class="card__text">
-                Gdy potrzebujesz uporządkować gramatykę, przełamać barierę mówienia lub wrócić do
-                nauki po przerwie.
+            <article class="card card--soft services__audience-card" data-reveal>
+              <svg class="services__audience-icon" viewBox="0 0 192 192" aria-hidden="true" focusable="false" fill="currentColor">
+                <path d="M45 61c20-6 37-1 51 12v66c-14-13-31-18-51-12V61Z" />
+                <path d="M147 61c-20-6-37-1-51 12v66c14-13 31-18 51-12V61Z" stroke="currentColor" stroke-width="6" stroke-linejoin="round" />
+                <path d="M96 73v66" stroke="currentColor" stroke-width="6" stroke-linecap="round" />
+                <path d="m121 74 11 6-11 7V74Z" />
+              </svg>
+              <h3 class="card__title services__audience-title">Dla osób zaczynających lub wracających</h3>
+              <p class="card__text services__audience-description">
+                Gdy chcesz uporządkować podstawy, odzyskać pewność i zbudować regularny rytm nauki.
               </p>
             </article>
-            <article class="card card--soft" data-reveal>
-              <h3 class="card__title">Dla osób pracujących</h3>
-              <p class="card__text">
-                Jeśli zależy Ci na języku zawodowym: spotkania, maile, prezentacje i pewność w
-                komunikacji.
+            <article class="card card--soft services__audience-card" data-reveal>
+              <svg class="services__audience-icon" viewBox="0 0 640 640" aria-hidden="true" focusable="false" fill="currentColor">
+                <!--!Font Awesome Free v7.3.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2026 Fonticons, Inc.-->
+                <path d="M224.2 89C216.3 70.1 195.7 60.1 176.1 65.4L170.6 66.9C106 84.5 50.8 147.1 66.9 223.3C104 398.3 241.7 536 416.7 573.1C493 589.3 555.5 534 573.1 469.4L574.6 463.9C580 444.2 569.9 423.6 551.1 415.8L453.8 375.3C437.3 368.4 418.2 373.2 406.8 387.1L368.2 434.3C297.9 399.4 241.3 341 208.8 269.3L253 233.3C266.9 222 271.6 202.9 264.8 186.3L224.2 89z" />
+              </svg>
+              <h3 class="card__title services__audience-title">Dla osób, które chcą mówić swobodniej</h3>
+              <p class="card__text services__audience-description">
+                Gdy znasz już część zasad, ale potrzebujesz więcej praktyki w rozmowie i codziennych sytuacjach.
               </p>
             </article>
-            <article class="card card--soft" data-reveal>
-              <h3 class="card__title">Dla uczących się do egzaminu</h3>
-              <p class="card__text">
-                Gdy chcesz mieć plan, strategię i regularny feedback bez poczucia chaosu.
+            <article class="card card--soft services__audience-card" data-reveal>
+              <svg class="services__audience-icon" viewBox="0 0 640 640" aria-hidden="true" focusable="false" fill="currentColor">
+                <!--!Font Awesome Free v7.3.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2026 Fonticons, Inc.-->
+                <path d="M112 128C85.5 128 64 149.5 64 176C64 191.1 71.1 205.3 83.2 214.4L291.2 370.4C308.3 383.2 331.7 383.2 348.8 370.4L556.8 214.4C568.9 205.3 576 191.1 576 176C576 149.5 554.5 128 528 128L112 128zM64 260L64 448C64 483.3 92.7 512 128 512L512 512C547.3 512 576 483.3 576 448L576 260L377.6 408.8C343.5 434.4 296.5 434.4 262.4 408.8L64 260z" />
+              </svg>
+              <h3 class="card__title services__audience-title">Dla osób używających angielskiego w pracy</h3>
+              <p class="card__text services__audience-description">
+                Gdy zależy Ci na spotkaniach, prezentacjach, korespondencji i pewniejszej komunikacji zawodowej.
+              </p>
+            </article>
+            <article class="card card--soft services__audience-card" data-reveal>
+              <svg class="services__audience-icon" viewBox="0 0 192 192" aria-hidden="true" focusable="false" fill="currentColor">
+                <rect x="48" y="106" width="22" height="37" rx="7" />
+                <rect x="84" y="82" width="22" height="61" rx="7" />
+                <rect x="120" y="57" width="22" height="86" rx="7" />
+                <path d="m52 89 24-19 21 11 34-32" fill="none" stroke="currentColor" stroke-width="10" stroke-linecap="round" stroke-linejoin="round" />
+                <path d="m118 48 14 1-1 14" fill="none" stroke="currentColor" stroke-width="10" stroke-linecap="round" stroke-linejoin="round" />
+              </svg>
+              <h3 class="card__title services__audience-title">Dla osób przygotowujących się do egzaminu</h3>
+              <p class="card__text services__audience-description">
+                Gdy potrzebujesz planu, strategii, regularnych powtórek i konkretnej informacji zwrotnej.
               </p>
             </article>
           </div>
         </div>
       </section>
 
-      <section class="section services" id="services">
-        <div class="container">
-          <div class="section__header" data-reveal>
-            <h2 class="section__title">Zakres usług</h2>
-            <p class="section__subtitle">Wybierz format, a ja dopasuję treść i tempo.</p>
+      <section class="section services" id="services" aria-labelledby="services-title">
+        <div class="container services__layout">
+          <div class="services__intro" data-reveal>
+            <p class="services__eyebrow">FORMY WSPÓŁPRACY</p>
+            <h2 class="section__title" id="services-title">W czym mogę Ci pomóc?</h2>
+            <p class="section__subtitle">Każdą formę zajęć dopasowuję do Twojego poziomu, celu i tempa nauki.</p>
           </div>
-          <div class="grid grid--cards">
-            <article class="card card--service" data-reveal>
-              <h3 class="card__title">Korepetycje 1:1</h3>
-              <p class="card__text">Indywidualny plan, praca na Twoich materiałach i stały monitoring progresu.</p>
-              <span class="badge">Online</span>
-            </article>
-            <article class="card card--service" data-reveal>
-              <h3 class="card__title">Konwersacje</h3>
-              <p class="card__text">Tematy dopasowane do celu, praca nad płynnością i pewnością w mówieniu.</p>
-              <span class="badge">Speaking</span>
-            </article>
-            <article class="card card--service" data-reveal>
-              <h3 class="card__title">Przygotowanie do egzaminów</h3>
-              <p class="card__text">Strategie, struktura wypowiedzi, praca na arkuszach i trening czasu.</p>
-              <span class="badge">Egzaminy</span>
-            </article>
-            <article class="card card--service" data-reveal>
-              <h3 class="card__title">Business English</h3>
-              <p class="card__text">Spotkania, maile i język branżowy – konkretnie pod Twój kontekst.</p>
-              <span class="badge">Biznes</span>
-            </article>
-          </div>
+
+          <ol class="services__list">
+            <li class="services__item" data-reveal>
+              <article class="card card--soft services__card">
+                <span class="services__number" aria-hidden="true">01</span>
+                <h3 class="card__title services__title">Lekcje indywidualne</h3>
+                <p class="card__text services__description">
+                  Regularna praca 1:1 nad gramatyką, słownictwem, mówieniem i pewnością w używaniu języka.
+                </p>
+                <ul class="services__scope">
+                  <li>Plan dopasowany do poziomu i celu.</li>
+                  <li>Materiały oraz krótkie zadania między lekcjami.</li>
+                </ul>
+              </article>
+            </li>
+            <li class="services__item" data-reveal>
+              <article class="card card--soft services__card">
+                <span class="services__number" aria-hidden="true">02</span>
+                <h3 class="card__title services__title">Konwersacje</h3>
+                <p class="card__text services__description">
+                  Praktyka swobodnego mówienia na tematy codzienne, zawodowe lub związane z Twoimi zainteresowaniami.
+                </p>
+                <ul class="services__scope">
+                  <li>Naturalne słownictwo i poprawna wymowa.</li>
+                  <li>Korekta błędów oraz konkretna informacja zwrotna.</li>
+                </ul>
+              </article>
+            </li>
+            <li class="services__item" data-reveal>
+              <article class="card card--soft services__card">
+                <span class="services__number" aria-hidden="true">03</span>
+                <h3 class="card__title services__title">Przygotowanie do egzaminów</h3>
+                <p class="card__text services__description">
+                  Uporządkowany plan powtórek, strategie egzaminacyjne i regularna praca z zadaniami.
+                </p>
+                <ul class="services__scope">
+                  <li>Analiza typowych zadań i arkuszy.</li>
+                  <li>Praca z czasem oraz strukturą odpowiedzi.</li>
+                </ul>
+              </article>
+            </li>
+            <li class="services__item" data-reveal>
+              <article class="card card--soft services__card">
+                <span class="services__number" aria-hidden="true">04</span>
+                <h3 class="card__title services__title">Angielski biznesowy</h3>
+                <p class="card__text services__description">
+                  Język potrzebny podczas spotkań, prezentacji, korespondencji i codziennej komunikacji w pracy.
+                </p>
+                <ul class="services__scope">
+                  <li>Słownictwo dopasowane do branży.</li>
+                  <li>Praktyka rzeczywistych sytuacji zawodowych.</li>
+                </ul>
+              </article>
+            </li>
+          </ol>
         </div>
       </section>
 
-      <section class="section">
+      <section class="section services-process" aria-labelledby="services-process-title">
         <div class="container">
-          <div class="section__header" data-reveal>
-            <h2 class="section__title">Jak zaczynamy</h2>
-            <p class="section__subtitle">Prosty proces, który daje strukturę od pierwszej lekcji.</p>
-          </div>
-          <div class="timeline" data-reveal>
-            <ol class="timeline__list">
-              <li class="timeline__item"><span>Rozmowa wstępna</span><small>poznajemy cel i poziom</small></li>
-              <li class="timeline__item"><span>Diagnoza</span><small>krótka analiza potrzeb</small></li>
-              <li class="timeline__item"><span>Plan nauki</span><small>tematy, rytm, materiały</small></li>
-              <li class="timeline__item"><span>Start pracy</span><small>lekcje + zadania mikro</small></li>
-              <li class="timeline__item"><span>Regularny feedback</span><small>monitoring postępów</small></li>
+          <div class="services-process__surface" data-reveal>
+            <div class="services-process__header">
+              <p class="services-process__eyebrow">PIERWSZE KROKI</p>
+              <h2 class="section__title" id="services-process-title">Jak zaczynamy współpracę?</h2>
+              <p class="section__subtitle services-process__intro">
+                Od pierwszej rozmowy do regularnej nauki — każdy etap ma jasny cel i kolejny krok.
+              </p>
+            </div>
+            <ol class="services-process__list">
+              <li class="services-process__item">
+                <span class="services-process__number" aria-hidden="true">01</span>
+                <h3 class="services-process__title">Poznajemy Twój cel</h3>
+                <p class="services-process__description">
+                  Rozmawiamy o Twoich potrzebach, poziomie i sytuacjach, w których chcesz swobodniej używać angielskiego.
+                </p>
+              </li>
+              <li class="services-process__item">
+                <span class="services-process__number" aria-hidden="true">02</span>
+                <h3 class="services-process__title">Sprawdzamy punkt wyjścia</h3>
+                <p class="services-process__description">
+                  Określamy Twoje mocne strony oraz obszary, które warto uporządkować lub rozwinąć.
+                </p>
+              </li>
+              <li class="services-process__item">
+                <span class="services-process__number" aria-hidden="true">03</span>
+                <h3 class="services-process__title">Ustalamy plan nauki</h3>
+                <p class="services-process__description">
+                  Dobieramy tematy, rytm spotkań, materiały i sposób pracy między lekcjami.
+                </p>
+              </li>
+              <li class="services-process__item">
+                <span class="services-process__number" aria-hidden="true">04</span>
+                <h3 class="services-process__title">Zaczynamy regularną pracę</h3>
+                <p class="services-process__description">
+                  Realizujemy plan podczas lekcji i krótkich zadań dopasowanych do Twojego czasu.
+                </p>
+              </li>
+              <li class="services-process__item">
+                <span class="services-process__number" aria-hidden="true">05</span>
+                <h3 class="services-process__title">Podsumowujemy postępy</h3>
+                <p class="services-process__description">
+                  Wracamy do ustalonego celu, omawiamy efekty i wyznaczamy następny etap nauki.
+                </p>
+              </li>
             </ol>
           </div>
         </div>
       </section>
 
-      <section class="section">
+      <section class="section" aria-labelledby="services-contact-title">
         <div class="container">
-          <div class="card card--soft" data-reveal>
-            <h2 class="card__title">Informacje o zapisach</h2>
-            <p class="card__text">
-              Aktualny status zapisów i dostępność kanału kontaktowego znajdziesz w sekcji Kontakt.
-            </p>
-            <a class="button button--primary" href="index.html#contact">Sprawdź status zapisów</a>
+          <div class="services-contact" data-reveal>
+            <div class="services-contact__content">
+              <p class="services-contact__eyebrow">ZACZNIJMY WSPÓŁPRACĘ</p>
+              <h2 class="section__title services-contact__title" id="services-contact-title">
+                Chcesz zacząć naukę z jasnym planem?
+              </h2>
+              <p class="services-contact__description">
+                Napisz, jaki masz cel i czego potrzebujesz. Wspólnie omówimy odpowiednią formę zajęć oraz kolejny krok.
+              </p>
+            </div>
+            <div class="services-contact__actions">
+              <a class="button button--primary" href="/kontakt.html#formularz">Napisz do mnie</a>
+              <a class="button button--secondary" href="tel:+48533537091">Zadzwoń</a>
+            </div>
           </div>
         </div>
       </section>
