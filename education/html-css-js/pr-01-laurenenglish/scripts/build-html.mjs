@@ -5,6 +5,7 @@ import { fileURLToPath } from "node:url";
 import {
   FOOTER_BRAND_DESCRIPTION,
   FOOTER_CONTACT,
+  FOOTER_CONTACT_ICONS,
   FOOTER_COPYRIGHT,
   FOOTER_LEGAL_LINKS,
   FOOTER_SOCIAL_LINKS,
@@ -14,7 +15,7 @@ import {
 } from "./shared-shell.mjs";
 import {
   CONTENT_MARKERS,
-  renderHomeMaterialPanels,
+  renderHomeMaterialCards,
   renderHomePackageCards,
   renderHomePackagesLink,
   renderMaterialsCatalog,
@@ -142,7 +143,7 @@ const assemblePage = (source, page) => {
       withContent,
       CONTENT_MARKERS.homeMaterials.start,
       CONTENT_MARKERS.homeMaterials.end,
-      renderHomeMaterialPanels(),
+      renderHomeMaterialCards(),
       page.file,
     );
     withContent = replaceRegion(
@@ -289,17 +290,57 @@ const validatePage = async (html, page, assembledPages) => {
       !footer.includes("Profesjonalny angielski w spokojnym rytmie."),
     `${page.file}: footer brand block content or order changed`,
   );
+  const contactLinks = [
+    ...footer.matchAll(
+      /<a\b(?=[^>]*\bclass="footer__contact-link")[^>]*>([\s\S]*?)<\/a>/gi,
+    ),
+  ];
+  const contactLinkExpectations = [
+    {
+      href: FOOTER_CONTACT.telephoneUri,
+      text: FOOTER_CONTACT.phone,
+      icon: FOOTER_CONTACT_ICONS.phone,
+    },
+    {
+      href: FOOTER_CONTACT.emailUri,
+      text: FOOTER_CONTACT.email,
+      icon: FOOTER_CONTACT_ICONS.email,
+    },
+  ];
+  assert(
+    contactLinks.length === contactLinkExpectations.length,
+    `${page.file}: footer must contain two contact links`,
+  );
+  for (const [
+    index,
+    { href, text, icon },
+  ] of contactLinkExpectations.entries()) {
+    const linkMarkup = contactLinks[index][0];
+    const linkContent = contactLinks[index][1].trim();
+    const svgTags = linkContent.match(/<svg\b[\s\S]*?<\/svg>/gi) ?? [];
+    const svgMarkup = svgTags[0] ?? "";
+    const pathTags = svgMarkup.match(/<path\b[^>]*\/>/gi) ?? [];
+
+    assert(
+      getAttribute(linkMarkup, "href") === href &&
+        svgTags.length === 1 &&
+        getAttribute(svgMarkup, "class") === "footer__contact-icon" &&
+        getAttribute(svgMarkup, "viewBox") === icon.viewBox &&
+        getAttribute(svgMarkup, "aria-hidden") === "true" &&
+        getAttribute(svgMarkup, "focusable") === "false" &&
+        getAttribute(svgMarkup, "fill") === "currentColor" &&
+        pathTags.length === 1 &&
+        getAttribute(pathTags[0], "d") === icon.pathData &&
+        linkContent.replace(svgMarkup, "").trim() ===
+          `<span class="footer__contact-text">${text}</span>`,
+      `${page.file}: footer contact link or icon changed: ${text}`,
+    );
+  }
   assert(
     footer.includes(
-      `href="${FOOTER_CONTACT.telephoneUri}">${FOOTER_CONTACT.phone}</a>`,
-    ) &&
-      footer.includes(
-        `href="${FOOTER_CONTACT.emailUri}">${FOOTER_CONTACT.email}</a>`,
-      ) &&
-      footer.includes(
-        `<address class="footer__address">${FOOTER_CONTACT.address}</address>`,
-      ),
-    `${page.file}: footer contact details changed`,
+      `<address class="footer__address">${FOOTER_CONTACT.address}</address>`,
+    ),
+    `${page.file}: footer address changed`,
   );
   assert(
     !footer.includes('class="footer__quiet-link"') &&
@@ -488,9 +529,9 @@ const validatePage = async (html, page, assembledPages) => {
         expected: renderHomePackageCards(),
       },
       {
-        label: "homepage material panels",
+        label: "homepage material cards",
         markers: CONTENT_MARKERS.homeMaterials,
-        expected: renderHomeMaterialPanels(),
+        expected: renderHomeMaterialCards(),
       },
       {
         label: "homepage package link",

@@ -23,6 +23,15 @@ export const packages = Object.freeze({
     key: "regular",
     label: "Regular",
     href: "/pakiety.html#pakiet-regular",
+    homeTeaser: Object.freeze({
+      description:
+        "Dla osób, które chcą uczyć się systematycznie, utrzymać motywację i rozwijać umiejętności krok po kroku.",
+      benefits: Object.freeze([
+        "Stałe spotkania w ustalonym rytmie.",
+        "Materiały i krótkie zadania między lekcjami.",
+        "Regularne podsumowania postępów.",
+      ]),
+    }),
     summary: "Rytm: stałe spotkania w tygodniu, spójny progres.",
     priceLabel: null,
     benefits: Object.freeze([
@@ -62,3 +71,4 @@ export const packageList = Object.freeze(
 );
 
 export const packagesSectionHref = "/pakiety.html#pakiety";
+export const packagesPageHref = "/pakiety.html";

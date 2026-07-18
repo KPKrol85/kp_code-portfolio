@@ -32,6 +32,39 @@ const homepageAnchorCases = Object.freeze([
   },
 ]);
 
+const faqItems = Object.freeze([
+  {
+    question: "Jak wygląda pierwsza lekcja?",
+    answer:
+      "Rozmawiamy o Twoich celach, sprawdzamy aktualny poziom i ustalamy kierunek dalszej nauki.",
+  },
+  {
+    question: "Czy dostanę materiały?",
+    answer:
+      "Tak. Materiały dobieram do Twojego poziomu, celu i tempa pracy, aby wspierały lekcje oraz samodzielną naukę.",
+  },
+  {
+    question: "Jak mierzymy postępy?",
+    answer:
+      "Regularnie wracamy do ustalonych celów, podsumowujemy opanowane umiejętności i planujemy kolejny etap nauki.",
+  },
+  {
+    question: "Jak dobierany jest plan nauki?",
+    answer:
+      "Plan powstaje na podstawie Twojego poziomu, potrzeb i sytuacji, w których chcesz swobodniej używać angielskiego.",
+  },
+  {
+    question: "Dla kogo są przeznaczone lekcje?",
+    answer:
+      "Dla dorosłych, którzy chcą rozwijać angielski do pracy, nauki, egzaminów lub codziennej komunikacji.",
+  },
+  {
+    question: "Jak wyglądają zapisy i ustalanie terminów?",
+    answer:
+      "Napisz do mnie przez formularz kontaktowy lub zadzwoń. Ustalimy Twoje potrzeby i omówimy dostępne terminy.",
+  },
+]);
+
 const expectAnchorToClearHeader = async (page, id) => {
   const geometry = await page.evaluate((targetId) => {
     const header = document.querySelector(".header");
@@ -303,6 +336,45 @@ test("accordion preserves state and interactive corner geometry", async ({
 }) => {
   const diagnostics = collectRuntimeDiagnostics(page);
   await page.goto("/index.html", { waitUntil: "networkidle" });
+
+  const faq = page.locator("#faq");
+  await expect(faq.locator(".section__subtitle")).toHaveText(
+    "Najważniejsze informacje przed rozpoczęciem nauki.",
+  );
+  const items = faq.locator("[data-accordion-item]");
+  const triggers = faq.locator("[data-accordion-trigger]");
+  const panels = faq.locator("[data-accordion-panel]");
+  const answers = faq.locator(".accordion__answer");
+  await expect(items).toHaveCount(faqItems.length);
+  await expect(triggers).toHaveCount(faqItems.length);
+  await expect(panels).toHaveCount(faqItems.length);
+  await expect(answers).toHaveCount(faqItems.length);
+
+  for (const [index, { question, answer }] of faqItems.entries()) {
+    const itemTrigger = triggers.nth(index);
+    const itemPanel = panels.nth(index);
+    const triggerId = `home-faq-trigger-${index + 1}`;
+    const panelId = `home-faq-panel-${index + 1}`;
+
+    await expect(itemTrigger).toHaveText(question);
+    await expect(itemTrigger).toHaveAttribute("id", triggerId);
+    await expect(itemTrigger).toHaveAttribute("aria-controls", panelId);
+    await expect(itemTrigger).toHaveAttribute("aria-expanded", "false");
+    await expect(itemTrigger).toBeEnabled();
+    await expect(itemPanel).toHaveAttribute("id", panelId);
+    await expect(itemPanel).toHaveAttribute("role", "region");
+    await expect(itemPanel).toHaveAttribute("aria-labelledby", triggerId);
+    await expect(itemPanel).toHaveAttribute("aria-hidden", "true");
+    await expect(itemPanel.locator(".accordion__answer")).toHaveText(answer);
+
+    await itemTrigger.focus();
+    await page.keyboard.press("Space");
+    await expect(itemTrigger).toHaveAttribute("aria-expanded", "true");
+    await expect(itemPanel).toBeVisible();
+    await page.keyboard.press("Enter");
+    await expect(itemTrigger).toHaveAttribute("aria-expanded", "false");
+    await expect(itemPanel).toBeHidden();
+  }
 
   const trigger = page.getByRole("button", {
     name: "Jak wygląda pierwsza lekcja?",

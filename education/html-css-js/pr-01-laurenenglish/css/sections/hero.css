@@ -1,9 +1,5 @@
 .hero {
-  background: linear-gradient(
-    180deg,
-    var(--color-hero-surface-start) 0%,
-    var(--color-hero-surface-end) 100%
-  );
+  background: linear-gradient(180deg, var(--color-hero-surface-start) 0%, var(--color-hero-surface-end) 100%);
 }
 
 .hero__grid {
@@ -42,7 +38,8 @@
 
 .hero__actions {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
+  flex-wrap: wrap;
   gap: var(--space-sm);
   margin-bottom: var(--space-lg);
 }
@@ -50,7 +47,7 @@
 .hero__meta {
   display: flex;
   flex-wrap: wrap;
-  gap: var(--space-xs);
+  gap: var(--space-2xs);
 }
 
 .hero__visual {
@@ -99,53 +96,20 @@
 }
 
 .hero__process-title {
-  font-size: var(--text-xl);
+  font-size: var(--text-lg);
 }
 
 .hero__process-description {
   color: var(--color-text-muted);
-  font-size: var(--text-md);
+  font-size: var(--text-sm);
 }
 
 .hero__process-list {
-  display: grid;
-  gap: var(--space-xs);
   font-size: var(--text-sm);
-  padding: var(--space-xs) 0;
-  list-style: none;
-  counter-reset: hero-process;
-}
-
-.hero__process-item {
-  display: grid;
-  grid-template-columns: var(--space-lg) minmax(0, 1fr);
-  gap: var(--space-sm);
-  align-items: start;
-  counter-increment: hero-process;
-}
-
-.hero__process-item::before {
-  content: counter(hero-process);
-  display: grid;
-  place-items: center;
-  width: var(--space-lg);
-  height: var(--space-lg);
-  border-radius: var(--radius-pill);
-  background: var(--color-interactive-surface);
-  color: var(--color-primary-dark);
-  font-size: var(--text-sm);
-  font-weight: 700;
 }
 
 .hero__process-link {
   justify-self: start;
-}
-
-@media (min-width: 480px) {
-  .hero__actions {
-    flex-direction: row;
-    flex-wrap: wrap;
-  }
 }
 
 @media (min-width: 780px) {
@@ -157,11 +121,7 @@
 
 @media (min-width: 1024px) {
   .hero__title {
-    font-size: clamp(
-      var(--text-3xl),
-      calc(var(--text-2xl) + 2vw),
-      calc(var(--text-3xl) + var(--space-xs))
-    );
+    font-size: clamp(var(--text-3xl), calc(var(--text-2xl) + 2vw), calc(var(--text-3xl) + var(--space-xs)));
   }
 
   .hero__subtitle {

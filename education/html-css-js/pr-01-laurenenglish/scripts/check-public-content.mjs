@@ -89,7 +89,7 @@ const contactSection = home.match(
 assert(contactSection, "index.html: missing contact section");
 assert(
   !contactSection.includes("data-contact-status") &&
-    /<a\b[^>]*href="\/kontakt\.html"[^>]*>\s*Przejdź do kontaktu\s*<\/a\s*>/iu.test(
+    /<a\b[^>]*href="\/kontakt\.html"[^>]*>\s*Napisz do mnie\s*<\/a\s*>/iu.test(
       contactSection,
     ) &&
     new RegExp(

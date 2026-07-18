@@ -92,7 +92,7 @@ test.describe("SEO metadata and static routing", () => {
     ).toHaveAttribute("href", "#resources");
     const compactContact = page.locator("#contact");
     await expect(
-      compactContact.getByRole("link", { name: "Przejdź do kontaktu" }),
+      compactContact.getByRole("link", { name: "Napisz do mnie" }),
     ).toHaveAttribute("href", "/kontakt.html");
     await expect(
       compactContact.getByRole("link", { name: "Zadzwoń" }),

@@ -23,6 +23,7 @@
   border: none;
   border-radius: var(--radius-md);
   font-weight: 600;
+  font-size: var(--text-2sm);
 }
 
 .accordion__trigger[aria-expanded="true"] {
@@ -42,6 +43,14 @@
   padding: 0 var(--space-lg) var(--space-md);
   color: var(--color-text-muted);
   display: block;
+}
+
+.accordion__answer {
+  max-width: var(--content-measure-narrow);
+  margin: 0;
+  color: var(--color-text-muted);
+  line-height: 1.7;
+  font-size: var(--text-2sm);
 }
 
 .accordion__panel.is-open {

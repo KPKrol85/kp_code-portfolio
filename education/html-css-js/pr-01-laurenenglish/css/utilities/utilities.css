@@ -27,10 +27,11 @@
 .section__header {
   max-width: var(--content-measure);
   margin-bottom: var(--space-xl);
+  padding-inline: var(--space-sm);
 }
 
 .section__title {
-  font-size: var(--text-2xl);
+  font-size: var(--text-xl);
   line-height: 1.2;
   margin: 0 0 var(--space-sm);
 }
@@ -44,6 +45,7 @@
   color: var(--color-text-muted);
   margin: 0;
   max-width: var(--content-measure-narrow);
+  font-size: var(--text-2sm);
 }
 
 .section__actions {
@@ -75,6 +77,10 @@
 
   .section__header {
     margin-bottom: var(--space-2xl);
+  }
+
+  .section__title {
+    font-size: var(--text-2xl);
   }
 
   .grid--cards,

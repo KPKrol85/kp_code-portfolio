@@ -8,6 +8,7 @@ import {
   PACKAGE_KEYS,
   packageList,
   packages,
+  packagesPageHref,
   packagesSectionHref,
 } from "../js/data/packages.js";
 
@@ -64,13 +65,12 @@ const getPackageButtonClass = (packageRecord) =>
   packageRecord.emphasisLabel ? "button--primary" : "button--secondary";
 
 const renderHomePackageCard = (packageRecord) =>
-  `            <article class="${getPackageCardClass(packageRecord)}" data-package-key="${escapeHtml(packageRecord.key)}" data-reveal>${renderPackageEyebrow(packageRecord)}
-              <h3 class="card__title">${escapeHtml(packageRecord.label)}</h3>${renderPackagePrice(packageRecord)}
-              <p class="card__text">${escapeHtml(packageRecord.summary)}</p>
-              <ul class="list" role="list">
-${renderBenefits(packageRecord.benefits)}
+  `            <article class="card card--pricing card--highlight pricing__package" data-package-key="${escapeHtml(packageRecord.key)}" data-reveal>
+              <h3 class="card__title">Pakiet ${escapeHtml(packageRecord.label)}</h3>
+              <p class="card__text">${escapeHtml(packageRecord.homeTeaser.description)}</p>
+              <ul class="list pricing__package-list" role="list">
+${renderBenefits(packageRecord.homeTeaser.benefits)}
               </ul>
-              <a class="button ${getPackageButtonClass(packageRecord)}" href="${escapeHtml(packageRecord.cta.href)}">${escapeHtml(packageRecord.cta.label)}</a>
             </article>`;
 
 const renderFullPackageCard = (packageRecord) =>
@@ -93,7 +93,7 @@ export const renderHomePackageCards = () =>
 export const renderHomePackagesLink = () =>
   wrapRegion(
     CONTENT_MARKERS.homePackagesLink,
-    `            <a class="button button--secondary" href="${escapeHtml(packagesSectionHref)}">Zobacz pakiety</a>`,
+    `            <a class="button button--secondary" href="${escapeHtml(packagesPageHref)}">Porównaj wszystkie pakiety</a>`,
   );
 
 export const renderPackagePageCards = () =>
@@ -119,40 +119,31 @@ const renderMaterialAction = (item, presentation, { summary = false } = {}) => {
 };
 
 const renderHomeMaterialCard = (item) => {
-  const presentation = getMaterialPresentation(item);
-  return `              <article class="card card--resource" data-material-id="${escapeHtml(item.id)}" data-category="${escapeHtml(item.category)}" data-reveal>
-                <h3 class="card__title">${escapeHtml(item.title)}</h3>
-                <p class="card__text">${escapeHtml(item.description)}</p>
-                <div class="card__tags">
-                  <span class="badge">${escapeHtml(item.format)}</span>
-                  <span class="badge">${escapeHtml(presentation.categoryLabel)}</span>
-                  ${renderAccessBadge(item, presentation)}
-                </div>
-                ${renderMaterialAction(item, presentation, { summary: true })}
-              </article>`;
+  const presentation = getMaterialPresentation(item, { surface: "home" });
+  const { action } = presentation;
+  const actionMarkup =
+    action.kind === "link"
+      ? `<a class="button button--ghost" href="${escapeHtml(action.href)}" aria-label="${escapeHtml(`${action.label}: ${item.homeTeaser.title}`)}">${escapeHtml(action.label)}</a>`
+      : `<span class="materials__availability">${escapeHtml(action.label)}</span>`;
+
+  return `            <article class="card card--resource resources__teaser-card" data-material-id="${escapeHtml(item.id)}" data-category="${escapeHtml(item.category)}" data-reveal>
+              <h3 class="card__title">${escapeHtml(item.homeTeaser.title)}</h3>
+              <p class="card__text">${escapeHtml(item.homeTeaser.description)}</p>
+              <div class="card__tags">
+                <span class="badge">${escapeHtml(presentation.formatLabel)}</span>
+                <span class="badge">${escapeHtml(presentation.categoryLabel)}</span>
+                <span class="badge badge--access badge--${escapeHtml(item.access)}" aria-label="Dostęp: ${escapeHtml(presentation.accessLabel)}">${escapeHtml(presentation.accessLabel)}</span>
+              </div>
+              ${actionMarkup}
+            </article>`;
 };
 
-const renderHomeMaterialPanel = (name, items) => {
-  const hidden = name === "all" ? "" : " hidden";
-  return `            <div class="grid grid--resources" data-tab-panel="${escapeHtml(name)}"${hidden}>
-${items.map(renderHomeMaterialCard).join("\n")}
-            </div>`;
-};
-
-export const renderHomeMaterialPanels = () => {
+export const renderHomeMaterialCards = () => {
   const featuredMaterials = materials.filter((item) => item.featured === true);
-  const panels = [renderHomeMaterialPanel("all", featuredMaterials)];
-
-  HOME_MATERIAL_CATEGORIES.forEach((category) => {
-    panels.push(
-      renderHomeMaterialPanel(
-        category,
-        featuredMaterials.filter((item) => item.category === category),
-      ),
-    );
-  });
-
-  return wrapRegion(CONTENT_MARKERS.homeMaterials, panels.join("\n"));
+  return wrapRegion(
+    CONTENT_MARKERS.homeMaterials,
+    featuredMaterials.map(renderHomeMaterialCard).join("\n"),
+  );
 };
 
 const renderCatalogMaterialCard = (item) => {
@@ -207,6 +198,7 @@ export const validateContentData = () => {
     "Package records do not match the canonical key order",
   );
   assert(isUsableHref(packagesSectionHref), "Invalid packages section route");
+  assert(packagesPageHref === "/pakiety.html", "Invalid packages page route");
 
   packageList.forEach((packageRecord) => {
     assert(
@@ -236,6 +228,15 @@ export const validateContentData = () => {
       `${packageRecord.key}: invalid CTA route`,
     );
   });
+
+  assert(
+    packages.regular.homeTeaser?.description,
+    "regular: missing homepage teaser description",
+  );
+  assert(
+    packages.regular.homeTeaser?.benefits.length > 0,
+    "regular: missing homepage teaser benefits",
+  );
 
   const materialIds = materials.map((item) => item.id);
   assert(
@@ -299,8 +300,14 @@ export const validateContentData = () => {
   assert(
     JSON.stringify(featuredMaterials.map((item) => item.category)) ===
       JSON.stringify(HOME_MATERIAL_CATEGORIES),
-    "Homepage material categories must match the existing tab contract",
+    "Homepage material categories must match the teaser order",
   );
+  featuredMaterials.forEach((item) => {
+    assert(
+      item.homeTeaser?.title && item.homeTeaser?.description,
+      `${item.id}: incomplete homepage teaser`,
+    );
+  });
 
   const filterResults = Object.freeze({
     grammar: filterMaterials(materials, { category: "grammar" }).length,

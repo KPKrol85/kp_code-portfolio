@@ -22,6 +22,11 @@ export const materials = [
     access: 'free',
     action: MATERIAL_ACTIONS.unavailable,
     featured: true,
+    homeTeaser: {
+      title: 'Kluczowe czasy bez chaosu',
+      description:
+        'Zwięzłe podsumowania, przykłady i ćwiczenia, które pomagają uporządkować najważniejsze konstrukcje.',
+    },
     tags: ['czasy', 'podstawy'],
   },
   {
@@ -36,6 +41,11 @@ export const materials = [
     access: 'free',
     action: MATERIAL_ACTIONS.unavailable,
     featured: true,
+    homeTeaser: {
+      title: 'Słownictwo na co dzień',
+      description:
+        'Karty pracy i krótkie dialogi pomagające utrwalić słownictwo używane w codziennych sytuacjach.',
+    },
     tags: ['daily', 'praktyka'],
   },
   {
@@ -77,6 +87,11 @@ export const materials = [
     packageKey: 'intensive',
     action: MATERIAL_ACTIONS.package,
     featured: true,
+    homeTeaser: {
+      title: 'Strategie egzaminacyjne krok po kroku',
+      description:
+        'Plan działania, wskazówki i zestaw ćwiczeń ułatwiających pracę z zadaniami egzaminacyjnymi.',
+    },
     tags: ['egzamin', 'strategia'],
   },
   {
@@ -92,6 +107,11 @@ export const materials = [
     packageKey: 'regular',
     action: MATERIAL_ACTIONS.package,
     featured: true,
+    homeTeaser: {
+      title: 'Angielski na spotkania',
+      description:
+        'Praktyczne zwroty do prowadzenia spotkań, prezentowania pomysłów i zabierania głosu w dyskusji.',
+    },
     tags: ['meeting', 'biznes'],
   },
   {

@@ -106,9 +106,41 @@ const accessLabels = Object.freeze({
   premium: "Premium",
 });
 
-export const getMaterialPresentation = (item) => ({
-  categoryLabel: categoryLabels[item.category] || item.category,
-  levelLabel: item.level === "All" ? "Wszystkie poziomy" : item.level,
-  accessLabel: accessLabels[item.access] || item.access,
-  action: resolveMaterialAction(item),
+const homeAccessLabels = Object.freeze({
+  free: "Bezpłatny",
+  premium: "Premium",
 });
+
+const homeFormatLabels = Object.freeze({
+  Worksheet: "Karta pracy",
+});
+
+const getHomeActionPresentation = (action) => {
+  if (action.kind === "informational") {
+    return { ...action, label: "Materiał w przygotowaniu" };
+  }
+
+  const packageLabel = packages[action.packageKey]?.label;
+  if (action.kind === "link" && packageLabel) {
+    return { ...action, label: `Sprawdź pakiet ${packageLabel}` };
+  }
+
+  return action;
+};
+
+export const getMaterialPresentation = (item, { surface = "catalog" } = {}) => {
+  const isHomeTeaser = surface === "home";
+  const action = resolveMaterialAction(item);
+
+  return {
+    categoryLabel: categoryLabels[item.category] || item.category,
+    levelLabel: item.level === "All" ? "Wszystkie poziomy" : item.level,
+    formatLabel: isHomeTeaser
+      ? homeFormatLabels[item.format] || item.format
+      : item.format,
+    accessLabel:
+      (isHomeTeaser ? homeAccessLabels : accessLabels)[item.access] ||
+      item.access,
+    action: isHomeTeaser ? getHomeActionPresentation(action) : action,
+  };
+};

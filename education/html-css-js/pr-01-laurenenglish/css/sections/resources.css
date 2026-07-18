@@ -59,9 +59,26 @@
   font-weight: 600;
 }
 
+.resources__teaser-card {
+  grid-template-rows: auto 1fr auto auto;
+  align-content: stretch;
+}
+
+.resources__teaser-card > .materials__availability,
+.resources__teaser-card > .button {
+  align-self: end;
+  justify-self: start;
+  margin-top: 0;
+}
+
 .badge--access {
   text-transform: uppercase;
   letter-spacing: 0.08em;
+}
+
+.resources__teaser .badge--access {
+  text-transform: none;
+  letter-spacing: normal;
 }
 
 .badge--free {

@@ -87,7 +87,15 @@ test("shared footer exposes the approved responsive, legal, and social contract"
     await page.goto("/index.html", { waitUntil: "networkidle" });
 
     const footer = page.locator(".footer");
-    await expect(footer.locator(".footer__column")).toHaveCount(4);
+    const columns = footer.locator(".footer__column");
+    await expect(columns).toHaveCount(4);
+    const columnOrder = await columns.evaluateAll((footerColumns) =>
+      footerColumns.map((column) => {
+        const headingId = column.getAttribute("aria-labelledby");
+        return document.getElementById(headingId)?.textContent.trim();
+      }),
+    );
+    expect(columnOrder).toEqual(["Marka", "Oferta", "Informacje", "Kontakt"]);
     const brandColumn = footer.locator(".footer__column--brand");
     const brandBlock = brandColumn.locator(".footer__brand-block");
     await expect(brandColumn.locator(".footer__brand-text")).toHaveText(
@@ -129,6 +137,64 @@ test("shared footer exposes the approved responsive, legal, and social contract"
     await expect(
       footer.locator('a[href="mailto:kontakt@kp-code.pl"]'),
     ).toHaveText("kontakt@kp-code.pl");
+    const contactLinks = await footer
+      .locator(".footer__contact-link")
+      .evaluateAll((links) =>
+        links.map((link) => {
+          const icon = link.querySelector(":scope > .footer__contact-icon");
+          const text = link.querySelector(":scope > .footer__contact-text");
+          const iconRect = icon?.getBoundingClientRect();
+          const linkStyle = getComputedStyle(link);
+          const iconStyle = icon ? getComputedStyle(icon) : null;
+
+          return {
+            alignItems: linkStyle.alignItems,
+            display: linkStyle.display,
+            gap: Number.parseFloat(linkStyle.columnGap),
+            href: link.getAttribute("href"),
+            icon: icon
+              ? {
+                  ariaHidden: icon.getAttribute("aria-hidden"),
+                  fill: icon.getAttribute("fill"),
+                  focusable: icon.getAttribute("focusable"),
+                  flexShrink: iconStyle.flexShrink,
+                  height: iconRect.height,
+                  inheritedColor: iconStyle.fill === linkStyle.color,
+                  pathCount: icon.querySelectorAll(":scope > path").length,
+                  viewBox: icon.getAttribute("viewBox"),
+                  width: iconRect.width,
+                }
+              : null,
+            svgCount: link.querySelectorAll(":scope > svg").length,
+            text: text?.textContent.trim(),
+          };
+        }),
+      );
+    expect(contactLinks).toHaveLength(2);
+    for (const [index, expected] of [
+      { href: "tel:+48533537091", text: "+48 533 537 091" },
+      { href: "mailto:kontakt@kp-code.pl", text: "kontakt@kp-code.pl" },
+    ].entries()) {
+      expect(contactLinks[index]).toMatchObject({
+        alignItems: "center",
+        display: "inline-flex",
+        href: expected.href,
+        icon: {
+          ariaHidden: "true",
+          fill: "currentColor",
+          focusable: "false",
+          flexShrink: "0",
+          inheritedColor: true,
+          pathCount: 1,
+          viewBox: "0 0 640 640",
+        },
+        svgCount: 1,
+        text: expected.text,
+      });
+      expect(contactLinks[index].gap).toBeGreaterThan(0);
+      expect(contactLinks[index].icon.width).toBe(20);
+      expect(contactLinks[index].icon.height).toBe(20);
+    }
     await expect(footer.locator("address")).toHaveText(
       "ul. Marynarki Wojennej 12/31, 33-100 Tarnów, Polska",
     );

@@ -18,7 +18,20 @@
 }
 
 .card--service {
+  display: grid;
+  grid-template-rows: auto 1fr auto;
   height: 100%;
+}
+
+.card--service > .badge {
+  align-self: end;
+  justify-self: start;
+}
+
+@media (min-width: 780px) {
+  .card--service > .card__title {
+    min-block-size: 2.7em;
+  }
 }
 
 .card--pricing,
@@ -39,6 +52,7 @@
 .card__text {
   margin: 0 0 var(--space-md);
   color: var(--color-text-muted);
+  font-size: var(--text-2sm);
 }
 
 .card__price {
@@ -51,6 +65,13 @@
   color: var(--color-primary);
   font-weight: 600;
   margin-bottom: var(--space-xs);
+}
+
+.card__tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-xs);
+  margin-bottom: var(--space-md);
 }
 
 .card--pricing > .button,

@@ -9,15 +9,83 @@
   min-width: 0;
 }
 
+.about__content {
+  display: grid;
+  gap: var(--space-lg);
+  max-width: var(--content-measure);
+}
+
+.about__heading {
+  display: grid;
+  gap: var(--space-xs);
+}
+
+.about__eyebrow {
+  margin: 0;
+  color: var(--color-primary);
+  font-size: var(--text-xs);
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.about__heading > .section__title,
+.about__intro,
 .about__text {
+  margin: 0;
   max-width: var(--content-measure-narrow);
 }
 
-.about__badges {
-  display: flex;
-  flex-wrap: wrap;
-  gap: var(--space-xs);
-  margin-top: var(--space-md);
+.about__intro {
+  font-size: var(--text-lg);
+  font-weight: 600;
+  line-height: 1.5;
+}
+
+.about__text,
+.about__highlight-text {
+  color: var(--color-text-muted);
+}
+
+.about__highlights {
+  display: grid;
+  gap: var(--space-md);
+  max-width: var(--content-measure-narrow);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.about__highlight {
+  display: grid;
+  grid-template-columns: var(--space-xs) minmax(0, 1fr);
+  gap: var(--space-xs) var(--space-md);
+  align-items: start;
+}
+
+.about__highlight::before {
+  grid-row: 1 / span 2;
+  width: var(--space-xs);
+  height: var(--space-xs);
+  margin-block-start: 0.55em;
+  border-radius: var(--radius-pill);
+  background: var(--color-accent);
+  content: "";
+}
+
+.about__highlight-title,
+.about__highlight-text {
+  grid-column: 2;
+  margin: 0;
+}
+
+.about__highlight-title {
+  font-size: var(--text-md);
+  line-height: 1.35;
+}
+
+.about__highlight-text {
+  font-size: var(--text-2sm);
 }
 
 .about__visual {
@@ -27,13 +95,54 @@
   width: min(100%, 26.25rem);
 }
 
-.about__visual > img {
+.about__portrait {
+  --about-vignette-highlight: color-mix(
+    in srgb,
+    var(--color-surface) 8%,
+    transparent
+  );
+  --about-vignette-edge: color-mix(in srgb, var(--color-text) 12%, transparent);
+
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+  border-radius: var(--radius-lg);
+}
+
+[data-theme="dark"] .about__portrait {
+  --about-vignette-highlight: color-mix(
+    in srgb,
+    var(--color-text) 6%,
+    transparent
+  );
+  --about-vignette-edge: color-mix(in srgb, var(--color-bg) 16%, transparent);
+}
+
+.about__portrait > img {
   display: block;
   width: 100%;
   height: auto;
   border-radius: var(--radius-lg);
   object-fit: contain;
   object-position: center;
+}
+
+.about__portrait::after {
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: radial-gradient(
+      ellipse at 50% 42%,
+      var(--about-vignette-highlight) 0%,
+      transparent 45%
+    ),
+    radial-gradient(
+      ellipse at center,
+      transparent 58%,
+      var(--about-vignette-edge) 100%
+    );
+  content: "";
+  pointer-events: none;
 }
 
 .about__card {
@@ -43,5 +152,11 @@
 @media (min-width: 780px) {
   .about__grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (min-width: 1024px) {
+  .about__grid {
+    grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.85fr);
   }
 }
