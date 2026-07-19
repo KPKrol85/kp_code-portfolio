@@ -61,17 +61,52 @@ const calculateStreak = (checkIns) => {
   return streak;
 };
 
+const getPolishPlural = (value, singular, few, many) => {
+  const normalized = Math.abs(Number(value));
+  const lastTwoDigits = normalized % 100;
+  const lastDigit = normalized % 10;
+
+  if (normalized === 1) return singular;
+  if (lastTwoDigits >= 12 && lastTwoDigits <= 14) return many;
+  if (lastDigit >= 2 && lastDigit <= 4) return few;
+  return many;
+};
+
+const formatSessionCount = (value) =>
+  `${value} ${getPolishPlural(value, "sesja", "sesje", "sesji")}`;
+
+const formatStreak = (value) =>
+  `${value} ${getPolishPlural(value, "dzień", "dni", "dni")}`;
+
+const formatCompletedGoal = (completed, goal) =>
+  goal > 0 ? `${completed} z ${goal} sesji` : "Brak ustawionego celu";
+
 const buildGoalOptions = (selected) =>
-  Array.from({ length: 7 }, (_, index) => {
-    const value = index + 1;
-    return `<option value="${value}" ${value === selected ? "selected" : ""}>${value}</option>`;
-  }).join("");
+  [0, ...Array.from({ length: 7 }, (_, index) => index + 1)]
+    .map((value) => {
+      const label = value === 0 ? "Brak celu" : formatSessionCount(value);
+      return `<option value="${value}" ${value === selected ? "selected" : ""}>${label}</option>`;
+    })
+    .join("");
+
+const renderProgressMeter = ({ completed, goal, label }) => {
+  if (goal <= 0) {
+    return `<div class="progress-meter is-empty" role="img" aria-label="${label}: Brak ustawionego celu"></div>`;
+  }
+
+  const value = Math.min(completed, goal);
+  return `<progress class="progress-meter" value="${value}" max="${goal}" aria-label="${label}: ${formatCompletedGoal(completed, goal)}"></progress>`;
+};
 
 const renderTracks = ({ state, todayKey, weekDates }) =>
   TRACKS.map((track) => {
     const goal = state.goals[track.id];
     const todayDone = state.checkIns[todayKey]?.[track.id] === true;
     const weekCount = countWeekCheckIns(state.checkIns, weekDates, track.id);
+    const progressText =
+      goal > 0
+        ? `W tym tygodniu: ${formatCompletedGoal(weekCount, goal)}`
+        : "Brak ustawionego celu";
 
     return `
       <article class="card card--soft progress-card">
@@ -80,43 +115,56 @@ const renderTracks = ({ state, todayKey, weekDates }) =>
           <p class="card__text">${track.description}</p>
         </div>
         <div class="progress-card__controls">
-          <label class="form__label" for="goal-${track.id}">Cel tygodniowy – ${track.label} (sesje)</label>
-          <select
-            id="goal-${track.id}"
-            class="form__input"
-            data-goal-select
-            data-track-id="${track.id}"
-            data-focus-id="goal-${track.id}"
-          >
-            ${buildGoalOptions(goal)}
-          </select>
+          <div class="progress-card__goal">
+            <label class="form__label" for="goal-${track.id}">Cel na ten tydzień</label>
+            <span class="form__select progress-card__select">
+              <select
+                id="goal-${track.id}"
+                class="form__input"
+                data-goal-select
+                data-track-id="${track.id}"
+                data-focus-id="goal-${track.id}"
+              >
+                ${buildGoalOptions(goal)}
+              </select>
+            </span>
+          </div>
           <div class="progress-card__checkin">
-            <span class="progress-card__label">Dziś:</span>
+            <span class="progress-card__label">Dzisiejsza sesja:</span>
             <button
               class="button button--ghost progress-card__toggle"
               type="button"
-              aria-label="Dzisiejszy check-in: ${track.label}"
+              aria-label="Dzisiejsza sesja — ${track.label}: ${todayDone ? "Wykonane" : "Do zrobienia"}"
               aria-pressed="${todayDone}"
               data-checkin-toggle
               data-track-id="${track.id}"
               data-focus-id="checkin-${track.id}"
             >
-              <span aria-hidden="true">${todayDone ? "✓" : "○"}</span>
-              <span>${todayDone ? "Wykonane" : "Nie"}</span>
+              <span class="progress-card__toggle-indicator" aria-hidden="true">${todayDone ? "✓" : ""}</span>
+              <span>${todayDone ? "Wykonane" : "Do zrobienia"}</span>
             </button>
           </div>
         </div>
-        <p class="progress-card__summary">W tym tygodniu: ${weekCount}/${goal}</p>
+        <div class="progress-card__progress">
+          ${renderProgressMeter({
+            completed: weekCount,
+            goal,
+            label: `Postęp tygodniowy: ${track.label}`,
+          })}
+          <p class="progress-card__summary">${progressText}</p>
+        </div>
       </article>
     `;
   }).join("");
 
 const renderWeekGrid = ({ state, weekDates }) => {
+  const todayKey = toLocalDateKey(new Date());
   const headerCells = weekDates
     .map((date, index) => {
       const label = WEEKDAY_LABELS[index];
+      const isToday = toLocalDateKey(date) === todayKey;
       return `
-        <th scope="col">
+        <th scope="col" class="progress-week__header${isToday ? " is-today" : ""}"${isToday ? ' aria-current="date"' : ""}>
           <span class="progress-week__day">${label}</span>
           <span class="progress-week__date">${formatShortDate(date)}</span>
         </th>
@@ -129,10 +177,11 @@ const renderWeekGrid = ({ state, weekDates }) => {
       .map((date) => {
         const key = toLocalDateKey(date);
         const done = state.checkIns[key]?.[track.id] === true;
+        const isToday = key === todayKey;
         return `
-          <td class="progress-week__cell">
-            <span class="progress-week__dot ${done ? "is-done" : ""}" aria-hidden="true"></span>
-            <span class="sr-only">${done ? "Wykonane" : "Brak"}</span>
+          <td class="progress-week__cell${isToday ? " is-today" : ""}">
+            <span class="progress-week__marker ${done ? "is-done" : ""}" aria-hidden="true"></span>
+            <span class="sr-only">${done ? "Wykonane" : "Brak aktywności"}</span>
           </td>
         `;
       })
@@ -148,17 +197,23 @@ const renderWeekGrid = ({ state, weekDates }) => {
 
   return `
     <div class="progress-week">
-      <table class="progress-week__table">
-        <thead>
-          <tr>
-            <th scope="col">Track</th>
-            ${headerCells}
-          </tr>
-        </thead>
-        <tbody>
-          ${bodyRows}
-        </tbody>
-      </table>
+      <div class="progress-week__scroll">
+        <table class="progress-week__table">
+          <thead>
+            <tr>
+              <th scope="col">Obszar</th>
+              ${headerCells}
+            </tr>
+          </thead>
+          <tbody>
+            ${bodyRows}
+          </tbody>
+        </table>
+      </div>
+      <ul class="progress-week__legend" aria-label="Legenda aktywności">
+        <li><span class="progress-week__marker is-done" aria-hidden="true"></span>Wykonane</li>
+        <li><span class="progress-week__marker" aria-hidden="true"></span>Brak aktywności</li>
+      </ul>
     </div>
   `;
 };
@@ -167,13 +222,23 @@ const renderStats = ({ state, weekDates }) => {
   const trackCards = TRACKS.map((track) => {
     const goal = state.goals[track.id];
     const count = countWeekCheckIns(state.checkIns, weekDates, track.id);
-    const percent = Math.min(Math.round((count / goal) * 100), 100);
+    const percent = goal > 0 ? Math.min(Math.round((count / goal) * 100), 100) : null;
+    const detail = formatCompletedGoal(count, goal);
 
     return `
       <article class="card card--soft progress-stat">
         <h3 class="card__title">${track.label}</h3>
-        <p class="progress-stat__value">${percent}%</p>
-        <p class="card__text">Realizacja celu tygodniowego (${count}/${goal}).</p>
+        ${
+          percent === null
+            ? '<p class="progress-stat__empty">Brak ustawionego celu</p>'
+            : `<p class="progress-stat__value">${percent}%</p>`
+        }
+        <p class="card__text">${detail}</p>
+        ${renderProgressMeter({
+          completed: count,
+          goal,
+          label: `Realizacja celu: ${track.label}`,
+        })}
       </article>
     `;
   }).join("");
@@ -184,9 +249,9 @@ const renderStats = ({ state, weekDates }) => {
     <div class="grid grid--cards">
       ${trackCards}
       <article class="card card--soft progress-stat">
-        <h3 class="card__title">Streak</h3>
-        <p class="progress-stat__value">${streak} dni</p>
-        <p class="card__text">Dni z przynajmniej jedną aktywnością z rzędu.</p>
+        <h3 class="card__title">Seria nauki</h3>
+        <p class="progress-stat__value">${formatStreak(streak)}</p>
+        <p class="card__text">Kolejne dni z przynajmniej jedną wykonaną sesją.</p>
       </article>
     </div>
   `;
@@ -259,7 +324,7 @@ export const initProgressPage = () => {
       },
     });
     render();
-    setStatus("Zaktualizowano cel tygodniowy.");
+    setStatus("Zaktualizowano cel na ten tydzień.");
   };
 
   const handleToggle = (event) => {
@@ -286,20 +351,20 @@ export const initProgressPage = () => {
     render();
     setStatus(
       isDone
-        ? "Cofnięto dzisiejszy check-in."
-        : "Zapisano dzisiejszy check-in.",
+        ? "Cofnięto dzisiejszą sesję."
+        : "Zaznaczono dzisiejszą sesję.",
     );
   };
 
   const handleReset = () => {
     const confirmed = window.confirm(
-      "Czy na pewno chcesz wyczyścić wszystkie dane postępów?",
+      "Czy na pewno chcesz usunąć wszystkie cele, aktywności i statystyki dziennika? Tej operacji nie można cofnąć.",
     );
     if (!confirmed) return;
     resetProgressState();
     state = loadProgressState();
     render();
-    setStatus("Dane zostały wyczyszczone.");
+    setStatus("Usunięto dane dziennika.");
   };
 
   const handleExport = () => {

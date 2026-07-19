@@ -82,7 +82,7 @@ body.has-open-navigation {
   left: 50%;
   width: 26px;
   height: 2px;
-  border-radius: 999px;
+  border-radius: var(--radius-pill);
   background: currentColor;
   pointer-events: none;
   transition:

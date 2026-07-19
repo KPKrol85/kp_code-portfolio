@@ -40,8 +40,8 @@ const readText = (path) => readFile(path, "utf8");
 const publicFile = (path) => resolve(ROOT, `.${path}`);
 const sha256 = (buffer) =>
   createHash("sha256").update(buffer).digest("hex").toUpperCase();
-const fontAssetKey = ({ family, style, weight }) =>
-  `${family}:${weight}:${style}`;
+const fontAssetKey = ({ family, style, weight, unicodeRange }) =>
+  `${family}:${weight}:${style}:${unicodeRange ?? "all"}`;
 
 const LITERATA_FONT_SHA256 =
   "DACE38D75534603D7B2E727E3A5979B6C53BEDB9DB9E14D4263EF92CFCB5F3D3";
@@ -516,8 +516,8 @@ const verifyHeroAndFonts = async () => {
   const baseCss = await readText(resolve(ROOT, "css/base/base.css"));
   const fontFaces = baseCss.match(/@font-face\s*{[\s\S]*?}/g) ?? [];
   assert(
-    fontFaces.length === FONT_PATHS.length,
-    `Expected ${FONT_PATHS.length} justified local font faces`,
+    fontFaces.length === FONT_ASSETS.length,
+    `Expected ${FONT_ASSETS.length} justified local font faces`,
   );
 
   const expectedFonts = new Map(
@@ -529,7 +529,8 @@ const verifyHeroAndFonts = async () => {
     const weight = Number(fontFace.match(/font-weight:\s*(\d+)/)?.[1]);
     const style = fontFace.match(/font-style:\s*([\w-]+)/)?.[1];
     const source = fontFace.match(/url\("([^"]+)"\)/)?.[1];
-    const key = fontAssetKey({ family, style, weight });
+    const unicodeRange = fontFace.match(/unicode-range:\s*([^;]+);/)?.[1];
+    const key = fontAssetKey({ family, style, weight, unicodeRange });
     const expectedFont = expectedFonts.get(key);
     assert(
       expectedFont?.path === source,
@@ -560,6 +561,7 @@ const verifyHeroAndFonts = async () => {
   assert(
     FONT_ASSETS.filter(({ family }) => family === "Inter")
       .map(({ weight }) => weight)
+      .filter((weight, index, weights) => weights.indexOf(weight) === index)
       .sort((a, b) => a - b)
       .join(",") === "400,600,700",
     "Production typography must retain only Inter 400, 600, and 700",

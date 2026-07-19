@@ -1,7 +1,7 @@
 import { packages } from "./packages.js";
 
 const CONTACT_HREF = "/index.html#contact";
-const DEFAULT_UNAVAILABLE_LABEL = "Obecnie niedostępne";
+const DEFAULT_UNAVAILABLE_LABEL = "Materiał w przygotowaniu";
 
 const isUsableHref = (href) =>
   typeof href === "string" && href.trim() !== "" && href.trim() !== "#";
@@ -95,14 +95,14 @@ export const resolveMaterialAction = (item) => {
 const categoryLabels = Object.freeze({
   grammar: "Gramatyka",
   vocabulary: "Słownictwo",
-  speaking: "Speaking",
-  writing: "Writing",
+  speaking: "Mówienie",
+  writing: "Pisanie",
   exam: "Egzaminy",
   business: "Biznes",
 });
 
 const accessLabels = Object.freeze({
-  free: "Free",
+  free: "Bezpłatny",
   premium: "Premium",
 });
 
@@ -111,8 +111,9 @@ const homeAccessLabels = Object.freeze({
   premium: "Premium",
 });
 
-const homeFormatLabels = Object.freeze({
+const formatLabels = Object.freeze({
   Worksheet: "Karta pracy",
+  Video: "Wideo",
 });
 
 const getHomeActionPresentation = (action) => {
@@ -135,9 +136,7 @@ export const getMaterialPresentation = (item, { surface = "catalog" } = {}) => {
   return {
     categoryLabel: categoryLabels[item.category] || item.category,
     levelLabel: item.level === "All" ? "Wszystkie poziomy" : item.level,
-    formatLabel: isHomeTeaser
-      ? homeFormatLabels[item.format] || item.format
-      : item.format,
+    formatLabel: formatLabels[item.format] || item.format,
     accessLabel:
       (isHomeTeaser ? homeAccessLabels : accessLabels)[item.access] ||
       item.access,

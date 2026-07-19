@@ -3,7 +3,7 @@ export const STORAGE_KEY = 'lauren_progress_v1';
 export const TRACKS = [
   {
     id: 'vocab',
-    label: 'Słówka',
+    label: 'Słownictwo',
     description: 'Nowe słowa, powtórki i aktywne użycie w zdaniach.'
   },
   {
@@ -13,7 +13,7 @@ export const TRACKS = [
   },
   {
     id: 'speaking',
-    label: 'Speaking',
+    label: 'Mówienie',
     description: 'Sesje mówienia: płynność, pewność i wymowa.'
   }
 ];

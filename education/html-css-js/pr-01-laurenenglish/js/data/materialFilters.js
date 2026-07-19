@@ -4,7 +4,6 @@ export const filterMaterials = (items, filters = {}) => {
     level = "all",
     format = "all",
     access = "all",
-    freeOnly = false,
   } = filters;
 
   return items.filter((item) => {
@@ -20,7 +19,6 @@ export const filterMaterials = (items, filters = {}) => {
 
     if (format !== "all" && item.format !== format) return false;
     if (access !== "all" && item.access !== access) return false;
-    if (freeOnly && item.access !== "free") return false;
 
     return true;
   });

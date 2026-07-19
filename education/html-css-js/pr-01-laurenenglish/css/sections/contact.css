@@ -33,6 +33,7 @@
 .contact__link {
   justify-self: start;
   overflow-wrap: anywhere;
+  margin-top: var(--space-sm);
 }
 
 .contact__address {

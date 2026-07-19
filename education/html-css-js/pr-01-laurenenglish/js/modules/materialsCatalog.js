@@ -9,17 +9,24 @@ const createBadge = (label, className = "") => {
   return badge;
 };
 
-const createMetaBadges = (item) => {
+const createMetaItem = (label) => {
+  const item = document.createElement("li");
+  item.className = "badge";
+  item.textContent = label;
+  return item;
+};
+
+const createMetaItems = (item) => {
   const presentation = getMaterialPresentation(item);
   const fragment = document.createDocumentFragment();
   fragment.append(
-    createBadge(presentation.categoryLabel),
-    createBadge(presentation.levelLabel),
-    createBadge(item.format),
+    createMetaItem(presentation.categoryLabel),
+    createMetaItem(presentation.levelLabel),
+    createMetaItem(presentation.formatLabel),
   );
 
   if (item.duration) {
-    fragment.append(createBadge(item.duration));
+    fragment.append(createMetaItem(item.duration));
   }
 
   return fragment;
@@ -46,9 +53,10 @@ const renderMaterials = (list, container, emptyState) => {
     title.className = "card__title";
     title.textContent = item.title;
 
-    const meta = document.createElement("div");
+    const meta = document.createElement("ul");
     meta.className = "card__tags materials__meta";
-    meta.append(createMetaBadges(item));
+    meta.setAttribute("aria-label", "Informacje o materiale");
+    meta.append(createMetaItems(item));
 
     const description = document.createElement("p");
     description.className = "card__text";
@@ -75,9 +83,17 @@ const renderMaterials = (list, container, emptyState) => {
       action.textContent = presentation.action.label;
     }
 
+    const accessRegion = document.createElement("div");
+    accessRegion.className = "materials__footer-access";
+    accessRegion.append(accessBadge);
+
+    const actionRegion = document.createElement("div");
+    actionRegion.className = "materials__footer-action";
+    actionRegion.append(action);
+
     const footer = document.createElement("div");
     footer.className = "materials__footer";
-    footer.append(accessBadge, action);
+    footer.append(accessRegion, actionRegion);
 
     card.append(title, meta, description, footer);
     fragment.append(card);
@@ -87,38 +103,73 @@ const renderMaterials = (list, container, emptyState) => {
   emptyState.hidden = true;
 };
 
+const getMaterialCountLabel = (count) => {
+  if (count === 1) return "materiał";
+
+  const lastDigit = count % 10;
+  const lastTwoDigits = count % 100;
+  if (
+    lastDigit >= 2 &&
+    lastDigit <= 4 &&
+    (lastTwoDigits < 12 || lastTwoDigits > 14)
+  ) {
+    return "materiały";
+  }
+
+  return "materiałów";
+};
+
 const updateCount = (count, element) => {
   if (!element) return;
-  element.textContent = `Wyników: ${count}`;
+  element.textContent = `Znaleziono ${count} ${getMaterialCountLabel(count)}`;
 };
 
 const initMaterialsFilters = ({
   categorySelect,
   levelSelect,
-  freeToggle,
+  accessSelect,
+  resetButton,
   listContainer,
   emptyState,
   countElement,
 }) => {
+  const defaultFilters = Object.freeze({
+    category: "all",
+    level: "all",
+    access: "all",
+  });
   const filters = {
     category: categorySelect.value,
     level: levelSelect.value,
-    freeOnly: freeToggle.checked,
+    access: accessSelect.value,
+  };
+
+  const updateResetState = () => {
+    resetButton.disabled = Object.entries(defaultFilters).every(
+      ([key, value]) => filters[key] === value,
+    );
   };
 
   const applyFilters = () => {
     filters.category = categorySelect.value;
     filters.level = levelSelect.value;
-    filters.freeOnly = freeToggle.checked;
+    filters.access = accessSelect.value;
 
     const filtered = getFilteredMaterials(filters);
     renderMaterials(filtered, listContainer, emptyState);
     updateCount(filtered.length, countElement);
+    updateResetState();
   };
 
   categorySelect.addEventListener("change", applyFilters);
   levelSelect.addEventListener("change", applyFilters);
-  freeToggle.addEventListener("change", applyFilters);
+  accessSelect.addEventListener("change", applyFilters);
+  resetButton.addEventListener("click", () => {
+    categorySelect.value = defaultFilters.category;
+    levelSelect.value = defaultFilters.level;
+    accessSelect.value = defaultFilters.access;
+    applyFilters();
+  });
 
   applyFilters();
 };
@@ -129,7 +180,8 @@ export const initMaterialsCatalog = () => {
 
   const categorySelect = document.querySelector("[data-materials-category]");
   const levelSelect = document.querySelector("[data-materials-level]");
-  const freeToggle = document.querySelector("[data-materials-free]");
+  const accessSelect = document.querySelector("[data-materials-access]");
+  const resetButton = document.querySelector("[data-materials-reset]");
   const emptyState = document.querySelector("[data-materials-empty]");
   const countElement = document.querySelector("[data-materials-count]");
   const filtersForm = document.querySelector("[data-materials-filters]");
@@ -137,7 +189,8 @@ export const initMaterialsCatalog = () => {
   if (
     !categorySelect ||
     !levelSelect ||
-    !freeToggle ||
+    !accessSelect ||
+    !resetButton ||
     !emptyState ||
     !filtersForm
   )
@@ -146,7 +199,8 @@ export const initMaterialsCatalog = () => {
   initMaterialsFilters({
     categorySelect,
     levelSelect,
-    freeToggle,
+    accessSelect,
+    resetButton,
     listContainer,
     emptyState,
     countElement,
@@ -159,4 +213,5 @@ export {
   getMaterialPresentation,
   renderMaterials,
   initMaterialsFilters,
+  getMaterialCountLabel,
 };

@@ -53,16 +53,14 @@ const renderPackagePrice = (packageRecord) =>
     ? `\n              <p class="card__price">${escapeHtml(packageRecord.priceLabel)}</p>`
     : "";
 
-const renderPackageEyebrow = (packageRecord) =>
-  packageRecord.emphasisLabel
-    ? `\n              <p class="card__eyebrow">${escapeHtml(packageRecord.emphasisLabel)}</p>`
-    : "";
+const renderPackageLabel = (packageRecord) =>
+  `\n              <p class="card__eyebrow pricing__package-label">${escapeHtml(packageRecord.comparisonLabel)}</p>`;
 
 const getPackageCardClass = (packageRecord) =>
-  `card card--pricing${packageRecord.emphasisLabel ? " card--highlight" : ""}`;
+  `card card--pricing pricing__card${packageRecord.isHighlighted ? " card--highlight pricing__card--highlighted" : ""}`;
 
 const getPackageButtonClass = (packageRecord) =>
-  packageRecord.emphasisLabel ? "button--primary" : "button--secondary";
+  packageRecord.isHighlighted ? "button--primary" : "button--secondary";
 
 const renderHomePackageCard = (packageRecord) =>
   `            <article class="card card--pricing card--highlight pricing__package" data-package-key="${escapeHtml(packageRecord.key)}" data-reveal>
@@ -74,13 +72,13 @@ ${renderBenefits(packageRecord.homeTeaser.benefits)}
             </article>`;
 
 const renderFullPackageCard = (packageRecord) =>
-  `            <article class="${getPackageCardClass(packageRecord)}" id="pakiet-${escapeHtml(packageRecord.key)}" data-package-key="${escapeHtml(packageRecord.key)}" tabindex="-1" data-reveal>${renderPackageEyebrow(packageRecord)}
-              <h3 class="card__title">${escapeHtml(packageRecord.label)}</h3>${renderPackagePrice(packageRecord)}
-              <p class="card__text">${escapeHtml(packageRecord.summary)}</p>
-              <ul class="list" role="list">
+  `            <article class="${getPackageCardClass(packageRecord)}" id="pakiet-${escapeHtml(packageRecord.key)}" data-package-key="${escapeHtml(packageRecord.key)}" tabindex="-1" data-reveal>${renderPackageLabel(packageRecord)}
+              <h3 class="card__title pricing__package-name">${escapeHtml(packageRecord.label)}</h3>${renderPackagePrice(packageRecord)}
+              <p class="card__text pricing__package-rhythm">${escapeHtml(packageRecord.summary)}</p>
+              <p class="card__text pricing__package-audience">${escapeHtml(packageRecord.audience)}</p>
+              <ul class="pricing__benefits" role="list">
 ${renderBenefits(packageRecord.benefits)}
               </ul>
-              <p class="card__text"><strong>Dla kogo:</strong> ${escapeHtml(packageRecord.audience)}</p>
               <a class="button ${getPackageButtonClass(packageRecord)}" href="${escapeHtml(packageRecord.cta.href)}">${escapeHtml(packageRecord.cta.label)}</a>
             </article>`;
 
@@ -146,23 +144,33 @@ export const renderHomeMaterialCards = () => {
   );
 };
 
+const renderCatalogMaterialMeta = (item, presentation) => {
+  const metadata = [
+    presentation.categoryLabel,
+    presentation.levelLabel,
+    presentation.formatLabel,
+    item.duration,
+  ].filter(Boolean);
+
+  return `              <ul class="card__tags materials__meta" aria-label="Informacje o materiale">
+${metadata.map((label) => `                <li class="badge">${escapeHtml(label)}</li>`).join("\n")}
+              </ul>`;
+};
+
 const renderCatalogMaterialCard = (item) => {
   const presentation = getMaterialPresentation(item);
-  const durationBadge = item.duration
-    ? `\n                <span class="badge">${escapeHtml(item.duration)}</span>`
-    : "";
 
   return `            <article class="card card--resource materials__card" data-material-id="${escapeHtml(item.id)}">
               <h3 class="card__title">${escapeHtml(item.title)}</h3>
-              <div class="card__tags materials__meta">
-                <span class="badge">${escapeHtml(presentation.categoryLabel)}</span>
-                <span class="badge">${escapeHtml(presentation.levelLabel)}</span>
-                <span class="badge">${escapeHtml(item.format)}</span>${durationBadge}
-              </div>
+${renderCatalogMaterialMeta(item, presentation)}
               <p class="card__text">${escapeHtml(item.description)}</p>
               <div class="materials__footer">
-                ${renderAccessBadge(item, presentation)}
-                ${renderMaterialAction(item, presentation)}
+                <div class="materials__footer-access">
+                  ${renderAccessBadge(item, presentation)}
+                </div>
+                <div class="materials__footer-action">
+                  ${renderMaterialAction(item, presentation)}
+                </div>
               </div>
             </article>`;
 };
@@ -207,6 +215,14 @@ export const validateContentData = () => {
     );
     assert(packageRecord.label, `${packageRecord.key}: missing public label`);
     assert(
+      packageRecord.comparisonLabel,
+      `${packageRecord.key}: missing comparison label`,
+    );
+    assert(
+      typeof packageRecord.isHighlighted === "boolean",
+      `${packageRecord.key}: invalid highlight state`,
+    );
+    assert(
       packageRecord.href === `/pakiety.html#pakiet-${packageRecord.key}`,
       `${packageRecord.key}: invalid package route`,
     );
@@ -228,6 +244,15 @@ export const validateContentData = () => {
       `${packageRecord.key}: invalid CTA route`,
     );
   });
+
+  assert(
+    JSON.stringify(
+      packageList
+        .filter((packageRecord) => packageRecord.isHighlighted)
+        .map((packageRecord) => packageRecord.key),
+    ) === JSON.stringify(["regular"]),
+    "Regular must be the only highlighted package",
+  );
 
   assert(
     packages.regular.homeTeaser?.description,
@@ -314,7 +339,6 @@ export const validateContentData = () => {
     b2IncludingAll: filterMaterials(materials, { level: "B2" }).length,
     pdf: filterMaterials(materials, { format: "PDF" }).length,
     free: filterMaterials(materials, { access: "free" }).length,
-    freeOnly: filterMaterials(materials, { freeOnly: true }).length,
     combined: filterMaterials(materials, {
       category: "speaking",
       level: "B2",
@@ -327,7 +351,6 @@ export const validateContentData = () => {
   assertExactCount("B2 filter", filterResults.b2IncludingAll, 6);
   assertExactCount("PDF filter", filterResults.pdf, 9);
   assertExactCount("Free access filter", filterResults.free, 6);
-  assertExactCount("Free-only filter", filterResults.freeOnly, 6);
   assertExactCount("Combined filter", filterResults.combined, 1);
 
   const contactAction = resolveMaterialAction({

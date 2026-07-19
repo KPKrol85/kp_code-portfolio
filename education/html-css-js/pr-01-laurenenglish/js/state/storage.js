@@ -36,7 +36,7 @@ const sanitizeGoals = (goals) => {
   const trackIds = getTrackIds();
   trackIds.forEach((trackId) => {
     const value = Number(goals[trackId]);
-    if (Number.isInteger(value) && value >= 1 && value <= 7) {
+    if (Number.isInteger(value) && value >= 0 && value <= 7) {
       sanitized[trackId] = value;
     }
   });
