@@ -116,7 +116,7 @@ export const LEGAL_PAGES = Object.freeze([
     file: "regulamin.html",
     path: "/regulamin.html",
     runtimePath: "/regulamin.html",
-    title: "Regulamin witryny | Lauren English",
+    title: "Regulamin serwisu | Lauren English",
   }),
   freezePage({
     key: "cookies",

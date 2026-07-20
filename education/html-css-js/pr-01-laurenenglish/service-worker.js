@@ -1,5 +1,5 @@
 const CACHE_PREFIX = "lauren-english-v";
-const CACHE_REVISION = "1.0.0-03f5d75bce35";
+const CACHE_REVISION = "1.0.0-eaab7934977a";
 const CACHE_NAME = `${CACHE_PREFIX}${CACHE_REVISION}`;
 const OFFLINE_PATH = "/offline.html";
 const PRECACHE_PATHS = [
@@ -15,6 +15,7 @@ const PRECACHE_PATHS = [
   "/css/base/base.css",
   "/css/base/typography.css",
   "/css/utilities/utilities.css",
+  "/css/components/eyebrow.css",
   "/css/components/buttons.css",
   "/css/components/navigation.css",
   "/css/components/cards.css",
@@ -35,6 +36,7 @@ const PRECACHE_PATHS = [
   "/css/sections/offline.css",
   "/css/sections/reveal.css",
   "/css/pages/pages.css",
+  "/css/pages/legal.css",
   "/js/main.js",
   "/js/modules/reveal.js",
   "/js/modules/headerShrink.js",
@@ -55,6 +57,7 @@ const PRECACHE_PATHS = [
   "/js/data/progress.js",
   "/js/state/storage.js",
   "/assets/fonts/inter-400.woff2",
+  "/assets/fonts/inter-latin-ext.woff2",
   "/assets/fonts/inter-600.woff2",
   "/assets/fonts/inter-700.woff2",
   "/assets/fonts/literata-700.woff2",

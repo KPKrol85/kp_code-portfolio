@@ -1,5 +1,9 @@
 .hero {
-  background: linear-gradient(180deg, var(--color-hero-surface-start) 0%, var(--color-hero-surface-end) 100%);
+  background: linear-gradient(
+    180deg,
+    var(--color-hero-surface-start) 0%,
+    var(--color-hero-surface-end) 100%
+  );
 }
 
 .hero__grid {
@@ -17,15 +21,6 @@
   font-size: clamp(var(--text-2xl), 8vw, var(--text-3xl));
   line-height: 1.12;
   text-wrap: balance;
-  margin: 0 0 var(--space-lg);
-}
-
-.hero__eyebrow {
-  color: var(--color-primary);
-  font-weight: 600;
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
-  font-size: var(--text-xs);
   margin: 0 0 var(--space-lg);
 }
 
@@ -379,6 +374,10 @@
 
 @media (min-width: 1024px) {
   .hero__title {
-    font-size: clamp(var(--text-3xl), calc(var(--text-2xl) + 2vw), calc(var(--text-3xl) + var(--space-xs)));
+    font-size: clamp(
+      var(--text-3xl),
+      calc(var(--text-2xl) + 2vw),
+      calc(var(--text-3xl) + var(--space-xs))
+    );
   }
 }

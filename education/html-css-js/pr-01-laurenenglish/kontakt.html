@@ -134,13 +134,13 @@
       <section class="section hero hero--contact">
         <div class="container hero__grid">
           <div class="hero__content" data-reveal>
-            <p class="hero__eyebrow">Kontakt</p>
+            <p class="eyebrow">Kontakt</p>
             <h1 class="hero__title">
               Porozmawiajmy o Twojej nauce angielskiego.
             </h1>
             <p class="hero__subtitle">
-              Napisz lub zadzwoń. Opowiedz, czego potrzebujesz, a wspólnie ustalimy najlepszy
-              kolejny krok.
+              Napisz lub zadzwoń. Opowiedz, czego potrzebujesz, a wspólnie
+              ustalimy najlepszy kolejny krok.
             </p>
           </div>
           <div class="hero__visual hero__visual--contact" data-reveal>
@@ -160,184 +160,211 @@
         </div>
       </section>
 
-      <section class="section" aria-labelledby="contact-methods-title">
-        <div class="container">
-          <div class="section__header" data-reveal>
-            <h2 class="section__title" id="contact-methods-title">
-              Wybierz wygodny sposób kontaktu
-            </h2>
-            <p class="section__subtitle">
-              Możesz skorzystać z telefonu, wiadomości e-mail albo formularza
-              poniżej.
-            </p>
-          </div>
-          <div class="grid grid--cards">
-            <article class="card contact__method" data-reveal>
-              <h3 class="card__title">Telefon</h3>
-              <p class="card__text">
-                Zadzwoń, aby rozpocząć rozmowę o nauce angielskiego.
-              </p>
-              <a
-                class="button button--secondary contact__link"
-                href="tel:+48533537091"
-                >+48 533 537 091</a
-              >
-            </article>
-            <article class="card contact__method" data-reveal>
-              <h3 class="card__title">E-mail</h3>
-              <p class="card__text">
-                Napisz i krótko opisz temat swojego zapytania.
-              </p>
-              <a
-                class="button button--secondary contact__link"
-                href="mailto:kontakt@kp-code.pl"
-                >kontakt@kp-code.pl</a
-              >
-            </article>
-            <article class="card contact__method" data-reveal>
-              <h3 class="card__title">Adres korespondencyjny</h3>
-              <address class="contact__address">
-                ul. Marynarki Wojennej 12/31, 33-100 Tarnów, Polska
-              </address>
-            </article>
-          </div>
-        </div>
-      </section>
-
-      <section class="section" aria-labelledby="registration-title">
-        <div class="container">
-          <div class="card card--soft contact__process" data-reveal>
-            <h2 class="card__title" id="registration-title">
-              Informacje o zapisach
-            </h2>
-            <p class="card__text">
-              Pierwszy kontakt służy omówieniu najważniejszych informacji
-              potrzebnych do zaplanowania dalszych kroków.
-            </p>
-            <ul class="list">
-              <li>celów nauki,</li>
-              <li>obecnego poziomu,</li>
-              <li>preferowanego formatu lekcji,</li>
-              <li>dostępnych kolejnych kroków.</li>
-            </ul>
-          </div>
-        </div>
-      </section>
-
-      <section
-        class="section contact"
-        id="formularz"
-        aria-labelledby="contact-form-title"
-      >
-        <div class="container contact__grid">
-          <div class="contact__content" data-reveal>
-            <h2 class="section__title" id="contact-form-title">
-              Napisz wiadomość
-            </h2>
-            <p class="section__subtitle">
-              Podaj podstawowe informacje, które pomogą rozpocząć rozmowę o
-              nauce angielskiego.
-            </p>
-          </div>
-          <form
-            class="form"
-            name="kontakt"
-            method="POST"
-            action="/thank-you.html"
-            data-netlify="true"
-            netlify-honeypot="bot-field"
-            data-reveal
+      <div class="section contact">
+        <div class="container contact__layout">
+          <section
+            class="contact__methods"
+            aria-labelledby="contact-methods-title"
           >
-            <input type="hidden" name="form-name" value="kontakt" />
-            <p hidden>
-              <label
-                >Nie wypełniaj tego pola:
-                <input name="bot-field" autocomplete="off"
-              /></label>
-            </p>
-            <div class="form__field">
-              <label class="form__label" for="contact-name"
-                >Imię i nazwisko (wymagane)</label
-              >
-              <input
-                class="form__input"
-                id="contact-name"
-                name="name"
-                type="text"
-                autocomplete="name"
-                required
-              />
-            </div>
-            <div class="form__field">
-              <label class="form__label" for="contact-email"
-                >Adres e-mail (wymagane)</label
-              >
-              <input
-                class="form__input"
-                id="contact-email"
-                name="email"
-                type="email"
-                autocomplete="email"
-                required
-              />
-            </div>
-            <div class="form__field">
-              <label class="form__label" for="contact-phone"
-                >Numer telefonu (opcjonalnie)</label
-              >
-              <input
-                class="form__input"
-                id="contact-phone"
-                name="phone"
-                type="tel"
-                autocomplete="tel"
-              />
-            </div>
-            <div class="form__field">
-              <label class="form__label" for="contact-topic"
-                >Temat zapytania (wymagane)</label
-              >
-              <select
-                class="form__input"
-                id="contact-topic"
-                name="topic"
-                required
-              >
-                <option value="">Wybierz temat</option>
-                <option value="individual">Nauka indywidualna</option>
-                <option value="conversation">Konwersacje</option>
-                <option value="exam">Przygotowanie do egzaminu</option>
-                <option value="business">English for Business</option>
-                <option value="materials">Materiały do nauki</option>
-                <option value="other">Inne pytanie</option>
-              </select>
-            </div>
-            <div class="form__field">
-              <label class="form__label" for="contact-message"
-                >Wiadomość (wymagane)</label
-              >
-              <textarea
-                class="form__input form__input--message"
-                id="contact-message"
-                name="message"
-                rows="6"
-                aria-describedby="contact-message-hint"
-                required
-              ></textarea>
-              <p class="form__hint" id="contact-message-hint">
-                Opisz cel nauki, obecny poziom lub preferowany format lekcji.
+            <div class="section__header contact__header" data-reveal>
+              <h2 class="section__title" id="contact-methods-title">
+                Wybierz wygodny sposób kontaktu
+              </h2>
+              <p class="section__subtitle">
+                Zadzwoń, napisz e-mail lub skorzystaj z formularza — wybierz
+                sposób, który jest dla Ciebie najwygodniejszy.
               </p>
             </div>
-            <p class="form__disclaimer">
-              Wysłanie formularza przekazuje podane dane w celu obsługi
-              zapytania dotyczącego nauki angielskiego.
-            </p>
-            <button class="button button--primary" type="submit">
-              Wyślij wiadomość
-            </button>
-          </form>
+            <div class="contact__methods-grid">
+              <article class="card contact__method" data-reveal>
+                <h3 class="card__title">Telefon</h3>
+                <p class="card__text">
+                  Jeśli wolisz rozmowę, skontaktuj się telefonicznie.
+                </p>
+                <a class="contact__link" href="tel:+48533537091">
+                  <svg
+                    class="contact__icon"
+                    xmlns="http://www.w3.org/2000/svg"
+                    viewBox="0 0 640 640"
+                    aria-hidden="true"
+                    focusable="false"
+                    fill="currentColor"
+                  >
+                    <!--!Font Awesome Free v7.3.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2026 Fonticons, Inc.-->
+                    <path
+                      d="M224.2 89C216.3 70.1 195.7 60.1 176.1 65.4L170.6 66.9C106 84.5 50.8 147.1 66.9 223.3C104 398.3 241.7 536 416.7 573.1C493 589.3 555.5 534 573.1 469.4L574.6 463.9C580 444.2 569.9 423.6 551.1 415.8L453.8 375.3C437.3 368.4 418.2 373.2 406.8 387.1L368.2 434.3C297.9 399.4 241.3 341 208.8 269.3L253 233.3C266.9 222 271.6 202.9 264.8 186.3L224.2 89z"
+                    />
+                  </svg>
+                  <span>+48 533 537 091</span>
+                </a>
+              </article>
+              <article class="card contact__method" data-reveal>
+                <h3 class="card__title">E-mail</h3>
+                <p class="card__text">
+                  Napisz kilka słów o swoim celu lub pytaniu.
+                </p>
+                <a class="contact__link" href="mailto:kontakt@kp-code.pl">
+                  <svg
+                    class="contact__icon"
+                    xmlns="http://www.w3.org/2000/svg"
+                    viewBox="0 0 640 640"
+                    aria-hidden="true"
+                    focusable="false"
+                    fill="currentColor"
+                  >
+                    <!--!Font Awesome Free v7.3.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2026 Fonticons, Inc.-->
+                    <path
+                      d="M112 128C85.5 128 64 149.5 64 176C64 191.1 71.1 205.3 83.2 214.4L291.2 370.4C308.3 383.2 331.7 383.2 348.8 370.4L556.8 214.4C568.9 205.3 576 191.1 576 176C576 149.5 554.5 128 528 128L112 128zM64 260L64 448C64 483.3 92.7 512 128 512L512 512C547.3 512 576 483.3 576 448L576 260L377.6 408.8C343.5 434.4 296.5 434.4 262.4 408.8L64 260z"
+                    />
+                  </svg>
+                  <span>kontakt@kp-code.pl</span>
+                </a>
+              </article>
+              <article class="card contact__method" data-reveal>
+                <h3 class="card__title">Adres korespondencyjny</h3>
+                <p class="card__text">Dane do korespondencji pocztowej.</p>
+                <address class="contact__address">
+                  ul. Marynarki Wojennej 12/31, 33-100 Tarnów, Polska
+                </address>
+              </article>
+            </div>
+          </section>
+
+          <section
+            class="contact__message"
+            id="formularz"
+            aria-labelledby="contact-form-title"
+          >
+            <div class="contact__support">
+              <div class="contact__content" data-reveal>
+                <h2 class="section__title" id="contact-form-title">
+                  Napisz wiadomość
+                </h2>
+                <p class="section__subtitle">
+                  Podaj podstawowe informacje, które pomogą rozpocząć rozmowę o
+                  nauce angielskiego.
+                </p>
+              </div>
+              <aside
+                class="card card--soft contact__process"
+                aria-labelledby="registration-title"
+                data-reveal
+              >
+                <h3 class="card__title" id="registration-title">
+                  Informacje o zapisach
+                </h3>
+                <p class="card__text">
+                  Pierwszy kontakt służy omówieniu najważniejszych informacji
+                  potrzebnych do zaplanowania dalszych kroków.
+                </p>
+                <ul class="list">
+                  <li>celów nauki,</li>
+                  <li>obecnego poziomu,</li>
+                  <li>preferowanego formatu lekcji,</li>
+                  <li>dostępnych kolejnych kroków.</li>
+                </ul>
+              </aside>
+            </div>
+            <form
+              class="form contact__form"
+              name="kontakt"
+              method="POST"
+              action="/thank-you.html"
+              data-netlify="true"
+              netlify-honeypot="bot-field"
+              data-reveal
+            >
+              <input type="hidden" name="form-name" value="kontakt" />
+              <p hidden>
+                <label
+                  >Nie wypełniaj tego pola:
+                  <input name="bot-field" autocomplete="off"
+                /></label>
+              </p>
+              <div class="form__field">
+                <label class="form__label" for="contact-name"
+                  >Imię i nazwisko (wymagane)</label
+                >
+                <input
+                  class="form__input"
+                  id="contact-name"
+                  name="name"
+                  type="text"
+                  autocomplete="name"
+                  required
+                />
+              </div>
+              <div class="form__field">
+                <label class="form__label" for="contact-email"
+                  >Adres e-mail (wymagane)</label
+                >
+                <input
+                  class="form__input"
+                  id="contact-email"
+                  name="email"
+                  type="email"
+                  autocomplete="email"
+                  required
+                />
+              </div>
+              <div class="form__field">
+                <label class="form__label" for="contact-phone"
+                  >Numer telefonu (opcjonalnie)</label
+                >
+                <input
+                  class="form__input"
+                  id="contact-phone"
+                  name="phone"
+                  type="tel"
+                  autocomplete="tel"
+                />
+              </div>
+              <div class="form__field">
+                <label class="form__label" for="contact-topic"
+                  >Temat zapytania (wymagane)</label
+                >
+                <select
+                  class="form__input"
+                  id="contact-topic"
+                  name="topic"
+                  required
+                >
+                  <option value="">Wybierz temat</option>
+                  <option value="individual">Nauka indywidualna</option>
+                  <option value="conversation">Konwersacje</option>
+                  <option value="exam">Przygotowanie do egzaminu</option>
+                  <option value="business">English for Business</option>
+                  <option value="materials">Materiały do nauki</option>
+                  <option value="other">Inne pytanie</option>
+                </select>
+              </div>
+              <div class="form__field">
+                <label class="form__label" for="contact-message"
+                  >Wiadomość (wymagane)</label
+                >
+                <textarea
+                  class="form__input form__input--message"
+                  id="contact-message"
+                  name="message"
+                  rows="6"
+                  aria-describedby="contact-message-hint"
+                  required
+                ></textarea>
+                <p class="form__hint" id="contact-message-hint">
+                  Opisz cel nauki, obecny poziom lub preferowany format lekcji.
+                </p>
+              </div>
+              <p class="form__disclaimer">
+                Wysłanie formularza przekazuje podane dane w celu obsługi
+                zapytania dotyczącego nauki angielskiego.
+              </p>
+              <button class="button button--primary" type="submit">
+                Wyślij wiadomość
+              </button>
+            </form>
+          </section>
         </div>
-      </section>
+      </div>
     </main>
 
     <!-- shared-shell:footer:start -->

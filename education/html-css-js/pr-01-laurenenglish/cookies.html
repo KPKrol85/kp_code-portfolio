@@ -96,74 +96,267 @@
     <!-- shared-shell:header:end -->
 
     <main id="main">
-      <section class="section" aria-labelledby="cookies-title">
-        <div class="container">
-          <div class="section__header">
-            <p class="hero__eyebrow">Informacje</p>
-            <h1 class="section__title" id="cookies-title">Polityka cookies</h1>
-            <p class="section__subtitle">
-              Ta strona opisuje mechanizmy pamięci przeglądarki używane przez
-              obecną wersję projektu Lauren English.
+      <section class="section legal-page" aria-labelledby="cookies-title">
+        <div class="container legal-page__container">
+          <div class="legal-page__header">
+            <p class="eyebrow">Informacje prawne</p>
+            <h1 class="legal-page__title" id="cookies-title">
+              Polityka cookies
+            </h1>
+            <p class="legal-page__lead">
+              Niniejsza Polityka cookies określa zasady korzystania z plików
+              cookies i podobnych technologii w demonstracyjnym projekcie strony
+              Lauren English, opracowanym przez KP_Code Digital Studio. Dokument
+              opisuje rzeczywiste mechanizmy pamięci przeglądarki używane przez
+              obecną wersję Serwisu.
             </p>
           </div>
 
-          <div class="u-flow">
-            <section aria-labelledby="cookies-current-title">
-              <h2 class="card__title" id="cookies-current-title">
-                Pliki cookie
+          <article class="legal-document" aria-labelledby="cookies-title">
+            <section
+              class="legal-document__section"
+              aria-labelledby="cookies-general-title"
+            >
+              <h2 class="legal-document__heading" id="cookies-general-title">
+                1. Postanowienia ogólne
               </h2>
               <p>
-                Kod projektu nie ustawia plików cookie. Nie zawiera narzędzi
-                analitycznych, reklamowych ani marketingowych wykorzystujących
-                cookies.
+                Dokument wyjaśnia mechanizmy zapisywania i odczytywania
+                informacji na urządzeniu Użytkownika podczas korzystania z
+                Serwisu Lauren English. Serwis ma charakter prezentacyjny i nie
+                prowadzi rzeczywistej sprzedaży ani nie umożliwia dokonywania
+                płatności.
+              </p>
+              <p>
+                Operatorem Serwisu jest KP_Code Digital Studio. Opisane
+                mechanizmy odpowiadają technologiom rzeczywiście używanym w
+                obecnej wersji Serwisu.
+              </p>
+              <p>
+                W sprawach nieuregulowanych w tym dokumencie zastosowanie mają
+                <a href="/polityka-prywatnosci.html">Polityka prywatności</a>
+                oraz <a href="/regulamin.html">Regulamin serwisu</a>.
               </p>
             </section>
 
-            <section aria-labelledby="cookies-storage-title">
-              <h2 class="card__title" id="cookies-storage-title">
-                localStorage
+            <section
+              class="legal-document__section"
+              aria-labelledby="cookies-definition-title"
+            >
+              <h2 class="legal-document__heading" id="cookies-definition-title">
+                2. Czym są pliki cookies i podobne technologie
               </h2>
               <p>
-                Strona zapisuje wybór jasnego lub ciemnego motywu pod kluczem
-                <code>theme</code>. Dziennik postępów używa klucza
-                <code>lauren_progress_v1</code> do lokalnego przechowywania
-                celów i check-inów.
+                Pliki cookies to niewielkie informacje tekstowe zapisywane na
+                urządzeniu Użytkownika i odczytywane przez witrynę podczas
+                kolejnych wizyt. Mogą wspierać działanie strony, bezpieczeństwo
+                i zapamiętywanie wybranych ustawień.
+              </p>
+              <p>
+                Podobne technologie obejmują między innymi localStorage, które
+                przechowuje dane w przeglądarce, oraz Cache Storage, używane
+                przez Service Worker do lokalnego zapisywania zasobów witryny.
+                Nie są one plikami cookie, ale również zapisują informacje na
+                urządzeniu końcowym.
               </p>
             </section>
 
-            <section aria-labelledby="cookies-cache-title">
-              <h2 class="card__title" id="cookies-cache-title">
-                Pamięć podręczna aplikacji
+            <section
+              class="legal-document__section"
+              aria-labelledby="cookies-types-title"
+            >
+              <h2 class="legal-document__heading" id="cookies-types-title">
+                3. Rodzaje wykorzystywanych technologii
               </h2>
               <p>
-                Service Worker może zapisywać lokalne pliki witryny w Cache
-                Storage, aby udostępniać podstawowe zasoby podczas pracy
-                offline. Cache Storage nie jest plikiem cookie.
+                Kod obecnej wersji Serwisu nie ustawia plików cookie. Nie
+                zawiera także narzędzi analitycznych, reklamowych ani
+                marketingowych wykorzystujących cookies.
+              </p>
+              <p>Serwis korzysta natomiast z następujących mechanizmów:</p>
+              <ul class="legal-document__list">
+                <li>
+                  localStorage pod kluczem <code>theme</code> – do zapamiętania
+                  jasnego lub ciemnego motywu po wybraniu go przez Użytkownika,
+                </li>
+                <li>
+                  localStorage pod kluczem <code>lauren_progress_v1</code> – do
+                  lokalnego przechowywania celów i wpisów dziennika po
+                  skorzystaniu z funkcji postępów,
+                </li>
+                <li>
+                  Cache Storage – do przechowywania lokalnych plików Serwisu
+                  potrzebnych do podstawowego działania offline.
+                </li>
+              </ul>
+              <p>
+                Dane w localStorage pozostają zapisane do czasu ich usunięcia
+                przez Użytkownika lub funkcję Serwisu. Zawartość Cache Storage
+                jest zarządzana przez Service Worker i przeglądarkę. Serwis nie
+                korzysta z sessionStorage, lokalnych baz danych przeglądarki ani
+                identyfikatorów analitycznych.
               </p>
             </section>
 
-            <section aria-labelledby="cookies-control-title">
-              <h2 class="card__title" id="cookies-control-title">
-                Kontrola danych lokalnych
+            <section
+              class="legal-document__section"
+              aria-labelledby="cookies-purposes-title"
+            >
+              <h2 class="legal-document__heading" id="cookies-purposes-title">
+                4. Cele wykorzystywania technologii przechowywania danych
               </h2>
               <p>
-                Motyw można zmienić przyciskiem w nagłówku, a dane dziennika
-                wyeksportować lub zresetować na stronie postępów. Dane
-                localStorage i Cache Storage można również usunąć w ustawieniach
-                przeglądarki.
+                Obecna implementacja nie wykorzystuje plików cookie. Podobne
+                technologie są używane wyłącznie w celu:
+              </p>
+              <ul class="legal-document__list">
+                <li>zapamiętania wybranego wyglądu interfejsu,</li>
+                <li>
+                  zachowania danych dziennika postępów w używanej przeglądarce,
+                </li>
+                <li>
+                  zapewnienia podstawowego dostępu offline i sprawnego ładowania
+                  lokalnych zasobów Serwisu.
+                </li>
+              </ul>
+              <p>
+                Mechanizmy te nie służą analizie zachowania Użytkownika,
+                reklamie ani profilowaniu.
               </p>
             </section>
 
-            <div class="section__actions">
-              <a class="button button--primary" href="/index.html"
-                >Wróć na stronę główną</a
+            <section
+              class="legal-document__section"
+              aria-labelledby="cookies-legal-title"
+            >
+              <h2 class="legal-document__heading" id="cookies-legal-title">
+                5. Podstawy prawne stosowania plików cookies i podobnych
+                technologii
+              </h2>
+              <p>
+                Technologie pamięci przeglądarki są stosowane zgodnie z
+                obowiązującymi przepisami prawa, w szczególności ustawą z dnia
+                12 lipca 2024 r. – Prawo komunikacji elektronicznej oraz RODO w
+                zakresie, w jakim ich używanie wiąże się z przetwarzaniem danych
+                osobowych.
+              </p>
+              <p>
+                Zgoda nie jest wymagana, gdy zapisanie informacji lub uzyskanie
+                do niej dostępu jest konieczne do dostarczenia usługi wyraźnie
+                żądanej przez Użytkownika. W obecnej wersji Serwisu zapis motywu
+                i dziennika wynika z bezpośredniego działania Użytkownika, a
+                Cache Storage wspiera techniczne działanie Serwisu offline.
+              </p>
+              <p>
+                Serwis nie stosuje mechanizmu zgody na cookies, ponieważ nie
+                ustawia plików cookie ani innych technologii analitycznych,
+                reklamowych lub marketingowych wymagających takiej zgody. Gdyby
+                zakres technologii uległ zmianie, dokument i sposób pozyskania
+                zgody zostaną odpowiednio zaktualizowane.
+              </p>
+            </section>
+
+            <section
+              class="legal-document__section"
+              aria-labelledby="cookies-management-title"
+            >
+              <h2 class="legal-document__heading" id="cookies-management-title">
+                6. Zarządzanie ustawieniami cookies i podobnych technologii
+              </h2>
+              <p>
+                Użytkownik może zarządzać danymi witryny w ustawieniach swojej
+                przeglądarki. Może w szczególności:
+              </p>
+              <ul class="legal-document__list">
+                <li>usunąć dane localStorage i Cache Storage,</li>
+                <li>wyłączyć lub usunąć Service Worker,</li>
+                <li>
+                  zmienić motyw przyciskiem w nagłówku oraz wyeksportować lub
+                  zresetować dane na stronie postępów.
+                </li>
+              </ul>
+              <p>
+                Ograniczenie pamięci przeglądarki może spowodować utratę
+                zapisanego motywu lub dziennika oraz ograniczyć działanie
+                Serwisu offline.
+              </p>
+            </section>
+
+            <section
+              class="legal-document__section"
+              aria-labelledby="cookies-third-party-title"
+            >
+              <h2
+                class="legal-document__heading"
+                id="cookies-third-party-title"
               >
-              <a
-                class="button button--secondary"
-                href="/polityka-prywatnosci.html"
-                >Polityka prywatności</a
-              >
-            </div>
+                7. Technologie i usługi podmiotów trzecich
+              </h2>
+              <p>
+                Obecna wersja Serwisu nie osadza zewnętrznych narzędzi
+                analitycznych, map, treści ani zdalnych fontów, które
+                ustawiałyby pliki cookie podmiotów trzecich. Hosting i formularz
+                kontaktowy są obsługiwane technicznie przez Netlify, jednak kod
+                projektu nie ładuje skryptów śledzących tego dostawcy.
+              </p>
+              <p>
+                Serwis zawiera odnośniki do zewnętrznych profili
+                społecznościowych. Samo wyświetlenie odnośnika nie przekazuje
+                danych operatorowi zewnętrznej strony. Po wybraniu odnośnika i
+                przejściu na taką stronę zastosowanie mają zasady określone
+                przez jej administratora.
+              </p>
+            </section>
+
+            <section
+              class="legal-document__section"
+              aria-labelledby="cookies-changes-title"
+            >
+              <h2 class="legal-document__heading" id="cookies-changes-title">
+                8. Zmiany Polityki cookies
+              </h2>
+              <p>
+                Operator może wprowadzać zmiany w niniejszej Polityce cookies w
+                szczególności w przypadku zmian przepisów, funkcjonalności
+                Serwisu lub stosowanych technologii. Aktualna wersja dokumentu
+                jest publikowana w Serwisie i wchodzi w życie z dniem jej
+                opublikowania, o ile nie wskazano inaczej.
+              </p>
+            </section>
+
+            <section
+              class="legal-document__section"
+              aria-labelledby="cookies-contact-title"
+            >
+              <h2 class="legal-document__heading" id="cookies-contact-title">
+                9. Kontakt
+              </h2>
+              <p>
+                W sprawach związanych z technologiami pamięci przeglądarki,
+                przetwarzaniem danych lub realizacją praw Użytkownika można
+                skontaktować się z Operatorem pod adresem
+                <a href="mailto:kontakt@kp-code.pl">kontakt@kp-code.pl</a>.
+                Operator udziela odpowiedzi w możliwie najkrótszym terminie, z
+                uwzględnieniem charakteru zgłoszenia i obowiązujących przepisów
+                prawa.
+              </p>
+            </section>
+
+            <p class="legal-document__updated">
+              <strong>Data ostatniej aktualizacji:</strong>
+              <time datetime="2026-07-20">20.07.2026</time>
+            </p>
+          </article>
+
+          <div class="section__actions legal-page__actions">
+            <a class="button button--primary" href="/index.html"
+              >Wróć na stronę główną</a
+            >
+            <a
+              class="button button--secondary"
+              href="/polityka-prywatnosci.html"
+              >Polityka prywatności</a
+            >
           </div>
         </div>
       </section>

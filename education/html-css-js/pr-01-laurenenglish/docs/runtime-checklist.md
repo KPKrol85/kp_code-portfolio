@@ -23,7 +23,7 @@
 - Otwórz każdą stronę (`index.html`, `uslugi.html`, `pakiety.html`, `materialy.html`, `postepy.html`, `thank-you.html`, `offline.html`, `404.html`) i w DevTools → Network upewnij się, że:
   - `/css/style.css` zwraca HTTP 200 z MIME `text/css`.
   - `/js/main.js` zwraca HTTP 200 z MIME JavaScript i jest ładowane jako moduł.
-  - Dokładny lokalny graf 25 plików CSS i 19 modułów JavaScript ładuje się bez 404, duplikatów i requestów zewnętrznych.
+  - Dokładny lokalny graf 26 plików CSS i 19 modułów JavaScript ładuje się bez 404, duplikatów i requestów zewnętrznych.
   - Nie ma requestów do `/assets/build/style.min.css` ani `/assets/build/main.min.js`.
   - `/assets/img/logo/logo.svg` zwraca HTTP 200 z MIME `image/svg+xml` i jest pobierane tylko raz mimo użycia w headerze i footerze.
   - Fonty Inter 400/600/700 i Literata 700 ładują się z `/assets/fonts/` jako `font/woff2`, bez odpowiedzi 404, duplikatów i zewnętrznych requestów; Inter 500 nie jest requestowany, a jedyny preload wskazuje Literata 700.
@@ -67,7 +67,7 @@
 
 ## Service Worker i offline
 
-- `npm run build:sw` musi najpierw potwierdzić, że wszystkie ścieżki precache istnieją, są znormalizowane i unikalne, zawierają dokładny skonfigurowany graf 25 plików CSS i 19 modułów JavaScript oraz nie wskazują na `assets/build/`.
+- `npm run build:sw` musi najpierw potwierdzić, że wszystkie ścieżki precache istnieją, są znormalizowane i unikalne, zawierają dokładny skonfigurowany graf 26 plików CSS i 19 modułów JavaScript oraz nie wskazują na `assets/build/`.
 - Oczekuj jednego bieżącego cache `lauren-english-v<version>-<fingerprint>`. Identyczne wejścia nie zmieniają rewizji; zmiana szablonu, konfiguracji lub treści precache zmienia fingerprint.
 - Instalacja jest atomowa z perspektywy aktywnego workera: `skipWaiting` następuje dopiero po pełnym precache, a błąd usuwa niekompletny nowy cache. Aktywacja przejmuje klientów i usuwa wyłącznie starsze cache zaczynające się od `lauren-english-v`; inne cache originu muszą pozostać.
 - Online pięć głównych tras działa network-first. Tylko pełna, nieprzekierowana odpowiedź HTML `200` znanej trasy może odświeżyć jej wpis. Nieznana trasa online pozostaje realnym `404` i nie jest zapisywana.
@@ -79,7 +79,7 @@
 - `/site.webmanifest` musi zwrócić `application/manifest+json`, zawierać komplet wymaganych pól, dokładnie trzy unikalne skróty do `/pakiety.html`, `/materialy.html` i `/postepy.html`, instalacyjne PNG `192 × 192` i `512 × 512` oraz screenshoty `1280 × 720` (`wide`) i `720 × 1280` (`narrow`). Wszystkie trasy i assety muszą zwracać `200`, a rozmiary i MIME muszą odpowiadać deklaracjom.
 - Nie deklaruj `maskable`, dopóki osobna ikona nie ma zweryfikowanej strefy bezpiecznej.
 - Hero ma być pobrane raz jako `/assets/img/hero/hero-01.jpg`, z wymiarami `1600 × 1200`, `loading="eager"`, `fetchpriority="high"` i bez przesunięcia layoutu.
-- Budżet krytyczny homepage: dokładnie 25 lokalnych requestów CSS, 19 lokalnych requestów JavaScript, 4 fonty (Inter 400/600/700 i Literata 700, razem maks. 185 kB), 1 współdzielone logo, 1 hero (maks. 1,1 MB), zero requestów `assets/build/`, zewnętrznych fontów i duplikatów.
+- Budżet krytyczny homepage: dokładnie 26 lokalnych requestów CSS, 19 lokalnych requestów JavaScript, 4 fonty (Inter 400/600/700 i Literata 700, razem maks. 185 kB), 1 współdzielone logo, 1 hero (maks. 1,1 MB), zero requestów `assets/build/`, zewnętrznych fontów i duplikatów.
 
 ## Netlify
 

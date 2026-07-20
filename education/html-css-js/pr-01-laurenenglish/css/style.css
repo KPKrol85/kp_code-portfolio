@@ -5,6 +5,7 @@
 
 @import "utilities/utilities.css";
 
+@import "components/eyebrow.css";
 @import "components/buttons.css";
 @import "components/navigation.css";
 @import "components/cards.css";
@@ -27,3 +28,4 @@
 @import "sections/reveal.css";
 
 @import "pages/pages.css";
+@import "pages/legal.css";

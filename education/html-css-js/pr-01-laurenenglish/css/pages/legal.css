@@ -1,0 +1,114 @@
+.legal-page__container {
+  max-width: calc(var(--content-measure) + var(--space-2xl));
+}
+
+.legal-page__header {
+  max-width: var(--content-measure);
+  margin-block-end: var(--space-xl);
+}
+
+.legal-page__title {
+  margin: 0 0 var(--space-sm);
+  font-size: clamp(var(--text-2xl), 7vw, var(--text-3xl));
+}
+
+.legal-page__lead {
+  max-width: var(--content-measure);
+  margin: 0;
+  color: var(--color-text-muted);
+  font-size: var(--text-2sm);
+  line-height: 1.7;
+}
+
+.legal-document {
+  padding: var(--space-lg);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  background: var(--color-surface);
+  box-shadow: var(--shadow-sm);
+}
+
+.legal-document__section + .legal-document__section {
+  margin-block-start: var(--space-xl);
+  padding-block-start: var(--space-xl);
+  border-block-start: 1px solid var(--color-border);
+}
+
+.legal-document__heading {
+  margin: 0 0 var(--space-md);
+  font-size: var(--text-xl);
+}
+
+.legal-document p {
+  margin: 0;
+  color: var(--color-text-muted);
+  font-size: var(--text-2sm);
+}
+
+.legal-document p + p {
+  margin-block-start: var(--space-sm);
+}
+
+.legal-document__list {
+  display: grid;
+  gap: var(--space-xs);
+  margin: var(--space-sm) 0;
+  padding-inline-start: var(--space-lg);
+  color: var(--color-text-muted);
+  font-size: var(--text-2sm);
+}
+
+.legal-document__list li::marker {
+  color: var(--color-primary);
+  font-weight: 700;
+}
+
+.legal-document__definitions {
+  display: grid;
+  gap: var(--space-md);
+  margin: 0;
+}
+
+.legal-document__definition {
+  min-inline-size: 0;
+}
+
+.legal-document__definition dt {
+  color: var(--color-text);
+  font-weight: 700;
+}
+
+.legal-document__definition dd {
+  margin: var(--space-2xs) 0 0;
+  color: var(--color-text-muted);
+}
+
+.legal-document a {
+  color: var(--color-primary);
+  font-weight: 600;
+  overflow-wrap: anywhere;
+  text-decoration: underline;
+  text-decoration-thickness: 0.08em;
+  text-underline-offset: 0.18em;
+}
+
+.legal-document p.legal-document__updated {
+  margin-block-start: var(--space-lg);
+  padding-block-start: var(--space-md);
+  border-block-start: 1px solid var(--color-border);
+  font-size: var(--text-sm);
+}
+
+.legal-document__updated strong {
+  color: var(--color-text);
+}
+
+.legal-page__actions {
+  margin-block-start: var(--space-xl);
+}
+
+@media (min-width: 780px) {
+  .legal-document {
+    padding: var(--space-2xl);
+  }
+}

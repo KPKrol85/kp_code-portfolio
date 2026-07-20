@@ -32,6 +32,7 @@ const expectedImports = [
   "base/base.css",
   "base/typography.css",
   "utilities/utilities.css",
+  "components/eyebrow.css",
   "components/buttons.css",
   "components/navigation.css",
   "components/cards.css",
@@ -52,6 +53,7 @@ const expectedImports = [
   "sections/offline.css",
   "sections/reveal.css",
   "pages/pages.css",
+  "pages/legal.css",
 ];
 const styleSource = sources.get("style.css");
 const actualImports = [...styleSource.matchAll(/@import\s+"([^"]+)"/gu)].map(

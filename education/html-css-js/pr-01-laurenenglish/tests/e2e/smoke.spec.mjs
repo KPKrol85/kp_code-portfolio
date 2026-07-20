@@ -21,7 +21,7 @@ test.describe("generated production pages", () => {
 
     await expect(page.locator(".header__logo-text")).toHaveText(SITE.name);
     await expect(page.locator(".footer__brand-text")).toHaveText(SITE.name);
-    await expect(page.locator(".hero__eyebrow")).toHaveText(
+    await expect(page.locator(".eyebrow")).toHaveText(
       "INDYWIDUALNE LEKCJE ANGIELSKIEGO",
     );
     await expect(page.locator(".hero__title")).toHaveText(

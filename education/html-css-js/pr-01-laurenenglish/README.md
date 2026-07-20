@@ -66,7 +66,7 @@ Wszystkie strony produkcyjne ładują bezpośrednio kanoniczne entrypointy:
 - `/css/style.css`
 - `/js/main.js` jako `<script type="module">`
 
-Przeglądarka rozwiązuje dalej jawny graf 25 lokalnych plików CSS (entrypoint i 24 standardowe `@import`) oraz 19 lokalnych modułów JavaScript. Pliki w `assets/build/` pozostają śledzonymi outputami legacy, ale nie są ładowane przez strony, precachowane ani wymagane przez build i testy. Zostały zachowane, ponieważ ich usunięcie nie jest potrzebne do tej migracji; nie edytuj ich ręcznie. `service-worker.js` również jest generowany i śledzony, a jego jedynym źródłem pozostaje szablon oraz konfiguracja PWA.
+Przeglądarka rozwiązuje dalej jawny graf 26 lokalnych plików CSS (entrypoint i 25 standardowych `@import`) oraz 19 lokalnych modułów JavaScript. Pliki w `assets/build/` pozostają śledzonymi outputami legacy, ale nie są ładowane przez strony, precachowane ani wymagane przez build i testy. Zostały zachowane, ponieważ ich usunięcie nie jest potrzebne do tej migracji; nie edytuj ich ręcznie. `service-worker.js` również jest generowany i śledzony, a jego jedynym źródłem pozostaje szablon oraz konfiguracja PWA.
 
 ## Lokalny development
 
@@ -155,11 +155,11 @@ Każda strona ma dokładnie jeden stan `aria-current="page"`: na stronie główn
 - `service-worker.template.js` pozostaje jedynym źródłem Service Workera. `scripts/pwa-config.mjs` definiuje kontrakt assetów, a `scripts/build-service-worker.mjs` sprawdza istnienie i unikalność ścieżek przed wygenerowaniem `service-worker.js`.
 - Cache używa stałego prefiksu `lauren-english-v` oraz rewizji `<package version>-<12 znaków SHA-256>`. Fingerprint obejmuje szablon, konfigurację i treść każdego precachowanego pliku, więc identyczne wejścia dają identyczną nazwę, a zmiana wejścia tworzy nową.
 - Instalacja kończy się dopiero po pełnym `cache.addAll`; nieudana instalacja usuwa wyłącznie niekompletny bieżący cache. Po udanej instalacji worker wywołuje `skipWaiting`, a aktywacja usuwa wyłącznie starsze cache z prefiksem Lauren English i wykonuje `clients.claim`.
-- Precache obejmuje pięć głównych dokumentów, `offline.html`, dokładny graf 25 plików CSS i 19 modułów JavaScript, Inter 400/600/700, Literata 700, ikony instalacyjne 192/512, trzy ikony skrótów, współdzielone logo, dwa obrazy homepage (hero i portret) oraz `site.webmanifest`. Nie zawiera outputów `assets/build/`, screenshotów instalacyjnych, stron błędów, formularzy ani katalogu materiałów.
+- Precache obejmuje pięć głównych dokumentów, `offline.html`, dokładny graf 26 plików CSS i 19 modułów JavaScript, Inter 400/600/700, Literata 700, ikony instalacyjne 192/512, trzy ikony skrótów, współdzielone logo, dwa obrazy homepage (hero i portret) oraz `site.webmanifest`. Nie zawiera outputów `assets/build/`, screenshotów instalacyjnych, stron błędów, formularzy ani katalogu materiałów.
 - Nawigacja online jest network-first: prawdziwy `404` pozostaje `404` i nie trafia do cache. Przy awarii sieci główna znana trasa otrzymuje swoją kopię, a inna nawigacja otrzymuje `offline.html`; homepage nie jest fallbackiem ogólnym.
 - Cache przyjmuje tylko pełne odpowiedzi `200` dla zamierzonych, same-origin żądań `GET` HTTP(S). Odpowiedzi przekierowane, opaque, częściowe, nieudane, cross-origin i inne metody nie są zapisywane. Statyczny runtime jest ograniczony do jawnej listy precache, a query string nie tworzy dodatkowych wpisów.
 - `site.webmanifest` deklaruje pełny kontrakt instalacyjny, zweryfikowane PNG `192 × 192` i `512 × 512`, dokładnie trzy skróty do pakietów, materiałów i postępów oraz aktualne screenshoty `1280 × 720` (`wide`) i `720 × 1280` (`narrow`). Nie deklaruje `maskable`, ponieważ nie ma osobnego assetu ze zweryfikowaną strefą bezpieczną.
-- Hero używa jednego JPEG `1600 × 1200`, jawnych wymiarów, `loading="eager"`, `fetchpriority="high"` i `decoding="async"`. Budżet homepage to dokładnie 25 requestów CSS i 19 requestów JavaScript z lokalnego grafu, 4 początkowe fonty (łącznie maks. 185 kB), 1 request współdzielonego logo oraz 1 request hero (maks. 1,1 MB), bez outputów `assets/build/`, zewnętrznych źródeł i duplikatów.
+- Hero używa jednego JPEG `1600 × 1200`, jawnych wymiarów, `loading="eager"`, `fetchpriority="high"` i `decoding="async"`. Budżet homepage to dokładnie 26 requestów CSS i 19 requestów JavaScript z lokalnego grafu, 4 początkowe fonty (łącznie maks. 185 kB), 1 request współdzielonego logo oraz 1 request hero (maks. 1,1 MB), bez outputów `assets/build/`, zewnętrznych źródeł i duplikatów.
 
 Weryfikacja lokalna:
 
@@ -196,6 +196,10 @@ npm run test:e2e:seo
 ## Wdrożenie Netlify
 
 Repozytorium nie zawiera `netlify.toml`, dlatego ustawienia wdrożenia pozostają w panelu Netlify. Dla obecnej architektury wymagane są: base directory = root repozytorium, build command = `npm run build`, publish directory = `.`. Nie ustawiaj `dist/`: taki katalog nie jest obecnie tworzony i stanie się publish directory dopiero w osobnej, planowanej migracji do Vite. Główny `_redirects` jest generowany przez `npm run build:html` i musi pozostać w katalogu publikowanym.
+
+## Licencja
+
+Lauren English jest projektem własnościowym KP_Code. Kod źródłowy jest publiczny wyłącznie do przeglądu portfolio oraz prywatnej, niekomercyjnej oceny. Kopiowanie, redystrybucja, publiczne wdrożenie, tworzenie utworów zależnych lub wykorzystanie komercyjne wymagają uprzedniej pisemnej zgody. Pełne warunki zawiera plik [LICENSE.md](LICENSE.md).
 
 ## Uwagi
 
