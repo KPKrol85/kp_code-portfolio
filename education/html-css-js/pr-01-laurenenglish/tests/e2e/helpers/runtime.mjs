@@ -1,6 +1,9 @@
 import { expect } from "@playwright/test";
 
-import { INDEXABLE_PAGES } from "../../../scripts/site-config.mjs";
+import {
+  INDEXABLE_PAGES,
+  PROJECT_DISCLOSURE,
+} from "../../../scripts/site-config.mjs";
 
 export const PRIMARY_PAGES = Object.freeze(
   INDEXABLE_PAGES.map((page) => ({
@@ -61,6 +64,10 @@ export const clearRuntimeState = async (page) => {
   await page.goto("/index.html", { waitUntil: "domcontentloaded" });
   await page.evaluate(async () => {
     localStorage.clear();
+    localStorage.setItem(
+      PROJECT_DISCLOSURE.storageKey,
+      PROJECT_DISCLOSURE.version,
+    );
     sessionStorage.clear();
     if ("caches" in window) {
       await Promise.all(

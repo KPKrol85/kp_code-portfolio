@@ -25,6 +25,7 @@ import {
 import {
   ALL_PAGES,
   HEAD_SECTION_COMMENTS,
+  PROJECT_DISCLOSURE,
   SEO_MARKERS,
   SHARED_SHELL_PAGES,
   SITE,
@@ -260,6 +261,37 @@ const validatePage = async (html, page, assembledPages) => {
   assert(
     footer === renderSharedFooter(),
     `${page.file}: shared footer is stale`,
+  );
+  const disclosure = footer.match(/<dialog\b[\s\S]*?<\/dialog>/iu)?.[0];
+  const disclosureTag = disclosure?.match(/<dialog\b[^>]*>/iu)?.[0] ?? "";
+  assert(
+    disclosure &&
+      (footer.match(/\sdata-project-disclosure(?:\s|>)/gu) ?? []).length ===
+        1 &&
+      disclosureTag.includes('class="project-disclosure"') &&
+      disclosureTag.includes(
+        `data-project-disclosure-enabled="${PROJECT_DISCLOSURE.enabled}"`,
+      ) &&
+      disclosureTag.includes(
+        `data-project-disclosure-version="${PROJECT_DISCLOSURE.version}"`,
+      ) &&
+      disclosureTag.includes(
+        `data-project-disclosure-storage-key="${PROJECT_DISCLOSURE.storageKey}"`,
+      ) &&
+      disclosureTag.includes(
+        `data-project-disclosure-routes="${PROJECT_DISCLOSURE.eligiblePaths.join(" ")}"`,
+      ) &&
+      disclosure.includes('aria-labelledby="project-disclosure-title"') &&
+      disclosure.includes(
+        'aria-describedby="project-disclosure-description project-disclosure-context"',
+      ) &&
+      disclosure.includes(
+        '<h2 class="project-disclosure__title" id="project-disclosure-title">Informacja o projekcie</h2>',
+      ) &&
+      disclosure.includes(
+        '<button class="button button--primary" type="button" data-project-disclosure-dismiss>Przejdź do strony</button>',
+      ),
+    `${page.file}: project disclosure contract changed`,
   );
   assert(
     (

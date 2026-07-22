@@ -7,20 +7,7 @@
   padding: var(--space-2xl) 0;
 }
 
-#main,
-#how,
-#about,
-#faq,
-#contact,
-#resources,
-#pakiety,
-#pakiet-start,
-#pakiet-regular,
-#pakiet-intensive,
-#materials-catalog,
-#cele,
-#statystyki,
-#formularz {
+.u-anchor-offset {
   scroll-margin-top: var(--anchor-scroll-offset);
 }
 

@@ -1,5 +1,5 @@
 const CACHE_PREFIX = "lauren-english-v";
-const CACHE_REVISION = "1.0.0-eaab7934977a";
+const CACHE_REVISION = "1.0.0-f0746707e875";
 const CACHE_NAME = `${CACHE_PREFIX}${CACHE_REVISION}`;
 const OFFLINE_PATH = "/offline.html";
 const PRECACHE_PATHS = [
@@ -16,6 +16,8 @@ const PRECACHE_PATHS = [
   "/css/base/typography.css",
   "/css/utilities/utilities.css",
   "/css/components/eyebrow.css",
+  "/css/components/cta-panel.css",
+  "/css/components/project-disclosure.css",
   "/css/components/buttons.css",
   "/css/components/navigation.css",
   "/css/components/cards.css",
@@ -44,10 +46,10 @@ const PRECACHE_PATHS = [
   "/js/modules/scrollSpy.js",
   "/js/modules/accordion.js",
   "/js/modules/resourcesFilter.js",
-  "/js/modules/progressTracker.js",
   "/js/modules/contactForm.js",
   "/js/modules/materialsCatalog.js",
   "/js/modules/anchorFocus.js",
+  "/js/modules/projectDisclosure.js",
   "/js/pages/progress-page.js",
   "/js/state/browserStorage.js",
   "/js/data/materials.js",
@@ -70,7 +72,14 @@ const PRECACHE_PATHS = [
   "/assets/icons/sun.svg",
   "/assets/icons/moon.svg",
   "/assets/img/hero/hero-01.jpg",
+  "/assets/img/hero/hero-01.avif",
+  "/assets/img/hero/hero-01.webp",
+  "/assets/img/hero/hero-08.jpg",
+  "/assets/img/hero/hero-08.avif",
+  "/assets/img/hero/hero-08.webp",
   "/assets/img/about/lauren.jpg",
+  "/assets/img/about/lauren.avif",
+  "/assets/img/about/lauren.webp",
   "/site.webmanifest",
 ];
 const PRIMARY_DOCUMENT_PATHS = [

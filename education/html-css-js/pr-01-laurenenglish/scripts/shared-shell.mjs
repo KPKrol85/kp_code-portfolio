@@ -1,4 +1,9 @@
-import { INDEXABLE_PAGES, SHARED_SHELL_PAGES, SITE } from "./site-config.mjs";
+import {
+  INDEXABLE_PAGES,
+  PROJECT_DISCLOSURE,
+  SHARED_SHELL_PAGES,
+  SITE,
+} from "./site-config.mjs";
 
 export const PRIMARY_PAGES = INDEXABLE_PAGES;
 
@@ -151,6 +156,36 @@ const renderFooterContactIcon = ({
                 <path d="${pathData}" />
               </svg>`;
 
+const renderProjectDisclosure = () => `
+    <dialog
+      class="project-disclosure"
+      data-project-disclosure
+      data-project-disclosure-enabled="${PROJECT_DISCLOSURE.enabled}"
+      data-project-disclosure-version="${PROJECT_DISCLOSURE.version}"
+      data-project-disclosure-storage-key="${PROJECT_DISCLOSURE.storageKey}"
+      data-project-disclosure-routes="${PROJECT_DISCLOSURE.eligiblePaths.join(" ")}"
+      aria-labelledby="project-disclosure-title"
+      aria-describedby="project-disclosure-description project-disclosure-context"
+    >
+      <div class="project-disclosure__content">
+        <h2 class="project-disclosure__title" id="project-disclosure-title">Informacja o projekcie</h2>
+        <div class="project-disclosure__copy">
+          <p id="project-disclosure-description">Serwis Lauren English został przygotowany przez KP_Code Digital Studio jako projekt koncepcyjny prezentujący profesjonalną stronę internetową dla nauczycielki języka angielskiego.</p>
+          <p id="project-disclosure-context">Strona nie jest obecnie aktywną ofertą handlową ani systemem sprzedaży usług i materiałów.</p>
+        </div>
+        <nav class="project-disclosure__legal" aria-label="Dokumenty prawne">
+          <ul class="project-disclosure__legal-list" role="list">
+            <li><a class="project-disclosure__legal-link" href="/regulamin.html">REGULAMIN</a></li>
+            <li><a class="project-disclosure__legal-link" href="/polityka-prywatnosci.html">POLITYKA PRYWATNOŚCI</a></li>
+            <li><a class="project-disclosure__legal-link" href="/cookies.html">COOKIES</a></li>
+          </ul>
+        </nav>
+        <div class="project-disclosure__actions">
+          <button class="button button--primary" type="button" data-project-disclosure-dismiss>Przejdź do strony</button>
+        </div>
+      </div>
+    </dialog>`;
+
 export const renderSharedHeader = (pageKey) => {
   getPage(pageKey);
   const logoCurrent = pageKey === "home" ? ' aria-current="page"' : "";
@@ -268,4 +303,5 @@ ${renderSocialLinks()}
         </div>
       </div>
     </footer>
+${renderProjectDisclosure()}
 ${SHELL_MARKERS.footerEnd}`;

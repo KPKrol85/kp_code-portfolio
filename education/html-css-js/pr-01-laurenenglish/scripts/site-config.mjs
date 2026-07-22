@@ -103,6 +103,15 @@ export const INDEXABLE_PAGES = Object.freeze([
   }),
 ]);
 
+export const PROJECT_DISCLOSURE = Object.freeze({
+  enabled: true,
+  version: "1",
+  storageKey: "laurenEnglishProjectDisclosure",
+  eligiblePaths: Object.freeze(
+    INDEXABLE_PAGES.map(({ runtimePath }) => runtimePath),
+  ),
+});
+
 export const LEGAL_PAGES = Object.freeze([
   freezePage({
     key: "privacy",

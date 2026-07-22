@@ -130,7 +130,7 @@
     </header>
     <!-- shared-shell:header:end -->
 
-    <main id="main">
+    <main class="u-anchor-offset" id="main">
       <section class="section hero progress-hero hero--progress">
         <div class="container hero__grid">
           <div class="hero__content" data-reveal>
@@ -244,7 +244,7 @@
           data-progress-status
         ></p>
 
-        <section class="section" id="cele">
+        <section class="section u-anchor-offset" id="cele">
           <div class="container">
             <div class="section__header" data-reveal>
               <h2 class="section__title">Ustal cele na ten tydzień</h2>
@@ -282,7 +282,7 @@
           </div>
         </section>
 
-        <section class="section" id="statystyki">
+        <section class="section u-anchor-offset" id="statystyki">
           <div class="container">
             <div class="section__header" data-reveal>
               <p class="progress-section__eyebrow">POSTĘP W LICZBACH</p>
@@ -301,12 +301,17 @@
           </div>
         </section>
 
+        <!-- Tools Section -->
         <section class="section progress-tools">
-          <div class="container progress-tools__inner">
-            <div class="progress-tools__content">
-              <p class="progress-tools__eyebrow">PRYWATNOŚĆ I KOPIA DANYCH</p>
-              <h2 class="section__title">Zarządzaj danymi dziennika</h2>
-              <p class="section__subtitle">
+          <div class="container cta-panel cta-panel--tools">
+            <div class="cta-panel__content">
+              <p class="eyebrow cta-panel__eyebrow">
+                PRYWATNOŚĆ I KOPIA DANYCH
+              </p>
+              <h2 class="section__title cta-panel__title">
+                Zarządzaj danymi dziennika
+              </h2>
+              <p class="cta-panel__description">
                 Dane pozostają lokalnie w tej przeglądarce. Możesz pobrać ich
                 kopię na swoje urządzenie albo usunąć cały zapis dziennika.
               </p>
@@ -314,7 +319,7 @@
                 Eksport nie wysyła danych do żadnego serwera.
               </p>
             </div>
-            <div class="progress-tools__actions">
+            <div class="cta-panel__actions">
               <button
                 class="button button--primary"
                 type="button"
@@ -446,6 +451,35 @@
         </div>
       </div>
     </footer>
+
+    <dialog
+      class="project-disclosure"
+      data-project-disclosure
+      data-project-disclosure-enabled="true"
+      data-project-disclosure-version="1"
+      data-project-disclosure-storage-key="laurenEnglishProjectDisclosure"
+      data-project-disclosure-routes="/index.html /uslugi.html /pakiety.html /materialy.html /postepy.html /kontakt.html"
+      aria-labelledby="project-disclosure-title"
+      aria-describedby="project-disclosure-description project-disclosure-context"
+    >
+      <div class="project-disclosure__content">
+        <h2 class="project-disclosure__title" id="project-disclosure-title">Informacja o projekcie</h2>
+        <div class="project-disclosure__copy">
+          <p id="project-disclosure-description">Serwis Lauren English został przygotowany przez KP_Code Digital Studio jako projekt koncepcyjny prezentujący profesjonalną stronę internetową dla nauczycielki języka angielskiego.</p>
+          <p id="project-disclosure-context">Strona nie jest obecnie aktywną ofertą handlową ani systemem sprzedaży usług i materiałów.</p>
+        </div>
+        <nav class="project-disclosure__legal" aria-label="Dokumenty prawne">
+          <ul class="project-disclosure__legal-list" role="list">
+            <li><a class="project-disclosure__legal-link" href="/regulamin.html">REGULAMIN</a></li>
+            <li><a class="project-disclosure__legal-link" href="/polityka-prywatnosci.html">POLITYKA PRYWATNOŚCI</a></li>
+            <li><a class="project-disclosure__legal-link" href="/cookies.html">COOKIES</a></li>
+          </ul>
+        </nav>
+        <div class="project-disclosure__actions">
+          <button class="button button--primary" type="button" data-project-disclosure-dismiss>Przejdź do strony</button>
+        </div>
+      </div>
+    </dialog>
     <!-- shared-shell:footer:end -->
   </body>
 </html>

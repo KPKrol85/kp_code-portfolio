@@ -72,7 +72,7 @@ ${renderBenefits(packageRecord.homeTeaser.benefits)}
             </article>`;
 
 const renderFullPackageCard = (packageRecord) =>
-  `            <article class="${getPackageCardClass(packageRecord)}" id="pakiet-${escapeHtml(packageRecord.key)}" data-package-key="${escapeHtml(packageRecord.key)}" tabindex="-1" data-reveal>${renderPackageLabel(packageRecord)}
+  `            <article class="${getPackageCardClass(packageRecord)} u-anchor-offset" id="pakiet-${escapeHtml(packageRecord.key)}" data-package-key="${escapeHtml(packageRecord.key)}" tabindex="-1" data-reveal>${renderPackageLabel(packageRecord)}
               <h3 class="card__title pricing__package-name">${escapeHtml(packageRecord.label)}</h3>${renderPackagePrice(packageRecord)}
               <p class="card__text pricing__package-rhythm">${escapeHtml(packageRecord.summary)}</p>
               <p class="card__text pricing__package-audience">${escapeHtml(packageRecord.audience)}</p>

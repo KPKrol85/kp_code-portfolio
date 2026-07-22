@@ -95,7 +95,7 @@
     </header>
     <!-- shared-shell:header:end -->
 
-    <main id="main">
+    <main class="u-anchor-offset" id="main">
       <section class="section legal-page" aria-labelledby="privacy-title">
         <div class="container legal-page__container">
           <div class="legal-page__header">
@@ -534,6 +534,35 @@
         </div>
       </div>
     </footer>
+
+    <dialog
+      class="project-disclosure"
+      data-project-disclosure
+      data-project-disclosure-enabled="true"
+      data-project-disclosure-version="1"
+      data-project-disclosure-storage-key="laurenEnglishProjectDisclosure"
+      data-project-disclosure-routes="/index.html /uslugi.html /pakiety.html /materialy.html /postepy.html /kontakt.html"
+      aria-labelledby="project-disclosure-title"
+      aria-describedby="project-disclosure-description project-disclosure-context"
+    >
+      <div class="project-disclosure__content">
+        <h2 class="project-disclosure__title" id="project-disclosure-title">Informacja o projekcie</h2>
+        <div class="project-disclosure__copy">
+          <p id="project-disclosure-description">Serwis Lauren English został przygotowany przez KP_Code Digital Studio jako projekt koncepcyjny prezentujący profesjonalną stronę internetową dla nauczycielki języka angielskiego.</p>
+          <p id="project-disclosure-context">Strona nie jest obecnie aktywną ofertą handlową ani systemem sprzedaży usług i materiałów.</p>
+        </div>
+        <nav class="project-disclosure__legal" aria-label="Dokumenty prawne">
+          <ul class="project-disclosure__legal-list" role="list">
+            <li><a class="project-disclosure__legal-link" href="/regulamin.html">REGULAMIN</a></li>
+            <li><a class="project-disclosure__legal-link" href="/polityka-prywatnosci.html">POLITYKA PRYWATNOŚCI</a></li>
+            <li><a class="project-disclosure__legal-link" href="/cookies.html">COOKIES</a></li>
+          </ul>
+        </nav>
+        <div class="project-disclosure__actions">
+          <button class="button button--primary" type="button" data-project-disclosure-dismiss>Przejdź do strony</button>
+        </div>
+      </div>
+    </dialog>
     <!-- shared-shell:footer:end -->
   </body>
 </html>

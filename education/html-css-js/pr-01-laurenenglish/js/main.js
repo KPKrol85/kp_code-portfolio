@@ -7,6 +7,7 @@ import { initResourcesFilter } from "./modules/resourcesFilter.js";
 import { initContactForm } from "./modules/contactForm.js";
 import { initMaterialsCatalog } from "./modules/materialsCatalog.js";
 import { initAnchorFocus } from "./modules/anchorFocus.js";
+import { initProjectDisclosure } from "./modules/projectDisclosure.js";
 import { initProgressPage } from "./pages/progress-page.js";
 import { readStoredValue, writeStoredValue } from "./state/browserStorage.js";
 
@@ -120,6 +121,7 @@ const registerServiceWorker = () => {
   ["Resource filters", initResourcesFilter],
   ["Materials catalogue", initMaterialsCatalog],
   ["Anchor focus", initAnchorFocus],
+  ["Project disclosure", initProjectDisclosure],
   ["Theme toggle", initThemeToggle],
   ["Contact form", initContactForm],
   ["Progress page", initProgressPage],

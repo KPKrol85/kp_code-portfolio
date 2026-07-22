@@ -29,6 +29,11 @@ import {
   SHORTCUT_ICON_PATHS,
   THEME_ICON_PATHS,
 } from "./pwa-config.mjs";
+import {
+  CONTENT_IMAGE_ASSETS,
+  MODERN_IMAGE_FORMATS,
+  getModernImagePath,
+} from "./image-config.mjs";
 import { ALL_PAGES, INDEXABLE_PAGES, SITE } from "./site-config.mjs";
 
 const assert = (condition, message) => {
@@ -40,8 +45,10 @@ const readText = (path) => readFile(path, "utf8");
 const publicFile = (path) => resolve(ROOT, `.${path}`);
 const sha256 = (buffer) =>
   createHash("sha256").update(buffer).digest("hex").toUpperCase();
+const normalizeUnicodeRange = (unicodeRange) =>
+  unicodeRange?.replace(/\s+/g, " ").trim() ?? "all";
 const fontAssetKey = ({ family, style, weight, unicodeRange }) =>
-  `${family}:${weight}:${style}:${unicodeRange ?? "all"}`;
+  `${family}:${weight}:${style}:${normalizeUnicodeRange(unicodeRange)}`;
 
 const LITERATA_FONT_SHA256 =
   "DACE38D75534603D7B2E727E3A5979B6C53BEDB9DB9E14D4263EF92CFCB5F3D3";
@@ -104,6 +111,77 @@ const getDeclaredDimensions = (asset, label) => {
   const sizeMatch = asset.sizes?.match(/^(\d+)x(\d+)$/);
   assert(sizeMatch, `${label} has an invalid sizes value: ${asset.src}`);
   return { width: Number(sizeMatch[1]), height: Number(sizeMatch[2]) };
+};
+
+const getPictureSources = (html, fallbackPath) => {
+  const pictures = html.match(/<picture\b[^>]*>[\s\S]*?<\/picture>/gi) ?? [];
+  const picture = pictures.find((candidate) =>
+    new RegExp(
+      `\\bsrc="${fallbackPath.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")}"`,
+    ).test(candidate),
+  );
+  assert(picture, `Missing picture element for ${fallbackPath}`);
+
+  const sourceTags = picture.match(/<source\b[^>]*>/gi) ?? [];
+  return sourceTags.map((source) => ({
+    srcset: getAttribute(source, "srcset"),
+    type: getAttribute(source, "type"),
+  }));
+};
+
+const verifyModernImageAssets = async () => {
+  for (const asset of CONTENT_IMAGE_ASSETS) {
+    for (const { extension, mimeType } of MODERN_IMAGE_FORMATS) {
+      const path = getModernImagePath(asset.fallbackPath, extension);
+      const buffer = await readFile(publicFile(path));
+      const isWebp =
+        extension === "webp" &&
+        buffer.subarray(0, 4).toString("ascii") === "RIFF" &&
+        buffer.subarray(8, 12).toString("ascii") === "WEBP";
+      const isAvif =
+        extension === "avif" &&
+        buffer.subarray(4, 8).toString("ascii") === "ftyp" &&
+        buffer.subarray(8, 32).includes(Buffer.from("avif"));
+      assert(
+        isWebp || isAvif,
+        `${path} must be a valid ${mimeType} image file`,
+      );
+      if (asset.key === "homepage-hero") {
+        assert(
+          buffer.length <= CRITICAL_ASSET_BUDGET.maximumHeroImageBytes,
+          `${path} exceeds the configured critical hero image budget`,
+        );
+      }
+    }
+  }
+};
+
+const verifyPictureMarkup = async () => {
+  const pages = await Promise.all([
+    readText(resolve(ROOT, "index.html")),
+    readText(resolve(ROOT, "kontakt.html")),
+  ]);
+  const html = pages.join("\n");
+
+  for (const asset of CONTENT_IMAGE_ASSETS) {
+    const sources = getPictureSources(html, asset.fallbackPath);
+    assert(
+      sources.length === MODERN_IMAGE_FORMATS.length,
+      `${asset.fallbackPath} must provide AVIF and WebP picture sources`,
+    );
+    assert(
+      sources.every(
+        ({ srcset, type }, index) =>
+          type === MODERN_IMAGE_FORMATS[index].mimeType &&
+          srcset ===
+            getModernImagePath(
+              asset.fallbackPath,
+              MODERN_IMAGE_FORMATS[index].extension,
+            ),
+      ),
+      `${asset.fallbackPath} picture sources must use the configured AVIF then WebP order`,
+    );
+  }
 };
 
 const verifyPngAsset = async (asset, label) => {
@@ -512,6 +590,8 @@ const verifyHeroAndFonts = async () => {
     heroBuffer.length <= CRITICAL_ASSET_BUDGET.maximumHeroImageBytes,
     `Hero image exceeds ${CRITICAL_ASSET_BUDGET.maximumHeroImageBytes} bytes`,
   );
+
+  await Promise.all([verifyModernImageAssets(), verifyPictureMarkup()]);
 
   const baseCss = await readText(resolve(ROOT, "css/base/base.css"));
   const fontFaces = baseCss.match(/@font-face\s*{[\s\S]*?}/g) ?? [];

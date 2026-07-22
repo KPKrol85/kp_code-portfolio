@@ -131,7 +131,7 @@
     <!-- shared-shell:header:end -->
 
     <!-- Main Content -->
-    <main id="main">
+    <main class="u-anchor-offset" id="main">
       <!-- Hero -->
       <section class="section hero hero--services">
         <div class="container hero__grid">
@@ -502,23 +502,24 @@
         </div>
       </section>
 
+      <!-- Contact Section -->
       <section class="section" aria-labelledby="services-contact-title">
         <div class="container">
-          <div class="services-contact" data-reveal>
-            <div class="services-contact__content">
-              <p class="services-contact__eyebrow">ZACZNIJMY WSPÓŁPRACĘ</p>
+          <div class="cta-panel" data-reveal>
+            <div class="cta-panel__content">
+              <p class="eyebrow cta-panel__eyebrow">ZACZNIJMY WSPÓŁPRACĘ</p>
               <h2
-                class="section__title services-contact__title"
+                class="section__title cta-panel__title"
                 id="services-contact-title"
               >
                 Chcesz zacząć naukę z jasnym planem?
               </h2>
-              <p class="services-contact__description">
+              <p class="cta-panel__description">
                 Napisz, jaki masz cel i czego potrzebujesz. Wspólnie omówimy
                 odpowiednią formę zajęć oraz kolejny krok.
               </p>
             </div>
-            <div class="services-contact__actions">
+            <div class="cta-panel__actions">
               <a class="button button--primary" href="/kontakt.html#formularz"
                 >Napisz do mnie</a
               >
@@ -640,6 +641,35 @@
         </div>
       </div>
     </footer>
+
+    <dialog
+      class="project-disclosure"
+      data-project-disclosure
+      data-project-disclosure-enabled="true"
+      data-project-disclosure-version="1"
+      data-project-disclosure-storage-key="laurenEnglishProjectDisclosure"
+      data-project-disclosure-routes="/index.html /uslugi.html /pakiety.html /materialy.html /postepy.html /kontakt.html"
+      aria-labelledby="project-disclosure-title"
+      aria-describedby="project-disclosure-description project-disclosure-context"
+    >
+      <div class="project-disclosure__content">
+        <h2 class="project-disclosure__title" id="project-disclosure-title">Informacja o projekcie</h2>
+        <div class="project-disclosure__copy">
+          <p id="project-disclosure-description">Serwis Lauren English został przygotowany przez KP_Code Digital Studio jako projekt koncepcyjny prezentujący profesjonalną stronę internetową dla nauczycielki języka angielskiego.</p>
+          <p id="project-disclosure-context">Strona nie jest obecnie aktywną ofertą handlową ani systemem sprzedaży usług i materiałów.</p>
+        </div>
+        <nav class="project-disclosure__legal" aria-label="Dokumenty prawne">
+          <ul class="project-disclosure__legal-list" role="list">
+            <li><a class="project-disclosure__legal-link" href="/regulamin.html">REGULAMIN</a></li>
+            <li><a class="project-disclosure__legal-link" href="/polityka-prywatnosci.html">POLITYKA PRYWATNOŚCI</a></li>
+            <li><a class="project-disclosure__legal-link" href="/cookies.html">COOKIES</a></li>
+          </ul>
+        </nav>
+        <div class="project-disclosure__actions">
+          <button class="button button--primary" type="button" data-project-disclosure-dismiss>Przejdź do strony</button>
+        </div>
+      </div>
+    </dialog>
     <!-- shared-shell:footer:end -->
   </body>
 </html>

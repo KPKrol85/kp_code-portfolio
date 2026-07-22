@@ -1,5 +1,7 @@
 import { expect, test } from "@playwright/test";
 
+import { PROJECT_DISCLOSURE } from "../../scripts/site-config.mjs";
+
 import {
   clearRuntimeState,
   collectRuntimeDiagnostics,
@@ -18,6 +20,7 @@ test("isolated context starts with light theme and no stale browser state", asyn
   await expect(page.locator("html")).toHaveAttribute("data-theme", "light");
   await expectThemeControls(page, false);
   const state = await page.evaluate(async () => ({
+    projectDisclosure: localStorage.getItem("laurenEnglishProjectDisclosure"),
     theme: localStorage.getItem("theme"),
     sessionKeys: sessionStorage.length,
     cacheNames: "caches" in window ? await caches.keys() : [],
@@ -27,6 +30,7 @@ test("isolated context starts with light theme and no stale browser state", asyn
         : 0,
   }));
   expect(state).toEqual({
+    projectDisclosure: PROJECT_DISCLOSURE.version,
     theme: null,
     sessionKeys: 0,
     cacheNames: [],

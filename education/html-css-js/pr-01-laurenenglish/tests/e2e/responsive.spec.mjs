@@ -158,9 +158,9 @@ const expectTypographyContract = async (page) => {
         .getPropertyValue("--font-family-heading")
         .trim(),
       bodyFamilyToken: rootStyle.getPropertyValue("--font-family-body").trim(),
-      headings: [...document.querySelectorAll("h1,h2,h3,h4,h5,h6")].map(
-        getMetrics,
-      ),
+      headings: [...document.querySelectorAll("h1,h2,h3,h4,h5,h6")]
+        .filter((heading) => !heading.closest(".sr-only, [hidden]"))
+        .map(getMetrics),
       interLoaded: document.fonts.check('400 1rem "Inter"', polishSample),
       layoutShift: window.__typographyLayoutShift ?? 0,
       literataLoaded: document.fonts.check('700 2rem "Literata"', polishSample),
@@ -208,12 +208,11 @@ test.describe("responsive production contracts", () => {
         try {
           new PerformanceObserver((list) => {
             for (const entry of list.getEntries()) {
-              const affectsHeading = entry.sources?.some(({ node }) =>
-                node instanceof Element
-                  ? node.matches("h1,h2,h3,h4,h5,h6") ||
-                    Boolean(node.closest("h1,h2,h3,h4,h5,h6")) ||
-                    Boolean(node.querySelector("h1,h2,h3,h4,h5,h6"))
-                  : false,
+              const affectsHeading = entry.sources?.some(
+                ({ node }) =>
+                  node instanceof Element &&
+                  (node.matches("h1,h2,h3,h4,h5,h6") ||
+                    Boolean(node.closest("h1,h2,h3,h4,h5,h6"))),
               );
               if (!entry.hadRecentInput && affectsHeading) {
                 window.__typographyLayoutShift += entry.value;

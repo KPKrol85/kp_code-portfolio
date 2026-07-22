@@ -5,6 +5,18 @@ import {
   expectCleanDiagnostics,
 } from "./helpers/runtime.mjs";
 
+const sharedHeaderPaths = Object.freeze([
+  "/index.html",
+  "/uslugi.html",
+  "/pakiety.html",
+  "/materialy.html",
+  "/postepy.html",
+  "/kontakt.html",
+  "/polityka-prywatnosci.html",
+  "/cookies.html",
+  "/regulamin.html",
+]);
+
 const homepageAnchorCases = Object.freeze([
   {
     destination: "/index.html#how",
@@ -31,6 +43,25 @@ const homepageAnchorCases = Object.freeze([
     sourceSelector: '.hero__actions a[href="/kontakt.html#formularz"]',
   },
 ]);
+
+const setInstantScrollPosition = (page, position) =>
+  page.evaluate((scrollPosition) => {
+    const root = document.documentElement;
+    const previousScrollBehavior = root.style.scrollBehavior;
+
+    root.style.scrollBehavior = "auto";
+    window.scrollTo(0, scrollPosition);
+    root.style.scrollBehavior = previousScrollBehavior;
+  }, position);
+
+const expectHeaderCompactState = (page, expectedState) =>
+  expect
+    .poll(() =>
+      page
+        .locator(".header")
+        .evaluate((header) => header.classList.contains("is-scrolled")),
+    )
+    .toBe(expectedState);
 
 const faqItems = Object.freeze([
   {
@@ -140,6 +171,79 @@ test("desktop navigation exposes its links and theme action", async ({
   await expect(navigation.getByRole("link", { name: "Usługi" })).toBeVisible();
   await expect(page.getByRole("button", { name: "Otwórz menu" })).toBeHidden();
   await expect(page.locator("[data-theme-toggle]:visible")).toHaveCount(1);
+  expectCleanDiagnostics(diagnostics);
+});
+
+test("shared header compacts gently with a hysteretic scroll state", async ({
+  page,
+}) => {
+  const diagnostics = collectRuntimeDiagnostics(page);
+
+  for (const path of sharedHeaderPaths) {
+    await page.goto(path, { waitUntil: "networkidle" });
+    await setInstantScrollPosition(page, 0);
+    await expect(page.locator(".header")).toBeVisible();
+    await expectHeaderCompactState(page, false);
+
+    await setInstantScrollPosition(page, 120);
+    await expectHeaderCompactState(page, true);
+
+    const viewportMetrics = await page.evaluate(() => ({
+      clientWidth: document.documentElement.clientWidth,
+      scrollWidth: document.documentElement.scrollWidth,
+    }));
+    expect(viewportMetrics.scrollWidth).toBeLessThanOrEqual(
+      viewportMetrics.clientWidth + 1,
+    );
+  }
+
+  await page.goto("/index.html", { waitUntil: "networkidle" });
+  await setInstantScrollPosition(page, 0);
+  const expandedHeight = await page
+    .locator(".header")
+    .evaluate((header) => header.getBoundingClientRect().height);
+
+  await setInstantScrollPosition(page, 120);
+  await expectHeaderCompactState(page, true);
+  await expect
+    .poll(() =>
+      page
+        .locator(".header")
+        .evaluate((header) => header.getBoundingClientRect().height),
+    )
+    .toBeLessThan(expandedHeight);
+
+  await setInstantScrollPosition(page, 64);
+  await expectHeaderCompactState(page, true);
+  await setInstantScrollPosition(page, 48);
+  await expectHeaderCompactState(page, false);
+
+  await page.evaluate(() => {
+    window.scrollTo(0, 120);
+    window.dispatchEvent(new PageTransitionEvent("pageshow"));
+    document.documentElement.dataset.theme = "dark";
+  });
+  await expectHeaderCompactState(page, true);
+  await expect(page.locator(".header")).toBeVisible();
+
+  await page.emulateMedia({ reducedMotion: "reduce" });
+  await page.goto("/index.html", { waitUntil: "networkidle" });
+  await setInstantScrollPosition(page, 120);
+  await expectHeaderCompactState(page, true);
+  const reducedMotionDurations = await page
+    .locator(".header")
+    .evaluate((header) => {
+      const inner = header.querySelector(".header__inner");
+      const logo = header.querySelector(".header__logo-image");
+
+      return [header, inner, logo].map((element) =>
+        Number.parseFloat(getComputedStyle(element).transitionDuration),
+      );
+    });
+  expect(reducedMotionDurations.every((duration) => duration <= 0.00001)).toBe(
+    true,
+  );
+
   expectCleanDiagnostics(diagnostics);
 });
 
@@ -284,9 +388,6 @@ test("mobile drawer is inert when closed and contains keyboard focus when open",
   const diagnostics = collectRuntimeDiagnostics(page);
   await page.goto("/index.html", { waitUntil: "networkidle" });
 
-  const navigation = page.getByRole("navigation", {
-    name: "Główna nawigacja",
-  });
   const drawer = page.locator("[data-drawer]");
   const firstLink = drawer.locator('a[href="/uslugi.html"]');
   const toggle = page.locator(".nav__toggle");

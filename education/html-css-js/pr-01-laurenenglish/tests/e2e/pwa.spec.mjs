@@ -2,15 +2,21 @@ import { expect, test } from "@playwright/test";
 
 import { createServiceWorkerBuild } from "../../scripts/build-service-worker.mjs";
 import {
+  CONTENT_IMAGE_ASSETS,
+  MODERN_IMAGE_FORMATS,
+  getImagePaths,
+  getModernImagePath,
+} from "../../scripts/image-config.mjs";
+import {
   BRAND_LOGO_PATH,
   CACHE_PREFIX,
   CRITICAL_ASSET_BUDGET,
   FONT_PATHS,
   HERO_IMAGE_PATH,
+  HERO_IMAGE_PATHS,
   MANIFEST_ICON_PATHS,
   MANIFEST_PATH,
   MANIFEST_SCREENSHOT_PATHS,
-  OFFLINE_PATH,
   PRECACHE_PATHS,
   PRIMARY_DOCUMENT_PATHS,
   RUNTIME_CSS_PATHS,
@@ -130,6 +136,63 @@ const getImageResults = (page, assets) =>
 
 test.afterEach(async ({ page, context }) => {
   await cleanPwaState(page, context);
+});
+
+test("delivers configured AVIF and WebP content images through picture markup", async ({
+  page,
+}) => {
+  const imageCases = [
+    {
+      asset: CONTENT_IMAGE_ASSETS.find(({ key }) => key === "homepage-hero"),
+      pagePath: "/index.html",
+      selector: ".hero__image",
+    },
+    {
+      asset: CONTENT_IMAGE_ASSETS.find(({ key }) => key === "about-portrait"),
+      pagePath: "/index.html",
+      selector: ".about__portrait img",
+    },
+    {
+      asset: CONTENT_IMAGE_ASSETS.find(({ key }) => key === "contact-hero"),
+      pagePath: "/kontakt.html",
+      selector: ".hero__image--contact",
+    },
+  ];
+
+  for (const { asset, pagePath, selector } of imageCases) {
+    await page.goto(pagePath, { waitUntil: "networkidle" });
+    const image = page.locator(selector);
+    const result = await image.evaluate((element) => ({
+      currentSrc: new URL(element.currentSrc).pathname,
+      height: element.naturalHeight,
+      sources: Array.from(
+        element.closest("picture").querySelectorAll("source"),
+      ).map((source) => ({
+        srcset: new URL(source.srcset).pathname,
+        type: source.type,
+      })),
+      width: element.naturalWidth,
+    }));
+    const expectedSources = MODERN_IMAGE_FORMATS.map(
+      ({ extension, mimeType }) => ({
+        srcset: getModernImagePath(asset.fallbackPath, extension),
+        type: mimeType,
+      }),
+    );
+
+    expect(result.sources).toEqual(expectedSources);
+    expect(getImagePaths(asset)).toContain(result.currentSrc);
+    expect(result).toMatchObject({
+      height: asset.height,
+      width: asset.width,
+    });
+
+    const response = await page.request.get(result.currentSrc);
+    expect(response.status()).toBe(200);
+    expect(response.headers()["content-type"]).toContain(
+      result.currentSrc.endsWith(".avif") ? "image/avif" : "image/webp",
+    );
+  }
 });
 
 test("installs, controls the page, validates install metadata, and preserves unrelated caches", async ({
@@ -411,9 +474,19 @@ test("meets the direct source request budget without duplicates or legacy bundle
   );
   expect(countPath("/assets/build/style.min.css")).toBe(0);
   expect(countPath("/assets/build/main.min.js")).toBe(0);
-  expect(countPath(HERO_IMAGE_PATH)).toBe(
+  const hero = page.locator(".hero__image");
+  const selectedHeroPath = await hero.evaluate(
+    (image) => new URL(image.currentSrc).pathname,
+  );
+  expect(HERO_IMAGE_PATHS).toContain(selectedHeroPath);
+  expect(countPath(selectedHeroPath)).toBe(
     CRITICAL_ASSET_BUDGET.heroImageRequests,
   );
+  for (const path of HERO_IMAGE_PATHS.filter(
+    (path) => path !== selectedHeroPath,
+  )) {
+    expect(countPath(path)).toBe(0);
+  }
   expect(countPath(BRAND_LOGO_PATH)).toBe(
     CRITICAL_ASSET_BUDGET.brandLogoRequests,
   );
@@ -438,7 +511,6 @@ test("meets the direct source request budget without duplicates or legacy bundle
     runtimeOrigins.every((origin) => origin === "http://127.0.0.1:4173"),
   ).toBe(true);
 
-  const hero = page.locator(".hero__image");
   await expect(hero).toHaveAttribute("loading", "eager");
   await expect(hero).toHaveAttribute("fetchpriority", "high");
   await expect(hero).toHaveAttribute("width", "1600");

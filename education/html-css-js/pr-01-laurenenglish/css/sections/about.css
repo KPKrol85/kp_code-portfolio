@@ -29,6 +29,10 @@
   text-transform: uppercase;
 }
 
+.about__text {
+  font-size: var(--text-2sm);
+}
+
 .about__heading > .section__title,
 .about__intro,
 .about__text {
@@ -105,7 +109,8 @@
 
   position: relative;
   overflow: hidden;
-  width: 100%;
+  width: calc(100% - var(--space-xl));
+  margin-inline: auto;
   border-radius: var(--radius-lg);
 }
 
@@ -118,7 +123,11 @@
   --about-vignette-edge: color-mix(in srgb, var(--color-bg) 16%, transparent);
 }
 
-.about__portrait > img {
+.about__portrait > picture {
+  display: block;
+}
+
+.about__portrait > picture > img {
   display: block;
   width: 100%;
   height: auto;
@@ -127,11 +136,18 @@
   object-position: center;
 }
 
+@media (min-width: 480px) {
+  .about__portrait {
+    width: 100%;
+  }
+}
+
 .about__portrait::after {
   position: absolute;
   inset: 0;
   border-radius: inherit;
-  background: radial-gradient(
+  background:
+    radial-gradient(
       ellipse at 50% 42%,
       var(--about-vignette-highlight) 0%,
       transparent 45%
@@ -147,6 +163,7 @@
 
 .about__card {
   width: 100%;
+  font-size: var(--text-2sm);
 }
 
 @media (min-width: 780px) {

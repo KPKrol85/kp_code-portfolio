@@ -1,4 +1,9 @@
 import { INDEXABLE_PAGES, SITE } from "./site-config.mjs";
+import {
+  CONTENT_IMAGE_ASSETS,
+  CONTENT_IMAGE_PATHS,
+  getImagePaths,
+} from "./image-config.mjs";
 
 export const CACHE_PREFIX = "lauren-english-v";
 export const OFFLINE_PATH = "/offline.html";
@@ -23,6 +28,8 @@ export const RUNTIME_CSS_PATHS = Object.freeze([
   "/css/base/typography.css",
   "/css/utilities/utilities.css",
   "/css/components/eyebrow.css",
+  "/css/components/cta-panel.css",
+  "/css/components/project-disclosure.css",
   "/css/components/buttons.css",
   "/css/components/navigation.css",
   "/css/components/cards.css",
@@ -54,10 +61,10 @@ export const RUNTIME_JAVASCRIPT_PATHS = Object.freeze([
   "/js/modules/scrollSpy.js",
   "/js/modules/accordion.js",
   "/js/modules/resourcesFilter.js",
-  "/js/modules/progressTracker.js",
   "/js/modules/contactForm.js",
   "/js/modules/materialsCatalog.js",
   "/js/modules/anchorFocus.js",
+  "/js/modules/projectDisclosure.js",
   "/js/pages/progress-page.js",
   "/js/state/browserStorage.js",
   "/js/data/materials.js",
@@ -141,16 +148,18 @@ export const MANIFEST_SCREENSHOT_PATHS = Object.freeze([
   "/assets/pwa/screenshots/home-mobile-720x1280.png",
 ]);
 
-export const HERO_IMAGE_PATH = "/assets/img/hero/hero-01.jpg";
+export const HERO_IMAGE_PATH = CONTENT_IMAGE_ASSETS.find(
+  ({ key }) => key === "homepage-hero",
+).fallbackPath;
+export const HERO_IMAGE_PATHS = Object.freeze(
+  getImagePaths(CONTENT_IMAGE_ASSETS[0]),
+);
 export const BRAND_LOGO_PATH = SITE.brandLogo.path;
 export const THEME_ICON_PATHS = Object.freeze([
   "/assets/icons/sun.svg",
   "/assets/icons/moon.svg",
 ]);
-export const OFFLINE_PAGE_IMAGE_PATHS = Object.freeze([
-  HERO_IMAGE_PATH,
-  "/assets/img/about/lauren.jpg",
-]);
+export const OFFLINE_PAGE_IMAGE_PATHS = Object.freeze([...CONTENT_IMAGE_PATHS]);
 
 export const PRECACHE_PATHS = Object.freeze([
   ...PRIMARY_DOCUMENT_PATHS,

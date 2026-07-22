@@ -30,7 +30,7 @@ test("O mnie portrait remains proportioned and aligned responsively", async ({
 
     const section = page.locator("#about");
     const image = section.locator(
-      '.about__portrait > img[src="assets/img/about/lauren.jpg"]',
+      '.about__portrait picture > img[src="/assets/img/about/lauren.jpg"]',
     );
     await section.scrollIntoViewIfNeeded();
     await expect(image).toBeVisible();

@@ -1,4 +1,6 @@
 .header {
+  --header-logo-size: var(--brand-logo-size);
+
   position: sticky;
   top: 0;
   z-index: var(--z-header);
@@ -6,12 +8,14 @@
   backdrop-filter: blur(12px);
   border-bottom: var(--size-1px) solid transparent;
   transition:
-    padding var(--transition-base),
+    border-color var(--transition-base),
     box-shadow var(--transition-base),
     background var(--transition-base);
 }
 
-.header--scrolled {
+.header.is-scrolled {
+  --header-logo-size: calc(var(--brand-logo-size) - var(--space-2xs));
+
   box-shadow: var(--shadow-sm);
   border-color: var(--color-border);
 }
@@ -28,6 +32,11 @@ body.has-open-navigation {
   gap: var(--space-sm);
   width: min(var(--layout-header-max), calc(100% - var(--space-xl)));
   padding: var(--space-md) 0;
+  transition: padding-block var(--transition-base);
+}
+
+.header.is-scrolled .header__inner {
+  padding-block: var(--space-sm);
 }
 
 .header__logo {
@@ -45,9 +54,12 @@ body.has-open-navigation {
 .header__logo-image {
   display: block;
   flex: 0 0 auto;
-  width: var(--brand-logo-size);
-  height: var(--brand-logo-size);
+  width: var(--header-logo-size);
+  height: var(--header-logo-size);
   object-fit: contain;
+  transition:
+    width var(--transition-base),
+    height var(--transition-base);
 }
 
 .header__actions {
@@ -116,6 +128,9 @@ body.has-open-navigation {
 }
 
 @media (prefers-reduced-motion: reduce) {
+  .header,
+  .header__inner,
+  .header__logo-image,
   .nav__toggle-line {
     transition: none;
   }
@@ -291,5 +306,9 @@ body.has-open-navigation {
 @media (min-width: 1280px) {
   .header__inner {
     padding: var(--space-lg) 0;
+  }
+
+  .header.is-scrolled .header__inner {
+    padding-block: var(--space-md);
   }
 }

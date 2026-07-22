@@ -1,224 +1,421 @@
 # Lauren English
 
-Profesjonalna, wielostronicowa strona edukacyjna dla nauczycielki języka angielskiego. Projekt łączy spójny UX, dostępność, katalog materiałów, śledzenie postępów oraz produkcyjne podstawy SEO i PWA.
+## PL
 
-## Funkcje JS
+### Przegląd projektu
 
-- Reveal on scroll (IntersectionObserver).
-- Sticky header z efektem blur i shrink.
-- Mobile nav (drawer) z trapem focusu, zamknięciem ESC i obsługą ARIA.
-- Scrollspy dla aktywnej sekcji w nawigacji.
-- FAQ accordion z obsługą klawiatury.
-- Filtrowanie materiałów w sekcji Resources/Shop.
-- Progress tracker demo z przełączaniem stanu.
-- Prosty przełącznik motywu (light/dark).
-- Rejestracja Service Worker (PWA).
+Lauren English to statyczna, wielostronicowa witryna edukacyjna prezentująca ofertę indywidualnej nauki języka angielskiego. Repozytorium obejmuje stronę główną, usługi, pakiety, katalog materiałów, lokalny dziennik postępów, kontakt, dokumenty prawne oraz strony techniczne dla błędów, trybu offline i potwierdzenia wysłania formularza.
 
-## Architektura źródeł i build
+Każda trasa jest samodzielnym dokumentem HTML. Wspólny shell, metadane, treści oparte na danych i Service Worker są składane przez statyczne skrypty Node.js. Przeglądarka ładuje bezpośrednio kanoniczne źródła `/css/style.css` i `/js/main.js`; projekt nie używa frameworka frontendowego ani routingu SPA.
 
-```
-index.html + pozostałe pliki HTML       # samodzielne, złożone strony
-scripts/shared-shell.mjs                # kanoniczny header/nav/footer
-scripts/site-config.mjs                 # kanoniczny origin, trasy i metadane SEO
-scripts/build-html.mjs                  # assembler i walidator HTML
-css/style.css                           # kanoniczny entry CSS
-css/{tokens,base,utilities,...}/        # modułowe źródła CSS
-js/main.js                              # kanoniczny entry JavaScript
-js/{data,modules,pages,state}/          # modułowe źródła JavaScript
-scripts/content-renderers.mjs           # build-time renderery pakietów i materiałów
-service-worker.template.js              # kanoniczny Service Worker
-assets/{favicon,fonts,img,og,pwa}/       # statyczne zasoby źródłowe
-scripts/dev-server.py                    # lokalny serwer źródeł i live reload
-start-dev.bat                            # uruchamianie dev przez dwuklik w Windows
-assets/build/{style.min.css,main.min.js} # zachowane legacy outputy, poza runtime
-service-worker.js                        # wygenerowany Service Worker
-```
+### Wersja online
 
-## Build scripts
+[Otwórz Lauren English](https://education-pr01-laurenenglish.netlify.app/)
 
-- `npm run dev` – uruchamia źródłowy serwer Python na `http://127.0.0.1:8181`, składa HTML, otwiera przeglądarkę i włącza live reload.
-- `npm run check:dev` – weryfikuje serwer `8181`, live reload, rebuild zależności HTML, MIME, no-cache, prawdziwe 404 oraz lokalne sprzątanie PWA.
-- `npm run check:data` – sprawdza kanoniczne pakiety, materiały, dostęp i wyniki filtrów.
-- `npm run check:content` – sprawdza publiczne strony pod kątem niezweryfikowanych danych, atrap prawnych, opinii i aktywnego formularza danych osobowych.
-- `npm run check:css` – sprawdza kolejność warstw, semantyczne tokeny obu motywów, surowe kolory, selektory, duplikaty utilities i kontrast WCAG.
-- `npm run check:seo` – sprawdza trasy, metadane, JSON-LD, raster Open Graph, sitemapę, robots i politykę 404/noindex.
-- `npm run check:pwa` – sprawdza deterministyczny Service Worker, precache, manifest, ikony, hero, fonty i budżet krytycznych zasobów.
-- `npm run test:e2e` – buduje produkcyjne pliki, uruchamia lokalny serwer i pełny zestaw testów Chromium w widokach desktop oraz mobile.
-- `npm run build:html` – składa wspólny header, nawigację i footer w pięciu głównych stronach oraz statyczny katalog materiałów.
-- `npm run check:html` – bez zapisu sprawdza aktualność regionów generowanych, semantykę, ID i lokalne linki.
-- `npm run build` – aktualny build produkcyjny: składa HTML i generuje Service Worker; nie tworzy `dist/` ani bundli runtime.
-- `npm run build:css` – jawne zadanie legacy PostCSS + cssnano; odświeża zachowany, nieużywany przez runtime `assets/build/style.min.css`.
-- `npm run build:js` – jawne zadanie legacy esbuild; odświeża zachowany, nieużywany przez runtime `assets/build/main.min.js`.
-- `npm run build:sw` – waliduje precache i generuje `service-worker.js` z wersji pakietu oraz deterministycznego fingerprintu szablonu i zawartości cache.
-- `npm run build:pwa-screenshots` – uruchamia lokalny serwer i projektowy Chromium, a następnie odtwarza screenshoty manifestu `1280 × 720` oraz `720 × 1280` z aktualnej produkcyjnej strony głównej.
-- `npm run images` – optymalizacja obrazów (webp/avif).
-- `npm run lint:js` – ESLint.
-- `npm run format` – Prettier.
+### Kluczowe funkcje
 
-Przed pierwszym buildem zainstaluj zadeklarowane zależności przez `npm install`, a następnie uruchom:
+- responsywny wspólny header, nawigacja mobilna z pułapką fokusu, aktywne stany nawigacji i przełącznik jasnego/ciemnego motywu;
+- dane pakietów i materiałów utrzymywane w modułach JavaScript oraz renderowane do HTML podczas buildu;
+- katalog materiałów dostępny bez JavaScriptu i rozszerzany po inicjalizacji o filtrowanie kategorii, poziomu i dostępności;
+- lokalny dziennik postępów z celami tygodniowymi, dziennymi check-inami, statystykami, resetem i eksportem JSON;
+- formularz kontaktowy skonfigurowany dla Netlify Forms z honeypotem i przekierowaniem na stronę podziękowania;
+- FAQ accordion, nawigacja po anchorach z przenoszeniem fokusu oraz animacje respektujące `prefers-reduced-motion`;
+- generowane metadane SEO, manifest aplikacji, Service Worker i dedykowany fallback offline.
 
-```powershell
-npm run build
-```
+### Stack technologiczny
 
-Wszystkie strony produkcyjne ładują bezpośrednio kanoniczne entrypointy:
+- **Runtime:** semantyczny HTML5, CSS, Vanilla JavaScript w natywnych modułach ES;
+- **CSS:** design tokens, BEM, układ mobile-first, PostCSS, `postcss-import`, cssnano;
+- **Build:** statyczne skrypty Node.js ESM, esbuild dla pomocniczego bundla JavaScript, imagemin dla obrazów;
+- **Development:** npm z `package-lock.json`, projektowy serwer Python 3 z live reload oraz `serve` do statycznego podglądu;
+- **Jakość kodu:** ESLint, Prettier i projektowe walidatory HTML, treści, danych, CSS, SEO, PWA oraz workflow deweloperskiego;
+- **Testy przeglądarkowe:** Playwright w Chromium dla widoków desktopowych i mobilnych;
+- **Integracja hostingowa:** Netlify Forms i reguły `_redirects`.
 
-- `/css/style.css`
-- `/js/main.js` jako `<script type="module">`
+### Architektura
 
-Przeglądarka rozwiązuje dalej jawny graf 26 lokalnych plików CSS (entrypoint i 25 standardowych `@import`) oraz 19 lokalnych modułów JavaScript. Pliki w `assets/build/` pozostają śledzonymi outputami legacy, ale nie są ładowane przez strony, precachowane ani wymagane przez build i testy. Zostały zachowane, ponieważ ich usunięcie nie jest potrzebne do tej migracji; nie edytuj ich ręcznie. `service-worker.js` również jest generowany i śledzony, a jego jedynym źródłem pozostaje szablon oraz konfiguracja PWA.
+- `scripts/shared-shell.mjs` generuje współdzielony skip link, header, nawigację, footer i informacyjny dialog projektu dla sześciu stron publicznych oraz trzech stron prawnych.
+- `scripts/site-config.mjs` jest rejestrem tras, metadanych, polityki indeksowania, publicznych zasobów SEO i konfiguracji `PROJECT_DISCLOSURE`.
+- `scripts/content-renderers.mjs` łączy dane z `js/data/` z oznaczonymi regionami pakietów i materiałów w HTML.
+- `css/style.css` zachowuje kolejność warstw `tokens → base → utilities → components → sections → pages`.
+- `js/main.js` inicjalizuje odseparowane moduły funkcjonalne; każdy moduł chroni zapytania DOM i kończy działanie, gdy jego komponent nie występuje na stronie.
+- `service-worker.template.js` i `scripts/pwa-config.mjs` są źródłami generowanego `service-worker.js`.
 
-## Lokalny development
+Pliki HTML w katalogu głównym zawierają kanoniczną treść właściwą danej stronie, ale regionów oznaczonych komentarzami `seo:*`, `shared-shell:*`, `package-*` i `materials-*` nie należy edytować ręcznie. `sitemap.xml`, `robots.txt`, `_redirects` i `service-worker.js` także są generowane przez skrypty projektu.
 
-W Windows uruchom `start-dev.bat` dwuklikiem albo z terminala. Launcher sprawdza dostępność Pythona 3 i portu `8181`, składa HTML, uruchamia serwer w bieżącym oknie oraz automatycznie otwiera:
+### Struktura projektu
 
 ```text
-http://127.0.0.1:8181/
+.
+├── index.html                 # strona główna
+├── uslugi.html                # usługi
+├── pakiety.html               # porównanie pakietów
+├── materialy.html             # katalog materiałów
+├── postepy.html               # lokalny dziennik postępów
+├── kontakt.html               # dane kontaktowe i formularz Netlify
+├── polityka-prywatnosci.html  # dokumenty prawne
+├── regulamin.html
+├── cookies.html
+├── 404.html                   # strony techniczne
+├── offline.html
+├── thank-you.html
+├── css/                       # tokeny, warstwy bazowe, komponenty, sekcje i strony
+├── js/
+│   ├── data/                  # pakiety, materiały, dostęp, filtry i definicje postępów
+│   ├── modules/               # moduły interakcji
+│   ├── pages/                 # logika stron
+│   └── state/                 # bezpieczne operacje na stanie przeglądarki
+├── scripts/                   # assemblery, renderery, walidatory i serwer developerski
+├── assets/                    # obrazy, ikony, fonty, PWA i pomocnicze buildy
+├── tests/e2e/                 # testy Playwright
+├── docs/                      # dokumentacja architektury i workflow
+├── service-worker.template.js
+├── service-worker.js          # plik generowany
+├── site.webmanifest
+├── package.json
+└── LICENSE.md
 ```
 
-Alternatywnie użyj `npm run dev`. Serwer korzysta wyłącznie z biblioteki standardowej Pythona, podaje poprawne MIME dla CSS, modułów JS, fontów i manifestu, wyłącza cache przeglądarki oraz zwraca projektowy `404.html` z prawdziwym statusem `404`.
+### Instalacja
 
-Live reload obserwuje źródłowe HTML, CSS, JavaScript, dane, manifest, SEO i lokalne assety. Zmiana wspólnego shellu, konfiguracji stron, rendererów lub kanonicznych danych pakietów i materiałów najpierw wykonuje `npm run build:html`; przeglądarka odświeża się dopiero po udanym assemblerze. Błąd jest wypisywany w konsoli i wstrzymuje reload do kolejnej zmiany. Watcher pomija `.git/`, `.codex/`, `.agents/`, `node_modules/`, raporty testów, `assets/build/`, wygenerowany `service-worker.js` oraz pliki tymczasowe edytora, dzięki czemu własne outputy nie tworzą pętli.
-
-Tylko na `localhost:8181` i `127.0.0.1:8181` aplikacja wyrejestrowuje `/service-worker.js` oraz usuwa cache zaczynające się od `lauren-english-v`. Inne rejestracje i cache pozostają nietknięte; produkcyjny lifecycle PWA nie jest osłabiony. Zatrzymaj serwer przez `Ctrl+C`. Skupioną kontrolę workflow uruchom przez `npm run check:dev`.
-
-## Browser E2E (Playwright)
-
-Po instalacji zależności zainstaluj jedyną wymaganą przeglądarkę:
+Repozytorium używa npm i zawiera lockfile:
 
 ```powershell
-npm install --no-package-lock
+npm ci
 npx playwright install chromium
 ```
 
-Pełna weryfikacja automatycznie wykonuje build, uruchamia istniejący serwer statyczny na `http://127.0.0.1:4173`, testuje wygenerowane strony, a następnie zatrzymuje serwer, jeżeli Playwright uruchomił go sam:
+Projekt nie deklaruje konkretnej wersji Node.js. Python 3 jest wymagany wyłącznie przez projektowy serwer uruchamiany poleceniem `npm run dev` lub plikiem `start-dev.bat`.
+
+### Development lokalny
 
 ```powershell
-npm run test:e2e
+npm run dev
 ```
 
-Dostępne polecenia skupione:
+Serwer składa HTML, uruchamia witrynę pod `http://127.0.0.1:8181/`, otwiera przeglądarkę i obserwuje źródła. Zmiany zależne od assemblera wywołują ponownie `npm run build:html` przed odświeżeniem strony. Na tym porcie aplikacja usuwa wyłącznie własną lokalną rejestrację Service Workera i cache z prefiksem `lauren-english-v`, aby stan PWA nie zasłaniał zmian źródłowych.
 
-- `npm run test:e2e:smoke` – pięć głównych stron, współdzielone logo, pełne grafy źródłowego CSS/JS, komplet lokalnych fontów wraz z MIME i diagnostyka runtime.
-- `npm run test:e2e:interactions` – nawigacja, drawer, focus, accordion i tabs.
-- `npm run test:e2e:theme` – light/dark, synchronizacja kontrolek i przywracanie zapisanego motywu.
-- `npm run test:e2e:responsive` – szerokości 320, 390, 768, 1024 i 1440 px, oba motywy, współdzielone logo, kontrakt typografii z polskimi znakami, layout shift, overflow i containment.
-- `npm run test:e2e:seo` – statusy tras i zasobów, prawdziwe 404, metadane runtime, sitemapę i robots.
-- `npm run test:e2e:pwa` – instalacja i aktywacja SW, cache cleanup, manifest, skróty, ikony, screenshoty, online 404, offline, odpowiedzi niedozwolone i budżet krytycznych requestów.
-- `npm run test:e2e:headed` – pełny zestaw w widocznym Chromium.
-- `npm run test:e2e:ui` – interaktywny tryb Playwright UI.
-- `npm run test:e2e:report` – otwiera ostatni raport HTML.
-
-Konfiguracja używa projektów Chromium `1440 × 900` i `390 × 844`, pojedynczego workera, izolowanych kontekstów oraz domyślnie zablokowanych Service Workerów. Tylko `pwa.spec.mjs` włącza SW w świeżym kontekście i sprząta rejestracje oraz cache po teście. Screenshoty i trace są zapisywane tylko dla nieudanych testów; video jest wyłączone. `playwright-report/`, `test-results/` i `blob-report/` są lokalnymi artefaktami ignorowanymi przez Git.
-
-Skrypty `check:*` wykonują deterministyczną walidację źródeł i danych bez przeglądarki. Playwright weryfikuje zachowanie wygenerowanych stron w prawdziwym Chromium; oba rodzaje kontroli są wymagane przed przekazaniem zmian.
-
-## Wspólny shell HTML
-
-`scripts/shared-shell.mjs` jest jedynym źródłem wspólnego skip linku, headera, głównej nawigacji, CTA i footera dla:
-
-- `index.html`
-- `uslugi.html`
-- `pakiety.html`
-- `materialy.html`
-- `postepy.html`
-
-Każdy z tych plików pozostaje samodzielnym dokumentem HTML. Jego `<head>` i `<main>` są treścią specyficzną dla strony, natomiast regiony między komentarzami `shared-shell:*:start` i `shared-shell:*:end` są składane automatycznie i nie powinny być edytowane ręcznie.
-
-W `materialy.html` region między komentarzami `materials-catalog:start` i `materials-catalog:end` jest generowany z `js/data/materials.js`. Zmieniaj dane źródłowe, nie gotowe karty w tym regionie.
-
-Regiony `package-cards:*`, `package-link:*` oraz `materials-home:*` są generowane z `js/data/packages.js` i `js/data/materials.js`. Dane handlowe, linki pakietów i treść kart nie powinny być utrzymywane ręcznie w HTML.
-
-Po zmianie wspólnego shellu uruchom:
+W systemie Windows ten sam workflow można uruchomić przez `start-dev.bat`. Prosty statyczny podgląd jest dostępny przez:
 
 ```powershell
-npm run build:html
-npm run check:html
+npm run serve
 ```
 
-Assembler korzysta z jawnych markerów, zachowuje wartości specyficzne dla stron i przerywa pracę przy nieaktualnym shellu, błędnej liczbie `h1`/`main`, duplikatach ID, niepoprawnym `aria-current="page"`, brakującym celu skip linku lub niedziałającym lokalnym linku shellu.
+### Dostępne skrypty
 
-Każda strona ma dokładnie jeden stan `aria-current="page"`: na stronie głównej otrzymuje go link logo do `/index.html`, a na pozostałych stronach odpowiedni link głównej nawigacji.
+- `npm run dev` — projektowy serwer Python z live reload na porcie `8181`;
+- `npm run serve` — statyczny podgląd katalogu głównego;
+- `npm run build` — składa HTML i generuje `service-worker.js`;
+- `npm run build:html` / `npm run check:html` — aktualizuje lub bez zapisu sprawdza regiony HTML oraz zasoby routingu;
+- `npm run build:sw` — waliduje precache i generuje Service Workera z deterministyczną rewizją cache;
+- `npm run check:data` / `npm run check:content` — sprawdza dane pakietów i materiałów oraz integralność treści publicznych;
+- `npm run check:css` — sprawdza architekturę CSS, tokeny motywów i zdefiniowane pary kontrastu;
+- `npm run check:seo` / `npm run check:pwa` — sprawdza odpowiednio kontrakt metadanych i routingu oraz manifest, cache i zasoby PWA;
+- `npm run check:dev` — weryfikuje serwer lokalny, MIME, 404, live reload, rebuild HTML i lokalne czyszczenie PWA;
+- `npm run lint:js` — uruchamia ESLint dla kanonicznych źródeł JavaScript i modułów projektu;
+- `npm run test:e2e` — wykonuje build i pełny zestaw testów Playwright;
+- `npm run test:e2e:smoke`, `npm run test:e2e:interactions`, `npm run test:e2e:theme`, `npm run test:e2e:responsive`, `npm run test:e2e:seo`, `npm run test:e2e:pwa` — uruchamiają skupione zestawy przeglądarkowe;
+- `npm run build:css` / `npm run build:js` — odświeża pomocnicze pliki w `assets/build/`;
+- `npm run build:pwa-screenshots` — odtwarza screenshoty zadeklarowane w manifeście;
+- `npm run images` — generuje deterministyczne warianty WebP i AVIF dla rastrowych obrazów treści;
+- `npm run format` — formatuje obsługiwane źródła przez Prettier.
 
-## A11y checklist (WCAG AA+)
-
-- Skip link do treści.
-- Semantyczne sekcje i poprawna hierarchia nagłówków.
-- Wyraźne focus states (`:focus-visible`).
-- Dostępne komponenty interaktywne (menu mobilne, accordion, filtry).
-- Obsługa klawiatury (Tab/Shift+Tab/ESC).
-- `prefers-reduced-motion` dla animacji.
-- Kontrast zgodny z AA.
-
-## PWA
-
-- `service-worker.template.js` pozostaje jedynym źródłem Service Workera. `scripts/pwa-config.mjs` definiuje kontrakt assetów, a `scripts/build-service-worker.mjs` sprawdza istnienie i unikalność ścieżek przed wygenerowaniem `service-worker.js`.
-- Cache używa stałego prefiksu `lauren-english-v` oraz rewizji `<package version>-<12 znaków SHA-256>`. Fingerprint obejmuje szablon, konfigurację i treść każdego precachowanego pliku, więc identyczne wejścia dają identyczną nazwę, a zmiana wejścia tworzy nową.
-- Instalacja kończy się dopiero po pełnym `cache.addAll`; nieudana instalacja usuwa wyłącznie niekompletny bieżący cache. Po udanej instalacji worker wywołuje `skipWaiting`, a aktywacja usuwa wyłącznie starsze cache z prefiksem Lauren English i wykonuje `clients.claim`.
-- Precache obejmuje pięć głównych dokumentów, `offline.html`, dokładny graf 26 plików CSS i 19 modułów JavaScript, Inter 400/600/700, Literata 700, ikony instalacyjne 192/512, trzy ikony skrótów, współdzielone logo, dwa obrazy homepage (hero i portret) oraz `site.webmanifest`. Nie zawiera outputów `assets/build/`, screenshotów instalacyjnych, stron błędów, formularzy ani katalogu materiałów.
-- Nawigacja online jest network-first: prawdziwy `404` pozostaje `404` i nie trafia do cache. Przy awarii sieci główna znana trasa otrzymuje swoją kopię, a inna nawigacja otrzymuje `offline.html`; homepage nie jest fallbackiem ogólnym.
-- Cache przyjmuje tylko pełne odpowiedzi `200` dla zamierzonych, same-origin żądań `GET` HTTP(S). Odpowiedzi przekierowane, opaque, częściowe, nieudane, cross-origin i inne metody nie są zapisywane. Statyczny runtime jest ograniczony do jawnej listy precache, a query string nie tworzy dodatkowych wpisów.
-- `site.webmanifest` deklaruje pełny kontrakt instalacyjny, zweryfikowane PNG `192 × 192` i `512 × 512`, dokładnie trzy skróty do pakietów, materiałów i postępów oraz aktualne screenshoty `1280 × 720` (`wide`) i `720 × 1280` (`narrow`). Nie deklaruje `maskable`, ponieważ nie ma osobnego assetu ze zweryfikowaną strefą bezpieczną.
-- Hero używa jednego JPEG `1600 × 1200`, jawnych wymiarów, `loading="eager"`, `fetchpriority="high"` i `decoding="async"`. Budżet homepage to dokładnie 26 requestów CSS i 19 requestów JavaScript z lokalnego grafu, 4 początkowe fonty (łącznie maks. 185 kB), 1 request współdzielonego logo oraz 1 request hero (maks. 1,1 MB), bez outputów `assets/build/`, zewnętrznych źródeł i duplikatów.
-
-Weryfikacja lokalna:
+### Build produkcyjny
 
 ```powershell
 npm run build
-npm run build:pwa-screenshots
-npm run check:pwa
-npm run test:e2e:pwa
 ```
 
-## SEO i routing
+Build działa bez katalogu `dist/`. `build:html` aktualizuje oznaczone regiony dwunastu samodzielnych dokumentów HTML oraz generuje `sitemap.xml`, `robots.txt` i `_redirects`. Następnie `build:sw` waliduje listę precache i tworzy `service-worker.js` na podstawie szablonu, konfiguracji PWA, wersji pakietu i fingerprintu zawartości.
 
-Kanoniczny origin wdrożenia to `https://education-pr-01-lauren-english.netlify.app`. Jedynym źródłem originu, publicznych tras i metadanych jest `scripts/site-config.mjs`.
+Aktualny runtime nadal korzysta z `/css/style.css` i `/js/main.js`. Śledzone pliki `assets/build/style.min.css` oraz `assets/build/main.min.js` są generowane wyłącznie przez jawne skrypty `build:css` i `build:js`; strony i precache ich nie używają. Wygenerowanych regionów oraz plików produkcyjnych nie należy poprawiać ręcznie.
 
-Indeksowane trasy to:
+### Obrazy
 
-- `/`
-- `/uslugi.html`
-- `/pakiety.html`
-- `/materialy.html`
-- `/postepy.html`
+Rastrowe fallbacki i ich śledzone warianty produkcyjne leżą razem w `assets/img/`; nie ma osobnego katalogu źródłowego, ponieważ skrypt przetwarza wyłącznie jawnie skonfigurowane pliki JPEG/PNG i nigdy nie czyta własnych outputów WebP ani AVIF. Kanoniczna lista obrazów znajduje się w `scripts/image-config.mjs` i obecnie obejmuje hero strony głównej, hero kontaktu oraz portret Lauren.
 
-Strony `/404.html`, `/offline.html` i `/thank-you.html` są dostępne technicznie, ale mają `noindex, nofollow`, bez canonical, Open Graph, Twitter Cards i JSON-LD. Każda indeksowana strona ma jeden absolutny canonical zgodny z `og:url`, unikalny tytuł i opis oraz minimalne dane `WebSite` albo `WebPage` bez niezweryfikowanych danych firmy.
+Uruchom `npm run images`, aby utworzyć obok każdego fallbacku pliki `.avif` i `.webp`. W HTML używaj natywnego `<picture>` w kolejności AVIF, WebP, a następnie niezmienionego `<img>` JPEG/PNG z zachowanymi atrybutami dostępności, wymiarami i strategią ładowania. Optymalizacja nie jest częścią `npm run build`; wygenerowane warianty są celowo śledzone w repozytorium i należy je odświeżyć przed buildem po zmianie skonfigurowanego obrazu.
 
-Kanonicznym zasobem grafiki społecznościowej jest istniejący raster `assets/og/og.png` o rozmiarze `1200 × 630`. Metadane Open Graph i Twitter wskazują na jego bezwzględny adres HTTPS. `npm run build:html` generuje metadane w oznaczonych regionach oraz odświeża `sitemap.xml`, `robots.txt` i `_redirects` z rejestru. Sitemapa zawiera wyłącznie pięć indeksowanych canonicali i nie publikuje niewiarygodnych dat `lastmod`.
+### Testy i walidacja
 
-`_redirects` nie zawiera fallbacku SPA do strony głównej. Na Netlify obecność głównego `404.html` zapewnia dedykowaną odpowiedź dla nieznanych tras z prawdziwym statusem `404`; lokalny serwer testowy zachowuje tę samą semantykę. `serve.json` wyłącza lokalne przepisywanie adresów `.html`, aby testy odwzorowywały udokumentowany styl canonical. Weryfikacja:
+Projekt udostępnia walidatory statyczne dla danych, publicznych treści, HTML, CSS, SEO, PWA i lokalnego workflow. Nie zastępują one testów przeglądarkowych.
+
+Playwright uruchamia Chromium w projektach `1440 × 900` oraz `390 × 844`, z jednym workerem i Service Workerami domyślnie zablokowanymi. Osobny zestaw PWA włącza je w izolowanym kontekście. Testy obejmują główne trasy, wspólny shell, motywy, interakcje klawiaturowe, responsywność, routing, metadane, cache i zachowanie offline.
+
+To zadanie dokumentacyjne nie uruchamiało buildów, walidatorów ani testów, dlatego README nie deklaruje ich aktualnego wyniku.
+
+### Wdrożenie
+
+Publiczna wersja jest dostępna pod adresem wskazanym w sekcji „Wersja online”. Repozytorium nie zawiera `netlify.toml`; build zapisuje komplet publikowanych plików bezpośrednio w katalogu głównym zamiast w `dist/`.
+
+Przed publikacją należy uruchomić `npm run build`. Plik `_redirects` obsługuje alias `/thank-you`, a formularz w `kontakt.html` używa atrybutów Netlify Forms, honeypota `bot-field` i strony docelowej `/thank-you.html`.
+
+### Dostępność
+
+Projekt deklaruje cel WCAG 2.2 AA i implementuje konkretne mechanizmy wspierające ten kierunek, bez deklarowania formalnej zgodności:
+
+- semantyczne landmarki, jeden `h1` na stronę, logiczne nagłówki i skip link;
+- natywne kontrolki formularzy, widoczne etykiety, komunikacja pól wymaganych i style `:focus-visible`;
+- mobilny drawer z `aria-expanded`, `aria-hidden`, `inert`, pułapką fokusu, obsługą `Escape` i zwrotem fokusu;
+- accordion i filtry z synchronizowanymi stanami ARIA oraz obsługą klawiatury;
+- przenoszenie fokusu na nagłówek docelowej sekcji po nawigacji do hasha;
+- ograniczanie nieistotnego ruchu przez `prefers-reduced-motion`;
+- projektowy validator kontrastu dla jawnie zdefiniowanych par w jasnym i ciemnym motywie.
+
+### SEO
+
+`scripts/site-config.mjs` definiuje sześć stron indeksowanych oraz sześć stron technicznych lub prawnych oznaczonych `noindex, nofollow`. Generator zapewnia stronom indeksowanym indywidualne tytuły i opisy, canonical, Open Graph, Twitter Card oraz JSON-LD typu `WebSite` lub `WebPage`.
+
+`npm run build:html` synchronizuje metadane z `sitemap.xml`, `robots.txt` i `_redirects`. Kanonicznym obrazem społecznościowym jest lokalny plik `assets/og/og.png` o wymiarach `1200 × 630`; strony techniczne nie otrzymują canonicali ani metadanych społecznościowych.
+
+### PWA i obsługa offline
+
+`site.webmanifest` deklaruje tryb `standalone`, ikony `192 × 192` i `512 × 512`, trzy skróty oraz screenshoty dla szerokiego i wąskiego widoku. Service Worker jest rejestrowany po załadowaniu strony poza lokalnym środowiskiem na porcie `8181`.
+
+Precache obejmuje główne dokumenty, offline fallback, bezpośredni graf CSS i JavaScript, lokalne fonty, logo, ikony motywu i manifestu oraz wymagane obrazy. Nawigacja używa sieci w pierwszej kolejności, zachowuje rzeczywiste odpowiedzi HTTP i przy braku sieci zwraca kopię znanej strony albo `offline.html`. Aktywacja usuwa wyłącznie starsze cache z prefiksem projektu.
+
+### Wydajność
+
+- runtime nie ma zależności frameworkowych ani zewnętrznych skryptów;
+- Inter i Literata są dostarczane lokalnie jako WOFF2 z `font-display: swap`, a head preloaduje tylko krytyczny plik Literata 700;
+- ważne obrazy mają jawne wymiary, hero korzysta z `fetchpriority="high"`, a obrazy poniżej pierwszego widoku mogą używać `loading="lazy"`;
+- `scripts/pwa-config.mjs` definiuje budżety liczby requestów i rozmiaru początkowych fontów oraz obrazu hero, sprawdzane przez `npm run check:pwa`;
+- pomocnicze bundle w `assets/build/` pozostają poza bieżącym grafem requestów i precache.
+
+Sekcja opisuje zastosowane mechanizmy; repozytorium nie przechowuje wyniku Lighthouse ani innej aktualnej metryki wydajnościowej.
+
+### Informacja o projekcie
+
+Publiczna wersja portfolio wyświetla na pierwszej wizycie informacyjny dialog Project Disclosure Modal. Nie jest on zgodą na cookies, akceptacją regulaminu ani zgodą marketingową. Konfiguracja `PROJECT_DISCLOSURE` w `scripts/site-config.mjs` określa flagę `enabled`, bieżący `version`, klucz `laurenEnglishProjectDisclosure` oraz dopuszczone trasy. Modal otwiera się tylko na sześciu stronach indeksowanych; strony prawne, 404, offline i podziękowanie pozostają nieblokowane.
+
+Po użyciu przycisku „Przejdź do strony” w `localStorage` zapisywana jest bieżąca wersja. Zmiana `version` wyświetla informację ponownie, a niedostępny Web Storage nie blokuje przejścia do serwisu. Dla wdrożenia rzeczywistego klienta ustaw `enabled: false` i uruchom `npm run build:html`; nie trzeba usuwać markup ani modułu JavaScript.
+
+### Dane i trwałość stanu
+
+- `js/data/packages.js` przechowuje trzy pakiety `start`, `regular` i `intensive`; homepage i `pakiety.html` korzystają z tych samych rekordów.
+- `js/data/materials.js` zawiera statyczny katalog, a `materialAccess.js` i `materialFilters.js` centralizują stany dostępu, powiązania z pakietami i filtrowanie.
+- dziennik postępów zapisuje cele i maksymalnie czternaście dni check-inów w `localStorage` pod kluczem `lauren_progress_v1`; dane można zresetować lub pobrać jako JSON.
+- wybrany motyw jest również zapisywany lokalnie, z bezpiecznym fallbackiem pamięciowym, gdy Web Storage jest niedostępny.
+
+Stan dziennika nie jest synchronizowany z kontem, bazą danych ani zdalną kopią zapasową. Formularz kontaktowy jest niezależną integracją Netlify Forms.
+
+### Licencja
+
+Lauren English jest własnościowym projektem Kamila Króla — KP_Code. Publiczny kod można przeglądać w portfolio oraz uruchamiać lokalnie do prywatnej, niekomercyjnej oceny. Kopiowanie, redystrybucja, publiczne wdrożenie, tworzenie utworów zależnych lub wykorzystanie komercyjne wymaga uprzedniej pisemnej zgody.
+
+Pełne warunki, w których polska wersja jest rozstrzygająca, zawiera [LICENSE.md](LICENSE.md).
+
+### Atrybucje
+
+- Font Literata jest dołączony na licencji SIL Open Font License 1.1; tekst licencji znajduje się w [assets/fonts/OFL-Literata.txt](assets/fonts/OFL-Literata.txt).
+- Wykorzystane inline SVG pochodzą z Font Awesome Free v7.3.1. Oryginalne komentarze licencyjne są zachowane przy ikonach, zgodnie z [warunkami Font Awesome Free](https://fontawesome.com/license/free).
+
+## EN
+
+### Project Overview
+
+Lauren English is a static multi-page educational website presenting an individual English-learning offer. The repository includes the homepage, services, packages, a materials catalogue, a browser-local progress journal, contact, legal documents, and technical pages for errors, offline mode, and form submission confirmation.
+
+Each route is a standalone HTML document. The shared shell, metadata, data-backed content, and Service Worker are assembled by static Node.js scripts. The browser loads the canonical `/css/style.css` and `/js/main.js` sources directly; the project uses neither a frontend framework nor SPA routing.
+
+### Live Version
+
+[Open Lauren English](https://education-pr01-laurenenglish.netlify.app/)
+
+### Key Features
+
+- responsive shared header, focus-trapped mobile navigation, active navigation states, and a light/dark theme toggle;
+- package and material data maintained in JavaScript modules and rendered to HTML at build time;
+- a materials catalogue available without JavaScript and progressively enhanced with category, level, and access filters;
+- a browser-local progress journal with weekly goals, daily check-ins, statistics, reset, and JSON export;
+- a contact form configured for Netlify Forms with a honeypot and thank-you-page redirect;
+- an FAQ accordion, anchor navigation with focus transfer, and animations that respect `prefers-reduced-motion`;
+- generated SEO metadata, an application manifest, a Service Worker, and a dedicated offline fallback.
+
+### Tech Stack
+
+- **Runtime:** semantic HTML5, CSS, and Vanilla JavaScript using native ES modules;
+- **CSS:** design tokens, BEM, mobile-first layouts, PostCSS, `postcss-import`, and cssnano;
+- **Build:** static Node.js ESM scripts, esbuild for an auxiliary JavaScript bundle, and imagemin for images;
+- **Development:** npm with `package-lock.json`, a project-specific Python 3 live-reload server, and `serve` for static preview;
+- **Code quality:** ESLint, Prettier, and project validators for HTML, content, data, CSS, SEO, PWA, and the development workflow;
+- **Browser testing:** Playwright with Chromium desktop and mobile projects;
+- **Hosting integration:** Netlify Forms and `_redirects` rules.
+
+### Architecture
+
+- `scripts/shared-shell.mjs` generates the shared skip link, header, navigation, footer, and informational project dialog for six public pages and three legal pages.
+- `scripts/site-config.mjs` is the registry for routes, metadata, indexing policy, public SEO assets, and `PROJECT_DISCLOSURE` configuration.
+- `scripts/content-renderers.mjs` connects data from `js/data/` with marked package and material regions in HTML.
+- `css/style.css` preserves the `tokens → base → utilities → components → sections → pages` layer order.
+- `js/main.js` initializes isolated feature modules; each module guards its DOM queries and exits when its component is absent from the page.
+- `service-worker.template.js` and `scripts/pwa-config.mjs` are the sources for the generated `service-worker.js`.
+
+Root HTML files contain canonical page-specific content, but regions marked with `seo:*`, `shared-shell:*`, `package-*`, and `materials-*` comments must not be edited manually. `sitemap.xml`, `robots.txt`, `_redirects`, and `service-worker.js` are also generated by project scripts.
+
+### Project Structure
+
+```text
+.
+├── index.html                 # homepage
+├── uslugi.html                # services
+├── pakiety.html               # package comparison
+├── materialy.html             # materials catalogue
+├── postepy.html               # browser-local progress journal
+├── kontakt.html               # contact details and Netlify form
+├── polityka-prywatnosci.html  # legal documents
+├── regulamin.html
+├── cookies.html
+├── 404.html                   # technical pages
+├── offline.html
+├── thank-you.html
+├── css/                       # tokens, base layers, components, sections, and pages
+├── js/
+│   ├── data/                  # packages, materials, access, filters, and progress definitions
+│   ├── modules/               # interaction modules
+│   ├── pages/                 # page logic
+│   └── state/                 # safe browser-state operations
+├── scripts/                   # assemblers, renderers, validators, and development server
+├── assets/                    # images, icons, fonts, PWA assets, and auxiliary builds
+├── tests/e2e/                 # Playwright tests
+├── docs/                      # architecture and workflow documentation
+├── service-worker.template.js
+├── service-worker.js          # generated file
+├── site.webmanifest
+├── package.json
+└── LICENSE.md
+```
+
+### Installation
+
+The repository uses npm and includes a lockfile:
 
 ```powershell
-npm run check:seo
-npm run test:e2e:seo
+npm ci
+npx playwright install chromium
 ```
 
-## Wdrożenie Netlify
+The project does not declare a specific Node.js version. Python 3 is required only by the project server started with `npm run dev` or `start-dev.bat`.
 
-Repozytorium nie zawiera `netlify.toml`, dlatego ustawienia wdrożenia pozostają w panelu Netlify. Dla obecnej architektury wymagane są: base directory = root repozytorium, build command = `npm run build`, publish directory = `.`. Nie ustawiaj `dist/`: taki katalog nie jest obecnie tworzony i stanie się publish directory dopiero w osobnej, planowanej migracji do Vite. Główny `_redirects` jest generowany przez `npm run build:html` i musi pozostać w katalogu publikowanym.
+### Local Development
 
-## Licencja
+```powershell
+npm run dev
+```
 
-Lauren English jest projektem własnościowym KP_Code. Kod źródłowy jest publiczny wyłącznie do przeglądu portfolio oraz prywatnej, niekomercyjnej oceny. Kopiowanie, redystrybucja, publiczne wdrożenie, tworzenie utworów zależnych lub wykorzystanie komercyjne wymagają uprzedniej pisemnej zgody. Pełne warunki zawiera plik [LICENSE.md](LICENSE.md).
+The server assembles HTML, serves the website at `http://127.0.0.1:8181/`, opens a browser, and watches source files. Changes that depend on the assembler rerun `npm run build:html` before the page reloads. On this port, the application removes only its own local Service Worker registration and caches prefixed with `lauren-english-v`, preventing PWA state from masking source changes.
 
-## Uwagi
+On Windows, the same workflow can be started with `start-dev.bat`. A simple static preview is available through:
 
-Typografia używa tokenów `--font-family-heading: "Literata", serif` dla semantycznych nagłówków oraz `--font-family-body: "Inter", sans-serif` dla treści i UI. Projekt dostarcza lokalnie Inter 400/600/700 oraz wyłącznie używaną wagę Literata 700; Inter 500 nie jest deklarowany ani requestowany. Kanoniczne deklaracje `@font-face` znajdują się w `css/base/base.css`, używają `font-display: swap` i root-relative URL. Literata pochodzi z oficjalnego repozytorium `googlefonts/literata` (commit `0c2761b727a1b3a7cffd313c37f0f5163dfc7a63`), a licencja SIL Open Font License 1.1 jest zapisana w `assets/fonts/OFL-Literata.txt`. Wygenerowany head preloaduje wyłącznie Literata 700, ponieważ ten jeden plik obsługuje krytyczne tytuły stron i pomiar wykazał przesunięcia powiązane z wymianą fontu przy węższych viewportach; pozostałe wagi nie są preloadowane.
+```powershell
+npm run serve
+```
 
-## Materiały (katalog)
+### Available Scripts
 
-- Dane: `js/data/materials.js` – lista obiektów z polami opisującymi materiały.
-- Dostęp i CTA: `js/data/materialAccess.js` – wspólne reguły dla linku, pakietu, kontaktu i stanu niedostępnego.
-- Filtrowanie: `js/data/materialFilters.js` – czysta logika kategorii, poziomu, formatu i dostępu.
-- Dodanie nowego materiału: dopisz rekord z metadanymi, `access` i jawnym `action`; materiały premium wymagają obsługiwanego `packageKey`.
-- Po zmianie danych uruchom `npm run build:html`, aby odświeżyć dostępny bez JavaScriptu katalog w `materialy.html`.
+- `npm run dev` — starts the project Python live-reload server on port `8181`;
+- `npm run serve` — serves a static preview of the repository root;
+- `npm run build` — assembles HTML and generates `service-worker.js`;
+- `npm run build:html` / `npm run check:html` — updates or read-only checks HTML regions and routing assets;
+- `npm run build:sw` — validates the precache and generates the Service Worker with a deterministic cache revision;
+- `npm run check:data` / `npm run check:content` — validates package and material data plus public-content integrity;
+- `npm run check:css` — checks CSS architecture, theme tokens, and defined contrast pairs;
+- `npm run check:seo` / `npm run check:pwa` — checks the metadata and routing contract, then the manifest, cache, and PWA assets;
+- `npm run check:dev` — verifies the local server, MIME types, 404 handling, live reload, HTML rebuilds, and local PWA cleanup;
+- `npm run lint:js` — runs ESLint for the project’s canonical JavaScript and module sources;
+- `npm run test:e2e` — runs the build and the complete Playwright suite;
+- `npm run test:e2e:smoke`, `npm run test:e2e:interactions`, `npm run test:e2e:theme`, `npm run test:e2e:responsive`, `npm run test:e2e:seo`, `npm run test:e2e:pwa` — run focused browser suites;
+- `npm run build:css` / `npm run build:js` — refresh the auxiliary files in `assets/build/`;
+- `npm run build:pwa-screenshots` — recreates the screenshots declared by the manifest;
+- `npm run images` — generates deterministic WebP and AVIF variants for raster content images;
+- `npm run format` — formats supported source files with Prettier.
 
-## Pakiety
+### Production Build
 
-- Dane: `js/data/packages.js` – rekordy `start`, `regular` i `intensive` wraz z opisami, korzyściami, linkami i CTA.
-- Homepage i `pakiety.html` są generowane z tych samych rekordów.
-- Brak zatwierdzonej ceny jest zapisany jako `priceLabel: null`; renderer nie tworzy wtedy publicznej ceny.
+```powershell
+npm run build
+```
 
-## Integralność treści publicznych
+The build does not create a `dist/` directory. `build:html` updates marked regions in twelve standalone HTML documents and generates `sitemap.xml`, `robots.txt`, and `_redirects`. `build:sw` then validates the precache and creates `service-worker.js` from its template, the PWA configuration, the package version, and a content fingerprint.
 
-Publiczne dane kontaktowe, profile społecznościowe i dokumenty prawne nie są publikowane bez potwierdzonego źródła. Formularz danych osobowych pozostaje wyłączony, a sekcja kontaktowa pokazuje stan informacyjny. Po zmianie treści publicznych uruchom `npm run check:content`.
+The current runtime still uses `/css/style.css` and `/js/main.js`. Tracked files `assets/build/style.min.css` and `assets/build/main.min.js` are generated only by the explicit `build:css` and `build:js` scripts; pages and the precache do not use them. Generated regions and production files must not be edited manually.
+
+### Images
+
+Raster fallbacks and their tracked production variants live together in `assets/img/`; there is no separate source directory because the optimizer processes only explicitly configured JPEG/PNG files and never reads its own WebP or AVIF output. The canonical image list is `scripts/image-config.mjs` and currently covers the homepage hero, contact hero, and Lauren portrait.
+
+Run `npm run images` to create `.avif` and `.webp` files alongside each fallback. In HTML, use native `<picture>` in AVIF, WebP, then unchanged JPEG/PNG `<img>` order while preserving accessibility attributes, dimensions, and loading strategy. Image optimization is not part of `npm run build`; generated variants are intentionally tracked and must be refreshed before a build when a configured image changes.
+
+### Testing and Validation
+
+The project provides static validators for data, public content, HTML, CSS, SEO, PWA, and the local workflow. They complement rather than replace browser tests.
+
+Playwright runs Chromium projects at `1440 × 900` and `390 × 844`, with one worker and Service Workers blocked by default. A dedicated PWA suite enables them in an isolated context. Tests cover primary routes, the shared shell, themes, keyboard interactions, responsive behavior, routing, metadata, caching, and offline behavior.
+
+This documentation-only task did not run builds, validators, or tests, so the README does not claim a current passing result.
+
+### Deployment
+
+The public deployment is available at the URL listed under “Live Version.” The repository does not contain `netlify.toml`; the build writes the complete publishable output directly to the repository root instead of `dist/`.
+
+Run `npm run build` before publishing. `_redirects` handles the `/thank-you` alias, while the form in `kontakt.html` uses Netlify Forms attributes, the `bot-field` honeypot, and `/thank-you.html` as its destination.
+
+### Accessibility
+
+The project states WCAG 2.2 AA as a target and implements concrete mechanisms supporting that direction without claiming formal conformance:
+
+- semantic landmarks, one `h1` per page, logical headings, and a skip link;
+- native form controls, visible labels, required-field communication, and `:focus-visible` styles;
+- a mobile drawer with `aria-expanded`, `aria-hidden`, `inert`, focus trapping, `Escape` handling, and focus return;
+- accordion and filters with synchronized ARIA state and keyboard support;
+- focus transfer to the destination section heading after hash navigation;
+- reduced non-essential motion through `prefers-reduced-motion`;
+- a project contrast validator for explicitly defined light- and dark-theme pairs.
+
+### SEO
+
+`scripts/site-config.mjs` defines six indexable pages and six technical or legal pages marked `noindex, nofollow`. The generator gives indexable pages individual titles and descriptions, canonical links, Open Graph, Twitter Card, and `WebSite` or `WebPage` JSON-LD.
+
+`npm run build:html` keeps the metadata synchronized with `sitemap.xml`, `robots.txt`, and `_redirects`. The canonical social image is the local `assets/og/og.png` file sized `1200 × 630`; technical pages receive neither canonical links nor social metadata.
+
+### PWA and Offline Support
+
+`site.webmanifest` declares `standalone` display mode, `192 × 192` and `512 × 512` icons, three shortcuts, and screenshots for wide and narrow views. The Service Worker is registered after page load outside the local development environment on port `8181`.
+
+The precache includes primary documents, the offline fallback, the direct CSS and JavaScript graph, local fonts, branding, theme and manifest icons, and required images. Navigation is network-first, preserves real HTTP responses, and returns a cached known page or `offline.html` when the network is unavailable. Activation removes only older caches using the project prefix.
+
+### Performance
+
+- the runtime has no framework dependencies or external scripts;
+- Inter and Literata are served locally as WOFF2 with `font-display: swap`, while the head preloads only the critical Literata 700 file;
+- important images have explicit dimensions, the hero uses `fetchpriority="high"`, and below-the-fold images can use `loading="lazy"`;
+- `scripts/pwa-config.mjs` defines request-count and byte budgets for initial fonts and the hero image, validated by `npm run check:pwa`;
+- auxiliary bundles under `assets/build/` stay outside the current request graph and precache.
+
+This section describes implemented mechanisms; the repository does not store a Lighthouse result or another current performance metric.
+
+### Project Disclosure
+
+The public portfolio deployment shows an informational Project Disclosure Modal on a first visit. It is not cookie consent, terms acceptance, or marketing consent. `PROJECT_DISCLOSURE` in `scripts/site-config.mjs` defines `enabled`, the current `version`, the `laurenEnglishProjectDisclosure` storage key, and eligible routes. The dialog opens only on the six indexable pages; legal, 404, offline, and thank-you pages remain unblocked.
+
+Using “Przejdź do strony” stores the current version in `localStorage`. Changing `version` intentionally displays the notice again, and unavailable Web Storage never prevents entry to the site. For a real-client deployment, set `enabled: false` and run `npm run build:html`; neither the markup nor the JavaScript module needs to be removed.
+
+### Data and State Persistence
+
+- `js/data/packages.js` stores the three `start`, `regular`, and `intensive` packages; the homepage and `pakiety.html` use the same records.
+- `js/data/materials.js` contains the static catalogue, while `materialAccess.js` and `materialFilters.js` centralize access states, package relationships, and filtering.
+- the progress journal stores goals and up to fourteen days of check-ins in `localStorage` under `lauren_progress_v1`; users can reset the data or download it as JSON.
+- the selected theme is also stored locally, with an in-memory fallback when Web Storage is unavailable.
+
+Journal state is not synchronized with an account, database, or remote backup. The contact form is a separate Netlify Forms integration.
+
+### License
+
+Lauren English is a proprietary project owned by Kamil Król — KP_Code. The public source may be reviewed as portfolio work and run locally for private, non-commercial evaluation. Copying, redistribution, public deployment, derivative use, or commercial use requires prior written permission.
+
+Full terms, with the Polish version prevailing, are available in [LICENSE.md](LICENSE.md).
+
+### Attributions
+
+- Literata is included under the SIL Open Font License 1.1; the license text is available in [assets/fonts/OFL-Literata.txt](assets/fonts/OFL-Literata.txt).
+- Inline SVGs are sourced from Font Awesome Free v7.3.1. Original license comments are preserved next to the icons in accordance with the [Font Awesome Free terms](https://fontawesome.com/license/free).
