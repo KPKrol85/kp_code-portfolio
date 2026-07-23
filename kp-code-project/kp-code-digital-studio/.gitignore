@@ -1,3 +1,36 @@
+# dependencies
+/node_modules/
+/vendor/
+
+# build output
+/dist/
+
+# local contact configuration
 /contact-mail.config.local.php
 /contact-mail.config.*.local.php
-/vendor/
+
+# environment
+/.env
+/.env.*.local
+
+# temporary files and reports
+/.cache/
+/.tmp/
+/reports/
+/.lighthouseci/
+
+# logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# hosting
+/.netlify/
+
+# IDE / OS
+/.vscode/
+/.idea/
+.DS_Store
+Thumbs.db
